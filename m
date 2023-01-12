@@ -1,13 +1,14 @@
 Return-Path: <intel-xe-bounces@lists.freedesktop.org>
 From: Rodrigo Vivi <rodrigo.vivi@intel.com>
-Date: Thu, 12 Jan 2023 17:25:22 -0500
-Message-ID: <20230112222538.2000142-22-rodrigo.vivi@intel.com>
+Date: Thu, 12 Jan 2023 17:25:29 -0500
+Message-ID: <20230112222538.2000142-29-rodrigo.vivi@intel.com>
 In-Reply-To: <20230112222538.2000142-1-rodrigo.vivi@intel.com>
 References: <20230112222538.2000142-1-rodrigo.vivi@intel.com>
 Content-Transfer-Encoding: 8bit
 Content-Type: text/plain
 MIME-Version: 1.0
-Subject: [Intel-xe] [PATCH 21/37] drm/i915: Remove i915_drm_suspend_mode
+Subject: [Intel-xe] [PATCH 28/37] drm/xe: Don't use engine_mask until after
+ hwconfig parse
 List-Id: Intel Xe graphics driver <intel-xe.lists.freedesktop.org>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=unsubscribe>
@@ -21,127 +22,118 @@ Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 To: intel-xe@lists.freedesktop.org, matthew.brost@intel.com, maarten.lankhorst@linux.intel.com, philippe.lecluse@intel.com, mchehab@kernel.org
 Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
 
-From: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
+From: Matthew Brost <matthew.brost@intel.com>
 
-enum i915_drm_suspend_mode suspend_mode is only used in
-intel_display_power, while we only care about whether we perform a
-s2idle. Remove it and use a simple bool.
+The IRQ and MCR init used engine_mask before hwconfig parse (currently
+faked), move these steps after the hwconfig parse.
 
-Signed-off-by: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
-Cc: Matthew Brost <matthew.brost@intel.com>
+Signed-off-by: Matthew Brost <matthew.brost@intel.com>
 Signed-off-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
 ---
- .../gpu/drm/i915/display/intel_display_power.c   |  8 +++-----
- .../gpu/drm/i915/display/intel_display_power.h   |  3 +--
- drivers/gpu/drm/i915/i915_driver.c               | 16 ++--------------
- drivers/gpu/drm/i915/intel_runtime_pm.h          |  6 ------
- 4 files changed, 6 insertions(+), 27 deletions(-)
+ drivers/gpu/drm/xe/xe_gt.c  |  7 +++++++
+ drivers/gpu/drm/xe/xe_irq.c | 34 +++++++++++++++++++---------------
+ drivers/gpu/drm/xe/xe_irq.h |  2 ++
+ 3 files changed, 28 insertions(+), 15 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_display_power.c b/drivers/gpu/drm/i915/display/intel_display_power.c
-index c3a57ec0d2f3..00e32a423708 100644
---- a/drivers/gpu/drm/i915/display/intel_display_power.c
-+++ b/drivers/gpu/drm/i915/display/intel_display_power.c
-@@ -2039,7 +2039,7 @@ void intel_power_domains_disable(struct drm_i915_private *i915)
- /**
-  * intel_power_domains_suspend - suspend power domain state
-  * @i915: i915 device instance
-- * @suspend_mode: specifies the target suspend state (idle, mem, hibernation)
-+ * @s2idle: specifies whether we go to idle, or deeper sleep
-  *
-  * This function prepares the hardware power domain state before entering
-  * system suspend.
-@@ -2047,8 +2047,7 @@ void intel_power_domains_disable(struct drm_i915_private *i915)
-  * It must be called with power domains already disabled (after a call to
-  * intel_power_domains_disable()) and paired with intel_power_domains_resume().
-  */
--void intel_power_domains_suspend(struct drm_i915_private *i915,
--				 enum i915_drm_suspend_mode suspend_mode)
-+void intel_power_domains_suspend(struct drm_i915_private *i915, bool s2idle)
- {
- 	struct i915_power_domains *power_domains = &i915->display.power.domains;
- 	intel_wakeref_t wakeref __maybe_unused =
-@@ -2064,8 +2063,7 @@ void intel_power_domains_suspend(struct drm_i915_private *i915,
- 	 * that would be blocked if the firmware was inactive.
- 	 */
- 	if (!(i915->display.dmc.allowed_dc_mask & DC_STATE_EN_DC9) &&
--	    suspend_mode == I915_DRM_SUSPEND_IDLE &&
--	    intel_dmc_has_payload(i915)) {
-+	    s2idle && intel_dmc_has_payload(i915)) {
- 		intel_display_power_flush_work(i915);
- 		intel_power_domains_verify_state(i915);
- 		return;
-diff --git a/drivers/gpu/drm/i915/display/intel_display_power.h b/drivers/gpu/drm/i915/display/intel_display_power.h
-index 3aae045749f7..d8d9309c1f19 100644
---- a/drivers/gpu/drm/i915/display/intel_display_power.h
-+++ b/drivers/gpu/drm/i915/display/intel_display_power.h
-@@ -172,8 +172,7 @@ void intel_power_domains_init_hw(struct drm_i915_private *dev_priv, bool resume)
- void intel_power_domains_driver_remove(struct drm_i915_private *dev_priv);
- void intel_power_domains_enable(struct drm_i915_private *dev_priv);
- void intel_power_domains_disable(struct drm_i915_private *dev_priv);
--void intel_power_domains_suspend(struct drm_i915_private *dev_priv,
--				 enum i915_drm_suspend_mode);
-+void intel_power_domains_suspend(struct drm_i915_private *dev_priv, bool s2idle);
- void intel_power_domains_resume(struct drm_i915_private *dev_priv);
- void intel_power_domains_sanitize_state(struct drm_i915_private *dev_priv);
+diff --git a/drivers/gpu/drm/xe/xe_gt.c b/drivers/gpu/drm/xe/xe_gt.c
+index 6cea15725cae..75150077d62c 100644
+--- a/drivers/gpu/drm/xe/xe_gt.c
++++ b/drivers/gpu/drm/xe/xe_gt.c
+@@ -21,6 +21,7 @@
+ #include "xe_gt_sysfs.h"
+ #include "xe_gt_topology.h"
+ #include "xe_hw_fence.h"
++#include "xe_irq.h"
+ #include "xe_lrc.h"
+ #include "xe_map.h"
+ #include "xe_migrate.h"
+@@ -449,6 +450,12 @@ static int gt_fw_domain_init(struct xe_gt *gt)
+ 	if (err)
+ 		goto err_force_wake;
  
-diff --git a/drivers/gpu/drm/i915/i915_driver.c b/drivers/gpu/drm/i915/i915_driver.c
-index f4201f9c5f84..c72f37f8c593 100644
---- a/drivers/gpu/drm/i915/i915_driver.c
-+++ b/drivers/gpu/drm/i915/i915_driver.c
-@@ -1235,18 +1235,6 @@ static int i915_drm_suspend(struct drm_device *dev)
- 	return 0;
++	/* Enables per hw engine IRQs */
++	xe_gt_irq_postinstall(gt);
++
++	/* Rerun MCR init as we now have hw engine list */
++	xe_gt_mcr_init(gt);
++
+ 	err = xe_hw_engines_init_early(gt);
+ 	if (err)
+ 		goto err_force_wake;
+diff --git a/drivers/gpu/drm/xe/xe_irq.c b/drivers/gpu/drm/xe/xe_irq.c
+index edebe1817400..92fe6b38d735 100644
+--- a/drivers/gpu/drm/xe/xe_irq.c
++++ b/drivers/gpu/drm/xe/xe_irq.c
+@@ -492,26 +492,32 @@ void xe_irq_reset(struct xe_device *xe)
+ #endif
  }
  
--static enum i915_drm_suspend_mode
--get_suspend_mode(struct drm_i915_private *dev_priv, bool hibernate)
--{
--	if (hibernate)
--		return I915_DRM_SUSPEND_HIBERNATE;
--
--	if (suspend_to_idle(dev_priv))
--		return I915_DRM_SUSPEND_IDLE;
--
--	return I915_DRM_SUSPEND_MEM;
--}
--
- static int i915_drm_suspend_late(struct drm_device *dev, bool hibernation)
+-void xe_irq_postinstall(struct xe_device *xe)
++void xe_gt_irq_postinstall(struct xe_gt *gt)
  {
- 	struct drm_i915_private *dev_priv = to_i915(dev);
-@@ -1254,6 +1242,7 @@ static int i915_drm_suspend_late(struct drm_device *dev, bool hibernation)
- 	struct intel_runtime_pm *rpm = &dev_priv->runtime_pm;
- 	struct intel_gt *gt;
- 	int ret, i;
-+	bool s2idle = !hibernation && suspend_to_idle(dev_priv);
+-	struct xe_gt *gt;
+-	u8 id;
++	struct xe_device *xe = gt_to_xe(gt);
  
- 	disable_rpm_wakeref_asserts(rpm);
+-	for_each_gt(gt, xe, id) {
+-		if (GRAPHICS_VERx100(xe) >= 1210) {
+-			dg1_irq_postinstall(xe, gt);
+-		} else if (GRAPHICS_VER(xe) >= 11) {
+-			gen11_irq_postinstall(xe, gt);
+-		} else {
+-			drm_err(&xe->drm, "No interrupt postinstall hook");
+-		}
+-	}
++	if (GRAPHICS_VERx100(xe) >= 1210)
++		dg1_irq_postinstall(xe, gt);
++	else if (GRAPHICS_VER(xe) >= 11)
++		gen11_irq_postinstall(xe, gt);
++	else
++		drm_err(&xe->drm, "No interrupt postinstall hook");
  
-@@ -1264,8 +1253,7 @@ static int i915_drm_suspend_late(struct drm_device *dev, bool hibernation)
- 	for_each_gt(gt, dev_priv, i)
- 		intel_uncore_suspend(gt->uncore);
+ #if IS_ENABLED(CONFIG_DRM_XE_DISPLAY)
+-	gen11_display_irq_postinstall(xe);
++	if (gt->info.id == XE_GT0)
++		gen11_display_irq_postinstall(gt_to_xe(gt));
+ #endif
+ }
  
--	intel_power_domains_suspend(dev_priv,
--				    get_suspend_mode(dev_priv, hibernation));
-+	intel_power_domains_suspend(dev_priv, s2idle);
++static void xe_irq_postinstall(struct xe_device *xe)
++{
++	struct xe_gt *gt;
++	u8 id;
++
++	for_each_gt(gt, xe, id)
++		xe_gt_irq_postinstall(gt);
++}
++
+ static irq_handler_t xe_irq_handler(struct xe_device *xe)
+ {
+ 	if (GRAPHICS_VERx100(xe) >= 1210) {
+@@ -566,8 +572,6 @@ int xe_irq_install(struct xe_device *xe)
+ 	if (err)
+ 		return err;
  
- 	intel_display_power_suspend_late(dev_priv);
- 
-diff --git a/drivers/gpu/drm/i915/intel_runtime_pm.h b/drivers/gpu/drm/i915/intel_runtime_pm.h
-index e592e8d6499a..764b183ae452 100644
---- a/drivers/gpu/drm/i915/intel_runtime_pm.h
-+++ b/drivers/gpu/drm/i915/intel_runtime_pm.h
-@@ -16,12 +16,6 @@ struct device;
- struct drm_i915_private;
- struct drm_printer;
- 
--enum i915_drm_suspend_mode {
--	I915_DRM_SUSPEND_IDLE,
--	I915_DRM_SUSPEND_MEM,
--	I915_DRM_SUSPEND_HIBERNATE,
--};
+-	xe_irq_postinstall(xe);
 -
- /*
-  * This struct helps tracking the state needed for runtime PM, which puts the
-  * device in PCI D3 state. Notice that when this happens, nothing on the
+ 	return err;
+ }
+ 
+diff --git a/drivers/gpu/drm/xe/xe_irq.h b/drivers/gpu/drm/xe/xe_irq.h
+index 7aee8d259353..34ecf22b32d3 100644
+--- a/drivers/gpu/drm/xe/xe_irq.h
++++ b/drivers/gpu/drm/xe/xe_irq.h
+@@ -7,8 +7,10 @@
+ #define _XE_IRQ_H_
+ 
+ struct xe_device;
++struct xe_gt;
+ 
+ int xe_irq_install(struct xe_device *xe);
++void xe_gt_irq_postinstall(struct xe_gt *gt);
+ void xe_irq_shutdown(struct xe_device *xe);
+ void xe_irq_suspend(struct xe_device *xe);
+ void xe_irq_resume(struct xe_device *xe);
 -- 
 2.38.1
 
