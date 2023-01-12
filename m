@@ -1,14 +1,14 @@
 Return-Path: <intel-xe-bounces@lists.freedesktop.org>
 From: Rodrigo Vivi <rodrigo.vivi@intel.com>
-Date: Thu, 12 Jan 2023 17:25:29 -0500
-Message-ID: <20230112222538.2000142-29-rodrigo.vivi@intel.com>
+Date: Thu, 12 Jan 2023 17:25:08 -0500
+Message-ID: <20230112222538.2000142-8-rodrigo.vivi@intel.com>
 In-Reply-To: <20230112222538.2000142-1-rodrigo.vivi@intel.com>
 References: <20230112222538.2000142-1-rodrigo.vivi@intel.com>
 Content-Transfer-Encoding: 8bit
 Content-Type: text/plain
 MIME-Version: 1.0
-Subject: [Intel-xe] [PATCH 28/37] drm/xe: Don't use engine_mask until after
- hwconfig parse
+Subject: [Intel-xe] [PATCH 07/37] drm/xe: Remove i915_utils dependency from
+ xe_guc_pc.
 List-Id: Intel Xe graphics driver <intel-xe.lists.freedesktop.org>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=unsubscribe>
@@ -22,118 +22,99 @@ Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 To: intel-xe@lists.freedesktop.org, matthew.brost@intel.com, maarten.lankhorst@linux.intel.com, philippe.lecluse@intel.com, mchehab@kernel.org
 Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
 
-From: Matthew Brost <matthew.brost@intel.com>
+To make it simpler, all of the status checks also waits and
+times out.
 
-The IRQ and MCR init used engine_mask before hwconfig parse (currently
-faked), move these steps after the hwconfig parse.
+Also, no ktime precision is needed in this case, and we
+can use usleep_range because we are not in atomic paths here.
 
-Signed-off-by: Matthew Brost <matthew.brost@intel.com>
 Signed-off-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
+Cc: Matthew Brost <matthew.brost@intel.com>
 ---
- drivers/gpu/drm/xe/xe_gt.c  |  7 +++++++
- drivers/gpu/drm/xe/xe_irq.c | 34 +++++++++++++++++++---------------
- drivers/gpu/drm/xe/xe_irq.h |  2 ++
- 3 files changed, 28 insertions(+), 15 deletions(-)
+ drivers/gpu/drm/xe/xe_guc_pc.c | 33 ++++++++++++++++++++++-----------
+ 1 file changed, 22 insertions(+), 11 deletions(-)
 
-diff --git a/drivers/gpu/drm/xe/xe_gt.c b/drivers/gpu/drm/xe/xe_gt.c
-index 6cea15725cae..75150077d62c 100644
---- a/drivers/gpu/drm/xe/xe_gt.c
-+++ b/drivers/gpu/drm/xe/xe_gt.c
-@@ -21,6 +21,7 @@
- #include "xe_gt_sysfs.h"
- #include "xe_gt_topology.h"
- #include "xe_hw_fence.h"
-+#include "xe_irq.h"
- #include "xe_lrc.h"
- #include "xe_map.h"
- #include "xe_migrate.h"
-@@ -449,6 +450,12 @@ static int gt_fw_domain_init(struct xe_gt *gt)
- 	if (err)
- 		goto err_force_wake;
+diff --git a/drivers/gpu/drm/xe/xe_guc_pc.c b/drivers/gpu/drm/xe/xe_guc_pc.c
+index 515b7aab03c3..506b9cb3f14c 100644
+--- a/drivers/gpu/drm/xe/xe_guc_pc.c
++++ b/drivers/gpu/drm/xe/xe_guc_pc.c
+@@ -17,11 +17,6 @@
+ #include "../i915/i915_reg.h"
  
-+	/* Enables per hw engine IRQs */
-+	xe_gt_irq_postinstall(gt);
-+
-+	/* Rerun MCR init as we now have hw engine list */
-+	xe_gt_mcr_init(gt);
-+
- 	err = xe_hw_engines_init_early(gt);
- 	if (err)
- 		goto err_force_wake;
-diff --git a/drivers/gpu/drm/xe/xe_irq.c b/drivers/gpu/drm/xe/xe_irq.c
-index edebe1817400..92fe6b38d735 100644
---- a/drivers/gpu/drm/xe/xe_irq.c
-+++ b/drivers/gpu/drm/xe/xe_irq.c
-@@ -492,26 +492,32 @@ void xe_irq_reset(struct xe_device *xe)
- #endif
- }
+ #include <linux/delay.h>
+-/*
+- * FIXME: This header has been deemed evil and we need to kill it. Temporarily
+- * including so we can use 'wait_for'.
+- */
+-#include "i915_utils.h"
  
--void xe_irq_postinstall(struct xe_device *xe)
-+void xe_gt_irq_postinstall(struct xe_gt *gt)
+ #include "../i915/intel_mchbar_regs.h"
+ /* For GEN6_RP_STATE_CAP.reg to be merged when the definition moves to Xe */
+@@ -134,10 +129,26 @@ pc_to_maps(struct xe_guc_pc *pc)
+ 	(FIELD_PREP(HOST2GUC_PC_SLPC_REQUEST_MSG_1_EVENT_ID, id) | \
+ 	 FIELD_PREP(HOST2GUC_PC_SLPC_REQUEST_MSG_1_EVENT_ARGC, count))
+ 
+-static bool pc_is_in_state(struct xe_guc_pc *pc, enum slpc_global_state state)
++static int wait_for_pc_state(struct xe_guc_pc *pc,
++			     enum slpc_global_state state)
  {
--	struct xe_gt *gt;
--	u8 id;
-+	struct xe_device *xe = gt_to_xe(gt);
- 
--	for_each_gt(gt, xe, id) {
--		if (GRAPHICS_VERx100(xe) >= 1210) {
--			dg1_irq_postinstall(xe, gt);
--		} else if (GRAPHICS_VER(xe) >= 11) {
--			gen11_irq_postinstall(xe, gt);
--		} else {
--			drm_err(&xe->drm, "No interrupt postinstall hook");
--		}
--	}
-+	if (GRAPHICS_VERx100(xe) >= 1210)
-+		dg1_irq_postinstall(xe, gt);
-+	else if (GRAPHICS_VER(xe) >= 11)
-+		gen11_irq_postinstall(xe, gt);
-+	else
-+		drm_err(&xe->drm, "No interrupt postinstall hook");
- 
- #if IS_ENABLED(CONFIG_DRM_XE_DISPLAY)
--	gen11_display_irq_postinstall(xe);
-+	if (gt->info.id == XE_GT0)
-+		gen11_display_irq_postinstall(gt_to_xe(gt));
- #endif
++	int timeout_us = 5000; /* rought 5ms, but no need for precision */
++	int slept, wait = 10;
++
+ 	xe_device_assert_mem_access(pc_to_xe(pc));
+-	return slpc_shared_data_read(pc, header.global_state) == state;
++
++	for (slept = 0; slept < timeout_us;) {
++		if (slpc_shared_data_read(pc, header.global_state) == state)
++			return 0;
++
++		usleep_range(wait, wait << 1);
++		slept += wait;
++		wait <<= 1;
++		if (slept + wait > timeout_us)
++			wait = timeout_us - slept;
++	}
++
++	return -ETIMEDOUT;
  }
  
-+static void xe_irq_postinstall(struct xe_device *xe)
-+{
-+	struct xe_gt *gt;
-+	u8 id;
-+
-+	for_each_gt(gt, xe, id)
-+		xe_gt_irq_postinstall(gt);
-+}
-+
- static irq_handler_t xe_irq_handler(struct xe_device *xe)
- {
- 	if (GRAPHICS_VERx100(xe) >= 1210) {
-@@ -566,8 +572,6 @@ int xe_irq_install(struct xe_device *xe)
- 	if (err)
- 		return err;
+ static int pc_action_reset(struct xe_guc_pc *pc)
+@@ -188,7 +199,7 @@ static int pc_action_query_task_state(struct xe_guc_pc *pc)
+ 		0,
+ 	};
  
--	xe_irq_postinstall(xe);
--
- 	return err;
- }
+-	if (!pc_is_in_state(pc, SLPC_GLOBAL_STATE_RUNNING))
++	if (wait_for_pc_state(pc, SLPC_GLOBAL_STATE_RUNNING))
+ 		return -EAGAIN;
  
-diff --git a/drivers/gpu/drm/xe/xe_irq.h b/drivers/gpu/drm/xe/xe_irq.h
-index 7aee8d259353..34ecf22b32d3 100644
---- a/drivers/gpu/drm/xe/xe_irq.h
-+++ b/drivers/gpu/drm/xe/xe_irq.h
-@@ -7,8 +7,10 @@
- #define _XE_IRQ_H_
+ 	/* Blocking here to ensure the results are ready before reading them */
+@@ -211,7 +222,7 @@ static int pc_action_set_param(struct xe_guc_pc *pc, u8 id, u32 value)
+ 		value,
+ 	};
  
- struct xe_device;
-+struct xe_gt;
+-	if (!pc_is_in_state(pc, SLPC_GLOBAL_STATE_RUNNING))
++	if (wait_for_pc_state(pc, SLPC_GLOBAL_STATE_RUNNING))
+ 		return -EAGAIN;
  
- int xe_irq_install(struct xe_device *xe);
-+void xe_gt_irq_postinstall(struct xe_gt *gt);
- void xe_irq_shutdown(struct xe_device *xe);
- void xe_irq_suspend(struct xe_device *xe);
- void xe_irq_resume(struct xe_device *xe);
+ 	ret = xe_guc_ct_send(ct, action, ARRAY_SIZE(action), 0, 0);
+@@ -746,7 +757,7 @@ int xe_guc_pc_start(struct xe_guc_pc *pc)
+ 	if (ret)
+ 		goto out;
+ 
+-	if (wait_for(pc_is_in_state(pc, SLPC_GLOBAL_STATE_RUNNING), 5)) {
++	if (wait_for_pc_state(pc, SLPC_GLOBAL_STATE_RUNNING)) {
+ 		drm_err(&pc_to_xe(pc)->drm, "GuC PC Start failed\n");
+ 		ret = -EIO;
+ 		goto out;
+@@ -792,7 +803,7 @@ int xe_guc_pc_stop(struct xe_guc_pc *pc)
+ 	if (ret)
+ 		goto out;
+ 
+-	if (wait_for(pc_is_in_state(pc, SLPC_GLOBAL_STATE_NOT_RUNNING), 5)) {
++	if (wait_for_pc_state(pc, SLPC_GLOBAL_STATE_NOT_RUNNING)) {
+ 		drm_err(&pc_to_xe(pc)->drm, "GuC PC Shutdown failed\n");
+ 		ret = -EIO;
+ 	}
 -- 
 2.38.1
 
