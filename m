@@ -1,14 +1,14 @@
 Return-Path: <intel-xe-bounces@lists.freedesktop.org>
 From: Rodrigo Vivi <rodrigo.vivi@intel.com>
-Date: Thu, 12 Jan 2023 17:25:36 -0500
-Message-ID: <20230112222538.2000142-36-rodrigo.vivi@intel.com>
+Date: Thu, 12 Jan 2023 17:25:20 -0500
+Message-ID: <20230112222538.2000142-20-rodrigo.vivi@intel.com>
 In-Reply-To: <20230112222538.2000142-1-rodrigo.vivi@intel.com>
 References: <20230112222538.2000142-1-rodrigo.vivi@intel.com>
 Content-Transfer-Encoding: 8bit
 Content-Type: text/plain
 MIME-Version: 1.0
-Subject: [Intel-xe] [PATCH 35/37] drm/xe: Fix hidden gotcha regression with
- bo create
+Subject: [Intel-xe] [PATCH 19/37] drm/xe: Put DPT into stolen memory,
+ if available
 List-Id: Intel Xe graphics driver <intel-xe.lists.freedesktop.org>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=unsubscribe>
@@ -24,51 +24,75 @@ Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
 
 From: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
 
-The bo_create ioctl relied on the internal ordering of memory regions to
-be the same, make sure we don't allocate stolen instead of VRAM0.
-
-Also remove a debug warning left in.
+Same as i915 does, why not?
 
 Signed-off-by: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
-Cc: Philippe Lecluse <philippe.lecluse@intel.com>
+Cc: Matthew Brost <matthew.brost@intel.com>
 Signed-off-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
 ---
- drivers/gpu/drm/xe/xe_bo.h             | 8 +++++---
- drivers/gpu/drm/xe/xe_ttm_stolen_mgr.c | 1 -
- 2 files changed, 5 insertions(+), 4 deletions(-)
+ drivers/gpu/drm/xe/display/xe_fb_pin.c | 40 +++++++++++++++-----------
+ 1 file changed, 23 insertions(+), 17 deletions(-)
 
-diff --git a/drivers/gpu/drm/xe/xe_bo.h b/drivers/gpu/drm/xe/xe_bo.h
-index 8d8a3332dbc8..8c2cdbe51ab5 100644
---- a/drivers/gpu/drm/xe/xe_bo.h
-+++ b/drivers/gpu/drm/xe/xe_bo.h
-@@ -13,10 +13,12 @@
- #define XE_DEFAULT_GTT_SIZE_MB          3072ULL /* 3GB by default */
+diff --git a/drivers/gpu/drm/xe/display/xe_fb_pin.c b/drivers/gpu/drm/xe/display/xe_fb_pin.c
+index b989d37b94f1..f23d00daf574 100644
+--- a/drivers/gpu/drm/xe/display/xe_fb_pin.c
++++ b/drivers/gpu/drm/xe/display/xe_fb_pin.c
+@@ -48,16 +48,31 @@ static int __xe_pin_fb_vma_dpt(struct intel_framebuffer *fb,
+ 	struct xe_bo *bo = intel_fb_obj(&fb->base), *dpt;
+ 	u32 dpt_size, size = bo->ttm.base.size;
  
- #define XE_BO_CREATE_USER_BIT		BIT(0)
-+/* The bits below need to be contiguous, or things break */
- #define XE_BO_CREATE_SYSTEM_BIT		BIT(1)
--#define XE_BO_CREATE_STOLEN_BIT		BIT(2)
--#define XE_BO_CREATE_VRAM0_BIT		BIT(3)
--#define XE_BO_CREATE_VRAM1_BIT		BIT(4)
-+#define XE_BO_CREATE_VRAM0_BIT		BIT(2)
-+#define XE_BO_CREATE_VRAM1_BIT		BIT(3)
-+/* -- */
-+#define XE_BO_CREATE_STOLEN_BIT		BIT(4)
- #define XE_BO_CREATE_VRAM_IF_DGFX(gt) \
- 	(IS_DGFX(gt_to_xe(gt)) ? XE_BO_CREATE_VRAM0_BIT << gt->info.vram_id : \
- 	 XE_BO_CREATE_SYSTEM_BIT)
-diff --git a/drivers/gpu/drm/xe/xe_ttm_stolen_mgr.c b/drivers/gpu/drm/xe/xe_ttm_stolen_mgr.c
-index 21ca7f79e63b..b4e9c88644e4 100644
---- a/drivers/gpu/drm/xe/xe_ttm_stolen_mgr.c
-+++ b/drivers/gpu/drm/xe/xe_ttm_stolen_mgr.c
-@@ -184,7 +184,6 @@ static int __xe_ttm_stolen_io_mem_reserve_bar2(struct xe_device *xe,
- 	mem->bus.offset = cur.start;
+-	if (view->type == I915_GTT_VIEW_NORMAL) {
+-		u32 x;
+-
++	if (view->type == I915_GTT_VIEW_NORMAL)
+ 		dpt_size = ALIGN(size / GEN8_PAGE_SIZE * 8, GEN8_PAGE_SIZE);
++	else
++		/* display uses 4K tiles instead of bytes here, convert to entries.. */
++		dpt_size = ALIGN(intel_rotation_info_size(&view->rotated) * 8, GEN8_PAGE_SIZE);
++
++	dpt = xe_bo_create_pin_map(xe, to_gt(xe), NULL, dpt_size,
++				  ttm_bo_type_kernel,
++				  XE_BO_CREATE_VRAM0_BIT |
++				  XE_BO_CREATE_GGTT_BIT);
++	if (IS_ERR(dpt))
++		dpt = xe_bo_create_pin_map(xe, to_gt(xe), NULL, dpt_size,
++					   ttm_bo_type_kernel,
++					   XE_BO_CREATE_STOLEN_BIT |
++					   XE_BO_CREATE_GGTT_BIT);
++	if (IS_ERR(dpt))
+ 		dpt = xe_bo_create_pin_map(xe, to_gt(xe), NULL, dpt_size,
+-					  ttm_bo_type_kernel,
+-					  XE_BO_CREATE_VRAM_IF_DGFX(to_gt(xe)) |
+-					  XE_BO_CREATE_GGTT_BIT);
+-		if (IS_ERR(dpt))
+-			return PTR_ERR(dpt);
++					   ttm_bo_type_kernel,
++					   XE_BO_CREATE_SYSTEM_BIT |
++					   XE_BO_CREATE_GGTT_BIT);
++	if (IS_ERR(dpt))
++		return PTR_ERR(dpt);
++
++	if (view->type == I915_GTT_VIEW_NORMAL) {
++		u32 x;
  
- 	drm_WARN_ON(&xe->drm, !(mem->placement & TTM_PL_FLAG_CONTIGUOUS));
--	WARN_ON_ONCE(1);
+ 		for (x = 0; x < size / GEN8_PAGE_SIZE; x++)
+ 			iosys_map_wr(&dpt->vmap, x * 8, u64,
+@@ -66,15 +81,6 @@ static int __xe_pin_fb_vma_dpt(struct intel_framebuffer *fb,
+ 		const struct intel_rotation_info *rot_info = &view->rotated;
+ 		u32 i, dpt_ofs = 0;
  
- 	if (mem->placement & TTM_PL_FLAG_CONTIGUOUS && mgr->mapping)
- 		mem->bus.addr = (u8 *)mgr->mapping + mem->bus.offset;
+-		/* display uses 4K tiles instead of bytes here, convert to entries.. */
+-		dpt_size = ALIGN(intel_rotation_info_size(rot_info) * 8, GEN8_PAGE_SIZE);
+-		dpt = xe_bo_create_pin_map(xe, to_gt(xe), NULL, dpt_size,
+-					  ttm_bo_type_kernel,
+-					  XE_BO_CREATE_VRAM_IF_DGFX(to_gt(xe)) |
+-					  XE_BO_CREATE_GGTT_BIT);
+-		if (IS_ERR(dpt))
+-			return PTR_ERR(dpt);
+-
+ 		for (i = 0; i < ARRAY_SIZE(rot_info->plane); i++)
+ 			write_dpt_rotated(bo, &dpt->vmap, &dpt_ofs,
+ 					  rot_info->plane[i].offset,
 -- 
 2.38.1
 
