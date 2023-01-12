@@ -1,13 +1,13 @@
 Return-Path: <intel-xe-bounces@lists.freedesktop.org>
 From: Rodrigo Vivi <rodrigo.vivi@intel.com>
-Date: Fri, 20 Jan 2023 15:44:10 -0500
-Message-ID: <20230120204426.68104-5-rodrigo.vivi@intel.com>
-In-Reply-To: <20230120204426.68104-1-rodrigo.vivi@intel.com>
-References: <20230120204426.68104-1-rodrigo.vivi@intel.com>
+Date: Thu, 12 Jan 2023 17:25:37 -0500
+Message-ID: <20230112222538.2000142-37-rodrigo.vivi@intel.com>
+In-Reply-To: <20230112222538.2000142-1-rodrigo.vivi@intel.com>
+References: <20230112222538.2000142-1-rodrigo.vivi@intel.com>
 Content-Transfer-Encoding: 8bit
 Content-Type: text/plain
 MIME-Version: 1.0
-Subject: [Intel-xe] [PATCH 04/20] drm/xe: fix xe_mmio_total_vram_size
+Subject: [Intel-xe] [PATCH 36/37] drm/xe: Fix xe_mmio_wait32 timeouts.
 List-Id: Intel Xe graphics driver <intel-xe.lists.freedesktop.org>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=unsubscribe>
@@ -18,42 +18,44 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
-To: intel-xe@lists.freedesktop.org, maarten.lankhorst@linux.intel.com, philippe.lecluse@intel.com, mchehab@kernel.org
-Cc: Matthew Auld <matthew.auld@intel.com>, Rodrigo Vivi <rodrigo.vivi@intel.com>
+To: intel-xe@lists.freedesktop.org, matthew.brost@intel.com, maarten.lankhorst@linux.intel.com, philippe.lecluse@intel.com, mchehab@kernel.org
+Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
 
-From: Philippe Lecluse <philippe.lecluse@intel.com>
+From: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
 
-As also cause issue on PVC, moving back
-to what we did before stolen was
-introduced
+The call uses us, not ms now. Fix this to make display working again.
 
-Signed-off-by: Philippe Lecluse <philippe.lecluse@intel.com>
-Cc: Matthew Auld <matthew.auld@intel.com>
+Signed-off-by: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
+Cc: Matthew Brost <matthew.brost@intel.com>
+Reviewed-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
 Signed-off-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
 ---
- drivers/gpu/drm/xe/xe_mmio.c | 8 ++------
- 1 file changed, 2 insertions(+), 6 deletions(-)
+ drivers/gpu/drm/xe/display/intel_de.h | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
 
-diff --git a/drivers/gpu/drm/xe/xe_mmio.c b/drivers/gpu/drm/xe/xe_mmio.c
-index b3c1a39ef79d..7600ce348005 100644
---- a/drivers/gpu/drm/xe/xe_mmio.c
-+++ b/drivers/gpu/drm/xe/xe_mmio.c
-@@ -162,12 +162,8 @@ int xe_mmio_total_vram_size(struct xe_device *xe, u64 *vram_size, u64 *usable_si
+diff --git a/drivers/gpu/drm/xe/display/intel_de.h b/drivers/gpu/drm/xe/display/intel_de.h
+index 678b4247464a..f0c1d16fa6f8 100644
+--- a/drivers/gpu/drm/xe/display/intel_de.h
++++ b/drivers/gpu/drm/xe/display/intel_de.h
+@@ -41,7 +41,7 @@ static inline int
+ intel_de_wait_for_register(struct drm_i915_private *i915, i915_reg_t reg,
+ 			   u32 mask, u32 value, unsigned int timeout)
+ {
+-	return xe_mmio_wait32(to_gt(i915), reg.reg, value, mask, timeout, NULL,
++	return xe_mmio_wait32(to_gt(i915), reg.reg, value, mask, timeout * USEC_PER_MSEC, NULL,
+ 			      false);
+ }
  
- 	if (!xe->info.has_flat_ccs)  {
- 		*vram_size = pci_resource_len(pdev, GEN12_LMEM_BAR);
--		if (usable_size) {
--			if (xe->info.platform == XE_DG1)
--				*usable_size = xe_mmio_read64(gt, GEN12_GSMBASE.reg);
--			else
--				*usable_size = *vram_size;
--		}
-+		if (usable_size)
-+			*usable_size = min(*vram_size, xe_mmio_read64(gt, GEN12_GSMBASE.reg));
- 		return 0;
- 	}
+@@ -49,7 +49,7 @@ static inline int
+ intel_de_wait_for_register_fw(struct drm_i915_private *i915, i915_reg_t reg,
+ 			      u32 mask, u32 value, unsigned int timeout)
+ {
+-	return xe_mmio_wait32(to_gt(i915), reg.reg, value, mask, timeout, NULL,
++	return xe_mmio_wait32(to_gt(i915), reg.reg, value, mask, timeout * USEC_PER_MSEC, NULL,
+ 			      false);
+ }
  
 -- 
-2.39.0
+2.38.1
 
 
