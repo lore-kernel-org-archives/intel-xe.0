@@ -1,13 +1,14 @@
 Return-Path: <intel-xe-bounces@lists.freedesktop.org>
 From: Rodrigo Vivi <rodrigo.vivi@intel.com>
-Date: Fri, 20 Jan 2023 15:44:15 -0500
-Message-ID: <20230120204426.68104-10-rodrigo.vivi@intel.com>
-In-Reply-To: <20230120204426.68104-1-rodrigo.vivi@intel.com>
-References: <20230120204426.68104-1-rodrigo.vivi@intel.com>
-Content-Type: text/plain; charset="utf-8"
+Date: Thu, 12 Jan 2023 17:25:36 -0500
+Message-ID: <20230112222538.2000142-36-rodrigo.vivi@intel.com>
+In-Reply-To: <20230112222538.2000142-1-rodrigo.vivi@intel.com>
+References: <20230112222538.2000142-1-rodrigo.vivi@intel.com>
 Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
 MIME-Version: 1.0
-Subject: [Intel-xe] [PATCH 09/20] drm/xe/gt: Fix min() with u32 and u64
+Subject: [Intel-xe] [PATCH 35/37] drm/xe: Fix hidden gotcha regression with
+ bo create
 List-Id: Intel Xe graphics driver <intel-xe.lists.freedesktop.org>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=unsubscribe>
@@ -18,43 +19,57 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
-To: intel-xe@lists.freedesktop.org, maarten.lankhorst@linux.intel.com, philippe.lecluse@intel.com, mchehab@kernel.org
-Cc: Lucas De Marchi <lucas.demarchi@intel.com>, Rodrigo Vivi <rodrigo.vivi@intel.com>
+To: intel-xe@lists.freedesktop.org, matthew.brost@intel.com, maarten.lankhorst@linux.intel.com, philippe.lecluse@intel.com, mchehab@kernel.org
+Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
 
-From: Lucas De Marchi <lucas.demarchi@intel.com>
+From: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
 
-Fix the following error while building for 32b:
+The bo_create ioctl relied on the internal ordering of memory regions to
+be the same, make sure we don't allocate stolen instead of VRAM0.
 
-	In file included from ../drivers/gpu/drm/xe/xe_gt.c:6:
-	../drivers/gpu/drm/xe/xe_gt.c: In function ‘gt_ttm_mgr_init’:
-	../include/linux/minmax.h:20:35: error: comparison of distinct pointer types lacks a cast [-Werror]
-	   20 |         (!!(sizeof((typeof(x) *)1 == (typeof(y) *)1)))
-	      |                                   ^~
+Also remove a debug warning left in.
 
-Cast it to u64 so size of the second operand matches the first one when
-building it for 32 bits.
-
-Signed-off-by: Lucas De Marchi <lucas.demarchi@intel.com>
-Reviewed-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
+Signed-off-by: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
+Cc: Philippe Lecluse <philippe.lecluse@intel.com>
 Signed-off-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
 ---
- drivers/gpu/drm/xe/xe_gt.c | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+ drivers/gpu/drm/xe/xe_bo.h             | 8 +++++---
+ drivers/gpu/drm/xe/xe_ttm_stolen_mgr.c | 1 -
+ 2 files changed, 5 insertions(+), 4 deletions(-)
 
-diff --git a/drivers/gpu/drm/xe/xe_gt.c b/drivers/gpu/drm/xe/xe_gt.c
-index cb837745d893..bf5364046bab 100644
---- a/drivers/gpu/drm/xe/xe_gt.c
-+++ b/drivers/gpu/drm/xe/xe_gt.c
-@@ -183,7 +183,7 @@ static int gt_ttm_mgr_init(struct xe_gt *gt)
- 		if (err)
- 			return err;
- 		gtt_size = min(max((XE_DEFAULT_GTT_SIZE_MB << 20),
--				   gt->mem.vram.size),
-+				   (u64)gt->mem.vram.size),
- 			       gtt_size);
- 		xe->info.mem_region_mask |= BIT(gt->info.vram_id) << 1;
- 	}
+diff --git a/drivers/gpu/drm/xe/xe_bo.h b/drivers/gpu/drm/xe/xe_bo.h
+index 8d8a3332dbc8..8c2cdbe51ab5 100644
+--- a/drivers/gpu/drm/xe/xe_bo.h
++++ b/drivers/gpu/drm/xe/xe_bo.h
+@@ -13,10 +13,12 @@
+ #define XE_DEFAULT_GTT_SIZE_MB          3072ULL /* 3GB by default */
+ 
+ #define XE_BO_CREATE_USER_BIT		BIT(0)
++/* The bits below need to be contiguous, or things break */
+ #define XE_BO_CREATE_SYSTEM_BIT		BIT(1)
+-#define XE_BO_CREATE_STOLEN_BIT		BIT(2)
+-#define XE_BO_CREATE_VRAM0_BIT		BIT(3)
+-#define XE_BO_CREATE_VRAM1_BIT		BIT(4)
++#define XE_BO_CREATE_VRAM0_BIT		BIT(2)
++#define XE_BO_CREATE_VRAM1_BIT		BIT(3)
++/* -- */
++#define XE_BO_CREATE_STOLEN_BIT		BIT(4)
+ #define XE_BO_CREATE_VRAM_IF_DGFX(gt) \
+ 	(IS_DGFX(gt_to_xe(gt)) ? XE_BO_CREATE_VRAM0_BIT << gt->info.vram_id : \
+ 	 XE_BO_CREATE_SYSTEM_BIT)
+diff --git a/drivers/gpu/drm/xe/xe_ttm_stolen_mgr.c b/drivers/gpu/drm/xe/xe_ttm_stolen_mgr.c
+index 21ca7f79e63b..b4e9c88644e4 100644
+--- a/drivers/gpu/drm/xe/xe_ttm_stolen_mgr.c
++++ b/drivers/gpu/drm/xe/xe_ttm_stolen_mgr.c
+@@ -184,7 +184,6 @@ static int __xe_ttm_stolen_io_mem_reserve_bar2(struct xe_device *xe,
+ 	mem->bus.offset = cur.start;
+ 
+ 	drm_WARN_ON(&xe->drm, !(mem->placement & TTM_PL_FLAG_CONTIGUOUS));
+-	WARN_ON_ONCE(1);
+ 
+ 	if (mem->placement & TTM_PL_FLAG_CONTIGUOUS && mgr->mapping)
+ 		mem->bus.addr = (u8 *)mgr->mapping + mem->bus.offset;
 -- 
-2.39.0
+2.38.1
 
 
