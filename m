@@ -1,13 +1,13 @@
 Return-Path: <intel-xe-bounces@lists.freedesktop.org>
 From: Rodrigo Vivi <rodrigo.vivi@intel.com>
-Date: Thu, 12 Jan 2023 17:25:17 -0500
-Message-ID: <20230112222538.2000142-17-rodrigo.vivi@intel.com>
+Date: Thu, 12 Jan 2023 17:25:15 -0500
+Message-ID: <20230112222538.2000142-15-rodrigo.vivi@intel.com>
 In-Reply-To: <20230112222538.2000142-1-rodrigo.vivi@intel.com>
 References: <20230112222538.2000142-1-rodrigo.vivi@intel.com>
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
 MIME-Version: 1.0
-Subject: [Intel-xe] [PATCH 16/37] drm/xe: Implement stolen memory.
+Subject: [Intel-xe] [PATCH 14/37] drm/xe: Add intel_pps support too
 List-Id: Intel Xe graphics driver <intel-xe.lists.freedesktop.org>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=unsubscribe>
@@ -23,1237 +23,168 @@ Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
 
 From: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
 
-This adds support for stolen memory, with the same allocator as
-vram_mgr. This allows us to skip a whole lot of copy-paste,
-by re-using parts of xe_ttm_vram_mgr.
-
-The stolen memory may be bound using VM_BIND, so it performs like any
-other memory region.
-
-We should be able to map a stolen BO directly using the physical memory
-location instead of through GGTT even on old platforms, but I don't know
-what the effects are on coherency.
+I misguidedly believed that this was i915 only due to support on old
+platforms, but if I look at intel_num_pps() the code is valid
+on all gen12+ platforms too.
 
 Signed-off-by: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
 Cc: Matthew Brost <matthew.brost@intel.com>
 Signed-off-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
 ---
- drivers/gpu/drm/xe/Makefile                |   1 +
- drivers/gpu/drm/xe/xe_bo.c                 | 172 ++++++++++++---
- drivers/gpu/drm/xe/xe_bo.h                 |  11 +-
- drivers/gpu/drm/xe/xe_debugfs.c            |   4 +
- drivers/gpu/drm/xe/xe_device.c             |   4 +
- drivers/gpu/drm/xe/xe_mmio.c               |  58 +++--
- drivers/gpu/drm/xe/xe_mmio.h               |   1 +
- drivers/gpu/drm/xe/xe_pt.c                 |   5 +-
- drivers/gpu/drm/xe/xe_res_cursor.h         |  47 ++--
- drivers/gpu/drm/xe/xe_ttm_stolen_mgr.c     | 244 +++++++++++++++++++++
- drivers/gpu/drm/xe/xe_ttm_stolen_mgr.h     |  21 ++
- drivers/gpu/drm/xe/xe_ttm_vram_mgr.c       |  91 ++++----
- drivers/gpu/drm/xe/xe_ttm_vram_mgr.h       |  18 +-
- drivers/gpu/drm/xe/xe_ttm_vram_mgr_types.h |   2 +
- 14 files changed, 554 insertions(+), 125 deletions(-)
- create mode 100644 drivers/gpu/drm/xe/xe_ttm_stolen_mgr.c
- create mode 100644 drivers/gpu/drm/xe/xe_ttm_stolen_mgr.h
+ drivers/gpu/drm/i915/display/intel_pps.c    | 14 ++++++-
+ drivers/gpu/drm/xe/Makefile                 |  2 +-
+ drivers/gpu/drm/xe/display/intel_pps.c      |  1 +
+ drivers/gpu/drm/xe/display/intel_pps_stub.c | 43 ---------------------
+ 4 files changed, 14 insertions(+), 46 deletions(-)
+ create mode 120000 drivers/gpu/drm/xe/display/intel_pps.c
+ delete mode 100644 drivers/gpu/drm/xe/display/intel_pps_stub.c
 
-diff --git a/drivers/gpu/drm/xe/Makefile b/drivers/gpu/drm/xe/Makefile
-index 36996fe7d7a4..06bed3f12b54 100644
---- a/drivers/gpu/drm/xe/Makefile
-+++ b/drivers/gpu/drm/xe/Makefile
-@@ -90,6 +90,7 @@ xe-y += xe_bb.o \
- 	xe_sync.o \
- 	xe_trace.o \
- 	xe_ttm_gtt_mgr.o \
-+	xe_ttm_stolen_mgr.o \
- 	xe_ttm_vram_mgr.o \
- 	xe_tuning.o \
- 	xe_uc.o \
-diff --git a/drivers/gpu/drm/xe/xe_bo.c b/drivers/gpu/drm/xe/xe_bo.c
-index 7c46c3cafc32..314f9b5d34f1 100644
---- a/drivers/gpu/drm/xe/xe_bo.c
-+++ b/drivers/gpu/drm/xe/xe_bo.c
-@@ -24,6 +24,7 @@
- #include "xe_preempt_fence.h"
- #include "xe_res_cursor.h"
- #include "xe_trace.h"
-+#include "xe_ttm_stolen_mgr.h"
- #include "xe_vm.h"
+diff --git a/drivers/gpu/drm/i915/display/intel_pps.c b/drivers/gpu/drm/i915/display/intel_pps.c
+index 7b21438edd9b..9f3675456913 100644
+--- a/drivers/gpu/drm/i915/display/intel_pps.c
++++ b/drivers/gpu/drm/i915/display/intel_pps.c
+@@ -3,7 +3,6 @@
+  * Copyright © 2020 Intel Corporation
+  */
  
- static const struct ttm_place sys_placement_flags = {
-@@ -42,7 +43,12 @@ static struct ttm_placement sys_placement = {
+-#include "g4x_dp.h"
+ #include "i915_drv.h"
+ #include "i915_reg.h"
+ #include "intel_de.h"
+@@ -16,6 +15,11 @@
+ #include "intel_pps.h"
+ #include "intel_quirks.h"
  
- bool mem_type_is_vram(u32 mem_type)
++#ifdef I915
++#include "g4x_dp.h"
++#include "intel_dpio_phy.h"
++#endif
++
+ static void vlv_steal_power_sequencer(struct drm_i915_private *dev_priv,
+ 				      enum pipe pipe);
+ 
+@@ -81,6 +85,7 @@ intel_wakeref_t intel_pps_unlock(struct intel_dp *intel_dp,
+ 	return 0;
+ }
+ 
++#ifdef I915
+ static void
+ vlv_power_sequencer_kick(struct intel_dp *intel_dp)
  {
--	return mem_type >= XE_PL_VRAM0;
-+	return mem_type >= XE_PL_VRAM0 && mem_type != XE_PL_STOLEN;
-+}
-+
-+static bool resource_is_stolen_vram(struct xe_device *xe, struct ttm_resource *res)
-+{
-+	return res->mem_type == XE_PL_STOLEN && IS_DGFX(xe);
+@@ -265,6 +270,7 @@ bxt_power_sequencer_idx(struct intel_dp *intel_dp)
+ 
+ 	return pps_idx;
  }
++#endif
  
- static bool resource_is_vram(struct ttm_resource *res)
-@@ -52,7 +58,13 @@ static bool resource_is_vram(struct ttm_resource *res)
+ typedef bool (*pps_check)(struct drm_i915_private *dev_priv, int pps_idx);
  
- bool xe_bo_is_vram(struct xe_bo *bo)
+@@ -478,16 +484,18 @@ static void intel_pps_get_registers(struct intel_dp *intel_dp,
+ 				    struct pps_registers *regs)
  {
--	return resource_is_vram(bo->ttm.resource);
-+	return resource_is_vram(bo->ttm.resource) ||
-+		resource_is_stolen_vram(xe_bo_device(bo), bo->ttm.resource);
-+}
-+
-+bool xe_bo_is_stolen(struct xe_bo *bo)
-+{
-+	return bo->ttm.resource->mem_type == XE_PL_STOLEN;
- }
+ 	struct drm_i915_private *dev_priv = dp_to_i915(intel_dp);
+-	int pps_idx;
++	int pps_idx = 0;
  
- static bool xe_bo_is_user(struct xe_bo *bo)
-@@ -63,9 +75,9 @@ static bool xe_bo_is_user(struct xe_bo *bo)
- static struct xe_gt *
- mem_type_to_gt(struct xe_device *xe, u32 mem_type)
- {
--	XE_BUG_ON(!mem_type_is_vram(mem_type));
-+	XE_BUG_ON(mem_type != XE_PL_STOLEN && !mem_type_is_vram(mem_type));
+ 	memset(regs, 0, sizeof(*regs));
  
--	return xe_device_get_gt(xe, mem_type - XE_PL_VRAM0);
-+	return xe_device_get_gt(xe, mem_type == XE_PL_STOLEN ? 0 : (mem_type - XE_PL_VRAM0));
- }
- 
- static void try_add_system(struct xe_bo *bo, struct ttm_place *places,
-@@ -134,6 +146,20 @@ static void try_add_vram1(struct xe_device *xe, struct xe_bo *bo,
- 	}
- }
- 
-+static void try_add_stolen(struct xe_device *xe, struct xe_bo *bo,
-+			   struct ttm_place *places, u32 bo_flags, u32 *c)
-+{
-+	if (bo_flags & XE_BO_CREATE_STOLEN_BIT) {
-+		places[*c] = (struct ttm_place) {
-+			.mem_type = XE_PL_STOLEN,
-+			.flags = bo_flags & (XE_BO_CREATE_PINNED_BIT |
-+					     XE_BO_CREATE_GGTT_BIT) ?
-+				TTM_PL_FLAG_CONTIGUOUS : 0,
-+		};
-+		*c += 1;
-+	}
-+}
-+
- static int __xe_bo_placement_for_flags(struct xe_device *xe, struct xe_bo *bo,
- 				       u32 bo_flags)
- {
-@@ -162,6 +188,7 @@ static int __xe_bo_placement_for_flags(struct xe_device *xe, struct xe_bo *bo,
- 		try_add_vram1(xe, bo, places, bo_flags, &c);
- 		try_add_system(bo, places, bo_flags, &c);
- 	}
-+	try_add_stolen(xe, bo, places, bo_flags, &c);
- 
- 	if (!c)
- 		return -EINVAL;
-@@ -209,6 +236,7 @@ static void xe_evict_flags(struct ttm_buffer_object *tbo,
- 	switch (tbo->resource->mem_type) {
- 	case XE_PL_VRAM0:
- 	case XE_PL_VRAM1:
-+	case XE_PL_STOLEN:
- 	case XE_PL_TT:
- 	default:
- 		/* for now kick out to system */
-@@ -364,11 +392,12 @@ static int xe_ttm_io_mem_reserve(struct ttm_device *bdev,
- #if  !defined(CONFIG_X86)
- 		mem->bus.caching = ttm_write_combined;
- #endif
--		break;
-+		return 0;
-+	case XE_PL_STOLEN:
-+		return xe_ttm_stolen_io_mem_reserve(xe, mem);
- 	default:
- 		return -EINVAL;
- 	}
--	return 0;
- }
- 
- static int xe_bo_trigger_rebind(struct xe_device *xe, struct xe_bo *bo,
-@@ -663,14 +692,18 @@ static int xe_bo_move(struct ttm_buffer_object *ttm_bo, bool evict,
- 
- }
- 
--static unsigned long xe_ttm_io_mem_pfn(struct ttm_buffer_object *bo,
-+static unsigned long xe_ttm_io_mem_pfn(struct ttm_buffer_object *ttm_bo,
- 				       unsigned long page_offset)
- {
--	struct xe_device *xe = ttm_to_xe_device(bo->bdev);
--	struct xe_gt *gt = mem_type_to_gt(xe, bo->resource->mem_type);
-+	struct xe_device *xe = ttm_to_xe_device(ttm_bo->bdev);
-+	struct xe_bo *bo = ttm_to_xe_bo(ttm_bo);
-+	struct xe_gt *gt = mem_type_to_gt(xe, ttm_bo->resource->mem_type);
- 	struct xe_res_cursor cursor;
- 
--	xe_res_first(bo->resource, (u64)page_offset << PAGE_SHIFT, 0, &cursor);
-+	if (ttm_bo->resource->mem_type == XE_PL_STOLEN)
-+		return xe_ttm_stolen_io_offset(bo, page_offset << PAGE_SHIFT) >> PAGE_SHIFT;
-+
-+	xe_res_first(ttm_bo->resource, (u64)page_offset << PAGE_SHIFT, 0, &cursor);
- 	return (gt->mem.vram.io_start + cursor.start) >> PAGE_SHIFT;
- }
- 
-@@ -936,7 +969,8 @@ struct xe_bo *__xe_bo_create_locked(struct xe_device *xe, struct xe_bo *bo,
- 			return bo;
- 	}
- 
--	if (flags & (XE_BO_CREATE_VRAM0_BIT | XE_BO_CREATE_VRAM1_BIT) &&
-+	if (flags & (XE_BO_CREATE_VRAM0_BIT | XE_BO_CREATE_VRAM1_BIT |
-+		     XE_BO_CREATE_STOLEN_BIT) &&
- 	    !(flags & XE_BO_CREATE_IGNORE_MIN_PAGE_SIZE_BIT) &&
- 	    xe->info.vram_flags & XE_VRAM_FLAGS_NEED64K) {
- 		size = ALIGN(size, SZ_64K);
-@@ -964,9 +998,11 @@ struct xe_bo *__xe_bo_create_locked(struct xe_device *xe, struct xe_bo *bo,
- 		ctx.resv = resv;
- 	}
- 
--	err = __xe_bo_placement_for_flags(xe, bo, bo->flags);
--	if (WARN_ON(err))
--		return ERR_PTR(err);
-+	if (!(flags & XE_BO_FIXED_PLACEMENT_BIT)) {
-+		err = __xe_bo_placement_for_flags(xe, bo, bo->flags);
-+		if (WARN_ON(err))
-+			return ERR_PTR(err);
-+	}
- 
- 	/* Defer populating type_sg bos */
- 	placement = (type == ttm_bo_type_sg ||
-@@ -984,16 +1020,73 @@ struct xe_bo *__xe_bo_create_locked(struct xe_device *xe, struct xe_bo *bo,
- 	return bo;
- }
- 
--struct xe_bo *xe_bo_create_locked(struct xe_device *xe, struct xe_gt *gt,
--				  struct xe_vm *vm, size_t size,
--				  enum ttm_bo_type type, u32 flags)
-+static int __xe_bo_fixed_placement(struct xe_device *xe,
-+				   struct xe_bo *bo,
-+				   u32 flags,
-+				   u64 offset, u64 size)
- {
--	struct xe_bo *bo;
-+	struct ttm_place *place = bo->placements;
-+
-+	if (flags & (XE_BO_CREATE_USER_BIT|XE_BO_CREATE_SYSTEM_BIT))
-+		return -EINVAL;
-+
-+	place->flags = TTM_PL_FLAG_CONTIGUOUS;
-+	place->fpfn = offset >> PAGE_SHIFT;
-+	place->lpfn = (offset + size) >> PAGE_SHIFT;
-+
-+	switch (flags & (XE_BO_CREATE_STOLEN_BIT |
-+		XE_BO_CREATE_VRAM0_BIT |XE_BO_CREATE_VRAM1_BIT)) {
-+	case XE_BO_CREATE_VRAM0_BIT:
-+		place->mem_type = XE_PL_VRAM0;
-+		break;
-+	case XE_BO_CREATE_VRAM1_BIT:
-+		place->mem_type = XE_PL_VRAM1;
-+		break;
-+	case XE_BO_CREATE_STOLEN_BIT:
-+		place->mem_type = XE_PL_STOLEN;
-+		break;
-+
-+	default:
-+		/* 0 or multiple of the above set */
-+		return -EINVAL;
-+	}
-+
-+	bo->placement = (struct ttm_placement) {
-+		.num_placement = 1,
-+		.placement = place,
-+		.num_busy_placement = 1,
-+		.busy_placement = place,
-+	};
-+
-+	return 0;
-+}
-+
-+static struct xe_bo *
-+xe_bo_create_locked_at(struct xe_device *xe,
-+		       struct xe_gt *gt, struct xe_vm *vm,
-+		       size_t size, u64 offset,
-+		       enum ttm_bo_type type, u32 flags)
-+{
-+	struct xe_bo *bo = NULL;
- 	int err;
- 
- 	if (vm)
- 		xe_vm_assert_held(vm);
--	bo = __xe_bo_create_locked(xe, NULL, gt, vm ? &vm->resv : NULL, size,
-+
-+	if (offset != ~0ULL) {
-+		bo = xe_bo_alloc();
-+		if (IS_ERR(bo))
-+			return bo;
-+
-+		flags |= XE_BO_FIXED_PLACEMENT_BIT;
-+		err = __xe_bo_fixed_placement(xe, bo, flags, offset, size);
-+		if (err) {
-+			xe_bo_free(bo);
-+			return ERR_PTR(err);
-+		}
-+	}
-+
-+	bo = __xe_bo_create_locked(xe, bo, gt, vm ? &vm->resv : NULL, size,
- 				   type, flags);
- 	if (IS_ERR(bo))
- 		return bo;
-@@ -1002,7 +1095,11 @@ struct xe_bo *xe_bo_create_locked(struct xe_device *xe, struct xe_gt *gt,
- 		xe_vm_get(vm);
- 	bo->vm = vm;
- 
--	if (flags & XE_BO_CREATE_GGTT_BIT) {
-+	if (bo->flags & XE_BO_CREATE_GGTT_BIT) {
-+
-+		if (!gt && flags & XE_BO_CREATE_STOLEN_BIT)
-+			gt = xe_device_get_gt(xe, 0);
-+
- 		XE_BUG_ON(!gt);
- 
- 		err = xe_ggtt_insert_bo(gt->mem.ggtt, bo);
-@@ -1018,6 +1115,13 @@ struct xe_bo *xe_bo_create_locked(struct xe_device *xe, struct xe_gt *gt,
- 	return ERR_PTR(err);
- }
- 
-+struct xe_bo *xe_bo_create_locked(struct xe_device *xe, struct xe_gt *gt,
-+				  struct xe_vm *vm, size_t size,
-+				  enum ttm_bo_type type, u32 flags)
-+{
-+	return xe_bo_create_locked_at(xe, gt, vm, size, ~0ULL, type, flags);
-+}
-+
- struct xe_bo *xe_bo_create(struct xe_device *xe, struct xe_gt *gt,
- 			   struct xe_vm *vm, size_t size,
- 			   enum ttm_bo_type type, u32 flags)
-@@ -1030,13 +1134,19 @@ struct xe_bo *xe_bo_create(struct xe_device *xe, struct xe_gt *gt,
- 	return bo;
- }
- 
--struct xe_bo *xe_bo_create_pin_map(struct xe_device *xe, struct xe_gt *gt,
--				   struct xe_vm *vm, size_t size,
--				   enum ttm_bo_type type, u32 flags)
-+struct xe_bo *xe_bo_create_pin_map_at(struct xe_device *xe, struct xe_gt *gt,
-+				      struct xe_vm *vm,
-+				      size_t size, u64 offset,
-+				      enum ttm_bo_type type, u32 flags)
- {
--	struct xe_bo *bo = xe_bo_create_locked(xe, gt, vm, size, type, flags);
-+	struct xe_bo *bo;
- 	int err;
- 
-+	if (flags & XE_BO_CREATE_STOLEN_BIT &&
-+	    xe_ttm_stolen_inaccessible(xe))
-+		flags |= XE_BO_CREATE_GGTT_BIT;
-+
-+	bo = xe_bo_create_locked_at(xe, gt, vm, size, offset, type, flags);
- 	if (IS_ERR(bo))
- 		return bo;
- 
-@@ -1060,6 +1170,13 @@ struct xe_bo *xe_bo_create_pin_map(struct xe_device *xe, struct xe_gt *gt,
- 	return ERR_PTR(err);
- }
- 
-+struct xe_bo *xe_bo_create_pin_map(struct xe_device *xe, struct xe_gt *gt,
-+				   struct xe_vm *vm, size_t size,
-+				   enum ttm_bo_type type, u32 flags)
-+{
-+	return xe_bo_create_pin_map_at(xe, gt, vm, size, ~0ULL, type, flags);
-+}
-+
- struct xe_bo *xe_bo_create_from_data(struct xe_device *xe, struct xe_gt *gt,
- 				     const void *data, size_t size,
- 				     enum ttm_bo_type type, u32 flags)
-@@ -1084,6 +1201,9 @@ static uint64_t vram_region_io_offset(struct xe_bo *bo)
- 	struct xe_device *xe = xe_bo_device(bo);
- 	struct xe_gt *gt = mem_type_to_gt(xe, bo->ttm.resource->mem_type);
- 
-+	if (bo->ttm.resource->mem_type == XE_PL_STOLEN)
-+		return xe_ttm_stolen_gpu_offset(xe);
-+
- 	return gt->mem.vram.io_start - xe->mem.vram.io_start;
- }
- 
-@@ -1165,7 +1285,7 @@ int xe_bo_pin(struct xe_bo *bo)
- 		bool lmem;
- 
- 		XE_BUG_ON(!(place->flags & TTM_PL_FLAG_CONTIGUOUS));
--		XE_BUG_ON(!mem_type_is_vram(place->mem_type));
-+		XE_BUG_ON(!mem_type_is_vram(place->mem_type) && place->mem_type != XE_PL_STOLEN);
- 
- 		place->fpfn = (xe_bo_addr(bo, 0, PAGE_SIZE, &lmem) -
- 			       vram_region_io_offset(bo)) >> PAGE_SHIFT;
-@@ -1296,7 +1416,7 @@ dma_addr_t xe_bo_addr(struct xe_bo *bo, u64 offset,
- 
- 	*is_lmem = xe_bo_is_vram(bo);
- 
--	if (!*is_lmem) {
-+	if (!*is_lmem && !xe_bo_is_stolen(bo)) {
- 		XE_BUG_ON(!bo->ttm.ttm);
- 
- 		xe_res_first_sg(xe_bo_get_sg(bo), page << PAGE_SHIFT,
-diff --git a/drivers/gpu/drm/xe/xe_bo.h b/drivers/gpu/drm/xe/xe_bo.h
-index 1a49c0a3c4c6..ed71b594f407 100644
---- a/drivers/gpu/drm/xe/xe_bo.h
-+++ b/drivers/gpu/drm/xe/xe_bo.h
-@@ -12,8 +12,9 @@
- 
- #define XE_DEFAULT_GTT_SIZE_MB          3072ULL /* 3GB by default */
- 
--#define XE_BO_CREATE_USER_BIT		BIT(1)
--#define XE_BO_CREATE_SYSTEM_BIT		BIT(2)
-+#define XE_BO_CREATE_USER_BIT		BIT(0)
-+#define XE_BO_CREATE_SYSTEM_BIT		BIT(1)
-+#define XE_BO_CREATE_STOLEN_BIT		BIT(2)
- #define XE_BO_CREATE_VRAM0_BIT		BIT(3)
- #define XE_BO_CREATE_VRAM1_BIT		BIT(4)
- #define XE_BO_CREATE_VRAM_IF_DGFX(gt) \
-@@ -24,6 +25,7 @@
- #define XE_BO_CREATE_PINNED_BIT		BIT(7)
- #define XE_BO_DEFER_BACKING		BIT(8)
- #define XE_BO_SCANOUT_BIT		BIT(9)
-+#define XE_BO_FIXED_PLACEMENT_BIT	BIT(10)
- /* this one is trigger internally only */
- #define XE_BO_INTERNAL_TEST		BIT(30)
- #define XE_BO_INTERNAL_64K		BIT(31)
-@@ -64,6 +66,7 @@
- #define XE_PL_TT		TTM_PL_TT
- #define XE_PL_VRAM0		TTM_PL_VRAM
- #define XE_PL_VRAM1		(XE_PL_VRAM0 + 1)
-+#define XE_PL_STOLEN		(TTM_NUM_MEM_TYPES - 1)
- 
- #define XE_BO_PROPS_INVALID	(-1)
- 
-@@ -85,6 +88,9 @@ struct xe_bo *xe_bo_create(struct xe_device *xe, struct xe_gt *gt,
- struct xe_bo *xe_bo_create_pin_map(struct xe_device *xe, struct xe_gt *gt,
- 				   struct xe_vm *vm, size_t size,
- 				   enum ttm_bo_type type, u32 flags);
-+struct xe_bo *xe_bo_create_pin_map_at(struct xe_device *xe, struct xe_gt *gt,
-+				      struct xe_vm *vm, size_t size, u64 offset,
-+				      enum ttm_bo_type type, u32 flags);
- struct xe_bo *xe_bo_create_from_data(struct xe_device *xe, struct xe_gt *gt,
- 				     const void *data, size_t size,
- 				     enum ttm_bo_type type, u32 flags);
-@@ -206,6 +212,7 @@ void xe_bo_vunmap(struct xe_bo *bo);
- 
- bool mem_type_is_vram(u32 mem_type);
- bool xe_bo_is_vram(struct xe_bo *bo);
-+bool xe_bo_is_stolen(struct xe_bo *bo);
- 
- bool xe_bo_can_migrate(struct xe_bo *bo, u32 mem_type);
- 
-diff --git a/drivers/gpu/drm/xe/xe_debugfs.c b/drivers/gpu/drm/xe/xe_debugfs.c
-index 84db7b3f501e..b0f8b157ffa3 100644
---- a/drivers/gpu/drm/xe/xe_debugfs.c
-+++ b/drivers/gpu/drm/xe/xe_debugfs.c
-@@ -124,6 +124,10 @@ void xe_debugfs_register(struct xe_device *xe)
- 	man = ttm_manager_type(bdev, XE_PL_TT);
- 	ttm_resource_manager_create_debugfs(man, root, "gtt_mm");
- 
-+	man = ttm_manager_type(bdev, XE_PL_STOLEN);
-+	if (man)
-+		ttm_resource_manager_create_debugfs(man, root, "stolen_mm");
-+
- 	for_each_gt(gt, xe, id)
- 		xe_gt_debugfs_register(gt);
- }
-diff --git a/drivers/gpu/drm/xe/xe_device.c b/drivers/gpu/drm/xe/xe_device.c
-index bd6c54aa5649..86e386931206 100644
---- a/drivers/gpu/drm/xe/xe_device.c
-+++ b/drivers/gpu/drm/xe/xe_device.c
-@@ -24,6 +24,7 @@
- #include "xe_pcode.h"
- #include "xe_pm.h"
- #include "xe_query.h"
-+#include "xe_ttm_stolen_mgr.h"
- #include "xe_vm.h"
- #include "xe_vm_madvise.h"
- #include "xe_wait_user_fence.h"
-@@ -428,6 +429,9 @@ int xe_device_probe(struct xe_device *xe)
- 			goto err_irq_shutdown;
- 	}
- 
-+	/* Harmless if stolen initialization fails */
-+	xe_ttm_stolen_mgr_init(xe);
-+
- 	/*
- 	 * Now that GT is initialized (TTM in particular),
- 	 * we can try to init display, and inherit the initial fb.
-diff --git a/drivers/gpu/drm/xe/xe_mmio.c b/drivers/gpu/drm/xe/xe_mmio.c
-index 9ab74ce3ff6d..4d679027fc98 100644
---- a/drivers/gpu/drm/xe/xe_mmio.c
-+++ b/drivers/gpu/drm/xe/xe_mmio.c
-@@ -153,6 +153,38 @@ static bool xe_pci_resource_valid(struct pci_dev *pdev, int bar)
- 	return true;
- }
- 
-+int xe_mmio_total_vram_size(struct xe_device *xe, u64 *vram_size, u64 *flat_ccs_base)
-+{
-+	struct xe_gt *gt = xe_device_get_gt(xe, 0);
-+	struct pci_dev *pdev = to_pci_dev(xe->drm.dev);
-+	int err;
-+	u32 reg;
-+
-+	if (!xe->info.has_flat_ccs)  {
-+		*vram_size = pci_resource_len(pdev, GEN12_LMEM_BAR);
-+		if (flat_ccs_base)
-+			*flat_ccs_base = *vram_size;
-+		return 0;
-+	}
-+
-+	err = xe_force_wake_get(gt_to_fw(gt), XE_FW_GT);
-+	if (err)
-+		return err;
-+
-+	reg = xe_gt_mcr_unicast_read_any(gt, XEHP_TILE0_ADDR_RANGE);
-+	*vram_size = (u64)REG_FIELD_GET(GENMASK(14, 8), reg) * SZ_1G;
-+	if (flat_ccs_base) {
-+		reg = xe_gt_mcr_unicast_read_any(gt, XEHP_FLAT_CCS_BASE_ADDR);
-+		*flat_ccs_base = (u64)REG_FIELD_GET(GENMASK(31, 8), reg) * SZ_64K;
-+	}
-+
-+	if (flat_ccs_base)
-+		drm_info(&xe->drm, "lmem_size: 0x%llx flat_ccs_base: 0x%llx\n",
-+			 *vram_size, *flat_ccs_base);
-+
-+	return xe_force_wake_put(gt_to_fw(gt), XE_FW_GT);
-+}
-+
- int xe_mmio_probe_vram(struct xe_device *xe)
- {
- 	struct pci_dev *pdev = to_pci_dev(xe->drm.dev);
-@@ -162,7 +194,7 @@ int xe_mmio_probe_vram(struct xe_device *xe)
- 	u64 original_size;
- 	u64 current_size;
- 	u64 flat_ccs_base;
--	int resize_result;
-+	int resize_result, err;
- 
- 	if (!IS_DGFX(xe)) {
- 		xe->mem.vram.mapping = 0;
-@@ -187,27 +219,9 @@ int xe_mmio_probe_vram(struct xe_device *xe)
- 
- 	original_size = pci_resource_len(pdev, GEN12_LMEM_BAR);
- 
--	if (xe->info.has_flat_ccs)  {
--		int err;
--		u32 reg;
--
--		err = xe_force_wake_get(gt_to_fw(gt), XE_FW_GT);
--		if (err)
--			return err;
--		reg = xe_gt_mcr_unicast_read_any(gt, XEHP_TILE0_ADDR_RANGE);
--		lmem_size = (u64)REG_FIELD_GET(GENMASK(14, 8), reg) * SZ_1G;
--		reg = xe_gt_mcr_unicast_read_any(gt, XEHP_FLAT_CCS_BASE_ADDR);
--		flat_ccs_base = (u64)REG_FIELD_GET(GENMASK(31, 8), reg) * SZ_64K;
--
--		drm_info(&xe->drm, "lmem_size: 0x%llx flat_ccs_base: 0x%llx\n",
--			 lmem_size, flat_ccs_base);
--
--		err = xe_force_wake_put(gt_to_fw(gt), XE_FW_GT);
--		if (err)
--			return err;
--	} else {
--		flat_ccs_base = lmem_size;
--	}
-+	err = xe_mmio_total_vram_size(xe, &lmem_size, &flat_ccs_base);
-+	if (err)
-+		return err;
- 
- 	resize_result = xe_resize_lmem_bar(xe, lmem_size);
- 	current_size = pci_resource_len(pdev, GEN12_LMEM_BAR);
-diff --git a/drivers/gpu/drm/xe/xe_mmio.h b/drivers/gpu/drm/xe/xe_mmio.h
-index 009bc14a24f4..7e7149c8d5ec 100644
---- a/drivers/gpu/drm/xe/xe_mmio.h
-+++ b/drivers/gpu/drm/xe/xe_mmio.h
-@@ -121,5 +121,6 @@ static inline bool xe_mmio_in_range(const struct xe_mmio_range *range, u32 reg)
- }
- 
- int xe_mmio_probe_vram(struct xe_device *xe);
-+int xe_mmio_total_vram_size(struct xe_device *xe, u64 *vram_size, u64 *flat_ccs_base);
- 
- #endif
-diff --git a/drivers/gpu/drm/xe/xe_pt.c b/drivers/gpu/drm/xe/xe_pt.c
-index 71e8d3091640..c8b3b1975098 100644
---- a/drivers/gpu/drm/xe/xe_pt.c
-+++ b/drivers/gpu/drm/xe/xe_pt.c
-@@ -13,6 +13,7 @@
- #include "xe_pt_types.h"
- #include "xe_vm.h"
- #include "xe_res_cursor.h"
-+#include "xe_ttm_stolen_mgr.h"
- 
- struct xe_pt_dir {
- 	struct xe_pt pt;
-@@ -757,12 +758,14 @@ xe_pt_stage_bind(struct xe_gt *gt, struct xe_vma *vma,
- 		else
- 			xe_walk.cache = XE_CACHE_WB;
- 	}
-+	if (xe_bo_is_stolen(bo))
-+		xe_walk.dma_offset = xe_ttm_stolen_gpu_offset(xe_bo_device(bo));
- 
- 	xe_bo_assert_held(bo);
- 	if (xe_vma_is_userptr(vma))
- 		xe_res_first_sg(vma->userptr.sg, 0, vma->end - vma->start + 1,
- 				&curs);
--	else if (xe_bo_is_vram(bo))
-+	else if (xe_bo_is_vram(bo) || xe_bo_is_stolen(bo))
- 		xe_res_first(bo->ttm.resource, vma->bo_offset,
- 			     vma->end - vma->start + 1, &curs);
++#ifdef I915
+ 	if (IS_VALLEYVIEW(dev_priv) || IS_CHERRYVIEW(dev_priv))
+ 		pps_idx = vlv_power_sequencer_pipe(intel_dp);
+ 	else if (IS_GEMINILAKE(dev_priv) || IS_BROXTON(dev_priv))
+ 		pps_idx = bxt_power_sequencer_idx(intel_dp);
  	else
-diff --git a/drivers/gpu/drm/xe/xe_res_cursor.h b/drivers/gpu/drm/xe/xe_res_cursor.h
-index f54409850d74..365c8ad7aeb8 100644
---- a/drivers/gpu/drm/xe/xe_res_cursor.h
-+++ b/drivers/gpu/drm/xe/xe_res_cursor.h
-@@ -33,10 +33,11 @@
- #include <drm/ttm/ttm_tt.h>
- 
- #include "xe_bo.h"
-+#include "xe_device.h"
- #include "xe_macros.h"
- #include "xe_ttm_vram_mgr.h"
- 
--/* state back for walking over vram_mgr and gtt_mgr allocations */
-+/* state back for walking over vram_mgr, stolen_mgr, and gtt_mgr allocations */
- struct xe_res_cursor {
- 	u64 start;
- 	u64 size;
-@@ -44,8 +45,23 @@ struct xe_res_cursor {
- 	void *node;
- 	u32 mem_type;
- 	struct scatterlist *sgl;
-+	struct drm_buddy *mm;
- };
- 
-+static struct drm_buddy *xe_res_get_buddy(struct ttm_resource *res)
-+{
-+	struct xe_device *xe = ttm_to_xe_device(res->bo->bdev);
-+
-+	if (res->mem_type != XE_PL_STOLEN) {
-+		return &xe_device_get_gt(xe, res->mem_type - XE_PL_VRAM0)->mem.vram_mgr->mm;
-+	} else {
-+		struct ttm_resource_manager *mgr =
-+			ttm_manager_type(&xe->ttm, XE_PL_STOLEN);
-+
-+		return &to_xe_ttm_vram_mgr(mgr)->mm;
-+	}
-+}
-+
- /**
-  * xe_res_first - initialize a xe_res_cursor
-  *
-@@ -60,9 +76,6 @@ static inline void xe_res_first(struct ttm_resource *res,
- 				u64 start, u64 size,
- 				struct xe_res_cursor *cur)
- {
--	struct drm_buddy_block *block;
--	struct list_head *head, *next;
--
- 	cur->sgl = NULL;
- 	if (!res)
- 		goto fallback;
-@@ -72,8 +85,13 @@ static inline void xe_res_first(struct ttm_resource *res,
- 	cur->mem_type = res->mem_type;
- 
- 	switch (cur->mem_type) {
-+	case XE_PL_STOLEN:
- 	case XE_PL_VRAM0:
--	case XE_PL_VRAM1:
-+	case XE_PL_VRAM1: {
-+		struct drm_buddy_block *block;
-+		struct list_head *head, *next;
-+		struct drm_buddy *mm = xe_res_get_buddy(res);
-+
- 		head = &to_xe_ttm_vram_mgr_resource(res)->blocks;
- 
- 		block = list_first_entry_or_null(head,
-@@ -82,8 +100,8 @@ static inline void xe_res_first(struct ttm_resource *res,
- 		if (!block)
- 			goto fallback;
- 
--		while (start >= xe_ttm_vram_mgr_block_size(block)) {
--			start -= xe_ttm_vram_mgr_block_size(block);
-+		while (start >= drm_buddy_block_size(mm, block)) {
-+			start -= drm_buddy_block_size(mm, block);
- 
- 			next = block->link.next;
- 			if (next != head)
-@@ -91,12 +109,14 @@ static inline void xe_res_first(struct ttm_resource *res,
- 						   link);
- 		}
- 
--		cur->start = xe_ttm_vram_mgr_block_start(block) + start;
--		cur->size = min(xe_ttm_vram_mgr_block_size(block) - start,
-+		cur->mm = mm;
-+		cur->start = drm_buddy_block_offset(block) + start;
-+		cur->size = min(drm_buddy_block_size(mm, block) - start,
- 				size);
- 		cur->remaining = size;
- 		cur->node = block;
- 		break;
-+	}
- 	default:
- 		goto fallback;
- 	}
-@@ -188,6 +208,7 @@ static inline void xe_res_next(struct xe_res_cursor *cur, u64 size)
- 	}
- 
- 	switch (cur->mem_type) {
-+	case XE_PL_STOLEN:
- 	case XE_PL_VRAM0:
- 	case XE_PL_VRAM1:
- 		start = size - cur->size;
-@@ -197,15 +218,15 @@ static inline void xe_res_next(struct xe_res_cursor *cur, u64 size)
- 		block = list_entry(next, struct drm_buddy_block, link);
- 
- 
--		while (start >= xe_ttm_vram_mgr_block_size(block)) {
--			start -= xe_ttm_vram_mgr_block_size(block);
-+		while (start >= drm_buddy_block_size(cur->mm, block)) {
-+			start -= drm_buddy_block_size(cur->mm, block);
- 
- 			next = block->link.next;
- 			block = list_entry(next, struct drm_buddy_block, link);
- 		}
- 
--		cur->start = xe_ttm_vram_mgr_block_start(block) + start;
--		cur->size = min(xe_ttm_vram_mgr_block_size(block) - start,
-+		cur->start = drm_buddy_block_offset(block) + start;
-+		cur->size = min(drm_buddy_block_size(cur->mm, block) - start,
- 				cur->remaining);
- 		cur->node = block;
- 		break;
-diff --git a/drivers/gpu/drm/xe/xe_ttm_stolen_mgr.c b/drivers/gpu/drm/xe/xe_ttm_stolen_mgr.c
-new file mode 100644
-index 000000000000..21ca7f79e63b
---- /dev/null
-+++ b/drivers/gpu/drm/xe/xe_ttm_stolen_mgr.c
-@@ -0,0 +1,244 @@
-+// SPDX-License-Identifier: MIT
-+/*
-+ * Copyright © 2021-2022 Intel Corporation
-+ * Copyright (C) 2021-2002 Red Hat
-+ */
-+
-+#include <drm/drm_managed.h>
-+#include <drm/drm_mm.h>
-+
-+#include <drm/ttm/ttm_device.h>
-+#include <drm/ttm/ttm_range_manager.h>
-+#include <drm/ttm/ttm_placement.h>
-+
-+#include "../i915/i915_reg.h"
-+
-+#include "xe_bo.h"
-+#include "xe_device.h"
-+#include "xe_gt.h"
-+#include "xe_mmio.h"
-+#include "xe_res_cursor.h"
-+#include "xe_ttm_stolen_mgr.h"
-+#include "xe_ttm_vram_mgr.h"
-+
-+bool xe_ttm_stolen_inaccessible(struct xe_device *xe)
-+{
-+	return !IS_DGFX(xe) && GRAPHICS_VERx100(xe) < 1270;
-+}
-+
-+struct xe_ttm_stolen_mgr {
-+	struct xe_ttm_vram_mgr base;
-+
-+	/* PCI base offset */
-+	resource_size_t io_base;
-+	/* GPU base offset */
-+	resource_size_t stolen_base;
-+
-+	void *__iomem mapping;
-+};
-+
-+static inline struct xe_ttm_stolen_mgr *
-+to_stolen_mgr(struct ttm_resource_manager *man)
-+{
-+	return container_of(man, struct xe_ttm_stolen_mgr, base.manager);
-+}
-+
-+static s64 detect_bar2_dgfx(struct xe_device *xe, struct xe_ttm_stolen_mgr *mgr)
-+{
-+	struct pci_dev *pdev = to_pci_dev(xe->drm.dev);
-+	struct xe_gt *gt = to_gt(xe);
-+	u64 vram_size, stolen_size;
-+	int err;
-+
-+	err = xe_mmio_total_vram_size(xe, &vram_size, NULL);
-+	if (err) {
-+		drm_info(&xe->drm, "Querying total vram size failed\n");
-+		return 0;
-+	}
-+
-+	/* Use DSM base address instead for stolen memory */
-+	mgr->stolen_base = xe_mmio_read64(gt, GEN12_DSMBASE.reg) & GEN12_BDSM_MASK;
-+	if (drm_WARN_ON(&xe->drm, vram_size < mgr->stolen_base))
-+		return 0;
-+
-+	stolen_size = vram_size - mgr->stolen_base;
-+	if (mgr->stolen_base + stolen_size <= pci_resource_len(pdev, 2))
-+		mgr->io_base = pci_resource_start(pdev, 2) + mgr->stolen_base;
-+
-+	return stolen_size;
-+}
-+
-+static u32 detect_bar2_integrated(struct xe_device *xe, struct xe_ttm_stolen_mgr *mgr)
-+{
-+	struct pci_dev *pdev = to_pci_dev(xe->drm.dev);
-+	u32 stolen_size;
-+	u32 ggc, gms;
-+
-+	ggc = xe_mmio_read32(to_gt(xe), GGC.reg);
-+
-+	/* check GGMS, should be fixed 0x3 (8MB) */
-+	if (drm_WARN_ON(&xe->drm, (ggc & GGMS_MASK) != GGMS_MASK))
-+		return 0;
-+
-+	mgr->stolen_base = mgr->io_base = pci_resource_start(pdev, 2) + SZ_8M;
-+
-+	/* return valid GMS value, -EIO if invalid */
-+	gms = REG_FIELD_GET(GMS_MASK, ggc);
-+	switch (gms) {
-+	case 0x0 ... 0x04:
-+		stolen_size = gms * 32 * SZ_1M;
-+		break;
-+	case 0xf0 ... 0xfe:
-+		stolen_size = (gms - 0xf0 + 1) * 4 * SZ_1M;
-+		break;
-+	default:
-+		return 0;
-+	}
-+
-+	if (drm_WARN_ON(&xe->drm, stolen_size + SZ_8M > pci_resource_len(pdev, 2)))
-+		return 0;
-+
-+	return stolen_size;
-+}
-+
-+extern struct resource intel_graphics_stolen_res;
-+
-+static u64 detect_stolen(struct xe_device *xe, struct xe_ttm_stolen_mgr *mgr)
-+{
-+#ifdef CONFIG_X86
-+	/* Map into GGTT */
-+	mgr->io_base = pci_resource_start(to_pci_dev(xe->drm.dev), 2);
-+
-+	/* Stolen memory is x86 only */
-+	mgr->stolen_base = intel_graphics_stolen_res.start;
-+	return resource_size(&intel_graphics_stolen_res);
-+#else
-+	return 0;
+ 		pps_idx = intel_dp->pps.pps_idx;
 +#endif
-+}
-+
-+void xe_ttm_stolen_mgr_init(struct xe_device *xe)
-+{
-+	struct xe_ttm_stolen_mgr *mgr = drmm_kzalloc(&xe->drm, sizeof(*mgr), GFP_KERNEL);
-+	struct pci_dev *pdev = to_pci_dev(xe->drm.dev);
-+	u64 stolen_size, pgsize;
-+	int err;
-+
-+	if (IS_DGFX(xe))
-+		stolen_size = detect_bar2_dgfx(xe, mgr);
-+	else if (!xe_ttm_stolen_inaccessible(xe))
-+		stolen_size = detect_bar2_integrated(xe, mgr);
-+	else
-+		stolen_size = detect_stolen(xe, mgr);
-+
-+	if (!stolen_size) {
-+		drm_dbg_kms(&xe->drm, "No stolen memory support\n");
-+		return;
-+	}
-+
-+	pgsize = xe->info.vram_flags & XE_VRAM_FLAGS_NEED64K ? SZ_64K : SZ_4K;
-+	if (pgsize < PAGE_SIZE)
-+		pgsize = PAGE_SIZE;
-+
-+
-+	err = __xe_ttm_vram_mgr_init(xe, &mgr->base, XE_PL_STOLEN, stolen_size, pgsize);
-+	if (err) {
-+		drm_dbg_kms(&xe->drm, "Stolen mgr init failed: %i\n", err);
-+		return;
-+	}
-+
-+	drm_dbg_kms(&xe->drm, "Initialized stolen memory support with %llu bytes\n",
-+		    stolen_size);
-+
-+	if (!xe_ttm_stolen_inaccessible(xe))
-+		mgr->mapping = devm_ioremap_wc(&pdev->dev, mgr->io_base, stolen_size);
-+}
-+
-+u64 xe_ttm_stolen_io_offset(struct xe_bo *bo, u32 offset)
-+{
-+	struct xe_device *xe = xe_bo_device(bo);
-+	struct ttm_resource_manager *ttm_mgr = ttm_manager_type(&xe->ttm, XE_PL_STOLEN);
-+	struct xe_ttm_stolen_mgr *mgr = to_stolen_mgr(ttm_mgr);
-+	struct xe_res_cursor cur;
-+
-+	if (!mgr->io_base)
-+		return 0;
-+
-+	if (!IS_DGFX(xe) && xe_ttm_stolen_inaccessible(xe))
-+		return mgr->io_base + xe_bo_ggtt_addr(bo) + offset;
-+
-+	xe_res_first(bo->ttm.resource, offset, 4096, &cur);
-+	return mgr->io_base + cur.start;
-+}
-+
-+static int __xe_ttm_stolen_io_mem_reserve_bar2(struct xe_device *xe,
-+					       struct xe_ttm_stolen_mgr *mgr,
-+					       struct ttm_resource *mem)
-+{
-+	struct xe_res_cursor cur;
-+
-+	if (!mgr->io_base)
-+		return -EIO;
-+
-+	xe_res_first(mem, 0, 4096, &cur);
-+	mem->bus.offset = cur.start;
-+
-+	drm_WARN_ON(&xe->drm, !(mem->placement & TTM_PL_FLAG_CONTIGUOUS));
-+	WARN_ON_ONCE(1);
-+
-+	if (mem->placement & TTM_PL_FLAG_CONTIGUOUS && mgr->mapping)
-+		mem->bus.addr = (u8 *)mgr->mapping + mem->bus.offset;
-+
-+	mem->bus.offset += mgr->io_base;
-+	mem->bus.is_iomem = true;
-+	mem->bus.caching = ttm_write_combined;
-+
-+	return 0;
-+}
-+
-+static int __xe_ttm_stolen_io_mem_reserve_stolen(struct xe_device *xe,
-+						 struct xe_ttm_stolen_mgr *mgr,
-+						 struct ttm_resource *mem)
-+{
-+#ifdef CONFIG_X86
-+	struct xe_bo *bo = ttm_to_xe_bo(mem->bo);
-+
-+	/* XXX: Require BO to be mapped to GGTT? */
-+	if (drm_WARN_ON(&xe->drm, !(bo->flags & XE_BO_CREATE_GGTT_BIT)))
-+		return -EIO;
-+
-+	/* GGTT is always contiguously mapped */
-+	mem->bus.offset = xe_bo_ggtt_addr(bo) + mgr->io_base;
-+
-+	mem->bus.is_iomem = true;
-+	mem->bus.caching = ttm_write_combined;
-+
-+	return 0;
-+#else
-+	/* How is it even possible to get here without gen12 stolen? */
-+	drm_WARN_ON(&xe->drm, 1);
-+	return -EIO;
-+#endif
-+}
-+
-+int xe_ttm_stolen_io_mem_reserve(struct xe_device *xe, struct ttm_resource *mem)
-+{
-+	struct ttm_resource_manager *ttm_mgr = ttm_manager_type(&xe->ttm, XE_PL_STOLEN);
-+	struct xe_ttm_stolen_mgr *mgr = ttm_mgr ? to_stolen_mgr(ttm_mgr) : NULL;
-+
-+	if (!mgr || !mgr->io_base)
-+		return -EIO;
-+
-+	if (!xe_ttm_stolen_inaccessible(xe))
-+		return __xe_ttm_stolen_io_mem_reserve_bar2(xe, mgr, mem);
-+	else
-+		return __xe_ttm_stolen_io_mem_reserve_stolen(xe, mgr, mem);
-+}
-+
-+u64 xe_ttm_stolen_gpu_offset(struct xe_device *xe)
-+{
-+	struct xe_ttm_stolen_mgr *mgr =
-+		to_stolen_mgr(ttm_manager_type(&xe->ttm, XE_PL_STOLEN));
-+
-+	return mgr->stolen_base;
-+}
-diff --git a/drivers/gpu/drm/xe/xe_ttm_stolen_mgr.h b/drivers/gpu/drm/xe/xe_ttm_stolen_mgr.h
-new file mode 100644
-index 000000000000..ade37abb0623
---- /dev/null
-+++ b/drivers/gpu/drm/xe/xe_ttm_stolen_mgr.h
-@@ -0,0 +1,21 @@
-+/* SPDX-License-Identifier: MIT */
-+/*
-+ * Copyright © 2022 Intel Corporation
-+ */
-+
-+#ifndef _XE_TTM_STOLEN_MGR_H_
-+#define _XE_TTM_STOLEN_MGR_H_
-+
-+#include <linux/types.h>
-+
-+struct ttm_resource;
-+struct xe_bo;
-+struct xe_device;
-+
-+void xe_ttm_stolen_mgr_init(struct xe_device *xe);
-+int xe_ttm_stolen_io_mem_reserve(struct xe_device *xe, struct ttm_resource *mem);
-+bool xe_ttm_stolen_inaccessible(struct xe_device *xe);
-+u64 xe_ttm_stolen_io_offset(struct xe_bo *bo, u32 offset);
-+u64 xe_ttm_stolen_gpu_offset(struct xe_device *xe);
-+
-+#endif
-diff --git a/drivers/gpu/drm/xe/xe_ttm_vram_mgr.c b/drivers/gpu/drm/xe/xe_ttm_vram_mgr.c
-index e391e81d3640..c7e21673b8fd 100644
---- a/drivers/gpu/drm/xe/xe_ttm_vram_mgr.c
-+++ b/drivers/gpu/drm/xe/xe_ttm_vram_mgr.c
-@@ -15,25 +15,14 @@
- #include "xe_res_cursor.h"
- #include "xe_ttm_vram_mgr.h"
  
--static inline struct xe_ttm_vram_mgr *
--to_vram_mgr(struct ttm_resource_manager *man)
--{
--	return container_of(man, struct xe_ttm_vram_mgr, manager);
--}
--
--static inline struct xe_gt *
--mgr_to_gt(struct xe_ttm_vram_mgr *mgr)
--{
--	return mgr->gt;
--}
--
- static inline struct drm_buddy_block *
- xe_ttm_vram_mgr_first_block(struct list_head *list)
- {
- 	return list_first_entry_or_null(list, struct drm_buddy_block, link);
- }
- 
--static inline bool xe_is_vram_mgr_blocks_contiguous(struct list_head *head)
-+static inline bool xe_is_vram_mgr_blocks_contiguous(struct drm_buddy *mm,
-+						    struct list_head *head)
- {
- 	struct drm_buddy_block *block;
- 	u64 start, size;
-@@ -43,12 +32,12 @@ static inline bool xe_is_vram_mgr_blocks_contiguous(struct list_head *head)
- 		return false;
- 
- 	while (head != block->link.next) {
--		start = xe_ttm_vram_mgr_block_start(block);
--		size = xe_ttm_vram_mgr_block_size(block);
-+		start = drm_buddy_block_offset(block);
-+		size = drm_buddy_block_size(mm, block);
- 
- 		block = list_entry(block->link.next, struct drm_buddy_block,
- 				   link);
--		if (start + size != xe_ttm_vram_mgr_block_start(block))
-+		if (start + size != drm_buddy_block_offset(block))
- 			return false;
- 	}
- 
-@@ -61,7 +50,7 @@ static int xe_ttm_vram_mgr_new(struct ttm_resource_manager *man,
- 			       struct ttm_resource **res)
- {
- 	u64 max_bytes, cur_size, min_block_size;
--	struct xe_ttm_vram_mgr *mgr = to_vram_mgr(man);
-+	struct xe_ttm_vram_mgr *mgr = to_xe_ttm_vram_mgr(man);
- 	struct xe_ttm_vram_mgr_resource *vres;
- 	u64 size, remaining_size, lpfn, fpfn;
- 	struct drm_buddy *mm = &mgr->mm;
-@@ -70,12 +59,12 @@ static int xe_ttm_vram_mgr_new(struct ttm_resource_manager *man,
- 	int r;
- 
- 	lpfn = (u64)place->lpfn << PAGE_SHIFT;
--	if (!lpfn)
-+	if (!lpfn || lpfn > man->size)
- 		lpfn = man->size;
- 
- 	fpfn = (u64)place->fpfn << PAGE_SHIFT;
- 
--	max_bytes = mgr->gt->mem.vram.size;
-+	max_bytes = mgr->manager.size;
- 	if (place->flags & TTM_PL_FLAG_CONTIGUOUS) {
- 		pages_per_block = ~0ul;
- 	} else {
-@@ -183,7 +172,7 @@ static int xe_ttm_vram_mgr_new(struct ttm_resource_manager *man,
- 			 * Compute the original_size value by subtracting the
- 			 * last block size with (aligned size - original size)
- 			 */
--			original_size = xe_ttm_vram_mgr_block_size(block) -
-+			original_size = drm_buddy_block_size(mm, block) -
- 				(size - cur_size);
- 		}
- 
-@@ -201,8 +190,8 @@ static int xe_ttm_vram_mgr_new(struct ttm_resource_manager *man,
- 	list_for_each_entry(block, &vres->blocks, link) {
- 		unsigned long start;
- 
--		start = xe_ttm_vram_mgr_block_start(block) +
--			xe_ttm_vram_mgr_block_size(block);
-+		start = drm_buddy_block_offset(block) +
-+			drm_buddy_block_size(mm, block);
- 		start >>= PAGE_SHIFT;
- 
- 		if (start > PFN_UP(vres->base.size))
-@@ -212,7 +201,7 @@ static int xe_ttm_vram_mgr_new(struct ttm_resource_manager *man,
- 		vres->base.start = max(vres->base.start, start);
- 	}
- 
--	if (xe_is_vram_mgr_blocks_contiguous(&vres->blocks))
-+	if (xe_is_vram_mgr_blocks_contiguous(mm, &vres->blocks))
- 		vres->base.placement |= TTM_PL_FLAG_CONTIGUOUS;
- 
- 	*res = &vres->base;
-@@ -233,7 +222,7 @@ static void xe_ttm_vram_mgr_del(struct ttm_resource_manager *man,
- {
- 	struct xe_ttm_vram_mgr_resource *vres =
- 		to_xe_ttm_vram_mgr_resource(res);
--	struct xe_ttm_vram_mgr *mgr = to_vram_mgr(man);
-+	struct xe_ttm_vram_mgr *mgr = to_xe_ttm_vram_mgr(man);
- 	struct drm_buddy *mm = &mgr->mm;
- 
- 	mutex_lock(&mgr->lock);
-@@ -248,7 +237,7 @@ static void xe_ttm_vram_mgr_del(struct ttm_resource_manager *man,
- static void xe_ttm_vram_mgr_debug(struct ttm_resource_manager *man,
- 				  struct drm_printer *printer)
- {
--	struct xe_ttm_vram_mgr *mgr = to_vram_mgr(man);
-+	struct xe_ttm_vram_mgr *mgr = to_xe_ttm_vram_mgr(man);
- 	struct drm_buddy *mm = &mgr->mm;
- 
- 	mutex_lock(&mgr->lock);
-@@ -263,54 +252,54 @@ static const struct ttm_resource_manager_func xe_ttm_vram_mgr_func = {
- 	.debug	= xe_ttm_vram_mgr_debug
- };
- 
--static void ttm_vram_mgr_fini(struct drm_device *drm, void *arg)
-+static void ttm_vram_mgr_fini(struct drm_device *dev, void *arg)
- {
-+	struct xe_device *xe = to_xe_device(dev);
- 	struct xe_ttm_vram_mgr *mgr = arg;
--	struct xe_device *xe = gt_to_xe(mgr->gt);
- 	struct ttm_resource_manager *man = &mgr->manager;
--	int err;
- 
- 	ttm_resource_manager_set_used(man, false);
- 
--	err = ttm_resource_manager_evict_all(&xe->ttm, man);
--	if (err)
-+	if (ttm_resource_manager_evict_all(&xe->ttm, man))
+ 	regs->pp_ctrl = PP_CONTROL(pps_idx);
+ 	regs->pp_stat = PP_STATUS(pps_idx);
+@@ -1684,6 +1692,7 @@ void assert_pps_unlocked(struct drm_i915_private *dev_priv, enum pipe pipe)
  		return;
  
- 	drm_buddy_fini(&mgr->mm);
+ 	if (HAS_PCH_SPLIT(dev_priv)) {
++#ifdef I915
+ 		u32 port_sel;
  
--	ttm_resource_manager_cleanup(man);
--	ttm_set_driver_manager(&xe->ttm, XE_PL_VRAM0 + mgr->gt->info.vram_id,
--			       NULL);
-+	ttm_resource_manager_cleanup(&mgr->manager);
-+
-+	ttm_set_driver_manager(&xe->ttm, mgr->mem_type, NULL);
- }
+ 		pp_reg = PP_CONTROL(0);
+@@ -1710,6 +1719,7 @@ void assert_pps_unlocked(struct drm_i915_private *dev_priv, enum pipe pipe)
+ 		/* presumably write lock depends on pipe, not port select */
+ 		pp_reg = PP_CONTROL(pipe);
+ 		panel_pipe = pipe;
++#endif
+ 	} else {
+ 		u32 port_sel;
  
--int xe_ttm_vram_mgr_init(struct xe_gt *gt, struct xe_ttm_vram_mgr *mgr)
-+int __xe_ttm_vram_mgr_init(struct xe_device *xe, struct xe_ttm_vram_mgr *mgr,
-+			   u32 mem_type, u64 size, u64 default_page_size)
- {
--	struct xe_device *xe = gt_to_xe(gt);
- 	struct ttm_resource_manager *man = &mgr->manager;
- 	int err;
- 
--	XE_BUG_ON(xe_gt_is_media_type(gt));
+diff --git a/drivers/gpu/drm/xe/Makefile b/drivers/gpu/drm/xe/Makefile
+index 5db7a811efdf..36996fe7d7a4 100644
+--- a/drivers/gpu/drm/xe/Makefile
++++ b/drivers/gpu/drm/xe/Makefile
+@@ -167,7 +167,7 @@ xe-$(CONFIG_DRM_XE_DISPLAY) += \
+ 	display/intel_opregion.o \
+ 	display/intel_panel.o \
+ 	display/intel_pipe_crc.o \
+-	display/intel_pps_stub.o \
++	display/intel_pps.o \
+ 	display/intel_psr.o \
+ 	display/intel_qp_tables.o \
+ 	display/intel_quirks.o \
+diff --git a/drivers/gpu/drm/xe/display/intel_pps.c b/drivers/gpu/drm/xe/display/intel_pps.c
+new file mode 120000
+index 000000000000..ce8eef664f23
+--- /dev/null
++++ b/drivers/gpu/drm/xe/display/intel_pps.c
+@@ -0,0 +1 @@
++../../i915/display/intel_pps.c
+\ No newline at end of file
+diff --git a/drivers/gpu/drm/xe/display/intel_pps_stub.c b/drivers/gpu/drm/xe/display/intel_pps_stub.c
+deleted file mode 100644
+index 65a8174165f9..000000000000
+--- a/drivers/gpu/drm/xe/display/intel_pps_stub.c
++++ /dev/null
+@@ -1,43 +0,0 @@
+-#include "intel_pps.h"
+-#include "intel_display.h"
 -
--	mgr->gt = gt;
- 	man->func = &xe_ttm_vram_mgr_func;
-+	mgr->mem_type = mem_type;
-+	mutex_init(&mgr->lock);
-+	mgr->default_page_size = default_page_size;
- 
--	ttm_resource_manager_init(man, &xe->ttm, gt->mem.vram.size);
--	err = drm_buddy_init(&mgr->mm, man->size, PAGE_SIZE);
--	if (err)
--		return err;
-+	ttm_resource_manager_init(man, &xe->ttm, size);
-+	err = drm_buddy_init(&mgr->mm, man->size, default_page_size);
- 
--	mutex_init(&mgr->lock);
--	mgr->default_page_size = PAGE_SIZE;
-+	ttm_set_driver_manager(&xe->ttm, mem_type, &mgr->manager);
-+	ttm_resource_manager_set_used(&mgr->manager, true);
-+
-+	return drmm_add_action_or_reset(&xe->drm, ttm_vram_mgr_fini, mgr);
-+}
-+
-+int xe_ttm_vram_mgr_init(struct xe_gt *gt, struct xe_ttm_vram_mgr *mgr)
-+{
-+	struct xe_device *xe = gt_to_xe(gt);
- 
--	ttm_set_driver_manager(&xe->ttm, XE_PL_VRAM0 + gt->info.vram_id,
--			       &mgr->manager);
--	ttm_resource_manager_set_used(man, true);
-+	XE_BUG_ON(xe_gt_is_media_type(gt));
- 
--	err = drmm_add_action_or_reset(&xe->drm, ttm_vram_mgr_fini, mgr);
--	if (err)
--		return err;
-+	mgr->gt = gt;
- 
--	return 0;
-+	return __xe_ttm_vram_mgr_init(xe, mgr, XE_PL_VRAM0 + gt->info.vram_id,
-+				      gt->mem.vram.size, PAGE_SIZE);
- }
- 
- int xe_ttm_vram_mgr_alloc_sgt(struct xe_device *xe,
-diff --git a/drivers/gpu/drm/xe/xe_ttm_vram_mgr.h b/drivers/gpu/drm/xe/xe_ttm_vram_mgr.h
-index 537fccec4318..78f332d26224 100644
---- a/drivers/gpu/drm/xe/xe_ttm_vram_mgr.h
-+++ b/drivers/gpu/drm/xe/xe_ttm_vram_mgr.h
-@@ -12,6 +12,8 @@ enum dma_data_direction;
- struct xe_device;
- struct xe_gt;
- 
-+int __xe_ttm_vram_mgr_init(struct xe_device *xe, struct xe_ttm_vram_mgr *mgr,
-+			   u32 mem_type, u64 size, u64 default_page_size);
- int xe_ttm_vram_mgr_init(struct xe_gt *gt, struct xe_ttm_vram_mgr *mgr);
- int xe_ttm_vram_mgr_alloc_sgt(struct xe_device *xe,
- 			      struct ttm_resource *res,
-@@ -22,20 +24,16 @@ int xe_ttm_vram_mgr_alloc_sgt(struct xe_device *xe,
- void xe_ttm_vram_mgr_free_sgt(struct device *dev, enum dma_data_direction dir,
- 			      struct sg_table *sgt);
- 
--static inline u64 xe_ttm_vram_mgr_block_start(struct drm_buddy_block *block)
+-intel_wakeref_t intel_pps_lock(struct intel_dp *intel_dp)
 -{
--	return drm_buddy_block_offset(block);
+-        return 0;
 -}
 -
--static inline u64 xe_ttm_vram_mgr_block_size(struct drm_buddy_block *block)
+-intel_wakeref_t intel_pps_unlock(struct intel_dp *intel_dp, intel_wakeref_t wakeref)
 -{
--	return PAGE_SIZE << drm_buddy_block_order(block);
+-        return wakeref;
 -}
 -
- static inline struct xe_ttm_vram_mgr_resource *
- to_xe_ttm_vram_mgr_resource(struct ttm_resource *res)
- {
- 	return container_of(res, struct xe_ttm_vram_mgr_resource, base);
- }
- 
-+static inline struct xe_ttm_vram_mgr *
-+to_xe_ttm_vram_mgr(struct ttm_resource_manager *man)
-+{
-+	return container_of(man, struct xe_ttm_vram_mgr, manager);
-+}
-+
- #endif
-diff --git a/drivers/gpu/drm/xe/xe_ttm_vram_mgr_types.h b/drivers/gpu/drm/xe/xe_ttm_vram_mgr_types.h
-index 39b93c71c21b..cf02c62ff427 100644
---- a/drivers/gpu/drm/xe/xe_ttm_vram_mgr_types.h
-+++ b/drivers/gpu/drm/xe/xe_ttm_vram_mgr_types.h
-@@ -27,6 +27,8 @@ struct xe_ttm_vram_mgr {
- 	u64 default_page_size;
- 	/** @lock: protects allocations of VRAM */
- 	struct mutex lock;
-+
-+	u32 mem_type;
- };
- 
- /**
+-void intel_pps_backlight_on(struct intel_dp *intel_dp) {}
+-void intel_pps_backlight_off(struct intel_dp *intel_dp) {}
+-void intel_pps_backlight_power(struct intel_connector *connector, bool enable) {}
+-
+-bool intel_pps_vdd_on_unlocked(struct intel_dp *intel_dp) { return false; }
+-void intel_pps_vdd_off_unlocked(struct intel_dp *intel_dp, bool sync) {}
+-void intel_pps_on_unlocked(struct intel_dp *intel_dp) {}
+-void intel_pps_off_unlocked(struct intel_dp *intel_dp) {}
+-void intel_pps_check_power_unlocked(struct intel_dp *intel_dp) {}
+-
+-void intel_pps_vdd_on(struct intel_dp *intel_dp) {}
+-void intel_pps_on(struct intel_dp *intel_dp) {}
+-void intel_pps_off(struct intel_dp *intel_dp) {}
+-void intel_pps_vdd_off_sync(struct intel_dp *intel_dp) {}
+-bool intel_pps_have_panel_power_or_vdd(struct intel_dp *intel_dp) { return false; }
+-void intel_pps_wait_power_cycle(struct intel_dp *intel_dp) {}
+-
+-bool intel_pps_init(struct intel_dp *intel_dp) { return false; }
+-void intel_pps_init_late(struct intel_dp *intel_dp) {}
+-void intel_pps_encoder_reset(struct intel_dp *intel_dp) {}
+-void intel_pps_reset_all(struct drm_i915_private *i915) {}
+-
+-void vlv_pps_init(struct intel_encoder *encoder,
+-		  const struct intel_crtc_state *crtc_state) {}
+-
+-void intel_pps_unlock_regs_wa(struct drm_i915_private *i915) {}
+-void intel_pps_setup(struct drm_i915_private *i915) {}
+-
+-void assert_pps_unlocked(struct drm_i915_private *i915, enum pipe pipe) {}
+-
 -- 
 2.38.1
 
