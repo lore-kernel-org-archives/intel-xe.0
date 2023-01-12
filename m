@@ -1,14 +1,13 @@
 Return-Path: <intel-xe-bounces@lists.freedesktop.org>
-Date: Sat, 21 Jan 2023 00:03:58 +0100
-From: Mauro Carvalho Chehab <mchehab@kernel.org>
-Message-ID: <20230121000358.4cb8d6ec@coco.lan>
-In-Reply-To: <20230112222538.2000142-13-rodrigo.vivi@intel.com>
+From: Rodrigo Vivi <rodrigo.vivi@intel.com>
+Date: Thu, 12 Jan 2023 17:25:13 -0500
+Message-ID: <20230112222538.2000142-13-rodrigo.vivi@intel.com>
+In-Reply-To: <20230112222538.2000142-1-rodrigo.vivi@intel.com>
 References: <20230112222538.2000142-1-rodrigo.vivi@intel.com>
- <20230112222538.2000142-13-rodrigo.vivi@intel.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
-Subject: Re: [Intel-xe] [PATCH 12/37] drm/xe/migrate: Add kerneldoc for the
+Subject: [Intel-xe] [PATCH 12/37] drm/xe/migrate: Add kerneldoc for the
  migrate subsystem
 List-Id: Intel Xe graphics driver <intel-xe.lists.freedesktop.org>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/intel-xe>,
@@ -20,282 +19,252 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
-To: Rodrigo Vivi <rodrigo.vivi@intel.com>
-Cc: Thomas =?UTF-8?B?SGVsbHN0csO2bQ==?= <thomas.hellstrom@linux.intel.com>, maarten.lankhorst@linux.intel.com, intel-xe@lists.freedesktop.org, philippe.lecluse@intel.com
+To: intel-xe@lists.freedesktop.org, matthew.brost@intel.com, maarten.lankhorst@linux.intel.com, philippe.lecluse@intel.com, mchehab@kernel.org
+Cc: =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>, Rodrigo Vivi <rodrigo.vivi@intel.com>
 
-Em Thu, 12 Jan 2023 17:25:13 -0500
-Rodrigo Vivi <rodrigo.vivi@intel.com> escreveu:
+From: Thomas Hellström <thomas.hellstrom@linux.intel.com>
 
-> From: Thomas Hellstr=C3=B6m <thomas.hellstrom@linux.intel.com>
->=20
-> Add kerneldoc for structs and external functions.
->=20
-> Signed-off-by: Thomas Hellstr=C3=B6m <thomas.hellstrom@linux.intel.com>
-> Cc: Matthew Brost <matthew.brost@intel.com>
+Add kerneldoc for structs and external functions.
 
-LGTM.
-Reviewed-by: Mauro Carvalho Chehab <mchehab@kernel.org>
+Signed-off-by: Thomas Hellström <thomas.hellstrom@linux.intel.com>
+Cc: Matthew Brost <matthew.brost@intel.com>
+Signed-off-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
+---
+ drivers/gpu/drm/xe/xe_migrate.c | 108 +++++++++++++++++++++++++++++++-
+ drivers/gpu/drm/xe/xe_migrate.h |  16 ++++-
+ 2 files changed, 120 insertions(+), 4 deletions(-)
 
-> Signed-off-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
-> ---
->  drivers/gpu/drm/xe/xe_migrate.c | 108 +++++++++++++++++++++++++++++++-
->  drivers/gpu/drm/xe/xe_migrate.h |  16 ++++-
->  2 files changed, 120 insertions(+), 4 deletions(-)
->=20
-> diff --git a/drivers/gpu/drm/xe/xe_migrate.c b/drivers/gpu/drm/xe/xe_migr=
-ate.c
-> index 01177ee31d43..7b9f3de11b47 100644
-> --- a/drivers/gpu/drm/xe/xe_migrate.c
-> +++ b/drivers/gpu/drm/xe/xe_migrate.c
-> @@ -27,16 +27,37 @@
-> =20
->  #include "../i915/gt/intel_gpu_commands.h"
-> =20
-> +/**
-> + * struct xe_migrate - migrate context.
-> + */
->  struct xe_migrate {
-> +	/** @eng: Default engine used for migration */
->  	struct xe_engine *eng;
-> +	/** @gt: Backpointer to the gt this struct xe_migrate belongs to. */
->  	struct xe_gt *gt;
-> +	/** @job_mutex: Timeline mutex for @eng. */
->  	struct mutex job_mutex;
-> +	/** @pt_bo: Page-table buffer object. */
->  	struct xe_bo *pt_bo;
-> +	/**
-> +	 * @cleared_bo: Zeroed out bo used as a source for CCS metadata clears
-> +	 */
->  	struct xe_bo *cleared_bo;
-> +	/** @batch_base_ofs: VM offset of the migration batch buffer */
->  	u64 batch_base_ofs;
-> +	/** @usm_batch_base_ofs: VM offset of the usm batch buffer */
->  	u64 usm_batch_base_ofs;
-> +	/** @cleared_vram_ofs: VM offset of @cleared_bo. */
->  	u64 cleared_vram_ofs;
-> +	/**
-> +	 * @fence: dma-fence representing the last migration job batch.
-> +	 * Protected by @job_mutex.
-> +	 */
->  	struct dma_fence *fence;
-> +	/**
-> +	 * @vm_update_sa: For integrated, used to suballocate page-tables
-> +	 * out of the pt_bo.
-> +	 */
->  	struct drm_suballoc_manager vm_update_sa;
->  };
-> =20
-> @@ -45,6 +66,15 @@ struct xe_migrate {
->  #define NUM_PT_SLOTS 32
->  #define NUM_PT_PER_BLIT (MAX_PREEMPTDISABLE_TRANSFER / SZ_2M)
-> =20
-> +/**
-> + * xe_gt_migrate_engine() - Get this gt's migrate engine.
-> + * @gt: The gt.
-> + *
-> + * Returns the default migrate engine of this gt.
-> + * TODO: Perhaps this function is slightly misplaced, and even unneeded?
-> + *
-> + * Return: The default migrate engine
-> + */
->  struct xe_engine *xe_gt_migrate_engine(struct xe_gt *gt)
->  {
->  	return gt->migrate->eng;
-> @@ -271,6 +301,12 @@ static int xe_migrate_prepare_vm(struct xe_gt *gt, s=
-truct xe_migrate *m,
->  	return 0;
->  }
-> =20
-> +/**
-> + * xe_migrate_init() - Initialize a migrate context
-> + * @gt: Back-pointer to the gt we're initializing for.
-> + *
-> + * Return: Pointer to a migrate context on success. Error pointer on err=
-or.
-> + */
->  struct xe_migrate *xe_migrate_init(struct xe_gt *gt)
->  {
->  	struct xe_device *xe =3D gt_to_xe(gt);
-> @@ -540,6 +576,24 @@ static u32 xe_migrate_ccs_copy(struct xe_migrate *m,
->  	return flush_flags;
->  }
-> =20
-> +/**
-> + * xe_migrate_copy() - Copy content of TTM resources.
-> + * @m: The migration context.
-> + * @bo: The buffer object @src is currently bound to.
-> + * @src: The source TTM resource.
-> + * @dst: The dst TTM resource.
-> + *
-> + * Copies the contents of @src to @dst: On flat CCS devices,
-> + * the CCS metadata is copied as well if needed, or if not present,
-> + * the CCS metadata of @dst is cleared for security reasons.
-> + * It's currently not possible to copy between two system resources,
-> + * since that would require two TTM page-vectors.
-> + * TODO: Eliminate the @bo argument and supply two TTM page-vectors.
-> + *
-> + * Return: Pointer to a dma_fence representing the last copy batch, or
-> + * an error pointer on failure. If there is a failure, any copy operation
-> + * started by the function call has been synced.
-> + */
->  struct dma_fence *xe_migrate_copy(struct xe_migrate *m,
->  				  struct xe_bo *bo,
->  				  struct ttm_resource *src,
-> @@ -683,7 +737,7 @@ struct dma_fence *xe_migrate_copy(struct xe_migrate *=
-m,
->  		xe_bb_free(bb, NULL);
-> =20
->  err_sync:
-> -		/* Sync partial copy if any. */
-> +		/* Sync partial copy if any. FIXME: under job_mutex? */
->  		if (fence) {
->  			dma_fence_wait(fence, false);
->  			dma_fence_put(fence);
-> @@ -733,6 +787,21 @@ static int emit_clear(struct xe_gt *gt, struct xe_bb=
- *bb, u64 src_ofs,
->  	return 0;
->  }
-> =20
-> +/**
-> + * xe_migrate_clear() - Copy content of TTM resources.
-> + * @m: The migration context.
-> + * @bo: The buffer object @dst is currently bound to.
-> + * @dst: The dst TTM resource to be cleared.
-> + * @value: Clear value.
-> + *
-> + * Clear the contents of @dst. On flat CCS devices,
-> + * the CCS metadata is cleared to zero as well on VRAM destionations.
-> + * TODO: Eliminate the @bo argument.
-> + *
-> + * Return: Pointer to a dma_fence representing the last clear batch, or
-> + * an error pointer on failure. If there is a failure, any clear operati=
-on
-> + * started by the function call has been synced.
-> + */
->  struct dma_fence *xe_migrate_clear(struct xe_migrate *m,
->  				   struct xe_bo *bo,
->  				   struct ttm_resource *dst,
-> @@ -836,7 +905,7 @@ struct dma_fence *xe_migrate_clear(struct xe_migrate =
-*m,
->  		mutex_unlock(&m->job_mutex);
->  		xe_bb_free(bb, NULL);
->  err_sync:
-> -		/* Sync partial copies if any. */
-> +		/* Sync partial copies if any. FIXME: job_mutex? */
->  		if (fence) {
->  			dma_fence_wait(m->fence, false);
->  			dma_fence_put(fence);
-> @@ -974,6 +1043,33 @@ static bool engine_is_idle(struct xe_engine *e)
->  		xe_lrc_seqno(&e->lrc[0]) =3D=3D e->lrc[0].fence_ctx.next_seqno;
->  }
-> =20
-> +/**
-> + * xe_migrate_update_pgtables() - Pipelined page-table update
-> + * @m: The migrate context.
-> + * @vm: The vm we'll be updating.
-> + * @bo: The bo whose dma-resv we will await before updating, or NULL if =
-userptr.
-> + * @eng: The engine to be used for the update or NULL if the default
-> + * migration engine is to be used.
-> + * @updates: An array of update descriptors.
-> + * @num_updates: Number of descriptors in @updates.
-> + * @syncs: Array of xe_sync_entry to await before updating. Note that wa=
-its
-> + * will block the engine timeline.
-> + * @num_syncs: Number of entries in @syncs.
-> + * @pt_update: Pointer to a struct xe_migrate_pt_update, which contains
-> + * pointers to callback functions and, if subclassed, private arguments =
-to
-> + * those.
-> + *
-> + * Perform a pipelined page-table update. The update descriptors are typ=
-ically
-> + * built under the same lock critical section as a call to this function=
-. If
-> + * using the default engine for the updates, they will be performed in t=
-he
-> + * order they grab the job_mutex. If different engines are used, external
-> + * synchronization is needed for overlapping updates to maintain page-ta=
-ble
-> + * consistency. Note that the meaing of "overlapping" is that the updates
-> + * touch the same page-table, which might be a higher-level page-directo=
-ry.
-> + * If no pipelining is needed, then updates may be performed by the cpu.
-> + *
-> + * Return: A dma_fence that, when signaled, indicates the update complet=
-ion.
-> + */
->  struct dma_fence *
->  xe_migrate_update_pgtables(struct xe_migrate *m,
->  			   struct xe_vm *vm,
-> @@ -1157,6 +1253,14 @@ xe_migrate_update_pgtables(struct xe_migrate *m,
->  	return ERR_PTR(err);
->  }
-> =20
-> +/**
-> + * xe_migrate_wait() - Complete all operations using the xe_migrate cont=
-ext
-> + * @m: Migrate context to wait for.
-> + *
-> + * Waits until the GPU no longer uses the migrate context's default engi=
-ne
-> + * or its page-table objects. FIXME: What about separate page-table upda=
-te
-> + * engines?
-> + */
->  void xe_migrate_wait(struct xe_migrate *m)
->  {
->  	if (m->fence)
-> diff --git a/drivers/gpu/drm/xe/xe_migrate.h b/drivers/gpu/drm/xe/xe_migr=
-ate.h
-> index 267057a3847f..b2d55283252f 100644
-> --- a/drivers/gpu/drm/xe/xe_migrate.h
-> +++ b/drivers/gpu/drm/xe/xe_migrate.h
-> @@ -23,9 +23,13 @@ struct xe_vm;
->  struct xe_vm_pgtable_update;
->  struct xe_vma;
-> =20
-> +/**
-> + * struct xe_migrate_pt_update_ops - Callbacks for the
-> + * xe_migrate_update_pgtables() function.
-> + */
->  struct xe_migrate_pt_update_ops {
->  	/**
-> -	 * populate() - Populate a command buffer or page-table with ptes.
-> +	 * @populate: Populate a command buffer or page-table with ptes.
->  	 * @pt_update: Embeddable callback argument.
->  	 * @gt: The gt for the current operation.
->  	 * @map: struct iosys_map into the memory to be populated.
-> @@ -44,7 +48,7 @@ struct xe_migrate_pt_update_ops {
->  			 const struct xe_vm_pgtable_update *update);
-> =20
->  	/**
-> -	 * pre_commit(): Callback to be called just before arming the
-> +	 * @pre_commit: Callback to be called just before arming the
->  	 * sched_job.
->  	 * @pt_update: Pointer to embeddable callback argument.
->  	 *
-> @@ -53,8 +57,16 @@ struct xe_migrate_pt_update_ops {
->  	int (*pre_commit)(struct xe_migrate_pt_update *pt_update);
->  };
-> =20
-> +/**
-> + * struct xe_migrate_pt_update - Argument to the
-> + * struct xe_migrate_pt_update_ops callbacks.
-> + *
-> + * Intended to be subclassed to support additional arguments if necessar=
-y.
-> + */
->  struct xe_migrate_pt_update {
-> +	/** @ops: Pointer to the struct xe_migrate_pt_update_ops callbacks */
->  	const struct xe_migrate_pt_update_ops *ops;
-> +	/** @vma: The vma we're updating the pagetable for. */
->  	struct xe_vma *vma;
->  };
-> =20
+diff --git a/drivers/gpu/drm/xe/xe_migrate.c b/drivers/gpu/drm/xe/xe_migrate.c
+index 01177ee31d43..7b9f3de11b47 100644
+--- a/drivers/gpu/drm/xe/xe_migrate.c
++++ b/drivers/gpu/drm/xe/xe_migrate.c
+@@ -27,16 +27,37 @@
+ 
+ #include "../i915/gt/intel_gpu_commands.h"
+ 
++/**
++ * struct xe_migrate - migrate context.
++ */
+ struct xe_migrate {
++	/** @eng: Default engine used for migration */
+ 	struct xe_engine *eng;
++	/** @gt: Backpointer to the gt this struct xe_migrate belongs to. */
+ 	struct xe_gt *gt;
++	/** @job_mutex: Timeline mutex for @eng. */
+ 	struct mutex job_mutex;
++	/** @pt_bo: Page-table buffer object. */
+ 	struct xe_bo *pt_bo;
++	/**
++	 * @cleared_bo: Zeroed out bo used as a source for CCS metadata clears
++	 */
+ 	struct xe_bo *cleared_bo;
++	/** @batch_base_ofs: VM offset of the migration batch buffer */
+ 	u64 batch_base_ofs;
++	/** @usm_batch_base_ofs: VM offset of the usm batch buffer */
+ 	u64 usm_batch_base_ofs;
++	/** @cleared_vram_ofs: VM offset of @cleared_bo. */
+ 	u64 cleared_vram_ofs;
++	/**
++	 * @fence: dma-fence representing the last migration job batch.
++	 * Protected by @job_mutex.
++	 */
+ 	struct dma_fence *fence;
++	/**
++	 * @vm_update_sa: For integrated, used to suballocate page-tables
++	 * out of the pt_bo.
++	 */
+ 	struct drm_suballoc_manager vm_update_sa;
+ };
+ 
+@@ -45,6 +66,15 @@ struct xe_migrate {
+ #define NUM_PT_SLOTS 32
+ #define NUM_PT_PER_BLIT (MAX_PREEMPTDISABLE_TRANSFER / SZ_2M)
+ 
++/**
++ * xe_gt_migrate_engine() - Get this gt's migrate engine.
++ * @gt: The gt.
++ *
++ * Returns the default migrate engine of this gt.
++ * TODO: Perhaps this function is slightly misplaced, and even unneeded?
++ *
++ * Return: The default migrate engine
++ */
+ struct xe_engine *xe_gt_migrate_engine(struct xe_gt *gt)
+ {
+ 	return gt->migrate->eng;
+@@ -271,6 +301,12 @@ static int xe_migrate_prepare_vm(struct xe_gt *gt, struct xe_migrate *m,
+ 	return 0;
+ }
+ 
++/**
++ * xe_migrate_init() - Initialize a migrate context
++ * @gt: Back-pointer to the gt we're initializing for.
++ *
++ * Return: Pointer to a migrate context on success. Error pointer on error.
++ */
+ struct xe_migrate *xe_migrate_init(struct xe_gt *gt)
+ {
+ 	struct xe_device *xe = gt_to_xe(gt);
+@@ -540,6 +576,24 @@ static u32 xe_migrate_ccs_copy(struct xe_migrate *m,
+ 	return flush_flags;
+ }
+ 
++/**
++ * xe_migrate_copy() - Copy content of TTM resources.
++ * @m: The migration context.
++ * @bo: The buffer object @src is currently bound to.
++ * @src: The source TTM resource.
++ * @dst: The dst TTM resource.
++ *
++ * Copies the contents of @src to @dst: On flat CCS devices,
++ * the CCS metadata is copied as well if needed, or if not present,
++ * the CCS metadata of @dst is cleared for security reasons.
++ * It's currently not possible to copy between two system resources,
++ * since that would require two TTM page-vectors.
++ * TODO: Eliminate the @bo argument and supply two TTM page-vectors.
++ *
++ * Return: Pointer to a dma_fence representing the last copy batch, or
++ * an error pointer on failure. If there is a failure, any copy operation
++ * started by the function call has been synced.
++ */
+ struct dma_fence *xe_migrate_copy(struct xe_migrate *m,
+ 				  struct xe_bo *bo,
+ 				  struct ttm_resource *src,
+@@ -683,7 +737,7 @@ struct dma_fence *xe_migrate_copy(struct xe_migrate *m,
+ 		xe_bb_free(bb, NULL);
+ 
+ err_sync:
+-		/* Sync partial copy if any. */
++		/* Sync partial copy if any. FIXME: under job_mutex? */
+ 		if (fence) {
+ 			dma_fence_wait(fence, false);
+ 			dma_fence_put(fence);
+@@ -733,6 +787,21 @@ static int emit_clear(struct xe_gt *gt, struct xe_bb *bb, u64 src_ofs,
+ 	return 0;
+ }
+ 
++/**
++ * xe_migrate_clear() - Copy content of TTM resources.
++ * @m: The migration context.
++ * @bo: The buffer object @dst is currently bound to.
++ * @dst: The dst TTM resource to be cleared.
++ * @value: Clear value.
++ *
++ * Clear the contents of @dst. On flat CCS devices,
++ * the CCS metadata is cleared to zero as well on VRAM destionations.
++ * TODO: Eliminate the @bo argument.
++ *
++ * Return: Pointer to a dma_fence representing the last clear batch, or
++ * an error pointer on failure. If there is a failure, any clear operation
++ * started by the function call has been synced.
++ */
+ struct dma_fence *xe_migrate_clear(struct xe_migrate *m,
+ 				   struct xe_bo *bo,
+ 				   struct ttm_resource *dst,
+@@ -836,7 +905,7 @@ struct dma_fence *xe_migrate_clear(struct xe_migrate *m,
+ 		mutex_unlock(&m->job_mutex);
+ 		xe_bb_free(bb, NULL);
+ err_sync:
+-		/* Sync partial copies if any. */
++		/* Sync partial copies if any. FIXME: job_mutex? */
+ 		if (fence) {
+ 			dma_fence_wait(m->fence, false);
+ 			dma_fence_put(fence);
+@@ -974,6 +1043,33 @@ static bool engine_is_idle(struct xe_engine *e)
+ 		xe_lrc_seqno(&e->lrc[0]) == e->lrc[0].fence_ctx.next_seqno;
+ }
+ 
++/**
++ * xe_migrate_update_pgtables() - Pipelined page-table update
++ * @m: The migrate context.
++ * @vm: The vm we'll be updating.
++ * @bo: The bo whose dma-resv we will await before updating, or NULL if userptr.
++ * @eng: The engine to be used for the update or NULL if the default
++ * migration engine is to be used.
++ * @updates: An array of update descriptors.
++ * @num_updates: Number of descriptors in @updates.
++ * @syncs: Array of xe_sync_entry to await before updating. Note that waits
++ * will block the engine timeline.
++ * @num_syncs: Number of entries in @syncs.
++ * @pt_update: Pointer to a struct xe_migrate_pt_update, which contains
++ * pointers to callback functions and, if subclassed, private arguments to
++ * those.
++ *
++ * Perform a pipelined page-table update. The update descriptors are typically
++ * built under the same lock critical section as a call to this function. If
++ * using the default engine for the updates, they will be performed in the
++ * order they grab the job_mutex. If different engines are used, external
++ * synchronization is needed for overlapping updates to maintain page-table
++ * consistency. Note that the meaing of "overlapping" is that the updates
++ * touch the same page-table, which might be a higher-level page-directory.
++ * If no pipelining is needed, then updates may be performed by the cpu.
++ *
++ * Return: A dma_fence that, when signaled, indicates the update completion.
++ */
+ struct dma_fence *
+ xe_migrate_update_pgtables(struct xe_migrate *m,
+ 			   struct xe_vm *vm,
+@@ -1157,6 +1253,14 @@ xe_migrate_update_pgtables(struct xe_migrate *m,
+ 	return ERR_PTR(err);
+ }
+ 
++/**
++ * xe_migrate_wait() - Complete all operations using the xe_migrate context
++ * @m: Migrate context to wait for.
++ *
++ * Waits until the GPU no longer uses the migrate context's default engine
++ * or its page-table objects. FIXME: What about separate page-table update
++ * engines?
++ */
+ void xe_migrate_wait(struct xe_migrate *m)
+ {
+ 	if (m->fence)
+diff --git a/drivers/gpu/drm/xe/xe_migrate.h b/drivers/gpu/drm/xe/xe_migrate.h
+index 267057a3847f..b2d55283252f 100644
+--- a/drivers/gpu/drm/xe/xe_migrate.h
++++ b/drivers/gpu/drm/xe/xe_migrate.h
+@@ -23,9 +23,13 @@ struct xe_vm;
+ struct xe_vm_pgtable_update;
+ struct xe_vma;
+ 
++/**
++ * struct xe_migrate_pt_update_ops - Callbacks for the
++ * xe_migrate_update_pgtables() function.
++ */
+ struct xe_migrate_pt_update_ops {
+ 	/**
+-	 * populate() - Populate a command buffer or page-table with ptes.
++	 * @populate: Populate a command buffer or page-table with ptes.
+ 	 * @pt_update: Embeddable callback argument.
+ 	 * @gt: The gt for the current operation.
+ 	 * @map: struct iosys_map into the memory to be populated.
+@@ -44,7 +48,7 @@ struct xe_migrate_pt_update_ops {
+ 			 const struct xe_vm_pgtable_update *update);
+ 
+ 	/**
+-	 * pre_commit(): Callback to be called just before arming the
++	 * @pre_commit: Callback to be called just before arming the
+ 	 * sched_job.
+ 	 * @pt_update: Pointer to embeddable callback argument.
+ 	 *
+@@ -53,8 +57,16 @@ struct xe_migrate_pt_update_ops {
+ 	int (*pre_commit)(struct xe_migrate_pt_update *pt_update);
+ };
+ 
++/**
++ * struct xe_migrate_pt_update - Argument to the
++ * struct xe_migrate_pt_update_ops callbacks.
++ *
++ * Intended to be subclassed to support additional arguments if necessary.
++ */
+ struct xe_migrate_pt_update {
++	/** @ops: Pointer to the struct xe_migrate_pt_update_ops callbacks */
+ 	const struct xe_migrate_pt_update_ops *ops;
++	/** @vma: The vma we're updating the pagetable for. */
+ 	struct xe_vma *vma;
+ };
+ 
+-- 
+2.38.1
 
-
-
-Thanks,
-Mauro
 
