@@ -1,11 +1,14 @@
 Return-Path: <intel-xe-bounces@lists.freedesktop.org>
 From: Rodrigo Vivi <rodrigo.vivi@intel.com>
-Date: Thu, 12 Jan 2023 17:25:01 -0500
-Message-ID: <20230112222538.2000142-1-rodrigo.vivi@intel.com>
-Content-Type: text/plain; charset="utf-8"
+Date: Thu, 12 Jan 2023 17:25:28 -0500
+Message-ID: <20230112222538.2000142-28-rodrigo.vivi@intel.com>
+In-Reply-To: <20230112222538.2000142-1-rodrigo.vivi@intel.com>
+References: <20230112222538.2000142-1-rodrigo.vivi@intel.com>
 Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
 MIME-Version: 1.0
-Subject: [Intel-xe] [PATCH 00/37] Catching up since we went public
+Subject: [Intel-xe] [PATCH 27/37] drm/xe: Ensure VMA not userptr before
+ calling xe_bo_is_stolen
 List-Id: Intel Xe graphics driver <intel-xe.lists.freedesktop.org>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=unsubscribe>
@@ -19,155 +22,76 @@ Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 To: intel-xe@lists.freedesktop.org, matthew.brost@intel.com, maarten.lankhorst@linux.intel.com, philippe.lecluse@intel.com, mchehab@kernel.org
 Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
 
-Hi Folks,
+From: Matthew Brost <matthew.brost@intel.com>
 
-For those yet not subsribed to the mailing list, please do so:
-https://lists.freedesktop.org/mailman/listinfo/intel-xe
+Fix the below splat:
 
-This is the catch up since we went live.
-The goal is to merge this patches on top of cgit/drm-xe-next and
-then use this mailing list here to continue the public development.
+[  142.510525] [IGT] xe_exec_basic: starting subtest once-userptr
+[  142.511339] BUG: kernel NULL pointer dereference, address: 0000000000000228
+[  142.518311] #PF: supervisor read access in kernel mode
+[  142.523458] #PF: error_code(0x0000) - not-present page
+[  142.528604] PGD 0 P4D 0
+[  142.531153] Oops: 0000 [#1] PREEMPT SMP NOPTI
+[  142.535518] CPU: 4 PID: 1199 Comm: kworker/u16:8 Not tainted 6.1.0-rc1-xe+ #1
+[  142.542656] Hardware name: Intel Corporation Tiger Lake Client Platform/TigerLake U DDR4 SODIMM RVP, BIOS TGLSFWI1.R00.3243.A01.2006102133 06/10/2020
+[  142.556033] Workqueue: events_unbound async_op_work_func [xe]
+[  142.561810] RIP: 0010:xe_bo_is_stolen+0x0/0x20 [xe]
+[  142.566709] Code: 20 c8 75 05 83 fa 07 74 05 c3 cc cc cc cc 48 8b 87 08 02 00 00 0f b6 80 2c ff ff ff c3 cc cc cc cc 66 0f 1f 84 00 00 00 00 00 <48> 8b 87 28 02 00 00 83 78 10 07 0f 94 c0 c3 cc cc cc cc 66 66 2e
+[  142.585447] RSP: 0018:ffffc900019eb888 EFLAGS: 00010246
+[  142.590678] RAX: 0000000000000002 RBX: 0000000000000000 RCX: ffff88813f6a2108
+[  142.597821] RDX: 0000000000000000 RSI: 0000000000000000 RDI: 0000000000000000
+[  142.604962] RBP: ffffc900019ebbc0 R08: 0000000000000001 R09: 0000000000000000
+[  142.612101] R10: 0000000000000001 R11: 0000000000000001 R12: ffff88814107d600
+[  142.619242] R13: ffffc900019eba20 R14: ffff888140442000 R15: 0000000000000000
+[  142.626378] FS:  0000000000000000(0000) GS:ffff88849fa00000(0000) knlGS:0000000000000000
+[  142.634468] CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
+[  142.640219] CR2: 0000000000000228 CR3: 000000010a4c0006 CR4: 0000000000770ee0
+[  142.647361] DR0: 0000000000000000 DR1: 0000000000000000 DR2: 0000000000000000
+[  142.654505] DR3: 0000000000000000 DR6: 00000000fffe0ff0 DR7: 0000000000000400
+[  142.661639] PKRU: 55555554
+[  142.664367] Call Trace:
+[  142.666830]  <TASK>
+[  142.668947]  __xe_pt_bind_vma+0x1a1/0xa50 [xe]
+[  142.673417]  ? unwind_next_frame+0x187/0x770
+[  142.677699]  ? __thaw_task+0xc0/0xc0
+[  142.681293]  ? __lock_acquire+0x5e4/0x26e0
+[  142.685409]  ? lockdep_hardirqs_on+0xbf/0x140
+[  142.689779]  ? lock_acquire+0xd2/0x310
+[  142.693548]  ? mark_held_locks+0x49/0x80
+[  142.697485]  ? xe_vm_bind_vma+0xf1/0x3d0 [xe]
+[  142.701866]  xe_vm_bind_vma+0xf1/0x3d0 [xe]
+[  142.706082]  xe_vm_bind+0x76/0x140 [xe]
+[  142.709944]  vm_bind_ioctl+0x26f/0xb40 [xe]
+[  142.714161]  ? async_op_work_func+0x20c/0x450 [xe]
+[  142.718974]  async_op_work_func+0x20c/0x450 [xe]
+[  142.723620]  process_one_work+0x263/0x580
+[  142.727645]  ? process_one_work+0x580/0x580
+[  142.731839]  worker_thread+0x4d/0x3b0
+[  142.735518]  ? process_one_work+0x580/0x580
+[  142.739714]  kthread+0xeb/0x120
+[  142.742872]  ? kthread_complete_and_exit+0x20/0x20
+[  142.747671]  ret_from_fork+0x1f/0x30
+[  142.751264]  </TASK>
 
-gitlab will be used only for issues handling, but not as git
-repository and not for merge requests.
+Signed-off-by: Matthew Brost <matthew.brost@intel.com>
+Signed-off-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
+---
+ drivers/gpu/drm/xe/xe_pt.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-We need to move towards the open source upstream development aligned
-with the drm community methods and processes. What is using the cgit
-and patches over email. In this way we don't create some strange
-fragmentation with the rest of the community and ensure a better
-care of the individual commits with proper history, log and recorded
-reviewed-bys.
-
-Please notice that I have added some 'Cc:' in most of the patches.
-Those are the folks who approved the merge request containing that
-commit in gitlab. I cannot forge any reviewed-by tag, but please
-respond if that's okay to convert that cc to the reviewed-by.
-
-Also, please notice that there are many commits without any message.
-By the kernel rules this is not acceptable. We need to get a message
-to the commits. Please respond the email with a message that I can
-update the commit myself.
-
-Once everything is in place I will push them to drm-xe-next.
-
-I believe a few rounds will be needed before we can convert the flow.
-So I will for now port the patches over. But please ensure that
-the new commits in gitlab has the proper commit messages and style.
-
-Thanks,
-Rodrigo.
-
-Maarten Lankhorst (13):
-  drm/xe: Add intel_pps support too
-  drm/xe: Rework initialisation ordering slightly so we can inherit fb
-  drm/xe: Implement stolen memory.
-  drm/xe: Allow fbdev to allocate stolen memory
-  drm/xe: Implement initial hw readout for framebuffer
-  drm/xe: Put DPT into stolen memory, if available
-  drm/xe: Implement FBC support
-  drm/i915: Remove i915_drm_suspend_mode
-  drm/xe: Fix dumb bo create
-  drm/xe: Make FBC check stolen at use time.
-  drm/xe: Move xe_ttm_stolen_mgr_init back
-  drm/xe: Fix hidden gotcha regression with bo create
-  drm/xe: Fix xe_mmio_wait32 timeouts.
-
-Matthew Brost (9):
-  drm/msm: Fix compile error
-  drm/xe: Take memory ref on kernel job creation
-  Revert "drm/xe: Validate BO on CPU fault"
-  drm/xe: Ensure VMA not userptr before calling xe_bo_is_stolen
-  drm/xe: Don't use engine_mask until after hwconfig parse
-  drm/xe: Fake pulling gt->info.engine_mask from hwconfig blob
-  drm/xe/guc: Report submission version of GuC firmware
-  drm/xe/guc: s/xe_guc_send_mmio/xe_guc_mmio_send
-  drm/xe/guc: Add support GuC MMIO send / recv
-
-Mauro Carvalho Chehab (1):
-  drm/xe: Fix compilation when Xe driver is builtin
-
-Philippe Lecluse (1):
-  drm/xe: enforce GSMBASE for DG1 instead of BAR2
-
-Rodrigo Vivi (12):
-  drm/xe: Implement a local xe_mmio_wait32
-  drm/xe: Stop using i915's range_overflows_t macro.
-  drm/xe: Let's return last value read on xe_mmio_wait32.
-  drm/xe: Convert guc_ready to regular xe_mmio_wait32
-  drm/xe: Wait for success on guc done.
-  drm/xe: Remove i915_utils dependency from xe_guc_pc.
-  drm/xe: Stop using i915_utils in xe_wopcm.
-  drm/xe: Let's avoid i915_utils in the xe_force_wake.
-  drm/xe: Convert xe_mmio_wait32 to us so we can stop using wait_for_us.
-  drm/xe: Remove i915_utils dependency from xe_pcode.
-  drm/i915: Expand force_probe to block probe of devices as well.
-  drm/xe: Introduce force_probe parameter.
-
-Thomas Hellström (1):
-  drm/xe/migrate: Add kerneldoc for the migrate subsystem
-
- drivers/gpu/drm/i915/Kconfig                  |  15 +-
- .../drm/i915/display/intel_display_power.c    |   8 +-
- .../drm/i915/display/intel_display_power.h    |   3 +-
- drivers/gpu/drm/i915/display/intel_fb.c       |   9 +
- drivers/gpu/drm/i915/display/intel_fbc.c      |  94 +++++--
- drivers/gpu/drm/i915/display/intel_fbdev.c    |  66 +++--
- drivers/gpu/drm/i915/display/intel_pps.c      |  14 +-
- drivers/gpu/drm/i915/i915_driver.c            |  16 +-
- drivers/gpu/drm/i915/i915_params.c            |   2 +-
- drivers/gpu/drm/i915/i915_pci.c               |  33 ++-
- drivers/gpu/drm/i915/intel_runtime_pm.h       |   6 -
- drivers/gpu/drm/msm/adreno/adreno_device.c    |   4 +-
- drivers/gpu/drm/xe/Kconfig                    |  29 +++
- drivers/gpu/drm/xe/Makefile                   |   3 +-
- drivers/gpu/drm/xe/display/intel_de.h         |   6 +-
- drivers/gpu/drm/xe/display/intel_pps.c        |   1 +
- drivers/gpu/drm/xe/display/intel_pps_stub.c   |  43 ----
- drivers/gpu/drm/xe/display/xe_fb_pin.c        |  40 +--
- drivers/gpu/drm/xe/display/xe_plane_initial.c | 224 ++++++----------
- drivers/gpu/drm/xe/xe_bo.c                    | 194 +++++++++++---
- drivers/gpu/drm/xe/xe_bo.h                    |  22 +-
- drivers/gpu/drm/xe/xe_debugfs.c               |   4 +
- drivers/gpu/drm/xe/xe_device.c                |  32 ++-
- drivers/gpu/drm/xe/xe_force_wake.c            |  11 +-
- drivers/gpu/drm/xe/xe_ggtt.c                  |  72 ++++--
- drivers/gpu/drm/xe/xe_ggtt.h                  |   1 +
- drivers/gpu/drm/xe/xe_gt.c                    |  54 +++-
- drivers/gpu/drm/xe/xe_gt.h                    |   1 +
- drivers/gpu/drm/xe/xe_gt_mcr.c                |   3 +-
- drivers/gpu/drm/xe/xe_gt_types.h              |   6 +
- drivers/gpu/drm/xe/xe_guc.c                   |  82 +++---
- drivers/gpu/drm/xe/xe_guc.h                   |   4 +-
- drivers/gpu/drm/xe/xe_guc_ct.c                |   2 +-
- drivers/gpu/drm/xe/xe_guc_hwconfig.c          |   2 +-
- drivers/gpu/drm/xe/xe_guc_pc.c                |  30 ++-
- drivers/gpu/drm/xe/xe_guc_types.h             |   9 +
- drivers/gpu/drm/xe/xe_huc.c                   |   2 +-
- drivers/gpu/drm/xe/xe_irq.c                   |  34 +--
- drivers/gpu/drm/xe/xe_irq.h                   |   2 +
- drivers/gpu/drm/xe/xe_migrate.c               | 108 +++++++-
- drivers/gpu/drm/xe/xe_migrate.h               |  16 +-
- drivers/gpu/drm/xe/xe_mmio.c                  |  66 +++--
- drivers/gpu/drm/xe/xe_mmio.h                  |  49 +++-
- drivers/gpu/drm/xe/xe_pci.c                   |  83 +++++-
- drivers/gpu/drm/xe/xe_pcode.c                 |  91 +++----
- drivers/gpu/drm/xe/xe_pt.c                    |   5 +-
- drivers/gpu/drm/xe/xe_res_cursor.h            |  47 +++-
- drivers/gpu/drm/xe/xe_sched_job.c             |  14 +-
- drivers/gpu/drm/xe/xe_ttm_stolen_mgr.c        | 243 ++++++++++++++++++
- drivers/gpu/drm/xe/xe_ttm_stolen_mgr.h        |  21 ++
- drivers/gpu/drm/xe/xe_ttm_vram_mgr.c          |  91 +++----
- drivers/gpu/drm/xe/xe_ttm_vram_mgr.h          |  18 +-
- drivers/gpu/drm/xe/xe_ttm_vram_mgr_types.h    |   2 +
- drivers/gpu/drm/xe/xe_uc_fw.c                 |  54 +++-
- drivers/gpu/drm/xe/xe_uc_fw_abi.h             |   6 +-
- drivers/gpu/drm/xe/xe_wopcm.c                 |   5 +-
- 56 files changed, 1465 insertions(+), 637 deletions(-)
- create mode 120000 drivers/gpu/drm/xe/display/intel_pps.c
- delete mode 100644 drivers/gpu/drm/xe/display/intel_pps_stub.c
- create mode 100644 drivers/gpu/drm/xe/xe_ttm_stolen_mgr.c
- create mode 100644 drivers/gpu/drm/xe/xe_ttm_stolen_mgr.h
-
+diff --git a/drivers/gpu/drm/xe/xe_pt.c b/drivers/gpu/drm/xe/xe_pt.c
+index c8b3b1975098..9e07ad41a007 100644
+--- a/drivers/gpu/drm/xe/xe_pt.c
++++ b/drivers/gpu/drm/xe/xe_pt.c
+@@ -758,7 +758,7 @@ xe_pt_stage_bind(struct xe_gt *gt, struct xe_vma *vma,
+ 		else
+ 			xe_walk.cache = XE_CACHE_WB;
+ 	}
+-	if (xe_bo_is_stolen(bo))
++	if (!xe_vma_is_userptr(vma) && xe_bo_is_stolen(bo))
+ 		xe_walk.dma_offset = xe_ttm_stolen_gpu_offset(xe_bo_device(bo));
+ 
+ 	xe_bo_assert_held(bo);
 -- 
 2.38.1
 
