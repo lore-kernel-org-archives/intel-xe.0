@@ -1,14 +1,13 @@
 Return-Path: <intel-xe-bounces@lists.freedesktop.org>
 From: Rodrigo Vivi <rodrigo.vivi@intel.com>
-Date: Thu, 12 Jan 2023 17:25:30 -0500
-Message-ID: <20230112222538.2000142-30-rodrigo.vivi@intel.com>
+Date: Thu, 12 Jan 2023 17:25:35 -0500
+Message-ID: <20230112222538.2000142-35-rodrigo.vivi@intel.com>
 In-Reply-To: <20230112222538.2000142-1-rodrigo.vivi@intel.com>
 References: <20230112222538.2000142-1-rodrigo.vivi@intel.com>
 Content-Transfer-Encoding: 8bit
 Content-Type: text/plain
 MIME-Version: 1.0
-Subject: [Intel-xe] [PATCH 29/37] drm/xe: Fake pulling gt->info.engine_mask
- from hwconfig blob
+Subject: [Intel-xe] [PATCH 34/37] drm/xe: Move xe_ttm_stolen_mgr_init back
 List-Id: Intel Xe graphics driver <intel-xe.lists.freedesktop.org>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=unsubscribe>
@@ -22,73 +21,39 @@ Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 To: intel-xe@lists.freedesktop.org, matthew.brost@intel.com, maarten.lankhorst@linux.intel.com, philippe.lecluse@intel.com, mchehab@kernel.org
 Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
 
-From: Matthew Brost <matthew.brost@intel.com>
+From: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
 
-The blob doesn't fully support this yet, so fake for now to ensure our
-driver load order is correct.
-
-Once the blob supports pulling gt->info.engine_mask from the blob, this
-patch can be removed.
-
-Signed-off-by: Matthew Brost <matthew.brost@intel.com>
+Signed-off-by: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
+Cc: Philippe Lecluse <philippe.lecluse@intel.com>
 Signed-off-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
 ---
- drivers/gpu/drm/xe/xe_gt.c       | 3 +++
- drivers/gpu/drm/xe/xe_gt_types.h | 6 ++++++
- drivers/gpu/drm/xe/xe_pci.c      | 4 ++--
- 3 files changed, 11 insertions(+), 2 deletions(-)
+ drivers/gpu/drm/xe/xe_device.c | 6 +++---
+ 1 file changed, 3 insertions(+), 3 deletions(-)
 
-diff --git a/drivers/gpu/drm/xe/xe_gt.c b/drivers/gpu/drm/xe/xe_gt.c
-index 75150077d62c..cb837745d893 100644
---- a/drivers/gpu/drm/xe/xe_gt.c
-+++ b/drivers/gpu/drm/xe/xe_gt.c
-@@ -450,6 +450,9 @@ static int gt_fw_domain_init(struct xe_gt *gt)
+diff --git a/drivers/gpu/drm/xe/xe_device.c b/drivers/gpu/drm/xe/xe_device.c
+index c8b4c580bd98..14af3f58c75d 100644
+--- a/drivers/gpu/drm/xe/xe_device.c
++++ b/drivers/gpu/drm/xe/xe_device.c
+@@ -405,9 +405,6 @@ int xe_device_probe(struct xe_device *xe)
+ 			return err;
+ 	}
+ 
+-	/* Harmless if stolen initialization fails */
+-	xe_ttm_stolen_mgr_init(xe);
+-
+ 	err = xe_device_init_display_noirq(xe);
  	if (err)
- 		goto err_force_wake;
+ 		return err;
+@@ -432,6 +429,9 @@ int xe_device_probe(struct xe_device *xe)
+ 			goto err_irq_shutdown;
+ 	}
  
-+	/* XXX: Fake that we pull the engine mask from hwconfig blob */
-+	gt->info.engine_mask = gt->info.__engine_mask;
++	/* Allocate and map stolen after potential VRAM resize */
++	xe_ttm_stolen_mgr_init(xe);
 +
- 	/* Enables per hw engine IRQs */
- 	xe_gt_irq_postinstall(gt);
- 
-diff --git a/drivers/gpu/drm/xe/xe_gt_types.h b/drivers/gpu/drm/xe/xe_gt_types.h
-index c80a9215098d..2dbc8cedd630 100644
---- a/drivers/gpu/drm/xe/xe_gt_types.h
-+++ b/drivers/gpu/drm/xe/xe_gt_types.h
-@@ -93,6 +93,12 @@ struct xe_gt {
- 		u32 clock_freq;
- 		/** @engine_mask: mask of engines present on GT */
- 		u64 engine_mask;
-+		/**
-+		 * @__engine_mask: mask of engines present on GT read from
-+		 * xe_pci.c, used to fake reading the engine_mask from the
-+		 * hwconfig blob.
-+		 */
-+		u64 __engine_mask;
- 	} info;
- 
- 	/**
-diff --git a/drivers/gpu/drm/xe/xe_pci.c b/drivers/gpu/drm/xe/xe_pci.c
-index bcf6fd610881..d654f2351557 100644
---- a/drivers/gpu/drm/xe/xe_pci.c
-+++ b/drivers/gpu/drm/xe/xe_pci.c
-@@ -509,13 +509,13 @@ static int xe_pci_probe(struct pci_dev *pdev, const struct pci_device_id *ent)
- 		if (id == 0) {
- 			gt->info.type = XE_GT_TYPE_MAIN;
- 			gt->info.vram_id = id;
--			gt->info.engine_mask = desc->platform_engine_mask;
-+			gt->info.__engine_mask = desc->platform_engine_mask;
- 			gt->mmio.adj_limit = 0;
- 			gt->mmio.adj_offset = 0;
- 		} else {
- 			gt->info.type = desc->extra_gts[id - 1].type;
- 			gt->info.vram_id = desc->extra_gts[id - 1].vram_id;
--			gt->info.engine_mask =
-+			gt->info.__engine_mask =
- 				desc->extra_gts[id - 1].engine_mask;
- 			gt->mmio.adj_limit =
- 				desc->extra_gts[id - 1].mmio_adj_limit;
+ 	/*
+ 	 * Now that GT is initialized (TTM in particular),
+ 	 * we can try to init display, and inherit the initial fb.
 -- 
 2.38.1
 
