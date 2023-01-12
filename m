@@ -1,14 +1,14 @@
 Return-Path: <intel-xe-bounces@lists.freedesktop.org>
 From: Rodrigo Vivi <rodrigo.vivi@intel.com>
-Date: Thu, 12 Jan 2023 17:25:25 -0500
-Message-ID: <20230112222538.2000142-25-rodrigo.vivi@intel.com>
+Date: Thu, 12 Jan 2023 17:25:18 -0500
+Message-ID: <20230112222538.2000142-18-rodrigo.vivi@intel.com>
 In-Reply-To: <20230112222538.2000142-1-rodrigo.vivi@intel.com>
 References: <20230112222538.2000142-1-rodrigo.vivi@intel.com>
 Content-Transfer-Encoding: 8bit
 Content-Type: text/plain
 MIME-Version: 1.0
-Subject: [Intel-xe] [PATCH 24/37] drm/i915: Expand force_probe to block
- probe of devices as well.
+Subject: [Intel-xe] [PATCH 17/37] drm/xe: Allow fbdev to allocate stolen
+ memory
 List-Id: Intel Xe graphics driver <intel-xe.lists.freedesktop.org>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=unsubscribe>
@@ -20,177 +20,114 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 To: intel-xe@lists.freedesktop.org, matthew.brost@intel.com, maarten.lankhorst@linux.intel.com, philippe.lecluse@intel.com, mchehab@kernel.org
-Cc: Jani Nikula <jani.nikula@intel.com>, Gustavo Sousa <gustavo.sousa@intel.com>, Rodrigo Vivi <rodrigo.vivi@intel.com>
+Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
 
-There are new cases where we want to block i915 probe, such
-as when experimenting or developing the new Xe driver.
+From: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
 
-But also, with the new hybrid cards, users or developers might
-want to use i915 only on integrated and fully block the probe
-of the i915 for the discrete. Or vice versa.
-
-There are even older development and validation reasons,
-like when you use some distro where the modprobe.blacklist is
-not present.
-
-But in any case, let's introduce a more granular control, but without
-introducing yet another parameter, but using the existent force_probe
-one.
-
-Just by adding a ! in the begin of the id in the force_probe, like
-in this case where we would block the probe for Alder Lake:
-
-$ insmod i915.ko force_probe='!46a6'
-
-v2: Take care of '*' and  '!*' cases as pointed out by
-    Gustavo and Jani.
-
-Cc: Jani Nikula <jani.nikula@intel.com>
-Cc: Gustavo Sousa <gustavo.sousa@intel.com>
+Signed-off-by: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
+Cc: Matthew Brost <matthew.brost@intel.com>
 Signed-off-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
-Reviewed-by: Jani Nikula <jani.nikula@intel.com>
-Acked-by: Gustavo Sousa <gustavo.sousa@intel.com>
-Link: https://patchwork.freedesktop.org/patch/msgid/20230103194701.1492984-1-rodrigo.vivi@intel.com
 ---
- drivers/gpu/drm/i915/Kconfig       | 15 +++++++++++---
- drivers/gpu/drm/i915/i915_params.c |  2 +-
- drivers/gpu/drm/i915/i915_pci.c    | 33 +++++++++++++++++++++++++-----
- 3 files changed, 41 insertions(+), 9 deletions(-)
+ drivers/gpu/drm/i915/display/intel_fbdev.c | 55 ++++++++++++----------
+ 1 file changed, 31 insertions(+), 24 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/Kconfig b/drivers/gpu/drm/i915/Kconfig
-index 3efce05d7b57..8eb3e60aeec9 100644
---- a/drivers/gpu/drm/i915/Kconfig
-+++ b/drivers/gpu/drm/i915/Kconfig
-@@ -54,24 +54,33 @@ config DRM_I915
- 	  If "M" is selected, the module will be called i915.
+diff --git a/drivers/gpu/drm/i915/display/intel_fbdev.c b/drivers/gpu/drm/i915/display/intel_fbdev.c
+index 176e0e44a268..52dc33c5f6d8 100644
+--- a/drivers/gpu/drm/i915/display/intel_fbdev.c
++++ b/drivers/gpu/drm/i915/display/intel_fbdev.c
+@@ -45,6 +45,7 @@
+ #include "gem/i915_gem_lmem.h"
+ #else
+ #include "xe_gt.h"
++#include "xe_ttm_stolen_mgr.h"
+ #endif
  
- config DRM_I915_FORCE_PROBE
--	string "Force probe driver for selected new Intel hardware"
-+	string "Force probe i915 for selected Intel hardware IDs"
- 	depends on DRM_I915
- 	help
- 	  This is the default value for the i915.force_probe module
- 	  parameter. Using the module parameter overrides this option.
+ #include "i915_drv.h"
+@@ -171,8 +172,8 @@ static int intelfb_alloc(struct drm_fb_helper *helper,
  
--	  Force probe the driver for new Intel graphics devices that are
-+	  Force probe the i915 for Intel graphics devices that are
- 	  recognized but not properly supported by this kernel version. It is
- 	  recommended to upgrade to a kernel version with proper support as soon
- 	  as it is available.
+ 	size = mode_cmd.pitches[0] * mode_cmd.height;
+ 	size = PAGE_ALIGN(size);
+-#ifdef I915
+ 	obj = ERR_PTR(-ENODEV);
++#ifdef I915
+ 	if (HAS_LMEM(dev_priv)) {
+ 		obj = i915_gem_object_create_lmem(dev_priv, size,
+ 						  I915_BO_ALLOC_CONTIGUOUS);
+@@ -188,11 +189,22 @@ static int intelfb_alloc(struct drm_fb_helper *helper,
+ 			obj = i915_gem_object_create_shmem(dev_priv, size);
+ 	}
+ #else
+-	/* XXX: Care about stolen? */
+-	obj = xe_bo_create_pin_map(dev_priv, to_gt(dev_priv), NULL, size,
+-				   ttm_bo_type_kernel,
+-				   XE_BO_CREATE_VRAM_IF_DGFX(to_gt(dev_priv)) |
+-				   XE_BO_CREATE_PINNED_BIT | XE_BO_SCANOUT_BIT);
++	if (!IS_DGFX(dev_priv)) {
++		obj = xe_bo_create_pin_map(dev_priv, to_gt(dev_priv), NULL, size,
++					   ttm_bo_type_kernel, XE_BO_SCANOUT_BIT |
++					   XE_BO_CREATE_STOLEN_BIT |
++					   XE_BO_CREATE_PINNED_BIT);
++		if (!IS_ERR(obj))
++			drm_info(&dev_priv->drm, "Allocated fbdev into stolen\n");
++		else
++			drm_info(&dev_priv->drm, "Allocated fbdev into stolen failed: %li\n", PTR_ERR(obj));
++	}
++	if (IS_ERR(obj)) {
++		obj = xe_bo_create_pin_map(dev_priv, to_gt(dev_priv), NULL, size,
++					  ttm_bo_type_kernel, XE_BO_SCANOUT_BIT |
++					  XE_BO_CREATE_VRAM_IF_DGFX(to_gt(dev_priv)) |
++					  XE_BO_CREATE_PINNED_BIT);
++	}
+ #endif
  
-+	  It can also be used to block the probe of recognized and fully
-+	  supported devices.
-+
- 	  Use "" to disable force probe. If in doubt, use this.
+ 	if (IS_ERR(obj)) {
+@@ -317,33 +329,28 @@ static int intelfb_create(struct drm_fb_helper *helper,
+ 		info->fix.smem_len = vma->size;
+ 	}
+ 	vaddr = i915_vma_pin_iomap(vma);
+-
+ #else
+-	/* XXX: Could be pure fiction.. */
+-	if (obj->flags & XE_BO_CREATE_VRAM0_BIT) {
+-		struct xe_gt *gt = to_gt(dev_priv);
++	info->apertures->ranges[0].base = pci_resource_start(pdev, 2);
++	info->apertures->ranges[0].size = pci_resource_len(pdev, 2);
++	if (!(obj->flags & XE_BO_CREATE_SYSTEM_BIT)) {
+ 		bool lmem;
  
--	  Use "<pci-id>[,<pci-id>,...]" to force probe the driver for listed
-+	  Use "<pci-id>[,<pci-id>,...]" to force probe the i915 for listed
- 	  devices. For example, "4500" or "4500,4571".
+-		info->apertures->ranges[0].base = gt->mem.vram.io_start;
+-		info->apertures->ranges[0].size = gt->mem.vram.size;
++		if (obj->flags & XE_BO_CREATE_STOLEN_BIT)
++			info->fix.smem_start = xe_ttm_stolen_io_offset(obj, 0);
++		else
++			info->fix.smem_start =
++				pci_resource_start(pdev, 2) +
++				xe_bo_addr(obj, 0, GEN8_PAGE_SIZE, &lmem);
  
- 	  Use "*" to force probe the driver for all known devices.
- 
-+	  Use "!" right before the ID to block the probe of the device. For
-+	  example, "4500,!4571" forces the probe of 4500 and blocks the probe of
-+	  4571.
-+
-+	  Use "!*" to block the probe of the driver for all known devices.
-+
- config DRM_I915_CAPTURE_ERROR
- 	bool "Enable capturing GPU state following a hang"
- 	depends on DRM_I915
-diff --git a/drivers/gpu/drm/i915/i915_params.c b/drivers/gpu/drm/i915/i915_params.c
-index 61578f2860cd..d634bd3f641a 100644
---- a/drivers/gpu/drm/i915/i915_params.c
-+++ b/drivers/gpu/drm/i915/i915_params.c
-@@ -122,7 +122,7 @@ i915_param_named_unsafe(enable_psr2_sel_fetch, bool, 0400,
- 	"Default: 0");
- 
- i915_param_named_unsafe(force_probe, charp, 0400,
--	"Force probe the driver for specified devices. "
-+	"Force probe options for specified supported devices. "
- 	"See CONFIG_DRM_I915_FORCE_PROBE for details.");
- 
- i915_param_named_unsafe(disable_power_well, int, 0400,
-diff --git a/drivers/gpu/drm/i915/i915_pci.c b/drivers/gpu/drm/i915/i915_pci.c
-index 668e9da52584..bc6fc268739d 100644
---- a/drivers/gpu/drm/i915/i915_pci.c
-+++ b/drivers/gpu/drm/i915/i915_pci.c
-@@ -1253,7 +1253,7 @@ static void i915_pci_remove(struct pci_dev *pdev)
- }
- 
- /* is device_id present in comma separated list of ids */
--static bool force_probe(u16 device_id, const char *devices)
-+static bool device_id_in_list(u16 device_id, const char *devices, bool negative)
- {
- 	char *s, *p, *tok;
- 	bool ret;
-@@ -1262,7 +1262,9 @@ static bool force_probe(u16 device_id, const char *devices)
- 		return false;
- 
- 	/* match everything */
--	if (strcmp(devices, "*") == 0)
-+	if (negative && strcmp(devices, "!*") == 0)
-+		return true;
-+	if (!negative && strcmp(devices, "*") == 0)
- 		return true;
- 
- 	s = kstrdup(devices, GFP_KERNEL);
-@@ -1272,6 +1274,12 @@ static bool force_probe(u16 device_id, const char *devices)
- 	for (p = s, ret = false; (tok = strsep(&p, ",")) != NULL; ) {
- 		u16 val;
- 
-+		if (negative && tok[0] == '!')
-+			tok++;
-+		else if ((negative && tok[0] != '!') ||
-+			 (!negative && tok[0] == '!'))
-+			continue;
-+
- 		if (kstrtou16(tok, 16, &val) == 0 && val == device_id) {
- 			ret = true;
- 			break;
-@@ -1283,6 +1291,16 @@ static bool force_probe(u16 device_id, const char *devices)
- 	return ret;
- }
- 
-+static bool id_forced(u16 device_id)
-+{
-+	return device_id_in_list(device_id, i915_modparams.force_probe, false);
-+}
-+
-+static bool id_blocked(u16 device_id)
-+{
-+	return device_id_in_list(device_id, i915_modparams.force_probe, true);
-+}
-+
- bool i915_pci_resource_valid(struct pci_dev *pdev, int bar)
- {
- 	if (!pci_resource_flags(pdev, bar))
-@@ -1308,10 +1326,9 @@ static int i915_pci_probe(struct pci_dev *pdev, const struct pci_device_id *ent)
- 		(struct intel_device_info *) ent->driver_data;
- 	int err;
- 
--	if (intel_info->require_force_probe &&
--	    !force_probe(pdev->device, i915_modparams.force_probe)) {
-+	if (intel_info->require_force_probe && !id_forced(pdev->device)) {
- 		dev_info(&pdev->dev,
--			 "Your graphics device %04x is not properly supported by the driver in this\n"
-+			 "Your graphics device %04x is not properly supported by i915 in this\n"
- 			 "kernel version. To force driver probe anyway, use i915.force_probe=%04x\n"
- 			 "module parameter or CONFIG_DRM_I915_FORCE_PROBE=%04x configuration option,\n"
- 			 "or (recommended) check for kernel updates.\n",
-@@ -1319,6 +1336,12 @@ static int i915_pci_probe(struct pci_dev *pdev, const struct pci_device_id *ent)
- 		return -ENODEV;
+-		info->fix.smem_start =
+-			(unsigned long)(gt->mem.vram.io_start + xe_bo_addr(obj, 0, 4096, &lmem));
+ 		info->fix.smem_len = obj->ttm.base.size;
+-
+ 	} else {
+-		struct pci_dev *pdev = to_pci_dev(dev_priv->drm.dev);
+-
+-		info->apertures->ranges[0].base = pci_resource_start(pdev, 2);
+-		info->apertures->ranges[0].size =
+-			pci_resource_end(pdev, 2) - pci_resource_start(pdev, 2);
+-
+-		info->fix.smem_start = info->apertures->ranges[0].base + xe_bo_ggtt_addr(obj);
++		/* XXX: Pure fiction, as the BO may not be physically accessible.. */
++		info->fix.smem_start = 0;
+ 		info->fix.smem_len = obj->ttm.base.size;
  	}
  
-+	if (id_blocked(pdev->device)) {
-+		dev_info(&pdev->dev, "I915 probe blocked for Device ID %04x.\n",
-+			 pdev->device);
-+		return -ENODEV;
-+	}
-+
- 	/* Only bind to function 0 of the device. Early generations
- 	 * used function 1 as a placeholder for multi-head. This causes
- 	 * us confusion instead, especially on the systems where both
+-	/* TODO: ttm_bo_kmap? */
+-	vaddr = obj->vmap.vaddr;
++	XE_WARN_ON(iosys_map_is_null(&obj->vmap));
++	vaddr = obj->vmap.vaddr_iomem;
+ #endif
+ 
+ 	if (IS_ERR(vaddr)) {
 -- 
 2.38.1
 
