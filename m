@@ -1,13 +1,14 @@
 Return-Path: <intel-xe-bounces@lists.freedesktop.org>
 From: Rodrigo Vivi <rodrigo.vivi@intel.com>
-Date: Fri, 20 Jan 2023 15:44:26 -0500
-Message-ID: <20230120204426.68104-21-rodrigo.vivi@intel.com>
-In-Reply-To: <20230120204426.68104-1-rodrigo.vivi@intel.com>
-References: <20230120204426.68104-1-rodrigo.vivi@intel.com>
+Date: Thu, 12 Jan 2023 17:25:32 -0500
+Message-ID: <20230112222538.2000142-32-rodrigo.vivi@intel.com>
+In-Reply-To: <20230112222538.2000142-1-rodrigo.vivi@intel.com>
+References: <20230112222538.2000142-1-rodrigo.vivi@intel.com>
 Content-Transfer-Encoding: 8bit
 Content-Type: text/plain
 MIME-Version: 1.0
-Subject: [Intel-xe] [PATCH 20/20] drm/xe/guc_pc: Fix Meteor Lake registers.
+Subject: [Intel-xe] [PATCH 31/37] drm/xe/guc:
+ s/xe_guc_send_mmio/xe_guc_mmio_send
 List-Id: Intel Xe graphics driver <intel-xe.lists.freedesktop.org>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=unsubscribe>
@@ -18,145 +19,94 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
-To: intel-xe@lists.freedesktop.org, maarten.lankhorst@linux.intel.com, philippe.lecluse@intel.com, mchehab@kernel.org
-Cc: Francois Dugast <francois.dugast@intel.com>, Rodrigo Vivi <rodrigo.vivi@intel.com>
+To: intel-xe@lists.freedesktop.org, matthew.brost@intel.com, maarten.lankhorst@linux.intel.com, philippe.lecluse@intel.com, mchehab@kernel.org
+Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
 
-When adding the frequency management, Meteor Lake platform
-was left behind. Handling it properly now.
+From: Matthew Brost <matthew.brost@intel.com>
 
+Now aligns with the xe_guc_ct_send naming.
+
+Signed-off-by: Matthew Brost <matthew.brost@intel.com>
+Cc: Philippe Lecluse <philippe.lecluse@intel.com>
 Signed-off-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
-Cc: Matthew Brost <matthew.brost@intel.com>
-Cc: Francois Dugast <francois.dugast@intel.com>
 ---
- drivers/gpu/drm/xe/xe_guc_pc.c | 70 ++++++++++++++++++++++++++++++++--
- 1 file changed, 66 insertions(+), 4 deletions(-)
+ drivers/gpu/drm/xe/xe_guc.c          | 6 +++---
+ drivers/gpu/drm/xe/xe_guc.h          | 2 +-
+ drivers/gpu/drm/xe/xe_guc_ct.c       | 2 +-
+ drivers/gpu/drm/xe/xe_guc_hwconfig.c | 2 +-
+ 4 files changed, 6 insertions(+), 6 deletions(-)
 
-diff --git a/drivers/gpu/drm/xe/xe_guc_pc.c b/drivers/gpu/drm/xe/xe_guc_pc.c
-index 506b9cb3f14c..bf3dff9e0c2b 100644
---- a/drivers/gpu/drm/xe/xe_guc_pc.c
-+++ b/drivers/gpu/drm/xe/xe_guc_pc.c
-@@ -37,6 +37,9 @@
- #define GEN12_RPSTAT1		_MMIO(0x1381b4)
- #define   GEN12_CAGF_MASK	REG_GENMASK(19, 11)
+diff --git a/drivers/gpu/drm/xe/xe_guc.c b/drivers/gpu/drm/xe/xe_guc.c
+index 34d7d20a2ce7..731b26cc49a9 100644
+--- a/drivers/gpu/drm/xe/xe_guc.c
++++ b/drivers/gpu/drm/xe/xe_guc.c
+@@ -599,7 +599,7 @@ int xe_guc_suspend(struct xe_guc *guc)
+ 		XE_GUC_ACTION_CLIENT_SOFT_RESET,
+ 	};
  
-+#define MTL_MIRROR_TARGET_WP1	_MMIO(0xc60)
-+#define   MTL_CAGF_MASK		REG_GENMASK(8, 0)
-+
- #define GT_FREQUENCY_MULTIPLIER	50
- #define GEN9_FREQ_SCALER	3
+-	ret = xe_guc_send_mmio(guc, action, ARRAY_SIZE(action));
++	ret = xe_guc_mmio_send(guc, action, ARRAY_SIZE(action));
+ 	if (ret) {
+ 		drm_err(&guc_to_xe(guc)->drm,
+ 			"GuC suspend: CLIENT_SOFT_RESET fail: %d!\n", ret);
+@@ -630,7 +630,7 @@ int xe_guc_auth_huc(struct xe_guc *guc, u32 rsa_addr)
+ #define MEDIA_SOFT_SCRATCH(n)           _MMIO(0x190310 + (n) * 4)
+ #define MEDIA_SOFT_SCRATCH_COUNT        4
  
-@@ -311,7 +314,20 @@ static int pc_set_max_freq(struct xe_guc_pc *pc, u32 freq)
- 				   freq);
- }
- 
--static void pc_update_rp_values(struct xe_guc_pc *pc)
-+static void mtl_update_rpe_value(struct xe_guc_pc *pc)
-+{
-+	struct xe_gt *gt = pc_to_gt(pc);
-+	u32 reg;
-+
-+	if (xe_gt_is_media_type(gt))
-+		reg = xe_mmio_read32(gt, MTL_MPE_FREQUENCY.reg);
-+	else
-+		reg = xe_mmio_read32(gt, MTL_GT_RPE_FREQUENCY.reg);
-+
-+	pc->rpe_freq = REG_FIELD_GET(MTL_RPE_MASK, reg) * GT_FREQUENCY_MULTIPLIER;
-+}
-+
-+static void tgl_update_rpe_value(struct xe_guc_pc *pc)
+-int xe_guc_send_mmio(struct xe_guc *guc, const u32 *request, u32 len)
++int xe_guc_mmio_send(struct xe_guc *guc, const u32 *request, u32 len)
  {
- 	struct xe_gt *gt = pc_to_gt(pc);
- 	struct xe_device *xe = gt_to_xe(gt);
-@@ -328,6 +344,17 @@ static void pc_update_rp_values(struct xe_guc_pc *pc)
- 		reg = xe_mmio_read32(gt, GEN10_FREQ_INFO_REC.reg);
+ 	struct xe_device *xe = guc_to_xe(guc);
+ 	struct xe_gt *gt = guc_to_gt(guc);
+@@ -747,7 +747,7 @@ static int guc_self_cfg(struct xe_guc *guc, u16 key, u16 len, u64 val)
+ 	XE_BUG_ON(len == 1 && upper_32_bits(val));
  
- 	pc->rpe_freq = REG_FIELD_GET(RPE_MASK, reg) * GT_FREQUENCY_MULTIPLIER;
-+}
-+
-+static void pc_update_rp_values(struct xe_guc_pc *pc)
-+{
-+	struct xe_gt *gt = pc_to_gt(pc);
-+	struct xe_device *xe = gt_to_xe(gt);
-+
-+	if (xe->info.platform == XE_METEORLAKE)
-+		mtl_update_rpe_value(pc);
-+	else
-+		tgl_update_rpe_value(pc);
+ 	/* Self config must go over MMIO */
+-	ret = xe_guc_send_mmio(guc, request, ARRAY_SIZE(request));
++	ret = xe_guc_mmio_send(guc, request, ARRAY_SIZE(request));
  
- 	/*
- 	 * RPe is decided at runtime by PCODE. In the rare case where that's
-@@ -342,6 +369,7 @@ static ssize_t freq_act_show(struct device *dev,
- {
- 	struct kobject *kobj = &dev->kobj;
- 	struct xe_gt *gt = kobj_to_gt(kobj);
-+	struct xe_device *xe = gt_to_xe(gt);
- 	u32 freq;
- 	ssize_t ret;
- 
-@@ -354,10 +382,17 @@ static ssize_t freq_act_show(struct device *dev,
+ 	if (unlikely(ret < 0))
  		return ret;
+diff --git a/drivers/gpu/drm/xe/xe_guc.h b/drivers/gpu/drm/xe/xe_guc.h
+index 72b71d75566c..923efee90991 100644
+--- a/drivers/gpu/drm/xe/xe_guc.h
++++ b/drivers/gpu/drm/xe/xe_guc.h
+@@ -22,7 +22,7 @@ int xe_guc_enable_communication(struct xe_guc *guc);
+ int xe_guc_suspend(struct xe_guc *guc);
+ void xe_guc_notify(struct xe_guc *guc);
+ int xe_guc_auth_huc(struct xe_guc *guc, u32 rsa_addr);
+-int xe_guc_send_mmio(struct xe_guc *guc, const u32 *request, u32 len);
++int xe_guc_mmio_send(struct xe_guc *guc, const u32 *request, u32 len);
+ int xe_guc_self_cfg32(struct xe_guc *guc, u16 key, u32 val);
+ int xe_guc_self_cfg64(struct xe_guc *guc, u16 key, u64 val);
+ void xe_guc_irq_handler(struct xe_guc *guc, const u16 iir);
+diff --git a/drivers/gpu/drm/xe/xe_guc_ct.c b/drivers/gpu/drm/xe/xe_guc_ct.c
+index 61a424c41779..f48eb01847ef 100644
+--- a/drivers/gpu/drm/xe/xe_guc_ct.c
++++ b/drivers/gpu/drm/xe/xe_guc_ct.c
+@@ -268,7 +268,7 @@ static int guc_ct_control_toggle(struct xe_guc_ct *ct, bool enable)
+ 			   enable ? GUC_CTB_CONTROL_ENABLE :
+ 			   GUC_CTB_CONTROL_DISABLE),
+ 	};
+-	int ret = xe_guc_send_mmio(ct_to_guc(ct), request, ARRAY_SIZE(request));
++	int ret = xe_guc_mmio_send(ct_to_guc(ct), request, ARRAY_SIZE(request));
  
- 	xe_device_mem_access_get(gt_to_xe(gt));
--	freq = xe_mmio_read32(gt, GEN12_RPSTAT1.reg);
-+
-+	if (xe->info.platform == XE_METEORLAKE) {
-+		freq = xe_mmio_read32(gt, MTL_MIRROR_TARGET_WP1.reg);
-+		freq = REG_FIELD_GET(MTL_CAGF_MASK, freq);
-+	} else {
-+		freq = xe_mmio_read32(gt, GEN12_RPSTAT1.reg);
-+		freq = REG_FIELD_GET(GEN12_CAGF_MASK, freq);
-+	}
-+
- 	xe_device_mem_access_put(gt_to_xe(gt));
+ 	return ret > 0 ? -EPROTO : ret;
+ }
+diff --git a/drivers/gpu/drm/xe/xe_guc_hwconfig.c b/drivers/gpu/drm/xe/xe_guc_hwconfig.c
+index 8dfd48f71a7c..57640d608787 100644
+--- a/drivers/gpu/drm/xe/xe_guc_hwconfig.c
++++ b/drivers/gpu/drm/xe/xe_guc_hwconfig.c
+@@ -33,7 +33,7 @@ static int send_get_hwconfig(struct xe_guc *guc, u32 ggtt_addr, u32 size)
+ 		size,
+ 	};
  
--	freq = REG_FIELD_GET(GEN12_CAGF_MASK, freq);
- 	ret = sysfs_emit(buf, "%d\n", decode_freq(freq));
- 
- 	XE_WARN_ON(xe_force_wake_put(gt_to_fw(gt), XE_FORCEWAKE_ALL));
-@@ -606,7 +641,24 @@ static const struct attribute *pc_attrs[] = {
- 	NULL
- };
- 
--static void pc_init_fused_rp_values(struct xe_guc_pc *pc)
-+static void mtl_init_fused_rp_values(struct xe_guc_pc *pc)
-+{
-+	struct xe_gt *gt = pc_to_gt(pc);
-+	u32 reg;
-+
-+	xe_device_assert_mem_access(pc_to_xe(pc));
-+
-+	if (xe_gt_is_media_type(gt))
-+		reg = xe_mmio_read32(gt, MTL_MEDIAP_STATE_CAP.reg);
-+	else
-+		reg = xe_mmio_read32(gt, MTL_RP_STATE_CAP.reg);
-+	pc->rp0_freq = REG_FIELD_GET(MTL_RP0_CAP_MASK, reg) *
-+		GT_FREQUENCY_MULTIPLIER;
-+	pc->rpn_freq = REG_FIELD_GET(MTL_RPN_CAP_MASK, reg) *
-+		GT_FREQUENCY_MULTIPLIER;
-+}
-+
-+static void tgl_init_fused_rp_values(struct xe_guc_pc *pc)
- {
- 	struct xe_gt *gt = pc_to_gt(pc);
- 	struct xe_device *xe = gt_to_xe(gt);
-@@ -622,6 +674,16 @@ static void pc_init_fused_rp_values(struct xe_guc_pc *pc)
- 	pc->rpn_freq = REG_FIELD_GET(RPN_MASK, reg) * GT_FREQUENCY_MULTIPLIER;
+-	return xe_guc_send_mmio(guc, action, ARRAY_SIZE(action));
++	return xe_guc_mmio_send(guc, action, ARRAY_SIZE(action));
  }
  
-+static void pc_init_fused_rp_values(struct xe_guc_pc *pc)
-+{
-+	struct xe_gt *gt = pc_to_gt(pc);
-+	struct xe_device *xe = gt_to_xe(gt);
-+
-+	if (xe->info.platform == XE_METEORLAKE)
-+		mtl_init_fused_rp_values(pc);
-+	else
-+		tgl_init_fused_rp_values(pc);
-+}
- static int pc_adjust_freq_bounds(struct xe_guc_pc *pc)
- {
- 	int ret;
+ static int guc_hwconfig_size(struct xe_guc *guc, u32 *size)
 -- 
-2.39.0
+2.38.1
 
 
