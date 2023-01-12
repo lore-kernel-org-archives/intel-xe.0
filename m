@@ -1,14 +1,13 @@
 Return-Path: <intel-xe-bounces@lists.freedesktop.org>
 From: Rodrigo Vivi <rodrigo.vivi@intel.com>
-Date: Fri, 20 Jan 2023 15:44:24 -0500
-Message-ID: <20230120204426.68104-19-rodrigo.vivi@intel.com>
-In-Reply-To: <20230120204426.68104-1-rodrigo.vivi@intel.com>
-References: <20230120204426.68104-1-rodrigo.vivi@intel.com>
+Date: Thu, 12 Jan 2023 17:25:34 -0500
+Message-ID: <20230112222538.2000142-34-rodrigo.vivi@intel.com>
+In-Reply-To: <20230112222538.2000142-1-rodrigo.vivi@intel.com>
+References: <20230112222538.2000142-1-rodrigo.vivi@intel.com>
 Content-Transfer-Encoding: 8bit
 Content-Type: text/plain
 MIME-Version: 1.0
-Subject: [Intel-xe] [PATCH 18/20] drm/xe/gt: Enable interrupt while
- initializing root gt
+Subject: [Intel-xe] [PATCH 33/37] drm/xe: Make FBC check stolen at use time.
 List-Id: Intel Xe graphics driver <intel-xe.lists.freedesktop.org>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=unsubscribe>
@@ -19,38 +18,51 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
-To: intel-xe@lists.freedesktop.org, maarten.lankhorst@linux.intel.com, philippe.lecluse@intel.com, mchehab@kernel.org
+To: intel-xe@lists.freedesktop.org, matthew.brost@intel.com, maarten.lankhorst@linux.intel.com, philippe.lecluse@intel.com, mchehab@kernel.org
 Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
 
-From: Balasubramani Vivekanandan <balasubramani.vivekanandan@intel.com>
+From: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
 
-At present the interrupts are enabled while initializing the last GT.
-But this is incorrect for a Multi-GT platform, as root GT initialization
-will fail with interrupt disabled. Interrupts are required for
-the GuC submission triggered during initialization.
-Enable the interrupt during the root GT initialization.
+In case of xe, stolen is not initialised until much later, so just
+assume it works, and check at runtime if required.
 
-Signed-off-by: Balasubramani Vivekanandan <balasubramani.vivekanandan@intel.com>
-Cc: Matthew Brost <matthew.brost@intel.com>
+Signed-off-by: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
+Cc: Philippe Lecluse <philippe.lecluse@intel.com>
 Signed-off-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
 ---
- drivers/gpu/drm/xe/xe_irq.c | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+ drivers/gpu/drm/i915/display/intel_fbc.c | 9 +++++++++
+ 1 file changed, 9 insertions(+)
 
-diff --git a/drivers/gpu/drm/xe/xe_irq.c b/drivers/gpu/drm/xe/xe_irq.c
-index 92fe6b38d735..18ce129bd6be 100644
---- a/drivers/gpu/drm/xe/xe_irq.c
-+++ b/drivers/gpu/drm/xe/xe_irq.c
-@@ -349,7 +349,7 @@ static void dg1_irq_postinstall(struct xe_device *xe, struct xe_gt *gt)
- 	GEN3_IRQ_INIT(gt, GEN11_GU_MISC_, ~GEN11_GU_MISC_GSE,
- 		      GEN11_GU_MISC_GSE);
+diff --git a/drivers/gpu/drm/i915/display/intel_fbc.c b/drivers/gpu/drm/i915/display/intel_fbc.c
+index 2804db71d630..82bc21b09332 100644
+--- a/drivers/gpu/drm/i915/display/intel_fbc.c
++++ b/drivers/gpu/drm/i915/display/intel_fbc.c
+@@ -1133,6 +1133,13 @@ static int intel_fbc_check_plane(struct intel_atomic_state *state,
+ 	if (!fbc)
+ 		return 0;
  
--	if (gt->info.id + 1 == xe->info.tile_count)
-+	if (gt->info.id == XE_GT0)
- 		dg1_intr_enable(xe, true);
- }
++#ifndef I915
++	if (!i915_gem_stolen_initialized(i915)) {
++		plane_state->no_fbc_reason = "stolen memory not initialised";
++		return 0;
++	}
++#endif
++
+ 	if (intel_vgpu_active(i915)) {
+ 		plane_state->no_fbc_reason = "VGPU active";
+ 		return 0;
+@@ -1786,8 +1793,10 @@ void intel_fbc_init(struct drm_i915_private *i915)
+ {
+ 	enum intel_fbc_id fbc_id;
  
++#ifdef I915
+ 	if (!i915_gem_stolen_initialized(i915))
+ 		RUNTIME_INFO(i915)->fbc_mask = 0;
++#endif
+ 
+ 	if (need_fbc_vtd_wa(i915))
+ 		RUNTIME_INFO(i915)->fbc_mask = 0;
 -- 
-2.39.0
+2.38.1
 
 
