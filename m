@@ -1,14 +1,14 @@
 Return-Path: <intel-xe-bounces@lists.freedesktop.org>
 From: Rodrigo Vivi <rodrigo.vivi@intel.com>
-Date: Thu, 12 Jan 2023 17:25:06 -0500
-Message-ID: <20230112222538.2000142-6-rodrigo.vivi@intel.com>
+Date: Thu, 12 Jan 2023 17:25:38 -0500
+Message-ID: <20230112222538.2000142-38-rodrigo.vivi@intel.com>
 In-Reply-To: <20230112222538.2000142-1-rodrigo.vivi@intel.com>
 References: <20230112222538.2000142-1-rodrigo.vivi@intel.com>
 Content-Transfer-Encoding: 8bit
 Content-Type: text/plain
 MIME-Version: 1.0
-Subject: [Intel-xe] [PATCH 05/37] drm/xe: Convert guc_ready to regular
- xe_mmio_wait32
+Subject: [Intel-xe] [PATCH 37/37] drm/xe: enforce GSMBASE for DG1 instead of
+ BAR2
 List-Id: Intel Xe graphics driver <intel-xe.lists.freedesktop.org>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=unsubscribe>
@@ -20,60 +20,99 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 To: intel-xe@lists.freedesktop.org, matthew.brost@intel.com, maarten.lankhorst@linux.intel.com, philippe.lecluse@intel.com, mchehab@kernel.org
-Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
+Cc: Matthew Auld <matthew.auld@intel.com>, Rodrigo Vivi <rodrigo.vivi@intel.com>
 
-Possible now that the wait function returns the last read value.
+From: Philippe Lecluse <philippe.lecluse@intel.com>
 
-So we can remove the users of i915's wait_for one by one...
+v2: move to logic in probed vram_size
+    rename flat_ccs_base to more generic usable_size
 
+Signed-off-by: Philippe Lecluse <philippe.lecluse@intel.com>
+Cc: Matthew Auld <matthew.auld@intel.com>
 Signed-off-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
-Cc: Matthew Brost <matthew.brost@intel.com>
 ---
- drivers/gpu/drm/xe/xe_guc.c | 24 +++++-------------------
- 1 file changed, 5 insertions(+), 19 deletions(-)
+ drivers/gpu/drm/xe/xe_mmio.c | 28 ++++++++++++++--------------
+ 1 file changed, 14 insertions(+), 14 deletions(-)
 
-diff --git a/drivers/gpu/drm/xe/xe_guc.c b/drivers/gpu/drm/xe/xe_guc.c
-index d7fdb0acc8ab..966cac79625f 100644
---- a/drivers/gpu/drm/xe/xe_guc.c
-+++ b/drivers/gpu/drm/xe/xe_guc.c
-@@ -403,24 +403,6 @@ static int guc_xfer_rsa(struct xe_guc *guc)
- 	return 0;
+diff --git a/drivers/gpu/drm/xe/xe_mmio.c b/drivers/gpu/drm/xe/xe_mmio.c
+index 4d679027fc98..b3c1a39ef79d 100644
+--- a/drivers/gpu/drm/xe/xe_mmio.c
++++ b/drivers/gpu/drm/xe/xe_mmio.c
+@@ -153,7 +153,7 @@ static bool xe_pci_resource_valid(struct pci_dev *pdev, int bar)
+ 	return true;
  }
  
--/*
-- * Read the GuC status register (GUC_STATUS) and store it in the
-- * specified location; then return a boolean indicating whether
-- * the value matches either of two values representing completion
-- * of the GuC boot process.
-- *
-- * This is used for polling the GuC status in a wait_for()
-- * loop below.
-- */
--static bool guc_ready(struct xe_guc *guc, u32 *status)
--{
--	u32 val = xe_mmio_read32(guc_to_gt(guc), GUC_STATUS.reg);
--	u32 uk_val = REG_FIELD_GET(GS_UKERNEL_MASK, val);
--
--	*status = val;
--	return uk_val == XE_GUC_LOAD_STATUS_READY;
--}
--
- static int guc_wait_ucode(struct xe_guc *guc)
+-int xe_mmio_total_vram_size(struct xe_device *xe, u64 *vram_size, u64 *flat_ccs_base)
++int xe_mmio_total_vram_size(struct xe_device *xe, u64 *vram_size, u64 *usable_size)
  {
- 	struct xe_device *xe = guc_to_xe(guc);
-@@ -444,7 +426,11 @@ static int guc_wait_ucode(struct xe_guc *guc)
- 	 * 200ms. Even at slowest clock, this should be sufficient. And
- 	 * in the working case, a larger timeout makes no difference.
- 	 */
--	ret = wait_for(guc_ready(guc, &status), 200);
-+	ret = xe_mmio_wait32(guc_to_gt(guc), GUC_STATUS.reg,
-+			     FIELD_PREP(GS_UKERNEL_MASK,
-+					XE_GUC_LOAD_STATUS_READY),
-+			     GS_UKERNEL_MASK, 200, &status);
-+
- 	if (ret) {
- 		struct drm_device *drm = &xe->drm;
- 		struct drm_printer p = drm_info_printer(drm->dev);
+ 	struct xe_gt *gt = xe_device_get_gt(xe, 0);
+ 	struct pci_dev *pdev = to_pci_dev(xe->drm.dev);
+@@ -162,8 +162,12 @@ int xe_mmio_total_vram_size(struct xe_device *xe, u64 *vram_size, u64 *flat_ccs_
+ 
+ 	if (!xe->info.has_flat_ccs)  {
+ 		*vram_size = pci_resource_len(pdev, GEN12_LMEM_BAR);
+-		if (flat_ccs_base)
+-			*flat_ccs_base = *vram_size;
++		if (usable_size) {
++			if (xe->info.platform == XE_DG1)
++				*usable_size = xe_mmio_read64(gt, GEN12_GSMBASE.reg);
++			else
++				*usable_size = *vram_size;
++		}
+ 		return 0;
+ 	}
+ 
+@@ -173,15 +177,13 @@ int xe_mmio_total_vram_size(struct xe_device *xe, u64 *vram_size, u64 *flat_ccs_
+ 
+ 	reg = xe_gt_mcr_unicast_read_any(gt, XEHP_TILE0_ADDR_RANGE);
+ 	*vram_size = (u64)REG_FIELD_GET(GENMASK(14, 8), reg) * SZ_1G;
+-	if (flat_ccs_base) {
++	if (usable_size) {
+ 		reg = xe_gt_mcr_unicast_read_any(gt, XEHP_FLAT_CCS_BASE_ADDR);
+-		*flat_ccs_base = (u64)REG_FIELD_GET(GENMASK(31, 8), reg) * SZ_64K;
++		*usable_size = (u64)REG_FIELD_GET(GENMASK(31, 8), reg) * SZ_64K;
++		drm_info(&xe->drm, "lmem_size: 0x%llx usable_size: 0x%llx\n",
++			 *vram_size, *usable_size);
+ 	}
+ 
+-	if (flat_ccs_base)
+-		drm_info(&xe->drm, "lmem_size: 0x%llx flat_ccs_base: 0x%llx\n",
+-			 *vram_size, *flat_ccs_base);
+-
+ 	return xe_force_wake_put(gt_to_fw(gt), XE_FW_GT);
+ }
+ 
+@@ -193,7 +195,7 @@ int xe_mmio_probe_vram(struct xe_device *xe)
+ 	u64 lmem_size;
+ 	u64 original_size;
+ 	u64 current_size;
+-	u64 flat_ccs_base;
++	u64 usable_size;
+ 	int resize_result, err;
+ 
+ 	if (!IS_DGFX(xe)) {
+@@ -215,11 +217,9 @@ int xe_mmio_probe_vram(struct xe_device *xe)
+ 	}
+ 
+ 	gt = xe_device_get_gt(xe, 0);
+-	lmem_size = xe_mmio_read64(gt, GEN12_GSMBASE.reg);
+-
+ 	original_size = pci_resource_len(pdev, GEN12_LMEM_BAR);
+ 
+-	err = xe_mmio_total_vram_size(xe, &lmem_size, &flat_ccs_base);
++	err = xe_mmio_total_vram_size(xe, &lmem_size, &usable_size);
+ 	if (err)
+ 		return err;
+ 
+@@ -247,7 +247,7 @@ int xe_mmio_probe_vram(struct xe_device *xe)
+ 	xe->mem.vram.mapping = ioremap_wc(xe->mem.vram.io_start, xe->mem.vram.size);
+ #endif
+ 
+-	xe->mem.vram.size = min_t(u64, xe->mem.vram.size, flat_ccs_base);
++	xe->mem.vram.size = min_t(u64, xe->mem.vram.size, usable_size);
+ 
+ 	drm_info(&xe->drm, "TOTAL VRAM: %pa, %pa\n", &xe->mem.vram.io_start, &xe->mem.vram.size);
+ 
 -- 
 2.38.1
 
