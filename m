@@ -1,14 +1,14 @@
 Return-Path: <intel-xe-bounces@lists.freedesktop.org>
 From: Rodrigo Vivi <rodrigo.vivi@intel.com>
-Date: Thu, 12 Jan 2023 17:25:28 -0500
-Message-ID: <20230112222538.2000142-28-rodrigo.vivi@intel.com>
-In-Reply-To: <20230112222538.2000142-1-rodrigo.vivi@intel.com>
-References: <20230112222538.2000142-1-rodrigo.vivi@intel.com>
+Date: Fri, 20 Jan 2023 15:44:20 -0500
+Message-ID: <20230120204426.68104-15-rodrigo.vivi@intel.com>
+In-Reply-To: <20230120204426.68104-1-rodrigo.vivi@intel.com>
+References: <20230120204426.68104-1-rodrigo.vivi@intel.com>
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
 MIME-Version: 1.0
-Subject: [Intel-xe] [PATCH 27/37] drm/xe: Ensure VMA not userptr before
- calling xe_bo_is_stolen
+Subject: [Intel-xe] [PATCH 14/20] drm/xe: KUnit tests depend on
+ CONFIG_DRM_FBDEV_EMULATION
 List-Id: Intel Xe graphics driver <intel-xe.lists.freedesktop.org>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=unsubscribe>
@@ -19,80 +19,97 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
-To: intel-xe@lists.freedesktop.org, matthew.brost@intel.com, maarten.lankhorst@linux.intel.com, philippe.lecluse@intel.com, mchehab@kernel.org
-Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
+To: intel-xe@lists.freedesktop.org, maarten.lankhorst@linux.intel.com, philippe.lecluse@intel.com, mchehab@kernel.org
+Cc: =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>, Rodrigo Vivi <rodrigo.vivi@intel.com>
 
-From: Matthew Brost <matthew.brost@intel.com>
+From: Mauro Carvalho Chehab <mchehab@kernel.org>
 
-Fix the below splat:
+ERROR:root:../drivers/gpu/drm/xe/display/intel_fbdev.c:585:5: error: redefinition of ‘intel_fbdev_init’
+  585 | int intel_fbdev_init(struct drm_device *dev)
+      |     ^~~~~~~~~~~~~~~~
+In file included from ../drivers/gpu/drm/xe/display/intel_fbdev.c:55:
+../drivers/gpu/drm/xe/display/intel_fbdev.h:26:19: note: previous definition of ‘intel_fbdev_init’ with type ‘int(struct drm_device *)’
+   26 | static inline int intel_fbdev_init(struct drm_device *dev)
+      |                   ^~~~~~~~~~~~~~~~
+../drivers/gpu/drm/xe/display/intel_fbdev.c:626:6: error: redefinition of ‘intel_fbdev_initial_config_async’
+  626 | void intel_fbdev_initial_config_async(struct drm_device *dev)
+      |      ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+../drivers/gpu/drm/xe/display/intel_fbdev.h:31:20: note: previous definition of ‘intel_fbdev_initial_config_async’ with type ‘void(struct drm_device *)’
+   31 | static inline void intel_fbdev_initial_config_async(struct drm_device *dev)
+      |                    ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+../drivers/gpu/drm/xe/display/intel_fbdev.c:646:6: error: redefinition of ‘intel_fbdev_unregister’
+  646 | void intel_fbdev_unregister(struct drm_i915_private *dev_priv)
+      |      ^~~~~~~~~~~~~~~~~~~~~~
+../drivers/gpu/drm/xe/display/intel_fbdev.h:35:20: note: previous definition of ‘intel_fbdev_unregister’ with type ‘void(struct xe_device *)’
+   35 | static inline void intel_fbdev_unregister(struct drm_i915_private *dev_priv)
+      |                    ^~~~~~~~~~~~~~~~~~~~~~
+../drivers/gpu/drm/xe/display/intel_fbdev.c:661:6: error: redefinition of ‘intel_fbdev_fini’
+  661 | void intel_fbdev_fini(struct drm_i915_private *dev_priv)
+      |      ^~~~~~~~~~~~~~~~
+../drivers/gpu/drm/xe/display/intel_fbdev.h:39:20: note: previous definition of ‘intel_fbdev_fini’ with type ‘void(struct xe_device *)’
+   39 | static inline void intel_fbdev_fini(struct drm_i915_private *dev_priv)
+      |                    ^~~~~~~~~~~~~~~~
+../drivers/gpu/drm/xe/display/intel_fbdev.c:692:6: error: redefinition of ‘intel_fbdev_set_suspend’
+  692 | void intel_fbdev_set_suspend(struct drm_device *dev, int state, bool synchronous)
+      |      ^~~~~~~~~~~~~~~~~~~~~~~
+../drivers/gpu/drm/xe/display/intel_fbdev.h:43:20: note: previous definition of ‘intel_fbdev_set_suspend’ with type ‘void(struct drm_device *, int,  bool)’ {aka ‘void(struct drm_device *, int,  _Bool)’}
+   43 | static inline void intel_fbdev_set_suspend(struct drm_device *dev, int state, bool synchronous)
+      |                    ^~~~~~~~~~~~~~~~~~~~~~~
+../drivers/gpu/drm/xe/display/intel_fbdev.c:751:6: error: redefinition of ‘intel_fbdev_output_poll_changed’
+  751 | void intel_fbdev_output_poll_changed(struct drm_device *dev)
+      |      ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+../drivers/gpu/drm/xe/display/intel_fbdev.h:47:20: note: previous definition of ‘intel_fbdev_output_poll_changed’ with type ‘void(struct drm_device *)’
+   47 | static inline void intel_fbdev_output_poll_changed(struct drm_device *dev)
+      |                    ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+../drivers/gpu/drm/xe/display/intel_fbdev.c:770:6: error: redefinition of ‘intel_fbdev_restore_mode’
+  770 | void intel_fbdev_restore_mode(struct drm_device *dev)
+      |      ^~~~~~~~~~~~~~~~~~~~~~~~
+../drivers/gpu/drm/xe/display/intel_fbdev.h:51:20: note: previous definition of ‘intel_fbdev_restore_mode’ with type ‘void(struct drm_device *)’
+   51 | static inline void intel_fbdev_restore_mode(struct drm_device *dev)
+      |                    ^~~~~~~~~~~~~~~~~~~~~~~~
+../drivers/gpu/drm/xe/display/intel_fbdev.c:785:27: error: redefinition of ‘intel_fbdev_framebuffer’
+  785 | struct intel_framebuffer *intel_fbdev_framebuffer(struct intel_fbdev *fbdev)
+      |                           ^~~~~~~~~~~~~~~~~~~~~~~
+../drivers/gpu/drm/xe/display/intel_fbdev.h:54:41: note: previous definition of ‘intel_fbdev_framebuffer’ with type ‘struct intel_framebuffer *(struct intel_fbdev *)’
+   54 | static inline struct intel_framebuffer *intel_fbdev_framebuffer(struct intel_fbdev *fbdev)
+      |                                         ^~~~~~~~~~~~~~~~~~~~~~~
 
-[  142.510525] [IGT] xe_exec_basic: starting subtest once-userptr
-[  142.511339] BUG: kernel NULL pointer dereference, address: 0000000000000228
-[  142.518311] #PF: supervisor read access in kernel mode
-[  142.523458] #PF: error_code(0x0000) - not-present page
-[  142.528604] PGD 0 P4D 0
-[  142.531153] Oops: 0000 [#1] PREEMPT SMP NOPTI
-[  142.535518] CPU: 4 PID: 1199 Comm: kworker/u16:8 Not tainted 6.1.0-rc1-xe+ #1
-[  142.542656] Hardware name: Intel Corporation Tiger Lake Client Platform/TigerLake U DDR4 SODIMM RVP, BIOS TGLSFWI1.R00.3243.A01.2006102133 06/10/2020
-[  142.556033] Workqueue: events_unbound async_op_work_func [xe]
-[  142.561810] RIP: 0010:xe_bo_is_stolen+0x0/0x20 [xe]
-[  142.566709] Code: 20 c8 75 05 83 fa 07 74 05 c3 cc cc cc cc 48 8b 87 08 02 00 00 0f b6 80 2c ff ff ff c3 cc cc cc cc 66 0f 1f 84 00 00 00 00 00 <48> 8b 87 28 02 00 00 83 78 10 07 0f 94 c0 c3 cc cc cc cc 66 66 2e
-[  142.585447] RSP: 0018:ffffc900019eb888 EFLAGS: 00010246
-[  142.590678] RAX: 0000000000000002 RBX: 0000000000000000 RCX: ffff88813f6a2108
-[  142.597821] RDX: 0000000000000000 RSI: 0000000000000000 RDI: 0000000000000000
-[  142.604962] RBP: ffffc900019ebbc0 R08: 0000000000000001 R09: 0000000000000000
-[  142.612101] R10: 0000000000000001 R11: 0000000000000001 R12: ffff88814107d600
-[  142.619242] R13: ffffc900019eba20 R14: ffff888140442000 R15: 0000000000000000
-[  142.626378] FS:  0000000000000000(0000) GS:ffff88849fa00000(0000) knlGS:0000000000000000
-[  142.634468] CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
-[  142.640219] CR2: 0000000000000228 CR3: 000000010a4c0006 CR4: 0000000000770ee0
-[  142.647361] DR0: 0000000000000000 DR1: 0000000000000000 DR2: 0000000000000000
-[  142.654505] DR3: 0000000000000000 DR6: 00000000fffe0ff0 DR7: 0000000000000400
-[  142.661639] PKRU: 55555554
-[  142.664367] Call Trace:
-[  142.666830]  <TASK>
-[  142.668947]  __xe_pt_bind_vma+0x1a1/0xa50 [xe]
-[  142.673417]  ? unwind_next_frame+0x187/0x770
-[  142.677699]  ? __thaw_task+0xc0/0xc0
-[  142.681293]  ? __lock_acquire+0x5e4/0x26e0
-[  142.685409]  ? lockdep_hardirqs_on+0xbf/0x140
-[  142.689779]  ? lock_acquire+0xd2/0x310
-[  142.693548]  ? mark_held_locks+0x49/0x80
-[  142.697485]  ? xe_vm_bind_vma+0xf1/0x3d0 [xe]
-[  142.701866]  xe_vm_bind_vma+0xf1/0x3d0 [xe]
-[  142.706082]  xe_vm_bind+0x76/0x140 [xe]
-[  142.709944]  vm_bind_ioctl+0x26f/0xb40 [xe]
-[  142.714161]  ? async_op_work_func+0x20c/0x450 [xe]
-[  142.718974]  async_op_work_func+0x20c/0x450 [xe]
-[  142.723620]  process_one_work+0x263/0x580
-[  142.727645]  ? process_one_work+0x580/0x580
-[  142.731839]  worker_thread+0x4d/0x3b0
-[  142.735518]  ? process_one_work+0x580/0x580
-[  142.739714]  kthread+0xeb/0x120
-[  142.742872]  ? kthread_complete_and_exit+0x20/0x20
-[  142.747671]  ret_from_fork+0x1f/0x30
-[  142.751264]  </TASK>
-
-Signed-off-by: Matthew Brost <matthew.brost@intel.com>
+Signed-off-by: Mauro Carvalho Chehab <mchehab@kernel.org>
+Cc: Thomas Hellström <thomas.hellstrom@linux.intel.com>
+Cc: Matthew Brost <matthew.brost@intel.com>
 Signed-off-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
 ---
- drivers/gpu/drm/xe/xe_pt.c | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+ drivers/gpu/drm/xe/.kunitconfig  | 3 +++
+ drivers/gpu/drm/xe/Kconfig.debug | 1 +
+ 2 files changed, 4 insertions(+)
 
-diff --git a/drivers/gpu/drm/xe/xe_pt.c b/drivers/gpu/drm/xe/xe_pt.c
-index c8b3b1975098..9e07ad41a007 100644
---- a/drivers/gpu/drm/xe/xe_pt.c
-+++ b/drivers/gpu/drm/xe/xe_pt.c
-@@ -758,7 +758,7 @@ xe_pt_stage_bind(struct xe_gt *gt, struct xe_vma *vma,
- 		else
- 			xe_walk.cache = XE_CACHE_WB;
- 	}
--	if (xe_bo_is_stolen(bo))
-+	if (!xe_vma_is_userptr(vma) && xe_bo_is_stolen(bo))
- 		xe_walk.dma_offset = xe_ttm_stolen_gpu_offset(xe_bo_device(bo));
- 
- 	xe_bo_assert_held(bo);
+diff --git a/drivers/gpu/drm/xe/.kunitconfig b/drivers/gpu/drm/xe/.kunitconfig
+index aaf30db71cea..06ed30420a8d 100644
+--- a/drivers/gpu/drm/xe/.kunitconfig
++++ b/drivers/gpu/drm/xe/.kunitconfig
+@@ -3,6 +3,9 @@ CONFIG_KUNIT=y
+ CONFIG_PCI=y
+ CONFIG_DEBUG_FS=y
+ CONFIG_DRM=y
++CONFIG_DRM_FBDEV_EMULATION=y
++CONFIG_DRM_KMS_HELPER=y
+ CONFIG_DRM_XE=y
+ CONFIG_EXPERT=y
++CONFIG_FB=y
+ CONFIG_DRM_XE_KUNIT_TEST=y
+diff --git a/drivers/gpu/drm/xe/Kconfig.debug b/drivers/gpu/drm/xe/Kconfig.debug
+index b7fd6fa17bff..6726caa63acc 100644
+--- a/drivers/gpu/drm/xe/Kconfig.debug
++++ b/drivers/gpu/drm/xe/Kconfig.debug
+@@ -64,6 +64,7 @@ config DRM_XE_SIMPLE_ERROR_CAPTURE
+ config DRM_XE_KUNIT_TEST
+         tristate "KUnit tests for the drm xe driver" if !KUNIT_ALL_TESTS
+ 	depends on DRM_XE && KUNIT && DEBUG_FS
++	depends on FB && FB = DRM_KMS_HELPER && DRM_FBDEV_EMULATION
+ 	default KUNIT_ALL_TESTS
+ 	select DRM_EXPORT_FOR_TESTS if m
+ 	help
 -- 
-2.38.1
+2.39.0
 
 
