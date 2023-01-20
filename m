@@ -1,13 +1,13 @@
 Return-Path: <intel-xe-bounces@lists.freedesktop.org>
 From: Rodrigo Vivi <rodrigo.vivi@intel.com>
-Date: Thu, 12 Jan 2023 17:25:03 -0500
-Message-ID: <20230112222538.2000142-3-rodrigo.vivi@intel.com>
-In-Reply-To: <20230112222538.2000142-1-rodrigo.vivi@intel.com>
-References: <20230112222538.2000142-1-rodrigo.vivi@intel.com>
+Date: Fri, 20 Jan 2023 15:44:26 -0500
+Message-ID: <20230120204426.68104-21-rodrigo.vivi@intel.com>
+In-Reply-To: <20230120204426.68104-1-rodrigo.vivi@intel.com>
+References: <20230120204426.68104-1-rodrigo.vivi@intel.com>
 Content-Transfer-Encoding: 8bit
 Content-Type: text/plain
 MIME-Version: 1.0
-Subject: [Intel-xe] [PATCH 02/37] drm/xe: Implement a local xe_mmio_wait32
+Subject: [Intel-xe] [PATCH 20/20] drm/xe/guc_pc: Fix Meteor Lake registers.
 List-Id: Intel Xe graphics driver <intel-xe.lists.freedesktop.org>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=unsubscribe>
@@ -18,166 +18,145 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
-To: intel-xe@lists.freedesktop.org, matthew.brost@intel.com, maarten.lankhorst@linux.intel.com, philippe.lecluse@intel.com, mchehab@kernel.org
-Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
+To: intel-xe@lists.freedesktop.org, maarten.lankhorst@linux.intel.com, philippe.lecluse@intel.com, mchehab@kernel.org
+Cc: Francois Dugast <francois.dugast@intel.com>, Rodrigo Vivi <rodrigo.vivi@intel.com>
 
-Then, move the i915_utils.h include to its user.
-
-The overall goal is to kill all the usages of the i915_utils
-stuff.
-
-Yes, wait_for also depends on <linux/delay.h>, so they go
-together to where it is needed. It will be likely needed
-anyway directly for udelay or usleep_range.
+When adding the frequency management, Meteor Lake platform
+was left behind. Handling it properly now.
 
 Signed-off-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
 Cc: Matthew Brost <matthew.brost@intel.com>
+Cc: Francois Dugast <francois.dugast@intel.com>
 ---
- drivers/gpu/drm/xe/xe_force_wake.c |  6 ++++++
- drivers/gpu/drm/xe/xe_gt_mcr.c     |  7 +++++++
- drivers/gpu/drm/xe/xe_guc.c        |  7 +++++++
- drivers/gpu/drm/xe/xe_guc_pc.c     |  7 +++++++
- drivers/gpu/drm/xe/xe_mmio.h       | 29 ++++++++++++++++++++---------
- drivers/gpu/drm/xe/xe_pcode.c      |  7 +++++++
- 6 files changed, 54 insertions(+), 9 deletions(-)
+ drivers/gpu/drm/xe/xe_guc_pc.c | 70 ++++++++++++++++++++++++++++++++--
+ 1 file changed, 66 insertions(+), 4 deletions(-)
 
-diff --git a/drivers/gpu/drm/xe/xe_force_wake.c b/drivers/gpu/drm/xe/xe_force_wake.c
-index 5a5b6e3e715d..04b22eeb8ab5 100644
---- a/drivers/gpu/drm/xe/xe_force_wake.c
-+++ b/drivers/gpu/drm/xe/xe_force_wake.c
-@@ -10,6 +10,12 @@
- #include "xe_mmio.h"
- #include "../i915/gt/intel_gt_regs.h"
- 
-+/*
-+ * FIXME: This header has been deemed evil and we need to kill it. Temporarily
-+ * including so we can use '__mask_next_bit'.
-+ */
-+#include "i915_utils.h"
-+
- #define XE_FORCE_WAKE_ACK_TIMEOUT_MS	50
- 
- static struct xe_gt *
-diff --git a/drivers/gpu/drm/xe/xe_gt_mcr.c b/drivers/gpu/drm/xe/xe_gt_mcr.c
-index 63829d8c8b54..ce776b260750 100644
---- a/drivers/gpu/drm/xe/xe_gt_mcr.c
-+++ b/drivers/gpu/drm/xe/xe_gt_mcr.c
-@@ -11,6 +11,13 @@
- 
- #include "../i915/gt/intel_gt_regs.h"
- 
-+#include <linux/delay.h>
-+/*
-+ * FIXME: This header has been deemed evil and we need to kill it. Temporar
-+ * including so we can use 'wait_for'.
-+ */
-+#include "i915_utils.h"
-+
- /**
-  * DOC: GT Multicast/Replicated (MCR) Register Support
-  *
-diff --git a/drivers/gpu/drm/xe/xe_guc.c b/drivers/gpu/drm/xe/xe_guc.c
-index b5557375804f..373c94230fc3 100644
---- a/drivers/gpu/drm/xe/xe_guc.c
-+++ b/drivers/gpu/drm/xe/xe_guc.c
-@@ -22,6 +22,13 @@
- #include "i915_reg_defs.h"
- #include "../i915/gt/intel_gt_regs.h"
- 
-+#include <linux/delay.h>
-+/*
-+ * FIXME: This header has been deemed evil and we need to kill it. Temporarily
-+ * including so we can use 'wait_for' and range_overflow_t.
-+ */
-+#include "i915_utils.h"
-+
- /* TODO: move to common file */
- #define GUC_PVC_MOCS_INDEX_MASK		REG_GENMASK(25, 24)
- #define PVC_MOCS_UC_INDEX		1
 diff --git a/drivers/gpu/drm/xe/xe_guc_pc.c b/drivers/gpu/drm/xe/xe_guc_pc.c
-index 38b1275ea655..515b7aab03c3 100644
+index 506b9cb3f14c..bf3dff9e0c2b 100644
 --- a/drivers/gpu/drm/xe/xe_guc_pc.c
 +++ b/drivers/gpu/drm/xe/xe_guc_pc.c
-@@ -16,6 +16,13 @@
- #include "i915_reg_defs.h"
- #include "../i915/i915_reg.h"
+@@ -37,6 +37,9 @@
+ #define GEN12_RPSTAT1		_MMIO(0x1381b4)
+ #define   GEN12_CAGF_MASK	REG_GENMASK(19, 11)
  
-+#include <linux/delay.h>
-+/*
-+ * FIXME: This header has been deemed evil and we need to kill it. Temporarily
-+ * including so we can use 'wait_for'.
-+ */
-+#include "i915_utils.h"
++#define MTL_MIRROR_TARGET_WP1	_MMIO(0xc60)
++#define   MTL_CAGF_MASK		REG_GENMASK(8, 0)
 +
- #include "../i915/intel_mchbar_regs.h"
- /* For GEN6_RP_STATE_CAP.reg to be merged when the definition moves to Xe */
- #define   RP0_MASK	REG_GENMASK(7, 0)
-diff --git a/drivers/gpu/drm/xe/xe_mmio.h b/drivers/gpu/drm/xe/xe_mmio.h
-index e7cca6d2f81f..d3bc0989ce2e 100644
---- a/drivers/gpu/drm/xe/xe_mmio.h
-+++ b/drivers/gpu/drm/xe/xe_mmio.h
-@@ -10,13 +10,6 @@
+ #define GT_FREQUENCY_MULTIPLIER	50
+ #define GEN9_FREQ_SCALER	3
  
- #include "xe_gt_types.h"
- 
--/*
-- * FIXME: This header has been deemed evil and we need to kill it. Temporarily
-- * including so we can use 'wait_for' and unblock initial development. A follow
-- * should replace 'wait_for' with a sane version and drop including this header.
-- */
--#include "i915_utils.h"
--
- struct drm_device;
- struct drm_file;
- struct xe_device;
-@@ -84,8 +77,26 @@ static inline int xe_mmio_wait32(struct xe_gt *gt,
- 				 u32 reg, u32 val,
- 				 u32 mask, u32 timeout_ms)
- {
--	return wait_for((xe_mmio_read32(gt, reg) & mask) == val,
--			timeout_ms);
-+	ktime_t cur = ktime_get_raw();
-+	const ktime_t end = ktime_add_ms(cur, timeout_ms);
-+	s64 wait = 10;
-+
-+	for (;;) {
-+		if ((xe_mmio_read32(gt, reg) & mask) == val)
-+			return 0;
-+
-+		cur = ktime_get_raw();
-+		if (!ktime_before(cur, end))
-+			return -ETIMEDOUT;
-+
-+		if (ktime_after(ktime_add_us(cur, wait), end))
-+			wait = ktime_us_delta(end, cur);
-+
-+		usleep_range(wait, wait << 1);
-+		wait <<= 1;
-+	}
-+
-+	return -ETIMEDOUT;
+@@ -311,7 +314,20 @@ static int pc_set_max_freq(struct xe_guc_pc *pc, u32 freq)
+ 				   freq);
  }
  
- int xe_mmio_ioctl(struct drm_device *dev, void *data,
-diff --git a/drivers/gpu/drm/xe/xe_pcode.c b/drivers/gpu/drm/xe/xe_pcode.c
-index 236159c8a6c0..313ccd70d1a9 100644
---- a/drivers/gpu/drm/xe/xe_pcode.c
-+++ b/drivers/gpu/drm/xe/xe_pcode.c
-@@ -11,6 +11,13 @@
- 
- #include <linux/errno.h>
- 
-+#include <linux/delay.h>
-+/*
-+ * FIXME: This header has been deemed evil and we need to kill it. Temporarily
-+ * including so we can use 'wait_for'.
-+ */
-+#include "i915_utils.h"
+-static void pc_update_rp_values(struct xe_guc_pc *pc)
++static void mtl_update_rpe_value(struct xe_guc_pc *pc)
++{
++	struct xe_gt *gt = pc_to_gt(pc);
++	u32 reg;
 +
- /**
-  * DOC: PCODE
-  *
++	if (xe_gt_is_media_type(gt))
++		reg = xe_mmio_read32(gt, MTL_MPE_FREQUENCY.reg);
++	else
++		reg = xe_mmio_read32(gt, MTL_GT_RPE_FREQUENCY.reg);
++
++	pc->rpe_freq = REG_FIELD_GET(MTL_RPE_MASK, reg) * GT_FREQUENCY_MULTIPLIER;
++}
++
++static void tgl_update_rpe_value(struct xe_guc_pc *pc)
+ {
+ 	struct xe_gt *gt = pc_to_gt(pc);
+ 	struct xe_device *xe = gt_to_xe(gt);
+@@ -328,6 +344,17 @@ static void pc_update_rp_values(struct xe_guc_pc *pc)
+ 		reg = xe_mmio_read32(gt, GEN10_FREQ_INFO_REC.reg);
+ 
+ 	pc->rpe_freq = REG_FIELD_GET(RPE_MASK, reg) * GT_FREQUENCY_MULTIPLIER;
++}
++
++static void pc_update_rp_values(struct xe_guc_pc *pc)
++{
++	struct xe_gt *gt = pc_to_gt(pc);
++	struct xe_device *xe = gt_to_xe(gt);
++
++	if (xe->info.platform == XE_METEORLAKE)
++		mtl_update_rpe_value(pc);
++	else
++		tgl_update_rpe_value(pc);
+ 
+ 	/*
+ 	 * RPe is decided at runtime by PCODE. In the rare case where that's
+@@ -342,6 +369,7 @@ static ssize_t freq_act_show(struct device *dev,
+ {
+ 	struct kobject *kobj = &dev->kobj;
+ 	struct xe_gt *gt = kobj_to_gt(kobj);
++	struct xe_device *xe = gt_to_xe(gt);
+ 	u32 freq;
+ 	ssize_t ret;
+ 
+@@ -354,10 +382,17 @@ static ssize_t freq_act_show(struct device *dev,
+ 		return ret;
+ 
+ 	xe_device_mem_access_get(gt_to_xe(gt));
+-	freq = xe_mmio_read32(gt, GEN12_RPSTAT1.reg);
++
++	if (xe->info.platform == XE_METEORLAKE) {
++		freq = xe_mmio_read32(gt, MTL_MIRROR_TARGET_WP1.reg);
++		freq = REG_FIELD_GET(MTL_CAGF_MASK, freq);
++	} else {
++		freq = xe_mmio_read32(gt, GEN12_RPSTAT1.reg);
++		freq = REG_FIELD_GET(GEN12_CAGF_MASK, freq);
++	}
++
+ 	xe_device_mem_access_put(gt_to_xe(gt));
+ 
+-	freq = REG_FIELD_GET(GEN12_CAGF_MASK, freq);
+ 	ret = sysfs_emit(buf, "%d\n", decode_freq(freq));
+ 
+ 	XE_WARN_ON(xe_force_wake_put(gt_to_fw(gt), XE_FORCEWAKE_ALL));
+@@ -606,7 +641,24 @@ static const struct attribute *pc_attrs[] = {
+ 	NULL
+ };
+ 
+-static void pc_init_fused_rp_values(struct xe_guc_pc *pc)
++static void mtl_init_fused_rp_values(struct xe_guc_pc *pc)
++{
++	struct xe_gt *gt = pc_to_gt(pc);
++	u32 reg;
++
++	xe_device_assert_mem_access(pc_to_xe(pc));
++
++	if (xe_gt_is_media_type(gt))
++		reg = xe_mmio_read32(gt, MTL_MEDIAP_STATE_CAP.reg);
++	else
++		reg = xe_mmio_read32(gt, MTL_RP_STATE_CAP.reg);
++	pc->rp0_freq = REG_FIELD_GET(MTL_RP0_CAP_MASK, reg) *
++		GT_FREQUENCY_MULTIPLIER;
++	pc->rpn_freq = REG_FIELD_GET(MTL_RPN_CAP_MASK, reg) *
++		GT_FREQUENCY_MULTIPLIER;
++}
++
++static void tgl_init_fused_rp_values(struct xe_guc_pc *pc)
+ {
+ 	struct xe_gt *gt = pc_to_gt(pc);
+ 	struct xe_device *xe = gt_to_xe(gt);
+@@ -622,6 +674,16 @@ static void pc_init_fused_rp_values(struct xe_guc_pc *pc)
+ 	pc->rpn_freq = REG_FIELD_GET(RPN_MASK, reg) * GT_FREQUENCY_MULTIPLIER;
+ }
+ 
++static void pc_init_fused_rp_values(struct xe_guc_pc *pc)
++{
++	struct xe_gt *gt = pc_to_gt(pc);
++	struct xe_device *xe = gt_to_xe(gt);
++
++	if (xe->info.platform == XE_METEORLAKE)
++		mtl_init_fused_rp_values(pc);
++	else
++		tgl_init_fused_rp_values(pc);
++}
+ static int pc_adjust_freq_bounds(struct xe_guc_pc *pc)
+ {
+ 	int ret;
 -- 
-2.38.1
+2.39.0
 
 
