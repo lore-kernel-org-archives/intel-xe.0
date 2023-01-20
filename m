@@ -1,14 +1,14 @@
 Return-Path: <intel-xe-bounces@lists.freedesktop.org>
 From: Rodrigo Vivi <rodrigo.vivi@intel.com>
-Date: Thu, 12 Jan 2023 17:25:12 -0500
-Message-ID: <20230112222538.2000142-12-rodrigo.vivi@intel.com>
-In-Reply-To: <20230112222538.2000142-1-rodrigo.vivi@intel.com>
-References: <20230112222538.2000142-1-rodrigo.vivi@intel.com>
+Date: Fri, 20 Jan 2023 15:44:13 -0500
+Message-ID: <20230120204426.68104-8-rodrigo.vivi@intel.com>
+In-Reply-To: <20230120204426.68104-1-rodrigo.vivi@intel.com>
+References: <20230120204426.68104-1-rodrigo.vivi@intel.com>
 Content-Transfer-Encoding: 8bit
 Content-Type: text/plain
 MIME-Version: 1.0
-Subject: [Intel-xe] [PATCH 11/37] drm/xe: Remove i915_utils dependency from
- xe_pcode.
+Subject: [Intel-xe] [PATCH 07/20] drm/xe/mmio: Use non-atomic writeq/readq
+ variant for 32b
 List-Id: Intel Xe graphics driver <intel-xe.lists.freedesktop.org>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=unsubscribe>
@@ -19,372 +19,74 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
-To: intel-xe@lists.freedesktop.org, matthew.brost@intel.com, maarten.lankhorst@linux.intel.com, philippe.lecluse@intel.com, mchehab@kernel.org
-Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
+To: intel-xe@lists.freedesktop.org, maarten.lankhorst@linux.intel.com, philippe.lecluse@intel.com, mchehab@kernel.org
+Cc: Lucas De Marchi <lucas.demarchi@intel.com>, Rodrigo Vivi <rodrigo.vivi@intel.com>
 
-Expand xe_mmio_wait32 to accept atomic and then use
-that directly when possible, and create own routine to
-wait for the pcode status.
+From: Lucas De Marchi <lucas.demarchi@intel.com>
 
+writeq() and readq() and other functions working on 64 bit variables
+are not provided by 32b arch. For that it's needed to choose between
+linux/io-64-nonatomic-hi-lo.h and linux/io-64-nonatomic-lo-hi.h,
+spliting the read/write in 2 accesses. For xe driver, it doesn't matter
+much, so just choose one and include in xe_mmio.h.
+
+This also removes some ifdef CONFIG_64BIT we had around because of the
+missing 64bit functions.
+
+Signed-off-by: Lucas De Marchi <lucas.demarchi@intel.com>
+Reviewed-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
 Signed-off-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
-Cc: Matthew Brost <matthew.brost@intel.com>
 ---
- drivers/gpu/drm/xe/display/intel_de.h |  6 +-
- drivers/gpu/drm/xe/xe_force_wake.c    |  4 +-
- drivers/gpu/drm/xe/xe_gt.c            |  2 +-
- drivers/gpu/drm/xe/xe_gt_mcr.c        |  3 +-
- drivers/gpu/drm/xe/xe_guc.c           |  9 +--
- drivers/gpu/drm/xe/xe_huc.c           |  2 +-
- drivers/gpu/drm/xe/xe_mmio.h          |  9 ++-
- drivers/gpu/drm/xe/xe_pcode.c         | 94 +++++++++++----------------
- drivers/gpu/drm/xe/xe_uc_fw.c         |  3 +-
- 9 files changed, 61 insertions(+), 71 deletions(-)
+ drivers/gpu/drm/xe/xe_mmio.c | 7 -------
+ drivers/gpu/drm/xe/xe_mmio.h | 1 +
+ 2 files changed, 1 insertion(+), 7 deletions(-)
 
-diff --git a/drivers/gpu/drm/xe/display/intel_de.h b/drivers/gpu/drm/xe/display/intel_de.h
-index 80cc8c9e48b8..678b4247464a 100644
---- a/drivers/gpu/drm/xe/display/intel_de.h
-+++ b/drivers/gpu/drm/xe/display/intel_de.h
-@@ -41,14 +41,16 @@ static inline int
- intel_de_wait_for_register(struct drm_i915_private *i915, i915_reg_t reg,
- 			   u32 mask, u32 value, unsigned int timeout)
- {
--	return xe_mmio_wait32(to_gt(i915), reg.reg, value, mask, timeout, NULL);
-+	return xe_mmio_wait32(to_gt(i915), reg.reg, value, mask, timeout, NULL,
-+			      false);
- }
- 
- static inline int
- intel_de_wait_for_register_fw(struct drm_i915_private *i915, i915_reg_t reg,
- 			      u32 mask, u32 value, unsigned int timeout)
- {
--	return xe_mmio_wait32(to_gt(i915), reg.reg, value, mask, timeout, NULL);
-+	return xe_mmio_wait32(to_gt(i915), reg.reg, value, mask, timeout, NULL,
-+			      false);
- }
- 
- static inline int
-diff --git a/drivers/gpu/drm/xe/xe_force_wake.c b/drivers/gpu/drm/xe/xe_force_wake.c
-index 9c613a68b8d5..f4dad04bd5d6 100644
---- a/drivers/gpu/drm/xe/xe_force_wake.c
-+++ b/drivers/gpu/drm/xe/xe_force_wake.c
-@@ -125,7 +125,7 @@ static int domain_wake_wait(struct xe_gt *gt,
- {
- 	return xe_mmio_wait32(gt, domain->reg_ack, domain->val, domain->val,
- 			      XE_FORCE_WAKE_ACK_TIMEOUT_MS * USEC_PER_MSEC,
--			      NULL);
-+			      NULL, false);
- }
- 
- static void domain_sleep(struct xe_gt *gt, struct xe_force_wake_domain *domain)
-@@ -138,7 +138,7 @@ static int domain_sleep_wait(struct xe_gt *gt,
- {
- 	return xe_mmio_wait32(gt, domain->reg_ack, 0, domain->val,
- 			      XE_FORCE_WAKE_ACK_TIMEOUT_MS * USEC_PER_MSEC,
--			      NULL);
-+			      NULL, false);
- }
- 
- #define for_each_fw_domain_masked(domain__, mask__, fw__, tmp__) \
-diff --git a/drivers/gpu/drm/xe/xe_gt.c b/drivers/gpu/drm/xe/xe_gt.c
-index bf173f374e73..ccb87a7c6554 100644
---- a/drivers/gpu/drm/xe/xe_gt.c
-+++ b/drivers/gpu/drm/xe/xe_gt.c
-@@ -560,7 +560,7 @@ int do_gt_reset(struct xe_gt *gt)
- 
- 	xe_mmio_write32(gt, GEN6_GDRST.reg, GEN11_GRDOM_FULL);
- 	err = xe_mmio_wait32(gt, GEN6_GDRST.reg, 0, GEN11_GRDOM_FULL, 5000,
--			     NULL);
-+			     NULL, false);
- 	if (err)
- 		drm_err(&xe->drm,
- 			"GT reset failed to clear GEN11_GRDOM_FULL\n");
-diff --git a/drivers/gpu/drm/xe/xe_gt_mcr.c b/drivers/gpu/drm/xe/xe_gt_mcr.c
-index 51badd3d6e90..d940a576b47c 100644
---- a/drivers/gpu/drm/xe/xe_gt_mcr.c
-+++ b/drivers/gpu/drm/xe/xe_gt_mcr.c
-@@ -376,7 +376,8 @@ static void mcr_lock(struct xe_gt *gt)
- 	 * shares the same steering control register.
- 	 */
- 	if (GRAPHICS_VERx100(xe) >= 1270)
--		ret = xe_mmio_wait32(gt, STEER_SEMAPHORE, 0, 0x1, 10, NULL);
-+		ret = xe_mmio_wait32(gt, STEER_SEMAPHORE, 0, 0x1, 10, NULL,
-+				     false);
- 
- 	drm_WARN_ON_ONCE(&xe->drm, ret == -ETIMEDOUT);
- }
-diff --git a/drivers/gpu/drm/xe/xe_guc.c b/drivers/gpu/drm/xe/xe_guc.c
-index de24d289c635..34d7d20a2ce7 100644
---- a/drivers/gpu/drm/xe/xe_guc.c
-+++ b/drivers/gpu/drm/xe/xe_guc.c
-@@ -325,7 +325,7 @@ int xe_guc_reset(struct xe_guc *guc)
- 	xe_mmio_write32(gt, GEN6_GDRST.reg, GEN11_GRDOM_GUC);
- 
- 	ret = xe_mmio_wait32(gt, GEN6_GDRST.reg, 0, GEN11_GRDOM_GUC, 5000,
--			     &gdrst);
-+			     &gdrst, false);
- 	if (ret) {
- 		drm_err(&xe->drm, "GuC reset timed out, GEN6_GDRST=0x%8x\n",
- 			gdrst);
-@@ -423,7 +423,7 @@ static int guc_wait_ucode(struct xe_guc *guc)
- 	ret = xe_mmio_wait32(guc_to_gt(guc), GUC_STATUS.reg,
- 			     FIELD_PREP(GS_UKERNEL_MASK,
- 					XE_GUC_LOAD_STATUS_READY),
--			     GS_UKERNEL_MASK, 200000, &status);
-+			     GS_UKERNEL_MASK, 200000, &status, false);
- 
- 	if (ret) {
- 		struct drm_device *drm = &xe->drm;
-@@ -671,7 +671,7 @@ int xe_guc_send_mmio(struct xe_guc *guc, const u32 *request, u32 len)
- 	ret = xe_mmio_wait32(gt, reply_reg,
- 			     FIELD_PREP(GUC_HXG_MSG_0_ORIGIN,
- 					GUC_HXG_ORIGIN_GUC),
--			     GUC_HXG_MSG_0_ORIGIN, 50000, &reply);
-+			     GUC_HXG_MSG_0_ORIGIN, 50000, &reply, false);
- 	if (ret) {
- timeout:
- 		drm_err(&xe->drm, "mmio request 0x%08x: no reply 0x%08x\n",
-@@ -686,7 +686,8 @@ int xe_guc_send_mmio(struct xe_guc *guc, const u32 *request, u32 len)
- 		ret = xe_mmio_wait32(gt, reply_reg,
- 				     FIELD_PREP(GUC_HXG_MSG_0_TYPE,
- 						GUC_HXG_TYPE_RESPONSE_SUCCESS),
--				     GUC_HXG_MSG_0_TYPE, 1000000, &header);
-+				     GUC_HXG_MSG_0_TYPE, 1000000, &header,
-+				     false);
- 
- 		if (unlikely(FIELD_GET(GUC_HXG_MSG_0_ORIGIN, header) !=
- 			     GUC_HXG_ORIGIN_GUC))
-diff --git a/drivers/gpu/drm/xe/xe_huc.c b/drivers/gpu/drm/xe/xe_huc.c
-index 9cb15bb40a38..82e7fb3a6292 100644
---- a/drivers/gpu/drm/xe/xe_huc.c
-+++ b/drivers/gpu/drm/xe/xe_huc.c
-@@ -85,7 +85,7 @@ int xe_huc_auth(struct xe_huc *huc)
- 
- 	ret = xe_mmio_wait32(gt, GEN11_HUC_KERNEL_LOAD_INFO.reg,
- 			     HUC_LOAD_SUCCESSFUL,
--			     HUC_LOAD_SUCCESSFUL, 100000, NULL);
-+			     HUC_LOAD_SUCCESSFUL, 100000, NULL, false);
- 	if (ret) {
- 		drm_err(&xe->drm, "HuC: Firmware not verified %d\n", ret);
- 		goto fail;
-diff --git a/drivers/gpu/drm/xe/xe_mmio.h b/drivers/gpu/drm/xe/xe_mmio.h
-index 2edf3a166515..009bc14a24f4 100644
---- a/drivers/gpu/drm/xe/xe_mmio.h
-+++ b/drivers/gpu/drm/xe/xe_mmio.h
-@@ -73,8 +73,8 @@ static inline int xe_mmio_write32_and_verify(struct xe_gt *gt,
- 	return (reg_val & mask) != eval ? -EINVAL : 0;
- }
- 
--static inline int xe_mmio_wait32(struct xe_gt *gt, u32 reg, u32 val,
--				 u32 mask, u32 timeout_us, u32 *out_val)
-+static inline int xe_mmio_wait32(struct xe_gt *gt, u32 reg, u32 val, u32 mask,
-+				 u32 timeout_us, u32 *out_val, bool atomic)
- {
- 	ktime_t cur = ktime_get_raw();
- 	const ktime_t end = ktime_add_us(cur, timeout_us);
-@@ -99,7 +99,10 @@ static inline int xe_mmio_wait32(struct xe_gt *gt, u32 reg, u32 val,
- 		if (ktime_after(ktime_add_us(cur, wait), end))
- 			wait = ktime_us_delta(end, cur);
- 
--		usleep_range(wait, wait << 1);
-+		if (atomic)
-+			udelay(wait);
-+		else
-+			usleep_range(wait, wait << 1);
- 		wait <<= 1;
- 	}
- 
-diff --git a/drivers/gpu/drm/xe/xe_pcode.c b/drivers/gpu/drm/xe/xe_pcode.c
-index 313ccd70d1a9..39712e843728 100644
---- a/drivers/gpu/drm/xe/xe_pcode.c
-+++ b/drivers/gpu/drm/xe/xe_pcode.c
-@@ -12,11 +12,6 @@
- #include <linux/errno.h>
- 
- #include <linux/delay.h>
--/*
-- * FIXME: This header has been deemed evil and we need to kill it. Temporarily
-- * including so we can use 'wait_for'.
-- */
--#include "i915_utils.h"
- 
- /**
-  * DOC: PCODE
-@@ -59,28 +54,24 @@ static int pcode_mailbox_status(struct xe_gt *gt)
- 	return 0;
- }
- 
--static bool pcode_mailbox_done(struct xe_gt *gt)
--{
--	lockdep_assert_held(&gt->pcode.lock);
--	return (xe_mmio_read32(gt, PCODE_MAILBOX.reg) & PCODE_READY) == 0;
--}
--
- static int pcode_mailbox_rw(struct xe_gt *gt, u32 mbox, u32 *data0, u32 *data1,
--			    unsigned int timeout, bool return_data, bool atomic)
-+			    unsigned int timeout_ms, bool return_data,
-+			    bool atomic)
- {
-+	int err;
- 	lockdep_assert_held(&gt->pcode.lock);
- 
--	if (!pcode_mailbox_done(gt))
-+	if ((xe_mmio_read32(gt, PCODE_MAILBOX.reg) & PCODE_READY) != 0)
- 		return -EAGAIN;
- 
- 	xe_mmio_write32(gt, PCODE_DATA0.reg, *data0);
- 	xe_mmio_write32(gt, PCODE_DATA1.reg, data1 ? *data1 : 0);
- 	xe_mmio_write32(gt, PCODE_MAILBOX.reg, PCODE_READY | mbox);
- 
--	if (atomic)
--		_wait_for_atomic(pcode_mailbox_done(gt), timeout * 1000, 1);
--	else
--		wait_for(pcode_mailbox_done(gt), timeout);
-+	err = xe_mmio_wait32(gt, PCODE_MAILBOX.reg, 0, PCODE_READY,
-+			     timeout_ms * 1000, NULL, atomic);
-+	if (err)
-+		return err;
- 
- 	if (return_data) {
- 		*data0 = xe_mmio_read32(gt, PCODE_DATA0.reg);
-@@ -113,13 +104,26 @@ int xe_pcode_read(struct xe_gt *gt, u32 mbox, u32 *val, u32 *val1)
+diff --git a/drivers/gpu/drm/xe/xe_mmio.c b/drivers/gpu/drm/xe/xe_mmio.c
+index 372ee632898f..30efe3569b5c 100644
+--- a/drivers/gpu/drm/xe/xe_mmio.c
++++ b/drivers/gpu/drm/xe/xe_mmio.c
+@@ -51,7 +51,6 @@ static int xe_set_dma_info(struct xe_device *xe)
  	return err;
  }
  
--static bool xe_pcode_try_request(struct xe_gt *gt, u32 mbox,
--				  u32 request, u32 reply_mask, u32 reply,
--				  u32 *status, bool atomic)
-+static int xe_pcode_try_request(struct xe_gt *gt, u32 mbox,
-+				u32 request, u32 reply_mask, u32 reply,
-+				u32 *status, bool atomic, int timeout_us)
+-#ifdef CONFIG_64BIT
+ static int
+ _resize_bar(struct xe_device *xe, int resno, resource_size_t size)
  {
--	*status = pcode_mailbox_rw(gt, mbox, &request, NULL, 1, true, atomic);
-+	int slept, wait = 10;
-+
-+	for (slept = 0; slept < timeout_us; slept += wait) {
-+		*status = pcode_mailbox_rw(gt, mbox, &request, NULL, 1, true,
-+					   atomic);
-+		if ((*status == 0) && ((request & reply_mask) == reply))
-+			return 0;
-+
-+		if (atomic)
-+			udelay(wait);
-+		else
-+			usleep_range(wait, wait << 1);
-+		wait <<= 1;
-+	}
- 
--	return (*status == 0) && ((request & reply_mask) == reply);
-+	return -ETIMEDOUT;
- }
- 
- /**
-@@ -146,25 +150,12 @@ int xe_pcode_request(struct xe_gt *gt, u32 mbox, u32 request,
- {
- 	u32 status;
- 	int ret;
--	bool atomic = false;
- 
- 	mutex_lock(&gt->pcode.lock);
- 
--#define COND \
--	xe_pcode_try_request(gt, mbox, request, reply_mask, reply, &status, atomic)
--
--	/*
--	 * Prime the PCODE by doing a request first. Normally it guarantees
--	 * that a subsequent request, at most @timeout_base_ms later, succeeds.
--	 * _wait_for() doesn't guarantee when its passed condition is evaluated
--	 * first, so send the first request explicitly.
--	 */
--	if (COND) {
--		ret = 0;
--		goto out;
--	}
--	ret = _wait_for(COND, timeout_base_ms * 1000, 10, 10);
--	if (!ret)
-+	ret = xe_pcode_try_request(gt, mbox, request, reply_mask, reply, &status,
-+				   false, timeout_base_ms * 1000);
-+	if (ret)
- 		goto out;
- 
- 	/*
-@@ -181,15 +172,13 @@ int xe_pcode_request(struct xe_gt *gt, u32 mbox, u32 request,
- 		"PCODE timeout, retrying with preemption disabled\n");
- 	drm_WARN_ON_ONCE(&gt_to_xe(gt)->drm, timeout_base_ms > 1);
- 	preempt_disable();
--	atomic = true;
--	ret = wait_for_atomic(COND, 50);
--	atomic = false;
-+	ret = xe_pcode_try_request(gt, mbox, request, reply_mask, reply, &status,
-+				   true, timeout_base_ms * 1000);
- 	preempt_enable();
- 
- out:
- 	mutex_unlock(&gt->pcode.lock);
- 	return status ? status : ret;
--#undef COND
- }
- /**
-  * xe_pcode_init_min_freq_table - Initialize PCODE's QOS frequency table
-@@ -243,16 +232,6 @@ int xe_pcode_init_min_freq_table(struct xe_gt *gt, u32 min_gt_freq,
+@@ -135,9 +134,6 @@ static int xe_resize_lmem_bar(struct xe_device *xe, resource_size_t lmem_size)
+ 	pci_write_config_dword(pdev, PCI_COMMAND, pci_cmd);
  	return ret;
  }
+-#else
+-static int xe_resize_lmem_bar(struct xe_device *xe, resource_size_t lmem_size) { return 0; }
+-#endif
  
--static bool pcode_dgfx_status_complete(struct xe_gt *gt)
--{
--	u32 data = DGFX_GET_INIT_STATUS;
--	int status = pcode_mailbox_rw(gt, DGFX_PCODE_STATUS,
--				      &data, NULL, 1, true, false);
--
--	return status == 0 &&
--		(data & DGFX_INIT_STATUS_COMPLETE) == DGFX_INIT_STATUS_COMPLETE;
--}
--
- /**
-  * xe_pcode_init - Ensure PCODE is initialized
-  * @gt: gt instance
-@@ -264,20 +243,23 @@ static bool pcode_dgfx_status_complete(struct xe_gt *gt)
-  */
- int xe_pcode_init(struct xe_gt *gt)
+ static bool xe_pci_resource_valid(struct pci_dev *pdev, int bar)
  {
--	int timeout = 180000; /* 3 min */
-+	u32 status, request = DGFX_GET_INIT_STATUS;
-+	int timeout_us = 180000000; /* 3 min */
- 	int ret;
+@@ -239,10 +235,7 @@ int xe_mmio_probe_vram(struct xe_device *xe)
+ 		drm_warn(&xe->drm, "Restricting VRAM size to PCI resource size (0x%llx->0x%llx)\n",
+ 			 lmem_size, (u64)xe->mem.vram.size);
  
- 	if (!IS_DGFX(gt_to_xe(gt)))
- 		return 0;
+-#ifdef CONFIG_64BIT
+ 	xe->mem.vram.mapping = ioremap_wc(xe->mem.vram.io_start, xe->mem.vram.size);
+-#endif
+-
+ 	xe->mem.vram.size = min_t(u64, xe->mem.vram.size, usable_size);
  
- 	mutex_lock(&gt->pcode.lock);
--	ret = wait_for(pcode_dgfx_status_complete(gt), timeout);
-+	ret = xe_pcode_try_request(gt, DGFX_PCODE_STATUS, request,
-+				   DGFX_INIT_STATUS_COMPLETE,
-+				   DGFX_INIT_STATUS_COMPLETE,
-+				   &status, false, timeout_us);
- 	mutex_unlock(&gt->pcode.lock);
+ 	drm_info(&xe->drm, "TOTAL VRAM: %pa, %pa\n", &xe->mem.vram.io_start, &xe->mem.vram.size);
+diff --git a/drivers/gpu/drm/xe/xe_mmio.h b/drivers/gpu/drm/xe/xe_mmio.h
+index 7e7149c8d5ec..1bb7badf5898 100644
+--- a/drivers/gpu/drm/xe/xe_mmio.h
++++ b/drivers/gpu/drm/xe/xe_mmio.h
+@@ -7,6 +7,7 @@
+ #define _XE_MMIO_H_
  
- 	if (ret)
- 		drm_err(&gt_to_xe(gt)->drm,
--			"PCODE initialization timedout after: %d min\n",
--			timeout / 60000);
-+			"PCODE initialization timedout after: 3 min\n");
+ #include <linux/delay.h>
++#include <linux/io-64-nonatomic-lo-hi.h>
  
- 	return ret;
- }
-diff --git a/drivers/gpu/drm/xe/xe_uc_fw.c b/drivers/gpu/drm/xe/xe_uc_fw.c
-index bbb931bc19ce..cd264cf50d30 100644
---- a/drivers/gpu/drm/xe/xe_uc_fw.c
-+++ b/drivers/gpu/drm/xe/xe_uc_fw.c
-@@ -352,7 +352,8 @@ static int uc_fw_xfer(struct xe_uc_fw *uc_fw, u32 offset, u32 dma_flags)
- 			_MASKED_BIT_ENABLE(dma_flags | START_DMA));
+ #include "xe_gt_types.h"
  
- 	/* Wait for DMA to finish */
--	ret = xe_mmio_wait32(gt, DMA_CTRL.reg, 0, START_DMA, 100000, &dma_ctrl);
-+	ret = xe_mmio_wait32(gt, DMA_CTRL.reg, 0, START_DMA, 100000, &dma_ctrl,
-+			     false);
- 	if (ret)
- 		drm_err(&xe->drm, "DMA for %s fw failed, DMA_CTRL=%u\n",
- 			xe_uc_fw_type_repr(uc_fw->type), dma_ctrl);
 -- 
-2.38.1
+2.39.0
 
 
