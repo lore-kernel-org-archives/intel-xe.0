@@ -1,14 +1,14 @@
 Return-Path: <intel-xe-bounces@lists.freedesktop.org>
 From: Rodrigo Vivi <rodrigo.vivi@intel.com>
-Date: Fri, 20 Jan 2023 15:44:19 -0500
-Message-ID: <20230120204426.68104-14-rodrigo.vivi@intel.com>
+Date: Fri, 20 Jan 2023 15:44:22 -0500
+Message-ID: <20230120204426.68104-17-rodrigo.vivi@intel.com>
 In-Reply-To: <20230120204426.68104-1-rodrigo.vivi@intel.com>
 References: <20230120204426.68104-1-rodrigo.vivi@intel.com>
-Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
 MIME-Version: 1.0
-Subject: [Intel-xe] [PATCH 13/20] drm/xe/Kconfig.debug: select DEBUG_FS for
- KUnit runs
+Subject: [Intel-xe] [PATCH 16/20] drm/xe: allow building XE_DISPLAY without
+ ACPI
 List-Id: Intel Xe graphics driver <intel-xe.lists.freedesktop.org>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=unsubscribe>
@@ -20,67 +20,66 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 To: intel-xe@lists.freedesktop.org, maarten.lankhorst@linux.intel.com, philippe.lecluse@intel.com, mchehab@kernel.org
-Cc: =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>, Rodrigo Vivi <rodrigo.vivi@intel.com>
+Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
 
 From: Mauro Carvalho Chehab <mchehab@kernel.org>
 
-KUnit reuquires debugfs, as otherwise, it won't build:
-
-$ make ARCH=x86_64 O=.kunit --jobs=8
-ERROR:root:../drivers/gpu/drm/xe/display/intel_display_debugfs.c:1612:6: error: redefinition of ‘intel_display_debugfs_register’
- 1612 | void intel_display_debugfs_register(struct drm_i915_private *i915)
-      |      ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-In file included from ../drivers/gpu/drm/xe/display/intel_display_debugfs.c:18:
-../drivers/gpu/drm/xe/display/intel_display_debugfs.h:18:20: note: previous definition of ‘intel_display_debugfs_register’ with type ‘void(struct xe_device *)’
-   18 | static inline void intel_display_debugfs_register(struct drm_i915_private *i915) {}
-      |                    ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-../drivers/gpu/drm/xe/display/intel_display_debugfs.c:1935:6: error: redefinition of ‘intel_connector_debugfs_add’
- 1935 | void intel_connector_debugfs_add(struct intel_connector *intel_connector)
-      |      ^~~~~~~~~~~~~~~~~~~~~~~~~~~
-../drivers/gpu/drm/xe/display/intel_display_debugfs.h:19:20: note: previous definition of ‘intel_connector_debugfs_add’ with type ‘void(struct intel_connector *)’
-   19 | static inline void intel_connector_debugfs_add(struct intel_connector *connector) {}
-      |                    ^~~~~~~~~~~~~~~~~~~~~~~~~~~
-../drivers/gpu/drm/xe/display/intel_display_debugfs.c:1993:6: error: redefinition of ‘intel_crtc_debugfs_add’
- 1993 | void intel_crtc_debugfs_add(struct drm_crtc *crtc)
-      |      ^~~~~~~~~~~~~~~~~~~~~~
-../drivers/gpu/drm/xe/display/intel_display_debugfs.h:20:20: note: previous definition of ‘intel_crtc_debugfs_add’ with type ‘void(struct drm_crtc *)’
-   20 | static inline void intel_crtc_debugfs_add(struct drm_crtc *crtc) {}
-      |                    ^~~~~~~~~~~~~~~~~~~~~~
+It is not needed to make XE_DISPLAY dependent on ACPI. All it is
+needed is to not include intel_acpi and intel_opregion.
 
 Signed-off-by: Mauro Carvalho Chehab <mchehab@kernel.org>
-Cc: Thomas Hellström <thomas.hellstrom@linux.intel.com>
-Cc: Matthew Brost <matthew.brost@intel.com>
+Cc: Maarten Lankhort <maarten.lankhorst@linux.intel.com>
 Signed-off-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
 ---
- drivers/gpu/drm/xe/.kunitconfig  | 1 +
- drivers/gpu/drm/xe/Kconfig.debug | 2 +-
- 2 files changed, 2 insertions(+), 1 deletion(-)
+ drivers/gpu/drm/xe/Kconfig.debug | 1 -
+ drivers/gpu/drm/xe/Makefile      | 8 ++++++--
+ 2 files changed, 6 insertions(+), 3 deletions(-)
 
-diff --git a/drivers/gpu/drm/xe/.kunitconfig b/drivers/gpu/drm/xe/.kunitconfig
-index ce8a4348669d..aaf30db71cea 100644
---- a/drivers/gpu/drm/xe/.kunitconfig
-+++ b/drivers/gpu/drm/xe/.kunitconfig
-@@ -1,6 +1,7 @@
- # xe dependencies
- CONFIG_KUNIT=y
- CONFIG_PCI=y
-+CONFIG_DEBUG_FS=y
- CONFIG_DRM=y
- CONFIG_DRM_XE=y
- CONFIG_EXPERT=y
 diff --git a/drivers/gpu/drm/xe/Kconfig.debug b/drivers/gpu/drm/xe/Kconfig.debug
-index 0d42f30fbe81..b7fd6fa17bff 100644
+index 6f7123e90563..6726caa63acc 100644
 --- a/drivers/gpu/drm/xe/Kconfig.debug
 +++ b/drivers/gpu/drm/xe/Kconfig.debug
-@@ -63,7 +63,7 @@ config DRM_XE_SIMPLE_ERROR_CAPTURE
- 
- config DRM_XE_KUNIT_TEST
-         tristate "KUnit tests for the drm xe driver" if !KUNIT_ALL_TESTS
--	depends on DRM_XE && KUNIT
-+	depends on DRM_XE && KUNIT && DEBUG_FS
- 	default KUNIT_ALL_TESTS
- 	select DRM_EXPORT_FOR_TESTS if m
+@@ -99,7 +99,6 @@ config DRM_XE_USERPTR_INVAL_INJECT
+ config DRM_XE_DISPLAY
+ 	bool "Enable display support"
+ 	depends on DRM_XE && EXPERT
+-	depends on ACPI
+ 	default y
  	help
+ 	  Disable this option only if you want to compile out display support.
+diff --git a/drivers/gpu/drm/xe/Makefile b/drivers/gpu/drm/xe/Makefile
+index 06bed3f12b54..d9a66ad0543d 100644
+--- a/drivers/gpu/drm/xe/Makefile
++++ b/drivers/gpu/drm/xe/Makefile
+@@ -112,7 +112,6 @@ CFLAGS_display/intel_fbdev.o = $(call cc-disable-warning, override-init)
+ # Display..
+ xe-$(CONFIG_DRM_XE_DISPLAY) += \
+ 	display/icl_dsi.o \
+-	display/intel_acpi.o \
+ 	display/intel_atomic.o \
+ 	display/intel_atomic_plane.o \
+ 	display/intel_audio.o \
+@@ -165,7 +164,6 @@ xe-$(CONFIG_DRM_XE_DISPLAY) += \
+ 	display/intel_lvds.o \
+ 	display/intel_modeset_setup.o \
+ 	display/intel_modeset_verify.o \
+-	display/intel_opregion.o \
+ 	display/intel_panel.o \
+ 	display/intel_pipe_crc.o \
+ 	display/intel_pps.o \
+@@ -189,6 +187,12 @@ xe-$(CONFIG_DRM_XE_DISPLAY) += \
+ 	display/ext/intel_pch.o \
+ 	display/ext/intel_pm.o
+ 
++ifeq ($(CONFIG_ACPI),y)
++	xe-$(CONFIG_DRM_XE_DISPLAY) += \
++		display/intel_acpi.o \
++		display/intel_opregion.o
++endif
++
+ obj-$(CONFIG_DRM_XE) += xe.o
+ obj-$(CONFIG_DRM_XE_KUNIT_TEST) += tests/
+ 
 -- 
 2.39.0
 
