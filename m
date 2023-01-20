@@ -1,14 +1,13 @@
 Return-Path: <intel-xe-bounces@lists.freedesktop.org>
 From: Rodrigo Vivi <rodrigo.vivi@intel.com>
-Date: Thu, 12 Jan 2023 17:25:31 -0500
-Message-ID: <20230112222538.2000142-31-rodrigo.vivi@intel.com>
-In-Reply-To: <20230112222538.2000142-1-rodrigo.vivi@intel.com>
-References: <20230112222538.2000142-1-rodrigo.vivi@intel.com>
+Date: Fri, 20 Jan 2023 15:44:11 -0500
+Message-ID: <20230120204426.68104-6-rodrigo.vivi@intel.com>
+In-Reply-To: <20230120204426.68104-1-rodrigo.vivi@intel.com>
+References: <20230120204426.68104-1-rodrigo.vivi@intel.com>
 Content-Transfer-Encoding: 8bit
 Content-Type: text/plain
 MIME-Version: 1.0
-Subject: [Intel-xe] [PATCH 30/37] drm/xe/guc: Report submission version of
- GuC firmware
+Subject: [Intel-xe] [PATCH 05/20] drm/xe/ggtt: Use BIT_ULL() for 64bit
 List-Id: Intel Xe graphics driver <intel-xe.lists.freedesktop.org>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=unsubscribe>
@@ -19,132 +18,36 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
-To: intel-xe@lists.freedesktop.org, matthew.brost@intel.com, maarten.lankhorst@linux.intel.com, philippe.lecluse@intel.com, mchehab@kernel.org
-Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
+To: intel-xe@lists.freedesktop.org, maarten.lankhorst@linux.intel.com, philippe.lecluse@intel.com, mchehab@kernel.org
+Cc: Lucas De Marchi <lucas.demarchi@intel.com>, Rodrigo Vivi <rodrigo.vivi@intel.com>
 
-From: Matthew Brost <matthew.brost@intel.com>
+From: Lucas De Marchi <lucas.demarchi@intel.com>
 
-Starting in 70.6.* GuC firmware the CSS header includes the submission
-version, pull this from the CSS header. Prior 70.* versions accidentally
-omitted this informatio so hard code to the correct values. This
-information will be used by VFs when communicating with the PF.
+Make sure it's 64bit value in both 32b and 64b arch.
 
-Signed-off-by: Matthew Brost <matthew.brost@intel.com>
-Cc: Philippe Lecluse <philippe.lecluse@intel.com>
+Signed-off-by: Lucas De Marchi <lucas.demarchi@intel.com>
+Reviewed-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
 Signed-off-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
 ---
- drivers/gpu/drm/xe/xe_guc_types.h |  9 ++++++
- drivers/gpu/drm/xe/xe_uc_fw.c     | 46 ++++++++++++++++++++++++++++++-
- drivers/gpu/drm/xe/xe_uc_fw_abi.h |  6 +++-
- 3 files changed, 59 insertions(+), 2 deletions(-)
+ drivers/gpu/drm/xe/xe_ggtt.c | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
 
-diff --git a/drivers/gpu/drm/xe/xe_guc_types.h b/drivers/gpu/drm/xe/xe_guc_types.h
-index ca177853cc12..c2a484282ef2 100644
---- a/drivers/gpu/drm/xe/xe_guc_types.h
-+++ b/drivers/gpu/drm/xe/xe_guc_types.h
-@@ -51,6 +51,15 @@ struct xe_guc {
- 			/** @seqno: suspend fences seqno */
- 			u32 seqno;
- 		} suspend;
-+		/** @version: submission version */
-+		struct {
-+			/** @major: major version of GuC submission */
-+			u32 major;
-+			/** @minor: minor version of GuC submission */
-+			u32 minor;
-+			/** @patch: patch version of GuC submission */
-+			u32 patch;
-+		} version;
- 	} submission_state;
- 	/** @hwconfig: Hardware config state */
- 	struct {
-diff --git a/drivers/gpu/drm/xe/xe_uc_fw.c b/drivers/gpu/drm/xe/xe_uc_fw.c
-index cd264cf50d30..ff94eec9cafe 100644
---- a/drivers/gpu/drm/xe/xe_uc_fw.c
-+++ b/drivers/gpu/drm/xe/xe_uc_fw.c
-@@ -184,6 +184,40 @@ static void uc_fw_fini(struct drm_device *drm, void *arg)
- 	xe_uc_fw_change_status(uc_fw, XE_UC_FIRMWARE_SELECTED);
- }
+diff --git a/drivers/gpu/drm/xe/xe_ggtt.c b/drivers/gpu/drm/xe/xe_ggtt.c
+index d67f66b33aed..78557654e96e 100644
+--- a/drivers/gpu/drm/xe/xe_ggtt.c
++++ b/drivers/gpu/drm/xe/xe_ggtt.c
+@@ -20,8 +20,8 @@
+ #include "../i915/gt/intel_gt_regs.h"
  
-+static void guc_read_css_info(struct xe_uc_fw *uc_fw, struct uc_css_header *css)
-+{
-+	struct xe_gt *gt = uc_fw_to_gt(uc_fw);
-+	struct xe_guc *guc = &gt->uc.guc;
-+
-+	XE_BUG_ON(uc_fw->type != XE_UC_FW_TYPE_GUC);
-+	XE_WARN_ON(uc_fw->major_ver_found < 70);
-+
-+	if (uc_fw->minor_ver_found >= 6) {
-+		/* v70.6.0 adds CSS header support */
-+		guc->submission_state.version.major =
-+			FIELD_GET(CSS_SW_VERSION_UC_MAJOR,
-+				  css->submission_version);
-+		guc->submission_state.version.minor =
-+			FIELD_GET(CSS_SW_VERSION_UC_MINOR,
-+				  css->submission_version);
-+		guc->submission_state.version.patch =
-+			FIELD_GET(CSS_SW_VERSION_UC_PATCH,
-+				  css->submission_version);
-+	} else if (uc_fw->minor_ver_found >= 3) {
-+		/* v70.3.0 introduced v1.1.0 */
-+		guc->submission_state.version.major = 1;
-+		guc->submission_state.version.minor = 1;
-+		guc->submission_state.version.patch = 0;
-+	} else {
-+		/* v70.0.0 introduced v1.0.0 */
-+		guc->submission_state.version.major = 1;
-+		guc->submission_state.version.minor = 0;
-+		guc->submission_state.version.patch = 0;
-+	}
-+
-+	uc_fw->private_data_size = css->private_data_size;
-+}
-+
- int xe_uc_fw_init(struct xe_uc_fw *uc_fw)
+ /* FIXME: Common file, preferably auto-gen */
+-#define MTL_GGTT_PTE_PAT0	BIT(52)
+-#define MTL_GGTT_PTE_PAT1	BIT(53)
++#define MTL_GGTT_PTE_PAT0	BIT_ULL(52)
++#define MTL_GGTT_PTE_PAT1	BIT_ULL(53)
+ 
+ u64 xe_ggtt_pte_encode(struct xe_bo *bo, u64 bo_offset)
  {
- 	struct xe_device *xe = uc_fw_to_xe(uc_fw);
-@@ -278,7 +312,7 @@ int xe_uc_fw_init(struct xe_uc_fw *uc_fw)
- 	}
- 
- 	if (uc_fw->type == XE_UC_FW_TYPE_GUC)
--		uc_fw->private_data_size = css->private_data_size;
-+		guc_read_css_info(uc_fw, css);
- 
- 	obj = xe_bo_create_from_data(xe, gt, fw->data, fw->size,
- 				     ttm_bo_type_kernel,
-@@ -403,4 +437,14 @@ void xe_uc_fw_print(struct xe_uc_fw *uc_fw, struct drm_printer *p)
- 		   uc_fw->major_ver_found, uc_fw->minor_ver_found);
- 	drm_printf(p, "\tuCode: %u bytes\n", uc_fw->ucode_size);
- 	drm_printf(p, "\tRSA: %u bytes\n", uc_fw->rsa_size);
-+
-+	if (uc_fw->type == XE_UC_FW_TYPE_GUC) {
-+		struct xe_gt *gt = uc_fw_to_gt(uc_fw);
-+		struct xe_guc *guc = &gt->uc.guc;
-+
-+		drm_printf(p, "\tSubmit version: %u.%u.%u\n",
-+			   guc->submission_state.version.major,
-+			   guc->submission_state.version.minor,
-+			   guc->submission_state.version.patch);
-+	}
- }
-diff --git a/drivers/gpu/drm/xe/xe_uc_fw_abi.h b/drivers/gpu/drm/xe/xe_uc_fw_abi.h
-index dafd26cb0c41..fc7b1855ee90 100644
---- a/drivers/gpu/drm/xe/xe_uc_fw_abi.h
-+++ b/drivers/gpu/drm/xe/xe_uc_fw_abi.h
-@@ -69,7 +69,11 @@ struct uc_css_header {
- #define CSS_SW_VERSION_UC_MAJOR		(0xFF << 16)
- #define CSS_SW_VERSION_UC_MINOR		(0xFF << 8)
- #define CSS_SW_VERSION_UC_PATCH		(0xFF << 0)
--	u32 reserved0[13];
-+	union {
-+		u32 submission_version; /* only applies to GuC */
-+		u32 reserved2;
-+	};
-+	u32 reserved0[12];
- 	union {
- 		u32 private_data_size; /* only applies to GuC */
- 		u32 reserved1;
 -- 
-2.38.1
+2.39.0
 
 
