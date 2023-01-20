@@ -1,13 +1,14 @@
 Return-Path: <intel-xe-bounces@lists.freedesktop.org>
 From: Rodrigo Vivi <rodrigo.vivi@intel.com>
-Date: Thu, 12 Jan 2023 17:25:02 -0500
-Message-ID: <20230112222538.2000142-2-rodrigo.vivi@intel.com>
-In-Reply-To: <20230112222538.2000142-1-rodrigo.vivi@intel.com>
-References: <20230112222538.2000142-1-rodrigo.vivi@intel.com>
-Content-Type: text/plain; charset="utf-8"
+Date: Fri, 20 Jan 2023 15:44:25 -0500
+Message-ID: <20230120204426.68104-20-rodrigo.vivi@intel.com>
+In-Reply-To: <20230120204426.68104-1-rodrigo.vivi@intel.com>
+References: <20230120204426.68104-1-rodrigo.vivi@intel.com>
 Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
 MIME-Version: 1.0
-Subject: [Intel-xe] [PATCH 01/37] drm/msm: Fix compile error
+Subject: [Intel-xe] [PATCH 19/20] drm/xe: Fix Meteor Lake rsa issue on guc
+ loading
 List-Id: Intel Xe graphics driver <intel-xe.lists.freedesktop.org>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=unsubscribe>
@@ -18,44 +19,47 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
-To: intel-xe@lists.freedesktop.org, matthew.brost@intel.com, maarten.lankhorst@linux.intel.com, philippe.lecluse@intel.com, mchehab@kernel.org
-Cc: =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>, Rodrigo Vivi <rodrigo.vivi@intel.com>
+To: intel-xe@lists.freedesktop.org, maarten.lankhorst@linux.intel.com, philippe.lecluse@intel.com, mchehab@kernel.org
+Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
 
-From: Matthew Brost <matthew.brost@intel.com>
+From: Philippe Lecluse <philippe.lecluse@intel.com>
 
-When changing the DRM scheduler from a kthread to a work queue the MSM
-driver was not updated to reflect this change. Fix this.
+[  117.901473] xe 0000:00:02.0: [drm] GuC load failed: status = 0x400000A0
+[  117.901506] xe 0000:00:02.0: [drm] GuC load failed: status: Reset = 0, BootROM = 0x50, UKernel = 0x00, MIA = 0x00, Auth = 0x01
 
-Signed-off-by: Matthew Brost <matthew.brost@intel.com>
-Cc: Thomas Hellström <thomas.hellstrom@linux.intel.com>
+was introduced by this commit:
+  drm/xe: Move load of minimal GuC and hwconfig read much earlier
+
+Signed-off-by: Philippe Lecluse <philippe.lecluse@intel.com>
+Cc: Matthew Brost <matthew.brost@intel.com>
 Signed-off-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
 ---
- drivers/gpu/drm/msm/adreno/adreno_device.c | 4 ++--
+ drivers/gpu/drm/xe/xe_gt.c | 4 ++--
  1 file changed, 2 insertions(+), 2 deletions(-)
 
-diff --git a/drivers/gpu/drm/msm/adreno/adreno_device.c b/drivers/gpu/drm/msm/adreno/adreno_device.c
-index 628806423f7d..37cf74a2cbc3 100644
---- a/drivers/gpu/drm/msm/adreno/adreno_device.c
-+++ b/drivers/gpu/drm/msm/adreno/adreno_device.c
-@@ -660,7 +660,7 @@ static void suspend_scheduler(struct msm_gpu *gpu)
- 	 */
- 	for (i = 0; i < gpu->nr_rings; i++) {
- 		struct drm_gpu_scheduler *sched = &gpu->rb[i]->sched;
--		kthread_park(sched->thread);
-+		drm_sched_run_wq_stop(sched);
- 	}
- }
+diff --git a/drivers/gpu/drm/xe/xe_gt.c b/drivers/gpu/drm/xe/xe_gt.c
+index bf5364046bab..d3c93c046c48 100644
+--- a/drivers/gpu/drm/xe/xe_gt.c
++++ b/drivers/gpu/drm/xe/xe_gt.c
+@@ -436,6 +436,8 @@ static int gt_fw_domain_init(struct xe_gt *gt)
+ 	if (err)
+ 		goto err_hw_fence_irq;
  
-@@ -670,7 +670,7 @@ static void resume_scheduler(struct msm_gpu *gpu)
++	setup_private_ppat(gt);
++
+ 	if (!xe_gt_is_media_type(gt)) {
+ 		err = xe_ggtt_init(gt, gt->mem.ggtt);
+ 		if (err)
+@@ -488,8 +490,6 @@ static int all_fw_domain_init(struct xe_gt *gt)
+ 	if (err)
+ 		goto err_hw_fence_irq;
  
- 	for (i = 0; i < gpu->nr_rings; i++) {
- 		struct drm_gpu_scheduler *sched = &gpu->rb[i]->sched;
--		kthread_unpark(sched->thread);
-+		drm_sched_run_wq_start(sched);
- 	}
- }
+-	setup_private_ppat(gt);
+-
+ 	xe_reg_sr_apply_mmio(&gt->reg_sr, gt);
  
+ 	err = xe_gt_clock_init(gt);
 -- 
-2.38.1
+2.39.0
 
 
