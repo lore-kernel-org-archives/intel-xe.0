@@ -1,13 +1,13 @@
 Return-Path: <intel-xe-bounces@lists.freedesktop.org>
 From: Rodrigo Vivi <rodrigo.vivi@intel.com>
-Date: Fri, 20 Jan 2023 15:44:14 -0500
-Message-ID: <20230120204426.68104-9-rodrigo.vivi@intel.com>
+Date: Fri, 20 Jan 2023 15:44:15 -0500
+Message-ID: <20230120204426.68104-10-rodrigo.vivi@intel.com>
 In-Reply-To: <20230120204426.68104-1-rodrigo.vivi@intel.com>
 References: <20230120204426.68104-1-rodrigo.vivi@intel.com>
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
 MIME-Version: 1.0
-Subject: [Intel-xe] [PATCH 08/20] drm/xe: Fix tracepoints on 32b
+Subject: [Intel-xe] [PATCH 09/20] drm/xe/gt: Fix min() with u32 and u64
 List-Id: Intel Xe graphics driver <intel-xe.lists.freedesktop.org>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=unsubscribe>
@@ -23,72 +23,37 @@ Cc: Lucas De Marchi <lucas.demarchi@intel.com>, Rodrigo Vivi <rodrigo.vivi@intel
 
 From: Lucas De Marchi <lucas.demarchi@intel.com>
 
-Leave the types as u64, but cast the pointers to unsigned long before
-assigning so the compiler doesn't throw warning about casting a pointer
-to integer of different size.
+Fix the following error while building for 32b:
 
-Also, size_t should use %zu, not %ld.
+	In file included from ../drivers/gpu/drm/xe/xe_gt.c:6:
+	../drivers/gpu/drm/xe/xe_gt.c: In function ‘gt_ttm_mgr_init’:
+	../include/linux/minmax.h:20:35: error: comparison of distinct pointer types lacks a cast [-Werror]
+	   20 |         (!!(sizeof((typeof(x) *)1 == (typeof(y) *)1)))
+	      |                                   ^~
+
+Cast it to u64 so size of the second operand matches the first one when
+building it for 32 bits.
 
 Signed-off-by: Lucas De Marchi <lucas.demarchi@intel.com>
 Reviewed-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
 Signed-off-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
 ---
- drivers/gpu/drm/xe/xe_trace.h | 12 ++++++------
- 1 file changed, 6 insertions(+), 6 deletions(-)
+ drivers/gpu/drm/xe/xe_gt.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-diff --git a/drivers/gpu/drm/xe/xe_trace.h b/drivers/gpu/drm/xe/xe_trace.h
-index 436593980c08..a00d4b210c3b 100644
---- a/drivers/gpu/drm/xe/xe_trace.h
-+++ b/drivers/gpu/drm/xe/xe_trace.h
-@@ -32,10 +32,10 @@ DECLARE_EVENT_CLASS(xe_bo,
- 		    TP_fast_assign(
- 			   __entry->size = bo->size;
- 			   __entry->flags = bo->flags;
--			   __entry->vm = (u64)bo->vm;
-+			   __entry->vm = (unsigned long)bo->vm;
- 			   ),
- 
--		    TP_printk("size=%ld, flags=0x%02x, vm=0x%016llx",
-+		    TP_printk("size=%zu, flags=0x%02x, vm=0x%016llx",
- 			      __entry->size, __entry->flags, __entry->vm)
- );
- 
-@@ -185,7 +185,7 @@ DECLARE_EVENT_CLASS(xe_sched_job,
- 			   atomic_read(&job->engine->guc->state);
- 			   __entry->flags = job->engine->flags;
- 			   __entry->error = job->fence->error;
--			   __entry->fence = (u64)job->fence;
-+			   __entry->fence = (unsigned long)job->fence;
- 			   __entry->batch_addr = (u64)job->batch_addr[0];
- 			   ),
- 
-@@ -272,7 +272,7 @@ DECLARE_EVENT_CLASS(xe_hw_fence,
- 		    TP_fast_assign(
- 			   __entry->ctx = fence->dma.context;
- 			   __entry->seqno = fence->dma.seqno;
--			   __entry->fence = (u64)fence;
-+			   __entry->fence = (unsigned long)fence;
- 			   ),
- 
- 		    TP_printk("ctx=0x%016llx, fence=0x%016llx, seqno=%u",
-@@ -312,7 +312,7 @@ DECLARE_EVENT_CLASS(xe_vma,
- 			     ),
- 
- 		    TP_fast_assign(
--			   __entry->vma = (u64)vma;
-+			   __entry->vma = (unsigned long)vma;
- 			   __entry->asid = vma->vm->usm.asid;
- 			   __entry->start = vma->start;
- 			   __entry->end = vma->end;
-@@ -409,7 +409,7 @@ DECLARE_EVENT_CLASS(xe_vm,
- 			     ),
- 
- 		    TP_fast_assign(
--			   __entry->vm = (u64)vm;
-+			   __entry->vm = (unsigned long)vm;
- 			   __entry->asid = vm->usm.asid;
- 			   ),
- 
+diff --git a/drivers/gpu/drm/xe/xe_gt.c b/drivers/gpu/drm/xe/xe_gt.c
+index cb837745d893..bf5364046bab 100644
+--- a/drivers/gpu/drm/xe/xe_gt.c
++++ b/drivers/gpu/drm/xe/xe_gt.c
+@@ -183,7 +183,7 @@ static int gt_ttm_mgr_init(struct xe_gt *gt)
+ 		if (err)
+ 			return err;
+ 		gtt_size = min(max((XE_DEFAULT_GTT_SIZE_MB << 20),
+-				   gt->mem.vram.size),
++				   (u64)gt->mem.vram.size),
+ 			       gtt_size);
+ 		xe->info.mem_region_mask |= BIT(gt->info.vram_id) << 1;
+ 	}
 -- 
 2.39.0
 
