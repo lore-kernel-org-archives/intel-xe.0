@@ -1,12 +1,15 @@
 Return-Path: <intel-xe-bounces@lists.freedesktop.org>
-From: =?UTF-8?q?Jos=C3=A9=20Roberto=20de=20Souza?= <jose.souza@intel.com>
-Date: Mon, 23 Jan 2023 09:55:51 -0800
-Message-Id: <20230123175552.148742-1-jose.souza@intel.com>
+Date: Mon, 23 Jan 2023 21:35:59 +0000
+From: Matthew Brost <matthew.brost@intel.com>
+Message-ID: <Y879vwM2ez7OybSe@DUT025-TGLU.fm.intel.com>
+References: <20230123175552.148742-1-jose.souza@intel.com>
+ <20230123175552.148742-2-jose.souza@intel.com>
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
+In-Reply-To: <20230123175552.148742-2-jose.souza@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
-Subject: [Intel-xe] [PATCH 1/2] xe/uapi: Rename XE_ENGINE_PROPERTY_X to
- XE_ENGINE_SET_PROPERTY_X
+Subject: Re: [Intel-xe] [PATCH 2/2] xe: Add XE_ENGINE_GET_PROPERTY uAPI
 List-Id: Intel Xe graphics driver <intel-xe.lists.freedesktop.org>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=unsubscribe>
@@ -17,87 +20,151 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
-To: intel-xe@lists.freedesktop.org
-Cc: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
+To: =?iso-8859-1?Q?Jos=E9?= Roberto de Souza <jose.souza@intel.com>
+Cc: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, intel-xe@lists.freedesktop.org
 
-Engine property get uAPI will be added, so to avoid ambiguity here
-renaming XE_ENGINE_PROPERTY_X to XE_ENGINE_SET_PROPERTY_X.
+On Mon, Jan 23, 2023 at 09:55:52AM -0800, Jos=EF=BF=BD Roberto de Souza wro=
+te:
+> This is intented to get some properties that are of interest of UMDs
+> like the ban state.
+>=20
+> Cc: Matthew Brost <matthew.brost@intel.com>
 
-No changes in behavior.
+Reviewed-by: Matthew Brost <matthew.brost@intel.com>
 
-Cc: Matthew Brost <matthew.brost@intel.com>
-Cc: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
-Signed-off-by: José Roberto de Souza <jose.souza@intel.com>
----
- drivers/gpu/drm/xe/xe_engine.c | 18 +++++++++---------
- include/uapi/drm/xe_drm.h      | 18 +++++++++---------
- 2 files changed, 18 insertions(+), 18 deletions(-)
-
-diff --git a/drivers/gpu/drm/xe/xe_engine.c b/drivers/gpu/drm/xe/xe_engine.c
-index 7cd945fcdd979..2db23f0c36cfe 100644
---- a/drivers/gpu/drm/xe/xe_engine.c
-+++ b/drivers/gpu/drm/xe/xe_engine.c
-@@ -314,15 +314,15 @@ typedef int (*xe_engine_set_property_fn)(struct xe_device *xe,
- 					 u64 value, bool create);
- 
- static const xe_engine_set_property_fn engine_set_property_funcs[] = {
--	[XE_ENGINE_PROPERTY_PRIORITY] = engine_set_priority,
--	[XE_ENGINE_PROPERTY_TIMESLICE] = engine_set_timeslice,
--	[XE_ENGINE_PROPERTY_PREEMPTION_TIMEOUT] = engine_set_preemption_timeout,
--	[XE_ENGINE_PROPERTY_COMPUTE_MODE] = engine_set_compute_mode,
--	[XE_ENGINE_PROPERTY_PERSISTENCE] = engine_set_persistence,
--	[XE_ENGINE_PROPERTY_JOB_TIMEOUT] = engine_set_job_timeout,
--	[XE_ENGINE_PROPERTY_ACC_TRIGGER] = engine_set_acc_trigger,
--	[XE_ENGINE_PROPERTY_ACC_NOTIFY] = engine_set_acc_notify,
--	[XE_ENGINE_PROPERTY_ACC_GRANULARITY] = engine_set_acc_granularity,
-+	[XE_ENGINE_SET_PROPERTY_PRIORITY] = engine_set_priority,
-+	[XE_ENGINE_SET_PROPERTY_TIMESLICE] = engine_set_timeslice,
-+	[XE_ENGINE_SET_PROPERTY_PREEMPTION_TIMEOUT] = engine_set_preemption_timeout,
-+	[XE_ENGINE_SET_PROPERTY_COMPUTE_MODE] = engine_set_compute_mode,
-+	[XE_ENGINE_SET_PROPERTY_PERSISTENCE] = engine_set_persistence,
-+	[XE_ENGINE_SET_PROPERTY_JOB_TIMEOUT] = engine_set_job_timeout,
-+	[XE_ENGINE_SET_PROPERTY_ACC_TRIGGER] = engine_set_acc_trigger,
-+	[XE_ENGINE_SET_PROPERTY_ACC_NOTIFY] = engine_set_acc_notify,
-+	[XE_ENGINE_SET_PROPERTY_ACC_GRANULARITY] = engine_set_acc_granularity,
- };
- 
- static int engine_user_ext_set_property(struct xe_device *xe,
-diff --git a/include/uapi/drm/xe_drm.h b/include/uapi/drm/xe_drm.h
-index f564860de622e..f4d9b1f805820 100644
---- a/include/uapi/drm/xe_drm.h
-+++ b/include/uapi/drm/xe_drm.h
-@@ -511,21 +511,21 @@ struct drm_xe_engine_set_property {
- 	__u32 engine_id;
- 
- 	/** @property: property to set */
--#define XE_ENGINE_PROPERTY_PRIORITY			0
--#define XE_ENGINE_PROPERTY_TIMESLICE			1
--#define XE_ENGINE_PROPERTY_PREEMPTION_TIMEOUT		2
-+#define XE_ENGINE_SET_PROPERTY_PRIORITY			0
-+#define XE_ENGINE_SET_PROPERTY_TIMESLICE		1
-+#define XE_ENGINE_SET_PROPERTY_PREEMPTION_TIMEOUT	2
- 	/*
- 	 * Long running or ULLS engine mode. DMA fences not allowed in this
- 	 * mode. Must match the value of DRM_XE_VM_CREATE_COMPUTE_MODE, serves
- 	 * as a sanity check the UMD knows what it is doing. Can only be set at
- 	 * engine create time.
- 	 */
--#define XE_ENGINE_PROPERTY_COMPUTE_MODE			3
--#define XE_ENGINE_PROPERTY_PERSISTENCE			4
--#define XE_ENGINE_PROPERTY_JOB_TIMEOUT			5
--#define XE_ENGINE_PROPERTY_ACC_TRIGGER			6
--#define XE_ENGINE_PROPERTY_ACC_NOTIFY			7
--#define XE_ENGINE_PROPERTY_ACC_GRANULARITY		8
-+#define XE_ENGINE_SET_PROPERTY_COMPUTE_MODE		3
-+#define XE_ENGINE_SET_PROPERTY_PERSISTENCE		4
-+#define XE_ENGINE_SET_PROPERTY_JOB_TIMEOUT		5
-+#define XE_ENGINE_SET_PROPERTY_ACC_TRIGGER		6
-+#define XE_ENGINE_SET_PROPERTY_ACC_NOTIFY		7
-+#define XE_ENGINE_SET_PROPERTY_ACC_GRANULARITY		8
- 	__u32 property;
- 
- 	/** @value: property value */
--- 
-2.39.1
-
+> Cc: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
+> Signed-off-by: Jos=EF=BF=BD Roberto de Souza <jose.souza@intel.com>
+> ---
+>  drivers/gpu/drm/xe/xe_device.c |  2 ++
+>  drivers/gpu/drm/xe/xe_engine.c | 26 ++++++++++++++++++++++++++
+>  drivers/gpu/drm/xe/xe_engine.h |  2 ++
+>  include/uapi/drm/xe_drm.h      | 22 +++++++++++++++++++++-
+>  4 files changed, 51 insertions(+), 1 deletion(-)
+>=20
+> diff --git a/drivers/gpu/drm/xe/xe_device.c b/drivers/gpu/drm/xe/xe_devic=
+e.c
+> index 14af3f58c75d7..364e57380b75c 100644
+> --- a/drivers/gpu/drm/xe/xe_device.c
+> +++ b/drivers/gpu/drm/xe/xe_device.c
+> @@ -106,6 +106,8 @@ static const struct drm_ioctl_desc xe_ioctls[] =3D {
+>  	DRM_IOCTL_DEF_DRV(XE_VM_BIND, xe_vm_bind_ioctl, DRM_RENDER_ALLOW),
+>  	DRM_IOCTL_DEF_DRV(XE_ENGINE_CREATE, xe_engine_create_ioctl,
+>  			  DRM_RENDER_ALLOW),
+> +	DRM_IOCTL_DEF_DRV(XE_ENGINE_GET_PROPERTY, xe_engine_get_property_ioctl,
+> +		          DRM_RENDER_ALLOW),
+>  	DRM_IOCTL_DEF_DRV(XE_ENGINE_DESTROY, xe_engine_destroy_ioctl,
+>  			  DRM_RENDER_ALLOW),
+>  	DRM_IOCTL_DEF_DRV(XE_EXEC, xe_exec_ioctl, DRM_RENDER_ALLOW),
+> diff --git a/drivers/gpu/drm/xe/xe_engine.c b/drivers/gpu/drm/xe/xe_engin=
+e.c
+> index 2db23f0c36cfe..e478d0417e49e 100644
+> --- a/drivers/gpu/drm/xe/xe_engine.c
+> +++ b/drivers/gpu/drm/xe/xe_engine.c
+> @@ -639,6 +639,32 @@ int xe_engine_create_ioctl(struct drm_device *dev, v=
+oid *data,
+>  	return err;
+>  }
+> =20
+> +int xe_engine_get_property_ioctl(struct drm_device *dev, void *data,
+> +				 struct drm_file *file)
+> +{
+> +	struct xe_device *xe =3D to_xe_device(dev);
+> +	struct xe_file *xef =3D to_xe_file(file);
+> +	struct drm_xe_engine_get_property *args =3D data;
+> +	struct xe_engine *e;
+> +
+> +	mutex_lock(&xef->engine.lock);
+> +	e =3D xa_load(&xef->engine.xa, args->engine_id);
+> +	mutex_unlock(&xef->engine.lock);
+> +
+> +	if (XE_IOCTL_ERR(xe, !e))
+> +		return -ENOENT;
+> +
+> +	switch (args->property) {
+> +	case XE_ENGINE_GET_PROPERTY_BAN:
+> +		args->value =3D !!(e->flags & ENGINE_FLAG_BANNED);
+> +		break;
+> +	default:
+> +		return -EINVAL;
+> +	}
+> +
+> +	return 0;
+> +}
+> +
+>  static void engine_kill_compute(struct xe_engine *e)
+>  {
+>  	if (!xe_vm_in_compute_mode(e->vm))
+> diff --git a/drivers/gpu/drm/xe/xe_engine.h b/drivers/gpu/drm/xe/xe_engin=
+e.h
+> index 4d1b609fea7e0..a3a44534003f7 100644
+> --- a/drivers/gpu/drm/xe/xe_engine.h
+> +++ b/drivers/gpu/drm/xe/xe_engine.h
+> @@ -50,5 +50,7 @@ int xe_engine_destroy_ioctl(struct drm_device *dev, voi=
+d *data,
+>  			    struct drm_file *file);
+>  int xe_engine_set_property_ioctl(struct drm_device *dev, void *data,
+>  				 struct drm_file *file);
+> +int xe_engine_get_property_ioctl(struct drm_device *dev, void *data,
+> +				 struct drm_file *file);
+> =20
+>  #endif
+> diff --git a/include/uapi/drm/xe_drm.h b/include/uapi/drm/xe_drm.h
+> index f4d9b1f805820..593b01ba5919c 100644
+> --- a/include/uapi/drm/xe_drm.h
+> +++ b/include/uapi/drm/xe_drm.h
+> @@ -118,6 +118,7 @@ struct xe_user_extension {
+>  #define DRM_XE_ENGINE_SET_PROPERTY	0x0a
+>  #define DRM_XE_WAIT_USER_FENCE		0x0b
+>  #define DRM_XE_VM_MADVISE		0x0c
+> +#define DRM_XE_ENGINE_GET_PROPERTY	0x0d
+> =20
+>  /* Must be kept compact -- no holes */
+>  #define DRM_IOCTL_XE_DEVICE_QUERY		DRM_IOWR(DRM_COMMAND_BASE + DRM_XE_DE=
+VICE_QUERY, struct drm_xe_device_query)
+> @@ -127,6 +128,7 @@ struct xe_user_extension {
+>  #define DRM_IOCTL_XE_VM_DESTROY			DRM_IOW( DRM_COMMAND_BASE + DRM_XE_VM_=
+DESTROY, struct drm_xe_vm_destroy)
+>  #define DRM_IOCTL_XE_VM_BIND			DRM_IOW( DRM_COMMAND_BASE + DRM_XE_VM_BIN=
+D, struct drm_xe_vm_bind)
+>  #define DRM_IOCTL_XE_ENGINE_CREATE		DRM_IOWR(DRM_COMMAND_BASE + DRM_XE_E=
+NGINE_CREATE, struct drm_xe_engine_create)
+> +#define DRM_IOCTL_XE_ENGINE_GET_PROPERTY	DRM_IOWR(DRM_COMMAND_BASE + DRM=
+_XE_ENGINE_GET_PROPERTY, struct drm_xe_engine_get_property)
+>  #define DRM_IOCTL_XE_ENGINE_DESTROY		DRM_IOW( DRM_COMMAND_BASE + DRM_XE_=
+ENGINE_DESTROY, struct drm_xe_engine_destroy)
+>  #define DRM_IOCTL_XE_EXEC			DRM_IOW( DRM_COMMAND_BASE + DRM_XE_EXEC, str=
+uct drm_xe_exec)
+>  #define DRM_IOCTL_XE_MMIO			DRM_IOWR(DRM_COMMAND_BASE + DRM_XE_MMIO, str=
+uct drm_xe_mmio)
+> @@ -568,8 +570,26 @@ struct drm_xe_engine_create {
+>  	__u64 reserved[2];
+>  };
+> =20
+> +struct drm_xe_engine_get_property {
+> +	/** @extensions: Pointer to the first extension struct, if any */
+> +	__u64 extensions;
+> +
+> +	/** @engine_id: Engine ID */
+> +	__u32 engine_id;
+> +
+> +	/** @property: property to get */
+> +#define XE_ENGINE_GET_PROPERTY_BAN			0
+> +	__u32 property;
+> +
+> +	/** @value: property value */
+> +	__u64 value;
+> +
+> +	/** @reserved: Reserved */
+> +	__u64 reserved[2];
+> +};
+> +
+>  struct drm_xe_engine_destroy {
+> -	/** @vm_id: VM ID */
+> +	/** @engine_id: Engine ID */
+>  	__u32 engine_id;
+> =20
+>  	/** @pad: MBZ */
+> --=20
+> 2.39.1
+>=20
 
