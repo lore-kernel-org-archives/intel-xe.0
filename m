@@ -1,15 +1,15 @@
 Return-Path: <intel-xe-bounces@lists.freedesktop.org>
-Date: Tue, 24 Jan 2023 10:42:42 -0500
-From: Rodrigo Vivi <rodrigo.vivi@intel.com>
-Message-ID: <Y8/8cifwO0Xsn4Rf@intel.com>
-References: <20230112222538.2000142-1-rodrigo.vivi@intel.com>
- <20230112222538.2000142-18-rodrigo.vivi@intel.com>
-Content-Type: text/plain; charset="us-ascii"
+Date: Mon, 23 Jan 2023 21:35:37 +0000
+From: Matthew Brost <matthew.brost@intel.com>
+Message-ID: <Y879qQWkdMuy3f4C@DUT025-TGLU.fm.intel.com>
+References: <20230123175552.148742-1-jose.souza@intel.com>
+Content-Type: text/plain; charset="iso-8859-1"
 Content-Disposition: inline
-In-Reply-To: <20230112222538.2000142-18-rodrigo.vivi@intel.com>
+Content-Transfer-Encoding: quoted-printable
+In-Reply-To: <20230123175552.148742-1-jose.souza@intel.com>
 MIME-Version: 1.0
-Subject: Re: [Intel-xe] [PATCH 17/37] drm/xe: Allow fbdev to allocate stolen
- memory
+Subject: Re: [Intel-xe] [PATCH 1/2] xe/uapi: Rename XE_ENGINE_PROPERTY_X to
+ XE_ENGINE_SET_PROPERTY_X
 List-Id: Intel Xe graphics driver <intel-xe.lists.freedesktop.org>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=unsubscribe>
@@ -20,120 +20,96 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
-To: intel-xe@lists.freedesktop.org, matthew.brost@intel.com, maarten.lankhorst@linux.intel.com, philippe.lecluse@intel.com, mchehab@kernel.org
+To: =?iso-8859-1?Q?Jos=E9?= Roberto de Souza <jose.souza@intel.com>
+Cc: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, intel-xe@lists.freedesktop.org
 
-On Thu, Jan 12, 2023 at 05:25:18PM -0500, Rodrigo Vivi wrote:
-> From: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
-
-Hi Maarten, could you please reply here with a commit msg for this patch?
-I will add that on the next round or while merging it.
-
-> 
-> Signed-off-by: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
+On Mon, Jan 23, 2023 at 09:55:51AM -0800, Jos=EF=BF=BD Roberto de Souza wro=
+te:
+> Engine property get uAPI will be added, so to avoid ambiguity here
+> renaming XE_ENGINE_PROPERTY_X to XE_ENGINE_SET_PROPERTY_X.
+>=20
+> No changes in behavior.
+>=20
 > Cc: Matthew Brost <matthew.brost@intel.com>
-> Signed-off-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
+
+Reviewed-by: Matthew Brost <matthew.brost@intel.com>
+
+> Cc: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
+> Signed-off-by: Jos=EF=BF=BD Roberto de Souza <jose.souza@intel.com>
 > ---
->  drivers/gpu/drm/i915/display/intel_fbdev.c | 55 ++++++++++++----------
->  1 file changed, 31 insertions(+), 24 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/i915/display/intel_fbdev.c b/drivers/gpu/drm/i915/display/intel_fbdev.c
-> index 176e0e44a268..52dc33c5f6d8 100644
-> --- a/drivers/gpu/drm/i915/display/intel_fbdev.c
-> +++ b/drivers/gpu/drm/i915/display/intel_fbdev.c
-> @@ -45,6 +45,7 @@
->  #include "gem/i915_gem_lmem.h"
->  #else
->  #include "xe_gt.h"
-> +#include "xe_ttm_stolen_mgr.h"
->  #endif
->  
->  #include "i915_drv.h"
-> @@ -171,8 +172,8 @@ static int intelfb_alloc(struct drm_fb_helper *helper,
->  
->  	size = mode_cmd.pitches[0] * mode_cmd.height;
->  	size = PAGE_ALIGN(size);
-> -#ifdef I915
->  	obj = ERR_PTR(-ENODEV);
-> +#ifdef I915
->  	if (HAS_LMEM(dev_priv)) {
->  		obj = i915_gem_object_create_lmem(dev_priv, size,
->  						  I915_BO_ALLOC_CONTIGUOUS);
-> @@ -188,11 +189,22 @@ static int intelfb_alloc(struct drm_fb_helper *helper,
->  			obj = i915_gem_object_create_shmem(dev_priv, size);
->  	}
->  #else
-> -	/* XXX: Care about stolen? */
-> -	obj = xe_bo_create_pin_map(dev_priv, to_gt(dev_priv), NULL, size,
-> -				   ttm_bo_type_kernel,
-> -				   XE_BO_CREATE_VRAM_IF_DGFX(to_gt(dev_priv)) |
-> -				   XE_BO_CREATE_PINNED_BIT | XE_BO_SCANOUT_BIT);
-> +	if (!IS_DGFX(dev_priv)) {
-> +		obj = xe_bo_create_pin_map(dev_priv, to_gt(dev_priv), NULL, size,
-> +					   ttm_bo_type_kernel, XE_BO_SCANOUT_BIT |
-> +					   XE_BO_CREATE_STOLEN_BIT |
-> +					   XE_BO_CREATE_PINNED_BIT);
-> +		if (!IS_ERR(obj))
-> +			drm_info(&dev_priv->drm, "Allocated fbdev into stolen\n");
-> +		else
-> +			drm_info(&dev_priv->drm, "Allocated fbdev into stolen failed: %li\n", PTR_ERR(obj));
-> +	}
-> +	if (IS_ERR(obj)) {
-> +		obj = xe_bo_create_pin_map(dev_priv, to_gt(dev_priv), NULL, size,
-> +					  ttm_bo_type_kernel, XE_BO_SCANOUT_BIT |
-> +					  XE_BO_CREATE_VRAM_IF_DGFX(to_gt(dev_priv)) |
-> +					  XE_BO_CREATE_PINNED_BIT);
-> +	}
->  #endif
->  
->  	if (IS_ERR(obj)) {
-> @@ -317,33 +329,28 @@ static int intelfb_create(struct drm_fb_helper *helper,
->  		info->fix.smem_len = vma->size;
->  	}
->  	vaddr = i915_vma_pin_iomap(vma);
-> -
->  #else
-> -	/* XXX: Could be pure fiction.. */
-> -	if (obj->flags & XE_BO_CREATE_VRAM0_BIT) {
-> -		struct xe_gt *gt = to_gt(dev_priv);
-> +	info->apertures->ranges[0].base = pci_resource_start(pdev, 2);
-> +	info->apertures->ranges[0].size = pci_resource_len(pdev, 2);
-> +	if (!(obj->flags & XE_BO_CREATE_SYSTEM_BIT)) {
->  		bool lmem;
->  
-> -		info->apertures->ranges[0].base = gt->mem.vram.io_start;
-> -		info->apertures->ranges[0].size = gt->mem.vram.size;
-> +		if (obj->flags & XE_BO_CREATE_STOLEN_BIT)
-> +			info->fix.smem_start = xe_ttm_stolen_io_offset(obj, 0);
-> +		else
-> +			info->fix.smem_start =
-> +				pci_resource_start(pdev, 2) +
-> +				xe_bo_addr(obj, 0, GEN8_PAGE_SIZE, &lmem);
->  
-> -		info->fix.smem_start =
-> -			(unsigned long)(gt->mem.vram.io_start + xe_bo_addr(obj, 0, 4096, &lmem));
->  		info->fix.smem_len = obj->ttm.base.size;
-> -
->  	} else {
-> -		struct pci_dev *pdev = to_pci_dev(dev_priv->drm.dev);
-> -
-> -		info->apertures->ranges[0].base = pci_resource_start(pdev, 2);
-> -		info->apertures->ranges[0].size =
-> -			pci_resource_end(pdev, 2) - pci_resource_start(pdev, 2);
-> -
-> -		info->fix.smem_start = info->apertures->ranges[0].base + xe_bo_ggtt_addr(obj);
-> +		/* XXX: Pure fiction, as the BO may not be physically accessible.. */
-> +		info->fix.smem_start = 0;
->  		info->fix.smem_len = obj->ttm.base.size;
->  	}
->  
-> -	/* TODO: ttm_bo_kmap? */
-> -	vaddr = obj->vmap.vaddr;
-> +	XE_WARN_ON(iosys_map_is_null(&obj->vmap));
-> +	vaddr = obj->vmap.vaddr_iomem;
->  #endif
->  
->  	if (IS_ERR(vaddr)) {
-> -- 
-> 2.38.1
-> 
+>  drivers/gpu/drm/xe/xe_engine.c | 18 +++++++++---------
+>  include/uapi/drm/xe_drm.h      | 18 +++++++++---------
+>  2 files changed, 18 insertions(+), 18 deletions(-)
+>=20
+> diff --git a/drivers/gpu/drm/xe/xe_engine.c b/drivers/gpu/drm/xe/xe_engin=
+e.c
+> index 7cd945fcdd979..2db23f0c36cfe 100644
+> --- a/drivers/gpu/drm/xe/xe_engine.c
+> +++ b/drivers/gpu/drm/xe/xe_engine.c
+> @@ -314,15 +314,15 @@ typedef int (*xe_engine_set_property_fn)(struct xe_=
+device *xe,
+>  					 u64 value, bool create);
+> =20
+>  static const xe_engine_set_property_fn engine_set_property_funcs[] =3D {
+> -	[XE_ENGINE_PROPERTY_PRIORITY] =3D engine_set_priority,
+> -	[XE_ENGINE_PROPERTY_TIMESLICE] =3D engine_set_timeslice,
+> -	[XE_ENGINE_PROPERTY_PREEMPTION_TIMEOUT] =3D engine_set_preemption_timeo=
+ut,
+> -	[XE_ENGINE_PROPERTY_COMPUTE_MODE] =3D engine_set_compute_mode,
+> -	[XE_ENGINE_PROPERTY_PERSISTENCE] =3D engine_set_persistence,
+> -	[XE_ENGINE_PROPERTY_JOB_TIMEOUT] =3D engine_set_job_timeout,
+> -	[XE_ENGINE_PROPERTY_ACC_TRIGGER] =3D engine_set_acc_trigger,
+> -	[XE_ENGINE_PROPERTY_ACC_NOTIFY] =3D engine_set_acc_notify,
+> -	[XE_ENGINE_PROPERTY_ACC_GRANULARITY] =3D engine_set_acc_granularity,
+> +	[XE_ENGINE_SET_PROPERTY_PRIORITY] =3D engine_set_priority,
+> +	[XE_ENGINE_SET_PROPERTY_TIMESLICE] =3D engine_set_timeslice,
+> +	[XE_ENGINE_SET_PROPERTY_PREEMPTION_TIMEOUT] =3D engine_set_preemption_t=
+imeout,
+> +	[XE_ENGINE_SET_PROPERTY_COMPUTE_MODE] =3D engine_set_compute_mode,
+> +	[XE_ENGINE_SET_PROPERTY_PERSISTENCE] =3D engine_set_persistence,
+> +	[XE_ENGINE_SET_PROPERTY_JOB_TIMEOUT] =3D engine_set_job_timeout,
+> +	[XE_ENGINE_SET_PROPERTY_ACC_TRIGGER] =3D engine_set_acc_trigger,
+> +	[XE_ENGINE_SET_PROPERTY_ACC_NOTIFY] =3D engine_set_acc_notify,
+> +	[XE_ENGINE_SET_PROPERTY_ACC_GRANULARITY] =3D engine_set_acc_granularity,
+>  };
+> =20
+>  static int engine_user_ext_set_property(struct xe_device *xe,
+> diff --git a/include/uapi/drm/xe_drm.h b/include/uapi/drm/xe_drm.h
+> index f564860de622e..f4d9b1f805820 100644
+> --- a/include/uapi/drm/xe_drm.h
+> +++ b/include/uapi/drm/xe_drm.h
+> @@ -511,21 +511,21 @@ struct drm_xe_engine_set_property {
+>  	__u32 engine_id;
+> =20
+>  	/** @property: property to set */
+> -#define XE_ENGINE_PROPERTY_PRIORITY			0
+> -#define XE_ENGINE_PROPERTY_TIMESLICE			1
+> -#define XE_ENGINE_PROPERTY_PREEMPTION_TIMEOUT		2
+> +#define XE_ENGINE_SET_PROPERTY_PRIORITY			0
+> +#define XE_ENGINE_SET_PROPERTY_TIMESLICE		1
+> +#define XE_ENGINE_SET_PROPERTY_PREEMPTION_TIMEOUT	2
+>  	/*
+>  	 * Long running or ULLS engine mode. DMA fences not allowed in this
+>  	 * mode. Must match the value of DRM_XE_VM_CREATE_COMPUTE_MODE, serves
+>  	 * as a sanity check the UMD knows what it is doing. Can only be set at
+>  	 * engine create time.
+>  	 */
+> -#define XE_ENGINE_PROPERTY_COMPUTE_MODE			3
+> -#define XE_ENGINE_PROPERTY_PERSISTENCE			4
+> -#define XE_ENGINE_PROPERTY_JOB_TIMEOUT			5
+> -#define XE_ENGINE_PROPERTY_ACC_TRIGGER			6
+> -#define XE_ENGINE_PROPERTY_ACC_NOTIFY			7
+> -#define XE_ENGINE_PROPERTY_ACC_GRANULARITY		8
+> +#define XE_ENGINE_SET_PROPERTY_COMPUTE_MODE		3
+> +#define XE_ENGINE_SET_PROPERTY_PERSISTENCE		4
+> +#define XE_ENGINE_SET_PROPERTY_JOB_TIMEOUT		5
+> +#define XE_ENGINE_SET_PROPERTY_ACC_TRIGGER		6
+> +#define XE_ENGINE_SET_PROPERTY_ACC_NOTIFY		7
+> +#define XE_ENGINE_SET_PROPERTY_ACC_GRANULARITY		8
+>  	__u32 property;
+> =20
+>  	/** @value: property value */
+> --=20
+> 2.39.1
+>=20
 
