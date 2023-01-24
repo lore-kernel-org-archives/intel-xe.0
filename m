@@ -1,15 +1,13 @@
 Return-Path: <intel-xe-bounces@lists.freedesktop.org>
-From: "Lecluse, Philippe" <philippe.lecluse@intel.com>
-Date: Tue, 24 Jan 2023 16:25:16 +0000
-Message-ID: <DM6PR11MB45291BB4644955E0CED4447995C99@DM6PR11MB4529.namprd11.prod.outlook.com>
+Date: Tue, 24 Jan 2023 10:46:18 -0500
+From: Rodrigo Vivi <rodrigo.vivi@intel.com>
+Message-ID: <Y8/9Sn1LAkpDW+Ex@intel.com>
 References: <20230112222538.2000142-1-rodrigo.vivi@intel.com>
  <20230112222538.2000142-38-rodrigo.vivi@intel.com>
- <Y8/9Sn1LAkpDW+Ex@intel.com>
-In-Reply-To: <Y8/9Sn1LAkpDW+Ex@intel.com>
-Content-Language: en-US
 Content-Type: text/plain; charset="us-ascii"
+Content-Disposition: inline
+In-Reply-To: <20230112222538.2000142-38-rodrigo.vivi@intel.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
 Subject: Re: [Intel-xe] [PATCH 37/37] drm/xe: enforce GSMBASE for DG1
  instead of BAR2
 List-Id: Intel Xe graphics driver <intel-xe.lists.freedesktop.org>
@@ -22,21 +20,8 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
-To: "Vivi, Rodrigo" <rodrigo.vivi@intel.com>, "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>
-
-On DG1, BAR2 is not reliable for reporting Vram size, need to use GSMBASE.
-Simplify xe_mmio_total_vram_size to report vram size and usable size.
-
------Original Message-----
-From: Vivi, Rodrigo <rodrigo.vivi@intel.com> =
-
-Sent: Tuesday, January 24, 2023 4:46 PM
-To: intel-xe@lists.freedesktop.org; Brost, Matthew <matthew.brost@intel.com=
->; maarten.lankhorst@linux.intel.com; Lecluse, Philippe <philippe.lecluse@i=
-ntel.com>; mchehab@kernel.org
-Cc: Auld, Matthew <matthew.auld@intel.com>
-Subject: Re: [Intel-xe] [PATCH 37/37] drm/xe: enforce GSMBASE for DG1 inste=
-ad of BAR2
+To: intel-xe@lists.freedesktop.org, matthew.brost@intel.com, maarten.lankhorst@linux.intel.com, philippe.lecluse@intel.com, mchehab@kernel.org
+Cc: Matthew Auld <matthew.auld@intel.com>
 
 On Thu, Jan 12, 2023 at 05:25:38PM -0500, Rodrigo Vivi wrote:
 > From: Philippe Lecluse <philippe.lecluse@intel.com>
@@ -46,15 +31,98 @@ I will add on the next interaction or while merging it.
 
 Thanks,
 Rodrigo.
----------------------------------------------------------------------
-Intel Benelux B.V.
-Registered in The Netherlands under number 24134020
-Statutory seat: Rotterdam
-Registered address: Capronilaan 37, 1119NG Schiphol-Rijk
 
-This e-mail and any attachments may contain confidential material for
-the sole use of the intended recipient(s). Any review or distribution
-by others is strictly prohibited. If you are not the intended
-recipient, please contact the sender and delete all copies.
-
+> 
+> v2: move to logic in probed vram_size
+>     rename flat_ccs_base to more generic usable_size
+> 
+> Signed-off-by: Philippe Lecluse <philippe.lecluse@intel.com>
+> Cc: Matthew Auld <matthew.auld@intel.com>
+> Signed-off-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
+> ---
+>  drivers/gpu/drm/xe/xe_mmio.c | 28 ++++++++++++++--------------
+>  1 file changed, 14 insertions(+), 14 deletions(-)
+> 
+> diff --git a/drivers/gpu/drm/xe/xe_mmio.c b/drivers/gpu/drm/xe/xe_mmio.c
+> index 4d679027fc98..b3c1a39ef79d 100644
+> --- a/drivers/gpu/drm/xe/xe_mmio.c
+> +++ b/drivers/gpu/drm/xe/xe_mmio.c
+> @@ -153,7 +153,7 @@ static bool xe_pci_resource_valid(struct pci_dev *pdev, int bar)
+>  	return true;
+>  }
+>  
+> -int xe_mmio_total_vram_size(struct xe_device *xe, u64 *vram_size, u64 *flat_ccs_base)
+> +int xe_mmio_total_vram_size(struct xe_device *xe, u64 *vram_size, u64 *usable_size)
+>  {
+>  	struct xe_gt *gt = xe_device_get_gt(xe, 0);
+>  	struct pci_dev *pdev = to_pci_dev(xe->drm.dev);
+> @@ -162,8 +162,12 @@ int xe_mmio_total_vram_size(struct xe_device *xe, u64 *vram_size, u64 *flat_ccs_
+>  
+>  	if (!xe->info.has_flat_ccs)  {
+>  		*vram_size = pci_resource_len(pdev, GEN12_LMEM_BAR);
+> -		if (flat_ccs_base)
+> -			*flat_ccs_base = *vram_size;
+> +		if (usable_size) {
+> +			if (xe->info.platform == XE_DG1)
+> +				*usable_size = xe_mmio_read64(gt, GEN12_GSMBASE.reg);
+> +			else
+> +				*usable_size = *vram_size;
+> +		}
+>  		return 0;
+>  	}
+>  
+> @@ -173,15 +177,13 @@ int xe_mmio_total_vram_size(struct xe_device *xe, u64 *vram_size, u64 *flat_ccs_
+>  
+>  	reg = xe_gt_mcr_unicast_read_any(gt, XEHP_TILE0_ADDR_RANGE);
+>  	*vram_size = (u64)REG_FIELD_GET(GENMASK(14, 8), reg) * SZ_1G;
+> -	if (flat_ccs_base) {
+> +	if (usable_size) {
+>  		reg = xe_gt_mcr_unicast_read_any(gt, XEHP_FLAT_CCS_BASE_ADDR);
+> -		*flat_ccs_base = (u64)REG_FIELD_GET(GENMASK(31, 8), reg) * SZ_64K;
+> +		*usable_size = (u64)REG_FIELD_GET(GENMASK(31, 8), reg) * SZ_64K;
+> +		drm_info(&xe->drm, "lmem_size: 0x%llx usable_size: 0x%llx\n",
+> +			 *vram_size, *usable_size);
+>  	}
+>  
+> -	if (flat_ccs_base)
+> -		drm_info(&xe->drm, "lmem_size: 0x%llx flat_ccs_base: 0x%llx\n",
+> -			 *vram_size, *flat_ccs_base);
+> -
+>  	return xe_force_wake_put(gt_to_fw(gt), XE_FW_GT);
+>  }
+>  
+> @@ -193,7 +195,7 @@ int xe_mmio_probe_vram(struct xe_device *xe)
+>  	u64 lmem_size;
+>  	u64 original_size;
+>  	u64 current_size;
+> -	u64 flat_ccs_base;
+> +	u64 usable_size;
+>  	int resize_result, err;
+>  
+>  	if (!IS_DGFX(xe)) {
+> @@ -215,11 +217,9 @@ int xe_mmio_probe_vram(struct xe_device *xe)
+>  	}
+>  
+>  	gt = xe_device_get_gt(xe, 0);
+> -	lmem_size = xe_mmio_read64(gt, GEN12_GSMBASE.reg);
+> -
+>  	original_size = pci_resource_len(pdev, GEN12_LMEM_BAR);
+>  
+> -	err = xe_mmio_total_vram_size(xe, &lmem_size, &flat_ccs_base);
+> +	err = xe_mmio_total_vram_size(xe, &lmem_size, &usable_size);
+>  	if (err)
+>  		return err;
+>  
+> @@ -247,7 +247,7 @@ int xe_mmio_probe_vram(struct xe_device *xe)
+>  	xe->mem.vram.mapping = ioremap_wc(xe->mem.vram.io_start, xe->mem.vram.size);
+>  #endif
+>  
+> -	xe->mem.vram.size = min_t(u64, xe->mem.vram.size, flat_ccs_base);
+> +	xe->mem.vram.size = min_t(u64, xe->mem.vram.size, usable_size);
+>  
+>  	drm_info(&xe->drm, "TOTAL VRAM: %pa, %pa\n", &xe->mem.vram.io_start, &xe->mem.vram.size);
+>  
+> -- 
+> 2.38.1
+> 
 
