@@ -1,15 +1,17 @@
 Return-Path: <intel-xe-bounces@lists.freedesktop.org>
-Date: Tue, 24 Jan 2023 10:44:47 -0500
-From: Rodrigo Vivi <rodrigo.vivi@intel.com>
-Message-ID: <Y8/87yxfO0zY1sYz@intel.com>
+From: "Lecluse, Philippe" <philippe.lecluse@intel.com>
+Date: Tue, 24 Jan 2023 16:25:16 +0000
+Message-ID: <DM6PR11MB45291BB4644955E0CED4447995C99@DM6PR11MB4529.namprd11.prod.outlook.com>
 References: <20230112222538.2000142-1-rodrigo.vivi@intel.com>
- <20230112222538.2000142-27-rodrigo.vivi@intel.com>
+ <20230112222538.2000142-38-rodrigo.vivi@intel.com>
+ <Y8/9Sn1LAkpDW+Ex@intel.com>
+In-Reply-To: <Y8/9Sn1LAkpDW+Ex@intel.com>
+Content-Language: en-US
 Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
-In-Reply-To: <20230112222538.2000142-27-rodrigo.vivi@intel.com>
 MIME-Version: 1.0
-Subject: Re: [Intel-xe] [PATCH 26/37] Revert "drm/xe: Validate BO on CPU
- fault"
+Content-Transfer-Encoding: quoted-printable
+Subject: Re: [Intel-xe] [PATCH 37/37] drm/xe: enforce GSMBASE for DG1
+ instead of BAR2
 List-Id: Intel Xe graphics driver <intel-xe.lists.freedesktop.org>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=unsubscribe>
@@ -20,53 +22,39 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
-To: intel-xe@lists.freedesktop.org, matthew.brost@intel.com, maarten.lankhorst@linux.intel.com, philippe.lecluse@intel.com, mchehab@kernel.org
+To: "Vivi, Rodrigo" <rodrigo.vivi@intel.com>, "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>
 
-On Thu, Jan 12, 2023 at 05:25:27PM -0500, Rodrigo Vivi wrote:
-> From: Matthew Brost <matthew.brost@intel.com>
-> 
-> This reverts commit 48d84660be7607ccaacd76a2d653f51709cc5693.
+On DG1, BAR2 is not reliable for reporting Vram size, need to use GSMBASE.
+Simplify xe_mmio_total_vram_size to report vram size and usable size.
 
-Hi Matt, this commit doesn't exist after the big squased initial patch.
-Could you please reply here with a commit subject and message?
-I will add on a next interaction or when merging it.
+-----Original Message-----
+From: Vivi, Rodrigo <rodrigo.vivi@intel.com> =
+
+Sent: Tuesday, January 24, 2023 4:46 PM
+To: intel-xe@lists.freedesktop.org; Brost, Matthew <matthew.brost@intel.com=
+>; maarten.lankhorst@linux.intel.com; Lecluse, Philippe <philippe.lecluse@i=
+ntel.com>; mchehab@kernel.org
+Cc: Auld, Matthew <matthew.auld@intel.com>
+Subject: Re: [Intel-xe] [PATCH 37/37] drm/xe: enforce GSMBASE for DG1 inste=
+ad of BAR2
+
+On Thu, Jan 12, 2023 at 05:25:38PM -0500, Rodrigo Vivi wrote:
+> From: Philippe Lecluse <philippe.lecluse@intel.com>
+
+Hi Phil, could you please reply with a commit message to this patch?
+I will add on the next interaction or while merging it.
 
 Thanks,
 Rodrigo.
+---------------------------------------------------------------------
+Intel Benelux B.V.
+Registered in The Netherlands under number 24134020
+Statutory seat: Rotterdam
+Registered address: Capronilaan 37, 1119NG Schiphol-Rijk
 
-> 
-> Cc: Matthew Brost <matthew.brost@intel.com>
-> Signed-off-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
-> ---
->  drivers/gpu/drm/xe/xe_bo.c | 13 ++++++-------
->  1 file changed, 6 insertions(+), 7 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/xe/xe_bo.c b/drivers/gpu/drm/xe/xe_bo.c
-> index da2c8a1c19ec..e224405bc4f6 100644
-> --- a/drivers/gpu/drm/xe/xe_bo.c
-> +++ b/drivers/gpu/drm/xe/xe_bo.c
-> @@ -875,14 +875,13 @@ static vm_fault_t xe_gem_fault(struct vm_fault *vmf)
->  
->  		trace_xe_bo_cpu_fault(bo);
->  
-> -		if (should_migrate_to_system(bo))
-> +		if (should_migrate_to_system(bo)) {
->  			r = xe_bo_migrate(bo, XE_PL_TT);
-> -		else
-> -			r = xe_bo_validate(bo, NULL, false);
-> -		if (r == -EBUSY || r == -ERESTARTSYS)
-> -			ret = VM_FAULT_NOPAGE;
-> -		else if (r)
-> -			ret = VM_FAULT_SIGBUS;
-> +			if (r == -EBUSY || r == -ERESTARTSYS || r == -EINTR)
-> +				ret = VM_FAULT_NOPAGE;
-> +			else if (r)
-> +				ret = VM_FAULT_SIGBUS;
-> +		}
->  		if (!ret)
->  			ret = ttm_bo_vm_fault_reserved(vmf,
->  						       vmf->vma->vm_page_prot,
-> -- 
-> 2.38.1
-> 
+This e-mail and any attachments may contain confidential material for
+the sole use of the intended recipient(s). Any review or distribution
+by others is strictly prohibited. If you are not the intended
+recipient, please contact the sender and delete all copies.
+
 
