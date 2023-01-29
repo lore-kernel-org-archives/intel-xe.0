@@ -1,15 +1,53 @@
 Return-Path: <intel-xe-bounces@lists.freedesktop.org>
-Date: Tue, 24 Jan 2023 10:46:18 -0500
-From: Rodrigo Vivi <rodrigo.vivi@intel.com>
-Message-ID: <Y8/9Sn1LAkpDW+Ex@intel.com>
-References: <20230112222538.2000142-1-rodrigo.vivi@intel.com>
- <20230112222538.2000142-38-rodrigo.vivi@intel.com>
-Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
-In-Reply-To: <20230112222538.2000142-38-rodrigo.vivi@intel.com>
+X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
+	aws-us-west-2-korg-lkml-1.web.codeaurora.org
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0A4E5C05027
+	for <intel-xe@archiver.kernel.org>; Sun, 29 Jan 2023 21:31:00 +0000 (UTC)
+Received: from gabe.freedesktop.org (localhost [127.0.0.1])
+	by gabe.freedesktop.org (Postfix) with ESMTP id 781ED10E009;
+	Sun, 29 Jan 2023 21:31:00 +0000 (UTC)
+Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0E1A510E009
+ for <intel-xe@lists.freedesktop.org>; Sun, 29 Jan 2023 21:30:59 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1675027859; x=1706563859;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=71m4KF2Fw5jBU4+1iZAyQuN/riJ4lZQURAsTvb3FnvM=;
+ b=ch4wdx7fzvtNHWG6I5Xdg9xaiuiR7FcREqYZKmM9kIGz90ZgCL30JKFJ
+ 5dITyQ77BAkdHG1dpgdIOWaQVj9BoUTjBKKYHXRtxDhBohA9eOVrv/TAg
+ xJZVfT0AM6Ucm7/OII9TJCh6LuRoQCXQK+P0TI7OUkOqArhcob/PIJdU4
+ V2Ycuphl1csrYpp1dVsiP/DPzNmhEiOmKy2Liu4WUBTGdVghS09mkyER3
+ FeQsCV70LT4cWoFD7pDuihaIPuGfMzsujILjgZAX+IFXB15Mrk7SirpHO
+ vMpQgVvApeStsZGfIWOyG5ru8xybLOZPoBK8tU4wy8xT9mdJzaOunHD9u w==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10605"; a="413656379"
+X-IronPort-AV: E=Sophos;i="5.97,256,1669104000"; d="scan'208";a="413656379"
+Received: from fmsmga003.fm.intel.com ([10.253.24.29])
+ by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 29 Jan 2023 13:30:58 -0800
+X-IronPort-AV: E=McAfee;i="6500,9779,10605"; a="752602352"
+X-IronPort-AV: E=Sophos;i="5.97,256,1669104000"; d="scan'208";a="752602352"
+Received: from davidcao-mobl1.amr.corp.intel.com (HELO localhost.localdomain)
+ ([10.212.10.127])
+ by fmsmga003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 29 Jan 2023 13:30:55 -0800
+From: =?UTF-8?q?Jos=C3=A9=20Roberto=20de=20Souza?= <jose.souza@intel.com>
+To: intel-xe@lists.freedesktop.org
+Date: Sun, 29 Jan 2023 13:30:44 -0800
+Message-Id: <20230129213044.100693-1-jose.souza@intel.com>
+X-Mailer: git-send-email 2.39.1
 MIME-Version: 1.0
-Subject: Re: [Intel-xe] [PATCH 37/37] drm/xe: enforce GSMBASE for DG1
- instead of BAR2
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+Subject: [Intel-xe] [PATCH] drm/xe: Add fake workaround to maintain backward
+ compatible in MI_BATCH_BUFFER_START
+X-BeenThere: intel-xe@lists.freedesktop.org
+X-Mailman-Version: 2.1.29
+Precedence: list
 List-Id: Intel Xe graphics driver <intel-xe.lists.freedesktop.org>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=unsubscribe>
@@ -20,109 +58,57 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
-To: intel-xe@lists.freedesktop.org, matthew.brost@intel.com, maarten.lankhorst@linux.intel.com, philippe.lecluse@intel.com, mchehab@kernel.org
-Cc: Matthew Auld <matthew.auld@intel.com>
 
-On Thu, Jan 12, 2023 at 05:25:38PM -0500, Rodrigo Vivi wrote:
-> From: Philippe Lecluse <philippe.lecluse@intel.com>
+i915 has the same fake workaround to return MI_BATCH_BUFFER_START
+nested batch buffer behavior in DG2 and newer platforms to the same
+behavior as older platforms.
 
-Hi Phil, could you please reply with a commit message to this patch?
-I will add on the next interaction or while merging it.
+So here cleaning up TGL_NESTED_BB_EN in MI_MODE to disable third level
+chained batch buffer level.
 
-Thanks,
-Rodrigo.
+Bspec: 45974, 45718
+Cc: Matt Roper <matthew.d.roper@intel.com>
+Signed-off-by: José Roberto de Souza <jose.souza@intel.com>
+---
+ drivers/gpu/drm/xe/xe_rtp_types.h |  2 ++
+ drivers/gpu/drm/xe/xe_wa.c        | 11 +++++++++++
+ 2 files changed, 13 insertions(+)
 
-> 
-> v2: move to logic in probed vram_size
->     rename flat_ccs_base to more generic usable_size
-> 
-> Signed-off-by: Philippe Lecluse <philippe.lecluse@intel.com>
-> Cc: Matthew Auld <matthew.auld@intel.com>
-> Signed-off-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
-> ---
->  drivers/gpu/drm/xe/xe_mmio.c | 28 ++++++++++++++--------------
->  1 file changed, 14 insertions(+), 14 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/xe/xe_mmio.c b/drivers/gpu/drm/xe/xe_mmio.c
-> index 4d679027fc98..b3c1a39ef79d 100644
-> --- a/drivers/gpu/drm/xe/xe_mmio.c
-> +++ b/drivers/gpu/drm/xe/xe_mmio.c
-> @@ -153,7 +153,7 @@ static bool xe_pci_resource_valid(struct pci_dev *pdev, int bar)
->  	return true;
->  }
->  
-> -int xe_mmio_total_vram_size(struct xe_device *xe, u64 *vram_size, u64 *flat_ccs_base)
-> +int xe_mmio_total_vram_size(struct xe_device *xe, u64 *vram_size, u64 *usable_size)
->  {
->  	struct xe_gt *gt = xe_device_get_gt(xe, 0);
->  	struct pci_dev *pdev = to_pci_dev(xe->drm.dev);
-> @@ -162,8 +162,12 @@ int xe_mmio_total_vram_size(struct xe_device *xe, u64 *vram_size, u64 *flat_ccs_
->  
->  	if (!xe->info.has_flat_ccs)  {
->  		*vram_size = pci_resource_len(pdev, GEN12_LMEM_BAR);
-> -		if (flat_ccs_base)
-> -			*flat_ccs_base = *vram_size;
-> +		if (usable_size) {
-> +			if (xe->info.platform == XE_DG1)
-> +				*usable_size = xe_mmio_read64(gt, GEN12_GSMBASE.reg);
-> +			else
-> +				*usable_size = *vram_size;
-> +		}
->  		return 0;
->  	}
->  
-> @@ -173,15 +177,13 @@ int xe_mmio_total_vram_size(struct xe_device *xe, u64 *vram_size, u64 *flat_ccs_
->  
->  	reg = xe_gt_mcr_unicast_read_any(gt, XEHP_TILE0_ADDR_RANGE);
->  	*vram_size = (u64)REG_FIELD_GET(GENMASK(14, 8), reg) * SZ_1G;
-> -	if (flat_ccs_base) {
-> +	if (usable_size) {
->  		reg = xe_gt_mcr_unicast_read_any(gt, XEHP_FLAT_CCS_BASE_ADDR);
-> -		*flat_ccs_base = (u64)REG_FIELD_GET(GENMASK(31, 8), reg) * SZ_64K;
-> +		*usable_size = (u64)REG_FIELD_GET(GENMASK(31, 8), reg) * SZ_64K;
-> +		drm_info(&xe->drm, "lmem_size: 0x%llx usable_size: 0x%llx\n",
-> +			 *vram_size, *usable_size);
->  	}
->  
-> -	if (flat_ccs_base)
-> -		drm_info(&xe->drm, "lmem_size: 0x%llx flat_ccs_base: 0x%llx\n",
-> -			 *vram_size, *flat_ccs_base);
-> -
->  	return xe_force_wake_put(gt_to_fw(gt), XE_FW_GT);
->  }
->  
-> @@ -193,7 +195,7 @@ int xe_mmio_probe_vram(struct xe_device *xe)
->  	u64 lmem_size;
->  	u64 original_size;
->  	u64 current_size;
-> -	u64 flat_ccs_base;
-> +	u64 usable_size;
->  	int resize_result, err;
->  
->  	if (!IS_DGFX(xe)) {
-> @@ -215,11 +217,9 @@ int xe_mmio_probe_vram(struct xe_device *xe)
->  	}
->  
->  	gt = xe_device_get_gt(xe, 0);
-> -	lmem_size = xe_mmio_read64(gt, GEN12_GSMBASE.reg);
-> -
->  	original_size = pci_resource_len(pdev, GEN12_LMEM_BAR);
->  
-> -	err = xe_mmio_total_vram_size(xe, &lmem_size, &flat_ccs_base);
-> +	err = xe_mmio_total_vram_size(xe, &lmem_size, &usable_size);
->  	if (err)
->  		return err;
->  
-> @@ -247,7 +247,7 @@ int xe_mmio_probe_vram(struct xe_device *xe)
->  	xe->mem.vram.mapping = ioremap_wc(xe->mem.vram.io_start, xe->mem.vram.size);
->  #endif
->  
-> -	xe->mem.vram.size = min_t(u64, xe->mem.vram.size, flat_ccs_base);
-> +	xe->mem.vram.size = min_t(u64, xe->mem.vram.size, usable_size);
->  
->  	drm_info(&xe->drm, "TOTAL VRAM: %pa, %pa\n", &xe->mem.vram.io_start, &xe->mem.vram.size);
->  
-> -- 
-> 2.38.1
-> 
+diff --git a/drivers/gpu/drm/xe/xe_rtp_types.h b/drivers/gpu/drm/xe/xe_rtp_types.h
+index 14e5d4dbb4c15..72f3e2e83014f 100644
+--- a/drivers/gpu/drm/xe/xe_rtp_types.h
++++ b/drivers/gpu/drm/xe/xe_rtp_types.h
+@@ -52,6 +52,8 @@ enum {
+ 	XE_RTP_MATCH_FUNC,
+ };
+ 
++#define IP_VERSION_FOREVER 9900
++
+ /** struct xe_rtp_rule - match rule for processing entry */
+ struct xe_rtp_rule {
+ 	u8 match_type;
+diff --git a/drivers/gpu/drm/xe/xe_wa.c b/drivers/gpu/drm/xe/xe_wa.c
+index 3325de3edf691..3616b2284d186 100644
+--- a/drivers/gpu/drm/xe/xe_wa.c
++++ b/drivers/gpu/drm/xe/xe_wa.c
+@@ -285,6 +285,17 @@ static const struct xe_rtp_entry lrc_was[] = {
+ 		     DG1_HZ_READ_SUPPRESSION_OPTIMIZATION_DISABLE,
+ 		     XE_RTP_FLAG(MASKED_REG))
+ 	},
++	{ XE_RTP_NAME("FakeWaDisableNestedBBMode"),
++	  /*
++	   * This is a "fake" workaround defined by software to ensure we
++	   * maintain reliable, backward-compatible behavior for userspace with
++	   * regards to how nested MI_BATCH_BUFFER_START commands are handled.
++	   */
++	  XE_RTP_RULES(GRAPHICS_VERSION_RANGE(1255, IP_VERSION_FOREVER)),
++	  XE_RTP_CLR(RING_MI_MODE(0),
++		     TGL_NESTED_BB_EN,
++		     XE_RTP_FLAG(MASKED_REG, ENGINE_BASE))
++	},
+ 	{}
+ };
+ 
+-- 
+2.39.1
 
