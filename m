@@ -4,59 +4,55 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id DC79AC05027
-	for <intel-xe@archiver.kernel.org>; Fri,  3 Feb 2023 20:25:46 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 81FC1C61DA4
+	for <intel-xe@archiver.kernel.org>; Fri,  3 Feb 2023 20:25:48 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id BD5F410E08A;
-	Fri,  3 Feb 2023 20:25:46 +0000 (UTC)
-Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
- by gabe.freedesktop.org (Postfix) with ESMTPS id CDAE410E08A
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4C26D10E08A;
+	Fri,  3 Feb 2023 20:25:48 +0000 (UTC)
+Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E4B1010E0A4
  for <intel-xe@lists.freedesktop.org>; Fri,  3 Feb 2023 20:25:45 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
  t=1675455945; x=1706991945;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:content-transfer-encoding:mime-version;
- bh=4yicvdcyuXgnqZsQ3LeHmgIv3GQVEtwx/qa8lrLlv80=;
- b=VKiWadGcuDAkzms7FWrEDTbTftPaw+JqFIg3O5aznvoTVdeGPHsovgrm
- xTgl4wSPVGyPpGCMXjavK1IRINbNKOTUjjIXxhqwuFfkaFW137lTfTofZ
- AlajtiFMYaAG4Bn+5H1ygrc61ZHsM3UqLXCYqCE0leq5q77yO/HuFNh0q
- HeV/XJT0/HChT3gNNcb6U3EoVePuZPGWh4MUk4PRslfyrOM1oxIQhwsmR
- Ri+a20f4ZKP5uXNszC/ACOdk/tV2Mon7MJ1XSntEqMfPW7PTuKGKdcNim
- 82uY+9VfgNHkgtJKDk40WNa2SggarM+9cam2G7xDz7BFf7L+dswd7q3ms w==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10610"; a="415059355"
-X-IronPort-AV: E=Sophos;i="5.97,271,1669104000"; d="scan'208";a="415059355"
-Received: from orsmga007.jf.intel.com ([10.7.209.58])
- by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ bh=49bhUp7BLxIZHmvrH1V/0uzpjuuS4tACW857NXB+5/I=;
+ b=ZYW15C4xR7sKLBfrhIyOUD7wE9KG7BNYVmj2G7zv8a2BHkmDfGCVCnHB
+ DLnb4J9LeY7Wuny4By8JNL6y7k5sBp0lnpdygpEKvc6uKDpjyRppg4stL
+ dlnjhgSLTRgFcyQ1AOvpm5IEb+mCc1amJzc+v4WwPSsOSqhGc/GdVqy9O
+ ffnrbHr+vOaTOy+s9Zjj9G2ZinbH7Zvg8UOcHsJ6SYhSJdD46eodXbOpr
+ oJcq1VeItIJo25I8U2XSyaXMok7ll08AUK64ORfYlB5vvBxuECvtxVqw5
+ ieGF3VDqSC6LNBtHoituF8Ffzt17mnbDoAm4Zm+ASgfc35R/7IyFNuWdU A==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10610"; a="327483615"
+X-IronPort-AV: E=Sophos;i="5.97,271,1669104000"; d="scan'208";a="327483615"
+Received: from fmsmga002.fm.intel.com ([10.253.24.26])
+ by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  03 Feb 2023 12:25:45 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6500,9779,10610"; a="659206961"
-X-IronPort-AV: E=Sophos;i="5.97,271,1669104000"; d="scan'208";a="659206961"
-Received: from fmsmsx601.amr.corp.intel.com ([10.18.126.81])
- by orsmga007.jf.intel.com with ESMTP; 03 Feb 2023 12:25:44 -0800
-Received: from fmsmsx610.amr.corp.intel.com (10.18.126.90) by
- fmsmsx601.amr.corp.intel.com (10.18.126.81) with Microsoft SMTP Server
+X-IronPort-AV: E=McAfee;i="6500,9779,10610"; a="774450108"
+X-IronPort-AV: E=Sophos;i="5.97,271,1669104000"; d="scan'208";a="774450108"
+Received: from orsmsx602.amr.corp.intel.com ([10.22.229.15])
+ by fmsmga002.fm.intel.com with ESMTP; 03 Feb 2023 12:25:45 -0800
+Received: from orsmsx603.amr.corp.intel.com (10.22.229.16) by
+ ORSMSX602.amr.corp.intel.com (10.22.229.15) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.16; Fri, 3 Feb 2023 12:25:44 -0800
-Received: from fmsmsx602.amr.corp.intel.com (10.18.126.82) by
- fmsmsx610.amr.corp.intel.com (10.18.126.90) with Microsoft SMTP Server
+ 15.1.2507.16; Fri, 3 Feb 2023 12:25:39 -0800
+Received: from orsedg603.ED.cps.intel.com (10.7.248.4) by
+ orsmsx603.amr.corp.intel.com (10.22.229.16) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.16; Fri, 3 Feb 2023 12:25:43 -0800
-Received: from fmsedg602.ED.cps.intel.com (10.1.192.136) by
- fmsmsx602.amr.corp.intel.com (10.18.126.82) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.16 via Frontend Transport; Fri, 3 Feb 2023 12:25:43 -0800
-Received: from NAM12-BN8-obe.outbound.protection.outlook.com (104.47.55.173)
- by edgegateway.intel.com (192.55.55.71) with Microsoft SMTP Server
+ 15.1.2507.16 via Frontend Transport; Fri, 3 Feb 2023 12:25:39 -0800
+Received: from NAM12-BN8-obe.outbound.protection.outlook.com (104.47.55.176)
+ by edgegateway.intel.com (134.134.137.100) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2507.16; Fri, 3 Feb 2023 12:25:42 -0800
+ 15.1.2507.16; Fri, 3 Feb 2023 12:25:39 -0800
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=SexezHettqbcwJgE3Q3dg8x7GPae2B2tYRU6PiZ8BBRVRj1GI1hlq9Z7taQhglVfsOosglVwL7bbwDNKEn1vs5KZonxhljJ0pJTb+8abUZZAVbqOjfXyDDQKoRJgMB+IbA5L6Jv6zQVt7KcT9Wftl7pmOdR6XglaK5FGDPv+Qygyv27z/g83NJtMuLYAv+IfdhOrRIjUpu98E8gq7XNgjROsX9tbBfMpKwBGMSethzhbQVtdBvfuphbIUQxQYrUwtforivAA7D96/Q+e/G0TnI+gwMxWrWQr02BUqlh4IKAbCDQi3ShraEpXDnUxv2+AJ94aESHdMXum0zSG3ebMjw==
+ b=V8HrAYinpF7bs0HzEOf+imi2v/PqkxwbqZyGwTUuxVkdVT0brrbAOd8TY8V6pfWt4F+KgOAY4ds+vBUfENFedEMiajXmB7zVp8pe3MDJnsOHq6NCUcspMz7hXaNzlH0qYoNSi73WOfHhCJAAsco700ayNmoG31zZjsnnBEtSdwzl9kkIZeDS6YoKXVfy92UAOu8zvmEdO1BhnXfPy0aemkHw30n5C7u5BniTojS9w/wtGK2z72heL6/V8Hbz2Tf1kJ+E4ZkaYfCC49cJ+Pw6GQfROSwqoNHfDa7+A4jivIK+bJNXGLTC1HzufYE0FgZ/WjBwDI6XGUzYDbB6QDS4Dw==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=uM0CkRI5pfjFe79DPtEQOj5Rim3CJt46W3vsKtV1HoM=;
- b=DaRLdOahlrv47tQH0f7Y1Hdm4gnXPV8BN7K9uNGao1ZN1j1yVtVe9/sOOrPTzaynCTwFJBhMIpLRO8poyyOfuiam8r56Bl56wgzAKifjYwEuFGNFbUSLjgwsd40t1FV9Sso/Gi8aSUCkK10VTyPc3MevWkCflWE0dUPQgw33M1CfPqAKwMfQip4/ySAnUuuRPNbRbnylMMFDtt38RbgoqgqRpud3IF+7vOjsxOsYmvtCwQgnI3+jsRcSIWqiT0+/i8sAO/v5OSDwp2ZCxIsf9ypsbPN+tg0dRvlfLNk/OXZrLaH+BofkFF1XGsjf6N8bdP8DsxMeBvev/yEC/nEFEg==
+ bh=ybRVowxqiRBQbM5LMqLQrhkeFJo9wSFe5ofDG6pb03E=;
+ b=gXRkm4XPEWVsDGWvFxsrXxgHw8kwaqz8N+yC2D6vOxP62Dxb5Zu/zbibZnsiCzS7zPKEqCj69+H2kE5bT0lul0NKLVNYZIO4fHp6JloAdZnLcC3M8xtUWThQZCtEInl9GJP/Mlf1eKkolbKO6pX8tHA4Gndm2NBUyiqAmHuenZvGPRUnA0jUnj5XovoTVLvNVTePeEbo5hPKmG3dcVaLAyZ8UEcPUpl3Yqw/CkJ/MHzB6isTwEdi3JMRWAPpCR36YaY6q12zIBpaKYM+wU4siFGZA3SgZokUXJs2l9M3UqE/mwjdatjaGTPu0yaObHpP3F5P2HbN71LdeHPsCRNbLw==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
  dkim=pass header.d=intel.com; arc=none
@@ -66,76 +62,76 @@ Received: from MN0PR11MB6059.namprd11.prod.outlook.com (2603:10b6:208:377::9)
  by SA1PR11MB5803.namprd11.prod.outlook.com (2603:10b6:806:23e::8)
  with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6064.25; Fri, 3 Feb
- 2023 20:25:40 +0000
+ 2023 20:25:36 +0000
 Received: from MN0PR11MB6059.namprd11.prod.outlook.com
  ([fe80::3bd5:710c:ebab:6158]) by MN0PR11MB6059.namprd11.prod.outlook.com
  ([fe80::3bd5:710c:ebab:6158%7]) with mapi id 15.20.6064.022; Fri, 3 Feb 2023
- 20:25:40 +0000
+ 20:25:36 +0000
 From: Rodrigo Vivi <rodrigo.vivi@intel.com>
 To: <intel-xe@lists.freedesktop.org>
-Date: Fri, 3 Feb 2023 15:24:09 -0500
-Message-ID: <20230203202409.577032-23-rodrigo.vivi@intel.com>
+Date: Fri, 3 Feb 2023 15:24:08 -0500
+Message-ID: <20230203202409.577032-22-rodrigo.vivi@intel.com>
 X-Mailer: git-send-email 2.39.1
 In-Reply-To: <20230203202409.577032-1-rodrigo.vivi@intel.com>
 References: <20230203202409.577032-1-rodrigo.vivi@intel.com>
 Content-Transfer-Encoding: 8bit
 Content-Type: text/plain
-X-ClientProxiedBy: SJ0PR03CA0385.namprd03.prod.outlook.com
- (2603:10b6:a03:3a1::30) To MN0PR11MB6059.namprd11.prod.outlook.com
+X-ClientProxiedBy: SJ0PR05CA0037.namprd05.prod.outlook.com
+ (2603:10b6:a03:33f::12) To MN0PR11MB6059.namprd11.prod.outlook.com
  (2603:10b6:208:377::9)
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
 X-MS-TrafficTypeDiagnostic: MN0PR11MB6059:EE_|SA1PR11MB5803:EE_
-X-MS-Office365-Filtering-Correlation-Id: c29341fe-a787-49ee-0884-08db0624d14f
+X-MS-Office365-Filtering-Correlation-Id: 331433a6-b046-47f3-21f6-08db0624cef1
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: WJfUNSjSkiJ3woJfd9WGP6yCl3y2gkztKflKXxHb7N0wtxe+HzzDnxsgInESDiJx1qu7uxTz1fSXRsUPGGic3ofgwhTDJ2QQrDm192BJwJGuteA34194j1rqkQtG3nph66P90pD80AKhg20FA5ajnnp4DzkHTBLvcu3912mZN2A4gEEJUsa0yoaEg7QWjV+v51gf9iAzoHn3K5FV+Tk/fCHVw4GLZTcaE1MdMC6iTH2gfwHVa0yhNsGN1W9hK09XCtQvrezOGUNNTcOx6yVwrUIfLuWwZ1j1NXmmZIMCBbJUz948ZCA9XEly4Mq4CVb6SNW4JD82kvTU9HPXAjXugNjUQmqo2Qj14DjCtkY3uLnhMmLNixCwwNFEq4AIQh4WwZVF8ENBeHqqxZPIjq6VJAgEA26+vwFY6XohDNco3PsFFaL2HVjb/eMmtywNN6UGiEp1He7pJpbaoc30aXOxJvv8IC9NLyPdpzWfhHhSeJlUjZH4lt18lfVYz/+Vw7uuhlmVIF90EexULYrdc2oiq0TnH5muCup7JyEATQbv/9bx8hjvrNzPHjE+mPW0BYgVCyEVCw5GuUywjdTkTLLxnv1ildzdWBNGhtohcKlQu8e79dADTxdXMX1n6oJkpwGg6bqPjhdAY7GQhrR/RbZ1cx/CKvvIQykL5KJkXv0a6wIm8oK5OaRg4zHsLfJtQ869
+X-Microsoft-Antispam-Message-Info: BvFXsfHWVJV15MewgsxfG1YARb2LQymEQ1Ls4qZXbYDRb+U0wRcUnjIhLolcOCSzEjmZUwFL1eIxcNcne3z+/cJZC8dd8/WZuHlNiAOOK0Xq/dXfVESHhU2seODPBwpdxRpFior7oBDpDDOmhbebyq/SZtw1S77quzC7UQcLMx4sz1HNghe/3t9wa6rksJCtbFsPEynTVnt59oRi538FJ4pWccfaUzozX+HYHmwyPE7NSCxp8rCDPyp2vWoRisYidB8R0zBgVuSOWZ28CRQLLAv+KvyszTEEhak+owJKCMlhxr7nMPoxvIu+UJ/duewW0t5qKWknurigu+rHbv8p1anvsui6KXTRpNfN/h3O4huH/yntyjjogTwEUk+gQeYpiFNTmcVYbaWEuc0/2anB3v+hdHHEi/60spt0rmZYGrYVlvaHthkcX6wrawBTRsVjjFVbzUSQkCuW3pwWfeXtN286reMDn89V1kHI4YUEV1h9ChMFK2IJhwsbDGoSR96mpr0+QOkbxrbc74KnNiixBvui1qe+PC9bRvTEWBJ5Z0gFJ9JJ6ecvF7Lbvejv87yyIEBm2pK8DiihO5JAZ+IwaTpKDXf3DL84kfud9lQA7xI+EBOTBgm8CIv7dfILFpTEHbhqT4LRJ+aRg3/cYZ665g==
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
  IPV:NLI; SFV:NSPM; H:MN0PR11MB6059.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230025)(396003)(136003)(346002)(376002)(39860400002)(366004)(451199018)(82960400001)(2906002)(186003)(6666004)(6486002)(107886003)(6916009)(26005)(478600001)(6512007)(66946007)(316002)(1076003)(6506007)(54906003)(66476007)(8676002)(66556008)(4326008)(41300700001)(44832011)(5660300002)(38100700002)(8936002)(2616005)(36756003)(86362001)(83380400001)(21314003);
+ SFS:(13230025)(396003)(136003)(346002)(376002)(39860400002)(366004)(451199018)(82960400001)(2906002)(186003)(6666004)(6486002)(107886003)(6916009)(26005)(478600001)(6512007)(66946007)(316002)(1076003)(6506007)(54906003)(66476007)(8676002)(66556008)(4326008)(41300700001)(44832011)(5660300002)(38100700002)(8936002)(2616005)(36756003)(86362001)(83380400001);
  DIR:OUT; SFP:1102; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?m9LM0gYfD6Tzx5sC/HI9r7gt+zmxtFnsA30CE+NDHJmPZq5o5VCQsadLBgyU?=
- =?us-ascii?Q?WlgrAdmrtZlq4wl1IDRv/A22bgAPbJ7CdPSDLjfQ+4WDgiUVqz/F7hV7tzoG?=
- =?us-ascii?Q?CGIqYQRgFdW2gJqu+nciCkFEGdn/1Zo3mSmSMg0WYnXXGJWurdMdl6skKbEQ?=
- =?us-ascii?Q?0cKHLuuWVZ0Qes8uA3SWYz90e6eN9kWz0JdM7hnbqF9uMlPewIHItGvbLNam?=
- =?us-ascii?Q?WUhasRDA5kWR2kLCV6bb3/+rVaIb1vNGeFcovNOjuri4cKaIINnf2zcH1YXQ?=
- =?us-ascii?Q?DMtx7Vnafg6WEhRTFaXvcJhnBSad9X2mrmpMlo2gVdQeqFMx/HWOQsnJ2nuF?=
- =?us-ascii?Q?zriNb6cpz+k91pbZmHWpdexWVS0CZFU4xslYfPVw+9iLiA1/inXKz6LapQ1o?=
- =?us-ascii?Q?T7ycYeerS7Ao5vIuFyYfQXAqpsYZPMZir6ALu3b1I+PORhJmHCREInHAGH8C?=
- =?us-ascii?Q?WIfz2Az3HgBgYCuuE5jjKRgIf/Av0XkVSV02UqTBFm20R69Wn9giBuUUxUOU?=
- =?us-ascii?Q?8DuW6Bxsd/s+vnNL+ZcxLs+WBeJ+jePh8IqjSPSDdZe9CBBdq/acVfkilxYH?=
- =?us-ascii?Q?9dUXC1wWPZH9NfOfIzZO8KNdCPvAxdtUdsHkYnZOv3uUmqBkr4c2udNsNQ0l?=
- =?us-ascii?Q?8YWDIi5EAtdKpvbWlXBQ43z0aZTDhvIdXlHecvnGVTUTxN581zTmZYAmRtQ/?=
- =?us-ascii?Q?8LJvgiDTg0e0hExoikLm+v+UXX8YT0b9nABm7/DBbZxPHSqFG7ybsh8Kj+QP?=
- =?us-ascii?Q?QeA9qzxy0BXgN9i92hUc3+t9gD0OxSbdRNEE2MhhQqfh+ORTlSDDRXxBXBKm?=
- =?us-ascii?Q?Hk1yKT/PI6Ke6Lenq9x95Hj7EvQ3pkgtgQ3kTXZrQOsZ70nooR3Zz8Qc7r7w?=
- =?us-ascii?Q?vSOMhgM8hakW9W8Uz/d6J4/ZPw9KBeQRLziSVPA7CdzOR3OxWIFO/RQ7phDq?=
- =?us-ascii?Q?k3ZHweOZvFeBA8otZRl+O6MOXe8s3SQaPhlzVG6WSZeQ/XUzOoewXZfwVn6u?=
- =?us-ascii?Q?h07uFJBC9baiLBcFikI9dZpyugHvdFNaRuLGqWAGZdmh/FQErlS0ndlrmUET?=
- =?us-ascii?Q?CqZWeR4NoBDmZej53quGyxNDNpiEgupfx6lUPtKFxahizpdPY5dg3zmlppkH?=
- =?us-ascii?Q?JxSFf5HTLLIiSL+I6Jb40O2nqJZedC5KqlViqEVgQISNa7mvO520b0BippQW?=
- =?us-ascii?Q?CKtm29HJa/PkG7RHicSgDYzi0IRt2R0N+PfiggIpXnw+Eb/p3mdacJlMshE1?=
- =?us-ascii?Q?685x5VfZWRHQL4h/ZCS7jO8S5NOMJ+WmSwO4+fRYUaUKL6ctFDELr0l6y1bG?=
- =?us-ascii?Q?111XvR+Aej/rUD0aq2S8p2XH3QioLQDLrnBKa1XFZwVQDr7kndFVNZ9R2lZu?=
- =?us-ascii?Q?dlkqgrqk5lmZBdbJTDd1V4b6EOEQ1OItJ+N1QUS7OL64pJnZcPce5kbKcsqo?=
- =?us-ascii?Q?m8pNGQQtV1JTbQDRSeAI9cAMbCcKVbmwQAXvhXk3x2Bz/yAUXlFBOmS01LWM?=
- =?us-ascii?Q?B+ZvHhDkhAd6slWJSWJBKlOy6KEa4X+5tnU635U4uVXcob6c5gzQlsN803/c?=
- =?us-ascii?Q?J4WxkgXalSL5WUlmrVpnz4U2U5q+qQM8qfdjCILvvjcnTIUJVeQgxpbIH3Sa?=
- =?us-ascii?Q?2w=3D=3D?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: c29341fe-a787-49ee-0884-08db0624d14f
+X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?Oh5PAFVkyzGOquwkG/SueNuleHH//SCG1dk/RlBy8LP9LMdavmlnO4LVM5kJ?=
+ =?us-ascii?Q?KuDHamR4fwcztgbXunKEFqkZ6e8J4h6Ksvcg9lHHdqtGlD7qNiZi/UDVPe5j?=
+ =?us-ascii?Q?Pbs0NhKaukKVvTKl/ckcUIrBz8DOBdUBqHGxmrv9d3VevMZfQ9oDGn8+FZSq?=
+ =?us-ascii?Q?UDLTZdVzq9plk29Hwf0J9/MvDTtAW0/mYByccp3HpYbaglb69dAzVTgMTPtz?=
+ =?us-ascii?Q?b8ubrpFqEQ0W4LvDfDKGW3HdYpNWfwq/vEqOmUEqw9oFOUOVYyCTmhbo7hnu?=
+ =?us-ascii?Q?ReRupnAsGu8wXynYH3aP9qpe7UtYmHQXE0GiPnnu1FOdmx6kSBEs0rLH1ghT?=
+ =?us-ascii?Q?zcWJs1m8tNXmU9hr4P08P0nj7DfdbMHtkPj2RD/dfCz4iC8g8gI/5zVIBZxD?=
+ =?us-ascii?Q?iltUn6FyQXnzJQomTgf8ti3p5NJVTJg3hBaJgFr82l9/VlkuCN8lAuk4Xyti?=
+ =?us-ascii?Q?sNM7ei4pYHIE5IZeT3NGof4cDiBsQ25HF/jsctZV4q1lawtJUBA2gXIA9U8R?=
+ =?us-ascii?Q?zsKXwg4fjXBvAFcT7EOFnqWFMji49z+j5abuKTWBQiEJTxn/boA1YnMH/UnS?=
+ =?us-ascii?Q?8mnXG588jY0eh+5C/OMRYgEsxXkDUNY25qJgL5HjpbeckqilhANoG7c47IP+?=
+ =?us-ascii?Q?i+SoRQ+x0m3LgynF0SdyreVSvfFu5j7FNTNuKpcFek2G2dirdEqqAP5xCJuj?=
+ =?us-ascii?Q?x2oY1LdYEVxuDAHpkSdV4AEtxlnY8RQep3q4z4Ob8OXu1Ah1UAhJGG4BgHdK?=
+ =?us-ascii?Q?XC+x4KmbcCH3nU9VxSqlvc3JjhkI6kJ+u8XYyWRSSZbNvpjdmvZ8xgmOQ8Xm?=
+ =?us-ascii?Q?2QTxMAB4V/UJiLdci0H80Jga3Wyjo4E5ysUWYEldePQ57oabFnGY4Zk29MDi?=
+ =?us-ascii?Q?6JC+V1nF9/dhiM3ibC49yXhNKAC9j2m/25b0yHIo3JYWV6w89VF2L+lx2wo2?=
+ =?us-ascii?Q?Wt3EmohjNA7jjVibiBcZQ0v9SjSTR9P6Fb6OWjZZijIPUCi1f1AZ19yZ4KkV?=
+ =?us-ascii?Q?YTioxYg8qPOvCTx+qW1MJWtsW1JsqCC7KSccl6+a1y3RO4jEh5ff0PbY7FCM?=
+ =?us-ascii?Q?kaeJSL0uV3KxgOeCLwtyf8wjBkIkkQeNoCDVE+ttFVph5cQrj9EKZHzUlm5D?=
+ =?us-ascii?Q?EDvvNswYd8CSVeGRSjqWqH1BXIjvItntnzHz0ta0iRcR5VktGOKwII8jrcG+?=
+ =?us-ascii?Q?1VrCUoJViRU41thwk8UKoBFsEwGXldg5IcXhg6bPEc2KcCTDdp4lXOFHEw+f?=
+ =?us-ascii?Q?FpzfvtE5/Ul3fFPKPB1I19G7taNN1wogVJkZ+WeKrwsYNCROK3r0lR47dYD9?=
+ =?us-ascii?Q?DczCv97aum+1WIu3svSUi4xz1yxtZXz1QII0sLDzHPBdzyojyN9MvB8ndWp6?=
+ =?us-ascii?Q?lrL+3Fbl7jyku4CtW99upxzg7J3KeWzqoaMBpjV3BWrVaIy09pnzKDQLeDoX?=
+ =?us-ascii?Q?aNrzCLVQ31mVwTognp/JqPmJ3ZpRBmhQrMb5qxJUKrCe4op7plddSpeBjjXU?=
+ =?us-ascii?Q?ul5cNbl4ZaATjk59NF8BCPLkahHYm1DZSlSQDN45QEA7QnUjG5WAq30yBQbh?=
+ =?us-ascii?Q?dHdoA10VI6tyNgjEpYASD+cKpl8KBPyLVyEh2jIGGZNizrmkeuKcrNxZUyAn?=
+ =?us-ascii?Q?OA=3D=3D?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: 331433a6-b046-47f3-21f6-08db0624cef1
 X-MS-Exchange-CrossTenant-AuthSource: MN0PR11MB6059.namprd11.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 03 Feb 2023 20:25:40.5274 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 03 Feb 2023 20:25:36.6055 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: vhs9QYAux6e7FPWSPdpCWDqcZjirpooKxM3U5TxctEUe0mZ27IwagQTizr/jK/PGALI3JUFnjW/dlzUQBQJsug==
+X-MS-Exchange-CrossTenant-UserPrincipalName: l2YXSXMcw072+RUXobxkmVKnbHpgh3Sff52qRAGEtHgcY2HLHbNBt45OCpG3SLumRNbOC+kMWOODv7BsCz4KnQ==
 X-MS-Exchange-Transport-CrossTenantHeadersStamped: SA1PR11MB5803
 X-OriginatorOrg: intel.com
-Subject: [Intel-xe] [PATCH 22/22] drm/xe: Drop TLB invalidation from ring
- operations
+Subject: [Intel-xe] [PATCH 21/22] drm/xe: Add TLB invalidation fence after
+ rebinds issued from execs
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -153,97 +149,261 @@ Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 From: Matthew Brost <matthew.brost@intel.com>
 
-Now that we issue TLB invalidations on unbinds and rebind from execs we
-no longer need to issue TLB invalidations from the ring operations.
+If we add an TLB invalidation fence for rebinds issued from execs we
+should be able to drop the TLB invalidation from the ring operations.
 
 Signed-off-by: Matthew Brost <matthew.brost@intel.com>
 Signed-off-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
 ---
- drivers/gpu/drm/xe/xe_ring_ops.c | 40 +-------------------------------
- 1 file changed, 1 insertion(+), 39 deletions(-)
+ drivers/gpu/drm/xe/xe_pt.c | 200 ++++++++++++++++++++-----------------
+ 1 file changed, 110 insertions(+), 90 deletions(-)
 
-diff --git a/drivers/gpu/drm/xe/xe_ring_ops.c b/drivers/gpu/drm/xe/xe_ring_ops.c
-index d08f50e53649..370ab1e729fa 100644
---- a/drivers/gpu/drm/xe/xe_ring_ops.c
-+++ b/drivers/gpu/drm/xe/xe_ring_ops.c
-@@ -83,31 +83,6 @@ static int emit_flush_invalidate(u32 flag, u32 *dw, int i)
- 	return i;
- }
+diff --git a/drivers/gpu/drm/xe/xe_pt.c b/drivers/gpu/drm/xe/xe_pt.c
+index 0c2cc9d772fa..435cc30d88c9 100644
+--- a/drivers/gpu/drm/xe/xe_pt.c
++++ b/drivers/gpu/drm/xe/xe_pt.c
+@@ -1160,6 +1160,96 @@ static const struct xe_migrate_pt_update_ops userptr_bind_ops = {
+ 	.pre_commit = xe_pt_userptr_pre_commit,
+ };
  
--static int emit_pipe_invalidate(u32 mask_flags, u32 *dw, int i)
++struct invalidation_fence {
++	struct xe_gt_tlb_invalidation_fence base;
++	struct xe_gt *gt;
++	struct xe_vma *vma;
++	struct dma_fence *fence;
++	struct dma_fence_cb cb;
++	struct work_struct work;
++};
++
++static const char *
++invalidation_fence_get_driver_name(struct dma_fence *dma_fence)
++{
++	return "xe";
++}
++
++static const char *
++invalidation_fence_get_timeline_name(struct dma_fence *dma_fence)
++{
++	return "invalidation_fence";
++}
++
++static const struct dma_fence_ops invalidation_fence_ops = {
++	.get_driver_name = invalidation_fence_get_driver_name,
++	.get_timeline_name = invalidation_fence_get_timeline_name,
++};
++
++static void invalidation_fence_cb(struct dma_fence *fence,
++				  struct dma_fence_cb *cb)
++{
++	struct invalidation_fence *ifence =
++		container_of(cb, struct invalidation_fence, cb);
++
++	trace_xe_gt_tlb_invalidation_fence_cb(&ifence->base);
++	if (!ifence->fence->error) {
++		queue_work(system_wq, &ifence->work);
++	} else {
++		ifence->base.base.error = ifence->fence->error;
++		dma_fence_signal(&ifence->base.base);
++		dma_fence_put(&ifence->base.base);
++	}
++	dma_fence_put(ifence->fence);
++}
++
++static void invalidation_fence_work_func(struct work_struct *w)
++{
++	struct invalidation_fence *ifence =
++		container_of(w, struct invalidation_fence, work);
++
++	trace_xe_gt_tlb_invalidation_fence_work_func(&ifence->base);
++	xe_gt_tlb_invalidation_vma(ifence->gt, &ifence->base, ifence->vma);
++}
++
++static int invalidation_fence_init(struct xe_gt *gt,
++				   struct invalidation_fence *ifence,
++				   struct dma_fence *fence,
++				   struct xe_vma *vma)
++{
++	int ret;
++
++	trace_xe_gt_tlb_invalidation_fence_create(&ifence->base);
++
++	spin_lock_irq(&gt->tlb_invalidation.lock);
++	dma_fence_init(&ifence->base.base, &invalidation_fence_ops,
++		       &gt->tlb_invalidation.lock,
++		       gt->tlb_invalidation.fence_context,
++		       ++gt->tlb_invalidation.fence_seqno);
++	spin_unlock_irq(&gt->tlb_invalidation.lock);
++
++	INIT_LIST_HEAD(&ifence->base.link);
++
++	dma_fence_get(&ifence->base.base);	/* Ref for caller */
++	ifence->fence = fence;
++	ifence->gt = gt;
++	ifence->vma = vma;
++
++	INIT_WORK(&ifence->work, invalidation_fence_work_func);
++	ret = dma_fence_add_callback(fence, &ifence->cb, invalidation_fence_cb);
++	if (ret == -ENOENT) {
++		dma_fence_put(ifence->fence);	/* Usually dropped in CB */
++		invalidation_fence_work_func(&ifence->work);
++	} else if (ret) {
++		dma_fence_put(&ifence->base.base);	/* Caller ref */
++		dma_fence_put(&ifence->base.base);	/* Creation ref */
++	}
++
++	XE_WARN_ON(ret && ret != -ENOENT);
++
++	return ret && ret != -ENOENT ? ret : 0;
++}
++
+ /**
+  * __xe_pt_bind_vma() - Build and connect a page-table tree for the vma
+  * address range.
+@@ -1198,6 +1288,7 @@ __xe_pt_bind_vma(struct xe_gt *gt, struct xe_vma *vma, struct xe_engine *e,
+ 	struct xe_vm *vm = vma->vm;
+ 	u32 num_entries;
+ 	struct dma_fence *fence;
++	struct invalidation_fence *ifence = NULL;
+ 	int err;
+ 
+ 	bind_pt_update.locked = false;
+@@ -1216,6 +1307,12 @@ __xe_pt_bind_vma(struct xe_gt *gt, struct xe_vma *vma, struct xe_engine *e,
+ 
+ 	xe_vm_dbg_print_entries(gt_to_xe(gt), entries, num_entries);
+ 
++	if (rebind && !xe_vm_no_dma_fences(vma->vm)) {
++		ifence = kzalloc(sizeof(*ifence), GFP_KERNEL);
++		if (!ifence)
++			return ERR_PTR(-ENOMEM);
++	}
++
+ 	fence = xe_migrate_update_pgtables(gt->migrate,
+ 					   vm, vma->bo,
+ 					   e ? e : vm->eng[gt->info.id],
+@@ -1225,6 +1322,18 @@ __xe_pt_bind_vma(struct xe_gt *gt, struct xe_vma *vma, struct xe_engine *e,
+ 	if (!IS_ERR(fence)) {
+ 		LLIST_HEAD(deferred);
+ 
++		/* TLB invalidation must be done before signaling rebind */
++		if (rebind && !xe_vm_no_dma_fences(vma->vm)) {
++			int err = invalidation_fence_init(gt, ifence, fence,
++							  vma);
++			if (err) {
++				dma_fence_put(fence);
++				kfree(ifence);
++				return ERR_PTR(err);
++			}
++			fence = &ifence->base.base;
++		}
++
+ 		/* add shared fence now for pagetable delayed destroy */
+ 		dma_resv_add_fence(&vm->resv, fence, !rebind &&
+ 				   vma->last_munmap_rebind ?
+@@ -1250,6 +1359,7 @@ __xe_pt_bind_vma(struct xe_gt *gt, struct xe_vma *vma, struct xe_engine *e,
+ 			queue_work(vm->xe->ordered_wq,
+ 				   &vm->preempt.rebind_work);
+ 	} else {
++		kfree(ifence);
+ 		if (bind_pt_update.locked)
+ 			up_read(&vm->userptr.notifier_lock);
+ 		xe_pt_abort_bind(vma, entries, num_entries);
+@@ -1467,96 +1577,6 @@ static const struct xe_migrate_pt_update_ops userptr_unbind_ops = {
+ 	.pre_commit = xe_pt_userptr_pre_commit,
+ };
+ 
+-struct invalidation_fence {
+-	struct xe_gt_tlb_invalidation_fence base;
+-	struct xe_gt *gt;
+-	struct xe_vma *vma;
+-	struct dma_fence *fence;
+-	struct dma_fence_cb cb;
+-	struct work_struct work;
+-};
+-
+-static const char *
+-invalidation_fence_get_driver_name(struct dma_fence *dma_fence)
 -{
--	u32 flags = PIPE_CONTROL_CS_STALL |
--		PIPE_CONTROL_COMMAND_CACHE_INVALIDATE |
--		PIPE_CONTROL_TLB_INVALIDATE |
--		PIPE_CONTROL_INSTRUCTION_CACHE_INVALIDATE |
--		PIPE_CONTROL_TEXTURE_CACHE_INVALIDATE |
--		PIPE_CONTROL_VF_CACHE_INVALIDATE |
--		PIPE_CONTROL_CONST_CACHE_INVALIDATE |
--		PIPE_CONTROL_STATE_CACHE_INVALIDATE |
--		PIPE_CONTROL_QW_WRITE |
--		PIPE_CONTROL_STORE_DATA_INDEX;
--
--	flags &= ~mask_flags;
--
--	dw[i++] = GFX_OP_PIPE_CONTROL(6);
--	dw[i++] = flags;
--	dw[i++] = LRC_PPHWSP_SCRATCH_ADDR;
--	dw[i++] = 0;
--	dw[i++] = 0;
--	dw[i++] = 0;
--
--	return i;
+-	return "xe";
 -}
 -
- #define MI_STORE_QWORD_IMM_GEN8_POSTED (MI_INSTR(0x20, 3) | (1 << 21))
- 
- static int emit_store_imm_ppgtt_posted(u64 addr, u64 value,
-@@ -148,11 +123,6 @@ static void __emit_job_gen12_copy(struct xe_sched_job *job, struct xe_lrc *lrc,
- 	u32 dw[MAX_JOB_SIZE_DW], i = 0;
- 	u32 ppgtt_flag = get_ppgtt_flag(job);
- 
--	/* XXX: Conditional flushing possible */
--	dw[i++] = preparser_disable(true);
--	i = emit_flush_invalidate(0, dw, i);
--	dw[i++] = preparser_disable(false);
+-static const char *
+-invalidation_fence_get_timeline_name(struct dma_fence *dma_fence)
+-{
+-	return "invalidation_fence";
+-}
 -
- 	i = emit_store_imm_ggtt(xe_lrc_start_seqno_ggtt_addr(lrc),
- 				seqno, dw, i);
- 
-@@ -181,9 +151,7 @@ static void __emit_job_gen12_video(struct xe_sched_job *job, struct xe_lrc *lrc,
- 	struct xe_device *xe = gt_to_xe(gt);
- 	bool decode = job->engine->class == XE_ENGINE_CLASS_VIDEO_DECODE;
- 
--	/* XXX: Conditional flushing possible */
- 	dw[i++] = preparser_disable(true);
--	i = emit_flush_invalidate(decode ? MI_INVALIDATE_BSD : 0, dw, i);
- 	/* Wa_1809175790 */
- 	if (!xe->info.has_flat_ccs) {
- 		if (decode)
-@@ -244,15 +212,8 @@ static void __emit_job_gen12_render_compute(struct xe_sched_job *job,
- 	struct xe_gt *gt = job->engine->gt;
- 	struct xe_device *xe = gt_to_xe(gt);
- 	bool pvc = xe->info.platform == XE_PVC;
--	u32 mask_flags = 0;
- 
--	/* XXX: Conditional flushing possible */
- 	dw[i++] = preparser_disable(true);
--	if (pvc)
--		mask_flags = PIPE_CONTROL_3D_ARCH_FLAGS;
--	else if (job->engine->class == XE_ENGINE_CLASS_COMPUTE)
--		mask_flags = PIPE_CONTROL_3D_ENGINE_FLAGS;
--	i = emit_pipe_invalidate(mask_flags, dw, i);
- 	/* Wa_1809175790 */
- 	if (!xe->info.has_flat_ccs)
- 		i = emit_aux_table_inv(gt, GEN12_GFX_CCS_AUX_NV.reg, dw, i);
-@@ -287,6 +248,7 @@ static void emit_migration_job_gen12(struct xe_sched_job *job,
- 
- 	i = emit_bb_start(job->batch_addr[0], BIT(8), dw, i);
- 
-+	/* XXX: Do we need this? Leaving for now. */
- 	dw[i++] = preparser_disable(true);
- 	i = emit_flush_invalidate(0, dw, i);
- 	dw[i++] = preparser_disable(false);
+-static const struct dma_fence_ops invalidation_fence_ops = {
+-	.get_driver_name = invalidation_fence_get_driver_name,
+-	.get_timeline_name = invalidation_fence_get_timeline_name,
+-};
+-
+-static void invalidation_fence_cb(struct dma_fence *fence,
+-				  struct dma_fence_cb *cb)
+-{
+-	struct invalidation_fence *ifence =
+-		container_of(cb, struct invalidation_fence, cb);
+-
+-	trace_xe_gt_tlb_invalidation_fence_cb(&ifence->base);
+-	if (!ifence->fence->error) {
+-		queue_work(system_wq, &ifence->work);
+-	} else {
+-		ifence->base.base.error = ifence->fence->error;
+-		dma_fence_signal(&ifence->base.base);
+-		dma_fence_put(&ifence->base.base);
+-	}
+-	dma_fence_put(ifence->fence);
+-}
+-
+-static void invalidation_fence_work_func(struct work_struct *w)
+-{
+-	struct invalidation_fence *ifence =
+-		container_of(w, struct invalidation_fence, work);
+-
+-	trace_xe_gt_tlb_invalidation_fence_work_func(&ifence->base);
+-	xe_gt_tlb_invalidation_vma(ifence->gt, &ifence->base, ifence->vma);
+-}
+-
+-static int invalidation_fence_init(struct xe_gt *gt,
+-				   struct invalidation_fence *ifence,
+-				   struct dma_fence *fence,
+-				   struct xe_vma *vma)
+-{
+-	int ret;
+-
+-	trace_xe_gt_tlb_invalidation_fence_create(&ifence->base);
+-
+-	spin_lock_irq(&gt->tlb_invalidation.lock);
+-	dma_fence_init(&ifence->base.base, &invalidation_fence_ops,
+-		       &gt->tlb_invalidation.lock,
+-		       gt->tlb_invalidation.fence_context,
+-		       ++gt->tlb_invalidation.fence_seqno);
+-	spin_unlock_irq(&gt->tlb_invalidation.lock);
+-
+-	INIT_LIST_HEAD(&ifence->base.link);
+-
+-	dma_fence_get(&ifence->base.base);	/* Ref for caller */
+-	ifence->fence = fence;
+-	ifence->gt = gt;
+-	ifence->vma = vma;
+-
+-	INIT_WORK(&ifence->work, invalidation_fence_work_func);
+-	ret = dma_fence_add_callback(fence, &ifence->cb, invalidation_fence_cb);
+-	if (ret == -ENOENT) {
+-		dma_fence_put(ifence->fence);	/* Usually dropped in CB */
+-		invalidation_fence_work_func(&ifence->work);
+-	} else if (ret) {
+-		dma_fence_put(&ifence->base.base);	/* Caller ref */
+-		dma_fence_put(&ifence->base.base);	/* Creation ref */
+-	}
+-
+-	XE_WARN_ON(ret && ret != -ENOENT);
+-
+-	return ret && ret != -ENOENT ? ret : 0;
+-}
+-
+ /**
+  * __xe_pt_unbind_vma() - Disconnect and free a page-table tree for the vma
+  * address range.
 -- 
 2.39.1
 
