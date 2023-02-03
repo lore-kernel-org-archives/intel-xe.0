@@ -4,55 +4,55 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7072FC05027
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 87BB9C61DA4
 	for <intel-xe@archiver.kernel.org>; Fri,  3 Feb 2023 20:28:31 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4D5D010E08A;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 68AB210E09C;
 	Fri,  3 Feb 2023 20:28:31 +0000 (UTC)
 Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9255D10E08A
- for <intel-xe@lists.freedesktop.org>; Fri,  3 Feb 2023 20:28:28 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0AE9410E08A
+ for <intel-xe@lists.freedesktop.org>; Fri,  3 Feb 2023 20:28:30 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1675456109; x=1706992109;
+ t=1675456110; x=1706992110;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:content-transfer-encoding:mime-version;
- bh=edCej0iQHCWIjfQBSf61uehZy9gxTc/VF32hyIfekSo=;
- b=XdLYs/RmQMZITCatlEKlM6jS7XeFI00TwK21vY3nbct8Hl0XoRMvWcnN
- jyS6ItzloqDS6Sf6C2FxiJrue5oJqU7Z32HMqVzFZTxmqAFr34DlzbWal
- vaIKwuBewtANxofi3ZUDjM7W61LMhNZrJpax4uVhfCKU6cWHBF1mCLlOP
- FPos0lB2qhpLK69IoWOYOCQ4J4KrZkZoOJoBAH6zemkbUtbBLDRdnaSha
- nKMILgrHXlklDYt4LkV9OQ4yETXi/ojP1FEccpiWvFmWYXOnA+dCFdOSe
- SKsxUpOphYFdC1qVC1iws9ilBWSPWl9/mU682CKEp4YqGFnnfM3AA7tbs A==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10610"; a="312504024"
-X-IronPort-AV: E=Sophos;i="5.97,271,1669104000"; d="scan'208";a="312504024"
+ bh=OhpjNhg73XA4DXkeXUhbwC3vGFwpB84VTRM+bUeWCkU=;
+ b=g0vUmzg0MitLYtMkb8WMnXEp5sdVE9wYoOQsqxhdQ0dMH5RpKMEHAn4F
+ BqsdQ7dPXapX4qef/K3qLIc/lWbtcje9sdx907YooH++aVo5XZqKkvM4P
+ Drx6uQarCm3UljYIjoGLgte5oKziKDGIaO6pDkqmYLUQr4wWC3igfqsDs
+ GWExsLdfmnHJ7A9DrBGbojVJ8xng+9tUvpGx3FcRk6ghVBtw5nRI1BTIc
+ JNIgqpTF52djZvTUTHpCEuiXTTrY4eoQkiPZtmZvHi/3A5GuBn7ufUbEH
+ NpHvX+snPxhajZi/g8YAKPwKBqhif6QKubrMMoYJaJRPxDoVyRjEv1BMh Q==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10610"; a="312504033"
+X-IronPort-AV: E=Sophos;i="5.97,271,1669104000"; d="scan'208";a="312504033"
 Received: from orsmga004.jf.intel.com ([10.7.209.38])
  by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 03 Feb 2023 12:28:10 -0800
+ 03 Feb 2023 12:28:13 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6500,9779,10610"; a="789810557"
-X-IronPort-AV: E=Sophos;i="5.97,271,1669104000"; d="scan'208";a="789810557"
+X-IronPort-AV: E=McAfee;i="6500,9779,10610"; a="789810576"
+X-IronPort-AV: E=Sophos;i="5.97,271,1669104000"; d="scan'208";a="789810576"
 Received: from orsmsx603.amr.corp.intel.com ([10.22.229.16])
- by orsmga004.jf.intel.com with ESMTP; 03 Feb 2023 12:28:10 -0800
-Received: from orsmsx601.amr.corp.intel.com (10.22.229.14) by
+ by orsmga004.jf.intel.com with ESMTP; 03 Feb 2023 12:28:13 -0800
+Received: from orsmsx610.amr.corp.intel.com (10.22.229.23) by
  ORSMSX603.amr.corp.intel.com (10.22.229.16) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.16; Fri, 3 Feb 2023 12:28:09 -0800
-Received: from ORSEDG601.ED.cps.intel.com (10.7.248.6) by
- orsmsx601.amr.corp.intel.com (10.22.229.14) with Microsoft SMTP Server
+ 15.1.2507.16; Fri, 3 Feb 2023 12:28:13 -0800
+Received: from ORSEDG602.ED.cps.intel.com (10.7.248.7) by
+ orsmsx610.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.16 via Frontend Transport; Fri, 3 Feb 2023 12:28:09 -0800
+ 15.1.2507.16 via Frontend Transport; Fri, 3 Feb 2023 12:28:13 -0800
 Received: from NAM11-BN8-obe.outbound.protection.outlook.com (104.47.58.168)
- by edgegateway.intel.com (134.134.137.102) with Microsoft SMTP Server
+ by edgegateway.intel.com (134.134.137.103) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2507.16; Fri, 3 Feb 2023 12:28:09 -0800
+ 15.1.2507.16; Fri, 3 Feb 2023 12:28:12 -0800
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=IJGUanAewzjtUDyZDTtlv0L3o5Uwv5kkeRUSO07o5vCE9L9b6oER3QvoIrO9W7khqYmQuFy8eRB1smOQOMl/k2LXN5T/gZRntxvBqCwtyoVQ6kPgjlguW0/ABwRH8aJknnn2431Zaz8YS+MrzW1sMbfLOzLkxygnCS0CQDHWUQETOKp7Ws//A5x908ak95vgqlciEwymEbwa//jLguqLm24p8ja2IUVqW7G86gIhwwXJ5+oJ88/imtOSRVRc6514rJzcq4eKBx80YYtQapPwDJXuDBGwa5LwZhl5tiawc7GV37WJjU8tAgfXZkbEq3LzLev6nPk3YaKL1A9cyZ3o1g==
+ b=mioyLNupA3F1sb7XS5gtjHyRH7FVMxvLr+jVs8K39ZVuMLEtI9GfOXLA5uRFTHpmy8bwKqL8dca/Rer2l39DHNqjdByiIGEBqKv3+DhiP/MCDihDewu+aTlCJMZh8PElpZJSaXPXMEpA8sB82xW9eFPST/jjEyzJYNiAi1j1OqQtLiCaztrJsMZjpGDwq4SKQS7jeoQqDtelyfjR21WqrTSmkZxdXaOVFROsuaSH2aP7isDczeUmLs+4+PwpvUslfzLbqN5U8F91mPWdWuum34T0sZcwgozwD08fAZ0j7ZftIJ1yfWeOlVLvB04rbsft1LRDtWJLpYSS0U8R/b2xkg==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=LFnKoCzwrzKAeEXS9vwhTS+hvxqx0mMgnDTcY/6PGFk=;
- b=PxfGhtQDLy9y6kpDQGfchySIXNWiVggDvE+GtmVfJnvTxNSt6QLmACW/4B2uG8VBNFhO/xVX6Y+wvzKY00ch3D8q0VROAlAyEXBEEYbLtOg/thv5Bvvl7p31dWuzhoi+on8UmlHPapQN8AOEtDIPSf7Hoga3j1Mbfk670nodZqEIoQr+MQQtvf5m8MWeN/BU3GTVeWRMUuctfEuWcy6WfohgluE9CxGFQezyVAg4D0hHCxjwbrnoIdERpSVWL/EBltNeFsM021gVlCFS7VGzqNyz/mv1r90E4PFbgVvhkcEOQTEJu2WxxIN92aE1Br96hM91R9valROKNjmsvAXypA==
+ bh=xskYX8o4jjySDLWJgaVSLFmrudvKNlOnvLWWPQn63yo=;
+ b=SytaSgyI0BoUeUWLcFJnuOH1NRQub1uKOcsfdCZbv6vBddVKCJy1L/OH/1K8BaoQalaHFDcE9yYYTxC+PEVdmyOzHGYSy1WJwJA2BW0lfypqmypY5SiXishsRSq619GMKErScnI5aU8WCVgOnjkQME1AyY4q6HXzV7X10oJpdrylDP4pYkRDUGaEzXJzpLQMxyWIYrdduU6UiMySnktydiTTId9wYJXqGrbElrdHjiieIHqHwr3Ad61Khv6gw/4YXIUhGEEZr/Q6WJhdTt9p/VthMLXCS1E/YhxINnk+x1M+zwtAoQLkb6Az7g1SFxqWYvvTWPI7jAhim+cZoeIy6A==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
  dkim=pass header.d=intel.com; arc=none
@@ -62,75 +62,75 @@ Received: from MN0PR11MB6059.namprd11.prod.outlook.com (2603:10b6:208:377::9)
  by IA0PR11MB7909.namprd11.prod.outlook.com (2603:10b6:208:407::14)
  with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6064.29; Fri, 3 Feb
- 2023 20:28:07 +0000
+ 2023 20:28:11 +0000
 Received: from MN0PR11MB6059.namprd11.prod.outlook.com
  ([fe80::3bd5:710c:ebab:6158]) by MN0PR11MB6059.namprd11.prod.outlook.com
  ([fe80::3bd5:710c:ebab:6158%7]) with mapi id 15.20.6064.022; Fri, 3 Feb 2023
- 20:28:07 +0000
+ 20:28:11 +0000
 From: Rodrigo Vivi <rodrigo.vivi@intel.com>
 To: <intel-xe@lists.freedesktop.org>
-Date: Fri, 3 Feb 2023 15:27:41 -0500
-Message-ID: <20230203202742.577659-6-rodrigo.vivi@intel.com>
+Date: Fri, 3 Feb 2023 15:27:42 -0500
+Message-ID: <20230203202742.577659-7-rodrigo.vivi@intel.com>
 X-Mailer: git-send-email 2.39.1
 In-Reply-To: <20230203202742.577659-1-rodrigo.vivi@intel.com>
 References: <20230203202742.577659-1-rodrigo.vivi@intel.com>
 Content-Transfer-Encoding: 8bit
 Content-Type: text/plain
-X-ClientProxiedBy: SJ0PR13CA0134.namprd13.prod.outlook.com
- (2603:10b6:a03:2c6::19) To MN0PR11MB6059.namprd11.prod.outlook.com
+X-ClientProxiedBy: SJ0P220CA0013.NAMP220.PROD.OUTLOOK.COM
+ (2603:10b6:a03:41b::20) To MN0PR11MB6059.namprd11.prod.outlook.com
  (2603:10b6:208:377::9)
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
 X-MS-TrafficTypeDiagnostic: MN0PR11MB6059:EE_|IA0PR11MB7909:EE_
-X-MS-Office365-Filtering-Correlation-Id: 6ec53f1b-c705-42d8-d734-08db0625290f
+X-MS-Office365-Filtering-Correlation-Id: dd311607-0f32-42a3-23db-08db06252b21
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: HyclvxFiYiiahm1nNlu2mLoLPkbM7heJR4io+JrrQQrX/Ttx5Tk5+b+IrqNIDUoh4SMabWGeWyT1mVjce57C3wZXXRHQTDoS5N+TKLFSxfSjY4HZ9DkSyKPMj+aJZ4WplRf/auGp+tK8fbRkM+kwa8oVkXqt/sOaQV5ZtVm+QRXkw6bkPm/9o2zCUxXI833AbvTOQZWpCK2Etp7Kgv/K29H3C+5WJhIaTKbgBb3oC7sHAD1kQLB0EqaJB4OOIFMMjYC04WSh/8sZ1gk9pbBmFMqEdVd6ryZm9bvGlYjw+d/MXkBElN2kKTnP75uQhArS0YUs7PQoISJDdErCjIhwh790u8ze3miENw2d43Nv/eUihdo1wk/FpbpzVbxuq5GqSzldBssM8vYgCnqQdEGSmOCQ7uzkr2vr+i4hdoehrXVJoDR4w9AMo1Au6I3RQnALy1kipeihbFQ419LRIIgF5qbtglyKNS8+/RaAfaBzsW9U3ga90w8ghBGYW0enECLYglbUFkKJ/J8oxlJaenXETZlSTIuxqQZAg2o+l9xoLRyK5YP3gO5AHMSk33no0Vzd3El/ogdP5d6N92w4eE3sLum3YbYVWo0P9nD+fIIkWgFzomoJTiS0iOAENPtTBl7+6T0++L8Wo/ceICtK+mkuVA==
+X-Microsoft-Antispam-Message-Info: C2wOhP2kr5k4qM2kNXfk0Iv11Qnw12GsDZivGhNAmxYs98glpcA3yOdCqoBw8ziQenf+kzhxnB8OzsfjujDLFrvpCVbWN8MlGdQMETUjBMwxvoMsIKdFg9J4aRPP78oZi1x6u1Pl7Um8N76jB3xP6t4s3F5BPCFWDN0sXk+aYgQke6jcGnUg4MXLWnbGppd5beg88oEq2l+Sp3HwgR+zsS9UeI/3WYZKOWgB/qVyxP2ZvBL1EE2mkSWsZR5Bsmp+IVkK3l7CIBB3MQzUnWLTipSnnOV2IzOHLy3ogrywTMfoSS/JiFoawqgHQP4au6zQAXlT9hGAY9MIbbzfx6Av8kngBmAEMPjhe+AfhNz1g0JsXehOSpNauqG6ijMHZgA4V9zHtdQyAN9dV54EH7XQSAEoXyEB/LIiRk6ONN9mFGNQhz9JbEf5k/W/2pVD0e5ZKSdtkpPbJTpDKy4lV6Q5jHGh+DSqtRRgzygaLwBjLf+HgDoTDzk1gaKRVtCX8caoHsHcufT/PGAreERPS6WRM+UCtecz7wfXBJ6cuaHqIyIZR7U7YFVVEIBLVA3c5vmeudnZnOcP6jfO1HhyN/+OehFhzNqTTeC0dTSOat3OIrPMAnEFo5tDESXVzn3AaXIDxg1ebyMBqlYCCJd8+7c4PQ==
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
  IPV:NLI; SFV:NSPM; H:MN0PR11MB6059.namprd11.prod.outlook.com; PTR:; CAT:NONE;
  SFS:(13230025)(366004)(136003)(39860400002)(346002)(396003)(376002)(451199018)(82960400001)(38100700002)(41300700001)(107886003)(5660300002)(6666004)(6486002)(8676002)(1076003)(316002)(86362001)(54906003)(6506007)(83380400001)(66946007)(66476007)(6916009)(2616005)(66556008)(478600001)(4326008)(6512007)(44832011)(8936002)(26005)(2906002)(186003)(36756003);
  DIR:OUT; SFP:1102; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?AFDSDtYIlvRndC5jRbOWKeQ+7gfSMya/6v3HoJuuuVbIfczea0sKiVwH375O?=
- =?us-ascii?Q?j/AInuqgqwFhPsmQQkt3/SRQ9YKwLAEGLINAAfpIbJiOi6QeBZQFAqBsVadA?=
- =?us-ascii?Q?Yh/zkMNUXjaovMOrBIuv7RV8mVf/mTiPKAd0wOxi6iGqoA9IeOufO75W6vrz?=
- =?us-ascii?Q?w90KgMBd/UeaYgLJ7/0/gO3TUjIdIoQ2Z3ib86WnZt4kTSu+hu/CCCseIpmR?=
- =?us-ascii?Q?3l5fl/hVP7J84fkf8LO0UcfbyEOG1qZLJ0v0YOiP+75t+O5fdnlvwTNDTeWe?=
- =?us-ascii?Q?aZQYcL82SHLskv9FdC0I9ztnW19GHTu8lwUAOxXlilYIdBOZy8+FuPSYYVqC?=
- =?us-ascii?Q?RAo2BcKS1KJn0fi0RTuI2JzOCEUIWzS04qUC/MAdylQeCaFF98pjXIDbs45k?=
- =?us-ascii?Q?AoNmNuu5mFrqcdfEfiXPMksgBqzcBL6Escp2LPW2Fn++RyshdLT+rwpdot+E?=
- =?us-ascii?Q?fuO7K0jgjAtP9k+zfHlYTHXBSa3UMahBrKQpZzXuIdUyaRQjpeTsQBZqESkP?=
- =?us-ascii?Q?/7pvbF+TuRqgNKc3u7UcdaVsLYfOEDF2WQcLwpC75WsWiuKNKzj+Y3jk5lM4?=
- =?us-ascii?Q?wp4Ni6MCKREtXrNOqJe/x35IYXth922ldF1lmgLIqI5TJwvEMfrXTD54yNIV?=
- =?us-ascii?Q?Stbd0UHwKXJ305ZusyYFk1zoi85m/V6sDPrB+3F9jnxqIu7ZfS+jIJHkkOGd?=
- =?us-ascii?Q?5q9sSmi+T+BH6gB+lFCQztp2R8Ny/YbGRtpumP7Rzniyza++QSLeJhnBLdAM?=
- =?us-ascii?Q?3tpOgsm4QI12JbhlL5xfiqfq1QIlNGadpD5io5S67FQp87cXf/A6RXEGTqmW?=
- =?us-ascii?Q?u6DWtGIrE+K1Hsg5Ij3Ho+Ihm5U2T1TZfVebMqTP/RpWqHDV/EIyOjkbbxFD?=
- =?us-ascii?Q?pOPuWDZDqwOBxdyuLMMRBR8jC4O0hEXSwzP8U5arps/Rf91CXEYB/1rNJ3Aj?=
- =?us-ascii?Q?k/KCaeh2Qb6FxIarPZiFI5MBtKZKOJTzndmD5PuG41CQu0sBAs0F1LC4DRh4?=
- =?us-ascii?Q?Q5pZJRmbSy+EfeoqBfmZ1RhKE+hgqXjWlYBBzI6nGg8nc+YX8aqklxHzshSr?=
- =?us-ascii?Q?lqytwb+Llx6yLCQofqMw63ayVmzfPn3S1r65Fg8qpquLEQY+F8dHDDZJBxsv?=
- =?us-ascii?Q?IjL7tF/fmCdJzfYehXxvQWd2Ff5MxHaM6iYvlpfSSzkoSqbHHU2uOo0OCq2l?=
- =?us-ascii?Q?uZCT2xWaTFpn6oq7QoHKtTZqUB5XashMgKrNGE1tMYFe7d8ejg+Qfkxs0U9p?=
- =?us-ascii?Q?EpTcyv+nyENL8qfU1Y2tJsyEeepcClHgdVIebCWmdhJFe/3KESFxz5kxQd5r?=
- =?us-ascii?Q?6Q5D+u/AT0H3C7LcZCNrau/+55CWz2c90B53zBaygI6FQ3GT3HTxK9n8a9E4?=
- =?us-ascii?Q?uU5Nyg+u2tkmu/u21IKyFKVl+FGyn0+EYPcVNxpnx4+agw1EU0sq5g3bsFSr?=
- =?us-ascii?Q?66fzwgGqyRl7JdQ9K4edx0HNqn9EMazBvo+mNYCq10hRZn/SKfx1mR33xkPz?=
- =?us-ascii?Q?f7dhZ+qaiciuwBG6w36Ptj0QrSfQ3oRcQMV56PB0IY/X3MNTlg9kf7TisUqD?=
- =?us-ascii?Q?2FZlkHa6K4q3LvYrH80rIhZWA+2Yo6iqtPRCWpdZpV04Rz7ILAr+Jg3Z/snr?=
- =?us-ascii?Q?TA=3D=3D?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: 6ec53f1b-c705-42d8-d734-08db0625290f
+X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?/LFAij6InZFQ0vqHntSV2Naghbc6YXm0dsUb+z4XE+sEFgdKooiYfu7F/4GW?=
+ =?us-ascii?Q?yl6tE8qnt8ZTxpl+12bLsdo13YB+o7PcnKgBGlIDWOkk951QrU1ZgTdUrRPB?=
+ =?us-ascii?Q?ux0iay+3if14b+krqhK3iTRVY5+pN9FuEL+wSsNvuEkI1H1vGohWwrHOJJH9?=
+ =?us-ascii?Q?s4oZkpqpIJAxx/iEEYPO4N+GLSNiLHEE7TyfKwokjuX8CX1sjLuGJ5pMUOLX?=
+ =?us-ascii?Q?oVzqAkn9O5HFIoFXWL+eFudNYLIyG7mlU0v07BMQChVQanQWIy5lrC8Bc+Pb?=
+ =?us-ascii?Q?oIvPOTrYkwozbn/liZy+encm+VJpu2DQRkwq7M9OUQuEyTbLZG8a7J3Aj8AD?=
+ =?us-ascii?Q?oKdn/HGC1oT7WHDzbMPvxWxYaflmEM5Je/4DrMKsUQfjbgNDA2K6uPH4jCpu?=
+ =?us-ascii?Q?q32Z8SKXErYNq0+FpC4g8XLssWnVdxR82qqC6Zn594gmaXKztN6h8HLiiKsf?=
+ =?us-ascii?Q?ApzKi3eIsKVykIqx79GiAt+xYpS2ls17pyjKlArcHx05Nj1Lxm6veAHc3yG4?=
+ =?us-ascii?Q?yFSuT6StQR/Q/Hakj2Gku0s03eCxtPoXQPf/76HN+ic1vsvV8I/jioiYNAG7?=
+ =?us-ascii?Q?HZbrkG7RsZM4tskT1RQJixj6QLSEbDq6bXsP5qZpJ0gjOpe2J5tzTVZWEjTv?=
+ =?us-ascii?Q?pEJOSQwrLtd6Nv19/1MnwIlbBiCUmxNYCkDlKndgeWkHsvz0kfvISO4SmJel?=
+ =?us-ascii?Q?W50zZ88ZyTztlTaCsnC/dOJeP+nJ286FJYef2rF0CEmWhEax3KIFKXWLdvJ0?=
+ =?us-ascii?Q?y8MHFEDiEtcwxvvrO3+bAxvdCTG9bL0ry45AmLK4+b0zgWwjsELzKe5j3hrq?=
+ =?us-ascii?Q?Zr+dku0zn8VigD701HaZMqc3RbNbEKx5qT1FPfsOM2XgCUas/xRNSZguWKnh?=
+ =?us-ascii?Q?2XOmW+5GwBxYqbexTd3YoM/7ml0q/UCLrg2YBoth+Icy00MIHGNrWraMmJK1?=
+ =?us-ascii?Q?3FarqPQyZ2KG4+78HoHYSkGll/3Y+GhtY81KH0eWTRe/809n9Gb/jdqeI1nf?=
+ =?us-ascii?Q?/b4hwP7Ve56l6oY4F1YQN9XHTDAUStHAusSHr/o3o9jHrtVUTeOyjv+I9nDJ?=
+ =?us-ascii?Q?Xiue1mRHJNjsJkNGbE4zBnGyvVYNkaNgjjf4LZ3SKe9fND3kumE5leVhsWdF?=
+ =?us-ascii?Q?YZc1lqQlp2eKyrE4oG35FnZhEhrDLsjRf5SRZsEFZo0GOLDpr7LowVmwn6/P?=
+ =?us-ascii?Q?hTWy17m/eJgbCYrShiqHfcj73e4JaJYK0H2eeeLu/D2BkgOMFQcA7aJ9ggDx?=
+ =?us-ascii?Q?Mrf5mmpTkiosbhPgeiEeG40f+MPJToWGxz8z+zug1BFRaJT4LoH2AJtkZaGG?=
+ =?us-ascii?Q?kVL+dnTMMypWrv6qpujm+ZQjoR9ubhcKWiGxPc6DZ67Rysp5Py/5fWWkZxA8?=
+ =?us-ascii?Q?shxvXpZQOjmq5kLSoHx2jsF+SQt/Ven5E7epCrPnXFNhTdiVB5C0lkKiq8ag?=
+ =?us-ascii?Q?EEzDgFYd4i68DP7vKR99VyOvuL0Hfkfr/s5nxiN6TpCRZqv+D7PH+Q0tMKAm?=
+ =?us-ascii?Q?FDowuouds4JrQd7WkPvz/eAWJuJhl/VByaW/GF9ZHUQXLoexcqYh5A2Gq1ze?=
+ =?us-ascii?Q?xU4/sCmNV/6ebr1JYACr+5xIHfu1PyGGbcw7+QvbuasNUCexoZKkGc5kJJTG?=
+ =?us-ascii?Q?kQ=3D=3D?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: dd311607-0f32-42a3-23db-08db06252b21
 X-MS-Exchange-CrossTenant-AuthSource: MN0PR11MB6059.namprd11.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 03 Feb 2023 20:28:07.8642 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 03 Feb 2023 20:28:11.2393 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: O5RlJkopN6zxgTh9KkKfDuELEtIC8fHGi5NHHcx610rW2udn+/zIGtV/C5Dfhq5DizwtzRSQek+TOPjNSP7qIw==
+X-MS-Exchange-CrossTenant-UserPrincipalName: 5R2ADY6fdK3e2W9D7bsPCYCrasRnN8FkzJyzqmp8pxLM0FAyNXUdONm5hwHE6a6o3sWbi+PDHqLzpjXNp60Bxw==
 X-MS-Exchange-Transport-CrossTenantHeadersStamped: IA0PR11MB7909
 X-OriginatorOrg: intel.com
-Subject: [Intel-xe] [PATCH 5/6] drm/xe: move xe IRQ-related display logic to
+Subject: [Intel-xe] [PATCH 6/6] drm/xe: move xe PM-related display logic to
  xe_display.c
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -152,194 +152,358 @@ From: Mauro Carvalho Chehab <mchehab@kernel.org>
 It is very ugly to read code with lots of ifdefs. Also, it makes
 harder when the display part can be disabled in runtime.
 
-Move the IRQ-related core to xe_display.c, making the code
+Move the PM-related core to xe_display.c, making the code
 clearer and more modular.
 
 Signed-off-by: Mauro Carvalho Chehab <mchehab@kernel.org>
 Reviewed-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
 Signed-off-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
 ---
- drivers/gpu/drm/xe/xe_display.c | 37 +++++++++++++++++++++++++++++++++
- drivers/gpu/drm/xe/xe_display.h | 14 +++++++++++++
- drivers/gpu/drm/xe/xe_irq.c     | 37 +++++++--------------------------
- 3 files changed, 59 insertions(+), 29 deletions(-)
+ drivers/gpu/drm/xe/xe_display.c |  98 +++++++++++++++++++++++++-
+ drivers/gpu/drm/xe/xe_display.h |  12 ++++
+ drivers/gpu/drm/xe/xe_pm.c      | 121 ++------------------------------
+ 3 files changed, 115 insertions(+), 116 deletions(-)
 
 diff --git a/drivers/gpu/drm/xe/xe_display.c b/drivers/gpu/drm/xe/xe_display.c
-index 8d83b7c34ad6..262d8e06b51f 100644
+index 262d8e06b51f..47a16a3f85fa 100644
 --- a/drivers/gpu/drm/xe/xe_display.c
 +++ b/drivers/gpu/drm/xe/xe_display.c
-@@ -187,4 +187,41 @@ void xe_display_modset_driver_remove(struct xe_device *xe)
- 	intel_modeset_driver_remove(xe);
+@@ -5,7 +5,6 @@
+ 
+ #if IS_ENABLED(CONFIG_DRM_XE_DISPLAY)
+ 
+-#include "xe_device.h"
+ #include "xe_display.h"
+ #include "xe_module.h"
+ 
+@@ -17,13 +16,18 @@
+ #include "display/intel_audio.h"
+ #include "display/intel_bw.h"
+ #include "display/intel_display.h"
++#include "display/intel_display_types.h"
++#include "display/intel_dp.h"
+ #include "display/intel_fbdev.h"
+ #include "display/intel_hdcp.h"
++#include "display/intel_hotplug.h"
+ #include "display/intel_opregion.h"
+ #include "display/ext/i915_irq.h"
+ #include "display/ext/intel_dram.h"
+ #include "display/ext/intel_pm.h"
+ 
++#include <linux/fb.h>
++
+ /* Xe device functions */
+ 
+ int xe_display_enable(struct pci_dev *pdev, struct drm_driver *driver)
+@@ -224,4 +228,96 @@ void xe_display_irq_postinstall(struct xe_device *xe, struct xe_gt *gt)
+ 		gen11_display_irq_postinstall(xe);
  }
  
-+/* IRQ-related functions */
-+
-+void xe_display_irq_handler(struct xe_device *xe, u32 master_ctl)
++static void intel_suspend_encoders(struct xe_device *xe)
 +{
-+	if (!xe->info.enable_display)
++	struct drm_device *dev = &xe->drm;
++	struct intel_encoder *encoder;
++
++	if (!xe->info.display.pipe_mask)
 +		return;
 +
-+	if (master_ctl & GEN11_DISPLAY_IRQ)
-+		gen11_display_irq_handler(xe);
++	drm_modeset_lock_all(dev);
++	for_each_intel_encoder(dev, encoder)
++		if (encoder->suspend)
++			encoder->suspend(encoder);
++	drm_modeset_unlock_all(dev);
 +}
 +
-+void xe_display_irq_enable(struct xe_device *xe, u32 gu_misc_iir)
++void xe_display_pm_suspend(struct xe_device *xe)
 +{
 +	if (!xe->info.enable_display)
 +		return;
 +
-+	if (gu_misc_iir & GEN11_GU_MISC_GSE)
-+		intel_opregion_asle_intr(xe);
++	/*
++	 * We do a lot of poking in a lot of registers, make sure they work
++	 * properly.
++	 */
++	intel_power_domains_disable(xe);
++	if (xe->info.display.pipe_mask)
++		drm_kms_helper_poll_disable(&xe->drm);
++
++	intel_display_suspend(&xe->drm);
++
++	intel_dp_mst_suspend(xe);
++
++	intel_hpd_cancel_work(xe);
++
++	intel_suspend_encoders(xe);
++
++	intel_opregion_suspend(xe, PCI_D3cold);
++
++	intel_fbdev_set_suspend(&xe->drm, FBINFO_STATE_SUSPENDED, true);
++
++	intel_dmc_ucode_suspend(xe);
 +}
 +
-+void xe_display_irq_reset(struct xe_device *xe)
++void xe_display_pm_suspend_late(struct xe_device *xe)
 +{
 +	if (!xe->info.enable_display)
 +		return;
 +
-+	gen11_display_irq_reset(xe);
++	intel_power_domains_suspend(xe, I915_DRM_SUSPEND_MEM);
++
++	intel_display_power_suspend_late(xe);
 +}
 +
-+void xe_display_irq_postinstall(struct xe_device *xe, struct xe_gt *gt)
++void xe_display_pm_resume_early(struct xe_device *xe)
 +{
 +	if (!xe->info.enable_display)
 +		return;
 +
-+	if (gt->info.id == XE_GT0)
-+		gen11_display_irq_postinstall(xe);
++	intel_display_power_resume_early(xe);
++
++	intel_power_domains_resume(xe);
++}
++
++void xe_display_pm_resume(struct xe_device *xe)
++{
++	if (!xe->info.enable_display)
++		return;
++
++	intel_dmc_ucode_resume(xe);
++
++	if (xe->info.display.pipe_mask)
++		drm_mode_config_reset(&xe->drm);
++
++	intel_modeset_init_hw(xe);
++	intel_init_clock_gating(xe);
++	intel_hpd_init(xe);
++
++	/* MST sideband requires HPD interrupts enabled */
++	intel_dp_mst_resume(xe);
++	intel_display_resume(&xe->drm);
++
++	intel_hpd_poll_disable(xe);
++	if (xe->info.display.pipe_mask)
++		drm_kms_helper_poll_enable(&xe->drm);
++
++	intel_opregion_resume(xe);
++
++	intel_fbdev_set_suspend(&xe->drm, FBINFO_STATE_RUNNING, false);
++
++	intel_power_domains_enable(xe);
 +}
 +
  #endif
 diff --git a/drivers/gpu/drm/xe/xe_display.h b/drivers/gpu/drm/xe/xe_display.h
-index 79aba827b254..11f98ccfaf4e 100644
+index 11f98ccfaf4e..03117a7067dc 100644
 --- a/drivers/gpu/drm/xe/xe_display.h
 +++ b/drivers/gpu/drm/xe/xe_display.h
-@@ -9,6 +9,9 @@
+@@ -9,6 +9,8 @@
  #if IS_ENABLED(CONFIG_DRM_XE_DISPLAY)
  #include <drm/drm_drv.h>
  
-+#include "display/intel_opregion.h"
-+#include "display/ext/i915_irq.h"
++#include "xe_device.h"
 +
- int xe_display_enable(struct pci_dev *pdev, struct drm_driver *driver);
+ #include "display/intel_opregion.h"
+ #include "display/ext/i915_irq.h"
  
- int xe_display_init_nommio(struct xe_device *xe);
-@@ -27,6 +30,12 @@ void xe_display_register(struct xe_device *xe);
- void xe_display_unregister(struct xe_device *xe);
- void xe_display_modset_driver_remove(struct xe_device *xe);
+@@ -36,6 +38,11 @@ void xe_display_irq_enable(struct xe_device *xe, u32 gu_misc_iir);
+ void xe_display_irq_reset(struct xe_device *xe);
+ void xe_display_irq_postinstall(struct xe_device *xe, struct xe_gt *gt);
  
-+void xe_display_irq_handler(struct xe_device *xe, u32 master_ctl);
-+void xe_display_irq_enable(struct xe_device *xe, u32 gu_misc_iir);
-+
-+void xe_display_irq_reset(struct xe_device *xe);
-+void xe_display_irq_postinstall(struct xe_device *xe, struct xe_gt *gt);
++void xe_display_pm_suspend(struct xe_device *xe);
++void xe_display_pm_suspend_late(struct xe_device *xe);
++void xe_display_pm_resume_early(struct xe_device *xe);
++void xe_display_pm_resume(struct xe_device *xe);
 +
  #else
  static inline int
  xe_display_enable(struct pci_dev *pdev, struct drm_driver *driver) { return 0; };
-@@ -55,5 +64,10 @@ static inline void xe_display_register(struct xe_device *xe) {};
- static inline void xe_display_unregister(struct xe_device *xe) {};
- static inline void xe_display_modset_driver_remove(struct xe_device *xe) {};
+@@ -69,5 +76,10 @@ static inline void xe_display_irq_enable(struct xe_device *xe, u32 gu_misc_iir)
+ static inline void xe_display_irq_reset(struct xe_device *xe) {};
+ static inline void xe_display_irq_postinstall(struct xe_device *xe, struct xe_gt *gt) {};
  
-+static inline void xe_display_irq_handler(struct xe_device *xe, u32 master_ctl) {};
-+static inline void xe_display_irq_enable(struct xe_device *xe, u32 gu_misc_iir) {};
-+static inline void xe_display_irq_reset(struct xe_device *xe) {};
-+static inline void xe_display_irq_postinstall(struct xe_device *xe, struct xe_gt *gt) {};
++static inline void xe_display_pm_suspend(struct xe_device *xe) {};
++static inline void xe_display_pm_suspend_late(struct xe_device *xe) {};
++static inline void xe_display_pm_resume_early(struct xe_device *xe) {};
++static inline void xe_display_pm_resume(struct xe_device *xe) {};
 +
  #endif /* CONFIG_DRM_XE_DISPLAY */
  #endif /* _XE_DISPLAY_H_ */
-diff --git a/drivers/gpu/drm/xe/xe_irq.c b/drivers/gpu/drm/xe/xe_irq.c
-index e1cc057f50ba..7b7ddd11c2b8 100644
---- a/drivers/gpu/drm/xe/xe_irq.c
-+++ b/drivers/gpu/drm/xe/xe_irq.c
-@@ -8,17 +8,13 @@
- #include <drm/drm_managed.h>
- 
+diff --git a/drivers/gpu/drm/xe/xe_pm.c b/drivers/gpu/drm/xe/xe_pm.c
+index 4b3a1d8a8adf..44c38e670587 100644
+--- a/drivers/gpu/drm/xe/xe_pm.c
++++ b/drivers/gpu/drm/xe/xe_pm.c
+@@ -10,22 +10,13 @@
+ #include "xe_bo.h"
+ #include "xe_bo_evict.h"
  #include "xe_device.h"
 +#include "xe_display.h"
- #include "xe_drv.h"
- #include "xe_guc.h"
+ #include "xe_pm.h"
  #include "xe_gt.h"
- #include "xe_hw_engine.h"
- #include "xe_mmio.h"
+ #include "xe_ggtt.h"
+ #include "xe_irq.h"
+ #include "xe_pcode.h"
  
+-#include <linux/fb.h>
+-
 -#if IS_ENABLED(CONFIG_DRM_XE_DISPLAY)
--#include "display/intel_opregion.h"
--#include "display/ext/i915_irq.h"
+-#include "display/intel_display_types.h"
+-#include "display/intel_dp.h"
+-#include "display/intel_fbdev.h"
+-#include "display/intel_hotplug.h"
+-#include "display/ext/intel_pm.h"
 -#endif
 -
- #include "i915_reg.h"
- #include "gt/intel_gt_regs.h"
- 
-@@ -298,19 +294,13 @@ static irqreturn_t gen11_irq_handler(int irq, void *arg)
- 
- 	gen11_gt_irq_handler(xe, gt, master_ctl, intr_dw, identity);
- 
--#if IS_ENABLED(CONFIG_DRM_XE_DISPLAY)
--	if (xe->info.enable_display && (master_ctl & GEN11_DISPLAY_IRQ))
--		gen11_display_irq_handler(xe);
--#endif
-+	xe_display_irq_handler(xe, master_ctl);
- 
- 	gu_misc_iir = gen11_gu_misc_irq_ack(gt, master_ctl);
- 
- 	gen11_intr_enable(gt, false);
+ /**
+  * DOC: Xe Power Management
+  *
+@@ -46,106 +37,6 @@
+  * and no wait boost. Frequency optimizations should come on a next stage.
+  */
  
 -#if IS_ENABLED(CONFIG_DRM_XE_DISPLAY)
--	if (xe->info.enable_display && (gu_misc_iir & GEN11_GU_MISC_GSE))
--		intel_opregion_asle_intr(xe);
+-static void intel_suspend_encoders(struct xe_device *xe)
+-{
+-	struct drm_device *dev = &xe->drm;
+-	struct intel_encoder *encoder;
+-
+-	if (!xe->info.enable_display || !xe->info.display.pipe_mask)
+-		return;
+-
+-	drm_modeset_lock_all(dev);
+-	for_each_intel_encoder(dev, encoder)
+-		if (encoder->suspend)
+-			encoder->suspend(encoder);
+-	drm_modeset_unlock_all(dev);
+-}
 -#endif
-+	xe_display_irq_enable(xe, gu_misc_iir);
- 
- 	return IRQ_HANDLED;
- }
-@@ -393,19 +383,13 @@ static irqreturn_t dg1_irq_handler(int irq, void *arg)
- 		gen11_gt_irq_handler(xe, gt, master_ctl, intr_dw, identity);
- 	}
- 
+-
+-static void xe_pm_display_suspend(struct xe_device *xe)
+-{
 -#if IS_ENABLED(CONFIG_DRM_XE_DISPLAY)
--	if (master_ctl & GEN11_DISPLAY_IRQ)
--		gen11_display_irq_handler(xe);
+-	if (!xe->info.enable_display)
+-		return;
+-
+-	/* We do a lot of poking in a lot of registers, make sure they work
+-	 * properly. */
+-	intel_power_domains_disable(xe);
+-	if (xe->info.display.pipe_mask)
+-		drm_kms_helper_poll_disable(&xe->drm);
+-
+-	intel_display_suspend(&xe->drm);
+-
+-	intel_dp_mst_suspend(xe);
+-
+-	intel_hpd_cancel_work(xe);
+-
+-	intel_suspend_encoders(xe);
+-
+-	intel_opregion_suspend(xe, PCI_D3cold);
+-
+-	intel_fbdev_set_suspend(&xe->drm, FBINFO_STATE_SUSPENDED, true);
+-
+-	intel_dmc_ucode_suspend(xe);
 -#endif
-+	xe_display_irq_handler(xe, master_ctl);
- 
- 	gu_misc_iir = gen11_gu_misc_irq_ack(gt, master_ctl);
- 
- 	dg1_intr_enable(xe, false);
- 
+-}
+-
+-static void xe_pm_display_suspend_late(struct xe_device *xe)
+-{
 -#if IS_ENABLED(CONFIG_DRM_XE_DISPLAY)
--	if (xe->info.enable_display && (gu_misc_iir & GEN11_GU_MISC_GSE))
--		intel_opregion_asle_intr(xe);
+-	if (!xe->info.enable_display)
+-		return;
+-
+-	intel_power_domains_suspend(xe, I915_DRM_SUSPEND_MEM);
+-
+-	intel_display_power_suspend_late(xe);
 -#endif
-+	xe_display_irq_enable(xe, gu_misc_iir);
+-}
+-
+-static void xe_pm_display_resume_early(struct xe_device *xe)
+-{
+-#if IS_ENABLED(CONFIG_DRM_XE_DISPLAY)
+-	if (!xe->info.enable_display)
+-		return;
+-
+-	intel_display_power_resume_early(xe);
+-
+-	intel_power_domains_resume(xe);
+-#endif
+-}
+-
+-static void xe_pm_display_resume(struct xe_device *xe)
+-{
+-#if IS_ENABLED(CONFIG_DRM_XE_DISPLAY)
+-	if (!xe->info.enable_display)
+-		return;
+-
+-	intel_dmc_ucode_resume(xe);
+-
+-	if (xe->info.display.pipe_mask)
+-		drm_mode_config_reset(&xe->drm);
+-
+-	intel_modeset_init_hw(xe);
+-	intel_init_clock_gating(xe);
+-	intel_hpd_init(xe);
+-
+-	/* MST sideband requires HPD interrupts enabled */
+-	intel_dp_mst_resume(xe);
+-	intel_display_resume(&xe->drm);
+-
+-	intel_hpd_poll_disable(xe);
+-	if (xe->info.display.pipe_mask)
+-		drm_kms_helper_poll_enable(&xe->drm);
+-
+-	intel_opregion_resume(xe);
+-
+-	intel_fbdev_set_suspend(&xe->drm, FBINFO_STATE_RUNNING, false);
+-
+-	intel_power_domains_enable(xe);
+-#endif
+-}
+-
+ /**
+  * xe_pm_suspend - Helper for System suspend, i.e. S0->S3 / S0->S2idle
+  * @xe: xe device instance
+@@ -166,19 +57,19 @@ int xe_pm_suspend(struct xe_device *xe)
+ 	if (err)
+ 		return err;
  
- 	return IRQ_HANDLED;
- }
-@@ -487,10 +471,8 @@ void xe_irq_reset(struct xe_device *xe)
- 			drm_err(&xe->drm, "No interrupt reset hook");
+-	xe_pm_display_suspend(xe);
++	xe_display_pm_suspend(xe);
+ 
+ 	for_each_gt(gt, xe, id) {
+ 		err = xe_gt_suspend(gt);
+ 		if (err) {
+-			xe_pm_display_resume(xe);
++			xe_display_pm_resume(xe);
+ 			return err;
  		}
  	}
--#if IS_ENABLED(CONFIG_DRM_XE_DISPLAY)
--	if (xe->info.enable_display)
--		gen11_display_irq_reset(xe);
--#endif
-+
-+	xe_display_irq_reset(xe);
+ 
+ 	xe_irq_suspend(xe);
+ 
+-	xe_pm_display_suspend_late(xe);
++	xe_display_pm_suspend_late(xe);
+ 
+ 	return 0;
  }
+@@ -201,7 +92,7 @@ int xe_pm_resume(struct xe_device *xe)
+ 			return err;
+ 	}
  
- void xe_gt_irq_postinstall(struct xe_gt *gt)
-@@ -504,10 +486,7 @@ void xe_gt_irq_postinstall(struct xe_gt *gt)
- 	else
- 		drm_err(&xe->drm, "No interrupt postinstall hook");
+-	xe_pm_display_resume_early(xe);
++	xe_display_pm_resume_early(xe);
  
--#if IS_ENABLED(CONFIG_DRM_XE_DISPLAY)
--	if (xe->info.enable_display && (gt->info.id == XE_GT0))
--		gen11_display_irq_postinstall(gt_to_xe(gt));
--#endif
-+	xe_display_irq_postinstall(xe, gt);
- }
+ 	/*
+ 	 * This only restores pinned memory which is the memory required for the
+@@ -213,7 +104,7 @@ int xe_pm_resume(struct xe_device *xe)
  
- static void xe_irq_postinstall(struct xe_device *xe)
+ 	xe_irq_resume(xe);
+ 
+-	xe_pm_display_resume(xe);
++	xe_display_pm_resume(xe);
+ 
+ 	for_each_gt(gt, xe, id)
+ 		xe_gt_resume(gt);
 -- 
 2.39.1
 
