@@ -4,47 +4,48 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id CB9ECC6379F
-	for <intel-xe@archiver.kernel.org>; Tue, 14 Feb 2023 11:23:58 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id E9439C64ED8
+	for <intel-xe@archiver.kernel.org>; Tue, 14 Feb 2023 11:24:00 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A44B910E88F;
-	Tue, 14 Feb 2023 11:23:58 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id CD53B10E88E;
+	Tue, 14 Feb 2023 11:24:00 +0000 (UTC)
 Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B049B10E88E
- for <intel-xe@lists.freedesktop.org>; Tue, 14 Feb 2023 11:23:56 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id BB54E10E0D7
+ for <intel-xe@lists.freedesktop.org>; Tue, 14 Feb 2023 11:23:57 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1676373836; x=1707909836;
+ t=1676373837; x=1707909837;
  h=from:to:subject:date:message-id:in-reply-to:references:
  mime-version:content-transfer-encoding;
- bh=ErWHbOrw7CuOW5hHmJwFibIeCBFdoOLrLy9qZ5kImv8=;
- b=BWIb0KSt6IqNVur9I71QqwsIaxPNYMXFprkZtaU/xq8uAfxlLmNO3kqX
- KZMTXGnlHjywNvl04T6W/T+M8MND1/8TIL4lh0jPIublCduRoCR6Esq+G
- No0Mlyiok//iihRIdKTlNoAcHTh3B6xzDtFukGb6N6cyW8UhygQY0iBfV
- 13gBGmhEel8sOx+MbhLs5js0iW01H4mDnGLIJjKhCNxvvio1yufiyM4Bp
- xgqP5DkNrUyWzC9xJGe+cFaz82VoZEemoJXTHgdhqXd+Eyz7SpZnlWpl2
- yNKnvDjY98n6LBDw1nwIl/lz2mafzQ7WSgf8bEnjIJicqZ6oibtTbZEk8 A==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10620"; a="332450051"
-X-IronPort-AV: E=Sophos;i="5.97,296,1669104000"; d="scan'208";a="332450051"
+ bh=OP6zlhI92CzCq3Dx43fM9gdS6ShclUFKFyd/xrqwpmo=;
+ b=bhxSCXzq01tLGZ2tMOfFlh2bGnE2/fdlQftlJooSfQfThQ74uMEdivMQ
+ 3mxtNtrm179nER50kxIFp/z2ARlmCZX0KsOuEz/SNqJQyOkc78C5yZ8V5
+ WBPxWbY+ZcHiZkmU1mQYJyeAF34R5sbo81sQyDsKUpRjCEvfKMepg9KmH
+ wc/cYuCYXXrSZ5hik5lY3uv9l48AQaeZzx2d6DxyjjtkPi9NEdcV8bnLc
+ wNsVlnUTtEk9pa+hHYJsaCNbMklFaglU0cXv0SAXgUOx+sfyvZ3m1qTZp
+ tKqVWsCMeEeqUXNO09EzVCB/Obzyr5mpUVyHg/5gzOvx9Uab1teT4wTNQ w==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10620"; a="332450071"
+X-IronPort-AV: E=Sophos;i="5.97,296,1669104000"; d="scan'208";a="332450071"
 Received: from fmsmga008.fm.intel.com ([10.253.24.58])
  by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 14 Feb 2023 03:23:49 -0800
-X-IronPort-AV: E=McAfee;i="6500,9779,10620"; a="732863201"
-X-IronPort-AV: E=Sophos;i="5.97,296,1669104000"; d="scan'208";a="732863201"
+ 14 Feb 2023 03:23:56 -0800
+X-IronPort-AV: E=McAfee;i="6500,9779,10620"; a="732863233"
+X-IronPort-AV: E=Sophos;i="5.97,296,1669104000"; d="scan'208";a="732863233"
 Received: from achurkin-mobl1.ger.corp.intel.com (HELO mwauld-desk1.intel.com)
  ([10.252.18.173])
  by fmsmga008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 14 Feb 2023 03:23:49 -0800
+ 14 Feb 2023 03:23:55 -0800
 From: Matthew Auld <matthew.auld@intel.com>
 To: intel-xe@lists.freedesktop.org
-Date: Tue, 14 Feb 2023 11:21:24 +0000
-Message-Id: <20230214112136.162380-3-matthew.auld@intel.com>
+Date: Tue, 14 Feb 2023 11:21:31 +0000
+Message-Id: <20230214112136.162380-10-matthew.auld@intel.com>
 X-Mailer: git-send-email 2.39.1
 In-Reply-To: <20230214112136.162380-1-matthew.auld@intel.com>
 References: <20230214112136.162380-1-matthew.auld@intel.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-xe] [PATCH 03/15] drm/xe/mmio: s/lmem/vram/
+Subject: [Intel-xe] [PATCH 10/15] drm/xe/buddy: add compatible and
+ intersects hooks
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -59,170 +60,94 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-This seems to be the preferred nomenclature in xe.
+Copy this from i915. We need .compatible for lmem -> lmem transfers, so
+they don't just get nooped by ttm, if need to move something from
+mappable to non-mappble or vice versa. The .intersects is needed for
+eviction, to determine if a victim resource is worth eviction. e.g if we
+need mappable space there is no point in evicting a resource that has
+zero mappable pages.
 
 Signed-off-by: Matthew Auld <matthew.auld@intel.com>
 ---
- drivers/gpu/drm/xe/xe_mmio.c   | 40 +++++++++++++++++-----------------
- drivers/gpu/drm/xe/xe_module.c |  6 ++---
- drivers/gpu/drm/xe/xe_module.h |  2 +-
- 3 files changed, 24 insertions(+), 24 deletions(-)
+ drivers/gpu/drm/xe/xe_ttm_vram_mgr.c | 62 ++++++++++++++++++++++++++++
+ 1 file changed, 62 insertions(+)
 
-diff --git a/drivers/gpu/drm/xe/xe_mmio.c b/drivers/gpu/drm/xe/xe_mmio.c
-index 497f643271ae..e9ff5b9577fa 100644
---- a/drivers/gpu/drm/xe/xe_mmio.c
-+++ b/drivers/gpu/drm/xe/xe_mmio.c
-@@ -69,7 +69,7 @@ _resize_bar(struct xe_device *xe, int resno, resource_size_t size)
- 	return 1;
+diff --git a/drivers/gpu/drm/xe/xe_ttm_vram_mgr.c b/drivers/gpu/drm/xe/xe_ttm_vram_mgr.c
+index acde9e7564e1..7e4daab2ac7f 100644
+--- a/drivers/gpu/drm/xe/xe_ttm_vram_mgr.c
++++ b/drivers/gpu/drm/xe/xe_ttm_vram_mgr.c
+@@ -230,9 +230,71 @@ static void xe_ttm_vram_mgr_debug(struct ttm_resource_manager *man,
+ 	drm_printf(printer, "man size:%llu\n", man->size);
  }
  
--static int xe_resize_lmem_bar(struct xe_device *xe, resource_size_t lmem_size)
-+static int xe_resize_vram_bar(struct xe_device *xe, resource_size_t vram_size)
- {
- 	struct pci_dev *pdev = to_pci_dev(xe->drm.dev);
- 	struct pci_bus *root = pdev->bus;
-@@ -79,31 +79,31 @@ static int xe_resize_lmem_bar(struct xe_device *xe, resource_size_t lmem_size)
- 	u32 pci_cmd;
- 	int i;
- 	int ret;
--	u64 force_lmem_bar_size = xe_force_lmem_bar_size;
-+	u64 force_vram_bar_size = xe_force_vram_bar_size;
++static bool xe_ttm_vram_mgr_intersects(struct ttm_resource_manager *man,
++				       struct ttm_resource *res,
++				       const struct ttm_place *place,
++				       size_t size)
++{
++	struct xe_ttm_vram_mgr *mgr = to_xe_ttm_vram_mgr(man);
++	struct xe_ttm_vram_mgr_resource *vres =
++		to_xe_ttm_vram_mgr_resource(res);
++	struct drm_buddy *mm = &mgr->mm;
++	struct drm_buddy_block *block;
++
++	if (!place->fpfn && !place->lpfn)
++		return true;
++
++	if (!place->fpfn && place->lpfn == mgr->visible_size >> PAGE_SHIFT)
++		return vres->used_visible_size > 0;
++
++	list_for_each_entry(block, &vres->blocks, link) {
++		unsigned long fpfn =
++			drm_buddy_block_offset(block) >> PAGE_SHIFT;
++		unsigned long lpfn = fpfn +
++			(drm_buddy_block_size(mm, block) >> PAGE_SHIFT);
++
++		if (place->fpfn < lpfn && place->lpfn > fpfn)
++			return true;
++	}
++
++	return false;
++}
++
++static bool xe_ttm_vram_mgr_compatible(struct ttm_resource_manager *man,
++				       struct ttm_resource *res,
++				       const struct ttm_place *place,
++				       size_t size)
++{
++	struct xe_ttm_vram_mgr *mgr = to_xe_ttm_vram_mgr(man);
++	struct xe_ttm_vram_mgr_resource *vres =
++		to_xe_ttm_vram_mgr_resource(res);
++	struct drm_buddy *mm = &mgr->mm;
++	struct drm_buddy_block *block;
++
++	if (!place->fpfn && !place->lpfn)
++		return true;
++
++	if (!place->fpfn && place->lpfn == mgr->visible_size >> PAGE_SHIFT)
++		return vres->used_visible_size == size;
++
++	list_for_each_entry(block, &vres->blocks, link) {
++		unsigned long fpfn =
++			drm_buddy_block_offset(block) >> PAGE_SHIFT;
++		unsigned long lpfn = fpfn +
++			(drm_buddy_block_size(mm, block) >> PAGE_SHIFT);
++
++		if (fpfn < place->fpfn || lpfn > place->lpfn)
++			return false;
++	}
++
++	return true;
++}
++
+ static const struct ttm_resource_manager_func xe_ttm_vram_mgr_func = {
+ 	.alloc	= xe_ttm_vram_mgr_new,
+ 	.free	= xe_ttm_vram_mgr_del,
++	.intersects = xe_ttm_vram_mgr_intersects,
++	.compatible = xe_ttm_vram_mgr_compatible,
+ 	.debug	= xe_ttm_vram_mgr_debug
+ };
  
- 	current_size = roundup_pow_of_two(pci_resource_len(pdev, GEN12_LMEM_BAR));
- 
--	if (force_lmem_bar_size) {
-+	if (force_vram_bar_size) {
- 		u32 bar_sizes;
- 
--		rebar_size = force_lmem_bar_size * (resource_size_t)SZ_1M;
-+		rebar_size = force_vram_bar_size * (resource_size_t)SZ_1M;
- 		bar_sizes = pci_rebar_get_possible_sizes(pdev, GEN12_LMEM_BAR);
- 
- 		if (rebar_size == current_size)
- 			return 0;
- 
- 		if (!(bar_sizes & BIT(pci_rebar_bytes_to_size(rebar_size))) ||
--		    rebar_size >= roundup_pow_of_two(lmem_size)) {
--			rebar_size = lmem_size;
-+		    rebar_size >= roundup_pow_of_two(vram_size)) {
-+			rebar_size = vram_size;
- 			drm_info(&xe->drm,
- 				 "Given bar size is not within supported size, setting it to default: %llu\n",
--				 (u64)lmem_size >> 20);
-+				 (u64)vram_size >> 20);
- 		}
- 	} else {
- 		rebar_size = current_size;
- 
--		if (rebar_size != roundup_pow_of_two(lmem_size))
--			rebar_size = lmem_size;
-+		if (rebar_size != roundup_pow_of_two(vram_size))
-+			rebar_size = vram_size;
- 		else
- 			return 0;
- 	}
-@@ -118,7 +118,7 @@ static int xe_resize_lmem_bar(struct xe_device *xe, resource_size_t lmem_size)
- 	}
- 
- 	if (!root_res) {
--		drm_info(&xe->drm, "Can't resize LMEM BAR - platform support is missing\n");
-+		drm_info(&xe->drm, "Can't resize VRAM BAR - platform support is missing\n");
- 		return -1;
- 	}
- 
-@@ -169,7 +169,7 @@ int xe_mmio_total_vram_size(struct xe_device *xe, u64 *vram_size, u64 *usable_si
- 	if (usable_size) {
- 		reg = xe_gt_mcr_unicast_read_any(gt, XEHP_FLAT_CCS_BASE_ADDR);
- 		*usable_size = (u64)REG_FIELD_GET(GENMASK(31, 8), reg) * SZ_64K;
--		drm_info(&xe->drm, "lmem_size: 0x%llx usable_size: 0x%llx\n",
-+		drm_info(&xe->drm, "vram_size: 0x%llx usable_size: 0x%llx\n",
- 			 *vram_size, *usable_size);
- 	}
- 
-@@ -181,7 +181,7 @@ int xe_mmio_probe_vram(struct xe_device *xe)
- 	struct pci_dev *pdev = to_pci_dev(xe->drm.dev);
- 	struct xe_gt *gt;
- 	u8 id;
--	u64 lmem_size;
-+	u64 vram_size;
- 	u64 original_size;
- 	u64 current_size;
- 	u64 usable_size;
-@@ -208,29 +208,29 @@ int xe_mmio_probe_vram(struct xe_device *xe)
- 	gt = xe_device_get_gt(xe, 0);
- 	original_size = pci_resource_len(pdev, GEN12_LMEM_BAR);
- 
--	err = xe_mmio_total_vram_size(xe, &lmem_size, &usable_size);
-+	err = xe_mmio_total_vram_size(xe, &vram_size, &usable_size);
- 	if (err)
- 		return err;
- 
--	resize_result = xe_resize_lmem_bar(xe, lmem_size);
-+	resize_result = xe_resize_vram_bar(xe, vram_size);
- 	current_size = pci_resource_len(pdev, GEN12_LMEM_BAR);
- 	xe->mem.vram.io_start = pci_resource_start(pdev, GEN12_LMEM_BAR);
- 
--	xe->mem.vram.size = min(current_size, lmem_size);
-+	xe->mem.vram.size = min(current_size, vram_size);
- 
- 	if (!xe->mem.vram.size)
- 		return -EIO;
- 
- 	if (resize_result > 0)
--		drm_info(&xe->drm, "Successfully resize LMEM from %lluMiB to %lluMiB\n",
-+		drm_info(&xe->drm, "Successfully resize VRAM from %lluMiB to %lluMiB\n",
- 			 (u64)original_size >> 20,
- 			 (u64)current_size >> 20);
--	else if (xe->mem.vram.size < lmem_size && !xe_force_lmem_bar_size)
-+	else if (xe->mem.vram.size < vram_size && !xe_force_vram_bar_size)
- 		drm_info(&xe->drm, "Using a reduced BAR size of %lluMiB. Consider enabling 'Resizable BAR' support in your BIOS.\n",
- 			 (u64)xe->mem.vram.size >> 20);
--	if (xe->mem.vram.size < lmem_size)
-+	if (xe->mem.vram.size < vram_size)
- 		drm_warn(&xe->drm, "Restricting VRAM size to PCI resource size (0x%llx->0x%llx)\n",
--			 lmem_size, (u64)xe->mem.vram.size);
-+			 vram_size, (u64)xe->mem.vram.size);
- 
- 	xe->mem.vram.mapping = ioremap_wc(xe->mem.vram.io_start, xe->mem.vram.size);
- 	xe->mem.vram.size = min_t(u64, xe->mem.vram.size, usable_size);
-@@ -361,7 +361,7 @@ int xe_mmio_init(struct xe_device *xe)
- 	 * and we should not continue with driver initialization.
- 	 */
- 	if (IS_DGFX(xe) && !(xe_mmio_read32(gt, GU_CNTL.reg) & LMEM_INIT)) {
--		drm_err(&xe->drm, "LMEM not initialized by firmware\n");
-+		drm_err(&xe->drm, "VRAM not initialized by firmware\n");
- 		return -ENODEV;
- 	}
- 
-diff --git a/drivers/gpu/drm/xe/xe_module.c b/drivers/gpu/drm/xe/xe_module.c
-index 9cd1663f83f6..d014fd3325db 100644
---- a/drivers/gpu/drm/xe/xe_module.c
-+++ b/drivers/gpu/drm/xe/xe_module.c
-@@ -20,9 +20,9 @@ bool enable_display = true;
- module_param_named(enable_display, enable_display, bool, 0444);
- MODULE_PARM_DESC(enable_display, "Enable display");
- 
--u32 xe_force_lmem_bar_size;
--module_param_named(lmem_bar_size, xe_force_lmem_bar_size, uint, 0600);
--MODULE_PARM_DESC(lmem_bar_size, "Set the lmem bar size(in MiB)");
-+u32 xe_force_vram_bar_size;
-+module_param_named(vram_bar_size, xe_force_vram_bar_size, uint, 0600);
-+MODULE_PARM_DESC(vram_bar_size, "Set the vram bar size(in MiB)");
- 
- int xe_guc_log_level = 5;
- module_param_named(guc_log_level, xe_guc_log_level, int, 0600);
-diff --git a/drivers/gpu/drm/xe/xe_module.h b/drivers/gpu/drm/xe/xe_module.h
-index 2c6ee46f5595..86916c176382 100644
---- a/drivers/gpu/drm/xe/xe_module.h
-+++ b/drivers/gpu/drm/xe/xe_module.h
-@@ -8,6 +8,6 @@
- /* Module modprobe variables */
- extern bool enable_guc;
- extern bool enable_display;
--extern u32 xe_force_lmem_bar_size;
-+extern u32 xe_force_vram_bar_size;
- extern int xe_guc_log_level;
- extern char *xe_param_force_probe;
 -- 
 2.39.1
 
