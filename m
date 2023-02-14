@@ -4,46 +4,44 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id C1CC6C64EC7
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id E7708C61DA4
 	for <intel-xe@archiver.kernel.org>; Tue, 14 Feb 2023 08:34:21 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9664310E731;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9EEC210E811;
 	Tue, 14 Feb 2023 08:34:21 +0000 (UTC)
 Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B1B0510E817
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 89BE710E811
  for <intel-xe@lists.freedesktop.org>; Tue, 14 Feb 2023 08:34:19 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
  t=1676363659; x=1707899659;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=GXe5keUIYDqmpYiGsyI8J0svH0C1EzalmOcEtSqD1D8=;
- b=nvBg8YWeHJSty/IFGd7gySucrKTdh2hN5ywwMZv47iP5fvsiiD6K/UdM
- AP3/ijBZfg6AEMI4e/dSRyGwliYM8FOSgVfb+lwqzsEk9em6qT9Mval2S
- qwAQDH5pvaFC3zSK26+qgTRbs+ZQuUG+59tW9Ii8B2ujCaG853dDkoaZm
- UAQn52O6oBz4poHM5FnL85Gnp6ZjoJJHQlqirMCnQdAhJKhPHeKI2MomQ
- 16NqgRolcRtoM3rB3wXW6dEz+a5ZQGSzRAC5GG9CyOH2Yl3/uguZVGjea
- 8E3C6l105c5Ncn6uYNylDJlJ10+FwY5H9phaSNsIvc56VezEOGabFOlbT Q==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10620"; a="395727084"
-X-IronPort-AV: E=Sophos;i="5.97,296,1669104000"; d="scan'208";a="395727084"
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=YnOu1jaPa9KYlgfKBje9maHj8coNFPbozlo7N5dnYgU=;
+ b=G1bu9nM6J9XuRXVbKBvt7vtXfE1PoYd1qlR3jY5/SsoeID92wUP9tmKK
+ +yK/F6OQPIzqbnIYBSIS47XIJd4B6izi4PxZnoWvSa9PxAT66pjVPB93S
+ 04AGf3h8uPcl7+g8PDNjZCxxprAYt2eQIvrMwdDbh3MXuOIs5SH1aZElA
+ NFMeNvYdV49+sbhkmldvcMzN9/dWD8m5/ArwMHSAywODFDuQ2kOwYELuS
+ clV3gzVbNLIzROplOsru2yRsxfTSvjfX8Q24O0myl+M9AOTmNWZLYiaok
+ 97mHGVsxCJuqSWmYyJKedLoLqdsLHUHt6um3QOfzz3n3ppt6sM3uPpXcZ A==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10620"; a="395727083"
+X-IronPort-AV: E=Sophos;i="5.97,296,1669104000"; d="scan'208";a="395727083"
 Received: from fmsmga003.fm.intel.com ([10.253.24.29])
  by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  14 Feb 2023 00:34:19 -0800
-X-IronPort-AV: E=McAfee;i="6500,9779,10620"; a="757899390"
-X-IronPort-AV: E=Sophos;i="5.97,296,1669104000"; d="scan'208";a="757899390"
+X-IronPort-AV: E=McAfee;i="6500,9779,10620"; a="757899387"
+X-IronPort-AV: E=Sophos;i="5.97,296,1669104000"; d="scan'208";a="757899387"
 Received: from lucas-s2600cw.jf.intel.com ([10.165.21.196])
  by fmsmga003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  14 Feb 2023 00:34:18 -0800
 From: Lucas De Marchi <lucas.demarchi@intel.com>
 To: intel-xe@lists.freedesktop.org
-Date: Tue, 14 Feb 2023 00:33:19 -0800
-Message-Id: <20230214083320.2199178-2-lucas.demarchi@intel.com>
+Date: Tue, 14 Feb 2023 00:33:18 -0800
+Message-Id: <20230214083320.2199178-1-lucas.demarchi@intel.com>
 X-Mailer: git-send-email 2.39.0
-In-Reply-To: <20230214083320.2199178-1-lucas.demarchi@intel.com>
-References: <20230214083320.2199178-1-lucas.demarchi@intel.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-xe] [PATCH 1/2] drm/xe/guc: Remove i915_regs.h include
+Subject: [Intel-xe] [PATCH 0/2] Start register cleanup
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -59,27 +57,27 @@ Cc: Lucas De Marchi <lucas.demarchi@intel.com>
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-i915_regs.h is not needed, particularly in a header file. What is needed
-is i915_reg_defs.h for use of _MMIO() and similar macros.
+Start cleaning up the register definitions used in xe. The engine regs
+are chosen as they are small enough and we can use them to agree on file
+names, location and approach. GT and "global" registers will follow.
 
-Signed-off-by: Lucas De Marchi <lucas.demarchi@intel.com>
----
- drivers/gpu/drm/xe/xe_guc_reg.h | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+Lucas De Marchi (2):
+  drm/xe/guc: Remove i915_regs.h include
+  drm/xe: Remove dependency on intel_engine_regs.h
 
-diff --git a/drivers/gpu/drm/xe/xe_guc_reg.h b/drivers/gpu/drm/xe/xe_guc_reg.h
-index 1e16a9b76ddc..513a7e0c8a5a 100644
---- a/drivers/gpu/drm/xe/xe_guc_reg.h
-+++ b/drivers/gpu/drm/xe/xe_guc_reg.h
-@@ -9,7 +9,7 @@
- #include <linux/compiler.h>
- #include <linux/types.h>
- 
--#include "i915_reg.h"
-+#include "i915_reg_defs.h"
- 
- /* Definitions of GuC H/W registers, bits, etc */
- 
+ drivers/gpu/drm/xe/xe_execlist.c            |  5 +-
+ drivers/gpu/drm/xe/xe_guc_ads.c             |  6 +-
+ drivers/gpu/drm/xe/xe_guc_reg.h             |  2 +-
+ drivers/gpu/drm/xe/xe_hw_engine.c           |  2 +-
+ drivers/gpu/drm/xe/xe_lrc.c                 |  3 +-
+ drivers/gpu/drm/xe/xe_mmio.c                |  2 +-
+ drivers/gpu/drm/xe/xe_reg_sr.c              |  2 +-
+ drivers/gpu/drm/xe/xe_reg_whitelist.c       |  3 +-
+ drivers/gpu/drm/xe/xe_regs/xe_engine_regs.h | 81 +++++++++++++++++++++
+ drivers/gpu/drm/xe/xe_wa.c                  |  2 +-
+ 10 files changed, 97 insertions(+), 11 deletions(-)
+ create mode 100644 drivers/gpu/drm/xe/xe_regs/xe_engine_regs.h
+
 -- 
 2.39.0
 
