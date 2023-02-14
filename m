@@ -4,47 +4,47 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 26E30C64EC7
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6899BC64ED6
 	for <intel-xe@archiver.kernel.org>; Tue, 14 Feb 2023 11:23:59 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0806D10E892;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 495CE10E88E;
 	Tue, 14 Feb 2023 11:23:59 +0000 (UTC)
 Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 32C4D10E88E
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 90ADA10E88F
  for <intel-xe@lists.freedesktop.org>; Tue, 14 Feb 2023 11:23:57 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
  t=1676373837; x=1707909837;
  h=from:to:subject:date:message-id:in-reply-to:references:
  mime-version:content-transfer-encoding;
- bh=xq9tE2SvXTBeCb8xutiYZeU2xz3tUyDdQhbQXjyLIqo=;
- b=MONBrZSvBVvsmXA87YfKDzUq5Xz1/CMbyA0GUSrgy9dDJ2mL87sB26vC
- kHD7CjgtaXOhhqLh8gljfLjOO03yvSCbHQ2v01cV6C39UclRWe6iED4/b
- Jj8QiZKLi9oRVbAgmMvW+tksLqcbWmihTAM2alftHdALrLEeABD42utjq
- cgkRrJXXYZ8qVnAPR5F0Y9KTLw+yTvOGw2i/HcafBUZz0o7eBTlSiCRu8
- QhFUAZwl8kCq7POcIC8M5j0Lfx22OZlbt/Dyr/L/G6s5Ip43iRNiCq6rI
- WxgwTVegyvs5g961KUSUcQim7EN/2WGsZq5VTQBIGodR0e6tzaba8opJ7 A==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10620"; a="332450056"
-X-IronPort-AV: E=Sophos;i="5.97,296,1669104000"; d="scan'208";a="332450056"
+ bh=m+nLrb/Drlilt9jIcjoMvW+MHxyPQBu1pR9q1Vn/OnI=;
+ b=Jg2OqnbnsqxOfi9l+vWmXNLkHUoNipTTEetR+1589oEzKFiovuDlUMEI
+ lIGePx0IA8AciOqQNfCpp5ABaAdiOKJ18V1lVOQSbyEzIcUzd7ViqZStv
+ /IUUThW7fHS/iLW0YI1XY2kooTYrv7/kWvwZcgPAPVnkTO9nQnWb1k8uv
+ nz+XKiJsulaUcwbhTecMoTcb70uZ0o533V4sb820F7jtbN24myFXtoSQ8
+ ZsUTNuzRkdSfJGzitLeQ1H9PuLThNi14BlqtXcioFhcmLFW1fHuA6aNch
+ 35oFfDGxRslcSPrf/ArO5f3Tu+begVH/j+NOGqhFsFf8db6TDTslEPNzY w==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10620"; a="332450062"
+X-IronPort-AV: E=Sophos;i="5.97,296,1669104000"; d="scan'208";a="332450062"
 Received: from fmsmga008.fm.intel.com ([10.253.24.58])
  by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 14 Feb 2023 03:23:50 -0800
-X-IronPort-AV: E=McAfee;i="6500,9779,10620"; a="732863215"
-X-IronPort-AV: E=Sophos;i="5.97,296,1669104000"; d="scan'208";a="732863215"
+ 14 Feb 2023 03:23:53 -0800
+X-IronPort-AV: E=McAfee;i="6500,9779,10620"; a="732863224"
+X-IronPort-AV: E=Sophos;i="5.97,296,1669104000"; d="scan'208";a="732863224"
 Received: from achurkin-mobl1.ger.corp.intel.com (HELO mwauld-desk1.intel.com)
  ([10.252.18.173])
  by fmsmga008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 14 Feb 2023 03:23:49 -0800
+ 14 Feb 2023 03:23:52 -0800
 From: Matthew Auld <matthew.auld@intel.com>
 To: intel-xe@lists.freedesktop.org
-Date: Tue, 14 Feb 2023 11:21:25 +0000
-Message-Id: <20230214112136.162380-4-matthew.auld@intel.com>
+Date: Tue, 14 Feb 2023 11:21:28 +0000
+Message-Id: <20230214112136.162380-7-matthew.auld@intel.com>
 X-Mailer: git-send-email 2.39.1
 In-Reply-To: <20230214112136.162380-1-matthew.auld@intel.com>
 References: <20230214112136.162380-1-matthew.auld@intel.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-xe] [PATCH 04/15] drm/xe: prefer xe_bo_create_pin_map()
+Subject: [Intel-xe] [PATCH 07/15] drm/xe/vram: start tracking the io_size
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -59,173 +59,193 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-With small-bar we likely want to annotate all the kernel users that
-require CPU access with vram. If xe_bo_create_pin_map() is the central
-place for that then we should have a central place to annotate.
+First step towards supporting small-bar is to track the io_size for
+vram. We can longer assume that the io_size == vram size. This way we
+know how much is CPU accessible via the BAR, and how much is not.
+Effectively giving us a two tiered vram, where in some later patches we
+can support different allocation strategies depending on if the memory
+needs to be CPU accessible or not.
 
-This also simplifies the code and fixes what appears to be a double
-xe_bo_put(hwe->hwsp) in the error handling.
+Note as this stage we still clamp the vram size to the usable vram size.
+Only in the final patch do we turn this on for real, and allow distinct
+io_size and vram_size.
+
+v2: (Lucas):
+  - Improve the commit message, plus improve the kernel-doc for the
+    io_size to give a better sense of what it actually is.
 
 Signed-off-by: Matthew Auld <matthew.auld@intel.com>
 ---
- drivers/gpu/drm/xe/xe_hw_engine.c | 23 +++-----------
- drivers/gpu/drm/xe/xe_lrc.c       | 53 +++++++++++--------------------
- drivers/gpu/drm/xe/xe_lrc_types.h |  1 -
- 3 files changed, 22 insertions(+), 55 deletions(-)
+ drivers/gpu/drm/xe/xe_device_types.h | 14 +++++++--
+ drivers/gpu/drm/xe/xe_gt_types.h     | 14 +++++++--
+ drivers/gpu/drm/xe/xe_mmio.c         | 44 ++++++++++++++++++++--------
+ 3 files changed, 55 insertions(+), 17 deletions(-)
 
-diff --git a/drivers/gpu/drm/xe/xe_hw_engine.c b/drivers/gpu/drm/xe/xe_hw_engine.c
-index fd89dd90131c..6700d5e4f173 100644
---- a/drivers/gpu/drm/xe/xe_hw_engine.c
-+++ b/drivers/gpu/drm/xe/xe_hw_engine.c
-@@ -387,24 +387,14 @@ static int hw_engine_init(struct xe_gt *gt, struct xe_hw_engine *hwe,
- 	xe_reg_sr_apply_mmio(&hwe->reg_sr, gt);
- 	xe_reg_sr_apply_whitelist(&hwe->reg_whitelist, hwe->mmio_base, gt);
- 
--	hwe->hwsp = xe_bo_create_locked(xe, gt, NULL, SZ_4K, ttm_bo_type_kernel,
--					XE_BO_CREATE_VRAM_IF_DGFX(gt) |
--					XE_BO_CREATE_GGTT_BIT);
-+	hwe->hwsp = xe_bo_create_pin_map(xe, gt, NULL, SZ_4K, ttm_bo_type_kernel,
-+					 XE_BO_CREATE_VRAM_IF_DGFX(gt) |
-+					 XE_BO_CREATE_GGTT_BIT);
- 	if (IS_ERR(hwe->hwsp)) {
- 		err = PTR_ERR(hwe->hwsp);
- 		goto err_name;
- 	}
- 
--	err = xe_bo_pin(hwe->hwsp);
--	if (err)
--		goto err_unlock_put_hwsp;
--
--	err = xe_bo_vmap(hwe->hwsp);
--	if (err)
--		goto err_unpin_hwsp;
--
--	xe_bo_unlock_no_vm(hwe->hwsp);
--
- 	err = xe_lrc_init(&hwe->kernel_lrc, hwe, NULL, NULL, SZ_16K);
- 	if (err)
- 		goto err_hwsp;
-@@ -430,15 +420,10 @@ static int hw_engine_init(struct xe_gt *gt, struct xe_hw_engine *hwe,
- 
- 	return 0;
- 
--err_unpin_hwsp:
--	xe_bo_unpin(hwe->hwsp);
--err_unlock_put_hwsp:
--	xe_bo_unlock_no_vm(hwe->hwsp);
--	xe_bo_put(hwe->hwsp);
- err_kernel_lrc:
- 	xe_lrc_finish(&hwe->kernel_lrc);
- err_hwsp:
--	xe_bo_put(hwe->hwsp);
-+	xe_bo_unpin_map_no_vm(hwe->hwsp);
- err_name:
- 	hwe->name = NULL;
- 
-diff --git a/drivers/gpu/drm/xe/xe_lrc.c b/drivers/gpu/drm/xe/xe_lrc.c
-index 347ff9b34494..e4333ae9cc5e 100644
---- a/drivers/gpu/drm/xe/xe_lrc.c
-+++ b/drivers/gpu/drm/xe/xe_lrc.c
-@@ -616,7 +616,11 @@ int xe_lrc_init(struct xe_lrc *lrc, struct xe_hw_engine *hwe,
- 
- 	lrc->flags = 0;
- 
--	lrc->bo = xe_bo_create_locked(xe, hwe->gt, vm,
-+	/*
-+	 * FIXME: Perma-pinning LRC as we don't yet support moving GGTT address
-+	 * via VM bind calls.
-+	 */
-+	lrc->bo = xe_bo_create_pin_map(xe, hwe->gt, vm,
- 				      ring_size + xe_lrc_size(xe, hwe->class),
- 				      ttm_bo_type_kernel,
- 				      XE_BO_CREATE_VRAM_IF_DGFX(hwe->gt) |
-@@ -629,21 +633,6 @@ int xe_lrc_init(struct xe_lrc *lrc, struct xe_hw_engine *hwe,
- 	else
- 		lrc->full_gt = hwe->gt;
- 
--	/*
--	 * FIXME: Perma-pinning LRC as we don't yet support moving GGTT address
--	 * via VM bind calls.
--	 */
--	err = xe_bo_pin(lrc->bo);
--	if (err)
--		goto err_unlock_put_bo;
--	lrc->flags |= XE_LRC_PINNED;
--
--	err = xe_bo_vmap(lrc->bo);
--	if (err)
--		goto err_unpin_bo;
--
--	xe_bo_unlock_vm_held(lrc->bo);
--
- 	lrc->ring.size = ring_size;
- 	lrc->ring.tail = 0;
- 
-@@ -653,8 +642,8 @@ int xe_lrc_init(struct xe_lrc *lrc, struct xe_hw_engine *hwe,
- 	if (!gt->default_lrc[hwe->class]) {
- 		init_data = empty_lrc_data(hwe);
- 		if (!init_data) {
--			xe_lrc_finish(lrc);
--			return -ENOMEM;
-+			err = -ENOMEM;
-+			goto err_lrc_finish;
- 		}
- 	}
- 
-@@ -711,12 +700,8 @@ int xe_lrc_init(struct xe_lrc *lrc, struct xe_hw_engine *hwe,
- 
- 	return 0;
- 
--err_unpin_bo:
--	if (lrc->flags & XE_LRC_PINNED)
--		xe_bo_unpin(lrc->bo);
--err_unlock_put_bo:
--	xe_bo_unlock_vm_held(lrc->bo);
--	xe_bo_put(lrc->bo);
-+err_lrc_finish:
-+	xe_lrc_finish(lrc);
- 	return err;
- }
- 
-@@ -725,17 +710,15 @@ void xe_lrc_finish(struct xe_lrc *lrc)
- 	struct ww_acquire_ctx ww;
- 
- 	xe_hw_fence_ctx_finish(&lrc->fence_ctx);
--	if (lrc->flags & XE_LRC_PINNED) {
--		if (lrc->bo->vm)
--			xe_vm_lock(lrc->bo->vm, &ww, 0, false);
--		else
--			xe_bo_lock_no_vm(lrc->bo, NULL);
--		xe_bo_unpin(lrc->bo);
--		if (lrc->bo->vm)
--			xe_vm_unlock(lrc->bo->vm, &ww);
--		else
--			xe_bo_unlock_no_vm(lrc->bo);
--	}
-+	if (lrc->bo->vm)
-+		xe_vm_lock(lrc->bo->vm, &ww, 0, false);
-+	else
-+		xe_bo_lock_no_vm(lrc->bo, NULL);
-+	xe_bo_unpin(lrc->bo);
-+	if (lrc->bo->vm)
-+		xe_vm_unlock(lrc->bo->vm, &ww);
-+	else
-+		xe_bo_unlock_no_vm(lrc->bo);
- 	xe_bo_put(lrc->bo);
- }
- 
-diff --git a/drivers/gpu/drm/xe/xe_lrc_types.h b/drivers/gpu/drm/xe/xe_lrc_types.h
-index 2827efa2091d..8fe08535873d 100644
---- a/drivers/gpu/drm/xe/xe_lrc_types.h
-+++ b/drivers/gpu/drm/xe/xe_lrc_types.h
-@@ -25,7 +25,6 @@ struct xe_lrc {
- 
- 	/** @flags: LRC flags */
- 	u32 flags;
--#define XE_LRC_PINNED BIT(1)
- 
- 	/** @ring: submission ring state */
+diff --git a/drivers/gpu/drm/xe/xe_device_types.h b/drivers/gpu/drm/xe/xe_device_types.h
+index 6c71e1b2dbf4..9d5a21252da3 100644
+--- a/drivers/gpu/drm/xe/xe_device_types.h
++++ b/drivers/gpu/drm/xe/xe_device_types.h
+@@ -175,9 +175,19 @@ struct xe_device {
  	struct {
+ 		/** @vram: VRAM info for device */
+ 		struct {
+-			/** @io_start: start address of VRAM */
++			/** @io_start: IO start address of VRAM */
+ 			resource_size_t io_start;
+-			/** @size: size of VRAM */
++			/**
++			 * @io_size: IO size of VRAM.
++			 *
++			 * This represents how much of VRAM we can access via
++			 * the CPU through the VRAM BAR. This can be smaller
++			 * than @size, in which case only part of VRAM is CPU
++			 * accessible (typically the first 256M). This
++			 * configuration is known as small-bar.
++			 */
++			resource_size_t io_size;
++			/** @size: Total size of VRAM */
+ 			resource_size_t size;
+ 			/** @mapping: pointer to VRAM mappable space */
+ 			void *__iomem mapping;
+diff --git a/drivers/gpu/drm/xe/xe_gt_types.h b/drivers/gpu/drm/xe/xe_gt_types.h
+index b01edd3fdc4d..00c43f3a33a2 100644
+--- a/drivers/gpu/drm/xe/xe_gt_types.h
++++ b/drivers/gpu/drm/xe/xe_gt_types.h
+@@ -143,9 +143,19 @@ struct xe_gt {
+ 		 * (virtual split), can be subset of global device VRAM
+ 		 */
+ 		struct {
+-			/** @io_start: start address of VRAM */
++			/** @io_start: IO start address of this VRAM instance */
+ 			resource_size_t io_start;
+-			/** @size: size of VRAM */
++			/**
++			 * @io_size: IO size of this VRAM instance
++			 *
++			 * This represents how much of this VRAM we can access
++			 * via the CPU through the VRAM BAR. This can be smaller
++			 * than @size, in which case only part of VRAM is CPU
++			 * accessible (typically the first 256M). This
++			 * configuration is known as small-bar.
++			 */
++			resource_size_t io_size;
++			/** @size: size of VRAM. */
+ 			resource_size_t size;
+ 			/** @mapping: pointer to VRAM mappable space */
+ 			void *__iomem mapping;
+diff --git a/drivers/gpu/drm/xe/xe_mmio.c b/drivers/gpu/drm/xe/xe_mmio.c
+index e9ff5b9577fa..4c8b77caeb43 100644
+--- a/drivers/gpu/drm/xe/xe_mmio.c
++++ b/drivers/gpu/drm/xe/xe_mmio.c
+@@ -183,7 +183,6 @@ int xe_mmio_probe_vram(struct xe_device *xe)
+ 	u8 id;
+ 	u64 vram_size;
+ 	u64 original_size;
+-	u64 current_size;
+ 	u64 usable_size;
+ 	int resize_result, err;
+ 
+@@ -191,11 +190,13 @@ int xe_mmio_probe_vram(struct xe_device *xe)
+ 		xe->mem.vram.mapping = 0;
+ 		xe->mem.vram.size = 0;
+ 		xe->mem.vram.io_start = 0;
++		xe->mem.vram.io_size = 0;
+ 
+ 		for_each_gt(gt, xe, id) {
+ 			gt->mem.vram.mapping = 0;
+ 			gt->mem.vram.size = 0;
+ 			gt->mem.vram.io_start = 0;
++			gt->mem.vram.io_size = 0;
+ 		}
+ 		return 0;
+ 	}
+@@ -213,10 +214,10 @@ int xe_mmio_probe_vram(struct xe_device *xe)
+ 		return err;
+ 
+ 	resize_result = xe_resize_vram_bar(xe, vram_size);
+-	current_size = pci_resource_len(pdev, GEN12_LMEM_BAR);
+ 	xe->mem.vram.io_start = pci_resource_start(pdev, GEN12_LMEM_BAR);
+-
+-	xe->mem.vram.size = min(current_size, vram_size);
++	xe->mem.vram.io_size = min(usable_size,
++				   pci_resource_len(pdev, GEN12_LMEM_BAR));
++	xe->mem.vram.size = xe->mem.vram.io_size;
+ 
+ 	if (!xe->mem.vram.size)
+ 		return -EIO;
+@@ -224,15 +225,15 @@ int xe_mmio_probe_vram(struct xe_device *xe)
+ 	if (resize_result > 0)
+ 		drm_info(&xe->drm, "Successfully resize VRAM from %lluMiB to %lluMiB\n",
+ 			 (u64)original_size >> 20,
+-			 (u64)current_size >> 20);
+-	else if (xe->mem.vram.size < vram_size && !xe_force_vram_bar_size)
++			 (u64)xe->mem.vram.io_size >> 20);
++	else if (xe->mem.vram.io_size < usable_size && !xe_force_vram_bar_size)
+ 		drm_info(&xe->drm, "Using a reduced BAR size of %lluMiB. Consider enabling 'Resizable BAR' support in your BIOS.\n",
+ 			 (u64)xe->mem.vram.size >> 20);
+ 	if (xe->mem.vram.size < vram_size)
+ 		drm_warn(&xe->drm, "Restricting VRAM size to PCI resource size (0x%llx->0x%llx)\n",
+ 			 vram_size, (u64)xe->mem.vram.size);
+ 
+-	xe->mem.vram.mapping = ioremap_wc(xe->mem.vram.io_start, xe->mem.vram.size);
++	xe->mem.vram.mapping = ioremap_wc(xe->mem.vram.io_start, xe->mem.vram.io_size);
+ 	xe->mem.vram.size = min_t(u64, xe->mem.vram.size, usable_size);
+ 
+ 	drm_info(&xe->drm, "TOTAL VRAM: %pa, %pa\n", &xe->mem.vram.io_start, &xe->mem.vram.size);
+@@ -240,7 +241,7 @@ int xe_mmio_probe_vram(struct xe_device *xe)
+ 	/* FIXME: Assuming equally partitioned VRAM, incorrect */
+ 	if (xe->info.tile_count > 1) {
+ 		u8 adj_tile_count = xe->info.tile_count;
+-		resource_size_t size, io_start;
++		resource_size_t size, io_start, io_size;
+ 
+ 		for_each_gt(gt, xe, id)
+ 			if (xe_gt_is_media_type(gt))
+@@ -250,15 +251,31 @@ int xe_mmio_probe_vram(struct xe_device *xe)
+ 
+ 		size = xe->mem.vram.size / adj_tile_count;
+ 		io_start = xe->mem.vram.io_start;
++		io_size = xe->mem.vram.io_size;
+ 
+ 		for_each_gt(gt, xe, id) {
+-			if (id && !xe_gt_is_media_type(gt))
+-				io_start += size;
++			if (id && !xe_gt_is_media_type(gt)) {
++				io_size -= min(io_size, size);
++				io_start += io_size;
++			}
+ 
+ 			gt->mem.vram.size = size;
+-			gt->mem.vram.io_start = io_start;
+-			gt->mem.vram.mapping = xe->mem.vram.mapping +
+-				(io_start - xe->mem.vram.io_start);
++
++			/*
++			 * XXX: multi-tile small-bar might be wild. Hopefully
++			 * full tile without any mappable vram is not something
++			 * we care about.
++			 */
++
++			gt->mem.vram.io_size = min(size, io_size);
++			if (io_size) {
++				gt->mem.vram.io_start = io_start;
++				gt->mem.vram.mapping = xe->mem.vram.mapping +
++					(io_start - xe->mem.vram.io_start);
++			} else {
++				drm_err(&xe->drm, "Tile without any CPU visible VRAM. Aborting.\n");
++				return -ENODEV;
++			}
+ 
+ 			drm_info(&xe->drm, "VRAM[%u, %u]: %pa, %pa\n",
+ 				 id, gt->info.vram_id, &gt->mem.vram.io_start,
+@@ -267,6 +284,7 @@ int xe_mmio_probe_vram(struct xe_device *xe)
+ 	} else {
+ 		gt->mem.vram.size = xe->mem.vram.size;
+ 		gt->mem.vram.io_start = xe->mem.vram.io_start;
++		gt->mem.vram.io_size = xe->mem.vram.io_size;
+ 		gt->mem.vram.mapping = xe->mem.vram.mapping;
+ 
+ 		drm_info(&xe->drm, "VRAM: %pa\n", &gt->mem.vram.size);
 -- 
 2.39.1
 
