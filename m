@@ -4,48 +4,47 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id B2CB1C64ED8
-	for <intel-xe@archiver.kernel.org>; Tue, 14 Feb 2023 11:24:07 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2CE75C05027
+	for <intel-xe@archiver.kernel.org>; Tue, 14 Feb 2023 11:24:06 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9520310E0D7;
-	Tue, 14 Feb 2023 11:24:07 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id F335610E88E;
+	Tue, 14 Feb 2023 11:24:05 +0000 (UTC)
 Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A296B10E88E
- for <intel-xe@lists.freedesktop.org>; Tue, 14 Feb 2023 11:24:03 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5E1CC10E0D7
+ for <intel-xe@lists.freedesktop.org>; Tue, 14 Feb 2023 11:24:04 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1676373843; x=1707909843;
+ t=1676373844; x=1707909844;
  h=from:to:subject:date:message-id:in-reply-to:references:
  mime-version:content-transfer-encoding;
- bh=QWWzElrpLxz2w/pqy8pDupU3WLEkvzZH6NBi/xSlcvc=;
- b=Qlbf7fKxFppp/wuNWyHvoOMaLSsjETYV3OsO4tPHpHcyrC8YY047A/Us
- 2opJ6LaWnzLf7Kj2Va9zRpzW8/mCerM9WSz508K2b6i/aOF0PfEbMjt9l
- 2jIogs29W9QycluoUHHy9A6UhtzwnBjQbGn6Dt8GVAoStKOhePy/scOv4
- 3V/R40TZCkYGSwun/HlEmYDlMDsimGymuRDIQ8gclIfRCKh0OBtdiwpZf
- eSucoKSU2IhzcG2yUi8KqV9t6L+38uNHFb0ulcDadJlhxN9vIv5+zGFQs
- lsbRiacaxSERApByUG33iEuel6ePOM5nxInyTKMEqWi/e/JiOo5nc2Qn4 Q==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10620"; a="332450083"
-X-IronPort-AV: E=Sophos;i="5.97,296,1669104000"; d="scan'208";a="332450083"
+ bh=UtKMMMKb/djLCjTI9X9ozdgdyHTyBaAHwW2Xaa4UPj4=;
+ b=L01by5V2C5C06VwL31lO5tAwicL/BXuf5w9A2wFCFDSHfw247z4SjYPb
+ tA8+yP1BfMH1ZasVZxfDKA4r6e8TMXRSTu1w2gygNHj7TPPeVuSCrZLML
+ ossOGcrP+OUVJaxGa60zr+96aW8NDHtZ3mXAujwAM6kNKp+JvifsnvDxF
+ yi6ZnWZaoIj2NP0yl1T1LBcUgRoXxb0a5XbVLEFsFjEx1g7Ew2vDEJv9j
+ MG+eS4sH+nZS9LpgHgV7tF3OtW1wbW6IJcKIMcj3DvR1uflo+Jnl4aDHt
+ R9IREzff0VsVA1wgdbbCKWFUPUguPFoWpwwENMksro3MUfgw+EFiLFrWK A==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10620"; a="332450087"
+X-IronPort-AV: E=Sophos;i="5.97,296,1669104000"; d="scan'208";a="332450087"
 Received: from fmsmga008.fm.intel.com ([10.253.24.58])
  by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 14 Feb 2023 03:23:58 -0800
-X-IronPort-AV: E=McAfee;i="6500,9779,10620"; a="732863237"
-X-IronPort-AV: E=Sophos;i="5.97,296,1669104000"; d="scan'208";a="732863237"
+ 14 Feb 2023 03:24:01 -0800
+X-IronPort-AV: E=McAfee;i="6500,9779,10620"; a="732863247"
+X-IronPort-AV: E=Sophos;i="5.97,296,1669104000"; d="scan'208";a="732863247"
 Received: from achurkin-mobl1.ger.corp.intel.com (HELO mwauld-desk1.intel.com)
  ([10.252.18.173])
  by fmsmga008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 14 Feb 2023 03:23:57 -0800
+ 14 Feb 2023 03:24:00 -0800
 From: Matthew Auld <matthew.auld@intel.com>
 To: intel-xe@lists.freedesktop.org
-Date: Tue, 14 Feb 2023 11:21:33 +0000
-Message-Id: <20230214112136.162380-12-matthew.auld@intel.com>
+Date: Tue, 14 Feb 2023 11:21:36 +0000
+Message-Id: <20230214112136.162380-15-matthew.auld@intel.com>
 X-Mailer: git-send-email 2.39.1
 In-Reply-To: <20230214112136.162380-1-matthew.auld@intel.com>
 References: <20230214112136.162380-1-matthew.auld@intel.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-xe] [PATCH 12/15] drm/xe/migrate: retain CCS aux state for
- vram -> vram
+Subject: [Intel-xe] [PATCH 15/15] drm/xe: fully turn on small-bar support
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -60,49 +59,27 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On small-bar we likely need to be able to deal with vram -> vram
-transfers. During eviction, as an optimisation,  we don't always
-want/need to kick stuff into smem. Plus for some types of CCS surfaces,
-where the clear color needs to be accessed from the CPU, we might need
-to migrate it.
-
-v2: (Lucas):
-  - s/lmem/vram/ in the commit message
-  - Tidy up the code a bit; use one emit_copy_ccs()
+This allows vram_size > io_size, instead of just clamping the vram size
+to the BAR size, now that the driver supports it.
 
 Signed-off-by: Matthew Auld <matthew.auld@intel.com>
 ---
- drivers/gpu/drm/xe/xe_migrate.c | 16 ++++++++++++----
- 1 file changed, 12 insertions(+), 4 deletions(-)
+ drivers/gpu/drm/xe/xe_mmio.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-diff --git a/drivers/gpu/drm/xe/xe_migrate.c b/drivers/gpu/drm/xe/xe_migrate.c
-index cbcc355cd391..418d4f900cdb 100644
---- a/drivers/gpu/drm/xe/xe_migrate.c
-+++ b/drivers/gpu/drm/xe/xe_migrate.c
-@@ -544,11 +544,19 @@ static u32 xe_migrate_ccs_copy(struct xe_migrate *m,
+diff --git a/drivers/gpu/drm/xe/xe_mmio.c b/drivers/gpu/drm/xe/xe_mmio.c
+index 4c8b77caeb43..0a0958393a4b 100644
+--- a/drivers/gpu/drm/xe/xe_mmio.c
++++ b/drivers/gpu/drm/xe/xe_mmio.c
+@@ -217,7 +217,7 @@ int xe_mmio_probe_vram(struct xe_device *xe)
+ 	xe->mem.vram.io_start = pci_resource_start(pdev, GEN12_LMEM_BAR);
+ 	xe->mem.vram.io_size = min(usable_size,
+ 				   pci_resource_len(pdev, GEN12_LMEM_BAR));
+-	xe->mem.vram.size = xe->mem.vram.io_size;
++	xe->mem.vram.size = vram_size;
  
- 	if (xe_device_has_flat_ccs(gt_to_xe(gt)) && !copy_ccs && dst_is_vram) {
- 		/*
--		 * If the bo doesn't have any CCS metadata attached, we still
--		 * need to clear it for security reasons.
-+		 * If the src is already in vram, then it should already
-+		 * have been cleared by us, or has been populated by the
-+		 * user. Make sure we copy the CCS aux state as-is.
-+		 *
-+		 * Otherwise if the bo doesn't have any CCS metadata attached,
-+		 * we still need to clear it for security reasons.
- 		 */
--		emit_copy_ccs(gt, bb, dst_ofs, true, m->cleared_vram_ofs, false,
--			      dst_size);
-+		u64 ccs_src_ofs =  src_is_vram ? src_ofs : m->cleared_vram_ofs;
-+
-+		emit_copy_ccs(gt, bb,
-+			      dst_ofs, true,
-+			      ccs_src_ofs, src_is_vram, dst_size);
-+
- 		flush_flags = MI_FLUSH_DW_CCS;
- 	} else if (copy_ccs) {
- 		if (!src_is_vram)
+ 	if (!xe->mem.vram.size)
+ 		return -EIO;
 -- 
 2.39.1
 
