@@ -4,45 +4,45 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3AD44C636CC
-	for <intel-xe@archiver.kernel.org>; Wed, 15 Feb 2023 14:03:47 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 84BCEC636CC
+	for <intel-xe@archiver.kernel.org>; Wed, 15 Feb 2023 20:36:27 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0CB1C10E120;
-	Wed, 15 Feb 2023 14:03:47 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 45C6510EBEF;
+	Wed, 15 Feb 2023 20:36:27 +0000 (UTC)
 Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6960310E120
- for <intel-xe@lists.freedesktop.org>; Wed, 15 Feb 2023 14:03:44 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 02B0010EBEF
+ for <intel-xe@lists.freedesktop.org>; Wed, 15 Feb 2023 20:36:25 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1676469824; x=1708005824;
+ t=1676493385; x=1708029385;
  h=from:to:cc:subject:date:message-id:mime-version:
  content-transfer-encoding;
- bh=VbAWOfYZP97EjEviLPFa8/6TBDHz2Peg9e6L22SnaRA=;
- b=fZQIyvpZu2CPngJoIaK0GKZOvPUGNvBZ1PrngLkQzhg0VCPN4h8Qr2HE
- bkBfP4B1fNUv/omI1XFDyjhP9Z7wMOA9eaW6Z1iOtK0HJyBIFvjLGaowU
- dnJcgEc/15UdYwsg4CrnEVXPyuM1e6YxGIiR++lrMO7fTwO02w8N+jrLW
- mCbt5Sn3L6odMHqYvF7v7keAgpBYL4w2Katf5vBDyAqKda0rDx/MIO98d
- byZiqb+ZS7sopPP322L6sF/PP9baO8UQZ/UXd+6IGH6KVzUhEGaA6UGnn
- V9xTnTdKGroFVETmw62BUFdrs8Z/5knHS00r7icVWW/SWlsi4p2ao7gda Q==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10621"; a="311061424"
-X-IronPort-AV: E=Sophos;i="5.97,299,1669104000"; d="scan'208";a="311061424"
-Received: from orsmga006.jf.intel.com ([10.7.209.51])
+ bh=UavrxurouKza4b9GRSLnFZBwIyU4CvQTHoMTuNmj3RU=;
+ b=CfRPlh/slz91hxZlKvW/ombOnQ0CMPEalT3AIUKP5mW+KgLivFB8cBCZ
+ RueB9pv+aGMLzb+iilxV2lcZh4tazfIqLwJd95Q8+YGg6/f3NvqguE4ge
+ /WIZTS8pnNhmOuy/EghfMswy17+1FCLyDC+kz57buw3SfQjK8V7w5aA5f
+ PMPauVCCBeyY5cyc5QKWInyGUeAyji+lrBGMdgMn2CnBBtfHZuS91Ogyl
+ 5elwnh83rOs1czUTBpOMkA0sPgN0Q5Upv0ejgP2otscrVMM4GgojAiXnr
+ XgL/ZoyiyXIlT+lR0i8lkH9vO6Q0AJ37URJT5px82e1/igi2uDKKnBYKo g==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10622"; a="311168109"
+X-IronPort-AV: E=Sophos;i="5.97,300,1669104000"; d="scan'208";a="311168109"
+Received: from fmsmga004.fm.intel.com ([10.253.24.48])
  by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 15 Feb 2023 06:03:43 -0800
-X-IronPort-AV: E=McAfee;i="6500,9779,10621"; a="647178648"
-X-IronPort-AV: E=Sophos;i="5.97,299,1669104000"; d="scan'208";a="647178648"
-Received: from anjanasu-mobl1.gar.corp.intel.com (HELO
- bvivekan-mobl.fritz.box) ([10.215.119.202])
- by orsmga006-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 15 Feb 2023 06:03:41 -0800
-From: Balasubramani Vivekanandan <balasubramani.vivekanandan@intel.com>
+ 15 Feb 2023 12:36:25 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6500,9779,10622"; a="738544191"
+X-IronPort-AV: E=Sophos;i="5.97,300,1669104000"; d="scan'208";a="738544191"
+Received: from miryad.jf.intel.com ([10.54.74.46])
+ by fmsmga004.fm.intel.com with ESMTP; 15 Feb 2023 12:36:25 -0800
+From: Carlos Santa <carlos.santa@intel.com>
 To: intel-xe@lists.freedesktop.org
-Date: Wed, 15 Feb 2023 19:33:29 +0530
-Message-Id: <20230215140329.402916-1-balasubramani.vivekanandan@intel.com>
-X-Mailer: git-send-email 2.34.1
+Date: Wed, 15 Feb 2023 12:34:25 -0800
+Message-Id: <20230215203425.1996229-1-carlos.santa@intel.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-xe] [PATCH] drm/xe: Fix wopcm size
+Subject: [Intel-xe] [PATCH] drm/xe: Update the list of devices to add even
+ more TGL devices
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -54,51 +54,51 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Cc: Lucas De Marchi <lucas.demarchi@intel.com>
+Cc: Carlos Santa <carlos.santa@intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-The wopcm size returned by xe_wopcm_size function is used in calculating
-the GuC wopcm base offset and the GuC wopcm size. It is also used to
-find the size of the wopcm space to be reserved at the bottom of the
-GGTT address space. So it is the per-GT wopcm size and not the total
-wopcm area used by all GTs.
-Fix the wopcm size to 2MB which is the wopcm size per-GT for platforms
-above Gen11.
+The list of GTs got splitted a while back between GT1
+and GT2 on TGL.
 
-Signed-off-by: Balasubramani Vivekanandan <balasubramani.vivekanandan@intel.com>
+See here: patchwork.freedesktop.org/patch/388414
+
+CC: Rodrigo Vivi <rodrigo.vivi@intel.com>
+Signed-off-by: Carlos Santa <carlos.santa@intel.com>
 ---
- drivers/gpu/drm/xe/xe_wopcm.c | 10 +---------
- 1 file changed, 1 insertion(+), 9 deletions(-)
+ drivers/gpu/drm/xe/xe_pci.c | 2 +-
+ include/drm/xe_pciids.h     | 4 ++--
+ 2 files changed, 3 insertions(+), 3 deletions(-)
 
-diff --git a/drivers/gpu/drm/xe/xe_wopcm.c b/drivers/gpu/drm/xe/xe_wopcm.c
-index 8fe182afa06c..a88d02357cb6 100644
---- a/drivers/gpu/drm/xe/xe_wopcm.c
-+++ b/drivers/gpu/drm/xe/xe_wopcm.c
-@@ -46,12 +46,6 @@
+diff --git a/drivers/gpu/drm/xe/xe_pci.c b/drivers/gpu/drm/xe/xe_pci.c
+index 291561a8f5af..b769cd5ba6db 100644
+--- a/drivers/gpu/drm/xe/xe_pci.c
++++ b/drivers/gpu/drm/xe/xe_pci.c
+@@ -354,7 +354,7 @@ static const struct xe_device_desc mtl_desc = {
+  * PCI ID matches, otherwise we'll use the wrong info struct above.
   */
+ static const struct pci_device_id pciidlist[] = {
+-	XE_TGL_GT2_IDS(INTEL_VGA_DEVICE, &tgl_desc),
++	XE_TGL_IDS(INTEL_VGA_DEVICE, &tgl_desc),
+ 	XE_DG1_IDS(INTEL_VGA_DEVICE, &dg1_desc),
+ 	XE_ATS_M_IDS(INTEL_VGA_DEVICE, &ats_m_desc),
+ 	XE_DG2_IDS(INTEL_VGA_DEVICE, &dg2_desc),
+diff --git a/include/drm/xe_pciids.h b/include/drm/xe_pciids.h
+index a857af1a0b1f..df1b977763be 100644
+--- a/include/drm/xe_pciids.h
++++ b/include/drm/xe_pciids.h
+@@ -41,8 +41,8 @@
+ 	MACRO__(0x9AF8, ## __VA_ARGS__)
  
- /* Default WOPCM size is 2MB from Gen11, 1MB on previous platforms */
--#define DGFX_WOPCM_SIZE			SZ_4M	/* FIXME: Larger size require
--						   for 2 tile PVC, do a proper
--						   probe sooner or later */
--#define MTL_WOPCM_SIZE			SZ_4M	/* FIXME: Larger size require
--						   for MTL, do a proper probe
--						   sooner or later */
- #define GEN11_WOPCM_SIZE		SZ_2M
- /* 16KB WOPCM (RSVD WOPCM) is reserved from HuC firmware top. */
- #define WOPCM_RESERVED_SIZE		SZ_16K
-@@ -178,9 +172,7 @@ static int __wopcm_init_regs(struct xe_device *xe, struct xe_gt *gt,
+ #define XE_TGL_IDS(MACRO__, ...)		\
+-	XE_TGL_GT1_IDS(MACRO__, ...),		\
+-	XE_TGL_GT2_IDS(MACRO__, ...)
++	XE_TGL_GT1_IDS(MACRO__, ## __VA_ARGS__),\
++	XE_TGL_GT2_IDS(MACRO__, ## __VA_ARGS__)
  
- u32 xe_wopcm_size(struct xe_device *xe)
- {
--	return IS_DGFX(xe) ? DGFX_WOPCM_SIZE :
--		xe->info.platform == XE_METEORLAKE ? MTL_WOPCM_SIZE :
--		GEN11_WOPCM_SIZE;
-+	return GEN11_WOPCM_SIZE;
- }
- 
- /**
+ /* RKL */
+ #define XE_RKL_IDS(MACRO__, ...)		\
 -- 
-2.34.1
+2.25.1
 
