@@ -4,47 +4,55 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id EA70BC6379F
-	for <intel-xe@archiver.kernel.org>; Wed, 15 Feb 2023 10:30:40 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id C7570C636D4
+	for <intel-xe@archiver.kernel.org>; Wed, 15 Feb 2023 10:54:10 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id CABBF10EA96;
-	Wed, 15 Feb 2023 10:30:40 +0000 (UTC)
-Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D4FB410EA91
- for <intel-xe@lists.freedesktop.org>; Wed, 15 Feb 2023 10:30:37 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1676457037; x=1707993037;
- h=from:to:subject:date:message-id:in-reply-to:references:
- mime-version:content-transfer-encoding;
- bh=3vFnY0YTCKNonkdXJ1f9w8WCLzPVhTZOpD5w+qcyOpU=;
- b=QP8ycVtys7axQ045UpqLi9S2LBDzzpw+rM73W2tbZN34Lg0iKkTaEsAE
- FRvB3uqW7oRJ8mtvYlsAI41RUFXhaFh3UQpApvmGvi18QezlVoGCngqqe
- BUfwoDjPNgm+cX/XkZ3IqonZrh13SY1yEuU6kAt+C8aa28dfs/jVP2ebM
- 2hqADFX9uXzs27GPutHqspEnu1AodWkRw7MFgh7CXxF/f3MBrFWLbdgbA
- 0jCZV6TUBIvB1SnfxzO1ObEJtBu2AyT9rHdUeSa1NLA2E6fwlZeAVFAm8
- 29+XPxSgczGv0HmvSzW1rErj2h0F78sy9yeG80lIfrqCI4MsOzuZQeWnF w==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10621"; a="311758972"
-X-IronPort-AV: E=Sophos;i="5.97,299,1669104000"; d="scan'208";a="311758972"
-Received: from fmsmga003.fm.intel.com ([10.253.24.29])
- by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 15 Feb 2023 02:30:09 -0800
-X-IronPort-AV: E=McAfee;i="6500,9779,10621"; a="758352305"
-X-IronPort-AV: E=Sophos;i="5.97,299,1669104000"; d="scan'208";a="758352305"
-Received: from merinomx-mobl.ger.corp.intel.com (HELO mwauld-desk1.intel.com)
- ([10.252.18.230])
- by fmsmga003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 15 Feb 2023 02:30:09 -0800
-From: Matthew Auld <matthew.auld@intel.com>
-To: intel-xe@lists.freedesktop.org
-Date: Wed, 15 Feb 2023 10:28:45 +0000
-Message-Id: <20230215102845.278677-3-matthew.auld@intel.com>
-X-Mailer: git-send-email 2.39.1
-In-Reply-To: <20230215102845.278677-1-matthew.auld@intel.com>
-References: <20230215102845.278677-1-matthew.auld@intel.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id 94D7210E0C8;
+	Wed, 15 Feb 2023 10:54:10 +0000 (UTC)
+Received: from mail-lf1-x12d.google.com (mail-lf1-x12d.google.com
+ [IPv6:2a00:1450:4864:20::12d])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8E64A10E0C8
+ for <intel-xe@lists.freedesktop.org>; Wed, 15 Feb 2023 10:54:09 +0000 (UTC)
+Received: by mail-lf1-x12d.google.com with SMTP id x40so27048164lfu.12
+ for <intel-xe@lists.freedesktop.org>; Wed, 15 Feb 2023 02:54:09 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20210112;
+ h=cc:to:subject:message-id:date:from:in-reply-to:references
+ :mime-version:from:to:cc:subject:date:message-id:reply-to;
+ bh=8rqAqsAXzp0ZoFoNhZMyoX1fCju2U2R4REMtvJFvBbQ=;
+ b=mn+wd9/O2/H3+d208nLtoJbY6EJm+ra1E0tfFg4tBniAu4YwIMn4l17zFecN6uArf7
+ rp4fVWnme1pJmJ+R8Gzvdp5U+W/nUyQKc4oXkvEOQDiaiLbxwZVoIhGI4Hwu+4QDKjOl
+ RzE3KXamwgthMNTEmN03GZ9iR2AGC4AZcNrvoK4YEwrM6mWGh2adIftydlFeuXn/FIy6
+ bBRaTy7W6Wh7q7LMJePqacpa9fRtdJf8QJS8PQmlBFlm8LIqZkaC0K3nTL7aj0lBsFDN
+ +Wqk7JO9tX52wD7o5M2WN7DEj/sK7ld5aDVGIhvOhg5L3vFaJFAJVTp+58zST2UlQMg+
+ N+7w==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20210112;
+ h=cc:to:subject:message-id:date:from:in-reply-to:references
+ :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+ :reply-to;
+ bh=8rqAqsAXzp0ZoFoNhZMyoX1fCju2U2R4REMtvJFvBbQ=;
+ b=tbmYNAhuDZc6Y7J+rptgpr2e2mLiJ8Gu6gsGtmqb9C8RO0em6swNJNXOmdB96EnN/0
+ 6K7EkCErtacnSHLOSuSmkszx0SjNBjeqpWlXwxCJa6BArFRSqxBEDXKJsFnMYbCQ5heJ
+ 2+Pt8+8Zy1fU/GZxszVtBSSA05kD+OvIFOKlHm3+YsvIV/cj1nbFR2yHOlf/z0GyVnoD
+ UouRJCxldgDqRm8LeI70EE43/3pKlCLGcCcV8WW05nEB+Bn+dnKblQoyud3DKSGUidgx
+ ZSn/s3nat4ujMkWRlS3ZxtSEKOtJhl6YL1Wnlz1to0qTf9G3JIRhymlIAycUaS6CREzm
+ jPyQ==
+X-Gm-Message-State: AO0yUKVbm6KN6aJ5dTUu9xCcqtClag85jBGLawKspZ+VhAMreGPPFdl4
+ W4HUiuxkRdqA0RgDYbcRjtqfMqEbpvZdgHojWNYJ9UiyrB4=
+X-Google-Smtp-Source: AK7set8oAC9vnvWm2CC55ylQ3vPiyG2cPn72oFB/hWNYtRwtsbIZW/PLRXDgotiQkGV67G7hlUNhFlsDrmGP3RYslfI=
+X-Received: by 2002:ac2:530e:0:b0:4db:1999:67a4 with SMTP id
+ c14-20020ac2530e000000b004db199967a4mr420502lfh.5.1676458447701; Wed, 15 Feb
+ 2023 02:54:07 -0800 (PST)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Subject: [Intel-xe] [PATCH v3 3/3] drm/xe/query: zero the region info
+References: <20230214083320.2199178-1-lucas.demarchi@intel.com>
+ <20230214083320.2199178-2-lucas.demarchi@intel.com>
+In-Reply-To: <20230214083320.2199178-2-lucas.demarchi@intel.com>
+From: Matthew Auld <matthew.william.auld@gmail.com>
+Date: Wed, 15 Feb 2023 10:53:40 +0000
+Message-ID: <CAM0jSHM=3Bg57sDTKzqobGRCpiDVAnmpaOLOXdc667a7=NJqfw@mail.gmail.com>
+To: Lucas De Marchi <lucas.demarchi@intel.com>
+Content-Type: text/plain; charset="UTF-8"
+Subject: Re: [Intel-xe] [PATCH 1/2] drm/xe/guc: Remove i915_regs.h include
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -56,49 +64,14 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Cc: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-There are also some reserved fields in here which are not currently
-cleared when handing back to userspace. Otherwise we might run into
-issues if we later wish to use them.
-
-Signed-off-by: Matthew Auld <matthew.auld@intel.com>
-Reviewed-by: Lucas De Marchi lucas.demarchi@intel.com
----
- drivers/gpu/drm/xe/xe_query.c | 6 +-----
- 1 file changed, 1 insertion(+), 5 deletions(-)
-
-diff --git a/drivers/gpu/drm/xe/xe_query.c b/drivers/gpu/drm/xe/xe_query.c
-index 6e904e97f456..f9f21bd1bfd7 100644
---- a/drivers/gpu/drm/xe/xe_query.c
-+++ b/drivers/gpu/drm/xe/xe_query.c
-@@ -115,16 +115,13 @@ static int query_memory_usage(struct xe_device *xe,
- 		return -EINVAL;
- 	}
- 
--	usage = kmalloc(size, GFP_KERNEL);
-+	usage = kzalloc(size, GFP_KERNEL);
- 	if (XE_IOCTL_ERR(xe, !usage))
- 		return -ENOMEM;
- 
--	usage->pad = 0;
--
- 	man = ttm_manager_type(&xe->ttm, XE_PL_TT);
- 	usage->regions[0].mem_class = XE_MEM_REGION_CLASS_SYSMEM;
- 	usage->regions[0].instance = 0;
--	usage->regions[0].pad = 0;
- 	usage->regions[0].min_page_size = PAGE_SIZE;
- 	usage->regions[0].max_page_size = PAGE_SIZE;
- 	usage->regions[0].total_size = man->size << PAGE_SHIFT;
-@@ -138,7 +135,6 @@ static int query_memory_usage(struct xe_device *xe,
- 				XE_MEM_REGION_CLASS_VRAM;
- 			usage->regions[usage->num_regions].instance =
- 				usage->num_regions;
--			usage->regions[usage->num_regions].pad = 0;
- 			usage->regions[usage->num_regions].min_page_size =
- 				xe->info.vram_flags & XE_VRAM_FLAGS_NEED64K ?
- 				SZ_64K : PAGE_SIZE;
--- 
-2.39.1
-
+On Tue, 14 Feb 2023 at 08:34, Lucas De Marchi <lucas.demarchi@intel.com> wrote:
+>
+> i915_regs.h is not needed, particularly in a header file. What is needed
+> is i915_reg_defs.h for use of _MMIO() and similar macros.
+>
+> Signed-off-by: Lucas De Marchi <lucas.demarchi@intel.com>
+Reviewed-by: Matthew Auld <matthew.auld@intel.com>
