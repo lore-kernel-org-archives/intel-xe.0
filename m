@@ -4,137 +4,135 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 562CEC64ED6
-	for <intel-xe@archiver.kernel.org>; Fri, 17 Feb 2023 16:28:15 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 527B8C05027
+	for <intel-xe@archiver.kernel.org>; Fri, 17 Feb 2023 16:33:26 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2F6F410E2DC;
-	Fri, 17 Feb 2023 16:28:15 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id EF3B810E2D4;
+	Fri, 17 Feb 2023 16:33:25 +0000 (UTC)
 Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7EDE710F075
- for <intel-xe@lists.freedesktop.org>; Fri, 17 Feb 2023 16:28:13 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 29A9A10E2D4
+ for <intel-xe@lists.freedesktop.org>; Fri, 17 Feb 2023 16:33:23 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1676651293; x=1708187293;
+ t=1676651603; x=1708187603;
  h=date:from:to:cc:subject:message-id:references:
- content-transfer-encoding:in-reply-to:mime-version;
- bh=Kw0Fn4Itk8ZbCLeFTIm3Txs7B70fKclEkzeF7X9vhC8=;
- b=gAVXVIwddhBPXkElqHtmi+XdjLChL9+tk47uu4OMkX2ohXJKagLgB6sC
- hYk+azkG6gieCkkKF7kG7F+apaP7M3SLlmXkUfG2jhSon8NJP2AHFWSd2
- GeTW1KCookPzcw0vl/Q0RHj2LIVSDQNkgdp4U3HeyEHKr/i+8MUVzW/XG
- tsmRrx5jEvPGdCChygYa/47u1IjKU/y2qcdovRA3RwOpEfSFFMijB70nu
- TiZyEVJEqgDV0O1OJYRBNfkYWUDl2DZMzLsZs/KKokVpyyVY4Grrpdcyv
- hmfBr9aGxV9puWF1mMSpyyflxlB2JFLVZo0twXIMZFBXR3Tlk8k8dFjgI Q==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10624"; a="332028191"
-X-IronPort-AV: E=Sophos;i="5.97,306,1669104000"; d="scan'208";a="332028191"
-Received: from orsmga006.jf.intel.com ([10.7.209.51])
+ in-reply-to:mime-version;
+ bh=dofVxVqvWkF7wbCkftLL1IghH4nKqw5lchku7+jxc9E=;
+ b=VxS76K8rEsJKqi+rrd918PO/DjiHmNVI9os/bawXxmOur4BiLRPibLy6
+ Y69/Hc7n7ILwGOyijTdXzqLVgPJdrz7Xmi+rAJFzQIszHy1GIlvY08aW7
+ Uc3WTSWWwk1xSi3hUULyAU+7gUAsEgOyUGv9hKB2SvY8qly1BlCC+er2k
+ Vs8djO7d0Ls9hJHuK17SgfGcZEYpjD5z+xj00eerdr2NSRKLpgHT1JuLc
+ ixFp5R+0O1++aKWSHAoYB5H+O8X1Ij+gaKVMyVndnpqZhQ7tulAmZe3Ag
+ nHOwRhgWhJufhu1S+/KshdoxloWDZc1vWRI4NNQPOcQgteh0rxiDAwlbY w==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10624"; a="332030157"
+X-IronPort-AV: E=Sophos;i="5.97,306,1669104000"; d="scan'208";a="332030157"
+Received: from fmsmga003.fm.intel.com ([10.253.24.29])
  by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 17 Feb 2023 08:28:13 -0800
+ 17 Feb 2023 08:33:22 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6500,9779,10624"; a="648135894"
-X-IronPort-AV: E=Sophos;i="5.97,306,1669104000"; d="scan'208";a="648135894"
-Received: from fmsmsx602.amr.corp.intel.com ([10.18.126.82])
- by orsmga006.jf.intel.com with ESMTP; 17 Feb 2023 08:28:12 -0800
-Received: from fmsmsx601.amr.corp.intel.com (10.18.126.81) by
- fmsmsx602.amr.corp.intel.com (10.18.126.82) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.16; Fri, 17 Feb 2023 08:28:11 -0800
-Received: from fmsedg601.ED.cps.intel.com (10.1.192.135) by
+X-IronPort-AV: E=McAfee;i="6500,9779,10624"; a="759420513"
+X-IronPort-AV: E=Sophos;i="5.97,306,1669104000"; d="scan'208";a="759420513"
+Received: from fmsmsx601.amr.corp.intel.com ([10.18.126.81])
+ by FMSMGA003.fm.intel.com with ESMTP; 17 Feb 2023 08:33:21 -0800
+Received: from fmsmsx611.amr.corp.intel.com (10.18.126.91) by
  fmsmsx601.amr.corp.intel.com (10.18.126.81) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.16 via Frontend Transport; Fri, 17 Feb 2023 08:28:11 -0800
-Received: from NAM10-DM6-obe.outbound.protection.outlook.com (104.47.58.104)
- by edgegateway.intel.com (192.55.55.70) with Microsoft SMTP Server
+ 15.1.2507.16; Fri, 17 Feb 2023 08:33:20 -0800
+Received: from FMSEDG603.ED.cps.intel.com (10.1.192.133) by
+ fmsmsx611.amr.corp.intel.com (10.18.126.91) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.16 via Frontend Transport; Fri, 17 Feb 2023 08:33:20 -0800
+Received: from NAM12-DM6-obe.outbound.protection.outlook.com (104.47.59.173)
+ by edgegateway.intel.com (192.55.55.68) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2507.16; Fri, 17 Feb 2023 08:28:11 -0800
+ 15.1.2507.16; Fri, 17 Feb 2023 08:33:20 -0800
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=hunrkT3WmyiWBEa8TsqJi5/FnNdEo42Ijh0jcJRCsJM4lgAjBYI92rl8xAcUxCft8Hto7WPdrXeoM6G64Mmq8/jzG6wEJ/+q6tlNBXbJ3dq8bzAojV5dyzh+Sp4/91rn2oFM3HXFCbfwaL4oxqyKjx9CRwawwbESJR0Pr9r32m85SqGo5ryFAw5xEvhundU+TRbkPpISPWXZZ41ZqNOjqnBSaAzWU1WDeBL74aPdC51PmvSMDWZzvedhiOD2bXaKnFs1SAN1bdyKKbJv/rH+x5YGNYi0Y5XVi84emkQI1WLxBWqTWmsWv5ENfG9Plk+5GIaGqY8+FphPd9xdTM8/kg==
+ b=Hz6fd9Wm+H3OqrUt3XA6yQ6CBJpaGoVoUJqvqm9IWG93nDjyHo4gnMl4SNXco94YazIKsG2FlwOyhA6kZZxIL/drxKDcR0ps4xBtcJztXDE0VNLsqUkLVvXVfh+M8zLhyNLl9PJl+IVVr19A0vyRjqVlvOGO5hCrhU9ip6QppLEI4/JKhs6K/DkVsVvHjsz4sze3kLFkal4o4LHLIutz7S9o2Vbc3OaOxZX180MEdkhNjsN3M7fehjjGO3PRMQeVH625gyYViISLB0DHWh5eEDtosWkdoS9H90pCvZFgiqWrdzWCgEOwYt3BBRsZz5aMjyJ7ktSZTb+OwkKsVA0ZfQ==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=vSxto4T4IbDexTdasWYfu/4qbSHnqU7Ayz3CJi2ScPk=;
- b=Ngu19qfg6NdhFwihNjjaUgdOa0OSUzV5RZ4FCeTXF++izV8v9iD6p+gBp8IiClY95dvvZl3K1fYkXIIwBK9E8DRiMRPqRbHg7difBPGhzSF9rvTNiCgBzffTqJK0w5SWux7Elm6jWQQTfm+gJU7hqO9I4jTL1jGKcxSdMCJc0a1ELPveyUTLeZ1321LN9zFc1x8alHNBKXBh35aIx19zYASysmRmOIawhULczRXbuk9KtVfyegq3OmIFRIcXaUJsPZad2NFcH6UbXEB1SRxt/PGblqq3u9Wg4vtfbUEMX8X/Wg/PdPt4+GAKJSKlfQtDOkCP/jbhNksWf2LWFacR9w==
+ bh=hFWYaHAV0E/IBDD2MHySsTeKgBMgv4vtahU8Sefl43Y=;
+ b=goGQxbKquuUWX9kNZ6VPbzdKNwo1MQlpaCRqbWJP9NOUyTVQt2kka6hmIaJt2Wz3T5IhwbkfrQJtY2MB3PuwUEMRkwS7PP4gYeTXk3xQu5uqFLT6dw4Nt/S5BpHts3FTjBHKu1Uz9IMeOt1qnMnrzF4v7eblSfRBy8MpBMXJe+vlvGYMgzGqrbOBCV0tZUrQHahnR3l7ujsEabLyeXr0jiIcMawAZMyAORexjSFd80mu8mFBw4siMjZ27HLcRCaXtOj/VfiZMW+oozTyew3kCL44czB/WmKUmoNDmpiCav1JfmIcoAZbbT//zj+4LJIoPGJCG2GnQ+o30N6GJ0JRdA==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
  dkim=pass header.d=intel.com; arc=none
 Authentication-Results: dkim=none (message not signed)
  header.d=none;dmarc=none action=none header.from=intel.com;
-Received: from MN0PR11MB6059.namprd11.prod.outlook.com (2603:10b6:208:377::9)
- by MW3PR11MB4684.namprd11.prod.outlook.com (2603:10b6:303:5d::14)
+Received: from CY5PR11MB6139.namprd11.prod.outlook.com (2603:10b6:930:29::17)
+ by SA3PR11MB7536.namprd11.prod.outlook.com (2603:10b6:806:320::12)
  with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6111.12; Fri, 17 Feb
- 2023 16:28:09 +0000
-Received: from MN0PR11MB6059.namprd11.prod.outlook.com
- ([fe80::3bd5:710c:ebab:6158]) by MN0PR11MB6059.namprd11.prod.outlook.com
- ([fe80::3bd5:710c:ebab:6158%9]) with mapi id 15.20.6086.024; Fri, 17 Feb 2023
- 16:28:09 +0000
-Date: Fri, 17 Feb 2023 11:28:06 -0500
-From: Rodrigo Vivi <rodrigo.vivi@intel.com>
-To: Jani Nikula <jani.nikula@linux.intel.com>
-Message-ID: <Y++rFnBkN5PEvE1U@intel.com>
-References: <20230203202742.577659-1-rodrigo.vivi@intel.com>
- <20230203202742.577659-3-rodrigo.vivi@intel.com>
- <87cz6921qq.fsf@intel.com>
-Content-Type: text/plain; charset="iso-8859-1"
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6086.24; Fri, 17 Feb
+ 2023 16:33:17 +0000
+Received: from CY5PR11MB6139.namprd11.prod.outlook.com
+ ([fe80::7bcc:b9b8:78df:1bd8]) by CY5PR11MB6139.namprd11.prod.outlook.com
+ ([fe80::7bcc:b9b8:78df:1bd8%5]) with mapi id 15.20.6111.013; Fri, 17 Feb 2023
+ 16:33:17 +0000
+Date: Fri, 17 Feb 2023 08:33:13 -0800
+From: Lucas De Marchi <lucas.demarchi@intel.com>
+To: <intel-xe@lists.freedesktop.org>
+Message-ID: <20230217163313.jj2rbleqgvglalzb@ldmartin-desk2.lan>
+X-Patchwork-Hint: comment
+References: <20230217005226.106499-1-lucas.demarchi@intel.com>
+ <20230217005226.106499-12-lucas.demarchi@intel.com>
+Content-Type: text/plain; charset="us-ascii"; format=flowed
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <87cz6921qq.fsf@intel.com>
-X-ClientProxiedBy: BY5PR17CA0065.namprd17.prod.outlook.com
- (2603:10b6:a03:167::42) To MN0PR11MB6059.namprd11.prod.outlook.com
- (2603:10b6:208:377::9)
+In-Reply-To: <20230217005226.106499-12-lucas.demarchi@intel.com>
+X-ClientProxiedBy: BY5PR03CA0013.namprd03.prod.outlook.com
+ (2603:10b6:a03:1e0::23) To CY5PR11MB6139.namprd11.prod.outlook.com
+ (2603:10b6:930:29::17)
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: MN0PR11MB6059:EE_|MW3PR11MB4684:EE_
-X-MS-Office365-Filtering-Correlation-Id: c842efa2-cf6c-46a4-fa2b-08db1103f4f2
+X-MS-TrafficTypeDiagnostic: CY5PR11MB6139:EE_|SA3PR11MB7536:EE_
+X-MS-Office365-Filtering-Correlation-Id: a90f2db9-c824-47b1-70e8-08db1104ac45
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: BrB+9+yJgfYcMA5nwFxSzhEuOTyDwvI/xAKaRAS3EfBA0de46B10+9GcD6E7802sDJ6n/+VtXmFTSAoPPmXQIlTjU7Na6pERGChJJPLs/6JEDn6yQp1DTNUsK9J34lc9boPOPjzMZRJTOdpkVwx52Mi4d583AbJOuxiQG32oSJpO/4NiEl45yhDhUV512MXB6enA8J2xkIEorgRg0FddjQd2cXmvGOzVvl9YFLrRs94CZ//xeTPfUSvIKsnvEWm1uHPHXIHlOa4oPlzLLAnG5URuvUblvarW7Yd1tX11sbI5hSYBJ4Jr8gVH4S1LuoTVGZwLAhBrLeTam8+G+Ns8CPRKggqld5xnhb4hQYmehTtER9sA2YnmFMuKTImqEHt2twd3SvBFH2Gq7Aas0Luz/ClY22WZSlsulghEMpxGJZsKsdvqMQkNG3jVpdXHpS3BmoEcgh1pCqI2MQSTFcs8nKPlON9eEdt/avkZb2+jay+shk9aJR28ZAzXRWoV5qaZULulBwA0AWIKMNowRYBAQwQAlD2j6aDJ3qAFany4baMjcVFVm7mp0nm2h9MK1MZgKBG/vrME43Z3efJImyFg4xv4zdzWVcCZd16+eUKF/8codgsM07xtmo8gBz9BY60KdqF7PPYPuTj1Dv6L+2Q1WQ==
+X-Microsoft-Antispam-Message-Info: OZCigk/oCNHthPo/2AN6SnGGMtwNfNjSue8jRqfC1t05NI9xqWZFqtSxP8UXzcvw+tN7DImLu4BdKSNgGhYntZf/Jmm+pGM6v+GFjvUN2hnWuZzXhrZDq2g3U3SpvrnhqoGmBlVptDfcxCeQdt5sU7yQMfuQRTlvb4V5SHw0dqvfR1uWuouLgwdrSLOYY1T/cQdJ46ApAgRHLbBDAuArIT23ydPpKjtq0DzYot7WeeRzt4cMOSv5724lY+XPncvmQ8mO4OKdFrymeK9e3t4kzytCAGI2hxTdN15cGzM+tuMM2e5Bphd/SLebEA7Rsed2WW/7l2lBehBdXCi9tNUrsMyms6uBEE1YUvaI4WGFxPCc9ew8Om96j4jsqLsfQSgWs1aQXiIpnDB/09p4uuixsUI1ZELclTKz+N7D3Ws/qamJFUZZz0VQVnH0/4GaIR4aApILX6/rigz7z02J+tdeyeFZ98S/lOnTd65HjSiPU6/817r0CtKqphUrOXYMPKhT/EydCOSrC2S2CTRo1urStknyEfjrsPVUQSFLvQe/SBzi7YIpPBRbqjxXbVQHP3gn+NGev1cR9GEdN7cric178mEyV6mfptnim5Uq8HrZc7sakX+2HA73lGAjYgyfsCPfDXPqUYRyiNzcnEZ+Sx+7AA==
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:MN0PR11MB6059.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230025)(396003)(346002)(376002)(39860400002)(136003)(366004)(451199018)(36756003)(4326008)(8676002)(41300700001)(316002)(66946007)(66476007)(6916009)(82960400001)(86362001)(38100700002)(66556008)(6666004)(186003)(26005)(6512007)(6506007)(2906002)(8936002)(44832011)(5660300002)(478600001)(6486002)(2616005)(83380400001);
+ IPV:NLI; SFV:NSPM; H:CY5PR11MB6139.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230025)(39860400002)(376002)(346002)(366004)(396003)(136003)(451199018)(36756003)(83380400001)(4326008)(38100700002)(316002)(1076003)(66946007)(8676002)(2906002)(6916009)(478600001)(66556008)(41300700001)(82960400001)(8936002)(66476007)(5660300002)(54906003)(4744005)(186003)(26005)(9686003)(6506007)(6512007)(107886003)(6666004)(6486002)(86362001);
  DIR:OUT; SFP:1102; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?iso-8859-1?Q?IDeEntVLI1PD9lrePlTWGLZCGVSojxBI58zUrIxRgUd6m8HtXLEt62y1F/?=
- =?iso-8859-1?Q?Lwi6gIZLHL6gVIRs9a0SOU1msw/lhm+8z9hVraUvl/0rZni1C9CsTpaMYB?=
- =?iso-8859-1?Q?eQQIFHPsVD5qy06I5gJzaF0URHPtyXmAkY7LDwz/mOZPaUsTUIipDAx1o5?=
- =?iso-8859-1?Q?9ysknI2XBHe8V9G1S6Ex/C6YQZ0hjpZWUskZoiTtLp4GiuOs5nb4t70wmG?=
- =?iso-8859-1?Q?+O3DxJo7eP/AsDHcf0AnuTJPp9f2NMibd+5B/qJsFvaipd1UyHgDpY87ac?=
- =?iso-8859-1?Q?l/nRV3Fx9/5ZQb0VTBa4UhY/awQ/3o5CjiX94hTnuowf5JzRjeeqVFrZr3?=
- =?iso-8859-1?Q?LjAJ0OPgOTHFOgoeuw9yQcN/WRHx/W1GCo3RTeLHzwBHR2WEShbkR0ELO9?=
- =?iso-8859-1?Q?VZpsSiRKFrNU/iDsBI10rMnkXbgayq2yxKpeZ9bhyER92XFcmqFKWsQbW3?=
- =?iso-8859-1?Q?hKrU8MLLE7N0TM8zxfOIkvwmxBV2e9XLRUs97y02tQJKH/IwcMKn6q4JXo?=
- =?iso-8859-1?Q?IzS9BiTNeK0NEasf0urU4m9WdZe9ofOczBdMXh82+uzWT2wUPDNZ4fZkdh?=
- =?iso-8859-1?Q?XX/hlTTup/1eWIYh0HUpe69dTExy2nx+hB6jyiNvby3MI53KLsmkautvYN?=
- =?iso-8859-1?Q?0Cg5KZVQbjWMP+9beKG5Tz5dm0tuo1otePQuYqOKEvWDMePjdZTXAGeLoc?=
- =?iso-8859-1?Q?RSTQsG1socAaCpX24L1ynAEhXS3EcEtJqJnUhoUiE+nzpl72yTZ9IdDIX8?=
- =?iso-8859-1?Q?AHs5Kx+YgMJB4WuBSmqK2xIwBPFYeuCBCqe7DTkKEVv9UdH8oo4wZ8u4gE?=
- =?iso-8859-1?Q?Xz3qq6QMgjp4fEs7dzK2xTCxpgUir9OS7ExhrcsMu1/ViMtR0sNA1jmBee?=
- =?iso-8859-1?Q?j2KdszfqGic9FnlWDb+BiWnYBF1kcGq/kyBljSUocXrBSj8hFD6q+BU0U0?=
- =?iso-8859-1?Q?VUASGzdqyS8xtvSi/FutWwe1EzoprA6+8KRRsJ1AGY2uPzzv76AVVwChbv?=
- =?iso-8859-1?Q?AIOX1nsvjPxRon9+0xZyj+XsdwhyFRxkfWHM6Gg295epEktcNxTojBGW2D?=
- =?iso-8859-1?Q?mkmnQn2ijfo3w7exSumzh0aQ4rz7w6wfk3bpEGj26YcX4G5A1wGYkck04w?=
- =?iso-8859-1?Q?aFLv8OiIkY9zDr2PQZXAJdRgAmYcNJF1f5dL72bEeCS1k6cOjXgTD7OgJ9?=
- =?iso-8859-1?Q?hs2jrDmdgAN+s33na8azB0ijj97diryWyL56KWH8r0yS51yY/lwM1bZZTf?=
- =?iso-8859-1?Q?3Mw/sOyE8y1DVYxmWG36+hKyxOCHExH9J4joNCIZU6+BkEHc5d5pSENMX0?=
- =?iso-8859-1?Q?FoKzjP0Sfpzep56ZfHqFwJVtV7SIeexjIaLX163frvi05y/NdpGKcIirVn?=
- =?iso-8859-1?Q?8lW5bU5A06OcuGyoPbDzIi6FYiuEeP7Gw/uRRNgSY6k+p/5/LxEK78sGh6?=
- =?iso-8859-1?Q?T74D6gsnjEayhhgP7GBwfz/Fsq1UBYmLLpkSz17TRV+A2lilJQe4S1jiEO?=
- =?iso-8859-1?Q?6jguYk0Z2uBIk76dqAQn4W7ldS0G4RYMET3MaaxfyceGb7rS2QDM7Zlsj2?=
- =?iso-8859-1?Q?owN7fDU70rbyqO4bfzG8nRt6VDh3UshtdDCqdePueSZlmmgBs6nIXwjrM/?=
- =?iso-8859-1?Q?/PP5hGOdl2sORZFkcxDO0gQGOZDHBihP/yzdkhjQn7CpJb3xDCbjejXg?=
- =?iso-8859-1?Q?=3D=3D?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: c842efa2-cf6c-46a4-fa2b-08db1103f4f2
-X-MS-Exchange-CrossTenant-AuthSource: MN0PR11MB6059.namprd11.prod.outlook.com
+X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?NsGRw6ARRt3DqG+YfNtvdHoL3XdnYwBayM+GqpYYL17Ip6gvlEU38y08MRRm?=
+ =?us-ascii?Q?QDfrwcJw9vQugyU6T0Y2w0T3IESkcBx3E70r1CU5+EqOFLjuRxtfetYMir4d?=
+ =?us-ascii?Q?3d5aHaNAfROXPaAYwgGGY1IbTQSHEIvveyh+0ArPpOB0srDKA+GBD33hENA7?=
+ =?us-ascii?Q?nF5KNBQW9BiN0R0Lqodj79Xj2bwCWlq0ucFOkiIkE4ORA/RPqRJE+KoCgFD8?=
+ =?us-ascii?Q?s623nVXFcZr1WUIbl/SrFaYo+U8QCJkytqVyxZHrJHp/DymrKQPsBGgZz28L?=
+ =?us-ascii?Q?0gcmnZ48tEZ6k16Gx50l5pQDMnSuahDh+Y2G9crm2FmeffG/+48hpyFqfqKw?=
+ =?us-ascii?Q?yQO460LgE+0wrGo9jmDwCozpA93nQZdFkhIuEbmHENb0+XdV2FlsX5hHJXeB?=
+ =?us-ascii?Q?WAwSO33eXFSiyBCkWyzdecR8wlsJTeFCPYUv6z/XCogr7uboHTOl5NaLmEHC?=
+ =?us-ascii?Q?n2GyysekqA+Ixlb+3ya8jaw4cseB5XqnIw2xhvZSj9ViSFemxT3N7c7+FTc+?=
+ =?us-ascii?Q?OC+wRR+AgqQpRlzy3fR4qHhcea4+MRnbJ2vKckiLNPphfzW5cf0ukG0WMCZF?=
+ =?us-ascii?Q?wlYEQRBr7pCeF1Nonrdg+cZrpfbAAcLZuKCPompMJxJB/Sx4o83kSMSsteyp?=
+ =?us-ascii?Q?xQz/O9hZlgsm4bw39FsIk6+WHx7N3knollik/pC1Y6R7cUFd8n3/5uby5gv0?=
+ =?us-ascii?Q?AJdGRgWNcxrbDf+MvKjpD0t+PcB3f9yUb9SRNW58KJx0YHS71TfAhWmf568/?=
+ =?us-ascii?Q?7In6dGx9fg3G8L5GgjHUT5YvOsZwOZ7fvbuXyJWlCwthkBAlvnnXEK7W8NLo?=
+ =?us-ascii?Q?+qnqFxL3VFqbP5ZphWyi6bljSsxgdo8/pPnp/cwv7ChlJzHSIvZGmRaxaLX8?=
+ =?us-ascii?Q?2xaVeE9GlwReRJXIx6HKOJ8GvlbaC+5hSaolyKxwzqHi9IJhdBc7FOuyKg7/?=
+ =?us-ascii?Q?HGQC4FVw2JVcKWtOw6VcQx7ZHPxFnKDBhsohDsZwrVFzuUH/h8hjwJzvGVK7?=
+ =?us-ascii?Q?VqgJ7JrR91Knd4B1MpoFtnKYfefqyNFO4qME3GieTYVbbJN1mtbUzfePg27u?=
+ =?us-ascii?Q?fAhNPNHtoYK+7MNxWGBZVKTVj2FKK7pwKGfxvlel2Rasg2NbH0QX5bryG6dN?=
+ =?us-ascii?Q?3ccQMVURKTa8Yl8R91DXQsKUVgaTOXntDIlDoLGoCyE2tWgfvKk3jHtgPQ6J?=
+ =?us-ascii?Q?KV8tSEJxCiXD05oj+kP/rnge7fjtnV6WQ5YIkagoUAaAQMHdYnO4cVd6G017?=
+ =?us-ascii?Q?JyHVriazZs/MA02teVrTpraCzY6vKwBmkshRxFuKRkUumoXQ7r5XcPsFKHDd?=
+ =?us-ascii?Q?MwF8BVzVVsIf3U6051QdBOE+9bqP3n/VAtltCMM/PHmrRW1x6xqb7tjvHgOS?=
+ =?us-ascii?Q?hfTqlFv6tMPSoRwvCZHZ7jjy4/eJ56dXCLzH9Y+EPaiCclfF16PJkSCDYWP7?=
+ =?us-ascii?Q?kK3OMCazd+p25rtSf1PAB8/fUgOeQLm/qtXgibRrai3IBXbCsjKzDno6bRFD?=
+ =?us-ascii?Q?ic6mY1pJZieQlJ0tbOUe802LEyogVEeI6khAqM4ELmgBYvjzGW78MpZDiw8y?=
+ =?us-ascii?Q?bfj1kUzuqaM93MWtXnAcgzXkMolTvCDI/OMyzxBHVw/3p3OTw5xRszlwQdvI?=
+ =?us-ascii?Q?gg=3D=3D?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: a90f2db9-c824-47b1-70e8-08db1104ac45
+X-MS-Exchange-CrossTenant-AuthSource: CY5PR11MB6139.namprd11.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 17 Feb 2023 16:28:09.7852 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 17 Feb 2023 16:33:17.3173 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: GgYMI+HrektUalvRTh+eOaHaPrg7PS08T96L/HgC7JKcre0/HxADRzNSSlB5YPCAbcVkQ1QAoNsKC1A4Ka4p1g==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: MW3PR11MB4684
+X-MS-Exchange-CrossTenant-UserPrincipalName: a2vMX3G1fIUDI5FgkeFMuSl1kUKRThfmcAqzs9X7MXZomFxtBuGNq3J0qplUKkwRBxIrAZsQ+k2ITyUCx+wYMIYoIGmwpFAEh9iRhiLw4Ow=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SA3PR11MB7536
 X-OriginatorOrg: intel.com
-Subject: Re: [Intel-xe] [PATCH 2/6] drm/xe: place all modprobe parameters at
- the same place
+Subject: Re: [Intel-xe] [PATCH v2 11/11] drm/xe: Use relative includes for
+ i915_reg_defs.h
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -146,197 +144,25 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-xe@lists.freedesktop.org
+Cc: Matthew Auld <matthew.auld@intel.com>,
+ Maarten Lankhorst <maarten.lankhorst@intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Thu, Feb 16, 2023 at 03:12:13PM +0200, Jani Nikula wrote:
-> On Fri, 03 Feb 2023, Rodrigo Vivi <rodrigo.vivi@intel.com> wrote:
-> > From: Mauro Carvalho Chehab <mchehab@kernel.org>
-> >
-> > It makes easier to identify the module parameters if they're
-> > placed it at the same place.
-> >
-> > Place them together with the module author/description/license.
-> >
-> > While here, fix a checkpatch.pl warning on force_probe description:
-> > 	WARNING: quoted string split across lines
-> >
-> > Signed-off-by: Mauro Carvalho Chehab <mchehab@kernel.org>
-> > Reviewed-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
-> > Signed-off-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
-> 
-> I don't really see why this needs to reinvent the wheel when we could
-> use the same model as i915. Separate file, all params in a struct that
-> provides a namespace for the params. It's hideous to have them all in
-> the driver local namespace.
+On Thu, Feb 16, 2023 at 04:52:26PM -0800, Lucas De Marchi wrote:
+>With the goal of eliminating i915 includes from xe outside of the
+>display area, it's better to use relative includes for the only shared
+>header, i915_reg_defs.h.  With this the build system can be changed to
+>stop adding i915 as an include dir.
+>
+>Signed-off-by: Lucas De Marchi <lucas.demarchi@intel.com>
 
-I was willing to avoid any special infra in order to discourage the
-addition of many parameters.
++Rodrigo
 
-But if we start growing we can definitely have the split and all.
+I know I've previously suggested changing the other way around and avoid
+the relative include. However with this cleanup we are very close to
+remove the -I for i915. So I think we can first remove the -I and then
+decide what to do with the single include that we still want.
 
-Also, I'd like to avoid i915isms. if we need those macros and all like
-we have in i915 we should probably get that into a common kernel
-infra for debugfs because they would likely benefit other drivers as
-well.
-
-> 
-> > ---
-> >  drivers/gpu/drm/xe/xe_device.c  | 10 +---------
-> >  drivers/gpu/drm/xe/xe_guc_log.c |  5 +----
-> >  drivers/gpu/drm/xe/xe_mmio.c    |  5 +----
-> >  drivers/gpu/drm/xe/xe_module.c  | 22 ++++++++++++++++++++++
-> >  drivers/gpu/drm/xe/xe_module.h  | 13 +++++++++++++
-> >  drivers/gpu/drm/xe/xe_pci.c     |  7 +------
-> >  6 files changed, 39 insertions(+), 23 deletions(-)
-> >  create mode 100644 drivers/gpu/drm/xe/xe_module.h
-> >
-> > diff --git a/drivers/gpu/drm/xe/xe_device.c b/drivers/gpu/drm/xe/xe_device.c
-> > index 2e1f4beba9b0..60938c2deee2 100644
-> > --- a/drivers/gpu/drm/xe/xe_device.c
-> > +++ b/drivers/gpu/drm/xe/xe_device.c
-> > @@ -20,6 +20,7 @@
-> >  #include "xe_exec.h"
-> >  #include "xe_gt.h"
-> >  #include "xe_irq.h"
-> > +#include "xe_module.h"
-> >  #include "xe_mmio.h"
-> >  #include "xe_pcode.h"
-> >  #include "xe_pm.h"
-> > @@ -42,15 +43,6 @@
-> >  #include "display/ext/intel_pm.h"
-> >  #endif
-> >  
-> > -/* FIXME: Move to common param infrastructure */
-> > -static bool enable_guc = true;
-> > -module_param_named_unsafe(enable_guc, enable_guc, bool, 0444);
-> > -MODULE_PARM_DESC(enable_guc, "Enable GuC submission");
-> > -
-> > -static bool enable_display = true;
-> > -module_param_named(enable_display, enable_display, bool, 0444);
-> > -MODULE_PARM_DESC(enable_display, "Enable display");
-> > -
-> >  static int xe_file_open(struct drm_device *dev, struct drm_file *file)
-> >  {
-> >  	struct xe_file *xef;
-> > diff --git a/drivers/gpu/drm/xe/xe_guc_log.c b/drivers/gpu/drm/xe/xe_guc_log.c
-> > index 3f19fbf243d1..7ec1b2bb1f8e 100644
-> > --- a/drivers/gpu/drm/xe/xe_guc_log.c
-> > +++ b/drivers/gpu/drm/xe/xe_guc_log.c
-> > @@ -9,10 +9,7 @@
-> >  #include "xe_gt.h"
-> >  #include "xe_guc_log.h"
-> >  #include "xe_map.h"
-> > -
-> > -static int xe_guc_log_level = 5;
-> > -module_param_named(guc_log_level, xe_guc_log_level, int, 0600);
-> > -MODULE_PARM_DESC(guc_log_level, "GuC firmware logging level (0=disable, 1..5=enable with verbosity min..max)");
-> > +#include "xe_module.h"
-> >  
-> >  static struct xe_gt *
-> >  log_to_gt(struct xe_guc_log *log)
-> > diff --git a/drivers/gpu/drm/xe/xe_mmio.c b/drivers/gpu/drm/xe/xe_mmio.c
-> > index f20734cf15ba..8a953df2b468 100644
-> > --- a/drivers/gpu/drm/xe/xe_mmio.c
-> > +++ b/drivers/gpu/drm/xe/xe_mmio.c
-> > @@ -12,6 +12,7 @@
-> >  #include "xe_gt.h"
-> >  #include "xe_gt_mcr.h"
-> >  #include "xe_macros.h"
-> > +#include "xe_module.h"
-> >  
-> >  #include "i915_reg.h"
-> >  #include "gt/intel_engine_regs.h"
-> > @@ -21,10 +22,6 @@
-> >  #define TILE_COUNT		REG_GENMASK(15, 8)
-> >  #define GEN12_LMEM_BAR		2
-> >  
-> > -static u32 xe_force_lmem_bar_size;
-> > -module_param_named(lmem_bar_size, xe_force_lmem_bar_size, uint, 0600);
-> > -MODULE_PARM_DESC(lmem_bar_size, "Set the lmem bar size(in MiB)");
-> > -
-> >  static int xe_set_dma_info(struct xe_device *xe)
-> >  {
-> >  	unsigned int mask_size = xe->info.dma_mask_size;
-> > diff --git a/drivers/gpu/drm/xe/xe_module.c b/drivers/gpu/drm/xe/xe_module.c
-> > index d6b50f1c2a05..9cd1663f83f6 100644
-> > --- a/drivers/gpu/drm/xe/xe_module.c
-> > +++ b/drivers/gpu/drm/xe/xe_module.c
-> > @@ -8,9 +8,31 @@
-> >  
-> >  #include "xe_drv.h"
-> >  #include "xe_hw_fence.h"
-> > +#include "xe_module.h"
-> >  #include "xe_pci.h"
-> >  #include "xe_sched_job.h"
-> >  
-> > +bool enable_guc = true;
-> > +module_param_named_unsafe(enable_guc, enable_guc, bool, 0444);
-> > +MODULE_PARM_DESC(enable_guc, "Enable GuC submission");
-> > +
-> > +bool enable_display = true;
-> > +module_param_named(enable_display, enable_display, bool, 0444);
-> > +MODULE_PARM_DESC(enable_display, "Enable display");
-> > +
-> > +u32 xe_force_lmem_bar_size;
-> > +module_param_named(lmem_bar_size, xe_force_lmem_bar_size, uint, 0600);
-> > +MODULE_PARM_DESC(lmem_bar_size, "Set the lmem bar size(in MiB)");
-> > +
-> > +int xe_guc_log_level = 5;
-> > +module_param_named(guc_log_level, xe_guc_log_level, int, 0600);
-> > +MODULE_PARM_DESC(guc_log_level, "GuC firmware logging level (0=disable, 1..5=enable with verbosity min..max)");
-> > +
-> > +char *xe_param_force_probe = CONFIG_DRM_XE_FORCE_PROBE;
-> > +module_param_named_unsafe(force_probe, xe_param_force_probe, charp, 0400);
-> > +MODULE_PARM_DESC(force_probe,
-> > +		 "Force probe options for specified devices. See CONFIG_DRM_XE_FORCE_PROBE for details.");
-> > +
-> >  struct init_funcs {
-> >  	int (*init)(void);
-> >  	void (*exit)(void);
-> > diff --git a/drivers/gpu/drm/xe/xe_module.h b/drivers/gpu/drm/xe/xe_module.h
-> > new file mode 100644
-> > index 000000000000..2c6ee46f5595
-> > --- /dev/null
-> > +++ b/drivers/gpu/drm/xe/xe_module.h
-> > @@ -0,0 +1,13 @@
-> > +/* SPDX-License-Identifier: MIT */
-> > +/*
-> > + * Copyright © 2023 Intel Corporation
-> > + */
-> > +
-> > +#include <linux/init.h>
-> > +
-> > +/* Module modprobe variables */
-> > +extern bool enable_guc;
-> > +extern bool enable_display;
-> > +extern u32 xe_force_lmem_bar_size;
-> > +extern int xe_guc_log_level;
-> > +extern char *xe_param_force_probe;
-> > diff --git a/drivers/gpu/drm/xe/xe_pci.c b/drivers/gpu/drm/xe/xe_pci.c
-> > index 1d5b6afed2c3..20aa2b5ca9ac 100644
-> > --- a/drivers/gpu/drm/xe/xe_pci.c
-> > +++ b/drivers/gpu/drm/xe/xe_pci.c
-> > @@ -17,17 +17,12 @@
-> >  #include "xe_drv.h"
-> >  #include "xe_device.h"
-> >  #include "xe_macros.h"
-> > +#include "xe_module.h"
-> >  #include "xe_pm.h"
-> >  #include "xe_step.h"
-> >  
-> >  #include "i915_reg.h"
-> >  
-> > -static char *xe_param_force_probe = CONFIG_DRM_XE_FORCE_PROBE;
-> > -module_param_named_unsafe(force_probe, xe_param_force_probe, charp, 0400);
-> > -MODULE_PARM_DESC(force_probe,
-> > -		 "Force probe options for specified devices. "
-> > -		 "See CONFIG_DRM_XE_FORCE_PROBE for details.");
-> > -
-> >  #define DEV_INFO_FOR_EACH_FLAG(func) \
-> >  	func(require_force_probe); \
-> >  	func(is_dgfx); \
-> 
-> -- 
-> Jani Nikula, Intel Open Source Graphics Center
+Lucas De Marchi
