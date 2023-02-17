@@ -4,136 +4,138 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id E2434C636D7
-	for <intel-xe@archiver.kernel.org>; Fri, 17 Feb 2023 20:04:37 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5B9EFC05027
+	for <intel-xe@archiver.kernel.org>; Fri, 17 Feb 2023 20:13:34 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B19A310E1ED;
-	Fri, 17 Feb 2023 20:04:37 +0000 (UTC)
-Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8145610E1ED
- for <intel-xe@lists.freedesktop.org>; Fri, 17 Feb 2023 20:04:36 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3A3D910F0C5;
+	Fri, 17 Feb 2023 20:13:34 +0000 (UTC)
+Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4314410F0C5
+ for <intel-xe@lists.freedesktop.org>; Fri, 17 Feb 2023 20:13:33 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1676664276; x=1708200276;
+ t=1676664813; x=1708200813;
  h=date:from:to:cc:subject:message-id:references:
  in-reply-to:mime-version;
- bh=k1d0WHTjHgJkIM4Zs6x1YQwo/XyQdZelg46Ll5EHW2U=;
- b=gk+sYT5R4TZzjiPTvZaVx8kb9+V6UB4OR0f6vIozymmCCG7ifhCgSR3p
- HC/g9EnfpbmF3AS7XuamAO8MJLokbK5gXnU6WL6tPzz5iFUWYl8xkWq/x
- hoCCB2zYg2IomwYYvhfuKYoaiKef+ymr4H0K6LseSGyFtTrfrLaR8aoCT
- F8/NFWdiud/dbZfMxc8B775biqFKPpPZkGhpepDgH7isC9JijuCwzpUjc
- NJdc/UCYAfW4BnWGQJpyOxLoMwdFlVtY9riU0orpgNZQp9yoN6qv3v8nO
- i0TWWCblUqf6aAXnO1m15TPJZPhI1T6wN91SlSlIYJtYhvo6Nrh5B4/WT g==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10624"; a="330742242"
-X-IronPort-AV: E=Sophos;i="5.97,306,1669104000"; d="scan'208";a="330742242"
-Received: from fmsmga005.fm.intel.com ([10.253.24.32])
- by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 17 Feb 2023 12:04:36 -0800
+ bh=SQcp1X1fzlmjSyy2zgS2YTjd8QOTV/J9xH5jQLdkIzo=;
+ b=fLBvdkq0Ad1tL3fXs/XlxNJNQDPqYMdM1Piyb0P4ULyD5r35MprLJwGo
+ GlMk4WYTV0w1WHcy5HLQpKWKZxoIt6Y26WCqDxEvfKR17sQwUI5A64i4u
+ 8fB4P4hp/vXzFuBdLBgFSnsL4XtKB6tS1Jwhvat6GS3Bu8nxuN83rztBV
+ mqABX7JwvqXTl7pbPKHIMfrSjSZhlpu5odjI8gQdgs8Dqf+OONEuYshum
+ /BV6V097YdAYyJc+dO+XTYRgctOBrS4WnYqwXxc66biqC/qaIB4JL6F+W
+ cXG2S/EzKZMvwhmIsur3hpNzF4XyqabYQq3leUVnSOnaOckjmymVrbKaj w==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10624"; a="396758247"
+X-IronPort-AV: E=Sophos;i="5.97,306,1669104000"; d="scan'208";a="396758247"
+Received: from orsmga007.jf.intel.com ([10.7.209.58])
+ by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 17 Feb 2023 12:13:32 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6500,9779,10624"; a="999565056"
-X-IronPort-AV: E=Sophos;i="5.97,306,1669104000"; d="scan'208";a="999565056"
-Received: from orsmsx601.amr.corp.intel.com ([10.22.229.14])
- by fmsmga005.fm.intel.com with ESMTP; 17 Feb 2023 12:04:35 -0800
-Received: from orsmsx610.amr.corp.intel.com (10.22.229.23) by
- ORSMSX601.amr.corp.intel.com (10.22.229.14) with Microsoft SMTP Server
+X-IronPort-AV: E=McAfee;i="6500,9779,10624"; a="663985930"
+X-IronPort-AV: E=Sophos;i="5.97,306,1669104000"; d="scan'208";a="663985930"
+Received: from fmsmsx601.amr.corp.intel.com ([10.18.126.81])
+ by orsmga007.jf.intel.com with ESMTP; 17 Feb 2023 12:13:32 -0800
+Received: from fmsmsx610.amr.corp.intel.com (10.18.126.90) by
+ fmsmsx601.amr.corp.intel.com (10.18.126.81) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.16; Fri, 17 Feb 2023 12:04:35 -0800
-Received: from ORSEDG601.ED.cps.intel.com (10.7.248.6) by
- orsmsx610.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
+ 15.1.2507.16; Fri, 17 Feb 2023 12:13:32 -0800
+Received: from fmsmsx603.amr.corp.intel.com (10.18.126.83) by
+ fmsmsx610.amr.corp.intel.com (10.18.126.90) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.16 via Frontend Transport; Fri, 17 Feb 2023 12:04:35 -0800
-Received: from NAM12-DM6-obe.outbound.protection.outlook.com (104.47.59.173)
- by edgegateway.intel.com (134.134.137.102) with Microsoft SMTP Server
+ 15.1.2507.16; Fri, 17 Feb 2023 12:13:31 -0800
+Received: from fmsedg601.ED.cps.intel.com (10.1.192.135) by
+ fmsmsx603.amr.corp.intel.com (10.18.126.83) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.16 via Frontend Transport; Fri, 17 Feb 2023 12:13:31 -0800
+Received: from NAM12-MW2-obe.outbound.protection.outlook.com (104.47.66.45) by
+ edgegateway.intel.com (192.55.55.70) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2507.16; Fri, 17 Feb 2023 12:03:54 -0800
+ 15.1.2507.16; Fri, 17 Feb 2023 12:13:30 -0800
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=PO9t1Wn/uQ2Hb//1/n11dCxEd9D9NgPz0VbAvbPIFyunEE03zmjh5qqg9PZ6ma5KFibSCdnnSTcTuGAZ5l2NUePFZBwYg8Pm2QlTl5/EppPZFYuhYcaVWj5QnfrMOVBOkTGx65+Q0a/JQ2MKbwhvVSOJSS4xQbJAbu93dwAztrgbGNTpiZxaDQew+ems5wYclWlV2qy8ePA4xtLHLfpY8clunEL6EyWR2PfPCXZx/FLQ1NZHcZ0PyPhJL1mRVixO4yulNIATahrGAAMS95CiZ3kOeVQYVmg2dEh46tYEHHHoJbhWT7qEWtbi+ZzMGTBypnxwoelP8sPYy2Krh7lJyA==
+ b=knihtW5Z0Kmrj6SKJnOtSnXh5PH4v7fzdBM4SNM1brE4WNt6awC2bmMHIcw2+k5AMzJ9t7c2OWG1F43DyopM7VKGSxcQlZWn2j5pqTjd+6qILmT1TxgM0wrdgjwXOF2S+fjb18mIbV6D8/3gzRuraXx5xzqQcI/spUShf2tQEJ986PORq/zrYowUOdRujzKA+giovmi1FYq3HvPUp16tiZMHtOTb2vzFcqO1qkwUEH6+rgTbls2iHoly/YOniFXeQktdt3rcf6vZgYHHJpgWU1HB2mJFpNrlTJSA5PNmz6nKmJGgw9VQk6Gu8NwtBeSESHt1kj/iGp/tNCdSs0FK0g==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=egTjh3ZjMcAMcHbd7zVQUFzg2eKJuOAwMbZLcXHrscc=;
- b=e34Dy4Wzvx/2faBmeZgjHHywjO7SccJKQRYU+poLnacB0vmzp1wpE3P7roQTAjoK2GwusUyQAkhnoQO6q+GJhVPLovCIrlnjAPOTzGQj0shh5WX4SsFyYINSYILWpKm3RnDEjF7WXXJPB48gNp41SGmw8GYtTVZ2Tn8YkEeygQUIw0ZJsnSjjHc7HfR9xGRPzrMSgYj1CIiTfoovmam8Fku5SQgEk4/wyhiGGMyf8IEetyNAWlKoxCiA2Tq3C1+Nrihh430oQHi4XXpTM5D5DUEEBXEQvoHzc2MX6S1i2NMARs0DCwxBvl3hDaHNGteWuvMo0GqAROBM2OfwQzia0w==
+ bh=AmRJvLvgaAY8sF1NqDKbzBVM4eCoHDBI6hLkrzW7tx0=;
+ b=jy7IQ5UpcvK4Aq6CDKVYov+OGDHMceYNHMf26k7b63/58IE9tmOS22xpVJ3PwzlFewspJGa8PG17MxJ8PbYlbm4/R/jUayZzUw2r+CnqmuLOLk8+EpHVX1STfOHJYEqWNzh/l7TIn9ZqR9UqiNdvvuwCSi6eh4I9pcXx3cWsax6j5zTj5Y7nEgp+Gs5oTGzjY8uFGtH4vdn+Fu+dkdmbhcAHeJg6bEtj3wT32EoOCYQ6tdW1PTijX9siW0AerSwyBGfPINj+4Cb4cw7tTu/kBSunsEKXy2khwSGZD+adCF3XqIXr8utekhYshwbq1iwPgw4zEwGAkWvFYNh/a3euYg==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
  dkim=pass header.d=intel.com; arc=none
 Authentication-Results: dkim=none (message not signed)
  header.d=none;dmarc=none action=none header.from=intel.com;
-Received: from CY5PR11MB6139.namprd11.prod.outlook.com (2603:10b6:930:29::17)
- by CH3PR11MB7894.namprd11.prod.outlook.com (2603:10b6:610:12c::17)
+Received: from MN0PR11MB6059.namprd11.prod.outlook.com (2603:10b6:208:377::9)
+ by IA1PR11MB8099.namprd11.prod.outlook.com (2603:10b6:208:448::12)
  with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6111.12; Fri, 17 Feb
- 2023 20:03:52 +0000
-Received: from CY5PR11MB6139.namprd11.prod.outlook.com
- ([fe80::7bcc:b9b8:78df:1bd8]) by CY5PR11MB6139.namprd11.prod.outlook.com
- ([fe80::7bcc:b9b8:78df:1bd8%5]) with mapi id 15.20.6111.013; Fri, 17 Feb 2023
- 20:03:52 +0000
-Date: Fri, 17 Feb 2023 12:03:49 -0800
-From: Lucas De Marchi <lucas.demarchi@intel.com>
-To: Jani Nikula <jani.nikula@linux.intel.com>
-Message-ID: <20230217200349.llbfw74zz4kdi3eo@ldmartin-desk2.lan>
-X-Patchwork-Hint: comment
-References: <20230203202742.577659-1-rodrigo.vivi@intel.com>
- <20230203202742.577659-2-rodrigo.vivi@intel.com>
- <878rgx21f8.fsf@intel.com>
-Content-Type: text/plain; charset="us-ascii"; format=flowed
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6086.26; Fri, 17 Feb
+ 2023 20:13:26 +0000
+Received: from MN0PR11MB6059.namprd11.prod.outlook.com
+ ([fe80::3bd5:710c:ebab:6158]) by MN0PR11MB6059.namprd11.prod.outlook.com
+ ([fe80::3bd5:710c:ebab:6158%9]) with mapi id 15.20.6086.024; Fri, 17 Feb 2023
+ 20:13:26 +0000
+Date: Fri, 17 Feb 2023 15:13:21 -0500
+From: Rodrigo Vivi <rodrigo.vivi@intel.com>
+To: Lucas De Marchi <lucas.demarchi@intel.com>
+Message-ID: <Y+/f4exj5zsADnzP@intel.com>
+References: <20230217005226.106499-1-lucas.demarchi@intel.com>
+ <20230217005226.106499-2-lucas.demarchi@intel.com>
+Content-Type: text/plain; charset="us-ascii"
 Content-Disposition: inline
-In-Reply-To: <878rgx21f8.fsf@intel.com>
-X-ClientProxiedBy: SJ0PR13CA0090.namprd13.prod.outlook.com
- (2603:10b6:a03:2c4::35) To CY5PR11MB6139.namprd11.prod.outlook.com
- (2603:10b6:930:29::17)
+In-Reply-To: <20230217005226.106499-2-lucas.demarchi@intel.com>
+X-ClientProxiedBy: BY5PR17CA0039.namprd17.prod.outlook.com
+ (2603:10b6:a03:167::16) To MN0PR11MB6059.namprd11.prod.outlook.com
+ (2603:10b6:208:377::9)
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: CY5PR11MB6139:EE_|CH3PR11MB7894:EE_
-X-MS-Office365-Filtering-Correlation-Id: bd099295-1325-4b43-5f66-08db11221706
+X-MS-TrafficTypeDiagnostic: MN0PR11MB6059:EE_|IA1PR11MB8099:EE_
+X-MS-Office365-Filtering-Correlation-Id: 9b7d0dd7-65cd-45f0-f70c-08db11236d49
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: rCNDVfAPhSD29oG+nRLHRS4WoaOmVSuQBEdQf5WY7AllpQVKRZEKVtAyVYoekYK8HMcCBdeb8xS6qbyCz9PDBWKYgGBEDdhzPM9yfdrcF2SuMDU4oWHvBgpiXce+LJrCcrSSb+l68PQmMnGbQdCYD2/2p9dSl5j/Gu0a8hU+LeOoMJkzwvbteO7lOAufhQkvnd5CbYJtgiPqCzwNTeJRmxg2/SrpuumXhY/bssANYRuvCWftJVH0XlzqBtG/xJl/CjRjqFHw6BCoqRCJkWFQK1wmdZ6EEtgRVdZQz+b8CDH1UgV/CLupjaw5ly9lLD1j1GkfBpxVOUiz3b4/V/n6xkD8LpziIBYqs9Mwr0zQ/oivBmuF1jmQxmvO/5US6LEAXP9naaw6lD4ACJMdNlebp6oyPLbedE3NPeiuolnVvmdVCoRLBLFMhH2xcwmpQGF1Lr2wifPsLHzhOqQaf47IkZdvs10ew5yMs3Yl+ptpxyHzhotApKP0fISviKsdbUQaJDhc5bmLaQYI8+x/r71zYrQME6NBjvMXeaN5sd5q5gCVAYB8j4F8m9SpYxH7qOORBG2mIZLJttdo5/riacMwQCZ6ml0HOLy8RmIW3Xy9M2WhyDroF3JIDDK8OymQuG0276znGF9NSqGbFNj3nbB9eg==
+X-Microsoft-Antispam-Message-Info: tfZoPfTRcjxG/pX6VGqUu+RGNWdiBtRok7mj/8jgvRy62zu0NffspKUODE2cxpVU3ejrd7F01mX7vwCn5/V1S/qNnoDSl9Qgmlephbjfh5BtlkIzegAe4M0SpRy6YMfph2kTzLApn1YT7rONsbcWlhmyyShIvytowogqoY6/VO1drxS9ETIoOYinw45V/wie0TYBrWGzYjfEMP0uBQIdn07MvVruw5T7HAGUqxz05hV7UKXZykTRj52n64auRgFiBtiaca5e2BiR1rV5R8ee5vbRsAEiBFG9L3ZArMzdSppQKDuKM1A+AJ2yM44LLQbnq1IGfGKGTC5xoMizyC8iO7EW0mvVy3ZB1IXfRgCaXKKdH9UTLUauGHvAcNs2Ph4hGHsB87/MHYXmjBuzL9yt3sa4azz4/JV0wBSPjuQN0T1sSB7nM1Dc+DGy26O59EqzKFrDYvCJF4rJbH91I2HlPjq0KGbezQjRo8wHidU8YvMVSrjAZQ3amtkKgJE/SkOVxlxeOuzyPJFt8GSQUlsKDQvOtAOBB8EfLrHdZY/NzV755hEMTfAjgzQn5VXFeB5OdBA1zF/WH7LkMVNmE1/Y1Hdu1hmJcM4cU6bihN5wOttbaO3qnCuu9M67wgejMpfjCOJKw23iH8l0Y2zDR/TcHA==
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:CY5PR11MB6139.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230025)(346002)(39860400002)(366004)(376002)(396003)(136003)(451199018)(38100700002)(36756003)(86362001)(82960400001)(26005)(83380400001)(186003)(6506007)(9686003)(1076003)(6666004)(6512007)(4326008)(66476007)(30864003)(5660300002)(66899018)(316002)(66556008)(8676002)(6916009)(66946007)(8936002)(41300700001)(478600001)(6486002)(2906002);
+ IPV:NLI; SFV:NSPM; H:MN0PR11MB6059.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230025)(136003)(346002)(39850400004)(376002)(366004)(396003)(451199018)(5660300002)(8936002)(66476007)(6862004)(66946007)(2906002)(8676002)(66556008)(4326008)(316002)(44832011)(37006003)(41300700001)(54906003)(6636002)(26005)(6512007)(107886003)(6666004)(478600001)(6486002)(36756003)(82960400001)(6506007)(186003)(2616005)(83380400001)(86362001)(38100700002);
  DIR:OUT; SFP:1102; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?w1pJ6rUW/RYxrYuBeVNUY+eMeLDVj+BGuv21TYbRT5KoSoGd1E1uRt2g1GG6?=
- =?us-ascii?Q?/z0hrBh/1HeLuoylDASdU9ZdmLvVYS9Qhc/Ite+niE4a3UG7VCiKO7nzjKLG?=
- =?us-ascii?Q?FBBhtFORqi9v2gUO0g6uhXxpdpVkUr56wtFV0TyfH6pT/BZDnBV4+TM/qmJ9?=
- =?us-ascii?Q?8F4fIpL11EPO4DkObfHe0qwKTHne6RoHJn0+JnZ+cJ52JPuHrdrwa2T/+7t6?=
- =?us-ascii?Q?VMrPqb5esBFJWtG0RmSt2Cz4PekMybjRsmG2cGNJevrffzpGboWiQsCy6Go1?=
- =?us-ascii?Q?gayjiDN6yrZdKLKl4bwkkZwQ2TJgoZefQJidamsWS1KbhdsrrLjTRG6lmPOD?=
- =?us-ascii?Q?FEzDGEWrA9V0mJwGnrtRjTA0aUhnks8IVHn+UYN8CIBzwGuNqwbeQhOtbzb5?=
- =?us-ascii?Q?avPQW/7Y0kHLj7TGyMD+IuuKIilH5e4D6YBVX19Ot7NnxZBocNnXBEjM5Us4?=
- =?us-ascii?Q?vyKfF7+Do3XQN2i1e/Zn39MEzXT3aXk3gpat9YWRtbTgo83QblzSnQdhRn2P?=
- =?us-ascii?Q?jxk9t5zbUJw7UbZBD3+vEI0x3iwv4J9xAhEvIRGJSzP2koCTL1u/kBYT+ygZ?=
- =?us-ascii?Q?CliQ26+vpxme1vRWx/MGQhuISQHTHmtZgai7CV/TnIvS3g6y0AKQq3FwP6N0?=
- =?us-ascii?Q?1l1cQ7wBLt+urT8hCrEknILZ1/3kyoNDQ1kpELSMClHj/lGvIFQGJWzqfvW2?=
- =?us-ascii?Q?kqyMzU2cei5wXfHP1+Vr347lMVJXVnNZzVlVMuoWk6aTQvyRQYbOBLKJ7Cgg?=
- =?us-ascii?Q?gzB+Oy/OLcp421OWe4OruM2q2K9oyXAlfAhb8D0rJxT/eCc8In2RVpJcGbRs?=
- =?us-ascii?Q?3S3riiya3toqtYEohB855FACr4lidjwzQfiqU+4yr7I+CJzpXaA/4tnbEV6q?=
- =?us-ascii?Q?bdprc9fvzTcOgus+dl/bjBOILtXRH/Xaz2HgfYGRezHXmhG+jfREN5eTpKAu?=
- =?us-ascii?Q?/hW/rahmGtNDC2QkquiJhpq4KZ7Iw1boH5xQ0un5nsYYmf7EnH2o7MEf5Mae?=
- =?us-ascii?Q?a3/iVc/x0cg8/CJubj0/vmoVcqajICuJThFpnFhpLlQBhEeO9ytQbFTWBqWv?=
- =?us-ascii?Q?fDNVT4SFz0RtmlVD6X2ZkvesYgwVmav+Qy6cvPNYXGwOn6srrvg/VZiKHPFG?=
- =?us-ascii?Q?5Nx8L1PPQpeuKH5TPzYfqxVmrZ/hUiLCKI7hnycG2j6ZnS8aDgKxsjW8+6P1?=
- =?us-ascii?Q?wT5hj2JsUgbkW1k9MBAUAkRzDQ7JSdVT8oWEgrLKLt6JMsku4FFfH5z5W9EZ?=
- =?us-ascii?Q?byikMPHRlfjQxhA9aYpy7KEDNSdTUrebvhtJr067l37fKa/kP0qtIiEJtEgz?=
- =?us-ascii?Q?KYdpgQF5Di6BVMda+7aMfGI7ITofszy5kwAp8mRel6oggOsYRHHDff/MG/Kp?=
- =?us-ascii?Q?u0EN2F8dLqdfPHTaNlzcQi+gRk3Es5zybKRrTYEQNaUUVMEoPa9r+jiBj12n?=
- =?us-ascii?Q?FlWwIZBQw/KkZCbtyjOj5i2iU/1eO76vTQUPiteK5XYa334FtqUU32V3u8ug?=
- =?us-ascii?Q?v/FrUeAkGLPC/iuJpWVJBS+00Q0ZscuskfNQ/nnL0vwHhfUKivMPXndTrNO2?=
- =?us-ascii?Q?NRA4+nRtQlibCQePPyofboRpJziDCFmdgUqukxYWod/PzYJDvmtP+i1ZZY8i?=
- =?us-ascii?Q?eg=3D=3D?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: bd099295-1325-4b43-5f66-08db11221706
-X-MS-Exchange-CrossTenant-AuthSource: CY5PR11MB6139.namprd11.prod.outlook.com
+X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?oHdvkLLeBrZiJHCBHqo6oxGebOF9cu8eXblu8ZkoCf5nPHQcvCC+JOOmMWjy?=
+ =?us-ascii?Q?CIb8JtTjxF+eN1d/a/YOK+MOodEVTaAuooj1zzMwbVSQOwrNnsvnhuaXEbM5?=
+ =?us-ascii?Q?bkqDYtMbT1WR4n3KaTtgYVHDMuZuQsmR3F0C/KT0GRwZJkSTawXa5TuL3TQU?=
+ =?us-ascii?Q?gGAo0evujlTAU+DIol7gui8yAeRbLI/zV1Hidr37dDrjQabn2UcmJReDR41s?=
+ =?us-ascii?Q?w4iFg4hPWHmSkdoYx47JNtdbcHlUhT0XaVbITg0ckMlYlfbXKBq5eOgq6s5O?=
+ =?us-ascii?Q?Nmd112h8cNsg18cRcj9M0bADzGsARQWJzbJHWHQseeSfgFgpyGx2y9r0irY5?=
+ =?us-ascii?Q?2RePdQ0kZROJiXsOUpa1QacHxdCVwck3uVSW7xBDkO5MkJfagBbSQ7M6hksm?=
+ =?us-ascii?Q?NL3TI9cFPIlU/h8RTJ7A4dm083NMWdQ+nmJtsI310rwyCuDWYnckLPYnbtpU?=
+ =?us-ascii?Q?lMkmNh0axrb7ZceQqEz05NEA0YhspXcgl8VrU56kfuk4Iict11DOnWFswMZm?=
+ =?us-ascii?Q?cFmIIAV5ytL29keqyMPyaShdZqFwW0b98V2VrlOVvXOTUT1ANfRSivKLsnqq?=
+ =?us-ascii?Q?ftPQCKWgajD0SBOIi7eWFvHWBRMByHtQnmk5ja26sK9NONGnUKEyAHrv18SL?=
+ =?us-ascii?Q?mawQUluNrGdmHbFFm9A9cAOhtll8c5jXZedB5lvP3V/hMB1M3vu6alI5BK0s?=
+ =?us-ascii?Q?QOqug6fzJVouJwhAeBXZb1lhikhOQMTK/6mli4gVDuEo1FyEzL7cuPN6iF8T?=
+ =?us-ascii?Q?GPqNxNdsnyNquU1LVct0Ylvj/wngs06+ItJwuVq1TZKxlUtIECDKAGqDtqae?=
+ =?us-ascii?Q?5TMQtZOgvCw1UyyUftZZe4+f26rsBLNQ121Ob0BObclq0M1Gs4qsmDqNGgTi?=
+ =?us-ascii?Q?rv5nh76tMHgB98Ik8yEJMRufEj2MSbbFcEn6nvYQTE/pUB8/bXCbpJjcUKk7?=
+ =?us-ascii?Q?7zPrLtmCZ6MTHlmwfofODQzExNdDqq2ozHxZh6O+De1iVgxKL2HSVqjAFKFZ?=
+ =?us-ascii?Q?9i9s3cF9f8dsqKfV9v2nKJFquTP/XmEPfSI/HdLCWaV8Ako5DBAJZ/ukuqGg?=
+ =?us-ascii?Q?+M4efnrGXv0ZSH+owpeM6tY19uaYBc0xMVMqYePiiWw7DhhevdOYs7FH0bVm?=
+ =?us-ascii?Q?hEwTsyIZ46FJ/REcMwfZIzC4eeHzZnlOnUG2jTsKgOgDGhbAfn2m3MFhs8Bw?=
+ =?us-ascii?Q?LXD9lDrfp9/hMv+b2QZPRh42bo+7TFoq515zyWfHbETimOMUOsne8XjxbbMA?=
+ =?us-ascii?Q?hEi/ubzD7winFlqyCl3kKbLunUYRJsYO9hEeYuUKE8D6p9MNH4KNvQpwUqkU?=
+ =?us-ascii?Q?zxmkrGmBST6GvxThYIEn0Kk1Nv0TRWukkRImXNYss88IB1yUGTpLXyTsybw9?=
+ =?us-ascii?Q?B1lQ/GgNAIrxkQS0EfWNXGiDwfxLRgOqW2a4f/c0l/wg/YzpfBqXQAovQ7mG?=
+ =?us-ascii?Q?j2lAjPJxHrcxNXjM2J/IMqUihCdhoPH/Jw+YqueV3AZUxPu7dZFDg5wNME0u?=
+ =?us-ascii?Q?osn97yfgYsEASoBIfT+/duep1qerwzJwc3lshUf9ueorUkRwJKcMAWgV9uVE?=
+ =?us-ascii?Q?E7rupxSy030Q86Ci+QuJKkh+VZZUrRV5uagJZEFxfKhCWoDqnV8ax1qZ30ss?=
+ =?us-ascii?Q?Jw=3D=3D?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: 9b7d0dd7-65cd-45f0-f70c-08db11236d49
+X-MS-Exchange-CrossTenant-AuthSource: MN0PR11MB6059.namprd11.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 17 Feb 2023 20:03:51.8892 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 17 Feb 2023 20:13:26.3598 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: CZ/jPCXf/3+K6IOl4L+RJEwGysqAobOhrX5NoFzXJWQddIohRvaQRQcR+u3nEjuzIQDnWs8bx24CiPN+5Nrm39+Psp2bCaHiY3uooNBZgYc=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: CH3PR11MB7894
+X-MS-Exchange-CrossTenant-UserPrincipalName: tx4a8SzNX/V85LLm/erwExr6pcUMdbGfKce26L6ysZc+1GyRn8oRVExMH4HUR0gagHsEIdQtuwqtFuKXK9oZfA==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: IA1PR11MB8099
 X-OriginatorOrg: intel.com
-Subject: Re: [Intel-xe] [PATCH 1/6] drm/xe: allow disabling display at
- modprobe time
+Subject: Re: [Intel-xe] [PATCH v2 01/11] drm/xe: Remove outdated build
+ workaround
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -145,407 +147,43 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-xe@lists.freedesktop.org, Rodrigo Vivi <rodrigo.vivi@intel.com>
+Cc: intel-xe@lists.freedesktop.org,
+ Maarten Lankhorst <maarten.lankhorst@intel.com>,
+ Matthew Auld <matthew.auld@intel.com>
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Thu, Feb 16, 2023 at 03:19:07PM +0200, Jani Nikula wrote:
->On Fri, 03 Feb 2023, Rodrigo Vivi <rodrigo.vivi@intel.com> wrote:
->> From: Mauro Carvalho Chehab <mchehab@kernel.org>
->>
->> Offer an alternative besides Kconfig parameter to disable display
->> when loading the module.
->
->Looks like this display disable stuff ignores the distinction between a)
->hardware with display that you want disabled, and b) hardware without
->display.
->
->If you have CONFIG_DRM_XE_DISPLAY=n or i915.enabled_display=0 for case
->(a), you'll leave the hardware untouched instead of actually disabled,
->and you'll keep using power.
+On Thu, Feb 16, 2023 at 04:52:16PM -0800, Lucas De Marchi wrote:
+> Use the more common "call cc-disable-warning" way to disable warnings.
+> 
+> Signed-off-by: Lucas De Marchi <lucas.demarchi@intel.com>
 
-CONFIG_DRM_XE_DISPLAY is one thing that we don't have the equivalent in
-i915. In this particular case it's actually "xe module doesn't know
-anything about display, there is no support for driving it".  So, I
-think it's fine to just keep it as is.  Note that I don't have a strong
-opinion on whether we should or should not have the config in the long
-term.  Short term while the display integration is far from perfect, I
-think it's ok.
-
->See the distinction in i915.
-
-I think in i915 there are more use cases for the module param. Here
-it's just a shortcut for "don't touch it because we a) don't trust the
-driver to be doing the right thing in this regard or b) something else
-is disabling it, i.e firmware or early sku enabling.  For (a),
-it may change in future as the display support in xe matures.
-
-To avoid ambiguity this param could be named something else like
-"skip_display (default=0)" or "drive_display (default=1)"
-
-In i915 disable_display=1  is an action to be taken by the driver that
-can be skipped in case the HW isn't there.
-
-Lucas De Marchi
-
->
->Also, due to the complications, it's likely a good idea to wrap this
->stuff:
->
->> +	if (!xe->info.enable_display)
->> +		return;
->> +
->
->in some macro or function call.
->
->BR,
->Jani.
->
->
->
->>
->> Signed-off-by: Mauro Carvalho Chehab <mchehab@kernel.org>
->> Reviewed-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
->> Signed-off-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
->> ---
->>  drivers/gpu/drm/xe/xe_device.c       | 73 ++++++++++++++++++++++------
->>  drivers/gpu/drm/xe/xe_device_types.h |  2 +
->>  drivers/gpu/drm/xe/xe_irq.c          | 11 +++--
->>  drivers/gpu/drm/xe/xe_pci.c          |  6 ---
->>  drivers/gpu/drm/xe/xe_pm.c           | 14 +++++-
->>  5 files changed, 78 insertions(+), 28 deletions(-)
->>
->> diff --git a/drivers/gpu/drm/xe/xe_device.c b/drivers/gpu/drm/xe/xe_device.c
->> index 62f54b4806dc..2e1f4beba9b0 100644
->> --- a/drivers/gpu/drm/xe/xe_device.c
->> +++ b/drivers/gpu/drm/xe/xe_device.c
->> @@ -47,6 +47,10 @@ static bool enable_guc = true;
->>  module_param_named_unsafe(enable_guc, enable_guc, bool, 0444);
->>  MODULE_PARM_DESC(enable_guc, "Enable GuC submission");
->>
->> +static bool enable_display = true;
->> +module_param_named(enable_display, enable_display, bool, 0444);
->> +MODULE_PARM_DESC(enable_display, "Enable display");
->> +
->>  static int xe_file_open(struct drm_device *dev, struct drm_file *file)
->>  {
->>  	struct xe_file *xef;
->> @@ -138,15 +142,12 @@ static void xe_driver_release(struct drm_device *dev)
->>  	pci_set_drvdata(to_pci_dev(xe->drm.dev), NULL);
->>  }
->>
->> -static const struct drm_driver driver = {
->> +static struct drm_driver driver = {
->>  	/* Don't use MTRRs here; the Xserver or userspace app should
->>  	 * deal with them for Intel hardware.
->>  	 */
->>  	.driver_features =
->>  	    DRIVER_GEM |
->> -#if IS_ENABLED(CONFIG_DRM_XE_DISPLAY)
->> -	    DRIVER_MODESET | DRIVER_ATOMIC |
->> -#endif
->>  	    DRIVER_RENDER | DRIVER_SYNCOBJ |
->>  	    DRIVER_SYNCOBJ_TIMELINE,
->>  	.open = xe_file_open,
->> @@ -159,9 +160,6 @@ static const struct drm_driver driver = {
->>
->>  	.dumb_create = xe_bo_dumb_create,
->>  	.dumb_map_offset = drm_gem_ttm_dumb_map_offset,
->> -#if IS_ENABLED(CONFIG_DRM_XE_DISPLAY)
->> -	.lastclose = intel_fbdev_restore_mode,
->> -#endif
->>  	.release = &xe_driver_release,
->>
->>  	.ioctls = xe_ioctls,
->> @@ -191,6 +189,16 @@ struct xe_device *xe_device_create(struct pci_dev *pdev,
->>  	struct xe_device *xe;
->>  	int err;
->>
->> +#if IS_ENABLED(CONFIG_DRM_XE_DISPLAY)
->> +	if (enable_display) {
->> +		/* Detect if we need to wait for other drivers early on */
->> +		if (intel_modeset_probe_defer(pdev))
->> +			return ERR_PTR(EPROBE_DEFER);
->> +
->> +		driver.driver_features |= DRIVER_MODESET | DRIVER_ATOMIC;
->> +		driver.lastclose = intel_fbdev_restore_mode;
->> +	}
->> +#endif
->>  	err = drm_aperture_remove_conflicting_pci_framebuffers(pdev, &driver);
->>  	if (err)
->>  		return ERR_PTR(err);
->> @@ -208,6 +216,7 @@ struct xe_device *xe_device_create(struct pci_dev *pdev,
->>  	xe->info.devid = pdev->device;
->>  	xe->info.revid = pdev->revision;
->>  	xe->info.enable_guc = enable_guc;
->> +	xe->info.enable_display = enable_display;
->>
->>  	spin_lock_init(&xe->irq.lock);
->>
->> @@ -267,6 +276,9 @@ static void xe_device_fini_display_nommio(struct drm_device *dev, void *dummy)
->>  {
->>  	struct xe_device *xe = to_xe_device(dev);
->>
->> +	if (!xe->info.enable_display)
->> +		return;
->> +
->>  	intel_power_domains_cleanup(xe);
->>  }
->>  #endif
->> @@ -276,6 +288,9 @@ static int xe_device_init_display_nommio(struct xe_device *xe)
->>  #if IS_ENABLED(CONFIG_DRM_XE_DISPLAY)
->>  	int err;
->>
->> +	if (!xe->info.enable_display)
->> +		return 0;
->> +
->>  	/* This must be called before any calls to HAS_PCH_* */
->>  	intel_detect_pch(xe);
->>  	intel_display_irq_init(xe);
->> @@ -297,6 +312,9 @@ static void xe_device_fini_display_noirq(struct drm_device *dev, void *dummy)
->>  {
->>  	struct xe_device *xe = to_xe_device(dev);
->>
->> +	if (!xe->info.enable_display)
->> +		return;
->> +
->>  	intel_modeset_driver_remove_noirq(xe);
->>  	intel_power_domains_driver_remove(xe);
->>  }
->> @@ -307,6 +325,9 @@ static int xe_device_init_display_noirq(struct xe_device *xe)
->>  #if IS_ENABLED(CONFIG_DRM_XE_DISPLAY)
->>  	int err;
->>
->> +	if (!xe->info.enable_display)
->> +		return 0;
->> +
->>  	/* Early display init.. */
->>  	intel_opregion_setup(xe);
->>
->> @@ -342,6 +363,9 @@ static void xe_device_fini_display_noaccel(struct drm_device *dev, void *dummy)
->>  {
->>  	struct xe_device *xe = to_xe_device(dev);
->>
->> +	if (!xe->info.enable_display)
->> +		return;
->> +
->>  	intel_modeset_driver_remove_nogem(xe);
->>  }
->>  #endif
->> @@ -349,7 +373,12 @@ static void xe_device_fini_display_noaccel(struct drm_device *dev, void *dummy)
->>  static int xe_device_init_display_noaccel(struct xe_device *xe)
->>  {
->>  #if IS_ENABLED(CONFIG_DRM_XE_DISPLAY)
->> -	int err = intel_modeset_init_nogem(xe);
->> +	int err;
->> +
->> +	if (!xe->info.enable_display)
->> +		return 0;
->> +
->> +	err = intel_modeset_init_nogem(xe);
->>  	if (err)
->>  		return err;
->>
->> @@ -362,6 +391,9 @@ static int xe_device_init_display_noaccel(struct xe_device *xe)
->>  static int xe_device_init_display(struct xe_device *xe)
->>  {
->>  #if IS_ENABLED(CONFIG_DRM_XE_DISPLAY)
->> +	if (!xe->info.enable_display)
->> +		return 0;
->> +
->>  	return intel_modeset_init(xe);
->>  #else
->>  	return 0;
->> @@ -371,6 +403,9 @@ static int xe_device_init_display(struct xe_device *xe)
->>  static void xe_device_unlink_display(struct xe_device *xe)
->>  {
->>  #if IS_ENABLED(CONFIG_DRM_XE_DISPLAY)
->> +	if (!xe->info.enable_display)
->> +		return;
->> +
->>  	/* poll work can call into fbdev, hence clean that up afterwards */
->>  	intel_hpd_poll_fini(xe);
->>  	intel_fbdev_fini(xe);
->> @@ -469,9 +504,11 @@ int xe_device_probe(struct xe_device *xe)
->>  		goto err_irq_shutdown;
->>
->>  #if IS_ENABLED(CONFIG_DRM_XE_DISPLAY)
->> -	intel_display_driver_register(xe);
->> -	intel_register_dsm_handler();
->> -	intel_power_domains_enable(xe);
->> +	if (xe->info.enable_display) {
->> +		intel_display_driver_register(xe);
->> +		intel_register_dsm_handler();
->> +		intel_power_domains_enable(xe);
->> +	}
->>  #endif
->>
->>  	xe_debugfs_register(xe);
->> @@ -484,7 +521,8 @@ int xe_device_probe(struct xe_device *xe)
->>
->>  err_fini_display:
->>  #if IS_ENABLED(CONFIG_DRM_XE_DISPLAY)
->> -	intel_modeset_driver_remove(xe);
->> +	if (xe->info.enable_display)
->> +		intel_modeset_driver_remove(xe);
->>  #endif
->>  err_irq_shutdown:
->>  	xe_irq_shutdown(xe);
->> @@ -496,14 +534,17 @@ int xe_device_probe(struct xe_device *xe)
->>  static void xe_device_remove_display(struct xe_device *xe)
->>  {
->>  #if IS_ENABLED(CONFIG_DRM_XE_DISPLAY)
->> -	intel_unregister_dsm_handler();
->> -	intel_power_domains_disable(xe);
->> -	intel_display_driver_unregister(xe);
->> +	if (xe->info.enable_display) {
->> +		intel_unregister_dsm_handler();
->> +		intel_power_domains_disable(xe);
->> +		intel_display_driver_unregister(xe);
->> +	}
->>  #endif
->>
->>  	drm_dev_unplug(&xe->drm);
->>  #if IS_ENABLED(CONFIG_DRM_XE_DISPLAY)
->> -	intel_modeset_driver_remove(xe);
->> +	if (xe->info.enable_display)
->> +		intel_modeset_driver_remove(xe);
->>  #endif
->>  }
->>
->> diff --git a/drivers/gpu/drm/xe/xe_device_types.h b/drivers/gpu/drm/xe/xe_device_types.h
->> index a8d48987b2d8..6c71e1b2dbf4 100644
->> --- a/drivers/gpu/drm/xe/xe_device_types.h
->> +++ b/drivers/gpu/drm/xe/xe_device_types.h
->> @@ -96,6 +96,8 @@ struct xe_device {
->>  		bool has_4tile;
->>  		/** @has_range_tlb_invalidation: Has range based TLB invalidations */
->>  		bool has_range_tlb_invalidation;
->> +		/** @enable_display: display enabled */
->> +		bool enable_display;
->>
->>  		struct xe_device_display_info {
->>  			u8 ver;
->> diff --git a/drivers/gpu/drm/xe/xe_irq.c b/drivers/gpu/drm/xe/xe_irq.c
->> index f978bdfda99b..e1cc057f50ba 100644
->> --- a/drivers/gpu/drm/xe/xe_irq.c
->> +++ b/drivers/gpu/drm/xe/xe_irq.c
->> @@ -299,7 +299,7 @@ static irqreturn_t gen11_irq_handler(int irq, void *arg)
->>  	gen11_gt_irq_handler(xe, gt, master_ctl, intr_dw, identity);
->>
->>  #if IS_ENABLED(CONFIG_DRM_XE_DISPLAY)
->> -	if (master_ctl & GEN11_DISPLAY_IRQ)
->> +	if (xe->info.enable_display && (master_ctl & GEN11_DISPLAY_IRQ))
->>  		gen11_display_irq_handler(xe);
->>  #endif
->>
->> @@ -308,7 +308,7 @@ static irqreturn_t gen11_irq_handler(int irq, void *arg)
->>  	gen11_intr_enable(gt, false);
->>
->>  #if IS_ENABLED(CONFIG_DRM_XE_DISPLAY)
->> -	if (gu_misc_iir & GEN11_GU_MISC_GSE)
->> +	if (xe->info.enable_display && (gu_misc_iir & GEN11_GU_MISC_GSE))
->>  		intel_opregion_asle_intr(xe);
->>  #endif
->>
->> @@ -403,7 +403,7 @@ static irqreturn_t dg1_irq_handler(int irq, void *arg)
->>  	dg1_intr_enable(xe, false);
->>
->>  #if IS_ENABLED(CONFIG_DRM_XE_DISPLAY)
->> -	if (gu_misc_iir & GEN11_GU_MISC_GSE)
->> +	if (xe->info.enable_display && (gu_misc_iir & GEN11_GU_MISC_GSE))
->>  		intel_opregion_asle_intr(xe);
->>  #endif
->>
->> @@ -488,7 +488,8 @@ void xe_irq_reset(struct xe_device *xe)
->>  		}
->>  	}
->>  #if IS_ENABLED(CONFIG_DRM_XE_DISPLAY)
->> -	gen11_display_irq_reset(xe);
->> +	if (xe->info.enable_display)
->> +		gen11_display_irq_reset(xe);
->>  #endif
->>  }
->>
->> @@ -504,7 +505,7 @@ void xe_gt_irq_postinstall(struct xe_gt *gt)
->>  		drm_err(&xe->drm, "No interrupt postinstall hook");
->>
->>  #if IS_ENABLED(CONFIG_DRM_XE_DISPLAY)
->> -	if (gt->info.id == XE_GT0)
->> +	if (xe->info.enable_display && (gt->info.id == XE_GT0))
->>  		gen11_display_irq_postinstall(gt_to_xe(gt));
->>  #endif
->>  }
->> diff --git a/drivers/gpu/drm/xe/xe_pci.c b/drivers/gpu/drm/xe/xe_pci.c
->> index 927a050f3b8f..1d5b6afed2c3 100644
->> --- a/drivers/gpu/drm/xe/xe_pci.c
->> +++ b/drivers/gpu/drm/xe/xe_pci.c
->> @@ -476,12 +476,6 @@ static int xe_pci_probe(struct pci_dev *pdev, const struct pci_device_id *ent)
->>  		return -ENODEV;
->>  	}
->>
->> -#if IS_ENABLED(CONFIG_DRM_XE_DISPLAY)
->> -	/* Detect if we need to wait for other drivers early on */
->> -	if (intel_modeset_probe_defer(pdev))
->> -		return -EPROBE_DEFER;
->> -#endif
->> -
->>  	xe = xe_device_create(pdev, ent);
->>  	if (IS_ERR(xe))
->>  		return PTR_ERR(xe);
->> diff --git a/drivers/gpu/drm/xe/xe_pm.c b/drivers/gpu/drm/xe/xe_pm.c
->> index ddfd884796ba..4b3a1d8a8adf 100644
->> --- a/drivers/gpu/drm/xe/xe_pm.c
->> +++ b/drivers/gpu/drm/xe/xe_pm.c
->> @@ -52,7 +52,7 @@ static void intel_suspend_encoders(struct xe_device *xe)
->>  	struct drm_device *dev = &xe->drm;
->>  	struct intel_encoder *encoder;
->>
->> -	if (!xe->info.display.pipe_mask)
->> +	if (!xe->info.enable_display || !xe->info.display.pipe_mask)
->>  		return;
->>
->>  	drm_modeset_lock_all(dev);
->> @@ -66,6 +66,9 @@ static void intel_suspend_encoders(struct xe_device *xe)
->>  static void xe_pm_display_suspend(struct xe_device *xe)
->>  {
->>  #if IS_ENABLED(CONFIG_DRM_XE_DISPLAY)
->> +	if (!xe->info.enable_display)
->> +		return;
->> +
->>  	/* We do a lot of poking in a lot of registers, make sure they work
->>  	 * properly. */
->>  	intel_power_domains_disable(xe);
->> @@ -91,6 +94,9 @@ static void xe_pm_display_suspend(struct xe_device *xe)
->>  static void xe_pm_display_suspend_late(struct xe_device *xe)
->>  {
->>  #if IS_ENABLED(CONFIG_DRM_XE_DISPLAY)
->> +	if (!xe->info.enable_display)
->> +		return;
->> +
->>  	intel_power_domains_suspend(xe, I915_DRM_SUSPEND_MEM);
->>
->>  	intel_display_power_suspend_late(xe);
->> @@ -100,6 +106,9 @@ static void xe_pm_display_suspend_late(struct xe_device *xe)
->>  static void xe_pm_display_resume_early(struct xe_device *xe)
->>  {
->>  #if IS_ENABLED(CONFIG_DRM_XE_DISPLAY)
->> +	if (!xe->info.enable_display)
->> +		return;
->> +
->>  	intel_display_power_resume_early(xe);
->>
->>  	intel_power_domains_resume(xe);
->> @@ -109,6 +118,9 @@ static void xe_pm_display_resume_early(struct xe_device *xe)
->>  static void xe_pm_display_resume(struct xe_device *xe)
->>  {
->>  #if IS_ENABLED(CONFIG_DRM_XE_DISPLAY)
->> +	if (!xe->info.enable_display)
->> +		return;
->> +
->>  	intel_dmc_ucode_resume(xe);
->>
->>  	if (xe->info.display.pipe_mask)
->
->-- 
->Jani Nikula, Intel Open Source Graphics Center
+Reviewed-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
+> ---
+>  drivers/gpu/drm/xe/Makefile | 10 ++--------
+>  1 file changed, 2 insertions(+), 8 deletions(-)
+> 
+> diff --git a/drivers/gpu/drm/xe/Makefile b/drivers/gpu/drm/xe/Makefile
+> index abd804d622e6..18257cd7227d 100644
+> --- a/drivers/gpu/drm/xe/Makefile
+> +++ b/drivers/gpu/drm/xe/Makefile
+> @@ -13,14 +13,8 @@
+>  # will most likely get a sudden build breakage... Hopefully we will fix
+>  # new warnings before CI updates!
+>  subdir-ccflags-y := -Wall -Wextra
+> -# making these call cc-disable-warning breaks when trying to build xe.mod.o
+> -# by calling make M=drivers/gpu/drm/xe. This doesn't happen in upstream tree,
+> -# so it was somehow fixed by the changes in the build system. Move it back to
+> -# $(call cc-disable-warning, ...) after rebase.
+> -subdir-ccflags-y += -Wno-unused-parameter
+> -subdir-ccflags-y += -Wno-type-limits
+> -#subdir-ccflags-y += $(call cc-disable-warning, unused-parameter)
+> -#subdir-ccflags-y += $(call cc-disable-warning, type-limits)
+> +subdir-ccflags-y += $(call cc-disable-warning, unused-parameter)
+> +subdir-ccflags-y += $(call cc-disable-warning, type-limits)
+>  subdir-ccflags-y += $(call cc-disable-warning, missing-field-initializers)
+>  subdir-ccflags-y += $(call cc-disable-warning, unused-but-set-variable)
+>  # clang warnings
+> -- 
+> 2.39.0
+> 
