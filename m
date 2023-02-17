@@ -4,48 +4,48 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id C1A73C64EC4
-	for <intel-xe@archiver.kernel.org>; Fri, 17 Feb 2023 00:53:06 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4BA01C636CC
+	for <intel-xe@archiver.kernel.org>; Fri, 17 Feb 2023 00:53:08 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8258710E1AA;
-	Fri, 17 Feb 2023 00:53:06 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 25F0110E3C2;
+	Fri, 17 Feb 2023 00:53:08 +0000 (UTC)
 Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4A04E10E138
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 95CED10E3C1
  for <intel-xe@lists.freedesktop.org>; Fri, 17 Feb 2023 00:53:05 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
  t=1676595185; x=1708131185;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=5s8475BZ0Qs4TZDgT2rcTm6K3Tt57OUe/nJb/WiJ2l8=;
- b=Vk5uiKJjYyJx7PIxQyiPCVJQPXhKkuSurCR5BZ2BLgdtU8jaIAHUNK9E
- olIoMt5ttzuOIX3VRkT9OjShcuuC8G3NUJorZe51YCpecsy025AhJDgsP
- EQFsZu6Riathnv1qshOrUodijY+EcX/HxQ5VMm+mrclOwSJeJ1g25YHRF
- 0h8BGMJw2/ZcA813YGOETNwec6crwn/1415kcDJ+ctCFWfH+FiV5Y3UQX
- Rcd435dS67kCHCHqwnCNdjLzHtQg8Ut/O7TLSnRxa4P2p+oItRKA3BRzy
- /kFoM5QALAcz6qA1AHK0mBa+XRKWgbQQX5pawKYteNGtdwjJc2+hGVRBU Q==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10623"; a="329602197"
-X-IronPort-AV: E=Sophos;i="5.97,304,1669104000"; d="scan'208";a="329602197"
+ bh=NJJ1J4zoq3y5CnjsOx3scRsEr95tHCiJBx52upyk2Ok=;
+ b=SXDEWIPvfjfmxHfw2d2TXcm09+QGtNtRVlRcFvFP9RT6Lt03PGx26K0L
+ 9E5uydpLjygIi25uznCWDQYgGBnjnKlrtY195q+tsOUE0XSSzHpZuRVlq
+ /OTR9cDGFBXMI7omYaDUhFXovHEvU+NXCdcJoc7BhvPlYQY8/4pGXhSr+
+ D4IwqhCVpbWqIp0eZtE/kGdaq+hksQteJZNSjt1k2635RDzEEq4amZ54h
+ W7+OioqXmJOZFofs7D98Fr99zjw9/nuU2c45YZgj88D96Ucp5MDOrSwC2
+ 4xeQzpo+huoZ/l+0F4RoUfGnaRgsFIWKt+rlZa7Li2cksyLofn3/Arbbr w==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10623"; a="329602205"
+X-IronPort-AV: E=Sophos;i="5.97,304,1669104000"; d="scan'208";a="329602205"
 Received: from fmsmga007.fm.intel.com ([10.253.24.52])
  by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 16 Feb 2023 16:53:04 -0800
-X-IronPort-AV: E=McAfee;i="6500,9779,10623"; a="672417778"
-X-IronPort-AV: E=Sophos;i="5.97,304,1669104000"; d="scan'208";a="672417778"
+ 16 Feb 2023 16:53:05 -0800
+X-IronPort-AV: E=McAfee;i="6500,9779,10623"; a="672417789"
+X-IronPort-AV: E=Sophos;i="5.97,304,1669104000"; d="scan'208";a="672417789"
 Received: from lucas-s2600cw.jf.intel.com ([10.165.21.196])
  by fmsmga007-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 16 Feb 2023 16:53:04 -0800
+ 16 Feb 2023 16:53:05 -0800
 From: Lucas De Marchi <lucas.demarchi@intel.com>
 To: intel-xe@lists.freedesktop.org
-Date: Thu, 16 Feb 2023 16:52:19 -0800
-Message-Id: <20230217005226.106499-5-lucas.demarchi@intel.com>
+Date: Thu, 16 Feb 2023 16:52:22 -0800
+Message-Id: <20230217005226.106499-8-lucas.demarchi@intel.com>
 X-Mailer: git-send-email 2.39.0
 In-Reply-To: <20230217005226.106499-1-lucas.demarchi@intel.com>
 References: <20230217005226.106499-1-lucas.demarchi@intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-xe] [PATCH v2 04/11] drm/xe: Remove dependency on
- intel_engine_regs.h
+Subject: [Intel-xe] [PATCH v2 07/11] drm/xe: Remove dependency on
+ intel_gpu_commands.h
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -63,297 +63,243 @@ Cc: Lucas De Marchi <lucas.demarchi@intel.com>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Create regs/xe_engine_regs.h file with all the registers and bit
-definitions used by the xe driver. Eventually the registers may be
-defined in a different way and since xe doesn't supported below gen12,
-the number of registers touched is much smaller, so create a new header.
-
-The definitions themselves are direct copy from the
-gt/intel_engine_regs.h file, just sorting the registers by address.
-Cleaning those up and adhering to a common coding style is left for
-later.
+Copy the macros used by xe in intel_gpu_commands.h to
+regs/xe_gpu_commands.h.
 
 Signed-off-by: Lucas De Marchi <lucas.demarchi@intel.com>
 ---
- drivers/gpu/drm/xe/regs/xe_engine_regs.h | 98 ++++++++++++++++++++++++
- drivers/gpu/drm/xe/xe_execlist.c         |  2 +-
- drivers/gpu/drm/xe/xe_guc_ads.c          |  5 +-
- drivers/gpu/drm/xe/xe_hw_engine.c        |  2 +-
- drivers/gpu/drm/xe/xe_lrc.c              |  2 +-
- drivers/gpu/drm/xe/xe_mmio.c             |  2 +-
- drivers/gpu/drm/xe/xe_reg_sr.c           |  2 +-
- drivers/gpu/drm/xe/xe_reg_whitelist.c    |  2 +-
- drivers/gpu/drm/xe/xe_wa.c               |  2 +-
- 9 files changed, 109 insertions(+), 8 deletions(-)
- create mode 100644 drivers/gpu/drm/xe/regs/xe_engine_regs.h
+ drivers/gpu/drm/xe/regs/xe_gpu_commands.h | 96 +++++++++++++++++++++++
+ drivers/gpu/drm/xe/xe_bb.c                |  3 +-
+ drivers/gpu/drm/xe/xe_device.h            |  3 +-
+ drivers/gpu/drm/xe/xe_execlist.c          |  2 +-
+ drivers/gpu/drm/xe/xe_lrc.c               |  2 +-
+ drivers/gpu/drm/xe/xe_migrate.c           |  3 +-
+ drivers/gpu/drm/xe/xe_ring_ops.c          |  2 +-
+ 7 files changed, 102 insertions(+), 9 deletions(-)
+ create mode 100644 drivers/gpu/drm/xe/regs/xe_gpu_commands.h
 
-diff --git a/drivers/gpu/drm/xe/regs/xe_engine_regs.h b/drivers/gpu/drm/xe/regs/xe_engine_regs.h
+diff --git a/drivers/gpu/drm/xe/regs/xe_gpu_commands.h b/drivers/gpu/drm/xe/regs/xe_gpu_commands.h
 new file mode 100644
-index 000000000000..6dfa3cf2fd43
+index 000000000000..bf6dc1c8563d
 --- /dev/null
-+++ b/drivers/gpu/drm/xe/regs/xe_engine_regs.h
-@@ -0,0 +1,98 @@
++++ b/drivers/gpu/drm/xe/regs/xe_gpu_commands.h
+@@ -0,0 +1,96 @@
 +/* SPDX-License-Identifier: MIT */
 +/*
 + * Copyright © 2023 Intel Corporation
 + */
 +
-+#ifndef _XE_ENGINE_REGS_H_
-+#define _XE_ENGINE_REGS_H_
++#ifndef _XE_GPU_COMMANDS_H_
++#define _XE_GPU_COMMANDS_H_
 +
-+#include <asm/page.h>
++#define INSTR_CLIENT_SHIFT      29
++#define   INSTR_MI_CLIENT       0x0
++#define __INSTR(client) ((client) << INSTR_CLIENT_SHIFT)
 +
-+#include "i915_reg_defs.h"
++#define MI_INSTR(opcode, flags) \
++	(__INSTR(INSTR_MI_CLIENT) | (opcode) << 23 | (flags))
 +
-+#define RING_TAIL(base)				_MMIO((base) + 0x30)
++#define MI_NOOP			MI_INSTR(0, 0)
++#define MI_USER_INTERRUPT	MI_INSTR(0x02, 0)
 +
-+#define RING_HEAD(base)				_MMIO((base) + 0x34)
-+#define   HEAD_ADDR				0x001FFFFC
++#define MI_ARB_ON_OFF		MI_INSTR(0x08, 0)
++#define   MI_ARB_ENABLE			(1<<0)
++#define   MI_ARB_DISABLE		(0<<0)
 +
-+#define RING_START(base)			_MMIO((base) + 0x38)
++#define MI_BATCH_BUFFER_END	MI_INSTR(0x0a, 0)
++#define MI_STORE_DATA_IMM	MI_INSTR(0x20, 0)
 +
-+#define RING_CTL(base)				_MMIO((base) + 0x3c)
-+#define   RING_CTL_SIZE(size)			((size) - PAGE_SIZE) /* in bytes -> pages */
-+#define   RING_CTL_SIZE(size)			((size) - PAGE_SIZE) /* in bytes -> pages */
++#define MI_LOAD_REGISTER_IMM(x)	MI_INSTR(0x22, 2*(x)-1)
++#define   MI_LRI_LRM_CS_MMIO		REG_BIT(19)
++#define   MI_LRI_MMIO_REMAP_EN		REG_BIT(17)
++#define   MI_LRI_FORCE_POSTED		(1<<12)
 +
-+#define RING_PSMI_CTL(base)			_MMIO((base) + 0x50)
-+#define   GEN8_RC_SEMA_IDLE_MSG_DISABLE			REG_BIT(12)
-+#define   GEN12_WAIT_FOR_EVENT_POWER_DOWN_DISABLE	REG_BIT(7)
++#define MI_FLUSH_DW		MI_INSTR(0x26, 1)
++#define   MI_FLUSH_DW_STORE_INDEX	(1<<21)
++#define   MI_INVALIDATE_TLB		(1<<18)
++#define   MI_FLUSH_DW_CCS		(1<<16)
++#define   MI_FLUSH_DW_OP_STOREDW	(1<<14)
++#define   MI_FLUSH_DW_USE_GTT		(1<<2)
 +
-+#define RING_ACTHD_UDW(base)			_MMIO((base) + 0x5c)
-+#define RING_DMA_FADD_UDW(base)			_MMIO((base) + 0x60)
-+#define RING_IPEIR(base)			_MMIO((base) + 0x64)
-+#define RING_IPEHR(base)			_MMIO((base) + 0x68)
-+#define RING_ACTHD(base)			_MMIO((base) + 0x74)
-+#define RING_DMA_FADD(base)			_MMIO((base) + 0x78)
-+#define RING_HWS_PGA(base)			_MMIO((base) + 0x80)
-+#define IPEIR(base)				_MMIO((base) + 0x88)
-+#define IPEHR(base)				_MMIO((base) + 0x8c)
-+#define RING_HWSTAM(base)			_MMIO((base) + 0x98)
-+#define RING_MI_MODE(base)			_MMIO((base) + 0x9c)
-+#define RING_NOPID(base)			_MMIO((base) + 0x94)
++#define MI_BATCH_BUFFER_START_GEN8	MI_INSTR(0x31, 1)
 +
-+#define RING_IMR(base)				_MMIO((base) + 0xa8)
-+#define   RING_MAX_NONPRIV_SLOTS  12
++#define XY_CTRL_SURF_COPY_BLT		((2 << 29) | (0x48 << 22) | 3)
++#define   SRC_ACCESS_TYPE_SHIFT		21
++#define   DST_ACCESS_TYPE_SHIFT		20
++#define   CCS_SIZE_MASK			0x3FF
++#define   CCS_SIZE_SHIFT		8
++#define   XY_CTRL_SURF_MOCS_MASK	GENMASK(31, 25)
++#define   NUM_CCS_BYTES_PER_BLOCK	256
++#define   NUM_BYTES_PER_CCS_BYTE	256
++#define   NUM_CCS_BLKS_PER_XFER		1024
 +
-+#define RING_EIR(base)				_MMIO((base) + 0xb0)
-+#define RING_EMR(base)				_MMIO((base) + 0xb4)
-+#define RING_ESR(base)				_MMIO((base) + 0xb8)
-+#define RING_BBADDR(base)			_MMIO((base) + 0x140)
-+#define RING_BBADDR_UDW(base)			_MMIO((base) + 0x168)
-+#define RING_EXECLIST_STATUS_LO(base)		_MMIO((base) + 0x234)
-+#define RING_EXECLIST_STATUS_HI(base)		_MMIO((base) + 0x234 + 4)
++#define XY_FAST_COLOR_BLT_CMD		(2 << 29 | 0x44 << 22)
++#define   XY_FAST_COLOR_BLT_DEPTH_32	(2 << 19)
++#define   XY_FAST_COLOR_BLT_DW		16
++#define   XY_FAST_COLOR_BLT_MOCS_MASK	GENMASK(27, 21)
++#define   XY_FAST_COLOR_BLT_MEM_TYPE_SHIFT 31
 +
-+#define RING_CONTEXT_CONTROL(base)		_MMIO((base) + 0x244)
-+#define	  CTX_CTRL_INHIBIT_SYN_CTX_SWITCH	REG_BIT(3)
-+#define	  CTX_CTRL_ENGINE_CTX_RESTORE_INHIBIT	REG_BIT(0)
++#define GEN9_XY_FAST_COPY_BLT_CMD	(2 << 29 | 0x42 << 22)
++#define   BLT_DEPTH_32			(3<<24)
 +
-+#define RING_MODE_GEN7(base)			_MMIO((base) + 0x29c)
-+#define   GEN11_GFX_DISABLE_LEGACY_MODE		(1 << 3)
++#define GFX_OP_PIPE_CONTROL(len)	((0x3<<29)|(0x3<<27)|(0x2<<24)|((len)-2))
++#define   PIPE_CONTROL_TILE_CACHE_FLUSH			(1<<28)
++#define   PIPE_CONTROL_AMFS_FLUSH			(1<<25)
++#define   PIPE_CONTROL_GLOBAL_GTT_IVB			(1<<24)
++#define   PIPE_CONTROL_CS_STALL				(1<<20)
++#define   PIPE_CONTROL_GLOBAL_SNAPSHOT_RESET		(1<<19)
++#define   PIPE_CONTROL_PSD_SYNC				(1<<17)
++#define   PIPE_CONTROL_QW_WRITE				(1<<14)
++#define   PIPE_CONTROL_DEPTH_STALL			(1<<13)
++#define   PIPE_CONTROL_RENDER_TARGET_CACHE_FLUSH	(1<<12)
++#define   PIPE_CONTROL_TEXTURE_CACHE_INVALIDATE		(1<<10)
++#define   PIPE_CONTROL_INDIRECT_STATE_DISABLE		(1<<9)
++#define   PIPE_CONTROL_FLUSH_ENABLE			(1<<7)
++#define   PIPE_CONTROL_DC_FLUSH_ENABLE			(1<<5)
++#define   PIPE_CONTROL_VF_CACHE_INVALIDATE		(1<<4)
++#define   PIPE_CONTROL_STALL_AT_SCOREBOARD		(1<<1)
++#define   PIPE_CONTROL_DEPTH_CACHE_FLUSH		(1<<0)
 +
-+#define RING_TIMESTAMP(base)			_MMIO((base) + 0x358)
++#define PIPE_CONTROL_3D_ENGINE_FLAGS (\
++		PIPE_CONTROL_RENDER_TARGET_CACHE_FLUSH | \
++		PIPE_CONTROL_DEPTH_CACHE_FLUSH | \
++		PIPE_CONTROL_TILE_CACHE_FLUSH | \
++		PIPE_CONTROL_DEPTH_STALL | \
++		PIPE_CONTROL_STALL_AT_SCOREBOARD | \
++		PIPE_CONTROL_PSD_SYNC | \
++		PIPE_CONTROL_AMFS_FLUSH | \
++		PIPE_CONTROL_VF_CACHE_INVALIDATE | \
++		PIPE_CONTROL_GLOBAL_SNAPSHOT_RESET)
++#define PIPE_CONTROL_3D_ARCH_FLAGS ( \
++		PIPE_CONTROL_3D_ENGINE_FLAGS | \
++		PIPE_CONTROL_INDIRECT_STATE_DISABLE | \
++		PIPE_CONTROL_FLUSH_ENABLE | \
++		PIPE_CONTROL_TEXTURE_CACHE_INVALIDATE | \
++		PIPE_CONTROL_DC_FLUSH_ENABLE)
 +
-+#define RING_TIMESTAMP_UDW(base)		_MMIO((base) + 0x358 + 4)
-+#define   RING_VALID_MASK			0x00000001
-+#define   RING_VALID				0x00000001
-+#define   STOP_RING				REG_BIT(8)
-+#define   TAIL_ADDR				0x001FFFF8
-+
-+#define RING_CTX_TIMESTAMP(base)		_MMIO((base) + 0x3a8)
-+
-+#define RING_FORCE_TO_NONPRIV(base, i)		_MMIO(((base) + 0x4d0) + (i) * 4)
-+#define   RING_FORCE_TO_NONPRIV_DENY		REG_BIT(30)
-+#define   RING_FORCE_TO_NONPRIV_ADDRESS_MASK	REG_GENMASK(25, 2)
-+#define   RING_FORCE_TO_NONPRIV_ACCESS_RW	(0 << 28)
-+#define   RING_FORCE_TO_NONPRIV_ACCESS_RD	(1 << 28)
-+#define   RING_FORCE_TO_NONPRIV_ACCESS_WR	(2 << 28)
-+#define   RING_FORCE_TO_NONPRIV_ACCESS_INVALID	(3 << 28)
-+#define   RING_FORCE_TO_NONPRIV_ACCESS_MASK	(3 << 28)
-+#define   RING_FORCE_TO_NONPRIV_RANGE_1		(0 << 0)
-+#define   RING_FORCE_TO_NONPRIV_RANGE_4		(1 << 0)
-+#define   RING_FORCE_TO_NONPRIV_RANGE_16	(2 << 0)
-+#define   RING_FORCE_TO_NONPRIV_RANGE_64	(3 << 0)
-+#define   RING_FORCE_TO_NONPRIV_RANGE_MASK	(3 << 0)
-+#define   RING_FORCE_TO_NONPRIV_MASK_VALID	(RING_FORCE_TO_NONPRIV_RANGE_MASK | \
-+						 RING_FORCE_TO_NONPRIV_ACCESS_MASK | \
-+						 RING_FORCE_TO_NONPRIV_DENY)
-+#define   RING_MAX_NONPRIV_SLOTS  12
-+
-+#define RING_EXECLIST_SQ_CONTENTS(base)		_MMIO((base) + 0x510)
-+
-+#define RING_EXECLIST_CONTROL(base)		_MMIO((base) + 0x550)
-+#define	  EL_CTRL_LOAD				REG_BIT(0)
-+
-+#define VDBOX_CGCTL3F10(base)			_MMIO((base) + 0x3f10)
-+#define   IECPUNIT_CLKGATE_DIS			REG_BIT(22)
-+
-+#define VDBOX_CGCTL3F18(base)			_MMIO((base) + 0x3f18)
-+#define   ALNUNIT_CLKGATE_DIS			REG_BIT(13)
++#define MI_ARB_CHECK            MI_INSTR(0x05, 0)
 +
 +#endif
+diff --git a/drivers/gpu/drm/xe/xe_bb.c b/drivers/gpu/drm/xe/xe_bb.c
+index a25079d4e710..742d12023160 100644
+--- a/drivers/gpu/drm/xe/xe_bb.c
++++ b/drivers/gpu/drm/xe/xe_bb.c
+@@ -4,6 +4,7 @@
+  */
+ #include "xe_bb.h"
+ 
++#include "regs/xe_gpu_commands.h"
+ #include "xe_device.h"
+ #include "xe_engine_types.h"
+ #include "xe_hw_fence.h"
+@@ -11,8 +12,6 @@
+ #include "xe_sched_job.h"
+ #include "xe_vm_types.h"
+ 
+-#include "gt/intel_gpu_commands.h"
+-
+ struct xe_bb *xe_bb_new(struct xe_gt *gt, u32 dwords, bool usm)
+ {
+ 	struct xe_bb *bb = kmalloc(sizeof(*bb), GFP_KERNEL);
+diff --git a/drivers/gpu/drm/xe/xe_device.h b/drivers/gpu/drm/xe/xe_device.h
+index 88d55671b068..ee10b6c11e9f 100644
+--- a/drivers/gpu/drm/xe/xe_device.h
++++ b/drivers/gpu/drm/xe/xe_device.h
+@@ -11,12 +11,11 @@ struct xe_file;
+ 
+ #include <drm/drm_util.h>
+ 
++#include "regs/xe_gpu_commands.h"
+ #include "xe_device_types.h"
+ #include "xe_macros.h"
+ #include "xe_force_wake.h"
+ 
+-#include "gt/intel_gpu_commands.h"
+-
+ static inline struct xe_device *to_xe_device(const struct drm_device *dev)
+ {
+ 	return container_of(dev, struct xe_device, drm);
 diff --git a/drivers/gpu/drm/xe/xe_execlist.c b/drivers/gpu/drm/xe/xe_execlist.c
-index 5633259482ed..af2fcf1c32f4 100644
+index ea551dc922cc..c3c52bdc70b1 100644
 --- a/drivers/gpu/drm/xe/xe_execlist.c
 +++ b/drivers/gpu/drm/xe/xe_execlist.c
-@@ -6,6 +6,7 @@
+@@ -8,6 +8,7 @@
  
- #include <drm/drm_managed.h>
- 
-+#include "regs/xe_engine_regs.h"
+ #include "regs/xe_engine_regs.h"
+ #include "regs/xe_lrc_regs.h"
++#include "regs/xe_gpu_commands.h"
+ #include "regs/xe_gt_regs.h"
  #include "xe_bo.h"
  #include "xe_device.h"
- #include "xe_engine.h"
-@@ -18,7 +19,6 @@
+@@ -21,7 +22,6 @@
  #include "xe_ring_ops_types.h"
  #include "xe_sched_job.h"
  
--#include "gt/intel_engine_regs.h"
- #include "gt/intel_gpu_commands.h"
- #include "gt/intel_gt_regs.h"
- #include "gt/intel_lrc_reg.h"
-diff --git a/drivers/gpu/drm/xe/xe_guc_ads.c b/drivers/gpu/drm/xe/xe_guc_ads.c
-index 1ea1b25e7170..bde094388a34 100644
---- a/drivers/gpu/drm/xe/xe_guc_ads.c
-+++ b/drivers/gpu/drm/xe/xe_guc_ads.c
-@@ -4,8 +4,11 @@
-  */
- #include "xe_guc_ads.h"
- 
-+#include "xe_guc_ads.h"
-+
- #include <drm/drm_managed.h>
- 
-+#include "regs/xe_engine_regs.h"
- #include "xe_bo.h"
- #include "xe_gt.h"
- #include "xe_guc.h"
-@@ -16,9 +19,9 @@
- #include "xe_mmio.h"
- #include "xe_platform_types.h"
- 
--#include "gt/intel_engine_regs.h"
- #include "gt/intel_gt_regs.h"
- 
-+
- /* Slack of a few additional entries per engine */
- #define ADS_REGSET_EXTRA_MAX	8
- 
-diff --git a/drivers/gpu/drm/xe/xe_hw_engine.c b/drivers/gpu/drm/xe/xe_hw_engine.c
-index edc59d9b124f..ce5d6641499f 100644
---- a/drivers/gpu/drm/xe/xe_hw_engine.c
-+++ b/drivers/gpu/drm/xe/xe_hw_engine.c
-@@ -6,6 +6,7 @@
- 
- #include <drm/drm_managed.h>
- 
-+#include "regs/xe_engine_regs.h"
- #include "xe_bo.h"
- #include "xe_device.h"
- #include "xe_execlist.h"
-@@ -20,7 +21,6 @@
- #include "xe_sched_job.h"
- #include "xe_wa.h"
- 
--#include "gt/intel_engine_regs.h"
- #include "gt/intel_gt_regs.h"
+-#include "gt/intel_gpu_commands.h"
  #include "i915_reg.h"
  
+ #define XE_EXECLIST_HANG_LIMIT 1
 diff --git a/drivers/gpu/drm/xe/xe_lrc.c b/drivers/gpu/drm/xe/xe_lrc.c
-index 45503c39240a..60ffe3f80c59 100644
+index af6fe47a0495..c1df76c2cf78 100644
 --- a/drivers/gpu/drm/xe/xe_lrc.c
 +++ b/drivers/gpu/drm/xe/xe_lrc.c
-@@ -4,6 +4,7 @@
-  */
- #include "xe_lrc.h"
+@@ -6,6 +6,7 @@
  
-+#include "regs/xe_engine_regs.h"
+ #include "regs/xe_engine_regs.h"
+ #include "regs/xe_lrc_regs.h"
++#include "regs/xe_gpu_commands.h"
+ #include "regs/xe_gt_regs.h"
  #include "xe_bo.h"
  #include "xe_device.h"
- #include "xe_engine_types.h"
-@@ -12,7 +13,6 @@
+@@ -15,7 +16,6 @@
  #include "xe_map.h"
  #include "xe_vm.h"
  
--#include "gt/intel_engine_regs.h"
- #include "gt/intel_gpu_commands.h"
- #include "gt/intel_gt_regs.h"
- #include "gt/intel_lrc_reg.h"
-diff --git a/drivers/gpu/drm/xe/xe_mmio.c b/drivers/gpu/drm/xe/xe_mmio.c
-index 57788afe206e..892008dcbaf4 100644
---- a/drivers/gpu/drm/xe/xe_mmio.c
-+++ b/drivers/gpu/drm/xe/xe_mmio.c
-@@ -7,13 +7,13 @@
- #include <drm/drm_managed.h>
+-#include "gt/intel_gpu_commands.h"
+ #include "i915_reg.h"
+ 
+ #define GEN8_CTX_VALID				(1 << 0)
+diff --git a/drivers/gpu/drm/xe/xe_migrate.c b/drivers/gpu/drm/xe/xe_migrate.c
+index 3d2f8d04bc3a..3c2ed4d9f63d 100644
+--- a/drivers/gpu/drm/xe/xe_migrate.c
++++ b/drivers/gpu/drm/xe/xe_migrate.c
+@@ -10,6 +10,7 @@
+ #include <drm/ttm/ttm_tt.h>
  #include <drm/xe_drm.h>
  
-+#include "regs/xe_engine_regs.h"
- #include "xe_device.h"
- #include "xe_gt.h"
- #include "xe_gt_mcr.h"
- #include "xe_macros.h"
- #include "xe_module.h"
++#include "regs/xe_gpu_commands.h"
+ #include "xe_bb.h"
+ #include "xe_bo.h"
+ #include "xe_engine.h"
+@@ -26,8 +27,6 @@
+ #include "xe_trace.h"
+ #include "xe_vm.h"
  
--#include "gt/intel_engine_regs.h"
- #include "gt/intel_gt_regs.h"
- #include "i915_reg.h"
- 
-diff --git a/drivers/gpu/drm/xe/xe_reg_sr.c b/drivers/gpu/drm/xe/xe_reg_sr.c
-index dc96d0e48688..bd3b64ad9c26 100644
---- a/drivers/gpu/drm/xe/xe_reg_sr.c
-+++ b/drivers/gpu/drm/xe/xe_reg_sr.c
-@@ -11,6 +11,7 @@
- #include <drm/drm_managed.h>
- #include <drm/drm_print.h>
- 
-+#include "regs/xe_engine_regs.h"
- #include "xe_device_types.h"
- #include "xe_force_wake.h"
- #include "xe_gt.h"
-@@ -19,7 +20,6 @@
- #include "xe_mmio.h"
- #include "xe_rtp_types.h"
- 
--#include "gt/intel_engine_regs.h"
- #include "gt/intel_gt_regs.h"
- 
- #define XE_REG_SR_GROW_STEP_DEFAULT	16
-diff --git a/drivers/gpu/drm/xe/xe_reg_whitelist.c b/drivers/gpu/drm/xe/xe_reg_whitelist.c
-index 3951460307e2..e2f3f374b856 100644
---- a/drivers/gpu/drm/xe/xe_reg_whitelist.c
-+++ b/drivers/gpu/drm/xe/xe_reg_whitelist.c
-@@ -4,11 +4,11 @@
+-#include "gt/intel_gpu_commands.h"
+-
+ /**
+  * struct xe_migrate - migrate context.
   */
- #include "xe_reg_whitelist.h"
+diff --git a/drivers/gpu/drm/xe/xe_ring_ops.c b/drivers/gpu/drm/xe/xe_ring_ops.c
+index 0a1e32ab9758..104f96658e1f 100644
+--- a/drivers/gpu/drm/xe/xe_ring_ops.c
++++ b/drivers/gpu/drm/xe/xe_ring_ops.c
+@@ -5,6 +5,7 @@
+ #include "xe_ring_ops.h"
  
-+#include "regs/xe_engine_regs.h"
- #include "xe_gt_types.h"
- #include "xe_platform_types.h"
- #include "xe_rtp.h"
- 
--#include "gt/intel_engine_regs.h"
- #include "gt/intel_gt_regs.h"
- 
- #undef _MMIO
-diff --git a/drivers/gpu/drm/xe/xe_wa.c b/drivers/gpu/drm/xe/xe_wa.c
-index 9d2e4555091c..92065341c001 100644
---- a/drivers/gpu/drm/xe/xe_wa.c
-+++ b/drivers/gpu/drm/xe/xe_wa.c
-@@ -7,6 +7,7 @@
- 
- #include <linux/compiler_types.h>
- 
-+#include "regs/xe_engine_regs.h"
- #include "xe_device_types.h"
- #include "xe_force_wake.h"
+ #include "regs/xe_lrc_regs.h"
++#include "regs/xe_gpu_commands.h"
+ #include "regs/xe_gt_regs.h"
+ #include "xe_engine_types.h"
  #include "xe_gt.h"
-@@ -16,7 +17,6 @@
- #include "xe_rtp.h"
- #include "xe_step.h"
+@@ -13,7 +14,6 @@
+ #include "xe_sched_job.h"
+ #include "xe_vm_types.h"
  
--#include "gt/intel_engine_regs.h"
- #include "gt/intel_gt_regs.h"
+-#include "gt/intel_gpu_commands.h"
  #include "i915_reg.h"
  
+ static u32 preparser_disable(bool state)
 -- 
 2.39.0
 
