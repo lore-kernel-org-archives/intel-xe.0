@@ -4,47 +4,47 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id BFA05C677F1
-	for <intel-xe@archiver.kernel.org>; Fri, 17 Feb 2023 00:53:09 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id F2F6BC64ED6
+	for <intel-xe@archiver.kernel.org>; Fri, 17 Feb 2023 00:53:07 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9B18D10E1AA;
-	Fri, 17 Feb 2023 00:53:09 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D139C10E3C1;
+	Fri, 17 Feb 2023 00:53:07 +0000 (UTC)
 Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C24B610E3C1
- for <intel-xe@lists.freedesktop.org>; Fri, 17 Feb 2023 00:53:06 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0603F10E138
+ for <intel-xe@lists.freedesktop.org>; Fri, 17 Feb 2023 00:53:04 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1676595186; x=1708131186;
+ t=1676595185; x=1708131185;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=Qpyb3b+ObNS9idp1TkhfG1xFQ1iZyfUBrRld7/RkNgU=;
- b=BPfC/gbF1FIXd4DCZ0DYmLLDZBhhsazkP/wesyQcoBkcZXOgema7h6Ra
- N9HnFZ9o9YwvTtMZ1ZXGd6+sKS/9uNxqLHRbPBdl9pi/naKBH8jcfsFbb
- ciBeHbJfuYkcKlPSxLcZqUb7j7PFixWByIhjdPyIf06lXdedUQHFc2wGg
- SWCWPrPW2YPj9n1w8Hp4LyH45lNsmICXkBRA/h2ss+f3hRM5j4DBLauK6
- 2a4/7T/fxl/FDy9mC4IHLnG9AGHdOs4NwA3NPEZGYKIWHa6ZrL0ycThxg
- 6pLIWMmG7IDu+rT9ds3ygtam31fBrK6vYmPnbsuC8RJUpcXMTVQxxyrkz Q==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10623"; a="329602211"
-X-IronPort-AV: E=Sophos;i="5.97,304,1669104000"; d="scan'208";a="329602211"
+ bh=bg6UTQBG3PagnjPdYUchdIjhGPos488voi3ZqrxaRjs=;
+ b=SqV6kdXVvePwxi3R1MBILi9/e3ARMUuTQOr0T6ybXSttkMHZD+2dyWmY
+ eLuUhtZ5B6qSpvJcSAGx0HCZ6Os9LuhrKc/TkNlXnHmvMZWJ7H+9axaAR
+ 3kKSv9wiYVEVVoxK+0eYhTAlB8549eGv5HOc2YOJTxJr7rBNLu92WqUsO
+ wGwI+ZX3wE1OjXb9aonCmJ+vINUr2L2TFd+i/Le7A3ZhSqHcF+d6y9zj2
+ JJ//UAjrJDoXQsGBh7Vn6ASY5i2s+RgiDfmwD1sZOydwoLqFY/3hoG4Ra
+ jUCLlETIXHTF3F6uRC3iQc1Iym9/q60jBF1YRlRRndCAlXZQLCjn8Pyyt Q==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10623"; a="329602195"
+X-IronPort-AV: E=Sophos;i="5.97,304,1669104000"; d="scan'208";a="329602195"
 Received: from fmsmga007.fm.intel.com ([10.253.24.52])
  by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 16 Feb 2023 16:53:06 -0800
-X-IronPort-AV: E=McAfee;i="6500,9779,10623"; a="672417806"
-X-IronPort-AV: E=Sophos;i="5.97,304,1669104000"; d="scan'208";a="672417806"
+ 16 Feb 2023 16:53:04 -0800
+X-IronPort-AV: E=McAfee;i="6500,9779,10623"; a="672417772"
+X-IronPort-AV: E=Sophos;i="5.97,304,1669104000"; d="scan'208";a="672417772"
 Received: from lucas-s2600cw.jf.intel.com ([10.165.21.196])
  by fmsmga007-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 16 Feb 2023 16:53:05 -0800
+ 16 Feb 2023 16:53:04 -0800
 From: Lucas De Marchi <lucas.demarchi@intel.com>
 To: intel-xe@lists.freedesktop.org
-Date: Thu, 16 Feb 2023 16:52:26 -0800
-Message-Id: <20230217005226.106499-12-lucas.demarchi@intel.com>
+Date: Thu, 16 Feb 2023 16:52:17 -0800
+Message-Id: <20230217005226.106499-3-lucas.demarchi@intel.com>
 X-Mailer: git-send-email 2.39.0
 In-Reply-To: <20230217005226.106499-1-lucas.demarchi@intel.com>
 References: <20230217005226.106499-1-lucas.demarchi@intel.com>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-xe] [PATCH v2 11/11] drm/xe: Use relative includes for
- i915_reg_defs.h
+Subject: [Intel-xe] [PATCH v2 02/11] drm/xe: Sort includes
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -62,269 +62,1380 @@ Cc: Lucas De Marchi <lucas.demarchi@intel.com>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-With the goal of eliminating i915 includes from xe outside of the
-display area, it's better to use relative includes for the only shared
-header, i915_reg_defs.h.  With this the build system can be changed to
-stop adding i915 as an include dir.
+Sort includes and split them in blocks:
+
+1) .h corresponding to the .c. Example: xe_bb.c should have a "#include
+   "xe_bb.h" first.
+2) #include <linux/...>
+3) #include <drm/...>
+4) local includes
+5) i915 includes
+
+This is accomplished by running
+`clang-format --style=file -i --sort-includes drivers/gpu/drm/xe/*.c`
+and ignoring all the changes after the includes. There are also some
+manual tweaks to split the blocks.
 
 Signed-off-by: Lucas De Marchi <lucas.demarchi@intel.com>
 ---
- drivers/gpu/drm/xe/display/Makefile      | 120 +++++++++++++++++++++++
- drivers/gpu/drm/xe/regs/xe_engine_regs.h |   2 +-
- drivers/gpu/drm/xe/regs/xe_gt_regs.h     |   2 +-
- drivers/gpu/drm/xe/regs/xe_regs.h        |   2 +-
- drivers/gpu/drm/xe/xe_gt_mcr.h           |   2 +-
- drivers/gpu/drm/xe/xe_guc.c              |   2 -
- drivers/gpu/drm/xe/xe_guc_reg.h          |   2 +-
- drivers/gpu/drm/xe/xe_reg_sr_types.h     |   2 -
- drivers/gpu/drm/xe/xe_rtp.h              |   2 -
- drivers/gpu/drm/xe/xe_rtp_types.h        |   2 -
- 10 files changed, 125 insertions(+), 13 deletions(-)
- create mode 100644 drivers/gpu/drm/xe/display/Makefile
+ drivers/gpu/drm/xe/xe_bb.c                  |  4 ++--
+ drivers/gpu/drm/xe/xe_bo.c                  |  2 --
+ drivers/gpu/drm/xe/xe_bo_evict.c            |  2 +-
+ drivers/gpu/drm/xe/xe_debugfs.c             |  2 +-
+ drivers/gpu/drm/xe/xe_device.c              |  9 ++++-----
+ drivers/gpu/drm/xe/xe_display.c             | 12 ++++++------
+ drivers/gpu/drm/xe/xe_dma_buf.c             |  8 +++-----
+ drivers/gpu/drm/xe/xe_engine.c              |  4 ++--
+ drivers/gpu/drm/xe/xe_exec.c                |  2 +-
+ drivers/gpu/drm/xe/xe_execlist.c            |  9 ++++-----
+ drivers/gpu/drm/xe/xe_force_wake.c          |  4 ++--
+ drivers/gpu/drm/xe/xe_ggtt.c                |  7 +++----
+ drivers/gpu/drm/xe/xe_gt.c                  |  2 +-
+ drivers/gpu/drm/xe/xe_gt_clock.c            |  8 ++++----
+ drivers/gpu/drm/xe/xe_gt_debugfs.c          |  2 +-
+ drivers/gpu/drm/xe/xe_gt_mcr.c              |  2 +-
+ drivers/gpu/drm/xe/xe_gt_pagefault.c        |  2 +-
+ drivers/gpu/drm/xe/xe_gt_sysfs.c            |  4 +++-
+ drivers/gpu/drm/xe/xe_gt_tlb_invalidation.c |  2 +-
+ drivers/gpu/drm/xe/xe_gt_topology.c         |  2 +-
+ drivers/gpu/drm/xe/xe_guc.c                 | 13 +++++++------
+ drivers/gpu/drm/xe/xe_guc_ads.c             |  5 +++--
+ drivers/gpu/drm/xe/xe_guc_ct.c              |  4 ++--
+ drivers/gpu/drm/xe/xe_guc_debugfs.c         |  2 +-
+ drivers/gpu/drm/xe/xe_guc_hwconfig.c        |  2 +-
+ drivers/gpu/drm/xe/xe_guc_log.c             |  2 +-
+ drivers/gpu/drm/xe/xe_guc_pc.c              | 12 +++++++-----
+ drivers/gpu/drm/xe/xe_guc_submit.c          |  6 +++---
+ drivers/gpu/drm/xe/xe_huc.c                 |  2 +-
+ drivers/gpu/drm/xe/xe_huc_debugfs.c         |  2 +-
+ drivers/gpu/drm/xe/xe_hw_engine.c           |  3 +--
+ drivers/gpu/drm/xe/xe_hw_fence.c            |  1 -
+ drivers/gpu/drm/xe/xe_irq.c                 |  5 +++--
+ drivers/gpu/drm/xe/xe_lrc.c                 |  7 +++----
+ drivers/gpu/drm/xe/xe_migrate.c             | 11 ++++++-----
+ drivers/gpu/drm/xe/xe_mmio.c                |  3 +--
+ drivers/gpu/drm/xe/xe_mocs.c                |  4 ++--
+ drivers/gpu/drm/xe/xe_module.c              |  1 +
+ drivers/gpu/drm/xe/xe_pci.c                 |  5 ++---
+ drivers/gpu/drm/xe/xe_pcode.c               | 10 ++++------
+ drivers/gpu/drm/xe/xe_pm.c                  |  4 ++--
+ drivers/gpu/drm/xe/xe_preempt_fence.c       |  2 +-
+ drivers/gpu/drm/xe/xe_pt.c                  |  4 ++--
+ drivers/gpu/drm/xe/xe_query.c               | 11 ++++++-----
+ drivers/gpu/drm/xe/xe_reg_sr.c              |  5 ++---
+ drivers/gpu/drm/xe/xe_reg_whitelist.c       |  7 +++----
+ drivers/gpu/drm/xe/xe_ring_ops.c            |  4 ++--
+ drivers/gpu/drm/xe/xe_rtp.c                 |  1 -
+ drivers/gpu/drm/xe/xe_sa.c                  |  3 ++-
+ drivers/gpu/drm/xe/xe_sched_job.c           |  1 -
+ drivers/gpu/drm/xe/xe_sync.c                |  5 +++--
+ drivers/gpu/drm/xe/xe_ttm_gtt_mgr.c         |  2 +-
+ drivers/gpu/drm/xe/xe_ttm_stolen_mgr.c      |  2 +-
+ drivers/gpu/drm/xe/xe_ttm_vram_mgr.c        |  2 +-
+ drivers/gpu/drm/xe/xe_tuning.c              |  2 +-
+ drivers/gpu/drm/xe/xe_uc.c                  |  4 ++--
+ drivers/gpu/drm/xe/xe_vm.c                  |  2 +-
+ drivers/gpu/drm/xe/xe_vm_madvise.c          |  8 +++++---
+ drivers/gpu/drm/xe/xe_wopcm.c               |  2 +-
+ 59 files changed, 128 insertions(+), 132 deletions(-)
 
-diff --git a/drivers/gpu/drm/xe/display/Makefile b/drivers/gpu/drm/xe/display/Makefile
-new file mode 100644
-index 000000000000..eee576972427
---- /dev/null
-+++ b/drivers/gpu/drm/xe/display/Makefile
-@@ -0,0 +1,120 @@
-+# SPDX-License-Identifier: GPL-2.0
+diff --git a/drivers/gpu/drm/xe/xe_bb.c b/drivers/gpu/drm/xe/xe_bb.c
+index 8b9209571fd0..a25079d4e710 100644
+--- a/drivers/gpu/drm/xe/xe_bb.c
++++ b/drivers/gpu/drm/xe/xe_bb.c
+@@ -2,12 +2,12 @@
+ /*
+  * Copyright © 2022 Intel Corporation
+  */
+-
+ #include "xe_bb.h"
+-#include "xe_sa.h"
 +
-+subdir-ccflags-y += -I$(srctree)/$(src)
-+
-+# i915 Display compat #defines and #includes
-+subdir-ccflags-$(CONFIG_DRM_XE_DISPLAY) += -I$(srctree)/$(src)/display/ext \
-+	-I$(srctree)/drivers/gpu/drm/xe/display/ \
-+	-I$(srctree)/drivers/gpu/drm/i915/display/ \
-+	-I$(srctree)/drivers/gpu/drm/i915/ \
-+	-DBUILD_FOR_XE=1 \
-+	-Ddrm_i915_gem_object=xe_bo \
-+	-Ddrm_i915_private=xe_device
-+
-+CFLAGS_display/intel_fbdev.o = $(call cc-disable-warning, override-init)
-+
-+$(obj)/display/i915_%.o: $(srctree)/drivers/gpu/drm/i915/display/i915_%.c FORCE
-+	$(call cmd,force_checksrc)
-+	$(call if_changed_rule,cc_o_c)
-+
-+$(obj)/display/skl_%.o: $(srctree)/drivers/gpu/drm/i915/display/skl_%.c FORCE
-+	$(call cmd,force_checksrc)
-+	$(call if_changed_rule,cc_o_c)
-+
-+$(obj)/display/icl_dsi.o: $(srctree)/drivers/gpu/drm/i915/display/icl_dsi.c FORCE
-+	$(call cmd,force_checksrc)
-+	$(call if_changed_rule,cc_o_c)
-+
-+$(obj)/display/intel_%.o: $(srctree)/drivers/gpu/drm/i915/display/intel_%.c FORCE
-+	$(call cmd,force_checksrc)
-+	$(call if_changed_rule,cc_o_c)
-+
-+# Display..
-+xe-$(CONFIG_DRM_XE_DISPLAY) += \
-+	xe_display.o \
-+	display/icl_dsi.o \
-+	display/intel_atomic.o \
-+	display/intel_atomic_plane.o \
-+	display/intel_audio.o \
-+	display/intel_backlight.o \
-+	display/intel_bios.o \
-+	display/intel_bw.o \
-+	display/intel_cdclk.o \
-+	display/intel_color.o \
-+	display/intel_combo_phy.o \
-+	display/intel_connector.o \
-+	display/intel_crtc_state_dump.o \
-+	display/intel_crtc.o \
-+	display/intel_cursor.o \
-+	display/intel_ddi_buf_trans.o \
-+	display/intel_ddi.o \
-+	display/intel_display.o \
-+	display/intel_display_debugfs.o \
-+	display/intel_display_power.o \
-+	display/intel_display_power_map.o \
-+	display/intel_display_power_well.o \
-+	display/intel_display_trace.o \
-+	display/intel_dkl_phy.o \
-+	display/intel_dmc.o \
-+	display/intel_dp_aux_backlight.o \
-+	display/intel_dp_aux.o \
-+	display/intel_dp.o \
-+	display/intel_dp_hdcp.o \
-+	display/intel_dp_link_training.o \
-+	display/intel_dpll.o \
-+	display/intel_dpll_mgr.o \
-+	display/intel_dp_mst.o \
-+	display/intel_drrs.o \
-+	display/intel_dsb.o \
-+	display/intel_dsi.o \
-+	display/intel_dsi_dcs_backlight.o \
-+	display/intel_dsi_vbt.o \
-+	display/intel_fb.o \
-+	display/intel_fbc.o \
-+	display/intel_fdi.o \
-+	display/intel_fifo_underrun.o \
-+	display/intel_frontbuffer.o \
-+	display/intel_global_state.o \
-+	display/intel_gmbus.o \
-+	display/intel_hdcp.o \
-+	display/intel_hdmi.o \
-+	display/intel_hotplug.o \
-+	display/intel_hti.o \
-+	display/intel_lspcon.o \
-+	display/intel_lvds.o \
-+	display/intel_modeset_setup.o \
-+	display/intel_modeset_verify.o \
-+	display/intel_panel.o \
-+	display/intel_pipe_crc.o \
-+	display/intel_pps.o \
-+	display/intel_psr.o \
-+	display/intel_qp_tables.o \
-+	display/intel_quirks.o \
-+	display/intel_snps_phy.o \
-+	display/intel_sprite.o \
-+	display/intel_tc.o \
-+	display/intel_vdsc.o \
-+	display/intel_vga.o \
-+	display/intel_vrr.o \
-+	display/xe_fb_pin.o \
-+	display/xe_plane_initial.o \
-+	display/skl_scaler.o \
-+	display/skl_universal_plane.o \
-+	display/skl_watermark.o \
-+	display/ext/i915_irq.o \
-+	display/ext/intel_device_info.o \
-+	display/ext/intel_dram.o \
-+	display/ext/intel_pch.o \
-+	display/ext/intel_pm.o
-+
-+ifeq ($(CONFIG_ACPI),y)
-+	xe-$(CONFIG_DRM_XE_DISPLAY) += \
-+		display/intel_acpi.o \
-+		display/intel_opregion.o
-+endif
-+
-+ifeq ($(CONFIG_DRM_FBDEV_EMULATION),y)
-+	xe-$(CONFIG_DRM_XE_DISPLAY) += display/intel_fbdev.o
-+endif
-+
-+
-diff --git a/drivers/gpu/drm/xe/regs/xe_engine_regs.h b/drivers/gpu/drm/xe/regs/xe_engine_regs.h
-index 6dfa3cf2fd43..a8f48a43b854 100644
---- a/drivers/gpu/drm/xe/regs/xe_engine_regs.h
-+++ b/drivers/gpu/drm/xe/regs/xe_engine_regs.h
-@@ -8,7 +8,7 @@
+ #include "xe_device.h"
+ #include "xe_engine_types.h"
+ #include "xe_hw_fence.h"
++#include "xe_sa.h"
+ #include "xe_sched_job.h"
+ #include "xe_vm_types.h"
  
- #include <asm/page.h>
+diff --git a/drivers/gpu/drm/xe/xe_bo.c b/drivers/gpu/drm/xe/xe_bo.c
+index 9b7b9c8f84be..4d7852efc807 100644
+--- a/drivers/gpu/drm/xe/xe_bo.c
++++ b/drivers/gpu/drm/xe/xe_bo.c
+@@ -2,8 +2,6 @@
+ /*
+  * Copyright © 2021 Intel Corporation
+  */
+-
+-
+ #include "xe_bo.h"
  
--#include "i915_reg_defs.h"
-+#include "../../i915/i915_reg_defs.h"
+ #include <linux/dma-buf.h>
+diff --git a/drivers/gpu/drm/xe/xe_bo_evict.c b/drivers/gpu/drm/xe/xe_bo_evict.c
+index 3fb3c8c77efa..a594eb6fec03 100644
+--- a/drivers/gpu/drm/xe/xe_bo_evict.c
++++ b/drivers/gpu/drm/xe/xe_bo_evict.c
+@@ -2,9 +2,9 @@
+ /*
+  * Copyright © 2022 Intel Corporation
+  */
++#include "xe_bo_evict.h"
  
- #define RING_TAIL(base)				_MMIO((base) + 0x30)
+ #include "xe_bo.h"
+-#include "xe_bo_evict.h"
+ #include "xe_device.h"
+ #include "xe_ggtt.h"
+ #include "xe_gt.h"
+diff --git a/drivers/gpu/drm/xe/xe_debugfs.c b/drivers/gpu/drm/xe/xe_debugfs.c
+index b0f8b157ffa3..f4dbaa666575 100644
+--- a/drivers/gpu/drm/xe/xe_debugfs.c
++++ b/drivers/gpu/drm/xe/xe_debugfs.c
+@@ -2,6 +2,7 @@
+ /*
+  * Copyright © 2022 Intel Corporation
+  */
++#include "xe_debugfs.h"
  
-diff --git a/drivers/gpu/drm/xe/regs/xe_gt_regs.h b/drivers/gpu/drm/xe/regs/xe_gt_regs.h
-index ab8c9e51f62e..2a2ebc7baeda 100644
---- a/drivers/gpu/drm/xe/regs/xe_gt_regs.h
-+++ b/drivers/gpu/drm/xe/regs/xe_gt_regs.h
-@@ -6,7 +6,7 @@
- #ifndef _XE_GT_REGS_H_
- #define _XE_GT_REGS_H_
+ #include <linux/string_helpers.h>
  
--#include "i915_reg_defs.h"
-+#include "../../i915/i915_reg_defs.h"
+@@ -9,7 +10,6 @@
  
- /* RPM unit config (Gen8+) */
- #define RPM_CONFIG0				_MMIO(0xd00)
-diff --git a/drivers/gpu/drm/xe/regs/xe_regs.h b/drivers/gpu/drm/xe/regs/xe_regs.h
-index 53f1ed54fb1c..f81f537c1ec1 100644
---- a/drivers/gpu/drm/xe/regs/xe_regs.h
-+++ b/drivers/gpu/drm/xe/regs/xe_regs.h
-@@ -5,7 +5,7 @@
- #ifndef _XE_REGS_H_
- #define _XE_REGS_H_
+ #include "xe_bo.h"
+ #include "xe_device.h"
+-#include "xe_debugfs.h"
+ #include "xe_gt_debugfs.h"
+ #include "xe_step.h"
  
--#include "i915_reg_defs.h"
-+#include "../../i915/i915_reg_defs.h"
+diff --git a/drivers/gpu/drm/xe/xe_device.c b/drivers/gpu/drm/xe/xe_device.c
+index a028efa8eebe..4426ab06b796 100644
+--- a/drivers/gpu/drm/xe/xe_device.c
++++ b/drivers/gpu/drm/xe/xe_device.c
+@@ -2,15 +2,14 @@
+ /*
+  * Copyright © 2021 Intel Corporation
+  */
+-
+ #include "xe_device.h"
  
- #define GU_CNTL					_MMIO(0x101010)
- #define   LMEM_INIT				REG_BIT(7)
-diff --git a/drivers/gpu/drm/xe/xe_gt_mcr.h b/drivers/gpu/drm/xe/xe_gt_mcr.h
-index c31987d2177c..3f76233f88c3 100644
---- a/drivers/gpu/drm/xe/xe_gt_mcr.h
-+++ b/drivers/gpu/drm/xe/xe_gt_mcr.h
-@@ -6,7 +6,7 @@
- #ifndef _XE_GT_MCR_H_
- #define _XE_GT_MCR_H_
+-#include <drm/drm_gem_ttm_helper.h>
+ #include <drm/drm_aperture.h>
++#include <drm/drm_atomic_helper.h>
++#include <drm/drm_gem_ttm_helper.h>
+ #include <drm/drm_ioctl.h>
+-#include <drm/xe_drm.h>
+ #include <drm/drm_managed.h>
+-#include <drm/drm_atomic_helper.h>
++#include <drm/xe_drm.h>
  
--#include "i915_reg_defs.h"
-+#include "../i915/i915_reg_defs.h"
+ #include "xe_bo.h"
+ #include "xe_debugfs.h"
+@@ -21,8 +20,8 @@
+ #include "xe_exec.h"
+ #include "xe_gt.h"
+ #include "xe_irq.h"
+-#include "xe_module.h"
+ #include "xe_mmio.h"
++#include "xe_module.h"
+ #include "xe_pcode.h"
+ #include "xe_pm.h"
+ #include "xe_query.h"
+diff --git a/drivers/gpu/drm/xe/xe_display.c b/drivers/gpu/drm/xe/xe_display.c
+index 47a16a3f85fa..6e7b6cfce4d9 100644
+--- a/drivers/gpu/drm/xe/xe_display.c
++++ b/drivers/gpu/drm/xe/xe_display.c
+@@ -6,12 +6,16 @@
+ #if IS_ENABLED(CONFIG_DRM_XE_DISPLAY)
  
- struct drm_printer;
- struct xe_gt;
+ #include "xe_display.h"
+-#include "xe_module.h"
++
++#include <linux/fb.h>
+ 
+ #include <drm/drm_aperture.h>
+ #include <drm/drm_managed.h>
+ #include <drm/xe_drm.h>
+ 
++#include "display/ext/i915_irq.h"
++#include "display/ext/intel_dram.h"
++#include "display/ext/intel_pm.h"
+ #include "display/intel_acpi.h"
+ #include "display/intel_audio.h"
+ #include "display/intel_bw.h"
+@@ -22,11 +26,7 @@
+ #include "display/intel_hdcp.h"
+ #include "display/intel_hotplug.h"
+ #include "display/intel_opregion.h"
+-#include "display/ext/i915_irq.h"
+-#include "display/ext/intel_dram.h"
+-#include "display/ext/intel_pm.h"
+-
+-#include <linux/fb.h>
++#include "xe_module.h"
+ 
+ /* Xe device functions */
+ 
+diff --git a/drivers/gpu/drm/xe/xe_dma_buf.c b/drivers/gpu/drm/xe/xe_dma_buf.c
+index d09ff25bd940..355afe492bd1 100644
+--- a/drivers/gpu/drm/xe/xe_dma_buf.c
++++ b/drivers/gpu/drm/xe/xe_dma_buf.c
+@@ -2,21 +2,19 @@
+ /*
+  * Copyright © 2022 Intel Corporation
+  */
++#include "xe_dma_buf.h"
+ 
++#include <kunit/test.h>
+ #include <linux/dma-buf.h>
++#include <linux/pci-p2pdma.h>
+ 
+ #include <drm/drm_device.h>
+ #include <drm/drm_prime.h>
+-
+ #include <drm/ttm/ttm_tt.h>
+ 
+-#include <kunit/test.h>
+-#include <linux/pci-p2pdma.h>
+-
+ #include "tests/xe_test.h"
+ #include "xe_bo.h"
+ #include "xe_device.h"
+-#include "xe_dma_buf.h"
+ #include "xe_ttm_vram_mgr.h"
+ #include "xe_vm.h"
+ 
+diff --git a/drivers/gpu/drm/xe/xe_engine.c b/drivers/gpu/drm/xe/xe_engine.c
+index e478d0417e49..7b11602a4249 100644
+--- a/drivers/gpu/drm/xe/xe_engine.c
++++ b/drivers/gpu/drm/xe/xe_engine.c
+@@ -2,13 +2,13 @@
+ /*
+  * Copyright © 2021 Intel Corporation
+  */
+-
+ #include "xe_engine.h"
+ 
++#include <linux/nospec.h>
++
+ #include <drm/drm_device.h>
+ #include <drm/drm_file.h>
+ #include <drm/xe_drm.h>
+-#include <linux/nospec.h>
+ 
+ #include "xe_device.h"
+ #include "xe_gt.h"
+diff --git a/drivers/gpu/drm/xe/xe_exec.c b/drivers/gpu/drm/xe/xe_exec.c
+index 00f298acc436..81248b5f232b 100644
+--- a/drivers/gpu/drm/xe/xe_exec.c
++++ b/drivers/gpu/drm/xe/xe_exec.c
+@@ -2,6 +2,7 @@
+ /*
+  * Copyright © 2022 Intel Corporation
+  */
++#include "xe_exec.h"
+ 
+ #include <drm/drm_device.h>
+ #include <drm/drm_file.h>
+@@ -10,7 +11,6 @@
+ #include "xe_bo.h"
+ #include "xe_device.h"
+ #include "xe_engine.h"
+-#include "xe_exec.h"
+ #include "xe_macros.h"
+ #include "xe_sched_job.h"
+ #include "xe_sync.h"
+diff --git a/drivers/gpu/drm/xe/xe_execlist.c b/drivers/gpu/drm/xe/xe_execlist.c
+index d555d77cbf49..5633259482ed 100644
+--- a/drivers/gpu/drm/xe/xe_execlist.c
++++ b/drivers/gpu/drm/xe/xe_execlist.c
+@@ -2,16 +2,15 @@
+ /*
+  * Copyright © 2021 Intel Corporation
+  */
++#include "xe_execlist.h"
+ 
+ #include <drm/drm_managed.h>
+ 
+-#include "xe_execlist.h"
+-
+ #include "xe_bo.h"
+ #include "xe_device.h"
+ #include "xe_engine.h"
+-#include "xe_hw_fence.h"
+ #include "xe_gt.h"
++#include "xe_hw_fence.h"
+ #include "xe_lrc.h"
+ #include "xe_macros.h"
+ #include "xe_mmio.h"
+@@ -19,11 +18,11 @@
+ #include "xe_ring_ops_types.h"
+ #include "xe_sched_job.h"
+ 
+-#include "i915_reg.h"
++#include "gt/intel_engine_regs.h"
+ #include "gt/intel_gpu_commands.h"
+ #include "gt/intel_gt_regs.h"
+ #include "gt/intel_lrc_reg.h"
+-#include "gt/intel_engine_regs.h"
++#include "i915_reg.h"
+ 
+ #define XE_EXECLIST_HANG_LIMIT 1
+ 
+diff --git a/drivers/gpu/drm/xe/xe_force_wake.c b/drivers/gpu/drm/xe/xe_force_wake.c
+index d2080e6fbe10..188197c3a8fe 100644
+--- a/drivers/gpu/drm/xe/xe_force_wake.c
++++ b/drivers/gpu/drm/xe/xe_force_wake.c
+@@ -2,14 +2,14 @@
+ /*
+  * Copyright © 2022 Intel Corporation
+  */
++#include "xe_force_wake.h"
+ 
+ #include <drm/drm_util.h>
+ 
+-#include "xe_force_wake.h"
+ #include "xe_gt.h"
+ #include "xe_mmio.h"
+-#include "gt/intel_gt_regs.h"
+ 
++#include "gt/intel_gt_regs.h"
+ 
+ #define XE_FORCE_WAKE_ACK_TIMEOUT_MS	50
+ 
+diff --git a/drivers/gpu/drm/xe/xe_ggtt.c b/drivers/gpu/drm/xe/xe_ggtt.c
+index d5bd9bc18c57..53a1edaee02d 100644
+--- a/drivers/gpu/drm/xe/xe_ggtt.c
++++ b/drivers/gpu/drm/xe/xe_ggtt.c
+@@ -2,24 +2,23 @@
+ /*
+  * Copyright © 2021 Intel Corporation
+  */
+-
+ #include "xe_ggtt.h"
+ 
+ #include <linux/sizes.h>
+-#include <drm/i915_drm.h>
+ 
+ #include <drm/drm_managed.h>
++#include <drm/i915_drm.h>
+ 
+-#include "xe_device.h"
+ #include "xe_bo.h"
++#include "xe_device.h"
+ #include "xe_gt.h"
+ #include "xe_gt_tlb_invalidation.h"
+ #include "xe_map.h"
+ #include "xe_mmio.h"
+ #include "xe_wopcm.h"
+ 
+-#include "i915_reg.h"
+ #include "gt/intel_gt_regs.h"
++#include "i915_reg.h"
+ 
+ /* FIXME: Common file, preferably auto-gen */
+ #define MTL_GGTT_PTE_PAT0	BIT_ULL(52)
+diff --git a/drivers/gpu/drm/xe/xe_gt.c b/drivers/gpu/drm/xe/xe_gt.c
+index 20dbc08d3685..5c7c2757bb49 100644
+--- a/drivers/gpu/drm/xe/xe_gt.c
++++ b/drivers/gpu/drm/xe/xe_gt.c
+@@ -2,6 +2,7 @@
+ /*
+  * Copyright © 2022 Intel Corporation
+  */
++#include "xe_gt.h"
+ 
+ #include <linux/minmax.h>
+ 
+@@ -14,7 +15,6 @@
+ #include "xe_execlist.h"
+ #include "xe_force_wake.h"
+ #include "xe_ggtt.h"
+-#include "xe_gt.h"
+ #include "xe_gt_clock.h"
+ #include "xe_gt_mcr.h"
+ #include "xe_gt_pagefault.h"
+diff --git a/drivers/gpu/drm/xe/xe_gt_clock.c b/drivers/gpu/drm/xe/xe_gt_clock.c
+index 575433e9718a..e50117103e1e 100644
+--- a/drivers/gpu/drm/xe/xe_gt_clock.c
++++ b/drivers/gpu/drm/xe/xe_gt_clock.c
+@@ -2,16 +2,16 @@
+ /*
+  * Copyright © 2022 Intel Corporation
+  */
+-
+-#include "i915_reg.h"
+-#include "gt/intel_gt_regs.h"
++#include "xe_gt_clock.h"
+ 
+ #include "xe_device.h"
+ #include "xe_gt.h"
+-#include "xe_gt_clock.h"
+ #include "xe_macros.h"
+ #include "xe_mmio.h"
+ 
++#include "gt/intel_gt_regs.h"
++#include "i915_reg.h"
++
+ static u32 read_reference_ts_freq(struct xe_gt *gt)
+ {
+ 	u32 ts_override = xe_mmio_read32(gt, GEN9_TIMESTAMP_OVERRIDE.reg);
+diff --git a/drivers/gpu/drm/xe/xe_gt_debugfs.c b/drivers/gpu/drm/xe/xe_gt_debugfs.c
+index c320e58810ce..6bd9b8a908ff 100644
+--- a/drivers/gpu/drm/xe/xe_gt_debugfs.c
++++ b/drivers/gpu/drm/xe/xe_gt_debugfs.c
+@@ -2,6 +2,7 @@
+ /*
+  * Copyright © 2022 Intel Corporation
+  */
++#include "xe_gt_debugfs.h"
+ 
+ #include <drm/drm_debugfs.h>
+ #include <drm/drm_managed.h>
+@@ -10,7 +11,6 @@
+ #include "xe_force_wake.h"
+ #include "xe_ggtt.h"
+ #include "xe_gt.h"
+-#include "xe_gt_debugfs.h"
+ #include "xe_gt_mcr.h"
+ #include "xe_gt_topology.h"
+ #include "xe_hw_engine.h"
+diff --git a/drivers/gpu/drm/xe/xe_gt_mcr.c b/drivers/gpu/drm/xe/xe_gt_mcr.c
+index 7617f0340879..43910e48bdc9 100644
+--- a/drivers/gpu/drm/xe/xe_gt_mcr.c
++++ b/drivers/gpu/drm/xe/xe_gt_mcr.c
+@@ -2,9 +2,9 @@
+ /*
+  * Copyright © 2022 Intel Corporation
+  */
++#include "xe_gt_mcr.h"
+ 
+ #include "xe_gt.h"
+-#include "xe_gt_mcr.h"
+ #include "xe_gt_topology.h"
+ #include "xe_gt_types.h"
+ #include "xe_mmio.h"
+diff --git a/drivers/gpu/drm/xe/xe_gt_pagefault.c b/drivers/gpu/drm/xe/xe_gt_pagefault.c
+index ce79eb48feb8..78dcb8b04036 100644
+--- a/drivers/gpu/drm/xe/xe_gt_pagefault.c
++++ b/drivers/gpu/drm/xe/xe_gt_pagefault.c
+@@ -2,6 +2,7 @@
+ /*
+  * Copyright © 2022 Intel Corporation
+  */
++#include "xe_gt_pagefault.h"
+ 
+ #include <linux/circ_buf.h>
+ 
+@@ -10,7 +11,6 @@
+ 
+ #include "xe_bo.h"
+ #include "xe_gt.h"
+-#include "xe_gt_pagefault.h"
+ #include "xe_gt_tlb_invalidation.h"
+ #include "xe_guc.h"
+ #include "xe_guc_ct.h"
+diff --git a/drivers/gpu/drm/xe/xe_gt_sysfs.c b/drivers/gpu/drm/xe/xe_gt_sysfs.c
+index 2d966d935b8e..717193671f3c 100644
+--- a/drivers/gpu/drm/xe/xe_gt_sysfs.c
++++ b/drivers/gpu/drm/xe/xe_gt_sysfs.c
+@@ -2,12 +2,14 @@
+ /*
+  * Copyright © 2022 Intel Corporation
+  */
++#include "xe_gt_sysfs.h"
+ 
+ #include <linux/kobject.h>
+ #include <linux/sysfs.h>
++
+ #include <drm/drm_managed.h>
++
+ #include "xe_gt.h"
+-#include "xe_gt_sysfs.h"
+ 
+ static void xe_gt_sysfs_kobj_release(struct kobject *kobj)
+ {
+diff --git a/drivers/gpu/drm/xe/xe_gt_tlb_invalidation.c b/drivers/gpu/drm/xe/xe_gt_tlb_invalidation.c
+index 2521c8a65690..24cf81aa46e5 100644
+--- a/drivers/gpu/drm/xe/xe_gt_tlb_invalidation.c
++++ b/drivers/gpu/drm/xe/xe_gt_tlb_invalidation.c
+@@ -2,9 +2,9 @@
+ /*
+  * Copyright © 2023 Intel Corporation
+  */
++#include "xe_gt_tlb_invalidation.h"
+ 
+ #include "xe_gt.h"
+-#include "xe_gt_tlb_invalidation.h"
+ #include "xe_guc.h"
+ #include "xe_guc_ct.h"
+ #include "xe_trace.h"
+diff --git a/drivers/gpu/drm/xe/xe_gt_topology.c b/drivers/gpu/drm/xe/xe_gt_topology.c
+index 8e02e362ba27..e3be481ac8be 100644
+--- a/drivers/gpu/drm/xe/xe_gt_topology.c
++++ b/drivers/gpu/drm/xe/xe_gt_topology.c
+@@ -2,11 +2,11 @@
+ /*
+  * Copyright © 2022 Intel Corporation
+  */
++#include "xe_gt_topology.h"
+ 
+ #include <linux/bitmap.h>
+ 
+ #include "xe_gt.h"
+-#include "xe_gt_topology.h"
+ #include "xe_mmio.h"
+ 
+ #define XE_MAX_DSS_FUSE_BITS (32 * XE_MAX_DSS_FUSE_REGS)
 diff --git a/drivers/gpu/drm/xe/xe_guc.c b/drivers/gpu/drm/xe/xe_guc.c
-index a2a124a7fc0b..6eefefd80ff9 100644
+index 5cdfdfd0de40..88cc912fa7eb 100644
 --- a/drivers/gpu/drm/xe/xe_guc.c
 +++ b/drivers/gpu/drm/xe/xe_guc.c
-@@ -21,8 +21,6 @@
+@@ -2,25 +2,26 @@
+ /*
+  * Copyright © 2022 Intel Corporation
+  */
++#include "xe_guc.h"
+ 
+ #include "xe_bo.h"
+ #include "xe_device.h"
+-#include "xe_guc.h"
++#include "xe_force_wake.h"
++#include "xe_gt.h"
+ #include "xe_guc_ads.h"
+ #include "xe_guc_ct.h"
+ #include "xe_guc_hwconfig.h"
+ #include "xe_guc_log.h"
+-#include "xe_guc_reg.h"
+ #include "xe_guc_pc.h"
++#include "xe_guc_reg.h"
+ #include "xe_guc_submit.h"
+-#include "xe_gt.h"
++#include "xe_mmio.h"
+ #include "xe_platform_types.h"
+ #include "xe_uc_fw.h"
+ #include "xe_wopcm.h"
+-#include "xe_mmio.h"
+-#include "xe_force_wake.h"
+-#include "i915_reg_defs.h"
++
+ #include "gt/intel_gt_regs.h"
++#include "i915_reg_defs.h"
+ 
+ /* TODO: move to common file */
+ #define GUC_PVC_MOCS_INDEX_MASK		REG_GENMASK(25, 24)
+diff --git a/drivers/gpu/drm/xe/xe_guc_ads.c b/drivers/gpu/drm/xe/xe_guc_ads.c
+index 0c08cecaca40..1ea1b25e7170 100644
+--- a/drivers/gpu/drm/xe/xe_guc_ads.c
++++ b/drivers/gpu/drm/xe/xe_guc_ads.c
+@@ -2,21 +2,22 @@
+ /*
+  * Copyright © 2022 Intel Corporation
+  */
++#include "xe_guc_ads.h"
+ 
+ #include <drm/drm_managed.h>
+ 
+ #include "xe_bo.h"
+ #include "xe_gt.h"
+ #include "xe_guc.h"
+-#include "xe_guc_ads.h"
+ #include "xe_guc_reg.h"
+ #include "xe_hw_engine.h"
+ #include "xe_lrc.h"
+ #include "xe_map.h"
+ #include "xe_mmio.h"
+ #include "xe_platform_types.h"
+-#include "gt/intel_gt_regs.h"
++
+ #include "gt/intel_engine_regs.h"
++#include "gt/intel_gt_regs.h"
+ 
+ /* Slack of a few additional entries per engine */
+ #define ADS_REGSET_EXTRA_MAX	8
+diff --git a/drivers/gpu/drm/xe/xe_guc_ct.c b/drivers/gpu/drm/xe/xe_guc_ct.c
+index 84d4302d4e72..97fd25eea129 100644
+--- a/drivers/gpu/drm/xe/xe_guc_ct.c
++++ b/drivers/gpu/drm/xe/xe_guc_ct.c
+@@ -2,6 +2,7 @@
+ /*
+  * Copyright © 2022 Intel Corporation
+  */
++#include "xe_guc_ct.h"
+ 
+ #include <linux/bitfield.h>
+ #include <linux/circ_buf.h>
+@@ -12,10 +13,9 @@
+ #include "xe_bo.h"
+ #include "xe_device.h"
+ #include "xe_gt.h"
+-#include "xe_guc.h"
+-#include "xe_guc_ct.h"
+ #include "xe_gt_pagefault.h"
+ #include "xe_gt_tlb_invalidation.h"
++#include "xe_guc.h"
+ #include "xe_guc_submit.h"
+ #include "xe_map.h"
+ #include "xe_trace.h"
+diff --git a/drivers/gpu/drm/xe/xe_guc_debugfs.c b/drivers/gpu/drm/xe/xe_guc_debugfs.c
+index 916e9633b322..d19a7f0f8f0b 100644
+--- a/drivers/gpu/drm/xe/xe_guc_debugfs.c
++++ b/drivers/gpu/drm/xe/xe_guc_debugfs.c
+@@ -2,6 +2,7 @@
+ /*
+  * Copyright © 2022 Intel Corporation
+  */
++#include "xe_guc_debugfs.h"
+ 
+ #include <drm/drm_debugfs.h>
+ #include <drm/drm_managed.h>
+@@ -10,7 +11,6 @@
+ #include "xe_gt.h"
+ #include "xe_guc.h"
+ #include "xe_guc_ct.h"
+-#include "xe_guc_debugfs.h"
+ #include "xe_guc_log.h"
+ #include "xe_macros.h"
+ 
+diff --git a/drivers/gpu/drm/xe/xe_guc_hwconfig.c b/drivers/gpu/drm/xe/xe_guc_hwconfig.c
+index 57640d608787..f6fd3f51fea4 100644
+--- a/drivers/gpu/drm/xe/xe_guc_hwconfig.c
++++ b/drivers/gpu/drm/xe/xe_guc_hwconfig.c
+@@ -2,6 +2,7 @@
+ /*
+  * Copyright © 2022 Intel Corporation
+  */
++#include "xe_guc_hwconfig.h"
+ 
+ #include <drm/drm_managed.h>
+ 
+@@ -9,7 +10,6 @@
+ #include "xe_device.h"
+ #include "xe_gt.h"
+ #include "xe_guc.h"
+-#include "xe_guc_hwconfig.h"
+ #include "xe_map.h"
+ 
+ static struct xe_gt *
+diff --git a/drivers/gpu/drm/xe/xe_guc_log.c b/drivers/gpu/drm/xe/xe_guc_log.c
+index 7ec1b2bb1f8e..795e6a955676 100644
+--- a/drivers/gpu/drm/xe/xe_guc_log.c
++++ b/drivers/gpu/drm/xe/xe_guc_log.c
+@@ -2,12 +2,12 @@
+ /*
+  * Copyright © 2022 Intel Corporation
+  */
++#include "xe_guc_log.h"
+ 
+ #include <drm/drm_managed.h>
+ 
+ #include "xe_bo.h"
+ #include "xe_gt.h"
+-#include "xe_guc_log.h"
+ #include "xe_map.h"
+ #include "xe_module.h"
+ 
+diff --git a/drivers/gpu/drm/xe/xe_guc_pc.c b/drivers/gpu/drm/xe/xe_guc_pc.c
+index 3ba0c8a35109..1d4ac0c26d3c 100644
+--- a/drivers/gpu/drm/xe/xe_guc_pc.c
++++ b/drivers/gpu/drm/xe/xe_guc_pc.c
+@@ -2,22 +2,24 @@
+ /*
+  * Copyright © 2022 Intel Corporation
+  */
++#include "xe_guc_pc.h"
++
++#include <linux/delay.h>
+ 
+ #include <drm/drm_managed.h>
++
+ #include "xe_bo.h"
+ #include "xe_device.h"
+ #include "xe_gt.h"
+-#include "xe_gt_types.h"
+ #include "xe_gt_sysfs.h"
++#include "xe_gt_types.h"
+ #include "xe_guc_ct.h"
+ #include "xe_map.h"
+ #include "xe_mmio.h"
+ #include "xe_pcode.h"
+-#include "i915_reg_defs.h"
+-#include "i915_reg.h"
+-
+-#include <linux/delay.h>
+ 
++#include "i915_reg.h"
++#include "i915_reg_defs.h"
+ #include "intel_mchbar_regs.h"
+ 
+ /* For GEN6_RP_STATE_CAP.reg to be merged when the definition moves to Xe */
+diff --git a/drivers/gpu/drm/xe/xe_guc_submit.c b/drivers/gpu/drm/xe/xe_guc_submit.c
+index a54f7f82d04d..305a0e061778 100644
+--- a/drivers/gpu/drm/xe/xe_guc_submit.c
++++ b/drivers/gpu/drm/xe/xe_guc_submit.c
+@@ -2,6 +2,7 @@
+ /*
+  * Copyright © 2022 Intel Corporation
+  */
++#include "xe_guc_submit.h"
+ 
+ #include <linux/bitfield.h>
+ #include <linux/bitmap.h>
+@@ -13,12 +14,11 @@
+ 
+ #include "xe_device.h"
+ #include "xe_engine.h"
++#include "xe_force_wake.h"
++#include "xe_gt.h"
+ #include "xe_guc.h"
+ #include "xe_guc_ct.h"
+ #include "xe_guc_engine_types.h"
+-#include "xe_guc_submit.h"
+-#include "xe_gt.h"
+-#include "xe_force_wake.h"
+ #include "xe_hw_engine.h"
+ #include "xe_hw_fence.h"
+ #include "xe_lrc.h"
+diff --git a/drivers/gpu/drm/xe/xe_huc.c b/drivers/gpu/drm/xe/xe_huc.c
+index 82e7fb3a6292..b9fdcc623108 100644
+--- a/drivers/gpu/drm/xe/xe_huc.c
++++ b/drivers/gpu/drm/xe/xe_huc.c
+@@ -2,6 +2,7 @@
+ /*
+  * Copyright © 2022 Intel Corporation
+  */
++#include "xe_huc.h"
+ 
+ #include "xe_bo.h"
+ #include "xe_device.h"
+@@ -9,7 +10,6 @@
+ #include "xe_gt.h"
+ #include "xe_guc.h"
+ #include "xe_guc_reg.h"
+-#include "xe_huc.h"
+ #include "xe_mmio.h"
+ #include "xe_uc_fw.h"
+ 
+diff --git a/drivers/gpu/drm/xe/xe_huc_debugfs.c b/drivers/gpu/drm/xe/xe_huc_debugfs.c
+index 268bac36336a..dc170c35057e 100644
+--- a/drivers/gpu/drm/xe/xe_huc_debugfs.c
++++ b/drivers/gpu/drm/xe/xe_huc_debugfs.c
+@@ -2,6 +2,7 @@
+ /*
+  * Copyright © 2022 Intel Corporation
+  */
++#include "xe_huc_debugfs.h"
+ 
+ #include <drm/drm_debugfs.h>
+ #include <drm/drm_managed.h>
+@@ -9,7 +10,6 @@
+ #include "xe_device.h"
+ #include "xe_gt.h"
+ #include "xe_huc.h"
+-#include "xe_huc_debugfs.h"
+ #include "xe_macros.h"
+ 
+ static struct xe_gt *
+diff --git a/drivers/gpu/drm/xe/xe_hw_engine.c b/drivers/gpu/drm/xe/xe_hw_engine.c
+index fd89dd90131c..edc59d9b124f 100644
+--- a/drivers/gpu/drm/xe/xe_hw_engine.c
++++ b/drivers/gpu/drm/xe/xe_hw_engine.c
+@@ -2,7 +2,6 @@
+ /*
+  * Copyright © 2021 Intel Corporation
+  */
+-
+ #include "xe_hw_engine.h"
+ 
+ #include <drm/drm_managed.h>
+@@ -22,8 +21,8 @@
+ #include "xe_wa.h"
+ 
+ #include "gt/intel_engine_regs.h"
+-#include "i915_reg.h"
+ #include "gt/intel_gt_regs.h"
++#include "i915_reg.h"
+ 
+ #define MAX_MMIO_BASES 3
+ struct engine_info {
+diff --git a/drivers/gpu/drm/xe/xe_hw_fence.c b/drivers/gpu/drm/xe/xe_hw_fence.c
+index e56ca2867545..8930135aca1c 100644
+--- a/drivers/gpu/drm/xe/xe_hw_fence.c
++++ b/drivers/gpu/drm/xe/xe_hw_fence.c
+@@ -2,7 +2,6 @@
+ /*
+  * Copyright © 2021 Intel Corporation
+  */
+-
+ #include "xe_hw_fence.h"
+ 
+ #include <linux/device.h>
+diff --git a/drivers/gpu/drm/xe/xe_irq.c b/drivers/gpu/drm/xe/xe_irq.c
+index 7b7ddd11c2b8..f30fd2b14c22 100644
+--- a/drivers/gpu/drm/xe/xe_irq.c
++++ b/drivers/gpu/drm/xe/xe_irq.c
+@@ -2,6 +2,7 @@
+ /*
+  * Copyright © 2021 Intel Corporation
+  */
++#include "xe_irq.h"
+ 
+ #include <linux/sched/clock.h>
+ 
+@@ -10,13 +11,13 @@
+ #include "xe_device.h"
+ #include "xe_display.h"
+ #include "xe_drv.h"
+-#include "xe_guc.h"
+ #include "xe_gt.h"
++#include "xe_guc.h"
+ #include "xe_hw_engine.h"
+ #include "xe_mmio.h"
+ 
+-#include "i915_reg.h"
+ #include "gt/intel_gt_regs.h"
++#include "i915_reg.h"
+ 
+ static void gen3_assert_iir_is_zero(struct xe_gt *gt, i915_reg_t reg)
+ {
+diff --git a/drivers/gpu/drm/xe/xe_lrc.c b/drivers/gpu/drm/xe/xe_lrc.c
+index 347ff9b34494..45503c39240a 100644
+--- a/drivers/gpu/drm/xe/xe_lrc.c
++++ b/drivers/gpu/drm/xe/xe_lrc.c
+@@ -2,22 +2,21 @@
+ /*
+  * Copyright © 2021 Intel Corporation
+  */
+-
+ #include "xe_lrc.h"
+ 
+ #include "xe_bo.h"
+ #include "xe_device.h"
+ #include "xe_engine_types.h"
+ #include "xe_gt.h"
+-#include "xe_map.h"
+ #include "xe_hw_fence.h"
++#include "xe_map.h"
+ #include "xe_vm.h"
+ 
+-#include "i915_reg.h"
++#include "gt/intel_engine_regs.h"
+ #include "gt/intel_gpu_commands.h"
+ #include "gt/intel_gt_regs.h"
+ #include "gt/intel_lrc_reg.h"
+-#include "gt/intel_engine_regs.h"
++#include "i915_reg.h"
+ 
+ #define GEN8_CTX_VALID				(1 << 0)
+ #define GEN8_CTX_L3LLC_COHERENT			(1 << 5)
+diff --git a/drivers/gpu/drm/xe/xe_migrate.c b/drivers/gpu/drm/xe/xe_migrate.c
+index cbcc355cd391..3d2f8d04bc3a 100644
+--- a/drivers/gpu/drm/xe/xe_migrate.c
++++ b/drivers/gpu/drm/xe/xe_migrate.c
+@@ -4,6 +4,12 @@
+  */
+ #include "xe_migrate.h"
+ 
++#include <linux/sizes.h>
++
++#include <drm/drm_managed.h>
++#include <drm/ttm/ttm_tt.h>
++#include <drm/xe_drm.h>
++
+ #include "xe_bb.h"
+ #include "xe_bo.h"
+ #include "xe_engine.h"
+@@ -20,11 +26,6 @@
+ #include "xe_trace.h"
+ #include "xe_vm.h"
+ 
+-#include <linux/sizes.h>
+-#include <drm/drm_managed.h>
+-#include <drm/ttm/ttm_tt.h>
+-#include <drm/xe_drm.h>
+-
+ #include "gt/intel_gpu_commands.h"
+ 
+ /**
+diff --git a/drivers/gpu/drm/xe/xe_mmio.c b/drivers/gpu/drm/xe/xe_mmio.c
+index 8a953df2b468..57788afe206e 100644
+--- a/drivers/gpu/drm/xe/xe_mmio.c
++++ b/drivers/gpu/drm/xe/xe_mmio.c
+@@ -2,7 +2,6 @@
+ /*
+  * Copyright © 2021 Intel Corporation
+  */
+-
+ #include "xe_mmio.h"
+ 
+ #include <drm/drm_managed.h>
+@@ -14,9 +13,9 @@
+ #include "xe_macros.h"
+ #include "xe_module.h"
+ 
+-#include "i915_reg.h"
+ #include "gt/intel_engine_regs.h"
+ #include "gt/intel_gt_regs.h"
++#include "i915_reg.h"
+ 
+ #define XEHP_MTCFG_ADDR		_MMIO(0x101800)
+ #define TILE_COUNT		REG_GENMASK(15, 8)
+diff --git a/drivers/gpu/drm/xe/xe_mocs.c b/drivers/gpu/drm/xe/xe_mocs.c
+index 86b966fffbe5..99d3cc6c7164 100644
+--- a/drivers/gpu/drm/xe/xe_mocs.c
++++ b/drivers/gpu/drm/xe/xe_mocs.c
+@@ -2,14 +2,14 @@
+ /*
+  * Copyright © 2022 Intel Corporation
+  */
++#include "xe_mocs.h"
+ 
+ #include "xe_bo.h"
+ #include "xe_device.h"
+ #include "xe_engine.h"
+ #include "xe_gt.h"
+-#include "xe_platform_types.h"
+ #include "xe_mmio.h"
+-#include "xe_mocs.h"
++#include "xe_platform_types.h"
+ #include "xe_step_types.h"
+ 
+ #include "gt/intel_gt_regs.h"
+diff --git a/drivers/gpu/drm/xe/xe_module.c b/drivers/gpu/drm/xe/xe_module.c
+index 9cd1663f83f6..314025b54e7d 100644
+--- a/drivers/gpu/drm/xe/xe_module.c
++++ b/drivers/gpu/drm/xe/xe_module.c
+@@ -2,6 +2,7 @@
+ /*
+  * Copyright © 2021 Intel Corporation
+  */
++#include "xe_module.h"
+ 
+ #include <linux/init.h>
+ #include <linux/module.h>
+diff --git a/drivers/gpu/drm/xe/xe_pci.c b/drivers/gpu/drm/xe/xe_pci.c
+index 25598de3a1fc..b0e5c402190c 100644
+--- a/drivers/gpu/drm/xe/xe_pci.c
++++ b/drivers/gpu/drm/xe/xe_pci.c
+@@ -2,7 +2,6 @@
+ /*
+  * Copyright © 2021 Intel Corporation
+  */
+-
+ #include "xe_pci.h"
+ 
+ #include <linux/device/driver.h>
+@@ -10,12 +9,12 @@
+ #include <linux/pci.h>
+ #include <linux/pm_runtime.h>
+ 
+-#include <drm/drm_drv.h>
+ #include <drm/drm_color_mgmt.h>
++#include <drm/drm_drv.h>
+ #include <drm/xe_pciids.h>
+ 
+-#include "xe_drv.h"
+ #include "xe_device.h"
++#include "xe_drv.h"
+ #include "xe_macros.h"
+ #include "xe_module.h"
+ #include "xe_pm.h"
+diff --git a/drivers/gpu/drm/xe/xe_pcode.c b/drivers/gpu/drm/xe/xe_pcode.c
+index 1a76fe478853..17c8416b4179 100644
+--- a/drivers/gpu/drm/xe/xe_pcode.c
++++ b/drivers/gpu/drm/xe/xe_pcode.c
+@@ -2,16 +2,14 @@
+ /*
+  * Copyright © 2022 Intel Corporation
+  */
+-
+-#include "xe_pcode_api.h"
+ #include "xe_pcode.h"
+ 
+-#include "xe_gt.h"
+-#include "xe_mmio.h"
+-
++#include <linux/delay.h>
+ #include <linux/errno.h>
+ 
+-#include <linux/delay.h>
++#include "xe_gt.h"
++#include "xe_mmio.h"
++#include "xe_pcode_api.h"
+ 
+ /**
+  * DOC: PCODE
+diff --git a/drivers/gpu/drm/xe/xe_pm.c b/drivers/gpu/drm/xe/xe_pm.c
+index 44c38e670587..02a05aa6783e 100644
+--- a/drivers/gpu/drm/xe/xe_pm.c
++++ b/drivers/gpu/drm/xe/xe_pm.c
+@@ -2,6 +2,7 @@
+ /*
+  * Copyright © 2022 Intel Corporation
+  */
++#include "xe_pm.h"
+ 
+ #include <linux/pm_runtime.h>
+ 
+@@ -11,9 +12,8 @@
+ #include "xe_bo_evict.h"
+ #include "xe_device.h"
+ #include "xe_display.h"
+-#include "xe_pm.h"
+-#include "xe_gt.h"
+ #include "xe_ggtt.h"
++#include "xe_gt.h"
+ #include "xe_irq.h"
+ #include "xe_pcode.h"
+ 
+diff --git a/drivers/gpu/drm/xe/xe_preempt_fence.c b/drivers/gpu/drm/xe/xe_preempt_fence.c
+index 6ab9ff442766..20ea4f8f0702 100644
+--- a/drivers/gpu/drm/xe/xe_preempt_fence.c
++++ b/drivers/gpu/drm/xe/xe_preempt_fence.c
+@@ -2,11 +2,11 @@
+ /*
+  * Copyright © 2022 Intel Corporation
+  */
++#include "xe_preempt_fence.h"
+ 
+ #include <linux/slab.h>
+ 
+ #include "xe_engine.h"
+-#include "xe_preempt_fence.h"
+ #include "xe_vm.h"
+ 
+ static void preempt_fence_work_func(struct work_struct *w)
+diff --git a/drivers/gpu/drm/xe/xe_pt.c b/drivers/gpu/drm/xe/xe_pt.c
+index 435cc30d88c9..a9ed29d06cc1 100644
+--- a/drivers/gpu/drm/xe/xe_pt.c
++++ b/drivers/gpu/drm/xe/xe_pt.c
+@@ -2,6 +2,7 @@
+ /*
+  * Copyright © 2022 Intel Corporation
+  */
++#include "xe_pt.h"
+ 
+ #include <drm/drm_pt_walk.h>
+ 
+@@ -10,12 +11,11 @@
+ #include "xe_gt.h"
+ #include "xe_gt_tlb_invalidation.h"
+ #include "xe_migrate.h"
+-#include "xe_pt.h"
+ #include "xe_pt_types.h"
+-#include "xe_vm.h"
+ #include "xe_res_cursor.h"
+ #include "xe_trace.h"
+ #include "xe_ttm_stolen_mgr.h"
++#include "xe_vm.h"
+ 
+ struct xe_pt_dir {
+ 	struct xe_pt pt;
+diff --git a/drivers/gpu/drm/xe/xe_query.c b/drivers/gpu/drm/xe/xe_query.c
+index 6e904e97f456..8f241f5625be 100644
+--- a/drivers/gpu/drm/xe/xe_query.c
++++ b/drivers/gpu/drm/xe/xe_query.c
+@@ -2,18 +2,19 @@
+ /*
+  * Copyright © 2022 Intel Corporation
+  */
++#include "xe_query.h"
+ 
+-#include <drm/xe_drm.h>
+-#include <drm/ttm/ttm_placement.h>
+ #include <linux/nospec.h>
+ 
++#include <drm/ttm/ttm_placement.h>
++#include <drm/xe_drm.h>
++
+ #include "xe_bo.h"
+ #include "xe_device.h"
+-#include "xe_gt.h"
+-#include "xe_macros.h"
+-#include "xe_query.h"
+ #include "xe_ggtt.h"
++#include "xe_gt.h"
+ #include "xe_guc_hwconfig.h"
++#include "xe_macros.h"
+ 
+ static const enum xe_engine_class xe_to_user_engine_class[] = {
+ 	[XE_ENGINE_CLASS_RENDER] = DRM_XE_ENGINE_CLASS_RENDER,
+diff --git a/drivers/gpu/drm/xe/xe_reg_sr.c b/drivers/gpu/drm/xe/xe_reg_sr.c
+index f7eceb84e647..dc96d0e48688 100644
+--- a/drivers/gpu/drm/xe/xe_reg_sr.c
++++ b/drivers/gpu/drm/xe/xe_reg_sr.c
+@@ -2,23 +2,22 @@
+ /*
+  * Copyright © 2022 Intel Corporation
+  */
+-
+ #include "xe_reg_sr.h"
+ 
+ #include <linux/align.h>
+ #include <linux/string_helpers.h>
+ #include <linux/xarray.h>
+ 
+-#include <drm/drm_print.h>
+ #include <drm/drm_managed.h>
++#include <drm/drm_print.h>
+ 
+-#include "xe_rtp_types.h"
+ #include "xe_device_types.h"
+ #include "xe_force_wake.h"
+ #include "xe_gt.h"
+ #include "xe_gt_mcr.h"
+ #include "xe_macros.h"
+ #include "xe_mmio.h"
++#include "xe_rtp_types.h"
+ 
+ #include "gt/intel_engine_regs.h"
+ #include "gt/intel_gt_regs.h"
+diff --git a/drivers/gpu/drm/xe/xe_reg_whitelist.c b/drivers/gpu/drm/xe/xe_reg_whitelist.c
+index a34617a642ec..3951460307e2 100644
+--- a/drivers/gpu/drm/xe/xe_reg_whitelist.c
++++ b/drivers/gpu/drm/xe/xe_reg_whitelist.c
+@@ -2,15 +2,14 @@
+ /*
+  * Copyright © 2023 Intel Corporation
+  */
+-
+ #include "xe_reg_whitelist.h"
+ 
+-#include "xe_platform_types.h"
+ #include "xe_gt_types.h"
++#include "xe_platform_types.h"
+ #include "xe_rtp.h"
+ 
+-#include "../i915/gt/intel_engine_regs.h"
+-#include "../i915/gt/intel_gt_regs.h"
++#include "gt/intel_engine_regs.h"
++#include "gt/intel_gt_regs.h"
+ 
+ #undef _MMIO
+ #undef MCR_REG
+diff --git a/drivers/gpu/drm/xe/xe_ring_ops.c b/drivers/gpu/drm/xe/xe_ring_ops.c
+index 370ab1e729fa..5049367bc92d 100644
+--- a/drivers/gpu/drm/xe/xe_ring_ops.c
++++ b/drivers/gpu/drm/xe/xe_ring_ops.c
+@@ -2,19 +2,19 @@
+ /*
+  * Copyright © 2022 Intel Corporation
+  */
++#include "xe_ring_ops.h"
+ 
+ #include "xe_engine_types.h"
+ #include "xe_gt.h"
+ #include "xe_lrc.h"
+ #include "xe_macros.h"
+-#include "xe_ring_ops.h"
+ #include "xe_sched_job.h"
+ #include "xe_vm_types.h"
+ 
+-#include "i915_reg.h"
+ #include "gt/intel_gpu_commands.h"
+ #include "gt/intel_gt_regs.h"
+ #include "gt/intel_lrc_reg.h"
++#include "i915_reg.h"
+ 
+ static u32 preparser_disable(bool state)
+ {
+diff --git a/drivers/gpu/drm/xe/xe_rtp.c b/drivers/gpu/drm/xe/xe_rtp.c
+index 5b1316b588d8..f2b8a7d46ebc 100644
+--- a/drivers/gpu/drm/xe/xe_rtp.c
++++ b/drivers/gpu/drm/xe/xe_rtp.c
+@@ -2,7 +2,6 @@
+ /*
+  * Copyright © 2022 Intel Corporation
+  */
+-
+ #include "xe_rtp.h"
+ 
+ #include <drm/xe_drm.h>
+diff --git a/drivers/gpu/drm/xe/xe_sa.c b/drivers/gpu/drm/xe/xe_sa.c
+index e432f40b9bfe..b4f76c1caec0 100644
+--- a/drivers/gpu/drm/xe/xe_sa.c
++++ b/drivers/gpu/drm/xe/xe_sa.c
+@@ -2,15 +2,16 @@
+ /*
+  * Copyright © 2022 Intel Corporation
+  */
++#include "xe_sa.h"
+ 
+ #include <linux/kernel.h>
++
+ #include <drm/drm_managed.h>
+ 
+ #include "xe_bo.h"
+ #include "xe_device.h"
+ #include "xe_gt.h"
+ #include "xe_map.h"
+-#include "xe_sa.h"
+ 
+ static void xe_sa_bo_manager_fini(struct drm_device *drm, void *arg)
+ {
+diff --git a/drivers/gpu/drm/xe/xe_sched_job.c b/drivers/gpu/drm/xe/xe_sched_job.c
+index 2985caa6097b..630d67a3d574 100644
+--- a/drivers/gpu/drm/xe/xe_sched_job.c
++++ b/drivers/gpu/drm/xe/xe_sched_job.c
+@@ -2,7 +2,6 @@
+ /*
+  * Copyright © 2021 Intel Corporation
+  */
+-
+ #include "xe_sched_job.h"
+ 
+ #include <linux/dma-fence-array.h>
+diff --git a/drivers/gpu/drm/xe/xe_sync.c b/drivers/gpu/drm/xe/xe_sync.c
+index 0fbd8d0978cf..99f1ed87196d 100644
+--- a/drivers/gpu/drm/xe/xe_sync.c
++++ b/drivers/gpu/drm/xe/xe_sync.c
+@@ -8,13 +8,14 @@
+ #include <linux/kthread.h>
+ #include <linux/sched/mm.h>
+ #include <linux/uaccess.h>
+-#include <drm/xe_drm.h>
++
+ #include <drm/drm_print.h>
+ #include <drm/drm_syncobj.h>
++#include <drm/xe_drm.h>
+ 
+ #include "xe_device_types.h"
+-#include "xe_sched_job_types.h"
+ #include "xe_macros.h"
++#include "xe_sched_job_types.h"
+ 
+ #define SYNC_FLAGS_TYPE_MASK 0x3
+ #define SYNC_FLAGS_FENCE_INSTALLED	0x10000
+diff --git a/drivers/gpu/drm/xe/xe_ttm_gtt_mgr.c b/drivers/gpu/drm/xe/xe_ttm_gtt_mgr.c
+index a0ba8bba84d1..8075781070f2 100644
+--- a/drivers/gpu/drm/xe/xe_ttm_gtt_mgr.c
++++ b/drivers/gpu/drm/xe/xe_ttm_gtt_mgr.c
+@@ -6,8 +6,8 @@
+ 
+ #include <drm/drm_managed.h>
+ 
+-#include <drm/ttm/ttm_range_manager.h>
+ #include <drm/ttm/ttm_placement.h>
++#include <drm/ttm/ttm_range_manager.h>
+ #include <drm/ttm/ttm_tt.h>
+ 
+ #include "xe_bo.h"
+diff --git a/drivers/gpu/drm/xe/xe_ttm_stolen_mgr.c b/drivers/gpu/drm/xe/xe_ttm_stolen_mgr.c
+index b4e9c88644e4..1c3783becefd 100644
+--- a/drivers/gpu/drm/xe/xe_ttm_stolen_mgr.c
++++ b/drivers/gpu/drm/xe/xe_ttm_stolen_mgr.c
+@@ -8,8 +8,8 @@
+ #include <drm/drm_mm.h>
+ 
+ #include <drm/ttm/ttm_device.h>
+-#include <drm/ttm/ttm_range_manager.h>
+ #include <drm/ttm/ttm_placement.h>
++#include <drm/ttm/ttm_range_manager.h>
+ 
+ #include "../i915/i915_reg.h"
+ 
+diff --git a/drivers/gpu/drm/xe/xe_ttm_vram_mgr.c b/drivers/gpu/drm/xe/xe_ttm_vram_mgr.c
+index c7e21673b8fd..643365b18bc7 100644
+--- a/drivers/gpu/drm/xe/xe_ttm_vram_mgr.c
++++ b/drivers/gpu/drm/xe/xe_ttm_vram_mgr.c
+@@ -6,8 +6,8 @@
+ 
+ #include <drm/drm_managed.h>
+ 
+-#include <drm/ttm/ttm_range_manager.h>
+ #include <drm/ttm/ttm_placement.h>
++#include <drm/ttm/ttm_range_manager.h>
+ 
+ #include "xe_bo.h"
+ #include "xe_device.h"
+diff --git a/drivers/gpu/drm/xe/xe_tuning.c b/drivers/gpu/drm/xe/xe_tuning.c
+index 3cc32e3e7a90..5f8c56baaeba 100644
+--- a/drivers/gpu/drm/xe/xe_tuning.c
++++ b/drivers/gpu/drm/xe/xe_tuning.c
+@@ -5,8 +5,8 @@
+ 
+ #include "xe_tuning.h"
+ 
+-#include "xe_platform_types.h"
+ #include "xe_gt_types.h"
++#include "xe_platform_types.h"
+ #include "xe_rtp.h"
+ 
+ #include "gt/intel_gt_regs.h"
+diff --git a/drivers/gpu/drm/xe/xe_uc.c b/drivers/gpu/drm/xe/xe_uc.c
+index 7886c8b85397..a27e6c1a6aff 100644
+--- a/drivers/gpu/drm/xe/xe_uc.c
++++ b/drivers/gpu/drm/xe/xe_uc.c
+@@ -3,13 +3,13 @@
+  * Copyright © 2022 Intel Corporation
+  */
+ 
++#include "xe_uc.h"
+ #include "xe_device.h"
+-#include "xe_huc.h"
+ #include "xe_gt.h"
+ #include "xe_guc.h"
+ #include "xe_guc_pc.h"
+ #include "xe_guc_submit.h"
+-#include "xe_uc.h"
++#include "xe_huc.h"
  #include "xe_uc_fw.h"
  #include "xe_wopcm.h"
  
--#include "i915_reg_defs.h"
--
- /* TODO: move to common file */
- #define GUC_PVC_MOCS_INDEX_MASK		REG_GENMASK(25, 24)
- #define PVC_MOCS_UC_INDEX		1
-diff --git a/drivers/gpu/drm/xe/xe_guc_reg.h b/drivers/gpu/drm/xe/xe_guc_reg.h
-index 513a7e0c8a5a..234236833239 100644
---- a/drivers/gpu/drm/xe/xe_guc_reg.h
-+++ b/drivers/gpu/drm/xe/xe_guc_reg.h
-@@ -9,7 +9,7 @@
- #include <linux/compiler.h>
- #include <linux/types.h>
+diff --git a/drivers/gpu/drm/xe/xe_vm.c b/drivers/gpu/drm/xe/xe_vm.c
+index 7276a375e2e0..a0e35627e45e 100644
+--- a/drivers/gpu/drm/xe/xe_vm.c
++++ b/drivers/gpu/drm/xe/xe_vm.c
+@@ -25,8 +25,8 @@
+ #include "xe_preempt_fence.h"
+ #include "xe_pt.h"
+ #include "xe_res_cursor.h"
+-#include "xe_trace.h"
+ #include "xe_sync.h"
++#include "xe_trace.h"
  
--#include "i915_reg_defs.h"
-+#include "../i915/i915_reg_defs.h"
+ #define TEST_VM_ASYNC_OPS_ERROR
  
- /* Definitions of GuC H/W registers, bits, etc */
- 
-diff --git a/drivers/gpu/drm/xe/xe_reg_sr_types.h b/drivers/gpu/drm/xe/xe_reg_sr_types.h
-index 2fa7ff3966ba..8a317ce428a4 100644
---- a/drivers/gpu/drm/xe/xe_reg_sr_types.h
-+++ b/drivers/gpu/drm/xe/xe_reg_sr_types.h
-@@ -9,8 +9,6 @@
- #include <linux/xarray.h>
- #include <linux/types.h>
- 
--#include "i915_reg_defs.h"
--
- struct xe_reg_sr_entry {
- 	u32		clr_bits;
- 	u32		set_bits;
-diff --git a/drivers/gpu/drm/xe/xe_rtp.h b/drivers/gpu/drm/xe/xe_rtp.h
-index 1ac3fd1c0734..099047af89b4 100644
---- a/drivers/gpu/drm/xe/xe_rtp.h
-+++ b/drivers/gpu/drm/xe/xe_rtp.h
-@@ -11,8 +11,6 @@
- 
- #include "xe_rtp_types.h"
- 
--#include "i915_reg_defs.h"
--
- /*
-  * Register table poke infrastructure
+diff --git a/drivers/gpu/drm/xe/xe_vm_madvise.c b/drivers/gpu/drm/xe/xe_vm_madvise.c
+index 1e4e3a1b0631..29815852985a 100644
+--- a/drivers/gpu/drm/xe/xe_vm_madvise.c
++++ b/drivers/gpu/drm/xe/xe_vm_madvise.c
+@@ -3,13 +3,15 @@
+  * Copyright © 2021 Intel Corporation
   */
-diff --git a/drivers/gpu/drm/xe/xe_rtp_types.h b/drivers/gpu/drm/xe/xe_rtp_types.h
-index fac0bd6d5b1e..e87f1b280d96 100644
---- a/drivers/gpu/drm/xe/xe_rtp_types.h
-+++ b/drivers/gpu/drm/xe/xe_rtp_types.h
-@@ -8,8 +8,6 @@
  
- #include <linux/types.h>
+-#include <drm/xe_drm.h>
+-#include <drm/ttm/ttm_tt.h>
++#include "xe_vm_madvise.h"
++
+ #include <linux/nospec.h>
  
--#include "i915_reg_defs.h"
--
- struct xe_hw_engine;
- struct xe_gt;
++#include <drm/ttm/ttm_tt.h>
++#include <drm/xe_drm.h>
++
+ #include "xe_bo.h"
+ #include "xe_vm.h"
+-#include "xe_vm_madvise.h"
  
+ static int madvise_preferred_mem_class(struct xe_device *xe, struct xe_vm *vm,
+ 				       struct xe_vma **vmas, int num_vmas,
+diff --git a/drivers/gpu/drm/xe/xe_wopcm.c b/drivers/gpu/drm/xe/xe_wopcm.c
+index 8fe182afa06c..e9ac560be57f 100644
+--- a/drivers/gpu/drm/xe/xe_wopcm.c
++++ b/drivers/gpu/drm/xe/xe_wopcm.c
+@@ -3,13 +3,13 @@
+  * Copyright © 2022 Intel Corporation
+  */
+ 
++#include "xe_wopcm.h"
+ #include "xe_device.h"
+ #include "xe_force_wake.h"
+ #include "xe_gt.h"
+ #include "xe_guc_reg.h"
+ #include "xe_mmio.h"
+ #include "xe_uc_fw.h"
+-#include "xe_wopcm.h"
+ 
+ /**
+  * DOC: Write Once Protected Content Memory (WOPCM) Layout
 -- 
 2.39.0
 
