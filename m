@@ -4,47 +4,46 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id B05C6C61DA4
-	for <intel-xe@archiver.kernel.org>; Fri, 17 Feb 2023 00:53:08 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 63477C64ED9
+	for <intel-xe@archiver.kernel.org>; Fri, 17 Feb 2023 00:53:09 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8EF6110E3C7;
-	Fri, 17 Feb 2023 00:53:08 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4454A10E138;
+	Fri, 17 Feb 2023 00:53:09 +0000 (UTC)
 Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A6C1A10E3BB
- for <intel-xe@lists.freedesktop.org>; Fri, 17 Feb 2023 00:53:06 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id DE78910E1AA
+ for <intel-xe@lists.freedesktop.org>; Fri, 17 Feb 2023 00:53:04 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1676595186; x=1708131186;
+ t=1676595184; x=1708131184;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=davg+QwctMDUwHAkJtydmd2fmWV5G1LDJz1pDtumjaI=;
- b=jp1RWNz2HT8QysQe12PBf6SKtAmRPEOqCvYblNtNDz5M1rGF//eRKJLL
- TFByqOa+avCAlz5czss/vsFzxyovc/DkBYhtART3fQ/Jx7gh/mgFN1cBV
- 0od2BBq7ewGZK3BybqbGsh9lzRDz5kAIOcZdreYB8WgdKwo6yo6OI78ig
- 6lyaWwCA2hyKkPHXDp40E6qHN92LvEVdiHZz6sbp3dtHZVEJoR5zP55zJ
- CvkMwV2WZoYnZMWhGVHDu52FDnyXrHJAUQ/9IC1YYk3L7q6WnXPukF10O
- IJKhxm53Zl9nn9h/8my/XLzKKWHmbA+QFSvABKqM/fyLzOq4mfrqkh8FV w==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10623"; a="329602210"
-X-IronPort-AV: E=Sophos;i="5.97,304,1669104000"; d="scan'208";a="329602210"
+ bh=E7wXotebfuJNrBaaXXcBt6oS/64oJcHgel3Vny2IMpw=;
+ b=iNaND5XvBBNw4gJY0JrkIFs4FAmnSXmXddEAhr6I0wVhxvVWyAccTAH8
+ z48tvWwIeRaj87eEAeBEjb1jBlGAdRxnV9zjasJzUgBORGNc3gXm1biSQ
+ i0LniEzOarSGbloWVQjb3qW3fBzCbQj74oTUCFIaMxfmoEzpEyurYO41+
+ q2my4ig+1MLmaqa3zVJwT0B7v56o0SKQN3rIglUlvdPJn0yeFymVyEuG3
+ 8cA6zeHf118JUUehjgNj9ddxAnzAcwIQTzMGWbQeX6yaAX8vDv3eOih65
+ EPk6JHBjFeXgQkwcYlRt9Gvq3wBLeTAn5zcNX/sKV472BDgg8JHCgmSzw w==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10623"; a="329602193"
+X-IronPort-AV: E=Sophos;i="5.97,304,1669104000"; d="scan'208";a="329602193"
 Received: from fmsmga007.fm.intel.com ([10.253.24.52])
  by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 16 Feb 2023 16:53:05 -0800
-X-IronPort-AV: E=McAfee;i="6500,9779,10623"; a="672417802"
-X-IronPort-AV: E=Sophos;i="5.97,304,1669104000"; d="scan'208";a="672417802"
+ 16 Feb 2023 16:53:04 -0800
+X-IronPort-AV: E=McAfee;i="6500,9779,10623"; a="672417769"
+X-IronPort-AV: E=Sophos;i="5.97,304,1669104000"; d="scan'208";a="672417769"
 Received: from lucas-s2600cw.jf.intel.com ([10.165.21.196])
  by fmsmga007-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 16 Feb 2023 16:53:05 -0800
+ 16 Feb 2023 16:53:03 -0800
 From: Lucas De Marchi <lucas.demarchi@intel.com>
 To: intel-xe@lists.freedesktop.org
-Date: Thu, 16 Feb 2023 16:52:25 -0800
-Message-Id: <20230217005226.106499-11-lucas.demarchi@intel.com>
+Date: Thu, 16 Feb 2023 16:52:16 -0800
+Message-Id: <20230217005226.106499-2-lucas.demarchi@intel.com>
 X-Mailer: git-send-email 2.39.0
 In-Reply-To: <20230217005226.106499-1-lucas.demarchi@intel.com>
 References: <20230217005226.106499-1-lucas.demarchi@intel.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-xe] [PATCH v2 10/11] drm/xe: Remove dependency on
- intel_mchbar_regs.h
+Subject: [Intel-xe] [PATCH v2 01/11] drm/xe: Remove outdated build workaround
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -62,36 +61,34 @@ Cc: Lucas De Marchi <lucas.demarchi@intel.com>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-The only thing really needed is the base offset, MCHBAR_MIRROR_BASE_SNB.
-Remove the include and just define it inplace.
+Use the more common "call cc-disable-warning" way to disable warnings.
 
 Signed-off-by: Lucas De Marchi <lucas.demarchi@intel.com>
 ---
- drivers/gpu/drm/xe/xe_guc_pc.c | 10 +++++-----
- 1 file changed, 5 insertions(+), 5 deletions(-)
+ drivers/gpu/drm/xe/Makefile | 10 ++--------
+ 1 file changed, 2 insertions(+), 8 deletions(-)
 
-diff --git a/drivers/gpu/drm/xe/xe_guc_pc.c b/drivers/gpu/drm/xe/xe_guc_pc.c
-index 3465236b0b49..cc7d1007d942 100644
---- a/drivers/gpu/drm/xe/xe_guc_pc.c
-+++ b/drivers/gpu/drm/xe/xe_guc_pc.c
-@@ -20,12 +20,12 @@
- #include "xe_mmio.h"
- #include "xe_pcode.h"
- 
--#include "intel_mchbar_regs.h"
-+#define MCHBAR_MIRROR_BASE_SNB	0x140000
- 
--/* For GEN6_RP_STATE_CAP.reg to be merged when the definition moves to Xe */
--#define   RP0_MASK	REG_GENMASK(7, 0)
--#define   RP1_MASK	REG_GENMASK(15, 8)
--#define   RPN_MASK	REG_GENMASK(23, 16)
-+#define GEN6_RP_STATE_CAP			_MMIO(MCHBAR_MIRROR_BASE_SNB + 0x5998)
-+#define   RP0_MASK				REG_GENMASK(7, 0)
-+#define   RP1_MASK				REG_GENMASK(15, 8)
-+#define   RPN_MASK				REG_GENMASK(23, 16)
- 
- #define GEN10_FREQ_INFO_REC	_MMIO(MCHBAR_MIRROR_BASE_SNB + 0x5ef0)
- #define   RPE_MASK		REG_GENMASK(15, 8)
+diff --git a/drivers/gpu/drm/xe/Makefile b/drivers/gpu/drm/xe/Makefile
+index abd804d622e6..18257cd7227d 100644
+--- a/drivers/gpu/drm/xe/Makefile
++++ b/drivers/gpu/drm/xe/Makefile
+@@ -13,14 +13,8 @@
+ # will most likely get a sudden build breakage... Hopefully we will fix
+ # new warnings before CI updates!
+ subdir-ccflags-y := -Wall -Wextra
+-# making these call cc-disable-warning breaks when trying to build xe.mod.o
+-# by calling make M=drivers/gpu/drm/xe. This doesn't happen in upstream tree,
+-# so it was somehow fixed by the changes in the build system. Move it back to
+-# $(call cc-disable-warning, ...) after rebase.
+-subdir-ccflags-y += -Wno-unused-parameter
+-subdir-ccflags-y += -Wno-type-limits
+-#subdir-ccflags-y += $(call cc-disable-warning, unused-parameter)
+-#subdir-ccflags-y += $(call cc-disable-warning, type-limits)
++subdir-ccflags-y += $(call cc-disable-warning, unused-parameter)
++subdir-ccflags-y += $(call cc-disable-warning, type-limits)
+ subdir-ccflags-y += $(call cc-disable-warning, missing-field-initializers)
+ subdir-ccflags-y += $(call cc-disable-warning, unused-but-set-variable)
+ # clang warnings
 -- 
 2.39.0
 
