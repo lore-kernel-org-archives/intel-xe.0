@@ -4,46 +4,46 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 75C17C61DA4
-	for <intel-xe@archiver.kernel.org>; Thu, 16 Feb 2023 23:17:44 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9F995C61DA4
+	for <intel-xe@archiver.kernel.org>; Fri, 17 Feb 2023 00:53:06 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 54E1310E39B;
-	Thu, 16 Feb 2023 23:17:44 +0000 (UTC)
-Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E277E10E39B
- for <intel-xe@lists.freedesktop.org>; Thu, 16 Feb 2023 23:17:39 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7887210E138;
+	Fri, 17 Feb 2023 00:53:06 +0000 (UTC)
+Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 300FB10E1AA
+ for <intel-xe@lists.freedesktop.org>; Fri, 17 Feb 2023 00:53:05 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1676589459; x=1708125459;
+ t=1676595185; x=1708131185;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=EqijEC+aFp1w02IUgn8NHLtc0pqut6+eNvFlDAaK6dE=;
- b=QrzAYVy3Kfency6V+D8JnM2OBHFbnwhJ7GtUcrgTYuHpul/V/FIRtYyC
- BXOjKGPNKa8YrwHYItybv44EFQlDX9vVZBc5jGI/HXy3i+C//qs3MlfZV
- N8Fqeo7rz/qX0neZLSNnaneCvKIEBGtBiAs8trmq6tkwNu27dJY29e7ax
- 7hHdJfr0GdiMRlFhrapA1vBKn4DQ6U6Reyn9e8CEMC/CTi2E3wrnNiVvw
- sSenyDlgiQGq/tbmaSLDTP+2Dez/Bnky42YbWYwL5h5IUuEsy6V/Du3/1
- DopReWyuV1eYGN24PrNLT0UO57ggPIVqLpHa1XHkvwdYjUNYN/K8wshZ5 A==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10623"; a="333220837"
-X-IronPort-AV: E=Sophos;i="5.97,304,1669104000"; d="scan'208";a="333220837"
-Received: from fmsmga001.fm.intel.com ([10.253.24.23])
- by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 16 Feb 2023 15:17:39 -0800
-X-IronPort-AV: E=McAfee;i="6500,9779,10623"; a="813169213"
-X-IronPort-AV: E=Sophos;i="5.97,304,1669104000"; d="scan'208";a="813169213"
-Received: from mdroper-desk1.fm.intel.com ([10.1.27.134])
- by fmsmga001-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 16 Feb 2023 15:17:38 -0800
-From: Matt Roper <matthew.d.roper@intel.com>
+ bh=X0w+aa1YtqUMdsOkaPvZabyul2MXGKcc1sJgASXIKqQ=;
+ b=UE8BWrPWVwQUSL7hX2hMJ5LhO+wMyv2zxbu/K6K/vSSzwwmB5lV8YRR5
+ eYFKv5yVUZvUmxxfklRyhhDM9KKUEg7Xgq151uA0hcrrCb9EnYMe/sj+P
+ goGDAO5NQo4MmFYrpOWPNrv6twpu7i9s5Smx8O1vSCpkJMPSW2gwQeZw0
+ DN9j6G+C7JXpR7H0UkD4BhPiwbQ+jSGgHf4quKqIBLlzGENQHgp072ljh
+ zSbG35vHf/Ai1wi1tLUSZkc9eVvASR9qsoZYXBIM62GlgIdJIS7pHMbDu
+ nwgYGSp6qafakcPTftVNFOfi9r9VfLfc7nn+1TKt5U9bxr5yIesuA+1QT w==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10623"; a="329602196"
+X-IronPort-AV: E=Sophos;i="5.97,304,1669104000"; d="scan'208";a="329602196"
+Received: from fmsmga007.fm.intel.com ([10.253.24.52])
+ by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 16 Feb 2023 16:53:04 -0800
+X-IronPort-AV: E=McAfee;i="6500,9779,10623"; a="672417775"
+X-IronPort-AV: E=Sophos;i="5.97,304,1669104000"; d="scan'208";a="672417775"
+Received: from lucas-s2600cw.jf.intel.com ([10.165.21.196])
+ by fmsmga007-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 16 Feb 2023 16:53:04 -0800
+From: Lucas De Marchi <lucas.demarchi@intel.com>
 To: intel-xe@lists.freedesktop.org
-Date: Thu, 16 Feb 2023 15:17:21 -0800
-Message-Id: <20230216231724.2246534-4-matthew.d.roper@intel.com>
-X-Mailer: git-send-email 2.39.1
-In-Reply-To: <20230216231724.2246534-1-matthew.d.roper@intel.com>
-References: <20230216231724.2246534-1-matthew.d.roper@intel.com>
+Date: Thu, 16 Feb 2023 16:52:18 -0800
+Message-Id: <20230217005226.106499-4-lucas.demarchi@intel.com>
+X-Mailer: git-send-email 2.39.0
+In-Reply-To: <20230217005226.106499-1-lucas.demarchi@intel.com>
+References: <20230217005226.106499-1-lucas.demarchi@intel.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-xe] [PATCH 3/6] drm/xe/mocs: Drop xe_mocs_info_index
+Subject: [Intel-xe] [PATCH v2 03/11] drm/xe/guc: Remove i915_regs.h include
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -55,78 +55,34 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Cc: Lucas De Marchi <lucas.demarchi@intel.com>,
+ Maarten Lankhorst <maarten.lankhorst@intel.com>,
+ Matthew Auld <matthew.auld@intel.com>
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-The values in the xe_mocs_info_index enum only match old pre-gen12
-hardware not supported by the Xe driver.
+i915_regs.h is not needed, particularly in a header file. What is needed
+is i915_reg_defs.h for use of _MMIO() and similar macros.
 
-The only usage of this enum was to set a default value for
-info->unused_entries_index, but this is unnecessary since every platform
-in the subsequent switch statement sets a proper platform-specific value
-(and the XE_MOCS_PTE default doesn't even make sense since the hardware
-dropped the "use PAT settings" capability in gen12).
-
-Signed-off-by: Matt Roper <matthew.d.roper@intel.com>
+Signed-off-by: Lucas De Marchi <lucas.demarchi@intel.com>
+Reviewed-by: Matthew Auld <matthew.auld@intel.com>
 ---
- drivers/gpu/drm/xe/xe_mocs.c | 30 ++----------------------------
- 1 file changed, 2 insertions(+), 28 deletions(-)
+ drivers/gpu/drm/xe/xe_guc_reg.h | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-diff --git a/drivers/gpu/drm/xe/xe_mocs.c b/drivers/gpu/drm/xe/xe_mocs.c
-index ec89ff3ac29b..583e198af88d 100644
---- a/drivers/gpu/drm/xe/xe_mocs.c
-+++ b/drivers/gpu/drm/xe/xe_mocs.c
-@@ -23,30 +23,6 @@ static inline void mocs_dbg(const struct drm_device *dev,
- { /* noop */ }
- #endif
+diff --git a/drivers/gpu/drm/xe/xe_guc_reg.h b/drivers/gpu/drm/xe/xe_guc_reg.h
+index 1e16a9b76ddc..513a7e0c8a5a 100644
+--- a/drivers/gpu/drm/xe/xe_guc_reg.h
++++ b/drivers/gpu/drm/xe/xe_guc_reg.h
+@@ -9,7 +9,7 @@
+ #include <linux/compiler.h>
+ #include <linux/types.h>
  
--/*
-- * MOCS indexes used for GPU surfaces, defining the cacheability of the
-- * surface data and the coherency for this data wrt. CPU vs. GPU accesses.
-- */
--enum xe_mocs_info_index {
--	/*
--	 * Not cached anywhere, coherency between CPU and GPU accesses is
--	 * guaranteed.
--	 */
--	XE_MOCS_UNCACHED,
--	/*
--	 * Cacheability and coherency controlled by the kernel automatically
--	 * based on the xxxx  IOCTL setting and the current
--	 * usage of the surface (used for display scanout or not).
--	 */
--	XE_MOCS_PTE,
--	/*
--	 * Cached in all GPU caches available on the platform.
--	 * Coherency between CPU and GPU accesses to the surface is not
--	 * guaranteed without extra synchronization.
--	 */
--	XE_MOCS_CACHED,
--};
--
- enum {
- 	HAS_GLOBAL_MOCS = BIT(0),
- 	HAS_RENDER_L3CC = BIT(1),
-@@ -341,7 +317,6 @@ static unsigned int get_mocs_settings(struct xe_device *xe,
+-#include "i915_reg.h"
++#include "i915_reg_defs.h"
  
- 	memset(info, 0, sizeof(struct xe_mocs_info));
+ /* Definitions of GuC H/W registers, bits, etc */
  
--	info->unused_entries_index = XE_MOCS_PTE;
- 	switch (xe->info.platform) {
- 	case XE_PVC:
- 		info->size = ARRAY_SIZE(pvc_mocs_desc);
-@@ -406,9 +381,8 @@ static unsigned int get_mocs_settings(struct xe_device *xe,
- }
- 
- /*
-- * Get control_value from MOCS entry taking into account when it's not used
-- * then if unused_entries_index is non-zero then its value will be returned
-- * otherwise XE_MOCS_PTE's value is returned in this case.
-+ * Get control_value from MOCS entry.  If the table entry is not defined, the
-+ * settings from unused_entries_index will be returned.
-  */
- static u32 get_entry_control(const struct xe_mocs_info *info,
- 			     unsigned int index)
 -- 
-2.39.1
+2.39.0
 
