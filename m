@@ -4,47 +4,47 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id B436AC6FA9D
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1676DC64ED6
 	for <intel-xe@archiver.kernel.org>; Tue, 21 Feb 2023 19:41:22 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8B49410E357;
-	Tue, 21 Feb 2023 19:41:22 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id DB6E910E803;
+	Tue, 21 Feb 2023 19:41:21 +0000 (UTC)
 Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5DE6F10E357
- for <intel-xe@lists.freedesktop.org>; Tue, 21 Feb 2023 19:41:19 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id F0E2710E656
+ for <intel-xe@lists.freedesktop.org>; Tue, 21 Feb 2023 19:41:18 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
  t=1677008479; x=1708544479;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=U2/xIABlzhTI2r2UWfiUudl3QfCocudVxwnsQGOnh8A=;
- b=kyPw9sco5N2pXEv7t1Z/vw52SUKwHfcIpdr+gzR+XtrhwYR6QnPqRSVW
- X24SDGJr/IWl0ORNA4kFdmPbMD61tqpTUjV3QR1pTbNw3WK5R21BPunqp
- cBTFpd620kPYI8+zctUcqHkXPd6CRhzTEY5GJzC99ZNgmYZF2BCVzATq8
- y7vdVB04w8FRqRe5B4+Db+oiV3QQa9G2KDZwpjmIG85GAfhywTk1zfS7n
- qMKXXdLALk7W0yEu9klHiK6WiOkKmF5etxI676nKE50JZNfzVsPzOe1z+
- x/rLN57vtpVrUmzQ7BZk9Gm0ws2p5xYt3XpikR3igf3+mQSOcPJ7IYYVo Q==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10628"; a="332735696"
-X-IronPort-AV: E=Sophos;i="5.97,315,1669104000"; d="scan'208";a="332735696"
+ bh=dclGZUlfl7HwoDeIRvTduSvCA4BJGnwjU7bugAvN4uw=;
+ b=MoB1Ui8exbgm3MXElsM8j4zaIQJJbz0MBSC4WDCw+fitWc9gpQnDsB9K
+ /A5uytV1aG+LIMpldwWMiV0jh/I6WjgY3Bw4btxKd2sxMS2TsR/TZltdA
+ QjfUDxPTQibxyX+6eGaohBxGxGblCbfhKp6q6gGP43q+Zn1rc5J55U62A
+ 1tL/o+qxvGJRr12PN7no6NRXZJiHbEFDkQhlYVzkqrw+qlvwISVKRycas
+ 2xyPGG03xoc4GtspJGauvnOuEDScly9Wo465XObT+HPDjfe11nT8gNMFI
+ 59E9yc2I4bLKIjFRLcs0iB6tX27Xlf/GnLeEjxjmJ/LRtAN+aRJSmt3ld Q==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10628"; a="332735712"
+X-IronPort-AV: E=Sophos;i="5.97,315,1669104000"; d="scan'208";a="332735712"
 Received: from orsmga003.jf.intel.com ([10.7.209.27])
  by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 21 Feb 2023 11:41:16 -0800
-X-IronPort-AV: E=McAfee;i="6500,9779,10628"; a="621622190"
-X-IronPort-AV: E=Sophos;i="5.97,315,1669104000"; d="scan'208";a="621622190"
+ 21 Feb 2023 11:41:17 -0800
+X-IronPort-AV: E=McAfee;i="6500,9779,10628"; a="621622231"
+X-IronPort-AV: E=Sophos;i="5.97,315,1669104000"; d="scan'208";a="621622231"
 Received: from lucas-s2600cw.jf.intel.com ([10.165.21.196])
  by orsmga003-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 21 Feb 2023 11:41:14 -0800
+ 21 Feb 2023 11:41:15 -0800
 From: Lucas De Marchi <lucas.demarchi@intel.com>
 To: intel-xe@lists.freedesktop.org
-Date: Tue, 21 Feb 2023 11:39:51 -0800
-Message-Id: <20230221194002.819026-3-lucas.demarchi@intel.com>
+Date: Tue, 21 Feb 2023 11:40:02 -0800
+Message-Id: <20230221194002.819026-14-lucas.demarchi@intel.com>
 X-Mailer: git-send-email 2.39.0
 In-Reply-To: <20230221194002.819026-1-lucas.demarchi@intel.com>
 References: <20230221194002.819026-1-lucas.demarchi@intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-xe] [PATCH v3 02/13] drm/xe: Sort includes
+Subject: [Intel-xe] [PATCH v3 13/13] HACK: drm/xe: Undo display
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -62,1302 +62,5282 @@ Cc: Lucas De Marchi <lucas.demarchi@intel.com>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Sort includes and split them in blocks:
-
-1) .h corresponding to the .c. Example: xe_bb.c should have a "#include
-   "xe_bb.h" first.
-2) #include <linux/...>
-3) #include <drm/...>
-4) local includes
-5) i915 includes
-
-This is accomplished by running
-`clang-format --style=file -i --sort-includes drivers/gpu/drm/xe/*.c`
-and ignoring all the changes after the includes. There are also some
-manual tweaks to split the blocks.
+Remove display to make sure the rest of the driver behaves correctly
+without i915's includes and sources.
 
 Signed-off-by: Lucas De Marchi <lucas.demarchi@intel.com>
-Reviewed-by: Matthew Auld <matthew.auld@intel.com>
 ---
- drivers/gpu/drm/xe/xe_bb.c                  |  3 ++-
- drivers/gpu/drm/xe/xe_bo.c                  |  1 -
- drivers/gpu/drm/xe/xe_bo_evict.c            |  3 ++-
- drivers/gpu/drm/xe/xe_debugfs.c             |  3 ++-
- drivers/gpu/drm/xe/xe_device.c              |  8 ++++----
- drivers/gpu/drm/xe/xe_display.c             | 12 ++++++------
- drivers/gpu/drm/xe/xe_dma_buf.c             |  9 ++++-----
- drivers/gpu/drm/xe/xe_engine.c              |  3 ++-
- drivers/gpu/drm/xe/xe_exec.c                |  3 ++-
- drivers/gpu/drm/xe/xe_execlist.c            | 10 +++++-----
- drivers/gpu/drm/xe/xe_force_wake.c          |  5 +++--
- drivers/gpu/drm/xe/xe_ggtt.c                |  6 +++---
- drivers/gpu/drm/xe/xe_gt.c                  |  3 ++-
- drivers/gpu/drm/xe/xe_gt_clock.c            |  7 ++++---
- drivers/gpu/drm/xe/xe_gt_debugfs.c          |  3 ++-
- drivers/gpu/drm/xe/xe_gt_mcr.c              |  3 ++-
- drivers/gpu/drm/xe/xe_gt_pagefault.c        |  3 ++-
- drivers/gpu/drm/xe/xe_gt_sysfs.c            |  5 ++++-
- drivers/gpu/drm/xe/xe_gt_tlb_invalidation.c |  3 ++-
- drivers/gpu/drm/xe/xe_gt_topology.c         |  3 ++-
- drivers/gpu/drm/xe/xe_guc.c                 | 14 ++++++++------
- drivers/gpu/drm/xe/xe_guc_ads.c             |  6 ++++--
- drivers/gpu/drm/xe/xe_guc_ct.c              |  5 +++--
- drivers/gpu/drm/xe/xe_guc_debugfs.c         |  3 ++-
- drivers/gpu/drm/xe/xe_guc_hwconfig.c        |  3 ++-
- drivers/gpu/drm/xe/xe_guc_log.c             |  3 ++-
- drivers/gpu/drm/xe/xe_guc_pc.c              | 13 ++++++++-----
- drivers/gpu/drm/xe/xe_guc_submit.c          |  7 ++++---
- drivers/gpu/drm/xe/xe_huc.c                 |  3 ++-
- drivers/gpu/drm/xe/xe_huc_debugfs.c         |  3 ++-
- drivers/gpu/drm/xe/xe_hw_engine.c           |  2 +-
- drivers/gpu/drm/xe/xe_irq.c                 |  6 ++++--
- drivers/gpu/drm/xe/xe_lrc.c                 |  6 +++---
- drivers/gpu/drm/xe/xe_migrate.c             | 12 +++++++-----
- drivers/gpu/drm/xe/xe_mmio.c                |  2 +-
- drivers/gpu/drm/xe/xe_mocs.c                |  5 +++--
- drivers/gpu/drm/xe/xe_module.c              |  2 ++
- drivers/gpu/drm/xe/xe_pci.c                 |  4 ++--
- drivers/gpu/drm/xe/xe_pcode.c               |  9 ++++-----
- drivers/gpu/drm/xe/xe_pm.c                  |  5 +++--
- drivers/gpu/drm/xe/xe_preempt_fence.c       |  3 ++-
- drivers/gpu/drm/xe/xe_pt.c                  |  5 +++--
- drivers/gpu/drm/xe/xe_query.c               | 12 +++++++-----
- drivers/gpu/drm/xe/xe_reg_sr.c              |  4 ++--
- drivers/gpu/drm/xe/xe_reg_whitelist.c       |  6 +++---
- drivers/gpu/drm/xe/xe_ring_ops.c            |  5 +++--
- drivers/gpu/drm/xe/xe_sa.c                  |  4 +++-
- drivers/gpu/drm/xe/xe_sync.c                |  5 +++--
- drivers/gpu/drm/xe/xe_ttm_gtt_mgr.c         |  2 +-
- drivers/gpu/drm/xe/xe_ttm_stolen_mgr.c      |  2 +-
- drivers/gpu/drm/xe/xe_ttm_vram_mgr.c        |  2 +-
- drivers/gpu/drm/xe/xe_tuning.c              |  2 +-
- drivers/gpu/drm/xe/xe_uc.c                  |  5 +++--
- drivers/gpu/drm/xe/xe_vm.c                  |  2 +-
- drivers/gpu/drm/xe/xe_vm_madvise.c          |  8 +++++---
- drivers/gpu/drm/xe/xe_wopcm.c               |  3 ++-
- 56 files changed, 163 insertions(+), 116 deletions(-)
+ drivers/gpu/drm/xe/Kconfig                    |    8 -
+ drivers/gpu/drm/xe/Makefile                   |  124 +-
+ drivers/gpu/drm/xe/display/ext/i915_irq.c     | 1789 -----------------
+ drivers/gpu/drm/xe/display/ext/i915_irq.h     |   97 -
+ .../drm/xe/display/ext/intel_device_info.c    |  135 --
+ .../drm/xe/display/ext/intel_device_info.h    |   36 -
+ drivers/gpu/drm/xe/display/ext/intel_dram.c   |  495 -----
+ drivers/gpu/drm/xe/display/ext/intel_dram.h   |   14 -
+ drivers/gpu/drm/xe/display/ext/intel_pch.c    |  157 --
+ drivers/gpu/drm/xe/display/ext/intel_pch.h    |   91 -
+ drivers/gpu/drm/xe/display/ext/intel_pm.c     |  209 --
+ drivers/gpu/drm/xe/display/ext/intel_pm.h     |   30 -
+ .../gpu/drm/xe/display/i915_active_types.h    |    0
+ drivers/gpu/drm/xe/display/i915_drv.h         |  248 ---
+ drivers/gpu/drm/xe/display/i915_vma.h         |   13 -
+ drivers/gpu/drm/xe/display/i915_vma_types.h   |   69 -
+ drivers/gpu/drm/xe/display/intel_de.h         |  151 --
+ drivers/gpu/drm/xe/display/intel_pm_types.h   |   36 -
+ drivers/gpu/drm/xe/display/intel_runtime_pm.h |    8 -
+ drivers/gpu/drm/xe/display/intel_wakeref.h    |    3 -
+ drivers/gpu/drm/xe/display/xe_fb_pin.c        |  287 ---
+ drivers/gpu/drm/xe/display/xe_plane_initial.c |  289 ---
+ drivers/gpu/drm/xe/xe_device.c                |   26 +-
+ drivers/gpu/drm/xe/xe_device_types.h          |  124 --
+ drivers/gpu/drm/xe/xe_display.c               |  323 ---
+ drivers/gpu/drm/xe/xe_display.h               |   81 +-
+ drivers/gpu/drm/xe/xe_pci.c                   |   83 -
+ 27 files changed, 20 insertions(+), 4906 deletions(-)
+ delete mode 100644 drivers/gpu/drm/xe/display/ext/i915_irq.c
+ delete mode 100644 drivers/gpu/drm/xe/display/ext/i915_irq.h
+ delete mode 100644 drivers/gpu/drm/xe/display/ext/intel_device_info.c
+ delete mode 100644 drivers/gpu/drm/xe/display/ext/intel_device_info.h
+ delete mode 100644 drivers/gpu/drm/xe/display/ext/intel_dram.c
+ delete mode 100644 drivers/gpu/drm/xe/display/ext/intel_dram.h
+ delete mode 100644 drivers/gpu/drm/xe/display/ext/intel_pch.c
+ delete mode 100644 drivers/gpu/drm/xe/display/ext/intel_pch.h
+ delete mode 100644 drivers/gpu/drm/xe/display/ext/intel_pm.c
+ delete mode 100644 drivers/gpu/drm/xe/display/ext/intel_pm.h
+ delete mode 100644 drivers/gpu/drm/xe/display/i915_active_types.h
+ delete mode 100644 drivers/gpu/drm/xe/display/i915_drv.h
+ delete mode 100644 drivers/gpu/drm/xe/display/i915_vma.h
+ delete mode 100644 drivers/gpu/drm/xe/display/i915_vma_types.h
+ delete mode 100644 drivers/gpu/drm/xe/display/intel_de.h
+ delete mode 100644 drivers/gpu/drm/xe/display/intel_pm_types.h
+ delete mode 100644 drivers/gpu/drm/xe/display/intel_runtime_pm.h
+ delete mode 100644 drivers/gpu/drm/xe/display/intel_wakeref.h
+ delete mode 100644 drivers/gpu/drm/xe/display/xe_fb_pin.c
+ delete mode 100644 drivers/gpu/drm/xe/display/xe_plane_initial.c
+ delete mode 100644 drivers/gpu/drm/xe/xe_display.c
 
-diff --git a/drivers/gpu/drm/xe/xe_bb.c b/drivers/gpu/drm/xe/xe_bb.c
-index 8b9209571fd0..d10448d1b4d7 100644
---- a/drivers/gpu/drm/xe/xe_bb.c
-+++ b/drivers/gpu/drm/xe/xe_bb.c
-@@ -4,10 +4,11 @@
-  */
+diff --git a/drivers/gpu/drm/xe/Kconfig b/drivers/gpu/drm/xe/Kconfig
+index 4684e99549d3..22e47918bfcf 100644
+--- a/drivers/gpu/drm/xe/Kconfig
++++ b/drivers/gpu/drm/xe/Kconfig
+@@ -40,14 +40,6 @@ config DRM_XE
  
- #include "xe_bb.h"
--#include "xe_sa.h"
-+
- #include "xe_device.h"
- #include "xe_engine_types.h"
- #include "xe_hw_fence.h"
-+#include "xe_sa.h"
- #include "xe_sched_job.h"
- #include "xe_vm_types.h"
- 
-diff --git a/drivers/gpu/drm/xe/xe_bo.c b/drivers/gpu/drm/xe/xe_bo.c
-index 9b7b9c8f84be..36367bda4f26 100644
---- a/drivers/gpu/drm/xe/xe_bo.c
-+++ b/drivers/gpu/drm/xe/xe_bo.c
-@@ -3,7 +3,6 @@
-  * Copyright © 2021 Intel Corporation
-  */
+ 	  If "M" is selected, the module will be called xe.
  
 -
- #include "xe_bo.h"
+-config DRM_XE_DISPLAY
+-	bool "Enable display support"
+-	depends on DRM_XE && EXPERT
+-	default y
+-	help
+-	  Disable this option only if you want to compile out display support.
+-
+ config DRM_XE_FORCE_PROBE
+ 	string "Force probe xe for selected Intel hardware IDs"
+ 	depends on DRM_XE
+diff --git a/drivers/gpu/drm/xe/Makefile b/drivers/gpu/drm/xe/Makefile
+index 18257cd7227d..66d47414a723 100644
+--- a/drivers/gpu/drm/xe/Makefile
++++ b/drivers/gpu/drm/xe/Makefile
+@@ -98,134 +98,12 @@ xe-y += xe_bb.o \
+ 	xe_wa.o \
+ 	xe_wopcm.o
  
- #include <linux/dma-buf.h>
-diff --git a/drivers/gpu/drm/xe/xe_bo_evict.c b/drivers/gpu/drm/xe/xe_bo_evict.c
-index 3fb3c8c77efa..bbf89a58cdf5 100644
---- a/drivers/gpu/drm/xe/xe_bo_evict.c
-+++ b/drivers/gpu/drm/xe/xe_bo_evict.c
-@@ -3,8 +3,9 @@
-  * Copyright © 2022 Intel Corporation
-  */
+-# i915 Display compat #defines and #includes
+-subdir-ccflags-$(CONFIG_DRM_XE_DISPLAY) += -I$(srctree)/$(src)/display/ext \
+-	-I$(srctree)/drivers/gpu/drm/xe/display/ \
+-	-I$(srctree)/drivers/gpu/drm/i915/display/ \
+-	-I$(srctree)/drivers/gpu/drm/i915/ \
+-	-DBUILD_FOR_XE=1 \
+-	-Ddrm_i915_gem_object=xe_bo \
+-	-Ddrm_i915_private=xe_device
+-
+-# XXX: Needed for i915 register definitions. Will be removed after xe-regs.
+-subdir-ccflags-y += -I$(srctree)/drivers/gpu/drm/i915/
+-
+-CFLAGS_display/intel_fbdev.o = $(call cc-disable-warning, override-init)
+-
+-$(obj)/display/i915_%.o: $(srctree)/drivers/gpu/drm/i915/display/i915_%.c FORCE
+-	$(call cmd,force_checksrc)
+-	$(call if_changed_rule,cc_o_c)
+-
+-$(obj)/display/skl_%.o: $(srctree)/drivers/gpu/drm/i915/display/skl_%.c FORCE
+-	$(call cmd,force_checksrc)
+-	$(call if_changed_rule,cc_o_c)
+-
+-$(obj)/display/icl_dsi.o: $(srctree)/drivers/gpu/drm/i915/display/icl_dsi.c FORCE
+-	$(call cmd,force_checksrc)
+-	$(call if_changed_rule,cc_o_c)
+-
+-$(obj)/display/intel_%.o: $(srctree)/drivers/gpu/drm/i915/display/intel_%.c FORCE
+-	$(call cmd,force_checksrc)
+-	$(call if_changed_rule,cc_o_c)
+-
+-# Display..
+-xe-$(CONFIG_DRM_XE_DISPLAY) += \
+-	xe_display.o \
+-	display/icl_dsi.o \
+-	display/intel_atomic.o \
+-	display/intel_atomic_plane.o \
+-	display/intel_audio.o \
+-	display/intel_backlight.o \
+-	display/intel_bios.o \
+-	display/intel_bw.o \
+-	display/intel_cdclk.o \
+-	display/intel_color.o \
+-	display/intel_combo_phy.o \
+-	display/intel_connector.o \
+-	display/intel_crtc_state_dump.o \
+-	display/intel_crtc.o \
+-	display/intel_cursor.o \
+-	display/intel_ddi_buf_trans.o \
+-	display/intel_ddi.o \
+-	display/intel_display.o \
+-	display/intel_display_debugfs.o \
+-	display/intel_display_power.o \
+-	display/intel_display_power_map.o \
+-	display/intel_display_power_well.o \
+-	display/intel_display_trace.o \
+-	display/intel_dkl_phy.o \
+-	display/intel_dmc.o \
+-	display/intel_dp_aux_backlight.o \
+-	display/intel_dp_aux.o \
+-	display/intel_dp.o \
+-	display/intel_dp_hdcp.o \
+-	display/intel_dp_link_training.o \
+-	display/intel_dpll.o \
+-	display/intel_dpll_mgr.o \
+-	display/intel_dp_mst.o \
+-	display/intel_drrs.o \
+-	display/intel_dsb.o \
+-	display/intel_dsi.o \
+-	display/intel_dsi_dcs_backlight.o \
+-	display/intel_dsi_vbt.o \
+-	display/intel_fb.o \
+-	display/intel_fbc.o \
+-	display/intel_fdi.o \
+-	display/intel_fifo_underrun.o \
+-	display/intel_frontbuffer.o \
+-	display/intel_global_state.o \
+-	display/intel_gmbus.o \
+-	display/intel_hdcp.o \
+-	display/intel_hdmi.o \
+-	display/intel_hotplug.o \
+-	display/intel_hti.o \
+-	display/intel_lspcon.o \
+-	display/intel_lvds.o \
+-	display/intel_modeset_setup.o \
+-	display/intel_modeset_verify.o \
+-	display/intel_panel.o \
+-	display/intel_pipe_crc.o \
+-	display/intel_pps.o \
+-	display/intel_psr.o \
+-	display/intel_qp_tables.o \
+-	display/intel_quirks.o \
+-	display/intel_snps_phy.o \
+-	display/intel_sprite.o \
+-	display/intel_tc.o \
+-	display/intel_vdsc.o \
+-	display/intel_vga.o \
+-	display/intel_vrr.o \
+-	display/xe_fb_pin.o \
+-	display/xe_plane_initial.o \
+-	display/skl_scaler.o \
+-	display/skl_universal_plane.o \
+-	display/skl_watermark.o \
+-	display/ext/i915_irq.o \
+-	display/ext/intel_device_info.o \
+-	display/ext/intel_dram.o \
+-	display/ext/intel_pch.o \
+-	display/ext/intel_pm.o
+-
+-ifeq ($(CONFIG_ACPI),y)
+-	xe-$(CONFIG_DRM_XE_DISPLAY) += \
+-		display/intel_acpi.o \
+-		display/intel_opregion.o
+-endif
+-
+-ifeq ($(CONFIG_DRM_FBDEV_EMULATION),y)
+-	xe-$(CONFIG_DRM_XE_DISPLAY) += display/intel_fbdev.o
+-endif
+-
+ obj-$(CONFIG_DRM_XE) += xe.o
+ obj-$(CONFIG_DRM_XE_KUNIT_TEST) += tests/
  
+-ifneq ($(CONFIG_DRM_XE_DISPLAY),y)
+-	skipdisplay:=-not -path display/\* -not -path xe_display.h
+-endif
+-
+ # header test
+ always-$(CONFIG_DRM_XE_WERROR) += \
+-	$(patsubst %.h,%.hdrtest, $(shell cd $(srctree)/$(src) && find * -name '*.h' $(skipdisplay)))
++	$(patsubst %.h,%.hdrtest, $(shell cd $(srctree)/$(src) && find * -name '*.h'))
+ 
+ quiet_cmd_hdrtest = HDRTEST $(patsubst %.hdrtest,%.h,$@)
+       cmd_hdrtest = $(CC) -DHDRTEST $(filter-out $(CFLAGS_GCOV), $(c_flags)) $(cflags-display) -S -o /dev/null -x c /dev/null -include $<; touch $@
+diff --git a/drivers/gpu/drm/xe/display/ext/i915_irq.c b/drivers/gpu/drm/xe/display/ext/i915_irq.c
+deleted file mode 100644
+index ca188e69f509..000000000000
+--- a/drivers/gpu/drm/xe/display/ext/i915_irq.c
++++ /dev/null
+@@ -1,1789 +0,0 @@
+-/* i915_irq.c -- IRQ support for the I915 -*- linux-c -*-
+- */
+-/*
+- * Copyright 2003 Tungsten Graphics, Inc., Cedar Park, Texas.
+- * All Rights Reserved.
+- *
+- * Permission is hereby granted, free of charge, to any person obtaining a
+- * copy of this software and associated documentation files (the
+- * "Software"), to deal in the Software without restriction, including
+- * without limitation the rights to use, copy, modify, merge, publish,
+- * distribute, sub license, and/or sell copies of the Software, and to
+- * permit persons to whom the Software is furnished to do so, subject to
+- * the following conditions:
+- *
+- * The above copyright notice and this permission notice (including the
+- * next paragraph) shall be included in all copies or substantial portions
+- * of the Software.
+- *
+- * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS
+- * OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+- * MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NON-INFRINGEMENT.
+- * IN NO EVENT SHALL TUNGSTEN GRAPHICS AND/OR ITS SUPPLIERS BE LIABLE FOR
+- * ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT,
+- * TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE
+- * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+- *
+- */
+-
+-#define pr_fmt(fmt) KBUILD_MODNAME ": " fmt
+-
+-#include <linux/circ_buf.h>
+-#include <linux/slab.h>
+-#include <linux/sysrq.h>
+-
+-#include <drm/drm_drv.h>
+-
+-#include "display/icl_dsi_regs.h"
+-#include "display/intel_de.h"
+-#include "display/intel_display_trace.h"
+-#include "display/intel_display_types.h"
+-#include "display/intel_fifo_underrun.h"
+-#include "display/intel_hotplug.h"
+-#include "display/intel_lpe_audio.h"
+-#include "display/intel_psr.h"
+-
+-#include "i915_drv.h"
+-#include "../intel_de.h"
+-
+-#define intel_uncore_read(uncore, reg) intel_de_read(dev_priv, (reg))
+-#define intel_uncore_read64(uncore, reg) intel_de_read64(dev_priv, (reg))
+-#define intel_uncore_write(uncore, reg, value) intel_de_write(dev_priv, reg, value)
+-#define intel_uncore_rmw(uncore, reg, clear, set) intel_de_rmw(dev_priv, reg, clear, set)
+-#define intel_uncore_posting_read intel_uncore_read
+-
+-static u32 raw_reg_read(void __iomem *base, i915_reg_t reg)
+-{
+-	return readl(base + reg.reg);
+-}
+-
+-static void raw_reg_write(void __iomem *base, i915_reg_t reg, u32 value)
+-{
+-	writel(value, base + reg.reg);
+-}
+-
+-#include "i915_irq.h"
+-#include "intel_pm.h"
+-
+-static void gen3_irq_reset(struct xe_device *dev_priv, i915_reg_t imr,
+-		    i915_reg_t iir, i915_reg_t ier)
+-{
+-	intel_uncore_write(dev_priv, imr, 0xffffffff);
+-	intel_uncore_posting_read(dev_priv, imr);
+-
+-	intel_uncore_write(dev_priv, ier, 0);
+-
+-	/* IIR can theoretically queue up two events. Be paranoid. */
+-	intel_uncore_write(dev_priv, iir, 0xffffffff);
+-	intel_uncore_posting_read(dev_priv, iir);
+-	intel_uncore_write(dev_priv, iir, 0xffffffff);
+-	intel_uncore_posting_read(dev_priv, iir);
+-}
+-
+-/*
+- * We should clear IMR at preinstall/uninstall, and just check at postinstall.
+- */
+-static void gen3_assert_iir_is_zero(struct xe_device *dev_priv, i915_reg_t reg)
+-{
+-	u32 val = intel_uncore_read(dev_priv, reg);
+-
+-	if (val == 0)
+-		return;
+-
+-	drm_WARN(&dev_priv->drm, 1,
+-		 "Interrupt register 0x%x is not zero: 0x%08x\n",
+-		 reg.reg, val);
+-	intel_uncore_write(dev_priv, reg, 0xffffffff);
+-	intel_uncore_posting_read(dev_priv, reg);
+-	intel_uncore_write(dev_priv, reg, 0xffffffff);
+-	intel_uncore_posting_read(dev_priv, reg);
+-}
+-
+-static void gen3_irq_init(struct xe_device *dev_priv,
+-			  i915_reg_t imr, u32 imr_val,
+-			  i915_reg_t ier, u32 ier_val,
+-			  i915_reg_t iir)
+-{
+-	gen3_assert_iir_is_zero(dev_priv, iir);
+-
+-	intel_uncore_write(xe, ier, ier_val);
+-	intel_uncore_write(xe, imr, imr_val);
+-	intel_uncore_posting_read(xe, imr);
+-}
+-
+-#define GEN8_IRQ_RESET_NDX(uncore, type, which) \
+-({ \
+-	unsigned int which_ = which; \
+-	gen3_irq_reset((uncore), GEN8_##type##_IMR(which_), \
+-		       GEN8_##type##_IIR(which_), GEN8_##type##_IER(which_)); \
+-})
+-
+-#define GEN3_IRQ_RESET(uncore, type) \
+-	gen3_irq_reset((uncore), type##IMR, type##IIR, type##IER)
+-
+-#define GEN8_IRQ_INIT_NDX(uncore, type, which, imr_val, ier_val) \
+-({ \
+-	unsigned int which_ = which; \
+-	gen3_irq_init((uncore), \
+-		      GEN8_##type##_IMR(which_), imr_val, \
+-		      GEN8_##type##_IER(which_), ier_val, \
+-		      GEN8_##type##_IIR(which_)); \
+-})
+-
+-#define GEN3_IRQ_INIT(uncore, type, imr_val, ier_val) \
+-	gen3_irq_init((uncore), \
+-		      type##IMR, imr_val, \
+-		      type##IER, ier_val, \
+-		      type##IIR)
+-
+-/**
+- * DOC: interrupt handling
+- *
+- * These functions provide the basic support for enabling and disabling the
+- * interrupt handling support. There's a lot more functionality in i915_irq.c
+- * and related files, but that will be described in separate chapters.
+- */
+-
+-/*
+- * Interrupt statistic for PMU. Increments the counter only if the
+- * interrupt originated from the GPU so interrupts from a device which
+- * shares the interrupt line are not accounted.
+- */
+-static inline void pmu_irq_stats(struct drm_i915_private *i915,
+-				 irqreturn_t res)
+-{
+-}
+-
+-typedef bool (*long_pulse_detect_func)(enum hpd_pin pin, u32 val);
+-typedef u32 (*hotplug_enables_func)(struct drm_i915_private *i915,
+-				    enum hpd_pin pin);
+-
+-
+-static const u32 hpd_gen11[HPD_NUM_PINS] = {
+-	[HPD_PORT_TC1] = GEN11_TC_HOTPLUG(HPD_PORT_TC1) | GEN11_TBT_HOTPLUG(HPD_PORT_TC1),
+-	[HPD_PORT_TC2] = GEN11_TC_HOTPLUG(HPD_PORT_TC2) | GEN11_TBT_HOTPLUG(HPD_PORT_TC2),
+-	[HPD_PORT_TC3] = GEN11_TC_HOTPLUG(HPD_PORT_TC3) | GEN11_TBT_HOTPLUG(HPD_PORT_TC3),
+-	[HPD_PORT_TC4] = GEN11_TC_HOTPLUG(HPD_PORT_TC4) | GEN11_TBT_HOTPLUG(HPD_PORT_TC4),
+-	[HPD_PORT_TC5] = GEN11_TC_HOTPLUG(HPD_PORT_TC5) | GEN11_TBT_HOTPLUG(HPD_PORT_TC5),
+-	[HPD_PORT_TC6] = GEN11_TC_HOTPLUG(HPD_PORT_TC6) | GEN11_TBT_HOTPLUG(HPD_PORT_TC6),
+-};
+-
+-static const u32 hpd_icp[HPD_NUM_PINS] = {
+-	[HPD_PORT_A] = SDE_DDI_HOTPLUG_ICP(HPD_PORT_A),
+-	[HPD_PORT_B] = SDE_DDI_HOTPLUG_ICP(HPD_PORT_B),
+-	[HPD_PORT_C] = SDE_DDI_HOTPLUG_ICP(HPD_PORT_C),
+-	[HPD_PORT_TC1] = SDE_TC_HOTPLUG_ICP(HPD_PORT_TC1),
+-	[HPD_PORT_TC2] = SDE_TC_HOTPLUG_ICP(HPD_PORT_TC2),
+-	[HPD_PORT_TC3] = SDE_TC_HOTPLUG_ICP(HPD_PORT_TC3),
+-	[HPD_PORT_TC4] = SDE_TC_HOTPLUG_ICP(HPD_PORT_TC4),
+-	[HPD_PORT_TC5] = SDE_TC_HOTPLUG_ICP(HPD_PORT_TC5),
+-	[HPD_PORT_TC6] = SDE_TC_HOTPLUG_ICP(HPD_PORT_TC6),
+-};
+-
+-static const u32 hpd_sde_dg1[HPD_NUM_PINS] = {
+-	[HPD_PORT_A] = SDE_DDI_HOTPLUG_ICP(HPD_PORT_A),
+-	[HPD_PORT_B] = SDE_DDI_HOTPLUG_ICP(HPD_PORT_B),
+-	[HPD_PORT_C] = SDE_DDI_HOTPLUG_ICP(HPD_PORT_C),
+-	[HPD_PORT_D] = SDE_DDI_HOTPLUG_ICP(HPD_PORT_D),
+-	[HPD_PORT_TC1] = SDE_TC_HOTPLUG_DG2(HPD_PORT_TC1),
+-};
+-
+-static void intel_hpd_init_pins(struct drm_i915_private *dev_priv)
+-{
+-	struct intel_hotplug *hpd = &dev_priv->display.hotplug;
+-
+-	hpd->hpd = hpd_gen11;
+-
+-	if ((INTEL_PCH_TYPE(dev_priv) < PCH_DG1) &&
+-	    (!HAS_PCH_SPLIT(dev_priv) || HAS_PCH_NOP(dev_priv)))
+-		return;
+-
+-	if (INTEL_PCH_TYPE(dev_priv) >= PCH_DG1)
+-		hpd->pch_hpd = hpd_sde_dg1;
+-	else
+-		hpd->pch_hpd = hpd_icp;
+-}
+-
+-static void
+-intel_handle_vblank(struct drm_i915_private *dev_priv, enum pipe pipe)
+-{
+-	struct intel_crtc *crtc = intel_crtc_for_pipe(dev_priv, pipe);
+-
+-	drm_crtc_handle_vblank(&crtc->base);
+-}
+-
+-/* For display hotplug interrupt */
+-static inline void
+-i915_hotplug_interrupt_update_locked(struct drm_i915_private *dev_priv,
+-				     u32 mask,
+-				     u32 bits)
+-{
+-	u32 val;
+-
+-	lockdep_assert_held(&dev_priv->irq_lock);
+-	drm_WARN_ON(&dev_priv->drm, bits & ~mask);
+-
+-	val = intel_uncore_read(dev_priv, PORT_HOTPLUG_EN);
+-	val &= ~mask;
+-	val |= bits;
+-	intel_uncore_write(dev_priv, PORT_HOTPLUG_EN, val);
+-}
+-
+-/**
+- * i915_hotplug_interrupt_update - update hotplug interrupt enable
+- * @dev_priv: driver private
+- * @mask: bits to update
+- * @bits: bits to enable
+- * NOTE: the HPD enable bits are modified both inside and outside
+- * of an interrupt context. To avoid that read-modify-write cycles
+- * interfer, these bits are protected by a spinlock. Since this
+- * function is usually not called from a context where the lock is
+- * held already, this function acquires the lock itself. A non-locking
+- * version is also available.
+- */
+-void i915_hotplug_interrupt_update(struct drm_i915_private *dev_priv,
+-				   u32 mask,
+-				   u32 bits)
+-{
+-	spin_lock_irq(&dev_priv->irq_lock);
+-	i915_hotplug_interrupt_update_locked(dev_priv, mask, bits);
+-	spin_unlock_irq(&dev_priv->irq_lock);
+-}
+-
+-/**
+- * bdw_update_pipe_irq - update DE pipe interrupt
+- * @dev_priv: driver private
+- * @pipe: pipe whose interrupt to update
+- * @interrupt_mask: mask of interrupt bits to update
+- * @enabled_irq_mask: mask of interrupt bits to enable
+- */
+-static void bdw_update_pipe_irq(struct drm_i915_private *dev_priv,
+-				enum pipe pipe, u32 interrupt_mask,
+-				u32 enabled_irq_mask)
+-{
+-	u32 new_val;
+-
+-	lockdep_assert_held(&dev_priv->irq_lock);
+-
+-	drm_WARN_ON(&dev_priv->drm, enabled_irq_mask & ~interrupt_mask);
+-
+-	if (drm_WARN_ON(&dev_priv->drm, !intel_irqs_enabled(dev_priv)))
+-		return;
+-
+-	new_val = dev_priv->de_irq_mask[pipe];
+-	new_val &= ~interrupt_mask;
+-	new_val |= (~enabled_irq_mask & interrupt_mask);
+-
+-	if (new_val != dev_priv->de_irq_mask[pipe]) {
+-		dev_priv->de_irq_mask[pipe] = new_val;
+-		intel_uncore_write(dev_priv, GEN8_DE_PIPE_IMR(pipe), dev_priv->de_irq_mask[pipe]);
+-		intel_uncore_posting_read(dev_priv, GEN8_DE_PIPE_IMR(pipe));
+-	}
+-}
+-
+-void bdw_enable_pipe_irq(struct drm_i915_private *i915,
+-			 enum pipe pipe, u32 bits)
+-{
+-	bdw_update_pipe_irq(i915, pipe, bits, bits);
+-}
+-
+-void bdw_disable_pipe_irq(struct drm_i915_private *i915,
+-			  enum pipe pipe, u32 bits)
+-{
+-	bdw_update_pipe_irq(i915, pipe, bits, 0);
+-}
+-
+-static void ibx_display_interrupt_update(struct drm_i915_private *dev_priv,
+-					 u32 interrupt_mask,
+-					 u32 enabled_irq_mask)
+-{
+-	u32 sdeimr = intel_uncore_read(&dev_priv->uncore, SDEIMR);
+-	sdeimr &= ~interrupt_mask;
+-	sdeimr |= (~enabled_irq_mask & interrupt_mask);
+-
+-	drm_WARN_ON(&dev_priv->drm, enabled_irq_mask & ~interrupt_mask);
+-
+-	lockdep_assert_held(&dev_priv->irq_lock);
+-
+-	if (drm_WARN_ON(&dev_priv->drm, !intel_irqs_enabled(dev_priv)))
+-		return;
+-
+-	intel_uncore_write(&dev_priv->uncore, SDEIMR, sdeimr);
+-	intel_uncore_posting_read(&dev_priv->uncore, SDEIMR);
+-}
+-
+-void ibx_enable_display_interrupt(struct drm_i915_private *i915, u32 bits)
+-{
+-	BUG_ON(1); /* Not to be called */
+-}
+-
+-void ibx_disable_display_interrupt(struct drm_i915_private *i915, u32 bits)
+-{
+-	BUG_ON(1); /* Not to be called */
+-}
+-
+-void ilk_enable_display_irq(struct drm_i915_private *i915, u32 bits)
+-{
+-	BUG_ON(1); /* Not to be called */
+-}
+-
+-void ilk_disable_display_irq(struct drm_i915_private *i915, u32 bits)
+-{
+-	BUG_ON(1); /* Not to be called */
+-}
+-
+-int ilk_enable_vblank(struct drm_crtc *crtc)
+-{
+-	BUG_ON(1);
+-	return -EINVAL;
+-}
+-
+-void ilk_disable_vblank(struct drm_crtc *crtc)
+-{
+-	BUG_ON(1);
+-}
+-
+-u32 i915_pipestat_enable_mask(struct drm_i915_private *dev_priv,
+-			      enum pipe pipe)
+-{
+-	BUG_ON(1); /* Not to be called */
+-}
+-
+-/*
+- * This timing diagram depicts the video signal in and
+- * around the vertical blanking period.
+- *
+- * Assumptions about the fictitious mode used in this example:
+- *  vblank_start >= 3
+- *  vsync_start = vblank_start + 1
+- *  vsync_end = vblank_start + 2
+- *  vtotal = vblank_start + 3
+- *
+- *           start of vblank:
+- *           latch double buffered registers
+- *           increment frame counter (ctg+)
+- *           generate start of vblank interrupt (gen4+)
+- *           |
+- *           |          frame start:
+- *           |          generate frame start interrupt (aka. vblank interrupt) (gmch)
+- *           |          may be shifted forward 1-3 extra lines via PIPECONF
+- *           |          |
+- *           |          |  start of vsync:
+- *           |          |  generate vsync interrupt
+- *           |          |  |
+- * ___xxxx___    ___xxxx___    ___xxxx___    ___xxxx___    ___xxxx___    ___xxxx
+- *       .   \hs/   .      \hs/          \hs/          \hs/   .      \hs/
+- * ----va---> <-----------------vb--------------------> <--------va-------------
+- *       |          |       <----vs----->                     |
+- * -vbs-----> <---vbs+1---> <---vbs+2---> <-----0-----> <-----1-----> <-----2--- (scanline counter gen2)
+- * -vbs-2---> <---vbs-1---> <---vbs-----> <---vbs+1---> <---vbs+2---> <-----0--- (scanline counter gen3+)
+- * -vbs-2---> <---vbs-2---> <---vbs-1---> <---vbs-----> <---vbs+1---> <---vbs+2- (scanline counter hsw+ hdmi)
+- *       |          |                                         |
+- *       last visible pixel                                   first visible pixel
+- *                  |                                         increment frame counter (gen3/4)
+- *                  pixel counter = vblank_start * htotal     pixel counter = 0 (gen3/4)
+- *
+- * x  = horizontal active
+- * _  = horizontal blanking
+- * hs = horizontal sync
+- * va = vertical active
+- * vb = vertical blanking
+- * vs = vertical sync
+- * vbs = vblank_start (number)
+- *
+- * Summary:
+- * - most events happen at the start of horizontal sync
+- * - frame start happens at the start of horizontal blank, 1-4 lines
+- *   (depending on PIPECONF settings) after the start of vblank
+- * - gen3/4 pixel and frame counter are synchronized with the start
+- *   of horizontal active on the first line of vertical active
+- */
+-
+-/* Called from drm generic code, passed a 'crtc', which
+- * we use as a pipe index
+- */
+-u32 i915_get_vblank_counter(struct drm_crtc *crtc)
+-{
+-	struct drm_i915_private *dev_priv = to_i915(crtc->dev);
+-	struct drm_vblank_crtc *vblank = &dev_priv->drm.vblank[drm_crtc_index(crtc)];
+-	const struct drm_display_mode *mode = &vblank->hwmode;
+-	enum pipe pipe = to_intel_crtc(crtc)->pipe;
+-	i915_reg_t high_frame, low_frame;
+-	u32 high1, high2, low, pixel, vbl_start, hsync_start, htotal;
+-
+-	/*
+-	 * On i965gm TV output the frame counter only works up to
+-	 * the point when we enable the TV encoder. After that the
+-	 * frame counter ceases to work and reads zero. We need a
+-	 * vblank wait before enabling the TV encoder and so we
+-	 * have to enable vblank interrupts while the frame counter
+-	 * is still in a working state. However the core vblank code
+-	 * does not like us returning non-zero frame counter values
+-	 * when we've told it that we don't have a working frame
+-	 * counter. Thus we must stop non-zero values leaking out.
+-	 */
+-	if (!vblank->max_vblank_count)
+-		return 0;
+-
+-	htotal = mode->crtc_htotal;
+-	hsync_start = mode->crtc_hsync_start;
+-	vbl_start = mode->crtc_vblank_start;
+-	if (mode->flags & DRM_MODE_FLAG_INTERLACE)
+-		vbl_start = DIV_ROUND_UP(vbl_start, 2);
+-
+-	/* Convert to pixel count */
+-	vbl_start *= htotal;
+-
+-	/* Start of vblank event occurs at start of hsync */
+-	vbl_start -= htotal - hsync_start;
+-
+-	high_frame = PIPEFRAME(pipe);
+-	low_frame = PIPEFRAMEPIXEL(pipe);
+-
+-//	spin_lock_irqsave(dev_priv.lock, irqflags);
+-
+-	/*
+-	 * High & low register fields aren't synchronized, so make sure
+-	 * we get a low value that's stable across two reads of the high
+-	 * register.
+-	 */
+-	do {
+-		high1 = intel_de_read_fw(dev_priv, high_frame) & PIPE_FRAME_HIGH_MASK;
+-		low   = intel_de_read_fw(dev_priv, low_frame);
+-		high2 = intel_de_read_fw(dev_priv, high_frame) & PIPE_FRAME_HIGH_MASK;
+-	} while (high1 != high2);
+-
+-//	spin_unlock_irqrestore(dev_priv.lock, irqflags);
+-
+-	high1 >>= PIPE_FRAME_HIGH_SHIFT;
+-	pixel = low & PIPE_PIXEL_MASK;
+-	low >>= PIPE_FRAME_LOW_SHIFT;
+-
+-	/*
+-	 * The frame counter increments at beginning of active.
+-	 * Cook up a vblank counter by also checking the pixel
+-	 * counter against vblank start.
+-	 */
+-	return (((high1 << 8) | low) + (pixel >= vbl_start)) & 0xffffff;
+-}
+-
+-u32 g4x_get_vblank_counter(struct drm_crtc *crtc)
+-{
+-	struct drm_i915_private *dev_priv = to_i915(crtc->dev);
+-	struct drm_vblank_crtc *vblank = &dev_priv->drm.vblank[drm_crtc_index(crtc)];
+-	enum pipe pipe = to_intel_crtc(crtc)->pipe;
+-
+-	if (!vblank->max_vblank_count)
+-		return 0;
+-
+-	return intel_uncore_read(dev_priv, PIPE_FRMCOUNT_G4X(pipe));
+-}
+-
+-static u32 intel_crtc_scanlines_since_frame_timestamp(struct intel_crtc *crtc)
+-{
+-	struct drm_i915_private *dev_priv = to_i915(crtc->base.dev);
+-	struct drm_vblank_crtc *vblank =
+-		&crtc->base.dev->vblank[drm_crtc_index(&crtc->base)];
+-	const struct drm_display_mode *mode = &vblank->hwmode;
+-	u32 htotal = mode->crtc_htotal;
+-	u32 clock = mode->crtc_clock;
+-	u32 scan_prev_time, scan_curr_time, scan_post_time;
+-
+-	/*
+-	 * To avoid the race condition where we might cross into the
+-	 * next vblank just between the PIPE_FRMTMSTMP and TIMESTAMP_CTR
+-	 * reads. We make sure we read PIPE_FRMTMSTMP and TIMESTAMP_CTR
+-	 * during the same frame.
+-	 */
+-	do {
+-		/*
+-		 * This field provides read back of the display
+-		 * pipe frame time stamp. The time stamp value
+-		 * is sampled at every start of vertical blank.
+-		 */
+-		scan_prev_time = intel_de_read_fw(dev_priv,
+-						  PIPE_FRMTMSTMP(crtc->pipe));
+-
+-		/*
+-		 * The TIMESTAMP_CTR register has the current
+-		 * time stamp value.
+-		 */
+-		scan_curr_time = intel_de_read_fw(dev_priv, IVB_TIMESTAMP_CTR);
+-
+-		scan_post_time = intel_de_read_fw(dev_priv,
+-						  PIPE_FRMTMSTMP(crtc->pipe));
+-	} while (scan_post_time != scan_prev_time);
+-
+-	return div_u64(mul_u32_u32(scan_curr_time - scan_prev_time,
+-				   clock), 1000 * htotal);
+-}
+-
+-/*
+- * On certain encoders on certain platforms, pipe
+- * scanline register will not work to get the scanline,
+- * since the timings are driven from the PORT or issues
+- * with scanline register updates.
+- * This function will use Framestamp and current
+- * timestamp registers to calculate the scanline.
+- */
+-static u32 __intel_get_crtc_scanline_from_timestamp(struct intel_crtc *crtc)
+-{
+-	struct drm_vblank_crtc *vblank =
+-		&crtc->base.dev->vblank[drm_crtc_index(&crtc->base)];
+-	const struct drm_display_mode *mode = &vblank->hwmode;
+-	u32 vblank_start = mode->crtc_vblank_start;
+-	u32 vtotal = mode->crtc_vtotal;
+-	u32 scanline;
+-
+-	scanline = intel_crtc_scanlines_since_frame_timestamp(crtc);
+-	scanline = min(scanline, vtotal - 1);
+-	scanline = (scanline + vblank_start) % vtotal;
+-
+-	return scanline;
+-}
+-
+-/*
+- * intel_de_read_fw(), only for fast reads of display block, no need for
+- * forcewake etc.
+- */
+-static int __intel_get_crtc_scanline(struct intel_crtc *crtc)
+-{
+-	struct drm_device *dev = crtc->base.dev;
+-	struct drm_i915_private *dev_priv = to_i915(dev);
+-	const struct drm_display_mode *mode;
+-	struct drm_vblank_crtc *vblank;
+-	enum pipe pipe = crtc->pipe;
+-	int position, vtotal;
+-
+-	if (!crtc->active)
+-		return 0;
+-
+-	vblank = &crtc->base.dev->vblank[drm_crtc_index(&crtc->base)];
+-	mode = &vblank->hwmode;
+-
+-	if (crtc->mode_flags & I915_MODE_FLAG_GET_SCANLINE_FROM_TIMESTAMP)
+-		return __intel_get_crtc_scanline_from_timestamp(crtc);
+-
+-	vtotal = mode->crtc_vtotal;
+-	if (mode->flags & DRM_MODE_FLAG_INTERLACE)
+-		vtotal /= 2;
+-
+-	position = intel_de_read_fw(dev_priv, PIPEDSL(pipe)) & PIPEDSL_LINE_MASK;
+-
+-	/*
+-	 * On HSW, the DSL reg (0x70000) appears to return 0 if we
+-	 * read it just before the start of vblank.  So try it again
+-	 * so we don't accidentally end up spanning a vblank frame
+-	 * increment, causing the pipe_update_end() code to squak at us.
+-	 *
+-	 * The nature of this problem means we can't simply check the ISR
+-	 * bit and return the vblank start value; nor can we use the scanline
+-	 * debug register in the transcoder as it appears to have the same
+-	 * problem.  We may need to extend this to include other platforms,
+-	 * but so far testing only shows the problem on HSW.
+-	 */
+-	if (HAS_DDI(dev_priv) && !position) {
+-		int i, temp;
+-
+-		for (i = 0; i < 100; i++) {
+-			udelay(1);
+-			temp = intel_de_read_fw(dev_priv, PIPEDSL(pipe)) & PIPEDSL_LINE_MASK;
+-			if (temp != position) {
+-				position = temp;
+-				break;
+-			}
+-		}
+-	}
+-
+-	/*
+-	 * See update_scanline_offset() for the details on the
+-	 * scanline_offset adjustment.
+-	 */
+-	return (position + crtc->scanline_offset) % vtotal;
+-}
+-
+-static bool i915_get_crtc_scanoutpos(struct drm_crtc *_crtc,
+-				     bool in_vblank_irq,
+-				     int *vpos, int *hpos,
+-				     ktime_t *stime, ktime_t *etime,
+-				     const struct drm_display_mode *mode)
+-{
+-	struct drm_device *dev = _crtc->dev;
+-	struct drm_i915_private *dev_priv = to_i915(dev);
+-	struct intel_crtc *crtc = to_intel_crtc(_crtc);
+-	enum pipe pipe = crtc->pipe;
+-	int position;
+-	int vbl_start, vbl_end, hsync_start, htotal, vtotal;
+-	unsigned long irqflags;
+-	bool use_scanline_counter = DISPLAY_VER(dev_priv) >= 5 ||
+-		IS_G4X(dev_priv) || DISPLAY_VER(dev_priv) == 2 ||
+-		crtc->mode_flags & I915_MODE_FLAG_USE_SCANLINE_COUNTER;
+-
+-	if (drm_WARN_ON(&dev_priv->drm, !mode->crtc_clock)) {
+-		drm_dbg(&dev_priv->drm,
+-			"trying to get scanoutpos for disabled "
+-			"pipe %c\n", pipe_name(pipe));
+-		return false;
+-	}
+-
+-	htotal = mode->crtc_htotal;
+-	hsync_start = mode->crtc_hsync_start;
+-	vtotal = mode->crtc_vtotal;
+-	vbl_start = mode->crtc_vblank_start;
+-	vbl_end = mode->crtc_vblank_end;
+-
+-	if (mode->flags & DRM_MODE_FLAG_INTERLACE) {
+-		vbl_start = DIV_ROUND_UP(vbl_start, 2);
+-		vbl_end /= 2;
+-		vtotal /= 2;
+-	}
+-
+-	/*
+-	 * Lock uncore.lock, as we will do multiple timing critical raw
+-	 * register reads, potentially with preemption disabled, so the
+-	 * following code must not block on uncore.lock.
+-	 */
+-//	spin_lock_irqsave(dev_priv.lock, irqflags);
+-	local_irq_save(irqflags);
+-
+-	/* preempt_disable_rt() should go right here in PREEMPT_RT patchset. */
+-
+-	/* Get optional system timestamp before query. */
+-	if (stime)
+-		*stime = ktime_get();
+-
+-	if (crtc->mode_flags & I915_MODE_FLAG_VRR) {
+-		int scanlines = intel_crtc_scanlines_since_frame_timestamp(crtc);
+-
+-		position = __intel_get_crtc_scanline(crtc);
+-
+-		/*
+-		 * Already exiting vblank? If so, shift our position
+-		 * so it looks like we're already apporaching the full
+-		 * vblank end. This should make the generated timestamp
+-		 * more or less match when the active portion will start.
+-		 */
+-		if (position >= vbl_start && scanlines < position)
+-			position = min(crtc->vmax_vblank_start + scanlines, vtotal - 1);
+-	} else if (use_scanline_counter) {
+-		/* No obvious pixelcount register. Only query vertical
+-		 * scanout position from Display scan line register.
+-		 */
+-		position = __intel_get_crtc_scanline(crtc);
+-	} else {
+-		/* Have access to pixelcount since start of frame.
+-		 * We can split this into vertical and horizontal
+-		 * scanout position.
+-		 */
+-		position = (intel_de_read_fw(dev_priv, PIPEFRAMEPIXEL(pipe)) & PIPE_PIXEL_MASK) >> PIPE_PIXEL_SHIFT;
+-
+-		/* convert to pixel counts */
+-		vbl_start *= htotal;
+-		vbl_end *= htotal;
+-		vtotal *= htotal;
+-
+-		/*
+-		 * In interlaced modes, the pixel counter counts all pixels,
+-		 * so one field will have htotal more pixels. In order to avoid
+-		 * the reported position from jumping backwards when the pixel
+-		 * counter is beyond the length of the shorter field, just
+-		 * clamp the position the length of the shorter field. This
+-		 * matches how the scanline counter based position works since
+-		 * the scanline counter doesn't count the two half lines.
+-		 */
+-		if (position >= vtotal)
+-			position = vtotal - 1;
+-
+-		/*
+-		 * Start of vblank interrupt is triggered at start of hsync,
+-		 * just prior to the first active line of vblank. However we
+-		 * consider lines to start at the leading edge of horizontal
+-		 * active. So, should we get here before we've crossed into
+-		 * the horizontal active of the first line in vblank, we would
+-		 * not set the DRM_SCANOUTPOS_INVBL flag. In order to fix that,
+-		 * always add htotal-hsync_start to the current pixel position.
+-		 */
+-		position = (position + htotal - hsync_start) % vtotal;
+-	}
+-
+-	/* Get optional system timestamp after query. */
+-	if (etime)
+-		*etime = ktime_get();
+-
+-	/* preempt_enable_rt() should go right here in PREEMPT_RT patchset. */
+-
+-//	spin_unlock_irqrestore(dev_priv.lock, irqflags);
+-	local_irq_restore(irqflags);
+-
+-	/*
+-	 * While in vblank, position will be negative
+-	 * counting up towards 0 at vbl_end. And outside
+-	 * vblank, position will be positive counting
+-	 * up since vbl_end.
+-	 */
+-	if (position >= vbl_start)
+-		position -= vbl_end;
+-	else
+-		position += vtotal - vbl_end;
+-
+-	if (use_scanline_counter) {
+-		*vpos = position;
+-		*hpos = 0;
+-	} else {
+-		*vpos = position / htotal;
+-		*hpos = position - (*vpos * htotal);
+-	}
+-
+-	return true;
+-}
+-
+-bool intel_crtc_get_vblank_timestamp(struct drm_crtc *crtc, int *max_error,
+-				     ktime_t *vblank_time, bool in_vblank_irq)
+-{
+-	return drm_crtc_vblank_helper_get_vblank_timestamp_internal(
+-		crtc, max_error, vblank_time, in_vblank_irq,
+-		i915_get_crtc_scanoutpos);
+-}
+-
+-int intel_get_crtc_scanline(struct intel_crtc *crtc)
+-{
+-	int position;
+-
+-	local_irq_disable();
+-	position = __intel_get_crtc_scanline(crtc);
+-	local_irq_enable();
+-
+-	return position;
+-}
+-
+-static bool gen11_port_hotplug_long_detect(enum hpd_pin pin, u32 val)
+-{
+-	switch (pin) {
+-	case HPD_PORT_TC1:
+-	case HPD_PORT_TC2:
+-	case HPD_PORT_TC3:
+-	case HPD_PORT_TC4:
+-	case HPD_PORT_TC5:
+-	case HPD_PORT_TC6:
+-		return val & GEN11_HOTPLUG_CTL_LONG_DETECT(pin);
+-	default:
+-		return false;
+-	}
+-}
+-
+-static bool icp_ddi_port_hotplug_long_detect(enum hpd_pin pin, u32 val)
+-{
+-	switch (pin) {
+-	case HPD_PORT_A:
+-	case HPD_PORT_B:
+-	case HPD_PORT_C:
+-	case HPD_PORT_D:
+-		return val & SHOTPLUG_CTL_DDI_HPD_LONG_DETECT(pin);
+-	default:
+-		return false;
+-	}
+-}
+-
+-static bool icp_tc_port_hotplug_long_detect(enum hpd_pin pin, u32 val)
+-{
+-	switch (pin) {
+-	case HPD_PORT_TC1:
+-	case HPD_PORT_TC2:
+-	case HPD_PORT_TC3:
+-	case HPD_PORT_TC4:
+-	case HPD_PORT_TC5:
+-	case HPD_PORT_TC6:
+-		return val & ICP_TC_HPD_LONG_DETECT(pin);
+-	default:
+-		return false;
+-	}
+-}
+-
+-/*
+- * Get a bit mask of pins that have triggered, and which ones may be long.
+- * This can be called multiple times with the same masks to accumulate
+- * hotplug detection results from several registers.
+- *
+- * Note that the caller is expected to zero out the masks initially.
+- */
+-static void intel_get_hpd_pins(struct drm_i915_private *dev_priv,
+-			       u32 *pin_mask, u32 *long_mask,
+-			       u32 hotplug_trigger, u32 dig_hotplug_reg,
+-			       const u32 hpd[HPD_NUM_PINS],
+-			       bool long_pulse_detect(enum hpd_pin pin, u32 val))
+-{
+-	enum hpd_pin pin;
+-
+-	BUILD_BUG_ON(BITS_PER_TYPE(*pin_mask) < HPD_NUM_PINS);
+-
+-	for_each_hpd_pin(pin) {
+-		if ((hpd[pin] & hotplug_trigger) == 0)
+-			continue;
+-
+-		*pin_mask |= BIT(pin);
+-
+-		if (long_pulse_detect(pin, dig_hotplug_reg))
+-			*long_mask |= BIT(pin);
+-	}
+-
+-	drm_dbg(&dev_priv->drm,
+-		"hotplug event received, stat 0x%08x, dig 0x%08x, pins 0x%08x, long 0x%08x\n",
+-		hotplug_trigger, dig_hotplug_reg, *pin_mask, *long_mask);
+-
+-}
+-
+-static u32 intel_hpd_enabled_irqs(struct drm_i915_private *dev_priv,
+-				  const u32 hpd[HPD_NUM_PINS])
+-{
+-	struct intel_encoder *encoder;
+-	u32 enabled_irqs = 0;
+-
+-	for_each_intel_encoder(&dev_priv->drm, encoder)
+-		if (dev_priv->display.hotplug.stats[encoder->hpd_pin].state == HPD_ENABLED)
+-			enabled_irqs |= hpd[encoder->hpd_pin];
+-
+-	return enabled_irqs;
+-}
+-
+-static u32 intel_hpd_hotplug_irqs(struct drm_i915_private *dev_priv,
+-				  const u32 hpd[HPD_NUM_PINS])
+-{
+-	struct intel_encoder *encoder;
+-	u32 hotplug_irqs = 0;
+-
+-	for_each_intel_encoder(&dev_priv->drm, encoder)
+-		hotplug_irqs |= hpd[encoder->hpd_pin];
+-
+-	return hotplug_irqs;
+-}
+-
+-static u32 intel_hpd_hotplug_enables(struct drm_i915_private *i915,
+-				     hotplug_enables_func hotplug_enables)
+-{
+-	struct intel_encoder *encoder;
+-	u32 hotplug = 0;
+-
+-	for_each_intel_encoder(&i915->drm, encoder)
+-		hotplug |= hotplug_enables(i915, encoder->hpd_pin);
+-
+-	return hotplug;
+-}
+-
+-static void gmbus_irq_handler(struct drm_i915_private *dev_priv)
+-{
+-	wake_up_all(&dev_priv->display.gmbus.wait_queue);
+-}
+-
+-static void dp_aux_irq_handler(struct drm_i915_private *dev_priv)
+-{
+-	wake_up_all(&dev_priv->display.gmbus.wait_queue);
+-}
+-
+-#if defined(CONFIG_DEBUG_FS)
+-static void display_pipe_crc_irq_handler(struct drm_i915_private *dev_priv,
+-					 enum pipe pipe,
+-					 u32 crc0, u32 crc1,
+-					 u32 crc2, u32 crc3,
+-					 u32 crc4)
+-{
+-	struct intel_crtc *crtc = intel_crtc_for_pipe(dev_priv, pipe);
+-	struct intel_pipe_crc *pipe_crc = &crtc->pipe_crc;
+-	u32 crcs[5] = { crc0, crc1, crc2, crc3, crc4 };
+-
+-	trace_intel_pipe_crc(crtc, crcs);
+-
+-	spin_lock(&pipe_crc->lock);
+-	/*
+-	 * For some not yet identified reason, the first CRC is
+-	 * bonkers. So let's just wait for the next vblank and read
+-	 * out the buggy result.
+-	 *
+-	 * On GEN8+ sometimes the second CRC is bonkers as well, so
+-	 * don't trust that one either.
+-	 */
+-	if (pipe_crc->skipped <= 0 ||
+-	    (DISPLAY_VER(dev_priv) >= 8 && pipe_crc->skipped == 1)) {
+-		pipe_crc->skipped++;
+-		spin_unlock(&pipe_crc->lock);
+-		return;
+-	}
+-	spin_unlock(&pipe_crc->lock);
+-
+-	drm_crtc_add_crc_entry(&crtc->base, true,
+-				drm_crtc_accurate_vblank_count(&crtc->base),
+-				crcs);
+-}
+-#else
+-static inline void
+-display_pipe_crc_irq_handler(struct drm_i915_private *dev_priv,
+-			     enum pipe pipe,
+-			     u32 crc0, u32 crc1,
+-			     u32 crc2, u32 crc3,
+-			     u32 crc4) {}
+-#endif
+-
+-static void flip_done_handler(struct drm_i915_private *i915,
+-			      enum pipe pipe)
+-{
+-	struct intel_crtc *crtc = intel_crtc_for_pipe(i915, pipe);
+-	struct drm_crtc_state *crtc_state = crtc->base.state;
+-	struct drm_pending_vblank_event *e = crtc_state->event;
+-	struct drm_device *dev = &i915->drm;
+-	unsigned long irqflags;
+-
+-	spin_lock_irqsave(&dev->event_lock, irqflags);
+-
+-	crtc_state->event = NULL;
+-
+-	drm_crtc_send_vblank_event(&crtc->base, e);
+-
+-	spin_unlock_irqrestore(&dev->event_lock, irqflags);
+-}
+-
+-static void hsw_pipe_crc_irq_handler(struct drm_i915_private *dev_priv,
+-				     enum pipe pipe)
+-{
+-	display_pipe_crc_irq_handler(dev_priv, pipe,
+-				     intel_uncore_read(dev_priv, PIPE_CRC_RES_1_IVB(pipe)),
+-				     0, 0, 0, 0);
+-}
+-
+-static void icp_irq_handler(struct drm_i915_private *dev_priv, u32 pch_iir)
+-{
+-	u32 ddi_hotplug_trigger = pch_iir & SDE_DDI_HOTPLUG_MASK_ICP;
+-	u32 tc_hotplug_trigger = pch_iir & SDE_TC_HOTPLUG_MASK_ICP;
+-	u32 pin_mask = 0, long_mask = 0;
+-
+-	if (ddi_hotplug_trigger) {
+-		u32 dig_hotplug_reg;
+-
+-		dig_hotplug_reg = intel_uncore_read(dev_priv, SHOTPLUG_CTL_DDI);
+-		intel_uncore_write(dev_priv, SHOTPLUG_CTL_DDI, dig_hotplug_reg);
+-
+-		intel_get_hpd_pins(dev_priv, &pin_mask, &long_mask,
+-				   ddi_hotplug_trigger, dig_hotplug_reg,
+-				   dev_priv->display.hotplug.pch_hpd,
+-				   icp_ddi_port_hotplug_long_detect);
+-	}
+-
+-	if (tc_hotplug_trigger) {
+-		u32 dig_hotplug_reg;
+-
+-		dig_hotplug_reg = intel_uncore_read(dev_priv, SHOTPLUG_CTL_TC);
+-		intel_uncore_write(dev_priv, SHOTPLUG_CTL_TC, dig_hotplug_reg);
+-
+-		intel_get_hpd_pins(dev_priv, &pin_mask, &long_mask,
+-				   tc_hotplug_trigger, dig_hotplug_reg,
+-				   dev_priv->display.hotplug.pch_hpd,
+-				   icp_tc_port_hotplug_long_detect);
+-	}
+-
+-	if (pin_mask)
+-		intel_hpd_irq_handler(dev_priv, pin_mask, long_mask);
+-
+-	if (pch_iir & SDE_GMBUS_ICP)
+-		gmbus_irq_handler(dev_priv);
+-}
+-
+-static void gen11_hpd_irq_handler(struct drm_i915_private *dev_priv, u32 iir)
+-{
+-	u32 pin_mask = 0, long_mask = 0;
+-	u32 trigger_tc = iir & GEN11_DE_TC_HOTPLUG_MASK;
+-	u32 trigger_tbt = iir & GEN11_DE_TBT_HOTPLUG_MASK;
+-
+-	if (trigger_tc) {
+-		u32 dig_hotplug_reg;
+-
+-		dig_hotplug_reg = intel_uncore_read(dev_priv, GEN11_TC_HOTPLUG_CTL);
+-		intel_uncore_write(dev_priv, GEN11_TC_HOTPLUG_CTL, dig_hotplug_reg);
+-
+-		intel_get_hpd_pins(dev_priv, &pin_mask, &long_mask,
+-				   trigger_tc, dig_hotplug_reg,
+-				   dev_priv->display.hotplug.hpd,
+-				   gen11_port_hotplug_long_detect);
+-	}
+-
+-	if (trigger_tbt) {
+-		u32 dig_hotplug_reg;
+-
+-		dig_hotplug_reg = intel_uncore_read(dev_priv, GEN11_TBT_HOTPLUG_CTL);
+-		intel_uncore_write(dev_priv, GEN11_TBT_HOTPLUG_CTL, dig_hotplug_reg);
+-
+-		intel_get_hpd_pins(dev_priv, &pin_mask, &long_mask,
+-				   trigger_tbt, dig_hotplug_reg,
+-				   dev_priv->display.hotplug.hpd,
+-				   gen11_port_hotplug_long_detect);
+-	}
+-
+-	if (pin_mask)
+-		intel_hpd_irq_handler(dev_priv, pin_mask, long_mask);
+-	else
+-		drm_err(&dev_priv->drm,
+-			"Unexpected DE HPD interrupt 0x%08x\n", iir);
+-}
+-
+-static u32 gen8_de_port_aux_mask(struct drm_i915_private *dev_priv)
+-{
+-	u32 mask;
+-
+-	if (DISPLAY_VER(dev_priv) >= 13)
+-		return TGL_DE_PORT_AUX_DDIA |
+-			TGL_DE_PORT_AUX_DDIB |
+-			TGL_DE_PORT_AUX_DDIC |
+-			XELPD_DE_PORT_AUX_DDID |
+-			XELPD_DE_PORT_AUX_DDIE |
+-			TGL_DE_PORT_AUX_USBC1 |
+-			TGL_DE_PORT_AUX_USBC2 |
+-			TGL_DE_PORT_AUX_USBC3 |
+-			TGL_DE_PORT_AUX_USBC4;
+-	else if (DISPLAY_VER(dev_priv) >= 12)
+-		return TGL_DE_PORT_AUX_DDIA |
+-			TGL_DE_PORT_AUX_DDIB |
+-			TGL_DE_PORT_AUX_DDIC |
+-			TGL_DE_PORT_AUX_USBC1 |
+-			TGL_DE_PORT_AUX_USBC2 |
+-			TGL_DE_PORT_AUX_USBC3 |
+-			TGL_DE_PORT_AUX_USBC4 |
+-			TGL_DE_PORT_AUX_USBC5 |
+-			TGL_DE_PORT_AUX_USBC6;
+-
+-
+-	mask = GEN8_AUX_CHANNEL_A;
+-	if (DISPLAY_VER(dev_priv) >= 9)
+-		mask |= GEN9_AUX_CHANNEL_B |
+-			GEN9_AUX_CHANNEL_C |
+-			GEN9_AUX_CHANNEL_D;
+-
+-	if (DISPLAY_VER(dev_priv) == 11) {
+-		mask |= ICL_AUX_CHANNEL_F;
+-		mask |= ICL_AUX_CHANNEL_E;
+-	}
+-
+-	return mask;
+-}
+-
+-static u32 gen8_de_pipe_fault_mask(struct drm_i915_private *dev_priv)
+-{
+-	if (DISPLAY_VER(dev_priv) >= 13 || HAS_D12_PLANE_MINIMIZATION(dev_priv))
+-		return RKL_DE_PIPE_IRQ_FAULT_ERRORS;
+-	else if (DISPLAY_VER(dev_priv) >= 11)
+-		return GEN11_DE_PIPE_IRQ_FAULT_ERRORS;
+-	else if (DISPLAY_VER(dev_priv) >= 9)
+-		return GEN9_DE_PIPE_IRQ_FAULT_ERRORS;
+-	else
+-		return GEN8_DE_PIPE_IRQ_FAULT_ERRORS;
+-}
+-
+-static void
+-gen8_de_misc_irq_handler(struct drm_i915_private *dev_priv, u32 iir)
+-{
+-	bool found = false;
+-
+-	if (iir & GEN8_DE_MISC_GSE) {
+-		intel_opregion_asle_intr(dev_priv);
+-		found = true;
+-	}
+-
+-	if (iir & GEN8_DE_EDP_PSR) {
+-		struct intel_encoder *encoder;
+-		u32 psr_iir;
+-		i915_reg_t iir_reg;
+-
+-		for_each_intel_encoder_with_psr(&dev_priv->drm, encoder) {
+-			struct intel_dp *intel_dp = enc_to_intel_dp(encoder);
+-
+-			if (DISPLAY_VER(dev_priv) >= 12)
+-				iir_reg = TRANS_PSR_IIR(intel_dp->psr.transcoder);
+-			else
+-				iir_reg = EDP_PSR_IIR;
+-
+-			psr_iir = intel_uncore_read(dev_priv, iir_reg);
+-			intel_uncore_write(dev_priv, iir_reg, psr_iir);
+-
+-			if (psr_iir)
+-				found = true;
+-
+-			intel_psr_irq_handler(intel_dp, psr_iir);
+-
+-			/* prior GEN12 only have one EDP PSR */
+-			if (DISPLAY_VER(dev_priv) < 12)
+-				break;
+-		}
+-	}
+-
+-	if (!found)
+-		drm_err(&dev_priv->drm, "Unexpected DE Misc interrupt\n");
+-}
+-
+-static void gen11_dsi_te_interrupt_handler(struct drm_i915_private *dev_priv,
+-					   u32 te_trigger)
+-{
+-	enum pipe pipe = INVALID_PIPE;
+-	enum transcoder dsi_trans;
+-	enum port port;
+-	u32 val, tmp;
+-
+-	/*
+-	 * Incase of dual link, TE comes from DSI_1
+-	 * this is to check if dual link is enabled
+-	 */
+-	val = intel_uncore_read(dev_priv, TRANS_DDI_FUNC_CTL2(TRANSCODER_DSI_0));
+-	val &= PORT_SYNC_MODE_ENABLE;
+-
+-	/*
+-	 * if dual link is enabled, then read DSI_0
+-	 * transcoder registers
+-	 */
+-	port = ((te_trigger & DSI1_TE && val) || (te_trigger & DSI0_TE)) ?
+-						  PORT_A : PORT_B;
+-	dsi_trans = (port == PORT_A) ? TRANSCODER_DSI_0 : TRANSCODER_DSI_1;
+-
+-	/* Check if DSI configured in command mode */
+-	val = intel_uncore_read(dev_priv, DSI_TRANS_FUNC_CONF(dsi_trans));
+-	val = val & OP_MODE_MASK;
+-
+-	if (val != CMD_MODE_NO_GATE && val != CMD_MODE_TE_GATE) {
+-		drm_err(&dev_priv->drm, "DSI trancoder not configured in command mode\n");
+-		return;
+-	}
+-
+-	/* Get PIPE for handling VBLANK event */
+-	val = intel_uncore_read(dev_priv, TRANS_DDI_FUNC_CTL(dsi_trans));
+-	switch (val & TRANS_DDI_EDP_INPUT_MASK) {
+-	case TRANS_DDI_EDP_INPUT_A_ON:
+-		pipe = PIPE_A;
+-		break;
+-	case TRANS_DDI_EDP_INPUT_B_ONOFF:
+-		pipe = PIPE_B;
+-		break;
+-	case TRANS_DDI_EDP_INPUT_C_ONOFF:
+-		pipe = PIPE_C;
+-		break;
+-	default:
+-		drm_err(&dev_priv->drm, "Invalid PIPE\n");
+-		return;
+-	}
+-
+-	intel_handle_vblank(dev_priv, pipe);
+-
+-	/* clear TE in dsi IIR */
+-	port = (te_trigger & DSI1_TE) ? PORT_B : PORT_A;
+-	tmp = intel_uncore_read(dev_priv, DSI_INTR_IDENT_REG(port));
+-	intel_uncore_write(dev_priv, DSI_INTR_IDENT_REG(port), tmp);
+-}
+-
+-static u32 gen8_de_pipe_flip_done_mask(struct drm_i915_private *i915)
+-{
+-	if (DISPLAY_VER(i915) >= 9)
+-		return GEN9_PIPE_PLANE1_FLIP_DONE;
+-	else
+-		return GEN8_PIPE_PRIMARY_FLIP_DONE;
+-}
+-
+-u32 gen8_de_pipe_underrun_mask(struct drm_i915_private *dev_priv)
+-{
+-	u32 mask = GEN8_PIPE_FIFO_UNDERRUN;
+-
+-	if (DISPLAY_VER(dev_priv) >= 13)
+-		mask |= XELPD_PIPE_SOFT_UNDERRUN |
+-			XELPD_PIPE_HARD_UNDERRUN;
+-
+-	return mask;
+-}
+-
+-static irqreturn_t
+-gen8_de_irq_handler(struct drm_i915_private *dev_priv, u32 master_ctl)
+-{
+-	irqreturn_t ret = IRQ_NONE;
+-	u32 iir;
+-	enum pipe pipe;
+-
+-	drm_WARN_ON_ONCE(&dev_priv->drm, !HAS_DISPLAY(dev_priv));
+-
+-	if (master_ctl & GEN8_DE_MISC_IRQ) {
+-		iir = intel_uncore_read(dev_priv, GEN8_DE_MISC_IIR);
+-		if (iir) {
+-			intel_uncore_write(dev_priv, GEN8_DE_MISC_IIR, iir);
+-			ret = IRQ_HANDLED;
+-			gen8_de_misc_irq_handler(dev_priv, iir);
+-		} else {
+-			drm_err(&dev_priv->drm,
+-				"The master control interrupt lied (DE MISC)!\n");
+-		}
+-	}
+-
+-	if (DISPLAY_VER(dev_priv) >= 11 && (master_ctl & GEN11_DE_HPD_IRQ)) {
+-		iir = intel_uncore_read(dev_priv, GEN11_DE_HPD_IIR);
+-		if (iir) {
+-			intel_uncore_write(dev_priv, GEN11_DE_HPD_IIR, iir);
+-			ret = IRQ_HANDLED;
+-			gen11_hpd_irq_handler(dev_priv, iir);
+-		} else {
+-			drm_err(&dev_priv->drm,
+-				"The master control interrupt lied, (DE HPD)!\n");
+-		}
+-	}
+-
+-	if (master_ctl & GEN8_DE_PORT_IRQ) {
+-		iir = intel_uncore_read(dev_priv, GEN8_DE_PORT_IIR);
+-		if (iir) {
+-			bool found = false;
+-
+-			intel_uncore_write(dev_priv, GEN8_DE_PORT_IIR, iir);
+-			ret = IRQ_HANDLED;
+-
+-			if (iir & gen8_de_port_aux_mask(dev_priv)) {
+-				dp_aux_irq_handler(dev_priv);
+-				found = true;
+-			}
+-
+-			if (DISPLAY_VER(dev_priv) >= 11) {
+-				u32 te_trigger = iir & (DSI0_TE | DSI1_TE);
+-
+-				if (te_trigger) {
+-					gen11_dsi_te_interrupt_handler(dev_priv, te_trigger);
+-					found = true;
+-				}
+-			}
+-
+-			if (!found)
+-				drm_err(&dev_priv->drm,
+-					"Unexpected DE Port interrupt\n");
+-		}
+-		else
+-			drm_err(&dev_priv->drm,
+-				"The master control interrupt lied (DE PORT)!\n");
+-	}
+-
+-	for_each_pipe(dev_priv, pipe) {
+-		u32 fault_errors;
+-
+-		if (!(master_ctl & GEN8_DE_PIPE_IRQ(pipe)))
+-			continue;
+-
+-		iir = intel_uncore_read(dev_priv, GEN8_DE_PIPE_IIR(pipe));
+-		if (!iir) {
+-			drm_err(&dev_priv->drm,
+-				"The master control interrupt lied (DE PIPE)!\n");
+-			continue;
+-		}
+-
+-		ret = IRQ_HANDLED;
+-		intel_uncore_write(dev_priv, GEN8_DE_PIPE_IIR(pipe), iir);
+-
+-		if (iir & GEN8_PIPE_VBLANK)
+-			intel_handle_vblank(dev_priv, pipe);
+-
+-		if (iir & gen8_de_pipe_flip_done_mask(dev_priv))
+-			flip_done_handler(dev_priv, pipe);
+-
+-		if (iir & GEN8_PIPE_CDCLK_CRC_DONE)
+-			hsw_pipe_crc_irq_handler(dev_priv, pipe);
+-
+-		if (iir & gen8_de_pipe_underrun_mask(dev_priv))
+-			intel_cpu_fifo_underrun_irq_handler(dev_priv, pipe);
+-
+-		fault_errors = iir & gen8_de_pipe_fault_mask(dev_priv);
+-		if (fault_errors)
+-			drm_err(&dev_priv->drm,
+-				"Fault errors on pipe %c: 0x%08x\n",
+-				pipe_name(pipe),
+-				fault_errors);
+-	}
+-
+-	if (HAS_PCH_SPLIT(dev_priv) && !HAS_PCH_NOP(dev_priv) &&
+-	    master_ctl & GEN8_DE_PCH_IRQ) {
+-		/*
+-		 * FIXME(BDW): Assume for now that the new interrupt handling
+-		 * scheme also closed the SDE interrupt handling race we've seen
+-		 * on older pch-split platforms. But this needs testing.
+-		 */
+-		iir = intel_uncore_read(dev_priv, SDEIIR);
+-		if (iir) {
+-			intel_uncore_write(dev_priv, SDEIIR, iir);
+-			ret = IRQ_HANDLED;
+-
+-			if (INTEL_PCH_TYPE(dev_priv) >= PCH_ICP)
+-				icp_irq_handler(dev_priv, iir);
+-		} else {
+-			/*
+-			 * Like on previous PCH there seems to be something
+-			 * fishy going on with forwarding PCH interrupts.
+-			 */
+-			drm_dbg(&dev_priv->drm,
+-				"The master control interrupt lied (SDE)!\n");
+-		}
+-	}
+-
+-	return ret;
+-}
+-
+-void gen11_display_irq_handler(struct drm_i915_private *i915)
+-{
+-	void __iomem * const regs = to_gt(i915)->mmio.regs;
+-	const u32 disp_ctl = raw_reg_read(regs, GEN11_DISPLAY_INT_CTL);
+-
+-	/*
+-	 * GEN11_DISPLAY_INT_CTL has same format as GEN8_MASTER_IRQ
+-	 * for the display related bits.
+-	 */
+-	raw_reg_write(regs, GEN11_DISPLAY_INT_CTL, 0x0);
+-	gen8_de_irq_handler(i915, disp_ctl);
+-	raw_reg_write(regs, GEN11_DISPLAY_INT_CTL,
+-		      GEN11_DISPLAY_IRQ_ENABLE);
+-}
+-
+-static bool gen11_dsi_configure_te(struct intel_crtc *intel_crtc,
+-				   bool enable)
+-{
+-	struct drm_i915_private *dev_priv = to_i915(intel_crtc->base.dev);
+-	enum port port;
+-	u32 tmp;
+-
+-	if (!(intel_crtc->mode_flags &
+-	    (I915_MODE_FLAG_DSI_USE_TE1 | I915_MODE_FLAG_DSI_USE_TE0)))
+-		return false;
+-
+-	/* for dual link cases we consider TE from slave */
+-	if (intel_crtc->mode_flags & I915_MODE_FLAG_DSI_USE_TE1)
+-		port = PORT_B;
+-	else
+-		port = PORT_A;
+-
+-	tmp =  intel_uncore_read(dev_priv, DSI_INTR_MASK_REG(port));
+-	if (enable)
+-		tmp &= ~DSI_TE_EVENT;
+-	else
+-		tmp |= DSI_TE_EVENT;
+-
+-	intel_uncore_write(dev_priv, DSI_INTR_MASK_REG(port), tmp);
+-
+-	tmp = intel_uncore_read(dev_priv, DSI_INTR_IDENT_REG(port));
+-	intel_uncore_write(dev_priv, DSI_INTR_IDENT_REG(port), tmp);
+-
+-	return true;
+-}
+-
+-int bdw_enable_vblank(struct drm_crtc *_crtc)
+-{
+-	struct intel_crtc *crtc = to_intel_crtc(_crtc);
+-	struct drm_i915_private *dev_priv = to_i915(crtc->base.dev);
+-	enum pipe pipe = crtc->pipe;
+-	unsigned long irqflags;
+-
+-	if (gen11_dsi_configure_te(crtc, true))
+-		return 0;
+-
+-	spin_lock_irqsave(&dev_priv->irq_lock, irqflags);
+-	bdw_enable_pipe_irq(dev_priv, pipe, GEN8_PIPE_VBLANK);
+-	spin_unlock_irqrestore(&dev_priv->irq_lock, irqflags);
+-
+-	/* Even if there is no DMC, frame counter can get stuck when
+-	 * PSR is active as no frames are generated, so check only for PSR.
+-	 */
+-	if (HAS_PSR(dev_priv))
+-		drm_crtc_vblank_restore(&crtc->base);
+-
+-	return 0;
+-}
+-
+-void bdw_disable_vblank(struct drm_crtc *_crtc)
+-{
+-	struct intel_crtc *crtc = to_intel_crtc(_crtc);
+-	struct drm_i915_private *dev_priv = to_i915(crtc->base.dev);
+-	enum pipe pipe = crtc->pipe;
+-	unsigned long irqflags;
+-
+-	if (gen11_dsi_configure_te(crtc, false))
+-		return;
+-
+-	spin_lock_irqsave(&dev_priv->irq_lock, irqflags);
+-	bdw_disable_pipe_irq(dev_priv, pipe, GEN8_PIPE_VBLANK);
+-	spin_unlock_irqrestore(&dev_priv->irq_lock, irqflags);
+-}
+-
+-void gen11_display_irq_reset(struct drm_i915_private *dev_priv)
+-{
+-	enum pipe pipe;
+-	u32 trans_mask = BIT(TRANSCODER_A) | BIT(TRANSCODER_B) |
+-		BIT(TRANSCODER_C) | BIT(TRANSCODER_D);
+-	enum transcoder trans;
+-
+-	if (!HAS_DISPLAY(dev_priv))
+-		return;
+-
+-	intel_uncore_write(dev_priv, GEN11_DISPLAY_INT_CTL, 0);
+-
+-	for_each_cpu_transcoder_masked(dev_priv, trans, trans_mask) {
+-		intel_uncore_write(dev_priv, TRANS_PSR_IMR(trans), 0xffffffff);
+-		intel_uncore_write(dev_priv, TRANS_PSR_IIR(trans), 0xffffffff);
+-	}
+-
+-	for_each_pipe(dev_priv, pipe)
+-		GEN8_IRQ_RESET_NDX(dev_priv, DE_PIPE, pipe);
+-
+-	GEN3_IRQ_RESET(dev_priv, GEN8_DE_PORT_);
+-	GEN3_IRQ_RESET(dev_priv, GEN8_DE_MISC_);
+-	GEN3_IRQ_RESET(dev_priv, GEN11_DE_HPD_);
+-
+-	if (INTEL_PCH_TYPE(dev_priv) >= PCH_ICP)
+-		GEN3_IRQ_RESET(dev_priv, SDE);
+-}
+-
+-void gen8_irq_power_well_post_enable(struct drm_i915_private *dev_priv,
+-				     u8 pipe_mask)
+-{
+-	u32 extra_ier = GEN8_PIPE_VBLANK |
+-		gen8_de_pipe_underrun_mask(dev_priv) |
+-		gen8_de_pipe_flip_done_mask(dev_priv);
+-	enum pipe pipe;
+-
+-	spin_lock_irq(&dev_priv->irq_lock);
+-
+-	if (!intel_irqs_enabled(dev_priv)) {
+-		spin_unlock_irq(&dev_priv->irq_lock);
+-		return;
+-	}
+-
+-	for_each_pipe_masked(dev_priv, pipe, pipe_mask)
+-		GEN8_IRQ_INIT_NDX(dev_priv, DE_PIPE, pipe,
+-				  dev_priv->de_irq_mask[pipe],
+-				  ~dev_priv->de_irq_mask[pipe] | extra_ier);
+-
+-	spin_unlock_irq(&dev_priv->irq_lock);
+-}
+-
+-void gen8_irq_power_well_pre_disable(struct drm_i915_private *dev_priv,
+-				     u8 pipe_mask)
+-{
+-	enum pipe pipe;
+-
+-	spin_lock_irq(&dev_priv->irq_lock);
+-
+-	if (!intel_irqs_enabled(dev_priv)) {
+-		spin_unlock_irq(&dev_priv->irq_lock);
+-		return;
+-	}
+-
+-	for_each_pipe_masked(dev_priv, pipe, pipe_mask)
+-		GEN8_IRQ_RESET_NDX(dev_priv, DE_PIPE, pipe);
+-
+-	spin_unlock_irq(&dev_priv->irq_lock);
+-
+-	/* make sure we're done processing display irqs */
+-	intel_synchronize_irq(dev_priv);
+-}
+-
+-static u32 icp_ddi_hotplug_enables(struct drm_i915_private *i915,
+-				   enum hpd_pin pin)
+-{
+-	switch (pin) {
+-	case HPD_PORT_A:
+-	case HPD_PORT_B:
+-	case HPD_PORT_C:
+-	case HPD_PORT_D:
+-		return SHOTPLUG_CTL_DDI_HPD_ENABLE(pin);
+-	default:
+-		return 0;
+-	}
+-}
+-
+-static u32 icp_tc_hotplug_enables(struct drm_i915_private *i915,
+-				  enum hpd_pin pin)
+-{
+-	switch (pin) {
+-	case HPD_PORT_TC1:
+-	case HPD_PORT_TC2:
+-	case HPD_PORT_TC3:
+-	case HPD_PORT_TC4:
+-	case HPD_PORT_TC5:
+-	case HPD_PORT_TC6:
+-		return ICP_TC_HPD_ENABLE(pin);
+-	default:
+-		return 0;
+-	}
+-}
+-
+-static void icp_ddi_hpd_detection_setup(struct drm_i915_private *dev_priv)
+-{
+-	u32 hotplug;
+-
+-	hotplug = intel_uncore_read(&dev_priv->uncore, SHOTPLUG_CTL_DDI);
+-	hotplug &= ~(SHOTPLUG_CTL_DDI_HPD_ENABLE(HPD_PORT_A) |
+-		     SHOTPLUG_CTL_DDI_HPD_ENABLE(HPD_PORT_B) |
+-		     SHOTPLUG_CTL_DDI_HPD_ENABLE(HPD_PORT_C) |
+-		     SHOTPLUG_CTL_DDI_HPD_ENABLE(HPD_PORT_D));
+-	hotplug |= intel_hpd_hotplug_enables(dev_priv, icp_ddi_hotplug_enables);
+-	intel_uncore_write(&dev_priv->uncore, SHOTPLUG_CTL_DDI, hotplug);
+-}
+-
+-static void icp_tc_hpd_detection_setup(struct drm_i915_private *dev_priv)
+-{
+-	u32 hotplug;
+-
+-	hotplug = intel_uncore_read(&dev_priv->uncore, SHOTPLUG_CTL_TC);
+-	hotplug &= ~(ICP_TC_HPD_ENABLE(HPD_PORT_TC1) |
+-		     ICP_TC_HPD_ENABLE(HPD_PORT_TC2) |
+-		     ICP_TC_HPD_ENABLE(HPD_PORT_TC3) |
+-		     ICP_TC_HPD_ENABLE(HPD_PORT_TC4) |
+-		     ICP_TC_HPD_ENABLE(HPD_PORT_TC5) |
+-		     ICP_TC_HPD_ENABLE(HPD_PORT_TC6));
+-	hotplug |= intel_hpd_hotplug_enables(dev_priv, icp_tc_hotplug_enables);
+-	intel_uncore_write(&dev_priv->uncore, SHOTPLUG_CTL_TC, hotplug);
+-}
+-
+-static void icp_hpd_irq_setup(struct drm_i915_private *dev_priv)
+-{
+-	u32 hotplug_irqs, enabled_irqs;
+-
+-	enabled_irqs = intel_hpd_enabled_irqs(dev_priv, dev_priv->display.hotplug.pch_hpd);
+-	hotplug_irqs = intel_hpd_hotplug_irqs(dev_priv, dev_priv->display.hotplug.pch_hpd);
+-
+-	if (INTEL_PCH_TYPE(dev_priv) <= PCH_TGP)
+-		intel_uncore_write(&dev_priv->uncore, SHPD_FILTER_CNT, SHPD_FILTER_CNT_500_ADJ);
+-
+-	ibx_display_interrupt_update(dev_priv, hotplug_irqs, enabled_irqs);
+-
+-	icp_ddi_hpd_detection_setup(dev_priv);
+-	icp_tc_hpd_detection_setup(dev_priv);
+-}
+-
+-static u32 gen11_hotplug_enables(struct drm_i915_private *i915,
+-				 enum hpd_pin pin)
+-{
+-	switch (pin) {
+-	case HPD_PORT_TC1:
+-	case HPD_PORT_TC2:
+-	case HPD_PORT_TC3:
+-	case HPD_PORT_TC4:
+-	case HPD_PORT_TC5:
+-	case HPD_PORT_TC6:
+-		return GEN11_HOTPLUG_CTL_ENABLE(pin);
+-	default:
+-		return 0;
+-	}
+-}
+-
+-static void dg1_hpd_irq_setup(struct drm_i915_private *dev_priv)
+-{
+-	u32 val;
+-
+-	val = intel_uncore_read(dev_priv, SOUTH_CHICKEN1);
+-	val |= (INVERT_DDIA_HPD |
+-		INVERT_DDIB_HPD |
+-		INVERT_DDIC_HPD |
+-		INVERT_DDID_HPD);
+-	intel_uncore_write(dev_priv, SOUTH_CHICKEN1, val);
+-
+-	icp_hpd_irq_setup(dev_priv);
+-}
+-
+-static void gen11_tc_hpd_detection_setup(struct drm_i915_private *dev_priv)
+-{
+-	u32 hotplug;
+-
+-	hotplug = intel_uncore_read(dev_priv, GEN11_TC_HOTPLUG_CTL);
+-	hotplug &= ~(GEN11_HOTPLUG_CTL_ENABLE(HPD_PORT_TC1) |
+-		     GEN11_HOTPLUG_CTL_ENABLE(HPD_PORT_TC2) |
+-		     GEN11_HOTPLUG_CTL_ENABLE(HPD_PORT_TC3) |
+-		     GEN11_HOTPLUG_CTL_ENABLE(HPD_PORT_TC4) |
+-		     GEN11_HOTPLUG_CTL_ENABLE(HPD_PORT_TC5) |
+-		     GEN11_HOTPLUG_CTL_ENABLE(HPD_PORT_TC6));
+-	hotplug |= intel_hpd_hotplug_enables(dev_priv, gen11_hotplug_enables);
+-	intel_uncore_write(dev_priv, GEN11_TC_HOTPLUG_CTL, hotplug);
+-}
+-
+-static void gen11_tbt_hpd_detection_setup(struct drm_i915_private *dev_priv)
+-{
+-	u32 hotplug;
+-
+-	hotplug = intel_uncore_read(dev_priv, GEN11_TBT_HOTPLUG_CTL);
+-	hotplug &= ~(GEN11_HOTPLUG_CTL_ENABLE(HPD_PORT_TC1) |
+-		     GEN11_HOTPLUG_CTL_ENABLE(HPD_PORT_TC2) |
+-		     GEN11_HOTPLUG_CTL_ENABLE(HPD_PORT_TC3) |
+-		     GEN11_HOTPLUG_CTL_ENABLE(HPD_PORT_TC4) |
+-		     GEN11_HOTPLUG_CTL_ENABLE(HPD_PORT_TC5) |
+-		     GEN11_HOTPLUG_CTL_ENABLE(HPD_PORT_TC6));
+-	hotplug |= intel_hpd_hotplug_enables(dev_priv, gen11_hotplug_enables);
+-	intel_uncore_write(dev_priv, GEN11_TBT_HOTPLUG_CTL, hotplug);
+-}
+-
+-static void gen11_hpd_irq_setup(struct drm_i915_private *dev_priv)
+-{
+-	u32 hotplug_irqs, enabled_irqs;
+-	u32 val;
+-
+-	enabled_irqs = intel_hpd_enabled_irqs(dev_priv, dev_priv->display.hotplug.hpd);
+-	hotplug_irqs = intel_hpd_hotplug_irqs(dev_priv, dev_priv->display.hotplug.hpd);
+-
+-	val = intel_uncore_read(dev_priv, GEN11_DE_HPD_IMR);
+-	val &= ~hotplug_irqs;
+-	val |= ~enabled_irqs & hotplug_irqs;
+-	intel_uncore_write(dev_priv, GEN11_DE_HPD_IMR, val);
+-	intel_uncore_posting_read(dev_priv, GEN11_DE_HPD_IMR);
+-
+-	gen11_tc_hpd_detection_setup(dev_priv);
+-	gen11_tbt_hpd_detection_setup(dev_priv);
+-
+-	if (INTEL_PCH_TYPE(dev_priv) >= PCH_ICP)
+-		icp_hpd_irq_setup(dev_priv);
+-}
+-
+-static void gen8_de_irq_postinstall(struct drm_i915_private *dev_priv)
+-{
+-	u32 de_pipe_masked = gen8_de_pipe_fault_mask(dev_priv) |
+-		GEN8_PIPE_CDCLK_CRC_DONE;
+-	u32 de_pipe_enables;
+-	u32 de_port_masked = gen8_de_port_aux_mask(dev_priv);
+-	u32 de_port_enables;
+-	u32 de_misc_masked = GEN8_DE_EDP_PSR;
+-	u32 trans_mask = BIT(TRANSCODER_A) | BIT(TRANSCODER_B) |
+-		BIT(TRANSCODER_C) | BIT(TRANSCODER_D);
+-	enum transcoder trans;
+-	enum pipe pipe;
+-
+-	if (!HAS_DISPLAY(dev_priv))
+-		return;
+-
+-	if (DISPLAY_VER(dev_priv) <= 10)
+-		de_misc_masked |= GEN8_DE_MISC_GSE;
+-
+-	if (IS_GEMINILAKE(dev_priv) || IS_BROXTON(dev_priv))
+-		de_port_masked |= BXT_DE_PORT_GMBUS;
+-
+-	if (DISPLAY_VER(dev_priv) >= 11) {
+-		enum port port;
+-
+-		if (intel_bios_is_dsi_present(dev_priv, &port))
+-			de_port_masked |= DSI0_TE | DSI1_TE;
+-	}
+-
+-	de_pipe_enables = de_pipe_masked |
+-		GEN8_PIPE_VBLANK |
+-		gen8_de_pipe_underrun_mask(dev_priv) |
+-		gen8_de_pipe_flip_done_mask(dev_priv);
+-
+-	de_port_enables = de_port_masked;
+-	if (IS_GEMINILAKE(dev_priv) || IS_BROXTON(dev_priv))
+-		de_port_enables |= BXT_DE_PORT_HOTPLUG_MASK;
+-	else if (IS_BROADWELL(dev_priv))
+-		de_port_enables |= BDW_DE_PORT_HOTPLUG_MASK;
+-
+-	for_each_cpu_transcoder_masked(dev_priv, trans, trans_mask)
+-		gen3_assert_iir_is_zero(dev_priv, TRANS_PSR_IIR(trans));
+-
+-	for_each_pipe(dev_priv, pipe) {
+-		dev_priv->de_irq_mask[pipe] = ~de_pipe_masked;
+-
+-		GEN8_IRQ_INIT_NDX(dev_priv, DE_PIPE, pipe,
+-				  dev_priv->de_irq_mask[pipe],
+-				  de_pipe_enables);
+-	}
+-
+-	GEN3_IRQ_INIT(dev_priv, GEN8_DE_PORT_, ~de_port_masked, de_port_enables);
+-	GEN3_IRQ_INIT(dev_priv, GEN8_DE_MISC_, ~de_misc_masked, de_misc_masked);
+-
+-	if (DISPLAY_VER(dev_priv) >= 11) {
+-		u32 de_hpd_masked = 0;
+-		u32 de_hpd_enables = GEN11_DE_TC_HOTPLUG_MASK |
+-				     GEN11_DE_TBT_HOTPLUG_MASK;
+-
+-		GEN3_IRQ_INIT(dev_priv, GEN11_DE_HPD_, ~de_hpd_masked,
+-			      de_hpd_enables);
+-	}
+-}
+-
+-static void icp_irq_postinstall(struct drm_i915_private *dev_priv)
+-{
+-	u32 mask = SDE_GMBUS_ICP;
+-
+-	GEN3_IRQ_INIT(dev_priv, SDE, ~mask, 0xffffffff);
+-}
+-
+-static void gen11_de_irq_postinstall(struct drm_i915_private *dev_priv)
+-{
+-	if (!HAS_DISPLAY(dev_priv))
+-		return;
+-
+-	gen8_de_irq_postinstall(dev_priv);
+-
+-	intel_uncore_write(dev_priv, GEN11_DISPLAY_INT_CTL,
+-			   GEN11_DISPLAY_IRQ_ENABLE);
+-}
+-
+-void gen11_display_irq_postinstall(struct drm_i915_private *dev_priv)
+-{
+-	if (!HAS_DISPLAY(dev_priv))
+-		return;
+-
+-	if (INTEL_PCH_TYPE(dev_priv) >= PCH_ICP)
+-		icp_irq_postinstall(dev_priv);
+-
+-	gen11_de_irq_postinstall(dev_priv);
+-}
+-
+-struct intel_hotplug_funcs {
+-	void (*hpd_irq_setup)(struct drm_i915_private *i915);
+-};
+-
+-#define HPD_FUNCS(platform)					 \
+-static const struct intel_hotplug_funcs platform##_hpd_funcs = { \
+-	.hpd_irq_setup = platform##_hpd_irq_setup,		 \
+-}
+-
+-HPD_FUNCS(dg1);
+-HPD_FUNCS(gen11);
+-HPD_FUNCS(icp);
+-#undef HPD_FUNCS
+-
+-void intel_hpd_irq_setup(struct drm_i915_private *i915)
+-{
+-	if (i915->display_irqs_enabled && i915->display.funcs.hotplug)
+-		i915->display.funcs.hotplug->hpd_irq_setup(i915);
+-}
+-
+-void intel_display_irq_init(struct drm_i915_private *dev_priv)
+-{
+-	struct drm_device *dev = &dev_priv->drm;
+-
+-	if (!HAS_DISPLAY(dev_priv))
+-		return;
+-
+-	intel_hpd_init_pins(dev_priv);
+-
+-	intel_hpd_init_early(dev_priv);
+-
+-	dev->vblank_disable_immediate = true;
+-
+-	/* Most platforms treat the display irq block as an always-on
+-	 * power domain. vlv/chv can disable it at runtime and need
+-	 * special care to avoid writing any of the display block registers
+-	 * outside of the power domain. We defer setting up the display irqs
+-	 * in this case to the runtime pm.
+-	 */
+-	dev_priv->display_irqs_enabled = true;
+-	if (IS_VALLEYVIEW(dev_priv) || IS_CHERRYVIEW(dev_priv))
+-		dev_priv->display_irqs_enabled = false;
+-
+-	if (HAS_PCH_DG2(dev_priv))
+-		dev_priv->display.funcs.hotplug = &icp_hpd_funcs;
+-	else if (HAS_PCH_DG1(dev_priv))
+-		dev_priv->display.funcs.hotplug = &dg1_hpd_funcs;
+-	else if (DISPLAY_VER(dev_priv) >= 11)
+-		dev_priv->display.funcs.hotplug = &gen11_hpd_funcs;
+-}
+-
+-void intel_display_irq_uninstall(struct drm_i915_private *dev_priv)
+-{
+-	intel_hpd_cancel_work(dev_priv);
+-}
+-
+-bool intel_irqs_enabled(struct xe_device *xe)
+-{
+-	return xe->irq.enabled;
+-}
+-
+-void intel_synchronize_irq(struct xe_device *xe)
+-{
+-	synchronize_irq(to_pci_dev(xe->drm.dev)->irq);
+-}
+diff --git a/drivers/gpu/drm/xe/display/ext/i915_irq.h b/drivers/gpu/drm/xe/display/ext/i915_irq.h
+deleted file mode 100644
+index d4dd397a1ebc..000000000000
+--- a/drivers/gpu/drm/xe/display/ext/i915_irq.h
++++ /dev/null
+@@ -1,97 +0,0 @@
+-/* SPDX-License-Identifier: MIT */
+-/*
+- * Copyright © 2019 Intel Corporation
+- */
+-
+-#ifndef __I915_IRQ_H__
+-#define __I915_IRQ_H__
+-
+-#include <linux/ktime.h>
+-#include <linux/types.h>
+-
+-#include "i915_reg.h"
+-
+-enum pipe;
+-struct drm_crtc;
+-struct drm_device;
+-struct drm_display_mode;
+-struct drm_i915_private;
+-struct intel_crtc;
+-struct intel_uncore;
+-
+-void intel_display_irq_init(struct drm_i915_private *dev_priv);
+-void intel_irq_fini(struct drm_i915_private *dev_priv);
+-int intel_irq_install(struct drm_i915_private *dev_priv);
+-void intel_irq_uninstall(struct drm_i915_private *dev_priv);
+-
+-u32 i915_pipestat_enable_mask(struct drm_i915_private *dev_priv,
+-			      enum pipe pipe);
+-void
+-i915_enable_pipestat(struct drm_i915_private *dev_priv, enum pipe pipe,
+-		     u32 status_mask);
+-
+-void
+-i915_disable_pipestat(struct drm_i915_private *dev_priv, enum pipe pipe,
+-		      u32 status_mask);
+-
+-void valleyview_enable_display_irqs(struct drm_i915_private *dev_priv);
+-void valleyview_disable_display_irqs(struct drm_i915_private *dev_priv);
+-
+-void intel_hpd_irq_setup(struct drm_i915_private *i915);
+-void i915_hotplug_interrupt_update(struct drm_i915_private *dev_priv,
+-				   u32 mask,
+-				   u32 bits);
+-
+-void ilk_enable_display_irq(struct drm_i915_private *i915, u32 bits);
+-void ilk_disable_display_irq(struct drm_i915_private *i915, u32 bits);
+-
+-void bdw_enable_pipe_irq(struct drm_i915_private *i915, enum pipe pipe, u32 bits);
+-void bdw_disable_pipe_irq(struct drm_i915_private *i915, enum pipe pipe, u32 bits);
+-
+-void ibx_enable_display_interrupt(struct drm_i915_private *i915, u32 bits);
+-void ibx_disable_display_interrupt(struct drm_i915_private *i915, u32 bits);
+-
+-void gen5_enable_gt_irq(struct drm_i915_private *dev_priv, u32 mask);
+-void gen5_disable_gt_irq(struct drm_i915_private *dev_priv, u32 mask);
+-void gen11_reset_rps_interrupts(struct drm_i915_private *dev_priv);
+-void gen6_reset_rps_interrupts(struct drm_i915_private *dev_priv);
+-void gen6_enable_rps_interrupts(struct drm_i915_private *dev_priv);
+-void gen6_disable_rps_interrupts(struct drm_i915_private *dev_priv);
+-void gen6_rps_reset_ei(struct drm_i915_private *dev_priv);
+-u32 gen6_sanitize_rps_pm_mask(const struct drm_i915_private *i915, u32 mask);
+-
+-void intel_runtime_pm_disable_interrupts(struct drm_i915_private *dev_priv);
+-void intel_runtime_pm_enable_interrupts(struct drm_i915_private *dev_priv);
+-bool intel_irqs_enabled(struct drm_i915_private *dev_priv);
+-void intel_synchronize_irq(struct drm_i915_private *i915);
+-void intel_synchronize_hardirq(struct drm_i915_private *i915);
+-
+-int intel_get_crtc_scanline(struct intel_crtc *crtc);
+-void gen8_irq_power_well_post_enable(struct drm_i915_private *dev_priv,
+-				     u8 pipe_mask);
+-void gen8_irq_power_well_pre_disable(struct drm_i915_private *dev_priv,
+-				     u8 pipe_mask);
+-u32 gen8_de_pipe_underrun_mask(struct drm_i915_private *dev_priv);
+-
+-bool intel_crtc_get_vblank_timestamp(struct drm_crtc *crtc, int *max_error,
+-				     ktime_t *vblank_time, bool in_vblank_irq);
+-
+-u32 i915_get_vblank_counter(struct drm_crtc *crtc);
+-u32 g4x_get_vblank_counter(struct drm_crtc *crtc);
+-
+-int i8xx_enable_vblank(struct drm_crtc *crtc);
+-int i915gm_enable_vblank(struct drm_crtc *crtc);
+-int i965_enable_vblank(struct drm_crtc *crtc);
+-int ilk_enable_vblank(struct drm_crtc *crtc);
+-int bdw_enable_vblank(struct drm_crtc *crtc);
+-void i8xx_disable_vblank(struct drm_crtc *crtc);
+-void i915gm_disable_vblank(struct drm_crtc *crtc);
+-void i965_disable_vblank(struct drm_crtc *crtc);
+-void ilk_disable_vblank(struct drm_crtc *crtc);
+-void bdw_disable_vblank(struct drm_crtc *crtc);
+-
+-void gen11_display_irq_postinstall(struct drm_i915_private *dev_priv);
+-void gen11_display_irq_reset(struct drm_i915_private *dev_priv);
+-void gen11_display_irq_handler(struct drm_i915_private *dev_priv);
+-
+-#endif /* __I915_IRQ_H__ */
+diff --git a/drivers/gpu/drm/xe/display/ext/intel_device_info.c b/drivers/gpu/drm/xe/display/ext/intel_device_info.c
+deleted file mode 100644
+index 318b27a357b8..000000000000
+--- a/drivers/gpu/drm/xe/display/ext/intel_device_info.c
++++ /dev/null
+@@ -1,135 +0,0 @@
+-/*
+- * Copyright © 2016 Intel Corporation
+- *
+- * Permission is hereby granted, free of charge, to any person obtaining a
+- * copy of this software and associated documentation files (the "Software"),
+- * to deal in the Software without restriction, including without limitation
+- * the rights to use, copy, modify, merge, publish, distribute, sublicense,
+- * and/or sell copies of the Software, and to permit persons to whom the
+- * Software is furnished to do so, subject to the following conditions:
+- *
+- * The above copyright notice and this permission notice (including the next
+- * paragraph) shall be included in all copies or substantial portions of the
+- * Software.
+- *
+- * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+- * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+- * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.  IN NO EVENT SHALL
+- * THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+- * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
+- * FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS
+- * IN THE SOFTWARE.
+- *
+- */
+-
+-#include "display/intel_cdclk.h"
+-#include "display/intel_de.h"
+-#include "gt/intel_gt_regs.h"
+-#include "intel_device_info.h"
+-#include "i915_drv.h"
+-#include <drm/drm_drv.h>
+-
+-/**
+- * intel_device_info_runtime_init - initialize runtime info
+- * @dev_priv: the i915 device
+- *
+- * Determine various intel_device_info fields at runtime.
+- *
+- * Use it when either:
+- *   - it's judged too laborious to fill n static structures with the limit
+- *     when a simple if statement does the job,
+- *   - run-time checks (eg read fuse/strap registers) are needed.
+- *
+- * This function needs to be called:
+- *   - after the MMIO has been setup as we are reading registers,
+- *   - after the PCH has been detected,
+- *   - before the first usage of the fields it can tweak.
+- */
+-void intel_device_info_runtime_init(struct drm_i915_private *dev_priv)
+-{
+-	struct intel_runtime_info *runtime = RUNTIME_INFO(dev_priv);
+-	enum pipe pipe;
+-
+-	/* Wa_14011765242: adl-s A0,A1 */
+-	if (IS_ADLS_DISPLAY_STEP(dev_priv, STEP_A0, STEP_A2)) {
+-		for_each_pipe(dev_priv, pipe)
+-			runtime->num_scalers[pipe] = 0;
+-	} else if (DISPLAY_VER(dev_priv) >= 11) {
+-		for_each_pipe(dev_priv, pipe)
+-			runtime->num_scalers[pipe] = 2;
+-	} else if (DISPLAY_VER(dev_priv) >= 9) {
+-		runtime->num_scalers[PIPE_A] = 2;
+-		runtime->num_scalers[PIPE_B] = 2;
+-		runtime->num_scalers[PIPE_C] = 1;
+-	}
+-
+-	if (DISPLAY_VER(dev_priv) >= 13 || HAS_D12_PLANE_MINIMIZATION(dev_priv)) {
+-		for_each_pipe(dev_priv, pipe)
+-			runtime->num_sprites[pipe] = 4;
+-	} else if (DISPLAY_VER(dev_priv) >= 11) {
+-		for_each_pipe(dev_priv, pipe)
+-			runtime->num_sprites[pipe] = 6;
+-	}
+-
+-	if (HAS_DISPLAY(dev_priv) && DISPLAY_VER(dev_priv) >= 9) {
+-		u32 dfsm = intel_de_read(dev_priv, SKL_DFSM);
+-
+-		if (dfsm & SKL_DFSM_PIPE_A_DISABLE) {
+-			runtime->pipe_mask &= ~BIT(PIPE_A);
+-			runtime->cpu_transcoder_mask &= ~BIT(TRANSCODER_A);
+-			runtime->fbc_mask &= ~BIT(INTEL_FBC_A);
+-		}
+-		if (dfsm & SKL_DFSM_PIPE_B_DISABLE) {
+-			runtime->pipe_mask &= ~BIT(PIPE_B);
+-			runtime->cpu_transcoder_mask &= ~BIT(TRANSCODER_B);
+-		}
+-		if (dfsm & SKL_DFSM_PIPE_C_DISABLE) {
+-			runtime->pipe_mask &= ~BIT(PIPE_C);
+-			runtime->cpu_transcoder_mask &= ~BIT(TRANSCODER_C);
+-		}
+-
+-		if (DISPLAY_VER(dev_priv) >= 12 &&
+-		    (dfsm & TGL_DFSM_PIPE_D_DISABLE)) {
+-			runtime->pipe_mask &= ~BIT(PIPE_D);
+-			runtime->cpu_transcoder_mask &= ~BIT(TRANSCODER_D);
+-		}
+-
+-		if (dfsm & SKL_DFSM_DISPLAY_HDCP_DISABLE)
+-			runtime->has_hdcp = 0;
+-
+-		if (dfsm & SKL_DFSM_DISPLAY_PM_DISABLE)
+-			runtime->fbc_mask = 0;
+-
+-		if (DISPLAY_VER(dev_priv) >= 11 && (dfsm & ICL_DFSM_DMC_DISABLE))
+-			runtime->has_dmc = 0;
+-
+-		if (DISPLAY_VER(dev_priv) >= 10 &&
+-		    (dfsm & GLK_DFSM_DISPLAY_DSC_DISABLE))
+-			runtime->has_dsc = 0;
+-	}
+-
+-	if (!HAS_DISPLAY(dev_priv)) {
+-		dev_priv->drm.driver_features &= ~(DRIVER_MODESET |
+-						   DRIVER_ATOMIC);
+-		memset(runtime, 0, sizeof(*runtime));
+-	}
+-
+-	runtime->rawclk_freq = intel_read_rawclk(dev_priv);
+-	drm_dbg(&dev_priv->drm, "rawclk rate: %d kHz\n", runtime->rawclk_freq);
+-}
+-
+-bool i915_vtd_active(struct drm_i915_private *i915)
+-{
+-	if (device_iommu_mapped(i915->drm.dev))
+-		return true;
+-
+-	/* Running as a guest, we assume the host is enforcing VT'd */
+-	return i915_run_as_guest();
+-}
+-
+-/* i915 specific, just put here for shutting it up */
+-int __i915_inject_probe_error(struct drm_i915_private *i915, int err,
+-							  const char *func, int line)
+-{
+-	return 0;
+-}
+diff --git a/drivers/gpu/drm/xe/display/ext/intel_device_info.h b/drivers/gpu/drm/xe/display/ext/intel_device_info.h
+deleted file mode 100644
+index dd05f298019e..000000000000
+--- a/drivers/gpu/drm/xe/display/ext/intel_device_info.h
++++ /dev/null
+@@ -1,36 +0,0 @@
+-/*
+- * Copyright © 2014-2017 Intel Corporation
+- *
+- * Permission is hereby granted, free of charge, to any person obtaining a
+- * copy of this software and associated documentation files (the "Software"),
+- * to deal in the Software without restriction, including without limitation
+- * the rights to use, copy, modify, merge, publish, distribute, sublicense,
+- * and/or sell copies of the Software, and to permit persons to whom the
+- * Software is furnished to do so, subject to the following conditions:
+- *
+- * The above copyright notice and this permission notice (including the next
+- * paragraph) shall be included in all copies or substantial portions of the
+- * Software.
+- *
+- * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+- * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+- * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.  IN NO EVENT SHALL
+- * THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+- * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
+- * FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS
+- * IN THE SOFTWARE.
+- *
+- */
+-
+-#ifndef _INTEL_DEVICE_INFO_H_
+-#define _INTEL_DEVICE_INFO_H_
+-
+-#include <linux/types.h>
+-#include "xe_device_types.h"
+-
+-/* Minimal parts used by xe */
+-#define intel_runtime_info xe_device_display_info
+-
+-void intel_device_info_runtime_init(struct drm_i915_private *dev_priv);
+-
+-#endif
+diff --git a/drivers/gpu/drm/xe/display/ext/intel_dram.c b/drivers/gpu/drm/xe/display/ext/intel_dram.c
+deleted file mode 100644
+index 84a96e6ece18..000000000000
+--- a/drivers/gpu/drm/xe/display/ext/intel_dram.c
++++ /dev/null
+@@ -1,495 +0,0 @@
+-// SPDX-License-Identifier: MIT
+-/*
+- * Copyright © 2020 Intel Corporation
+- */
+-
+-#include <linux/string_helpers.h>
+-
+-#include "i915_drv.h"
+-#include "i915_reg.h"
+-#include "../intel_de.h"
+-#include "intel_dram.h"
+-#include "intel_mchbar_regs.h"
+-
+-struct dram_dimm_info {
+-	u16 size;
+-	u8 width, ranks;
+-};
+-
+-struct dram_channel_info {
+-	struct dram_dimm_info dimm_l, dimm_s;
+-	u8 ranks;
+-	bool is_16gb_dimm;
+-};
+-
+-#define DRAM_TYPE_STR(type) [INTEL_DRAM_ ## type] = #type
+-
+-static const char *intel_dram_type_str(enum intel_dram_type type)
+-{
+-	static const char * const str[] = {
+-		DRAM_TYPE_STR(UNKNOWN),
+-		DRAM_TYPE_STR(DDR3),
+-		DRAM_TYPE_STR(DDR4),
+-		DRAM_TYPE_STR(LPDDR3),
+-		DRAM_TYPE_STR(LPDDR4),
+-	};
+-
+-	if (type >= ARRAY_SIZE(str))
+-		type = INTEL_DRAM_UNKNOWN;
+-
+-	return str[type];
+-}
+-
+-#undef DRAM_TYPE_STR
+-
+-static int intel_dimm_num_devices(const struct dram_dimm_info *dimm)
+-{
+-	return dimm->ranks * 64 / (dimm->width ?: 1);
+-}
+-
+-/* Returns total Gb for the whole DIMM */
+-static int skl_get_dimm_size(u16 val)
+-{
+-	return (val & SKL_DRAM_SIZE_MASK) * 8;
+-}
+-
+-static int skl_get_dimm_width(u16 val)
+-{
+-	if (skl_get_dimm_size(val) == 0)
+-		return 0;
+-
+-	switch (val & SKL_DRAM_WIDTH_MASK) {
+-	case SKL_DRAM_WIDTH_X8:
+-	case SKL_DRAM_WIDTH_X16:
+-	case SKL_DRAM_WIDTH_X32:
+-		val = (val & SKL_DRAM_WIDTH_MASK) >> SKL_DRAM_WIDTH_SHIFT;
+-		return 8 << val;
+-	default:
+-		MISSING_CASE(val);
+-		return 0;
+-	}
+-}
+-
+-static int skl_get_dimm_ranks(u16 val)
+-{
+-	if (skl_get_dimm_size(val) == 0)
+-		return 0;
+-
+-	val = (val & SKL_DRAM_RANK_MASK) >> SKL_DRAM_RANK_SHIFT;
+-
+-	return val + 1;
+-}
+-
+-/* Returns total Gb for the whole DIMM */
+-static int icl_get_dimm_size(u16 val)
+-{
+-	return (val & ICL_DRAM_SIZE_MASK) * 8 / 2;
+-}
+-
+-static int icl_get_dimm_width(u16 val)
+-{
+-	if (icl_get_dimm_size(val) == 0)
+-		return 0;
+-
+-	switch (val & ICL_DRAM_WIDTH_MASK) {
+-	case ICL_DRAM_WIDTH_X8:
+-	case ICL_DRAM_WIDTH_X16:
+-	case ICL_DRAM_WIDTH_X32:
+-		val = (val & ICL_DRAM_WIDTH_MASK) >> ICL_DRAM_WIDTH_SHIFT;
+-		return 8 << val;
+-	default:
+-		MISSING_CASE(val);
+-		return 0;
+-	}
+-}
+-
+-static int icl_get_dimm_ranks(u16 val)
+-{
+-	if (icl_get_dimm_size(val) == 0)
+-		return 0;
+-
+-	val = (val & ICL_DRAM_RANK_MASK) >> ICL_DRAM_RANK_SHIFT;
+-
+-	return val + 1;
+-}
+-
+-static bool
+-skl_is_16gb_dimm(const struct dram_dimm_info *dimm)
+-{
+-	/* Convert total Gb to Gb per DRAM device */
+-	return dimm->size / (intel_dimm_num_devices(dimm) ?: 1) == 16;
+-}
+-
+-static void
+-skl_dram_get_dimm_info(struct drm_i915_private *i915,
+-		       struct dram_dimm_info *dimm,
+-		       int channel, char dimm_name, u16 val)
+-{
+-	if (GRAPHICS_VER(i915) >= 11) {
+-		dimm->size = icl_get_dimm_size(val);
+-		dimm->width = icl_get_dimm_width(val);
+-		dimm->ranks = icl_get_dimm_ranks(val);
+-	} else {
+-		dimm->size = skl_get_dimm_size(val);
+-		dimm->width = skl_get_dimm_width(val);
+-		dimm->ranks = skl_get_dimm_ranks(val);
+-	}
+-
+-	drm_dbg_kms(&i915->drm,
+-		    "CH%u DIMM %c size: %u Gb, width: X%u, ranks: %u, 16Gb DIMMs: %s\n",
+-		    channel, dimm_name, dimm->size, dimm->width, dimm->ranks,
+-		    str_yes_no(skl_is_16gb_dimm(dimm)));
+-}
+-
+-static int
+-skl_dram_get_channel_info(struct drm_i915_private *i915,
+-			  struct dram_channel_info *ch,
+-			  int channel, u32 val)
+-{
+-	skl_dram_get_dimm_info(i915, &ch->dimm_l,
+-			       channel, 'L', val & 0xffff);
+-	skl_dram_get_dimm_info(i915, &ch->dimm_s,
+-			       channel, 'S', val >> 16);
+-
+-	if (ch->dimm_l.size == 0 && ch->dimm_s.size == 0) {
+-		drm_dbg_kms(&i915->drm, "CH%u not populated\n", channel);
+-		return -EINVAL;
+-	}
+-
+-	if (ch->dimm_l.ranks == 2 || ch->dimm_s.ranks == 2)
+-		ch->ranks = 2;
+-	else if (ch->dimm_l.ranks == 1 && ch->dimm_s.ranks == 1)
+-		ch->ranks = 2;
+-	else
+-		ch->ranks = 1;
+-
+-	ch->is_16gb_dimm = skl_is_16gb_dimm(&ch->dimm_l) ||
+-		skl_is_16gb_dimm(&ch->dimm_s);
+-
+-	drm_dbg_kms(&i915->drm, "CH%u ranks: %u, 16Gb DIMMs: %s\n",
+-		    channel, ch->ranks, str_yes_no(ch->is_16gb_dimm));
+-
+-	return 0;
+-}
+-
+-static bool
+-intel_is_dram_symmetric(const struct dram_channel_info *ch0,
+-			const struct dram_channel_info *ch1)
+-{
+-	return !memcmp(ch0, ch1, sizeof(*ch0)) &&
+-		(ch0->dimm_s.size == 0 ||
+-		 !memcmp(&ch0->dimm_l, &ch0->dimm_s, sizeof(ch0->dimm_l)));
+-}
+-
+-static int
+-skl_dram_get_channels_info(struct drm_i915_private *i915)
+-{
+-	struct dram_info *dram_info = &i915->dram_info;
+-	struct dram_channel_info ch0 = {}, ch1 = {};
+-	u32 val;
+-	int ret;
+-
+-	val = intel_de_read(i915, SKL_MAD_DIMM_CH0_0_0_0_MCHBAR_MCMAIN);
+-	ret = skl_dram_get_channel_info(i915, &ch0, 0, val);
+-	if (ret == 0)
+-		dram_info->num_channels++;
+-
+-	val = intel_de_read(i915, SKL_MAD_DIMM_CH1_0_0_0_MCHBAR_MCMAIN);
+-	ret = skl_dram_get_channel_info(i915, &ch1, 1, val);
+-	if (ret == 0)
+-		dram_info->num_channels++;
+-
+-	if (dram_info->num_channels == 0) {
+-		drm_info(&i915->drm, "Number of memory channels is zero\n");
+-		return -EINVAL;
+-	}
+-
+-	if (ch0.ranks == 0 && ch1.ranks == 0) {
+-		drm_info(&i915->drm, "couldn't get memory rank information\n");
+-		return -EINVAL;
+-	}
+-
+-	dram_info->wm_lv_0_adjust_needed = ch0.is_16gb_dimm || ch1.is_16gb_dimm;
+-
+-	dram_info->symmetric_memory = intel_is_dram_symmetric(&ch0, &ch1);
+-
+-	drm_dbg_kms(&i915->drm, "Memory configuration is symmetric? %s\n",
+-		    str_yes_no(dram_info->symmetric_memory));
+-
+-	return 0;
+-}
+-
+-static enum intel_dram_type
+-skl_get_dram_type(struct drm_i915_private *i915)
+-{
+-	u32 val;
+-
+-	val = intel_de_read(i915, SKL_MAD_INTER_CHANNEL_0_0_0_MCHBAR_MCMAIN);
+-
+-	switch (val & SKL_DRAM_DDR_TYPE_MASK) {
+-	case SKL_DRAM_DDR_TYPE_DDR3:
+-		return INTEL_DRAM_DDR3;
+-	case SKL_DRAM_DDR_TYPE_DDR4:
+-		return INTEL_DRAM_DDR4;
+-	case SKL_DRAM_DDR_TYPE_LPDDR3:
+-		return INTEL_DRAM_LPDDR3;
+-	case SKL_DRAM_DDR_TYPE_LPDDR4:
+-		return INTEL_DRAM_LPDDR4;
+-	default:
+-		MISSING_CASE(val);
+-		return INTEL_DRAM_UNKNOWN;
+-	}
+-}
+-
+-static int
+-skl_get_dram_info(struct drm_i915_private *i915)
+-{
+-	struct dram_info *dram_info = &i915->dram_info;
+-	int ret;
+-
+-	dram_info->type = skl_get_dram_type(i915);
+-	drm_dbg_kms(&i915->drm, "DRAM type: %s\n",
+-		    intel_dram_type_str(dram_info->type));
+-
+-	ret = skl_dram_get_channels_info(i915);
+-	if (ret)
+-		return ret;
+-
+-	return 0;
+-}
+-
+-/* Returns Gb per DRAM device */
+-static int bxt_get_dimm_size(u32 val)
+-{
+-	switch (val & BXT_DRAM_SIZE_MASK) {
+-	case BXT_DRAM_SIZE_4GBIT:
+-		return 4;
+-	case BXT_DRAM_SIZE_6GBIT:
+-		return 6;
+-	case BXT_DRAM_SIZE_8GBIT:
+-		return 8;
+-	case BXT_DRAM_SIZE_12GBIT:
+-		return 12;
+-	case BXT_DRAM_SIZE_16GBIT:
+-		return 16;
+-	default:
+-		MISSING_CASE(val);
+-		return 0;
+-	}
+-}
+-
+-static int bxt_get_dimm_width(u32 val)
+-{
+-	if (!bxt_get_dimm_size(val))
+-		return 0;
+-
+-	val = (val & BXT_DRAM_WIDTH_MASK) >> BXT_DRAM_WIDTH_SHIFT;
+-
+-	return 8 << val;
+-}
+-
+-static int bxt_get_dimm_ranks(u32 val)
+-{
+-	if (!bxt_get_dimm_size(val))
+-		return 0;
+-
+-	switch (val & BXT_DRAM_RANK_MASK) {
+-	case BXT_DRAM_RANK_SINGLE:
+-		return 1;
+-	case BXT_DRAM_RANK_DUAL:
+-		return 2;
+-	default:
+-		MISSING_CASE(val);
+-		return 0;
+-	}
+-}
+-
+-static enum intel_dram_type bxt_get_dimm_type(u32 val)
+-{
+-	if (!bxt_get_dimm_size(val))
+-		return INTEL_DRAM_UNKNOWN;
+-
+-	switch (val & BXT_DRAM_TYPE_MASK) {
+-	case BXT_DRAM_TYPE_DDR3:
+-		return INTEL_DRAM_DDR3;
+-	case BXT_DRAM_TYPE_LPDDR3:
+-		return INTEL_DRAM_LPDDR3;
+-	case BXT_DRAM_TYPE_DDR4:
+-		return INTEL_DRAM_DDR4;
+-	case BXT_DRAM_TYPE_LPDDR4:
+-		return INTEL_DRAM_LPDDR4;
+-	default:
+-		MISSING_CASE(val);
+-		return INTEL_DRAM_UNKNOWN;
+-	}
+-}
+-
+-static void bxt_get_dimm_info(struct dram_dimm_info *dimm, u32 val)
+-{
+-	dimm->width = bxt_get_dimm_width(val);
+-	dimm->ranks = bxt_get_dimm_ranks(val);
+-
+-	/*
+-	 * Size in register is Gb per DRAM device. Convert to total
+-	 * Gb to match the way we report this for non-LP platforms.
+-	 */
+-	dimm->size = bxt_get_dimm_size(val) * intel_dimm_num_devices(dimm);
+-}
+-
+-static int bxt_get_dram_info(struct drm_i915_private *i915)
+-{
+-	struct dram_info *dram_info = &i915->dram_info;
+-	u32 val;
+-	u8 valid_ranks = 0;
+-	int i;
+-
+-	/*
+-	 * Now read each DUNIT8/9/10/11 to check the rank of each dimms.
+-	 */
+-	for (i = BXT_D_CR_DRP0_DUNIT_START; i <= BXT_D_CR_DRP0_DUNIT_END; i++) {
+-		struct dram_dimm_info dimm;
+-		enum intel_dram_type type;
+-
+-		val = intel_de_read(i915, BXT_D_CR_DRP0_DUNIT(i));
+-		if (val == 0xFFFFFFFF)
+-			continue;
+-
+-		dram_info->num_channels++;
+-
+-		bxt_get_dimm_info(&dimm, val);
+-		type = bxt_get_dimm_type(val);
+-
+-		drm_WARN_ON(&i915->drm, type != INTEL_DRAM_UNKNOWN &&
+-			    dram_info->type != INTEL_DRAM_UNKNOWN &&
+-			    dram_info->type != type);
+-
+-		drm_dbg_kms(&i915->drm,
+-			    "CH%u DIMM size: %u Gb, width: X%u, ranks: %u, type: %s\n",
+-			    i - BXT_D_CR_DRP0_DUNIT_START,
+-			    dimm.size, dimm.width, dimm.ranks,
+-			    intel_dram_type_str(type));
+-
+-		if (valid_ranks == 0)
+-			valid_ranks = dimm.ranks;
+-
+-		if (type != INTEL_DRAM_UNKNOWN)
+-			dram_info->type = type;
+-	}
+-
+-	if (dram_info->type == INTEL_DRAM_UNKNOWN || valid_ranks == 0) {
+-		drm_info(&i915->drm, "couldn't get memory information\n");
+-		return -EINVAL;
+-	}
+-
+-	return 0;
+-}
+-
+-static int icl_pcode_read_mem_global_info(struct drm_i915_private *dev_priv)
+-{
+-	struct dram_info *dram_info = &dev_priv->dram_info;
+-	u32 val = 0;
+-	int ret;
+-
+-	ret = intel_de_pcode_read(dev_priv, ICL_PCODE_MEM_SUBSYSYSTEM_INFO |
+-			     ICL_PCODE_MEM_SS_READ_GLOBAL_INFO, &val, NULL);
+-	if (ret)
+-		return ret;
+-
+-	if (GRAPHICS_VER(dev_priv) >= 12) {
+-		switch (val & 0xf) {
+-		case 0:
+-			dram_info->type = INTEL_DRAM_DDR4;
+-			break;
+-		case 1:
+-			dram_info->type = INTEL_DRAM_DDR5;
+-			break;
+-		case 2:
+-			dram_info->type = INTEL_DRAM_LPDDR5;
+-			break;
+-		case 3:
+-			dram_info->type = INTEL_DRAM_LPDDR4;
+-			break;
+-		case 4:
+-			dram_info->type = INTEL_DRAM_DDR3;
+-			break;
+-		case 5:
+-			dram_info->type = INTEL_DRAM_LPDDR3;
+-			break;
+-		default:
+-			MISSING_CASE(val & 0xf);
+-			return -EINVAL;
+-		}
+-	} else {
+-		switch (val & 0xf) {
+-		case 0:
+-			dram_info->type = INTEL_DRAM_DDR4;
+-			break;
+-		case 1:
+-			dram_info->type = INTEL_DRAM_DDR3;
+-			break;
+-		case 2:
+-			dram_info->type = INTEL_DRAM_LPDDR3;
+-			break;
+-		case 3:
+-			dram_info->type = INTEL_DRAM_LPDDR4;
+-			break;
+-		default:
+-			MISSING_CASE(val & 0xf);
+-			return -EINVAL;
+-		}
+-	}
+-
+-	dram_info->num_channels = (val & 0xf0) >> 4;
+-	dram_info->num_qgv_points = (val & 0xf00) >> 8;
+-	dram_info->num_psf_gv_points = (val & 0x3000) >> 12;
+-
+-	return 0;
+-}
+-
+-static int gen11_get_dram_info(struct drm_i915_private *i915)
+-{
+-	int ret = skl_get_dram_info(i915);
+-
+-	if (ret)
+-		return ret;
+-
+-	return icl_pcode_read_mem_global_info(i915);
+-}
+-
+-static int gen12_get_dram_info(struct drm_i915_private *i915)
+-{
+-	i915->dram_info.wm_lv_0_adjust_needed = false;
+-
+-	return icl_pcode_read_mem_global_info(i915);
+-}
+-
+-void intel_dram_detect(struct drm_i915_private *i915)
+-{
+-	struct dram_info *dram_info = &i915->dram_info;
+-	int ret;
+-
+-	if (GRAPHICS_VER(i915) < 9 || IS_DG2(i915) || !HAS_DISPLAY(i915))
+-		return;
+-
+-	/*
+-	 * Assume level 0 watermark latency adjustment is needed until proven
+-	 * otherwise, this w/a is not needed by bxt/glk.
+-	 */
+-	dram_info->wm_lv_0_adjust_needed = !IS_GEN9_LP(i915);
+-
+-	if (GRAPHICS_VER(i915) >= 12)
+-		ret = gen12_get_dram_info(i915);
+-	else if (GRAPHICS_VER(i915) >= 11)
+-		ret = gen11_get_dram_info(i915);
+-	else if (IS_GEN9_LP(i915))
+-		ret = bxt_get_dram_info(i915);
+-	else
+-		ret = skl_get_dram_info(i915);
+-	if (ret)
+-		return;
+-
+-	drm_dbg_kms(&i915->drm, "DRAM channels: %u\n", dram_info->num_channels);
+-
+-	drm_dbg_kms(&i915->drm, "Watermark level 0 adjustment needed: %s\n",
+-		    str_yes_no(dram_info->wm_lv_0_adjust_needed));
+-}
+diff --git a/drivers/gpu/drm/xe/display/ext/intel_dram.h b/drivers/gpu/drm/xe/display/ext/intel_dram.h
+deleted file mode 100644
+index 4ba13c13162c..000000000000
+--- a/drivers/gpu/drm/xe/display/ext/intel_dram.h
++++ /dev/null
+@@ -1,14 +0,0 @@
+-/* SPDX-License-Identifier: MIT */
+-/*
+- * Copyright © 2020 Intel Corporation
+- */
+-
+-#ifndef __INTEL_DRAM_H__
+-#define __INTEL_DRAM_H__
+-
+-struct drm_i915_private;
+-
+-void intel_dram_edram_detect(struct drm_i915_private *i915);
+-void intel_dram_detect(struct drm_i915_private *i915);
+-
+-#endif /* __INTEL_DRAM_H__ */
+diff --git a/drivers/gpu/drm/xe/display/ext/intel_pch.c b/drivers/gpu/drm/xe/display/ext/intel_pch.c
+deleted file mode 100644
+index dc2b15b5c4be..000000000000
+--- a/drivers/gpu/drm/xe/display/ext/intel_pch.c
++++ /dev/null
+@@ -1,157 +0,0 @@
+-// SPDX-License-Identifier: MIT
+-/*
+- * Copyright 2019 Intel Corporation.
+- */
+-
+-#include "i915_drv.h"
+-#include "i915_utils.h"
+-#include "intel_pch.h"
+-
+-/* Map PCH device id to PCH type, or PCH_NONE if unknown. */
+-static enum intel_pch
+-intel_pch_type(const struct drm_i915_private *dev_priv, unsigned short id)
+-{
+-	switch (id) {
+-	case INTEL_PCH_MCC_DEVICE_ID_TYPE:
+-		drm_dbg_kms(&dev_priv->drm, "Found Mule Creek Canyon PCH\n");
+-		drm_WARN_ON(&dev_priv->drm, !IS_JSL_EHL(dev_priv));
+-		/* MCC is TGP compatible */
+-		return PCH_TGP;
+-	case INTEL_PCH_TGP_DEVICE_ID_TYPE:
+-	case INTEL_PCH_TGP2_DEVICE_ID_TYPE:
+-		drm_dbg_kms(&dev_priv->drm, "Found Tiger Lake LP PCH\n");
+-		drm_WARN_ON(&dev_priv->drm, !IS_TIGERLAKE(dev_priv) &&
+-			    !IS_ROCKETLAKE(dev_priv) &&
+-			    !IS_GEN9_BC(dev_priv));
+-		return PCH_TGP;
+-	case INTEL_PCH_ADP_DEVICE_ID_TYPE:
+-	case INTEL_PCH_ADP2_DEVICE_ID_TYPE:
+-	case INTEL_PCH_ADP3_DEVICE_ID_TYPE:
+-	case INTEL_PCH_ADP4_DEVICE_ID_TYPE:
+-		drm_dbg_kms(&dev_priv->drm, "Found Alder Lake PCH\n");
+-		drm_WARN_ON(&dev_priv->drm, !IS_ALDERLAKE_S(dev_priv) &&
+-			    !IS_ALDERLAKE_P(dev_priv));
+-		return PCH_ADP;
+-	case INTEL_PCH_MTP_DEVICE_ID_TYPE:
+-	case INTEL_PCH_MTP2_DEVICE_ID_TYPE:
+-		drm_dbg_kms(&dev_priv->drm, "Found Meteor Lake PCH\n");
+-		drm_WARN_ON(&dev_priv->drm, !IS_METEORLAKE(dev_priv));
+-		return PCH_MTP;
+-	default:
+-		return PCH_NONE;
+-	}
+-}
+-
+-static bool intel_is_virt_pch(unsigned short id,
+-			      unsigned short svendor, unsigned short sdevice)
+-{
+-	return (id == INTEL_PCH_P2X_DEVICE_ID_TYPE ||
+-		id == INTEL_PCH_P3X_DEVICE_ID_TYPE ||
+-		(id == INTEL_PCH_QEMU_DEVICE_ID_TYPE &&
+-		 svendor == PCI_SUBVENDOR_ID_REDHAT_QUMRANET &&
+-		 sdevice == PCI_SUBDEVICE_ID_QEMU));
+-}
+-
+-static void
+-intel_virt_detect_pch(const struct drm_i915_private *dev_priv,
+-		      unsigned short *pch_id, enum intel_pch *pch_type)
+-{
+-	unsigned short id = 0;
+-
+-	/*
+-	 * In a virtualized passthrough environment we can be in a
+-	 * setup where the ISA bridge is not able to be passed through.
+-	 * In this case, a south bridge can be emulated and we have to
+-	 * make an educated guess as to which PCH is really there.
+-	 */
+-
+-	if (IS_METEORLAKE(dev_priv))
+-		id = INTEL_PCH_MTP_DEVICE_ID_TYPE;
+-	else if (IS_ALDERLAKE_S(dev_priv) || IS_ALDERLAKE_P(dev_priv))
+-		id = INTEL_PCH_ADP_DEVICE_ID_TYPE;
+-	else if (IS_TIGERLAKE(dev_priv) || IS_ROCKETLAKE(dev_priv))
+-		id = INTEL_PCH_TGP_DEVICE_ID_TYPE;
+-	else BUG_ON(1);
+-
+-	if (id)
+-		drm_dbg_kms(&dev_priv->drm, "Assuming PCH ID %04x\n", id);
+-	else
+-		drm_dbg_kms(&dev_priv->drm, "Assuming no PCH\n");
+-
+-	*pch_type = intel_pch_type(dev_priv, id);
+-
+-	/* Sanity check virtual PCH id */
+-	if (drm_WARN_ON(&dev_priv->drm,
+-			id && *pch_type == PCH_NONE))
+-		id = 0;
+-
+-	*pch_id = id;
+-}
+-
+-void intel_detect_pch(struct drm_i915_private *dev_priv)
+-{
+-	struct pci_dev *pch = NULL;
+-	unsigned short id;
+-	enum intel_pch pch_type;
+-
+-	/* DG1 has south engine display on the same PCI device */
+-	if (IS_DG1(dev_priv)) {
+-		dev_priv->pch_type = PCH_DG1;
+-		return;
+-	} else if (IS_DG2(dev_priv)) {
+-		dev_priv->pch_type = PCH_DG2;
+-		return;
+-	}
+-
+-	/*
+-	 * The reason to probe ISA bridge instead of Dev31:Fun0 is to
+-	 * make graphics device passthrough work easy for VMM, that only
+-	 * need to expose ISA bridge to let driver know the real hardware
+-	 * underneath. This is a requirement from virtualization team.
+-	 *
+-	 * In some virtualized environments (e.g. XEN), there is irrelevant
+-	 * ISA bridge in the system. To work reliably, we should scan trhough
+-	 * all the ISA bridge devices and check for the first match, instead
+-	 * of only checking the first one.
+-	 */
+-	while ((pch = pci_get_class(PCI_CLASS_BRIDGE_ISA << 8, pch))) {
+-		if (pch->vendor != PCI_VENDOR_ID_INTEL)
+-			continue;
+-
+-		id = pch->device & INTEL_PCH_DEVICE_ID_MASK;
+-
+-		pch_type = intel_pch_type(dev_priv, id);
+-		if (pch_type != PCH_NONE) {
+-			dev_priv->pch_type = pch_type;
+-			dev_priv->pch_id = id;
+-			break;
+-		} else if (intel_is_virt_pch(id, pch->subsystem_vendor,
+-					     pch->subsystem_device)) {
+-			intel_virt_detect_pch(dev_priv, &id, &pch_type);
+-			dev_priv->pch_type = pch_type;
+-			dev_priv->pch_id = id;
+-			break;
+-		}
+-	}
+-
+-	/*
+-	 * Use PCH_NOP (PCH but no South Display) for PCH platforms without
+-	 * display.
+-	 */
+-	if (pch && !HAS_DISPLAY(dev_priv)) {
+-		drm_dbg_kms(&dev_priv->drm,
+-			    "Display disabled, reverting to NOP PCH\n");
+-		dev_priv->pch_type = PCH_NOP;
+-		dev_priv->pch_id = 0;
+-	} else if (!pch) {
+-		if (i915_run_as_guest() && HAS_DISPLAY(dev_priv)) {
+-			intel_virt_detect_pch(dev_priv, &id, &pch_type);
+-			dev_priv->pch_type = pch_type;
+-			dev_priv->pch_id = id;
+-		} else {
+-			drm_dbg_kms(&dev_priv->drm, "No PCH found.\n");
+-		}
+-	}
+-
+-	pci_dev_put(pch);
+-}
+diff --git a/drivers/gpu/drm/xe/display/ext/intel_pch.h b/drivers/gpu/drm/xe/display/ext/intel_pch.h
+deleted file mode 100644
+index 32aff5a70d04..000000000000
+--- a/drivers/gpu/drm/xe/display/ext/intel_pch.h
++++ /dev/null
+@@ -1,91 +0,0 @@
+-/* SPDX-License-Identifier: MIT */
+-/*
+- * Copyright 2019 Intel Corporation.
+- */
+-
+-#ifndef __INTEL_PCH__
+-#define __INTEL_PCH__
+-
+-struct drm_i915_private;
+-
+-/*
+- * Sorted by south display engine compatibility.
+- * If the new PCH comes with a south display engine that is not
+- * inherited from the latest item, please do not add it to the
+- * end. Instead, add it right after its "parent" PCH.
+- */
+-enum intel_pch {
+-	PCH_NOP = -1,	/* PCH without south display */
+-	PCH_NONE = 0,	/* No PCH present */
+-	PCH_IBX,	/* Ibexpeak PCH */
+-	PCH_CPT,	/* Cougarpoint/Pantherpoint PCH */
+-	PCH_LPT,	/* Lynxpoint/Wildcatpoint PCH */
+-	PCH_SPT,        /* Sunrisepoint/Kaby Lake PCH */
+-	PCH_CNP,        /* Cannon/Comet Lake PCH */
+-	PCH_ICP,	/* Ice Lake/Jasper Lake PCH */
+-	PCH_TGP,	/* Tiger Lake/Mule Creek Canyon PCH */
+-	PCH_ADP,	/* Alder Lake PCH */
+-	PCH_MTP,	/* Meteor Lake PCH */
+-
+-	/* Fake PCHs, functionality handled on the same PCI dev */
+-	PCH_DG1 = 1024,
+-	PCH_DG2,
+-};
+-
+-#define INTEL_PCH_DEVICE_ID_MASK		0xff80
+-#define INTEL_PCH_IBX_DEVICE_ID_TYPE		0x3b00
+-#define INTEL_PCH_CPT_DEVICE_ID_TYPE		0x1c00
+-#define INTEL_PCH_PPT_DEVICE_ID_TYPE		0x1e00
+-#define INTEL_PCH_LPT_DEVICE_ID_TYPE		0x8c00
+-#define INTEL_PCH_LPT_LP_DEVICE_ID_TYPE		0x9c00
+-#define INTEL_PCH_WPT_DEVICE_ID_TYPE		0x8c80
+-#define INTEL_PCH_WPT_LP_DEVICE_ID_TYPE		0x9c80
+-#define INTEL_PCH_SPT_DEVICE_ID_TYPE		0xA100
+-#define INTEL_PCH_SPT_LP_DEVICE_ID_TYPE		0x9D00
+-#define INTEL_PCH_KBP_DEVICE_ID_TYPE		0xA280
+-#define INTEL_PCH_CNP_DEVICE_ID_TYPE		0xA300
+-#define INTEL_PCH_CNP_LP_DEVICE_ID_TYPE		0x9D80
+-#define INTEL_PCH_CMP_DEVICE_ID_TYPE		0x0280
+-#define INTEL_PCH_CMP2_DEVICE_ID_TYPE		0x0680
+-#define INTEL_PCH_CMP_V_DEVICE_ID_TYPE		0xA380
+-#define INTEL_PCH_ICP_DEVICE_ID_TYPE		0x3480
+-#define INTEL_PCH_ICP2_DEVICE_ID_TYPE		0x3880
+-#define INTEL_PCH_MCC_DEVICE_ID_TYPE		0x4B00
+-#define INTEL_PCH_TGP_DEVICE_ID_TYPE		0xA080
+-#define INTEL_PCH_TGP2_DEVICE_ID_TYPE		0x4380
+-#define INTEL_PCH_JSP_DEVICE_ID_TYPE		0x4D80
+-#define INTEL_PCH_ADP_DEVICE_ID_TYPE		0x7A80
+-#define INTEL_PCH_ADP2_DEVICE_ID_TYPE		0x5180
+-#define INTEL_PCH_ADP3_DEVICE_ID_TYPE		0x7A00
+-#define INTEL_PCH_ADP4_DEVICE_ID_TYPE		0x5480
+-#define INTEL_PCH_MTP_DEVICE_ID_TYPE		0x7E00
+-#define INTEL_PCH_MTP2_DEVICE_ID_TYPE		0xAE00
+-#define INTEL_PCH_P2X_DEVICE_ID_TYPE		0x7100
+-#define INTEL_PCH_P3X_DEVICE_ID_TYPE		0x7000
+-#define INTEL_PCH_QEMU_DEVICE_ID_TYPE		0x2900 /* qemu q35 has 2918 */
+-
+-#define INTEL_PCH_TYPE(dev_priv)		((dev_priv)->pch_type)
+-#define INTEL_PCH_ID(dev_priv)			((dev_priv)->pch_id)
+-#define HAS_PCH_MTP(dev_priv)			(INTEL_PCH_TYPE(dev_priv) == PCH_MTP)
+-#define HAS_PCH_DG2(dev_priv)			(INTEL_PCH_TYPE(dev_priv) == PCH_DG2)
+-#define HAS_PCH_ADP(dev_priv)			(INTEL_PCH_TYPE(dev_priv) == PCH_ADP)
+-#define HAS_PCH_DG1(dev_priv)			(INTEL_PCH_TYPE(dev_priv) == PCH_DG1)
+-#define HAS_PCH_TGP(dev_priv)			(INTEL_PCH_TYPE(dev_priv) == PCH_TGP)
+-#define HAS_PCH_ICP(dev_priv)			(INTEL_PCH_TYPE(dev_priv) == PCH_ICP)
+-#define HAS_PCH_CNP(dev_priv)			(INTEL_PCH_TYPE(dev_priv) == PCH_CNP)
+-#define HAS_PCH_SPT(dev_priv)			(INTEL_PCH_TYPE(dev_priv) == PCH_SPT)
+-#define HAS_PCH_LPT(dev_priv)			(INTEL_PCH_TYPE(dev_priv) == PCH_LPT)
+-#define HAS_PCH_LPT_LP(dev_priv) \
+-	(INTEL_PCH_ID(dev_priv) == INTEL_PCH_LPT_LP_DEVICE_ID_TYPE || \
+-	 INTEL_PCH_ID(dev_priv) == INTEL_PCH_WPT_LP_DEVICE_ID_TYPE)
+-#define HAS_PCH_LPT_H(dev_priv) \
+-	(INTEL_PCH_ID(dev_priv) == INTEL_PCH_LPT_DEVICE_ID_TYPE || \
+-	 INTEL_PCH_ID(dev_priv) == INTEL_PCH_WPT_DEVICE_ID_TYPE)
+-#define HAS_PCH_CPT(dev_priv)			(INTEL_PCH_TYPE(dev_priv) == PCH_CPT)
+-#define HAS_PCH_IBX(dev_priv)			(INTEL_PCH_TYPE(dev_priv) == PCH_IBX)
+-#define HAS_PCH_NOP(dev_priv)			(INTEL_PCH_TYPE(dev_priv) == PCH_NOP)
+-#define HAS_PCH_SPLIT(dev_priv)			(INTEL_PCH_TYPE(dev_priv) != PCH_NONE)
+-
+-void intel_detect_pch(struct drm_i915_private *dev_priv);
+-
+-#endif /* __INTEL_PCH__ */
+diff --git a/drivers/gpu/drm/xe/display/ext/intel_pm.c b/drivers/gpu/drm/xe/display/ext/intel_pm.c
+deleted file mode 100644
+index b5c5b57f4a11..000000000000
+--- a/drivers/gpu/drm/xe/display/ext/intel_pm.c
++++ /dev/null
+@@ -1,209 +0,0 @@
+-/*
+- * Copyright © 2012 Intel Corporation
+- *
+- * Permission is hereby granted, free of charge, to any person obtaining a
+- * copy of this software and associated documentation files (the "Software"),
+- * to deal in the Software without restriction, including without limitation
+- * the rights to use, copy, modify, merge, publish, distribute, sublicense,
+- * and/or sell copies of the Software, and to permit persons to whom the
+- * Software is furnished to do so, subject to the following conditions:
+- *
+- * The above copyright notice and this permission notice (including the next
+- * paragraph) shall be included in all copies or substantial portions of the
+- * Software.
+- *
+- * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+- * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+- * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.  IN NO EVENT SHALL
+- * THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+- * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
+- * FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS
+- * IN THE SOFTWARE.
+- *
+- * Authors:
+- *    Eugeni Dodonov <eugeni.dodonov@intel.com>
+- *
+- */
+-
+-#include "display/intel_de.h"
+-#include "display/intel_display_trace.h"
+-#include "display/skl_watermark.h"
+-
+-#include "i915_drv.h"
+-#include "intel_mchbar_regs.h"
+-#include "intel_pm.h"
+-
+-bool intel_set_memory_cxsr(struct drm_i915_private *dev_priv, bool enable)
+-{
+-	return false;
+-}
+-
+-int ilk_wm_max_level(const struct drm_i915_private *dev_priv)
+-{
+-	/* how many WM levels are we expecting */
+-	if (HAS_HW_SAGV_WM(dev_priv))
+-		return 5;
+-	else if (DISPLAY_VER(dev_priv) >= 9)
+-		return 7;
+-	else if (IS_HASWELL(dev_priv) || IS_BROADWELL(dev_priv))
+-		return 4;
+-	else if (DISPLAY_VER(dev_priv) >= 6)
+-		return 3;
+-	else
+-		return 2;
+-}
+-
+-void intel_print_wm_latency(struct drm_i915_private *dev_priv,
+-			    const char *name, const u16 wm[])
+-{
+-	int level, max_level = ilk_wm_max_level(dev_priv);
+-
+-	for (level = 0; level <= max_level; level++) {
+-		unsigned int latency = wm[level];
+-
+-		if (latency == 0) {
+-			drm_dbg_kms(&dev_priv->drm,
+-				    "%s WM%d latency not provided\n",
+-				    name, level);
+-			continue;
+-		}
+-
+-		/*
+-		 * - latencies are in us on gen9.
+-		 * - before then, WM1+ latency values are in 0.5us units
+-		 */
+-		if (DISPLAY_VER(dev_priv) >= 9)
+-			latency *= 10;
+-		else if (level > 0)
+-			latency *= 5;
+-
+-		drm_dbg_kms(&dev_priv->drm,
+-			    "%s WM%d latency %u (%u.%u usec)\n", name, level,
+-			    wm[level], latency / 10, latency % 10);
+-	}
+-}
+-
+-static void gen12lp_init_clock_gating(struct drm_i915_private *dev_priv)
+-{
+-	/* Wa_1409120013 */
+-	if (DISPLAY_VER(dev_priv) == 12)
+-		intel_de_write(dev_priv, ILK_DPFC_CHICKEN(INTEL_FBC_A),
+-				   DPFC_CHICKEN_COMP_DUMMY_PIXEL);
+-
+-	/* Wa_1409825376:tgl (pre-prod)*/
+-	if (IS_TGL_DISPLAY_STEP(dev_priv, STEP_A0, STEP_C0))
+-		intel_de_write(dev_priv, GEN9_CLKGATE_DIS_3, intel_de_read(dev_priv, GEN9_CLKGATE_DIS_3) |
+-			   TGL_VRH_GATING_DIS);
+-
+-	/* Wa_14013723622:tgl,rkl,dg1,adl-s */
+-	if (DISPLAY_VER(dev_priv) == 12)
+-		intel_de_rmw(dev_priv, CLKREQ_POLICY,
+-				 CLKREQ_POLICY_MEM_UP_OVRD, 0);
+-}
+-
+-static void adlp_init_clock_gating(struct drm_i915_private *dev_priv)
+-{
+-	gen12lp_init_clock_gating(dev_priv);
+-
+-	/* Wa_22011091694:adlp */
+-	intel_de_rmw(dev_priv, GEN9_CLKGATE_DIS_5, 0, DPCE_GATING_DIS);
+-
+-	/* Bspec/49189 Initialize Sequence */
+-	intel_de_rmw(dev_priv, GEN8_CHICKEN_DCPR_1, DDI_CLOCK_REG_ACCESS, 0);
+-}
+-
+-static void dg1_init_clock_gating(struct drm_i915_private *dev_priv)
+-{
+-	gen12lp_init_clock_gating(dev_priv);
+-
+-	/* Wa_1409836686:dg1[a0] */
+-	if (IS_DG1_GRAPHICS_STEP(dev_priv, STEP_A0, STEP_B0))
+-		intel_de_write(dev_priv, GEN9_CLKGATE_DIS_3, intel_de_read(dev_priv, GEN9_CLKGATE_DIS_3) |
+-			   DPT_GATING_DIS);
+-}
+-
+-static void xehpsdv_init_clock_gating(struct drm_i915_private *dev_priv)
+-{
+-	/* Wa_22010146351:xehpsdv */
+-	if (IS_XEHPSDV_GRAPHICS_STEP(dev_priv, STEP_A0, STEP_B0))
+-		intel_de_rmw(dev_priv, XEHP_CLOCK_GATE_DIS, 0, SGR_DIS);
+-}
+-
+-static void dg2_init_clock_gating(struct drm_i915_private *i915)
+-{
+-	/* Wa_22010954014:dg2 */
+-	intel_de_rmw(i915, XEHP_CLOCK_GATE_DIS, 0,
+-			 SGSI_SIDECLK_DIS);
+-
+-	/*
+-	 * Wa_14010733611:dg2_g10
+-	 * Wa_22010146351:dg2_g10
+-	 */
+-	if (IS_DG2_GRAPHICS_STEP(i915, G10, STEP_A0, STEP_B0))
+-		intel_de_rmw(i915, XEHP_CLOCK_GATE_DIS, 0,
+-				 SGR_DIS | SGGI_DIS);
+-}
+-
+-static void pvc_init_clock_gating(struct drm_i915_private *dev_priv)
+-{
+-	/* Wa_14012385139:pvc */
+-	if (IS_PVC_BD_STEP(dev_priv, STEP_A0, STEP_B0))
+-		intel_de_rmw(dev_priv, XEHP_CLOCK_GATE_DIS, 0, SGR_DIS);
+-
+-	/* Wa_22010954014:pvc */
+-	if (IS_PVC_BD_STEP(dev_priv, STEP_A0, STEP_B0))
+-		intel_de_rmw(dev_priv, XEHP_CLOCK_GATE_DIS, 0, SGSI_SIDECLK_DIS);
+-}
+-
+-void intel_init_clock_gating(struct drm_i915_private *dev_priv)
+-{
+-	if (IS_PONTEVECCHIO(dev_priv))
+-		pvc_init_clock_gating(dev_priv);
+-	else if (IS_DG2(dev_priv))
+-		dg2_init_clock_gating(dev_priv);
+-	else if (IS_XEHPSDV(dev_priv))
+-		xehpsdv_init_clock_gating(dev_priv);
+-	else if (IS_ALDERLAKE_P(dev_priv))
+-		adlp_init_clock_gating(dev_priv);
+-	else if (IS_DG1(dev_priv))
+-		dg1_init_clock_gating(dev_priv);
+-	else if (GRAPHICS_VER(dev_priv) == 12)
+-		gen12lp_init_clock_gating(dev_priv);
+-	else {
+-		MISSING_CASE(INTEL_DEVID(dev_priv));
+-	}
+-}
+-
+-/* Set up chip specific power management-related functions */
+-void intel_init_pm(struct drm_i915_private *dev_priv)
+-{
+-	skl_wm_init(dev_priv);
+-}
+-
+-bool ilk_disable_lp_wm(struct drm_i915_private *dev_priv)
+-{
+-	return false;
+-}
+-
+-bool intel_wm_plane_visible(const struct intel_crtc_state *crtc_state,
+-			    const struct intel_plane_state *plane_state)
+-{
+-	struct intel_plane *plane = to_intel_plane(plane_state->uapi.plane);
+-
+-	/* FIXME check the 'enable' instead */
+-	if (!crtc_state->hw.active)
+-		return false;
+-
+-	/*
+-	 * Treat cursor with fb as always visible since cursor updates
+-	 * can happen faster than the vrefresh rate, and the current
+-	 * watermark code doesn't handle that correctly. Cursor updates
+-	 * which set/clear the fb or change the cursor size are going
+-	 * to get throttled by intel_legacy_cursor_update() to work
+-	 * around this problem with the watermark code.
+-	 */
+-	if (plane->id == PLANE_CURSOR)
+-		return plane_state->hw.fb != NULL;
+-	else
+-		return plane_state->uapi.visible;
+-}
+diff --git a/drivers/gpu/drm/xe/display/ext/intel_pm.h b/drivers/gpu/drm/xe/display/ext/intel_pm.h
+deleted file mode 100644
+index 5b0a2f175c61..000000000000
+--- a/drivers/gpu/drm/xe/display/ext/intel_pm.h
++++ /dev/null
+@@ -1,30 +0,0 @@
+-/* SPDX-License-Identifier: MIT */
+-/*
+- * Copyright © 2019 Intel Corporation
+- */
+-
+-#ifndef __INTEL_PM_H__
+-#define __INTEL_PM_H__
+-
+-#include <linux/types.h>
+-
+-struct drm_i915_private;
+-struct intel_crtc_state;
+-struct intel_plane_state;
+-
+-void intel_init_clock_gating(struct drm_i915_private *dev_priv);
+-void intel_suspend_hw(struct drm_i915_private *dev_priv);
+-int ilk_wm_max_level(const struct drm_i915_private *dev_priv);
+-void intel_init_pm(struct drm_i915_private *dev_priv);
+-void intel_init_clock_gating_hooks(struct drm_i915_private *dev_priv);
+-void intel_pm_setup(struct drm_i915_private *dev_priv);
+-void ilk_wm_get_hw_state(struct drm_i915_private *dev_priv);
+-bool ilk_disable_lp_wm(struct drm_i915_private *dev_priv);
+-bool intel_wm_plane_visible(const struct intel_crtc_state *crtc_state,
+-			    const struct intel_plane_state *plane_state);
+-void intel_print_wm_latency(struct drm_i915_private *dev_priv,
+-			    const char *name, const u16 wm[]);
+-
+-bool intel_set_memory_cxsr(struct drm_i915_private *dev_priv, bool enable);
+-
+-#endif /* __INTEL_PM_H__ */
+diff --git a/drivers/gpu/drm/xe/display/i915_active_types.h b/drivers/gpu/drm/xe/display/i915_active_types.h
+deleted file mode 100644
+index e69de29bb2d1..000000000000
+diff --git a/drivers/gpu/drm/xe/display/i915_drv.h b/drivers/gpu/drm/xe/display/i915_drv.h
+deleted file mode 100644
+index da83a957dd86..000000000000
+--- a/drivers/gpu/drm/xe/display/i915_drv.h
++++ /dev/null
+@@ -1,248 +0,0 @@
+-/* SPDX-License-Identifier: MIT */
+-/*
+- * Copyright © 2023 Intel Corporation
+- */
+-#ifndef _XE_I915_DRV_H_
+-#define _XE_I915_DRV_H_
+-
+-/*
+- * "Adaptation header" to allow i915 display to also build for xe driver.
+- * TODO: refactor i915 and xe so this can cease to exist
+- */
+-
+-#include "xe_device.h"
 -#include "xe_bo.h"
- #include "xe_bo_evict.h"
-+
-+#include "xe_bo.h"
- #include "xe_device.h"
- #include "xe_ggtt.h"
- #include "xe_gt.h"
-diff --git a/drivers/gpu/drm/xe/xe_debugfs.c b/drivers/gpu/drm/xe/xe_debugfs.c
-index b0f8b157ffa3..7827a785b020 100644
---- a/drivers/gpu/drm/xe/xe_debugfs.c
-+++ b/drivers/gpu/drm/xe/xe_debugfs.c
-@@ -3,13 +3,14 @@
-  * Copyright © 2022 Intel Corporation
-  */
- 
-+#include "xe_debugfs.h"
-+
- #include <linux/string_helpers.h>
- 
- #include <drm/drm_debugfs.h>
- 
- #include "xe_bo.h"
- #include "xe_device.h"
--#include "xe_debugfs.h"
- #include "xe_gt_debugfs.h"
- #include "xe_step.h"
- 
+-#include "xe_pm.h"
+-#include "xe_step.h"
+-#include "i915_reg_defs.h"
+-#include "intel_pch.h"
+-#include "i915_utils.h"
+-#include <linux/pm_runtime.h>
+-
+-static inline struct drm_i915_private *to_i915(const struct drm_device *dev)
+-{
+-	return container_of(dev, struct drm_i915_private, drm);
+-}
+-
+-static inline struct drm_i915_private *kdev_to_i915(struct device *kdev)
+-{
+-	return dev_get_drvdata(kdev);
+-}
+-
+-
+-#define INTEL_JASPERLAKE 0
+-#define INTEL_ELKHARTLAKE 0	
+-#define IS_PLATFORM(xe, x) ((xe)->info.platform == x)
+-#define INTEL_INFO(dev_priv)	(&((dev_priv)->info))
+-#define INTEL_DEVID(dev_priv)	((dev_priv)->info.devid)
+-#define IS_I830(dev_priv)	(dev_priv && 0)
+-#define IS_I845G(dev_priv)	(dev_priv && 0)
+-#define IS_I85X(dev_priv)	(dev_priv && 0)
+-#define IS_I865G(dev_priv)	(dev_priv && 0)
+-#define IS_I915G(dev_priv)	(dev_priv && 0)
+-#define IS_I915GM(dev_priv)	(dev_priv && 0)
+-#define IS_I945G(dev_priv)	(dev_priv && 0)
+-#define IS_I945GM(dev_priv)	(dev_priv && 0)
+-#define IS_I965G(dev_priv)	(dev_priv && 0)
+-#define IS_I965GM(dev_priv)	(dev_priv && 0)
+-#define IS_G45(dev_priv)	(dev_priv && 0)
+-#define IS_GM45(dev_priv)	(dev_priv && 0)
+-#define IS_G4X(dev_priv)	(dev_priv && 0)
+-#define IS_PINEVIEW(dev_priv)	(dev_priv && 0)
+-#define IS_G33(dev_priv)	(dev_priv && 0)
+-#define IS_IRONLAKE(dev_priv)	(dev_priv && 0)
+-#define IS_IRONLAKE_M(dev_priv) (dev_priv && 0)
+-#define IS_SANDYBRIDGE(dev_priv)	(dev_priv && 0)
+-#define IS_IVYBRIDGE(dev_priv)	(dev_priv && 0)
+-#define IS_IVB_GT1(dev_priv)	(dev_priv && 0)
+-#define IS_VALLEYVIEW(dev_priv)	(dev_priv && 0)
+-#define IS_CHERRYVIEW(dev_priv)	(dev_priv && 0)
+-#define IS_HASWELL(dev_priv)	(dev_priv && 0)
+-#define IS_BROADWELL(dev_priv)	(dev_priv && 0)
+-#define IS_SKYLAKE(dev_priv)	(dev_priv && 0)
+-#define IS_GEN9_BC(dev_priv)	(dev_priv && 0)
+-#define IS_GEN9_LP(dev_priv)	(dev_priv && 0)
+-#define IS_BROXTON(dev_priv)	(dev_priv && 0)
+-#define IS_KABYLAKE(dev_priv)	(dev_priv && 0)
+-#define IS_GEMINILAKE(dev_priv)	(dev_priv && 0)
+-#define IS_COFFEELAKE(dev_priv)	(dev_priv && 0)
+-#define IS_COMETLAKE(dev_priv)	(dev_priv && 0)
+-#define IS_ICELAKE(dev_priv)	(dev_priv && 0)
+-#define IS_JSL_EHL(dev_priv)	(dev_priv && 0)
+-#define IS_TIGERLAKE(dev_priv)	IS_PLATFORM(dev_priv, XE_TIGERLAKE)
+-#define IS_ROCKETLAKE(dev_priv)	(dev_priv && 0)
+-#define IS_DG1(dev_priv)        IS_PLATFORM(dev_priv, XE_DG1)
+-#define IS_ALDERLAKE_S(dev_priv) IS_PLATFORM(dev_priv, XE_ALDERLAKE_S)
+-#define IS_ALDERLAKE_P(dev_priv) (dev_priv && 0)
+-#define IS_XEHPSDV(dev_priv) (dev_priv && 0)
+-#define IS_DG2(dev_priv)	IS_PLATFORM(dev_priv, XE_DG2)
+-#define IS_PONTEVECCHIO(dev_priv) IS_PLATFORM(dev_priv, XE_PVC)
+-#define IS_METEORLAKE(dev_priv) IS_PLATFORM(dev_priv, XE_METEORLAKE)
+-
+-#define IS_HSW_ULT(dev_priv) (dev_priv && 0)
+-#define IS_BDW_ULT(dev_priv) (dev_priv && 0)
+-#define IS_BDW_ULX(dev_priv) (dev_priv && 0)
+-
+-#define INTEL_NUM_PIPES(xe) (hweight8((xe)->info.display.pipe_mask))
+-#define HAS_DISPLAY(xe) ((xe)->info.display.pipe_mask != 0)
+-#define INTEL_DISPLAY_ENABLED(xe) (HAS_DISPLAY((xe)) && !intel_opregion_headless_sku((xe)))
+-#define HAS_CDCLK_CRAWL(xe) ((xe)->info.display.has_cdclk_crawl)
+-#define HAS_CDCLK_SQUASH(xe) ((xe)->info.display.has_cdclk_squash)
+-#define HAS_PSR(xe) ((xe)->info.display.has_psr)
+-#define HAS_PSR2_SEL_FETCH(xe) (xe || 1)
+-#define HAS_PSR_HW_TRACKING(xe) ((xe)->info.display.has_psr_hw_tracking)
+-#define HAS_IPC(xe) ((xe)->info.display.has_ipc)
+-#define HAS_DP_MST(xe) ((xe)->info.display.has_dp_mst)
+-#define HAS_DMC(xe) ((xe)->info.display.has_dmc)
+-#define HAS_DSB(xe) ((xe)->info.display.has_dsb)
+-#define HAS_DSC(xe) ((xe)->info.display.has_dsc)
+-#define HAS_CUR_FBC(xe) (xe || 1)
+-#define HAS_DOUBLE_BUFFERED_M_N(xe) ((xe) || 1)
+-#define HAS_D12_PLANE_MINIMIZATION(dev_priv) (IS_ROCKETLAKE(dev_priv) || \
+-					      IS_ALDERLAKE_S(dev_priv))
+-#define DISPLAY_VER(xe) ((xe)->info.display.ver)
+-#define IS_DISPLAY_VER(xe, first, last) ((DISPLAY_VER(xe) >= first && DISPLAY_VER(xe) <= last))
+-#define IS_GRAPHICS_VER(xe, first, last) \
+-	((xe)->info.graphics_verx100 >= first * 100 && \
+-	 (xe)->info.graphics_verx100 <= (last*100 + 99))
+-#define IS_MOBILE(xe) (xe && 0)
+-#define HAS_GMCH(xe) (xe && 0)
+-#define HAS_DDI(xe) (xe || 1)
+-#define HAS_LLC(xe) (!IS_DGFX((xe)))
+-#define HAS_GMBUS_IRQ(xe) (xe || 1)
+-#define HAS_GMBUS_BURST_READ(xe) (xe || 1)
+-#define HAS_VRR(xe) (xe || 1)
+-#define HAS_ASYNC_FLIPS(xe) (xe || 1)
+-#define HAS_FBC(xe) ((xe)->info.display.fbc_mask)
+-#define SUPPORTS_TV(xe) (xe && 0)
+-#define HAS_MBUS_JOINING(xe) (xe && 0)
+-#define HAS_HW_SAGV_WM(xe) (DISPLAY_VER(xe) >= 13 && !IS_DGFX(xe))
+-
+-/* Workarounds not handled yet */
+-#define IS_DISPLAY_STEP(xe, first, last) ({u8 __step = (xe)->info.step.display; first <= __step && __step <= last;})
+-#define IS_GRAPHICS_STEP(xe, first, last) ({u8 __step = (xe)->info.step.graphics; first <= __step && __step <= last;})
+-#define IS_LP(xe) (0)
+-
+-#define IS_TGL_UY(xe) (xe && 0)
+-#define IS_CML_ULX(xe) (xe && 0)
+-#define IS_CFL_ULX(xe) (xe && 0)
+-#define IS_KBL_ULX(xe) (xe && 0)
+-#define IS_SKL_ULX(xe) (xe && 0)
+-#define IS_HSW_ULX(xe) (xe && 0)
+-#define IS_CML_ULT(xe) (xe && 0)
+-#define IS_CFL_ULT(xe) (xe && 0)
+-#define IS_KBL_ULT(xe) (xe && 0)
+-#define IS_SKL_ULT(xe) (xe && 0)
+-
+-#define IS_DG1_GRAPHICS_STEP(xe, first, last) (IS_DG1(xe) && IS_GRAPHICS_STEP(xe, first, last))
+-#define IS_DG2_GRAPHICS_STEP(xe, variant, first, last) \
+-	((xe)->info.subplatform == XE_SUBPLATFORM_DG2_ ## variant && \
+-	 IS_GRAPHICS_STEP(xe, first, last))
+-#define IS_XEHPSDV_GRAPHICS_STEP(xe, first, last) (IS_XEHPSDV(xe) && IS_GRAPHICS_STEP(xe, first, last))
+-
+-/* XXX: No basedie stepping support yet */
+-#define IS_PVC_BD_STEP(xe, first, last) (!WARN_ON(1) && IS_PONTEVECCHIO(xe))
+-
+-#define IS_TGL_DISPLAY_STEP(xe, first, last) (IS_TIGERLAKE(xe) && IS_DISPLAY_STEP(xe, first, last))
+-#define IS_RKL_DISPLAY_STEP(xe, first, last) (IS_ROCKETLAKE(xe) && IS_DISPLAY_STEP(xe, first, last))
+-#define IS_DG1_DISPLAY_STEP(xe, first, last) (IS_DG1(xe) && IS_DISPLAY_STEP(xe, first, last))
+-#define IS_DG2_DISPLAY_STEP(xe, first, last) (IS_DG2(xe) && IS_DISPLAY_STEP(xe, first, last))
+-#define IS_ADLP_DISPLAY_STEP(xe, first, last) (IS_ALDERLAKE_P(xe) && IS_DISPLAY_STEP(xe, first, last))
+-#define IS_ADLS_DISPLAY_STEP(xe, first, last) (IS_ALDERLAKE_S(xe) && IS_DISPLAY_STEP(xe, first, last))
+-#define IS_JSL_EHL_DISPLAY_STEP(xe, first, last) (IS_JSL_EHL(xe) && IS_DISPLAY_STEP(xe, first, last))
+-#define IS_MTL_DISPLAY_STEP(xe, first, last) (IS_METEORLAKE(xe) && IS_DISPLAY_STEP(xe, first, last))
+-
+-#define IS_DG2_G10(xe) ((xe)->info.subplatform == XE_SUBPLATFORM_DG2_G10)
+-#define IS_DG2_G11(xe) ((xe)->info.subplatform == XE_SUBPLATFORM_DG2_G11)
+-#define IS_DG2_G12(xe) ((xe)->info.subplatform == XE_SUBPLATFORM_DG2_G12)
+-#define IS_ICL_WITH_PORT_F(xe) (xe && 0)
+-#define HAS_LSPCON(xe) (xe && 0)
+-#define HAS_MSO(xe) (xe || 1)
+-#define HAS_DP20(xe) (IS_DG2(xe))
+-#define HAS_FLAT_CCS(xe) (xe_device_has_flat_ccs(xe))
+-#define HAS_4TILE(xe) ((xe)->info.has_4tile)
+-#define to_intel_bo(x) gem_to_xe_bo((x))
+-#define intel_vgpu_active(x) (x && 0)
+-#define mkwrite_device_info(xe) (INTEL_INFO(xe))
+-
+-#define HAS_TRANSCODER(dev_priv, trans)  ((INTEL_INFO(dev_priv)->display.cpu_transcoder_mask & BIT(trans)) != 0)
+-#define HAS_128_BYTE_Y_TILING(xe) (xe || 1)
+-
+-/* Should not be called (vlv specific) */
+-#define assert_dsi_pll_enabled(xe) BUG_ON(1)
+-
+-#define hsw_ips_disable(crtc_state) (crtc_state && 0)
+-#define hsw_ips_pre_update(glob, crtc) (glob && crtc && 0)
+-#define hsw_ips_post_update(glob, crtc) do { (void)glob; (void)crtc; } while (0)
+-#define intel_has_gpu_reset(a) (a && 0)
+-#define intel_overlay_switch_off(a) (a && 0)
+-#define intel_overlay_cleanup(a) do { (void)a; } while (0)
+-#define intel_overlay_setup(a) do { (void)a; } while (0)
+-
+-#include "display/intel_wakeref.h"
+-
+-static inline bool intel_runtime_pm_get(struct xe_runtime_pm *pm)
+-{
+-	struct xe_device *xe = container_of(pm, struct xe_device, runtime_pm);
+-
+-	if (xe_pm_runtime_get(xe) < 0) {
+-		xe_pm_runtime_put(xe);
+-		return false;
+-	}
+-	return true;
+-}
+-
+-static inline bool intel_runtime_pm_get_if_in_use(struct xe_runtime_pm *pm)
+-{
+-	struct xe_device *xe = container_of(pm, struct xe_device, runtime_pm);
+-
+-	return xe_pm_runtime_get_if_active(xe);
+-}
+-
+-static inline void intel_runtime_pm_put_unchecked(struct xe_runtime_pm *pm)
+-{
+-	struct xe_device *xe = container_of(pm, struct xe_device, runtime_pm);
+-
+-	xe_pm_runtime_put(xe);
+-}
+-
+-static inline void intel_runtime_pm_put(struct xe_runtime_pm *pm, bool wakeref)
+-{
+-	if (wakeref)
+-		intel_runtime_pm_put_unchecked(pm);
+-}
+-
+-#define intel_runtime_pm_get_raw intel_runtime_pm_get
+-#define intel_runtime_pm_put_raw intel_runtime_pm_put
+-#define assert_rpm_wakelock_held(x) do { } while (0)
+-#define assert_rpm_raw_wakeref_held(x) do { } while (0)
+-
+-#define intel_uncore_forcewake_get(x, y) do { } while (0)
+-#define intel_uncore_forcewake_put(x, y) do { } while (0)
+-
+-#define intel_uncore_arm_unclaimed_mmio_detection(x) do { } while (0)
+-#define i915_sw_fence_commit(x) do { } while (0)
+-
+-#define with_intel_runtime_pm(rpm, wf) \
+-	for ((wf) = intel_runtime_pm_get(rpm); (wf); \
+-	     intel_runtime_pm_put((rpm), (wf)), (wf) = 0)
+-
+-#define intel_step_name xe_step_name
+-#define pdev_to_i915 pdev_to_xe_device
+-#define RUNTIME_INFO(xe) (&(xe)->info.display)
+-
+-#define FORCEWAKE_ALL XE_FORCEWAKE_ALL
+-#define HPD_STORM_DEFAULT_THRESHOLD 50
+-
+-#ifdef CONFIG_ARM64
+-/*
+- * arm64 indirectly includes linux/rtc.h,
+- * which defines a irq_lock, so include it
+- * here before #define-ing it
+- */
+-#include <linux/rtc.h>
+-#endif
+-
+-#define irq_lock irq.lock
+-
+-#endif
+diff --git a/drivers/gpu/drm/xe/display/i915_vma.h b/drivers/gpu/drm/xe/display/i915_vma.h
+deleted file mode 100644
+index 133c60cb3a09..000000000000
+--- a/drivers/gpu/drm/xe/display/i915_vma.h
++++ /dev/null
+@@ -1,13 +0,0 @@
+-#ifndef I915_VMA_H
+-#define I915_VMA_H
+-
+-#include <drm/drm_mm.h>
+-
+-struct xe_bo;
+-
+-struct i915_vma {
+-	struct xe_bo *bo, *dpt;
+-	struct drm_mm_node node;
+-};
+-
+-#endif
+diff --git a/drivers/gpu/drm/xe/display/i915_vma_types.h b/drivers/gpu/drm/xe/display/i915_vma_types.h
+deleted file mode 100644
+index 99e7a2142a37..000000000000
+--- a/drivers/gpu/drm/xe/display/i915_vma_types.h
++++ /dev/null
+@@ -1,69 +0,0 @@
+-#include <linux/types.h>
+-#include <linux/build_bug.h>
+-
+-/* XX: Figure out how to handle this vma mapping in xe */
+-struct intel_remapped_plane_info {
+-	/* in gtt pages */
+-	u32 offset:31;
+-	u32 linear:1;
+-	union {
+-		/* in gtt pages for !linear */
+-		struct {
+-			u16 width;
+-			u16 height;
+-			u16 src_stride;
+-			u16 dst_stride;
+-		};
+-
+-		/* in gtt pages for linear */
+-		u32 size;
+-	};
+-} __packed;
+-
+-struct intel_remapped_info {
+-	struct intel_remapped_plane_info plane[4];
+-	/* in gtt pages */
+-	u32 plane_alignment;
+-} __packed;
+-
+-struct intel_rotation_info {
+-	struct intel_remapped_plane_info plane[2];
+-} __packed;
+-
+-enum i915_gtt_view_type {
+-	I915_GTT_VIEW_NORMAL = 0,
+-	I915_GTT_VIEW_ROTATED = sizeof(struct intel_rotation_info),
+-	I915_GTT_VIEW_REMAPPED = sizeof(struct intel_remapped_info),
+-};
+-
+-static inline void assert_i915_gem_gtt_types(void)
+-{
+-	BUILD_BUG_ON(sizeof(struct intel_rotation_info) != 2 * sizeof(u32) + 8 * sizeof(u16));
+-	BUILD_BUG_ON(sizeof(struct intel_remapped_info) != 5 * sizeof(u32) + 16 * sizeof(u16));
+-
+-	/* Check that rotation/remapped shares offsets for simplicity */
+-	BUILD_BUG_ON(offsetof(struct intel_remapped_info, plane[0]) !=
+-		     offsetof(struct intel_rotation_info, plane[0]));
+-	BUILD_BUG_ON(offsetofend(struct intel_remapped_info, plane[1]) !=
+-		     offsetofend(struct intel_rotation_info, plane[1]));
+-
+-	/* As we encode the size of each branch inside the union into its type,
+-	 * we have to be careful that each branch has a unique size.
+-	 */
+-	switch ((enum i915_gtt_view_type)0) {
+-	case I915_GTT_VIEW_NORMAL:
+-	case I915_GTT_VIEW_ROTATED:
+-	case I915_GTT_VIEW_REMAPPED:
+-		/* gcc complains if these are identical cases */
+-		break;
+-	}
+-}
+-
+-struct i915_gtt_view {
+-	enum i915_gtt_view_type type;
+-	union {
+-		/* Members need to contain no holes/padding */
+-		struct intel_rotation_info rotated;
+-		struct intel_remapped_info remapped;
+-	};
+-};
+diff --git a/drivers/gpu/drm/xe/display/intel_de.h b/drivers/gpu/drm/xe/display/intel_de.h
+deleted file mode 100644
+index f0c1d16fa6f8..000000000000
+--- a/drivers/gpu/drm/xe/display/intel_de.h
++++ /dev/null
+@@ -1,151 +0,0 @@
+-/* SPDX-License-Identifier: MIT */
+-/*
+- * Copyright © 2019 Intel Corporation
+- */
+-
+-#ifndef __INTEL_DE_H__
+-#define __INTEL_DE_H__
+-
+-#include "i915_drv.h"
+-#include "xe_mmio.h"
+-#include "xe_pcode.h"
+-
+-/* This was included from i915_trace.h -> i915_irq.h -> i915_reg.h, kept for compat */
+-#include "i915_reg.h"
+-
+-static inline u32
+-intel_de_read(struct drm_i915_private *i915, i915_reg_t reg)
+-{
+-	return xe_mmio_read32(to_gt(i915), reg.reg);
+-}
+-
+-static inline void
+-intel_de_posting_read(struct drm_i915_private *i915, i915_reg_t reg)
+-{
+-	xe_mmio_read32(to_gt(i915), reg.reg);
+-}
+-
+-static inline void
+-intel_de_write(struct drm_i915_private *i915, i915_reg_t reg, u32 val)
+-{
+-	xe_mmio_write32(to_gt(i915), reg.reg, val);
+-}
+-
+-static inline void
+-intel_de_rmw(struct drm_i915_private *i915, i915_reg_t reg, u32 clear, u32 set)
+-{
+-	xe_mmio_rmw32(to_gt(i915), reg.reg, ~clear, set);
+-}
+-
+-static inline int
+-intel_de_wait_for_register(struct drm_i915_private *i915, i915_reg_t reg,
+-			   u32 mask, u32 value, unsigned int timeout)
+-{
+-	return xe_mmio_wait32(to_gt(i915), reg.reg, value, mask, timeout * USEC_PER_MSEC, NULL,
+-			      false);
+-}
+-
+-static inline int
+-intel_de_wait_for_register_fw(struct drm_i915_private *i915, i915_reg_t reg,
+-			      u32 mask, u32 value, unsigned int timeout)
+-{
+-	return xe_mmio_wait32(to_gt(i915), reg.reg, value, mask, timeout * USEC_PER_MSEC, NULL,
+-			      false);
+-}
+-
+-static inline int
+-__intel_de_wait_for_register(struct drm_i915_private *i915, i915_reg_t reg,
+-			     u32 mask, u32 value,
+-			     unsigned int fast_timeout_us,
+-			     unsigned int slow_timeout_ms, u32 *out_value)
+-{
+-	return wait_for_atomic(((*out_value = xe_mmio_read32(to_gt(i915), reg.reg)) & mask) == value,
+-			slow_timeout_ms);
+-}
+-
+-static inline int
+-intel_de_wait_for_set(struct drm_i915_private *i915, i915_reg_t reg,
+-		      u32 mask, unsigned int timeout)
+-{
+-	return intel_de_wait_for_register(i915, reg, mask, mask, timeout);
+-}
+-
+-static inline int
+-intel_de_wait_for_clear(struct drm_i915_private *i915, i915_reg_t reg,
+-			u32 mask, unsigned int timeout)
+-{
+-	return intel_de_wait_for_register(i915, reg, mask, 0, timeout);
+-}
+-
+-/*
+- * Unlocked mmio-accessors, think carefully before using these.
+- *
+- * Certain architectures will die if the same cacheline is concurrently accessed
+- * by different clients (e.g. on Ivybridge). Access to registers should
+- * therefore generally be serialised, by either the dev_priv->uncore.lock or
+- * a more localised lock guarding all access to that bank of registers.
+- */
+-static inline u32
+-intel_de_read_fw(struct drm_i915_private *i915, i915_reg_t reg)
+-{
+-	return xe_mmio_read32(to_gt(i915), reg.reg);
+-}
+-
+-static inline void
+-intel_de_write_fw(struct drm_i915_private *i915, i915_reg_t reg, u32 val)
+-{
+-	xe_mmio_write32(to_gt(i915), reg.reg, val);
+-}
+-
+-static inline void
+-intel_de_write_samevalue(struct drm_i915_private *i915, i915_reg_t reg)
+-{
+-	/*
+-	 * Not implemented, requires lock on all reads/writes.
+-	 * only required for really old FBC. Not ever going to be needed.
+-	 */
+-	XE_BUG_ON(1);
+-}
+-
+-static inline u32
+-intel_de_read_notrace(struct drm_i915_private *i915, i915_reg_t reg)
+-{
+-	return xe_mmio_read32(to_gt(i915), reg.reg);
+-}
+-
+-static inline void
+-intel_de_write_notrace(struct drm_i915_private *i915, i915_reg_t reg, u32 val)
+-{
+-	xe_mmio_write32(to_gt(i915), reg.reg, val);
+-}
+-
+-static inline int
+-intel_de_pcode_write_timeout(struct drm_i915_private *i915, u32 mbox, u32 val,
+-			    int fast_timeout_us, int slow_timeout_ms)
+-{
+-	return xe_pcode_write_timeout(to_gt(i915), mbox, val,
+-				       slow_timeout_ms ?: 1);
+-}
+-
+-static inline int
+-intel_de_pcode_write(struct drm_i915_private *i915, u32 mbox, u32 val)
+-{
+-
+-	return xe_pcode_write(to_gt(i915), mbox, val);
+-}
+-
+-static inline int
+-intel_de_pcode_read(struct drm_i915_private *i915, u32 mbox, u32 *val, u32 *val1)
+-{
+-	return xe_pcode_read(to_gt(i915), mbox, val, val1);
+-}
+-
+-static inline int intel_de_pcode_request(struct drm_i915_private *i915, u32 mbox,
+-					 u32 request, u32 reply_mask, u32 reply,
+-					 int timeout_base_ms)
+-{
+-	return xe_pcode_request(to_gt(i915), mbox, request, reply_mask, reply,
+-				timeout_base_ms);
+-}
+-
+-#endif /* __INTEL_DE_H__ */
+diff --git a/drivers/gpu/drm/xe/display/intel_pm_types.h b/drivers/gpu/drm/xe/display/intel_pm_types.h
+deleted file mode 100644
+index 8bf1594a9d1b..000000000000
+--- a/drivers/gpu/drm/xe/display/intel_pm_types.h
++++ /dev/null
+@@ -1,36 +0,0 @@
+-/* SPDX-License-Identifier: MIT */
+-/*
+- * Copyright © 2021 Intel Corporation
+- */
+-
+-#ifndef __INTEL_PM_TYPES_H__
+-#define __INTEL_PM_TYPES_H__
+-
+-#include <linux/types.h>
+-
+-#include "display/intel_display.h"
+-
+-enum intel_ddb_partitioning {
+-	INTEL_DDB_PART_1_2,
+-	INTEL_DDB_PART_5_6, /* IVB+ */
+-};
+-
+-struct skl_ddb_entry {
+-	u16 start, end;	/* in number of blocks, 'end' is exclusive */
+-};
+-
+-static inline u16 skl_ddb_entry_size(const struct skl_ddb_entry *entry)
+-{
+-	return entry->end - entry->start;
+-}
+-
+-static inline bool skl_ddb_entry_equal(const struct skl_ddb_entry *e1,
+-				       const struct skl_ddb_entry *e2)
+-{
+-	if (e1->start == e2->start && e1->end == e2->end)
+-		return true;
+-
+-	return false;
+-}
+-
+-#endif /* __INTEL_PM_TYPES_H__ */
+diff --git a/drivers/gpu/drm/xe/display/intel_runtime_pm.h b/drivers/gpu/drm/xe/display/intel_runtime_pm.h
+deleted file mode 100644
+index dddfc1e046b7..000000000000
+--- a/drivers/gpu/drm/xe/display/intel_runtime_pm.h
++++ /dev/null
+@@ -1,8 +0,0 @@
+-#include "intel_wakeref.h"
+-
+-enum i915_drm_suspend_mode {
+-	I915_DRM_SUSPEND_IDLE,
+-	I915_DRM_SUSPEND_MEM,
+-	I915_DRM_SUSPEND_HIBERNATE,
+-};
+-
+diff --git a/drivers/gpu/drm/xe/display/intel_wakeref.h b/drivers/gpu/drm/xe/display/intel_wakeref.h
+deleted file mode 100644
+index 678f22c36d42..000000000000
+--- a/drivers/gpu/drm/xe/display/intel_wakeref.h
++++ /dev/null
+@@ -1,3 +0,0 @@
+-#include <linux/types.h>
+-
+-typedef bool intel_wakeref_t;
+diff --git a/drivers/gpu/drm/xe/display/xe_fb_pin.c b/drivers/gpu/drm/xe/display/xe_fb_pin.c
+deleted file mode 100644
+index 65c0bc28a3d1..000000000000
+--- a/drivers/gpu/drm/xe/display/xe_fb_pin.c
++++ /dev/null
+@@ -1,287 +0,0 @@
+-// SPDX-License-Identifier: MIT
+-/*
+- * Copyright © 2021 Intel Corporation
+- */
+-
+-#include "i915_drv.h"
+-#include "intel_display_types.h"
+-#include "intel_dpt.h"
+-#include "intel_fb.h"
+-#include "intel_fb_pin.h"
+-#include "xe_ggtt.h"
+-#include "xe_gt.h"
+-
+-#include <drm/ttm/ttm_bo.h>
+-
+-static void
+-write_dpt_rotated(struct xe_bo *bo, struct iosys_map *map, u32 *dpt_ofs, u32 bo_ofs,
+-		  u32 width, u32 height, u32 src_stride, u32 dst_stride)
+-{
+-	u32 column, row;
+-	/* TODO: Maybe rewrite so we can traverse the bo addresses sequentially,
+-	 * by writing dpt/ggtt in a different order?
+-	 */
+-
+-	for (column = 0; column < width; column++) {
+-		u32 src_idx = src_stride * (height - 1) + column + bo_ofs;
+-
+-		for (row = 0; row < height; row++) {
+-			iosys_map_wr(map, *dpt_ofs, u64,
+-				     xe_ggtt_pte_encode(bo, src_idx * GEN8_PAGE_SIZE));
+-			*dpt_ofs += 8;
+-			src_idx -= src_stride;
+-		}
+-
+-		/* The DE ignores the PTEs for the padding tiles */
+-		*dpt_ofs += (dst_stride - height) * 8;
+-	}
+-
+-	/* Align to next page */
+-	*dpt_ofs = ALIGN(*dpt_ofs, 4096);
+-}
+-
+-static int __xe_pin_fb_vma_dpt(struct intel_framebuffer *fb,
+-			       const struct i915_gtt_view *view,
+-			       struct i915_vma *vma)
+-{
+-	struct xe_device *xe = to_xe_device(fb->base.dev);
+-	struct xe_bo *bo = intel_fb_obj(&fb->base), *dpt;
+-	u32 dpt_size, size = bo->ttm.base.size;
+-
+-	if (view->type == I915_GTT_VIEW_NORMAL)
+-		dpt_size = ALIGN(size / GEN8_PAGE_SIZE * 8, GEN8_PAGE_SIZE);
+-	else
+-		/* display uses 4K tiles instead of bytes here, convert to entries.. */
+-		dpt_size = ALIGN(intel_rotation_info_size(&view->rotated) * 8, GEN8_PAGE_SIZE);
+-
+-	dpt = xe_bo_create_pin_map(xe, to_gt(xe), NULL, dpt_size,
+-				  ttm_bo_type_kernel,
+-				  XE_BO_CREATE_VRAM0_BIT |
+-				  XE_BO_CREATE_GGTT_BIT);
+-	if (IS_ERR(dpt))
+-		dpt = xe_bo_create_pin_map(xe, to_gt(xe), NULL, dpt_size,
+-					   ttm_bo_type_kernel,
+-					   XE_BO_CREATE_STOLEN_BIT |
+-					   XE_BO_CREATE_GGTT_BIT);
+-	if (IS_ERR(dpt))
+-		dpt = xe_bo_create_pin_map(xe, to_gt(xe), NULL, dpt_size,
+-					   ttm_bo_type_kernel,
+-					   XE_BO_CREATE_SYSTEM_BIT |
+-					   XE_BO_CREATE_GGTT_BIT);
+-	if (IS_ERR(dpt))
+-		return PTR_ERR(dpt);
+-
+-	if (view->type == I915_GTT_VIEW_NORMAL) {
+-		u32 x;
+-
+-		for (x = 0; x < size / GEN8_PAGE_SIZE; x++)
+-			iosys_map_wr(&dpt->vmap, x * 8, u64,
+-				     xe_ggtt_pte_encode(bo, x * GEN8_PAGE_SIZE));
+-	} else {
+-		const struct intel_rotation_info *rot_info = &view->rotated;
+-		u32 i, dpt_ofs = 0;
+-
+-		for (i = 0; i < ARRAY_SIZE(rot_info->plane); i++)
+-			write_dpt_rotated(bo, &dpt->vmap, &dpt_ofs,
+-					  rot_info->plane[i].offset,
+-					  rot_info->plane[i].width,
+-					  rot_info->plane[i].height,
+-					  rot_info->plane[i].src_stride,
+-					  rot_info->plane[i].dst_stride);
+-	}
+-
+-	vma->dpt = dpt;
+-	vma->node = dpt->ggtt_node;
+-	return 0;
+-}
+-
+-static void
+-write_ggtt_rotated(struct xe_bo *bo, struct xe_ggtt *ggtt, u32 *ggtt_ofs, u32 bo_ofs,
+-		   u32 width, u32 height, u32 src_stride, u32 dst_stride)
+-{
+-	u32 column, row;
+-
+-	for (column = 0; column < width; column++) {
+-		u32 src_idx = src_stride * (height - 1) + column + bo_ofs;
+-
+-		for (row = 0; row < height; row++) {
+-			xe_ggtt_set_pte(ggtt, *ggtt_ofs,
+-					xe_ggtt_pte_encode(bo, src_idx * GEN8_PAGE_SIZE));
+-			*ggtt_ofs += GEN8_PAGE_SIZE;
+-			src_idx -= src_stride;
+-		}
+-
+-		/* The DE ignores the PTEs for the padding tiles */
+-		*ggtt_ofs += (dst_stride - height) * GEN8_PAGE_SIZE;
+-	}
+-}
+-
+-static int __xe_pin_fb_vma_ggtt(struct intel_framebuffer *fb,
+-				const struct i915_gtt_view *view,
+-				struct i915_vma *vma)
+-{
+-	struct xe_bo *bo = intel_fb_obj(&fb->base);
+-	struct xe_device *xe = to_xe_device(fb->base.dev);
+-	struct xe_ggtt *ggtt = to_gt(xe)->mem.ggtt;
+-	u32 align;
+-	int ret;
+-
+-	/* TODO: Consider sharing framebuffer mapping?
+-	 * embed i915_vma inside intel_framebuffer
+-	 */
+-	ret = mutex_lock_interruptible(&ggtt->lock);
+-	if (ret)
+-		return ret;
+-
+-	align = GEN8_PAGE_SIZE;
+-	if (xe_bo_is_vram(bo) && ggtt->flags & XE_GGTT_FLAGS_64K)
+-		align = max_t(u32, align, SZ_64K);
+-
+-	if (bo->ggtt_node.size && view->type == I915_GTT_VIEW_NORMAL) {
+-		vma->node = bo->ggtt_node;
+-	} else if (view->type == I915_GTT_VIEW_NORMAL) {
+-		u32 x, size = bo->ttm.base.size;
+-
+-		ret = xe_ggtt_insert_special_node_locked(ggtt, &vma->node, size,
+-							 align, 0);
+-		if (ret)
+-			goto out;
+-
+-		for (x = 0; x < size; x += GEN8_PAGE_SIZE)
+-			xe_ggtt_set_pte(ggtt, vma->node.start + x, xe_ggtt_pte_encode(bo, x));
+-	} else {
+-		u32 i, ggtt_ofs;
+-		const struct intel_rotation_info *rot_info = &view->rotated;
+-
+-		/* display seems to use tiles instead of bytes here, so convert it back.. */
+-		u32 size = intel_rotation_info_size(rot_info) * GEN8_PAGE_SIZE;
+-
+-		ret = xe_ggtt_insert_special_node_locked(ggtt, &vma->node, size,
+-							 align, 0);
+-		if (ret)
+-			goto out;
+-
+-		ggtt_ofs = vma->node.start;
+-
+-		for (i = 0; i < ARRAY_SIZE(rot_info->plane); i++)
+-			write_ggtt_rotated(bo, ggtt, &ggtt_ofs,
+-					   rot_info->plane[i].offset,
+-					   rot_info->plane[i].width,
+-					   rot_info->plane[i].height,
+-					   rot_info->plane[i].src_stride,
+-					   rot_info->plane[i].dst_stride);
+-	}
+-
+-	xe_ggtt_invalidate(to_gt(xe));
+-
+-out:
+-	mutex_unlock(&ggtt->lock);
+-	return ret;
+-}
+-
+-static struct i915_vma *__xe_pin_fb_vma(struct intel_framebuffer *fb,
+-					const struct i915_gtt_view *view)
+-{
+-	struct i915_vma *vma = kzalloc(sizeof(*vma), GFP_KERNEL);
+-	struct xe_bo *bo = intel_fb_obj(&fb->base);
+-	int ret;
+-
+-	if (!vma)
+-		return ERR_PTR(-ENODEV);
+-
+-	/* Remapped view is only required on ADL-P, which xe doesn't support. */
+-	if (XE_WARN_ON(view->type == I915_GTT_VIEW_REMAPPED)) {
+-		ret = -ENODEV;
+-		goto err;
+-	}
+-
+-	/*
+-	 * Pin the framebuffer, we can't use xe_bo_(un)pin functions as the
+-	 * assumptions are incorrect for framebuffers
+-	 */
+-	ret = ttm_bo_reserve(&bo->ttm, false, false, NULL);
+-	if (ret)
+-		goto err;
+-
+-	ret = xe_bo_validate(bo, NULL, true);
+-	if (!ret)
+-		ttm_bo_pin(&bo->ttm);
+-	ttm_bo_unreserve(&bo->ttm);
+-	if (ret)
+-		goto err;
+-
+-	vma->bo = bo;
+-	if (intel_fb_uses_dpt(&fb->base))
+-		ret = __xe_pin_fb_vma_dpt(fb, view, vma);
+-	else
+-		ret = __xe_pin_fb_vma_ggtt(fb, view, vma);
+-	if (ret)
+-		goto err_unpin;
+-
+-	return vma;
+-
+-err_unpin:
+-	ttm_bo_reserve(&bo->ttm, false, false, NULL);
+-	ttm_bo_unpin(&bo->ttm);
+-	ttm_bo_unreserve(&bo->ttm);
+-err:
+-	kfree(vma);
+-	return ERR_PTR(ret);
+-}
+-
+-static void __xe_unpin_fb_vma(struct i915_vma *vma)
+-{
+-	struct xe_device *xe = to_xe_device(vma->bo->ttm.base.dev);
+-	struct xe_ggtt *ggtt = to_gt(xe)->mem.ggtt;
+-
+-	if (vma->dpt)
+-		xe_bo_unpin_map_no_vm(vma->dpt);
+-	else if (!drm_mm_node_allocated(&vma->bo->ggtt_node) ||
+-		 vma->bo->ggtt_node.start != vma->node.start)
+-		xe_ggtt_remove_node(ggtt, &vma->node);
+-
+-	ttm_bo_reserve(&vma->bo->ttm, false, false, NULL);
+-	ttm_bo_unpin(&vma->bo->ttm);
+-	ttm_bo_unreserve(&vma->bo->ttm);
+-	kfree(vma);
+-}
+-
+-struct i915_vma *
+-intel_pin_and_fence_fb_obj(struct drm_framebuffer *fb,
+-			   bool phys_cursor,
+-			   const struct i915_gtt_view *view,
+-			   bool uses_fence,
+-			   unsigned long *out_flags)
+-{
+-	*out_flags = 0;
+-
+-	return __xe_pin_fb_vma(to_intel_framebuffer(fb), view);
+-}
+-
+-void intel_unpin_fb_vma(struct i915_vma *vma, unsigned long flags)
+-{
+-	__xe_unpin_fb_vma(vma);
+-}
+-
+-int intel_plane_pin_fb(struct intel_plane_state *plane_state)
+-{
+-	struct drm_framebuffer *fb = plane_state->hw.fb;
+-        struct xe_bo *bo = intel_fb_obj(fb);
+-	struct i915_vma *vma;
+-
+-	/* We reject creating !SCANOUT fb's, so this is weird.. */
+-	drm_WARN_ON(bo->ttm.base.dev, !(bo->flags & XE_BO_SCANOUT_BIT));
+-
+-        vma = __xe_pin_fb_vma(to_intel_framebuffer(fb), &plane_state->view.gtt);
+-	if (IS_ERR(vma))
+-		return PTR_ERR(vma);
+-
+-	plane_state->ggtt_vma = vma;
+-	return 0;
+-}
+-
+-void intel_plane_unpin_fb(struct intel_plane_state *old_plane_state)
+-{
+-	__xe_unpin_fb_vma(old_plane_state->ggtt_vma);
+-	old_plane_state->ggtt_vma = NULL;
+-}
+diff --git a/drivers/gpu/drm/xe/display/xe_plane_initial.c b/drivers/gpu/drm/xe/display/xe_plane_initial.c
+deleted file mode 100644
+index bd5d588e8fbf..000000000000
+--- a/drivers/gpu/drm/xe/display/xe_plane_initial.c
++++ /dev/null
+@@ -1,289 +0,0 @@
+-// SPDX-License-Identifier: MIT
+-/*
+- * Copyright © 2021 Intel Corporation
+- */
+-
+-/* for ioread64 */
+-#include <linux/io-64-nonatomic-lo-hi.h>
+-
+-#include "xe_ggtt.h"
+-
+-#include "i915_drv.h"
+-#include "intel_atomic_plane.h"
+-#include "intel_display.h"
+-#include "intel_display_types.h"
+-#include "intel_fb.h"
+-#include "intel_fb_pin.h"
+-#include "intel_frontbuffer.h"
+-#include "intel_plane_initial.h"
+-
+-static bool
+-intel_reuse_initial_plane_obj(struct drm_i915_private *i915,
+-			      const struct intel_initial_plane_config *plane_config,
+-			      struct drm_framebuffer **fb)
+-{
+-	struct intel_crtc *crtc;
+-
+-	for_each_intel_crtc(&i915->drm, crtc) {
+-		struct intel_crtc_state *crtc_state =
+-			to_intel_crtc_state(crtc->base.state);
+-		struct intel_plane *plane =
+-			to_intel_plane(crtc->base.primary);
+-		struct intel_plane_state *plane_state =
+-			to_intel_plane_state(plane->base.state);
+-
+-		if (!crtc_state->uapi.active)
+-			continue;
+-
+-		if (!plane_state->ggtt_vma)
+-			continue;
+-
+-		if (intel_plane_ggtt_offset(plane_state) == plane_config->base) {
+-			*fb = plane_state->hw.fb;
+-			return true;
+-		}
+-	}
+-
+-	return false;
+-}
+-
+-static struct xe_bo *
+-initial_plane_bo(struct xe_device *xe,
+-		 struct intel_initial_plane_config *plane_config)
+-{
+-	struct xe_gt *gt0 = xe_device_get_gt(xe, 0);
+-	struct xe_bo *bo;
+-	resource_size_t phys_base;
+-	u32 base, size, flags;
+-	u64 page_size = xe->info.vram_flags & XE_VRAM_FLAGS_NEED64K ? SZ_64K : SZ_4K;
+-
+-	if (plane_config->size == 0)
+-		return NULL;
+-
+-	flags = XE_BO_CREATE_PINNED_BIT | XE_BO_SCANOUT_BIT | XE_BO_CREATE_GGTT_BIT;
+-
+-	base = round_down(plane_config->base, page_size);
+-	if (IS_DGFX(xe)) {
+-		u64 __iomem *gte = gt0->mem.ggtt->gsm;
+-		u64 pte;
+-
+-		gte += base / GEN8_PAGE_SIZE;
+-
+-		pte = ioread64(gte);
+-		if (!(pte & GEN12_GGTT_PTE_LM)) {
+-			drm_err(&xe->drm,
+-				"Initial plane programming missing PTE_LM bit\n");
+-			return NULL;
+-		}
+-
+-		phys_base = pte & ~(page_size - 1);
+-		flags |= XE_BO_CREATE_VRAM0_BIT;
+-
+-		/*
+-		 * We don't currently expect this to ever be placed in the
+-		 * stolen portion.
+-		 */
+-		if (phys_base >= gt0->mem.vram.size) {
+-			drm_err(&xe->drm,
+-				"Initial plane programming using invalid range, phys_base=%pa\n",
+-				&phys_base);
+-			return NULL;
+-		}
+-
+-		drm_dbg(&xe->drm,
+-			"Using phys_base=%pa, based on initial plane programming\n",
+-			&phys_base);
+-	} else {
+-		struct ttm_resource_manager *stolen = ttm_manager_type(&xe->ttm, XE_PL_STOLEN);
+-
+-		if (!stolen)
+-			return NULL;
+-		phys_base = base;
+-		flags |= XE_BO_CREATE_STOLEN_BIT;
+-
+-		/*
+-		 * If the FB is too big, just don't use it since fbdev is not very
+-		 * important and we should probably use that space with FBC or other
+-		 * features.
+-		 */
+-		if (IS_ENABLED(CONFIG_FRAMEBUFFER_CONSOLE) &&
+-		    plane_config->size * 2 >> PAGE_SHIFT >= stolen->size)
+-			return NULL;
+-	}
+-
+-	size = round_up(plane_config->base + plane_config->size,
+-			page_size);
+-	size -= base;
+-
+-	bo = xe_bo_create_pin_map_at(xe, gt0, NULL, size, phys_base,
+-				     ttm_bo_type_kernel, flags);
+-	if (IS_ERR(bo)) {
+-		drm_dbg(&xe->drm,
+-			"Failed to create bo phys_base=%pa size %u with flags %x: %li\n",
+-			&phys_base, size, flags, PTR_ERR(bo));
+-		return NULL;
+-	}
+-
+-	return bo;
+-}
+-
+-static bool
+-intel_alloc_initial_plane_obj(struct intel_crtc *crtc,
+-			      struct intel_initial_plane_config *plane_config)
+-{
+-	struct drm_device *dev = crtc->base.dev;
+-	struct drm_i915_private *dev_priv = to_i915(dev);
+-	struct drm_mode_fb_cmd2 mode_cmd = { 0 };
+-	struct drm_framebuffer *fb = &plane_config->fb->base;
+-	struct xe_bo *bo;
+-
+-	switch (fb->modifier) {
+-	case DRM_FORMAT_MOD_LINEAR:
+-	case I915_FORMAT_MOD_X_TILED:
+-	case I915_FORMAT_MOD_Y_TILED:
+-	case I915_FORMAT_MOD_4_TILED:
+-		break;
+-	default:
+-		drm_dbg(&dev_priv->drm,
+-			"Unsupported modifier for initial FB: 0x%llx\n",
+-			fb->modifier);
+-		return false;
+-	}
+-
+-	mode_cmd.pixel_format = fb->format->format;
+-	mode_cmd.width = fb->width;
+-	mode_cmd.height = fb->height;
+-	mode_cmd.pitches[0] = fb->pitches[0];
+-	mode_cmd.modifier[0] = fb->modifier;
+-	mode_cmd.flags = DRM_MODE_FB_MODIFIERS;
+-
+-	bo = initial_plane_bo(dev_priv, plane_config);
+-	if (!bo)
+-		return false;
+-
+-	if (intel_framebuffer_init(to_intel_framebuffer(fb),
+-				   bo, &mode_cmd)) {
+-		drm_dbg_kms(&dev_priv->drm, "intel fb init failed\n");
+-		goto err_bo;
+-	}
+-
+-	return true;
+-
+-err_bo:
+-	xe_bo_unpin_map_no_vm(bo);
+-	return false;
+-}
+-
+-static void
+-intel_find_initial_plane_obj(struct intel_crtc *crtc,
+-			     struct intel_initial_plane_config *plane_config)
+-{
+-	struct drm_device *dev = crtc->base.dev;
+-	struct drm_i915_private *dev_priv = to_i915(dev);
+-	struct intel_plane *plane =
+-		to_intel_plane(crtc->base.primary);
+-	struct intel_plane_state *plane_state =
+-		to_intel_plane_state(plane->base.state);
+-	struct intel_crtc_state *crtc_state =
+-		to_intel_crtc_state(crtc->base.state);
+-	struct drm_framebuffer *fb;
+-	struct i915_vma *vma;
+-
+-	/*
+-	 * TODO:
+-	 *   Disable planes if get_initial_plane_config() failed.
+-	 *   Make sure things work if the surface base is not page aligned.
+-	 */
+-	if (!plane_config->fb)
+-		return;
+-
+-	if (intel_alloc_initial_plane_obj(crtc, plane_config))
+-		fb = &plane_config->fb->base;
+-	else if (!intel_reuse_initial_plane_obj(dev_priv, plane_config, &fb))
+-		goto nofb;
+-
+-	plane_state->uapi.rotation = plane_config->rotation;
+-	intel_fb_fill_view(to_intel_framebuffer(fb),
+-			   plane_state->uapi.rotation, &plane_state->view);
+-
+-	vma = intel_pin_and_fence_fb_obj(fb, false, &plane_state->view.gtt,
+-					 false, &plane_state->flags);
+-	if (IS_ERR(vma))
+-		goto nofb;
+-
+-	plane_state->ggtt_vma = vma;
+-	plane_state->uapi.src_x = 0;
+-	plane_state->uapi.src_y = 0;
+-	plane_state->uapi.src_w = fb->width << 16;
+-	plane_state->uapi.src_h = fb->height << 16;
+-
+-	plane_state->uapi.crtc_x = 0;
+-	plane_state->uapi.crtc_y = 0;
+-	plane_state->uapi.crtc_w = fb->width;
+-	plane_state->uapi.crtc_h = fb->height;
+-
+-	plane_state->uapi.fb = fb;
+-	drm_framebuffer_get(fb);
+-
+-	plane_state->uapi.crtc = &crtc->base;
+-	intel_plane_copy_uapi_to_hw_state(plane_state, plane_state, crtc);
+-
+-	atomic_or(plane->frontbuffer_bit, &to_intel_framebuffer(fb)->bits);
+-
+-	/*
+-	 * Flip to the newly created mapping ASAP, so we can re-use the
+-	 * first part of GGTT for WOPCM, prevent flickering, and prevent
+-	 * the lookup of sysmem scratch pages.
+-	 */
+-	plane->check_plane(crtc_state, plane_state);
+-	plane->async_flip(plane, crtc_state, plane_state, true);
+-	return;
+-
+-nofb:
+-	/*
+-	 * We've failed to reconstruct the BIOS FB.  Current display state
+-	 * indicates that the primary plane is visible, but has a NULL FB,
+-	 * which will lead to problems later if we don't fix it up.  The
+-	 * simplest solution is to just disable the primary plane now and
+-	 * pretend the BIOS never had it enabled.
+-	 */
+-	intel_plane_disable_noatomic(crtc, plane);
+-
+-	return;
+-}
+-
+-static void plane_config_fini(struct intel_initial_plane_config *plane_config)
+-{
+-	if (plane_config->fb) {
+-		struct drm_framebuffer *fb = &plane_config->fb->base;
+-
+-		/* We may only have the stub and not a full framebuffer */
+-		if (drm_framebuffer_read_refcount(fb))
+-			drm_framebuffer_put(fb);
+-		else
+-			kfree(fb);
+-	}
+-}
+-
+-void intel_crtc_initial_plane_config(struct intel_crtc *crtc)
+-{
+-	struct xe_device *xe = to_xe_device(crtc->base.dev);
+-	struct intel_initial_plane_config plane_config = {};
+-
+-	/*
+-	 * Note that reserving the BIOS fb up front prevents us
+-	 * from stuffing other stolen allocations like the ring
+-	 * on top.  This prevents some ugliness at boot time, and
+-	 * can even allow for smooth boot transitions if the BIOS
+-	 * fb is large enough for the active pipe configuration.
+-	 */
+-	xe->display.funcs.display->get_initial_plane_config(crtc, &plane_config);
+-
+-	/*
+-	 * If the fb is shared between multiple heads, we'll
+-	 * just get the first one.
+-	 */
+-	intel_find_initial_plane_obj(crtc, &plane_config);
+-
+-	plane_config_fini(&plane_config);
+-}
 diff --git a/drivers/gpu/drm/xe/xe_device.c b/drivers/gpu/drm/xe/xe_device.c
-index a028efa8eebe..45e3c740fda2 100644
+index 87d3d2cde665..e7e3bac99840 100644
 --- a/drivers/gpu/drm/xe/xe_device.c
 +++ b/drivers/gpu/drm/xe/xe_device.c
-@@ -5,12 +5,12 @@
+@@ -160,7 +160,6 @@ static void xe_device_destroy(struct drm_device *dev, void *dummy)
+ {
+ 	struct xe_device *xe = to_xe_device(dev);
  
- #include "xe_device.h"
+-	destroy_workqueue(xe->display.hotplug.dp_wq);
+ 	destroy_workqueue(xe->ordered_wq);
+ 	mutex_destroy(&xe->persitent_engines.lock);
+ 	ttm_device_fini(&xe->ttm);
+@@ -193,7 +192,6 @@ struct xe_device *xe_device_create(struct pci_dev *pdev,
+ 	xe->info.devid = pdev->device;
+ 	xe->info.revid = pdev->revision;
+ 	xe->info.enable_guc = enable_guc;
+-	xe->info.enable_display = enable_display;
  
--#include <drm/drm_gem_ttm_helper.h>
- #include <drm/drm_aperture.h>
-+#include <drm/drm_atomic_helper.h>
-+#include <drm/drm_gem_ttm_helper.h>
- #include <drm/drm_ioctl.h>
--#include <drm/xe_drm.h>
- #include <drm/drm_managed.h>
--#include <drm/drm_atomic_helper.h>
-+#include <drm/xe_drm.h>
+ 	spin_lock_init(&xe->irq.lock);
  
- #include "xe_bo.h"
- #include "xe_debugfs.h"
-@@ -21,8 +21,8 @@
- #include "xe_exec.h"
- #include "xe_gt.h"
- #include "xe_irq.h"
--#include "xe_module.h"
- #include "xe_mmio.h"
-+#include "xe_module.h"
- #include "xe_pcode.h"
- #include "xe_pm.h"
- #include "xe_query.h"
-diff --git a/drivers/gpu/drm/xe/xe_display.c b/drivers/gpu/drm/xe/xe_display.c
-index 47a16a3f85fa..6e7b6cfce4d9 100644
---- a/drivers/gpu/drm/xe/xe_display.c
-+++ b/drivers/gpu/drm/xe/xe_display.c
-@@ -6,12 +6,16 @@
- #if IS_ENABLED(CONFIG_DRM_XE_DISPLAY)
+@@ -211,35 +209,13 @@ struct xe_device *xe_device_create(struct pci_dev *pdev,
+ 	INIT_LIST_HEAD(&xe->pinned.evicted);
  
- #include "xe_display.h"
--#include "xe_module.h"
+ 	xe->ordered_wq = alloc_ordered_workqueue("xe-ordered-wq", 0);
+-	xe->display.hotplug.dp_wq = alloc_ordered_workqueue("xe-dp", 0);
+-
+-	/* Initialize display parts here.. */
+-	spin_lock_init(&xe->display.fb_tracking.lock);
+-
+-	mutex_init(&xe->sb_lock);
+-	mutex_init(&xe->display.backlight.lock);
+-	mutex_init(&xe->display.audio.mutex);
+-	mutex_init(&xe->display.wm.wm_mutex);
+-	mutex_init(&xe->display.pps.mutex);
+-	mutex_init(&xe->display.hdcp.comp_mutex);
+-	xe->enabled_irq_mask = ~0;
+-
+-	xe->params.invert_brightness = -1;
+-	xe->params.vbt_sdvo_panel_type = -1;
+-	xe->params.disable_power_well = -1;
+-	xe->params.enable_dc = -1;
+-	xe->params.enable_dpcd_backlight = -1;
+-	xe->params.enable_dp_mst = -1;
+-	xe->params.enable_fbc = -1;
+-	xe->params.enable_psr = -1;
+-	xe->params.enable_psr2_sel_fetch = -1;
+-	xe->params.panel_use_ssc = -1;
+ 
+ 	err = drmm_add_action_or_reset(&xe->drm, xe_device_destroy, NULL);
+ 	if (err)
+ 		goto err;
+ 
+ 	mutex_init(&xe->mem_access.lock);
 +
-+#include <linux/fb.h>
+ 	return xe;
  
- #include <drm/drm_aperture.h>
- #include <drm/drm_managed.h>
- #include <drm/xe_drm.h>
+ err_put:
+diff --git a/drivers/gpu/drm/xe/xe_device_types.h b/drivers/gpu/drm/xe/xe_device_types.h
+index 6c71e1b2dbf4..f71ecc7ca3a5 100644
+--- a/drivers/gpu/drm/xe/xe_device_types.h
++++ b/drivers/gpu/drm/xe/xe_device_types.h
+@@ -16,11 +16,6 @@
+ #include "xe_platform_types.h"
+ #include "xe_step_types.h"
  
-+#include "display/ext/i915_irq.h"
-+#include "display/ext/intel_dram.h"
-+#include "display/ext/intel_pm.h"
- #include "display/intel_acpi.h"
- #include "display/intel_audio.h"
- #include "display/intel_bw.h"
-@@ -22,11 +26,7 @@
- #include "display/intel_hdcp.h"
- #include "display/intel_hotplug.h"
- #include "display/intel_opregion.h"
+-/* For display substruct */
+-#include "display/intel_display_core.h"
+-#include "display/ext/intel_device_info.h"
+-#include "display/ext/intel_pch.h"
+-
+ #define XE_BO_INVALID_OFFSET	LONG_MAX
+ 
+ #define GRAPHICS_VER(xe) ((xe)->info.graphics_verx100 / 100)
+@@ -98,57 +93,6 @@ struct xe_device {
+ 		bool has_range_tlb_invalidation;
+ 		/** @enable_display: display enabled */
+ 		bool enable_display;
+-
+-		struct xe_device_display_info {
+-			u8 ver;
+-
+-			u8 pipe_mask;
+-			u8 cpu_transcoder_mask;
+-			u8 fbc_mask;
+-			u8 abox_mask;
+-
+-			struct {
+-				u16 size; /* in blocks */
+-				u8 slice_mask;
+-			} dbuf;
+-
+-#define DEV_INFO_DISPLAY_FOR_EACH_FLAG(func) \
+-			/* Keep in alphabetical order */ \
+-			func(has_cdclk_crawl); \
+-			func(has_cdclk_squash); \
+-			func(has_dmc); \
+-			func(has_dp_mst); \
+-			func(has_dsb); \
+-			func(has_dsc); \
+-			func(has_fpga_dbg); \
+-			func(has_hdcp); \
+-			func(has_hti); \
+-			func(has_ipc); \
+-			func(has_modular_fia); \
+-			func(has_psr); \
+-			func(has_psr_hw_tracking);
+-
+-#define DEFINE_FLAG(name) u8 name:1
+-			DEV_INFO_DISPLAY_FOR_EACH_FLAG(DEFINE_FLAG);
+-#undef DEFINE_FLAG
+-
+-			/* Register offsets for the various display pipes and transcoders */
+-			u32 pipe_offsets[I915_MAX_TRANSCODERS];
+-			u32 trans_offsets[I915_MAX_TRANSCODERS];
+-			u32 cursor_offsets[I915_MAX_PIPES];
+-
+-			struct {
+-				u32 degamma_lut_size;
+-				u32 gamma_lut_size;
+-				u32 degamma_lut_tests;
+-				u32 gamma_lut_tests;
+-			} color;
+-
+-			/* Populated by intel_device_runtime_init() */
+-			u8 num_sprites[I915_MAX_PIPES];
+-			u8 num_scalers[I915_MAX_PIPES];
+-			u32 rawclk_freq;
+-		} display;
+ 	} info;
+ 
+ 	/** @irq: device interrupt state */
+@@ -242,74 +186,6 @@ struct xe_device {
+ 
+ 	/** @d3cold_allowed: Indicates if d3cold is a valid device state */
+ 	bool d3cold_allowed;
+-
+-	/* private: */
+-
+-	/*
+-	 * Any fields below this point are the ones used by display.
+-	 * They are temporarily added here so xe_device can be desguised as
+-	 * drm_i915_private during build. After cleanup these should go away,
+-	 * migrating to the right sub-structs
+-	 */
+-	struct intel_display display;
+-	enum intel_pch pch_type;
+-	u16 pch_id;
+-
+-	struct dram_info {
+-		bool wm_lv_0_adjust_needed;
+-		u8 num_channels;
+-		bool symmetric_memory;
+-		enum intel_dram_type {
+-			INTEL_DRAM_UNKNOWN,
+-			INTEL_DRAM_DDR3,
+-			INTEL_DRAM_DDR4,
+-			INTEL_DRAM_LPDDR3,
+-			INTEL_DRAM_LPDDR4,
+-			INTEL_DRAM_DDR5,
+-			INTEL_DRAM_LPDDR5,
+-		} type;
+-		u8 num_qgv_points;
+-		u8 num_psf_gv_points;
+-	} dram_info;
+-
+-	/* To shut up runtime pm macros.. */
+-	struct xe_runtime_pm {} runtime_pm;
+-
+-	/* For pcode */
+-	struct mutex sb_lock;
+-
+-	/* Should be in struct intel_display */
+-	u32 skl_preferred_vco_freq, max_dotclk_freq, hti_state;
+-	u8 snps_phy_failed_calibration;
+-	struct drm_atomic_state *modeset_restore_state;
+-	struct list_head global_obj_list;
+-
+-	u32 de_irq_mask[I915_MAX_PIPES];
+-	bool display_irqs_enabled;
+-	u32 enabled_irq_mask;
+-
+-	struct {
+-		/* Backlight: XXX: needs to be set to -1 */
+-		s32 invert_brightness;
+-		s32 vbt_sdvo_panel_type;
+-		u32 edp_vswing;
+-
+-		/* PM support, needs to be -1 as well */
+-		s32 disable_power_well;
+-		s32 enable_dc;
+-
+-		const char *dmc_firmware_path;
+-		s32 enable_dpcd_backlight;
+-		s32 enable_dp_mst;
+-		s32 enable_fbc;
+-		s32 enable_psr;
+-		bool psr_safest_params;
+-		s32 enable_psr2_sel_fetch;
+-
+-		s32 panel_use_ssc;
+-		const char *vbt_firmware;
+-		u32 lvds_channel_mode;
+-	} params;
+ };
+ 
+ /**
+diff --git a/drivers/gpu/drm/xe/xe_display.c b/drivers/gpu/drm/xe/xe_display.c
+deleted file mode 100644
+index 6e7b6cfce4d9..000000000000
+--- a/drivers/gpu/drm/xe/xe_display.c
++++ /dev/null
+@@ -1,323 +0,0 @@
+-// SPDX-License-Identifier: MIT
+-/*
+- * Copyright © 2023 Intel Corporation
+- */
+-
+-#if IS_ENABLED(CONFIG_DRM_XE_DISPLAY)
+-
+-#include "xe_display.h"
+-
+-#include <linux/fb.h>
+-
+-#include <drm/drm_aperture.h>
+-#include <drm/drm_managed.h>
+-#include <drm/xe_drm.h>
+-
 -#include "display/ext/i915_irq.h"
 -#include "display/ext/intel_dram.h"
 -#include "display/ext/intel_pm.h"
+-#include "display/intel_acpi.h"
+-#include "display/intel_audio.h"
+-#include "display/intel_bw.h"
+-#include "display/intel_display.h"
+-#include "display/intel_display_types.h"
+-#include "display/intel_dp.h"
+-#include "display/intel_fbdev.h"
+-#include "display/intel_hdcp.h"
+-#include "display/intel_hotplug.h"
+-#include "display/intel_opregion.h"
+-#include "xe_module.h"
 -
--#include <linux/fb.h>
-+#include "xe_module.h"
- 
- /* Xe device functions */
- 
-diff --git a/drivers/gpu/drm/xe/xe_dma_buf.c b/drivers/gpu/drm/xe/xe_dma_buf.c
-index d09ff25bd940..9b252cc782b7 100644
---- a/drivers/gpu/drm/xe/xe_dma_buf.c
-+++ b/drivers/gpu/drm/xe/xe_dma_buf.c
-@@ -3,20 +3,19 @@
-  * Copyright © 2022 Intel Corporation
-  */
- 
-+#include "xe_dma_buf.h"
-+
-+#include <kunit/test.h>
- #include <linux/dma-buf.h>
-+#include <linux/pci-p2pdma.h>
- 
- #include <drm/drm_device.h>
- #include <drm/drm_prime.h>
+-/* Xe device functions */
 -
- #include <drm/ttm/ttm_tt.h>
- 
--#include <kunit/test.h>
--#include <linux/pci-p2pdma.h>
+-int xe_display_enable(struct pci_dev *pdev, struct drm_driver *driver)
+-{
+-	if (!enable_display)
+-		return 0;
 -
- #include "tests/xe_test.h"
- #include "xe_bo.h"
- #include "xe_device.h"
--#include "xe_dma_buf.h"
- #include "xe_ttm_vram_mgr.h"
- #include "xe_vm.h"
- 
-diff --git a/drivers/gpu/drm/xe/xe_engine.c b/drivers/gpu/drm/xe/xe_engine.c
-index e478d0417e49..f1e0f700d96c 100644
---- a/drivers/gpu/drm/xe/xe_engine.c
-+++ b/drivers/gpu/drm/xe/xe_engine.c
-@@ -5,10 +5,11 @@
- 
- #include "xe_engine.h"
- 
-+#include <linux/nospec.h>
-+
- #include <drm/drm_device.h>
- #include <drm/drm_file.h>
- #include <drm/xe_drm.h>
--#include <linux/nospec.h>
- 
- #include "xe_device.h"
- #include "xe_gt.h"
-diff --git a/drivers/gpu/drm/xe/xe_exec.c b/drivers/gpu/drm/xe/xe_exec.c
-index 00f298acc436..97fd1a311f2d 100644
---- a/drivers/gpu/drm/xe/xe_exec.c
-+++ b/drivers/gpu/drm/xe/xe_exec.c
-@@ -3,6 +3,8 @@
-  * Copyright © 2022 Intel Corporation
-  */
- 
-+#include "xe_exec.h"
-+
- #include <drm/drm_device.h>
- #include <drm/drm_file.h>
- #include <drm/xe_drm.h>
-@@ -10,7 +12,6 @@
- #include "xe_bo.h"
- #include "xe_device.h"
- #include "xe_engine.h"
--#include "xe_exec.h"
- #include "xe_macros.h"
- #include "xe_sched_job.h"
- #include "xe_sync.h"
-diff --git a/drivers/gpu/drm/xe/xe_execlist.c b/drivers/gpu/drm/xe/xe_execlist.c
-index d555d77cbf49..366379d3dfa8 100644
---- a/drivers/gpu/drm/xe/xe_execlist.c
-+++ b/drivers/gpu/drm/xe/xe_execlist.c
-@@ -3,15 +3,15 @@
-  * Copyright © 2021 Intel Corporation
-  */
- 
--#include <drm/drm_managed.h>
+-	/* Detect if we need to wait for other drivers early on */
+-	if (intel_modeset_probe_defer(pdev))
+-		return EPROBE_DEFER;
 -
- #include "xe_execlist.h"
+-	driver->driver_features |= DRIVER_MODESET | DRIVER_ATOMIC;
+-	driver->lastclose = intel_fbdev_restore_mode;
+-
+-	return 0;
+-}
+-
+-void xe_display_fini_nommio(struct drm_device *dev, void *dummy)
+-{
+-	struct xe_device *xe = to_xe_device(dev);
+-
+-	if (!xe->info.enable_display)
+-		return;
+-
+-	intel_power_domains_cleanup(xe);
+-}
+-
+-int xe_display_init_nommio(struct xe_device *xe)
+-{
+-	int err;
+-
+-	if (!xe->info.enable_display)
+-		return 0;
+-
+-	/* This must be called before any calls to HAS_PCH_* */
+-	intel_detect_pch(xe);
+-	intel_display_irq_init(xe);
+-
+-	err = intel_power_domains_init(xe);
+-	if (err)
+-		return err;
+-
+-	intel_init_display_hooks(xe);
+-
+-	return drmm_add_action_or_reset(&xe->drm, xe_display_fini_nommio, xe);
+-}
+-
+-void xe_display_fini_noirq(struct drm_device *dev, void *dummy)
+-{
+-	struct xe_device *xe = to_xe_device(dev);
+-
+-	if (!xe->info.enable_display)
+-		return;
+-
+-	intel_modeset_driver_remove_noirq(xe);
+-	intel_power_domains_driver_remove(xe);
+-}
+-
+-int xe_display_init_noirq(struct xe_device *xe)
+-{
+-	int err;
+-
+-	if (!xe->info.enable_display)
+-		return 0;
+-
+-	/* Early display init.. */
+-	intel_opregion_setup(xe);
+-
+-	/*
+-	 * Fill the dram structure to get the system dram info. This will be
+-	 * used for memory latency calculation.
+-	 */
+-	intel_dram_detect(xe);
+-
+-	intel_bw_init_hw(xe);
+-
+-	intel_device_info_runtime_init(xe);
+-
+-	err = drm_aperture_remove_conflicting_pci_framebuffers(to_pci_dev(xe->drm.dev),
+-							       xe->drm.driver);
+-	if (err)
+-		return err;
+-
+-	err = intel_modeset_init_noirq(xe);
+-	if (err)
+-		return err;
+-
+-	return drmm_add_action_or_reset(&xe->drm, xe_display_fini_noirq, NULL);
+-}
+-
+-void xe_display_fini_noaccel(struct drm_device *dev, void *dummy)
+-{
+-	struct xe_device *xe = to_xe_device(dev);
+-
+-	if (!xe->info.enable_display)
+-		return;
+-
+-	intel_modeset_driver_remove_nogem(xe);
+-}
+-
+-int xe_display_init_noaccel(struct xe_device *xe)
+-{
+-	int err;
+-
+-	if (!xe->info.enable_display)
+-		return 0;
+-
+-	err = intel_modeset_init_nogem(xe);
+-	if (err)
+-		return err;
+-
+-	return drmm_add_action_or_reset(&xe->drm, xe_display_fini_noaccel, NULL);
+-}
+-
+-int xe_display_init(struct xe_device *xe)
+-{
+-	if (!xe->info.enable_display)
+-		return 0;
+-
+-	return intel_modeset_init(xe);
+-}
+-
+-void xe_display_unlink(struct xe_device *xe)
+-{
+-	if (!xe->info.enable_display)
+-		return;
+-
+-	/* poll work can call into fbdev, hence clean that up afterwards */
+-	intel_hpd_poll_fini(xe);
+-	intel_fbdev_fini(xe);
+-
+-	intel_hdcp_component_fini(xe);
+-	intel_audio_deinit(xe);
+-}
+-
+-void xe_display_register(struct xe_device *xe)
+-{
+-	if (!xe->info.enable_display)
+-		return;
+-
+-	intel_display_driver_register(xe);
+-	intel_register_dsm_handler();
+-	intel_power_domains_enable(xe);
+-}
+-
+-void xe_display_unregister(struct xe_device *xe)
+-{
+-	if (!xe->info.enable_display)
+-		return;
+-
+-	intel_unregister_dsm_handler();
+-	intel_power_domains_disable(xe);
+-	intel_display_driver_unregister(xe);
+-}
+-
+-void xe_display_modset_driver_remove(struct xe_device *xe)
+-{
+-	if (!xe->info.enable_display)
+-		return;
+-
+-	intel_modeset_driver_remove(xe);
+-}
+-
+-/* IRQ-related functions */
+-
+-void xe_display_irq_handler(struct xe_device *xe, u32 master_ctl)
+-{
+-	if (!xe->info.enable_display)
+-		return;
+-
+-	if (master_ctl & GEN11_DISPLAY_IRQ)
+-		gen11_display_irq_handler(xe);
+-}
+-
+-void xe_display_irq_enable(struct xe_device *xe, u32 gu_misc_iir)
+-{
+-	if (!xe->info.enable_display)
+-		return;
+-
+-	if (gu_misc_iir & GEN11_GU_MISC_GSE)
+-		intel_opregion_asle_intr(xe);
+-}
+-
+-void xe_display_irq_reset(struct xe_device *xe)
+-{
+-	if (!xe->info.enable_display)
+-		return;
+-
+-	gen11_display_irq_reset(xe);
+-}
+-
+-void xe_display_irq_postinstall(struct xe_device *xe, struct xe_gt *gt)
+-{
+-	if (!xe->info.enable_display)
+-		return;
+-
+-	if (gt->info.id == XE_GT0)
+-		gen11_display_irq_postinstall(xe);
+-}
+-
+-static void intel_suspend_encoders(struct xe_device *xe)
+-{
+-	struct drm_device *dev = &xe->drm;
+-	struct intel_encoder *encoder;
+-
+-	if (!xe->info.display.pipe_mask)
+-		return;
+-
+-	drm_modeset_lock_all(dev);
+-	for_each_intel_encoder(dev, encoder)
+-		if (encoder->suspend)
+-			encoder->suspend(encoder);
+-	drm_modeset_unlock_all(dev);
+-}
+-
+-void xe_display_pm_suspend(struct xe_device *xe)
+-{
+-	if (!xe->info.enable_display)
+-		return;
+-
+-	/*
+-	 * We do a lot of poking in a lot of registers, make sure they work
+-	 * properly.
+-	 */
+-	intel_power_domains_disable(xe);
+-	if (xe->info.display.pipe_mask)
+-		drm_kms_helper_poll_disable(&xe->drm);
+-
+-	intel_display_suspend(&xe->drm);
+-
+-	intel_dp_mst_suspend(xe);
+-
+-	intel_hpd_cancel_work(xe);
+-
+-	intel_suspend_encoders(xe);
+-
+-	intel_opregion_suspend(xe, PCI_D3cold);
+-
+-	intel_fbdev_set_suspend(&xe->drm, FBINFO_STATE_SUSPENDED, true);
+-
+-	intel_dmc_ucode_suspend(xe);
+-}
+-
+-void xe_display_pm_suspend_late(struct xe_device *xe)
+-{
+-	if (!xe->info.enable_display)
+-		return;
+-
+-	intel_power_domains_suspend(xe, I915_DRM_SUSPEND_MEM);
+-
+-	intel_display_power_suspend_late(xe);
+-}
+-
+-void xe_display_pm_resume_early(struct xe_device *xe)
+-{
+-	if (!xe->info.enable_display)
+-		return;
+-
+-	intel_display_power_resume_early(xe);
+-
+-	intel_power_domains_resume(xe);
+-}
+-
+-void xe_display_pm_resume(struct xe_device *xe)
+-{
+-	if (!xe->info.enable_display)
+-		return;
+-
+-	intel_dmc_ucode_resume(xe);
+-
+-	if (xe->info.display.pipe_mask)
+-		drm_mode_config_reset(&xe->drm);
+-
+-	intel_modeset_init_hw(xe);
+-	intel_init_clock_gating(xe);
+-	intel_hpd_init(xe);
+-
+-	/* MST sideband requires HPD interrupts enabled */
+-	intel_dp_mst_resume(xe);
+-	intel_display_resume(&xe->drm);
+-
+-	intel_hpd_poll_disable(xe);
+-	if (xe->info.display.pipe_mask)
+-		drm_kms_helper_poll_enable(&xe->drm);
+-
+-	intel_opregion_resume(xe);
+-
+-	intel_fbdev_set_suspend(&xe->drm, FBINFO_STATE_RUNNING, false);
+-
+-	intel_power_domains_enable(xe);
+-}
+-
+-#endif
+diff --git a/drivers/gpu/drm/xe/xe_display.h b/drivers/gpu/drm/xe/xe_display.h
+index 41fd6ca3a025..6397114a7309 100644
+--- a/drivers/gpu/drm/xe/xe_display.h
++++ b/drivers/gpu/drm/xe/xe_display.h
+@@ -6,85 +6,40 @@
+ #ifndef _XE_DISPLAY_H_
+ #define _XE_DISPLAY_H_
  
-+#include <drm/drm_managed.h>
-+
- #include "xe_bo.h"
- #include "xe_device.h"
- #include "xe_engine.h"
--#include "xe_hw_fence.h"
- #include "xe_gt.h"
-+#include "xe_hw_fence.h"
- #include "xe_lrc.h"
- #include "xe_macros.h"
- #include "xe_mmio.h"
-@@ -19,11 +19,11 @@
- #include "xe_ring_ops_types.h"
- #include "xe_sched_job.h"
- 
--#include "i915_reg.h"
-+#include "gt/intel_engine_regs.h"
- #include "gt/intel_gpu_commands.h"
- #include "gt/intel_gt_regs.h"
- #include "gt/intel_lrc_reg.h"
--#include "gt/intel_engine_regs.h"
-+#include "i915_reg.h"
- 
- #define XE_EXECLIST_HANG_LIMIT 1
- 
-diff --git a/drivers/gpu/drm/xe/xe_force_wake.c b/drivers/gpu/drm/xe/xe_force_wake.c
-index d2080e6fbe10..2fca53d1690c 100644
---- a/drivers/gpu/drm/xe/xe_force_wake.c
-+++ b/drivers/gpu/drm/xe/xe_force_wake.c
-@@ -3,13 +3,14 @@
-  * Copyright © 2022 Intel Corporation
-  */
- 
-+#include "xe_force_wake.h"
-+
- #include <drm/drm_util.h>
- 
--#include "xe_force_wake.h"
- #include "xe_gt.h"
- #include "xe_mmio.h"
--#include "gt/intel_gt_regs.h"
- 
-+#include "gt/intel_gt_regs.h"
- 
- #define XE_FORCE_WAKE_ACK_TIMEOUT_MS	50
- 
-diff --git a/drivers/gpu/drm/xe/xe_ggtt.c b/drivers/gpu/drm/xe/xe_ggtt.c
-index d5bd9bc18c57..03880f2c9692 100644
---- a/drivers/gpu/drm/xe/xe_ggtt.c
-+++ b/drivers/gpu/drm/xe/xe_ggtt.c
-@@ -6,20 +6,20 @@
- #include "xe_ggtt.h"
- 
- #include <linux/sizes.h>
--#include <drm/i915_drm.h>
- 
- #include <drm/drm_managed.h>
-+#include <drm/i915_drm.h>
- 
+-#if IS_ENABLED(CONFIG_DRM_XE_DISPLAY)
+-#include <drm/drm_drv.h>
+-
 -#include "xe_device.h"
- #include "xe_bo.h"
-+#include "xe_device.h"
- #include "xe_gt.h"
- #include "xe_gt_tlb_invalidation.h"
- #include "xe_map.h"
- #include "xe_mmio.h"
- #include "xe_wopcm.h"
- 
--#include "i915_reg.h"
- #include "gt/intel_gt_regs.h"
-+#include "i915_reg.h"
- 
- /* FIXME: Common file, preferably auto-gen */
- #define MTL_GGTT_PTE_PAT0	BIT_ULL(52)
-diff --git a/drivers/gpu/drm/xe/xe_gt.c b/drivers/gpu/drm/xe/xe_gt.c
-index 20dbc08d3685..e9ad8b0d27bb 100644
---- a/drivers/gpu/drm/xe/xe_gt.c
-+++ b/drivers/gpu/drm/xe/xe_gt.c
-@@ -3,6 +3,8 @@
-  * Copyright © 2022 Intel Corporation
-  */
- 
-+#include "xe_gt.h"
-+
- #include <linux/minmax.h>
- 
- #include <drm/drm_managed.h>
-@@ -14,7 +16,6 @@
- #include "xe_execlist.h"
- #include "xe_force_wake.h"
- #include "xe_ggtt.h"
--#include "xe_gt.h"
- #include "xe_gt_clock.h"
- #include "xe_gt_mcr.h"
- #include "xe_gt_pagefault.h"
-diff --git a/drivers/gpu/drm/xe/xe_gt_clock.c b/drivers/gpu/drm/xe/xe_gt_clock.c
-index 575433e9718a..2d9f2aa42bad 100644
---- a/drivers/gpu/drm/xe/xe_gt_clock.c
-+++ b/drivers/gpu/drm/xe/xe_gt_clock.c
-@@ -3,15 +3,16 @@
-  * Copyright © 2022 Intel Corporation
-  */
- 
--#include "i915_reg.h"
--#include "gt/intel_gt_regs.h"
-+#include "xe_gt_clock.h"
- 
- #include "xe_device.h"
- #include "xe_gt.h"
--#include "xe_gt_clock.h"
- #include "xe_macros.h"
- #include "xe_mmio.h"
- 
-+#include "gt/intel_gt_regs.h"
-+#include "i915_reg.h"
-+
- static u32 read_reference_ts_freq(struct xe_gt *gt)
- {
- 	u32 ts_override = xe_mmio_read32(gt, GEN9_TIMESTAMP_OVERRIDE.reg);
-diff --git a/drivers/gpu/drm/xe/xe_gt_debugfs.c b/drivers/gpu/drm/xe/xe_gt_debugfs.c
-index c320e58810ce..78942e12e76c 100644
---- a/drivers/gpu/drm/xe/xe_gt_debugfs.c
-+++ b/drivers/gpu/drm/xe/xe_gt_debugfs.c
-@@ -3,6 +3,8 @@
-  * Copyright © 2022 Intel Corporation
-  */
- 
-+#include "xe_gt_debugfs.h"
-+
- #include <drm/drm_debugfs.h>
- #include <drm/drm_managed.h>
- 
-@@ -10,7 +12,6 @@
- #include "xe_force_wake.h"
- #include "xe_ggtt.h"
- #include "xe_gt.h"
--#include "xe_gt_debugfs.h"
- #include "xe_gt_mcr.h"
- #include "xe_gt_topology.h"
- #include "xe_hw_engine.h"
-diff --git a/drivers/gpu/drm/xe/xe_gt_mcr.c b/drivers/gpu/drm/xe/xe_gt_mcr.c
-index 7617f0340879..8fa59988d08e 100644
---- a/drivers/gpu/drm/xe/xe_gt_mcr.c
-+++ b/drivers/gpu/drm/xe/xe_gt_mcr.c
-@@ -3,8 +3,9 @@
-  * Copyright © 2022 Intel Corporation
-  */
- 
--#include "xe_gt.h"
- #include "xe_gt_mcr.h"
-+
-+#include "xe_gt.h"
- #include "xe_gt_topology.h"
- #include "xe_gt_types.h"
- #include "xe_mmio.h"
-diff --git a/drivers/gpu/drm/xe/xe_gt_pagefault.c b/drivers/gpu/drm/xe/xe_gt_pagefault.c
-index ce79eb48feb8..0e7047b89a83 100644
---- a/drivers/gpu/drm/xe/xe_gt_pagefault.c
-+++ b/drivers/gpu/drm/xe/xe_gt_pagefault.c
-@@ -3,6 +3,8 @@
-  * Copyright © 2022 Intel Corporation
-  */
- 
-+#include "xe_gt_pagefault.h"
-+
- #include <linux/circ_buf.h>
- 
- #include <drm/drm_managed.h>
-@@ -10,7 +12,6 @@
- 
- #include "xe_bo.h"
- #include "xe_gt.h"
--#include "xe_gt_pagefault.h"
- #include "xe_gt_tlb_invalidation.h"
- #include "xe_guc.h"
- #include "xe_guc_ct.h"
-diff --git a/drivers/gpu/drm/xe/xe_gt_sysfs.c b/drivers/gpu/drm/xe/xe_gt_sysfs.c
-index 2d966d935b8e..c01cc689058c 100644
---- a/drivers/gpu/drm/xe/xe_gt_sysfs.c
-+++ b/drivers/gpu/drm/xe/xe_gt_sysfs.c
-@@ -3,11 +3,14 @@
-  * Copyright © 2022 Intel Corporation
-  */
- 
-+#include "xe_gt_sysfs.h"
-+
- #include <linux/kobject.h>
- #include <linux/sysfs.h>
-+
- #include <drm/drm_managed.h>
-+
- #include "xe_gt.h"
--#include "xe_gt_sysfs.h"
- 
- static void xe_gt_sysfs_kobj_release(struct kobject *kobj)
- {
-diff --git a/drivers/gpu/drm/xe/xe_gt_tlb_invalidation.c b/drivers/gpu/drm/xe/xe_gt_tlb_invalidation.c
-index 2521c8a65690..f279e21300aa 100644
---- a/drivers/gpu/drm/xe/xe_gt_tlb_invalidation.c
-+++ b/drivers/gpu/drm/xe/xe_gt_tlb_invalidation.c
-@@ -3,8 +3,9 @@
-  * Copyright © 2023 Intel Corporation
-  */
- 
--#include "xe_gt.h"
- #include "xe_gt_tlb_invalidation.h"
-+
-+#include "xe_gt.h"
- #include "xe_guc.h"
- #include "xe_guc_ct.h"
- #include "xe_trace.h"
-diff --git a/drivers/gpu/drm/xe/xe_gt_topology.c b/drivers/gpu/drm/xe/xe_gt_topology.c
-index 8e02e362ba27..e002d706d855 100644
---- a/drivers/gpu/drm/xe/xe_gt_topology.c
-+++ b/drivers/gpu/drm/xe/xe_gt_topology.c
-@@ -3,10 +3,11 @@
-  * Copyright © 2022 Intel Corporation
-  */
- 
-+#include "xe_gt_topology.h"
-+
- #include <linux/bitmap.h>
- 
- #include "xe_gt.h"
--#include "xe_gt_topology.h"
- #include "xe_mmio.h"
- 
- #define XE_MAX_DSS_FUSE_BITS (32 * XE_MAX_DSS_FUSE_REGS)
-diff --git a/drivers/gpu/drm/xe/xe_guc.c b/drivers/gpu/drm/xe/xe_guc.c
-index 5cdfdfd0de40..bc2761569aa6 100644
---- a/drivers/gpu/drm/xe/xe_guc.c
-+++ b/drivers/gpu/drm/xe/xe_guc.c
-@@ -3,24 +3,26 @@
-  * Copyright © 2022 Intel Corporation
-  */
- 
-+#include "xe_guc.h"
-+
- #include "xe_bo.h"
- #include "xe_device.h"
--#include "xe_guc.h"
-+#include "xe_force_wake.h"
-+#include "xe_gt.h"
- #include "xe_guc_ads.h"
- #include "xe_guc_ct.h"
- #include "xe_guc_hwconfig.h"
- #include "xe_guc_log.h"
--#include "xe_guc_reg.h"
- #include "xe_guc_pc.h"
-+#include "xe_guc_reg.h"
- #include "xe_guc_submit.h"
--#include "xe_gt.h"
-+#include "xe_mmio.h"
- #include "xe_platform_types.h"
- #include "xe_uc_fw.h"
- #include "xe_wopcm.h"
--#include "xe_mmio.h"
--#include "xe_force_wake.h"
--#include "i915_reg_defs.h"
-+
- #include "gt/intel_gt_regs.h"
-+#include "i915_reg_defs.h"
- 
- /* TODO: move to common file */
- #define GUC_PVC_MOCS_INDEX_MASK		REG_GENMASK(25, 24)
-diff --git a/drivers/gpu/drm/xe/xe_guc_ads.c b/drivers/gpu/drm/xe/xe_guc_ads.c
-index 0c08cecaca40..a4e947f0c557 100644
---- a/drivers/gpu/drm/xe/xe_guc_ads.c
-+++ b/drivers/gpu/drm/xe/xe_guc_ads.c
-@@ -3,20 +3,22 @@
-  * Copyright © 2022 Intel Corporation
-  */
- 
-+#include "xe_guc_ads.h"
-+
- #include <drm/drm_managed.h>
- 
- #include "xe_bo.h"
- #include "xe_gt.h"
- #include "xe_guc.h"
--#include "xe_guc_ads.h"
- #include "xe_guc_reg.h"
- #include "xe_hw_engine.h"
- #include "xe_lrc.h"
- #include "xe_map.h"
- #include "xe_mmio.h"
- #include "xe_platform_types.h"
--#include "gt/intel_gt_regs.h"
-+
- #include "gt/intel_engine_regs.h"
-+#include "gt/intel_gt_regs.h"
- 
- /* Slack of a few additional entries per engine */
- #define ADS_REGSET_EXTRA_MAX	8
-diff --git a/drivers/gpu/drm/xe/xe_guc_ct.c b/drivers/gpu/drm/xe/xe_guc_ct.c
-index 84d4302d4e72..5e00b75d3ca2 100644
---- a/drivers/gpu/drm/xe/xe_guc_ct.c
-+++ b/drivers/gpu/drm/xe/xe_guc_ct.c
-@@ -3,6 +3,8 @@
-  * Copyright © 2022 Intel Corporation
-  */
- 
-+#include "xe_guc_ct.h"
-+
- #include <linux/bitfield.h>
- #include <linux/circ_buf.h>
- #include <linux/delay.h>
-@@ -12,10 +14,9 @@
- #include "xe_bo.h"
- #include "xe_device.h"
- #include "xe_gt.h"
--#include "xe_guc.h"
--#include "xe_guc_ct.h"
- #include "xe_gt_pagefault.h"
- #include "xe_gt_tlb_invalidation.h"
-+#include "xe_guc.h"
- #include "xe_guc_submit.h"
- #include "xe_map.h"
- #include "xe_trace.h"
-diff --git a/drivers/gpu/drm/xe/xe_guc_debugfs.c b/drivers/gpu/drm/xe/xe_guc_debugfs.c
-index 916e9633b322..6b72db4d5bb2 100644
---- a/drivers/gpu/drm/xe/xe_guc_debugfs.c
-+++ b/drivers/gpu/drm/xe/xe_guc_debugfs.c
-@@ -3,6 +3,8 @@
-  * Copyright © 2022 Intel Corporation
-  */
- 
-+#include "xe_guc_debugfs.h"
-+
- #include <drm/drm_debugfs.h>
- #include <drm/drm_managed.h>
- 
-@@ -10,7 +12,6 @@
- #include "xe_gt.h"
- #include "xe_guc.h"
- #include "xe_guc_ct.h"
--#include "xe_guc_debugfs.h"
- #include "xe_guc_log.h"
- #include "xe_macros.h"
- 
-diff --git a/drivers/gpu/drm/xe/xe_guc_hwconfig.c b/drivers/gpu/drm/xe/xe_guc_hwconfig.c
-index 57640d608787..a6982f323ed1 100644
---- a/drivers/gpu/drm/xe/xe_guc_hwconfig.c
-+++ b/drivers/gpu/drm/xe/xe_guc_hwconfig.c
-@@ -3,13 +3,14 @@
-  * Copyright © 2022 Intel Corporation
-  */
- 
-+#include "xe_guc_hwconfig.h"
-+
- #include <drm/drm_managed.h>
- 
- #include "xe_bo.h"
- #include "xe_device.h"
- #include "xe_gt.h"
- #include "xe_guc.h"
--#include "xe_guc_hwconfig.h"
- #include "xe_map.h"
- 
- static struct xe_gt *
-diff --git a/drivers/gpu/drm/xe/xe_guc_log.c b/drivers/gpu/drm/xe/xe_guc_log.c
-index 7ec1b2bb1f8e..9a7b5d5906c1 100644
---- a/drivers/gpu/drm/xe/xe_guc_log.c
-+++ b/drivers/gpu/drm/xe/xe_guc_log.c
-@@ -3,11 +3,12 @@
-  * Copyright © 2022 Intel Corporation
-  */
- 
-+#include "xe_guc_log.h"
-+
- #include <drm/drm_managed.h>
- 
- #include "xe_bo.h"
- #include "xe_gt.h"
--#include "xe_guc_log.h"
- #include "xe_map.h"
- #include "xe_module.h"
- 
-diff --git a/drivers/gpu/drm/xe/xe_guc_pc.c b/drivers/gpu/drm/xe/xe_guc_pc.c
-index 3ba0c8a35109..28b86e8f3f6e 100644
---- a/drivers/gpu/drm/xe/xe_guc_pc.c
-+++ b/drivers/gpu/drm/xe/xe_guc_pc.c
-@@ -3,21 +3,24 @@
-  * Copyright © 2022 Intel Corporation
-  */
- 
-+#include "xe_guc_pc.h"
-+
-+#include <linux/delay.h>
-+
- #include <drm/drm_managed.h>
-+
- #include "xe_bo.h"
- #include "xe_device.h"
- #include "xe_gt.h"
--#include "xe_gt_types.h"
- #include "xe_gt_sysfs.h"
-+#include "xe_gt_types.h"
- #include "xe_guc_ct.h"
- #include "xe_map.h"
- #include "xe_mmio.h"
- #include "xe_pcode.h"
--#include "i915_reg_defs.h"
--#include "i915_reg.h"
 -
--#include <linux/delay.h>
- 
-+#include "i915_reg.h"
-+#include "i915_reg_defs.h"
- #include "intel_mchbar_regs.h"
- 
- /* For GEN6_RP_STATE_CAP.reg to be merged when the definition moves to Xe */
-diff --git a/drivers/gpu/drm/xe/xe_guc_submit.c b/drivers/gpu/drm/xe/xe_guc_submit.c
-index a54f7f82d04d..aca41ecedf7d 100644
---- a/drivers/gpu/drm/xe/xe_guc_submit.c
-+++ b/drivers/gpu/drm/xe/xe_guc_submit.c
-@@ -3,6 +3,8 @@
-  * Copyright © 2022 Intel Corporation
-  */
- 
-+#include "xe_guc_submit.h"
-+
- #include <linux/bitfield.h>
- #include <linux/bitmap.h>
- #include <linux/circ_buf.h>
-@@ -13,12 +15,11 @@
- 
- #include "xe_device.h"
- #include "xe_engine.h"
-+#include "xe_force_wake.h"
-+#include "xe_gt.h"
- #include "xe_guc.h"
- #include "xe_guc_ct.h"
- #include "xe_guc_engine_types.h"
--#include "xe_guc_submit.h"
--#include "xe_gt.h"
--#include "xe_force_wake.h"
- #include "xe_hw_engine.h"
- #include "xe_hw_fence.h"
- #include "xe_lrc.h"
-diff --git a/drivers/gpu/drm/xe/xe_huc.c b/drivers/gpu/drm/xe/xe_huc.c
-index 82e7fb3a6292..a9448c6f6418 100644
---- a/drivers/gpu/drm/xe/xe_huc.c
-+++ b/drivers/gpu/drm/xe/xe_huc.c
-@@ -3,13 +3,14 @@
-  * Copyright © 2022 Intel Corporation
-  */
- 
-+#include "xe_huc.h"
-+
- #include "xe_bo.h"
- #include "xe_device.h"
- #include "xe_force_wake.h"
- #include "xe_gt.h"
- #include "xe_guc.h"
- #include "xe_guc_reg.h"
--#include "xe_huc.h"
- #include "xe_mmio.h"
- #include "xe_uc_fw.h"
- 
-diff --git a/drivers/gpu/drm/xe/xe_huc_debugfs.c b/drivers/gpu/drm/xe/xe_huc_debugfs.c
-index 268bac36336a..ee3d8315036a 100644
---- a/drivers/gpu/drm/xe/xe_huc_debugfs.c
-+++ b/drivers/gpu/drm/xe/xe_huc_debugfs.c
-@@ -3,13 +3,14 @@
-  * Copyright © 2022 Intel Corporation
-  */
- 
-+#include "xe_huc_debugfs.h"
-+
- #include <drm/drm_debugfs.h>
- #include <drm/drm_managed.h>
- 
- #include "xe_device.h"
- #include "xe_gt.h"
- #include "xe_huc.h"
--#include "xe_huc_debugfs.h"
- #include "xe_macros.h"
- 
- static struct xe_gt *
-diff --git a/drivers/gpu/drm/xe/xe_hw_engine.c b/drivers/gpu/drm/xe/xe_hw_engine.c
-index fd89dd90131c..1ca7a89b4fbd 100644
---- a/drivers/gpu/drm/xe/xe_hw_engine.c
-+++ b/drivers/gpu/drm/xe/xe_hw_engine.c
-@@ -22,8 +22,8 @@
- #include "xe_wa.h"
- 
- #include "gt/intel_engine_regs.h"
--#include "i915_reg.h"
- #include "gt/intel_gt_regs.h"
-+#include "i915_reg.h"
- 
- #define MAX_MMIO_BASES 3
- struct engine_info {
-diff --git a/drivers/gpu/drm/xe/xe_irq.c b/drivers/gpu/drm/xe/xe_irq.c
-index 7b7ddd11c2b8..681a1875ae0d 100644
---- a/drivers/gpu/drm/xe/xe_irq.c
-+++ b/drivers/gpu/drm/xe/xe_irq.c
-@@ -3,6 +3,8 @@
-  * Copyright © 2021 Intel Corporation
-  */
- 
-+#include "xe_irq.h"
-+
- #include <linux/sched/clock.h>
- 
- #include <drm/drm_managed.h>
-@@ -10,13 +12,13 @@
- #include "xe_device.h"
- #include "xe_display.h"
- #include "xe_drv.h"
--#include "xe_guc.h"
- #include "xe_gt.h"
-+#include "xe_guc.h"
- #include "xe_hw_engine.h"
- #include "xe_mmio.h"
- 
--#include "i915_reg.h"
- #include "gt/intel_gt_regs.h"
-+#include "i915_reg.h"
- 
- static void gen3_assert_iir_is_zero(struct xe_gt *gt, i915_reg_t reg)
- {
-diff --git a/drivers/gpu/drm/xe/xe_lrc.c b/drivers/gpu/drm/xe/xe_lrc.c
-index 347ff9b34494..ed6fcf7620e1 100644
---- a/drivers/gpu/drm/xe/xe_lrc.c
-+++ b/drivers/gpu/drm/xe/xe_lrc.c
-@@ -9,15 +9,15 @@
- #include "xe_device.h"
- #include "xe_engine_types.h"
- #include "xe_gt.h"
--#include "xe_map.h"
- #include "xe_hw_fence.h"
-+#include "xe_map.h"
- #include "xe_vm.h"
- 
--#include "i915_reg.h"
-+#include "gt/intel_engine_regs.h"
- #include "gt/intel_gpu_commands.h"
- #include "gt/intel_gt_regs.h"
- #include "gt/intel_lrc_reg.h"
--#include "gt/intel_engine_regs.h"
-+#include "i915_reg.h"
- 
- #define GEN8_CTX_VALID				(1 << 0)
- #define GEN8_CTX_L3LLC_COHERENT			(1 << 5)
-diff --git a/drivers/gpu/drm/xe/xe_migrate.c b/drivers/gpu/drm/xe/xe_migrate.c
-index cbcc355cd391..a3f35fec1b67 100644
---- a/drivers/gpu/drm/xe/xe_migrate.c
-+++ b/drivers/gpu/drm/xe/xe_migrate.c
-@@ -2,8 +2,15 @@
- /*
-  * Copyright © 2020 Intel Corporation
-  */
-+
- #include "xe_migrate.h"
- 
-+#include <linux/sizes.h>
-+
-+#include <drm/drm_managed.h>
-+#include <drm/ttm/ttm_tt.h>
-+#include <drm/xe_drm.h>
-+
- #include "xe_bb.h"
- #include "xe_bo.h"
- #include "xe_engine.h"
-@@ -20,11 +27,6 @@
- #include "xe_trace.h"
- #include "xe_vm.h"
- 
--#include <linux/sizes.h>
--#include <drm/drm_managed.h>
--#include <drm/ttm/ttm_tt.h>
--#include <drm/xe_drm.h>
+-#include "display/intel_opregion.h"
+-#include "display/ext/i915_irq.h"
 -
- #include "gt/intel_gpu_commands.h"
+-int xe_display_enable(struct pci_dev *pdev, struct drm_driver *driver);
+-
+-int xe_display_init_nommio(struct xe_device *xe);
+-void xe_display_fini_nommio(struct drm_device *dev, void *dummy);
+-
+-int xe_display_init_noirq(struct xe_device *xe);
+-void xe_display_fini_noirq(struct drm_device *dev, void *dummy);
+-
+-int xe_display_init_noaccel(struct xe_device *xe);
+-void xe_display_fini_noaccel(struct drm_device *dev, void *dummy);
+-
+-int xe_display_init(struct xe_device *xe);
+-void xe_display_unlink(struct xe_device *xe);
+-
+-void xe_display_register(struct xe_device *xe);
+-void xe_display_unregister(struct xe_device *xe);
+-void xe_display_modset_driver_remove(struct xe_device *xe);
+-
+-void xe_display_irq_handler(struct xe_device *xe, u32 master_ctl);
+-void xe_display_irq_enable(struct xe_device *xe, u32 gu_misc_iir);
+-
+-void xe_display_irq_reset(struct xe_device *xe);
+-void xe_display_irq_postinstall(struct xe_device *xe, struct xe_gt *gt);
+-
+-void xe_display_pm_suspend(struct xe_device *xe);
+-void xe_display_pm_suspend_late(struct xe_device *xe);
+-void xe_display_pm_resume_early(struct xe_device *xe);
+-void xe_display_pm_resume(struct xe_device *xe);
+-
+-#else
+-
+ #include <drm/drm_drv.h>
  
- /**
-diff --git a/drivers/gpu/drm/xe/xe_mmio.c b/drivers/gpu/drm/xe/xe_mmio.c
-index 8a953df2b468..9b56c88a8022 100644
---- a/drivers/gpu/drm/xe/xe_mmio.c
-+++ b/drivers/gpu/drm/xe/xe_mmio.c
-@@ -14,9 +14,9 @@
- #include "xe_macros.h"
- #include "xe_module.h"
- 
--#include "i915_reg.h"
- #include "gt/intel_engine_regs.h"
- #include "gt/intel_gt_regs.h"
-+#include "i915_reg.h"
- 
- #define XEHP_MTCFG_ADDR		_MMIO(0x101800)
- #define TILE_COUNT		REG_GENMASK(15, 8)
-diff --git a/drivers/gpu/drm/xe/xe_mocs.c b/drivers/gpu/drm/xe/xe_mocs.c
-index 86b966fffbe5..d91054c78702 100644
---- a/drivers/gpu/drm/xe/xe_mocs.c
-+++ b/drivers/gpu/drm/xe/xe_mocs.c
-@@ -3,13 +3,14 @@
-  * Copyright © 2022 Intel Corporation
-  */
- 
-+#include "xe_mocs.h"
-+
- #include "xe_bo.h"
  #include "xe_device.h"
- #include "xe_engine.h"
- #include "xe_gt.h"
--#include "xe_platform_types.h"
- #include "xe_mmio.h"
--#include "xe_mocs.h"
-+#include "xe_platform_types.h"
- #include "xe_step_types.h"
  
- #include "gt/intel_gt_regs.h"
-diff --git a/drivers/gpu/drm/xe/xe_module.c b/drivers/gpu/drm/xe/xe_module.c
-index 9cd1663f83f6..5a51a9959eff 100644
---- a/drivers/gpu/drm/xe/xe_module.c
-+++ b/drivers/gpu/drm/xe/xe_module.c
-@@ -3,6 +3,8 @@
-  * Copyright © 2021 Intel Corporation
-  */
+ static inline int
+-xe_display_enable(struct pci_dev *pdev, struct drm_driver *driver) { return 0; };
++xe_display_enable(struct pci_dev *pdev, struct drm_driver *driver) { return 0; }
  
-+#include "xe_module.h"
-+
- #include <linux/init.h>
- #include <linux/module.h>
+ static inline int
+ xe_display_init_nommio(struct xe_device *xe) { return 0; };
+-static inline void xe_display_fini_nommio(struct drm_device *dev, void *dummy) {};
++static inline void xe_display_fini_nommio(struct drm_device *dev, void *dummy) {}
  
+-static inline int xe_display_init_noirq(struct xe_device *xe)
+-{
+-	if (xe->info.display.pipe_mask != 0)
+-		drm_warn(&xe->drm, "CONFIG_DRM_XE_DISPLAY is unset, but device is display capable\n");
+-	return 0;
+-}
++static inline int xe_display_init_noirq(struct xe_device *xe) { return 0; }
+ 
+ static inline void
+ xe_display_fini_noirq(struct drm_device *dev, void *dummy) {};
+ 
+-static inline int xe_display_init_noaccel(struct xe_device *xe) { return 0; };
+-static inline void xe_display_fini_noaccel(struct drm_device *dev, void *dummy) {};
++static inline int xe_display_init_noaccel(struct xe_device *xe) { return 0; }
++static inline void xe_display_fini_noaccel(struct drm_device *dev, void *dummy) {}
+ 
+-static inline int xe_display_init(struct xe_device *xe) { return 0; };
+-static inline void xe_display_unlink(struct xe_device *xe) {};
++static inline int xe_display_init(struct xe_device *xe) { return 0; }
++static inline void xe_display_unlink(struct xe_device *xe) {}
+ 
+-static inline void xe_display_register(struct xe_device *xe) {};
+-static inline void xe_display_unregister(struct xe_device *xe) {};
+-static inline void xe_display_modset_driver_remove(struct xe_device *xe) {};
++static inline void xe_display_register(struct xe_device *xe) {}
++static inline void xe_display_unregister(struct xe_device *xe) {}
++static inline void xe_display_modset_driver_remove(struct xe_device *xe) {}
+ 
+-static inline void xe_display_irq_handler(struct xe_device *xe, u32 master_ctl) {};
+-static inline void xe_display_irq_enable(struct xe_device *xe, u32 gu_misc_iir) {};
++static inline void xe_display_irq_handler(struct xe_device *xe, u32 master_ctl) {}
++static inline void xe_display_irq_enable(struct xe_device *xe, u32 gu_misc_iir) {}
+ static inline void xe_display_irq_reset(struct xe_device *xe) {};
+-static inline void xe_display_irq_postinstall(struct xe_device *xe, struct xe_gt *gt) {};
++static inline void xe_display_irq_postinstall(struct xe_device *xe, struct xe_gt *gt) {}
+ 
+-static inline void xe_display_pm_suspend(struct xe_device *xe) {};
+-static inline void xe_display_pm_suspend_late(struct xe_device *xe) {};
+-static inline void xe_display_pm_resume_early(struct xe_device *xe) {};
+-static inline void xe_display_pm_resume(struct xe_device *xe) {};
++static inline void xe_display_pm_suspend(struct xe_device *xe) {}
++static inline void xe_display_pm_suspend_late(struct xe_device *xe) {}
++static inline void xe_display_pm_resume_early(struct xe_device *xe) {}
++static inline void xe_display_pm_resume(struct xe_device *xe) {}
+ 
+-#endif /* CONFIG_DRM_XE_DISPLAY */
+-#endif /* _XE_DISPLAY_H_ */
++#endif
 diff --git a/drivers/gpu/drm/xe/xe_pci.c b/drivers/gpu/drm/xe/xe_pci.c
-index 25598de3a1fc..93b57db29b96 100644
+index c49f3541aabb..e557ef11ddce 100644
 --- a/drivers/gpu/drm/xe/xe_pci.c
 +++ b/drivers/gpu/drm/xe/xe_pci.c
-@@ -10,12 +10,12 @@
- #include <linux/pci.h>
- #include <linux/pm_runtime.h>
+@@ -62,8 +62,6 @@ struct xe_device_desc {
+ 	DEV_INFO_FOR_EACH_FLAG(DEFINE_FLAG);
+ #undef DEFINE_FLAG
  
--#include <drm/drm_drv.h>
- #include <drm/drm_color_mgmt.h>
-+#include <drm/drm_drv.h>
- #include <drm/xe_pciids.h>
- 
--#include "xe_drv.h"
- #include "xe_device.h"
-+#include "xe_drv.h"
- #include "xe_macros.h"
- #include "xe_module.h"
- #include "xe_pm.h"
-diff --git a/drivers/gpu/drm/xe/xe_pcode.c b/drivers/gpu/drm/xe/xe_pcode.c
-index 1a76fe478853..fb1ce2d49bec 100644
---- a/drivers/gpu/drm/xe/xe_pcode.c
-+++ b/drivers/gpu/drm/xe/xe_pcode.c
-@@ -3,15 +3,14 @@
-  * Copyright © 2022 Intel Corporation
-  */
- 
--#include "xe_pcode_api.h"
- #include "xe_pcode.h"
- 
--#include "xe_gt.h"
--#include "xe_mmio.h"
+-	struct xe_device_display_info display;
 -
-+#include <linux/delay.h>
- #include <linux/errno.h>
+ 	u8 vram_flags;
+ 	u8 max_tiles;
+ 	u8 vm_max_level;
+@@ -81,73 +79,6 @@ struct xe_device_desc {
  
--#include <linux/delay.h>
-+#include "xe_gt.h"
-+#include "xe_mmio.h"
-+#include "xe_pcode_api.h"
+ #define NOP(x)	x
  
- /**
-  * DOC: PCODE
-diff --git a/drivers/gpu/drm/xe/xe_pm.c b/drivers/gpu/drm/xe/xe_pm.c
-index 44c38e670587..3189626ef70a 100644
---- a/drivers/gpu/drm/xe/xe_pm.c
-+++ b/drivers/gpu/drm/xe/xe_pm.c
-@@ -3,6 +3,8 @@
-  * Copyright © 2022 Intel Corporation
-  */
+-#define __DISPLAY_DEFAULTS \
+-		.pipe_mask = BIT(PIPE_A) | BIT(PIPE_B) | BIT(PIPE_C) | BIT(PIPE_D), \
+-		.cpu_transcoder_mask = \
+-			BIT(TRANSCODER_A) | BIT(TRANSCODER_B) | \
+-			BIT(TRANSCODER_C) | BIT(TRANSCODER_D) | \
+-			BIT(TRANSCODER_DSI_0) | BIT(TRANSCODER_DSI_1), \
+-		.pipe_offsets = { \
+-			[TRANSCODER_A] = PIPE_A_OFFSET, \
+-			[TRANSCODER_B] = PIPE_B_OFFSET, \
+-			[TRANSCODER_C] = PIPE_C_OFFSET, \
+-			[TRANSCODER_D] = PIPE_D_OFFSET, \
+-			[TRANSCODER_DSI_0] = PIPE_DSI0_OFFSET, \
+-			[TRANSCODER_DSI_1] = PIPE_DSI1_OFFSET, \
+-		}, \
+-		.trans_offsets = { \
+-			[TRANSCODER_A] = TRANSCODER_A_OFFSET, \
+-			[TRANSCODER_B] = TRANSCODER_B_OFFSET, \
+-			[TRANSCODER_C] = TRANSCODER_C_OFFSET, \
+-			[TRANSCODER_D] = TRANSCODER_D_OFFSET, \
+-			[TRANSCODER_DSI_0] = TRANSCODER_DSI0_OFFSET, \
+-			[TRANSCODER_DSI_1] = TRANSCODER_DSI1_OFFSET, \
+-		}, \
+-
+-#define GEN12_DISPLAY \
+-	.display = (struct xe_device_display_info){ \
+-		__DISPLAY_DEFAULTS \
+-		.ver = 12, \
+-		.abox_mask = GENMASK(2, 1), \
+-		.has_dmc = 1, \
+-		.has_dp_mst = 1, \
+-		.has_dsb = 0, /* FIXME: LUT load is broken with huge DSB */ \
+-		.dbuf.size = 2048, \
+-		.dbuf.slice_mask = BIT(DBUF_S1) | BIT(DBUF_S2), \
+-		.has_dsc = 1, \
+-		.fbc_mask = BIT(INTEL_FBC_A), \
+-		.has_fpga_dbg = 1, \
+-		.has_hdcp = 1, \
+-		.has_ipc = 1, \
+-		.has_psr = 1, \
+-		.has_psr_hw_tracking = 1, \
+-		.color = { .degamma_lut_size = 33, .gamma_lut_size = 262145 }, \
+-	}
+-
+-#define GEN13_DISPLAY \
+-	.display = (struct xe_device_display_info){ \
+-		__DISPLAY_DEFAULTS \
+-		.ver = 13,							\
+-		.abox_mask = GENMASK(1, 0),					\
+-		.color = {							\
+-			.degamma_lut_size = 128, .gamma_lut_size = 1024,	\
+-			.degamma_lut_tests = DRM_COLOR_LUT_NON_DECREASING |	\
+-				     DRM_COLOR_LUT_EQUAL_CHANNELS,		\
+-		},								\
+-		.dbuf.size = 4096,						\
+-		.dbuf.slice_mask = BIT(DBUF_S1) | BIT(DBUF_S2) | BIT(DBUF_S3) |	\
+-				   BIT(DBUF_S4),				\
+-		.has_dmc = 1,							\
+-		.has_dp_mst = 1,						\
+-		.has_dsb = 1,							\
+-		.has_dsc = 1,							\
+-		.fbc_mask = BIT(INTEL_FBC_A),					\
+-		.has_fpga_dbg = 1,						\
+-		.has_hdcp = 1,							\
+-		.has_ipc = 1,							\
+-		.has_psr = 1,							\
+-	}
+-
+ /* Keep in gen based order, and chronological order within a gen */
+ #define GEN12_FEATURES \
+ 	.require_force_probe = true, \
+@@ -160,20 +91,15 @@ struct xe_device_desc {
  
-+#include "xe_pm.h"
-+
- #include <linux/pm_runtime.h>
+ static const struct xe_device_desc tgl_desc = {
+ 	GEN12_FEATURES,
+-	GEN12_DISPLAY,
+ 	PLATFORM(XE_TIGERLAKE),
+ 	.platform_engine_mask =
+ 		BIT(XE_HW_ENGINE_RCS0) | BIT(XE_HW_ENGINE_BCS0) |
+ 		BIT(XE_HW_ENGINE_VECS0) | BIT(XE_HW_ENGINE_VCS0) |
+ 		BIT(XE_HW_ENGINE_VCS2),
+-	GEN12_DISPLAY,
+ };
  
- #include <drm/ttm/ttm_placement.h>
-@@ -11,9 +13,8 @@
- #include "xe_bo_evict.h"
- #include "xe_device.h"
- #include "xe_display.h"
--#include "xe_pm.h"
--#include "xe_gt.h"
- #include "xe_ggtt.h"
-+#include "xe_gt.h"
- #include "xe_irq.h"
- #include "xe_pcode.h"
+ static const struct xe_device_desc adl_s_desc = {
+ 	GEN12_FEATURES,
+-	GEN12_DISPLAY,
+-	.display.has_hti = 1,
+-	.display.has_psr_hw_tracking = 0,
+ 	PLATFORM(XE_ALDERLAKE_S),
+ 	.platform_engine_mask =
+ 		BIT(XE_HW_ENGINE_RCS0) | BIT(XE_HW_ENGINE_BCS0) |
+@@ -195,7 +121,6 @@ static const struct xe_device_desc adl_p_desc = {
  
-diff --git a/drivers/gpu/drm/xe/xe_preempt_fence.c b/drivers/gpu/drm/xe/xe_preempt_fence.c
-index 6ab9ff442766..78ad8c209873 100644
---- a/drivers/gpu/drm/xe/xe_preempt_fence.c
-+++ b/drivers/gpu/drm/xe/xe_preempt_fence.c
-@@ -3,10 +3,11 @@
-  * Copyright © 2022 Intel Corporation
-  */
+ static const struct xe_device_desc dg1_desc = {
+ 	GEN12_FEATURES,
+-	GEN12_DISPLAY,
+ 	DGFX_FEATURES,
+ 	.graphics_rel = 10,
+ 	PLATFORM(XE_DG1),
+@@ -256,9 +181,6 @@ static const struct xe_device_desc dg2_desc = {
+ 	XE_HPM_FEATURES,
  
-+#include "xe_preempt_fence.h"
-+
- #include <linux/slab.h>
+ 	DG2_FEATURES,
+-	GEN13_DISPLAY,
+-	.display.cpu_transcoder_mask = BIT(TRANSCODER_A) | BIT(TRANSCODER_B) |
+-				       BIT(TRANSCODER_C) | BIT(TRANSCODER_D),
+ };
  
- #include "xe_engine.h"
--#include "xe_preempt_fence.h"
- #include "xe_vm.h"
+ #define PVC_ENGINES \
+@@ -334,10 +256,6 @@ static const struct xe_device_desc mtl_desc = {
+ 	PLATFORM(XE_METEORLAKE),
+ 	.extra_gts = xelpmp_gts,
+ 	.platform_engine_mask = MTL_MAIN_ENGINES,
+-	GEN13_DISPLAY,
+-	.display.ver = 14,
+-	.display.has_cdclk_crawl = 1,
+-	.display.has_cdclk_squash = 1,
+ };
  
- static void preempt_fence_work_func(struct work_struct *w)
-diff --git a/drivers/gpu/drm/xe/xe_pt.c b/drivers/gpu/drm/xe/xe_pt.c
-index 435cc30d88c9..06fc7b206997 100644
---- a/drivers/gpu/drm/xe/xe_pt.c
-+++ b/drivers/gpu/drm/xe/xe_pt.c
-@@ -3,6 +3,8 @@
-  * Copyright © 2022 Intel Corporation
-  */
+ #undef PLATFORM
+@@ -489,7 +407,6 @@ static int xe_pci_probe(struct pci_dev *pdev, const struct pci_device_id *ent)
+ 	xe->info.has_asid = desc->has_asid;
+ 	xe->info.has_flat_ccs = desc->has_flat_ccs;
+ 	xe->info.has_4tile = desc->has_4tile;
+-	xe->info.display = desc->display;
+ 	xe->info.has_range_tlb_invalidation = desc->has_range_tlb_invalidation;
  
-+#include "xe_pt.h"
-+
- #include <drm/drm_pt_walk.h>
- 
- #include "xe_bo.h"
-@@ -10,12 +12,11 @@
- #include "xe_gt.h"
- #include "xe_gt_tlb_invalidation.h"
- #include "xe_migrate.h"
--#include "xe_pt.h"
- #include "xe_pt_types.h"
--#include "xe_vm.h"
- #include "xe_res_cursor.h"
- #include "xe_trace.h"
- #include "xe_ttm_stolen_mgr.h"
-+#include "xe_vm.h"
- 
- struct xe_pt_dir {
- 	struct xe_pt pt;
-diff --git a/drivers/gpu/drm/xe/xe_query.c b/drivers/gpu/drm/xe/xe_query.c
-index 6e904e97f456..c47bd2ff45cc 100644
---- a/drivers/gpu/drm/xe/xe_query.c
-+++ b/drivers/gpu/drm/xe/xe_query.c
-@@ -3,17 +3,19 @@
-  * Copyright © 2022 Intel Corporation
-  */
- 
--#include <drm/xe_drm.h>
--#include <drm/ttm/ttm_placement.h>
-+#include "xe_query.h"
-+
- #include <linux/nospec.h>
- 
-+#include <drm/ttm/ttm_placement.h>
-+#include <drm/xe_drm.h>
-+
- #include "xe_bo.h"
- #include "xe_device.h"
--#include "xe_gt.h"
--#include "xe_macros.h"
--#include "xe_query.h"
- #include "xe_ggtt.h"
-+#include "xe_gt.h"
- #include "xe_guc_hwconfig.h"
-+#include "xe_macros.h"
- 
- static const enum xe_engine_class xe_to_user_engine_class[] = {
- 	[XE_ENGINE_CLASS_RENDER] = DRM_XE_ENGINE_CLASS_RENDER,
-diff --git a/drivers/gpu/drm/xe/xe_reg_sr.c b/drivers/gpu/drm/xe/xe_reg_sr.c
-index f7eceb84e647..2de576c5fa74 100644
---- a/drivers/gpu/drm/xe/xe_reg_sr.c
-+++ b/drivers/gpu/drm/xe/xe_reg_sr.c
-@@ -9,16 +9,16 @@
- #include <linux/string_helpers.h>
- #include <linux/xarray.h>
- 
--#include <drm/drm_print.h>
- #include <drm/drm_managed.h>
-+#include <drm/drm_print.h>
- 
--#include "xe_rtp_types.h"
- #include "xe_device_types.h"
- #include "xe_force_wake.h"
- #include "xe_gt.h"
- #include "xe_gt_mcr.h"
- #include "xe_macros.h"
- #include "xe_mmio.h"
-+#include "xe_rtp_types.h"
- 
- #include "gt/intel_engine_regs.h"
- #include "gt/intel_gt_regs.h"
-diff --git a/drivers/gpu/drm/xe/xe_reg_whitelist.c b/drivers/gpu/drm/xe/xe_reg_whitelist.c
-index a34617a642ec..f6ce801215e7 100644
---- a/drivers/gpu/drm/xe/xe_reg_whitelist.c
-+++ b/drivers/gpu/drm/xe/xe_reg_whitelist.c
-@@ -5,12 +5,12 @@
- 
- #include "xe_reg_whitelist.h"
- 
--#include "xe_platform_types.h"
- #include "xe_gt_types.h"
-+#include "xe_platform_types.h"
- #include "xe_rtp.h"
- 
--#include "../i915/gt/intel_engine_regs.h"
--#include "../i915/gt/intel_gt_regs.h"
-+#include "gt/intel_engine_regs.h"
-+#include "gt/intel_gt_regs.h"
- 
- #undef _MMIO
- #undef MCR_REG
-diff --git a/drivers/gpu/drm/xe/xe_ring_ops.c b/drivers/gpu/drm/xe/xe_ring_ops.c
-index 370ab1e729fa..ec58d01924cb 100644
---- a/drivers/gpu/drm/xe/xe_ring_ops.c
-+++ b/drivers/gpu/drm/xe/xe_ring_ops.c
-@@ -3,18 +3,19 @@
-  * Copyright © 2022 Intel Corporation
-  */
- 
-+#include "xe_ring_ops.h"
-+
- #include "xe_engine_types.h"
- #include "xe_gt.h"
- #include "xe_lrc.h"
- #include "xe_macros.h"
--#include "xe_ring_ops.h"
- #include "xe_sched_job.h"
- #include "xe_vm_types.h"
- 
--#include "i915_reg.h"
- #include "gt/intel_gpu_commands.h"
- #include "gt/intel_gt_regs.h"
- #include "gt/intel_lrc_reg.h"
-+#include "i915_reg.h"
- 
- static u32 preparser_disable(bool state)
- {
-diff --git a/drivers/gpu/drm/xe/xe_sa.c b/drivers/gpu/drm/xe/xe_sa.c
-index e432f40b9bfe..79dc090433ff 100644
---- a/drivers/gpu/drm/xe/xe_sa.c
-+++ b/drivers/gpu/drm/xe/xe_sa.c
-@@ -3,14 +3,16 @@
-  * Copyright © 2022 Intel Corporation
-  */
- 
-+#include "xe_sa.h"
-+
- #include <linux/kernel.h>
-+
- #include <drm/drm_managed.h>
- 
- #include "xe_bo.h"
- #include "xe_device.h"
- #include "xe_gt.h"
- #include "xe_map.h"
--#include "xe_sa.h"
- 
- static void xe_sa_bo_manager_fini(struct drm_device *drm, void *arg)
- {
-diff --git a/drivers/gpu/drm/xe/xe_sync.c b/drivers/gpu/drm/xe/xe_sync.c
-index 0fbd8d0978cf..99f1ed87196d 100644
---- a/drivers/gpu/drm/xe/xe_sync.c
-+++ b/drivers/gpu/drm/xe/xe_sync.c
-@@ -8,13 +8,14 @@
- #include <linux/kthread.h>
- #include <linux/sched/mm.h>
- #include <linux/uaccess.h>
--#include <drm/xe_drm.h>
-+
- #include <drm/drm_print.h>
- #include <drm/drm_syncobj.h>
-+#include <drm/xe_drm.h>
- 
- #include "xe_device_types.h"
--#include "xe_sched_job_types.h"
- #include "xe_macros.h"
-+#include "xe_sched_job_types.h"
- 
- #define SYNC_FLAGS_TYPE_MASK 0x3
- #define SYNC_FLAGS_FENCE_INSTALLED	0x10000
-diff --git a/drivers/gpu/drm/xe/xe_ttm_gtt_mgr.c b/drivers/gpu/drm/xe/xe_ttm_gtt_mgr.c
-index a0ba8bba84d1..8075781070f2 100644
---- a/drivers/gpu/drm/xe/xe_ttm_gtt_mgr.c
-+++ b/drivers/gpu/drm/xe/xe_ttm_gtt_mgr.c
-@@ -6,8 +6,8 @@
- 
- #include <drm/drm_managed.h>
- 
--#include <drm/ttm/ttm_range_manager.h>
- #include <drm/ttm/ttm_placement.h>
-+#include <drm/ttm/ttm_range_manager.h>
- #include <drm/ttm/ttm_tt.h>
- 
- #include "xe_bo.h"
-diff --git a/drivers/gpu/drm/xe/xe_ttm_stolen_mgr.c b/drivers/gpu/drm/xe/xe_ttm_stolen_mgr.c
-index b4e9c88644e4..1c3783becefd 100644
---- a/drivers/gpu/drm/xe/xe_ttm_stolen_mgr.c
-+++ b/drivers/gpu/drm/xe/xe_ttm_stolen_mgr.c
-@@ -8,8 +8,8 @@
- #include <drm/drm_mm.h>
- 
- #include <drm/ttm/ttm_device.h>
--#include <drm/ttm/ttm_range_manager.h>
- #include <drm/ttm/ttm_placement.h>
-+#include <drm/ttm/ttm_range_manager.h>
- 
- #include "../i915/i915_reg.h"
- 
-diff --git a/drivers/gpu/drm/xe/xe_ttm_vram_mgr.c b/drivers/gpu/drm/xe/xe_ttm_vram_mgr.c
-index c7e21673b8fd..643365b18bc7 100644
---- a/drivers/gpu/drm/xe/xe_ttm_vram_mgr.c
-+++ b/drivers/gpu/drm/xe/xe_ttm_vram_mgr.c
-@@ -6,8 +6,8 @@
- 
- #include <drm/drm_managed.h>
- 
--#include <drm/ttm/ttm_range_manager.h>
- #include <drm/ttm/ttm_placement.h>
-+#include <drm/ttm/ttm_range_manager.h>
- 
- #include "xe_bo.h"
- #include "xe_device.h"
-diff --git a/drivers/gpu/drm/xe/xe_tuning.c b/drivers/gpu/drm/xe/xe_tuning.c
-index 3cc32e3e7a90..5f8c56baaeba 100644
---- a/drivers/gpu/drm/xe/xe_tuning.c
-+++ b/drivers/gpu/drm/xe/xe_tuning.c
-@@ -5,8 +5,8 @@
- 
- #include "xe_tuning.h"
- 
--#include "xe_platform_types.h"
- #include "xe_gt_types.h"
-+#include "xe_platform_types.h"
- #include "xe_rtp.h"
- 
- #include "gt/intel_gt_regs.h"
-diff --git a/drivers/gpu/drm/xe/xe_uc.c b/drivers/gpu/drm/xe/xe_uc.c
-index 7886c8b85397..4ccf2b3435e1 100644
---- a/drivers/gpu/drm/xe/xe_uc.c
-+++ b/drivers/gpu/drm/xe/xe_uc.c
-@@ -3,13 +3,14 @@
-  * Copyright © 2022 Intel Corporation
-  */
- 
-+#include "xe_uc.h"
-+
- #include "xe_device.h"
--#include "xe_huc.h"
- #include "xe_gt.h"
- #include "xe_guc.h"
- #include "xe_guc_pc.h"
- #include "xe_guc_submit.h"
--#include "xe_uc.h"
-+#include "xe_huc.h"
- #include "xe_uc_fw.h"
- #include "xe_wopcm.h"
- 
-diff --git a/drivers/gpu/drm/xe/xe_vm.c b/drivers/gpu/drm/xe/xe_vm.c
-index 7276a375e2e0..a0e35627e45e 100644
---- a/drivers/gpu/drm/xe/xe_vm.c
-+++ b/drivers/gpu/drm/xe/xe_vm.c
-@@ -25,8 +25,8 @@
- #include "xe_preempt_fence.h"
- #include "xe_pt.h"
- #include "xe_res_cursor.h"
--#include "xe_trace.h"
- #include "xe_sync.h"
-+#include "xe_trace.h"
- 
- #define TEST_VM_ASYNC_OPS_ERROR
- 
-diff --git a/drivers/gpu/drm/xe/xe_vm_madvise.c b/drivers/gpu/drm/xe/xe_vm_madvise.c
-index 1e4e3a1b0631..29815852985a 100644
---- a/drivers/gpu/drm/xe/xe_vm_madvise.c
-+++ b/drivers/gpu/drm/xe/xe_vm_madvise.c
-@@ -3,13 +3,15 @@
-  * Copyright © 2021 Intel Corporation
-  */
- 
--#include <drm/xe_drm.h>
--#include <drm/ttm/ttm_tt.h>
-+#include "xe_vm_madvise.h"
-+
- #include <linux/nospec.h>
- 
-+#include <drm/ttm/ttm_tt.h>
-+#include <drm/xe_drm.h>
-+
- #include "xe_bo.h"
- #include "xe_vm.h"
--#include "xe_vm_madvise.h"
- 
- static int madvise_preferred_mem_class(struct xe_device *xe, struct xe_vm *vm,
- 				       struct xe_vma **vmas, int num_vmas,
-diff --git a/drivers/gpu/drm/xe/xe_wopcm.c b/drivers/gpu/drm/xe/xe_wopcm.c
-index 8fe182afa06c..7bb880355f6b 100644
---- a/drivers/gpu/drm/xe/xe_wopcm.c
-+++ b/drivers/gpu/drm/xe/xe_wopcm.c
-@@ -3,13 +3,14 @@
-  * Copyright © 2022 Intel Corporation
-  */
- 
-+#include "xe_wopcm.h"
-+
- #include "xe_device.h"
- #include "xe_force_wake.h"
- #include "xe_gt.h"
- #include "xe_guc_reg.h"
- #include "xe_mmio.h"
- #include "xe_uc_fw.h"
--#include "xe_wopcm.h"
- 
- /**
-  * DOC: Write Once Protected Content Memory (WOPCM) Layout
+ 	spd = subplatform_get(xe, desc);
 -- 
 2.39.0
 
