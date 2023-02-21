@@ -4,45 +4,46 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 98B16C61DA3
-	for <intel-xe@archiver.kernel.org>; Tue, 21 Feb 2023 14:52:36 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id A3A9BC61DA3
+	for <intel-xe@archiver.kernel.org>; Tue, 21 Feb 2023 19:41:18 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7797510E329;
-	Tue, 21 Feb 2023 14:52:36 +0000 (UTC)
-Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8508310E323
- for <intel-xe@lists.freedesktop.org>; Tue, 21 Feb 2023 14:52:34 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7D9A910E35D;
+	Tue, 21 Feb 2023 19:41:18 +0000 (UTC)
+Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B3F5010E187
+ for <intel-xe@lists.freedesktop.org>; Tue, 21 Feb 2023 19:41:16 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1676991154; x=1708527154;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=uIPQ+1JrJ2MdAXFgrl1cOzBwcPjqsr90SxibTS9D/Vk=;
- b=G1SXY2J/CiPWjuCS2RGqc9OeQoQ5I26p8baK9IvhvbVZNzGADi7SPPma
- q89bb/NmPcQEFwf55Bs3P1sotkO9VvU17i7tzPEnezcBxz7cRaqRaA7Uj
- kzPeEmXu+jAWp9NKGBNRnn8MOG/FYC5CPyCS3Y8Ot0rYBLjClQ6426KZl
- UJAmYVwIlaMdLaTmU0+NnKzm4BlN3Gy8Sv1ndKI0T0pHPE3ATI8V97COz
- VV8WoWPFCIA8rhhB9uJWS7/p9E38UeuRPlFd8PI5rAqcgYS/wJrCoiNft
- yGcUisW7ixrKFqLfoHYtNTDrDfvwNWNP9jHFxFWMvJO9Y4tsKr6Xgauyl Q==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10627"; a="320781259"
-X-IronPort-AV: E=Sophos;i="5.97,315,1669104000"; d="scan'208";a="320781259"
-Received: from orsmga002.jf.intel.com ([10.7.209.21])
- by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 21 Feb 2023 06:52:34 -0800
-X-IronPort-AV: E=McAfee;i="6500,9779,10627"; a="671676578"
-X-IronPort-AV: E=Sophos;i="5.97,315,1669104000"; d="scan'208";a="671676578"
-Received: from tcollin2-mobl.ger.corp.intel.com (HELO mwauld-desk1.intel.com)
- ([10.252.18.163])
- by orsmga002-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 21 Feb 2023 06:52:32 -0800
-From: Matthew Auld <matthew.auld@intel.com>
+ t=1677008476; x=1708544476;
+ h=from:to:cc:subject:date:message-id:in-reply-to:
+ references:mime-version:content-transfer-encoding;
+ bh=K+vs/pNuMBAd50eF1MY0zAcQb3qQ8Io2E+whDKnJCbE=;
+ b=CRRdx146JQNedzSq3/jUNrsNJL5hWuAptMGXjOb9UIG5iuDI/aPdKIhv
+ KcoW39Ljg/A9G9mHTgvlGlce16r71HH5TyG92xfOaPr6jY13t2yu1HpSp
+ noNeh8FS1ShdU3s0nPs+mKMFZEWOSnXxOW5A+8ba/HrmtIYReuUMr4OKL
+ czBUgqocTxTAAulm/sDMX0S/v8zx39Qoj+agDJReMk9UccuTWyO0p8lI/
+ ELYodgxnl1wboq2L94ElhKG+kDWtJmF07z6s0v+wzG1wVG5HNKJd0r5d6
+ gjrbJXmHs8IKvwPlIPXtX7ZtUzlRGIFNQX94FeRFLPbRBYkXYK3ACt+gS Q==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10628"; a="332735692"
+X-IronPort-AV: E=Sophos;i="5.97,315,1669104000"; d="scan'208";a="332735692"
+Received: from orsmga003.jf.intel.com ([10.7.209.27])
+ by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 21 Feb 2023 11:41:16 -0800
+X-IronPort-AV: E=McAfee;i="6500,9779,10628"; a="621622187"
+X-IronPort-AV: E=Sophos;i="5.97,315,1669104000"; d="scan'208";a="621622187"
+Received: from lucas-s2600cw.jf.intel.com ([10.165.21.196])
+ by orsmga003-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 21 Feb 2023 11:41:14 -0800
+From: Lucas De Marchi <lucas.demarchi@intel.com>
 To: intel-xe@lists.freedesktop.org
-Date: Tue, 21 Feb 2023 14:52:21 +0000
-Message-Id: <20230221145221.105361-1-matthew.auld@intel.com>
-X-Mailer: git-send-email 2.39.1
+Date: Tue, 21 Feb 2023 11:39:50 -0800
+Message-Id: <20230221194002.819026-2-lucas.demarchi@intel.com>
+X-Mailer: git-send-email 2.39.0
+In-Reply-To: <20230221194002.819026-1-lucas.demarchi@intel.com>
+References: <20230221194002.819026-1-lucas.demarchi@intel.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-xe] [PATCH] drm/xe/pm: give the core kernel its rpm ref back
+Subject: [Intel-xe] [PATCH v3 01/13] drm/xe: Remove outdated build workaround
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -54,76 +55,42 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Cc: Lucas De Marchi <lucas.demarchi@intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>
+Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ Lucas De Marchi <lucas.demarchi@intel.com>,
+ Matthew Auld <matthew.auld@intel.com>,
+ Maarten Lankhorst <maarten.lankhorst@intel.com>
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-In local_pci_probe() the core kernel increments the rpm for the device,
-just before calling into the probe hook. If the driver/device supports
-runtime pm it is then meant to drop this ref during probe (like we do in
-xe_pm_runtime_init()). However when removing the device we then also need
-to give the reference back, otherwise the ref that is dropped in
-pci_device_remove() will be unbalanced when for example unloading the
-driver, leading to warnings like:
+Use the more common "call cc-disable-warning" way to disable warnings.
 
-    [ 3808.596345] xe 0000:03:00.0: Runtime PM usage count underflow!
-
-Fix this by incrementing the rpm ref when removing the device.
-
-Closes: https://gitlab.freedesktop.org/drm/xe/kernel/-/issues/193
-Signed-off-by: Matthew Auld <matthew.auld@intel.com>
-Cc: Lucas De Marchi <lucas.demarchi@intel.com>
-Cc: Matthew Brost <matthew.brost@intel.com>
-Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
+Signed-off-by: Lucas De Marchi <lucas.demarchi@intel.com>
+Reviewed-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
 ---
- drivers/gpu/drm/xe/xe_pci.c | 1 +
- drivers/gpu/drm/xe/xe_pm.c  | 7 +++++++
- drivers/gpu/drm/xe/xe_pm.h  | 1 +
- 3 files changed, 9 insertions(+)
+ drivers/gpu/drm/xe/Makefile | 10 ++--------
+ 1 file changed, 2 insertions(+), 8 deletions(-)
 
-diff --git a/drivers/gpu/drm/xe/xe_pci.c b/drivers/gpu/drm/xe/xe_pci.c
-index 25598de3a1fc..85d337cd8fbe 100644
---- a/drivers/gpu/drm/xe/xe_pci.c
-+++ b/drivers/gpu/drm/xe/xe_pci.c
-@@ -441,6 +441,7 @@ static void xe_pci_remove(struct pci_dev *pdev)
- 		return;
- 
- 	xe_device_remove(xe);
-+	xe_pm_runtime_fini(xe);
- 	pci_set_drvdata(pdev, NULL);
- }
- 
-diff --git a/drivers/gpu/drm/xe/xe_pm.c b/drivers/gpu/drm/xe/xe_pm.c
-index 44c38e670587..73d81621d960 100644
---- a/drivers/gpu/drm/xe/xe_pm.c
-+++ b/drivers/gpu/drm/xe/xe_pm.c
-@@ -128,6 +128,13 @@ void xe_pm_runtime_init(struct xe_device *xe)
- 	pm_runtime_put_autosuspend(dev);
- }
- 
-+void xe_pm_runtime_fini(struct xe_device *xe)
-+{
-+	struct device *dev = xe->drm.dev;
-+
-+	pm_runtime_get_sync(dev);
-+}
-+
- int xe_pm_runtime_suspend(struct xe_device *xe)
- {
- 	struct xe_gt *gt;
-diff --git a/drivers/gpu/drm/xe/xe_pm.h b/drivers/gpu/drm/xe/xe_pm.h
-index b8c5f9558e26..6a885585f653 100644
---- a/drivers/gpu/drm/xe/xe_pm.h
-+++ b/drivers/gpu/drm/xe/xe_pm.h
-@@ -14,6 +14,7 @@ int xe_pm_suspend(struct xe_device *xe);
- int xe_pm_resume(struct xe_device *xe);
- 
- void xe_pm_runtime_init(struct xe_device *xe);
-+void xe_pm_runtime_fini(struct xe_device *xe);
- int xe_pm_runtime_suspend(struct xe_device *xe);
- int xe_pm_runtime_resume(struct xe_device *xe);
- int xe_pm_runtime_get(struct xe_device *xe);
+diff --git a/drivers/gpu/drm/xe/Makefile b/drivers/gpu/drm/xe/Makefile
+index abd804d622e6..18257cd7227d 100644
+--- a/drivers/gpu/drm/xe/Makefile
++++ b/drivers/gpu/drm/xe/Makefile
+@@ -13,14 +13,8 @@
+ # will most likely get a sudden build breakage... Hopefully we will fix
+ # new warnings before CI updates!
+ subdir-ccflags-y := -Wall -Wextra
+-# making these call cc-disable-warning breaks when trying to build xe.mod.o
+-# by calling make M=drivers/gpu/drm/xe. This doesn't happen in upstream tree,
+-# so it was somehow fixed by the changes in the build system. Move it back to
+-# $(call cc-disable-warning, ...) after rebase.
+-subdir-ccflags-y += -Wno-unused-parameter
+-subdir-ccflags-y += -Wno-type-limits
+-#subdir-ccflags-y += $(call cc-disable-warning, unused-parameter)
+-#subdir-ccflags-y += $(call cc-disable-warning, type-limits)
++subdir-ccflags-y += $(call cc-disable-warning, unused-parameter)
++subdir-ccflags-y += $(call cc-disable-warning, type-limits)
+ subdir-ccflags-y += $(call cc-disable-warning, missing-field-initializers)
+ subdir-ccflags-y += $(call cc-disable-warning, unused-but-set-variable)
+ # clang warnings
 -- 
-2.39.1
+2.39.0
 
