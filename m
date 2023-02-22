@@ -4,44 +4,57 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 39568C636D7
-	for <intel-xe@archiver.kernel.org>; Wed, 22 Feb 2023 01:23:49 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7FF30C6379F
+	for <intel-xe@archiver.kernel.org>; Wed, 22 Feb 2023 09:48:58 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D728210E1A2;
-	Wed, 22 Feb 2023 01:23:48 +0000 (UTC)
-Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7E6FC10E1A2
- for <intel-xe@lists.freedesktop.org>; Wed, 22 Feb 2023 01:23:47 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1677029027; x=1708565027;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=t/sx19jZQ2NSvq1WjCqtvJu/6JQ4gInA9sxtcWaWgOQ=;
- b=PgSYqoewO26uBzDIJ2m5ORL9vwZKx1tuU50S8ECdD7mjz7viVvia1YV8
- QQTDs+K1VWMTb03HPuxogBAHZ5nboCd84E5EFZ4chvBi5qx2tkAy6knkW
- o625Ulg/t/50An7XhxqOqWCui6+PPzs2WKa9Z5V9LAIWJJtSETL0KSsO0
- XFTNDwZIfi2TYz/foLmpEGYwzcoVF6AHwbH0UucWGU30t4izYCq/9Myvk
- THAmXWVzwmKmTn5bide3JNyHKS8mu5LxG3wrvMTdQshaVl4vjDEaDZd8j
- rVKau5GnBZaoAh/8VXhoH7X8VUm3DbxI3geBsUVC/v8WPrSP5/YCbKln4 w==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10628"; a="360283888"
-X-IronPort-AV: E=Sophos;i="5.97,317,1669104000"; d="scan'208";a="360283888"
-Received: from orsmga008.jf.intel.com ([10.7.209.65])
- by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 21 Feb 2023 17:23:46 -0800
-X-IronPort-AV: E=McAfee;i="6500,9779,10628"; a="702229515"
-X-IronPort-AV: E=Sophos;i="5.97,317,1669104000"; d="scan'208";a="702229515"
-Received: from nvishwa1-desk.sc.intel.com ([172.25.29.76])
- by orsmga008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 21 Feb 2023 17:23:46 -0800
-From: Niranjana Vishwanathapura <niranjana.vishwanathapura@intel.com>
-To: intel-xe@lists.freedesktop.org
-Date: Tue, 21 Feb 2023 17:23:40 -0800
-Message-Id: <20230222012340.7099-1-niranjana.vishwanathapura@intel.com>
-X-Mailer: git-send-email 2.21.0.rc0.32.g243a4c7e27
+	by gabe.freedesktop.org (Postfix) with ESMTP id 486B410E1B8;
+	Wed, 22 Feb 2023 09:48:58 +0000 (UTC)
+Received: from mail-lj1-x232.google.com (mail-lj1-x232.google.com
+ [IPv6:2a00:1450:4864:20::232])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id DC50110E1B8
+ for <intel-xe@lists.freedesktop.org>; Wed, 22 Feb 2023 09:48:56 +0000 (UTC)
+Received: by mail-lj1-x232.google.com with SMTP id j17so7320375ljq.11
+ for <intel-xe@lists.freedesktop.org>; Wed, 22 Feb 2023 01:48:56 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20210112;
+ h=content-transfer-encoding:cc:to:subject:message-id:date:from
+ :in-reply-to:references:mime-version:from:to:cc:subject:date
+ :message-id:reply-to;
+ bh=J5d+KtSBw4NNTp/Mz3uUenXyvxtqCwaFM5dDj2RITSw=;
+ b=NajH0ZIJxY8wJjpUZdCVAe0b+PMoMAVuHlaBF5huQ0Pf0xpR60ZFfWjjQZGZYUwlNV
+ I7T1cVLQ06rJ+16Gvbd/4dspNQ1A9CuTmiTjg5+pFaNlBKZjytj8xaJJGYCXjc6/3fVn
+ LibQHIF2cI1vQTm3g319ikYLFjtqrg5iqTYkh8eprB+SqLS2woDTS2g6dPHdrjgqZ0rv
+ 4S6tFGThR/juFMTp0u4mz8zlvMQZ99MqEk3pkHGHtBT9K8IHnPDklCNOSHmzDxnvNY7G
+ /YroWc7oK9CVhRpqYgb0UcJZRj5jgQ101hdjVqrkYD+wYg9XL5MeiUMk8YXHX4S7/6cw
+ xhgQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20210112;
+ h=content-transfer-encoding:cc:to:subject:message-id:date:from
+ :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+ :subject:date:message-id:reply-to;
+ bh=J5d+KtSBw4NNTp/Mz3uUenXyvxtqCwaFM5dDj2RITSw=;
+ b=BBGVJEwk2lu4UVV0AwTFfdmWVOfDvxZl5HKMZQ7EGFM4XDxzRT+G1s20joza8TTC5e
+ f+9Q6ZSdXQVK5KuQAaf0YaLsiavxLGBn1+Y544JSeHdNyDFj6rFheXfxmqXAnb76xIUR
+ yZiFSe5HAea7YiTf3d3S3gdOnXgHz+eQ4C1l2PB2jifu6BzbqUSfBJ8XKxtRXWSUlYtK
+ a53SVtrLqdVhCO1qEED9o40STfZtQ0dv97LK1PKgpyDg3FZ0TvH+elyd0ViAsp5/laGC
+ w3YpvKUUhmU033WY1300TZ+pS1a7XVNnC3tI0e9Bjy6UsyS6xSgEeOVlm0okEMVjcyTo
+ BEkw==
+X-Gm-Message-State: AO0yUKWH/KwBLZa6/MgC3WSZooNWgfWFypsYFCrjG9nPtMDw4P5WwI2M
+ VpVrjPVfCtbfpD/bROjFVjCQhvixZADsdK9ydnk=
+X-Google-Smtp-Source: AK7set/Qwcuduxpjp+BQ7gRFPejaX7UbrGJnGOuCFpi5KihAVB0bY0eFzHL4i848ek6Zjb2VD9npD+S5Up+opdfPdnM=
+X-Received: by 2002:a2e:a237:0:b0:295:8918:9d77 with SMTP id
+ i23-20020a2ea237000000b0029589189d77mr1686383ljm.2.1677059335045; Wed, 22 Feb
+ 2023 01:48:55 -0800 (PST)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Subject: [Intel-xe] [PATCH] drm/xe/migrate: Some cleanups and fixes
+References: <20230221233348.883897-1-lucas.demarchi@intel.com>
+ <20230221233348.883897-2-lucas.demarchi@intel.com>
+In-Reply-To: <20230221233348.883897-2-lucas.demarchi@intel.com>
+From: Matthew Auld <matthew.william.auld@gmail.com>
+Date: Wed, 22 Feb 2023 09:48:27 +0000
+Message-ID: <CAM0jSHN1TZ4nzs+NOxAywkBq1J+aXhBTuw65Tf-p8qRzWceghA@mail.gmail.com>
+To: Lucas De Marchi <lucas.demarchi@intel.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+Subject: Re: [Intel-xe] [PATCH 1/6] drm/xe: Make local functions static
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -53,125 +66,25 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Cc: thomas.hellstrom@intel.com
+Cc: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Some minor fixes and cleanups in migration code.
-
-1) Remove unused 'struct xe_bo *bo' from emit_pte()
-2) Use 'false' for is_vram of  emit_pte() where it is obvious
-3) Pass source bo as 'bo' in xe_migrate_copy() calls
-4) Kernel-doc fix for function xe_migrate_clear()
-5) In write_pgtable(), consider 'ofs' while calculating chunk size
-6) Update xe_migrate_doc.h with 32 page table structs (not 48)
-
-Signed-off-by: Niranjana Vishwanathapura <niranjana.vishwanathapura@intel.com>
----
- drivers/gpu/drm/xe/tests/xe_migrate.c |  4 ++--
- drivers/gpu/drm/xe/xe_migrate.c       | 17 +++++++----------
- drivers/gpu/drm/xe/xe_migrate_doc.h   |  2 +-
- 3 files changed, 10 insertions(+), 13 deletions(-)
-
-diff --git a/drivers/gpu/drm/xe/tests/xe_migrate.c b/drivers/gpu/drm/xe/tests/xe_migrate.c
-index 03a60d5b42f1..12e8f79e65cb 100644
---- a/drivers/gpu/drm/xe/tests/xe_migrate.c
-+++ b/drivers/gpu/drm/xe/tests/xe_migrate.c
-@@ -148,7 +148,7 @@ static void test_copy(struct xe_migrate *m, struct xe_bo *bo,
- 	xe_map_memset(xe, &sysmem->vmap, 0, 0xd0, sysmem->size);
- 	xe_map_memset(xe, &bo->vmap, 0, 0xc0, bo->size);
- 
--	fence = xe_migrate_copy(m, sysmem, bo->ttm.resource,
-+	fence = xe_migrate_copy(m, bo, bo->ttm.resource,
- 				sysmem->ttm.resource);
- 	if (!sanity_fence_failed(xe, fence, big ? "Copying big bo vram -> sysmem" :
- 				 "Copying small bo vram -> sysmem", test)) {
-@@ -274,7 +274,7 @@ static void xe_migrate_sanity_test(struct xe_migrate *m, struct kunit *test)
- 		expected |= GEN12_PTE_PS64;
- 	xe_res_first(pt->ttm.resource, 0, pt->size, &src_it);
- 	emit_pte(m, bb, NUM_KERNEL_PDE - 1, xe_bo_is_vram(pt),
--		 &src_it, GEN8_PAGE_SIZE, pt);
-+		 &src_it, GEN8_PAGE_SIZE);
- 	run_sanity_job(m, xe, bb, bb->len, "Writing PTE for our fake PT", test);
- 
- 	retval = xe_map_rd(xe, &bo->vmap, GEN8_PAGE_SIZE * (NUM_KERNEL_PDE - 1),
-diff --git a/drivers/gpu/drm/xe/xe_migrate.c b/drivers/gpu/drm/xe/xe_migrate.c
-index cbcc355cd391..cf6ad1b1ccd5 100644
---- a/drivers/gpu/drm/xe/xe_migrate.c
-+++ b/drivers/gpu/drm/xe/xe_migrate.c
-@@ -423,7 +423,7 @@ static void emit_pte(struct xe_migrate *m,
- 		     struct xe_bb *bb, u32 at_pt,
- 		     bool is_vram,
- 		     struct xe_res_cursor *cur,
--		     u32 size, struct xe_bo *bo)
-+		     u32 size)
- {
- 	u32 ptes;
- 	u64 ofs = at_pt * GEN8_PAGE_SIZE;
-@@ -672,19 +672,17 @@ struct dma_fence *xe_migrate_copy(struct xe_migrate *m,
- 			emit_arb_clear(bb);
- 
- 		if (!src_is_vram)
--			emit_pte(m, bb, src_L0_pt, src_is_vram, &src_it, src_L0,
--				 bo);
-+			emit_pte(m, bb, src_L0_pt, false, &src_it, src_L0);
- 		else
- 			xe_res_next(&src_it, src_L0);
- 
- 		if (!dst_is_vram)
--			emit_pte(m, bb, dst_L0_pt, dst_is_vram, &dst_it, src_L0,
--				 bo);
-+			emit_pte(m, bb, dst_L0_pt, false, &dst_it, src_L0);
- 		else
- 			xe_res_next(&dst_it, src_L0);
- 
- 		if (copy_system_ccs)
--			emit_pte(m, bb, ccs_pt, false, &ccs_it, ccs_size, bo);
-+			emit_pte(m, bb, ccs_pt, false, &ccs_it, ccs_size);
- 
- 		bb->cs[bb->len++] = MI_BATCH_BUFFER_END;
- 		update_idx = bb->len;
-@@ -783,7 +781,7 @@ static int emit_clear(struct xe_gt *gt, struct xe_bb *bb, u64 src_ofs,
- }
- 
- /**
-- * xe_migrate_clear() - Copy content of TTM resources.
-+ * xe_migrate_clear() - Clear content of TTM resources.
-  * @m: The migration context.
-  * @bo: The buffer object @dst is currently bound to.
-  * @dst: The dst TTM resource to be cleared.
-@@ -856,8 +854,7 @@ struct dma_fence *xe_migrate_clear(struct xe_migrate *m,
- 		/* Preemption is enabled again by the ring ops. */
- 		if (!clear_vram) {
- 			emit_arb_clear(bb);
--			emit_pte(m, bb, clear_L0_pt, clear_vram, &src_it, clear_L0,
--				 bo);
-+			emit_pte(m, bb, clear_L0_pt, false, &src_it, clear_L0);
- 		} else {
- 			xe_res_next(&src_it, clear_L0);
- 		}
-@@ -941,7 +938,7 @@ static void write_pgtable(struct xe_gt *gt, struct xe_bb *bb, u64 ppgtt_ofs,
- 
- 	do {
- 		u64 addr = ppgtt_ofs + ofs * 8;
--		chunk = min(update->qwords, 0x1ffU);
-+		chunk = min(update->qwords, 0x1ffU - (ofs & 0x1ff));
- 
- 		/* Ensure populatefn can do memset64 by aligning bb->cs */
- 		if (!(bb->len & 1))
-diff --git a/drivers/gpu/drm/xe/xe_migrate_doc.h b/drivers/gpu/drm/xe/xe_migrate_doc.h
-index 6a68fdff08dc..584972c4d3be 100644
---- a/drivers/gpu/drm/xe/xe_migrate_doc.h
-+++ b/drivers/gpu/drm/xe/xe_migrate_doc.h
-@@ -21,7 +21,7 @@
-  * table BOs for updates, and identity map the entire device's VRAM with 1 GB
-  * pages.
-  *
-- * Currently the page structure consists of 48 phyiscal pages with 16 being
-+ * Currently the page structure consists of 32 phyiscal pages with 16 being
-  * reserved for BO mapping during copies and clear, 1 reserved for kernel binds,
-  * several pages are needed to setup the identity mappings (exact number based
-  * on how many bits of address space the device has), and the rest are reserved
--- 
-2.21.0.rc0.32.g243a4c7e27
-
+On Tue, 21 Feb 2023 at 23:34, Lucas De Marchi <lucas.demarchi@intel.com> wr=
+ote:
+>
+> A few static functions not being declared like that break the build with
+> W=3D1, like e.g.
+>
+>         cc1: all warnings being treated as errors
+>         make[2]: *** [../scripts/Makefile.build:250: drivers/gpu/drm/xe/x=
+e_gt.o] Error 1
+>         ../drivers/gpu/drm/xe/xe_guc.c:240:6: error: no previous prototyp=
+e for =E2=80=98guc_write_params=E2=80=99 [-Werror=3Dmissing-prototypes]
+>           240 | void guc_write_params(struct xe_guc *guc)
+>               |      ^~~~~~~~~~~~~~~~
+>
+> Make them static.
+>
+> Signed-off-by: Lucas De Marchi <lucas.demarchi@intel.com>
+Reviewed-by: Matthew Auld <matthew.auld@intel.com>
