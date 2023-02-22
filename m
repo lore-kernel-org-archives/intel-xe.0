@@ -4,146 +4,63 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id BA178C636D6
-	for <intel-xe@archiver.kernel.org>; Wed, 22 Feb 2023 13:40:21 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 06156C61DA4
+	for <intel-xe@archiver.kernel.org>; Wed, 22 Feb 2023 13:54:48 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8CCBD10E9A7;
-	Wed, 22 Feb 2023 13:40:21 +0000 (UTC)
-Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 46FE210E9A7
- for <intel-xe@lists.freedesktop.org>; Wed, 22 Feb 2023 13:40:20 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C7A7810E9A7;
+	Wed, 22 Feb 2023 13:54:48 +0000 (UTC)
+Received: from mga06.intel.com (mga06b.intel.com [134.134.136.31])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D66F110E9A5;
+ Wed, 22 Feb 2023 13:54:46 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1677073220; x=1708609220;
- h=from:to:cc:subject:date:message-id:references:
- in-reply-to:content-id:content-transfer-encoding: mime-version;
- bh=/1aVuQGQlIRZWBEDdEqYTuXyCnKu8WIm/pWuO5NR+d8=;
- b=NYidTsTnz8NytuCbr6/HVZU1OLJEo/DzoDtB5TaCyWQii6Hax2Rz0+A0
- GoWAb4Wfycyt86kiN5B1OHhwYF8jaE4+TPqzB9fPvhY8pQDy+8n4Ou0/T
- +SS8Ka87/kW2NJwx/OpBHc55pB58bAnVvbG4uas6KVUp7FfT0p0+MAMKe
- 6nxrwuUsun1TcZo/uHGEjW/EBQPsb5d1+kwu9WSubYSdi3ox20ok10z67
- 5sSLvPZnyiuz1Y5p6Inc/koeJ7miJdLw+D0mn55+GwqKlViEmbZF8KzYg
- 8AMrgwMdB7PmMuztwzHKqPxXdt6sGGLyhx1hDMZh4ZXhpC0y0ewRl2CTU Q==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10629"; a="331592617"
-X-IronPort-AV: E=Sophos;i="5.97,318,1669104000"; d="scan'208";a="331592617"
-Received: from fmsmga003.fm.intel.com ([10.253.24.29])
- by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 22 Feb 2023 05:40:19 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6500,9779,10629"; a="760960355"
-X-IronPort-AV: E=Sophos;i="5.97,318,1669104000"; d="scan'208";a="760960355"
-Received: from fmsmsx602.amr.corp.intel.com ([10.18.126.82])
- by FMSMGA003.fm.intel.com with ESMTP; 22 Feb 2023 05:40:19 -0800
-Received: from fmsmsx611.amr.corp.intel.com (10.18.126.91) by
- fmsmsx602.amr.corp.intel.com (10.18.126.82) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.16; Wed, 22 Feb 2023 05:40:19 -0800
-Received: from FMSEDG603.ED.cps.intel.com (10.1.192.133) by
- fmsmsx611.amr.corp.intel.com (10.18.126.91) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.16 via Frontend Transport; Wed, 22 Feb 2023 05:40:19 -0800
-Received: from NAM10-BN7-obe.outbound.protection.outlook.com (104.47.70.101)
- by edgegateway.intel.com (192.55.55.68) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2507.16; Wed, 22 Feb 2023 05:40:18 -0800
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=IYthH27J7SrME2wIW+jh+C77I3BdkFQhiqpBRGNQSyzEDzKzsFmVrQk0QSugh+egt00jFQwnjyDbfGC3l0frrlLgAKdCNcJ5FCfRPpmKL/+HYcgq1rWFYzP2EtASjWNNRV6vyFPDWUw6+B5wXWE1EuHYs4QMU9WT+jBp2Br3lYtc85zxkYs4VmLEQYP5Gu901FgSF+OOr6t2rGVN9biERBnvxfrN5ePRok11f2fUnMUIDzlu2bItPvHwybyK/DkGNdIFmN1nvEWObBYIYLIkNjSDIukSW3ObADAsSBgAW74mLPYaHpfoG1wadKVLDGSPZFlXwgsgI7l++xErSbiOyQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=/1aVuQGQlIRZWBEDdEqYTuXyCnKu8WIm/pWuO5NR+d8=;
- b=FD+TXud/G6l0H53yMwMvrF9gbooU9rlVLRZ8gvPCjKbCvZW2S7iXszgxe7ZxURUR/oZERbQfvADlTYBrISxHXP3Knb0TkKH9SiC3JSKz28OaVvIS8G99MCUZj6iHRtLImktl8onJkWZVGE5PcNCZ05JEvlyDqhPrtvWvlNpg3BpT+BHQMMeBanU/0oghFiCunEE36jPWkxP5KDhel1gsKFUL1Ff/yVC8sDuUaoJvLsc92LBQz/eRz//VTV8FBfGV4ay+carTpqFjgDJ+dLHcLSvyYKqkGLt4ciEvxNGbLJmz5kXNxFmwWbT2S/wo0JPoKuXaIF6zJlrRBBUe7g5gEA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
- dkim=pass header.d=intel.com; arc=none
-Received: from CY4PR11MB2054.namprd11.prod.outlook.com (2603:10b6:903:2d::9)
- by SA1PR11MB5922.namprd11.prod.outlook.com (2603:10b6:806:239::20) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6134.19; Wed, 22 Feb
- 2023 13:40:15 +0000
-Received: from CY4PR11MB2054.namprd11.prod.outlook.com
- ([fe80::cda4:1259:d243:b6fe]) by CY4PR11MB2054.namprd11.prod.outlook.com
- ([fe80::cda4:1259:d243:b6fe%10]) with mapi id 15.20.6111.021; Wed, 22 Feb
- 2023 13:40:14 +0000
-From: "Souza, Jose" <jose.souza@intel.com>
-To: "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>, "De
- Marchi, Lucas" <lucas.demarchi@intel.com>
-Thread-Topic: [Intel-xe] [PATCH] drm/xe: Remove duplicate media_ver
-Thread-Index: AQHZRlR/AoQqXYuLxkiy5XkF2zjEeq7a+bQA
-Date: Wed, 22 Feb 2023 13:40:13 +0000
-Message-ID: <73aa6793930ca2e32fd89cf04e6e03bc93cb7de4.camel@intel.com>
-References: <20230222002705.927386-1-lucas.demarchi@intel.com>
-In-Reply-To: <20230222002705.927386-1-lucas.demarchi@intel.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=intel.com;
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: CY4PR11MB2054:EE_|SA1PR11MB5922:EE_
-x-ms-office365-filtering-correlation-id: 4cded4e0-887e-4009-fb40-08db14da539f
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: kH40EyMkpDgy4cZXYfrLmyvmgTARr5/DAv+tdmE9OWPNl4nLR1ARf6Z0IUD1fDqRWAcj+OKqtvRhF9F5VsDQ2nPLjbFoo6PxFFr+jNSRYnAa0GZ858hyTQ76Ef4YowBN34T410v+DcH38cWHSU/m9OlF0KWR9L6v3CzBei0ccwfnfsqo9CaFQS4GlxFjhw8D5+UjeNKZVLmgHafqQXI6BccUpoGCZY1+jXxMhV5zoLv9mNe/HU5Z72XSVdQiCoVnjieJusMRAV4jKvX4syjp/wbQnVGvdWwvi+v4j2zZIvrEImvZY2IU/61vo7/n1QUKrIj1EOimZx0qRaS+yJl53UbzOYbPgfswv42efOONoIcKOoBxWTrtM7r3/0lASDTzJBsm15r5efrhOj5L7uPzDzIPoou1bjeDIhfoOQ56u8k4dlFQGAZscGSQpsRDAUhs7mm76wD/AS6hzQBjeFYX+NHdV4iI+JSZRmttpWNsQ8II9FClkNqMcccNGLgeP4GAUVIrq66I63fmHNEdcfz0ycMupkYvUO9ZEFHsa7x/eG9MVO2ULO8orzUUDPcZIrcCV12jFHcdwhi2vCDYBVK3sPmzMXffi4vmaIpG9YN5RO7BkMIPwwwiFf3L1PjYtOnShdy4OLaHPcPhnI+7OweOKA==
-x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:CY4PR11MB2054.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230025)(396003)(136003)(376002)(366004)(39860400002)(346002)(451199018)(5660300002)(8936002)(41300700001)(38070700005)(36756003)(86362001)(2906002)(38100700002)(82960400001)(66946007)(122000001)(2616005)(966005)(6486002)(478600001)(71200400001)(26005)(6512007)(186003)(6506007)(316002)(107886003)(66556008)(66476007)(66446008)(76116006)(64756008)(83380400001)(6636002)(110136005)(91956017)(4326008)(8676002);
- DIR:OUT; SFP:1102; 
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?utf-8?B?M3lFcmZwa1d1YkN6VXBNZ2VxWldILzhzR29QWHdINnVSL0J3SWFHc2dXU21H?=
- =?utf-8?B?RW1PckJ3cnJPbkdYS2VWOGNrOW84NnNCS0N6cHp5Y0pPd1cxWnREUkxiR0d6?=
- =?utf-8?B?QmF6TGxMZmR5UWZ0eCtNMXZYT2tLc2pDajdhNFZDa0UzVFljeHhhM1VKZG0w?=
- =?utf-8?B?N1FGTTU4SjVFV3Z5TDRqdHRpTXRCbXExUDNGU3U4Yk1jcHFHR016dWVkS0lS?=
- =?utf-8?B?Uit4czEwSzI2d2VLWndGVjdtSXJCNmpKV2RVcWlGR3ZlT1FlKzJqZ1BZKzRR?=
- =?utf-8?B?VEg1WU5jV0ZOaUtOalpLc3ZxQndHTCtsS1hYdmM1cTlCanB0WU1hMUhlWTc4?=
- =?utf-8?B?K3BndXNtVGg3VldIdmZFS2hHc0RTa0MzWSttTXZOb1dWN1E5d1R5NmVDYi9U?=
- =?utf-8?B?RzVJdTluNzBSN08zMXVQRnd1NUpkRVJzOHRFajFWcEZOY0pOYTA0b0RkTkUv?=
- =?utf-8?B?UVZZa2pJeEFRcVJZZGp2YUlQK2loVnNubHRvN2lJbFc1cWRibVRGZmkvOVlx?=
- =?utf-8?B?T1ljK0JwQ1Q2MjQzTjVWa1BrcXdMcW1OeWplaXVaUG9LTzJCN2VkSzU5TkZZ?=
- =?utf-8?B?S3h3U2l6MTBodDJQbkFaK1ZTWTFxRk9WS0RhQVo0ZGhLTE1oNTBrV1JwYzQv?=
- =?utf-8?B?alJqN3NWK3B5ZGh6d3JaYnFBS2g2NTZDQUwzN205Q0NWSjlmNllpUUVzcXVa?=
- =?utf-8?B?N3FTNUZVblFoYnBwOW0wQWQ1aHdxcFd2dVJaRDVmOXkzcUZWaUpveHB0VUd6?=
- =?utf-8?B?Z1ZnYVlDS1hzTnEvUWt3Z2xOc2c0N2J6b1Q3NFErdGVxZlBMQ2JLVHZpcTdH?=
- =?utf-8?B?YVpaL0gvMGlTUEF6S1k0a0NzdHpXTUtVQ0dMV1Q2QXFMdGZuck1NazhLcEth?=
- =?utf-8?B?UVR4dHF3YTBwbVQyTk0rN0RCM2VsRWZsSWJnbmR0bnAwTDhuQm1vSE93d0hs?=
- =?utf-8?B?b2pUY2FiaGl2VWIyVDRiU3dnOHdyR3l4VU4wRTNjeUdFY1VhTTFZckdqNU5B?=
- =?utf-8?B?QTNYa0NhYWdVTmtlUzJaWitHKzRwQ2o1Wm5qalFhQzM5WXFOUzBYc1FzR1Ri?=
- =?utf-8?B?bnVKdGNuNUxhRVhEU2xNeVhMb04vYmZWS21Cc2F5ZlhCRnR3ZzlkR3o0R1JL?=
- =?utf-8?B?aG10bmRiODR2U1ZJa1Exc09ZdklRajlKS3A1aVlFb1BSelZaM2NmaW1FS3F6?=
- =?utf-8?B?OHpKOVo5OE1PeVJSbHZCTEZWWHhTSHRDNXNJc0VCTC95WFQvKzdqbHNNZVZN?=
- =?utf-8?B?RWplQXNxMW5xeEJNN1NpS09scnN5L0tuLzY2Q0FsYWFVRXhiblJxS3NtSlgy?=
- =?utf-8?B?a200TUJJbDFGamJnNGZYS1VSdWVzRnBaWGVReC9nbzJrbFRpaGg0WjBBRmZx?=
- =?utf-8?B?Zy9FUmRKQ2NEZDNmdHV5ZlJMUWFFVGN5SjBnRmp6ZmdnVFNyeHJTT3pxNzZq?=
- =?utf-8?B?SUViNUovcDRqWlNsSHU0ejNCT1MxYy9MbUxBUWhyemxQekkyOUlMRmwzeS9l?=
- =?utf-8?B?S3Z4Z0owNGFvRUdSZ3dDNDJVZUVza1BYQTNWMlhqVzFqL2VtcWJFMHlmSTBp?=
- =?utf-8?B?eU9rUWVFaEFHWmlBN3lSdlFkcUZheks2WmRxV3lYOG9SSm02a1lscXlFc0Nn?=
- =?utf-8?B?NU9HbDl4b3NVUmNGOWZMUit3bVZnMUgzOTNsT1dDK3BzTEd1QStQV0JYak4r?=
- =?utf-8?B?VFlDK3BtOWcxaGcycTBta2dJMEYzRUJSajAyNTBJZ0tXdHFTNnBMZ2JacWxB?=
- =?utf-8?B?M3lWUHcrZGJBWkdMUHRUbVRrWkorYWlVZ2hVSk85cHBGT0p2UUFWYXBrM1hs?=
- =?utf-8?B?VjFWQUNLTVNMMlducnpxbHNILzJPcXhPdWh3My9nODVhY0Zyb3ZzSmxweUpn?=
- =?utf-8?B?YUd3aFZCN1F6TVVpZkRpQVNnbGVEVW1LU0IzZUxXK1RtRWg2eXdFSml4Y0Nh?=
- =?utf-8?B?eGJiK1ZDa1YxVmhoK1g1T3YyVmI3YTVQb0h5WWpkUnRIaXg2OExaQjVVRWJY?=
- =?utf-8?B?TUR1cHhZQWk5VmlnVDNQMnBNMno0elZTbkpKWnU5ajFESVl5RkVZMDgzdXF1?=
- =?utf-8?B?RC9lTWx6SUhlRUN1WndVaFh0VXpaU0t4ZVlsMms2WGhtajFCd3ZKWVpma1dH?=
- =?utf-8?B?aTRoKzB4M3NGRllJaloyS2NLemhhbDBXdW5WODU2ejh5bjBFdmpZMmNmRHRw?=
- =?utf-8?B?WVE9PQ==?=
-Content-Type: text/plain; charset="utf-8"
-Content-ID: <70C0A7540F3526468A95DA5CC293DAE3@namprd11.prod.outlook.com>
-Content-Transfer-Encoding: base64
+ t=1677074086; x=1708610086;
+ h=message-id:date:mime-version:subject:to:cc:references:
+ from:in-reply-to:content-transfer-encoding;
+ bh=pu8KT0HJXdQdCveCdk+Zny18DWgwpPZzitZNIyuPn5k=;
+ b=iAeBe3tAky+Kg1ZOH1bp6OZa5tReREXyzEfawQ99N5v3SWdf1O3vfeqI
+ oFkzzyBTl9RfMsZEnHHdu1OOKdkrn/wUOcEeC1J7ZiL47+21dhZ7jKjC1
+ XYENE89MfzjIl5/0RLD8g2GGptM3LSEh5oiV3gmyryw7pCKQS2ajLHm+o
+ 6+7mZWrzOVXS+55sMSOEOBsQ400SKFrwu+JBf2kRchdblLpPLB8Pvc0oR
+ ekku2IwhRbEriZhW+juOlEiLwrBwncnyJC50iF07YVj1wdKBz5kz1qZB/
+ CF5VBNWI+3TUnkU4jrNxPHA2H17+N56u2mSvPmi1O4b/4J+iYYz8YFGmU w==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10629"; a="395410379"
+X-IronPort-AV: E=Sophos;i="5.97,318,1669104000"; d="scan'208";a="395410379"
+Received: from fmsmga005.fm.intel.com ([10.253.24.32])
+ by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 22 Feb 2023 05:54:46 -0800
+X-IronPort-AV: E=McAfee;i="6500,9779,10629"; a="1001004017"
+X-IronPort-AV: E=Sophos;i="5.97,318,1669104000"; d="scan'208";a="1001004017"
+Received: from abibas-mobl.ger.corp.intel.com (HELO [10.249.254.220])
+ ([10.249.254.220])
+ by fmsmga005-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 22 Feb 2023 05:54:43 -0800
+Message-ID: <b246a499-2d00-32a6-4e75-f31e311afa9a@linux.intel.com>
+Date: Wed, 22 Feb 2023 14:54:40 +0100
 MIME-Version: 1.0
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: CY4PR11MB2054.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 4cded4e0-887e-4009-fb40-08db14da539f
-X-MS-Exchange-CrossTenant-originalarrivaltime: 22 Feb 2023 13:40:14.0851 (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: qQWOmsfIYQpFukaEvTWZh8rgwp8KlSX8p9cMsrCevHej6WQMegjwUMYf6cQDFJ35fz5kc4WHdnI5iDGZmhDFug==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SA1PR11MB5922
-X-OriginatorOrg: intel.com
-Subject: Re: [Intel-xe] [PATCH] drm/xe: Remove duplicate media_ver
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.4.0
+Content-Language: en-US
+To: =?UTF-8?Q?Christian_K=c3=b6nig?= <christian.koenig@amd.com>,
+ dri-devel@lists.freedesktop.org
+References: <20230216144847.216259-1-thomas.hellstrom@linux.intel.com>
+ <20230216144847.216259-2-thomas.hellstrom@linux.intel.com>
+ <35ba51b1-598e-8c43-0eca-8fd538ef2659@amd.com>
+ <e44a861e-013b-d509-f3a5-b8973186e321@linux.intel.com>
+ <91f82b8e-ff43-8b58-e55f-d1c55f13971f@amd.com>
+ <95abe965-ae03-5213-abb3-92ee908e727c@linux.intel.com>
+ <ad869cfc-baff-2c7a-7bf9-799c5f125aba@amd.com>
+ <6ddd49d2-be2c-3b80-9e77-8cc24cbe64e2@linux.intel.com>
+ <728a932c-d65e-9777-de50-6dd8fe9f5708@amd.com>
+ <1ca4881b-c470-1f59-03c9-edcddbaa7a6a@linux.intel.com>
+ <24ada492-c951-46ad-6771-3af88caf2fb3@linux.intel.com>
+ <592a66a8-2265-ec51-b38e-baf7fd005e6e@amd.com>
+From: =?UTF-8?Q?Thomas_Hellstr=c3=b6m?= <thomas.hellstrom@linux.intel.com>
+In-Reply-To: <592a66a8-2265-ec51-b38e-baf7fd005e6e@amd.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+Subject: Re: [Intel-xe] [PATCH 1/3] drm/suballoc: Introduce a generic
+ suballocation manager
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -155,51 +72,188 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Cc: "Vivi, Rodrigo" <rodrigo.vivi@intel.com>
+Cc: Daniel Vetter <daniel.vetter@ffwll.ch>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ intel-xe@lists.freedesktop.org, Dave Airlie <airlied@redhat.com>
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-T24gVHVlLCAyMDIzLTAyLTIxIGF0IDE2OjI3IC0wODAwLCBMdWNhcyBEZSBNYXJjaGkgd3JvdGU6
-DQo+IG1lZGlhX3ZlcngxMDAgc3VwZXJzZWRlcyB0aGUgaW5mbyBmcm9tIG1lZGlhX3Zlci4gTGVh
-dmUgbWVkaWFfdmVyIGluIHRoZQ0KPiBzdHJ1Y3QgeGVfZGV2aWNlX2Rlc2MsIHVzZWQgaW4geGVf
-cGNpLmMgc2luY2UgaXQncyBlYXNpZXIgdG8gZGVmaW5lDQo+IGNvbW1vbiBwYXJ0cyBvZiB0aGUg
-cGxhdGZvcm1zIGxpa2UgdGhhdC4gSG93ZXZlciBhbGwgdGhlIHJlc3Qgb2YgdGhlDQo+IGRyaXZl
-ciBzaG91bGQgYmUgdXNpbmcgbWVkaWFfdmVyeDEwMCB0aGF0IGlzIG1vcmUgZnV0dXJlIHByb29m
-Lg0KDQpSZXZpZXdlZC1ieTogSm9zw6kgUm9iZXJ0byBkZSBTb3V6YSA8am9zZS5zb3V6YUBpbnRl
-bC5jb20+DQoNCj4gDQo+IENsb3NlczogaHR0cHM6Ly9naXRsYWIuZnJlZWRlc2t0b3Aub3JnL2Ry
-bS94ZS9rZXJuZWwvLS9pc3N1ZXMvMjE2DQo+IFNpZ25lZC1vZmYtYnk6IEx1Y2FzIERlIE1hcmNo
-aSA8bHVjYXMuZGVtYXJjaGlAaW50ZWwuY29tPg0KPiAtLS0NCj4gIGRyaXZlcnMvZ3B1L2RybS94
-ZS94ZV9kZXZpY2VfdHlwZXMuaCB8IDIgLS0NCj4gIGRyaXZlcnMvZ3B1L2RybS94ZS94ZV9tbWlv
-LmMgICAgICAgICB8IDIgKy0NCj4gIGRyaXZlcnMvZ3B1L2RybS94ZS94ZV9wY2kuYyAgICAgICAg
-ICB8IDEgLQ0KPiAgMyBmaWxlcyBjaGFuZ2VkLCAxIGluc2VydGlvbigrKSwgNCBkZWxldGlvbnMo
-LSkNCj4gDQo+IGRpZmYgLS1naXQgYS9kcml2ZXJzL2dwdS9kcm0veGUveGVfZGV2aWNlX3R5cGVz
-LmggYi9kcml2ZXJzL2dwdS9kcm0veGUveGVfZGV2aWNlX3R5cGVzLmgNCj4gaW5kZXggNmM3MWUx
-YjJkYmY0Li5kM2JmZTVlZDRkZDkgMTAwNjQ0DQo+IC0tLSBhL2RyaXZlcnMvZ3B1L2RybS94ZS94
-ZV9kZXZpY2VfdHlwZXMuaA0KPiArKysgYi9kcml2ZXJzL2dwdS9kcm0veGUveGVfZGV2aWNlX3R5
-cGVzLmgNCj4gQEAgLTgyLDggKzgyLDYgQEAgc3RydWN0IHhlX2RldmljZSB7DQo+ICAJCXU4IHRp
-bGVfY291bnQ7DQo+ICAJCS8qKiBAdm1fbWF4X2xldmVsOiBNYXggVk0gbGV2ZWwgKi8NCj4gIAkJ
-dTggdm1fbWF4X2xldmVsOw0KPiAtCQkvKiogQG1lZGlhX3ZlcjogTWVkaWEgdmVyc2lvbiAqLw0K
-PiAtCQl1OCBtZWRpYV92ZXI7DQo+ICAJCS8qKiBAc3VwcG9ydHNfdXNtOiBTdXBwb3J0cyB1bmlm
-aWVkIHNoYXJlZCBtZW1vcnkgKi8NCj4gIAkJYm9vbCBzdXBwb3J0c191c207DQo+ICAJCS8qKiBA
-aGFzX2FzaWQ6IEhhcyBhZGRyZXNzIHNwYWNlIElEICovDQo+IGRpZmYgLS1naXQgYS9kcml2ZXJz
-L2dwdS9kcm0veGUveGVfbW1pby5jIGIvZHJpdmVycy9ncHUvZHJtL3hlL3hlX21taW8uYw0KPiBp
-bmRleCBiYTMyN2IxZThkZWEuLmM0MTRlY2U2ZGZlMyAxMDA2NDQNCj4gLS0tIGEvZHJpdmVycy9n
-cHUvZHJtL3hlL3hlX21taW8uYw0KPiArKysgYi9kcml2ZXJzL2dwdS9kcm0veGUveGVfbW1pby5j
-DQo+IEBAIC0yODcsNyArMjg3LDcgQEAgc3RhdGljIHZvaWQgeGVfbW1pb19wcm9iZV90aWxlcyhz
-dHJ1Y3QgeGVfZGV2aWNlICp4ZSkNCj4gIAltdGNmZyA9IHhlX21taW9fcmVhZDY0KGd0LCBYRUhQ
-X01UQ0ZHX0FERFIucmVnKTsNCj4gIAlhZGpfdGlsZV9jb3VudCA9IHhlLT5pbmZvLnRpbGVfY291
-bnQgPQ0KPiAgCQlSRUdfRklFTERfR0VUKFRJTEVfQ09VTlQsIG10Y2ZnKSArIDE7DQo+IC0JaWYg
-KHhlLT5pbmZvLm1lZGlhX3ZlciA+PSAxMykNCj4gKwlpZiAoeGUtPmluZm8ubWVkaWFfdmVyeDEw
-MCA+PSAxMzAwKQ0KPiAgCQl4ZS0+aW5mby50aWxlX2NvdW50ICo9IDI7DQo+ICANCj4gIAlkcm1f
-aW5mbygmeGUtPmRybSwgInRpbGVfY291bnQ6ICVkLCBhZGpfdGlsZV9jb3VudCAlZFxuIiwNCj4g
-ZGlmZiAtLWdpdCBhL2RyaXZlcnMvZ3B1L2RybS94ZS94ZV9wY2kuYyBiL2RyaXZlcnMvZ3B1L2Ry
-bS94ZS94ZV9wY2kuYw0KPiBpbmRleCAyNTU5OGRlM2ExZmMuLjUzZmNmZWQ1ZGU1ZSAxMDA2NDQN
-Cj4gLS0tIGEvZHJpdmVycy9ncHUvZHJtL3hlL3hlX3BjaS5jDQo+ICsrKyBiL2RyaXZlcnMvZ3B1
-L2RybS94ZS94ZV9wY2kuYw0KPiBAQCAtNDg1LDcgKzQ4NSw2IEBAIHN0YXRpYyBpbnQgeGVfcGNp
-X3Byb2JlKHN0cnVjdCBwY2lfZGV2ICpwZGV2LCBjb25zdCBzdHJ1Y3QgcGNpX2RldmljZV9pZCAq
-ZW50KQ0KPiAgCXhlLT5pbmZvLnZyYW1fZmxhZ3MgPSBkZXNjLT52cmFtX2ZsYWdzOw0KPiAgCXhl
-LT5pbmZvLnRpbGVfY291bnQgPSBkZXNjLT5tYXhfdGlsZXM7DQo+ICAJeGUtPmluZm8udm1fbWF4
-X2xldmVsID0gZGVzYy0+dm1fbWF4X2xldmVsOw0KPiAtCXhlLT5pbmZvLm1lZGlhX3ZlciA9IGRl
-c2MtPm1lZGlhX3ZlcjsNCj4gIAl4ZS0+aW5mby5zdXBwb3J0c191c20gPSBkZXNjLT5zdXBwb3J0
-c191c207DQo+ICAJeGUtPmluZm8uaGFzX2FzaWQgPSBkZXNjLT5oYXNfYXNpZDsNCj4gIAl4ZS0+
-aW5mby5oYXNfZmxhdF9jY3MgPSBkZXNjLT5oYXNfZmxhdF9jY3M7DQoNCg==
+Hi,
+
+On 2/22/23 12:39, Christian König wrote:
+> Hi Thomas,
+>
+> Am 22.02.23 um 12:00 schrieb Thomas Hellström:
+>> Hi, Christian,
+>>
+>> So I resurrected Maarten's previous patch series around this (the 
+>> amdgpu suballocator) slightly modified the code to match the API of 
+>> this patch series, re-introduced the per-allocation alignment as per 
+>> a previous review comment from you on that series, and made 
+>> checkpatch.pl pass mostly, except for pre-existing style problems, 
+>> and added / fixed some comments. No memory corruption seen so far on 
+>> limited Xe testing.
+>>
+>> To move this forward I suggest starting with that as a common drm 
+>> suballocator. I'll post the series later today. We can follow up with 
+>> potential simplifactions lif needed.
+>>
+>> I also made a kunit test also reporting some timing information. Will 
+>> post that as a follow up. Some interesting preliminary conclusions:
+>>
+>> * drm_mm is per se not a cpu hog, If the rb tree processing is 
+>> disabled and the EVICT algorithm is changed from MRU to ring-like LRU 
+>> traversal, it's more or less just as fast as the ring suballocator.
+>>
+>> * With a single ring, and the suballocation buffer never completely 
+>> filled (no sleeps) the amd suballocator is a bit faster per 
+>> allocation / free. (Around 250 ns instead of 350). Allocation is 
+>> slightly slower on the amdgpu one, freeing is faster, mostly due to 
+>> the locking overhead incurred when setting up the fence callbacks, 
+>> and for avoiding irq-disabled processing on the one I proposed.
+>
+> For some more realistic numbers try to signal the fence from another 
+> CPU. Alternative you can invalidate all the CPU read cache lines 
+> touched by the fence callback so that they need to be read in again 
+> from the allocating CPU.
+
+Fences are signalled using hr-timer driven fake "ring"s, so should 
+probably be distributed among cpus in a pretty realistic way. But anyway 
+I agree results obtained from that kunit test can and should be 
+challenged before we actually use them for improvements.
+
+>
+>>
+>> * With multiple rings and varying allocation sizes and signalling 
+>> times creating fragmentation, the picture becomes different as the 
+>> amdgpu allocator starts to sleep/throttle already round 50% - 75% 
+>> fill. The one I proposed between 75% to 90% fill, and once that 
+>> happens, the CPU cost of putting to sleep and waking up should really 
+>> shadow the above numbers.
+>>
+>> So it's really a tradeoff. Where IMO also code size and 
+>> maintainability should play a role.
+>>
+>> Also I looked at the history of the amdgpu allocator originating back 
+>> to Radeon 2012-ish, but couldn't find any commits mentioning fence 
+>> callbacks nor problem with those. Could you point me to that discussion?
+>
+> Uff that was ~10 years ago. I don't think I can find that again.
+
+OK, fair enough. But what was the objective reasoning against using 
+fence callbacks for this sort of stuff, was it unforeseen locking 
+problems, caching issues or something else?
+
+Thanks,
+
+Thomas
+
+
+
+>
+>
+> Regards,
+> Christian.
+>
+>>
+>> Thanks,
+>>
+>> Thomas
+>>
+>>
+>>
+>> On 2/17/23 14:51, Thomas Hellström wrote:
+>>>
+>>> On 2/17/23 14:18, Christian König wrote:
+>>>> Am 17.02.23 um 14:10 schrieb Thomas Hellström:
+>>>>> [SNIP]
+>>>>>>>>>
+>>>>>>>>> Any chance you could do a quick performance comparison? If 
+>>>>>>>>> not, anything against merging this without the amd / radeon 
+>>>>>>>>> changes until we can land a simpler allocator?
+>>>>>>>>
+>>>>>>>> Only if you can stick the allocator inside Xe and not drm, 
+>>>>>>>> cause this seems to be for a different use case than the 
+>>>>>>>> allocators inside radeon/amdgpu.
+>>>>>>>
+>>>>>>> Hmm. No It's allocating in a ring-like fashion as well. Let me 
+>>>>>>> put together a unit test for benchmaking. I think it would be a 
+>>>>>>> failure for the community to end up with three separate 
+>>>>>>> suballocators doing the exact same thing for the same problem, 
+>>>>>>> really.
+>>>>>>
+>>>>>> Well exactly that's the point. Those allocators aren't the same 
+>>>>>> because they handle different problems.
+>>>>>>
+>>>>>> The allocator in radeon is simpler because it only had to deal 
+>>>>>> with a limited number of fence timelines. The one in amdgpu is a 
+>>>>>> bit more complex because of the added complexity for more fence 
+>>>>>> timelines.
+>>>>>>
+>>>>>> We could take the one from amdgpu and use it for radeon and 
+>>>>>> others as well, but the allocator proposed here doesn't even 
+>>>>>> remotely matches the requirements.
+>>>>>
+>>>>> But again, what *are* those missing requirements exactly? What is 
+>>>>> the pathological case you see for the current code?
+>>>>
+>>>> Well very low CPU overhead and don't do anything in a callback.
+>>>
+>>> Well, dma_fence_wait_any() will IIRC register callbacks on all 
+>>> affected fences, although admittedly there is no actual allocator 
+>>> processing in them.
+>>>
+>>>>
+>>>>>
+>>>>> From what I can tell the amdgpu suballocator introduces excessive 
+>>>>> complexity to coalesce waits for fences from the same contexts, 
+>>>>> whereas the present code just frees from the fence callback if the 
+>>>>> fence wasn't already signaled.
+>>>>
+>>>> And this is exactly the design we had previously which we removed 
+>>>> after Dave stumbled over tons of problems with it.
+>>>
+>>> So is the worry that those problems have spilled over in this code 
+>>> then? It's been pretty extensively tested, or is it you should never 
+>>> really use dma-fence callbacks?
+>>>
+>>>>
+>>>>> The fence signalling code that fires that callback is typcally 
+>>>>> always run anyway on scheduler fences.
+>>>>>
+>>>>> The reason we had for not using the amdgpu suballocator as 
+>>>>> originally planned was that this complexity made it very hard for 
+>>>>> us to undertand it and to fix issues we had with it.
+>>>>
+>>>> Well what are those problems? The idea is actually not that 
+>>>> hardware to understand.
+>>>
+>>> We hit memory corruption, and we spent substantially more time 
+>>> trying to debug it than to put together this patch, while never 
+>>> really understanding what  happened, nor why you don't see that with 
+>>> amdgpu.
+>>>
+>>>>
+>>>> We could simplify it massively for the cost of only waiting for the 
+>>>> oldest fence if that helps.
+>>>
+>>> Let me grab the latest version from amdgpu and give it a try again, 
+>>> but yes I think that to make it common code we'll need it simpler 
+>>> (and my personal wish would be to separate the allocator 
+>>> functionality a bit more from the fence waiting, which I guess 
+>>> should be OK if the fence waiting is vastly simplified).
+>>>
+>>> /Thomas
+>>>
+>>>
+>>>>
+>>>>
+>>>> Regards,
+>>>> Christian.
+>>>>
+>>>>>
+>>>>> Regards,
+>>>>>
+>>>>> Thomas
+>>>>
+>
