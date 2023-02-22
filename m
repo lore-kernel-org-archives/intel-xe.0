@@ -4,56 +4,55 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5DF03C6379F
-	for <intel-xe@archiver.kernel.org>; Wed, 22 Feb 2023 10:02:40 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id AC154C61DA4
+	for <intel-xe@archiver.kernel.org>; Wed, 22 Feb 2023 10:05:49 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 25B5810E1C1;
-	Wed, 22 Feb 2023 10:02:40 +0000 (UTC)
-Received: from mail-lj1-x232.google.com (mail-lj1-x232.google.com
- [IPv6:2a00:1450:4864:20::232])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 81AA110E1C1
- for <intel-xe@lists.freedesktop.org>; Wed, 22 Feb 2023 10:02:37 +0000 (UTC)
-Received: by mail-lj1-x232.google.com with SMTP id f16so7137111ljq.10
- for <intel-xe@lists.freedesktop.org>; Wed, 22 Feb 2023 02:02:37 -0800 (PST)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 84B1110E92E;
+	Wed, 22 Feb 2023 10:05:49 +0000 (UTC)
+Received: from mail-lj1-x236.google.com (mail-lj1-x236.google.com
+ [IPv6:2a00:1450:4864:20::236])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7633110E92E
+ for <intel-xe@lists.freedesktop.org>; Wed, 22 Feb 2023 10:05:47 +0000 (UTC)
+Received: by mail-lj1-x236.google.com with SMTP id y14so70600ljq.4
+ for <intel-xe@lists.freedesktop.org>; Wed, 22 Feb 2023 02:05:47 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20210112;
  h=cc:to:subject:message-id:date:from:in-reply-to:references
  :mime-version:from:to:cc:subject:date:message-id:reply-to;
- bh=jmkPcoHYRJus4sy+Yo8kInq0Sw0S+r60V9XbHPEGIVo=;
- b=HIm9bMIJ0idsFxyUgg9A14ct8DU4tw7IRNl5K88v1jR1elILcpr8SY+V+tmH2Nn9yj
- oWHeKlOA91+iyf6FcMGphBxV1wJg92yzo56DHXcuFDS04IyeZu4aKXy/Ocl5674p+TEb
- Z5tA4sBbqDpL/YEo+2e753rByjVp/YJc4gAUS51GYDmf1zufiZOI3sRRQIyrhfw7PsnX
- we4zqOpLLX+eRGyH9MkNwVI9/zySMslZFex6UOkFSjg/LSDmhjxIkCYeIToN/Lmu69ao
- Nqop1sp64l+68fmb9gwU3iA3XbPnLTiD59LREDcKWP199jBiUaPMy6ZWIfAvydmZKLAQ
- rxIA==
+ bh=N3DqiGLZ0XE8Ma9F5MMF4N83l4mZ3Hhb693JLqKG3ow=;
+ b=LY2PCukDi3XVUFpSce4GJblozjtMbtALeHeH3shtxdeVc2cv8p2yoXZLb1lxqAYGX6
+ 4jjNsk2b38z1YZCBo/GFcTZYvz6HU1+NNlnN6ms49z5y0KWuhCCGjBIP9WX1oigZs9Zd
+ 40S37RtEjpV9+u+bXDm0MPR5JQqZjRwQ69VLTz+ZZP09t7ELjK5GBmvmtsC+vsO63kPM
+ wELNBLTat9CyFHAahYpfQZFncBsniENqODDGfrPzgMmvpOkXxDqBhtY5G2oEXX9jUWfR
+ pg6RJlOkcTymbLG888+xDuRtnaZ3tci5QnRJ26Ry1wVEVZU1lKMhQYuCdmEHbBkgUi5J
+ vxQw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20210112;
  h=cc:to:subject:message-id:date:from:in-reply-to:references
  :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
  :reply-to;
- bh=jmkPcoHYRJus4sy+Yo8kInq0Sw0S+r60V9XbHPEGIVo=;
- b=Qgmv7lJrmYrA9gL7Stdw6mbqrV4Sn6Ctc+EHo6/6M5HxcRe9/DkfLO47WGGzR1iJZ6
- lPNj2z7aF62d0fuEuf7cosirfifljq/jRieCOFkPnDQOuqEaJkRYcYyiGkUdV7JX9u7B
- XWTY8NK3d/MGptrybe8Z7N1ZN6AIC7TPZmr2j1yAYA/xfE5DitELHu6GLBOLSBdv2X9S
- dO4rlsHGz2CmhgVrMoXpXbGKa/JzUuV4Ks5t8jDi3whGPhvSsWpaKm7cky7DmC6DeC5G
- inUpfUMPxU2FIdAN0rrsc7+vASnP9QCaaljIhIvt0dIRBfFWDcw3eYe7y1mLWmhaOMv0
- SuDw==
-X-Gm-Message-State: AO0yUKUjYh5k5US48hwIC4JhbE5axxl0LJflU/hq/DRz7P1zgTZVG2YT
- axKGpQ6TipIkww/VNReg1kmnE4vC24EzDiW8ZUw=
-X-Google-Smtp-Source: AK7set/IOGvNWqMVakTLGDzft6lb2nKmb9ysEGRnSiOXJ4f+I3cnmYqrIr12ezwK87ENA61OEQN0NS8EfQFHT8IsXCQ=
-X-Received: by 2002:a2e:bc16:0:b0:294:d75f:4cc6 with SMTP id
- b22-20020a2ebc16000000b00294d75f4cc6mr3935553ljf.0.1677060155548; Wed, 22 Feb
- 2023 02:02:35 -0800 (PST)
+ bh=N3DqiGLZ0XE8Ma9F5MMF4N83l4mZ3Hhb693JLqKG3ow=;
+ b=Gqs7BEJ/bJAbLNLa8paJNkG0MLF+5U3CzPWPUXoho1FcFFwU5jhroC9iFAwdbRVvty
+ fRy7mrkjt74TU3u3WbKKzcCdMlvk5F1ddR7a2TKDFXQ55N9nQ/w8+Dx8u/bBm3xcygb8
+ /ioO8GuWnrPljqC9t0TQMotdsDnyowv5WAoWrmmagjFSXM+SVShSZCVYnRX4PnCJTeo0
+ Kf5dI2McYRhZBXFK3YgL/eyyJlI46wKVs7MjBH4Q6tQiZ8RSJSgW8fZ5OcTiYvMPXo52
+ 13s4kAr+9Wm3UJNda8Kmj/R0z8kq9XEUDhiID80o7yQrlh2TzS0WxZxpExvuKKGT4yIF
+ ftDQ==
+X-Gm-Message-State: AO0yUKWkCnQQK+FZTg8MxV5SVWiUo0PveLgyn1LIlS5+Je4GsEOhD4BG
+ O7fvaMRO4/0h2smxA7RRcVK51DMFNyLkOzsj/4ua/QcAqhI=
+X-Google-Smtp-Source: AK7set9yAjTdTn4U3hmpQ4VXcbd4KSvcQaAUzUPolBKWvdskui/+nH2F84t7OwCJjyGgLlA2bzE8rSP1y2dofbGe8y0=
+X-Received: by 2002:a05:651c:1614:b0:293:27a9:ef34 with SMTP id
+ f20-20020a05651c161400b0029327a9ef34mr2940676ljq.0.1677060345580; Wed, 22 Feb
+ 2023 02:05:45 -0800 (PST)
 MIME-Version: 1.0
 References: <20230221233348.883897-1-lucas.demarchi@intel.com>
- <20230221233348.883897-4-lucas.demarchi@intel.com>
-In-Reply-To: <20230221233348.883897-4-lucas.demarchi@intel.com>
+ <20230221233348.883897-5-lucas.demarchi@intel.com>
+In-Reply-To: <20230221233348.883897-5-lucas.demarchi@intel.com>
 From: Matthew Auld <matthew.william.auld@gmail.com>
-Date: Wed, 22 Feb 2023 10:02:08 +0000
-Message-ID: <CAM0jSHM8xp7M0A47AqnwdBPjxY1ZVKPp=rH+yP8NB2_2G4Z3Wg@mail.gmail.com>
+Date: Wed, 22 Feb 2023 10:05:18 +0000
+Message-ID: <CAM0jSHO9hMF9Pn8gYPE54ziqDto6a23ey8DMyjhFv48ea67nRg@mail.gmail.com>
 To: Lucas De Marchi <lucas.demarchi@intel.com>
 Content-Type: text/plain; charset="UTF-8"
-Subject: Re: [Intel-xe] [PATCH 3/6] drm/xe: Fix kunit integration due to
- missing prototypes
+Subject: Re: [Intel-xe] [PATCH 4/6] drm/xe: Remove unused functions
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -71,140 +70,9 @@ Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 On Tue, 21 Feb 2023 at 23:34, Lucas De Marchi <lucas.demarchi@intel.com> wrote:
 >
-> In order to avoid  -Werror=missing-prototypes, add the prototypes and
-> move the functions to the end of the file, surrounded by
-> `#if IS_ENABLED(CONFIG_DRM_XE_KUNIT_TEST)`.
-
-Is everything under tests/ not excluded from compilation when !XE_KUNIT_TEST?
-
+> xe_gt_topology_dss_group_mask and xe_gt_topology_count_dss are probably
+> leftover from initial implementation - they are not called from
+> anywhere. Remove those functions.
 >
 > Signed-off-by: Lucas De Marchi <lucas.demarchi@intel.com>
-> ---
->  drivers/gpu/drm/xe/tests/xe_bo.c      | 54 +++++++++++++++------------
->  drivers/gpu/drm/xe/tests/xe_dma_buf.c |  2 +
->  drivers/gpu/drm/xe/tests/xe_migrate.c |  6 +++
->  3 files changed, 39 insertions(+), 23 deletions(-)
->
-> diff --git a/drivers/gpu/drm/xe/tests/xe_bo.c b/drivers/gpu/drm/xe/tests/xe_bo.c
-> index 87ac21cc8ca9..2c94ddaacda6 100644
-> --- a/drivers/gpu/drm/xe/tests/xe_bo.c
-> +++ b/drivers/gpu/drm/xe/tests/xe_bo.c
-> @@ -141,29 +141,6 @@ static void ccs_test_run_gt(struct xe_device *xe, struct xe_gt *gt,
->         xe_bo_put(bo);
->  }
->
-> -static int ccs_test_run_device(struct xe_device *xe)
-> -{
-> -       struct kunit *test = xe_cur_kunit();
-> -       struct xe_gt *gt;
-> -       int id;
-> -
-> -       if (!xe_device_has_flat_ccs(xe)) {
-> -               kunit_info(test, "Skipping non-flat-ccs device.\n");
-> -               return 0;
-> -       }
-> -
-> -       for_each_gt(gt, xe, id)
-> -               ccs_test_run_gt(xe, gt, test);
-> -
-> -       return 0;
-> -}
-> -
-> -void xe_ccs_migrate_kunit(struct kunit *test)
-> -{
-> -       xe_call_for_each_device(ccs_test_run_device);
-> -}
-> -EXPORT_SYMBOL(xe_ccs_migrate_kunit);
-> -
->  static int evict_test_run_gt(struct xe_device *xe, struct xe_gt *gt, struct kunit *test)
->  {
->         struct xe_bo *bo, *external;
-> @@ -278,6 +255,8 @@ static int evict_test_run_gt(struct xe_device *xe, struct xe_gt *gt, struct kuni
->         return 0;
->  }
->
-> +#if IS_ENABLED(CONFIG_DRM_XE_KUNIT_TEST)
-> +
->  static int evict_test_run_device(struct xe_device *xe)
->  {
->         struct kunit *test = xe_cur_kunit();
-> @@ -296,8 +275,37 @@ static int evict_test_run_device(struct xe_device *xe)
->         return 0;
->  }
->
-> +void xe_bo_evict_kunit(struct kunit *test);
-> +
->  void xe_bo_evict_kunit(struct kunit *test)
->  {
->         xe_call_for_each_device(evict_test_run_device);
->  }
->  EXPORT_SYMBOL(xe_bo_evict_kunit);
-> +
-> +static int ccs_test_run_device(struct xe_device *xe)
-> +{
-> +       struct kunit *test = xe_cur_kunit();
-> +       struct xe_gt *gt;
-> +       int id;
-> +
-> +       if (!xe_device_has_flat_ccs(xe)) {
-> +               kunit_info(test, "Skipping non-flat-ccs device.\n");
-> +               return 0;
-> +       }
-> +
-> +       for_each_gt(gt, xe, id)
-> +               ccs_test_run_gt(xe, gt, test);
-> +
-> +       return 0;
-> +}
-> +
-> +void xe_ccs_migrate_kunit(struct kunit *test);
-> +
-> +void xe_ccs_migrate_kunit(struct kunit *test)
-> +{
-> +       xe_call_for_each_device(ccs_test_run_device);
-> +}
-> +EXPORT_SYMBOL(xe_ccs_migrate_kunit);
-> +
-> +#endif
-> diff --git a/drivers/gpu/drm/xe/tests/xe_dma_buf.c b/drivers/gpu/drm/xe/tests/xe_dma_buf.c
-> index 615d22e3f731..d8ad135d0e04 100644
-> --- a/drivers/gpu/drm/xe/tests/xe_dma_buf.c
-> +++ b/drivers/gpu/drm/xe/tests/xe_dma_buf.c
-> @@ -252,6 +252,8 @@ static int dma_buf_run_device(struct xe_device *xe)
->         return 0;
->  }
->
-> +void xe_dma_buf_kunit(struct kunit *test);
-> +
->  void xe_dma_buf_kunit(struct kunit *test)
->  {
->         xe_call_for_each_device(dma_buf_run_device);
-> diff --git a/drivers/gpu/drm/xe/tests/xe_migrate.c b/drivers/gpu/drm/xe/tests/xe_migrate.c
-> index 03a60d5b42f1..7be0c2543916 100644
-> --- a/drivers/gpu/drm/xe/tests/xe_migrate.c
-> +++ b/drivers/gpu/drm/xe/tests/xe_migrate.c
-> @@ -352,6 +352,8 @@ static void xe_migrate_sanity_test(struct xe_migrate *m, struct kunit *test)
->         xe_bo_vunmap(m->pt_bo);
->  }
->
-> +#if IS_ENABLED(CONFIG_DRM_XE_KUNIT_TEST)
-> +
->  static int migrate_test_run_device(struct xe_device *xe)
->  {
->         struct kunit *test = xe_cur_kunit();
-> @@ -371,8 +373,12 @@ static int migrate_test_run_device(struct xe_device *xe)
->         return 0;
->  }
->
-> +void xe_migrate_sanity_kunit(struct kunit *test);
-> +
->  void xe_migrate_sanity_kunit(struct kunit *test)
->  {
->         xe_call_for_each_device(migrate_test_run_device);
->  }
->  EXPORT_SYMBOL(xe_migrate_sanity_kunit);
-> +
-> +#endif
-> --
-> 2.39.0
->
+Reviewed-by: Matthew Auld <matthew.auld@intel.com>
