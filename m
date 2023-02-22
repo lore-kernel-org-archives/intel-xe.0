@@ -4,55 +4,61 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id C0095C61DA4
-	for <intel-xe@archiver.kernel.org>; Wed, 22 Feb 2023 10:17:04 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 47C1BC6379F
+	for <intel-xe@archiver.kernel.org>; Wed, 22 Feb 2023 11:00:23 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 82EBE10E2D6;
-	Wed, 22 Feb 2023 10:17:04 +0000 (UTC)
-Received: from mail-lj1-x22b.google.com (mail-lj1-x22b.google.com
- [IPv6:2a00:1450:4864:20::22b])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B3EE910E2D6
- for <intel-xe@lists.freedesktop.org>; Wed, 22 Feb 2023 10:17:02 +0000 (UTC)
-Received: by mail-lj1-x22b.google.com with SMTP id x41so7391859ljq.13
- for <intel-xe@lists.freedesktop.org>; Wed, 22 Feb 2023 02:17:02 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20210112;
- h=cc:to:subject:message-id:date:from:in-reply-to:references
- :mime-version:from:to:cc:subject:date:message-id:reply-to;
- bh=thWLS10J50BKW8CJGO7JuN3uSoVDmESRWkAlV8IW1yU=;
- b=glUxF/4M6l4M6LcHFyaLC9qzWA9f0x765vQE5jMEToe3imCAcs8UW2tiKoIu7xZyQa
- Aa40EIlqxOw4fgmxDRIPulu1LRBLY0GBGNkIvImzzD5t3OdHixg/vLJkrkyLKcanSNSi
- McGeFhQRRx4wz4f+ImNDsh8gMlriufhJFRIlVFkPzsmWqPO+KvOkzpRD2P11ejxYgxxi
- MVOYWLXH+bUUCZ+081fmHoMXpmIWeuSXGhNtf7HdWT8owSWRlhppzioziNHPaMTsfzoP
- VjKoT2iUMHSfor/dKwHsz3V0SDu/hfwdmwtfYzZVpVgVHUvSq3DwTS3bkO5k3ATMCrtE
- 4YAw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20210112;
- h=cc:to:subject:message-id:date:from:in-reply-to:references
- :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
- :reply-to;
- bh=thWLS10J50BKW8CJGO7JuN3uSoVDmESRWkAlV8IW1yU=;
- b=Z2+VZfijxLvUZz5xlcwtpG5SDfXvsmwjK37gYDFR+cwAPtm3eiw03CwoIHhxUWTekO
- I3KkSiC6OxBt+hCdiNYgzO3wVXCM9EXRN8klaocVEdsbT0keakADnneEBAfrcSub+zKW
- nRcZNHTnAQOp6HLAEXX7NAx8cHaYqfh61/5W/0PgAk/LbZDVtvHBJcP4LIRfVckD4fyG
- q6hYFHIN2ZgIifqMoAmxnOqPQ4sk4b/YaDPTjUndoB8fHgw6w/eT4rgQqR1cKZ+Z2jQ2
- dfyLtOr9wBmB6l/8psX7T1jw84IsFtNDah7hzmgYYQ3FcwdU/Kv5/+7fRVrwYHZ6yxuO
- KPsQ==
-X-Gm-Message-State: AO0yUKWprNcbKyOSJ0yceUvSnB/iFhNL4uzOAm4ApsxHLXTfVgnWXR4K
- +FFKR2P8gD8F42a/BTZVF8eN0u7E/TRRy9d7hPULtXa7aKk=
-X-Google-Smtp-Source: AK7set9NuaFNXRgftU+0bY6edpQxublzuelflVW0NbHRwxjIQaUfm0J/LpqFOrknKUYyK19PJNAKoI+8z/mYG1LxpuI=
-X-Received: by 2002:a05:651c:3dd:b0:293:4be7:14d5 with SMTP id
- f29-20020a05651c03dd00b002934be714d5mr2605585ljp.2.1677061020996; Wed, 22 Feb
- 2023 02:17:00 -0800 (PST)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2160910E807;
+	Wed, 22 Feb 2023 11:00:23 +0000 (UTC)
+Received: from mga06.intel.com (mga06b.intel.com [134.134.136.31])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 815C910E807;
+ Wed, 22 Feb 2023 11:00:21 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1677063621; x=1708599621;
+ h=message-id:date:mime-version:subject:from:to:cc:
+ references:in-reply-to:content-transfer-encoding;
+ bh=ssHsvDAs7avAToAkWRe+je8PFqBEuovAafEWSy1Z1r8=;
+ b=gFJKyC2oWevttJNAZv+7626mtGo/SR7HHHHSOL6KWUpHABId6wD5+1Az
+ HE5WwlbIPWpshu3BgiMNXNTfNhOPvpKy1s2uollWeft/k202/A5lbjAOl
+ +NO1q9Pq8ksgvB5HWn1mIUA6DAc5iL783hFt3kleCLnMkHR9II/PXv4Qx
+ RTf1F7+39lx28SVC2KDr3yg24zkVH01PiqbvPHmZw34WojSw3U/rVyIve
+ 46BVfKQywl8YqEJiKKhFAAlWcL5nya0lPx3qd2WnkJKxj+aEbw8SIO4dL
+ FH5WRkmKX9Y0+yXyzcw4FJ7QrpKc5FFXUCo8ftqGb0aLU2KLKjtAin7vX A==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10628"; a="395376571"
+X-IronPort-AV: E=Sophos;i="5.97,318,1669104000"; d="scan'208";a="395376571"
+Received: from fmsmga008.fm.intel.com ([10.253.24.58])
+ by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 22 Feb 2023 03:00:20 -0800
+X-IronPort-AV: E=McAfee;i="6500,9779,10628"; a="735866123"
+X-IronPort-AV: E=Sophos;i="5.97,318,1669104000"; d="scan'208";a="735866123"
+Received: from abibas-mobl.ger.corp.intel.com (HELO [10.249.254.220])
+ ([10.249.254.220])
+ by fmsmga008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 22 Feb 2023 03:00:18 -0800
+Message-ID: <24ada492-c951-46ad-6771-3af88caf2fb3@linux.intel.com>
+Date: Wed, 22 Feb 2023 12:00:16 +0100
 MIME-Version: 1.0
-References: <20230221233348.883897-1-lucas.demarchi@intel.com>
- <20230221233348.883897-3-lucas.demarchi@intel.com>
-In-Reply-To: <20230221233348.883897-3-lucas.demarchi@intel.com>
-From: Matthew Auld <matthew.william.auld@gmail.com>
-Date: Wed, 22 Feb 2023 10:16:33 +0000
-Message-ID: <CAM0jSHOiGSkYYnRi+T6_WZsPLfQT_7-xiV=iWxahGOgPMUDnAg@mail.gmail.com>
-To: Lucas De Marchi <lucas.demarchi@intel.com>
-Content-Type: text/plain; charset="UTF-8"
-Subject: Re: [Intel-xe] [PATCH 2/6] drm/xe: Fix application of LRC tunings
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.4.0
+Content-Language: en-US
+From: =?UTF-8?Q?Thomas_Hellstr=c3=b6m?= <thomas.hellstrom@linux.intel.com>
+To: =?UTF-8?Q?Christian_K=c3=b6nig?= <christian.koenig@amd.com>,
+ dri-devel@lists.freedesktop.org
+References: <20230216144847.216259-1-thomas.hellstrom@linux.intel.com>
+ <20230216144847.216259-2-thomas.hellstrom@linux.intel.com>
+ <35ba51b1-598e-8c43-0eca-8fd538ef2659@amd.com>
+ <e44a861e-013b-d509-f3a5-b8973186e321@linux.intel.com>
+ <91f82b8e-ff43-8b58-e55f-d1c55f13971f@amd.com>
+ <95abe965-ae03-5213-abb3-92ee908e727c@linux.intel.com>
+ <ad869cfc-baff-2c7a-7bf9-799c5f125aba@amd.com>
+ <6ddd49d2-be2c-3b80-9e77-8cc24cbe64e2@linux.intel.com>
+ <728a932c-d65e-9777-de50-6dd8fe9f5708@amd.com>
+ <1ca4881b-c470-1f59-03c9-edcddbaa7a6a@linux.intel.com>
+In-Reply-To: <1ca4881b-c470-1f59-03c9-edcddbaa7a6a@linux.intel.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+Subject: Re: [Intel-xe] [PATCH 1/3] drm/suballoc: Introduce a generic
+ suballocation manager
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -64,16 +70,147 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-xe@lists.freedesktop.org
+Cc: Daniel Vetter <daniel.vetter@ffwll.ch>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ intel-xe@lists.freedesktop.org, Dave Airlie <airlied@redhat.com>
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Tue, 21 Feb 2023 at 23:34, Lucas De Marchi <lucas.demarchi@intel.com> wrote:
+Hi, Christian,
+
+So I resurrected Maarten's previous patch series around this (the amdgpu 
+suballocator) slightly modified the code to match the API of this patch 
+series, re-introduced the per-allocation alignment as per a previous 
+review comment from you on that series, and made checkpatch.pl pass 
+mostly, except for pre-existing style problems, and added / fixed some 
+comments. No memory corruption seen so far on limited Xe testing.
+
+To move this forward I suggest starting with that as a common drm 
+suballocator. I'll post the series later today. We can follow up with 
+potential simplifactions lif needed.
+
+I also made a kunit test also reporting some timing information. Will 
+post that as a follow up. Some interesting preliminary conclusions:
+
+* drm_mm is per se not a cpu hog, If the rb tree processing is disabled 
+and the EVICT algorithm is changed from MRU to ring-like LRU traversal, 
+it's more or less just as fast as the ring suballocator.
+
+* With a single ring, and the suballocation buffer never completely 
+filled (no sleeps) the amd suballocator is a bit faster per allocation / 
+free. (Around 250 ns instead of 350). Allocation is slightly slower on 
+the amdgpu one, freeing is faster, mostly due to the locking overhead 
+incurred when setting up the fence callbacks, and for avoiding 
+irq-disabled processing on the one I proposed.
+
+* With multiple rings and varying allocation sizes and signalling times 
+creating fragmentation, the picture becomes different as the amdgpu 
+allocator starts to sleep/throttle already round 50% - 75% fill. The one 
+I proposed between 75% to 90% fill, and once that happens, the CPU cost 
+of putting to sleep and waking up should really shadow the above numbers.
+
+So it's really a tradeoff. Where IMO also code size and maintainability 
+should play a role.
+
+Also I looked at the history of the amdgpu allocator originating back to 
+Radeon 2012-ish, but couldn't find any commits mentioning fence 
+callbacks nor problem with those. Could you point me to that discussion?
+
+Thanks,
+
+Thomas
+
+
+
+On 2/17/23 14:51, Thomas Hellström wrote:
 >
-> LRC tunings were added after the gt ones and didn't add the call
-> in xe_gt_record_default_lrcs() to process them like is done for
-> workarounds. Add such a function and call it from
-> xe_gt_record_default_lrcs().
+> On 2/17/23 14:18, Christian König wrote:
+>> Am 17.02.23 um 14:10 schrieb Thomas Hellström:
+>>> [SNIP]
+>>>>>>>
+>>>>>>> Any chance you could do a quick performance comparison? If not, 
+>>>>>>> anything against merging this without the amd / radeon changes 
+>>>>>>> until we can land a simpler allocator?
+>>>>>>
+>>>>>> Only if you can stick the allocator inside Xe and not drm, cause 
+>>>>>> this seems to be for a different use case than the allocators 
+>>>>>> inside radeon/amdgpu.
+>>>>>
+>>>>> Hmm. No It's allocating in a ring-like fashion as well. Let me put 
+>>>>> together a unit test for benchmaking. I think it would be a 
+>>>>> failure for the community to end up with three separate 
+>>>>> suballocators doing the exact same thing for the same problem, 
+>>>>> really.
+>>>>
+>>>> Well exactly that's the point. Those allocators aren't the same 
+>>>> because they handle different problems.
+>>>>
+>>>> The allocator in radeon is simpler because it only had to deal with 
+>>>> a limited number of fence timelines. The one in amdgpu is a bit 
+>>>> more complex because of the added complexity for more fence timelines.
+>>>>
+>>>> We could take the one from amdgpu and use it for radeon and others 
+>>>> as well, but the allocator proposed here doesn't even remotely 
+>>>> matches the requirements.
+>>>
+>>> But again, what *are* those missing requirements exactly? What is 
+>>> the pathological case you see for the current code?
+>>
+>> Well very low CPU overhead and don't do anything in a callback.
 >
-> Signed-off-by: Lucas De Marchi <lucas.demarchi@intel.com>
-Reviewed-by: Matthew Auld <matthew.auld@intel.com>
+> Well, dma_fence_wait_any() will IIRC register callbacks on all 
+> affected fences, although admittedly there is no actual allocator 
+> processing in them.
+>
+>>
+>>>
+>>> From what I can tell the amdgpu suballocator introduces excessive 
+>>> complexity to coalesce waits for fences from the same contexts, 
+>>> whereas the present code just frees from the fence callback if the 
+>>> fence wasn't already signaled.
+>>
+>> And this is exactly the design we had previously which we removed 
+>> after Dave stumbled over tons of problems with it.
+>
+> So is the worry that those problems have spilled over in this code 
+> then? It's been pretty extensively tested, or is it you should never 
+> really use dma-fence callbacks?
+>
+>>
+>>> The fence signalling code that fires that callback is typcally 
+>>> always run anyway on scheduler fences.
+>>>
+>>> The reason we had for not using the amdgpu suballocator as 
+>>> originally planned was that this complexity made it very hard for us 
+>>> to undertand it and to fix issues we had with it.
+>>
+>> Well what are those problems? The idea is actually not that hardware 
+>> to understand.
+>
+> We hit memory corruption, and we spent substantially more time trying 
+> to debug it than to put together this patch, while never really 
+> understanding what  happened, nor why you don't see that with amdgpu.
+>
+>>
+>> We could simplify it massively for the cost of only waiting for the 
+>> oldest fence if that helps.
+>
+> Let me grab the latest version from amdgpu and give it a try again, 
+> but yes I think that to make it common code we'll need it simpler (and 
+> my personal wish would be to separate the allocator functionality a 
+> bit more from the fence waiting, which I guess should be OK if the 
+> fence waiting is vastly simplified).
+>
+> /Thomas
+>
+>
+>>
+>>
+>> Regards,
+>> Christian.
+>>
+>>>
+>>> Regards,
+>>>
+>>> Thomas
+>>
