@@ -4,45 +4,50 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id DAACAC636D7
-	for <intel-xe@archiver.kernel.org>; Thu, 23 Feb 2023 05:01:14 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 09329C636D6
+	for <intel-xe@archiver.kernel.org>; Thu, 23 Feb 2023 10:17:02 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9DAC110E00C;
-	Thu, 23 Feb 2023 05:01:14 +0000 (UTC)
-Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 857D710E00C
- for <intel-xe@lists.freedesktop.org>; Thu, 23 Feb 2023 05:01:12 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A5C6010E03C;
+	Thu, 23 Feb 2023 10:17:02 +0000 (UTC)
+Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id F1DF510E03C
+ for <intel-xe@lists.freedesktop.org>; Thu, 23 Feb 2023 10:17:00 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1677128472; x=1708664472;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=ZbqxGOv/BBgrQLHporT3+NH6fc/uPDWW0dRNh6h7QVY=;
- b=CEVqAyTYjevLl7Cjuk+1F3eeS1KwqqQAT4nicSpOMp7rmhh/ArmTR9NH
- WXlxvTrl7Z2FIjTHkEf/+jOlM2uuwiuf6U8NefxfNeakpLPvDp+Q9rtA5
- wF8u7toBJyPj/aWcReJoWPMyUdkJTAfsjWg7wLmy8tQhkjI7M+QkEoRp6
- 0v+U+hcSWfgG1KS5aMm9CunjyjPjiyR0UKs5svtlcmP7s/25fxiSSiShZ
- VPw2vU6QLwRJ+G6OqGu64Ojf3wBpXSYPNlPI++GxlXuTog7nlUozdS3hr
- R017tMy+ay/jeDkd9vhESoq1dbA/D+udHiaFeAe6yLphnbdPUSOeitNGG g==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10629"; a="335318155"
-X-IronPort-AV: E=Sophos;i="5.97,320,1669104000"; d="scan'208";a="335318155"
-Received: from orsmga005.jf.intel.com ([10.7.209.41])
- by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 22 Feb 2023 21:01:00 -0800
-X-IronPort-AV: E=McAfee;i="6500,9779,10629"; a="846418930"
-X-IronPort-AV: E=Sophos;i="5.97,320,1669104000"; d="scan'208";a="846418930"
-Received: from lucas-s2600cw.jf.intel.com ([10.165.21.196])
- by orsmga005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 22 Feb 2023 21:01:00 -0800
-From: Lucas De Marchi <lucas.demarchi@intel.com>
-To: intel-xe@lists.freedesktop.org
-Date: Wed, 22 Feb 2023 21:00:35 -0800
-Message-Id: <20230223050035.1009541-1-lucas.demarchi@intel.com>
-X-Mailer: git-send-email 2.39.0
+ t=1677147420; x=1708683420;
+ h=message-id:date:mime-version:subject:to:cc:references:
+ from:in-reply-to:content-transfer-encoding;
+ bh=KtvxBy/KCNCAtLWUXv6BdXFOB6A3YpqF6auowENBJEk=;
+ b=K8fL4prpVArNxy3W7NNRiD7XS7Oy04S9z2/RckNi1EpPvZgapdio3nKz
+ 0XMlx9W6kTA3VLQidOa78vtuP66jUv4m1uKq/IRqX44erpzOQ5KNMiWna
+ EETPIItb8BGDYK0Pd9xfUdg3y0qVa64r6QohFG0n2Um4ugLyTGV4fZMRE
+ X22jT0MURESmWKsgGPOertcjn8tzFaMUWNWsbaAf5yrsde8inAnVAPZFz
+ 6cql39JYL/7nCU/fUaFeXy7ZoEcEP90iadUrchD5R4tFvdJ6aYaohhnxz
+ +W26UhGaC0Na38UCNuJqMtp6TTEJZeLLewJRBHzKtVS4m84S0CBY9rA14 Q==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10629"; a="397867547"
+X-IronPort-AV: E=Sophos;i="5.97,320,1669104000"; d="scan'208";a="397867547"
+Received: from orsmga004.jf.intel.com ([10.7.209.38])
+ by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 23 Feb 2023 02:17:00 -0800
+X-IronPort-AV: E=McAfee;i="6500,9779,10629"; a="796251798"
+X-IronPort-AV: E=Sophos;i="5.97,320,1669104000"; d="scan'208";a="796251798"
+Received: from pwozniak-mobl1.ger.corp.intel.com (HELO [10.252.9.210])
+ ([10.252.9.210])
+ by orsmga004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 23 Feb 2023 02:16:59 -0800
+Message-ID: <d2aeae69-95f1-1576-9dbd-71d48e8562e3@intel.com>
+Date: Thu, 23 Feb 2023 10:16:56 +0000
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-Subject: [Intel-xe] [PATCH] drm/xe: Fix kunit integration due to missing
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Firefox/102.0 Thunderbird/102.8.0
+To: Lucas De Marchi <lucas.demarchi@intel.com>, intel-xe@lists.freedesktop.org
+References: <20230223050035.1009541-1-lucas.demarchi@intel.com>
+Content-Language: en-GB
+From: Matthew Auld <matthew.auld@intel.com>
+In-Reply-To: <20230223050035.1009541-1-lucas.demarchi@intel.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+Subject: Re: [Intel-xe] [PATCH] drm/xe: Fix kunit integration due to missing
  prototypes
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -55,181 +60,17 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Cc: Lucas De Marchi <lucas.demarchi@intel.com>,
- Matthew Auld <matthew.auld@intel.com>
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-In order to avoid  -Werror=missing-prototypes, add the prototypes
-in a separate tests/<test-name>_test.h file that is included by both
-the implementation (tests/xe_<testname>.c, injected in xe.ko) and the
-kunit module (tests/xe_<testname>_test.c -> xe-<testname>-test.ko).
-
-v2: Add header and don't add ifdef to files that are already not built
-when not using kunit (Matt Auld)
-
-Signed-off-by: Lucas De Marchi <lucas.demarchi@intel.com>
----
- drivers/gpu/drm/xe/tests/xe_bo.c           |  2 ++
- drivers/gpu/drm/xe/tests/xe_bo_test.c      |  5 ++---
- drivers/gpu/drm/xe/tests/xe_bo_test.h      | 14 ++++++++++++++
- drivers/gpu/drm/xe/tests/xe_dma_buf.c      |  2 ++
- drivers/gpu/drm/xe/tests/xe_dma_buf_test.c |  4 ++--
- drivers/gpu/drm/xe/tests/xe_dma_buf_test.h | 13 +++++++++++++
- drivers/gpu/drm/xe/tests/xe_migrate.c      |  2 ++
- drivers/gpu/drm/xe/tests/xe_migrate_test.c |  4 ++--
- drivers/gpu/drm/xe/tests/xe_migrate_test.h | 13 +++++++++++++
- 9 files changed, 52 insertions(+), 7 deletions(-)
- create mode 100644 drivers/gpu/drm/xe/tests/xe_bo_test.h
- create mode 100644 drivers/gpu/drm/xe/tests/xe_dma_buf_test.h
- create mode 100644 drivers/gpu/drm/xe/tests/xe_migrate_test.h
-
-diff --git a/drivers/gpu/drm/xe/tests/xe_bo.c b/drivers/gpu/drm/xe/tests/xe_bo.c
-index 87ac21cc8ca9..f03fb907b59a 100644
---- a/drivers/gpu/drm/xe/tests/xe_bo.c
-+++ b/drivers/gpu/drm/xe/tests/xe_bo.c
-@@ -5,6 +5,8 @@
- 
- #include <kunit/test.h>
- 
-+#include "tests/xe_bo_test.h"
-+
- #include "xe_bo_evict.h"
- #include "xe_pci.h"
- 
-diff --git a/drivers/gpu/drm/xe/tests/xe_bo_test.c b/drivers/gpu/drm/xe/tests/xe_bo_test.c
-index c8fa29b0b3b2..92dda4fca21b 100644
---- a/drivers/gpu/drm/xe/tests/xe_bo_test.c
-+++ b/drivers/gpu/drm/xe/tests/xe_bo_test.c
-@@ -3,10 +3,9 @@
-  * Copyright © 2022 Intel Corporation
-  */
- 
--#include <kunit/test.h>
-+#include "xe_bo_test.h"
- 
--void xe_ccs_migrate_kunit(struct kunit *test);
--void xe_bo_evict_kunit(struct kunit *test);
-+#include <kunit/test.h>
- 
- static struct kunit_case xe_bo_tests[] = {
- 	KUNIT_CASE(xe_ccs_migrate_kunit),
-diff --git a/drivers/gpu/drm/xe/tests/xe_bo_test.h b/drivers/gpu/drm/xe/tests/xe_bo_test.h
-new file mode 100644
-index 000000000000..d751a618c0c8
---- /dev/null
-+++ b/drivers/gpu/drm/xe/tests/xe_bo_test.h
-@@ -0,0 +1,14 @@
-+/* SPDX-License-Identifier: GPL-2.0 AND MIT */
-+/*
-+ * Copyright © 2023 Intel Corporation
-+ */
-+
-+#ifndef __XE_BO_TEST_H__
-+#define __XE_BO_TEST_H__
-+
-+struct kunit;
-+
-+void xe_ccs_migrate_kunit(struct kunit *test);
-+void xe_bo_evict_kunit(struct kunit *test);
-+
-+#endif
-diff --git a/drivers/gpu/drm/xe/tests/xe_dma_buf.c b/drivers/gpu/drm/xe/tests/xe_dma_buf.c
-index 615d22e3f731..e66a8361ae1f 100644
---- a/drivers/gpu/drm/xe/tests/xe_dma_buf.c
-+++ b/drivers/gpu/drm/xe/tests/xe_dma_buf.c
-@@ -5,6 +5,8 @@
- 
- #include <kunit/test.h>
- 
-+#include "tests/xe_dma_buf_test.h"
-+
- #include "xe_pci.h"
- 
- static bool p2p_enabled(struct dma_buf_test_params *params)
-diff --git a/drivers/gpu/drm/xe/tests/xe_dma_buf_test.c b/drivers/gpu/drm/xe/tests/xe_dma_buf_test.c
-index 7bb292da1193..a1adfd1e1605 100644
---- a/drivers/gpu/drm/xe/tests/xe_dma_buf_test.c
-+++ b/drivers/gpu/drm/xe/tests/xe_dma_buf_test.c
-@@ -3,9 +3,9 @@
-  * Copyright © 2022 Intel Corporation
-  */
- 
--#include <kunit/test.h>
-+#include "xe_dma_buf_test.h"
- 
--void xe_dma_buf_kunit(struct kunit *test);
-+#include <kunit/test.h>
- 
- static struct kunit_case xe_dma_buf_tests[] = {
- 	KUNIT_CASE(xe_dma_buf_kunit),
-diff --git a/drivers/gpu/drm/xe/tests/xe_dma_buf_test.h b/drivers/gpu/drm/xe/tests/xe_dma_buf_test.h
-new file mode 100644
-index 000000000000..4e9a8bef5751
---- /dev/null
-+++ b/drivers/gpu/drm/xe/tests/xe_dma_buf_test.h
-@@ -0,0 +1,13 @@
-+/* SPDX-License-Identifier: GPL-2.0 AND MIT */
-+/*
-+ * Copyright © 2023 Intel Corporation
-+ */
-+
-+#ifndef __XE_DMA_BUF_TEST_H__
-+#define __XE_DMA_BUF_TEST_H__
-+
-+struct kunit;
-+
-+void xe_dma_buf_kunit(struct kunit *test);
-+
-+#endif
-diff --git a/drivers/gpu/drm/xe/tests/xe_migrate.c b/drivers/gpu/drm/xe/tests/xe_migrate.c
-index 03a60d5b42f1..0de17e90aba9 100644
---- a/drivers/gpu/drm/xe/tests/xe_migrate.c
-+++ b/drivers/gpu/drm/xe/tests/xe_migrate.c
-@@ -5,6 +5,8 @@
- 
- #include <kunit/test.h>
- 
-+#include "tests/xe_migrate_test.h"
-+
- #include "xe_pci.h"
- 
- static bool sanity_fence_failed(struct xe_device *xe, struct dma_fence *fence,
-diff --git a/drivers/gpu/drm/xe/tests/xe_migrate_test.c b/drivers/gpu/drm/xe/tests/xe_migrate_test.c
-index ad779e2bd071..d6be360c3b6d 100644
---- a/drivers/gpu/drm/xe/tests/xe_migrate_test.c
-+++ b/drivers/gpu/drm/xe/tests/xe_migrate_test.c
-@@ -3,9 +3,9 @@
-  * Copyright © 2022 Intel Corporation
-  */
- 
--#include <kunit/test.h>
-+#include "xe_migrate_test.h"
- 
--void xe_migrate_sanity_kunit(struct kunit *test);
-+#include <kunit/test.h>
- 
- static struct kunit_case xe_migrate_tests[] = {
- 	KUNIT_CASE(xe_migrate_sanity_kunit),
-diff --git a/drivers/gpu/drm/xe/tests/xe_migrate_test.h b/drivers/gpu/drm/xe/tests/xe_migrate_test.h
-new file mode 100644
-index 000000000000..db1f8ef035bb
---- /dev/null
-+++ b/drivers/gpu/drm/xe/tests/xe_migrate_test.h
-@@ -0,0 +1,13 @@
-+/* SPDX-License-Identifier: GPL-2.0 AND MIT */
-+/*
-+ * Copyright © 2023 Intel Corporation
-+ */
-+
-+#ifndef __XE_MIGRATE_TEST_H__
-+#define __XE_MIGRATE_TEST_H__
-+
-+struct kunit;
-+
-+void xe_migrate_sanity_kunit(struct kunit *test);
-+
-+#endif
--- 
-2.39.0
-
+On 23/02/2023 05:00, Lucas De Marchi wrote:
+> In order to avoid  -Werror=missing-prototypes, add the prototypes
+> in a separate tests/<test-name>_test.h file that is included by both
+> the implementation (tests/xe_<testname>.c, injected in xe.ko) and the
+> kunit module (tests/xe_<testname>_test.c -> xe-<testname>-test.ko).
+> 
+> v2: Add header and don't add ifdef to files that are already not built
+> when not using kunit (Matt Auld)
+> 
+> Signed-off-by: Lucas De Marchi <lucas.demarchi@intel.com>
+Reviewed-by: Matthew Auld <matthew.auld@intel.com>
