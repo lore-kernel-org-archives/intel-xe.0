@@ -4,51 +4,47 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 09329C636D6
-	for <intel-xe@archiver.kernel.org>; Thu, 23 Feb 2023 10:17:02 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4BA60C61DA4
+	for <intel-xe@archiver.kernel.org>; Thu, 23 Feb 2023 10:58:31 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A5C6010E03C;
-	Thu, 23 Feb 2023 10:17:02 +0000 (UTC)
-Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
- by gabe.freedesktop.org (Postfix) with ESMTPS id F1DF510E03C
- for <intel-xe@lists.freedesktop.org>; Thu, 23 Feb 2023 10:17:00 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 13D0D10E4BE;
+	Thu, 23 Feb 2023 10:58:31 +0000 (UTC)
+Received: from mga06.intel.com (mga06b.intel.com [134.134.136.31])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1727610E050;
+ Thu, 23 Feb 2023 10:58:27 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1677147420; x=1708683420;
- h=message-id:date:mime-version:subject:to:cc:references:
- from:in-reply-to:content-transfer-encoding;
- bh=KtvxBy/KCNCAtLWUXv6BdXFOB6A3YpqF6auowENBJEk=;
- b=K8fL4prpVArNxy3W7NNRiD7XS7Oy04S9z2/RckNi1EpPvZgapdio3nKz
- 0XMlx9W6kTA3VLQidOa78vtuP66jUv4m1uKq/IRqX44erpzOQ5KNMiWna
- EETPIItb8BGDYK0Pd9xfUdg3y0qVa64r6QohFG0n2Um4ugLyTGV4fZMRE
- X22jT0MURESmWKsgGPOertcjn8tzFaMUWNWsbaAf5yrsde8inAnVAPZFz
- 6cql39JYL/7nCU/fUaFeXy7ZoEcEP90iadUrchD5R4tFvdJ6aYaohhnxz
- +W26UhGaC0Na38UCNuJqMtp6TTEJZeLLewJRBHzKtVS4m84S0CBY9rA14 Q==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10629"; a="397867547"
-X-IronPort-AV: E=Sophos;i="5.97,320,1669104000"; d="scan'208";a="397867547"
-Received: from orsmga004.jf.intel.com ([10.7.209.38])
- by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 23 Feb 2023 02:17:00 -0800
-X-IronPort-AV: E=McAfee;i="6500,9779,10629"; a="796251798"
-X-IronPort-AV: E=Sophos;i="5.97,320,1669104000"; d="scan'208";a="796251798"
-Received: from pwozniak-mobl1.ger.corp.intel.com (HELO [10.252.9.210])
- ([10.252.9.210])
- by orsmga004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 23 Feb 2023 02:16:59 -0800
-Message-ID: <d2aeae69-95f1-1576-9dbd-71d48e8562e3@intel.com>
-Date: Thu, 23 Feb 2023 10:16:56 +0000
+ t=1677149907; x=1708685907;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=kr4Gibachqc50LHT0/5OHvALc9AoVbDI9Bb5Gx47wNE=;
+ b=ZOiXpXm8Zzoah23xY54odcC3WUOPWludeslAPqA/JbkGtoPsv7VjiHJQ
+ PUdAvybyB8mjtl1woRyjL5/i4bIVQuNmSZrRkouZ5vk+hfLyDu02FNfeg
+ DqPf+5DQLRLFGsHYVGb3X6ce7wKaGSJvD3+dS/xNwLFymZoEzOcLvkJy8
+ L9b89MKgVa4055DDaSUMQ2X1GqitvFgoSJK+jHVOdifLCwoAUlj7qNImx
+ 3Pd5C+IzIiPcIuvkuz/4v88gJkQR7/j/OXG4DKodE+OBjzcUuT3631QWR
+ h8G9W7wbWd8gyA0991ZuuLuCr5w6M9KcfloNMvlqZOTvNtmO8WxxOaGj7 A==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10629"; a="395665800"
+X-IronPort-AV: E=Sophos;i="5.97,320,1669104000"; d="scan'208";a="395665800"
+Received: from fmsmga004.fm.intel.com ([10.253.24.48])
+ by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 23 Feb 2023 02:58:26 -0800
+X-IronPort-AV: E=McAfee;i="6500,9779,10629"; a="741225466"
+X-IronPort-AV: E=Sophos;i="5.97,320,1669104000"; d="scan'208";a="741225466"
+Received: from skallurr-mobl1.ger.corp.intel.com (HELO
+ thellstr-mobl1.intel.com) ([10.249.254.84])
+ by fmsmga004-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 23 Feb 2023 02:58:24 -0800
+From: =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>
+To: dri-devel@lists.freedesktop.org
+Date: Thu, 23 Feb 2023 11:57:42 +0100
+Message-Id: <20230223105747.4719-1-thomas.hellstrom@linux.intel.com>
+X-Mailer: git-send-email 2.38.1
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Firefox/102.0 Thunderbird/102.8.0
-To: Lucas De Marchi <lucas.demarchi@intel.com>, intel-xe@lists.freedesktop.org
-References: <20230223050035.1009541-1-lucas.demarchi@intel.com>
-Content-Language: en-GB
-From: Matthew Auld <matthew.auld@intel.com>
-In-Reply-To: <20230223050035.1009541-1-lucas.demarchi@intel.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-Subject: Re: [Intel-xe] [PATCH] drm/xe: Fix kunit integration due to missing
- prototypes
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+Subject: [Intel-xe] [PATCH 0/3] drm/helpers: Make the suballocation manager
+ drm generic
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -60,17 +56,49 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Cc: Daniel Vetter <daniel.vetter@ffwll.ch>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Christian Koenig <christian.koenig@amd.com>, Dave Airlie <airlied@redhat.com>,
+ intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On 23/02/2023 05:00, Lucas De Marchi wrote:
-> In order to avoid  -Werror=missing-prototypes, add the prototypes
-> in a separate tests/<test-name>_test.h file that is included by both
-> the implementation (tests/xe_<testname>.c, injected in xe.ko) and the
-> kunit module (tests/xe_<testname>_test.c -> xe-<testname>-test.ko).
-> 
-> v2: Add header and don't add ifdef to files that are already not built
-> when not using kunit (Matt Auld)
-> 
-> Signed-off-by: Lucas De Marchi <lucas.demarchi@intel.com>
-Reviewed-by: Matthew Auld <matthew.auld@intel.com>
+This series (or at least the suballocator helper) is a prerequisite
+for the new Xe driver.
+
+There was an unresolved issue when the series was last up for review,
+and that was the per allocation aligment. Last message was from
+Maarten Lankhorst arguing that the larger per-driver alignment used
+would only incur a small memory cost. This new variant resolves that.
+
+The generic suballocator has been tested with the Xe driver, and a
+kunit test is under development.
+The amd- and radeon adaptations are only compile-tested.
+
+Maarten Lankhorst (3):
+  drm/suballoc: Extract amdgpu_sa.c as generic suballocation helper
+  drm/amd: Convert amdgpu to use suballocation helper.
+  drm/radeon: Use the drm suballocation manager implementation.
+
+ drivers/gpu/drm/Kconfig                    |   5 +
+ drivers/gpu/drm/Makefile                   |   3 +
+ drivers/gpu/drm/amd/amdgpu/Kconfig         |   1 +
+ drivers/gpu/drm/amd/amdgpu/amdgpu.h        |  26 +-
+ drivers/gpu/drm/amd/amdgpu/amdgpu_ib.c     |   5 +-
+ drivers/gpu/drm/amd/amdgpu/amdgpu_object.h |  23 +-
+ drivers/gpu/drm/amd/amdgpu/amdgpu_ring.h   |   3 +-
+ drivers/gpu/drm/amd/amdgpu/amdgpu_sa.c     | 324 +--------------
+ drivers/gpu/drm/drm_suballoc.c             | 457 +++++++++++++++++++++
+ drivers/gpu/drm/radeon/radeon.h            |  55 +--
+ drivers/gpu/drm/radeon/radeon_ib.c         |  12 +-
+ drivers/gpu/drm/radeon/radeon_object.h     |  25 +-
+ drivers/gpu/drm/radeon/radeon_sa.c         | 316 ++------------
+ drivers/gpu/drm/radeon/radeon_semaphore.c  |   4 +-
+ include/drm/drm_suballoc.h                 | 106 +++++
+ 15 files changed, 672 insertions(+), 693 deletions(-)
+ create mode 100644 drivers/gpu/drm/drm_suballoc.c
+ create mode 100644 include/drm/drm_suballoc.h
+
+-- 
+2.34.1
+
