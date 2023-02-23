@@ -4,58 +4,44 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3D4FCC61DA4
-	for <intel-xe@archiver.kernel.org>; Thu, 23 Feb 2023 18:50:46 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id CB7DDC636D7
+	for <intel-xe@archiver.kernel.org>; Thu, 23 Feb 2023 18:57:54 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 05FCD890EB;
-	Thu, 23 Feb 2023 18:50:46 +0000 (UTC)
-Received: from mail-oi1-x22d.google.com (mail-oi1-x22d.google.com
- [IPv6:2607:f8b0:4864:20::22d])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6B1EA10E0E7;
- Thu, 23 Feb 2023 18:50:44 +0000 (UTC)
-Received: by mail-oi1-x22d.google.com with SMTP id w7so13708148oik.13;
- Thu, 23 Feb 2023 10:50:44 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20210112;
- h=content-transfer-encoding:cc:to:subject:message-id:date:from
- :in-reply-to:references:mime-version:from:to:cc:subject:date
- :message-id:reply-to;
- bh=ARZg8CI0DmkxcAqakyNYDp5pNgWzgrAE0Y0kgWEl3S8=;
- b=piFKuwhzWdJUMIIQd02K8KLtj1aM6ocgBUJiRCQkBe1OFfWXkAyyNiZJveN4ZL6Yz3
- ffh55ELBSjJvWyhLjeRgRWND8ZYXdNCEunGlPIH093BlmknN6vCXavj6mJG8AEp+88xR
- Q6LRmW2TkY9Y98ki1KjlLu3u00/hoDSAosQgDpjLkuZRIOcrC/8SX8SxeL1DyDs+3+cb
- QHdJlq7gFzW3LAhtbUDdlSSs0Q9bzViD3TsRk9Nv4f+RiDTqiLxOF8wPwXhMw+DT0LYS
- VT+Hg075gGCGmd7jWKnBcTFxsWs/er3sGwPBApKpb40V61ozA0F+o08Dro11Gh9I9adf
- iOIA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20210112;
- h=content-transfer-encoding:cc:to:subject:message-id:date:from
- :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
- :subject:date:message-id:reply-to;
- bh=ARZg8CI0DmkxcAqakyNYDp5pNgWzgrAE0Y0kgWEl3S8=;
- b=OD8tk3QK71Y6xIEDY26AZ7Q+dxFHEi90DTlVZCZ/lJa5vLLYMgCfMULs6CaY55qYeU
- 1wOJbGN2gt2sAsHn3dFZBFLb7zDgaMTogRT4gDYl/crWyD8wB2Bd7M/hv9jWr05kTUDQ
- tCvxKHcum+LhhQJCJXs3EuJMhr50XWcnFR9W7FFEnHUJfXaiYny+CAsH+VZ7i1kgp88G
- ini5N63hMI2ak9ZcExCNl3wlquOUIdPpyNtFruU3HbknEeBCsxGSkUGgfJdIbaGDNScX
- EFmzF3gBnc97mUcVSGtar0sEB1SUZ0skRG+YPpiLadK3aGuvhYdJjw4ZR9UqnccHS7Qo
- hQ4Q==
-X-Gm-Message-State: AO0yUKXNI/LrEXK9OMmA9onOTP4E4KW5FCPU+RdYeo0aFg9KivyUZtnQ
- E7WXAkFIbioGx2Roh+FXvH9q1XWr7tlPZEc0GJY=
-X-Google-Smtp-Source: AK7set9XAWuVurSF+q0ktwhVjKh68jhcdUgJm4/ILNF2HLzPSPqvFffvVRPyKJ/hTS7e9e5YWjUmsAroqhugyHs2CdQ=
-X-Received: by 2002:a54:4019:0:b0:37f:a2d3:db8d with SMTP id
- x25-20020a544019000000b0037fa2d3db8dmr260469oie.8.1677178242062; Thu, 23 Feb
- 2023 10:50:42 -0800 (PST)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9DF8310E04C;
+	Thu, 23 Feb 2023 18:57:54 +0000 (UTC)
+Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1532410E04C
+ for <intel-xe@lists.freedesktop.org>; Thu, 23 Feb 2023 18:57:52 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1677178673; x=1708714673;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=UsY5SMCXvMMhXDpuqSnue16I4tiXCDwLq6G4tEU4iIU=;
+ b=S1Nr0U0nsnh/r8cixrkfaiT9Fs5ZSZ72xlpqkAE4xavNY4hh0nYVhj30
+ Hk7CCMsj/ykz2SLc/m46BvZ0FMCB008qlFLjdJniKfl6BKSBdLtFgy2GX
+ +oEuhWDYyYAZY+wV+rOJU1FGE2rOvDpnyVOIL5vv+ulvLdpB9krEOl8M/
+ ITQdSTJ0d0mNUDzR4WOlgy5RoYj3WQ/ww0Td6C+gdV7BER1NBs3ZBO7gh
+ H+r7AJuPdK1lcBoglfzK/fcTiOPjtV0DZvidCT6+S3sZtL2YGP3BxSuXH
+ wXtCWZGsoRkg8AZatYb3m7qmKa7K94eaRmtmVJ8QlAkvNM7japEuDxFz5 A==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10630"; a="360793747"
+X-IronPort-AV: E=Sophos;i="5.97,322,1669104000"; d="scan'208";a="360793747"
+Received: from fmsmga002.fm.intel.com ([10.253.24.26])
+ by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 23 Feb 2023 10:57:51 -0800
+X-IronPort-AV: E=McAfee;i="6500,9779,10630"; a="782018595"
+X-IronPort-AV: E=Sophos;i="5.97,322,1669104000"; d="scan'208";a="782018595"
+Received: from mdroper-desk1.fm.intel.com ([10.1.27.134])
+ by fmsmga002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 23 Feb 2023 10:57:51 -0800
+From: Matt Roper <matthew.d.roper@intel.com>
+To: intel-xe@lists.freedesktop.org
+Date: Thu, 23 Feb 2023 10:57:33 -0800
+Message-Id: <20230223185740.3356127-1-matthew.d.roper@intel.com>
+X-Mailer: git-send-email 2.39.1
 MIME-Version: 1.0
-References: <20230216162729.219979-1-thomas.hellstrom@linux.intel.com>
- <Y+6PqOdRf+vu8rZc@phenom.ffwll.local>
- <699c33d7-6788-99ab-6787-1cebff0bf70e@linux.intel.com>
-In-Reply-To: <699c33d7-6788-99ab-6787-1cebff0bf70e@linux.intel.com>
-From: Alex Deucher <alexdeucher@gmail.com>
-Date: Thu, 23 Feb 2023 13:50:30 -0500
-Message-ID: <CADnq5_Mfp4pCnVcsWn_vMO-hWcMhH_yb8MHccyp_jEL=XxgZNg@mail.gmail.com>
-To: =?UTF-8?Q?Thomas_Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-Subject: Re: [Intel-xe] [PATCH 0/1] drm: Add a gpu page-table walker
+Content-Transfer-Encoding: 8bit
+Subject: [Intel-xe] [PATCH v2 0/7] Assorted MOCS updates
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -67,100 +53,47 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Cc: Daniel Vetter <daniel.vetter@ffwll.ch>, intel-gfx@lists.freedesktop.org,
- dri-devel@lists.freedesktop.org, Daniel Vetter <daniel@ffwll.ch>,
- Dave Airlie <airlied@redhat.com>, intel-xe@lists.freedesktop.org
+Cc: Lucas De Marchi <lucas.demarchi@intel.com>, matthew.d.roper@intel.com
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Thu, Feb 23, 2023 at 10:03 AM Thomas Hellstr=C3=B6m
-<thomas.hellstrom@linux.intel.com> wrote:
->
-> Hi, Daniel,
->
-> On 2/16/23 21:18, Daniel Vetter wrote:
-> > On Thu, Feb 16, 2023 at 05:27:28PM +0100, Thomas Hellstr=C3=B6m wrote:
-> >> A slightly unusual cover letter for a single patch.
-> >>
-> >> The page table walker is currently used by the xe driver only,
-> >> but the code is generic so we can be good citizens and add it to drm
-> >> as a helper, for possible use by other drivers,
-> >> If so we can merge the commit when we merge the xe driver.
-> >>
-> >> The question raised here is
-> >> *) Should it be a generic drm helper or xe-specific with changed
-> >>     prefixes?
-> > I think if there's some other drivers interested in using this, then th=
-is
-> > sounds like a good idea. Maybe more useful if it's also integrated into
-> > the vm/vma helpers that are being discussed as an optional part?
-> >
-> > Maybe some good old sales pitching here to convince people would be goo=
-d.
-> >
-> > Maybe one of the new accel drivers is interested in this too?
->
-> Thanks for your thoughts on this. Yeah, I think it's a bit awkward to
-> push for having code generic when there is only one user, and the
-> prospect of having other drivers rewrite their page-table building code
-> based on this helper in the near future is probably small. Perhaps more
-> of interest to new drivers. I think what will happen otherwise is that
-> during some future cleanup this will be pushed down to xe claiming it's
-> the only user.
->
-> I wonder whether it might be an idea to maintain a small document where
-> driver writers can list suggestions for code that could be lifted to
-> core drm and be reused by others. That way both reviewers and writers of
-> other drivers can keep an eye on that document and use it to avoid
-> duplicating code. The procedure would then be to lift it to core drm and
-> fix up prefixes as soon as we have two or more users.
->
-> Thoughts?
+The Xe MOCS code is heavily modelled after the equivalent i915 code, but
+there are a few items that are not appropriate for the Xe driver.
+Philippe's patch to add the MTL-specific table is also included.
 
-FWIW, when we originally wrote the GPU scheduler it was part of
-amdgpu, but we consciously kept any AMD-isms out of it so it could be
-lifted up to a core component when another user came along.  Maybe
-some comments in the top of those files to that effect to maintain the
-separation.
+As a follow-up, I'd like to rework Xe's MOCS to just use the xe_reg_sr
+framework.  But that's a bit more invasive, so I'll save that for a
+future series.
 
-Alex
+v2:
+ - Add a sanity check for uninitialized info->unused_entries_index
+ - Tweak some commit messages
+ - Don't overallocate GuC regset for platforms that don't need
+   Wa_1607983814.
+ - For platforms that do need Wa_1607983814, only add the LNCF MOCS
+   registers to the render engine's save/restore list.
+ - Drop HAS_RENDER_L3CC flag.
 
+Cc: Lucas De Marchi <lucas.demarchi@intel.com>
 
->
-> Thomas
->
->
-> >
-> >> *) If a drm helper, should we use a config option?
-> > I am no fan of Kconfig things tbh. Maybe just include it in the vma
-> > helpers, or perhaps we want to do a drm-accel-helpers with gem helpers,
-> > drm/sched, this one here, vm/vma helpers or whatever they will be and s=
-o
-> > on? Kinda like we have modeset helpers.
-> >
-> > I'd definitely not go for a Kconfig per individual file, that's just
-> > excessive.
-> > -Daniel
-> >
-> >> For usage examples, see xe_pt.c
-> >> https://gitlab.freedesktop.org/drm/xe/kernel/-/blob/drm-xe-next/driver=
-s/gpu/drm/xe/xe_pt.c
-> >>
-> >> Thanks,
-> >> Thomas
-> >>
-> >> Thomas Hellstr=C3=B6m (1):
-> >>    drm: Add a gpu page-table walker helper
-> >>
-> >>   drivers/gpu/drm/Makefile      |   1 +
-> >>   drivers/gpu/drm/drm_pt_walk.c | 159 ++++++++++++++++++++++++++++++++=
-+
-> >>   include/drm/drm_pt_walk.h     | 161 ++++++++++++++++++++++++++++++++=
-++
-> >>   3 files changed, 321 insertions(+)
-> >>   create mode 100644 drivers/gpu/drm/drm_pt_walk.c
-> >>   create mode 100644 include/drm/drm_pt_walk.h
-> >>
-> >> --
-> >> 2.34.1
-> >>
+Matt Roper (6):
+  drm/xe/mocs: Drop unwanted TGL table
+  drm/xe/mocs: Add missing RKL handling
+  drm/xe/mocs: Drop xe_mocs_info_index
+  drm/xe/mocs: Drop duplicate assignment of uc_index
+  drm/xe/mocs: LNCF MOCS settings only need to be restored on pre-Xe_HP
+  drm/xe/mocs: Drop HAS_RENDER_L3CC flag
+
+Philippe Lecluse (1):
+  drm/xe/mocs: add MTL mocs
+
+ drivers/gpu/drm/xe/xe_execlist.c   |   2 +-
+ drivers/gpu/drm/xe/xe_guc_ads.c    |  20 +++-
+ drivers/gpu/drm/xe/xe_guc_submit.c |   1 -
+ drivers/gpu/drm/xe/xe_mocs.c       | 178 +++++++++++++----------------
+ drivers/gpu/drm/xe/xe_mocs.h       |   1 -
+ 5 files changed, 99 insertions(+), 103 deletions(-)
+
+-- 
+2.39.1
+
