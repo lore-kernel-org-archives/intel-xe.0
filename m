@@ -4,49 +4,51 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id C3C78C64ED6
-	for <intel-xe@archiver.kernel.org>; Thu, 23 Feb 2023 14:55:11 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 60C14C636D6
+	for <intel-xe@archiver.kernel.org>; Thu, 23 Feb 2023 15:03:19 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9DE4B10EBCC;
-	Thu, 23 Feb 2023 14:55:11 +0000 (UTC)
-Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 85CCC10EBC6;
- Thu, 23 Feb 2023 14:55:08 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 345D210E4D0;
+	Thu, 23 Feb 2023 15:03:19 +0000 (UTC)
+Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 117E710E4D0;
+ Thu, 23 Feb 2023 15:03:17 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1677164108; x=1708700108;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=URU63DDasHf0t/PKY2y8blCdIsylkVZDXsFFXviShro=;
- b=MVhq0CCROacmxQ2Bs9hHmeTVlpHYztasf37hGvS1ipA4curBw+iF7xfj
- ktyTbc6Xd/STQKPrhOD2DCG7i7jB8ZXS+vmZcqecuRjgLJdrkarWPvdRv
- 9WbsZ5jXzfpPR/J6swy350l5U95ale0PFr8RPq8KNbP5APnimQtpnZH/R
- YbomWYpvwnjaf+nHFDD8g2oUqtnRIjntirSEHeaHP62KAfiVQRbPgG4LC
- zW9JLXmEmj/9TNElvz7yDtm7TsSv9IS6/aYovJyAFi9yOT68r98F36CUs
- N1xX388/ZPFHDbQECE+VAGZUsRVom1K3DA3aaEaE6o3Bzyfssc3yA+pRP Q==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10630"; a="321392873"
-X-IronPort-AV: E=Sophos;i="5.97,320,1669104000"; d="scan'208";a="321392873"
-Received: from orsmga003.jf.intel.com ([10.7.209.27])
- by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 23 Feb 2023 06:26:17 -0800
-X-IronPort-AV: E=McAfee;i="6500,9779,10630"; a="622349657"
-X-IronPort-AV: E=Sophos;i="5.97,320,1669104000"; d="scan'208";a="622349657"
-Received: from skallurr-mobl1.ger.corp.intel.com (HELO
- thellstr-mobl1.intel.com) ([10.249.254.84])
- by orsmga003-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 23 Feb 2023 06:26:14 -0800
-From: =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>
-To: dri-devel@lists.freedesktop.org
-Date: Thu, 23 Feb 2023 15:25:31 +0100
-Message-Id: <20230223142531.8446-4-thomas.hellstrom@linux.intel.com>
-X-Mailer: git-send-email 2.38.1
-In-Reply-To: <20230223142531.8446-1-thomas.hellstrom@linux.intel.com>
-References: <20230223142531.8446-1-thomas.hellstrom@linux.intel.com>
+ t=1677164597; x=1708700597;
+ h=message-id:date:mime-version:subject:to:cc:references:
+ from:in-reply-to:content-transfer-encoding;
+ bh=IzuNdPYAVd3+39vyxhYs5eAdwzuC2CS8j1lSuOR6ErM=;
+ b=ZawOOFa9aTbmzlDp45qoIrhtCWeznaMM15jiZ2m1xTM6hXQb08IL1l47
+ HXiq2hVtfwbGLQxWLynFbH2rD8ODLP3reKh5ZJK1u2yOrrKNU7ouvnRhy
+ IdSs2nFujSu+UVCy4UAZvAtQFYkaCmCUXz6UCAy8TwkE/4iFUtnJL4iXK
+ wkcoWsbAgGeKY6JC6/gUJx7eg/89m4iJ6neKC1cYQO3+2HhiR0VSqevs2
+ qY1Gx0TvZxuLwIY0dZAlM0Qpm8rxwHpH1b030ukPMWRHgBWtL2wy8EL+A
+ q7UzXudq9WH0tgT6R0ZdGuY3LAVENUNbaUVga7mSm15po4+M1VB7B5PIe Q==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10630"; a="316973119"
+X-IronPort-AV: E=Sophos;i="5.97,320,1669104000"; d="scan'208";a="316973119"
+Received: from fmsmga006.fm.intel.com ([10.253.24.20])
+ by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 23 Feb 2023 06:38:25 -0800
+X-IronPort-AV: E=McAfee;i="6500,9779,10630"; a="918010962"
+X-IronPort-AV: E=Sophos;i="5.97,320,1669104000"; d="scan'208";a="918010962"
+Received: from skallurr-mobl1.ger.corp.intel.com (HELO [10.249.254.84])
+ ([10.249.254.84])
+ by fmsmga006-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 23 Feb 2023 06:38:21 -0800
+Message-ID: <699c33d7-6788-99ab-6787-1cebff0bf70e@linux.intel.com>
+Date: Thu, 23 Feb 2023 15:38:19 +0100
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.4.0
+Content-Language: en-US
+To: Daniel Vetter <daniel@ffwll.ch>
+References: <20230216162729.219979-1-thomas.hellstrom@linux.intel.com>
+ <Y+6PqOdRf+vu8rZc@phenom.ffwll.local>
+From: =?UTF-8?Q?Thomas_Hellstr=c3=b6m?= <thomas.hellstrom@linux.intel.com>
+In-Reply-To: <Y+6PqOdRf+vu8rZc@phenom.ffwll.local>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-xe] [PATCH v3 3/3] drm/radeon: Use the drm suballocation
- manager implementation.
+Subject: Re: [Intel-xe] [PATCH 0/1] drm: Add a gpu page-table walker
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -59,624 +61,80 @@ List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
 Cc: Daniel Vetter <daniel.vetter@ffwll.ch>, intel-gfx@lists.freedesktop.org,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>,
- Dave Airlie <airlied@redhat.com>, intel-xe@lists.freedesktop.org
+ intel-xe@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ Dave Airlie <airlied@redhat.com>
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-From: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
+Hi, Daniel,
 
-Use the generic suballocation helper for radeon.
+On 2/16/23 21:18, Daniel Vetter wrote:
+> On Thu, Feb 16, 2023 at 05:27:28PM +0100, Thomas Hellström wrote:
+>> A slightly unusual cover letter for a single patch.
+>>
+>> The page table walker is currently used by the xe driver only,
+>> but the code is generic so we can be good citizens and add it to drm
+>> as a helper, for possible use by other drivers,
+>> If so we can merge the commit when we merge the xe driver.
+>>
+>> The question raised here is
+>> *) Should it be a generic drm helper or xe-specific with changed
+>>     prefixes?
+> I think if there's some other drivers interested in using this, then this
+> sounds like a good idea. Maybe more useful if it's also integrated into
+> the vm/vma helpers that are being discussed as an optional part?
+>
+> Maybe some good old sales pitching here to convince people would be good.
+>
+> Maybe one of the new accel drivers is interested in this too?
 
-v3:
-- Select the suballoc helper in Kconfig (Thomas).
+Thanks for your thoughts on this. Yeah, I think it's a bit awkward to 
+push for having code generic when there is only one user, and the 
+prospect of having other drivers rewrite their page-table building code 
+based on this helper in the near future is probably small. Perhaps more 
+of interest to new drivers. I think what will happen otherwise is that 
+during some future cleanup this will be pushed down to xe claiming it's 
+the only user.
 
-Signed-off-by: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
-Co-developed-by: Thomas Hellström <thomas.hellstrom@linux.intel.com>
-Signed-off-by: Thomas Hellström <thomas.hellstrom@linux.intel.com>
-Reviewed-by: Christian König <christian.koenig@amd.com>
----
- drivers/gpu/drm/radeon/Kconfig            |   1 +
- drivers/gpu/drm/radeon/radeon.h           |  55 +---
- drivers/gpu/drm/radeon/radeon_ib.c        |  12 +-
- drivers/gpu/drm/radeon/radeon_object.h    |  25 +-
- drivers/gpu/drm/radeon/radeon_sa.c        | 316 ++--------------------
- drivers/gpu/drm/radeon/radeon_semaphore.c |   4 +-
- 6 files changed, 57 insertions(+), 356 deletions(-)
+I wonder whether it might be an idea to maintain a small document where 
+driver writers can list suggestions for code that could be lifted to 
+core drm and be reused by others. That way both reviewers and writers of 
+other drivers can keep an eye on that document and use it to avoid 
+duplicating code. The procedure would then be to lift it to core drm and 
+fix up prefixes as soon as we have two or more users.
 
-diff --git a/drivers/gpu/drm/radeon/Kconfig b/drivers/gpu/drm/radeon/Kconfig
-index 62a596d3a891..e19d77d58810 100644
---- a/drivers/gpu/drm/radeon/Kconfig
-+++ b/drivers/gpu/drm/radeon/Kconfig
-@@ -8,6 +8,7 @@ config DRM_RADEON
- 	select DRM_DISPLAY_DP_HELPER
- 	select DRM_DISPLAY_HELPER
-         select DRM_KMS_HELPER
-+	select DRM_SUBALLOC_HELPER
-         select DRM_TTM
- 	select DRM_TTM_HELPER
- 	select SND_HDA_COMPONENT if SND_HDA_CORE
-diff --git a/drivers/gpu/drm/radeon/radeon.h b/drivers/gpu/drm/radeon/radeon.h
-index 57e20780a458..d19a4b1c1a8f 100644
---- a/drivers/gpu/drm/radeon/radeon.h
-+++ b/drivers/gpu/drm/radeon/radeon.h
-@@ -79,6 +79,7 @@
- 
- #include <drm/drm_gem.h>
- #include <drm/drm_audio_component.h>
-+#include <drm/drm_suballoc.h>
- 
- #include "radeon_family.h"
- #include "radeon_mode.h"
-@@ -511,52 +512,12 @@ struct radeon_bo {
- };
- #define gem_to_radeon_bo(gobj) container_of((gobj), struct radeon_bo, tbo.base)
- 
--/* sub-allocation manager, it has to be protected by another lock.
-- * By conception this is an helper for other part of the driver
-- * like the indirect buffer or semaphore, which both have their
-- * locking.
-- *
-- * Principe is simple, we keep a list of sub allocation in offset
-- * order (first entry has offset == 0, last entry has the highest
-- * offset).
-- *
-- * When allocating new object we first check if there is room at
-- * the end total_size - (last_object_offset + last_object_size) >=
-- * alloc_size. If so we allocate new object there.
-- *
-- * When there is not enough room at the end, we start waiting for
-- * each sub object until we reach object_offset+object_size >=
-- * alloc_size, this object then become the sub object we return.
-- *
-- * Alignment can't be bigger than page size.
-- *
-- * Hole are not considered for allocation to keep things simple.
-- * Assumption is that there won't be hole (all object on same
-- * alignment).
-- */
- struct radeon_sa_manager {
--	wait_queue_head_t	wq;
--	struct radeon_bo	*bo;
--	struct list_head	*hole;
--	struct list_head	flist[RADEON_NUM_RINGS];
--	struct list_head	olist;
--	unsigned		size;
--	uint64_t		gpu_addr;
--	void			*cpu_ptr;
--	uint32_t		domain;
--	uint32_t		align;
--};
--
--struct radeon_sa_bo;
--
--/* sub-allocation buffer */
--struct radeon_sa_bo {
--	struct list_head		olist;
--	struct list_head		flist;
--	struct radeon_sa_manager	*manager;
--	unsigned			soffset;
--	unsigned			eoffset;
--	struct radeon_fence		*fence;
-+	struct drm_suballoc_manager	base;
-+	struct radeon_bo		*bo;
-+	uint64_t			gpu_addr;
-+	void				*cpu_ptr;
-+	u32 domain;
- };
- 
- /*
-@@ -587,7 +548,7 @@ int radeon_mode_dumb_mmap(struct drm_file *filp,
-  * Semaphores.
-  */
- struct radeon_semaphore {
--	struct radeon_sa_bo	*sa_bo;
-+	struct drm_suballoc	*sa_bo;
- 	signed			waiters;
- 	uint64_t		gpu_addr;
- };
-@@ -816,7 +777,7 @@ void radeon_irq_kms_disable_hpd(struct radeon_device *rdev, unsigned hpd_mask);
-  */
- 
- struct radeon_ib {
--	struct radeon_sa_bo		*sa_bo;
-+	struct drm_suballoc		*sa_bo;
- 	uint32_t			length_dw;
- 	uint64_t			gpu_addr;
- 	uint32_t			*ptr;
-diff --git a/drivers/gpu/drm/radeon/radeon_ib.c b/drivers/gpu/drm/radeon/radeon_ib.c
-index 62b116727b4f..6a45a72488f9 100644
---- a/drivers/gpu/drm/radeon/radeon_ib.c
-+++ b/drivers/gpu/drm/radeon/radeon_ib.c
-@@ -61,7 +61,7 @@ int radeon_ib_get(struct radeon_device *rdev, int ring,
- {
- 	int r;
- 
--	r = radeon_sa_bo_new(rdev, &rdev->ring_tmp_bo, &ib->sa_bo, size, 256);
-+	r = radeon_sa_bo_new(&rdev->ring_tmp_bo, &ib->sa_bo, size, 256);
- 	if (r) {
- 		dev_err(rdev->dev, "failed to get a new IB (%d)\n", r);
- 		return r;
-@@ -77,7 +77,7 @@ int radeon_ib_get(struct radeon_device *rdev, int ring,
- 		/* ib pool is bound at RADEON_VA_IB_OFFSET in virtual address
- 		 * space and soffset is the offset inside the pool bo
- 		 */
--		ib->gpu_addr = ib->sa_bo->soffset + RADEON_VA_IB_OFFSET;
-+		ib->gpu_addr = drm_suballoc_soffset(ib->sa_bo) + RADEON_VA_IB_OFFSET;
- 	} else {
- 		ib->gpu_addr = radeon_sa_bo_gpu_addr(ib->sa_bo);
- 	}
-@@ -97,7 +97,7 @@ int radeon_ib_get(struct radeon_device *rdev, int ring,
- void radeon_ib_free(struct radeon_device *rdev, struct radeon_ib *ib)
- {
- 	radeon_sync_free(rdev, &ib->sync, ib->fence);
--	radeon_sa_bo_free(rdev, &ib->sa_bo, ib->fence);
-+	radeon_sa_bo_free(&ib->sa_bo, ib->fence);
- 	radeon_fence_unref(&ib->fence);
- }
- 
-@@ -201,8 +201,7 @@ int radeon_ib_pool_init(struct radeon_device *rdev)
- 
- 	if (rdev->family >= CHIP_BONAIRE) {
- 		r = radeon_sa_bo_manager_init(rdev, &rdev->ring_tmp_bo,
--					      RADEON_IB_POOL_SIZE*64*1024,
--					      RADEON_GPU_PAGE_SIZE,
-+					      RADEON_IB_POOL_SIZE*64*1024, 256,
- 					      RADEON_GEM_DOMAIN_GTT,
- 					      RADEON_GEM_GTT_WC);
- 	} else {
-@@ -210,8 +209,7 @@ int radeon_ib_pool_init(struct radeon_device *rdev)
- 		 * to the command stream checking
- 		 */
- 		r = radeon_sa_bo_manager_init(rdev, &rdev->ring_tmp_bo,
--					      RADEON_IB_POOL_SIZE*64*1024,
--					      RADEON_GPU_PAGE_SIZE,
-+					      RADEON_IB_POOL_SIZE*64*1024, 256,
- 					      RADEON_GEM_DOMAIN_GTT, 0);
- 	}
- 	if (r) {
-diff --git a/drivers/gpu/drm/radeon/radeon_object.h b/drivers/gpu/drm/radeon/radeon_object.h
-index 0a6ef49e990a..39cc87a59a9a 100644
---- a/drivers/gpu/drm/radeon/radeon_object.h
-+++ b/drivers/gpu/drm/radeon/radeon_object.h
-@@ -169,15 +169,22 @@ extern void radeon_bo_fence(struct radeon_bo *bo, struct radeon_fence *fence,
- /*
-  * sub allocation
-  */
-+static inline struct radeon_sa_manager *
-+to_radeon_sa_manager(struct drm_suballoc_manager *manager)
-+{
-+	return container_of(manager, struct radeon_sa_manager, base);
-+}
- 
--static inline uint64_t radeon_sa_bo_gpu_addr(struct radeon_sa_bo *sa_bo)
-+static inline uint64_t radeon_sa_bo_gpu_addr(struct drm_suballoc *sa_bo)
- {
--	return sa_bo->manager->gpu_addr + sa_bo->soffset;
-+	return to_radeon_sa_manager(sa_bo->manager)->gpu_addr +
-+		drm_suballoc_soffset(sa_bo);
- }
- 
--static inline void * radeon_sa_bo_cpu_addr(struct radeon_sa_bo *sa_bo)
-+static inline void *radeon_sa_bo_cpu_addr(struct drm_suballoc *sa_bo)
- {
--	return sa_bo->manager->cpu_ptr + sa_bo->soffset;
-+	return to_radeon_sa_manager(sa_bo->manager)->cpu_ptr +
-+		drm_suballoc_soffset(sa_bo);
- }
- 
- extern int radeon_sa_bo_manager_init(struct radeon_device *rdev,
-@@ -190,12 +197,10 @@ extern int radeon_sa_bo_manager_start(struct radeon_device *rdev,
- 				      struct radeon_sa_manager *sa_manager);
- extern int radeon_sa_bo_manager_suspend(struct radeon_device *rdev,
- 					struct radeon_sa_manager *sa_manager);
--extern int radeon_sa_bo_new(struct radeon_device *rdev,
--			    struct radeon_sa_manager *sa_manager,
--			    struct radeon_sa_bo **sa_bo,
--			    unsigned size, unsigned align);
--extern void radeon_sa_bo_free(struct radeon_device *rdev,
--			      struct radeon_sa_bo **sa_bo,
-+extern int radeon_sa_bo_new(struct radeon_sa_manager *sa_manager,
-+			    struct drm_suballoc **sa_bo,
-+			    unsigned int size, unsigned int align);
-+extern void radeon_sa_bo_free(struct drm_suballoc **sa_bo,
- 			      struct radeon_fence *fence);
- #if defined(CONFIG_DEBUG_FS)
- extern void radeon_sa_bo_dump_debug_info(struct radeon_sa_manager *sa_manager,
-diff --git a/drivers/gpu/drm/radeon/radeon_sa.c b/drivers/gpu/drm/radeon/radeon_sa.c
-index 0981948bd9ed..c87a57c9c592 100644
---- a/drivers/gpu/drm/radeon/radeon_sa.c
-+++ b/drivers/gpu/drm/radeon/radeon_sa.c
-@@ -44,53 +44,32 @@
- 
- #include "radeon.h"
- 
--static void radeon_sa_bo_remove_locked(struct radeon_sa_bo *sa_bo);
--static void radeon_sa_bo_try_free(struct radeon_sa_manager *sa_manager);
--
- int radeon_sa_bo_manager_init(struct radeon_device *rdev,
- 			      struct radeon_sa_manager *sa_manager,
--			      unsigned size, u32 align, u32 domain, u32 flags)
-+			      unsigned int size, u32 sa_align, u32 domain,
-+			      u32 flags)
- {
--	int i, r;
--
--	init_waitqueue_head(&sa_manager->wq);
--	sa_manager->bo = NULL;
--	sa_manager->size = size;
--	sa_manager->domain = domain;
--	sa_manager->align = align;
--	sa_manager->hole = &sa_manager->olist;
--	INIT_LIST_HEAD(&sa_manager->olist);
--	for (i = 0; i < RADEON_NUM_RINGS; ++i) {
--		INIT_LIST_HEAD(&sa_manager->flist[i]);
--	}
-+	int r;
- 
--	r = radeon_bo_create(rdev, size, align, true,
-+	r = radeon_bo_create(rdev, size, RADEON_GPU_PAGE_SIZE, true,
- 			     domain, flags, NULL, NULL, &sa_manager->bo);
- 	if (r) {
- 		dev_err(rdev->dev, "(%d) failed to allocate bo for manager\n", r);
- 		return r;
- 	}
- 
-+	sa_manager->domain = domain;
-+
-+	drm_suballoc_manager_init(&sa_manager->base, size, sa_align);
-+
- 	return r;
- }
- 
- void radeon_sa_bo_manager_fini(struct radeon_device *rdev,
- 			       struct radeon_sa_manager *sa_manager)
- {
--	struct radeon_sa_bo *sa_bo, *tmp;
--
--	if (!list_empty(&sa_manager->olist)) {
--		sa_manager->hole = &sa_manager->olist,
--		radeon_sa_bo_try_free(sa_manager);
--		if (!list_empty(&sa_manager->olist)) {
--			dev_err(rdev->dev, "sa_manager is not empty, clearing anyway\n");
--		}
--	}
--	list_for_each_entry_safe(sa_bo, tmp, &sa_manager->olist, olist) {
--		radeon_sa_bo_remove_locked(sa_bo);
--	}
-+	drm_suballoc_manager_fini(&sa_manager->base);
- 	radeon_bo_unref(&sa_manager->bo);
--	sa_manager->size = 0;
- }
- 
- int radeon_sa_bo_manager_start(struct radeon_device *rdev,
-@@ -139,260 +118,34 @@ int radeon_sa_bo_manager_suspend(struct radeon_device *rdev,
- 	return r;
- }
- 
--static void radeon_sa_bo_remove_locked(struct radeon_sa_bo *sa_bo)
-+int radeon_sa_bo_new(struct radeon_sa_manager *sa_manager,
-+		     struct drm_suballoc **sa_bo,
-+		     unsigned int size, unsigned int align)
- {
--	struct radeon_sa_manager *sa_manager = sa_bo->manager;
--	if (sa_manager->hole == &sa_bo->olist) {
--		sa_manager->hole = sa_bo->olist.prev;
--	}
--	list_del_init(&sa_bo->olist);
--	list_del_init(&sa_bo->flist);
--	radeon_fence_unref(&sa_bo->fence);
--	kfree(sa_bo);
--}
--
--static void radeon_sa_bo_try_free(struct radeon_sa_manager *sa_manager)
--{
--	struct radeon_sa_bo *sa_bo, *tmp;
--
--	if (sa_manager->hole->next == &sa_manager->olist)
--		return;
-+	struct drm_suballoc *sa = drm_suballoc_new(&sa_manager->base, size,
-+						   GFP_KERNEL, true, align);
- 
--	sa_bo = list_entry(sa_manager->hole->next, struct radeon_sa_bo, olist);
--	list_for_each_entry_safe_from(sa_bo, tmp, &sa_manager->olist, olist) {
--		if (sa_bo->fence == NULL || !radeon_fence_signaled(sa_bo->fence)) {
--			return;
--		}
--		radeon_sa_bo_remove_locked(sa_bo);
-+	if (IS_ERR(sa)) {
-+		*sa_bo = NULL;
-+		return PTR_ERR(sa);
- 	}
--}
- 
--static inline unsigned radeon_sa_bo_hole_soffset(struct radeon_sa_manager *sa_manager)
--{
--	struct list_head *hole = sa_manager->hole;
--
--	if (hole != &sa_manager->olist) {
--		return list_entry(hole, struct radeon_sa_bo, olist)->eoffset;
--	}
-+	*sa_bo = sa;
- 	return 0;
- }
- 
--static inline unsigned radeon_sa_bo_hole_eoffset(struct radeon_sa_manager *sa_manager)
--{
--	struct list_head *hole = sa_manager->hole;
--
--	if (hole->next != &sa_manager->olist) {
--		return list_entry(hole->next, struct radeon_sa_bo, olist)->soffset;
--	}
--	return sa_manager->size;
--}
--
--static bool radeon_sa_bo_try_alloc(struct radeon_sa_manager *sa_manager,
--				   struct radeon_sa_bo *sa_bo,
--				   unsigned size, unsigned align)
--{
--	unsigned soffset, eoffset, wasted;
--
--	soffset = radeon_sa_bo_hole_soffset(sa_manager);
--	eoffset = radeon_sa_bo_hole_eoffset(sa_manager);
--	wasted = (align - (soffset % align)) % align;
--
--	if ((eoffset - soffset) >= (size + wasted)) {
--		soffset += wasted;
--
--		sa_bo->manager = sa_manager;
--		sa_bo->soffset = soffset;
--		sa_bo->eoffset = soffset + size;
--		list_add(&sa_bo->olist, sa_manager->hole);
--		INIT_LIST_HEAD(&sa_bo->flist);
--		sa_manager->hole = &sa_bo->olist;
--		return true;
--	}
--	return false;
--}
--
--/**
-- * radeon_sa_event - Check if we can stop waiting
-- *
-- * @sa_manager: pointer to the sa_manager
-- * @size: number of bytes we want to allocate
-- * @align: alignment we need to match
-- *
-- * Check if either there is a fence we can wait for or
-- * enough free memory to satisfy the allocation directly
-- */
--static bool radeon_sa_event(struct radeon_sa_manager *sa_manager,
--			    unsigned size, unsigned align)
--{
--	unsigned soffset, eoffset, wasted;
--	int i;
--
--	for (i = 0; i < RADEON_NUM_RINGS; ++i) {
--		if (!list_empty(&sa_manager->flist[i])) {
--			return true;
--		}
--	}
--
--	soffset = radeon_sa_bo_hole_soffset(sa_manager);
--	eoffset = radeon_sa_bo_hole_eoffset(sa_manager);
--	wasted = (align - (soffset % align)) % align;
--
--	if ((eoffset - soffset) >= (size + wasted)) {
--		return true;
--	}
--
--	return false;
--}
--
--static bool radeon_sa_bo_next_hole(struct radeon_sa_manager *sa_manager,
--				   struct radeon_fence **fences,
--				   unsigned *tries)
--{
--	struct radeon_sa_bo *best_bo = NULL;
--	unsigned i, soffset, best, tmp;
--
--	/* if hole points to the end of the buffer */
--	if (sa_manager->hole->next == &sa_manager->olist) {
--		/* try again with its beginning */
--		sa_manager->hole = &sa_manager->olist;
--		return true;
--	}
--
--	soffset = radeon_sa_bo_hole_soffset(sa_manager);
--	/* to handle wrap around we add sa_manager->size */
--	best = sa_manager->size * 2;
--	/* go over all fence list and try to find the closest sa_bo
--	 * of the current last
--	 */
--	for (i = 0; i < RADEON_NUM_RINGS; ++i) {
--		struct radeon_sa_bo *sa_bo;
--
--		fences[i] = NULL;
--
--		if (list_empty(&sa_manager->flist[i])) {
--			continue;
--		}
--
--		sa_bo = list_first_entry(&sa_manager->flist[i],
--					 struct radeon_sa_bo, flist);
--
--		if (!radeon_fence_signaled(sa_bo->fence)) {
--			fences[i] = sa_bo->fence;
--			continue;
--		}
--
--		/* limit the number of tries each ring gets */
--		if (tries[i] > 2) {
--			continue;
--		}
--
--		tmp = sa_bo->soffset;
--		if (tmp < soffset) {
--			/* wrap around, pretend it's after */
--			tmp += sa_manager->size;
--		}
--		tmp -= soffset;
--		if (tmp < best) {
--			/* this sa bo is the closest one */
--			best = tmp;
--			best_bo = sa_bo;
--		}
--	}
--
--	if (best_bo) {
--		++tries[best_bo->fence->ring];
--		sa_manager->hole = best_bo->olist.prev;
--
--		/* we knew that this one is signaled,
--		   so it's save to remote it */
--		radeon_sa_bo_remove_locked(best_bo);
--		return true;
--	}
--	return false;
--}
--
--int radeon_sa_bo_new(struct radeon_device *rdev,
--		     struct radeon_sa_manager *sa_manager,
--		     struct radeon_sa_bo **sa_bo,
--		     unsigned size, unsigned align)
--{
--	struct radeon_fence *fences[RADEON_NUM_RINGS];
--	unsigned tries[RADEON_NUM_RINGS];
--	int i, r;
--
--	BUG_ON(align > sa_manager->align);
--	BUG_ON(size > sa_manager->size);
--
--	*sa_bo = kmalloc(sizeof(struct radeon_sa_bo), GFP_KERNEL);
--	if ((*sa_bo) == NULL) {
--		return -ENOMEM;
--	}
--	(*sa_bo)->manager = sa_manager;
--	(*sa_bo)->fence = NULL;
--	INIT_LIST_HEAD(&(*sa_bo)->olist);
--	INIT_LIST_HEAD(&(*sa_bo)->flist);
--
--	spin_lock(&sa_manager->wq.lock);
--	do {
--		for (i = 0; i < RADEON_NUM_RINGS; ++i)
--			tries[i] = 0;
--
--		do {
--			radeon_sa_bo_try_free(sa_manager);
--
--			if (radeon_sa_bo_try_alloc(sa_manager, *sa_bo,
--						   size, align)) {
--				spin_unlock(&sa_manager->wq.lock);
--				return 0;
--			}
--
--			/* see if we can skip over some allocations */
--		} while (radeon_sa_bo_next_hole(sa_manager, fences, tries));
--
--		for (i = 0; i < RADEON_NUM_RINGS; ++i)
--			radeon_fence_ref(fences[i]);
--
--		spin_unlock(&sa_manager->wq.lock);
--		r = radeon_fence_wait_any(rdev, fences, false);
--		for (i = 0; i < RADEON_NUM_RINGS; ++i)
--			radeon_fence_unref(&fences[i]);
--		spin_lock(&sa_manager->wq.lock);
--		/* if we have nothing to wait for block */
--		if (r == -ENOENT) {
--			r = wait_event_interruptible_locked(
--				sa_manager->wq, 
--				radeon_sa_event(sa_manager, size, align)
--			);
--		}
--
--	} while (!r);
--
--	spin_unlock(&sa_manager->wq.lock);
--	kfree(*sa_bo);
--	*sa_bo = NULL;
--	return r;
--}
--
--void radeon_sa_bo_free(struct radeon_device *rdev, struct radeon_sa_bo **sa_bo,
-+void radeon_sa_bo_free(struct drm_suballoc **sa_bo,
- 		       struct radeon_fence *fence)
- {
--	struct radeon_sa_manager *sa_manager;
--
- 	if (sa_bo == NULL || *sa_bo == NULL) {
- 		return;
- 	}
- 
--	sa_manager = (*sa_bo)->manager;
--	spin_lock(&sa_manager->wq.lock);
--	if (fence && !radeon_fence_signaled(fence)) {
--		(*sa_bo)->fence = radeon_fence_ref(fence);
--		list_add_tail(&(*sa_bo)->flist,
--			      &sa_manager->flist[fence->ring]);
--	} else {
--		radeon_sa_bo_remove_locked(*sa_bo);
--	}
--	wake_up_all_locked(&sa_manager->wq);
--	spin_unlock(&sa_manager->wq.lock);
-+	if (fence)
-+		drm_suballoc_free(*sa_bo, &fence->base);
-+	else
-+		drm_suballoc_free(*sa_bo, NULL);
-+
- 	*sa_bo = NULL;
- }
- 
-@@ -400,25 +153,8 @@ void radeon_sa_bo_free(struct radeon_device *rdev, struct radeon_sa_bo **sa_bo,
- void radeon_sa_bo_dump_debug_info(struct radeon_sa_manager *sa_manager,
- 				  struct seq_file *m)
- {
--	struct radeon_sa_bo *i;
-+	struct drm_printer p = drm_seq_file_printer(m);
- 
--	spin_lock(&sa_manager->wq.lock);
--	list_for_each_entry(i, &sa_manager->olist, olist) {
--		uint64_t soffset = i->soffset + sa_manager->gpu_addr;
--		uint64_t eoffset = i->eoffset + sa_manager->gpu_addr;
--		if (&i->olist == sa_manager->hole) {
--			seq_printf(m, ">");
--		} else {
--			seq_printf(m, " ");
--		}
--		seq_printf(m, "[0x%010llx 0x%010llx] size %8lld",
--			   soffset, eoffset, eoffset - soffset);
--		if (i->fence) {
--			seq_printf(m, " protected by 0x%016llx on ring %d",
--				   i->fence->seq, i->fence->ring);
--		}
--		seq_printf(m, "\n");
--	}
--	spin_unlock(&sa_manager->wq.lock);
-+	drm_suballoc_dump_debug_info(&sa_manager->base, &p, sa_manager->gpu_addr);
- }
- #endif
-diff --git a/drivers/gpu/drm/radeon/radeon_semaphore.c b/drivers/gpu/drm/radeon/radeon_semaphore.c
-index 221e59476f64..1f0a9a4ff5ae 100644
---- a/drivers/gpu/drm/radeon/radeon_semaphore.c
-+++ b/drivers/gpu/drm/radeon/radeon_semaphore.c
-@@ -40,7 +40,7 @@ int radeon_semaphore_create(struct radeon_device *rdev,
- 	if (*semaphore == NULL) {
- 		return -ENOMEM;
- 	}
--	r = radeon_sa_bo_new(rdev, &rdev->ring_tmp_bo,
-+	r = radeon_sa_bo_new(&rdev->ring_tmp_bo,
- 			     &(*semaphore)->sa_bo, 8, 8);
- 	if (r) {
- 		kfree(*semaphore);
-@@ -100,7 +100,7 @@ void radeon_semaphore_free(struct radeon_device *rdev,
- 		dev_err(rdev->dev, "semaphore %p has more waiters than signalers,"
- 			" hardware lockup imminent!\n", *semaphore);
- 	}
--	radeon_sa_bo_free(rdev, &(*semaphore)->sa_bo, fence);
-+	radeon_sa_bo_free(&(*semaphore)->sa_bo, fence);
- 	kfree(*semaphore);
- 	*semaphore = NULL;
- }
--- 
-2.34.1
+Thoughts?
 
+Thomas
+
+
+>
+>> *) If a drm helper, should we use a config option?
+> I am no fan of Kconfig things tbh. Maybe just include it in the vma
+> helpers, or perhaps we want to do a drm-accel-helpers with gem helpers,
+> drm/sched, this one here, vm/vma helpers or whatever they will be and so
+> on? Kinda like we have modeset helpers.
+>
+> I'd definitely not go for a Kconfig per individual file, that's just
+> excessive.
+> -Daniel
+>
+>> For usage examples, see xe_pt.c
+>> https://gitlab.freedesktop.org/drm/xe/kernel/-/blob/drm-xe-next/drivers/gpu/drm/xe/xe_pt.c
+>>
+>> Thanks,
+>> Thomas
+>>
+>> Thomas Hellström (1):
+>>    drm: Add a gpu page-table walker helper
+>>
+>>   drivers/gpu/drm/Makefile      |   1 +
+>>   drivers/gpu/drm/drm_pt_walk.c | 159 +++++++++++++++++++++++++++++++++
+>>   include/drm/drm_pt_walk.h     | 161 ++++++++++++++++++++++++++++++++++
+>>   3 files changed, 321 insertions(+)
+>>   create mode 100644 drivers/gpu/drm/drm_pt_walk.c
+>>   create mode 100644 include/drm/drm_pt_walk.h
+>>
+>> -- 
+>> 2.34.1
+>>
