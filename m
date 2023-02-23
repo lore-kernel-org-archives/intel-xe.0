@@ -4,46 +4,44 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 72670C64ED8
-	for <intel-xe@archiver.kernel.org>; Thu, 23 Feb 2023 18:57:59 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 98822C64ED8
+	for <intel-xe@archiver.kernel.org>; Thu, 23 Feb 2023 21:56:26 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4F72910E0DE;
-	Thu, 23 Feb 2023 18:57:59 +0000 (UTC)
-Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E156910E094
- for <intel-xe@lists.freedesktop.org>; Thu, 23 Feb 2023 18:57:53 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 71BEB10E354;
+	Thu, 23 Feb 2023 21:56:26 +0000 (UTC)
+Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0F33910E354
+ for <intel-xe@lists.freedesktop.org>; Thu, 23 Feb 2023 21:56:24 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1677178673; x=1708714673;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=jRtFeF4ixbk51mfAoOKRclETV3VjVQ0h/rRh3oe1wis=;
- b=JAYZinwOBe1msbVg5cS0CBCAKgOo7U/u4cVNExQYQIrhJUB043JO79Bx
- vzq3oGYCZ83Q7UswZvsyip0132UT7wKDEfMxc3qOQO+1E9q5ghQcJbt4j
- JLtPLyv5LX12Kciev9Lrhp1wVkc/Me7pUxywcP25sw4iIoO3EWPqflEXE
- aY+zEC5THQiAL4fZDAfIdL8YOfnTETPs9Rw5C6IhAzRLtWleea/ng2vDX
- WUlmDIjzNh3mF/oszZj9nlmEan4pv/OYPGic9gFNSn8Om6CS5+M0a+Rk8
- X7cukyLWl6ygVEbp8X7fxuBq73fYQB3YuBRmU9w2qj/7WjLoEStidtKtL w==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10630"; a="360793754"
-X-IronPort-AV: E=Sophos;i="5.97,322,1669104000"; d="scan'208";a="360793754"
-Received: from fmsmga002.fm.intel.com ([10.253.24.26])
- by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 23 Feb 2023 10:57:53 -0800
-X-IronPort-AV: E=McAfee;i="6500,9779,10630"; a="782018600"
-X-IronPort-AV: E=Sophos;i="5.97,322,1669104000"; d="scan'208";a="782018600"
-Received: from mdroper-desk1.fm.intel.com ([10.1.27.134])
- by fmsmga002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 23 Feb 2023 10:57:53 -0800
-From: Matt Roper <matthew.d.roper@intel.com>
+ t=1677189384; x=1708725384;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=egHRVcAktGZzAIqOjnI+HxIUyFNDBH4Sza8+q1+OV00=;
+ b=XiWNofuscrdmjCFJkAN40Y2gpxuB+UasXWEMQkQPfKJNWffccDQp9g74
+ Pwr1g5wCatjz3PVb2aFCVzA4H65unxgKzLiv7RrrN3p5SVpjt0UciI3FU
+ 1gP6Kz0Ftu+IabN5N+VXa9xUzbEWOlCTEu0yAxFg7T/cgz8C8T/E4SKgs
+ Cd7aOeQSq8Vf9dAx0JhJG+cByub+FIthz26sR050xaFez3nWsYoUlGw+0
+ yqxe4iuvvAo2Ca92k7vDtC/BAtMtmP6Xmn6Q7gNNkgKax208WUHw5CELf
+ c1iCfxAdDcsCT+YsE0cUBA1E4OJNhWMaxP5bXberwiYwyDpdIwxFli2ev w==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10630"; a="317088358"
+X-IronPort-AV: E=Sophos;i="5.97,322,1669104000"; d="scan'208";a="317088358"
+Received: from fmsmga008.fm.intel.com ([10.253.24.58])
+ by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 23 Feb 2023 13:56:23 -0800
+X-IronPort-AV: E=McAfee;i="6500,9779,10630"; a="736560508"
+X-IronPort-AV: E=Sophos;i="5.97,322,1669104000"; d="scan'208";a="736560508"
+Received: from nvishwa1-desk.sc.intel.com ([172.25.29.76])
+ by fmsmga008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 23 Feb 2023 13:56:22 -0800
+From: Niranjana Vishwanathapura <niranjana.vishwanathapura@intel.com>
 To: intel-xe@lists.freedesktop.org
-Date: Thu, 23 Feb 2023 10:57:34 -0800
-Message-Id: <20230223185740.3356127-2-matthew.d.roper@intel.com>
-X-Mailer: git-send-email 2.39.1
-In-Reply-To: <20230223185740.3356127-1-matthew.d.roper@intel.com>
-References: <20230223185740.3356127-1-matthew.d.roper@intel.com>
+Date: Thu, 23 Feb 2023 13:56:18 -0800
+Message-Id: <20230223215618.24326-1-niranjana.vishwanathapura@intel.com>
+X-Mailer: git-send-email 2.21.0.rc0.32.g243a4c7e27
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-xe] [PATCH v2 1/7] drm/xe/mocs: Drop unwanted TGL table
+Subject: [Intel-xe] [PATCH v2] drm/xe/migrate: Some cleanups and fixes
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -55,104 +53,127 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Cc: Lucas De Marchi <lucas.demarchi@intel.com>, matthew.d.roper@intel.com
+Cc: thomas.hellstrom@intel.com
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-TGL/RKL/ADLS/ADLP are all supposed to use the same MOCS table, with
-values defined in the bspec.  Any entries listed in the bspec as
-reserved/error/undefined should always be initialized to the most cached
-and least coherent setting possible so that any userspace accidentally
-referencing those undefined entries will only experience an increase in
-coherency if spec updates down the road start defining real values.
+Some minor fixes and cleanups in migration code.
 
-The TGL and gen12 table entries defined in the driver today are
-identical except that the TGL includes one additional (incorrect)
-setting for table index 1.  Furthermore, the TGL-specific initialization
-does not define a dedicated value for info->unused_entries_index, so
-this incorrect table entry 1 also gets used to populate the MOCS
-registers for all reserved/unused table entries.  This incorrect
-behavior is a holdover from i915 where the platform was enabled with an
-incorrect setting and by the time we noticed, it was too late to fix the
-table without breaking ABI compatibility (and on TGL we did indeed have
-some buggy userspace that was referencing the 'reserved' entry 1).
-Since the Xe driver starts fresh with a clean slate on ABI, there's no
-need to repeat the mistakes of i915 here.
+1) Remove unused 'struct xe_bo *bo' from emit_pte()
+2) Use 'false' for is_vram of  emit_pte() where it is obvious
+3) Pass source bo as 'bo' in xe_migrate_copy() calls
+4) Kernel-doc fix for function xe_migrate_clear()
+5) In write_pgtable(), consider 'ofs' while calculating chunk size
+6) Update xe_migrate_doc.h with 32 page table structs (not 48)
 
-v2:
- - Reword/clarify commit message.  (Lucas)
+v2: Rebased
 
-Bspec: 45101
-Signed-off-by: Matt Roper <matthew.d.roper@intel.com>
-Reviewed-by: Lucas De Marchi <lucas.demarchi@intel.com>
+Signed-off-by: Niranjana Vishwanathapura <niranjana.vishwanathapura@intel.com>
 ---
- drivers/gpu/drm/xe/xe_mocs.c | 46 ------------------------------------
- 1 file changed, 46 deletions(-)
+ drivers/gpu/drm/xe/tests/xe_migrate.c |  4 ++--
+ drivers/gpu/drm/xe/xe_migrate.c       | 17 +++++++----------
+ drivers/gpu/drm/xe/xe_migrate_doc.h   |  2 +-
+ 3 files changed, 10 insertions(+), 13 deletions(-)
 
-diff --git a/drivers/gpu/drm/xe/xe_mocs.c b/drivers/gpu/drm/xe/xe_mocs.c
-index 86b966fffbe5..09adb69d1545 100644
---- a/drivers/gpu/drm/xe/xe_mocs.c
-+++ b/drivers/gpu/drm/xe/xe_mocs.c
-@@ -247,47 +247,6 @@ struct xe_mocs_info {
- 		LE_3_WB | LE_TC_1_LLC | LE_LRUM(3), \
- 		L3_1_UC)
+diff --git a/drivers/gpu/drm/xe/tests/xe_migrate.c b/drivers/gpu/drm/xe/tests/xe_migrate.c
+index 03a60d5b42f1..12e8f79e65cb 100644
+--- a/drivers/gpu/drm/xe/tests/xe_migrate.c
++++ b/drivers/gpu/drm/xe/tests/xe_migrate.c
+@@ -148,7 +148,7 @@ static void test_copy(struct xe_migrate *m, struct xe_bo *bo,
+ 	xe_map_memset(xe, &sysmem->vmap, 0, 0xd0, sysmem->size);
+ 	xe_map_memset(xe, &bo->vmap, 0, 0xc0, bo->size);
  
--static const struct xe_mocs_entry tgl_mocs_desc[] = {
--	/*
--	 * NOTE:
--	 * Reserved and unspecified MOCS indices have been set to (L3 + LCC).
--	 * These reserved entries should never be used, they may be changed
--	 * to low performant variants with better coherency in the future if
--	 * more entries are needed. We are programming index XE_MOCS_PTE(1)
--	 * only, __init_mocs_table() take care to program unused index with
--	 * this entry.
--	 */
--	MOCS_ENTRY(XE_MOCS_PTE,
--		   LE_0_PAGETABLE | LE_TC_0_PAGETABLE,
--		   L3_1_UC),
--	GEN11_MOCS_ENTRIES,
--
--	/* Implicitly enable L1 - HDC:L1 + L3 + LLC */
--	MOCS_ENTRY(48,
--		   LE_3_WB | LE_TC_1_LLC | LE_LRUM(3),
--		   L3_3_WB),
--	/* Implicitly enable L1 - HDC:L1 + L3 */
--	MOCS_ENTRY(49,
--		   LE_1_UC | LE_TC_1_LLC,
--		   L3_3_WB),
--	/* Implicitly enable L1 - HDC:L1 + LLC */
--	MOCS_ENTRY(50,
--		   LE_3_WB | LE_TC_1_LLC | LE_LRUM(3),
--		   L3_1_UC),
--	/* Implicitly enable L1 - HDC:L1 */
--	MOCS_ENTRY(51,
--		   LE_1_UC | LE_TC_1_LLC,
--		   L3_1_UC),
--	/* HW Special Case (CCS) */
--	MOCS_ENTRY(60,
--		   LE_3_WB | LE_TC_1_LLC | LE_LRUM(3),
--		   L3_1_UC),
--	/* HW Special Case (Displayable) */
--	MOCS_ENTRY(61,
--		   LE_1_UC | LE_TC_1_LLC,
--		   L3_3_WB),
--};
--
- static const struct xe_mocs_entry dg1_mocs_desc[] = {
- 	/* UC */
- 	MOCS_ENTRY(1, 0, L3_1_UC),
-@@ -422,11 +381,6 @@ static unsigned int get_mocs_settings(struct xe_device *xe,
- 		info->unused_entries_index = 5;
- 		break;
- 	case XE_TIGERLAKE:
--		info->size  = ARRAY_SIZE(tgl_mocs_desc);
--		info->table = tgl_mocs_desc;
--		info->n_entries = GEN9_NUM_MOCS_ENTRIES;
--		info->uc_index = 3;
--		break;
- 	case XE_ALDERLAKE_S:
- 	case XE_ALDERLAKE_P:
- 		info->size  = ARRAY_SIZE(gen12_mocs_desc);
+-	fence = xe_migrate_copy(m, sysmem, bo->ttm.resource,
++	fence = xe_migrate_copy(m, bo, bo->ttm.resource,
+ 				sysmem->ttm.resource);
+ 	if (!sanity_fence_failed(xe, fence, big ? "Copying big bo vram -> sysmem" :
+ 				 "Copying small bo vram -> sysmem", test)) {
+@@ -274,7 +274,7 @@ static void xe_migrate_sanity_test(struct xe_migrate *m, struct kunit *test)
+ 		expected |= GEN12_PTE_PS64;
+ 	xe_res_first(pt->ttm.resource, 0, pt->size, &src_it);
+ 	emit_pte(m, bb, NUM_KERNEL_PDE - 1, xe_bo_is_vram(pt),
+-		 &src_it, GEN8_PAGE_SIZE, pt);
++		 &src_it, GEN8_PAGE_SIZE);
+ 	run_sanity_job(m, xe, bb, bb->len, "Writing PTE for our fake PT", test);
+ 
+ 	retval = xe_map_rd(xe, &bo->vmap, GEN8_PAGE_SIZE * (NUM_KERNEL_PDE - 1),
+diff --git a/drivers/gpu/drm/xe/xe_migrate.c b/drivers/gpu/drm/xe/xe_migrate.c
+index cbcc355cd391..cf6ad1b1ccd5 100644
+--- a/drivers/gpu/drm/xe/xe_migrate.c
++++ b/drivers/gpu/drm/xe/xe_migrate.c
+@@ -423,7 +423,7 @@ static void emit_pte(struct xe_migrate *m,
+ 		     struct xe_bb *bb, u32 at_pt,
+ 		     bool is_vram,
+ 		     struct xe_res_cursor *cur,
+-		     u32 size, struct xe_bo *bo)
++		     u32 size)
+ {
+ 	u32 ptes;
+ 	u64 ofs = at_pt * GEN8_PAGE_SIZE;
+@@ -672,19 +672,17 @@ struct dma_fence *xe_migrate_copy(struct xe_migrate *m,
+ 			emit_arb_clear(bb);
+ 
+ 		if (!src_is_vram)
+-			emit_pte(m, bb, src_L0_pt, src_is_vram, &src_it, src_L0,
+-				 bo);
++			emit_pte(m, bb, src_L0_pt, false, &src_it, src_L0);
+ 		else
+ 			xe_res_next(&src_it, src_L0);
+ 
+ 		if (!dst_is_vram)
+-			emit_pte(m, bb, dst_L0_pt, dst_is_vram, &dst_it, src_L0,
+-				 bo);
++			emit_pte(m, bb, dst_L0_pt, false, &dst_it, src_L0);
+ 		else
+ 			xe_res_next(&dst_it, src_L0);
+ 
+ 		if (copy_system_ccs)
+-			emit_pte(m, bb, ccs_pt, false, &ccs_it, ccs_size, bo);
++			emit_pte(m, bb, ccs_pt, false, &ccs_it, ccs_size);
+ 
+ 		bb->cs[bb->len++] = MI_BATCH_BUFFER_END;
+ 		update_idx = bb->len;
+@@ -783,7 +781,7 @@ static int emit_clear(struct xe_gt *gt, struct xe_bb *bb, u64 src_ofs,
+ }
+ 
+ /**
+- * xe_migrate_clear() - Copy content of TTM resources.
++ * xe_migrate_clear() - Clear content of TTM resources.
+  * @m: The migration context.
+  * @bo: The buffer object @dst is currently bound to.
+  * @dst: The dst TTM resource to be cleared.
+@@ -856,8 +854,7 @@ struct dma_fence *xe_migrate_clear(struct xe_migrate *m,
+ 		/* Preemption is enabled again by the ring ops. */
+ 		if (!clear_vram) {
+ 			emit_arb_clear(bb);
+-			emit_pte(m, bb, clear_L0_pt, clear_vram, &src_it, clear_L0,
+-				 bo);
++			emit_pte(m, bb, clear_L0_pt, false, &src_it, clear_L0);
+ 		} else {
+ 			xe_res_next(&src_it, clear_L0);
+ 		}
+@@ -941,7 +938,7 @@ static void write_pgtable(struct xe_gt *gt, struct xe_bb *bb, u64 ppgtt_ofs,
+ 
+ 	do {
+ 		u64 addr = ppgtt_ofs + ofs * 8;
+-		chunk = min(update->qwords, 0x1ffU);
++		chunk = min(update->qwords, 0x1ffU - (ofs & 0x1ff));
+ 
+ 		/* Ensure populatefn can do memset64 by aligning bb->cs */
+ 		if (!(bb->len & 1))
+diff --git a/drivers/gpu/drm/xe/xe_migrate_doc.h b/drivers/gpu/drm/xe/xe_migrate_doc.h
+index 6a68fdff08dc..584972c4d3be 100644
+--- a/drivers/gpu/drm/xe/xe_migrate_doc.h
++++ b/drivers/gpu/drm/xe/xe_migrate_doc.h
+@@ -21,7 +21,7 @@
+  * table BOs for updates, and identity map the entire device's VRAM with 1 GB
+  * pages.
+  *
+- * Currently the page structure consists of 48 phyiscal pages with 16 being
++ * Currently the page structure consists of 32 phyiscal pages with 16 being
+  * reserved for BO mapping during copies and clear, 1 reserved for kernel binds,
+  * several pages are needed to setup the identity mappings (exact number based
+  * on how many bits of address space the device has), and the rest are reserved
 -- 
-2.39.1
+2.21.0.rc0.32.g243a4c7e27
 
