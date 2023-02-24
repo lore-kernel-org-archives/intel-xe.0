@@ -4,44 +4,47 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 98822C64ED8
-	for <intel-xe@archiver.kernel.org>; Thu, 23 Feb 2023 21:56:26 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 74DB7C64ED8
+	for <intel-xe@archiver.kernel.org>; Fri, 24 Feb 2023 09:52:17 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 71BEB10E354;
-	Thu, 23 Feb 2023 21:56:26 +0000 (UTC)
-Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0F33910E354
- for <intel-xe@lists.freedesktop.org>; Thu, 23 Feb 2023 21:56:24 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 42EEA10E76D;
+	Fri, 24 Feb 2023 09:52:17 +0000 (UTC)
+Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5917310E71E;
+ Fri, 24 Feb 2023 09:52:14 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1677189384; x=1708725384;
+ t=1677232334; x=1708768334;
  h=from:to:cc:subject:date:message-id:mime-version:
  content-transfer-encoding;
- bh=egHRVcAktGZzAIqOjnI+HxIUyFNDBH4Sza8+q1+OV00=;
- b=XiWNofuscrdmjCFJkAN40Y2gpxuB+UasXWEMQkQPfKJNWffccDQp9g74
- Pwr1g5wCatjz3PVb2aFCVzA4H65unxgKzLiv7RrrN3p5SVpjt0UciI3FU
- 1gP6Kz0Ftu+IabN5N+VXa9xUzbEWOlCTEu0yAxFg7T/cgz8C8T/E4SKgs
- Cd7aOeQSq8Vf9dAx0JhJG+cByub+FIthz26sR050xaFez3nWsYoUlGw+0
- yqxe4iuvvAo2Ca92k7vDtC/BAtMtmP6Xmn6Q7gNNkgKax208WUHw5CELf
- c1iCfxAdDcsCT+YsE0cUBA1E4OJNhWMaxP5bXberwiYwyDpdIwxFli2ev w==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10630"; a="317088358"
-X-IronPort-AV: E=Sophos;i="5.97,322,1669104000"; d="scan'208";a="317088358"
-Received: from fmsmga008.fm.intel.com ([10.253.24.58])
- by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 23 Feb 2023 13:56:23 -0800
-X-IronPort-AV: E=McAfee;i="6500,9779,10630"; a="736560508"
-X-IronPort-AV: E=Sophos;i="5.97,322,1669104000"; d="scan'208";a="736560508"
-Received: from nvishwa1-desk.sc.intel.com ([172.25.29.76])
- by fmsmga008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 23 Feb 2023 13:56:22 -0800
-From: Niranjana Vishwanathapura <niranjana.vishwanathapura@intel.com>
-To: intel-xe@lists.freedesktop.org
-Date: Thu, 23 Feb 2023 13:56:18 -0800
-Message-Id: <20230223215618.24326-1-niranjana.vishwanathapura@intel.com>
-X-Mailer: git-send-email 2.21.0.rc0.32.g243a4c7e27
+ bh=bIauPA2cKg/fMw3M/B7+qACh9V8fm/vTQ+PmGA66mqE=;
+ b=TKPqp3Pe1k1eU/AyUaZasXAcpO9Z5LX6fVR7IRWVdJlkAQcibfCdgzJJ
+ y74mv9rzMEWfBqd6Hr0bewiGNndJwpCpPyCcLQcRzLSZzctIIcu8TIUkp
+ Ze+tmmC7pOn7As0CuMm7G8RCW0nDyuNiQPDXwnd7fmh2LAjxMUtwfJ5zA
+ 18t2iAphDWnmLzhUuIlm/wcogkwa2RbR+dZ6lQvj1bPQmOzQDCfuhLWmZ
+ Jm8+f5R7aHu3VDkIZKKMgHcjIlk3OYZrS44gM75uelAJZrBdXNZ6IkT6b
+ In6WQhRPkq0vc93yMinYg3iBj9oFkVQi/oji4iLYgjUA+qZqdarSjDa9m g==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10630"; a="331174002"
+X-IronPort-AV: E=Sophos;i="5.97,324,1669104000"; d="scan'208";a="331174002"
+Received: from fmsmga004.fm.intel.com ([10.253.24.48])
+ by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 24 Feb 2023 01:52:13 -0800
+X-IronPort-AV: E=McAfee;i="6500,9779,10630"; a="741612828"
+X-IronPort-AV: E=Sophos;i="5.97,324,1669104000"; d="scan'208";a="741612828"
+Received: from auliel-mobl1.ger.corp.intel.com (HELO thellstr-mobl1.intel.com)
+ ([10.249.254.64])
+ by fmsmga004-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 24 Feb 2023 01:52:11 -0800
+From: =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>
+To: dri-devel@lists.freedesktop.org
+Date: Fri, 24 Feb 2023 10:51:49 +0100
+Message-Id: <20230224095152.30134-1-thomas.hellstrom@linux.intel.com>
+X-Mailer: git-send-email 2.38.1
 MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-xe] [PATCH v2] drm/xe/migrate: Some cleanups and fixes
+Subject: [Intel-xe] [PATCH v4 0/3] drm/helpers: Make the suballocation
+ manager drm generic
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -53,127 +56,59 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Cc: thomas.hellstrom@intel.com
+Cc: Daniel Vetter <daniel.vetter@ffwll.ch>, intel-gfx@lists.freedesktop.org,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Christian Koenig <christian.koenig@amd.com>, Dave Airlie <airlied@redhat.com>,
+ intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Some minor fixes and cleanups in migration code.
+This series (or at least the suballocator helper) is a prerequisite
+for the new Xe driver.
 
-1) Remove unused 'struct xe_bo *bo' from emit_pte()
-2) Use 'false' for is_vram of  emit_pte() where it is obvious
-3) Pass source bo as 'bo' in xe_migrate_copy() calls
-4) Kernel-doc fix for function xe_migrate_clear()
-5) In write_pgtable(), consider 'ofs' while calculating chunk size
-6) Update xe_migrate_doc.h with 32 page table structs (not 48)
+There was an unresolved issue when the series was last up for review,
+and that was the per allocation aligment. Last message was from
+Maarten Lankhorst arguing that the larger per-driver alignment used
+would only incur a small memory cost. This new variant resolves that.
 
-v2: Rebased
+The generic suballocator has been tested with the Xe driver, and a
+kunit test is under development.
+The amd- and radeon adaptations are only compile-tested.
 
-Signed-off-by: Niranjana Vishwanathapura <niranjana.vishwanathapura@intel.com>
----
- drivers/gpu/drm/xe/tests/xe_migrate.c |  4 ++--
- drivers/gpu/drm/xe/xe_migrate.c       | 17 +++++++----------
- drivers/gpu/drm/xe/xe_migrate_doc.h   |  2 +-
- 3 files changed, 10 insertions(+), 13 deletions(-)
+v3:
+- Remove stale author information (Christian König)
+- Update Radeon Kconfig (Thomas Hellström)
 
-diff --git a/drivers/gpu/drm/xe/tests/xe_migrate.c b/drivers/gpu/drm/xe/tests/xe_migrate.c
-index 03a60d5b42f1..12e8f79e65cb 100644
---- a/drivers/gpu/drm/xe/tests/xe_migrate.c
-+++ b/drivers/gpu/drm/xe/tests/xe_migrate.c
-@@ -148,7 +148,7 @@ static void test_copy(struct xe_migrate *m, struct xe_bo *bo,
- 	xe_map_memset(xe, &sysmem->vmap, 0, 0xd0, sysmem->size);
- 	xe_map_memset(xe, &bo->vmap, 0, 0xc0, bo->size);
- 
--	fence = xe_migrate_copy(m, sysmem, bo->ttm.resource,
-+	fence = xe_migrate_copy(m, bo, bo->ttm.resource,
- 				sysmem->ttm.resource);
- 	if (!sanity_fence_failed(xe, fence, big ? "Copying big bo vram -> sysmem" :
- 				 "Copying small bo vram -> sysmem", test)) {
-@@ -274,7 +274,7 @@ static void xe_migrate_sanity_test(struct xe_migrate *m, struct kunit *test)
- 		expected |= GEN12_PTE_PS64;
- 	xe_res_first(pt->ttm.resource, 0, pt->size, &src_it);
- 	emit_pte(m, bb, NUM_KERNEL_PDE - 1, xe_bo_is_vram(pt),
--		 &src_it, GEN8_PAGE_SIZE, pt);
-+		 &src_it, GEN8_PAGE_SIZE);
- 	run_sanity_job(m, xe, bb, bb->len, "Writing PTE for our fake PT", test);
- 
- 	retval = xe_map_rd(xe, &bo->vmap, GEN8_PAGE_SIZE * (NUM_KERNEL_PDE - 1),
-diff --git a/drivers/gpu/drm/xe/xe_migrate.c b/drivers/gpu/drm/xe/xe_migrate.c
-index cbcc355cd391..cf6ad1b1ccd5 100644
---- a/drivers/gpu/drm/xe/xe_migrate.c
-+++ b/drivers/gpu/drm/xe/xe_migrate.c
-@@ -423,7 +423,7 @@ static void emit_pte(struct xe_migrate *m,
- 		     struct xe_bb *bb, u32 at_pt,
- 		     bool is_vram,
- 		     struct xe_res_cursor *cur,
--		     u32 size, struct xe_bo *bo)
-+		     u32 size)
- {
- 	u32 ptes;
- 	u64 ofs = at_pt * GEN8_PAGE_SIZE;
-@@ -672,19 +672,17 @@ struct dma_fence *xe_migrate_copy(struct xe_migrate *m,
- 			emit_arb_clear(bb);
- 
- 		if (!src_is_vram)
--			emit_pte(m, bb, src_L0_pt, src_is_vram, &src_it, src_L0,
--				 bo);
-+			emit_pte(m, bb, src_L0_pt, false, &src_it, src_L0);
- 		else
- 			xe_res_next(&src_it, src_L0);
- 
- 		if (!dst_is_vram)
--			emit_pte(m, bb, dst_L0_pt, dst_is_vram, &dst_it, src_L0,
--				 bo);
-+			emit_pte(m, bb, dst_L0_pt, false, &dst_it, src_L0);
- 		else
- 			xe_res_next(&dst_it, src_L0);
- 
- 		if (copy_system_ccs)
--			emit_pte(m, bb, ccs_pt, false, &ccs_it, ccs_size, bo);
-+			emit_pte(m, bb, ccs_pt, false, &ccs_it, ccs_size);
- 
- 		bb->cs[bb->len++] = MI_BATCH_BUFFER_END;
- 		update_idx = bb->len;
-@@ -783,7 +781,7 @@ static int emit_clear(struct xe_gt *gt, struct xe_bb *bb, u64 src_ofs,
- }
- 
- /**
-- * xe_migrate_clear() - Copy content of TTM resources.
-+ * xe_migrate_clear() - Clear content of TTM resources.
-  * @m: The migration context.
-  * @bo: The buffer object @dst is currently bound to.
-  * @dst: The dst TTM resource to be cleared.
-@@ -856,8 +854,7 @@ struct dma_fence *xe_migrate_clear(struct xe_migrate *m,
- 		/* Preemption is enabled again by the ring ops. */
- 		if (!clear_vram) {
- 			emit_arb_clear(bb);
--			emit_pte(m, bb, clear_L0_pt, clear_vram, &src_it, clear_L0,
--				 bo);
-+			emit_pte(m, bb, clear_L0_pt, false, &src_it, clear_L0);
- 		} else {
- 			xe_res_next(&src_it, clear_L0);
- 		}
-@@ -941,7 +938,7 @@ static void write_pgtable(struct xe_gt *gt, struct xe_bb *bb, u64 ppgtt_ofs,
- 
- 	do {
- 		u64 addr = ppgtt_ofs + ofs * 8;
--		chunk = min(update->qwords, 0x1ffU);
-+		chunk = min(update->qwords, 0x1ffU - (ofs & 0x1ff));
- 
- 		/* Ensure populatefn can do memset64 by aligning bb->cs */
- 		if (!(bb->len & 1))
-diff --git a/drivers/gpu/drm/xe/xe_migrate_doc.h b/drivers/gpu/drm/xe/xe_migrate_doc.h
-index 6a68fdff08dc..584972c4d3be 100644
---- a/drivers/gpu/drm/xe/xe_migrate_doc.h
-+++ b/drivers/gpu/drm/xe/xe_migrate_doc.h
-@@ -21,7 +21,7 @@
-  * table BOs for updates, and identity map the entire device's VRAM with 1 GB
-  * pages.
-  *
-- * Currently the page structure consists of 48 phyiscal pages with 16 being
-+ * Currently the page structure consists of 32 phyiscal pages with 16 being
-  * reserved for BO mapping during copies and clear, 1 reserved for kernel binds,
-  * several pages are needed to setup the identity mappings (exact number based
-  * on how many bits of address space the device has), and the rest are reserved
+v4:
+- Avoid 64-bit integer divisions (kernel test robot <lkp@intel.com>)
+- Use size_t rather than u64 for the managed range. (Thomas)
+
+
+Maarten Lankhorst (3):
+  drm/suballoc: Extract amdgpu_sa.c as generic suballocation helper
+  drm/amd: Convert amdgpu to use suballocation helper.
+  drm/radeon: Use the drm suballocation manager implementation.
+
+ drivers/gpu/drm/Kconfig                    |   4 +
+ drivers/gpu/drm/Makefile                   |   3 +
+ drivers/gpu/drm/amd/amdgpu/Kconfig         |   1 +
+ drivers/gpu/drm/amd/amdgpu/amdgpu.h        |  26 +-
+ drivers/gpu/drm/amd/amdgpu/amdgpu_ib.c     |   5 +-
+ drivers/gpu/drm/amd/amdgpu/amdgpu_object.h |  23 +-
+ drivers/gpu/drm/amd/amdgpu/amdgpu_ring.h   |   3 +-
+ drivers/gpu/drm/amd/amdgpu/amdgpu_sa.c     | 324 +--------------
+ drivers/gpu/drm/drm_suballoc.c             | 457 +++++++++++++++++++++
+ drivers/gpu/drm/radeon/Kconfig             |   1 +
+ drivers/gpu/drm/radeon/radeon.h            |  55 +--
+ drivers/gpu/drm/radeon/radeon_ib.c         |  12 +-
+ drivers/gpu/drm/radeon/radeon_object.h     |  25 +-
+ drivers/gpu/drm/radeon/radeon_sa.c         | 316 ++------------
+ drivers/gpu/drm/radeon/radeon_semaphore.c  |   4 +-
+ include/drm/drm_suballoc.h                 | 108 +++++
+ 16 files changed, 674 insertions(+), 693 deletions(-)
+ create mode 100644 drivers/gpu/drm/drm_suballoc.c
+ create mode 100644 include/drm/drm_suballoc.h
+
 -- 
-2.21.0.rc0.32.g243a4c7e27
+2.34.1
 
