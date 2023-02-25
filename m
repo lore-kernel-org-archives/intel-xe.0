@@ -4,47 +4,48 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3713BC7EE37
-	for <intel-xe@archiver.kernel.org>; Sat, 25 Feb 2023 00:16:32 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 06ACAC7EE33
+	for <intel-xe@archiver.kernel.org>; Sat, 25 Feb 2023 00:16:31 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 16A4610ED3F;
-	Sat, 25 Feb 2023 00:16:32 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D9DD310E56E;
+	Sat, 25 Feb 2023 00:16:31 +0000 (UTC)
 Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6904110E5D9
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A655810E5D9
  for <intel-xe@lists.freedesktop.org>; Sat, 25 Feb 2023 00:16:28 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
  t=1677284188; x=1708820188;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=qTVBHe4jJeOLOy8O7REve+0ruREw+9UpGwKnPJMq9dM=;
- b=Jl837nN/j9qC3sVEhDIWGkdqizDjCI3bQZZ1OVcS4VwSwMAdfnFPfONc
- C7Afr6lOgDjj0VutCpcT1CTsfpAzhNlUhBgtn77yGb1GZOOp9bIT9JL8U
- s3Dp/RaMbCl0awy2Ep2i3pp+clOOoauhbwGuUFBgZRkC/fQXqJz2nRaHJ
- HJIxkM1sQZAQA3coR+1iD+g306uL8BxQ/FygvCUWv8FgAME3bN0dkdEFS
- OcRcBt9MELXVJZ7SZfLwtqJF4SW0ANQTsM52EkOS6dqJYmu/ZUy6oS7eA
- rUJNGbhyhyNdQpmxTTO3mQRML6Ker63cd2kSmBnCarVuGd65OQyEaW9wN A==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10631"; a="332297352"
-X-IronPort-AV: E=Sophos;i="5.97,326,1669104000"; d="scan'208";a="332297352"
+ bh=YqSx9PiT4wt/seyGSBY7meNCnFxuocKg7KHlKdp4Jwo=;
+ b=mCQkEw8Ls+o2pCReIvXbDM7W6n+5wJkOOWaGJieLjib6iGjrdJLXyb04
+ WAGcZ2TL3D0TpGv713W7wGly9Ufxsgx7ttMIYD5z4xcspunH21n1NrZB5
+ lHOu2MDKC7CK7A/NH11JUADUm0eunbm1S7a7vYi8JM3ajRb02yhPdLgkb
+ G+vb7W3WpMH7yJ381YQLVVQ4kYXt7BnfZc1frlLhFAchwS7AMX+Y8w5ff
+ BJg7Jgv3sTEP72gcR3cqPW6abrs1m0N+e1O3lKDxn55ad5jvLRYlr1df5
+ tDrx63Vr1qp7TcjKLINjftUimNTXc0YoZRvg46RhbzuAFHLVXjBr3I0id A==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10631"; a="332297356"
+X-IronPort-AV: E=Sophos;i="5.97,326,1669104000"; d="scan'208";a="332297356"
 Received: from fmsmga003.fm.intel.com ([10.253.24.29])
  by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 24 Feb 2023 16:16:22 -0800
-X-IronPort-AV: E=McAfee;i="6500,9779,10631"; a="761956596"
-X-IronPort-AV: E=Sophos;i="5.97,326,1669104000"; d="scan'208";a="761956596"
+ 24 Feb 2023 16:16:23 -0800
+X-IronPort-AV: E=McAfee;i="6500,9779,10631"; a="761956606"
+X-IronPort-AV: E=Sophos;i="5.97,326,1669104000"; d="scan'208";a="761956606"
 Received: from lucas-s2600cw.jf.intel.com ([10.165.21.196])
  by fmsmga003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  24 Feb 2023 16:16:22 -0800
 From: Lucas De Marchi <lucas.demarchi@intel.com>
 To: intel-xe@lists.freedesktop.org
-Date: Fri, 24 Feb 2023 16:15:45 -0800
-Message-Id: <20230225001548.1743820-10-lucas.demarchi@intel.com>
+Date: Fri, 24 Feb 2023 16:15:48 -0800
+Message-Id: <20230225001548.1743820-13-lucas.demarchi@intel.com>
 X-Mailer: git-send-email 2.39.0
 In-Reply-To: <20230225001548.1743820-1-lucas.demarchi@intel.com>
 References: <20230225001548.1743820-1-lucas.demarchi@intel.com>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-xe] [PATCH v4 09/12] drm/xe: Remove dependency on
- intel_mchbar_regs.h
+Subject: [Intel-xe] [PATCH v4 12/12] drm/xe: Prefer single underscore for
+ header guards
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -58,84 +59,150 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
 Cc: Lucas De Marchi <lucas.demarchi@intel.com>,
  Matt Roper <matthew.d.roper@intel.com>, Matthew Auld <matthew.auld@intel.com>,
- Maarten Lankhorst <maarten.lankhorst@intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>
+ Maarten Lankhorst <maarten.lankhorst@intel.com>
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-The only thing really needed is the base offset, MCHBAR_MIRROR_BASE_SNB.
-Remove the include and just define it inplace.
+Keep header guards consistent with regard to ifdef used. Prefer the more
+commonly used in the driver.
+
+	$ git grep  "ifndef __XE_" -- drivers/gpu/drm/xe | wc -l
+	8
+	$ git grep  "ifndef _XE_" -- drivers/gpu/drm/xe | wc -l
+	112
 
 Signed-off-by: Lucas De Marchi <lucas.demarchi@intel.com>
-Reviewed-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
 ---
- drivers/gpu/drm/xe/display/ext/intel_device_info.h |  2 ++
- drivers/gpu/drm/xe/xe_display.h                    |  5 ++---
- drivers/gpu/drm/xe/xe_guc_pc.c                     | 10 +++++-----
- 3 files changed, 9 insertions(+), 8 deletions(-)
+ drivers/gpu/drm/xe/tests/xe_bo_test.h      | 4 ++--
+ drivers/gpu/drm/xe/tests/xe_dma_buf_test.h | 4 ++--
+ drivers/gpu/drm/xe/tests/xe_migrate_test.h | 4 ++--
+ drivers/gpu/drm/xe/tests/xe_test.h         | 4 ++--
+ drivers/gpu/drm/xe/xe_gt_topology.h        | 4 ++--
+ drivers/gpu/drm/xe/xe_map.h                | 4 ++--
+ drivers/gpu/drm/xe/xe_migrate.h            | 4 ++--
+ drivers/gpu/drm/xe/xe_res_cursor.h         | 4 ++--
+ 8 files changed, 16 insertions(+), 16 deletions(-)
 
-diff --git a/drivers/gpu/drm/xe/display/ext/intel_device_info.h b/drivers/gpu/drm/xe/display/ext/intel_device_info.h
-index dd05f298019e..959acb261007 100644
---- a/drivers/gpu/drm/xe/display/ext/intel_device_info.h
-+++ b/drivers/gpu/drm/xe/display/ext/intel_device_info.h
-@@ -28,6 +28,8 @@
+diff --git a/drivers/gpu/drm/xe/tests/xe_bo_test.h b/drivers/gpu/drm/xe/tests/xe_bo_test.h
+index d751a618c0c8..0113ab45066a 100644
+--- a/drivers/gpu/drm/xe/tests/xe_bo_test.h
++++ b/drivers/gpu/drm/xe/tests/xe_bo_test.h
+@@ -3,8 +3,8 @@
+  * Copyright © 2023 Intel Corporation
+  */
+ 
+-#ifndef __XE_BO_TEST_H__
+-#define __XE_BO_TEST_H__
++#ifndef _XE_BO_TEST_H_
++#define _XE_BO_TEST_H_
+ 
+ struct kunit;
+ 
+diff --git a/drivers/gpu/drm/xe/tests/xe_dma_buf_test.h b/drivers/gpu/drm/xe/tests/xe_dma_buf_test.h
+index 4e9a8bef5751..e6b464ddd526 100644
+--- a/drivers/gpu/drm/xe/tests/xe_dma_buf_test.h
++++ b/drivers/gpu/drm/xe/tests/xe_dma_buf_test.h
+@@ -3,8 +3,8 @@
+  * Copyright © 2023 Intel Corporation
+  */
+ 
+-#ifndef __XE_DMA_BUF_TEST_H__
+-#define __XE_DMA_BUF_TEST_H__
++#ifndef _XE_DMA_BUF_TEST_H_
++#define _XE_DMA_BUF_TEST_H_
+ 
+ struct kunit;
+ 
+diff --git a/drivers/gpu/drm/xe/tests/xe_migrate_test.h b/drivers/gpu/drm/xe/tests/xe_migrate_test.h
+index db1f8ef035bb..7c645c66824f 100644
+--- a/drivers/gpu/drm/xe/tests/xe_migrate_test.h
++++ b/drivers/gpu/drm/xe/tests/xe_migrate_test.h
+@@ -3,8 +3,8 @@
+  * Copyright © 2023 Intel Corporation
+  */
+ 
+-#ifndef __XE_MIGRATE_TEST_H__
+-#define __XE_MIGRATE_TEST_H__
++#ifndef _XE_MIGRATE_TEST_H_
++#define _XE_MIGRATE_TEST_H_
+ 
+ struct kunit;
+ 
+diff --git a/drivers/gpu/drm/xe/tests/xe_test.h b/drivers/gpu/drm/xe/tests/xe_test.h
+index 1ec502b5acf3..00c8a3f9af81 100644
+--- a/drivers/gpu/drm/xe/tests/xe_test.h
++++ b/drivers/gpu/drm/xe/tests/xe_test.h
+@@ -3,8 +3,8 @@
+  * Copyright © 2022 Intel Corporation
+  */
+ 
+-#ifndef __XE_TEST_H__
+-#define __XE_TEST_H__
++#ifndef _XE_TEST_H_
++#define _XE_TEST_H_
+ 
  #include <linux/types.h>
- #include "xe_device_types.h"
  
-+struct drm_i915_private;
-+
- /* Minimal parts used by xe */
- #define intel_runtime_info xe_device_display_info
+diff --git a/drivers/gpu/drm/xe/xe_gt_topology.h b/drivers/gpu/drm/xe/xe_gt_topology.h
+index 7a0abc64084f..70a86538f742 100644
+--- a/drivers/gpu/drm/xe/xe_gt_topology.h
++++ b/drivers/gpu/drm/xe/xe_gt_topology.h
+@@ -3,8 +3,8 @@
+  * Copyright © 2022 Intel Corporation
+  */
  
-diff --git a/drivers/gpu/drm/xe/xe_display.h b/drivers/gpu/drm/xe/xe_display.h
-index 262cd5442489..5c09962f4906 100644
---- a/drivers/gpu/drm/xe/xe_display.h
-+++ b/drivers/gpu/drm/xe/xe_display.h
-@@ -6,13 +6,11 @@
- #ifndef _XE_DISPLAY_H_
- #define _XE_DISPLAY_H_
+-#ifndef __XE_GT_TOPOLOGY_H__
+-#define __XE_GT_TOPOLOGY_H__
++#ifndef _XE_GT_TOPOLOGY_H_
++#define _XE_GT_TOPOLOGY_H_
  
--#if IS_ENABLED(CONFIG_DRM_XE_DISPLAY)
- #include <drm/drm_drv.h>
+ #include "xe_gt_types.h"
  
- #include "xe_device.h"
+diff --git a/drivers/gpu/drm/xe/xe_map.h b/drivers/gpu/drm/xe/xe_map.h
+index 0bac1f73a80d..032c2e8b5438 100644
+--- a/drivers/gpu/drm/xe/xe_map.h
++++ b/drivers/gpu/drm/xe/xe_map.h
+@@ -3,8 +3,8 @@
+  * Copyright © 2022 Intel Corporation
+  */
  
--#include "display/ext/i915_irq.h"
--#include "display/intel_opregion.h"
-+#if IS_ENABLED(CONFIG_DRM_XE_DISPLAY)
+-#ifndef __XE_MAP_H__
+-#define __XE_MAP_H__
++#ifndef _XE_MAP_H_
++#define _XE_MAP_H_
  
- int xe_display_enable(struct pci_dev *pdev, struct drm_driver *driver);
+ #include <linux/iosys-map.h>
  
-@@ -44,6 +42,7 @@ void xe_display_pm_resume_early(struct xe_device *xe);
- void xe_display_pm_resume(struct xe_device *xe);
+diff --git a/drivers/gpu/drm/xe/xe_migrate.h b/drivers/gpu/drm/xe/xe_migrate.h
+index b2d55283252f..a569851db6f7 100644
+--- a/drivers/gpu/drm/xe/xe_migrate.h
++++ b/drivers/gpu/drm/xe/xe_migrate.h
+@@ -3,8 +3,8 @@
+  * Copyright © 2020 Intel Corporation
+  */
  
- #else
-+
- static inline int
- xe_display_enable(struct pci_dev *pdev, struct drm_driver *driver) { return 0; };
+-#ifndef __XE_MIGRATE__
+-#define __XE_MIGRATE__
++#ifndef _XE_MIGRATE_
++#define _XE_MIGRATE_
  
-diff --git a/drivers/gpu/drm/xe/xe_guc_pc.c b/drivers/gpu/drm/xe/xe_guc_pc.c
-index d91dad8638ef..5a8d827ba770 100644
---- a/drivers/gpu/drm/xe/xe_guc_pc.c
-+++ b/drivers/gpu/drm/xe/xe_guc_pc.c
-@@ -21,12 +21,12 @@
- #include "xe_mmio.h"
- #include "xe_pcode.h"
+ #include <drm/drm_mm.h>
  
--#include "intel_mchbar_regs.h"
-+#define MCHBAR_MIRROR_BASE_SNB	0x140000
+diff --git a/drivers/gpu/drm/xe/xe_res_cursor.h b/drivers/gpu/drm/xe/xe_res_cursor.h
+index 365c8ad7aeb8..4e99fae26b4c 100644
+--- a/drivers/gpu/drm/xe/xe_res_cursor.h
++++ b/drivers/gpu/drm/xe/xe_res_cursor.h
+@@ -21,8 +21,8 @@
+  * OTHER DEALINGS IN THE SOFTWARE.
+  */
  
--/* For GEN6_RP_STATE_CAP.reg to be merged when the definition moves to Xe */
--#define   RP0_MASK	REG_GENMASK(7, 0)
--#define   RP1_MASK	REG_GENMASK(15, 8)
--#define   RPN_MASK	REG_GENMASK(23, 16)
-+#define GEN6_RP_STATE_CAP			_MMIO(MCHBAR_MIRROR_BASE_SNB + 0x5998)
-+#define   RP0_MASK				REG_GENMASK(7, 0)
-+#define   RP1_MASK				REG_GENMASK(15, 8)
-+#define   RPN_MASK				REG_GENMASK(23, 16)
+-#ifndef __XE_RES_CURSOR_H__
+-#define __XE_RES_CURSOR_H__
++#ifndef _XE_RES_CURSOR_H_
++#define _XE_RES_CURSOR_H_
  
- #define GEN10_FREQ_INFO_REC	_MMIO(MCHBAR_MIRROR_BASE_SNB + 0x5ef0)
- #define   RPE_MASK		REG_GENMASK(15, 8)
+ #include <linux/scatterlist.h>
+ 
 -- 
 2.39.0
 
