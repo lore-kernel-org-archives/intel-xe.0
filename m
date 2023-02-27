@@ -4,62 +4,52 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id EB580C64ED8
-	for <intel-xe@archiver.kernel.org>; Mon, 27 Feb 2023 15:00:28 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9E7ECC64ED8
+	for <intel-xe@archiver.kernel.org>; Mon, 27 Feb 2023 15:07:42 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id BBE0F10E421;
-	Mon, 27 Feb 2023 15:00:28 +0000 (UTC)
-Received: from mail-oa1-x29.google.com (mail-oa1-x29.google.com
- [IPv6:2001:4860:4864:20::29])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C8A9010E421;
- Mon, 27 Feb 2023 15:00:26 +0000 (UTC)
-Received: by mail-oa1-x29.google.com with SMTP id
- 586e51a60fabf-172a623ad9aso7600490fac.13; 
- Mon, 27 Feb 2023 07:00:26 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20210112;
- h=content-transfer-encoding:cc:to:subject:message-id:date:from
- :in-reply-to:references:mime-version:from:to:cc:subject:date
- :message-id:reply-to;
- bh=3CcviMvOYlI24749RtEMYWxJzqWsOF819uiocGxBaEg=;
- b=n3aIemxHiGtU5ErvLqcG6XucMRyjAX9oU6ieY5ISHtk9t7qa7NPQuYZkiKMUviNmYK
- FZLblMP0FHW+Lka7Jf9y2Adxy7A57SGG3XH5NStpT92W8qo8oOBbl6JiCHqYmVFgdeiL
- DtrCxsoRWTUvddm/1ir2WganNmNQATGuzDeJRwdk3lIolIarNhdvVDDjLBIPoYG+SB/v
- 91V6CMCaZEZ/thjA5+kHzxdEP2o1csvEvjNhsaeOp/eVHFIf2YzAvBvulHBV+SuSpWTZ
- Ruy7ulP6iqGB70Uz1vzYgsinaAngDeI1BI30IWL+9YXME+a7kawkuADEnog25gQSrPsH
- RBAg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20210112;
- h=content-transfer-encoding:cc:to:subject:message-id:date:from
- :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
- :subject:date:message-id:reply-to;
- bh=3CcviMvOYlI24749RtEMYWxJzqWsOF819uiocGxBaEg=;
- b=VDGR+aSdFS+nXo6osOYxb6tBrKAYcInOsp37tQuWea+RS4wuZAmnHgL+Kk5heztw0I
- B9tWbYvl7AerpnX6Qe6Ugb42x3uGpMHEq1PVxHCsS/RzE6ZNEZr7IY/LxDYB5aWTYLN8
- wrN2Te1+5OtewJB8N79xXiWhNygfIpLoE0R1ncOOFmdOEW0cCFFTgyMBbOvKlYxq84Wi
- MEWSkKkHxMl4sV1r0vztvh1KNpc/JCBBgUzLDEcJXP560Bnhdiv9kYiS7IU/VLfB/eq/
- Oo4q66HdSXASeQW7rcT7+euKJkqNciYJv8YDQZtYSWb9kAqmTPuEmksE8/xBXtWYyAcI
- 0r+w==
-X-Gm-Message-State: AO0yUKXQvgSqoYTIKVzaaQQZsIf52LWAG6olCg9QCcL/5ILw7ZGYc1mh
- QVVvRfihdJH1dB0JI5dCckOztGEd40v5orAKM5A=
-X-Google-Smtp-Source: AK7set8PfTAsqeeDlM+HDh/Jq9X5RHL+NRajGNKHOiAzdv87xxr74y/ysCBzxzlho8kKJ4sysPDuak1PkUSOKdMgCc8=
-X-Received: by 2002:a05:6871:6b97:b0:16e:2f74:e5c1 with SMTP id
- zh23-20020a0568716b9700b0016e2f74e5c1mr2571814oab.8.1677510025918; Mon, 27
- Feb 2023 07:00:25 -0800 (PST)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 73B6610E42A;
+	Mon, 27 Feb 2023 15:07:42 +0000 (UTC)
+Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1DB5510E421;
+ Mon, 27 Feb 2023 15:07:40 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1677510460; x=1709046460;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:content-transfer-encoding:in-reply-to;
+ bh=IC025GuM7fKwMHhIKiLdUR9EVWuO+Kj2b/D7IjMVrKA=;
+ b=NUKl2MAaJgU3D807IsAbsV1ZOyxRgDUJdZ1A1iL1R9tyZdZ0qWZQfgj+
+ iXPfyn766Va2tevMOcq7zxa0vGmViZzPuJFmk2SNpzDfkbpdFfUhcOzyG
+ Pw3osEJnYk913BJAuoCr9oAg/vdElXFEOo3rawh/rrk+ED/FIxDtRBsBU
+ 1u4Y9ZM66RfymboaySNl73kyF6vu7uEr+6Rzcip8vl48JyfhYzZaHxyxv
+ FjfvT9RKQH8znhhaLHpJxZQwS6AZ4xFJI5hPtMe+yvMEvKCV9xXHA4vVU
+ Irn7ZS7R1m3MGM6JewsZ1sXOVBbuTOTCKUTqxVNk2YJdkJY5NHfI1148I Q==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10634"; a="420141544"
+X-IronPort-AV: E=Sophos;i="5.98,219,1673942400"; d="scan'208";a="420141544"
+Received: from fmsmga007.fm.intel.com ([10.253.24.52])
+ by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 27 Feb 2023 07:07:39 -0800
+X-IronPort-AV: E=McAfee;i="6500,9779,10634"; a="675910897"
+X-IronPort-AV: E=Sophos;i="5.98,219,1673942400"; d="scan'208";a="675910897"
+Received: from joe-255.igk.intel.com (HELO localhost) ([10.91.220.57])
+ by fmsmga007-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 27 Feb 2023 07:07:37 -0800
+Date: Mon, 27 Feb 2023 16:07:36 +0100
+From: Stanislaw Gruszka <stanislaw.gruszka@linux.intel.com>
+To: Thomas =?iso-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>
+Message-ID: <20230227150736.GE3547587@linux.intel.com>
+References: <20230216162729.219979-1-thomas.hellstrom@linux.intel.com>
+ <Y+6PqOdRf+vu8rZc@phenom.ffwll.local>
+ <699c33d7-6788-99ab-6787-1cebff0bf70e@linux.intel.com>
+ <CADnq5_Mfp4pCnVcsWn_vMO-hWcMhH_yb8MHccyp_jEL=XxgZNg@mail.gmail.com>
+ <CAFCwf12vw56v64Pa=5VhAiVBf=Km9_sOWxOczSFNvLi0eL_VeQ@mail.gmail.com>
+ <42b04315-182d-227d-b2a8-cc09bcbe3ac3@linux.intel.com>
 MIME-Version: 1.0
-References: <20230224095152.30134-1-thomas.hellstrom@linux.intel.com>
- <6cddb602-31dd-8854-25dc-11afe9b1a275@linux.intel.com>
- <6f0b5231-a9c2-e31e-f2d6-61f403d2f94d@lankhorst.se>
- <f1caadc4-9e65-1b1c-ec81-82a89f764b40@linux.intel.com>
- <bcf1708d-5e3e-032e-6770-231cdb57971c@amd.com>
-In-Reply-To: <bcf1708d-5e3e-032e-6770-231cdb57971c@amd.com>
-From: Alex Deucher <alexdeucher@gmail.com>
-Date: Mon, 27 Feb 2023 10:00:14 -0500
-Message-ID: <CADnq5_NRfYgTW1dszn2huCqLeiHAOb6-Mg=N_gSMczT_=cj1Eg@mail.gmail.com>
-To: =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-Subject: Re: [Intel-xe] [PATCH v4 0/3] drm/helpers: Make the suballocation
- manager drm generic
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <42b04315-182d-227d-b2a8-cc09bcbe3ac3@linux.intel.com>
+Subject: Re: [Intel-xe] [PATCH 0/1] drm: Add a gpu page-table walker
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -71,99 +61,60 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- Daniel Vetter <daniel@ffwll.ch>, Dave Airlie <airlied@redhat.com>,
- Maarten Lankhorst <dev@lankhorst.se>, intel-xe@lists.freedesktop.org
+Cc: Daniel Vetter <daniel.vetter@ffwll.ch>, Oded Gabbay <ogabbay@kernel.org>,
+ dri-devel@lists.freedesktop.org, Dave Airlie <airlied@redhat.com>,
+ intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Mon, Feb 27, 2023 at 8:04 AM Christian K=C3=B6nig
-<christian.koenig@amd.com> wrote:
->
-> Am 27.02.23 um 10:00 schrieb Thomas Hellstr=C3=B6m:
-> > Hi, Maarten,
-> >
-> > On 2/27/23 09:55, Maarten Lankhorst wrote:
-> >> Hey,
-> >>
-> >> I can push this to drm-misc-next, I don't think a drm maintainer ack
-> >> is needed, as long as we have the acks from the amd folk for merging
-> >> through drm-misc-next.
-> >>
-> > OK, sound good, we have that ack so please go ahead!
->
-> Works for me and I don't think Alex would object either.
+On Mon, Feb 27, 2023 at 09:09:14AM +0100, Thomas Hellström wrote:
+> Hi, Oded.
+> 
+> On 2/26/23 19:56, Oded Gabbay wrote:
+> > On Thu, Feb 23, 2023 at 8:50 PM Alex Deucher <alexdeucher@gmail.com> wrote:
+> > > On Thu, Feb 23, 2023 at 10:03 AM Thomas Hellström
+> > > <thomas.hellstrom@linux.intel.com> wrote:
+> > > > Hi, Daniel,
+> > > > 
+> > > > On 2/16/23 21:18, Daniel Vetter wrote:
+> > > > > On Thu, Feb 16, 2023 at 05:27:28PM +0100, Thomas Hellström wrote:
+> > > > > > A slightly unusual cover letter for a single patch.
+> > > > > > 
+> > > > > > The page table walker is currently used by the xe driver only,
+> > > > > > but the code is generic so we can be good citizens and add it to drm
+> > > > > > as a helper, for possible use by other drivers,
+> > > > > > If so we can merge the commit when we merge the xe driver.
+> > > > > > 
+> > > > > > The question raised here is
+> > > > > > *) Should it be a generic drm helper or xe-specific with changed
+> > > > > >      prefixes?
+> > > > > I think if there's some other drivers interested in using this, then this
+> > > > > sounds like a good idea. Maybe more useful if it's also integrated into
+> > > > > the vm/vma helpers that are being discussed as an optional part?
+> > > > > 
+> > > > > Maybe some good old sales pitching here to convince people would be good.
+> > > > > 
+> > > > > Maybe one of the new accel drivers is interested in this too?
+> > Hi,
+> > As the habanalabs driver is not really a new driver, I currently don't
+> > see the benefit of moving
+> > to this code. Our pgt code is quite mature and was tested extensively
+> > in deployment in the
+> > past couple of years.
+> > 
+> > Nevertheless, I'll try to offer this code for any new/future driver
+> > that will want to join accel.
+> > 
+> > Stanislaw, I'm adding you here in case you missed this. Might be of an
+> > interest to you.
 
-Fine with me as well.
+Rewrite table walk will not give the ivpu driver much, perhaps one function
+would be smaller. Nothing that would justify the effort IMO.
 
-Alex
+> Thanks for taking a look. Yes, as also mentioned to Alex, I think we'll keep
+> this in xe for now.
 
->
-> Regards,
-> Christian.
->
-> >
-> > /Thomas
-> >
-> >
-> >> ~Maarten
-> >>
-> >> On 2023-02-27 09:11, Thomas Hellstr=C3=B6m wrote:
-> >>> Daniel, Dave
-> >>>
-> >>> Ack to merge this to drm through drm-misc-next?
-> >>>
-> >>> /Thomas
-> >>>
-> >>>
-> >>> On 2/24/23 10:51, Thomas Hellstr=C3=B6m wrote:
-> >>>> This series (or at least the suballocator helper) is a prerequisite
-> >>>> for the new Xe driver.
-> >>>>
-> >>>> There was an unresolved issue when the series was last up for review=
-,
-> >>>> and that was the per allocation aligment. Last message was from
-> >>>> Maarten Lankhorst arguing that the larger per-driver alignment used
-> >>>> would only incur a small memory cost. This new variant resolves that=
-.
-> >>>>
-> >>>> The generic suballocator has been tested with the Xe driver, and a
-> >>>> kunit test is under development.
-> >>>> The amd- and radeon adaptations are only compile-tested.
-> >>>>
-> >>>> v3:
-> >>>> - Remove stale author information (Christian K=C3=B6nig)
-> >>>> - Update Radeon Kconfig (Thomas Hellstr=C3=B6m)
-> >>>>
-> >>>> v4:
-> >>>> - Avoid 64-bit integer divisions (kernel test robot <lkp@intel.com>)
-> >>>> - Use size_t rather than u64 for the managed range. (Thomas)
-> >>>>
-> >>>>
-> >>>> Maarten Lankhorst (3):
-> >>>>    drm/suballoc: Extract amdgpu_sa.c as generic suballocation helper
-> >>>>    drm/amd: Convert amdgpu to use suballocation helper.
-> >>>>    drm/radeon: Use the drm suballocation manager implementation.
-> >>>>
-> >>>>   drivers/gpu/drm/Kconfig                    |   4 +
-> >>>>   drivers/gpu/drm/Makefile                   |   3 +
-> >>>>   drivers/gpu/drm/amd/amdgpu/Kconfig         |   1 +
-> >>>>   drivers/gpu/drm/amd/amdgpu/amdgpu.h        |  26 +-
-> >>>>   drivers/gpu/drm/amd/amdgpu/amdgpu_ib.c     |   5 +-
-> >>>>   drivers/gpu/drm/amd/amdgpu/amdgpu_object.h |  23 +-
-> >>>>   drivers/gpu/drm/amd/amdgpu/amdgpu_ring.h   |   3 +-
-> >>>>   drivers/gpu/drm/amd/amdgpu/amdgpu_sa.c     | 324 +--------------
-> >>>>   drivers/gpu/drm/drm_suballoc.c             | 457
-> >>>> +++++++++++++++++++++
-> >>>>   drivers/gpu/drm/radeon/Kconfig             |   1 +
-> >>>>   drivers/gpu/drm/radeon/radeon.h            |  55 +--
-> >>>>   drivers/gpu/drm/radeon/radeon_ib.c         |  12 +-
-> >>>>   drivers/gpu/drm/radeon/radeon_object.h     |  25 +-
-> >>>>   drivers/gpu/drm/radeon/radeon_sa.c         | 316 ++------------
-> >>>>   drivers/gpu/drm/radeon/radeon_semaphore.c  |   4 +-
-> >>>>   include/drm/drm_suballoc.h                 | 108 +++++
-> >>>>   16 files changed, 674 insertions(+), 693 deletions(-)
-> >>>>   create mode 100644 drivers/gpu/drm/drm_suballoc.c
-> >>>>   create mode 100644 include/drm/drm_suballoc.h
-> >>>>
->
+Sounds good :-)
+
+Regards
+Stanislaw
