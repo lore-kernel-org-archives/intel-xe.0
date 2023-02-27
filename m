@@ -4,51 +4,51 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 33FB5C64ED8
-	for <intel-xe@archiver.kernel.org>; Mon, 27 Feb 2023 12:03:36 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1AC15C64ED8
+	for <intel-xe@archiver.kernel.org>; Mon, 27 Feb 2023 12:11:01 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0F9D810E3B6;
-	Mon, 27 Feb 2023 12:03:36 +0000 (UTC)
-Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 03E4D10E3B6
- for <intel-xe@lists.freedesktop.org>; Mon, 27 Feb 2023 12:03:33 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id DC92510E3CE;
+	Mon, 27 Feb 2023 12:11:00 +0000 (UTC)
+Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 31FF810E3CE
+ for <intel-xe@lists.freedesktop.org>; Mon, 27 Feb 2023 12:10:58 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1677499414; x=1709035414;
+ t=1677499859; x=1709035859;
  h=from:to:cc:subject:in-reply-to:references:date:
- message-id:mime-version;
- bh=7yXkpGr71uSRqw1sNfmzNqPu2e6rgjVpw3Z2oiMMUUU=;
- b=KiGq7wFu0rRgUAbV4U2yetM4lYVrdOIgdJd1KWy/qPsUnkPwTmKBucMA
- YoDDI0YpfRHbaLpEziaav+VLMrk35Kijgh6WO+Ta68GnMn1s3+/ZFd5Vv
- YKTu5knH3Rky/NgtE7VS/tWYQ+qqR+N6wwMvhyy0tx1i6AyCtpjYBvMQJ
- JE6q7ONIFWXd6m2cC9pTGrX1MHrRyg718cRwfgZ2+xYr9KkGzzKJi9P2V
- QWrkO7/XpVYYI4BZ35MULpFT58IPTwOqctGfbTNC+wjaSbLIhrOTVUhj7
- HpSTKgDNXWLornKIrKgW+aZfjCgY9QCZlw2K7cfiX1mGYdGJN/tMJJN8b A==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10633"; a="313514621"
-X-IronPort-AV: E=Sophos;i="5.97,331,1669104000"; d="scan'208";a="313514621"
-Received: from fmsmga004.fm.intel.com ([10.253.24.48])
- by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 27 Feb 2023 04:03:33 -0800
-X-IronPort-AV: E=McAfee;i="6500,9779,10633"; a="742518240"
-X-IronPort-AV: E=Sophos;i="5.97,331,1669104000"; d="scan'208";a="742518240"
+ message-id:mime-version:content-transfer-encoding;
+ bh=m9s6C80ibPNd9eN+qQtS64GVnr1HjbC2YNJRifsrfGQ=;
+ b=VueVyDbqmYBZSlyK2rRRE20MqPK/RPCeCAeG7s/oZvaWIdgc9eMC5RFt
+ kkH54SoIRRnJ2Ty5RzO6QBXu0U/CBBg//1hvfW8r55L5TBCJBcxZUVn1X
+ DGX2v/5PCPMLO+9RJen5MmBjx/Bgkk3aRQXvYMpP8FybaUU1LhL9yJs3I
+ PXk+LwHZnNNBik5FLCSFDGCYeDQebETnNKhm6n9tuyTXtSd7Qp+iLGd7o
+ BKlt11YfHn7oT2vdDhnAONcRq0JpIf4lzppJHHL4D5+7zIXcjKwqvsd5H
+ QGsR081zM0v3ci0qSbxqCBnGkENiQanMx01sHlYEZ4OGYH2wZgeQCWNFA g==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10633"; a="361401030"
+X-IronPort-AV: E=Sophos;i="5.97,331,1669104000"; d="scan'208";a="361401030"
+Received: from fmsmga003.fm.intel.com ([10.253.24.29])
+ by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 27 Feb 2023 04:10:58 -0800
+X-IronPort-AV: E=McAfee;i="6500,9779,10633"; a="762688967"
+X-IronPort-AV: E=Sophos;i="5.97,331,1669104000"; d="scan'208";a="762688967"
 Received: from jkaisrli-mobl1.ger.corp.intel.com (HELO localhost)
  ([10.252.56.158])
- by fmsmga004-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 27 Feb 2023 04:03:31 -0800
+ by fmsmga003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 27 Feb 2023 04:10:56 -0800
 From: Jani Nikula <jani.nikula@linux.intel.com>
-To: Lucas De Marchi <lucas.demarchi@intel.com>
-In-Reply-To: <20230217200349.llbfw74zz4kdi3eo@ldmartin-desk2.lan>
+To: Rodrigo Vivi <rodrigo.vivi@intel.com>
+In-Reply-To: <Y++rFnBkN5PEvE1U@intel.com>
 Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
 References: <20230203202742.577659-1-rodrigo.vivi@intel.com>
- <20230203202742.577659-2-rodrigo.vivi@intel.com>
- <878rgx21f8.fsf@intel.com>
- <20230217200349.llbfw74zz4kdi3eo@ldmartin-desk2.lan>
-Date: Mon, 27 Feb 2023 14:03:28 +0200
-Message-ID: <87sfer1fjj.fsf@intel.com>
+ <20230203202742.577659-3-rodrigo.vivi@intel.com>
+ <87cz6921qq.fsf@intel.com> <Y++rFnBkN5PEvE1U@intel.com>
+Date: Mon, 27 Feb 2023 14:10:53 +0200
+Message-ID: <87pm9v1f76.fsf@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain
-Subject: Re: [Intel-xe] [PATCH 1/6] drm/xe: allow disabling display at
- modprobe time
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+Subject: Re: [Intel-xe] [PATCH 2/6] drm/xe: place all modprobe parameters at
+ the same place
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -60,424 +60,228 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-xe@lists.freedesktop.org, Rodrigo Vivi <rodrigo.vivi@intel.com>
+Cc: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Fri, 17 Feb 2023, Lucas De Marchi <lucas.demarchi@intel.com> wrote:
-> On Thu, Feb 16, 2023 at 03:19:07PM +0200, Jani Nikula wrote:
->>On Fri, 03 Feb 2023, Rodrigo Vivi <rodrigo.vivi@intel.com> wrote:
->>> From: Mauro Carvalho Chehab <mchehab@kernel.org>
->>>
->>> Offer an alternative besides Kconfig parameter to disable display
->>> when loading the module.
->>
->>Looks like this display disable stuff ignores the distinction between a)
->>hardware with display that you want disabled, and b) hardware without
->>display.
->>
->>If you have CONFIG_DRM_XE_DISPLAY=n or i915.enabled_display=0 for case
->>(a), you'll leave the hardware untouched instead of actually disabled,
->>and you'll keep using power.
+On Fri, 17 Feb 2023, Rodrigo Vivi <rodrigo.vivi@intel.com> wrote:
+> On Thu, Feb 16, 2023 at 03:12:13PM +0200, Jani Nikula wrote:
+>> On Fri, 03 Feb 2023, Rodrigo Vivi <rodrigo.vivi@intel.com> wrote:
+>> > From: Mauro Carvalho Chehab <mchehab@kernel.org>
+>> >
+>> > It makes easier to identify the module parameters if they're
+>> > placed it at the same place.
+>> >
+>> > Place them together with the module author/description/license.
+>> >
+>> > While here, fix a checkpatch.pl warning on force_probe description:
+>> > 	WARNING: quoted string split across lines
+>> >
+>> > Signed-off-by: Mauro Carvalho Chehab <mchehab@kernel.org>
+>> > Reviewed-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
+>> > Signed-off-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
+>>=20
+>> I don't really see why this needs to reinvent the wheel when we could
+>> use the same model as i915. Separate file, all params in a struct that
+>> provides a namespace for the params. It's hideous to have them all in
+>> the driver local namespace.
 >
-> CONFIG_DRM_XE_DISPLAY is one thing that we don't have the equivalent in
-> i915. In this particular case it's actually "xe module doesn't know
-> anything about display, there is no support for driving it".  So, I
-> think it's fine to just keep it as is.  Note that I don't have a strong
-> opinion on whether we should or should not have the config in the long
-> term.  Short term while the display integration is far from perfect, I
-> think it's ok.
+> I was willing to avoid any special infra in order to discourage the
+> addition of many parameters.
+>
+> But if we start growing we can definitely have the split and all.
+>
+> Also, I'd like to avoid i915isms. if we need those macros and all like
+> we have in i915 we should probably get that into a common kernel
+> infra for debugfs because they would likely benefit other drivers as
+> well.
 
-People will scream sooner than you think about display drawing power
-when left untouched!
+Putting all the params in a single file is already an i915-ism.
 
-Just try to have a lot of clarity in what things actually mean and what
-the implications are. People will want some ambiguous "headless mode"
-and they think "no display support or code whatsoever" will satisfy
-their use case, but they'll also think it'll DTRT for power...
+Doing that without also embedding them in a struct for namespace is
+copying the bad parts without the good.
+
+If you don't want to do that, I suggest making all the parameters
+*static* in the file they're needed, and if you need access elsewhere,
+add accessors.
+
+And, indeed, the best approach would be to reject (almost) all module
+paramters.
+
 
 BR,
 Jani.
 
+>
+>>=20
+>> > ---
+>> >  drivers/gpu/drm/xe/xe_device.c  | 10 +---------
+>> >  drivers/gpu/drm/xe/xe_guc_log.c |  5 +----
+>> >  drivers/gpu/drm/xe/xe_mmio.c    |  5 +----
+>> >  drivers/gpu/drm/xe/xe_module.c  | 22 ++++++++++++++++++++++
+>> >  drivers/gpu/drm/xe/xe_module.h  | 13 +++++++++++++
+>> >  drivers/gpu/drm/xe/xe_pci.c     |  7 +------
+>> >  6 files changed, 39 insertions(+), 23 deletions(-)
+>> >  create mode 100644 drivers/gpu/drm/xe/xe_module.h
+>> >
+>> > diff --git a/drivers/gpu/drm/xe/xe_device.c b/drivers/gpu/drm/xe/xe_de=
+vice.c
+>> > index 2e1f4beba9b0..60938c2deee2 100644
+>> > --- a/drivers/gpu/drm/xe/xe_device.c
+>> > +++ b/drivers/gpu/drm/xe/xe_device.c
+>> > @@ -20,6 +20,7 @@
+>> >  #include "xe_exec.h"
+>> >  #include "xe_gt.h"
+>> >  #include "xe_irq.h"
+>> > +#include "xe_module.h"
+>> >  #include "xe_mmio.h"
+>> >  #include "xe_pcode.h"
+>> >  #include "xe_pm.h"
+>> > @@ -42,15 +43,6 @@
+>> >  #include "display/ext/intel_pm.h"
+>> >  #endif
+>> >=20=20
+>> > -/* FIXME: Move to common param infrastructure */
+>> > -static bool enable_guc =3D true;
+>> > -module_param_named_unsafe(enable_guc, enable_guc, bool, 0444);
+>> > -MODULE_PARM_DESC(enable_guc, "Enable GuC submission");
+>> > -
+>> > -static bool enable_display =3D true;
+>> > -module_param_named(enable_display, enable_display, bool, 0444);
+>> > -MODULE_PARM_DESC(enable_display, "Enable display");
+>> > -
+>> >  static int xe_file_open(struct drm_device *dev, struct drm_file *file)
+>> >  {
+>> >  	struct xe_file *xef;
+>> > diff --git a/drivers/gpu/drm/xe/xe_guc_log.c b/drivers/gpu/drm/xe/xe_g=
+uc_log.c
+>> > index 3f19fbf243d1..7ec1b2bb1f8e 100644
+>> > --- a/drivers/gpu/drm/xe/xe_guc_log.c
+>> > +++ b/drivers/gpu/drm/xe/xe_guc_log.c
+>> > @@ -9,10 +9,7 @@
+>> >  #include "xe_gt.h"
+>> >  #include "xe_guc_log.h"
+>> >  #include "xe_map.h"
+>> > -
+>> > -static int xe_guc_log_level =3D 5;
+>> > -module_param_named(guc_log_level, xe_guc_log_level, int, 0600);
+>> > -MODULE_PARM_DESC(guc_log_level, "GuC firmware logging level (0=3Ddisa=
+ble, 1..5=3Denable with verbosity min..max)");
+>> > +#include "xe_module.h"
+>> >=20=20
+>> >  static struct xe_gt *
+>> >  log_to_gt(struct xe_guc_log *log)
+>> > diff --git a/drivers/gpu/drm/xe/xe_mmio.c b/drivers/gpu/drm/xe/xe_mmio=
+.c
+>> > index f20734cf15ba..8a953df2b468 100644
+>> > --- a/drivers/gpu/drm/xe/xe_mmio.c
+>> > +++ b/drivers/gpu/drm/xe/xe_mmio.c
+>> > @@ -12,6 +12,7 @@
+>> >  #include "xe_gt.h"
+>> >  #include "xe_gt_mcr.h"
+>> >  #include "xe_macros.h"
+>> > +#include "xe_module.h"
+>> >=20=20
+>> >  #include "i915_reg.h"
+>> >  #include "gt/intel_engine_regs.h"
+>> > @@ -21,10 +22,6 @@
+>> >  #define TILE_COUNT		REG_GENMASK(15, 8)
+>> >  #define GEN12_LMEM_BAR		2
+>> >=20=20
+>> > -static u32 xe_force_lmem_bar_size;
+>> > -module_param_named(lmem_bar_size, xe_force_lmem_bar_size, uint, 0600);
+>> > -MODULE_PARM_DESC(lmem_bar_size, "Set the lmem bar size(in MiB)");
+>> > -
+>> >  static int xe_set_dma_info(struct xe_device *xe)
+>> >  {
+>> >  	unsigned int mask_size =3D xe->info.dma_mask_size;
+>> > diff --git a/drivers/gpu/drm/xe/xe_module.c b/drivers/gpu/drm/xe/xe_mo=
+dule.c
+>> > index d6b50f1c2a05..9cd1663f83f6 100644
+>> > --- a/drivers/gpu/drm/xe/xe_module.c
+>> > +++ b/drivers/gpu/drm/xe/xe_module.c
+>> > @@ -8,9 +8,31 @@
+>> >=20=20
+>> >  #include "xe_drv.h"
+>> >  #include "xe_hw_fence.h"
+>> > +#include "xe_module.h"
+>> >  #include "xe_pci.h"
+>> >  #include "xe_sched_job.h"
+>> >=20=20
+>> > +bool enable_guc =3D true;
+>> > +module_param_named_unsafe(enable_guc, enable_guc, bool, 0444);
+>> > +MODULE_PARM_DESC(enable_guc, "Enable GuC submission");
+>> > +
+>> > +bool enable_display =3D true;
+>> > +module_param_named(enable_display, enable_display, bool, 0444);
+>> > +MODULE_PARM_DESC(enable_display, "Enable display");
+>> > +
+>> > +u32 xe_force_lmem_bar_size;
+>> > +module_param_named(lmem_bar_size, xe_force_lmem_bar_size, uint, 0600);
+>> > +MODULE_PARM_DESC(lmem_bar_size, "Set the lmem bar size(in MiB)");
+>> > +
+>> > +int xe_guc_log_level =3D 5;
+>> > +module_param_named(guc_log_level, xe_guc_log_level, int, 0600);
+>> > +MODULE_PARM_DESC(guc_log_level, "GuC firmware logging level (0=3Ddisa=
+ble, 1..5=3Denable with verbosity min..max)");
+>> > +
+>> > +char *xe_param_force_probe =3D CONFIG_DRM_XE_FORCE_PROBE;
+>> > +module_param_named_unsafe(force_probe, xe_param_force_probe, charp, 0=
+400);
+>> > +MODULE_PARM_DESC(force_probe,
+>> > +		 "Force probe options for specified devices. See CONFIG_DRM_XE_FORC=
+E_PROBE for details.");
+>> > +
+>> >  struct init_funcs {
+>> >  	int (*init)(void);
+>> >  	void (*exit)(void);
+>> > diff --git a/drivers/gpu/drm/xe/xe_module.h b/drivers/gpu/drm/xe/xe_mo=
+dule.h
+>> > new file mode 100644
+>> > index 000000000000..2c6ee46f5595
+>> > --- /dev/null
+>> > +++ b/drivers/gpu/drm/xe/xe_module.h
+>> > @@ -0,0 +1,13 @@
+>> > +/* SPDX-License-Identifier: MIT */
+>> > +/*
+>> > + * Copyright =C2=A9 2023 Intel Corporation
+>> > + */
+>> > +
+>> > +#include <linux/init.h>
+>> > +
+>> > +/* Module modprobe variables */
+>> > +extern bool enable_guc;
+>> > +extern bool enable_display;
+>> > +extern u32 xe_force_lmem_bar_size;
+>> > +extern int xe_guc_log_level;
+>> > +extern char *xe_param_force_probe;
+>> > diff --git a/drivers/gpu/drm/xe/xe_pci.c b/drivers/gpu/drm/xe/xe_pci.c
+>> > index 1d5b6afed2c3..20aa2b5ca9ac 100644
+>> > --- a/drivers/gpu/drm/xe/xe_pci.c
+>> > +++ b/drivers/gpu/drm/xe/xe_pci.c
+>> > @@ -17,17 +17,12 @@
+>> >  #include "xe_drv.h"
+>> >  #include "xe_device.h"
+>> >  #include "xe_macros.h"
+>> > +#include "xe_module.h"
+>> >  #include "xe_pm.h"
+>> >  #include "xe_step.h"
+>> >=20=20
+>> >  #include "i915_reg.h"
+>> >=20=20
+>> > -static char *xe_param_force_probe =3D CONFIG_DRM_XE_FORCE_PROBE;
+>> > -module_param_named_unsafe(force_probe, xe_param_force_probe, charp, 0=
+400);
+>> > -MODULE_PARM_DESC(force_probe,
+>> > -		 "Force probe options for specified devices. "
+>> > -		 "See CONFIG_DRM_XE_FORCE_PROBE for details.");
+>> > -
+>> >  #define DEV_INFO_FOR_EACH_FLAG(func) \
+>> >  	func(require_force_probe); \
+>> >  	func(is_dgfx); \
+>>=20
+>> --=20
+>> Jani Nikula, Intel Open Source Graphics Center
 
->
->>See the distinction in i915.
->
-> I think in i915 there are more use cases for the module param. Here
-> it's just a shortcut for "don't touch it because we a) don't trust the
-> driver to be doing the right thing in this regard or b) something else
-> is disabling it, i.e firmware or early sku enabling.  For (a),
-> it may change in future as the display support in xe matures.
->
-> To avoid ambiguity this param could be named something else like
-> "skip_display (default=0)" or "drive_display (default=1)"
->
-> In i915 disable_display=1  is an action to be taken by the driver that
-> can be skipped in case the HW isn't there.
->
-> Lucas De Marchi
->
->>
->>Also, due to the complications, it's likely a good idea to wrap this
->>stuff:
->>
->>> +	if (!xe->info.enable_display)
->>> +		return;
->>> +
->>
->>in some macro or function call.
->>
->>BR,
->>Jani.
->>
->>
->>
->>>
->>> Signed-off-by: Mauro Carvalho Chehab <mchehab@kernel.org>
->>> Reviewed-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
->>> Signed-off-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
->>> ---
->>>  drivers/gpu/drm/xe/xe_device.c       | 73 ++++++++++++++++++++++------
->>>  drivers/gpu/drm/xe/xe_device_types.h |  2 +
->>>  drivers/gpu/drm/xe/xe_irq.c          | 11 +++--
->>>  drivers/gpu/drm/xe/xe_pci.c          |  6 ---
->>>  drivers/gpu/drm/xe/xe_pm.c           | 14 +++++-
->>>  5 files changed, 78 insertions(+), 28 deletions(-)
->>>
->>> diff --git a/drivers/gpu/drm/xe/xe_device.c b/drivers/gpu/drm/xe/xe_device.c
->>> index 62f54b4806dc..2e1f4beba9b0 100644
->>> --- a/drivers/gpu/drm/xe/xe_device.c
->>> +++ b/drivers/gpu/drm/xe/xe_device.c
->>> @@ -47,6 +47,10 @@ static bool enable_guc = true;
->>>  module_param_named_unsafe(enable_guc, enable_guc, bool, 0444);
->>>  MODULE_PARM_DESC(enable_guc, "Enable GuC submission");
->>>
->>> +static bool enable_display = true;
->>> +module_param_named(enable_display, enable_display, bool, 0444);
->>> +MODULE_PARM_DESC(enable_display, "Enable display");
->>> +
->>>  static int xe_file_open(struct drm_device *dev, struct drm_file *file)
->>>  {
->>>  	struct xe_file *xef;
->>> @@ -138,15 +142,12 @@ static void xe_driver_release(struct drm_device *dev)
->>>  	pci_set_drvdata(to_pci_dev(xe->drm.dev), NULL);
->>>  }
->>>
->>> -static const struct drm_driver driver = {
->>> +static struct drm_driver driver = {
->>>  	/* Don't use MTRRs here; the Xserver or userspace app should
->>>  	 * deal with them for Intel hardware.
->>>  	 */
->>>  	.driver_features =
->>>  	    DRIVER_GEM |
->>> -#if IS_ENABLED(CONFIG_DRM_XE_DISPLAY)
->>> -	    DRIVER_MODESET | DRIVER_ATOMIC |
->>> -#endif
->>>  	    DRIVER_RENDER | DRIVER_SYNCOBJ |
->>>  	    DRIVER_SYNCOBJ_TIMELINE,
->>>  	.open = xe_file_open,
->>> @@ -159,9 +160,6 @@ static const struct drm_driver driver = {
->>>
->>>  	.dumb_create = xe_bo_dumb_create,
->>>  	.dumb_map_offset = drm_gem_ttm_dumb_map_offset,
->>> -#if IS_ENABLED(CONFIG_DRM_XE_DISPLAY)
->>> -	.lastclose = intel_fbdev_restore_mode,
->>> -#endif
->>>  	.release = &xe_driver_release,
->>>
->>>  	.ioctls = xe_ioctls,
->>> @@ -191,6 +189,16 @@ struct xe_device *xe_device_create(struct pci_dev *pdev,
->>>  	struct xe_device *xe;
->>>  	int err;
->>>
->>> +#if IS_ENABLED(CONFIG_DRM_XE_DISPLAY)
->>> +	if (enable_display) {
->>> +		/* Detect if we need to wait for other drivers early on */
->>> +		if (intel_modeset_probe_defer(pdev))
->>> +			return ERR_PTR(EPROBE_DEFER);
->>> +
->>> +		driver.driver_features |= DRIVER_MODESET | DRIVER_ATOMIC;
->>> +		driver.lastclose = intel_fbdev_restore_mode;
->>> +	}
->>> +#endif
->>>  	err = drm_aperture_remove_conflicting_pci_framebuffers(pdev, &driver);
->>>  	if (err)
->>>  		return ERR_PTR(err);
->>> @@ -208,6 +216,7 @@ struct xe_device *xe_device_create(struct pci_dev *pdev,
->>>  	xe->info.devid = pdev->device;
->>>  	xe->info.revid = pdev->revision;
->>>  	xe->info.enable_guc = enable_guc;
->>> +	xe->info.enable_display = enable_display;
->>>
->>>  	spin_lock_init(&xe->irq.lock);
->>>
->>> @@ -267,6 +276,9 @@ static void xe_device_fini_display_nommio(struct drm_device *dev, void *dummy)
->>>  {
->>>  	struct xe_device *xe = to_xe_device(dev);
->>>
->>> +	if (!xe->info.enable_display)
->>> +		return;
->>> +
->>>  	intel_power_domains_cleanup(xe);
->>>  }
->>>  #endif
->>> @@ -276,6 +288,9 @@ static int xe_device_init_display_nommio(struct xe_device *xe)
->>>  #if IS_ENABLED(CONFIG_DRM_XE_DISPLAY)
->>>  	int err;
->>>
->>> +	if (!xe->info.enable_display)
->>> +		return 0;
->>> +
->>>  	/* This must be called before any calls to HAS_PCH_* */
->>>  	intel_detect_pch(xe);
->>>  	intel_display_irq_init(xe);
->>> @@ -297,6 +312,9 @@ static void xe_device_fini_display_noirq(struct drm_device *dev, void *dummy)
->>>  {
->>>  	struct xe_device *xe = to_xe_device(dev);
->>>
->>> +	if (!xe->info.enable_display)
->>> +		return;
->>> +
->>>  	intel_modeset_driver_remove_noirq(xe);
->>>  	intel_power_domains_driver_remove(xe);
->>>  }
->>> @@ -307,6 +325,9 @@ static int xe_device_init_display_noirq(struct xe_device *xe)
->>>  #if IS_ENABLED(CONFIG_DRM_XE_DISPLAY)
->>>  	int err;
->>>
->>> +	if (!xe->info.enable_display)
->>> +		return 0;
->>> +
->>>  	/* Early display init.. */
->>>  	intel_opregion_setup(xe);
->>>
->>> @@ -342,6 +363,9 @@ static void xe_device_fini_display_noaccel(struct drm_device *dev, void *dummy)
->>>  {
->>>  	struct xe_device *xe = to_xe_device(dev);
->>>
->>> +	if (!xe->info.enable_display)
->>> +		return;
->>> +
->>>  	intel_modeset_driver_remove_nogem(xe);
->>>  }
->>>  #endif
->>> @@ -349,7 +373,12 @@ static void xe_device_fini_display_noaccel(struct drm_device *dev, void *dummy)
->>>  static int xe_device_init_display_noaccel(struct xe_device *xe)
->>>  {
->>>  #if IS_ENABLED(CONFIG_DRM_XE_DISPLAY)
->>> -	int err = intel_modeset_init_nogem(xe);
->>> +	int err;
->>> +
->>> +	if (!xe->info.enable_display)
->>> +		return 0;
->>> +
->>> +	err = intel_modeset_init_nogem(xe);
->>>  	if (err)
->>>  		return err;
->>>
->>> @@ -362,6 +391,9 @@ static int xe_device_init_display_noaccel(struct xe_device *xe)
->>>  static int xe_device_init_display(struct xe_device *xe)
->>>  {
->>>  #if IS_ENABLED(CONFIG_DRM_XE_DISPLAY)
->>> +	if (!xe->info.enable_display)
->>> +		return 0;
->>> +
->>>  	return intel_modeset_init(xe);
->>>  #else
->>>  	return 0;
->>> @@ -371,6 +403,9 @@ static int xe_device_init_display(struct xe_device *xe)
->>>  static void xe_device_unlink_display(struct xe_device *xe)
->>>  {
->>>  #if IS_ENABLED(CONFIG_DRM_XE_DISPLAY)
->>> +	if (!xe->info.enable_display)
->>> +		return;
->>> +
->>>  	/* poll work can call into fbdev, hence clean that up afterwards */
->>>  	intel_hpd_poll_fini(xe);
->>>  	intel_fbdev_fini(xe);
->>> @@ -469,9 +504,11 @@ int xe_device_probe(struct xe_device *xe)
->>>  		goto err_irq_shutdown;
->>>
->>>  #if IS_ENABLED(CONFIG_DRM_XE_DISPLAY)
->>> -	intel_display_driver_register(xe);
->>> -	intel_register_dsm_handler();
->>> -	intel_power_domains_enable(xe);
->>> +	if (xe->info.enable_display) {
->>> +		intel_display_driver_register(xe);
->>> +		intel_register_dsm_handler();
->>> +		intel_power_domains_enable(xe);
->>> +	}
->>>  #endif
->>>
->>>  	xe_debugfs_register(xe);
->>> @@ -484,7 +521,8 @@ int xe_device_probe(struct xe_device *xe)
->>>
->>>  err_fini_display:
->>>  #if IS_ENABLED(CONFIG_DRM_XE_DISPLAY)
->>> -	intel_modeset_driver_remove(xe);
->>> +	if (xe->info.enable_display)
->>> +		intel_modeset_driver_remove(xe);
->>>  #endif
->>>  err_irq_shutdown:
->>>  	xe_irq_shutdown(xe);
->>> @@ -496,14 +534,17 @@ int xe_device_probe(struct xe_device *xe)
->>>  static void xe_device_remove_display(struct xe_device *xe)
->>>  {
->>>  #if IS_ENABLED(CONFIG_DRM_XE_DISPLAY)
->>> -	intel_unregister_dsm_handler();
->>> -	intel_power_domains_disable(xe);
->>> -	intel_display_driver_unregister(xe);
->>> +	if (xe->info.enable_display) {
->>> +		intel_unregister_dsm_handler();
->>> +		intel_power_domains_disable(xe);
->>> +		intel_display_driver_unregister(xe);
->>> +	}
->>>  #endif
->>>
->>>  	drm_dev_unplug(&xe->drm);
->>>  #if IS_ENABLED(CONFIG_DRM_XE_DISPLAY)
->>> -	intel_modeset_driver_remove(xe);
->>> +	if (xe->info.enable_display)
->>> +		intel_modeset_driver_remove(xe);
->>>  #endif
->>>  }
->>>
->>> diff --git a/drivers/gpu/drm/xe/xe_device_types.h b/drivers/gpu/drm/xe/xe_device_types.h
->>> index a8d48987b2d8..6c71e1b2dbf4 100644
->>> --- a/drivers/gpu/drm/xe/xe_device_types.h
->>> +++ b/drivers/gpu/drm/xe/xe_device_types.h
->>> @@ -96,6 +96,8 @@ struct xe_device {
->>>  		bool has_4tile;
->>>  		/** @has_range_tlb_invalidation: Has range based TLB invalidations */
->>>  		bool has_range_tlb_invalidation;
->>> +		/** @enable_display: display enabled */
->>> +		bool enable_display;
->>>
->>>  		struct xe_device_display_info {
->>>  			u8 ver;
->>> diff --git a/drivers/gpu/drm/xe/xe_irq.c b/drivers/gpu/drm/xe/xe_irq.c
->>> index f978bdfda99b..e1cc057f50ba 100644
->>> --- a/drivers/gpu/drm/xe/xe_irq.c
->>> +++ b/drivers/gpu/drm/xe/xe_irq.c
->>> @@ -299,7 +299,7 @@ static irqreturn_t gen11_irq_handler(int irq, void *arg)
->>>  	gen11_gt_irq_handler(xe, gt, master_ctl, intr_dw, identity);
->>>
->>>  #if IS_ENABLED(CONFIG_DRM_XE_DISPLAY)
->>> -	if (master_ctl & GEN11_DISPLAY_IRQ)
->>> +	if (xe->info.enable_display && (master_ctl & GEN11_DISPLAY_IRQ))
->>>  		gen11_display_irq_handler(xe);
->>>  #endif
->>>
->>> @@ -308,7 +308,7 @@ static irqreturn_t gen11_irq_handler(int irq, void *arg)
->>>  	gen11_intr_enable(gt, false);
->>>
->>>  #if IS_ENABLED(CONFIG_DRM_XE_DISPLAY)
->>> -	if (gu_misc_iir & GEN11_GU_MISC_GSE)
->>> +	if (xe->info.enable_display && (gu_misc_iir & GEN11_GU_MISC_GSE))
->>>  		intel_opregion_asle_intr(xe);
->>>  #endif
->>>
->>> @@ -403,7 +403,7 @@ static irqreturn_t dg1_irq_handler(int irq, void *arg)
->>>  	dg1_intr_enable(xe, false);
->>>
->>>  #if IS_ENABLED(CONFIG_DRM_XE_DISPLAY)
->>> -	if (gu_misc_iir & GEN11_GU_MISC_GSE)
->>> +	if (xe->info.enable_display && (gu_misc_iir & GEN11_GU_MISC_GSE))
->>>  		intel_opregion_asle_intr(xe);
->>>  #endif
->>>
->>> @@ -488,7 +488,8 @@ void xe_irq_reset(struct xe_device *xe)
->>>  		}
->>>  	}
->>>  #if IS_ENABLED(CONFIG_DRM_XE_DISPLAY)
->>> -	gen11_display_irq_reset(xe);
->>> +	if (xe->info.enable_display)
->>> +		gen11_display_irq_reset(xe);
->>>  #endif
->>>  }
->>>
->>> @@ -504,7 +505,7 @@ void xe_gt_irq_postinstall(struct xe_gt *gt)
->>>  		drm_err(&xe->drm, "No interrupt postinstall hook");
->>>
->>>  #if IS_ENABLED(CONFIG_DRM_XE_DISPLAY)
->>> -	if (gt->info.id == XE_GT0)
->>> +	if (xe->info.enable_display && (gt->info.id == XE_GT0))
->>>  		gen11_display_irq_postinstall(gt_to_xe(gt));
->>>  #endif
->>>  }
->>> diff --git a/drivers/gpu/drm/xe/xe_pci.c b/drivers/gpu/drm/xe/xe_pci.c
->>> index 927a050f3b8f..1d5b6afed2c3 100644
->>> --- a/drivers/gpu/drm/xe/xe_pci.c
->>> +++ b/drivers/gpu/drm/xe/xe_pci.c
->>> @@ -476,12 +476,6 @@ static int xe_pci_probe(struct pci_dev *pdev, const struct pci_device_id *ent)
->>>  		return -ENODEV;
->>>  	}
->>>
->>> -#if IS_ENABLED(CONFIG_DRM_XE_DISPLAY)
->>> -	/* Detect if we need to wait for other drivers early on */
->>> -	if (intel_modeset_probe_defer(pdev))
->>> -		return -EPROBE_DEFER;
->>> -#endif
->>> -
->>>  	xe = xe_device_create(pdev, ent);
->>>  	if (IS_ERR(xe))
->>>  		return PTR_ERR(xe);
->>> diff --git a/drivers/gpu/drm/xe/xe_pm.c b/drivers/gpu/drm/xe/xe_pm.c
->>> index ddfd884796ba..4b3a1d8a8adf 100644
->>> --- a/drivers/gpu/drm/xe/xe_pm.c
->>> +++ b/drivers/gpu/drm/xe/xe_pm.c
->>> @@ -52,7 +52,7 @@ static void intel_suspend_encoders(struct xe_device *xe)
->>>  	struct drm_device *dev = &xe->drm;
->>>  	struct intel_encoder *encoder;
->>>
->>> -	if (!xe->info.display.pipe_mask)
->>> +	if (!xe->info.enable_display || !xe->info.display.pipe_mask)
->>>  		return;
->>>
->>>  	drm_modeset_lock_all(dev);
->>> @@ -66,6 +66,9 @@ static void intel_suspend_encoders(struct xe_device *xe)
->>>  static void xe_pm_display_suspend(struct xe_device *xe)
->>>  {
->>>  #if IS_ENABLED(CONFIG_DRM_XE_DISPLAY)
->>> +	if (!xe->info.enable_display)
->>> +		return;
->>> +
->>>  	/* We do a lot of poking in a lot of registers, make sure they work
->>>  	 * properly. */
->>>  	intel_power_domains_disable(xe);
->>> @@ -91,6 +94,9 @@ static void xe_pm_display_suspend(struct xe_device *xe)
->>>  static void xe_pm_display_suspend_late(struct xe_device *xe)
->>>  {
->>>  #if IS_ENABLED(CONFIG_DRM_XE_DISPLAY)
->>> +	if (!xe->info.enable_display)
->>> +		return;
->>> +
->>>  	intel_power_domains_suspend(xe, I915_DRM_SUSPEND_MEM);
->>>
->>>  	intel_display_power_suspend_late(xe);
->>> @@ -100,6 +106,9 @@ static void xe_pm_display_suspend_late(struct xe_device *xe)
->>>  static void xe_pm_display_resume_early(struct xe_device *xe)
->>>  {
->>>  #if IS_ENABLED(CONFIG_DRM_XE_DISPLAY)
->>> +	if (!xe->info.enable_display)
->>> +		return;
->>> +
->>>  	intel_display_power_resume_early(xe);
->>>
->>>  	intel_power_domains_resume(xe);
->>> @@ -109,6 +118,9 @@ static void xe_pm_display_resume_early(struct xe_device *xe)
->>>  static void xe_pm_display_resume(struct xe_device *xe)
->>>  {
->>>  #if IS_ENABLED(CONFIG_DRM_XE_DISPLAY)
->>> +	if (!xe->info.enable_display)
->>> +		return;
->>> +
->>>  	intel_dmc_ucode_resume(xe);
->>>
->>>  	if (xe->info.display.pipe_mask)
->>
->>-- 
->>Jani Nikula, Intel Open Source Graphics Center
-
--- 
+--=20
 Jani Nikula, Intel Open Source Graphics Center
