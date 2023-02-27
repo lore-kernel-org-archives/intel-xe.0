@@ -4,52 +4,50 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1544CC64ED8
-	for <intel-xe@archiver.kernel.org>; Mon, 27 Feb 2023 14:19:29 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 322B5C64ED6
+	for <intel-xe@archiver.kernel.org>; Mon, 27 Feb 2023 14:19:50 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id CFA8410E410;
-	Mon, 27 Feb 2023 14:19:29 +0000 (UTC)
-Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C879B10E410
- for <intel-xe@lists.freedesktop.org>; Mon, 27 Feb 2023 14:19:27 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0ADB910E413;
+	Mon, 27 Feb 2023 14:19:50 +0000 (UTC)
+Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7A59810E410;
+ Mon, 27 Feb 2023 14:19:47 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1677507567; x=1709043567;
- h=from:to:cc:subject:in-reply-to:references:date:
- message-id:mime-version;
- bh=Kxxi7ZLkMhNeZvLO8EdwZIOS1m4omBcwntklpGzdpzg=;
- b=i/je6UXLtfkPBq0Fr/rQ102uo/wKI33m24fH39F0NwBl61MsTGNH3xco
- p5t9KqH2JSCUlxMFj/ODSBmIKviJOtgb6K6ddtm9ubXgfXtc1A2i/1yN4
- QZU/+IWf0RqKjGhGRaF4dmjbPfoy7Rh0Sn2X1CQ9nLty7VzywRXRIH6lP
- Re941JM3y0gzcEmVzVqlkHxNSmDulcY9tMN+1CwjbCPwbNAW/BI4CTBiN
- arWJSwzNvRpgCMt73odEQpXHcwo2Tyk4HXy+sBKuXzFNDuxI/v4tHQ8gA
- GaJ2fytRG07fI0uQfNe0oU1IGRciZ+Jp4lvMQV69Y5XAP42arbfM5aOd5 g==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10634"; a="322111528"
-X-IronPort-AV: E=Sophos;i="5.98,332,1673942400"; d="scan'208";a="322111528"
-Received: from orsmga003.jf.intel.com ([10.7.209.27])
- by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 27 Feb 2023 06:19:24 -0800
-X-IronPort-AV: E=McAfee;i="6500,9779,10634"; a="623597897"
-X-IronPort-AV: E=Sophos;i="5.98,332,1673942400"; d="scan'208";a="623597897"
-Received: from jkaisrli-mobl1.ger.corp.intel.com (HELO localhost)
- ([10.252.56.158])
- by orsmga003-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 27 Feb 2023 06:19:22 -0800
-From: Jani Nikula <jani.nikula@linux.intel.com>
-To: Lucas De Marchi <lucas.demarchi@intel.com>, Rodrigo Vivi
- <rodrigo.vivi@intel.com>
-In-Reply-To: <20230217222230.l7ssyylivr2c75bx@ldmartin-desk2.lan>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20230217005226.106499-1-lucas.demarchi@intel.com>
- <20230217005226.106499-9-lucas.demarchi@intel.com>
- <Y+/jICXsAkeW0Onw@intel.com>
- <20230217222230.l7ssyylivr2c75bx@ldmartin-desk2.lan>
-Date: Mon, 27 Feb 2023 16:19:19 +0200
-Message-ID: <87edqb1994.fsf@intel.com>
+ t=1677507587; x=1709043587;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:in-reply-to;
+ bh=snzB4bkoNKqD7Lik1ptpnELkEKhxK5QY0yDRo6Xp0b4=;
+ b=bBCRxruA/KHI/cdRn++nxMg/ypKVNVbx7vu11UToENFC1wTrnZyFtQNC
+ bJjaQ/mmRIngy+muVBn/wxywm8d1RNV7kTPMUEtTR/h2cussi0lKq7t5r
+ 7Ls2pEp9E4sYoaDeEZg+qoR2TKVUj4y6khvm9i3BlpRFH+a4fJws3fmQ8
+ fdvNRv5kCLJwqIlweYubKCdqwjXC9M7nUMwvsb8AJGG0zF90MQPgwQIEt
+ ZMnaOhY/vC/uxnXfbLFE2euzxk4j259vPQxYEvowspJjt8EvusAaSCuEN
+ jDBobIXaF1ANN1NT39sXebrnxfFLwIy6iV1lDCA8V2ZxG14wGRwUxf3sw g==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10634"; a="335346860"
+X-IronPort-AV: E=Sophos;i="5.98,332,1673942400"; d="scan'208";a="335346860"
+Received: from fmsmga006.fm.intel.com ([10.253.24.20])
+ by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 27 Feb 2023 06:19:46 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6500,9779,10634"; a="919372153"
+X-IronPort-AV: E=Sophos;i="5.98,332,1673942400"; d="scan'208";a="919372153"
+Received: from lkp-server01.sh.intel.com (HELO 3895f5c55ead) ([10.239.97.150])
+ by fmsmga006.fm.intel.com with ESMTP; 27 Feb 2023 06:19:44 -0800
+Received: from kbuild by 3895f5c55ead with local (Exim 4.96)
+ (envelope-from <lkp@intel.com>) id 1pWeLw-0004UJ-0s;
+ Mon, 27 Feb 2023 14:19:44 +0000
+Date: Mon, 27 Feb 2023 22:18:54 +0800
+From: kernel test robot <lkp@intel.com>
+To: Thomas =?iso-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>,
+ dri-devel@lists.sourceforge.net
+Message-ID: <202302272259.dbMIwSUR-lkp@intel.com>
+References: <20230227103853.12666-1-thomas.hellstrom@linux.intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain
-Subject: Re: [Intel-xe] [PATCH v2 08/11] drm/xe: Remove dependency on
- i915_reg.h
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20230227103853.12666-1-thomas.hellstrom@linux.intel.com>
+Subject: Re: [Intel-xe] [Intel-gfx] [PATCH] drm/tests: Suballocator test
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -61,46 +59,61 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-xe@lists.freedesktop.org,
- Maarten Lankhorst <maarten.lankhorst@intel.com>,
- Matthew Auld <matthew.auld@intel.com>
+Cc: intel-gfx@lists.freedesktop.org, llvm@lists.linux.dev,
+ Christian Koenig <christian.koenig@amd.com>, oe-kbuild-all@lists.linux.dev,
+ intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Fri, 17 Feb 2023, Lucas De Marchi <lucas.demarchi@intel.com> wrote:
-> On Fri, Feb 17, 2023 at 03:27:12PM -0500, Rodrigo Vivi wrote:
->>On Thu, Feb 16, 2023 at 04:52:23PM -0800, Lucas De Marchi wrote:
->>> +#define GGC					_MMIO(0x108040)
->>> +#define   GMS_MASK				REG_GENMASK(15, 8)
->>> +#define   GGMS_MASK				REG_GENMASK(7, 6)
->>
->>one of the things that I'm always confused is with these REG_{BIT,GENMASK,FIELD_PREP}.
->>Why can't we simply use the regular "non-REG_" versions like every other driver
->>(aside of i915 of course).
->
-> it was some time ago, I didn't remember exactly and was guessing it was
-> because GENMASK returns a long, while our registers are 32bits.
-> Indeed, commit 09b434d4f6d2 ("drm/i915: introduce REG_BIT() and
-> REG_GENMASK() to define register contents"):
->
-> 	We define the above as wrappers to BIT() and GENMASK() respectively to
-> 	force u32 type to go with our register size, and to add compile time
-> 	checks on the bit numbers.
+Hi Thomas,
 
-This, plus FIELD_PREP() doesn't always generate an integer constant
-expression making it hard to use in some cases. Which I believe we see
-over and over again in i915 gem/gt code that uses FIELD_PREP(). It's
-even compiler dependent I think.
+Thank you for the patch! Yet something to improve:
 
-> we may revisit that and maybe generalize GENMASK32/BIT32 that guarantees a
-> u32 type is returned.
+[auto build test ERROR on drm-tip/drm-tip]
 
-Obviously not a bad idea, but additionally forcing integer constant
-expression might not be something everyone wants in generic code.
+url:    https://github.com/intel-lab-lkp/linux/commits/Thomas-Hellstr-m/drm-tests-Suballocator-test/20230227-184044
+base:   git://anongit.freedesktop.org/drm/drm-tip drm-tip
+patch link:    https://lore.kernel.org/r/20230227103853.12666-1-thomas.hellstrom%40linux.intel.com
+patch subject: [Intel-gfx] [PATCH] drm/tests: Suballocator test
+config: x86_64-randconfig-a006-20230227 (https://download.01.org/0day-ci/archive/20230227/202302272259.dbMIwSUR-lkp@intel.com/config)
+compiler: clang version 14.0.6 (https://github.com/llvm/llvm-project f28c006a5895fc0e329fe15fead81e37457cb1d1)
+reproduce (this is a W=1 build):
+        wget https://raw.githubusercontent.com/intel/lkp-tests/master/sbin/make.cross -O ~/bin/make.cross
+        chmod +x ~/bin/make.cross
+        # https://github.com/intel-lab-lkp/linux/commit/bf605f8a4492ba34499541f58ad29cf56bd9d852
+        git remote add linux-review https://github.com/intel-lab-lkp/linux
+        git fetch --no-tags linux-review Thomas-Hellstr-m/drm-tests-Suballocator-test/20230227-184044
+        git checkout bf605f8a4492ba34499541f58ad29cf56bd9d852
+        # save the config file
+        mkdir build_dir && cp config build_dir/.config
+        COMPILER_INSTALL_PATH=$HOME/0day COMPILER=clang make.cross W=1 O=build_dir ARCH=x86_64 olddefconfig
+        COMPILER_INSTALL_PATH=$HOME/0day COMPILER=clang make.cross W=1 O=build_dir ARCH=x86_64 SHELL=/bin/bash drivers/gpu/drm/tests/
 
-BR,
-Jani.
+If you fix the issue, kindly add following tag where applicable
+| Reported-by: kernel test robot <lkp@intel.com>
+| Link: https://lore.kernel.org/oe-kbuild-all/202302272259.dbMIwSUR-lkp@intel.com/
 
+All errors (new ones prefixed by >>):
+
+>> drivers/gpu/drm/tests/drm_suballoc_test.c:16:10: fatal error: 'drm/drm_suballoc.h' file not found
+   #include <drm/drm_suballoc.h>
+            ^~~~~~~~~~~~~~~~~~~~
+   1 error generated.
+
+
+vim +16 drivers/gpu/drm/tests/drm_suballoc_test.c
+
+     8	
+     9	#include <linux/dma-fence.h>
+    10	#include <linux/ktime.h>
+    11	#include <linux/hrtimer.h>
+    12	#include <linux/sizes.h>
+    13	#include <linux/slab.h>
+    14	#include <linux/spinlock.h>
+    15	#include <linux/delay.h>
+  > 16	#include <drm/drm_suballoc.h>
+    17	
 
 -- 
-Jani Nikula, Intel Open Source Graphics Center
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests
