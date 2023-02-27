@@ -4,50 +4,62 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8BF04C7EE23
-	for <intel-xe@archiver.kernel.org>; Mon, 27 Feb 2023 14:40:50 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id EB580C64ED8
+	for <intel-xe@archiver.kernel.org>; Mon, 27 Feb 2023 15:00:28 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 61A6A10E41E;
-	Mon, 27 Feb 2023 14:40:50 +0000 (UTC)
-Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
- by gabe.freedesktop.org (Postfix) with ESMTPS id BF64B10E41B;
- Mon, 27 Feb 2023 14:40:47 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1677508847; x=1709044847;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:in-reply-to;
- bh=vsrlIykIlhNt8INTh9Xfrak8sikEmtN6SYM/LJ2B0DU=;
- b=YkHbwLQDgC9skl7DFzbBzJbeZwGeFb9JkfzQHcsYZXRm32Ywql/v5uL3
- 3pFvqm8L/y1WrEjpWeB/TdyxiCyxwS5IKkkQRgI0LCqxOrj5i7yNgzc5W
- 9PIoLmysG80OUpV0sF8x2YoGiWSVg2U0gQIPBbdvMFO9kzVt6U0th8Dte
- X0gHKvRePJosuyutLyVB4JvhEDDjPLWrsvEYTdtNLyLYhsloJGUtoUawI
- LWbqs9sS8LwzD0oDBRmY/fAv5F6XGsExepuElKO/H5z07vvBs9/C5g2eA
- Rg1skomElolQ+b2AOz0g7naeHcvEJlleUhkdA/fm5IlcqQP+/96CcKOFm A==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10634"; a="335352092"
-X-IronPort-AV: E=Sophos;i="5.98,219,1673942400"; d="scan'208";a="335352092"
-Received: from fmsmga004.fm.intel.com ([10.253.24.48])
- by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 27 Feb 2023 06:40:47 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6500,9779,10634"; a="742591983"
-X-IronPort-AV: E=Sophos;i="5.98,219,1673942400"; d="scan'208";a="742591983"
-Received: from lkp-server01.sh.intel.com (HELO 3895f5c55ead) ([10.239.97.150])
- by fmsmga004.fm.intel.com with ESMTP; 27 Feb 2023 06:40:45 -0800
-Received: from kbuild by 3895f5c55ead with local (Exim 4.96)
- (envelope-from <lkp@intel.com>) id 1pWegG-0004Uv-2N;
- Mon, 27 Feb 2023 14:40:44 +0000
-Date: Mon, 27 Feb 2023 22:40:28 +0800
-From: kernel test robot <lkp@intel.com>
-To: Thomas =?iso-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>,
- dri-devel@lists.sourceforge.net
-Message-ID: <202302272233.3LnnRKDf-lkp@intel.com>
-References: <20230227103853.12666-1-thomas.hellstrom@linux.intel.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id BBE0F10E421;
+	Mon, 27 Feb 2023 15:00:28 +0000 (UTC)
+Received: from mail-oa1-x29.google.com (mail-oa1-x29.google.com
+ [IPv6:2001:4860:4864:20::29])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C8A9010E421;
+ Mon, 27 Feb 2023 15:00:26 +0000 (UTC)
+Received: by mail-oa1-x29.google.com with SMTP id
+ 586e51a60fabf-172a623ad9aso7600490fac.13; 
+ Mon, 27 Feb 2023 07:00:26 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20210112;
+ h=content-transfer-encoding:cc:to:subject:message-id:date:from
+ :in-reply-to:references:mime-version:from:to:cc:subject:date
+ :message-id:reply-to;
+ bh=3CcviMvOYlI24749RtEMYWxJzqWsOF819uiocGxBaEg=;
+ b=n3aIemxHiGtU5ErvLqcG6XucMRyjAX9oU6ieY5ISHtk9t7qa7NPQuYZkiKMUviNmYK
+ FZLblMP0FHW+Lka7Jf9y2Adxy7A57SGG3XH5NStpT92W8qo8oOBbl6JiCHqYmVFgdeiL
+ DtrCxsoRWTUvddm/1ir2WganNmNQATGuzDeJRwdk3lIolIarNhdvVDDjLBIPoYG+SB/v
+ 91V6CMCaZEZ/thjA5+kHzxdEP2o1csvEvjNhsaeOp/eVHFIf2YzAvBvulHBV+SuSpWTZ
+ Ruy7ulP6iqGB70Uz1vzYgsinaAngDeI1BI30IWL+9YXME+a7kawkuADEnog25gQSrPsH
+ RBAg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20210112;
+ h=content-transfer-encoding:cc:to:subject:message-id:date:from
+ :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+ :subject:date:message-id:reply-to;
+ bh=3CcviMvOYlI24749RtEMYWxJzqWsOF819uiocGxBaEg=;
+ b=VDGR+aSdFS+nXo6osOYxb6tBrKAYcInOsp37tQuWea+RS4wuZAmnHgL+Kk5heztw0I
+ B9tWbYvl7AerpnX6Qe6Ugb42x3uGpMHEq1PVxHCsS/RzE6ZNEZr7IY/LxDYB5aWTYLN8
+ wrN2Te1+5OtewJB8N79xXiWhNygfIpLoE0R1ncOOFmdOEW0cCFFTgyMBbOvKlYxq84Wi
+ MEWSkKkHxMl4sV1r0vztvh1KNpc/JCBBgUzLDEcJXP560Bnhdiv9kYiS7IU/VLfB/eq/
+ Oo4q66HdSXASeQW7rcT7+euKJkqNciYJv8YDQZtYSWb9kAqmTPuEmksE8/xBXtWYyAcI
+ 0r+w==
+X-Gm-Message-State: AO0yUKXQvgSqoYTIKVzaaQQZsIf52LWAG6olCg9QCcL/5ILw7ZGYc1mh
+ QVVvRfihdJH1dB0JI5dCckOztGEd40v5orAKM5A=
+X-Google-Smtp-Source: AK7set8PfTAsqeeDlM+HDh/Jq9X5RHL+NRajGNKHOiAzdv87xxr74y/ysCBzxzlho8kKJ4sysPDuak1PkUSOKdMgCc8=
+X-Received: by 2002:a05:6871:6b97:b0:16e:2f74:e5c1 with SMTP id
+ zh23-20020a0568716b9700b0016e2f74e5c1mr2571814oab.8.1677510025918; Mon, 27
+ Feb 2023 07:00:25 -0800 (PST)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20230227103853.12666-1-thomas.hellstrom@linux.intel.com>
-Subject: Re: [Intel-xe] [Intel-gfx] [PATCH] drm/tests: Suballocator test
+References: <20230224095152.30134-1-thomas.hellstrom@linux.intel.com>
+ <6cddb602-31dd-8854-25dc-11afe9b1a275@linux.intel.com>
+ <6f0b5231-a9c2-e31e-f2d6-61f403d2f94d@lankhorst.se>
+ <f1caadc4-9e65-1b1c-ec81-82a89f764b40@linux.intel.com>
+ <bcf1708d-5e3e-032e-6770-231cdb57971c@amd.com>
+In-Reply-To: <bcf1708d-5e3e-032e-6770-231cdb57971c@amd.com>
+From: Alex Deucher <alexdeucher@gmail.com>
+Date: Mon, 27 Feb 2023 10:00:14 -0500
+Message-ID: <CADnq5_NRfYgTW1dszn2huCqLeiHAOb6-Mg=N_gSMczT_=cj1Eg@mail.gmail.com>
+To: =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+Subject: Re: [Intel-xe] [PATCH v4 0/3] drm/helpers: Make the suballocation
+ manager drm generic
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -59,58 +71,99 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
- Christian Koenig <christian.koenig@amd.com>, oe-kbuild-all@lists.linux.dev
+Cc: intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ Daniel Vetter <daniel@ffwll.ch>, Dave Airlie <airlied@redhat.com>,
+ Maarten Lankhorst <dev@lankhorst.se>, intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Hi Thomas,
+On Mon, Feb 27, 2023 at 8:04 AM Christian K=C3=B6nig
+<christian.koenig@amd.com> wrote:
+>
+> Am 27.02.23 um 10:00 schrieb Thomas Hellstr=C3=B6m:
+> > Hi, Maarten,
+> >
+> > On 2/27/23 09:55, Maarten Lankhorst wrote:
+> >> Hey,
+> >>
+> >> I can push this to drm-misc-next, I don't think a drm maintainer ack
+> >> is needed, as long as we have the acks from the amd folk for merging
+> >> through drm-misc-next.
+> >>
+> > OK, sound good, we have that ack so please go ahead!
+>
+> Works for me and I don't think Alex would object either.
 
-Thank you for the patch! Yet something to improve:
+Fine with me as well.
 
-[auto build test ERROR on drm-tip/drm-tip]
+Alex
 
-url:    https://github.com/intel-lab-lkp/linux/commits/Thomas-Hellstr-m/drm-tests-Suballocator-test/20230227-184044
-base:   git://anongit.freedesktop.org/drm/drm-tip drm-tip
-patch link:    https://lore.kernel.org/r/20230227103853.12666-1-thomas.hellstrom%40linux.intel.com
-patch subject: [Intel-gfx] [PATCH] drm/tests: Suballocator test
-config: x86_64-allyesconfig (https://download.01.org/0day-ci/archive/20230227/202302272233.3LnnRKDf-lkp@intel.com/config)
-compiler: gcc-11 (Debian 11.3.0-8) 11.3.0
-reproduce (this is a W=1 build):
-        # https://github.com/intel-lab-lkp/linux/commit/bf605f8a4492ba34499541f58ad29cf56bd9d852
-        git remote add linux-review https://github.com/intel-lab-lkp/linux
-        git fetch --no-tags linux-review Thomas-Hellstr-m/drm-tests-Suballocator-test/20230227-184044
-        git checkout bf605f8a4492ba34499541f58ad29cf56bd9d852
-        # save the config file
-        mkdir build_dir && cp config build_dir/.config
-        make W=1 O=build_dir ARCH=x86_64 olddefconfig
-        make W=1 O=build_dir ARCH=x86_64 SHELL=/bin/bash
-
-If you fix the issue, kindly add following tag where applicable
-| Reported-by: kernel test robot <lkp@intel.com>
-| Link: https://lore.kernel.org/oe-kbuild-all/202302272233.3LnnRKDf-lkp@intel.com/
-
-All errors (new ones prefixed by >>):
-
->> drivers/gpu/drm/tests/drm_suballoc_test.c:16:10: fatal error: drm/drm_suballoc.h: No such file or directory
-      16 | #include <drm/drm_suballoc.h>
-         |          ^~~~~~~~~~~~~~~~~~~~
-   compilation terminated.
-
-
-vim +16 drivers/gpu/drm/tests/drm_suballoc_test.c
-
-     8	
-     9	#include <linux/dma-fence.h>
-    10	#include <linux/ktime.h>
-    11	#include <linux/hrtimer.h>
-    12	#include <linux/sizes.h>
-    13	#include <linux/slab.h>
-    14	#include <linux/spinlock.h>
-    15	#include <linux/delay.h>
-  > 16	#include <drm/drm_suballoc.h>
-    17	
-
--- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests
+>
+> Regards,
+> Christian.
+>
+> >
+> > /Thomas
+> >
+> >
+> >> ~Maarten
+> >>
+> >> On 2023-02-27 09:11, Thomas Hellstr=C3=B6m wrote:
+> >>> Daniel, Dave
+> >>>
+> >>> Ack to merge this to drm through drm-misc-next?
+> >>>
+> >>> /Thomas
+> >>>
+> >>>
+> >>> On 2/24/23 10:51, Thomas Hellstr=C3=B6m wrote:
+> >>>> This series (or at least the suballocator helper) is a prerequisite
+> >>>> for the new Xe driver.
+> >>>>
+> >>>> There was an unresolved issue when the series was last up for review=
+,
+> >>>> and that was the per allocation aligment. Last message was from
+> >>>> Maarten Lankhorst arguing that the larger per-driver alignment used
+> >>>> would only incur a small memory cost. This new variant resolves that=
+.
+> >>>>
+> >>>> The generic suballocator has been tested with the Xe driver, and a
+> >>>> kunit test is under development.
+> >>>> The amd- and radeon adaptations are only compile-tested.
+> >>>>
+> >>>> v3:
+> >>>> - Remove stale author information (Christian K=C3=B6nig)
+> >>>> - Update Radeon Kconfig (Thomas Hellstr=C3=B6m)
+> >>>>
+> >>>> v4:
+> >>>> - Avoid 64-bit integer divisions (kernel test robot <lkp@intel.com>)
+> >>>> - Use size_t rather than u64 for the managed range. (Thomas)
+> >>>>
+> >>>>
+> >>>> Maarten Lankhorst (3):
+> >>>>    drm/suballoc: Extract amdgpu_sa.c as generic suballocation helper
+> >>>>    drm/amd: Convert amdgpu to use suballocation helper.
+> >>>>    drm/radeon: Use the drm suballocation manager implementation.
+> >>>>
+> >>>>   drivers/gpu/drm/Kconfig                    |   4 +
+> >>>>   drivers/gpu/drm/Makefile                   |   3 +
+> >>>>   drivers/gpu/drm/amd/amdgpu/Kconfig         |   1 +
+> >>>>   drivers/gpu/drm/amd/amdgpu/amdgpu.h        |  26 +-
+> >>>>   drivers/gpu/drm/amd/amdgpu/amdgpu_ib.c     |   5 +-
+> >>>>   drivers/gpu/drm/amd/amdgpu/amdgpu_object.h |  23 +-
+> >>>>   drivers/gpu/drm/amd/amdgpu/amdgpu_ring.h   |   3 +-
+> >>>>   drivers/gpu/drm/amd/amdgpu/amdgpu_sa.c     | 324 +--------------
+> >>>>   drivers/gpu/drm/drm_suballoc.c             | 457
+> >>>> +++++++++++++++++++++
+> >>>>   drivers/gpu/drm/radeon/Kconfig             |   1 +
+> >>>>   drivers/gpu/drm/radeon/radeon.h            |  55 +--
+> >>>>   drivers/gpu/drm/radeon/radeon_ib.c         |  12 +-
+> >>>>   drivers/gpu/drm/radeon/radeon_object.h     |  25 +-
+> >>>>   drivers/gpu/drm/radeon/radeon_sa.c         | 316 ++------------
+> >>>>   drivers/gpu/drm/radeon/radeon_semaphore.c  |   4 +-
+> >>>>   include/drm/drm_suballoc.h                 | 108 +++++
+> >>>>   16 files changed, 674 insertions(+), 693 deletions(-)
+> >>>>   create mode 100644 drivers/gpu/drm/drm_suballoc.c
+> >>>>   create mode 100644 include/drm/drm_suballoc.h
+> >>>>
+>
