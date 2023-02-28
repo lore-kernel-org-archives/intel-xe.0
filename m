@@ -4,34 +4,32 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id B0696C6FD1D
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id A9E86C678D4
 	for <intel-xe@archiver.kernel.org>; Mon,  6 Mar 2023 14:41:04 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8E77B10E263;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 874F610E262;
 	Mon,  6 Mar 2023 14:41:04 +0000 (UTC)
-X-Greylist: delayed 163015 seconds by postgrey-1.36 at gabe;
- Thu, 02 Mar 2023 11:26:20 UTC
-Received: from mblankhorst.nl (lankhorst.se [141.105.120.124])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9BEE310E111
- for <intel-xe@lists.freedesktop.org>; Thu,  2 Mar 2023 11:26:20 +0000 (UTC)
-Message-ID: <32de8549-1e00-ab70-888a-53f0e269ea97@lankhorst.se>
-Date: Thu, 2 Mar 2023 12:26:18 +0100
+Received: from mblankhorst.nl (lankhorst.se
+ [IPv6:2a02:2308:0:7ec:e79c:4e97:b6c4:f0ae])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E524610E05C
+ for <intel-xe@lists.freedesktop.org>; Tue, 28 Feb 2023 20:26:39 +0000 (UTC)
+Message-ID: <a584f985-4893-b732-0a99-c8fc96e72af0@lankhorst.se>
+Date: Tue, 28 Feb 2023 21:26:37 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Firefox/102.0 Thunderbird/102.8.0
 Content-Language: en-US
-To: Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Lucas De Marchi <lucas.demarchi@intel.com>
-References: <20230228101730.63294-1-maarten.lankhorst@linux.intel.com>
- <20230301163629.axukda67v4rsqb3l@ldmartin-desk2.lan>
- <Y//caMLc8YAqOB9Q@intel.com>
+To: Matthew Auld <matthew.auld@intel.com>, intel-xe@lists.freedesktop.org
+References: <20230228104137.80965-1-matthew.auld@intel.com>
+ <20230228104137.80965-9-matthew.auld@intel.com>
+ <b5ee1c45-dbc0-1e7e-c98b-5b268e1f219c@lankhorst.se>
+ <0d4136ff-593c-845e-269e-323cbcfdf61c@intel.com>
 From: Maarten Lankhorst <maarten@lankhorst.se>
-In-Reply-To: <Y//caMLc8YAqOB9Q@intel.com>
+In-Reply-To: <0d4136ff-593c-845e-269e-323cbcfdf61c@intel.com>
 Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 X-Mailman-Approved-At: Mon, 06 Mar 2023 14:41:02 +0000
-Subject: Re: [Intel-xe] [PATCH] drm/xe: Use atomic instead of mutex for
- xe_device_mem_access_ongoing
+Subject: Re: [Intel-xe] [PATCH v2 08/14] drm/xe/buddy: add visible tracking
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -43,161 +41,437 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-xe@lists.freedesktop.org
+Cc: Lucas De Marchi <lucas.demarchi@intel.com>
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 
-On 2023-03-02 00:14, Rodrigo Vivi wrote:
-> On Wed, Mar 01, 2023 at 08:36:29AM -0800, Lucas De Marchi wrote:
->> On Tue, Feb 28, 2023 at 11:17:30AM +0100, Maarten Lankhorst wrote:
->>> xe_guc_ct_fast_path() is called from an irq context, and cannot lock
->>> the mutex used by xe_device_mem_access_ongoing().
+On 2023-02-28 16:05, Matthew Auld wrote:
+> On 28/02/2023 14:24, Maarten Lankhorst wrote:
+>> On 2023-02-28 11:41, Matthew Auld wrote:
+>>> Replace the allocation code with the i915 version. This simplifies the
+>>> code a little, and importantly we get the accounting at the mgr level,
+>>> which is useful for debug (and maybe userspace), plus per resource
+>>> tracking so we can easily check if a resource is using one or pages in
+>>> the mappable part of vram (useful for eviction), or if the resource is
+>>> completely within the mappable portion (useful for checking if the
+>>> resource can be safely CPU mapped).
 >>>
->>> Fortunately it is easy to fix, and the atomic guarantees are good enough
->>> to ensure xe->mem_access.hold_rpm is set before last ref is dropped.
->>>
->>> As far as I can tell, the runtime ref in device access should be
->>> killable, but don't dare to do it yet.
->> I don't follow this last paragraph. Could you point it in the code?
-> I also didn't understand this... if we remove that we will end up in
-> memory access with the sleeping device...
-I may understand the code wrong, but without error checking by the 
-callers, and changing the prototype to return int is there any way this 
-will be guaranteed to work regardless?
->>> Signed-off-by: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
+>>> Signed-off-by: Matthew Auld <matthew.auld@intel.com>
+>>> Cc: Lucas De Marchi <lucas.demarchi@intel.com>
 >>> ---
->>> drivers/gpu/drm/xe/xe_device.c       | 17 ++++++++---------
->>> drivers/gpu/drm/xe/xe_device.h       | 14 ++++----------
->>> drivers/gpu/drm/xe/xe_device_types.h |  4 +---
->>> 3 files changed, 13 insertions(+), 22 deletions(-)
+>>>   drivers/gpu/drm/xe/xe_ttm_stolen_mgr.c     |  18 +-
+>>>   drivers/gpu/drm/xe/xe_ttm_vram_mgr.c       | 201 
+>>> ++++++++++-----------
+>>>   drivers/gpu/drm/xe/xe_ttm_vram_mgr.h       |   3 +-
+>>>   drivers/gpu/drm/xe/xe_ttm_vram_mgr_types.h |   6 +
+>>>   4 files changed, 118 insertions(+), 110 deletions(-)
 >>>
->>> diff --git a/drivers/gpu/drm/xe/xe_device.c b/drivers/gpu/drm/xe/xe_device.c
->>> index 4eb6786b11f0..ab179b1e24c1 100644
->>> --- a/drivers/gpu/drm/xe/xe_device.c
->>> +++ b/drivers/gpu/drm/xe/xe_device.c
->>> @@ -237,7 +237,6 @@ struct xe_device *xe_device_create(struct pci_dev *pdev,
->>> 	if (err)
->>> 		goto err;
->>>
->>> -	mutex_init(&xe->mem_access.lock);
->>> 	return xe;
->>>
->>> err_put:
->>> @@ -424,25 +423,25 @@ u32 xe_device_ccs_bytes(struct xe_device *xe, u64 size)
->>> void xe_device_mem_access_get(struct xe_device *xe)
->>> {
->>> 	bool resumed = xe_pm_runtime_resume_if_suspended(xe);
->>> +	int ref = atomic_inc_return(&xe->mem_access.ref);
+>>> diff --git a/drivers/gpu/drm/xe/xe_ttm_stolen_mgr.c 
+>>> b/drivers/gpu/drm/xe/xe_ttm_stolen_mgr.c
+>>> index 2e8d07ad42ae..33bbd72711b3 100644
+>>> --- a/drivers/gpu/drm/xe/xe_ttm_stolen_mgr.c
+>>> +++ b/drivers/gpu/drm/xe/xe_ttm_stolen_mgr.c
+>>> @@ -144,7 +144,7 @@ void xe_ttm_stolen_mgr_init(struct xe_device *xe)
+>>>   {
+>>>       struct xe_ttm_stolen_mgr *mgr = drmm_kzalloc(&xe->drm, 
+>>> sizeof(*mgr), GFP_KERNEL);
+>>>       struct pci_dev *pdev = to_pci_dev(xe->drm.dev);
+>>> -    u64 stolen_size, pgsize;
+>>> +    u64 stolen_size, io_size, pgsize;
+>>>       int err;
+>>>       if (IS_DGFX(xe))
+>>> @@ -163,7 +163,17 @@ void xe_ttm_stolen_mgr_init(struct xe_device *xe)
+>>>       if (pgsize < PAGE_SIZE)
+>>>           pgsize = PAGE_SIZE;
+>>> -    err = __xe_ttm_vram_mgr_init(xe, &mgr->base, XE_PL_STOLEN, 
+>>> stolen_size, pgsize);
+>>> +    /*
+>>> +     * We don't try to attempt partial visible support for stolen 
+>>> vram,
+>>> +     * since stolen is always at the end of vram, and the BAR size 
+>>> is pretty
+>>> +     * much always 256M, with small-bar.
+>>> +     */
+>>> +    io_size = 0;
+>>> +    if (!xe_ttm_stolen_cpu_inaccessible(xe))
+>>> +        io_size = stolen_size;
 >>
->> +Matt Brost
+>> Not directly related to this patch, but you've overloaded the meaning 
+>> of stolen_cpu_inaccessible. It was originally meant to indicate 
+>> whether we must map the BO through GGTT,
 >>
->> Any reason for not using kref?
-> hmmm... my bad actually...
->
-> I did considered the kref, but I can't remember why I haven't used it.
-> I recently was asking myself the same question.
-
-I looked at it, I don't think you can kref from 0 to 1 by design.
-
-xe_device_mem_access_get() is usually called with force wake held 
-explicitly or implicitly, so we shouldn't need the runtime pm ref there.
-
->> Lucas De Marchi
+>> A better name would have been xe_ttm_stolen_in_bar2 or whatever. This 
+>> was also visible in its use in xe_ttm_stolen_mgr_init().
 >>
->>> -	mutex_lock(&xe->mem_access.lock);
->>> -	if (xe->mem_access.ref++ == 0)
->>> +	if (ref == 1)
->>> 		xe->mem_access.hold_rpm = xe_pm_runtime_get_if_active(xe);
-> hmmm... I'm afraid this can be tricky without locks...
+>> It's OK to leave it as is, but the conditional GGTT map in xe_bo.c 
+>> that now uses cpu_inaccessible needs to be fixed.
 >
-> if we have 3 simultaneous threads calling this.
-> get
-> get
-> put
-> get
+> OK, my thinking was that it didn't really matter given that 
+> xe_bo_vmap() will eventually fail anyway (it should return -EIO I 
+> think), since lack of mappable aperture on dgpu means we have no 
+> fallback mode.
 >
-> and they happened in this order but the resume didn't finished yet
-> on the first one, then you will:
-> 1. end up the runtime pm twice.
-> 2. the second will pass over thinking the gpu is already awake, but it might
-> be still asleep.
-
-
-
-
-
-
-
->>> -	mutex_unlock(&xe->mem_access.lock);
->>>
->>> 	/* The usage counter increased if device was immediately resumed */
->>> 	if (resumed)
->>> 		xe_pm_runtime_put(xe);
->>>
->>> -	XE_WARN_ON(xe->mem_access.ref == S32_MAX);
->>> +	XE_WARN_ON(ref == S32_MAX);
->>> }
->>>
->>> void xe_device_mem_access_put(struct xe_device *xe)
->>> {
->>> -	mutex_lock(&xe->mem_access.lock);
->>> -	if (--xe->mem_access.ref == 0 && xe->mem_access.hold_rpm)
->>> +	bool hold = xe->mem_access.hold_rpm;
->>> +	int ref = atomic_dec_return(&xe->mem_access.ref);
+> I was interperating the:
+>
+> if (flags & XE_BO_CREATE_STOLEN_BIT &&
+>     xe_ttm_stolen_cpu_inaccessible(xe))
+>         flags |= XE_BO_CREATE_GGTT_BIT;
+>
+> to just mean "please *attempt* to map through the aperture, if not 
+> directly CPU accessible".
+>
+> Should I just add an is_dgpu() check and bail early? Also thanks for 
+> taking a look at the series.
+I think it should be a separate macro, or hardcoded !IS_DGFX && < 1270
+>
+>>
+>> ~Maarten
+>>
+>>
 >>> +
->>> +	if (!ref && hold)
->>> 		xe_pm_runtime_put(xe);
->>> -	mutex_unlock(&xe->mem_access.lock);
->>>
->>> -	XE_WARN_ON(xe->mem_access.ref < 0);
->>> +	XE_WARN_ON(ref < 0);
->>> }
->>> diff --git a/drivers/gpu/drm/xe/xe_device.h b/drivers/gpu/drm/xe/xe_device.h
->>> index 263620953c3b..96b4f3d7969e 100644
->>> --- a/drivers/gpu/drm/xe/xe_device.h
->>> +++ b/drivers/gpu/drm/xe/xe_device.h
->>> @@ -90,20 +90,14 @@ static inline struct xe_force_wake * gt_to_fw(struct xe_gt *gt)
->>> void xe_device_mem_access_get(struct xe_device *xe);
->>> void xe_device_mem_access_put(struct xe_device *xe);
->>>
->>> -static inline void xe_device_assert_mem_access(struct xe_device *xe)
->>> +static inline bool xe_device_mem_access_ongoing(struct xe_device *xe)
->>> {
->>> -	XE_WARN_ON(!xe->mem_access.ref);
->>> +	return atomic_read(&xe->mem_access.ref);
->>> }
->>>
->>> -static inline bool xe_device_mem_access_ongoing(struct xe_device *xe)
->>> +static inline void xe_device_assert_mem_access(struct xe_device *xe)
->>> {
->>> -	bool ret;
+>>> +    err = __xe_ttm_vram_mgr_init(xe, &mgr->base, XE_PL_STOLEN, 
+>>> stolen_size,
+>>> +                     io_size, pgsize);
+>>>       if (err) {
+>>>           drm_dbg_kms(&xe->drm, "Stolen mgr init failed: %i\n", err);
+>>>           return;
+>>> @@ -172,8 +182,8 @@ void xe_ttm_stolen_mgr_init(struct xe_device *xe)
+>>>       drm_dbg_kms(&xe->drm, "Initialized stolen memory support with 
+>>> %llu bytes\n",
+>>>               stolen_size);
+>>> -    if (!xe_ttm_stolen_cpu_inaccessible(xe))
+>>> -        mgr->mapping = devm_ioremap_wc(&pdev->dev, mgr->io_base, 
+>>> stolen_size);
+>>> +    if (io_size)
+>>> +        mgr->mapping = devm_ioremap_wc(&pdev->dev, mgr->io_base, 
+>>> io_size);
+>>>   }
+>>>   u64 xe_ttm_stolen_io_offset(struct xe_bo *bo, u32 offset)
+>>> diff --git a/drivers/gpu/drm/xe/xe_ttm_vram_mgr.c 
+>>> b/drivers/gpu/drm/xe/xe_ttm_vram_mgr.c
+>>> index e3ac8c6d3978..f703e962f499 100644
+>>> --- a/drivers/gpu/drm/xe/xe_ttm_vram_mgr.c
+>>> +++ b/drivers/gpu/drm/xe/xe_ttm_vram_mgr.c
+>>> @@ -49,45 +49,26 @@ static int xe_ttm_vram_mgr_new(struct 
+>>> ttm_resource_manager *man,
+>>>                      const struct ttm_place *place,
+>>>                      struct ttm_resource **res)
+>>>   {
+>>> -    u64 max_bytes, cur_size, min_block_size;
+>>>       struct xe_ttm_vram_mgr *mgr = to_xe_ttm_vram_mgr(man);
+>>>       struct xe_ttm_vram_mgr_resource *vres;
+>>> -    u64 size, remaining_size, lpfn, fpfn;
+>>>       struct drm_buddy *mm = &mgr->mm;
+>>> -    unsigned long pages_per_block;
+>>> -    int r;
 >>> -
->>> -	mutex_lock(&xe->mem_access.lock);
->>> -	ret = xe->mem_access.ref;
->>> -	mutex_unlock(&xe->mem_access.lock);
+>>> -    lpfn = (u64)place->lpfn << PAGE_SHIFT;
+>>> -    if (!lpfn || lpfn > man->size)
+>>> -        lpfn = man->size;
 >>> -
->>> -	return ret;
->>> +	XE_WARN_ON(!xe_device_mem_access_ongoing(xe));
->>> }
->>>
->>> static inline bool xe_device_in_fault_mode(struct xe_device *xe)
->>> diff --git a/drivers/gpu/drm/xe/xe_device_types.h b/drivers/gpu/drm/xe/xe_device_types.h
->>> index 9743987fc883..0b8c4ee0ad48 100644
->>> --- a/drivers/gpu/drm/xe/xe_device_types.h
->>> +++ b/drivers/gpu/drm/xe/xe_device_types.h
->>> @@ -230,10 +230,8 @@ struct xe_device {
->>> 	 * triggering additional actions when they occur.
->>> 	 */
->>> 	struct {
->>> -		/** @lock: protect the ref count */
->>> -		struct mutex lock;
->>> 		/** @ref: ref count of memory accesses */
->>> -		s32 ref;
->>> +		atomic_t ref;
->>> 		/** @hold_rpm: need to put rpm ref back at the end */
->>> 		bool hold_rpm;
->>> 	} mem_access;
->>> -- 
->>> 2.34.1
->>>
+>>> -    fpfn = (u64)place->fpfn << PAGE_SHIFT;
+>>> +    u64 size, remaining_size, min_page_size;
+>>> +    unsigned long lpfn;
+>>> +    int err;
+>>> -    max_bytes = mgr->manager.size;
+>>> -    if (place->flags & TTM_PL_FLAG_CONTIGUOUS) {
+>>> -        pages_per_block = ~0ul;
+>>> -    } else {
+>>> -#ifdef CONFIG_TRANSPARENT_HUGEPAGE
+>>> -        pages_per_block = HPAGE_PMD_NR;
+>>> -#else
+>>> -        /* default to 2MB */
+>>> -        pages_per_block = 2UL << (20UL - PAGE_SHIFT);
+>>> -#endif
+>>> -
+>>> -        pages_per_block = max_t(uint32_t, pages_per_block,
+>>> -                    tbo->page_alignment);
+>>> -    }
+>>> +    lpfn = place->lpfn;
+>>> +    if (!lpfn || lpfn > man->size >> PAGE_SHIFT)
+>>> +        lpfn = man->size >> PAGE_SHIFT;
+>>>       vres = kzalloc(sizeof(*vres), GFP_KERNEL);
+>>>       if (!vres)
+>>>           return -ENOMEM;
+>>>       ttm_resource_init(tbo, place, &vres->base);
+>>> -    remaining_size = vres->base.size;
+>>>       /* bail out quickly if there's likely not enough VRAM for this 
+>>> BO */
+>>> -    if (ttm_resource_manager_usage(man) > max_bytes) {
+>>> -        r = -ENOSPC;
+>>> +    if (ttm_resource_manager_usage(man) > man->size) {
+>>> +        err = -ENOSPC;
+>>>           goto error_fini;
+>>>       }
+>>> @@ -96,95 +77,91 @@ static int xe_ttm_vram_mgr_new(struct 
+>>> ttm_resource_manager *man,
+>>>       if (place->flags & TTM_PL_FLAG_TOPDOWN)
+>>>           vres->flags |= DRM_BUDDY_TOPDOWN_ALLOCATION;
+>>> -    if (fpfn || lpfn != man->size)
+>>> -        /* Allocate blocks in desired range */
+>>> +    if (place->fpfn || lpfn != man->size >> PAGE_SHIFT)
+>>>           vres->flags |= DRM_BUDDY_RANGE_ALLOCATION;
+>>> -    mutex_lock(&mgr->lock);
+>>> -    while (remaining_size) {
+>>> -        if (tbo->page_alignment)
+>>> -            min_block_size = tbo->page_alignment << PAGE_SHIFT;
+>>> -        else
+>>> -            min_block_size = mgr->default_page_size;
+>>> -
+>>> -        XE_BUG_ON(min_block_size < mm->chunk_size);
+>>> -
+>>> -        /* Limit maximum size to 2GiB due to SG table limitations */
+>>> -        size = min(remaining_size, 2ULL << 30);
+>>> -
+>>> -        if (size >= pages_per_block << PAGE_SHIFT)
+>>> -            min_block_size = pages_per_block << PAGE_SHIFT;
+>>> -
+>>> -        cur_size = size;
+>>> -
+>>> -        if (fpfn + size != place->lpfn << PAGE_SHIFT) {
+>>> -            /*
+>>> -             * Except for actual range allocation, modify the size and
+>>> -             * min_block_size conforming to continuous flag enablement
+>>> -             */
+>>> -            if (place->flags & TTM_PL_FLAG_CONTIGUOUS) {
+>>> -                size = roundup_pow_of_two(size);
+>>> -                min_block_size = size;
+>>> -            /*
+>>> -             * Modify the size value if size is not
+>>> -             * aligned with min_block_size
+>>> -             */
+>>> -            } else if (!IS_ALIGNED(size, min_block_size)) {
+>>> -                size = round_up(size, min_block_size);
+>>> -            }
+>>> -        }
+>>> +    XE_BUG_ON(!vres->base.size);
+>>> +    size = vres->base.size;
+>>> -        r = drm_buddy_alloc_blocks(mm, fpfn,
+>>> -                       lpfn,
+>>> -                       size,
+>>> -                       min_block_size,
+>>> -                       &vres->blocks,
+>>> -                       vres->flags);
+>>> -        if (unlikely(r))
+>>> -            goto error_free_blocks;
+>>> +    min_page_size = mgr->default_page_size;
+>>> +    if (tbo->page_alignment)
+>>> +        min_page_size = tbo->page_alignment << PAGE_SHIFT;
+>>> -        if (size > remaining_size)
+>>> -            remaining_size = 0;
+>>> -        else
+>>> -            remaining_size -= size;
+>>> +    XE_BUG_ON(min_page_size < mm->chunk_size);
+>>> +    XE_BUG_ON(min_page_size > SZ_2G); /* FIXME: sg limit */
+>>> +    XE_BUG_ON(size > SZ_2G &&
+>>> +          (vres->base.placement & TTM_PL_FLAG_CONTIGUOUS));
+>>> +    XE_BUG_ON(!IS_ALIGNED(size, min_page_size));
+>>> +
+>>> +    if (place->fpfn + (vres->base.size >> PAGE_SHIFT) != 
+>>> place->lpfn &&
+>>> +        place->flags & TTM_PL_FLAG_CONTIGUOUS) {
+>>> +        unsigned long pages;
+>>> +
+>>> +        size = roundup_pow_of_two(size);
+>>> +        min_page_size = size;
+>>> +
+>>> +        pages = size >> ilog2(mm->chunk_size);
+>>> +        if (pages > lpfn)
+>>> +            lpfn = pages;
+>>>       }
+>>> -    mutex_unlock(&mgr->lock);
+>>> -    if (cur_size != size) {
+>>> -        struct drm_buddy_block *block;
+>>> -        struct list_head *trim_list;
+>>> -        u64 original_size;
+>>> -        LIST_HEAD(temp);
+>>> +    if (size > lpfn << PAGE_SHIFT) {
+>>> +        err = -E2BIG; /* don't trigger eviction */
+>>> +        goto error_fini;
+>>> +    }
+>>> -        trim_list = &vres->blocks;
+>>> -        original_size = vres->base.size;
+>>> +    mutex_lock(&mgr->lock);
+>>> +    if (lpfn <= mgr->visible_size && size > mgr->visible_avail) {
+>>> +        mutex_unlock(&mgr->lock);
+>>> +        err = -ENOSPC;
+>>> +        goto error_fini;
+>>> +    }
+>>> +    remaining_size = size;
+>>> +    do {
+>>>           /*
+>>> -         * If size value is rounded up to min_block_size, trim the 
+>>> last
+>>> -         * block to the required size
+>>> +         * Limit maximum size to 2GiB due to SG table limitations.
+>>> +         * FIXME: Should maybe be handled as part of sg construction.
+>>>            */
+>>> -        if (!list_is_singular(&vres->blocks)) {
+>>> -            block = list_last_entry(&vres->blocks, typeof(*block), 
+>>> link);
+>>> -            list_move_tail(&block->link, &temp);
+>>> -            trim_list = &temp;
+>>> -            /*
+>>> -             * Compute the original_size value by subtracting the
+>>> -             * last block size with (aligned size - original size)
+>>> -             */
+>>> -            original_size = drm_buddy_block_size(mm, block) -
+>>> -                (size - cur_size);
+>>> -        }
+>>> +        u64 alloc_size = min_t(u64, remaining_size, SZ_2G);
+>>> +
+>>> +        err = drm_buddy_alloc_blocks(mm, (u64)place->fpfn << 
+>>> PAGE_SHIFT,
+>>> +                         (u64)lpfn << PAGE_SHIFT,
+>>> +                         alloc_size,
+>>> +                         min_page_size,
+>>> +                         &vres->blocks,
+>>> +                         vres->flags);
+>>> +        if (err)
+>>> +            goto error_free_blocks;
+>>> -        mutex_lock(&mgr->lock);
+>>> -        drm_buddy_block_trim(mm,
+>>> -                     original_size,
+>>> -                     trim_list);
+>>> -        mutex_unlock(&mgr->lock);
+>>> +        remaining_size -= alloc_size;
+>>> +    } while (remaining_size);
+>>> -        if (!list_empty(&temp))
+>>> -            list_splice_tail(trim_list, &vres->blocks);
+>>> +    if (place->flags & TTM_PL_FLAG_CONTIGUOUS) {
+>>> +        if (!drm_buddy_block_trim(mm, vres->base.size, &vres->blocks))
+>>> +            size = vres->base.size;
+>>>       }
+>>> +    if (lpfn <= mgr->visible_size >> PAGE_SHIFT) {
+>>> +        vres->used_visible_size = size;
+>>> +    } else {
+>>> +        struct drm_buddy_block *block;
+>>> +
+>>> +        list_for_each_entry(block, &vres->blocks, link) {
+>>> +            u64 start = drm_buddy_block_offset(block);
+>>> +
+>>> +            if (start < mgr->visible_size) {
+>>> +                u64 end = start + drm_buddy_block_size(mm, block);
+>>> +
+>>> +                vres->used_visible_size +=
+>>> +                    min(end, mgr->visible_size) - start;
+>>> +            }
+>>> +        }
+>>> +    }
+>>> +
+>>> +    mgr->visible_avail -= vres->used_visible_size;
+>>> +    mutex_unlock(&mgr->lock);
+>>> +
+>>>       if (!(vres->base.placement & TTM_PL_FLAG_CONTIGUOUS) &&
+>>>           xe_is_vram_mgr_blocks_contiguous(mm, &vres->blocks))
+>>>           vres->base.placement |= TTM_PL_FLAG_CONTIGUOUS;
+>>> @@ -213,7 +190,7 @@ static int xe_ttm_vram_mgr_new(struct 
+>>> ttm_resource_manager *man,
+>>>       ttm_resource_fini(man, &vres->base);
+>>>       kfree(vres);
+>>> -    return r;
+>>> +    return err;
+>>>   }
+>>>   static void xe_ttm_vram_mgr_del(struct ttm_resource_manager *man,
+>>> @@ -226,6 +203,7 @@ static void xe_ttm_vram_mgr_del(struct 
+>>> ttm_resource_manager *man,
+>>>       mutex_lock(&mgr->lock);
+>>>       drm_buddy_free_list(mm, &vres->blocks);
+>>> +    mgr->visible_avail += vres->used_visible_size;
+>>>       mutex_unlock(&mgr->lock);
+>>>       ttm_resource_fini(man, res);
+>>> @@ -240,6 +218,13 @@ static void xe_ttm_vram_mgr_debug(struct 
+>>> ttm_resource_manager *man,
+>>>       struct drm_buddy *mm = &mgr->mm;
+>>>       mutex_lock(&mgr->lock);
+>>> +    drm_printf(printer, "default_page_size: %lluKiB\n",
+>>> +           mgr->default_page_size >> 10);
+>>> +    drm_printf(printer, "visible_avail: %lluMiB\n",
+>>> +           (u64)mgr->visible_avail >> 20);
+>>> +    drm_printf(printer, "visible_size: %lluMiB\n",
+>>> +           (u64)mgr->visible_size >> 20);
+>>> +
+>>>       drm_buddy_print(mm, printer);
+>>>       mutex_unlock(&mgr->lock);
+>>>       drm_printf(printer, "man size:%llu\n", man->size);
+>>> @@ -262,6 +247,8 @@ static void ttm_vram_mgr_fini(struct drm_device 
+>>> *dev, void *arg)
+>>>       if (ttm_resource_manager_evict_all(&xe->ttm, man))
+>>>           return;
+>>> +    WARN_ON_ONCE(mgr->visible_avail != mgr->visible_size);
+>>> +
+>>>       drm_buddy_fini(&mgr->mm);
+>>>       ttm_resource_manager_cleanup(&mgr->manager);
+>>> @@ -270,7 +257,8 @@ static void ttm_vram_mgr_fini(struct drm_device 
+>>> *dev, void *arg)
+>>>   }
+>>>   int __xe_ttm_vram_mgr_init(struct xe_device *xe, struct 
+>>> xe_ttm_vram_mgr *mgr,
+>>> -               u32 mem_type, u64 size, u64 default_page_size)
+>>> +               u32 mem_type, u64 size, u64 io_size,
+>>> +               u64 default_page_size)
+>>>   {
+>>>       struct ttm_resource_manager *man = &mgr->manager;
+>>>       int err;
+>>> @@ -279,6 +267,8 @@ int __xe_ttm_vram_mgr_init(struct xe_device *xe, 
+>>> struct xe_ttm_vram_mgr *mgr,
+>>>       mgr->mem_type = mem_type;
+>>>       mutex_init(&mgr->lock);
+>>>       mgr->default_page_size = default_page_size;
+>>> +    mgr->visible_size = io_size;
+>>> +    mgr->visible_avail = io_size;
+>>>       ttm_resource_manager_init(man, &xe->ttm, size);
+>>>       err = drm_buddy_init(&mgr->mm, man->size, default_page_size);
+>>> @@ -298,7 +288,8 @@ int xe_ttm_vram_mgr_init(struct xe_gt *gt, 
+>>> struct xe_ttm_vram_mgr *mgr)
+>>>       mgr->gt = gt;
+>>>       return __xe_ttm_vram_mgr_init(xe, mgr, XE_PL_VRAM0 + 
+>>> gt->info.vram_id,
+>>> -                      gt->mem.vram.size, PAGE_SIZE);
+>>> +                      gt->mem.vram.size, gt->mem.vram.io_size,
+>>> +                      PAGE_SIZE);
+>>>   }
+>>>   int xe_ttm_vram_mgr_alloc_sgt(struct xe_device *xe,
+>>> diff --git a/drivers/gpu/drm/xe/xe_ttm_vram_mgr.h 
+>>> b/drivers/gpu/drm/xe/xe_ttm_vram_mgr.h
+>>> index 78f332d26224..35e5367a79fb 100644
+>>> --- a/drivers/gpu/drm/xe/xe_ttm_vram_mgr.h
+>>> +++ b/drivers/gpu/drm/xe/xe_ttm_vram_mgr.h
+>>> @@ -13,7 +13,8 @@ struct xe_device;
+>>>   struct xe_gt;
+>>>   int __xe_ttm_vram_mgr_init(struct xe_device *xe, struct 
+>>> xe_ttm_vram_mgr *mgr,
+>>> -               u32 mem_type, u64 size, u64 default_page_size);
+>>> +               u32 mem_type, u64 size, u64 io_size,
+>>> +               u64 default_page_size);
+>>>   int xe_ttm_vram_mgr_init(struct xe_gt *gt, struct xe_ttm_vram_mgr 
+>>> *mgr);
+>>>   int xe_ttm_vram_mgr_alloc_sgt(struct xe_device *xe,
+>>>                     struct ttm_resource *res,
+>>> diff --git a/drivers/gpu/drm/xe/xe_ttm_vram_mgr_types.h 
+>>> b/drivers/gpu/drm/xe/xe_ttm_vram_mgr_types.h
+>>> index 39aa2ec1b968..3d9417ff7434 100644
+>>> --- a/drivers/gpu/drm/xe/xe_ttm_vram_mgr_types.h
+>>> +++ b/drivers/gpu/drm/xe/xe_ttm_vram_mgr_types.h
+>>> @@ -23,6 +23,10 @@ struct xe_ttm_vram_mgr {
+>>>       struct ttm_resource_manager manager;
+>>>       /** @mm: DRM buddy allocator which manages the VRAM */
+>>>       struct drm_buddy mm;
+>>> +    /** @visible_size: Proped size of the CPU visible portion */
+>>> +    u64 visible_size;
+>>> +    /** @visible_avail: CPU visible portion still unallocated */
+>>> +    u64 visible_avail;
+>>>       /** @default_page_size: default page size */
+>>>       u64 default_page_size;
+>>>       /** @lock: protects allocations of VRAM */
+>>> @@ -39,6 +43,8 @@ struct xe_ttm_vram_mgr_resource {
+>>>       struct ttm_resource base;
+>>>       /** @blocks: list of DRM buddy blocks */
+>>>       struct list_head blocks;
+>>> +    /** @used_visible_size: How many CPU visible bytes this 
+>>> resource is using */
+>>> +    u64 used_visible_size;
+>>>       /** @flags: flags associated with the resource */
+>>>       unsigned long flags;
+>>>   };
