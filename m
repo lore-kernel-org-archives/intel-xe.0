@@ -4,39 +4,39 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 13AD9C64EC7
-	for <intel-xe@archiver.kernel.org>; Tue, 28 Feb 2023 15:20:45 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 623A5C7EE32
+	for <intel-xe@archiver.kernel.org>; Tue, 28 Feb 2023 15:22:15 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E0D5510E4D7;
-	Tue, 28 Feb 2023 15:20:44 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3C7D710E4D7;
+	Tue, 28 Feb 2023 15:22:15 +0000 (UTC)
 Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
- by gabe.freedesktop.org (Postfix) with ESMTPS id CB27C10E4D7
- for <intel-xe@lists.freedesktop.org>; Tue, 28 Feb 2023 15:20:42 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E459110E4D7
+ for <intel-xe@lists.freedesktop.org>; Tue, 28 Feb 2023 15:22:13 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1677597642; x=1709133642;
+ t=1677597733; x=1709133733;
  h=message-id:date:mime-version:subject:to:cc:references:
  from:in-reply-to:content-transfer-encoding;
- bh=j4PKNwOc1RPFqommBGLTdP3iZevyts7h2Z2Stlmn21g=;
- b=HAphx4jHtrCX5LLfWBFuxsOVZwNNa3Hu8bOgCVT068sx0kHgbzxZ0GVt
- SfQviOcUVGjHnYTBw0vMRZiAajGK8KhDhK8Kvx/TOc+CKifNwc437Eydc
- ycRcNHK/FwSqdc/iJk/fRFqnoLbKPIHbwfPIeagvIR7RnPJfWMjjGNTSm
- eVS6pmm1yQQNwO/C7ZN0Cu+QxmYl1WDQyYAKyH1D4uiLQYb/J/HrQFRqk
- eWnXFoIBdyZkDnv5lQ+Jf/xOEIrDUbP+GonKVTxAlUJjgVfZGXF+qSnYB
- /ueykABlI11keFP2fE0xq9tMM1n6bDWipkNCHa/IlNJwzueL5XkJOZGEB A==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10635"; a="314582310"
-X-IronPort-AV: E=Sophos;i="5.98,222,1673942400"; d="scan'208";a="314582310"
+ bh=P7c75GBq0YazYAta22LVc2/oArh5ADk2WZKUNnaRERU=;
+ b=jae0t4EXImO/W2uXJVnpewwS1RjtQwSUKlQ9msr7+7TuSa7D0bbHP0hl
+ W+s0FNyV0Xcmm5I+TUgYQ4K82JYJLxJMr19y2v6QssKarQJ9yw/XOuv+3
+ pDUjXujqcAh/jj7lAlQWz/Dq6mr4ZYM5/yN7Uon/YbpPZyGsvjIxH0isf
+ K5q2A5xfSohF0KWk/86ZA3Apyg8qm2mOobuzAKq+0Tqray3mvbGg09sit
+ +Yje39KPbiFLTJIOMIgGr1XPsw2UZo98yk9nTykqbQZ0C/GF1A6hgkX+a
+ iqXGtqK71HrgBk87EBcX2hoYtGl3+TgTFfHb+rr+odLTC7djNZDfXeQON Q==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10635"; a="314582681"
+X-IronPort-AV: E=Sophos;i="5.98,222,1673942400"; d="scan'208";a="314582681"
 Received: from orsmga002.jf.intel.com ([10.7.209.21])
  by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 28 Feb 2023 07:20:42 -0800
-X-IronPort-AV: E=McAfee;i="6500,9779,10635"; a="674174915"
-X-IronPort-AV: E=Sophos;i="5.98,222,1673942400"; d="scan'208";a="674174915"
+ 28 Feb 2023 07:22:13 -0800
+X-IronPort-AV: E=McAfee;i="6500,9779,10635"; a="674175283"
+X-IronPort-AV: E=Sophos;i="5.98,222,1673942400"; d="scan'208";a="674175283"
 Received: from mistoan-mobl.ger.corp.intel.com (HELO [10.252.9.93])
  ([10.252.9.93])
  by orsmga002-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 28 Feb 2023 07:20:41 -0800
-Message-ID: <fbe2b091-3d7a-349e-433f-93787af5be2f@intel.com>
-Date: Tue, 28 Feb 2023 15:20:38 +0000
+ 28 Feb 2023 07:22:11 -0800
+Message-ID: <6df42f52-78a4-a54d-0758-47587863f7d1@intel.com>
+Date: Tue, 28 Feb 2023 15:22:10 +0000
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Firefox/102.0 Thunderbird/102.8.0
@@ -103,27 +103,19 @@ On 28/02/2023 14:48, Maarten Lankhorst wrote:
 > While we do need a change, do we need to do this inside pinning? We 
 > could also require userspace to create VRAM BO's with CPU_ACCESS, and 
 > reject CCS here.
-
-Do you mean reject CCS if CPU_ACCESS is not set? The trouble is that 
-CPU_ACCESS also requires system memory as a spill option when specifying 
-the placements, which then prevents using CCS. Or at least that's how it 
-was in i915.
-
 > 
 > Of course we should probably also add a UAPI to allow setting the 
 > SCANOUT flag on externally imported DMA-BUF bo's, i don't think we 
 > require CPU_ACCESS flag for that as it's not our BO.
-
-Hmm, maybe if SCANOUT then internally use the mappable part of lmem by 
-default? For dumb buffers I think it does something like that. And keep 
-the above as a fallback?
-
 > 
 > Might require some more thinking on how we want to handle this.
 > 
 > Other patches look good, except for the comments I had:
 > 
 > Reviewed-by: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
+
+Thanks.
+
 > 
 > ~Maarten
 > 
