@@ -4,47 +4,47 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0EC9FC7EE32
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0AC47C64EC7
 	for <intel-xe@archiver.kernel.org>; Tue, 28 Feb 2023 10:42:09 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id CF82910E688;
+	by gabe.freedesktop.org (Postfix) with ESMTP id DDAAE10E689;
 	Tue, 28 Feb 2023 10:42:08 +0000 (UTC)
 Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E91B110E688
- for <intel-xe@lists.freedesktop.org>; Tue, 28 Feb 2023 10:42:04 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4FCC010E687
+ for <intel-xe@lists.freedesktop.org>; Tue, 28 Feb 2023 10:42:07 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1677580924; x=1709116924;
+ t=1677580927; x=1709116927;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=NpbpVx7CMoYwrRDsc66Mt99Mx+aqMminvXEbvFtzJhE=;
- b=MDP28pC4bAsYC82xYh6m/BmfmEapvq1h12SciAHQnMFsaHgQh5tMWSvo
- jn8sSpBwVuUCmTkLMn1Ec3h8ZBiVCq0c/yEPFh1iu0rFnGwPLCcD9bCsk
- TuWRqdl94GfoJwwKhV+7LCWSe1aqvh9VOt8CGw6YER0N80gQ09XiETqkn
- 3MTErQXP+5fnNKdVqXRtd+5fSrPAQ+arxYQ7QdYtiOfLxbM1XmhgYT7pz
- ZNeUmlT7TOl2evoy/PMl7Cu1nHsBRF8+K/5X41QatBcr2zojConHSk9W7
- S2KGuyA67UF/4HeYGp2Ld8Yp4CmdlO1flcaLX8NIFYNwK/2e1w1cXlpy3 A==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10634"; a="398884694"
-X-IronPort-AV: E=Sophos;i="5.98,221,1673942400"; d="scan'208";a="398884694"
+ bh=iGmKuRPzysOWjDPzgc0TEke3kDpPJQFsRQoHtLhOAnU=;
+ b=WC8tysg8QXWJDUORVLvPAz4ZFl3eJVmE1su35yIj4BvhhWEc9bFGSAl4
+ oH78561QRazgN01FAsqeI3PO6Ot+NrXJAXQa4acVTPjZnMA9eXR2/HPum
+ TPyhkXzD8puBN7P2cseNDsqzK5AWVyvBWF3Y8BKT1o4NZeTnQe5IBWnVE
+ jB/mg173IgMSqARjH1riKsBpz76g+7i45t8YEum0vw/vh3pUpC4DeKNxo
+ w+moP6UkqpT4BC1YsfyMprEa4xvL0wOjD9l+QvDmoXVeZQ5iteVgxsnqi
+ Nf1eAre9qm3tClO4D9i/JmdbXZ5t1P18D2bfggQE7khQfpivyFyhANlpJ w==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10634"; a="398884715"
+X-IronPort-AV: E=Sophos;i="5.98,221,1673942400"; d="scan'208";a="398884715"
 Received: from fmsmga008.fm.intel.com ([10.253.24.58])
  by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 28 Feb 2023 02:42:04 -0800
-X-IronPort-AV: E=McAfee;i="6500,9779,10634"; a="738108963"
-X-IronPort-AV: E=Sophos;i="5.98,221,1673942400"; d="scan'208";a="738108963"
+ 28 Feb 2023 02:42:06 -0800
+X-IronPort-AV: E=McAfee;i="6500,9779,10634"; a="738108969"
+X-IronPort-AV: E=Sophos;i="5.98,221,1673942400"; d="scan'208";a="738108969"
 Received: from mistoan-mobl.ger.corp.intel.com (HELO mwauld-desk1.intel.com)
  ([10.252.9.93])
  by fmsmga008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 28 Feb 2023 02:42:03 -0800
+ 28 Feb 2023 02:42:05 -0800
 From: Matthew Auld <matthew.auld@intel.com>
 To: intel-xe@lists.freedesktop.org
-Date: Tue, 28 Feb 2023 10:41:29 +0000
-Message-Id: <20230228104137.80965-7-matthew.auld@intel.com>
+Date: Tue, 28 Feb 2023 10:41:31 +0000
+Message-Id: <20230228104137.80965-9-matthew.auld@intel.com>
 X-Mailer: git-send-email 2.39.2
 In-Reply-To: <20230228104137.80965-1-matthew.auld@intel.com>
 References: <20230228104137.80965-1-matthew.auld@intel.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-xe] [PATCH v2 06/14] drm/xe/vram: start tracking the io_size
+Subject: [Intel-xe] [PATCH v2 08/14] drm/xe/buddy: add visible tracking
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -60,194 +60,398 @@ Cc: Lucas De Marchi <lucas.demarchi@intel.com>
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-First step towards supporting small-bar is to track the io_size for
-vram. We can longer assume that the io_size == vram size. This way we
-know how much is CPU accessible via the BAR, and how much is not.
-Effectively giving us a two tiered vram, where in some later patches we
-can support different allocation strategies depending on if the memory
-needs to be CPU accessible or not.
-
-Note as this stage we still clamp the vram size to the usable vram size.
-Only in the final patch do we turn this on for real, and allow distinct
-io_size and vram_size.
-
-v2: (Lucas):
-  - Improve the commit message, plus improve the kernel-doc for the
-    io_size to give a better sense of what it actually is.
+Replace the allocation code with the i915 version. This simplifies the
+code a little, and importantly we get the accounting at the mgr level,
+which is useful for debug (and maybe userspace), plus per resource
+tracking so we can easily check if a resource is using one or pages in
+the mappable part of vram (useful for eviction), or if the resource is
+completely within the mappable portion (useful for checking if the
+resource can be safely CPU mapped).
 
 Signed-off-by: Matthew Auld <matthew.auld@intel.com>
 Cc: Lucas De Marchi <lucas.demarchi@intel.com>
 ---
- drivers/gpu/drm/xe/xe_device_types.h | 14 +++++++--
- drivers/gpu/drm/xe/xe_gt_types.h     | 14 +++++++--
- drivers/gpu/drm/xe/xe_mmio.c         | 44 ++++++++++++++++++++--------
- 3 files changed, 55 insertions(+), 17 deletions(-)
+ drivers/gpu/drm/xe/xe_ttm_stolen_mgr.c     |  18 +-
+ drivers/gpu/drm/xe/xe_ttm_vram_mgr.c       | 201 ++++++++++-----------
+ drivers/gpu/drm/xe/xe_ttm_vram_mgr.h       |   3 +-
+ drivers/gpu/drm/xe/xe_ttm_vram_mgr_types.h |   6 +
+ 4 files changed, 118 insertions(+), 110 deletions(-)
 
-diff --git a/drivers/gpu/drm/xe/xe_device_types.h b/drivers/gpu/drm/xe/xe_device_types.h
-index 9743987fc883..9e998b4738e1 100644
---- a/drivers/gpu/drm/xe/xe_device_types.h
-+++ b/drivers/gpu/drm/xe/xe_device_types.h
-@@ -173,9 +173,19 @@ struct xe_device {
- 	struct {
- 		/** @vram: VRAM info for device */
- 		struct {
--			/** @io_start: start address of VRAM */
-+			/** @io_start: IO start address of VRAM */
- 			resource_size_t io_start;
--			/** @size: size of VRAM */
-+			/**
-+			 * @io_size: IO size of VRAM.
-+			 *
-+			 * This represents how much of VRAM we can access via
-+			 * the CPU through the VRAM BAR. This can be smaller
-+			 * than @size, in which case only part of VRAM is CPU
-+			 * accessible (typically the first 256M). This
-+			 * configuration is known as small-bar.
-+			 */
-+			resource_size_t io_size;
-+			/** @size: Total size of VRAM */
- 			resource_size_t size;
- 			/** @mapping: pointer to VRAM mappable space */
- 			void *__iomem mapping;
-diff --git a/drivers/gpu/drm/xe/xe_gt_types.h b/drivers/gpu/drm/xe/xe_gt_types.h
-index b01edd3fdc4d..00c43f3a33a2 100644
---- a/drivers/gpu/drm/xe/xe_gt_types.h
-+++ b/drivers/gpu/drm/xe/xe_gt_types.h
-@@ -143,9 +143,19 @@ struct xe_gt {
- 		 * (virtual split), can be subset of global device VRAM
- 		 */
- 		struct {
--			/** @io_start: start address of VRAM */
-+			/** @io_start: IO start address of this VRAM instance */
- 			resource_size_t io_start;
--			/** @size: size of VRAM */
-+			/**
-+			 * @io_size: IO size of this VRAM instance
-+			 *
-+			 * This represents how much of this VRAM we can access
-+			 * via the CPU through the VRAM BAR. This can be smaller
-+			 * than @size, in which case only part of VRAM is CPU
-+			 * accessible (typically the first 256M). This
-+			 * configuration is known as small-bar.
-+			 */
-+			resource_size_t io_size;
-+			/** @size: size of VRAM. */
- 			resource_size_t size;
- 			/** @mapping: pointer to VRAM mappable space */
- 			void *__iomem mapping;
-diff --git a/drivers/gpu/drm/xe/xe_mmio.c b/drivers/gpu/drm/xe/xe_mmio.c
-index e5bd4609aaee..5cacaa05759a 100644
---- a/drivers/gpu/drm/xe/xe_mmio.c
-+++ b/drivers/gpu/drm/xe/xe_mmio.c
-@@ -182,7 +182,6 @@ int xe_mmio_probe_vram(struct xe_device *xe)
- 	u8 id;
- 	u64 vram_size;
- 	u64 original_size;
--	u64 current_size;
- 	u64 usable_size;
- 	int resize_result, err;
+diff --git a/drivers/gpu/drm/xe/xe_ttm_stolen_mgr.c b/drivers/gpu/drm/xe/xe_ttm_stolen_mgr.c
+index 2e8d07ad42ae..33bbd72711b3 100644
+--- a/drivers/gpu/drm/xe/xe_ttm_stolen_mgr.c
++++ b/drivers/gpu/drm/xe/xe_ttm_stolen_mgr.c
+@@ -144,7 +144,7 @@ void xe_ttm_stolen_mgr_init(struct xe_device *xe)
+ {
+ 	struct xe_ttm_stolen_mgr *mgr = drmm_kzalloc(&xe->drm, sizeof(*mgr), GFP_KERNEL);
+ 	struct pci_dev *pdev = to_pci_dev(xe->drm.dev);
+-	u64 stolen_size, pgsize;
++	u64 stolen_size, io_size, pgsize;
+ 	int err;
  
-@@ -190,11 +189,13 @@ int xe_mmio_probe_vram(struct xe_device *xe)
- 		xe->mem.vram.mapping = 0;
- 		xe->mem.vram.size = 0;
- 		xe->mem.vram.io_start = 0;
-+		xe->mem.vram.io_size = 0;
+ 	if (IS_DGFX(xe))
+@@ -163,7 +163,17 @@ void xe_ttm_stolen_mgr_init(struct xe_device *xe)
+ 	if (pgsize < PAGE_SIZE)
+ 		pgsize = PAGE_SIZE;
  
- 		for_each_gt(gt, xe, id) {
- 			gt->mem.vram.mapping = 0;
- 			gt->mem.vram.size = 0;
- 			gt->mem.vram.io_start = 0;
-+			gt->mem.vram.io_size = 0;
- 		}
- 		return 0;
- 	}
-@@ -212,10 +213,10 @@ int xe_mmio_probe_vram(struct xe_device *xe)
- 		return err;
+-	err = __xe_ttm_vram_mgr_init(xe, &mgr->base, XE_PL_STOLEN, stolen_size, pgsize);
++	/*
++	 * We don't try to attempt partial visible support for stolen vram,
++	 * since stolen is always at the end of vram, and the BAR size is pretty
++	 * much always 256M, with small-bar.
++	 */
++	io_size = 0;
++	if (!xe_ttm_stolen_cpu_inaccessible(xe))
++		io_size = stolen_size;
++
++	err = __xe_ttm_vram_mgr_init(xe, &mgr->base, XE_PL_STOLEN, stolen_size,
++				     io_size, pgsize);
+ 	if (err) {
+ 		drm_dbg_kms(&xe->drm, "Stolen mgr init failed: %i\n", err);
+ 		return;
+@@ -172,8 +182,8 @@ void xe_ttm_stolen_mgr_init(struct xe_device *xe)
+ 	drm_dbg_kms(&xe->drm, "Initialized stolen memory support with %llu bytes\n",
+ 		    stolen_size);
  
- 	resize_result = xe_resize_vram_bar(xe, vram_size);
--	current_size = pci_resource_len(pdev, GEN12_LMEM_BAR);
- 	xe->mem.vram.io_start = pci_resource_start(pdev, GEN12_LMEM_BAR);
+-	if (!xe_ttm_stolen_cpu_inaccessible(xe))
+-		mgr->mapping = devm_ioremap_wc(&pdev->dev, mgr->io_base, stolen_size);
++	if (io_size)
++		mgr->mapping = devm_ioremap_wc(&pdev->dev, mgr->io_base, io_size);
+ }
+ 
+ u64 xe_ttm_stolen_io_offset(struct xe_bo *bo, u32 offset)
+diff --git a/drivers/gpu/drm/xe/xe_ttm_vram_mgr.c b/drivers/gpu/drm/xe/xe_ttm_vram_mgr.c
+index e3ac8c6d3978..f703e962f499 100644
+--- a/drivers/gpu/drm/xe/xe_ttm_vram_mgr.c
++++ b/drivers/gpu/drm/xe/xe_ttm_vram_mgr.c
+@@ -49,45 +49,26 @@ static int xe_ttm_vram_mgr_new(struct ttm_resource_manager *man,
+ 			       const struct ttm_place *place,
+ 			       struct ttm_resource **res)
+ {
+-	u64 max_bytes, cur_size, min_block_size;
+ 	struct xe_ttm_vram_mgr *mgr = to_xe_ttm_vram_mgr(man);
+ 	struct xe_ttm_vram_mgr_resource *vres;
+-	u64 size, remaining_size, lpfn, fpfn;
+ 	struct drm_buddy *mm = &mgr->mm;
+-	unsigned long pages_per_block;
+-	int r;
 -
--	xe->mem.vram.size = min(current_size, vram_size);
-+	xe->mem.vram.io_size = min(usable_size,
-+				   pci_resource_len(pdev, GEN12_LMEM_BAR));
-+	xe->mem.vram.size = xe->mem.vram.io_size;
+-	lpfn = (u64)place->lpfn << PAGE_SHIFT;
+-	if (!lpfn || lpfn > man->size)
+-		lpfn = man->size;
+-
+-	fpfn = (u64)place->fpfn << PAGE_SHIFT;
++	u64 size, remaining_size, min_page_size;
++	unsigned long lpfn;
++	int err;
  
- 	if (!xe->mem.vram.size)
- 		return -EIO;
-@@ -223,15 +224,15 @@ int xe_mmio_probe_vram(struct xe_device *xe)
- 	if (resize_result > 0)
- 		drm_info(&xe->drm, "Successfully resize VRAM from %lluMiB to %lluMiB\n",
- 			 (u64)original_size >> 20,
--			 (u64)current_size >> 20);
--	else if (xe->mem.vram.size < vram_size && !xe_force_vram_bar_size)
-+			 (u64)xe->mem.vram.io_size >> 20);
-+	else if (xe->mem.vram.io_size < usable_size && !xe_force_vram_bar_size)
- 		drm_info(&xe->drm, "Using a reduced BAR size of %lluMiB. Consider enabling 'Resizable BAR' support in your BIOS.\n",
- 			 (u64)xe->mem.vram.size >> 20);
- 	if (xe->mem.vram.size < vram_size)
- 		drm_warn(&xe->drm, "Restricting VRAM size to PCI resource size (0x%llx->0x%llx)\n",
- 			 vram_size, (u64)xe->mem.vram.size);
+-	max_bytes = mgr->manager.size;
+-	if (place->flags & TTM_PL_FLAG_CONTIGUOUS) {
+-		pages_per_block = ~0ul;
+-	} else {
+-#ifdef CONFIG_TRANSPARENT_HUGEPAGE
+-		pages_per_block = HPAGE_PMD_NR;
+-#else
+-		/* default to 2MB */
+-		pages_per_block = 2UL << (20UL - PAGE_SHIFT);
+-#endif
+-
+-		pages_per_block = max_t(uint32_t, pages_per_block,
+-					tbo->page_alignment);
+-	}
++	lpfn = place->lpfn;
++	if (!lpfn || lpfn > man->size >> PAGE_SHIFT)
++		lpfn = man->size >> PAGE_SHIFT;
  
--	xe->mem.vram.mapping = ioremap_wc(xe->mem.vram.io_start, xe->mem.vram.size);
-+	xe->mem.vram.mapping = ioremap_wc(xe->mem.vram.io_start, xe->mem.vram.io_size);
- 	xe->mem.vram.size = min_t(u64, xe->mem.vram.size, usable_size);
+ 	vres = kzalloc(sizeof(*vres), GFP_KERNEL);
+ 	if (!vres)
+ 		return -ENOMEM;
  
- 	drm_info(&xe->drm, "TOTAL VRAM: %pa, %pa\n", &xe->mem.vram.io_start, &xe->mem.vram.size);
-@@ -239,7 +240,7 @@ int xe_mmio_probe_vram(struct xe_device *xe)
- 	/* FIXME: Assuming equally partitioned VRAM, incorrect */
- 	if (xe->info.tile_count > 1) {
- 		u8 adj_tile_count = xe->info.tile_count;
--		resource_size_t size, io_start;
-+		resource_size_t size, io_start, io_size;
+ 	ttm_resource_init(tbo, place, &vres->base);
+-	remaining_size = vres->base.size;
  
- 		for_each_gt(gt, xe, id)
- 			if (xe_gt_is_media_type(gt))
-@@ -249,15 +250,31 @@ int xe_mmio_probe_vram(struct xe_device *xe)
+ 	/* bail out quickly if there's likely not enough VRAM for this BO */
+-	if (ttm_resource_manager_usage(man) > max_bytes) {
+-		r = -ENOSPC;
++	if (ttm_resource_manager_usage(man) > man->size) {
++		err = -ENOSPC;
+ 		goto error_fini;
+ 	}
  
- 		size = xe->mem.vram.size / adj_tile_count;
- 		io_start = xe->mem.vram.io_start;
-+		io_size = xe->mem.vram.io_size;
+@@ -96,95 +77,91 @@ static int xe_ttm_vram_mgr_new(struct ttm_resource_manager *man,
+ 	if (place->flags & TTM_PL_FLAG_TOPDOWN)
+ 		vres->flags |= DRM_BUDDY_TOPDOWN_ALLOCATION;
  
- 		for_each_gt(gt, xe, id) {
--			if (id && !xe_gt_is_media_type(gt))
--				io_start += size;
-+			if (id && !xe_gt_is_media_type(gt)) {
-+				io_size -= min(io_size, size);
-+				io_start += io_size;
-+			}
+-	if (fpfn || lpfn != man->size)
+-		/* Allocate blocks in desired range */
++	if (place->fpfn || lpfn != man->size >> PAGE_SHIFT)
+ 		vres->flags |= DRM_BUDDY_RANGE_ALLOCATION;
  
- 			gt->mem.vram.size = size;
--			gt->mem.vram.io_start = io_start;
--			gt->mem.vram.mapping = xe->mem.vram.mapping +
--				(io_start - xe->mem.vram.io_start);
+-	mutex_lock(&mgr->lock);
+-	while (remaining_size) {
+-		if (tbo->page_alignment)
+-			min_block_size = tbo->page_alignment << PAGE_SHIFT;
+-		else
+-			min_block_size = mgr->default_page_size;
+-
+-		XE_BUG_ON(min_block_size < mm->chunk_size);
+-
+-		/* Limit maximum size to 2GiB due to SG table limitations */
+-		size = min(remaining_size, 2ULL << 30);
+-
+-		if (size >= pages_per_block << PAGE_SHIFT)
+-			min_block_size = pages_per_block << PAGE_SHIFT;
+-
+-		cur_size = size;
+-
+-		if (fpfn + size != place->lpfn << PAGE_SHIFT) {
+-			/*
+-			 * Except for actual range allocation, modify the size and
+-			 * min_block_size conforming to continuous flag enablement
+-			 */
+-			if (place->flags & TTM_PL_FLAG_CONTIGUOUS) {
+-				size = roundup_pow_of_two(size);
+-				min_block_size = size;
+-			/*
+-			 * Modify the size value if size is not
+-			 * aligned with min_block_size
+-			 */
+-			} else if (!IS_ALIGNED(size, min_block_size)) {
+-				size = round_up(size, min_block_size);
+-			}
+-		}
++	XE_BUG_ON(!vres->base.size);
++	size = vres->base.size;
+ 
+-		r = drm_buddy_alloc_blocks(mm, fpfn,
+-					   lpfn,
+-					   size,
+-					   min_block_size,
+-					   &vres->blocks,
+-					   vres->flags);
+-		if (unlikely(r))
+-			goto error_free_blocks;
++	min_page_size = mgr->default_page_size;
++	if (tbo->page_alignment)
++		min_page_size = tbo->page_alignment << PAGE_SHIFT;
+ 
+-		if (size > remaining_size)
+-			remaining_size = 0;
+-		else
+-			remaining_size -= size;
++	XE_BUG_ON(min_page_size < mm->chunk_size);
++	XE_BUG_ON(min_page_size > SZ_2G); /* FIXME: sg limit */
++	XE_BUG_ON(size > SZ_2G &&
++		  (vres->base.placement & TTM_PL_FLAG_CONTIGUOUS));
++	XE_BUG_ON(!IS_ALIGNED(size, min_page_size));
 +
-+			/*
-+			 * XXX: multi-tile small-bar might be wild. Hopefully
-+			 * full tile without any mappable vram is not something
-+			 * we care about.
-+			 */
++	if (place->fpfn + (vres->base.size >> PAGE_SHIFT) != place->lpfn &&
++	    place->flags & TTM_PL_FLAG_CONTIGUOUS) {
++		unsigned long pages;
 +
-+			gt->mem.vram.io_size = min(size, io_size);
-+			if (io_size) {
-+				gt->mem.vram.io_start = io_start;
-+				gt->mem.vram.mapping = xe->mem.vram.mapping +
-+					(io_start - xe->mem.vram.io_start);
-+			} else {
-+				drm_err(&xe->drm, "Tile without any CPU visible VRAM. Aborting.\n");
-+				return -ENODEV;
++		size = roundup_pow_of_two(size);
++		min_page_size = size;
++
++		pages = size >> ilog2(mm->chunk_size);
++		if (pages > lpfn)
++			lpfn = pages;
+ 	}
+-	mutex_unlock(&mgr->lock);
+ 
+-	if (cur_size != size) {
+-		struct drm_buddy_block *block;
+-		struct list_head *trim_list;
+-		u64 original_size;
+-		LIST_HEAD(temp);
++	if (size > lpfn << PAGE_SHIFT) {
++		err = -E2BIG; /* don't trigger eviction */
++		goto error_fini;
++	}
+ 
+-		trim_list = &vres->blocks;
+-		original_size = vres->base.size;
++	mutex_lock(&mgr->lock);
++	if (lpfn <= mgr->visible_size && size > mgr->visible_avail) {
++		mutex_unlock(&mgr->lock);
++		err = -ENOSPC;
++		goto error_fini;
++	}
+ 
++	remaining_size = size;
++	do {
+ 		/*
+-		 * If size value is rounded up to min_block_size, trim the last
+-		 * block to the required size
++		 * Limit maximum size to 2GiB due to SG table limitations.
++		 * FIXME: Should maybe be handled as part of sg construction.
+ 		 */
+-		if (!list_is_singular(&vres->blocks)) {
+-			block = list_last_entry(&vres->blocks, typeof(*block), link);
+-			list_move_tail(&block->link, &temp);
+-			trim_list = &temp;
+-			/*
+-			 * Compute the original_size value by subtracting the
+-			 * last block size with (aligned size - original size)
+-			 */
+-			original_size = drm_buddy_block_size(mm, block) -
+-				(size - cur_size);
+-		}
++		u64 alloc_size = min_t(u64, remaining_size, SZ_2G);
++
++		err = drm_buddy_alloc_blocks(mm, (u64)place->fpfn << PAGE_SHIFT,
++					     (u64)lpfn << PAGE_SHIFT,
++					     alloc_size,
++					     min_page_size,
++					     &vres->blocks,
++					     vres->flags);
++		if (err)
++			goto error_free_blocks;
+ 
+-		mutex_lock(&mgr->lock);
+-		drm_buddy_block_trim(mm,
+-				     original_size,
+-				     trim_list);
+-		mutex_unlock(&mgr->lock);
++		remaining_size -= alloc_size;
++	} while (remaining_size);
+ 
+-		if (!list_empty(&temp))
+-			list_splice_tail(trim_list, &vres->blocks);
++	if (place->flags & TTM_PL_FLAG_CONTIGUOUS) {
++		if (!drm_buddy_block_trim(mm, vres->base.size, &vres->blocks))
++			size = vres->base.size;
+ 	}
+ 
++	if (lpfn <= mgr->visible_size >> PAGE_SHIFT) {
++		vres->used_visible_size = size;
++	} else {
++		struct drm_buddy_block *block;
++
++		list_for_each_entry(block, &vres->blocks, link) {
++			u64 start = drm_buddy_block_offset(block);
++
++			if (start < mgr->visible_size) {
++				u64 end = start + drm_buddy_block_size(mm, block);
++
++				vres->used_visible_size +=
++					min(end, mgr->visible_size) - start;
 +			}
++		}
++	}
++
++	mgr->visible_avail -= vres->used_visible_size;
++	mutex_unlock(&mgr->lock);
++
+ 	if (!(vres->base.placement & TTM_PL_FLAG_CONTIGUOUS) &&
+ 	    xe_is_vram_mgr_blocks_contiguous(mm, &vres->blocks))
+ 		vres->base.placement |= TTM_PL_FLAG_CONTIGUOUS;
+@@ -213,7 +190,7 @@ static int xe_ttm_vram_mgr_new(struct ttm_resource_manager *man,
+ 	ttm_resource_fini(man, &vres->base);
+ 	kfree(vres);
  
- 			drm_info(&xe->drm, "VRAM[%u, %u]: %pa, %pa\n",
- 				 id, gt->info.vram_id, &gt->mem.vram.io_start,
-@@ -266,6 +283,7 @@ int xe_mmio_probe_vram(struct xe_device *xe)
- 	} else {
- 		gt->mem.vram.size = xe->mem.vram.size;
- 		gt->mem.vram.io_start = xe->mem.vram.io_start;
-+		gt->mem.vram.io_size = xe->mem.vram.io_size;
- 		gt->mem.vram.mapping = xe->mem.vram.mapping;
+-	return r;
++	return err;
+ }
  
- 		drm_info(&xe->drm, "VRAM: %pa\n", &gt->mem.vram.size);
+ static void xe_ttm_vram_mgr_del(struct ttm_resource_manager *man,
+@@ -226,6 +203,7 @@ static void xe_ttm_vram_mgr_del(struct ttm_resource_manager *man,
+ 
+ 	mutex_lock(&mgr->lock);
+ 	drm_buddy_free_list(mm, &vres->blocks);
++	mgr->visible_avail += vres->used_visible_size;
+ 	mutex_unlock(&mgr->lock);
+ 
+ 	ttm_resource_fini(man, res);
+@@ -240,6 +218,13 @@ static void xe_ttm_vram_mgr_debug(struct ttm_resource_manager *man,
+ 	struct drm_buddy *mm = &mgr->mm;
+ 
+ 	mutex_lock(&mgr->lock);
++	drm_printf(printer, "default_page_size: %lluKiB\n",
++		   mgr->default_page_size >> 10);
++	drm_printf(printer, "visible_avail: %lluMiB\n",
++		   (u64)mgr->visible_avail >> 20);
++	drm_printf(printer, "visible_size: %lluMiB\n",
++		   (u64)mgr->visible_size >> 20);
++
+ 	drm_buddy_print(mm, printer);
+ 	mutex_unlock(&mgr->lock);
+ 	drm_printf(printer, "man size:%llu\n", man->size);
+@@ -262,6 +247,8 @@ static void ttm_vram_mgr_fini(struct drm_device *dev, void *arg)
+ 	if (ttm_resource_manager_evict_all(&xe->ttm, man))
+ 		return;
+ 
++	WARN_ON_ONCE(mgr->visible_avail != mgr->visible_size);
++
+ 	drm_buddy_fini(&mgr->mm);
+ 
+ 	ttm_resource_manager_cleanup(&mgr->manager);
+@@ -270,7 +257,8 @@ static void ttm_vram_mgr_fini(struct drm_device *dev, void *arg)
+ }
+ 
+ int __xe_ttm_vram_mgr_init(struct xe_device *xe, struct xe_ttm_vram_mgr *mgr,
+-			   u32 mem_type, u64 size, u64 default_page_size)
++			   u32 mem_type, u64 size, u64 io_size,
++			   u64 default_page_size)
+ {
+ 	struct ttm_resource_manager *man = &mgr->manager;
+ 	int err;
+@@ -279,6 +267,8 @@ int __xe_ttm_vram_mgr_init(struct xe_device *xe, struct xe_ttm_vram_mgr *mgr,
+ 	mgr->mem_type = mem_type;
+ 	mutex_init(&mgr->lock);
+ 	mgr->default_page_size = default_page_size;
++	mgr->visible_size = io_size;
++	mgr->visible_avail = io_size;
+ 
+ 	ttm_resource_manager_init(man, &xe->ttm, size);
+ 	err = drm_buddy_init(&mgr->mm, man->size, default_page_size);
+@@ -298,7 +288,8 @@ int xe_ttm_vram_mgr_init(struct xe_gt *gt, struct xe_ttm_vram_mgr *mgr)
+ 	mgr->gt = gt;
+ 
+ 	return __xe_ttm_vram_mgr_init(xe, mgr, XE_PL_VRAM0 + gt->info.vram_id,
+-				      gt->mem.vram.size, PAGE_SIZE);
++				      gt->mem.vram.size, gt->mem.vram.io_size,
++				      PAGE_SIZE);
+ }
+ 
+ int xe_ttm_vram_mgr_alloc_sgt(struct xe_device *xe,
+diff --git a/drivers/gpu/drm/xe/xe_ttm_vram_mgr.h b/drivers/gpu/drm/xe/xe_ttm_vram_mgr.h
+index 78f332d26224..35e5367a79fb 100644
+--- a/drivers/gpu/drm/xe/xe_ttm_vram_mgr.h
++++ b/drivers/gpu/drm/xe/xe_ttm_vram_mgr.h
+@@ -13,7 +13,8 @@ struct xe_device;
+ struct xe_gt;
+ 
+ int __xe_ttm_vram_mgr_init(struct xe_device *xe, struct xe_ttm_vram_mgr *mgr,
+-			   u32 mem_type, u64 size, u64 default_page_size);
++			   u32 mem_type, u64 size, u64 io_size,
++			   u64 default_page_size);
+ int xe_ttm_vram_mgr_init(struct xe_gt *gt, struct xe_ttm_vram_mgr *mgr);
+ int xe_ttm_vram_mgr_alloc_sgt(struct xe_device *xe,
+ 			      struct ttm_resource *res,
+diff --git a/drivers/gpu/drm/xe/xe_ttm_vram_mgr_types.h b/drivers/gpu/drm/xe/xe_ttm_vram_mgr_types.h
+index 39aa2ec1b968..3d9417ff7434 100644
+--- a/drivers/gpu/drm/xe/xe_ttm_vram_mgr_types.h
++++ b/drivers/gpu/drm/xe/xe_ttm_vram_mgr_types.h
+@@ -23,6 +23,10 @@ struct xe_ttm_vram_mgr {
+ 	struct ttm_resource_manager manager;
+ 	/** @mm: DRM buddy allocator which manages the VRAM */
+ 	struct drm_buddy mm;
++	/** @visible_size: Proped size of the CPU visible portion */
++	u64 visible_size;
++	/** @visible_avail: CPU visible portion still unallocated */
++	u64 visible_avail;
+ 	/** @default_page_size: default page size */
+ 	u64 default_page_size;
+ 	/** @lock: protects allocations of VRAM */
+@@ -39,6 +43,8 @@ struct xe_ttm_vram_mgr_resource {
+ 	struct ttm_resource base;
+ 	/** @blocks: list of DRM buddy blocks */
+ 	struct list_head blocks;
++	/** @used_visible_size: How many CPU visible bytes this resource is using */
++	u64 used_visible_size;
+ 	/** @flags: flags associated with the resource */
+ 	unsigned long flags;
+ };
 -- 
 2.39.2
 
