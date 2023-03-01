@@ -4,46 +4,46 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7D1A7C64ED6
-	for <intel-xe@archiver.kernel.org>; Wed,  1 Mar 2023 09:31:48 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 844C1C64EC7
+	for <intel-xe@archiver.kernel.org>; Wed,  1 Mar 2023 09:31:49 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2467910E0B7;
-	Wed,  1 Mar 2023 09:31:48 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 60C8710E21E;
+	Wed,  1 Mar 2023 09:31:49 +0000 (UTC)
 Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D858510E09E
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0011710E0B7
  for <intel-xe@lists.freedesktop.org>; Wed,  1 Mar 2023 09:31:46 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1677663106; x=1709199106;
+ t=1677663107; x=1709199107;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=chbX8zqKqwxdKuHvBbFBxb17ky+hjNETMZMT6XJQn3k=;
- b=arI9PZycGH7JqJ4iSs3Yz+Otey/wMmEi1A1sOe2qbAoI0kwmnR2eOsfz
- bfBB2zXSa48Dx+yT037ZnPOWVoyA7UDNQGdnznGy1dvzlMFqikuz4AwYu
- KGlqbBrnUx3euUZBj4oXYe+M33cmNKbJJYFkoA8wmctJa/WOk/yQTIjER
- Xd3xzp6IhE5GFNJ89HspdfqMvlEVWnZUdQrypzhCOQmBIW3v7bpd8oSqJ
- gelfhu4e1Nem44kQPpRrVG5w1to4n54AwVJuQ4FL4BzpgLptVIGo1a/Sk
- KU2yBa4+L2lXtfUZl0tdNCUERX9GNbpX43BZiufSnMDd1BAnfLfT+QTCs w==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10635"; a="333091754"
-X-IronPort-AV: E=Sophos;i="5.98,224,1673942400"; d="scan'208";a="333091754"
+ bh=gaE7n/oCN6KACxSP6yuU/cngaU4OVUhlKpD/gnihyfs=;
+ b=F1kAs6nh/hwUu9BYD682NhzfrWEFpV7z4Zkl8IXH1HqP+5+euDCQ6uke
+ IiGHLjsgwpGlklKFpNlHkYd9TJ8Hx63TBIpo89CMoYRvBVzwY6T88Ygc9
+ BwPSA7N1nipoyzNKIh0XJ9ure1KursjZts96b1f2hHaIsVVd+2uZS3VDO
+ TsF9n5igZkljX85hgWfnP4f5WpU6fHWEDu3yGRojgD3agarLsNVGFBY9e
+ jEQqjZAyQ/qqpmvTxfvsOz0qowIJbpUD7jzdbgYriD8s3gZ/6I/ahDy5S
+ TulGgZhkSS3EQzSbzo3gET43Er7yix/mwcL40LLGO1f/s7CsT6Hu6JDIN Q==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10635"; a="333091755"
+X-IronPort-AV: E=Sophos;i="5.98,224,1673942400"; d="scan'208";a="333091755"
 Received: from fmsmga005.fm.intel.com ([10.253.24.32])
  by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  01 Mar 2023 01:31:46 -0800
-X-IronPort-AV: E=McAfee;i="6500,9779,10635"; a="1003600475"
-X-IronPort-AV: E=Sophos;i="5.98,224,1673942400"; d="scan'208";a="1003600475"
+X-IronPort-AV: E=McAfee;i="6500,9779,10635"; a="1003600481"
+X-IronPort-AV: E=Sophos;i="5.98,224,1673942400"; d="scan'208";a="1003600481"
 Received: from lucas-s2600cw.jf.intel.com ([10.165.21.196])
  by fmsmga005-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  01 Mar 2023 01:31:46 -0800
 From: Lucas De Marchi <lucas.demarchi@intel.com>
 To: intel-xe@lists.freedesktop.org
-Date: Wed,  1 Mar 2023 01:31:07 -0800
-Message-Id: <20230301093112.2893689-3-lucas.demarchi@intel.com>
+Date: Wed,  1 Mar 2023 01:31:08 -0800
+Message-Id: <20230301093112.2893689-4-lucas.demarchi@intel.com>
 X-Mailer: git-send-email 2.39.0
 In-Reply-To: <20230301093112.2893689-1-lucas.demarchi@intel.com>
 References: <20230301093112.2893689-1-lucas.demarchi@intel.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-xe] [PATCH 2/7] drm/xe/rtp: Add match for render reset domain
+Subject: [Intel-xe] [PATCH 3/7] drm/xe: Remove dump function from reg_sr
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -59,102 +59,84 @@ Cc: Lucas De Marchi <lucas.demarchi@intel.com>
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-This allows to create WA/tuning rules that match the first engine that
-is either of compute or render class. This matters for platforms that
-don't have a render engine and that may have arbitrary compute engines
-fused off: some register programming need to be added to one of those
-engines.
+The dump function was originally added with the idea that it could be
+re-used both for printing the reg-sr data and saving it to pass to GuC
+via ADS. This was not used by the GuC integration, so remove it now to
+give place to a new debug.
 
 Signed-off-by: Lucas De Marchi <lucas.demarchi@intel.com>
 ---
- drivers/gpu/drm/xe/xe_hw_engine_types.h |  5 +++++
- drivers/gpu/drm/xe/xe_rtp.c             | 10 ++++++++++
- drivers/gpu/drm/xe/xe_rtp.h             | 18 ++++++++++++++++++
- 3 files changed, 33 insertions(+)
+ drivers/gpu/drm/xe/xe_reg_sr.c       | 26 --------------------------
+ drivers/gpu/drm/xe/xe_reg_sr.h       |  2 --
+ drivers/gpu/drm/xe/xe_reg_sr_types.h |  5 -----
+ 3 files changed, 33 deletions(-)
 
-diff --git a/drivers/gpu/drm/xe/xe_hw_engine_types.h b/drivers/gpu/drm/xe/xe_hw_engine_types.h
-index 05a2fdc381d7..2c40384957da 100644
---- a/drivers/gpu/drm/xe/xe_hw_engine_types.h
-+++ b/drivers/gpu/drm/xe/xe_hw_engine_types.h
-@@ -23,6 +23,7 @@ enum xe_engine_class {
+diff --git a/drivers/gpu/drm/xe/xe_reg_sr.c b/drivers/gpu/drm/xe/xe_reg_sr.c
+index e4eb18332a9d..194a5060f1b3 100644
+--- a/drivers/gpu/drm/xe/xe_reg_sr.c
++++ b/drivers/gpu/drm/xe/xe_reg_sr.c
+@@ -43,32 +43,6 @@ int xe_reg_sr_init(struct xe_reg_sr *sr, const char *name, struct xe_device *xe)
+ 	return drmm_add_action_or_reset(&xe->drm, reg_sr_fini, sr);
+ }
  
- enum xe_hw_engine_id {
- 	XE_HW_ENGINE_RCS0,
-+#define XE_HW_ENGINE_RCS_MASK	GENMASK_ULL(XE_HW_ENGINE_RCS0, XE_HW_ENGINE_RCS0)
- 	XE_HW_ENGINE_BCS0,
- 	XE_HW_ENGINE_BCS1,
- 	XE_HW_ENGINE_BCS2,
-@@ -32,6 +33,7 @@ enum xe_hw_engine_id {
- 	XE_HW_ENGINE_BCS6,
- 	XE_HW_ENGINE_BCS7,
- 	XE_HW_ENGINE_BCS8,
-+#define XE_HW_ENGINE_BCS_MASK	GENMASK_ULL(XE_HW_ENGINE_BCS8, XE_HW_ENGINE_BCS0)
- 	XE_HW_ENGINE_VCS0,
- 	XE_HW_ENGINE_VCS1,
- 	XE_HW_ENGINE_VCS2,
-@@ -40,14 +42,17 @@ enum xe_hw_engine_id {
- 	XE_HW_ENGINE_VCS5,
- 	XE_HW_ENGINE_VCS6,
- 	XE_HW_ENGINE_VCS7,
-+#define XE_HW_ENGINE_VCS_MASK	GENMASK_ULL(XE_HW_ENGINE_VCS7, XE_HW_ENGINE_VCS0)
- 	XE_HW_ENGINE_VECS0,
- 	XE_HW_ENGINE_VECS1,
- 	XE_HW_ENGINE_VECS2,
- 	XE_HW_ENGINE_VECS3,
-+#define XE_HW_ENGINE_VECS_MASK	GENMASK_ULL(XE_HW_ENGINE_VECS3, XE_HW_ENGINE_VECS0)
- 	XE_HW_ENGINE_CCS0,
- 	XE_HW_ENGINE_CCS1,
- 	XE_HW_ENGINE_CCS2,
- 	XE_HW_ENGINE_CCS3,
-+#define XE_HW_ENGINE_CCS_MASK	GENMASK_ULL(XE_HW_ENGINE_CCS3, XE_HW_ENGINE_CCS0)
- 	XE_NUM_HW_ENGINES,
+-int xe_reg_sr_dump_kv(struct xe_reg_sr *sr,
+-		      struct xe_reg_sr_kv **dst)
+-{
+-	struct xe_reg_sr_kv *iter;
+-	struct xe_reg_sr_entry *entry;
+-	unsigned long idx;
+-
+-	if (xa_empty(&sr->xa)) {
+-		*dst = NULL;
+-		return 0;
+-	}
+-
+-	*dst = kmalloc_array(sr->pool.used, sizeof(**dst), GFP_KERNEL);
+-	if (!*dst)
+-		return -ENOMEM;
+-
+-	iter = *dst;
+-	xa_for_each(&sr->xa, idx, entry) {
+-		iter->k = idx;
+-		iter->v = *entry;
+-		iter++;
+-	}
+-
+-	return 0;
+-}
+-
+ static struct xe_reg_sr_entry *alloc_entry(struct xe_reg_sr *sr)
+ {
+ 	if (sr->pool.used == sr->pool.allocated) {
+diff --git a/drivers/gpu/drm/xe/xe_reg_sr.h b/drivers/gpu/drm/xe/xe_reg_sr.h
+index c3a9db251e92..9f47230c8ddc 100644
+--- a/drivers/gpu/drm/xe/xe_reg_sr.h
++++ b/drivers/gpu/drm/xe/xe_reg_sr.h
+@@ -16,8 +16,6 @@ struct xe_device;
+ struct xe_gt;
+ 
+ int xe_reg_sr_init(struct xe_reg_sr *sr, const char *name, struct xe_device *xe);
+-int xe_reg_sr_dump_kv(struct xe_reg_sr *sr,
+-		      struct xe_reg_sr_kv **dst);
+ 
+ int xe_reg_sr_add(struct xe_reg_sr *sr, u32 reg,
+ 		  const struct xe_reg_sr_entry *e);
+diff --git a/drivers/gpu/drm/xe/xe_reg_sr_types.h b/drivers/gpu/drm/xe/xe_reg_sr_types.h
+index 0e6d542ff1b4..3d2257891005 100644
+--- a/drivers/gpu/drm/xe/xe_reg_sr_types.h
++++ b/drivers/gpu/drm/xe/xe_reg_sr_types.h
+@@ -23,11 +23,6 @@ struct xe_reg_sr_entry {
+ 	u8		reg_type;
  };
  
-diff --git a/drivers/gpu/drm/xe/xe_rtp.c b/drivers/gpu/drm/xe/xe_rtp.c
-index c04eca290ef0..0d2f51bb06e8 100644
---- a/drivers/gpu/drm/xe/xe_rtp.c
-+++ b/drivers/gpu/drm/xe/xe_rtp.c
-@@ -160,3 +160,13 @@ bool xe_rtp_match_even_instance(const struct xe_gt *gt,
- {
- 	return hwe->instance % 2 == 0;
- }
-+
-+bool xe_rtp_match_first_render_or_compute(const struct xe_gt *gt,
-+					  const struct xe_hw_engine *hwe)
-+{
-+	u64 render_compute_mask = gt->info.engine_mask &
-+		(XE_HW_ENGINE_CCS_MASK | XE_HW_ENGINE_RCS_MASK);
-+
-+	return render_compute_mask &&
-+		hwe->engine_id == __ffs(render_compute_mask);
-+}
-diff --git a/drivers/gpu/drm/xe/xe_rtp.h b/drivers/gpu/drm/xe/xe_rtp.h
-index 9bd2532442ed..433f0cbff57f 100644
---- a/drivers/gpu/drm/xe/xe_rtp.h
-+++ b/drivers/gpu/drm/xe/xe_rtp.h
-@@ -409,4 +409,22 @@ void xe_rtp_process(const struct xe_rtp_entry *entries, struct xe_reg_sr *sr,
- bool xe_rtp_match_even_instance(const struct xe_gt *gt,
- 				const struct xe_hw_engine *hwe);
- 
-+/*
-+ * xe_rtp_match_first_render_or_compute - Match if it's first render or compute
-+ * engine in the GT
-+ *
-+ * @gt: GT structure
-+ * @hwe: Engine instance
-+ *
-+ * Registers on the render reset domain need to have their values re-applied
-+ * when any of those engines are reset. Since the engines reset together, a
-+ * programming can be set to just one of them. For simplicity the first engine
-+ * of either render or compute class can be chosen.
-+ *
-+ * Returns: true if engine id is the first to match the render reset domain,
-+ * false otherwise.
-+ */
-+bool xe_rtp_match_first_render_or_compute(const struct xe_gt *gt,
-+					  const struct xe_hw_engine *hwe);
-+
- #endif
+-struct xe_reg_sr_kv {
+-	u32			k;
+-	struct xe_reg_sr_entry	v;
+-};
+-
+ struct xe_reg_sr {
+ 	struct {
+ 		struct xe_reg_sr_entry *arr;
 -- 
 2.39.0
 
