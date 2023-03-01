@@ -4,48 +4,45 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id F1154C7EE2F
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id F1049C6FA9D
 	for <intel-xe@archiver.kernel.org>; Wed,  1 Mar 2023 14:50:15 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C349110E1FB;
+	by gabe.freedesktop.org (Postfix) with ESMTP id AF60710E18B;
 	Wed,  1 Mar 2023 14:50:15 +0000 (UTC)
 Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 453DE10E18B
- for <intel-xe@lists.freedesktop.org>; Wed,  1 Mar 2023 14:50:14 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7798010E18B
+ for <intel-xe@lists.freedesktop.org>; Wed,  1 Mar 2023 14:50:13 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1677682214; x=1709218214;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=Iaub/HOunanoM6M3gNauluAXmknLlpfAem9SLkbtdV0=;
- b=C9aZaFtbfkTRDNVQq5aCtSW5k6FNI89G65uNfgOzmQte3lrVLSPU2e5d
- +aR/8neRC8zaIF6/ree9gSkcvBhoayFAMUDJseLGtG5u37yiWatN9n8iF
- EjpXiWE/nr9UMj/kxQ4dcxXV7pJ0u6iejmLhnbFD3600J6IaIjALym5Da
- mWV+mqLFtamQOGVJWTgG0xiICA3PThGr2xUdWzrup+jMOlO8OMdHiXrrY
- MaRVmsxkls/ye7XzTC/N/iZWh26sfUe+utB27FiCLvjZY6GYVhgXpc4Y+
- f9X8WPb1WfdwV6NepRP6DeePuj0f0DLUNBNLoq6xmQpotJ8nDPvrECAxX Q==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10636"; a="331904499"
-X-IronPort-AV: E=Sophos;i="5.98,225,1673942400"; d="scan'208";a="331904499"
+ t=1677682213; x=1709218213;
+ h=from:to:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=xxpkBuOYaztl79mCDFBcu1PxqlYy9VgS+aPTKRgrvW4=;
+ b=Bv4v538giRHA2sKQAKJSTJW3BZIZ1ZzGU3TKghh0FzbF7KVPyeBCMLGc
+ +t4ALU9rBSx5kGuAHB7TnF3Cutn1C+Vp5dwifrjenEO+wKtJsDPxfCali
+ Ek5nXlwJffa1njw5p2P293iZR6BWvmppqi6ZyWBKciW8ygiVP/Wh2tLDV
+ klK4uEKbkq9tkOl9xNR87ngnsdwefQ1qD0TMwkx1x2H76bQhEIhe6f61C
+ DooHuu2p5u1TPZynouDBdaUjVj7C2Z/vqQLX2X4bPQjEQZUyMsRohxIYU
+ RtawMvQMydx1J4e4wAqw5laVVZyk4GVLrrVxabqaujLVSopVT51DvHvLi Q==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10636"; a="331904495"
+X-IronPort-AV: E=Sophos;i="5.98,225,1673942400"; d="scan'208";a="331904495"
 Received: from fmsmga001.fm.intel.com ([10.253.24.23])
  by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 01 Mar 2023 06:50:14 -0800
-X-IronPort-AV: E=McAfee;i="6500,9779,10636"; a="817590541"
-X-IronPort-AV: E=Sophos;i="5.98,225,1673942400"; d="scan'208";a="817590541"
+ 01 Mar 2023 06:50:12 -0800
+X-IronPort-AV: E=McAfee;i="6500,9779,10636"; a="817590525"
+X-IronPort-AV: E=Sophos;i="5.98,225,1673942400"; d="scan'208";a="817590525"
 Received: from shedley-mobl3.ger.corp.intel.com (HELO mwauld-desk1.intel.com)
  ([10.252.10.182])
  by fmsmga001-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 01 Mar 2023 06:50:13 -0800
+ 01 Mar 2023 06:50:12 -0800
 From: Matthew Auld <matthew.auld@intel.com>
 To: intel-xe@lists.freedesktop.org
-Date: Wed,  1 Mar 2023 14:48:10 +0000
-Message-Id: <20230301144815.248239-2-matthew.auld@intel.com>
+Date: Wed,  1 Mar 2023 14:48:09 +0000
+Message-Id: <20230301144815.248239-1-matthew.auld@intel.com>
 X-Mailer: git-send-email 2.39.2
-In-Reply-To: <20230301144815.248239-1-matthew.auld@intel.com>
-References: <20230301144815.248239-1-matthew.auld@intel.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-xe] [PATCH 1/6] drm/xe: add
- xe_ttm_stolen_cpu_access_needs_ggtt()
+Subject: [Intel-xe] [PATCH 0/6] Some small-bar prep patches
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -60,75 +57,9 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-xe_ttm_stolen_cpu_inaccessible() was originally meant to just cover the
-case where stolen is not directly CPU accessible on some older
-integrated platforms, and as such a GGTT mapping was also required for
-CPU access (as per the check in xe_bo_create_pin_map_at()).
+Split from the small-bar series. Plus one extra patch to fix the overloaded
+meaning behind xe_ttm_stolen_cpu_inaccessible(), as pointed out by Maarten.
 
-However with small-bar systems on dgfx we have one more case where
-stolen is also inaccessible, however here we don't have any fallback
-GGTT mode for CPU access. Fix the check in xe_bo_create_pin_map_at() to
-make this distinction clear. In such a case the later vmap() will fail
-anyway.
-
-Suggested-by: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
-Signed-off-by: Matthew Auld <matthew.auld@intel.com>
----
- drivers/gpu/drm/xe/xe_bo.c             |  2 +-
- drivers/gpu/drm/xe/xe_ttm_stolen_mgr.c | 14 ++++++++++++++
- drivers/gpu/drm/xe/xe_ttm_stolen_mgr.h |  1 +
- 3 files changed, 16 insertions(+), 1 deletion(-)
-
-diff --git a/drivers/gpu/drm/xe/xe_bo.c b/drivers/gpu/drm/xe/xe_bo.c
-index 2bfd3f6f2e9a..876f77669104 100644
---- a/drivers/gpu/drm/xe/xe_bo.c
-+++ b/drivers/gpu/drm/xe/xe_bo.c
-@@ -1151,7 +1151,7 @@ struct xe_bo *xe_bo_create_pin_map_at(struct xe_device *xe, struct xe_gt *gt,
- 	u64 end = offset == ~0ull ? offset : start + size;
- 
- 	if (flags & XE_BO_CREATE_STOLEN_BIT &&
--	    xe_ttm_stolen_cpu_inaccessible(xe))
-+	    xe_ttm_stolen_cpu_access_needs_ggtt(xe))
- 		flags |= XE_BO_CREATE_GGTT_BIT;
- 
- 	bo = xe_bo_create_locked_range(xe, gt, vm, size, start, end, type, flags);
-diff --git a/drivers/gpu/drm/xe/xe_ttm_stolen_mgr.c b/drivers/gpu/drm/xe/xe_ttm_stolen_mgr.c
-index 2e8d07ad42ae..4bf373a03d64 100644
---- a/drivers/gpu/drm/xe/xe_ttm_stolen_mgr.c
-+++ b/drivers/gpu/drm/xe/xe_ttm_stolen_mgr.c
-@@ -66,6 +66,20 @@ bool xe_ttm_stolen_cpu_inaccessible(struct xe_device *xe)
- 	return !mgr->io_base || GRAPHICS_VERx100(xe) < 1270;
- }
- 
-+/**
-+ * xe_ttm_stolen_needs_ggtt - If we can't directly CPU access stolen, can we
-+ * then fallback to mapping through the GGTT.
-+ * @xe: xe device
-+ *
-+ * Some older integrated platforms don't support reliable CPU access for stolen,
-+ * however on such hardware we can always use the mappable part of the GGTT for
-+ * CPU access. Check if that's the case for this device.
-+ */
-+bool xe_ttm_stolen_cpu_access_needs_ggtt(struct xe_device *xe)
-+{
-+	return xe_ttm_stolen_cpu_inaccessible(xe) && !IS_DGFX(xe);
-+}
-+
- static s64 detect_bar2_dgfx(struct xe_device *xe, struct xe_ttm_stolen_mgr *mgr)
- {
- 	struct pci_dev *pdev = to_pci_dev(xe->drm.dev);
-diff --git a/drivers/gpu/drm/xe/xe_ttm_stolen_mgr.h b/drivers/gpu/drm/xe/xe_ttm_stolen_mgr.h
-index 2fda97b97a05..e210dada636e 100644
---- a/drivers/gpu/drm/xe/xe_ttm_stolen_mgr.h
-+++ b/drivers/gpu/drm/xe/xe_ttm_stolen_mgr.h
-@@ -15,6 +15,7 @@ struct xe_device;
- void xe_ttm_stolen_mgr_init(struct xe_device *xe);
- int xe_ttm_stolen_io_mem_reserve(struct xe_device *xe, struct ttm_resource *mem);
- bool xe_ttm_stolen_cpu_inaccessible(struct xe_device *xe);
-+bool xe_ttm_stolen_cpu_access_needs_ggtt(struct xe_device *xe);
- u64 xe_ttm_stolen_io_offset(struct xe_bo *bo, u32 offset);
- u64 xe_ttm_stolen_gpu_offset(struct xe_device *xe);
- 
 -- 
 2.39.2
 
