@@ -4,47 +4,49 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id E7DEEC6FA8E
-	for <intel-xe@archiver.kernel.org>; Thu,  2 Mar 2023 14:31:02 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id C716EC6FA8E
+	for <intel-xe@archiver.kernel.org>; Thu,  2 Mar 2023 14:43:42 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C424610E4F6;
-	Thu,  2 Mar 2023 14:31:02 +0000 (UTC)
-Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 86C5610E4F6
- for <intel-xe@lists.freedesktop.org>; Thu,  2 Mar 2023 14:31:00 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A4B2F10E502;
+	Thu,  2 Mar 2023 14:43:42 +0000 (UTC)
+Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8B7E510E502
+ for <intel-xe@lists.freedesktop.org>; Thu,  2 Mar 2023 14:43:41 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1677767460; x=1709303460;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=diXjJts2XO36KKO2YrSQ9n1CvIhuKRuX9bR8qRvH/yQ=;
- b=EMKA09uS8OTmvnHMiKrdvabwgM7RCYGCLI6mfS4Bp9/UHwQOMz3RoyRW
- gLEZrsyQgQp1aabtC3k3X8wrRBv7jKysXbuhOYJpqoiAVKqJIyaZKXWef
- pIuXVX0mAUjoPFAOQnO4MeeUP/pB/K69ZHPDDdqaEmkkTDv8l6AVobgZ4
- duIoEVoLMVA145cAPU/iOinLltUa4EnBie3mXff858kEuvyemb8mm5iUN
- w/qhMylDrpCwIn6sEVkDNdsK36shkns7DetT5KxsEhXnRFQ4WBm5CqwIi
- PRKuN7dc1gM+Fburhv9mSQ5QacWVPPdPvpwrmZT61J62bKRXW69rVl9S8 w==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10637"; a="337033215"
-X-IronPort-AV: E=Sophos;i="5.98,227,1673942400"; d="scan'208";a="337033215"
-Received: from orsmga007.jf.intel.com ([10.7.209.58])
- by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 02 Mar 2023 06:16:15 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6500,9779,10637"; a="668265151"
-X-IronPort-AV: E=Sophos;i="5.98,227,1673942400"; d="scan'208";a="668265151"
+ t=1677768221; x=1709304221;
+ h=from:to:cc:subject:in-reply-to:references:date:
+ message-id:mime-version;
+ bh=2fbbgEMd6z9LXDTuxOMwGm5QoF3GjzJ/ZzUvLROoH3I=;
+ b=DuftTDFKeSjpOeTyVX/J0bhvXOCwWg0Kzrgz6J/kW3TC8P+nHHJmx3Yj
+ fqI+JDBx3t3RE0Hg4nAvqgMBB4yJ79v05yxolHffJh+hpGHNTWM35lSxF
+ 60lX1+H0oZeH2rLzBaQlG4/5SaSgek2gZHrGsudIrS+OTZkdkUfEro0W2
+ FE19iUNwg3fdAofkFe82nTM7Wsz+neVqqeZ5bSm/aulJCVk8Nc0b9Uk6S
+ gutBMJqKUP1qqslRr+SVjuMacQ+zN9kr6gFe/SNnY4KoyVsxgjs1Defwi
+ 0ltx6B2YWfpX+VztvaY3WAvKG2ws+1snY3YBpRVy5BDXzkZF3GyCodYNM w==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10637"; a="362329484"
+X-IronPort-AV: E=Sophos;i="5.98,227,1673942400"; d="scan'208";a="362329484"
+Received: from fmsmga002.fm.intel.com ([10.253.24.26])
+ by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 02 Mar 2023 06:43:40 -0800
+X-IronPort-AV: E=McAfee;i="6500,9779,10637"; a="784857097"
+X-IronPort-AV: E=Sophos;i="5.98,227,1673942400"; d="scan'208";a="784857097"
 Received: from martamon-mobl1.ger.corp.intel.com (HELO localhost)
  ([10.252.57.129])
- by orsmga007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 02 Mar 2023 06:12:34 -0800
-From: Jani Nikula <jani.nikula@intel.com>
-To: intel-xe@lists.freedesktop.org
-Date: Thu,  2 Mar 2023 16:12:22 +0200
-Message-Id: <20230302141230.2804699-1-jani.nikula@intel.com>
-X-Mailer: git-send-email 2.39.1
-MIME-Version: 1.0
+ by fmsmga002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 02 Mar 2023 06:43:37 -0800
+From: Jani Nikula <jani.nikula@linux.intel.com>
+To: Lucas De Marchi <lucas.demarchi@intel.com>, intel-xe@lists.freedesktop.org
+In-Reply-To: <20230302013411.3262608-6-lucas.demarchi@intel.com>
 Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-Content-Transfer-Encoding: 8bit
-Subject: [Intel-xe] [PATCH 0/8] drm/xe: clean up i915 includes both sides
+References: <20230302013411.3262608-1-lucas.demarchi@intel.com>
+ <20230302013411.3262608-6-lucas.demarchi@intel.com>
+Date: Thu, 02 Mar 2023 16:43:35 +0200
+Message-ID: <87y1ofusbs.fsf@intel.com>
+MIME-Version: 1.0
+Content-Type: text/plain
+Subject: Re: [Intel-xe] [PATCH 5/7] drm/xe/display: Move device info
+ initialization to display
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -56,91 +58,429 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Cc: jani.nikula@intel.com, lucas.demarchi@intel.com
+Cc: Lucas De Marchi <lucas.demarchi@intel.com>,
+ Matt Roper <matthew.d.roper@intel.com>, maarten.lankhorst@intel.com,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-This probably needs to be rebased on top of "Encapsulate display" from
-Lucas. Sending to present some ideas anyway.
+On Wed, 01 Mar 2023, Lucas De Marchi <lucas.demarchi@intel.com> wrote:
+> Instead of initializing the display info together with the platform in
+> xe_pci.c, let the display part initialize it. The small disadvantage is
+> that the description struct is not automatically mapped from the PCI ID,
+> but just doing a switch on the platform, that should already be set
+> during display initialization should be ok.
 
-1) Clean up changes to i915 that would not be accepted to upstream i915
+Have we already given up on the idea that device info would be a pointer
+to rodata?
 
-2) Never add top level i915 directory to include search path with -I,
-   not even when building with CONFIG_DRM_XE_DISPLAY=y
+The thing that was always problematic for i915 was that it was all too
+convenient to go fiddle with the device info runtime, based on some
+arbitrary needs.
 
-3) Instead, add the handful of proxy headers under compat-headers/ so
-   that we have an explicit list of headers that we include from i915,
-   instead of hidden by the search path
+---
 
-4) Currently compat-headers is added to search path unconditionally, but
-   after Lucas' changes we can move that to CONFIG_DRM_XE_DISPLAY=y
+That said, there's really no requirement that the struct pci_device_id
+driver_data members in MODULE_DEVICE_TABLE() need to be pointers to some
+device info structures, at all. The initialization of device info could
+be done in completely different ways if we dropped that notion. The
+current macro "inheritance" in both i915 and xe is absolutely horrible.
+
+Anyway, going to block the patch, just checking on the direction here.
 
 
 BR,
 Jani.
 
 
-[1] https://patchwork.freedesktop.org/series/114541/ 
 
 
 
-Jani Nikula (8):
-  drm/i915/display: don't use relative ../i915 includes
-  drm/i915/display: drop redundant display/ from includes
-  drm/xe: drop unnecessary include
-  drm/xe: drop redundant display/ from includes
-  drm/xe: drop redundant ../ from includes
-  drm/xe: move all top level i915 compat headers to a separate
-    subdirectory
-  drm/xe: remove unnecessary include
-  drm/xe: drop top level i915 from include path
 
- .../gpu/drm/i915/display/intel_backlight.c    |  2 +-
- drivers/gpu/drm/i915/display/intel_bw.c       |  2 +-
- drivers/gpu/drm/i915/display/intel_cdclk.c    |  4 +-
- drivers/gpu/drm/i915/display/intel_display.c  | 48 +++++++++----------
- .../drm/i915/display/intel_display_power.c    |  2 +-
- drivers/gpu/drm/i915/display/intel_gmbus.c    |  2 +-
- drivers/gpu/drm/i915/display/intel_opregion.c |  2 +-
- drivers/gpu/drm/i915/display/intel_psr.c      |  2 +-
- drivers/gpu/drm/i915/display/skl_watermark.c  |  2 +-
- drivers/gpu/drm/xe/Makefile                   | 11 +++--
- .../i915_active_types.h                       |  0
- .../xe/{display => compat-headers}/i915_drv.h |  2 +-
- .../gpu/drm/xe/compat-headers/i915_fixed.h    |  1 +
- drivers/gpu/drm/xe/compat-headers/i915_reg.h  |  1 +
- .../gpu/drm/xe/compat-headers/i915_reg_defs.h |  1 +
- .../gpu/drm/xe/compat-headers/i915_utils.h    |  1 +
- .../xe/{display => compat-headers}/i915_vma.h |  0
- .../i915_vma_types.h                          |  0
- .../drm/xe/compat-headers/intel_mchbar_regs.h |  1 +
- .../drm/xe/compat-headers/intel_pci_config.h  |  1 +
- .../intel_pm_types.h                          |  2 -
- .../intel_runtime_pm.h                        |  0
- .../intel_wakeref.h                           |  0
- drivers/gpu/drm/xe/display/ext/i915_irq.c     | 18 +++----
- .../drm/xe/display/ext/intel_device_info.c    |  5 +-
- drivers/gpu/drm/xe/display/ext/intel_dram.c   |  2 +-
- drivers/gpu/drm/xe/display/ext/intel_pm.c     |  6 +--
- .../gpu/drm/xe/display/intel_display_core.h   |  2 +
- drivers/gpu/drm/xe/regs/xe_reg_defs.h         |  2 +-
- drivers/gpu/drm/xe/xe_display.c               | 26 +++++-----
- 30 files changed, 77 insertions(+), 71 deletions(-)
- rename drivers/gpu/drm/xe/{display => compat-headers}/i915_active_types.h (100%)
- rename drivers/gpu/drm/xe/{display => compat-headers}/i915_drv.h (99%)
- create mode 100644 drivers/gpu/drm/xe/compat-headers/i915_fixed.h
- create mode 100644 drivers/gpu/drm/xe/compat-headers/i915_reg.h
- create mode 100644 drivers/gpu/drm/xe/compat-headers/i915_reg_defs.h
- create mode 100644 drivers/gpu/drm/xe/compat-headers/i915_utils.h
- rename drivers/gpu/drm/xe/{display => compat-headers}/i915_vma.h (100%)
- rename drivers/gpu/drm/xe/{display => compat-headers}/i915_vma_types.h (100%)
- create mode 100644 drivers/gpu/drm/xe/compat-headers/intel_mchbar_regs.h
- create mode 100644 drivers/gpu/drm/xe/compat-headers/intel_pci_config.h
- rename drivers/gpu/drm/xe/{display => compat-headers}/intel_pm_types.h (95%)
- rename drivers/gpu/drm/xe/{display => compat-headers}/intel_runtime_pm.h (100%)
- rename drivers/gpu/drm/xe/{display => compat-headers}/intel_wakeref.h (100%)
- create mode 100644 drivers/gpu/drm/xe/display/intel_display_core.h
+
+
+>
+> This allows to encapsulate the display details inside the display
+> compilation units.
+>
+> Also use __diag_push() / __diag_pop() like in xe_step to handle the few
+> places where -Woverride-init should be disabled.
+>
+> Signed-off-by: Lucas De Marchi <lucas.demarchi@intel.com>
+> ---
+>  drivers/gpu/drm/xe/Makefile     |   3 -
+>  drivers/gpu/drm/xe/xe_display.c | 114 ++++++++++++++++++++++++++++++++
+>  drivers/gpu/drm/xe/xe_display.h |  15 ++---
+>  drivers/gpu/drm/xe/xe_pci.c     |  90 ++-----------------------
+>  4 files changed, 128 insertions(+), 94 deletions(-)
+>
+> diff --git a/drivers/gpu/drm/xe/Makefile b/drivers/gpu/drm/xe/Makefile
+> index 18257cd7227d..d1d255df74a1 100644
+> --- a/drivers/gpu/drm/xe/Makefile
+> +++ b/drivers/gpu/drm/xe/Makefile
+> @@ -24,9 +24,6 @@ subdir-ccflags-y += $(call cc-disable-warning, initializer-overrides)
+>  subdir-ccflags-y += $(call cc-disable-warning, frame-address)
+>  subdir-ccflags-$(CONFIG_DRM_XE_WERROR) += -Werror
+>  
+> -# Fine grained warnings disable
+> -CFLAGS_xe_pci.o = $(call cc-disable-warning, override-init)
+> -
+>  subdir-ccflags-y += -I$(srctree)/$(src)
+>  
+>  # Please keep these build lists sorted!
+> diff --git a/drivers/gpu/drm/xe/xe_display.c b/drivers/gpu/drm/xe/xe_display.c
+> index 34bdb2d60938..76e4fb6bd67c 100644
+> --- a/drivers/gpu/drm/xe/xe_display.c
+> +++ b/drivers/gpu/drm/xe/xe_display.c
+> @@ -10,6 +10,7 @@
+>  #include <linux/fb.h>
+>  
+>  #include <drm/drm_aperture.h>
+> +#include <drm/drm_drv.h>
+>  #include <drm/drm_managed.h>
+>  #include <drm/xe_drm.h>
+>  
+> @@ -383,4 +384,117 @@ void xe_display_pm_resume(struct xe_device *xe)
+>  	intel_power_domains_enable(xe);
+>  }
+>  
+> +/* Display info initialization */
+> +__diag_push();
+> +__diag_ignore_all("-Woverride-init", "Allow field overrides in table");
+> +
+> +#define __DISPLAY_DEFAULTS \
+> +	.pipe_mask = BIT(PIPE_A) | BIT(PIPE_B) |			\
+> +		     BIT(PIPE_C) | BIT(PIPE_D),				\
+> +	.cpu_transcoder_mask =						\
+> +	BIT(TRANSCODER_A) | BIT(TRANSCODER_B) |				\
+> +	BIT(TRANSCODER_C) | BIT(TRANSCODER_D) |				\
+> +	BIT(TRANSCODER_DSI_0) | BIT(TRANSCODER_DSI_1),			\
+> +	.pipe_offsets = {						\
+> +		[TRANSCODER_A] = PIPE_A_OFFSET,				\
+> +		[TRANSCODER_B] = PIPE_B_OFFSET,				\
+> +		[TRANSCODER_C] = PIPE_C_OFFSET,				\
+> +		[TRANSCODER_D] = PIPE_D_OFFSET,				\
+> +		[TRANSCODER_DSI_0] = PIPE_DSI0_OFFSET,			\
+> +		[TRANSCODER_DSI_1] = PIPE_DSI1_OFFSET,			\
+> +	},								\
+> +	.trans_offsets = {						\
+> +		[TRANSCODER_A] = TRANSCODER_A_OFFSET,			\
+> +		[TRANSCODER_B] = TRANSCODER_B_OFFSET,			\
+> +		[TRANSCODER_C] = TRANSCODER_C_OFFSET,			\
+> +		[TRANSCODER_D] = TRANSCODER_D_OFFSET,			\
+> +		[TRANSCODER_DSI_0] = TRANSCODER_DSI0_OFFSET,		\
+> +		[TRANSCODER_DSI_1] = TRANSCODER_DSI1_OFFSET,		\
+> +	}
+> +
+> +#define GEN12_DISPLAY \
+> +	__DISPLAY_DEFAULTS,						\
+> +	.ver = 12,							\
+> +	.abox_mask = GENMASK(2, 1),					\
+> +	.has_dmc = 1,							\
+> +	.has_dp_mst = 1,						\
+> +	.has_dsb = 0, /* FIXME: LUT load is broken with huge DSB */	\
+> +	.dbuf.size = 2048,						\
+> +	.dbuf.slice_mask = BIT(DBUF_S1) | BIT(DBUF_S2),			\
+> +	.has_dsc = 1,							\
+> +	.fbc_mask = BIT(INTEL_FBC_A),					\
+> +	.has_fpga_dbg = 1,						\
+> +	.has_hdcp = 1,							\
+> +	.has_ipc = 1,							\
+> +	.has_psr = 1,							\
+> +	.has_psr_hw_tracking = 1,					\
+> +	.color = { .degamma_lut_size = 33, .gamma_lut_size = 262145 }
+> +
+> +#define GEN13_DISPLAY							\
+> +	__DISPLAY_DEFAULTS,						\
+> +	.ver = 13,							\
+> +	.abox_mask = GENMASK(1, 0),					\
+> +	.color = {							\
+> +		.degamma_lut_size = 128, .gamma_lut_size = 1024,	\
+> +		.degamma_lut_tests = DRM_COLOR_LUT_NON_DECREASING |	\
+> +		DRM_COLOR_LUT_EQUAL_CHANNELS,				\
+> +	},								\
+> +	.dbuf.size = 4096,						\
+> +	.dbuf.slice_mask = BIT(DBUF_S1) | BIT(DBUF_S2) | BIT(DBUF_S3) |	\
+> +	BIT(DBUF_S4),							\
+> +	.has_dmc = 1,							\
+> +	.has_dp_mst = 1,						\
+> +	.has_dsb = 1,							\
+> +	.has_dsc = 1,							\
+> +	.fbc_mask = BIT(INTEL_FBC_A),					\
+> +	.has_fpga_dbg = 1,						\
+> +	.has_hdcp = 1,							\
+> +	.has_ipc = 1,							\
+> +	.has_psr = 1
+> +
+> +void xe_display_info_init(struct xe_device *xe)
+> +{
+> +	if (!xe->info.enable_display)
+> +		return;
+> +
+> +	switch (xe->info.platform) {
+> +	case XE_TIGERLAKE:
+> +	case XE_DG1:
+> +		xe->info.display = (struct xe_device_display_info) { GEN12_DISPLAY };
+> +		break;
+> +	case XE_ALDERLAKE_S:
+> +	case XE_ALDERLAKE_P:
+> +		xe->info.display = (struct xe_device_display_info) {
+> +			GEN12_DISPLAY,
+> +			.has_hti = 1,
+> +			.has_psr_hw_tracking = 0,
+> +		};
+> +		break;
+> +	case XE_DG2:
+> +		xe->info.display = (struct xe_device_display_info) {
+> +			GEN13_DISPLAY,
+> +			.cpu_transcoder_mask =
+> +				BIT(TRANSCODER_A) | BIT(TRANSCODER_B) |
+> +				BIT(TRANSCODER_C) | BIT(TRANSCODER_D),
+> +		};
+> +		break;
+> +	case XE_METEORLAKE:
+> +		xe->info.display = (struct xe_device_display_info) {
+> +			GEN13_DISPLAY,
+> +			.ver = 14,
+> +			.has_cdclk_crawl = 1,
+> +			.has_cdclk_squash = 1,
+> +		};
+> +		break;
+> +	default:
+> +		/*
+> +		 * If platform doesn't have display, enable_display should
+> +		 * had been forced to false already at this point
+> +		 */
+> +		drm_WARN_ON(&xe->drm, 1);
+> +	}
+> +}
+> +
+> +__diag_pop();
+> +
+>  #endif
+> diff --git a/drivers/gpu/drm/xe/xe_display.h b/drivers/gpu/drm/xe/xe_display.h
+> index cb5298ceed3b..d1af8e3a5c0f 100644
+> --- a/drivers/gpu/drm/xe/xe_display.h
+> +++ b/drivers/gpu/drm/xe/xe_display.h
+> @@ -6,16 +6,18 @@
+>  #ifndef _XE_DISPLAY_H_
+>  #define _XE_DISPLAY_H_
+>  
+> -#include <drm/drm_drv.h>
+> -
+>  #include "xe_device.h"
+>  
+> +struct drm_driver;
+> +
+>  #if IS_ENABLED(CONFIG_DRM_XE_DISPLAY)
+>  
+>  int xe_display_set_driver_hooks(struct pci_dev *pdev, struct drm_driver *driver);
+>  
+>  int xe_display_create(struct xe_device *xe);
+>  
+> +void xe_display_info_init(struct xe_device *xe);
+> +
+>  int xe_display_init_nommio(struct xe_device *xe);
+>  void xe_display_fini_nommio(struct drm_device *dev, void *dummy);
+>  
+> @@ -51,6 +53,8 @@ xe_display_set_driver_hooks(struct pci_dev *pdev, struct drm_driver *driver) { r
+>  static inline int
+>  xe_display_create(struct xe_device *xe) { return 0; }
+>  
+> +static inline void xe_display_info_init(struct xe_device *xe) { }
+> +
+>  static inline int
+>  xe_display_enable(struct pci_dev *pdev, struct drm_driver *driver) { return 0; };
+>  
+> @@ -58,12 +62,7 @@ static inline int
+>  xe_display_init_nommio(struct xe_device *xe) { return 0; };
+>  static inline void xe_display_fini_nommio(struct drm_device *dev, void *dummy) {};
+>  
+> -static inline int xe_display_init_noirq(struct xe_device *xe)
+> -{
+> -	if (xe->info.display.pipe_mask != 0)
+> -		drm_warn(&xe->drm, "CONFIG_DRM_XE_DISPLAY is unset, but device is display capable\n");
+> -	return 0;
+> -}
+> +static inline int xe_display_init_noirq(struct xe_device *xe) { return 0; }
+>  
+>  static inline void
+>  xe_display_fini_noirq(struct drm_device *dev, void *dummy) {};
+> diff --git a/drivers/gpu/drm/xe/xe_pci.c b/drivers/gpu/drm/xe/xe_pci.c
+> index 11dc0de66101..c4d9fd2e7b2b 100644
+> --- a/drivers/gpu/drm/xe/xe_pci.c
+> +++ b/drivers/gpu/drm/xe/xe_pci.c
+> @@ -16,6 +16,7 @@
+>  
+>  #include "regs/xe_regs.h"
+>  #include "xe_device.h"
+> +#include "xe_display.h"
+>  #include "xe_drv.h"
+>  #include "xe_macros.h"
+>  #include "xe_module.h"
+> @@ -62,8 +63,6 @@ struct xe_device_desc {
+>  	DEV_INFO_FOR_EACH_FLAG(DEFINE_FLAG);
+>  #undef DEFINE_FLAG
+>  
+> -	struct xe_device_display_info display;
+> -
+>  	u8 vram_flags;
+>  	u8 max_tiles;
+>  	u8 vm_max_level;
+> @@ -75,79 +74,15 @@ struct xe_device_desc {
+>  	bool has_asid;
+>  };
+>  
+> +__diag_push();
+> +__diag_ignore_all("-Woverride-init", "Allow field overrides in table");
+> +
+>  #define PLATFORM(x)		\
+>  	.platform = (x),	\
+>  	.platform_name = #x
+>  
+>  #define NOP(x)	x
+>  
+> -#define __DISPLAY_DEFAULTS \
+> -		.pipe_mask = BIT(PIPE_A) | BIT(PIPE_B) | BIT(PIPE_C) | BIT(PIPE_D), \
+> -		.cpu_transcoder_mask = \
+> -			BIT(TRANSCODER_A) | BIT(TRANSCODER_B) | \
+> -			BIT(TRANSCODER_C) | BIT(TRANSCODER_D) | \
+> -			BIT(TRANSCODER_DSI_0) | BIT(TRANSCODER_DSI_1), \
+> -		.pipe_offsets = { \
+> -			[TRANSCODER_A] = PIPE_A_OFFSET, \
+> -			[TRANSCODER_B] = PIPE_B_OFFSET, \
+> -			[TRANSCODER_C] = PIPE_C_OFFSET, \
+> -			[TRANSCODER_D] = PIPE_D_OFFSET, \
+> -			[TRANSCODER_DSI_0] = PIPE_DSI0_OFFSET, \
+> -			[TRANSCODER_DSI_1] = PIPE_DSI1_OFFSET, \
+> -		}, \
+> -		.trans_offsets = { \
+> -			[TRANSCODER_A] = TRANSCODER_A_OFFSET, \
+> -			[TRANSCODER_B] = TRANSCODER_B_OFFSET, \
+> -			[TRANSCODER_C] = TRANSCODER_C_OFFSET, \
+> -			[TRANSCODER_D] = TRANSCODER_D_OFFSET, \
+> -			[TRANSCODER_DSI_0] = TRANSCODER_DSI0_OFFSET, \
+> -			[TRANSCODER_DSI_1] = TRANSCODER_DSI1_OFFSET, \
+> -		}, \
+> -
+> -#define GEN12_DISPLAY \
+> -	.display = (struct xe_device_display_info){ \
+> -		__DISPLAY_DEFAULTS \
+> -		.ver = 12, \
+> -		.abox_mask = GENMASK(2, 1), \
+> -		.has_dmc = 1, \
+> -		.has_dp_mst = 1, \
+> -		.has_dsb = 0, /* FIXME: LUT load is broken with huge DSB */ \
+> -		.dbuf.size = 2048, \
+> -		.dbuf.slice_mask = BIT(DBUF_S1) | BIT(DBUF_S2), \
+> -		.has_dsc = 1, \
+> -		.fbc_mask = BIT(INTEL_FBC_A), \
+> -		.has_fpga_dbg = 1, \
+> -		.has_hdcp = 1, \
+> -		.has_ipc = 1, \
+> -		.has_psr = 1, \
+> -		.has_psr_hw_tracking = 1, \
+> -		.color = { .degamma_lut_size = 33, .gamma_lut_size = 262145 }, \
+> -	}
+> -
+> -#define GEN13_DISPLAY \
+> -	.display = (struct xe_device_display_info){ \
+> -		__DISPLAY_DEFAULTS \
+> -		.ver = 13,							\
+> -		.abox_mask = GENMASK(1, 0),					\
+> -		.color = {							\
+> -			.degamma_lut_size = 128, .gamma_lut_size = 1024,	\
+> -			.degamma_lut_tests = DRM_COLOR_LUT_NON_DECREASING |	\
+> -				     DRM_COLOR_LUT_EQUAL_CHANNELS,		\
+> -		},								\
+> -		.dbuf.size = 4096,						\
+> -		.dbuf.slice_mask = BIT(DBUF_S1) | BIT(DBUF_S2) | BIT(DBUF_S3) |	\
+> -				   BIT(DBUF_S4),				\
+> -		.has_dmc = 1,							\
+> -		.has_dp_mst = 1,						\
+> -		.has_dsb = 1,							\
+> -		.has_dsc = 1,							\
+> -		.fbc_mask = BIT(INTEL_FBC_A),					\
+> -		.has_fpga_dbg = 1,						\
+> -		.has_hdcp = 1,							\
+> -		.has_ipc = 1,							\
+> -		.has_psr = 1,							\
+> -	}
+> -
+>  /* Keep in gen based order, and chronological order within a gen */
+>  #define GEN12_FEATURES \
+>  	.require_force_probe = true, \
+> @@ -160,20 +95,15 @@ struct xe_device_desc {
+>  
+>  static const struct xe_device_desc tgl_desc = {
+>  	GEN12_FEATURES,
+> -	GEN12_DISPLAY,
+>  	PLATFORM(XE_TIGERLAKE),
+>  	.platform_engine_mask =
+>  		BIT(XE_HW_ENGINE_RCS0) | BIT(XE_HW_ENGINE_BCS0) |
+>  		BIT(XE_HW_ENGINE_VECS0) | BIT(XE_HW_ENGINE_VCS0) |
+>  		BIT(XE_HW_ENGINE_VCS2),
+> -	GEN12_DISPLAY,
+>  };
+>  
+>  static const struct xe_device_desc adl_s_desc = {
+>  	GEN12_FEATURES,
+> -	GEN12_DISPLAY,
+> -	.display.has_hti = 1,
+> -	.display.has_psr_hw_tracking = 0,
+>  	PLATFORM(XE_ALDERLAKE_S),
+>  	.platform_engine_mask =
+>  		BIT(XE_HW_ENGINE_RCS0) | BIT(XE_HW_ENGINE_BCS0) |
+> @@ -195,7 +125,6 @@ static const struct xe_device_desc adl_p_desc = {
+>  
+>  static const struct xe_device_desc dg1_desc = {
+>  	GEN12_FEATURES,
+> -	GEN12_DISPLAY,
+>  	DGFX_FEATURES,
+>  	.graphics_rel = 10,
+>  	PLATFORM(XE_DG1),
+> @@ -256,9 +185,6 @@ static const struct xe_device_desc dg2_desc = {
+>  	XE_HPM_FEATURES,
+>  
+>  	DG2_FEATURES,
+> -	GEN13_DISPLAY,
+> -	.display.cpu_transcoder_mask = BIT(TRANSCODER_A) | BIT(TRANSCODER_B) |
+> -				       BIT(TRANSCODER_C) | BIT(TRANSCODER_D),
+>  };
+>  
+>  #define PVC_ENGINES \
+> @@ -334,13 +260,10 @@ static const struct xe_device_desc mtl_desc = {
+>  	PLATFORM(XE_METEORLAKE),
+>  	.extra_gts = xelpmp_gts,
+>  	.platform_engine_mask = MTL_MAIN_ENGINES,
+> -	GEN13_DISPLAY,
+> -	.display.ver = 14,
+> -	.display.has_cdclk_crawl = 1,
+> -	.display.has_cdclk_squash = 1,
+>  };
+>  
+>  #undef PLATFORM
+> +__diag_pop();
+>  
+>  #define INTEL_VGA_DEVICE(id, info) {			\
+>  	PCI_DEVICE(PCI_VENDOR_ID_INTEL, id),		\
+> @@ -489,7 +412,6 @@ static int xe_pci_probe(struct pci_dev *pdev, const struct pci_device_id *ent)
+>  	xe->info.has_asid = desc->has_asid;
+>  	xe->info.has_flat_ccs = desc->has_flat_ccs;
+>  	xe->info.has_4tile = desc->has_4tile;
+> -	xe->info.display = desc->display;
+>  	xe->info.has_range_tlb_invalidation = desc->has_range_tlb_invalidation;
+>  
+>  	spd = subplatform_get(xe, desc);
+> @@ -519,6 +441,8 @@ static int xe_pci_probe(struct pci_dev *pdev, const struct pci_device_id *ent)
+>  		}
+>  	}
+>  
+> +	xe_display_info_init(xe);
+> +
+>  	drm_dbg(&xe->drm, "%s %s %04x:%04x dgfx:%d gfx100:%d media100:%d dma_m_s:%d tc:%d",
+>  		desc->platform_name, spd ? spd->name : "",
+>  		xe->info.devid, xe->info.revid,
 
 -- 
-2.39.1
-
+Jani Nikula, Intel Open Source Graphics Center
