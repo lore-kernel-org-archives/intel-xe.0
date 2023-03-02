@@ -4,51 +4,51 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id A9946C6FA8E
-	for <intel-xe@archiver.kernel.org>; Thu,  2 Mar 2023 15:46:23 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id AAE30C7EE2F
+	for <intel-xe@archiver.kernel.org>; Thu,  2 Mar 2023 16:40:43 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 741E110E108;
-	Thu,  2 Mar 2023 15:46:23 +0000 (UTC)
-Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E761F10E108
- for <intel-xe@lists.freedesktop.org>; Thu,  2 Mar 2023 15:46:21 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 638AF10E27C;
+	Thu,  2 Mar 2023 16:40:43 +0000 (UTC)
+Received: from mga06.intel.com (mga06b.intel.com [134.134.136.31])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id EE83E10E244;
+ Thu,  2 Mar 2023 16:40:40 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1677771981; x=1709307981;
- h=from:to:cc:subject:in-reply-to:references:date:
- message-id:mime-version;
- bh=joJsSYBvNoSopVg6x6tdY5uw6bDgC6H+f2wgPMWrrR4=;
- b=OqeNcAKKNtfeFRDraqjJ+4AaSZT3rU0I9uMViQqsMawiyZndPaAxmFcc
- e0avK1Eq+QrFe5zD8gQEXZLjrg8iUHxN1erVgi8WFyssW8aCaLfJkdl2E
- qRasQFNcjM4bKAN9nogBPIv0swZa9EUhb1ZGR0++ipfLl6zn8/6SNtuJo
- jHak2LHZgXP7VofVY84lR87rwztwBBxNckJ9F1/yYl6/ZQ85PL8GnzrDS
- v7+fUvW41dKfmu2sKKhKFC1jtXtV6SXEbDSA9xniZsFV6O8+mTGN7p5bG
- TccDk4iRCOTPNi/1NtyubfXX0cnMyn64ymicemSGfAVxWg2QYsY3IAk7e A==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10637"; a="362348169"
-X-IronPort-AV: E=Sophos;i="5.98,228,1673942400"; d="scan'208";a="362348169"
-Received: from orsmga003.jf.intel.com ([10.7.209.27])
- by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 02 Mar 2023 07:46:01 -0800
+ t=1677775241; x=1709311241;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:in-reply-to;
+ bh=ddpeYcd3jay+u6BOc2MfT/dx3rtowzXoAJkEj3v7qeY=;
+ b=PTCcSwn3ghOu5d976NgkmO7LneM6m8t+U+KkAh1HFzyAhy674VqlQnwL
+ PLXs5FqexV7IOU7F2K1REI8tCSActvxaeKXhw1I8yL84rYEPx91w1UR4Q
+ D9jwPKB63muWqVZALELoX1Xz6PXT8Pv9MOAljK/hRUmGDyo5CgONrLqZz
+ Bn7xPnziOTHqOrulSfgzAaeICGuCKIxmm3wAZkhJglO7zzN5Pd0jYNoWW
+ 8yNeD1NO6hVw60xxnSg6YuYU7zmrkANi7rj6qiAUhzcc0/uiJrLM7e3pJ
+ 34Pz7cQInEVFvneSsoOBmi7WAoKUaGgK9fkkboT15FaAJyaF+OoflaejH g==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10637"; a="397362795"
+X-IronPort-AV: E=Sophos;i="5.98,228,1673942400"; d="scan'208";a="397362795"
+Received: from orsmga004.jf.intel.com ([10.7.209.38])
+ by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 02 Mar 2023 08:40:24 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6500,9779,10637"; a="624998464"
-X-IronPort-AV: E=Sophos;i="5.98,228,1673942400"; d="scan'208";a="624998464"
-Received: from martamon-mobl1.ger.corp.intel.com (HELO localhost)
- ([10.252.57.129])
- by orsmga003-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 02 Mar 2023 07:46:00 -0800
-From: Jani Nikula <jani.nikula@intel.com>
-To: Lucas De Marchi <lucas.demarchi@intel.com>
-In-Reply-To: <20230302152837.5lpnbzwciupdbkoa@ldmartin-desk2.lan>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20230302141230.2804699-1-jani.nikula@intel.com>
- <20230302141230.2804699-2-jani.nikula@intel.com>
- <20230302152837.5lpnbzwciupdbkoa@ldmartin-desk2.lan>
-Date: Thu, 02 Mar 2023 17:45:57 +0200
-Message-ID: <87ilfjupfu.fsf@intel.com>
+X-IronPort-AV: E=McAfee;i="6500,9779,10637"; a="798896500"
+X-IronPort-AV: E=Sophos;i="5.98,228,1673942400"; d="scan'208";a="798896500"
+Received: from lkp-server01.sh.intel.com (HELO 776573491cc5) ([10.239.97.150])
+ by orsmga004.jf.intel.com with ESMTP; 02 Mar 2023 08:40:22 -0800
+Received: from kbuild by 776573491cc5 with local (Exim 4.96)
+ (envelope-from <lkp@intel.com>) id 1pXlyf-0000fE-0K;
+ Thu, 02 Mar 2023 16:40:21 +0000
+Date: Fri, 3 Mar 2023 00:39:55 +0800
+From: kernel test robot <lkp@intel.com>
+To: Thomas =?iso-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>,
+ dri-devel@lists.freedesktop.org
+Message-ID: <202303030056.CNeZGRQR-lkp@intel.com>
+References: <20230302083422.76608-1-thomas.hellstrom@linux.intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain
-Subject: Re: [Intel-xe] [PATCH 1/8] drm/i915/display: don't use relative
- ../i915 includes
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20230302083422.76608-1-thomas.hellstrom@linux.intel.com>
+Subject: Re: [Intel-xe] [Intel-gfx] [PATCH RESEND] drm/tests: Suballocator
+ test
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -60,150 +60,66 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-xe@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
+ Christian Koenig <christian.koenig@amd.com>, oe-kbuild-all@lists.linux.dev
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Thu, 02 Mar 2023, Lucas De Marchi <lucas.demarchi@intel.com> wrote:
-> On Thu, Mar 02, 2023 at 04:12:23PM +0200, Jani Nikula wrote:
->>We can't have this in upstream i915, so don't try that here either.
->>
->>Note: This should be squashed to the commit adding the relative
->>includes.
->
-> is this a requirement?  I think squashing this is not very problematic,
-> but it may not work as the build infra with the different -I also
-> changes in the tree.
->
-> I'm also wondering why we have these changes at all in the xe side. Was
-> it maybe a temporary solution not needed anymore due to the -I added to
-> the build system?
->
-> Another idea would be not to squash it now, but only at the end
-> with all the i915 changes together.
+Hi Thomas,
 
-Basically we don't want to have the back and forth when submitting xe.
+Thank you for the patch! Yet something to improve:
 
-BR,
-Jani.
+[auto build test ERROR on drm-tip/drm-tip]
 
+url:    https://github.com/intel-lab-lkp/linux/commits/Thomas-Hellstr-m/drm-tests-Suballocator-test/20230302-163704
+base:   git://anongit.freedesktop.org/drm/drm-tip drm-tip
+patch link:    https://lore.kernel.org/r/20230302083422.76608-1-thomas.hellstrom%40linux.intel.com
+patch subject: [Intel-gfx] [PATCH RESEND] drm/tests: Suballocator test
+config: mips-allyesconfig (https://download.01.org/0day-ci/archive/20230303/202303030056.CNeZGRQR-lkp@intel.com/config)
+compiler: mips-linux-gcc (GCC) 12.1.0
+reproduce (this is a W=1 build):
+        wget https://raw.githubusercontent.com/intel/lkp-tests/master/sbin/make.cross -O ~/bin/make.cross
+        chmod +x ~/bin/make.cross
+        # https://github.com/intel-lab-lkp/linux/commit/e970911bccf3145b76cd755e2d78c0c0f7f22ca1
+        git remote add linux-review https://github.com/intel-lab-lkp/linux
+        git fetch --no-tags linux-review Thomas-Hellstr-m/drm-tests-Suballocator-test/20230302-163704
+        git checkout e970911bccf3145b76cd755e2d78c0c0f7f22ca1
+        # save the config file
+        mkdir build_dir && cp config build_dir/.config
+        COMPILER_INSTALL_PATH=$HOME/0day COMPILER=gcc-12.1.0 make.cross W=1 O=build_dir ARCH=mips olddefconfig
+        COMPILER_INSTALL_PATH=$HOME/0day COMPILER=gcc-12.1.0 make.cross W=1 O=build_dir ARCH=mips SHELL=/bin/bash
 
->
->>
->>Signed-off-by: Jani Nikula <jani.nikula@intel.com>
->
->
-> Reviewed-by: Lucas De Marchi <lucas.demarchi@intel.com>
->
-> thanks
-> Lucas De Marchi
->
->>---
->> drivers/gpu/drm/i915/display/intel_backlight.c     | 2 +-
->> drivers/gpu/drm/i915/display/intel_bw.c            | 2 +-
->> drivers/gpu/drm/i915/display/intel_cdclk.c         | 4 ++--
->> drivers/gpu/drm/i915/display/intel_display_power.c | 2 +-
->> drivers/gpu/drm/i915/display/intel_gmbus.c         | 2 +-
->> drivers/gpu/drm/i915/display/intel_opregion.c      | 2 +-
->> drivers/gpu/drm/i915/display/skl_watermark.c       | 2 +-
->> 7 files changed, 8 insertions(+), 8 deletions(-)
->>
->>diff --git a/drivers/gpu/drm/i915/display/intel_backlight.c b/drivers/gpu/drm/i915/display/intel_backlight.c
->>index e63eb43622e0..5b7da72c95b8 100644
->>--- a/drivers/gpu/drm/i915/display/intel_backlight.c
->>+++ b/drivers/gpu/drm/i915/display/intel_backlight.c
->>@@ -19,7 +19,7 @@
->> #include "intel_dp_aux_backlight.h"
->> #include "intel_dsi_dcs_backlight.h"
->> #include "intel_panel.h"
->>-#include "../i915/intel_pci_config.h"
->>+#include "intel_pci_config.h"
->> #include "intel_pps.h"
->> #include "intel_quirks.h"
->>
->>diff --git a/drivers/gpu/drm/i915/display/intel_bw.c b/drivers/gpu/drm/i915/display/intel_bw.c
->>index 67b4e947589c..54e03a3eaa0f 100644
->>--- a/drivers/gpu/drm/i915/display/intel_bw.c
->>+++ b/drivers/gpu/drm/i915/display/intel_bw.c
->>@@ -15,7 +15,7 @@
->> #include "intel_display_core.h"
->> #include "intel_display_types.h"
->> #include "skl_watermark.h"
->>-#include "../i915/intel_mchbar_regs.h"
->>+#include "intel_mchbar_regs.h"
->>
->> /* Parameters for Qclk Geyserville (QGV) */
->> struct intel_qgv_point {
->>diff --git a/drivers/gpu/drm/i915/display/intel_cdclk.c b/drivers/gpu/drm/i915/display/intel_cdclk.c
->>index 3b6a37403f25..ecb87542ebb6 100644
->>--- a/drivers/gpu/drm/i915/display/intel_cdclk.c
->>+++ b/drivers/gpu/drm/i915/display/intel_cdclk.c
->>@@ -32,8 +32,8 @@
->> #include "intel_crtc.h"
->> #include "intel_de.h"
->> #include "intel_display_types.h"
->>-#include "../i915/intel_mchbar_regs.h"
->>-#include "../i915/intel_pci_config.h"
->>+#include "intel_mchbar_regs.h"
->>+#include "intel_pci_config.h"
->> #include "intel_psr.h"
->>
->> #ifdef I915
->>diff --git a/drivers/gpu/drm/i915/display/intel_display_power.c b/drivers/gpu/drm/i915/display/intel_display_power.c
->>index 00e32a423708..3315d2bbebc7 100644
->>--- a/drivers/gpu/drm/i915/display/intel_display_power.c
->>+++ b/drivers/gpu/drm/i915/display/intel_display_power.c
->>@@ -16,7 +16,7 @@
->> #include "intel_display_power_well.h"
->> #include "intel_display_types.h"
->> #include "intel_dmc.h"
->>-#include "../i915/intel_mchbar_regs.h"
->>+#include "intel_mchbar_regs.h"
->> #include "intel_pch_refclk.h"
->> #include "intel_snps_phy.h"
->> #include "skl_watermark.h"
->>diff --git a/drivers/gpu/drm/i915/display/intel_gmbus.c b/drivers/gpu/drm/i915/display/intel_gmbus.c
->>index 2d099f4c52cd..0bc4f6b48e80 100644
->>--- a/drivers/gpu/drm/i915/display/intel_gmbus.c
->>+++ b/drivers/gpu/drm/i915/display/intel_gmbus.c
->>@@ -39,7 +39,7 @@
->> #include "intel_de.h"
->> #include "intel_display_types.h"
->> #include "intel_gmbus.h"
->>-#include "../i915/display/intel_gmbus_regs.h"
->>+#include "intel_gmbus_regs.h"
->>
->> struct intel_gmbus {
->> 	struct i2c_adapter adapter;
->>diff --git a/drivers/gpu/drm/i915/display/intel_opregion.c b/drivers/gpu/drm/i915/display/intel_opregion.c
->>index 057a68237efe..e0184745632c 100644
->>--- a/drivers/gpu/drm/i915/display/intel_opregion.c
->>+++ b/drivers/gpu/drm/i915/display/intel_opregion.c
->>@@ -37,7 +37,7 @@
->> #include "intel_backlight.h"
->> #include "intel_display_types.h"
->> #include "intel_opregion.h"
->>-#include "../i915/intel_pci_config.h"
->>+#include "intel_pci_config.h"
->>
->> #define OPREGION_HEADER_OFFSET 0
->> #define OPREGION_ACPI_OFFSET   0x100
->>diff --git a/drivers/gpu/drm/i915/display/skl_watermark.c b/drivers/gpu/drm/i915/display/skl_watermark.c
->>index 381d4f75e7c8..e254fb21b47f 100644
->>--- a/drivers/gpu/drm/i915/display/skl_watermark.c
->>+++ b/drivers/gpu/drm/i915/display/skl_watermark.c
->>@@ -16,7 +16,7 @@
->> #include "skl_watermark.h"
->>
->> #include "i915_drv.h"
->>-#include "../i915/i915_fixed.h"
->>+#include "i915_fixed.h"
->> #include "i915_reg.h"
->> #include "intel_pm.h"
->>
->>-- 
->>2.39.1
->>
+If you fix the issue, kindly add following tag where applicable
+| Reported-by: kernel test robot <lkp@intel.com>
+| Link: https://lore.kernel.org/oe-kbuild-all/202303030056.CNeZGRQR-lkp@intel.com/
+
+All errors (new ones prefixed by >>):
+
+   arch/mips/kernel/head.o: in function `kernel_entry':
+   (.ref.text+0xac): relocation truncated to fit: R_MIPS_26 against `start_kernel'
+   init/main.o: in function `set_reset_devices':
+   main.c:(.init.text+0x20): relocation truncated to fit: R_MIPS_26 against `_mcount'
+   main.c:(.init.text+0x30): relocation truncated to fit: R_MIPS_26 against `__sanitizer_cov_trace_pc'
+   init/main.o: in function `debug_kernel':
+   main.c:(.init.text+0xa4): relocation truncated to fit: R_MIPS_26 against `_mcount'
+   main.c:(.init.text+0xb4): relocation truncated to fit: R_MIPS_26 against `__sanitizer_cov_trace_pc'
+   init/main.o: in function `quiet_kernel':
+   main.c:(.init.text+0x128): relocation truncated to fit: R_MIPS_26 against `_mcount'
+   main.c:(.init.text+0x138): relocation truncated to fit: R_MIPS_26 against `__sanitizer_cov_trace_pc'
+   init/main.o: in function `warn_bootconfig':
+   main.c:(.init.text+0x1ac): relocation truncated to fit: R_MIPS_26 against `_mcount'
+   main.c:(.init.text+0x1bc): relocation truncated to fit: R_MIPS_26 against `__sanitizer_cov_trace_pc'
+   init/main.o: in function `init_setup':
+   main.c:(.init.text+0x234): relocation truncated to fit: R_MIPS_26 against `_mcount'
+   main.c:(.init.text+0x254): additional relocation overflows omitted from the output
+   mips-linux-ld: drivers/gpu/drm/tests/drm_suballoc_test.o: in function `drm_test_suballoc':
+>> drm_suballoc_test.c:(.text.drm_test_suballoc+0xcbc): undefined reference to `__udivdi3'
+>> mips-linux-ld: drm_suballoc_test.c:(.text.drm_test_suballoc+0xd20): undefined reference to `__udivdi3'
+   mips-linux-ld: drm_suballoc_test.c:(.text.drm_test_suballoc+0xd84): undefined reference to `__udivdi3'
+   mips-linux-ld: drm_suballoc_test.c:(.text.drm_test_suballoc+0xde8): undefined reference to `__udivdi3'
+   mips-linux-ld: drm_suballoc_test.c:(.text.drm_test_suballoc+0xe40): undefined reference to `__udivdi3'
+   mips-linux-ld: drivers/gpu/drm/tests/drm_suballoc_test.o:drm_suballoc_test.c:(.text.drm_test_suballoc+0xfb4): more undefined references to `__udivdi3' follow
 
 -- 
-Jani Nikula, Intel Open Source Graphics Center
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests
