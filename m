@@ -4,49 +4,50 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id D39FCC6FA8E
-	for <intel-xe@archiver.kernel.org>; Thu,  2 Mar 2023 12:43:27 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6446AC6FA8E
+	for <intel-xe@archiver.kernel.org>; Thu,  2 Mar 2023 12:43:30 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8B8B810E275;
-	Thu,  2 Mar 2023 12:43:27 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3EDB710E275;
+	Thu,  2 Mar 2023 12:43:30 +0000 (UTC)
 Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4C72F10E168
- for <intel-xe@lists.freedesktop.org>; Thu,  2 Mar 2023 12:43:26 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E6E7510E4DE
+ for <intel-xe@lists.freedesktop.org>; Thu,  2 Mar 2023 12:43:27 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1677761006; x=1709297006;
+ t=1677761007; x=1709297007;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=xLWBCNAoEpFCBa8PN6OqlhP8uq1WnD2N3XsBl88spUg=;
- b=LlTINRIpNJEh5k+Y5jK5LBqPApGjXo2Cdb5OS9fSjGSjiqE8NogUzDJ4
- Hv+WeZ+aY259E8lcwxJsmULqhg0YYSlwhA91gMiXtBXCX+EItMOUApX77
- V6FT3Kb1yfr0v2TtsJxrsjlwoiKQEzwoGuwvEFDTaYtByfy4abaONOuzZ
- jvhtQ1KOiudMUYcolpcgA4biVPmJHgKCb8qeXptfBNSR7r3KQ2PZf+nsu
- fCNM2OXSaha0nliav6hgoYFhvsY7IQ7gm+NhV7dbNAzu/HzQ1JRH3Fm6W
- LRPt7mTKAdQtwQgOK6Wy5xDM5i5NzqN9iR5j12vnFy3yHM90kC665Zk6Z w==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10636"; a="322982418"
-X-IronPort-AV: E=Sophos;i="5.98,227,1673942400"; d="scan'208";a="322982418"
+ bh=LTQzxR7ZG34bF0mnUuGepaAeI6GsECWsnfZ+i9zZdCY=;
+ b=HJr4dTUhHDjItu9MCNyuFvJDEu8Oj0k5Gbhv3B64UOHKPD8aStHQVD5S
+ Xl1HxHEQbzhZSt4jqC1LnMwk7Iq96J3gYaNxOYpR5b7PafKHLPkUuYWor
+ xB4XM/xWMQkep2n96dphLBETuxOdaj/RrI+vyE9D7e9oCEaGPh0ffgyrK
+ d45T8ictKcAl+TKd3j/cMZPr8ZrvJvAh5Vtl3LSCbJa6Kc0su0kOUdRrT
+ rW/vwz+dy9gaBKb73Ngo+JPbextEKg5st23l6SUvQ0wqIyCs/Dni/uPxC
+ Uw0qxCZ7B/mUEWJiliGHpyyuWVoS5Guc6vkImK5QG8i2NA0DfPQ3OFDy2 A==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10636"; a="322982431"
+X-IronPort-AV: E=Sophos;i="5.98,227,1673942400"; d="scan'208";a="322982431"
 Received: from orsmga001.jf.intel.com ([10.7.209.18])
  by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 02 Mar 2023 04:43:26 -0800
+ 02 Mar 2023 04:43:27 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6500,9779,10636"; a="707403010"
-X-IronPort-AV: E=Sophos;i="5.98,227,1673942400"; d="scan'208";a="707403010"
+X-IronPort-AV: E=McAfee;i="6500,9779,10636"; a="707403014"
+X-IronPort-AV: E=Sophos;i="5.98,227,1673942400"; d="scan'208";a="707403014"
 Received: from fathuddx-mobl.gar.corp.intel.com (HELO
  thellstr-mobl1.intel.com) ([10.249.254.102])
  by orsmga001-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 02 Mar 2023 04:43:24 -0800
+ 02 Mar 2023 04:43:26 -0800
 From: =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>
 To: intel-xe@lists.freedesktop.org
-Date: Thu,  2 Mar 2023 13:42:57 +0100
-Message-Id: <20230302124258.91081-2-thomas.hellstrom@linux.intel.com>
+Date: Thu,  2 Mar 2023 13:42:58 +0100
+Message-Id: <20230302124258.91081-3-thomas.hellstrom@linux.intel.com>
 X-Mailer: git-send-email 2.39.2
 In-Reply-To: <20230302124258.91081-1-thomas.hellstrom@linux.intel.com>
 References: <20230302124258.91081-1-thomas.hellstrom@linux.intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-xe] [PATCH 1/2] drm/xe/tests: Remove CONFIG_FB dependency
+Subject: [Intel-xe] [PATCH 2/2] drm/xe/tests: Grab a memory access reference
+ around the migrate sanity test
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -61,26 +62,31 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-We currently don't have any tests that explicitly depends on this
-config option, so remove that build dependency.
+It appears we don't hold a memory access reference for the accesses in
+this test, which may results in printed warnings and possibly the GT
+not woken up for the memory accesses.
+
+Add a memory access reference around the test.
 
 Signed-off-by: Thomas Hellström <thomas.hellstrom@linux.intel.com>
 ---
- drivers/gpu/drm/xe/Kconfig.debug | 1 -
- 1 file changed, 1 deletion(-)
+ drivers/gpu/drm/xe/tests/xe_migrate.c | 2 ++
+ 1 file changed, 2 insertions(+)
 
-diff --git a/drivers/gpu/drm/xe/Kconfig.debug b/drivers/gpu/drm/xe/Kconfig.debug
-index 9c773dd74cbd..565be3f6b9b9 100644
---- a/drivers/gpu/drm/xe/Kconfig.debug
-+++ b/drivers/gpu/drm/xe/Kconfig.debug
-@@ -64,7 +64,6 @@ config DRM_XE_SIMPLE_ERROR_CAPTURE
- config DRM_XE_KUNIT_TEST
-         tristate "KUnit tests for the drm xe driver" if !KUNIT_ALL_TESTS
- 	depends on DRM_XE && KUNIT && DEBUG_FS
--	depends on FB && FB = DRM_KMS_HELPER && DRM_FBDEV_EMULATION
- 	default KUNIT_ALL_TESTS
- 	select DRM_EXPORT_FOR_TESTS if m
- 	help
+diff --git a/drivers/gpu/drm/xe/tests/xe_migrate.c b/drivers/gpu/drm/xe/tests/xe_migrate.c
+index 0de17e90aba9..b7e4a126e8b7 100644
+--- a/drivers/gpu/drm/xe/tests/xe_migrate.c
++++ b/drivers/gpu/drm/xe/tests/xe_migrate.c
+@@ -366,7 +366,9 @@ static int migrate_test_run_device(struct xe_device *xe)
+ 
+ 		kunit_info(test, "Testing gt id %d.\n", id);
+ 		xe_vm_lock(m->eng->vm, &ww, 0, true);
++		xe_device_mem_access_get(xe);
+ 		xe_migrate_sanity_test(m, test);
++		xe_device_mem_access_put(xe);
+ 		xe_vm_unlock(m->eng->vm, &ww);
+ 	}
+ 
 -- 
 2.39.2
 
