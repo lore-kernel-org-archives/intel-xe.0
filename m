@@ -4,50 +4,49 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4F546C6FA8E
-	for <intel-xe@archiver.kernel.org>; Thu,  2 Mar 2023 14:23:34 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 893C2C678D4
+	for <intel-xe@archiver.kernel.org>; Thu,  2 Mar 2023 14:23:44 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1720810E05A;
-	Thu,  2 Mar 2023 14:23:34 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 60EB410E05A;
+	Thu,  2 Mar 2023 14:23:44 +0000 (UTC)
 Received: from mga06.intel.com (mga06b.intel.com [134.134.136.31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8D39110E05A
- for <intel-xe@lists.freedesktop.org>; Thu,  2 Mar 2023 14:23:31 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1E39D10E05A
+ for <intel-xe@lists.freedesktop.org>; Thu,  2 Mar 2023 14:23:42 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1677767011; x=1709303011;
+ t=1677767022; x=1709303022;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=6l+O3MIbQZ12nmyMbjIPYvbsPs25hvdzGUC28vC7t+o=;
- b=BxCmyfrsbT7X4bCLm7a9KSjCpTIm8c3ywVmcfv8khJVHC0i+O8a9aZWi
- 8zLzd8iT58InWcZ5Zpkt4+XMCSzv5NSd8YifT5nGb8orKFJPqkQQOIGm3
- hO3oN5KK3DSlFSFE34bUp5KHWDCeWZyX85cwW5ve8+mlzefVLJZH5KrHW
- eYdlKh8ovu29LOr5V5fLpxd3Pni7kmn4/SLmBu8P/63KSIddHjT+afyFe
- jS5tixORGzhFbXtGHepKIdm2FR6nnV4qTR2WEhmyRVm6cP6xGMl6IK85u
- a5WeLcB3sMVgEIf44VAuB1hRyJrrMLcLG69rOGuf6xK1jLqF1vHtuE+jI Q==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10637"; a="397301059"
-X-IronPort-AV: E=Sophos;i="5.98,227,1673942400"; d="scan'208";a="397301059"
+ bh=jVi1WLa5P5po/bQsuqUwdbMH8DDxgsbkue9z3uFepb8=;
+ b=i3EngyaqEPMNsSKZA8wwLJCFPUiCH7HqkIcnUhOxR6Fl9ev2GJARIYHj
+ cKNJtHOAS7KU4Pam94KUtmkBoqCz+1nwAJWKnAeVZwQoEr6k11PjlBeAl
+ /YlnoH7f+9AoGO+y1fh4DVQbYG92Wp7uAzl4V1KMcbyh5eLOntleoZDP1
+ J6sqMASzQn6nez/RhPGl2QlQAnKZuFMflqu0zYJS/H4Cv0qAeQdfpDtQa
+ 2dwfq7WZKCLq5DhjqW7oUOIItm2jVbSBlBcMyef4Gon0hd+W4oKsxGv0F
+ i1A/9zx3t63qHypkBYY9WJs8no6ThnMYEIFzlOSzIFVsd1PZu1C07THPq Q==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10637"; a="397301143"
+X-IronPort-AV: E=Sophos;i="5.98,227,1673942400"; d="scan'208";a="397301143"
 Received: from fmsmga008.fm.intel.com ([10.253.24.58])
  by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 02 Mar 2023 06:12:45 -0800
+ 02 Mar 2023 06:12:49 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6500,9779,10637"; a="739086215"
-X-IronPort-AV: E=Sophos;i="5.98,227,1673942400"; d="scan'208";a="739086215"
+X-IronPort-AV: E=McAfee;i="6500,9779,10637"; a="739086222"
+X-IronPort-AV: E=Sophos;i="5.98,227,1673942400"; d="scan'208";a="739086222"
 Received: from martamon-mobl1.ger.corp.intel.com (HELO localhost)
  ([10.252.57.129])
  by fmsmga008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 02 Mar 2023 06:12:44 -0800
+ 02 Mar 2023 06:12:48 -0800
 From: Jani Nikula <jani.nikula@intel.com>
 To: intel-xe@lists.freedesktop.org
-Date: Thu,  2 Mar 2023 16:12:24 +0200
-Message-Id: <20230302141230.2804699-3-jani.nikula@intel.com>
+Date: Thu,  2 Mar 2023 16:12:25 +0200
+Message-Id: <20230302141230.2804699-4-jani.nikula@intel.com>
 X-Mailer: git-send-email 2.39.1
 In-Reply-To: <20230302141230.2804699-1-jani.nikula@intel.com>
 References: <20230302141230.2804699-1-jani.nikula@intel.com>
 MIME-Version: 1.0
 Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-xe] [PATCH 2/8] drm/i915/display: drop redundant display/
- from includes
+Subject: [Intel-xe] [PATCH 3/8] drm/xe: drop unnecessary include
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -63,90 +62,26 @@ Cc: jani.nikula@intel.com, lucas.demarchi@intel.com
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Already done in upstream i915.
-
-Note: This would be dropped when rebasing against upstream.
+The file does not exist in upstream i915 anymore.
 
 Signed-off-by: Jani Nikula <jani.nikula@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_display.c | 48 ++++++++++----------
- drivers/gpu/drm/i915/display/intel_psr.c     |  2 +-
- 2 files changed, 25 insertions(+), 25 deletions(-)
+ drivers/gpu/drm/xe/display/intel_pm_types.h | 2 --
+ 1 file changed, 2 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
-index 5a0a8179b0dc..81c50b6f1b5e 100644
---- a/drivers/gpu/drm/i915/display/intel_display.c
-+++ b/drivers/gpu/drm/i915/display/intel_display.c
-@@ -45,32 +45,32 @@
- #include <drm/drm_probe_helper.h>
- #include <drm/drm_rect.h>
+diff --git a/drivers/gpu/drm/xe/display/intel_pm_types.h b/drivers/gpu/drm/xe/display/intel_pm_types.h
+index 8bf1594a9d1b..0bd4b1cb9c83 100644
+--- a/drivers/gpu/drm/xe/display/intel_pm_types.h
++++ b/drivers/gpu/drm/xe/display/intel_pm_types.h
+@@ -8,8 +8,6 @@
  
--#include "display/intel_audio.h"
--#include "display/intel_backlight.h"
--#include "display/intel_ddi.h"
--#include "display/intel_display_debugfs.h"
--#include "display/intel_display_power.h"
--#include "display/intel_dp.h"
--#include "display/intel_dp_mst.h"
--#include "display/intel_dpll.h"
--#include "display/intel_dpll_mgr.h"
--#include "display/intel_drrs.h"
--#include "display/intel_dsb.h"
--#include "display/intel_dsi.h"
--#include "display/intel_fb.h"
--#include "display/intel_gmbus.h"
--#include "display/intel_hdmi.h"
--#include "display/intel_lvds.h"
--#include "display/intel_snps_phy.h"
--#include "display/intel_vdsc.h"
--#include "display/intel_vrr.h"
-+#include "intel_audio.h"
-+#include "intel_backlight.h"
-+#include "intel_ddi.h"
-+#include "intel_display_debugfs.h"
-+#include "intel_display_power.h"
-+#include "intel_dp.h"
-+#include "intel_dp_mst.h"
-+#include "intel_dpll.h"
-+#include "intel_dpll_mgr.h"
-+#include "intel_drrs.h"
-+#include "intel_dsb.h"
-+#include "intel_dsi.h"
-+#include "intel_fb.h"
-+#include "intel_gmbus.h"
-+#include "intel_hdmi.h"
-+#include "intel_lvds.h"
-+#include "intel_snps_phy.h"
-+#include "intel_vdsc.h"
-+#include "intel_vrr.h"
+ #include <linux/types.h>
  
- #ifdef I915
--#include "display/intel_crt.h"
--#include "display/intel_dvo.h"
--#include "display/intel_overlay.h"
--#include "display/intel_sdvo.h"
--#include "display/intel_tv.h"
-+#include "intel_crt.h"
-+#include "intel_dvo.h"
-+#include "intel_overlay.h"
-+#include "intel_sdvo.h"
-+#include "intel_tv.h"
- 
- #include "gem/i915_gem_lmem.h"
- #include "gem/i915_gem_object.h"
-diff --git a/drivers/gpu/drm/i915/display/intel_psr.c b/drivers/gpu/drm/i915/display/intel_psr.c
-index bc998b526d88..195ddafdb522 100644
---- a/drivers/gpu/drm/i915/display/intel_psr.c
-+++ b/drivers/gpu/drm/i915/display/intel_psr.c
-@@ -24,7 +24,7 @@
- #include <drm/drm_atomic_helper.h>
- #include <drm/drm_damage_helper.h>
- 
--#include "display/intel_dp.h"
-+#include "intel_dp.h"
- 
- #include "i915_drv.h"
- #include "i915_reg.h"
+-#include "display/intel_display.h"
+-
+ enum intel_ddb_partitioning {
+ 	INTEL_DDB_PART_1_2,
+ 	INTEL_DDB_PART_5_6, /* IVB+ */
 -- 
 2.39.1
 
