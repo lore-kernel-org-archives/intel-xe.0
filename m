@@ -4,53 +4,135 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 13CEDC678D4
-	for <intel-xe@archiver.kernel.org>; Thu,  2 Mar 2023 15:08:44 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 99128C678D4
+	for <intel-xe@archiver.kernel.org>; Thu,  2 Mar 2023 15:22:50 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id DE0D410E50E;
-	Thu,  2 Mar 2023 15:08:43 +0000 (UTC)
-Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
- by gabe.freedesktop.org (Postfix) with ESMTPS id F01D110E50E
- for <intel-xe@lists.freedesktop.org>; Thu,  2 Mar 2023 15:08:40 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 72C2110E107;
+	Thu,  2 Mar 2023 15:22:50 +0000 (UTC)
+Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id ECB7910E107
+ for <intel-xe@lists.freedesktop.org>; Thu,  2 Mar 2023 15:22:48 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1677769721; x=1709305721;
- h=from:to:cc:subject:in-reply-to:references:date:
- message-id:mime-version;
- bh=+te36bfFQ1nW484dzR8S2Nsd03ybLHwZ8POzyJr97LI=;
- b=afePcgrWIg+JnN2F2LzkFl3PhyaFO7KoK54/sD5m2QNL0Zt/C4AnYVTz
- 3XquOhX0kkfd07h9V3tz8hQAm236Nt10NCn6DXYhR3hC7etR/zy8mJSPb
- NZOGsA2RvWPCb88JnrKcyE2W5s26F2eD/X70cawxNWvwUjxTsVW6wefKv
- eYnF2laZtVlLMaWbD+bDf8ZIa7vTk3u9HZFVmxwd1iROsbS8DXqKX20c2
- zAtyQlWnc4Uw1MeExGUsSi2uOXYj+qzFhDU7c/PH0g0gWUvxAM7QilZMX
- CIENMvySdOSxl3pR1NupLG95ZBJWZ1CZxJQR8LGZbKP5aP8HFKz6GBzxt A==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10637"; a="332227032"
-X-IronPort-AV: E=Sophos;i="5.98,228,1673942400"; d="scan'208";a="332227032"
-Received: from orsmga001.jf.intel.com ([10.7.209.18])
- by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 02 Mar 2023 07:07:44 -0800
+ t=1677770569; x=1709306569;
+ h=date:from:to:cc:subject:message-id:references:
+ in-reply-to:mime-version;
+ bh=cYwomVDOSScjptMFpa/Cx9zTurG/d0CaEDgk8sUp2Z4=;
+ b=k56sxUE3SPayc8kYPw9TS8qynPOiW3uKuqcTItY+IB3xwdc103VY7rsy
+ Npbd9pcORUCnz9eUuUhQ18vpgZOYC0ghMSKEEURLPxA1zEQiDsX0CKYb2
+ a2fKEdaVHNkdBkW3oE6RxQwo0knDGJd73Iy2GH/Zwo+aKVihaYvhSg14i
+ 7BcCareyjP3W/HaqzZZ5npXfzvnTUkwv1P0crybpjmopbDCqXq3FTuSd+
+ FVwt1PLDrpp0l1ywvdM575AZnLt61U9v0pV61nCyNX5FJ6O+Nb27ycuDh
+ Wt6pVUUMdYWWt/h/PKo5lp9/8fED8NYUUONvvnSw49O9n1KYnc1elw/yl w==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10637"; a="336268452"
+X-IronPort-AV: E=Sophos;i="5.98,228,1673942400"; d="scan'208";a="336268452"
+Received: from orsmga006.jf.intel.com ([10.7.209.51])
+ by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 02 Mar 2023 07:22:48 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6500,9779,10637"; a="707434883"
-X-IronPort-AV: E=Sophos;i="5.98,228,1673942400"; d="scan'208";a="707434883"
-Received: from martamon-mobl1.ger.corp.intel.com (HELO localhost)
- ([10.252.57.129])
- by orsmga001-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 02 Mar 2023 07:07:41 -0800
-From: Jani Nikula <jani.nikula@intel.com>
-To: Patchwork <patchwork@emeril.freedesktop.org>
-In-Reply-To: <87sfenurpd.fsf@intel.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20230302141230.2804699-1-jani.nikula@intel.com>
- <167776742886.20549.10799986570067282660@emeril.freedesktop.org>
- <87sfenurpd.fsf@intel.com>
-Date: Thu, 02 Mar 2023 17:07:39 +0200
-Message-ID: <87pm9rur7o.fsf@intel.com>
+X-IronPort-AV: E=McAfee;i="6500,9779,10637"; a="652432004"
+X-IronPort-AV: E=Sophos;i="5.98,228,1673942400"; d="scan'208";a="652432004"
+Received: from fmsmsx601.amr.corp.intel.com ([10.18.126.81])
+ by orsmga006.jf.intel.com with ESMTP; 02 Mar 2023 07:22:47 -0800
+Received: from fmsmsx601.amr.corp.intel.com (10.18.126.81) by
+ fmsmsx601.amr.corp.intel.com (10.18.126.81) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.21; Thu, 2 Mar 2023 07:22:47 -0800
+Received: from fmsedg602.ED.cps.intel.com (10.1.192.136) by
+ fmsmsx601.amr.corp.intel.com (10.18.126.81) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.21 via Frontend Transport; Thu, 2 Mar 2023 07:22:47 -0800
+Received: from NAM11-DM6-obe.outbound.protection.outlook.com (104.47.57.171)
+ by edgegateway.intel.com (192.55.55.71) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.1.2507.16; Thu, 2 Mar 2023 07:22:46 -0800
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=UzHUjd8iS7KthU1HRKIc7UY8DULTptQ2x8vT/A/Z8jgA7lpncqGwEnu1KLvoHToKVyAcYFY9r/G89E75avFNlYCKoN44cavNQttnj8jcj+2SuqB+X3ERKQgDrR7iXnhn1sCQmBOxoOQzBH3ZGxAWICzAXi8dUbOEIJ9pOlUEDaiYq17gS8yn/QvNWdaF8DzSt4Ss043XgLz7vQpEw8zGmIXPueicx6Ni2Aynma8A+PuVUA+pkeO02pRY43sK5djkdnnjxoB0lIRFRd9r8Zw5FbVWjoNqhhghZOi1cu27B+iS3ahBGHc2MOXhFmm2QqfGg11nu21xPRj5Hg9jHukPQQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=dVtN49qw/81ZPFkpYbmEy4iImydmXsen5CHi+qDY3KM=;
+ b=CgL0dgH5aufU5iI8fwxf4dI7UUBuylIY3USu2xGu9A1NXNQTKudLIg4SeWeyyJ+CRGXiP7INAR8Xl0QAA5LO2Vhv6Qjr3JaoE9h3oVSqySlGKclp3/1yfof0GDddz9vfcN3kU/K/sptV5Y5IhvAEAit9iDlBoU5igKB6ktNnPc9Q4EHRKMvWoDtED3hgv9FIlZQu13PGZcPrmRhRxi4bjkhwtwo/nt5ijKBwFZJ7f/QenArL2vQYwkMUvpm7jaSdmwgW24b+h3Ku/iBnaVO6QAsuoA9CpEegofHIH4lhOoD29dgE18p7sUo3wjmuix6BS1tzxe1NImrazzlJolfo6g==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
+ dkim=pass header.d=intel.com; arc=none
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=intel.com;
+Received: from CY5PR11MB6139.namprd11.prod.outlook.com (2603:10b6:930:29::17)
+ by PH0PR11MB5190.namprd11.prod.outlook.com (2603:10b6:510:3c::24)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6156.18; Thu, 2 Mar
+ 2023 15:22:44 +0000
+Received: from CY5PR11MB6139.namprd11.prod.outlook.com
+ ([fe80::7bcc:b9b8:78df:1bd8]) by CY5PR11MB6139.namprd11.prod.outlook.com
+ ([fe80::7bcc:b9b8:78df:1bd8%7]) with mapi id 15.20.6156.018; Thu, 2 Mar 2023
+ 15:22:44 +0000
+Date: Thu, 2 Mar 2023 07:22:40 -0800
+From: Lucas De Marchi <lucas.demarchi@intel.com>
+To: Jani Nikula <jani.nikula@linux.intel.com>
+Message-ID: <20230302152240.zwxz636rrvm3ttac@ldmartin-desk2.lan>
+References: <20230302013411.3262608-1-lucas.demarchi@intel.com>
+ <20230302013411.3262608-6-lucas.demarchi@intel.com>
+ <87y1ofusbs.fsf@intel.com>
+Content-Type: text/plain; charset="us-ascii"; format=flowed
+Content-Disposition: inline
+In-Reply-To: <87y1ofusbs.fsf@intel.com>
+X-ClientProxiedBy: BYAPR11CA0052.namprd11.prod.outlook.com
+ (2603:10b6:a03:80::29) To CY5PR11MB6139.namprd11.prod.outlook.com
+ (2603:10b6:930:29::17)
 MIME-Version: 1.0
-Content-Type: text/plain
-Subject: Re: [Intel-xe] 
- =?utf-8?q?=E2=9C=97_CI=2EBuild=3A_failure_for_series_?=
- =?utf-8?q?starting_with_=5B1/8=5D_drm/i915/display=3A_don=27t_use_relativ?=
- =?utf-8?q?e_=2E=2E/i915_includes?=
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: CY5PR11MB6139:EE_|PH0PR11MB5190:EE_
+X-MS-Office365-Filtering-Correlation-Id: 42b77650-8a8b-4fd4-5d4b-08db1b31f85a
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: CaGJQtENmtZHYZ5+pdYBaNKTfo8PR+LCdT01ZLvB3YJ5yEqYGLIJ5hkIUuUp9CRRmihRIKxxMOZGdVEFtFuM8TgcslB7qi/JqIH7Co9uuoPWwLW2RHtpFApaiaCzS14aRXfALr2DfjSRE9uoB4U4DH1SHnJ5zWt+3ONlN6w8WA1BvF8n5ESxy2aBsn5FMbY5ux1sV3eL/+VZIsLsfiIthKQTBRttt9DV8qBnVwZ5Ntc2MpA9cMxCtxB32dsRvPTCspaKWFNLy/AopxSaPFpgFpT4NU8YE7CK56kVp9rhsGl34yF2oIZkXpVGxtoIbSTlILNBU3GwozTqtLreURBhAiYGv/4Bva2eIGgedJY6/KO4XHOYYwiDaasOIiKnD4ZV9/png11aOLCRfMQDHyMK5Bg4fm46+cI34mtGV+1EIz/bk1kPo/FgZES/JLgG0QkaGtLs3fim2enQdPH/rQhZKNOe3UhtvnBNIwtUVBqWwSWpKKEyBk6jaUP2sR0LvaXgcJJxiVO/DM2LdAuhgC7SNNpZimZTVytBXnDuzyrCxE4xEf+vzr8bj0e2Lb6TtJ8f8mnA1/WQ0+FUIih22KFQ0CEGUkOrQlCcZY3dko7jpe0/d4sBRxOah+pm6TJK7SyNbbRr8yTVhe65TJgN9mZlxw==
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:CY5PR11MB6139.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230025)(376002)(396003)(39860400002)(136003)(346002)(366004)(451199018)(30864003)(5660300002)(4326008)(66476007)(36756003)(8936002)(41300700001)(83380400001)(2906002)(66946007)(66556008)(8676002)(316002)(82960400001)(6486002)(38100700002)(6916009)(9686003)(6512007)(6506007)(186003)(6666004)(26005)(1076003)(54906003)(478600001)(86362001);
+ DIR:OUT; SFP:1102; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?qo16kV2BSZVzKPg0CSNWlun1V+If0AwVjKdR8PaHwb9PX97IIS2jY8WY1Meg?=
+ =?us-ascii?Q?8er5E+vZdrZxo48PsypdbDKbaJzwBkABtLfRDbnmQG8rj5iozEUOn03NwTCQ?=
+ =?us-ascii?Q?T9bX3Ka+rbiS4lo7QQYAKGmM2hxjz1GkyxywgF8psijZyXVYmgRu3oA6f2AX?=
+ =?us-ascii?Q?v0KqYkNzdl1cQ5kl5or7sGOgpKE4bd/MLDSQY4beot7gV9A/Fj7qGH8jAOY5?=
+ =?us-ascii?Q?4m6Vn4a7q6dLToOfwEVVZZXgU2CK+mYZNyMeV2Y0G7pTrSbDHNmFT/SVSD/Q?=
+ =?us-ascii?Q?gnCzHRoUUo2BsAcSWPI1t6zrZCTg0p+CfRGSq/cuz3Lg82zva/aUrR+Gr0tQ?=
+ =?us-ascii?Q?dWVjMziP+hl/n9/Xu5qAQsOq7QIkwbEHfbZ/H1LXIae9YC4yjrYzjbPajdqZ?=
+ =?us-ascii?Q?+V3DtxR0rJbZkZVr7eFy2sOWMXnoKJL3ayCD/BWdYqccoQA1RA/XlIFv2KWP?=
+ =?us-ascii?Q?ymbyjJhavjeexlXpq+LiBN++Ou9Top2n07DV9E3Dk0wT+HATIPUp/w/53yXJ?=
+ =?us-ascii?Q?/17JLUgfdBboRDySbk5YEk/7H4gnPywNOk+cGcDZsnVBLx6uC2kmyqmEAKV8?=
+ =?us-ascii?Q?FwPLF3mzgBCSwyDwjnCarpxzdX6B9Tj1/0Zzc9hkNLouzk/MUe2/DqvXzwN8?=
+ =?us-ascii?Q?WJ+M5sYthLt2Ry9+lHgTmEbGhH9tPpW+U5BK23tSbxrKWceLUCcSSe0Fpndl?=
+ =?us-ascii?Q?Nn3OPuQEp7z8AnENBFiT8P9tLlgASTv3axD372FkAchiTLOI0V/tKYutjbKH?=
+ =?us-ascii?Q?ihQ2lJome/6p8zSWoTIHH2u78HOkME3rjQMkZsTIwa1j3gCuXvOoOTprMEGa?=
+ =?us-ascii?Q?hwu/RwF1s0LOwn+ylVs/gUnFV2VWfpF0O7MXxAQxKBRDfgL/ldirsTJxAln4?=
+ =?us-ascii?Q?sWeQs0fxeY8Ej82hn7V8yn3Ny4zIQOPwuRcY4vn0BH3wNJBhN4DgGLeTldP2?=
+ =?us-ascii?Q?nyYy8PbBb/OphYUMsQ7XPIxp6r6Yec3crZc/ufTf0KaKvJE7CkzcsxTvvkHg?=
+ =?us-ascii?Q?OGDQJl187yXrShLN9TarTvZ3WoefavcE8yjIM4+NbdBz6K7BhnZr0eFMDHfw?=
+ =?us-ascii?Q?LmsdnFDfBrRiOz3f3cGq1Eq7vmC5LgAVsZZ8c1U9N7+GsriEfCxqtd1hJVrG?=
+ =?us-ascii?Q?nXIt9uNW39bSAMpLiCNW/e8uQwaUDKu0cfZbBrN+s0sqnnvEEP2h/kGLyj/4?=
+ =?us-ascii?Q?ijXZgnu8MOXfVuhGL9HTK8NCc0Zxe0H4MINp89l2LqeS7b7VYbPYhRTNUzf7?=
+ =?us-ascii?Q?o2/MUMthrxdUBEoX0jsT2X3FKUyeyRtTXU8lDtEjxs92Q6ue8CGEp2SqOY5g?=
+ =?us-ascii?Q?MYrTZJ6huF3IUJxNy19R5cv8HFazL26tS4RZDVi4Po8jEYumHBUuUm6tlgYN?=
+ =?us-ascii?Q?TZH/XqJPzANLf4YMq+W9l7MrdzIWWta8ziFC+geiwDkEq1bK3ejyBpVLr/+0?=
+ =?us-ascii?Q?3mSTsyfLFLhPpuBo+ETOfl2eA3hwOZ5qjbY0dwDP4F5rMoYwPFFBeUGQxs7l?=
+ =?us-ascii?Q?ng5IUd/fdqVbv4GzIsgqung4E4IVx7l4Tl1/dtXwMzyJCEmleAi237b5w2F6?=
+ =?us-ascii?Q?PIDppw+NIbKTa5a5+8mWCx5UcClPImCPaDWgS0oz5iM0eQN8/aHSm6B7gHZ/?=
+ =?us-ascii?Q?pg=3D=3D?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: 42b77650-8a8b-4fd4-5d4b-08db1b31f85a
+X-MS-Exchange-CrossTenant-AuthSource: CY5PR11MB6139.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 02 Mar 2023 15:22:44.0825 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: VmyVSCQfcha+hVcCbhTgt/kqfbk5xvqsLLmt8swUcyxiHtnZs364Ve6d28/T2kuIlaqwqnS3T7//ZTkFshVHmLumVMVfgv2KHYepDnsTp0A=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH0PR11MB5190
+X-OriginatorOrg: intel.com
+Subject: Re: [Intel-xe] [PATCH 5/7] drm/xe/display: Move device info
+ initialization to display
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -62,1495 +144,460 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-xe@lists.freedesktop.org
+Cc: Matt Roper <matthew.d.roper@intel.com>, intel-xe@lists.freedesktop.org,
+ maarten.lankhorst@intel.com, Rodrigo Vivi <rodrigo.vivi@intel.com>
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Thu, 02 Mar 2023, Jani Nikula <jani.nikula@intel.com> wrote:
-> On Thu, 02 Mar 2023, Patchwork <patchwork@emeril.freedesktop.org> wrote:
->> == Series Details ==
+On Thu, Mar 02, 2023 at 04:43:35PM +0200, Jani Nikula wrote:
+>On Wed, 01 Mar 2023, Lucas De Marchi <lucas.demarchi@intel.com> wrote:
+>> Instead of initializing the display info together with the platform in
+>> xe_pci.c, let the display part initialize it. The small disadvantage is
+>> that the description struct is not automatically mapped from the PCI ID,
+>> but just doing a switch on the platform, that should already be set
+>> during display initialization should be ok.
+>
+>Have we already given up on the idea that device info would be a pointer
+>to rodata?
+>
+>The thing that was always problematic for i915 was that it was all too
+>convenient to go fiddle with the device info runtime, based on some
+>arbitrary needs.
+
+humn... I think it's fine to do that on initialization-only. We may have
+a need to disable a few things in runtime if there are conditions that
+block them. We may need to document some rules for what is ok vs what
+isn't though, so people don't go and keep tweaking the info after the
+probe is done.
+
+Note that this patch doesn't change that. In xe_pci.c we keep in rodata
+a "device description" and then during init we copy it over to the
+xe->info, possibly calculating things needed in runtime (i.e. the desc
+and info are not a 100% match)
+
+>
+>---
+>
+>That said, there's really no requirement that the struct pci_device_id
+>driver_data members in MODULE_DEVICE_TABLE() need to be pointers to some
+
+yep, agreed.  Also as we move to reading the features and IP versions
+from the device itself in future we may consider just passing NULL as
+driver_data. This has the extra benefit that is then possible to bind
+the driver to arbitrary PCI devices by poking on sysfs.
+
+>device info structures, at all. The initialization of device info could
+>be done in completely different ways if we dropped that notion. The
+>current macro "inheritance" in both i915 and xe is absolutely horrible.
+
+we are trying to keep the inheritance to a minimum on the xe side. I
+think spanning 1 or at the most 2 platforms is ok'ish and it's still
+readable. Spanning all generations like we had once in i915  a
+bad idea
+
+>
+>Anyway, going to block the patch, just checking on the direction here.
+
+
+"going to block"  or "not going to block"?
+
+thanks
+Lucas De Marchi
+
+>
+>
+>BR,
+>Jani.
+>
+>
+>
+>
+>
+>
+>
+>
 >>
->> Series: series starting with [1/8] drm/i915/display: don't use relative ../i915 includes
->> URL   : https://patchwork.freedesktop.org/series/114573/
->> State : failure
+>> This allows to encapsulate the display details inside the display
+>> compilation units.
 >>
->> == Summary ==
+>> Also use __diag_push() / __diag_pop() like in xe_step to handle the few
+>> places where -Woverride-init should be disabled.
 >>
->> + trap cleanup EXIT
->> + cd /kernel
->> + git clone https://gitlab.freedesktop.org/drm/xe/ci.git .ci
->> Cloning into '.ci'...
->> ++ date +%s
->> + echo -e '\e[0Ksection_start:1677767287:build_x86_64[collapsed=true]\r\e[0KBuild x86-64'
->> + mkdir -p build64
->> [0Ksection_start:1677767287:build_x86_64[collapsed=true]
->> [0KBuild x86-64
->> + cat .ci/kernel/kconfig
->> + make O=build64 olddefconfig
->> make[1]: Entering directory '/kernel/build64'
->>   GEN     Makefile
->>   HOSTCC  scripts/basic/fixdep
->>   HOSTCC  scripts/kconfig/conf.o
->>   HOSTCC  scripts/kconfig/confdata.o
->>   HOSTCC  scripts/kconfig/expr.o
->>   LEX     scripts/kconfig/lexer.lex.c
->>   YACC    scripts/kconfig/parser.tab.[ch]
->>   HOSTCC  scripts/kconfig/lexer.lex.o
->>   HOSTCC  scripts/kconfig/menu.o
->>   HOSTCC  scripts/kconfig/parser.tab.o
->>   HOSTCC  scripts/kconfig/preprocess.o
->>   HOSTCC  scripts/kconfig/symbol.o
->>   HOSTCC  scripts/kconfig/util.o
->>   HOSTLD  scripts/kconfig/conf
->> #
->> # configuration written to .config
->> #
->> make[1]: Leaving directory '/kernel/build64'
->> ++ nproc
->> + make O=build64 -j48
->> make[1]: Entering directory '/kernel/build64'
->
-> ...
->
->>   HDRTEST drivers/gpu/drm/xe/compat-headers/intel_pm_types.h
->>   CC [M]  drivers/gpu/drm/i915/gt/uc/intel_guc_log.o
->> In file included from <command-line>:
->> ./../drivers/gpu/drm/xe/compat-headers/intel_pm_types.h:11:10: fatal error: display/intel_display.h: No such file or directory
->>    11 | #include "display/intel_display.h"
->
-> Err what?!
->
-> Patch 3 removes the include.
->
-> Patch 6 moves the file under compat-headers. There's no #include
-> "display/intel_display.h" there.
->
->
->>       |          ^~~~~~~~~~~~~~~~~~~~~~~~~
->> compilation terminated.
->> make[6]: *** [../drivers/gpu/drm/xe/Makefile:235: drivers/gpu/drm/xe/compat-headers/intel_pm_types.hdrtest] Error 1
->> make[6]: *** Waiting for unfinished jobs....
->>   CC [M]  drivers/gpu/drm/i915/gt/uc/intel_guc_log_debugfs.o
->>   CC [M]  drivers/gpu/drm/i915/gt/uc/intel_guc_rc.o
->> In file included from <command-line>:
->> ./../drivers/gpu/drm/xe/compat-headers/i915_drv.h:182:10: fatal error: display/intel_wakeref.h: No such file or directory
->>   182 | #include "display/intel_wakeref.h"
->>       |          ^~~~~~~~~~~~~~~~~~~~~~~~~
->
->
-> Patch 4 removes the display/ prefix.
->
-> Patch 6 moves the file under compat-headers. That include does not exist
-> as such.
->
-> What's going on?!
-
-Also, what kconfig does this use?
-
-This series builds for me for every commit, with both y and n for
-CONFIG_DRM_XE_DISPLAY.
-
-BR,
-Jani.
-
-
->
-> BR,
-> Jani.
->
->
->> compilation terminated.
->> make[6]: *** [../drivers/gpu/drm/xe/Makefile:235: drivers/gpu/drm/xe/compat-headers/i915_drv.hdrtest] Error 1
->>   CC [M]  drivers/gpu/drm/i915/gt/uc/intel_guc_slpc.o
->>   CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/fault/gp100.o
->>   CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/fault/gp10b.o
->>   CC [M]  drivers/gpu/drm/i915/gt/uc/intel_guc_submission.o
->>   CC [M]  drivers/gpu/drm/i915/gt/uc/intel_huc.o
->>   CC [M]  drivers/gpu/drm/i915/gt/uc/intel_huc_debugfs.o
->>   CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/fault/gv100.o
->>   CC [M]  drivers/gpu/drm/amd/amdgpu/vce_v4_0.o
->>   CC [M]  drivers/gpu/drm/i915/gt/uc/intel_huc_fw.o
->>   CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/fault/tu102.o
->>   CC [M]  drivers/gpu/drm/amd/amdgpu/amdgpu_vcn.o
->>   CC [M]  drivers/gpu/drm/i915/gt/uc/intel_uc.o
->>   CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/fb/base.o
->>   CC [M]  drivers/gpu/drm/amd/amdgpu/vcn_sw_ring.o
->>   CC [M]  drivers/gpu/drm/amd/amdgpu/vcn_v1_0.o
->>   CC [M]  drivers/gpu/drm/amd/amdgpu/vcn_v2_0.o
->>   CC [M]  drivers/gpu/drm/amd/amdgpu/vcn_v2_5.o
->>   CC [M]  drivers/gpu/drm/i915/gt/uc/intel_uc_debugfs.o
->>   CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/fb/nv04.o
->>   CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/fb/nv10.o
->>   CC [M]  drivers/gpu/drm/amd/amdgpu/vcn_v3_0.o
->>   CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/fb/nv1a.o
->>   CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/fb/nv20.o
->>   CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/fb/nv25.o
->>   CC [M]  drivers/gpu/drm/amd/amdgpu/vcn_v4_0.o
->>   CC [M]  drivers/gpu/drm/amd/amdgpu/amdgpu_jpeg.o
->>   CC [M]  drivers/gpu/drm/i915/gt/uc/intel_uc_fw.o
->>   CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/fb/nv30.o
->>   CC [M]  drivers/gpu/drm/amd/amdgpu/jpeg_v1_0.o
->>   CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/fb/nv35.o
->>   CC [M]  drivers/gpu/drm/i915/gt/intel_gsc.o
->>   CC [M]  drivers/gpu/drm/i915/i915_hwmon.o
->>   CC [M]  drivers/gpu/drm/i915/display/hsw_ips.o
->>   CC [M]  drivers/gpu/drm/amd/amdgpu/jpeg_v2_0.o
->>   CC [M]  drivers/gpu/drm/i915/display/intel_atomic.o
->>   CC [M]  drivers/gpu/drm/amd/amdgpu/jpeg_v2_5.o
->>   CC [M]  drivers/gpu/drm/i915/display/intel_atomic_plane.o
->>   CC [M]  drivers/gpu/drm/i915/display/intel_audio.o
->>   CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/fb/nv36.o
->>   CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/fb/nv40.o
->>   CC [M]  drivers/gpu/drm/amd/amdgpu/jpeg_v3_0.o
->>   CC [M]  drivers/gpu/drm/i915/display/intel_bios.o
->>   CC [M]  drivers/gpu/drm/i915/display/intel_bw.o
->>   CC [M]  drivers/gpu/drm/amd/amdgpu/jpeg_v4_0.o
->>   CC [M]  drivers/gpu/drm/amd/amdgpu/athub_v1_0.o
->>   CC [M]  drivers/gpu/drm/i915/display/intel_cdclk.o
->>   CC [M]  drivers/gpu/drm/i915/display/intel_color.o
->>   CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/fb/nv41.o
->>   CC [M]  drivers/gpu/drm/i915/display/intel_combo_phy.o
->> make[5]: *** [../scripts/Makefile.build:500: drivers/gpu/drm/xe] Error 2
->> make[5]: *** Waiting for unfinished jobs....
->>   CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/fb/nv44.o
->>   CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/fb/nv46.o
->>   CC [M]  drivers/gpu/drm/amd/amdgpu/athub_v2_0.o
->>   CC [M]  drivers/gpu/drm/amd/amdgpu/athub_v2_1.o
->>   CC [M]  drivers/gpu/drm/amd/amdgpu/athub_v3_0.o
->>   CC [M]  drivers/gpu/drm/i915/display/intel_connector.o
->>   CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/fb/nv47.o
->>   CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/fb/nv49.o
->>   CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/fb/nv4e.o
->>   CC [M]  drivers/gpu/drm/i915/display/intel_crtc.o
->>   CC [M]  drivers/gpu/drm/amd/amdgpu/smuio_v9_0.o
->>   CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/fb/nv50.o
->>   CC [M]  drivers/gpu/drm/i915/display/intel_crtc_state_dump.o
->>   CC [M]  drivers/gpu/drm/amd/amdgpu/smuio_v11_0.o
->>   CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/fb/g84.o
->>   CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/fb/gt215.o
->>   CC [M]  drivers/gpu/drm/amd/amdgpu/smuio_v11_0_6.o
->>   CC [M]  drivers/gpu/drm/i915/display/intel_cursor.o
->>   CC [M]  drivers/gpu/drm/i915/display/intel_display.o
->>   CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/fb/mcp77.o
->>   CC [M]  drivers/gpu/drm/i915/display/intel_display_power.o
->>   CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/fb/mcp89.o
->>   CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/fb/gf100.o
->>   CC [M]  drivers/gpu/drm/amd/amdgpu/smuio_v13_0.o
->>   CC [M]  drivers/gpu/drm/i915/display/intel_display_power_map.o
->>   CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/fb/gf108.o
->>   CC [M]  drivers/gpu/drm/i915/display/intel_display_power_well.o
->>   CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/fb/gk104.o
->>   CC [M]  drivers/gpu/drm/amd/amdgpu/smuio_v13_0_6.o
->>   CC [M]  drivers/gpu/drm/amd/amdgpu/amdgpu_reset.o
->>   CC [M]  drivers/gpu/drm/amd/amdgpu/mca_v3_0.o
->>   CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/fb/gk110.o
->>   CC [M]  drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd.o
->>   CC [M]  drivers/gpu/drm/amd/amdgpu/../amdkfd/kfd_module.o
->>   CC [M]  drivers/gpu/drm/amd/amdgpu/../amdkfd/kfd_device.o
->>   CC [M]  drivers/gpu/drm/i915/display/intel_dmc.o
->>   CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/fb/gk20a.o
->>   CC [M]  drivers/gpu/drm/amd/amdgpu/../amdkfd/kfd_chardev.o
->>   CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/fb/gm107.o
->>   CC [M]  drivers/gpu/drm/amd/amdgpu/../amdkfd/kfd_topology.o
->>   CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/fb/gm200.o
->>   CC [M]  drivers/gpu/drm/amd/amdgpu/../amdkfd/kfd_pasid.o
->>   CC [M]  drivers/gpu/drm/i915/display/intel_dpio_phy.o
->>   CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/fb/gm20b.o
->>   CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/fb/gp100.o
->>   CC [M]  drivers/gpu/drm/i915/display/intel_dpll.o
->>   CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/fb/gp102.o
->>   CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/fb/gp10b.o
->>   CC [M]  drivers/gpu/drm/i915/display/intel_dpll_mgr.o
->>   CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/fb/gv100.o
->>   CC [M]  drivers/gpu/drm/amd/amdgpu/../amdkfd/kfd_doorbell.o
->>   CC [M]  drivers/gpu/drm/i915/display/intel_dpt.o
->>   CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/fb/ga100.o
->>   CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/fb/ga102.o
->>   CC [M]  drivers/gpu/drm/i915/display/intel_drrs.o
->>   CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/fb/ram.o
->>   CC [M]  drivers/gpu/drm/amd/amdgpu/../amdkfd/kfd_flat_memory.o
->>   CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/fb/ramnv04.o
->>   CC [M]  drivers/gpu/drm/i915/display/intel_dsb.o
->>   CC [M]  drivers/gpu/drm/i915/display/intel_fb.o
->>   CC [M]  drivers/gpu/drm/amd/amdgpu/../amdkfd/kfd_process.o
->>   CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/fb/ramnv10.o
->>   CC [M]  drivers/gpu/drm/i915/display/intel_fb_pin.o
->>   CC [M]  drivers/gpu/drm/amd/amdgpu/../amdkfd/kfd_queue.o
->>   CC [M]  drivers/gpu/drm/amd/amdgpu/../amdkfd/kfd_mqd_manager.o
->>   CC [M]  drivers/gpu/drm/i915/display/intel_fbc.o
->>   CC [M]  drivers/gpu/drm/amd/amdgpu/../amdkfd/kfd_mqd_manager_cik.o
->>   CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/fb/ramnv1a.o
->>   CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/fb/ramnv20.o
->>   CC [M]  drivers/gpu/drm/amd/amdgpu/../amdkfd/kfd_mqd_manager_vi.o
->>   CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/fb/ramnv40.o
->>   CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/fb/ramnv41.o
->>   CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/fb/ramnv44.o
->>   CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/fb/ramnv49.o
->>   CC [M]  drivers/gpu/drm/amd/amdgpu/../amdkfd/kfd_mqd_manager_v9.o
->>   CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/fb/ramnv4e.o
->>   CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/fb/ramnv50.o
->>   CC [M]  drivers/gpu/drm/i915/display/intel_fdi.o
->>   CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/fb/ramgt215.o
->>   CC [M]  drivers/gpu/drm/amd/amdgpu/../amdkfd/kfd_mqd_manager_v10.o
->>   CC [M]  drivers/gpu/drm/i915/display/intel_fifo_underrun.o
->>   CC [M]  drivers/gpu/drm/amd/amdgpu/../amdkfd/kfd_mqd_manager_v11.o
->>   CC [M]  drivers/gpu/drm/i915/display/intel_frontbuffer.o
->>   CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/fb/rammcp77.o
->>   CC [M]  drivers/gpu/drm/amd/amdgpu/../amdkfd/kfd_kernel_queue.o
->>   CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/fb/ramgf100.o
->>   CC [M]  drivers/gpu/drm/amd/amdgpu/../amdkfd/kfd_packet_manager.o
->>   CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/fb/ramgf108.o
->>   CC [M]  drivers/gpu/drm/amd/amdgpu/../amdkfd/kfd_packet_manager_vi.o
->>   CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/fb/ramgk104.o
->>   CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/fb/ramgm107.o
->>   CC [M]  drivers/gpu/drm/amd/amdgpu/../amdkfd/kfd_packet_manager_v9.o
->>   CC [M]  drivers/gpu/drm/amd/amdgpu/../amdkfd/kfd_process_queue_manager.o
->>   CC [M]  drivers/gpu/drm/amd/amdgpu/../amdkfd/kfd_device_queue_manager.o
->>   CC [M]  drivers/gpu/drm/i915/display/intel_global_state.o
->>   CC [M]  drivers/gpu/drm/i915/display/intel_hdcp.o
->>   CC [M]  drivers/gpu/drm/i915/display/intel_hotplug.o
->>   CC [M]  drivers/gpu/drm/i915/display/intel_hti.o
->>   CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/fb/ramgm200.o
->>   CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/fb/ramgp100.o
->>   CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/fb/ramga102.o
->>   CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/fb/sddr2.o
->>   CC [M]  drivers/gpu/drm/amd/amdgpu/../amdkfd/kfd_device_queue_manager_cik.o
->>   CC [M]  drivers/gpu/drm/i915/display/intel_lpe_audio.o
->>   CC [M]  drivers/gpu/drm/amd/amdgpu/../amdkfd/kfd_device_queue_manager_vi.o
->>   CC [M]  drivers/gpu/drm/i915/display/intel_modeset_verify.o
->>   CC [M]  drivers/gpu/drm/i915/display/intel_modeset_setup.o
->>   CC [M]  drivers/gpu/drm/amd/amdgpu/../amdkfd/kfd_device_queue_manager_v9.o
->>   CC [M]  drivers/gpu/drm/i915/display/intel_overlay.o
->>   CC [M]  drivers/gpu/drm/amd/amdgpu/../amdkfd/kfd_device_queue_manager_v10.o
->>   CC [M]  drivers/gpu/drm/amd/amdgpu/../amdkfd/kfd_device_queue_manager_v11.o
->>   CC [M]  drivers/gpu/drm/amd/amdgpu/../amdkfd/kfd_interrupt.o
->>   CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/fb/sddr3.o
->>   CC [M]  drivers/gpu/drm/amd/amdgpu/../amdkfd/kfd_events.o
->>   CC [M]  drivers/gpu/drm/amd/amdgpu/../amdkfd/cik_event_interrupt.o
->>   CC [M]  drivers/gpu/drm/i915/display/intel_pch_display.o
->>   CC [M]  drivers/gpu/drm/amd/amdgpu/../amdkfd/kfd_int_process_v9.o
->>   CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/fb/gddr3.o
->>   CC [M]  drivers/gpu/drm/amd/amdgpu/../amdkfd/kfd_int_process_v11.o
->>   CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/fb/gddr5.o
->>   CC [M]  drivers/gpu/drm/amd/amdgpu/../amdkfd/kfd_smi_events.o
->>   CC [M]  drivers/gpu/drm/amd/amdgpu/../amdkfd/kfd_crat.o
->>   CC [M]  drivers/gpu/drm/amd/amdgpu/../amdkfd/kfd_debugfs.o
->>   CC [M]  drivers/gpu/drm/amd/amdgpu/../amdkfd/kfd_svm.o
->>   CC [M]  drivers/gpu/drm/amd/amdgpu/../amdkfd/kfd_migrate.o
->>   CC [M]  drivers/gpu/drm/i915/display/intel_pch_refclk.o
->>   CC [M]  drivers/gpu/drm/i915/display/intel_plane_initial.o
->>   CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/fuse/base.o
->>   CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/fuse/nv50.o
->>   CC [M]  drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd_fence.o
->>   CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/fuse/gf100.o
->>   CC [M]  drivers/gpu/drm/i915/display/intel_psr.o
->>   CC [M]  drivers/gpu/drm/i915/display/intel_quirks.o
->>   CC [M]  drivers/gpu/drm/i915/display/intel_sprite.o
->>   CC [M]  drivers/gpu/drm/i915/display/intel_tc.o
->>   CC [M]  drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd_gpuvm.o
->>   CC [M]  drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd_gfx_v8.o
->>   CC [M]  drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd_gfx_v9.o
->>   CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/fuse/gm107.o
->>   CC [M]  drivers/gpu/drm/i915/display/intel_vga.o
->>   CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/gpio/base.o
->>   CC [M]  drivers/gpu/drm/i915/display/i9xx_plane.o
->>   CC [M]  drivers/gpu/drm/i915/display/skl_scaler.o
->>   CC [M]  drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd_arcturus.o
->>   CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/gpio/nv10.o
->>   CC [M]  drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd_aldebaran.o
->>   CC [M]  drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd_gfx_v10.o
->>   CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/gpio/nv50.o
->>   CC [M]  drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd_gfx_v10_3.o
->>   CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/gpio/g94.o
->>   CC [M]  drivers/gpu/drm/i915/display/skl_universal_plane.o
->>   CC [M]  drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd_gfx_v11.o
->>   CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/gpio/gf119.o
->>   CC [M]  drivers/gpu/drm/i915/display/skl_watermark.o
->>   CC [M]  drivers/gpu/drm/i915/display/intel_acpi.o
->>   CC [M]  drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd_gfx_v7.o
->>   CC [M]  drivers/gpu/drm/amd/amdgpu/amdgpu_cgs.o
->>   CC [M]  drivers/gpu/drm/i915/display/intel_opregion.o
->>   CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/gpio/gk104.o
->>   CC [M]  drivers/gpu/drm/amd/amdgpu/amdgpu_job.o
->>   CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/gpio/ga102.o
->>   CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/gsp/base.o
->>   CC [M]  drivers/gpu/drm/amd/amdgpu/amdgpu_acp.o
->>   CC [M]  drivers/gpu/drm/amd/amdgpu/../acp/acp_hw.o
->>   CC [M]  drivers/gpu/drm/amd/amdgpu/amdgpu_ioc32.o
->>   CC [M]  drivers/gpu/drm/amd/amdgpu/amdgpu_acpi.o
->>   CC [M]  drivers/gpu/drm/i915/display/intel_fbdev.o
->>   CC [M]  drivers/gpu/drm/amd/amdgpu/amdgpu_hmm.o
->>   CC [M]  drivers/gpu/drm/i915/display/dvo_ch7017.o
->>   CC [M]  drivers/gpu/drm/i915/display/dvo_ch7xxx.o
->>   CC [M]  drivers/gpu/drm/amd/amdgpu/../pm/swsmu/smu11/arcturus_ppt.o
->>   CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/gsp/gv100.o
->>   CC [M]  drivers/gpu/drm/i915/display/dvo_ivch.o
->>   CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/gsp/ga102.o
->>   CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/i2c/base.o
->>   CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/i2c/nv04.o
->>   CC [M]  drivers/gpu/drm/i915/display/dvo_ns2501.o
->>   CC [M]  drivers/gpu/drm/i915/display/dvo_sil164.o
->>   CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/i2c/nv4e.o
->>   CC [M]  drivers/gpu/drm/amd/amdgpu/../pm/swsmu/smu11/navi10_ppt.o
->>   CC [M]  drivers/gpu/drm/i915/display/dvo_tfp410.o
->>   CC [M]  drivers/gpu/drm/amd/amdgpu/../pm/swsmu/smu11/sienna_cichlid_ppt.o
->>   CC [M]  drivers/gpu/drm/amd/amdgpu/../pm/swsmu/smu11/vangogh_ppt.o
->>   CC [M]  drivers/gpu/drm/amd/amdgpu/../pm/swsmu/smu11/cyan_skillfish_ppt.o
->>   CC [M]  drivers/gpu/drm/amd/amdgpu/../pm/swsmu/smu11/smu_v11_0.o
->>   CC [M]  drivers/gpu/drm/amd/amdgpu/../pm/swsmu/smu12/renoir_ppt.o
->>   CC [M]  drivers/gpu/drm/amd/amdgpu/../pm/swsmu/smu12/smu_v12_0.o
->>   CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/i2c/nv50.o
->>   CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/i2c/g94.o
->>   CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/i2c/gf117.o
->>   CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/i2c/gf119.o
->>   CC [M]  drivers/gpu/drm/i915/display/g4x_dp.o
->>   CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/i2c/gk104.o
->>   CC [M]  drivers/gpu/drm/i915/display/g4x_hdmi.o
->>   CC [M]  drivers/gpu/drm/amd/amdgpu/../pm/swsmu/smu13/smu_v13_0.o
->>   CC [M]  drivers/gpu/drm/amd/amdgpu/../pm/swsmu/smu13/aldebaran_ppt.o
->>   CC [M]  drivers/gpu/drm/amd/amdgpu/../pm/swsmu/smu13/yellow_carp_ppt.o
->>   CC [M]  drivers/gpu/drm/i915/display/icl_dsi.o
->>   CC [M]  drivers/gpu/drm/amd/amdgpu/../pm/swsmu/smu13/smu_v13_0_0_ppt.o
->>   CC [M]  drivers/gpu/drm/amd/amdgpu/../pm/swsmu/smu13/smu_v13_0_4_ppt.o
->>   CC [M]  drivers/gpu/drm/i915/display/intel_backlight.o
->>   CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/i2c/gk110.o
->>   CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/i2c/gm200.o
->>   CC [M]  drivers/gpu/drm/amd/amdgpu/../pm/swsmu/smu13/smu_v13_0_5_ppt.o
->>   CC [M]  drivers/gpu/drm/amd/amdgpu/../pm/swsmu/smu13/smu_v13_0_7_ppt.o
->>   CC [M]  drivers/gpu/drm/amd/amdgpu/../pm/swsmu/amdgpu_smu.o
->>   CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/i2c/pad.o
->>   CC [M]  drivers/gpu/drm/amd/amdgpu/../pm/swsmu/smu_cmn.o
->>   CC [M]  drivers/gpu/drm/i915/display/intel_crt.o
->>   CC [M]  drivers/gpu/drm/i915/display/intel_ddi.o
->>   CC [M]  drivers/gpu/drm/amd/amdgpu/../pm/powerplay/smumgr/smumgr.o
->>   CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/i2c/padnv04.o
->>   CC [M]  drivers/gpu/drm/i915/display/intel_ddi_buf_trans.o
->>   CC [M]  drivers/gpu/drm/amd/amdgpu/../pm/powerplay/smumgr/smu8_smumgr.o
->>   CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/i2c/padnv4e.o
->>   CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/i2c/padnv50.o
->>   CC [M]  drivers/gpu/drm/i915/display/intel_display_trace.o
->>   CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/i2c/padg94.o
->>   CC [M]  drivers/gpu/drm/i915/display/intel_dkl_phy.o
->>   CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/i2c/padgf119.o
->>   CC [M]  drivers/gpu/drm/i915/display/intel_dp.o
->>   CC [M]  drivers/gpu/drm/i915/display/intel_dp_aux.o
->>   CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/i2c/padgm200.o
->>   CC [M]  drivers/gpu/drm/i915/display/intel_dp_aux_backlight.o
->>   CC [M]  drivers/gpu/drm/amd/amdgpu/../pm/powerplay/smumgr/tonga_smumgr.o
->>   CC [M]  drivers/gpu/drm/amd/amdgpu/../pm/powerplay/smumgr/fiji_smumgr.o
->>   CC [M]  drivers/gpu/drm/amd/amdgpu/../pm/powerplay/smumgr/polaris10_smumgr.o
->>   CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/i2c/bus.o
->>   CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/i2c/busnv04.o
->>   CC [M]  drivers/gpu/drm/amd/amdgpu/../pm/powerplay/smumgr/iceland_smumgr.o
->>   CC [M]  drivers/gpu/drm/i915/display/intel_dp_hdcp.o
->>   CC [M]  drivers/gpu/drm/amd/amdgpu/../pm/powerplay/smumgr/smu7_smumgr.o
->>   CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/i2c/busnv4e.o
->>   CC [M]  drivers/gpu/drm/amd/amdgpu/../pm/powerplay/smumgr/vega10_smumgr.o
->>   CC [M]  drivers/gpu/drm/i915/display/intel_dp_link_training.o
->>   CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/i2c/busnv50.o
->>   CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/i2c/busgf119.o
->>   CC [M]  drivers/gpu/drm/amd/amdgpu/../pm/powerplay/smumgr/smu10_smumgr.o
->>   CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/i2c/bit.o
->>   CC [M]  drivers/gpu/drm/amd/amdgpu/../pm/powerplay/smumgr/ci_smumgr.o
->>   CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/i2c/aux.o
->>   CC [M]  drivers/gpu/drm/amd/amdgpu/../pm/powerplay/smumgr/vega12_smumgr.o
->>   CC [M]  drivers/gpu/drm/amd/amdgpu/../pm/powerplay/smumgr/vegam_smumgr.o
->>   CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/i2c/auxg94.o
->>   CC [M]  drivers/gpu/drm/amd/amdgpu/../pm/powerplay/smumgr/smu9_smumgr.o
->>   CC [M]  drivers/gpu/drm/amd/amdgpu/../pm/powerplay/smumgr/vega20_smumgr.o
->>   CC [M]  drivers/gpu/drm/amd/amdgpu/../pm/powerplay/hwmgr/hwmgr.o
->>   CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/i2c/auxgf119.o
->>   CC [M]  drivers/gpu/drm/i915/display/intel_dp_mst.o
->>   CC [M]  drivers/gpu/drm/amd/amdgpu/../pm/powerplay/hwmgr/processpptables.o
->>   CC [M]  drivers/gpu/drm/i915/display/intel_dsi.o
->>   CC [M]  drivers/gpu/drm/amd/amdgpu/../pm/powerplay/hwmgr/hardwaremanager.o
->>   CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/i2c/auxgm200.o
->>   CC [M]  drivers/gpu/drm/amd/amdgpu/../pm/powerplay/hwmgr/smu8_hwmgr.o
->>   CC [M]  drivers/gpu/drm/i915/display/intel_dsi_dcs_backlight.o
->>   CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/i2c/anx9805.o
->>   CC [M]  drivers/gpu/drm/i915/display/intel_dsi_vbt.o
->>   CC [M]  drivers/gpu/drm/i915/display/intel_dvo.o
->>   CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/iccsense/base.o
->>   CC [M]  drivers/gpu/drm/i915/display/intel_gmbus.o
->>   CC [M]  drivers/gpu/drm/amd/amdgpu/../pm/powerplay/hwmgr/pppcielanes.o
->>   CC [M]  drivers/gpu/drm/amd/amdgpu/../pm/powerplay/hwmgr/process_pptables_v1_0.o
->>   CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/iccsense/gf100.o
->>   CC [M]  drivers/gpu/drm/i915/display/intel_hdmi.o
->>   CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/instmem/base.o
->>   CC [M]  drivers/gpu/drm/amd/amdgpu/../pm/powerplay/hwmgr/ppatomctrl.o
->>   CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/instmem/nv04.o
->>   CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/instmem/nv40.o
->>   CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/instmem/nv50.o
->>   CC [M]  drivers/gpu/drm/i915/display/intel_lspcon.o
->>   CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/instmem/gk20a.o
->>   CC [M]  drivers/gpu/drm/i915/display/intel_lvds.o
->>   CC [M]  drivers/gpu/drm/i915/display/intel_panel.o
->>   CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/ltc/base.o
->>   CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/ltc/gf100.o
->>   CC [M]  drivers/gpu/drm/amd/amdgpu/../pm/powerplay/hwmgr/ppatomfwctrl.o
->>   CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/ltc/gk104.o
->>   CC [M]  drivers/gpu/drm/i915/display/intel_pps.o
->>   CC [M]  drivers/gpu/drm/i915/display/intel_qp_tables.o
->>   CC [M]  drivers/gpu/drm/amd/amdgpu/../pm/powerplay/hwmgr/smu7_hwmgr.o
->>   CC [M]  drivers/gpu/drm/amd/amdgpu/../pm/powerplay/hwmgr/smu7_powertune.o
->>   CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/ltc/gm107.o
->>   CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/ltc/gm200.o
->>   CC [M]  drivers/gpu/drm/i915/display/intel_sdvo.o
->>   CC [M]  drivers/gpu/drm/amd/amdgpu/../pm/powerplay/hwmgr/smu7_thermal.o
->>   CC [M]  drivers/gpu/drm/amd/amdgpu/../pm/powerplay/hwmgr/smu7_clockpowergating.o
->>   CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/ltc/gp100.o
->>   CC [M]  drivers/gpu/drm/i915/display/intel_snps_phy.o
->>   CC [M]  drivers/gpu/drm/amd/amdgpu/../pm/powerplay/hwmgr/vega10_processpptables.o
->>   CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/ltc/gp102.o
->>   CC [M]  drivers/gpu/drm/i915/display/intel_tv.o
->>   CC [M]  drivers/gpu/drm/i915/display/intel_vdsc.o
->>   CC [M]  drivers/gpu/drm/i915/display/intel_vrr.o
->>   CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/ltc/gp10b.o
->>   CC [M]  drivers/gpu/drm/amd/amdgpu/../pm/powerplay/hwmgr/vega10_hwmgr.o
->>   CC [M]  drivers/gpu/drm/amd/amdgpu/../pm/powerplay/hwmgr/vega10_powertune.o
->>   CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/ltc/ga102.o
->>   CC [M]  drivers/gpu/drm/amd/amdgpu/../pm/powerplay/hwmgr/vega10_thermal.o
->>   CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/mc/base.o
->>   CC [M]  drivers/gpu/drm/i915/display/vlv_dsi.o
->>   CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/mc/nv04.o
->>   CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/mc/nv11.o
->>   CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/mc/nv17.o
->>   CC [M]  drivers/gpu/drm/i915/display/vlv_dsi_pll.o
->>   CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/mc/nv44.o
->>   CC [M]  drivers/gpu/drm/amd/amdgpu/../pm/powerplay/hwmgr/smu10_hwmgr.o
->>   CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/mc/nv50.o
->>   CC [M]  drivers/gpu/drm/amd/amdgpu/../pm/powerplay/hwmgr/pp_psm.o
->>   CC [M]  drivers/gpu/drm/amd/amdgpu/../pm/powerplay/hwmgr/vega12_processpptables.o
->>   CC [M]  drivers/gpu/drm/i915/i915_perf.o
->>   CC [M]  drivers/gpu/drm/amd/amdgpu/../pm/powerplay/hwmgr/vega12_hwmgr.o
->>   CC [M]  drivers/gpu/drm/i915/pxp/intel_pxp.o
->>   CC [M]  drivers/gpu/drm/i915/pxp/intel_pxp_tee.o
->>   CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/mc/g84.o
->>   CC [M]  drivers/gpu/drm/amd/amdgpu/../pm/powerplay/hwmgr/vega12_thermal.o
->>   CC [M]  drivers/gpu/drm/i915/pxp/intel_pxp_huc.o
->>   CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/mc/g98.o
->>   CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/mc/gt215.o
->>   CC [M]  drivers/gpu/drm/i915/pxp/intel_pxp_cmd.o
->>   CC [M]  drivers/gpu/drm/amd/amdgpu/../pm/powerplay/hwmgr/pp_overdriver.o
->>   CC [M]  drivers/gpu/drm/amd/amdgpu/../pm/powerplay/hwmgr/smu_helper.o
->>   CC [M]  drivers/gpu/drm/i915/pxp/intel_pxp_debugfs.o
->>   CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/mc/gf100.o
->>   CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/mc/gk104.o
->>   CC [M]  drivers/gpu/drm/i915/pxp/intel_pxp_irq.o
->>   CC [M]  drivers/gpu/drm/amd/amdgpu/../pm/powerplay/hwmgr/vega20_processpptables.o
->>   CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/mc/gk20a.o
->>   CC [M]  drivers/gpu/drm/amd/amdgpu/../pm/powerplay/hwmgr/vega20_hwmgr.o
->>   CC [M]  drivers/gpu/drm/i915/pxp/intel_pxp_pm.o
->>   CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/mc/gp100.o
->>   CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/mc/gp10b.o
->>   CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/mc/ga100.o
->>   CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/mmu/base.o
->>   CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/mmu/nv04.o
->>   CC [M]  drivers/gpu/drm/i915/pxp/intel_pxp_session.o
->>   CC [M]  drivers/gpu/drm/amd/amdgpu/../pm/powerplay/hwmgr/vega20_powertune.o
->>   CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/mmu/nv41.o
->>   CC [M]  drivers/gpu/drm/amd/amdgpu/../pm/powerplay/hwmgr/vega20_thermal.o
->>   CC [M]  drivers/gpu/drm/amd/amdgpu/../pm/powerplay/hwmgr/common_baco.o
->>   CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/mmu/nv44.o
->>   CC [M]  drivers/gpu/drm/i915/i915_gpu_error.o
->>   CC [M]  drivers/gpu/drm/i915/gem/selftests/i915_gem_client_blt.o
->>   CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/mmu/nv50.o
->>   CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/mmu/g84.o
->>   CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/mmu/mcp77.o
->>   CC [M]  drivers/gpu/drm/amd/amdgpu/../pm/powerplay/hwmgr/vega10_baco.o
->>   CC [M]  drivers/gpu/drm/amd/amdgpu/../pm/powerplay/hwmgr/vega20_baco.o
->>   CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/mmu/gf100.o
->>   CC [M]  drivers/gpu/drm/i915/gem/selftests/igt_gem_utils.o
->>   CC [M]  drivers/gpu/drm/amd/amdgpu/../pm/powerplay/hwmgr/vega12_baco.o
->>   CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/mmu/gk104.o
->>   CC [M]  drivers/gpu/drm/i915/selftests/intel_scheduler_helpers.o
->>   CC [M]  drivers/gpu/drm/i915/selftests/i915_random.o
->>   CC [M]  drivers/gpu/drm/i915/selftests/i915_selftest.o
->>   CC [M]  drivers/gpu/drm/i915/selftests/igt_atomic.o
->>   CC [M]  drivers/gpu/drm/i915/selftests/igt_flush_test.o
->>   CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/mmu/gk20a.o
->>   CC [M]  drivers/gpu/drm/i915/selftests/igt_live_test.o
->>   CC [M]  drivers/gpu/drm/i915/selftests/igt_mmap.o
->>   CC [M]  drivers/gpu/drm/amd/amdgpu/../pm/powerplay/hwmgr/smu9_baco.o
->>   CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/mmu/gm200.o
->>   CC [M]  drivers/gpu/drm/amd/amdgpu/../pm/powerplay/hwmgr/tonga_baco.o
->>   CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/mmu/gm20b.o
->>   CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/mmu/gp100.o
->>   CC [M]  drivers/gpu/drm/i915/selftests/igt_reset.o
->>   CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/mmu/gp10b.o
->>   CC [M]  drivers/gpu/drm/i915/selftests/igt_spinner.o
->>   CC [M]  drivers/gpu/drm/i915/selftests/librapl.o
->>   CC [M]  drivers/gpu/drm/i915/i915_vgpu.o
->>   HDRTEST drivers/gpu/drm/i915/display/intel_dkl_phy_regs.h
->>   HDRTEST drivers/gpu/drm/i915/display/intel_crtc_state_dump.h
->>   CC [M]  drivers/gpu/drm/amd/amdgpu/../pm/powerplay/hwmgr/polaris_baco.o
->>   HDRTEST drivers/gpu/drm/i915/display/hsw_ips.h
->>   HDRTEST drivers/gpu/drm/i915/display/g4x_hdmi.h
->>   HDRTEST drivers/gpu/drm/i915/display/intel_hdcp_regs.h
->>   CC [M]  drivers/gpu/drm/amd/amdgpu/../pm/powerplay/hwmgr/fiji_baco.o
->>   CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/mmu/gv100.o
->>   CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/mmu/tu102.o
->>   CC [M]  drivers/gpu/drm/amd/amdgpu/../pm/powerplay/hwmgr/ci_baco.o
->>   CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/mmu/mem.o
->>   CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/mmu/memnv04.o
->>   CC [M]  drivers/gpu/drm/amd/amdgpu/../pm/powerplay/hwmgr/smu7_baco.o
->>   CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/mmu/memnv50.o
->>   CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/mmu/memgf100.o
->>   HDRTEST drivers/gpu/drm/i915/display/intel_overlay.h
->>   CC [M]  drivers/gpu/drm/amd/amdgpu/../pm/powerplay/amd_powerplay.o
->>   HDRTEST drivers/gpu/drm/i915/display/intel_display.h
->>   CC [M]  drivers/gpu/drm/amd/amdgpu/../pm/legacy-dpm/legacy_dpm.o
->>   HDRTEST drivers/gpu/drm/i915/display/intel_dmc.h
->>   CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/mmu/vmm.o
->>   CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/mmu/vmmnv04.o
->>   CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/mmu/vmmnv41.o
->>   HDRTEST drivers/gpu/drm/i915/display/intel_vga.h
->>   CC [M]  drivers/gpu/drm/amd/amdgpu/../pm/legacy-dpm/kv_dpm.o
->>   HDRTEST drivers/gpu/drm/i915/display/intel_audio.h
->>   HDRTEST drivers/gpu/drm/i915/display/intel_lvds.h
->>   CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/mmu/vmmnv44.o
->>   HDRTEST drivers/gpu/drm/i915/display/intel_modeset_setup.h
->>   HDRTEST drivers/gpu/drm/i915/display/intel_cdclk.h
->>   HDRTEST drivers/gpu/drm/i915/display/intel_hotplug.h
->>   HDRTEST drivers/gpu/drm/i915/display/intel_dkl_phy.h
->>   HDRTEST drivers/gpu/drm/i915/display/intel_atomic.h
->>   HDRTEST drivers/gpu/drm/i915/display/intel_dpll.h
->>   HDRTEST drivers/gpu/drm/i915/display/vlv_dsi_pll_regs.h
->>   HDRTEST drivers/gpu/drm/i915/display/intel_dp_mst.h
->>   HDRTEST drivers/gpu/drm/i915/display/g4x_dp.h
->>   HDRTEST drivers/gpu/drm/i915/display/intel_tc.h
->>   CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/mmu/vmmnv50.o
->>   HDRTEST drivers/gpu/drm/i915/display/intel_frontbuffer.h
->>   CC [M]  drivers/gpu/drm/amd/amdgpu/../pm/legacy-dpm/kv_smc.o
->>   CC [M]  drivers/gpu/drm/amd/amdgpu/../pm/legacy-dpm/si_dpm.o
->>   HDRTEST drivers/gpu/drm/i915/display/intel_dsi_vbt.h
->>   CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/mmu/vmmmcp77.o
->>   CC [M]  drivers/gpu/drm/amd/amdgpu/../pm/legacy-dpm/si_smc.o
->>   CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/mmu/vmmgf100.o
->>   HDRTEST drivers/gpu/drm/i915/display/intel_psr.h
->>   CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/mmu/vmmgk104.o
->>   HDRTEST drivers/gpu/drm/i915/display/intel_crt.h
->>   HDRTEST drivers/gpu/drm/i915/display/intel_opregion.h
->>   HDRTEST drivers/gpu/drm/i915/display/intel_snps_phy_regs.h
->>   HDRTEST drivers/gpu/drm/i915/display/intel_global_state.h
->>   HDRTEST drivers/gpu/drm/i915/display/intel_lpe_audio.h
->>   HDRTEST drivers/gpu/drm/i915/display/intel_drrs.h
->>   CC [M]  drivers/gpu/drm/amd/amdgpu/../pm/amdgpu_dpm.o
->>   CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/mmu/vmmgk20a.o
->>   CC [M]  drivers/gpu/drm/amd/amdgpu/../pm/amdgpu_pm.o
->>   CC [M]  drivers/gpu/drm/amd/amdgpu/../pm/amdgpu_dpm_internal.o
->>   CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/mmu/vmmgm200.o
->>   HDRTEST drivers/gpu/drm/i915/display/intel_fbdev.h
->>   HDRTEST drivers/gpu/drm/i915/display/intel_hdmi.h
->>   CC [M]  drivers/gpu/drm/amd/amdgpu/../display/amdgpu_dm/amdgpu_dm.o
->>   CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/mmu/vmmgm20b.o
->>   HDRTEST drivers/gpu/drm/i915/display/intel_fdi.h
->>   HDRTEST drivers/gpu/drm/i915/display/intel_fb.h
->>   HDRTEST drivers/gpu/drm/i915/display/intel_qp_tables.h
->>   HDRTEST drivers/gpu/drm/i915/display/intel_vdsc.h
->>   HDRTEST drivers/gpu/drm/i915/display/intel_snps_phy.h
->>   CC [M]  drivers/gpu/drm/amd/amdgpu/../display/amdgpu_dm/amdgpu_dm_plane.o
->>   CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/mmu/vmmgp100.o
->>   HDRTEST drivers/gpu/drm/i915/display/intel_display_core.h
->>   CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/mmu/vmmgp10b.o
->>   HDRTEST drivers/gpu/drm/i915/display/vlv_dsi_pll.h
->>   HDRTEST drivers/gpu/drm/i915/display/intel_dvo_dev.h
->>   HDRTEST drivers/gpu/drm/i915/display/intel_hdcp.h
->>   CC [M]  drivers/gpu/drm/amd/amdgpu/../display/amdgpu_dm/amdgpu_dm_crtc.o
->>   CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/mmu/vmmgv100.o
->>   CC [M]  drivers/gpu/drm/amd/amdgpu/../display/amdgpu_dm/amdgpu_dm_irq.o
->>   CC [M]  drivers/gpu/drm/amd/amdgpu/../display/amdgpu_dm/amdgpu_dm_mst_types.o
->>   CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/mmu/vmmtu102.o
->>   HDRTEST drivers/gpu/drm/i915/display/intel_sdvo_regs.h
->>   CC [M]  drivers/gpu/drm/amd/amdgpu/../display/amdgpu_dm/amdgpu_dm_color.o
->>   CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/mmu/umem.o
->>   HDRTEST drivers/gpu/drm/i915/display/intel_pch_refclk.h
->>   HDRTEST drivers/gpu/drm/i915/display/intel_display_trace.h
->>   HDRTEST drivers/gpu/drm/i915/display/intel_display_power.h
->>   CC [M]  drivers/gpu/drm/amd/amdgpu/../display/amdgpu_dm/dc_fpu.o
->>   CC [M]  drivers/gpu/drm/amd/amdgpu/../display/amdgpu_dm/amdgpu_dm_services.o
->>   CC [M]  drivers/gpu/drm/amd/amdgpu/../display/amdgpu_dm/amdgpu_dm_helpers.o
->>   CC [M]  drivers/gpu/drm/amd/amdgpu/../display/amdgpu_dm/amdgpu_dm_pp_smu.o
->>   CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/mmu/ummu.o
->>   CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/mmu/uvmm.o
->>   CC [M]  drivers/gpu/drm/amd/amdgpu/../display/amdgpu_dm/amdgpu_dm_psr.o
->>   HDRTEST drivers/gpu/drm/i915/display/i9xx_plane.h
->>   HDRTEST drivers/gpu/drm/i915/display/intel_dp_aux_backlight.h
->>   HDRTEST drivers/gpu/drm/i915/display/intel_dpll_mgr.h
->>   HDRTEST drivers/gpu/drm/i915/display/vlv_dsi.h
->>   CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/mxm/base.o
->>   HDRTEST drivers/gpu/drm/i915/display/intel_plane_initial.h
->>   CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/mxm/mxms.o
->>   HDRTEST drivers/gpu/drm/i915/display/intel_fifo_underrun.h
->>   HDRTEST drivers/gpu/drm/i915/display/intel_cursor.h
->>   CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/mxm/nv50.o
->>   HDRTEST drivers/gpu/drm/i915/display/vlv_dsi_regs.h
->>   HDRTEST drivers/gpu/drm/i915/display/skl_scaler.h
->>   CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/pci/agp.o
->>   HDRTEST drivers/gpu/drm/i915/display/intel_hti.h
->>   HDRTEST drivers/gpu/drm/i915/display/icl_dsi_regs.h
->>   CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/pci/base.o
->>   HDRTEST drivers/gpu/drm/i915/display/intel_atomic_plane.h
->>   HDRTEST drivers/gpu/drm/i915/display/skl_watermark.h
->>   HDRTEST drivers/gpu/drm/i915/display/intel_fbc.h
->>   HDRTEST drivers/gpu/drm/i915/display/intel_display_reg_defs.h
->>   CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/pci/pcie.o
->>   HDRTEST drivers/gpu/drm/i915/display/intel_acpi.h
->>   HDRTEST drivers/gpu/drm/i915/display/intel_connector.h
->>   CC [M]  drivers/gpu/drm/amd/amdgpu/../display/amdgpu_dm/amdgpu_dm_hdcp.o
->>   CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/pci/nv04.o
->>   HDRTEST drivers/gpu/drm/i915/display/intel_dpt.h
->>   CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/pci/nv40.o
->>   CC [M]  drivers/gpu/drm/amd/amdgpu/../display/amdgpu_dm/amdgpu_dm_crc.o
->>   CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/pci/nv46.o
->>   HDRTEST drivers/gpu/drm/i915/display/intel_quirks.h
->>   HDRTEST drivers/gpu/drm/i915/display/intel_dp_link_training.h
->>   CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/pci/nv4c.o
->>   CC [M]  drivers/gpu/drm/amd/amdgpu/../display/amdgpu_dm/amdgpu_dm_debugfs.o
->>   CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/pci/g84.o
->>   CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dc/basics/conversion.o
->>   CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dc/basics/fixpt31_32.o
->>   CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dc/basics/vector.o
->>   HDRTEST drivers/gpu/drm/i915/display/intel_color.h
->>   CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/pci/g92.o
->>   CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/pci/g94.o
->>   CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dc/basics/dc_common.o
->>   CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/pci/gf100.o
->>   CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/pci/gf106.o
->>   CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dc/bios/bios_parser.o
->>   CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/pci/gk104.o
->>   HDRTEST drivers/gpu/drm/i915/display/intel_crtc.h
->>   CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dc/bios/bios_parser_interface.o
->>   CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dc/bios/bios_parser_helper.o
->>   HDRTEST drivers/gpu/drm/i915/display/intel_display_debugfs.h
->>   CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dc/bios/command_table.o
->>   HDRTEST drivers/gpu/drm/i915/display/intel_modeset_verify.h
->>   CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/pci/gp100.o
->>   CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/pmu/base.o
->>   CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/pmu/memx.o
->>   CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dc/bios/command_table_helper.o
->>   CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dc/bios/bios_parser_common.o
->>   CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/pmu/gt215.o
->>   CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/pmu/gf100.o
->>   CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dc/bios/command_table2.o
->>   CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dc/bios/command_table_helper2.o
->>   CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/pmu/gf119.o
->>   CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dc/bios/bios_parser2.o
->>   CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/pmu/gk104.o
->>   CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dc/bios/dce60/command_table_helper_dce60.o
->>   CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dc/bios/dce80/command_table_helper_dce80.o
->>   HDRTEST drivers/gpu/drm/i915/display/intel_display_power_well.h
->>   CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/pmu/gk110.o
->>   HDRTEST drivers/gpu/drm/i915/display/intel_pipe_crc.h
->>   CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/pmu/gk208.o
->>   CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/pmu/gk20a.o
->>   CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dc/bios/dce110/command_table_helper_dce110.o
->>   CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/pmu/gm107.o
->>   HDRTEST drivers/gpu/drm/i915/display/intel_audio_regs.h
->>   CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dc/bios/dce112/command_table_helper_dce112.o
->>   HDRTEST drivers/gpu/drm/i915/display/intel_panel.h
->>   HDRTEST drivers/gpu/drm/i915/display/intel_sprite.h
->>   CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/pmu/gm200.o
->>   CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dc/bios/dce112/command_table_helper2_dce112.o
->>   HDRTEST drivers/gpu/drm/i915/display/intel_tv.h
->>   HDRTEST drivers/gpu/drm/i915/display/intel_hti_regs.h
->>   HDRTEST drivers/gpu/drm/i915/display/intel_vrr.h
->>   CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dc/dml/calcs/dce_calcs.o
->>   CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/pmu/gm20b.o
->>   HDRTEST drivers/gpu/drm/i915/display/skl_universal_plane.h
->>   CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dc/dml/calcs/custom_float.o
->>   CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/pmu/gp102.o
->>   HDRTEST drivers/gpu/drm/i915/display/intel_mg_phy_regs.h
->>   CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/pmu/gp10b.o
->>   CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dc/dml/calcs/bw_fixed.o
->>   CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/privring/gf100.o
->>   HDRTEST drivers/gpu/drm/i915/display/intel_bw.h
->>   HDRTEST drivers/gpu/drm/i915/display/intel_de.h
->>   CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dc/dml/display_mode_lib.o
->>   CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/privring/gf117.o
->>   CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/privring/gk104.o
->>   CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/privring/gk20a.o
->>   CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dc/dml/display_rq_dlg_helpers.o
->>   CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dc/dml/dml1_display_rq_dlg_calc.o
->>   CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/privring/gm200.o
->>   CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dc/dml/dcn10/dcn10_fpu.o
->>   HDRTEST drivers/gpu/drm/i915/display/intel_gmbus_regs.h
->>   CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/privring/gp10b.o
->>   CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/therm/base.o
->>   HDRTEST drivers/gpu/drm/i915/display/intel_dsi_dcs_backlight.h
->>   CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dc/dml/dcn20/dcn20_fpu.o
->>   HDRTEST drivers/gpu/drm/i915/display/intel_dvo.h
->>   HDRTEST drivers/gpu/drm/i915/display/intel_sdvo.h
->>   CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dc/dml/display_mode_vba.o
->>   CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dc/dml/dcn20/display_rq_dlg_calc_20.o
->>   CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/therm/fan.o
->>   CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dc/dml/dcn20/display_mode_vba_20.o
->>   HDRTEST drivers/gpu/drm/i915/display/intel_dp_aux.h
->>   HDRTEST drivers/gpu/drm/i915/display/intel_combo_phy.h
->>   CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dc/dml/dcn20/display_rq_dlg_calc_20v2.o
->>   HDRTEST drivers/gpu/drm/i915/display/intel_dvo_regs.h
->>   CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/therm/fannil.o
->>   CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dc/dml/dcn20/display_mode_vba_20v2.o
->>   CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/therm/fanpwm.o
->>   HDRTEST drivers/gpu/drm/i915/display/intel_gmbus.h
->>   HDRTEST drivers/gpu/drm/i915/display/intel_dsi.h
->>   HDRTEST drivers/gpu/drm/i915/display/intel_dmc_regs.h
->>   CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dc/dml/dcn21/display_rq_dlg_calc_21.o
->>   CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/therm/fantog.o
->>   CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dc/dml/dcn21/display_mode_vba_21.o
->>   HDRTEST drivers/gpu/drm/i915/display/intel_ddi.h
->>   CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dc/dml/dcn30/dcn30_fpu.o
->>   HDRTEST drivers/gpu/drm/i915/display/intel_dsb.h
->>   CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/therm/ic.o
->>   HDRTEST drivers/gpu/drm/i915/display/intel_bios.h
->>   CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dc/dml/dcn30/display_mode_vba_30.o
->>   HDRTEST drivers/gpu/drm/i915/display/intel_pch_display.h
->>   CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dc/dml/dcn30/display_rq_dlg_calc_30.o
->>   CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/therm/temp.o
->>   HDRTEST drivers/gpu/drm/i915/display/intel_display_types.h
->>   CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dc/dml/dcn31/display_mode_vba_31.o
->>   CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/therm/nv40.o
->>   CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dc/dml/dcn31/display_rq_dlg_calc_31.o
->>   CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/therm/nv50.o
->>   CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/therm/g84.o
->>   CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/therm/gt215.o
->>   CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dc/dml/dcn314/display_mode_vba_314.o
->>   CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/therm/gf100.o
->>   CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/therm/gf119.o
->>   CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/therm/gk104.o
->>   CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dc/dml/dcn314/display_rq_dlg_calc_314.o
->>   CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/therm/gm107.o
->>   CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dc/dml/dcn32/display_mode_vba_32.o
->>   CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/therm/gm200.o
->>   HDRTEST drivers/gpu/drm/i915/display/intel_backlight.h
->>   CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/therm/gp100.o
->>   HDRTEST drivers/gpu/drm/i915/display/intel_dp.h
->>   CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/timer/base.o
->>   HDRTEST drivers/gpu/drm/i915/display/intel_backlight_regs.h
->>   HDRTEST drivers/gpu/drm/i915/display/intel_combo_phy_regs.h
->>   CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dc/dml/dcn32/display_rq_dlg_calc_32.o
->>   CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/timer/nv04.o
->>   CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dc/dml/dcn32/display_mode_vba_util_32.o
->>   CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dc/dml/dcn31/dcn31_fpu.o
->>   CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dc/dml/dcn32/dcn32_fpu.o
->>   CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/timer/nv40.o
->>   CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/timer/nv41.o
->>   CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/timer/gk20a.o
->>   CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dc/dml/dcn321/dcn321_fpu.o
->>   CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/top/base.o
->>   CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dc/dml/dcn301/dcn301_fpu.o
->>   CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/top/gk104.o
->>   CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/top/ga100.o
->>   HDRTEST drivers/gpu/drm/i915/display/intel_display_power_map.h
->>   HDRTEST drivers/gpu/drm/i915/display/intel_ddi_buf_trans.h
->>   CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/vfn/base.o
->>   HDRTEST drivers/gpu/drm/i915/display/icl_dsi.h
->>   CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/vfn/uvfn.o
->>   CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dc/dml/dcn302/dcn302_fpu.o
->>   CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/vfn/gv100.o
->>   CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dc/dml/dcn303/dcn303_fpu.o
->>   HDRTEST drivers/gpu/drm/i915/display/intel_lspcon.h
->>   HDRTEST drivers/gpu/drm/i915/display/intel_dpio_phy.h
->>   CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/vfn/tu102.o
->>   CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/vfn/ga100.o
->>   HDRTEST drivers/gpu/drm/i915/display/intel_dp_hdcp.h
->>   CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/volt/base.o
->>   HDRTEST drivers/gpu/drm/i915/display/intel_fb_pin.h
->>   CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/volt/gpio.o
->>   HDRTEST drivers/gpu/drm/i915/display/intel_pps.h
->>   CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/volt/nv40.o
->>   CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/volt/gf100.o
->>   CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dc/dml/dcn314/dcn314_fpu.o
->>   CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dc/dml/dsc/rc_calc_fpu.o
->>   CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/volt/gf117.o
->>   CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dc/dml/calcs/dcn_calcs.o
->>   CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/volt/gk104.o
->>   HDRTEST drivers/gpu/drm/i915/gem/i915_gem_ttm.h
->>   CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dc/dml/calcs/dcn_calc_math.o
->>   HDRTEST drivers/gpu/drm/i915/gem/i915_gem_region.h
->>   HDRTEST drivers/gpu/drm/i915/gem/i915_gem_context_types.h
->>   CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dc/dml/calcs/dcn_calc_auto.o
->>   CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/volt/gk20a.o
->>   CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/volt/gm20b.o
->>   CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dc/clk_mgr/clk_mgr.o
->>   HDRTEST drivers/gpu/drm/i915/gem/i915_gem_lmem.h
->>   HDRTEST drivers/gpu/drm/i915/gem/i915_gem_mman.h
->>   CC [M]  drivers/gpu/drm/nouveau/nvkm/engine/falcon.o
->>   CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dc/clk_mgr/dce60/dce60_clk_mgr.o
->>   CC [M]  drivers/gpu/drm/nouveau/nvkm/engine/xtensa.o
->>   CC [M]  drivers/gpu/drm/nouveau/nvkm/engine/bsp/g84.o
->>   CC [M]  drivers/gpu/drm/nouveau/nvkm/engine/ce/gt215.o
->>   CC [M]  drivers/gpu/drm/nouveau/nvkm/engine/ce/gf100.o
->>   HDRTEST drivers/gpu/drm/i915/gem/i915_gem_object_types.h
->>   CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dc/clk_mgr/dce100/dce_clk_mgr.o
->>   HDRTEST drivers/gpu/drm/i915/gem/i915_gem_context.h
->>   CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dc/clk_mgr/dce110/dce110_clk_mgr.o
->>   CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dc/clk_mgr/dce112/dce112_clk_mgr.o
->>   HDRTEST drivers/gpu/drm/i915/gem/i915_gem_clflush.h
->>   CC [M]  drivers/gpu/drm/nouveau/nvkm/engine/ce/gk104.o
->>   CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dc/clk_mgr/dce120/dce120_clk_mgr.o
->>   HDRTEST drivers/gpu/drm/i915/gem/i915_gem_tiling.h
->>   HDRTEST drivers/gpu/drm/i915/gem/i915_gem_stolen.h
->>   CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dc/clk_mgr/dcn10/rv1_clk_mgr.o
->>   CC [M]  drivers/gpu/drm/nouveau/nvkm/engine/ce/gm107.o
->>   CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dc/clk_mgr/dcn10/rv1_clk_mgr_vbios_smu.o
->>   CC [M]  drivers/gpu/drm/nouveau/nvkm/engine/ce/gm200.o
->>   CC [M]  drivers/gpu/drm/nouveau/nvkm/engine/ce/gp100.o
->>   CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dc/clk_mgr/dcn10/rv2_clk_mgr.o
->>   CC [M]  drivers/gpu/drm/nouveau/nvkm/engine/ce/gp102.o
->>   CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dc/clk_mgr/dcn20/dcn20_clk_mgr.o
->>   CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dc/clk_mgr/dcn201/dcn201_clk_mgr.o
->>   CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dc/clk_mgr/dcn21/rn_clk_mgr.o
->>   CC [M]  drivers/gpu/drm/nouveau/nvkm/engine/ce/gv100.o
->>   HDRTEST drivers/gpu/drm/i915/gem/i915_gem_ttm_pm.h
->>   HDRTEST drivers/gpu/drm/i915/gem/i915_gem_create.h
->>   CC [M]  drivers/gpu/drm/nouveau/nvkm/engine/ce/tu102.o
->>   HDRTEST drivers/gpu/drm/i915/gem/i915_gem_ttm_move.h
->>   HDRTEST drivers/gpu/drm/i915/gem/i915_gem_ioctls.h
->>   HDRTEST drivers/gpu/drm/i915/gem/i915_gem_domain.h
->>   CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dc/clk_mgr/dcn21/rn_clk_mgr_vbios_smu.o
->>   CC [M]  drivers/gpu/drm/nouveau/nvkm/engine/ce/ga100.o
->>   HDRTEST drivers/gpu/drm/i915/gem/i915_gem_internal.h
->>   CC [M]  drivers/gpu/drm/nouveau/nvkm/engine/ce/ga102.o
->>   HDRTEST drivers/gpu/drm/i915/gem/i915_gem_dmabuf.h
->>   CC [M]  drivers/gpu/drm/nouveau/nvkm/engine/cipher/g84.o
->>   HDRTEST drivers/gpu/drm/i915/gem/selftests/mock_context.h
->>   HDRTEST drivers/gpu/drm/i915/gem/selftests/huge_gem_object.h
->>   CC [M]  drivers/gpu/drm/nouveau/nvkm/engine/device/acpi.o
->>   CC [M]  drivers/gpu/drm/nouveau/nvkm/engine/device/base.o
->>   CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dc/clk_mgr/dcn30/dcn30_clk_mgr.o
->>   HDRTEST drivers/gpu/drm/i915/gem/selftests/mock_gem_object.h
->>   CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dc/clk_mgr/dcn30/dcn30_clk_mgr_smu_msg.o
->>   CC [M]  drivers/gpu/drm/nouveau/nvkm/engine/device/ctrl.o
->>   CC [M]  drivers/gpu/drm/nouveau/nvkm/engine/device/pci.o
->>   CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dc/clk_mgr/dcn301/vg_clk_mgr.o
->>   CC [M]  drivers/gpu/drm/nouveau/nvkm/engine/device/tegra.o
->>   CC [M]  drivers/gpu/drm/nouveau/nvkm/engine/device/user.o
->>   HDRTEST drivers/gpu/drm/i915/gem/selftests/mock_dmabuf.h
->>   CC [M]  drivers/gpu/drm/nouveau/nvkm/engine/disp/base.o
->>   CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dc/clk_mgr/dcn301/dcn301_smu.o
->>   CC [M]  drivers/gpu/drm/nouveau/nvkm/engine/disp/chan.o
->>   HDRTEST drivers/gpu/drm/i915/gem/selftests/igt_gem_utils.h
->>   CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dc/clk_mgr/dcn31/dcn31_smu.o
->>   CC [M]  drivers/gpu/drm/nouveau/nvkm/engine/disp/conn.o
->>   HDRTEST drivers/gpu/drm/i915/gem/i915_gem_userptr.h
->>   CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dc/clk_mgr/dcn31/dcn31_clk_mgr.o
->>   CC [M]  drivers/gpu/drm/nouveau/nvkm/engine/disp/dp.o
->>   HDRTEST drivers/gpu/drm/i915/gem/i915_gem_pm.h
->>   CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dc/clk_mgr/dcn314/dcn314_smu.o
->>   CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dc/clk_mgr/dcn314/dcn314_clk_mgr.o
->>   CC [M]  drivers/gpu/drm/nouveau/nvkm/engine/disp/hdmi.o
->>   CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dc/clk_mgr/dcn315/dcn315_smu.o
->>   CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dc/clk_mgr/dcn315/dcn315_clk_mgr.o
->>   CC [M]  drivers/gpu/drm/nouveau/nvkm/engine/disp/head.o
->>   HDRTEST drivers/gpu/drm/i915/gem/i915_gem_shrinker.h
->>   CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dc/clk_mgr/dcn316/dcn316_smu.o
->>   CC [M]  drivers/gpu/drm/nouveau/nvkm/engine/disp/ior.o
->>   HDRTEST drivers/gpu/drm/i915/gem/i915_gemfs.h
->>   CC [M]  drivers/gpu/drm/nouveau/nvkm/engine/disp/outp.o
->>   HDRTEST drivers/gpu/drm/i915/gem/i915_gem_object.h
->>   CC [M]  drivers/gpu/drm/nouveau/nvkm/engine/disp/vga.o
->>   CC [M]  drivers/gpu/drm/nouveau/nvkm/engine/disp/nv04.o
->>   CC [M]  drivers/gpu/drm/nouveau/nvkm/engine/disp/nv50.o
->>   CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dc/clk_mgr/dcn316/dcn316_clk_mgr.o
->>   CC [M]  drivers/gpu/drm/nouveau/nvkm/engine/disp/g84.o
->>   CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dc/clk_mgr/dcn32/dcn32_clk_mgr.o
->>   HDRTEST drivers/gpu/drm/i915/gt/intel_timeline_types.h
->>   CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dc/clk_mgr/dcn32/dcn32_clk_mgr_smu_msg.o
->>   HDRTEST drivers/gpu/drm/i915/gt/selftest_engine.h
->>   HDRTEST drivers/gpu/drm/i915/gt/intel_breadcrumbs.h
->>   CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dc/dce/dce_audio.o
->>   CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dc/dce/dce_stream_encoder.o
->>   CC [M]  drivers/gpu/drm/nouveau/nvkm/engine/disp/g94.o
->>   HDRTEST drivers/gpu/drm/i915/gt/intel_engine_heartbeat.h
->>   CC [M]  drivers/gpu/drm/nouveau/nvkm/engine/disp/gt200.o
->>   CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dc/dce/dce_link_encoder.o
->>   HDRTEST drivers/gpu/drm/i915/gt/intel_context_types.h
->>   CC [M]  drivers/gpu/drm/nouveau/nvkm/engine/disp/mcp77.o
->>   CC [M]  drivers/gpu/drm/nouveau/nvkm/engine/disp/gt215.o
->>   CC [M]  drivers/gpu/drm/nouveau/nvkm/engine/disp/mcp89.o
->>   HDRTEST drivers/gpu/drm/i915/gt/intel_execlists_submission.h
->>   CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dc/dce/dce_hwseq.o
->>   CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dc/dce/dce_mem_input.o
->>   CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dc/dce/dce_clock_source.o
->>   CC [M]  drivers/gpu/drm/nouveau/nvkm/engine/disp/gf119.o
->>   HDRTEST drivers/gpu/drm/i915/gt/intel_gt_pm.h
->>   CC [M]  drivers/gpu/drm/nouveau/nvkm/engine/disp/gk104.o
->>   HDRTEST drivers/gpu/drm/i915/gt/selftest_rc6.h
->>   CC [M]  drivers/gpu/drm/nouveau/nvkm/engine/disp/gk110.o
->>   CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dc/dce/dce_scl_filters.o
->>   HDRTEST drivers/gpu/drm/i915/gt/intel_llc_types.h
->>   CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dc/dce/dce_transform.o
->>   CC [M]  drivers/gpu/drm/nouveau/nvkm/engine/disp/gm107.o
->>   HDRTEST drivers/gpu/drm/i915/gt/intel_gt.h
->>   CC [M]  drivers/gpu/drm/nouveau/nvkm/engine/disp/gm200.o
->>   CC [M]  drivers/gpu/drm/nouveau/nvkm/engine/disp/gp100.o
->>   CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dc/dce/dce_opp.o
->>   CC [M]  drivers/gpu/drm/nouveau/nvkm/engine/disp/gp102.o
->>   CC [M]  drivers/gpu/drm/nouveau/nvkm/engine/disp/gv100.o
->>   HDRTEST drivers/gpu/drm/i915/gt/intel_region_lmem.h
->>   HDRTEST drivers/gpu/drm/i915/gt/intel_gt_requests.h
->>   HDRTEST drivers/gpu/drm/i915/gt/intel_ggtt_gmch.h
->>   CC [M]  drivers/gpu/drm/nouveau/nvkm/engine/disp/tu102.o
->>   CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dc/dce/dce_dmcu.o
->>   CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dc/dce/dce_abm.o
->>   CC [M]  drivers/gpu/drm/nouveau/nvkm/engine/disp/ga102.o
->>   CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dc/dce/dce_ipp.o
->>   HDRTEST drivers/gpu/drm/i915/gt/gen8_ppgtt.h
->>   CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dc/dce/dce_aux.o
->>   CC [M]  drivers/gpu/drm/nouveau/nvkm/engine/disp/udisp.o
->>   HDRTEST drivers/gpu/drm/i915/gt/intel_gt_mcr.h
->>   CC [M]  drivers/gpu/drm/nouveau/nvkm/engine/disp/uconn.o
->>   CC [M]  drivers/gpu/drm/nouveau/nvkm/engine/disp/uoutp.o
->>   CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dc/dce/dce_i2c.o
->>   CC [M]  drivers/gpu/drm/nouveau/nvkm/engine/disp/uhead.o
->>   CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dc/dce/dce_i2c_hw.o
->>   CC [M]  drivers/gpu/drm/nouveau/nvkm/engine/dma/base.o
->>   HDRTEST drivers/gpu/drm/i915/gt/intel_timeline.h
->>   CC [M]  drivers/gpu/drm/nouveau/nvkm/engine/dma/nv04.o
->>   CC [M]  drivers/gpu/drm/nouveau/nvkm/engine/dma/nv50.o
->>   CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dc/dce/dce_i2c_sw.o
->>   CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dc/dce/dmub_psr.o
->>   HDRTEST drivers/gpu/drm/i915/gt/gen6_engine_cs.h
->>   CC [M]  drivers/gpu/drm/nouveau/nvkm/engine/dma/gf100.o
->>   CC [M]  drivers/gpu/drm/nouveau/nvkm/engine/dma/gf119.o
->>   HDRTEST drivers/gpu/drm/i915/gt/intel_gt_pm_debugfs.h
->>   CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dc/dce/dmub_abm.o
->>   HDRTEST drivers/gpu/drm/i915/gt/intel_workarounds_types.h
->>   CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dc/dce/dce_panel_cntl.o
->>   CC [M]  drivers/gpu/drm/nouveau/nvkm/engine/dma/gv100.o
->>   HDRTEST drivers/gpu/drm/i915/gt/selftest_rps.h
->>   HDRTEST drivers/gpu/drm/i915/gt/intel_sa_media.h
->>   CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dc/dce/dmub_hw_lock_mgr.o
->>   HDRTEST drivers/gpu/drm/i915/gt/intel_gt_debugfs.h
->>   CC [M]  drivers/gpu/drm/nouveau/nvkm/engine/dma/user.o
->>   CC [M]  drivers/gpu/drm/nouveau/nvkm/engine/dma/usernv04.o
->>   CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dc/dce/dmub_outbox.o
->>   CC [M]  drivers/gpu/drm/nouveau/nvkm/engine/dma/usernv50.o
->>   CC [M]  drivers/gpu/drm/nouveau/nvkm/engine/dma/usergf100.o
->>   CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dc/gpio/gpio_base.o
->>   CC [M]  drivers/gpu/drm/nouveau/nvkm/engine/dma/usergf119.o
->>   CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dc/gpio/gpio_service.o
->>   HDRTEST drivers/gpu/drm/i915/gt/intel_gt_clock_utils.h
->>   HDRTEST drivers/gpu/drm/i915/gt/intel_rps_types.h
->>   CC [M]  drivers/gpu/drm/nouveau/nvkm/engine/dma/usergv100.o
->>   CC [M]  drivers/gpu/drm/nouveau/nvkm/engine/fifo/base.o
->>   CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dc/gpio/hw_factory.o
->>   HDRTEST drivers/gpu/drm/i915/gt/selftest_engine_heartbeat.h
->>   CC [M]  drivers/gpu/drm/nouveau/nvkm/engine/fifo/cgrp.o
->>   HDRTEST drivers/gpu/drm/i915/gt/sysfs_engines.h
->>   CC [M]  drivers/gpu/drm/nouveau/nvkm/engine/fifo/chan.o
->>   CC [M]  drivers/gpu/drm/nouveau/nvkm/engine/fifo/chid.o
->>   CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dc/gpio/hw_gpio.o
->>   HDRTEST drivers/gpu/drm/i915/gt/gen7_renderclear.h
->>   CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dc/gpio/hw_hpd.o
->>   HDRTEST drivers/gpu/drm/i915/gt/intel_context.h
->>   HDRTEST drivers/gpu/drm/i915/gt/intel_wopcm.h
->>   CC [M]  drivers/gpu/drm/nouveau/nvkm/engine/fifo/runl.o
->>   HDRTEST drivers/gpu/drm/i915/gt/intel_mocs.h
->>   CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dc/gpio/hw_ddc.o
->>   CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dc/gpio/hw_generic.o
->>   CC [M]  drivers/gpu/drm/nouveau/nvkm/engine/fifo/runq.o
->>   CC [M]  drivers/gpu/drm/nouveau/nvkm/engine/fifo/nv04.o
->>   CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dc/gpio/hw_translate.o
->>   CC [M]  drivers/gpu/drm/nouveau/nvkm/engine/fifo/nv10.o
->>   HDRTEST drivers/gpu/drm/i915/gt/intel_engine_pm.h
->>   CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dc/gpio/dce60/hw_translate_dce60.o
->>   CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dc/gpio/dce60/hw_factory_dce60.o
->>   CC [M]  drivers/gpu/drm/nouveau/nvkm/engine/fifo/nv17.o
->>   CC [M]  drivers/gpu/drm/nouveau/nvkm/engine/fifo/nv40.o
->>   CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dc/gpio/dce80/hw_translate_dce80.o
->>   CC [M]  drivers/gpu/drm/nouveau/nvkm/engine/fifo/nv50.o
->>   CC [M]  drivers/gpu/drm/nouveau/nvkm/engine/fifo/g84.o
->>   CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dc/gpio/dce80/hw_factory_dce80.o
->>   CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dc/gpio/dce110/hw_translate_dce110.o
->>   CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dc/gpio/dce110/hw_factory_dce110.o
->>   CC [M]  drivers/gpu/drm/nouveau/nvkm/engine/fifo/g98.o
->>   CC [M]  drivers/gpu/drm/nouveau/nvkm/engine/fifo/gf100.o
->>   CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dc/gpio/dce120/hw_translate_dce120.o
->>   CC [M]  drivers/gpu/drm/nouveau/nvkm/engine/fifo/gk104.o
->>   CC [M]  drivers/gpu/drm/nouveau/nvkm/engine/fifo/gk110.o
->>   CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dc/gpio/dce120/hw_factory_dce120.o
->>   CC [M]  drivers/gpu/drm/nouveau/nvkm/engine/fifo/gk208.o
->>   CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dc/gpio/dcn10/hw_translate_dcn10.o
->>   CC [M]  drivers/gpu/drm/nouveau/nvkm/engine/fifo/gk20a.o
->>   CC [M]  drivers/gpu/drm/nouveau/nvkm/engine/fifo/gm107.o
->>   CC [M]  drivers/gpu/drm/nouveau/nvkm/engine/fifo/gm200.o
->>   CC [M]  drivers/gpu/drm/nouveau/nvkm/engine/fifo/gp100.o
->>   CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dc/gpio/dcn10/hw_factory_dcn10.o
->>   CC [M]  drivers/gpu/drm/nouveau/nvkm/engine/fifo/gv100.o
->>   CC [M]  drivers/gpu/drm/nouveau/nvkm/engine/fifo/tu102.o
->>   CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dc/gpio/dcn20/hw_translate_dcn20.o
->>   CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dc/gpio/dcn20/hw_factory_dcn20.o
->>   HDRTEST drivers/gpu/drm/i915/gt/intel_gt_sysfs.h
->>   CC [M]  drivers/gpu/drm/nouveau/nvkm/engine/fifo/ga100.o
->>   HDRTEST drivers/gpu/drm/i915/gt/intel_rc6.h
->>   CC [M]  drivers/gpu/drm/nouveau/nvkm/engine/fifo/ga102.o
->>   CC [M]  drivers/gpu/drm/nouveau/nvkm/engine/fifo/ucgrp.o
->>   HDRTEST drivers/gpu/drm/i915/gt/intel_ring_types.h
->>   CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dc/gpio/dcn21/hw_translate_dcn21.o
->>   CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dc/gpio/dcn21/hw_factory_dcn21.o
->>   CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dc/gpio/dcn30/hw_translate_dcn30.o
->>   CC [M]  drivers/gpu/drm/nouveau/nvkm/engine/fifo/uchan.o
->>   HDRTEST drivers/gpu/drm/i915/gt/intel_workarounds.h
->>   CC [M]  drivers/gpu/drm/nouveau/nvkm/engine/gr/base.o
->>   CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dc/gpio/dcn30/hw_factory_dcn30.o
->>   CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dc/gpio/dcn315/hw_translate_dcn315.o
->>   HDRTEST drivers/gpu/drm/i915/gt/intel_engine_regs.h
->>   CC [M]  drivers/gpu/drm/nouveau/nvkm/engine/gr/nv04.o
->>   CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dc/gpio/dcn315/hw_factory_dcn315.o
->>   CC [M]  drivers/gpu/drm/nouveau/nvkm/engine/gr/nv10.o
->>   HDRTEST drivers/gpu/drm/i915/gt/intel_gt_pm_irq.h
->>   HDRTEST drivers/gpu/drm/i915/gt/shmem_utils.h
->>   HDRTEST drivers/gpu/drm/i915/gt/intel_engine.h
->>   CC [M]  drivers/gpu/drm/nouveau/nvkm/engine/gr/nv15.o
->>   CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dc/gpio/dcn32/hw_translate_dcn32.o
->>   CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dc/gpio/dcn32/hw_factory_dcn32.o
->>   CC [M]  drivers/gpu/drm/nouveau/nvkm/engine/gr/nv17.o
->>   CC [M]  drivers/gpu/drm/nouveau/nvkm/engine/gr/nv20.o
->>   CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dc/irq/irq_service.o
->>   CC [M]  drivers/gpu/drm/nouveau/nvkm/engine/gr/nv25.o
->>   CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dc/irq/dce60/irq_service_dce60.o
->>   HDRTEST drivers/gpu/drm/i915/gt/intel_reset_types.h
->>   CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dc/irq/dce80/irq_service_dce80.o
->>   CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dc/irq/dce110/irq_service_dce110.o
->>   CC [M]  drivers/gpu/drm/nouveau/nvkm/engine/gr/nv2a.o
->>   CC [M]  drivers/gpu/drm/nouveau/nvkm/engine/gr/nv30.o
->>   CC [M]  drivers/gpu/drm/nouveau/nvkm/engine/gr/nv34.o
->>   CC [M]  drivers/gpu/drm/nouveau/nvkm/engine/gr/nv35.o
->>   CC [M]  drivers/gpu/drm/nouveau/nvkm/engine/gr/nv40.o
->>   HDRTEST drivers/gpu/drm/i915/gt/intel_gt_regs.h
->>   CC [M]  drivers/gpu/drm/nouveau/nvkm/engine/gr/nv44.o
->>   HDRTEST drivers/gpu/drm/i915/gt/intel_reset.h
->>   CC [M]  drivers/gpu/drm/nouveau/nvkm/engine/gr/nv50.o
->>   CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dc/irq/dce120/irq_service_dce120.o
->>   CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dc/irq/dcn10/irq_service_dcn10.o
->>   CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dc/irq/dcn20/irq_service_dcn20.o
->>   CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dc/irq/dcn21/irq_service_dcn21.o
->>   HDRTEST drivers/gpu/drm/i915/gt/uc/intel_gsc_fw.h
->>   CC [M]  drivers/gpu/drm/nouveau/nvkm/engine/gr/g84.o
->>   HDRTEST drivers/gpu/drm/i915/gt/uc/guc_capture_fwif.h
->>   CC [M]  drivers/gpu/drm/nouveau/nvkm/engine/gr/gt200.o
->>   CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dc/irq/dcn201/irq_service_dcn201.o
->>   CC [M]  drivers/gpu/drm/nouveau/nvkm/engine/gr/mcp79.o
->>   CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dc/irq/dcn30/irq_service_dcn30.o
->>   CC [M]  drivers/gpu/drm/nouveau/nvkm/engine/gr/gt215.o
->>   CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dc/irq/dcn302/irq_service_dcn302.o
->>   CC [M]  drivers/gpu/drm/nouveau/nvkm/engine/gr/mcp89.o
->>   CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dc/irq/dcn303/irq_service_dcn303.o
->>   CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dc/irq/dcn31/irq_service_dcn31.o
->>   CC [M]  drivers/gpu/drm/nouveau/nvkm/engine/gr/gf100.o
->>   CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dc/irq/dcn314/irq_service_dcn314.o
->>   CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dc/irq/dcn315/irq_service_dcn315.o
->>   HDRTEST drivers/gpu/drm/i915/gt/uc/intel_uc.h
->>   CC [M]  drivers/gpu/drm/nouveau/nvkm/engine/gr/gf104.o
->>   CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dc/irq/dcn32/irq_service_dcn32.o
->>   CC [M]  drivers/gpu/drm/nouveau/nvkm/engine/gr/gf108.o
->>   CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dc/link/link_hwss_dio.o
->>   CC [M]  drivers/gpu/drm/nouveau/nvkm/engine/gr/gf110.o
->>   CC [M]  drivers/gpu/drm/nouveau/nvkm/engine/gr/gf117.o
->>   CC [M]  drivers/gpu/drm/nouveau/nvkm/engine/gr/gf119.o
->>   CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dc/link/link_hwss_dpia.o
->>   HDRTEST drivers/gpu/drm/i915/gt/uc/intel_uc_fw_abi.h
->>   HDRTEST drivers/gpu/drm/i915/gt/uc/intel_guc_fw.h
->>   HDRTEST drivers/gpu/drm/i915/gt/uc/intel_guc_debugfs.h
->>   CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dc/link/link_hwss_hpo_dp.o
->>   HDRTEST drivers/gpu/drm/i915/gt/uc/abi/guc_klvs_abi.h
->>   CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dc/link/link_dp_trace.o
->>   CC [M]  drivers/gpu/drm/nouveau/nvkm/engine/gr/gk104.o
->>   HDRTEST drivers/gpu/drm/i915/gt/uc/abi/guc_errors_abi.h
->>   HDRTEST drivers/gpu/drm/i915/gt/uc/abi/guc_actions_slpc_abi.h
->>   HDRTEST drivers/gpu/drm/i915/gt/uc/abi/guc_communication_mmio_abi.h
->>   CC [M]  drivers/gpu/drm/nouveau/nvkm/engine/gr/gk110.o
->>   CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dc/virtual/virtual_link_encoder.o
->>   HDRTEST drivers/gpu/drm/i915/gt/uc/abi/guc_actions_abi.h
->>   CC [M]  drivers/gpu/drm/nouveau/nvkm/engine/gr/gk110b.o
->>   HDRTEST drivers/gpu/drm/i915/gt/uc/abi/guc_communication_ctb_abi.h
->>   CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dc/virtual/virtual_stream_encoder.o
->>   CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dc/virtual/virtual_link_hwss.o
->>   CC [M]  drivers/gpu/drm/nouveau/nvkm/engine/gr/gk208.o
->>   CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dc/dcn20/dcn20_resource.o
->>   HDRTEST drivers/gpu/drm/i915/gt/uc/abi/guc_messages_abi.h
->>   HDRTEST drivers/gpu/drm/i915/gt/uc/intel_guc_reg.h
->>   HDRTEST drivers/gpu/drm/i915/gt/uc/intel_gsc_uc.h
->>   HDRTEST drivers/gpu/drm/i915/gt/uc/intel_huc.h
->>   HDRTEST drivers/gpu/drm/i915/gt/uc/intel_guc.h
->>   CC [M]  drivers/gpu/drm/nouveau/nvkm/engine/gr/gk20a.o
->>   CC [M]  drivers/gpu/drm/nouveau/nvkm/engine/gr/gm107.o
->>   CC [M]  drivers/gpu/drm/nouveau/nvkm/engine/gr/gm200.o
->>   CC [M]  drivers/gpu/drm/nouveau/nvkm/engine/gr/gm20b.o
->>   CC [M]  drivers/gpu/drm/nouveau/nvkm/engine/gr/gp100.o
->>   CC [M]  drivers/gpu/drm/nouveau/nvkm/engine/gr/gp102.o
->>   HDRTEST drivers/gpu/drm/i915/gt/uc/intel_huc_fw.h
->>   CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dc/dcn20/dcn20_init.o
->>   CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dc/dcn20/dcn20_hwseq.o
->>   HDRTEST drivers/gpu/drm/i915/gt/uc/intel_guc_fwif.h
->>   CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dc/dcn20/dcn20_dpp.o
->>   HDRTEST drivers/gpu/drm/i915/gt/uc/intel_guc_capture.h
->>   HDRTEST drivers/gpu/drm/i915/gt/uc/intel_guc_log_debugfs.h
->>   CC [M]  drivers/gpu/drm/nouveau/nvkm/engine/gr/gp104.o
->>   CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dc/dcn20/dcn20_dpp_cm.o
->>   HDRTEST drivers/gpu/drm/i915/gt/uc/intel_guc_submission.h
->>   CC [M]  drivers/gpu/drm/nouveau/nvkm/engine/gr/gp107.o
->>   CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dc/dcn20/dcn20_hubp.o
->>   HDRTEST drivers/gpu/drm/i915/gt/uc/intel_guc_slpc_types.h
->>   CC [M]  drivers/gpu/drm/nouveau/nvkm/engine/gr/gp108.o
->>   HDRTEST drivers/gpu/drm/i915/gt/uc/intel_guc_log.h
->>   CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dc/dcn20/dcn20_mpc.o
->>   CC [M]  drivers/gpu/drm/nouveau/nvkm/engine/gr/gp10b.o
->>   CC [M]  drivers/gpu/drm/nouveau/nvkm/engine/gr/gv100.o
->>   CC [M]  drivers/gpu/drm/nouveau/nvkm/engine/gr/tu102.o
->>   CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dc/dcn20/dcn20_opp.o
->>   CC [M]  drivers/gpu/drm/nouveau/nvkm/engine/gr/ga102.o
->>   CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dc/dcn20/dcn20_hubbub.o
->>   HDRTEST drivers/gpu/drm/i915/gt/uc/intel_guc_ct.h
->>   CC [M]  drivers/gpu/drm/nouveau/nvkm/engine/gr/ctxnv40.o
->>   HDRTEST drivers/gpu/drm/i915/gt/uc/intel_guc_slpc.h
->>   CC [M]  drivers/gpu/drm/nouveau/nvkm/engine/gr/ctxnv50.o
->>   CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dc/dcn20/dcn20_optc.o
->>   CC [M]  drivers/gpu/drm/nouveau/nvkm/engine/gr/ctxgf100.o
->>   CC [M]  drivers/gpu/drm/nouveau/nvkm/engine/gr/ctxgf104.o
->>   CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dc/dcn20/dcn20_mmhubbub.o
->>   CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dc/dcn20/dcn20_stream_encoder.o
->>   CC [M]  drivers/gpu/drm/nouveau/nvkm/engine/gr/ctxgf108.o
->>   CC [M]  drivers/gpu/drm/nouveau/nvkm/engine/gr/ctxgf110.o
->>   HDRTEST drivers/gpu/drm/i915/gt/uc/intel_uc_fw.h
->>   CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dc/dcn20/dcn20_link_encoder.o
->>   HDRTEST drivers/gpu/drm/i915/gt/uc/intel_guc_ads.h
->>   CC [M]  drivers/gpu/drm/nouveau/nvkm/engine/gr/ctxgf117.o
->>   CC [M]  drivers/gpu/drm/nouveau/nvkm/engine/gr/ctxgf119.o
->>   HDRTEST drivers/gpu/drm/i915/gt/uc/intel_uc_debugfs.h
->>   HDRTEST drivers/gpu/drm/i915/gt/uc/intel_guc_rc.h
->>   HDRTEST drivers/gpu/drm/i915/gt/uc/intel_huc_debugfs.h
->>   CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dc/dcn20/dcn20_dccg.o
->>   CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dc/dcn20/dcn20_vmid.o
->>   HDRTEST drivers/gpu/drm/i915/gt/intel_hwconfig.h
->>   HDRTEST drivers/gpu/drm/i915/gt/intel_llc.h
->>   CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dc/dcn20/dcn20_dwb.o
->>   HDRTEST drivers/gpu/drm/i915/gt/gen8_engine_cs.h
->>   HDRTEST drivers/gpu/drm/i915/gt/intel_sseu_debugfs.h
->>   HDRTEST drivers/gpu/drm/i915/gt/intel_rc6_types.h
->>   HDRTEST drivers/gpu/drm/i915/gt/intel_context_param.h
->>   CC [M]  drivers/gpu/drm/nouveau/nvkm/engine/gr/ctxgk104.o
->>   CC [M]  drivers/gpu/drm/nouveau/nvkm/engine/gr/ctxgk110.o
->>   CC [M]  drivers/gpu/drm/nouveau/nvkm/engine/gr/ctxgk110b.o
->>   HDRTEST drivers/gpu/drm/i915/gt/intel_gpu_commands.h
->>   CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dc/dcn20/dcn20_dwb_scl.o
->>   CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dc/dcn20/dcn20_dsc.o
->>   HDRTEST drivers/gpu/drm/i915/gt/intel_engine_user.h
->>   HDRTEST drivers/gpu/drm/i915/gt/intel_gt_irq.h
->>   CC [M]  drivers/gpu/drm/nouveau/nvkm/engine/gr/ctxgk208.o
->>   HDRTEST drivers/gpu/drm/i915/gt/intel_gsc.h
->>   CC [M]  drivers/gpu/drm/nouveau/nvkm/engine/gr/ctxgk20a.o
->>   CC [M]  drivers/gpu/drm/nouveau/nvkm/engine/gr/ctxgm107.o
->>   HDRTEST drivers/gpu/drm/i915/gt/intel_rps.h
->>   CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dc/dsc/dc_dsc.o
->>   CC [M]  drivers/gpu/drm/nouveau/nvkm/engine/gr/ctxgm200.o
->>   HDRTEST drivers/gpu/drm/i915/gt/selftest_llc.h
->>   CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dc/dsc/rc_calc.o
->>   HDRTEST drivers/gpu/drm/i915/gt/gen6_ppgtt.h
->>   CC [M]  drivers/gpu/drm/nouveau/nvkm/engine/gr/ctxgm20b.o
->>   HDRTEST drivers/gpu/drm/i915/gt/intel_ggtt_fencing.h
->>   HDRTEST drivers/gpu/drm/i915/gt/intel_migrate_types.h
->>   HDRTEST drivers/gpu/drm/i915/gt/selftests/mock_timeline.h
->>   HDRTEST drivers/gpu/drm/i915/gt/intel_lrc.h
->>   CC [M]  drivers/gpu/drm/nouveau/nvkm/engine/gr/ctxgp100.o
->>   HDRTEST drivers/gpu/drm/i915/gt/intel_lrc_reg.h
->>   CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dc/dsc/rc_calc_dpi.o
->>   CC [M]  drivers/gpu/drm/nouveau/nvkm/engine/gr/ctxgp102.o
->>   CC [M]  drivers/gpu/drm/nouveau/nvkm/engine/gr/ctxgp104.o
->>   CC [M]  drivers/gpu/drm/nouveau/nvkm/engine/gr/ctxgp107.o
->>   CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dc/dcn10/dcn10_init.o
->>   CC [M]  drivers/gpu/drm/nouveau/nvkm/engine/gr/ctxgv100.o
->>   HDRTEST drivers/gpu/drm/i915/gt/intel_migrate.h
->>   HDRTEST drivers/gpu/drm/i915/gt/intel_gt_sysfs_pm.h
->>   CC [M]  drivers/gpu/drm/nouveau/nvkm/engine/gr/ctxtu102.o
->>   CC [M]  drivers/gpu/drm/nouveau/nvkm/engine/gr/ctxga102.o
->>   CC [M]  drivers/gpu/drm/nouveau/nvkm/engine/mpeg/nv31.o
->>   HDRTEST drivers/gpu/drm/i915/gt/intel_breadcrumbs_types.h
->>   CC [M]  drivers/gpu/drm/nouveau/nvkm/engine/mpeg/nv40.o
->>   CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dc/dcn10/dcn10_resource.o
->>   CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dc/dcn10/dcn10_ipp.o
->>   CC [M]  drivers/gpu/drm/nouveau/nvkm/engine/mpeg/nv44.o
->>   CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dc/dcn10/dcn10_hw_sequencer.o
->>   CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dc/dcn10/dcn10_hw_sequencer_debug.o
->>   HDRTEST drivers/gpu/drm/i915/gt/intel_gt_buffer_pool.h
->>   CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dc/dcn10/dcn10_dpp.o
->>   HDRTEST drivers/gpu/drm/i915/gt/mock_engine.h
->>   CC [M]  drivers/gpu/drm/nouveau/nvkm/engine/mpeg/nv50.o
->>   CC [M]  drivers/gpu/drm/nouveau/nvkm/engine/mpeg/g84.o
->>   CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dc/dcn10/dcn10_opp.o
->>   CC [M]  drivers/gpu/drm/nouveau/nvkm/engine/mspdec/base.o
->>   CC [M]  drivers/gpu/drm/nouveau/nvkm/engine/mspdec/g98.o
->>   HDRTEST drivers/gpu/drm/i915/gt/intel_engine_stats.h
->>   CC [M]  drivers/gpu/drm/nouveau/nvkm/engine/mspdec/gt215.o
->>   CC [M]  drivers/gpu/drm/nouveau/nvkm/engine/mspdec/gf100.o
->>   CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dc/dcn10/dcn10_optc.o
->>   HDRTEST drivers/gpu/drm/i915/gt/intel_gtt.h
->>   HDRTEST drivers/gpu/drm/i915/gt/intel_gt_buffer_pool_types.h
->>   CC [M]  drivers/gpu/drm/nouveau/nvkm/engine/mspdec/gk104.o
->>   HDRTEST drivers/gpu/drm/i915/gt/intel_ring.h
->>   CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dc/dcn10/dcn10_hubp.o
->>   CC [M]  drivers/gpu/drm/nouveau/nvkm/engine/msppp/base.o
->>   CC [M]  drivers/gpu/drm/nouveau/nvkm/engine/msppp/g98.o
->>   CC [M]  drivers/gpu/drm/nouveau/nvkm/engine/msppp/gt215.o
->>   CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dc/dcn10/dcn10_mpc.o
->>   CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dc/dcn10/dcn10_dpp_dscl.o
->>   CC [M]  drivers/gpu/drm/nouveau/nvkm/engine/msppp/gf100.o
->>   CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dc/dcn10/dcn10_dpp_cm.o
->>   CC [M]  drivers/gpu/drm/nouveau/nvkm/engine/msvld/base.o
->>   CC [M]  drivers/gpu/drm/nouveau/nvkm/engine/msvld/g98.o
->>   HDRTEST drivers/gpu/drm/i915/gt/intel_gt_types.h
->>   CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dc/dcn10/dcn10_cm_common.o
->>   CC [M]  drivers/gpu/drm/nouveau/nvkm/engine/msvld/gt215.o
->>   HDRTEST drivers/gpu/drm/i915/gt/intel_renderstate.h
->>   CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dc/dcn10/dcn10_hubbub.o
->>   CC [M]  drivers/gpu/drm/nouveau/nvkm/engine/msvld/mcp89.o
->>   CC [M]  drivers/gpu/drm/nouveau/nvkm/engine/msvld/gf100.o
->>   CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dc/dcn10/dcn10_stream_encoder.o
->>   CC [M]  drivers/gpu/drm/nouveau/nvkm/engine/msvld/gk104.o
->>   CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dc/dcn10/dcn10_link_encoder.o
->>   CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dc/dcn21/dcn21_init.o
->>   CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dc/dcn21/dcn21_hubp.o
->>   HDRTEST drivers/gpu/drm/i915/gt/intel_sseu.h
->>   CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dc/dcn21/dcn21_hubbub.o
->>   CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dc/dcn21/dcn21_resource.o
->>   CC [M]  drivers/gpu/drm/nouveau/nvkm/engine/nvenc/base.o
->>   HDRTEST drivers/gpu/drm/i915/gt/intel_engine_types.h
->>   HDRTEST drivers/gpu/drm/i915/gt/intel_gt_engines_debugfs.h
->>   CC [M]  drivers/gpu/drm/nouveau/nvkm/engine/nvenc/gm107.o
->>   CC [M]  drivers/gpu/drm/nouveau/nvkm/engine/nvdec/base.o
->>   HDRTEST drivers/gpu/drm/i915/gt/gen2_engine_cs.h
->>   HDRTEST drivers/gpu/drm/i915/gvt/gvt.h
->>   HDRTEST drivers/gpu/drm/i915/gvt/trace.h
->>   HDRTEST drivers/gpu/drm/i915/gvt/debug.h
->>   CC [M]  drivers/gpu/drm/nouveau/nvkm/engine/nvdec/gm107.o
->>   HDRTEST drivers/gpu/drm/i915/gvt/edid.h
->>   HDRTEST drivers/gpu/drm/i915/gvt/page_track.h
->>   HDRTEST drivers/gpu/drm/i915/gvt/mmio.h
->>   HDRTEST drivers/gpu/drm/i915/gvt/sched_policy.h
->>   CC [M]  drivers/gpu/drm/nouveau/nvkm/engine/nvdec/ga102.o
->>   CC [M]  drivers/gpu/drm/nouveau/nvkm/engine/pm/base.o
->>   HDRTEST drivers/gpu/drm/i915/gvt/fb_decoder.h
->>   CC [M]  drivers/gpu/drm/nouveau/nvkm/engine/pm/nv40.o
->>   HDRTEST drivers/gpu/drm/i915/gvt/cmd_parser.h
->>   CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dc/dcn21/dcn21_hwseq.o
->>   CC [M]  drivers/gpu/drm/nouveau/nvkm/engine/pm/nv50.o
->>   CC [M]  drivers/gpu/drm/nouveau/nvkm/engine/pm/g84.o
->>   HDRTEST drivers/gpu/drm/i915/gvt/dmabuf.h
->>   CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dc/dcn21/dcn21_link_encoder.o
->>   CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dc/dcn21/dcn21_dccg.o
->>   CC [M]  drivers/gpu/drm/nouveau/nvkm/engine/pm/gt200.o
->>   HDRTEST drivers/gpu/drm/i915/gvt/mmio_context.h
->>   CC [M]  drivers/gpu/drm/nouveau/nvkm/engine/pm/gt215.o
->>   CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dc/dcn201/dcn201_init.o
->>   CC [M]  drivers/gpu/drm/nouveau/nvkm/engine/pm/gf100.o
->>   CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dc/dcn201/dcn201_resource.o
->>   CC [M]  drivers/gpu/drm/nouveau/nvkm/engine/pm/gf108.o
->>   CC [M]  drivers/gpu/drm/nouveau/nvkm/engine/pm/gf117.o
->>   HDRTEST drivers/gpu/drm/i915/gvt/display.h
->>   CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dc/dcn201/dcn201_hwseq.o
->>   HDRTEST drivers/gpu/drm/i915/gvt/gtt.h
->>   CC [M]  drivers/gpu/drm/nouveau/nvkm/engine/pm/gk104.o
->>   CC [M]  drivers/gpu/drm/nouveau/nvkm/engine/sec/g98.o
->>   CC [M]  drivers/gpu/drm/nouveau/nvkm/engine/sec2/base.o
->>   CC [M]  drivers/gpu/drm/nouveau/nvkm/engine/sec2/gp102.o
->>   CC [M]  drivers/gpu/drm/nouveau/nvkm/engine/sec2/gp108.o
->>   HDRTEST drivers/gpu/drm/i915/gvt/scheduler.h
->>   CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dc/dcn201/dcn201_hubbub.o
->>   HDRTEST drivers/gpu/drm/i915/gvt/reg.h
->>   HDRTEST drivers/gpu/drm/i915/gvt/execlist.h
->>   HDRTEST drivers/gpu/drm/i915/gvt/interrupt.h
->>   HDRTEST drivers/gpu/drm/i915/i915_active.h
->>   HDRTEST drivers/gpu/drm/i915/i915_active_types.h
->>   CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dc/dcn201/dcn201_mpc.o
->>   CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dc/dcn201/dcn201_hubp.o
->>   CC [M]  drivers/gpu/drm/nouveau/nvkm/engine/sec2/tu102.o
->>   CC [M]  drivers/gpu/drm/nouveau/nvkm/engine/sec2/ga102.o
->>   CC [M]  drivers/gpu/drm/nouveau/nvkm/engine/sw/base.o
->>   CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dc/dcn201/dcn201_opp.o
->>   CC [M]  drivers/gpu/drm/nouveau/nvkm/engine/sw/nv04.o
->>   HDRTEST drivers/gpu/drm/i915/i915_cmd_parser.h
->>   CC [M]  drivers/gpu/drm/nouveau/nvkm/engine/sw/nv10.o
->>   HDRTEST drivers/gpu/drm/i915/i915_debugfs.h
->>   CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dc/dcn201/dcn201_optc.o
->>   CC [M]  drivers/gpu/drm/nouveau/nvkm/engine/sw/nv50.o
->>   CC [M]  drivers/gpu/drm/nouveau/nvkm/engine/sw/gf100.o
->>   CC [M]  drivers/gpu/drm/nouveau/nvkm/engine/sw/chan.o
->>   CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dc/dcn201/dcn201_dpp.o
->>   HDRTEST drivers/gpu/drm/i915/i915_debugfs_params.h
->>   CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dc/dcn201/dcn201_dccg.o
->>   CC [M]  drivers/gpu/drm/nouveau/nvkm/engine/sw/nvsw.o
->>   HDRTEST drivers/gpu/drm/i915/i915_deps.h
->>   CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dc/dcn201/dcn201_link_encoder.o
->>   HDRTEST drivers/gpu/drm/i915/i915_driver.h
->>   HDRTEST drivers/gpu/drm/i915/i915_drm_client.h
->>   CC [M]  drivers/gpu/drm/nouveau/nvkm/engine/vp/g84.o
->>   CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dc/dcn30/dcn30_init.o
->>   CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dc/dcn30/dcn30_hubbub.o
->>   CC [M]  drivers/gpu/drm/nouveau/nouveau_acpi.o
->>   CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dc/dcn30/dcn30_hubp.o
->>   CC [M]  drivers/gpu/drm/nouveau/nouveau_debugfs.o
->>   CC [M]  drivers/gpu/drm/nouveau/nouveau_drm.o
->>   CC [M]  drivers/gpu/drm/nouveau/nouveau_hwmon.o
->>   CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dc/dcn30/dcn30_dpp.o
->>   CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dc/dcn30/dcn30_optc.o
->>   HDRTEST drivers/gpu/drm/i915/i915_drv.h
->>   CC [M]  drivers/gpu/drm/nouveau/nouveau_ioc32.o
->>   CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dc/dcn30/dcn30_dccg.o
->>   HDRTEST drivers/gpu/drm/i915/i915_file_private.h
->>   HDRTEST drivers/gpu/drm/i915/i915_fixed.h
->>   HDRTEST drivers/gpu/drm/i915/i915_gem.h
->>   CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dc/dcn30/dcn30_hwseq.o
->>   HDRTEST drivers/gpu/drm/i915/i915_gem_evict.h
->>   HDRTEST drivers/gpu/drm/i915/i915_gem_gtt.h
->>   HDRTEST drivers/gpu/drm/i915/i915_gem_ww.h
->>   CC [M]  drivers/gpu/drm/nouveau/nouveau_led.o
->>   CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dc/dcn30/dcn30_mpc.o
->>   HDRTEST drivers/gpu/drm/i915/i915_getparam.h
->>   HDRTEST drivers/gpu/drm/i915/i915_gpu_error.h
->>   CC [M]  drivers/gpu/drm/nouveau/nouveau_nvif.o
->>   CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dc/dcn30/dcn30_vpg.o
->>   CC [M]  drivers/gpu/drm/nouveau/nouveau_usif.o
->>   CC [M]  drivers/gpu/drm/nouveau/nouveau_vga.o
->>   CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dc/dcn30/dcn30_afmt.o
->>   CC [M]  drivers/gpu/drm/nouveau/nouveau_bo.o
->>   CC [M]  drivers/gpu/drm/nouveau/nouveau_bo0039.o
->>   CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dc/dcn30/dcn30_dio_stream_encoder.o
->>   HDRTEST drivers/gpu/drm/i915/i915_hwmon.h
->>   HDRTEST drivers/gpu/drm/i915/i915_ioc32.h
->>   CC [M]  drivers/gpu/drm/nouveau/nouveau_bo5039.o
->>   CC [M]  drivers/gpu/drm/nouveau/nouveau_bo74c1.o
->>   HDRTEST drivers/gpu/drm/i915/i915_ioctl.h
->>   HDRTEST drivers/gpu/drm/i915/i915_iosf_mbi.h
->>   CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dc/dcn30/dcn30_dwb.o
->>   CC [M]  drivers/gpu/drm/nouveau/nouveau_bo85b5.o
->>   HDRTEST drivers/gpu/drm/i915/i915_irq.h
->>   CC [M]  drivers/gpu/drm/nouveau/nouveau_bo9039.o
->>   HDRTEST drivers/gpu/drm/i915/i915_memcpy.h
->>   CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dc/dcn30/dcn30_dpp_cm.o
->>   CC [M]  drivers/gpu/drm/nouveau/nouveau_bo90b5.o
->>   HDRTEST drivers/gpu/drm/i915/i915_mitigations.h
->>   HDRTEST drivers/gpu/drm/i915/i915_mm.h
->>   CC [M]  drivers/gpu/drm/nouveau/nouveau_boa0b5.o
->>   CC [M]  drivers/gpu/drm/nouveau/nouveau_gem.o
->>   CC [M]  drivers/gpu/drm/nouveau/nouveau_svm.o
->>   CC [M]  drivers/gpu/drm/nouveau/nouveau_dmem.o
->>   CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dc/dcn30/dcn30_dwb_cm.o
->>   CC [M]  drivers/gpu/drm/nouveau/nouveau_mem.o
->>   HDRTEST drivers/gpu/drm/i915/i915_params.h
->>   CC [M]  drivers/gpu/drm/nouveau/nouveau_prime.o
->>   CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dc/dcn30/dcn30_cm_common.o
->>   CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dc/dcn30/dcn30_mmhubbub.o
->>   CC [M]  drivers/gpu/drm/nouveau/nouveau_sgdma.o
->>   CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dc/dcn30/dcn30_dio_link_encoder.o
->>   CC [M]  drivers/gpu/drm/nouveau/nouveau_ttm.o
->>   CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dc/dcn30/dcn30_resource.o
->>   CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dc/dcn301/dcn301_init.o
->>   CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dc/dcn301/dcn301_resource.o
->>   CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dc/dcn301/dcn301_dccg.o
->>   CC [M]  drivers/gpu/drm/nouveau/nouveau_vmm.o
->>   CC [M]  drivers/gpu/drm/nouveau/nouveau_backlight.o
->>   HDRTEST drivers/gpu/drm/i915/i915_pci.h
->>   HDRTEST drivers/gpu/drm/i915/i915_perf.h
->>   HDRTEST drivers/gpu/drm/i915/i915_perf_oa_regs.h
->>   HDRTEST drivers/gpu/drm/i915/i915_perf_types.h
->>   CC [M]  drivers/gpu/drm/nouveau/nouveau_bios.o
->>   CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dc/dcn301/dcn301_dio_link_encoder.o
->>   CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dc/dcn301/dcn301_hwseq.o
->>   HDRTEST drivers/gpu/drm/i915/i915_pmu.h
->>   CC [M]  drivers/gpu/drm/nouveau/nouveau_connector.o
->>   CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dc/dcn301/dcn301_panel_cntl.o
->>   CC [M]  drivers/gpu/drm/nouveau/nouveau_display.o
->>   CC [M]  drivers/gpu/drm/nouveau/nouveau_dp.o
->>   CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dc/dcn301/dcn301_hubbub.o
->>   CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dc/dcn302/dcn302_init.o
->>   CC [M]  drivers/gpu/drm/nouveau/dispnv04/arb.o
->>   CC [M]  drivers/gpu/drm/nouveau/dispnv04/crtc.o
->>   CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dc/dcn302/dcn302_hwseq.o
->>   CC [M]  drivers/gpu/drm/nouveau/dispnv04/cursor.o
->>   CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dc/dcn302/dcn302_resource.o
->>   HDRTEST drivers/gpu/drm/i915/i915_priolist_types.h
->>   CC [M]  drivers/gpu/drm/nouveau/dispnv04/dac.o
->>   CC [M]  drivers/gpu/drm/nouveau/dispnv04/dfp.o
->>   CC [M]  drivers/gpu/drm/nouveau/dispnv04/disp.o
->>   CC [M]  drivers/gpu/drm/nouveau/dispnv04/hw.o
->>   HDRTEST drivers/gpu/drm/i915/i915_pvinfo.h
->>   CC [M]  drivers/gpu/drm/nouveau/dispnv04/overlay.o
->>   HDRTEST drivers/gpu/drm/i915/i915_query.h
->>   HDRTEST drivers/gpu/drm/i915/i915_reg.h
->>   HDRTEST drivers/gpu/drm/i915/i915_reg_defs.h
->>   HDRTEST drivers/gpu/drm/i915/i915_request.h
->>   CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dc/dcn303/dcn303_init.o
->>   CC [M]  drivers/gpu/drm/nouveau/dispnv04/tvmodesnv17.o
->>   HDRTEST drivers/gpu/drm/i915/i915_scatterlist.h
->>   CC [M]  drivers/gpu/drm/nouveau/dispnv04/tvnv04.o
->>   HDRTEST drivers/gpu/drm/i915/i915_scheduler.h
->>   CC [M]  drivers/gpu/drm/nouveau/dispnv04/tvnv17.o
->>   CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dc/dcn303/dcn303_hwseq.o
->>   HDRTEST drivers/gpu/drm/i915/i915_scheduler_types.h
->>   CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dc/dcn303/dcn303_resource.o
->>   HDRTEST drivers/gpu/drm/i915/i915_selftest.h
->>   CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dc/dcn31/dcn31_resource.o
->>   CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dc/dcn31/dcn31_hubbub.o
->>   CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dc/dcn31/dcn31_hwseq.o
->>   CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dc/dcn31/dcn31_init.o
->>   CC [M]  drivers/gpu/drm/nouveau/dispnv50/disp.o
->>   CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dc/dcn31/dcn31_hubp.o
->>   CC [M]  drivers/gpu/drm/nouveau/dispnv50/lut.o
->>   CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dc/dcn31/dcn31_dccg.o
->>   CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dc/dcn31/dcn31_optc.o
->>   CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dc/dcn31/dcn31_dio_link_encoder.o
->>   CC [M]  drivers/gpu/drm/nouveau/dispnv50/core.o
->>   CC [M]  drivers/gpu/drm/nouveau/dispnv50/core507d.o
->>   CC [M]  drivers/gpu/drm/nouveau/dispnv50/core827d.o
->>   CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dc/dcn31/dcn31_panel_cntl.o
->>   CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dc/dcn31/dcn31_apg.o
->>   CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dc/dcn31/dcn31_hpo_dp_stream_encoder.o
->>   HDRTEST drivers/gpu/drm/i915/i915_suspend.h
->>   HDRTEST drivers/gpu/drm/i915/i915_sw_fence.h
->>   CC [M]  drivers/gpu/drm/nouveau/dispnv50/core907d.o
->>   HDRTEST drivers/gpu/drm/i915/i915_sw_fence_work.h
->>   CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dc/dcn31/dcn31_hpo_dp_link_encoder.o
->>   CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dc/dcn31/dcn31_afmt.o
->>   CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dc/dcn31/dcn31_vpg.o
->>   CC [M]  drivers/gpu/drm/nouveau/dispnv50/core917d.o
->>   HDRTEST drivers/gpu/drm/i915/i915_switcheroo.h
->>   HDRTEST drivers/gpu/drm/i915/i915_syncmap.h
->>   CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dc/dcn314/dcn314_resource.o
->>   HDRTEST drivers/gpu/drm/i915/i915_sysfs.h
->>   CC [M]  drivers/gpu/drm/nouveau/dispnv50/corec37d.o
->>   CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dc/dcn314/dcn314_hwseq.o
->>   HDRTEST drivers/gpu/drm/i915/i915_tasklet.h
->>   CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dc/dcn314/dcn314_init.o
->>   HDRTEST drivers/gpu/drm/i915/i915_trace.h
->>   CC [M]  drivers/gpu/drm/nouveau/dispnv50/corec57d.o
->>   CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dc/dcn314/dcn314_dio_stream_encoder.o
->>   HDRTEST drivers/gpu/drm/i915/i915_ttm_buddy_manager.h
->>   CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dc/dcn314/dcn314_dccg.o
->>   HDRTEST drivers/gpu/drm/i915/i915_user_extensions.h
->>   HDRTEST drivers/gpu/drm/i915/i915_utils.h
->>   CC [M]  drivers/gpu/drm/nouveau/dispnv50/crc.o
->>   CC [M]  drivers/gpu/drm/nouveau/dispnv50/crc907d.o
->>   HDRTEST drivers/gpu/drm/i915/i915_vgpu.h
->>   HDRTEST drivers/gpu/drm/i915/i915_vma.h
->>   CC [M]  drivers/gpu/drm/nouveau/dispnv50/crcc37d.o
->>   CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dc/dcn314/dcn314_optc.o
->>   CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dc/dcn315/dcn315_resource.o
->>   CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dc/dcn316/dcn316_resource.o
->>   CC [M]  drivers/gpu/drm/nouveau/dispnv50/crcc57d.o
->>   CC [M]  drivers/gpu/drm/nouveau/dispnv50/dac507d.o
->>   HDRTEST drivers/gpu/drm/i915/i915_vma_resource.h
->>   CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dc/dcn32/dcn32_resource.o
->>   CC [M]  drivers/gpu/drm/nouveau/dispnv50/dac907d.o
->>   CC [M]  drivers/gpu/drm/nouveau/dispnv50/pior507d.o
->>   CC [M]  drivers/gpu/drm/nouveau/dispnv50/sor507d.o
->>   CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dc/dcn32/dcn32_hubbub.o
->>   HDRTEST drivers/gpu/drm/i915/i915_vma_types.h
->>   CC [M]  drivers/gpu/drm/nouveau/dispnv50/sor907d.o
->>   CC [M]  drivers/gpu/drm/amd/amdgpu/../display/
+>> Signed-off-by: Lucas De Marchi <lucas.demarchi@intel.com>
+>> ---
+>>  drivers/gpu/drm/xe/Makefile     |   3 -
+>>  drivers/gpu/drm/xe/xe_display.c | 114 ++++++++++++++++++++++++++++++++
+>>  drivers/gpu/drm/xe/xe_display.h |  15 ++---
+>>  drivers/gpu/drm/xe/xe_pci.c     |  90 ++-----------------------
+>>  4 files changed, 128 insertions(+), 94 deletions(-)
 >>
+>> diff --git a/drivers/gpu/drm/xe/Makefile b/drivers/gpu/drm/xe/Makefile
+>> index 18257cd7227d..d1d255df74a1 100644
+>> --- a/drivers/gpu/drm/xe/Makefile
+>> +++ b/drivers/gpu/drm/xe/Makefile
+>> @@ -24,9 +24,6 @@ subdir-ccflags-y += $(call cc-disable-warning, initializer-overrides)
+>>  subdir-ccflags-y += $(call cc-disable-warning, frame-address)
+>>  subdir-ccflags-$(CONFIG_DRM_XE_WERROR) += -Werror
 >>
-
--- 
-Jani Nikula, Intel Open Source Graphics Center
+>> -# Fine grained warnings disable
+>> -CFLAGS_xe_pci.o = $(call cc-disable-warning, override-init)
+>> -
+>>  subdir-ccflags-y += -I$(srctree)/$(src)
+>>
+>>  # Please keep these build lists sorted!
+>> diff --git a/drivers/gpu/drm/xe/xe_display.c b/drivers/gpu/drm/xe/xe_display.c
+>> index 34bdb2d60938..76e4fb6bd67c 100644
+>> --- a/drivers/gpu/drm/xe/xe_display.c
+>> +++ b/drivers/gpu/drm/xe/xe_display.c
+>> @@ -10,6 +10,7 @@
+>>  #include <linux/fb.h>
+>>
+>>  #include <drm/drm_aperture.h>
+>> +#include <drm/drm_drv.h>
+>>  #include <drm/drm_managed.h>
+>>  #include <drm/xe_drm.h>
+>>
+>> @@ -383,4 +384,117 @@ void xe_display_pm_resume(struct xe_device *xe)
+>>  	intel_power_domains_enable(xe);
+>>  }
+>>
+>> +/* Display info initialization */
+>> +__diag_push();
+>> +__diag_ignore_all("-Woverride-init", "Allow field overrides in table");
+>> +
+>> +#define __DISPLAY_DEFAULTS \
+>> +	.pipe_mask = BIT(PIPE_A) | BIT(PIPE_B) |			\
+>> +		     BIT(PIPE_C) | BIT(PIPE_D),				\
+>> +	.cpu_transcoder_mask =						\
+>> +	BIT(TRANSCODER_A) | BIT(TRANSCODER_B) |				\
+>> +	BIT(TRANSCODER_C) | BIT(TRANSCODER_D) |				\
+>> +	BIT(TRANSCODER_DSI_0) | BIT(TRANSCODER_DSI_1),			\
+>> +	.pipe_offsets = {						\
+>> +		[TRANSCODER_A] = PIPE_A_OFFSET,				\
+>> +		[TRANSCODER_B] = PIPE_B_OFFSET,				\
+>> +		[TRANSCODER_C] = PIPE_C_OFFSET,				\
+>> +		[TRANSCODER_D] = PIPE_D_OFFSET,				\
+>> +		[TRANSCODER_DSI_0] = PIPE_DSI0_OFFSET,			\
+>> +		[TRANSCODER_DSI_1] = PIPE_DSI1_OFFSET,			\
+>> +	},								\
+>> +	.trans_offsets = {						\
+>> +		[TRANSCODER_A] = TRANSCODER_A_OFFSET,			\
+>> +		[TRANSCODER_B] = TRANSCODER_B_OFFSET,			\
+>> +		[TRANSCODER_C] = TRANSCODER_C_OFFSET,			\
+>> +		[TRANSCODER_D] = TRANSCODER_D_OFFSET,			\
+>> +		[TRANSCODER_DSI_0] = TRANSCODER_DSI0_OFFSET,		\
+>> +		[TRANSCODER_DSI_1] = TRANSCODER_DSI1_OFFSET,		\
+>> +	}
+>> +
+>> +#define GEN12_DISPLAY \
+>> +	__DISPLAY_DEFAULTS,						\
+>> +	.ver = 12,							\
+>> +	.abox_mask = GENMASK(2, 1),					\
+>> +	.has_dmc = 1,							\
+>> +	.has_dp_mst = 1,						\
+>> +	.has_dsb = 0, /* FIXME: LUT load is broken with huge DSB */	\
+>> +	.dbuf.size = 2048,						\
+>> +	.dbuf.slice_mask = BIT(DBUF_S1) | BIT(DBUF_S2),			\
+>> +	.has_dsc = 1,							\
+>> +	.fbc_mask = BIT(INTEL_FBC_A),					\
+>> +	.has_fpga_dbg = 1,						\
+>> +	.has_hdcp = 1,							\
+>> +	.has_ipc = 1,							\
+>> +	.has_psr = 1,							\
+>> +	.has_psr_hw_tracking = 1,					\
+>> +	.color = { .degamma_lut_size = 33, .gamma_lut_size = 262145 }
+>> +
+>> +#define GEN13_DISPLAY							\
+>> +	__DISPLAY_DEFAULTS,						\
+>> +	.ver = 13,							\
+>> +	.abox_mask = GENMASK(1, 0),					\
+>> +	.color = {							\
+>> +		.degamma_lut_size = 128, .gamma_lut_size = 1024,	\
+>> +		.degamma_lut_tests = DRM_COLOR_LUT_NON_DECREASING |	\
+>> +		DRM_COLOR_LUT_EQUAL_CHANNELS,				\
+>> +	},								\
+>> +	.dbuf.size = 4096,						\
+>> +	.dbuf.slice_mask = BIT(DBUF_S1) | BIT(DBUF_S2) | BIT(DBUF_S3) |	\
+>> +	BIT(DBUF_S4),							\
+>> +	.has_dmc = 1,							\
+>> +	.has_dp_mst = 1,						\
+>> +	.has_dsb = 1,							\
+>> +	.has_dsc = 1,							\
+>> +	.fbc_mask = BIT(INTEL_FBC_A),					\
+>> +	.has_fpga_dbg = 1,						\
+>> +	.has_hdcp = 1,							\
+>> +	.has_ipc = 1,							\
+>> +	.has_psr = 1
+>> +
+>> +void xe_display_info_init(struct xe_device *xe)
+>> +{
+>> +	if (!xe->info.enable_display)
+>> +		return;
+>> +
+>> +	switch (xe->info.platform) {
+>> +	case XE_TIGERLAKE:
+>> +	case XE_DG1:
+>> +		xe->info.display = (struct xe_device_display_info) { GEN12_DISPLAY };
+>> +		break;
+>> +	case XE_ALDERLAKE_S:
+>> +	case XE_ALDERLAKE_P:
+>> +		xe->info.display = (struct xe_device_display_info) {
+>> +			GEN12_DISPLAY,
+>> +			.has_hti = 1,
+>> +			.has_psr_hw_tracking = 0,
+>> +		};
+>> +		break;
+>> +	case XE_DG2:
+>> +		xe->info.display = (struct xe_device_display_info) {
+>> +			GEN13_DISPLAY,
+>> +			.cpu_transcoder_mask =
+>> +				BIT(TRANSCODER_A) | BIT(TRANSCODER_B) |
+>> +				BIT(TRANSCODER_C) | BIT(TRANSCODER_D),
+>> +		};
+>> +		break;
+>> +	case XE_METEORLAKE:
+>> +		xe->info.display = (struct xe_device_display_info) {
+>> +			GEN13_DISPLAY,
+>> +			.ver = 14,
+>> +			.has_cdclk_crawl = 1,
+>> +			.has_cdclk_squash = 1,
+>> +		};
+>> +		break;
+>> +	default:
+>> +		/*
+>> +		 * If platform doesn't have display, enable_display should
+>> +		 * had been forced to false already at this point
+>> +		 */
+>> +		drm_WARN_ON(&xe->drm, 1);
+>> +	}
+>> +}
+>> +
+>> +__diag_pop();
+>> +
+>>  #endif
+>> diff --git a/drivers/gpu/drm/xe/xe_display.h b/drivers/gpu/drm/xe/xe_display.h
+>> index cb5298ceed3b..d1af8e3a5c0f 100644
+>> --- a/drivers/gpu/drm/xe/xe_display.h
+>> +++ b/drivers/gpu/drm/xe/xe_display.h
+>> @@ -6,16 +6,18 @@
+>>  #ifndef _XE_DISPLAY_H_
+>>  #define _XE_DISPLAY_H_
+>>
+>> -#include <drm/drm_drv.h>
+>> -
+>>  #include "xe_device.h"
+>>
+>> +struct drm_driver;
+>> +
+>>  #if IS_ENABLED(CONFIG_DRM_XE_DISPLAY)
+>>
+>>  int xe_display_set_driver_hooks(struct pci_dev *pdev, struct drm_driver *driver);
+>>
+>>  int xe_display_create(struct xe_device *xe);
+>>
+>> +void xe_display_info_init(struct xe_device *xe);
+>> +
+>>  int xe_display_init_nommio(struct xe_device *xe);
+>>  void xe_display_fini_nommio(struct drm_device *dev, void *dummy);
+>>
+>> @@ -51,6 +53,8 @@ xe_display_set_driver_hooks(struct pci_dev *pdev, struct drm_driver *driver) { r
+>>  static inline int
+>>  xe_display_create(struct xe_device *xe) { return 0; }
+>>
+>> +static inline void xe_display_info_init(struct xe_device *xe) { }
+>> +
+>>  static inline int
+>>  xe_display_enable(struct pci_dev *pdev, struct drm_driver *driver) { return 0; };
+>>
+>> @@ -58,12 +62,7 @@ static inline int
+>>  xe_display_init_nommio(struct xe_device *xe) { return 0; };
+>>  static inline void xe_display_fini_nommio(struct drm_device *dev, void *dummy) {};
+>>
+>> -static inline int xe_display_init_noirq(struct xe_device *xe)
+>> -{
+>> -	if (xe->info.display.pipe_mask != 0)
+>> -		drm_warn(&xe->drm, "CONFIG_DRM_XE_DISPLAY is unset, but device is display capable\n");
+>> -	return 0;
+>> -}
+>> +static inline int xe_display_init_noirq(struct xe_device *xe) { return 0; }
+>>
+>>  static inline void
+>>  xe_display_fini_noirq(struct drm_device *dev, void *dummy) {};
+>> diff --git a/drivers/gpu/drm/xe/xe_pci.c b/drivers/gpu/drm/xe/xe_pci.c
+>> index 11dc0de66101..c4d9fd2e7b2b 100644
+>> --- a/drivers/gpu/drm/xe/xe_pci.c
+>> +++ b/drivers/gpu/drm/xe/xe_pci.c
+>> @@ -16,6 +16,7 @@
+>>
+>>  #include "regs/xe_regs.h"
+>>  #include "xe_device.h"
+>> +#include "xe_display.h"
+>>  #include "xe_drv.h"
+>>  #include "xe_macros.h"
+>>  #include "xe_module.h"
+>> @@ -62,8 +63,6 @@ struct xe_device_desc {
+>>  	DEV_INFO_FOR_EACH_FLAG(DEFINE_FLAG);
+>>  #undef DEFINE_FLAG
+>>
+>> -	struct xe_device_display_info display;
+>> -
+>>  	u8 vram_flags;
+>>  	u8 max_tiles;
+>>  	u8 vm_max_level;
+>> @@ -75,79 +74,15 @@ struct xe_device_desc {
+>>  	bool has_asid;
+>>  };
+>>
+>> +__diag_push();
+>> +__diag_ignore_all("-Woverride-init", "Allow field overrides in table");
+>> +
+>>  #define PLATFORM(x)		\
+>>  	.platform = (x),	\
+>>  	.platform_name = #x
+>>
+>>  #define NOP(x)	x
+>>
+>> -#define __DISPLAY_DEFAULTS \
+>> -		.pipe_mask = BIT(PIPE_A) | BIT(PIPE_B) | BIT(PIPE_C) | BIT(PIPE_D), \
+>> -		.cpu_transcoder_mask = \
+>> -			BIT(TRANSCODER_A) | BIT(TRANSCODER_B) | \
+>> -			BIT(TRANSCODER_C) | BIT(TRANSCODER_D) | \
+>> -			BIT(TRANSCODER_DSI_0) | BIT(TRANSCODER_DSI_1), \
+>> -		.pipe_offsets = { \
+>> -			[TRANSCODER_A] = PIPE_A_OFFSET, \
+>> -			[TRANSCODER_B] = PIPE_B_OFFSET, \
+>> -			[TRANSCODER_C] = PIPE_C_OFFSET, \
+>> -			[TRANSCODER_D] = PIPE_D_OFFSET, \
+>> -			[TRANSCODER_DSI_0] = PIPE_DSI0_OFFSET, \
+>> -			[TRANSCODER_DSI_1] = PIPE_DSI1_OFFSET, \
+>> -		}, \
+>> -		.trans_offsets = { \
+>> -			[TRANSCODER_A] = TRANSCODER_A_OFFSET, \
+>> -			[TRANSCODER_B] = TRANSCODER_B_OFFSET, \
+>> -			[TRANSCODER_C] = TRANSCODER_C_OFFSET, \
+>> -			[TRANSCODER_D] = TRANSCODER_D_OFFSET, \
+>> -			[TRANSCODER_DSI_0] = TRANSCODER_DSI0_OFFSET, \
+>> -			[TRANSCODER_DSI_1] = TRANSCODER_DSI1_OFFSET, \
+>> -		}, \
+>> -
+>> -#define GEN12_DISPLAY \
+>> -	.display = (struct xe_device_display_info){ \
+>> -		__DISPLAY_DEFAULTS \
+>> -		.ver = 12, \
+>> -		.abox_mask = GENMASK(2, 1), \
+>> -		.has_dmc = 1, \
+>> -		.has_dp_mst = 1, \
+>> -		.has_dsb = 0, /* FIXME: LUT load is broken with huge DSB */ \
+>> -		.dbuf.size = 2048, \
+>> -		.dbuf.slice_mask = BIT(DBUF_S1) | BIT(DBUF_S2), \
+>> -		.has_dsc = 1, \
+>> -		.fbc_mask = BIT(INTEL_FBC_A), \
+>> -		.has_fpga_dbg = 1, \
+>> -		.has_hdcp = 1, \
+>> -		.has_ipc = 1, \
+>> -		.has_psr = 1, \
+>> -		.has_psr_hw_tracking = 1, \
+>> -		.color = { .degamma_lut_size = 33, .gamma_lut_size = 262145 }, \
+>> -	}
+>> -
+>> -#define GEN13_DISPLAY \
+>> -	.display = (struct xe_device_display_info){ \
+>> -		__DISPLAY_DEFAULTS \
+>> -		.ver = 13,							\
+>> -		.abox_mask = GENMASK(1, 0),					\
+>> -		.color = {							\
+>> -			.degamma_lut_size = 128, .gamma_lut_size = 1024,	\
+>> -			.degamma_lut_tests = DRM_COLOR_LUT_NON_DECREASING |	\
+>> -				     DRM_COLOR_LUT_EQUAL_CHANNELS,		\
+>> -		},								\
+>> -		.dbuf.size = 4096,						\
+>> -		.dbuf.slice_mask = BIT(DBUF_S1) | BIT(DBUF_S2) | BIT(DBUF_S3) |	\
+>> -				   BIT(DBUF_S4),				\
+>> -		.has_dmc = 1,							\
+>> -		.has_dp_mst = 1,						\
+>> -		.has_dsb = 1,							\
+>> -		.has_dsc = 1,							\
+>> -		.fbc_mask = BIT(INTEL_FBC_A),					\
+>> -		.has_fpga_dbg = 1,						\
+>> -		.has_hdcp = 1,							\
+>> -		.has_ipc = 1,							\
+>> -		.has_psr = 1,							\
+>> -	}
+>> -
+>>  /* Keep in gen based order, and chronological order within a gen */
+>>  #define GEN12_FEATURES \
+>>  	.require_force_probe = true, \
+>> @@ -160,20 +95,15 @@ struct xe_device_desc {
+>>
+>>  static const struct xe_device_desc tgl_desc = {
+>>  	GEN12_FEATURES,
+>> -	GEN12_DISPLAY,
+>>  	PLATFORM(XE_TIGERLAKE),
+>>  	.platform_engine_mask =
+>>  		BIT(XE_HW_ENGINE_RCS0) | BIT(XE_HW_ENGINE_BCS0) |
+>>  		BIT(XE_HW_ENGINE_VECS0) | BIT(XE_HW_ENGINE_VCS0) |
+>>  		BIT(XE_HW_ENGINE_VCS2),
+>> -	GEN12_DISPLAY,
+>>  };
+>>
+>>  static const struct xe_device_desc adl_s_desc = {
+>>  	GEN12_FEATURES,
+>> -	GEN12_DISPLAY,
+>> -	.display.has_hti = 1,
+>> -	.display.has_psr_hw_tracking = 0,
+>>  	PLATFORM(XE_ALDERLAKE_S),
+>>  	.platform_engine_mask =
+>>  		BIT(XE_HW_ENGINE_RCS0) | BIT(XE_HW_ENGINE_BCS0) |
+>> @@ -195,7 +125,6 @@ static const struct xe_device_desc adl_p_desc = {
+>>
+>>  static const struct xe_device_desc dg1_desc = {
+>>  	GEN12_FEATURES,
+>> -	GEN12_DISPLAY,
+>>  	DGFX_FEATURES,
+>>  	.graphics_rel = 10,
+>>  	PLATFORM(XE_DG1),
+>> @@ -256,9 +185,6 @@ static const struct xe_device_desc dg2_desc = {
+>>  	XE_HPM_FEATURES,
+>>
+>>  	DG2_FEATURES,
+>> -	GEN13_DISPLAY,
+>> -	.display.cpu_transcoder_mask = BIT(TRANSCODER_A) | BIT(TRANSCODER_B) |
+>> -				       BIT(TRANSCODER_C) | BIT(TRANSCODER_D),
+>>  };
+>>
+>>  #define PVC_ENGINES \
+>> @@ -334,13 +260,10 @@ static const struct xe_device_desc mtl_desc = {
+>>  	PLATFORM(XE_METEORLAKE),
+>>  	.extra_gts = xelpmp_gts,
+>>  	.platform_engine_mask = MTL_MAIN_ENGINES,
+>> -	GEN13_DISPLAY,
+>> -	.display.ver = 14,
+>> -	.display.has_cdclk_crawl = 1,
+>> -	.display.has_cdclk_squash = 1,
+>>  };
+>>
+>>  #undef PLATFORM
+>> +__diag_pop();
+>>
+>>  #define INTEL_VGA_DEVICE(id, info) {			\
+>>  	PCI_DEVICE(PCI_VENDOR_ID_INTEL, id),		\
+>> @@ -489,7 +412,6 @@ static int xe_pci_probe(struct pci_dev *pdev, const struct pci_device_id *ent)
+>>  	xe->info.has_asid = desc->has_asid;
+>>  	xe->info.has_flat_ccs = desc->has_flat_ccs;
+>>  	xe->info.has_4tile = desc->has_4tile;
+>> -	xe->info.display = desc->display;
+>>  	xe->info.has_range_tlb_invalidation = desc->has_range_tlb_invalidation;
+>>
+>>  	spd = subplatform_get(xe, desc);
+>> @@ -519,6 +441,8 @@ static int xe_pci_probe(struct pci_dev *pdev, const struct pci_device_id *ent)
+>>  		}
+>>  	}
+>>
+>> +	xe_display_info_init(xe);
+>> +
+>>  	drm_dbg(&xe->drm, "%s %s %04x:%04x dgfx:%d gfx100:%d media100:%d dma_m_s:%d tc:%d",
+>>  		desc->platform_name, spd ? spd->name : "",
+>>  		xe->info.devid, xe->info.revid,
+>
+>-- 
+>Jani Nikula, Intel Open Source Graphics Center
