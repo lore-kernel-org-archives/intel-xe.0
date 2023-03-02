@@ -4,47 +4,46 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4015AC7EE36
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 401A0C7EE39
 	for <intel-xe@archiver.kernel.org>; Thu,  2 Mar 2023 01:35:02 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 255A110E373;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 19FA410E372;
 	Thu,  2 Mar 2023 01:35:02 +0000 (UTC)
 Received: from mga06.intel.com (mga06b.intel.com [134.134.136.31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E3D6210E366
+ by gabe.freedesktop.org (Postfix) with ESMTPS id BAA7C10E35A
  for <intel-xe@lists.freedesktop.org>; Thu,  2 Mar 2023 01:34:59 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
  t=1677720899; x=1709256899;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=ZiYUWY2BKeG0kBOsevsq5k7ijrYVuNYUYT1cXodsnaA=;
- b=VutYGrjd8JzBXG+ShsAgkJ0jSO6CcJ2sMo109dwY84plPqtiWL5k36zr
- 2JTOidjLrh5Iecle6FrMGq8FJBnzUaqIZP3evsZZbZoC0KkCwRSoUEQgY
- rnLwPAXDSvLhGG9tqmSsJxC7Xp7XlKeI+VLwDbbX4l3cW3lzHINIcbjTU
- tRCAxKuoBc4WRoyGCOumlhggZLYsyxDyC5qI+0M2r0mjPWgKr5ViV81ql
- 2tDBmjPcZ2j9YvBvKeLMZNy2h71kM2g8Xyyc2CM1VbkztXVmYMmMTFFlp
- jwcSAdUF/scrKDgRO2BLR1+pKG+mUvkUeqqnyuK2sLkZc2vlrmq9/SZWo w==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10636"; a="397148702"
-X-IronPort-AV: E=Sophos;i="5.98,226,1673942400"; d="scan'208";a="397148702"
+ bh=3AAaSqLF2SWk+P4ZbZ/mRbbuSDiZ1UcHv81cIvOxBEY=;
+ b=LSM43Mu+BUejaz0sGseay+pSx+KN6fSNfgamlau/vOpdPRatrq7UTCea
+ Bi8qvx3omsOmNueBcyH9W+Fx0oajZlOu4cW0ugQxVF1KOCZrvMwAo+JHm
+ z/z8jsAWAVhRNgRb0h3kKgAGfoyMXxvrqRbi6KyZF2k614BbESbMYUaId
+ T6EMahqctEBiNn3DIRcdz7dOtTS5iHPDj+YP1TUAgCkYCxFT/6E9s/Rov
+ c0MfkZbsUYADnZJIAInFSG1fenbEe7iSyPt2fizXAkPoEh9GwZmMGUK22
+ 4iJ52TArm/HZ+t9nv5NaZ/X8KECHs4Ulp6/OZIrtcoaNCM6VrD9OV9KvC A==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10636"; a="397148701"
+X-IronPort-AV: E=Sophos;i="5.98,226,1673942400"; d="scan'208";a="397148701"
 Received: from orsmga004.jf.intel.com ([10.7.209.38])
  by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  01 Mar 2023 17:34:58 -0800
-X-IronPort-AV: E=McAfee;i="6500,9779,10636"; a="798635059"
-X-IronPort-AV: E=Sophos;i="5.98,226,1673942400"; d="scan'208";a="798635059"
+X-IronPort-AV: E=McAfee;i="6500,9779,10636"; a="798635047"
+X-IronPort-AV: E=Sophos;i="5.98,226,1673942400"; d="scan'208";a="798635047"
 Received: from lucas-s2600cw.jf.intel.com ([10.165.21.196])
  by orsmga004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  01 Mar 2023 17:34:58 -0800
 From: Lucas De Marchi <lucas.demarchi@intel.com>
 To: intel-xe@lists.freedesktop.org
-Date: Wed,  1 Mar 2023 17:34:09 -0800
-Message-Id: <20230302013411.3262608-6-lucas.demarchi@intel.com>
+Date: Wed,  1 Mar 2023 17:34:05 -0800
+Message-Id: <20230302013411.3262608-2-lucas.demarchi@intel.com>
 X-Mailer: git-send-email 2.39.0
 In-Reply-To: <20230302013411.3262608-1-lucas.demarchi@intel.com>
 References: <20230302013411.3262608-1-lucas.demarchi@intel.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-xe] [PATCH 5/7] drm/xe/display: Move device info
- initialization to display
+Subject: [Intel-xe] [PATCH 1/7] drm/xe: Fix typo persitent->persistent
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -62,393 +61,230 @@ Cc: Lucas De Marchi <lucas.demarchi@intel.com>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Instead of initializing the display info together with the platform in
-xe_pci.c, let the display part initialize it. The small disadvantage is
-that the description struct is not automatically mapped from the PCI ID,
-but just doing a switch on the platform, that should already be set
-during display initialization should be ok.
+Fix typo as noticed by Matt Roper:
 
-This allows to encapsulate the display details inside the display
-compilation units.
+	git grep -l persitent | xargs sed -i 's/persitent/persistent/g'
 
-Also use __diag_push() / __diag_pop() like in xe_step to handle the few
-places where -Woverride-init should be disabled.
+... and then fix coding style issues.
 
 Signed-off-by: Lucas De Marchi <lucas.demarchi@intel.com>
 ---
- drivers/gpu/drm/xe/Makefile     |   3 -
- drivers/gpu/drm/xe/xe_display.c | 114 ++++++++++++++++++++++++++++++++
- drivers/gpu/drm/xe/xe_display.h |  15 ++---
- drivers/gpu/drm/xe/xe_pci.c     |  90 ++-----------------------
- 4 files changed, 128 insertions(+), 94 deletions(-)
+ drivers/gpu/drm/xe/xe_device.c       | 46 ++++++++++++++--------------
+ drivers/gpu/drm/xe/xe_device.h       |  6 ++--
+ drivers/gpu/drm/xe/xe_device_types.h |  8 ++---
+ drivers/gpu/drm/xe/xe_engine.c       |  6 ++--
+ drivers/gpu/drm/xe/xe_engine_types.h |  6 ++--
+ drivers/gpu/drm/xe/xe_execlist.c     |  2 +-
+ drivers/gpu/drm/xe/xe_guc_submit.c   |  2 +-
+ 7 files changed, 38 insertions(+), 38 deletions(-)
 
-diff --git a/drivers/gpu/drm/xe/Makefile b/drivers/gpu/drm/xe/Makefile
-index 18257cd7227d..d1d255df74a1 100644
---- a/drivers/gpu/drm/xe/Makefile
-+++ b/drivers/gpu/drm/xe/Makefile
-@@ -24,9 +24,6 @@ subdir-ccflags-y += $(call cc-disable-warning, initializer-overrides)
- subdir-ccflags-y += $(call cc-disable-warning, frame-address)
- subdir-ccflags-$(CONFIG_DRM_XE_WERROR) += -Werror
- 
--# Fine grained warnings disable
--CFLAGS_xe_pci.o = $(call cc-disable-warning, override-init)
--
- subdir-ccflags-y += -I$(srctree)/$(src)
- 
- # Please keep these build lists sorted!
-diff --git a/drivers/gpu/drm/xe/xe_display.c b/drivers/gpu/drm/xe/xe_display.c
-index 34bdb2d60938..76e4fb6bd67c 100644
---- a/drivers/gpu/drm/xe/xe_display.c
-+++ b/drivers/gpu/drm/xe/xe_display.c
-@@ -10,6 +10,7 @@
- #include <linux/fb.h>
- 
- #include <drm/drm_aperture.h>
-+#include <drm/drm_drv.h>
- #include <drm/drm_managed.h>
- #include <drm/xe_drm.h>
- 
-@@ -383,4 +384,117 @@ void xe_display_pm_resume(struct xe_device *xe)
- 	intel_power_domains_enable(xe);
+diff --git a/drivers/gpu/drm/xe/xe_device.c b/drivers/gpu/drm/xe/xe_device.c
+index 1f12b0fc0634..afc6fd516f6f 100644
+--- a/drivers/gpu/drm/xe/xe_device.c
++++ b/drivers/gpu/drm/xe/xe_device.c
+@@ -52,8 +52,8 @@ static int xe_file_open(struct drm_device *dev, struct drm_file *file)
+ 	return 0;
  }
  
-+/* Display info initialization */
-+__diag_push();
-+__diag_ignore_all("-Woverride-init", "Allow field overrides in table");
-+
-+#define __DISPLAY_DEFAULTS \
-+	.pipe_mask = BIT(PIPE_A) | BIT(PIPE_B) |			\
-+		     BIT(PIPE_C) | BIT(PIPE_D),				\
-+	.cpu_transcoder_mask =						\
-+	BIT(TRANSCODER_A) | BIT(TRANSCODER_B) |				\
-+	BIT(TRANSCODER_C) | BIT(TRANSCODER_D) |				\
-+	BIT(TRANSCODER_DSI_0) | BIT(TRANSCODER_DSI_1),			\
-+	.pipe_offsets = {						\
-+		[TRANSCODER_A] = PIPE_A_OFFSET,				\
-+		[TRANSCODER_B] = PIPE_B_OFFSET,				\
-+		[TRANSCODER_C] = PIPE_C_OFFSET,				\
-+		[TRANSCODER_D] = PIPE_D_OFFSET,				\
-+		[TRANSCODER_DSI_0] = PIPE_DSI0_OFFSET,			\
-+		[TRANSCODER_DSI_1] = PIPE_DSI1_OFFSET,			\
-+	},								\
-+	.trans_offsets = {						\
-+		[TRANSCODER_A] = TRANSCODER_A_OFFSET,			\
-+		[TRANSCODER_B] = TRANSCODER_B_OFFSET,			\
-+		[TRANSCODER_C] = TRANSCODER_C_OFFSET,			\
-+		[TRANSCODER_D] = TRANSCODER_D_OFFSET,			\
-+		[TRANSCODER_DSI_0] = TRANSCODER_DSI0_OFFSET,		\
-+		[TRANSCODER_DSI_1] = TRANSCODER_DSI1_OFFSET,		\
-+	}
-+
-+#define GEN12_DISPLAY \
-+	__DISPLAY_DEFAULTS,						\
-+	.ver = 12,							\
-+	.abox_mask = GENMASK(2, 1),					\
-+	.has_dmc = 1,							\
-+	.has_dp_mst = 1,						\
-+	.has_dsb = 0, /* FIXME: LUT load is broken with huge DSB */	\
-+	.dbuf.size = 2048,						\
-+	.dbuf.slice_mask = BIT(DBUF_S1) | BIT(DBUF_S2),			\
-+	.has_dsc = 1,							\
-+	.fbc_mask = BIT(INTEL_FBC_A),					\
-+	.has_fpga_dbg = 1,						\
-+	.has_hdcp = 1,							\
-+	.has_ipc = 1,							\
-+	.has_psr = 1,							\
-+	.has_psr_hw_tracking = 1,					\
-+	.color = { .degamma_lut_size = 33, .gamma_lut_size = 262145 }
-+
-+#define GEN13_DISPLAY							\
-+	__DISPLAY_DEFAULTS,						\
-+	.ver = 13,							\
-+	.abox_mask = GENMASK(1, 0),					\
-+	.color = {							\
-+		.degamma_lut_size = 128, .gamma_lut_size = 1024,	\
-+		.degamma_lut_tests = DRM_COLOR_LUT_NON_DECREASING |	\
-+		DRM_COLOR_LUT_EQUAL_CHANNELS,				\
-+	},								\
-+	.dbuf.size = 4096,						\
-+	.dbuf.slice_mask = BIT(DBUF_S1) | BIT(DBUF_S2) | BIT(DBUF_S3) |	\
-+	BIT(DBUF_S4),							\
-+	.has_dmc = 1,							\
-+	.has_dp_mst = 1,						\
-+	.has_dsb = 1,							\
-+	.has_dsc = 1,							\
-+	.fbc_mask = BIT(INTEL_FBC_A),					\
-+	.has_fpga_dbg = 1,						\
-+	.has_hdcp = 1,							\
-+	.has_ipc = 1,							\
-+	.has_psr = 1
-+
-+void xe_display_info_init(struct xe_device *xe)
-+{
-+	if (!xe->info.enable_display)
-+		return;
-+
-+	switch (xe->info.platform) {
-+	case XE_TIGERLAKE:
-+	case XE_DG1:
-+		xe->info.display = (struct xe_device_display_info) { GEN12_DISPLAY };
-+		break;
-+	case XE_ALDERLAKE_S:
-+	case XE_ALDERLAKE_P:
-+		xe->info.display = (struct xe_device_display_info) {
-+			GEN12_DISPLAY,
-+			.has_hti = 1,
-+			.has_psr_hw_tracking = 0,
-+		};
-+		break;
-+	case XE_DG2:
-+		xe->info.display = (struct xe_device_display_info) {
-+			GEN13_DISPLAY,
-+			.cpu_transcoder_mask =
-+				BIT(TRANSCODER_A) | BIT(TRANSCODER_B) |
-+				BIT(TRANSCODER_C) | BIT(TRANSCODER_D),
-+		};
-+		break;
-+	case XE_METEORLAKE:
-+		xe->info.display = (struct xe_device_display_info) {
-+			GEN13_DISPLAY,
-+			.ver = 14,
-+			.has_cdclk_crawl = 1,
-+			.has_cdclk_squash = 1,
-+		};
-+		break;
-+	default:
-+		/*
-+		 * If platform doesn't have display, enable_display should
-+		 * had been forced to false already at this point
-+		 */
-+		drm_WARN_ON(&xe->drm, 1);
-+	}
-+}
-+
-+__diag_pop();
-+
- #endif
-diff --git a/drivers/gpu/drm/xe/xe_display.h b/drivers/gpu/drm/xe/xe_display.h
-index cb5298ceed3b..d1af8e3a5c0f 100644
---- a/drivers/gpu/drm/xe/xe_display.h
-+++ b/drivers/gpu/drm/xe/xe_display.h
-@@ -6,16 +6,18 @@
- #ifndef _XE_DISPLAY_H_
- #define _XE_DISPLAY_H_
+-static void device_kill_persitent_engines(struct xe_device *xe,
+-					  struct xe_file *xef);
++static void device_kill_persistent_engines(struct xe_device *xe,
++					   struct xe_file *xef);
  
--#include <drm/drm_drv.h>
--
- #include "xe_device.h"
+ static void xe_file_close(struct drm_device *dev, struct drm_file *file)
+ {
+@@ -70,7 +70,7 @@ static void xe_file_close(struct drm_device *dev, struct drm_file *file)
+ 	}
+ 	mutex_unlock(&xef->engine.lock);
+ 	mutex_destroy(&xef->engine.lock);
+-	device_kill_persitent_engines(xe, xef);
++	device_kill_persistent_engines(xe, xef);
  
-+struct drm_driver;
-+
- #if IS_ENABLED(CONFIG_DRM_XE_DISPLAY)
+ 	mutex_lock(&xef->vm.lock);
+ 	xa_for_each(&xef->vm.xa, idx, vm)
+@@ -199,8 +199,8 @@ struct xe_device *xe_device_create(struct pci_dev *pdev,
+ 	drmm_mutex_init(&xe->drm, &xe->usm.lock);
+ 	xa_init_flags(&xe->usm.asid_to_vm, XA_FLAGS_ALLOC1);
  
- int xe_display_set_driver_hooks(struct pci_dev *pdev, struct drm_driver *driver);
+-	drmm_mutex_init(&xe->drm, &xe->persitent_engines.lock);
+-	INIT_LIST_HEAD(&xe->persitent_engines.list);
++	drmm_mutex_init(&xe->drm, &xe->persistent_engines.lock);
++	INIT_LIST_HEAD(&xe->persistent_engines.list);
  
- int xe_display_create(struct xe_device *xe);
+ 	spin_lock_init(&xe->pinned.lock);
+ 	INIT_LIST_HEAD(&xe->pinned.kernel_bo_present);
+@@ -376,35 +376,35 @@ void xe_device_shutdown(struct xe_device *xe)
+ {
+ }
  
-+void xe_display_info_init(struct xe_device *xe);
-+
- int xe_display_init_nommio(struct xe_device *xe);
- void xe_display_fini_nommio(struct drm_device *dev, void *dummy);
+-void xe_device_add_persitent_engines(struct xe_device *xe, struct xe_engine *e)
++void xe_device_add_persistent_engines(struct xe_device *xe, struct xe_engine *e)
+ {
+-	mutex_lock(&xe->persitent_engines.lock);
+-	list_add_tail(&e->persitent.link, &xe->persitent_engines.list);
+-	mutex_unlock(&xe->persitent_engines.lock);
++	mutex_lock(&xe->persistent_engines.lock);
++	list_add_tail(&e->persistent.link, &xe->persistent_engines.list);
++	mutex_unlock(&xe->persistent_engines.lock);
+ }
  
-@@ -51,6 +53,8 @@ xe_display_set_driver_hooks(struct pci_dev *pdev, struct drm_driver *driver) { r
- static inline int
- xe_display_create(struct xe_device *xe) { return 0; }
+-void xe_device_remove_persitent_engines(struct xe_device *xe,
+-					struct xe_engine *e)
++void xe_device_remove_persistent_engines(struct xe_device *xe,
++					 struct xe_engine *e)
+ {
+-	mutex_lock(&xe->persitent_engines.lock);
+-	if (!list_empty(&e->persitent.link))
+-		list_del(&e->persitent.link);
+-	mutex_unlock(&xe->persitent_engines.lock);
++	mutex_lock(&xe->persistent_engines.lock);
++	if (!list_empty(&e->persistent.link))
++		list_del(&e->persistent.link);
++	mutex_unlock(&xe->persistent_engines.lock);
+ }
  
-+static inline void xe_display_info_init(struct xe_device *xe) { }
-+
- static inline int
- xe_display_enable(struct pci_dev *pdev, struct drm_driver *driver) { return 0; };
+-static void device_kill_persitent_engines(struct xe_device *xe,
+-					  struct xe_file *xef)
++static void device_kill_persistent_engines(struct xe_device *xe,
++					   struct xe_file *xef)
+ {
+ 	struct xe_engine *e, *next;
  
-@@ -58,12 +62,7 @@ static inline int
- xe_display_init_nommio(struct xe_device *xe) { return 0; };
- static inline void xe_display_fini_nommio(struct drm_device *dev, void *dummy) {};
- 
--static inline int xe_display_init_noirq(struct xe_device *xe)
--{
--	if (xe->info.display.pipe_mask != 0)
--		drm_warn(&xe->drm, "CONFIG_DRM_XE_DISPLAY is unset, but device is display capable\n");
--	return 0;
--}
-+static inline int xe_display_init_noirq(struct xe_device *xe) { return 0; }
- 
- static inline void
- xe_display_fini_noirq(struct drm_device *dev, void *dummy) {};
-diff --git a/drivers/gpu/drm/xe/xe_pci.c b/drivers/gpu/drm/xe/xe_pci.c
-index 11dc0de66101..c4d9fd2e7b2b 100644
---- a/drivers/gpu/drm/xe/xe_pci.c
-+++ b/drivers/gpu/drm/xe/xe_pci.c
-@@ -16,6 +16,7 @@
- 
- #include "regs/xe_regs.h"
- #include "xe_device.h"
-+#include "xe_display.h"
- #include "xe_drv.h"
- #include "xe_macros.h"
- #include "xe_module.h"
-@@ -62,8 +63,6 @@ struct xe_device_desc {
- 	DEV_INFO_FOR_EACH_FLAG(DEFINE_FLAG);
- #undef DEFINE_FLAG
- 
--	struct xe_device_display_info display;
--
- 	u8 vram_flags;
- 	u8 max_tiles;
- 	u8 vm_max_level;
-@@ -75,79 +74,15 @@ struct xe_device_desc {
- 	bool has_asid;
- };
- 
-+__diag_push();
-+__diag_ignore_all("-Woverride-init", "Allow field overrides in table");
-+
- #define PLATFORM(x)		\
- 	.platform = (x),	\
- 	.platform_name = #x
- 
- #define NOP(x)	x
- 
--#define __DISPLAY_DEFAULTS \
--		.pipe_mask = BIT(PIPE_A) | BIT(PIPE_B) | BIT(PIPE_C) | BIT(PIPE_D), \
--		.cpu_transcoder_mask = \
--			BIT(TRANSCODER_A) | BIT(TRANSCODER_B) | \
--			BIT(TRANSCODER_C) | BIT(TRANSCODER_D) | \
--			BIT(TRANSCODER_DSI_0) | BIT(TRANSCODER_DSI_1), \
--		.pipe_offsets = { \
--			[TRANSCODER_A] = PIPE_A_OFFSET, \
--			[TRANSCODER_B] = PIPE_B_OFFSET, \
--			[TRANSCODER_C] = PIPE_C_OFFSET, \
--			[TRANSCODER_D] = PIPE_D_OFFSET, \
--			[TRANSCODER_DSI_0] = PIPE_DSI0_OFFSET, \
--			[TRANSCODER_DSI_1] = PIPE_DSI1_OFFSET, \
--		}, \
--		.trans_offsets = { \
--			[TRANSCODER_A] = TRANSCODER_A_OFFSET, \
--			[TRANSCODER_B] = TRANSCODER_B_OFFSET, \
--			[TRANSCODER_C] = TRANSCODER_C_OFFSET, \
--			[TRANSCODER_D] = TRANSCODER_D_OFFSET, \
--			[TRANSCODER_DSI_0] = TRANSCODER_DSI0_OFFSET, \
--			[TRANSCODER_DSI_1] = TRANSCODER_DSI1_OFFSET, \
--		}, \
--
--#define GEN12_DISPLAY \
--	.display = (struct xe_device_display_info){ \
--		__DISPLAY_DEFAULTS \
--		.ver = 12, \
--		.abox_mask = GENMASK(2, 1), \
--		.has_dmc = 1, \
--		.has_dp_mst = 1, \
--		.has_dsb = 0, /* FIXME: LUT load is broken with huge DSB */ \
--		.dbuf.size = 2048, \
--		.dbuf.slice_mask = BIT(DBUF_S1) | BIT(DBUF_S2), \
--		.has_dsc = 1, \
--		.fbc_mask = BIT(INTEL_FBC_A), \
--		.has_fpga_dbg = 1, \
--		.has_hdcp = 1, \
--		.has_ipc = 1, \
--		.has_psr = 1, \
--		.has_psr_hw_tracking = 1, \
--		.color = { .degamma_lut_size = 33, .gamma_lut_size = 262145 }, \
--	}
--
--#define GEN13_DISPLAY \
--	.display = (struct xe_device_display_info){ \
--		__DISPLAY_DEFAULTS \
--		.ver = 13,							\
--		.abox_mask = GENMASK(1, 0),					\
--		.color = {							\
--			.degamma_lut_size = 128, .gamma_lut_size = 1024,	\
--			.degamma_lut_tests = DRM_COLOR_LUT_NON_DECREASING |	\
--				     DRM_COLOR_LUT_EQUAL_CHANNELS,		\
--		},								\
--		.dbuf.size = 4096,						\
--		.dbuf.slice_mask = BIT(DBUF_S1) | BIT(DBUF_S2) | BIT(DBUF_S3) |	\
--				   BIT(DBUF_S4),				\
--		.has_dmc = 1,							\
--		.has_dp_mst = 1,						\
--		.has_dsb = 1,							\
--		.has_dsc = 1,							\
--		.fbc_mask = BIT(INTEL_FBC_A),					\
--		.has_fpga_dbg = 1,						\
--		.has_hdcp = 1,							\
--		.has_ipc = 1,							\
--		.has_psr = 1,							\
--	}
--
- /* Keep in gen based order, and chronological order within a gen */
- #define GEN12_FEATURES \
- 	.require_force_probe = true, \
-@@ -160,20 +95,15 @@ struct xe_device_desc {
- 
- static const struct xe_device_desc tgl_desc = {
- 	GEN12_FEATURES,
--	GEN12_DISPLAY,
- 	PLATFORM(XE_TIGERLAKE),
- 	.platform_engine_mask =
- 		BIT(XE_HW_ENGINE_RCS0) | BIT(XE_HW_ENGINE_BCS0) |
- 		BIT(XE_HW_ENGINE_VECS0) | BIT(XE_HW_ENGINE_VCS0) |
- 		BIT(XE_HW_ENGINE_VCS2),
--	GEN12_DISPLAY,
- };
- 
- static const struct xe_device_desc adl_s_desc = {
- 	GEN12_FEATURES,
--	GEN12_DISPLAY,
--	.display.has_hti = 1,
--	.display.has_psr_hw_tracking = 0,
- 	PLATFORM(XE_ALDERLAKE_S),
- 	.platform_engine_mask =
- 		BIT(XE_HW_ENGINE_RCS0) | BIT(XE_HW_ENGINE_BCS0) |
-@@ -195,7 +125,6 @@ static const struct xe_device_desc adl_p_desc = {
- 
- static const struct xe_device_desc dg1_desc = {
- 	GEN12_FEATURES,
--	GEN12_DISPLAY,
- 	DGFX_FEATURES,
- 	.graphics_rel = 10,
- 	PLATFORM(XE_DG1),
-@@ -256,9 +185,6 @@ static const struct xe_device_desc dg2_desc = {
- 	XE_HPM_FEATURES,
- 
- 	DG2_FEATURES,
--	GEN13_DISPLAY,
--	.display.cpu_transcoder_mask = BIT(TRANSCODER_A) | BIT(TRANSCODER_B) |
--				       BIT(TRANSCODER_C) | BIT(TRANSCODER_D),
- };
- 
- #define PVC_ENGINES \
-@@ -334,13 +260,10 @@ static const struct xe_device_desc mtl_desc = {
- 	PLATFORM(XE_METEORLAKE),
- 	.extra_gts = xelpmp_gts,
- 	.platform_engine_mask = MTL_MAIN_ENGINES,
--	GEN13_DISPLAY,
--	.display.ver = 14,
--	.display.has_cdclk_crawl = 1,
--	.display.has_cdclk_squash = 1,
- };
- 
- #undef PLATFORM
-+__diag_pop();
- 
- #define INTEL_VGA_DEVICE(id, info) {			\
- 	PCI_DEVICE(PCI_VENDOR_ID_INTEL, id),		\
-@@ -489,7 +412,6 @@ static int xe_pci_probe(struct pci_dev *pdev, const struct pci_device_id *ent)
- 	xe->info.has_asid = desc->has_asid;
- 	xe->info.has_flat_ccs = desc->has_flat_ccs;
- 	xe->info.has_4tile = desc->has_4tile;
--	xe->info.display = desc->display;
- 	xe->info.has_range_tlb_invalidation = desc->has_range_tlb_invalidation;
- 
- 	spd = subplatform_get(xe, desc);
-@@ -519,6 +441,8 @@ static int xe_pci_probe(struct pci_dev *pdev, const struct pci_device_id *ent)
+-	mutex_lock(&xe->persitent_engines.lock);
+-	list_for_each_entry_safe(e, next, &xe->persitent_engines.list,
+-				 persitent.link)
+-		if (e->persitent.xef == xef) {
++	mutex_lock(&xe->persistent_engines.lock);
++	list_for_each_entry_safe(e, next, &xe->persistent_engines.list,
++				 persistent.link)
++		if (e->persistent.xef == xef) {
+ 			xe_engine_kill(e);
+-			list_del_init(&e->persitent.link);
++			list_del_init(&e->persistent.link);
  		}
+-	mutex_unlock(&xe->persitent_engines.lock);
++	mutex_unlock(&xe->persistent_engines.lock);
+ }
+ 
+ void xe_device_wmb(struct xe_device *xe)
+diff --git a/drivers/gpu/drm/xe/xe_device.h b/drivers/gpu/drm/xe/xe_device.h
+index 263620953c3b..25c5087f5aad 100644
+--- a/drivers/gpu/drm/xe/xe_device.h
++++ b/drivers/gpu/drm/xe/xe_device.h
+@@ -37,9 +37,9 @@ int xe_device_probe(struct xe_device *xe);
+ void xe_device_remove(struct xe_device *xe);
+ void xe_device_shutdown(struct xe_device *xe);
+ 
+-void xe_device_add_persitent_engines(struct xe_device *xe, struct xe_engine *e);
+-void xe_device_remove_persitent_engines(struct xe_device *xe,
+-					struct xe_engine *e);
++void xe_device_add_persistent_engines(struct xe_device *xe, struct xe_engine *e);
++void xe_device_remove_persistent_engines(struct xe_device *xe,
++					 struct xe_engine *e);
+ 
+ void xe_device_wmb(struct xe_device *xe);
+ 
+diff --git a/drivers/gpu/drm/xe/xe_device_types.h b/drivers/gpu/drm/xe/xe_device_types.h
+index 9743987fc883..ec36cedb87cc 100644
+--- a/drivers/gpu/drm/xe/xe_device_types.h
++++ b/drivers/gpu/drm/xe/xe_device_types.h
+@@ -196,13 +196,13 @@ struct xe_device {
+ 		struct mutex lock;
+ 	} usm;
+ 
+-	/** @persitent_engines: engines that are closed but still running */
++	/** @persistent_engines: engines that are closed but still running */
+ 	struct {
+-		/** @lock: protects persitent engines */
++		/** @lock: protects persistent engines */
+ 		struct mutex lock;
+-		/** @list: list of persitent engines */
++		/** @list: list of persistent engines */
+ 		struct list_head list;
+-	} persitent_engines;
++	} persistent_engines;
+ 
+ 	/** @pinned: pinned BO state */
+ 	struct {
+diff --git a/drivers/gpu/drm/xe/xe_engine.c b/drivers/gpu/drm/xe/xe_engine.c
+index f1e0f700d96c..3b6f8a25112a 100644
+--- a/drivers/gpu/drm/xe/xe_engine.c
++++ b/drivers/gpu/drm/xe/xe_engine.c
+@@ -47,7 +47,7 @@ static struct xe_engine *__xe_engine_create(struct xe_device *xe,
+ 	e->fence_irq = &gt->fence_irq[hwe->class];
+ 	e->ring_ops = gt->ring_ops[hwe->class];
+ 	e->ops = gt->engine_ops;
+-	INIT_LIST_HEAD(&e->persitent.link);
++	INIT_LIST_HEAD(&e->persistent.link);
+ 	INIT_LIST_HEAD(&e->compute.link);
+ 	INIT_LIST_HEAD(&e->multi_gt_link);
+ 
+@@ -620,7 +620,7 @@ int xe_engine_create_ioctl(struct drm_device *dev, void *data,
+ 		goto put_engine;
  	}
  
-+	xe_display_info_init(xe);
-+
- 	drm_dbg(&xe->drm, "%s %s %04x:%04x dgfx:%d gfx100:%d media100:%d dma_m_s:%d tc:%d",
- 		desc->platform_name, spd ? spd->name : "",
- 		xe->info.devid, xe->info.revid,
+-	e->persitent.xef = xef;
++	e->persistent.xef = xef;
+ 
+ 	mutex_lock(&xef->engine.lock);
+ 	err = xa_alloc(&xef->engine.xa, &id, e, xa_limit_32b, GFP_KERNEL);
+@@ -716,7 +716,7 @@ int xe_engine_destroy_ioctl(struct drm_device *dev, void *data,
+ 	if (!(e->flags & ENGINE_FLAG_PERSISTENT))
+ 		xe_engine_kill(e);
+ 	else
+-		xe_device_add_persitent_engines(xe, e);
++		xe_device_add_persistent_engines(xe, e);
+ 
+ 	trace_xe_engine_close(e);
+ 	xe_engine_put(e);
+diff --git a/drivers/gpu/drm/xe/xe_engine_types.h b/drivers/gpu/drm/xe/xe_engine_types.h
+index a2e09b6d997c..d0f1849e8ad5 100644
+--- a/drivers/gpu/drm/xe/xe_engine_types.h
++++ b/drivers/gpu/drm/xe/xe_engine_types.h
+@@ -81,14 +81,14 @@ struct xe_engine {
+ 	};
+ 
+ 	/**
+-	 * @persitent: persitent engine state
++	 * @persistent: persistent engine state
+ 	 */
+ 	struct {
+ 		/** @xef: file which this engine belongs to */
+ 		struct xe_file *xef;
+-		/** @link: link in list of persitent engines */
++		/** @link: link in list of persistent engines */
+ 		struct list_head link;
+-	} persitent;
++	} persistent;
+ 
+ 	union {
+ 		/**
+diff --git a/drivers/gpu/drm/xe/xe_execlist.c b/drivers/gpu/drm/xe/xe_execlist.c
+index 92da72f663f9..02021457b1f0 100644
+--- a/drivers/gpu/drm/xe/xe_execlist.c
++++ b/drivers/gpu/drm/xe/xe_execlist.c
+@@ -401,7 +401,7 @@ static void execlist_engine_fini_async(struct work_struct *w)
+ 	spin_unlock_irqrestore(&exl->port->lock, flags);
+ 
+ 	if (e->flags & ENGINE_FLAG_PERSISTENT)
+-		xe_device_remove_persitent_engines(gt_to_xe(e->gt), e);
++		xe_device_remove_persistent_engines(gt_to_xe(e->gt), e);
+ 	drm_sched_entity_fini(&exl->entity);
+ 	drm_sched_fini(&exl->sched);
+ 	kfree(exl);
+diff --git a/drivers/gpu/drm/xe/xe_guc_submit.c b/drivers/gpu/drm/xe/xe_guc_submit.c
+index 8c9a6cb0013e..e857013070b9 100644
+--- a/drivers/gpu/drm/xe/xe_guc_submit.c
++++ b/drivers/gpu/drm/xe/xe_guc_submit.c
+@@ -890,7 +890,7 @@ static void __guc_engine_fini_async(struct work_struct *w)
+ 	trace_xe_engine_destroy(e);
+ 
+ 	if (e->flags & ENGINE_FLAG_PERSISTENT)
+-		xe_device_remove_persitent_engines(gt_to_xe(e->gt), e);
++		xe_device_remove_persistent_engines(gt_to_xe(e->gt), e);
+ 	release_guc_id(guc, e);
+ 	drm_sched_entity_fini(&ge->entity);
+ 	drm_sched_fini(&ge->sched);
 -- 
 2.39.0
 
