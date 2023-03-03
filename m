@@ -4,47 +4,50 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4E014C678D4
-	for <intel-xe@archiver.kernel.org>; Fri,  3 Mar 2023 10:52:32 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id F2C45C678D4
+	for <intel-xe@archiver.kernel.org>; Fri,  3 Mar 2023 10:52:36 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2DA8710E07E;
-	Fri,  3 Mar 2023 10:52:32 +0000 (UTC)
-Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3983510E07E
- for <intel-xe@lists.freedesktop.org>; Fri,  3 Mar 2023 10:52:29 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D20ED10E07E;
+	Fri,  3 Mar 2023 10:52:36 +0000 (UTC)
+Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id BC57110E07E
+ for <intel-xe@lists.freedesktop.org>; Fri,  3 Mar 2023 10:52:34 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1677840749; x=1709376749;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=1tTCUAd+j6asuvTqa8J1NIQQdw1Qq7qhBhZvd8HBvWU=;
- b=FqIuEkgJCGsmRS30Hr+b5XUD3Avd8o4uGbe8NcIXgxiAPBiTFb6DbUAZ
- ivRzKwxXkHVLZlpcQ0a0zxLplBMJHdr1TSS39FKqkR3fmzredWamPzGt+
- 35pT9yvExTBDIWk+fcvWoxfc29hTBQAcoV+KBnin1rzTTqHZmjvI168EQ
- cyzvnDbrRUN/y3r7vITflmOXhwybhgRE9I5LhSY8xIYO6cNccWlDowCEe
- n6pRwVJfJOTgezrdZtvir/4abrKZbNGMR/zxl/rNOdqoWf+pKYKwKLy37
- cU4zeh8Ja8XuuggvBvlTipAn5GkluFKhECsMLGPvd+jj/RZbShvGYpK89 g==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10637"; a="337332357"
-X-IronPort-AV: E=Sophos;i="5.98,230,1673942400"; d="scan'208";a="337332357"
-Received: from fmsmga005.fm.intel.com ([10.253.24.32])
- by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 03 Mar 2023 02:52:28 -0800
+ t=1677840754; x=1709376754;
+ h=from:to:cc:subject:date:message-id:in-reply-to:
+ references:mime-version:content-transfer-encoding;
+ bh=Lz5VMzChfggmFusPExaH0yfESF2705azQmOY6JakGZ8=;
+ b=UaPMB5g3xcawRKqpHmBmwjXG7KgxDt8lzDTLcUaBRzcVMU8QLLtj2UNU
+ 2lV+pZYx0/VoJp6vaPesi/Gi6qXlKlEMY29xNmp8/1rsySFWRKUg0a7sb
+ i4E3h9xxf5W2AQMIsMD/InGKvvj9WQTct8U/Z8ZXGQ88+FYA8glpmlKex
+ PJJjmDbppFjfX1KQOrYuily5jWSgoi1gvIFLXAuoRitaWZJdJe6ecnkNf
+ EAOp+tDeGGakY/UUxqrj7eEIw0dPqcFs117Dq+BruAEoCDblH9NbRcLAy
+ uWy9GZWQ8gvkPextCuPpPOdlGbOJ2t5NAExFbEGIrEudJDetmhiZpKL/C g==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10637"; a="421288090"
+X-IronPort-AV: E=Sophos;i="5.98,230,1673942400"; d="scan'208";a="421288090"
+Received: from fmsmga008.fm.intel.com ([10.253.24.58])
+ by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 03 Mar 2023 02:52:32 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6500,9779,10637"; a="1004542642"
-X-IronPort-AV: E=Sophos;i="5.98,230,1673942400"; d="scan'208";a="1004542642"
+X-IronPort-AV: E=McAfee;i="6500,9779,10637"; a="739467632"
+X-IronPort-AV: E=Sophos;i="5.98,230,1673942400"; d="scan'208";a="739467632"
 Received: from msieb-mobl1.ger.corp.intel.com (HELO localhost)
  ([10.252.57.184])
- by fmsmga005-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 03 Mar 2023 02:52:26 -0800
+ by fmsmga008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 03 Mar 2023 02:52:31 -0800
 From: Jani Nikula <jani.nikula@intel.com>
 To: intel-xe@lists.freedesktop.org
-Date: Fri,  3 Mar 2023 12:52:14 +0200
-Message-Id: <20230303105222.3550161-1-jani.nikula@intel.com>
+Date: Fri,  3 Mar 2023 12:52:15 +0200
+Message-Id: <20230303105222.3550161-2-jani.nikula@intel.com>
 X-Mailer: git-send-email 2.39.1
+In-Reply-To: <20230303105222.3550161-1-jani.nikula@intel.com>
+References: <20230303105222.3550161-1-jani.nikula@intel.com>
 MIME-Version: 1.0
 Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-xe] [PATCH v2 0/8] drm/xe: clean up i915 includes both sides
+Subject: [Intel-xe] [PATCH v2 1/8] drm/i915/display: don't use relative
+ ../i915 includes
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -60,64 +63,117 @@ Cc: jani.nikula@intel.com, lucas.demarchi@intel.com
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-v2 of https://patchwork.freedesktop.org/series/114573/
+We can't have this in upstream i915, so don't try that here either.
 
-Jani Nikula (8):
-  drm/i915/display: don't use relative ../i915 includes
-  drm/i915/display: drop redundant display/ from includes
-  drm/xe: drop unnecessary include
-  drm/xe: drop redundant display/ from includes
-  drm/xe: drop redundant ../ from includes
-  drm/xe: move all top level i915 compat headers to a separate
-    subdirectory
-  drm/xe: remove unnecessary include
-  drm/xe: drop top level i915 from include path
+Note: This reverts local changes in xe branch, and should be squashed to
+commit a09f88e470b6("drm/i915/display: Remaining changes to make xe
+compile").
 
- .../gpu/drm/i915/display/intel_backlight.c    |  2 +-
- drivers/gpu/drm/i915/display/intel_bw.c       |  2 +-
- drivers/gpu/drm/i915/display/intel_cdclk.c    |  4 +-
- drivers/gpu/drm/i915/display/intel_display.c  | 48 +++++++++----------
- .../drm/i915/display/intel_display_power.c    |  2 +-
- drivers/gpu/drm/i915/display/intel_gmbus.c    |  2 +-
- drivers/gpu/drm/i915/display/intel_opregion.c |  2 +-
- drivers/gpu/drm/i915/display/intel_psr.c      |  2 +-
- drivers/gpu/drm/i915/display/skl_watermark.c  |  2 +-
- drivers/gpu/drm/xe/Makefile                   |  7 +--
- .../i915_active_types.h                       |  0
- .../i915_drv.h                                |  2 +-
- .../drm/xe/compat-i915-headers/i915_fixed.h   |  1 +
- .../gpu/drm/xe/compat-i915-headers/i915_reg.h |  1 +
- .../xe/compat-i915-headers/i915_reg_defs.h    |  1 +
- .../drm/xe/compat-i915-headers/i915_utils.h   |  1 +
- .../i915_vma.h                                |  0
- .../i915_vma_types.h                          |  0
- .../compat-i915-headers/intel_mchbar_regs.h   |  1 +
- .../xe/compat-i915-headers/intel_pci_config.h |  1 +
- .../intel_pm_types.h                          |  2 -
- .../intel_runtime_pm.h                        |  0
- .../intel_wakeref.h                           |  0
- drivers/gpu/drm/xe/display/ext/i915_irq.c     | 18 +++----
- .../drm/xe/display/ext/intel_device_info.c    |  5 +-
- drivers/gpu/drm/xe/display/ext/intel_dram.c   |  2 +-
- drivers/gpu/drm/xe/display/ext/intel_pm.c     |  6 +--
- drivers/gpu/drm/xe/regs/xe_reg_defs.h         |  2 +-
- drivers/gpu/drm/xe/xe_device_types.h          |  6 +--
- drivers/gpu/drm/xe/xe_display.c               | 26 +++++-----
- 30 files changed, 76 insertions(+), 72 deletions(-)
- rename drivers/gpu/drm/xe/{display => compat-i915-headers}/i915_active_types.h (100%)
- rename drivers/gpu/drm/xe/{display => compat-i915-headers}/i915_drv.h (99%)
- create mode 100644 drivers/gpu/drm/xe/compat-i915-headers/i915_fixed.h
- create mode 100644 drivers/gpu/drm/xe/compat-i915-headers/i915_reg.h
- create mode 100644 drivers/gpu/drm/xe/compat-i915-headers/i915_reg_defs.h
- create mode 100644 drivers/gpu/drm/xe/compat-i915-headers/i915_utils.h
- rename drivers/gpu/drm/xe/{display => compat-i915-headers}/i915_vma.h (100%)
- rename drivers/gpu/drm/xe/{display => compat-i915-headers}/i915_vma_types.h (100%)
- create mode 100644 drivers/gpu/drm/xe/compat-i915-headers/intel_mchbar_regs.h
- create mode 100644 drivers/gpu/drm/xe/compat-i915-headers/intel_pci_config.h
- rename drivers/gpu/drm/xe/{display => compat-i915-headers}/intel_pm_types.h (95%)
- rename drivers/gpu/drm/xe/{display => compat-i915-headers}/intel_runtime_pm.h (100%)
- rename drivers/gpu/drm/xe/{display => compat-i915-headers}/intel_wakeref.h (100%)
+Reviewed-by: Lucas De Marchi <lucas.demarchi@intel.com>
+Signed-off-by: Jani Nikula <jani.nikula@intel.com>
+---
+ drivers/gpu/drm/i915/display/intel_backlight.c     | 2 +-
+ drivers/gpu/drm/i915/display/intel_bw.c            | 2 +-
+ drivers/gpu/drm/i915/display/intel_cdclk.c         | 4 ++--
+ drivers/gpu/drm/i915/display/intel_display_power.c | 2 +-
+ drivers/gpu/drm/i915/display/intel_gmbus.c         | 2 +-
+ drivers/gpu/drm/i915/display/intel_opregion.c      | 2 +-
+ drivers/gpu/drm/i915/display/skl_watermark.c       | 2 +-
+ 7 files changed, 8 insertions(+), 8 deletions(-)
 
+diff --git a/drivers/gpu/drm/i915/display/intel_backlight.c b/drivers/gpu/drm/i915/display/intel_backlight.c
+index e63eb43622e0..5b7da72c95b8 100644
+--- a/drivers/gpu/drm/i915/display/intel_backlight.c
++++ b/drivers/gpu/drm/i915/display/intel_backlight.c
+@@ -19,7 +19,7 @@
+ #include "intel_dp_aux_backlight.h"
+ #include "intel_dsi_dcs_backlight.h"
+ #include "intel_panel.h"
+-#include "../i915/intel_pci_config.h"
++#include "intel_pci_config.h"
+ #include "intel_pps.h"
+ #include "intel_quirks.h"
+ 
+diff --git a/drivers/gpu/drm/i915/display/intel_bw.c b/drivers/gpu/drm/i915/display/intel_bw.c
+index 67b4e947589c..54e03a3eaa0f 100644
+--- a/drivers/gpu/drm/i915/display/intel_bw.c
++++ b/drivers/gpu/drm/i915/display/intel_bw.c
+@@ -15,7 +15,7 @@
+ #include "intel_display_core.h"
+ #include "intel_display_types.h"
+ #include "skl_watermark.h"
+-#include "../i915/intel_mchbar_regs.h"
++#include "intel_mchbar_regs.h"
+ 
+ /* Parameters for Qclk Geyserville (QGV) */
+ struct intel_qgv_point {
+diff --git a/drivers/gpu/drm/i915/display/intel_cdclk.c b/drivers/gpu/drm/i915/display/intel_cdclk.c
+index 3b6a37403f25..ecb87542ebb6 100644
+--- a/drivers/gpu/drm/i915/display/intel_cdclk.c
++++ b/drivers/gpu/drm/i915/display/intel_cdclk.c
+@@ -32,8 +32,8 @@
+ #include "intel_crtc.h"
+ #include "intel_de.h"
+ #include "intel_display_types.h"
+-#include "../i915/intel_mchbar_regs.h"
+-#include "../i915/intel_pci_config.h"
++#include "intel_mchbar_regs.h"
++#include "intel_pci_config.h"
+ #include "intel_psr.h"
+ 
+ #ifdef I915
+diff --git a/drivers/gpu/drm/i915/display/intel_display_power.c b/drivers/gpu/drm/i915/display/intel_display_power.c
+index 00e32a423708..3315d2bbebc7 100644
+--- a/drivers/gpu/drm/i915/display/intel_display_power.c
++++ b/drivers/gpu/drm/i915/display/intel_display_power.c
+@@ -16,7 +16,7 @@
+ #include "intel_display_power_well.h"
+ #include "intel_display_types.h"
+ #include "intel_dmc.h"
+-#include "../i915/intel_mchbar_regs.h"
++#include "intel_mchbar_regs.h"
+ #include "intel_pch_refclk.h"
+ #include "intel_snps_phy.h"
+ #include "skl_watermark.h"
+diff --git a/drivers/gpu/drm/i915/display/intel_gmbus.c b/drivers/gpu/drm/i915/display/intel_gmbus.c
+index 2d099f4c52cd..0bc4f6b48e80 100644
+--- a/drivers/gpu/drm/i915/display/intel_gmbus.c
++++ b/drivers/gpu/drm/i915/display/intel_gmbus.c
+@@ -39,7 +39,7 @@
+ #include "intel_de.h"
+ #include "intel_display_types.h"
+ #include "intel_gmbus.h"
+-#include "../i915/display/intel_gmbus_regs.h"
++#include "intel_gmbus_regs.h"
+ 
+ struct intel_gmbus {
+ 	struct i2c_adapter adapter;
+diff --git a/drivers/gpu/drm/i915/display/intel_opregion.c b/drivers/gpu/drm/i915/display/intel_opregion.c
+index 057a68237efe..e0184745632c 100644
+--- a/drivers/gpu/drm/i915/display/intel_opregion.c
++++ b/drivers/gpu/drm/i915/display/intel_opregion.c
+@@ -37,7 +37,7 @@
+ #include "intel_backlight.h"
+ #include "intel_display_types.h"
+ #include "intel_opregion.h"
+-#include "../i915/intel_pci_config.h"
++#include "intel_pci_config.h"
+ 
+ #define OPREGION_HEADER_OFFSET 0
+ #define OPREGION_ACPI_OFFSET   0x100
+diff --git a/drivers/gpu/drm/i915/display/skl_watermark.c b/drivers/gpu/drm/i915/display/skl_watermark.c
+index 381d4f75e7c8..e254fb21b47f 100644
+--- a/drivers/gpu/drm/i915/display/skl_watermark.c
++++ b/drivers/gpu/drm/i915/display/skl_watermark.c
+@@ -16,7 +16,7 @@
+ #include "skl_watermark.h"
+ 
+ #include "i915_drv.h"
+-#include "../i915/i915_fixed.h"
++#include "i915_fixed.h"
+ #include "i915_reg.h"
+ #include "intel_pm.h"
+ 
 -- 
 2.39.1
 
