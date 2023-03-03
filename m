@@ -4,40 +4,40 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9EDC8C7EE2F
-	for <intel-xe@archiver.kernel.org>; Fri,  3 Mar 2023 14:50:32 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id A4D95C7EE32
+	for <intel-xe@archiver.kernel.org>; Fri,  3 Mar 2023 14:50:33 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7B9A410E634;
-	Fri,  3 Mar 2023 14:50:32 +0000 (UTC)
-Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5F87610E632
- for <intel-xe@lists.freedesktop.org>; Fri,  3 Mar 2023 14:50:30 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 85DE610E0FE;
+	Fri,  3 Mar 2023 14:50:33 +0000 (UTC)
+Received: from mga06.intel.com (mga06b.intel.com [134.134.136.31])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7388B10E0FE
+ for <intel-xe@lists.freedesktop.org>; Fri,  3 Mar 2023 14:50:31 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1677855030; x=1709391030;
+ t=1677855031; x=1709391031;
  h=from:to:subject:date:message-id:in-reply-to:references:
  content-transfer-encoding:mime-version;
- bh=/A2B0RQmP3yYHZpjQ29N13QhoM7Dwnqy9GuhVqCpK0w=;
- b=IXSV8DEgBMA1MEeep3ePnZwCDWT4iclwui27gWm+yg45AqAqU4BwwJNb
- 496YepM/sN/J8qi5Y/HDLSnX+ISJlYKwTGdak+K9LoLxMGG+fVgCQ7C9z
- 1K6+exOWtupZA7errh3tABlzD8gKvfOmpvIYlsY1R0f9/qmqUF+P5OaJI
- 0tm3+QAU4IjRb+oLx38KErUrpEanjrVZ7thssMoypnDQW3PjnSi9BvEyJ
- BJrs8Ss9h3QPTErYhAtSPEV6eqdoyk3qijvvzH1BqYAYoy0KRwjXQtynQ
- /hs1rPrDjsg7nDhQSXdczEfZVEC3t98stn/K0yzeAjd5YW12H3L3RNS5d Q==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10638"; a="399866396"
-X-IronPort-AV: E=Sophos;i="5.98,230,1673942400"; d="scan'208";a="399866396"
-Received: from fmsmga007.fm.intel.com ([10.253.24.52])
- by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ bh=wXo7lrm+iApqnTyejywljy7VqDXTeSIGrCv/JMakfYg=;
+ b=X5hHTf77TJ7F73hcolr5NDJJfg3WiAsrM8ZdrRyqhKyoFyuDlUMuy5q+
+ Nlcnpb/gmlt/8/zV3lUN6kyBj+X7PJQxdEyYddgtjbPPInX8idGie/2gf
+ qRb03nvVd0TpFDyA9YTVh1aU0/yj2bSKRSF+OW7hYGg60tv5nMUkBj0LY
+ 8TVseDvL+IdfTS4nPoHBHSVzH7C4ZXGjtMJr+gxff1ZAy3dYy43EL2fD1
+ rbepLYqiK2NojkAY1hP/4mCbPedj4hpxAD+bM3raVBg6D3OEr8o9ptKVp
+ ZsuswWfS46P9xi37KzGeuMaS88lap0fkTD2RF3YwM+PiQXX7Noc/6wsiY g==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10638"; a="397644824"
+X-IronPort-AV: E=Sophos;i="5.98,230,1673942400"; d="scan'208";a="397644824"
+Received: from orsmga005.jf.intel.com ([10.7.209.41])
+ by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  03 Mar 2023 06:50:30 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6500,9779,10638"; a="677673161"
-X-IronPort-AV: E=Sophos;i="5.98,230,1673942400"; d="scan'208";a="677673161"
-Received: from fmsmsx603.amr.corp.intel.com ([10.18.126.83])
- by fmsmga007.fm.intel.com with ESMTP; 03 Mar 2023 06:50:30 -0800
+X-IronPort-AV: E=McAfee;i="6500,9779,10638"; a="849477152"
+X-IronPort-AV: E=Sophos;i="5.98,230,1673942400"; d="scan'208";a="849477152"
+Received: from fmsmsx601.amr.corp.intel.com ([10.18.126.81])
+ by orsmga005.jf.intel.com with ESMTP; 03 Mar 2023 06:50:30 -0800
 Received: from fmsmsx611.amr.corp.intel.com (10.18.126.91) by
- fmsmsx603.amr.corp.intel.com (10.18.126.83) with Microsoft SMTP Server
+ fmsmsx601.amr.corp.intel.com (10.18.126.81) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.21; Fri, 3 Mar 2023 06:50:29 -0800
+ 15.1.2507.21; Fri, 3 Mar 2023 06:50:30 -0800
 Received: from fmsmsx610.amr.corp.intel.com (10.18.126.90) by
  fmsmsx611.amr.corp.intel.com (10.18.126.91) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
@@ -49,14 +49,14 @@ Received: from fmsedg602.ED.cps.intel.com (10.1.192.136) by
 Received: from NAM12-MW2-obe.outbound.protection.outlook.com (104.47.66.47) by
  edgegateway.intel.com (192.55.55.71) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2507.21; Fri, 3 Mar 2023 06:50:28 -0800
+ 15.1.2507.21; Fri, 3 Mar 2023 06:50:29 -0800
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=GWGre+IwEGwp4YcwBBYUaW57Crv0CTJz+ruDFIiAgNJCtfK3c0kLRHRnTXDcM3tj8V4lj0Q1pj5aKCjc+gNaCr+fiYIMte5D9JqTXKRv7ohzKzbkGF3LU/7qkyLRM89ZGsKX550OfHpHghckJhZ4vtuGdvluVH3VZwXuO7ipA4Z1XkQbaYdZmh9wNdzko+V6X1hOKm2+4HtQHmRN52Sg6UOI4EAEgwgZ4gtfGmD4w30dXNGRr9xJPsSSun53tj7lFjwf30aOn75HkhcyDaaTkhAZ+f+fWEYM6vpZTwuxPlhLSErU3BzHoI3P4p7j+Bx8WclkD5Badf5FSr6NVupLLw==
+ b=AqSRF7KbET2Jga0ORSPB9ryEwRBVZ2PeIr9m8ew2g6EbMuvPQcpvLtUETC/xB6cNvQ2a8dJ8nHvOunVwPZl/S9rS4Epgd1mzqECBCT0fTUHMfnsUQR6Q3rkbi93fnHhpkkWbHT26kFhqtX2W7BTHgwxIqoLNY38C1SzSmOnSnbLWjy/qQXmHw54+bBrQ116Zs3FW14ynzAK5ShClLRTyszNKa3MF1VPEOBsgncsCv9RXUH8Y1Yeh6u22er+LB08IbZ5CMqZ9I6N0yrSolQd3F2UnXDsYO9s13HK1ULYci+qJqiMd8ejngHAYtTtRGUxiadBLLIt6gzSfwE/hHtM2TQ==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=H0AShvDpv3pioIgHHu7/bl2pfWhBAmHcC7yESsLGaI4=;
- b=ENavXojp1V58V5zNEvV1rI7vC5oVzLp/iylC6cMSFOHLL6oDBcg3Oht1L029oI0HcwK6IM3gY/iIUG5KdrUtESHONzE+7nENaLoGk9kGI5MztqKpm7HdfdYwctZS7nXtNVu5TptoBkD44H3fzKu1Yac1zDPCPgPPhBoeYcNuc7TgKbR8Ngio1JkdHCYJQ+uoGroJ7bX3BDLtGIyPhd3X11/8JV8LmnMdPG2ZZB1qAs6KO0iCM3BmDjmX1Ilv2ZMWbfaF0aYf7aNQYFEjAFvOZWfR6c4iqbrYctcn3Iywh2H00exSuyyKMPefxhZAd0u84Fw1M0cbQUv6GyU1WQ0cwQ==
+ bh=HB1cFIWtd6PjKK99qc82+g4NtP0Wk9XMtC6cgmdzZcs=;
+ b=gwbh8LOfYmKSvI6Vevv1eeJ85p99F1APY6FC3c2swwQxD17wUwJuecwx0Da32k4I22elpW2HfP5R/c1HS91KLYVDKjDYoQsXSrTlZm4H7g9LYZV1V3ugyO7z1tM+HaqBLA7OqZbombxQ5xCJ3SGrDCQrC5h2h/4zMi+CjqAZvKO2t3KWVDWxdGfw5Gl83TFmaqno1BWtSbuB6mgVqDSAaQqfJRyEI9uECYHd/i5WsMLDkDf01YcL7fo+VLfsSZLY9HXURGk4FUBBtNYo5aQef2YpXcqZ7HUkNnOI2FoeAc8F/SMoxtO0y+W3UvIuhnVQAldr1G3cWUajeg8d5zqZEQ==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
  dkim=pass header.d=intel.com; arc=none
@@ -73,8 +73,8 @@ Received: from DM4PR11MB5389.namprd11.prod.outlook.com
  14:50:27 +0000
 From: Francois Dugast <francois.dugast@intel.com>
 To: <intel-xe@lists.freedesktop.org>
-Date: Fri, 3 Mar 2023 15:50:12 +0100
-Message-ID: <20230303145015.1018870-2-francois.dugast@intel.com>
+Date: Fri, 3 Mar 2023 15:50:13 +0100
+Message-ID: <20230303145015.1018870-3-francois.dugast@intel.com>
 X-Mailer: git-send-email 2.25.1
 In-Reply-To: <20230303145015.1018870-1-francois.dugast@intel.com>
 References: <20230303145015.1018870-1-francois.dugast@intel.com>
@@ -86,65 +86,65 @@ X-ClientProxiedBy: LO4P123CA0243.GBRP123.PROD.OUTLOOK.COM
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
 X-MS-TrafficTypeDiagnostic: DM4PR11MB5389:EE_|SN7PR11MB6921:EE_
-X-MS-Office365-Filtering-Correlation-Id: 16e3f023-9135-4504-2612-08db1bf6a04c
+X-MS-Office365-Filtering-Correlation-Id: 32114d24-5f5b-4f0f-9169-08db1bf6a0be
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: qu6NZG8tatFVgD+L00jLwZdpR9NyakFKZUQKEGyXCUILRTtcVcZ+Ku/GvbW7FNT/vphELzPxpaYx5WilA/eWts53Cg1u4ODt/C+yV3oKS5Ui0pFv6utGEDyqaNTIlpZIo15wO0af/VOjivKIyAEsXGjhzx92jKLYrdTM16wEgG9q4tJnL2OBafsz9qSQmTU4FuNJ3SSpvHvJCmAd7wbZjDc8Un3Vpz0zuGHEkmEe4E1DmVHQD6J1A7EBMB9cBDNO14SyJxoz1b7gQ4FHqD3JRvGbxS6bhvZsf4UjKurExKrPb/0VNaj7ZpCKxTDOCtaeGj7SAgvD7e0bCuJO7eN9TG+/1WhVfWfpbyaNQX0Eyn1UfYBIy7WABIb8I4Uv0l23BDHJj7qNHG7dRdd8cqLkUzj+l2S8QYBvCWwTtMg73+65+TSUNhhnl3V31YfPalaX5kTqTVrsK435XAJmT5i8lqRcLvhylCs9J2PnWSHnSxnIiylNrbvn0YI5L0lK2pcS+GZI5fu8B4mwvj0WjycRBq7uUK5NYuGXtUzv2ZkmJuxI3Mf3RbTLrrnyCXNyjwtDtAt71kj5ln6eC28Jr37VsdH5ByAz8xteKdNa81A3ldmVddrbfFI2AI03a8ZlKaGUxzj783m88kRj8tQvZ8I2ug==
+X-Microsoft-Antispam-Message-Info: +oNScSPNmw0fx1KIpTYIv5bXRNLbj+Hen+Zp7jLViuLHsyyuBQl7rL/Ur9P9Qf/CgTNskYYS8LId8NsAjLng3sC2H3ljHs1bWDIeBY44q20/Ceuu16UeHtUSV8fZm4vzhpOf8jJtHNz93Y0X9XEJzu0DYuC4E53Dia1JdkVB22RXPP4HubB65bsKHqCpM+qh72owTfORWTT33xnJwcfxDKfQ6FbH3eolK4GL75tpy30lvek4Zkb0t2zSnSA7LmCExJsmb+DGP0KCoLenhvlwdu7bzl4uyAKrNjSxEt/MzpgBMzqAiCtQsh9SZUUEhpRwR/fmLyDdwRmwelRYLE+y/FS2sC2yjSYqS7gKBtK3EM8EZceOmlB0agNQwNY7a3/mmu+xJc3biCLyIon0jXMjPCTMintAGlRJ+UO9acNLqbDK4P01GsGHOHmER4MuME45W1xaBSwLQQNEyANKuCsloqq2UVFBupYQDwVWzDRFUGmKlv+Blpm5EB8ANDJ9OGVEshCXW+lujs/0RArEho2808o/X5bPYFDOA5ctr8Leb62EaugwFLx5rAQ5wnoDkv8eT4iJpxXSh8D5hlLAJOGjn3WNcQyP5GW4Szr5TkzpAJ1lf6gV36qsvF+12oxcGiRuHySW+L5RPMons6dqc40Bpw==
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
  IPV:NLI; SFV:NSPM; H:DM4PR11MB5389.namprd11.prod.outlook.com; PTR:; CAT:NONE;
  SFS:(13230025)(396003)(136003)(346002)(39860400002)(376002)(366004)(451199018)(36756003)(83380400001)(478600001)(316002)(66476007)(82960400001)(8676002)(6916009)(38100700002)(26005)(6666004)(6512007)(1076003)(6486002)(2616005)(66556008)(186003)(44832011)(6506007)(66946007)(5660300002)(8936002)(41300700001)(86362001)(2906002);
  DIR:OUT; SFP:1102; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?cGx6cVh3UlU5anI4eWR0UW5OeUo1SW9NSU1xSjNoRmVHZXBIRWpmZzlpcys2?=
- =?utf-8?B?Rk5FZnQrcWw1alVNVDQ2TjY5S1ZHSmNNaTBtcTkySm0xMDZmMTVrbHpUdTJt?=
- =?utf-8?B?TXVwZytNSktvdUtZZENvenJpVm5lK0hPNFBISDJzVHgrY0lCQTVDTU1zdncr?=
- =?utf-8?B?eHVMUVdaMVA5cWdJMzNwRUNpWjB2V1FJSG9zVEJpUTFTUzh2ejB4VEhCVGx6?=
- =?utf-8?B?a1lFV3VxZjdYcCthVStZSDdsQm9NK09tdUV0dW9RT3JBVnExNnIzSVlHYUwx?=
- =?utf-8?B?bXVQYTUzaUJ2TkFrZkFlczRocE9uaW4wa09NSXo4aUd6UVFabS8zK3ljYzln?=
- =?utf-8?B?a09xRThOUGF1dkR4NnJ5ODBYY1lYUEZMSk8zMXhkUXhudk5Jem1KOGNrNFNh?=
- =?utf-8?B?bWZ2bGVsN3JHdEZXODhkL2RDdE1BOVZTWTdhcFFFVTE2RXMrUkRaeHVValU2?=
- =?utf-8?B?K1h2eU9vbzZCM3NOMHlJbHZtbFJNbFhOUEpicmUxZXpHZEJUdmQ3SkJ5Wk9a?=
- =?utf-8?B?SnhLSHl4dlJGUDdhV1cyK2k1SEQ4R0xNbmtrZjBNWTh2QWZVTVNrd0JVaklT?=
- =?utf-8?B?QWxxc0J5YXlnbmpYZWJNL2V0Z2RKUGZPTXMyWFN0SGMzZi9tcENSY090M3pD?=
- =?utf-8?B?dXQrVWo1UUtNeVQ4TVVSMDVlQis1aGMxbElQd1RqUDdkdjlRTW1rTkoxMTE3?=
- =?utf-8?B?Vi9ML2M0VTJ3Rk1CR3UvMGo5WmQ3MnBGUVNmcWNuekJ3NzAxUnhLVDBLR2p3?=
- =?utf-8?B?bnhKa3RMaGs3RWZ2c3J1b1lEUnF4MmZkc2JscXpSZ0xNeGJyTnQ2aEFUSU9X?=
- =?utf-8?B?cnBnUTh3SW9RMjVYd3hlOGNaaUs3TDNGYXYzSE9va2lkTFgzaDRPclprWkFK?=
- =?utf-8?B?akNLc1IwbzhEVU41YlVnN1pvOHpVMm1kWnBjSEZVZW1jeTE3a0RNYW1xRFB1?=
- =?utf-8?B?OUlFU2hTbkZEcnY4WU95OFd4Nml4eFZKVGIwb1ViY1NVdHp5dTJuWTY0bUVu?=
- =?utf-8?B?aUdpZUVaZWpCV1FNSW9nRTk4ZjhQWGNCeCs2aEllOW9kQjBtSThReTFNSUVk?=
- =?utf-8?B?a2lxekZoL09yNDU2aUoyMVdDYlhUTHBNTURxRW1VOFRMdm5ISjhlVjRrbGxq?=
- =?utf-8?B?SVZEdVZiWEN4ZWRFM0tvUTZrUENxRXBqZXM2dTNSNGxkSDc5c3JralBPK3Av?=
- =?utf-8?B?R0ZWTDA4M3VaOWgxYU5iMHJvSFQxZE9kajBHZzcwbEJRdHNvREQzWm5FR2ZX?=
- =?utf-8?B?VTJxVWJuY3R1c3c0eFo2eHBMWVIxeFIvbjl6bmZ1akZ6VSswMU82bU9KOFU3?=
- =?utf-8?B?c09MUVUxdFdKYm1hMzl4ZnhJVXV3MnNEUTVhQkRNWHV0dkdoQXZrVkVpbkk3?=
- =?utf-8?B?SjlrUHpIL0ZWY1lFeTkyZlR4MFF4Ykt4azhSeWZOeTVLaFBCenBrUmx4ZkRF?=
- =?utf-8?B?cjlmdTZXeVJhN1R3eEQzVUxnOEJ0TVdJOERCeEtEUHJQb2hhZ2RzNDFQOWNi?=
- =?utf-8?B?eUdqSEJpbEJ3QzJjKzAzZ2lCWjVkeFRMZnlCZ1VUMHZ0dFZxd09lSWhlNWVE?=
- =?utf-8?B?NjA1b1VBbnQyUlJjY0tEVmtrLzJySnBzVDJPRE11STZldzlNUHE4M2FPL2Ny?=
- =?utf-8?B?TDVOc2llNVV5bnR0NG81TENYbkhhTnBNMlg3ZUNFN2dmdVVsNE9MTlQ3Z2hX?=
- =?utf-8?B?TzdyNklwbVpRcUhoWmdOOXhlTSt4OXgrcTJDVVRSdDlaTlJUZEJLbHNVWEVp?=
- =?utf-8?B?U0NrWGV4ZkxLWjVQQVFEdEd2SUFDMndTTmNVUmQySlcxczJib0VoUi95dkFp?=
- =?utf-8?B?YU1sN0JKOHZiYTl0aXdNS1BWYld0ODh0NkJzWmFXb3ZBTzdUelEyTm8zbm50?=
- =?utf-8?B?bnMwa2RsUzh0VlFKeDVEd003cWcwb082WWZzTUFFVENuU3hmYU1VSzVBeVFn?=
- =?utf-8?B?MEhBZGdZeDlwam83N3JJaE9STkhDUGVoU0dyVWNNbXJMT2QrZndCejhJVXI4?=
- =?utf-8?B?dTZ5NzhSVGxTMGVCR3FPYkJhc05PQ2c0N0ZCS05vd3diekkrREg3Y1NGcnha?=
- =?utf-8?B?UWtXajhiYmFLSkwxd29RbGV4NlNRYnl3OVdJZGVPTzA4Y05MZjRGVDhIMkUz?=
- =?utf-8?B?NEFlRm9RT3ZjVFp0SjRuZnpiTDJnN0F6VnYvRzgwUmQvVWpVM0dGZ2grUHF3?=
- =?utf-8?B?dUE9PQ==?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: 16e3f023-9135-4504-2612-08db1bf6a04c
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?L1lkalFTNTFsUGozUi9zQmN6TTdGZ0EzWUpQU1BRbGpLcUlLS3VqUldHZEJK?=
+ =?utf-8?B?TWpRUEpHbVFIMWErZE1qYW1mdTRFNDBjNG9YNTRiZ2xLYXBhVFhWUmRvdFVi?=
+ =?utf-8?B?RUszN04rek8yY0hZZTYrN1ZzYW1pK2ZFUitCajAzbU5JenhQU3BFS2RFclBO?=
+ =?utf-8?B?Y01SeDcrVEpBNHI4SFY2QmQ3bnNuYTc0LytTZlh6TlJCUU9BWG9nQlhaSzY0?=
+ =?utf-8?B?ZGhzNkhidFd3ajBERThZUEpmUC8ybmdWdzZKV0N1VGlmaW5tZTRjb1VDS2Zq?=
+ =?utf-8?B?Q2FydStPeUo2dDcwckUvSEYyUzA1RENVYnhqcDZoTHNpdmpMcm5BRHYwc01W?=
+ =?utf-8?B?WTc1cm0vQXZFYXBjSnJ1MjE1WUFkRHNERy8vc3hRdVhIQ2lvdUZ3dlZreUQ2?=
+ =?utf-8?B?VXI3QkJZTUx6WUhnVzR2cXgvOFA0QzBBdDUxV3hHK21NbjVCUzkwakV6dkdX?=
+ =?utf-8?B?czFhVlV6Z1FGMDRyblBZWXM0RFdpaFB6bVA1bSsxQzRqMjQwSzl0UGp1ZmZj?=
+ =?utf-8?B?dWVIcHhrV0d5ak16RmxsV0ZNRzFpY1hSeTlxblhRaGtQZGdmQUpiNS9MMVpz?=
+ =?utf-8?B?VzEzOW50N1ZTSDE3eE8rYjVxZFg2VU8xZVFjUHYrUDRsaitqb1EwSFNYZmky?=
+ =?utf-8?B?bm1HTzJuRmpNcWJ0ZlpkS2FNVEQza0hhbFZOeXZtWDhldXZDNVFlKzF6ZmRn?=
+ =?utf-8?B?ZWc5S0J2U2pkWHhrNTZwcDh6QUFnb1ExWEoxNjF0czR2bTBpWTN6RzZPdmkv?=
+ =?utf-8?B?L0Y3OWFvTGdSQ0EzaUlXWEoxL2ozTVdYZzhuR0xKZi9tbXBiNU9wZDhsQk1j?=
+ =?utf-8?B?RTVWa21EM0ZGVWYxT2hkN3lDUmpUMHFjLzFkdTRCQ0RUQW40Tmk5ZzVwanN1?=
+ =?utf-8?B?UThTSmlNNld6WkliQXFsbjcwZTRna0IxKzNBSlN0bkJ3QTZ0WG15c3Nmd0dI?=
+ =?utf-8?B?eDRjSE9KclRUQlhLWVM1YlJUV1lRZEtaMHp0ZlhMa3I0MzE3Ym9VR3p6Q3FY?=
+ =?utf-8?B?Y1dJWGM1QWl6WlIxbmtueCtvV1hPWUJrVVRLZmtLWDFuVVQza25RNkFBMDhY?=
+ =?utf-8?B?OU9NdTlaR0tNd09TSmZLek5vL0lIWTFzaDBWeHYvS0VqL29DVUlyZ2x3MDkv?=
+ =?utf-8?B?SWxDS2FubXFyREhNZjg5em9PMk5hMzQzUHppK1lmdVAwWmhMNk5BTzk0V1hv?=
+ =?utf-8?B?Tmo2Wm1KeVV0dFJlMGk3MlZTbURmV3l3SUoxSmpSSUlQNm9uL2wyM1pXMmpF?=
+ =?utf-8?B?MG0yY2FxVWVjM1ljWkFIb3NxSVNjOVppTlp5ci9YSSs2VWJzdkpNWHhyaVBN?=
+ =?utf-8?B?NU1ZMlE0eEcvUmpSbEF0NGhWbjhNRHQzRnEvNWp3NFJoTGJ4TjRmUEJ5ayti?=
+ =?utf-8?B?dlh5RS92MW9ySXBqSXBrWmRqK2JjQncxYXpYVjFJVDdFcE1IVys3Z0VNSHJ3?=
+ =?utf-8?B?eGtJazYwTVUyYm1EWHFPaTlDR2RXczlyMklKbUFRK0FOeGVHMFZnUjNUajh5?=
+ =?utf-8?B?ZW5NUzEyK040c0pHdEUvY3pWRFQ2WkM0alZMR3RUeVhVcEsvMjZHbmRZcnRl?=
+ =?utf-8?B?b2pwNEhTQjNWWmE4T2tRVDZUaERZdXYrcDI1Um45NmxxYUVrbzNqRkt6cXhh?=
+ =?utf-8?B?aWlSVGhBQUhTTmp6UVFUWHdYU0RGa0lWdm9GZFhneDUxRUJWNGRyTkJ3bThE?=
+ =?utf-8?B?a0VuYmxpeVY0Q1gxRUxQaXZZWi9qZ0QydGgwMkt0Z3VkMTJYTUo2d3BaVExS?=
+ =?utf-8?B?UUk0YkNvaFM3TGNpS2NDU1pPZGlDZmJuQzRpcTJLMGNRd3J1OFlFTXpWM3V5?=
+ =?utf-8?B?bHR2aWpIT0lrV3J6ZnAzUGxvQWg4S2dUcE43WEdpM29PRWNoRXBmdS8vZDI0?=
+ =?utf-8?B?Q0xDZFpOYXBXQUR5aDZ2bGRCL3JvRk5NU2JtalFDcjQ4YVo0TnAweVV4bHFN?=
+ =?utf-8?B?N1QrSDNmMGNxRStzSEtRZWNlVitrcVlBSXlKak9zRlY4cGxHKzYvR004ZWNq?=
+ =?utf-8?B?SWhMQ2JUQW15dGo2NGlldmZabmJxbnFkbHhJcmhEa0FkRFpQQ0NvLzY1Z242?=
+ =?utf-8?B?Yjl3bFY3MnYzdjFyaXdkM1ZuRzYveFVWR3VwQmN0bDhyN093NjlNeGxqRmU4?=
+ =?utf-8?B?RjMvZURjUFo0emhXSEFZZStMMVpnbGFIYXluaEZkeWdqejBjd0pLQUNNRXBz?=
+ =?utf-8?B?eWc9PQ==?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: 32114d24-5f5b-4f0f-9169-08db1bf6a0be
 X-MS-Exchange-CrossTenant-AuthSource: DM4PR11MB5389.namprd11.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 03 Mar 2023 14:50:27.0025 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 03 Mar 2023 14:50:27.7367 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: u0m2Lv++fBVsSk4u9gIQeEm/ezJzY2PBSl4ihcvq2DHmtXHFwRJ0L49T4P/49ID+xNyfjjFPJJdxmX/ihZDNgSA5o31sJ8K4wK3clU2YHDg=
+X-MS-Exchange-CrossTenant-UserPrincipalName: Swuy3xMax3eR8eoWksyaC0wLYZJYwTVZiMvDqSeRzF9kqjeUtoMdbUELKIVvR8u3qPu8HT1N9tYzZJzfjTEMlyPVG8W0iynrCkNyPqnApRg=
 X-MS-Exchange-Transport-CrossTenantHeadersStamped: SN7PR11MB6921
 X-OriginatorOrg: intel.com
-Subject: [Intel-xe] [RFC PATCH 1/4] drm/xe/gt: Move ppat defines to a common
- file
+Subject: [Intel-xe] [RFC PATCH 2/4] drm/xe: Move setup_private_ppat
+ functions to platform files
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -159,104 +159,202 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-This is a required step to move setup_private_ppat functions out
-of xe_gt.c
+New files are created for platform specific functions, starting
+with setup_private_ppat. This is an intermediate step before
+introducing function pointers.
 
 Signed-off-by: Francois Dugast <francois.dugast@intel.com>
 ---
- drivers/gpu/drm/xe/xe_gt.c      | 24 +-----------------------
- drivers/gpu/drm/xe/xe_gt_ppat.h | 33 +++++++++++++++++++++++++++++++++
- 2 files changed, 34 insertions(+), 23 deletions(-)
- create mode 100644 drivers/gpu/drm/xe/xe_gt_ppat.h
+ drivers/gpu/drm/xe/Makefile          |  3 ++
+ drivers/gpu/drm/xe/xe_gt.c           | 43 +---------------------------
+ drivers/gpu/drm/xe/xe_platform.h     | 13 +++++++++
+ drivers/gpu/drm/xe/xe_platform_mtl.c | 21 ++++++++++++++
+ drivers/gpu/drm/xe/xe_platform_pvc.c | 24 ++++++++++++++++
+ drivers/gpu/drm/xe/xe_platform_tgl.c | 21 ++++++++++++++
+ 6 files changed, 83 insertions(+), 42 deletions(-)
+ create mode 100644 drivers/gpu/drm/xe/xe_platform.h
+ create mode 100644 drivers/gpu/drm/xe/xe_platform_mtl.c
+ create mode 100644 drivers/gpu/drm/xe/xe_platform_pvc.c
+ create mode 100644 drivers/gpu/drm/xe/xe_platform_tgl.c
 
+diff --git a/drivers/gpu/drm/xe/Makefile b/drivers/gpu/drm/xe/Makefile
+index 18257cd7227d..c28831a10ae0 100644
+--- a/drivers/gpu/drm/xe/Makefile
++++ b/drivers/gpu/drm/xe/Makefile
+@@ -72,6 +72,9 @@ xe-y += xe_bb.o \
+ 	xe_module.o \
+ 	xe_pci.o \
+ 	xe_pcode.o \
++	xe_platform_mtl.o \
++	xe_platform_pvc.o \
++	xe_platform_tgl.o \
+ 	xe_pm.o \
+ 	xe_preempt_fence.o \
+ 	xe_pt.o \
 diff --git a/drivers/gpu/drm/xe/xe_gt.c b/drivers/gpu/drm/xe/xe_gt.c
-index 343370b44506..ff2f464bf083 100644
+index ff2f464bf083..0eceb5789d15 100644
 --- a/drivers/gpu/drm/xe/xe_gt.c
 +++ b/drivers/gpu/drm/xe/xe_gt.c
-@@ -20,6 +20,7 @@
- #include "xe_gt_clock.h"
- #include "xe_gt_mcr.h"
- #include "xe_gt_pagefault.h"
-+#include "xe_gt_ppat.h"
- #include "xe_gt_sysfs.h"
- #include "xe_gt_tlb_invalidation.h"
- #include "xe_gt_topology.h"
-@@ -92,20 +93,6 @@ int xe_gt_alloc(struct xe_device *xe, struct xe_gt *gt)
+@@ -31,6 +31,7 @@
+ #include "xe_migrate.h"
+ #include "xe_mmio.h"
+ #include "xe_mocs.h"
++#include "xe_platform.h"
+ #include "xe_reg_sr.h"
+ #include "xe_ring_ops.h"
+ #include "xe_sa.h"
+@@ -93,48 +94,6 @@ int xe_gt_alloc(struct xe_device *xe, struct xe_gt *gt)
  	return 0;
  }
  
--/* FIXME: These should be in a common file */
--#define CHV_PPAT_SNOOP			REG_BIT(6)
--#define GEN8_PPAT_AGE(x)		((x)<<4)
--#define GEN8_PPAT_LLCeLLC		(3<<2)
--#define GEN8_PPAT_LLCELLC		(2<<2)
--#define GEN8_PPAT_LLC			(1<<2)
--#define GEN8_PPAT_WB			(3<<0)
--#define GEN8_PPAT_WT			(2<<0)
--#define GEN8_PPAT_WC			(1<<0)
--#define GEN8_PPAT_UC			(0<<0)
--#define GEN8_PPAT_ELLC_OVERRIDE		(0<<2)
--#define GEN8_PPAT(i, x)			((u64)(x) << ((i) * 8))
--#define GEN12_PPAT_CLOS(x)              ((x)<<2)
+-static void tgl_setup_private_ppat(struct xe_gt *gt)
+-{
+-	/* TGL doesn't support LLC or AGE settings */
+-	xe_mmio_write32(gt, GEN12_PAT_INDEX(0).reg, GEN8_PPAT_WB);
+-	xe_mmio_write32(gt, GEN12_PAT_INDEX(1).reg, GEN8_PPAT_WC);
+-	xe_mmio_write32(gt, GEN12_PAT_INDEX(2).reg, GEN8_PPAT_WT);
+-	xe_mmio_write32(gt, GEN12_PAT_INDEX(3).reg, GEN8_PPAT_UC);
+-	xe_mmio_write32(gt, GEN12_PAT_INDEX(4).reg, GEN8_PPAT_WB);
+-	xe_mmio_write32(gt, GEN12_PAT_INDEX(5).reg, GEN8_PPAT_WB);
+-	xe_mmio_write32(gt, GEN12_PAT_INDEX(6).reg, GEN8_PPAT_WB);
+-	xe_mmio_write32(gt, GEN12_PAT_INDEX(7).reg, GEN8_PPAT_WB);
+-}
 -
- static void tgl_setup_private_ppat(struct xe_gt *gt)
- {
- 	/* TGL doesn't support LLC or AGE settings */
-@@ -135,15 +122,6 @@ static void pvc_setup_private_ppat(struct xe_gt *gt)
- 			GEN12_PPAT_CLOS(2) | GEN8_PPAT_WB);
- }
- 
--#define MTL_PPAT_L4_CACHE_POLICY_MASK   REG_GENMASK(3, 2)
--#define MTL_PAT_INDEX_COH_MODE_MASK     REG_GENMASK(1, 0)
--#define MTL_PPAT_3_UC   REG_FIELD_PREP(MTL_PPAT_L4_CACHE_POLICY_MASK, 3)
--#define MTL_PPAT_1_WT   REG_FIELD_PREP(MTL_PPAT_L4_CACHE_POLICY_MASK, 1)
--#define MTL_PPAT_0_WB   REG_FIELD_PREP(MTL_PPAT_L4_CACHE_POLICY_MASK, 0)
--#define MTL_3_COH_2W    REG_FIELD_PREP(MTL_PAT_INDEX_COH_MODE_MASK, 3)
--#define MTL_2_COH_1W    REG_FIELD_PREP(MTL_PAT_INDEX_COH_MODE_MASK, 2)
--#define MTL_0_COH_NON   REG_FIELD_PREP(MTL_PAT_INDEX_COH_MODE_MASK, 0)
+-static void pvc_setup_private_ppat(struct xe_gt *gt)
+-{
+-	xe_mmio_write32(gt, GEN12_PAT_INDEX(0).reg, GEN8_PPAT_UC);
+-	xe_mmio_write32(gt, GEN12_PAT_INDEX(1).reg, GEN8_PPAT_WC);
+-	xe_mmio_write32(gt, GEN12_PAT_INDEX(2).reg, GEN8_PPAT_WT);
+-	xe_mmio_write32(gt, GEN12_PAT_INDEX(3).reg, GEN8_PPAT_WB);
+-	xe_mmio_write32(gt, GEN12_PAT_INDEX(4).reg,
+-			GEN12_PPAT_CLOS(1) | GEN8_PPAT_WT);
+-	xe_mmio_write32(gt, GEN12_PAT_INDEX(5).reg,
+-			GEN12_PPAT_CLOS(1) | GEN8_PPAT_WB);
+-	xe_mmio_write32(gt, GEN12_PAT_INDEX(6).reg,
+-			GEN12_PPAT_CLOS(2) | GEN8_PPAT_WT);
+-	xe_mmio_write32(gt, GEN12_PAT_INDEX(7).reg,
+-			GEN12_PPAT_CLOS(2) | GEN8_PPAT_WB);
+-}
 -
- static void mtl_setup_private_ppat(struct xe_gt *gt)
+-static void mtl_setup_private_ppat(struct xe_gt *gt)
+-{
+-	xe_mmio_write32(gt, GEN12_PAT_INDEX(0).reg, MTL_PPAT_0_WB);
+-	xe_mmio_write32(gt, GEN12_PAT_INDEX(1).reg,
+-			MTL_PPAT_1_WT | MTL_2_COH_1W);
+-	xe_mmio_write32(gt, GEN12_PAT_INDEX(2).reg,
+-			MTL_PPAT_3_UC | MTL_2_COH_1W);
+-	xe_mmio_write32(gt, GEN12_PAT_INDEX(3).reg,
+-			MTL_PPAT_0_WB | MTL_2_COH_1W);
+-	xe_mmio_write32(gt, GEN12_PAT_INDEX(4).reg,
+-			MTL_PPAT_0_WB | MTL_3_COH_2W);
+-}
+-
+ static void setup_private_ppat(struct xe_gt *gt)
  {
- 	xe_mmio_write32(gt, GEN12_PAT_INDEX(0).reg, MTL_PPAT_0_WB);
-diff --git a/drivers/gpu/drm/xe/xe_gt_ppat.h b/drivers/gpu/drm/xe/xe_gt_ppat.h
+ 	struct xe_device *xe = gt_to_xe(gt);
+diff --git a/drivers/gpu/drm/xe/xe_platform.h b/drivers/gpu/drm/xe/xe_platform.h
 new file mode 100644
-index 000000000000..5a894bd3bf73
+index 000000000000..d00377e807db
 --- /dev/null
-+++ b/drivers/gpu/drm/xe/xe_gt_ppat.h
-@@ -0,0 +1,33 @@
++++ b/drivers/gpu/drm/xe/xe_platform.h
+@@ -0,0 +1,13 @@
 +/* SPDX-License-Identifier: MIT */
 +/*
-+ * Copyright © 2022 Intel Corporation
++ * Copyright © 2023 Intel Corporation
 + */
 +
-+#ifndef _XE_GT_PPAT_H_
-+#define _XE_GT_PPAT_H_
++#ifndef _XE_PLATFORM_H_
++#define _XE_PLATFORM_H_
 +
-+#include "xe_gt.h"
++void tgl_setup_private_ppat(struct xe_gt *gt);
++void pvc_setup_private_ppat(struct xe_gt *gt);
++void mtl_setup_private_ppat(struct xe_gt *gt);
 +
-+#define CHV_PPAT_SNOOP			REG_BIT(6)
-+#define GEN8_PPAT_AGE(x)		((x)<<4)
-+#define GEN8_PPAT_LLCeLLC		(3<<2)
-+#define GEN8_PPAT_LLCELLC		(2<<2)
-+#define GEN8_PPAT_LLC			(1<<2)
-+#define GEN8_PPAT_WB			(3<<0)
-+#define GEN8_PPAT_WT			(2<<0)
-+#define GEN8_PPAT_WC			(1<<0)
-+#define GEN8_PPAT_UC			(0<<0)
-+#define GEN8_PPAT_ELLC_OVERRIDE		(0<<2)
-+#define GEN8_PPAT(i, x)			((u64)(x) << ((i) * 8))
-+#define GEN12_PPAT_CLOS(x)              ((x)<<2)
++#endif /* _XE_PLATFORM_H_ */
+diff --git a/drivers/gpu/drm/xe/xe_platform_mtl.c b/drivers/gpu/drm/xe/xe_platform_mtl.c
+new file mode 100644
+index 000000000000..acc244a6a257
+--- /dev/null
++++ b/drivers/gpu/drm/xe/xe_platform_mtl.c
+@@ -0,0 +1,21 @@
++// SPDX-License-Identifier: MIT
++/*
++ * Copyright © 2021 Intel Corporation
++ */
 +
-+#define MTL_PPAT_L4_CACHE_POLICY_MASK   REG_GENMASK(3, 2)
-+#define MTL_PAT_INDEX_COH_MODE_MASK     REG_GENMASK(1, 0)
-+#define MTL_PPAT_3_UC   REG_FIELD_PREP(MTL_PPAT_L4_CACHE_POLICY_MASK, 3)
-+#define MTL_PPAT_1_WT   REG_FIELD_PREP(MTL_PPAT_L4_CACHE_POLICY_MASK, 1)
-+#define MTL_PPAT_0_WB   REG_FIELD_PREP(MTL_PPAT_L4_CACHE_POLICY_MASK, 0)
-+#define MTL_3_COH_2W    REG_FIELD_PREP(MTL_PAT_INDEX_COH_MODE_MASK, 3)
-+#define MTL_2_COH_1W    REG_FIELD_PREP(MTL_PAT_INDEX_COH_MODE_MASK, 2)
-+#define MTL_0_COH_NON   REG_FIELD_PREP(MTL_PAT_INDEX_COH_MODE_MASK, 0)
++#include "regs/xe_gt_regs.h"
++#include "xe_gt_ppat.h"
++#include "xe_mmio.h"
 +
-+#endif /* _XE_GT_PPAT_H_ */
++void mtl_setup_private_ppat(struct xe_gt *gt)
++{
++	xe_mmio_write32(gt, GEN12_PAT_INDEX(0).reg, MTL_PPAT_0_WB);
++	xe_mmio_write32(gt, GEN12_PAT_INDEX(1).reg,
++			MTL_PPAT_1_WT | MTL_2_COH_1W);
++	xe_mmio_write32(gt, GEN12_PAT_INDEX(2).reg,
++			MTL_PPAT_3_UC | MTL_2_COH_1W);
++	xe_mmio_write32(gt, GEN12_PAT_INDEX(3).reg,
++			MTL_PPAT_0_WB | MTL_2_COH_1W);
++	xe_mmio_write32(gt, GEN12_PAT_INDEX(4).reg,
++			MTL_PPAT_0_WB | MTL_3_COH_2W);
++}
+diff --git a/drivers/gpu/drm/xe/xe_platform_pvc.c b/drivers/gpu/drm/xe/xe_platform_pvc.c
+new file mode 100644
+index 000000000000..fcee1426f395
+--- /dev/null
++++ b/drivers/gpu/drm/xe/xe_platform_pvc.c
+@@ -0,0 +1,24 @@
++// SPDX-License-Identifier: MIT
++/*
++ * Copyright © 2021 Intel Corporation
++ */
++
++#include "regs/xe_gt_regs.h"
++#include "xe_gt_ppat.h"
++#include "xe_mmio.h"
++
++void pvc_setup_private_ppat(struct xe_gt *gt)
++{
++	xe_mmio_write32(gt, GEN12_PAT_INDEX(0).reg, GEN8_PPAT_UC);
++	xe_mmio_write32(gt, GEN12_PAT_INDEX(1).reg, GEN8_PPAT_WC);
++	xe_mmio_write32(gt, GEN12_PAT_INDEX(2).reg, GEN8_PPAT_WT);
++	xe_mmio_write32(gt, GEN12_PAT_INDEX(3).reg, GEN8_PPAT_WB);
++	xe_mmio_write32(gt, GEN12_PAT_INDEX(4).reg,
++			GEN12_PPAT_CLOS(1) | GEN8_PPAT_WT);
++	xe_mmio_write32(gt, GEN12_PAT_INDEX(5).reg,
++			GEN12_PPAT_CLOS(1) | GEN8_PPAT_WB);
++	xe_mmio_write32(gt, GEN12_PAT_INDEX(6).reg,
++			GEN12_PPAT_CLOS(2) | GEN8_PPAT_WT);
++	xe_mmio_write32(gt, GEN12_PAT_INDEX(7).reg,
++			GEN12_PPAT_CLOS(2) | GEN8_PPAT_WB);
++}
+diff --git a/drivers/gpu/drm/xe/xe_platform_tgl.c b/drivers/gpu/drm/xe/xe_platform_tgl.c
+new file mode 100644
+index 000000000000..7b909a1a90f4
+--- /dev/null
++++ b/drivers/gpu/drm/xe/xe_platform_tgl.c
+@@ -0,0 +1,21 @@
++// SPDX-License-Identifier: MIT
++/*
++ * Copyright © 2021 Intel Corporation
++ */
++
++#include "regs/xe_gt_regs.h"
++#include "xe_gt_ppat.h"
++#include "xe_mmio.h"
++
++void tgl_setup_private_ppat(struct xe_gt *gt)
++{
++	/* TGL doesn't support LLC or AGE settings */
++	xe_mmio_write32(gt, GEN12_PAT_INDEX(0).reg, GEN8_PPAT_WB);
++	xe_mmio_write32(gt, GEN12_PAT_INDEX(1).reg, GEN8_PPAT_WC);
++	xe_mmio_write32(gt, GEN12_PAT_INDEX(2).reg, GEN8_PPAT_WT);
++	xe_mmio_write32(gt, GEN12_PAT_INDEX(3).reg, GEN8_PPAT_UC);
++	xe_mmio_write32(gt, GEN12_PAT_INDEX(4).reg, GEN8_PPAT_WB);
++	xe_mmio_write32(gt, GEN12_PAT_INDEX(5).reg, GEN8_PPAT_WB);
++	xe_mmio_write32(gt, GEN12_PAT_INDEX(6).reg, GEN8_PPAT_WB);
++	xe_mmio_write32(gt, GEN12_PAT_INDEX(7).reg, GEN8_PPAT_WB);
++}
 -- 
 2.25.1
 
