@@ -4,57 +4,51 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 019D4C678D4
-	for <intel-xe@archiver.kernel.org>; Fri,  3 Mar 2023 12:12:41 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id A2646C678D4
+	for <intel-xe@archiver.kernel.org>; Fri,  3 Mar 2023 12:29:12 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id CFBF010E5D5;
-	Fri,  3 Mar 2023 12:12:41 +0000 (UTC)
-Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
- by gabe.freedesktop.org (Postfix) with ESMTPS id BA3AB10E5CE
- for <intel-xe@lists.freedesktop.org>; Fri,  3 Mar 2023 12:12:39 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 60D9910E5CE;
+	Fri,  3 Mar 2023 12:29:12 +0000 (UTC)
+Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 67C9C10E5CE
+ for <intel-xe@lists.freedesktop.org>; Fri,  3 Mar 2023 12:29:10 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1677845559; x=1709381559;
- h=message-id:date:mime-version:subject:to:cc:references:
- from:in-reply-to:content-transfer-encoding;
- bh=MTF+nyK6qCr9MdUmVnN3X0SrggtUeUgh27SunLW4BAo=;
- b=gi2sRtgfElapg8mjkmx1CALuTzBoKy+WbsNVIh+G2zfxuOvOC7tMDPqo
- iF5tpqGGli3H/LJ4IyjL+FYySbd3swK/Dqv6cpa9pVrpoqpPlgRqxsNfM
- j40RLMhez4icCZkvIejV3H0s5ZGO9FxVEAiI3D52oBylv6jsBJqoVZB35
- 2suPQuzGDtw6Z/o0c5uVuCC8nRyA12ePNFWvUiC3r5Vvy5vQb6vvnqDCE
- lbnFNgd6sInpjyEp6078FFWpuHZNTmh2RgG7Fyt980WSr//GLMtzHTtMd
- NTNsc87npBlgE77lhCI8cnf/47tRYmt/ORjJQKA+Rrq9V1U6QPpbWP8gM A==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10637"; a="315428982"
-X-IronPort-AV: E=Sophos;i="5.98,230,1673942400"; d="scan'208";a="315428982"
-Received: from fmsmga005.fm.intel.com ([10.253.24.32])
- by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 03 Mar 2023 04:12:39 -0800
+ t=1677846550; x=1709382550;
+ h=from:to:cc:subject:in-reply-to:references:date:
+ message-id:mime-version;
+ bh=7QRdpasEfhsti3HNL5rneoMLfaOFFLtSMV2jkPbgAhE=;
+ b=TdUStC8Cdtddm9Ez/Ami+waj4SfpTkZzJMaJkIk0kI+68gicuAaX7G10
+ IAj7W5hCfzrjCHzQw0X7gMqpu825Yt/2mAi8rWmOnKTkyHVW1h7JZx+V0
+ 8P0izUD08v+bcb0mngr9UpsAKa2H7GK7zpZU8PIUqmRoZV9XRpBDFNq25
+ NmxaCtPktrHYx3y5O9NxyWvYR453nIkwLY+doxEb1091V4x5KKaW+3da5
+ DOq0b9w5xkf4XAcLCNUy+CSdYKgej6Jz8Wfx2a7HSSJtyyl5w5G9iO1ln
+ 76CSUROADAvd2PMzHQ8IvYpxgUc4gXqHD7V7VRi+s8jcoSIxLvF+0OCuC g==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10637"; a="399838377"
+X-IronPort-AV: E=Sophos;i="5.98,230,1673942400"; d="scan'208";a="399838377"
+Received: from orsmga002.jf.intel.com ([10.7.209.21])
+ by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 03 Mar 2023 04:29:09 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6500,9779,10637"; a="1004559522"
-X-IronPort-AV: E=Sophos;i="5.98,230,1673942400"; d="scan'208";a="1004559522"
-Received: from hainesdx-mobl.ger.corp.intel.com (HELO [10.252.20.218])
- ([10.252.20.218])
- by fmsmga005-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 03 Mar 2023 04:12:37 -0800
-Message-ID: <c74f5db7-241c-564d-f8cd-73e8e9ee6c7a@intel.com>
-Date: Fri, 3 Mar 2023 12:12:35 +0000
+X-IronPort-AV: E=McAfee;i="6500,9779,10637"; a="675350510"
+X-IronPort-AV: E=Sophos;i="5.98,230,1673942400"; d="scan'208";a="675350510"
+Received: from msieb-mobl1.ger.corp.intel.com (HELO localhost)
+ ([10.252.57.184])
+ by orsmga002-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 03 Mar 2023 04:29:08 -0800
+From: Jani Nikula <jani.nikula@intel.com>
+To: Patchwork <patchwork@emeril.freedesktop.org>
+In-Reply-To: <167784096614.9997.9822812608959828099@emeril.freedesktop.org>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+References: <20230303105222.3550161-1-jani.nikula@intel.com>
+ <167784096614.9997.9822812608959828099@emeril.freedesktop.org>
+Date: Fri, 03 Mar 2023 14:29:06 +0200
+Message-ID: <871qm6uigd.fsf@intel.com>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Firefox/102.0 Thunderbird/102.8.0
-Content-Language: en-GB
-To: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- intel-xe@lists.freedesktop.org
-References: <20230228104137.80965-1-matthew.auld@intel.com>
- <20230228104137.80965-13-matthew.auld@intel.com>
- <057c2d66-5aff-ae5e-0b9b-c63bf2aaa213@lankhorst.se>
- <fbe2b091-3d7a-349e-433f-93787af5be2f@intel.com>
- <696ec136-70ac-e443-c41c-9e595f6666b3@linux.intel.com>
-From: Matthew Auld <matthew.auld@intel.com>
-In-Reply-To: <696ec136-70ac-e443-c41c-9e595f6666b3@linux.intel.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-Subject: Re: [Intel-xe] [PATCH v2 12/14] drm/xe/display: annotate CC buffers
- with NEEDS_CPU_ACCESS
+Content-Type: text/plain
+Subject: Re: [Intel-xe] 
+ =?utf-8?q?=E2=9C=97_CI=2EKUnit=3A_failure_for_drm/xe?=
+ =?utf-8?q?=3A_clean_up_i915_includes_both_sides_=28rev2=29?=
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -66,86 +60,72 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Cc: Lucas De Marchi <lucas.demarchi@intel.com>
+Cc: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On 02/03/2023 11:51, Maarten Lankhorst wrote:
-> Hey,
-> 
-> On 2023-02-28 16:20, Matthew Auld wrote:
->> On 28/02/2023 14:48, Maarten Lankhorst wrote:
->>> Hey,
->>>
->>> On 2023-02-28 11:41, Matthew Auld wrote:
->>>> The display code wants to read the clear color value from the buffer.
->>>> However if the buffer is the non-mappable part of lmem then we fail the
->>>> kmap. The simplest solution is to just mark the buffer with
->>>> XE_BO_NEEDS_CPU_ACCESS, which will either allocate the buffer in the
->>>> mappable part of lmem, or migrate it there.
->>>>
->>>> Signed-off-by: Matthew Auld <matthew.auld@intel.com>
->>>> Cc: Lucas De Marchi <lucas.demarchi@intel.com>
->>>> ---
->>>>   drivers/gpu/drm/xe/display/xe_fb_pin.c | 8 ++++++++
->>>>   1 file changed, 8 insertions(+)
->>>>
->>>> diff --git a/drivers/gpu/drm/xe/display/xe_fb_pin.c 
->>>> b/drivers/gpu/drm/xe/display/xe_fb_pin.c
->>>> index 65c0bc28a3d1..66e1309e21d8 100644
->>>> --- a/drivers/gpu/drm/xe/display/xe_fb_pin.c
->>>> +++ b/drivers/gpu/drm/xe/display/xe_fb_pin.c
->>>> @@ -203,6 +203,14 @@ static struct i915_vma *__xe_pin_fb_vma(struct 
->>>> intel_framebuffer *fb,
->>>>       if (ret)
->>>>           goto err;
->>>> +    /*
->>>> +     * For this type of buffer we need to able to read from the CPU 
->>>> the
->>>> +     * clear color value found in the buffer. This doesn't do 
->>>> anything on
->>>> +     * non small-bar devices.
->>>> +     */
->>>> +    if (intel_fb_rc_ccs_cc_plane(&fb->base) >= 0)
->>>> +        bo->flags |= XE_BO_NEEDS_CPU_ACCESS;
->>>
->>> While we do need a change, do we need to do this inside pinning? We 
->>> could also require userspace to create VRAM BO's with CPU_ACCESS, and 
->>> reject CCS here.
->>
->> Do you mean reject CCS if CPU_ACCESS is not set? The trouble is that 
->> CPU_ACCESS also requires system memory as a spill option when 
->> specifying the placements, which then prevents using CCS. Or at least 
->> that's how it was in i915.
-> We should be able to handle it without moving to sysmem, if that's what 
-> we need.
+On Fri, 03 Mar 2023, Patchwork <patchwork@emeril.freedesktop.org> wrote:
+> == Series Details ==
+>
+> Series: drm/xe: clean up i915 includes both sides (rev2)
+> URL   : https://patchwork.freedesktop.org/series/114573/
+> State : failure
+>
+> == Summary ==
+>
+> + trap cleanup EXIT
+> + /kernel/tools/testing/kunit/kunit.py run --kunitconfig /kernel/drivers/gpu/drm/xe/.kunitconfig
+> ERROR:root:In file included from ../drivers/gpu/drm/i915/display/intel_display_core.h:28,
+>                  from ../drivers/gpu/drm/xe/xe_device_types.h:22,
+>                  from ../drivers/gpu/drm/xe/xe_device.h:15,
+>                  from ../drivers/gpu/drm/xe/xe_bb.c:9:
+> ../drivers/gpu/drm/xe/compat-i915-headers/intel_pm_types.h:11:10: fatal error: display/intel_display.h: No such file or directory
+>    11 | #include "display/intel_display.h"
+>       |          ^~~~~~~~~~~~~~~~~~~~~~~~~
 
-Ok, so maybe drop NEEDS_CPU_ACCESS, and just have NEEDS_VISIBLE_VRAM 
-instead, and to get the old behaviour the user can just attach system 
-memory as an extra placement? And then for clear color stuff they can 
-use VISIBLE_VRAM by itself, and we can enforce that here?
+I don't understand this. See patch 3. That line shouldn't exist.
 
->>>
->>> Of course we should probably also add a UAPI to allow setting the 
->>> SCANOUT flag on externally imported DMA-BUF bo's, i don't think we 
->>> require CPU_ACCESS flag for that as it's not our BO.
+BR,
+Jani.
 
-For discrete specifically, can you have externally imported dma-buf for 
-display (not originating from the same device)? The scanout needs vram 
-local to the device, right?
 
->>
->> Hmm, maybe if SCANOUT then internally use the mappable part of lmem by 
->> default? For dumb buffers I think it does something like that. And 
->> keep the above as a fallback?
-> For dumb bo's, it is expected they are mapped, so we can set the 
-> CPU_ACCESS flag. I don't know if we need it all the time, so for VRAM 
-> bo's it could be specified as a separate flag, which is ignored for sysmem.
->>
->>>
->>> Might require some more thinking on how we want to handle this.
->>>
->>> Other patches look good, except for the comments I had:
->>>
->>> Reviewed-by: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
->>>
+> compilation terminated.
+> make[6]: *** [../scripts/Makefile.build:250: drivers/gpu/drm/xe/xe_bb.o] Error 1
+> make[6]: *** Waiting for unfinished jobs....
+> In file included from ../drivers/gpu/drm/i915/display/intel_display_core.h:28,
+>                  from ../drivers/gpu/drm/xe/xe_device_types.h:22,
+>                  from ../drivers/gpu/drm/xe/xe_vm_types.h:14,
+>                  from ../drivers/gpu/drm/xe/xe_bo.h:11,
+>                  from ../drivers/gpu/drm/xe/xe_bo.c:6:
+> ../drivers/gpu/drm/xe/compat-i915-headers/intel_pm_types.h:11:10: fatal error: display/intel_display.h: No such file or directory
+>    11 | #include "display/intel_display.h"
+>       |          ^~~~~~~~~~~~~~~~~~~~~~~~~
+> compilation terminated.
+> make[6]: *** [../scripts/Makefile.build:250: drivers/gpu/drm/xe/xe_bo.o] Error 1
+> make[5]: *** [../scripts/Makefile.build:500: drivers/gpu/drm/xe] Error 2
+> make[5]: *** Waiting for unfinished jobs....
+> make[4]: *** [../scripts/Makefile.build:500: drivers/gpu/drm] Error 2
+> make[3]: *** [../scripts/Makefile.build:500: drivers/gpu] Error 2
+> make[3]: *** Waiting for unfinished jobs....
+> make[2]: *** [../scripts/Makefile.build:500: drivers] Error 2
+> make[2]: *** Waiting for unfinished jobs....
+> make[1]: *** [/kernel/Makefile:1992: .] Error 2
+> make: *** [Makefile:231: __sub-make] Error 2
+>
+> [10:55:46] Configuring KUnit Kernel ...
+> Generating .config ...
+> Populating config with:
+> $ make ARCH=um O=.kunit olddefconfig
+> [10:55:50] Building KUnit Kernel ...
+> Populating config with:
+> $ make ARCH=um O=.kunit olddefconfig
+> Building with:
+> $ make ARCH=um O=.kunit --jobs=48
+> + cleanup
+> ++ stat -c %u:%g /kernel
+> + chown -R 1003:1003 /kernel
+>
+>
+
+-- 
+Jani Nikula, Intel Open Source Graphics Center
