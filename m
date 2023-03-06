@@ -4,30 +4,46 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 738DDC678D4
-	for <intel-xe@archiver.kernel.org>; Mon,  6 Mar 2023 13:21:17 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1EF96C6FA99
+	for <intel-xe@archiver.kernel.org>; Mon,  6 Mar 2023 13:35:07 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4F85510E0BB;
-	Mon,  6 Mar 2023 13:21:17 +0000 (UTC)
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id B797B10E0BB;
- Mon,  6 Mar 2023 13:21:14 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id B30B7A47DF;
- Mon,  6 Mar 2023 13:21:14 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+	by gabe.freedesktop.org (Postfix) with ESMTP id EB91F10E245;
+	Mon,  6 Mar 2023 13:35:06 +0000 (UTC)
+Received: from mga06.intel.com (mga06b.intel.com [134.134.136.31])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2CEEE10E245
+ for <intel-xe@lists.freedesktop.org>; Mon,  6 Mar 2023 13:35:05 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1678109705; x=1709645705;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=SQogCGgC0KCdkmkkL/L5zntGYBrIfyOzqOWA9ZvZf68=;
+ b=RkU/z6Ana1nJtK/4o8RTzCg71OkjUSJ1UyutKLLu9tYpRhudtdYCPRnO
+ 0H7cuSdAPknSxVfowzAHAGTWSmAmsZl/rSCbtn9cg8GHYMHLmgqElFKDs
+ Lywo0o7+BqXq864v7JOvQ3FAOF9nJ7VQTf0llUWcCEtw5tSpIDUA4xQgA
+ anlC8mrF5lSySlMdemX2MD/51IznQd2qhZKBCc1xm2bn1jlUOLyi1eNF4
+ bMo80D5QWXINF4F4z88+sKh6+s7+FwP7obze5S2bKcbV7WfQJ9+4yX93E
+ dhwUA1FzUCBb+xzrbi8imNLj3nNDOJ7FMWzhEx6kGm2mjGXTNk7phWKKr A==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10641"; a="398133385"
+X-IronPort-AV: E=Sophos;i="5.98,236,1673942400"; d="scan'208";a="398133385"
+Received: from fmsmga008.fm.intel.com ([10.253.24.58])
+ by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 06 Mar 2023 05:35:03 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6500,9779,10641"; a="740324377"
+X-IronPort-AV: E=Sophos;i="5.98,236,1673942400"; d="scan'208";a="740324377"
+Received: from nvishwa1-desk.sc.intel.com ([172.25.29.76])
+ by fmsmga008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 06 Mar 2023 05:35:03 -0800
+From: Niranjana Vishwanathapura <niranjana.vishwanathapura@intel.com>
+To: intel-xe@lists.freedesktop.org
+Date: Mon,  6 Mar 2023 05:34:59 -0800
+Message-Id: <20230306133459.7803-1-niranjana.vishwanathapura@intel.com>
+X-Mailer: git-send-email 2.21.0.rc0.32.g243a4c7e27
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: =?utf-8?q?Thomas_Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>
-Date: Mon, 06 Mar 2023 13:21:14 -0000
-Message-ID: <167810887473.4155.4769864272987425289@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20230306131738.197862-1-thomas.hellstrom@linux.intel.com>
-In-Reply-To: <20230306131738.197862-1-thomas.hellstrom@linux.intel.com>
-Subject: [Intel-xe] =?utf-8?q?=E2=9C=97_CI=2EKUnit=3A_failure_for_Move_th?=
- =?utf-8?q?e_page-table_walker?=
+Subject: [Intel-xe] [PATCH v2] drm/xe/migrate: Fix number of PT structs in
+ docbook
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -39,69 +55,33 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
-Cc: intel-xe@lists.freedesktop.org
+Cc: dev@mblankhorst.nl, thomas.hellstrom@intel.com
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-== Series Details ==
+Update xe_migrate_doc.h with 32 page table structs (not 48)
 
-Series: Move the page-table walker
-URL   : https://patchwork.freedesktop.org/series/114703/
-State : failure
+v2: minor typo fix
 
-== Summary ==
+Signed-off-by: Niranjana Vishwanathapura <niranjana.vishwanathapura@intel.com>
+Reviewed-by: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
+---
+ drivers/gpu/drm/xe/xe_migrate_doc.h | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-+ trap cleanup EXIT
-+ /kernel/tools/testing/kunit/kunit.py run --kunitconfig /kernel/drivers/gpu/drm/xe/.kunitconfig
-ERROR:root:../drivers/gpu/drm/xe/xe_display.c: In function ‘xe_display_info_init’:
-../drivers/gpu/drm/xe/xe_display.c:409:14: error: ‘CURSOR_C_OFFSET’ undeclared (first use in this function); did you mean ‘CURSOR_A_OFFSET’?
-  409 |   [PIPE_C] = CURSOR_C_OFFSET, \
-      |              ^~~~~~~~~~~~~~~
-../drivers/gpu/drm/xe/xe_display.c:422:2: note: in expansion of macro ‘__DISPLAY_DEFAULTS’
-  422 |  __DISPLAY_DEFAULTS,      \
-      |  ^~~~~~~~~~~~~~~~~~
-../drivers/gpu/drm/xe/xe_display.c:476:56: note: in expansion of macro ‘GEN12_DISPLAY’
-  476 |   xe->info.display = (struct xe_device_display_info) { GEN12_DISPLAY };
-      |                                                        ^~~~~~~~~~~~~
-../drivers/gpu/drm/xe/xe_display.c:409:14: note: each undeclared identifier is reported only once for each function it appears in
-  409 |   [PIPE_C] = CURSOR_C_OFFSET, \
-      |              ^~~~~~~~~~~~~~~
-../drivers/gpu/drm/xe/xe_display.c:422:2: note: in expansion of macro ‘__DISPLAY_DEFAULTS’
-  422 |  __DISPLAY_DEFAULTS,      \
-      |  ^~~~~~~~~~~~~~~~~~
-../drivers/gpu/drm/xe/xe_display.c:476:56: note: in expansion of macro ‘GEN12_DISPLAY’
-  476 |   xe->info.display = (struct xe_device_display_info) { GEN12_DISPLAY };
-      |                                                        ^~~~~~~~~~~~~
-../drivers/gpu/drm/xe/xe_display.c:410:14: error: ‘CURSOR_D_OFFSET’ undeclared (first use in this function); did you mean ‘CURSOR_A_OFFSET’?
-  410 |   [PIPE_D] = CURSOR_D_OFFSET, \
-      |              ^~~~~~~~~~~~~~~
-../drivers/gpu/drm/xe/xe_display.c:422:2: note: in expansion of macro ‘__DISPLAY_DEFAULTS’
-  422 |  __DISPLAY_DEFAULTS,      \
-      |  ^~~~~~~~~~~~~~~~~~
-../drivers/gpu/drm/xe/xe_display.c:476:56: note: in expansion of macro ‘GEN12_DISPLAY’
-  476 |   xe->info.display = (struct xe_device_display_info) { GEN12_DISPLAY };
-      |                                                        ^~~~~~~~~~~~~
-make[6]: *** [../scripts/Makefile.build:250: drivers/gpu/drm/xe/xe_display.o] Error 1
-make[6]: *** Waiting for unfinished jobs....
-make[5]: *** [../scripts/Makefile.build:500: drivers/gpu/drm/xe] Error 2
-make[4]: *** [../scripts/Makefile.build:500: drivers/gpu/drm] Error 2
-make[3]: *** [../scripts/Makefile.build:500: drivers/gpu] Error 2
-make[2]: *** [../scripts/Makefile.build:500: drivers] Error 2
-make[1]: *** [/kernel/Makefile:1992: .] Error 2
-make: *** [Makefile:231: __sub-make] Error 2
-
-[13:20:46] Configuring KUnit Kernel ...
-Generating .config ...
-Populating config with:
-$ make ARCH=um O=.kunit olddefconfig
-[13:20:50] Building KUnit Kernel ...
-Populating config with:
-$ make ARCH=um O=.kunit olddefconfig
-Building with:
-$ make ARCH=um O=.kunit --jobs=48
-+ cleanup
-++ stat -c %u:%g /kernel
-+ chown -R 1003:1003 /kernel
-
+diff --git a/drivers/gpu/drm/xe/xe_migrate_doc.h b/drivers/gpu/drm/xe/xe_migrate_doc.h
+index 6a68fdff08dc..63c7d67b5b62 100644
+--- a/drivers/gpu/drm/xe/xe_migrate_doc.h
++++ b/drivers/gpu/drm/xe/xe_migrate_doc.h
+@@ -21,7 +21,7 @@
+  * table BOs for updates, and identity map the entire device's VRAM with 1 GB
+  * pages.
+  *
+- * Currently the page structure consists of 48 phyiscal pages with 16 being
++ * Currently the page structure consists of 32 physical pages with 16 being
+  * reserved for BO mapping during copies and clear, 1 reserved for kernel binds,
+  * several pages are needed to setup the identity mappings (exact number based
+  * on how many bits of address space the device has), and the rest are reserved
+-- 
+2.21.0.rc0.32.g243a4c7e27
 
