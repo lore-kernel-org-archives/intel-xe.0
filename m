@@ -4,50 +4,50 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 900A5C678D4
-	for <intel-xe@archiver.kernel.org>; Mon,  6 Mar 2023 13:18:17 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4AE36C61DA4
+	for <intel-xe@archiver.kernel.org>; Mon,  6 Mar 2023 13:18:21 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 61E5510E0AC;
-	Mon,  6 Mar 2023 13:18:17 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 24EF610E0AC;
+	Mon,  6 Mar 2023 13:18:21 +0000 (UTC)
 Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7E90410E0AC
- for <intel-xe@lists.freedesktop.org>; Mon,  6 Mar 2023 13:18:15 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7B6C810E0BB
+ for <intel-xe@lists.freedesktop.org>; Mon,  6 Mar 2023 13:18:19 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1678108695; x=1709644695;
+ t=1678108699; x=1709644699;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=IoKR2PEtEii35W2dwIqI+Ufl+cYqsMbURfaqNXhtZ8U=;
- b=VkXCdyILNH/dWvoJuQ19WG14g2j0gZOPrwsYm6EUke00EIqD9do5ndEK
- VKlz1lmesnJXJWPrprfWDxgHMowZcXenm3WfyPqjkyR5eagu/1PdHQArf
- UwDdQgWJ4jNDa496OT9gTI850Va1Nbg2r1V+/eF9AL7EfeJl87NDa90BM
- IRsxyJdDHTHGUI1FOP/FSgCLZMj+lffjt7MRUPWK8IYu2LyDF7pf/oY8e
- SSUl3Se/8PUIoH00StnCDEbiiXvK0+McAlMIHlnH0zgd958aJS0j4/WmC
- DN5AEcf6NueUvti6g+8bHIKhubwOCuO/lHkZ2fcQktjhdHYtVB1X1mQVh Q==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10640"; a="337866728"
-X-IronPort-AV: E=Sophos;i="5.98,236,1673942400"; d="scan'208";a="337866728"
+ bh=4rJEzh6e5LsMJKHs57YiSMwvZTQD0kAZGyOPrpNv/0s=;
+ b=DdOygIK2FKtF1E9P9u7OX1/NhwayvFUfUhZHLpSoCs4eoQ3vfGlq8oXf
+ 0Di2ufzTS/oV0GwWe2UuwIthAzRwKW5NuLgVVPnAoKDh6MY4zZuq4VwkY
+ wO20r5Rv3j4HLdHjuSvudkzoC9pZmGEhksDuUMOhRRhT3VvXkiAHDis5H
+ OGHdDdbcSRHMNJzIXr713wXnc2NDRO7gKsQY244UpZrU4pUny0OMhGW3p
+ iYqvMQEeqfCncnzJ7mabHBeySM1v7w8s+nQejF7y0CWBb0FiDeqIPaJGZ
+ 9Nl0qk6Al4oxKqw1rfxsScBEnWqBWByVS9H+kU2fKWJS6a69cRNnAK2Bf Q==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10640"; a="337866741"
+X-IronPort-AV: E=Sophos;i="5.98,236,1673942400"; d="scan'208";a="337866741"
 Received: from orsmga006.jf.intel.com ([10.7.209.51])
  by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 06 Mar 2023 05:18:15 -0800
+ 06 Mar 2023 05:18:19 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6500,9779,10640"; a="653607259"
-X-IronPort-AV: E=Sophos;i="5.98,236,1673942400"; d="scan'208";a="653607259"
+X-IronPort-AV: E=McAfee;i="6500,9779,10640"; a="653607273"
+X-IronPort-AV: E=Sophos;i="5.98,236,1673942400"; d="scan'208";a="653607273"
 Received: from jsyrstad-mobl1.amr.corp.intel.com (HELO
  thellstr-mobl1.intel.com) ([10.249.254.109])
  by orsmga006-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 06 Mar 2023 05:18:13 -0800
+ 06 Mar 2023 05:18:17 -0800
 From: =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>
 To: intel-xe@lists.freedesktop.org
-Date: Mon,  6 Mar 2023 14:17:37 +0100
-Message-Id: <20230306131738.197862-3-thomas.hellstrom@linux.intel.com>
+Date: Mon,  6 Mar 2023 14:17:38 +0100
+Message-Id: <20230306131738.197862-4-thomas.hellstrom@linux.intel.com>
 X-Mailer: git-send-email 2.39.2
 In-Reply-To: <20230306131738.197862-1-thomas.hellstrom@linux.intel.com>
 References: <20230306131738.197862-1-thomas.hellstrom@linux.intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-xe] [PATCH 2/3] drm/xe: Use the xe page table walker rather
- than the drm one.
+Subject: [Intel-xe] [PATCH 3/3] Revert "drm: Add a gpu page-table walker
+ helper"
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -62,377 +62,361 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-To be squashed.
+This reverts commit 1a2a430d28294fb2ec264306ad8b9bf4300fde15.
 
-Signed-off-by: Thomas Hellström <thomas.hellstrom@linux.intel.com>
+The page-table walker is moved to xe.
 ---
- drivers/gpu/drm/xe/xe_pt.c       | 110 +++++++++++++++----------------
- drivers/gpu/drm/xe/xe_pt_types.h |   4 +-
- 2 files changed, 55 insertions(+), 59 deletions(-)
+ drivers/gpu/drm/Makefile      |   1 -
+ drivers/gpu/drm/drm_pt_walk.c | 159 ---------------------------------
+ include/drm/drm_pt_walk.h     | 161 ----------------------------------
+ 3 files changed, 321 deletions(-)
+ delete mode 100644 drivers/gpu/drm/drm_pt_walk.c
+ delete mode 100644 include/drm/drm_pt_walk.h
 
-diff --git a/drivers/gpu/drm/xe/xe_pt.c b/drivers/gpu/drm/xe/xe_pt.c
-index 06fc7b206997..00d9fff53828 100644
---- a/drivers/gpu/drm/xe/xe_pt.c
-+++ b/drivers/gpu/drm/xe/xe_pt.c
-@@ -5,14 +5,13 @@
- 
- #include "xe_pt.h"
- 
+diff --git a/drivers/gpu/drm/Makefile b/drivers/gpu/drm/Makefile
+index 55e66bf89334..89737ccbc5c1 100644
+--- a/drivers/gpu/drm/Makefile
++++ b/drivers/gpu/drm/Makefile
+@@ -39,7 +39,6 @@ drm-y := \
+ 	drm_prime.o \
+ 	drm_print.o \
+ 	drm_property.o \
+-	drm_pt_walk.o \
+ 	drm_syncobj.o \
+ 	drm_sysfs.o \
+ 	drm_trace_points.o \
+diff --git a/drivers/gpu/drm/drm_pt_walk.c b/drivers/gpu/drm/drm_pt_walk.c
+deleted file mode 100644
+index 1a0b147a3acc..000000000000
+--- a/drivers/gpu/drm/drm_pt_walk.c
++++ /dev/null
+@@ -1,159 +0,0 @@
+-// SPDX-License-Identifier: GPL-2.0
+-/*
+- * Copyright © 2022 Intel Corporation
+- */
 -#include <drm/drm_pt_walk.h>
 -
- #include "xe_bo.h"
- #include "xe_device.h"
- #include "xe_gt.h"
- #include "xe_gt_tlb_invalidation.h"
- #include "xe_migrate.h"
- #include "xe_pt_types.h"
-+#include "xe_pt_walk.h"
- #include "xe_res_cursor.h"
- #include "xe_trace.h"
- #include "xe_ttm_stolen_mgr.h"
-@@ -20,8 +19,8 @@
- 
- struct xe_pt_dir {
- 	struct xe_pt pt;
--	/** @dir: Directory structure for the drm_pt_walk functionality */
--	struct drm_pt_dir dir;
-+	/** @dir: Directory structure for the xe_pt_walk functionality */
-+	struct xe_ptw_dir dir;
- };
- 
- #if IS_ENABLED(CONFIG_DRM_XE_DEBUG_VM)
-@@ -44,7 +43,7 @@ static struct xe_pt_dir *as_xe_pt_dir(struct xe_pt *pt)
- 
- static struct xe_pt *xe_pt_entry(struct xe_pt_dir *pt_dir, unsigned int index)
- {
--	return container_of(pt_dir->dir.entries[index], struct xe_pt, drm);
-+	return container_of(pt_dir->dir.entries[index], struct xe_pt, base);
- }
- 
- /**
-@@ -211,7 +210,7 @@ struct xe_pt *xe_pt_create(struct xe_vm *vm, struct xe_gt *gt,
- 	int err;
- 
- 	size = !level ?  sizeof(struct xe_pt) : sizeof(struct xe_pt_dir) +
--		GEN8_PDES * sizeof(struct drm_pt *);
-+		GEN8_PDES * sizeof(struct xe_ptw *);
- 	pt = kzalloc(size, GFP_KERNEL);
- 	if (!pt)
- 		return ERR_PTR(-ENOMEM);
-@@ -227,7 +226,7 @@ struct xe_pt *xe_pt_create(struct xe_vm *vm, struct xe_gt *gt,
- 	}
- 	pt->bo = bo;
- 	pt->level = level;
--	pt->drm.dir = level ? &as_xe_pt_dir(pt)->dir : NULL;
-+	pt->base.dir = level ? &as_xe_pt_dir(pt)->dir : NULL;
- 
- 	XE_BUG_ON(level > XE_VM_MAX_LEVEL);
- 
-@@ -404,8 +403,8 @@ struct xe_pt_update {
- };
- 
- struct xe_pt_stage_bind_walk {
--	/** drm: The base class. */
--	struct drm_pt_walk drm;
-+	/** base: The base class. */
-+	struct xe_pt_walk base;
- 
- 	/* Input parameters for the walk */
- 	/** @vm: The vm we're building for. */
-@@ -532,7 +531,7 @@ xe_pt_insert_entry(struct xe_pt_stage_bind_walk *xe_walk, struct xe_pt *parent,
- 		struct iosys_map *map = &parent->bo->vmap;
- 
- 		if (unlikely(xe_child))
--			parent->drm.dir->entries[offset] = &xe_child->drm;
-+			parent->base.dir->entries[offset] = &xe_child->base;
- 
- 		xe_pt_write(xe_walk->vm->xe, map, offset, pte);
- 		parent->num_live++;
-@@ -556,7 +555,7 @@ static bool xe_pt_hugepte_possible(u64 addr, u64 next, unsigned int level,
- 	u64 size, dma;
- 
- 	/* Does the virtual range requested cover a huge pte? */
--	if (!drm_pt_covers(addr, next, level, &xe_walk->drm))
-+	if (!xe_pt_covers(addr, next, level, &xe_walk->base))
- 		return false;
- 
- 	/* Does the DMA segment cover the whole pte? */
-@@ -618,15 +617,15 @@ xe_pt_is_pte_ps64K(u64 addr, u64 next, struct xe_pt_stage_bind_walk *xe_walk)
- }
- 
- static int
--xe_pt_stage_bind_entry(struct drm_pt *parent, pgoff_t offset,
-+xe_pt_stage_bind_entry(struct xe_ptw *parent, pgoff_t offset,
- 		       unsigned int level, u64 addr, u64 next,
--		       struct drm_pt **child,
-+		       struct xe_ptw **child,
- 		       enum page_walk_action *action,
--		       struct drm_pt_walk *walk)
-+		       struct xe_pt_walk *walk)
- {
- 	struct xe_pt_stage_bind_walk *xe_walk =
--		container_of(walk, typeof(*xe_walk), drm);
--	struct xe_pt *xe_parent = container_of(parent, typeof(*xe_parent), drm);
-+		container_of(walk, typeof(*xe_walk), base);
-+	struct xe_pt *xe_parent = container_of(parent, typeof(*xe_parent), base);
- 	struct xe_pt *xe_child;
- 	bool covers;
- 	int ret = 0;
-@@ -675,7 +674,7 @@ xe_pt_stage_bind_entry(struct drm_pt *parent, pgoff_t offset,
- 		xe_walk->l0_end_addr = next;
- 	}
- 
--	covers = drm_pt_covers(addr, next, level, &xe_walk->drm);
-+	covers = xe_pt_covers(addr, next, level, &xe_walk->base);
- 	if (covers || !*child) {
- 		u64 flags = 0;
- 
-@@ -689,7 +688,7 @@ xe_pt_stage_bind_entry(struct drm_pt *parent, pgoff_t offset,
- 		if (!covers)
- 			xe_pt_populate_empty(xe_walk->gt, xe_walk->vm, xe_child);
- 
--		*child = &xe_child->drm;
-+		*child = &xe_child->base;
- 
- 		/*
- 		 * Prefer the compact pagetable layout for L0 if possible.
-@@ -712,7 +711,7 @@ xe_pt_stage_bind_entry(struct drm_pt *parent, pgoff_t offset,
- 	return ret;
- }
- 
--static const struct drm_pt_walk_ops xe_pt_stage_bind_ops = {
-+static const struct xe_pt_walk_ops xe_pt_stage_bind_ops = {
- 	.pt_entry = xe_pt_stage_bind_entry,
- };
- 
-@@ -742,7 +741,7 @@ xe_pt_stage_bind(struct xe_gt *gt, struct xe_vma *vma,
- 	bool is_vram = !xe_vma_is_userptr(vma) && bo && xe_bo_is_vram(bo);
- 	struct xe_res_cursor curs;
- 	struct xe_pt_stage_bind_walk xe_walk = {
--		.drm = {
-+		.base = {
- 			.ops = &xe_pt_stage_bind_ops,
- 			.shifts = xe_normal_pt_shifts,
- 			.max_level = XE_PT_HIGHEST_LEVEL,
-@@ -785,8 +784,8 @@ xe_pt_stage_bind(struct xe_gt *gt, struct xe_vma *vma,
- 		xe_res_first_sg(xe_bo_get_sg(bo), vma->bo_offset,
- 				vma->end - vma->start + 1, &curs);
- 
--	ret = drm_pt_walk_range(&pt->drm, pt->level, vma->start, vma->end + 1,
--				&xe_walk.drm);
-+	ret = xe_pt_walk_range(&pt->base, pt->level, vma->start, vma->end + 1,
-+				&xe_walk.base);
- 
- 	*num_entries = xe_walk.wupd.num_used_entries;
- 	return ret;
-@@ -812,20 +811,17 @@ xe_pt_stage_bind(struct xe_gt *gt, struct xe_vma *vma,
-  * be shared page tables also at lower levels, so it adjusts the walk action
-  * accordingly.
-  *
-- * Note that the function is not device-specific so could be made a drm
-- * pagewalk helper.
+-/**
+- * DOC: GPU page-table tree walking.
+- * The utilities in this file are similar to the CPU page-table walk
+- * utilities in mm/pagewalk.c. The main difference is that we distinguish
+- * the various levels of a page-table tree with an unsigned integer rather
+- * than by name. 0 is the lowest level, and page-tables with level 0 can
+- * not be directories pointing to lower levels, whereas all other levels
+- * can. The user of the utilities determines the highest level.
 - *
-  * Return: true if there were non-shared entries, false otherwise.
-  */
- static bool xe_pt_nonshared_offsets(u64 addr, u64 end, unsigned int level,
--				    struct drm_pt_walk *walk,
-+				    struct xe_pt_walk *walk,
- 				    enum page_walk_action *action,
- 				    pgoff_t *offset, pgoff_t *end_offset)
- {
- 	u64 size = 1ull << walk->shifts[level];
- 
--	*offset = drm_pt_offset(addr, level, walk);
--	*end_offset = drm_pt_num_entries(addr, end, level, walk) + *offset;
-+	*offset = xe_pt_offset(addr, level, walk);
-+	*end_offset = xe_pt_num_entries(addr, end, level, walk) + *offset;
- 
- 	if (!level)
- 		return true;
-@@ -849,8 +845,8 @@ static bool xe_pt_nonshared_offsets(u64 addr, u64 end, unsigned int level,
- }
- 
- struct xe_pt_zap_ptes_walk {
--	/** @drm: The walk base-class */
--	struct drm_pt_walk drm;
-+	/** @base: The walk base-class */
-+	struct xe_pt_walk base;
- 
- 	/* Input parameters for the walk */
- 	/** @gt: The gt we're building for */
-@@ -861,15 +857,15 @@ struct xe_pt_zap_ptes_walk {
- 	bool needs_invalidate;
- };
- 
--static int xe_pt_zap_ptes_entry(struct drm_pt *parent, pgoff_t offset,
-+static int xe_pt_zap_ptes_entry(struct xe_ptw *parent, pgoff_t offset,
- 				unsigned int level, u64 addr, u64 next,
--				struct drm_pt **child,
-+				struct xe_ptw **child,
- 				enum page_walk_action *action,
--				struct drm_pt_walk *walk)
-+				struct xe_pt_walk *walk)
- {
- 	struct xe_pt_zap_ptes_walk *xe_walk =
--		container_of(walk, typeof(*xe_walk), drm);
--	struct xe_pt *xe_child = container_of(*child, typeof(*xe_child), drm);
-+		container_of(walk, typeof(*xe_walk), base);
-+	struct xe_pt *xe_child = container_of(*child, typeof(*xe_child), base);
- 	pgoff_t end_offset;
- 
- 	XE_BUG_ON(!*child);
-@@ -891,7 +887,7 @@ static int xe_pt_zap_ptes_entry(struct drm_pt *parent, pgoff_t offset,
- 	return 0;
- }
- 
--static const struct drm_pt_walk_ops xe_pt_zap_ptes_ops = {
-+static const struct xe_pt_walk_ops xe_pt_zap_ptes_ops = {
- 	.pt_entry = xe_pt_zap_ptes_entry,
- };
- 
-@@ -914,7 +910,7 @@ static const struct drm_pt_walk_ops xe_pt_zap_ptes_ops = {
- bool xe_pt_zap_ptes(struct xe_gt *gt, struct xe_vma *vma)
- {
- 	struct xe_pt_zap_ptes_walk xe_walk = {
--		.drm = {
-+		.base = {
- 			.ops = &xe_pt_zap_ptes_ops,
- 			.shifts = xe_normal_pt_shifts,
- 			.max_level = XE_PT_HIGHEST_LEVEL,
-@@ -926,8 +922,8 @@ bool xe_pt_zap_ptes(struct xe_gt *gt, struct xe_vma *vma)
- 	if (!(vma->gt_present & BIT(gt->info.id)))
- 		return false;
- 
--	(void)drm_pt_walk_shared(&pt->drm, pt->level, vma->start, vma->end + 1,
--				 &xe_walk.drm);
-+	(void)xe_pt_walk_shared(&pt->base, pt->level, vma->start, vma->end + 1,
-+				 &xe_walk.base);
- 
- 	return xe_walk.needs_invalidate;
- }
-@@ -1013,7 +1009,7 @@ static void xe_pt_commit_bind(struct xe_vma *vma,
- 				xe_pt_destroy(xe_pt_entry(pt_dir, j_),
- 					      vma->vm->flags, deferred);
- 
--			pt_dir->dir.entries[j_] = &newpte->drm;
-+			pt_dir->dir.entries[j_] = &newpte->base;
- 		}
- 		kfree(entries[i].pt_entries);
- 	}
-@@ -1373,8 +1369,8 @@ __xe_pt_bind_vma(struct xe_gt *gt, struct xe_vma *vma, struct xe_engine *e,
- }
- 
- struct xe_pt_stage_unbind_walk {
--	/** @drm: The pagewalk base-class. */
--	struct drm_pt_walk drm;
-+	/** @base: The pagewalk base-class. */
-+	struct xe_pt_walk base;
- 
- 	/* Input parameters for the walk */
- 	/** @gt: The gt we're unbinding from. */
-@@ -1402,10 +1398,10 @@ struct xe_pt_stage_unbind_walk {
- static bool xe_pt_check_kill(u64 addr, u64 next, unsigned int level,
- 			     const struct xe_pt *child,
- 			     enum page_walk_action *action,
--			     struct drm_pt_walk *walk)
-+			     struct xe_pt_walk *walk)
- {
- 	struct xe_pt_stage_unbind_walk *xe_walk =
--		container_of(walk, typeof(*xe_walk), drm);
-+		container_of(walk, typeof(*xe_walk), base);
- 	unsigned int shift = walk->shifts[level];
- 	u64 size = 1ull << shift;
- 
-@@ -1426,13 +1422,13 @@ static bool xe_pt_check_kill(u64 addr, u64 next, unsigned int level,
- 	return false;
- }
- 
--static int xe_pt_stage_unbind_entry(struct drm_pt *parent, pgoff_t offset,
-+static int xe_pt_stage_unbind_entry(struct xe_ptw *parent, pgoff_t offset,
- 				    unsigned int level, u64 addr, u64 next,
--				    struct drm_pt **child,
-+				    struct xe_ptw **child,
- 				    enum page_walk_action *action,
--				    struct drm_pt_walk *walk)
-+				    struct xe_pt_walk *walk)
- {
--	struct xe_pt *xe_child = container_of(*child, typeof(*xe_child), drm);
-+	struct xe_pt *xe_child = container_of(*child, typeof(*xe_child), base);
- 
- 	XE_BUG_ON(!*child);
- 	XE_BUG_ON(!level && xe_child->is_compact);
-@@ -1443,15 +1439,15 @@ static int xe_pt_stage_unbind_entry(struct drm_pt *parent, pgoff_t offset,
- }
- 
- static int
--xe_pt_stage_unbind_post_descend(struct drm_pt *parent, pgoff_t offset,
-+xe_pt_stage_unbind_post_descend(struct xe_ptw *parent, pgoff_t offset,
- 				unsigned int level, u64 addr, u64 next,
--				struct drm_pt **child,
-+				struct xe_ptw **child,
- 				enum page_walk_action *action,
--				struct drm_pt_walk *walk)
-+				struct xe_pt_walk *walk)
- {
- 	struct xe_pt_stage_unbind_walk *xe_walk =
--		container_of(walk, typeof(*xe_walk), drm);
--	struct xe_pt *xe_child = container_of(*child, typeof(*xe_child), drm);
-+		container_of(walk, typeof(*xe_walk), base);
-+	struct xe_pt *xe_child = container_of(*child, typeof(*xe_child), base);
- 	pgoff_t end_offset;
- 	u64 size = 1ull << walk->shifts[--level];
- 
-@@ -1475,7 +1471,7 @@ xe_pt_stage_unbind_post_descend(struct drm_pt *parent, pgoff_t offset,
- 	return 0;
- }
- 
--static const struct drm_pt_walk_ops xe_pt_stage_unbind_ops = {
-+static const struct xe_pt_walk_ops xe_pt_stage_unbind_ops = {
- 	.pt_entry = xe_pt_stage_unbind_entry,
- 	.pt_post_descend = xe_pt_stage_unbind_post_descend,
- };
-@@ -1498,7 +1494,7 @@ static unsigned int xe_pt_stage_unbind(struct xe_gt *gt, struct xe_vma *vma,
- 				       struct xe_vm_pgtable_update *entries)
- {
- 	struct xe_pt_stage_unbind_walk xe_walk = {
--		.drm = {
-+		.base = {
- 			.ops = &xe_pt_stage_unbind_ops,
- 			.shifts = xe_normal_pt_shifts,
- 			.max_level = XE_PT_HIGHEST_LEVEL,
-@@ -1510,8 +1506,8 @@ static unsigned int xe_pt_stage_unbind(struct xe_gt *gt, struct xe_vma *vma,
- 	};
- 	struct xe_pt *pt = vma->vm->pt_root[gt->info.id];
- 
--	(void)drm_pt_walk_shared(&pt->drm, pt->level, vma->start, vma->end + 1,
--				 &xe_walk.drm);
-+	(void)xe_pt_walk_shared(&pt->base, pt->level, vma->start, vma->end + 1,
-+				 &xe_walk.base);
- 
- 	return xe_walk.wupd.num_used_entries;
- }
-diff --git a/drivers/gpu/drm/xe/xe_pt_types.h b/drivers/gpu/drm/xe/xe_pt_types.h
-index 2bb5d0e319b7..2ed64c0a4485 100644
---- a/drivers/gpu/drm/xe/xe_pt_types.h
-+++ b/drivers/gpu/drm/xe/xe_pt_types.h
-@@ -6,7 +6,7 @@
- #ifndef _XE_PT_TYPES_H_
- #define _XE_PT_TYPES_H_
- 
--#include <drm/drm_pt_walk.h>
-+#include "xe_pt_walk.h"
- 
- enum xe_cache_level {
- 	XE_CACHE_NONE,
-@@ -17,7 +17,7 @@ enum xe_cache_level {
- #define XE_VM_MAX_LEVEL 4
- 
- struct xe_pt {
--	struct drm_pt drm;
-+	struct xe_ptw base;
- 	struct xe_bo *bo;
- 	unsigned int level;
- 	unsigned int num_live;
+- * Nomenclature:
+- * Each struct drm_pt, regardless of level is referred to as a page table, and
+- * multiple page tables typically form a page table tree with page tables at
+- * intermediate levels being page directories pointing at page tables at lower
+- * levels. A shared page table for a given address range is a page-table which
+- * is neither fully within nor fully outside the address range and that can
+- * thus be shared by two or more address ranges.
+- */
+-static u64 drm_pt_addr_end(u64 addr, u64 end, unsigned int level,
+-			   const struct drm_pt_walk *walk)
+-{
+-	u64 size = 1ull << walk->shifts[level];
+-	u64 tmp = round_up(addr + 1, size);
+-
+-	return min_t(u64, tmp, end);
+-}
+-
+-static bool drm_pt_next(pgoff_t *offset, u64 *addr, u64 next, u64 end,
+-			unsigned int level, const struct drm_pt_walk *walk)
+-{
+-	pgoff_t step = 1;
+-
+-	/* Shared pt walk skips to the last pagetable */
+-	if (unlikely(walk->shared_pt_mode)) {
+-		unsigned int shift = walk->shifts[level];
+-		u64 skip_to = round_down(end, 1ull << shift);
+-
+-		if (skip_to > next) {
+-			step += (skip_to - next) >> shift;
+-			next = skip_to;
+-		}
+-	}
+-
+-	*addr = next;
+-	*offset += step;
+-
+-	return next != end;
+-}
+-
+-/**
+- * drm_pt_walk_range() - Walk a range of a gpu page table tree with callbacks
+- * for each page-table entry in all levels.
+- * @parent: The root page table for walk start.
+- * @level: The root page table level.
+- * @addr: Virtual address start.
+- * @end: Virtual address end + 1.
+- * @walk: Walk info.
+- *
+- * Similar to the CPU page-table walker, this is a helper to walk
+- * a gpu page table and call a provided callback function for each entry.
+- *
+- * Return: 0 on success, negative error code on error. The error is
+- * propagated from the callback and on error the walk is terminated.
+- */
+-int drm_pt_walk_range(struct drm_pt *parent, unsigned int level,
+-		      u64 addr, u64 end, struct drm_pt_walk *walk)
+-{
+-	pgoff_t offset = drm_pt_offset(addr, level, walk);
+-	struct drm_pt **entries = parent->dir ? parent->dir->entries : NULL;
+-	const struct drm_pt_walk_ops *ops = walk->ops;
+-	enum page_walk_action action;
+-	struct drm_pt *child;
+-	int err = 0;
+-	u64 next;
+-
+-	do {
+-		next = drm_pt_addr_end(addr, end, level, walk);
+-		if (walk->shared_pt_mode && drm_pt_covers(addr, next, level,
+-							  walk))
+-			continue;
+-again:
+-		action = ACTION_SUBTREE;
+-		child = entries ? entries[offset] : NULL;
+-		err = ops->pt_entry(parent, offset, level, addr, next,
+-				    &child, &action, walk);
+-		if (err)
+-			break;
+-
+-		/* Probably not needed yet for gpu pagetable walk. */
+-		if (unlikely(action == ACTION_AGAIN))
+-			goto again;
+-
+-		if (likely(!level || !child || action == ACTION_CONTINUE))
+-			continue;
+-
+-		err = drm_pt_walk_range(child, level - 1, addr, next, walk);
+-
+-		if (!err && ops->pt_post_descend)
+-			err = ops->pt_post_descend(parent, offset, level, addr,
+-						   next, &child, &action, walk);
+-		if (err)
+-			break;
+-
+-	} while (drm_pt_next(&offset, &addr, next, end, level, walk));
+-
+-	return err;
+-}
+-EXPORT_SYMBOL(drm_pt_walk_range);
+-
+-/**
+- * drm_pt_walk_shared() - Walk shared page tables of a page-table tree.
+- * @parent: Root page table directory.
+- * @level: Level of the root.
+- * @addr: Start address.
+- * @end: Last address + 1.
+- * @walk: Walk info.
+- *
+- * This function is similar to drm_pt_walk_range() but it skips page tables
+- * that are private to the range. Since the root (or @parent) page table is
+- * typically also a shared page table this function is different in that it
+- * calls the pt_entry callback and the post_descend callback also for the
+- * root. The root can be detected in the callbacks by checking whether
+- * parent == *child.
+- * Walking only the shared page tables is common for unbind-type operations
+- * where the page-table entries for an address range are cleared or detached
+- * from the main page-table tree.
+- *
+- * Return: 0 on success, negative error code on error: If a callback
+- * returns an error, the walk will be terminated and the error returned by
+- * this function.
+- */
+-int drm_pt_walk_shared(struct drm_pt *parent, unsigned int level,
+-		       u64 addr, u64 end, struct drm_pt_walk *walk)
+-{
+-	const struct drm_pt_walk_ops *ops = walk->ops;
+-	enum page_walk_action action = ACTION_SUBTREE;
+-	struct drm_pt *child = parent;
+-	int err;
+-
+-	walk->shared_pt_mode = true;
+-	err = walk->ops->pt_entry(parent, 0, level + 1, addr, end,
+-				  &child, &action, walk);
+-
+-	if (err || action != ACTION_SUBTREE)
+-		return err;
+-
+-	err = drm_pt_walk_range(parent, level, addr, end, walk);
+-	if (!err && ops->pt_post_descend) {
+-		err = ops->pt_post_descend(parent, 0, level + 1, addr, end,
+-					   &child, &action, walk);
+-	}
+-	return err;
+-}
+-EXPORT_SYMBOL(drm_pt_walk_shared);
+diff --git a/include/drm/drm_pt_walk.h b/include/drm/drm_pt_walk.h
+deleted file mode 100644
+index 64e7a418217c..000000000000
+--- a/include/drm/drm_pt_walk.h
++++ /dev/null
+@@ -1,161 +0,0 @@
+-/* SPDX-License-Identifier: GPL-2.0 */
+-/*
+- * Copyright © 2022 Intel Corporation
+- */
+-#ifndef __DRM_PT_WALK__
+-#define __DRM_PT_WALK__
+-
+-#include <linux/pagewalk.h>
+-#include <linux/types.h>
+-
+-struct drm_pt_dir;
+-
+-/**
+- * struct drm_pt - base class for driver pagetable subclassing.
+- * @dir: Pointer to an array of children if any.
+- *
+- * Drivers could subclass this, and if it's a page-directory, typically
+- * embed the drm_pt_dir::entries array in the same allocation.
+- */
+-struct drm_pt {
+-	struct drm_pt_dir *dir;
+-};
+-
+-/**
+- * struct drm_pt_dir - page directory structure
+- * @entries: Array holding page directory children.
+- *
+- * It is the responsibility of the user to ensure @entries is
+- * correctly sized.
+- */
+-struct drm_pt_dir {
+-	struct drm_pt *entries[0];
+-};
+-
+-/**
+- * struct drm_pt_walk - Embeddable struct for walk parameters
+- */
+-struct drm_pt_walk {
+-	/** @ops: The walk ops used for the pagewalk */
+-	const struct drm_pt_walk_ops *ops;
+-	/**
+-	 * @shifts: Array of page-table entry shifts used for the
+-	 * different levels, starting out with the leaf level 0
+-	 * page-shift as the first entry. It's legal for this pointer to be
+-	 * changed during the walk.
+-	 */
+-	const u64 *shifts;
+-	/** @max_level: Highest populated level in @sizes */
+-	unsigned int max_level;
+-	/**
+-	 * @shared_pt_mode: Whether to skip all entries that are private
+-	 * to the address range and called only for entries that are
+-	 * shared with other address ranges. Such entries are referred to
+-	 * as shared pagetables.
+-	 */
+-	bool shared_pt_mode;
+-};
+-
+-/**
+- * typedef drm_pt_entry_fn - gpu page-table-walk callback-function
+- * @parent: The parent page.table.
+- * @offset: The offset (number of entries) into the page table.
+- * @level: The level of @parent.
+- * @addr: The virtual address.
+- * @next: The virtual address for the next call, or end address.
+- * @child: Pointer to pointer to child page-table at this @offset. The
+- * function may modify the value pointed to if, for example, allocating a
+- * child page table.
+- * @action: The walk action to take upon return. See <linux/pagewalk.h>.
+- * @walk: The walk parameters.
+- */
+-typedef int (*drm_pt_entry_fn)(struct drm_pt *parent, pgoff_t offset,
+-			       unsigned int level, u64 addr, u64 next,
+-			       struct drm_pt **child,
+-			       enum page_walk_action *action,
+-			       struct drm_pt_walk *walk);
+-
+-/**
+- * struct drm_pt_walk_ops - Walk callbacks.
+- */
+-struct drm_pt_walk_ops {
+-	/**
+-	 * @pt_entry: Callback to be called for each page table entry prior
+-	 * to descending to the next level. The returned value of the action
+-	 * function parameter is honored.
+-	 */
+-	drm_pt_entry_fn pt_entry;
+-	/**
+-	 * @pt_post_descend: Callback to be called for each page table entry
+-	 * after return from descending to the next level. The returned value
+-	 * of the action function parameter is ignored.
+-	 */
+-	drm_pt_entry_fn pt_post_descend;
+-};
+-
+-int drm_pt_walk_range(struct drm_pt *parent, unsigned int level,
+-		      u64 addr, u64 end, struct drm_pt_walk *walk);
+-
+-int drm_pt_walk_shared(struct drm_pt *parent, unsigned int level,
+-		       u64 addr, u64 end, struct drm_pt_walk *walk);
+-
+-/**
+- * drm_pt_covers - Whether the address range covers an entire entry in @level
+- * @addr: Start of the range.
+- * @end: End of range + 1.
+- * @level: Page table level.
+- * @walk: Page table walk info.
+- *
+- * This function is a helper to aid in determining whether a leaf page table
+- * entry can be inserted at this @level.
+- *
+- * Return: Whether the range provided covers exactly an entry at this level.
+- */
+-static inline bool drm_pt_covers(u64 addr, u64 end, unsigned int level,
+-				 const struct drm_pt_walk *walk)
+-{
+-	u64 pt_size = 1ull << walk->shifts[level];
+-
+-	return end - addr == pt_size && IS_ALIGNED(addr, pt_size);
+-}
+-
+-/**
+- * drm_pt_num_entries: Number of page-table entries of a given range at this
+- * level
+- * @addr: Start address.
+- * @end: End address.
+- * @level: Page table level.
+- * @walk: Walk info.
+- *
+- * Return: The number of page table entries at this level between @start and
+- * @end.
+- */
+-static inline pgoff_t
+-drm_pt_num_entries(u64 addr, u64 end, unsigned int level,
+-		   const struct drm_pt_walk *walk)
+-{
+-	u64 pt_size = 1ull << walk->shifts[level];
+-
+-	return (round_up(end, pt_size) - round_down(addr, pt_size)) >>
+-		walk->shifts[level];
+-}
+-
+-/**
+- * drm_pt_offset: Offset of the page-table entry for a given address.
+- * @addr: The address.
+- * @level: Page table level.
+- * @walk: Walk info.
+- *
+- * Return: The page table entry offset for the given address in a
+- * page table with size indicated by @level.
+- */
+-static inline pgoff_t
+-drm_pt_offset(u64 addr, unsigned int level, const struct drm_pt_walk *walk)
+-{
+-	if (level < walk->max_level)
+-		addr &= ((1ull << walk->shifts[level + 1]) - 1);
+-
+-	return addr >> walk->shifts[level];
+-}
+-
+-#endif
 -- 
 2.39.2
 
