@@ -4,47 +4,47 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4BF91C678D5
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 61B42C678D4
 	for <intel-xe@archiver.kernel.org>; Tue,  7 Mar 2023 09:25:38 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2DD9410E3BD;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3AA7C10E3C3;
 	Tue,  7 Mar 2023 09:25:38 +0000 (UTC)
 Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3EE4110E3BD
- for <intel-xe@lists.freedesktop.org>; Tue,  7 Mar 2023 09:25:30 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B39DE10E3C5
+ for <intel-xe@lists.freedesktop.org>; Tue,  7 Mar 2023 09:25:29 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1678181130; x=1709717130;
+ t=1678181129; x=1709717129;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=gaE7n/oCN6KACxSP6yuU/cngaU4OVUhlKpD/gnihyfs=;
- b=R+I0cvK4Clmqbln2aN2DwVU3B4K1GRZuEgcI+XSAapHbxZXyFDCerR32
- pjAYGLF7OECW9rNC24BHNUpWlQCX+zzo1AcD7fRQ6mixuX5tNk2Mz4tKB
- qpeqV7g72rudcS/WHQFnee/3L0QKkbN2IOmmmlVy2VEAEKHZvfqRntM2Z
- taizfxbDM4XYR2Qxtc2n21PblsiGtPJ1nC63QmzFl1mMGMciPdzQbT5EV
- /NvrUEwzWKpHMPFo4ZcGMeEsGhtUCreMcWRPdqN21hUugFvhJJzf63z33
- AE3RzeNiYg8vv0ttUEIbhEjWve+ImTQu+qHm3iDwucwB0M1fLTXHzPEAw w==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10641"; a="422079119"
-X-IronPort-AV: E=Sophos;i="5.98,240,1673942400"; d="scan'208";a="422079119"
+ bh=HnG00wTKSo06O3tlVBHeBDWZ5ZFCCwEDxqM/9WQ0BEc=;
+ b=ZedQ1C62w87aHsQOKT0z7eEmJ4vSFqk7i5Wj/ma5gbX/Xe2OcK7gH+T3
+ te0karE18fKj4U+NgZYdRYfMvM+6slJrVkD3C+JfTgq6PA7+eudMrzFKl
+ fPzG3ync86F5lrUz4TqPc2WYqgAdJvvJWWfh5dxH8SGYOs+962oF08ySV
+ ESCxEsrBhVJUE2HgrdQTfB2fd+qZKgZYUQzmTvlunj2ovDRQpQW5OCSRT
+ roBu2wQIOMIHpSccVB2y2XAE0t8L3tHOwpax+FaKoKydMBLGgcomhcQes
+ fve5WMzm7i/Hi+8tYlkr8clsCjImU34GiXUk8zcqUUqil2x+AH+X9Oeaz g==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10641"; a="422079115"
+X-IronPort-AV: E=Sophos;i="5.98,240,1673942400"; d="scan'208";a="422079115"
 Received: from fmsmga005.fm.intel.com ([10.253.24.32])
  by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 07 Mar 2023 01:25:14 -0800
+ 07 Mar 2023 01:25:13 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6500,9779,10641"; a="1005798814"
-X-IronPort-AV: E=Sophos;i="5.98,240,1673942400"; d="scan'208";a="1005798814"
+X-IronPort-AV: E=McAfee;i="6500,9779,10641"; a="1005798802"
+X-IronPort-AV: E=Sophos;i="5.98,240,1673942400"; d="scan'208";a="1005798802"
 Received: from lucas-s2600cw.jf.intel.com ([10.165.21.196])
  by fmsmga005-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 07 Mar 2023 01:25:14 -0800
+ 07 Mar 2023 01:25:13 -0800
 From: Lucas De Marchi <lucas.demarchi@intel.com>
 To: intel-xe@lists.freedesktop.org
-Date: Tue,  7 Mar 2023 01:24:35 -0800
-Message-Id: <20230307092446.1263266-9-lucas.demarchi@intel.com>
+Date: Tue,  7 Mar 2023 01:24:31 -0800
+Message-Id: <20230307092446.1263266-5-lucas.demarchi@intel.com>
 X-Mailer: git-send-email 2.39.0
 In-Reply-To: <20230307092446.1263266-1-lucas.demarchi@intel.com>
 References: <20230307092446.1263266-1-lucas.demarchi@intel.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-xe] [PATCH 08/19] drm/xe: Remove dump function from reg_sr
+Subject: [Intel-xe] [PATCH 04/19] drm/xe: Add helper to get dss per group
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -60,84 +60,60 @@ Cc: Lucas De Marchi <lucas.demarchi@intel.com>
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-The dump function was originally added with the idea that it could be
-re-used both for printing the reg-sr data and saving it to pass to GuC
-via ADS. This was not used by the GuC integration, so remove it now to
-give place to a new debug.
+This is already used in intel_gt_mcr and will be used in workarounds.
+Add helpers so the platform-dependency is in a single place.
 
 Signed-off-by: Lucas De Marchi <lucas.demarchi@intel.com>
 ---
- drivers/gpu/drm/xe/xe_reg_sr.c       | 26 --------------------------
- drivers/gpu/drm/xe/xe_reg_sr.h       |  2 --
- drivers/gpu/drm/xe/xe_reg_sr_types.h |  5 -----
- 3 files changed, 33 deletions(-)
+ drivers/gpu/drm/xe/xe_gt_mcr.c      | 2 +-
+ drivers/gpu/drm/xe/xe_gt_topology.c | 6 ++++++
+ drivers/gpu/drm/xe/xe_gt_topology.h | 3 +++
+ 3 files changed, 10 insertions(+), 1 deletion(-)
 
-diff --git a/drivers/gpu/drm/xe/xe_reg_sr.c b/drivers/gpu/drm/xe/xe_reg_sr.c
-index e4eb18332a9d..194a5060f1b3 100644
---- a/drivers/gpu/drm/xe/xe_reg_sr.c
-+++ b/drivers/gpu/drm/xe/xe_reg_sr.c
-@@ -43,32 +43,6 @@ int xe_reg_sr_init(struct xe_reg_sr *sr, const char *name, struct xe_device *xe)
- 	return drmm_add_action_or_reset(&xe->drm, reg_sr_fini, sr);
+diff --git a/drivers/gpu/drm/xe/xe_gt_mcr.c b/drivers/gpu/drm/xe/xe_gt_mcr.c
+index a42061c4b9d2..694a79b40ec0 100644
+--- a/drivers/gpu/drm/xe/xe_gt_mcr.c
++++ b/drivers/gpu/drm/xe/xe_gt_mcr.c
+@@ -223,7 +223,7 @@ static void init_steering_dss(struct xe_gt *gt)
+ {
+ 	unsigned int dss = min(xe_dss_mask_group_ffs(gt->fuse_topo.g_dss_mask, 0, 0),
+ 			       xe_dss_mask_group_ffs(gt->fuse_topo.c_dss_mask, 0, 0));
+-	unsigned int dss_per_grp = gt_to_xe(gt)->info.platform == XE_PVC ? 8 : 4;
++	unsigned int dss_per_grp = xe_gt_topology_get_dss_per_group(gt);
+ 
+ 	gt->steering[DSS].group_target = dss / dss_per_grp;
+ 	gt->steering[DSS].instance_target = dss % dss_per_grp;
+diff --git a/drivers/gpu/drm/xe/xe_gt_topology.c b/drivers/gpu/drm/xe/xe_gt_topology.c
+index 967f2349c67a..9fe06a46a400 100644
+--- a/drivers/gpu/drm/xe/xe_gt_topology.c
++++ b/drivers/gpu/drm/xe/xe_gt_topology.c
+@@ -103,6 +103,12 @@ xe_gt_topology_dump(struct xe_gt *gt, struct drm_printer *p)
+ 
  }
  
--int xe_reg_sr_dump_kv(struct xe_reg_sr *sr,
--		      struct xe_reg_sr_kv **dst)
--{
--	struct xe_reg_sr_kv *iter;
--	struct xe_reg_sr_entry *entry;
--	unsigned long idx;
--
--	if (xa_empty(&sr->xa)) {
--		*dst = NULL;
--		return 0;
--	}
--
--	*dst = kmalloc_array(sr->pool.used, sizeof(**dst), GFP_KERNEL);
--	if (!*dst)
--		return -ENOMEM;
--
--	iter = *dst;
--	xa_for_each(&sr->xa, idx, entry) {
--		iter->k = idx;
--		iter->v = *entry;
--		iter++;
--	}
--
--	return 0;
--}
--
- static struct xe_reg_sr_entry *alloc_entry(struct xe_reg_sr *sr)
- {
- 	if (sr->pool.used == sr->pool.allocated) {
-diff --git a/drivers/gpu/drm/xe/xe_reg_sr.h b/drivers/gpu/drm/xe/xe_reg_sr.h
-index c3a9db251e92..9f47230c8ddc 100644
---- a/drivers/gpu/drm/xe/xe_reg_sr.h
-+++ b/drivers/gpu/drm/xe/xe_reg_sr.h
-@@ -16,8 +16,6 @@ struct xe_device;
- struct xe_gt;
++unsigned int
++xe_gt_topology_get_dss_per_group(struct xe_gt *gt)
++{
++	return gt_to_xe(gt)->info.platform == XE_PVC ? 8 : 4;
++}
++
+ /*
+  * Used to obtain the index of the first DSS.  Can start searching from the
+  * beginning of a specific dss group (e.g., gslice, cslice, etc.) if
+diff --git a/drivers/gpu/drm/xe/xe_gt_topology.h b/drivers/gpu/drm/xe/xe_gt_topology.h
+index 2375f005e0c8..cf8f75a4c7dd 100644
+--- a/drivers/gpu/drm/xe/xe_gt_topology.h
++++ b/drivers/gpu/drm/xe/xe_gt_topology.h
+@@ -14,6 +14,9 @@ void xe_gt_topology_init(struct xe_gt *gt);
  
- int xe_reg_sr_init(struct xe_reg_sr *sr, const char *name, struct xe_device *xe);
--int xe_reg_sr_dump_kv(struct xe_reg_sr *sr,
--		      struct xe_reg_sr_kv **dst);
+ void xe_gt_topology_dump(struct xe_gt *gt, struct drm_printer *p);
  
- int xe_reg_sr_add(struct xe_reg_sr *sr, u32 reg,
- 		  const struct xe_reg_sr_entry *e);
-diff --git a/drivers/gpu/drm/xe/xe_reg_sr_types.h b/drivers/gpu/drm/xe/xe_reg_sr_types.h
-index 0e6d542ff1b4..3d2257891005 100644
---- a/drivers/gpu/drm/xe/xe_reg_sr_types.h
-+++ b/drivers/gpu/drm/xe/xe_reg_sr_types.h
-@@ -23,11 +23,6 @@ struct xe_reg_sr_entry {
- 	u8		reg_type;
- };
++unsigned int
++xe_gt_topology_get_dss_per_group(struct xe_gt *gt);
++
+ unsigned int
+ xe_dss_mask_group_ffs(const xe_dss_mask_t mask, int groupsize, int groupnum);
  
--struct xe_reg_sr_kv {
--	u32			k;
--	struct xe_reg_sr_entry	v;
--};
--
- struct xe_reg_sr {
- 	struct {
- 		struct xe_reg_sr_entry *arr;
 -- 
 2.39.0
 
