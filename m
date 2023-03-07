@@ -4,48 +4,47 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id F2D01C6FD1E
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id A8BEDC678D5
 	for <intel-xe@archiver.kernel.org>; Tue,  7 Mar 2023 09:25:31 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C7C3A10E3BD;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5DE8F10E3CC;
 	Tue,  7 Mar 2023 09:25:31 +0000 (UTC)
 Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E8E2F10E3C3
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8733810E3BD
  for <intel-xe@lists.freedesktop.org>; Tue,  7 Mar 2023 09:25:29 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
  t=1678181129; x=1709717129;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=chbX8zqKqwxdKuHvBbFBxb17ky+hjNETMZMT6XJQn3k=;
- b=WFb6lJgfZSlY88G0MsCW9pG643mILc2FSjP2+bBadJ7xsg3CBZrXU6ZQ
- GmAv4+DFqOSyG6LeQ9A00+zXU4AS6cTPGNrLH1CgnbBiLlphraFEF65Ki
- LLFIBW40r3X5KXB9YNxyK52fZF4E8rzM5UZsUFVTpLphO7x1itw5qZ+bM
- pUpLvaFqkzzwfprfTLd5/SjvO5HngZsAtp3OHEcsJOF3C8Q5+f341Jw43
- elTQhSM7hni5q2K6JiTBCVlQY3ytocjBAY9qm65CzkBqQf3ueadn0k4J2
- HhGx+kzG8NEOBzISJnm/Jhar4wGVX3oaxb3w6cYiTrC/SB4kEBVHVHOgO w==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10641"; a="422079117"
-X-IronPort-AV: E=Sophos;i="5.98,240,1673942400"; d="scan'208";a="422079117"
+ bh=7UyfgjARcw2CzAcVRtwBmqtkr3vfn4F9DXJ2SGaAGRk=;
+ b=oK6/xEUv9xJVKEbc9nwhEFDq1WZU1Dqu9BSCOXkTSJdFfZqdgaLRlQOy
+ HnKkn8F93e/Y+EgS+jkKEpxmZutKAggdj1pWQm7TpGdTs7jGG2C22Lj/0
+ wQC8Kwj7b82mA7rUn17YlySAQSppO9VnB4rPbHOcOZek/76tuql11z8q3
+ XXCwpCJM1lF9mGnPQI1X02L3m1Alru2ZaP7UlnAY+m9ohS4b16yRJ/RI2
+ YoW0yABjXGeo8Ln/Ugs8m/MsXEKE2MVW3PMlWJ+gRoPfXaRJgFeE9nu6j
+ OQI9eLmkPJbfpQJ36NuEC8r1V550dFBDOxwv3dYkrNIqS+Py4D4F0lc7P g==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10641"; a="422079112"
+X-IronPort-AV: E=Sophos;i="5.98,240,1673942400"; d="scan'208";a="422079112"
 Received: from fmsmga005.fm.intel.com ([10.253.24.32])
  by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 07 Mar 2023 01:25:14 -0800
+ 07 Mar 2023 01:25:13 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6500,9779,10641"; a="1005798808"
-X-IronPort-AV: E=Sophos;i="5.98,240,1673942400"; d="scan'208";a="1005798808"
+X-IronPort-AV: E=McAfee;i="6500,9779,10641"; a="1005798792"
+X-IronPort-AV: E=Sophos;i="5.98,240,1673942400"; d="scan'208";a="1005798792"
 Received: from lucas-s2600cw.jf.intel.com ([10.165.21.196])
  by fmsmga005-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 07 Mar 2023 01:25:14 -0800
+ 07 Mar 2023 01:25:13 -0800
 From: Lucas De Marchi <lucas.demarchi@intel.com>
 To: intel-xe@lists.freedesktop.org
-Date: Tue,  7 Mar 2023 01:24:33 -0800
-Message-Id: <20230307092446.1263266-7-lucas.demarchi@intel.com>
+Date: Tue,  7 Mar 2023 01:24:28 -0800
+Message-Id: <20230307092446.1263266-2-lucas.demarchi@intel.com>
 X-Mailer: git-send-email 2.39.0
 In-Reply-To: <20230307092446.1263266-1-lucas.demarchi@intel.com>
 References: <20230307092446.1263266-1-lucas.demarchi@intel.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-xe] [PATCH 06/19] drm/xe/rtp: Add match for render reset
- domain
+Subject: [Intel-xe] [PATCH 01/19] drm/xe/mcr: Add L3BANK steering for DG2
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -61,102 +60,46 @@ Cc: Lucas De Marchi <lucas.demarchi@intel.com>
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-This allows to create WA/tuning rules that match the first engine that
-is either of compute or render class. This matters for platforms that
-don't have a render engine and that may have arbitrary compute engines
-fused off: some register programming need to be added to one of those
-engines.
+Some register ranges with replication type L3BANK were missing from the
+driver table. The following warning was triggering when adding a
+workaround touching the register 0xb188:
+
+	xe 0000:03:00.0: Did not find MCR register 0xb188 in any MCR steering table
+
+Add the L3BANK ranges according to the spec.
+
+Bspec: 66534
 
 Signed-off-by: Lucas De Marchi <lucas.demarchi@intel.com>
 ---
- drivers/gpu/drm/xe/xe_hw_engine_types.h |  5 +++++
- drivers/gpu/drm/xe/xe_rtp.c             | 10 ++++++++++
- drivers/gpu/drm/xe/xe_rtp.h             | 18 ++++++++++++++++++
- 3 files changed, 33 insertions(+)
+ drivers/gpu/drm/xe/xe_gt_mcr.c | 7 +++++++
+ 1 file changed, 7 insertions(+)
 
-diff --git a/drivers/gpu/drm/xe/xe_hw_engine_types.h b/drivers/gpu/drm/xe/xe_hw_engine_types.h
-index 05a2fdc381d7..2c40384957da 100644
---- a/drivers/gpu/drm/xe/xe_hw_engine_types.h
-+++ b/drivers/gpu/drm/xe/xe_hw_engine_types.h
-@@ -23,6 +23,7 @@ enum xe_engine_class {
- 
- enum xe_hw_engine_id {
- 	XE_HW_ENGINE_RCS0,
-+#define XE_HW_ENGINE_RCS_MASK	GENMASK_ULL(XE_HW_ENGINE_RCS0, XE_HW_ENGINE_RCS0)
- 	XE_HW_ENGINE_BCS0,
- 	XE_HW_ENGINE_BCS1,
- 	XE_HW_ENGINE_BCS2,
-@@ -32,6 +33,7 @@ enum xe_hw_engine_id {
- 	XE_HW_ENGINE_BCS6,
- 	XE_HW_ENGINE_BCS7,
- 	XE_HW_ENGINE_BCS8,
-+#define XE_HW_ENGINE_BCS_MASK	GENMASK_ULL(XE_HW_ENGINE_BCS8, XE_HW_ENGINE_BCS0)
- 	XE_HW_ENGINE_VCS0,
- 	XE_HW_ENGINE_VCS1,
- 	XE_HW_ENGINE_VCS2,
-@@ -40,14 +42,17 @@ enum xe_hw_engine_id {
- 	XE_HW_ENGINE_VCS5,
- 	XE_HW_ENGINE_VCS6,
- 	XE_HW_ENGINE_VCS7,
-+#define XE_HW_ENGINE_VCS_MASK	GENMASK_ULL(XE_HW_ENGINE_VCS7, XE_HW_ENGINE_VCS0)
- 	XE_HW_ENGINE_VECS0,
- 	XE_HW_ENGINE_VECS1,
- 	XE_HW_ENGINE_VECS2,
- 	XE_HW_ENGINE_VECS3,
-+#define XE_HW_ENGINE_VECS_MASK	GENMASK_ULL(XE_HW_ENGINE_VECS3, XE_HW_ENGINE_VECS0)
- 	XE_HW_ENGINE_CCS0,
- 	XE_HW_ENGINE_CCS1,
- 	XE_HW_ENGINE_CCS2,
- 	XE_HW_ENGINE_CCS3,
-+#define XE_HW_ENGINE_CCS_MASK	GENMASK_ULL(XE_HW_ENGINE_CCS3, XE_HW_ENGINE_CCS0)
- 	XE_NUM_HW_ENGINES,
+diff --git a/drivers/gpu/drm/xe/xe_gt_mcr.c b/drivers/gpu/drm/xe/xe_gt_mcr.c
+index 10eff02cc7db..a42061c4b9d2 100644
+--- a/drivers/gpu/drm/xe/xe_gt_mcr.c
++++ b/drivers/gpu/drm/xe/xe_gt_mcr.c
+@@ -47,6 +47,12 @@ static const struct xe_mmio_range xelp_l3bank_steering_table[] = {
+ 	{},
  };
  
-diff --git a/drivers/gpu/drm/xe/xe_rtp.c b/drivers/gpu/drm/xe/xe_rtp.c
-index c04eca290ef0..0d2f51bb06e8 100644
---- a/drivers/gpu/drm/xe/xe_rtp.c
-+++ b/drivers/gpu/drm/xe/xe_rtp.c
-@@ -160,3 +160,13 @@ bool xe_rtp_match_even_instance(const struct xe_gt *gt,
- {
- 	return hwe->instance % 2 == 0;
- }
++static const struct xe_mmio_range xehp_l3bank_steering_table[] = {
++	{ 0x008C80, 0x00BCFF },
++	{ 0x00B100, 0x00B3FF },
++	{},
++};
 +
-+bool xe_rtp_match_first_render_or_compute(const struct xe_gt *gt,
-+					  const struct xe_hw_engine *hwe)
-+{
-+	u64 render_compute_mask = gt->info.engine_mask &
-+		(XE_HW_ENGINE_CCS_MASK | XE_HW_ENGINE_RCS_MASK);
-+
-+	return render_compute_mask &&
-+		hwe->engine_id == __ffs(render_compute_mask);
-+}
-diff --git a/drivers/gpu/drm/xe/xe_rtp.h b/drivers/gpu/drm/xe/xe_rtp.h
-index 9bd2532442ed..433f0cbff57f 100644
---- a/drivers/gpu/drm/xe/xe_rtp.h
-+++ b/drivers/gpu/drm/xe/xe_rtp.h
-@@ -409,4 +409,22 @@ void xe_rtp_process(const struct xe_rtp_entry *entries, struct xe_reg_sr *sr,
- bool xe_rtp_match_even_instance(const struct xe_gt *gt,
- 				const struct xe_hw_engine *hwe);
- 
-+/*
-+ * xe_rtp_match_first_render_or_compute - Match if it's first render or compute
-+ * engine in the GT
-+ *
-+ * @gt: GT structure
-+ * @hwe: Engine instance
-+ *
-+ * Registers on the render reset domain need to have their values re-applied
-+ * when any of those engines are reset. Since the engines reset together, a
-+ * programming can be set to just one of them. For simplicity the first engine
-+ * of either render or compute class can be chosen.
-+ *
-+ * Returns: true if engine id is the first to match the render reset domain,
-+ * false otherwise.
-+ */
-+bool xe_rtp_match_first_render_or_compute(const struct xe_gt *gt,
-+					  const struct xe_hw_engine *hwe);
-+
- #endif
+ /*
+  * Although the bspec lists more "MSLICE" ranges than shown here, some of those
+  * are of a "GAM" subclass that has special rules and doesn't need to be
+@@ -277,6 +283,7 @@ void xe_gt_mcr_init(struct xe_gt *gt)
+ 		gt->steering[INSTANCE0].ranges = xehpc_instance0_steering_table;
+ 		gt->steering[DSS].ranges = xehpc_dss_steering_table;
+ 	} else if (xe->info.platform == XE_DG2) {
++		gt->steering[L3BANK].ranges = xehp_l3bank_steering_table;
+ 		gt->steering[MSLICE].ranges = xehp_mslice_steering_table;
+ 		gt->steering[LNCF].ranges = xehp_lncf_steering_table;
+ 		gt->steering[DSS].ranges = xehp_dss_steering_table;
 -- 
 2.39.0
 
