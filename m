@@ -4,29 +4,29 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 62978C6FD1A
-	for <intel-xe@archiver.kernel.org>; Tue,  7 Mar 2023 16:48:46 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id CE7CAC6FD1A
+	for <intel-xe@archiver.kernel.org>; Tue,  7 Mar 2023 16:51:25 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2D5FD10E64E;
-	Tue,  7 Mar 2023 16:48:46 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 921F310E02D;
+	Tue,  7 Mar 2023 16:51:25 +0000 (UTC)
 Received: from emeril.freedesktop.org (emeril.freedesktop.org
  [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id D55E510E64E;
- Tue,  7 Mar 2023 16:48:43 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTP id 2ABF910E02D;
+ Tue,  7 Mar 2023 16:51:24 +0000 (UTC)
 Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id CDB85AADD1;
- Tue,  7 Mar 2023 16:48:43 +0000 (UTC)
+ by emeril.freedesktop.org (Postfix) with ESMTP id 22933A00CC;
+ Tue,  7 Mar 2023 16:51:24 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: "Jani Nikula" <jani.nikula@intel.com>
-Date: Tue, 07 Mar 2023 16:48:43 -0000
-Message-ID: <167820772381.31453.1722429499682003461@emeril.freedesktop.org>
+Date: Tue, 07 Mar 2023 16:51:24 -0000
+Message-ID: <167820788410.31452.11072511456478019404@emeril.freedesktop.org>
 X-Patchwork-Hint: ignore
 References: <20230303105222.3550161-1-jani.nikula@intel.com>
 In-Reply-To: <20230303105222.3550161-1-jani.nikula@intel.com>
-Subject: [Intel-xe] =?utf-8?q?=E2=9C=97_CI=2EPatch=5Fapplied=3A_failure_f?=
+Subject: [Intel-xe] =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_f?=
  =?utf-8?q?or_drm/xe=3A_clean_up_i915_includes_both_sides_=28rev2=29?=
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -48,20 +48,17 @@ Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 Series: drm/xe: clean up i915 includes both sides (rev2)
 URL   : https://patchwork.freedesktop.org/series/114573/
-State : failure
+State : success
 
 == Summary ==
 
-*** Please tell me who you are.
-
-Run
-
-  git config --global user.email "you@example.com"
-  git config --global user.name "Your Name"
-
-to set your account's default identity.
-Omit --global to set the identity only in this repository.
-
-fatal: empty ident name (for <jenkins@r1-compute-24.maas>) not allowed
+Applying: drm/i915/display: don't use relative ../i915 includes
+Applying: drm/i915/display: drop redundant display/ from includes
+Applying: drm/xe: drop unnecessary include
+Applying: drm/xe: drop redundant display/ from includes
+Applying: drm/xe: drop redundant ../ from includes
+Applying: drm/xe: move all top level i915 compat headers to a separate subdirectory
+Applying: drm/xe: remove unnecessary include
+Applying: drm/xe: drop top level i915 from include path
 
 
