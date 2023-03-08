@@ -4,30 +4,30 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 859ABC678D5
-	for <intel-xe@archiver.kernel.org>; Wed,  8 Mar 2023 10:44:15 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6AFB0C64EC4
+	for <intel-xe@archiver.kernel.org>; Wed,  8 Mar 2023 10:46:21 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5C99910E10A;
-	Wed,  8 Mar 2023 10:44:15 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 312EF10E0D8;
+	Wed,  8 Mar 2023 10:46:21 +0000 (UTC)
 Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id 6BCF810E10A;
- Wed,  8 Mar 2023 10:44:13 +0000 (UTC)
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id A906910E0D8;
+ Wed,  8 Mar 2023 10:46:18 +0000 (UTC)
 Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 64119AADE3;
- Wed,  8 Mar 2023 10:44:13 +0000 (UTC)
+ by emeril.freedesktop.org (Postfix) with ESMTP id 8E889A47DF;
+ Wed,  8 Mar 2023 10:46:18 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
 From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Jani Nikula" <jani.nikula@intel.com>
-Date: Wed, 08 Mar 2023 10:44:13 -0000
-Message-ID: <167827225337.20397.4026805963264771508@emeril.freedesktop.org>
+To: "Lucas De Marchi" <lucas.demarchi@intel.com>
+Date: Wed, 08 Mar 2023 10:46:18 -0000
+Message-ID: <167827237855.20410.8190513329420205857@emeril.freedesktop.org>
 X-Patchwork-Hint: ignore
-References: <20230303105222.3550161-1-jani.nikula@intel.com>
-In-Reply-To: <20230303105222.3550161-1-jani.nikula@intel.com>
-Subject: [Intel-xe] =?utf-8?q?=E2=9C=97_CI=2EPatch=5Fapplied=3A_failure_f?=
- =?utf-8?q?or_drm/xe=3A_clean_up_i915_includes_both_sides_=28rev2=29?=
+References: <20230307092446.1263266-1-lucas.demarchi@intel.com>
+In-Reply-To: <20230307092446.1263266-1-lucas.demarchi@intel.com>
+Subject: [Intel-xe] =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_f?=
+ =?utf-8?q?or_DG2_+_PVC_workarounds_and_infra?=
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -46,31 +46,35 @@ Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 == Series Details ==
 
-Series: drm/xe: clean up i915 includes both sides (rev2)
-URL   : https://patchwork.freedesktop.org/series/114573/
-State : failure
+Series: DG2 + PVC workarounds and infra
+URL   : https://patchwork.freedesktop.org/series/114754/
+State : success
 
 == Summary ==
 
-error: patch failed: drivers/gpu/drm/i915/display/intel_backlight.c:19
-error: drivers/gpu/drm/i915/display/intel_backlight.c: patch does not apply
-error: patch failed: drivers/gpu/drm/i915/display/intel_bw.c:15
-error: drivers/gpu/drm/i915/display/intel_bw.c: patch does not apply
-error: patch failed: drivers/gpu/drm/i915/display/intel_cdclk.c:32
-error: drivers/gpu/drm/i915/display/intel_cdclk.c: patch does not apply
-error: patch failed: drivers/gpu/drm/i915/display/intel_display_power.c:16
-error: drivers/gpu/drm/i915/display/intel_display_power.c: patch does not apply
-error: patch failed: drivers/gpu/drm/i915/display/intel_gmbus.c:39
-error: drivers/gpu/drm/i915/display/intel_gmbus.c: patch does not apply
-error: patch failed: drivers/gpu/drm/i915/display/intel_opregion.c:37
-error: drivers/gpu/drm/i915/display/intel_opregion.c: patch does not apply
-error: patch failed: drivers/gpu/drm/i915/display/skl_watermark.c:16
-error: drivers/gpu/drm/i915/display/skl_watermark.c: patch does not apply
-hint: Use 'git am --show-current-patch' to see the failed patch
-Applying: drm/i915/display: don't use relative ../i915 includes
-Patch failed at 0001 drm/i915/display: don't use relative ../i915 includes
-When you have resolved this problem, run "git am --continue".
-If you prefer to skip this patch, run "git am --skip" instead.
-To restore the original branch and stop patching, run "git am --abort".
+.git/rebase-apply/patch:260: trailing whitespace.
+			     /* 
+.git/rebase-apply/patch:271: trailing whitespace.
+			     /* 
+warning: 2 lines add whitespace errors.
+Applying: drm/xe/mcr: Add L3BANK steering for DG2
+Applying: drm/xe: Allow const propagation in gt_to_xe()
+Applying: drm/xe: Constify xe_dss_mask_group_ffs()
+Applying: drm/xe: Add helper to get dss per group
+Applying: drm/xe/rtp: Move match function from wa to rtp
+Applying: drm/xe/rtp: Add match for render reset domain
+Applying: drm/xe/rtp: Add match helper for gslice fused off
+Applying: drm/xe: Remove dump function from reg_sr
+Applying: drm/xe: Name LRC wa after the engine it belongs
+Applying: drm/xe/debugfs: Dump register save-restore tables
+Applying: drm/xe/reg_sr: Tweak verbosity for register printing
+Applying: drm/xe/pvc: Remove A* steppings
+Applying: drm/xe: Reorder WAs to consider the platform
+Applying: drm/xe: Add PVC gt workarounds
+Applying: drm/xe: Add PVC engine workarounds
+Applying: drm/xe: Add missing DG2 gt workarounds and tunings
+Applying: drm/xe: Add missing DG2 engine workarounds
+Applying: drm/xe: Add missing DG2 lrc tunings
+Applying: drm/xe: Add missing DG2 lrc workarounds
 
 
