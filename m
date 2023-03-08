@@ -4,133 +4,136 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 94420C6FD20
-	for <intel-xe@archiver.kernel.org>; Wed,  8 Mar 2023 13:37:32 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id ACC5EC64EC4
+	for <intel-xe@archiver.kernel.org>; Wed,  8 Mar 2023 13:40:13 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 53DC310E5E1;
-	Wed,  8 Mar 2023 13:37:32 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8742210E5D5;
+	Wed,  8 Mar 2023 13:40:13 +0000 (UTC)
 Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1B9A610E5E3
- for <intel-xe@lists.freedesktop.org>; Wed,  8 Mar 2023 13:37:31 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7A90D10E5D5
+ for <intel-xe@lists.freedesktop.org>; Wed,  8 Mar 2023 13:40:11 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1678282651; x=1709818651;
+ t=1678282811; x=1709818811;
  h=date:from:to:cc:subject:message-id:references:
- in-reply-to:mime-version;
- bh=kYEVslILPD80ZGqJqhbKcGlEFN9w/36unL7EADSlBuc=;
- b=CgJK2/rwKzJWURPhmGozC/uOoFvHUxkVDfCfwVUqoKtfSxK4YeE56oWV
- qhj27D9Pq7Xfrvei5hRqb8/Jq70hfPduy+PiSpY0E71WzOW89bJlKWuoQ
- ca+T8q3oRH+JENfMnukYzvcmLijcdiYGj0o7EU/sVzqDwX0NdAdd1c3CU
- YMgLgQBqlVMiHyTMI3ggjJQ9dgejP1r1AnfzRWNiaAe00LX86TVKvIWsB
- ebdA6ZJWJ1r7px9calDMhsdV5LqeUukFvzQ1y35Tl2BuBiN54estVhyjG
- XJpTtdhtjUHxgiuUB2QWzaofiIOyjuOVqr3+pYqlnTvYaknWxQs2onhfH w==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10642"; a="319983331"
-X-IronPort-AV: E=Sophos;i="5.98,244,1673942400"; d="scan'208";a="319983331"
+ content-transfer-encoding:in-reply-to:mime-version;
+ bh=3zrsmHs2kF/ZOBDq8+YfS2AJICyqVa5nJa//PwMJCI8=;
+ b=jSAfe4Tb9x0IziKy5/sv+bvU3UX5FYuHSujfTa4jcoJmIW+2P+PlT2fz
+ Qx4UqRRNn92Q+4zdcJ3E3UCXVRciXpUxuUnTz/Su1/cRpFAkojm17PP45
+ Y0LURwgzyP46Av+S8oYHj6ahmyUx0mPNLhNu3ox9ibwBBGsgoD9jsqqwX
+ c135L28eyNEevyXfklS4YMynjhpTR6w5Tn6PvuiVaonfGcONKeOnEVPBm
+ A0dlYv7/TfNi67BVecqUvgUj2pkunWxSf2sKQY5IwQgTJSYxQ9+N8QBaP
+ wqDxaYKUYEECttJSl8sYS2edG29kxbeBwIwo9YvARFI2yNLhyrXWclAFN g==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10642"; a="319983893"
+X-IronPort-AV: E=Sophos;i="5.98,244,1673942400"; d="scan'208";a="319983893"
 Received: from fmsmga003.fm.intel.com ([10.253.24.29])
  by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 Mar 2023 05:37:29 -0800
+ 08 Mar 2023 05:40:10 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6500,9779,10642"; a="765991454"
-X-IronPort-AV: E=Sophos;i="5.98,244,1673942400"; d="scan'208";a="765991454"
+X-IronPort-AV: E=McAfee;i="6500,9779,10642"; a="765992341"
+X-IronPort-AV: E=Sophos;i="5.98,244,1673942400"; d="scan'208";a="765992341"
 Received: from fmsmsx602.amr.corp.intel.com ([10.18.126.82])
- by FMSMGA003.fm.intel.com with ESMTP; 08 Mar 2023 05:37:28 -0800
+ by FMSMGA003.fm.intel.com with ESMTP; 08 Mar 2023 05:40:10 -0800
 Received: from fmsmsx610.amr.corp.intel.com (10.18.126.90) by
  fmsmsx602.amr.corp.intel.com (10.18.126.82) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.21; Wed, 8 Mar 2023 05:37:27 -0800
-Received: from fmsedg601.ED.cps.intel.com (10.1.192.135) by
+ 15.1.2507.21; Wed, 8 Mar 2023 05:40:10 -0800
+Received: from FMSEDG603.ED.cps.intel.com (10.1.192.133) by
  fmsmsx610.amr.corp.intel.com (10.18.126.90) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.21 via Frontend Transport; Wed, 8 Mar 2023 05:37:27 -0800
-Received: from NAM11-BN8-obe.outbound.protection.outlook.com (104.47.58.168)
- by edgegateway.intel.com (192.55.55.70) with Microsoft SMTP Server
+ 15.1.2507.21 via Frontend Transport; Wed, 8 Mar 2023 05:40:10 -0800
+Received: from NAM12-BN8-obe.outbound.protection.outlook.com (104.47.55.174)
+ by edgegateway.intel.com (192.55.55.68) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2507.21; Wed, 8 Mar 2023 05:37:27 -0800
+ 15.1.2507.21; Wed, 8 Mar 2023 05:40:09 -0800
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=UsjqmNWKcCxAcrKQjO39pWdioTRCronA3YTcNzTQLN8jBlH7BipfirZJQomBklS12asmPMNKR43g8JerZmYrys/9BRfVE7KRdHWHzqgDS3nJ1z5lW16c7zQf1v93v0129fDIpRcy9c/fZDaOhCbHY2GwrHpj7QyDQCBkzhOOo37mECtWPl9csUabDYC9Ol3qVtIbPrsT58jTBLuv2XCYx9ahSyZy1w78cLxDjInPxZPbP9lx3xXvJLJw+MzrMM8D63ryW7rtqetNH3lDaFv7SJ2q20GDbcOi6vMZcSXYM+gegKlnCFDbUeDT17vkK6KmmoVCh+xN7PQ0nnKyjtDq5A==
+ b=Ke/OPrZFI+RtB+sZOe6VR+uR3oxO+MiaWQS/FDDMLMYt+7m8VfoA+KzCr5zU6i33q2zVHtI2HVryWT9u+IwJPngxiTkJQm5tRsmKLa81ilmebDoWSt4pPOenghqTR6dgQhsq6pbGhoxRpwSnRoFDfSy0iLguXq521b4IvXKA16dH0CDKH8k9x0Md0iM+Kmy9mXcuaRC6D2TupOa5m1vOZ6V31cNbh8KO0gC+BJ/Eyqs7L0ZwJFHmtVYYev33o4I1Ja6+j+eVMdUJ8smfyzadQsiTaLEJpgPS81dRlEN5usJFP7nPo1ofuxVzxe1lluNxDueAM9XVo0HR8L7gWxofQg==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=mCDbPIARSR+lM+EvIiOUn/KnxnIfYm/T8ydAx7/LhkE=;
- b=emgaliHmAxSSIBk7E2n3AwmJKnAJNs3kgu0wQGa4AaouKVYB6A9qhVbKElzhI5p+iH/WvqYC+PmPmH5TJmiPT/uSAUa5d26saw4DSy9v4jtgIFU3THEJv+T/qbypT8TbQq43FGFRd9ub70SxcoXsHrRv7L1kitI2mngciMQkg50Rmp/A7y3Ag16v5DuSC0H9Y7rfcudoABRxaP7bEQxOvqx8U07uGRcvzWotD6C1VLmyUaZG8z6UqaK35B7LwBKAHwxLMNhYRjHNDgqT52T5eEUpmuceVBa51RBpommIsczEesFxMYjmBmYGK1U73AUZuqJDsDQrWqNfBxA5BqQ22Q==
+ bh=lZSqC5EiUCyLAOOsS/BgqDRLR1osaebkmZBd9z0I5Ag=;
+ b=Kp825mQ6v+WPxt6T7NJSxKMJusaN50IL2u6D3uviNdLZUOHU3IHUNvEVlPBxKCDun/3LThElZ5r1Vhx90lijxA1irduLmtt87BZdBxlRhpUuNangqOO41zTSKmNw8HTGguCMCKxkH/+OF/+VsyhoStLXDNdzqmWl3xbdp+JbBMd6buTu+0ORT5vIX6GTy5wCSm38XX+02RnddsRXntKK3w+hsV7gbda6I/sXO+k8GAHdc9TEOxxosmTLI8hU2LqveXsJxeeJSQqxz32UPsJZhbkZDh0pqk77KGChxBjt4/tSMVib1dHgmCSaaATOOs6oeufEaHNO1JH/1h3sOx3enQ==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
  dkim=pass header.d=intel.com; arc=none
 Authentication-Results: dkim=none (message not signed)
  header.d=none;dmarc=none action=none header.from=intel.com;
 Received: from MN0PR11MB6059.namprd11.prod.outlook.com (2603:10b6:208:377::9)
- by PH0PR11MB4982.namprd11.prod.outlook.com (2603:10b6:510:37::8) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6156.29; Wed, 8 Mar
- 2023 13:37:25 +0000
+ by CY8PR11MB7035.namprd11.prod.outlook.com (2603:10b6:930:51::20)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6156.28; Wed, 8 Mar
+ 2023 13:40:06 +0000
 Received: from MN0PR11MB6059.namprd11.prod.outlook.com
  ([fe80::3bd5:710c:ebab:6158]) by MN0PR11MB6059.namprd11.prod.outlook.com
  ([fe80::3bd5:710c:ebab:6158%9]) with mapi id 15.20.6156.029; Wed, 8 Mar 2023
- 13:37:25 +0000
-Date: Wed, 8 Mar 2023 08:37:14 -0500
+ 13:40:06 +0000
+Date: Wed, 8 Mar 2023 08:40:01 -0500
 From: Rodrigo Vivi <rodrigo.vivi@intel.com>
-To: Matthew Auld <matthew.auld@intel.com>
-Message-ID: <ZAiPii3oKOzCSV2E@intel.com>
+To: Matthew Auld <matthew.auld@intel.com>, Thomas =?iso-8859-1?Q?Hellstr=F6m?=
+ <thomas.hellstrom@linux.intel.com>
+Message-ID: <ZAiQMYlugCPv4eM7@intel.com>
 References: <20230308123012.247091-1-matthew.auld@intel.com>
- <20230308123012.247091-3-matthew.auld@intel.com>
-Content-Type: text/plain; charset="us-ascii"
+ <20230308123012.247091-6-matthew.auld@intel.com>
+Content-Type: text/plain; charset="iso-8859-1"
 Content-Disposition: inline
-In-Reply-To: <20230308123012.247091-3-matthew.auld@intel.com>
-X-ClientProxiedBy: SJ0PR05CA0011.namprd05.prod.outlook.com
- (2603:10b6:a03:33b::16) To MN0PR11MB6059.namprd11.prod.outlook.com
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20230308123012.247091-6-matthew.auld@intel.com>
+X-ClientProxiedBy: BYAPR05CA0009.namprd05.prod.outlook.com
+ (2603:10b6:a03:c0::22) To MN0PR11MB6059.namprd11.prod.outlook.com
  (2603:10b6:208:377::9)
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: MN0PR11MB6059:EE_|PH0PR11MB4982:EE_
-X-MS-Office365-Filtering-Correlation-Id: d9e78820-c80b-47e1-af6e-08db1fda4075
+X-MS-TrafficTypeDiagnostic: MN0PR11MB6059:EE_|CY8PR11MB7035:EE_
+X-MS-Office365-Filtering-Correlation-Id: 9f7e3caf-2315-4df2-d407-08db1fdaa0a6
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: ohsAgEVQFDEahe+Bk6y8kQnoig3X0KLP8qvinKMBHF5WkxSalfWd+24gcR10Zdp0npkRYud6Dxixdp/fbd6vsKKqdPobqSDv17V0LA4XPsm244IOxTjmUDTP/fpXMH17C2AK0WjFZUmZK9k+Ueyqlcv+nOXR5QOUkRjNy9+mk2V5lfjD9kapVs116bO81amsZV9OhfgQg/teIaN1XyC/I/LHGIzYPyCrBOC879EXu5YOrCRpNl3DTIJvT/piyfx0K1ZSkKiz9OfxVN0T+b5Vaf65rlqAawUMnYKD0uyPnEkWuG5RAqNpyaMvwr+uGpGYvQWqfKR1HHis98iBzwkbkQkJ0eXmeF4zM+npIuHI5BPPf6FXIJrUVK3K/6BjklN5Zw2S/xkV5cv67qCEBjvkiTvJuIK5absLzN0nBoRLPvdJpBwspcenITi6uqSWrdJk3JDXZdd9Ok/6Zs/pYRPDB4a1yVfiUwTVD56Fkoz+QQxFidE8RLZKax4HZEZ5fnF3aIaIjWmhwFBIHPNxstgB40yOrmX6rVlGCTie4q2Un27Z6DryH6DgFus04b9MmWdgQGBH6x/d5H+mQyYATN/odtBFfKdubvNgLQC9quoLy5Mp3IJlNGWW3M+W43gjk/D9mrUYTKbwbeMwLpMnqi7CqQ==
+X-Microsoft-Antispam-Message-Info: vWfs2ho1W/X3FBecz5gXsJADgLwIOZYYVfAPboXRa82S0btgozuKzODigB8NkmggFT+CZ06x8ux4RrV3IjLc9N+gkxMHhrxSJwyLIWWrtjFpMq7iKxKRpI8OvTE8B7WIS5GgVLODoXjDEjIqSvAFG3vDqGDGVFmRceTHyKslWE66QDFY3dUgVmkHBaaTJ5FEufj2usFHDFPttUN11V0QtOT6NPl3MHkGRe+WTWJYM/d0rzphkxzdl1B5EQYYSZGryG4q5Q1pvH6mYJpx+DZnssP3dEbV0e2OgfMtiCHatN+I/4qylJ3/5ubwgDPHsRdb23i/aPA2Yu3kRMKihDfApIyMbDd9E0uCtNrWYbNn8d8svkiFQz+WgBkndd9GgRYpdBA3PYmZsXkO3XLl8Pl939RDkAgM3AwFZrTUApgQxaCqhRLbzBfloQBCh6SFKxiT+ODG1W8cbEmMLEa/EAVUf4xDdf+w9XCJhwGyzzM9AaO+DvAY+Gp/CQdBvrppllWffFndVsMrx4yP9yjqDF4Xghov5UfDerjxABFDx544iFXS5BiIP2U0vN48XeHw2t1hoynYv/DV7gKk5b1sZR22n/BN0sRgVgkZA2TWeppKA3omogNtCGQTiSYPnb2pMIpuEOWU3zGlpI+4WmDStdVz5Q==
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
  IPV:NLI; SFV:NSPM; H:MN0PR11MB6059.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230025)(376002)(366004)(136003)(396003)(346002)(39860400002)(451199018)(82960400001)(66476007)(66556008)(66946007)(8676002)(38100700002)(4326008)(316002)(37006003)(8936002)(6862004)(41300700001)(6636002)(6666004)(107886003)(83380400001)(478600001)(5660300002)(86362001)(44832011)(6486002)(6512007)(186003)(36756003)(6506007)(26005)(30864003)(2616005)(2906002);
+ SFS:(13230025)(366004)(396003)(136003)(376002)(346002)(39860400002)(451199018)(6486002)(186003)(2906002)(82960400001)(38100700002)(66476007)(4326008)(66556008)(6666004)(478600001)(30864003)(41300700001)(44832011)(26005)(5660300002)(8676002)(66946007)(8936002)(66574015)(6506007)(6512007)(2616005)(316002)(110136005)(36756003)(86362001)(83380400001);
  DIR:OUT; SFP:1102; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?vyuqPEr5ZanWX4imtUbx8t0GyOxq8WOmSPSI2tNqX54npWbZkxTb2ysdu6YX?=
- =?us-ascii?Q?RwMs63Cb7YLDxQ0SFIbqRSMSU4fIzhAcxb8HDV75d/6C+/wo/dbNIfSqata2?=
- =?us-ascii?Q?nfK+xmJ1OpqOeqFcC89BO7x4wOLX076fpHhtS5Q5b3MkNcrac4upi/x1+pf5?=
- =?us-ascii?Q?0uknA4BNJfUVxicarrdzU+gZ7QORt7i49trF54cOk2lXmM/I9pZSnf3UQX00?=
- =?us-ascii?Q?zJZZIcAwNAKptqWevT6gqydjAbXYAEnpYG+0bE1XcdKFjofZikAYGMnKz3US?=
- =?us-ascii?Q?aBQGECvYZys5Oic6HGOYr8zqau0n8ZprS46QIse92i6xipM6YZo4Ja5MFOnJ?=
- =?us-ascii?Q?EuuF4YeLYXXYOK30ZLJngp02nyYGChkmsGnJtYsGfjAAxfc+9orVRPJtkCkf?=
- =?us-ascii?Q?xU166wf6L5/U3ceHfIdN+F2bCoJ1h+GMd48DBcDMrP17k7fYGSjMDSAW6hFX?=
- =?us-ascii?Q?u5oChFmHDDhBjzZHJuzq1/oUs2fkUjObDbBJReK1jGRhOArVNzO50k7skuYM?=
- =?us-ascii?Q?VUed+On5v8aPOAsiCI9YytKCX83e4oB2gf4enzdLTv4qlFPuQ8zKHxv9L/8G?=
- =?us-ascii?Q?ExV7SI1jbym6+2jTO7fKdD3w2VvkcApQinPZYNXhahZzZWntDfhq60o4RlBh?=
- =?us-ascii?Q?vj3OlpMdAPOPswgmM2u37A0nA3WZfmzOc8GmGYqZBRDfYxVgdCHo24Tvh6F5?=
- =?us-ascii?Q?Uq/mthAHcfmkeiAgqoBTcMRI5dsm+36X6CJ/tPxZf/oEie1QRKg/m/GWi62F?=
- =?us-ascii?Q?Ub6RBPdatlKGrtND1e1/014nT7VqMNouoDpojo/WHPxCIJDRQaU/wCcc2n3r?=
- =?us-ascii?Q?4IcnNTAUTuo9NLWnA66Aw0jja3PvOnmFZ1zpjwTPFGlhkYApD2KPsxoIBlAj?=
- =?us-ascii?Q?BwIcfhHAFwbPWjQUvCPA+jOBu0qWtnbcmrjya6Vh8wyD8PYmDG49AgMn55kX?=
- =?us-ascii?Q?5N1ceDsS1CYZAc59Vr5pMojogdnLfvAAcgbRiepYdbNKPj7WC//r91aZN76r?=
- =?us-ascii?Q?zpoE8QwY7E0LmnB1h2QmFjof+vxx8juRqPg4pMEx3I7B4xVKy4hq5goEeiPz?=
- =?us-ascii?Q?azH0vIS5ItDndGaf287N1GE9Vs/Y+V3O8aj5iq+SiUc9xZLf/jV8/9GosYYC?=
- =?us-ascii?Q?FoAI1yr/b3KQLg5dTtJHdMGdu2XelJdDvAK7x4P7KgJk289hF8B8glctvoQV?=
- =?us-ascii?Q?AiyyFhG98RoU/wgRfXjAfhzInOjJihr0Cj4oUtq3jWrVD2WKbQcIR1uTp7qF?=
- =?us-ascii?Q?vL9OcgY/J3/ktn7D/Q8CCAxpJpYxGCRji/jy6WaYkmZA5qMEOzmBu/teR3Oo?=
- =?us-ascii?Q?DVIeEua6BQWkMDryh61+9glp71PUo7Cdkp5Srce64rItAO7dtkC4fbOMQv3A?=
- =?us-ascii?Q?n0+ZXIAQp+IOgm1GIUE1mzvaA+qzkneBEeePpbc5Qsc6kI688Bqf/3z7Abqu?=
- =?us-ascii?Q?eaHjlHk3UbiE57N2HsVGWcSi83QgJvuztjRxI2vTEK4NMAht0U3tK2VonCbM?=
- =?us-ascii?Q?z3TgOms8ZhWnvEIbtHjzUV/amXa74nHwuT6CQe+wGu2DWqg4Ya1Rz9nWwapc?=
- =?us-ascii?Q?GlMDu5QDVoEFooBaJJHHLG3qJVUrUts3UwZkfkQVXFGP6dsrJuvVwqmPlgU3?=
- =?us-ascii?Q?HQ=3D=3D?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: d9e78820-c80b-47e1-af6e-08db1fda4075
+X-MS-Exchange-AntiSpam-MessageData-0: =?iso-8859-1?Q?ewedoD2RlcYHC+qx+hwH6Ku3NpPTMAqzHAxfTrE7OStwGjqC5FtAKWB0gB?=
+ =?iso-8859-1?Q?D2ueAGArXiMRiEkQ6qEUE5UAWZrPA4wR0jAw6EVcnFucuAzHrdpy70nQgx?=
+ =?iso-8859-1?Q?gDo8GbaH1xJpjhLOeRhVU2lLcsVx+buKeL4AEDrrCi/0bifhl5G9Gva/2o?=
+ =?iso-8859-1?Q?U6KT6hlAYDBmi6oKlB6dTTuLhP7WWDsfTPWpcfXR8zgW+pfWkfs2mqCq7c?=
+ =?iso-8859-1?Q?04+qLp6svC39uFlvQ1bJB9UycryOE3WwOSTwbSoECCscWq/SxcCKYPcuRp?=
+ =?iso-8859-1?Q?UgUoUbycQ+LV+oc8ciAEeYcN9w5jRA3DsGwLATxOytB3Z60dhNefAap4OI?=
+ =?iso-8859-1?Q?Kirbc5e+GZQpaA3c5oXAqyPejmQERDjHNcN5C6vy652QSJugVO6cgCxqQP?=
+ =?iso-8859-1?Q?0357Rzu2g7tUok96e4rXgTIECYfujmh8hc143jxJOZiNGS8bxwKlWFV+7d?=
+ =?iso-8859-1?Q?AVB2z7vyAZYnn04dH9ZyqMo/hgenlw+Fsj4gbqvnz9bpSeEEJQ2YVNUmA2?=
+ =?iso-8859-1?Q?LpHocQTbzMiICmsMI7VZizumNIot4ZgqkqxOGu2L8wekn9qrRWAdAfE1EW?=
+ =?iso-8859-1?Q?LrirluJxckk5j38suPUugiggjHpZ2I9bJYNHSvi1CvMq0gS1FLxlhRDdF9?=
+ =?iso-8859-1?Q?sCvl5psN8rTVcCXmr18rlHn4ySBMWGeAaAbFC15x9wwRJYqXvHGKum+iw3?=
+ =?iso-8859-1?Q?Q8TmM1tCNUqwRENESx0C2WeVUatYq+H4RjmpgntWujGLmsyZi3TvzEJaOq?=
+ =?iso-8859-1?Q?KxBD87wjE+8jlondtL+i3y4e4qyAz6JMBPSwyauvqZh2v2o6K8CgtIr0PX?=
+ =?iso-8859-1?Q?hDC79QiczXaU15h2DzGMGsEGzD2ULIAquXoP4JGjMB+tIhd+ZddmkdwCFy?=
+ =?iso-8859-1?Q?gX5+2/ELYMiWpHIXSb8uc9TdlO7QBlxOKrft7gQOGaWvHrFH3qJyOyNHFF?=
+ =?iso-8859-1?Q?bZOKfdT8VRfiXH4cpysSNOgWeY2l0+rteRRTA0Xuxn7CVPhk9fB7HeLM6I?=
+ =?iso-8859-1?Q?nIwm1/MNS0UIPsURLWc18GRNDU8NcoNYBEYBysqWic7lXJsRx/Z818S1aA?=
+ =?iso-8859-1?Q?dVH6pJFUGeBIJY8me6Zlkb333Pfge15bQZS+g7EYs39T4SM9bzle3SwhGQ?=
+ =?iso-8859-1?Q?e2EIvLIhuczD5bB/u/z/apk3uOv2nlUHmJsJK+VgesAY7bYAEIPRTrFWZi?=
+ =?iso-8859-1?Q?At2HqQgMSxzjlfvp6BHsHPhkCSw9e1AE+f7e83u1gDnLDpDm9hjRQH0rTr?=
+ =?iso-8859-1?Q?GXiK2fpZHTLZF7DSs7k8kWwN/5OjTplT7gfjZ5q4WFH8e59F9csQrT4RaX?=
+ =?iso-8859-1?Q?LssrmDnYRogmrb0446dYBIO/artL8tWdde5B+BPuwVuEbsoOvJH1d2Ztda?=
+ =?iso-8859-1?Q?8lU2jNGvWWUQC3fwruVAWAZDNisfrjbQL1Uc/bWAd7WiHB6+MDosqEl3d4?=
+ =?iso-8859-1?Q?7/PwMsOodnKAj6T1mvcmy264zyPT2Gvec+VDmDPxtzQaxWnx11Eax/7CNN?=
+ =?iso-8859-1?Q?Xd6naEyI9m8PTWUhoEeQsGgMbKcvjA34RHBFyqRRPJ4pPCB1XtM4gkMdpZ?=
+ =?iso-8859-1?Q?07snW4ZiDGGd5l84pI81o3EEFrT1+ZhMJ1fYS+a1stL1IBM/l5VjTWz9XQ?=
+ =?iso-8859-1?Q?LBidqBAVt5+K63lG1Y8ZuQUdVy8zF8zPt2ZDPM8No3ZB8TEN8K9iCSng?=
+ =?iso-8859-1?Q?=3D=3D?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: 9f7e3caf-2315-4df2-d407-08db1fdaa0a6
 X-MS-Exchange-CrossTenant-AuthSource: MN0PR11MB6059.namprd11.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 08 Mar 2023 13:37:25.2231 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 08 Mar 2023 13:40:06.7280 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: sDhwTkz+f5RHF3DyBM45RshKG+5331j9p2FmxOjJ1rOgoFNhJCf76sFxah6hi3hF5OPA8D3EvUuyRzYq/kGNYA==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH0PR11MB4982
+X-MS-Exchange-CrossTenant-UserPrincipalName: zCQztZ4PhoEXIgzAskGimNbFV5IvkMo9Z4V3Sg/orJ5+6Iz21NS9ErF2WZ1fDuydV74RPNAtQEnA/yvUfv+gOQ==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: CY8PR11MB7035
 X-OriginatorOrg: intel.com
-Subject: Re: [Intel-xe] [PATCH v3 2/6] drm/xe: s/lmem/vram/
+Subject: Re: [Intel-xe] [PATCH v3 5/6] drm/xe/buddy: add visible tracking
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -146,424 +149,403 @@ Cc: Lucas De Marchi <lucas.demarchi@intel.com>, intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Wed, Mar 08, 2023 at 12:30:08PM +0000, Matthew Auld wrote:
-> This seems to be the preferred nomenclature in xe. Currently we are
-> intermixing vram and lmem, which is confusing.
-
-I honestly like local memory or device memory term better since it
-opposes nicely to the system memory... But well, VRAM aligns better
-with TTM.
-
-Reviewed-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
-
-> 
-> v2 (Gwan-gyeong Mun & Lucas):
->   - Rather apply to the entire driver
+On Wed, Mar 08, 2023 at 12:30:11PM +0000, Matthew Auld wrote:
+> Replace the allocation code with the i915 version. This simplifies the
+> code a little, and importantly we get the accounting at the mgr level,
+> which is useful for debug (and maybe userspace), plus per resource
+> tracking so we can easily check if a resource is using one or pages in
+> the mappable part of vram (useful for eviction), or if the resource is
+> completely within the mappable portion (useful for checking if the
+> resource can be safely CPU mapped).
 > 
 > Signed-off-by: Matthew Auld <matthew.auld@intel.com>
 > Cc: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
-> Cc: Gwan-gyeong Mun <gwan-gyeong.mun@intel.com>
 > Cc: Lucas De Marchi <lucas.demarchi@intel.com>
-> Acked-by: Lucas De Marchi <lucas.demarchi@intel.com>
+
+Cc: Thomas Hellström <thomas.hellstrom@linux.intel.com>
+
 > ---
->  drivers/gpu/drm/xe/Kconfig.debug      |  2 +-
->  drivers/gpu/drm/xe/tests/xe_migrate.c |  2 +-
->  drivers/gpu/drm/xe/xe_bo.c            | 10 +++----
->  drivers/gpu/drm/xe/xe_bo.h            |  6 ++--
->  drivers/gpu/drm/xe/xe_ggtt.c          |  6 ++--
->  drivers/gpu/drm/xe/xe_migrate.c       | 12 ++++----
->  drivers/gpu/drm/xe/xe_mmio.c          | 40 +++++++++++++--------------
->  drivers/gpu/drm/xe/xe_module.c        |  6 ++--
->  drivers/gpu/drm/xe/xe_module.h        |  2 +-
->  drivers/gpu/drm/xe/xe_pt.c            | 12 ++++----
->  drivers/gpu/drm/xe/xe_vm.c            | 10 +++----
->  11 files changed, 54 insertions(+), 54 deletions(-)
+>  drivers/gpu/drm/xe/xe_ttm_stolen_mgr.c     |  18 +-
+>  drivers/gpu/drm/xe/xe_ttm_vram_mgr.c       | 201 ++++++++++-----------
+>  drivers/gpu/drm/xe/xe_ttm_vram_mgr.h       |   3 +-
+>  drivers/gpu/drm/xe/xe_ttm_vram_mgr_types.h |   6 +
+>  4 files changed, 118 insertions(+), 110 deletions(-)
 > 
-> diff --git a/drivers/gpu/drm/xe/Kconfig.debug b/drivers/gpu/drm/xe/Kconfig.debug
-> index 565be3f6b9b9..93b284cdd0a2 100644
-> --- a/drivers/gpu/drm/xe/Kconfig.debug
-> +++ b/drivers/gpu/drm/xe/Kconfig.debug
-> @@ -41,7 +41,7 @@ config DRM_XE_DEBUG_VM
->  	  If in doubt, say "N".
->  
->  config DRM_XE_DEBUG_MEM
-> -	bool "Enable passing SYS/LMEM addresses to user space"
-> +	bool "Enable passing SYS/VRAM addresses to user space"
->  	default n
->  	help
->  	  Pass object location trough uapi. Intended for extended
-> diff --git a/drivers/gpu/drm/xe/tests/xe_migrate.c b/drivers/gpu/drm/xe/tests/xe_migrate.c
-> index b7e4a126e8b7..ac659b94e7f5 100644
-> --- a/drivers/gpu/drm/xe/tests/xe_migrate.c
-> +++ b/drivers/gpu/drm/xe/tests/xe_migrate.c
-> @@ -129,7 +129,7 @@ static void test_copy(struct xe_migrate *m, struct xe_bo *bo,
->  	}
->  	dma_fence_put(fence);
->  
-> -	/* Try to copy 0xc0 from sysmem to lmem with 2MB or 64KiB/4KiB pages */
-> +	/* Try to copy 0xc0 from sysmem to vram with 2MB or 64KiB/4KiB pages */
->  	xe_map_memset(xe, &sysmem->vmap, 0, 0xc0, sysmem->size);
->  	xe_map_memset(xe, &bo->vmap, 0, 0xd0, bo->size);
->  
-> diff --git a/drivers/gpu/drm/xe/xe_bo.c b/drivers/gpu/drm/xe/xe_bo.c
-> index 876f77669104..73a7f2cd4ad8 100644
-> --- a/drivers/gpu/drm/xe/xe_bo.c
-> +++ b/drivers/gpu/drm/xe/xe_bo.c
-> @@ -1290,12 +1290,12 @@ int xe_bo_pin(struct xe_bo *bo)
->  	if (IS_DGFX(xe) && !(IS_ENABLED(CONFIG_DRM_XE_DEBUG) &&
->  	    bo->flags & XE_BO_INTERNAL_TEST)) {
->  		struct ttm_place *place = &(bo->placements[0]);
-> -		bool lmem;
-> +		bool vram;
->  
->  		if (mem_type_is_vram(place->mem_type)) {
->  			XE_BUG_ON(!(place->flags & TTM_PL_FLAG_CONTIGUOUS));
->  
-> -			place->fpfn = (xe_bo_addr(bo, 0, PAGE_SIZE, &lmem) -
-> +			place->fpfn = (xe_bo_addr(bo, 0, PAGE_SIZE, &vram) -
->  				       vram_region_io_offset(bo)) >> PAGE_SHIFT;
->  			place->lpfn = place->fpfn + (bo->size >> PAGE_SHIFT);
->  
-> @@ -1415,7 +1415,7 @@ bool xe_bo_is_xe_bo(struct ttm_buffer_object *bo)
->  }
->  
->  dma_addr_t xe_bo_addr(struct xe_bo *bo, u64 offset,
-> -		      size_t page_size, bool *is_lmem)
-> +		      size_t page_size, bool *is_vram)
+> diff --git a/drivers/gpu/drm/xe/xe_ttm_stolen_mgr.c b/drivers/gpu/drm/xe/xe_ttm_stolen_mgr.c
+> index 0ad0f1820f4b..7e403dccf9d5 100644
+> --- a/drivers/gpu/drm/xe/xe_ttm_stolen_mgr.c
+> +++ b/drivers/gpu/drm/xe/xe_ttm_stolen_mgr.c
+> @@ -129,7 +129,7 @@ void xe_ttm_stolen_mgr_init(struct xe_device *xe)
 >  {
->  	struct xe_res_cursor cur;
->  	u64 page;
-> @@ -1427,9 +1427,9 @@ dma_addr_t xe_bo_addr(struct xe_bo *bo, u64 offset,
->  	page = offset >> PAGE_SHIFT;
->  	offset &= (PAGE_SIZE - 1);
->  
-> -	*is_lmem = xe_bo_is_vram(bo);
-> +	*is_vram = xe_bo_is_vram(bo);
->  
-> -	if (!*is_lmem && !xe_bo_is_stolen(bo)) {
-> +	if (!*is_vram && !xe_bo_is_stolen(bo)) {
->  		XE_BUG_ON(!bo->ttm.ttm);
->  
->  		xe_res_first_sg(xe_bo_get_sg(bo), page << PAGE_SHIFT,
-> diff --git a/drivers/gpu/drm/xe/xe_bo.h b/drivers/gpu/drm/xe/xe_bo.h
-> index 0699b2b4c5ca..f841e74cd417 100644
-> --- a/drivers/gpu/drm/xe/xe_bo.h
-> +++ b/drivers/gpu/drm/xe/xe_bo.h
-> @@ -196,14 +196,14 @@ static inline void xe_bo_unpin_map_no_vm(struct xe_bo *bo)
->  
->  bool xe_bo_is_xe_bo(struct ttm_buffer_object *bo);
->  dma_addr_t xe_bo_addr(struct xe_bo *bo, u64 offset,
-> -		      size_t page_size, bool *is_lmem);
-> +		      size_t page_size, bool *is_vram);
->  
->  static inline dma_addr_t
->  xe_bo_main_addr(struct xe_bo *bo, size_t page_size)
->  {
-> -	bool is_lmem;
-> +	bool is_vram;
->  
-> -	return xe_bo_addr(bo, 0, page_size, &is_lmem);
-> +	return xe_bo_addr(bo, 0, page_size, &is_vram);
->  }
->  
->  static inline u32
-> diff --git a/drivers/gpu/drm/xe/xe_ggtt.c b/drivers/gpu/drm/xe/xe_ggtt.c
-> index a0d672b6afb2..a430d1568890 100644
-> --- a/drivers/gpu/drm/xe/xe_ggtt.c
-> +++ b/drivers/gpu/drm/xe/xe_ggtt.c
-> @@ -28,12 +28,12 @@ u64 xe_ggtt_pte_encode(struct xe_bo *bo, u64 bo_offset)
->  {
->  	struct xe_device *xe = xe_bo_device(bo);
->  	u64 pte;
-> -	bool is_lmem;
-> +	bool is_vram;
->  
-> -	pte = xe_bo_addr(bo, bo_offset, GEN8_PAGE_SIZE, &is_lmem);
-> +	pte = xe_bo_addr(bo, bo_offset, GEN8_PAGE_SIZE, &is_vram);
->  	pte |= GEN8_PAGE_PRESENT;
->  
-> -	if (is_lmem)
-> +	if (is_vram)
->  		pte |= GEN12_GGTT_PTE_LM;
->  
->  	/* FIXME: vfunc + pass in caching rules */
-> diff --git a/drivers/gpu/drm/xe/xe_migrate.c b/drivers/gpu/drm/xe/xe_migrate.c
-> index bc69ec17d5ad..c0523d8fe944 100644
-> --- a/drivers/gpu/drm/xe/xe_migrate.c
-> +++ b/drivers/gpu/drm/xe/xe_migrate.c
-> @@ -222,15 +222,15 @@ static int xe_migrate_prepare_vm(struct xe_gt *gt, struct xe_migrate *m,
->  			level++;
->  		}
->  	} else {
-> -		bool is_lmem;
-> -		u64 batch_addr = xe_bo_addr(batch, 0, GEN8_PAGE_SIZE, &is_lmem);
-> +		bool is_vram;
-> +		u64 batch_addr = xe_bo_addr(batch, 0, GEN8_PAGE_SIZE, &is_vram);
->  
->  		m->batch_base_ofs = xe_migrate_vram_ofs(batch_addr);
->  
->  		if (xe->info.supports_usm) {
->  			batch = gt->usm.bb_pool.bo;
->  			batch_addr = xe_bo_addr(batch, 0, GEN8_PAGE_SIZE,
-> -						&is_lmem);
-> +						&is_vram);
->  			m->usm_batch_base_ofs = xe_migrate_vram_ofs(batch_addr);
->  		}
->  	}
-> @@ -933,12 +933,12 @@ static void write_pgtable(struct xe_gt *gt, struct xe_bb *bb, u64 ppgtt_ofs,
->  	 */
->  	XE_BUG_ON(update->qwords > 0x1ff);
->  	if (!ppgtt_ofs) {
-> -		bool is_lmem;
-> +		bool is_vram;
->  
->  		ppgtt_ofs = xe_migrate_vram_ofs(xe_bo_addr(update->pt_bo, 0,
->  							   GEN8_PAGE_SIZE,
-> -							   &is_lmem));
-> -		XE_BUG_ON(!is_lmem);
-> +							   &is_vram));
-> +		XE_BUG_ON(!is_vram);
->  	}
->  
->  	do {
-> diff --git a/drivers/gpu/drm/xe/xe_mmio.c b/drivers/gpu/drm/xe/xe_mmio.c
-> index 65b0df9bb579..e5bd4609aaee 100644
-> --- a/drivers/gpu/drm/xe/xe_mmio.c
-> +++ b/drivers/gpu/drm/xe/xe_mmio.c
-> @@ -68,7 +68,7 @@ _resize_bar(struct xe_device *xe, int resno, resource_size_t size)
->  	return 1;
->  }
->  
-> -static int xe_resize_lmem_bar(struct xe_device *xe, resource_size_t lmem_size)
-> +static int xe_resize_vram_bar(struct xe_device *xe, resource_size_t vram_size)
->  {
+>  	struct xe_ttm_stolen_mgr *mgr = drmm_kzalloc(&xe->drm, sizeof(*mgr), GFP_KERNEL);
 >  	struct pci_dev *pdev = to_pci_dev(xe->drm.dev);
->  	struct pci_bus *root = pdev->bus;
-> @@ -78,31 +78,31 @@ static int xe_resize_lmem_bar(struct xe_device *xe, resource_size_t lmem_size)
->  	u32 pci_cmd;
->  	int i;
->  	int ret;
-> -	u64 force_lmem_bar_size = xe_force_lmem_bar_size;
-> +	u64 force_vram_bar_size = xe_force_vram_bar_size;
+> -	u64 stolen_size, pgsize;
+> +	u64 stolen_size, io_size, pgsize;
+>  	int err;
 >  
->  	current_size = roundup_pow_of_two(pci_resource_len(pdev, GEN12_LMEM_BAR));
+>  	if (IS_DGFX(xe))
+> @@ -148,7 +148,17 @@ void xe_ttm_stolen_mgr_init(struct xe_device *xe)
+>  	if (pgsize < PAGE_SIZE)
+>  		pgsize = PAGE_SIZE;
 >  
-> -	if (force_lmem_bar_size) {
-> +	if (force_vram_bar_size) {
->  		u32 bar_sizes;
+> -	err = __xe_ttm_vram_mgr_init(xe, &mgr->base, XE_PL_STOLEN, stolen_size, pgsize);
+> +	/*
+> +	 * We don't try to attempt partial visible support for stolen vram,
+> +	 * since stolen is always at the end of vram, and the BAR size is pretty
+> +	 * much always 256M, with small-bar.
+> +	 */
+> +	io_size = 0;
+> +	if (mgr->io_base && !xe_ttm_stolen_cpu_access_needs_ggtt(xe))
+> +		io_size = stolen_size;
+> +
+> +	err = __xe_ttm_vram_mgr_init(xe, &mgr->base, XE_PL_STOLEN, stolen_size,
+> +				     io_size, pgsize);
+>  	if (err) {
+>  		drm_dbg_kms(&xe->drm, "Stolen mgr init failed: %i\n", err);
+>  		return;
+> @@ -157,8 +167,8 @@ void xe_ttm_stolen_mgr_init(struct xe_device *xe)
+>  	drm_dbg_kms(&xe->drm, "Initialized stolen memory support with %llu bytes\n",
+>  		    stolen_size);
 >  
-> -		rebar_size = force_lmem_bar_size * (resource_size_t)SZ_1M;
-> +		rebar_size = force_vram_bar_size * (resource_size_t)SZ_1M;
->  		bar_sizes = pci_rebar_get_possible_sizes(pdev, GEN12_LMEM_BAR);
->  
->  		if (rebar_size == current_size)
->  			return 0;
->  
->  		if (!(bar_sizes & BIT(pci_rebar_bytes_to_size(rebar_size))) ||
-> -		    rebar_size >= roundup_pow_of_two(lmem_size)) {
-> -			rebar_size = lmem_size;
-> +		    rebar_size >= roundup_pow_of_two(vram_size)) {
-> +			rebar_size = vram_size;
->  			drm_info(&xe->drm,
->  				 "Given bar size is not within supported size, setting it to default: %llu\n",
-> -				 (u64)lmem_size >> 20);
-> +				 (u64)vram_size >> 20);
->  		}
->  	} else {
->  		rebar_size = current_size;
->  
-> -		if (rebar_size != roundup_pow_of_two(lmem_size))
-> -			rebar_size = lmem_size;
-> +		if (rebar_size != roundup_pow_of_two(vram_size))
-> +			rebar_size = vram_size;
->  		else
->  			return 0;
->  	}
-> @@ -117,7 +117,7 @@ static int xe_resize_lmem_bar(struct xe_device *xe, resource_size_t lmem_size)
->  	}
->  
->  	if (!root_res) {
-> -		drm_info(&xe->drm, "Can't resize LMEM BAR - platform support is missing\n");
-> +		drm_info(&xe->drm, "Can't resize VRAM BAR - platform support is missing\n");
->  		return -1;
->  	}
->  
-> @@ -168,7 +168,7 @@ int xe_mmio_total_vram_size(struct xe_device *xe, u64 *vram_size, u64 *usable_si
->  	if (usable_size) {
->  		reg = xe_gt_mcr_unicast_read_any(gt, XEHP_FLAT_CCS_BASE_ADDR);
->  		*usable_size = (u64)REG_FIELD_GET(GENMASK(31, 8), reg) * SZ_64K;
-> -		drm_info(&xe->drm, "lmem_size: 0x%llx usable_size: 0x%llx\n",
-> +		drm_info(&xe->drm, "vram_size: 0x%llx usable_size: 0x%llx\n",
->  			 *vram_size, *usable_size);
->  	}
->  
-> @@ -180,7 +180,7 @@ int xe_mmio_probe_vram(struct xe_device *xe)
->  	struct pci_dev *pdev = to_pci_dev(xe->drm.dev);
->  	struct xe_gt *gt;
->  	u8 id;
-> -	u64 lmem_size;
-> +	u64 vram_size;
->  	u64 original_size;
->  	u64 current_size;
->  	u64 usable_size;
-> @@ -207,29 +207,29 @@ int xe_mmio_probe_vram(struct xe_device *xe)
->  	gt = xe_device_get_gt(xe, 0);
->  	original_size = pci_resource_len(pdev, GEN12_LMEM_BAR);
->  
-> -	err = xe_mmio_total_vram_size(xe, &lmem_size, &usable_size);
-> +	err = xe_mmio_total_vram_size(xe, &vram_size, &usable_size);
->  	if (err)
->  		return err;
->  
-> -	resize_result = xe_resize_lmem_bar(xe, lmem_size);
-> +	resize_result = xe_resize_vram_bar(xe, vram_size);
->  	current_size = pci_resource_len(pdev, GEN12_LMEM_BAR);
->  	xe->mem.vram.io_start = pci_resource_start(pdev, GEN12_LMEM_BAR);
->  
-> -	xe->mem.vram.size = min(current_size, lmem_size);
-> +	xe->mem.vram.size = min(current_size, vram_size);
->  
->  	if (!xe->mem.vram.size)
->  		return -EIO;
->  
->  	if (resize_result > 0)
-> -		drm_info(&xe->drm, "Successfully resize LMEM from %lluMiB to %lluMiB\n",
-> +		drm_info(&xe->drm, "Successfully resize VRAM from %lluMiB to %lluMiB\n",
->  			 (u64)original_size >> 20,
->  			 (u64)current_size >> 20);
-> -	else if (xe->mem.vram.size < lmem_size && !xe_force_lmem_bar_size)
-> +	else if (xe->mem.vram.size < vram_size && !xe_force_vram_bar_size)
->  		drm_info(&xe->drm, "Using a reduced BAR size of %lluMiB. Consider enabling 'Resizable BAR' support in your BIOS.\n",
->  			 (u64)xe->mem.vram.size >> 20);
-> -	if (xe->mem.vram.size < lmem_size)
-> +	if (xe->mem.vram.size < vram_size)
->  		drm_warn(&xe->drm, "Restricting VRAM size to PCI resource size (0x%llx->0x%llx)\n",
-> -			 lmem_size, (u64)xe->mem.vram.size);
-> +			 vram_size, (u64)xe->mem.vram.size);
->  
->  	xe->mem.vram.mapping = ioremap_wc(xe->mem.vram.io_start, xe->mem.vram.size);
->  	xe->mem.vram.size = min_t(u64, xe->mem.vram.size, usable_size);
-> @@ -360,7 +360,7 @@ int xe_mmio_init(struct xe_device *xe)
->  	 * and we should not continue with driver initialization.
->  	 */
->  	if (IS_DGFX(xe) && !(xe_mmio_read32(gt, GU_CNTL.reg) & LMEM_INIT)) {
-> -		drm_err(&xe->drm, "LMEM not initialized by firmware\n");
-> +		drm_err(&xe->drm, "VRAM not initialized by firmware\n");
->  		return -ENODEV;
->  	}
->  
-> diff --git a/drivers/gpu/drm/xe/xe_module.c b/drivers/gpu/drm/xe/xe_module.c
-> index 5a51a9959eff..6860586ce7f8 100644
-> --- a/drivers/gpu/drm/xe/xe_module.c
-> +++ b/drivers/gpu/drm/xe/xe_module.c
-> @@ -22,9 +22,9 @@ bool enable_display = true;
->  module_param_named(enable_display, enable_display, bool, 0444);
->  MODULE_PARM_DESC(enable_display, "Enable display");
->  
-> -u32 xe_force_lmem_bar_size;
-> -module_param_named(lmem_bar_size, xe_force_lmem_bar_size, uint, 0600);
-> -MODULE_PARM_DESC(lmem_bar_size, "Set the lmem bar size(in MiB)");
-> +u32 xe_force_vram_bar_size;
-> +module_param_named(vram_bar_size, xe_force_vram_bar_size, uint, 0600);
-> +MODULE_PARM_DESC(vram_bar_size, "Set the vram bar size(in MiB)");
->  
->  int xe_guc_log_level = 5;
->  module_param_named(guc_log_level, xe_guc_log_level, int, 0600);
-> diff --git a/drivers/gpu/drm/xe/xe_module.h b/drivers/gpu/drm/xe/xe_module.h
-> index 2c6ee46f5595..86916c176382 100644
-> --- a/drivers/gpu/drm/xe/xe_module.h
-> +++ b/drivers/gpu/drm/xe/xe_module.h
-> @@ -8,6 +8,6 @@
->  /* Module modprobe variables */
->  extern bool enable_guc;
->  extern bool enable_display;
-> -extern u32 xe_force_lmem_bar_size;
-> +extern u32 xe_force_vram_bar_size;
->  extern int xe_guc_log_level;
->  extern char *xe_param_force_probe;
-> diff --git a/drivers/gpu/drm/xe/xe_pt.c b/drivers/gpu/drm/xe/xe_pt.c
-> index 06fc7b206997..dfd97b0ec42a 100644
-> --- a/drivers/gpu/drm/xe/xe_pt.c
-> +++ b/drivers/gpu/drm/xe/xe_pt.c
-> @@ -62,12 +62,12 @@ u64 gen8_pde_encode(struct xe_bo *bo, u64 bo_offset,
->  		    const enum xe_cache_level level)
->  {
->  	u64 pde;
-> -	bool is_lmem;
-> +	bool is_vram;
->  
-> -	pde = xe_bo_addr(bo, bo_offset, GEN8_PAGE_SIZE, &is_lmem);
-> +	pde = xe_bo_addr(bo, bo_offset, GEN8_PAGE_SIZE, &is_vram);
->  	pde |= GEN8_PAGE_PRESENT | GEN8_PAGE_RW;
->  
-> -	XE_WARN_ON(IS_DGFX(xe_bo_device(bo)) && !is_lmem);
-> +	XE_WARN_ON(IS_DGFX(xe_bo_device(bo)) && !is_vram);
->  
->  	/* FIXME: I don't think the PPAT handling is correct for MTL */
->  
-> @@ -80,13 +80,13 @@ u64 gen8_pde_encode(struct xe_bo *bo, u64 bo_offset,
+> -	if (mgr->io_base && !xe_ttm_stolen_cpu_access_needs_ggtt(xe))
+> -		mgr->mapping = devm_ioremap_wc(&pdev->dev, mgr->io_base, stolen_size);
+> +	if (io_size)
+> +		mgr->mapping = devm_ioremap_wc(&pdev->dev, mgr->io_base, io_size);
 >  }
 >  
->  static dma_addr_t vma_addr(struct xe_vma *vma, u64 offset,
-> -			   size_t page_size, bool *is_lmem)
-> +			   size_t page_size, bool *is_vram)
+>  u64 xe_ttm_stolen_io_offset(struct xe_bo *bo, u32 offset)
+> diff --git a/drivers/gpu/drm/xe/xe_ttm_vram_mgr.c b/drivers/gpu/drm/xe/xe_ttm_vram_mgr.c
+> index e3ac8c6d3978..f703e962f499 100644
+> --- a/drivers/gpu/drm/xe/xe_ttm_vram_mgr.c
+> +++ b/drivers/gpu/drm/xe/xe_ttm_vram_mgr.c
+> @@ -49,45 +49,26 @@ static int xe_ttm_vram_mgr_new(struct ttm_resource_manager *man,
+>  			       const struct ttm_place *place,
+>  			       struct ttm_resource **res)
 >  {
->  	if (xe_vma_is_userptr(vma)) {
->  		struct xe_res_cursor cur;
->  		u64 page;
+> -	u64 max_bytes, cur_size, min_block_size;
+>  	struct xe_ttm_vram_mgr *mgr = to_xe_ttm_vram_mgr(man);
+>  	struct xe_ttm_vram_mgr_resource *vres;
+> -	u64 size, remaining_size, lpfn, fpfn;
+>  	struct drm_buddy *mm = &mgr->mm;
+> -	unsigned long pages_per_block;
+> -	int r;
+> -
+> -	lpfn = (u64)place->lpfn << PAGE_SHIFT;
+> -	if (!lpfn || lpfn > man->size)
+> -		lpfn = man->size;
+> -
+> -	fpfn = (u64)place->fpfn << PAGE_SHIFT;
+> +	u64 size, remaining_size, min_page_size;
+> +	unsigned long lpfn;
+> +	int err;
 >  
-> -		*is_lmem = false;
-> +		*is_vram = false;
->  		page = offset >> PAGE_SHIFT;
->  		offset &= (PAGE_SIZE - 1);
+> -	max_bytes = mgr->manager.size;
+> -	if (place->flags & TTM_PL_FLAG_CONTIGUOUS) {
+> -		pages_per_block = ~0ul;
+> -	} else {
+> -#ifdef CONFIG_TRANSPARENT_HUGEPAGE
+> -		pages_per_block = HPAGE_PMD_NR;
+> -#else
+> -		/* default to 2MB */
+> -		pages_per_block = 2UL << (20UL - PAGE_SHIFT);
+> -#endif
+> -
+> -		pages_per_block = max_t(uint32_t, pages_per_block,
+> -					tbo->page_alignment);
+> -	}
+> +	lpfn = place->lpfn;
+> +	if (!lpfn || lpfn > man->size >> PAGE_SHIFT)
+> +		lpfn = man->size >> PAGE_SHIFT;
 >  
-> @@ -94,7 +94,7 @@ static dma_addr_t vma_addr(struct xe_vma *vma, u64 offset,
->  				&cur);
->  		return xe_res_dma(&cur) + offset;
->  	} else {
-> -		return xe_bo_addr(vma->bo, offset, page_size, is_lmem);
-> +		return xe_bo_addr(vma->bo, offset, page_size, is_vram);
+>  	vres = kzalloc(sizeof(*vres), GFP_KERNEL);
+>  	if (!vres)
+>  		return -ENOMEM;
+>  
+>  	ttm_resource_init(tbo, place, &vres->base);
+> -	remaining_size = vres->base.size;
+>  
+>  	/* bail out quickly if there's likely not enough VRAM for this BO */
+> -	if (ttm_resource_manager_usage(man) > max_bytes) {
+> -		r = -ENOSPC;
+> +	if (ttm_resource_manager_usage(man) > man->size) {
+> +		err = -ENOSPC;
+>  		goto error_fini;
 >  	}
+>  
+> @@ -96,95 +77,91 @@ static int xe_ttm_vram_mgr_new(struct ttm_resource_manager *man,
+>  	if (place->flags & TTM_PL_FLAG_TOPDOWN)
+>  		vres->flags |= DRM_BUDDY_TOPDOWN_ALLOCATION;
+>  
+> -	if (fpfn || lpfn != man->size)
+> -		/* Allocate blocks in desired range */
+> +	if (place->fpfn || lpfn != man->size >> PAGE_SHIFT)
+>  		vres->flags |= DRM_BUDDY_RANGE_ALLOCATION;
+>  
+> -	mutex_lock(&mgr->lock);
+> -	while (remaining_size) {
+> -		if (tbo->page_alignment)
+> -			min_block_size = tbo->page_alignment << PAGE_SHIFT;
+> -		else
+> -			min_block_size = mgr->default_page_size;
+> -
+> -		XE_BUG_ON(min_block_size < mm->chunk_size);
+> -
+> -		/* Limit maximum size to 2GiB due to SG table limitations */
+> -		size = min(remaining_size, 2ULL << 30);
+> -
+> -		if (size >= pages_per_block << PAGE_SHIFT)
+> -			min_block_size = pages_per_block << PAGE_SHIFT;
+> -
+> -		cur_size = size;
+> -
+> -		if (fpfn + size != place->lpfn << PAGE_SHIFT) {
+> -			/*
+> -			 * Except for actual range allocation, modify the size and
+> -			 * min_block_size conforming to continuous flag enablement
+> -			 */
+> -			if (place->flags & TTM_PL_FLAG_CONTIGUOUS) {
+> -				size = roundup_pow_of_two(size);
+> -				min_block_size = size;
+> -			/*
+> -			 * Modify the size value if size is not
+> -			 * aligned with min_block_size
+> -			 */
+> -			} else if (!IS_ALIGNED(size, min_block_size)) {
+> -				size = round_up(size, min_block_size);
+> -			}
+> -		}
+> +	XE_BUG_ON(!vres->base.size);
+> +	size = vres->base.size;
+>  
+> -		r = drm_buddy_alloc_blocks(mm, fpfn,
+> -					   lpfn,
+> -					   size,
+> -					   min_block_size,
+> -					   &vres->blocks,
+> -					   vres->flags);
+> -		if (unlikely(r))
+> -			goto error_free_blocks;
+> +	min_page_size = mgr->default_page_size;
+> +	if (tbo->page_alignment)
+> +		min_page_size = tbo->page_alignment << PAGE_SHIFT;
+>  
+> -		if (size > remaining_size)
+> -			remaining_size = 0;
+> -		else
+> -			remaining_size -= size;
+> +	XE_BUG_ON(min_page_size < mm->chunk_size);
+> +	XE_BUG_ON(min_page_size > SZ_2G); /* FIXME: sg limit */
+> +	XE_BUG_ON(size > SZ_2G &&
+> +		  (vres->base.placement & TTM_PL_FLAG_CONTIGUOUS));
+> +	XE_BUG_ON(!IS_ALIGNED(size, min_page_size));
+> +
+> +	if (place->fpfn + (vres->base.size >> PAGE_SHIFT) != place->lpfn &&
+> +	    place->flags & TTM_PL_FLAG_CONTIGUOUS) {
+> +		unsigned long pages;
+> +
+> +		size = roundup_pow_of_two(size);
+> +		min_page_size = size;
+> +
+> +		pages = size >> ilog2(mm->chunk_size);
+> +		if (pages > lpfn)
+> +			lpfn = pages;
+>  	}
+> -	mutex_unlock(&mgr->lock);
+>  
+> -	if (cur_size != size) {
+> -		struct drm_buddy_block *block;
+> -		struct list_head *trim_list;
+> -		u64 original_size;
+> -		LIST_HEAD(temp);
+> +	if (size > lpfn << PAGE_SHIFT) {
+> +		err = -E2BIG; /* don't trigger eviction */
+> +		goto error_fini;
+> +	}
+>  
+> -		trim_list = &vres->blocks;
+> -		original_size = vres->base.size;
+> +	mutex_lock(&mgr->lock);
+> +	if (lpfn <= mgr->visible_size && size > mgr->visible_avail) {
+> +		mutex_unlock(&mgr->lock);
+> +		err = -ENOSPC;
+> +		goto error_fini;
+> +	}
+>  
+> +	remaining_size = size;
+> +	do {
+>  		/*
+> -		 * If size value is rounded up to min_block_size, trim the last
+> -		 * block to the required size
+> +		 * Limit maximum size to 2GiB due to SG table limitations.
+> +		 * FIXME: Should maybe be handled as part of sg construction.
+>  		 */
+> -		if (!list_is_singular(&vres->blocks)) {
+> -			block = list_last_entry(&vres->blocks, typeof(*block), link);
+> -			list_move_tail(&block->link, &temp);
+> -			trim_list = &temp;
+> -			/*
+> -			 * Compute the original_size value by subtracting the
+> -			 * last block size with (aligned size - original size)
+> -			 */
+> -			original_size = drm_buddy_block_size(mm, block) -
+> -				(size - cur_size);
+> -		}
+> +		u64 alloc_size = min_t(u64, remaining_size, SZ_2G);
+> +
+> +		err = drm_buddy_alloc_blocks(mm, (u64)place->fpfn << PAGE_SHIFT,
+> +					     (u64)lpfn << PAGE_SHIFT,
+> +					     alloc_size,
+> +					     min_page_size,
+> +					     &vres->blocks,
+> +					     vres->flags);
+> +		if (err)
+> +			goto error_free_blocks;
+>  
+> -		mutex_lock(&mgr->lock);
+> -		drm_buddy_block_trim(mm,
+> -				     original_size,
+> -				     trim_list);
+> -		mutex_unlock(&mgr->lock);
+> +		remaining_size -= alloc_size;
+> +	} while (remaining_size);
+>  
+> -		if (!list_empty(&temp))
+> -			list_splice_tail(trim_list, &vres->blocks);
+> +	if (place->flags & TTM_PL_FLAG_CONTIGUOUS) {
+> +		if (!drm_buddy_block_trim(mm, vres->base.size, &vres->blocks))
+> +			size = vres->base.size;
+>  	}
+>  
+> +	if (lpfn <= mgr->visible_size >> PAGE_SHIFT) {
+> +		vres->used_visible_size = size;
+> +	} else {
+> +		struct drm_buddy_block *block;
+> +
+> +		list_for_each_entry(block, &vres->blocks, link) {
+> +			u64 start = drm_buddy_block_offset(block);
+> +
+> +			if (start < mgr->visible_size) {
+> +				u64 end = start + drm_buddy_block_size(mm, block);
+> +
+> +				vres->used_visible_size +=
+> +					min(end, mgr->visible_size) - start;
+> +			}
+> +		}
+> +	}
+> +
+> +	mgr->visible_avail -= vres->used_visible_size;
+> +	mutex_unlock(&mgr->lock);
+> +
+>  	if (!(vres->base.placement & TTM_PL_FLAG_CONTIGUOUS) &&
+>  	    xe_is_vram_mgr_blocks_contiguous(mm, &vres->blocks))
+>  		vres->base.placement |= TTM_PL_FLAG_CONTIGUOUS;
+> @@ -213,7 +190,7 @@ static int xe_ttm_vram_mgr_new(struct ttm_resource_manager *man,
+>  	ttm_resource_fini(man, &vres->base);
+>  	kfree(vres);
+>  
+> -	return r;
+> +	return err;
 >  }
 >  
-> diff --git a/drivers/gpu/drm/xe/xe_vm.c b/drivers/gpu/drm/xe/xe_vm.c
-> index a0e35627e45e..6cf7172e84cc 100644
-> --- a/drivers/gpu/drm/xe/xe_vm.c
-> +++ b/drivers/gpu/drm/xe/xe_vm.c
-> @@ -3355,7 +3355,7 @@ int xe_vm_invalidate_vma(struct xe_vma *vma)
->  int xe_analyze_vm(struct drm_printer *p, struct xe_vm *vm, int gt_id)
+>  static void xe_ttm_vram_mgr_del(struct ttm_resource_manager *man,
+> @@ -226,6 +203,7 @@ static void xe_ttm_vram_mgr_del(struct ttm_resource_manager *man,
+>  
+>  	mutex_lock(&mgr->lock);
+>  	drm_buddy_free_list(mm, &vres->blocks);
+> +	mgr->visible_avail += vres->used_visible_size;
+>  	mutex_unlock(&mgr->lock);
+>  
+>  	ttm_resource_fini(man, res);
+> @@ -240,6 +218,13 @@ static void xe_ttm_vram_mgr_debug(struct ttm_resource_manager *man,
+>  	struct drm_buddy *mm = &mgr->mm;
+>  
+>  	mutex_lock(&mgr->lock);
+> +	drm_printf(printer, "default_page_size: %lluKiB\n",
+> +		   mgr->default_page_size >> 10);
+> +	drm_printf(printer, "visible_avail: %lluMiB\n",
+> +		   (u64)mgr->visible_avail >> 20);
+> +	drm_printf(printer, "visible_size: %lluMiB\n",
+> +		   (u64)mgr->visible_size >> 20);
+> +
+>  	drm_buddy_print(mm, printer);
+>  	mutex_unlock(&mgr->lock);
+>  	drm_printf(printer, "man size:%llu\n", man->size);
+> @@ -262,6 +247,8 @@ static void ttm_vram_mgr_fini(struct drm_device *dev, void *arg)
+>  	if (ttm_resource_manager_evict_all(&xe->ttm, man))
+>  		return;
+>  
+> +	WARN_ON_ONCE(mgr->visible_avail != mgr->visible_size);
+> +
+>  	drm_buddy_fini(&mgr->mm);
+>  
+>  	ttm_resource_manager_cleanup(&mgr->manager);
+> @@ -270,7 +257,8 @@ static void ttm_vram_mgr_fini(struct drm_device *dev, void *arg)
+>  }
+>  
+>  int __xe_ttm_vram_mgr_init(struct xe_device *xe, struct xe_ttm_vram_mgr *mgr,
+> -			   u32 mem_type, u64 size, u64 default_page_size)
+> +			   u32 mem_type, u64 size, u64 io_size,
+> +			   u64 default_page_size)
 >  {
->  	struct rb_node *node;
-> -	bool is_lmem;
-> +	bool is_vram;
->  	uint64_t addr;
+>  	struct ttm_resource_manager *man = &mgr->manager;
+>  	int err;
+> @@ -279,6 +267,8 @@ int __xe_ttm_vram_mgr_init(struct xe_device *xe, struct xe_ttm_vram_mgr *mgr,
+>  	mgr->mem_type = mem_type;
+>  	mutex_init(&mgr->lock);
+>  	mgr->default_page_size = default_page_size;
+> +	mgr->visible_size = io_size;
+> +	mgr->visible_avail = io_size;
 >  
->  	if (!down_read_trylock(&vm->lock)) {
-> @@ -3363,8 +3363,8 @@ int xe_analyze_vm(struct drm_printer *p, struct xe_vm *vm, int gt_id)
->  		return 0;
->  	}
->  	if (vm->pt_root[gt_id]) {
-> -		addr = xe_bo_addr(vm->pt_root[gt_id]->bo, 0, GEN8_PAGE_SIZE, &is_lmem);
-> -		drm_printf(p, " VM root: A:0x%llx %s\n", addr, is_lmem ? "LMEM" : "SYS");
-> +		addr = xe_bo_addr(vm->pt_root[gt_id]->bo, 0, GEN8_PAGE_SIZE, &is_vram);
-> +		drm_printf(p, " VM root: A:0x%llx %s\n", addr, is_vram ? "VRAM" : "SYS");
->  	}
+>  	ttm_resource_manager_init(man, &xe->ttm, size);
+>  	err = drm_buddy_init(&mgr->mm, man->size, default_page_size);
+> @@ -298,7 +288,8 @@ int xe_ttm_vram_mgr_init(struct xe_gt *gt, struct xe_ttm_vram_mgr *mgr)
+>  	mgr->gt = gt;
 >  
->  	for (node = rb_first(&vm->vmas); node; node = rb_next(node)) {
-> @@ -3377,11 +3377,11 @@ int xe_analyze_vm(struct drm_printer *p, struct xe_vm *vm, int gt_id)
->  			xe_res_first_sg(vma->userptr.sg, 0, GEN8_PAGE_SIZE, &cur);
->  			addr = xe_res_dma(&cur);
->  		} else {
-> -			addr = xe_bo_addr(vma->bo, 0, GEN8_PAGE_SIZE, &is_lmem);
-> +			addr = xe_bo_addr(vma->bo, 0, GEN8_PAGE_SIZE, &is_vram);
->  		}
->  		drm_printf(p, " [%016llx-%016llx] S:0x%016llx A:%016llx %s\n",
->  			   vma->start, vma->end, vma->end - vma->start + 1ull,
-> -			   addr, is_userptr ? "USR" : is_lmem ? "VRAM" : "SYS");
-> +			   addr, is_userptr ? "USR" : is_vram ? "VRAM" : "SYS");
->  	}
->  	up_read(&vm->lock);
+>  	return __xe_ttm_vram_mgr_init(xe, mgr, XE_PL_VRAM0 + gt->info.vram_id,
+> -				      gt->mem.vram.size, PAGE_SIZE);
+> +				      gt->mem.vram.size, gt->mem.vram.io_size,
+> +				      PAGE_SIZE);
+>  }
 >  
+>  int xe_ttm_vram_mgr_alloc_sgt(struct xe_device *xe,
+> diff --git a/drivers/gpu/drm/xe/xe_ttm_vram_mgr.h b/drivers/gpu/drm/xe/xe_ttm_vram_mgr.h
+> index 78f332d26224..35e5367a79fb 100644
+> --- a/drivers/gpu/drm/xe/xe_ttm_vram_mgr.h
+> +++ b/drivers/gpu/drm/xe/xe_ttm_vram_mgr.h
+> @@ -13,7 +13,8 @@ struct xe_device;
+>  struct xe_gt;
+>  
+>  int __xe_ttm_vram_mgr_init(struct xe_device *xe, struct xe_ttm_vram_mgr *mgr,
+> -			   u32 mem_type, u64 size, u64 default_page_size);
+> +			   u32 mem_type, u64 size, u64 io_size,
+> +			   u64 default_page_size);
+>  int xe_ttm_vram_mgr_init(struct xe_gt *gt, struct xe_ttm_vram_mgr *mgr);
+>  int xe_ttm_vram_mgr_alloc_sgt(struct xe_device *xe,
+>  			      struct ttm_resource *res,
+> diff --git a/drivers/gpu/drm/xe/xe_ttm_vram_mgr_types.h b/drivers/gpu/drm/xe/xe_ttm_vram_mgr_types.h
+> index 39aa2ec1b968..3d9417ff7434 100644
+> --- a/drivers/gpu/drm/xe/xe_ttm_vram_mgr_types.h
+> +++ b/drivers/gpu/drm/xe/xe_ttm_vram_mgr_types.h
+> @@ -23,6 +23,10 @@ struct xe_ttm_vram_mgr {
+>  	struct ttm_resource_manager manager;
+>  	/** @mm: DRM buddy allocator which manages the VRAM */
+>  	struct drm_buddy mm;
+> +	/** @visible_size: Proped size of the CPU visible portion */
+> +	u64 visible_size;
+> +	/** @visible_avail: CPU visible portion still unallocated */
+> +	u64 visible_avail;
+>  	/** @default_page_size: default page size */
+>  	u64 default_page_size;
+>  	/** @lock: protects allocations of VRAM */
+> @@ -39,6 +43,8 @@ struct xe_ttm_vram_mgr_resource {
+>  	struct ttm_resource base;
+>  	/** @blocks: list of DRM buddy blocks */
+>  	struct list_head blocks;
+> +	/** @used_visible_size: How many CPU visible bytes this resource is using */
+> +	u64 used_visible_size;
+>  	/** @flags: flags associated with the resource */
+>  	unsigned long flags;
+>  };
 > -- 
 > 2.39.2
 > 
