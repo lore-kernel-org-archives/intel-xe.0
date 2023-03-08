@@ -4,134 +4,134 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8D926C678D5
-	for <intel-xe@archiver.kernel.org>; Wed,  8 Mar 2023 00:36:52 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id D38E0C6FA99
+	for <intel-xe@archiver.kernel.org>; Wed,  8 Mar 2023 00:53:02 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1B7ED10E57B;
-	Wed,  8 Mar 2023 00:36:52 +0000 (UTC)
-Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D05FA10E57B
- for <intel-xe@lists.freedesktop.org>; Wed,  8 Mar 2023 00:36:49 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id AD28C10E14C;
+	Wed,  8 Mar 2023 00:53:02 +0000 (UTC)
+Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4C45D10E14C
+ for <intel-xe@lists.freedesktop.org>; Wed,  8 Mar 2023 00:53:01 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1678235809; x=1709771809;
+ t=1678236781; x=1709772781;
  h=date:from:to:cc:subject:message-id:references:
  in-reply-to:mime-version;
- bh=0o0hx7exFB1gYkPdXkTSTJndTwnCUZ4V5VSbgBncWCA=;
- b=FmdwkPH+baJBFopH8dd1A7F8CaHsRf7A3rjomckeOMk0DmXtN1qpq8KR
- R0qd5DE6gk/xHlqVdAtP2i/M5KmgfaEcm+i3gkmKj724CmI0f8DocezU+
- 0VpicikbzJWCrjKiRJfn4LTZ9STsRagb7Getl9K7RN+UPyxOqf2jMf97o
- Gi09v27rx8FXq6L88teWBSExQaCISBCPXht8GHeMsELKuCT0UtdFQ7Xgr
- AXLuwY1WO7e01HpMwtkbSjN/Kck2qIvERL+TnjeN5ubePvPbsbDne2kOw
- QH/IIzP6dTaKT1rII1eHYUmFSfQbwSaCn3/3Svna2GC/iuk26yz6mGeJB Q==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10642"; a="400841418"
-X-IronPort-AV: E=Sophos;i="5.98,242,1673942400"; d="scan'208";a="400841418"
-Received: from orsmga004.jf.intel.com ([10.7.209.38])
- by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 07 Mar 2023 16:36:49 -0800
+ bh=kUadaEIGn3KlFOCE7RYqt+xGjYzsvFv9yEyvq3dGju8=;
+ b=diHrjZd6XWNFtWTwpau7Vj0OqEaVk6oDgyqiqwNpzY2assTttbQFQYJa
+ /XyCiO0h0ormB1DGRJBLXuoNH36W9mIscpZDhRmxHO7F4Rd5lWy1fn+Bl
+ jbVplf1w70rRsTIW2z5BleDXb19zfw3/OkOeGX82iNfWbkDs2PzcbFIMQ
+ 2w8G3IP59YRzwBSxSQPXDw1JVtMLc8kbr5i8Y7h0hu8+DObXkkTRCO37d
+ o+RtrjmitO6tsijpgxDhxOlogcfS/Sfty4/2LXpeFrUmypMQeVAOlUjCd
+ 6uWqD+FCEr7uErpOnDeT7kbBEfEsappF80Jmj0K/87HQkTcaRRD50Kdlb w==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10642"; a="333490467"
+X-IronPort-AV: E=Sophos;i="5.98,242,1673942400"; d="scan'208";a="333490467"
+Received: from fmsmga005.fm.intel.com ([10.253.24.32])
+ by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 07 Mar 2023 16:52:59 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6500,9779,10642"; a="800555790"
-X-IronPort-AV: E=Sophos;i="5.98,242,1673942400"; d="scan'208";a="800555790"
-Received: from fmsmsx601.amr.corp.intel.com ([10.18.126.81])
- by orsmga004.jf.intel.com with ESMTP; 07 Mar 2023 16:36:49 -0800
-Received: from fmsmsx611.amr.corp.intel.com (10.18.126.91) by
- fmsmsx601.amr.corp.intel.com (10.18.126.81) with Microsoft SMTP Server
+X-IronPort-AV: E=McAfee;i="6500,9779,10642"; a="1006098865"
+X-IronPort-AV: E=Sophos;i="5.98,242,1673942400"; d="scan'208";a="1006098865"
+Received: from orsmsx603.amr.corp.intel.com ([10.22.229.16])
+ by fmsmga005.fm.intel.com with ESMTP; 07 Mar 2023 16:52:59 -0800
+Received: from orsmsx610.amr.corp.intel.com (10.22.229.23) by
+ ORSMSX603.amr.corp.intel.com (10.22.229.16) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.21; Tue, 7 Mar 2023 16:36:48 -0800
-Received: from fmsedg601.ED.cps.intel.com (10.1.192.135) by
- fmsmsx611.amr.corp.intel.com (10.18.126.91) with Microsoft SMTP Server
+ 15.1.2507.21; Tue, 7 Mar 2023 16:52:58 -0800
+Received: from ORSEDG602.ED.cps.intel.com (10.7.248.7) by
+ orsmsx610.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.21 via Frontend Transport; Tue, 7 Mar 2023 16:36:48 -0800
-Received: from NAM12-BN8-obe.outbound.protection.outlook.com (104.47.55.168)
- by edgegateway.intel.com (192.55.55.70) with Microsoft SMTP Server
+ 15.1.2507.21 via Frontend Transport; Tue, 7 Mar 2023 16:52:58 -0800
+Received: from NAM10-DM6-obe.outbound.protection.outlook.com (104.47.58.108)
+ by edgegateway.intel.com (134.134.137.103) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2507.21; Tue, 7 Mar 2023 16:36:48 -0800
+ 15.1.2507.21; Tue, 7 Mar 2023 16:52:58 -0800
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=lyyVJQ0MZ6W7nBsJ3OWPb2IlYL7ZtKKVUOnJAJZR83Atq0Lx7GJJzK5HxvtK3STd+dAD188tVdOBZ5SBYD2p7dmWD1yC474fsoYpg408NlfwX2kZvZnW9uOz83FciHf6zuEZuSYXz5cSLmFCf5qKXBKcLnBYE4zj+Qi74aNjBeGTU8MAtPJ0CcaghGPdoKbCURj8FZTf5fUX/bCxXCg2BuHyh30VAMBMNkKm7X5ZRWYZU/U0cTwmrtiVi18okJBgo290y1jWcJG3ax7ewaYgBZ3Ds3vhqMKzOfb2r87bIn5sb7n/exAoUQJzoWcFfr1LBtnh1D674Z9yMAA7OGog9w==
+ b=NyVY2oJG6JLcH7qFsE9hlO+b7ihtjbc0aqdN+06Jx38h+ucR//vM9zICXdtVKC/p0Pl7LysSCgDCHFTs5b/NS4rVdsKUFL6jj+P564w6mZ5+lwCxQTjBVLC6LKYaEcukbEzWD9Kcqjv/62ELzFlAsdEWmkw6SC3JbaAnckpTtUuoQT88ouwwuREXXntuLvRAaJfW9oK7t0FITJjcnKZpqlhszHy8YiNfzr9vJNhDyMAby1nvHNkVSW1I/i3zVSJMxedBRhfp5dCQyqWy6phYzVDNJ3fzqnKIIgCEfMp3f16DaQeO8ezqJNzyVmg3V9PrniZsZxSrMf1MEVHuHO+hQg==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=PKvdKxyABexhBy5050QWHwPrtNqYet8aWj2a4q4j7+U=;
- b=QsCs9scWz0+uINqO0XjOHj1F+kFJkhamjdbs0CG4WQD6oN3YYjQnZ/6NqpynWX2h2E2v4Sqi9zrL2CJJZemSyyFvXgCDBXaGx0RuxhbbqBnGHb3OEu/5aIXmLdGzKSMFYIVqkq2UeOJyxcTDles0UbOyPizXervp8AvfvFv163IpomV06uHcY57iS4IEH19h/mE9q0alT9GscAhzyvHR/nOrkVvVmn+wqTJAKwM43Yln7/oZhftVpv0EgoP6+AhjuQ01HqgrVUbB2DoEKcmoCqRgU5LM6jG6NP1jaDM0I3kWHYwiHcdAjg4Rqvad6EC/q52q8WI5DJv4kR/pz0a3VA==
+ bh=oDfR/evrLDZRVTVdyuQk0tmg1DenGAocP2vH7h6W9rc=;
+ b=Q8uD23entNrKXEH6MgFH8lxE/xXVR5p4DDUya+46+QaCS22kI2C0PB7uiy3Yy456wY7uDNRYom2WmBOOFQeqa3JBL9Dp/JeHXMnzhoHB7K9gDtFoeq2cWiNNkUfQSAGnHy3BiUb9tCr/KEhz+KH6BwDcy6zA8095mRBoRu0SmyOfdcVhCDj4Y4sF+TBNE7tuGZrLS1drewqFl2+JZFOH2VIVm3Vv7SpJPr4aj237B0/5WvxDApTlY3DF0NZjsf1Lb8wNKb7csnKKkKClxa4CC0C+fB7zpe4LBOZ6DuC+bNKPUVWUHDvdUW8vPmJE0kI6sDXuoveZSlsLACvHa2xCWQ==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
  dkim=pass header.d=intel.com; arc=none
 Authentication-Results: dkim=none (message not signed)
  header.d=none;dmarc=none action=none header.from=intel.com;
-Received: from CY5PR11MB6139.namprd11.prod.outlook.com (2603:10b6:930:29::17)
- by CO1PR11MB4850.namprd11.prod.outlook.com (2603:10b6:303:9c::7) with
+Received: from DS7PR11MB7859.namprd11.prod.outlook.com (2603:10b6:8:da::22) by
+ PH8PR11MB8259.namprd11.prod.outlook.com (2603:10b6:510:1c2::19) with
  Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6156.29; Wed, 8 Mar
- 2023 00:36:46 +0000
-Received: from CY5PR11MB6139.namprd11.prod.outlook.com
- ([fe80::7bcc:b9b8:78df:1bd8]) by CY5PR11MB6139.namprd11.prod.outlook.com
- ([fe80::7bcc:b9b8:78df:1bd8%9]) with mapi id 15.20.6156.029; Wed, 8 Mar 2023
- 00:36:46 +0000
-Date: Tue, 7 Mar 2023 16:36:43 -0800
-From: Lucas De Marchi <lucas.demarchi@intel.com>
-To: Matt Roper <matthew.d.roper@intel.com>
-Message-ID: <20230308003643.mukv763qvm4sjwqb@ldmartin-desk2.lan>
-X-Patchwork-Hint: comment
-References: <20230306223651.2428170-1-matthew.d.roper@intel.com>
-Content-Type: text/plain; charset="us-ascii"; format=flowed
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6178.17; Wed, 8 Mar
+ 2023 00:52:56 +0000
+Received: from DS7PR11MB7859.namprd11.prod.outlook.com
+ ([fe80::7333:f4b:7dbb:36b]) by DS7PR11MB7859.namprd11.prod.outlook.com
+ ([fe80::7333:f4b:7dbb:36b%6]) with mapi id 15.20.6156.028; Wed, 8 Mar 2023
+ 00:52:56 +0000
+Date: Tue, 7 Mar 2023 16:52:53 -0800
+From: Matt Roper <matthew.d.roper@intel.com>
+To: Lucas De Marchi <lucas.demarchi@intel.com>
+Message-ID: <20230308005253.GS1543793@mdroper-desk1.amr.corp.intel.com>
+References: <20230307080916.275289-1-balasubramani.vivekanandan@intel.com>
+ <20230307090643.z5ncdvt6vmyimosf@ldmartin-desk2.lan>
+Content-Type: text/plain; charset="us-ascii"
 Content-Disposition: inline
-In-Reply-To: <20230306223651.2428170-1-matthew.d.roper@intel.com>
-X-ClientProxiedBy: SJ0PR03CA0085.namprd03.prod.outlook.com
- (2603:10b6:a03:331::30) To CY5PR11MB6139.namprd11.prod.outlook.com
- (2603:10b6:930:29::17)
+In-Reply-To: <20230307090643.z5ncdvt6vmyimosf@ldmartin-desk2.lan>
+X-ClientProxiedBy: BYAPR11CA0087.namprd11.prod.outlook.com
+ (2603:10b6:a03:f4::28) To DS7PR11MB7859.namprd11.prod.outlook.com
+ (2603:10b6:8:da::22)
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: CY5PR11MB6139:EE_|CO1PR11MB4850:EE_
-X-MS-Office365-Filtering-Correlation-Id: 67d8b0d3-5ac4-4702-d8e7-08db1f6d326c
+X-MS-TrafficTypeDiagnostic: DS7PR11MB7859:EE_|PH8PR11MB8259:EE_
+X-MS-Office365-Filtering-Correlation-Id: 8900fc89-1346-41e6-a33c-08db1f6f74a7
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: 0VcLUvKmGXPCZLz0SYOrdYBa0SFnc8Jeds/WXjM5DOJ9tpWT1nO0W6rIcxGtNGoFsDh3+77N+3cTSo7GGHmebUBli1eUDLllNh91Fbx3U15Z6sNKBK3s8B28NBFV7xstqNELtTTmgxwT+w5Jwv6x+Gxax2bLgHleIg5oYT+d2KFLrZVj6qGLKF6fr7tRefRT2qpLA8i3MbReigTzkTUEDuplrwsGL9I6x+C+2XZ/eLAgRfAIkn/LroWHHtaXkx6D/KLH2IEkRJk9nW0viCBqpYka2NjDOYdZV6uMpDWhctVFOSmd5ZugrZpwCeKAw6oMDgIJ0SHDuVhVKUr9U0a8vBTTNRb31BDUUqaFlxLPyZfqaeg6V+xF0VOd6iKXKuFRhdM4Mz5RpQKwqOqGhB8jvckVN6ZvdTv4wX0kdqOo9iaaXDgd/cFEaremEWWtCEUqFXuI+gGxcoI6w9LKZH3k8fj3Jtnew0Qn3Jor4e82wfyogRnyWc9iR86+wJQNtyuG5PTxzMDRAR4NsFahUBOfEPYOrkdHtugq7Sn85R8c5yJ6Vf8kGzsrZL+/wrReKxxUrr9PFa6uHZnjDN1BrkbyjaDTV398xa91NMxKezU5CXkQAcqHedCN/+4Qa/VAy1sQmeGmm4pG+wHWOkzzho2tEw==
+X-Microsoft-Antispam-Message-Info: ozaLaA0nwZ26hVeZ/9yhd0KAuzge9S2aPRmZJXcBdCV7/gqGoI/15CAU7Ypg6k3E2tg0zLImU8VBxbUscF9tM2PxjVVLBNmxEOC44Uv8k1Woq1DkZMlEakVvhSq/rwIY2+HdGpETPF7N7CUrfsTYdjbFh2/Np6XG6gy6IOsauOX7wxU79LulzmEQNy5cTxI1hftM452syvg7/Lu4rOtqyGNqoIwVG4RDvnLGgJwCaLJjDk60RG78GbxWqBYuIlkXeaP9JHUGoWXY5lBqIrK+W4g1O2jZYVMtk73r2Pt3SMmn3CT2wRYGWTBGeCTla1PmAEdctGRXgJOEj+AT8+Q+zRu5eyuNO0u+2kea4LH6gPuzO7t/ox4gvqinkAZY2GSkJ7Y2SgJFCbvYTZs4/jBFKS1ueaSSEC/lyNm71kra2XYs5fHd/4tQkjBYcl0UzhCJgEAh3V9RbAiYQtebwrSRRXAXg10yB2vOV93ey86i1VqDTXpzKgWjOavVqWpjzC6iEtQOYrGbxfTmL+sTvug2Cc6v0TDxgVE42KbbWgN46ryyUgLGW4ZEuEsVLpfLnhy5NmFW1kPvtvzFneB8gYlNgasTUoCVxq4GpMICL1Z54pQYw1MA/gH+f/Qpi1RCom0m1pTx4HYcYKuH7yWxZqO4Mw==
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:CY5PR11MB6139.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230025)(346002)(39860400002)(366004)(136003)(396003)(376002)(451199018)(36756003)(66946007)(4326008)(66556008)(6862004)(66476007)(8936002)(5660300002)(2906002)(82960400001)(86362001)(38100700002)(41300700001)(8676002)(6506007)(6486002)(1076003)(6512007)(478600001)(316002)(6636002)(6666004)(83380400001)(186003)(9686003)(26005);
+ IPV:NLI; SFV:NSPM; H:DS7PR11MB7859.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230025)(376002)(136003)(396003)(39860400002)(346002)(366004)(451199018)(66946007)(66476007)(66556008)(6636002)(41300700001)(82960400001)(8676002)(38100700002)(316002)(8936002)(4326008)(6862004)(5660300002)(478600001)(2906002)(6486002)(26005)(1076003)(33656002)(6666004)(6512007)(6506007)(83380400001)(186003)(86362001);
  DIR:OUT; SFP:1102; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?1DQ6LsONEf+kYzUcCqhbY+PlwXajXbxkmMdQEZxkN1NF+8yCXrHrr+hXtT9X?=
- =?us-ascii?Q?NvBIyqQTThana0x6NUAaW4EUIMz4D4tEmvTVncGrdKPSsIDaW/X2wzCYrm9o?=
- =?us-ascii?Q?gVrstucC5Py9LbC5YbJ1P3BkIe4RFTdZUW67ypbkUNGffs3nCq21flB59IqN?=
- =?us-ascii?Q?dSvUuJmvUFnbpBSNoatZQ/h4j8vNE8nuwE4zSyAMLUWBTYR9mYZS7apRcmRa?=
- =?us-ascii?Q?ZEIoZj2U55eaT/aliocfUDkw5auARJ9P5t6Bi2EmYMcuVpC3lhu81BZD6IDo?=
- =?us-ascii?Q?hB1BsRSJszLBU0UP7NB2BqT12olChxcM7sY3G0NVdTV8PKGGwCuF7Zx53rS6?=
- =?us-ascii?Q?3+Qq3t24i/fPycfiZF/rZ9OQLIm5DvAwjbaSyv2uNjWWm6W1eH7dbxTURxkj?=
- =?us-ascii?Q?AI6WIz7Xtl188M/JgoQfbiIQi32qFSg7U1qnuG4rlFrYcRG84myBzSapzKan?=
- =?us-ascii?Q?+Tr3Ml/OmTTEyV96lupBVmX4oS0681GEiNSry7G30r626Q0s2djYWQGJ6LDr?=
- =?us-ascii?Q?9Ne1yhFiVBJoP1a+LZ3O9gCD8Bn6hoZh/ycyeySlL18f4NBgFHVG+WlETL0Z?=
- =?us-ascii?Q?M4bxkPD5PdrTHlX8VH+TSZSw/cUIjNzDeMWlt4PZ94z333GBbuFxy2lFQoUa?=
- =?us-ascii?Q?njeJQwL2VA4ORraQ2DqIqd95c3LZquJv7e4uYs95C41Mi6awxIDT1hVn7JHE?=
- =?us-ascii?Q?3DTAzg8FxicrBfOpsrOHEiuTciSRjrAddmu+cACEhRy2yvmUaAS3Iiqvz9Wc?=
- =?us-ascii?Q?USu9tPiXw5ivC9/SZ2A/LjJtNLSy8Q6/OPFHU40Ue/scybKOjPHFuO6qnQhR?=
- =?us-ascii?Q?e491GIXxSLbzlJa372Tdm0UfVYFam68DbLM2p/6Ne0mzhTq6jsR2RphoAJ1S?=
- =?us-ascii?Q?wGm2RMJb0SLZ5yjEvlPS3D1P+qoh5PsZ3s8xX4meKHlQDyfAewdn1e2zF3LU?=
- =?us-ascii?Q?diFPc3B6A8+ZtOdMzQWshoBbxzvmp+Xi/e/vqaWjjdCX5m7GB7UQSYlv3LZE?=
- =?us-ascii?Q?FwuCOuTbKXPn6kXxG01IXBOF9ib6D+8A0LG+xZaLRd6psMPNkgS7RmY04sWD?=
- =?us-ascii?Q?rStNBqZbTWEVuYTWnGqVqFiP+z6MWloa+20qEKGOkdgY5Jr8tX90G1ZMVQf0?=
- =?us-ascii?Q?U4yrdeMxsMmFde8ix/PjjbJr9wjiBw+x4Lu5cSTbYHoAoBlF93WSPIRqU5VN?=
- =?us-ascii?Q?iJsCPtapmddwd7NU5qbiPDHxv4eJOzjcDOzsjY1Nxqf1/35wvPS+rfc1ADNv?=
- =?us-ascii?Q?0tRUE0FNXoHa+CYKxZl2IUdq0wPNcmj+vltvervEcqoDjnJIRls5GBJDCqUb?=
- =?us-ascii?Q?DpUPpobkK+fkKQliRdTdoSFaBMdIWUvfq958TD5Ql7WbBQg5lZdHPYiz0xR1?=
- =?us-ascii?Q?AIwUOFvXKle0S4wDNi141IqS/nSFzUuFvJbxOJGSFM4piondrfvrsr49QxNT?=
- =?us-ascii?Q?uVkjVi708oWHZNEN2QpgZ48o9ZTt0kbqIBzF2XXHstpjm5aaEglG1t96+LOa?=
- =?us-ascii?Q?vOapedP+iZ88p5H10JdHcZknKJj3441URmD6f9xP+s4OlCZZiJpZA69e+vQa?=
- =?us-ascii?Q?ErIQHoAcbjcNYxh5iM5ESHko2rUlXb8pWVBOvJPEqNu06S6lWTFVuyqnv2xA?=
- =?us-ascii?Q?bw=3D=3D?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: 67d8b0d3-5ac4-4702-d8e7-08db1f6d326c
-X-MS-Exchange-CrossTenant-AuthSource: CY5PR11MB6139.namprd11.prod.outlook.com
+X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?48Uwgj5vcUsdQVoj8P9+6PTjwpByjwVIh+z9Dcs+0G4W98AKTW1CpEVmIn1N?=
+ =?us-ascii?Q?JCd13xnnpux2yevEfX7QKsnyPcUD+cbLkyayYSjnrgb4q7zGH5sQ4hqRzatr?=
+ =?us-ascii?Q?iMuhgqNpTv0w05FOHiP1KUWatKXMDkUC2pT19KGYwNLkoVR2feIOLZV2Sae0?=
+ =?us-ascii?Q?pYaoalZv1wfNrpjb2ye5GBqGN/nzLbrjCtF4tMzGvmCPeVegYc4BtOl27/fI?=
+ =?us-ascii?Q?aGuUzOgMK6MDkGGXEKRkk34iYPrD6+mZpvgdkTmnZI3slbZ1ejIl8uOhBITs?=
+ =?us-ascii?Q?n0w1CJQlKtFL3F1TuRd6yBHUUKiv+8I4wR/K0WzuW51NiAOmw0x9JsvLFFie?=
+ =?us-ascii?Q?WmLoXtcal/lRZO4oyLrLk6s5kPmrXc6yglRDuZ604sMc6dlv+JjtJyKGIvCh?=
+ =?us-ascii?Q?SK4VW9O6fuIs1I1sndhjT9Iks3lRYIYpmGe1cL2S5PhVASKt63fUyLxCxWs/?=
+ =?us-ascii?Q?EEs7rLHSz2n70aCFfMARAsPtO68HUl7YdtesS+zsDfgU30qDWMX6CbAj87Sv?=
+ =?us-ascii?Q?HO0uJUH2Ys8x0XlNeaia2TwY5JGnVh44EzgTR91Bxs/ApsnTh565bkJofX9i?=
+ =?us-ascii?Q?SOZ1vd9LWDnGGh4Y9iEfKx1sUj4dIBEj86eqY2vdkYwskAmWw1GGdH8mWHVB?=
+ =?us-ascii?Q?8m2sM7BBijpvD8COg6fT05K0Gfe+/jne+n/ln9FL5G2ykq+0zUU2PEanqtBC?=
+ =?us-ascii?Q?vPlZ7WrW16jXRps9o96I8TFTfs9spL9tP00P278x5WnnRtvai+KsDgDPuuas?=
+ =?us-ascii?Q?9X54L7BK1uhITRrdhUb2DxNYGwkgMtcNLY4DSQc4UDghjV/bJhSM085GKKJR?=
+ =?us-ascii?Q?2iJzwjOujpHaipPwCC1La4rPM1MM3zfxJFT4T+bj572HjyCKpfNqpGxQEFW6?=
+ =?us-ascii?Q?BVMgwRhLY1dx3wpQMmbvrpO4XU7qoNe4/QFl+azMlkrAVmBgtXunKj0svy71?=
+ =?us-ascii?Q?yEtEs3lk3iVyhq4yznpKvRtG1H2Dc5sz+rhONo7OrXr0Kdm912geKf3r2uKo?=
+ =?us-ascii?Q?G/HYQhgs13YNNjicPXzB9+1jWN4tK1MfHM1/+UyTFcbGhV8VpbWBFR5J37WG?=
+ =?us-ascii?Q?e6ddw9xLPEYjhDq/Y1sUJQloca4LUqMufhr9Z8EggnztWYtfkie4lg01aGNI?=
+ =?us-ascii?Q?WAwmb6gHFSYjNUWiDiTBm5YuUdEEEv5gBqKj9OQx+sgxOObWA/BCO768B0rt?=
+ =?us-ascii?Q?xWNUHBnvFjMrJqPUjS3O9vXC9d4O2bsZpCmEsFukXG0wLXRMQzAxcM3DJ2Ap?=
+ =?us-ascii?Q?fjLv3CAokYw/UR41iE10LdoxFlGjGZ4haugNPeD8T+/8AjbhWfqtckZ84+DR?=
+ =?us-ascii?Q?5U8OjWTTBHr67xIJE7SBpLKCIyjSwO5i/mV0emBNmTS3wE/MNsff3F7Pzco1?=
+ =?us-ascii?Q?dIvu2s1DPyAJEgbpR9YCV8NChLm51266fyBTNZioYmbm+b6GL2ivRBR3vMuE?=
+ =?us-ascii?Q?4COl50hya3fT7nMwf/fBwcQtGLGQiq+kjdULKHYfWNKT/qnA9w3vs7fqb8sa?=
+ =?us-ascii?Q?nzEmxhGx63M4oxCMA+7g9eayTZbfeNa9O2Lb9q2X8YU59DbQRyYjAKLHyDUV?=
+ =?us-ascii?Q?oTyQAUfhNBD+5ZJLeo8e8njzww+qDnMTvjHKdk/thNCQrICzKs3fVgvkcU36?=
+ =?us-ascii?Q?ew=3D=3D?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: 8900fc89-1346-41e6-a33c-08db1f6f74a7
+X-MS-Exchange-CrossTenant-AuthSource: DS7PR11MB7859.namprd11.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 08 Mar 2023 00:36:46.3772 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 08 Mar 2023 00:52:56.3906 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: GtanfNRxgyZVX4QA+aoKxyq5xcmgFTOwh7pwyJ8DZJj2eodcdjZEzodGL0odzcOedBPnLH+NxMjEdPLvghnLUJUtcXnROdyjVlHIkngtWIU=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: CO1PR11MB4850
+X-MS-Exchange-CrossTenant-UserPrincipalName: /bUICZVpYHbzflYbaZv+TmfXzIwtbzIP/xQvSnTDUMkbqiz9ON5cc7sqTvz/wqkScbwVd3akaBiyXfEowQS2LuwwT16nOYNTaPKpqKkhscs=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH8PR11MB8259
 X-OriginatorOrg: intel.com
-Subject: Re: [Intel-xe] [PATCH 1/2] drm/xe: Separate engine fuse handling
- into dedicated functions
+Subject: Re: [Intel-xe] [PATCH v2] drm/xe: Skip XY_FAST_COLOR instruction on
+ link copy engines
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -147,116 +147,234 @@ Cc: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Mon, Mar 06, 2023 at 02:36:50PM -0800, Matt Roper wrote:
->The single function to handle fuse registers for all types of engines is
->becoming a bit long and hard to follow (and we haven't even added the
->compute engines yet).  Let's split it into dedicated functions for each
->engine class.
->
->v2:
-> - Add note about BCS0 always being present.  (Bala)
-> - Add forcewake assertion to read_copy_fuses.  (Bala)
->
->Cc: Balasubramani Vivekanandan <balasubramani.vivekanandan@intel.com>
->Signed-off-by: Matt Roper <matthew.d.roper@intel.com>
->---
-> drivers/gpu/drm/xe/xe_hw_engine.c | 35 +++++++++++++++++++------------
-> 1 file changed, 22 insertions(+), 13 deletions(-)
->
->diff --git a/drivers/gpu/drm/xe/xe_hw_engine.c b/drivers/gpu/drm/xe/xe_hw_engine.c
->index b035e2fa6744..ac00693ba0b2 100644
->--- a/drivers/gpu/drm/xe/xe_hw_engine.c
->+++ b/drivers/gpu/drm/xe/xe_hw_engine.c
->@@ -369,29 +369,29 @@ static void hw_engine_setup_logical_mapping(struct xe_gt *gt)
-> 	}
-> }
->
->-static void read_fuses(struct xe_gt *gt)
->+static void read_media_fuses(struct xe_gt *gt)
-> {
-> 	struct xe_device *xe = gt_to_xe(gt);
-> 	u32 media_fuse;
-> 	u16 vdbox_mask;
-> 	u16 vebox_mask;
->-	u32 bcs_mask;
-> 	int i, j;
->
-> 	xe_force_wake_assert_held(gt_to_fw(gt), XE_FW_GT);
->
->+	media_fuse = xe_mmio_read32(gt, GEN11_GT_VEBOX_VDBOX_DISABLE.reg);
->+
-> 	/*
->-	 * FIXME: Hack job, thinking we should have table of vfuncs for each
->-	 * class which picks the correct vfunc based on IP version.
->+	 * Pre-Xe_HP platforms had register bits representing absent engines,
->+	 * whereas Xe_HP and beyond have bits representing present engines.
->+	 * Invert the polarity on old platforms so that we can use common
->+	 * handling below.
-> 	 */
->-
->-	media_fuse = xe_mmio_read32(gt, GEN11_GT_VEBOX_VDBOX_DISABLE.reg);
-> 	if (GRAPHICS_VERx100(xe) < 1250)
-> 		media_fuse = ~media_fuse;
->
->-	vdbox_mask = media_fuse & GEN11_GT_VDBOX_DISABLE_MASK;
->-	vebox_mask = (media_fuse & GEN11_GT_VEBOX_DISABLE_MASK) >>
->-		      GEN11_GT_VEBOX_DISABLE_SHIFT;
->+	vdbox_mask = REG_FIELD_GET(GEN11_GT_VDBOX_DISABLE_MASK, media_fuse);
->+	vebox_mask = REG_FIELD_GET(GEN11_GT_VEBOX_DISABLE_MASK, media_fuse);
->
-> 	for (i = XE_HW_ENGINE_VCS0, j = 0; i <= XE_HW_ENGINE_VCS7; ++i, ++j) {
-> 		if (!(gt->info.engine_mask & BIT(i)))
->@@ -412,11 +412,20 @@ static void read_fuses(struct xe_gt *gt)
-> 			drm_info(&xe->drm, "vecs%u fused off\n", j);
-> 		}
-> 	}
->+}
->+
->+static void read_copy_fuses(struct xe_gt *gt)
->+{
->+	struct xe_device *xe = gt_to_xe(gt);
->+	u32 bcs_mask;
->+
->+	xe_force_wake_assert_held(gt_to_fw(gt), XE_FW_GT);
->
-> 	bcs_mask = xe_mmio_read32(gt, GEN10_MIRROR_FUSE3.reg);
-> 	bcs_mask = REG_FIELD_GET(GEN12_MEML3_EN_MASK, bcs_mask);
->
->-	for (i = XE_HW_ENGINE_BCS1, j = 0; i <= XE_HW_ENGINE_BCS8; ++i, ++j) {
->+	/* BCS0 is always present; only BCS1-BCS8 may be fused off */
->+	for (int i = XE_HW_ENGINE_BCS1, j = 0; i <= XE_HW_ENGINE_BCS8; ++i, ++j) {
-> 		if (!(gt->info.engine_mask & BIT(i)))
-> 			continue;
+On Tue, Mar 07, 2023 at 01:06:43AM -0800, Lucas De Marchi wrote:
+> On Tue, Mar 07, 2023 at 01:39:16PM +0530, Balasubramani Vivekanandan wrote:
+> > Link copy engines doesn't support the XY_FAST_COLOR instruction.
+> > Currently this instruction is used only at one place to clear a ttm
+> > resource while migrating a BO.
+> > A new device_info member is created to know if a platform has link copy
+> > engine. If it supports, then instead of using XY_FAST_COLOR instruction,
+> > MEM_SET is used which is available both in main and link copy engines.
+> > 
+> > BSpec: 68433
+> > 
+> > Signed-off-by: Balasubramani Vivekanandan <balasubramani.vivekanandan@intel.com>
+> > ---
+> > drivers/gpu/drm/xe/regs/xe_gpu_commands.h |  9 ++++
+> > drivers/gpu/drm/xe/xe_device_types.h      |  2 +
+> > drivers/gpu/drm/xe/xe_migrate.c           | 65 ++++++++++++++++-------
+> > drivers/gpu/drm/xe/xe_pci.c               |  4 ++
+> > 4 files changed, 60 insertions(+), 20 deletions(-)
+> > 
+> > diff --git a/drivers/gpu/drm/xe/regs/xe_gpu_commands.h b/drivers/gpu/drm/xe/regs/xe_gpu_commands.h
+> > index 288576035ce3..df9ed4fbf2bf 100644
+> > --- a/drivers/gpu/drm/xe/regs/xe_gpu_commands.h
+> > +++ b/drivers/gpu/drm/xe/regs/xe_gpu_commands.h
+> > @@ -6,6 +6,8 @@
+> > #ifndef _XE_GPU_COMMANDS_H_
+> > #define _XE_GPU_COMMANDS_H_
+> > 
+> > +#include "regs/xe_reg_defs.h"
+> 
+> for the uses we are making here, it should suffice to
+> include linux/bitmap.h
+> 
+> > +
+> > #define INSTR_CLIENT_SHIFT      29
+> > #define   INSTR_MI_CLIENT       0x0
+> > #define __INSTR(client) ((client) << INSTR_CLIENT_SHIFT)
+> > @@ -56,6 +58,13 @@
+> > #define GEN9_XY_FAST_COPY_BLT_CMD	(2 << 29 | 0x42 << 22)
+> > #define   BLT_DEPTH_32			(3<<24)
+> > 
+> > +#define	PVC_MEM_SET_CMD		(2 << 29 | 0x5b << 22)
+> > +#define   PVC_MEM_SET_CMD_LEN_DW	7
+> > +#define   PVC_MS_MATRIX			REG_BIT(17)
+> > +/* Bspec lists field as [6:0], but index alone is from [6:1] */
+> > +#define   PVC_MS_MOCS_INDEX_MASK	GENMASK(6, 1)
+> > +#define   PVC_MS_DATA_FIELD		GENMASK(31, 24)
+> 
+> wrong order. Should be defining the most significative bits first,
+> like they appear in bspec.
+> 
+> > +
+> > #define GFX_OP_PIPE_CONTROL(len)	((0x3<<29)|(0x3<<27)|(0x2<<24)|((len)-2))
+> > #define   PIPE_CONTROL_TILE_CACHE_FLUSH			(1<<28)
+> > #define   PIPE_CONTROL_AMFS_FLUSH			(1<<25)
+> > diff --git a/drivers/gpu/drm/xe/xe_device_types.h b/drivers/gpu/drm/xe/xe_device_types.h
+> > index 199bd37fce9a..a73c5e1d7503 100644
+> > --- a/drivers/gpu/drm/xe/xe_device_types.h
+> > +++ b/drivers/gpu/drm/xe/xe_device_types.h
+> > @@ -95,6 +95,8 @@ struct xe_device {
+> > 		bool has_4tile;
+> > 		/** @has_range_tlb_invalidation: Has range based TLB invalidations */
+> > 		bool has_range_tlb_invalidation;
+> > +		/** @has_link_copy_engines: Whether the platform has link copy engines */
+> > +		bool has_link_copy_engine;
+> > 		/** @enable_display: display enabled */
+> > 		bool enable_display;
+> > 
+> > diff --git a/drivers/gpu/drm/xe/xe_migrate.c b/drivers/gpu/drm/xe/xe_migrate.c
+> > index bc69ec17d5ad..59fd588a1faf 100644
+> > --- a/drivers/gpu/drm/xe/xe_migrate.c
+> > +++ b/drivers/gpu/drm/xe/xe_migrate.c
+> > @@ -750,32 +750,57 @@ static int emit_clear(struct xe_gt *gt, struct xe_bb *bb, u64 src_ofs,
+> > 		      u32 size, u32 pitch, u32 value, bool is_vram)
+> > {
+> > 	u32 *cs = bb->cs + bb->len;
+> > -	u32 len = XY_FAST_COLOR_BLT_DW;
+> > +	u32 len;
+> > 	u32 mocs = xe_mocs_index_to_value(gt->mocs.uc_index);
+> > +	struct xe_device *xe = gt_to_xe(gt);
+> > 
+> > -	if (GRAPHICS_VERx100(gt->xe) < 1250)
+> > -		len = 11;
+> > -
+> > -	*cs++ = XY_FAST_COLOR_BLT_CMD | XY_FAST_COLOR_BLT_DEPTH_32 |
+> > -		(len - 2);
+> > -	*cs++ = FIELD_PREP(XY_FAST_COLOR_BLT_MOCS_MASK, mocs) |
+> > -		(pitch - 1);
+> > -	*cs++ = 0;
+> > -	*cs++ = (size / pitch) << 16 | pitch / 4;
+> > -	*cs++ = lower_32_bits(src_ofs);
+> > -	*cs++ = upper_32_bits(src_ofs);
+> > -	*cs++ = (is_vram ? 0x0 : 0x1) <<  XY_FAST_COLOR_BLT_MEM_TYPE_SHIFT;
+> > -	*cs++ = value;
+> > -	*cs++ = 0;
+> > -	*cs++ = 0;
+> > -	*cs++ = 0;
+> > -
+> > -	if (len > 11) {
+> > -		*cs++ = 0;
+> > +	if (xe->info.has_link_copy_engine) {
+> 
+> I wonder if instead of doing this we have here one example of function
+> hook that could provide some value. +Francois.
+> 
+> And take a look at the discussion in 20230303145015.1018870-1-francois.dugast@intel.com
+> 
+> I wouldn't block this series on that though.
+> 
+> 
+> > +		/* MEM_SET command supports setting only 8-bit value.
+> 
+> leave a blank line:
+> 
+> 		/*
+> 		 * MEM_SET ...
+> 
+> is the more usual style.
+> 	
+> > +		 * This function is currently used only to clear the address
+> > +		 * range.  So the value agrument is not really used. Need to
+> > +		 * have a better handling when there is a need to actually set
+> > +		 * a value. Print a warning if a value bigger than 8-bit is
+> > +		 * passed
+> > +		 */
+> > +		XE_WARN_ON(value > U8_MAX);
+> > +
+> > +		len = PVC_MEM_SET_CMD_LEN_DW;
+> > +
+> > +		*cs++ = PVC_MEM_SET_CMD | PVC_MS_MATRIX |
+> > +				(PVC_MEM_SET_CMD_LEN_DW - 2);
+> > +		*cs++ = pitch - 1;
+> > +		*cs++ = (size / pitch) - 1;
+> > +		*cs++ = pitch - 1;
+> > +		*cs++ = lower_32_bits(src_ofs);
+> > +		*cs++ = upper_32_bits(src_ofs);
+> > +		*cs++ = FIELD_PREP(PVC_MS_DATA_FIELD, value) |
+> > +				FIELD_PREP(PVC_MS_MOCS_INDEX_MASK, mocs);
+> > +	} else {
+> > +		len = XY_FAST_COLOR_BLT_DW;
+> > +		if (GRAPHICS_VERx100(gt->xe) < 1250)
+> > +			len = 11;
+> > +
+> > +		*cs++ = XY_FAST_COLOR_BLT_CMD | XY_FAST_COLOR_BLT_DEPTH_32 |
+> > +			(len - 2);
+> > +		*cs++ = FIELD_PREP(XY_FAST_COLOR_BLT_MOCS_MASK, mocs) |
+> > +			(pitch - 1);
+> > 		*cs++ = 0;
+> > +		*cs++ = (size / pitch) << 16 | pitch / 4;
+> > +		*cs++ = lower_32_bits(src_ofs);
+> > +		*cs++ = upper_32_bits(src_ofs);
+> > +		*cs++ = (is_vram ? 0x0 : 0x1) <<  XY_FAST_COLOR_BLT_MEM_TYPE_SHIFT;
+> > +		*cs++ = value;
+> > 		*cs++ = 0;
+> > 		*cs++ = 0;
+> > 		*cs++ = 0;
+> > +
+> > +		if (len > 11) {
+> > +			*cs++ = 0;
+> > +			*cs++ = 0;
+> > +			*cs++ = 0;
+> > +			*cs++ = 0;
+> > +			*cs++ = 0;
+> > +		}
+> > 	}
+> > 
+> > 	XE_BUG_ON(cs - bb->cs != len + bb->len);
+> > diff --git a/drivers/gpu/drm/xe/xe_pci.c b/drivers/gpu/drm/xe/xe_pci.c
+> > index c4d9fd2e7b2b..e555f13395ab 100644
+> > --- a/drivers/gpu/drm/xe/xe_pci.c
+> > +++ b/drivers/gpu/drm/xe/xe_pci.c
+> > @@ -72,6 +72,8 @@ struct xe_device_desc {
+> > 	bool has_4tile;
+> > 	bool has_range_tlb_invalidation;
+> > 	bool has_asid;
+> > +
+> > +	bool has_link_copy_engine;
+> 
+> I'm not sure if we should tie the availability of
+> MEM_SET instruction to the fact that the platform has link copy engines.
+> It seems to be an instruction to carry forward regardless of the type of
+> the copy engine.
+> 
+> +Matt Roper for opinion here
 
-while at it may be worth fixing the coding style one line below.
-In any case,
+I think it's probably okay; the bspec tagging for MEM_SET and MEM_COPY
+operations points at the hardware change that introduced link copy
+engines; so I think they're intertwined in the hardware design.  At the
+moment PVC is the only platform that falls into that category; although
+MTL is a "newer" IP version number, it doesn't have link copy engines or
+MEM_SET/MEM_COPY so using an IP version check wouldn't be a good idea.
+
+On future platforms I think it's expected that link copy engines and
+these instructions will continue to be tied together.  It's possible
+that a given platform may have all of the link copy engines fused off,
+but desc.has_link_copy_engine would still be considered true for that
+case.
 
 
-Reviewed-by: Lucas De Marchi <lucas.demarchi@intel.com>
+Matt
 
-thanks
-Lucas De Marchi
+> 
+> Lucas De Marchi
+> 
+> > };
+> > 
+> > __diag_push();
+> > @@ -224,6 +226,7 @@ static const struct xe_device_desc pvc_desc = {
+> > 	.vm_max_level = 4,
+> > 	.supports_usm = true,
+> > 	.has_asid = true,
+> > +	.has_link_copy_engine = true,
+> > };
+> > 
+> > #define MTL_MEDIA_ENGINES \
+> > @@ -413,6 +416,7 @@ static int xe_pci_probe(struct pci_dev *pdev, const struct pci_device_id *ent)
+> > 	xe->info.has_flat_ccs = desc->has_flat_ccs;
+> > 	xe->info.has_4tile = desc->has_4tile;
+> > 	xe->info.has_range_tlb_invalidation = desc->has_range_tlb_invalidation;
+> > +	xe->info.has_link_copy_engine = desc->has_link_copy_engine;
+> > 
+> > 	spd = subplatform_get(xe, desc);
+> > 	xe->info.subplatform = spd ? spd->subplatform : XE_SUBPLATFORM_NONE;
+> > -- 
+> > 2.34.1
+> > 
 
->
->@@ -425,15 +434,15 @@ static void read_fuses(struct xe_gt *gt)
-> 			drm_info(&xe->drm, "bcs%u fused off\n", j);
-> 		}
-> 	}
->-
->-	/* TODO: compute engines */
-> }
->
-> int xe_hw_engines_init_early(struct xe_gt *gt)
-> {
-> 	int i;
->
->-	read_fuses(gt);
->+	read_media_fuses(gt);
->+	read_copy_fuses(gt);
->+	/* TODO: compute engines */
->
-> 	for (i = 0; i < ARRAY_SIZE(gt->hw_engines); i++)
-> 		hw_engine_init_early(gt, &gt->hw_engines[i], i);
->-- 
->2.39.2
->
+-- 
+Matt Roper
+Graphics Software Engineer
+Linux GPU Platform Enablement
+Intel Corporation
