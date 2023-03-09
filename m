@@ -4,57 +4,47 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id E970BC6FD1C
-	for <intel-xe@archiver.kernel.org>; Thu,  9 Mar 2023 11:10:23 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id CBC9FC64EC4
+	for <intel-xe@archiver.kernel.org>; Thu,  9 Mar 2023 12:17:58 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B998310E160;
-	Thu,  9 Mar 2023 11:10:23 +0000 (UTC)
-Received: from mga06.intel.com (mga06b.intel.com [134.134.136.31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 615F610E12C;
- Thu,  9 Mar 2023 11:10:19 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 79B5910E801;
+	Thu,  9 Mar 2023 12:17:58 +0000 (UTC)
+Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B78E010E801
+ for <intel-xe@lists.freedesktop.org>; Thu,  9 Mar 2023 12:17:56 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1678360219; x=1709896219;
- h=message-id:date:mime-version:subject:to:cc:references:
- from:in-reply-to:content-transfer-encoding;
- bh=KZRWT/su22axle+F8TXraSsZA1SYiINjM4DpYxGglTQ=;
- b=FBhPwxzAnzBZ3eL76mSr5tOSRo0Pz3Y/jA+nmbrBykJhUfViRmHQ2nCm
- +Kal07mC7bGQwTVcfJJkd3bhoKIJ+yOj6+Xp0gIEfQGsgUAB/nB73sEIC
- SSmEkK5c3qfbroZkziHzp8+3ZcJY4deqThrVwnS+kvWxWs1o3gH+Az5RT
- 1CV8jUndbGs77USkeDKVZVXcS6zhbMZ+im/jFqlRpBRb9ONRMxaXFya1r
- aqxSVLFmTkRATZVngyuoAYe4Ldev90nzdS63NINGRQJE8jb17AKCNvhor
- Tg95b34AgTq1glXVFROywh2wrYAfle0Y4mii+UXnwtRgZmNt5hgl0GNA0 g==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10643"; a="398995687"
-X-IronPort-AV: E=Sophos;i="5.98,246,1673942400"; d="scan'208";a="398995687"
-Received: from orsmga005.jf.intel.com ([10.7.209.41])
- by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 09 Mar 2023 03:09:59 -0800
+ t=1678364276; x=1709900276;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=Dc+pF1Lt4gmOZ+h2n+FNMdhBE42kSS06N0fROUptGDo=;
+ b=KvnChTFK1yYOK3G+xo1ORF7NJvF/NYjQVe0jreV0GQHY6hHJ1ts70oKC
+ 9eCQ+rp0gMnJ5WhP6KsQjVpiFyin7jQTbG6GEWoemY6QV0HijcHw3nDxg
+ 566BKTKF0ecn936h01bYXovP478HSulysE7j3xUG00k49dAgGOOjNhsOY
+ k1o0EfxYvAnLt4slKqGVzCpI+CFt4mdfaToG4aEvwI689MO9sg5bvTZDB
+ GAreSHnPaJcZmqVYiF1yZoWPoGJKGQ/G88EXyuLkp6CGup5y54toJEQ08
+ AxAToVBI5Sw9wF7A/GBb79QglQN2/ax/4TXkMeLcxA5jEN9WpUNJ42K2h A==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10643"; a="320259048"
+X-IronPort-AV: E=Sophos;i="5.98,246,1673942400"; d="scan'208";a="320259048"
+Received: from fmsmga006.fm.intel.com ([10.253.24.20])
+ by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 09 Mar 2023 04:17:56 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6500,9779,10643"; a="851476833"
-X-IronPort-AV: E=Sophos;i="5.98,246,1673942400"; d="scan'208";a="851476833"
-Received: from lathoumy-mobl1.ger.corp.intel.com (HELO [10.249.44.17])
- ([10.249.44.17])
- by orsmga005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 09 Mar 2023 03:09:57 -0800
-Message-ID: <34de1995-7c27-c548-fbd0-00de11b5b346@linux.intel.com>
-Date: Thu, 9 Mar 2023 12:09:55 +0100
+X-IronPort-AV: E=McAfee;i="6500,9779,10643"; a="923208468"
+X-IronPort-AV: E=Sophos;i="5.98,246,1673942400"; d="scan'208";a="923208468"
+Received: from jnikula-mobl4.fi.intel.com (HELO localhost) ([10.237.66.145])
+ by fmsmga006-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 09 Mar 2023 04:17:54 -0800
+From: Jani Nikula <jani.nikula@intel.com>
+To: intel-xe@lists.freedesktop.org
+Date: Thu,  9 Mar 2023 14:17:46 +0200
+Message-Id: <20230309121746.479146-1-jani.nikula@intel.com>
+X-Mailer: git-send-email 2.39.1
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Firefox/102.0 Thunderbird/102.8.0
-Content-Language: en-US
-To: "Hogander, Jouni" <jouni.hogander@intel.com>,
- "ville.syrjala@linux.intel.com" <ville.syrjala@linux.intel.com>
-References: <20230306141638.196359-1-maarten.lankhorst@linux.intel.com>
- <edae44735190c4d5fbbe8959f999ad7ca65f3677.camel@intel.com>
- <073f5ef3-523a-2997-c7e9-771cce8f4c24@linux.intel.com>
- <ZAZT6jJlsiTF1A5a@intel.com>
- <3dc66e2540e3dcf8c626d8fe79c6334b1f1066e9.camel@intel.com>
-From: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
-In-Reply-To: <3dc66e2540e3dcf8c626d8fe79c6334b1f1066e9.camel@intel.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
 Content-Transfer-Encoding: 8bit
-Subject: Re: [Intel-xe] [Intel-gfx] [PATCH] drm/xe/display: Do not use i915
- frontbuffer tracking implementation
+Subject: [Intel-xe] [PATCH] drm/xe: make compound literal initialization
+ const
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -66,69 +56,50 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Cc: "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
- "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>,
- "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>
+Cc: jani.nikula@intel.com
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
+Be careful about having const in the compound literal initialization to
+keep the initializers in rodata. Here, the impact is 1.8k of mutable
+data moved to rodata.
 
-On 2023-03-09 12:04, Hogander, Jouni wrote:
-> On Mon, 2023-03-06 at 22:58 +0200, Ville Syrjälä wrote:
->> On Mon, Mar 06, 2023 at 09:23:50PM +0100, Maarten Lankhorst wrote:
->>> Hey,
->>>
->>> On 2023-03-06 16:23, Souza, Jose wrote:
->>>> On Mon, 2023-03-06 at 15:16 +0100, Maarten Lankhorst wrote:
->>>>> As a fallback if we decide not to merge the frontbuffer
->>>>> tracking, allow
->>>>> i915 to keep its own implementation, and do the right thing in
->>>>> Xe.
->>>>>
->>>>> The frontbuffer tracking for Xe is still done per-fb, while
->>>>> i915 can
->>>>> keep doing the weird intel_frontbuffer + i915_active thing
->>>>> without
->>>>> blocking Xe.
->>>> Please also disable PSR and FBC with this or at least add a way
->>>> for users to disable those features.
->>>> Without frontbuffer tracker those two features will break in some
->>>> cases.
->>> FBC and PSR work completely as expected. I don't remove frontbuffer
->>> tracking; I only remove the GEM parts.
->>>
->>> Explicit invalidation using pageflip or CPU rendering + DirtyFB
->>> continue
->>> to work, as I validated on my laptop with FBC.
->> Neither of which are relevant to the removal of the gem hooks.
->>
->> Like I already said ~10 times in the last meeting, we need a proper
->> testcase. Here's a rough idea what it should do:
->>
->> prepare a batch with
->> 1. spinner
->> 2. something that clobbers the fb
->>
->> Then
->> 1. grab reference crc
->> 2. execbuffer
->> 3. dirtyfb
->> 4. wait long enough for fbc to recompress
->> 5. terminate spinner
->> 6. gem_sync
->> 7. grab crc and compare with reference
->>
->> No idea what the current status of PSR+CRC is, so not sure
->> whether we can actually test PSR or not.
->>
-> CRC calculation doesn't work with PSR currently. PSR is disabled if CRC
-> capture is requested.
->
-> Are we supposed to support frontbuffer rendering using GPU?
+add/remove: 0/1 grow/shrink: 0/0 up/down: 0/-1804 (-1804)
+Data                                         old     new   delta
+__compound_literal                          1804       -   -1804
+Total: Before=42425, After=40621, chg -4.25%
+add/remove: 0/0 grow/shrink: 1/0 up/down: 1804/0 (1804)
+RO Data                                      old     new   delta
+__compound_literal                          7696    9500   +1804
+Total: Before=138535, After=140339, chg +1.30%
 
-No other driver does that. It's fine if DirtyFB hangs instead until the 
-job it waits on completes.
+Signed-off-by: Jani Nikula <jani.nikula@intel.com>
+---
+ drivers/gpu/drm/xe/xe_rtp.h | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
 
-~Maarten
-
+diff --git a/drivers/gpu/drm/xe/xe_rtp.h b/drivers/gpu/drm/xe/xe_rtp.h
+index bd44fd8bbe05..8fc393ef7358 100644
+--- a/drivers/gpu/drm/xe/xe_rtp.h
++++ b/drivers/gpu/drm/xe/xe_rtp.h
+@@ -363,7 +363,7 @@ struct xe_reg_sr;
+  */
+ #define XE_RTP_RULES(r1, ...)							\
+ 	.n_rules = COUNT_ARGS(r1, ##__VA_ARGS__),				\
+-	.rules = (struct xe_rtp_rule[]) {					\
++	.rules = (const struct xe_rtp_rule[]) {					\
+ 		CALL_FOR_EACH(__ADD_XE_RTP_RULE_PREFIX, r1, ##__VA_ARGS__)	\
+ 	}
+ 
+@@ -390,7 +390,7 @@ struct xe_reg_sr;
+  */
+ #define XE_RTP_ACTIONS(a1, ...)							\
+ 	.n_actions = COUNT_ARGS(a1, ##__VA_ARGS__),				\
+-	.actions = (struct xe_rtp_action[]) {					\
++	.actions = (const struct xe_rtp_action[]) {				\
+ 		CALL_FOR_EACH(__ADD_XE_RTP_ACTION_PREFIX, a1, ##__VA_ARGS__)	\
+ 	}
+ 
+-- 
+2.39.1
 
