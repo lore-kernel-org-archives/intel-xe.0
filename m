@@ -4,56 +4,45 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id E3139C64EC4
-	for <intel-xe@archiver.kernel.org>; Thu,  9 Mar 2023 12:34:35 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id A0C01C61DA4
+	for <intel-xe@archiver.kernel.org>; Thu,  9 Mar 2023 13:18:27 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A97B310E7FF;
-	Thu,  9 Mar 2023 12:34:35 +0000 (UTC)
-Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 66C3710E7FF;
- Thu,  9 Mar 2023 12:34:33 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7373010E812;
+	Thu,  9 Mar 2023 13:18:27 +0000 (UTC)
+Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id CADD210E812
+ for <intel-xe@lists.freedesktop.org>; Thu,  9 Mar 2023 13:18:24 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1678365273; x=1709901273;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:content-transfer-encoding:in-reply-to;
- bh=1fJVDXEkwaMvtK85ONFUTT0TBGpr/t89w4ePePPKumw=;
- b=CX3/7NakYlGRBajcZL6B53RO8xOFMh+tzM0S2CzXakPyy7hQH+8OWwZh
- Omr3ovM/3MoOV/Q5GgNkoPA+IFXWXMxqPA2NeuX8aUDHPoLl/hjAOFLaq
- 2v7P07l5q3A5V5CZ2JaAfrWQ/cvCvVgKAZNqhJxZhyWaIPqQ33Sy/CPc+
- eXO/04/ehUuE/5xEqUnBHLDQVI2tFSTig9tzNj7wxv9SgbQgG5pLiZcRt
- Gb7OQjXkG4kj8oO8fYFiqpYfENFSVzgsrCpRi60k6V6R2qyjLi8bPhN2X
- wpkAbskXSibvLF8+GHkdK9X3qd5NzVOO0dAC9Xdow7jQov2FcncJNeFiE g==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10643"; a="335136696"
-X-IronPort-AV: E=Sophos;i="5.98,246,1673942400"; d="scan'208";a="335136696"
-Received: from fmsmga001.fm.intel.com ([10.253.24.23])
- by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 09 Mar 2023 04:34:32 -0800
+ t=1678367904; x=1709903904;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=RXLHJo9tnTBEYGpORHDahqPCFS2Sf0H0VJPOptoxpyw=;
+ b=dR5oo71KZYtoOUX4FiTycMQinO185wtrds0bYVAYf8C/ddJbHnrCQFi3
+ GWkmi+mur+rusNR7er76EMgPB0bf1JirMUZfs3lMuDTfj61gHnTmbMFDO
+ s13jOLby0QwRfwQYhiGr0Lq+WzvACMtZL+YJtY10Ah0IBdfJCjc6lVBrw
+ SrEelkb4QL3IQCa8ezGNlVC8fOQ4Bs07e5Q0iJeWFOGUsAvzUCOOc0eVj
+ A73RTDQ0n7a6zJ4EJEw4SJVDHq3iOS8c8kpcn8dbvGVeBOVe0tWykPmDN
+ C/6eVLX7kXVVhqeyRrDwWwgwn3RUBYiEPMnDOgw1k1e88kzh9kO/dXAW0 w==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10643"; a="320270618"
+X-IronPort-AV: E=Sophos;i="5.98,246,1673942400"; d="scan'208";a="320270618"
+Received: from orsmga006.jf.intel.com ([10.7.209.51])
+ by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 09 Mar 2023 05:18:24 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6500,9779,10643"; a="820588773"
-X-IronPort-AV: E=Sophos;i="5.98,246,1673942400"; d="scan'208";a="820588773"
-Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.70])
- by fmsmga001.fm.intel.com with SMTP; 09 Mar 2023 04:34:29 -0800
-Received: by stinkbox (sSMTP sendmail emulation);
- Thu, 09 Mar 2023 14:34:28 +0200
-Date: Thu, 9 Mar 2023 14:34:28 +0200
-From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-To: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
-Message-ID: <ZAnSVOrUThPUSBes@intel.com>
-References: <20230306141638.196359-1-maarten.lankhorst@linux.intel.com>
- <edae44735190c4d5fbbe8959f999ad7ca65f3677.camel@intel.com>
- <073f5ef3-523a-2997-c7e9-771cce8f4c24@linux.intel.com>
- <ZAZT6jJlsiTF1A5a@intel.com>
- <3dc66e2540e3dcf8c626d8fe79c6334b1f1066e9.camel@intel.com>
- <34de1995-7c27-c548-fbd0-00de11b5b346@linux.intel.com>
+X-IronPort-AV: E=McAfee;i="6500,9779,10643"; a="654746679"
+X-IronPort-AV: E=Sophos;i="5.98,246,1673942400"; d="scan'208";a="654746679"
+Received: from rtauro-desk.iind.intel.com ([10.190.239.41])
+ by orsmga006-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 09 Mar 2023 05:18:22 -0800
+From: Riana Tauro <riana.tauro@intel.com>
+To: intel-xe@lists.freedesktop.org
+Date: Thu,  9 Mar 2023 18:48:56 +0530
+Message-Id: <20230309131856.1480173-1-riana.tauro@intel.com>
+X-Mailer: git-send-email 2.39.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <34de1995-7c27-c548-fbd0-00de11b5b346@linux.intel.com>
-X-Patchwork-Hint: comment
-Subject: Re: [Intel-xe] [Intel-gfx] [PATCH] drm/xe/display: Do not use i915
- frontbuffer tracking implementation
+Subject: [Intel-xe] [PATCH] drm/xe: Fix overflow in vram manager
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -65,88 +54,31 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Cc: "Hogander, Jouni" <jouni.hogander@intel.com>,
- "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
- "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>,
- "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>
+Cc: anshuman.gupta@intel.com, rodrigo.vivi@intel.com
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Thu, Mar 09, 2023 at 12:09:55PM +0100, Maarten Lankhorst wrote:
-> 
-> On 2023-03-09 12:04, Hogander, Jouni wrote:
-> > On Mon, 2023-03-06 at 22:58 +0200, Ville Syrjälä wrote:
-> >> On Mon, Mar 06, 2023 at 09:23:50PM +0100, Maarten Lankhorst wrote:
-> >>> Hey,
-> >>>
-> >>> On 2023-03-06 16:23, Souza, Jose wrote:
-> >>>> On Mon, 2023-03-06 at 15:16 +0100, Maarten Lankhorst wrote:
-> >>>>> As a fallback if we decide not to merge the frontbuffer
-> >>>>> tracking, allow
-> >>>>> i915 to keep its own implementation, and do the right thing in
-> >>>>> Xe.
-> >>>>>
-> >>>>> The frontbuffer tracking for Xe is still done per-fb, while
-> >>>>> i915 can
-> >>>>> keep doing the weird intel_frontbuffer + i915_active thing
-> >>>>> without
-> >>>>> blocking Xe.
-> >>>> Please also disable PSR and FBC with this or at least add a way
-> >>>> for users to disable those features.
-> >>>> Without frontbuffer tracker those two features will break in some
-> >>>> cases.
-> >>> FBC and PSR work completely as expected. I don't remove frontbuffer
-> >>> tracking; I only remove the GEM parts.
-> >>>
-> >>> Explicit invalidation using pageflip or CPU rendering + DirtyFB
-> >>> continue
-> >>> to work, as I validated on my laptop with FBC.
-> >> Neither of which are relevant to the removal of the gem hooks.
-> >>
-> >> Like I already said ~10 times in the last meeting, we need a proper
-> >> testcase. Here's a rough idea what it should do:
-> >>
-> >> prepare a batch with
-> >> 1. spinner
-> >> 2. something that clobbers the fb
-> >>
-> >> Then
-> >> 1. grab reference crc
-> >> 2. execbuffer
-> >> 3. dirtyfb
-> >> 4. wait long enough for fbc to recompress
-> >> 5. terminate spinner
-> >> 6. gem_sync
-> >> 7. grab crc and compare with reference
-> >>
-> >> No idea what the current status of PSR+CRC is, so not sure
-> >> whether we can actually test PSR or not.
-> >>
-> > CRC calculation doesn't work with PSR currently. PSR is disabled if CRC
-> > capture is requested.
-> >
-> > Are we supposed to support frontbuffer rendering using GPU?
-> 
-> No other driver does that.
+The overflow caused xe_bo_restore_kernel to return an error
+Fix overflow in vram manager alloc function.
 
-Every driver does that when you run X w/o a compositor. Assuming
-there is an actual GPU in there.
+Signed-off-by: Riana Tauro <riana.tauro@intel.com>
+---
+ drivers/gpu/drm/xe/xe_ttm_vram_mgr.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-> It's fine if DirtyFB hangs instead until the 
-> job it waits on completes.
-
-No one tried to make it just wait for the fence(s) w/o doing
-a full blown atomic commit. It might work, but might also
-still suck too much. I guess depends on how overloaded the GPU
-is.
-
-What we could do is do a frontbuffer invalidate on dirtyfb
-invocation, and then once the fence(s) signal we do a frontbuffer
-flush. That would most closely match the gem hook behaviour, except
-the invalidate comes in a bit later. The alternative would be to
-skip the invalidate, which should still guarantee correctness in
-the end, just with possibly jankier interactivity.
-
+diff --git a/drivers/gpu/drm/xe/xe_ttm_vram_mgr.c b/drivers/gpu/drm/xe/xe_ttm_vram_mgr.c
+index 643365b18bc7..159ca7105df1 100644
+--- a/drivers/gpu/drm/xe/xe_ttm_vram_mgr.c
++++ b/drivers/gpu/drm/xe/xe_ttm_vram_mgr.c
+@@ -118,7 +118,7 @@ static int xe_ttm_vram_mgr_new(struct ttm_resource_manager *man,
+ 
+ 		cur_size = size;
+ 
+-		if (fpfn + size != place->lpfn << PAGE_SHIFT) {
++		if (fpfn + size != (u64)place->lpfn << PAGE_SHIFT) {
+ 			/*
+ 			 * Except for actual range allocation, modify the size and
+ 			 * min_block_size conforming to continuous flag enablement
 -- 
-Ville Syrjälä
-Intel
+2.39.1
+
