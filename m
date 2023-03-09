@@ -4,47 +4,138 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 233D9C678D5
-	for <intel-xe@archiver.kernel.org>; Thu,  9 Mar 2023 00:55:43 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2B7A9C64EC4
+	for <intel-xe@archiver.kernel.org>; Thu,  9 Mar 2023 01:05:21 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id EDFB110E769;
-	Thu,  9 Mar 2023 00:55:42 +0000 (UTC)
-Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E32BA10E165
- for <intel-xe@lists.freedesktop.org>; Thu,  9 Mar 2023 00:55:40 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id DDCBE10E769;
+	Thu,  9 Mar 2023 01:05:20 +0000 (UTC)
+Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6E93C10E769
+ for <intel-xe@lists.freedesktop.org>; Thu,  9 Mar 2023 01:05:19 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1678323340; x=1709859340;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=Q2UtrFnMsmWkjcJECesPiBdszaWvG0l5QP61QHNebIk=;
- b=bme2gLzZqn2fz199IR9ApSolpa5HbuEhEdlHE66wxwLWkuJM0iefjy+1
- NlWY70p22fievIdecYftX0YotZNsoMBiDUMVvrhzIZjLi7ZT0CuaSa77O
- 4TVyx1QfYbLgZbkas5Rtwh4Joq/DE+YxSME8LSSTLcwxgfmgsQO/2kNrV
- a+DUf7ZnpNxwj25vTSFfCYtYm+gC4rN/DxGv8dMISMj4ZTxbmZjPKvs15
- 66cEc5xEcrVC2bUeWhF7PhoAwb4BuP9nPjh1kDGIfKfXpg4kXxQufjp4p
- ckazEPdUmT/ci+rdPX43mML6F1sz+cT1XesXe0vTWUvOkvcz1aC5lc2b2 w==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10643"; a="315977856"
-X-IronPort-AV: E=Sophos;i="5.98,244,1673942400"; d="scan'208";a="315977856"
-Received: from orsmga005.jf.intel.com ([10.7.209.41])
- by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 Mar 2023 16:55:40 -0800
+ t=1678323919; x=1709859919;
+ h=date:from:to:cc:subject:message-id:references:
+ in-reply-to:mime-version;
+ bh=DtNuB1zGZcXcbOHLZcHrVyHQSdGKTebQdsTY3jHzG2A=;
+ b=lhE062Sw0CUOScdy3jo8iSyuhOvwvkMzhK9znPcnC2kUcU3hnJh3rTRw
+ HWBfjaIVAig0q0tyscoyD/DsLAqPPln9kSwRtz5d/OGpieyVZ4Ja0SRMf
+ D3DqoJMioTS9LZJQIQM+6o1u7b+bwQxtrquPz2py4Js9a5iFvJ/rkHkUL
+ sjftNwGjA919KEAlTOH3hYiVJujbreoXSoOMXsiMez8Y+Z5XcvetdpdRB
+ M7QY3LNin563A21QC3S//XXfeiz7PL3p4Bm4Odgn0b8ddsbICuvm8GQ5D
+ tmPYwvrQbCH3jaZ+kF3SluWuZD1XJ4z4sTgOP+kfvXzj57uvvlRy8G3/K Q==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10643"; a="337846458"
+X-IronPort-AV: E=Sophos;i="5.98,244,1673942400"; d="scan'208";a="337846458"
+Received: from orsmga007.jf.intel.com ([10.7.209.58])
+ by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 08 Mar 2023 17:05:17 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6500,9779,10643"; a="851325640"
-X-IronPort-AV: E=Sophos;i="5.98,244,1673942400"; d="scan'208";a="851325640"
-Received: from mdroper-desk1.fm.intel.com ([10.1.27.134])
- by orsmga005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 Mar 2023 16:55:39 -0800
-From: Matt Roper <matthew.d.roper@intel.com>
-To: intel-xe@lists.freedesktop.org
-Date: Wed,  8 Mar 2023 16:55:30 -0800
-Message-Id: <20230309005530.3140173-2-matthew.d.roper@intel.com>
-X-Mailer: git-send-email 2.39.2
-In-Reply-To: <20230309005530.3140173-1-matthew.d.roper@intel.com>
-References: <20230309005530.3140173-1-matthew.d.roper@intel.com>
+X-IronPort-AV: E=McAfee;i="6500,9779,10643"; a="670549124"
+X-IronPort-AV: E=Sophos;i="5.98,244,1673942400"; d="scan'208";a="670549124"
+Received: from fmsmsx603.amr.corp.intel.com ([10.18.126.83])
+ by orsmga007.jf.intel.com with ESMTP; 08 Mar 2023 17:05:17 -0800
+Received: from fmsmsx611.amr.corp.intel.com (10.18.126.91) by
+ fmsmsx603.amr.corp.intel.com (10.18.126.83) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.21; Wed, 8 Mar 2023 17:05:17 -0800
+Received: from fmsmsx610.amr.corp.intel.com (10.18.126.90) by
+ fmsmsx611.amr.corp.intel.com (10.18.126.91) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.21; Wed, 8 Mar 2023 17:05:16 -0800
+Received: from FMSEDG603.ED.cps.intel.com (10.1.192.133) by
+ fmsmsx610.amr.corp.intel.com (10.18.126.90) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.21 via Frontend Transport; Wed, 8 Mar 2023 17:05:16 -0800
+Received: from NAM10-MW2-obe.outbound.protection.outlook.com (104.47.55.105)
+ by edgegateway.intel.com (192.55.55.68) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.1.2507.21; Wed, 8 Mar 2023 17:05:16 -0800
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=ifE+uXF1hxQgk4/+uX2ty3ThpLWMv9SJM57/x/qzIL+VTyLh8rd7w1bkQkIbTRcBvD0IyUFfUJbGlqDswZI97k6HoU0aCxb3PtLuyPecbODm979Vwetk8y8SLQJhy0mdITm+tqVXK5CHGbnkilkj9U1H+fFTtqubvaKMbLXJ7L+j5EAuQZdl2yOsug2+yPOvnLKq78VLHxvnh6dF5UlrMTKY8S5KQGFZPSHhoVJJRfE09sJCo+5n5cH6JS4n+7LV5Re7tlR5vAyr21oVYJyJOAjD7jJOoJ4S1G0HrPjHSwzADrQzjQsmyvOHqRBy3OuCuBZCtIYuTZYu72SlLPe2bw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=dolh8vDXkTo9r3QNeizU4aiq0u+P6emrLhkRnQCSFuM=;
+ b=C9ybI6wyP7kNThYKp2/E/TOZfgjyXx98foy0UDQrnPpknQjDcOPMf/BTiQQIup6tMj0xA5ybpF3hCxzZv1ByoAXME6SJvP+raqLZOhLXKSQk13IV7svxBz+RAQvqVfy5pJV7HdzQiI5n6ma/Jc1zpWjPawX3qQRIHX+dbwwmM/8T9HWj+fxG1/uO9cZwoYFYWYDvoDowSqHkS+qLKQnwpOHpzY6S4mnfGNyA1irTYzLA4B+ZFSXtUB7AqPrm5uRop8ST6TBaI/3EjdAwNwPawE45Zep3dkF30hSbfNpD6Raw2ZnDD6Fxcp0vMJGgYMy4X591UQbRU49p04o1VKundw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
+ dkim=pass header.d=intel.com; arc=none
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=intel.com;
+Received: from CY5PR11MB6139.namprd11.prod.outlook.com (2603:10b6:930:29::17)
+ by MN0PR11MB6301.namprd11.prod.outlook.com (2603:10b6:208:3c3::8)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6156.23; Thu, 9 Mar
+ 2023 01:05:09 +0000
+Received: from CY5PR11MB6139.namprd11.prod.outlook.com
+ ([fe80::2629:fb12:6221:3745]) by CY5PR11MB6139.namprd11.prod.outlook.com
+ ([fe80::2629:fb12:6221:3745%4]) with mapi id 15.20.6178.017; Thu, 9 Mar 2023
+ 01:05:09 +0000
+Date: Wed, 8 Mar 2023 17:05:05 -0800
+From: Lucas De Marchi <lucas.demarchi@intel.com>
+To: Matt Roper <matthew.d.roper@intel.com>
+Message-ID: <20230309010505.thipav5y4oilfdy2@ldmartin-desk2.lan>
+References: <20230307092446.1263266-1-lucas.demarchi@intel.com>
+ <20230307092446.1263266-15-lucas.demarchi@intel.com>
+ <20230308231115.GK1543793@mdroper-desk1.amr.corp.intel.com>
+Content-Type: text/plain; charset="us-ascii"; format=flowed
+Content-Disposition: inline
+In-Reply-To: <20230308231115.GK1543793@mdroper-desk1.amr.corp.intel.com>
+X-ClientProxiedBy: BYAPR06CA0066.namprd06.prod.outlook.com
+ (2603:10b6:a03:14b::43) To CY5PR11MB6139.namprd11.prod.outlook.com
+ (2603:10b6:930:29::17)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Subject: [Intel-xe] [PATCH v2 2/2] drm/xe: Add support for CCS engine fusing
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: CY5PR11MB6139:EE_|MN0PR11MB6301:EE_
+X-MS-Office365-Filtering-Correlation-Id: d0a4d9c0-51ba-4d97-8711-08db203a53ac
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: DjadoDd8uLmMK83KEEg5dom16vdDPN7DPecRp98Jm96rs+D9Sx3rmdv/IlMzq810j7HneefxqDntJmaqp2tgf0I0ROIlx/6mCnLMlJGWE4ST61M4QnQSmXcK428D30x+qS4st9VKXvTgtOyAkC+vic3kB/1/f66Ljh2Cx6pvBA5paSFEaaXpW+62juXbmspKhfftax2pfa4/mj8ueiBZ638v0OSEnhQXyi4kAOB959i69BONssYDrVgL6CtHgC6cy51r9I4KBqXu/BmXYl5a1hxc/7IQgRwvediDWaLzuy615pIALaeHZK0KcShSSbZeMHghV6+sD7O9hhamXw0zXKkeZ8tlKeUfxBrC814e+cy7ps3IvluHkgXjBqY9CtxFQPOvyt0lNlvfJsXraAXSelzMz5gmcXX00vg4XfwVmrqbthk1aIgnuLZqFmybv61wzw0smLlVEADx3Dz7se1E7gHtMegVi60GrEX6uZg91rMBZcDwqGL8TgJHyMBLwzoLjyMrEAL7wov6cOkq1axvHHrldYx4WWHhCbfCoX3O60tTRBv+b/XgycvtlYXWE3uQqXIV1nu0JAXVrub+GCBl8OEBNHXmQb+SUHaHagIrrK2UUsIFY3m8ic7cCunWt0WcBbN0yi2y689MBS88ZsKWRw==
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:CY5PR11MB6139.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230025)(39860400002)(346002)(136003)(396003)(376002)(366004)(451199018)(36756003)(6666004)(83380400001)(478600001)(9686003)(186003)(2906002)(8676002)(1076003)(6506007)(316002)(26005)(6512007)(6486002)(8936002)(6862004)(66556008)(66476007)(4326008)(66946007)(86362001)(41300700001)(5660300002)(82960400001)(38100700002)(6636002);
+ DIR:OUT; SFP:1102; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?8SLLn1kRGpTe0W7+expfweQmwZihnBl5bnwRTeLLIDoHG84VAD82k1T1qmbK?=
+ =?us-ascii?Q?tStFe/SPT8MiavppsBv0SZHpWXsrbqPpqBGm6ysS1jrCXYy//fh9qu1hWU/R?=
+ =?us-ascii?Q?U2pXXTpBT/jDBC6Esm6P18G6bTW0iRIGWaaH8NJR+MAN1UVePe/wUD8au1bz?=
+ =?us-ascii?Q?VzehCT9F3wBmWRCkpW9MvbetnMAFBJNgJM7KHecDkDGFo288NUNiJpczfIAZ?=
+ =?us-ascii?Q?P1fHcs5h2H6wJ0KR8IUpx1+xT3uEtNXfx5ORU1H6ZE7x1iHkvdqjoTaD0Lvv?=
+ =?us-ascii?Q?tcXzsHsnb2JPlxEeGFd8+GOpKZvJe/krz7TFM1OErp27kAUr8pnLaVhP0Dmu?=
+ =?us-ascii?Q?s6N2WPYz3sInquJAoBY/cLrqCoOMuTisgdnGrpcK01BJurmpuw+2iwmLAw05?=
+ =?us-ascii?Q?DB1cKRJMG0IBUAc/oHPXdqtQODRTrttojfLOl4vB03CBdBdPf81V0t+b9oRq?=
+ =?us-ascii?Q?pYfKJ8RGGnKahkB6Zzdllu+Q3ZEvr+y2IWLwQ+BJLHywVnKpQJMTrcVFQNjy?=
+ =?us-ascii?Q?TSdGmR9gkL7whzG6sUv2B7y1qS470RDbTcCSBH6aMQ4USJQYLiCVhZcL/7Hx?=
+ =?us-ascii?Q?MdPefoyE2tajfZYQbCySmjirm0FejHqT2Vvjt6PzUlfelHcEhv7UoWE+F/W7?=
+ =?us-ascii?Q?neElKgGxrRevSK4kVZ8ShQFBzd+X0LskbHC7khe2kEpM58E5GefXntSca2yQ?=
+ =?us-ascii?Q?ao5qrtOcHcftcFpXmUwKRuEScYaaVcqVXy8fdSiNia4uBm59gk4O9HWehS+0?=
+ =?us-ascii?Q?NZSWdYxvSpoh6ZHHcTWJoes9JnsIg+FwBqSY+B0YC0+cSgTVYVvUXqBZhWPT?=
+ =?us-ascii?Q?rIYLHZFZcWicGC54jl+aYJgXu3PQQxhxCaqgjDt1Oaft0Yojr1cv4lH8aQoE?=
+ =?us-ascii?Q?5DiztS8zQXE97H+AtpE/EHOmhGyy/cUAjsFjFa9TKWuY7TwouTVvnL+jlPoM?=
+ =?us-ascii?Q?ryRP4pdi60B14IkkzFYdxylK7yrd6kumqP6lHcq6bPDmTYA+TvHN2ZYSCOZA?=
+ =?us-ascii?Q?FHrwiYGIpMX84bD/ohkLt0EfL2+CMbtJxUI7QeTbmyuP3a2lLbenmOGPtRbh?=
+ =?us-ascii?Q?HFURQF16vUdzCBuvPFp8Q5u8t/o9AetReMHR44giZ+Pc4sKVNNDdR3Lf6F+R?=
+ =?us-ascii?Q?4zfkMk8BC6YAkJsce9b9UP/ofwRb25FFePx6wIVuwrzMnt015yIvQpsROt/l?=
+ =?us-ascii?Q?AlrbLWq5dzkgPazBNpiVYxwRWiUW5HXhUeP7XH1UwdWh6dswVjqSlFZ8nbVn?=
+ =?us-ascii?Q?fimA27WyuSxHR2Q7qlD/B+V6azoBe3XB82Pdkc7CMgS5C+mGZ3c/ThxpFPe7?=
+ =?us-ascii?Q?rqAy3Um0v6Sv/SgAA5lmsTUbPJL816jPt5en2YEw7F7uGhScF8Po/UrW4Koe?=
+ =?us-ascii?Q?5I6zHo+MsCpeBuWIPUc5VctiWyeus1GQMe+nS9KxXDBSf5AS4HvpAJeNm5aR?=
+ =?us-ascii?Q?Sh9xJEPOPlTq0LeTAji9i2MaAAkVTFN5dGgP1CkQK8AelBPkP3ZND8DL+BMp?=
+ =?us-ascii?Q?Xz3CpIH3NzvhZS8jD8a8nPGjHwQsi4h5VwL6AAPCSEJ9Wo3qPL+8e5Sdu49F?=
+ =?us-ascii?Q?KyXz3x+6kjB23ADVL+oYNbtYEFG76oPSmNtbTEkZMZbuIionxNsjZAI6oQND?=
+ =?us-ascii?Q?dA=3D=3D?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: d0a4d9c0-51ba-4d97-8711-08db203a53ac
+X-MS-Exchange-CrossTenant-AuthSource: CY5PR11MB6139.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 09 Mar 2023 01:05:08.8953 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: ybAZy8tdA/gK0bQs9nYBEg82yZpEQeu+jvYYfGAWURQuOWBrPMFLAVuIsRaRGy3QYjgywJO0eYFxUbrRnLhJFVbiCiso5CbZVUg6J0gxLsY=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: MN0PR11MB6301
+X-OriginatorOrg: intel.com
+Subject: Re: [Intel-xe] [PATCH 14/19] drm/xe: Add PVC gt workarounds
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -56,180 +147,89 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Cc: Lucas De Marchi <lucas.demarchi@intel.com>, matthew.d.roper@intel.com
+Cc: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-For Xe_HP platforms that can have multiple CCS engines, the
-presence/absence of each CCS is inferred by the presence/absence of any
-DSS in the corresponding quadrant of the GT's DSS mask.
+On Wed, Mar 08, 2023 at 03:11:15PM -0800, Matt Roper wrote:
+>On Tue, Mar 07, 2023 at 01:24:41AM -0800, Lucas De Marchi wrote:
+>> Synchronize with i915 the PVC gt workarounds as of committ
+>> commit 4d14d7717f19 ("drm/i915/selftest: Fix ktime_get() and h/w
+>> access order").
+>>
+>> Signed-off-by: Lucas De Marchi <lucas.demarchi@intel.com>
+>> ---
+>>  drivers/gpu/drm/xe/regs/xe_gt_regs.h |  9 +++++++++
+>>  drivers/gpu/drm/xe/xe_wa.c           | 18 ++++++++++++++++++
+>>  2 files changed, 27 insertions(+)
+>>
+>> diff --git a/drivers/gpu/drm/xe/regs/xe_gt_regs.h b/drivers/gpu/drm/xe/regs/xe_gt_regs.h
+>> index 70457c0ff4a6..1b39a209898b 100644
+>> --- a/drivers/gpu/drm/xe/regs/xe_gt_regs.h
+>> +++ b/drivers/gpu/drm/xe/regs/xe_gt_regs.h
+>> @@ -216,6 +216,15 @@
+>>  #define FORCEWAKE_MEDIA_VDBOX_GEN11(n)		_MMIO(0xa540 + (n) * 4)
+>>  #define FORCEWAKE_MEDIA_VEBOX_GEN11(n)		_MMIO(0xa560 + (n) * 4)
+>>
+>> +#define XEHPC_LNCFMISCCFGREG0			MCR_REG(0xb01c)
+>> +#define   XEHPC_OVRLSCCC			REG_BIT(0)
+>> +
+>> +#define RENDER_MOD_CTRL				MCR_REG(0xcf2c)
+>> +#define COMP_MOD_CTRL				MCR_REG(0xcf30)
+>> +#define XEHP_VDBX_MOD_CTRL			MCR_REG(0xcf34)
+>> +#define XEHP_VEBX_MOD_CTRL			MCR_REG(0xcf38)
+>> +#define   FORCE_MISS_FTLB			REG_BIT(3)
+>> +
+>>  #define GEN10_SAMPLER_MODE			MCR_REG(0xe18c)
+>>  #define   ENABLE_SMALLPL			REG_BIT(15)
+>>  #define   SC_DISABLE_POWER_OPTIMIZATION_EBB	REG_BIT(9)
+>> diff --git a/drivers/gpu/drm/xe/xe_wa.c b/drivers/gpu/drm/xe/xe_wa.c
+>> index 155cabe16e2e..6498f187591d 100644
+>> --- a/drivers/gpu/drm/xe/xe_wa.c
+>> +++ b/drivers/gpu/drm/xe/xe_wa.c
+>> @@ -180,6 +180,24 @@ static const struct xe_rtp_entry gt_was[] = {
+>>  	  XE_RTP_RULES(PLATFORM(DG2)),
+>>  	  XE_RTP_ACTIONS(CLR(GEN7_MISCCPCTL, GEN12_DOP_CLOCK_GATE_RENDER_ENABLE))
+>>  	},
+>> +
+>> +	/* PVC */
+>> +
+>> +	{ XE_RTP_NAME("14015795083"),
+>> +	  XE_RTP_RULES(PLATFORM(PVC)),
+>> +	  XE_RTP_ACTIONS(CLR(GEN7_MISCCPCTL, GEN12_DOP_CLOCK_GATE_RENDER_ENABLE))
+>> +	},
+>> +	{ XE_RTP_NAME("18018781329"),
+>> +	  XE_RTP_RULES(PLATFORM(PVC)),
+>> +	  XE_RTP_ACTIONS(SET(RENDER_MOD_CTRL, FORCE_MISS_FTLB),
+>> +			 SET(COMP_MOD_CTRL, FORCE_MISS_FTLB),
+>> +			 SET(XEHP_VDBX_MOD_CTRL, FORCE_MISS_FTLB),
+>> +			 SET(XEHP_VEBX_MOD_CTRL, FORCE_MISS_FTLB))
+>> +	},
+>> +	{ XE_RTP_NAME("16016694945"),
+>> +	  XE_RTP_RULES(PLATFORM(PVC)),
+>> +	  XE_RTP_ACTIONS(SET(XEHPC_LNCFMISCCFGREG0, XEHPC_OVRLSCCC))
+>
+>I think we need XE_RTP_ACTION_FLAG(MASKED_REG) on this one.
 
-This handling is only needed on platforms that can have more than one
-CCS.  The CCS is never fused off on platforms like MTL that can only
-have one.
+yeah, missed the flag in this one.
 
-v2:
- - Add extra warnings to try to catch mistakes where the register counts
-   in get_num_dss_regs() are updated without corresponding updates to
-   the register parameters passed to load_dss_mask().  (Lucas)
- - Add kerneldoc for xe_gt_topology_has_dss_in_quadrant() and clarify
-   why we care about quadrants of the DSS space.  (Lucas)
- - Ensure CCS engine counting treats engine mask as 64-bit.  (Lucas)
+thanks
+Lucas De Marchi
 
-Cc: Lucas De Marchi <lucas.demarchi@intel.com>
-Signed-off-by: Matt Roper <matthew.d.roper@intel.com>
----
- drivers/gpu/drm/xe/xe_gt_topology.c | 65 ++++++++++++++++++++++++-----
- drivers/gpu/drm/xe/xe_gt_topology.h |  3 ++
- drivers/gpu/drm/xe/xe_hw_engine.c   | 29 ++++++++++++-
- 3 files changed, 85 insertions(+), 12 deletions(-)
-
-diff --git a/drivers/gpu/drm/xe/xe_gt_topology.c b/drivers/gpu/drm/xe/xe_gt_topology.c
-index 2123f84be336..f2cbee53462b 100644
---- a/drivers/gpu/drm/xe/xe_gt_topology.c
-+++ b/drivers/gpu/drm/xe/xe_gt_topology.c
-@@ -62,6 +62,21 @@ load_eu_mask(struct xe_gt *gt, xe_eu_mask_t mask)
- 	bitmap_from_arr32(mask, &val, XE_MAX_EU_FUSE_BITS);
- }
- 
-+static void
-+get_num_dss_regs(struct xe_device *xe, int *geometry_regs, int *compute_regs)
-+{
-+	if (GRAPHICS_VERx100(xe) == 1260) {
-+		*geometry_regs = 0;
-+		*compute_regs = 2;
-+	} else if (GRAPHICS_VERx100(xe) >= 1250) {
-+		*geometry_regs = 1;
-+		*compute_regs = 1;
-+	} else {
-+		*geometry_regs = 1;
-+		*compute_regs = 0;
-+	}
-+}
-+
- void
- xe_gt_topology_init(struct xe_gt *gt)
- {
-@@ -69,18 +84,17 @@ xe_gt_topology_init(struct xe_gt *gt)
- 	struct drm_printer p = drm_debug_printer("GT topology");
- 	int num_geometry_regs, num_compute_regs;
- 
--	if (GRAPHICS_VERx100(xe) == 1260) {
--		num_geometry_regs = 0;
--		num_compute_regs = 2;
--	} else if (GRAPHICS_VERx100(xe) >= 1250) {
--		num_geometry_regs = 1;
--		num_compute_regs = 1;
--	} else {
--		num_geometry_regs = 1;
--		num_compute_regs = 0;
--	}
-+	get_num_dss_regs(xe, &num_geometry_regs, &num_compute_regs);
- 
--	load_dss_mask(gt, gt->fuse_topo.g_dss_mask, num_geometry_regs,
-+	/*
-+	 * Register counts returned shouldn't exceed the number of registers
-+	 * passed as parameters below.
-+	 */
-+	drm_WARN_ON(&xe->drm, num_geometry_regs > 1);
-+	drm_WARN_ON(&xe->drm, num_compute_regs > 2);
-+
-+	load_dss_mask(gt, gt->fuse_topo.g_dss_mask,
-+		      num_geometry_regs,
- 		      XELP_GT_GEOMETRY_DSS_ENABLE.reg);
- 	load_dss_mask(gt, gt->fuse_topo.c_dss_mask, num_compute_regs,
- 		      XEHP_GT_COMPUTE_DSS_ENABLE.reg,
-@@ -113,3 +127,32 @@ xe_dss_mask_group_ffs(xe_dss_mask_t mask, int groupsize, int groupnum)
- {
- 	return find_next_bit(mask, XE_MAX_DSS_FUSE_BITS, groupnum * groupsize);
- }
-+
-+/**
-+ * xe_gt_topology_has_dss_in_quadrant - check fusing of DSS in GT quadrant
-+ * @gt: GT to check
-+ * @quad: Which quadrant of the DSS space to check
-+ *
-+ * Since Xe_HP platforms can have up to four CCS engines, those engines
-+ * are each logically associated with a quarter of the possible DSS.  If there
-+ * are no DSS present in one of the four quadrants of the DSS space, the
-+ * corresponding CCS engine is also not available for use.
-+ *
-+ * Returns false if all DSS in a quadrant of the GT are fused off, else true.
-+ */
-+bool xe_gt_topology_has_dss_in_quadrant(struct xe_gt *gt, int quad)
-+{
-+	struct xe_device *xe = gt_to_xe(gt);
-+	xe_dss_mask_t all_dss;
-+	int g_dss_regs, c_dss_regs, dss_per_quad, quad_first;
-+
-+	bitmap_or(all_dss, gt->fuse_topo.g_dss_mask, gt->fuse_topo.c_dss_mask,
-+		  XE_MAX_DSS_FUSE_BITS);
-+
-+	get_num_dss_regs(xe, &g_dss_regs, &c_dss_regs);
-+	dss_per_quad = 32 * max(g_dss_regs, c_dss_regs) / 4;
-+
-+	quad_first = xe_dss_mask_group_ffs(all_dss, dss_per_quad, quad);
-+
-+	return quad_first < (quad + 1) * dss_per_quad;
-+}
-diff --git a/drivers/gpu/drm/xe/xe_gt_topology.h b/drivers/gpu/drm/xe/xe_gt_topology.h
-index b2540dc266f2..f47ab1b1269c 100644
---- a/drivers/gpu/drm/xe/xe_gt_topology.h
-+++ b/drivers/gpu/drm/xe/xe_gt_topology.h
-@@ -17,4 +17,7 @@ void xe_gt_topology_dump(struct xe_gt *gt, struct drm_printer *p);
- unsigned int
- xe_dss_mask_group_ffs(xe_dss_mask_t mask, int groupsize, int groupnum);
- 
-+bool
-+xe_gt_topology_has_dss_in_quadrant(struct xe_gt *gt, int quad);
-+
- #endif /* _XE_GT_TOPOLOGY_H_ */
-diff --git a/drivers/gpu/drm/xe/xe_hw_engine.c b/drivers/gpu/drm/xe/xe_hw_engine.c
-index abfd35491b47..63a4efd5edcc 100644
---- a/drivers/gpu/drm/xe/xe_hw_engine.c
-+++ b/drivers/gpu/drm/xe/xe_hw_engine.c
-@@ -436,13 +436,40 @@ static void read_copy_fuses(struct xe_gt *gt)
- 	}
- }
- 
-+static void read_compute_fuses(struct xe_gt *gt)
-+{
-+	struct xe_device *xe = gt_to_xe(gt);
-+
-+	/*
-+	 * CCS fusing based on DSS masks only applies to platforms that can
-+	 * have more than one CCS.
-+	 */
-+	if (hweight64(gt->info.engine_mask &
-+		      GENMASK_ULL(XE_HW_ENGINE_CCS3, XE_HW_ENGINE_CCS0)) <= 1)
-+		return;
-+
-+	/*
-+	 * CCS availability on Xe_HP is inferred from the presence of DSS in
-+	 * each quadrant.
-+	 */
-+	for (int i = XE_HW_ENGINE_CCS0, j = 0; i <= XE_HW_ENGINE_CCS3; ++i, ++j) {
-+		if (!(gt->info.engine_mask & BIT(i)))
-+			continue;
-+
-+		if (!xe_gt_topology_has_dss_in_quadrant(gt, j)) {
-+			gt->info.engine_mask &= ~BIT(i);
-+			drm_info(&xe->drm, "ccs%u fused off\n", j);
-+		}
-+	}
-+}
-+
- int xe_hw_engines_init_early(struct xe_gt *gt)
- {
- 	int i;
- 
- 	read_media_fuses(gt);
- 	read_copy_fuses(gt);
--	/* TODO: compute engines */
-+	read_compute_fuses(gt);
- 
- 	for (i = 0; i < ARRAY_SIZE(gt->hw_engines); i++)
- 		hw_engine_init_early(gt, &gt->hw_engines[i], i);
--- 
-2.39.2
-
+>
+>
+>Matt
+>
+>> +	},
+>>  	{}
+>>  };
+>>
+>> --
+>> 2.39.0
+>>
+>
+>-- 
+>Matt Roper
+>Graphics Software Engineer
+>Linux GPU Platform Enablement
+>Intel Corporation
