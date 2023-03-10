@@ -4,48 +4,47 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id DD76AC7618A
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id EEBEBC7618D
 	for <intel-xe@archiver.kernel.org>; Fri, 10 Mar 2023 22:16:30 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id AC27310EA23;
+	by gabe.freedesktop.org (Postfix) with ESMTP id B4D7210EA24;
 	Fri, 10 Mar 2023 22:16:30 +0000 (UTC)
 Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 521CB10EA1B
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6BCD410EA1C
  for <intel-xe@lists.freedesktop.org>; Fri, 10 Mar 2023 22:16:28 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
  t=1678486588; x=1710022588;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=qua9YrBFAu8Tj2HaHbb75foBD1nEOGJktdlxEwsMIj0=;
- b=UCwI2tanzmff9m7gs+YoRuD8CBWuYGZ5o+vIpf/jsuca8vaKBBTZz6iU
- 0SZsjSa/cOOF/J7ZszpT/6FTQ14f/tJHeVSblgZffJPTnDou5R8goCo0T
- rqRhwfmJT54Ccss2HS/yOIkjIBPHF8y0A03EwCqZC3wcFrIr4qxMuumi3
- ETsB/avcyOal+Nd/+RvSu5b+sZkcGfWpGm4JkQRlab9IUzQhlijGpc+1o
- 85DzlIndCM1jca+CjWWmzWnnRACJDj0QOkRSFJqQrcPbCwiNd/CZryDKR
- f3eX2Zct+enWmGb0MT3Tdh2qg/UMja7FkKO1oyMNX0wbgNWsy0w7ituKI A==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10645"; a="423106174"
-X-IronPort-AV: E=Sophos;i="5.98,251,1673942400"; d="scan'208";a="423106174"
+ bh=/W3C5Peq0jT+Zh9WUT03Ht2/+pSmnzEyTQS3gj8sgss=;
+ b=OvX0b7BvKlYOIoE3Y/bzaZnGbpAfz1MosCEx9AIDRSFmizSHECgpO4Sd
+ jRfY3TCUTUgRkLkdNzqwyPbHUW2Rd8KV592CVcGFJgnJ082D/lbZmBkg6
+ uO8dMKDZukiRoCDB8S04rQCIFsLfgFVEpdOQNz1PT5VKOL+SydBWlvoA3
+ 6bGdFykZoeS8Wb+72Q/C+H2BQ3hbivtHyXfggl75dsVQq0f/fi32Z3tAq
+ C7VjsyOWYcEfdw5KDEgi1/5tuDWauKpdGPNDSCml9mVxz9wVl6EI3Ub1l
+ Xx6EY/2Pzhvk5fP+HSiUhN2CzarqeNqiJXFNQJAXDYitxY+igk7gEjRLV Q==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10645"; a="423106175"
+X-IronPort-AV: E=Sophos;i="5.98,251,1673942400"; d="scan'208";a="423106175"
 Received: from fmsmga001.fm.intel.com ([10.253.24.23])
  by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  10 Mar 2023 14:16:27 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6500,9779,10645"; a="821234959"
-X-IronPort-AV: E=Sophos;i="5.98,251,1673942400"; d="scan'208";a="821234959"
+X-IronPort-AV: E=McAfee;i="6500,9779,10645"; a="821234976"
+X-IronPort-AV: E=Sophos;i="5.98,251,1673942400"; d="scan'208";a="821234976"
 Received: from lucas-s2600cw.jf.intel.com ([10.165.21.196])
  by fmsmga001-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 10 Mar 2023 14:16:23 -0800
+ 10 Mar 2023 14:16:24 -0800
 From: Lucas De Marchi <lucas.demarchi@intel.com>
 To: intel-xe@lists.freedesktop.org
-Date: Fri, 10 Mar 2023 14:15:41 -0800
-Message-Id: <20230310221549.2337402-5-lucas.demarchi@intel.com>
+Date: Fri, 10 Mar 2023 14:15:49 -0800
+Message-Id: <20230310221549.2337402-13-lucas.demarchi@intel.com>
 X-Mailer: git-send-email 2.39.0
 In-Reply-To: <20230310221549.2337402-1-lucas.demarchi@intel.com>
 References: <20230310221549.2337402-1-lucas.demarchi@intel.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-xe] [PATCH v2 04/12] drm/xe/debugfs: Dump register
- save-restore tables
+Subject: [Intel-xe] [PATCH v2 12/12] drm/xe: Add missing DG2 lrc workarounds
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -62,175 +61,137 @@ Cc: Lucas De Marchi <lucas.demarchi@intel.com>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Add debugfs entry to dump the final tables with register save-restore
-information.
+Synchronize with i915 the DG2 lrc workarounds as of
+commit 4d14d7717f19 ("drm/i915/selftest: Fix ktime_get() and h/w access
+order").
 
-For the workarounds, this has a format a little bit different than when the
-values are applied because we don't want to read the values from the HW
-when dumping via debugfs. For whitelist it just re-uses the print
-function added for when the whitelist is being built.
+A few simplifications were done when the WA should be applied to some
+steps of a subplatform and all the steppings of the other subplatforms.
+In this case, it was simply applied to all the steppings, which only
+means applying it to a few more A* steppings.
+
+The implementation of the workaround 16011186671 triggers a bug in the
+RTP infra: it's not possible to set the flag the usual way when having
+multiple actions in the entry. This may be fixed later, but for now it's
+sufficient to just set the flag directly without the helper macro.
+
+v2: Fix 14014947963 to use FIELD_SET (Matt Roper)
 
 Signed-off-by: Lucas De Marchi <lucas.demarchi@intel.com>
 ---
- drivers/gpu/drm/xe/xe_gt_debugfs.c    | 30 +++++++++++++++++++++++++++
- drivers/gpu/drm/xe/xe_reg_sr.c        | 22 ++++++++++++++++++++
- drivers/gpu/drm/xe/xe_reg_sr.h        |  2 ++
- drivers/gpu/drm/xe/xe_reg_whitelist.c | 18 ++++++++++++++++
- drivers/gpu/drm/xe/xe_reg_whitelist.h |  3 +++
- 5 files changed, 75 insertions(+)
+ drivers/gpu/drm/xe/regs/xe_gt_regs.h | 19 +++++++++++
+ drivers/gpu/drm/xe/xe_wa.c           | 51 ++++++++++++++++++++++++++++
+ 2 files changed, 70 insertions(+)
 
-diff --git a/drivers/gpu/drm/xe/xe_gt_debugfs.c b/drivers/gpu/drm/xe/xe_gt_debugfs.c
-index 78942e12e76c..9fab8017490f 100644
---- a/drivers/gpu/drm/xe/xe_gt_debugfs.c
-+++ b/drivers/gpu/drm/xe/xe_gt_debugfs.c
-@@ -16,6 +16,8 @@
- #include "xe_gt_topology.h"
- #include "xe_hw_engine.h"
- #include "xe_macros.h"
-+#include "xe_reg_sr.h"
-+#include "xe_reg_whitelist.h"
- #include "xe_uc_debugfs.h"
+diff --git a/drivers/gpu/drm/xe/regs/xe_gt_regs.h b/drivers/gpu/drm/xe/regs/xe_gt_regs.h
+index 7a578672a818..4a7ce09d6b60 100644
+--- a/drivers/gpu/drm/xe/regs/xe_gt_regs.h
++++ b/drivers/gpu/drm/xe/regs/xe_gt_regs.h
+@@ -73,9 +73,16 @@
+ #define XEHP_TILE0_ADDR_RANGE			MCR_REG(0x4900)
+ #define XEHP_FLAT_CCS_BASE_ADDR			MCR_REG(0x4910)
  
- static struct xe_gt *node_to_gt(struct drm_info_node *node)
-@@ -98,6 +100,33 @@ static int ggtt(struct seq_file *m, void *data)
- 	return xe_ggtt_dump(gt->mem.ggtt, &p);
- }
++#define CHICKEN_RASTER_1			MCR_REG(0x6204)
++#define   DIS_SF_ROUND_NEAREST_EVEN		REG_BIT(8)
++
+ #define CHICKEN_RASTER_2			MCR_REG(0x6208)
+ #define   TBIMR_FAST_CLIP			REG_BIT(5)
  
-+static int register_save_restore(struct seq_file *m, void *data)
-+{
-+	struct xe_gt *gt = node_to_gt(m->private);
-+	struct drm_printer p = drm_seq_file_printer(m);
-+	struct xe_hw_engine *hwe;
-+	enum xe_hw_engine_id id;
++#define VFLSKPD					MCR_REG(0x62a8)
++#define   DIS_OVER_FETCH_CACHE			REG_BIT(1)
++#define   DIS_MULT_MISS_RD_SQUASH		REG_BIT(0)
 +
-+	xe_reg_sr_dump(&gt->reg_sr, &p);
-+	drm_printf(&p, "\n");
+ #define GEN12_FF_MODE2				_MMIO(0x6604)
+ #define XEHP_FF_MODE2				MCR_REG(0x6604)
+ #define   FF_MODE2_GS_TIMER_MASK		REG_GENMASK(31, 24)
+@@ -83,6 +90,12 @@
+ #define   FF_MODE2_TDS_TIMER_MASK		REG_GENMASK(23, 16)
+ #define   FF_MODE2_TDS_TIMER_128		REG_FIELD_PREP(FF_MODE2_TDS_TIMER_MASK, 4)
+ 
++#define CACHE_MODE_1				_MMIO(0x7004)
++#define   MSAA_OPTIMIZATION_REDUC_DISABLE	REG_BIT(11)
 +
-+	drm_printf(&p, "Engine\n");
-+	for_each_hw_engine(hwe, gt, id)
-+		xe_reg_sr_dump(&hwe->reg_sr, &p);
-+	drm_printf(&p, "\n");
++#define XEHP_PSS_MODE2				MCR_REG(0x703c)
++#define   SCOREBOARD_STALL_FLUSH_CONTROL	REG_BIT(5)
 +
-+	drm_printf(&p, "LRC\n");
-+	for_each_hw_engine(hwe, gt, id)
-+		xe_reg_sr_dump(&hwe->reg_lrc, &p);
-+	drm_printf(&p, "\n");
+ #define HIZ_CHICKEN				_MMIO(0x7018)
+ #define   DG1_HZ_READ_SUPPRESSION_OPTIMIZATION_DISABLE	REG_BIT(14)
+ 
+@@ -96,6 +109,12 @@
+ #define   GEN11_BLEND_EMB_FIX_DISABLE_IN_RCC	REG_BIT(11)
+ #define   GEN12_DISABLE_CPS_AWARE_COLOR_PIPE	REG_BIT(9)
+ 
++#define XEHP_SLICE_COMMON_ECO_CHICKEN1		MCR_REG(0x731c)
++#define   MSC_MSAA_REODER_BUF_BYPASS_DISABLE	REG_BIT(14)
 +
-+	drm_printf(&p, "Whitelist\n");
-+	for_each_hw_engine(hwe, gt, id)
-+		xe_reg_whitelist_dump(&hwe->reg_whitelist, &p);
++#define VF_PREEMPTION				_MMIO(0x83a4)
++#define   PREEMPTION_VERTEX_COUNT		REG_GENMASK(15, 0)
 +
-+	return 0;
-+}
+ #define VFG_PREEMPTION_CHICKEN			_MMIO(0x83b4)
+ #define   POLYGON_TRIFAN_LINELOOP_DISABLE	REG_BIT(4)
+ 
+diff --git a/drivers/gpu/drm/xe/xe_wa.c b/drivers/gpu/drm/xe/xe_wa.c
+index cc7a6552f17c..f97350184057 100644
+--- a/drivers/gpu/drm/xe/xe_wa.c
++++ b/drivers/gpu/drm/xe/xe_wa.c
+@@ -540,6 +540,57 @@ static const struct xe_rtp_entry lrc_was[] = {
+ 			     DG1_HZ_READ_SUPPRESSION_OPTIMIZATION_DISABLE,
+ 			     XE_RTP_ACTION_FLAG(MASKED_REG)))
+ 	},
 +
- static const struct drm_info_list debugfs_list[] = {
- 	{"hw_engines", hw_engines, 0},
- 	{"force_reset", force_reset, 0},
-@@ -105,6 +134,7 @@ static const struct drm_info_list debugfs_list[] = {
- 	{"topology", topology, 0},
- 	{"steering", steering, 0},
- 	{"ggtt", ggtt, 0},
-+	{"register-save-restore", register_save_restore, 0},
++	/* DG2 */
++
++	{ XE_RTP_NAME("16011186671"),
++	  XE_RTP_RULES(SUBPLATFORM(DG2, G11), STEP(A0, B0)),
++	  XE_RTP_ACTIONS(CLR(VFLSKPD, DIS_MULT_MISS_RD_SQUASH,
++			     .flags = XE_RTP_ACTION_FLAG_MASKED_REG),
++			 SET(VFLSKPD, DIS_OVER_FETCH_CACHE,
++			     .flags = XE_RTP_ACTION_FLAG_MASKED_REG))
++	},
++	{ XE_RTP_NAME("14010469329"),
++	  XE_RTP_RULES(SUBPLATFORM(DG2, G10), STEP(A0, B0)),
++	  XE_RTP_ACTIONS(SET(XEHP_COMMON_SLICE_CHICKEN3,
++			     XEHP_DUAL_SIMD8_SEQ_MERGE_DISABLE,
++			     XE_RTP_ACTION_FLAG(MASKED_REG)))
++	},
++	{ XE_RTP_NAME("14010698770, 22010613112, 22010465075"),
++	  XE_RTP_RULES(SUBPLATFORM(DG2, G10), STEP(A0, B0)),
++	  XE_RTP_ACTIONS(SET(XEHP_COMMON_SLICE_CHICKEN3,
++			     GEN12_DISABLE_CPS_AWARE_COLOR_PIPE,
++			     XE_RTP_ACTION_FLAG(MASKED_REG)))
++	},
++	{ XE_RTP_NAME("16013271637"),
++	  XE_RTP_RULES(PLATFORM(DG2)),
++	  XE_RTP_ACTIONS(SET(XEHP_SLICE_COMMON_ECO_CHICKEN1,
++			     MSC_MSAA_REODER_BUF_BYPASS_DISABLE,
++			     XE_RTP_ACTION_FLAG(MASKED_REG)))
++	},
++	{ XE_RTP_NAME("14014947963"),
++	  XE_RTP_RULES(PLATFORM(DG2)),
++	  XE_RTP_ACTIONS(FIELD_SET(VF_PREEMPTION,
++				   PREEMPTION_VERTEX_COUNT,
++				   0x4000,
++				   XE_RTP_ACTION_FLAG(MASKED_REG)))
++	},
++	{ XE_RTP_NAME("18018764978"),
++	  XE_RTP_RULES(PLATFORM(DG2)),
++	  XE_RTP_ACTIONS(SET(XEHP_PSS_MODE2,
++			     SCOREBOARD_STALL_FLUSH_CONTROL,
++			     XE_RTP_ACTION_FLAG(MASKED_REG)))
++	},
++	{ XE_RTP_NAME("15010599737"),
++	  XE_RTP_RULES(PLATFORM(DG2)),
++	  XE_RTP_ACTIONS(SET(CHICKEN_RASTER_1, DIS_SF_ROUND_NEAREST_EVEN,
++			     XE_RTP_ACTION_FLAG(MASKED_REG)))
++	},
++	{ XE_RTP_NAME("18019271663"),
++	  XE_RTP_RULES(PLATFORM(DG2)),
++	  XE_RTP_ACTIONS(SET(CACHE_MODE_1, MSAA_OPTIMIZATION_REDUC_DISABLE,
++			     XE_RTP_ACTION_FLAG(MASKED_REG)))
++	},
+ 	{}
  };
  
- void xe_gt_debugfs_register(struct xe_gt *gt)
-diff --git a/drivers/gpu/drm/xe/xe_reg_sr.c b/drivers/gpu/drm/xe/xe_reg_sr.c
-index f6ed9e6e5697..9eaf1be27886 100644
---- a/drivers/gpu/drm/xe/xe_reg_sr.c
-+++ b/drivers/gpu/drm/xe/xe_reg_sr.c
-@@ -8,6 +8,7 @@
- #include <linux/align.h>
- #include <linux/string_helpers.h>
- #include <linux/xarray.h>
-+#include <linux/string_helpers.h>
- 
- #include <drm/drm_managed.h>
- #include <drm/drm_print.h>
-@@ -230,3 +231,24 @@ void xe_reg_sr_apply_whitelist(struct xe_reg_sr *sr, u32 mmio_base,
- err_force_wake:
- 	drm_err(&xe->drm, "Failed to apply, err=%d\n", err);
- }
-+
-+/**
-+ * xe_reg_sr_dump - print all save/restore entries
-+ * @sr: Save/restore entries
-+ * @p: DRM printer
-+ */
-+void xe_reg_sr_dump(struct xe_reg_sr *sr, struct drm_printer *p)
-+{
-+	struct xe_reg_sr_entry *entry;
-+	unsigned long reg;
-+
-+	if (!sr->name || xa_empty(&sr->xa))
-+		return;
-+
-+	drm_printf(p, "%s\n", sr->name);
-+	xa_for_each(&sr->xa, reg, entry)
-+		drm_printf(p, "\tREG[0x%lx] clr=0x%08x set=0x%08x masked=%s mcr=%s\n",
-+			   reg, entry->clr_bits, entry->set_bits,
-+			   str_yes_no(entry->masked_reg),
-+			   str_yes_no(entry->reg_type == XE_RTP_REG_MCR));
-+}
-diff --git a/drivers/gpu/drm/xe/xe_reg_sr.h b/drivers/gpu/drm/xe/xe_reg_sr.h
-index 9f47230c8ddc..3af369089faa 100644
---- a/drivers/gpu/drm/xe/xe_reg_sr.h
-+++ b/drivers/gpu/drm/xe/xe_reg_sr.h
-@@ -14,8 +14,10 @@
- 
- struct xe_device;
- struct xe_gt;
-+struct drm_printer;
- 
- int xe_reg_sr_init(struct xe_reg_sr *sr, const char *name, struct xe_device *xe);
-+void xe_reg_sr_dump(struct xe_reg_sr *sr, struct drm_printer *p);
- 
- int xe_reg_sr_add(struct xe_reg_sr *sr, u32 reg,
- 		  const struct xe_reg_sr_entry *e);
-diff --git a/drivers/gpu/drm/xe/xe_reg_whitelist.c b/drivers/gpu/drm/xe/xe_reg_whitelist.c
-index 6c8577e8dba6..c4b3a2045299 100644
---- a/drivers/gpu/drm/xe/xe_reg_whitelist.c
-+++ b/drivers/gpu/drm/xe/xe_reg_whitelist.c
-@@ -108,3 +108,21 @@ void xe_reg_whitelist_print_entry(struct drm_printer *p, unsigned int indent,
- 			  deny ? "deny" : "allow",
- 			  access_str);
- }
-+
-+/**
-+ * xe_reg_whitelist_dump - print all whitelist entries
-+ * @sr: Save/restore entries
-+ * @p: DRM printer
-+ */
-+void xe_reg_whitelist_dump(struct xe_reg_sr *sr, struct drm_printer *p)
-+{
-+	struct xe_reg_sr_entry *entry;
-+	unsigned long reg;
-+
-+	if (!sr->name || xa_empty(&sr->xa))
-+		return;
-+
-+	drm_printf(p, "%s\n", sr->name);
-+	xa_for_each(&sr->xa, reg, entry)
-+		xe_reg_whitelist_print_entry(p, 1, reg, entry);
-+}
-diff --git a/drivers/gpu/drm/xe/xe_reg_whitelist.h b/drivers/gpu/drm/xe/xe_reg_whitelist.h
-index c76d81c528da..69b121d377da 100644
---- a/drivers/gpu/drm/xe/xe_reg_whitelist.h
-+++ b/drivers/gpu/drm/xe/xe_reg_whitelist.h
-@@ -10,6 +10,7 @@
- 
- struct drm_printer;
- struct xe_hw_engine;
-+struct xe_reg_sr;
- struct xe_reg_sr_entry;
- 
- void xe_reg_whitelist_process_engine(struct xe_hw_engine *hwe);
-@@ -17,4 +18,6 @@ void xe_reg_whitelist_process_engine(struct xe_hw_engine *hwe);
- void xe_reg_whitelist_print_entry(struct drm_printer *p, unsigned int indent,
- 				  u32 reg, struct xe_reg_sr_entry *entry);
- 
-+void xe_reg_whitelist_dump(struct xe_reg_sr *sr, struct drm_printer *p);
-+
- #endif
 -- 
 2.39.0
 
