@@ -4,48 +4,47 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4CFC5C6FA99
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id ADF1DC74A4B
 	for <intel-xe@archiver.kernel.org>; Fri, 10 Mar 2023 22:16:30 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 28E6C10EA1E;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 86D6F10EA1C;
 	Fri, 10 Mar 2023 22:16:30 +0000 (UTC)
 Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E59F610EA1C
- for <intel-xe@lists.freedesktop.org>; Fri, 10 Mar 2023 22:16:27 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1ACB710EA1B
+ for <intel-xe@lists.freedesktop.org>; Fri, 10 Mar 2023 22:16:28 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1678486587; x=1710022587;
+ t=1678486588; x=1710022588;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=D+GwSEPj9AKSWt2hxU885fxjU0qX6YNLs6SMYBPskC4=;
- b=WuSWy2pXumsQCA+wSmVXoHBUca5OPjiwtaF54/8YBYbd8IpcdGlIQl0v
- /Kathz/H92yp0K6X6ydo0Qix6k+XtJih6xqWJoyjgoelvZMEJTRnSiWoS
- XrxL2uAKJe9RKYzFiMLbs8DiUWhi2G319qjPdOBcKDk9wsqnhM18oZ0dD
- 5FGb2L+FUlkg7ubCVRXL0WaDTbLMpJsnX59Othhbx0Hjn1R+9pUl5BnJi
- L6QtIZYi6goX/uKnbZi3TwGNNILXLeHxH1yP5ZgtMQjEttst1ZzCaFmkG
- egVz3IGvEOfP+eTfnBnjP2camgkY2r5byElr/Hl7UqqtyPid8+xdfoHeK A==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10645"; a="423106169"
-X-IronPort-AV: E=Sophos;i="5.98,251,1673942400"; d="scan'208";a="423106169"
+ bh=NG67A/b1p6svo5/5q/fTgxs0K+CQQtB35mdchOyNjro=;
+ b=HjEhekw/uAUBrGB+JRe4U1T3ioDIPUc3gLCTs6DgVUDMrDc/hXDn35Jp
+ D0sVXxspkU9emzwD1Ji6yuCfblPw2lUD29IwfIsGCKZyYZb6YtLzQZWYj
+ GHDBhTZuwyxRNUuKr5fkaKMw+zZfmIm93x6c1YSibTSN+UhTPfo7B3r++
+ Henrib3ZezkQQY6oVHcv/bIB1yeXR1Tsmq2FFM3tjzvwdqzi0LGq98sjG
+ ucCxBACCgcPVmNBlHF/jffoWUQJ2aSug35ImD9N782vu1QrBXdCiIAAjb
+ J2sycUeNhBRyyfNSOQ3nzfBjw24gYZOws3ALqWyUEusA/IR+L+qCZkxxl g==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10645"; a="423106171"
+X-IronPort-AV: E=Sophos;i="5.98,251,1673942400"; d="scan'208";a="423106171"
 Received: from fmsmga001.fm.intel.com ([10.253.24.23])
  by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  10 Mar 2023 14:16:27 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6500,9779,10645"; a="821234954"
-X-IronPort-AV: E=Sophos;i="5.98,251,1673942400"; d="scan'208";a="821234954"
+X-IronPort-AV: E=McAfee;i="6500,9779,10645"; a="821234969"
+X-IronPort-AV: E=Sophos;i="5.98,251,1673942400"; d="scan'208";a="821234969"
 Received: from lucas-s2600cw.jf.intel.com ([10.165.21.196])
  by fmsmga001-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  10 Mar 2023 14:16:23 -0800
 From: Lucas De Marchi <lucas.demarchi@intel.com>
 To: intel-xe@lists.freedesktop.org
-Date: Fri, 10 Mar 2023 14:15:39 -0800
-Message-Id: <20230310221549.2337402-3-lucas.demarchi@intel.com>
+Date: Fri, 10 Mar 2023 14:15:45 -0800
+Message-Id: <20230310221549.2337402-9-lucas.demarchi@intel.com>
 X-Mailer: git-send-email 2.39.0
 In-Reply-To: <20230310221549.2337402-1-lucas.demarchi@intel.com>
 References: <20230310221549.2337402-1-lucas.demarchi@intel.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-xe] [PATCH v2 02/12] drm/xe/reg_sr: Tweak verbosity for
- register printing
+Subject: [Intel-xe] [PATCH v2 08/12] drm/xe: Add PVC engine workarounds
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -62,80 +61,84 @@ Cc: Lucas De Marchi <lucas.demarchi@intel.com>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-If there is no register to save-restore or whitelist, just return. This
-drops some noise from the log, particurlarly for platforms with several
-engines like PVC:
+Sync PVC engine workarounds with i915.
 
-	[drm:xe_reg_sr_apply_mmio [xe]] Applying bcs0 save-restore MMIOs
-	[drm:xe_reg_sr_apply_whitelist [xe]] Whitelisting bcs0 registers
-	[drm:xe_reg_sr_apply_mmio [xe]] Applying bcs1 save-restore MMIOs
-	[drm:xe_reg_sr_apply_whitelist [xe]] Whitelisting bcs1 registers
-	[drm:xe_reg_sr_apply_mmio [xe]] Applying bcs2 save-restore MMIOs
-	[drm:xe_reg_sr_apply_whitelist [xe]] Whitelisting bcs2 registers
-	[drm:xe_reg_sr_apply_mmio [xe]] Applying bcs5 save-restore MMIOs
-	[drm:xe_reg_sr_apply_whitelist [xe]] Whitelisting bcs5 registers
-	[drm:xe_reg_sr_apply_mmio [xe]] Applying bcs6 save-restore MMIOs
-	[drm:xe_reg_sr_apply_whitelist [xe]] Whitelisting bcs6 registers
-	[drm:xe_reg_sr_apply_mmio [xe]] Applying bcs7 save-restore MMIOs
-	[drm:xe_reg_sr_apply_whitelist [xe]] Whitelisting bcs7 registers
-	[drm:xe_reg_sr_apply_mmio [xe]] Applying bcs8 save-restore MMIOs
-	[drm:xe_reg_sr_apply_whitelist [xe]] Whitelisting bcs8 registers
-	[drm:xe_reg_sr_apply_mmio [xe]] Applying ccs0 save-restore MMIOs
-	[drm:xe_reg_sr_apply_mmio [xe]] REG[0x20e4] = 0x00008000
-	[drm:xe_reg_sr_apply_mmio [xe]] REG[0xb01c] = 0x00000001
-	[drm:xe_reg_sr_apply_mmio [xe]] REG[0xe48c] = 0x00000800
-	[drm:xe_reg_sr_apply_mmio [xe]] REG[0xe7c8] = 0x40000000
-	...
-
-On a PVC system it should show something like below. Whitelist calls
-are still there since they aren't actually empty - driver just doesn't
-print each individual entry. This will be fixed in future.
-
-	[drm:xe_reg_sr_apply_whitelist [xe]] Whitelisting bcs0 registers
-	[drm:xe_reg_sr_apply_whitelist [xe]] Whitelisting bcs1 registers
-	[drm:xe_reg_sr_apply_whitelist [xe]] Whitelisting bcs2 registers
-	[drm:xe_reg_sr_apply_whitelist [xe]] Whitelisting bcs5 registers
-	[drm:xe_reg_sr_apply_whitelist [xe]] Whitelisting bcs6 registers
-	[drm:xe_reg_sr_apply_whitelist [xe]] Whitelisting bcs7 registers
-	[drm:xe_reg_sr_apply_whitelist [xe]] Whitelisting bcs8 registers
-	[drm:xe_reg_sr_apply_mmio [xe]] Applying ccs0 save-restore MMIOs
-	[drm:xe_reg_sr_apply_mmio [xe]] REG[0x20e4] = 0x00008000
-	[drm:xe_reg_sr_apply_mmio [xe]] REG[0xb01c] = 0x00000001
-	[drm:xe_reg_sr_apply_mmio [xe]] REG[0xe48c] = 0x00000800
-	[drm:xe_reg_sr_apply_mmio [xe]] REG[0xe7c8] = 0x40000000
-
-v2: Only tweak log verbosity, leave the whitelist printout for later
-    since decoding the whitelist is more complex.
+v2: Remove 16016694945. It was added by mistake. It's a GT workaround,
+already present in the GT table (Matt Roper)
 
 Signed-off-by: Lucas De Marchi <lucas.demarchi@intel.com>
 ---
- drivers/gpu/drm/xe/xe_reg_sr.c | 6 ++++++
- 1 file changed, 6 insertions(+)
+ drivers/gpu/drm/xe/regs/xe_gt_regs.h |  9 +++++++++
+ drivers/gpu/drm/xe/xe_wa.c           | 22 ++++++++++++++++++++++
+ 2 files changed, 31 insertions(+)
 
-diff --git a/drivers/gpu/drm/xe/xe_reg_sr.c b/drivers/gpu/drm/xe/xe_reg_sr.c
-index 194a5060f1b3..c6f92fe9aad1 100644
---- a/drivers/gpu/drm/xe/xe_reg_sr.c
-+++ b/drivers/gpu/drm/xe/xe_reg_sr.c
-@@ -168,6 +168,9 @@ void xe_reg_sr_apply_mmio(struct xe_reg_sr *sr, struct xe_gt *gt)
- 	unsigned long reg;
- 	int err;
+diff --git a/drivers/gpu/drm/xe/regs/xe_gt_regs.h b/drivers/gpu/drm/xe/regs/xe_gt_regs.h
+index 1b39a209898b..ab9dd70c0534 100644
+--- a/drivers/gpu/drm/xe/regs/xe_gt_regs.h
++++ b/drivers/gpu/drm/xe/regs/xe_gt_regs.h
+@@ -43,6 +43,9 @@
+ #define GEN7_FF_SLICE_CS_CHICKEN1		_MMIO(0x20e0)
+ #define   GEN9_FFSC_PERCTX_PREEMPT_CTRL		(1 << 14)
  
-+	if (xa_empty(&sr->xa))
-+		return;
++#define FF_SLICE_CS_CHICKEN2			_MMIO(0x20e4)
++#define   PERF_FIX_BALANCING_CFE_DISABLE	REG_BIT(15)
 +
- 	drm_dbg(&xe->drm, "Applying %s save-restore MMIOs\n", sr->name);
+ #define GEN9_CS_DEBUG_MODE1			_MMIO(0x20ec)
+ #define   FF_DOP_CLOCK_GATE_DISABLE		REG_BIT(1)
  
- 	err = xe_force_wake_get(&gt->mmio.fw, XE_FORCEWAKE_ALL);
-@@ -195,6 +198,9 @@ void xe_reg_sr_apply_whitelist(struct xe_reg_sr *sr, u32 mmio_base,
- 	unsigned int slot = 0;
- 	int err;
+@@ -230,6 +233,9 @@
+ #define   SC_DISABLE_POWER_OPTIMIZATION_EBB	REG_BIT(9)
+ #define   GEN11_SAMPLER_ENABLE_HEADLESS_MSG	REG_BIT(5)
  
-+	if (xa_empty(&sr->xa))
-+		return;
++#define CACHE_MODE_SS				MCR_REG(0xe420)
++#define   DISABLE_ECC				REG_BIT(5)
 +
- 	drm_dbg(&xe->drm, "Whitelisting %s registers\n", sr->name);
+ #define GEN9_ROW_CHICKEN4			MCR_REG(0xe48c)
+ #define   GEN12_DISABLE_GRF_CLEAR		REG_BIT(13)
+ #define   XEHP_DIS_BBL_SYSPIPE			REG_BIT(11)
+@@ -246,6 +252,9 @@
+ #define   GEN12_PUSH_CONST_DEREF_HOLD_DIS	REG_BIT(8)
+ #define   GEN12_DISABLE_DOP_GATING              REG_BIT(0)
  
- 	err = xe_force_wake_get(&gt->mmio.fw, XE_FORCEWAKE_ALL);
++#define LSC_CHICKEN_BIT_0			MCR_REG(0xe7c8)
++#define   DISABLE_D8_D16_COASLESCE		REG_BIT(30)
++
+ #define SARB_CHICKEN1				MCR_REG(0xe90c)
+ #define   COMP_CKN_IN				REG_GENMASK(30, 29)
+ 
+diff --git a/drivers/gpu/drm/xe/xe_wa.c b/drivers/gpu/drm/xe/xe_wa.c
+index 853c8b602cbd..03663bf98bf0 100644
+--- a/drivers/gpu/drm/xe/xe_wa.c
++++ b/drivers/gpu/drm/xe/xe_wa.c
+@@ -270,6 +270,28 @@ static const struct xe_rtp_entry engine_was[] = {
+ 	  XE_RTP_ACTIONS(SET(GEN9_CS_DEBUG_MODE1, FF_DOP_CLOCK_GATE_DISABLE,
+ 			     XE_RTP_ACTION_FLAG(MASKED_REG)))
+ 	},
++
++	/* PVC */
++
++	{ XE_RTP_NAME("22014226127"),
++	  XE_RTP_RULES(PLATFORM(PVC), FUNC(xe_rtp_match_first_render_or_compute)),
++	  XE_RTP_ACTIONS(SET(LSC_CHICKEN_BIT_0, DISABLE_D8_D16_COASLESCE))
++	},
++	{ XE_RTP_NAME("14015227452"),
++	  XE_RTP_RULES(PLATFORM(PVC), FUNC(xe_rtp_match_first_render_or_compute)),
++	  XE_RTP_ACTIONS(SET(GEN9_ROW_CHICKEN4, XEHP_DIS_BBL_SYSPIPE,
++			     XE_RTP_ACTION_FLAG(MASKED_REG)))
++	},
++	{ XE_RTP_NAME("16015675438"),
++	  XE_RTP_RULES(PLATFORM(PVC), FUNC(xe_rtp_match_first_render_or_compute)),
++	  XE_RTP_ACTIONS(SET(FF_SLICE_CS_CHICKEN2, PERF_FIX_BALANCING_CFE_DISABLE,
++			     XE_RTP_ACTION_FLAG(MASKED_REG)))
++	},
++	{ XE_RTP_NAME("14014999345"),
++	  XE_RTP_RULES(PLATFORM(PVC), ENGINE_CLASS(COMPUTE), STEP(B0, C0)),
++	  XE_RTP_ACTIONS(SET(CACHE_MODE_SS, DISABLE_ECC,
++			     XE_RTP_ACTION_FLAG(MASKED_REG)))
++	},
+ 	{}
+ };
+ 
 -- 
 2.39.0
 
