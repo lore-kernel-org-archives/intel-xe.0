@@ -4,54 +4,53 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 18A89C6FD1C
-	for <intel-xe@archiver.kernel.org>; Fri, 10 Mar 2023 08:13:56 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id E012FC64EC4
+	for <intel-xe@archiver.kernel.org>; Fri, 10 Mar 2023 09:06:46 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C2D5010E972;
-	Fri, 10 Mar 2023 08:13:55 +0000 (UTC)
-Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 82B9C10E972
- for <intel-xe@lists.freedesktop.org>; Fri, 10 Mar 2023 08:13:53 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B7F1610E028;
+	Fri, 10 Mar 2023 09:06:46 +0000 (UTC)
+Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C94FD10E028
+ for <intel-xe@lists.freedesktop.org>; Fri, 10 Mar 2023 09:06:43 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1678436033; x=1709972033;
- h=from:to:subject:date:message-id:mime-version:
- content-transfer-encoding:sender;
- bh=NWLW6nswqBTxoZ8aVv7t3tGaMkbqUgXm7Jj6IGwGLEw=;
- b=aqhRe3bO7n0Dcll2UVsyxDGFmcRPJ6Ymmd4anugxHGRQO0LrJER9+U8y
- u8CRtTy2Tdv4upXJv+B0u3nUeZtYGQQZ3joLhORnhQCwTX5OZRFdXc2f6
- EnJ50UDwjpcYipBHzFzkRGoV0L+mteRZv7YW4bs9FVR+r7qgMd9dTVIf/
- GanEX1kPIdIZjlvsrGtEatAwnynCJ2981kkrsr5+E+dnr/m8y5k9u0AV3
- pFYmhi4Dq5pieSvKKOXPlOIQMOIJU+UrlrrtWHBEwgAB6b+tN04ok9D9Q
- 2WVNUJV8hiFJhhV+Uax4OaY9RP+mbocjtUGs1fBIHG/tdF2kEFqbDi3zj A==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10644"; a="364330930"
-X-IronPort-AV: E=Sophos;i="5.98,249,1673942400"; d="scan'208";a="364330930"
-Received: from orsmga007.jf.intel.com ([10.7.209.58])
- by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 10 Mar 2023 00:13:53 -0800
+ t=1678439203; x=1709975203;
+ h=message-id:date:mime-version:subject:to:cc:references:
+ from:in-reply-to:content-transfer-encoding;
+ bh=0VguSVXyKPO9iYWZPQQVwNenKFF8L7doELd4H7bAOXU=;
+ b=UeuJDntTgkELqvigKOI760CdEy5IoQCNlYBEmwyoR5UD/ggdaIF9Pgs/
+ CgvQ5lZs3r32yjdscMkLT5MOXbdyQBoeOQTDidPJOKEUQheMu3ygSDUf1
+ 6+UOxSadi6huIgZfGsr9gQxViONbsy/0ZPh9Kn7mzAgheB5F4LTGjDm7h
+ DUKGmHGaru/lNImSq1hkmxL4/zN/mGv/db3XDbU6Lu12NlKSCY/Ka8T7/
+ rSMiNQ8X1oXHeqHmbfbiXN1cKP4Ek6LzYSTHwWnyS8mgtnEG3JXxYliOt
+ 6ixnyHqvH2bxVSqWvT1GIM5PSp1mh24ARg+E11d+V8q9VVch+E9WeD3tV Q==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10644"; a="334162024"
+X-IronPort-AV: E=Sophos;i="5.98,249,1673942400"; d="scan'208";a="334162024"
+Received: from orsmga004.jf.intel.com ([10.7.209.38])
+ by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 10 Mar 2023 01:06:43 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6500,9779,10644"; a="671006280"
-X-IronPort-AV: E=Sophos;i="5.98,249,1673942400"; d="scan'208";a="671006280"
-Received: from linux.intel.com ([10.54.29.200])
- by orsmga007.jf.intel.com with ESMTP; 10 Mar 2023 00:13:52 -0800
-Received: from linux.intel.com (maurocar-mobl2.ger.corp.intel.com
- [10.252.14.13])
- (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
- (No client certificate requested)
- by linux.intel.com (Postfix) with ESMTPS id 9FCFC580BBE
- for <intel-xe@lists.freedesktop.org>; Fri, 10 Mar 2023 00:13:52 -0800 (PST)
-Received: from maurocar by linux.intel.com with local (Exim 4.96)
- (envelope-from <mauro.chehab@linux.intel.com>) id 1paXss-00DkDY-21
- for intel-xe@lists.freedesktop.org; Fri, 10 Mar 2023 09:13:50 +0100
-From: Mauro Carvalho Chehab <mauro.chehab@linux.intel.com>
-To: intel-xe@lists.freedesktop.org
-Date: Fri, 10 Mar 2023 09:13:39 +0100
-Message-Id: <20230310081338.3275583-1-mauro.chehab@linux.intel.com>
-X-Mailer: git-send-email 2.39.2
+X-IronPort-AV: E=McAfee;i="6500,9779,10644"; a="801511589"
+X-IronPort-AV: E=Sophos;i="5.98,249,1673942400"; d="scan'208";a="801511589"
+Received: from riyasuni-mobl.ger.corp.intel.com (HELO [10.213.205.53])
+ ([10.213.205.53])
+ by orsmga004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 10 Mar 2023 01:06:41 -0800
+Message-ID: <eec81b09-8add-a080-710b-8226bba6c470@linux.intel.com>
+Date: Fri, 10 Mar 2023 09:06:39 +0000
 MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.8.0
+Content-Language: en-US
+To: Jani Nikula <jani.nikula@intel.com>, intel-xe@lists.freedesktop.org
+References: <20230309191923.670451-1-jani.nikula@intel.com>
+From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
+Organization: Intel Corporation UK Plc
+In-Reply-To: <20230309191923.670451-1-jani.nikula@intel.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-xe] [PATCH] drm/xe/xe_uc_fw: Use firmware files from
- standard locations
+Subject: Re: [Intel-xe] [RFC] drm/i915: add kconfig option to enable/disable
+ legacy platform support
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -63,75 +62,151 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Cc: Lucas De Marchi <lucas.demarchi@intel.com>,
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+ =?UTF-8?B?VmlsbGUgU3lyasOkbMOk?= <ville.syrjala@linux.intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-From: Mauro Carvalho Chehab <mchehab@kernel.org>
 
-The GuC/HuC firmware files used by Xe drivers are the same as
-used by i915. Use the already-known location to find those
-firmware files, for a couple of reasons:
+On 09/03/2023 19:19, Jani Nikula wrote:
+> Add config option DRM_I915_LEGACY to enable/disable legacy platform
+> support. This is primarily for the benefit of the drm/xe driver, and
+> legacy is defined in terms of the platforms drm/xe does not support,
+> i.e. anything before Tigerlake.
+> 
+> While the kconfig option will be CONFIG_DRM_I915_LEGACY, the intention
+> is that it's not used in code. Instead, we'll pass -DI915_LEGACY=1 in
+> the i915 Makefile for CONFIG_DRM_I915_LEGACY=y, while the xe Makefile
+> does no such thing, regardless of the kconfig value.
+> 
+> Initially, the knob does the bare minimum: drops the legacy platforms
+> from module PCI ID table (and the compiler in turn automagically drops
+> all the unreferenced device infos).
+> 
+> Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
+> Cc: Joonas Lahtinen <joonas.lahtinen@linux.intel.com>
+> Cc: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
+> Cc: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
+> Cc: Lucas De Marchi <lucas.demarchi@intel.com>
+> Cc: Ville Syrjälä <ville.syrjala@linux.intel.com>
+> Signed-off-by: Jani Nikula <jani.nikula@intel.com>
+> 
+> ---
+> 
+> *** NOTE ***
+> 
+> For now, I'm only sending this to the intel-xe mailing list with a bunch
+> of Cc's for first impressions.
+> 
+> The xe driver reuses i915 display code, but there's a lot of unnecessary
+> and/or incompatible code for platforms xe does not support. Currently
+> this is handled with a bunch of #ifdef I915 added to i915 in the xe
+> branch that isn't really upstreamble, and I'm thinking this patch might
+> be a better option.
+> 
+> This patch alone does what the commit message says, and drops the legacy
+> platform support, although all the code is left in place. Everything
+> beyond this is basically an optimization of what more to drop out of the
+> build. It doesn't really need to be perfect for starters but we could
+> start converting the legacy platform related #ifdefs from I915 to
+> I915_LEGACY, and that could be upstreamable to i915.
+> 
+> Not all of the #ifdef I915 in the xe branch are related to legacy
+> platforms, and they need to be handled differently. But this kconfig
+> knob would hopefully be a future compatible start to clean up one aspect
+> of them.
+> 
+> Thoughts?
 
-1. Avoid having the same firmware placed on two different
-   places on MODULE_FIRMWARE(), if both 915 and xe drivers
-   are compiled;
+Two questions for now:
 
-2. Having firmware files located on different locations may end
-   creating bigger initramfs, as the same files will be copied
-   twice my mkinitrd/dracut/...;
+1)
+This does not still end up a sprinkling of #ifdefs in i915, just 
+I915_LEGACY instead of I915? I mean I don't immediately follow how this 
+leads to a more upstreamable solution?
 
-3. this is the place where those firmware files are located at
-   https://git.kernel.org/pub/scm/linux/kernel/git/firmware/linux-firmware.git
-   Upstream doesn't expect them to have on other places;
+2)
+Why is the user visible kconfig option needed?
 
-4. When built with display support, DMC firmware will be
-   loaded from i915/ directory. It is very confusing to have
-   some firmware files on a different place for the same driver.
+Regards,
 
-Cc: Matthew Brost <matthew.brost@intel.com>
-Cc: Lucas de Marchi <lucas.demarchi@intel.com>
-Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
-Cc: Thomas Hellstrom <thomas.hellstrom@linux.intel.com>
-Cc: Daniel Vetter <daniel@ffwll.ch>
-Cc: David Airlie <airlied@gmail.com>
-Reviewed-by: Lucas De Marchi <lucas.demarchi@intel.com>
-Signed-off-by: Mauro Carvalho Chehab <mchehab@kernel.org>
----
- drivers/gpu/drm/xe/xe_uc_fw.c | 4 ++--
- drivers/gpu/drm/xe/xe_uc_fw.h | 2 +-
- 2 files changed, 3 insertions(+), 3 deletions(-)
+Tvrtko
 
-diff --git a/drivers/gpu/drm/xe/xe_uc_fw.c b/drivers/gpu/drm/xe/xe_uc_fw.c
-index ff94eec9cafe..00408f1b73e1 100644
---- a/drivers/gpu/drm/xe/xe_uc_fw.c
-+++ b/drivers/gpu/drm/xe/xe_uc_fw.c
-@@ -55,12 +55,12 @@ static struct xe_device *uc_fw_to_xe(struct xe_uc_fw *uc_fw)
- 	fw_def(TIGERLAKE,    0, huc_def(tgl,  7, 9, 3))
- 
- #define __MAKE_UC_FW_PATH_MAJOR(prefix_, name_, major_) \
--	"xe/" \
-+	"i915/" \
- 	__stringify(prefix_) "_" name_ "_" \
- 	__stringify(major_) ".bin"
- 
- #define __MAKE_UC_FW_PATH(prefix_, name_, major_, minor_, patch_) \
--        "xe/" \
-+        "i915/" \
-        __stringify(prefix_) name_ \
-        __stringify(major_) "." \
-        __stringify(minor_) "." \
-diff --git a/drivers/gpu/drm/xe/xe_uc_fw.h b/drivers/gpu/drm/xe/xe_uc_fw.h
-index ca64d379bb5e..bf31c3bb0e0f 100644
---- a/drivers/gpu/drm/xe/xe_uc_fw.h
-+++ b/drivers/gpu/drm/xe/xe_uc_fw.h
-@@ -175,6 +175,6 @@ static inline u32 xe_uc_fw_get_upload_size(struct xe_uc_fw *uc_fw)
- 	return __xe_uc_fw_get_upload_size(uc_fw);
- }
- 
--#define XE_UC_FIRMWARE_URL "https://git.kernel.org/pub/scm/linux/kernel/git/firmware/linux-firmware.git/tree/xe"
-+#define XE_UC_FIRMWARE_URL "https://git.kernel.org/pub/scm/linux/kernel/git/firmware/linux-firmware.git/tree/i915"
- 
- #endif
--- 
-2.39.2
+P.S. You could add compiling out code easily along the lines of 
+https://patchwork.freedesktop.org/patch/428511/?series=89069&rev=1 and 
+the corresponding series. Maybe like 
+s/IS_OPT_PLATFORM/IS_LEGACY_PLATTFORM. That does not work as well as 
+when GEN checks could also be bitmasks, but I suppose it should have 
+some effect still.
 
+> 
+> BR,
+> Jani.
+> ---
+>   drivers/gpu/drm/i915/Kconfig    | 11 +++++++++++
+>   drivers/gpu/drm/i915/Makefile   |  7 +++++++
+>   drivers/gpu/drm/i915/i915_pci.c |  2 ++
+>   3 files changed, 20 insertions(+)
+> 
+> diff --git a/drivers/gpu/drm/i915/Kconfig b/drivers/gpu/drm/i915/Kconfig
+> index 8eb3e60aeec9..a569c1606f51 100644
+> --- a/drivers/gpu/drm/i915/Kconfig
+> +++ b/drivers/gpu/drm/i915/Kconfig
+> @@ -53,6 +53,17 @@ config DRM_I915
+>   
+>   	  If "M" is selected, the module will be called i915.
+>   
+> +config DRM_I915_LEGACY
+> +	bool "Support legacy hardware in i915"
+> +	depends on DRM_I915
+> +	depends on EXPERT
+> +	default y
+> +	help
+> +	  Disable this option if you want the i915 driver to only support modern
+> +	  Intel Graphics, starting from Tigerlake.
+> +
+> +	  If in doubt, say "Y".
+> +
+>   config DRM_I915_FORCE_PROBE
+>   	string "Force probe i915 for selected Intel hardware IDs"
+>   	depends on DRM_I915
+> diff --git a/drivers/gpu/drm/i915/Makefile b/drivers/gpu/drm/i915/Makefile
+> index a6e7cd2185c2..653d43e5b534 100644
+> --- a/drivers/gpu/drm/i915/Makefile
+> +++ b/drivers/gpu/drm/i915/Makefile
+> @@ -23,6 +23,13 @@ subdir-ccflags-y += $(call cc-disable-warning, unused-but-set-variable)
+>   subdir-ccflags-y += $(call cc-disable-warning, frame-address)
+>   subdir-ccflags-$(CONFIG_DRM_I915_WERROR) += -Werror
+>   
+> +# Legacy platform support.
+> +#
+> +# Note: Source code needs to check for I915_LEGACY instead of
+> +# CONFIG_DRM_I915_LEGACY to allow Xe driver build without legacy support
+> +# independent of the Kconfig setting.
+> +subdir-ccflags-$(CONFIG_DRM_I915_LEGACY) += -DI915_LEGACY=1
+> +
+>   # Fine grained warnings disable
+>   CFLAGS_i915_pci.o = $(call cc-disable-warning, override-init)
+>   CFLAGS_display/intel_fbdev.o = $(call cc-disable-warning, override-init)
+> diff --git a/drivers/gpu/drm/i915/i915_pci.c b/drivers/gpu/drm/i915/i915_pci.c
+> index bc6fc268739d..9f421015d2bb 100644
+> --- a/drivers/gpu/drm/i915/i915_pci.c
+> +++ b/drivers/gpu/drm/i915/i915_pci.c
+> @@ -1162,6 +1162,7 @@ static const struct intel_device_info mtl_info = {
+>    * PCI ID matches, otherwise we'll use the wrong info struct above.
+>    */
+>   static const struct pci_device_id pciidlist[] = {
+> +#if IS_ENABLED(I915_LEGACY)
+>   	INTEL_I830_IDS(&i830_info),
+>   	INTEL_I845G_IDS(&i845g_info),
+>   	INTEL_I85X_IDS(&i85x_info),
+> @@ -1225,6 +1226,7 @@ static const struct pci_device_id pciidlist[] = {
+>   	INTEL_ICL_11_IDS(&icl_info),
+>   	INTEL_EHL_IDS(&ehl_info),
+>   	INTEL_JSL_IDS(&jsl_info),
+> +#endif
+>   	INTEL_TGL_12_IDS(&tgl_info),
+>   	INTEL_RKL_IDS(&rkl_info),
+>   	INTEL_ADLS_IDS(&adl_s_info),
