@@ -4,48 +4,48 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6A98CC6FD1E
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id DD76AC7618A
 	for <intel-xe@archiver.kernel.org>; Fri, 10 Mar 2023 22:16:30 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2930E10EA20;
+	by gabe.freedesktop.org (Postfix) with ESMTP id AC27310EA23;
 	Fri, 10 Mar 2023 22:16:30 +0000 (UTC)
 Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
- by gabe.freedesktop.org (Postfix) with ESMTPS id BB95610EA1B
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 521CB10EA1B
  for <intel-xe@lists.freedesktop.org>; Fri, 10 Mar 2023 22:16:28 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
  t=1678486588; x=1710022588;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=cmHTW7dLga9vLvhWQBQrjl5m2cURlqKv4SIfI+b/V80=;
- b=HTpQoYTSHnkoiayLMYtx76nynlZOajwa9hb0zS767g1DgCjRtHlohL22
- WzRhdd3nw37QiIIYI42w5xUOel7XGR2tWK0mx1N6MhBnkmncLO1ir62xN
- CgZzrN5fvMjtHGOrxMbTl3ur2Xu0amUbcQ7putv+/D5dYptbP38M6Vuee
- oGiDM24gvI5aJfsrFwf09rQjCmiQ9C/sB1dWmfjnydKT0D+iapy68XlAs
- km3tKzVvhaA8ZKKhM3B5C0JKXJHIRdT1Ez4xIuytM5FJwJ5F3l8mnF4NW
- Qevb6/Dxfqz1misS0wCpxdWCcCQ3X/aRgCyHaGPTabb5Vx+djHeZwVVce Q==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10645"; a="423106178"
-X-IronPort-AV: E=Sophos;i="5.98,251,1673942400"; d="scan'208";a="423106178"
+ bh=qua9YrBFAu8Tj2HaHbb75foBD1nEOGJktdlxEwsMIj0=;
+ b=UCwI2tanzmff9m7gs+YoRuD8CBWuYGZ5o+vIpf/jsuca8vaKBBTZz6iU
+ 0SZsjSa/cOOF/J7ZszpT/6FTQ14f/tJHeVSblgZffJPTnDou5R8goCo0T
+ rqRhwfmJT54Ccss2HS/yOIkjIBPHF8y0A03EwCqZC3wcFrIr4qxMuumi3
+ ETsB/avcyOal+Nd/+RvSu5b+sZkcGfWpGm4JkQRlab9IUzQhlijGpc+1o
+ 85DzlIndCM1jca+CjWWmzWnnRACJDj0QOkRSFJqQrcPbCwiNd/CZryDKR
+ f3eX2Zct+enWmGb0MT3Tdh2qg/UMja7FkKO1oyMNX0wbgNWsy0w7ituKI A==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10645"; a="423106174"
+X-IronPort-AV: E=Sophos;i="5.98,251,1673942400"; d="scan'208";a="423106174"
 Received: from fmsmga001.fm.intel.com ([10.253.24.23])
  by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  10 Mar 2023 14:16:27 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6500,9779,10645"; a="821234952"
-X-IronPort-AV: E=Sophos;i="5.98,251,1673942400"; d="scan'208";a="821234952"
+X-IronPort-AV: E=McAfee;i="6500,9779,10645"; a="821234959"
+X-IronPort-AV: E=Sophos;i="5.98,251,1673942400"; d="scan'208";a="821234959"
 Received: from lucas-s2600cw.jf.intel.com ([10.165.21.196])
  by fmsmga001-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 10 Mar 2023 14:16:22 -0800
+ 10 Mar 2023 14:16:23 -0800
 From: Lucas De Marchi <lucas.demarchi@intel.com>
 To: intel-xe@lists.freedesktop.org
-Date: Fri, 10 Mar 2023 14:15:38 -0800
-Message-Id: <20230310221549.2337402-2-lucas.demarchi@intel.com>
+Date: Fri, 10 Mar 2023 14:15:41 -0800
+Message-Id: <20230310221549.2337402-5-lucas.demarchi@intel.com>
 X-Mailer: git-send-email 2.39.0
 In-Reply-To: <20230310221549.2337402-1-lucas.demarchi@intel.com>
 References: <20230310221549.2337402-1-lucas.demarchi@intel.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-xe] [PATCH v2 01/12] drm/xe/rtp: Add match helper for gslice
- fused off
+Subject: [Intel-xe] [PATCH v2 04/12] drm/xe/debugfs: Dump register
+ save-restore tables
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -62,71 +62,173 @@ Cc: Lucas De Marchi <lucas.demarchi@intel.com>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Add match helper to detect when the first gslice is fused off, as needed
-by future workarounds.
+Add debugfs entry to dump the final tables with register save-restore
+information.
 
-v2:
-  - Add warning if called on a platform without geometry pipeline
-    (Matt Roper)
-  - Hardcode 4 as the number of gslices, which matches all the currently
-    supported platforms. PVC doesn't have geometry pipeline and
-    shouldn't use this function (Matt Roper)
+For the workarounds, this has a format a little bit different than when the
+values are applied because we don't want to read the values from the HW
+when dumping via debugfs. For whitelist it just re-uses the print
+function added for when the whitelist is being built.
 
 Signed-off-by: Lucas De Marchi <lucas.demarchi@intel.com>
 ---
- drivers/gpu/drm/xe/xe_rtp.c | 16 ++++++++++++++++
- drivers/gpu/drm/xe/xe_rtp.h | 11 +++++++++++
- 2 files changed, 27 insertions(+)
+ drivers/gpu/drm/xe/xe_gt_debugfs.c    | 30 +++++++++++++++++++++++++++
+ drivers/gpu/drm/xe/xe_reg_sr.c        | 22 ++++++++++++++++++++
+ drivers/gpu/drm/xe/xe_reg_sr.h        |  2 ++
+ drivers/gpu/drm/xe/xe_reg_whitelist.c | 18 ++++++++++++++++
+ drivers/gpu/drm/xe/xe_reg_whitelist.h |  3 +++
+ 5 files changed, 75 insertions(+)
 
-diff --git a/drivers/gpu/drm/xe/xe_rtp.c b/drivers/gpu/drm/xe/xe_rtp.c
-index 0d2f51bb06e8..cb9dd894547d 100644
---- a/drivers/gpu/drm/xe/xe_rtp.c
-+++ b/drivers/gpu/drm/xe/xe_rtp.c
-@@ -8,6 +8,7 @@
- #include <drm/xe_drm.h>
- 
- #include "xe_gt.h"
-+#include "xe_gt_topology.h"
+diff --git a/drivers/gpu/drm/xe/xe_gt_debugfs.c b/drivers/gpu/drm/xe/xe_gt_debugfs.c
+index 78942e12e76c..9fab8017490f 100644
+--- a/drivers/gpu/drm/xe/xe_gt_debugfs.c
++++ b/drivers/gpu/drm/xe/xe_gt_debugfs.c
+@@ -16,6 +16,8 @@
+ #include "xe_gt_topology.h"
+ #include "xe_hw_engine.h"
  #include "xe_macros.h"
- #include "xe_reg_sr.h"
++#include "xe_reg_sr.h"
++#include "xe_reg_whitelist.h"
+ #include "xe_uc_debugfs.h"
  
-@@ -170,3 +171,18 @@ bool xe_rtp_match_first_render_or_compute(const struct xe_gt *gt,
- 	return render_compute_mask &&
- 		hwe->engine_id == __ffs(render_compute_mask);
+ static struct xe_gt *node_to_gt(struct drm_info_node *node)
+@@ -98,6 +100,33 @@ static int ggtt(struct seq_file *m, void *data)
+ 	return xe_ggtt_dump(gt->mem.ggtt, &p);
+ }
+ 
++static int register_save_restore(struct seq_file *m, void *data)
++{
++	struct xe_gt *gt = node_to_gt(m->private);
++	struct drm_printer p = drm_seq_file_printer(m);
++	struct xe_hw_engine *hwe;
++	enum xe_hw_engine_id id;
++
++	xe_reg_sr_dump(&gt->reg_sr, &p);
++	drm_printf(&p, "\n");
++
++	drm_printf(&p, "Engine\n");
++	for_each_hw_engine(hwe, gt, id)
++		xe_reg_sr_dump(&hwe->reg_sr, &p);
++	drm_printf(&p, "\n");
++
++	drm_printf(&p, "LRC\n");
++	for_each_hw_engine(hwe, gt, id)
++		xe_reg_sr_dump(&hwe->reg_lrc, &p);
++	drm_printf(&p, "\n");
++
++	drm_printf(&p, "Whitelist\n");
++	for_each_hw_engine(hwe, gt, id)
++		xe_reg_whitelist_dump(&hwe->reg_whitelist, &p);
++
++	return 0;
++}
++
+ static const struct drm_info_list debugfs_list[] = {
+ 	{"hw_engines", hw_engines, 0},
+ 	{"force_reset", force_reset, 0},
+@@ -105,6 +134,7 @@ static const struct drm_info_list debugfs_list[] = {
+ 	{"topology", topology, 0},
+ 	{"steering", steering, 0},
+ 	{"ggtt", ggtt, 0},
++	{"register-save-restore", register_save_restore, 0},
+ };
+ 
+ void xe_gt_debugfs_register(struct xe_gt *gt)
+diff --git a/drivers/gpu/drm/xe/xe_reg_sr.c b/drivers/gpu/drm/xe/xe_reg_sr.c
+index f6ed9e6e5697..9eaf1be27886 100644
+--- a/drivers/gpu/drm/xe/xe_reg_sr.c
++++ b/drivers/gpu/drm/xe/xe_reg_sr.c
+@@ -8,6 +8,7 @@
+ #include <linux/align.h>
+ #include <linux/string_helpers.h>
+ #include <linux/xarray.h>
++#include <linux/string_helpers.h>
+ 
+ #include <drm/drm_managed.h>
+ #include <drm/drm_print.h>
+@@ -230,3 +231,24 @@ void xe_reg_sr_apply_whitelist(struct xe_reg_sr *sr, u32 mmio_base,
+ err_force_wake:
+ 	drm_err(&xe->drm, "Failed to apply, err=%d\n", err);
  }
 +
-+bool xe_rtp_match_first_gslice_fused_off(const struct xe_gt *gt,
-+					 const struct xe_hw_engine *hwe)
-+{
-+	unsigned int dss_per_gslice = 4;
-+	unsigned int dss;
-+
-+	if (drm_WARN(&gt_to_xe(gt)->drm, !gt->fuse_topo.g_dss_mask,
-+		     "Checking gslice for platform without geometry pipeline\n"))
-+		return false;
-+
-+	dss = xe_dss_mask_group_ffs(gt->fuse_topo.g_dss_mask, 0, 0);
-+
-+	return dss >= dss_per_gslice;
-+}
-diff --git a/drivers/gpu/drm/xe/xe_rtp.h b/drivers/gpu/drm/xe/xe_rtp.h
-index 433f0cbff57f..4140ef507fa0 100644
---- a/drivers/gpu/drm/xe/xe_rtp.h
-+++ b/drivers/gpu/drm/xe/xe_rtp.h
-@@ -427,4 +427,15 @@ bool xe_rtp_match_even_instance(const struct xe_gt *gt,
- bool xe_rtp_match_first_render_or_compute(const struct xe_gt *gt,
- 					  const struct xe_hw_engine *hwe);
- 
-+/*
-+ * xe_rtp_match_first_gslice_fused_off - Match when first gslice is fused off
-+ *
-+ * @gt: GT structure
-+ * @hwe: Engine instance
-+ *
-+ * Returns: true if first gslice is fused off, false otherwise.
++/**
++ * xe_reg_sr_dump - print all save/restore entries
++ * @sr: Save/restore entries
++ * @p: DRM printer
 + */
-+bool xe_rtp_match_first_gslice_fused_off(const struct xe_gt *gt,
-+					 const struct xe_hw_engine *hwe);
++void xe_reg_sr_dump(struct xe_reg_sr *sr, struct drm_printer *p)
++{
++	struct xe_reg_sr_entry *entry;
++	unsigned long reg;
++
++	if (!sr->name || xa_empty(&sr->xa))
++		return;
++
++	drm_printf(p, "%s\n", sr->name);
++	xa_for_each(&sr->xa, reg, entry)
++		drm_printf(p, "\tREG[0x%lx] clr=0x%08x set=0x%08x masked=%s mcr=%s\n",
++			   reg, entry->clr_bits, entry->set_bits,
++			   str_yes_no(entry->masked_reg),
++			   str_yes_no(entry->reg_type == XE_RTP_REG_MCR));
++}
+diff --git a/drivers/gpu/drm/xe/xe_reg_sr.h b/drivers/gpu/drm/xe/xe_reg_sr.h
+index 9f47230c8ddc..3af369089faa 100644
+--- a/drivers/gpu/drm/xe/xe_reg_sr.h
++++ b/drivers/gpu/drm/xe/xe_reg_sr.h
+@@ -14,8 +14,10 @@
+ 
+ struct xe_device;
+ struct xe_gt;
++struct drm_printer;
+ 
+ int xe_reg_sr_init(struct xe_reg_sr *sr, const char *name, struct xe_device *xe);
++void xe_reg_sr_dump(struct xe_reg_sr *sr, struct drm_printer *p);
+ 
+ int xe_reg_sr_add(struct xe_reg_sr *sr, u32 reg,
+ 		  const struct xe_reg_sr_entry *e);
+diff --git a/drivers/gpu/drm/xe/xe_reg_whitelist.c b/drivers/gpu/drm/xe/xe_reg_whitelist.c
+index 6c8577e8dba6..c4b3a2045299 100644
+--- a/drivers/gpu/drm/xe/xe_reg_whitelist.c
++++ b/drivers/gpu/drm/xe/xe_reg_whitelist.c
+@@ -108,3 +108,21 @@ void xe_reg_whitelist_print_entry(struct drm_printer *p, unsigned int indent,
+ 			  deny ? "deny" : "allow",
+ 			  access_str);
+ }
++
++/**
++ * xe_reg_whitelist_dump - print all whitelist entries
++ * @sr: Save/restore entries
++ * @p: DRM printer
++ */
++void xe_reg_whitelist_dump(struct xe_reg_sr *sr, struct drm_printer *p)
++{
++	struct xe_reg_sr_entry *entry;
++	unsigned long reg;
++
++	if (!sr->name || xa_empty(&sr->xa))
++		return;
++
++	drm_printf(p, "%s\n", sr->name);
++	xa_for_each(&sr->xa, reg, entry)
++		xe_reg_whitelist_print_entry(p, 1, reg, entry);
++}
+diff --git a/drivers/gpu/drm/xe/xe_reg_whitelist.h b/drivers/gpu/drm/xe/xe_reg_whitelist.h
+index c76d81c528da..69b121d377da 100644
+--- a/drivers/gpu/drm/xe/xe_reg_whitelist.h
++++ b/drivers/gpu/drm/xe/xe_reg_whitelist.h
+@@ -10,6 +10,7 @@
+ 
+ struct drm_printer;
+ struct xe_hw_engine;
++struct xe_reg_sr;
+ struct xe_reg_sr_entry;
+ 
+ void xe_reg_whitelist_process_engine(struct xe_hw_engine *hwe);
+@@ -17,4 +18,6 @@ void xe_reg_whitelist_process_engine(struct xe_hw_engine *hwe);
+ void xe_reg_whitelist_print_entry(struct drm_printer *p, unsigned int indent,
+ 				  u32 reg, struct xe_reg_sr_entry *entry);
+ 
++void xe_reg_whitelist_dump(struct xe_reg_sr *sr, struct drm_printer *p);
 +
  #endif
 -- 
