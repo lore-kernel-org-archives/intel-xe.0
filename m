@@ -4,133 +4,134 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7EF78C6FA99
-	for <intel-xe@archiver.kernel.org>; Sat, 11 Mar 2023 00:28:56 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 79CBAC6FA99
+	for <intel-xe@archiver.kernel.org>; Sat, 11 Mar 2023 00:33:56 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4775210E009;
-	Sat, 11 Mar 2023 00:28:56 +0000 (UTC)
-Received: from mga06.intel.com (mga06b.intel.com [134.134.136.31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1988910E009
- for <intel-xe@lists.freedesktop.org>; Sat, 11 Mar 2023 00:28:55 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3E04210E009;
+	Sat, 11 Mar 2023 00:33:56 +0000 (UTC)
+Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5A81A10E009
+ for <intel-xe@lists.freedesktop.org>; Sat, 11 Mar 2023 00:33:54 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1678494535; x=1710030535;
+ t=1678494834; x=1710030834;
  h=date:from:to:cc:subject:message-id:references:
  in-reply-to:mime-version;
- bh=cuJ/FOq7Xv/o00KdOLOAKDh5ydKAEpYI2W2QD+JZnZ8=;
- b=ar63oK04wUPSuOcCSjU323mYcMdT2tp5veY5rUvJyHOCPzXS1op+hTzj
- o6cigT/HE8VXyf4o0fEyl4P3EWCs5slq00nJzr0+zR6enVEIicHfAQ/+a
- dmsQP1Nmx64DlHXDT9Ys4HUShlGGWtohstviRBTqqhzzyZ1kmzK62g/xz
- af7QJgKH6n1MZR0j/lZjZcqB7e6MIJH7hkN0Hdo8Svk3TsIYNbk72sAYW
- Ac7G5ux+lvKlzRxDKgtSfPaIn0RQpuUmP9eFaZEBHB2s40MII61qUVCze
- ZU/7aq2AL9KDB/FfZT4Voo7WoaN4RFXvZq7tQ/juWqG9BcON9A7riEeeQ A==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10645"; a="399456640"
-X-IronPort-AV: E=Sophos;i="5.98,251,1673942400"; d="scan'208";a="399456640"
-Received: from orsmga005.jf.intel.com ([10.7.209.41])
- by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 10 Mar 2023 16:28:54 -0800
+ bh=735UYSVwxIauB76rhqGTRRBZayb+QSWPsxVtcmWlcWU=;
+ b=NeKKqo2Slu88FcOBPWWufHsaRRCRyMJCnyP64qYOKL5+hmyYB5e4oxeS
+ diT013mviaGfJjHimr3uAVqS7CwRw/ANF2nZx/l4u0yF6ERxdFeyErCr9
+ 654jClRZmhWdISc1m9EYjB+KE0Ae0BUS9XtUZLTgy9G5dhH5WGlfXDoch
+ gRkS1WGzelo2ibd6r06tQK7u6aP7g33DlQgnJVDOxD5sLG2Lq+OHCjGi7
+ jkMJaXulAnYqhvk8ytOFKfv9Ng7S8loinxkXNtvSImCl9S0Zcwc+eHo1D
+ 07VG6us92KnNlbfI8p0+7JgtwP9vRyy8WHI/eVs2Uw9FN4X0cqf5C/vyv w==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10645"; a="325215563"
+X-IronPort-AV: E=Sophos;i="5.98,251,1673942400"; d="scan'208";a="325215563"
+Received: from fmsmga004.fm.intel.com ([10.253.24.48])
+ by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 10 Mar 2023 16:33:53 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6500,9779,10645"; a="852117684"
-X-IronPort-AV: E=Sophos;i="5.98,251,1673942400"; d="scan'208";a="852117684"
-Received: from orsmsx601.amr.corp.intel.com ([10.22.229.14])
- by orsmga005.jf.intel.com with ESMTP; 10 Mar 2023 16:28:51 -0800
-Received: from orsmsx601.amr.corp.intel.com (10.22.229.14) by
- ORSMSX601.amr.corp.intel.com (10.22.229.14) with Microsoft SMTP Server
+X-IronPort-AV: E=McAfee;i="6500,9779,10645"; a="746934481"
+X-IronPort-AV: E=Sophos;i="5.98,251,1673942400"; d="scan'208";a="746934481"
+Received: from fmsmsx601.amr.corp.intel.com ([10.18.126.81])
+ by fmsmga004.fm.intel.com with ESMTP; 10 Mar 2023 16:33:53 -0800
+Received: from fmsmsx610.amr.corp.intel.com (10.18.126.90) by
+ fmsmsx601.amr.corp.intel.com (10.18.126.81) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.21; Fri, 10 Mar 2023 16:28:50 -0800
-Received: from orsedg603.ED.cps.intel.com (10.7.248.4) by
- orsmsx601.amr.corp.intel.com (10.22.229.14) with Microsoft SMTP Server
+ 15.1.2507.21; Fri, 10 Mar 2023 16:33:53 -0800
+Received: from fmsedg601.ED.cps.intel.com (10.1.192.135) by
+ fmsmsx610.amr.corp.intel.com (10.18.126.90) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.21 via Frontend Transport; Fri, 10 Mar 2023 16:28:50 -0800
-Received: from NAM04-DM6-obe.outbound.protection.outlook.com (104.47.73.42) by
- edgegateway.intel.com (134.134.137.100) with Microsoft SMTP Server
+ 15.1.2507.21 via Frontend Transport; Fri, 10 Mar 2023 16:33:53 -0800
+Received: from NAM11-CO1-obe.outbound.protection.outlook.com (104.47.56.172)
+ by edgegateway.intel.com (192.55.55.70) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2507.21; Fri, 10 Mar 2023 16:28:49 -0800
+ 15.1.2507.21; Fri, 10 Mar 2023 16:33:52 -0800
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=fYMHru6glV74fX2F8SpkVh07dKh32OdrFg9QH5NAtkR8NUBC2ZjcGkCWSX2TI5goieuGMgJHnZyyLzIweQLjn78pZ2iVeNy8YdRGDPmsubQfTXmVy6XnIEIoUhNF8DUtFnj8Bidz/8FEZicJs80Ce201pZ5BZSM7jGWanFNRi1CgWLEb7UK7sL3GIvI9BHE6ZFBUtUuRCblKrSHtKBHYNF0Y8yX0CzWej+17FF8fgYbDiVnjwx5UbVZP3/QKmmtXeWw4s1NX+MJ1ieR0hPfsxA64Ad2T/4wjzckCu0bsZFt1lvhglBQ4asrzWkvYu8ax9FijGKLrYgSRcVulg1C2Yg==
+ b=QyAkjsnq1bC3fpEnh95ZY83ctSa06WhVKzr2C/SFMtQuOfMZvbEaFQx3nHXrjF7wrj7Bn2n4WBcc4bsAQsglLmidI12UTmwHh2dlGZeMf7MHSp4YhtdtAFsLS+1oa0gmrxxA86fry3kgN4PB8sT7/J4Vo8qtsPjghn+Z92PADupcDd/RN6Vm8VUUk+q1QXaXTifLR2TK9922W7r+1LfbCp0yP9ka+6+0bATrjYqRXGEKH+64o1VPvGVcvOhCAd0MO3zaHP0eg+9bBAjdzarfUTS+pu5aUj+e5PPAjUSrz+UPtL67HL5jl3NeqZp/zrtxlGRF7mv7duW1NJZ2BkAVkA==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=Kmb2Ur5VVw3LPfDhtciSPyrTVoiSX2vtihCNQhUdVVg=;
- b=CkwyzuN4bL0TiLb2Fgg2lZO7/zKiahJUc+nmy7ceCKDjPrSAqX9AfNlLZ2BbVfUrlx5AcWfCysxWy1Ayny6+pgYWbstskNJnmpyR17uFJKA9aPhEgIv32oyLgPaAW/ALxrw38iImLszJqHLIRNgpw8+yEJEisStUz1w9qLiQzo2BJZj3P/OgkV1wk4R6aSle46JBkq3u6C4bprJyT4a3X7USn6YPcrMohQ16qCKe32eIcbq8GLX1jmGI3qmKj4AiVtI1QroqvoLLy4lvX1sL02xibd6QIQivCUfUWVaag0Fbq3Ie2RuhZMB01yhkgDfQo/FoYATJO655PFCh7ab72Q==
+ bh=iixLhuMI/YjEl4Msqkdi4fQvfC0W8B5+vRv+yBvogMQ=;
+ b=dNbhf6Aw1DUovFR2HPAEzTnjTBJsnm6Bfl0rsJ2kswdGbjMle8jzp2e4W+hPw7O+vL79CkLkt+9xkd8ZHXQiR5mS0Jg2DGNDlrFWF8yR/r+lIhBg6++WAuONpJ0qmWv3d8+aDxOsmmQKXfJx57IWgg+QF7k8RBySFxTeNLcJRX8/vs8AM7o6RxlasvcioPZC+DM/yeNLUnqJJlVNNeVAVYo8V/r0YfzwM5gM7YDc5tqIwyf8ICpnZUMwRFCq+/mR8/onE6PEN5yGv+xRz28VqJ3I9RCSNV71Iq8rwnV38piyES981+Y4G7tVGaUEOqJjJmjn1te9Ma07Pt1aAGNPAQ==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
  dkim=pass header.d=intel.com; arc=none
 Authentication-Results: dkim=none (message not signed)
  header.d=none;dmarc=none action=none header.from=intel.com;
 Received: from DS7PR11MB7859.namprd11.prod.outlook.com (2603:10b6:8:da::22) by
- IA1PR11MB6148.namprd11.prod.outlook.com (2603:10b6:208:3ec::20) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6178.19; Sat, 11 Mar
- 2023 00:28:48 +0000
+ SJ1PR11MB6202.namprd11.prod.outlook.com (2603:10b6:a03:45b::9) with
+ Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.6178.19; Sat, 11 Mar 2023 00:33:50 +0000
 Received: from DS7PR11MB7859.namprd11.prod.outlook.com
  ([fe80::1c61:b69d:4ca:10d0]) by DS7PR11MB7859.namprd11.prod.outlook.com
  ([fe80::1c61:b69d:4ca:10d0%6]) with mapi id 15.20.6178.022; Sat, 11 Mar 2023
- 00:28:48 +0000
-Date: Fri, 10 Mar 2023 16:28:45 -0800
+ 00:33:50 +0000
+Date: Fri, 10 Mar 2023 16:33:47 -0800
 From: Matt Roper <matthew.d.roper@intel.com>
 To: Lucas De Marchi <lucas.demarchi@intel.com>
-Message-ID: <20230311002845.GD1175070@mdroper-desk1.amr.corp.intel.com>
+Message-ID: <20230311003347.GE1175070@mdroper-desk1.amr.corp.intel.com>
 References: <20230310221549.2337402-1-lucas.demarchi@intel.com>
- <20230310221549.2337402-12-lucas.demarchi@intel.com>
+ <20230310221549.2337402-13-lucas.demarchi@intel.com>
 Content-Type: text/plain; charset="us-ascii"
 Content-Disposition: inline
-In-Reply-To: <20230310221549.2337402-12-lucas.demarchi@intel.com>
-X-ClientProxiedBy: BY5PR03CA0019.namprd03.prod.outlook.com
- (2603:10b6:a03:1e0::29) To DS7PR11MB7859.namprd11.prod.outlook.com
+In-Reply-To: <20230310221549.2337402-13-lucas.demarchi@intel.com>
+X-ClientProxiedBy: BY3PR05CA0056.namprd05.prod.outlook.com
+ (2603:10b6:a03:39b::31) To DS7PR11MB7859.namprd11.prod.outlook.com
  (2603:10b6:8:da::22)
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: DS7PR11MB7859:EE_|IA1PR11MB6148:EE_
-X-MS-Office365-Filtering-Correlation-Id: bfc51266-7640-4993-e9e9-08db21c7949b
+X-MS-TrafficTypeDiagnostic: DS7PR11MB7859:EE_|SJ1PR11MB6202:EE_
+X-MS-Office365-Filtering-Correlation-Id: 7bd1fb35-769c-4a1b-79ca-08db21c848ed
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: x7dnVSACdnRrw+9RWoHcv341/bA7B1lEUw9IhsP9cvJqjiGqrCF6wFZRml8o4uKR7TbjZQv5cz/MkIM8IH9D7UFtPVqDQgK5n+/3jTIK3dlmeoGsxDCBpl72YFPTyFAV+FXofy61iDh4PRGxV/1h7p6G95qewIDwvI7X55hsXJM/hkomU7K1/mT7ZrwInU5n0NvvvHQMsb4lWAAQloP/DibxOXS+0dnhxv/vrjn7Axx/X/gG5i4/veA/h/+nYyddQFeC3JXYj9UO6bC7qjETfG9MGNUxxXAbFQ7OhWcQ2Bx6EBg+MDwUv+QbMvBXIKtLpFiLpyv96a6x2pIwuzxNFvobyctQ/b80MKAgUdxeuU2Qh9b7w4hNTb8DFjOiSvDuF8NdmZRNXVyj7GoBaM0chb2oKW05ix6yFSix1D0KwsxQctGZ/Wirh1QdX8/xJNLxKIVGaMTwJ18Z38U2i+XhZmnV4GFJ7FXkNji5jMAQL8qYj7bQWiX8S30whjBGJLKFzjsjEzhpQg8SNOPU7oDNTBUjoskfIROFCJzAqsSCBOCNIvBLd9rZEAqlZEeFEP+zwsFa6wC3V2EKbw0ydzRuaGndGj3fCTydwCTf00srpVhMS4kdW4GIDOoQmX3P1CeRYV2NwVkG38odz01m/DQb/Q==
+X-Microsoft-Antispam-Message-Info: 7OQynIrnop6JvzHUBTRyFH5DvwN9jQpGe4AnLIaXwt9svd/fU9qQuQYFAvzJFYKZs2qRh+wjIeWNoFVKmUAkbAQllbGuURYK5MPijB1MittCnYv1kWnfPcLSf0ZHoVLA7rj/MrM/lUIPlDyH+1MjQo+5XWDpuwfpEKNbrpuXP6Dy4/HtQiOdw1BYFIEoE3tokB1lcfAMdwlz+AnIPJKrjk6qPi67U/hxDJXGd4tz6IM2zp+6Tjwj4bxoOsIqnKJ2psjev8nP0Q1awc9qJYo8hvZgXE0AgIYuCw6RywhS/QVOtWP3YqxP81yYyLFlwYM1oYoPmr2p0jHyukdLvYbktFYVkptJgc6GTilEygzfefSSj9ZGlOEC+nXwa5KHllfavsng9ujYJnlcc0Ng8SPDGVVwOrWS2nNpp5ZOeuQfasbRMFfF7bcIrjUTdciHoeceT+kUBoyX94JNx5L4Y7QYNAyOpJrw5cElyVhzlaLITx0xp8z50VTWprZxPptVop/wkISmWky3na7sKVj0aYsfSoS9T5gqwWUDCN40IP2lt3Gi57kabQ453RrhnEJkSEqoSWfcwuFTTzTIjWYTMvPV3uqn2IN/xZTDjNbORC7uMe/0FMWOrp4a81jTaNv3RFI+UwoC7uh+haSJtzwIimC4Tg==
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
  IPV:NLI; SFV:NSPM; H:DS7PR11MB7859.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230025)(376002)(346002)(136003)(366004)(39860400002)(396003)(451199018)(38100700002)(6636002)(33656002)(86362001)(1076003)(186003)(26005)(478600001)(6512007)(6506007)(83380400001)(6666004)(82960400001)(316002)(6862004)(6486002)(5660300002)(66476007)(41300700001)(4326008)(8936002)(2906002)(66556008)(8676002)(66946007);
+ SFS:(13230025)(346002)(136003)(376002)(39860400002)(366004)(396003)(451199018)(33656002)(6636002)(316002)(38100700002)(6862004)(8936002)(6486002)(5660300002)(2906002)(66556008)(66946007)(66476007)(8676002)(4326008)(41300700001)(1076003)(478600001)(6506007)(186003)(86362001)(82960400001)(6666004)(26005)(6512007)(83380400001);
  DIR:OUT; SFP:1102; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?NShjIimk8O1uFwEFEDwbEHxb0PNjmdHjQLPTVzJxplnLHSHGxYUQ6UannmX1?=
- =?us-ascii?Q?67PWQ8Z/0aMtTf/R+XsIDu6Bo4UNglA9JLVXoc4TPxFzCNPV4tScb86poNV5?=
- =?us-ascii?Q?szCfpYtX+nnlh8sR3caXdQtyLi0WcnVQNc6Agm4m4+LXveH6c4ATPAWLYMrt?=
- =?us-ascii?Q?fxLDqO5J4NG+8uXvG9TGvuOxU18Y73Pj8l5RFEBFoSbHT4wtxp+epq1SRA8I?=
- =?us-ascii?Q?uABr6UImu2W5+PhnQLiLneup0QPXcR7X0kHRh6oEjSfxb3y/L0/7xClPAl29?=
- =?us-ascii?Q?GcAIfrJXegwoqnobspFOaML5pd+IkiirXKNaldOq8t5Y/LcwoK1KW202GhrN?=
- =?us-ascii?Q?0pMtwlOyj8y+NCG+90YhCFfZvNVf0VSbslzjrU1Ynpq0/a4wl8C6XTbfuXkn?=
- =?us-ascii?Q?YBj46fqozA3pKTooBhgQpUkiSdwyN7tLP7T+oNK/1Uapv6KkjNpi4e/NwKUD?=
- =?us-ascii?Q?Nln1kIJi7OXCh43dcPzlOok2UWo1nbbDoJhfGoihFYmGhQ3gVjUHyodZXVmN?=
- =?us-ascii?Q?JaUxDvqUkBcsr4x0X6oYO8DsOLuJzPtxaog3y/lG+3Y2gdffs25O4eO2QTtE?=
- =?us-ascii?Q?M/QUNQ5XWrSUfN7qV6AQ4nYRXIsbUDo3tem9kA9TOTpLNibp+kJSShkYB+Qy?=
- =?us-ascii?Q?ozMe3xJ9JPobnRraZXSQx3tZyspJmlKbRKTAFO2hP0cub5wRzhdH25f7/VWR?=
- =?us-ascii?Q?lQiCAEVZNTk9FfQP+kfJBIs4mpj+2UbSNBs9IQNXJVKGt5shhuBIzj70CgC5?=
- =?us-ascii?Q?YbrLFeDTdBIgYLM4kxg9nd4xccI4REIpbQk1r30e0pC/3ypViKj5LPeo65Fc?=
- =?us-ascii?Q?ShrLsfdb7m7WYmuvKYzs0k2Fs6UsIR+/Z7jFD+gA3tB7vJz2eWi/McDOMpiH?=
- =?us-ascii?Q?2Ef7kFZd5RTikDyAFTukM+ZXupB3AAc05xhbBAAyzHPxyirtl/TB1askN674?=
- =?us-ascii?Q?EL9gUncoI2q8IbTG4DHOcokmg0kC7qUqvwpNiJ3qT7f1AvyOOgUoJy3HdrFt?=
- =?us-ascii?Q?PjOcp/GvUJGlzGoTPRAavo6W82SwuovrQ0UBwM8vHK3c6X01qZl2zi5oeqyJ?=
- =?us-ascii?Q?LBYvjeNJPSqdYmPkGigVFa3HsNg/BLzXe7nRzlx2gySpG7S/olIC9P3EtaV2?=
- =?us-ascii?Q?jb0QkwQZh9oNn975VOu8wo3lRH6288B913PKQ7Zn0+j/eh2cWehC+uzDnIyW?=
- =?us-ascii?Q?PF78Cd6K7nJgVMqybqgazT/oP0I7v06oePeDB+SPeyTOuj/zh4mvzgB/9/PC?=
- =?us-ascii?Q?paOPaG2Ozv45lCmLLOjy5n2vRGsT4D8KNfvs3mcuM4FDCNIJCBngUQ1Q6BMd?=
- =?us-ascii?Q?yyPw9bttum+ZQ6ku/qSkg8ck1zvTQpOsocmXXdL3UmWSp4iapROJ4YHDhlBY?=
- =?us-ascii?Q?bbyVeZlIrkJe3BQ9ZhRs79XcKg8odiDn350ooHiOkoCLGi4dp+ZZGF7cKs/8?=
- =?us-ascii?Q?1ihjx+8BwLlnK/3AWbXU29tLSjP6Aamss8xvYFMspdegLl/LtWtfJhRULxak?=
- =?us-ascii?Q?HiiTJcsMMd7IR75dttzmy6vzFj9icLrZkdDMWtVMlGy3jdZBsnAr1f/bZS99?=
- =?us-ascii?Q?uUODYWAAIaxeA8f+S/9uPw9FyXqdq96xcrC+TABYS62kcHHNa+L4f5wHueE+?=
- =?us-ascii?Q?mg=3D=3D?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: bfc51266-7640-4993-e9e9-08db21c7949b
+X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?BWwbg2sS2ouWSXphxbyh4GFa+epEfAm0XsGq0hhOnnE1/z8Q6rOWIXgeyyhT?=
+ =?us-ascii?Q?xAv1/3PI7Lm1vS5jHX2rchS+sHZpP59JGNkumsC9uG391qSOZAu6v7LtYI0x?=
+ =?us-ascii?Q?lXSgGWFUadWFj3IJB+tVLJxbKWm9CxFEW365McpecbUzCABBL+lMzOnketgJ?=
+ =?us-ascii?Q?DvzH0Ynwr9miE1OlmguadyDVSYeYb3zRtAJ1+Cg3SX19Tkgbav3/0FsDf3Kb?=
+ =?us-ascii?Q?Q5X8uH0E5/uVpK+gdX2JT467jI/tDons8jENcP+qpyl8c7Xm3DqaExHXwLxk?=
+ =?us-ascii?Q?4oRSLI1XnmSxsU4qhkUktYN5qSUd6GPmX2fr4cgzwnPEaIbe3G+yFXb4U/2b?=
+ =?us-ascii?Q?DNZhmc2r5Y4ls0jMnNu9tBpn8mcYEtz3w2SLapdA+5ZHlDF8GAH3DAYa/NaR?=
+ =?us-ascii?Q?5Neqj+BdbTlfhnixTNgI9rN2b/El1WQBRXyMw0W3orl7WLMOmOinRTcT+lcH?=
+ =?us-ascii?Q?ZVkuiP/xvaRWWE1vfGBjU3o7cC4HixGAoN2Zibsob/QjpQslUPLFBYI3SFF0?=
+ =?us-ascii?Q?8oy6LyYm3gE6P9kT/VTfilmNDiQDx9bQYQRs7QxzaLv6ZYBqiOKVqLBvzALG?=
+ =?us-ascii?Q?RwH3bdicM012g+vhegMnJH/SAuTCYjcpIyCTinEgto2P7G5UPK3tQxllh8G7?=
+ =?us-ascii?Q?qfnPgnksfNmBOOIl+EMYs4sBzbc9PRsr2198ET9SsKBtLUo/lusvANARGejy?=
+ =?us-ascii?Q?Sx+162ifNb8QHNP2SLTMuVBA3x7dlHSVJ4pq2Q2IjJvyO8zGMcidmJW4TjzS?=
+ =?us-ascii?Q?9J6SAs/00U577z03IIypz+ybYgcVeKRIIyT2uBVZPE4HsvQseg/tNUS3VxDM?=
+ =?us-ascii?Q?U2l3abHEwpDq2L0BVsyqShF+qcE+NPhUoM0YwWTOZ9/HRJxpyAgxhYaaGDcL?=
+ =?us-ascii?Q?8Tdp/b5pvvuvWSuz2h6y/wH7Saw4tATVZbpuD30MQug2ik8G0XMzZo+BbMZi?=
+ =?us-ascii?Q?vqHgmaB9845tAZtByAhN5L3KhvQEdS0kEloddEtaBa9jqeYDsJaRHCRgQ3Us?=
+ =?us-ascii?Q?KhXp3TioJFnLRTr1RHOuJOBdnERdeh8MoPMhOc8YQATrzXoL5ZNZDmnk+G3Y?=
+ =?us-ascii?Q?XUCxyrGvw4wN5yLNBR2xo9kAYESLxzI2ngmoarZyDcHiASKY1xeBjJt36KMf?=
+ =?us-ascii?Q?N0+R/B+f+3F0eXwD6T2UMAOe/Mru+c86dNgyBSlTF1OJx+dEfMgevadxCgnC?=
+ =?us-ascii?Q?mMzetLu1tKNu+On2SgYCd3bgXeQ/AZ4UzjjvDwpt1jpDlYg/F8PENsV08IcX?=
+ =?us-ascii?Q?aR8mhbbTZWEEikmfOv0hS4x2iVUFkiPZOVeejJ/EvTMzyxZ5wuFWCCIZFShs?=
+ =?us-ascii?Q?r+ljy82m9fkFDo7rhJ5B2fnO6gf5dnbgNQJB+fS0mGESoDEuz1qkkAF3aUeB?=
+ =?us-ascii?Q?u+h1P5CNz4oZQ0QbHWdl1Uks2pHhzKGg/4K/s01GXRVBNvmszhKAAFZa0be9?=
+ =?us-ascii?Q?QqBJTFiRFHtC15PBzCfTBEaHrNYe1Eej9oC3dp3jUY1g/jWRQCPvqoLDS0yF?=
+ =?us-ascii?Q?MkGl378Ji6gXma1BSdAW8VzI/jLO6nhiofv1VnJufjaJVNQSgkjYZP2KaTJM?=
+ =?us-ascii?Q?whwoIg6UkGwiNDczS0fkaItzlx1cNmQvJ/5eyA+WXhhoxBEftM81NPfCA4SF?=
+ =?us-ascii?Q?sg=3D=3D?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: 7bd1fb35-769c-4a1b-79ca-08db21c848ed
 X-MS-Exchange-CrossTenant-AuthSource: DS7PR11MB7859.namprd11.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 11 Mar 2023 00:28:47.9605 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 11 Mar 2023 00:33:50.4849 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: cU1k4z+KaYxHgm2Fzh3/5p9m0pbm2p4XyN36+IsUWYlNLtzpyu0T4hNwZObFJar3DpLg5oqker02nv2P6c+2Jm++HRe/MwEEYAUGJk8IhpY=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: IA1PR11MB6148
+X-MS-Exchange-CrossTenant-UserPrincipalName: WvI1b5bRoZMx86fDDUggrXie/kbERYm9z5JRhgbjeXdy+zT16YW6977kL2DRvIfYen9YgV6dPJXJwqokQFNXewOV8NA39LDaLdS/L034uiI=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SJ1PR11MB6202
 X-OriginatorOrg: intel.com
-Subject: Re: [Intel-xe] [PATCH v2 11/12] drm/xe: Add missing DG2 lrc tunings
+Subject: Re: [Intel-xe] [PATCH v2 12/12] drm/xe: Add missing DG2 lrc
+ workarounds
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -146,82 +147,138 @@ Cc: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Fri, Mar 10, 2023 at 02:15:48PM -0800, Lucas De Marchi wrote:
-> Synchronize with i915 the DG2 tunings as of
+On Fri, Mar 10, 2023 at 02:15:49PM -0800, Lucas De Marchi wrote:
+> Synchronize with i915 the DG2 lrc workarounds as of
 > commit 4d14d7717f19 ("drm/i915/selftest: Fix ktime_get() and h/w access
 > order").
 > 
-> Contrary to the tuning "gang timer" for TGL, there is no quick
-> justification for why the read back is disabled in i915. Keep it
-> with that flag for now. That can be tentatively removed later when the
-> read values are checked.
+> A few simplifications were done when the WA should be applied to some
+> steps of a subplatform and all the steppings of the other subplatforms.
+> In this case, it was simply applied to all the steppings, which only
+> means applying it to a few more A* steppings.
 > 
-> v2: Use XEHP_FF_MODE2 instead of GEN12_FF_MODE2 (Matt Roper)
+> The implementation of the workaround 16011186671 triggers a bug in the
+> RTP infra: it's not possible to set the flag the usual way when having
+> multiple actions in the entry. This may be fixed later, but for now it's
+> sufficient to just set the flag directly without the helper macro.
+> 
+> v2: Fix 14014947963 to use FIELD_SET (Matt Roper)
 > 
 > Signed-off-by: Lucas De Marchi <lucas.demarchi@intel.com>
 
 Reviewed-by: Matt Roper <matthew.d.roper@intel.com>
 
 > ---
->  drivers/gpu/drm/xe/regs/xe_gt_regs.h |  7 +++++++
->  drivers/gpu/drm/xe/xe_tuning.c       | 21 +++++++++++++++++++++
->  2 files changed, 28 insertions(+)
+>  drivers/gpu/drm/xe/regs/xe_gt_regs.h | 19 +++++++++++
+>  drivers/gpu/drm/xe/xe_wa.c           | 51 ++++++++++++++++++++++++++++
+>  2 files changed, 70 insertions(+)
 > 
 > diff --git a/drivers/gpu/drm/xe/regs/xe_gt_regs.h b/drivers/gpu/drm/xe/regs/xe_gt_regs.h
-> index 2600704ace0a..7a578672a818 100644
+> index 7a578672a818..4a7ce09d6b60 100644
 > --- a/drivers/gpu/drm/xe/regs/xe_gt_regs.h
 > +++ b/drivers/gpu/drm/xe/regs/xe_gt_regs.h
-> @@ -73,7 +73,11 @@
+> @@ -73,9 +73,16 @@
 >  #define XEHP_TILE0_ADDR_RANGE			MCR_REG(0x4900)
 >  #define XEHP_FLAT_CCS_BASE_ADDR			MCR_REG(0x4910)
 >  
-> +#define CHICKEN_RASTER_2			MCR_REG(0x6208)
-> +#define   TBIMR_FAST_CLIP			REG_BIT(5)
+> +#define CHICKEN_RASTER_1			MCR_REG(0x6204)
+> +#define   DIS_SF_ROUND_NEAREST_EVEN		REG_BIT(8)
+> +
+>  #define CHICKEN_RASTER_2			MCR_REG(0x6208)
+>  #define   TBIMR_FAST_CLIP			REG_BIT(5)
+>  
+> +#define VFLSKPD					MCR_REG(0x62a8)
+> +#define   DIS_OVER_FETCH_CACHE			REG_BIT(1)
+> +#define   DIS_MULT_MISS_RD_SQUASH		REG_BIT(0)
 > +
 >  #define GEN12_FF_MODE2				_MMIO(0x6604)
-> +#define XEHP_FF_MODE2				MCR_REG(0x6604)
+>  #define XEHP_FF_MODE2				MCR_REG(0x6604)
 >  #define   FF_MODE2_GS_TIMER_MASK		REG_GENMASK(31, 24)
->  #define   FF_MODE2_GS_TIMER_224			REG_FIELD_PREP(FF_MODE2_GS_TIMER_MASK, 224)
+> @@ -83,6 +90,12 @@
 >  #define   FF_MODE2_TDS_TIMER_MASK		REG_GENMASK(23, 16)
-> @@ -228,6 +232,9 @@
->  #define XEHP_L3NODEARBCFG			MCR_REG(0xb0b4)
->  #define   XEHP_LNESPARE				REG_BIT(19)
+>  #define   FF_MODE2_TDS_TIMER_128		REG_FIELD_PREP(FF_MODE2_TDS_TIMER_MASK, 4)
 >  
-> +#define XEHP_L3SQCREG5				MCR_REG(0xb158)
-> +#define   L3_PWM_TIMER_INIT_VAL_MASK		REG_GENMASK(9, 0)
+> +#define CACHE_MODE_1				_MMIO(0x7004)
+> +#define   MSAA_OPTIMIZATION_REDUC_DISABLE	REG_BIT(11)
 > +
->  #define XEHP_L3SCQREG7				MCR_REG(0xb188)
->  #define   BLEND_FILL_CACHING_OPT_DIS		REG_BIT(3)
+> +#define XEHP_PSS_MODE2				MCR_REG(0x703c)
+> +#define   SCOREBOARD_STALL_FLUSH_CONTROL	REG_BIT(5)
+> +
+>  #define HIZ_CHICKEN				_MMIO(0x7018)
+>  #define   DG1_HZ_READ_SUPPRESSION_OPTIMIZATION_DISABLE	REG_BIT(14)
 >  
-> diff --git a/drivers/gpu/drm/xe/xe_tuning.c b/drivers/gpu/drm/xe/xe_tuning.c
-> index 47b27dccb385..928453b4636a 100644
-> --- a/drivers/gpu/drm/xe/xe_tuning.c
-> +++ b/drivers/gpu/drm/xe/xe_tuning.c
-> @@ -35,6 +35,27 @@ static const struct xe_rtp_entry lrc_tunings[] = {
->  						FF_MODE2_GS_TIMER_MASK,
->  						FF_MODE2_GS_TIMER_224))
+> @@ -96,6 +109,12 @@
+>  #define   GEN11_BLEND_EMB_FIX_DISABLE_IN_RCC	REG_BIT(11)
+>  #define   GEN12_DISABLE_CPS_AWARE_COLOR_PIPE	REG_BIT(9)
+>  
+> +#define XEHP_SLICE_COMMON_ECO_CHICKEN1		MCR_REG(0x731c)
+> +#define   MSC_MSAA_REODER_BUF_BYPASS_DISABLE	REG_BIT(14)
+> +
+> +#define VF_PREEMPTION				_MMIO(0x83a4)
+> +#define   PREEMPTION_VERTEX_COUNT		REG_GENMASK(15, 0)
+> +
+>  #define VFG_PREEMPTION_CHICKEN			_MMIO(0x83b4)
+>  #define   POLYGON_TRIFAN_LINELOOP_DISABLE	REG_BIT(4)
+>  
+> diff --git a/drivers/gpu/drm/xe/xe_wa.c b/drivers/gpu/drm/xe/xe_wa.c
+> index cc7a6552f17c..f97350184057 100644
+> --- a/drivers/gpu/drm/xe/xe_wa.c
+> +++ b/drivers/gpu/drm/xe/xe_wa.c
+> @@ -540,6 +540,57 @@ static const struct xe_rtp_entry lrc_was[] = {
+>  			     DG1_HZ_READ_SUPPRESSION_OPTIMIZATION_DISABLE,
+>  			     XE_RTP_ACTION_FLAG(MASKED_REG)))
 >  	},
 > +
 > +	/* DG2 */
 > +
-> +	{ XE_RTP_NAME("Tuning: L3 cache"),
-> +	  XE_RTP_RULES(PLATFORM(DG2)),
-> +	  XE_RTP_ACTIONS(FIELD_SET(XEHP_L3SQCREG5, L3_PWM_TIMER_INIT_VAL_MASK,
-> +				   REG_FIELD_PREP(L3_PWM_TIMER_INIT_VAL_MASK, 0x7f)))
+> +	{ XE_RTP_NAME("16011186671"),
+> +	  XE_RTP_RULES(SUBPLATFORM(DG2, G11), STEP(A0, B0)),
+> +	  XE_RTP_ACTIONS(CLR(VFLSKPD, DIS_MULT_MISS_RD_SQUASH,
+> +			     .flags = XE_RTP_ACTION_FLAG_MASKED_REG),
+> +			 SET(VFLSKPD, DIS_OVER_FETCH_CACHE,
+> +			     .flags = XE_RTP_ACTION_FLAG_MASKED_REG))
 > +	},
-> +	{ XE_RTP_NAME("Tuning: TDS gang timer"),
-> +	  XE_RTP_RULES(PLATFORM(DG2)),
-> +	  /* read verification is ignored as in i915 - need to check enabling */
-> +	  XE_RTP_ACTIONS(FIELD_SET_NO_READ_MASK(XEHP_FF_MODE2,
-> +						FF_MODE2_TDS_TIMER_MASK,
-> +						FF_MODE2_TDS_TIMER_128))
-> +	},
-> +	{ XE_RTP_NAME("Tuning: TBIMR fast clip"),
-> +	  XE_RTP_RULES(PLATFORM(DG2)),
-> +	  XE_RTP_ACTIONS(SET(CHICKEN_RASTER_2, TBIMR_FAST_CLIP,
+> +	{ XE_RTP_NAME("14010469329"),
+> +	  XE_RTP_RULES(SUBPLATFORM(DG2, G10), STEP(A0, B0)),
+> +	  XE_RTP_ACTIONS(SET(XEHP_COMMON_SLICE_CHICKEN3,
+> +			     XEHP_DUAL_SIMD8_SEQ_MERGE_DISABLE,
 > +			     XE_RTP_ACTION_FLAG(MASKED_REG)))
 > +	},
-> +
+> +	{ XE_RTP_NAME("14010698770, 22010613112, 22010465075"),
+> +	  XE_RTP_RULES(SUBPLATFORM(DG2, G10), STEP(A0, B0)),
+> +	  XE_RTP_ACTIONS(SET(XEHP_COMMON_SLICE_CHICKEN3,
+> +			     GEN12_DISABLE_CPS_AWARE_COLOR_PIPE,
+> +			     XE_RTP_ACTION_FLAG(MASKED_REG)))
+> +	},
+> +	{ XE_RTP_NAME("16013271637"),
+> +	  XE_RTP_RULES(PLATFORM(DG2)),
+> +	  XE_RTP_ACTIONS(SET(XEHP_SLICE_COMMON_ECO_CHICKEN1,
+> +			     MSC_MSAA_REODER_BUF_BYPASS_DISABLE,
+> +			     XE_RTP_ACTION_FLAG(MASKED_REG)))
+> +	},
+> +	{ XE_RTP_NAME("14014947963"),
+> +	  XE_RTP_RULES(PLATFORM(DG2)),
+> +	  XE_RTP_ACTIONS(FIELD_SET(VF_PREEMPTION,
+> +				   PREEMPTION_VERTEX_COUNT,
+> +				   0x4000,
+> +				   XE_RTP_ACTION_FLAG(MASKED_REG)))
+> +	},
+> +	{ XE_RTP_NAME("18018764978"),
+> +	  XE_RTP_RULES(PLATFORM(DG2)),
+> +	  XE_RTP_ACTIONS(SET(XEHP_PSS_MODE2,
+> +			     SCOREBOARD_STALL_FLUSH_CONTROL,
+> +			     XE_RTP_ACTION_FLAG(MASKED_REG)))
+> +	},
+> +	{ XE_RTP_NAME("15010599737"),
+> +	  XE_RTP_RULES(PLATFORM(DG2)),
+> +	  XE_RTP_ACTIONS(SET(CHICKEN_RASTER_1, DIS_SF_ROUND_NEAREST_EVEN,
+> +			     XE_RTP_ACTION_FLAG(MASKED_REG)))
+> +	},
+> +	{ XE_RTP_NAME("18019271663"),
+> +	  XE_RTP_RULES(PLATFORM(DG2)),
+> +	  XE_RTP_ACTIONS(SET(CACHE_MODE_1, MSAA_OPTIMIZATION_REDUC_DISABLE,
+> +			     XE_RTP_ACTION_FLAG(MASKED_REG)))
+> +	},
 >  	{}
 >  };
 >  
