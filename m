@@ -4,50 +4,49 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6C413C6FD19
-	for <intel-xe@archiver.kernel.org>; Mon, 13 Mar 2023 20:46:01 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4FB47C6FD1C
+	for <intel-xe@archiver.kernel.org>; Mon, 13 Mar 2023 20:46:03 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4299810E62C;
-	Mon, 13 Mar 2023 20:46:01 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2EE5810E634;
+	Mon, 13 Mar 2023 20:46:03 +0000 (UTC)
 Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 76B1410E62C
- for <intel-xe@lists.freedesktop.org>; Mon, 13 Mar 2023 20:45:58 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9FB3010E634
+ for <intel-xe@lists.freedesktop.org>; Mon, 13 Mar 2023 20:46:01 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1678740358; x=1710276358;
+ t=1678740361; x=1710276361;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=JFLq7QfLz6lQzc42XmBmwB1bZ7wdh7f998CaN4pLcZc=;
- b=aWM5JnpBtUwJ70kNiCpklA8m+rviVqz+b19AAkNHOaM/3CoAPNwsFC6u
- vn6I7m3adj75YYBHBqNh2QNRmhj/R6rJb40ZkpvWsHbrEpM4XJhmfBKsz
- q7QsCbgMz/z5OZdkIsr2b2DRqlITz8vJvu95uEyL99KpuvXilIDF9RApo
- 4qLiBGXZHV/M4RHQDILZE4+vsvPW4iPRE/VbZwbCJkhoI6BFisrJFq4MI
- x7RsYkaxUOxNA8qiT8KZO1tUgYxB47f3g+90ly79KmXGDkC4FpuAmoIs7
- tzhc9N7lxkCmWkGr0YFvplpKJMjzHn7Bsrp6OYINV6NkwlPwzsf6uYxQt w==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10648"; a="334733889"
-X-IronPort-AV: E=Sophos;i="5.98,257,1673942400"; d="scan'208";a="334733889"
+ bh=2JB3gtvw97SktlAwxkWmi5k1PMlQ30uMl2BGLyCW1R8=;
+ b=VF7QYE6dAG82ylUBg2Ohde6fKgQq2pjIcDcPpw9nuvJtfz4ispBSzz3c
+ OpuN/D3PfM18wlefXljXiW8A21luka3FfhibNMYD78NqsAi4roJwE7NJj
+ 0YX9cUibAHTKLqH2/hm2n+4FOrAlLQkPe4weaoTCNJrd2mvqPmseONHnJ
+ VIuKCgAF9q87DbloioNilyKy+s35ABB8MeykNhGwhrBIPp1aeOcmXJRxP
+ PSZAKaRi6fZsCeE7p/rOMMndtpKGifjmVgNW2GvefTflYCCghm3tbuIHO
+ H1L3hGidzO2pdcpZteyWCWnHBhSFUlN5YD9RMjHp8BcBunfHJ1azG4MWB A==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10648"; a="334733911"
+X-IronPort-AV: E=Sophos;i="5.98,257,1673942400"; d="scan'208";a="334733911"
 Received: from fmsmga006.fm.intel.com ([10.253.24.20])
  by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 13 Mar 2023 13:45:58 -0700
+ 13 Mar 2023 13:46:01 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6500,9779,10648"; a="924650119"
-X-IronPort-AV: E=Sophos;i="5.98,257,1673942400"; d="scan'208";a="924650119"
+X-IronPort-AV: E=McAfee;i="6500,9779,10648"; a="924650128"
+X-IronPort-AV: E=Sophos;i="5.98,257,1673942400"; d="scan'208";a="924650128"
 Received: from lapeders-mobl1.ger.corp.intel.com (HELO
  thellstr-mobl1.intel.com) ([10.249.254.190])
  by fmsmga006-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 13 Mar 2023 13:45:57 -0700
+ 13 Mar 2023 13:46:00 -0700
 From: =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>
 To: intel-xe@lists.freedesktop.org
-Date: Mon, 13 Mar 2023 21:45:14 +0100
-Message-Id: <20230313204519.158888-2-thomas.hellstrom@linux.intel.com>
+Date: Mon, 13 Mar 2023 21:45:17 +0100
+Message-Id: <20230313204519.158888-5-thomas.hellstrom@linux.intel.com>
 X-Mailer: git-send-email 2.39.2
 In-Reply-To: <20230313204519.158888-1-thomas.hellstrom@linux.intel.com>
 References: <20230313204519.158888-1-thomas.hellstrom@linux.intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-xe] [PATCH 1/6] drm/xe: Use a define to set initial seqno
- for fences
+Subject: [Intel-xe] [PATCH 4/6] drm/xe: Introduce xe_engine_is_idle()
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -62,93 +61,92 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Also for HW fences, write the initial seqno - 1 to the HW completed
-seqno to initialize.
+Introduce xe_engine_is_idle, and replace the static function in
+xe_migrate.c.
+The latter had two flaws. First the seqno == 1 test might return a false
+true value each time the seqno counter wrapped, Second, the
+cur_seqno == next_seqno test would never return true.
 
 Signed-off-by: Thomas Hellström <thomas.hellstrom@linux.intel.com>
 ---
- drivers/gpu/drm/xe/xe_engine.c   | 5 +++--
- drivers/gpu/drm/xe/xe_hw_fence.c | 5 ++---
- drivers/gpu/drm/xe/xe_hw_fence.h | 2 ++
- drivers/gpu/drm/xe/xe_lrc.c      | 3 +++
- 4 files changed, 10 insertions(+), 5 deletions(-)
+ drivers/gpu/drm/xe/xe_engine.c  | 23 +++++++++++++++++++++++
+ drivers/gpu/drm/xe/xe_engine.h  |  2 ++
+ drivers/gpu/drm/xe/xe_migrate.c |  8 +-------
+ 3 files changed, 26 insertions(+), 7 deletions(-)
 
 diff --git a/drivers/gpu/drm/xe/xe_engine.c b/drivers/gpu/drm/xe/xe_engine.c
-index 3b6f8a25112a..7e6367a84f1f 100644
+index 7e6367a84f1f..a4fc5afdf688 100644
 --- a/drivers/gpu/drm/xe/xe_engine.c
 +++ b/drivers/gpu/drm/xe/xe_engine.c
-@@ -13,6 +13,7 @@
- 
- #include "xe_device.h"
- #include "xe_gt.h"
-+#include "xe_hw_fence.h"
- #include "xe_lrc.h"
- #include "xe_macros.h"
- #include "xe_migrate.h"
-@@ -57,11 +58,11 @@ static struct xe_engine *__xe_engine_create(struct xe_device *xe,
- 
- 	if (xe_engine_is_parallel(e)) {
- 		e->parallel.composite_fence_ctx = dma_fence_context_alloc(1);
--		e->parallel.composite_fence_seqno = 1;
-+		e->parallel.composite_fence_seqno = XE_FENCE_INITIAL_SEQNO;
- 	}
- 	if (e->flags & ENGINE_FLAG_VM) {
- 		e->bind.fence_ctx = dma_fence_context_alloc(1);
--		e->bind.fence_seqno = 1;
-+		e->bind.fence_seqno = XE_FENCE_INITIAL_SEQNO;
- 	}
- 
- 	for (i = 0; i < width; ++i) {
-diff --git a/drivers/gpu/drm/xe/xe_hw_fence.c b/drivers/gpu/drm/xe/xe_hw_fence.c
-index e56ca2867545..ca8304650713 100644
---- a/drivers/gpu/drm/xe/xe_hw_fence.c
-+++ b/drivers/gpu/drm/xe/xe_hw_fence.c
-@@ -129,7 +129,7 @@ void xe_hw_fence_ctx_init(struct xe_hw_fence_ctx *ctx, struct xe_gt *gt,
- 	ctx->gt = gt;
- 	ctx->irq = irq;
- 	ctx->dma_fence_ctx = dma_fence_context_alloc(1);
--	ctx->next_seqno = 1;
-+	ctx->next_seqno = XE_FENCE_INITIAL_SEQNO;
- 	sprintf(ctx->name, "%s", name);
+@@ -683,6 +683,29 @@ static void engine_kill_compute(struct xe_engine *e)
+ 	up_write(&e->vm->lock);
  }
  
-@@ -164,8 +164,7 @@ static bool xe_hw_fence_signaled(struct dma_fence *dma_fence)
- 	struct xe_device *xe = gt_to_xe(fence->ctx->gt);
- 	u32 seqno = xe_map_rd(xe, &fence->seqno_map, 0, u32);
- 
--	return dma_fence->error ||
--		(s32)fence->dma.seqno <= (s32)seqno;
-+	return dma_fence->error || (s32)(u32)fence->dma.seqno <= (s32)seqno;
++/**
++ * xe_engine_is_idle() - Whether an engine is idle.
++ * @engine: The engine
++ *
++ * FIXME: Need to determine what to use as the short-lived
++ * timeline lock for the engines, so that the return value
++ * of this function becomes more than just an advisory
++ * snapshot in time. The timeline lock must protect the
++ * seqno from racing submissions on the same engine.
++ * Typically vm->resv, but user-created timeline locks use the migrate vm
++ * and never grabs the migrate vm->resv so we have a race there.
++ *
++ * Return: True if the engine is idle, false otherwise.
++ */
++bool xe_engine_is_idle(struct xe_engine *engine)
++{
++	if (XE_WARN_ON(xe_engine_is_parallel(engine)))
++		return false;
++
++	return xe_lrc_seqno(&engine->lrc[0]) ==
++		engine->lrc[0].fence_ctx.next_seqno - 1;
++}
++
+ void xe_engine_kill(struct xe_engine *e)
+ {
+ 	struct xe_engine *engine = e, *next;
+diff --git a/drivers/gpu/drm/xe/xe_engine.h b/drivers/gpu/drm/xe/xe_engine.h
+index a3a44534003f..1cf7f23c4afd 100644
+--- a/drivers/gpu/drm/xe/xe_engine.h
++++ b/drivers/gpu/drm/xe/xe_engine.h
+@@ -42,6 +42,8 @@ static inline bool xe_engine_is_parallel(struct xe_engine *engine)
+ 	return engine->width > 1;
  }
  
- static bool xe_hw_fence_enable_signaling(struct dma_fence *dma_fence)
-diff --git a/drivers/gpu/drm/xe/xe_hw_fence.h b/drivers/gpu/drm/xe/xe_hw_fence.h
-index 07f202db6526..523c2611ef5d 100644
---- a/drivers/gpu/drm/xe/xe_hw_fence.h
-+++ b/drivers/gpu/drm/xe/xe_hw_fence.h
-@@ -8,6 +8,8 @@
- 
- #include "xe_hw_fence_types.h"
- 
-+#define XE_FENCE_INITIAL_SEQNO 1
++bool xe_engine_is_idle(struct xe_engine *engine);
 +
- int xe_hw_fence_module_init(void);
- void xe_hw_fence_module_exit(void);
+ void xe_engine_kill(struct xe_engine *e);
  
-diff --git a/drivers/gpu/drm/xe/xe_lrc.c b/drivers/gpu/drm/xe/xe_lrc.c
-index 9140b057a5ba..fb8c6f7d6528 100644
---- a/drivers/gpu/drm/xe/xe_lrc.c
-+++ b/drivers/gpu/drm/xe/xe_lrc.c
-@@ -697,6 +697,9 @@ int xe_lrc_init(struct xe_lrc *lrc, struct xe_hw_engine *hwe,
- 	arb_enable = MI_ARB_ON_OFF | MI_ARB_ENABLE;
- 	xe_lrc_write_ring(lrc, &arb_enable, sizeof(arb_enable));
+ int xe_engine_create_ioctl(struct drm_device *dev, void *data,
+diff --git a/drivers/gpu/drm/xe/xe_migrate.c b/drivers/gpu/drm/xe/xe_migrate.c
+index 39ed63829224..dfdc88aa8910 100644
+--- a/drivers/gpu/drm/xe/xe_migrate.c
++++ b/drivers/gpu/drm/xe/xe_migrate.c
+@@ -1024,12 +1024,6 @@ static bool no_in_syncs(struct xe_sync_entry *syncs, u32 num_syncs)
+ 	return true;
+ }
  
-+	map = __xe_lrc_seqno_map(lrc);
-+	xe_map_write32(lrc_to_xe(lrc), &map, lrc->fence_ctx.next_seqno - 1);
-+
- 	return 0;
+-static bool engine_is_idle(struct xe_engine *e)
+-{
+-	return !e || e->lrc[0].fence_ctx.next_seqno == 1 ||
+-		xe_lrc_seqno(&e->lrc[0]) == e->lrc[0].fence_ctx.next_seqno;
+-}
+-
+ /**
+  * xe_migrate_update_pgtables() - Pipelined page-table update
+  * @m: The migrate context.
+@@ -1082,7 +1076,7 @@ xe_migrate_update_pgtables(struct xe_migrate *m,
+ 	bool first_munmap_rebind = vma && vma->first_munmap_rebind;
  
- err_lrc_finish:
+ 	/* Use the CPU if no in syncs and engine is idle */
+-	if (no_in_syncs(syncs, num_syncs) && engine_is_idle(eng)) {
++	if (no_in_syncs(syncs, num_syncs) && (!eng || xe_engine_is_idle(eng))) {
+ 		fence =  xe_migrate_update_pgtables_cpu(m, vm, bo, updates,
+ 							num_updates,
+ 							first_munmap_rebind,
 -- 
 2.39.2
 
