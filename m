@@ -4,30 +4,31 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id D4CE9C6FD1F
-	for <intel-xe@archiver.kernel.org>; Mon, 13 Mar 2023 16:05:05 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 625EFC6FD19
+	for <intel-xe@archiver.kernel.org>; Mon, 13 Mar 2023 16:06:55 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8D97110E5A2;
-	Mon, 13 Mar 2023 16:05:05 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3C15410E5A2;
+	Mon, 13 Mar 2023 16:06:55 +0000 (UTC)
 Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id 6FE9610E5A2;
- Mon, 13 Mar 2023 16:05:04 +0000 (UTC)
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 9C8B610E5A8;
+ Mon, 13 Mar 2023 16:06:53 +0000 (UTC)
 Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 460A7AADD5;
- Mon, 13 Mar 2023 16:05:04 +0000 (UTC)
+ by emeril.freedesktop.org (Postfix) with ESMTP id 93EBBAADD5;
+ Mon, 13 Mar 2023 16:06:53 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
 From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Matthew Auld" <matthew.auld@intel.com>
-Date: Mon, 13 Mar 2023 16:05:04 -0000
-Message-ID: <167872350425.1034.13006255632545026104@emeril.freedesktop.org>
+To: =?utf-8?q?Thomas_Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>
+Date: Mon, 13 Mar 2023 16:06:53 -0000
+Message-ID: <167872361356.1033.15333227780444553179@emeril.freedesktop.org>
 X-Patchwork-Hint: ignore
-References: <20230308123012.247091-1-matthew.auld@intel.com>
-In-Reply-To: <20230308123012.247091-1-matthew.auld@intel.com>
+References: <20230308191013.40431-1-thomas.hellstrom@linux.intel.com>
+In-Reply-To: <20230308191013.40431-1-thomas.hellstrom@linux.intel.com>
 Subject: [Intel-xe] =?utf-8?q?=E2=9C=97_CI=2EPatch=5Fapplied=3A_failure_f?=
- =?utf-8?q?or_Some_small-bar_prep_patches_=28rev3=29?=
+ =?utf-8?q?or_drm/xe/vm=3A_Use_the_correct_vma_destroy_sequence_on_userptr?=
+ =?utf-8?q?_failure?=
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -46,8 +47,8 @@ Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 == Series Details ==
 
-Series: Some small-bar prep patches (rev3)
-URL   : https://patchwork.freedesktop.org/series/114521/
+Series: drm/xe/vm: Use the correct vma destroy sequence on userptr failure
+URL   : https://patchwork.freedesktop.org/series/114870/
 State : failure
 
 == Summary ==
@@ -68,32 +69,11 @@ CommitDate: Fri Mar 10 13:52:30 2023 -0800
     Signed-off-by: Lucas De Marchi <lucas.demarchi@intel.com>
     Reviewed-by: Matt Roper <matthew.d.roper@intel.com>
 === git am output follows ===
-error: patch failed: drivers/gpu/drm/xe/Kconfig.debug:41
-error: drivers/gpu/drm/xe/Kconfig.debug: patch does not apply
-error: patch failed: drivers/gpu/drm/xe/tests/xe_migrate.c:129
-error: drivers/gpu/drm/xe/tests/xe_migrate.c: patch does not apply
-error: patch failed: drivers/gpu/drm/xe/xe_bo.c:1290
-error: drivers/gpu/drm/xe/xe_bo.c: patch does not apply
-error: patch failed: drivers/gpu/drm/xe/xe_bo.h:196
-error: drivers/gpu/drm/xe/xe_bo.h: patch does not apply
-error: patch failed: drivers/gpu/drm/xe/xe_ggtt.c:28
-error: drivers/gpu/drm/xe/xe_ggtt.c: patch does not apply
-error: patch failed: drivers/gpu/drm/xe/xe_migrate.c:222
-error: drivers/gpu/drm/xe/xe_migrate.c: patch does not apply
-error: patch failed: drivers/gpu/drm/xe/xe_mmio.c:68
-error: drivers/gpu/drm/xe/xe_mmio.c: patch does not apply
-error: patch failed: drivers/gpu/drm/xe/xe_module.c:22
-error: drivers/gpu/drm/xe/xe_module.c: patch does not apply
-error: patch failed: drivers/gpu/drm/xe/xe_module.h:8
-error: drivers/gpu/drm/xe/xe_module.h: patch does not apply
-error: patch failed: drivers/gpu/drm/xe/xe_pt.c:62
-error: drivers/gpu/drm/xe/xe_pt.c: patch does not apply
-error: patch failed: drivers/gpu/drm/xe/xe_vm.c:3355
+error: patch failed: drivers/gpu/drm/xe/xe_vm.c:2811
 error: drivers/gpu/drm/xe/xe_vm.c: patch does not apply
 hint: Use 'git am --show-current-patch' to see the failed patch
-Applying: drm/xe: add xe_ttm_stolen_cpu_access_needs_ggtt()
-Applying: drm/xe: s/lmem/vram/
-Patch failed at 0002 drm/xe: s/lmem/vram/
+Applying: drm/xe/vm: Use the correct vma destroy sequence on userptr failure
+Patch failed at 0001 drm/xe/vm: Use the correct vma destroy sequence on userptr failure
 When you have resolved this problem, run "git am --continue".
 If you prefer to skip this patch, run "git am --skip" instead.
 To restore the original branch and stop patching, run "git am --abort".
