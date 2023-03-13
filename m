@@ -4,49 +4,50 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8A726C61DA4
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6C413C6FD19
 	for <intel-xe@archiver.kernel.org>; Mon, 13 Mar 2023 20:46:01 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4585F10E633;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4299810E62C;
 	Mon, 13 Mar 2023 20:46:01 +0000 (UTC)
 Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4B95A10E62C
- for <intel-xe@lists.freedesktop.org>; Mon, 13 Mar 2023 20:45:59 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 76B1410E62C
+ for <intel-xe@lists.freedesktop.org>; Mon, 13 Mar 2023 20:45:58 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1678740359; x=1710276359;
+ t=1678740358; x=1710276358;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=ataU1Dh+5OyymOEDRqk9jYsQAa3HyTrDrGNAap5WkTs=;
- b=Q620Fz3OMp02OutqJD0Y4nDApZIoxOjqA4Sb+vcusJKH8ZNA0B7I0gth
- T/wRzRhqdiyL5cY3Jj6QChasJamOJqwUpOO3hQGVjzB4mZeI1YGrhd8sg
- yCGtK39+eYoxl3RSusPwDOutF0XZzMlCR+nybJbKFA6DS2hDSwThc88n7
- yHiEJ+UHl5z2yrNbSwbH0FlSn44Ugp2hMycU0LLNMeg0dpFum+axqPEsd
- FX3KXwh6G4Za7MpnX2LHEhMpEAaY0ls+Wij+kmAYXYLbKk3S812WK+UL+
- QifWDiEMHgZ5XzSQfri/tAjPxT1C7DXyJDWFj04Ft88LTCWrAtYjprV6q w==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10648"; a="334733895"
-X-IronPort-AV: E=Sophos;i="5.98,257,1673942400"; d="scan'208";a="334733895"
+ bh=JFLq7QfLz6lQzc42XmBmwB1bZ7wdh7f998CaN4pLcZc=;
+ b=aWM5JnpBtUwJ70kNiCpklA8m+rviVqz+b19AAkNHOaM/3CoAPNwsFC6u
+ vn6I7m3adj75YYBHBqNh2QNRmhj/R6rJb40ZkpvWsHbrEpM4XJhmfBKsz
+ q7QsCbgMz/z5OZdkIsr2b2DRqlITz8vJvu95uEyL99KpuvXilIDF9RApo
+ 4qLiBGXZHV/M4RHQDILZE4+vsvPW4iPRE/VbZwbCJkhoI6BFisrJFq4MI
+ x7RsYkaxUOxNA8qiT8KZO1tUgYxB47f3g+90ly79KmXGDkC4FpuAmoIs7
+ tzhc9N7lxkCmWkGr0YFvplpKJMjzHn7Bsrp6OYINV6NkwlPwzsf6uYxQt w==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10648"; a="334733889"
+X-IronPort-AV: E=Sophos;i="5.98,257,1673942400"; d="scan'208";a="334733889"
 Received: from fmsmga006.fm.intel.com ([10.253.24.20])
  by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 13 Mar 2023 13:45:59 -0700
+ 13 Mar 2023 13:45:58 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6500,9779,10648"; a="924650122"
-X-IronPort-AV: E=Sophos;i="5.98,257,1673942400"; d="scan'208";a="924650122"
+X-IronPort-AV: E=McAfee;i="6500,9779,10648"; a="924650119"
+X-IronPort-AV: E=Sophos;i="5.98,257,1673942400"; d="scan'208";a="924650119"
 Received: from lapeders-mobl1.ger.corp.intel.com (HELO
  thellstr-mobl1.intel.com) ([10.249.254.190])
  by fmsmga006-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 13 Mar 2023 13:45:58 -0700
+ 13 Mar 2023 13:45:57 -0700
 From: =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>
 To: intel-xe@lists.freedesktop.org
-Date: Mon, 13 Mar 2023 21:45:15 +0100
-Message-Id: <20230313204519.158888-3-thomas.hellstrom@linux.intel.com>
+Date: Mon, 13 Mar 2023 21:45:14 +0100
+Message-Id: <20230313204519.158888-2-thomas.hellstrom@linux.intel.com>
 X-Mailer: git-send-email 2.39.2
 In-Reply-To: <20230313204519.158888-1-thomas.hellstrom@linux.intel.com>
 References: <20230313204519.158888-1-thomas.hellstrom@linux.intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-xe] [PATCH 2/6] drm/xe/migrate: Update cpu page-table updates
+Subject: [Intel-xe] [PATCH 1/6] drm/xe: Use a define to set initial seqno
+ for fences
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -61,65 +62,93 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Don't wait for GPU to be able to update page-tables using CPU. Putting
-ourselves to sleep may be more of a problem than using GPU for
-page-table updates. Also allow the vm to be NULL since the migrate
-kunit test uses NULL for vm.
+Also for HW fences, write the initial seqno - 1 to the HW completed
+seqno to initialize.
 
 Signed-off-by: Thomas Hellström <thomas.hellstrom@linux.intel.com>
 ---
- drivers/gpu/drm/xe/xe_migrate.c | 30 ++++++++++--------------------
- 1 file changed, 10 insertions(+), 20 deletions(-)
+ drivers/gpu/drm/xe/xe_engine.c   | 5 +++--
+ drivers/gpu/drm/xe/xe_hw_fence.c | 5 ++---
+ drivers/gpu/drm/xe/xe_hw_fence.h | 2 ++
+ drivers/gpu/drm/xe/xe_lrc.c      | 3 +++
+ 4 files changed, 10 insertions(+), 5 deletions(-)
 
-diff --git a/drivers/gpu/drm/xe/xe_migrate.c b/drivers/gpu/drm/xe/xe_migrate.c
-index c0523d8fe944..39ed63829224 100644
---- a/drivers/gpu/drm/xe/xe_migrate.c
-+++ b/drivers/gpu/drm/xe/xe_migrate.c
-@@ -979,25 +979,13 @@ xe_migrate_update_pgtables_cpu(struct xe_migrate *m,
- 	int err;
- 	u32 i;
+diff --git a/drivers/gpu/drm/xe/xe_engine.c b/drivers/gpu/drm/xe/xe_engine.c
+index 3b6f8a25112a..7e6367a84f1f 100644
+--- a/drivers/gpu/drm/xe/xe_engine.c
++++ b/drivers/gpu/drm/xe/xe_engine.c
+@@ -13,6 +13,7 @@
  
--	/* Wait on BO moves for 10 ms, then fall back to GPU job */
--	if (bo) {
--		long wait;
-+	if (bo && !dma_resv_test_signaled(bo->ttm.base.resv,
-+					  DMA_RESV_USAGE_KERNEL))
-+		return ERR_PTR(-ETIME);
+ #include "xe_device.h"
+ #include "xe_gt.h"
++#include "xe_hw_fence.h"
+ #include "xe_lrc.h"
+ #include "xe_macros.h"
+ #include "xe_migrate.h"
+@@ -57,11 +58,11 @@ static struct xe_engine *__xe_engine_create(struct xe_device *xe,
  
--		wait = dma_resv_wait_timeout(bo->ttm.base.resv,
--					     DMA_RESV_USAGE_KERNEL,
--					     true, HZ / 100);
--		if (wait <= 0)
--			return ERR_PTR(-ETIME);
--	}
--	if (wait_vm) {
--		long wait;
--
--		wait = dma_resv_wait_timeout(&vm->resv,
--					     DMA_RESV_USAGE_BOOKKEEP,
--					     true, HZ / 100);
--		if (wait <= 0)
--			return ERR_PTR(-ETIME);
--	}
-+	if (wait_vm && !dma_resv_test_signaled(&vm->resv,
-+					       DMA_RESV_USAGE_BOOKKEEP))
-+		return ERR_PTR(-ETIME);
- 
- 	if (ops->pre_commit) {
- 		err = ops->pre_commit(pt_update);
-@@ -1011,8 +999,10 @@ xe_migrate_update_pgtables_cpu(struct xe_migrate *m,
- 			      update->ofs, update->qwords, update);
+ 	if (xe_engine_is_parallel(e)) {
+ 		e->parallel.composite_fence_ctx = dma_fence_context_alloc(1);
+-		e->parallel.composite_fence_seqno = 1;
++		e->parallel.composite_fence_seqno = XE_FENCE_INITIAL_SEQNO;
+ 	}
+ 	if (e->flags & ENGINE_FLAG_VM) {
+ 		e->bind.fence_ctx = dma_fence_context_alloc(1);
+-		e->bind.fence_seqno = 1;
++		e->bind.fence_seqno = XE_FENCE_INITIAL_SEQNO;
  	}
  
--	trace_xe_vm_cpu_bind(vm);
--	xe_device_wmb(vm->xe);
-+	if (vm) {
-+		trace_xe_vm_cpu_bind(vm);
-+		xe_device_wmb(vm->xe);
-+	}
+ 	for (i = 0; i < width; ++i) {
+diff --git a/drivers/gpu/drm/xe/xe_hw_fence.c b/drivers/gpu/drm/xe/xe_hw_fence.c
+index e56ca2867545..ca8304650713 100644
+--- a/drivers/gpu/drm/xe/xe_hw_fence.c
++++ b/drivers/gpu/drm/xe/xe_hw_fence.c
+@@ -129,7 +129,7 @@ void xe_hw_fence_ctx_init(struct xe_hw_fence_ctx *ctx, struct xe_gt *gt,
+ 	ctx->gt = gt;
+ 	ctx->irq = irq;
+ 	ctx->dma_fence_ctx = dma_fence_context_alloc(1);
+-	ctx->next_seqno = 1;
++	ctx->next_seqno = XE_FENCE_INITIAL_SEQNO;
+ 	sprintf(ctx->name, "%s", name);
+ }
  
- 	fence = dma_fence_get_stub();
+@@ -164,8 +164,7 @@ static bool xe_hw_fence_signaled(struct dma_fence *dma_fence)
+ 	struct xe_device *xe = gt_to_xe(fence->ctx->gt);
+ 	u32 seqno = xe_map_rd(xe, &fence->seqno_map, 0, u32);
  
+-	return dma_fence->error ||
+-		(s32)fence->dma.seqno <= (s32)seqno;
++	return dma_fence->error || (s32)(u32)fence->dma.seqno <= (s32)seqno;
+ }
+ 
+ static bool xe_hw_fence_enable_signaling(struct dma_fence *dma_fence)
+diff --git a/drivers/gpu/drm/xe/xe_hw_fence.h b/drivers/gpu/drm/xe/xe_hw_fence.h
+index 07f202db6526..523c2611ef5d 100644
+--- a/drivers/gpu/drm/xe/xe_hw_fence.h
++++ b/drivers/gpu/drm/xe/xe_hw_fence.h
+@@ -8,6 +8,8 @@
+ 
+ #include "xe_hw_fence_types.h"
+ 
++#define XE_FENCE_INITIAL_SEQNO 1
++
+ int xe_hw_fence_module_init(void);
+ void xe_hw_fence_module_exit(void);
+ 
+diff --git a/drivers/gpu/drm/xe/xe_lrc.c b/drivers/gpu/drm/xe/xe_lrc.c
+index 9140b057a5ba..fb8c6f7d6528 100644
+--- a/drivers/gpu/drm/xe/xe_lrc.c
++++ b/drivers/gpu/drm/xe/xe_lrc.c
+@@ -697,6 +697,9 @@ int xe_lrc_init(struct xe_lrc *lrc, struct xe_hw_engine *hwe,
+ 	arb_enable = MI_ARB_ON_OFF | MI_ARB_ENABLE;
+ 	xe_lrc_write_ring(lrc, &arb_enable, sizeof(arb_enable));
+ 
++	map = __xe_lrc_seqno_map(lrc);
++	xe_map_write32(lrc_to_xe(lrc), &map, lrc->fence_ctx.next_seqno - 1);
++
+ 	return 0;
+ 
+ err_lrc_finish:
 -- 
 2.39.2
 
