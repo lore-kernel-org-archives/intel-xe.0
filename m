@@ -4,47 +4,30 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id B2DFAC6FD19
-	for <intel-xe@archiver.kernel.org>; Mon, 13 Mar 2023 23:11:48 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id C3898C6FD19
+	for <intel-xe@archiver.kernel.org>; Mon, 13 Mar 2023 23:13:40 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 71B5110E08D;
-	Mon, 13 Mar 2023 23:11:48 +0000 (UTC)
-Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0578B10E08D
- for <intel-xe@lists.freedesktop.org>; Mon, 13 Mar 2023 23:11:46 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1678749107; x=1710285107;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=lIOutTxQC6Gt3yY4HEarQJXqBlHGF+6Uwo/bt2n0stU=;
- b=eneI1dORLfR2dEcYWLfg+DoSNb2cwW7E3ObiitiOCp5dklsVEmdOE8Kb
- YA6/ilXVoQPfa0N74awOssuIjwjolYgn+9WZfNueUN2SFbkYd4qSGEORY
- MHrKnb3T+/tm07nWA/rY5nrX//sBDkQfaJCtPTFxVt9p7b6agYNeqXKJr
- +P58/XLpKOkC/RbO4r+JSeJsLSMJmwIXx/+uyOv8s7sA7/ldGGisAdhaI
- jXWoSSfLvLiTdXmOaIHJ3hWgkcJeD2ii3DuRDgQ9v5ciphSbpkXzaUGoB
- sw7qLqWGlC4ViuFxD2Pltr+LJE4FPYREMcIJ6sElEZ7dygWMjHRYNjpwO w==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10648"; a="338828237"
-X-IronPort-AV: E=Sophos;i="5.98,258,1673942400"; d="scan'208";a="338828237"
-Received: from fmsmga007.fm.intel.com ([10.253.24.52])
- by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 13 Mar 2023 16:11:46 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6500,9779,10648"; a="681203854"
-X-IronPort-AV: E=Sophos;i="5.98,258,1673942400"; d="scan'208";a="681203854"
-Received: from hongyoun-mobl.amr.corp.intel.com (HELO
- anushasr-mobl7.intel.com) ([10.252.143.121])
- by fmsmga007-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 13 Mar 2023 16:11:46 -0700
-From: Anusha Srivatsa <anusha.srivatsa@intel.com>
-To: intel-xe@lists.freedesktop.org
-Date: Mon, 13 Mar 2023 16:11:20 -0700
-Message-Id: <20230313231120.319346-1-anusha.srivatsa@intel.com>
-X-Mailer: git-send-email 2.25.1
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7F14C10E0B5;
+	Mon, 13 Mar 2023 23:13:40 +0000 (UTC)
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 651D410E08D;
+ Mon, 13 Mar 2023 23:13:39 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 5C75FAADD5;
+ Mon, 13 Mar 2023 23:13:39 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Subject: [Intel-xe] [PATCH] drm/xe/huc: Load HuC on Alderlake P and
- Alderlake S
+Content-Transfer-Encoding: 7bit
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Anusha Srivatsa" <anusha.srivatsa@intel.com>
+Date: Mon, 13 Mar 2023 23:13:39 -0000
+Message-ID: <167874921934.1030.2463646647294401111@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20230313231120.319346-1-anusha.srivatsa@intel.com>
+In-Reply-To: <20230313231120.319346-1-anusha.srivatsa@intel.com>
+Subject: [Intel-xe] =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_f?=
+ =?utf-8?q?or_drm/xe/huc=3A_Load_HuC_on_Alderlake_P_and_Alderlake_S?=
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -56,34 +39,46 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Cc: Anusha Srivatsa <anusha.srivatsa@intel.com>
+Reply-To: intel-xe@lists.freedesktop.org
+Cc: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Extending HUC loading support on more platforms.
+== Series Details ==
 
-Signed-off-by: Anusha Srivatsa <anusha.srivatsa@intel.com>
----
- drivers/gpu/drm/xe/xe_uc_fw.c | 6 ++++--
- 1 file changed, 4 insertions(+), 2 deletions(-)
+Series: drm/xe/huc: Load HuC on Alderlake P and Alderlake S
+URL   : https://patchwork.freedesktop.org/series/115085/
+State : success
 
-diff --git a/drivers/gpu/drm/xe/xe_uc_fw.c b/drivers/gpu/drm/xe/xe_uc_fw.c
-index ff94eec9cafe..5a28ec79fb9d 100644
---- a/drivers/gpu/drm/xe/xe_uc_fw.c
-+++ b/drivers/gpu/drm/xe/xe_uc_fw.c
-@@ -51,8 +51,10 @@ static struct xe_device *uc_fw_to_xe(struct xe_uc_fw *uc_fw)
- 	fw_def(TIGERLAKE,    0, guc_def(tgl,  70, 5, 2))
- 
- #define XE_HUC_FIRMWARE_DEFS(fw_def, huc_def) \
--	fw_def(DG1,          0, huc_def(dg1,  7, 9, 3)) \
--	fw_def(TIGERLAKE,    0, huc_def(tgl,  7, 9, 3))
-+	fw_def(DG1,            0, huc_def(dg1,  7, 9, 3)) \
-+	fw_def(TIGERLAKE,      0, huc_def(tgl,  7, 9, 3)) \
-+	fw_def(ALDERLAKE_P,    0, huc_def(tgl,  7, 9, 3)) \
-+	fw_def(ALDERLAKE_S,    0, huc_def(tgl,  7, 9, 3))
- 
- #define __MAKE_UC_FW_PATH_MAJOR(prefix_, name_, major_) \
- 	"xe/" \
--- 
-2.25.1
+== Summary ==
+
+=== Applying kernel patches on branch 'drm-xe-next' with base: ===
+commit 1528d94b95561c4407c65d5ef5754a988eef42dd
+Author:     Jani Nikula <jani.nikula@intel.com>
+AuthorDate: Thu Mar 9 14:17:46 2023 +0200
+Commit:     Lucas De Marchi <lucas.demarchi@intel.com>
+CommitDate: Mon Mar 13 13:39:40 2023 -0700
+
+    drm/xe: make compound literal initialization const
+    
+    Be careful about having const in the compound literal initialization to
+    keep the initializers in rodata. Here, the impact is 1.8k of mutable
+    data moved to rodata.
+    
+    add/remove: 0/1 grow/shrink: 0/0 up/down: 0/-1804 (-1804)
+    Data                                         old     new   delta
+    __compound_literal                          1804       -   -1804
+    Total: Before=42425, After=40621, chg -4.25%
+    add/remove: 0/0 grow/shrink: 1/0 up/down: 1804/0 (1804)
+    RO Data                                      old     new   delta
+    __compound_literal                          7696    9500   +1804
+    Total: Before=138535, After=140339, chg +1.30%
+    
+    Signed-off-by: Jani Nikula <jani.nikula@intel.com>
+    Reviewed-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
+    Signed-off-by: Lucas De Marchi <lucas.demarchi@intel.com>
+    Link: https://lore.kernel.org/r/20230309121746.479146-1-jani.nikula@intel.com
+=== git am output follows ===
+Applying: drm/xe/huc: Load HuC on Alderlake P and Alderlake S
+
 
