@@ -4,48 +4,45 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 94CFBC61DA4
-	for <intel-xe@archiver.kernel.org>; Sat, 11 Mar 2023 17:16:05 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id B0897C6FD19
+	for <intel-xe@archiver.kernel.org>; Mon, 13 Mar 2023 08:02:06 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3892310E269;
-	Sat, 11 Mar 2023 17:16:05 +0000 (UTC)
-Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
- by gabe.freedesktop.org (Postfix) with ESMTPS id F04DF10E269
- for <intel-xe@lists.freedesktop.org>; Sat, 11 Mar 2023 17:16:02 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8625288DE5;
+	Mon, 13 Mar 2023 08:02:06 +0000 (UTC)
+Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3D27D88DE5
+ for <intel-xe@lists.freedesktop.org>; Mon, 13 Mar 2023 08:02:04 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1678554963; x=1710090963;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=WgF8L7nEUIkgOUB1HKXXCxf9yT/Sq+84EvZF36J+vQ8=;
- b=mmjS7lUO27EN7JMWCYVcaD7sxo1JSdq/G9WDvJEfGs5oXqn3a9ExSgxM
- BBv/DI6voqRNEk7b/V/UCL7+JyAVtIdsZSCxEnJlBmaC3n055kWjZKeWu
- 2ukzNhzUtkB5Xb7AU2OfqMHwCQG6HX3oECxQuxpjhTncpEd+yy7X4FAPq
- FJ8GKhnFtW75+1qwal8Sc3YDoJ9x6rGDexWt6Ua49XRRAp5YpvGyPKaai
- mE9eahVF3q7j2tmLTOvUCUlpgmqKCa79U71kuN1yz8+ANn3GUi7XDUlPx
- mIoco5cqPcTtAVGQr/uUVnrcsrninnvkhkR/aDZTfntqYHfzqOV7gAqR6 g==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10646"; a="423188239"
-X-IronPort-AV: E=Sophos;i="5.98,253,1673942400"; d="scan'208";a="423188239"
-Received: from orsmga007.jf.intel.com ([10.7.209.58])
- by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 11 Mar 2023 09:16:01 -0800
+ t=1678694524; x=1710230524;
+ h=from:to:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=Cmw40EcN2DMHyyTw6w5VwHZkaJFQ4gz8IZp9756PsIc=;
+ b=NvqkSuQ+o9LN0Y+G3X8iOLYsiTqZCrN/vpt1Hv94hjO3yBpGSMFsfnOr
+ SgZPJzvqjsSHMdMjuzilM0SnyOvV5PAQffaSldd+jVw+lTGEl07do1Ngf
+ UDkYKZLLUXXGzVUd7SFTK6HQTGUkJtQa52h24Zi/PX+KKnSVj5oybkLEq
+ PAbjw8aJJU1bD5E6+o4VIS3ChQO1qdLHaZyEfd8nbKNAHi2yJIOLzuXJH
+ cem8E9CZITd7/OprLNJC8cBjecbMP8CmtHURMIiu5OLm4H+mco0onvm7V
+ uU1EmHtbb2pdPAX24P5rBBeCiUn+OcMV1hhDUcmSERMJp0fHEwmsRJsEq w==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10647"; a="339456539"
+X-IronPort-AV: E=Sophos;i="5.98,256,1673942400"; d="scan'208";a="339456539"
+Received: from orsmga006.jf.intel.com ([10.7.209.51])
+ by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 13 Mar 2023 01:02:01 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6500,9779,10646"; a="671418948"
-X-IronPort-AV: E=Sophos;i="5.98,253,1673942400"; d="scan'208";a="671418948"
-Received: from lucas-s2600cw.jf.intel.com ([10.165.21.196])
- by orsmga007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 11 Mar 2023 09:16:01 -0800
-From: Lucas De Marchi <lucas.demarchi@intel.com>
+X-IronPort-AV: E=McAfee;i="6500,9779,10647"; a="655894533"
+X-IronPort-AV: E=Sophos;i="5.98,256,1673942400"; d="scan'208";a="655894533"
+Received: from mwajdecz-mobl.ger.corp.intel.com ([10.249.159.27])
+ by orsmga006-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 13 Mar 2023 01:01:26 -0700
+From: Michal Wajdeczko <michal.wajdeczko@intel.com>
 To: intel-xe@lists.freedesktop.org
-Date: Sat, 11 Mar 2023 09:15:51 -0800
-Message-Id: <20230311171551.2394555-1-lucas.demarchi@intel.com>
-X-Mailer: git-send-email 2.39.0
-In-Reply-To: <20230311001049.GY1175070@mdroper-desk1.amr.corp.intel.com>
-References: <20230311001049.GY1175070@mdroper-desk1.amr.corp.intel.com>
+Date: Mon, 13 Mar 2023 09:01:17 +0100
+Message-Id: <20230313080117.2320-1-michal.wajdeczko@intel.com>
+X-Mailer: git-send-email 2.21.0
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-xe] [PATCH] drm/xe: Move policy on preemption from WAs to
- tunings
+Subject: [Intel-xe] [PATCH] drm/xe: Promote guc_to_gt/xe helpers to .h
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -57,116 +54,176 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Cc: Lucas De Marchi <lucas.demarchi@intel.com>,
- Matt Roper <matthew.d.roper@intel.com>
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-The fake WA FtrPerCtxtPreemptionGranularityControl is documented in i915
-and is not a true WA: it's a policy chosen to allow preemption settings
-to be controlled on a per-context basis by userspace. Move it to
-xe_tuning.c since it's more in line with what his is doing. However
-since it's not something suggested by the spec, prefix it with "Policy"
-rather than "Tuning".
+Duplicating these helpers in almost every .c file was a bad idea.
+Define them as inlines in .h file to allow proper reuse.
 
-Suggested-by: Matt Roper <matthew.d.roper@intel.com>
-Signed-off-by: Lucas De Marchi <lucas.demarchi@intel.com>
+Signed-off-by: Michal Wajdeczko <michal.wajdeczko@intel.com>
 ---
- drivers/gpu/drm/xe/xe_hw_engine.c |  2 ++
- drivers/gpu/drm/xe/xe_tuning.c    | 22 ++++++++++++++++++++++
- drivers/gpu/drm/xe/xe_tuning.h    |  1 +
- drivers/gpu/drm/xe/xe_wa.c        |  6 ------
- 4 files changed, 25 insertions(+), 6 deletions(-)
+ drivers/gpu/drm/xe/xe_gt_pagefault.c        |  6 ------
+ drivers/gpu/drm/xe/xe_gt_tlb_invalidation.c |  6 ------
+ drivers/gpu/drm/xe/xe_guc.c                 | 12 ------------
+ drivers/gpu/drm/xe/xe_guc.h                 | 11 +++++++++++
+ drivers/gpu/drm/xe/xe_guc_debugfs.c         | 12 ------------
+ drivers/gpu/drm/xe/xe_guc_hwconfig.c        | 12 ------------
+ drivers/gpu/drm/xe/xe_guc_submit.c          | 12 ------------
+ 7 files changed, 11 insertions(+), 60 deletions(-)
 
-diff --git a/drivers/gpu/drm/xe/xe_hw_engine.c b/drivers/gpu/drm/xe/xe_hw_engine.c
-index 63a4efd5edcc..53dc342cc3a3 100644
---- a/drivers/gpu/drm/xe/xe_hw_engine.c
-+++ b/drivers/gpu/drm/xe/xe_hw_engine.c
-@@ -22,6 +22,7 @@
- #include "xe_mmio.h"
- #include "xe_reg_sr.h"
- #include "xe_sched_job.h"
-+#include "xe_tuning.h"
- #include "xe_wa.h"
- 
- #define MAX_MMIO_BASES 3
-@@ -293,6 +294,7 @@ static void hw_engine_init_early(struct xe_gt *gt, struct xe_hw_engine *hwe,
- 
- 	xe_reg_sr_init(&hwe->reg_sr, hwe->name, gt_to_xe(gt));
- 	xe_wa_process_engine(hwe);
-+	xe_tuning_process_engine(hwe);
- 
- 	xe_reg_sr_init(&hwe->reg_whitelist, hwe->name, gt_to_xe(gt));
- 	xe_reg_whitelist_process_engine(hwe);
-diff --git a/drivers/gpu/drm/xe/xe_tuning.c b/drivers/gpu/drm/xe/xe_tuning.c
-index 2861a014c85c..5d3febd0b97e 100644
---- a/drivers/gpu/drm/xe/xe_tuning.c
-+++ b/drivers/gpu/drm/xe/xe_tuning.c
-@@ -23,6 +23,15 @@ static const struct xe_rtp_entry gt_tunings[] = {
- 	{}
+diff --git a/drivers/gpu/drm/xe/xe_gt_pagefault.c b/drivers/gpu/drm/xe/xe_gt_pagefault.c
+index 1677640e1075..2ae54fecf4ab 100644
+--- a/drivers/gpu/drm/xe/xe_gt_pagefault.c
++++ b/drivers/gpu/drm/xe/xe_gt_pagefault.c
+@@ -58,12 +58,6 @@ struct acc {
+ 	u8 engine_instance;
  };
  
-+static const struct xe_rtp_entry engine_tunings[] = {
-+	{ XE_RTP_NAME("Policy: FtrPerCtxtPreemptionGranularityControl"),
-+	  XE_RTP_RULES(GRAPHICS_VERSION_RANGE(1200, 1250), ENGINE_CLASS(RENDER)),
-+	  XE_RTP_ACTIONS(SET(GEN7_FF_SLICE_CS_CHICKEN1,
-+			     GEN9_FFSC_PERCTX_PREEMPT_CTRL,
-+			     XE_RTP_ACTION_FLAG(MASKED_REG)))
-+	},
-+};
-+
- static const struct xe_rtp_entry lrc_tunings[] = {
- 	{ XE_RTP_NAME("Tuning: ganged timer, also known as 16011163337"),
- 	  XE_RTP_RULES(GRAPHICS_VERSION_RANGE(1200, 1210)),
-@@ -39,6 +48,19 @@ void xe_tuning_process_gt(struct xe_gt *gt)
- 	xe_rtp_process(gt_tunings, &gt->reg_sr, gt, NULL);
+-static struct xe_gt *
+-guc_to_gt(struct xe_guc *guc)
+-{
+-	return container_of(guc, struct xe_gt, uc.guc);
+-}
+-
+ static bool access_is_atomic(enum access_type access_type)
+ {
+ 	return access_type == ACCESS_TYPE_ATOMIC;
+diff --git a/drivers/gpu/drm/xe/xe_gt_tlb_invalidation.c b/drivers/gpu/drm/xe/xe_gt_tlb_invalidation.c
+index f279e21300aa..259382d54871 100644
+--- a/drivers/gpu/drm/xe/xe_gt_tlb_invalidation.c
++++ b/drivers/gpu/drm/xe/xe_gt_tlb_invalidation.c
+@@ -12,12 +12,6 @@
+ 
+ #define TLB_TIMEOUT	(HZ / 4)
+ 
+-static struct xe_gt *
+-guc_to_gt(struct xe_guc *guc)
+-{
+-	return container_of(guc, struct xe_gt, uc.guc);
+-}
+-
+ static void xe_gt_tlb_fence_timeout(struct work_struct *work)
+ {
+ 	struct xe_gt *gt = container_of(work, struct xe_gt,
+diff --git a/drivers/gpu/drm/xe/xe_guc.c b/drivers/gpu/drm/xe/xe_guc.c
+index 58b9841616e4..8fb2920d96da 100644
+--- a/drivers/gpu/drm/xe/xe_guc.c
++++ b/drivers/gpu/drm/xe/xe_guc.c
+@@ -22,18 +22,6 @@
+ #include "xe_uc_fw.h"
+ #include "xe_wopcm.h"
+ 
+-static struct xe_gt *
+-guc_to_gt(struct xe_guc *guc)
+-{
+-	return container_of(guc, struct xe_gt, uc.guc);
+-}
+-
+-static struct xe_device *
+-guc_to_xe(struct xe_guc *guc)
+-{
+-	return gt_to_xe(guc_to_gt(guc));
+-}
+-
+ /* GuC addresses above GUC_GGTT_TOP also don't map through the GTT */
+ #define GUC_GGTT_TOP    0xFEE00000
+ static u32 guc_bo_ggtt_addr(struct xe_guc *guc,
+diff --git a/drivers/gpu/drm/xe/xe_guc.h b/drivers/gpu/drm/xe/xe_guc.h
+index 74a74051f354..96f6e3f46ed7 100644
+--- a/drivers/gpu/drm/xe/xe_guc.h
++++ b/drivers/gpu/drm/xe/xe_guc.h
+@@ -6,6 +6,7 @@
+ #ifndef _XE_GUC_H_
+ #define _XE_GUC_H_
+ 
++#include "xe_gt.h"
+ #include "xe_guc_types.h"
+ #include "xe_hw_engine_types.h"
+ #include "xe_macros.h"
+@@ -56,4 +57,14 @@ static inline u16 xe_engine_class_to_guc_class(enum xe_engine_class class)
+ 	}
  }
  
-+/**
-+ * xe_tuning_process_engine - process engine tuning table
-+ * @hwe: engine instance to process tunings for
-+ *
-+ * Process engine table for this platform, saving in @hwe all the
-+ * tunings that need to be applied at the engine level that match this
-+ * engine.
-+ */
-+void xe_tuning_process_engine(struct xe_hw_engine *hwe)
++static inline struct xe_gt *guc_to_gt(struct xe_guc *guc)
 +{
-+	xe_rtp_process(engine_tunings, &hwe->reg_sr, hwe->gt, hwe);
++	return container_of(guc, struct xe_gt, uc.guc);
 +}
 +
- /**
-  * xe_tuning_process_lrc - process lrc tunings
-  * @hwe: engine instance to process tunings for
-diff --git a/drivers/gpu/drm/xe/xe_tuning.h b/drivers/gpu/drm/xe/xe_tuning.h
-index 2b95b0c8effc..4f9c3ac3b516 100644
---- a/drivers/gpu/drm/xe/xe_tuning.h
-+++ b/drivers/gpu/drm/xe/xe_tuning.h
-@@ -10,6 +10,7 @@ struct xe_gt;
- struct xe_hw_engine;
- 
- void xe_tuning_process_gt(struct xe_gt *gt);
-+void xe_tuning_process_engine(struct xe_hw_engine *hwe);
- void xe_tuning_process_lrc(struct xe_hw_engine *hwe);
- 
++static inline struct xe_device *guc_to_xe(struct xe_guc *guc)
++{
++	return gt_to_xe(guc_to_gt(guc));
++}
++
  #endif
-diff --git a/drivers/gpu/drm/xe/xe_wa.c b/drivers/gpu/drm/xe/xe_wa.c
-index 67539f9d70b4..76c603dfc030 100644
---- a/drivers/gpu/drm/xe/xe_wa.c
-+++ b/drivers/gpu/drm/xe/xe_wa.c
-@@ -236,12 +236,6 @@ static const struct xe_rtp_entry engine_was[] = {
- 	  XE_RTP_ACTIONS(SET(GEN10_SAMPLER_MODE, ENABLE_SMALLPL,
- 			     XE_RTP_ACTION_FLAG(MASKED_REG)))
- 	},
--	{ XE_RTP_NAME("FtrPerCtxtPreemptionGranularityControl"),
--	  XE_RTP_RULES(GRAPHICS_VERSION_RANGE(1200, 1250), ENGINE_CLASS(RENDER)),
--	  XE_RTP_ACTIONS(SET(GEN7_FF_SLICE_CS_CHICKEN1,
--			     GEN9_FFSC_PERCTX_PREEMPT_CTRL,
--			     XE_RTP_ACTION_FLAG(MASKED_REG)))
--	},
- 	{}
- };
+diff --git a/drivers/gpu/drm/xe/xe_guc_debugfs.c b/drivers/gpu/drm/xe/xe_guc_debugfs.c
+index 6b72db4d5bb2..dbb3001db928 100644
+--- a/drivers/gpu/drm/xe/xe_guc_debugfs.c
++++ b/drivers/gpu/drm/xe/xe_guc_debugfs.c
+@@ -15,18 +15,6 @@
+ #include "xe_guc_log.h"
+ #include "xe_macros.h"
  
+-static struct xe_gt *
+-guc_to_gt(struct xe_guc *guc)
+-{
+-	return container_of(guc, struct xe_gt, uc.guc);
+-}
+-
+-static struct xe_device *
+-guc_to_xe(struct xe_guc *guc)
+-{
+-	return gt_to_xe(guc_to_gt(guc));
+-}
+-
+ static struct xe_guc *node_to_guc(struct drm_info_node *node)
+ {
+ 	return node->info_ent->data;
+diff --git a/drivers/gpu/drm/xe/xe_guc_hwconfig.c b/drivers/gpu/drm/xe/xe_guc_hwconfig.c
+index a6982f323ed1..a89d26565fdd 100644
+--- a/drivers/gpu/drm/xe/xe_guc_hwconfig.c
++++ b/drivers/gpu/drm/xe/xe_guc_hwconfig.c
+@@ -13,18 +13,6 @@
+ #include "xe_guc.h"
+ #include "xe_map.h"
+ 
+-static struct xe_gt *
+-guc_to_gt(struct xe_guc *guc)
+-{
+-	return container_of(guc, struct xe_gt, uc.guc);
+-}
+-
+-static struct xe_device *
+-guc_to_xe(struct xe_guc *guc)
+-{
+-	return gt_to_xe(guc_to_gt(guc));
+-}
+-
+ static int send_get_hwconfig(struct xe_guc *guc, u32 ggtt_addr, u32 size)
+ {
+ 	u32 action[] = {
+diff --git a/drivers/gpu/drm/xe/xe_guc_submit.c b/drivers/gpu/drm/xe/xe_guc_submit.c
+index e857013070b9..6b3159e75be9 100644
+--- a/drivers/gpu/drm/xe/xe_guc_submit.c
++++ b/drivers/gpu/drm/xe/xe_guc_submit.c
+@@ -32,18 +32,6 @@
+ #include "xe_trace.h"
+ #include "xe_vm.h"
+ 
+-static struct xe_gt *
+-guc_to_gt(struct xe_guc *guc)
+-{
+-	return container_of(guc, struct xe_gt, uc.guc);
+-}
+-
+-static struct xe_device *
+-guc_to_xe(struct xe_guc *guc)
+-{
+-	return gt_to_xe(guc_to_gt(guc));
+-}
+-
+ static struct xe_guc *
+ engine_to_guc(struct xe_engine *e)
+ {
 -- 
-2.39.0
+2.25.1
 
