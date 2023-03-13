@@ -4,45 +4,46 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id B0897C6FD19
-	for <intel-xe@archiver.kernel.org>; Mon, 13 Mar 2023 08:02:06 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id D812CC6FD1F
+	for <intel-xe@archiver.kernel.org>; Mon, 13 Mar 2023 08:04:08 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8625288DE5;
-	Mon, 13 Mar 2023 08:02:06 +0000 (UTC)
-Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3D27D88DE5
- for <intel-xe@lists.freedesktop.org>; Mon, 13 Mar 2023 08:02:04 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9925410E48C;
+	Mon, 13 Mar 2023 08:04:08 +0000 (UTC)
+Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6D1C610E48C
+ for <intel-xe@lists.freedesktop.org>; Mon, 13 Mar 2023 08:04:06 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1678694524; x=1710230524;
+ t=1678694646; x=1710230646;
  h=from:to:subject:date:message-id:mime-version:
  content-transfer-encoding;
- bh=Cmw40EcN2DMHyyTw6w5VwHZkaJFQ4gz8IZp9756PsIc=;
- b=NvqkSuQ+o9LN0Y+G3X8iOLYsiTqZCrN/vpt1Hv94hjO3yBpGSMFsfnOr
- SgZPJzvqjsSHMdMjuzilM0SnyOvV5PAQffaSldd+jVw+lTGEl07do1Ngf
- UDkYKZLLUXXGzVUd7SFTK6HQTGUkJtQa52h24Zi/PX+KKnSVj5oybkLEq
- PAbjw8aJJU1bD5E6+o4VIS3ChQO1qdLHaZyEfd8nbKNAHi2yJIOLzuXJH
- cem8E9CZITd7/OprLNJC8cBjecbMP8CmtHURMIiu5OLm4H+mco0onvm7V
- uU1EmHtbb2pdPAX24P5rBBeCiUn+OcMV1hhDUcmSERMJp0fHEwmsRJsEq w==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10647"; a="339456539"
-X-IronPort-AV: E=Sophos;i="5.98,256,1673942400"; d="scan'208";a="339456539"
-Received: from orsmga006.jf.intel.com ([10.7.209.51])
- by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 13 Mar 2023 01:02:01 -0700
+ bh=Q3W55ut+RewyjK2pyJhKdeMeOPMKtAooAIi8Uwkda/k=;
+ b=kc2M8VldczTKzcJoo5vAejeUMA6cDP4QdHdLGH1eGplhlT1OKy0M7lQs
+ Bwnm9gIvYG78DsOjWW95dOJPuF+iHwaTibbn3k1/Fc5XNYuIPyteH93ie
+ ocrz2fVgd4vXB2LLVYMK27Hl1zup4kwlk6MmZCm/Xoy6jIv4lr+xHmQY1
+ 7/3JnB0IddDhDOHujN25SxRTmPalAKvGXK5xXU7L0B3dcbBYSMxWM+mDT
+ SBphBvwmVtHcbC4ESA3pL15mfJ4cIGA9SIV9IBJezAny+/SwILUuX0kBv
+ 4pbTAMwQ6Z77V9BNSluoGQj1uDVrXWAwRGrMOjEMuWIKgM8AMVS9dqDz/ g==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10647"; a="334565091"
+X-IronPort-AV: E=Sophos;i="5.98,256,1673942400"; d="scan'208";a="334565091"
+Received: from fmsmga007.fm.intel.com ([10.253.24.52])
+ by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 13 Mar 2023 01:04:06 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6500,9779,10647"; a="655894533"
-X-IronPort-AV: E=Sophos;i="5.98,256,1673942400"; d="scan'208";a="655894533"
+X-IronPort-AV: E=McAfee;i="6500,9779,10647"; a="680933503"
+X-IronPort-AV: E=Sophos;i="5.98,256,1673942400"; d="scan'208";a="680933503"
 Received: from mwajdecz-mobl.ger.corp.intel.com ([10.249.159.27])
- by orsmga006-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 13 Mar 2023 01:01:26 -0700
+ by fmsmga007-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 13 Mar 2023 01:04:05 -0700
 From: Michal Wajdeczko <michal.wajdeczko@intel.com>
 To: intel-xe@lists.freedesktop.org
-Date: Mon, 13 Mar 2023 09:01:17 +0100
-Message-Id: <20230313080117.2320-1-michal.wajdeczko@intel.com>
+Date: Mon, 13 Mar 2023 09:03:56 +0100
+Message-Id: <20230313080357.2364-1-michal.wajdeczko@intel.com>
 X-Mailer: git-send-email 2.21.0
 MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-xe] [PATCH] drm/xe: Promote guc_to_gt/xe helpers to .h
+Subject: [Intel-xe] [PATCH 1/2] drm/xe: Introduce GT oriented log messages
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -57,173 +58,67 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Duplicating these helpers in almost every .c file was a bad idea.
-Define them as inlines in .h file to allow proper reuse.
+While debugging GT related problems, it's good to know which GT was
+reporting problems. Introduce helper macros to allow prefix GT logs
+with GT idetifier. We will use them in upcoming patches.
 
 Signed-off-by: Michal Wajdeczko <michal.wajdeczko@intel.com>
 ---
- drivers/gpu/drm/xe/xe_gt_pagefault.c        |  6 ------
- drivers/gpu/drm/xe/xe_gt_tlb_invalidation.c |  6 ------
- drivers/gpu/drm/xe/xe_guc.c                 | 12 ------------
- drivers/gpu/drm/xe/xe_guc.h                 | 11 +++++++++++
- drivers/gpu/drm/xe/xe_guc_debugfs.c         | 12 ------------
- drivers/gpu/drm/xe/xe_guc_hwconfig.c        | 12 ------------
- drivers/gpu/drm/xe/xe_guc_submit.c          | 12 ------------
- 7 files changed, 11 insertions(+), 60 deletions(-)
+ drivers/gpu/drm/xe/xe_gt_printk.h | 45 +++++++++++++++++++++++++++++++
+ 1 file changed, 45 insertions(+)
+ create mode 100644 drivers/gpu/drm/xe/xe_gt_printk.h
 
-diff --git a/drivers/gpu/drm/xe/xe_gt_pagefault.c b/drivers/gpu/drm/xe/xe_gt_pagefault.c
-index 1677640e1075..2ae54fecf4ab 100644
---- a/drivers/gpu/drm/xe/xe_gt_pagefault.c
-+++ b/drivers/gpu/drm/xe/xe_gt_pagefault.c
-@@ -58,12 +58,6 @@ struct acc {
- 	u8 engine_instance;
- };
- 
--static struct xe_gt *
--guc_to_gt(struct xe_guc *guc)
--{
--	return container_of(guc, struct xe_gt, uc.guc);
--}
--
- static bool access_is_atomic(enum access_type access_type)
- {
- 	return access_type == ACCESS_TYPE_ATOMIC;
-diff --git a/drivers/gpu/drm/xe/xe_gt_tlb_invalidation.c b/drivers/gpu/drm/xe/xe_gt_tlb_invalidation.c
-index f279e21300aa..259382d54871 100644
---- a/drivers/gpu/drm/xe/xe_gt_tlb_invalidation.c
-+++ b/drivers/gpu/drm/xe/xe_gt_tlb_invalidation.c
-@@ -12,12 +12,6 @@
- 
- #define TLB_TIMEOUT	(HZ / 4)
- 
--static struct xe_gt *
--guc_to_gt(struct xe_guc *guc)
--{
--	return container_of(guc, struct xe_gt, uc.guc);
--}
--
- static void xe_gt_tlb_fence_timeout(struct work_struct *work)
- {
- 	struct xe_gt *gt = container_of(work, struct xe_gt,
-diff --git a/drivers/gpu/drm/xe/xe_guc.c b/drivers/gpu/drm/xe/xe_guc.c
-index 58b9841616e4..8fb2920d96da 100644
---- a/drivers/gpu/drm/xe/xe_guc.c
-+++ b/drivers/gpu/drm/xe/xe_guc.c
-@@ -22,18 +22,6 @@
- #include "xe_uc_fw.h"
- #include "xe_wopcm.h"
- 
--static struct xe_gt *
--guc_to_gt(struct xe_guc *guc)
--{
--	return container_of(guc, struct xe_gt, uc.guc);
--}
--
--static struct xe_device *
--guc_to_xe(struct xe_guc *guc)
--{
--	return gt_to_xe(guc_to_gt(guc));
--}
--
- /* GuC addresses above GUC_GGTT_TOP also don't map through the GTT */
- #define GUC_GGTT_TOP    0xFEE00000
- static u32 guc_bo_ggtt_addr(struct xe_guc *guc,
-diff --git a/drivers/gpu/drm/xe/xe_guc.h b/drivers/gpu/drm/xe/xe_guc.h
-index 74a74051f354..96f6e3f46ed7 100644
---- a/drivers/gpu/drm/xe/xe_guc.h
-+++ b/drivers/gpu/drm/xe/xe_guc.h
-@@ -6,6 +6,7 @@
- #ifndef _XE_GUC_H_
- #define _XE_GUC_H_
- 
-+#include "xe_gt.h"
- #include "xe_guc_types.h"
- #include "xe_hw_engine_types.h"
- #include "xe_macros.h"
-@@ -56,4 +57,14 @@ static inline u16 xe_engine_class_to_guc_class(enum xe_engine_class class)
- 	}
- }
- 
-+static inline struct xe_gt *guc_to_gt(struct xe_guc *guc)
-+{
-+	return container_of(guc, struct xe_gt, uc.guc);
-+}
+diff --git a/drivers/gpu/drm/xe/xe_gt_printk.h b/drivers/gpu/drm/xe/xe_gt_printk.h
+new file mode 100644
+index 000000000000..b12a92024126
+--- /dev/null
++++ b/drivers/gpu/drm/xe/xe_gt_printk.h
+@@ -0,0 +1,45 @@
++/* SPDX-License-Identifier: MIT */
++/*
++ * Copyright © 2023 Intel Corporation
++ */
 +
-+static inline struct xe_device *guc_to_xe(struct xe_guc *guc)
-+{
-+	return gt_to_xe(guc_to_gt(guc));
-+}
++#ifndef _XE_GT_PRINTK_H_
++#define _XE_GT_PRINTK_H_
 +
- #endif
-diff --git a/drivers/gpu/drm/xe/xe_guc_debugfs.c b/drivers/gpu/drm/xe/xe_guc_debugfs.c
-index 6b72db4d5bb2..dbb3001db928 100644
---- a/drivers/gpu/drm/xe/xe_guc_debugfs.c
-+++ b/drivers/gpu/drm/xe/xe_guc_debugfs.c
-@@ -15,18 +15,6 @@
- #include "xe_guc_log.h"
- #include "xe_macros.h"
- 
--static struct xe_gt *
--guc_to_gt(struct xe_guc *guc)
--{
--	return container_of(guc, struct xe_gt, uc.guc);
--}
--
--static struct xe_device *
--guc_to_xe(struct xe_guc *guc)
--{
--	return gt_to_xe(guc_to_gt(guc));
--}
--
- static struct xe_guc *node_to_guc(struct drm_info_node *node)
- {
- 	return node->info_ent->data;
-diff --git a/drivers/gpu/drm/xe/xe_guc_hwconfig.c b/drivers/gpu/drm/xe/xe_guc_hwconfig.c
-index a6982f323ed1..a89d26565fdd 100644
---- a/drivers/gpu/drm/xe/xe_guc_hwconfig.c
-+++ b/drivers/gpu/drm/xe/xe_guc_hwconfig.c
-@@ -13,18 +13,6 @@
- #include "xe_guc.h"
- #include "xe_map.h"
- 
--static struct xe_gt *
--guc_to_gt(struct xe_guc *guc)
--{
--	return container_of(guc, struct xe_gt, uc.guc);
--}
--
--static struct xe_device *
--guc_to_xe(struct xe_guc *guc)
--{
--	return gt_to_xe(guc_to_gt(guc));
--}
--
- static int send_get_hwconfig(struct xe_guc *guc, u32 ggtt_addr, u32 size)
- {
- 	u32 action[] = {
-diff --git a/drivers/gpu/drm/xe/xe_guc_submit.c b/drivers/gpu/drm/xe/xe_guc_submit.c
-index e857013070b9..6b3159e75be9 100644
---- a/drivers/gpu/drm/xe/xe_guc_submit.c
-+++ b/drivers/gpu/drm/xe/xe_guc_submit.c
-@@ -32,18 +32,6 @@
- #include "xe_trace.h"
- #include "xe_vm.h"
- 
--static struct xe_gt *
--guc_to_gt(struct xe_guc *guc)
--{
--	return container_of(guc, struct xe_gt, uc.guc);
--}
--
--static struct xe_device *
--guc_to_xe(struct xe_guc *guc)
--{
--	return gt_to_xe(guc_to_gt(guc));
--}
--
- static struct xe_guc *
- engine_to_guc(struct xe_engine *e)
- {
++#include <drm/drm_print.h>
++#include "xe_gt_types.h"
++
++#define gt_printk(_gt, _level, _fmt, ...) \
++	drm_##_level(&(_gt)->xe->drm, "GT%u: " _fmt, (_gt)->info.id, ##__VA_ARGS__)
++
++#define gt_err(_gt, _fmt, ...) \
++	gt_printk((_gt), err, _fmt, ##__VA_ARGS__)
++
++#define gt_warn(_gt, _fmt, ...) \
++	gt_printk((_gt), warn, _fmt, ##__VA_ARGS__)
++
++#define gt_notice(_gt, _fmt, ...) \
++	gt_printk((_gt), notice, _fmt, ##__VA_ARGS__)
++
++#define gt_info(_gt, _fmt, ...) \
++	gt_printk((_gt), info, _fmt, ##__VA_ARGS__)
++
++#define gt_dbg(_gt, _fmt, ...) \
++	gt_printk((_gt), dbg, _fmt, ##__VA_ARGS__)
++
++#define gt_err_ratelimited(_gt, _fmt, ...) \
++	gt_printk((_gt), err_ratelimited, _fmt, ##__VA_ARGS__)
++
++#define gt_WARN(_gt, _condition, _fmt, ...) \
++	drm_WARN(&(_gt)->xe->drm, _condition, "GT%u: " _fmt, (_gt)->info.id, ##__VA_ARGS__)
++
++#define gt_WARN_ONCE(_gt, _condition, _fmt, ...) \
++	drm_WARN_ONCE(&(_gt)->xe->drm, _condition, "GT%u: " _fmt, (_gt)->info.id, ##__VA_ARGS__)
++
++#define gt_WARN_ON(_gt, _condition) \
++	gt_WARN((_gt), _condition, "%s(%s)", "gt_WARN_ON", __stringify(_condition))
++
++#define gt_WARN_ON_ONCE(_gt, _condition) \
++	gt_WARN_ONCE((_gt), _condition, "%s(%s)", "gt_WARN_ON_ONCE", __stringify(_condition))
++
++#endif
 -- 
 2.25.1
 
