@@ -4,31 +4,30 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6651BC61DA4
-	for <intel-xe@archiver.kernel.org>; Mon, 13 Mar 2023 16:08:41 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 63232C61DA4
+	for <intel-xe@archiver.kernel.org>; Mon, 13 Mar 2023 16:10:26 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 252E910E5A2;
-	Mon, 13 Mar 2023 16:08:41 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4015210E5A2;
+	Mon, 13 Mar 2023 16:10:26 +0000 (UTC)
 Received: from emeril.freedesktop.org (emeril.freedesktop.org
  [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id E7B9510E5A2;
- Mon, 13 Mar 2023 16:08:38 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTP id 81D7210E5B1;
+ Mon, 13 Mar 2023 16:10:23 +0000 (UTC)
 Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id DC121AADD5;
- Mon, 13 Mar 2023 16:08:38 +0000 (UTC)
+ by emeril.freedesktop.org (Postfix) with ESMTP id 79D8EAA3D8;
+ Mon, 13 Mar 2023 16:10:23 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
 From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Matt Roper" <matthew.d.roper@intel.com>
-Date: Mon, 13 Mar 2023 16:08:38 -0000
-Message-ID: <167872371887.1033.4610581997957241882@emeril.freedesktop.org>
+To: "Jani Nikula" <jani.nikula@intel.com>
+Date: Mon, 13 Mar 2023 16:10:23 -0000
+Message-ID: <167872382349.1030.4370042446406300620@emeril.freedesktop.org>
 X-Patchwork-Hint: ignore
-References: <20230309005530.3140173-1-matthew.d.roper@intel.com>
-In-Reply-To: <20230309005530.3140173-1-matthew.d.roper@intel.com>
-Subject: [Intel-xe] =?utf-8?q?=E2=9C=97_CI=2EPatch=5Fapplied=3A_failure_f?=
- =?utf-8?q?or_series_starting_with_=5Bv2=2C1/2=5D_drm/xe=3A_Separate_engin?=
- =?utf-8?q?e_fuse_handling_into_dedicated_functions?=
+References: <20230309121746.479146-1-jani.nikula@intel.com>
+In-Reply-To: <20230309121746.479146-1-jani.nikula@intel.com>
+Subject: [Intel-xe] =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_f?=
+ =?utf-8?q?or_drm/xe=3A_make_compound_literal_initialization_const?=
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -47,9 +46,9 @@ Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 == Series Details ==
 
-Series: series starting with [v2,1/2] drm/xe: Separate engine fuse handling into dedicated functions
-URL   : https://patchwork.freedesktop.org/series/114881/
-State : failure
+Series: drm/xe: make compound literal initialization const
+URL   : https://patchwork.freedesktop.org/series/114905/
+State : success
 
 == Summary ==
 
@@ -69,13 +68,6 @@ CommitDate: Fri Mar 10 13:52:30 2023 -0800
     Signed-off-by: Lucas De Marchi <lucas.demarchi@intel.com>
     Reviewed-by: Matt Roper <matthew.d.roper@intel.com>
 === git am output follows ===
-error: patch failed: drivers/gpu/drm/xe/xe_hw_engine.c:369
-error: drivers/gpu/drm/xe/xe_hw_engine.c: patch does not apply
-hint: Use 'git am --show-current-patch' to see the failed patch
-Applying: drm/xe: Separate engine fuse handling into dedicated functions
-Patch failed at 0001 drm/xe: Separate engine fuse handling into dedicated functions
-When you have resolved this problem, run "git am --continue".
-If you prefer to skip this patch, run "git am --skip" instead.
-To restore the original branch and stop patching, run "git am --abort".
+Applying: drm/xe: make compound literal initialization const
 
 
