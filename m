@@ -4,47 +4,31 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 163C0C6FD1C
-	for <intel-xe@archiver.kernel.org>; Mon, 13 Mar 2023 22:12:50 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 443DDC6FD19
+	for <intel-xe@archiver.kernel.org>; Mon, 13 Mar 2023 22:14:42 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6DF0310E66B;
-	Mon, 13 Mar 2023 22:12:50 +0000 (UTC)
-Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 693F810E663;
- Mon, 13 Mar 2023 22:12:47 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1678745567; x=1710281567;
- h=from:to:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=NZaqaH0TVurGxBhPAoKgiD07s4ubMLGH47FwctZ0fHk=;
- b=Rfxj1L/R/oD9CRYmovkkHZ4+ZfFWh5/fG6KKH3E0OyRizN+balBno+P0
- 2xoTJ/XDI2/6pvnk9LRtsRBjz7qE2+17J1hO109HPwaxFAKPMox/JNN1W
- kAmAilVdbJcvk5xBbZBZx7v1mHrzm/ZkLbo1c52OQsJSgA1JMatCyJM8F
- bn9x9QOChNft7iWM8yYptY/UNfJksUQ18/E3zTrAUu5xpHt2LS3vGwPBz
- Nx1ULYV9oViTIo3WXEwZCR0XU4bcKsqPqwsbHnP2h/HoWP42YAiajA5G7
- Z5eupsv5+EU/RlqovsLLyZtsldmwZRVy0ZBEG7jVtAZzySj2OiR1O5eon Q==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10648"; a="335967689"
-X-IronPort-AV: E=Sophos;i="5.98,258,1673942400"; d="scan'208";a="335967689"
-Received: from fmsmga003.fm.intel.com ([10.253.24.29])
- by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 13 Mar 2023 15:12:47 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6500,9779,10648"; a="767871001"
-X-IronPort-AV: E=Sophos;i="5.98,258,1673942400"; d="scan'208";a="767871001"
-Received: from mwajdecz-mobl.ger.corp.intel.com ([10.249.159.27])
- by fmsmga003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 13 Mar 2023 15:12:46 -0700
-From: Michal Wajdeczko <michal.wajdeczko@intel.com>
-To: intel-xe@lists.freedesktop.org,
-	dri-devel@lists.freedesktop.org
-Date: Mon, 13 Mar 2023 23:12:33 +0100
-Message-Id: <20230313221234.2628-1-michal.wajdeczko@intel.com>
-X-Mailer: git-send-email 2.21.0
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2072510E64B;
+	Mon, 13 Mar 2023 22:14:42 +0000 (UTC)
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 8C2CD10E64B;
+ Mon, 13 Mar 2023 22:14:39 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 88F35A0099;
+ Mon, 13 Mar 2023 22:14:39 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-Subject: [Intel-xe] [PATCH v2 1/2] drm/xe: Introduce GT oriented log messages
+Content-Transfer-Encoding: 7bit
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Michal Wajdeczko" <michal.wajdeczko@intel.com>
+Date: Mon, 13 Mar 2023 22:14:39 -0000
+Message-ID: <167874567955.1029.5349171262441154781@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20230313221234.2628-1-michal.wajdeczko@intel.com>
+In-Reply-To: <20230313221234.2628-1-michal.wajdeczko@intel.com>
+Subject: [Intel-xe] =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_f?=
+ =?utf-8?q?or_series_starting_with_=5Bv2=2C1/2=5D_drm/xe=3A_Introduce_GT_o?=
+ =?utf-8?q?riented_log_messages?=
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -56,75 +40,47 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
+Cc: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-While debugging GT related problems, it's good to know which GT was
-reporting problems. Introduce helper macros to allow prefix GT logs
-with GT idetifier. We will use them in upcoming patches.
+== Series Details ==
 
-v2: use xe_ prefix (Lucas)
+Series: series starting with [v2,1/2] drm/xe: Introduce GT oriented log messages
+URL   : https://patchwork.freedesktop.org/series/115083/
+State : success
 
-Signed-off-by: Michal Wajdeczko <michal.wajdeczko@intel.com>
-Cc: Lucas De Marchi <lucas.demarchi@intel.com>
-Cc: Jani Nikula <jani.nikula@intel.com>
----
- drivers/gpu/drm/xe/xe_gt_printk.h | 46 +++++++++++++++++++++++++++++++
- 1 file changed, 46 insertions(+)
- create mode 100644 drivers/gpu/drm/xe/xe_gt_printk.h
+== Summary ==
 
-diff --git a/drivers/gpu/drm/xe/xe_gt_printk.h b/drivers/gpu/drm/xe/xe_gt_printk.h
-new file mode 100644
-index 000000000000..f01c8e5653a0
---- /dev/null
-+++ b/drivers/gpu/drm/xe/xe_gt_printk.h
-@@ -0,0 +1,46 @@
-+/* SPDX-License-Identifier: MIT */
-+/*
-+ * Copyright © 2023 Intel Corporation
-+ */
-+
-+#ifndef _XE_GT_PRINTK_H_
-+#define _XE_GT_PRINTK_H_
-+
-+#include <drm/drm_print.h>
-+
-+#include "xe_gt_types.h"
-+
-+#define xe_gt_printk(_gt, _level, _fmt, ...) \
-+	drm_##_level(&(_gt)->xe->drm, "GT%u: " _fmt, (_gt)->info.id, ##__VA_ARGS__)
-+
-+#define xe_gt_err(_gt, _fmt, ...) \
-+	xe_gt_printk((_gt), err, _fmt, ##__VA_ARGS__)
-+
-+#define xe_gt_warn(_gt, _fmt, ...) \
-+	xe_gt_printk((_gt), warn, _fmt, ##__VA_ARGS__)
-+
-+#define xe_gt_notice(_gt, _fmt, ...) \
-+	xe_gt_printk((_gt), notice, _fmt, ##__VA_ARGS__)
-+
-+#define xe_gt_info(_gt, _fmt, ...) \
-+	xe_gt_printk((_gt), info, _fmt, ##__VA_ARGS__)
-+
-+#define xe_gt_dbg(_gt, _fmt, ...) \
-+	xe_gt_printk((_gt), dbg, _fmt, ##__VA_ARGS__)
-+
-+#define xe_gt_err_ratelimited(_gt, _fmt, ...) \
-+	xe_gt_printk((_gt), err_ratelimited, _fmt, ##__VA_ARGS__)
-+
-+#define xe_gt_WARN(_gt, _condition, _fmt, ...) \
-+	drm_WARN(&(_gt)->xe->drm, _condition, "GT%u: " _fmt, (_gt)->info.id, ##__VA_ARGS__)
-+
-+#define xe_gt_WARN_ONCE(_gt, _condition, _fmt, ...) \
-+	drm_WARN_ONCE(&(_gt)->xe->drm, _condition, "GT%u: " _fmt, (_gt)->info.id, ##__VA_ARGS__)
-+
-+#define xe_gt_WARN_ON(_gt, _condition) \
-+	xe_gt_WARN((_gt), _condition, "%s(%s)", "gt_WARN_ON", __stringify(_condition))
-+
-+#define xe_gt_WARN_ON_ONCE(_gt, _condition) \
-+	xe_gt_WARN_ONCE((_gt), _condition, "%s(%s)", "gt_WARN_ON_ONCE", __stringify(_condition))
-+
-+#endif
--- 
-2.25.1
+=== Applying kernel patches on branch 'drm-xe-next' with base: ===
+commit 1528d94b95561c4407c65d5ef5754a988eef42dd
+Author:     Jani Nikula <jani.nikula@intel.com>
+AuthorDate: Thu Mar 9 14:17:46 2023 +0200
+Commit:     Lucas De Marchi <lucas.demarchi@intel.com>
+CommitDate: Mon Mar 13 13:39:40 2023 -0700
+
+    drm/xe: make compound literal initialization const
+    
+    Be careful about having const in the compound literal initialization to
+    keep the initializers in rodata. Here, the impact is 1.8k of mutable
+    data moved to rodata.
+    
+    add/remove: 0/1 grow/shrink: 0/0 up/down: 0/-1804 (-1804)
+    Data                                         old     new   delta
+    __compound_literal                          1804       -   -1804
+    Total: Before=42425, After=40621, chg -4.25%
+    add/remove: 0/0 grow/shrink: 1/0 up/down: 1804/0 (1804)
+    RO Data                                      old     new   delta
+    __compound_literal                          7696    9500   +1804
+    Total: Before=138535, After=140339, chg +1.30%
+    
+    Signed-off-by: Jani Nikula <jani.nikula@intel.com>
+    Reviewed-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
+    Signed-off-by: Lucas De Marchi <lucas.demarchi@intel.com>
+    Link: https://lore.kernel.org/r/20230309121746.479146-1-jani.nikula@intel.com
+=== git am output follows ===
+Applying: drm/xe: Introduce GT oriented log messages
+Applying: drm/xe: Use GT oriented log messages in xe_gt.c
+
 
