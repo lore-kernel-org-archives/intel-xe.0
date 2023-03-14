@@ -4,48 +4,48 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0BD16C7618B
-	for <intel-xe@archiver.kernel.org>; Tue, 14 Mar 2023 00:30:49 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 94AEEC6FD1D
+	for <intel-xe@archiver.kernel.org>; Tue, 14 Mar 2023 00:30:48 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id EE7FC10E6A8;
+	by gabe.freedesktop.org (Postfix) with ESMTP id A71D910E6B3;
 	Tue, 14 Mar 2023 00:30:47 +0000 (UTC)
 Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 10B6510E6A7
- for <intel-xe@lists.freedesktop.org>; Tue, 14 Mar 2023 00:30:46 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id BE91210E6A7
+ for <intel-xe@lists.freedesktop.org>; Tue, 14 Mar 2023 00:30:45 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1678753846; x=1710289846;
+ t=1678753845; x=1710289845;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=etcEDZaw+RK9wKJ0iwiVxSn3ucwXPL4jsEW6uJREC2M=;
- b=QsYWINesHDHcMxrm1/4uQTsiLHzWT3mf/i6cfipOQOjk73XiCsWkcmOL
- lG4QOz1G/jhLx4qGQ6yOAS9wP2d5lF6Ups4Dzo/WD7VDD8i2ot9GNv5U6
- D5TpRWQ7QHGg/pmVIT9DE9Oo+d9c2RWTj3DviUDuRaIYa1o0NlZeFSmyN
- ZJZjMEURCbELaC/s3MIIi23I57LWf22GYpl9VXdbtrxTAYfgz9Sqq4kcZ
- kZ/6o9a7luU3MyjCADwiW3xbRpRQ6z2Ng7811qT3Nr4iWdmUv3emLyF3X
- laACzjBISSjM9H6ISNv9SPm8VIlfNlfmdDA+1nhPb6ZfCATuOCA7rLzUh A==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10648"; a="402168024"
-X-IronPort-AV: E=Sophos;i="5.98,258,1673942400"; d="scan'208";a="402168024"
+ bh=cRbt6nXtPDKYLXi8YRC53SAwKhroWiLuq6kHB+0oGQ4=;
+ b=novs6o+Sa5YE0bu8/hLDfjT1bX35kqpOC+a00SSpT4TYRubjaE9sq6jT
+ j/cO4FI7h2E/WE1OAVBAB2O2sGUm+6aMZdV6Pazw0hF0DzfgBmG2xzkwP
+ 74+s6gim8bUWZTOl8FTUY3zU/4pCqohAcgJx0q4Dwn4hNQ1ITA9JDU5ik
+ xNsyXsBi244YnS6Y4CZ9HIZnB3U01PjkkoY7AvnaqYS0eD0QGXsbIIFKQ
+ /nZ8EBnuiUVTGIljpSf/Y8b9DbCuOaQgghPvFEl7FrgUuD+dWxZU3aHOq
+ DyG77QRjWK8ljbxbmBRvn0bYv6wnO3u8pTIln1QsA+diQZVHjCcfaOzZu A==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10648"; a="402168021"
+X-IronPort-AV: E=Sophos;i="5.98,258,1673942400"; d="scan'208";a="402168021"
 Received: from fmsmga002.fm.intel.com ([10.253.24.26])
  by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  13 Mar 2023 17:30:45 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6500,9779,10648"; a="789116685"
-X-IronPort-AV: E=Sophos;i="5.98,258,1673942400"; d="scan'208";a="789116685"
+X-IronPort-AV: E=McAfee;i="6500,9779,10648"; a="789116678"
+X-IronPort-AV: E=Sophos;i="5.98,258,1673942400"; d="scan'208";a="789116678"
 Received: from lucas-s2600cw.jf.intel.com ([10.165.21.196])
  by fmsmga002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 13 Mar 2023 17:30:45 -0700
+ 13 Mar 2023 17:30:44 -0700
 From: Lucas De Marchi <lucas.demarchi@intel.com>
 To: intel-xe@lists.freedesktop.org
-Date: Mon, 13 Mar 2023 17:30:02 -0700
-Message-Id: <20230314003012.2600353-5-lucas.demarchi@intel.com>
+Date: Mon, 13 Mar 2023 17:30:00 -0700
+Message-Id: <20230314003012.2600353-3-lucas.demarchi@intel.com>
 X-Mailer: git-send-email 2.39.0
 In-Reply-To: <20230314003012.2600353-1-lucas.demarchi@intel.com>
 References: <20230314003012.2600353-1-lucas.demarchi@intel.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-xe] [PATCH v3 04/14] drm/xe/debugfs: Dump register
- save-restore tables
+Subject: [Intel-xe] [PATCH v3 02/14] drm/xe/reg_sr: Tweak verbosity for
+ register printing
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -62,176 +62,81 @@ Cc: Lucas De Marchi <lucas.demarchi@intel.com>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Add debugfs entry to dump the final tables with register save-restore
-information.
+If there is no register to save-restore or whitelist, just return. This
+drops some noise from the log, particurlarly for platforms with several
+engines like PVC:
 
-For the workarounds, this has a format a little bit different than when the
-values are applied because we don't want to read the values from the HW
-when dumping via debugfs. For whitelist it just re-uses the print
-function added for when the whitelist is being built.
+	[drm:xe_reg_sr_apply_mmio [xe]] Applying bcs0 save-restore MMIOs
+	[drm:xe_reg_sr_apply_whitelist [xe]] Whitelisting bcs0 registers
+	[drm:xe_reg_sr_apply_mmio [xe]] Applying bcs1 save-restore MMIOs
+	[drm:xe_reg_sr_apply_whitelist [xe]] Whitelisting bcs1 registers
+	[drm:xe_reg_sr_apply_mmio [xe]] Applying bcs2 save-restore MMIOs
+	[drm:xe_reg_sr_apply_whitelist [xe]] Whitelisting bcs2 registers
+	[drm:xe_reg_sr_apply_mmio [xe]] Applying bcs5 save-restore MMIOs
+	[drm:xe_reg_sr_apply_whitelist [xe]] Whitelisting bcs5 registers
+	[drm:xe_reg_sr_apply_mmio [xe]] Applying bcs6 save-restore MMIOs
+	[drm:xe_reg_sr_apply_whitelist [xe]] Whitelisting bcs6 registers
+	[drm:xe_reg_sr_apply_mmio [xe]] Applying bcs7 save-restore MMIOs
+	[drm:xe_reg_sr_apply_whitelist [xe]] Whitelisting bcs7 registers
+	[drm:xe_reg_sr_apply_mmio [xe]] Applying bcs8 save-restore MMIOs
+	[drm:xe_reg_sr_apply_whitelist [xe]] Whitelisting bcs8 registers
+	[drm:xe_reg_sr_apply_mmio [xe]] Applying ccs0 save-restore MMIOs
+	[drm:xe_reg_sr_apply_mmio [xe]] REG[0x20e4] = 0x00008000
+	[drm:xe_reg_sr_apply_mmio [xe]] REG[0xb01c] = 0x00000001
+	[drm:xe_reg_sr_apply_mmio [xe]] REG[0xe48c] = 0x00000800
+	[drm:xe_reg_sr_apply_mmio [xe]] REG[0xe7c8] = 0x40000000
+	...
+
+On a PVC system it should show something like below. Whitelist calls
+are still there since they aren't actually empty - driver just doesn't
+print each individual entry. This will be fixed in future.
+
+	[drm:xe_reg_sr_apply_whitelist [xe]] Whitelisting bcs0 registers
+	[drm:xe_reg_sr_apply_whitelist [xe]] Whitelisting bcs1 registers
+	[drm:xe_reg_sr_apply_whitelist [xe]] Whitelisting bcs2 registers
+	[drm:xe_reg_sr_apply_whitelist [xe]] Whitelisting bcs5 registers
+	[drm:xe_reg_sr_apply_whitelist [xe]] Whitelisting bcs6 registers
+	[drm:xe_reg_sr_apply_whitelist [xe]] Whitelisting bcs7 registers
+	[drm:xe_reg_sr_apply_whitelist [xe]] Whitelisting bcs8 registers
+	[drm:xe_reg_sr_apply_mmio [xe]] Applying ccs0 save-restore MMIOs
+	[drm:xe_reg_sr_apply_mmio [xe]] REG[0x20e4] = 0x00008000
+	[drm:xe_reg_sr_apply_mmio [xe]] REG[0xb01c] = 0x00000001
+	[drm:xe_reg_sr_apply_mmio [xe]] REG[0xe48c] = 0x00000800
+	[drm:xe_reg_sr_apply_mmio [xe]] REG[0xe7c8] = 0x40000000
+
+v2: Only tweak log verbosity, leave the whitelist printout for later
+    since decoding the whitelist is more complex.
 
 Signed-off-by: Lucas De Marchi <lucas.demarchi@intel.com>
 Reviewed-by: Matt Roper <matthew.d.roper@intel.com>
 ---
- drivers/gpu/drm/xe/xe_gt_debugfs.c    | 30 +++++++++++++++++++++++++++
- drivers/gpu/drm/xe/xe_reg_sr.c        | 22 ++++++++++++++++++++
- drivers/gpu/drm/xe/xe_reg_sr.h        |  2 ++
- drivers/gpu/drm/xe/xe_reg_whitelist.c | 18 ++++++++++++++++
- drivers/gpu/drm/xe/xe_reg_whitelist.h |  3 +++
- 5 files changed, 75 insertions(+)
+ drivers/gpu/drm/xe/xe_reg_sr.c | 6 ++++++
+ 1 file changed, 6 insertions(+)
 
-diff --git a/drivers/gpu/drm/xe/xe_gt_debugfs.c b/drivers/gpu/drm/xe/xe_gt_debugfs.c
-index 78942e12e76c..9fab8017490f 100644
---- a/drivers/gpu/drm/xe/xe_gt_debugfs.c
-+++ b/drivers/gpu/drm/xe/xe_gt_debugfs.c
-@@ -16,6 +16,8 @@
- #include "xe_gt_topology.h"
- #include "xe_hw_engine.h"
- #include "xe_macros.h"
-+#include "xe_reg_sr.h"
-+#include "xe_reg_whitelist.h"
- #include "xe_uc_debugfs.h"
- 
- static struct xe_gt *node_to_gt(struct drm_info_node *node)
-@@ -98,6 +100,33 @@ static int ggtt(struct seq_file *m, void *data)
- 	return xe_ggtt_dump(gt->mem.ggtt, &p);
- }
- 
-+static int register_save_restore(struct seq_file *m, void *data)
-+{
-+	struct xe_gt *gt = node_to_gt(m->private);
-+	struct drm_printer p = drm_seq_file_printer(m);
-+	struct xe_hw_engine *hwe;
-+	enum xe_hw_engine_id id;
-+
-+	xe_reg_sr_dump(&gt->reg_sr, &p);
-+	drm_printf(&p, "\n");
-+
-+	drm_printf(&p, "Engine\n");
-+	for_each_hw_engine(hwe, gt, id)
-+		xe_reg_sr_dump(&hwe->reg_sr, &p);
-+	drm_printf(&p, "\n");
-+
-+	drm_printf(&p, "LRC\n");
-+	for_each_hw_engine(hwe, gt, id)
-+		xe_reg_sr_dump(&hwe->reg_lrc, &p);
-+	drm_printf(&p, "\n");
-+
-+	drm_printf(&p, "Whitelist\n");
-+	for_each_hw_engine(hwe, gt, id)
-+		xe_reg_whitelist_dump(&hwe->reg_whitelist, &p);
-+
-+	return 0;
-+}
-+
- static const struct drm_info_list debugfs_list[] = {
- 	{"hw_engines", hw_engines, 0},
- 	{"force_reset", force_reset, 0},
-@@ -105,6 +134,7 @@ static const struct drm_info_list debugfs_list[] = {
- 	{"topology", topology, 0},
- 	{"steering", steering, 0},
- 	{"ggtt", ggtt, 0},
-+	{"register-save-restore", register_save_restore, 0},
- };
- 
- void xe_gt_debugfs_register(struct xe_gt *gt)
 diff --git a/drivers/gpu/drm/xe/xe_reg_sr.c b/drivers/gpu/drm/xe/xe_reg_sr.c
-index f6ed9e6e5697..9eaf1be27886 100644
+index 194a5060f1b3..c6f92fe9aad1 100644
 --- a/drivers/gpu/drm/xe/xe_reg_sr.c
 +++ b/drivers/gpu/drm/xe/xe_reg_sr.c
-@@ -8,6 +8,7 @@
- #include <linux/align.h>
- #include <linux/string_helpers.h>
- #include <linux/xarray.h>
-+#include <linux/string_helpers.h>
+@@ -168,6 +168,9 @@ void xe_reg_sr_apply_mmio(struct xe_reg_sr *sr, struct xe_gt *gt)
+ 	unsigned long reg;
+ 	int err;
  
- #include <drm/drm_managed.h>
- #include <drm/drm_print.h>
-@@ -230,3 +231,24 @@ void xe_reg_sr_apply_whitelist(struct xe_reg_sr *sr, u32 mmio_base,
- err_force_wake:
- 	drm_err(&xe->drm, "Failed to apply, err=%d\n", err);
- }
-+
-+/**
-+ * xe_reg_sr_dump - print all save/restore entries
-+ * @sr: Save/restore entries
-+ * @p: DRM printer
-+ */
-+void xe_reg_sr_dump(struct xe_reg_sr *sr, struct drm_printer *p)
-+{
-+	struct xe_reg_sr_entry *entry;
-+	unsigned long reg;
-+
-+	if (!sr->name || xa_empty(&sr->xa))
++	if (xa_empty(&sr->xa))
 +		return;
 +
-+	drm_printf(p, "%s\n", sr->name);
-+	xa_for_each(&sr->xa, reg, entry)
-+		drm_printf(p, "\tREG[0x%lx] clr=0x%08x set=0x%08x masked=%s mcr=%s\n",
-+			   reg, entry->clr_bits, entry->set_bits,
-+			   str_yes_no(entry->masked_reg),
-+			   str_yes_no(entry->reg_type == XE_RTP_REG_MCR));
-+}
-diff --git a/drivers/gpu/drm/xe/xe_reg_sr.h b/drivers/gpu/drm/xe/xe_reg_sr.h
-index 9f47230c8ddc..3af369089faa 100644
---- a/drivers/gpu/drm/xe/xe_reg_sr.h
-+++ b/drivers/gpu/drm/xe/xe_reg_sr.h
-@@ -14,8 +14,10 @@
+ 	drm_dbg(&xe->drm, "Applying %s save-restore MMIOs\n", sr->name);
  
- struct xe_device;
- struct xe_gt;
-+struct drm_printer;
+ 	err = xe_force_wake_get(&gt->mmio.fw, XE_FORCEWAKE_ALL);
+@@ -195,6 +198,9 @@ void xe_reg_sr_apply_whitelist(struct xe_reg_sr *sr, u32 mmio_base,
+ 	unsigned int slot = 0;
+ 	int err;
  
- int xe_reg_sr_init(struct xe_reg_sr *sr, const char *name, struct xe_device *xe);
-+void xe_reg_sr_dump(struct xe_reg_sr *sr, struct drm_printer *p);
- 
- int xe_reg_sr_add(struct xe_reg_sr *sr, u32 reg,
- 		  const struct xe_reg_sr_entry *e);
-diff --git a/drivers/gpu/drm/xe/xe_reg_whitelist.c b/drivers/gpu/drm/xe/xe_reg_whitelist.c
-index 6c8577e8dba6..c4b3a2045299 100644
---- a/drivers/gpu/drm/xe/xe_reg_whitelist.c
-+++ b/drivers/gpu/drm/xe/xe_reg_whitelist.c
-@@ -108,3 +108,21 @@ void xe_reg_whitelist_print_entry(struct drm_printer *p, unsigned int indent,
- 			  deny ? "deny" : "allow",
- 			  access_str);
- }
-+
-+/**
-+ * xe_reg_whitelist_dump - print all whitelist entries
-+ * @sr: Save/restore entries
-+ * @p: DRM printer
-+ */
-+void xe_reg_whitelist_dump(struct xe_reg_sr *sr, struct drm_printer *p)
-+{
-+	struct xe_reg_sr_entry *entry;
-+	unsigned long reg;
-+
-+	if (!sr->name || xa_empty(&sr->xa))
++	if (xa_empty(&sr->xa))
 +		return;
 +
-+	drm_printf(p, "%s\n", sr->name);
-+	xa_for_each(&sr->xa, reg, entry)
-+		xe_reg_whitelist_print_entry(p, 1, reg, entry);
-+}
-diff --git a/drivers/gpu/drm/xe/xe_reg_whitelist.h b/drivers/gpu/drm/xe/xe_reg_whitelist.h
-index c76d81c528da..69b121d377da 100644
---- a/drivers/gpu/drm/xe/xe_reg_whitelist.h
-+++ b/drivers/gpu/drm/xe/xe_reg_whitelist.h
-@@ -10,6 +10,7 @@
+ 	drm_dbg(&xe->drm, "Whitelisting %s registers\n", sr->name);
  
- struct drm_printer;
- struct xe_hw_engine;
-+struct xe_reg_sr;
- struct xe_reg_sr_entry;
- 
- void xe_reg_whitelist_process_engine(struct xe_hw_engine *hwe);
-@@ -17,4 +18,6 @@ void xe_reg_whitelist_process_engine(struct xe_hw_engine *hwe);
- void xe_reg_whitelist_print_entry(struct drm_printer *p, unsigned int indent,
- 				  u32 reg, struct xe_reg_sr_entry *entry);
- 
-+void xe_reg_whitelist_dump(struct xe_reg_sr *sr, struct drm_printer *p);
-+
- #endif
+ 	err = xe_force_wake_get(&gt->mmio.fw, XE_FORCEWAKE_ALL);
 -- 
 2.39.0
 
