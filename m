@@ -4,54 +4,30 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 370ACC6FD1C
-	for <intel-xe@archiver.kernel.org>; Tue, 14 Mar 2023 13:03:21 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 03304C6FD1C
+	for <intel-xe@archiver.kernel.org>; Tue, 14 Mar 2023 13:11:20 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0F11910E7DE;
-	Tue, 14 Mar 2023 13:03:21 +0000 (UTC)
-Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E573510E7DC
- for <intel-xe@lists.freedesktop.org>; Tue, 14 Mar 2023 13:03:18 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1678798998; x=1710334998;
- h=message-id:date:mime-version:subject:to:cc:references:
- from:in-reply-to:content-transfer-encoding;
- bh=Lg3SPoDA4fNlAnGpqj9I6x5fJn+eGmNPE+o9QUxCrhk=;
- b=dNT8PT7k+LqaTY99cIQkgx/OCQlmXj4s5UDnJjRpMT1un+zk5XI+FT1I
- pHMDO/QV49pHI5nCwDmUsaVb1Gb/4Xlyq8Pn2BhT9QN3/rR/GctJG2bBS
- L/T5HXI2LaDjcOyCWxFV5e3V6xW2ncuq+xbuE8kiTUb1je/SvafU8k5bb
- c+L75pe02L0saHZqdANynfShkw5ZHxbj7/t8tTmKFmmDPFUC0YvaCIAfq
- hpibO6aj01v4xUHiBGcXwr4nSUWT7ECrRnMAkE6zNmvfEVyDlnS5firlM
- iYdMVptNH6X8x0vM6hAInerLElxX8f9y2kKLAgIiPrh13O6MP/9jIkICF A==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10648"; a="339780062"
-X-IronPort-AV: E=Sophos;i="5.98,259,1673942400"; d="scan'208";a="339780062"
-Received: from fmsmga003.fm.intel.com ([10.253.24.29])
- by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 14 Mar 2023 06:03:18 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6500,9779,10648"; a="768079077"
-X-IronPort-AV: E=Sophos;i="5.98,259,1673942400"; d="scan'208";a="768079077"
-Received: from fathuddx-mobl.gar.corp.intel.com (HELO [10.249.254.202])
- ([10.249.254.202])
- by fmsmga003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 14 Mar 2023 06:03:17 -0700
-Message-ID: <e5ac0c2e-1812-ff2f-680d-f49c40fea72b@linux.intel.com>
-Date: Tue, 14 Mar 2023 14:03:14 +0100
+	by gabe.freedesktop.org (Postfix) with ESMTP id D3E3E10E7D3;
+	Tue, 14 Mar 2023 13:11:19 +0000 (UTC)
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id EE95B10E7CE;
+ Tue, 14 Mar 2023 13:11:18 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id E7734AADED;
+ Tue, 14 Mar 2023 13:11:18 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.8.0
-Content-Language: en-US
-To: Matthew Auld <matthew.william.auld@gmail.com>
-References: <20230313204519.158888-1-thomas.hellstrom@linux.intel.com>
- <20230313204519.158888-2-thomas.hellstrom@linux.intel.com>
- <CAM0jSHMfN2z3FV75PDNMtwRYMTDV2PgKk2R1iKm3MtgcS9=Rrw@mail.gmail.com>
-From: =?UTF-8?Q?Thomas_Hellstr=c3=b6m?= <thomas.hellstrom@linux.intel.com>
-In-Reply-To: <CAM0jSHMfN2z3FV75PDNMtwRYMTDV2PgKk2R1iKm3MtgcS9=Rrw@mail.gmail.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
-Subject: Re: [Intel-xe] [PATCH 1/6] drm/xe: Use a define to set initial
- seqno for fences
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Matthew Auld" <matthew.auld@intel.com>
+Date: Tue, 14 Mar 2023 13:11:18 -0000
+Message-ID: <167879947891.26415.14395841113784480918@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20230314085842.134239-1-matthew.auld@intel.com>
+In-Reply-To: <20230314085842.134239-1-matthew.auld@intel.com>
+Subject: [Intel-xe] =?utf-8?q?=E2=9C=97_CI=2EPatch=5Fapplied=3A_failure_f?=
+ =?utf-8?q?or_Some_small-bar_prep_patches_=28rev4=29?=
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -63,116 +39,54 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Cc: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
+== Series Details ==
 
-On 3/14/23 12:54, Matthew Auld wrote:
-> On Mon, 13 Mar 2023 at 20:46, Thomas Hellström
-> <thomas.hellstrom@linux.intel.com> wrote:
->> Also for HW fences, write the initial seqno - 1 to the HW completed
->> seqno to initialize.
->>
->> Signed-off-by: Thomas Hellström <thomas.hellstrom@linux.intel.com>
->> ---
->>   drivers/gpu/drm/xe/xe_engine.c   | 5 +++--
->>   drivers/gpu/drm/xe/xe_hw_fence.c | 5 ++---
->>   drivers/gpu/drm/xe/xe_hw_fence.h | 2 ++
->>   drivers/gpu/drm/xe/xe_lrc.c      | 3 +++
->>   4 files changed, 10 insertions(+), 5 deletions(-)
->>
->> diff --git a/drivers/gpu/drm/xe/xe_engine.c b/drivers/gpu/drm/xe/xe_engine.c
->> index 3b6f8a25112a..7e6367a84f1f 100644
->> --- a/drivers/gpu/drm/xe/xe_engine.c
->> +++ b/drivers/gpu/drm/xe/xe_engine.c
->> @@ -13,6 +13,7 @@
->>
->>   #include "xe_device.h"
->>   #include "xe_gt.h"
->> +#include "xe_hw_fence.h"
->>   #include "xe_lrc.h"
->>   #include "xe_macros.h"
->>   #include "xe_migrate.h"
->> @@ -57,11 +58,11 @@ static struct xe_engine *__xe_engine_create(struct xe_device *xe,
->>
->>          if (xe_engine_is_parallel(e)) {
->>                  e->parallel.composite_fence_ctx = dma_fence_context_alloc(1);
->> -               e->parallel.composite_fence_seqno = 1;
->> +               e->parallel.composite_fence_seqno = XE_FENCE_INITIAL_SEQNO;
->>          }
->>          if (e->flags & ENGINE_FLAG_VM) {
->>                  e->bind.fence_ctx = dma_fence_context_alloc(1);
->> -               e->bind.fence_seqno = 1;
->> +               e->bind.fence_seqno = XE_FENCE_INITIAL_SEQNO;
->>          }
->>
->>          for (i = 0; i < width; ++i) {
->> diff --git a/drivers/gpu/drm/xe/xe_hw_fence.c b/drivers/gpu/drm/xe/xe_hw_fence.c
->> index e56ca2867545..ca8304650713 100644
->> --- a/drivers/gpu/drm/xe/xe_hw_fence.c
->> +++ b/drivers/gpu/drm/xe/xe_hw_fence.c
->> @@ -129,7 +129,7 @@ void xe_hw_fence_ctx_init(struct xe_hw_fence_ctx *ctx, struct xe_gt *gt,
->>          ctx->gt = gt;
->>          ctx->irq = irq;
->>          ctx->dma_fence_ctx = dma_fence_context_alloc(1);
->> -       ctx->next_seqno = 1;
->> +       ctx->next_seqno = XE_FENCE_INITIAL_SEQNO;
->>          sprintf(ctx->name, "%s", name);
->>   }
->>
->> @@ -164,8 +164,7 @@ static bool xe_hw_fence_signaled(struct dma_fence *dma_fence)
->>          struct xe_device *xe = gt_to_xe(fence->ctx->gt);
->>          u32 seqno = xe_map_rd(xe, &fence->seqno_map, 0, u32);
->>
->> -       return dma_fence->error ||
->> -               (s32)fence->dma.seqno <= (s32)seqno;
->> +       return dma_fence->error || (s32)(u32)fence->dma.seqno <= (s32)seqno;
-> Why do we need this change? Also the hw fence dma.seqno should always
-> be u32, right?
+Series: Some small-bar prep patches (rev4)
+URL   : https://patchwork.freedesktop.org/series/114521/
+State : failure
 
-Thanks for reviewing, Matt.
+== Summary ==
 
-Yes the value should always be u32, but the type is u64, and I read 
-somewhere that casting an u64 to s32 could yield 
-implementation-dependent results. I could double-check that, or actually 
-even use __dma_fence_is_later(). That seems to be the best choice.
+=== Applying kernel patches on branch 'drm-xe-next' with base: ===
+commit 8e9f9b64b5fbdfa0aa3630e5f11a683e40e51105
+Author:     Matthew Auld <matthew.auld@intel.com>
+AuthorDate: Tue Mar 14 08:58:38 2023 +0000
+Commit:     Matthew Auld <matthew.auld@intel.com>
+CommitDate: Tue Mar 14 10:31:41 2023 +0000
 
-/Thomas
+    drm/xe: add xe_ttm_stolen_cpu_access_needs_ggtt()
+    
+    xe_ttm_stolen_cpu_inaccessible() was originally meant to just cover the
+    case where stolen is not directly CPU accessible on some older
+    integrated platforms, and as such a GGTT mapping was also required for
+    CPU access (as per the check in xe_bo_create_pin_map_at()).
+    
+    However with small-bar systems on dgfx we have one more case where
+    stolen is also inaccessible, however here we don't have any fallback
+    GGTT mode for CPU access. Fix the check in xe_bo_create_pin_map_at() to
+    make this distinction clear. In such a case the later vmap() will fail
+    anyway.
+    
+    v2: fix kernel-doc warning
+    v3: Simplify further and remove cpu_inaccessible()
+    
+    Suggested-by: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
+    Signed-off-by: Matthew Auld <matthew.auld@intel.com>
+    Cc: Gwan-gyeong Mun <gwan-gyeong.mun@intel.com>
+    Reviewed-by: Thomas Hellström <thomas.hellstrom@linux.intel.com>
+=== git am output follows ===
+error: patch failed: drivers/gpu/drm/xe/xe_ttm_stolen_mgr.c:90
+error: drivers/gpu/drm/xe/xe_ttm_stolen_mgr.c: patch does not apply
+hint: Use 'git am --show-current-patch' to see the failed patch
+Applying: drm/xe: one more s/lmem/vram/
+Patch failed at 0001 drm/xe: one more s/lmem/vram/
+When you have resolved this problem, run "git am --continue".
+If you prefer to skip this patch, run "git am --skip" instead.
+To restore the original branch and stop patching, run "git am --abort".
 
 
-
->
->>   }
->>
->>   static bool xe_hw_fence_enable_signaling(struct dma_fence *dma_fence)
->> diff --git a/drivers/gpu/drm/xe/xe_hw_fence.h b/drivers/gpu/drm/xe/xe_hw_fence.h
->> index 07f202db6526..523c2611ef5d 100644
->> --- a/drivers/gpu/drm/xe/xe_hw_fence.h
->> +++ b/drivers/gpu/drm/xe/xe_hw_fence.h
->> @@ -8,6 +8,8 @@
->>
->>   #include "xe_hw_fence_types.h"
->>
->> +#define XE_FENCE_INITIAL_SEQNO 1
->> +
->>   int xe_hw_fence_module_init(void);
->>   void xe_hw_fence_module_exit(void);
->>
->> diff --git a/drivers/gpu/drm/xe/xe_lrc.c b/drivers/gpu/drm/xe/xe_lrc.c
->> index 9140b057a5ba..fb8c6f7d6528 100644
->> --- a/drivers/gpu/drm/xe/xe_lrc.c
->> +++ b/drivers/gpu/drm/xe/xe_lrc.c
->> @@ -697,6 +697,9 @@ int xe_lrc_init(struct xe_lrc *lrc, struct xe_hw_engine *hwe,
->>          arb_enable = MI_ARB_ON_OFF | MI_ARB_ENABLE;
->>          xe_lrc_write_ring(lrc, &arb_enable, sizeof(arb_enable));
->>
->> +       map = __xe_lrc_seqno_map(lrc);
->> +       xe_map_write32(lrc_to_xe(lrc), &map, lrc->fence_ctx.next_seqno - 1);
->> +
->>          return 0;
->>
->>   err_lrc_finish:
->> --
->> 2.39.2
->>
