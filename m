@@ -4,59 +4,54 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2B917C6FD1D
-	for <intel-xe@archiver.kernel.org>; Tue, 14 Mar 2023 12:25:40 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9FE2DC6FD1D
+	for <intel-xe@archiver.kernel.org>; Tue, 14 Mar 2023 12:53:03 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0C31610E799;
-	Tue, 14 Mar 2023 12:25:40 +0000 (UTC)
-Received: from mail-lf1-x131.google.com (mail-lf1-x131.google.com
- [IPv6:2a00:1450:4864:20::131])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7FF4910E799
- for <intel-xe@lists.freedesktop.org>; Tue, 14 Mar 2023 12:25:37 +0000 (UTC)
-Received: by mail-lf1-x131.google.com with SMTP id m4so6768636lfj.2
- for <intel-xe@lists.freedesktop.org>; Tue, 14 Mar 2023 05:25:37 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20210112; t=1678796736;
- h=content-transfer-encoding:cc:to:subject:message-id:date:from
- :in-reply-to:references:mime-version:from:to:cc:subject:date
- :message-id:reply-to;
- bh=xyWTgdV2nHXB6BceOX/0Kermrx195Jrqj8zpAFohaaA=;
- b=B/2cOv4T7D9mlSbHNqvI4TNSIV/W00NEAUJHMsyG2lBNmc5OO006LQPzvp+XodXYsR
- irZ4gcJOkQax8En3kfVX7E92jwQa2vVKy1HIVfutoaOkcEV8SNiZqYGQLypAcL6963DJ
- r5CTJ3qwivn9qvp7HMKPdC+XNsfLYRTUVWB343LHM3XjanGQOuDGKnGIuaZFLcjo7btx
- 0Pn2nK8FUOct10a1IfUme3oTyx97eboZVDTguE11WkCeJvr6Lk6wJmHpPBE/gSqZC6By
- yxrstMxK0EbAr24BztUuOtq0MqQPVi6Citkq+HImihAteOgGKA5aOcf6Blgoug8qk8E9
- N14A==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20210112; t=1678796736;
- h=content-transfer-encoding:cc:to:subject:message-id:date:from
- :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
- :subject:date:message-id:reply-to;
- bh=xyWTgdV2nHXB6BceOX/0Kermrx195Jrqj8zpAFohaaA=;
- b=44MVKFtIduFSjyQxgXRU3AFsNIvlvxlaAbXVL9UcdUpXq0QJX1Gf46RXaHy/3thFEC
- O4gCSYDtUtj8y0jb0N/0l92affhQxEF0aeqFiJ3GnwX1EJh+sQOlg0afLauGs/maWkgF
- NO9wbW9+o0kB5ntv7IG4h6OBZBuAfPGH6ZcpOuSGEQ7RlI74bFJzgxLZhPi+IOTz/YWo
- ZbMoc1Kf3orVEhc7EWvM4p8LlHx7aqTXc2fqzUNIAKh/EA7UhlUcfxsPUh5um/bgILQ1
- leXzLSNExG71wi4n4GwUDIZB5gJ260tWdi4l+rPePfa2Sdo1AGE7pt57HkJmdXM0fK4l
- MaRQ==
-X-Gm-Message-State: AO0yUKWOwmOJSVhWmXvxC1ynIw6NvW/N3aB1zD8giARPfBCCdQneGlQ6
- Si4d5RHAykwGbL8PLmLiQ93aa4G3/ugwhboqYDJ1PycoS08=
-X-Google-Smtp-Source: AK7set+shkfNi80jvPAUMtgI/yjzMCm3fOh1ATCmewjFkGDRj6l7D9Tl0sDr6OExxWoJxz3Cz1ICKbzqxDTnhbYSMes=
-X-Received: by 2002:ac2:4a9b:0:b0:4dc:807a:d140 with SMTP id
- l27-20020ac24a9b000000b004dc807ad140mr674900lfp.10.1678796735775; Tue, 14 Mar
- 2023 05:25:35 -0700 (PDT)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5F0EE10E7CF;
+	Tue, 14 Mar 2023 12:53:03 +0000 (UTC)
+Received: from mga06.intel.com (mga06b.intel.com [134.134.136.31])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9E9E110E7CF
+ for <intel-xe@lists.freedesktop.org>; Tue, 14 Mar 2023 12:53:01 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1678798381; x=1710334381;
+ h=message-id:date:mime-version:subject:to:cc:references:
+ from:in-reply-to:content-transfer-encoding;
+ bh=23UhdpQWVeXDw1KwL/PKgaQ6BcenGq+9xgQ1+eQYyIU=;
+ b=Hr9GHkJClGGnPOpEjU9NosJEuUF8/80RsSEG9d5ejVpmjS5B9zecsrWd
+ kAwXtc6N+LP972Nh0LW0EKAM3aMFiTmb3H8PUxtUda71l4WI2bb+iWGcI
+ YN222DbK7sD3bmf0sGJ2gQzWKO0F6wO2EW5IHibeH6OEAHFZLA79RKA45
+ oLiukj63ObfGgfFd0ObgMQQPeffTLlIVSKmMzwefXfr7tul2/8g5IOSZU
+ t/qUIDySR45EL9gj2lyfmo2Vc1jxGj98OlwBJJH6KyPjNqTvujr0y+EmF
+ R3KYmy8b5KGghTwCgsKnVBhg1zWRTpQoctbQVaACrFmCQU0INy6uJrJ7H Q==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10648"; a="399999407"
+X-IronPort-AV: E=Sophos;i="5.98,259,1673942400"; d="scan'208";a="399999407"
+Received: from orsmga001.jf.intel.com ([10.7.209.18])
+ by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 14 Mar 2023 05:52:26 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6500,9779,10648"; a="711500788"
+X-IronPort-AV: E=Sophos;i="5.98,259,1673942400"; d="scan'208";a="711500788"
+Received: from mjtillin-mobl.ger.corp.intel.com (HELO [10.213.236.227])
+ ([10.213.236.227])
+ by orsmga001-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 14 Mar 2023 05:52:24 -0700
+Message-ID: <36d68f73-d344-92b1-171e-5e39ed1af651@linux.intel.com>
+Date: Tue, 14 Mar 2023 12:52:21 +0000
 MIME-Version: 1.0
-References: <20230313204519.158888-1-thomas.hellstrom@linux.intel.com>
- <20230313204519.158888-4-thomas.hellstrom@linux.intel.com>
-In-Reply-To: <20230313204519.158888-4-thomas.hellstrom@linux.intel.com>
-From: Matthew Auld <matthew.william.auld@gmail.com>
-Date: Tue, 14 Mar 2023 12:25:08 +0000
-Message-ID: <CAM0jSHP2bctQnbM_CDYK1Om2vmUX+uXyE4Npb5NJft8Ezgs+ag@mail.gmail.com>
-To: =?UTF-8?Q?Thomas_Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-Subject: Re: [Intel-xe] [PATCH 3/6] drm/xe/tests: Support CPU page-table
- updates in the migrate test
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.8.0
+Content-Language: en-US
+To: Jani Nikula <jani.nikula@intel.com>, intel-xe@lists.freedesktop.org
+References: <20230309191923.670451-1-jani.nikula@intel.com>
+ <877cvj7e39.fsf@intel.com>
+From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
+Organization: Intel Corporation UK Plc
+In-Reply-To: <877cvj7e39.fsf@intel.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+Subject: Re: [Intel-xe] [RFC] drm/i915: add kconfig option to enable/disable
+ legacy platform support
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -68,17 +63,68 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-xe@lists.freedesktop.org
+Cc: Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+ Lucas De Marchi <lucas.demarchi@intel.com>, "Shankar,
+ Uma" <uma.shankar@intel.com>, Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ =?UTF-8?B?VmlsbGUgU3lyasOkbMOk?= <ville.syrjala@linux.intel.com>
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Mon, 13 Mar 2023 at 20:46, Thomas Hellstr=C3=B6m
-<thomas.hellstrom@linux.intel.com> wrote:
->
-> The migrate test currently supports only GPU pagetable updates and
-> will thus break if we fix the CPU pagetable update selection.
->
-> Fix the migrate test first.
->
-> Signed-off-by: Thomas Hellstr=C3=B6m <thomas.hellstrom@linux.intel.com>
-Reviewed-by: Matthew Auld <matthew.auld@intel.com>
+
+On 14/03/2023 11:43, Jani Nikula wrote:
+> On Thu, 09 Mar 2023, Jani Nikula <jani.nikula@intel.com> wrote:
+>> Add config option DRM_I915_LEGACY to enable/disable legacy platform
+>> support. This is primarily for the benefit of the drm/xe driver, and
+>> legacy is defined in terms of the platforms drm/xe does not support,
+>> i.e. anything before Tigerlake.
+>>
+>> While the kconfig option will be CONFIG_DRM_I915_LEGACY, the intention
+>> is that it's not used in code. Instead, we'll pass -DI915_LEGACY=1 in
+>> the i915 Makefile for CONFIG_DRM_I915_LEGACY=y, while the xe Makefile
+>> does no such thing, regardless of the kconfig value.
+>>
+>> Initially, the knob does the bare minimum: drops the legacy platforms
+>> from module PCI ID table (and the compiler in turn automagically drops
+>> all the unreferenced device infos).
+>>
+>> Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
+>> Cc: Joonas Lahtinen <joonas.lahtinen@linux.intel.com>
+>> Cc: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
+>> Cc: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
+>> Cc: Lucas De Marchi <lucas.demarchi@intel.com>
+>> Cc: Ville Syrjälä <ville.syrjala@linux.intel.com>
+> 
+> The discussion stalled a bit.
+> 
+> Do we have consensus to start adding this to upstream i915?
+
+I always liked the idea of compiling out platform support so I could be 
+convinced. I view that as a "power user" use case - compiles their own 
+kernel for a targeted machine. It also translates to building smaller 
+images in production settings although that is kind of not interesting 
+with the storage amounts these days. So overall feels could be 
+justified. There is some benefit and could be done with minimal 
+maintenance cost.
+
+But to add a Kconfig calling something "legacy", by the definition of 
+what Xe will support feels maybe a bit premature. Sure it will become 
+super useful once Xe is in the tree, to allow exactly the same class 
+use-case as above, but until then it feels questionable under your own 
+criteria too.
+
+If you could add a set of more generic options, which Xe could later tie 
+into that would work for me. For instance we have some more natural 
+cross-over points than Tigerlake. So if not per individual platform, 
+maybe for like ring buffer -> execlists -> GuC transitions. And naming 
+them without saying legacy for now, but use some descriptive names, and 
+listing platform code names in help text. "Select this to support 
+Broadwell, Skylake, etc..", "Select this to support Sandybridge..". Out 
+of the tree Xe build can then just not use the corresponding defines in 
+its own build and it would achieve what you need?
+
+Once in tree we can have a "legacy" kconfig which toggles a whole group 
+of those. Like "CONFIG_DRM_I915_SUPPORT_XE_PLATFORMS" or something.
+
+Regards,
+
+Tvrtko
