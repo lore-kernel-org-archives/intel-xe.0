@@ -4,47 +4,48 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4EAEFC76195
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 77BC8C7618E
 	for <intel-xe@archiver.kernel.org>; Tue, 14 Mar 2023 00:30:49 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 61D7F10E6AD;
-	Tue, 14 Mar 2023 00:30:48 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1E78010E6B1;
+	Tue, 14 Mar 2023 00:30:49 +0000 (UTC)
 Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B61CD10E6AA
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 383A910E6A8
  for <intel-xe@lists.freedesktop.org>; Tue, 14 Mar 2023 00:30:46 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
  t=1678753846; x=1710289846;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=ZkEeBM2hxsu29X3EhRT1Kr3nE0ovD1YolbL3vCAsPdc=;
- b=lRifWMSMgSB0ILN+wyWWJzLuWyxfZjKgs9pLhQL41Tl8eT3zqLSImbId
- 09lFnJdzeTPgUc9tbtJP6qGb3PBcbuokb85YZ+UWmzO+SQtdwwTUk7LXF
- 9DAi8t2M+GR13Yb4G1Vglwf7IUXdgIGEoBXCWrZNqIbhYTJqA6vZkGTxW
- MZ4POJjyF8YOyTGTnMBxXuPyNyuU3OPf8OSPCYnZ0D6PpEA34tk+leVJN
- 1ANVwmz7hxRfPvfG5/L8gln7RuWZWoo508i3/9nhMyDEaY/mi1oD/i5gm
- aItstlFJR1L5Wkb/GfSjoG2ZRmvoI2DZzs9CWnfoVxGAkkFg54DmjFlRV w==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10648"; a="402168034"
-X-IronPort-AV: E=Sophos;i="5.98,258,1673942400"; d="scan'208";a="402168034"
+ bh=cJtcY00Tqp8Zma9gClfaNUHu+Jxy+exzGGxD8Rbg64I=;
+ b=DgJVqIW/cUfWWpzS+6tOeYO3h/bhphyEnpK+mmzDZ1L7MGU7znPuBI71
+ Z+lr6cA7aZYKIi4InejL2FgAv9D4dtMMFor9bpScHSddJYnxR+u2pgDlv
+ 7HVyjkNlsCtJQsD0Eq3KT14QpYEurCeDwf34oopsACSQaPX2nL6vqeKSS
+ w9mbgdhMUnOrVh7HCpidGQ08o2tJY1nBn36y7Hved4y6rA1U6/FdUUDfc
+ yG9Hki76tBHlYTY0vZJ9jdGIZOmwxYQ7cxsWFnUT7fAlGCYNSxIN8/GGR
+ aN8uCnd8SwUyozAwMAvuHkO42vDDDvqBWxV1au1Pfa20LnGOkqHFXXWS5 A==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10648"; a="402168025"
+X-IronPort-AV: E=Sophos;i="5.98,258,1673942400"; d="scan'208";a="402168025"
 Received: from fmsmga002.fm.intel.com ([10.253.24.26])
  by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 13 Mar 2023 17:30:46 -0700
+ 13 Mar 2023 17:30:45 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6500,9779,10648"; a="789116707"
-X-IronPort-AV: E=Sophos;i="5.98,258,1673942400"; d="scan'208";a="789116707"
+X-IronPort-AV: E=McAfee;i="6500,9779,10648"; a="789116688"
+X-IronPort-AV: E=Sophos;i="5.98,258,1673942400"; d="scan'208";a="789116688"
 Received: from lucas-s2600cw.jf.intel.com ([10.165.21.196])
  by fmsmga002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 13 Mar 2023 17:30:46 -0700
+ 13 Mar 2023 17:30:45 -0700
 From: Lucas De Marchi <lucas.demarchi@intel.com>
 To: intel-xe@lists.freedesktop.org
-Date: Mon, 13 Mar 2023 17:30:08 -0700
-Message-Id: <20230314003012.2600353-11-lucas.demarchi@intel.com>
+Date: Mon, 13 Mar 2023 17:30:03 -0700
+Message-Id: <20230314003012.2600353-6-lucas.demarchi@intel.com>
 X-Mailer: git-send-email 2.39.0
 In-Reply-To: <20230314003012.2600353-1-lucas.demarchi@intel.com>
 References: <20230314003012.2600353-1-lucas.demarchi@intel.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-xe] [PATCH v3 10/14] drm/xe: Add missing DG2 lrc tunings
+Subject: [Intel-xe] [PATCH v3 05/14] drm/xe: Reorder WAs to consider the
+ platform
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -61,81 +62,161 @@ Cc: Lucas De Marchi <lucas.demarchi@intel.com>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Synchronize with i915 the DG2 tunings as of
-commit 4d14d7717f19 ("drm/i915/selftest: Fix ktime_get() and h/w access
-order").
-
-Contrary to the tuning "gang timer" for TGL, there is no quick
-justification for why the read back is disabled in i915. Keep it
-with that flag for now. That can be tentatively removed later when the
-read values are checked.
-
-v2: Use XEHP_FF_MODE2 instead of GEN12_FF_MODE2 (Matt Roper)
+Now that number of platforms is growing, it's getting hard to know the
+workarounds for each platform. Split the entries inside the same table
+so the workarounds checking IP version are listed first, followed by
+each platform. Next step when it grows too much is to split in smaller
+tables.
 
 Signed-off-by: Lucas De Marchi <lucas.demarchi@intel.com>
 Reviewed-by: Matt Roper <matthew.d.roper@intel.com>
 ---
- drivers/gpu/drm/xe/regs/xe_gt_regs.h |  7 +++++++
- drivers/gpu/drm/xe/xe_tuning.c       | 20 ++++++++++++++++++++
- 2 files changed, 27 insertions(+)
+ drivers/gpu/drm/xe/xe_wa.c | 93 ++++++++++++++++++++++----------------
+ 1 file changed, 54 insertions(+), 39 deletions(-)
 
-diff --git a/drivers/gpu/drm/xe/regs/xe_gt_regs.h b/drivers/gpu/drm/xe/regs/xe_gt_regs.h
-index 2600704ace0a..7a578672a818 100644
---- a/drivers/gpu/drm/xe/regs/xe_gt_regs.h
-+++ b/drivers/gpu/drm/xe/regs/xe_gt_regs.h
-@@ -73,7 +73,11 @@
- #define XEHP_TILE0_ADDR_RANGE			MCR_REG(0x4900)
- #define XEHP_FLAT_CCS_BASE_ADDR			MCR_REG(0x4910)
- 
-+#define CHICKEN_RASTER_2			MCR_REG(0x6208)
-+#define   TBIMR_FAST_CLIP			REG_BIT(5)
-+
- #define GEN12_FF_MODE2				_MMIO(0x6604)
-+#define XEHP_FF_MODE2				MCR_REG(0x6604)
- #define   FF_MODE2_GS_TIMER_MASK		REG_GENMASK(31, 24)
- #define   FF_MODE2_GS_TIMER_224			REG_FIELD_PREP(FF_MODE2_GS_TIMER_MASK, 224)
- #define   FF_MODE2_TDS_TIMER_MASK		REG_GENMASK(23, 16)
-@@ -228,6 +232,9 @@
- #define XEHP_L3NODEARBCFG			MCR_REG(0xb0b4)
- #define   XEHP_LNESPARE				REG_BIT(19)
- 
-+#define XEHP_L3SQCREG5				MCR_REG(0xb158)
-+#define   L3_PWM_TIMER_INIT_VAL_MASK		REG_GENMASK(9, 0)
-+
- #define XEHP_L3SCQREG7				MCR_REG(0xb188)
- #define   BLEND_FILL_CACHING_OPT_DIS		REG_BIT(3)
- 
-diff --git a/drivers/gpu/drm/xe/xe_tuning.c b/drivers/gpu/drm/xe/xe_tuning.c
-index 47b27dccb385..7ff5eb762da5 100644
---- a/drivers/gpu/drm/xe/xe_tuning.c
-+++ b/drivers/gpu/drm/xe/xe_tuning.c
-@@ -35,6 +35,26 @@ static const struct xe_rtp_entry lrc_tunings[] = {
- 						FF_MODE2_GS_TIMER_MASK,
- 						FF_MODE2_GS_TIMER_224))
+diff --git a/drivers/gpu/drm/xe/xe_wa.c b/drivers/gpu/drm/xe/xe_wa.c
+index 67539f9d70b4..155cabe16e2e 100644
+--- a/drivers/gpu/drm/xe/xe_wa.c
++++ b/drivers/gpu/drm/xe/xe_wa.c
+@@ -99,6 +99,24 @@ static const struct xe_rtp_entry gt_was[] = {
+ 	  XE_RTP_ACTIONS(SET(VDBOX_CGCTL3F10(0), IECPUNIT_CLKGATE_DIS)),
+ 	  XE_RTP_ENTRY_FLAG(FOREACH_ENGINE),
  	},
++	{ XE_RTP_NAME("14011059788"),
++	  XE_RTP_RULES(GRAPHICS_VERSION_RANGE(1200, 1210)),
++	  XE_RTP_ACTIONS(SET(GEN10_DFR_RATIO_EN_AND_CHICKEN, DFR_DISABLE))
++	},
++
++	/* DG1 */
++
++	{ XE_RTP_NAME("1409420604"),
++	  XE_RTP_RULES(PLATFORM(DG1)),
++	  XE_RTP_ACTIONS(SET(SUBSLICE_UNIT_LEVEL_CLKGATE2, CPSSUNIT_CLKGATE_DIS))
++	},
++	{ XE_RTP_NAME("1408615072"),
++	  XE_RTP_RULES(PLATFORM(DG1)),
++	  XE_RTP_ACTIONS(SET(UNSLICE_UNIT_LEVEL_CLKGATE2, VSUNIT_CLKGATE_DIS_TGL))
++	},
 +
 +	/* DG2 */
 +
-+	{ XE_RTP_NAME("Tuning: L3 cache"),
-+	  XE_RTP_RULES(PLATFORM(DG2)),
-+	  XE_RTP_ACTIONS(FIELD_SET(XEHP_L3SQCREG5, L3_PWM_TIMER_INIT_VAL_MASK,
-+				   REG_FIELD_PREP(L3_PWM_TIMER_INIT_VAL_MASK, 0x7f)))
-+	},
-+	{ XE_RTP_NAME("Tuning: TDS gang timer"),
-+	  XE_RTP_RULES(PLATFORM(DG2)),
-+	  /* read verification is ignored as in i915 - need to check enabling */
-+	  XE_RTP_ACTIONS(FIELD_SET_NO_READ_MASK(XEHP_FF_MODE2,
-+						FF_MODE2_TDS_TIMER_MASK,
-+						FF_MODE2_TDS_TIMER_128))
-+	},
-+	{ XE_RTP_NAME("Tuning: TBIMR fast clip"),
-+	  XE_RTP_RULES(PLATFORM(DG2)),
-+	  XE_RTP_ACTIONS(SET(CHICKEN_RASTER_2, TBIMR_FAST_CLIP,
-+			     XE_RTP_ACTION_FLAG(MASKED_REG)))
-+	},
+ 	{ XE_RTP_NAME("16010515920"),
+ 	  XE_RTP_RULES(SUBPLATFORM(DG2, G10),
+ 		       STEP(A0, B0),
+@@ -162,47 +180,15 @@ static const struct xe_rtp_entry gt_was[] = {
+ 	  XE_RTP_RULES(PLATFORM(DG2)),
+ 	  XE_RTP_ACTIONS(CLR(GEN7_MISCCPCTL, GEN12_DOP_CLOCK_GATE_RENDER_ENABLE))
+ 	},
+-	{ XE_RTP_NAME("14011059788"),
+-	  XE_RTP_RULES(GRAPHICS_VERSION_RANGE(1200, 1210)),
+-	  XE_RTP_ACTIONS(SET(GEN10_DFR_RATIO_EN_AND_CHICKEN, DFR_DISABLE))
+-	},
+-	{ XE_RTP_NAME("1409420604"),
+-	  XE_RTP_RULES(PLATFORM(DG1)),
+-	  XE_RTP_ACTIONS(SET(SUBSLICE_UNIT_LEVEL_CLKGATE2, CPSSUNIT_CLKGATE_DIS))
+-	},
+-	{ XE_RTP_NAME("1408615072"),
+-	  XE_RTP_RULES(PLATFORM(DG1)),
+-	  XE_RTP_ACTIONS(SET(UNSLICE_UNIT_LEVEL_CLKGATE2, VSUNIT_CLKGATE_DIS_TGL))
+-	},
  	{}
  };
  
+ static const struct xe_rtp_entry engine_was[] = {
+-	{ XE_RTP_NAME("14015227452"),
+-	  XE_RTP_RULES(PLATFORM(DG2), ENGINE_CLASS(RENDER)),
+-	  XE_RTP_ACTIONS(SET(GEN9_ROW_CHICKEN4, XEHP_DIS_BBL_SYSPIPE,
+-			     XE_RTP_ACTION_FLAG(MASKED_REG)))
+-	},
+-	{ XE_RTP_NAME("1606931601"),
+-	  XE_RTP_RULES(GRAPHICS_VERSION_RANGE(1200, 1210), ENGINE_CLASS(RENDER)),
+-	  XE_RTP_ACTIONS(SET(GEN8_ROW_CHICKEN2, GEN12_DISABLE_EARLY_READ,
+-			     XE_RTP_ACTION_FLAG(MASKED_REG)))
+-	},
+ 	{ XE_RTP_NAME("22010931296, 18011464164, 14010919138"),
+ 	  XE_RTP_RULES(GRAPHICS_VERSION(1200), ENGINE_CLASS(RENDER)),
+ 	  XE_RTP_ACTIONS(SET(GEN7_FF_THREAD_MODE,
+ 			     GEN12_FF_TESSELATION_DOP_GATE_DISABLE))
+ 	},
+-	{ XE_RTP_NAME("14010826681, 1606700617, 22010271021"),
+-	  XE_RTP_RULES(GRAPHICS_VERSION_RANGE(1200, 1210), ENGINE_CLASS(RENDER)),
+-	  XE_RTP_ACTIONS(SET(GEN9_CS_DEBUG_MODE1, FF_DOP_CLOCK_GATE_DISABLE,
+-			     XE_RTP_ACTION_FLAG(MASKED_REG)))
+-	},
+-	{ XE_RTP_NAME("18019627453"),
+-	  XE_RTP_RULES(PLATFORM(DG2), ENGINE_CLASS(RENDER)),
+-	  XE_RTP_ACTIONS(SET(GEN9_CS_DEBUG_MODE1, FF_DOP_CLOCK_GATE_DISABLE,
+-			     XE_RTP_ACTION_FLAG(MASKED_REG)))
+-	},
+ 	{ XE_RTP_NAME("1409804808"),
+ 	  XE_RTP_RULES(GRAPHICS_VERSION(1200),
+ 		       ENGINE_CLASS(RENDER),
+@@ -217,6 +203,30 @@ static const struct xe_rtp_entry engine_was[] = {
+ 	  XE_RTP_ACTIONS(SET(GEN9_ROW_CHICKEN4, GEN12_DISABLE_TDL_PUSH,
+ 			     XE_RTP_ACTION_FLAG(MASKED_REG)))
+ 	},
++	{ XE_RTP_NAME("1606931601"),
++	  XE_RTP_RULES(GRAPHICS_VERSION_RANGE(1200, 1210), ENGINE_CLASS(RENDER)),
++	  XE_RTP_ACTIONS(SET(GEN8_ROW_CHICKEN2, GEN12_DISABLE_EARLY_READ,
++			     XE_RTP_ACTION_FLAG(MASKED_REG)))
++	},
++	{ XE_RTP_NAME("14010826681, 1606700617, 22010271021"),
++	  XE_RTP_RULES(GRAPHICS_VERSION_RANGE(1200, 1210), ENGINE_CLASS(RENDER)),
++	  XE_RTP_ACTIONS(SET(GEN9_CS_DEBUG_MODE1, FF_DOP_CLOCK_GATE_DISABLE,
++			     XE_RTP_ACTION_FLAG(MASKED_REG)))
++	},
++	{ XE_RTP_NAME("1406941453"),
++	  XE_RTP_RULES(GRAPHICS_VERSION_RANGE(1200, 1210), ENGINE_CLASS(RENDER)),
++	  XE_RTP_ACTIONS(SET(GEN10_SAMPLER_MODE, ENABLE_SMALLPL,
++			     XE_RTP_ACTION_FLAG(MASKED_REG)))
++	},
++	{ XE_RTP_NAME("FtrPerCtxtPreemptionGranularityControl"),
++	  XE_RTP_RULES(GRAPHICS_VERSION_RANGE(1200, 1250), ENGINE_CLASS(RENDER)),
++	  XE_RTP_ACTIONS(SET(GEN7_FF_SLICE_CS_CHICKEN1,
++			     GEN9_FFSC_PERCTX_PREEMPT_CTRL,
++			     XE_RTP_ACTION_FLAG(MASKED_REG)))
++	},
++
++	/* TGL */
++
+ 	{ XE_RTP_NAME("1607297627, 1607030317, 1607186500"),
+ 	  XE_RTP_RULES(PLATFORM(TIGERLAKE), ENGINE_CLASS(RENDER)),
+ 	  XE_RTP_ACTIONS(SET(RING_PSMI_CTL(RENDER_RING_BASE),
+@@ -224,6 +234,9 @@ static const struct xe_rtp_entry engine_was[] = {
+ 			     GEN8_RC_SEMA_IDLE_MSG_DISABLE,
+ 			     XE_RTP_ACTION_FLAG(MASKED_REG)))
+ 	},
++
++	/* RKL */
++
+ 	{ XE_RTP_NAME("1607297627, 1607030317, 1607186500"),
+ 	  XE_RTP_RULES(PLATFORM(ROCKETLAKE), ENGINE_CLASS(RENDER)),
+ 	  XE_RTP_ACTIONS(SET(RING_PSMI_CTL(RENDER_RING_BASE),
+@@ -231,15 +244,17 @@ static const struct xe_rtp_entry engine_was[] = {
+ 			     GEN8_RC_SEMA_IDLE_MSG_DISABLE,
+ 			     XE_RTP_ACTION_FLAG(MASKED_REG)))
+ 	},
+-	{ XE_RTP_NAME("1406941453"),
+-	  XE_RTP_RULES(GRAPHICS_VERSION_RANGE(1200, 1210), ENGINE_CLASS(RENDER)),
+-	  XE_RTP_ACTIONS(SET(GEN10_SAMPLER_MODE, ENABLE_SMALLPL,
++
++	/* DG2 */
++
++	{ XE_RTP_NAME("14015227452"),
++	  XE_RTP_RULES(PLATFORM(DG2), ENGINE_CLASS(RENDER)),
++	  XE_RTP_ACTIONS(SET(GEN9_ROW_CHICKEN4, XEHP_DIS_BBL_SYSPIPE,
+ 			     XE_RTP_ACTION_FLAG(MASKED_REG)))
+ 	},
+-	{ XE_RTP_NAME("FtrPerCtxtPreemptionGranularityControl"),
+-	  XE_RTP_RULES(GRAPHICS_VERSION_RANGE(1200, 1250), ENGINE_CLASS(RENDER)),
+-	  XE_RTP_ACTIONS(SET(GEN7_FF_SLICE_CS_CHICKEN1,
+-			     GEN9_FFSC_PERCTX_PREEMPT_CTRL,
++	{ XE_RTP_NAME("18019627453"),
++	  XE_RTP_RULES(PLATFORM(DG2), ENGINE_CLASS(RENDER)),
++	  XE_RTP_ACTIONS(SET(GEN9_CS_DEBUG_MODE1, FF_DOP_CLOCK_GATE_DISABLE,
+ 			     XE_RTP_ACTION_FLAG(MASKED_REG)))
+ 	},
+ 	{}
 -- 
 2.39.0
 
