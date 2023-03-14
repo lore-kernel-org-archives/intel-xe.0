@@ -4,47 +4,30 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id A6CEEC6FD1C
-	for <intel-xe@archiver.kernel.org>; Tue, 14 Mar 2023 13:22:40 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6E982C6FD1D
+	for <intel-xe@archiver.kernel.org>; Tue, 14 Mar 2023 13:26:48 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 70B3410E7E1;
-	Tue, 14 Mar 2023 13:22:40 +0000 (UTC)
-Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1AFC210E7E1
- for <intel-xe@lists.freedesktop.org>; Tue, 14 Mar 2023 13:22:39 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1678800159; x=1710336159;
- h=from:to:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=EamMJmmzWHdksfMOs/knCT6mbgTsOFIjRQ0NJ9CsoDQ=;
- b=aY4RTlfvuDwheQluJJBVMfVpBlwtGCC7hwvY7JD4mFvpeX35nGli3z/v
- 2NiCJmd/kbLI6o27sxjuYB+HME4uJXBHpfFfIr3nLDRvrx9zJwiIkI6Jx
- f5s894I0/nchL75fO/Ap+rf/KAXaB/EQbncautADahThuryC26lKqDAWe
- YCPLTiJczff7trHk8cIfFvpF0RU9cZLPXK2mOvUAPuY+cv1TqZc2PbZ/j
- 8EXNjhKMR23smIqSR0I/y4Eo1xezXLqvul1MqvLdktlQkDpjn+OFXPU3e
- iDz7j3/4wzdzL1jcLdA7bOH6zHCpvy0sEB7diGVIKdhVkiw8xX7pPg/Us w==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10648"; a="317810153"
-X-IronPort-AV: E=Sophos;i="5.98,259,1673942400"; d="scan'208";a="317810153"
-Received: from orsmga007.jf.intel.com ([10.7.209.58])
- by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 14 Mar 2023 06:22:09 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6500,9779,10648"; a="672333545"
-X-IronPort-AV: E=Sophos;i="5.98,259,1673942400"; d="scan'208";a="672333545"
-Received: from rknop-desk.igk.intel.com ([172.28.173.24])
- by orsmga007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 14 Mar 2023 06:22:08 -0700
-From: Ryszard Knop <ryszard.knop@intel.com>
-To: intel-xe@lists.freedesktop.org
-Date: Tue, 14 Mar 2023 14:21:57 +0100
-Message-Id: <20230314132157.1521532-1-ryszard.knop@intel.com>
-X-Mailer: git-send-email 2.39.2
+	by gabe.freedesktop.org (Postfix) with ESMTP id 303EB10E7DF;
+	Tue, 14 Mar 2023 13:26:48 +0000 (UTC)
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 7B36110E7DF;
+ Tue, 14 Mar 2023 13:26:46 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 7418EAA3D8;
+ Tue, 14 Mar 2023 13:26:46 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Organization: Intel Technology Poland sp. z o.o. - ul. Slowackiego 173,
- 80-298 Gdansk - KRS 101882 - NIP 957-07-52-316
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-xe] [PATCH] CI test commit, please ignore
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Ryszard Knop" <ryszard.knop@intel.com>
+Date: Tue, 14 Mar 2023 13:26:46 -0000
+Message-ID: <167880040645.26412.4601983337456631135@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20230314132157.1521532-1-ryszard.knop@intel.com>
+In-Reply-To: <20230314132157.1521532-1-ryszard.knop@intel.com>
+Subject: [Intel-xe] =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_f?=
+ =?utf-8?q?or_CI_test_commit=2C_please_ignore?=
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -56,24 +39,47 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
+Cc: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Signed-off-by: Ryszard Knop <ryszard.knop@intel.com>
----
- README | 2 ++
- 1 file changed, 2 insertions(+)
+== Series Details ==
 
-diff --git a/README b/README
-index 669ac7c32..4b61e5f8d 100644
---- a/README
-+++ b/README
-@@ -1,3 +1,5 @@
-+# This is a CI test commit. Please don't merge it!
-+
- Linux kernel
- ============
- 
--- 
-2.39.2
+Series: CI test commit, please ignore
+URL   : https://patchwork.freedesktop.org/series/115131/
+State : success
+
+== Summary ==
+
+=== Applying kernel patches on branch 'drm-xe-next' with base: ===
+commit 8e9f9b64b5fbdfa0aa3630e5f11a683e40e51105
+Author:     Matthew Auld <matthew.auld@intel.com>
+AuthorDate: Tue Mar 14 08:58:38 2023 +0000
+Commit:     Matthew Auld <matthew.auld@intel.com>
+CommitDate: Tue Mar 14 10:31:41 2023 +0000
+
+    drm/xe: add xe_ttm_stolen_cpu_access_needs_ggtt()
+    
+    xe_ttm_stolen_cpu_inaccessible() was originally meant to just cover the
+    case where stolen is not directly CPU accessible on some older
+    integrated platforms, and as such a GGTT mapping was also required for
+    CPU access (as per the check in xe_bo_create_pin_map_at()).
+    
+    However with small-bar systems on dgfx we have one more case where
+    stolen is also inaccessible, however here we don't have any fallback
+    GGTT mode for CPU access. Fix the check in xe_bo_create_pin_map_at() to
+    make this distinction clear. In such a case the later vmap() will fail
+    anyway.
+    
+    v2: fix kernel-doc warning
+    v3: Simplify further and remove cpu_inaccessible()
+    
+    Suggested-by: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
+    Signed-off-by: Matthew Auld <matthew.auld@intel.com>
+    Cc: Gwan-gyeong Mun <gwan-gyeong.mun@intel.com>
+    Reviewed-by: Thomas Hellström <thomas.hellstrom@linux.intel.com>
+=== git am output follows ===
+Applying: CI test commit, please ignore
+
 
