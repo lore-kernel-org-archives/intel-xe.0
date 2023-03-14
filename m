@@ -4,50 +4,59 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1CA80C6FD1C
-	for <intel-xe@archiver.kernel.org>; Tue, 14 Mar 2023 11:43:46 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id E0FFCC6FD1C
+	for <intel-xe@archiver.kernel.org>; Tue, 14 Mar 2023 11:54:59 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id ED86910E162;
-	Tue, 14 Mar 2023 11:43:45 +0000 (UTC)
-Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0A17010E162
- for <intel-xe@lists.freedesktop.org>; Tue, 14 Mar 2023 11:43:44 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1678794224; x=1710330224;
- h=from:to:cc:subject:in-reply-to:references:date:
- message-id:mime-version:content-transfer-encoding;
- bh=tfcQpyW35MT+32TFx1PBGGkcFmSM9GIuS4zQMj53B+I=;
- b=dChMjvzNaxqvFoiG11GyMmfF1gSi/whxc1yeV1qW+WSotU/LtSU8aj3+
- hsGToW0Q4kMIZGVQXQxcY9CVBNmRhBxMF9x4YsYlYzTpmfAcRBFMNbfvl
- WlGmfaCHuA6pNUQJb182hz2trC5LH5qlkrd6eK2RYfubO98kAutd5/5wP
- GkiBuxUicWWxknThtMOILR5TKb7XUpu71cmd46M0fEtL+PjJOmj80y8RG
- WOI2pqaKtX8n7Q/yc2NbFUxZvsoD03uhroAIfwjA4GFnXJI4LEvpZyKsh
- QODyTkpq7LWXf8z9DSJPZsz/rfNurapOowh6bvRj+IySov1VtIfF6ol8N w==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10648"; a="423671605"
-X-IronPort-AV: E=Sophos;i="5.98,259,1673942400"; d="scan'208";a="423671605"
-Received: from orsmga006.jf.intel.com ([10.7.209.51])
- by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 14 Mar 2023 04:43:43 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6500,9779,10648"; a="656306917"
-X-IronPort-AV: E=Sophos;i="5.98,259,1673942400"; d="scan'208";a="656306917"
-Received: from vperevez-mobl2.ger.corp.intel.com (HELO localhost)
- ([10.252.61.84])
- by orsmga006-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 14 Mar 2023 04:43:40 -0700
-From: Jani Nikula <jani.nikula@intel.com>
-To: intel-xe@lists.freedesktop.org
-In-Reply-To: <20230309191923.670451-1-jani.nikula@intel.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20230309191923.670451-1-jani.nikula@intel.com>
-Date: Tue, 14 Mar 2023 13:43:38 +0200
-Message-ID: <877cvj7e39.fsf@intel.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9E5C210E173;
+	Tue, 14 Mar 2023 11:54:59 +0000 (UTC)
+Received: from mail-lf1-x12f.google.com (mail-lf1-x12f.google.com
+ [IPv6:2a00:1450:4864:20::12f])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id DB75610E173
+ for <intel-xe@lists.freedesktop.org>; Tue, 14 Mar 2023 11:54:58 +0000 (UTC)
+Received: by mail-lf1-x12f.google.com with SMTP id f18so19674648lfa.3
+ for <intel-xe@lists.freedesktop.org>; Tue, 14 Mar 2023 04:54:58 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=gmail.com; s=20210112; t=1678794897;
+ h=content-transfer-encoding:cc:to:subject:message-id:date:from
+ :in-reply-to:references:mime-version:from:to:cc:subject:date
+ :message-id:reply-to;
+ bh=HwjaGINaUuocUZIid8Hm/ybEf2FJjJBWB7/2Mhorw6M=;
+ b=fFS8E4PswIkBP7TaVyNUn5hYXt7AwN7VLYf8PbURmlpuFY+Akrv2Ra9rAGntGrGS/7
+ YYiXnVAHA0WExBifrir6BYCL1GaOiUAVUACZJVOShqm3jTk3KKVJ6jtt3SVZNNaqh6Qb
+ sycUmW0Py25Z7VYVUv5WX8sQZS+bzPCgOjPVcA+7imyUT3iq/w+1Vt6DrYeW0tfxUfX2
+ oev/ypVS2kqy8IxkoT3f26nMHSttlFv7ej/jFTtgiGsoYwrqMV/1iEriLbD1UnqDa3Fe
+ mwQqIcqYliblZiqte+ckzC2p0u3MnhLSW3A/EJpj2qoxCaw+TkP1saKPrzL8c8+NZ+N7
+ biVg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20210112; t=1678794897;
+ h=content-transfer-encoding:cc:to:subject:message-id:date:from
+ :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+ :subject:date:message-id:reply-to;
+ bh=HwjaGINaUuocUZIid8Hm/ybEf2FJjJBWB7/2Mhorw6M=;
+ b=bMJFKswDc8MQw7YQGokOByD/4W0UkHdsK5fgaGrPH/pVQSM+Tag/pW6rtSX1MX1XVi
+ rH8RfpPwCjoNZxINZ4EbqENHVSEpCagGhVfqFNe3cm+24I6krusiwBgcn9QW1F1V5d83
+ Bx5erarJoMvEa4aMIz1bj0taFhBYSjIW2ma4tzwNWBpKLqDhttygU8Am8fzJxr9+SUBL
+ StGWCgEJXxxPVn6OxkckrtgT5+3Sr04yEZI/kcMhZmIAsHnsMBZl4gb9gaazlAC/U6m7
+ YiOF/95Dl+JBj52PskOpnZ7VnLeCMgwPfgWADPAHKL6s5rNG/nrP+8jc1DKdU9pAwJKv
+ Zl5A==
+X-Gm-Message-State: AO0yUKWmD7boYascswTx/35U8CQP0l/40T6mOlOToaU1Lt/i09BE3DEd
+ f7+CqPUDKqxoYVB18gTVr8tU+DMaxoSdQhOOlMEMmGs+3A4=
+X-Google-Smtp-Source: AK7set/15K04o5vel1jo/i4aOBRpL4EPurmlpvw41xDckaU2h1GK9a3LZogjNBj76IlR6tYgOaXMggB8pYLK9/W2ZOA=
+X-Received: by 2002:ac2:592e:0:b0:4db:1989:8d92 with SMTP id
+ v14-20020ac2592e000000b004db19898d92mr656135lfi.10.1678794897000; Tue, 14 Mar
+ 2023 04:54:57 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+References: <20230313204519.158888-1-thomas.hellstrom@linux.intel.com>
+ <20230313204519.158888-2-thomas.hellstrom@linux.intel.com>
+In-Reply-To: <20230313204519.158888-2-thomas.hellstrom@linux.intel.com>
+From: Matthew Auld <matthew.william.auld@gmail.com>
+Date: Tue, 14 Mar 2023 11:54:29 +0000
+Message-ID: <CAM0jSHMfN2z3FV75PDNMtwRYMTDV2PgKk2R1iKm3MtgcS9=Rrw@mail.gmail.com>
+To: =?UTF-8?Q?Thomas_Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>
+Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
-Subject: Re: [Intel-xe] [RFC] drm/i915: add kconfig option to enable/disable
- legacy platform support
+Subject: Re: [Intel-xe] [PATCH 1/6] drm/xe: Use a define to set initial
+ seqno for fences
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -59,145 +68,115 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Cc: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>,
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Lucas De Marchi <lucas.demarchi@intel.com>, "Shankar,
- Uma" <uma.shankar@intel.com>, Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Ville =?utf-8?B?U3lyasOkbMOk?= <ville.syrjala@linux.intel.com>
+Cc: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Thu, 09 Mar 2023, Jani Nikula <jani.nikula@intel.com> wrote:
-> Add config option DRM_I915_LEGACY to enable/disable legacy platform
-> support. This is primarily for the benefit of the drm/xe driver, and
-> legacy is defined in terms of the platforms drm/xe does not support,
-> i.e. anything before Tigerlake.
+On Mon, 13 Mar 2023 at 20:46, Thomas Hellstr=C3=B6m
+<thomas.hellstrom@linux.intel.com> wrote:
 >
-> While the kconfig option will be CONFIG_DRM_I915_LEGACY, the intention
-> is that it's not used in code. Instead, we'll pass -DI915_LEGACY=3D1 in
-> the i915 Makefile for CONFIG_DRM_I915_LEGACY=3Dy, while the xe Makefile
-> does no such thing, regardless of the kconfig value.
+> Also for HW fences, write the initial seqno - 1 to the HW completed
+> seqno to initialize.
 >
-> Initially, the knob does the bare minimum: drops the legacy platforms
-> from module PCI ID table (and the compiler in turn automagically drops
-> all the unreferenced device infos).
->
-> Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
-> Cc: Joonas Lahtinen <joonas.lahtinen@linux.intel.com>
-> Cc: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
-> Cc: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
-> Cc: Lucas De Marchi <lucas.demarchi@intel.com>
-> Cc: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
-
-The discussion stalled a bit.
-
-Do we have consensus to start adding this to upstream i915?
-
-
-BR,
-Jani.
-
-
-> Signed-off-by: Jani Nikula <jani.nikula@intel.com>
->
+> Signed-off-by: Thomas Hellstr=C3=B6m <thomas.hellstrom@linux.intel.com>
 > ---
+>  drivers/gpu/drm/xe/xe_engine.c   | 5 +++--
+>  drivers/gpu/drm/xe/xe_hw_fence.c | 5 ++---
+>  drivers/gpu/drm/xe/xe_hw_fence.h | 2 ++
+>  drivers/gpu/drm/xe/xe_lrc.c      | 3 +++
+>  4 files changed, 10 insertions(+), 5 deletions(-)
 >
-> *** NOTE ***
+> diff --git a/drivers/gpu/drm/xe/xe_engine.c b/drivers/gpu/drm/xe/xe_engin=
+e.c
+> index 3b6f8a25112a..7e6367a84f1f 100644
+> --- a/drivers/gpu/drm/xe/xe_engine.c
+> +++ b/drivers/gpu/drm/xe/xe_engine.c
+> @@ -13,6 +13,7 @@
 >
-> For now, I'm only sending this to the intel-xe mailing list with a bunch
-> of Cc's for first impressions.
+>  #include "xe_device.h"
+>  #include "xe_gt.h"
+> +#include "xe_hw_fence.h"
+>  #include "xe_lrc.h"
+>  #include "xe_macros.h"
+>  #include "xe_migrate.h"
+> @@ -57,11 +58,11 @@ static struct xe_engine *__xe_engine_create(struct xe=
+_device *xe,
 >
-> The xe driver reuses i915 display code, but there's a lot of unnecessary
-> and/or incompatible code for platforms xe does not support. Currently
-> this is handled with a bunch of #ifdef I915 added to i915 in the xe
-> branch that isn't really upstreamble, and I'm thinking this patch might
-> be a better option.
+>         if (xe_engine_is_parallel(e)) {
+>                 e->parallel.composite_fence_ctx =3D dma_fence_context_all=
+oc(1);
+> -               e->parallel.composite_fence_seqno =3D 1;
+> +               e->parallel.composite_fence_seqno =3D XE_FENCE_INITIAL_SE=
+QNO;
+>         }
+>         if (e->flags & ENGINE_FLAG_VM) {
+>                 e->bind.fence_ctx =3D dma_fence_context_alloc(1);
+> -               e->bind.fence_seqno =3D 1;
+> +               e->bind.fence_seqno =3D XE_FENCE_INITIAL_SEQNO;
+>         }
 >
-> This patch alone does what the commit message says, and drops the legacy
-> platform support, although all the code is left in place. Everything
-> beyond this is basically an optimization of what more to drop out of the
-> build. It doesn't really need to be perfect for starters but we could
-> start converting the legacy platform related #ifdefs from I915 to
-> I915_LEGACY, and that could be upstreamable to i915.
+>         for (i =3D 0; i < width; ++i) {
+> diff --git a/drivers/gpu/drm/xe/xe_hw_fence.c b/drivers/gpu/drm/xe/xe_hw_=
+fence.c
+> index e56ca2867545..ca8304650713 100644
+> --- a/drivers/gpu/drm/xe/xe_hw_fence.c
+> +++ b/drivers/gpu/drm/xe/xe_hw_fence.c
+> @@ -129,7 +129,7 @@ void xe_hw_fence_ctx_init(struct xe_hw_fence_ctx *ctx=
+, struct xe_gt *gt,
+>         ctx->gt =3D gt;
+>         ctx->irq =3D irq;
+>         ctx->dma_fence_ctx =3D dma_fence_context_alloc(1);
+> -       ctx->next_seqno =3D 1;
+> +       ctx->next_seqno =3D XE_FENCE_INITIAL_SEQNO;
+>         sprintf(ctx->name, "%s", name);
+>  }
 >
-> Not all of the #ifdef I915 in the xe branch are related to legacy
-> platforms, and they need to be handled differently. But this kconfig
-> knob would hopefully be a future compatible start to clean up one aspect
-> of them.
+> @@ -164,8 +164,7 @@ static bool xe_hw_fence_signaled(struct dma_fence *dm=
+a_fence)
+>         struct xe_device *xe =3D gt_to_xe(fence->ctx->gt);
+>         u32 seqno =3D xe_map_rd(xe, &fence->seqno_map, 0, u32);
 >
-> Thoughts?
->
-> BR,
-> Jani.
-> ---
->  drivers/gpu/drm/i915/Kconfig    | 11 +++++++++++
->  drivers/gpu/drm/i915/Makefile   |  7 +++++++
->  drivers/gpu/drm/i915/i915_pci.c |  2 ++
->  3 files changed, 20 insertions(+)
->
-> diff --git a/drivers/gpu/drm/i915/Kconfig b/drivers/gpu/drm/i915/Kconfig
-> index 8eb3e60aeec9..a569c1606f51 100644
-> --- a/drivers/gpu/drm/i915/Kconfig
-> +++ b/drivers/gpu/drm/i915/Kconfig
-> @@ -53,6 +53,17 @@ config DRM_I915
->=20=20
->  	  If "M" is selected, the module will be called i915.
->=20=20
-> +config DRM_I915_LEGACY
-> +	bool "Support legacy hardware in i915"
-> +	depends on DRM_I915
-> +	depends on EXPERT
-> +	default y
-> +	help
-> +	  Disable this option if you want the i915 driver to only support modern
-> +	  Intel Graphics, starting from Tigerlake.
-> +
-> +	  If in doubt, say "Y".
-> +
->  config DRM_I915_FORCE_PROBE
->  	string "Force probe i915 for selected Intel hardware IDs"
->  	depends on DRM_I915
-> diff --git a/drivers/gpu/drm/i915/Makefile b/drivers/gpu/drm/i915/Makefile
-> index a6e7cd2185c2..653d43e5b534 100644
-> --- a/drivers/gpu/drm/i915/Makefile
-> +++ b/drivers/gpu/drm/i915/Makefile
-> @@ -23,6 +23,13 @@ subdir-ccflags-y +=3D $(call cc-disable-warning, unuse=
-d-but-set-variable)
->  subdir-ccflags-y +=3D $(call cc-disable-warning, frame-address)
->  subdir-ccflags-$(CONFIG_DRM_I915_WERROR) +=3D -Werror
->=20=20
-> +# Legacy platform support.
-> +#
-> +# Note: Source code needs to check for I915_LEGACY instead of
-> +# CONFIG_DRM_I915_LEGACY to allow Xe driver build without legacy support
-> +# independent of the Kconfig setting.
-> +subdir-ccflags-$(CONFIG_DRM_I915_LEGACY) +=3D -DI915_LEGACY=3D1
-> +
->  # Fine grained warnings disable
->  CFLAGS_i915_pci.o =3D $(call cc-disable-warning, override-init)
->  CFLAGS_display/intel_fbdev.o =3D $(call cc-disable-warning, override-ini=
-t)
-> diff --git a/drivers/gpu/drm/i915/i915_pci.c b/drivers/gpu/drm/i915/i915_=
-pci.c
-> index bc6fc268739d..9f421015d2bb 100644
-> --- a/drivers/gpu/drm/i915/i915_pci.c
-> +++ b/drivers/gpu/drm/i915/i915_pci.c
-> @@ -1162,6 +1162,7 @@ static const struct intel_device_info mtl_info =3D {
->   * PCI ID matches, otherwise we'll use the wrong info struct above.
->   */
->  static const struct pci_device_id pciidlist[] =3D {
-> +#if IS_ENABLED(I915_LEGACY)
->  	INTEL_I830_IDS(&i830_info),
->  	INTEL_I845G_IDS(&i845g_info),
->  	INTEL_I85X_IDS(&i85x_info),
-> @@ -1225,6 +1226,7 @@ static const struct pci_device_id pciidlist[] =3D {
->  	INTEL_ICL_11_IDS(&icl_info),
->  	INTEL_EHL_IDS(&ehl_info),
->  	INTEL_JSL_IDS(&jsl_info),
-> +#endif
->  	INTEL_TGL_12_IDS(&tgl_info),
->  	INTEL_RKL_IDS(&rkl_info),
->  	INTEL_ADLS_IDS(&adl_s_info),
+> -       return dma_fence->error ||
+> -               (s32)fence->dma.seqno <=3D (s32)seqno;
+> +       return dma_fence->error || (s32)(u32)fence->dma.seqno <=3D (s32)s=
+eqno;
 
---=20
-Jani Nikula, Intel Open Source Graphics Center
+Why do we need this change? Also the hw fence dma.seqno should always
+be u32, right?
+
+>  }
+>
+>  static bool xe_hw_fence_enable_signaling(struct dma_fence *dma_fence)
+> diff --git a/drivers/gpu/drm/xe/xe_hw_fence.h b/drivers/gpu/drm/xe/xe_hw_=
+fence.h
+> index 07f202db6526..523c2611ef5d 100644
+> --- a/drivers/gpu/drm/xe/xe_hw_fence.h
+> +++ b/drivers/gpu/drm/xe/xe_hw_fence.h
+> @@ -8,6 +8,8 @@
+>
+>  #include "xe_hw_fence_types.h"
+>
+> +#define XE_FENCE_INITIAL_SEQNO 1
+> +
+>  int xe_hw_fence_module_init(void);
+>  void xe_hw_fence_module_exit(void);
+>
+> diff --git a/drivers/gpu/drm/xe/xe_lrc.c b/drivers/gpu/drm/xe/xe_lrc.c
+> index 9140b057a5ba..fb8c6f7d6528 100644
+> --- a/drivers/gpu/drm/xe/xe_lrc.c
+> +++ b/drivers/gpu/drm/xe/xe_lrc.c
+> @@ -697,6 +697,9 @@ int xe_lrc_init(struct xe_lrc *lrc, struct xe_hw_engi=
+ne *hwe,
+>         arb_enable =3D MI_ARB_ON_OFF | MI_ARB_ENABLE;
+>         xe_lrc_write_ring(lrc, &arb_enable, sizeof(arb_enable));
+>
+> +       map =3D __xe_lrc_seqno_map(lrc);
+> +       xe_map_write32(lrc_to_xe(lrc), &map, lrc->fence_ctx.next_seqno - =
+1);
+> +
+>         return 0;
+>
+>  err_lrc_finish:
+> --
+> 2.39.2
+>
