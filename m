@@ -4,43 +4,43 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id E8EBDC74A44
-	for <intel-xe@archiver.kernel.org>; Tue, 14 Mar 2023 19:16:56 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0AFA2C05027
+	for <intel-xe@archiver.kernel.org>; Tue, 14 Mar 2023 19:17:32 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A67B710E89C;
-	Tue, 14 Mar 2023 19:16:56 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D3B3510E89A;
+	Tue, 14 Mar 2023 19:17:31 +0000 (UTC)
 Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A1E4A10E89A
- for <intel-xe@lists.freedesktop.org>; Tue, 14 Mar 2023 19:16:54 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id AA84710E89A
+ for <intel-xe@lists.freedesktop.org>; Tue, 14 Mar 2023 19:17:29 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1678821414; x=1710357414;
+ t=1678821449; x=1710357449;
  h=date:from:to:cc:subject:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=xjEHgTnXWVl0xFoV+z4v3gv0EAP3EhU9ESoUPH3IU8g=;
- b=j/QHY8NhWA8RVzbMpoDx5HO4h7GQCKhvIsh03BMQppaqovfRh64Jcrqu
- 3SJbqGoSoXdE4tntgIhYeKtrSpxpPtQc/FndySvNRKVFIvtUzG4Q9UV+V
- YFvSE3NrDYLgNFdVveJ5Fg4FMFHIomGsl7LEQyE4v2JmAnsUzZTY9o3mv
- a3CdI0p75RC67xSxg7eXQ3Wpbr2v+6pY9zIaDY9m58V7bfN2jmsIFR9tN
- aeRobSb2t8gB1JL0JS3XHctUNqn0w9ssKQLTe7k24IOm/V8UNBqFF4miL
- Kxbx/g4nWy8A7F9U6uaYSB0UL2LqCrKZsw4L7KfY02U4H4cCdrP6RQN9B w==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10649"; a="339885331"
-X-IronPort-AV: E=Sophos;i="5.98,260,1673942400"; d="scan'208";a="339885331"
+ bh=noFgMaD7qD2ItlvSwteFVvTRXwdODuixc7DxMTIhpIc=;
+ b=LzjniMYSsDA6K56svFMBeHkkYfwSPRwLn8gjG0Sg1gkp0VT5VXZoeCu+
+ Ul9CFXoQtJok0fNrUbEZasaN2NQ2M7/R2sPpOsKNcaTyhXiTDqMKsPoWp
+ pIZRZL3jombJpeb3v0CLpZTeROBFtb0WlvJMze7Gb/Cq9un5x7MZ46Nk7
+ 4aUqk2jbWMoPGnBFVIyhJfZ7BpPCorCGH52Cdbxf75RUEi/BPuxMPfdAk
+ 7OwNc4a8tpXydHrb05igs+BfaBp8ImUefYFehY5M87HyN8vQ/tEBMylOJ
+ 4ilEyD8xrjbjWnr7/HDA0/FJfCmTBBvoNejeeWIm7EpZquPvJlizIdQ+2 g==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10649"; a="339885430"
+X-IronPort-AV: E=Sophos;i="5.98,260,1673942400"; d="scan'208";a="339885430"
 Received: from orsmga008.jf.intel.com ([10.7.209.65])
  by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 14 Mar 2023 12:16:54 -0700
+ 14 Mar 2023 12:17:24 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6500,9779,10649"; a="709401790"
-X-IronPort-AV: E=Sophos;i="5.98,260,1673942400"; d="scan'208";a="709401790"
+X-IronPort-AV: E=McAfee;i="6500,9779,10649"; a="709401974"
+X-IronPort-AV: E=Sophos;i="5.98,260,1673942400"; d="scan'208";a="709401974"
 Received: from linux.intel.com ([10.54.29.200])
- by orsmga008.jf.intel.com with ESMTP; 14 Mar 2023 12:16:53 -0700
+ by orsmga008.jf.intel.com with ESMTP; 14 Mar 2023 12:17:23 -0700
 Received: from maurocar-mobl2 (maurocar-mobl2.ger.corp.intel.com
  [10.252.14.106])
  (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
  (No client certificate requested)
- by linux.intel.com (Postfix) with ESMTPS id 78A1858047E;
- Tue, 14 Mar 2023 12:16:51 -0700 (PDT)
-Date: Tue, 14 Mar 2023 20:16:48 +0100
+ by linux.intel.com (Postfix) with ESMTPS id B312A580BF2;
+ Tue, 14 Mar 2023 12:17:21 -0700 (PDT)
+Date: Tue, 14 Mar 2023 20:17:19 +0100
 From: Mauro Carvalho Chehab <mauro.chehab@linux.intel.com>
 To: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
 Message-ID: <20230314201648.6b823d17@maurocar-mobl2>
@@ -75,6 +75,7 @@ Cc: Jani Nikula <jani.nikula@intel.com>,
  Ville =?UTF-8?B?U3lyasOkbMOk?= <ville.syrjala@linux.intel.com>
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
+Message-ID: <20230314191719.ABAvMBUs0x1TfOiF7SHX31qflyFChY3O7hIz-LZc-H0@z>
 
 On Tue, 14 Mar 2023 18:27:33 +0000
 Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com> wrote:
@@ -170,8 +171,8 @@ he
 >=20
 > Makes sense as a name I think.
 
-Agreed. This is a way better than LEGACY, but, assuming that such patch
-is not for internal-only consumption, this needs to be translated into
+Agreed. This is a way better than LEGACY, but, this needs to be translated =
+into
 a Kconfig option like "enable support for pre-Tiger Lake integrated graphic=
 s",
 e. g. translating into something understandable for the customers.
