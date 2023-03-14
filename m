@@ -4,48 +4,31 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 156C9C6FD1F
-	for <intel-xe@archiver.kernel.org>; Tue, 14 Mar 2023 22:33:35 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 83EA4C6FD1D
+	for <intel-xe@archiver.kernel.org>; Tue, 14 Mar 2023 22:35:28 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C83E210E8C9;
-	Tue, 14 Mar 2023 22:33:34 +0000 (UTC)
-Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 40F6B10E8C9
- for <intel-xe@lists.freedesktop.org>; Tue, 14 Mar 2023 22:33:34 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1678833214; x=1710369214;
- h=from:to:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=Cmw40EcN2DMHyyTw6w5VwHZkaJFQ4gz8IZp9756PsIc=;
- b=PxjPNKR1kQU4x8JJEALTqeGh8C+W4qfNWeFRK0MNpJ8Wqt8Y3RQRvUtL
- IBVi6T/Xbnvk5EYFrFh8Daab8Cyk43aH5ASeEl4UcT1imMGx78H1WB9s7
- 3YeE4hk6pL5HqyovZUbZVsiZtE0nRiqu2I8eLkQXidfxDxNHdlpZ1JVUe
- QZzIhUCqKnSwQ49wMd2iTb3Y2J9HzvkMrvFMQ5f6llCJ5QwwJ/EGgzllP
- apZdq4xJHsyXGe3Ik2+zuWZLLIqWhHrw1tuar9Fd2sOkCbbFkI4vbccBa
- XZUno3AnezuRoAh5UJHXAtOJQR9v4Nu7AiUOFeIWZ6BOAiCLmPYhWrA6X w==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10649"; a="321402599"
-X-IronPort-AV: E=Sophos;i="5.98,261,1673942400"; d="scan'208";a="321402599"
-Received: from orsmga008.jf.intel.com ([10.7.209.65])
- by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 14 Mar 2023 15:33:33 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6500,9779,10649"; a="709457505"
-X-IronPort-AV: E=Sophos;i="5.98,261,1673942400"; d="scan'208";a="709457505"
-Received: from irvmail002.ir.intel.com ([10.43.11.120])
- by orsmga008.jf.intel.com with ESMTP; 14 Mar 2023 15:33:32 -0700
-Received: from mwajdecz-MOBL.ger.corp.intel.com
- (mwajdecz-MOBL.ger.corp.intel.com [10.249.136.19])
- by irvmail002.ir.intel.com (Postfix) with ESMTP id 23C933766F
- for <intel-xe@lists.freedesktop.org>; Sun, 12 Mar 2023 15:59:54 +0000 (GMT)
-From: Michal Wajdeczko <michal.wajdeczko@intel.com>
-To: intel-xe@lists.freedesktop.org
-Date: Sun, 12 Mar 2023 16:59:53 +0100
-Message-Id: <20230312155953.1566-1-michal.wajdeczko@intel.com>
-X-Mailer: git-send-email 2.21.0
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3EDB510E8C9;
+	Tue, 14 Mar 2023 22:35:28 +0000 (UTC)
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 011F410E8C2;
+ Tue, 14 Mar 2023 22:35:27 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id E5A51A47DF;
+ Tue, 14 Mar 2023 22:35:26 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-xe] [PATCH] drm/xe: Promote guc_to_gt/xe helpers to .h
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Michal Wajdeczko" <michal.wajdeczko@intel.com>
+Date: Tue, 14 Mar 2023 22:35:26 -0000
+Message-ID: <167883332690.26415.2563783745138906780@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20230312155953.1566-1-michal.wajdeczko@intel.com>
+In-Reply-To: <20230312155953.1566-1-michal.wajdeczko@intel.com>
+Subject: [Intel-xe] =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_f?=
+ =?utf-8?q?or_drm/xe=3A_Promote_guc=5Fto=5Fgt/xe_helpers_to_=2Eh_=28rev2?=
+ =?utf-8?q?=29?=
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -57,176 +40,47 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
+Cc: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Duplicating these helpers in almost every .c file was a bad idea.
-Define them as inlines in .h file to allow proper reuse.
+== Series Details ==
 
-Signed-off-by: Michal Wajdeczko <michal.wajdeczko@intel.com>
----
- drivers/gpu/drm/xe/xe_gt_pagefault.c        |  6 ------
- drivers/gpu/drm/xe/xe_gt_tlb_invalidation.c |  6 ------
- drivers/gpu/drm/xe/xe_guc.c                 | 12 ------------
- drivers/gpu/drm/xe/xe_guc.h                 | 11 +++++++++++
- drivers/gpu/drm/xe/xe_guc_debugfs.c         | 12 ------------
- drivers/gpu/drm/xe/xe_guc_hwconfig.c        | 12 ------------
- drivers/gpu/drm/xe/xe_guc_submit.c          | 12 ------------
- 7 files changed, 11 insertions(+), 60 deletions(-)
+Series: drm/xe: Promote guc_to_gt/xe helpers to .h (rev2)
+URL   : https://patchwork.freedesktop.org/series/115038/
+State : success
 
-diff --git a/drivers/gpu/drm/xe/xe_gt_pagefault.c b/drivers/gpu/drm/xe/xe_gt_pagefault.c
-index 1677640e1075..2ae54fecf4ab 100644
---- a/drivers/gpu/drm/xe/xe_gt_pagefault.c
-+++ b/drivers/gpu/drm/xe/xe_gt_pagefault.c
-@@ -58,12 +58,6 @@ struct acc {
- 	u8 engine_instance;
- };
- 
--static struct xe_gt *
--guc_to_gt(struct xe_guc *guc)
--{
--	return container_of(guc, struct xe_gt, uc.guc);
--}
--
- static bool access_is_atomic(enum access_type access_type)
- {
- 	return access_type == ACCESS_TYPE_ATOMIC;
-diff --git a/drivers/gpu/drm/xe/xe_gt_tlb_invalidation.c b/drivers/gpu/drm/xe/xe_gt_tlb_invalidation.c
-index f279e21300aa..259382d54871 100644
---- a/drivers/gpu/drm/xe/xe_gt_tlb_invalidation.c
-+++ b/drivers/gpu/drm/xe/xe_gt_tlb_invalidation.c
-@@ -12,12 +12,6 @@
- 
- #define TLB_TIMEOUT	(HZ / 4)
- 
--static struct xe_gt *
--guc_to_gt(struct xe_guc *guc)
--{
--	return container_of(guc, struct xe_gt, uc.guc);
--}
--
- static void xe_gt_tlb_fence_timeout(struct work_struct *work)
- {
- 	struct xe_gt *gt = container_of(work, struct xe_gt,
-diff --git a/drivers/gpu/drm/xe/xe_guc.c b/drivers/gpu/drm/xe/xe_guc.c
-index 58b9841616e4..8fb2920d96da 100644
---- a/drivers/gpu/drm/xe/xe_guc.c
-+++ b/drivers/gpu/drm/xe/xe_guc.c
-@@ -22,18 +22,6 @@
- #include "xe_uc_fw.h"
- #include "xe_wopcm.h"
- 
--static struct xe_gt *
--guc_to_gt(struct xe_guc *guc)
--{
--	return container_of(guc, struct xe_gt, uc.guc);
--}
--
--static struct xe_device *
--guc_to_xe(struct xe_guc *guc)
--{
--	return gt_to_xe(guc_to_gt(guc));
--}
--
- /* GuC addresses above GUC_GGTT_TOP also don't map through the GTT */
- #define GUC_GGTT_TOP    0xFEE00000
- static u32 guc_bo_ggtt_addr(struct xe_guc *guc,
-diff --git a/drivers/gpu/drm/xe/xe_guc.h b/drivers/gpu/drm/xe/xe_guc.h
-index 74a74051f354..96f6e3f46ed7 100644
---- a/drivers/gpu/drm/xe/xe_guc.h
-+++ b/drivers/gpu/drm/xe/xe_guc.h
-@@ -6,6 +6,7 @@
- #ifndef _XE_GUC_H_
- #define _XE_GUC_H_
- 
-+#include "xe_gt.h"
- #include "xe_guc_types.h"
- #include "xe_hw_engine_types.h"
- #include "xe_macros.h"
-@@ -56,4 +57,14 @@ static inline u16 xe_engine_class_to_guc_class(enum xe_engine_class class)
- 	}
- }
- 
-+static inline struct xe_gt *guc_to_gt(struct xe_guc *guc)
-+{
-+	return container_of(guc, struct xe_gt, uc.guc);
-+}
-+
-+static inline struct xe_device *guc_to_xe(struct xe_guc *guc)
-+{
-+	return gt_to_xe(guc_to_gt(guc));
-+}
-+
- #endif
-diff --git a/drivers/gpu/drm/xe/xe_guc_debugfs.c b/drivers/gpu/drm/xe/xe_guc_debugfs.c
-index 6b72db4d5bb2..dbb3001db928 100644
---- a/drivers/gpu/drm/xe/xe_guc_debugfs.c
-+++ b/drivers/gpu/drm/xe/xe_guc_debugfs.c
-@@ -15,18 +15,6 @@
- #include "xe_guc_log.h"
- #include "xe_macros.h"
- 
--static struct xe_gt *
--guc_to_gt(struct xe_guc *guc)
--{
--	return container_of(guc, struct xe_gt, uc.guc);
--}
--
--static struct xe_device *
--guc_to_xe(struct xe_guc *guc)
--{
--	return gt_to_xe(guc_to_gt(guc));
--}
--
- static struct xe_guc *node_to_guc(struct drm_info_node *node)
- {
- 	return node->info_ent->data;
-diff --git a/drivers/gpu/drm/xe/xe_guc_hwconfig.c b/drivers/gpu/drm/xe/xe_guc_hwconfig.c
-index a6982f323ed1..a89d26565fdd 100644
---- a/drivers/gpu/drm/xe/xe_guc_hwconfig.c
-+++ b/drivers/gpu/drm/xe/xe_guc_hwconfig.c
-@@ -13,18 +13,6 @@
- #include "xe_guc.h"
- #include "xe_map.h"
- 
--static struct xe_gt *
--guc_to_gt(struct xe_guc *guc)
--{
--	return container_of(guc, struct xe_gt, uc.guc);
--}
--
--static struct xe_device *
--guc_to_xe(struct xe_guc *guc)
--{
--	return gt_to_xe(guc_to_gt(guc));
--}
--
- static int send_get_hwconfig(struct xe_guc *guc, u32 ggtt_addr, u32 size)
- {
- 	u32 action[] = {
-diff --git a/drivers/gpu/drm/xe/xe_guc_submit.c b/drivers/gpu/drm/xe/xe_guc_submit.c
-index e857013070b9..6b3159e75be9 100644
---- a/drivers/gpu/drm/xe/xe_guc_submit.c
-+++ b/drivers/gpu/drm/xe/xe_guc_submit.c
-@@ -32,18 +32,6 @@
- #include "xe_trace.h"
- #include "xe_vm.h"
- 
--static struct xe_gt *
--guc_to_gt(struct xe_guc *guc)
--{
--	return container_of(guc, struct xe_gt, uc.guc);
--}
--
--static struct xe_device *
--guc_to_xe(struct xe_guc *guc)
--{
--	return gt_to_xe(guc_to_gt(guc));
--}
--
- static struct xe_guc *
- engine_to_guc(struct xe_engine *e)
- {
--- 
-2.25.1
+== Summary ==
+
+=== Applying kernel patches on branch 'drm-xe-next' with base: ===
+commit 8e9f9b64b5fbdfa0aa3630e5f11a683e40e51105
+Author:     Matthew Auld <matthew.auld@intel.com>
+AuthorDate: Tue Mar 14 08:58:38 2023 +0000
+Commit:     Matthew Auld <matthew.auld@intel.com>
+CommitDate: Tue Mar 14 10:31:41 2023 +0000
+
+    drm/xe: add xe_ttm_stolen_cpu_access_needs_ggtt()
+    
+    xe_ttm_stolen_cpu_inaccessible() was originally meant to just cover the
+    case where stolen is not directly CPU accessible on some older
+    integrated platforms, and as such a GGTT mapping was also required for
+    CPU access (as per the check in xe_bo_create_pin_map_at()).
+    
+    However with small-bar systems on dgfx we have one more case where
+    stolen is also inaccessible, however here we don't have any fallback
+    GGTT mode for CPU access. Fix the check in xe_bo_create_pin_map_at() to
+    make this distinction clear. In such a case the later vmap() will fail
+    anyway.
+    
+    v2: fix kernel-doc warning
+    v3: Simplify further and remove cpu_inaccessible()
+    
+    Suggested-by: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
+    Signed-off-by: Matthew Auld <matthew.auld@intel.com>
+    Cc: Gwan-gyeong Mun <gwan-gyeong.mun@intel.com>
+    Reviewed-by: Thomas Hellström <thomas.hellstrom@linux.intel.com>
+=== git am output follows ===
+Applying: drm/xe: Promote guc_to_gt/xe helpers to .h
+
 
