@@ -4,48 +4,48 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id AC4DDC61DA4
-	for <intel-xe@archiver.kernel.org>; Tue, 14 Mar 2023 00:30:54 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 04709C6FD1D
+	for <intel-xe@archiver.kernel.org>; Tue, 14 Mar 2023 00:30:55 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8624E10E6AD;
+	by gabe.freedesktop.org (Postfix) with ESMTP id CF95010E6A9;
 	Tue, 14 Mar 2023 00:30:54 +0000 (UTC)
 Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A386B10E6A8
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9700110E6A7
  for <intel-xe@lists.freedesktop.org>; Tue, 14 Mar 2023 00:30:46 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
  t=1678753846; x=1710289846;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=4Ijr3YUxBsGHwCUYzQK02n2JOOCpcB0gtt2idUBcVBE=;
- b=Du5B9OaWL3Fr0wTNwllU8wf1v8TIKLtkinRscyT8teNcw+wfKc2Zf9Zu
- eToy/+GQQOhAkoEXNfYnbDGIwGvWFoSoZvrv1g7d+CPWTmevBTcl3hvTh
- RUe7LdwqV6zwW7dwlJh96dSQ+xJo+xxVzg476+8LWpdL/75GOoUVUq3eF
- YUaycQeBR1/IFFNyKySIWxEwFIsSPC9+TNayO+9C1F/eMrCCUL4bWf+oB
- syTExhUSIO4EfZUorqCK8XhFtgKKca+4U8sBUun84sGq3V/jJsOJja5cQ
- krctTeXvAKAUsm46Ez9s3qfUaCdS+ImCX4fK7Yah57vSNWYu36AF7hI2F Q==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10648"; a="402168033"
-X-IronPort-AV: E=Sophos;i="5.98,258,1673942400"; d="scan'208";a="402168033"
+ bh=ovQ8iO8y3HBxxPjSKoBK9IY77xA0zDdWzt1viYUKkMM=;
+ b=cpnyeSx8N3/sgDQCGNoi0519jjOJK7Git5tQRaeI3wpUx8K5/ZNPmTYZ
+ 08ZupchMPg8YBPlQy1Ji1YIm8trUxWcMf96DDJGUg/rmviGxhGRy1o9kw
+ IiObqkacbPbdP8Ps6MQd9UXJF9eVHLxo6gN2K5Hl3A7Dfz22CLkjWkRhS
+ PP1VFwJ1/Odo7gkbmyz1bTMxWNiG412h+nz2t97cmS05zk5EWnBz85WgP
+ f5btr3fmZoGOfolyV98Cwxx1PMp2cFcqWrKP2uzb66k6W8dTHEWKEIfLT
+ 2YqHc2oOUgHhvISl+Sf+SMWEpmzWlVAs8uils/DdPnTAZ+Cbb3X6PnYZb A==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10648"; a="402168030"
+X-IronPort-AV: E=Sophos;i="5.98,258,1673942400"; d="scan'208";a="402168030"
 Received: from fmsmga002.fm.intel.com ([10.253.24.26])
  by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  13 Mar 2023 17:30:46 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6500,9779,10648"; a="789116702"
-X-IronPort-AV: E=Sophos;i="5.98,258,1673942400"; d="scan'208";a="789116702"
+X-IronPort-AV: E=McAfee;i="6500,9779,10648"; a="789116699"
+X-IronPort-AV: E=Sophos;i="5.98,258,1673942400"; d="scan'208";a="789116699"
 Received: from lucas-s2600cw.jf.intel.com ([10.165.21.196])
  by fmsmga002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 13 Mar 2023 17:30:46 -0700
+ 13 Mar 2023 17:30:45 -0700
 From: Lucas De Marchi <lucas.demarchi@intel.com>
 To: intel-xe@lists.freedesktop.org
-Date: Mon, 13 Mar 2023 17:30:07 -0700
-Message-Id: <20230314003012.2600353-10-lucas.demarchi@intel.com>
+Date: Mon, 13 Mar 2023 17:30:06 -0700
+Message-Id: <20230314003012.2600353-9-lucas.demarchi@intel.com>
 X-Mailer: git-send-email 2.39.0
 In-Reply-To: <20230314003012.2600353-1-lucas.demarchi@intel.com>
 References: <20230314003012.2600353-1-lucas.demarchi@intel.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-xe] [PATCH v3 09/14] drm/xe: Add missing DG2 engine
- workarounds
+Subject: [Intel-xe] [PATCH v3 08/14] drm/xe: Add missing DG2 gt workarounds
+ and tunings
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -66,327 +66,136 @@ Synchronize with i915 the DG2 gt workarounds as of
 commit 4d14d7717f19 ("drm/i915/selftest: Fix ktime_get() and h/w access
 order").
 
-A few simplifications were done when the WA should be applied to
-some steps of a subplatform and all the steppings of the other
-subplatforms. This happened with Wa_1509727124, Wa_22012856258 and a few
-others. In figure the pre-production steppings will be removed, so this
-can be already simplified a little bit.
-
-v2:
-  - Make 1308578152 conditional on first gslice fused off
-  - Add the missing Wa_1608949956/Wa_14010198302 (Matt Roper)
-v3:
-  - Do not duplicate the implementation of 18019627453 since it's
-    already covered by other WA numbers in graphics versions 1200 and
-    1210
-
 Signed-off-by: Lucas De Marchi <lucas.demarchi@intel.com>
 Reviewed-by: Matt Roper <matthew.d.roper@intel.com>
 ---
- drivers/gpu/drm/xe/regs/xe_gt_regs.h |  27 ++++
- drivers/gpu/drm/xe/xe_wa.c           | 191 ++++++++++++++++++++++++++-
- 2 files changed, 213 insertions(+), 5 deletions(-)
+ drivers/gpu/drm/xe/regs/xe_gt_regs.h | 17 +++++++++++++-
+ drivers/gpu/drm/xe/xe_tuning.c       |  4 ++++
+ drivers/gpu/drm/xe/xe_wa.c           | 34 +++++++++++++++++++++++++++-
+ 3 files changed, 53 insertions(+), 2 deletions(-)
 
 diff --git a/drivers/gpu/drm/xe/regs/xe_gt_regs.h b/drivers/gpu/drm/xe/regs/xe_gt_regs.h
-index 90c270f2405a..2600704ace0a 100644
+index ab9dd70c0534..90c270f2405a 100644
 --- a/drivers/gpu/drm/xe/regs/xe_gt_regs.h
 +++ b/drivers/gpu/drm/xe/regs/xe_gt_regs.h
-@@ -48,6 +48,7 @@
+@@ -168,7 +168,6 @@
+ #define   GAMTLBVEBOX0_CLKGATE_DIS		REG_BIT(16)
+ #define   LTCDD_CLKGATE_DIS			REG_BIT(10)
  
- #define GEN9_CS_DEBUG_MODE1			_MMIO(0x20ec)
- #define   FF_DOP_CLOCK_GATE_DISABLE		REG_BIT(1)
-+#define   GEN12_REPLAY_MODE_GRANULARITY		REG_BIT(0)
+-#define GEN11_SLICE_UNIT_LEVEL_CLKGATE		_MMIO(0x94d4)
+ #define XEHP_SLICE_UNIT_LEVEL_CLKGATE		MCR_REG(0x94d4)
+ #define   SARBUNIT_CLKGATE_DIS			(1 << 5)
+ #define   RCCUNIT_CLKGATE_DIS			(1 << 7)
+@@ -222,12 +221,28 @@
+ #define XEHPC_LNCFMISCCFGREG0			MCR_REG(0xb01c)
+ #define   XEHPC_OVRLSCCC			REG_BIT(0)
  
- #define PS_INVOCATION_COUNT			_MMIO(0x2348)
- 
-@@ -91,6 +92,9 @@
- #define   GEN11_BLEND_EMB_FIX_DISABLE_IN_RCC	REG_BIT(11)
- #define   GEN12_DISABLE_CPS_AWARE_COLOR_PIPE	REG_BIT(9)
- 
-+#define VFG_PREEMPTION_CHICKEN			_MMIO(0x83b4)
-+#define   POLYGON_TRIFAN_LINELOOP_DISABLE	REG_BIT(4)
++#define XEHP_L3NODEARBCFG			MCR_REG(0xb0b4)
++#define   XEHP_LNESPARE				REG_BIT(19)
 +
- #define XEHP_SQCM				MCR_REG(0x8724)
- #define   EN_32B_ACCESS				REG_BIT(30)
++#define XEHP_L3SCQREG7				MCR_REG(0xb188)
++#define   BLEND_FILL_CACHING_OPT_DIS		REG_BIT(3)
++
++#define XEHP_MERT_MOD_CTRL			MCR_REG(0xcf28)
+ #define RENDER_MOD_CTRL				MCR_REG(0xcf2c)
+ #define COMP_MOD_CTRL				MCR_REG(0xcf30)
+ #define XEHP_VDBX_MOD_CTRL			MCR_REG(0xcf34)
+ #define XEHP_VEBX_MOD_CTRL			MCR_REG(0xcf38)
+ #define   FORCE_MISS_FTLB			REG_BIT(3)
  
-@@ -248,8 +252,13 @@
++#define XEHP_GAMSTLB_CTRL			MCR_REG(0xcf4c)
++#define   CONTROL_BLOCK_CLKGATE_DIS		REG_BIT(12)
++#define   EGRESS_BLOCK_CLKGATE_DIS		REG_BIT(11)
++#define   TAG_BLOCK_CLKGATE_DIS			REG_BIT(7)
++
++#define XEHP_GAMCNTRL_CTRL			MCR_REG(0xcf54)
++#define   INVALIDATION_BROADCAST_MODE_DIS	REG_BIT(12)
++#define   GLOBAL_INVALIDATION_MODE		REG_BIT(2)
++
+ #define GEN10_SAMPLER_MODE			MCR_REG(0xe18c)
+ #define   ENABLE_SMALLPL			REG_BIT(15)
  #define   SC_DISABLE_POWER_OPTIMIZATION_EBB	REG_BIT(9)
- #define   GEN11_SAMPLER_ENABLE_HEADLESS_MSG	REG_BIT(5)
- 
-+#define GEN9_HALF_SLICE_CHICKEN7		MCR_REG(0xe194)
-+#define   DG2_DISABLE_ROUND_ENABLE_ALLOW_FOR_SSLA	REG_BIT(15)
-+
- #define CACHE_MODE_SS				MCR_REG(0xe420)
-+#define   ENABLE_EU_COUNT_FOR_TDL_FLUSH		REG_BIT(10)
- #define   DISABLE_ECC				REG_BIT(5)
-+#define   ENABLE_PREFETCH_INTO_IC		REG_BIT(3)
- 
- #define GEN9_ROW_CHICKEN4			MCR_REG(0xe48c)
- #define   GEN12_DISABLE_GRF_CLEAR		REG_BIT(13)
-@@ -260,6 +269,10 @@
- #define   THREAD_EX_ARB_MODE			REG_GENMASK(3, 2)
- #define   THREAD_EX_ARB_MODE_RR_AFTER_DEP	REG_FIELD_PREP(THREAD_EX_ARB_MODE, 0x2)
- 
-+#define GEN8_ROW_CHICKEN			MCR_REG(0xe4f0)
-+#define   UGM_BACKUP_MODE			REG_BIT(13)
-+#define   MDQ_ARBITRATION_MODE			REG_BIT(12)
-+
- #define GEN8_ROW_CHICKEN2			MCR_REG(0xe4f4)
- #define   GEN12_DISABLE_READ_SUPPRESSION	REG_BIT(15)
- #define   GEN12_DISABLE_EARLY_READ		REG_BIT(14)
-@@ -267,8 +280,22 @@
- #define   GEN12_PUSH_CONST_DEREF_HOLD_DIS	REG_BIT(8)
- #define   GEN12_DISABLE_DOP_GATING              REG_BIT(0)
- 
-+#define XEHP_HDC_CHICKEN0			MCR_REG(0xe5f0)
-+#define   LSC_L1_FLUSH_CTL_3D_DATAPORT_FLUSH_EVENTS_MASK	REG_GENMASK(13, 11)
-+
-+#define RT_CTRL					MCR_REG(0xe530)
-+#define   DIS_NULL_QUERY			REG_BIT(10)
-+
- #define LSC_CHICKEN_BIT_0			MCR_REG(0xe7c8)
- #define   DISABLE_D8_D16_COASLESCE		REG_BIT(30)
-+#define   FORCE_1_SUB_MESSAGE_PER_FRAGMENT	REG_BIT(15)
-+
-+#define LSC_CHICKEN_BIT_0_UDW			MCR_REG(0xe7c8 + 4)
-+#define   DIS_CHAIN_2XSIMD8			REG_BIT(55 - 32)
-+#define   FORCE_SLM_FENCE_SCOPE_TO_TILE		REG_BIT(42 - 32)
-+#define   FORCE_UGM_FENCE_SCOPE_TO_TILE		REG_BIT(41 - 32)
-+#define   MAXREQS_PER_BANK			REG_GENMASK(39 - 32, 37 - 32)
-+#define   DISABLE_128B_EVICTION_COMMAND_UDW	REG_BIT(36 - 32)
- 
- #define SARB_CHICKEN1				MCR_REG(0xe90c)
- #define   COMP_CKN_IN				REG_GENMASK(30, 29)
-diff --git a/drivers/gpu/drm/xe/xe_wa.c b/drivers/gpu/drm/xe/xe_wa.c
-index 13c8dbf49cba..306541b229bf 100644
---- a/drivers/gpu/drm/xe/xe_wa.c
-+++ b/drivers/gpu/drm/xe/xe_wa.c
-@@ -91,6 +91,9 @@
- #define _MMIO(x)	_XE_RTP_REG(x)
+diff --git a/drivers/gpu/drm/xe/xe_tuning.c b/drivers/gpu/drm/xe/xe_tuning.c
+index 2861a014c85c..47b27dccb385 100644
+--- a/drivers/gpu/drm/xe/xe_tuning.c
++++ b/drivers/gpu/drm/xe/xe_tuning.c
+@@ -16,6 +16,10 @@
  #define MCR_REG(x)	_XE_RTP_MCR_REG(x)
  
-+__diag_push();
-+__diag_ignore_all("-Woverride-init", "Allow field overrides in table");
-+
- static const struct xe_rtp_entry gt_was[] = {
- 	{ XE_RTP_NAME("14011060649"),
- 	  XE_RTP_RULES(MEDIA_VERSION_RANGE(1200, 1255),
-@@ -259,8 +262,8 @@ static const struct xe_rtp_entry engine_was[] = {
- 	  XE_RTP_ACTIONS(SET(GEN8_ROW_CHICKEN2, GEN12_DISABLE_EARLY_READ,
- 			     XE_RTP_ACTION_FLAG(MASKED_REG)))
+ static const struct xe_rtp_entry gt_tunings[] = {
++	{ XE_RTP_NAME("Tuning: Blend Fill Caching Optimization Disable"),
++	  XE_RTP_RULES(PLATFORM(DG2)),
++	  XE_RTP_ACTIONS(SET(XEHP_L3SCQREG7, BLEND_FILL_CACHING_OPT_DIS))
++	},
+ 	{ XE_RTP_NAME("Tuning: 32B Access Enable"),
+ 	  XE_RTP_RULES(PLATFORM(DG2)),
+ 	  XE_RTP_ACTIONS(SET(XEHP_SQCM, EN_32B_ACCESS))
+diff --git a/drivers/gpu/drm/xe/xe_wa.c b/drivers/gpu/drm/xe/xe_wa.c
+index 4fe01168f45f..13c8dbf49cba 100644
+--- a/drivers/gpu/drm/xe/xe_wa.c
++++ b/drivers/gpu/drm/xe/xe_wa.c
+@@ -132,6 +132,14 @@ static const struct xe_rtp_entry gt_was[] = {
+ 	  XE_RTP_RULES(SUBPLATFORM(DG2, G10)),
+ 	  XE_RTP_ACTIONS(SET(GEN11_SUBSLICE_UNIT_LEVEL_CLKGATE, DSS_ROUTER_CLKGATE_DIS))
  	},
--	{ XE_RTP_NAME("14010826681, 1606700617, 22010271021"),
--	  XE_RTP_RULES(GRAPHICS_VERSION_RANGE(1200, 1210), ENGINE_CLASS(RENDER)),
-+	{ XE_RTP_NAME("14010826681, 1606700617, 22010271021, 18019627453"),
-+	  XE_RTP_RULES(GRAPHICS_VERSION_RANGE(1200, 1255), ENGINE_CLASS(RENDER)),
- 	  XE_RTP_ACTIONS(SET(GEN9_CS_DEBUG_MODE1, FF_DOP_CLOCK_GATE_DISABLE,
- 			     XE_RTP_ACTION_FLAG(MASKED_REG)))
++	{ XE_RTP_NAME("14012362059"),
++	  XE_RTP_RULES(SUBPLATFORM(DG2, G10), STEP(A0, B0)),
++	  XE_RTP_ACTIONS(SET(XEHP_MERT_MOD_CTRL, FORCE_MISS_FTLB))
++	},
++	{ XE_RTP_NAME("14012362059"),
++	  XE_RTP_RULES(SUBPLATFORM(DG2, G11), STEP(A0, B0)),
++	  XE_RTP_ACTIONS(SET(XEHP_MERT_MOD_CTRL, FORCE_MISS_FTLB))
++	},
+ 	{ XE_RTP_NAME("14010948348"),
+ 	  XE_RTP_RULES(SUBPLATFORM(DG2, G10), STEP(A0, B0)),
+ 	  XE_RTP_ACTIONS(SET(UNSLCGCTL9430, MSQDUNIT_CLKGATE_DIS))
+@@ -142,7 +150,7 @@ static const struct xe_rtp_entry gt_was[] = {
  	},
-@@ -298,16 +301,192 @@ static const struct xe_rtp_entry engine_was[] = {
- 
- 	/* DG2 */
- 
-+	{ XE_RTP_NAME("22013037850"),
-+	  XE_RTP_RULES(PLATFORM(DG2), FUNC(xe_rtp_match_first_render_or_compute)),
-+	  XE_RTP_ACTIONS(SET(LSC_CHICKEN_BIT_0_UDW,
-+			     DISABLE_128B_EVICTION_COMMAND_UDW))
-+	},
-+	{ XE_RTP_NAME("22014226127"),
-+	  XE_RTP_RULES(PLATFORM(DG2), FUNC(xe_rtp_match_first_render_or_compute)),
-+	  XE_RTP_ACTIONS(SET(LSC_CHICKEN_BIT_0, DISABLE_D8_D16_COASLESCE))
-+	},
-+	{ XE_RTP_NAME("18017747507"),
-+	  XE_RTP_RULES(PLATFORM(DG2), FUNC(xe_rtp_match_first_render_or_compute)),
-+	  XE_RTP_ACTIONS(SET(VFG_PREEMPTION_CHICKEN,
-+			     POLYGON_TRIFAN_LINELOOP_DISABLE,
-+			     XE_RTP_ACTION_FLAG(MASKED_REG)))
-+	},
-+	{ XE_RTP_NAME("22012826095, 22013059131"),
-+	  XE_RTP_RULES(SUBPLATFORM(DG2, G10), STEP(B0, C0),
-+		       FUNC(xe_rtp_match_first_render_or_compute)),
-+	  XE_RTP_ACTIONS(FIELD_SET(LSC_CHICKEN_BIT_0_UDW,
-+				   MAXREQS_PER_BANK,
-+				   REG_FIELD_PREP(MAXREQS_PER_BANK, 2)))
-+	},
-+	{ XE_RTP_NAME("22012826095, 22013059131"),
-+	  XE_RTP_RULES(SUBPLATFORM(DG2, G11),
-+		       FUNC(xe_rtp_match_first_render_or_compute)),
-+	  XE_RTP_ACTIONS(FIELD_SET(LSC_CHICKEN_BIT_0_UDW,
-+				   MAXREQS_PER_BANK,
-+				   REG_FIELD_PREP(MAXREQS_PER_BANK, 2)))
-+	},
-+	{ XE_RTP_NAME("22013059131"),
-+	  XE_RTP_RULES(SUBPLATFORM(DG2, G10), STEP(B0, C0),
-+		       FUNC(xe_rtp_match_first_render_or_compute)),
-+	  XE_RTP_ACTIONS(SET(LSC_CHICKEN_BIT_0, FORCE_1_SUB_MESSAGE_PER_FRAGMENT))
-+	},
-+	{ XE_RTP_NAME("22013059131"),
-+	  XE_RTP_RULES(SUBPLATFORM(DG2, G11),
-+		       FUNC(xe_rtp_match_first_render_or_compute)),
-+	  XE_RTP_ACTIONS(SET(LSC_CHICKEN_BIT_0, FORCE_1_SUB_MESSAGE_PER_FRAGMENT))
-+	},
-+	{ XE_RTP_NAME("14010918519"),
-+	  XE_RTP_RULES(SUBPLATFORM(DG2, G10),
-+		       FUNC(xe_rtp_match_first_render_or_compute)),
-+	  XE_RTP_ACTIONS(SET(LSC_CHICKEN_BIT_0,
-+			     FORCE_SLM_FENCE_SCOPE_TO_TILE |
-+			     FORCE_UGM_FENCE_SCOPE_TO_TILE,
-+			     /*
-+			      * Ignore read back as it always returns 0 in these
-+			      * steps
-+			      */
-+			     .read_mask = 0))
-+	},
- 	{ XE_RTP_NAME("14015227452"),
--	  XE_RTP_RULES(PLATFORM(DG2), ENGINE_CLASS(RENDER)),
-+	  XE_RTP_RULES(PLATFORM(DG2),
-+		       FUNC(xe_rtp_match_first_render_or_compute)),
- 	  XE_RTP_ACTIONS(SET(GEN9_ROW_CHICKEN4, XEHP_DIS_BBL_SYSPIPE,
- 			     XE_RTP_ACTION_FLAG(MASKED_REG)))
+ 	{ XE_RTP_NAME("14011371254"),
+ 	  XE_RTP_RULES(SUBPLATFORM(DG2, G10), STEP(A0, B0)),
+-	  XE_RTP_ACTIONS(SET(GEN11_SLICE_UNIT_LEVEL_CLKGATE, NODEDSS_CLKGATE_DIS))
++	  XE_RTP_ACTIONS(SET(XEHP_SLICE_UNIT_LEVEL_CLKGATE, NODEDSS_CLKGATE_DIS))
  	},
--	{ XE_RTP_NAME("18019627453"),
-+	{ XE_RTP_NAME("16015675438"),
-+	  XE_RTP_RULES(PLATFORM(DG2),
-+		       FUNC(xe_rtp_match_first_render_or_compute)),
-+	  XE_RTP_ACTIONS(SET(FF_SLICE_CS_CHICKEN2,
-+			     PERF_FIX_BALANCING_CFE_DISABLE,
-+			     XE_RTP_ACTION_FLAG(MASKED_REG)))
-+	},
-+	{ XE_RTP_NAME("16011620976, 22015475538"),
-+	  XE_RTP_RULES(PLATFORM(DG2),
-+		       FUNC(xe_rtp_match_first_render_or_compute)),
-+	  XE_RTP_ACTIONS(SET(LSC_CHICKEN_BIT_0_UDW, DIS_CHAIN_2XSIMD8))
-+	},
-+	{ XE_RTP_NAME("22012654132"),
-+	  XE_RTP_RULES(SUBPLATFORM(DG2, G10), STEP(A0, C0),
-+		       FUNC(xe_rtp_match_first_render_or_compute)),
-+	  XE_RTP_ACTIONS(SET(CACHE_MODE_SS, ENABLE_PREFETCH_INTO_IC,
-+			     XE_RTP_ACTION_FLAG(MASKED_REG),
-+			     /*
-+			      * Register can't be read back for verification on
-+			      * DG2 due to Wa_14012342262
-+			      */
-+			     .read_mask = 0))
-+	},
-+	{ XE_RTP_NAME("22012654132"),
-+	  XE_RTP_RULES(SUBPLATFORM(DG2, G11),
-+		       FUNC(xe_rtp_match_first_render_or_compute)),
-+	  XE_RTP_ACTIONS(SET(CACHE_MODE_SS, ENABLE_PREFETCH_INTO_IC,
-+			     XE_RTP_ACTION_FLAG(MASKED_REG),
-+			     /*
-+			      * Register can't be read back for verification on
-+			      * DG2 due to Wa_14012342262
-+			      */
-+			     .read_mask = 0))
-+	},
-+	{ XE_RTP_NAME("1509727124"),
- 	  XE_RTP_RULES(PLATFORM(DG2), ENGINE_CLASS(RENDER)),
--	  XE_RTP_ACTIONS(SET(GEN9_CS_DEBUG_MODE1, FF_DOP_CLOCK_GATE_DISABLE,
-+	  XE_RTP_ACTIONS(SET(GEN10_SAMPLER_MODE, SC_DISABLE_POWER_OPTIMIZATION_EBB,
-+			     XE_RTP_ACTION_FLAG(MASKED_REG)))
-+	},
-+	{ XE_RTP_NAME("22012856258"),
-+	  XE_RTP_RULES(PLATFORM(DG2), ENGINE_CLASS(RENDER)),
-+	  XE_RTP_ACTIONS(SET(GEN8_ROW_CHICKEN2, GEN12_DISABLE_READ_SUPPRESSION,
-+			     XE_RTP_ACTION_FLAG(MASKED_REG)))
-+	},
-+	{ XE_RTP_NAME("14013392000"),
-+	  XE_RTP_RULES(SUBPLATFORM(DG2, G11), STEP(A0, B0), ENGINE_CLASS(RENDER)),
-+	  XE_RTP_ACTIONS(SET(GEN8_ROW_CHICKEN2, GEN12_ENABLE_LARGE_GRF_MODE,
-+			     XE_RTP_ACTION_FLAG(MASKED_REG)))
-+	},
-+	{ XE_RTP_NAME("14012419201"),
-+	  XE_RTP_RULES(SUBPLATFORM(DG2, G10), STEP(A0, B0), ENGINE_CLASS(RENDER)),
-+	  XE_RTP_ACTIONS(SET(GEN9_ROW_CHICKEN4,
-+			     GEN12_DISABLE_HDR_PAST_PAYLOAD_HOLD_FIX,
-+			     XE_RTP_ACTION_FLAG(MASKED_REG)))
-+	},
-+	{ XE_RTP_NAME("14012419201"),
-+	  XE_RTP_RULES(SUBPLATFORM(DG2, G11), STEP(A0, B0), ENGINE_CLASS(RENDER)),
-+	  XE_RTP_ACTIONS(SET(GEN9_ROW_CHICKEN4,
-+			     GEN12_DISABLE_HDR_PAST_PAYLOAD_HOLD_FIX,
-+			     XE_RTP_ACTION_FLAG(MASKED_REG)))
-+	},
-+	{ XE_RTP_NAME("1308578152"),
-+	  XE_RTP_RULES(SUBPLATFORM(DG2, G10), STEP(B0, C0), ENGINE_CLASS(RENDER),
-+		       FUNC(xe_rtp_match_first_gslice_fused_off)),
-+	  XE_RTP_ACTIONS(CLR(GEN9_CS_DEBUG_MODE1,
-+			     GEN12_REPLAY_MODE_GRANULARITY,
-+			     XE_RTP_ACTION_FLAG(MASKED_REG)))
-+	},
-+	{ XE_RTP_NAME("22010960976, 14013347512"),
-+	  XE_RTP_RULES(PLATFORM(DG2), ENGINE_CLASS(RENDER)),
-+	  XE_RTP_ACTIONS(CLR(XEHP_HDC_CHICKEN0,
-+			     LSC_L1_FLUSH_CTL_3D_DATAPORT_FLUSH_EVENTS_MASK,
-+			     XE_RTP_ACTION_FLAG(MASKED_REG)))
-+	},
-+	{ XE_RTP_NAME("1608949956, 14010198302"),
-+	  XE_RTP_RULES(PLATFORM(DG2), ENGINE_CLASS(RENDER)),
-+	  XE_RTP_ACTIONS(SET(GEN8_ROW_CHICKEN,
-+			     MDQ_ARBITRATION_MODE | UGM_BACKUP_MODE,
- 			     XE_RTP_ACTION_FLAG(MASKED_REG)))
+ 	{ XE_RTP_NAME("14011431319"),
+ 	  XE_RTP_RULES(SUBPLATFORM(DG2, G10), STEP(A0, B0)),
+@@ -172,6 +180,13 @@ static const struct xe_rtp_entry gt_was[] = {
+ 	  XE_RTP_RULES(SUBPLATFORM(DG2, G10), STEP(A0, B0)),
+ 	  XE_RTP_ACTIONS(SET(SSMCGCTL9530, RTFUNIT_CLKGATE_DIS))
  	},
-+	{ XE_RTP_NAME("22010430635"),
-+	  XE_RTP_RULES(SUBPLATFORM(DG2, G10), STEP(A0, B0), ENGINE_CLASS(RENDER)),
-+	  XE_RTP_ACTIONS(SET(GEN9_ROW_CHICKEN4,
-+			     GEN12_DISABLE_GRF_CLEAR,
-+			     XE_RTP_ACTION_FLAG(MASKED_REG)))
++	{ XE_RTP_NAME("14010680813"),
++	  XE_RTP_RULES(SUBPLATFORM(DG2, G10), STEP(A0, B0)),
++	  XE_RTP_ACTIONS(SET(XEHP_GAMSTLB_CTRL,
++			     CONTROL_BLOCK_CLKGATE_DIS |
++			     EGRESS_BLOCK_CLKGATE_DIS |
++			     TAG_BLOCK_CLKGATE_DIS))
 +	},
-+	{ XE_RTP_NAME("14013202645"),
-+	  XE_RTP_RULES(SUBPLATFORM(DG2, G10), STEP(B0, C0), ENGINE_CLASS(RENDER)),
-+	  XE_RTP_ACTIONS(SET(RT_CTRL, DIS_NULL_QUERY))
+ 	{ XE_RTP_NAME("14014830051"),
+ 	  XE_RTP_RULES(PLATFORM(DG2)),
+ 	  XE_RTP_ACTIONS(CLR(SARB_CHICKEN1, COMP_CKN_IN))
+@@ -180,6 +195,23 @@ static const struct xe_rtp_entry gt_was[] = {
+ 	  XE_RTP_RULES(PLATFORM(DG2)),
+ 	  XE_RTP_ACTIONS(CLR(GEN7_MISCCPCTL, GEN12_DOP_CLOCK_GATE_RENDER_ENABLE))
+ 	},
++	{ XE_RTP_NAME("18018781329"),
++	  XE_RTP_RULES(PLATFORM(DG2)),
++	  XE_RTP_ACTIONS(SET(RENDER_MOD_CTRL, FORCE_MISS_FTLB),
++			 SET(COMP_MOD_CTRL, FORCE_MISS_FTLB),
++			 SET(XEHP_VDBX_MOD_CTRL, FORCE_MISS_FTLB),
++			 SET(XEHP_VEBX_MOD_CTRL, FORCE_MISS_FTLB))
 +	},
-+	{ XE_RTP_NAME("14013202645"),
-+	  XE_RTP_RULES(SUBPLATFORM(DG2, G11), STEP(A0, B0), ENGINE_CLASS(RENDER)),
-+	  XE_RTP_ACTIONS(SET(RT_CTRL, DIS_NULL_QUERY))
++	{ XE_RTP_NAME("1509235366"),
++	  XE_RTP_RULES(PLATFORM(DG2)),
++	  XE_RTP_ACTIONS(SET(XEHP_GAMCNTRL_CTRL,
++			     INVALIDATION_BROADCAST_MODE_DIS |
++			     GLOBAL_INVALIDATION_MODE))
 +	},
-+	{ XE_RTP_NAME("22012532006"),
-+	  XE_RTP_RULES(SUBPLATFORM(DG2, G10), STEP(A0, C0), ENGINE_CLASS(RENDER)),
-+	  XE_RTP_ACTIONS(SET(GEN9_HALF_SLICE_CHICKEN7,
-+			     DG2_DISABLE_ROUND_ENABLE_ALLOW_FOR_SSLA,
-+			     XE_RTP_ACTION_FLAG(MASKED_REG)))
-+	},
-+	{ XE_RTP_NAME("22012532006"),
-+	  XE_RTP_RULES(SUBPLATFORM(DG2, G11), STEP(A0, B0), ENGINE_CLASS(RENDER)),
-+	  XE_RTP_ACTIONS(SET(GEN9_HALF_SLICE_CHICKEN7,
-+			     DG2_DISABLE_ROUND_ENABLE_ALLOW_FOR_SSLA,
-+			     XE_RTP_ACTION_FLAG(MASKED_REG)))
-+	},
-+	{ XE_RTP_NAME("22014600077"),
-+	  XE_RTP_RULES(SUBPLATFORM(DG2, G11), STEP(B0, FOREVER),
-+		       ENGINE_CLASS(RENDER)),
-+	  XE_RTP_ACTIONS(SET(CACHE_MODE_SS,
-+			     ENABLE_EU_COUNT_FOR_TDL_FLUSH,
-+			     XE_RTP_ACTION_FLAG(MASKED_REG),
-+			     /* 
-+			      * Wa_14012342262 write-only reg, so skip
-+			      * verification
-+			      */
-+			     .read_mask = 0))
-+	},
-+	{ XE_RTP_NAME("22014600077"),
-+	  XE_RTP_RULES(SUBPLATFORM(DG2, G10), ENGINE_CLASS(RENDER)),
-+	  XE_RTP_ACTIONS(SET(CACHE_MODE_SS,
-+			     ENABLE_EU_COUNT_FOR_TDL_FLUSH,
-+			     XE_RTP_ACTION_FLAG(MASKED_REG),
-+			     /* 
-+			      * Wa_14012342262 write-only reg, so skip
-+			      * verification
-+			      */
-+			     .read_mask = 0))
++	{ XE_RTP_NAME("14010648519"),
++	  XE_RTP_RULES(PLATFORM(DG2)),
++	  XE_RTP_ACTIONS(SET(XEHP_L3NODEARBCFG, XEHP_LNESPARE))
 +	},
  
  	/* PVC */
  
-@@ -365,6 +544,8 @@ static const struct xe_rtp_entry lrc_was[] = {
- 	{}
- };
- 
-+__diag_pop();
-+
- /**
-  * xe_wa_process_gt - process GT workaround table
-  * @gt: GT instance to process workarounds for
 -- 
 2.39.0
 
