@@ -4,48 +4,48 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 36928C7618B
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 38B88C7618D
 	for <intel-xe@archiver.kernel.org>; Tue, 14 Mar 2023 00:30:54 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0E80210E6A8;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 14E6810E6AA;
 	Tue, 14 Mar 2023 00:30:54 +0000 (UTC)
 Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9F4F610E6B1
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A3BBE10E6B2
  for <intel-xe@lists.freedesktop.org>; Tue, 14 Mar 2023 00:30:47 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
  t=1678753847; x=1710289847;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=ErVfzVsJtYXwmoKle+52AgPrcpJp8SRrkyxs5tXsOD4=;
- b=VgOO50ExN0laFHFN06g1wGGD+sotsGcudk0jUUZ+XsEKy55xOyqZd7h4
- XF6pETC2iUygBtR9k4sbhf86c97XmjONbWBymAlI9vrfehB13LooCrnd+
- uatVxRXrO7/amqhbuKyZrunwxV68Ls8IpN9ODDBhAKfutTyoX/oC92M21
- IQndmp95leFd0tItv0F3fJTsvHQEXw80ES4wgAD1R6FWhwUEsBAsN+ab0
- PO94c/tafjhDCCHPARY7lTHPs6BNM1KBjaYr9deVY6sWSQF+NP0xvZJ8z
- aefQmwtPLPE1KIIzzRT4Pef4pFl5cZYsLv2CKkKLlKIb4hbRaRV4Hv3M7 Q==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10648"; a="402168038"
-X-IronPort-AV: E=Sophos;i="5.98,258,1673942400"; d="scan'208";a="402168038"
+ bh=ir2SYRUPC5Mj6JgXO994xYXWoItgRqvuVZ6N62cvekQ=;
+ b=cTo4cR62mYzIbQlqxxa0eNpswt+qj7vaBlG1YCSbSRklDdA3fhoD4zkQ
+ wXBXgjlZxWfdQqKpy6jZsT6rKOyz/zYalm2uzDGD7zDjx7hV6jgJ42yL5
+ kKw2wYvDdS4Erou3v+qlv8tkAHjcwzx5tEB5ejCLoFZIPBOY5iv4QGa2i
+ E52HeyEETPzmszfokvWAq8/MI/Rua+UFj2NRxop0LuAwXvLsWJrXk8qiN
+ L6M71XJDKBdJO4Hus/gaV3WHnJ0p/NvugJMI1AGW9wTWZsPev9Lq/7qgj
+ /nIiNhkdxpIsDOceBH2mzkPqHXximPPBltDSeHn2mgAHu6B3Iy92HukSq g==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10648"; a="402168037"
+X-IronPort-AV: E=Sophos;i="5.98,258,1673942400"; d="scan'208";a="402168037"
 Received: from fmsmga002.fm.intel.com ([10.253.24.26])
  by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  13 Mar 2023 17:30:47 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6500,9779,10648"; a="789116720"
-X-IronPort-AV: E=Sophos;i="5.98,258,1673942400"; d="scan'208";a="789116720"
+X-IronPort-AV: E=McAfee;i="6500,9779,10648"; a="789116717"
+X-IronPort-AV: E=Sophos;i="5.98,258,1673942400"; d="scan'208";a="789116717"
 Received: from lucas-s2600cw.jf.intel.com ([10.165.21.196])
  by fmsmga002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  13 Mar 2023 17:30:46 -0700
 From: Lucas De Marchi <lucas.demarchi@intel.com>
 To: intel-xe@lists.freedesktop.org
-Date: Mon, 13 Mar 2023 17:30:12 -0700
-Message-Id: <20230314003012.2600353-15-lucas.demarchi@intel.com>
+Date: Mon, 13 Mar 2023 17:30:11 -0700
+Message-Id: <20230314003012.2600353-14-lucas.demarchi@intel.com>
 X-Mailer: git-send-email 2.39.0
 In-Reply-To: <20230314003012.2600353-1-lucas.demarchi@intel.com>
 References: <20230314003012.2600353-1-lucas.demarchi@intel.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-xe] [PATCH v3 14/14] drm/xe: Move policy on preemption from
- WAs to tunings
+Subject: [Intel-xe] [PATCH v3 13/14] drm/xe: Add missing LRC workarounds for
+ graphics 1200
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -62,116 +62,57 @@ Cc: Lucas De Marchi <lucas.demarchi@intel.com>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-The fake WA FtrPerCtxtPreemptionGranularityControl is documented in i915
-and is not a true WA: it's a policy chosen to allow preemption settings
-to be controlled on a per-context basis by userspace. Move it to
-xe_tuning.c since it's more in line with what his is doing. However
-since it's not something suggested by the spec, prefix it with "Policy"
-rather than "Tuning".
+Synchronize LRC workarounds for graphics version 1200 with i915 up to
+commit 7cdae9e9ee5e ("drm/i915: Move DG2 tuning to the right function").
+These were probably missed for TGL/RKL before because in i915 it uses a
+!IS_DG1() condition.  Avoid a similar issue by just checking the
+graphics version 1200 since DG1 is 1210.
 
-Also, there's no reason to apply this policy only between graphics
-version 1200 and 1250. Apply it to all versions, like i915.
-
-v2: Apply for all graphics versions, not only [1200, 1250]
-
-Suggested-by: Matt Roper <matthew.d.roper@intel.com>
 Signed-off-by: Lucas De Marchi <lucas.demarchi@intel.com>
 ---
- drivers/gpu/drm/xe/xe_hw_engine.c |  2 ++
- drivers/gpu/drm/xe/xe_tuning.c    | 23 +++++++++++++++++++++++
- drivers/gpu/drm/xe/xe_tuning.h    |  1 +
- drivers/gpu/drm/xe/xe_wa.c        |  6 ------
- 4 files changed, 26 insertions(+), 6 deletions(-)
+ drivers/gpu/drm/xe/regs/xe_gt_regs.h |  4 ++++
+ drivers/gpu/drm/xe/xe_wa.c           | 10 ++++++++++
+ 2 files changed, 14 insertions(+)
 
-diff --git a/drivers/gpu/drm/xe/xe_hw_engine.c b/drivers/gpu/drm/xe/xe_hw_engine.c
-index 63a4efd5edcc..53dc342cc3a3 100644
---- a/drivers/gpu/drm/xe/xe_hw_engine.c
-+++ b/drivers/gpu/drm/xe/xe_hw_engine.c
-@@ -22,6 +22,7 @@
- #include "xe_mmio.h"
- #include "xe_reg_sr.h"
- #include "xe_sched_job.h"
-+#include "xe_tuning.h"
- #include "xe_wa.h"
+diff --git a/drivers/gpu/drm/xe/regs/xe_gt_regs.h b/drivers/gpu/drm/xe/regs/xe_gt_regs.h
+index 4a7ce09d6b60..4ab7860db9f2 100644
+--- a/drivers/gpu/drm/xe/regs/xe_gt_regs.h
++++ b/drivers/gpu/drm/xe/regs/xe_gt_regs.h
+@@ -98,10 +98,14 @@
  
- #define MAX_MMIO_BASES 3
-@@ -293,6 +294,7 @@ static void hw_engine_init_early(struct xe_gt *gt, struct xe_hw_engine *hwe,
+ #define HIZ_CHICKEN				_MMIO(0x7018)
+ #define   DG1_HZ_READ_SUPPRESSION_OPTIMIZATION_DISABLE	REG_BIT(14)
++#define   HZ_DEPTH_TEST_LE_GE_OPT_DISABLE	REG_BIT(13)
  
- 	xe_reg_sr_init(&hwe->reg_sr, hwe->name, gt_to_xe(gt));
- 	xe_wa_process_engine(hwe);
-+	xe_tuning_process_engine(hwe);
+ /* GEN7 chicken */
+ #define GEN7_COMMON_SLICE_CHICKEN1		_MMIO(0x7010)
  
- 	xe_reg_sr_init(&hwe->reg_whitelist, hwe->name, gt_to_xe(gt));
- 	xe_reg_whitelist_process_engine(hwe);
-diff --git a/drivers/gpu/drm/xe/xe_tuning.c b/drivers/gpu/drm/xe/xe_tuning.c
-index 7ff5eb762da5..c8045872c0a1 100644
---- a/drivers/gpu/drm/xe/xe_tuning.c
-+++ b/drivers/gpu/drm/xe/xe_tuning.c
-@@ -27,6 +27,16 @@ static const struct xe_rtp_entry gt_tunings[] = {
- 	{}
- };
- 
-+static const struct xe_rtp_entry engine_tunings[] = {
-+	{ XE_RTP_NAME("Policy: FtrPerCtxtPreemptionGranularityControl"),
-+	  XE_RTP_RULES(ENGINE_CLASS(RENDER)),
-+	  XE_RTP_ACTIONS(SET(GEN7_FF_SLICE_CS_CHICKEN1,
-+			     GEN9_FFSC_PERCTX_PREEMPT_CTRL,
-+			     XE_RTP_ACTION_FLAG(MASKED_REG)))
-+	},
-+	{}
-+};
++#define COMMON_SLICE_CHICKEN4			_MMIO(0x7300)
++#define   DISABLE_TDC_LOAD_BALANCING_CALC	REG_BIT(6)
 +
- static const struct xe_rtp_entry lrc_tunings[] = {
- 	{ XE_RTP_NAME("Tuning: ganged timer, also known as 16011163337"),
- 	  XE_RTP_RULES(GRAPHICS_VERSION_RANGE(1200, 1210)),
-@@ -63,6 +73,19 @@ void xe_tuning_process_gt(struct xe_gt *gt)
- 	xe_rtp_process(gt_tunings, &gt->reg_sr, gt, NULL);
- }
- 
-+/**
-+ * xe_tuning_process_engine - process engine tuning table
-+ * @hwe: engine instance to process tunings for
-+ *
-+ * Process engine table for this platform, saving in @hwe all the
-+ * tunings that need to be applied at the engine level that match this
-+ * engine.
-+ */
-+void xe_tuning_process_engine(struct xe_hw_engine *hwe)
-+{
-+	xe_rtp_process(engine_tunings, &hwe->reg_sr, hwe->gt, hwe);
-+}
-+
- /**
-  * xe_tuning_process_lrc - process lrc tunings
-  * @hwe: engine instance to process tunings for
-diff --git a/drivers/gpu/drm/xe/xe_tuning.h b/drivers/gpu/drm/xe/xe_tuning.h
-index 2b95b0c8effc..4f9c3ac3b516 100644
---- a/drivers/gpu/drm/xe/xe_tuning.h
-+++ b/drivers/gpu/drm/xe/xe_tuning.h
-@@ -10,6 +10,7 @@ struct xe_gt;
- struct xe_hw_engine;
- 
- void xe_tuning_process_gt(struct xe_gt *gt);
-+void xe_tuning_process_engine(struct xe_hw_engine *hwe);
- void xe_tuning_process_lrc(struct xe_hw_engine *hwe);
- 
- #endif
+ #define GEN11_COMMON_SLICE_CHICKEN3		_MMIO(0x7304)
+ #define XEHP_COMMON_SLICE_CHICKEN3		MCR_REG(0x7304)
+ #define   DG1_FLOAT_POINT_BLEND_OPT_STRICT_MODE_EN	REG_BIT(12)
 diff --git a/drivers/gpu/drm/xe/xe_wa.c b/drivers/gpu/drm/xe/xe_wa.c
-index 59d2daab5929..a607f476a6ed 100644
+index e21c7ec53b2f..59d2daab5929 100644
 --- a/drivers/gpu/drm/xe/xe_wa.c
 +++ b/drivers/gpu/drm/xe/xe_wa.c
-@@ -272,12 +272,6 @@ static const struct xe_rtp_entry engine_was[] = {
- 	  XE_RTP_ACTIONS(SET(GEN10_SAMPLER_MODE, ENABLE_SMALLPL,
- 			     XE_RTP_ACTION_FLAG(MASKED_REG)))
+@@ -536,6 +536,16 @@ static const struct xe_rtp_entry lrc_was[] = {
+ 				   GEN9_PREEMPT_GPGPU_THREAD_GROUP_LEVEL,
+ 				   XE_RTP_ACTION_FLAG(MASKED_REG)))
  	},
--	{ XE_RTP_NAME("FtrPerCtxtPreemptionGranularityControl"),
--	  XE_RTP_RULES(GRAPHICS_VERSION_RANGE(1200, 1250), ENGINE_CLASS(RENDER)),
--	  XE_RTP_ACTIONS(SET(GEN7_FF_SLICE_CS_CHICKEN1,
--			     GEN9_FFSC_PERCTX_PREEMPT_CTRL,
--			     XE_RTP_ACTION_FLAG(MASKED_REG)))
--	},
++	{ XE_RTP_NAME("1806527549"),
++	  XE_RTP_RULES(GRAPHICS_VERSION(1200)),
++	  XE_RTP_ACTIONS(SET(HIZ_CHICKEN, HZ_DEPTH_TEST_LE_GE_OPT_DISABLE,
++			     XE_RTP_ACTION_FLAG(MASKED_REG)))
++	},
++	{ XE_RTP_NAME("1606376872"),
++	  XE_RTP_RULES(GRAPHICS_VERSION(1200)),
++	  XE_RTP_ACTIONS(SET(COMMON_SLICE_CHICKEN4, DISABLE_TDC_LOAD_BALANCING_CALC,
++			     XE_RTP_ACTION_FLAG(MASKED_REG)))
++	},
  
- 	/* TGL */
+ 	/* DG1 */
  
 -- 
 2.39.0
