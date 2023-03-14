@@ -4,59 +4,59 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id E0FFCC6FD1C
-	for <intel-xe@archiver.kernel.org>; Tue, 14 Mar 2023 11:54:59 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id F40EBC74A5B
+	for <intel-xe@archiver.kernel.org>; Tue, 14 Mar 2023 12:16:17 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9E5C210E173;
-	Tue, 14 Mar 2023 11:54:59 +0000 (UTC)
-Received: from mail-lf1-x12f.google.com (mail-lf1-x12f.google.com
- [IPv6:2a00:1450:4864:20::12f])
- by gabe.freedesktop.org (Postfix) with ESMTPS id DB75610E173
- for <intel-xe@lists.freedesktop.org>; Tue, 14 Mar 2023 11:54:58 +0000 (UTC)
-Received: by mail-lf1-x12f.google.com with SMTP id f18so19674648lfa.3
- for <intel-xe@lists.freedesktop.org>; Tue, 14 Mar 2023 04:54:58 -0700 (PDT)
+	by gabe.freedesktop.org (Postfix) with ESMTP id BDEC810E79C;
+	Tue, 14 Mar 2023 12:16:17 +0000 (UTC)
+Received: from mail-lf1-x133.google.com (mail-lf1-x133.google.com
+ [IPv6:2a00:1450:4864:20::133])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5EC3A10E174
+ for <intel-xe@lists.freedesktop.org>; Tue, 14 Mar 2023 12:16:15 +0000 (UTC)
+Received: by mail-lf1-x133.google.com with SMTP id r27so19713043lfe.10
+ for <intel-xe@lists.freedesktop.org>; Tue, 14 Mar 2023 05:16:15 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20210112; t=1678794897;
+ d=gmail.com; s=20210112; t=1678796173;
  h=content-transfer-encoding:cc:to:subject:message-id:date:from
  :in-reply-to:references:mime-version:from:to:cc:subject:date
  :message-id:reply-to;
- bh=HwjaGINaUuocUZIid8Hm/ybEf2FJjJBWB7/2Mhorw6M=;
- b=fFS8E4PswIkBP7TaVyNUn5hYXt7AwN7VLYf8PbURmlpuFY+Akrv2Ra9rAGntGrGS/7
- YYiXnVAHA0WExBifrir6BYCL1GaOiUAVUACZJVOShqm3jTk3KKVJ6jtt3SVZNNaqh6Qb
- sycUmW0Py25Z7VYVUv5WX8sQZS+bzPCgOjPVcA+7imyUT3iq/w+1Vt6DrYeW0tfxUfX2
- oev/ypVS2kqy8IxkoT3f26nMHSttlFv7ej/jFTtgiGsoYwrqMV/1iEriLbD1UnqDa3Fe
- mwQqIcqYliblZiqte+ckzC2p0u3MnhLSW3A/EJpj2qoxCaw+TkP1saKPrzL8c8+NZ+N7
- biVg==
+ bh=GmbIOQEdkC/EBV9q+mlZpDws79gNwrWvaXxmvvLbfH4=;
+ b=OQHDtnDiUOYSxaXWfzhNx+dW3TeXDTeeIjtbcoym8iWznTAtIDAiS0sTNPpErLMk6T
+ REfar84P9DKrv26b4h2cBUpk22ZfUvX+ICWvaO8x4ZFmri/jDfIjT8ror0+POBK0Do/y
+ jG17q+HCHvBPmYn9ikp5kG0Z1oIyFwbQxBt5Q7ZIM6fHuJwpE3iGd3lQ9mVETuL9Yuja
+ aCxWZDu2n78QufXpkQzGBIvJZCVlULxjffSaKGySWJjDHAagcJdoKGwR/dZVkVrnp/Jj
+ 9+GqLraKIP8T33urmglb5qxBIYsEnAmzkql0cnLqVUWdGFSehNGIEygCr91mRW/K4K0R
+ 3Y3A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20210112; t=1678794897;
+ d=1e100.net; s=20210112; t=1678796173;
  h=content-transfer-encoding:cc:to:subject:message-id:date:from
  :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
  :subject:date:message-id:reply-to;
- bh=HwjaGINaUuocUZIid8Hm/ybEf2FJjJBWB7/2Mhorw6M=;
- b=bMJFKswDc8MQw7YQGokOByD/4W0UkHdsK5fgaGrPH/pVQSM+Tag/pW6rtSX1MX1XVi
- rH8RfpPwCjoNZxINZ4EbqENHVSEpCagGhVfqFNe3cm+24I6krusiwBgcn9QW1F1V5d83
- Bx5erarJoMvEa4aMIz1bj0taFhBYSjIW2ma4tzwNWBpKLqDhttygU8Am8fzJxr9+SUBL
- StGWCgEJXxxPVn6OxkckrtgT5+3Sr04yEZI/kcMhZmIAsHnsMBZl4gb9gaazlAC/U6m7
- YiOF/95Dl+JBj52PskOpnZ7VnLeCMgwPfgWADPAHKL6s5rNG/nrP+8jc1DKdU9pAwJKv
- Zl5A==
-X-Gm-Message-State: AO0yUKWmD7boYascswTx/35U8CQP0l/40T6mOlOToaU1Lt/i09BE3DEd
- f7+CqPUDKqxoYVB18gTVr8tU+DMaxoSdQhOOlMEMmGs+3A4=
-X-Google-Smtp-Source: AK7set/15K04o5vel1jo/i4aOBRpL4EPurmlpvw41xDckaU2h1GK9a3LZogjNBj76IlR6tYgOaXMggB8pYLK9/W2ZOA=
-X-Received: by 2002:ac2:592e:0:b0:4db:1989:8d92 with SMTP id
- v14-20020ac2592e000000b004db19898d92mr656135lfi.10.1678794897000; Tue, 14 Mar
- 2023 04:54:57 -0700 (PDT)
+ bh=GmbIOQEdkC/EBV9q+mlZpDws79gNwrWvaXxmvvLbfH4=;
+ b=PQcPJB50RRE65f13/Ixy4Pn1O+SF8mHi03vosYC2iXYJDAZNMPZjWOsVdXSPA76tnn
+ OHl01AJcIDor0r381cKXVZfW278f6GzoriPOD2CiY7P9cRWjjcA35fxf6MW4y9YB2ZK6
+ CqW/8PKP7N3rRPAYolyfvivpk1YZcL3t7lu3hvr3tT9eBXR6U66L/RILyHAFO2c52ybK
+ rD3HsEuf5q3dzmgIDRnDzKzLvrCG+avZFx4d5REjuauF3gVGqwc0/+xaXNYAVodzexw0
+ TJkkFnMBBGRh9EZiOZx+vBDlwuCK0/+KhBHpEOFhKvjTc9oAuQ/q/eZ+J55s105RfLHO
+ h8bg==
+X-Gm-Message-State: AO0yUKWiD7A1ZuUXhVUPUVLKpnqBp+NHlcgpb1gNEoFvtG2f+0HJTPkn
+ aYvINSdJm9tnI5rkSX1d9QTDpfcBYqR38oBJfbf4El231HI=
+X-Google-Smtp-Source: AK7set8BIzpAS29HBV2A0Orm+5soHlemHHeDBzEwhvyLOXg+fdtZ8PfI/BDphtFofGmAIkyz6rrNgqFsStp3RkdBNWA=
+X-Received: by 2002:a19:7604:0:b0:4d5:ca32:7bc3 with SMTP id
+ c4-20020a197604000000b004d5ca327bc3mr671504lff.10.1678796173548; Tue, 14 Mar
+ 2023 05:16:13 -0700 (PDT)
 MIME-Version: 1.0
 References: <20230313204519.158888-1-thomas.hellstrom@linux.intel.com>
- <20230313204519.158888-2-thomas.hellstrom@linux.intel.com>
-In-Reply-To: <20230313204519.158888-2-thomas.hellstrom@linux.intel.com>
+ <20230313204519.158888-3-thomas.hellstrom@linux.intel.com>
+In-Reply-To: <20230313204519.158888-3-thomas.hellstrom@linux.intel.com>
 From: Matthew Auld <matthew.william.auld@gmail.com>
-Date: Tue, 14 Mar 2023 11:54:29 +0000
-Message-ID: <CAM0jSHMfN2z3FV75PDNMtwRYMTDV2PgKk2R1iKm3MtgcS9=Rrw@mail.gmail.com>
+Date: Tue, 14 Mar 2023 12:15:46 +0000
+Message-ID: <CAM0jSHN+vy8R48HRY72ZCmmfv4LG1uMV3zBrY0GMMe5P2ADCYw@mail.gmail.com>
 To: =?UTF-8?Q?Thomas_Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
-Subject: Re: [Intel-xe] [PATCH 1/6] drm/xe: Use a define to set initial
- seqno for fences
+Subject: Re: [Intel-xe] [PATCH 2/6] drm/xe/migrate: Update cpu page-table
+ updates
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -75,108 +75,12 @@ Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 On Mon, 13 Mar 2023 at 20:46, Thomas Hellstr=C3=B6m
 <thomas.hellstrom@linux.intel.com> wrote:
 >
-> Also for HW fences, write the initial seqno - 1 to the HW completed
-> seqno to initialize.
+> Don't wait for GPU to be able to update page-tables using CPU. Putting
+> ourselves to sleep may be more of a problem than using GPU for
+> page-table updates. Also allow the vm to be NULL since the migrate
+> kunit test uses NULL for vm.
 >
 > Signed-off-by: Thomas Hellstr=C3=B6m <thomas.hellstrom@linux.intel.com>
-> ---
->  drivers/gpu/drm/xe/xe_engine.c   | 5 +++--
->  drivers/gpu/drm/xe/xe_hw_fence.c | 5 ++---
->  drivers/gpu/drm/xe/xe_hw_fence.h | 2 ++
->  drivers/gpu/drm/xe/xe_lrc.c      | 3 +++
->  4 files changed, 10 insertions(+), 5 deletions(-)
->
-> diff --git a/drivers/gpu/drm/xe/xe_engine.c b/drivers/gpu/drm/xe/xe_engin=
-e.c
-> index 3b6f8a25112a..7e6367a84f1f 100644
-> --- a/drivers/gpu/drm/xe/xe_engine.c
-> +++ b/drivers/gpu/drm/xe/xe_engine.c
-> @@ -13,6 +13,7 @@
->
->  #include "xe_device.h"
->  #include "xe_gt.h"
-> +#include "xe_hw_fence.h"
->  #include "xe_lrc.h"
->  #include "xe_macros.h"
->  #include "xe_migrate.h"
-> @@ -57,11 +58,11 @@ static struct xe_engine *__xe_engine_create(struct xe=
-_device *xe,
->
->         if (xe_engine_is_parallel(e)) {
->                 e->parallel.composite_fence_ctx =3D dma_fence_context_all=
-oc(1);
-> -               e->parallel.composite_fence_seqno =3D 1;
-> +               e->parallel.composite_fence_seqno =3D XE_FENCE_INITIAL_SE=
-QNO;
->         }
->         if (e->flags & ENGINE_FLAG_VM) {
->                 e->bind.fence_ctx =3D dma_fence_context_alloc(1);
-> -               e->bind.fence_seqno =3D 1;
-> +               e->bind.fence_seqno =3D XE_FENCE_INITIAL_SEQNO;
->         }
->
->         for (i =3D 0; i < width; ++i) {
-> diff --git a/drivers/gpu/drm/xe/xe_hw_fence.c b/drivers/gpu/drm/xe/xe_hw_=
-fence.c
-> index e56ca2867545..ca8304650713 100644
-> --- a/drivers/gpu/drm/xe/xe_hw_fence.c
-> +++ b/drivers/gpu/drm/xe/xe_hw_fence.c
-> @@ -129,7 +129,7 @@ void xe_hw_fence_ctx_init(struct xe_hw_fence_ctx *ctx=
-, struct xe_gt *gt,
->         ctx->gt =3D gt;
->         ctx->irq =3D irq;
->         ctx->dma_fence_ctx =3D dma_fence_context_alloc(1);
-> -       ctx->next_seqno =3D 1;
-> +       ctx->next_seqno =3D XE_FENCE_INITIAL_SEQNO;
->         sprintf(ctx->name, "%s", name);
->  }
->
-> @@ -164,8 +164,7 @@ static bool xe_hw_fence_signaled(struct dma_fence *dm=
-a_fence)
->         struct xe_device *xe =3D gt_to_xe(fence->ctx->gt);
->         u32 seqno =3D xe_map_rd(xe, &fence->seqno_map, 0, u32);
->
-> -       return dma_fence->error ||
-> -               (s32)fence->dma.seqno <=3D (s32)seqno;
-> +       return dma_fence->error || (s32)(u32)fence->dma.seqno <=3D (s32)s=
-eqno;
 
-Why do we need this change? Also the hw fence dma.seqno should always
-be u32, right?
-
->  }
->
->  static bool xe_hw_fence_enable_signaling(struct dma_fence *dma_fence)
-> diff --git a/drivers/gpu/drm/xe/xe_hw_fence.h b/drivers/gpu/drm/xe/xe_hw_=
-fence.h
-> index 07f202db6526..523c2611ef5d 100644
-> --- a/drivers/gpu/drm/xe/xe_hw_fence.h
-> +++ b/drivers/gpu/drm/xe/xe_hw_fence.h
-> @@ -8,6 +8,8 @@
->
->  #include "xe_hw_fence_types.h"
->
-> +#define XE_FENCE_INITIAL_SEQNO 1
-> +
->  int xe_hw_fence_module_init(void);
->  void xe_hw_fence_module_exit(void);
->
-> diff --git a/drivers/gpu/drm/xe/xe_lrc.c b/drivers/gpu/drm/xe/xe_lrc.c
-> index 9140b057a5ba..fb8c6f7d6528 100644
-> --- a/drivers/gpu/drm/xe/xe_lrc.c
-> +++ b/drivers/gpu/drm/xe/xe_lrc.c
-> @@ -697,6 +697,9 @@ int xe_lrc_init(struct xe_lrc *lrc, struct xe_hw_engi=
-ne *hwe,
->         arb_enable =3D MI_ARB_ON_OFF | MI_ARB_ENABLE;
->         xe_lrc_write_ring(lrc, &arb_enable, sizeof(arb_enable));
->
-> +       map =3D __xe_lrc_seqno_map(lrc);
-> +       xe_map_write32(lrc_to_xe(lrc), &map, lrc->fence_ctx.next_seqno - =
-1);
-> +
->         return 0;
->
->  err_lrc_finish:
-> --
-> 2.39.2
->
+Seems reasonable to me, but I'm not really familiar with the history here,
+Reviewed-by: Matthew Auld <matthew.auld@intel.com>
