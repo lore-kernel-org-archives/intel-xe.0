@@ -4,30 +4,30 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id AD25EC6FD1D
-	for <intel-xe@archiver.kernel.org>; Wed, 15 Mar 2023 18:27:59 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 761F9C61DA4
+	for <intel-xe@archiver.kernel.org>; Wed, 15 Mar 2023 18:28:29 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 86EBD10E2F7;
-	Wed, 15 Mar 2023 18:27:59 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4D96E10E301;
+	Wed, 15 Mar 2023 18:28:29 +0000 (UTC)
 Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id 3FCB310E2E7;
- Wed, 15 Mar 2023 18:27:57 +0000 (UTC)
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 6EEA310E2E7;
+ Wed, 15 Mar 2023 18:28:27 +0000 (UTC)
 Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 36AF1AA917;
- Wed, 15 Mar 2023 18:27:57 +0000 (UTC)
+ by emeril.freedesktop.org (Postfix) with ESMTP id 5D456AA917;
+ Wed, 15 Mar 2023 18:28:27 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: "Matthew Brost" <matthew.brost@intel.com>
-Date: Wed, 15 Mar 2023 18:27:57 -0000
-Message-ID: <167890487718.19840.11420489713535200990@emeril.freedesktop.org>
+Date: Wed, 15 Mar 2023 18:28:27 -0000
+Message-ID: <167890490737.19837.15807757207806537009@emeril.freedesktop.org>
 X-Patchwork-Hint: ignore
 References: <20230315182512.4018018-1-matthew.brost@intel.com>
 In-Reply-To: <20230315182512.4018018-1-matthew.brost@intel.com>
-Subject: [Intel-xe] =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_f?=
- =?utf-8?q?or_Port_Xe_to_use_GPUVA_and_implement_NULL_VM_binds?=
+Subject: [Intel-xe] =?utf-8?q?=E2=9C=97_CI=2EKUnit=3A_failure_for_Port_Xe?=
+ =?utf-8?q?_to_use_GPUVA_and_implement_NULL_VM_binds?=
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -48,57 +48,36 @@ Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 Series: Port Xe to use GPUVA and implement NULL VM binds
 URL   : https://patchwork.freedesktop.org/series/115217/
-State : success
+State : failure
 
 == Summary ==
 
-=== Applying kernel patches on branch 'drm-xe-next' with base: ===
-commit 8f6c3eaf3f9daab25b31e80c8ba277877fd10547
-Author:     Mauro Carvalho Chehab <mchehab@kernel.org>
-AuthorDate: Fri Mar 10 09:13:39 2023 +0100
-Commit:     Lucas De Marchi <lucas.demarchi@intel.com>
-CommitDate: Wed Mar 15 10:28:56 2023 -0700
++ trap cleanup EXIT
++ /kernel/tools/testing/kunit/kunit.py run --kunitconfig /kernel/drivers/gpu/drm/xe/.kunitconfig
+ERROR:root:../drivers/gpu/drm/xe/xe_vm.c: In function ‘xe_vma_op_work_func’:
+../drivers/gpu/drm/xe/xe_vm.c:2722:4: error: label at end of compound statement
+ 2722 |    default:
+      |    ^~~~~~~
+make[6]: *** [../scripts/Makefile.build:250: drivers/gpu/drm/xe/xe_vm.o] Error 1
+make[6]: *** Waiting for unfinished jobs....
+make[5]: *** [../scripts/Makefile.build:500: drivers/gpu/drm/xe] Error 2
+make[4]: *** [../scripts/Makefile.build:500: drivers/gpu/drm] Error 2
+make[3]: *** [../scripts/Makefile.build:500: drivers/gpu] Error 2
+make[2]: *** [../scripts/Makefile.build:500: drivers] Error 2
+make[1]: *** [/kernel/Makefile:1992: .] Error 2
+make: *** [Makefile:231: __sub-make] Error 2
 
-    drm/xe/xe_uc_fw: Use firmware files from standard locations
-    
-    The GuC/HuC firmware files used by Xe drivers are the same as
-    used by i915. Use the already-known location to find those
-    firmware files, for a couple of reasons:
-    
-    1. Avoid having the same firmware placed on two different
-       places on MODULE_FIRMWARE(), if both 915 and xe drivers
-       are compiled;
-    
-    2. Having firmware files located on different locations may end
-       creating bigger initramfs, as the same files will be copied
-       twice my mkinitrd/dracut/...;
-    
-    3. this is the place where those firmware files are located at
-       https://git.kernel.org/pub/scm/linux/kernel/git/firmware/linux-firmware.git
-       Upstream doesn't expect them to have on other places;
-    
-    4. When built with display support, DMC firmware will be
-       loaded from i915/ directory. It is very confusing to have
-       some firmware files on a different place for the same driver.
-    
-    Cc: Matthew Brost <matthew.brost@intel.com>
-    Cc: Lucas de Marchi <lucas.demarchi@intel.com>
-    Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
-    Cc: Thomas Hellstrom <thomas.hellstrom@linux.intel.com>
-    Cc: Daniel Vetter <daniel@ffwll.ch>
-    Cc: David Airlie <airlied@gmail.com>
-    Signed-off-by: Mauro Carvalho Chehab <mchehab@kernel.org>
-    [ Mostly agree with the direction of "use the firmware blobs from
-      upstream at their current location for these platforms". Previous
-      directory was not wrong as the plan was to have it handled in the
-      upstream firmware repo. For future platforms the location can be
-      changed if the support is only in xe ]
-    Signed-off-by: Lucas De Marchi <lucas.demarchi@intel.com>
-    Link: https://lore.kernel.org/r/20230310081338.3275583-1-mauro.chehab@linux.intel.com
-=== git am output follows ===
-Applying: maple_tree: split up MA_STATE() macro
-Applying: drm: manager to keep track of GPUs VA mappings
-Applying: drm/xe: Port Xe to GPUVA
-Applying: drm/xe: NULL binding implementation
+[18:27:59] Configuring KUnit Kernel ...
+Generating .config ...
+Populating config with:
+$ make ARCH=um O=.kunit olddefconfig
+[18:28:03] Building KUnit Kernel ...
+Populating config with:
+$ make ARCH=um O=.kunit olddefconfig
+Building with:
+$ make ARCH=um O=.kunit --jobs=48
++ cleanup
+++ stat -c %u:%g /kernel
++ chown -R 1003:1003 /kernel
 
 
