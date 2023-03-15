@@ -4,51 +4,53 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 24CA3C6FD1D
-	for <intel-xe@archiver.kernel.org>; Wed, 15 Mar 2023 03:23:03 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 38E7BC6FD1D
+	for <intel-xe@archiver.kernel.org>; Wed, 15 Mar 2023 06:11:52 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id F38AA10E8F1;
-	Wed, 15 Mar 2023 03:23:02 +0000 (UTC)
-Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8D0A410E8F3
- for <intel-xe@lists.freedesktop.org>; Wed, 15 Mar 2023 03:22:56 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0097910E917;
+	Wed, 15 Mar 2023 06:11:52 +0000 (UTC)
+Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9203810E917
+ for <intel-xe@lists.freedesktop.org>; Wed, 15 Mar 2023 06:11:49 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1678850576; x=1710386576;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=ln9N5ndVy56S01vvK1wNHE+mbL8eCc+763nuSRe4MOE=;
- b=ipBJl3v4bgck53U8TmNZ+HZ8P0Rcd5s/z0sJVhJOupzHi6wTcbRVvzdw
- IQs/m/ipUna+HYkVfew0AIs2NQF96tHGsoLNn+RNvDjTuH1/PlbwLjhNZ
- lECDjgFwk858CLPpi8xkMiBpt9jQb22oTBBC9Y9SarFdBeLonZ708HepE
- r8NsSjB03mVyXnAUVVeuR8JVaBnXaTzDa2Wx1vEYygAcShzNVVQepfeE8
- rs9I/WawU9WVE23X8y/Pg1/PHUbqkRjbHmCiz5Zn/QYznKhZhKs8OULIB
- EtmveRjOVg39FKPBJhtKp1jra4Dln9v8hSZK2/4qREiKyuSZn8HeSNXHj A==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10649"; a="365278731"
-X-IronPort-AV: E=Sophos;i="5.98,261,1673942400"; d="scan'208";a="365278731"
-Received: from orsmga002.jf.intel.com ([10.7.209.21])
- by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 14 Mar 2023 20:22:56 -0700
+ t=1678860709; x=1710396709;
+ h=date:from:to:subject:message-id:in-reply-to:references:
+ mime-version:content-transfer-encoding;
+ bh=sJhCmAWf8px2i2uwZUFNvZft3MG7XjNbOeNlGAVmbHs=;
+ b=ICHY+bwk8tijtYG5aduvJFQ0NG9m16JQlFZ8YYdlwuSR299nW1fBRA/e
+ WQVPeoLHd2QoNS+A4h7CiWXpHvsnjY35TSYL2swqthTqKA39G0pZtKDqZ
+ xqhD21uCa5dPfuwYGh+oxXHPtvyaFtSIT16fuH7AXGcmx6qFBLE+RaAEj
+ WReFZylFC/9NAHwAxSYgkZoSa2KamMOmHQWwLb5uExh5s4u332mpKB7Xv
+ LM7aL3haTnjnzCoQVwbHo3cdLSUTRCuOJOvy45s7/qAcds1NF2YlyspFr
+ QyKot5MH8rui94xFufFJKb0YftMEmdC5Hluva0N/Fx9R3HWjBWVfuj+qV Q==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10649"; a="325985468"
+X-IronPort-AV: E=Sophos;i="5.98,262,1673942400"; d="scan'208";a="325985468"
+Received: from orsmga001.jf.intel.com ([10.7.209.18])
+ by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 14 Mar 2023 23:11:49 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6500,9779,10649"; a="679337898"
-X-IronPort-AV: E=Sophos;i="5.98,261,1673942400"; d="scan'208";a="679337898"
-Received: from irvmail002.ir.intel.com ([10.43.11.120])
- by orsmga002.jf.intel.com with ESMTP; 14 Mar 2023 20:22:55 -0700
-Received: from mwajdecz-MOBL.ger.corp.intel.com
- (mwajdecz-MOBL.ger.corp.intel.com [10.249.136.19])
- by irvmail002.ir.intel.com (Postfix) with ESMTP id 9F3CE696A7;
- Sun, 12 Mar 2023 20:35:38 +0000 (GMT)
-From: Michal Wajdeczko <michal.wajdeczko@intel.com>
+X-IronPort-AV: E=McAfee;i="6500,9779,10649"; a="711804412"
+X-IronPort-AV: E=Sophos;i="5.98,262,1673942400"; d="scan'208";a="711804412"
+Received: from linux.intel.com ([10.54.29.200])
+ by orsmga001.jf.intel.com with ESMTP; 14 Mar 2023 23:11:49 -0700
+Received: from maurocar-mobl2 (maurocar-mobl2.ger.corp.intel.com
+ [10.252.26.83])
+ (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+ (No client certificate requested)
+ by linux.intel.com (Postfix) with ESMTPS id 5FB97580C1F
+ for <intel-xe@lists.freedesktop.org>; Tue, 14 Mar 2023 23:11:48 -0700 (PDT)
+Date: Wed, 15 Mar 2023 07:11:45 +0100
+From: Mauro Carvalho Chehab <mauro.chehab@linux.intel.com>
 To: intel-xe@lists.freedesktop.org
-Date: Sun, 12 Mar 2023 21:35:19 +0100
-Message-Id: <20230312203521.1652-4-michal.wajdeczko@intel.com>
-X-Mailer: git-send-email 2.21.0
-In-Reply-To: <20230312203521.1652-1-michal.wajdeczko@intel.com>
-References: <20230312203521.1652-1-michal.wajdeczko@intel.com>
+Message-ID: <20230315071145.27b77c86@maurocar-mobl2>
+In-Reply-To: <20230310081338.3275583-1-mauro.chehab@linux.intel.com>
+References: <20230310081338.3275583-1-mauro.chehab@linux.intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-Subject: [Intel-xe] [PATCH 3/5] drm/xe: Initial selftests for xe_gt
+Content-Transfer-Encoding: quoted-printable
+Subject: Re: [Intel-xe] [PATCH] drm/xe/xe_uc_fw: Use firmware files from
+ standard locations
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -63,123 +65,42 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Add few very basic mock and live selftests for the xe_gt.
+On Fri, 10 Mar 2023 09:13:39 +0100
+Mauro Carvalho Chehab <mauro.chehab@linux.intel.com> wrote:
 
-Signed-off-by: Michal Wajdeczko <michal.wajdeczko@intel.com>
----
- .../xe/selftests/live/xe_gt_live_selftest.c   | 40 +++++++++++++++++++
- .../xe/selftests/mock/xe_gt_mock_selftest.c   | 40 +++++++++++++++++++
- drivers/gpu/drm/xe/xe_gt.c                    |  6 +++
- 3 files changed, 86 insertions(+)
- create mode 100644 drivers/gpu/drm/xe/selftests/live/xe_gt_live_selftest.c
- create mode 100644 drivers/gpu/drm/xe/selftests/mock/xe_gt_mock_selftest.c
+> From: Mauro Carvalho Chehab <mchehab@kernel.org>
+>=20
+> The GuC/HuC firmware files used by Xe drivers are the same as
+> used by i915. Use the already-known location to find those
+> firmware files, for a couple of reasons:
+>=20
+> 1. Avoid having the same firmware placed on two different
+>    places on MODULE_FIRMWARE(), if both 915 and xe drivers
+>    are compiled;
+>=20
+> 2. Having firmware files located on different locations may end
+>    creating bigger initramfs, as the same files will be copied
+>    twice my mkinitrd/dracut/...;
 
-diff --git a/drivers/gpu/drm/xe/selftests/live/xe_gt_live_selftest.c b/drivers/gpu/drm/xe/selftests/live/xe_gt_live_selftest.c
-new file mode 100644
-index 000000000000..d807ec1d1d8c
---- /dev/null
-+++ b/drivers/gpu/drm/xe/selftests/live/xe_gt_live_selftest.c
-@@ -0,0 +1,40 @@
-+// SPDX-License-Identifier: GPL-2.0 AND MIT
-+/*
-+ * Copyright Â© 2023 Intel Corporation
-+ */
-+
-+#include <kunit/test.h>
-+
-+#include "selftests/xe_selftests.h"
-+
-+static void test_gt_info(struct kunit *test)
-+{
-+	struct xe_gt *gt = test->priv;
-+
-+	KUNIT_EXPECT_NE(test, gt->info.type, XE_GT_TYPE_UNINITIALIZED);
-+	KUNIT_EXPECT_EQ(test, gt->info.id, 0u);
-+}
-+
-+static void test_gt_is_not_media_type(struct kunit *test)
-+{
-+	struct xe_gt *gt = test->priv;
-+
-+	KUNIT_EXPECT_FALSE(test, xe_gt_is_media_type(gt));
-+}
-+
-+static struct kunit_case gt_live_test_cases[] = {
-+	KUNIT_CASE(test_gt_info),
-+	KUNIT_CASE(test_gt_is_not_media_type),
-+	{}
-+};
-+
-+static struct kunit_suite gt_live_suite = {
-+	.name = "gt_live",
-+	.test_cases = gt_live_test_cases,
-+
-+	.suite_init = init_xe_live_selftest_suite,
-+	.init = init_xe_gt_selftest,
-+	.exit = exit_xe_gt_selftest,
-+};
-+
-+kunit_test_suite(gt_live_suite);
-diff --git a/drivers/gpu/drm/xe/selftests/mock/xe_gt_mock_selftest.c b/drivers/gpu/drm/xe/selftests/mock/xe_gt_mock_selftest.c
-new file mode 100644
-index 000000000000..f208aea3d1a0
---- /dev/null
-+++ b/drivers/gpu/drm/xe/selftests/mock/xe_gt_mock_selftest.c
-@@ -0,0 +1,40 @@
-+// SPDX-License-Identifier: GPL-2.0 AND MIT
-+/*
-+ * Copyright © 2023 Intel Corporation
-+ */
-+
-+#include <kunit/test.h>
-+
-+#include "selftests/xe_selftests.h"
-+
-+static void test_basic(struct kunit *test)
-+{
-+	struct xe_gt *gt = test->priv;
-+
-+	KUNIT_ASSERT_NOT_NULL(test, gt);
-+	KUNIT_EXPECT_EQ(test, gt->info.type, XE_GT_TYPE_MAIN);
-+	KUNIT_EXPECT_EQ(test, gt->info.id, 0u);
-+}
-+
-+static void test_to_xe(struct kunit *test)
-+{
-+	struct xe_gt *gt = test->priv;
-+
-+	KUNIT_ASSERT_NOT_NULL(test, gt->xe);
-+}
-+
-+static struct kunit_case gt_mock_test_cases[] = {
-+	KUNIT_CASE(test_basic),
-+	KUNIT_CASE(test_to_xe),
-+	{}
-+};
-+
-+static struct kunit_suite gt_mock_suite = {
-+	.name = "gt_mock",
-+	.test_cases = gt_mock_test_cases,
-+
-+	.init = init_xe_gt_selftest,
-+	.exit = exit_xe_gt_selftest,
-+};
-+
-+kunit_test_suite(gt_mock_suite);
-diff --git a/drivers/gpu/drm/xe/xe_gt.c b/drivers/gpu/drm/xe/xe_gt.c
-index daa433d0f2f5..83861014acfa 100644
---- a/drivers/gpu/drm/xe/xe_gt.c
-+++ b/drivers/gpu/drm/xe/xe_gt.c
-@@ -852,3 +852,9 @@ struct xe_hw_engine *xe_gt_any_hw_engine_by_reset_domain(struct xe_gt *gt,
- 
- 	return NULL;
- }
-+
-+#if IS_ENABLED(CONFIG_DRM_XE_SELFTESTS_MOCK)
-+#include "selftests/mock/xe_gt_mock_selftest.c"
-+#elif IS_ENABLED(CONFIG_DRM_XE_SELFTESTS_LIVE)
-+#include "selftests/live/xe_gt_live_selftest.c"
-+#endif
--- 
-2.25.1
+Heh, it turns that it may not even be placing the firmware at the right
+place, if someone does a symlink for /lib/firmware/xe pointing to=20
+/lib/firmware/i915 (or vice versa), depending on what's implemented
+at the mkinitrd logic.
 
+I found this on /usr/share/initramfs-tools/hook-functions:
+
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 # We don't need to replicate a c=
+hain of links completely;
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 # just link directly to the ulti=
+mate target
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 link_target=3D"$(readlink -f "${=
+src}")" || return $(($? + 1))
+
+So, basically, using Ubuntu's default mkinitrd package, if=20
+/lib/firmware/xe is a symlink, instead of storing
+/lib/firmware/xe/bxt_dmc_ver1_07.bin, it will actually store
+/lib/firmware/i915/bxt_dmc_ver1_07.bin at the initramfs, which
+will cause crashes if the Xe driver is not blacklisted.
+
+Regards,
+Mauro
