@@ -4,139 +4,136 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id D2EEAC6FD1D
-	for <intel-xe@archiver.kernel.org>; Wed, 15 Mar 2023 00:18:21 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 33F47C6FD1D
+	for <intel-xe@archiver.kernel.org>; Wed, 15 Mar 2023 00:36:13 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7BDDE10E120;
-	Wed, 15 Mar 2023 00:18:21 +0000 (UTC)
-Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9D0FE10E120
- for <intel-xe@lists.freedesktop.org>; Wed, 15 Mar 2023 00:18:19 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E4D5C10E075;
+	Wed, 15 Mar 2023 00:36:12 +0000 (UTC)
+Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2F44510E075
+ for <intel-xe@lists.freedesktop.org>; Wed, 15 Mar 2023 00:36:11 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1678839499; x=1710375499;
+ t=1678840571; x=1710376571;
  h=date:from:to:cc:subject:message-id:references:
  in-reply-to:mime-version;
- bh=hThggDtv9BVq04AOQkio5TZRHjlv8QzEoPS3F1OAvnw=;
- b=cbgYa/kmb4BIm8QayIO1Xq0TJaP38O/Z7AG1CzcUSVlnJIJX0T2DmU/C
- h/g3yzGLY9r1YAy93EVtrs7gWK8J5AoG3/Gt+GwoEre8BIbX+RmvFs1WI
- dltMD+kcSXXCm7m1lzP8mgdOP3vkLDkgUIgbUbEdWhbow9l1gyt/+d5mR
- wlHd6WfcP2f/Qgf/COZrPI/tMd1Is7JoXgJ9c6a7Re1gci0p8NdXjsIK3
- A4cwdjLSsL5o7b8L8vbf+ZNP3RJkWymbtgXKZxGGseQCBJ3AWjdQWK+uH
- jfnZ44tAsvtldpy55v4DUxCqwqzrLw00nIlEICwRWKKNuKYd95cJfIgBH w==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10649"; a="365251177"
-X-IronPort-AV: E=Sophos;i="5.98,261,1673942400"; d="scan'208";a="365251177"
-Received: from orsmga003.jf.intel.com ([10.7.209.27])
- by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 14 Mar 2023 17:18:19 -0700
+ bh=wkJO9n7XWbwrRupA2jidaoB/omIb815Kpbf6VgAfQQM=;
+ b=esReqSGe/saZuZxZ+ehiMnh9l3Q/FIZMmXGJTqWl0DZ08KrgAM7SHI1G
+ t7hSEVrOZGbO9sKwT+0oIlbArHHH+vM+MbwKMg4mc+1u+3JPltaxtLQkA
+ f7SGxEcD2X2ieE00uakMuASi2h61nGY0FsJOqelRn7Lsctdi1SQmdU8X2
+ AHAq5dJ/YkkRq2bm/tEJ31Qs5OBC8eu9O/N09tW7isNCTrQ3GKfnu90G6
+ l6JYFK37huhk2LkhQEg0ZdveX49s29B54UMK6o+mdjqkj4g2iOmIASYdm
+ yMQ5MQOO19AST+DU61D9JFj3xtfXnkZ6b//xajzxYIOFbw0npONAVWoAv A==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10649"; a="402447170"
+X-IronPort-AV: E=Sophos;i="5.98,261,1673942400"; d="scan'208";a="402447170"
+Received: from orsmga005.jf.intel.com ([10.7.209.41])
+ by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 14 Mar 2023 17:36:10 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6500,9779,10649"; a="629272910"
-X-IronPort-AV: E=Sophos;i="5.98,261,1673942400"; d="scan'208";a="629272910"
-Received: from orsmsx602.amr.corp.intel.com ([10.22.229.15])
- by orsmga003.jf.intel.com with ESMTP; 14 Mar 2023 17:18:18 -0700
-Received: from orsmsx610.amr.corp.intel.com (10.22.229.23) by
- ORSMSX602.amr.corp.intel.com (10.22.229.15) with Microsoft SMTP Server
+X-IronPort-AV: E=McAfee;i="6500,9779,10649"; a="853396750"
+X-IronPort-AV: E=Sophos;i="5.98,261,1673942400"; d="scan'208";a="853396750"
+Received: from fmsmsx601.amr.corp.intel.com ([10.18.126.81])
+ by orsmga005.jf.intel.com with ESMTP; 14 Mar 2023 17:36:10 -0700
+Received: from fmsmsx610.amr.corp.intel.com (10.18.126.90) by
+ fmsmsx601.amr.corp.intel.com (10.18.126.81) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.21; Tue, 14 Mar 2023 17:18:18 -0700
-Received: from orsmsx610.amr.corp.intel.com (10.22.229.23) by
- ORSMSX610.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
+ 15.1.2507.21; Tue, 14 Mar 2023 17:36:10 -0700
+Received: from FMSEDG603.ED.cps.intel.com (10.1.192.133) by
+ fmsmsx610.amr.corp.intel.com (10.18.126.90) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.21; Tue, 14 Mar 2023 17:18:18 -0700
-Received: from ORSEDG601.ED.cps.intel.com (10.7.248.6) by
- orsmsx610.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.21 via Frontend Transport; Tue, 14 Mar 2023 17:18:18 -0700
-Received: from NAM11-BN8-obe.outbound.protection.outlook.com (104.47.58.168)
- by edgegateway.intel.com (134.134.137.102) with Microsoft SMTP Server
+ 15.1.2507.21 via Frontend Transport; Tue, 14 Mar 2023 17:36:10 -0700
+Received: from NAM10-MW2-obe.outbound.protection.outlook.com (104.47.55.107)
+ by edgegateway.intel.com (192.55.55.68) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2507.21; Tue, 14 Mar 2023 17:18:18 -0700
+ 15.1.2507.21; Tue, 14 Mar 2023 17:36:09 -0700
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=VHmtwLm3tXON60luIHcv9rke4LtptAqHboJD6MygmhVC1lMrs48PVKfURgFD42SLJsh9G2DmEJiNEx6jIBcVar6w3Tb0HlL2QJUe+vZujCR/ddOaK9yrVNR9IypRBxcWvCr77PK8ivWu3z7Qx7484es6R5CmfoDnF9fFRq1y/Xp0TV4uxrHAV+jt2IqKvafAU+L5PZ6eoWBW5XM/wDStztHDnPqxZsReQqDKseDGRPat+vpzTtUglP9yA4FvyimYAV5P2g3Lf1EZonQnF8oQTwCiIvlS4moNvq4YG1MSIcgdhxQYeCVFj3PImVuDTK3H+hY2WFNXn+lpCfKIn58I7g==
+ b=EnJXDi17unakL/ozZHsVO8rtwcdHH0m5I4ECjCOpWtsgzgWLubgAST6O5dFZa8c5sDm/4NMtcwY3rkGLOgH2wHAc8ZYSlDLv2d4xoEpFsGsUNq8caUePlI5CQzJailQ61QVM95qrgqjGqBjEy/ZcP0zxd93Yy3aYYuxEbVVUDx1+4rVJb7cbWwmRg6KDTHZi6Kse7Qaz74QKZafs7Z+6iv3HuDgllQj4gZegvY9tTXGS2s5+1VxfmzovjAjWJW1NIeGpYhdQwq3lI2j3EgsFVSdLIM5eS45wl1+oglZ3Y+CqfgxThL7zIto6/43idu4+mACxFB/RHO7uOiOyuntVcQ==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=dT3oQc5tO03O8J7NIMvqNzlXzATA4ZXmyD2zTw79qIM=;
- b=jqInWDY4UYcop0L3KtBuLugdXHBAH+vchgy15AThMB4vIApBkSynYLrIfX1TJCwMhhPU55Q0UbjAwzERZox71INaomTsonWjgqQc1rVhNScow42WbfllfjzXbUO4h5zNZyyCmwyWQivtGN+OVtRtFY2Iypz2Idi+23bIXJgaWY5ldzneFq2pzq58y8+Bq1qtSds9yJoVAmhms09Jh7573DHEi/UfjtUkrVqw+ajgh8kDpc55A4kKOtW4fK951h/uBW9NqWS0BznNE4sXARFLAwDyOKiFOY2CvPszzK6d9qUwRHfMQDBQbpBGfH5Iglq5ODE7jiSVCtX9L7fXPzRuhg==
+ bh=VqwTn+0FlbxeawE16GeLX8yq7kGuAEd/idpfGfaskIw=;
+ b=Jwf751ApeJoqDgh4mfUtijUutYSFYVMVbPUysNxXE2qZkA38wfpPspcqySlixfXuOZWnRi6M7Xcsg1Etv77A1F7xmYE2LqMdaX+Imz6fqeizSW07ky8cIXBHKOpK0xJW46FettYtxgGBQr06qNpf0QWPqqlt9LhKxkb84p+3NOOxJNP78sfg6XjvedbJhngeCC7X79AZLFrpLpMkmrF2KzRAUNQc/FOUfUzIuKhBhDDmFNnKMHfnpbsHJf6NPZ4br4tj2JrfVrNXZfoEMcACcaJ4K2wBIHMZaG6D+d4RiZiC/oUPEOltNJfZqb91xOsA/spwZpdeNemEM9Ws9N92cw==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
  dkim=pass header.d=intel.com; arc=none
 Authentication-Results: dkim=none (message not signed)
  header.d=none;dmarc=none action=none header.from=intel.com;
 Received: from CY5PR11MB6139.namprd11.prod.outlook.com (2603:10b6:930:29::17)
- by BL1PR11MB5526.namprd11.prod.outlook.com (2603:10b6:208:31d::21)
- with Microsoft SMTP Server (version=TLS1_2,
+ by PH0PR11MB4903.namprd11.prod.outlook.com (2603:10b6:510:36::6) with
+ Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6178.26; Wed, 15 Mar
- 2023 00:18:15 +0000
+ 2023 00:36:08 +0000
 Received: from CY5PR11MB6139.namprd11.prod.outlook.com
  ([fe80::2629:fb12:6221:3745]) by CY5PR11MB6139.namprd11.prod.outlook.com
  ([fe80::2629:fb12:6221:3745%4]) with mapi id 15.20.6178.017; Wed, 15 Mar 2023
- 00:18:15 +0000
-Date: Tue, 14 Mar 2023 17:18:13 -0700
+ 00:36:08 +0000
+Date: Tue, 14 Mar 2023 17:36:06 -0700
 From: Lucas De Marchi <lucas.demarchi@intel.com>
-To: Michal Wajdeczko <michal.wajdeczko@intel.com>
-Message-ID: <20230315001813.7n6y35bhn3qhfpsf@ldmartin-desk2.jf.intel.com>
+To: Matt Roper <matthew.d.roper@intel.com>
+Message-ID: <20230315003606.tgblu2lag7qut45m@ldmartin-desk2.jf.intel.com>
 X-Patchwork-Hint: comment
-References: <20230313081316.2408-1-michal.wajdeczko@intel.com>
- <20230313081316.2408-2-michal.wajdeczko@intel.com>
- <20230313162348.s3cle2rpnvtgh6yk@ldmartin-desk2.lan>
+References: <20230314003012.2600353-1-lucas.demarchi@intel.com>
+ <20230314003012.2600353-15-lucas.demarchi@intel.com>
+ <20230314234658.GC4085390@mdroper-desk1.amr.corp.intel.com>
 Content-Type: text/plain; charset="us-ascii"; format=flowed
 Content-Disposition: inline
-In-Reply-To: <20230313162348.s3cle2rpnvtgh6yk@ldmartin-desk2.lan>
-X-ClientProxiedBy: BYAPR05CA0056.namprd05.prod.outlook.com
- (2603:10b6:a03:74::33) To CY5PR11MB6139.namprd11.prod.outlook.com
+In-Reply-To: <20230314234658.GC4085390@mdroper-desk1.amr.corp.intel.com>
+X-ClientProxiedBy: BYAPR11CA0037.namprd11.prod.outlook.com
+ (2603:10b6:a03:80::14) To CY5PR11MB6139.namprd11.prod.outlook.com
  (2603:10b6:930:29::17)
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: CY5PR11MB6139:EE_|BL1PR11MB5526:EE_
-X-MS-Office365-Filtering-Correlation-Id: afb1e91a-ddaa-4af1-0fd6-08db24eac567
+X-MS-TrafficTypeDiagnostic: CY5PR11MB6139:EE_|PH0PR11MB4903:EE_
+X-MS-Office365-Filtering-Correlation-Id: 5f45ae40-a87a-41ed-007a-08db24ed44ad
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: YpWbykjp977beNQafGzqi8H2n00UhEbDtwChsrNj2fE06PP9lH2cTDi1nOMxuzzUgWw5HSjAw9qNtjwGS7uA3V9Bsj458xuHZYdf95VVAJceDC8oPvKfok1/4d25iBo6/HeB7YUDrFjnWc/14uvVnZscggNmbsaA13vlntnkeku1+6h5/sGEILIRWPMayVouwSkEeyGgIb8eoegiFk0PG0TlM6hvAA40uZ6nJY8S1Bss3LYg1a+YR64yEpCKatMu/tQEJt6sceGVR/XOaoO9VwzT6uGg3z53YIyNz9axwz9fHhlVot5Yz9F7k4SZK4CyPHXGRRfDFZPpQkaNyiDkTdCTcF7VpdCh9KFI+faWc5vq0IxQqiSoDbLvD1RmYrfdHfbMNnivIIIc31kIcJIP/VdUV8ynQps6Y1eUtWBI63ubhzqLbpflOYQKPyv3baGohsPE2jUvMkiRefzY84aOfttEvE3JWYbKrPoRNI9Ds6ky6ObOgfx99lk1rAot6xHzN1bd5aXvvLI9pMTOIy9+TtJo4ujdb078IEBOQ+K5/hNjg/lSZW96CtmBh8zIvXhmaFzpSIYAjP8jLJFXnO9VUBu28t9QmScZuMrNADIKbSUmd0JXHAEIa0YBXkgB/6feihKgpJDwi/vpEmNqBExLSA==
+X-Microsoft-Antispam-Message-Info: u1kD2CbviQep2CgcIGV6P/BkT/Hfs93WavcnzzthlhkXokw6gz+OVh9OOt+DkWB7nuXWnG2i8e8mxugoUEYTv/cLd1i4W6ES7l4oJbKOLtfAA2Z2u2pW1ITAYTTIuObZHSFKqx9Ibf+8a3ZJkC3N4ZikC4J0JIA5cC2+P7/Os6hF1v7FPbxKpmEsmSiDDsp+Ue6sbM1fcuchSSpX3HVn26wocO+ez85wrGT967fvpMmC8s2dOdUQ/VVlDAMtelGjKTIn7OHmAUJrngqPYRVJS8swRfaohy7RjxWh6cWwHV4LorBobpdOKpZETlAIENv3AGSoRMtBRc/pUIwNKKKhlqnLsJKqGQz0Nsi3AOk26n+YnLGXltoXZWZ14eQZjedBMcsUsehi0pKGt6Ar3lf9MpCkcZdYrvRg+lY4UFR74KdvJ4bt+ao8uHTPV3TY96oMh5HRx5NLeu3gggimns+xfDFyxtU3TnaXwvFVfw/PPYVKS4grbJQRqiZwgCT6Zk5xf1RpPMh7IFyrgPhIi7e8B23DJF4VedPM031RD+eXVd7EUNb95XrJkV04stinA0XjlfEG6VxtnXzaXbcf1mCJUTrmLnCEwuoFhpW54cSEGk525UI0obVzPWcBT28n8H7s4QK/xprajREKqAlhL1s7BQ==
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
  IPV:NLI; SFV:NSPM; H:CY5PR11MB6139.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230025)(39860400002)(346002)(396003)(366004)(136003)(376002)(451199018)(66946007)(478600001)(66556008)(6636002)(66476007)(4326008)(316002)(41300700001)(8936002)(2906002)(5660300002)(6862004)(6486002)(86362001)(8676002)(82960400001)(26005)(186003)(6512007)(1076003)(6506007)(38100700002)(83380400001);
+ SFS:(13230025)(39860400002)(346002)(366004)(396003)(376002)(136003)(451199018)(8676002)(478600001)(6862004)(66556008)(316002)(4326008)(66476007)(6636002)(66946007)(8936002)(41300700001)(5660300002)(2906002)(86362001)(6486002)(26005)(6506007)(6512007)(1076003)(82960400001)(186003)(83380400001)(38100700002);
  DIR:OUT; SFP:1102; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?6cTqrUxdmPRS0sjrB0zIq+EUKL6B4bgM9IejynsfWoTVOKizvQqPz3Vv0jjX?=
- =?us-ascii?Q?4NbsrCNEDjGyfeGZrcKT6lr5gVRF1RWYztixbE7MfDLoO2N/7YdOblcJ7yOL?=
- =?us-ascii?Q?+QGexWbOl0rgFpJlWjMv7Zr/CQxSIffzeH2v3tzCi30U52TF29qxMsIT9IiE?=
- =?us-ascii?Q?7zqPh7jXp+RWk9w6/0VvTQg1pCWQVbSriWTG0QvuDQ/SsRdm0Dgnmk72dUAh?=
- =?us-ascii?Q?8wYCkfwjB1OLGNTQmmGq4+7uYgMAGjIcWiL7sjvAxhIqRHRgtlhdNGcmlnZN?=
- =?us-ascii?Q?P7x+hU309A68lRhUv56AAOrfcf/wDPQ3oldbJNgAexUr/8TD1RP4uQGcxi3s?=
- =?us-ascii?Q?f3pNkKFRQGS8gDrNAfIKMcY9gkEt9zxaeeAH+M/Kd+AS0+fkqCoVHBNPAcu3?=
- =?us-ascii?Q?cCW2xXCKI+JsKrc2IXajHAxoRRoBz9wgJhQ9Z1Bsi80uM8+bYvSycZq2xtj6?=
- =?us-ascii?Q?Uo5VY5YtdpMfGnWRypC3OYTHz7dNg79GQu2fIiaqIHQpE362VsWSv9634wKE?=
- =?us-ascii?Q?8cp96t0FGG+v1HK9PLWvUqxfJqYDsAQpOzZAVjhtPRYi9kmOePl3kK6Q12VQ?=
- =?us-ascii?Q?rYbc0sAxxYaKP50ZoFTCny8ILXcldCgPJLKZCHuzvHmmmm3RHBgAtskkJlYd?=
- =?us-ascii?Q?8J3hzDhI+JzXJ22uF6ITI4Wah/ogR9GyqfgUUc15VEoACim96t3I+jSTMeA+?=
- =?us-ascii?Q?lLUYUYI4iE0ehCYni8Rg+yeR0vki6QjgT8UavkX2Vu4d2k4bFHww3Aqv39pU?=
- =?us-ascii?Q?etcJHz6l+sUTqNIch6+bFebpo/Y2FExGcgwHXQ6zPy5lcPtFUgsRYgp7kdjI?=
- =?us-ascii?Q?mYeP2V/8pDAKGSi367mcG7FIp7OC04tvQo7fgG7LL9ZVtnHzc5vZHZLoRISB?=
- =?us-ascii?Q?twMdavYoMNs1GmUj5QYgTGf5GHx+KxPnK8Nvl/XyeCQb4maiR4n0hjY2tVkF?=
- =?us-ascii?Q?/C2nH2MTbfp5OAz3s8TgFKAz8uO1Z6Q/urjtXNJghAx+qjeyM/e+uNFhjwvX?=
- =?us-ascii?Q?Uw8hkrBvbnCOkyWlGpy6GtLTvZzTPTfAzBp4QWOs1oJ0BouO3O5EA4ZWwfE5?=
- =?us-ascii?Q?sDjIqvglSwkzKm6xScgjAfTF9TIeliF9O+lzsd2GODWPQZHAI9vsLsUemsKB?=
- =?us-ascii?Q?MNORZqQv6rS8NWdyQQdTBLYfmSEpzAgS7mmcILkueEIxw5N9yK7IzD7MVu1R?=
- =?us-ascii?Q?JUUbOgGI/z6BvVB8RsPWy8PLaiPg4SfojmVpDKYsb6lI+DFwZ5bkxV7VTrM9?=
- =?us-ascii?Q?t+EruM5Hqm9o3MthIxqPjBgDzQJwm6HCSNz53Hqpa7gmPeziQiWL3qpmUcH/?=
- =?us-ascii?Q?Nq30frNWEiA21X3oCDmNmSA1vH5KkEdTyBmYEEPK88rUKv330lHNN7BMFlBo?=
- =?us-ascii?Q?DUqyEBnPg0tIqbzwqJyzFGJ6fZ+vkLepVp0EttDG5MwlA+hFYed7HQS68U0V?=
- =?us-ascii?Q?gjcXiizjb8nJMq8bMpQMFj9nTf6UT0o7ccHHhIrmkZUdoegFeVg5b33Fsck3?=
- =?us-ascii?Q?w6N8IN/Yda8b9crPPnBADyvZHojP464cLAYyZ2J7gXm65oYFFOT3UbCHkUiA?=
- =?us-ascii?Q?7CZH7RcztkbGLU1N/WZLlCBBbigK8K1reV6koeuQdbEZVAbf5QiDMQRCQ1tQ?=
- =?us-ascii?Q?1Q=3D=3D?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: afb1e91a-ddaa-4af1-0fd6-08db24eac567
+X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?1QTse84LVN+yghh5pRO7+KQMo4y0oOW5+kgOZbKSvvGSMNSxFiba4SjiHMnA?=
+ =?us-ascii?Q?7j9zea6gIqU5aSs6/shRhKJ3+AGN+4P5yvYEpDeOVUBrV3riMjHPAkn9tQ+j?=
+ =?us-ascii?Q?RkShxDBJ6QxL1GCMX7nlBWm0Qd7YHY13jgPzFxGXet/ekJvXl9sBy8n6TjKt?=
+ =?us-ascii?Q?KgaG9Ue7gFmi+aTcdnUoIYXWnAEJig5Y49GaSje6icPGwYyJY+QPYgUR14h0?=
+ =?us-ascii?Q?AvGG1Io5CXUge8/thsjji3JquA6koQrLxkvCunqS5tMufPIcYGkFG8zsh/LL?=
+ =?us-ascii?Q?KtUbPOCH2+6Tl+uyPnGYt2YrEnF8FKjD816RKGNFbZVOebYNZqelzYv37sne?=
+ =?us-ascii?Q?zUIaP56AUmc713heqgYeV4quXMoQs6Kr3B5Aqo+o2T0jvItzYQzl08i5B+oc?=
+ =?us-ascii?Q?Zon7PPMJaJGAjpwvEy6U4T6kJk03/bsaWGiIEO/bFq/qQ2f+rjEy2d+/DrSn?=
+ =?us-ascii?Q?Msbu7AMLE7EU6/hFeB0SEYLjkIq+nlLTLEVUvgNurE8+HYRj4dynwxqlntvQ?=
+ =?us-ascii?Q?zNR1QTGnKqvT5hKEPdYJO/IqZNcxKo/3U8jdWz8wrm2+lDyhFjChUBbDCXe7?=
+ =?us-ascii?Q?LYSFldNixpo7MuzzMXiRVN4NwMolsFOy4R4yzEzbfAy3LtU8E37oD8x2MNar?=
+ =?us-ascii?Q?41rgiPSbHYIHQtPFk1P1shuCrObCu0eL/IMxRB5isR430xpRFTVGU8vvyu/T?=
+ =?us-ascii?Q?p0gyLUhmutbwdiW7qs+PQBF5LVj8lQsD5nXXv3/ah0zmi1O8MrPCyW04MnD8?=
+ =?us-ascii?Q?KuPkbc2LQWbqOMvUN4u5BkTOPvDlyOoKmPxqQrLaFY0GpHfgaZ6m2ydN7ZC+?=
+ =?us-ascii?Q?Q/JwE1TJJQolPyoLqROF43pv8Tz5vJ0y/qThHSqpQsPz8lWTp8JHCVxaJwvY?=
+ =?us-ascii?Q?8Yvp3jB8MvY3rGuga9FKNKrbmcMnzB0GeJXuLSrU3v6YFO9bbcrBdehxVvu2?=
+ =?us-ascii?Q?0BqqLo/09DbYM6/dzJa4zB0LX0G6Wzjckd/LBxS22Ohu4xcWflMXjmkrr3gW?=
+ =?us-ascii?Q?MrrntIu4VpSrWLf0Ic6vXS79H32LTGwDihsQYESmlGbGPnzX0UTZ5CKLfaai?=
+ =?us-ascii?Q?FinOCcE/ez/2xkK5P+PwTN8yfvzBvxOWGS+ZpyeVH90y6zb604qX2tocz15L?=
+ =?us-ascii?Q?9VUyIZYH4XdZo4fDelqn+yFiXvKN21iBNcJNstg5ULIDPxJ20so/dvjMb0NL?=
+ =?us-ascii?Q?CK6wnZdN7VF1B1KWtp90PnQ0k0uyPyyD9XJxV8tFO3LwbA57Jeg4JzdmjI7U?=
+ =?us-ascii?Q?sBT8hPJEWr1y2Xqm6zfy1nQL9ai6HI2/ftEAE1bB2hDOEegkNRFMYGdPM/H8?=
+ =?us-ascii?Q?pW4JqUyrhEsCfOkyK7xrA3+y72x5BK66z93YGrcwfEZYSl99TYvS53Iv5CWL?=
+ =?us-ascii?Q?thKzTWP+vGZl+Mb75YR+37MdfSGl3xKCSuWSP0l6eiz4zwtvk3zdEydS785s?=
+ =?us-ascii?Q?RvZqlfEv3hOWt5+sQwgIhSZfMTS41jM+x0pOX5iO7jKei9NJRgU0/2TQp1Xu?=
+ =?us-ascii?Q?qTdUx4t75c76K2MaVsx5pNqdUtM4Gt20pW4y93InY19mgIsk7jnoKQSGKtAA?=
+ =?us-ascii?Q?3ABUeBV4ZHIcU6HITKpvvWGp0qBiWeWdbUL+8PuFChnwLYweltY4qyQ5Rc9s?=
+ =?us-ascii?Q?Pw=3D=3D?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: 5f45ae40-a87a-41ed-007a-08db24ed44ad
 X-MS-Exchange-CrossTenant-AuthSource: CY5PR11MB6139.namprd11.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 15 Mar 2023 00:18:15.7901 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 15 Mar 2023 00:36:08.3281 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: SNZLeEkHOlcdxnBACfcZnV2TxGzG0CUnmWUOyFybOXZlOOIWlSsE/P9BJt24oc8dPA7835IJ4knjOCNo9b302pJvahxWX4qYgSPpntJ5EiU=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: BL1PR11MB5526
+X-MS-Exchange-CrossTenant-UserPrincipalName: 37LQDf1hF7s/5gaBGTbPSwPgQo+kUkbKhpJBgJTE+wXSVLOPFLWR7B0V4Ml7CJhuvpLGpN6CnuIh6k+iP7n6d0nHay4ebfnOlyXXemVt/7I=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH0PR11MB4903
 X-OriginatorOrg: intel.com
-Subject: Re: [Intel-xe] [PATCH 1/5] drm/xe: Introduce new selftests framework
+Subject: Re: [Intel-xe] [PATCH v3 14/14] drm/xe: Move policy on preemption
+ from WAs to tunings
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -148,87 +145,37 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Cc: thomas.hellstrom@intel.com, intel-xe@lists.freedesktop.org
+Cc: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Mon, Mar 13, 2023 at 09:23:48AM -0700, Lucas De Marchi wrote:
->On Mon, Mar 13, 2023 at 09:13:12AM +0100, Michal Wajdeczko wrote:
->>Our initial attempt to run Kunit based tests on live devices is hard
->>to use and will not work well with multiple devices attached.
+On Tue, Mar 14, 2023 at 04:46:58PM -0700, Matt Roper wrote:
+>On Mon, Mar 13, 2023 at 05:30:12PM -0700, Lucas De Marchi wrote:
+>> The fake WA FtrPerCtxtPreemptionGranularityControl is documented in i915
+>> and is not a true WA: it's a policy chosen to allow preemption settings
+>> to be controlled on a per-context basis by userspace. Move it to
+>> xe_tuning.c since it's more in line with what his is doing. However
+>> since it's not something suggested by the spec, prefix it with "Policy"
+>> rather than "Tuning".
 >>
->>Instead of relying on separate test module and duplicating support
->>for multiple live devices in every test entry point, create new set
->>of helpers and use test->priv to pass reference of the device under
->>test (DUT) directly to every test function.
+>> Also, there's no reason to apply this policy only between graphics
+>> version 1200 and 1250. Apply it to all versions, like i915.
 >>
->>The same use pattern is supported for both mock and live selftests.
->>
->>By using bus_notifier we can start testing each new bound device
->>separatelly, subject to filtering using dut_filter modparam.
->>
->>All test cases can be included directly from .c file, allowing test
->>code to access and use any private functions.
->>
->>As Kunit will attempt to run all suites on module load, including
->>our new live test suites, we may want to allow to execute them on
->>any available device. This is controlled by anonymous_dut modparam.
->>
->>Support for either mock or live selftests, only one at time, is
->>controlled by new Kconfig options.
->>
->>Signed-off-by: Michal Wajdeczko <michal.wajdeczko@intel.com>
->>---
->>drivers/gpu/drm/xe/Kconfig.debug              |  22 ++++
->>drivers/gpu/drm/xe/Makefile                   |  11 ++
->>drivers/gpu/drm/xe/selftests/xe_selftests.h   |  35 ++++++
->>.../gpu/drm/xe/selftests/xe_selftests_auto.c  |  46 +++++++
->>.../drm/xe/selftests/xe_selftests_executor.c  | 118 ++++++++++++++++++
->>.../drm/xe/selftests/xe_selftests_helpers.c   | 101 +++++++++++++++
->>.../drm/xe/selftests/xe_selftests_internal.h  |  22 ++++
->>.../gpu/drm/xe/selftests/xe_selftests_mock.c  |  32 +++++
->>.../drm/xe/selftests/xe_selftests_params.c    |  23 ++++
->>drivers/gpu/drm/xe/xe_module.c                |   2 +
->>10 files changed, 412 insertions(+)
->>create mode 100644 drivers/gpu/drm/xe/selftests/xe_selftests.h
->>create mode 100644 drivers/gpu/drm/xe/selftests/xe_selftests_auto.c
->>create mode 100644 drivers/gpu/drm/xe/selftests/xe_selftests_executor.c
->>create mode 100644 drivers/gpu/drm/xe/selftests/xe_selftests_helpers.c
->>create mode 100644 drivers/gpu/drm/xe/selftests/xe_selftests_internal.h
->>create mode 100644 drivers/gpu/drm/xe/selftests/xe_selftests_mock.c
->>create mode 100644 drivers/gpu/drm/xe/selftests/xe_selftests_params.c
->>
->>diff --git a/drivers/gpu/drm/xe/Kconfig.debug b/drivers/gpu/drm/xe/Kconfig.debug
->>index 93b284cdd0a2..aeba43977dca 100644
->>--- a/drivers/gpu/drm/xe/Kconfig.debug
->>+++ b/drivers/gpu/drm/xe/Kconfig.debug
->>@@ -61,6 +61,28 @@ config DRM_XE_SIMPLE_ERROR_CAPTURE
->>
->>	  If in doubt, say "N".
->>
->>+config DRM_XE_SELFTESTS_MOCK
->>+	bool "Mock selftests for Xe" if !KUNIT_ALL_TESTS
->>+	depends on DRM_XE && KUNIT
->>+	default KUNIT_ALL_TESTS
->>+	help
->>+		Choose this option to allow the driver to perform mock
->>+		selftests based on the Kunit framework.
->>+
->>+		Recommended for driver developers only.
->>+		If in doubt, say "N".
->>+
->>+config DRM_XE_SELFTESTS_LIVE
->>+	bool "Live selftests for Xe" if !DRM_XE_SELFTESTS_MOCK
 >
->why?  I think we should aim to run live tests in *addition* to
->mock ones.  The mock tests are more testing our SW infra and can be used
->in a true "unit test" sense. While the live ones are testing the
->integration with the HW and making sure they work together.
+>The big mega-comment in i915 was explicitly requested by the i915
+>maintainers since the way preemption is controlled is kind of hard to
+>follow from the bspec, and there aren't many people around who still
+>remember the old discussions about this stuff from a decade ago.  We
+>should probably bring at least some of that text over to Xe as a comment
+>as well.  We can drop the stuff about gen9, but the explanation of the
+>two control options and list of related workarounds is something we
+>probably want to preserve.
 
-on a similar note, I'd avoid grouping tests as "mock".  Any test
-runnable under UML is a mock test and is testing the SW behavior.
- From a kunit perspective I think it's the live ones, interacting with
-the real hardware that are the exception and can be grouped as "live"
-tests.
+ok. Since all the others are unblocked on the review side. I'm going to
+apply them and come back to this in a "tuning" series where the current
+issue you pointed out in patch 13 is fixed and the comment you are
+pointing out is also copied over.
+
+thanks for the reviews
 
 Lucas De Marchi
