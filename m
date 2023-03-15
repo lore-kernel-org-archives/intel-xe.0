@@ -4,47 +4,47 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7D349C61DA4
-	for <intel-xe@archiver.kernel.org>; Wed, 15 Mar 2023 23:19:23 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 37E06C7618B
+	for <intel-xe@archiver.kernel.org>; Wed, 15 Mar 2023 23:19:24 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5633810E013;
-	Wed, 15 Mar 2023 23:19:23 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 153D210E06B;
+	Wed, 15 Mar 2023 23:19:24 +0000 (UTC)
 Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5FE4410E067
+ by gabe.freedesktop.org (Postfix) with ESMTPS id BE0BC10E013
  for <intel-xe@lists.freedesktop.org>; Wed, 15 Mar 2023 23:19:21 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
  t=1678922361; x=1710458361;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=ncJK+x1efFas9V7VogwAQ8sAW7MGxCobF0w0kytNyCk=;
- b=HJMB5xYc1UAa7rYO/pIiMTCjF0ZAHlysIPpmOzRtZBYv5YON2FllGrD1
- a7tOkmk1ohlYWLxWlRH9FbWt7imt50dFMoRE6yGeDBISvOXg1BlMilgZ0
- UT3/IKbv3uCfZ1y7RV9xLrdEtHy4tHS5wM1hZHXnYyZjNJVQ4/k6Q57aN
- bwhmTNUNG6qAtb2Poa/rDPtrdf0lEW/jnD6IixuqciMoywXCbWvTT7T8K
- V5hLjjNcDDS2iGmEMpJ5pjlVA8pDVJy4u2YfKgbKc5ahIcoGFTZKW+zNy
- 44hHqGdfdCx2nbf/uiuaunppexcAWifaMIr2dMvtjB1rO28c7hcQ4fYms w==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10650"; a="317491012"
-X-IronPort-AV: E=Sophos;i="5.98,262,1673942400"; d="scan'208";a="317491012"
+ bh=Pnew75HVLiZMxgOxfMrUqHpKaJM7gid9Ht0Du3zG/hM=;
+ b=X6hE5+2kgga9LGyqsELRvmnYB+MDcy9gHM2YwPnx281JTlw1DKzh6swN
+ JO9YgLmDS6j1CrOVxaXkoOqLEBiEqMmni9feqzRTDdRAsURMrv6ckHXgm
+ jdwqSl1dqHAjsZ8BzsTqdWgqv80OkMYNck7hGKveZj5J61pY8ptA+/a3p
+ s2FfMXjlzhqFxc9u9b79RdCoElTOXDiOHJCLB5UtQJ7mOrmchkE+G6ISN
+ lVdYGmpo0YXFtsEVGqOm8Lu9NNkwWSn5qxDZEvZjmJjm040SiBAUN9d/p
+ nb2/sFibvXJbKrbfS9H7A3SmOJu0nZgmWDzc6RJN/09ceoFVK0pxB9L/l w==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10650"; a="317491009"
+X-IronPort-AV: E=Sophos;i="5.98,262,1673942400"; d="scan'208";a="317491009"
 Received: from fmsmga002.fm.intel.com ([10.253.24.26])
  by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  15 Mar 2023 16:19:19 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6500,9779,10650"; a="790018443"
-X-IronPort-AV: E=Sophos;i="5.98,262,1673942400"; d="scan'208";a="790018443"
+X-IronPort-AV: E=McAfee;i="6500,9779,10650"; a="790018439"
+X-IronPort-AV: E=Sophos;i="5.98,262,1673942400"; d="scan'208";a="790018439"
 Received: from lstrano-desk.jf.intel.com ([10.24.89.184])
  by fmsmga002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 15 Mar 2023 16:19:18 -0700
+ 15 Mar 2023 16:19:17 -0700
 From: Matthew Brost <matthew.brost@intel.com>
 To: <intel-xe@lists.freedesktop.org>
-Date: Wed, 15 Mar 2023 16:19:16 -0700
-Message-Id: <20230315231920.4095284-3-matthew.brost@intel.com>
+Date: Wed, 15 Mar 2023 16:19:15 -0700
+Message-Id: <20230315231920.4095284-2-matthew.brost@intel.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20230315231920.4095284-1-matthew.brost@intel.com>
 References: <20230315231920.4095284-1-matthew.brost@intel.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-xe] [PATCH 2/6] maple_tree: Export mas_preallocate
+Subject: [Intel-xe] [PATCH 1/6] maple_tree: split up MA_STATE() macro
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -60,25 +60,67 @@ Cc: paulo.r.zanoni@intel.com, lionel.g.landwerlin@intel.com, dakr@redhat.com
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-The DRM GPUVA implementation needs this function.
+From: Danilo Krummrich <dakr@redhat.com>
 
-Signed-off-by: Matthew Brost <matthew.brost@intel.com>
+Split up the MA_STATE() macro such that components using the maple tree
+can easily inherit from struct ma_state and build custom tree walk
+macros to hide their internals from users.
+
+Example:
+
+struct sample_iterator {
+	struct ma_state mas;
+	struct sample_mgr *mgr;
+};
+
+\#define SAMPLE_ITERATOR(name, __mgr, start)			\
+	struct sample_iterator name = {				\
+		.mas = MA_STATE_INIT(&(__mgr)->mt, start, 0),	\
+		.mgr = __mgr,					\
+	}
+
+\#define sample_iter_for_each_range(it__, entry__, end__) \
+	mas_for_each(&(it__).mas, entry__, end__)
+
+--
+
+struct sample *sample;
+SAMPLE_ITERATOR(si, min);
+
+sample_iter_for_each_range(&si, sample, max) {
+	frob(mgr, sample);
+}
+
+Signed-off-by: Danilo Krummrich <dakr@redhat.com>
 ---
- lib/maple_tree.c | 1 +
- 1 file changed, 1 insertion(+)
+ include/linux/maple_tree.h | 7 +++++--
+ 1 file changed, 5 insertions(+), 2 deletions(-)
 
-diff --git a/lib/maple_tree.c b/lib/maple_tree.c
-index df352f6ccc24..312cc1ceb534 100644
---- a/lib/maple_tree.c
-+++ b/lib/maple_tree.c
-@@ -5726,6 +5726,7 @@ int mas_preallocate(struct ma_state *mas, void *entry, gfp_t gfp)
- 	mas_reset(mas);
- 	return ret;
- }
-+EXPORT_SYMBOL_GPL(mas_preallocate);
+diff --git a/include/linux/maple_tree.h b/include/linux/maple_tree.h
+index e594db58a0f1..baeb989c6e14 100644
+--- a/include/linux/maple_tree.h
++++ b/include/linux/maple_tree.h
+@@ -424,8 +424,8 @@ struct ma_wr_state {
+ #define MA_ERROR(err) \
+ 		((struct maple_enode *)(((unsigned long)err << 2) | 2UL))
  
- /*
-  * mas_destroy() - destroy a maple state.
+-#define MA_STATE(name, mt, first, end)					\
+-	struct ma_state name = {					\
++#define MA_STATE_INIT(mt, first, end)					\
++	{								\
+ 		.tree = mt,						\
+ 		.index = first,						\
+ 		.last = end,						\
+@@ -435,6 +435,9 @@ struct ma_wr_state {
+ 		.alloc = NULL,						\
+ 	}
+ 
++#define MA_STATE(name, mt, first, end)					\
++	struct ma_state name = MA_STATE_INIT(mt, first, end)
++
+ #define MA_WR_STATE(name, ma_state, wr_entry)				\
+ 	struct ma_wr_state name = {					\
+ 		.mas = ma_state,					\
 -- 
 2.34.1
 
