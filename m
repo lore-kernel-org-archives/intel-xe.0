@@ -4,49 +4,50 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4EA75C7618B
-	for <intel-xe@archiver.kernel.org>; Wed, 15 Mar 2023 15:55:48 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 292ADC761AF
+	for <intel-xe@archiver.kernel.org>; Wed, 15 Mar 2023 15:55:56 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2130810E8C6;
-	Wed, 15 Mar 2023 15:55:48 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id EBB1F10E8C6;
+	Wed, 15 Mar 2023 15:55:55 +0000 (UTC)
 Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6DAE010E8C6
- for <intel-xe@lists.freedesktop.org>; Wed, 15 Mar 2023 15:55:45 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E7BA110E8C6
+ for <intel-xe@lists.freedesktop.org>; Wed, 15 Mar 2023 15:55:52 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1678895745; x=1710431745;
+ t=1678895753; x=1710431753;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=3hZwMV7oGtj2gOqItEg8kwAOawWEFh7kNUDNcmFfxG4=;
- b=KpteNCEPjrkTw97FUSBpCx/cdLRj/pxnELnyJRmnhOuSkYPu44MdpswB
- b/mYY76JzNODMnbdKjnFxZQE2A/vGZBEqCLkzGAg9bcUuQTaOyDS+RjIe
- S+y1v1fUiGHxe92fR9I/uJe/ZaR70ymoUSllGPKIAJMcqb9jxBq3wQHH0
- Stv5Q5loiM9oTgLafNSOFTvCOpK94a8awWapiTvJX2JCMj2hfwrmgpbcV
- oJm2+M9uMeEin1KsSfgiT0UVH0DKjctVP0ldLaTuHefghj2+u/EL2B0Wp
- EdleaS0vqLaitG7q4Ts298zRPcuEi/simX4cBk+HOaw6EAGGtwzMTl9ot g==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10650"; a="321583137"
-X-IronPort-AV: E=Sophos;i="5.98,262,1673942400"; d="scan'208";a="321583137"
+ bh=LsLNhZnvW4WxpZOXvuXNIjTWUF6eqz5vEj7oZWA0JhE=;
+ b=THivJGTtWCsgA3QGdjrzgsjqwLkp/6Y90RzTnIOh1iMJC1bP9tudXei3
+ 5oHV8myWlFErwIdxrxG8H+OPDU3d4ndnwRfnCdQs3GM17tvBvfQqZUXHu
+ pe9eHI+sFIld9Kcvl3lJ8Y0X0rMXyrth65L/pQNtoNHQ2z5Mr6MYlGP7T
+ fw7TOUU6C9UKW7mRr1sPwdbouIPNJPST4PzLZhfoi1whJTWL9TAlF3tZ5
+ Te/nhHfXxdZKrBsla+CbdIEGOhbMSOOk6+n9itdrOPGVIIIG/+xDnjR3e
+ sZdOduBjvzyND9Ra+PDTq99KvDqoSsJOYjhecfEO4PbMd/ENSzjYO3Tdg w==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10650"; a="321583218"
+X-IronPort-AV: E=Sophos;i="5.98,262,1673942400"; d="scan'208";a="321583218"
 Received: from orsmga001.jf.intel.com ([10.7.209.18])
  by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 15 Mar 2023 08:55:43 -0700
+ 15 Mar 2023 08:55:51 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6500,9779,10650"; a="711973789"
-X-IronPort-AV: E=Sophos;i="5.98,262,1673942400"; d="scan'208";a="711973789"
+X-IronPort-AV: E=McAfee;i="6500,9779,10650"; a="711973904"
+X-IronPort-AV: E=Sophos;i="5.98,262,1673942400"; d="scan'208";a="711973904"
 Received: from lbarg-mobl1.ger.corp.intel.com (HELO thellstr-mobl1.intel.com)
  ([10.249.254.237])
  by orsmga001-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 15 Mar 2023 08:55:41 -0700
+ 15 Mar 2023 08:55:47 -0700
 From: =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>
 To: intel-xe@lists.freedesktop.org
-Date: Wed, 15 Mar 2023 16:55:04 +0100
-Message-Id: <20230315155507.43933-5-thomas.hellstrom@linux.intel.com>
+Date: Wed, 15 Mar 2023 16:55:06 +0100
+Message-Id: <20230315155507.43933-7-thomas.hellstrom@linux.intel.com>
 X-Mailer: git-send-email 2.39.2
 In-Reply-To: <20230315155507.43933-1-thomas.hellstrom@linux.intel.com>
 References: <20230315155507.43933-1-thomas.hellstrom@linux.intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-xe] [PATCH v2 4/7] drm/xe: Introduce xe_engine_is_idle()
+Subject: [Intel-xe] [PATCH v2 6/7] drm/xe/tests: Test both CPU- and GPU
+ page-table updates with the migrate test
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -62,93 +63,154 @@ Cc: matthew.auld@intel.com
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Introduce xe_engine_is_idle, and replace the static function in
-xe_migrate.c.
-The latter had two flaws. First the seqno == 1 test might return a false
-true value each time the seqno counter wrapped, Second, the
-cur_seqno == next_seqno test would never return true.
+Add a test parameter to force GPU page-table updates with the migrate
+test and test both CPU- and GPU updates. Also provide some timing
+results.
 
 Signed-off-by: Thomas Hellström <thomas.hellstrom@linux.intel.com>
 Reviewed-by: Matthew Auld <matthew.auld@intel.com>
 ---
- drivers/gpu/drm/xe/xe_engine.c  | 23 +++++++++++++++++++++++
- drivers/gpu/drm/xe/xe_engine.h  |  2 ++
- drivers/gpu/drm/xe/xe_migrate.c |  8 +-------
- 3 files changed, 26 insertions(+), 7 deletions(-)
+ drivers/gpu/drm/xe/tests/xe_migrate.c | 24 ++++++++++++++++++++++--
+ drivers/gpu/drm/xe/tests/xe_test.h    |  1 +
+ drivers/gpu/drm/xe/xe_migrate.c       | 17 +++++++++++++++++
+ 3 files changed, 40 insertions(+), 2 deletions(-)
 
-diff --git a/drivers/gpu/drm/xe/xe_engine.c b/drivers/gpu/drm/xe/xe_engine.c
-index 7e6367a84f1f..a4fc5afdf688 100644
---- a/drivers/gpu/drm/xe/xe_engine.c
-+++ b/drivers/gpu/drm/xe/xe_engine.c
-@@ -683,6 +683,29 @@ static void engine_kill_compute(struct xe_engine *e)
- 	up_write(&e->vm->lock);
- }
- 
-+/**
-+ * xe_engine_is_idle() - Whether an engine is idle.
-+ * @engine: The engine
-+ *
-+ * FIXME: Need to determine what to use as the short-lived
-+ * timeline lock for the engines, so that the return value
-+ * of this function becomes more than just an advisory
-+ * snapshot in time. The timeline lock must protect the
-+ * seqno from racing submissions on the same engine.
-+ * Typically vm->resv, but user-created timeline locks use the migrate vm
-+ * and never grabs the migrate vm->resv so we have a race there.
-+ *
-+ * Return: True if the engine is idle, false otherwise.
-+ */
-+bool xe_engine_is_idle(struct xe_engine *engine)
-+{
-+	if (XE_WARN_ON(xe_engine_is_parallel(engine)))
-+		return false;
-+
-+	return xe_lrc_seqno(&engine->lrc[0]) ==
-+		engine->lrc[0].fence_ctx.next_seqno - 1;
-+}
-+
- void xe_engine_kill(struct xe_engine *e)
+diff --git a/drivers/gpu/drm/xe/tests/xe_migrate.c b/drivers/gpu/drm/xe/tests/xe_migrate.c
+index a3bace16282e..73a32f911515 100644
+--- a/drivers/gpu/drm/xe/tests/xe_migrate.c
++++ b/drivers/gpu/drm/xe/tests/xe_migrate.c
+@@ -64,6 +64,8 @@ sanity_populate_cb(struct xe_migrate_pt_update *pt_update,
+ 		   u32 qword_ofs, u32 num_qwords,
+ 		   const struct xe_vm_pgtable_update *update)
  {
- 	struct xe_engine *engine = e, *next;
-diff --git a/drivers/gpu/drm/xe/xe_engine.h b/drivers/gpu/drm/xe/xe_engine.h
-index a3a44534003f..1cf7f23c4afd 100644
---- a/drivers/gpu/drm/xe/xe_engine.h
-+++ b/drivers/gpu/drm/xe/xe_engine.h
-@@ -42,6 +42,8 @@ static inline bool xe_engine_is_parallel(struct xe_engine *engine)
- 	return engine->width > 1;
++	struct migrate_test_params *p =
++		to_migrate_test_params(xe_cur_kunit_priv(XE_TEST_LIVE_MIGRATE));
+ 	int i;
+ 	u64 *ptr = dst;
+ 	u64 value;
+@@ -76,6 +78,10 @@ sanity_populate_cb(struct xe_migrate_pt_update *pt_update,
+ 		else
+ 			ptr[i] = value;
+ 	}
++
++	kunit_info(xe_cur_kunit(), "Used %s.\n", map ? "CPU" : "GPU");
++	if (p->force_gpu && map)
++		KUNIT_FAIL(xe_cur_kunit(), "GPU pagetable update used CPU.\n");
  }
  
-+bool xe_engine_is_idle(struct xe_engine *engine);
-+
- void xe_engine_kill(struct xe_engine *e);
+ static const struct xe_migrate_pt_update_ops sanity_ops = {
+@@ -177,11 +183,12 @@ static void test_copy(struct xe_migrate *m, struct xe_bo *bo,
+ }
  
- int xe_engine_create_ioctl(struct drm_device *dev, void *data,
+ static void test_pt_update(struct xe_migrate *m, struct xe_bo *pt,
+-			   struct kunit *test)
++			   struct kunit *test, bool force_gpu)
+ {
+ 	struct xe_device *xe = gt_to_xe(m->gt);
+ 	struct dma_fence *fence;
+ 	u64 retval, expected;
++	ktime_t then, now;
+ 	int i;
+ 
+ 	struct xe_vm_pgtable_update update = {
+@@ -192,16 +199,26 @@ static void test_pt_update(struct xe_migrate *m, struct xe_bo *pt,
+ 	struct xe_migrate_pt_update pt_update = {
+ 		.ops = &sanity_ops,
+ 	};
++	struct migrate_test_params p = {
++		.base.id = XE_TEST_LIVE_MIGRATE,
++		.force_gpu = force_gpu,
++	};
+ 
++	test->priv = &p;
+ 	/* Test xe_migrate_update_pgtables() updates the pagetable as expected */
+ 	expected = 0xf0f0f0f0f0f0f0f0ULL;
+ 	xe_map_memset(xe, &pt->vmap, 0, (u8)expected, pt->size);
+ 
++	then = ktime_get();
+ 	fence = xe_migrate_update_pgtables(m, NULL, NULL, m->eng, &update, 1,
+ 					   NULL, 0, &pt_update);
++	now = ktime_get();
+ 	if (sanity_fence_failed(xe, fence, "Migration pagetable update", test))
+ 		return;
+ 
++	kunit_info(test, "Updating without syncing took %llu us,\n",
++		   (unsigned long long) ktime_to_us(ktime_sub(now, then)));
++
+ 	dma_fence_put(fence);
+ 	retval = xe_map_rd(xe, &pt->vmap, 0, u64);
+ 	check(retval, expected, "PTE[0] must stay untouched", test);
+@@ -344,7 +361,10 @@ static void xe_migrate_sanity_test(struct xe_migrate *m, struct kunit *test)
+ 		test_copy(m, big, test);
+ 	}
+ 
+-	test_pt_update(m, pt, test);
++	kunit_info(test, "Testing page table update using CPU if GPU idle.\n");
++	test_pt_update(m, pt, test, false);
++	kunit_info(test, "Testing page table update using GPU\n");
++	test_pt_update(m, pt, test, true);
+ 
+ out:
+ 	xe_bb_free(bb, NULL);
+diff --git a/drivers/gpu/drm/xe/tests/xe_test.h b/drivers/gpu/drm/xe/tests/xe_test.h
+index 00c8a3f9af81..7a1ae213e750 100644
+--- a/drivers/gpu/drm/xe/tests/xe_test.h
++++ b/drivers/gpu/drm/xe/tests/xe_test.h
+@@ -18,6 +18,7 @@
+  */
+ enum xe_test_priv_id {
+ 	XE_TEST_LIVE_DMA_BUF,
++	XE_TEST_LIVE_MIGRATE,
+ };
+ 
+ /**
 diff --git a/drivers/gpu/drm/xe/xe_migrate.c b/drivers/gpu/drm/xe/xe_migrate.c
-index 39ed63829224..dfdc88aa8910 100644
+index dfdc88aa8910..bbfdc28dc513 100644
 --- a/drivers/gpu/drm/xe/xe_migrate.c
 +++ b/drivers/gpu/drm/xe/xe_migrate.c
-@@ -1024,12 +1024,6 @@ static bool no_in_syncs(struct xe_sync_entry *syncs, u32 num_syncs)
- 	return true;
+@@ -13,6 +13,7 @@
+ #include <drm/xe_drm.h>
+ 
+ #include "regs/xe_gpu_commands.h"
++#include "tests/xe_test.h"
+ #include "xe_bb.h"
+ #include "xe_bo.h"
+ #include "xe_engine.h"
+@@ -967,6 +968,16 @@ struct xe_vm *xe_migrate_get_vm(struct xe_migrate *m)
+ 	return xe_vm_get(m->eng->vm);
  }
  
--static bool engine_is_idle(struct xe_engine *e)
--{
--	return !e || e->lrc[0].fence_ctx.next_seqno == 1 ||
--		xe_lrc_seqno(&e->lrc[0]) == e->lrc[0].fence_ctx.next_seqno;
--}
--
- /**
-  * xe_migrate_update_pgtables() - Pipelined page-table update
-  * @m: The migrate context.
-@@ -1082,7 +1076,7 @@ xe_migrate_update_pgtables(struct xe_migrate *m,
- 	bool first_munmap_rebind = vma && vma->first_munmap_rebind;
++#if IS_ENABLED(CONFIG_DRM_XE_KUNIT_TEST)
++struct migrate_test_params {
++	struct xe_test_priv base;
++	bool force_gpu;
++};
++
++#define to_migrate_test_params(_priv) \
++	container_of(_priv, struct migrate_test_params, base)
++#endif
++
+ static struct dma_fence *
+ xe_migrate_update_pgtables_cpu(struct xe_migrate *m,
+ 			       struct xe_vm *vm, struct xe_bo *bo,
+@@ -974,11 +985,17 @@ xe_migrate_update_pgtables_cpu(struct xe_migrate *m,
+ 			       u32 num_updates, bool wait_vm,
+ 			       struct xe_migrate_pt_update *pt_update)
+ {
++	XE_TEST_DECLARE(struct migrate_test_params *test =
++			to_migrate_test_params
++			(xe_cur_kunit_priv(XE_TEST_LIVE_MIGRATE));)
+ 	const struct xe_migrate_pt_update_ops *ops = pt_update->ops;
+ 	struct dma_fence *fence;
+ 	int err;
+ 	u32 i;
  
- 	/* Use the CPU if no in syncs and engine is idle */
--	if (no_in_syncs(syncs, num_syncs) && engine_is_idle(eng)) {
-+	if (no_in_syncs(syncs, num_syncs) && (!eng || xe_engine_is_idle(eng))) {
- 		fence =  xe_migrate_update_pgtables_cpu(m, vm, bo, updates,
- 							num_updates,
- 							first_munmap_rebind,
++	if (XE_TEST_ONLY(test && test->force_gpu))
++		return ERR_PTR(-ETIME);
++
+ 	if (bo && !dma_resv_test_signaled(bo->ttm.base.resv,
+ 					  DMA_RESV_USAGE_KERNEL))
+ 		return ERR_PTR(-ETIME);
 -- 
 2.39.2
 
