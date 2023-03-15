@@ -4,46 +4,47 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0E56AC61DA4
-	for <intel-xe@archiver.kernel.org>; Wed, 15 Mar 2023 23:14:36 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 74AC7C76195
+	for <intel-xe@archiver.kernel.org>; Wed, 15 Mar 2023 23:14:40 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B948C10E013;
-	Wed, 15 Mar 2023 23:14:36 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 528DE10EA1C;
+	Wed, 15 Mar 2023 23:14:40 +0000 (UTC)
 Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8D81910E056
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C42F310E056
  for <intel-xe@lists.freedesktop.org>; Wed, 15 Mar 2023 23:14:35 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
  t=1678922075; x=1710458075;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=mzTOn3CSiS5Cow74OkD27vehrYF7TPbPUtwZNafS1jk=;
- b=ic3NKZ0Qm0uDKTbmz/fOwcb5Ho9MIWC67ZDO0GK57WcQUG/6LObxq2g0
- ke9PzNSvyC0GYIIa5EIuC8oGKofdq5lt3skbx8IyEIDBVCNItEMRsvJpC
- TFl7h8CXUFmVQxAjydK477zv4ibvDWZUpJSiK8JfftHUS9IOusDZraGct
- VvBG0UtbdkXVRT0y0aOtf5iEM+M0RlHrqQbtyMi/nZnLnWlIBkOjzf21G
- U1lF2r0vrjjtvCWKgJDICyIi6dGtHu80mkuryuF8b7+4Og2+JgkQVPc7w
- roYkBbIxnbtdATIsHYWP/OQ7c9D8SuHiHZedXdwyj3T1hakK6kettiebE w==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10650"; a="424112123"
-X-IronPort-AV: E=Sophos;i="5.98,262,1673942400"; d="scan'208";a="424112123"
+ h=from:to:cc:subject:date:message-id:in-reply-to:
+ references:mime-version:content-transfer-encoding;
+ bh=Pnew75HVLiZMxgOxfMrUqHpKaJM7gid9Ht0Du3zG/hM=;
+ b=cxABnhAggL5SjcoxEC1nV8/yj5VNxDmkFidIIuKAW4ZT6sV083oTQPqV
+ LLzLYQCIhzCkQAZL7bolJVUOFIINEU6LlPXXNchQxtRLaFwJyOboh8Lzk
+ Wcy7yDdWnneHmcJ6GHOn8+RTtf8hK+0mh7LBfuFblszLurAtjSIDjZPim
+ M475moLVvCfsl0UhQb/CskiUrcj6xSqWNf0yrbX4q2HMtFn58p7idYJMY
+ AQov+adkz6BxI++T2qIW37F6kH45CQP3LBnyfzgf38qqLJ95WbNK2MiXT
+ +D00G6r9A5dGdJccnKpb0gmW8rlm3ou9Cu8wXXP0rVQnezujrrLTtaupY Q==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10650"; a="424112132"
+X-IronPort-AV: E=Sophos;i="5.98,262,1673942400"; d="scan'208";a="424112132"
 Received: from orsmga005.jf.intel.com ([10.7.209.41])
  by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 15 Mar 2023 16:14:32 -0700
+ 15 Mar 2023 16:14:33 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6500,9779,10650"; a="853783259"
-X-IronPort-AV: E=Sophos;i="5.98,262,1673942400"; d="scan'208";a="853783259"
+X-IronPort-AV: E=McAfee;i="6500,9779,10650"; a="853783261"
+X-IronPort-AV: E=Sophos;i="5.98,262,1673942400"; d="scan'208";a="853783261"
 Received: from lstrano-desk.jf.intel.com ([10.24.89.184])
  by orsmga005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  15 Mar 2023 16:14:25 -0700
 From: Matthew Brost <matthew.brost@intel.com>
 To: <intel-xe@lists.freedesktop.org>
-Date: Wed, 15 Mar 2023 16:14:21 -0700
-Message-Id: <20230315231426.4094968-1-matthew.brost@intel.com>
+Date: Wed, 15 Mar 2023 16:14:22 -0700
+Message-Id: <20230315231426.4094968-2-matthew.brost@intel.com>
 X-Mailer: git-send-email 2.34.1
+In-Reply-To: <20230315231426.4094968-1-matthew.brost@intel.com>
+References: <20230315231426.4094968-1-matthew.brost@intel.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-xe] [PATCH 0/4] Port Xe to use GPUVA and implement NULL VM
- binds
+Subject: [Intel-xe] [PATCH 1/4] maple_tree: split up MA_STATE() macro
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -59,76 +60,67 @@ Cc: paulo.r.zanoni@intel.com, lionel.g.landwerlin@intel.com, dakr@redhat.com
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-GPUVA is common code written primarily by Danilo with the idea being a
-common place to track GPUVAs (VMAs in Xe) within an address space (VMs
-in Xe), track all the GPUVAs attached to GEMs, and a common way
-implement VM binds / unbinds with MMAP / MUNMAP semantics via creating
-operation lists. All of this adds up to a common way to implement VK
-sparse bindings.
+From: Danilo Krummrich <dakr@redhat.com>
 
-This series pulls in the GPUVA code written by Danilo plus some small
-fixes by myself into 1 large patch. Once the GPUVA makes it upstream, we
-can rebase and drop this patch. I believe what lands upstream should be
-nearly identical to this patch at least from an API perspective. 
+Split up the MA_STATE() macro such that components using the maple tree
+can easily inherit from struct ma_state and build custom tree walk
+macros to hide their internals from users.
 
-The last two patches port Xe to GPUVA and add support for NULL VM binds
-(writes dropped, read zero, VK sparse support). An example of the
-semantics of this is below.
+Example:
 
-MAP 0x0000-0x8000 to NULL 	- 0x0000-0x8000 writes dropped + read zero
-MAP 0x4000-0x5000 to a GEM 	- 0x0000-0x4000, 0x5000-0x8000 writes dropped + read zero; 0x4000-0x5000 mapped to a GEM
-UNMAP 0x3000-0x6000		- 0x0000-0x3000, 0x6000-0x8000 writes dropped + read zero
-UNMAP 0x0000-0x8000		- Nothing mapped
+struct sample_iterator {
+	struct ma_state mas;
+	struct sample_mgr *mgr;
+};
 
-No changins to existing behavior, rather just new functionality.
+\#define SAMPLE_ITERATOR(name, __mgr, start)			\
+	struct sample_iterator name = {				\
+		.mas = MA_STATE_INIT(&(__mgr)->mt, start, 0),	\
+		.mgr = __mgr,					\
+	}
 
-A follow up will optimize REBIND operation to avoid using dma-resv slots
-for ordering (partial unbinds when not changing page sizes) and prune
-the xe_vma object data members.
+\#define sample_iter_for_each_range(it__, entry__, end__) \
+	mas_for_each(&(it__).mas, entry__, end__)
 
-v2: Fix CI build failure
+--
+
+struct sample *sample;
+SAMPLE_ITERATOR(si, min);
+
+sample_iter_for_each_range(&si, sample, max) {
+	frob(mgr, sample);
+}
+
+Signed-off-by: Danilo Krummrich <dakr@redhat.com>
+---
+ include/linux/maple_tree.h | 7 +++++--
+ 1 file changed, 5 insertions(+), 2 deletions(-)
+
+diff --git a/include/linux/maple_tree.h b/include/linux/maple_tree.h
+index e594db58a0f1..baeb989c6e14 100644
+--- a/include/linux/maple_tree.h
++++ b/include/linux/maple_tree.h
+@@ -424,8 +424,8 @@ struct ma_wr_state {
+ #define MA_ERROR(err) \
+ 		((struct maple_enode *)(((unsigned long)err << 2) | 2UL))
  
-Signed-off-by: Matthew Brost <matthew.brost@intel.com>
-
-Danilo Krummrich (1):
-  maple_tree: split up MA_STATE() macro
-
-Matthew Brost (2):
-  drm/xe: Port Xe to GPUVA
-  drm/xe: NULL binding implementation
-
-Signed-off-by: Danilo Krummrich (1):
-  drm: manager to keep track of GPUs VA mappings
-
- Documentation/gpu/drm-mm.rst                |   31 +
- drivers/gpu/drm/Makefile                    |    1 +
- drivers/gpu/drm/drm_debugfs.c               |   56 +
- drivers/gpu/drm/drm_gem.c                   |    3 +
- drivers/gpu/drm/drm_gpuva_mgr.c             | 1891 +++++++++++++++++++
- drivers/gpu/drm/xe/xe_bo.c                  |   10 +-
- drivers/gpu/drm/xe/xe_bo.h                  |    1 +
- drivers/gpu/drm/xe/xe_device.c              |    2 +-
- drivers/gpu/drm/xe/xe_exec.c                |    4 +-
- drivers/gpu/drm/xe/xe_gt_pagefault.c        |   27 +-
- drivers/gpu/drm/xe/xe_gt_tlb_invalidation.c |   14 +-
- drivers/gpu/drm/xe/xe_guc_ct.c              |    6 +-
- drivers/gpu/drm/xe/xe_migrate.c             |    5 +-
- drivers/gpu/drm/xe/xe_pt.c                  |  166 +-
- drivers/gpu/drm/xe/xe_trace.h               |   10 +-
- drivers/gpu/drm/xe/xe_vm.c                  | 1873 +++++++++---------
- drivers/gpu/drm/xe/xe_vm.h                  |   76 +-
- drivers/gpu/drm/xe/xe_vm_madvise.c          |   87 +-
- drivers/gpu/drm/xe/xe_vm_types.h            |  168 +-
- include/drm/drm_debugfs.h                   |   23 +
- include/drm/drm_drv.h                       |    7 +
- include/drm/drm_gem.h                       |   75 +
- include/drm/drm_gpuva_mgr.h                 |  735 +++++++
- include/linux/maple_tree.h                  |    7 +-
- include/uapi/drm/xe_drm.h                   |    8 +
- 25 files changed, 4073 insertions(+), 1213 deletions(-)
- create mode 100644 drivers/gpu/drm/drm_gpuva_mgr.c
- create mode 100644 include/drm/drm_gpuva_mgr.h
-
+-#define MA_STATE(name, mt, first, end)					\
+-	struct ma_state name = {					\
++#define MA_STATE_INIT(mt, first, end)					\
++	{								\
+ 		.tree = mt,						\
+ 		.index = first,						\
+ 		.last = end,						\
+@@ -435,6 +435,9 @@ struct ma_wr_state {
+ 		.alloc = NULL,						\
+ 	}
+ 
++#define MA_STATE(name, mt, first, end)					\
++	struct ma_state name = MA_STATE_INIT(mt, first, end)
++
+ #define MA_WR_STATE(name, ma_state, wr_entry)				\
+ 	struct ma_wr_state name = {					\
+ 		.mas = ma_state,					\
 -- 
 2.34.1
 
