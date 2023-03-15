@@ -4,30 +4,30 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5D7B1C6FD1D
-	for <intel-xe@archiver.kernel.org>; Wed, 15 Mar 2023 10:32:40 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id C9790C6FD1D
+	for <intel-xe@archiver.kernel.org>; Wed, 15 Mar 2023 10:58:43 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0F33A10E9A3;
-	Wed, 15 Mar 2023 10:32:40 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9EFFA10E9A6;
+	Wed, 15 Mar 2023 10:58:43 +0000 (UTC)
 Received: from emeril.freedesktop.org (emeril.freedesktop.org
  [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id A03A110E999;
- Wed, 15 Mar 2023 10:32:38 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTP id 42F1A10E9A5;
+ Wed, 15 Mar 2023 10:58:41 +0000 (UTC)
 Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 697CFAADD5;
- Wed, 15 Mar 2023 10:32:38 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============7410093444467275533=="
+ by emeril.freedesktop.org (Postfix) with ESMTP id 36B0AA0169;
+ Wed, 15 Mar 2023 10:58:41 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: "Ryszard Knop" <ryszard.knop@intel.com>
-Date: Wed, 15 Mar 2023 10:32:38 -0000
-Message-ID: <167887635836.19840.7626972656554984704@emeril.freedesktop.org>
+Date: Wed, 15 Mar 2023 10:58:41 -0000
+Message-ID: <167887792117.19840.16789077348810441667@emeril.freedesktop.org>
 X-Patchwork-Hint: ignore
 References: <20230314132157.1521532-1-ryszard.knop@intel.com>
 In-Reply-To: <20230314132157.1521532-1-ryszard.knop@intel.com>
-Subject: [Intel-xe] =?utf-8?q?=E2=97=8B_CI=2EBAT=3A_info_for_CI_test_comm?=
- =?utf-8?q?it=2C_please_ignore?=
+Subject: [Intel-xe] =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_f?=
+ =?utf-8?q?or_CI_test_commit=2C_please_ignore_=28rev2=29?=
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -44,61 +44,29 @@ Cc: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============7410093444467275533==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
 == Series Details ==
 
-Series: CI test commit, please ignore
+Series: CI test commit, please ignore (rev2)
 URL   : https://patchwork.freedesktop.org/series/115131/
-State : info
+State : success
 
 == Summary ==
 
-Participating hosts:
-bat-dg2-oem2
-bat-adlp-7
-Missing hosts results[0]:
-Results: [xe-pw-115131v1](https://intel-gfx-ci.01.org/tree/xe/xe-pw-115131v1/index.html)
+=== Applying kernel patches on branch 'drm-xe-next' with base: ===
+commit 49e07cac3d528e6b286b9822a6fed22c6fac9318
+Author:     Jani Nikula <jani.nikula@intel.com>
+AuthorDate: Thu Mar 9 14:21:33 2023 +0200
+Commit:     Jani Nikula <jani.nikula@intel.com>
+CommitDate: Wed Mar 15 12:23:29 2023 +0200
+
+    drm/xe/irq: the irq handler local variable need not be static
+    
+    It's just a local variable.
+    
+    Signed-off-by: Jani Nikula <jani.nikula@intel.com>
+    Reviewed-by: Matt Roper <matthew.d.roper@intel.com>
+    Reviewed-by: Lucas De Marchi <lucas.demarchi@intel.com>
+=== git am output follows ===
+Applying: CI test commit, please ignore
 
 
-
---===============7410093444467275533==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>CI test commit, please ignore</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/115131/">https://patchwork.freedesktop.org/series/115131/</a></td></tr>
-<tr><td><b>State:</b></td><td>info</td></tr>
-
-</table>
-
-
-    <p>Participating hosts:<br />
-bat-dg2-oem2<br />
-bat-adlp-7<br />
-Missing hosts results[0]:<br />
-Results: <a href="https://intel-gfx-ci.01.org/tree/xe/xe-pw-115131v1/index.html">xe-pw-115131v1</a></p>
-
-</body>
-</html>
-
---===============7410093444467275533==--
