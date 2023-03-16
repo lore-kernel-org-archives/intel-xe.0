@@ -4,50 +4,54 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 69267C6FD19
-	for <intel-xe@archiver.kernel.org>; Thu, 16 Mar 2023 12:17:26 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id B9533C6FD19
+	for <intel-xe@archiver.kernel.org>; Thu, 16 Mar 2023 12:22:01 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 42DCE10E19D;
-	Thu, 16 Mar 2023 12:17:26 +0000 (UTC)
-Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E70D010E19D
- for <intel-xe@lists.freedesktop.org>; Thu, 16 Mar 2023 12:17:23 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1678969043; x=1710505043;
- h=message-id:subject:from:to:date:in-reply-to:references:
- content-transfer-encoding:mime-version;
- bh=Ez4MkV1NvCTq8ynNWHWGGAejlAGRUkjenviUS8Jjp3c=;
- b=UDVSEgS4xWhpkOhXroR5RFE1JcwaxFWLwBwVjSWm8rHv63JkL+PoH1tp
- 1peowp99qdznYQzWz/jLUk+ogZYKBruBj7BZd15s06ldJtTWJrsG3/Ezm
- fDo4m6MVBlZjaisMAYeKLWDRl8JZ0VfQJhIFsBs9PHRtJrSBS9+It+JvA
- SVQKnuM9Qiq/x/uTe4QZdMdrx4dXQDbuYObRgEJXmqoL85rOnJX2XFqfC
- nospkO8ofqGjhPyj+1MusaeDwFMdLZEWZAbAJhbZk/oKVtmwEnK6mbo7P
- oPYGCI6OpHjvR5sj74LR04HtAb/F8fae76wjRxaZsg5i9nAbQOxak+7ea Q==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10650"; a="424242475"
-X-IronPort-AV: E=Sophos;i="5.98,265,1673942400"; d="scan'208";a="424242475"
-Received: from orsmga007.jf.intel.com ([10.7.209.58])
- by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 16 Mar 2023 05:17:23 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10650"; a="673134895"
-X-IronPort-AV: E=Sophos;i="5.98,265,1673942400"; d="scan'208";a="673134895"
-Received: from hlykke-mobl1.ger.corp.intel.com (HELO [10.249.254.242])
- ([10.249.254.242])
- by orsmga007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 16 Mar 2023 05:17:17 -0700
-Message-ID: <e8280f43110b2482ede80eb1d68af74524af4201.camel@linux.intel.com>
-From: Thomas =?ISO-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>
-To: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
- intel-xe@lists.freedesktop.org
-Date: Thu, 16 Mar 2023 13:17:13 +0100
-In-Reply-To: <20230316110752.129831-1-maarten.lankhorst@linux.intel.com>
-References: <20230316110752.129831-1-maarten.lankhorst@linux.intel.com>
-Organization: Intel Sweden AB, Registration Number: 556189-6027
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: base64
-User-Agent: Evolution 3.46.4 (3.46.4-1.fc37) 
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6EAD488C4C;
+	Thu, 16 Mar 2023 12:22:01 +0000 (UTC)
+Received: from mail-lj1-x22b.google.com (mail-lj1-x22b.google.com
+ [IPv6:2a00:1450:4864:20::22b])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0953B88C4C
+ for <intel-xe@lists.freedesktop.org>; Thu, 16 Mar 2023 12:21:59 +0000 (UTC)
+Received: by mail-lj1-x22b.google.com with SMTP id l22so1444229ljc.11
+ for <intel-xe@lists.freedesktop.org>; Thu, 16 Mar 2023 05:21:58 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=gmail.com; s=20210112; t=1678969317;
+ h=cc:to:subject:message-id:date:from:in-reply-to:references
+ :mime-version:from:to:cc:subject:date:message-id:reply-to;
+ bh=xcjyRFyFgptLgcnr5aIXqNnBNDAPII+MMuk+uU3jhic=;
+ b=UybkBnU1efgkXzATAeehlA71O2x0wMpfLLe+r9uZe3Mo0HvFFqZ0Zot2VGIVvMaIMn
+ f6P83d5IPbnCj02GWV7gxu+I6lRJQKWR0vCTm4g6NGVNDMPWsFWGvbHYnaCrW8azuV4L
+ LFb6VN0+YQrQYSuw8JgJRSSjYbBBzvSUgl2/yw8oNOdkW6T/rwuhQlL5nT1fpbuRvy1r
+ iGpQHbSF7z4adMtCW0/M4TNWhmJcToO/GbkAIcFgepjfIk9BQTI0lrQOqSO4ojo2T/Ln
+ rEgADiA0yvTMQndGWe6v7fX7mVYbHdT4px55Gz6u10BG45I8S5xdWiL2VTAelGhCDocU
+ MVsw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20210112; t=1678969317;
+ h=cc:to:subject:message-id:date:from:in-reply-to:references
+ :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+ :reply-to;
+ bh=xcjyRFyFgptLgcnr5aIXqNnBNDAPII+MMuk+uU3jhic=;
+ b=a/IW8sMHcMb64C/dl25hZTUgzXN7GQYyv5JXgn989sn9YFuKrwytsy+aJvyC/UQo/D
+ mmXgBxkASim9kM+rjhYFrf8YK7GwGVtTIn9LF4irFxxHLxaZ/jTJGB72lihqgTaBb9Kq
+ zJHmMT6UeRbWMcp1COhcpWXytSHzcGlZvDCFZoQQe+rVOg9XyHpy0v5Z4x9Pi3zzUYox
+ CUla2eAQ3Jdza36BX9RbSjd4IMLV0K7sRd319HImHJXUAqfqjZdhy7wm8BhrqAHXoJOM
+ Siu0fVPYTTragZP1N8AHwJKxXA2TgObYBN6+iRpa1IdMILiwU5v48bdhemF+51CdhWxD
+ azUA==
+X-Gm-Message-State: AO0yUKXJxynSrnW5TWxxH+/a8VZHURtL4ZLaeHR6E86Ac99QH5e+0PMU
+ MBcxcie5Gd/EJ/BDzW+7KSKk6f6ieylAYv4izTruecRNilmQJQ==
+X-Google-Smtp-Source: AK7set/P5VYXC7j2Jee8MvMYcxmZ2C3pHYvlPKcvZlgdKB26xt8U0XGkH6ZPkoOmpjVTea3UAnymXXyHZNgPba1GcGs=
+X-Received: by 2002:a2e:b534:0:b0:295:a32a:3664 with SMTP id
+ z20-20020a2eb534000000b00295a32a3664mr2024738ljm.5.1678969317177; Thu, 16 Mar
+ 2023 05:21:57 -0700 (PDT)
 MIME-Version: 1.0
+References: <20230316110752.129831-1-maarten.lankhorst@linux.intel.com>
+In-Reply-To: <20230316110752.129831-1-maarten.lankhorst@linux.intel.com>
+From: Matthew Auld <matthew.william.auld@gmail.com>
+Date: Thu, 16 Mar 2023 12:21:29 +0000
+Message-ID: <CAM0jSHPC9JOdBKw0JV-LUh-4SdQKi9n0_HHdbHT3aE4Lq0QLeQ@mail.gmail.com>
+To: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
+Content-Type: text/plain; charset="UTF-8"
 Subject: Re: [Intel-xe] [PATCH] drm/xe: Fix Alderlake-P and DG2 display info
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -60,56 +64,63 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Cc: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-T24gVGh1LCAyMDIzLTAzLTE2IGF0IDEyOjA3ICswMTAwLCBNYWFydGVuIExhbmtob3JzdCB3cm90
-ZToKPiBERzIgaGFzIGNkY2xrIHNxdWFzaCwgd2l0aG91dCB3aGljaCB3ZSBjYWxjdWxhdGUgdGhl
-IENEQ0xLIHdyb25nbHkuCj4gQWxkZXJsYWtlLVAgaXMgTFBELCBub3QgZ2VuIDEyIGRpc3BsYXku
-Cj4gCj4gV2l0aCB0aG9zZSBmaXhlZCwgZGlzcGxheSBzaG91bGQgd29yayBvbiBib3RoIGFuZCBh
-bGwgcHJvYmxlbXMgdGhhdAo+IHdlcmUKPiB1bmNvdmVyZWQgYnkgdGVzdGluZyBkb25lIGZyb20g
-cmViYXNpbmcgYXJlIGZpeGVkLgoKTklUOiBNYXliZSBSZW1vdmUgdGhlIGxhc3Qgc2VjdGlvbiBo
-ZXJlIHNpbmNlIGl0IGRvZXNuJ3QgbWFrZSBtdWNoCnNlbnNlIHdoZW4gaXQgbWFrZXMgdXBzdHJl
-YW0uCgpEaWRuJ3QgZGlnIGludG8gc3BlY3MsIGJ1dCBhdCBsZWFzdCBjb3VsZCB2ZXJpZnkgdGhh
-dCB0aGlzIGRvZXMgdGhlCnNhbWUgYXMgdXBzdHJlYW0gaTkxNSwKClNvClJldmlld2VkLWJ5OiBU
-aG9tYXMgSGVsbHN0csO2bSA8dGhvbWFzLmhlbGxzdHJvbUBsaW51eC5pbnRlbC5jb20+CgoKPiAK
-PiBTaWduZWQtb2ZmLWJ5OiBNYWFydGVuIExhbmtob3JzdCA8bWFhcnRlbi5sYW5raG9yc3RAbGlu
-dXguaW50ZWwuY29tPgo+IC0tLQo+IMKgZHJpdmVycy9ncHUvZHJtL3hlL3hlX2Rpc3BsYXkuYyB8
-IDEwICsrKysrKysrKy0KPiDCoDEgZmlsZSBjaGFuZ2VkLCA5IGluc2VydGlvbnMoKyksIDEgZGVs
-ZXRpb24oLSkKPiAKPiBkaWZmIC0tZ2l0IGEvZHJpdmVycy9ncHUvZHJtL3hlL3hlX2Rpc3BsYXku
-Ywo+IGIvZHJpdmVycy9ncHUvZHJtL3hlL3hlX2Rpc3BsYXkuYwo+IGluZGV4IGYyODU1M2JlODU4
-ZC4uNTRlYzhiYTVkM2YzIDEwMDY0NAo+IC0tLSBhL2RyaXZlcnMvZ3B1L2RybS94ZS94ZV9kaXNw
-bGF5LmMKPiArKysgYi9kcml2ZXJzL2dwdS9kcm0veGUveGVfZGlzcGxheS5jCj4gQEAgLTQ4Miwx
-OSArNDgyLDI3IEBAIHZvaWQgeGVfZGlzcGxheV9pbmZvX2luaXQoc3RydWN0IHhlX2RldmljZSAq
-eGUpCj4gwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqB4ZS0+aW5mby5kaXNwbGF5ID0g
-KHN0cnVjdCB4ZV9kZXZpY2VfZGlzcGxheV9pbmZvKSB7Cj4gR0VOMTJfRElTUExBWSB9Owo+IMKg
-wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgYnJlYWs7Cj4gwqDCoMKgwqDCoMKgwqDCoGNh
-c2UgWEVfQUxERVJMQUtFX1M6Cj4gLcKgwqDCoMKgwqDCoMKgY2FzZSBYRV9BTERFUkxBS0VfUDoK
-PiDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoHhlLT5pbmZvLmRpc3BsYXkgPSAoc3Ry
-dWN0IHhlX2RldmljZV9kaXNwbGF5X2luZm8pIHsKPiDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
-oMKgwqDCoMKgwqDCoMKgwqDCoMKgwqBHRU4xMl9ESVNQTEFZLAo+IMKgwqDCoMKgwqDCoMKgwqDC
-oMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoC5oYXNfaHRpID0gMSwKPiDCoMKgwqDCoMKg
-wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqAuaGFzX3Bzcl9od190cmFja2lu
-ZyA9IDAsCj4gwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqB9Owo+IMKgwqDCoMKgwqDC
-oMKgwqDCoMKgwqDCoMKgwqDCoMKgYnJlYWs7Cj4gK8KgwqDCoMKgwqDCoMKgY2FzZSBYRV9BTERF
-UkxBS0VfUDoKPiArwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgeGUtPmluZm8uZGlzcGxh
-eSA9IChzdHJ1Y3QgeGVfZGV2aWNlX2Rpc3BsYXlfaW5mbykgewo+ICvCoMKgwqDCoMKgwqDCoMKg
-wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgWEVfTFBELAo+ICvCoMKgwqDCoMKgwqDCoMKg
-wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgLmhhc19jZGNsa19jcmF3bCA9IDEsCj4gK8Kg
-wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqAuaGFzX21vZHVsYXJf
-ZmlhID0gMSwKPiArwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
-oC5oYXNfcHNyX2h3X3RyYWNraW5nID0gMCwKPiArwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
-oMKgfTsKPiArwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgYnJlYWs7Cj4gwqDCoMKgwqDC
-oMKgwqDCoGNhc2UgWEVfREcyOgo+IMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgeGUt
-PmluZm8uZGlzcGxheSA9IChzdHJ1Y3QgeGVfZGV2aWNlX2Rpc3BsYXlfaW5mbykgewo+IMKgwqDC
-oMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoFhFX0xQRCwKPiDCoMKg
-wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqAuY3B1X3RyYW5zY29k
-ZXJfbWFzayA9Cj4gwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
-oMKgwqDCoMKgwqDCoMKgwqDCoEJJVChUUkFOU0NPREVSX0EpIHwgQklUKFRSQU5TQ09ERVJfQikK
-PiB8Cj4gwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
-oMKgwqDCoMKgwqDCoEJJVChUUkFOU0NPREVSX0MpIHwKPiBCSVQoVFJBTlNDT0RFUl9EKSwKPiAr
-wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoC5oYXNfY2RjbGtf
-c3F1YXNoID0gMSwKPiDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoH07Cj4gwqDCoMKg
-wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqBicmVhazsKPiDCoMKgwqDCoMKgwqDCoMKgY2FzZSBY
-RV9NRVRFT1JMQUtFOgoK
+On Thu, 16 Mar 2023 at 11:08, Maarten Lankhorst
+<maarten.lankhorst@linux.intel.com> wrote:
+>
+> DG2 has cdclk squash, without which we calculate the CDCLK wrongly.
+> Alderlake-P is LPD, not gen 12 display.
+>
+> With those fixed, display should work on both and all problems that were
+> uncovered by testing done from rebasing are fixed.
+>
 
+Can we add:
+Closes: https://gitlab.freedesktop.org/drm/xe/kernel/-/issues/210
+
+Or is that a different issue?
+
+> Signed-off-by: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
+> ---
+>  drivers/gpu/drm/xe/xe_display.c | 10 +++++++++-
+>  1 file changed, 9 insertions(+), 1 deletion(-)
+>
+> diff --git a/drivers/gpu/drm/xe/xe_display.c b/drivers/gpu/drm/xe/xe_display.c
+> index f28553be858d..54ec8ba5d3f3 100644
+> --- a/drivers/gpu/drm/xe/xe_display.c
+> +++ b/drivers/gpu/drm/xe/xe_display.c
+> @@ -482,19 +482,27 @@ void xe_display_info_init(struct xe_device *xe)
+>                 xe->info.display = (struct xe_device_display_info) { GEN12_DISPLAY };
+>                 break;
+>         case XE_ALDERLAKE_S:
+> -       case XE_ALDERLAKE_P:
+>                 xe->info.display = (struct xe_device_display_info) {
+>                         GEN12_DISPLAY,
+>                         .has_hti = 1,
+>                         .has_psr_hw_tracking = 0,
+>                 };
+>                 break;
+> +       case XE_ALDERLAKE_P:
+> +               xe->info.display = (struct xe_device_display_info) {
+> +                       XE_LPD,
+> +                       .has_cdclk_crawl = 1,
+> +                       .has_modular_fia = 1,
+> +                       .has_psr_hw_tracking = 0,
+> +               };
+> +               break;
+>         case XE_DG2:
+>                 xe->info.display = (struct xe_device_display_info) {
+>                         XE_LPD,
+>                         .cpu_transcoder_mask =
+>                                 BIT(TRANSCODER_A) | BIT(TRANSCODER_B) |
+>                                 BIT(TRANSCODER_C) | BIT(TRANSCODER_D),
+> +                       .has_cdclk_squash = 1,
+>                 };
+>                 break;
+>         case XE_METEORLAKE:
+> --
+> 2.34.1
+>
