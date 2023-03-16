@@ -4,46 +4,30 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 631A6C6FD1F
-	for <intel-xe@archiver.kernel.org>; Thu, 16 Mar 2023 18:30:15 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8E32CC6FD19
+	for <intel-xe@archiver.kernel.org>; Thu, 16 Mar 2023 18:32:39 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2CBA010EDB3;
-	Thu, 16 Mar 2023 18:30:15 +0000 (UTC)
-Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5E81A10EDD6
- for <intel-xe@lists.freedesktop.org>; Thu, 16 Mar 2023 18:30:12 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1678991412; x=1710527412;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=c+Aa6mebo40L3YSVM5959xkPjARBsD23UlP3Ynd+Ee0=;
- b=AfnxSzbH/+vCZ1MOgYX6HQsjxFyJLMfJP39jysTZ+e0YskHN2Z71ZrEi
- FlTpuVUZACSkABBljXcWZCMF6pgvyp+g+oZFHIVa5cvjiCAzffWybh2Pf
- OEqiam3pFQONt+91nbVDg5vQy01dUWo2HRKl7QPxXr7V2QmyRh56ZPDhu
- /iZDD15OTXSoIJ8PzqqZuKMjMd6aply1cilbGJWwb2HvM7NiK7czcpDcz
- PlPm881EUHzZSZ/JT4nRXGjW1K7LiR1o+X/fwU1iQqfzkmbKwsXAJhKf0
- EmHgMLNgSFZCXwSk77MONph3zLbskt1JIQaGFlcI8gGaEr6yhGzq+2xG4 Q==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10651"; a="326446564"
-X-IronPort-AV: E=Sophos;i="5.98,265,1673942400"; d="scan'208";a="326446564"
-Received: from fmsmga005.fm.intel.com ([10.253.24.32])
- by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 16 Mar 2023 11:30:10 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10651"; a="1009348374"
-X-IronPort-AV: E=Sophos;i="5.98,265,1673942400"; d="scan'208";a="1009348374"
-Received: from lucas-s2600cw.jf.intel.com ([10.165.21.196])
- by fmsmga005-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 16 Mar 2023 11:30:09 -0700
-From: Lucas De Marchi <lucas.demarchi@intel.com>
-To: intel-xe@lists.freedesktop.org
-Date: Thu, 16 Mar 2023 11:29:51 -0700
-Message-Id: <20230316182951.3441696-1-lucas.demarchi@intel.com>
-X-Mailer: git-send-email 2.39.0
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3D39D10E2AC;
+	Thu, 16 Mar 2023 18:32:39 +0000 (UTC)
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 942BC10E29B;
+ Thu, 16 Mar 2023 18:32:36 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 66140AA917;
+ Thu, 16 Mar 2023 18:32:36 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-xe] [PATCH] fixup! drm/xe: Introduce a new DRM driver for
- Intel GPUs
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Lucas De Marchi" <lucas.demarchi@intel.com>
+Date: Thu, 16 Mar 2023 18:32:36 -0000
+Message-ID: <167899155637.19094.16871102546286668624@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20230316182951.3441696-1-lucas.demarchi@intel.com>
+In-Reply-To: <20230316182951.3441696-1-lucas.demarchi@intel.com>
+Subject: [Intel-xe] =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_f?=
+ =?utf-8?q?or_fixup!_drm/xe=3A_Introduce_a_new_DRM_driver_for_Intel_GPUs?=
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -55,38 +39,36 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Cc: Lucas De Marchi <lucas.demarchi@intel.com>, thomas.hellstrom@intel.com,
- mauro.chehab@intel.com, maarten.lankhorst@intel.com
+Reply-To: intel-xe@lists.freedesktop.org
+Cc: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Introduced with the 6.2 rebase due to
-commit 000458b5966f ("drm: Only select I2C_ALGOBIT for drivers that
-actually need it"). Make a similar selection when CONFIG_DRM_XE_DISPLAY
-is enabled. Also, provide this as a fixup-only commit, to be squashed in
-the next rebase. With this, the following command works again:
+== Series Details ==
 
-	./tools/testing/kunit/kunit.py build \
-		--kunitconfig drivers/gpu/drm/xe/.kunitconfig
+Series: fixup! drm/xe: Introduce a new DRM driver for Intel GPUs
+URL   : https://patchwork.freedesktop.org/series/115290/
+State : success
 
-Signed-off-by: Lucas De Marchi <lucas.demarchi@intel.com>
----
- drivers/gpu/drm/xe/Kconfig | 2 ++
- 1 file changed, 2 insertions(+)
+== Summary ==
 
-diff --git a/drivers/gpu/drm/xe/Kconfig b/drivers/gpu/drm/xe/Kconfig
-index 4684e99549d3..aeaf3ce19c4f 100644
---- a/drivers/gpu/drm/xe/Kconfig
-+++ b/drivers/gpu/drm/xe/Kconfig
-@@ -44,6 +44,8 @@ config DRM_XE
- config DRM_XE_DISPLAY
- 	bool "Enable display support"
- 	depends on DRM_XE && EXPERT
-+	select I2C
-+	select I2C_ALGOBIT
- 	default y
- 	help
- 	  Disable this option only if you want to compile out display support.
--- 
-2.39.0
+=== Applying kernel patches on branch 'drm-xe-next' with base: ===
+commit 68c0f7421b74cf51fe442bed6d4395d28ded5d7d
+Author:     Thomas Hellström <thomas.hellstrom@linux.intel.com>
+AuthorDate: Tue Mar 14 15:56:44 2023 +0100
+Commit:     Thomas Hellström <thomas.hellstrom@linux.intel.com>
+CommitDate: Thu Mar 16 15:16:00 2023 +0100
+
+    drm/xe/vm: Defer vm rebind until next exec if nothing to execute
+    
+    If all compute engines of a vm in compute mode are idle,
+    defer a rebind to the next exec to avoid the VM unnecessarily trying
+    to make memory resident and compete with other VMs for available
+    memory space.
+    
+    Signed-off-by: Thomas Hellström <thomas.hellstrom@linux.intel.com>
+    Reviewed-by: Matthew Brost <matthew.brost@intel.com>
+=== git am output follows ===
+Applying: fixup! drm/xe: Introduce a new DRM driver for Intel GPUs
+
 
