@@ -4,30 +4,30 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8E32CC6FD19
-	for <intel-xe@archiver.kernel.org>; Thu, 16 Mar 2023 18:32:39 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3DB6EC6FD19
+	for <intel-xe@archiver.kernel.org>; Thu, 16 Mar 2023 18:33:08 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3D39D10E2AC;
-	Thu, 16 Mar 2023 18:32:39 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 19BDF10E29B;
+	Thu, 16 Mar 2023 18:33:08 +0000 (UTC)
 Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id 942BC10E29B;
- Thu, 16 Mar 2023 18:32:36 +0000 (UTC)
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 4334910E29B;
+ Thu, 16 Mar 2023 18:33:06 +0000 (UTC)
 Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 66140AA917;
- Thu, 16 Mar 2023 18:32:36 +0000 (UTC)
+ by emeril.freedesktop.org (Postfix) with ESMTP id 400ECAA917;
+ Thu, 16 Mar 2023 18:33:06 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: "Lucas De Marchi" <lucas.demarchi@intel.com>
-Date: Thu, 16 Mar 2023 18:32:36 -0000
-Message-ID: <167899155637.19094.16871102546286668624@emeril.freedesktop.org>
+Date: Thu, 16 Mar 2023 18:33:06 -0000
+Message-ID: <167899158625.19096.3337716618141797617@emeril.freedesktop.org>
 X-Patchwork-Hint: ignore
 References: <20230316182951.3441696-1-lucas.demarchi@intel.com>
 In-Reply-To: <20230316182951.3441696-1-lucas.demarchi@intel.com>
-Subject: [Intel-xe] =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_f?=
- =?utf-8?q?or_fixup!_drm/xe=3A_Introduce_a_new_DRM_driver_for_Intel_GPUs?=
+Subject: [Intel-xe] =?utf-8?q?=E2=9C=97_CI=2EKUnit=3A_failure_for_fixup!_?=
+ =?utf-8?q?drm/xe=3A_Introduce_a_new_DRM_driver_for_Intel_GPUs?=
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -48,27 +48,29 @@ Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 Series: fixup! drm/xe: Introduce a new DRM driver for Intel GPUs
 URL   : https://patchwork.freedesktop.org/series/115290/
-State : success
+State : failure
 
 == Summary ==
 
-=== Applying kernel patches on branch 'drm-xe-next' with base: ===
-commit 68c0f7421b74cf51fe442bed6d4395d28ded5d7d
-Author:     Thomas Hellström <thomas.hellstrom@linux.intel.com>
-AuthorDate: Tue Mar 14 15:56:44 2023 +0100
-Commit:     Thomas Hellström <thomas.hellstrom@linux.intel.com>
-CommitDate: Thu Mar 16 15:16:00 2023 +0100
++ trap cleanup EXIT
++ /kernel/tools/testing/kunit/kunit.py run --kunitconfig /kernel/drivers/gpu/drm/xe/.kunitconfig
+ERROR:root:`.exit.text' referenced in section `.uml.exitcall.exit' of arch/um/drivers/virtio_uml.o: defined in discarded section `.exit.text' of arch/um/drivers/virtio_uml.o
+collect2: error: ld returned 1 exit status
+make[2]: *** [../scripts/Makefile.vmlinux:35: vmlinux] Error 1
+make[1]: *** [/kernel/Makefile:1264: vmlinux] Error 2
+make: *** [Makefile:242: __sub-make] Error 2
 
-    drm/xe/vm: Defer vm rebind until next exec if nothing to execute
-    
-    If all compute engines of a vm in compute mode are idle,
-    defer a rebind to the next exec to avoid the VM unnecessarily trying
-    to make memory resident and compete with other VMs for available
-    memory space.
-    
-    Signed-off-by: Thomas Hellström <thomas.hellstrom@linux.intel.com>
-    Reviewed-by: Matthew Brost <matthew.brost@intel.com>
-=== git am output follows ===
-Applying: fixup! drm/xe: Introduce a new DRM driver for Intel GPUs
+[18:32:38] Configuring KUnit Kernel ...
+Generating .config ...
+Populating config with:
+$ make ARCH=um O=.kunit olddefconfig
+[18:32:42] Building KUnit Kernel ...
+Populating config with:
+$ make ARCH=um O=.kunit olddefconfig
+Building with:
+$ make ARCH=um O=.kunit --jobs=48
++ cleanup
+++ stat -c %u:%g /kernel
++ chown -R 1003:1003 /kernel
 
 
