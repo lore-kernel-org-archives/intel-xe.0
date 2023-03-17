@@ -4,47 +4,31 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1A206C6FD1D
-	for <intel-xe@archiver.kernel.org>; Fri, 17 Mar 2023 16:54:11 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8D9FBC6FD1D
+	for <intel-xe@archiver.kernel.org>; Fri, 17 Mar 2023 16:56:44 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E652210E0C8;
-	Fri, 17 Mar 2023 16:54:10 +0000 (UTC)
-Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 47D5110E0C8
- for <intel-xe@lists.freedesktop.org>; Fri, 17 Mar 2023 16:54:09 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1679072049; x=1710608049;
- h=from:to:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=q8W+gISrVBGXzGYUBBqUel8cQOPLouEazU58nBWqMDM=;
- b=mU/JOVUbPNHSzeTiWF4w44+ghb9o4GsXpxvM+qOQB9Wv679/k3t5p5wy
- qUm8395b1YhKCAOYWYDKCXmrcr+EvLyYQ8yARcve2swXUT6iSEP2Tql2Y
- t5ux0dq6iskoUPDhJqLUm1ULJcrE5eXyKhbWqaRFKCxargxcXOE3Kbje4
- 8yX4GDxdxDOTo+YXrHXsXIr4LtOE/N3liNbSnlFFMSMWeqkeF02NQ78/a
- AJTLFgJV0eYY6ekGr+VWHPkaDMMKPD8NB6bii9jcI+lE70xXH51mpptTe
- rRjK4W/DGEovU85aOmyyXg882Yj5Mv1BIzwF2dZAlhV2ZocBGBVoBly7A w==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10652"; a="322159224"
-X-IronPort-AV: E=Sophos;i="5.98,268,1673942400"; d="scan'208";a="322159224"
-Received: from orsmga006.jf.intel.com ([10.7.209.51])
- by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 17 Mar 2023 09:54:08 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10652"; a="657618872"
-X-IronPort-AV: E=Sophos;i="5.98,268,1673942400"; d="scan'208";a="657618872"
-Received: from ambatirx-mobl2.gar.corp.intel.com (HELO
- bvivekan-mobl.fritz.box) ([10.215.117.35])
- by orsmga006-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 17 Mar 2023 09:54:07 -0700
-From: Balasubramani Vivekanandan <balasubramani.vivekanandan@intel.com>
-To: intel-xe@lists.freedesktop.org
-Date: Fri, 17 Mar 2023 22:23:35 +0530
-Message-Id: <20230317165335.1014314-1-balasubramani.vivekanandan@intel.com>
-X-Mailer: git-send-email 2.34.1
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6A7B310E0C8;
+	Fri, 17 Mar 2023 16:56:44 +0000 (UTC)
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id B27A010EF4C;
+ Fri, 17 Mar 2023 16:56:42 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 9DBC4AADE4;
+ Fri, 17 Mar 2023 16:56:42 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Subject: [Intel-xe] [PATCH] drm/xe: Use max wopcm size when validating the
- preset GuC wopcm size
+Content-Transfer-Encoding: 7bit
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Balasubramani Vivekanandan" <balasubramani.vivekanandan@intel.com>
+Date: Fri, 17 Mar 2023 16:56:42 -0000
+Message-ID: <167907220261.12990.7892907988714133701@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20230317165335.1014314-1-balasubramani.vivekanandan@intel.com>
+In-Reply-To: <20230317165335.1014314-1-balasubramani.vivekanandan@intel.com>
+Subject: [Intel-xe] =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_f?=
+ =?utf-8?q?or_drm/xe=3A_Use_max_wopcm_size_when_validating_the_preset_GuC_?=
+ =?utf-8?q?wopcm_size?=
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -56,46 +40,51 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
+Cc: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-When the GuC wopcm base and size registers are populated by BIOS/IFWI,
-validate the parameters against the maximum allowed wopcm size.
+== Series Details ==
 
-Bpsec: 44982
+Series: drm/xe: Use max wopcm size when validating the preset GuC wopcm size
+URL   : https://patchwork.freedesktop.org/series/115322/
+State : success
 
-Signed-off-by: Balasubramani Vivekanandan <balasubramani.vivekanandan@intel.com>
----
- drivers/gpu/drm/xe/xe_wopcm.c | 9 +++++++++
- 1 file changed, 9 insertions(+)
+== Summary ==
 
-diff --git a/drivers/gpu/drm/xe/xe_wopcm.c b/drivers/gpu/drm/xe/xe_wopcm.c
-index 0f2485d9d9af..d55469e941bf 100644
---- a/drivers/gpu/drm/xe/xe_wopcm.c
-+++ b/drivers/gpu/drm/xe/xe_wopcm.c
-@@ -54,6 +54,8 @@
- 						   for MTL, do a proper probe
- 						   sooner or later */
- #define GEN11_WOPCM_SIZE		SZ_2M
-+
-+#define GEN12_MAX_WOPCM_SIZE            SZ_8M
- /* 16KB WOPCM (RSVD WOPCM) is reserved from HuC firmware top. */
- #define WOPCM_RESERVED_SIZE		SZ_16K
- 
-@@ -226,6 +228,13 @@ int xe_wopcm_init(struct xe_wopcm *wopcm)
- 	if (locked) {
- 		drm_dbg(&xe->drm, "GuC WOPCM is already locked [%uK, %uK)\n",
- 			guc_wopcm_base / SZ_1K, guc_wopcm_size / SZ_1K);
-+		/*
-+		 * When the GuC wopcm base and size are preprogrammed by
-+		 * BIOS/IFWI, check against the max allowed wopcm size to
-+		 * validate if the programmed values align to the wopcm layout.
-+		 */
-+		wopcm->size = GEN12_MAX_WOPCM_SIZE;
-+
- 		goto check;
- 	}
- 
--- 
-2.34.1
+=== Applying kernel patches on branch 'drm-xe-next' with base: ===
+commit beff2b917ac1966c090ac2f498f969ca615093be
+Author:     Masahiro Yamada <masahiroy@kernel.org>
+AuthorDate: Thu Mar 16 14:03:40 2023 -0700
+Commit:     Lucas De Marchi <lucas.demarchi@intel.com>
+CommitDate: Fri Mar 17 08:25:37 2023 -0700
+
+    UML: define RUNTIME_DISCARD_EXIT
+    
+    With CONFIG_VIRTIO_UML=y, GNU ld < 2.36 fails to link UML vmlinux
+    (w/wo CONFIG_LD_SCRIPT_STATIC).
+    
+      `.exit.text' referenced in section `.uml.exitcall.exit' of arch/um/drivers/virtio_uml.o: defined in discarded section `.exit.text' of arch/um/drivers/virtio_uml.o
+      collect2: error: ld returned 1 exit status
+    
+    This fix is similar to the following commits:
+    
+    - 4b9880dbf3bd ("powerpc/vmlinux.lds: Define RUNTIME_DISCARD_EXIT")
+    - a494398bde27 ("s390: define RUNTIME_DISCARD_EXIT to fix link error
+      with GNU ld < 2.36")
+    - c1c551bebf92 ("sh: define RUNTIME_DISCARD_EXIT")
+    
+    Fixes: 99cb0d917ffa ("arch: fix broken BuildID for arm64 and riscv")
+    Reported-by: SeongJae Park <sj@kernel.org>
+    Signed-off-by: Masahiro Yamada <masahiroy@kernel.org>
+    Tested-by: SeongJae Park <sj@kernel.org>
+    Signed-off-by: Richard Weinberger <richard@nod.at>
+    (cherry picked from commit b99ddbe8336ee680257c8ab479f75051eaa49dcf)
+    Signed-off-by: Lucas De Marchi <lucas.demarchi@intel.com>
+    Reviewed-by: Mauro Carvalho Chehab <mchehab@kernel.org>
+    Link: https://lore.kernel.org/r/20230316210341.3547058-3-lucas.demarchi@intel.com
+=== git am output follows ===
+Applying: drm/xe: Use max wopcm size when validating the preset GuC wopcm size
+
 
