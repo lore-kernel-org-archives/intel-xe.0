@@ -4,30 +4,30 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1E457C74A5B
-	for <intel-xe@archiver.kernel.org>; Fri, 17 Mar 2023 00:24:41 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 85F0BC74A5B
+	for <intel-xe@archiver.kernel.org>; Fri, 17 Mar 2023 00:25:11 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id EF1AD10E354;
-	Fri, 17 Mar 2023 00:24:40 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5C0FE10E24F;
+	Fri, 17 Mar 2023 00:25:11 +0000 (UTC)
 Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id DA9EA10E354;
- Fri, 17 Mar 2023 00:24:38 +0000 (UTC)
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 8381F10E24F;
+ Fri, 17 Mar 2023 00:25:08 +0000 (UTC)
 Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id D4D83AADD2;
- Fri, 17 Mar 2023 00:24:38 +0000 (UTC)
+ by emeril.freedesktop.org (Postfix) with ESMTP id 73F50A0003;
+ Fri, 17 Mar 2023 00:25:08 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: "Matthew Brost" <matthew.brost@intel.com>
-Date: Fri, 17 Mar 2023 00:24:38 -0000
-Message-ID: <167901267886.12995.8385992812715764032@emeril.freedesktop.org>
+Date: Fri, 17 Mar 2023 00:25:08 -0000
+Message-ID: <167901270847.12997.13976350436305289600@emeril.freedesktop.org>
 X-Patchwork-Hint: ignore
 References: <20230317002221.211065-1-matthew.brost@intel.com>
 In-Reply-To: <20230317002221.211065-1-matthew.brost@intel.com>
-Subject: [Intel-xe] =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_f?=
- =?utf-8?q?or_drm/xe=3A_Fix_locking_in_CT_fast_path?=
+Subject: [Intel-xe] =?utf-8?q?=E2=9C=97_CI=2EKUnit=3A_failure_for_drm/xe?=
+ =?utf-8?q?=3A_Fix_locking_in_CT_fast_path?=
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -48,27 +48,33 @@ Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 Series: drm/xe: Fix locking in CT fast path
 URL   : https://patchwork.freedesktop.org/series/115301/
-State : success
+State : failure
 
 == Summary ==
 
-=== Applying kernel patches on branch 'drm-xe-next' with base: ===
-commit 68c0f7421b74cf51fe442bed6d4395d28ded5d7d
-Author:     Thomas Hellström <thomas.hellstrom@linux.intel.com>
-AuthorDate: Tue Mar 14 15:56:44 2023 +0100
-Commit:     Thomas Hellström <thomas.hellstrom@linux.intel.com>
-CommitDate: Thu Mar 16 15:16:00 2023 +0100
++ trap cleanup EXIT
++ /kernel/tools/testing/kunit/kunit.py run --kunitconfig /kernel/drivers/gpu/drm/xe/.kunitconfig
+ERROR:root:`.exit.text' referenced in section `.uml.exitcall.exit' of arch/um/drivers/virtio_uml.o: defined in discarded section `.exit.text' of arch/um/drivers/virtio_uml.o
+/usr/bin/ld: drivers/gpu/drm/xe/display/intel_gmbus.o: in function `gmbus_func':
+intel_gmbus.c:(.text+0xa): undefined reference to `i2c_bit_algo'
+/usr/bin/ld: drivers/gpu/drm/xe/display/intel_gmbus.o: in function `gmbus_xfer':
+intel_gmbus.c:(.text+0x14f7): undefined reference to `i2c_bit_algo'
+collect2: error: ld returned 1 exit status
+make[2]: *** [../scripts/Makefile.vmlinux:35: vmlinux] Error 1
+make[1]: *** [/kernel/Makefile:1264: vmlinux] Error 2
+make: *** [Makefile:242: __sub-make] Error 2
 
-    drm/xe/vm: Defer vm rebind until next exec if nothing to execute
-    
-    If all compute engines of a vm in compute mode are idle,
-    defer a rebind to the next exec to avoid the VM unnecessarily trying
-    to make memory resident and compete with other VMs for available
-    memory space.
-    
-    Signed-off-by: Thomas Hellström <thomas.hellstrom@linux.intel.com>
-    Reviewed-by: Matthew Brost <matthew.brost@intel.com>
-=== git am output follows ===
-Applying: drm/xe: Fix locking in CT fast path
+[00:24:40] Configuring KUnit Kernel ...
+Generating .config ...
+Populating config with:
+$ make ARCH=um O=.kunit olddefconfig
+[00:24:45] Building KUnit Kernel ...
+Populating config with:
+$ make ARCH=um O=.kunit olddefconfig
+Building with:
+$ make ARCH=um O=.kunit --jobs=48
++ cleanup
+++ stat -c %u:%g /kernel
++ chown -R 1003:1003 /kernel
 
 
