@@ -4,56 +4,146 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 98BEFC6FD1D
-	for <intel-xe@archiver.kernel.org>; Fri, 17 Mar 2023 07:20:59 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id A1BA1C7618B
+	for <intel-xe@archiver.kernel.org>; Fri, 17 Mar 2023 11:52:57 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3B9A210E096;
-	Fri, 17 Mar 2023 07:20:59 +0000 (UTC)
-Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 19F9E10E096
- for <intel-xe@lists.freedesktop.org>; Fri, 17 Mar 2023 07:20:57 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5A6F910E0F6;
+	Fri, 17 Mar 2023 11:52:57 +0000 (UTC)
+Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 23C0710E0F6
+ for <intel-xe@lists.freedesktop.org>; Fri, 17 Mar 2023 11:52:55 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1679037657; x=1710573657;
- h=message-id:date:mime-version:subject:to:references:from:
- in-reply-to; bh=Rk0gVRBOYPl98jQ6YI6zQQPEViMvCTd9dtZB1ssGoqY=;
- b=GrE4jdB4BqnfTRP0wWaIW6E1ghZbDmXkxRqUhPa6Zs7Awz2uf5vpOSEh
- FS2KHZNKVdAIGrEZLGhMH3MyoUhybmj5kWs+BRGJwjwXnox9NRinTdK+s
- AxOHYQG9w0jEGvxFCvCh2gifgny86meaMwlJLn9PZ+LJ2iL1npL+/GzsZ
- eTRle7qiRmXAKyNvzdfD40RBmeAXoawbJrrica9mKf1tKN1Y/81nJkOM9
- /FdHnMO/AKbvHzDRA5oRf2AQUDhpA/vTPDm6nlwAe/vKSo2jk7ZYeD9xn
- AzIqjO2f502G0tJM6U1SBpdHEqb5q3wkycvvMGnwjoYwkutPpQY1w36S9 A==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10651"; a="339740653"
-X-IronPort-AV: E=Sophos;i="5.98,268,1673942400"; 
- d="scan'208,217";a="339740653"
-Received: from orsmga005.jf.intel.com ([10.7.209.41])
- by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 17 Mar 2023 00:20:56 -0700
+ t=1679053975; x=1710589975;
+ h=message-id:date:subject:to:cc:references:from:
+ in-reply-to:content-transfer-encoding:mime-version;
+ bh=tKST9bOThjE1WIo5tLknw2CoaYCtOCxmb+NF7rvYPP4=;
+ b=Z5qWipOM6iRqK27Eou2Y0JebjTnbNpZF1zFlWdYTKiraHiTjd5jM6bLt
+ /6Ihh2mDEV5GYPZ45cY1G/WYbdheKXJHAK9SMokw/QUm6q+rOW5NDzgsW
+ ejJzC0wnsWYDLjpkQjufh3yZqtKnj4TNK3Mxb5a01jhRjP8AjG8HavaKI
+ yyhiY6Wigknl68k6Ax0cw/Ul3kErZRURMdeCpryYTYtk5wrKYfrGKjw4p
+ MnF5HlOsUMQXRftP3nf3M14Qdn39SjbtkWXR1Oq84/hxiM0xuRmDZ+4t3
+ j6L2IIhxMQQtXQKzIrWUVWGokEgP4GHmkDRMLe/KKPktza3CHaaKJEDpD w==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10651"; a="317897450"
+X-IronPort-AV: E=Sophos;i="5.98,268,1673942400"; d="scan'208";a="317897450"
+Received: from fmsmga002.fm.intel.com ([10.253.24.26])
+ by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 17 Mar 2023 04:52:54 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10651"; a="854352247"
-X-IronPort-AV: E=Sophos;i="5.98,268,1673942400"; 
- d="scan'208,217";a="854352247"
-Received: from lsilistr-mobl.ger.corp.intel.com (HELO [10.249.254.137])
- ([10.249.254.137])
- by orsmga005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 17 Mar 2023 00:20:49 -0700
-Content-Type: multipart/alternative;
- boundary="------------jDJ7xc3GtaobmKAC7vSaVAW8"
-Message-ID: <b411541a-b357-14f7-e193-f8cbb2e31b4a@linux.intel.com>
-Date: Fri, 17 Mar 2023 08:20:46 +0100
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.8.0
-To: intel-xe@lists.freedesktop.org
-References: <20230313081316.2408-1-michal.wajdeczko@intel.com>
- <20230313081316.2408-2-michal.wajdeczko@intel.com>
- <20230313162348.s3cle2rpnvtgh6yk@ldmartin-desk2.lan>
- <f7483e45-d145-4e32-64b8-ea921b3ae393@intel.com>
- <20230316064643.fu5thzu4pf7htisq@ldmartin-desk2.lan>
+X-IronPort-AV: E=McAfee;i="6600,9927,10651"; a="790683114"
+X-IronPort-AV: E=Sophos;i="5.98,268,1673942400"; d="scan'208";a="790683114"
+Received: from fmsmsx601.amr.corp.intel.com ([10.18.126.81])
+ by fmsmga002.fm.intel.com with ESMTP; 17 Mar 2023 04:52:54 -0700
+Received: from fmsmsx612.amr.corp.intel.com (10.18.126.92) by
+ fmsmsx601.amr.corp.intel.com (10.18.126.81) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.21; Fri, 17 Mar 2023 04:52:54 -0700
+Received: from fmsedg602.ED.cps.intel.com (10.1.192.136) by
+ fmsmsx612.amr.corp.intel.com (10.18.126.92) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.21 via Frontend Transport; Fri, 17 Mar 2023 04:52:54 -0700
+Received: from NAM11-DM6-obe.outbound.protection.outlook.com (104.47.57.169)
+ by edgegateway.intel.com (192.55.55.71) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.1.2507.21; Fri, 17 Mar 2023 04:52:53 -0700
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=Z5G6oxeSmVvFj2Z9a7eC7FBK1iQCLTtIhH2WsDHmk+2ha2R2NPm9043Ioyv2wL+OlZXOCX3sqUWyFaaQM2xH01nFdAXdrvzHHQ0svKqQZ6XKLOXjno8M6QwHmA4pAh9JFsYMdjpoxuZduDub7z+KQWYN66RM6eULRSnoEJmu5FvWx/L4QTbwosRFZbyp/hs8fSmVLQn2kIC5Fokp8IfyADW6zdUD3dGH4Cb2hf4a7C0d9IgxGOAFO5B2XhREENJIRLZGxtAcP/EzjKvHXoLnmok4hZCib2FhiLTiEiOJBiVGFnTwC9y05UEmpWzy/LU3lc5fyjPI2wOs0gbAwSM1eg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=ndPvv3guUojvYkayISxxv69B2whLUr07aBv2MxjliOw=;
+ b=LAGR/jQssJq1+gVSuStMQCXJnMptGVgUVl+e1UL4XK1gRiDcfPT8ta07ELLLzHfin3B2ZbwT7sqB61Y7KSE5E3F/8uYQrkrc3ofzRulywzOlVvzZEKSNzGVhNybjwzKhO5tCQ8zuRfIaGBy1XvN0QqeWsh8dFI3BM3wLvn/z4TU3g/2UR42gz5zpOhVW4qSsx3E5jemm0vlgK7M9CEXyrGWtwVFMP44+6RNcTiFSN+S7+F8KaG1eqKoluLHYKIPvIG8y1GSNUMZTEjBe/3EfKhR0DT1VMqOUKUqh9aLdVY7+EEmS0J8NLTH1ZYVDkvrLexI69/HtrJGyTYoZ0+6bDQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
+ dkim=pass header.d=intel.com; arc=none
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=intel.com;
+Received: from CH0PR11MB5409.namprd11.prod.outlook.com (2603:10b6:610:d0::7)
+ by MN2PR11MB4693.namprd11.prod.outlook.com (2603:10b6:208:261::18) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6178.35; Fri, 17 Mar
+ 2023 11:52:51 +0000
+Received: from CH0PR11MB5409.namprd11.prod.outlook.com
+ ([fe80::de64:d1fd:cc87:a040]) by CH0PR11MB5409.namprd11.prod.outlook.com
+ ([fe80::de64:d1fd:cc87:a040%7]) with mapi id 15.20.6178.035; Fri, 17 Mar 2023
+ 11:52:51 +0000
+Message-ID: <3f48da8f-7c9a-5cdc-f323-826a50f256ef@intel.com>
+Date: Fri, 17 Mar 2023 13:52:18 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.12.0
 Content-Language: en-US
-From: =?UTF-8?Q?Thomas_Hellstr=c3=b6m?= <thomas.hellstrom@linux.intel.com>
-In-Reply-To: <20230316064643.fu5thzu4pf7htisq@ldmartin-desk2.lan>
-Subject: Re: [Intel-xe] [PATCH 1/5] drm/xe: Introduce new selftests framework
+To: Matthew Auld <matthew.auld@intel.com>, <intel-xe@lists.freedesktop.org>
+References: <20230314085842.134239-1-matthew.auld@intel.com>
+ <20230314085842.134239-5-matthew.auld@intel.com>
+From: Gwan-gyeong Mun <gwan-gyeong.mun@intel.com>
+In-Reply-To: <20230314085842.134239-5-matthew.auld@intel.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: DB6PR0202CA0039.eurprd02.prod.outlook.com
+ (2603:10a6:4:a5::25) To CH0PR11MB5409.namprd11.prod.outlook.com
+ (2603:10b6:610:d0::7)
+MIME-Version: 1.0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: CH0PR11MB5409:EE_|MN2PR11MB4693:EE_
+X-MS-Office365-Filtering-Correlation-Id: c8a13a0a-10de-4762-d206-08db26de2296
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: P586OObsWb7br5DPhfiFslLZfeNxdUBw9RSjzTHQwkHu+X/9NTVaS6sb55gnAlH9+QE/9j9WoHgS98R53kZXe0MsBRIgcgO2WqvCTXE2MUGFd4l4h9F2LHG3VhdjplsxEzOmEfIrnUnyCJvtHfGbIC5pKpk2kCnjQsj4zG1zuawKoMfHNY5/BjsO6EpwqP2UKx+4sBnRfoi9TZDjqXT1I1E0w6GK847n20jDC3OmEYN33oRH0jpOBiQOKoaurRRCBBl+Z0g5t14+RtAL7vC6iixE0tcJ29oH1FLKF7I2vWz2ULeSK/ee6i0IdFmD7RdEVp0ifKdDxMeLm0MJgJ2h44orQrPpneb5QINSy3/YoOmRsw6bqVrPzLMGv1CwyZD3S/641NIUBnmUFvE6/TA6PFbQ70s8Di05dusl3zfvmObIWwLrUPXO8QS7FrqvbpoUOOLLJ8DXu4XYkS2XKNn9BSQI5wYnciwINSvPuPPNQI0hhcC4kohgNdKlyisfJZm7BVrlcre1SpwyYZLmpN9aSGJHANjRVCZGpDZkWKO+ngG/EKC2KyTDXfuxdwAb/xmbLUagwP1os1h6l/6eRMcU5+n/kPaO6G+opy73ODf87aKMyJt/B8ANUeM3Yn00Bw3FQxVgxYLcV9TUSxwkNIxq8qYZ+JFO75k5GRtzbyM89d/30fJQM1CtVZ3K3l3T/yjER7EdqhJmCGvD8Eucbyzxr8F+taLX+o1Ajt8KzENvYzk=
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:CH0PR11MB5409.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230025)(346002)(39860400002)(366004)(376002)(136003)(396003)(451199018)(31696002)(38100700002)(82960400001)(36756003)(86362001)(4326008)(5660300002)(2906002)(8676002)(66476007)(66556008)(66946007)(8936002)(2616005)(186003)(83380400001)(316002)(6506007)(53546011)(6666004)(107886003)(26005)(6512007)(6486002)(41300700001)(478600001)(31686004)(43740500002)(45980500001);
+ DIR:OUT; SFP:1102; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?aGRiNStqTFhlajhVY1NqRUd2RWJxM2xGcXJ0SW44UTBRUE1xcWRxSFg0NXMz?=
+ =?utf-8?B?d1JFOFh0M2xmcVZFeEZESUliWUxQRmJjYjlVRnpodTc3UjVROWkvWm9oUkRS?=
+ =?utf-8?B?aTVDZmF0WCt0R29DaFNuaGN1TTVqVVVIZnhzdkFFWFRGQVEzdmJVSnFLaE1J?=
+ =?utf-8?B?eWk4UDZzVEFXMXlObHoxTjhybUpNUUhDVVRmbFBEaHcvcGo0VTU3ZnZmbWMz?=
+ =?utf-8?B?Q0VaZ1B6Szg4aG9vT2VDN3FaS1FjcGMvZlAramV4bXV4S1k1eTA5T2hWVWNu?=
+ =?utf-8?B?T0tZb3R6SzlpaFE2bGxDT1ZDVVpCeVlVcE4yWFI1U0c4MnNoUDg2YmNDSzY0?=
+ =?utf-8?B?ZHR4NFJJSTFSZFVJOVhHT0owZTdXWnlGSXFIK2xqM1FsdGZnWXZnU3cyTTBu?=
+ =?utf-8?B?UFZ4QUZzR3pXaGQrWjV1dFFTeGZjWFpJQThjWHJCUHROUzN1Q1Z5cjNBNWh5?=
+ =?utf-8?B?VnJJVXdNa09GZURkY1BQM3F5VWVlQ1IycDVFR0QzZkl4MzdnY1RwUDRzTU9E?=
+ =?utf-8?B?dG4zc2h4VmpNYktibDhTUjFqakhlcmtnODQvaW9VWWFORStTUzM0clFrbUJ3?=
+ =?utf-8?B?VVgwSWx1dFpRVElLQ2JJYlRzMjRQVXgvL1RzN1Y3ZE5OYlVBb2hPdVNJR0R6?=
+ =?utf-8?B?YThadjdLVDJpbzVpOFp0Rm5YMzZZQ2lxTDhsSUdzRHZRNHJDOWlFcUJDZUdZ?=
+ =?utf-8?B?UVRvSUFQRjVDMXhIQlRsSnpMSHB4TFVJM2VXdXRjbmFqRlVJc0RLL1J6QWtT?=
+ =?utf-8?B?NDZtWUcvcXY4WTFIeHZ4UlZlamlrU1l0SHB1S1Q4UGU5RlA0RFdVOWxUZStB?=
+ =?utf-8?B?eFJOK0FibU42V29nVXlyTjE2cmY4Z0NCanNGakgwNitiUGhVc2hPWlZwUW0r?=
+ =?utf-8?B?UktSOHUyT1V1eW1FcUpiYVBSYm5yRzRRdnltQzhqd1N4cG1WUXZHdSsvQjRQ?=
+ =?utf-8?B?b0JNdWNQVjBkcnRJeVIvK0RNRmZuNzBJN2tWWmNhN0x4UG1XZ1dpVmQ2dHZm?=
+ =?utf-8?B?a0pZYzJpVk1hemJLMVZtbi94OEVOMU1jWnVRUXF5Ti9yR1ZhVXJCUWs5MTdt?=
+ =?utf-8?B?V3YwdDVZMUZHV1duTnFSSnhLbGhMSGRpTGFUdzZnNEc4U1dlSnpyenhVakQ0?=
+ =?utf-8?B?d3htVkpoKzIxalIwVlNOUndGcS96MWZiQTcyb0Zwa2ZSaWhaZm5KTGVNQllP?=
+ =?utf-8?B?RklDdWFoVnZ3SGtrU09sdVNUY29idmlJNU1xRkdxSmRCTUF4WkNpakJEM2RD?=
+ =?utf-8?B?cFhwN1ltQVI5RXFKNFNoQktHRDdpamxNcDFraFR0a3VHVnFzQ1YwVVEyRXVK?=
+ =?utf-8?B?bGJwMjNHUEY0N3k1U0x1N3V6Ti9aM2tRSFg0cDBGNWJ1REdRNHJIRGhGRFVM?=
+ =?utf-8?B?Wm9UT1ladUFKb1lZbzdTcUZYTWtiY1pScGtxT0hxN2NkYS9yWk91WHFldk1t?=
+ =?utf-8?B?ZE53bkV2SUx1Rkg2dG14NzRlSk01Z1YwUHdvYUdNREJLa3BzOWxjRGxxZlQx?=
+ =?utf-8?B?THltK0N3U2hFc2ZIL3lESGVLQUZuRXJBU1c3bHBuQ09pc1ZwZkJYNk9CMEJa?=
+ =?utf-8?B?NDE1VjZtTVZkeFZrQ0ZHSW5FcTR1UlhDajBsdEc5MHpEL0J2UDVaT0MySzAx?=
+ =?utf-8?B?cnNyaWpaQUpTamE5emJlbUM2S2Iwcm1NRWppRk01SUdONWpSdzlSV2lVM3Rp?=
+ =?utf-8?B?VjRLZDlWa29yNXc1akFIZElVak5oaHJZbkdDNytqL2lQdWx5Y0t2ZFlySzRj?=
+ =?utf-8?B?dXNJQ05zc3lPR0NXTzNEcDZhN0J3Q2pDNEhaS2dNUXVFQi9uempaM0RieVJt?=
+ =?utf-8?B?TVRWcTRsRitROTRjRmNxVmpTbzEwdUNodzdudS9vckROTjAxRml1WnJiT0Ur?=
+ =?utf-8?B?MHd1R1JEdFBpU21tWVhXZFFYaXI5M2VSMjRmcE5yTXY1b1JwbThyYTlQN0pZ?=
+ =?utf-8?B?ZXdpblQ1eTRVa1JFa05nTTJpc2RiT2kxZDMzbzhvbk1XMVlFbnRnVDdKMjFt?=
+ =?utf-8?B?SWdGb0xmdDVVWDFSSVRKOG0zUDhiRFNXbXhHVzVrcU5kTC82ZHV4NFNmK1Bj?=
+ =?utf-8?B?Qmo2emxuZ1V2bTBVRE5MRmU4YisyczhxN1RXejM5UHp0N3NyaXJGNjlnV0hK?=
+ =?utf-8?B?bERCQmQ2dUM4M25EL3lsYVF1TmcvdEpQVlp0eWNGNjJsc2F6bVBDSkowL3VM?=
+ =?utf-8?B?ZFE9PQ==?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: c8a13a0a-10de-4762-d206-08db26de2296
+X-MS-Exchange-CrossTenant-AuthSource: CH0PR11MB5409.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 17 Mar 2023 11:52:51.2335 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: ED8gIwpL34YEDIElq57MJVI9rMbiwr1DDLhEHq1O2lky5zD3BcfeYH2XOkFgPpgCm+9bZGpGtww9uRbWmwa/hAcshSHyAyCHyqAJoW6N0II=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: MN2PR11MB4693
+X-OriginatorOrg: intel.com
+Subject: Re: [Intel-xe] [PATCH v4 4/6] drm/xe/buddy: remove the virtualized
+ start
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -65,917 +155,101 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Cc: Lucas De Marchi <lucas.demarchi@intel.com>
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-This is a multi-part message in MIME format.
---------------jDJ7xc3GtaobmKAC7vSaVAW8
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-
-Hi,
-
-On 3/16/23 07:46, Lucas De Marchi wrote:
-> On Mon, Mar 13, 2023 at 07:18:34PM +0100, Michal Wajdeczko wrote:
->>
->>
->> On 13.03.2023 17:23, Lucas De Marchi wrote:
->>> On Mon, Mar 13, 2023 at 09:13:12AM +0100, Michal Wajdeczko wrote:
->>>> Our initial attempt to run Kunit based tests on live devices is hard
->>>> to use and will not work well with multiple devices attached.
->>>>
->>>> Instead of relying on separate test module and duplicating support
->>>> for multiple live devices in every test entry point, create new set
->>>> of helpers and use test->priv to pass reference of the device under
->>>> test (DUT) directly to every test function.
->>>>
->>>> The same use pattern is supported for both mock and live selftests.
->>>>
->>>> By using bus_notifier we can start testing each new bound device
->>>> separatelly, subject to filtering using dut_filter modparam.
->>>>
->>>> All test cases can be included directly from .c file, allowing test
->>>> code to access and use any private functions.
->>>>
->>>> As Kunit will attempt to run all suites on module load, including
->>>> our new live test suites, we may want to allow to execute them on
->>>> any available device. This is controlled by anonymous_dut modparam.
->>>>
->>>> Support for either mock or live selftests, only one at time, is
->>>> controlled by new Kconfig options.
->>>>
->>>> Signed-off-by: Michal Wajdeczko <michal.wajdeczko@intel.com>
->>>> ---
->>>> drivers/gpu/drm/xe/Kconfig.debug              |  22 ++++
->>>> drivers/gpu/drm/xe/Makefile                   |  11 ++
->>>> drivers/gpu/drm/xe/selftests/xe_selftests.h   |  35 ++++++
->>>> .../gpu/drm/xe/selftests/xe_selftests_auto.c  |  46 +++++++
->>>> .../drm/xe/selftests/xe_selftests_executor.c  | 118 ++++++++++++++++++
->>>> .../drm/xe/selftests/xe_selftests_helpers.c   | 101 +++++++++++++++
->>>> .../drm/xe/selftests/xe_selftests_internal.h  |  22 ++++
->>>> .../gpu/drm/xe/selftests/xe_selftests_mock.c  |  32 +++++
->>>> .../drm/xe/selftests/xe_selftests_params.c    |  23 ++++
->>>> drivers/gpu/drm/xe/xe_module.c                |   2 +
->>>> 10 files changed, 412 insertions(+)
->>>> create mode 100644 drivers/gpu/drm/xe/selftests/xe_selftests.h
->>>> create mode 100644 drivers/gpu/drm/xe/selftests/xe_selftests_auto.c
->>>> create mode 100644 
->>>> drivers/gpu/drm/xe/selftests/xe_selftests_executor.c
->>>> create mode 100644 drivers/gpu/drm/xe/selftests/xe_selftests_helpers.c
->>>> create mode 100644 
->>>> drivers/gpu/drm/xe/selftests/xe_selftests_internal.h
->>>> create mode 100644 drivers/gpu/drm/xe/selftests/xe_selftests_mock.c
->>>> create mode 100644 drivers/gpu/drm/xe/selftests/xe_selftests_params.c
->>>>
->>>> diff --git a/drivers/gpu/drm/xe/Kconfig.debug
->>>> b/drivers/gpu/drm/xe/Kconfig.debug
->>>> index 93b284cdd0a2..aeba43977dca 100644
->>>> --- a/drivers/gpu/drm/xe/Kconfig.debug
->>>> +++ b/drivers/gpu/drm/xe/Kconfig.debug
->>>> @@ -61,6 +61,28 @@ config DRM_XE_SIMPLE_ERROR_CAPTURE
->>>>
->>>>       If in doubt, say "N".
->>>>
->>>> +config DRM_XE_SELFTESTS_MOCK
->>>> +    bool "Mock selftests for Xe" if !KUNIT_ALL_TESTS
->>>> +    depends on DRM_XE && KUNIT
->>>> +    default KUNIT_ALL_TESTS
->>>> +    help
->>>> +        Choose this option to allow the driver to perform mock
->>>> +        selftests based on the Kunit framework.
->>>> +
->>>> +        Recommended for driver developers only.
->>>> +        If in doubt, say "N".
->>>> +
->>>> +config DRM_XE_SELFTESTS_LIVE
->>>> +    bool "Live selftests for Xe" if !DRM_XE_SELFTESTS_MOCK
->>>
->>> why?  I think we should aim to run live tests in *addition* to
->>> mock ones.  The mock tests are more testing our SW infra and can be 
->>> used
->>> in a true "unit test" sense. While the live ones are testing the
->>> integration with the HW and making sure they work together.
->>
->> I've added that just to simplify the code logic as I assumed we will be
->> running mock tests only in "true kunit" fashion as part of the build.
->>
->> So then we could avoid mixing mock/live "kunit suites" in single driver
->> module, especially that as of today there is no nice support to filter
->> out undesired suites from the execution. Thus adding compile time flag
->> to only have one category of selftests at time was looking promising.
->
-> I'm using this in the patches I'm sending to unit test rtp and wa parts:
->
->     ./tools/testing/kunit/kunit.py run --raw_output  \
->                 --kunitconfig drivers/gpu/drm/xe/.kunitconfig xe_rtp
->
->>
->> So I was using .kunitconfig with
->>     CONFIG_DRM_XE_SELFTESTS_MOCK=y
->> and normal .config with
->>     CONFIG_DRM_XE_SELFTESTS_LIVE=y
->>
->>>
->>> I have changes pending to test some WA and RTP infra we added,
->>> regardless of the HW. But I don't want to have to choose either one or
->>> the other.
->>
->> And I guess you still can do that, just it wont be automatically
->> compiled out, nor you be able to benefit from the helpers, but they will
->> be executed
->>
->>>
->>> Also Cc Thomas as original author of the kunit integration.
->>>
->>> We also have some overloaded terms that need better explanation:
->>> mock, selftest, live.
->>
->> I reused terms from i915, assumed everyone is familiar with that.
->>
->> "mock selftest" - a kunit test suite to be run on abstract xe device
->> "live selftest" - a kunit test suite to be executed on real xe device
->
-> Things I like on the current kunit integration we have in xe:
->
->     1) The ability to move unit test code out to a separate module
->     2) Not having a big infra that is xe-only
->     3) Share terminology with the rest of drm subsystem
->
-> This patch series is basically killing (1) and (3). And for (2) it seems
-> to be heading another direction.  Looking at the current available
-> drivers,  I think we should be more like the drm tests and the vc4 tests
-> rather than the i915 ones.  If we need more helpers we may probably
-> extend the ones in DRM_KUNIT_TEST_HELPERS
->
-> I'd love to hear others' opinions though.
-
-I basically agree with Lucas here. Some points:
-
-  * For mock selftests IMO we don't need anything on top of what we
-    already have, except perhaps consolidate initialization of a mock
-    device as a helper each test can optionally use.  I think, though,
-    that Mauro's suggestion of coalescing multiple mock tests together
-    in a single separate kernel module with multiple test suites to
-    avoid too many separate kernel module might be worth considering if
-    needed.
-  * For live selftests it seems like where the big disconnect is. I
-    still believe that we should have separate modules, and depending on
-    how the IGT runner end up working have enough information in that
-    module for IGT to execute the tests with the --run-subtest and
-    --dynamic-subtest options.
-  * Admiddedly the xe_for_each_device() helper is very limited, but
-    couldn't we just make a more elaborate helper that can add
-    functionality like filter out devices if needed? I'm thinking if we
-    enforce a middle layer that tells each test what device it should be
-    testing, things like testing PCI p2p dma between devices will become
-    awkward (but still possible I guess).
-  * Do we really need to support compiled-in live selftests that run a
-    device on device binding? I guess the use-case isn't fully clear to me.
-  * And yes the test parameters shouldn't be needing the test->priv, but
-    neither should we need to pass the device here, right?
-
-/Thomas
 
 
+On 3/14/23 10:58 AM, Matthew Auld wrote:
+> Hopefully not needed anymore. We can add a .compatible() hook once we
+> need to differentiate between mappable and non-mappable vram. If the
+> allocation is not contiguous then the start value is kind of
+> meaningless, so rather just mark as invalid.
+> 
+> In upstream, TTM wants to eventually remove the ttm_resource.start
+> usage.
+Hi Matt,
+If there is a related rfc or discussion, could you please share a reference?
+> 
+> Signed-off-by: Matthew Auld <matthew.auld@intel.com>
+> Cc: Lucas De Marchi <lucas.demarchi@intel.com>
+> Reviewed-by: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
+> ---
+>   drivers/gpu/drm/xe/xe_bo.c           |  6 ++++++
+>   drivers/gpu/drm/xe/xe_ttm_vram_mgr.c | 29 ++++++++++++++--------------
+>   2 files changed, 20 insertions(+), 15 deletions(-)
+> 
+> diff --git a/drivers/gpu/drm/xe/xe_bo.c b/drivers/gpu/drm/xe/xe_bo.c
+> index 73a7f2cd4ad8..346573f406c2 100644
+> --- a/drivers/gpu/drm/xe/xe_bo.c
+> +++ b/drivers/gpu/drm/xe/xe_bo.c
+> @@ -662,6 +662,12 @@ static int xe_bo_move(struct ttm_buffer_object *ttm_bo, bool evict,
+>   				void *new_addr = gt->mem.vram.mapping +
+>   					(new_mem->start << PAGE_SHIFT);
+>   
+> +				if (XE_WARN_ON(new_mem->start == XE_BO_INVALID_OFFSET)) {
+Are there really any use cases for moving to memory allocated with 
+xe_ttm_gtt_mgr_func()?
 
-
-
->
-> Lucas De Marchi
->
->>
->> If you have better suggestions, then you're welcomed
->>
->>>
->>>> +    depends on DRM_XE && KUNIT && EXPERT
->>>> +    default n
->>>> +    help
->>>> +        Choose this option to allow the driver to perform live
->>>> +        selftests based on the Kunit framework.
->>>> +
->>>> +        Recommended for driver developers only.
->>>> +        If in doubt, say "N".
->>>> +
->>>> config DRM_XE_KUNIT_TEST
->>>>         tristate "KUnit tests for the drm xe driver" if 
->>>> !KUNIT_ALL_TESTS
->>>>     depends on DRM_XE && KUNIT && DEBUG_FS
->>>> diff --git a/drivers/gpu/drm/xe/Makefile b/drivers/gpu/drm/xe/Makefile
->>>> index b94e65c91101..b193af2d9930 100644
->>>> --- a/drivers/gpu/drm/xe/Makefile
->>>> +++ b/drivers/gpu/drm/xe/Makefile
->>>> @@ -211,6 +211,17 @@ ifeq ($(CONFIG_DRM_FBDEV_EMULATION),y)
->>>>     xe-$(CONFIG_DRM_XE_DISPLAY) += display/intel_fbdev.o
->>>> endif
->>>>
->>>> +xe-$(CONFIG_DRM_XE_SELFTESTS_MOCK) += \
->>>> +    selftests/xe_selftests_mock.o \
->>>> +
->>>> +xe-$(CONFIG_DRM_XE_SELFTESTS_LIVE) += \
->>>> +    selftests/xe_selftests_auto.o \
->>>> +    selftests/xe_selftests_executor.o \
->>>> +    selftests/xe_selftests_params.o \
->>>> +
->>>> +xe-$(CONFIG_KUNIT) += \
->>>> +    selftests/xe_selftests_helpers.o \
->>>> +
->>>> obj-$(CONFIG_DRM_XE) += xe.o
->>>> obj-$(CONFIG_DRM_XE_KUNIT_TEST) += tests/
->>>>
->>>> diff --git a/drivers/gpu/drm/xe/selftests/xe_selftests.h
->>>> b/drivers/gpu/drm/xe/selftests/xe_selftests.h
->>>> new file mode 100644
->>>> index 000000000000..6b13b998e789
->>>> --- /dev/null
->>>> +++ b/drivers/gpu/drm/xe/selftests/xe_selftests.h
->>>> @@ -0,0 +1,35 @@
->>>> +/* SPDX-License-Identifier: MIT */
->>>> +/*
->>>> + * Copyright © 2023 Intel Corporation
->>>> + */
->>>> +
->>>> +#ifndef _XE_SELFTESTS_H_
->>>> +#define _XE_SELFTESTS_H_
->>>> +
->>>> +struct kunit_suite;
->>>> +struct kunit;
->>>> +
->>>> +int xe_selftests_run(const char *dev_name);
->>>> +
->>>> +#if IS_ENABLED(CONFIG_DRM_XE_SELFTESTS_LIVE)
->>>> +int init_xe_live_selftest_suite(struct kunit_suite *suite);
->>>> +#endif
->>>> +
->>>> +int init_xe_device_selftest(struct kunit *test);
->>>> +void exit_xe_device_selftest(struct kunit *test);
->>>> +
->>>> +int init_xe_gt_selftest(struct kunit *test);
->>>> +void exit_xe_gt_selftest(struct kunit *test);
->>>> +
->>>> +int init_xe_guc_selftest(struct kunit *test);
->>>> +void exit_xe_guc_selftest(struct kunit *test);
->>>> +
->>>> +#if IS_ENABLED(CONFIG_DRM_XE_SELFTESTS_LIVE)
->>>> +int xe_selftests_module_init(void);
->>>> +void xe_selftests_module_exit(void);
->>>> +#else
->>>> +static inline int xe_selftests_module_init(void) { return 0; }
->>>> +static inline void xe_selftests_module_exit(void) { }
->>>> +#endif
->>>> +
->>>> +#endif /* _XE_SELFTESTS_H_ */
->>>> diff --git a/drivers/gpu/drm/xe/selftests/xe_selftests_auto.c
->>>> b/drivers/gpu/drm/xe/selftests/xe_selftests_auto.c
->>>> new file mode 100644
->>>> index 000000000000..ef98f3599eac
->>>> --- /dev/null
->>>> +++ b/drivers/gpu/drm/xe/selftests/xe_selftests_auto.c
->>>> @@ -0,0 +1,46 @@
->>>> +// SPDX-License-Identifier: MIT
->>>> +/*
->>>> + * Copyright © 2023 Intel Corporation
->>>> + */
->>>> +
->>>> +#include <linux/device.h>
->>>> +#include <linux/glob.h>
->>>> +#include <linux/pci.h>
->>>> +
->>>> +#include "xe_drv.h"
->>>> +#include "selftests/xe_selftests.h"
->>>> +#include "selftests/xe_selftests_internal.h"
->>>> +
->>>> +static int bus_cb(struct notifier_block *nb, unsigned long action,
->>>> void *data)
->>>> +{
->>>> +    struct device *dev = data;
->>>> +    struct device_driver *drv = dev->driver;
->>>> +
->>>> +    if (action != BUS_NOTIFY_BOUND_DRIVER)
->>>> +        return 0;
->>>> +
->>>> +    if (strcmp(DRIVER_NAME, drv->name))
->>>> +        return 0;
->>>> +
->>>> +    /* only matching DUT names will be tested */
->>>> +    if (!dut_filter || !glob_match(dut_filter, dev_name(dev)))
->>>
->>> "DUT" name could be avoided and just use what exactly it means.
->>> When I see "DUT" I'm wondering... is this the platform name, the pci 
->>> ID,
->>> the pci slot, the device node?
->>
->> will rename to "dut_name_filter" do the trick ?
->>
->> or do you want to drop "dut" completely and have "device_name_filter" ?
->> but then we would need to add "selftest" or similar word somewhere to
->> give context and then full modparam name will no longer be that friendly
->>
->> Thanks,
->> Michal
---------------jDJ7xc3GtaobmKAC7vSaVAW8
-Content-Type: text/html; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-
-<html>
-  <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-  </head>
-  <body>
-    <p>Hi,<br>
-    </p>
-    <div class="moz-cite-prefix">On 3/16/23 07:46, Lucas De Marchi
-      wrote:<br>
-    </div>
-    <blockquote type="cite"
-      cite="mid:20230316064643.fu5thzu4pf7htisq@ldmartin-desk2.lan">On
-      Mon, Mar 13, 2023 at 07:18:34PM +0100, Michal Wajdeczko wrote:
-      <br>
-      <blockquote type="cite">
-        <br>
-        <br>
-        On 13.03.2023 17:23, Lucas De Marchi wrote:
-        <br>
-        <blockquote type="cite">On Mon, Mar 13, 2023 at 09:13:12AM
-          +0100, Michal Wajdeczko wrote:
-          <br>
-          <blockquote type="cite">Our initial attempt to run Kunit based
-            tests on live devices is hard
-            <br>
-            to use and will not work well with multiple devices
-            attached.
-            <br>
-            <br>
-            Instead of relying on separate test module and duplicating
-            support
-            <br>
-            for multiple live devices in every test entry point, create
-            new set
-            <br>
-            of helpers and use test-&gt;priv to pass reference of the
-            device under
-            <br>
-            test (DUT) directly to every test function.
-            <br>
-            <br>
-            The same use pattern is supported for both mock and live
-            selftests.
-            <br>
-            <br>
-            By using bus_notifier we can start testing each new bound
-            device
-            <br>
-            separatelly, subject to filtering using dut_filter modparam.
-            <br>
-            <br>
-            All test cases can be included directly from .c file,
-            allowing test
-            <br>
-            code to access and use any private functions.
-            <br>
-            <br>
-            As Kunit will attempt to run all suites on module load,
-            including
-            <br>
-            our new live test suites, we may want to allow to execute
-            them on
-            <br>
-            any available device. This is controlled by anonymous_dut
-            modparam.
-            <br>
-            <br>
-            Support for either mock or live selftests, only one at time,
-            is
-            <br>
-            controlled by new Kconfig options.
-            <br>
-            <br>
-            Signed-off-by: Michal Wajdeczko
-            <a class="moz-txt-link-rfc2396E" href="mailto:michal.wajdeczko@intel.com">&lt;michal.wajdeczko@intel.com&gt;</a>
-            <br>
-            ---
-            <br>
-            drivers/gpu/drm/xe/Kconfig.debug              |  22 ++++
-            <br>
-            drivers/gpu/drm/xe/Makefile                   |  11 ++
-            <br>
-            drivers/gpu/drm/xe/selftests/xe_selftests.h   |  35 ++++++
-            <br>
-            .../gpu/drm/xe/selftests/xe_selftests_auto.c  |  46 +++++++
-            <br>
-            .../drm/xe/selftests/xe_selftests_executor.c  | 118
-            ++++++++++++++++++
-            <br>
-            .../drm/xe/selftests/xe_selftests_helpers.c   | 101
-            +++++++++++++++
-            <br>
-            .../drm/xe/selftests/xe_selftests_internal.h  |  22 ++++
-            <br>
-            .../gpu/drm/xe/selftests/xe_selftests_mock.c  |  32 +++++
-            <br>
-            .../drm/xe/selftests/xe_selftests_params.c    |  23 ++++
-            <br>
-            drivers/gpu/drm/xe/xe_module.c                |   2 +
-            <br>
-            10 files changed, 412 insertions(+)
-            <br>
-            create mode 100644
-            drivers/gpu/drm/xe/selftests/xe_selftests.h
-            <br>
-            create mode 100644
-            drivers/gpu/drm/xe/selftests/xe_selftests_auto.c
-            <br>
-            create mode 100644
-            drivers/gpu/drm/xe/selftests/xe_selftests_executor.c
-            <br>
-            create mode 100644
-            drivers/gpu/drm/xe/selftests/xe_selftests_helpers.c
-            <br>
-            create mode 100644
-            drivers/gpu/drm/xe/selftests/xe_selftests_internal.h
-            <br>
-            create mode 100644
-            drivers/gpu/drm/xe/selftests/xe_selftests_mock.c
-            <br>
-            create mode 100644
-            drivers/gpu/drm/xe/selftests/xe_selftests_params.c
-            <br>
-            <br>
-            diff --git a/drivers/gpu/drm/xe/Kconfig.debug
-            <br>
-            b/drivers/gpu/drm/xe/Kconfig.debug
-            <br>
-            index 93b284cdd0a2..aeba43977dca 100644
-            <br>
-            --- a/drivers/gpu/drm/xe/Kconfig.debug
-            <br>
-            +++ b/drivers/gpu/drm/xe/Kconfig.debug
-            <br>
-            @@ -61,6 +61,28 @@ config DRM_XE_SIMPLE_ERROR_CAPTURE
-            <br>
-            <br>
-                  If in doubt, say "N".
-            <br>
-            <br>
-            +config DRM_XE_SELFTESTS_MOCK
-            <br>
-            +    bool "Mock selftests for Xe" if !KUNIT_ALL_TESTS
-            <br>
-            +    depends on DRM_XE &amp;&amp; KUNIT
-            <br>
-            +    default KUNIT_ALL_TESTS
-            <br>
-            +    help
-            <br>
-            +        Choose this option to allow the driver to perform
-            mock
-            <br>
-            +        selftests based on the Kunit framework.
-            <br>
-            +
-            <br>
-            +        Recommended for driver developers only.
-            <br>
-            +        If in doubt, say "N".
-            <br>
-            +
-            <br>
-            +config DRM_XE_SELFTESTS_LIVE
-            <br>
-            +    bool "Live selftests for Xe" if !DRM_XE_SELFTESTS_MOCK
-            <br>
-          </blockquote>
-          <br>
-          why?  I think we should aim to run live tests in *addition* to
-          <br>
-          mock ones.  The mock tests are more testing our SW infra and
-          can be used
-          <br>
-          in a true "unit test" sense. While the live ones are testing
-          the
-          <br>
-          integration with the HW and making sure they work together.
-          <br>
-        </blockquote>
-        <br>
-        I've added that just to simplify the code logic as I assumed we
-        will be
-        <br>
-        running mock tests only in "true kunit" fashion as part of the
-        build.
-        <br>
-        <br>
-        So then we could avoid mixing mock/live "kunit suites" in single
-        driver
-        <br>
-        module, especially that as of today there is no nice support to
-        filter
-        <br>
-        out undesired suites from the execution. Thus adding compile
-        time flag
-        <br>
-        to only have one category of selftests at time was looking
-        promising.
-        <br>
-      </blockquote>
-      <br>
-      I'm using this in the patches I'm sending to unit test rtp and wa
-      parts:
-      <br>
-      <br>
-          ./tools/testing/kunit/kunit.py run --raw_output  \
-      <br>
-                      --kunitconfig drivers/gpu/drm/xe/.kunitconfig
-      xe_rtp
-      <br>
-      <br>
-      <blockquote type="cite">
-        <br>
-        So I was using .kunitconfig with
-        <br>
-            CONFIG_DRM_XE_SELFTESTS_MOCK=y
-        <br>
-        and normal .config with
-        <br>
-            CONFIG_DRM_XE_SELFTESTS_LIVE=y
-        <br>
-        <br>
-        <blockquote type="cite">
-          <br>
-          I have changes pending to test some WA and RTP infra we added,
-          <br>
-          regardless of the HW. But I don't want to have to choose
-          either one or
-          <br>
-          the other.
-          <br>
-        </blockquote>
-        <br>
-        And I guess you still can do that, just it wont be automatically
-        <br>
-        compiled out, nor you be able to benefit from the helpers, but
-        they will
-        <br>
-        be executed
-        <br>
-        <br>
-        <blockquote type="cite">
-          <br>
-          Also Cc Thomas as original author of the kunit integration.
-          <br>
-          <br>
-          We also have some overloaded terms that need better
-          explanation:
-          <br>
-          mock, selftest, live.
-          <br>
-        </blockquote>
-        <br>
-        I reused terms from i915, assumed everyone is familiar with
-        that.
-        <br>
-        <br>
-        "mock selftest" - a kunit test suite to be run on abstract xe
-        device
-        <br>
-        "live selftest" - a kunit test suite to be executed on real xe
-        device
-        <br>
-      </blockquote>
-      <br>
-      Things I like on the current kunit integration we have in xe:
-      <br>
-      <br>
-          1) The ability to move unit test code out to a separate module
-      <br>
-          2) Not having a big infra that is xe-only
-      <br>
-          3) Share terminology with the rest of drm subsystem
-      <br>
-      <br>
-      This patch series is basically killing (1) and (3). And for (2) it
-      seems
-      <br>
-      to be heading another direction.  Looking at the current available
-      <br>
-      drivers,  I think we should be more like the drm tests and the vc4
-      tests
-      <br>
-      rather than the i915 ones.  If we need more helpers we may
-      probably
-      <br>
-      extend the ones in DRM_KUNIT_TEST_HELPERS
-      <br>
-      <br>
-      I'd love to hear others' opinions though.
-      <br>
-    </blockquote>
-    <p>I basically agree with Lucas here. Some points:</p>
-    <ul>
-      <li>For mock selftests IMO we don't need anything on top of what
-        we already have, except perhaps consolidate initialization of a
-        mock device as a helper each test can optionally use.  I think,
-        though, that Mauro's suggestion of coalescing multiple mock
-        tests together in a single separate kernel module with multiple
-        test suites to avoid too many separate kernel module might be
-        worth considering if needed.</li>
-      <li>For live selftests it seems like where the big disconnect is.
-        I still believe that we should have separate modules, and
-        depending on how the IGT runner end up working have enough
-        information in that module for IGT to execute the tests with the
-        --run-subtest and --dynamic-subtest options.</li>
-      <li>Admiddedly the xe_for_each_device() helper is very limited,
-        but couldn't we just make a more elaborate helper that can add
-        functionality like filter out devices if needed? I'm thinking if
-        we enforce a middle layer that tells each test what device it
-        should be testing, things like testing PCI p2p dma between
-        devices will become awkward (but still possible I guess).</li>
-      <li>Do we really need to support compiled-in live selftests that
-        run a device on device binding? I guess the use-case isn't fully
-        clear to me.</li>
-      <li>And yes the test parameters shouldn't be needing the
-        test-&gt;priv, but neither should we need to pass the device
-        here, right?</li>
-    </ul>
-    <p>/Thomas</p>
-    <p><br>
-    </p>
-    <p><br>
-    </p>
-    <p><br>
-    </p>
-    <p><br>
-    </p>
-    <blockquote type="cite"
-      cite="mid:20230316064643.fu5thzu4pf7htisq@ldmartin-desk2.lan">
-      <br>
-      Lucas De Marchi
-      <br>
-      <br>
-      <blockquote type="cite">
-        <br>
-        If you have better suggestions, then you're welcomed
-        <br>
-        <br>
-        <blockquote type="cite">
-          <br>
-          <blockquote type="cite">+    depends on DRM_XE &amp;&amp;
-            KUNIT &amp;&amp; EXPERT
-            <br>
-            +    default n
-            <br>
-            +    help
-            <br>
-            +        Choose this option to allow the driver to perform
-            live
-            <br>
-            +        selftests based on the Kunit framework.
-            <br>
-            +
-            <br>
-            +        Recommended for driver developers only.
-            <br>
-            +        If in doubt, say "N".
-            <br>
-            +
-            <br>
-            config DRM_XE_KUNIT_TEST
-            <br>
-                    tristate "KUnit tests for the drm xe driver" if
-            !KUNIT_ALL_TESTS
-            <br>
-                depends on DRM_XE &amp;&amp; KUNIT &amp;&amp; DEBUG_FS
-            <br>
-            diff --git a/drivers/gpu/drm/xe/Makefile
-            b/drivers/gpu/drm/xe/Makefile
-            <br>
-            index b94e65c91101..b193af2d9930 100644
-            <br>
-            --- a/drivers/gpu/drm/xe/Makefile
-            <br>
-            +++ b/drivers/gpu/drm/xe/Makefile
-            <br>
-            @@ -211,6 +211,17 @@ ifeq ($(CONFIG_DRM_FBDEV_EMULATION),y)
-            <br>
-                xe-$(CONFIG_DRM_XE_DISPLAY) += display/intel_fbdev.o
-            <br>
-            endif
-            <br>
-            <br>
-            +xe-$(CONFIG_DRM_XE_SELFTESTS_MOCK) += \
-            <br>
-            +    selftests/xe_selftests_mock.o \
-            <br>
-            +
-            <br>
-            +xe-$(CONFIG_DRM_XE_SELFTESTS_LIVE) += \
-            <br>
-            +    selftests/xe_selftests_auto.o \
-            <br>
-            +    selftests/xe_selftests_executor.o \
-            <br>
-            +    selftests/xe_selftests_params.o \
-            <br>
-            +
-            <br>
-            +xe-$(CONFIG_KUNIT) += \
-            <br>
-            +    selftests/xe_selftests_helpers.o \
-            <br>
-            +
-            <br>
-            obj-$(CONFIG_DRM_XE) += xe.o
-            <br>
-            obj-$(CONFIG_DRM_XE_KUNIT_TEST) += tests/
-            <br>
-            <br>
-            diff --git a/drivers/gpu/drm/xe/selftests/xe_selftests.h
-            <br>
-            b/drivers/gpu/drm/xe/selftests/xe_selftests.h
-            <br>
-            new file mode 100644
-            <br>
-            index 000000000000..6b13b998e789
-            <br>
-            --- /dev/null
-            <br>
-            +++ b/drivers/gpu/drm/xe/selftests/xe_selftests.h
-            <br>
-            @@ -0,0 +1,35 @@
-            <br>
-            +/* SPDX-License-Identifier: MIT */
-            <br>
-            +/*
-            <br>
-            + * Copyright © 2023 Intel Corporation
-            <br>
-            + */
-            <br>
-            +
-            <br>
-            +#ifndef _XE_SELFTESTS_H_
-            <br>
-            +#define _XE_SELFTESTS_H_
-            <br>
-            +
-            <br>
-            +struct kunit_suite;
-            <br>
-            +struct kunit;
-            <br>
-            +
-            <br>
-            +int xe_selftests_run(const char *dev_name);
-            <br>
-            +
-            <br>
-            +#if IS_ENABLED(CONFIG_DRM_XE_SELFTESTS_LIVE)
-            <br>
-            +int init_xe_live_selftest_suite(struct kunit_suite *suite);
-            <br>
-            +#endif
-            <br>
-            +
-            <br>
-            +int init_xe_device_selftest(struct kunit *test);
-            <br>
-            +void exit_xe_device_selftest(struct kunit *test);
-            <br>
-            +
-            <br>
-            +int init_xe_gt_selftest(struct kunit *test);
-            <br>
-            +void exit_xe_gt_selftest(struct kunit *test);
-            <br>
-            +
-            <br>
-            +int init_xe_guc_selftest(struct kunit *test);
-            <br>
-            +void exit_xe_guc_selftest(struct kunit *test);
-            <br>
-            +
-            <br>
-            +#if IS_ENABLED(CONFIG_DRM_XE_SELFTESTS_LIVE)
-            <br>
-            +int xe_selftests_module_init(void);
-            <br>
-            +void xe_selftests_module_exit(void);
-            <br>
-            +#else
-            <br>
-            +static inline int xe_selftests_module_init(void) { return
-            0; }
-            <br>
-            +static inline void xe_selftests_module_exit(void) { }
-            <br>
-            +#endif
-            <br>
-            +
-            <br>
-            +#endif /* _XE_SELFTESTS_H_ */
-            <br>
-            diff --git
-            a/drivers/gpu/drm/xe/selftests/xe_selftests_auto.c
-            <br>
-            b/drivers/gpu/drm/xe/selftests/xe_selftests_auto.c
-            <br>
-            new file mode 100644
-            <br>
-            index 000000000000..ef98f3599eac
-            <br>
-            --- /dev/null
-            <br>
-            +++ b/drivers/gpu/drm/xe/selftests/xe_selftests_auto.c
-            <br>
-            @@ -0,0 +1,46 @@
-            <br>
-            +// SPDX-License-Identifier: MIT
-            <br>
-            +/*
-            <br>
-            + * Copyright © 2023 Intel Corporation
-            <br>
-            + */
-            <br>
-            +
-            <br>
-            +#include &lt;linux/device.h&gt;
-            <br>
-            +#include &lt;linux/glob.h&gt;
-            <br>
-            +#include &lt;linux/pci.h&gt;
-            <br>
-            +
-            <br>
-            +#include "xe_drv.h"
-            <br>
-            +#include "selftests/xe_selftests.h"
-            <br>
-            +#include "selftests/xe_selftests_internal.h"
-            <br>
-            +
-            <br>
-            +static int bus_cb(struct notifier_block *nb, unsigned long
-            action,
-            <br>
-            void *data)
-            <br>
-            +{
-            <br>
-            +    struct device *dev = data;
-            <br>
-            +    struct device_driver *drv = dev-&gt;driver;
-            <br>
-            +
-            <br>
-            +    if (action != BUS_NOTIFY_BOUND_DRIVER)
-            <br>
-            +        return 0;
-            <br>
-            +
-            <br>
-            +    if (strcmp(DRIVER_NAME, drv-&gt;name))
-            <br>
-            +        return 0;
-            <br>
-            +
-            <br>
-            +    /* only matching DUT names will be tested */
-            <br>
-            +    if (!dut_filter || !glob_match(dut_filter,
-            dev_name(dev)))
-            <br>
-          </blockquote>
-          <br>
-          "DUT" name could be avoided and just use what exactly it
-          means.
-          <br>
-          When I see "DUT" I'm wondering... is this the platform name,
-          the pci ID,
-          <br>
-          the pci slot, the device node?
-          <br>
-        </blockquote>
-        <br>
-        will rename to "dut_name_filter" do the trick ?
-        <br>
-        <br>
-        or do you want to drop "dut" completely and have
-        "device_name_filter" ?
-        <br>
-        but then we would need to add "selftest" or similar word
-        somewhere to
-        <br>
-        give context and then full modparam name will no longer be that
-        friendly
-        <br>
-        <br>
-        Thanks,
-        <br>
-        Michal
-        <br>
-      </blockquote>
-    </blockquote>
-  </body>
-</html>
-
---------------jDJ7xc3GtaobmKAC7vSaVAW8--
+Br,
+G.G.
+> +					ret = -EINVAL;
+> +					xe_device_mem_access_put(xe);
+> +					goto out;
+> +				}
+> +
+>   				XE_BUG_ON(new_mem->start !=
+>   					  bo->placements->fpfn);
+>   
+> diff --git a/drivers/gpu/drm/xe/xe_ttm_vram_mgr.c b/drivers/gpu/drm/xe/xe_ttm_vram_mgr.c
+> index 159ca7105df1..bafcadaed6b0 100644
+> --- a/drivers/gpu/drm/xe/xe_ttm_vram_mgr.c
+> +++ b/drivers/gpu/drm/xe/xe_ttm_vram_mgr.c
+> @@ -54,7 +54,6 @@ static int xe_ttm_vram_mgr_new(struct ttm_resource_manager *man,
+>   	struct xe_ttm_vram_mgr_resource *vres;
+>   	u64 size, remaining_size, lpfn, fpfn;
+>   	struct drm_buddy *mm = &mgr->mm;
+> -	struct drm_buddy_block *block;
+>   	unsigned long pages_per_block;
+>   	int r;
+>   
+> @@ -186,24 +185,24 @@ static int xe_ttm_vram_mgr_new(struct ttm_resource_manager *man,
+>   			list_splice_tail(trim_list, &vres->blocks);
+>   	}
+>   
+> -	vres->base.start = 0;
+> -	list_for_each_entry(block, &vres->blocks, link) {
+> -		unsigned long start;
+> +	if (!(vres->base.placement & TTM_PL_FLAG_CONTIGUOUS) &&
+> +	    xe_is_vram_mgr_blocks_contiguous(mm, &vres->blocks))
+> +		vres->base.placement |= TTM_PL_FLAG_CONTIGUOUS;
+>   
+> -		start = drm_buddy_block_offset(block) +
+> -			drm_buddy_block_size(mm, block);
+> -		start >>= PAGE_SHIFT;
+> +	/*
+> +	 * For some kernel objects we still rely on the start when io mapping
+> +	 * the object.
+> +	 */
+> +	if (vres->base.placement & TTM_PL_FLAG_CONTIGUOUS) {
+> +		struct drm_buddy_block *block = list_first_entry(&vres->blocks,
+> +								 typeof(*block),
+> +								 link);
+>   
+> -		if (start > PFN_UP(vres->base.size))
+> -			start -= PFN_UP(vres->base.size);
+> -		else
+> -			start = 0;
+> -		vres->base.start = max(vres->base.start, start);
+> +		vres->base.start = drm_buddy_block_offset(block) >> PAGE_SHIFT;
+> +	} else {
+> +		vres->base.start = XE_BO_INVALID_OFFSET;
+>   	}
+>   
+> -	if (xe_is_vram_mgr_blocks_contiguous(mm, &vres->blocks))
+> -		vres->base.placement |= TTM_PL_FLAG_CONTIGUOUS;
+> -
+>   	*res = &vres->base;
+>   	return 0;
+>   
