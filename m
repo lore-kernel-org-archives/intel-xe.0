@@ -4,51 +4,149 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4AC46C7618A
-	for <intel-xe@archiver.kernel.org>; Mon, 20 Mar 2023 11:42:20 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 80E00C6FD1D
+	for <intel-xe@archiver.kernel.org>; Mon, 20 Mar 2023 12:09:13 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 12C2510E3FC;
-	Mon, 20 Mar 2023 11:42:20 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 41B3E10E3FC;
+	Mon, 20 Mar 2023 12:09:13 +0000 (UTC)
 Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 912A710E3FC
- for <intel-xe@lists.freedesktop.org>; Mon, 20 Mar 2023 11:42:18 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id F2F0410E3FC
+ for <intel-xe@lists.freedesktop.org>; Mon, 20 Mar 2023 12:09:10 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1679312538; x=1710848538;
- h=message-id:date:mime-version:subject:to:references:from:
- in-reply-to:content-transfer-encoding;
- bh=Dr1GALoZB1AcInP3AMc2Kir4fR9LoxCubxbOU+unvmM=;
- b=Oicy0GXRXFxr3ueNlAqTcYw5jHBmGDhHDzHHO3vqEdOEZbhM+wzdlD5S
- Hw0OzVc2jWuLuJn0Cxwh/vrBdUYeC4sfdS6udzDQ3W4JeGy7oL0fTqFAX
- SZ3rEkFfccw9uZUC+KJ1Du48OVsyqE9VkZXxguiRIA4L7nEzNGt/VpHAY
- 6jrvm7vUqW/27YMkhIjODdiutHi4gsal8QjGFCVH2oi0C1ZS68lfIoIn0
- /Oooy/3xvbO6gRXTFnU0h3U/BMf6rsPreaQTt4BzJ/ddVwd34KjzgAxgs
- oIaXVdUD5gDDlicnnc9jqQVvkVaSnCxKhxYaOiP520T84YXTDLVKNL8Qg Q==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10654"; a="327009923"
-X-IronPort-AV: E=Sophos;i="5.98,274,1673942400"; d="scan'208";a="327009923"
-Received: from orsmga005.jf.intel.com ([10.7.209.41])
+ t=1679314151; x=1710850151;
+ h=message-id:date:subject:to:cc:references:from:
+ in-reply-to:content-transfer-encoding:mime-version;
+ bh=yGiHHGruCxU68iJNt/yUe7di54jukDEkkOMKTzjoZFg=;
+ b=TPQ/sK5oGTLZRurbA5BdJoU//7F3x33gItIMUGtgZBh4hEs9UF5FdAye
+ Uc/qzX4jyoRi/UkHdBYfjBeOSWAktartlMNytbZIL09Nl5kOmaBCZUNhA
+ HS+7hczIgKOhOlPi8YeU8mbaRBQNavA+uGD9/D7eLQcdFmNG0al4YB0sI
+ lOYTL0sA1LZGvYL/hyhj25aEdTwF6uPaVNOilfJ+xFwji6e8mKW3kWInE
+ i7qH/8pvEE/iYfDQaFT/srN9BnG5O7oulmavmXiNznRmvpA5qylCB1C0A
+ Kg61+gCF7M5nFFwoZN78NtmB5m9t3wowZ23Uf7J7ldBQ7jItTWHqjlqjE A==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10654"; a="327015484"
+X-IronPort-AV: E=Sophos;i="5.98,274,1673942400"; d="scan'208";a="327015484"
+Received: from orsmga001.jf.intel.com ([10.7.209.18])
  by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 20 Mar 2023 04:42:18 -0700
+ 20 Mar 2023 05:08:45 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10654"; a="855261623"
-X-IronPort-AV: E=Sophos;i="5.98,274,1673942400"; d="scan'208";a="855261623"
-Received: from scojocar-mobl1.ger.corp.intel.com (HELO [10.249.45.53])
- ([10.249.45.53])
- by orsmga005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 20 Mar 2023 04:42:17 -0700
-Message-ID: <f88d75ac-0979-b0d6-e23b-da60fb46f1f9@linux.intel.com>
-Date: Mon, 20 Mar 2023 12:42:14 +0100
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Firefox/102.0 Thunderbird/102.9.0
+X-IronPort-AV: E=McAfee;i="6600,9927,10654"; a="713539648"
+X-IronPort-AV: E=Sophos;i="5.98,274,1673942400"; d="scan'208";a="713539648"
+Received: from orsmsx603.amr.corp.intel.com ([10.22.229.16])
+ by orsmga001.jf.intel.com with ESMTP; 20 Mar 2023 05:08:45 -0700
+Received: from orsmsx611.amr.corp.intel.com (10.22.229.24) by
+ ORSMSX603.amr.corp.intel.com (10.22.229.16) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.21; Mon, 20 Mar 2023 05:08:45 -0700
+Received: from orsmsx610.amr.corp.intel.com (10.22.229.23) by
+ ORSMSX611.amr.corp.intel.com (10.22.229.24) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.21; Mon, 20 Mar 2023 05:08:44 -0700
+Received: from ORSEDG602.ED.cps.intel.com (10.7.248.7) by
+ orsmsx610.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.21 via Frontend Transport; Mon, 20 Mar 2023 05:08:44 -0700
+Received: from NAM04-MW2-obe.outbound.protection.outlook.com (104.47.73.169)
+ by edgegateway.intel.com (134.134.137.103) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.1.2507.21; Mon, 20 Mar 2023 05:08:44 -0700
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=LXSHD9KkC7eI/VLZq86QEz9MTdAlo9+djuv87i5xPqV7Jr2KUz3wgcXJUTqxVedCh1AVhlifLNNAlNjCpY68HspXWng/LOrUenKLhIUeE9PNQwx86h5g2+K+Qg9weJ7/D5/IeZURBrjw5Jb2MGd6wt7nmFi2T21T5+lNipopQRXvH0Uyhg62o03ug45JjPqPm7qmoBG8HaePbXzuBr4jnHxPzwX5UkBgxgMzZ/0zQIhionrIzdoExdC1XxBXpJfWxNlr7EQ5qxVJphlDw/7sZSEzTXkdr7nG5uUKrFbE/poqZu8PTzbQzwuWbdcu2/APITfYkevwOOdhpSd2IWD7KQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=A3LEso3Wv+ZnhrEAQp+8jzGLYIU3uq6BnbFXDw2dMWE=;
+ b=OdTUfjqMMmdbdFEmP28Ro6oNbpcMTMJRsgIwDfp2a2aQOBCQbCBqAZtQ6410THvrZv7ZFbDXHN1SEiRlRSObTAqk6ivfQj3sYR/Gi8h+SGETI1gq3jz1uEZP5cpIuN1HoqvH37A2K15r23GVyIvbMGXUp/G40iIjgJ33Ldy4ZSupkBjFUNRKZ3VdWKbKtmWX85MjknfGzks7a8FDuwAanJkzpe9Fns/ccKKuJANZQR7rNuVZt2FGRMLBQrT7qcRwYgwvRQi6sC73Y+ZSKu18GZl/siCd42ONtVLAcCQNlZ17exJmLhEk9X56tm2YsKae6/CBmHwA6XCHV7NiLXq/zQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
+ dkim=pass header.d=intel.com; arc=none
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=intel.com;
+Received: from SN7PR11MB7539.namprd11.prod.outlook.com (2603:10b6:806:343::6)
+ by DM8PR11MB5670.namprd11.prod.outlook.com (2603:10b6:8:37::12) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6178.37; Mon, 20 Mar
+ 2023 12:08:42 +0000
+Received: from SN7PR11MB7539.namprd11.prod.outlook.com
+ ([fe80::d94d:4bb6:a568:a2bc]) by SN7PR11MB7539.namprd11.prod.outlook.com
+ ([fe80::d94d:4bb6:a568:a2bc%4]) with mapi id 15.20.6178.037; Mon, 20 Mar 2023
+ 12:08:38 +0000
+Message-ID: <15701e64-9d2a-bd62-7628-c37b31152654@intel.com>
+Date: Mon, 20 Mar 2023 14:08:08 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.12.0
 Content-Language: en-US
-To: Matthew Brost <matthew.brost@intel.com>, intel-xe@lists.freedesktop.org
-References: <20230318030643.557464-1-matthew.brost@intel.com>
-From: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
-In-Reply-To: <20230318030643.557464-1-matthew.brost@intel.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+To: Matthew Auld <matthew.auld@intel.com>, <intel-xe@lists.freedesktop.org>
+References: <20230308101745.217120-1-matthew.auld@intel.com>
+ <20230308101745.217120-6-matthew.auld@intel.com>
+From: Gwan-gyeong Mun <gwan-gyeong.mun@intel.com>
+In-Reply-To: <20230308101745.217120-6-matthew.auld@intel.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
 Content-Transfer-Encoding: 7bit
-Subject: Re: [Intel-xe] [PATCH] drn/xe: Drop usm lock around ASID xarray
+X-ClientProxiedBy: LO4P265CA0187.GBRP265.PROD.OUTLOOK.COM
+ (2603:10a6:600:311::16) To SN7PR11MB7539.namprd11.prod.outlook.com
+ (2603:10b6:806:343::6)
+MIME-Version: 1.0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: SN7PR11MB7539:EE_|DM8PR11MB5670:EE_
+X-MS-Office365-Filtering-Correlation-Id: 4d37691c-0cd6-48f2-537d-08db293bd687
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: LDrDS4rDSwc5MsaiowchbRLN24T+CPQosRd2LebPEdMLvik0GFEDqlklvGfa+3PLNTuoxEWuQDzC6GYTnNBGWdp31Jmz52hZLnNHOPF4erZmRzFlEZYxD+e2xQDA+XGOzN0cPJancLqmnAkXrXgR47Fo4Hn31gGffiqgGt2HOT+fxKDnjTAD7KtAcQezW3hwKr3c9MkQFS8MqQ+P4mdnzJHZV1/Yrsqzyahgtm+ciYYycz0SJvmvN8eFJIJ0dIGeoEhk5tefZQcIqHtJsDo4wlx99ifU6AMSjWnolfMIVEDiAVBf7iGUYuYKA3R4o2LT+NX/DFHxU2I2+b2b50xjec48OXLrl4YE6aUQiruuNPT+P6Arv0r9CVs1lW9wAoiasRIWgQBESl6PjOwm6vFSz/TKZJDYcsQpJU7w2M9M/5szfKMWOoOLWI9PJ9O/7qOA8HAJOLnbqvQkD+o6J/Hn/IXVlZ2m06vgq29oQa9eE6Eaz4ppy251iAvlYlEiYB12jLLG6QADgxfUrV8rv2GjdkbgMeiB8xTWXlvE/CR/hCjswI3JQfDAnDuON8ekPpJglFOkj2yfgBxJuY/6Fyk+jfVF2xNdXpxa6hzJuiAwzga+/f/QQKUlGwx/ZlAMZrMkq+lyO89rV+36u7q/WVsTHa2tWHE8Dfu1EN9oTu4zRHQTWr0d935qQUDUgSj1TAUJlBNxvbAhGQ6NhHkADJJ+WyDtDlNK1I3kRaLjX8mk960=
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:SN7PR11MB7539.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230025)(366004)(136003)(39860400002)(376002)(396003)(346002)(451199018)(66476007)(2616005)(6512007)(26005)(6506007)(6666004)(107886003)(6486002)(31686004)(8676002)(4326008)(83380400001)(316002)(66556008)(53546011)(186003)(66946007)(478600001)(5660300002)(8936002)(30864003)(82960400001)(2906002)(41300700001)(38100700002)(86362001)(31696002)(36756003)(45980500001)(43740500002);
+ DIR:OUT; SFP:1102; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?YWxVWndqL0w2VjVHZjJyZlIyQVdjd2ZiU1RnUDh0SE1WVVFtZ2pGMURqV1hl?=
+ =?utf-8?B?NkZvWU41dktjRGRVK2lyTzdtVmpCay8wRWY5eGhGaXFDNWpXTEdDSU1pSnhR?=
+ =?utf-8?B?SG93ZzJhOVNFazhIMmVMZVN0QzFVcXkrZE5MT3RpQmNJUW03SSt3S2t3ems5?=
+ =?utf-8?B?cy9LRUVDRjNma1VNWGRTWTYxbEdOMGd6MURsVnpxZDFhTjZYeCswdnMvMmd0?=
+ =?utf-8?B?eDIvdHZiUFJZMjcrREYwenFuMUxnTTdicDV0TEQzQmQ0ZTJpdW5wdmwzUTJG?=
+ =?utf-8?B?dFZ5MGszUnc4K3YwYU5xYktza2NDRlpLRnhEdzVBYmYreGtWbWJWTWc0Sy9K?=
+ =?utf-8?B?TXBRU3g5WndtQ3RJK0VLMTdkLzA0bmQ0L080RU8rbmxzSWdqTXNMNmJtMlJN?=
+ =?utf-8?B?cFpOTlU4clYzV3YyTTdKVmxVK0wvb1ZSb3RFM1B4VThOTyt2TjJCcnlyZ0VG?=
+ =?utf-8?B?WGF6MGl6M2xDZko1TXdEMFN4aUxqeGFObWpXSkFMdWsvMTNzOXAzSERlUHVE?=
+ =?utf-8?B?ZkhNeVVPYk5lV2djcDRVVXBYR2xpVjM2ek8ySTNPd1M2WXZkTTlJdnV4MFZD?=
+ =?utf-8?B?L2JyNnhvYnIya2pSL1FzZms4NGN3MjRlTUNoZ2NhdWVXU01zVklmbEFBdENO?=
+ =?utf-8?B?N01TTktUdmR2cmcxWitHYUlxZ0JTcnhIa0VtZ2tTeGUvbjBxcUhSR0pmTmdh?=
+ =?utf-8?B?Z3g5cEsyOXJHM1pGM3E5YTErQXMrZVM3NnR3ek1FS3BVZDhOa3d6Qld4YnJo?=
+ =?utf-8?B?MlF6Mi9uWEJwZTBVUWJLdVYvbmVncTZFa3NOZ01JMGhlVnNZeHVpdkpWMzNw?=
+ =?utf-8?B?TmlvamlxamZlcWVQbUNrOFJlUU9oWGMzaXg2aWhOdWhFVDFCR21TS0JjZ3RL?=
+ =?utf-8?B?M0YrbjVQWGxRWjFrTHpVTzBoT202OTlSblFtaDNzMzJLM2ZqMlN3czhUOE5l?=
+ =?utf-8?B?V3k3c2hwUmZWUjZSNmI3d09xZXZSdEVkdmZURWFuZ3lHRm42Y2ZONlVDdCt6?=
+ =?utf-8?B?MG4yVlV4RVc4Tnd2T05pc21yY2hZeDBzU3Q5bkFMaUUwalhuWExocldRUjRp?=
+ =?utf-8?B?eUhMdGZZTG5EcnIzSDk4RmtCRzR4LzQ0Y1hQWjV4UUtoMGFUamRxTW1EWHpL?=
+ =?utf-8?B?YjRqSlJXMWR3Wm1UMmluaWlMblcyU3oyQUsxVVd0OEFKd2RWWXJ4QmYzNVBx?=
+ =?utf-8?B?LzFRRmRhSXRiY250ZjA2TTcrdmtuNnNzNXZEYzVSRlkvOHMrTTlYMUc0SUF3?=
+ =?utf-8?B?aXMvaFhZcTNnTy9hRUNKWFlFcFhnWDhMRW1zaC9Cc01sTFNjRnB2WFprckpz?=
+ =?utf-8?B?RmRiN283VGVqR3RraTN6bi9RL09idCtWdDJlSnJjSzZ3Qjh4c003MEFVZ3lo?=
+ =?utf-8?B?bWpDK0hJUUJEQU5sNlJqWS9tWWdxOXc1VUE5WWE1S3ZSREdGTU9zL0xEOGpp?=
+ =?utf-8?B?Q3Z3Q1V5U1M5c3RTZnN5VFlWaG9lZW5Ib2tUSlcrcWV3UGc1VzFkWWRURmZ4?=
+ =?utf-8?B?eitTaEZKNlRCRlZJa2NCb3NmRlNDVmFqKzNoS2JOcGE1SlY2L29VaVB6Z1Q1?=
+ =?utf-8?B?bW1TY0lUWmJPenRNU0FyNEtDaUlROXJsVUZLUkJCWGR3WjBCR1IyRllaYS83?=
+ =?utf-8?B?K1BpcnFaSVVEeUxPUUpFdWVEUG9kL0V4b242b0JOcU5RcjAwaHRGL1JWWlVF?=
+ =?utf-8?B?dmJzbHFHUTYvY2dIbmduekRFdGIzZmFFVFhERXNEaUZPa1ZmVXpvbmJQZTlq?=
+ =?utf-8?B?M1VBUUNpcElRRFhsVjZ0eHdHVTdrbWFOdE9KM3hIRzYrdVQvR2U3QnMvZldI?=
+ =?utf-8?B?RElSVXBvT0tQTDVPUVJYckt6bUpRSE5EenZtNTVoaitVTlZyUDRQR2swS1VW?=
+ =?utf-8?B?cE5UUzVTV0NOY0FkNVozSDZyaWJVK0JhRUs4ODJCZ1MvS1ladmpEYkMyQ0h2?=
+ =?utf-8?B?dStPZDdHSktLNkQ0a0d1WFp0TWs5RURRYk5UMXBSWk5hWG1JblRTbXRENXk1?=
+ =?utf-8?B?a0ttOVhjQVJiemowS0tqMW5BOGJRRXB1WGNlakFBcTFpSmo5YW1uRm5Jb08z?=
+ =?utf-8?B?R2NXS1pPQTUyNjBGcnBPYkVvdFpCbVNKVDRLK2F6YS9obEZjc0tNa3NQRTZ0?=
+ =?utf-8?B?MkM2VG1mZlBoWW9BUXFMa0pCV0phUDRGajZTMFJMS1dFaGxTQ0N0UmwzQlNh?=
+ =?utf-8?B?NVE9PQ==?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: 4d37691c-0cd6-48f2-537d-08db293bd687
+X-MS-Exchange-CrossTenant-AuthSource: SN7PR11MB7539.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 20 Mar 2023 12:08:38.3309 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: HP0AOUU/sQnm3jONvQJyDgAHEYqSChxA/y/EKZzLG2/it6FrkQUKFGUW/BbPqxmYrwrWRSG4ZYUMdmGUBGYTpvDhEhYqiJml4+Kq+K5anT4=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM8PR11MB5670
+X-OriginatorOrg: intel.com
+Subject: Re: [Intel-xe] [PATCH v2 5/6] drm/xe/buddy: add visible tracking
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -60,196 +158,415 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Cc: Lucas De Marchi <lucas.demarchi@intel.com>
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Hey,
 
-The removal of usm.lock looks sane, but that leaves usm.lock guarding 
-num_vm_in_fault_mode and num_vm_in_non_fault_mode.
 
-This is fine, but there is a time-of-check vs time-of-use bug exposed.
-
-I suggest removing the checks from xe_vm_create_ioctl, and move them to 
-inside xe_vm_create only.
-
-Cheers,
-
-~Maarten
-
-On 2023-03-18 04:06, Matthew Brost wrote:
-> Xarray's have their own locking, usm lock not needed.
->
-> Fixes lockdep splat on PVC:
-> [ 4204.407687] ======================================================
-> [ 4204.413872] WARNING: possible circular locking dependency detected
-> [ 4204.420053] 6.1.0-xe+ #78 Not tainted
-> [ 4204.423723] ------------------------------------------------------
-> [ 4204.429894] xe_exec_basic/1790 is trying to acquire lock:
-> [ 4204.435294] ffffffff8255d760 (fs_reclaim){+.+.}-{0:0}, at: xe_vm_create_ioctl+0x1c5/0x260 [xe]
-> [ 4204.443932]
->                 but task is already holding lock:
-> [ 4204.449758] ffff888147c31e70 (lock#8){+.+.}-{3:3}, at: xe_vm_create_ioctl+0x1bb/0x260 [xe]
-> [ 4204.458032]
->                 which lock already depends on the new lock.
->
-> [ 4204.466195]
->                 the existing dependency chain (in reverse order) is:
-> [ 4204.473665]
->                 -> #2 (lock#8){+.+.}-{3:3}:
-> [ 4204.478977]        __mutex_lock+0x9e/0x9d0
-> [ 4204.483078]        xe_device_mem_access_get+0x1f/0xa0 [xe]
-> [ 4204.488572]        guc_ct_send_locked+0x143/0x700 [xe]
-> [ 4204.493719]        xe_guc_ct_send+0x3e/0x80 [xe]
-> [ 4204.498347]        __register_engine+0x64/0x90 [xe]
-> [ 4204.503233]        guc_engine_run_job+0x822/0x940 [xe]
-> [ 4204.508380]        drm_sched_main+0x220/0x6e0 [gpu_sched]
-> [ 4204.513780]        process_one_work+0x263/0x580
-> [ 4204.518312]        worker_thread+0x4d/0x3b0
-> [ 4204.522489]        kthread+0xeb/0x120
-> [ 4204.526153]        ret_from_fork+0x1f/0x30
-> [ 4204.530263]
->                 -> #1 (&ct->lock){+.+.}-{3:3}:
-> [ 4204.535835]        xe_guc_ct_init+0x14c/0x1f0 [xe]
-> [ 4204.540634]        xe_guc_init+0x59/0x350 [xe]
-> [ 4204.545089]        xe_uc_init+0x20/0x70 [xe]
-> [ 4204.549371]        xe_gt_init+0x161/0x3b0 [xe]
-> [ 4204.553826]        xe_device_probe+0x1ea/0x250 [xe]
-> [ 4204.558712]        xe_pci_probe+0x354/0x470 [xe]
-> [ 4204.563340]        pci_device_probe+0xa2/0x150
-> [ 4204.567785]        really_probe+0xd9/0x390
-> [ 4204.571884]        __driver_probe_device+0x73/0x170
-> [ 4204.576755]        driver_probe_device+0x19/0x90
-> [ 4204.581372]        __driver_attach+0x9a/0x1f0
-> [ 4204.585724]        bus_for_each_dev+0x73/0xc0
-> [ 4204.590084]        bus_add_driver+0x1a7/0x200
-> [ 4204.594441]        driver_register+0x8a/0xf0
-> [ 4204.598704]        do_one_initcall+0x53/0x2f0
-> [ 4204.603056]        do_init_module+0x46/0x1c0
-> [ 4204.607328]        __do_sys_finit_module+0xb4/0x130
-> [ 4204.612207]        do_syscall_64+0x38/0x90
-> [ 4204.616305]        entry_SYSCALL_64_after_hwframe+0x63/0xcd
-> [ 4204.621878]
->                 -> #0 (fs_reclaim){+.+.}-{0:0}:
-> [ 4204.627538]        __lock_acquire+0x1538/0x26e0
-> [ 4204.632070]        lock_acquire+0xd2/0x310
-> [ 4204.636169]        fs_reclaim_acquire+0xa0/0xd0
-> [ 4204.640701]        xe_vm_create_ioctl+0x1c5/0x260 [xe]
-> [ 4204.645849]        drm_ioctl_kernel+0xb0/0x140
-> [ 4204.650293]        drm_ioctl+0x200/0x3d0
-> [ 4204.654212]        __x64_sys_ioctl+0x85/0xb0
-> [ 4204.658482]        do_syscall_64+0x38/0x90
-> [ 4204.662573]        entry_SYSCALL_64_after_hwframe+0x63/0xcd
-> [ 4204.668146]
->                 other info that might help us debug this:
->
-> [ 4204.676145] Chain exists of:
->                   fs_reclaim --> &ct->lock --> lock#8
->
-> [ 4204.685182]  Possible unsafe locking scenario:
->
-> [ 4204.691094]        CPU0                    CPU1
-> [ 4204.695623]        ----                    ----
-> [ 4204.700147]   lock(lock#8);
-> [ 4204.702939]                                lock(&ct->lock);
-> [ 4204.708501]                                lock(lock#8);
-> [ 4204.713805]   lock(fs_reclaim);
-> [ 4204.716943]
->                  *** DEADLOCK ***
->
-> [ 4204.722852] 1 lock held by xe_exec_basic/1790:
-> [ 4204.727288]  #0: ffff888147c31e70 (lock#8){+.+.}-{3:3}, at: xe_vm_create_ioctl+0x1bb/0x260 [xe]
-> [ 4204.735988]
->                 stack backtrace:
-> [ 4204.740341] CPU: 8 PID: 1790 Comm: xe_exec_basic Not tainted 6.1.0-xe+ #78
-> [ 4204.747214] Hardware name: Intel Corporation WilsonCity/WilsonCity, BIOS WLYDCRB1.SYS.0021.P16.2105280638 05/28/2021
-> [ 4204.757733] Call Trace:
-> [ 4204.760176]  <TASK>
-> [ 4204.762273]  dump_stack_lvl+0x57/0x81
-> [ 4204.765931]  check_noncircular+0x131/0x150
-> [ 4204.770030]  __lock_acquire+0x1538/0x26e0
-> [ 4204.774034]  lock_acquire+0xd2/0x310
-> [ 4204.777612]  ? xe_vm_create_ioctl+0x1c5/0x260 [xe]
-> [ 4204.782414]  ? xe_vm_create_ioctl+0x1bb/0x260 [xe]
-> [ 4204.787214]  fs_reclaim_acquire+0xa0/0xd0
-> [ 4204.791216]  ? xe_vm_create_ioctl+0x1c5/0x260 [xe]
-> [ 4204.796018]  xe_vm_create_ioctl+0x1c5/0x260 [xe]
-> [ 4204.800648]  ? xe_vm_create+0xab0/0xab0 [xe]
-> [ 4204.804926]  drm_ioctl_kernel+0xb0/0x140
-> [ 4204.808843]  drm_ioctl+0x200/0x3d0
-> [ 4204.812240]  ? xe_vm_create+0xab0/0xab0 [xe]
-> [ 4204.816523]  ? find_held_lock+0x2b/0x80
-> [ 4204.820362]  __x64_sys_ioctl+0x85/0xb0
-> [ 4204.824114]  do_syscall_64+0x38/0x90
-> [ 4204.827692]  entry_SYSCALL_64_after_hwframe+0x63/0xcd
-> [ 4204.832745] RIP: 0033:0x7fd2ad5f950b
-> [ 4204.836325] Code: 0f 1e fa 48 8b 05 85 39 0d 00 64 c7 00 26 00 00 00 48 c7 c0 ff ff ff ff c3 66 0f 1f 44 00 00 f3 0f 1e fa b8 10 00 00 00 0f 05 <48> 3d 01 f0 ff ff 73 01 c3 48 8b 0d 55 39 0d 00 f7 d8 64 89 01 48
-> [ 4204.855066] RSP: 002b:00007fff4e3099b8 EFLAGS: 00000246 ORIG_RAX: 0000000000000010
-> [ 4204.862623] RAX: ffffffffffffffda RBX: 00007fff4e3099f0 RCX: 00007fd2ad5f950b
-> [ 4204.869746] RDX: 00007fff4e3099f0 RSI: 00000000c0206443 RDI: 0000000000000003
-> [ 4204.876872] RBP: 00000000c0206443 R08: 0000000000000001 R09: 0000000000000000
-> [ 4204.883994] R10: 0000000000000008 R11: 0000000000000246 R12: 00007fff4e309b14
-> [ 4204.891117] R13: 0000000000000003 R14: 0000000000000000 R15: 0000000000000000
-> [ 4204.898243]  </TASK>
->
-> Signed-off-by: Matthew Brost <matthew.brost@intel.com>
+On 3/8/23 12:17 PM, Matthew Auld wrote:
+> Replace the allocation code with the i915 version. This simplifies the
+> code a little, and importantly we get the accounting at the mgr level,
+> which is useful for debug (and maybe userspace), plus per resource
+> tracking so we can easily check if a resource is using one or pages in
+> the mappable part of vram (useful for eviction), or if the resource is
+> completely within the mappable portion (useful for checking if the
+> resource can be safely CPU mapped).
+> 
+> Signed-off-by: Matthew Auld <matthew.auld@intel.com>
+> Cc: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
+> Cc: Lucas De Marchi <lucas.demarchi@intel.com>
 > ---
->   drivers/gpu/drm/xe/xe_gt_pagefault.c | 4 ----
->   drivers/gpu/drm/xe/xe_vm.c           | 4 ----
->   2 files changed, 8 deletions(-)
->
-> diff --git a/drivers/gpu/drm/xe/xe_gt_pagefault.c b/drivers/gpu/drm/xe/xe_gt_pagefault.c
-> index d7bf6b0a0697..76ec40567a78 100644
-> --- a/drivers/gpu/drm/xe/xe_gt_pagefault.c
-> +++ b/drivers/gpu/drm/xe/xe_gt_pagefault.c
-> @@ -119,11 +119,9 @@ static int handle_pagefault(struct xe_gt *gt, struct pagefault *pf)
->   	bool atomic;
+>   drivers/gpu/drm/xe/xe_ttm_stolen_mgr.c     |  18 +-
+>   drivers/gpu/drm/xe/xe_ttm_vram_mgr.c       | 201 ++++++++++-----------
+>   drivers/gpu/drm/xe/xe_ttm_vram_mgr.h       |   3 +-
+>   drivers/gpu/drm/xe/xe_ttm_vram_mgr_types.h |   6 +
+>   4 files changed, 118 insertions(+), 110 deletions(-)
+> 
+> diff --git a/drivers/gpu/drm/xe/xe_ttm_stolen_mgr.c b/drivers/gpu/drm/xe/xe_ttm_stolen_mgr.c
+> index e608b49072ba..35e6bc62766e 100644
+> --- a/drivers/gpu/drm/xe/xe_ttm_stolen_mgr.c
+> +++ b/drivers/gpu/drm/xe/xe_ttm_stolen_mgr.c
+> @@ -158,7 +158,7 @@ void xe_ttm_stolen_mgr_init(struct xe_device *xe)
+>   {
+>   	struct xe_ttm_stolen_mgr *mgr = drmm_kzalloc(&xe->drm, sizeof(*mgr), GFP_KERNEL);
+>   	struct pci_dev *pdev = to_pci_dev(xe->drm.dev);
+> -	u64 stolen_size, pgsize;
+> +	u64 stolen_size, io_size, pgsize;
+>   	int err;
 >   
->   	/* ASID to VM */
-> -	mutex_lock(&xe->usm.lock);
->   	vm = xa_load(&xe->usm.asid_to_vm, pf->asid);
->   	if (vm)
->   		xe_vm_get(vm);
-> -	mutex_unlock(&xe->usm.lock);
->   	if (!vm || !xe_vm_in_fault_mode(vm))
->   		return -EINVAL;
+>   	if (IS_DGFX(xe))
+> @@ -177,7 +177,17 @@ void xe_ttm_stolen_mgr_init(struct xe_device *xe)
+>   	if (pgsize < PAGE_SIZE)
+>   		pgsize = PAGE_SIZE;
 >   
-> @@ -507,11 +505,9 @@ static int handle_acc(struct xe_gt *gt, struct acc *acc)
->   		return -EINVAL;
+> -	err = __xe_ttm_vram_mgr_init(xe, &mgr->base, XE_PL_STOLEN, stolen_size, pgsize);
+> +	/*
+> +	 * We don't try to attempt partial visible support for stolen vram,
+> +	 * since stolen is always at the end of vram, and the BAR size is pretty
+> +	 * much always 256M, with small-bar.
+> +	 */
+> +	io_size = 0;
+> +	if (!xe_ttm_stolen_cpu_inaccessible(xe))
+> +		io_size = stolen_size;
+> +
+> +	err = __xe_ttm_vram_mgr_init(xe, &mgr->base, XE_PL_STOLEN, stolen_size,
+> +				     io_size, pgsize);
+>   	if (err) {
+>   		drm_dbg_kms(&xe->drm, "Stolen mgr init failed: %i\n", err);
+>   		return;
+> @@ -186,8 +196,8 @@ void xe_ttm_stolen_mgr_init(struct xe_device *xe)
+>   	drm_dbg_kms(&xe->drm, "Initialized stolen memory support with %llu bytes\n",
+>   		    stolen_size);
 >   
->   	/* ASID to VM */
-> -	mutex_lock(&xe->usm.lock);
->   	vm = xa_load(&xe->usm.asid_to_vm, acc->asid);
->   	if (vm)
->   		xe_vm_get(vm);
-> -	mutex_unlock(&xe->usm.lock);
->   	if (!vm || !xe_vm_in_fault_mode(vm))
->   		return -EINVAL;
+> -	if (!xe_ttm_stolen_cpu_inaccessible(xe))
+> -		mgr->mapping = devm_ioremap_wc(&pdev->dev, mgr->io_base, stolen_size);
+> +	if (io_size)
+> +		mgr->mapping = devm_ioremap_wc(&pdev->dev, mgr->io_base, io_size);
+>   }
 >   
-> diff --git a/drivers/gpu/drm/xe/xe_vm.c b/drivers/gpu/drm/xe/xe_vm.c
-> index ab036a51d17e..e7674612a57e 100644
-> --- a/drivers/gpu/drm/xe/xe_vm.c
-> +++ b/drivers/gpu/drm/xe/xe_vm.c
-> @@ -1377,10 +1377,8 @@ static void vm_destroy_work_func(struct work_struct *w)
->   		xe_pm_runtime_put(xe);
+>   u64 xe_ttm_stolen_io_offset(struct xe_bo *bo, u32 offset)
+> diff --git a/drivers/gpu/drm/xe/xe_ttm_vram_mgr.c b/drivers/gpu/drm/xe/xe_ttm_vram_mgr.c
+> index e3ac8c6d3978..f703e962f499 100644
+> --- a/drivers/gpu/drm/xe/xe_ttm_vram_mgr.c
+> +++ b/drivers/gpu/drm/xe/xe_ttm_vram_mgr.c
+> @@ -49,45 +49,26 @@ static int xe_ttm_vram_mgr_new(struct ttm_resource_manager *man,
+>   			       const struct ttm_place *place,
+>   			       struct ttm_resource **res)
+>   {
+> -	u64 max_bytes, cur_size, min_block_size;
+>   	struct xe_ttm_vram_mgr *mgr = to_xe_ttm_vram_mgr(man);
+>   	struct xe_ttm_vram_mgr_resource *vres;
+> -	u64 size, remaining_size, lpfn, fpfn;
+>   	struct drm_buddy *mm = &mgr->mm;
+> -	unsigned long pages_per_block;
+> -	int r;
+> -
+> -	lpfn = (u64)place->lpfn << PAGE_SHIFT;
+> -	if (!lpfn || lpfn > man->size)
+> -		lpfn = man->size;
+> -
+> -	fpfn = (u64)place->fpfn << PAGE_SHIFT;
+> +	u64 size, remaining_size, min_page_size;
+> +	unsigned long lpfn;
+> +	int err;
 >   
->   		if (xe->info.has_asid) {
-> -			mutex_lock(&xe->usm.lock);
->   			lookup = xa_erase(&xe->usm.asid_to_vm, vm->usm.asid);
->   			XE_WARN_ON(lookup != vm);
-> -			mutex_unlock(&xe->usm.lock);
->   		}
+> -	max_bytes = mgr->manager.size;
+> -	if (place->flags & TTM_PL_FLAG_CONTIGUOUS) {
+> -		pages_per_block = ~0ul;
+> -	} else {
+> -#ifdef CONFIG_TRANSPARENT_HUGEPAGE
+> -		pages_per_block = HPAGE_PMD_NR;
+> -#else
+> -		/* default to 2MB */
+> -		pages_per_block = 2UL << (20UL - PAGE_SHIFT);
+> -#endif
+> -
+> -		pages_per_block = max_t(uint32_t, pages_per_block,
+> -					tbo->page_alignment);
+> -	}
+> +	lpfn = place->lpfn;
+> +	if (!lpfn || lpfn > man->size >> PAGE_SHIFT)
+> +		lpfn = man->size >> PAGE_SHIFT;
+>   
+>   	vres = kzalloc(sizeof(*vres), GFP_KERNEL);
+>   	if (!vres)
+>   		return -ENOMEM;
+>   
+>   	ttm_resource_init(tbo, place, &vres->base);
+> -	remaining_size = vres->base.size;
+>   
+>   	/* bail out quickly if there's likely not enough VRAM for this BO */
+> -	if (ttm_resource_manager_usage(man) > max_bytes) {
+> -		r = -ENOSPC;
+> +	if (ttm_resource_manager_usage(man) > man->size) {
+> +		err = -ENOSPC;
+>   		goto error_fini;
 >   	}
 >   
-> @@ -1887,11 +1885,9 @@ int xe_vm_create_ioctl(struct drm_device *dev, void *data,
+> @@ -96,95 +77,91 @@ static int xe_ttm_vram_mgr_new(struct ttm_resource_manager *man,
+>   	if (place->flags & TTM_PL_FLAG_TOPDOWN)
+>   		vres->flags |= DRM_BUDDY_TOPDOWN_ALLOCATION;
+>   
+> -	if (fpfn || lpfn != man->size)
+> -		/* Allocate blocks in desired range */
+> +	if (place->fpfn || lpfn != man->size >> PAGE_SHIFT)
+>   		vres->flags |= DRM_BUDDY_RANGE_ALLOCATION;
+>   
+> -	mutex_lock(&mgr->lock);
+> -	while (remaining_size) {
+> -		if (tbo->page_alignment)
+> -			min_block_size = tbo->page_alignment << PAGE_SHIFT;
+> -		else
+> -			min_block_size = mgr->default_page_size;
+> -
+> -		XE_BUG_ON(min_block_size < mm->chunk_size);
+> -
+> -		/* Limit maximum size to 2GiB due to SG table limitations */
+> -		size = min(remaining_size, 2ULL << 30);
+> -
+> -		if (size >= pages_per_block << PAGE_SHIFT)
+> -			min_block_size = pages_per_block << PAGE_SHIFT;
+> -
+> -		cur_size = size;
+> -
+> -		if (fpfn + size != place->lpfn << PAGE_SHIFT) {
+> -			/*
+> -			 * Except for actual range allocation, modify the size and
+> -			 * min_block_size conforming to continuous flag enablement
+> -			 */
+> -			if (place->flags & TTM_PL_FLAG_CONTIGUOUS) {
+> -				size = roundup_pow_of_two(size);
+> -				min_block_size = size;
+> -			/*
+> -			 * Modify the size value if size is not
+> -			 * aligned with min_block_size
+> -			 */
+> -			} else if (!IS_ALIGNED(size, min_block_size)) {
+> -				size = round_up(size, min_block_size);
+> -			}
+> -		}
+> +	XE_BUG_ON(!vres->base.size);
+> +	size = vres->base.size;
+>   
+> -		r = drm_buddy_alloc_blocks(mm, fpfn,
+> -					   lpfn,
+> -					   size,
+> -					   min_block_size,
+> -					   &vres->blocks,
+> -					   vres->flags);
+> -		if (unlikely(r))
+> -			goto error_free_blocks;
+> +	min_page_size = mgr->default_page_size;
+> +	if (tbo->page_alignment)
+> +		min_page_size = tbo->page_alignment << PAGE_SHIFT;
+>   
+> -		if (size > remaining_size)
+> -			remaining_size = 0;
+> -		else
+> -			remaining_size -= size;
+> +	XE_BUG_ON(min_page_size < mm->chunk_size);
+> +	XE_BUG_ON(min_page_size > SZ_2G); /* FIXME: sg limit */
+> +	XE_BUG_ON(size > SZ_2G &&
+> +		  (vres->base.placement & TTM_PL_FLAG_CONTIGUOUS));
+Hi Matt,
+What scenario is the purpose of testing? Is the purpose of reporting an 
+error when it is a small bar case at the current stage?
+> +	XE_BUG_ON(!IS_ALIGNED(size, min_page_size));
+If it is not aligned, can't we increase it to the aligned size and 
+allocate it?
+> +
+> +	if (place->fpfn + (vres->base.size >> PAGE_SHIFT) != place->lpfn &&
+> +	    place->flags & TTM_PL_FLAG_CONTIGUOUS) {
+> +		unsigned long pages;
+> +
+> +		size = roundup_pow_of_two(size);
+> +		min_page_size = size;
+> +
+> +		pages = size >> ilog2(mm->chunk_size);
+Why did you use ilog2(mm->chunk_size) instead of PAGE_SHIFT here?
+> +		if (pages > lpfn)
+> +			lpfn = pages;
+>   	}
+> -	mutex_unlock(&mgr->lock);
+>   
+> -	if (cur_size != size) {
+> -		struct drm_buddy_block *block;
+> -		struct list_head *trim_list;
+> -		u64 original_size;
+> -		LIST_HEAD(temp);
+> +	if (size > lpfn << PAGE_SHIFT) {
+In case of DRM_BUDDY_RANGE_ALLOCATION, shouldn't it be compared with 
+size > (lpfn - fpfn) << PAGE_SHIFT?
+
+Br,
+
+G.G.
+> +		err = -E2BIG; /* don't trigger eviction */
+> +		goto error_fini;
+> +	}
+>   
+> -		trim_list = &vres->blocks;
+> -		original_size = vres->base.size;
+> +	mutex_lock(&mgr->lock);
+> +	if (lpfn <= mgr->visible_size && size > mgr->visible_avail) {
+> +		mutex_unlock(&mgr->lock);
+> +		err = -ENOSPC;
+> +		goto error_fini;
+> +	}
+>   
+> +	remaining_size = size;
+> +	do {
+>   		/*
+> -		 * If size value is rounded up to min_block_size, trim the last
+> -		 * block to the required size
+> +		 * Limit maximum size to 2GiB due to SG table limitations.
+> +		 * FIXME: Should maybe be handled as part of sg construction.
+>   		 */
+> -		if (!list_is_singular(&vres->blocks)) {
+> -			block = list_last_entry(&vres->blocks, typeof(*block), link);
+> -			list_move_tail(&block->link, &temp);
+> -			trim_list = &temp;
+> -			/*
+> -			 * Compute the original_size value by subtracting the
+> -			 * last block size with (aligned size - original size)
+> -			 */
+> -			original_size = drm_buddy_block_size(mm, block) -
+> -				(size - cur_size);
+> -		}
+> +		u64 alloc_size = min_t(u64, remaining_size, SZ_2G);
+> +
+> +		err = drm_buddy_alloc_blocks(mm, (u64)place->fpfn << PAGE_SHIFT,
+> +					     (u64)lpfn << PAGE_SHIFT,
+> +					     alloc_size,
+> +					     min_page_size,
+> +					     &vres->blocks,
+> +					     vres->flags);
+> +		if (err)
+> +			goto error_free_blocks;
+>   
+> -		mutex_lock(&mgr->lock);
+> -		drm_buddy_block_trim(mm,
+> -				     original_size,
+> -				     trim_list);
+> -		mutex_unlock(&mgr->lock);
+> +		remaining_size -= alloc_size;
+> +	} while (remaining_size);
+>   
+> -		if (!list_empty(&temp))
+> -			list_splice_tail(trim_list, &vres->blocks);
+> +	if (place->flags & TTM_PL_FLAG_CONTIGUOUS) {
+> +		if (!drm_buddy_block_trim(mm, vres->base.size, &vres->blocks))
+> +			size = vres->base.size;
 >   	}
 >   
->   	if (xe->info.has_asid) {
-> -		mutex_lock(&xe->usm.lock);
->   		err = xa_alloc_cyclic(&xe->usm.asid_to_vm, &asid, vm,
->   				      XA_LIMIT(0, XE_MAX_ASID - 1),
->   				      &xe->usm.next_asid, GFP_KERNEL);
-> -		mutex_unlock(&xe->usm.lock);
->   		if (err) {
->   			xe_vm_close_and_put(vm);
->   			return err;
+> +	if (lpfn <= mgr->visible_size >> PAGE_SHIFT) {
+> +		vres->used_visible_size = size;
+> +	} else {
+> +		struct drm_buddy_block *block;
+> +
+> +		list_for_each_entry(block, &vres->blocks, link) {
+> +			u64 start = drm_buddy_block_offset(block);
+> +
+> +			if (start < mgr->visible_size) {
+> +				u64 end = start + drm_buddy_block_size(mm, block);
+> +
+> +				vres->used_visible_size +=
+> +					min(end, mgr->visible_size) - start;
+> +			}
+> +		}
+> +	}
+> +
+> +	mgr->visible_avail -= vres->used_visible_size;
+> +	mutex_unlock(&mgr->lock);
+> +
+>   	if (!(vres->base.placement & TTM_PL_FLAG_CONTIGUOUS) &&
+>   	    xe_is_vram_mgr_blocks_contiguous(mm, &vres->blocks))
+>   		vres->base.placement |= TTM_PL_FLAG_CONTIGUOUS;
+> @@ -213,7 +190,7 @@ static int xe_ttm_vram_mgr_new(struct ttm_resource_manager *man,
+>   	ttm_resource_fini(man, &vres->base);
+>   	kfree(vres);
+>   
+> -	return r;
+> +	return err;
+>   }
+>   
+>   static void xe_ttm_vram_mgr_del(struct ttm_resource_manager *man,
+> @@ -226,6 +203,7 @@ static void xe_ttm_vram_mgr_del(struct ttm_resource_manager *man,
+>   
+>   	mutex_lock(&mgr->lock);
+>   	drm_buddy_free_list(mm, &vres->blocks);
+> +	mgr->visible_avail += vres->used_visible_size;
+>   	mutex_unlock(&mgr->lock);
+>   
+>   	ttm_resource_fini(man, res);
+> @@ -240,6 +218,13 @@ static void xe_ttm_vram_mgr_debug(struct ttm_resource_manager *man,
+>   	struct drm_buddy *mm = &mgr->mm;
+>   
+>   	mutex_lock(&mgr->lock);
+> +	drm_printf(printer, "default_page_size: %lluKiB\n",
+> +		   mgr->default_page_size >> 10);
+> +	drm_printf(printer, "visible_avail: %lluMiB\n",
+> +		   (u64)mgr->visible_avail >> 20);
+> +	drm_printf(printer, "visible_size: %lluMiB\n",
+> +		   (u64)mgr->visible_size >> 20);
+> +
+>   	drm_buddy_print(mm, printer);
+>   	mutex_unlock(&mgr->lock);
+>   	drm_printf(printer, "man size:%llu\n", man->size);
+> @@ -262,6 +247,8 @@ static void ttm_vram_mgr_fini(struct drm_device *dev, void *arg)
+>   	if (ttm_resource_manager_evict_all(&xe->ttm, man))
+>   		return;
+>   
+> +	WARN_ON_ONCE(mgr->visible_avail != mgr->visible_size);
+> +
+>   	drm_buddy_fini(&mgr->mm);
+>   
+>   	ttm_resource_manager_cleanup(&mgr->manager);
+> @@ -270,7 +257,8 @@ static void ttm_vram_mgr_fini(struct drm_device *dev, void *arg)
+>   }
+>   
+>   int __xe_ttm_vram_mgr_init(struct xe_device *xe, struct xe_ttm_vram_mgr *mgr,
+> -			   u32 mem_type, u64 size, u64 default_page_size)
+> +			   u32 mem_type, u64 size, u64 io_size,
+> +			   u64 default_page_size)
+>   {
+>   	struct ttm_resource_manager *man = &mgr->manager;
+>   	int err;
+> @@ -279,6 +267,8 @@ int __xe_ttm_vram_mgr_init(struct xe_device *xe, struct xe_ttm_vram_mgr *mgr,
+>   	mgr->mem_type = mem_type;
+>   	mutex_init(&mgr->lock);
+>   	mgr->default_page_size = default_page_size;
+> +	mgr->visible_size = io_size;
+> +	mgr->visible_avail = io_size;
+>   
+>   	ttm_resource_manager_init(man, &xe->ttm, size);
+>   	err = drm_buddy_init(&mgr->mm, man->size, default_page_size);
+> @@ -298,7 +288,8 @@ int xe_ttm_vram_mgr_init(struct xe_gt *gt, struct xe_ttm_vram_mgr *mgr)
+>   	mgr->gt = gt;
+>   
+>   	return __xe_ttm_vram_mgr_init(xe, mgr, XE_PL_VRAM0 + gt->info.vram_id,
+> -				      gt->mem.vram.size, PAGE_SIZE);
+> +				      gt->mem.vram.size, gt->mem.vram.io_size,
+> +				      PAGE_SIZE);
+>   }
+>   
+>   int xe_ttm_vram_mgr_alloc_sgt(struct xe_device *xe,
+> diff --git a/drivers/gpu/drm/xe/xe_ttm_vram_mgr.h b/drivers/gpu/drm/xe/xe_ttm_vram_mgr.h
+> index 78f332d26224..35e5367a79fb 100644
+> --- a/drivers/gpu/drm/xe/xe_ttm_vram_mgr.h
+> +++ b/drivers/gpu/drm/xe/xe_ttm_vram_mgr.h
+> @@ -13,7 +13,8 @@ struct xe_device;
+>   struct xe_gt;
+>   
+>   int __xe_ttm_vram_mgr_init(struct xe_device *xe, struct xe_ttm_vram_mgr *mgr,
+> -			   u32 mem_type, u64 size, u64 default_page_size);
+> +			   u32 mem_type, u64 size, u64 io_size,
+> +			   u64 default_page_size);
+>   int xe_ttm_vram_mgr_init(struct xe_gt *gt, struct xe_ttm_vram_mgr *mgr);
+>   int xe_ttm_vram_mgr_alloc_sgt(struct xe_device *xe,
+>   			      struct ttm_resource *res,
+> diff --git a/drivers/gpu/drm/xe/xe_ttm_vram_mgr_types.h b/drivers/gpu/drm/xe/xe_ttm_vram_mgr_types.h
+> index 39aa2ec1b968..3d9417ff7434 100644
+> --- a/drivers/gpu/drm/xe/xe_ttm_vram_mgr_types.h
+> +++ b/drivers/gpu/drm/xe/xe_ttm_vram_mgr_types.h
+> @@ -23,6 +23,10 @@ struct xe_ttm_vram_mgr {
+>   	struct ttm_resource_manager manager;
+>   	/** @mm: DRM buddy allocator which manages the VRAM */
+>   	struct drm_buddy mm;
+> +	/** @visible_size: Proped size of the CPU visible portion */
+> +	u64 visible_size;
+> +	/** @visible_avail: CPU visible portion still unallocated */
+> +	u64 visible_avail;
+>   	/** @default_page_size: default page size */
+>   	u64 default_page_size;
+>   	/** @lock: protects allocations of VRAM */
+> @@ -39,6 +43,8 @@ struct xe_ttm_vram_mgr_resource {
+>   	struct ttm_resource base;
+>   	/** @blocks: list of DRM buddy blocks */
+>   	struct list_head blocks;
+> +	/** @used_visible_size: How many CPU visible bytes this resource is using */
+> +	u64 used_visible_size;
+>   	/** @flags: flags associated with the resource */
+>   	unsigned long flags;
+>   };
