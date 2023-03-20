@@ -4,56 +4,52 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2F11CC6FD1D
-	for <intel-xe@archiver.kernel.org>; Mon, 20 Mar 2023 09:03:38 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7680CC6FD1D
+	for <intel-xe@archiver.kernel.org>; Mon, 20 Mar 2023 11:31:17 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E4FEB10E293;
-	Mon, 20 Mar 2023 09:03:37 +0000 (UTC)
-Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2255410E293
- for <intel-xe@lists.freedesktop.org>; Mon, 20 Mar 2023 09:03:36 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 387BF10E3FC;
+	Mon, 20 Mar 2023 11:31:17 +0000 (UTC)
+Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9D37C10E3FF
+ for <intel-xe@lists.freedesktop.org>; Mon, 20 Mar 2023 11:31:15 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1679303016; x=1710839016;
- h=message-id:date:mime-version:subject:to:cc:references:
- from:in-reply-to:content-transfer-encoding;
- bh=4l3e6cGex2GcfaDIIThqwOVZKHeANa4CvosZUWZRZh8=;
- b=XMnCWFxWLmuFlIM0pGLoBdZWY5t+aBszQtIaIz1QLuJ5B+5dKGWUMFx9
- XuqI5FZzYU1CZZQgHjCK5VdC+TF3FFhojcKzWG+1nfoJoAz92l4gEFvRo
- UuMShE5zje+pJmx9iy3Bj+eDZyc+50fNecjTo6t062rRIYnTbN1q5/LsP
- DyXOG3OSHPiFilQeG1LOJYygmrF0jGt0T6bpQDCs5gEunRZ6dVfWZus7o
- xik7c6ze5G1bCiaqy+WrsKeCiWgEFtCbMYubPVIqCWwmozz6qJ2eHyRlJ
- p6ACvE3zaJmOfkGj5G2XNh0ajHR4ZuWzmvtFIw/HUj+M98DHmGbgRSpUT g==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10654"; a="336113823"
-X-IronPort-AV: E=Sophos;i="5.98,274,1673942400"; d="scan'208";a="336113823"
-Received: from orsmga005.jf.intel.com ([10.7.209.41])
- by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 20 Mar 2023 02:03:35 -0700
+ t=1679311875; x=1710847875;
+ h=message-id:date:mime-version:subject:to:references:from:
+ in-reply-to:content-transfer-encoding;
+ bh=kl/DFPXcQjzdGjUoE32tR9cHUC8zMtNnNW/anhukumU=;
+ b=YnB865+USjGsC7E3VUKgJsiZ9iHnjd/+6Nr0LebfmPlbWIILXXEFlKqx
+ FwQKrkUJ4WkAjg9gUA0n5wA9/rPy++6WYEvcJfucZqRusRXEAMmOD0Kuj
+ rZHD2yGun1rcIzEtQSwqPtLOGv8dTubbECz6M5t/Awf4nptakHKB6/POE
+ IU33jKyiMrsRW/tXXnFuDHbq8GGz6hcol2RfvYXBF60DijrTyDoGLmfnZ
+ 13khoVbDCMZmvRCRnUBVxJUeNRi5AdgjtabC50f4rP+ItVg+0eBMJXDI8
+ g+F4/+bbZTRGKtEQu2x8wSe9deuIN4VehGAJrfPWRf63kFzPkZn9KIAzJ g==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10654"; a="366354342"
+X-IronPort-AV: E=Sophos;i="5.98,274,1673942400"; d="scan'208";a="366354342"
+Received: from orsmga001.jf.intel.com ([10.7.209.18])
+ by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 20 Mar 2023 04:31:15 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10654"; a="855209132"
-X-IronPort-AV: E=Sophos;i="5.98,274,1673942400"; d="scan'208";a="855209132"
-Received: from vmiceli-mobl.amr.corp.intel.com (HELO [10.252.26.135])
- ([10.252.26.135])
- by orsmga005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 20 Mar 2023 02:03:34 -0700
-Message-ID: <0eff2204-f04a-2300-4d2b-ae37d850159c@intel.com>
-Date: Mon, 20 Mar 2023 09:03:32 +0000
+X-IronPort-AV: E=McAfee;i="6600,9927,10654"; a="713533085"
+X-IronPort-AV: E=Sophos;i="5.98,274,1673942400"; d="scan'208";a="713533085"
+Received: from scojocar-mobl1.ger.corp.intel.com (HELO [10.249.45.53])
+ ([10.249.45.53])
+ by orsmga001-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 20 Mar 2023 04:31:13 -0700
+Message-ID: <346d3a67-11dc-afac-9b28-335b8fe1c4fa@linux.intel.com>
+Date: Mon, 20 Mar 2023 12:31:11 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Firefox/102.0 Thunderbird/102.8.0
-To: Gwan-gyeong Mun <gwan-gyeong.mun@intel.com>, intel-xe@lists.freedesktop.org
-References: <20230314085842.134239-1-matthew.auld@intel.com>
- <20230314085842.134239-5-matthew.auld@intel.com>
- <3f48da8f-7c9a-5cdc-f323-826a50f256ef@intel.com>
- <7c940122-20d0-600b-e045-86c1b1712dac@intel.com>
- <7fa22d4c-dacc-a33f-84bb-8540618415ec@intel.com>
-Content-Language: en-GB
-From: Matthew Auld <matthew.auld@intel.com>
-In-Reply-To: <7fa22d4c-dacc-a33f-84bb-8540618415ec@intel.com>
+ Firefox/102.0 Thunderbird/102.9.0
+Content-Language: en-US
+To: Matthew Brost <matthew.brost@intel.com>, intel-xe@lists.freedesktop.org
+References: <20230318032842.578049-1-matthew.brost@intel.com>
+From: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
+In-Reply-To: <20230318032842.578049-1-matthew.brost@intel.com>
 Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-Subject: Re: [Intel-xe] [PATCH v4 4/6] drm/xe/buddy: remove the virtualized
- start
+Content-Transfer-Encoding: 7bit
+Subject: Re: [Intel-xe] [PATCH] drm/xe: Fix potential deadlock handling page
+ faults
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -65,168 +61,62 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Cc: Lucas De Marchi <lucas.demarchi@intel.com>
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On 20/03/2023 08:44, Gwan-gyeong Mun wrote:
-> 
-> 
-> On 3/17/23 3:02 PM, Matthew Auld wrote:
->> On 17/03/2023 11:52, Gwan-gyeong Mun wrote:
->>>
->>>
->>> On 3/14/23 10:58 AM, Matthew Auld wrote:
->>>> Hopefully not needed anymore. We can add a .compatible() hook once we
->>>> need to differentiate between mappable and non-mappable vram. If the
->>>> allocation is not contiguous then the start value is kind of
->>>> meaningless, so rather just mark as invalid.
->>>>
->>>> In upstream, TTM wants to eventually remove the ttm_resource.start
->>>> usage.
->>> Hi Matt,
->>> If there is a related rfc or discussion, could you please share a 
->>> reference?
->>
->> I think it was maybe discussed off list. But there have been patches 
->> that try to move in that general direction like: 544432703b2f 
->> ("drm/ttm: Add new callbacks to ttm res mgr"). Which gets rid of the 
->> main user in ttm for base.start (drivers still make use of it though). 
->> Better is to keep it at the resource manager level. The "virtualized" 
->> start here is basically trying to workaround the fact that [res.start, 
->> res.size] can't really represent a non-contiguous allocations.
->>
->> For example, if you look at that patch, ttm was using [res.start, 
->> res.size] to help determine if the existing resource was compatible 
->> with the new placement. Basically if you want to move a resource from 
->> A -> B, where both are the same VRAM, without the above it would 
->> always turn the move into a noop, since A & B are the same resource 
->> type, and are therefore "compatible".
->>
->> However with small-bar, you also have mappable vs non-mappable VRAM, 
->> and you might want to move between them, so the "virtualized" start 
->> ensures that [res.start, res.end] <= mappable size, even for 
->> non-contiguous allocations, if the entire resource is mappable, and 
->> vice versa. With the .compatible() hook that is all pushed into the 
->> resource manager, so we don't need such tricks. See also the i915 
->> equivalent: da6198afb01d ("drm/i915/ttm: remove the virtualized start 
->> hack").
->>
-> It seems that the part that is difficult to fully understand with this 
-> patch alone is explained well. Thank you for a detailed description.
-> 
-> And referring to the explanation, the commit where the use of 
-> ttm_resource.start in ttm_resource_compatible() was deleted was 
-> confirmed in the commit below.
-> commit 6d3c900c12d72667341bcff338c252e22728b942 ("drm/ttm: Switch to 
-> using the new res callback")
-> 
-> Not directly related to this patch, contiguous allocation (using 
-> TTM_PL_FLAG_CONTIGUOUS flag) allocates resources from one place?
+Hey,
 
-TTM_PL_FLAG_CONTIGUOUS tells us that the underlying memory for the 
-resource is one contiguous physical area. It could still be multiple 
-nodes underneath, but in that case they should always be correctly 
-ordered by smallest offset.
+On 2023-03-18 04:28, Matthew Brost wrote:
+> Within a class the GuC will hault scheduling if the head of the queue
+> can't be scheduled the queue will block. This can lead to deadlock if
+> BCS0-7 all have faults and another engine on BCS0-7 is at head of the
+> GuC scheduling queue as the migration engine used to fix tthe fault will
+> be blocked. To work around this set the migration engine to the highest
+> priority when servicing page faults.
+>
+> Signed-off-by: Matthew Brost <matthew.brost@intel.com>
+> ---
+>   drivers/gpu/drm/xe/xe_gt_pagefault.c | 5 ++++-
+>   1 file changed, 4 insertions(+), 1 deletion(-)
+>
+> diff --git a/drivers/gpu/drm/xe/xe_gt_pagefault.c b/drivers/gpu/drm/xe/xe_gt_pagefault.c
+> index 76ec40567a78..8fad6e60f826 100644
+> --- a/drivers/gpu/drm/xe/xe_gt_pagefault.c
+> +++ b/drivers/gpu/drm/xe/xe_gt_pagefault.c
+> @@ -106,6 +106,7 @@ static struct xe_vma *lookup_vma(struct xe_vm *vm, u64 page_addr)
+>   static int handle_pagefault(struct xe_gt *gt, struct pagefault *pf)
+>   {
+>   	struct xe_device *xe = gt_to_xe(gt);
+> +	struct xe_engine *e = xe_gt_migrate_engine(gt);
+>   	struct xe_vm *vm;
+>   	struct xe_vma *vma = NULL;
+>   	struct xe_bo *bo;
+> @@ -185,6 +186,7 @@ static int handle_pagefault(struct xe_gt *gt, struct pagefault *pf)
+>   	if (ret)
+>   		goto unlock_vm;
+>   
+> +	e->ops->set_priority(e, DRM_SCHED_PRIORITY_KERNEL);
+>   	if (atomic) {
+>   		if (xe_vma_is_userptr(vma)) {
+>   			ret = -EACCES;
+> @@ -204,7 +206,7 @@ static int handle_pagefault(struct xe_gt *gt, struct pagefault *pf)
+>   
+>   	/* Bind VMA only to the GT that has faulted */
+>   	trace_xe_vma_pf_bind(vma);
+> -	fence = __xe_pt_bind_vma(gt, vma, xe_gt_migrate_engine(gt), NULL, 0,
+> +	fence = __xe_pt_bind_vma(gt, vma, e, NULL, 0,
+>   				 vma->gt_present & BIT(gt->info.id));
+>   	if (IS_ERR(fence)) {
+>   		ret = PTR_ERR(fence);
+> @@ -218,6 +220,7 @@ static int handle_pagefault(struct xe_gt *gt, struct pagefault *pf)
+>   	 */
+>   	dma_fence_wait(fence, false);
+>   	dma_fence_put(fence);
+> +	e->ops->set_priority(e, DRM_SCHED_PRIORITY_NORMAL);
 
-In the case of the buddy, it just does a roundup_power_of_two() and then 
-trims the size down, to avoid any wastage, since the buddy only accepts 
-a power-of-two size for block sizes (and that's kind of what it's 
-optimised for). Also if the allocation happens to be contiguous by fluke 
-(caller didn't specify), then we also annotate the resource as such, 
-with the hope that the upper layers can do something useful with that.
+Could we just keep the priority of the migrate engine at KERNEL? This 
+change is prone to undo the same priority bump by another pagefault, 
+unless you protect the priority with a lock.
 
-> 
-> Reviewed-by: Gwan-gyeong Mun <gwan-gyeong.mun@intel.com>
+~Maarten
 
-Thanks.
-
->>>>
->>>> Signed-off-by: Matthew Auld <matthew.auld@intel.com>
->>>> Cc: Lucas De Marchi <lucas.demarchi@intel.com>
->>>> Reviewed-by: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
->>>> ---
->>>>   drivers/gpu/drm/xe/xe_bo.c           |  6 ++++++
->>>>   drivers/gpu/drm/xe/xe_ttm_vram_mgr.c | 29 
->>>> ++++++++++++++--------------
->>>>   2 files changed, 20 insertions(+), 15 deletions(-)
->>>>
->>>> diff --git a/drivers/gpu/drm/xe/xe_bo.c b/drivers/gpu/drm/xe/xe_bo.c
->>>> index 73a7f2cd4ad8..346573f406c2 100644
->>>> --- a/drivers/gpu/drm/xe/xe_bo.c
->>>> +++ b/drivers/gpu/drm/xe/xe_bo.c
->>>> @@ -662,6 +662,12 @@ static int xe_bo_move(struct ttm_buffer_object 
->>>> *ttm_bo, bool evict,
->>>>                   void *new_addr = gt->mem.vram.mapping +
->>>>                       (new_mem->start << PAGE_SHIFT);
->>>> +                if (XE_WARN_ON(new_mem->start == 
->>>> XE_BO_INVALID_OFFSET)) {
->>> Are there really any use cases for moving to memory allocated with 
->>> xe_ttm_gtt_mgr_func()?
->>
->> The above is only for pinned VRAM objects, which are always 
->> contiguous, and therefore have a valid start value. I just added the 
->> above sanity check to double check that, and make the error more 
->> obvious if we ever trigger it.
->> yes, that makes sense.
->>>
->>> Br,
->>> G.G.
->>>> +                    ret = -EINVAL;
->>>> +                    xe_device_mem_access_put(xe);
->>>> +                    goto out;
->>>> +                }
->>>> +
->>>>                   XE_BUG_ON(new_mem->start !=
->>>>                         bo->placements->fpfn);
->>>> diff --git a/drivers/gpu/drm/xe/xe_ttm_vram_mgr.c 
->>>> b/drivers/gpu/drm/xe/xe_ttm_vram_mgr.c
->>>> index 159ca7105df1..bafcadaed6b0 100644
->>>> --- a/drivers/gpu/drm/xe/xe_ttm_vram_mgr.c
->>>> +++ b/drivers/gpu/drm/xe/xe_ttm_vram_mgr.c
->>>> @@ -54,7 +54,6 @@ static int xe_ttm_vram_mgr_new(struct 
->>>> ttm_resource_manager *man,
->>>>       struct xe_ttm_vram_mgr_resource *vres;
->>>>       u64 size, remaining_size, lpfn, fpfn;
->>>>       struct drm_buddy *mm = &mgr->mm;
->>>> -    struct drm_buddy_block *block;
->>>>       unsigned long pages_per_block;
->>>>       int r;
->>>> @@ -186,24 +185,24 @@ static int xe_ttm_vram_mgr_new(struct 
->>>> ttm_resource_manager *man,
->>>>               list_splice_tail(trim_list, &vres->blocks);
->>>>       }
->>>> -    vres->base.start = 0;
->>>> -    list_for_each_entry(block, &vres->blocks, link) {
->>>> -        unsigned long start;
->>>> +    if (!(vres->base.placement & TTM_PL_FLAG_CONTIGUOUS) &&
->>>> +        xe_is_vram_mgr_blocks_contiguous(mm, &vres->blocks))
->>>> +        vres->base.placement |= TTM_PL_FLAG_CONTIGUOUS;
->>>> -        start = drm_buddy_block_offset(block) +
->>>> -            drm_buddy_block_size(mm, block);
->>>> -        start >>= PAGE_SHIFT;
->>>> +    /*
->>>> +     * For some kernel objects we still rely on the start when io 
->>>> mapping
->>>> +     * the object.
->>>> +     */
->>>> +    if (vres->base.placement & TTM_PL_FLAG_CONTIGUOUS) {
->>>> +        struct drm_buddy_block *block = 
->>>> list_first_entry(&vres->blocks,
->>>> +                                 typeof(*block),
->>>> +                                 link);
->>>> -        if (start > PFN_UP(vres->base.size))
->>>> -            start -= PFN_UP(vres->base.size);
->>>> -        else
->>>> -            start = 0;
->>>> -        vres->base.start = max(vres->base.start, start);
->>>> +        vres->base.start = drm_buddy_block_offset(block) >> 
->>>> PAGE_SHIFT;
->>>> +    } else {
->>>> +        vres->base.start = XE_BO_INVALID_OFFSET;
->>>>       }
->>>> -    if (xe_is_vram_mgr_blocks_contiguous(mm, &vres->blocks))
->>>> -        vres->base.placement |= TTM_PL_FLAG_CONTIGUOUS;
->>>> -
->>>>       *res = &vres->base;
->>>>       return 0;
