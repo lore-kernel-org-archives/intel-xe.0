@@ -4,45 +4,30 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7100BC6FD20
-	for <intel-xe@archiver.kernel.org>; Tue, 21 Mar 2023 23:42:16 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 53F8BC6FD20
+	for <intel-xe@archiver.kernel.org>; Tue, 21 Mar 2023 23:44:35 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4A38010E1D4;
-	Tue, 21 Mar 2023 23:42:16 +0000 (UTC)
-Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
- by gabe.freedesktop.org (Postfix) with ESMTPS id DC5D210E130
- for <intel-xe@lists.freedesktop.org>; Tue, 21 Mar 2023 23:42:13 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1679442133; x=1710978133;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=7xgZe/Bi5A8XzRFrxU18DaSEagvaZ8wizgjgcNU1Hjg=;
- b=my8NfcTMjuMgSDgiG6Q2G0yflVU9bK4JTNfLJbIj3YYfUpKp8IpMSnil
- ihZTyOGXcFQ4F9t+6ByOlAlVFhERwEL94u/j0jBj9+Ow4CWJijfvliVge
- TpgMEL22eqeOTuY9vVX/b9YoiUxF112mehbMbF2v7Biv36stZXDkSdfKG
- t098DFIS2zh4RffujGuPojSqYdeBNFrzxz5L4X+IUMlpxv3U1LK9xlL+M
- 7++uI5SDnBGADdXHc+B/XRb2iydLzf76/xEdHqddCUTmyStEfEX5Umz4P
- EPuZgpHrFINzpDcokn80AXGC5QFnWAzbaeckdIob2wjdE1KWxcL3+C24L w==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10656"; a="322926679"
-X-IronPort-AV: E=Sophos;i="5.98,280,1673942400"; d="scan'208";a="322926679"
-Received: from orsmga003.jf.intel.com ([10.7.209.27])
- by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 21 Mar 2023 16:42:13 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10656"; a="631780114"
-X-IronPort-AV: E=Sophos;i="5.98,280,1673942400"; d="scan'208";a="631780114"
-Received: from lstrano-desk.jf.intel.com ([10.24.89.184])
- by orsmga003-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 21 Mar 2023 16:42:13 -0700
-From: Matthew Brost <matthew.brost@intel.com>
-To: <intel-xe@lists.freedesktop.org>
-Date: Tue, 21 Mar 2023 16:42:15 -0700
-Message-Id: <20230321234217.692726-1-matthew.brost@intel.com>
-X-Mailer: git-send-email 2.34.1
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2DFE710E195;
+	Tue, 21 Mar 2023 23:44:35 +0000 (UTC)
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id DBCB210E130;
+ Tue, 21 Mar 2023 23:44:33 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id D4155A7DFB;
+ Tue, 21 Mar 2023 23:44:33 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Subject: [Intel-xe] [PATCH 0/2] USM locking fixes
+Content-Transfer-Encoding: 7bit
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Matthew Brost" <matthew.brost@intel.com>
+Date: Tue, 21 Mar 2023 23:44:33 -0000
+Message-ID: <167944227386.18676.4966452263360913411@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20230321234217.692726-1-matthew.brost@intel.com>
+In-Reply-To: <20230321234217.692726-1-matthew.brost@intel.com>
+Subject: [Intel-xe] =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_f?=
+ =?utf-8?q?or_USM_locking_fixes?=
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -54,19 +39,41 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
+Cc: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Patches explain everything.
+== Series Details ==
 
-Matthew Brost (2):
-  drn/xe: Drop usm lock around ASID xarray
-  drm/xe: Move in fault mode / non-fault mode check to xe_vm_create
+Series: USM locking fixes
+URL   : https://patchwork.freedesktop.org/series/115467/
+State : success
 
- drivers/gpu/drm/xe/xe_gt_pagefault.c |  4 ---
- drivers/gpu/drm/xe/xe_vm.c           | 49 ++++++++++++++++------------
- 2 files changed, 28 insertions(+), 25 deletions(-)
+== Summary ==
 
--- 
-2.34.1
+=== Applying kernel patches on branch 'drm-xe-next' with base: ===
+commit 1ae4dd9e82429e075aa7121404b06ce170da5848
+Author:     Matthew Auld <matthew.auld@intel.com>
+AuthorDate: Tue Mar 21 11:44:07 2023 +0000
+Commit:     Matthew Auld <matthew.auld@intel.com>
+CommitDate: Tue Mar 21 14:03:29 2023 +0000
+
+    drm/xe/buddy: add compatible and intersects hooks
+    
+    Copy this from i915. We need .compatible for vram -> vram transfers, so
+    they don't just get nooped by ttm, if need to move something from
+    mappable to non-mappble or vice versa. The .intersects is needed for
+    eviction, to determine if a victim resource is worth eviction. e.g if we
+    need mappable space there is no point in evicting a resource that has
+    zero mappable pages.
+    
+    Signed-off-by: Matthew Auld <matthew.auld@intel.com>
+    Cc: Lucas De Marchi <lucas.demarchi@intel.com>
+    Reviewed-by: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
+    Reviewed-by: Gwan-gyeong Mun <gwan-gyeong.mun@intel.com>
+=== git am output follows ===
+Applying: drn/xe: Drop usm lock around ASID xarray
+Applying: drm/xe: Move in fault mode / non-fault mode check to xe_vm_create
+
 
