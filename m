@@ -4,31 +4,46 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id AE027C6FD1D
-	for <intel-xe@archiver.kernel.org>; Tue, 21 Mar 2023 00:07:22 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id E4D79C74A5B
+	for <intel-xe@archiver.kernel.org>; Tue, 21 Mar 2023 03:42:47 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7A84F10E077;
-	Tue, 21 Mar 2023 00:07:22 +0000 (UTC)
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id 9BAE810E077;
- Tue, 21 Mar 2023 00:07:20 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 935A2A0169;
- Tue, 21 Mar 2023 00:07:20 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============7534018559303135851=="
+	by gabe.freedesktop.org (Postfix) with ESMTP id 898AD10E6C6;
+	Tue, 21 Mar 2023 03:42:47 +0000 (UTC)
+Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2F8FA10E6C6
+ for <intel-xe@lists.freedesktop.org>; Tue, 21 Mar 2023 03:42:46 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1679370166; x=1710906166;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=r9wWKUyFK5oWk2ZnVvV1JHjsyIy0QuCedK7Tj1cyhLw=;
+ b=eJTwYtn/lSgYyB6dXuedBbNzrSb6TXY4pJB4q0FdrC3mjPz0q9b2n5jm
+ vSrcU3IoBvRB5Fsk+0Kx7NRtC9W3skvVh3s7gIqrPKvgmC4OqXNwGKtM5
+ Cg7JdrU6ZnvCI3UqPL4UiMZl08H66mZQUFJa6Jw8VtjaDYvSGGjZUXmZ8
+ NsdmJdUg23zfxgPhXgx+w9VRKQzeeuliRwts6zL/AkXQpXrTTy35olTXT
+ HMTAfMsHOLZzgLff72PYoNbHt63XhG3ukCW7afV+Fk14bazdRPOa0WrGZ
+ ubXXSavCT4gjRGYVbHrKKXRwutssyGIXhtiEmnDNsR4UUuB/NyZ84pKmK Q==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10655"; a="322681938"
+X-IronPort-AV: E=Sophos;i="5.98,277,1673942400"; d="scan'208";a="322681938"
+Received: from orsmga003.jf.intel.com ([10.7.209.27])
+ by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 20 Mar 2023 20:42:45 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6600,9927,10655"; a="631393319"
+X-IronPort-AV: E=Sophos;i="5.98,277,1673942400"; d="scan'208";a="631393319"
+Received: from lstrano-desk.jf.intel.com ([10.24.89.184])
+ by orsmga003-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 20 Mar 2023 20:42:45 -0700
+From: Matthew Brost <matthew.brost@intel.com>
+To: <intel-xe@lists.freedesktop.org>
+Date: Mon, 20 Mar 2023 20:42:47 -0700
+Message-Id: <20230321034247.666767-1-matthew.brost@intel.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Anusha Srivatsa" <anusha.srivatsa@intel.com>
-Date: Tue, 21 Mar 2023 00:07:20 -0000
-Message-ID: <167935724057.18676.11829822137659799647@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20230320235254.3288679-1-anusha.srivatsa@intel.com>
-In-Reply-To: <20230320235254.3288679-1-anusha.srivatsa@intel.com>
-Subject: [Intel-xe] =?utf-8?q?=E2=97=8B_CI=2EBAT=3A_info_for_series_start?=
- =?utf-8?q?ing_with_=5B1/2=5D_drm/xe=3A_Add_checks_to_load_huc_from_a_prev?=
- =?utf-8?q?ious_platform?=
+Content-Transfer-Encoding: 8bit
+Subject: [Intel-xe] [PATCH] drm/xe: Fix potential deadlock handling page
+ faults
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -40,70 +55,36 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
-Cc: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============7534018559303135851==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+Within a class the GuC will hault scheduling if the head of the queue
+can't be scheduled the queue will block. This can lead to deadlock if
+BCS0-7 all have faults and another engine on BCS0-7 is at head of the
+GuC scheduling queue as the migration engine used to fix tthe fault will
+be blocked. To work around this set the migration engine to the highest
+priority when servicing page faults.
 
-== Series Details ==
+v2 (Maarten): Set priority to kernel once at creation
 
-Series: series starting with [1/2] drm/xe: Add checks to load huc from a previous platform
-URL   : https://patchwork.freedesktop.org/series/115427/
-State : info
+Signed-off-by: Matthew Brost <matthew.brost@intel.com>
+---
+ drivers/gpu/drm/xe/xe_migrate.c | 2 ++
+ 1 file changed, 2 insertions(+)
 
-== Summary ==
+diff --git a/drivers/gpu/drm/xe/xe_migrate.c b/drivers/gpu/drm/xe/xe_migrate.c
+index 77a6d71f6e89..546711a0ec39 100644
+--- a/drivers/gpu/drm/xe/xe_migrate.c
++++ b/drivers/gpu/drm/xe/xe_migrate.c
+@@ -359,6 +359,8 @@ struct xe_migrate *xe_migrate_init(struct xe_gt *gt)
+ 		xe_vm_close_and_put(vm);
+ 		return ERR_CAST(m->eng);
+ 	}
++	if (xe->info.supports_usm)
++		m->eng->entity->priority = DRM_SCHED_PRIORITY_KERNEL;
+ 
+ 	mutex_init(&m->job_mutex);
+ 
+-- 
+2.34.1
 
-Participating hosts:
-bat-dg1-8
-bat-dg2-oem2
-bat-adlp-7
-Missing hosts results[1]:
-bat-dg1-8
-Results: [xe-pw-115427v1](https://intel-gfx-ci.01.org/tree/xe/xe-pw-115427v1/index.html)
-
-
-
---===============7534018559303135851==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>series starting with [1/2] drm/xe: Add checks to load huc from a previous platform</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/115427/">https://patchwork.freedesktop.org/series/115427/</a></td></tr>
-<tr><td><b>State:</b></td><td>info</td></tr>
-
-</table>
-
-
-    <p>Participating hosts:<br />
-bat-dg1-8<br />
-bat-dg2-oem2<br />
-bat-adlp-7<br />
-Missing hosts results[1]:<br />
-bat-dg1-8<br />
-Results: <a href="https://intel-gfx-ci.01.org/tree/xe/xe-pw-115427v1/index.html">xe-pw-115427v1</a></p>
-
-</body>
-</html>
-
---===============7534018559303135851==--
