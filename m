@@ -4,136 +4,48 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 65060C6FD1D
-	for <intel-xe@archiver.kernel.org>; Tue, 21 Mar 2023 21:49:08 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id CF30AC6FD20
+	for <intel-xe@archiver.kernel.org>; Tue, 21 Mar 2023 22:06:21 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0C0B410E873;
-	Tue, 21 Mar 2023 21:49:08 +0000 (UTC)
-Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 671EE10E873
- for <intel-xe@lists.freedesktop.org>; Tue, 21 Mar 2023 21:49:05 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 875E810E090;
+	Tue, 21 Mar 2023 22:06:21 +0000 (UTC)
+Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B13BA10E0A7
+ for <intel-xe@lists.freedesktop.org>; Tue, 21 Mar 2023 22:06:19 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1679435345; x=1710971345;
- h=date:from:to:cc:subject:message-id:references:
- in-reply-to:mime-version;
- bh=i8ELLa/mLXeXtmFS17fC8PyaUXIA9aA5yNVZjoiE1ZI=;
- b=XA2EzxLJfXTSm5NLQs8h696786DHUsz3HxS1CBx9yWkUD4hXKiI16VdA
- 96Cj/Cq7W9opmjEi2KzmkCQYHE4KlWjdk0jFu047Ezcf7l26BWFcGEoXM
- IxcqO44cyoRxqC8a0AjpethPUBuAwj61jCRO+IT7kIim9YekUp0dcvjMW
- PiRNV1sDegl8mpopzONCqhvTzVWd2nGVSkw5bsIdnEsPd8qdTlDbCT4oM
- BBz43TYGNo1QF88wcj3H/xSFrKrsIYHMx6vBVoj+wBEmyRMerGgAKTtTu
- km279cWhFKO0Az4zrRqZqEQlUHUgIuIQoAmUypTSxLz6bj9H3fbBbMrYe w==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10656"; a="366804069"
-X-IronPort-AV: E=Sophos;i="5.98,279,1673942400"; d="scan'208";a="366804069"
-Received: from orsmga005.jf.intel.com ([10.7.209.41])
- by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 21 Mar 2023 14:49:04 -0700
+ t=1679436379; x=1710972379;
+ h=from:to:cc:subject:date:message-id:in-reply-to:
+ references:mime-version:content-transfer-encoding;
+ bh=QC1cNsdgbye1XZu1ffjtHZQFe83t+wl30QVHGFkLk8o=;
+ b=MK08PO7wT61zxzda9nB3VPYlwj8jmlw1q8NuEtgSVVHs+Bryo833dHx/
+ DW1qItDzvLVUPXmu0tcE99qyMt/4oxbI/tc9nvVIkb/g+VvXE1eFXpa3S
+ pgOzsgJO6XjC8HIlg17SllzFIGzcepd29ZWn7v5lRpEHH5Ni1M/+dnKp0
+ /SPV574m81J+mPE+kcnf6mlWigfxtaanzAi14wH3KEtg5PoIzkjuk3KEj
+ 0HSvzfuzgCGzuWm/HHsq0mzKK7gsxMVlWYPEtF1DSgIPo5HKEqbpga1p0
+ iN0G6IuvMO1dIG2dBa0HQj9cyy7NQwCBHu+L4sgzuu6I1eqym0HKUats3 g==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10656"; a="339109497"
+X-IronPort-AV: E=Sophos;i="5.98,279,1673942400"; d="scan'208";a="339109497"
+Received: from fmsmga007.fm.intel.com ([10.253.24.52])
+ by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 21 Mar 2023 15:06:19 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10656"; a="855870892"
-X-IronPort-AV: E=Sophos;i="5.98,279,1673942400"; d="scan'208";a="855870892"
-Received: from orsmsx603.amr.corp.intel.com ([10.22.229.16])
- by orsmga005.jf.intel.com with ESMTP; 21 Mar 2023 14:49:04 -0700
-Received: from orsmsx612.amr.corp.intel.com (10.22.229.25) by
- ORSMSX603.amr.corp.intel.com (10.22.229.16) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.21; Tue, 21 Mar 2023 14:49:04 -0700
-Received: from ORSEDG602.ED.cps.intel.com (10.7.248.7) by
- orsmsx612.amr.corp.intel.com (10.22.229.25) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.21 via Frontend Transport; Tue, 21 Mar 2023 14:49:04 -0700
-Received: from NAM10-BN7-obe.outbound.protection.outlook.com (104.47.70.107)
- by edgegateway.intel.com (134.134.137.103) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2507.21; Tue, 21 Mar 2023 14:49:04 -0700
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=GLx8yWuv8cvKHH9bXFzmZYK3PIpRLCxuMX8zM8O3+hQCRyacBRLHXw7RjqYxUuiCp28lgkBqFACoIjgM7kEjf4WuEYHlrE9nTyaDZ0sZew3HoOEHFcZO3FesncAMulghRaOux8U4faRN1w1dpEu9LqLL/R/1diRddUubWHz3Wt6eSswg8lst9237EJ0ecI6yeKlgXrCtdQxgGnSYgPbaABuqjvfmEPV5Z66zm378J6yQ0u20TPQW1CiB2ZrqDcrnCu2YUwQruq7a2MFafT/oXdhuBcycVbcIGw9DcwOoWEq4OKzuMd10Ezl+g7y2fvILJWTzgHDxl5NazLAo4xUdyA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=ZyPA+V2i2o76ZrEyUFJ4/zwTbMCzKgvxvlfuwkdjf14=;
- b=csuazKtEawJMIDL+DlcyYIMFoSnHHsY9L6nBjkJhSCUJb/S/taapfrOWMZlwr+euDrFMKVizfFLB0lpTF4gJ/9i1JVgcektT0HjHXdYpXpB0o93VAuSsAHTR9/7DAbGj7bv491WJijmOknspx/Vx3hOt6w5ig/a/2bXvbkU4B6chJUD+xtsNzb8ijitmjckfElZnWP6hfP7jByxhN7jXy2UyD70uhk/yk/5Or0BYi59qK6e19wN4HfB20Ppx8p/VvDk48nCLnAHSQ4l0ujul3xZewPUpWgbwLFWwbBefCbIxgOpWaec2hw/NsJ0BzTlCuZuvJbeFNLQqTnGTg1QcDw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
- dkim=pass header.d=intel.com; arc=none
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=intel.com;
-Received: from DS7PR11MB7859.namprd11.prod.outlook.com (2603:10b6:8:da::22) by
- CO1PR11MB5059.namprd11.prod.outlook.com (2603:10b6:303:9a::10) with
- Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.6178.36; Tue, 21 Mar 2023 21:49:02 +0000
-Received: from DS7PR11MB7859.namprd11.prod.outlook.com
- ([fe80::1c61:b69d:4ca:10d0]) by DS7PR11MB7859.namprd11.prod.outlook.com
- ([fe80::1c61:b69d:4ca:10d0%7]) with mapi id 15.20.6178.037; Tue, 21 Mar 2023
- 21:49:02 +0000
-Date: Tue, 21 Mar 2023 14:48:58 -0700
-From: Matt Roper <matthew.d.roper@intel.com>
-To: Lucas De Marchi <lucas.demarchi@intel.com>
-Message-ID: <20230321214858.GP4085390@mdroper-desk1.amr.corp.intel.com>
-References: <20230320235254.3288679-1-anusha.srivatsa@intel.com>
- <20230320235254.3288679-2-anusha.srivatsa@intel.com>
- <20230321155059.GK4085390@mdroper-desk1.amr.corp.intel.com>
- <20230321210349.mr5e233da5ihvv5f@ldmartin-desk2.lan>
-Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
-In-Reply-To: <20230321210349.mr5e233da5ihvv5f@ldmartin-desk2.lan>
-X-ClientProxiedBy: BY5PR20CA0007.namprd20.prod.outlook.com
- (2603:10b6:a03:1f4::20) To DS7PR11MB7859.namprd11.prod.outlook.com
- (2603:10b6:8:da::22)
+X-IronPort-AV: E=McAfee;i="6600,9927,10656"; a="684065695"
+X-IronPort-AV: E=Sophos;i="5.98,279,1673942400"; d="scan'208";a="684065695"
+Received: from lucas-s2600cw.jf.intel.com ([10.165.21.196])
+ by fmsmga007-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 21 Mar 2023 15:06:19 -0700
+From: Lucas De Marchi <lucas.demarchi@intel.com>
+To: intel-xe@lists.freedesktop.org
+Date: Tue, 21 Mar 2023 15:05:21 -0700
+Message-Id: <20230321220527.595462-2-lucas.demarchi@intel.com>
+X-Mailer: git-send-email 2.39.0
+In-Reply-To: <20230321220527.595462-1-lucas.demarchi@intel.com>
+References: <20230321220527.595462-1-lucas.demarchi@intel.com>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: DS7PR11MB7859:EE_|CO1PR11MB5059:EE_
-X-MS-Office365-Filtering-Correlation-Id: 095921e1-c920-426b-4a08-08db2a561576
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: DSZJwEGF6ARVXeIMgfw51m2H/PhaqeNcgq0qAowR6F7wumI/LqfVBXY/2mmu+y8DX8V9P669+9IuF4S3yItmsH3481RfUH9dKf4XZLxwbuIfG4GFkK+TthPTuR1d7P4A6Rzo2hZMOZhbrSIMDcwSrsOrm7VJm3NdbapK/4cyWEFvR/1y7zlzZJqGb8849l+PagmlJCXRKfOSOuHFx+tEVdtIgunk/pe9GMjXa3wwsN9TOSaW/tzo/tTSOuzCxaNkCXGKsJ/vnEFcbLVQ0sVVxYzjRs7oWtepAx3ZayI3CRUZ9ymZH+mTe3ohV98YUrvv2pTMAEVbIqDoxHpz5VtrXlvvglyoIIO0eVqcJmnGmOhMRR6kbylUMPRZXPbzsqx8BQUgIe8phypiVjqZ7rUkSxD7/afdNfn13V3/s4bZorLaT7b4LibJTZazwu0tNEq9cp25aLxfc2r7lB/BJi+fshozw8I4H21SqI/vhC794dySar1uXwLoFpDv4VxQlR1HOn8gtWTuXaZcgbRnfH0RXjGopLnVFFzazXoi3+VL0LkulOI1Z8/8zVrIYFShL3KMfeSUdOxdNoVBYUbD8nGx72KgkF7exGjwctvNbEf+sBM03YZU9E+HOdqDfE44rDhZDDwdEHdpnYgzQBktxv7qIg==
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:DS7PR11MB7859.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230025)(376002)(136003)(346002)(39860400002)(396003)(366004)(451199018)(316002)(6636002)(6486002)(41300700001)(478600001)(8936002)(6862004)(4326008)(8676002)(6512007)(6506007)(26005)(6666004)(1076003)(186003)(5660300002)(2906002)(83380400001)(33656002)(82960400001)(38100700002)(66946007)(66556008)(66476007)(86362001);
- DIR:OUT; SFP:1102; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?uMPPwGmdEkdqJ8d406Tii2L4ducSUFeFyZPdL/ae/8RiRrnQJQSSwh1Q2Fth?=
- =?us-ascii?Q?4qXFX8jx7GE8X01LOY98dvrxY4KOKPW3/CyNYT97sfiHnkeJR9hSucnnKZQ1?=
- =?us-ascii?Q?1VMEz+wjITUXs9VR9QxytDfv6v7IBCIHh+x5hEi5lq3Yba3mzPoVtI/GroIg?=
- =?us-ascii?Q?BuCy2nKbBqvr/GmshTmRe58Wk/ZBCcNhgoOCdZfce4bqyRDw+WTunBv/kmm7?=
- =?us-ascii?Q?IYNJ2HwftZZIFgS69KvcLh/KYh8iMKWntMi6/OQHxj0BuxUH6nL54RYXFkqT?=
- =?us-ascii?Q?0WnhQsA6IfT5+JCFkCvqb2Ww9w1JCuuYNS5sLMfUPsXkmeX9uCYgpjuAm4fP?=
- =?us-ascii?Q?C7axfVMrcTEDWVWwQI9aWg9ZtdK5lNmOJ7GjXPQ6K3FTP7T0s/2PBU8T3wdH?=
- =?us-ascii?Q?4N2BuMwyV+bYQH9bh8zfdzpBjy/iB939iRSLcswEVDs8J+f/v2R9jvS45ZqQ?=
- =?us-ascii?Q?la+VWN0u0+XTkuRIT/eWARYQMZJnMflI9Bp31SkBW7UM72fiz8+SnhDOmHWx?=
- =?us-ascii?Q?Gy0wbp16FYn6Skuq1tsxOoHm9y103v6GTJZ4RlFK345oBT5GoW1AakZjrd1W?=
- =?us-ascii?Q?NZcnk4y08Q+kRDpN87wEy8xRRTsBhJFJXsV/DprQ8ymonTUKwJtiL2Dj82My?=
- =?us-ascii?Q?qTjuZqXZJqEVOWO3ZOFeM7d8lA+c9Z3agR5RAC59Y22PWvAaDoBbf+AgwGO4?=
- =?us-ascii?Q?IuNrcvxTlqaezcMiTu3RllmW3OZYLbIRml2fRtTENzPIIa1g3sux8gWU3TX5?=
- =?us-ascii?Q?x2dseH/7lLf/vFku0CEY6FF5IrOpEAdKFsJORDVLrS4eBY+2FlBYoS8Rud9b?=
- =?us-ascii?Q?wDZe3lnhA1oxDYXtcMFU9GG9gYyNpndVoOOAaqBzh6cu4jZLnmXZoGmb6ybC?=
- =?us-ascii?Q?Beb+X38gf2J/7iqu5iTFxjnZpWnkxVW8LswJqMaTmvTaGnVu1b2qT9ImIp0G?=
- =?us-ascii?Q?HQ1h335uvz+P0/73J4vzfxjlJxe1l2G65d500fy50wq4c2RezgEoJ9jJHPCy?=
- =?us-ascii?Q?/KcBoJKVhICDW3XhV79Uz6vHOj8q+sOM/eKpBaYJma9WcRqtcfeXEZ/DUiKY?=
- =?us-ascii?Q?AsCCZ9F7zswvcs2pPOtG9TVNmcW9w0wjqfulPfkEHYHvepBOblmCLX8h2KNP?=
- =?us-ascii?Q?76HR/luB+3u4h6OrZMTHOrNrYmUUjXx5ZDS682oUiq0FdmeuJkYDcVDa6HH7?=
- =?us-ascii?Q?R6GbFMH+Rl8eO6phalDp9la12UzFugf5b1RVZmNP8X1Ubk3zCFVa1gTkU+c/?=
- =?us-ascii?Q?e8kjsv6oZ74ms+RLCIT4QBTYL4w3Lo0NAN+z9KHdHh/K7wFdz7LSUzmxlSSL?=
- =?us-ascii?Q?co+fXvTyTzgzE4egrNxY9RS0Qcq+hFsbk/s/aeg7Ud1+ank2CBLTj42wCLQb?=
- =?us-ascii?Q?lNBG/Xuy003FzbjgqoRg8l96tsjhe3dsnOx6AiwiNIKqcOCrxNwoFS8VWIPj?=
- =?us-ascii?Q?JsZrAvpbtyBcIXi8tzcRuWX1hpuHBLe6+IzZgl92P1VBGaZ7Go2AudnLfvWc?=
- =?us-ascii?Q?NyJpfuA5uT2Xdd809bewPiihOz4gNdIHwNg+FIdIthsPMq7yHYZ2Ui9W4Xgo?=
- =?us-ascii?Q?38hulLgp+nsZ7F8sf2mZpKsMF9MpDwb2t/9AkS7+9vSau3HDAs56JHWcC7Ai?=
- =?us-ascii?Q?eg=3D=3D?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: 095921e1-c920-426b-4a08-08db2a561576
-X-MS-Exchange-CrossTenant-AuthSource: DS7PR11MB7859.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 21 Mar 2023 21:49:02.0247 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: DIBacV+BM7XZIiLPgzADa1FDrQyAHzoL1PeWMnxcC6kJxxGpKqP3aHusj3Jhx7RQb/V2n7zCyZ2jxaVLLAd/1C+7xqMrIrWtTroxKlyancY=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: CO1PR11MB5059
-X-OriginatorOrg: intel.com
-Subject: Re: [Intel-xe] [PATCH 2/2] drm/xe/huc: Macro support for loading
- unversiond HuC
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+Subject: [Intel-xe] [PATCH 1/7] drm/xe: Add basic unit tests for rtp
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -145,67 +57,393 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Cc: Anusha Srivatsa <anusha.srivatsa@intel.com>, intel-xe@lists.freedesktop.org
+Cc: Lucas De Marchi <lucas.demarchi@intel.com>, maarten.lankhorst@intel.com
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Tue, Mar 21, 2023 at 02:03:49PM -0700, Lucas De Marchi wrote:
-> On Tue, Mar 21, 2023 at 08:50:59AM -0700, Matt Roper wrote:
-> > On Mon, Mar 20, 2023 at 04:52:54PM -0700, Anusha Srivatsa wrote:
-> > > Follow the new direction of firmware and add macro
-> > > support for loading unversioned HuC.
-> > > 
-> > > Cc: Lucas De Marchi <lucas.demarchi@intel.com>
-> > > Signed-off-by: Anusha Srivatsa <anusha.srivatsa@intel.com>
-> > > ---
-> > >  drivers/gpu/drm/xe/xe_uc_fw.c | 16 +++++++++++++---
-> > >  1 file changed, 13 insertions(+), 3 deletions(-)
-> > > 
-> > > diff --git a/drivers/gpu/drm/xe/xe_uc_fw.c b/drivers/gpu/drm/xe/xe_uc_fw.c
-> > > index e2e5f7fbe9db..3c522d970228 100644
-> > > --- a/drivers/gpu/drm/xe/xe_uc_fw.c
-> > > +++ b/drivers/gpu/drm/xe/xe_uc_fw.c
-> > > @@ -50,7 +50,7 @@ static struct xe_device *uc_fw_to_xe(struct xe_uc_fw *uc_fw)
-> > >  	fw_def(DG1,          0, guc_def(dg1,  70, 5, 2)) \
-> > >  	fw_def(TIGERLAKE,    0, guc_def(tgl,  70, 5, 2))
-> > > 
-> > > -#define XE_HUC_FIRMWARE_DEFS(fw_def, huc_def) \
-> > > +#define XE_HUC_FIRMWARE_DEFS(fw_def, huc_raw, huc_def) \
-> > 
-> > Why do we still need the old versioned filename?  Can't we get rid of it
-> > completely?  There's no backwards compatibility necessary on Xe yet so
-> > this is our chance to eliminate the version numbers on HuC completely.
-> > It's not clear to me why we're still using huc_def instead of huc_raw
-> > below either.
-> 
-> note the version is saved to uc_fw->major_ver_wanted and
-> uc_fw->minor_ver_wanted.
+Add some basic unit tests for rtp. This is intended to prove the
+functionality of the rtp itself, like coalescing entries, rejecting
+non-disjoint values, etc.
 
-I thought we didn't want to use those for HuC, only for GuC?  Since the
-kernel doesn't interact with the firmware at all, there's no need for us
-to enforce any kind of minimum version check as far as I can see.  We
-don't even care about the major version number, which is why it isn't
-included in the filename we load, right?
+Contrary to the other tests in xe, this is a unit test to test the
+sw-side only, so it can be executed on any machine - it doesn't interact
+with the real hardware. For that a mock was provided with the minimum
+initialization needed. Running it produces the following output:
 
+	$ ./tools/testing/kunit/kunit.py run --raw_output  \
+		--kunitconfig drivers/gpu/drm/xe/.kunitconfig xe_rtp
+	...
+	[13:46:14] Starting KUnit Kernel (1/1)...
+	KTAP version 1
+	1..1
+	    KTAP version 1
+	    # Subtest: xe_rtp
+	    1..3
+	    ok 1 xe_rtp_process_basic
+	[drm:xe_reg_sr_add] *ERROR* Discarding save-restore reg 0001 (clear: 00000001, set: 00000001, masked: no): ret=-22
+	[drm:xe_reg_sr_add] *ERROR* Discarding save-restore reg 0001 (clear: 00000003, set: 00000003, masked: no): ret=-22
+	    ok 2 xe_rtp_process_dup
+	[drm:xe_reg_sr_add] *ERROR* Discarding save-restore reg 0001 (clear: 00000001, set: 00000001, masked: no): ret=-22
+	[drm:xe_reg_sr_add] *ERROR* Discarding save-restore reg 0001 (clear: 00000003, set: 00000003, masked: no): ret=-22
+	    ok 3 xe_rtp_process_incompat_types
+	# xe_rtp: pass:3 fail:0 skip:0 total:3
+	# Totals: pass:3 fail:0 skip:0 total:3
+	ok 1 xe_rtp
+	[13:46:14] Elapsed time: 6.800s total, 0.002s configuring, 6.682s building, 0.073s running
 
-Matt
+Note that the ERRORs in the kernel log are expected since it's testing
+non-disjoint or incompatible entries.
 
-> 
-> Later when we are parsing the blob we read the version that is encoded
-> inside the blob (rather than on the filename).  See xe_uc_fw_init().
-> I think the version check is still makes sense:
-> major should never change and minor has to be equal on greater than
-> the one we first started supporting.
-> 
-> The version in the filename needs to be removed, however the version in
-> the table I believe can stay... it should basically check the minimum
-> version required. We could rename s/minor_ver_wanted/minor_ver_minimum/
-> to clarify.  And comments on top of the macro definition to document.
-> 
-> Lucas De Marchi
+Signed-off-by: Lucas De Marchi <lucas.demarchi@intel.com>
+Reviewed-by: Maarten Lankhorst<maarten.lankhorst@linux.intel.com>
+---
+ drivers/gpu/drm/xe/Kconfig.debug       |   1 +
+ drivers/gpu/drm/xe/tests/Makefile      |   7 +-
+ drivers/gpu/drm/xe/tests/xe_rtp.c      | 201 +++++++++++++++++++++++++
+ drivers/gpu/drm/xe/tests/xe_rtp_test.c |  64 ++++++++
+ drivers/gpu/drm/xe/tests/xe_rtp_test.h |  15 ++
+ drivers/gpu/drm/xe/xe_rtp.c            |   4 +
+ 6 files changed, 290 insertions(+), 2 deletions(-)
+ create mode 100644 drivers/gpu/drm/xe/tests/xe_rtp.c
+ create mode 100644 drivers/gpu/drm/xe/tests/xe_rtp_test.c
+ create mode 100644 drivers/gpu/drm/xe/tests/xe_rtp_test.h
 
+diff --git a/drivers/gpu/drm/xe/Kconfig.debug b/drivers/gpu/drm/xe/Kconfig.debug
+index 93b284cdd0a2..11bb13c73e7b 100644
+--- a/drivers/gpu/drm/xe/Kconfig.debug
++++ b/drivers/gpu/drm/xe/Kconfig.debug
+@@ -66,6 +66,7 @@ config DRM_XE_KUNIT_TEST
+ 	depends on DRM_XE && KUNIT && DEBUG_FS
+ 	default KUNIT_ALL_TESTS
+ 	select DRM_EXPORT_FOR_TESTS if m
++	select DRM_KUNIT_TEST_HELPERS
+ 	help
+ 	  Choose this option to allow the driver to perform selftests under
+ 	  the kunit framework
+diff --git a/drivers/gpu/drm/xe/tests/Makefile b/drivers/gpu/drm/xe/tests/Makefile
+index 47056b6459e3..c5c2f108d017 100644
+--- a/drivers/gpu/drm/xe/tests/Makefile
++++ b/drivers/gpu/drm/xe/tests/Makefile
+@@ -1,4 +1,7 @@
+ # SPDX-License-Identifier: GPL-2.0
+ 
+-obj-$(CONFIG_DRM_XE_KUNIT_TEST) += xe_bo_test.o xe_dma_buf_test.o \
+-	xe_migrate_test.o
++obj-$(CONFIG_DRM_XE_KUNIT_TEST) += \
++	xe_bo_test.o \
++	xe_dma_buf_test.o \
++	xe_migrate_test.o \
++	xe_rtp_test.o
+diff --git a/drivers/gpu/drm/xe/tests/xe_rtp.c b/drivers/gpu/drm/xe/tests/xe_rtp.c
+new file mode 100644
+index 000000000000..92e2c2b8b44d
+--- /dev/null
++++ b/drivers/gpu/drm/xe/tests/xe_rtp.c
+@@ -0,0 +1,201 @@
++// SPDX-License-Identifier: GPL-2.0 AND MIT
++/*
++ * Copyright © 2023 Intel Corporation
++ */
++
++#include "tests/xe_rtp_test.h"
++
++#include <linux/string.h>
++#include <linux/xarray.h>
++
++#include <kunit/test.h>
++
++#include "regs/xe_gt_regs.h"
++#include "regs/xe_reg_defs.h"
++#include "xe_rtp.h"
++
++#undef _MMIO
++#undef MCR_REG
++#define _MMIO(x)	_XE_RTP_REG(x)
++#define MCR_REG(x)	_XE_RTP_MCR_REG(x)
++
++#define REGULAR_REG1	_MMIO(1)
++#define REGULAR_REG2	_MMIO(2)
++#define REGULAR_REG3	_MMIO(3)
++#define MCR_REG1	MCR_REG(1)
++#define MCR_REG2	MCR_REG(2)
++#define MCR_REG3	MCR_REG(3)
++
++static bool match_yes(const struct xe_gt *gt, const struct xe_hw_engine *hwe)
++{
++	return true;
++}
++
++static bool match_no(const struct xe_gt *gt, const struct xe_hw_engine *hwe)
++{
++	return false;
++}
++
++/* Basic entries: same register, only one action, disjoint values */
++static const struct xe_rtp_entry basic_entries[] = {
++	{ XE_RTP_NAME("basic-yes-1"),
++	  XE_RTP_RULES(FUNC(match_yes)),
++	  XE_RTP_ACTIONS(SET(REGULAR_REG1, REG_BIT(0)))
++	},
++	{ XE_RTP_NAME("basic-yes-2"),
++	  XE_RTP_RULES(FUNC(match_yes)),
++	  XE_RTP_ACTIONS(SET(REGULAR_REG1, REG_BIT(1)))
++	},
++	{ XE_RTP_NAME("basic-no-3"),
++	  XE_RTP_RULES(FUNC(match_no)),
++	  XE_RTP_ACTIONS(SET(REGULAR_REG1, REG_BIT(2)))
++	},
++	{ XE_RTP_NAME("basic-no-4"),
++	  XE_RTP_RULES(FUNC(match_yes), FUNC(match_no)),
++	  XE_RTP_ACTIONS(SET(REGULAR_REG1, REG_BIT(3)))
++	},
++	{ XE_RTP_NAME("basic-yes-clr-1"),
++	  XE_RTP_RULES(FUNC(match_yes)),
++	  XE_RTP_ACTIONS(CLR(REGULAR_REG1, REG_BIT(4)))
++	},
++	{ XE_RTP_NAME("basic-yes-clr-2"),
++	  XE_RTP_RULES(FUNC(match_yes)),
++	  XE_RTP_ACTIONS(CLR(REGULAR_REG1, REG_BIT(5)))
++	},
++	{}
++};
++
++void xe_rtp_process_basic(struct kunit *test)
++{
++	struct xe_device *xe = test->priv;
++	struct xe_reg_sr *reg_sr = &xe->gt[0].reg_sr;
++	const struct xe_rtp_entry *rtp_entry;
++	const struct xe_reg_sr_entry *sre, *sr_entry = NULL;
++	unsigned long idx, count = 0, set_bits = 0, clr_bits = 0;
++
++	xe_reg_sr_init(reg_sr, "basic", xe);
++	xe_rtp_process(basic_entries, reg_sr, &xe->gt[0], NULL);
++
++	xa_for_each(&reg_sr->xa, idx, sre) {
++		count++;
++		sr_entry = sre;
++	}
++
++	/*
++	 * Same REGULAR_REG1 register being used: all the entries should
++	 * coalesce into a single entry
++	 */
++	KUNIT_ASSERT_EQ(test, count, 1);
++
++	/* Only bits in the entries named *-yes* are set */
++	for (rtp_entry = basic_entries; rtp_entry && rtp_entry->name; rtp_entry++) {
++		if (!strstr(rtp_entry->name, "-yes"))
++			continue;
++
++		clr_bits |= rtp_entry->actions[0].clr_bits;
++		set_bits |= rtp_entry->actions[0].set_bits;
++	}
++
++	/* implementation detail of RTP - SET() also clears */
++	clr_bits |= set_bits;
++
++	KUNIT_EXPECT_EQ(test, clr_bits, sr_entry->clr_bits);
++	KUNIT_EXPECT_EQ(test, set_bits, sr_entry->set_bits);
++}
++EXPORT_SYMBOL(xe_rtp_process_basic);
++
++/*
++ * Duplicate entries - same register register, only one action,
++ * with actions trying to set/clear bits already changed in previous entries
++ */
++static const struct xe_rtp_entry dup_entries[] = {
++	{ XE_RTP_NAME("dup-entries-yes-1"),
++	  XE_RTP_RULES(FUNC(match_yes)),
++	  XE_RTP_ACTIONS(SET(REGULAR_REG1, REG_BIT(0)))
++	},
++	{ XE_RTP_NAME("dup-entries-no-2"),
++	  XE_RTP_RULES(FUNC(match_yes)),
++	  /* should be dropped as it's the same as a previous */
++	  XE_RTP_ACTIONS(SET(REGULAR_REG1, REG_BIT(0)))
++	},
++	{ XE_RTP_NAME("dup-entries-no-3"),
++	  XE_RTP_RULES(FUNC(match_yes)),
++	  /* should be dropped as not disjoint */
++	  XE_RTP_ACTIONS(SET(REGULAR_REG1, REG_GENMASK(1, 0)))
++	},
++	{}
++};
++
++void xe_rtp_process_dup(struct kunit *test)
++{
++	struct xe_device *xe = test->priv;
++	struct xe_reg_sr *reg_sr = &xe->gt[0].reg_sr;
++	const struct xe_reg_sr_entry *sre, *sr_entry = NULL;
++	unsigned long idx, count = 0;
++
++	xe_reg_sr_init(reg_sr, "duplicate values", xe);
++	xe_rtp_process(dup_entries, reg_sr, &xe->gt[0], NULL);
++
++	xa_for_each(&reg_sr->xa, idx, sre) {
++		count++;
++		sr_entry = sre;
++	}
++
++	/*
++	 * Same REGULAR_REG1 register being used: all the entries should
++	 * coalesce into a single entry
++	 */
++	KUNIT_EXPECT_EQ(test, count, 1);
++	KUNIT_EXPECT_EQ(test, sr_entry->set_bits, REG_BIT(0));
++}
++EXPORT_SYMBOL(xe_rtp_process_dup);
++
++/*
++ * Incompatible types: same register register, but entries trying to set the
++ * same register passing incompatible types (masked / mcr)
++ */
++static const struct xe_rtp_entry incompat_types_entries[] = {
++	{ XE_RTP_NAME("incompat-types-yes-1"),
++	  XE_RTP_RULES(FUNC(match_yes)),
++	  XE_RTP_ACTIONS(SET(REGULAR_REG1, REG_BIT(0)))
++	},
++	{ XE_RTP_NAME("incompat-types-no-2"),
++	  XE_RTP_RULES(FUNC(match_yes)),
++	  /* dropped since has incompatible type with previous entry */
++	  XE_RTP_ACTIONS(SET(MCR_REG1, REG_BIT(1)))
++	},
++	{ XE_RTP_NAME("incompat-types-no-3"),
++	  XE_RTP_RULES(FUNC(match_yes)),
++	  /* dropped since has incompatible type with previous entry */
++	  XE_RTP_ACTIONS(SET(REGULAR_REG1, REG_BIT(2),
++			     XE_RTP_ACTION_FLAG(MASKED_REG)))
++	},
++	{ XE_RTP_NAME("incompat-types-no-3"),
++	  XE_RTP_RULES(FUNC(match_yes)),
++	  /* dropped since has incompatible type with previous entry */
++	  XE_RTP_ACTIONS(SET(MCR_REG1, REG_BIT(3),
++			     XE_RTP_ACTION_FLAG(MASKED_REG)))
++	},
++	{}
++};
++
++void xe_rtp_process_incompat_types(struct kunit *test)
++{
++	struct xe_device *xe = test->priv;
++	struct xe_reg_sr *reg_sr = &xe->gt[0].reg_sr;
++	const struct xe_reg_sr_entry *sre, *sr_entry = NULL;
++	unsigned long idx, count = 0;
++
++	xe_reg_sr_init(reg_sr, "incompatible types", xe);
++	xe_rtp_process(incompat_types_entries, reg_sr, &xe->gt[0], NULL);
++
++	xa_for_each(&reg_sr->xa, idx, sre) {
++		count++;
++		sr_entry = sre;
++	}
++
++	/* Just the first entry is added, the rest are incompatible */
++	KUNIT_EXPECT_EQ(test, count, 1);
++	KUNIT_EXPECT_EQ(test, sr_entry->set_bits, REG_BIT(0));
++}
++EXPORT_SYMBOL(xe_rtp_process_incompat_types);
+diff --git a/drivers/gpu/drm/xe/tests/xe_rtp_test.c b/drivers/gpu/drm/xe/tests/xe_rtp_test.c
+new file mode 100644
+index 000000000000..4a12aad3f759
+--- /dev/null
++++ b/drivers/gpu/drm/xe/tests/xe_rtp_test.c
+@@ -0,0 +1,64 @@
++// SPDX-License-Identifier: GPL-2.0
++/*
++ * Copyright © 2023 Intel Corporation
++ */
++
++#include "xe_rtp_test.h"
++
++#include <drm/drm_drv.h>
++#include <drm/drm_kunit_helpers.h>
++
++#include <kunit/test.h>
++
++#include "xe_device_types.h"
++
++static void xe_fake_device_init(struct xe_device *xe)
++{
++	xe->gt[0].xe = xe;
++}
++
++static int xe_rtp_test_init(struct kunit *test)
++{
++	struct xe_device *xe;
++	struct device *dev;
++
++	dev = drm_kunit_helper_alloc_device(test);
++	KUNIT_ASSERT_NOT_ERR_OR_NULL(test, dev);
++
++	xe = drm_kunit_helper_alloc_drm_device(test, dev,
++					       struct xe_device,
++					       drm, DRIVER_GEM);
++	KUNIT_ASSERT_NOT_ERR_OR_NULL(test, xe);
++
++	xe_fake_device_init(xe);
++	xe->drm.dev = dev;
++	test->priv = xe;
++
++	return 0;
++}
++
++static void xe_rtp_test_exit(struct kunit *test)
++{
++	struct xe_device *xe = test->priv;
++
++	drm_kunit_helper_free_device(test, xe->drm.dev);
++}
++
++static struct kunit_case xe_rtp_tests[] = {
++	KUNIT_CASE(xe_rtp_process_basic),
++	KUNIT_CASE(xe_rtp_process_dup),
++	KUNIT_CASE(xe_rtp_process_incompat_types),
++	{}
++};
++
++static struct kunit_suite xe_rtp_test_suite = {
++	.name = "xe_rtp",
++	.init = xe_rtp_test_init,
++	.exit = xe_rtp_test_exit,
++	.test_cases = xe_rtp_tests,
++};
++
++kunit_test_suite(xe_rtp_test_suite);
++
++MODULE_AUTHOR("Intel Corporation");
++MODULE_LICENSE("GPL");
+diff --git a/drivers/gpu/drm/xe/tests/xe_rtp_test.h b/drivers/gpu/drm/xe/tests/xe_rtp_test.h
+new file mode 100644
+index 000000000000..a2f1437d6299
+--- /dev/null
++++ b/drivers/gpu/drm/xe/tests/xe_rtp_test.h
+@@ -0,0 +1,15 @@
++/* SPDX-License-Identifier: GPL-2.0 AND MIT */
++/*
++ * Copyright © 2023 Intel Corporation
++ */
++
++#ifndef _XE_RTP_TEST_H_
++#define _XE_RTP_TEST_H_
++
++struct kunit;
++
++void xe_rtp_process_basic(struct kunit *test);
++void xe_rtp_process_dup(struct kunit *test);
++void xe_rtp_process_incompat_types(struct kunit *test);
++
++#endif
+diff --git a/drivers/gpu/drm/xe/xe_rtp.c b/drivers/gpu/drm/xe/xe_rtp.c
+index cb9dd894547d..f634558b6e50 100644
+--- a/drivers/gpu/drm/xe/xe_rtp.c
++++ b/drivers/gpu/drm/xe/xe_rtp.c
+@@ -186,3 +186,7 @@ bool xe_rtp_match_first_gslice_fused_off(const struct xe_gt *gt,
+ 
+ 	return dss >= dss_per_gslice;
+ }
++
++#if IS_ENABLED(CONFIG_DRM_XE_KUNIT_TEST)
++#include "tests/xe_rtp.c"
++#endif
 -- 
-Matt Roper
-Graphics Software Engineer
-Linux GPU Platform Enablement
-Intel Corporation
+2.39.0
+
