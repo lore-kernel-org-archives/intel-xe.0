@@ -4,31 +4,50 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id A4484C6FD1D
-	for <intel-xe@archiver.kernel.org>; Tue, 21 Mar 2023 16:09:38 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 69E94C6FD1D
+	for <intel-xe@archiver.kernel.org>; Tue, 21 Mar 2023 16:10:22 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6597C10E7D9;
-	Tue, 21 Mar 2023 16:09:38 +0000 (UTC)
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id 44B6A10E7D9;
- Tue, 21 Mar 2023 16:09:36 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 3E3B4AA917;
- Tue, 21 Mar 2023 16:09:36 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Jani Nikula" <jani.nikula@intel.com>
-Date: Tue, 21 Mar 2023 16:09:36 -0000
-Message-ID: <167941497622.18676.13012936849217059852@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20230321160420.1352889-1-jani.nikula@intel.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id 39BC010E7D9;
+	Tue, 21 Mar 2023 16:10:22 +0000 (UTC)
+Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2652010E7D9
+ for <intel-xe@lists.freedesktop.org>; Tue, 21 Mar 2023 16:10:21 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1679415021; x=1710951021;
+ h=from:to:cc:subject:in-reply-to:references:date:
+ message-id:mime-version:content-transfer-encoding;
+ bh=4pUImu/nT7BWpz4XZbo/bhiNF71T7PkxlLR1pDLebkE=;
+ b=MXEWYN0x7JJeG5hubpeTvUYUFq4sa2S1rGEJBA3p9VM4Ubx6R3zYzdiT
+ XnyAo6kJCPg8eYx0EvamRzlq7g7isniNE3SoqsuRK7HEj3zw/pmlR5cWP
+ D/zlp9Iqon083jMnSZ//cQsorPg9TCIdAyXDkWEpK1eOV0IEOloZAuxj8
+ VQItz3avIqSOyK4iEwOAPw4uD1sO8r3sKb/nWySOC0fRiF/4VjDNW2YMy
+ QcaYOTKoZVhuQFcfIwjsZ+m0wtouOGTLnmPNoYAD0Qn5WechEg9A+p87c
+ Kjwz2GKbLMPpOdtQs2Onil9oQbmQbEoQWcvY732qlpmm73g/pCZxa1/vY A==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10656"; a="337707514"
+X-IronPort-AV: E=Sophos;i="5.98,279,1673942400"; d="scan'208";a="337707514"
+Received: from orsmga005.jf.intel.com ([10.7.209.41])
+ by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 21 Mar 2023 09:07:15 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6600,9927,10656"; a="855745997"
+X-IronPort-AV: E=Sophos;i="5.98,279,1673942400"; d="scan'208";a="855745997"
+Received: from trybicki-mobl1.ger.corp.intel.com (HELO localhost)
+ ([10.252.63.119])
+ by orsmga005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 21 Mar 2023 09:07:13 -0700
+From: Jani Nikula <jani.nikula@intel.com>
+To: intel-xe@lists.freedesktop.org
 In-Reply-To: <20230321160420.1352889-1-jani.nikula@intel.com>
-Subject: [Intel-xe] =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_f?=
- =?utf-8?q?or_drm/i915/rps=3A_split_out_display_rps_parts_to_a_separate_fi?=
- =?utf-8?q?le?=
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+References: <20230321160420.1352889-1-jani.nikula@intel.com>
+Date: Tue, 21 Mar 2023 18:07:10 +0200
+Message-ID: <87v8iu6qc1.fsf@intel.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+Subject: Re: [Intel-xe] [PATCH] drm/i915/rps: split out display rps parts to
+ a separate file
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -40,40 +59,319 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
-Cc: intel-xe@lists.freedesktop.org
+Cc: lucas.demarchi@intel.com, Ville =?utf-8?B?U3ly?= =?utf-8?B?asOkbMOk?=
+ <ville.syrjala@linux.intel.com>, rodrigo.vivi@intel.com
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-== Series Details ==
+On Tue, 21 Mar 2023, Jani Nikula <jani.nikula@intel.com> wrote:
+> Split out the RPS parts so they can be conditionally compiled out later.
+>
+> Signed-off-by: Jani Nikula <jani.nikula@intel.com>
+> Reviewed-by: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
+> Link: https://patchwork.freedesktop.org/patch/msgid/20230302164936.303416=
+1-1-jani.nikula@intel.com
+> (cherry picked from commit 6dbbff25b39565c801c87379bc85933fb436518e)
+>
+> ---
+>
+> Here's an example of an upstream i915 commit that can help clean up
+> cherry-pick as well as cleanup of the #ifdefs in one go, otherwise it
+> breaks bisect.
 
-Series: drm/i915/rps: split out display rps parts to a separate file
-URL   : https://patchwork.freedesktop.org/series/115453/
-State : success
+*sigh* I had something more here, but having #ifdef first on a line
+dropped it as comments, and turned it into nonsense.
 
-== Summary ==
-
-=== Applying kernel patches on branch 'drm-xe-next' with base: ===
-commit 1ae4dd9e82429e075aa7121404b06ce170da5848
-Author:     Matthew Auld <matthew.auld@intel.com>
-AuthorDate: Tue Mar 21 11:44:07 2023 +0000
-Commit:     Matthew Auld <matthew.auld@intel.com>
-CommitDate: Tue Mar 21 14:03:29 2023 +0000
-
-    drm/xe/buddy: add compatible and intersects hooks
-    
-    Copy this from i915. We need .compatible for vram -> vram transfers, so
-    they don't just get nooped by ttm, if need to move something from
-    mappable to non-mappble or vice versa. The .intersects is needed for
-    eviction, to determine if a victim resource is worth eviction. e.g if we
-    need mappable space there is no point in evicting a resource that has
-    zero mappable pages.
-    
-    Signed-off-by: Matthew Auld <matthew.auld@intel.com>
-    Cc: Lucas De Marchi <lucas.demarchi@intel.com>
-    Reviewed-by: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
-    Reviewed-by: Gwan-gyeong Mun <gwan-gyeong.mun@intel.com>
-=== git am output follows ===
-Applying: drm/i915/rps: split out display rps parts to a separate file
+It's a backport of upstream i915 commit to help clean up #ifdefs, but
+how do we want to handle them?
 
 
+> ---
+>  drivers/gpu/drm/i915/Makefile                 |  1 +
+>  .../gpu/drm/i915/display/intel_atomic_plane.c | 85 ++-----------------
+>  .../gpu/drm/i915/display/intel_display_rps.c  | 81 ++++++++++++++++++
+>  .../gpu/drm/i915/display/intel_display_rps.h  | 34 ++++++++
+>  4 files changed, 123 insertions(+), 78 deletions(-)
+>  create mode 100644 drivers/gpu/drm/i915/display/intel_display_rps.c
+>  create mode 100644 drivers/gpu/drm/i915/display/intel_display_rps.h
+>
+> diff --git a/drivers/gpu/drm/i915/Makefile b/drivers/gpu/drm/i915/Makefile
+> index ae9259ab3261..f689132e1506 100644
+> --- a/drivers/gpu/drm/i915/Makefile
+> +++ b/drivers/gpu/drm/i915/Makefile
+> @@ -239,6 +239,7 @@ i915-y +=3D \
+>  	display/intel_display_power.o \
+>  	display/intel_display_power_map.o \
+>  	display/intel_display_power_well.o \
+> +	display/intel_display_rps.o \
+>  	display/intel_dmc.o \
+>  	display/intel_dpio_phy.o \
+>  	display/intel_dpll.o \
+> diff --git a/drivers/gpu/drm/i915/display/intel_atomic_plane.c b/drivers/=
+gpu/drm/i915/display/intel_atomic_plane.c
+> index 3d37f44ec835..e666a5c1fd91 100644
+> --- a/drivers/gpu/drm/i915/display/intel_atomic_plane.c
+> +++ b/drivers/gpu/drm/i915/display/intel_atomic_plane.c
+> @@ -34,13 +34,10 @@
+>  #include <drm/drm_atomic_helper.h>
+>  #include <drm/drm_fourcc.h>
+>=20=20
+> -#ifdef I915
+> -#include "gt/intel_rps.h"
+> -#endif
+> -
+>  #include "i915_config.h"
+>  #include "intel_atomic_plane.h"
+>  #include "intel_cdclk.h"
+> +#include "intel_display_rps.h"
+>  #include "intel_display_trace.h"
+>  #include "intel_display_types.h"
+>  #include "intel_fb.h"
+> @@ -951,66 +948,6 @@ int intel_atomic_plane_check_clipping(struct intel_p=
+lane_state *plane_state,
+>  	return 0;
+>  }
+>=20=20
+> -#ifdef I915
+> -struct wait_rps_boost {
+> -	struct wait_queue_entry wait;
+> -
+> -	struct drm_crtc *crtc;
+> -	struct i915_request *request;
+> -};
+> -
+> -static int do_rps_boost(struct wait_queue_entry *_wait,
+> -			unsigned mode, int sync, void *key)
+> -{
+> -	struct wait_rps_boost *wait =3D container_of(_wait, typeof(*wait), wait=
+);
+> -	struct i915_request *rq =3D wait->request;
+> -
+> -	/*
+> -	 * If we missed the vblank, but the request is already running it
+> -	 * is reasonable to assume that it will complete before the next
+> -	 * vblank without our intervention, so leave RPS alone.
+> -	 */
+> -	if (!i915_request_started(rq))
+> -		intel_rps_boost(rq);
+> -	i915_request_put(rq);
+> -
+> -	drm_crtc_vblank_put(wait->crtc);
+> -
+> -	list_del(&wait->wait.entry);
+> -	kfree(wait);
+> -	return 1;
+> -}
+> -
+> -static void add_rps_boost_after_vblank(struct drm_crtc *crtc,
+> -				       struct dma_fence *fence)
+> -{
+> -	struct wait_rps_boost *wait;
+> -
+> -	if (!dma_fence_is_i915(fence))
+> -		return;
+> -
+> -	if (DISPLAY_VER(to_i915(crtc->dev)) < 6)
+> -		return;
+> -
+> -	if (drm_crtc_vblank_get(crtc))
+> -		return;
+> -
+> -	wait =3D kmalloc(sizeof(*wait), GFP_KERNEL);
+> -	if (!wait) {
+> -		drm_crtc_vblank_put(crtc);
+> -		return;
+> -	}
+> -
+> -	wait->request =3D to_request(dma_fence_get(fence));
+> -	wait->crtc =3D crtc;
+> -
+> -	wait->wait.func =3D do_rps_boost;
+> -	wait->wait.flags =3D 0;
+> -
+> -	add_wait_queue(drm_crtc_vblank_waitqueue(crtc), &wait->wait);
+> -}
+> -#endif
+> -
+>  /**
+>   * intel_prepare_plane_fb - Prepare fb for usage on plane
+>   * @_plane: drm plane to prepare for
+> @@ -1102,13 +1039,13 @@ intel_prepare_plane_fb(struct drm_plane *_plane,
+>  		dma_resv_iter_begin(&cursor, obj->base.resv,
+>  				    DMA_RESV_USAGE_WRITE);
+>  		dma_resv_for_each_fence_unlocked(&cursor, fence) {
+> -			add_rps_boost_after_vblank(new_plane_state->hw.crtc,
+> -						   fence);
+> +			intel_display_rps_boost_after_vblank(new_plane_state->hw.crtc,
+> +							     fence);
+>  		}
+>  		dma_resv_iter_end(&cursor);
+>  	} else {
+> -		add_rps_boost_after_vblank(new_plane_state->hw.crtc,
+> -					   new_plane_state->uapi.fence);
+> +		intel_display_rps_boost_after_vblank(new_plane_state->hw.crtc,
+> +						     new_plane_state->uapi.fence);
+>  	}
+>=20=20
+>  	/*
+> @@ -1119,10 +1056,7 @@ intel_prepare_plane_fb(struct drm_plane *_plane,
+>  	 * that are not quite steady state without resorting to forcing
+>  	 * maximum clocks following a vblank miss (see do_rps_boost()).
+>  	 */
+> -	if (!state->rps_interactive) {
+> -		intel_rps_mark_interactive(&to_gt(dev_priv)->rps, true);
+> -		state->rps_interactive =3D true;
+> -	}
+> +	intel_display_rps_mark_interactive(dev_priv, state, true);
+>=20=20
+>  	return 0;
+>=20=20
+> @@ -1159,12 +1093,7 @@ intel_cleanup_plane_fb(struct drm_plane *plane,
+>  	if (!obj)
+>  		return;
+>=20=20
+> -#ifdef I915
+> -	if (state->rps_interactive) {
+> -		intel_rps_mark_interactive(&to_gt(dev_priv)->rps, false);
+> -		state->rps_interactive =3D false;
+> -	}
+> -#endif
+> +	intel_display_rps_mark_interactive(dev_priv, state, false);
+>=20=20
+>  	/* Should only be called after a successful intel_prepare_plane_fb()! */
+>  	intel_plane_unpin_fb(old_plane_state);
+> diff --git a/drivers/gpu/drm/i915/display/intel_display_rps.c b/drivers/g=
+pu/drm/i915/display/intel_display_rps.c
+> new file mode 100644
+> index 000000000000..918d0327169a
+> --- /dev/null
+> +++ b/drivers/gpu/drm/i915/display/intel_display_rps.c
+> @@ -0,0 +1,81 @@
+> +// SPDX-License-Identifier: MIT
+> +/*
+> + * Copyright =C2=A9 2023 Intel Corporation
+> + */
+> +
+> +#include <drm/drm_crtc.h>
+> +#include <drm/drm_vblank.h>
+> +
+> +#include "gt/intel_rps.h"
+> +#include "i915_drv.h"
+> +#include "intel_display_rps.h"
+> +#include "intel_display_types.h"
+> +
+> +struct wait_rps_boost {
+> +	struct wait_queue_entry wait;
+> +
+> +	struct drm_crtc *crtc;
+> +	struct i915_request *request;
+> +};
+> +
+> +static int do_rps_boost(struct wait_queue_entry *_wait,
+> +			unsigned mode, int sync, void *key)
+> +{
+> +	struct wait_rps_boost *wait =3D container_of(_wait, typeof(*wait), wait=
+);
+> +	struct i915_request *rq =3D wait->request;
+> +
+> +	/*
+> +	 * If we missed the vblank, but the request is already running it
+> +	 * is reasonable to assume that it will complete before the next
+> +	 * vblank without our intervention, so leave RPS alone.
+> +	 */
+> +	if (!i915_request_started(rq))
+> +		intel_rps_boost(rq);
+> +	i915_request_put(rq);
+> +
+> +	drm_crtc_vblank_put(wait->crtc);
+> +
+> +	list_del(&wait->wait.entry);
+> +	kfree(wait);
+> +	return 1;
+> +}
+> +
+> +void intel_display_rps_boost_after_vblank(struct drm_crtc *crtc,
+> +					  struct dma_fence *fence)
+> +{
+> +	struct wait_rps_boost *wait;
+> +
+> +	if (!dma_fence_is_i915(fence))
+> +		return;
+> +
+> +	if (DISPLAY_VER(to_i915(crtc->dev)) < 6)
+> +		return;
+> +
+> +	if (drm_crtc_vblank_get(crtc))
+> +		return;
+> +
+> +	wait =3D kmalloc(sizeof(*wait), GFP_KERNEL);
+> +	if (!wait) {
+> +		drm_crtc_vblank_put(crtc);
+> +		return;
+> +	}
+> +
+> +	wait->request =3D to_request(dma_fence_get(fence));
+> +	wait->crtc =3D crtc;
+> +
+> +	wait->wait.func =3D do_rps_boost;
+> +	wait->wait.flags =3D 0;
+> +
+> +	add_wait_queue(drm_crtc_vblank_waitqueue(crtc), &wait->wait);
+> +}
+> +
+> +void intel_display_rps_mark_interactive(struct drm_i915_private *i915,
+> +					struct intel_atomic_state *state,
+> +					bool interactive)
+> +{
+> +	if (state->rps_interactive =3D=3D interactive)
+> +		return;
+> +
+> +	intel_rps_mark_interactive(&to_gt(i915)->rps, interactive);
+> +	state->rps_interactive =3D interactive;
+> +}
+> diff --git a/drivers/gpu/drm/i915/display/intel_display_rps.h b/drivers/g=
+pu/drm/i915/display/intel_display_rps.h
+> new file mode 100644
+> index 000000000000..2cfb8a303b77
+> --- /dev/null
+> +++ b/drivers/gpu/drm/i915/display/intel_display_rps.h
+> @@ -0,0 +1,34 @@
+> +/* SPDX-License-Identifier: MIT */
+> +/*
+> + * Copyright =C2=A9 2023 Intel Corporation
+> + */
+> +
+> +#ifndef __INTEL_DISPLAY_RPS_H__
+> +#define __INTEL_DISPLAY_RPS_H__
+> +
+> +#include <linux/types.h>
+> +
+> +struct dma_fence;
+> +struct drm_crtc;
+> +struct drm_i915_private;
+> +struct intel_atomic_state;
+> +
+> +#ifdef I915
+> +void intel_display_rps_boost_after_vblank(struct drm_crtc *crtc,
+> +					  struct dma_fence *fence);
+> +void intel_display_rps_mark_interactive(struct drm_i915_private *i915,
+> +					struct intel_atomic_state *state,
+> +					bool interactive);
+> +#else
+> +static inline void intel_display_rps_boost_after_vblank(struct drm_crtc =
+*crtc,
+> +							struct dma_fence *fence)
+> +{
+> +}
+> +static inline void intel_display_rps_mark_interactive(struct drm_i915_pr=
+ivate *i915,
+> +						      struct intel_atomic_state *state,
+> +						      bool interactive)
+> +{
+> +}
+> +#endif
+> +
+> +#endif /* __INTEL_DISPLAY_RPS_H__ */
+
+--=20
+Jani Nikula, Intel Open Source Graphics Center
