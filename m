@@ -4,30 +4,31 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id ADD4BC6FD1D
-	for <intel-xe@archiver.kernel.org>; Tue, 21 Mar 2023 16:25:11 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id A8A5FC74A5B
+	for <intel-xe@archiver.kernel.org>; Tue, 21 Mar 2023 16:27:09 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7F52E10E7D9;
-	Tue, 21 Mar 2023 16:25:11 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7382D10E7D9;
+	Tue, 21 Mar 2023 16:27:09 +0000 (UTC)
 Received: from emeril.freedesktop.org (emeril.freedesktop.org
  [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id 784A910E7D9;
- Tue, 21 Mar 2023 16:25:10 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTP id E057310E7D9;
+ Tue, 21 Mar 2023 16:27:06 +0000 (UTC)
 Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 59F6BA0003;
- Tue, 21 Mar 2023 16:25:10 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============4362856079656090535=="
+ by emeril.freedesktop.org (Postfix) with ESMTP id C5BB6A0003;
+ Tue, 21 Mar 2023 16:27:06 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Jani Nikula" <jani.nikula@intel.com>
-Date: Tue, 21 Mar 2023 16:25:10 -0000
-Message-ID: <167941591034.18676.5270673424382830916@emeril.freedesktop.org>
+To: "Matthew Brost" <matthew.brost@intel.com>
+Date: Tue, 21 Mar 2023 16:27:06 -0000
+Message-ID: <167941602678.18679.13019429266597999444@emeril.freedesktop.org>
 X-Patchwork-Hint: ignore
-References: <20230321160420.1352889-1-jani.nikula@intel.com>
-In-Reply-To: <20230321160420.1352889-1-jani.nikula@intel.com>
-Subject: [Intel-xe] =?utf-8?q?=E2=97=8B_CI=2EBAT=3A_info_for_drm/i915/rps?=
- =?utf-8?q?=3A_split_out_display_rps_parts_to_a_separate_file?=
+References: <20230321160815.673423-1-matthew.brost@intel.com>
+In-Reply-To: <20230321160815.673423-1-matthew.brost@intel.com>
+Subject: [Intel-xe] =?utf-8?q?=E2=9C=97_CI=2EPatch=5Fapplied=3A_failure_f?=
+ =?utf-8?q?or_drm/xe=3A_Decrement_fault_mode_counts_in_xe=5Fvm=5Fclose=5Fa?=
+ =?utf-8?q?nd=5Fput_=28rev2=29?=
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -44,65 +45,42 @@ Cc: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============4362856079656090535==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
 == Series Details ==
 
-Series: drm/i915/rps: split out display rps parts to a separate file
-URL   : https://patchwork.freedesktop.org/series/115453/
-State : info
+Series: drm/xe: Decrement fault mode counts in xe_vm_close_and_put (rev2)
+URL   : https://patchwork.freedesktop.org/series/115303/
+State : failure
 
 == Summary ==
 
-Participating hosts:
-bat-dg1-8
-bat-dg2-oem2
-bat-adlp-7
-Missing hosts results[1]:
-bat-dg1-8
-Results: [xe-pw-115453v1](https://intel-gfx-ci.01.org/tree/xe/xe-pw-115453v1/index.html)
+=== Applying kernel patches on branch 'drm-xe-next' with base: ===
+commit 1ae4dd9e82429e075aa7121404b06ce170da5848
+Author:     Matthew Auld <matthew.auld@intel.com>
+AuthorDate: Tue Mar 21 11:44:07 2023 +0000
+Commit:     Matthew Auld <matthew.auld@intel.com>
+CommitDate: Tue Mar 21 14:03:29 2023 +0000
+
+    drm/xe/buddy: add compatible and intersects hooks
+    
+    Copy this from i915. We need .compatible for vram -> vram transfers, so
+    they don't just get nooped by ttm, if need to move something from
+    mappable to non-mappble or vice versa. The .intersects is needed for
+    eviction, to determine if a victim resource is worth eviction. e.g if we
+    need mappable space there is no point in evicting a resource that has
+    zero mappable pages.
+    
+    Signed-off-by: Matthew Auld <matthew.auld@intel.com>
+    Cc: Lucas De Marchi <lucas.demarchi@intel.com>
+    Reviewed-by: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
+    Reviewed-by: Gwan-gyeong Mun <gwan-gyeong.mun@intel.com>
+=== git am output follows ===
+error: patch failed: drivers/gpu/drm/xe/xe_vm.c:1393
+error: drivers/gpu/drm/xe/xe_vm.c: patch does not apply
+hint: Use 'git am --show-current-patch' to see the failed patch
+Applying: drm/xe: Decrement fault mode counts in xe_vm_close_and_put
+Patch failed at 0001 drm/xe: Decrement fault mode counts in xe_vm_close_and_put
+When you have resolved this problem, run "git am --continue".
+If you prefer to skip this patch, run "git am --skip" instead.
+To restore the original branch and stop patching, run "git am --abort".
 
 
-
---===============4362856079656090535==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/i915/rps: split out display rps parts to a separate file</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/115453/">https://patchwork.freedesktop.org/series/115453/</a></td></tr>
-<tr><td><b>State:</b></td><td>info</td></tr>
-
-</table>
-
-
-    <p>Participating hosts:<br />
-bat-dg1-8<br />
-bat-dg2-oem2<br />
-bat-adlp-7<br />
-Missing hosts results[1]:<br />
-bat-dg1-8<br />
-Results: <a href="https://intel-gfx-ci.01.org/tree/xe/xe-pw-115453v1/index.html">xe-pw-115453v1</a></p>
-
-</body>
-</html>
-
---===============4362856079656090535==--
