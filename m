@@ -4,30 +4,49 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 12C8CC6FD1D
-	for <intel-xe@archiver.kernel.org>; Tue, 21 Mar 2023 11:05:27 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id B7F35C7618D
+	for <intel-xe@archiver.kernel.org>; Tue, 21 Mar 2023 11:15:58 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C978E10E101;
-	Tue, 21 Mar 2023 11:05:26 +0000 (UTC)
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id 7B6E410E101;
- Tue, 21 Mar 2023 11:05:24 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 5448FA66C9;
- Tue, 21 Mar 2023 11:05:24 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============8807778031176958610=="
-MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Matthew Auld" <matthew.auld@intel.com>
-Date: Tue, 21 Mar 2023 11:05:24 -0000
-Message-ID: <167939672431.18678.12531518875683935829@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
+	by gabe.freedesktop.org (Postfix) with ESMTP id 91D6710E08B;
+	Tue, 21 Mar 2023 11:15:58 +0000 (UTC)
+Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6F90C10E08B
+ for <intel-xe@lists.freedesktop.org>; Tue, 21 Mar 2023 11:15:56 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1679397356; x=1710933356;
+ h=from:to:cc:subject:in-reply-to:references:date:
+ message-id:mime-version;
+ bh=IfrxQaQrtUgBGIjrh+P8DWnoP98TtRocMcX5DQNCgyc=;
+ b=ducjN+iWQ4hgQIoD9Mwb/TNWhVxQN9758NgSIH8Rio2MUOLRnWS9AQ4G
+ PqNZKAqp8h2XnLwj1u2bsKfS9Cm5jehmreakWhAGA3Vq12S/H38u18RNK
+ WpqBxoXtAzytqNK3oo42VuI+Rnw5yroEUK0EiDe+3tMubCyRiah0ZDPLb
+ DTosFY5eP0Cm/fyTYqARfqCOubPu13UMc06PwUOMiM7ZpfZKUYVSK0QWi
+ Dy1ChYenrBGztY0znIAYJ+PRi3Qasc99EB4x1TNXMpqs0wT6usrADISDD
+ ultC0rDDag7pnO+cRJEXvgmi1vb220LtfSE/k4lkwACM0yyYawdQL31xd Q==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10655"; a="327285967"
+X-IronPort-AV: E=Sophos;i="5.98,278,1673942400"; d="scan'208";a="327285967"
+Received: from orsmga007.jf.intel.com ([10.7.209.58])
+ by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 21 Mar 2023 04:15:56 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6600,9927,10655"; a="674801448"
+X-IronPort-AV: E=Sophos;i="5.98,278,1673942400"; d="scan'208";a="674801448"
+Received: from trybicki-mobl1.ger.corp.intel.com (HELO localhost)
+ ([10.252.63.119])
+ by orsmga007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 21 Mar 2023 04:15:54 -0700
+From: Jani Nikula <jani.nikula@linux.intel.com>
+To: Matthew Auld <matthew.auld@intel.com>, intel-xe@lists.freedesktop.org
+In-Reply-To: <20230321104529.157616-2-matthew.auld@intel.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
 References: <20230321104529.157616-1-matthew.auld@intel.com>
-In-Reply-To: <20230321104529.157616-1-matthew.auld@intel.com>
-Subject: [Intel-xe] =?utf-8?q?=E2=97=8B_CI=2EBAT=3A_info_for_Some_small-b?=
- =?utf-8?q?ar_prep_patches_=28rev7=29?=
+ <20230321104529.157616-2-matthew.auld@intel.com>
+Date: Tue, 21 Mar 2023 13:15:52 +0200
+Message-ID: <87fs9y8idz.fsf@intel.com>
+MIME-Version: 1.0
+Content-Type: text/plain
+Subject: Re: [Intel-xe] [PATCH v7 1/2] drm/xe/buddy: add visible tracking
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -39,70 +58,47 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
-Cc: intel-xe@lists.freedesktop.org
+Cc: Lucas De Marchi <lucas.demarchi@intel.com>
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============8807778031176958610==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+On Tue, 21 Mar 2023, Matthew Auld <matthew.auld@intel.com> wrote:
+> +	XE_BUG_ON(min_page_size < mm->chunk_size);
+> +	XE_BUG_ON(min_page_size > SZ_2G); /* FIXME: sg limit */
+> +	XE_BUG_ON(size > SZ_2G &&
+> +		  (vres->base.placement & TTM_PL_FLAG_CONTIGUOUS));
+> +	XE_BUG_ON(!IS_ALIGNED(size, min_page_size));
 
-== Series Details ==
+Hijacking the thread, sorry. ;)
 
-Series: Some small-bar prep patches (rev7)
-URL   : https://patchwork.freedesktop.org/series/114521/
-State : info
+If we are supposed to not replicate i915-ism, why do we have
+XE_BUG_ON()?
 
-== Summary ==
+I think it's an anti-pattern.
 
-Participating hosts:
-bat-dg1-8
-bat-dg2-oem2
-bat-adlp-7
-Missing hosts results[1]:
-bat-dg1-8
-Results: [xe-pw-114521v7](https://intel-gfx-ci.01.org/tree/xe/xe-pw-114521v7/index.html)
+Currently XE_BUG_ON() is just BUG_ON(), which should not be used for any
+reason. Not even CI. The plan in i915 is to migrate all of them to
+WARN_ON()'s and use panic_on_warn in CI.
 
+The other thing is that having BUG_ON() in the name gives you the false
+impression that it's sufficient for input (or any precondition)
+validation. In i915 it gets conditionally built for CI only. So we catch
+errors in CI but not in actual production use. You just plunge on.
 
+Part of it is just naming. The BUG_ON() association is pretty strong for
+any kernel developers. If it were called XE_ASSERT() it would have an
+association with assert() that does what XE_BUG_ON() actually is: code
+is only generated for debug builds.
 
---===============8807778031176958610==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
+In i915 it has become habitual to sprinkle GEM_BUG_ON() all over the
+place, just in case, belt and suspenders. IMO there's not enough
+discretion about what can and can't actually happen, and what can and
+can't happen in CI vs. production.
 
 
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>Some small-bar prep patches (rev7)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/114521/">https://patchwork.freedesktop.org/series/114521/</a></td></tr>
-<tr><td><b>State:</b></td><td>info</td></tr>
-
-</table>
+BR,
+Jani.
 
 
-    <p>Participating hosts:<br />
-bat-dg1-8<br />
-bat-dg2-oem2<br />
-bat-adlp-7<br />
-Missing hosts results[1]:<br />
-bat-dg1-8<br />
-Results: <a href="https://intel-gfx-ci.01.org/tree/xe/xe-pw-114521v7/index.html">xe-pw-114521v7</a></p>
-
-</body>
-</html>
-
---===============8807778031176958610==--
+-- 
+Jani Nikula, Intel Open Source Graphics Center
