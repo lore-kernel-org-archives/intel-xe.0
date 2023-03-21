@@ -4,138 +4,49 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 29F70C74A5B
-	for <intel-xe@archiver.kernel.org>; Tue, 21 Mar 2023 15:55:50 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id F0F33C74A5B
+	for <intel-xe@archiver.kernel.org>; Tue, 21 Mar 2023 16:07:17 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E735E10E7D2;
-	Tue, 21 Mar 2023 15:55:49 +0000 (UTC)
-Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7B89D10E7D2
- for <intel-xe@lists.freedesktop.org>; Tue, 21 Mar 2023 15:55:47 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id ADA1110E7D3;
+	Tue, 21 Mar 2023 16:07:17 +0000 (UTC)
+Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B761410E7D3
+ for <intel-xe@lists.freedesktop.org>; Tue, 21 Mar 2023 16:07:16 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1679414147; x=1710950147;
- h=date:from:to:cc:subject:message-id:references:
- in-reply-to:mime-version;
- bh=6QVygGRilUatjQfSnHmsmlBXXJZUu4tAkt73PH73PGM=;
- b=TM4O9kkHAAxkHbzMtI5+nBBQvQAGg6+gNNGTKJEj5Q4Kn6mT42horbpA
- 5PxY/XcxL5+NTodB9zR300qX6XFAo8JcBf2QztRAy4sJV6eJUTOwok2yt
- +Mh8wyRDDRW0+GAPubZKzfM4+vWva9n+ndnvQbbwqBTD4x3JhwXxXqig0
- 5SSEijfh2fqdLeypSK2oqcODe7gg5RvglfC622tEKDsWS8QHsIvR5n/+/
- P8Tf8WeQiC1bRakot7sdInykZ6NbB9iMW0rtrLsNA4MgjhR/T1IrXNfMh
- 1crolS9JuuMQ6saPMvk1w5Zt3opZAsNjJDrcFnGfV9ujLRy4YYPP4zKNE Q==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10656"; a="337701947"
-X-IronPort-AV: E=Sophos;i="5.98,279,1673942400"; d="scan'208";a="337701947"
-Received: from orsmga005.jf.intel.com ([10.7.209.41])
- by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 21 Mar 2023 08:55:47 -0700
+ t=1679414836; x=1710950836;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=oJqW7mdE7HMjA/uZjVBo/jCGvkutN384sCkkk/VyoJ8=;
+ b=kUSW2BhyDpTtdz8Ya2qMyjRNPA9V2TwaCFvQVNvkkn2mBmorPdpS2+x7
+ OJVOWQ0YBfHxJxLO6NMlclqbPn/gC53S/V+PcmE+IRcsjIBzoPT1r0X8/
+ M0pmd1WwvcgYdATpw1F0wgjmo8hBxx2C5K4mkn9IWB8tyYpRe/2qweOCw
+ Licl1WsMgWb/R9uR6Ir1IszqTFAU34c6M6FwyIDKUOjiIMzm3bHkn9i2u
+ IoYljVkeZB4JIA6aEO/hLy2lbXoI4ysLEeoGyQJMYLXqqpHENTJyjlEkp
+ Gg65Q8X/nM1mN2WVZsUakx5vF+Db0BEnTIVkkGu3bGh4Ojs48NXAOcabV g==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10656"; a="322826372"
+X-IronPort-AV: E=Sophos;i="5.98,279,1673942400"; d="scan'208";a="322826372"
+Received: from orsmga007.jf.intel.com ([10.7.209.58])
+ by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 21 Mar 2023 09:04:34 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10656"; a="855741655"
-X-IronPort-AV: E=Sophos;i="5.98,279,1673942400"; d="scan'208";a="855741655"
-Received: from fmsmsx602.amr.corp.intel.com ([10.18.126.82])
- by orsmga005.jf.intel.com with ESMTP; 21 Mar 2023 08:55:46 -0700
-Received: from fmsmsx611.amr.corp.intel.com (10.18.126.91) by
- fmsmsx602.amr.corp.intel.com (10.18.126.82) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.21; Tue, 21 Mar 2023 08:55:46 -0700
-Received: from fmsmsx612.amr.corp.intel.com (10.18.126.92) by
- fmsmsx611.amr.corp.intel.com (10.18.126.91) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.21; Tue, 21 Mar 2023 08:55:44 -0700
-Received: from fmsedg601.ED.cps.intel.com (10.1.192.135) by
- fmsmsx612.amr.corp.intel.com (10.18.126.92) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.21 via Frontend Transport; Tue, 21 Mar 2023 08:55:44 -0700
-Received: from NAM11-BN8-obe.outbound.protection.outlook.com (104.47.58.169)
- by edgegateway.intel.com (192.55.55.70) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2507.21; Tue, 21 Mar 2023 08:55:35 -0700
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=kTz0X8DIB45x9rYAUFrKUV/j0O4XTrLSLnBEMobLHJk6SrtLJJThR8G2j86GQG/lFR3EQEd6UXgbVGgGxVm36YTywFMScMz/alQ08O1K/jZAjXv1TuGHK4PN+UFDkKiVWAcgjZtEaRqoD7Ijv9kVQNqbCjd/Jxno//p0zfXNk/OJfzAe3H9fAKkWII0KIGuukdJ08lD3//ZzjlQQUZ0/Chhr1umI0XZA/dLabiTIQAus73LTmgq6ubtlThOinjjVVStMRMBQaBFhd5pKkbJqCoUvC9s0lxSZjxC6BGeSesnPKyad+IAOi9ZSiQbWMOqAKoiT8SDVOAQobSu49lvSYg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=xbzB4xYfXDvkG+0qPmcdZmYzFGs9JCS3HKVxCGc6/dQ=;
- b=JHbTizK3zWZcfcsm0rqQXUty9zsSQmK7QEVGuCkjLWrZiBlqOZcekzClPprMfLmuTwLSI7vvcTODkWCm8270VoRE6MyajwpqcKPE06KwDVSMDEye4UXZdDjMCg3Yk2NyhTTZ9ub5nZidPpp8zCKjtWKXDWxrcjhhbYwQ+wukHBIN5O0WbdSLXxvaBz79YVBSJHh0XilpZ94btBFbztu/4PMK0d8zSQ90qX/o8L5iSxY/VIg324Cr5frRPmoLkSIrCJAEkJg5Oaf7RwUTC6lGLrMSMblFSHp8E+rjorUVLvva7DdFRbKz4lLVS7JyMs9QhQD/c4MIDkAyB61I4rjAKQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
- dkim=pass header.d=intel.com; arc=none
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=intel.com;
-Received: from DS7PR11MB7859.namprd11.prod.outlook.com (2603:10b6:8:da::22) by
- DM6PR11MB4515.namprd11.prod.outlook.com (2603:10b6:5:2a9::9) with
- Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.6178.37; Tue, 21 Mar 2023 15:55:34 +0000
-Received: from DS7PR11MB7859.namprd11.prod.outlook.com
- ([fe80::1c61:b69d:4ca:10d0]) by DS7PR11MB7859.namprd11.prod.outlook.com
- ([fe80::1c61:b69d:4ca:10d0%7]) with mapi id 15.20.6178.037; Tue, 21 Mar 2023
- 15:55:34 +0000
-Date: Tue, 21 Mar 2023 08:55:30 -0700
-From: Matt Roper <matthew.d.roper@intel.com>
-To: Anusha Srivatsa <anusha.srivatsa@intel.com>
-Message-ID: <20230321155530.GL4085390@mdroper-desk1.amr.corp.intel.com>
-References: <20230320235254.3288679-1-anusha.srivatsa@intel.com>
- <20230321153447.GJ4085390@mdroper-desk1.amr.corp.intel.com>
-Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
-In-Reply-To: <20230321153447.GJ4085390@mdroper-desk1.amr.corp.intel.com>
-X-ClientProxiedBy: SJ0PR13CA0064.namprd13.prod.outlook.com
- (2603:10b6:a03:2c4::9) To DS7PR11MB7859.namprd11.prod.outlook.com
- (2603:10b6:8:da::22)
+X-IronPort-AV: E=McAfee;i="6600,9927,10656"; a="674893621"
+X-IronPort-AV: E=Sophos;i="5.98,279,1673942400"; d="scan'208";a="674893621"
+Received: from trybicki-mobl1.ger.corp.intel.com (HELO localhost)
+ ([10.252.63.119])
+ by orsmga007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 21 Mar 2023 09:04:31 -0700
+From: Jani Nikula <jani.nikula@intel.com>
+To: intel-xe@lists.freedesktop.org
+Date: Tue, 21 Mar 2023 18:04:20 +0200
+Message-Id: <20230321160420.1352889-1-jani.nikula@intel.com>
+X-Mailer: git-send-email 2.39.2
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: DS7PR11MB7859:EE_|DM6PR11MB4515:EE_
-X-MS-Office365-Filtering-Correlation-Id: 658ceb3a-80da-4c03-eab5-08db2a24b422
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: 0e3BSSdAYKY1wWLspauy9q0K5SZ+GOZgGeFdryzWz91tCaoilR9s9DNvv8AKNKVg9piW+Y0CXy3/7G8jjxt37giNuzOavfcb5TRSOsWfWyd2eDBApaDykTIfB1Tsn4mW1z9ynoxfDp7xCmE99VmYHUEI+FNL5A4Wa7ZFOHnTHQNTbURGvj04GatrYXJJFpWfNcWDVkiMcFi7WoNRpq23TEUq1H03cVf2e85pOuWNcaeyshjO4lLiiQKV2gxor7f4k8tJ6cy49c1E4fWp/3RHqcHegADjNXS5ZkHI9a6oSWgybmV5oO5sQ8d/VsNiDB84zCq4qRPNUSKJPv6Lht7W80mEc2aairyY72XpvhqjYtTl/BaacNqckgudTykAdgBYan1FaWuvH1ozgcIcCp/grf6O6JcfTa7gexEzWMMC1uoE0gkJfklSHc6WUgFrBBrqGIWxA2mLrwcovyTfJqoDUfjBiiPCUA+y10NernMyDzhFF6yQRLKZseAEcdXagBrezEZzcn+WtnJs9LgQBFcDBzkHi/r3psPMRhXRlpNDyxFDDIahuEFeSq91iZR4Mggv2hQcG5aoHpR5W8Rt/D1VMhkCgZ4/NI33EPO0Gp+lVMqdpkqXrEHZMAPQMAXExw7qhSjFU4KAt1LQ9o8YhfmZ1caHHP6kaAM2P+XpFrBmI5OJ5I91GC+i4l9kXSTzLSoRWvnRmNpkU4UR0o78L6d9Qjeakjjgu/rjQGg+4u7Xlfol2vcEQKqJcBC/Z0mDwZZF
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:DS7PR11MB7859.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230025)(39860400002)(136003)(366004)(376002)(346002)(396003)(451199018)(41300700001)(8676002)(4326008)(66476007)(66556008)(66946007)(2906002)(82960400001)(38100700002)(8936002)(5660300002)(6862004)(6666004)(6506007)(1076003)(6512007)(6486002)(33656002)(26005)(186003)(86362001)(54906003)(316002)(83380400001)(6636002)(66899018)(478600001)(87944009);
- DIR:OUT; SFP:1102; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?BJFs3SFCezDXgGIT3CWQJobkf5XXO986wbOwpw354N0dezfsm0Dg2vTFwqR9?=
- =?us-ascii?Q?YEDSb2BMZVEGFEcBeqsn5Ax2FCjkYQIyWQp0GtOrD9WRbxxEpONBorrIqOOt?=
- =?us-ascii?Q?JPbqQ9KktE3WIGNRDaUPpEu/8m+24OfIe9qEX6Hm0SWXJsDGeoniJ4ifQOqV?=
- =?us-ascii?Q?01Ljd+YYEGmH+MC+RYt79sh/J1Ildhfr3s91BgWBfW/xoc80nwJFf4m3uL00?=
- =?us-ascii?Q?w9YHoNaEOfHBX0R2sXi6++O30qROOqXj2BRVSIGBDgjQYjsD06QJfPMRJQev?=
- =?us-ascii?Q?oyxlxrU2Nq4CVibULCo3ZVmlXwNZpluxNnlw5AXFB5r3EIyJfgfodYsi2WnH?=
- =?us-ascii?Q?OSDwfkk1J6bvZAJAeJzLdkIhaqJ250BoSzmRHw4/VO+JZDWImaLlE8i9mZlm?=
- =?us-ascii?Q?H3jkVmtKNWMCFvgMvkuI+GbzDzv30h++YNgIkhB99QfvwqJmnmmww7rQ1zmT?=
- =?us-ascii?Q?8rt4f/qk8VA1CCB5/0adcMORgyJ1nJ8/ZrYw5iYuPwv7VfIS44V5VUuOc/nJ?=
- =?us-ascii?Q?sE6wt3/ySdxRWRMgv2XQUW3+vT43CJTw8ICwCch5GyOkkWOjjLJ9DTpRH87H?=
- =?us-ascii?Q?+6USL4cFhDJnKC/Q0xd/1uskL+5XHLVZbB3SZJOuTxHgK0KCFJ5rHFXV7flb?=
- =?us-ascii?Q?zWbshsTgPXKuFPbr/Crbseft25onUtjW6jUS8OPZ9Dd1QWqb69O9/d+e+mSW?=
- =?us-ascii?Q?3icx/DSaq1+LsNaiqAItyqIGhXSAx9gBOXx2oJSe83afdi8KLojoF1rs7Dl1?=
- =?us-ascii?Q?LvDi1iU5HKw66vfa/LpvoF8v1eznCOkkpq2muM3pCT5FDvqq2ZLSd7TnpYEt?=
- =?us-ascii?Q?05r3tY6nyUMHi1+lmCrUTCxqZt5AsIow2pmxnzp79AVA0cSlfMUEPschN04s?=
- =?us-ascii?Q?Uug1YKeIuzjKj0i5oet3hg7f//zhzUevOxFzXToFUeBH6qna7YtMd0AVPs8p?=
- =?us-ascii?Q?oyzNc1TlR3ebHAcZoSe0heSxN4RmTEdCX3oFR9fm/oqpmWRWZpEW+5j35WhL?=
- =?us-ascii?Q?RgbEmkRJlXzM7ROhSTOmScyMeKCwwGHf0BSskkKS03hE6EQxVEl/wS2dfBf1?=
- =?us-ascii?Q?IldLTjDIESGAQLiMQ68+QFrklO1Oh/O60nI8edQETkEyHezoVBtdI6jOPJUC?=
- =?us-ascii?Q?Gdh/OWAv9yPvQRUYRUVMfcem+w0oJOvmAK/nKmUwNI7HmCZzg9+U6o5UVvwk?=
- =?us-ascii?Q?aZWa+yAZI//+mJjpLEOz0V0JBc8ocWw7h3KoRcGyeMLEB5XoHnjal0vMuWPs?=
- =?us-ascii?Q?Ot/omLrzrnWYDYX14hRqApWFD3caBPhMn7BFAblMQHbAXo0CbcZwMZd2gXRM?=
- =?us-ascii?Q?b9AxVweJ+3wEZGnddZhIZQwgR0ndZKNSwUN+8iYi2wS4xLV6mxwzchjtBaZY?=
- =?us-ascii?Q?MdM7W4wIBOIhYg0tSuTLYmgUX+a0+/dN3VO6lR4DJS43FZHOyxf6Ancbv1L4?=
- =?us-ascii?Q?4B3SXYzxB8kf64VS2p9DyEIoNbK0gTziVhNZv4F/S4MOX4MhfDFE1tNUeIDJ?=
- =?us-ascii?Q?RZJoJoWiSYStuLd+3aXciyrD/WBnPwJSNuwi3/mPUw0ogFFnzUcooDoeSOY9?=
- =?us-ascii?Q?6GaX8QR9yf8U1eC3XZOprsW2RJc+QJvdjg6isYEBdEu9ZFy4rTSwzMDJ27+G?=
- =?us-ascii?Q?iQ=3D=3D?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: 658ceb3a-80da-4c03-eab5-08db2a24b422
-X-MS-Exchange-CrossTenant-AuthSource: DS7PR11MB7859.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 21 Mar 2023 15:55:33.8840 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: Cbp9orwFu91LLC7QB27pN2FLZ1IQ/WP33JahjaItPJdgufOjVd6dEEjkfXrfl4XZWC0NmJyhY5h04QStl5RbmDBaQQE22ttT94f8HwUgq2Q=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM6PR11MB4515
-X-OriginatorOrg: intel.com
-Subject: Re: [Intel-xe] [PATCH 1/2] drm/xe: Add checks to load huc from a
- previous platform
+Content-Type: text/plain; charset=UTF-8
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+Content-Transfer-Encoding: 8bit
+Subject: [Intel-xe] [PATCH] drm/i915/rps: split out display rps parts to a
+ separate file
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -147,97 +58,302 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Cc: Lucas De Marchi <lucas.demarchi@intel.com>,
- Matt Atwood <matthew.s.atwood@intel.com>, intel-xe@lists.freedesktop.org
+Cc: jani.nikula@intel.com, lucas.demarchi@intel.com,
+ =?UTF-8?q?Ville=20Syrj=C3=A4l=C3=A4?= <ville.syrjala@linux.intel.com>,
+ rodrigo.vivi@intel.com
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Tue, Mar 21, 2023 at 08:34:47AM -0700, Matt Roper wrote:
-> On Mon, Mar 20, 2023 at 04:52:53PM -0700, Anusha Srivatsa wrote:
-> > Platforms like ADL-S use TGL HuC. Add suitable condition
-> > so driver does not disable HuC.
-> > 
-> > Cc: Matt Atwood <matthew.s.atwood@intel.com>
-> > Cc: Lucas De Marchi <lucas.demarchi@intel.com>
-> > Signed-off-by: Anusha Srivatsa <anusha.srivatsa@intel.com>
-> > ---
-> >  drivers/gpu/drm/xe/xe_uc_fw.c | 2 +-
-> >  1 file changed, 1 insertion(+), 1 deletion(-)
-> > 
-> > diff --git a/drivers/gpu/drm/xe/xe_uc_fw.c b/drivers/gpu/drm/xe/xe_uc_fw.c
-> > index 00408f1b73e1..e2e5f7fbe9db 100644
-> > --- a/drivers/gpu/drm/xe/xe_uc_fw.c
-> > +++ b/drivers/gpu/drm/xe/xe_uc_fw.c
-> > @@ -139,7 +139,7 @@ uc_fw_auto_select(struct xe_device *xe, struct xe_uc_fw *uc_fw)
-> >  	fw_count = blobs_all[uc_fw->type].count;
-> >  
-> >  	for (i = 0; i < fw_count && p <= fw_blobs[i].p; i++) {
-> > -		if (p == fw_blobs[i].p && rev >= fw_blobs[i].rev) {
-> > +		if (p >= fw_blobs[i].p && rev >= fw_blobs[i].rev) {
-> 
-> Isn't this going to make various platforms pick up firmwares that we
-> don't want it to?  I.e., how do you deal with platforms that don't
-> want/need a HuC now if they automatically just start picking up a HuC
-> for the next older platform?
-> 
-> It's not clear to me why this is needed either; once you pass the code
-> through the preprocessor ("make drivers/gpu/drm/xe/xe_uc_fw.i"), the GuC
-> firmware table looks like:
-> 
-> static const struct uc_fw_platform_requirement blobs_guc[] = {
->   { .p = XE_METEORLAKE, .rev = 0, .blob = { .major = 70, .minor = 5, .path = "i915/" "mtl" "_" "guc" "_" "70" ".bin" }, },
->   { .p = XE_ALDERLAKE_P, .rev = 0, .blob = { .major = 70, .minor = 5, .path = "i915/" "adlp" "_" "guc" "_" "70" ".bin" }, },
->   { .p = XE_ALDERLAKE_S, .rev = 0, .blob = { .major = 70, .minor = 5, .path = "i915/" "tgl" "_" "guc" "_" "70" ".bin" }, },
->   { .p = XE_PVC, .rev = 0, .blob = { .major = 70, .minor = 5, .path = "i915/" "pvc" "_" "guc" "_" "70" ".bin" }, },
->   { .p = XE_DG2, .rev = 0, .blob = { .major = 70, .minor = 5, .path = "i915/" "dg2" "_" "guc" "_" "70" ".bin" }, },
->   { .p = XE_DG1, .rev = 0, .blob = { .major = 70, .minor = 5, .path = "i915/" "dg1" "_" "guc" "_" "70" ".bin" }, },
->   { .p = XE_TIGERLAKE, .rev = 0, .blob = { .major = 70, .minor = 5, .path = "i915/" "tgl" "_" "guc" "_" "70" ".bin" }, },
-> };
+Split out the RPS parts so they can be conditionally compiled out later.
 
-Sorry, that's the GuC table.  The HuC table is
+Signed-off-by: Jani Nikula <jani.nikula@intel.com>
+Reviewed-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
+Link: https://patchwork.freedesktop.org/patch/msgid/20230302164936.3034161-1-jani.nikula@intel.com
+(cherry picked from commit 6dbbff25b39565c801c87379bc85933fb436518e)
 
- static const struct uc_fw_platform_requirement blobs_huc[] = {
-  { .p = XE_DG1, .rev = 0, .blob = { .major = 7, .minor = 9, .path = "i915/" "dg1" "_huc_" "7" "." "9" "." "3" ".bin" }, }, 
-  { .p = XE_TIGERLAKE, .rev = 0, .blob = { .major = 7, .minor = 9, .path = "i915/" "tgl" "_huc_" "7" "." "9" "." "3" ".bin" }, },
- };
+---
 
-But it should still just be a matter of adding table entries for the
-other platforms to specify which firmware we want them to load now,
-right?  Otherwise, we're going to wind up with stuff like all of DG2,
-PVC, ADL-S, ADL-P, and MTL automatically falling back to use the DG1
-firmware, which isn't what we want.
+Here's an example of an upstream i915 commit that can help clean up
+cherry-pick as well as cleanup of the #ifdefs in one go, otherwise it
+breaks bisect.
+---
+ drivers/gpu/drm/i915/Makefile                 |  1 +
+ .../gpu/drm/i915/display/intel_atomic_plane.c | 85 ++-----------------
+ .../gpu/drm/i915/display/intel_display_rps.c  | 81 ++++++++++++++++++
+ .../gpu/drm/i915/display/intel_display_rps.h  | 34 ++++++++
+ 4 files changed, 123 insertions(+), 78 deletions(-)
+ create mode 100644 drivers/gpu/drm/i915/display/intel_display_rps.c
+ create mode 100644 drivers/gpu/drm/i915/display/intel_display_rps.h
 
-
-Matt
-
-> 
-> so it seems like the direct == test would still be what we want?  The
-> only platform missing from the table today is RKL, but we can add that.
-> 
-> As an aside, the platform ordering here and in the definition of 'enum
-> xe_platform' seems incorrect.  Since they're both incorrect in the same
-> way, I don't think it causes a problem, but we should probably clean
-> that up at some point too.
-> 
-> 
-> 
-> Matt
-> 
-> >  			const struct uc_fw_blob *blob = &fw_blobs[i].blob;
-> >  
-> >  			uc_fw->path = blob->path;
-> > -- 
-> > 2.25.1
-> > 
-> 
-> -- 
-> Matt Roper
-> Graphics Software Engineer
-> Linux GPU Platform Enablement
-> Intel Corporation
-
+diff --git a/drivers/gpu/drm/i915/Makefile b/drivers/gpu/drm/i915/Makefile
+index ae9259ab3261..f689132e1506 100644
+--- a/drivers/gpu/drm/i915/Makefile
++++ b/drivers/gpu/drm/i915/Makefile
+@@ -239,6 +239,7 @@ i915-y += \
+ 	display/intel_display_power.o \
+ 	display/intel_display_power_map.o \
+ 	display/intel_display_power_well.o \
++	display/intel_display_rps.o \
+ 	display/intel_dmc.o \
+ 	display/intel_dpio_phy.o \
+ 	display/intel_dpll.o \
+diff --git a/drivers/gpu/drm/i915/display/intel_atomic_plane.c b/drivers/gpu/drm/i915/display/intel_atomic_plane.c
+index 3d37f44ec835..e666a5c1fd91 100644
+--- a/drivers/gpu/drm/i915/display/intel_atomic_plane.c
++++ b/drivers/gpu/drm/i915/display/intel_atomic_plane.c
+@@ -34,13 +34,10 @@
+ #include <drm/drm_atomic_helper.h>
+ #include <drm/drm_fourcc.h>
+ 
+-#ifdef I915
+-#include "gt/intel_rps.h"
+-#endif
+-
+ #include "i915_config.h"
+ #include "intel_atomic_plane.h"
+ #include "intel_cdclk.h"
++#include "intel_display_rps.h"
+ #include "intel_display_trace.h"
+ #include "intel_display_types.h"
+ #include "intel_fb.h"
+@@ -951,66 +948,6 @@ int intel_atomic_plane_check_clipping(struct intel_plane_state *plane_state,
+ 	return 0;
+ }
+ 
+-#ifdef I915
+-struct wait_rps_boost {
+-	struct wait_queue_entry wait;
+-
+-	struct drm_crtc *crtc;
+-	struct i915_request *request;
+-};
+-
+-static int do_rps_boost(struct wait_queue_entry *_wait,
+-			unsigned mode, int sync, void *key)
+-{
+-	struct wait_rps_boost *wait = container_of(_wait, typeof(*wait), wait);
+-	struct i915_request *rq = wait->request;
+-
+-	/*
+-	 * If we missed the vblank, but the request is already running it
+-	 * is reasonable to assume that it will complete before the next
+-	 * vblank without our intervention, so leave RPS alone.
+-	 */
+-	if (!i915_request_started(rq))
+-		intel_rps_boost(rq);
+-	i915_request_put(rq);
+-
+-	drm_crtc_vblank_put(wait->crtc);
+-
+-	list_del(&wait->wait.entry);
+-	kfree(wait);
+-	return 1;
+-}
+-
+-static void add_rps_boost_after_vblank(struct drm_crtc *crtc,
+-				       struct dma_fence *fence)
+-{
+-	struct wait_rps_boost *wait;
+-
+-	if (!dma_fence_is_i915(fence))
+-		return;
+-
+-	if (DISPLAY_VER(to_i915(crtc->dev)) < 6)
+-		return;
+-
+-	if (drm_crtc_vblank_get(crtc))
+-		return;
+-
+-	wait = kmalloc(sizeof(*wait), GFP_KERNEL);
+-	if (!wait) {
+-		drm_crtc_vblank_put(crtc);
+-		return;
+-	}
+-
+-	wait->request = to_request(dma_fence_get(fence));
+-	wait->crtc = crtc;
+-
+-	wait->wait.func = do_rps_boost;
+-	wait->wait.flags = 0;
+-
+-	add_wait_queue(drm_crtc_vblank_waitqueue(crtc), &wait->wait);
+-}
+-#endif
+-
+ /**
+  * intel_prepare_plane_fb - Prepare fb for usage on plane
+  * @_plane: drm plane to prepare for
+@@ -1102,13 +1039,13 @@ intel_prepare_plane_fb(struct drm_plane *_plane,
+ 		dma_resv_iter_begin(&cursor, obj->base.resv,
+ 				    DMA_RESV_USAGE_WRITE);
+ 		dma_resv_for_each_fence_unlocked(&cursor, fence) {
+-			add_rps_boost_after_vblank(new_plane_state->hw.crtc,
+-						   fence);
++			intel_display_rps_boost_after_vblank(new_plane_state->hw.crtc,
++							     fence);
+ 		}
+ 		dma_resv_iter_end(&cursor);
+ 	} else {
+-		add_rps_boost_after_vblank(new_plane_state->hw.crtc,
+-					   new_plane_state->uapi.fence);
++		intel_display_rps_boost_after_vblank(new_plane_state->hw.crtc,
++						     new_plane_state->uapi.fence);
+ 	}
+ 
+ 	/*
+@@ -1119,10 +1056,7 @@ intel_prepare_plane_fb(struct drm_plane *_plane,
+ 	 * that are not quite steady state without resorting to forcing
+ 	 * maximum clocks following a vblank miss (see do_rps_boost()).
+ 	 */
+-	if (!state->rps_interactive) {
+-		intel_rps_mark_interactive(&to_gt(dev_priv)->rps, true);
+-		state->rps_interactive = true;
+-	}
++	intel_display_rps_mark_interactive(dev_priv, state, true);
+ 
+ 	return 0;
+ 
+@@ -1159,12 +1093,7 @@ intel_cleanup_plane_fb(struct drm_plane *plane,
+ 	if (!obj)
+ 		return;
+ 
+-#ifdef I915
+-	if (state->rps_interactive) {
+-		intel_rps_mark_interactive(&to_gt(dev_priv)->rps, false);
+-		state->rps_interactive = false;
+-	}
+-#endif
++	intel_display_rps_mark_interactive(dev_priv, state, false);
+ 
+ 	/* Should only be called after a successful intel_prepare_plane_fb()! */
+ 	intel_plane_unpin_fb(old_plane_state);
+diff --git a/drivers/gpu/drm/i915/display/intel_display_rps.c b/drivers/gpu/drm/i915/display/intel_display_rps.c
+new file mode 100644
+index 000000000000..918d0327169a
+--- /dev/null
++++ b/drivers/gpu/drm/i915/display/intel_display_rps.c
+@@ -0,0 +1,81 @@
++// SPDX-License-Identifier: MIT
++/*
++ * Copyright © 2023 Intel Corporation
++ */
++
++#include <drm/drm_crtc.h>
++#include <drm/drm_vblank.h>
++
++#include "gt/intel_rps.h"
++#include "i915_drv.h"
++#include "intel_display_rps.h"
++#include "intel_display_types.h"
++
++struct wait_rps_boost {
++	struct wait_queue_entry wait;
++
++	struct drm_crtc *crtc;
++	struct i915_request *request;
++};
++
++static int do_rps_boost(struct wait_queue_entry *_wait,
++			unsigned mode, int sync, void *key)
++{
++	struct wait_rps_boost *wait = container_of(_wait, typeof(*wait), wait);
++	struct i915_request *rq = wait->request;
++
++	/*
++	 * If we missed the vblank, but the request is already running it
++	 * is reasonable to assume that it will complete before the next
++	 * vblank without our intervention, so leave RPS alone.
++	 */
++	if (!i915_request_started(rq))
++		intel_rps_boost(rq);
++	i915_request_put(rq);
++
++	drm_crtc_vblank_put(wait->crtc);
++
++	list_del(&wait->wait.entry);
++	kfree(wait);
++	return 1;
++}
++
++void intel_display_rps_boost_after_vblank(struct drm_crtc *crtc,
++					  struct dma_fence *fence)
++{
++	struct wait_rps_boost *wait;
++
++	if (!dma_fence_is_i915(fence))
++		return;
++
++	if (DISPLAY_VER(to_i915(crtc->dev)) < 6)
++		return;
++
++	if (drm_crtc_vblank_get(crtc))
++		return;
++
++	wait = kmalloc(sizeof(*wait), GFP_KERNEL);
++	if (!wait) {
++		drm_crtc_vblank_put(crtc);
++		return;
++	}
++
++	wait->request = to_request(dma_fence_get(fence));
++	wait->crtc = crtc;
++
++	wait->wait.func = do_rps_boost;
++	wait->wait.flags = 0;
++
++	add_wait_queue(drm_crtc_vblank_waitqueue(crtc), &wait->wait);
++}
++
++void intel_display_rps_mark_interactive(struct drm_i915_private *i915,
++					struct intel_atomic_state *state,
++					bool interactive)
++{
++	if (state->rps_interactive == interactive)
++		return;
++
++	intel_rps_mark_interactive(&to_gt(i915)->rps, interactive);
++	state->rps_interactive = interactive;
++}
+diff --git a/drivers/gpu/drm/i915/display/intel_display_rps.h b/drivers/gpu/drm/i915/display/intel_display_rps.h
+new file mode 100644
+index 000000000000..2cfb8a303b77
+--- /dev/null
++++ b/drivers/gpu/drm/i915/display/intel_display_rps.h
+@@ -0,0 +1,34 @@
++/* SPDX-License-Identifier: MIT */
++/*
++ * Copyright © 2023 Intel Corporation
++ */
++
++#ifndef __INTEL_DISPLAY_RPS_H__
++#define __INTEL_DISPLAY_RPS_H__
++
++#include <linux/types.h>
++
++struct dma_fence;
++struct drm_crtc;
++struct drm_i915_private;
++struct intel_atomic_state;
++
++#ifdef I915
++void intel_display_rps_boost_after_vblank(struct drm_crtc *crtc,
++					  struct dma_fence *fence);
++void intel_display_rps_mark_interactive(struct drm_i915_private *i915,
++					struct intel_atomic_state *state,
++					bool interactive);
++#else
++static inline void intel_display_rps_boost_after_vblank(struct drm_crtc *crtc,
++							struct dma_fence *fence)
++{
++}
++static inline void intel_display_rps_mark_interactive(struct drm_i915_private *i915,
++						      struct intel_atomic_state *state,
++						      bool interactive)
++{
++}
++#endif
++
++#endif /* __INTEL_DISPLAY_RPS_H__ */
 -- 
-Matt Roper
-Graphics Software Engineer
-Linux GPU Platform Enablement
-Intel Corporation
+2.39.2
+
