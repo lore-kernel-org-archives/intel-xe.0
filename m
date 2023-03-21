@@ -4,45 +4,48 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 72133C76195
-	for <intel-xe@archiver.kernel.org>; Tue, 21 Mar 2023 22:06:25 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8F095C77B60
+	for <intel-xe@archiver.kernel.org>; Tue, 21 Mar 2023 22:06:26 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 51C9510E245;
-	Tue, 21 Mar 2023 22:06:25 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6824410E100;
+	Tue, 21 Mar 2023 22:06:26 +0000 (UTC)
 Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9519010E090
- for <intel-xe@lists.freedesktop.org>; Tue, 21 Mar 2023 22:06:19 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4415310E090
+ for <intel-xe@lists.freedesktop.org>; Tue, 21 Mar 2023 22:06:20 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1679436379; x=1710972379;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=ur5XnyxoUPVo/qqmcAkUikM7PZF22p8xhjJj8fCpmi8=;
- b=f+g59pY3Ts+1vPugq3ET/4fTLI6JgHMkozcFUonl1FRH9q0MGcbY+rwY
- M8Nf+UqCxSjkrpEPbKHNbLtklKew+KyHa8cna+uC/QTiIGBqpUyPojtIN
- qnuGkoUp/LKN/svdEYvsXDynju9Kdf6BlpWqThvHGBzybdWkfVwcyw+Vs
- yovN+bcLygQ6aYlFHuAZvUl7ZIK8cyhP3gPROx/RTuV0Neq+g2SYWeIwI
- aPU0oYLANHp5fXGUcmeJ3wDtZKC/ZKDVWFrBkwG27sK/gfaY4Xf0Pe1X4
- a51CgSBJoaPvQOSEY16MTJZR1VdNtv9CgUk1BZQhS3+H8ZImp9dobH8IT Q==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10656"; a="339109495"
-X-IronPort-AV: E=Sophos;i="5.98,279,1673942400"; d="scan'208";a="339109495"
+ t=1679436380; x=1710972380;
+ h=from:to:cc:subject:date:message-id:in-reply-to:
+ references:mime-version:content-transfer-encoding;
+ bh=zxHMr7bbJM/qaURVIyduPa1eqXhgPbQPLPIksnxFW4c=;
+ b=BHCN2WU7JiZn1qLo+YT+p9NAW9dHwPp3qqSTyC6urbAlWpDTgS+Gqzvb
+ ioY/4oxzI9Z+pR7WiYOsrscZlEpQqz2aT9+yVRBTilp1K4h3siBYpJwCC
+ dOA5H//Do3Ai6kOj61EFfanwBWfLixDCTZN+PMLb1CU0H3xliWB7Y+gw7
+ DKiVA7F4nM2wb9IKnYZQq9Pf6fWWUJRqhTGrgTghtzw+eCwgVCXKm6G7p
+ JvUQKwFm9gp1GHBCjRtM9uyJIrP5Vw5mbrYBTqC3MeWsZhlTQ9/SvlrRY
+ p4kHDUVdB3yjFrZRHKZQd8T+uwvKBckv7XasuPJJlky7ILFQ/rcZKR7mK A==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10656"; a="339109502"
+X-IronPort-AV: E=Sophos;i="5.98,279,1673942400"; d="scan'208";a="339109502"
 Received: from fmsmga007.fm.intel.com ([10.253.24.52])
  by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 21 Mar 2023 15:06:19 -0700
+ 21 Mar 2023 15:06:20 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10656"; a="684065691"
-X-IronPort-AV: E=Sophos;i="5.98,279,1673942400"; d="scan'208";a="684065691"
+X-IronPort-AV: E=McAfee;i="6600,9927,10656"; a="684065712"
+X-IronPort-AV: E=Sophos;i="5.98,279,1673942400"; d="scan'208";a="684065712"
 Received: from lucas-s2600cw.jf.intel.com ([10.165.21.196])
  by fmsmga007-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  21 Mar 2023 15:06:19 -0700
 From: Lucas De Marchi <lucas.demarchi@intel.com>
 To: intel-xe@lists.freedesktop.org
-Date: Tue, 21 Mar 2023 15:05:20 -0700
-Message-Id: <20230321220527.595462-1-lucas.demarchi@intel.com>
+Date: Tue, 21 Mar 2023 15:05:26 -0700
+Message-Id: <20230321220527.595462-7-lucas.demarchi@intel.com>
 X-Mailer: git-send-email 2.39.0
+In-Reply-To: <20230321220527.595462-1-lucas.demarchi@intel.com>
+References: <20230321220527.595462-1-lucas.demarchi@intel.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-xe] [PATCH 0/7] Unit tests for rtp and GT wa/tuning
+Subject: [Intel-xe] [PATCH 6/7] drm/xe/reg_sr: Save errors for kunit
+ integration
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -58,63 +61,58 @@ Cc: Lucas De Marchi <lucas.demarchi@intel.com>, maarten.lankhorst@intel.com
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Add tests for the RTP infra and for the GT workaround/tuning
-programming, while building the unit test infra to be able to test with
-fake devices. This supersedes previous patch with only the rtp
-tests (https://lore.kernel.org/intel-xe/20230316210341.3547058-1-lucas.demarchi@intel.com/T/#m1fd17b976409805f74aaeb565a441d7d63e0553d)
+When there's an entry that is dropped when xe_reg_sr_add(), there's
+not much we can do other than reporting the error - it's for certain a
+driver issue or conflicting workarounds/tunings. Save the number of
+errors to be used later by kunit to report where it happens.
 
-Notes:
+Signed-off-by: Lucas De Marchi <lucas.demarchi@intel.com>
+---
+ drivers/gpu/drm/xe/xe_reg_sr.c       | 8 ++++++++
+ drivers/gpu/drm/xe/xe_reg_sr_types.h | 4 ++++
+ 2 files changed, 12 insertions(+)
 
-- I debated a little bit whether we should use "mock" or "fake" to name
-  these helpers for running without real hardware.  Here it's using
-  "fake" since it's not a proper mock framework, and it seems to be what
-  kunit itself uses in the documentation and examples.
-- The tests themselves are "unit tests", for the
-  software part, testing the implementation for the rtp,
-  reg-save-restore and WA infrastructure.
-- Last patch is the big improvement functonality-wise, which will help
-  us detect wrong updates in the workaround tables, without running in
-  real hardware.  That patches should be followed up with similar ones
-  for the other WAs: engine and LRC.
-
-Lucas De Marchi (7):
-  drm/xe: Add basic unit tests for rtp
-  drm/xe: Extract function to initialize xe->info
-  drm/xe: Move test infra out of xe_pci.[ch]
-  drm/xe: Use XE_KUNIT for symbol namespace
-  drm/xe: Generalize fake device creation
-  drm/xe/reg_sr: Save errors for kunit integration
-  drm/xe: Add test for GT workarounds and tunings
-
- drivers/gpu/drm/xe/Kconfig.debug           |   1 +
- drivers/gpu/drm/xe/tests/Makefile          |   8 +-
- drivers/gpu/drm/xe/tests/xe_bo.c           |   6 +-
- drivers/gpu/drm/xe/tests/xe_bo_test.c      |   1 +
- drivers/gpu/drm/xe/tests/xe_dma_buf.c      |   3 +-
- drivers/gpu/drm/xe/tests/xe_dma_buf_test.c |   1 +
- drivers/gpu/drm/xe/tests/xe_migrate.c      |   3 +-
- drivers/gpu/drm/xe/tests/xe_migrate_test.c |   1 +
- drivers/gpu/drm/xe/tests/xe_pci.c          | 108 +++++++++++
- drivers/gpu/drm/xe/tests/xe_pci_test.h     |  31 ++++
- drivers/gpu/drm/xe/tests/xe_rtp.c          | 201 +++++++++++++++++++++
- drivers/gpu/drm/xe/tests/xe_rtp_test.c     |  64 +++++++
- drivers/gpu/drm/xe/tests/xe_rtp_test.h     |  15 ++
- drivers/gpu/drm/xe/tests/xe_wa_test.c      | 136 ++++++++++++++
- drivers/gpu/drm/xe/xe_pci.c                | 150 ++++++---------
- drivers/gpu/drm/xe/xe_pci.h                |   9 -
- drivers/gpu/drm/xe/xe_reg_sr.c             |   9 +
- drivers/gpu/drm/xe/xe_reg_sr_types.h       |   4 +
- drivers/gpu/drm/xe/xe_rtp.c                |   4 +
- drivers/gpu/drm/xe/xe_tuning.c             |   1 +
- drivers/gpu/drm/xe/xe_wa.c                 |   1 +
- 21 files changed, 647 insertions(+), 110 deletions(-)
- create mode 100644 drivers/gpu/drm/xe/tests/xe_pci.c
- create mode 100644 drivers/gpu/drm/xe/tests/xe_pci_test.h
- create mode 100644 drivers/gpu/drm/xe/tests/xe_rtp.c
- create mode 100644 drivers/gpu/drm/xe/tests/xe_rtp_test.c
- create mode 100644 drivers/gpu/drm/xe/tests/xe_rtp_test.h
- create mode 100644 drivers/gpu/drm/xe/tests/xe_wa_test.c
-
+diff --git a/drivers/gpu/drm/xe/xe_reg_sr.c b/drivers/gpu/drm/xe/xe_reg_sr.c
+index 9eaf1be27886..83f29aeb9250 100644
+--- a/drivers/gpu/drm/xe/xe_reg_sr.c
++++ b/drivers/gpu/drm/xe/xe_reg_sr.c
+@@ -84,6 +84,13 @@ static bool compatible_entries(const struct xe_reg_sr_entry *e1,
+ 	return true;
+ }
+ 
++static void reg_sr_inc_error(struct xe_reg_sr *sr)
++{
++#if IS_ENABLED(CONFIG_DRM_XE_KUNIT_TEST)
++	sr->errors++;
++#endif
++}
++
+ int xe_reg_sr_add(struct xe_reg_sr *sr, u32 reg,
+ 		  const struct xe_reg_sr_entry *e)
+ {
+@@ -121,6 +128,7 @@ int xe_reg_sr_add(struct xe_reg_sr *sr, u32 reg,
+ 	DRM_ERROR("Discarding save-restore reg %04lx (clear: %08x, set: %08x, masked: %s): ret=%d\n",
+ 		  idx, e->clr_bits, e->set_bits,
+ 		  str_yes_no(e->masked_reg), ret);
++	reg_sr_inc_error(sr);
+ 
+ 	return ret;
+ }
+diff --git a/drivers/gpu/drm/xe/xe_reg_sr_types.h b/drivers/gpu/drm/xe/xe_reg_sr_types.h
+index 3d2257891005..91469784fd90 100644
+--- a/drivers/gpu/drm/xe/xe_reg_sr_types.h
++++ b/drivers/gpu/drm/xe/xe_reg_sr_types.h
+@@ -32,6 +32,10 @@ struct xe_reg_sr {
+ 	} pool;
+ 	struct xarray xa;
+ 	const char *name;
++
++#if IS_ENABLED(CONFIG_DRM_XE_KUNIT_TEST)
++	unsigned int errors;
++#endif
+ };
+ 
+ #endif
 -- 
 2.39.0
 
