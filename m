@@ -4,152 +4,141 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4CFC1C6FD1F
-	for <intel-xe@archiver.kernel.org>; Wed, 22 Mar 2023 20:55:36 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5E0EDC6FD1F
+	for <intel-xe@archiver.kernel.org>; Wed, 22 Mar 2023 20:57:30 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 24D9610E14D;
-	Wed, 22 Mar 2023 20:55:36 +0000 (UTC)
-Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 51E2410E14D
- for <intel-xe@lists.freedesktop.org>; Wed, 22 Mar 2023 20:55:32 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 31AD110E3F2;
+	Wed, 22 Mar 2023 20:57:30 +0000 (UTC)
+Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 292A310E3F2
+ for <intel-xe@lists.freedesktop.org>; Wed, 22 Mar 2023 20:57:27 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1679518533; x=1711054533;
- h=from:to:cc:subject:date:message-id:references:
- in-reply-to:content-id:content-transfer-encoding: mime-version;
- bh=xo3gNuLIQXeULvfaGsBHgzTfGyLqpAb2jsVYa+PxFhw=;
- b=DAOE5zN2QRZWf7bxvC6pMh5ZBvuvbxtg5gRcIAdNdRCJ4KkGxyV6KByJ
- Jv2U+M4pr46laqh8voEMCisETLn/oXt0ROb5IFq1brgfMDfcfm85LuC0R
- NGAEd2h8Nq0Gqgp8xaZeADw9Pa+wJn2iOdE5l7zhQgRx0VykVvZYBTcYA
- PVLdXfI/EsRIflWUxfQ8qfkpBI3maO8FfvxmTVSnsdIjR4s6yzdvlXczN
- 51L0QRJ5wruD8Oau50J10BwcBUtj+iOGtzOhEp59afUjRuJHtrb3BUZL8
- jrCgrAcHTA1IN2PSxQ8PGJ+VT4DNQhRbsqEMrPa/dJurpR79O3jfpD6Ny Q==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10657"; a="340868691"
-X-IronPort-AV: E=Sophos;i="5.98,282,1673942400"; d="scan'208";a="340868691"
-Received: from orsmga004.jf.intel.com ([10.7.209.38])
- by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 22 Mar 2023 13:55:31 -0700
+ t=1679518647; x=1711054647;
+ h=date:from:to:cc:subject:message-id:references:
+ content-transfer-encoding:in-reply-to:mime-version;
+ bh=crlqFRllkOenTfWQPjyaM7FTA5yGLnb2sgg1cCi+WPk=;
+ b=GAmx3BVB7N+OhNqk1q4tUiwutviEO3BDRhjX0HEaqVOe2r8f4oTFeps8
+ s5Pu+IiweKIqVP7wo+leY6fLhUTvQcTmiTvyp0XOItA3/1WxaX2QCZcAf
+ z27WfoeA/wPT/cFyy3tNNUypgcDsAbN2bvV6BUxrPCkUpQ4x3IEr9rPQL
+ Mh+hZfCtaMRjzs9nkVr4vf4rx9xRxPCe7nrJiajJJH0vQSyIDMWz3xQ8M
+ ELGR82kJXmHx4Ns5E9ggTpmHs8QK+lWT55UCB+RXnlYZKGdGwqKM3s8Dw
+ +6UiQi7qMWK7xzmrmPluDxDjXnDXAkZlQR8K8k5ZD0RWX2xUTOVACX73f A==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10657"; a="318981914"
+X-IronPort-AV: E=Sophos;i="5.98,282,1673942400"; d="scan'208";a="318981914"
+Received: from fmsmga004.fm.intel.com ([10.253.24.48])
+ by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 22 Mar 2023 13:57:26 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10657"; a="805997625"
-X-IronPort-AV: E=Sophos;i="5.98,282,1673942400"; d="scan'208";a="805997625"
+X-IronPort-AV: E=McAfee;i="6600,9927,10657"; a="751217291"
+X-IronPort-AV: E=Sophos;i="5.98,282,1673942400"; d="scan'208";a="751217291"
 Received: from fmsmsx602.amr.corp.intel.com ([10.18.126.82])
- by orsmga004.jf.intel.com with ESMTP; 22 Mar 2023 13:55:31 -0700
-Received: from fmsmsx611.amr.corp.intel.com (10.18.126.91) by
+ by fmsmga004.fm.intel.com with ESMTP; 22 Mar 2023 13:57:26 -0700
+Received: from fmsmsx610.amr.corp.intel.com (10.18.126.90) by
  fmsmsx602.amr.corp.intel.com (10.18.126.82) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.21; Wed, 22 Mar 2023 13:55:30 -0700
-Received: from fmsmsx603.amr.corp.intel.com (10.18.126.83) by
- fmsmsx611.amr.corp.intel.com (10.18.126.91) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.21; Wed, 22 Mar 2023 13:55:30 -0700
+ 15.1.2507.21; Wed, 22 Mar 2023 13:57:26 -0700
 Received: from FMSEDG603.ED.cps.intel.com (10.1.192.133) by
- fmsmsx603.amr.corp.intel.com (10.18.126.83) with Microsoft SMTP Server
+ fmsmsx610.amr.corp.intel.com (10.18.126.90) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.21 via Frontend Transport; Wed, 22 Mar 2023 13:55:30 -0700
-Received: from NAM04-MW2-obe.outbound.protection.outlook.com (104.47.73.173)
+ 15.1.2507.21 via Frontend Transport; Wed, 22 Mar 2023 13:57:26 -0700
+Received: from NAM11-DM6-obe.outbound.protection.outlook.com (104.47.57.177)
  by edgegateway.intel.com (192.55.55.68) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2507.21; Wed, 22 Mar 2023 13:55:29 -0700
+ 15.1.2507.21; Wed, 22 Mar 2023 13:57:26 -0700
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=grMq4Uj0WEhj+/b+Xww3NxqsJ0VaFIr456jnmwlgqgZyVoAJtipiDdvcEASv7sKUehh2Q/HOLaaJl9XPpix2KRzQZWH8qVl3D5adtUzaGQFOMMszVHzXOJlJPk5JfpIZeWmGuzul5Tj73RJrskiNMLAhYzaQ5BdcDnVGF9VQWlSXDAsiVR5JdZzvPSghy8aOadlr0KinqaY9wkd9BoKnFU7TJtVdIAPGIqze98UiSduxA00UjC1It2qYXNHie18jL7XGjMN3YtAzkWHEaWlQJjucWO8N/2+6Rz39GlsA49U5UaseyxFA3QSNmDxeqhhCgVNFs3gZTocs/1z0XLW1Dg==
+ b=Ol9GxJivvIk6uXVhQf1FzczpTf58zY7fZIFnbSXcevCRw7hOc/5djKkztPYTh2hdYXHDeGVVpHoBtIKzXwdrvnTJsGbyVG2Q0wxTLXzwusrei6RomlgA+3JHN9KsSooM4LTiKbpdgwjhu6wJS2jEtG7TxxsNWRVNSJo2uxjjTJxamoxNG4Q9Wpb2u6crA2l0bUrKCFzjWIXCBHW8tvDljgsm+z1aDv9YIC9dql1nxd+pPj+0I1QQrwSXb7rMb5x+PzTz9sO12k3B5NkfeH4RtJjC5DGYgl/FaJj5CM9Ag3czWkGelrJNHlb+IoOabr3sgk/Cga2OgY2X4sBhzL6lZw==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=xo3gNuLIQXeULvfaGsBHgzTfGyLqpAb2jsVYa+PxFhw=;
- b=JF/qlnsZGITgQFf1YhHxj4ABCdgeJgzHuRx+RFQ6PvBHF34L0dUudNP4Y9SlhfldHzWbQUsnYjwaINa2OjnhlboC69nWpnUIhbcmNFq/x97enpUkA+C/swsCLOr5Jvu0Fgxn2nvC5mPZerDkLW5xxJ83Dtzyt+czQmws2ZZdnlKibtay0BX7W8/++eRlaSlvPowdnYk4ExAHOH6X1C1I6KNnAGu7k2c/lMVOnjNEII3azvlwZJt5PkTcmTYm1mYinKebx/Rip+BEH9a2asVu3ucDZI9W0lO12Zx9uxmmGqJpI6H2D/43T1hshRhk86hKDfnIamhYiJz8mD6BpsLPLQ==
+ bh=MazETDNYuzu95lkWajWZe9sw8OEEbNVThUNwEZKXq30=;
+ b=aaHKq2rQ5oyboXc2Kp9Ke1617OKd7LWn4IgJoVTwTyQhbg7IqpYAbcwJxlWVChcIIQrKwfOYVPN+dRixPbYwDh/4rEdEGBnRk5HHLsuhJa3ggtD987OvmHiML1OAoX6YbH9kEY5hDNfO6pIX+3ly833mCv5FGdKb86sCXfbBTLDbxJJRGdXyZZFlY4USOn7cAgddmNxlV7i4sKPFVaqLuxuIYWpJg4wfBCwlf9D/goSSAi3BRVB1TsrB7cHR5ml4ZTNApj9TFd0c9q5/dzmxHB0n95drk5bgs/bJ8EDh+hC3q8j/m0AuDNrnIIseLFMbMQuDewLOfgDKVbLIGz6x1Q==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
  dkim=pass header.d=intel.com; arc=none
-Received: from CY4PR11MB2054.namprd11.prod.outlook.com (2603:10b6:903:2d::9)
- by BL1PR11MB5509.namprd11.prod.outlook.com (2603:10b6:208:31f::12) with
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=intel.com;
+Received: from MN0PR11MB6059.namprd11.prod.outlook.com (2603:10b6:208:377::9)
+ by DS0PR11MB7309.namprd11.prod.outlook.com (2603:10b6:8:13e::17) with
  Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6178.37; Wed, 22 Mar
- 2023 20:55:23 +0000
-Received: from CY4PR11MB2054.namprd11.prod.outlook.com
- ([fe80::ecb6:23da:cb6c:683b]) by CY4PR11MB2054.namprd11.prod.outlook.com
- ([fe80::ecb6:23da:cb6c:683b%10]) with mapi id 15.20.6178.037; Wed, 22 Mar
- 2023 20:55:22 +0000
-From: "Souza, Jose" <jose.souza@intel.com>
-To: "Brost, Matthew" <matthew.brost@intel.com>
-Thread-Topic: [Intel-xe] [RFC PATCH 1/1] drm/xe/uapi: Add query engines uAPI
-Thread-Index: AQHZXGbsAjQA9H08+0qQM9pldiqpl68G+xMAgAA3j4CAABXJgA==
-Date: Wed, 22 Mar 2023 20:55:22 +0000
-Message-ID: <45226fbbc940eafc218bc2cc4a3798b41bad90d3.camel@intel.com>
-References: <20230322023450.797598-1-matthew.brost@intel.com>
- <20230322023450.797598-2-matthew.brost@intel.com>
- <105d0e79d27c445b99a2ef04193f36e7c66f9d42.camel@intel.com>
- <ZBtY8d6H8khAdPZR@DUT025-TGLU.fm.intel.com>
-In-Reply-To: <ZBtY8d6H8khAdPZR@DUT025-TGLU.fm.intel.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=intel.com;
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: CY4PR11MB2054:EE_|BL1PR11MB5509:EE_
-x-ms-office365-filtering-correlation-id: 79940a0f-0807-4522-ce72-08db2b17c0cc
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: eHpBVWWjmB3+maR+DkIjE1ZDDBnU5feaShP8bJ8KMJiMOJbEF+aWhVzppvdiA0ga+z9Oovjf9I9ELKOFp/zz2OVjM5gu0WGQyjbTGzHv5p6mCtxbd1AupFdbb1AgkkoGzd+49R/hpr5sWvBBM2EiQgjcdgRC4Sgj3Z0g0PEy/WuRb6FiBBt91aCscDqTyUIAhXbnaBm9cTVb3C4yFUXOtpa8yK63nKPJ90FeliyCHOczQBb5fJflPfJH+3PscJ7lcchYzVPTxV/ZbcLrzCYqhpxwz9gxfkWpI7xzjJwI8p0xbLqfuG+NPxMpBxAjYKwThJPBbCgLM97HbGLfQKTYw6dulsuqEWL5l4s5zWGZcoIsOaGXAHpvCz6fyaoiXMx9BO6GYkktLE5wSwY/r2KtuNLz/zQX7oqrstawntlWwdK0E//v+UWGmHDiA+d9N92kKWe/BMSjkHvYe2eMUmve4Gk6jF81fUUae7W7yDgYPMB5/rIBNJEwU+OaH2PDMAGjVawBbWlvb5DOhncxEPiGOypXR/OOEdsttmhrP9r5V9h94hXM3msqSuojo03JSP/PVkzHB0BpB8gjACXjnufcHkXxgiQgHa4Nzns+FcluQHYoIF3gJVVHUdUnhxKUrSCvx/UaWqOKt+5mXtOD7NVZ9SKuYm4ABMIQjukZK8AUdtHIT+Eez+ExnilyMt5qV5IlAvSp4Ivpr22nMHZAYOQrzw==
-x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:CY4PR11MB2054.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230025)(346002)(376002)(366004)(39860400002)(396003)(136003)(451199018)(4326008)(66556008)(76116006)(91956017)(8676002)(316002)(37006003)(66476007)(66946007)(64756008)(66446008)(186003)(122000001)(6506007)(38100700002)(38070700005)(86362001)(478600001)(71200400001)(6636002)(82960400001)(36756003)(6486002)(26005)(83380400001)(6512007)(2616005)(5660300002)(6862004)(41300700001)(8936002)(2906002);
- DIR:OUT; SFP:1102; 
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?utf-8?B?RmtONHlDU2RNUXkvNGZHNERoc0NsYXlaZ1k4eVRicWY0dzgvOWFjOHlmbFpE?=
- =?utf-8?B?UEZtQWlkc004SWQzWHlycWR2Q0x2WHlIQzRqQlFyZ0tBVHZ5RTZZblowcUoz?=
- =?utf-8?B?YmhGdmloMmNySGdGMnQ5R2Myb0R4cklYNXZ6VmhKcFduVW9uMGJpOVRLTDZk?=
- =?utf-8?B?cUVBSmNhaUJBVEp3QlhSbVZXUHlsazE2V2lPT3JpSk1UdWN4WEowTGxzMHRv?=
- =?utf-8?B?OW9KOHJwbkRoYmlJTjM3N2tNRWZGc2cwS1oyWjRvRDFYRjdKSklEdWJJV295?=
- =?utf-8?B?RFR0QWRnMGxacDJyTGo1QVRkVDhMWDFNMk00dWFNTW9yWVpvU3dDRXpyUnJi?=
- =?utf-8?B?MzBFRnJpcW5LLzBPamVYQjlIalpBU3pmZTA2L1lScWNDTlZrV0MzaXpnc0Ft?=
- =?utf-8?B?UXV4TmN6U3l4WEJQdXpEOWhzZi9OSGtZNWUrQ25pajNNZkcrWURSWEZsQ05a?=
- =?utf-8?B?Qngxc2tmTzdJWTlzUWd0YXAwVTBnZi9jZGNuZzlqOU5oZTZnSWt2TEhuTEUr?=
- =?utf-8?B?SkJpUDF2Y3hUYTRjaTRIMDZxYStiNHI2QjVvYkY2Wko3YVZSTnNPSlMyUnlG?=
- =?utf-8?B?enc2enB2a2ZyU2dHd3dSTUhFMjNIUGwxeEo0OTFQR3U5QVZCQ25md1FVemxP?=
- =?utf-8?B?T3g1ZG50Nmo3VnY4ZFV3K1VFcHRtUXYxK0JrY0lVOG1wN0pzYUIvMXJ6a2oz?=
- =?utf-8?B?SjJyZlV6TTlTNGVydzVqSE40cHJOV1ZpakduRlRCZnR2NkQrNk0xMG8vcytY?=
- =?utf-8?B?NDA4LzB4TldnZDY4V0VIZkErcUx4RG5heDBTMWczelFDN3FoTUYybG85MVJ2?=
- =?utf-8?B?YXdBWkwxT0RETkNvbnJSUEhZQ1A5a3UvLy91bURBK2o1d3p6aFNBUEVUNHR2?=
- =?utf-8?B?MEpyZlU5aC9mck1aMGJ1RDJaNmtUL2E1UlF1TU0rTms1UXUxUXdTQldybU5L?=
- =?utf-8?B?V1hISzAzK0Y0TEQ1Tk9vOHRJc1hFSUp0MHg0OEZZRGduNk02bDdPTGloSjZ6?=
- =?utf-8?B?aHdxU1VjTVBPYlVxcFBoeHpsb29jZ0V3OGs3d2ZCT2JrQVJWUTkyTHFMOThL?=
- =?utf-8?B?VzB1bHFySUZIOG1zbEt1NHE3RStpcWhSOXNDTEdDT0N0U2JFa0IzYTdtL3Vy?=
- =?utf-8?B?YnFncCtmTGtUODNlbXY0MlRFTVNEWnZZSmR4QzRRTHpSQU5FVlFDMGJkQXpM?=
- =?utf-8?B?SHVuSVRUWTRhYzFaRDVnZ2c1d3pwSzdxTCtyK0tZMy9NUHlySlVuRnF4ajJM?=
- =?utf-8?B?dWI1YU5rM0JSK3VucXlqTWpUWlFJRXNZKzNQSTE0UjR5bHlCSURTQ0g4NEgv?=
- =?utf-8?B?VkJwRnJpdktyWmY4L25HQ1ZsMVFWWjZ0T0hwV0FTR0k1dElpbC91VHhObGpY?=
- =?utf-8?B?WklaeVRiMXZtdUk3Sy9kTXArYUs4ZDBtVEdVNmsxT0Q3MXl0clFSNlQrYStn?=
- =?utf-8?B?bmgvVVVCSXA4TmdmZW9SSllaOU1hWTFTcGlubDJlYVNvVGtkUmxuWVBPdnRI?=
- =?utf-8?B?ZGxHUEptSTh6WTQrQU9JRGYrbTdnemd4NHV0bmphdHBXM0pqWlgzejFBQWhx?=
- =?utf-8?B?dGRzSlFRaVoxMVdqV2RGZDhYQU44eHdDUStKeTlGTFdJV1Y5cm1WNkhQVjN3?=
- =?utf-8?B?cnFLZ2lDazJpQi8yYThsZjVrMTRjKzlYMWdBaEFiUmhKVDFWTGdwOTFONVo0?=
- =?utf-8?B?QnpYcVlhcGlYUEVQUHUwQVB5enJGZ3lzNFRUc2o0SkFnVHhpTEhyT3dlSXRa?=
- =?utf-8?B?a3R5QkRMai9JR2dSVU44dWFYa1E0YUtuanF0L216MlFQQ280Y3hlRUh6OW53?=
- =?utf-8?B?cEtnUGdKZGsvV0JiQU9nZFYyeWxYaTh0cHhsdjNuRHV4am9RMzErNEZ4bUQy?=
- =?utf-8?B?K2Q4K1BoSlNaNFAzQ0hiTnVBY2RrYzVqMmFzSE8xUkJ2STNMZVMrRDBtNnpp?=
- =?utf-8?B?ckwzdm4rOGVqeFhOM3czM1pVR0I2WlBLZG84VEJQa2xCbU1nYUxOQjJpTTVi?=
- =?utf-8?B?Q3F1cTQxWkxIeWp1M29RVEIxY3d0dVdkaTlMOEFYZ2VrUnJmck1ZNThHdnhw?=
- =?utf-8?B?d2xud0ZkYkQ5TEVFL2ZYQ0dVTmZsanJteG5lU1R6SkFZcVhjakJlcXd1VXA4?=
- =?utf-8?B?eVhxajExaDhKRWdSbS9YUWxFQ2k1cGFxZ0wzU0dTZmhDY1Jhbk4wZlFCbnlv?=
- =?utf-8?B?OGc9PQ==?=
-Content-Type: text/plain; charset="utf-8"
-Content-ID: <5B1B6D021A5D6842A8F3A4F36DA90D53@namprd11.prod.outlook.com>
-Content-Transfer-Encoding: base64
+ 2023 20:57:22 +0000
+Received: from MN0PR11MB6059.namprd11.prod.outlook.com
+ ([fe80::3bd5:710c:ebab:6158]) by MN0PR11MB6059.namprd11.prod.outlook.com
+ ([fe80::3bd5:710c:ebab:6158%9]) with mapi id 15.20.6178.037; Wed, 22 Mar 2023
+ 20:57:22 +0000
+Date: Wed, 22 Mar 2023 16:57:17 -0400
+From: Rodrigo Vivi <rodrigo.vivi@intel.com>
+To: Jani Nikula <jani.nikula@intel.com>
+Message-ID: <ZBtrrTeswE5eg0DQ@intel.com>
+References: <20230321160420.1352889-1-jani.nikula@intel.com>
+ <87v8iu6qc1.fsf@intel.com> <87sfdy6q9k.fsf@intel.com>
+ <20230321230448.rkgnfemrg4ehwfat@ldmartin-desk2.lan>
+ <87pm916tba.fsf@intel.com>
+ <20230322132841.o7ptwildnnykj4kr@ldmartin-desk2.lan>
+ <87iles7ted.fsf@intel.com>
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <87iles7ted.fsf@intel.com>
+X-ClientProxiedBy: SJ0PR05CA0133.namprd05.prod.outlook.com
+ (2603:10b6:a03:33d::18) To MN0PR11MB6059.namprd11.prod.outlook.com
+ (2603:10b6:208:377::9)
 MIME-Version: 1.0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: MN0PR11MB6059:EE_|DS0PR11MB7309:EE_
+X-MS-Office365-Filtering-Correlation-Id: fd7e77fb-5f70-43e5-deaf-08db2b1807ff
+X-LD-Processed: 46c98d88-e344-4ed4-8496-4ed7712e255d,ExtAddr
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: lr2erygOWdz5Nd+3PUCjS7f+TDH5Kx37tOcWMIItBjFrLLyycQ5RkYO9euvQWcEBFSzAQquRTA7F8egkZGTH/jYSnh0LXsv+e8X/I8rwVggR5Inpz7oBMS8ZXzWSOPgYQL086guO5u7gkzXAuswjK5V4u8Ox7aVgZHl9VCKL3vAaNLfxhMD4mp2x5oBBRbN/I42XK3YK+YjEVJDDmR72Z+h9GMouxs+uB9G8opgrw+ao5MSxHPT6A6sF6kk5Vp3Beh8GNxSMDsNkhLB1raECEOd5ES2X6oK9JVQgaOTK7rJPEPqQB6/uxgJroYfH8av0dKnftpToEH1VVmOP27YCOqW0kSIZx9EI+j7z5aOxSgOrGltG3UukACzjjIfH3Z/RhfiYb/FciquThpjWpWpBpsvP3W7dz6DFVgZkiS+UxApJcXzAxjZqg2uIuIugNrCuWEj3bUQTeHoYQZffxhJ1D9eCMSiFtP0BUvlXVcTks2Cvg70eZc3x3TlhPy/8WbN+Fur+BZeZat6N3h+J4dlxyWip7RNXp7J2UKGpRarMi863TxIPCrHN2wd3Mb4LuUuqn6gK52+1KdazTnz9v6fDmgeEfrtdwpQ8edpAyZt8jf8=
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:MN0PR11MB6059.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230025)(376002)(136003)(366004)(396003)(39860400002)(346002)(451199018)(86362001)(6512007)(26005)(2616005)(6506007)(2906002)(966005)(30864003)(6486002)(38100700002)(82960400001)(5660300002)(66574015)(36756003)(6666004)(44832011)(8936002)(6862004)(41300700001)(83380400001)(478600001)(37006003)(186003)(6636002)(54906003)(66476007)(8676002)(316002)(66946007)(66556008)(4326008);
+ DIR:OUT; SFP:1102; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?iso-8859-1?Q?jrPbLQMvR3W8HLXfJzsXEX5zrvBCy3tOg2ujPjDGeRTvNWq4aT/4zj4TcI?=
+ =?iso-8859-1?Q?t0DQJzpt3JJgLsmnvV79QXCug+d7r5m4lHGUH0LaO8RPmvQL8ZeJ1L9ppx?=
+ =?iso-8859-1?Q?oBAuFbA1RXaeM0YPN886jN0SsZNqeAH5+zVVBm+t00GUgLFFW07vfvf4Eq?=
+ =?iso-8859-1?Q?t7cyuqYLxuK48WC30IydbbEnlTUGvR0vPSEbszsCTstixJygjL7VLfdwny?=
+ =?iso-8859-1?Q?VJq/9M7FDrUKZNm3VBqngyEcug3b7d6ClVpMq9GY0kbqyFvvNqxAThjXuw?=
+ =?iso-8859-1?Q?ce2bIKbUJbMw5R2wtCp7XGNS0dCWnJjnfNzz6jw7Hpkt4CLiBaJaVBXwG3?=
+ =?iso-8859-1?Q?Xnd0iZDiobGnN2e/VD9u5TzQIrzFgALKK+bQJhAp725fJfkTkDrnoFa/Pa?=
+ =?iso-8859-1?Q?vU5/cG/lNZVRaSuY1oqa8gmAAM7EFMBYKObP4SXu0kuES97rka7sEO8X+W?=
+ =?iso-8859-1?Q?8LunMHe2j5Gg+I3oP6kcbDFJjcQ2REQfNiGn18NuCQV+U/NCmAUq30k0tW?=
+ =?iso-8859-1?Q?V7ZfF56XKvbuceO8BvQyHs4WFEA9HorWx/mOjYyf97SUWSXElmibwYE6KY?=
+ =?iso-8859-1?Q?J9YBykC0yFGMdVCQJiyGAsPV7hfK6/iZxrWE/WebCMry01w+SGCHXoAAKh?=
+ =?iso-8859-1?Q?lg+5HDRoMZzjuX0TSnOSv5Tf0trQ3pGBLmGDzsrllCAllWlmztN0URGNzo?=
+ =?iso-8859-1?Q?a+3lvog8jcrwTNYGMebCTLLZI4g+/WpfgjoWs7WIruElJpZRA0IXY6FT4a?=
+ =?iso-8859-1?Q?fYhgCZRPwuZzHcCWcDvCwWQgLQMoKHLjWkqQ8igw/aXyI3/JqIGOk9JFy1?=
+ =?iso-8859-1?Q?30iVRGpglFzKcuMbn2umBfoDewlisNTQZfpeMgVN/U86k8ev4oXrJG/kL/?=
+ =?iso-8859-1?Q?HZ0OUoQ3ehZzh8BOhA28sB9v3BiRWANRxEC4okMI3pxGdfQSZk1HZhC4Qm?=
+ =?iso-8859-1?Q?KlOL0ES07FogRCPearg4DeXPRgZZP7UwQ61zdh1DgeQoCpuzQcdxlOZPNA?=
+ =?iso-8859-1?Q?vMTvMPqYR+uPaRsvpKM8mqCXF8Ejoll5qmigaUBoP8JJNetGKe7NdOXbrn?=
+ =?iso-8859-1?Q?k6ijMZoMydmXIyvXCsuyVCIH3U+CwTnolMr6sxaeXNsF8T9q5AP7zuDhEI?=
+ =?iso-8859-1?Q?auhTHXZlbPCIK0WfkOGybh+2RKCRuGV4SXWC7VuUZtBH3Z+PHfcA6YdZX9?=
+ =?iso-8859-1?Q?OKQGnENj3G/x7LPzpB0lJsluD0f6Gu32WXRKfK8gvFrFsFWO14ih5iuvxz?=
+ =?iso-8859-1?Q?42fkEywcKVLie2UbosrCACDHxCHYgSLUlmuqxtOkEqSVixFi0OhvdzvaF8?=
+ =?iso-8859-1?Q?lY46MHf2MV7XNDK2nHXNSvmNe17/cBi4ngVztwJsboobQCkpt57XjbZc1R?=
+ =?iso-8859-1?Q?Mi2NWZfjaqZTXPiGw9+adreFqrrC2D0h2Ow8U4IxDSUv16N+7w7P6Ik+FP?=
+ =?iso-8859-1?Q?IuW7vjGvXiOFJBzdo840Q0Mc1aANdXs+9R28R4F+hIW2wj2TrUIL+KuWuh?=
+ =?iso-8859-1?Q?5Zl4F6hKHiAfWHWxEjubPPBEpyYszizLsqHLQf61VecpMhg3XIWTAZ3kZA?=
+ =?iso-8859-1?Q?xXuPgrLT6pC6wLfiPXXTx/K6xegLJL6+KraZp30aic/xksN+aOIFcUiGGa?=
+ =?iso-8859-1?Q?wVqTyW8yT3lSyzAWBGNoceqvUZ9vlBpG3ez+W2pfzTM3P92TOpX5YFqA?=
+ =?iso-8859-1?Q?=3D=3D?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: fd7e77fb-5f70-43e5-deaf-08db2b1807ff
+X-MS-Exchange-CrossTenant-AuthSource: MN0PR11MB6059.namprd11.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: CY4PR11MB2054.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 79940a0f-0807-4522-ce72-08db2b17c0cc
-X-MS-Exchange-CrossTenant-originalarrivaltime: 22 Mar 2023 20:55:22.1322 (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: lg2JQvolUbhHdvaUTTqja9T49aBjT6eUtF5/X7cZAOdX7R5ZkzXzwSNHR8TfygiqpVgpwg/MNAQ54c0ql8gIRg==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: BL1PR11MB5509
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 22 Mar 2023 20:57:21.9600 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: 1HnwPAqBo2jEoNVw7NkkN1TtYpE2PfaiXFBPWNsIWv8sXilDmfIQ1jJJHgHo58dEAc9FD9k+0ffkDzVro3HflQ==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DS0PR11MB7309
 X-OriginatorOrg: intel.com
-Subject: Re: [Intel-xe] [RFC PATCH 1/1] drm/xe/uapi: Add query engines uAPI
+Subject: Re: [Intel-xe] [PATCH] drm/i915/rps: split out display rps parts to
+ a separate file
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -161,93 +150,433 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Cc: "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>
+Cc: Lucas De Marchi <lucas.demarchi@intel.com>, intel-xe@lists.freedesktop.org,
+ Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-T24gV2VkLCAyMDIzLTAzLTIyIGF0IDE5OjM3ICswMDAwLCBNYXR0aGV3IEJyb3N0IHdyb3RlOg0K
-PiBPbiBXZWQsIE1hciAyMiwgMjAyMyBhdCAxMDoxODozM0FNIC0wNjAwLCBTb3V6YSwgSm9zZSB3
-cm90ZToNCj4gPiBPbiBUdWUsIDIwMjMtMDMtMjEgYXQgMTk6MzQgLTA3MDAsIE1hdHRoZXcgQnJv
-c3Qgd3JvdGU6DQo+ID4gPiBOb3QgYWxsIGhhcmR3YXJlIGVuZ2luZXMgYXJlIGNyZWF0ZWQgZXF1
-YWxseSwgY2VydGFpbiBpbnN0YW5jZSBoYXZlDQo+ID4gPiB1bmlxdWUgY2FwYWJpbGl0aWVzIG9y
-IHByb3BlcnRpZXMuIEludHJvZHVjZSBhIHVBUEkgdG8gcXVlcnkgZm9yIGJvdGgNCj4gPiA+IGNh
-cGFiaWxpdGllcyBhbmQgcHJvcGVydGllcy4gVGhlIGNhcGFiaWxpdGllcyBhcmUgcmVwcmVzZW50
-ZWQgYnkgYSBiaXQNCj4gPiA+IG1hc2sgd2hpY2ggaXMgdW5pcXVlIHRvIGVhY2ggY2xhc3MuIFRo
-ZSBwcm9wZXJ0aWVzIGFyZSByZXByZXNlbnRlZCBieSBhDQo+ID4gPiBuYW1lIGFuZCB2YWx1ZSBy
-ZXR1cm4gaW4gYW4gYXJyYXkgdG8gdGhlIHVzZXIuDQo+ID4gDQo+ID4gV2hlbiByZS1zZW5kaW5n
-IHRoZSBzYW1lIHBhdGNoIHNlcmllcyB3aXRoIGZpeGVzLCBwbGVhc2UgaW5jbHVkZSAidlgiIGlu
-IHRoZSBzdWJqZWN0IHdlIGtub3cgd2hhdCBpcyB0aGUgbGF0ZXN0IHZlcnNpb24gdG8gcmV2aWV3
-Lg0KPiA+IA0KPiANCj4gV2lsbCBkby4NCj4gDQo+ID4gPiANCj4gPiA+IFNpZ25lZC1vZmYtYnk6
-IE1hdHRoZXcgQnJvc3QgPG1hdHRoZXcuYnJvc3RAaW50ZWwuY29tPg0KPiA+ID4gLS0tDQo+ID4g
-PiAgaW5jbHVkZS91YXBpL2RybS94ZV9kcm0uaCB8IDQ0ICsrKysrKysrKysrKysrKysrKysrKysr
-KysrKysrKysrKysrKysrKw0KPiA+ID4gIDEgZmlsZSBjaGFuZ2VkLCA0NCBpbnNlcnRpb25zKCsp
-DQo+ID4gPiANCj4gPiA+IGRpZmYgLS1naXQgYS9pbmNsdWRlL3VhcGkvZHJtL3hlX2RybS5oIGIv
-aW5jbHVkZS91YXBpL2RybS94ZV9kcm0uaA0KPiA+ID4gaW5kZXggNjYxZDc5MjkyMTBjLi41NTdj
-OWFlNmYzNjQgMTAwNjQ0DQo+ID4gPiAtLS0gYS9pbmNsdWRlL3VhcGkvZHJtL3hlX2RybS5oDQo+
-ID4gPiArKysgYi9pbmNsdWRlL3VhcGkvZHJtL3hlX2RybS5oDQo+ID4gPiBAQCAtMTE5LDYgKzEx
-OSw3IEBAIHN0cnVjdCB4ZV91c2VyX2V4dGVuc2lvbiB7DQo+ID4gPiAgI2RlZmluZSBEUk1fWEVf
-V0FJVF9VU0VSX0ZFTkNFCQkweDBiDQo+ID4gPiAgI2RlZmluZSBEUk1fWEVfVk1fTUFEVklTRQkJ
-MHgwYw0KPiA+ID4gICNkZWZpbmUgRFJNX1hFX0VOR0lORV9HRVRfUFJPUEVSVFkJMHgwZA0KPiA+
-ID4gKyNkZWZpbmUgRFJNX1hFX0VOR0lORV9RVUVSWQkJMHgwZg0KPiA+IA0KPiA+IHMvMHgwZi8w
-eDBlDQo+ID4gDQo+IA0KPiBZZXAuDQo+IA0KPiA+IFRvIGF2b2lkIGNvbmZ1c2lvbiB3aXRoIERS
-TV9YRV9FTkdJTkVfR0VUX1BST1BFUlRZLCB3b3VsZCBiZSBiZXR0ZXIgdG8gbmFtZSB0aGlzIGFu
-ZCByZWxhdGVkIHN0dWZmIGFzIERSTV9YRV9FTkdJTkVfQ0xBU1NfUVVFUlkuDQo+ID4gDQo+IA0K
-PiBJIGRvbid0IGxvdmUgRFJNX1hFX0VOR0lORV9DTEFTU19RVUVSWSBhcyB0aGUgcXVlcnkgaXMg
-Zm9yIHRoZSBjbGFzcywNCj4gaWQsIGd0IHR1cGxlLg0KPiANCj4gV2UgZGVmaW5pdGVseSBuZWVk
-IHRvIGRvIHdvcmsgaW4gZ2VuZXJhbCBvbiB0aGUgbmFtaW5nIHRvIGF2b2lkDQo+IGNvbmZ1c2lv
-biBiZXR3ZWVuIGEgaGFyZHdhcmUgZW5naW5lIGFuZCBhIHVzZXIgZW5naW5lLiBQZXJoYXBzIGp1
-c3QgZG8gYQ0KPiBsYXJnZSBmaW5kIHJlcGxhY2UgYWNyb3NzIFhlIHdoZXJlIGEgdXNlciBlbmdp
-bmUgLT4gY29udGV4dD8NCj4gDQo+IEFub3RoZXIgb3B0aW9uIHdvdWxkIGJlIHRoZSB1QVBJIHdp
-dGggSFcgZW5naW5lIG5hbWluZyBhcyBuZWVkZWQuIGUuZy4NCj4gDQo+IHMvRFJNX1hFX0VOR0lO
-RV9DTEFTU19RVUVSWS9EUk1fWEVfSFdfRU5HSU5FX0NMQVNTX1FVRVJZDQo+IHMvZHJtX3hlX2Vu
-Z2luZV9jbGFzc19pbnN0YW5jZS9kcm1feGVfaHdfZW5naW5lX2NsYXNzX2luc3RhbmNlDQo+IHMv
-RFJNX1hFX0RFVklDRV9RVUVSWV9FTkdJTkVTL0RSTV9YRV9ERVZJQ0VfUVVFUllfSFdfRU5HSU5F
-Uw0KDQpJIGxpa2VkIG9wdGlvbiAyIHRvby4NCg0KQWJvdXQgdGhlIG5ldyBVQVBJLCB3aGF0IHVz
-YWdlIGRvIHlvdSBoYXZlIGluIG1pbmQ/DQpJIGNhbid0IHRoaW5rIGFueSBpbmZvcm1hdGlvbiB0
-aGF0IE1lc2Egd291bGQgbmVlZCBmcm9tIGh3X2VuZ2luZSBhdCB0aGlzIG1vbWVudC4NCk1heWJl
-IGFkZCBzb21lIGNvbW1lbnRzIGFib3V0IHRoaXMgaW4geGVfZHJtLmguDQoNCj4gDQo+IEknZCBs
-ZWFuIHRvd2FyZHMgb3B0aW9uICMyIGJ1dCBvcGVuIHRvIGVpdGhlci4NCj4gDQo+IE1hdHQNCj4g
-DQo+ID4gPiAgDQo+ID4gPiAgLyogTXVzdCBiZSBrZXB0IGNvbXBhY3QgLS0gbm8gaG9sZXMgKi8N
-Cj4gPiA+ICAjZGVmaW5lIERSTV9JT0NUTF9YRV9ERVZJQ0VfUVVFUlkJCURSTV9JT1dSKERSTV9D
-T01NQU5EX0JBU0UgKyBEUk1fWEVfREVWSUNFX1FVRVJZLCBzdHJ1Y3QgZHJtX3hlX2RldmljZV9x
-dWVyeSkNCj4gPiA+IEBAIC0xMzUsNiArMTM2LDcgQEAgc3RydWN0IHhlX3VzZXJfZXh0ZW5zaW9u
-IHsNCj4gPiA+ICAjZGVmaW5lIERSTV9JT0NUTF9YRV9FTkdJTkVfU0VUX1BST1BFUlRZCURSTV9J
-T1coIERSTV9DT01NQU5EX0JBU0UgKyBEUk1fWEVfRU5HSU5FX1NFVF9QUk9QRVJUWSwgc3RydWN0
-IGRybV94ZV9lbmdpbmVfc2V0X3Byb3BlcnR5KQ0KPiA+ID4gICNkZWZpbmUgRFJNX0lPQ1RMX1hF
-X1dBSVRfVVNFUl9GRU5DRQkJRFJNX0lPV1IoRFJNX0NPTU1BTkRfQkFTRSArIERSTV9YRV9XQUlU
-X1VTRVJfRkVOQ0UsIHN0cnVjdCBkcm1feGVfd2FpdF91c2VyX2ZlbmNlKQ0KPiA+ID4gICNkZWZp
-bmUgRFJNX0lPQ1RMX1hFX1ZNX01BRFZJU0UJCQlEUk1fSU9XKCBEUk1fQ09NTUFORF9CQVNFICsg
-RFJNX1hFX1ZNX01BRFZJU0UsIHN0cnVjdCBkcm1feGVfdm1fbWFkdmlzZSkNCj4gPiA+ICsjZGVm
-aW5lIERSTV9JT0NUTF9YRV9FTkdJTkVfUVVFUlkJCURSTV9JT1dSKERSTV9DT01NQU5EX0JBU0Ug
-KyBEUk1fWEVfRU5HSU5FX1FVRVJZLCBzdHJ1Y3QgZHJtX3hlX2VuZ2luZV9xdWVyeSkNCj4gPiAN
-Cj4gPiANCj4gPiANCj4gPiA+ICANCj4gPiA+ICBzdHJ1Y3QgZHJtX3hlX2VuZ2luZV9jbGFzc19p
-bnN0YW5jZSB7DQo+ID4gPiAgCV9fdTE2IGVuZ2luZV9jbGFzczsNCj4gPiA+IEBAIC0yNTMsNiAr
-MjU1LDQ4IEBAIHN0cnVjdCBkcm1feGVfZGV2aWNlX3F1ZXJ5IHsNCj4gPiA+ICAJX191NjQgcmVz
-ZXJ2ZWRbMl07DQo+ID4gPiAgfTsNCj4gPiA+ICANCj4gPiA+ICtzdHJ1Y3QgZHJtX3hlX2VuZ2lu
-ZV9xdWVyeV9wcm9wZXJ0eSB7DQo+ID4gPiArCS8qKiBAcHJvcGVydHk6IHBvaW50ZXIgdG8gdGhl
-IGZpcnN0IHByb3BlcnR5IHN0cnVjdCwgaWYgYW55ICovDQo+ID4gPiArCV9fdTY0IHByb3BlcnR5
-Ow0KPiA+ID4gKw0KPiA+ID4gKwkvKiogQG5hbWU6IG5hbWUgb2YgdGhlIHByb3BlcnR5ICovDQo+
-ID4gPiArCV9fdTY0IG5hbWU7DQo+ID4gPiArDQo+ID4gPiArCS8qKiBAdmFsdWU6IHZhbHVlIHBy
-b3BlcnR5ICovDQo+ID4gPiArCV9fdTY0IHZhbHVlOw0KPiA+ID4gKw0KPiA+ID4gKwkvKiogQHJl
-c2VydmVkOiByZXNlcnZlZCAqLw0KPiA+ID4gKwlfX3U2NCByZXNlcnZlZFsyXTsNCj4gPiA+ICt9
-Ow0KPiA+ID4gKw0KPiA+ID4gK3N0cnVjdCBkcm1feGVfZW5naW5lX3F1ZXJ5IHsNCj4gPiA+ICsJ
-LyoqIEBleHRlbnNpb25zOiBwb2ludGVyIHRvIHRoZSBmaXJzdCBleHRlbnNpb24gc3RydWN0LCBp
-ZiBhbnkgKi8NCj4gPiA+ICsJX191NjQgZXh0ZW5zaW9uczsNCj4gPiA+ICsNCj4gPiA+ICsJLyoq
-IEBlY2k6IGVuZ2luZSBjbGFzcyBpbnN0YW5jZSB0byBxdWVyeSAqLw0KPiA+ID4gKwlzdHJ1Y3Qg
-ZHJtX3hlX2VuZ2luZV9jbGFzc19pbnN0YW5jZSBlY2k7DQo+ID4gPiArDQo+ID4gPiArCS8qKiBA
-Y2FwYWJpbGl0aWVzOiBiaXQgbWFzayBvZiBjYXBhYmlsaXRpZXMsIHNwZWNpZmljIHRvIGVhY2gg
-Y2xhc3MgKi8NCj4gPiA+ICsJX191NjQgY2FwYWJpbGl0aWVzOw0KPiA+ID4gKw0KPiA+ID4gKwkv
-KioNCj4gPiA+ICsJICogQHNpemU6IFNpemUgb2YgdGhlIHF1ZXJpZWQgcHJvcGVydGllcywgaWYg
-dXNlciBwYXNzZXMgaW4gemVybyB0aGUgS01EDQo+ID4gPiArCSAqIHJldHVybnMgdGhlIHNpemUg
-b2YgdGhlIHByb3BlcnRpZXMgYXJyYXksIGlmIHVzZXIgcGFzc2VzIGluIHRoZSBzaXplDQo+ID4g
-PiArCSAqIG9mIHRoZSBwcm9wZXJ0aWVzIGFycmF5IHRoZSBLTUQgY29waWVzIHRoZSBwcm9wZXJ0
-aWVzIHRvIHRoZSB1c2VyDQo+ID4gPiArCSAqIHBvaW50ZXIuDQo+ID4gPiArCSAqLw0KPiA+ID4g
-KwlfX3UzMiBzaXplOw0KPiA+ID4gKw0KPiA+ID4gKwkvKioNCj4gPiA+ICsJICogQHByb3BlcnRp
-ZXM6IHVzZXIgcG9pbnRlciB0byB3aGljaCBhbiBhcnJheSBvZiAgc3RydWN0DQo+ID4gPiArCSAq
-IGRybV94ZV9lbmdpbmVfcXVlcnlfcHJvcGVydHkgYXJlIGNvcGllZCB0byBpZiBzaXplIGlzIG5v
-bi16ZXJvDQo+ID4gPiArCSAqLw0KPiA+ID4gKwlfX3U2NCBwcm9wZXJ0aWVzOw0KPiA+ID4gKw0K
-PiA+ID4gKwkvKiogQHJlc2VydmVkOiByZXNlcnZlZCAqLw0KPiA+ID4gKwlfX3U2NCByZXNlcnZl
-ZFsyXTsNCj4gPiA+ICt9Ow0KPiA+ID4gKw0KPiA+ID4gIHN0cnVjdCBkcm1feGVfZ2VtX2NyZWF0
-ZSB7DQo+ID4gPiAgCS8qKiBAZXh0ZW5zaW9uczogUG9pbnRlciB0byB0aGUgZmlyc3QgZXh0ZW5z
-aW9uIHN0cnVjdCwgaWYgYW55ICovDQo+ID4gPiAgCV9fdTY0IGV4dGVuc2lvbnM7DQo+ID4gDQoN
-Cg==
+On Wed, Mar 22, 2023 at 04:27:54PM +0200, Jani Nikula wrote:
+> On Wed, 22 Mar 2023, Lucas De Marchi <lucas.demarchi@intel.com> wrote:
+> > On Wed, Mar 22, 2023 at 11:15:05AM +0200, Jani Nikula wrote:
+> >>On Tue, 21 Mar 2023, Lucas De Marchi <lucas.demarchi@intel.com> wrote:
+> >>> On Tue, Mar 21, 2023 at 06:08:39PM +0200, Jani Nikula wrote:
+> >>>>On Tue, 21 Mar 2023, Jani Nikula <jani.nikula@intel.com> wrote:
+> >>>>> On Tue, 21 Mar 2023, Jani Nikula <jani.nikula@intel.com> wrote:
+> >>>>>> Split out the RPS parts so they can be conditionally compiled out later.
+> >>>>>>
+> >>>>>> Signed-off-by: Jani Nikula <jani.nikula@intel.com>
+> >>>>>> Reviewed-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
+> >>>>>> Link: https://patchwork.freedesktop.org/patch/msgid/20230302164936.3034161-1-jani.nikula@intel.com
+> >>>>>> (cherry picked from commit 6dbbff25b39565c801c87379bc85933fb436518e)
+> >>>>>>
+> >>>>>> ---
+> >>>>>>
+> >>>>>> Here's an example of an upstream i915 commit that can help clean up
+> >>>>>> cherry-pick as well as cleanup of the #ifdefs in one go, otherwise it
+> >>>>>> breaks bisect.
+> >>>>>
+> >>>>> *sigh* I had something more here, but having #ifdef first on a line
+> >>>>> dropped it as comments, and turned it into nonsense.
+> >>>>>
+> >>>>> It's a backport of upstream i915 commit to help clean up #ifdefs, but
+> >>>>> how do we want to handle them?
+> >>>>
+> >>>>Moreover, even if we're stalling with adding such #ifdefs to upstream
+> >>>>i915 now, we can however clean up existing usage in the xe branch to be
+> >>>>more suitable for upstream. For example, I'd take the #ifdefs here
+> >>>>pretty much without issues.
+> >>>
+> >>> instead of a cherry-pick + squashed-ifdef-removal I think it's better
+> >>> to do:
+> >>>
+> >>> 1) cherry-pick
+> >>> 2) remove ifdefs and commit with
+> >>>
+> >>> 	git commit -s --fixup=38a139546384
+> >>>
+> >>>    ... or whatever commit added them (there are a few before that commit
+> >>>    above)
+> >>
+> >>Even if that results in a broken build for a commit?
+> >
+> > yes, I guess we don't have many options. Better stick to the one that
+> > can produce a clean result at the end
+> >
+> >>I also have i915 patches locally that I think are probably fine upstream
+> >>*with* the xe submission, but not standalone. They clean up #ifdefs. The
+> >>trouble is, they often break the build on top of drm-xe-next, unless I
+> >>also fix the commit adding #ifdefs. And in a rebase, they should go
+> >>*before* 38a139546384.
+> >>
+> >>Here's a good example: https://paste.debian.net/1274882/
+> >>
+> >>That commit should go before 38a139546384, with -DI915=1 added to i915
+> >>build, but it also touches xe to keep building properly.
+> >
+> > I guess the option is to state that in the commit message.
+> > Maybe hacking a git command
+> >
+> > 	git commit -a --fixup=38a139546384^
+> >
+> > and then make sure the commit says something about NOFIXUP. So whoever
+> > is rebasing knows this is about a commit move only. I can type a script
+> > to change the rebase.todo automatically to do that if needed.
+> > Maybe git would be open to accept the logic for a `git commit
+> > --fixup=[move-after|move-before]:`
+> 
+> Even that doesn't work nicely, because there's so much cruft already
+> that we can't have clean i915 commits on top of drm-xe-next.
+> 
+> The whole file movement to compat-i915-headers is also still part of the
+> history.
+> 
+> When do we start squashing those away?
+
+I believe the easiest way will be to remove the display portion of the
+initial mega-squash and create a display only patch/series and make that
+separated.
+
+Also starting to think to leave display out for the initial merge of Xe.
+Then add display later.
+
+> 
+> BR,
+> Jani.
+> 
+> >>Here, I admit a git-pile setup would help this part of the job.
+> >>
+> >>> The reason is that I don't think we will be able to avoid 1 more rebase
+> >>> before being merged upstream.  We can't do merge-approach neither
+> >>> because of these commits we don't really want to ever show up in
+> >>> upstream (and because we are on top of drm-tip rather than e.g.
+> >>> drm-next). So doing the above at least makes a rebase more bearable:
+> >>
+> >>I thought the rebase was going to be on v6.2, I argued for basing on
+> >>drm-intel-next, but it ended up being on drm-tip after all. I was kind
+> >>of surprised.
+
+:) my bad!
+
+> >
+> > I still prefer it on <release-tag>  or at the most drm-next.
+
+well, in the end we will need to be on top of the drm-next. But meanwhile
+we are flexible. I just wanted us to be on some point of a 6.2 with the
+most of the display.
+
+> But does it
+> > matter much if we still keep these commits that can't go as-is upstream?
+> > If we didn't have them we could simply have a merge approach and be on
+> > a <release-tag>, which would be much simpler.
+> >
+> > Lucas De Marchi
+> >
+> >>
+> >>> Whenever we do a rebase (with --autosquash) the cherry-pick should
+> >>> automatically be dropped by git and the fixup should automatically remove
+> >>> the addition of the ifdefs in the commit that added them.
+> >>
+> >>If only there was a way to tell git rebase how to reorder the
+> >>patches. That would be needed for the ones that aren't upstream.
+> >>
+> >>BR,
+> >>Jani.
+> >>
+> >>
+> >>>
+> >>> Lucas De Marchi
+> >>>
+> >>>>
+> >>>>BR,
+> >>>>Jani.
+> >>>>
+> >>>>
+> >>>>>
+> >>>>>
+> >>>>>> ---
+> >>>>>>  drivers/gpu/drm/i915/Makefile                 |  1 +
+> >>>>>>  .../gpu/drm/i915/display/intel_atomic_plane.c | 85 ++-----------------
+> >>>>>>  .../gpu/drm/i915/display/intel_display_rps.c  | 81 ++++++++++++++++++
+> >>>>>>  .../gpu/drm/i915/display/intel_display_rps.h  | 34 ++++++++
+> >>>>>>  4 files changed, 123 insertions(+), 78 deletions(-)
+> >>>>>>  create mode 100644 drivers/gpu/drm/i915/display/intel_display_rps.c
+> >>>>>>  create mode 100644 drivers/gpu/drm/i915/display/intel_display_rps.h
+> >>>>>>
+> >>>>>> diff --git a/drivers/gpu/drm/i915/Makefile b/drivers/gpu/drm/i915/Makefile
+> >>>>>> index ae9259ab3261..f689132e1506 100644
+> >>>>>> --- a/drivers/gpu/drm/i915/Makefile
+> >>>>>> +++ b/drivers/gpu/drm/i915/Makefile
+> >>>>>> @@ -239,6 +239,7 @@ i915-y += \
+> >>>>>>  	display/intel_display_power.o \
+> >>>>>>  	display/intel_display_power_map.o \
+> >>>>>>  	display/intel_display_power_well.o \
+> >>>>>> +	display/intel_display_rps.o \
+> >>>>>>  	display/intel_dmc.o \
+> >>>>>>  	display/intel_dpio_phy.o \
+> >>>>>>  	display/intel_dpll.o \
+> >>>>>> diff --git a/drivers/gpu/drm/i915/display/intel_atomic_plane.c b/drivers/gpu/drm/i915/display/intel_atomic_plane.c
+> >>>>>> index 3d37f44ec835..e666a5c1fd91 100644
+> >>>>>> --- a/drivers/gpu/drm/i915/display/intel_atomic_plane.c
+> >>>>>> +++ b/drivers/gpu/drm/i915/display/intel_atomic_plane.c
+> >>>>>> @@ -34,13 +34,10 @@
+> >>>>>>  #include <drm/drm_atomic_helper.h>
+> >>>>>>  #include <drm/drm_fourcc.h>
+> >>>>>>
+> >>>>>> -#ifdef I915
+> >>>>>> -#include "gt/intel_rps.h"
+> >>>>>> -#endif
+> >>>>>> -
+> >>>>>>  #include "i915_config.h"
+> >>>>>>  #include "intel_atomic_plane.h"
+> >>>>>>  #include "intel_cdclk.h"
+> >>>>>> +#include "intel_display_rps.h"
+> >>>>>>  #include "intel_display_trace.h"
+> >>>>>>  #include "intel_display_types.h"
+> >>>>>>  #include "intel_fb.h"
+> >>>>>> @@ -951,66 +948,6 @@ int intel_atomic_plane_check_clipping(struct intel_plane_state *plane_state,
+> >>>>>>  	return 0;
+> >>>>>>  }
+> >>>>>>
+> >>>>>> -#ifdef I915
+> >>>>>> -struct wait_rps_boost {
+> >>>>>> -	struct wait_queue_entry wait;
+> >>>>>> -
+> >>>>>> -	struct drm_crtc *crtc;
+> >>>>>> -	struct i915_request *request;
+> >>>>>> -};
+> >>>>>> -
+> >>>>>> -static int do_rps_boost(struct wait_queue_entry *_wait,
+> >>>>>> -			unsigned mode, int sync, void *key)
+> >>>>>> -{
+> >>>>>> -	struct wait_rps_boost *wait = container_of(_wait, typeof(*wait), wait);
+> >>>>>> -	struct i915_request *rq = wait->request;
+> >>>>>> -
+> >>>>>> -	/*
+> >>>>>> -	 * If we missed the vblank, but the request is already running it
+> >>>>>> -	 * is reasonable to assume that it will complete before the next
+> >>>>>> -	 * vblank without our intervention, so leave RPS alone.
+> >>>>>> -	 */
+> >>>>>> -	if (!i915_request_started(rq))
+> >>>>>> -		intel_rps_boost(rq);
+> >>>>>> -	i915_request_put(rq);
+> >>>>>> -
+> >>>>>> -	drm_crtc_vblank_put(wait->crtc);
+> >>>>>> -
+> >>>>>> -	list_del(&wait->wait.entry);
+> >>>>>> -	kfree(wait);
+> >>>>>> -	return 1;
+> >>>>>> -}
+> >>>>>> -
+> >>>>>> -static void add_rps_boost_after_vblank(struct drm_crtc *crtc,
+> >>>>>> -				       struct dma_fence *fence)
+> >>>>>> -{
+> >>>>>> -	struct wait_rps_boost *wait;
+> >>>>>> -
+> >>>>>> -	if (!dma_fence_is_i915(fence))
+> >>>>>> -		return;
+> >>>>>> -
+> >>>>>> -	if (DISPLAY_VER(to_i915(crtc->dev)) < 6)
+> >>>>>> -		return;
+> >>>>>> -
+> >>>>>> -	if (drm_crtc_vblank_get(crtc))
+> >>>>>> -		return;
+> >>>>>> -
+> >>>>>> -	wait = kmalloc(sizeof(*wait), GFP_KERNEL);
+> >>>>>> -	if (!wait) {
+> >>>>>> -		drm_crtc_vblank_put(crtc);
+> >>>>>> -		return;
+> >>>>>> -	}
+> >>>>>> -
+> >>>>>> -	wait->request = to_request(dma_fence_get(fence));
+> >>>>>> -	wait->crtc = crtc;
+> >>>>>> -
+> >>>>>> -	wait->wait.func = do_rps_boost;
+> >>>>>> -	wait->wait.flags = 0;
+> >>>>>> -
+> >>>>>> -	add_wait_queue(drm_crtc_vblank_waitqueue(crtc), &wait->wait);
+> >>>>>> -}
+> >>>>>> -#endif
+> >>>>>> -
+> >>>>>>  /**
+> >>>>>>   * intel_prepare_plane_fb - Prepare fb for usage on plane
+> >>>>>>   * @_plane: drm plane to prepare for
+> >>>>>> @@ -1102,13 +1039,13 @@ intel_prepare_plane_fb(struct drm_plane *_plane,
+> >>>>>>  		dma_resv_iter_begin(&cursor, obj->base.resv,
+> >>>>>>  				    DMA_RESV_USAGE_WRITE);
+> >>>>>>  		dma_resv_for_each_fence_unlocked(&cursor, fence) {
+> >>>>>> -			add_rps_boost_after_vblank(new_plane_state->hw.crtc,
+> >>>>>> -						   fence);
+> >>>>>> +			intel_display_rps_boost_after_vblank(new_plane_state->hw.crtc,
+> >>>>>> +							     fence);
+> >>>>>>  		}
+> >>>>>>  		dma_resv_iter_end(&cursor);
+> >>>>>>  	} else {
+> >>>>>> -		add_rps_boost_after_vblank(new_plane_state->hw.crtc,
+> >>>>>> -					   new_plane_state->uapi.fence);
+> >>>>>> +		intel_display_rps_boost_after_vblank(new_plane_state->hw.crtc,
+> >>>>>> +						     new_plane_state->uapi.fence);
+> >>>>>>  	}
+> >>>>>>
+> >>>>>>  	/*
+> >>>>>> @@ -1119,10 +1056,7 @@ intel_prepare_plane_fb(struct drm_plane *_plane,
+> >>>>>>  	 * that are not quite steady state without resorting to forcing
+> >>>>>>  	 * maximum clocks following a vblank miss (see do_rps_boost()).
+> >>>>>>  	 */
+> >>>>>> -	if (!state->rps_interactive) {
+> >>>>>> -		intel_rps_mark_interactive(&to_gt(dev_priv)->rps, true);
+> >>>>>> -		state->rps_interactive = true;
+> >>>>>> -	}
+> >>>>>> +	intel_display_rps_mark_interactive(dev_priv, state, true);
+> >>>>>>
+> >>>>>>  	return 0;
+> >>>>>>
+> >>>>>> @@ -1159,12 +1093,7 @@ intel_cleanup_plane_fb(struct drm_plane *plane,
+> >>>>>>  	if (!obj)
+> >>>>>>  		return;
+> >>>>>>
+> >>>>>> -#ifdef I915
+> >>>>>> -	if (state->rps_interactive) {
+> >>>>>> -		intel_rps_mark_interactive(&to_gt(dev_priv)->rps, false);
+> >>>>>> -		state->rps_interactive = false;
+> >>>>>> -	}
+> >>>>>> -#endif
+> >>>>>> +	intel_display_rps_mark_interactive(dev_priv, state, false);
+> >>>>>>
+> >>>>>>  	/* Should only be called after a successful intel_prepare_plane_fb()! */
+> >>>>>>  	intel_plane_unpin_fb(old_plane_state);
+> >>>>>> diff --git a/drivers/gpu/drm/i915/display/intel_display_rps.c b/drivers/gpu/drm/i915/display/intel_display_rps.c
+> >>>>>> new file mode 100644
+> >>>>>> index 000000000000..918d0327169a
+> >>>>>> --- /dev/null
+> >>>>>> +++ b/drivers/gpu/drm/i915/display/intel_display_rps.c
+> >>>>>> @@ -0,0 +1,81 @@
+> >>>>>> +// SPDX-License-Identifier: MIT
+> >>>>>> +/*
+> >>>>>> + * Copyright © 2023 Intel Corporation
+> >>>>>> + */
+> >>>>>> +
+> >>>>>> +#include <drm/drm_crtc.h>
+> >>>>>> +#include <drm/drm_vblank.h>
+> >>>>>> +
+> >>>>>> +#include "gt/intel_rps.h"
+> >>>>>> +#include "i915_drv.h"
+> >>>>>> +#include "intel_display_rps.h"
+> >>>>>> +#include "intel_display_types.h"
+> >>>>>> +
+> >>>>>> +struct wait_rps_boost {
+> >>>>>> +	struct wait_queue_entry wait;
+> >>>>>> +
+> >>>>>> +	struct drm_crtc *crtc;
+> >>>>>> +	struct i915_request *request;
+> >>>>>> +};
+> >>>>>> +
+> >>>>>> +static int do_rps_boost(struct wait_queue_entry *_wait,
+> >>>>>> +			unsigned mode, int sync, void *key)
+> >>>>>> +{
+> >>>>>> +	struct wait_rps_boost *wait = container_of(_wait, typeof(*wait), wait);
+> >>>>>> +	struct i915_request *rq = wait->request;
+> >>>>>> +
+> >>>>>> +	/*
+> >>>>>> +	 * If we missed the vblank, but the request is already running it
+> >>>>>> +	 * is reasonable to assume that it will complete before the next
+> >>>>>> +	 * vblank without our intervention, so leave RPS alone.
+> >>>>>> +	 */
+> >>>>>> +	if (!i915_request_started(rq))
+> >>>>>> +		intel_rps_boost(rq);
+> >>>>>> +	i915_request_put(rq);
+> >>>>>> +
+> >>>>>> +	drm_crtc_vblank_put(wait->crtc);
+> >>>>>> +
+> >>>>>> +	list_del(&wait->wait.entry);
+> >>>>>> +	kfree(wait);
+> >>>>>> +	return 1;
+> >>>>>> +}
+> >>>>>> +
+> >>>>>> +void intel_display_rps_boost_after_vblank(struct drm_crtc *crtc,
+> >>>>>> +					  struct dma_fence *fence)
+> >>>>>> +{
+> >>>>>> +	struct wait_rps_boost *wait;
+> >>>>>> +
+> >>>>>> +	if (!dma_fence_is_i915(fence))
+> >>>>>> +		return;
+> >>>>>> +
+> >>>>>> +	if (DISPLAY_VER(to_i915(crtc->dev)) < 6)
+> >>>>>> +		return;
+> >>>>>> +
+> >>>>>> +	if (drm_crtc_vblank_get(crtc))
+> >>>>>> +		return;
+> >>>>>> +
+> >>>>>> +	wait = kmalloc(sizeof(*wait), GFP_KERNEL);
+> >>>>>> +	if (!wait) {
+> >>>>>> +		drm_crtc_vblank_put(crtc);
+> >>>>>> +		return;
+> >>>>>> +	}
+> >>>>>> +
+> >>>>>> +	wait->request = to_request(dma_fence_get(fence));
+> >>>>>> +	wait->crtc = crtc;
+> >>>>>> +
+> >>>>>> +	wait->wait.func = do_rps_boost;
+> >>>>>> +	wait->wait.flags = 0;
+> >>>>>> +
+> >>>>>> +	add_wait_queue(drm_crtc_vblank_waitqueue(crtc), &wait->wait);
+> >>>>>> +}
+> >>>>>> +
+> >>>>>> +void intel_display_rps_mark_interactive(struct drm_i915_private *i915,
+> >>>>>> +					struct intel_atomic_state *state,
+> >>>>>> +					bool interactive)
+> >>>>>> +{
+> >>>>>> +	if (state->rps_interactive == interactive)
+> >>>>>> +		return;
+> >>>>>> +
+> >>>>>> +	intel_rps_mark_interactive(&to_gt(i915)->rps, interactive);
+> >>>>>> +	state->rps_interactive = interactive;
+> >>>>>> +}
+> >>>>>> diff --git a/drivers/gpu/drm/i915/display/intel_display_rps.h b/drivers/gpu/drm/i915/display/intel_display_rps.h
+> >>>>>> new file mode 100644
+> >>>>>> index 000000000000..2cfb8a303b77
+> >>>>>> --- /dev/null
+> >>>>>> +++ b/drivers/gpu/drm/i915/display/intel_display_rps.h
+> >>>>>> @@ -0,0 +1,34 @@
+> >>>>>> +/* SPDX-License-Identifier: MIT */
+> >>>>>> +/*
+> >>>>>> + * Copyright © 2023 Intel Corporation
+> >>>>>> + */
+> >>>>>> +
+> >>>>>> +#ifndef __INTEL_DISPLAY_RPS_H__
+> >>>>>> +#define __INTEL_DISPLAY_RPS_H__
+> >>>>>> +
+> >>>>>> +#include <linux/types.h>
+> >>>>>> +
+> >>>>>> +struct dma_fence;
+> >>>>>> +struct drm_crtc;
+> >>>>>> +struct drm_i915_private;
+> >>>>>> +struct intel_atomic_state;
+> >>>>>> +
+> >>>>>> +#ifdef I915
+> >>>>>> +void intel_display_rps_boost_after_vblank(struct drm_crtc *crtc,
+> >>>>>> +					  struct dma_fence *fence);
+> >>>>>> +void intel_display_rps_mark_interactive(struct drm_i915_private *i915,
+> >>>>>> +					struct intel_atomic_state *state,
+> >>>>>> +					bool interactive);
+> >>>>>> +#else
+> >>>>>> +static inline void intel_display_rps_boost_after_vblank(struct drm_crtc *crtc,
+> >>>>>> +							struct dma_fence *fence)
+> >>>>>> +{
+> >>>>>> +}
+> >>>>>> +static inline void intel_display_rps_mark_interactive(struct drm_i915_private *i915,
+> >>>>>> +						      struct intel_atomic_state *state,
+> >>>>>> +						      bool interactive)
+> >>>>>> +{
+> >>>>>> +}
+> >>>>>> +#endif
+> >>>>>> +
+> >>>>>> +#endif /* __INTEL_DISPLAY_RPS_H__ */
+> >>>>
+> >>>>--
+> >>>>Jani Nikula, Intel Open Source Graphics Center
+> >>
+> >>-- 
+> >>Jani Nikula, Intel Open Source Graphics Center
+> 
+> -- 
+> Jani Nikula, Intel Open Source Graphics Center
