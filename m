@@ -4,132 +4,52 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id C924CC6FD1F
-	for <intel-xe@archiver.kernel.org>; Wed, 22 Mar 2023 04:11:11 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id C65D6C6FD1F
+	for <intel-xe@archiver.kernel.org>; Wed, 22 Mar 2023 09:15:12 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8721410E04A;
-	Wed, 22 Mar 2023 04:11:11 +0000 (UTC)
-Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C66F010E04A
- for <intel-xe@lists.freedesktop.org>; Wed, 22 Mar 2023 04:11:10 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9DFEA10E8C7;
+	Wed, 22 Mar 2023 09:15:12 +0000 (UTC)
+Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A3CE210E8C7
+ for <intel-xe@lists.freedesktop.org>; Wed, 22 Mar 2023 09:15:10 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1679458270; x=1710994270;
- h=date:from:to:cc:subject:message-id:references:
- in-reply-to:mime-version;
- bh=xIZTjLpzUirpqmxrm8djteUgHlJFRzEKmChaNsRzLLA=;
- b=TueF+ij8i7bkC1xzqnc9Gp9MVk2A0JgG+BKB2X6Yp4HdH0uT++TYC6sJ
- wUKhWR3fFatHu6bGcuTZw5YGMpRGIKMY4WvR+FKadz6f6I+Dzh39Fzka9
- BVJt8Pcv00PFb1D3yow38eg1/aiECqxK1eCcWvcCMwujWDjNjj2mak1cu
- sFOKLkZJrhfamZVlxfLcD6pXYhH9uk9lfOzTcPkqYKlXGedd1NFKmZWvw
- ObjPx8dH9Ndo3HjcBF2jZAFL4rOEQWcL+9FU6V6ncyPsLiXc7+sp3tEw3
- +DlyjwT9/KkhVb8rtcygOLfJ6ckkdVl+SvFRiDEFlFE126aycGwSdbUko A==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10656"; a="340658708"
-X-IronPort-AV: E=Sophos;i="5.98,280,1673942400"; d="scan'208";a="340658708"
-Received: from fmsmga004.fm.intel.com ([10.253.24.48])
- by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 21 Mar 2023 21:11:10 -0700
+ t=1679476510; x=1711012510;
+ h=from:to:cc:subject:in-reply-to:references:date:
+ message-id:mime-version:content-transfer-encoding;
+ bh=/+S5Smae55BrbbBMwzp1ZdXlq1J49wEENS7CPmm2C4I=;
+ b=Di5c2WEURHaMcajDMx4yxGBRsM7jcCH1Ic2X01wvbmKIYzoaea6auWV7
+ /XNZL8jnAqusrKR/Jpee7Ko+OysLGHhL2kMJBwNuCUy2WkMZCde6MMoC9
+ xBYF3SoWtBFKL3DaO4s5vV/p0cSVPbS6Tv4lQmtgbdGa3wLEBC4mjy8Qy
+ uq8UszQCT+sAzLQqrjrK7Eip3K19fBqCt1g1tLNoyJqsruvN21SPyNjVL
+ r/E5f0oLSJV7EocNY0uFuzpI54m6TttIUwTYjr9DyyRkArS7/d66uHEym
+ 2YrRSSjLm4zYtZFqtLSvxM09YRCo0UdM0gMe9ns+Tk8fcjthik20RC3MS Q==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10656"; a="319557757"
+X-IronPort-AV: E=Sophos;i="5.98,281,1673942400"; d="scan'208";a="319557757"
+Received: from fmsmga007.fm.intel.com ([10.253.24.52])
+ by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 22 Mar 2023 02:15:10 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10656"; a="750899181"
-X-IronPort-AV: E=Sophos;i="5.98,280,1673942400"; d="scan'208";a="750899181"
-Received: from orsmsx601.amr.corp.intel.com ([10.22.229.14])
- by fmsmga004.fm.intel.com with ESMTP; 21 Mar 2023 21:11:09 -0700
-Received: from orsmsx611.amr.corp.intel.com (10.22.229.24) by
- ORSMSX601.amr.corp.intel.com (10.22.229.14) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.21; Tue, 21 Mar 2023 21:11:09 -0700
-Received: from orsedg603.ED.cps.intel.com (10.7.248.4) by
- orsmsx611.amr.corp.intel.com (10.22.229.24) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.21 via Frontend Transport; Tue, 21 Mar 2023 21:11:09 -0700
-Received: from NAM11-CO1-obe.outbound.protection.outlook.com (104.47.56.175)
- by edgegateway.intel.com (134.134.137.100) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2507.21; Tue, 21 Mar 2023 21:11:08 -0700
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=AVNipFuq7uFRx/PeqQ39hUnD56t1XRbfBIr0pshjAD4H4sMYinSHD8NOlftCX6p87RTp+jlogRuVl245vRBlfOaftjRqu7PzUS3svqkz43/1B5j08ETzZ2JWZ1r8nlII+4g2nUq1ZNBGz5XM/U7+pMx+kXR4zXt4F5iXMg67J3W3pTxZ3rFS1155WmOLM4lD4okOYSP/N3X11iFZBHCfwWiWlm/shuCHpAy0seU9ajcPDQYhHvZTtJCaBdclX5PagipCyWA4jRJrOlE/Ym/de38iJ64c4SA5iNHL1VOsZ+phOrHELyRM/7ds+BS+P0n9WOgS4Ti71GkcsW/Mm4Afug==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=xIZTjLpzUirpqmxrm8djteUgHlJFRzEKmChaNsRzLLA=;
- b=Agx0mdw5X9bgfCzBlfZfSM7DzLWWHVnBP4eZf+NPBRqzehQZnzE0sdYm2TpnOcoRSXNP34wHwaaTTPL1gujPXKYYS5FyFK2JiSrHc6zVFgQvQgWA6Ru6mQ8xOTM4gfqVYfTXKKFGh6euawM++/BttR1/va79TK2R3foQPwpaHoXQ4ca1FY1jgeLVd3JvTGfMHl2r6WK3wly8HX2kk4scbsbF4rrp08R+l12hKXmYYSvF+c2ZJ4yY6sgtsVKqc4AYB2HYGtFqyr/j1X0tJEx/+sd0tbbsFp94SQEADjZgvmt1dHmONLUkj861YpWvKbJqZqWms05QeL2775yw8KjuSw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
- dkim=pass header.d=intel.com; arc=none
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=intel.com;
-Received: from CY5PR11MB6139.namprd11.prod.outlook.com (2603:10b6:930:29::17)
- by MN2PR11MB4550.namprd11.prod.outlook.com (2603:10b6:208:267::7)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6178.37; Wed, 22 Mar
- 2023 04:11:07 +0000
-Received: from CY5PR11MB6139.namprd11.prod.outlook.com
- ([fe80::2629:fb12:6221:3745]) by CY5PR11MB6139.namprd11.prod.outlook.com
- ([fe80::2629:fb12:6221:3745%5]) with mapi id 15.20.6178.037; Wed, 22 Mar 2023
- 04:11:07 +0000
-Date: Tue, 21 Mar 2023 21:11:01 -0700
-From: Lucas De Marchi <lucas.demarchi@intel.com>
-To: Matthew Brost <matthew.brost@intel.com>
-Message-ID: <20230322041101.olgzg74xbu4ei57b@ldmartin-desk2.lan>
-References: <20230320174944.650704-1-matthew.brost@intel.com>
-Content-Type: text/plain; charset="us-ascii"; format=flowed
-Content-Disposition: inline
-In-Reply-To: <20230320174944.650704-1-matthew.brost@intel.com>
-X-ClientProxiedBy: BYAPR02CA0046.namprd02.prod.outlook.com
- (2603:10b6:a03:54::23) To CY5PR11MB6139.namprd11.prod.outlook.com
- (2603:10b6:930:29::17)
+X-IronPort-AV: E=McAfee;i="6600,9927,10656"; a="684232508"
+X-IronPort-AV: E=Sophos;i="5.98,281,1673942400"; d="scan'208";a="684232508"
+Received: from jprokopo-mobl2.ger.corp.intel.com (HELO localhost)
+ ([10.252.61.221])
+ by fmsmga007-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 22 Mar 2023 02:15:08 -0700
+From: Jani Nikula <jani.nikula@intel.com>
+To: Lucas De Marchi <lucas.demarchi@intel.com>
+In-Reply-To: <20230321230448.rkgnfemrg4ehwfat@ldmartin-desk2.lan>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+References: <20230321160420.1352889-1-jani.nikula@intel.com>
+ <87v8iu6qc1.fsf@intel.com> <87sfdy6q9k.fsf@intel.com>
+ <20230321230448.rkgnfemrg4ehwfat@ldmartin-desk2.lan>
+Date: Wed, 22 Mar 2023 11:15:05 +0200
+Message-ID: <87pm916tba.fsf@intel.com>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: CY5PR11MB6139:EE_|MN2PR11MB4550:EE_
-X-MS-Office365-Filtering-Correlation-Id: d4d7c9a7-937b-4890-1784-08db2a8b75da
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: zPINv7cGzz8KBekL0OqSf1hxMc2pdBn29xdfiJll1cAeBNlm+t/Dy8LJd/7LJjqwliqR1FLSkCG1W3KWKUhrkcH5Xn9ooUr7bh1luGPMoW6sKYzqJAv7hzXy7FAFIMQT/vvnZexMPLrtfi43Pqy+7BCr/soCEDDEXaxbzBvHhYVc5/tZ8K/mPMCRT5VSWchoYWFB9XD7Xa3YT1cm3cc5T1IeLkEdTJcpZ7656j5n/wz1ps1KF2xmT/1NrVw+37CBOW+ZIQM6CrVZ0NwYa0ba5kD1UcGpneQ2VM+cw4yLxJKDnD5lBmE8ImxccgbY66d/4VTwFbT/APWKS3TnC82trDxWuhhTym35vr+IrZxahscL7v7MU1UwJcghhoNcTTx1c7737Ys6xo1QUHjnfepguecHkugxYg9ZXIQJJSjjCAZqMYOZGwjO4AnSpmCa0+EHHOOpjrE9IKijrQNq5VkvJQ2EjVGA9uEtNupzv4GeDyVfNc5qQtxOLmYUpAEG4yyKy96f3YGKoxlAQN5UEJbR+MTm/uEQhdT/53EC/SxCdIq4crIIF9mSvt7v7fRNFM2aegUOh56yI03dS9biPP4g6cB6WXjkb3OLYYeSAJCYAE+IWziaTRlaY7PA3bHkljMr+QoA95YDAiFiNzJ4J6/Mzw==
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:CY5PR11MB6139.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230025)(396003)(136003)(376002)(346002)(366004)(39860400002)(451199018)(6512007)(6636002)(6666004)(1076003)(26005)(5660300002)(478600001)(186003)(6506007)(9686003)(6486002)(83380400001)(316002)(38100700002)(86362001)(82960400001)(66946007)(4744005)(6862004)(41300700001)(2906002)(36756003)(66476007)(8676002)(4326008)(66556008)(8936002);
- DIR:OUT; SFP:1102; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?N/5WowfOc2AWpjqafsuM2WKJQMT7vbaEMmtBTnxQNLy+FUQKODd+9+N1yDSK?=
- =?us-ascii?Q?L21HztZddQ3UqnH+OUWwl1f5+iKy49bH9BSUdb6YNum/UvL7sip0RtAaQknc?=
- =?us-ascii?Q?z8KR+TxdXUzdgDJeGFNa6kBqXGbSJqnIJ9Ly1Lw3Lc5KrgtA/gf/A4YG7VQV?=
- =?us-ascii?Q?rxXmjSrrUH61d8oAKE9FY9seJgepZKVqDMp0r4xoaSibglmjSnlTjM4ACSyX?=
- =?us-ascii?Q?YpM/3iIv9dfHw34De36kPZDrYXd2rsVpqUPw7FK8dmVQz/mnPkL6U0WqdBw2?=
- =?us-ascii?Q?0Oh1eGn8oKzOpM0qBhrkYgqMC+/h29Yjn/fBfxCcoCL1AZg7bxHeKXRHiM5X?=
- =?us-ascii?Q?rkgXp+bHEW0FLs2Lae58PoQ1pysxrTVhmq2HwzLmRCrdEbBi4o+Rr8TW8kn8?=
- =?us-ascii?Q?GjQs+ORIu/mmvMjUkQ2n5cGQHKSkXkYSbMv7BD3Us6AA9ouHoAS3ifrcPYTh?=
- =?us-ascii?Q?g4nZ3C1T587E9pCk8Kq5kkckKrIFf+O/DeBS5TWhW/7fkw2oGe4YkeqPaGay?=
- =?us-ascii?Q?qZ2d17eBAAdCtnRBPsUcvMJ81fF4SV9UtEw9eTRUPfOb0Nq5aihExk6Z9keG?=
- =?us-ascii?Q?d/KAnZMg3M6dKpcyiwExY/e30fyRoOKpEp/3m14Zf8wt6R5CiexETQQ5Eis2?=
- =?us-ascii?Q?bok+gw64w0dFQOq9SIHsRR6R11MO6pyHHcQzWg7HTVLKi8Q+DbrYsp8xLIgH?=
- =?us-ascii?Q?OBt6ecIcXJnApI8cCjChd59fwnv0kTJmRMKvl2Hkh/oK1bkPerjsfFVg8wug?=
- =?us-ascii?Q?c+2FLhXMckx3tAdfimFopYnkj88KnfRDIXh1KfoLerYUfjI2paFPMhk3lpoH?=
- =?us-ascii?Q?hgXqWKPjvf8d81stOTYDOJyJmON1LmdZv20eT1mqqOmX6c2e8P277+f6lwqT?=
- =?us-ascii?Q?vY5GtIZy4G7VTcoT4nmTNGw3FUiEHkh/b6N1voCLaNG7G8dF/AXnh7rJARHj?=
- =?us-ascii?Q?Te8Wb2Na6x4riy/QpGi7S9ffw1TRlpjvUU9QrzWNT4zkNLfqD/vuUcWe4Ynu?=
- =?us-ascii?Q?UmoSJ7ZF1iV3hgCQFTFX3qaRLJOxUughLU9+AHMjyI397znsmeAKZGPAypdc?=
- =?us-ascii?Q?aT6iNkEsm0PGJhMnzF1groJt2Hkn8pQy4n6eK5/jVEXF5apald+kOyfONzw7?=
- =?us-ascii?Q?RlBxjMEQaMHbhxuQs8GyqnNlrJqton+dpQTraLwpkbkIuI3WPmXqrHgzNzpX?=
- =?us-ascii?Q?eGYGBMBYvWwe44NdHRlp0RsXPVyZUAAOK6/TR33kRHSbQY097EVFATXx2FNE?=
- =?us-ascii?Q?bTk5OPXbBYQ5/nV84L2cwdY7AWk/5v4xqKX2Ws5b5xttZCnvf93pNWY+uh2t?=
- =?us-ascii?Q?Lpky623qpsXXsnG+V/hj6gSOzl10f1tKTHxLdNVhklQ4qtJemA/JBs+KaHiT?=
- =?us-ascii?Q?7dbqwt3LANzy/c3tPcB3C5Vpuwq4jzZlEoKfVO71iXLgTPhGgSAQkQPnopms?=
- =?us-ascii?Q?E2Dwb9G8kJPQx6j1f0X84BE7j/lHeThnlYXt6lGyToCgOytt8nsHRnnSIwFw?=
- =?us-ascii?Q?YMuAXLyy8SdrtdkyueGnIw4237g31hZaejxn6l7ql+eYvpL/WDxT57jCIXmi?=
- =?us-ascii?Q?UZryiskomqKLE9sIzu+hVMvAmZclBV98YXQSbpldFG72Dcoa/FRCFhfpbrSk?=
- =?us-ascii?Q?pQ=3D=3D?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: d4d7c9a7-937b-4890-1784-08db2a8b75da
-X-MS-Exchange-CrossTenant-AuthSource: CY5PR11MB6139.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 22 Mar 2023 04:11:07.2385 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: lhbwS4zk2ShVzfZulLjEeAeCyaMnPVR6GJW8zinvdhA17X1txBSX/hsHVagmcKcdrgdZ6SWxQJCC5i+cU7bUXbR7GryQB/HJxxT3b47FCwo=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: MN2PR11MB4550
-X-OriginatorOrg: intel.com
-Subject: Re: [Intel-xe] [PATCH] drm/xe: Drop zero length arrays
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+Subject: Re: [Intel-xe] [PATCH] drm/i915/rps: split out display rps parts to
+ a separate file
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -141,16 +61,391 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-xe@lists.freedesktop.org
+Cc: intel-xe@lists.freedesktop.org,
+ Ville =?utf-8?B?U3lyasOkbMOk?= <ville.syrjala@linux.intel.com>,
+ rodrigo.vivi@intel.com
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Mon, Mar 20, 2023 at 10:49:44AM -0700, Matthew Brost wrote:
->Zero-length arrays as fake flexible arrays are deprecated and we are
->moving towards adopting C99 flexible-array members instead.
+On Tue, 21 Mar 2023, Lucas De Marchi <lucas.demarchi@intel.com> wrote:
+> On Tue, Mar 21, 2023 at 06:08:39PM +0200, Jani Nikula wrote:
+>>On Tue, 21 Mar 2023, Jani Nikula <jani.nikula@intel.com> wrote:
+>>> On Tue, 21 Mar 2023, Jani Nikula <jani.nikula@intel.com> wrote:
+>>>> Split out the RPS parts so they can be conditionally compiled out late=
+r.
+>>>>
+>>>> Signed-off-by: Jani Nikula <jani.nikula@intel.com>
+>>>> Reviewed-by: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
+>>>> Link: https://patchwork.freedesktop.org/patch/msgid/20230302164936.303=
+4161-1-jani.nikula@intel.com
+>>>> (cherry picked from commit 6dbbff25b39565c801c87379bc85933fb436518e)
+>>>>
+>>>> ---
+>>>>
+>>>> Here's an example of an upstream i915 commit that can help clean up
+>>>> cherry-pick as well as cleanup of the #ifdefs in one go, otherwise it
+>>>> breaks bisect.
+>>>
+>>> *sigh* I had something more here, but having #ifdef first on a line
+>>> dropped it as comments, and turned it into nonsense.
+>>>
+>>> It's a backport of upstream i915 commit to help clean up #ifdefs, but
+>>> how do we want to handle them?
+>>
+>>Moreover, even if we're stalling with adding such #ifdefs to upstream
+>>i915 now, we can however clean up existing usage in the xe branch to be
+>>more suitable for upstream. For example, I'd take the #ifdefs here
+>>pretty much without issues.
 >
->Signed-off-by: Matthew Brost <matthew.brost@intel.com>
+> instead of a cherry-pick + squashed-ifdef-removal I think it's better
+> to do:
+>
+> 1) cherry-pick
+> 2) remove ifdefs and commit with
+>
+> 	git commit -s --fixup=3D38a139546384
+>
+>    ... or whatever commit added them (there are a few before that commit
+>    above)
 
-Reviewed-by: Lucas De Marchi <lucas.demarchi@intel.com>
+Even if that results in a broken build for a commit?
 
-Lucas De Marchi
+I also have i915 patches locally that I think are probably fine upstream
+*with* the xe submission, but not standalone. They clean up #ifdefs. The
+trouble is, they often break the build on top of drm-xe-next, unless I
+also fix the commit adding #ifdefs. And in a rebase, they should go
+*before* 38a139546384.
+
+Here's a good example: https://paste.debian.net/1274882/
+
+That commit should go before 38a139546384, with -DI915=3D1 added to i915
+build, but it also touches xe to keep building properly.
+
+Here, I admit a git-pile setup would help this part of the job.
+
+> The reason is that I don't think we will be able to avoid 1 more rebase
+> before being merged upstream.  We can't do merge-approach neither
+> because of these commits we don't really want to ever show up in
+> upstream (and because we are on top of drm-tip rather than e.g.
+> drm-next). So doing the above at least makes a rebase more bearable:
+
+I thought the rebase was going to be on v6.2, I argued for basing on
+drm-intel-next, but it ended up being on drm-tip after all. I was kind
+of surprised.
+
+> Whenever we do a rebase (with --autosquash) the cherry-pick should
+> automatically be dropped by git and the fixup should automatically remove
+> the addition of the ifdefs in the commit that added them.
+
+If only there was a way to tell git rebase how to reorder the
+patches. That would be needed for the ones that aren't upstream.
+
+BR,
+Jani.
+
+
+>
+> Lucas De Marchi
+>
+>>
+>>BR,
+>>Jani.
+>>
+>>
+>>>
+>>>
+>>>> ---
+>>>>  drivers/gpu/drm/i915/Makefile                 |  1 +
+>>>>  .../gpu/drm/i915/display/intel_atomic_plane.c | 85 ++-----------------
+>>>>  .../gpu/drm/i915/display/intel_display_rps.c  | 81 ++++++++++++++++++
+>>>>  .../gpu/drm/i915/display/intel_display_rps.h  | 34 ++++++++
+>>>>  4 files changed, 123 insertions(+), 78 deletions(-)
+>>>>  create mode 100644 drivers/gpu/drm/i915/display/intel_display_rps.c
+>>>>  create mode 100644 drivers/gpu/drm/i915/display/intel_display_rps.h
+>>>>
+>>>> diff --git a/drivers/gpu/drm/i915/Makefile b/drivers/gpu/drm/i915/Make=
+file
+>>>> index ae9259ab3261..f689132e1506 100644
+>>>> --- a/drivers/gpu/drm/i915/Makefile
+>>>> +++ b/drivers/gpu/drm/i915/Makefile
+>>>> @@ -239,6 +239,7 @@ i915-y +=3D \
+>>>>  	display/intel_display_power.o \
+>>>>  	display/intel_display_power_map.o \
+>>>>  	display/intel_display_power_well.o \
+>>>> +	display/intel_display_rps.o \
+>>>>  	display/intel_dmc.o \
+>>>>  	display/intel_dpio_phy.o \
+>>>>  	display/intel_dpll.o \
+>>>> diff --git a/drivers/gpu/drm/i915/display/intel_atomic_plane.c b/drive=
+rs/gpu/drm/i915/display/intel_atomic_plane.c
+>>>> index 3d37f44ec835..e666a5c1fd91 100644
+>>>> --- a/drivers/gpu/drm/i915/display/intel_atomic_plane.c
+>>>> +++ b/drivers/gpu/drm/i915/display/intel_atomic_plane.c
+>>>> @@ -34,13 +34,10 @@
+>>>>  #include <drm/drm_atomic_helper.h>
+>>>>  #include <drm/drm_fourcc.h>
+>>>>
+>>>> -#ifdef I915
+>>>> -#include "gt/intel_rps.h"
+>>>> -#endif
+>>>> -
+>>>>  #include "i915_config.h"
+>>>>  #include "intel_atomic_plane.h"
+>>>>  #include "intel_cdclk.h"
+>>>> +#include "intel_display_rps.h"
+>>>>  #include "intel_display_trace.h"
+>>>>  #include "intel_display_types.h"
+>>>>  #include "intel_fb.h"
+>>>> @@ -951,66 +948,6 @@ int intel_atomic_plane_check_clipping(struct inte=
+l_plane_state *plane_state,
+>>>>  	return 0;
+>>>>  }
+>>>>
+>>>> -#ifdef I915
+>>>> -struct wait_rps_boost {
+>>>> -	struct wait_queue_entry wait;
+>>>> -
+>>>> -	struct drm_crtc *crtc;
+>>>> -	struct i915_request *request;
+>>>> -};
+>>>> -
+>>>> -static int do_rps_boost(struct wait_queue_entry *_wait,
+>>>> -			unsigned mode, int sync, void *key)
+>>>> -{
+>>>> -	struct wait_rps_boost *wait =3D container_of(_wait, typeof(*wait), w=
+ait);
+>>>> -	struct i915_request *rq =3D wait->request;
+>>>> -
+>>>> -	/*
+>>>> -	 * If we missed the vblank, but the request is already running it
+>>>> -	 * is reasonable to assume that it will complete before the next
+>>>> -	 * vblank without our intervention, so leave RPS alone.
+>>>> -	 */
+>>>> -	if (!i915_request_started(rq))
+>>>> -		intel_rps_boost(rq);
+>>>> -	i915_request_put(rq);
+>>>> -
+>>>> -	drm_crtc_vblank_put(wait->crtc);
+>>>> -
+>>>> -	list_del(&wait->wait.entry);
+>>>> -	kfree(wait);
+>>>> -	return 1;
+>>>> -}
+>>>> -
+>>>> -static void add_rps_boost_after_vblank(struct drm_crtc *crtc,
+>>>> -				       struct dma_fence *fence)
+>>>> -{
+>>>> -	struct wait_rps_boost *wait;
+>>>> -
+>>>> -	if (!dma_fence_is_i915(fence))
+>>>> -		return;
+>>>> -
+>>>> -	if (DISPLAY_VER(to_i915(crtc->dev)) < 6)
+>>>> -		return;
+>>>> -
+>>>> -	if (drm_crtc_vblank_get(crtc))
+>>>> -		return;
+>>>> -
+>>>> -	wait =3D kmalloc(sizeof(*wait), GFP_KERNEL);
+>>>> -	if (!wait) {
+>>>> -		drm_crtc_vblank_put(crtc);
+>>>> -		return;
+>>>> -	}
+>>>> -
+>>>> -	wait->request =3D to_request(dma_fence_get(fence));
+>>>> -	wait->crtc =3D crtc;
+>>>> -
+>>>> -	wait->wait.func =3D do_rps_boost;
+>>>> -	wait->wait.flags =3D 0;
+>>>> -
+>>>> -	add_wait_queue(drm_crtc_vblank_waitqueue(crtc), &wait->wait);
+>>>> -}
+>>>> -#endif
+>>>> -
+>>>>  /**
+>>>>   * intel_prepare_plane_fb - Prepare fb for usage on plane
+>>>>   * @_plane: drm plane to prepare for
+>>>> @@ -1102,13 +1039,13 @@ intel_prepare_plane_fb(struct drm_plane *_plan=
+e,
+>>>>  		dma_resv_iter_begin(&cursor, obj->base.resv,
+>>>>  				    DMA_RESV_USAGE_WRITE);
+>>>>  		dma_resv_for_each_fence_unlocked(&cursor, fence) {
+>>>> -			add_rps_boost_after_vblank(new_plane_state->hw.crtc,
+>>>> -						   fence);
+>>>> +			intel_display_rps_boost_after_vblank(new_plane_state->hw.crtc,
+>>>> +							     fence);
+>>>>  		}
+>>>>  		dma_resv_iter_end(&cursor);
+>>>>  	} else {
+>>>> -		add_rps_boost_after_vblank(new_plane_state->hw.crtc,
+>>>> -					   new_plane_state->uapi.fence);
+>>>> +		intel_display_rps_boost_after_vblank(new_plane_state->hw.crtc,
+>>>> +						     new_plane_state->uapi.fence);
+>>>>  	}
+>>>>
+>>>>  	/*
+>>>> @@ -1119,10 +1056,7 @@ intel_prepare_plane_fb(struct drm_plane *_plane,
+>>>>  	 * that are not quite steady state without resorting to forcing
+>>>>  	 * maximum clocks following a vblank miss (see do_rps_boost()).
+>>>>  	 */
+>>>> -	if (!state->rps_interactive) {
+>>>> -		intel_rps_mark_interactive(&to_gt(dev_priv)->rps, true);
+>>>> -		state->rps_interactive =3D true;
+>>>> -	}
+>>>> +	intel_display_rps_mark_interactive(dev_priv, state, true);
+>>>>
+>>>>  	return 0;
+>>>>
+>>>> @@ -1159,12 +1093,7 @@ intel_cleanup_plane_fb(struct drm_plane *plane,
+>>>>  	if (!obj)
+>>>>  		return;
+>>>>
+>>>> -#ifdef I915
+>>>> -	if (state->rps_interactive) {
+>>>> -		intel_rps_mark_interactive(&to_gt(dev_priv)->rps, false);
+>>>> -		state->rps_interactive =3D false;
+>>>> -	}
+>>>> -#endif
+>>>> +	intel_display_rps_mark_interactive(dev_priv, state, false);
+>>>>
+>>>>  	/* Should only be called after a successful intel_prepare_plane_fb()=
+! */
+>>>>  	intel_plane_unpin_fb(old_plane_state);
+>>>> diff --git a/drivers/gpu/drm/i915/display/intel_display_rps.c b/driver=
+s/gpu/drm/i915/display/intel_display_rps.c
+>>>> new file mode 100644
+>>>> index 000000000000..918d0327169a
+>>>> --- /dev/null
+>>>> +++ b/drivers/gpu/drm/i915/display/intel_display_rps.c
+>>>> @@ -0,0 +1,81 @@
+>>>> +// SPDX-License-Identifier: MIT
+>>>> +/*
+>>>> + * Copyright =C2=A9 2023 Intel Corporation
+>>>> + */
+>>>> +
+>>>> +#include <drm/drm_crtc.h>
+>>>> +#include <drm/drm_vblank.h>
+>>>> +
+>>>> +#include "gt/intel_rps.h"
+>>>> +#include "i915_drv.h"
+>>>> +#include "intel_display_rps.h"
+>>>> +#include "intel_display_types.h"
+>>>> +
+>>>> +struct wait_rps_boost {
+>>>> +	struct wait_queue_entry wait;
+>>>> +
+>>>> +	struct drm_crtc *crtc;
+>>>> +	struct i915_request *request;
+>>>> +};
+>>>> +
+>>>> +static int do_rps_boost(struct wait_queue_entry *_wait,
+>>>> +			unsigned mode, int sync, void *key)
+>>>> +{
+>>>> +	struct wait_rps_boost *wait =3D container_of(_wait, typeof(*wait), w=
+ait);
+>>>> +	struct i915_request *rq =3D wait->request;
+>>>> +
+>>>> +	/*
+>>>> +	 * If we missed the vblank, but the request is already running it
+>>>> +	 * is reasonable to assume that it will complete before the next
+>>>> +	 * vblank without our intervention, so leave RPS alone.
+>>>> +	 */
+>>>> +	if (!i915_request_started(rq))
+>>>> +		intel_rps_boost(rq);
+>>>> +	i915_request_put(rq);
+>>>> +
+>>>> +	drm_crtc_vblank_put(wait->crtc);
+>>>> +
+>>>> +	list_del(&wait->wait.entry);
+>>>> +	kfree(wait);
+>>>> +	return 1;
+>>>> +}
+>>>> +
+>>>> +void intel_display_rps_boost_after_vblank(struct drm_crtc *crtc,
+>>>> +					  struct dma_fence *fence)
+>>>> +{
+>>>> +	struct wait_rps_boost *wait;
+>>>> +
+>>>> +	if (!dma_fence_is_i915(fence))
+>>>> +		return;
+>>>> +
+>>>> +	if (DISPLAY_VER(to_i915(crtc->dev)) < 6)
+>>>> +		return;
+>>>> +
+>>>> +	if (drm_crtc_vblank_get(crtc))
+>>>> +		return;
+>>>> +
+>>>> +	wait =3D kmalloc(sizeof(*wait), GFP_KERNEL);
+>>>> +	if (!wait) {
+>>>> +		drm_crtc_vblank_put(crtc);
+>>>> +		return;
+>>>> +	}
+>>>> +
+>>>> +	wait->request =3D to_request(dma_fence_get(fence));
+>>>> +	wait->crtc =3D crtc;
+>>>> +
+>>>> +	wait->wait.func =3D do_rps_boost;
+>>>> +	wait->wait.flags =3D 0;
+>>>> +
+>>>> +	add_wait_queue(drm_crtc_vblank_waitqueue(crtc), &wait->wait);
+>>>> +}
+>>>> +
+>>>> +void intel_display_rps_mark_interactive(struct drm_i915_private *i915,
+>>>> +					struct intel_atomic_state *state,
+>>>> +					bool interactive)
+>>>> +{
+>>>> +	if (state->rps_interactive =3D=3D interactive)
+>>>> +		return;
+>>>> +
+>>>> +	intel_rps_mark_interactive(&to_gt(i915)->rps, interactive);
+>>>> +	state->rps_interactive =3D interactive;
+>>>> +}
+>>>> diff --git a/drivers/gpu/drm/i915/display/intel_display_rps.h b/driver=
+s/gpu/drm/i915/display/intel_display_rps.h
+>>>> new file mode 100644
+>>>> index 000000000000..2cfb8a303b77
+>>>> --- /dev/null
+>>>> +++ b/drivers/gpu/drm/i915/display/intel_display_rps.h
+>>>> @@ -0,0 +1,34 @@
+>>>> +/* SPDX-License-Identifier: MIT */
+>>>> +/*
+>>>> + * Copyright =C2=A9 2023 Intel Corporation
+>>>> + */
+>>>> +
+>>>> +#ifndef __INTEL_DISPLAY_RPS_H__
+>>>> +#define __INTEL_DISPLAY_RPS_H__
+>>>> +
+>>>> +#include <linux/types.h>
+>>>> +
+>>>> +struct dma_fence;
+>>>> +struct drm_crtc;
+>>>> +struct drm_i915_private;
+>>>> +struct intel_atomic_state;
+>>>> +
+>>>> +#ifdef I915
+>>>> +void intel_display_rps_boost_after_vblank(struct drm_crtc *crtc,
+>>>> +					  struct dma_fence *fence);
+>>>> +void intel_display_rps_mark_interactive(struct drm_i915_private *i915,
+>>>> +					struct intel_atomic_state *state,
+>>>> +					bool interactive);
+>>>> +#else
+>>>> +static inline void intel_display_rps_boost_after_vblank(struct drm_cr=
+tc *crtc,
+>>>> +							struct dma_fence *fence)
+>>>> +{
+>>>> +}
+>>>> +static inline void intel_display_rps_mark_interactive(struct drm_i915=
+_private *i915,
+>>>> +						      struct intel_atomic_state *state,
+>>>> +						      bool interactive)
+>>>> +{
+>>>> +}
+>>>> +#endif
+>>>> +
+>>>> +#endif /* __INTEL_DISPLAY_RPS_H__ */
+>>
+>>--=20
+>>Jani Nikula, Intel Open Source Graphics Center
+
+--=20
+Jani Nikula, Intel Open Source Graphics Center
