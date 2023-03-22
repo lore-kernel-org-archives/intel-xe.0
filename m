@@ -4,30 +4,30 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id F081FC6FD1D
-	for <intel-xe@archiver.kernel.org>; Wed, 22 Mar 2023 02:49:48 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 62FA2C6FD20
+	for <intel-xe@archiver.kernel.org>; Wed, 22 Mar 2023 02:51:52 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B5E4510E21F;
-	Wed, 22 Mar 2023 02:49:48 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0AB8410E02A;
+	Wed, 22 Mar 2023 02:51:52 +0000 (UTC)
 Received: from emeril.freedesktop.org (emeril.freedesktop.org
  [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id B238210E02A;
- Wed, 22 Mar 2023 02:49:46 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTP id 9401C10E02A;
+ Wed, 22 Mar 2023 02:51:50 +0000 (UTC)
 Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id A9B53AA0ED;
- Wed, 22 Mar 2023 02:49:46 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============2467043020088623243=="
+ by emeril.freedesktop.org (Postfix) with ESMTP id 89B13AADDC;
+ Wed, 22 Mar 2023 02:51:50 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: "Matthew Brost" <matthew.brost@intel.com>
-Date: Wed, 22 Mar 2023 02:49:46 -0000
-Message-ID: <167945338666.13421.373695721045571318@emeril.freedesktop.org>
+Date: Wed, 22 Mar 2023 02:51:50 -0000
+Message-ID: <167945351053.13422.15500852891437445912@emeril.freedesktop.org>
 X-Patchwork-Hint: ignore
-References: <20230322022935.797427-1-matthew.brost@intel.com>
-In-Reply-To: <20230322022935.797427-1-matthew.brost@intel.com>
-Subject: [Intel-xe] =?utf-8?q?=E2=97=8B_CI=2EBAT=3A_info_for_Proposal_for?=
- =?utf-8?q?_engine_query_uAPI?=
+References: <20230322023450.797598-1-matthew.brost@intel.com>
+In-Reply-To: <20230322023450.797598-1-matthew.brost@intel.com>
+Subject: [Intel-xe] =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_f?=
+ =?utf-8?q?or_Proposal_for_engine_query_uAPI_=28rev2=29?=
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -44,61 +44,29 @@ Cc: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============2467043020088623243==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
 == Series Details ==
 
-Series: Proposal for engine query uAPI
+Series: Proposal for engine query uAPI (rev2)
 URL   : https://patchwork.freedesktop.org/series/115477/
-State : info
+State : success
 
 == Summary ==
 
-Participating hosts:
-bat-dg2-oem2
-bat-adlp-7
-Missing hosts results[0]:
-Results: [xe-pw-115477v1](https://intel-gfx-ci.01.org/tree/xe/xe-pw-115477v1/index.html)
+=== Applying kernel patches on branch 'drm-xe-next' with base: ===
+commit a2ed856be77000c19b22c859bb34e85c64e37ef9
+Author:     Matthew Brost <matthew.brost@intel.com>
+AuthorDate: Mon Mar 20 10:46:24 2023 -0700
+Commit:     Matthew Brost <matthew.brost@intel.com>
+CommitDate: Tue Mar 21 18:14:54 2023 -0700
+
+    drm/xe: Drop zero length arrays
+    
+    Zero-length arrays as fake flexible arrays are deprecated and we are
+    moving towards adopting C99 flexible-array members instead.
+    
+    Reviewed-by: Matthew Auld <matthew.auld@intel.com>
+    Signed-off-by: Matthew Brost <matthew.brost@intel.com>
+=== git am output follows ===
+Applying: drm/xe/uapi: Add query engines uAPI
 
 
-
---===============2467043020088623243==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>Proposal for engine query uAPI</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/115477/">https://patchwork.freedesktop.org/series/115477/</a></td></tr>
-<tr><td><b>State:</b></td><td>info</td></tr>
-
-</table>
-
-
-    <p>Participating hosts:<br />
-bat-dg2-oem2<br />
-bat-adlp-7<br />
-Missing hosts results[0]:<br />
-Results: <a href="https://intel-gfx-ci.01.org/tree/xe/xe-pw-115477v1/index.html">xe-pw-115477v1</a></p>
-
-</body>
-</html>
-
---===============2467043020088623243==--
