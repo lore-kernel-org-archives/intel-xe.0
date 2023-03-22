@@ -4,46 +4,47 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0EF52C6FD1F
-	for <intel-xe@archiver.kernel.org>; Wed, 22 Mar 2023 23:24:55 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3865AC74A5B
+	for <intel-xe@archiver.kernel.org>; Wed, 22 Mar 2023 23:24:58 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A90F910E41D;
-	Wed, 22 Mar 2023 23:24:55 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id F3E0110E41E;
+	Wed, 22 Mar 2023 23:24:57 +0000 (UTC)
 Received: from mga06.intel.com (mga06b.intel.com [134.134.136.31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C3FBF10E41D
- for <intel-xe@lists.freedesktop.org>; Wed, 22 Mar 2023 23:24:53 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6A38D10E41D
+ for <intel-xe@lists.freedesktop.org>; Wed, 22 Mar 2023 23:24:54 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1679527493; x=1711063493;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=rYVFUYPy0NQfoxuWZGePsdyr3XPavGokbfm7mX04vqc=;
- b=Q4GOWd7MMPLHOz9yHeHHfsOoNfkslbZYAbX7u/RFLy6shs3P0bE+OMd2
- y4ZaAEyg1iZrAcCpualihBvhSFG0NDX2hMX6Op9EuyW90aQ6swOTuDvM1
- pu0e27tSeeCaVfB6jJvvThe2KU8eTZQJH5LQ9Fs0hZO2CQJYKuZLHf1D6
- IAifgcG6CFSkK8qpVd4hGoKZI5dDoei9C9yWF543bbKPXkTmpTyThdwe5
- Kz9tfDDpi2a7m3xwr+Dtbzzulm/1c9tg+5pYAq479S49b7s6QzA/mYSMU
- AQL3u56Ad34FVHQDWP7WKIB2zbNNXuonL2RPDzSuc+ud2uJ7o9d7jtATS w==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10657"; a="401922723"
-X-IronPort-AV: E=Sophos;i="5.98,282,1673942400"; d="scan'208";a="401922723"
+ t=1679527494; x=1711063494;
+ h=from:to:cc:subject:date:message-id:in-reply-to:
+ references:mime-version:content-transfer-encoding;
+ bh=kumz/eAg0eXwnKZQ4YevrE3NoT0VToHbBBI/gB8ojy0=;
+ b=jvOHcIT+HFsCdq9nkkkFzCGl3iYbaLTWRVeUhiVrhnLc3NmMZ+jB50al
+ bf8vJlcG0ci88YQ++MswgVxCtwVvTcjTa2/v+6OfYHfEQgr2STiVvFji1
+ qcabw/8A+z7ySUbK2tSe0veJJ2iF9wqxoQ/7MpVUwS06Madk8PjB8Mt7/
+ tBHlErJ7mkvZFmGZDF5w9D+C20jyXzlh4nEq2zSLsll3mFIEekiOCFUlM
+ xLGU8EtIYz0ypHBzczApvJSosT6WUQMvIc11FDKgrUbB7Fc8m+nklLA14
+ 5FGRHcyoF+9l8v5rNThI8ChaTLHp3f6KqOsF25V1cxPt9zaqxWLTqYYzo w==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10657"; a="401922727"
+X-IronPort-AV: E=Sophos;i="5.98,282,1673942400"; d="scan'208";a="401922727"
 Received: from orsmga003.jf.intel.com ([10.7.209.27])
  by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 22 Mar 2023 16:24:53 -0700
+ 22 Mar 2023 16:24:54 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10657"; a="632149517"
-X-IronPort-AV: E=Sophos;i="5.98,282,1673942400"; d="scan'208";a="632149517"
+X-IronPort-AV: E=McAfee;i="6600,9927,10657"; a="632149525"
+X-IronPort-AV: E=Sophos;i="5.98,282,1673942400"; d="scan'208";a="632149525"
 Received: from anushasr-simics.jf.intel.com ([10.165.21.205])
  by orsmga003-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 22 Mar 2023 16:24:53 -0700
+ 22 Mar 2023 16:24:54 -0700
 From: Anusha Srivatsa <anusha.srivatsa@intel.com>
 To: intel-xe@lists.freedesktop.org
-Date: Wed, 22 Mar 2023 16:28:10 -0700
-Message-Id: <20230322232812.3624914-1-anusha.srivatsa@intel.com>
+Date: Wed, 22 Mar 2023 16:28:11 -0700
+Message-Id: <20230322232812.3624914-2-anusha.srivatsa@intel.com>
 X-Mailer: git-send-email 2.25.1
+In-Reply-To: <20230322232812.3624914-1-anusha.srivatsa@intel.com>
+References: <20230322232812.3624914-1-anusha.srivatsa@intel.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-xe] [PATCH 1/3] drm/xe/huc: Macro support for loading
- unversiond HuC
+Subject: [Intel-xe] [PATCH 2/3] drm/xe: Cleanup HuC Debugfs entries
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -55,130 +56,80 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Cc: Lucas De Marchi <lucas.demarchi@intel.com>,
+Cc: Matt Roper <matthew.d.roper@intel.com>,
  Anusha Srivatsa <anusha.srivatsa@intel.com>,
- Matt Roper <matthew.d.roper@intel.com>
+ Lucas De Marchi <lucas.demarchi@intel.com>
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Follow the new direction of firmware and add macro
-support for loading unversioned HuC. Keep HuC
-versioned loading support as well for platforms
-that fall under force_probe support
+For platforms under force_probe protection, HuC minor version
+can change. Debugfs entry shold clearly state the minimum version
+required for the platform.
 
-Add check to ensure driver does not do any version check
-for HuC if going through unversioned load.
+For platform not under force_probe protection driver need not
+do a version checks for HUC.
 
-v2: unversioned firmware to be the default for platforms
-not under force_probe. Maintain versioned firmware macro support
-for platforms under force-probe protection.
-
-Cc: Matt Roper <matthew.d.roper@intel.com>
 Cc: Lucas De Marchi <lucas.demarchi@intel.com>
+Cc: Matt Roper <matthew.d.roper@intel.com>
 Cc: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
 Signed-off-by: Anusha Srivatsa <anusha.srivatsa@intel.com>
 ---
- drivers/gpu/drm/xe/xe_uc_fw.c | 43 +++++++++++++++++++++++------------
- 1 file changed, 28 insertions(+), 15 deletions(-)
+ drivers/gpu/drm/xe/xe_device_types.h |  2 ++
+ drivers/gpu/drm/xe/xe_pci.c          |  1 +
+ drivers/gpu/drm/xe/xe_uc_fw.c        | 11 +++++++++++
+ 3 files changed, 14 insertions(+)
 
+diff --git a/drivers/gpu/drm/xe/xe_device_types.h b/drivers/gpu/drm/xe/xe_device_types.h
+index a02c4eb6bd0d..c87b65b3c447 100644
+--- a/drivers/gpu/drm/xe/xe_device_types.h
++++ b/drivers/gpu/drm/xe/xe_device_types.h
+@@ -99,6 +99,8 @@ struct xe_device {
+ 		bool has_link_copy_engine;
+ 		/** @enable_display: display enabled */
+ 		bool enable_display;
++		/** @require_force_probe: platform under force_probe protection */
++		bool require_force_probe;
+ 
+ #if IS_ENABLED(CONFIG_DRM_XE_DISPLAY)
+ 		struct xe_device_display_info {
+diff --git a/drivers/gpu/drm/xe/xe_pci.c b/drivers/gpu/drm/xe/xe_pci.c
+index 91fed9d3105e..2562e87160d6 100644
+--- a/drivers/gpu/drm/xe/xe_pci.c
++++ b/drivers/gpu/drm/xe/xe_pci.c
+@@ -422,6 +422,7 @@ static int xe_pci_probe(struct pci_dev *pdev, const struct pci_device_id *ent)
+ 	xe->info.has_4tile = desc->has_4tile;
+ 	xe->info.has_range_tlb_invalidation = desc->has_range_tlb_invalidation;
+ 	xe->info.has_link_copy_engine = desc->has_link_copy_engine;
++	xe->info.require_force_probe = desc->require_force_probe;
+ 
+ 	spd = subplatform_get(xe, desc);
+ 	xe->info.subplatform = spd ? spd->subplatform : XE_SUBPLATFORM_NONE;
 diff --git a/drivers/gpu/drm/xe/xe_uc_fw.c b/drivers/gpu/drm/xe/xe_uc_fw.c
-index 00408f1b73e1..4ade5b1b6d31 100644
+index 4ade5b1b6d31..b8452c91c170 100644
 --- a/drivers/gpu/drm/xe/xe_uc_fw.c
 +++ b/drivers/gpu/drm/xe/xe_uc_fw.c
-@@ -50,15 +50,19 @@ static struct xe_device *uc_fw_to_xe(struct xe_uc_fw *uc_fw)
- 	fw_def(DG1,          0, guc_def(dg1,  70, 5, 2)) \
- 	fw_def(TIGERLAKE,    0, guc_def(tgl,  70, 5, 2))
+@@ -441,10 +441,21 @@ int xe_uc_fw_upload(struct xe_uc_fw *uc_fw, u32 offset, u32 dma_flags)
  
--#define XE_HUC_FIRMWARE_DEFS(fw_def, huc_def) \
--	fw_def(DG1,          0, huc_def(dg1,  7, 9, 3)) \
--	fw_def(TIGERLAKE,    0, huc_def(tgl,  7, 9, 3))
-+#define XE_HUC_FIRMWARE_DEFS(fw_def, huc_def, huc_ver) \
-+	fw_def(DG1,          0, huc_def(dg1)) \
-+	fw_def(TIGERLAKE,    0, huc_def(tgl))
- 
- #define __MAKE_UC_FW_PATH_MAJOR(prefix_, name_, major_) \
- 	"i915/" \
- 	__stringify(prefix_) "_" name_ "_" \
- 	__stringify(major_) ".bin"
- 
-+#define __MAKE_HUC_FW_PATH(prefix_, name_) \
-+        "i915/" \
-+        __stringify(prefix_) "_" name_ ".bin"
+ void xe_uc_fw_print(struct xe_uc_fw *uc_fw, struct drm_printer *p)
+ {
++	struct xe_device *xe = uc_fw_to_xe(uc_fw);
+ 	drm_printf(p, "%s firmware: %s\n",
+ 		   xe_uc_fw_type_repr(uc_fw->type), uc_fw->path);
+ 	drm_printf(p, "\tstatus: %s\n",
+ 		   xe_uc_fw_status_repr(uc_fw->status));
++	if (uc_fw->type == XE_UC_FW_TYPE_HUC) {
++		if (xe->info.require_force_probe)
++			drm_printf(p, "\tversion: minimum wanted %u.%u, found %u.%u\n",
++				   uc_fw->major_ver_wanted, uc_fw->minor_ver_wanted,
++				   uc_fw->major_ver_found, uc_fw->minor_ver_found);
++		else
++			drm_printf(p, "\tversion: found %u.%u\n",
++				   uc_fw->major_ver_found, uc_fw->minor_ver_found);
++	}
 +
- #define __MAKE_UC_FW_PATH(prefix_, name_, major_, minor_, patch_) \
-         "i915/" \
-        __stringify(prefix_) name_ \
-@@ -69,15 +73,19 @@ static struct xe_device *uc_fw_to_xe(struct xe_uc_fw *uc_fw)
- #define MAKE_GUC_FW_PATH(prefix_, major_, minor_, patch_) \
- 	__MAKE_UC_FW_PATH_MAJOR(prefix_, "guc", major_)
- 
--#define MAKE_HUC_FW_PATH(prefix_, major_, minor_, bld_num_) \
--	__MAKE_UC_FW_PATH(prefix_, "_huc_", major_, minor_, bld_num_)
-+#define MAKE_HUC_FW_PATH(prefix_) \
-+	__MAKE_HUC_FW_PATH(prefix_, "huc")
-+
-+#define MAKE_HUC_FW_VERSION_PATH(prefix_, major_, minor_, patch_) \
-+	__MAKE_UC_FW_PATH(prefix_, "huc", major_, minor_, patch_)
-+
- 
- /* All blobs need to be declared via MODULE_FIRMWARE() */
- #define XE_UC_MODULE_FW(platform_, revid_, uc_) \
- 	MODULE_FIRMWARE(uc_);
- 
- XE_GUC_FIRMWARE_DEFS(XE_UC_MODULE_FW, MAKE_GUC_FW_PATH)
--XE_HUC_FIRMWARE_DEFS(XE_UC_MODULE_FW, MAKE_HUC_FW_PATH)
-+XE_HUC_FIRMWARE_DEFS(XE_UC_MODULE_FW, MAKE_HUC_FW_PATH, MAKE_HUC_FW_VERSION_PATH)
- 
- /* The below structs and macros are used to iterate across the list of blobs */
- struct __packed uc_fw_blob {
-@@ -93,9 +101,12 @@ struct __packed uc_fw_blob {
- 	UC_FW_BLOB(major_, minor_, \
- 		   MAKE_GUC_FW_PATH(prefix_, major_, minor_, patch_))
- 
--#define HUC_FW_BLOB(prefix_, major_, minor_, bld_num_) \
-+#define HUC_FW_BLOB(prefix_) \
-+	UC_FW_BLOB(0, 0, MAKE_HUC_FW_PATH(prefix_))
-+
-+#define HUC_FW_VERSION_BLOB(prefix_, major_, minor_, bld_num_) \
- 	UC_FW_BLOB(major_, minor_, \
--		   MAKE_HUC_FW_PATH(prefix_, major_, minor_, bld_num_))
-+		   MAKE_HUC_FW_VERSION_PATH(prefix_, major_, minor_, bld_num_))
- 
- struct __packed uc_fw_platform_requirement {
- 	enum xe_platform p;
-@@ -122,7 +133,7 @@ uc_fw_auto_select(struct xe_device *xe, struct xe_uc_fw *uc_fw)
- 		XE_GUC_FIRMWARE_DEFS(MAKE_FW_LIST, GUC_FW_BLOB)
- 	};
- 	static const struct uc_fw_platform_requirement blobs_huc[] = {
--		XE_HUC_FIRMWARE_DEFS(MAKE_FW_LIST, HUC_FW_BLOB)
-+		XE_HUC_FIRMWARE_DEFS(MAKE_FW_LIST, HUC_FW_BLOB, HUC_FW_VERSION_BLOB)
- 	};
- 	static const struct fw_blobs_by_type blobs_all[XE_UC_FW_NUM_TYPES] = {
- 		[XE_UC_FW_TYPE_GUC] = { blobs_guc, ARRAY_SIZE(blobs_guc) },
-@@ -299,15 +310,17 @@ int xe_uc_fw_init(struct xe_uc_fw *uc_fw)
- 	uc_fw->minor_ver_found = FIELD_GET(CSS_SW_VERSION_UC_MINOR,
- 					   css->sw_version);
- 
--	if (uc_fw->major_ver_found != uc_fw->major_ver_wanted ||
--	    uc_fw->minor_ver_found < uc_fw->minor_ver_wanted) {
--		drm_notice(&xe->drm, "%s firmware %s: unexpected version: %u.%u != %u.%u\n",
--			   xe_uc_fw_type_repr(uc_fw->type), uc_fw->path,
--			   uc_fw->major_ver_found, uc_fw->minor_ver_found,
--			   uc_fw->major_ver_wanted, uc_fw->minor_ver_wanted);
-+	if (uc_fw->major_ver_wanted) {
-+		if (uc_fw->major_ver_found != uc_fw->major_ver_wanted ||
-+		    uc_fw->minor_ver_found < uc_fw->minor_ver_wanted) {
-+			drm_notice(&xe->drm, "%s firmware %s: unexpected version: %u.%u != %u.%u\n",
-+				   xe_uc_fw_type_repr(uc_fw->type), uc_fw->path,
-+				   uc_fw->major_ver_found, uc_fw->minor_ver_found,
-+				   uc_fw->major_ver_wanted, uc_fw->minor_ver_wanted);
- 		if (!xe_uc_fw_is_overridden(uc_fw)) {
- 			err = -ENOEXEC;
- 			goto fail;
-+			}
- 		}
- 	}
- 
+ 	drm_printf(p, "\tversion: wanted %u.%u, found %u.%u\n",
+ 		   uc_fw->major_ver_wanted, uc_fw->minor_ver_wanted,
+ 		   uc_fw->major_ver_found, uc_fw->minor_ver_found);
 -- 
 2.25.1
 
