@@ -4,30 +4,46 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 34B74C6FD20
-	for <intel-xe@archiver.kernel.org>; Wed, 22 Mar 2023 00:13:31 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 31EBBC6FD1D
+	for <intel-xe@archiver.kernel.org>; Wed, 22 Mar 2023 00:22:46 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0CEDC10E1D4;
-	Wed, 22 Mar 2023 00:13:31 +0000 (UTC)
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id 0383510E195;
- Wed, 22 Mar 2023 00:13:28 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id BE599A0169;
- Wed, 22 Mar 2023 00:13:27 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============2738914721140548606=="
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0B8E910E114;
+	Wed, 22 Mar 2023 00:22:46 +0000 (UTC)
+Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3532610E114
+ for <intel-xe@lists.freedesktop.org>; Wed, 22 Mar 2023 00:22:44 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1679444564; x=1710980564;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=Am1fa7djnDfmBUlY023ZPN+Y2tOOoiQ89pRLbVqq3CE=;
+ b=ImfdKaS2QXYBaN8WVm4CMeoWdyvKM1zcDXGNMEb4hyDp2YcpcuxIyZir
+ q0ZUgh3zOps2puzgQht474AilpKnoF+us6pRLO2amcWX7N4qiUBTwhOUa
+ ISgTuJc2ocvkt2rNJqnvNwhRUTiJcMUivzRNcz5bXOm9a6dnnvLGXik5E
+ Ns+5Vw8Bx/V/Wx9DkMfyHxDLWAnfw7EQsbOHhnCZaRNP0WHqXcRZxex1T
+ VG5ytsVBCSffg2E+gk/w/l3S1dfp5v2q6SNvDe6aFCrqDKrjV+qe2v1Rz
+ Y2du2dGnplHc+SWDnzwIcGv/be7BzXEgHJKhdLIXMvJGlwFCI7Ocn0OV6 w==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10656"; a="318735327"
+X-IronPort-AV: E=Sophos;i="5.98,280,1673942400"; d="scan'208";a="318735327"
+Received: from orsmga008.jf.intel.com ([10.7.209.65])
+ by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 21 Mar 2023 17:22:43 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6600,9927,10656"; a="712034913"
+X-IronPort-AV: E=Sophos;i="5.98,280,1673942400"; d="scan'208";a="712034913"
+Received: from lstrano-desk.jf.intel.com ([10.24.89.184])
+ by orsmga008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 21 Mar 2023 17:22:43 -0700
+From: Matthew Brost <matthew.brost@intel.com>
+To: <intel-xe@lists.freedesktop.org>
+Date: Tue, 21 Mar 2023 17:22:46 -0700
+Message-Id: <20230322002246.706065-1-matthew.brost@intel.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Matthew Brost" <matthew.brost@intel.com>
-Date: Wed, 22 Mar 2023 00:13:27 -0000
-Message-ID: <167944400775.13422.4381264683043135528@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20230321234217.692726-1-matthew.brost@intel.com>
-In-Reply-To: <20230321234217.692726-1-matthew.brost@intel.com>
-Subject: [Intel-xe] =?utf-8?q?=E2=97=8B_CI=2EBAT=3A_info_for_USM_locking_?=
- =?utf-8?q?fixes?=
+Content-Transfer-Encoding: 8bit
+Subject: [Intel-xe] [PATCH] drm/xe: Reinstate render / compute cache
+ invalidation in ring ops
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -39,70 +55,101 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
-Cc: intel-xe@lists.freedesktop.org
+Cc: Matt Roper <matthew.d.roper@intel.com>
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============2738914721140548606==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+Render / compute engines have additional caches (not just TLBs) that
+need to be invalidated each batch, reinstate these invalidations in ring
+ops.
 
-== Series Details ==
+Suggested-by: Matt Roper <matthew.d.roper@intel.com>
+Signed-off-by: Matthew Brost <matthew.brost@intel.com>
+---
+ drivers/gpu/drm/xe/regs/xe_gpu_commands.h |  5 ++++
+ drivers/gpu/drm/xe/xe_ring_ops.c          | 30 +++++++++++++++++++++++
+ 2 files changed, 35 insertions(+)
 
-Series: USM locking fixes
-URL   : https://patchwork.freedesktop.org/series/115467/
-State : info
+diff --git a/drivers/gpu/drm/xe/regs/xe_gpu_commands.h b/drivers/gpu/drm/xe/regs/xe_gpu_commands.h
+index 288576035ce3..a1d7ab16a2c6 100644
+--- a/drivers/gpu/drm/xe/regs/xe_gpu_commands.h
++++ b/drivers/gpu/drm/xe/regs/xe_gpu_commands.h
+@@ -57,20 +57,25 @@
+ #define   BLT_DEPTH_32			(3<<24)
+ 
+ #define GFX_OP_PIPE_CONTROL(len)	((0x3<<29)|(0x3<<27)|(0x2<<24)|((len)-2))
++#define   PIPE_CONTROL_COMMAND_CACHE_INVALIDATE		(1<<29)
+ #define   PIPE_CONTROL_TILE_CACHE_FLUSH			(1<<28)
+ #define   PIPE_CONTROL_AMFS_FLUSH			(1<<25)
+ #define   PIPE_CONTROL_GLOBAL_GTT_IVB			(1<<24)
++#define   PIPE_CONTROL_STORE_DATA_INDEX			(1<<21)
+ #define   PIPE_CONTROL_CS_STALL				(1<<20)
+ #define   PIPE_CONTROL_GLOBAL_SNAPSHOT_RESET		(1<<19)
+ #define   PIPE_CONTROL_PSD_SYNC				(1<<17)
+ #define   PIPE_CONTROL_QW_WRITE				(1<<14)
+ #define   PIPE_CONTROL_DEPTH_STALL			(1<<13)
+ #define   PIPE_CONTROL_RENDER_TARGET_CACHE_FLUSH	(1<<12)
++#define   PIPE_CONTROL_INSTRUCTION_CACHE_INVALIDATE	(1<<11)
+ #define   PIPE_CONTROL_TEXTURE_CACHE_INVALIDATE		(1<<10)
+ #define   PIPE_CONTROL_INDIRECT_STATE_DISABLE		(1<<9)
+ #define   PIPE_CONTROL_FLUSH_ENABLE			(1<<7)
+ #define   PIPE_CONTROL_DC_FLUSH_ENABLE			(1<<5)
+ #define   PIPE_CONTROL_VF_CACHE_INVALIDATE		(1<<4)
++#define   PIPE_CONTROL_CONST_CACHE_INVALIDATE		(1<<3)
++#define   PIPE_CONTROL_STATE_CACHE_INVALIDATE		(1<<2)
+ #define   PIPE_CONTROL_STALL_AT_SCOREBOARD		(1<<1)
+ #define   PIPE_CONTROL_DEPTH_CACHE_FLUSH		(1<<0)
+ 
+diff --git a/drivers/gpu/drm/xe/xe_ring_ops.c b/drivers/gpu/drm/xe/xe_ring_ops.c
+index 4441fe60cd00..918e819e7c91 100644
+--- a/drivers/gpu/drm/xe/xe_ring_ops.c
++++ b/drivers/gpu/drm/xe/xe_ring_ops.c
+@@ -106,6 +106,30 @@ static int emit_flush_invalidate(u32 flag, u32 *dw, int i)
+ 	return i;
+ }
+ 
++static int emit_pipe_invalidate(u32 mask_flags, u32 *dw, int i)
++{
++	u32 flags = PIPE_CONTROL_CS_STALL |
++		PIPE_CONTROL_COMMAND_CACHE_INVALIDATE |
++		PIPE_CONTROL_INSTRUCTION_CACHE_INVALIDATE |
++		PIPE_CONTROL_TEXTURE_CACHE_INVALIDATE |
++		PIPE_CONTROL_VF_CACHE_INVALIDATE |
++		PIPE_CONTROL_CONST_CACHE_INVALIDATE |
++		PIPE_CONTROL_STATE_CACHE_INVALIDATE |
++		PIPE_CONTROL_QW_WRITE |
++		PIPE_CONTROL_STORE_DATA_INDEX;
++
++	flags &= ~mask_flags;
++
++	dw[i++] = GFX_OP_PIPE_CONTROL(6);
++	dw[i++] = flags;
++	dw[i++] = LRC_PPHWSP_SCRATCH_ADDR;
++	dw[i++] = 0;
++	dw[i++] = 0;
++	dw[i++] = 0;
++
++	return i;
++}
++
+ #define MI_STORE_QWORD_IMM_GEN8_POSTED (MI_INSTR(0x20, 3) | (1 << 21))
+ 
+ static int emit_store_imm_ppgtt_posted(u64 addr, u64 value,
+@@ -212,8 +236,14 @@ static void __emit_job_gen12_render_compute(struct xe_sched_job *job,
+ 	struct xe_gt *gt = job->engine->gt;
+ 	struct xe_device *xe = gt_to_xe(gt);
+ 	bool pvc = xe->info.platform == XE_PVC;
++	u32 mask_flags = 0;
+ 
+ 	dw[i++] = preparser_disable(true);
++	if (pvc)
++		mask_flags = PIPE_CONTROL_3D_ARCH_FLAGS;
++	else if (job->engine->class == XE_ENGINE_CLASS_COMPUTE)
++		mask_flags = PIPE_CONTROL_3D_ENGINE_FLAGS;
++	i = emit_pipe_invalidate(mask_flags, dw, i);
+ 	/* Wa_1809175790 */
+ 	if (!xe->info.has_flat_ccs)
+ 		i = emit_aux_table_inv(gt, GEN12_GFX_CCS_AUX_NV.reg, dw, i);
+-- 
+2.34.1
 
-== Summary ==
-
-Participating hosts:
-bat-dg1-8
-bat-dg2-oem2
-bat-adlp-7
-Missing hosts results[1]:
-bat-dg1-8
-Results: [xe-pw-115467v1](https://intel-gfx-ci.01.org/tree/xe/xe-pw-115467v1/index.html)
-
-
-
---===============2738914721140548606==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>USM locking fixes</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/115467/">https://patchwork.freedesktop.org/series/115467/</a></td></tr>
-<tr><td><b>State:</b></td><td>info</td></tr>
-
-</table>
-
-
-    <p>Participating hosts:<br />
-bat-dg1-8<br />
-bat-dg2-oem2<br />
-bat-adlp-7<br />
-Missing hosts results[1]:<br />
-bat-dg1-8<br />
-Results: <a href="https://intel-gfx-ci.01.org/tree/xe/xe-pw-115467v1/index.html">xe-pw-115467v1</a></p>
-
-</body>
-</html>
-
---===============2738914721140548606==--
