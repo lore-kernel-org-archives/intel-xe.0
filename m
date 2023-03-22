@@ -4,30 +4,31 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id F276FC6FD1D
-	for <intel-xe@archiver.kernel.org>; Wed, 22 Mar 2023 01:35:25 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 23C76C6FD1D
+	for <intel-xe@archiver.kernel.org>; Wed, 22 Mar 2023 01:54:47 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id BD9D210E012;
-	Wed, 22 Mar 2023 01:35:25 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B8FDE10E21F;
+	Wed, 22 Mar 2023 01:54:46 +0000 (UTC)
 Received: from emeril.freedesktop.org (emeril.freedesktop.org
  [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id C259910E012;
- Wed, 22 Mar 2023 01:35:23 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTP id A11D410E195;
+ Wed, 22 Mar 2023 01:54:44 +0000 (UTC)
 Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id B51EDA0169;
- Wed, 22 Mar 2023 01:35:23 +0000 (UTC)
+ by emeril.freedesktop.org (Postfix) with ESMTP id 8E671A0BCB;
+ Wed, 22 Mar 2023 01:54:44 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: "Matthew Brost" <matthew.brost@intel.com>
-Date: Wed, 22 Mar 2023 01:35:23 -0000
-Message-ID: <167944892373.13422.7505368602331128758@emeril.freedesktop.org>
+Date: Wed, 22 Mar 2023 01:54:44 -0000
+Message-ID: <167945008455.13420.12436545367195650551@emeril.freedesktop.org>
 X-Patchwork-Hint: ignore
-References: <20230322011801.706920-1-matthew.brost@intel.com>
-In-Reply-To: <20230322011801.706920-1-matthew.brost@intel.com>
-Subject: [Intel-xe] =?utf-8?q?=E2=9C=97_CI=2EKUnit=3A_failure_for_Reinsta?=
- =?utf-8?q?te_render_/_compute_cache_invalidation_in_ring_ops?=
+References: <20230322013439.789634-1-matthew.brost@intel.com>
+In-Reply-To: <20230322013439.789634-1-matthew.brost@intel.com>
+Subject: [Intel-xe] =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_f?=
+ =?utf-8?q?or_drm/xe=3A_Reinstate_render_/_compute_cache_invalidation_in_r?=
+ =?utf-8?q?ing_ops_=28rev2=29?=
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -46,56 +47,27 @@ Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 == Series Details ==
 
-Series: Reinstate render / compute cache invalidation in ring ops
-URL   : https://patchwork.freedesktop.org/series/115474/
-State : failure
+Series: drm/xe: Reinstate render / compute cache invalidation in ring ops (rev2)
+URL   : https://patchwork.freedesktop.org/series/115472/
+State : success
 
 == Summary ==
 
-+ trap cleanup EXIT
-+ /kernel/tools/testing/kunit/kunit.py run --kunitconfig /kernel/drivers/gpu/drm/xe/.kunitconfig
-ERROR:root:../drivers/gpu/drm/xe/xe_ring_ops.c: In function ‘emit_pipe_invalidate’:
-../drivers/gpu/drm/xe/xe_ring_ops.c:112:3: error: ‘PIPE_CONTROL_COMMAND_CACHE_INVALIDATE’ undeclared (first use in this function); did you mean ‘PIPE_CONTROL_TEXTURE_CACHE_INVALIDATE’?
-  112 |   PIPE_CONTROL_COMMAND_CACHE_INVALIDATE |
-      |   ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-      |   PIPE_CONTROL_TEXTURE_CACHE_INVALIDATE
-../drivers/gpu/drm/xe/xe_ring_ops.c:112:3: note: each undeclared identifier is reported only once for each function it appears in
-../drivers/gpu/drm/xe/xe_ring_ops.c:113:3: error: ‘PIPE_CONTROL_INSTRUCTION_CACHE_INVALIDATE’ undeclared (first use in this function); did you mean ‘PIPE_CONTROL_TEXTURE_CACHE_INVALIDATE’?
-  113 |   PIPE_CONTROL_INSTRUCTION_CACHE_INVALIDATE |
-      |   ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-      |   PIPE_CONTROL_TEXTURE_CACHE_INVALIDATE
-../drivers/gpu/drm/xe/xe_ring_ops.c:116:3: error: ‘PIPE_CONTROL_CONST_CACHE_INVALIDATE’ undeclared (first use in this function); did you mean ‘PIPE_CONTROL_VF_CACHE_INVALIDATE’?
-  116 |   PIPE_CONTROL_CONST_CACHE_INVALIDATE |
-      |   ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-      |   PIPE_CONTROL_VF_CACHE_INVALIDATE
-../drivers/gpu/drm/xe/xe_ring_ops.c:117:3: error: ‘PIPE_CONTROL_STATE_CACHE_INVALIDATE’ undeclared (first use in this function); did you mean ‘PIPE_CONTROL_TEXTURE_CACHE_INVALIDATE’?
-  117 |   PIPE_CONTROL_STATE_CACHE_INVALIDATE |
-      |   ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-      |   PIPE_CONTROL_TEXTURE_CACHE_INVALIDATE
-../drivers/gpu/drm/xe/xe_ring_ops.c:119:3: error: ‘PIPE_CONTROL_STORE_DATA_INDEX’ undeclared (first use in this function)
-  119 |   PIPE_CONTROL_STORE_DATA_INDEX;
-      |   ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-make[6]: *** [../scripts/Makefile.build:252: drivers/gpu/drm/xe/xe_ring_ops.o] Error 1
-make[6]: *** Waiting for unfinished jobs....
-make[5]: *** [../scripts/Makefile.build:504: drivers/gpu/drm/xe] Error 2
-make[5]: *** Waiting for unfinished jobs....
-make[4]: *** [../scripts/Makefile.build:504: drivers/gpu/drm] Error 2
-make[3]: *** [../scripts/Makefile.build:504: drivers/gpu] Error 2
-make[2]: *** [../scripts/Makefile.build:504: drivers] Error 2
-make[1]: *** [/kernel/Makefile:2021: .] Error 2
-make: *** [Makefile:242: __sub-make] Error 2
+=== Applying kernel patches on branch 'drm-xe-next' with base: ===
+commit a2ed856be77000c19b22c859bb34e85c64e37ef9
+Author:     Matthew Brost <matthew.brost@intel.com>
+AuthorDate: Mon Mar 20 10:46:24 2023 -0700
+Commit:     Matthew Brost <matthew.brost@intel.com>
+CommitDate: Tue Mar 21 18:14:54 2023 -0700
 
-[01:35:00] Configuring KUnit Kernel ...
-Generating .config ...
-Populating config with:
-$ make ARCH=um O=.kunit olddefconfig
-[01:35:04] Building KUnit Kernel ...
-Populating config with:
-$ make ARCH=um O=.kunit olddefconfig
-Building with:
-$ make ARCH=um O=.kunit --jobs=48
-+ cleanup
-++ stat -c %u:%g /kernel
-+ chown -R 1003:1003 /kernel
+    drm/xe: Drop zero length arrays
+    
+    Zero-length arrays as fake flexible arrays are deprecated and we are
+    moving towards adopting C99 flexible-array members instead.
+    
+    Reviewed-by: Matthew Auld <matthew.auld@intel.com>
+    Signed-off-by: Matthew Brost <matthew.brost@intel.com>
+=== git am output follows ===
+Applying: drm/xe: Reinstate render / compute cache invalidation in ring ops
 
 
