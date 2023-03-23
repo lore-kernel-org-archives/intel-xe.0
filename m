@@ -4,45 +4,47 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 92CA9C74A5B
-	for <intel-xe@archiver.kernel.org>; Thu, 23 Mar 2023 22:48:05 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4ECB2C761AF
+	for <intel-xe@archiver.kernel.org>; Thu, 23 Mar 2023 22:48:06 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5FDD610E4A2;
-	Thu, 23 Mar 2023 22:48:05 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1D91410EB81;
+	Thu, 23 Mar 2023 22:48:06 +0000 (UTC)
 Received: from mga06.intel.com (mga06b.intel.com [134.134.136.31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0622410E4A2
- for <intel-xe@lists.freedesktop.org>; Thu, 23 Mar 2023 22:48:03 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 303C310E4C4
+ for <intel-xe@lists.freedesktop.org>; Thu, 23 Mar 2023 22:48:04 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
  t=1679611684; x=1711147684;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=/YGz2QIOmvixczvBujZ/Tkn2A4CIVOTfSxgbTMCd2CM=;
- b=QI49Px2JueRLx/8rc4bTUt7BvOjEDO9FWT4lC6PMbGvUrcVykyF4hiAk
- VmkfDkGlglLrLW4Oa1PtgIbmjyxwNk8/8tl82Gux6JZHp9CdRLH8CME/8
- QMfh1+5qbyJqx0hU2aRkB49NMst7K5jrTVwBhqHPQ2fyBAlP8MNiUo3yf
- wuRLvjd7phtLu4DeZ1LXC0KZTrl9qUq07LYMxG4xpFqoQTNfNYdmhFbl7
- 9uXQNM+GdHUXc9KrQW0SkrHFKOZKHSlhvlbT+dXWZ2Fm4HScjn0DJtvqI
- 6HuTWCW8ZuYNXNxl/pp42xmv2EzrtWfntv3NIzCL0Gtfjd0JiJ1Y/eUbj Q==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10658"; a="402224174"
-X-IronPort-AV: E=Sophos;i="5.98,286,1673942400"; d="scan'208";a="402224174"
+ h=from:to:cc:subject:date:message-id:in-reply-to:
+ references:mime-version:content-transfer-encoding;
+ bh=rEDe5cmU4BkgJTtmTyPLFeVC3TgT9nQmLa4uZcq8Wxg=;
+ b=PcjK7dXGBlAmNwWwG1R19xHDEOmpWsJ+4qxy20b1gBOkPcmTieVf4Evd
+ rnjmwyphhw3gCyp4ko/Kwa63WISohPMOPevIK0Iek3l7pHGOm66IMdQTg
+ hk10nMIQxEItW6PF478iDFNQghQ/jl9GvPdFX5V4lOrgXJXeHj4BPvY1k
+ V6/cicVWCEzNLof0EJ7VvETBU9iHBE5Sien7ShQhURgMeo5OuL4eg0VHT
+ wzuhkYIFFP7nTYHusfgcguTUr7ZPXNAfQZUp0l8f47Cmd6c+SO6m/e4cq
+ o8sFNboCRRy2gK2Yl5mS0xEEg1S1h3XzD3yGOVUlNJPpcnTBzO9tuJER3 w==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10658"; a="402224177"
+X-IronPort-AV: E=Sophos;i="5.98,286,1673942400"; d="scan'208";a="402224177"
 Received: from orsmga002.jf.intel.com ([10.7.209.21])
  by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  23 Mar 2023 15:48:03 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10658"; a="682460266"
-X-IronPort-AV: E=Sophos;i="5.98,286,1673942400"; d="scan'208";a="682460266"
+X-IronPort-AV: E=McAfee;i="6600,9927,10658"; a="682460272"
+X-IronPort-AV: E=Sophos;i="5.98,286,1673942400"; d="scan'208";a="682460272"
 Received: from lucas-s2600cw.jf.intel.com ([10.165.21.196])
  by orsmga002-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  23 Mar 2023 15:48:03 -0700
 From: Lucas De Marchi <lucas.demarchi@intel.com>
 To: intel-xe@lists.freedesktop.org
-Date: Thu, 23 Mar 2023 15:46:49 -0700
-Message-Id: <20230323224651.1187366-1-lucas.demarchi@intel.com>
+Date: Thu, 23 Mar 2023 15:46:51 -0700
+Message-Id: <20230323224651.1187366-3-lucas.demarchi@intel.com>
 X-Mailer: git-send-email 2.39.0
+In-Reply-To: <20230323224651.1187366-1-lucas.demarchi@intel.com>
+References: <20230323224651.1187366-1-lucas.demarchi@intel.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-xe] [PATCH 0/2] HuC support for ADL-S
+Subject: [Intel-xe] [PATCH 2/2] drm/xe: Load HuC on Alderlake S
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -59,24 +61,28 @@ Cc: Anusha Srivatsa <anusha.srivatsa@intel.com>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Same as https://patchwork.freedesktop.org/series/115526/, but without
-the 2nd patch, a few cosmetic changes in the first and my r-b.
+From: Anusha Srivatsa <anusha.srivatsa@intel.com>
 
-I was working on top of these commits since we still need some changes
-on the autoselect logic for both HuC and GuC. However there are still
-some issues to iron out. There is no reason to keep these 2 commits out.
+Alderlake S uses TGL HuC.
 
-2nd patch I'm removing as plumbing the require_force_probe to the
-xe_device is probably not what we want to do as per my review. And that
-part will also need to change for the autoselect logic being done.
+Signed-off-by: Anusha Srivatsa <anusha.srivatsa@intel.com>
+Reviewed-by: Lucas De Marchi <lucas.demarchi@intel.com>
+---
+ drivers/gpu/drm/xe/xe_uc_fw.c | 1 +
+ 1 file changed, 1 insertion(+)
 
-Anusha Srivatsa (2):
-  drm/xe/huc: Support for loading unversiond HuC
-  drm/xe: Load HuC on Alderlake S
-
- drivers/gpu/drm/xe/xe_uc_fw.c | 54 ++++++++++++++++++++++-------------
- 1 file changed, 34 insertions(+), 20 deletions(-)
-
+diff --git a/drivers/gpu/drm/xe/xe_uc_fw.c b/drivers/gpu/drm/xe/xe_uc_fw.c
+index 35187f35e7f2..e9b30e620fd9 100644
+--- a/drivers/gpu/drm/xe/xe_uc_fw.c
++++ b/drivers/gpu/drm/xe/xe_uc_fw.c
+@@ -51,6 +51,7 @@ static struct xe_device *uc_fw_to_xe(struct xe_uc_fw *uc_fw)
+ 	fw_def(TIGERLAKE,    0, guc_def(tgl,  70, 5, 2))
+ 
+ #define XE_HUC_FIRMWARE_DEFS(fw_def, huc_def, huc_ver) \
++	fw_def(ALDERLAKE_S,  0, huc_def(tgl)) \
+ 	fw_def(DG1,          0, huc_def(dg1)) \
+ 	fw_def(TIGERLAKE,    0, huc_def(tgl))
+ 
 -- 
 2.39.0
 
