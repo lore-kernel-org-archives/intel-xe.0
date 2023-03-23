@@ -4,50 +4,47 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 37E97C6FD1D
-	for <intel-xe@archiver.kernel.org>; Thu, 23 Mar 2023 11:24:20 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 270D1C6FD1D
+	for <intel-xe@archiver.kernel.org>; Thu, 23 Mar 2023 12:00:01 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id F166710E0CD;
-	Thu, 23 Mar 2023 11:24:19 +0000 (UTC)
-Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D286310E0CD
- for <intel-xe@lists.freedesktop.org>; Thu, 23 Mar 2023 11:24:17 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id DE7F910E06A;
+	Thu, 23 Mar 2023 12:00:00 +0000 (UTC)
+Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 34A7F10E06A
+ for <intel-xe@lists.freedesktop.org>; Thu, 23 Mar 2023 11:59:59 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1679570657; x=1711106657;
- h=from:to:subject:in-reply-to:references:date:message-id:
- mime-version; bh=Lad3p5j9ybEUn5mESY8uPTTEq9n3v+G9+vu4Yu/F77A=;
- b=D0j9LMS+t8pZWX5qO6vZLFBuzPBKG26qNppDHmIdv1D2Xd3IXXwQRyyn
- eU3RClaDeiKi0V/V3+iQrce3N1QHIOhgTjjhNjD5GxQ3qU9IsdbV4TeV9
- RIhvTqo5M48Zr0C7k62Ek13qmR7B6R9M8N2tCCkdhtk1EvDjf6B+9gknS
- U1G6Yc43rdUzHIODys/0ziSSAphQQPaFoOYjjZX0/jXOQSwWT9JFtgfTo
- OnY7QxDAnk7UtOBZ97AufOHmRM+MWZpjKPYXZK2mFk+Brb6n9ZofzZXOE
- C4bijBUv7DpWV85XZGK2jT627Flnj1vjk95Nz8NlIkNNYOHaSYINScIBj A==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10657"; a="425738212"
-X-IronPort-AV: E=Sophos;i="5.98,283,1673942400"; d="scan'208";a="425738212"
-Received: from fmsmga008.fm.intel.com ([10.253.24.58])
- by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 23 Mar 2023 04:24:15 -0700
+ t=1679572799; x=1711108799;
+ h=from:to:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=GTXHJUMR4lbltxwiPbFyNj3Y5xNDzc9Gr/KU9mLf8NU=;
+ b=S7MedXOj/ldcAohOvOaQqakekEz3/996BHpbOom7khzqfCpM51ty3sYI
+ 8aPLveaJgYV2T+UyE6LC7k1dCQ3AZaGC/Mtj1gA8DoF48fusho9t7u8aY
+ a8HVJGlHUP/FI5amvWXuqWiguNPsJuC0Rm+YrZd0rENtFyp1kOIvAmnlO
+ QlNurRlXfBXpDDBFjCeOrOLS2jJ0s0gSllcFOBNJtYZyoH2SfZAGbTohD
+ 9WVzJhWtQAFhJdr3xjrdkt9JRfG6jDwlB2I/qCABGr2nheGD0ZfkhL8UX
+ Mc17I8+nmxoV8iOV0rekuSOaw5GTooyeABQSd2IWIeT84gF8ll4j1u5+U Q==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10657"; a="404352490"
+X-IronPort-AV: E=Sophos;i="5.98,283,1673942400"; d="scan'208";a="404352490"
+Received: from fmsmga004.fm.intel.com ([10.253.24.48])
+ by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 23 Mar 2023 04:59:58 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10657"; a="746682656"
-X-IronPort-AV: E=Sophos;i="5.98,283,1673942400"; d="scan'208";a="746682656"
-Received: from rkiss-mobl.ger.corp.intel.com (HELO localhost) ([10.252.63.51])
- by fmsmga008-auth.fm.intel.com with
- ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 23 Mar 2023 04:24:13 -0700
-From: Jani Nikula <jani.nikula@linux.intel.com>
-To: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- intel-xe@lists.freedesktop.org, Thomas =?utf-8?Q?Hellstr=C3=B6m?=
- <thomas.hellstrom@linux.intel.com>
-In-Reply-To: <ceeb7002-b48b-b95e-8bef-7ad072f3dfc0@linux.intel.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20230323085052.153697-1-maarten.lankhorst@linux.intel.com>
- <875yar7n01.fsf@intel.com>
- <ceeb7002-b48b-b95e-8bef-7ad072f3dfc0@linux.intel.com>
-Date: Thu, 23 Mar 2023 13:24:11 +0200
-Message-ID: <87zg83678k.fsf@intel.com>
+X-IronPort-AV: E=McAfee;i="6600,9927,10657"; a="751463174"
+X-IronPort-AV: E=Sophos;i="5.98,283,1673942400"; d="scan'208";a="751463174"
+Received: from ehallina-mobl.ger.corp.intel.com (HELO mwauld-desk1.intel.com)
+ ([10.252.2.208])
+ by fmsmga004-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 23 Mar 2023 04:59:57 -0700
+From: Matthew Auld <matthew.auld@intel.com>
+To: intel-xe@lists.freedesktop.org
+Date: Thu, 23 Mar 2023 11:59:20 +0000
+Message-Id: <20230323115926.391900-1-matthew.auld@intel.com>
+X-Mailer: git-send-email 2.39.2
 MIME-Version: 1.0
-Content-Type: text/plain
-Subject: Re: [Intel-xe] [PATCH] drm/xe: Rename intel_de.h to xe_de.h
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+Subject: [Intel-xe] [PATCH v2 0/6] uAPI bits for small-bar
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -62,48 +59,12 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Thu, 23 Mar 2023, Maarten Lankhorst <maarten.lankhorst@linux.intel.com> wrote:
-> On 2023-03-23 11:58, Jani Nikula wrote:
->> On Thu, 23 Mar 2023, Maarten Lankhorst <maarten.lankhorst@linux.intel.com> wrote:
->>> Rename intel_de.h to xe_de.h in order to remove #include_next,
->>> and change the ifdef guard to be the same as the rest of xe headers.
->>>
->>> This is consistent with the other files that are inside xe/display,
->>> and implement xe specific behavior.
->>>
->>> Signed-off-by: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
->>> ---
->>>   drivers/gpu/drm/i915/display/intel_de.h            | 2 +-
->>>   drivers/gpu/drm/xe/display/{intel_de.h => xe_de.h} | 8 ++++----
->>>   2 files changed, 5 insertions(+), 5 deletions(-)
->>>   rename drivers/gpu/drm/xe/display/{intel_de.h => xe_de.h} (97%)
->>>
->>> diff --git a/drivers/gpu/drm/i915/display/intel_de.h b/drivers/gpu/drm/i915/display/intel_de.h
->>> index 5c223ff6b3ec..267b1108abbb 100644
->>> --- a/drivers/gpu/drm/i915/display/intel_de.h
->>> +++ b/drivers/gpu/drm/i915/display/intel_de.h
->>> @@ -4,7 +4,7 @@
->>>    */
->>>   
->>>   #ifdef BUILD_FOR_XE
->> I wonder why this isn't just
->>
->> #ifndef I915
->>
->> and why do we need the separate
->>
->> 	-DBUILD_FOR_XE=1 \
->>
->> in xe Makefile?
-> If you give the ack, I will remove the BUILD_FOR_XE too when committing.
+The remaining small-bar bits. Add support for requesting CPU access for VRAM
+buffers. Also expose this to userspace, along with various bits of related
+accounting. Finally turn on small-bar support.
 
-Ack, FWIW. All this needs to be squashed to something else,
-eventually...
-
-BR,
-Jani.
-
-
+v2: Various improvements suggested by José
 
 -- 
-Jani Nikula, Intel Open Source Graphics Center
+2.39.2
+
