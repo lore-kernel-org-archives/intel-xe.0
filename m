@@ -4,31 +4,46 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id D8975C74A5B
-	for <intel-xe@archiver.kernel.org>; Thu, 23 Mar 2023 17:09:15 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id AD7CFC6FD1C
+	for <intel-xe@archiver.kernel.org>; Thu, 23 Mar 2023 20:23:20 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 95E1710E13C;
-	Thu, 23 Mar 2023 17:09:15 +0000 (UTC)
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id 8E9B010E13C;
- Thu, 23 Mar 2023 17:09:12 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 86C80AADDC;
- Thu, 23 Mar 2023 17:09:12 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============7203723438253556965=="
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3AC1F10EB1D;
+	Thu, 23 Mar 2023 20:23:20 +0000 (UTC)
+Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id BE02210EB1D
+ for <intel-xe@lists.freedesktop.org>; Thu, 23 Mar 2023 20:23:18 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1679602998; x=1711138998;
+ h=from:to:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=p3D8QcaEDN8qfGw37goNoEmiy9dWfjO8Yi8IBk4iXwc=;
+ b=WL8YHTtdkXAn0zX9NWklqYIr1PcFbmi/CeCEk/bh9BJGmBiXCM4H3x1u
+ sIYojGJLlOzJvLHGWlvKmN2UYKzZSvSWEzrgCOZ4e80waSZzVtg5KuhWI
+ mu3O5lpZUFeb8MArLUB8j+ADI9Fqa7MHjncvqaC5gCvpFuy3JPmwSlfEQ
+ ePPCo/WUaMntPWCkxBXwlrqXpBZ2i34kRlBjwTvnrTUJs+RxbAs6a0wci
+ Sp7hVpFlmdX0LAedcly08z+2KAp/L4XO2eFu0w5SjgM9TieqvgGLkB1tV
+ GGq984gFCl+e50Huc19LZlACXEl89QR3RmL9VoxWJD3FoXrSPqxzCh5Yw w==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10658"; a="404523458"
+X-IronPort-AV: E=Sophos;i="5.98,285,1673942400"; d="scan'208";a="404523458"
+Received: from orsmga004.jf.intel.com ([10.7.209.38])
+ by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 23 Mar 2023 13:23:18 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6600,9927,10658"; a="806402111"
+X-IronPort-AV: E=Sophos;i="5.98,285,1673942400"; d="scan'208";a="806402111"
+Received: from unknown (HELO DUT731-PVC.fm.intel.com) ([10.1.40.69])
+ by orsmga004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 23 Mar 2023 13:23:18 -0700
+From: "Chang, Bruce" <yu.bruce.chang@intel.com>
+To: intel-xe@lists.freedesktop.org
+Date: Thu, 23 Mar 2023 20:23:13 +0000
+Message-Id: <20230323202313.3523-1-yu.bruce.chang@intel.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Matthew Brost" <matthew.brost@intel.com>
-Date: Thu, 23 Mar 2023 17:09:12 -0000
-Message-ID: <167959135254.6628.1861281676447809454@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20230323162725.1100545-1-matthew.brost@intel.com>
-In-Reply-To: <20230323162725.1100545-1-matthew.brost@intel.com>
-Subject: [Intel-xe] =?utf-8?q?=E2=97=8B_CI=2EBAT=3A_info_for_drm/xe=3A_Us?=
- =?utf-8?q?e_BO=27s_GT_to_determine_dma=5Foffset_when_programming_PTEs_=28?=
- =?utf-8?q?rev2=29?=
+Content-Transfer-Encoding: 8bit
+Subject: [Intel-xe] [PATCH] drm/xe: don't auto fall back to execlist mode if
+ guc failed to init
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -40,72 +55,49 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
-Cc: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============7203723438253556965==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+In general, this is due to FW load failure, should just report
+error and fail the probe so that user can easily retry again.
 
-== Series Details ==
+Cc: Matt Roper <matthew.d.roper@intel.com>
+Signed-off-by: Bruce Chang <yu.bruce.chang@intel.com>
+---
+ drivers/gpu/drm/xe/xe_gt.c | 4 ++--
+ drivers/gpu/drm/xe/xe_uc.c | 3 ---
+ 2 files changed, 2 insertions(+), 5 deletions(-)
 
-Series: drm/xe: Use BO's GT to determine dma_offset when programming PTEs (rev2)
-URL   : https://patchwork.freedesktop.org/series/115533/
-State : info
+diff --git a/drivers/gpu/drm/xe/xe_gt.c b/drivers/gpu/drm/xe/xe_gt.c
+index daa433d0f2f5..8a436c95591e 100644
+--- a/drivers/gpu/drm/xe/xe_gt.c
++++ b/drivers/gpu/drm/xe/xe_gt.c
+@@ -455,9 +455,9 @@ static int gt_fw_domain_init(struct xe_gt *gt)
+ 			goto err_force_wake;
+ 	}
+ 
+-	/* Allow driver to load if uC init fails (likely missing firmware) */
+ 	err = xe_uc_init(&gt->uc);
+-	XE_WARN_ON(err);
++	if (err)
++		goto err_force_wake;
+ 
+ 	err = xe_uc_init_hwconfig(&gt->uc);
+ 	if (err)
+diff --git a/drivers/gpu/drm/xe/xe_uc.c b/drivers/gpu/drm/xe/xe_uc.c
+index 4ccf2b3435e1..70eabf567156 100644
+--- a/drivers/gpu/drm/xe/xe_uc.c
++++ b/drivers/gpu/drm/xe/xe_uc.c
+@@ -54,9 +54,6 @@ int xe_uc_init(struct xe_uc *uc)
+ 	return 0;
+ 
+ err:
+-	/* If any uC firmwares not found, fall back to execlists */
+-	xe_device_guc_submission_disable(uc_to_xe(uc));
+-
+ 	return ret;
+ }
+ 
+-- 
+2.25.1
 
-== Summary ==
-
-Participating hosts:
-bat-atsm-2
-bat-dg1-8
-bat-dg2-oem2
-bat-adlp-7
-Missing hosts results[1]:
-bat-dg1-8
-Results: [xe-pw-115533v2](https://intel-gfx-ci.01.org/tree/xe/xe-pw-115533v2/index.html)
-
-
-
---===============7203723438253556965==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/xe: Use BO&#39;s GT to determine dma_offset when programming PTEs (rev2)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/115533/">https://patchwork.freedesktop.org/series/115533/</a></td></tr>
-<tr><td><b>State:</b></td><td>info</td></tr>
-
-</table>
-
-
-    <p>Participating hosts:<br />
-bat-atsm-2<br />
-bat-dg1-8<br />
-bat-dg2-oem2<br />
-bat-adlp-7<br />
-Missing hosts results[1]:<br />
-bat-dg1-8<br />
-Results: <a href="https://intel-gfx-ci.01.org/tree/xe/xe-pw-115533v2/index.html">xe-pw-115533v2</a></p>
-
-</body>
-</html>
-
---===============7203723438253556965==--
