@@ -4,52 +4,52 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id B4580C6FD1D
-	for <intel-xe@archiver.kernel.org>; Thu, 23 Mar 2023 09:21:18 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 92D1DC6FD1D
+	for <intel-xe@archiver.kernel.org>; Thu, 23 Mar 2023 09:22:59 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8AF4910E45F;
-	Thu, 23 Mar 2023 09:21:18 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5762310E342;
+	Thu, 23 Mar 2023 09:22:59 +0000 (UTC)
 Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2AED410E45F
- for <intel-xe@lists.freedesktop.org>; Thu, 23 Mar 2023 09:21:17 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0B4F810E342
+ for <intel-xe@lists.freedesktop.org>; Thu, 23 Mar 2023 09:22:57 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1679563277; x=1711099277;
+ t=1679563377; x=1711099377;
  h=message-id:date:mime-version:subject:to:references:from:
  in-reply-to:content-transfer-encoding;
- bh=+V3wMuff7d+dIaNDJd6BY+p0smQOPlVXbtNn9t4qp6E=;
- b=WdtoWCIgy7SIwdo+d7DzT61TMawOaN+rW/G0jiDRtoSyWJyd+3xSz0i+
- Bdyy3DHRXYkamsM4vSlXg+y61bV4/V+t7CyUml+814DnTm5K9J+XZlm2W
- V5u1iPNn6CnSYTV8GJaZjV4+vWQ8p7fMWVBB3nJoEgbR//zu5xkToAWib
- QXjm/geyfRGzliE3pGywf45IJNNcbB3NMiV/i3gB2Hb/JVn1hThmfwRvc
- Dd4y2PLXtyzLQevt/n7Cy8Xxb2jL1t44WO84CuLpqj+KlXK9822arCYhY
- 2+vmv05yKTR5uH8b30jnTREHxE7A653burVqckguWYzJo8KYY3GVpckJE A==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10657"; a="319827225"
-X-IronPort-AV: E=Sophos;i="5.98,283,1673942400"; d="scan'208";a="319827225"
+ bh=E2f+gG627t9nXmbFvbyYOjWo2viLkvzl19SRTvUP/0M=;
+ b=j9QsJOkkCegKhbqOs1QucmVMAfgA7tp+At/SFG/NMC8ywVtl9QDkMrrE
+ o+6WeumV3nqZMeefH/3jI7QjBDLksOA8JqePVoxRS0UeFz1oo7frK56Jb
+ edrqwwQHBDcfnhnDU6Nr/D4f+uF2/EU9hPvvWT9NWB7KPA2k/8xS+kcX0
+ DR525rMo0g6yCL2eX3ZbodleegzBSwVHELWejHPMKWiuWG6T8FTBzBmhO
+ M6/PLvkggQFZ1SlGmyZ9sUt7dlQzRbi++7YEZheBs4A8jwHUGjYvIM2JA
+ UrrvUGj0vOT41by8yXW04VbiK5J9lNqDa0reWtRLUFyZL3xhYG0ExbAMN Q==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10657"; a="319827470"
+X-IronPort-AV: E=Sophos;i="5.98,283,1673942400"; d="scan'208";a="319827470"
 Received: from orsmga004.jf.intel.com ([10.7.209.38])
  by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 23 Mar 2023 02:21:16 -0700
+ 23 Mar 2023 02:22:47 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10657"; a="806181603"
-X-IronPort-AV: E=Sophos;i="5.98,283,1673942400"; d="scan'208";a="806181603"
+X-IronPort-AV: E=McAfee;i="6600,9927,10657"; a="806181792"
+X-IronPort-AV: E=Sophos;i="5.98,283,1673942400"; d="scan'208";a="806181792"
 Received: from auliel-mobl1.ger.corp.intel.com (HELO [10.249.254.186])
  ([10.249.254.186])
  by orsmga004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 23 Mar 2023 02:21:15 -0700
-Message-ID: <7263840f-3315-af68-c5bb-db8074bfb41b@linux.intel.com>
-Date: Thu, 23 Mar 2023 10:21:12 +0100
+ 23 Mar 2023 02:22:45 -0700
+Message-ID: <25fd9bba-0a41-4f7c-a142-a88d440eace0@linux.intel.com>
+Date: Thu, 23 Mar 2023 10:22:44 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.8.0
 Content-Language: en-US
-To: intel-xe@lists.freedesktop.org
-References: <20230323081546.1014414-1-matthew.brost@intel.com>
+To: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ intel-xe@lists.freedesktop.org
+References: <20230323085052.153697-1-maarten.lankhorst@linux.intel.com>
 From: =?UTF-8?Q?Thomas_Hellstr=c3=b6m?= <thomas.hellstrom@linux.intel.com>
-In-Reply-To: <20230323081546.1014414-1-matthew.brost@intel.com>
+In-Reply-To: <20230323085052.153697-1-maarten.lankhorst@linux.intel.com>
 Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-Subject: Re: [Intel-xe] [PATCH] drm/xe: Use BO's GT to determine dma_offset
- when programming PTEs
+Content-Transfer-Encoding: 8bit
+Subject: Re: [Intel-xe] [PATCH] drm/xe: Rename intel_de.h to xe_de.h
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -64,77 +64,62 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Hi.
 
-Good catch. Some comments below.
-
-On 3/23/23 09:15, Matthew Brost wrote:
-> Rather than using the passed in GT, use the BO's GT determine dma_offset
-> when programming PTEs as these two GT's could differ (i.e. mapping a BO
-> from a remote GT). The BO's GT is correct GT to use as this where BO
-> resides, while the passed in GT is where the mapping is created.
+On 3/23/23 09:50, Maarten Lankhorst wrote:
+> Rename intel_de.h to xe_de.h in order to remove #include_next,
+> and change the ifdef guard to be the same as the rest of xe headers.
 >
-> Signed-off-by: Matthew Brost <matthew.brost@intel.com>
+> This is consistent with the other files that are inside xe/display,
+> and implement xe specific behavior.
+>
+> Signed-off-by: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
+
+Reviewed-by: Thomas Hellström <thomas.hellstrom@linux.intel.com>
+
+
 > ---
->   drivers/gpu/drm/xe/xe_bo.c | 5 +++++
->   drivers/gpu/drm/xe/xe_bo.h | 1 +
->   drivers/gpu/drm/xe/xe_pt.c | 4 +++-
->   3 files changed, 9 insertions(+), 1 deletion(-)
+>   drivers/gpu/drm/i915/display/intel_de.h            | 2 +-
+>   drivers/gpu/drm/xe/display/{intel_de.h => xe_de.h} | 8 ++++----
+>   2 files changed, 5 insertions(+), 5 deletions(-)
+>   rename drivers/gpu/drm/xe/display/{intel_de.h => xe_de.h} (97%)
 >
-> diff --git a/drivers/gpu/drm/xe/xe_bo.c b/drivers/gpu/drm/xe/xe_bo.c
-> index 764b3ca9fff7..8beb35aa6f15 100644
-> --- a/drivers/gpu/drm/xe/xe_bo.c
-> +++ b/drivers/gpu/drm/xe/xe_bo.c
-> @@ -79,6 +79,11 @@ mem_type_to_gt(struct xe_device *xe, u32 mem_type)
->   	return xe_device_get_gt(xe, mem_type == XE_PL_STOLEN ? 0 : (mem_type - XE_PL_VRAM0));
+> diff --git a/drivers/gpu/drm/i915/display/intel_de.h b/drivers/gpu/drm/i915/display/intel_de.h
+> index 5c223ff6b3ec..267b1108abbb 100644
+> --- a/drivers/gpu/drm/i915/display/intel_de.h
+> +++ b/drivers/gpu/drm/i915/display/intel_de.h
+> @@ -4,7 +4,7 @@
+>    */
+>   
+>   #ifdef BUILD_FOR_XE
+> -#include_next "intel_de.h"
+> +#include "xe_de.h"
+>   #else
+>   #ifndef __INTEL_DE_H__
+>   #define __INTEL_DE_H__
+> diff --git a/drivers/gpu/drm/xe/display/intel_de.h b/drivers/gpu/drm/xe/display/xe_de.h
+> similarity index 97%
+> rename from drivers/gpu/drm/xe/display/intel_de.h
+> rename to drivers/gpu/drm/xe/display/xe_de.h
+> index 0d0504b483ef..9f92fdb4159a 100644
+> --- a/drivers/gpu/drm/xe/display/intel_de.h
+> +++ b/drivers/gpu/drm/xe/display/xe_de.h
+> @@ -1,10 +1,10 @@
+>   /* SPDX-License-Identifier: MIT */
+>   /*
+> - * Copyright © 2019 Intel Corporation
+> + * Copyright © 2019-2022 Intel Corporation
+>    */
+>   
+> -#ifndef __INTEL_DE_H__
+> -#define __INTEL_DE_H__
+> +#ifndef _XE_DE_H_
+> +#define _XE_DE_H_
+>   
+>   #include "i915_drv.h"
+>   #include "xe_mmio.h"
+> @@ -159,4 +159,4 @@ static inline int intel_de_pcode_request(struct drm_i915_private *i915, u32 mbox
+>   				timeout_base_ms);
 >   }
 >   
-> +struct xe_gt *xe_bo_to_gt(struct xe_bo *bo)
-
-Kerneldoc.
-
-> +{
-XE_WARN_ON_ONCE(!vram) ?
-> +	return mem_type_to_gt(xe_bo_device(bo), bo->ttm.resource->mem_type);
-> +}
-> +
->   static void try_add_system(struct xe_bo *bo, struct ttm_place *places,
->   			   u32 bo_flags, u32 *c)
->   {
-> diff --git a/drivers/gpu/drm/xe/xe_bo.h b/drivers/gpu/drm/xe/xe_bo.h
-> index f4303810f213..f9abd8036417 100644
-> --- a/drivers/gpu/drm/xe/xe_bo.h
-> +++ b/drivers/gpu/drm/xe/xe_bo.h
-> @@ -105,6 +105,7 @@ struct xe_bo *xe_bo_create_from_data(struct xe_device *xe, struct xe_gt *gt,
->   
->   int xe_bo_placement_for_flags(struct xe_device *xe, struct xe_bo *bo,
->   			      u32 bo_flags);
-Newline.
-> +struct xe_gt *xe_bo_to_gt(struct xe_bo *bo);
->   
->   static inline struct xe_bo *ttm_to_xe_bo(const struct ttm_buffer_object *bo)
->   {
-> diff --git a/drivers/gpu/drm/xe/xe_pt.c b/drivers/gpu/drm/xe/xe_pt.c
-> index a2e586ebd9a8..6dc31b030687 100644
-> --- a/drivers/gpu/drm/xe/xe_pt.c
-> +++ b/drivers/gpu/drm/xe/xe_pt.c
-> @@ -792,10 +792,12 @@ xe_pt_stage_bind(struct xe_gt *gt, struct xe_vma *vma,
->   	int ret;
->   
->   	if (is_vram) {
-> +		struct xe_gt *bo_gt = xe_bo_to_gt(bo);
-> +
->   		xe_walk.default_pte = GEN12_PPGTT_PTE_LM;
->   		if (vma && vma->gpuva.flags & XE_VMA_ATOMIC_PTE_BIT)
->   			xe_walk.default_pte |= GEN12_USM_PPGTT_PTE_AE;
-> -		xe_walk.dma_offset = gt->mem.vram.io_start -
-> +		xe_walk.dma_offset = bo_gt->mem.vram.io_start -
->   			gt_to_xe(gt)->mem.vram.io_start;
->   		xe_walk.cache = XE_CACHE_WB;
->   	} else {
-
-Thanks,
-
-Thomas
-
-
+> -#endif /* __INTEL_DE_H__ */
+> +#endif
