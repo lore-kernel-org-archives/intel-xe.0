@@ -4,135 +4,54 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6260DC6FD1C
-	for <intel-xe@archiver.kernel.org>; Fri, 24 Mar 2023 07:21:22 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id B478FC6FD1C
+	for <intel-xe@archiver.kernel.org>; Fri, 24 Mar 2023 07:37:12 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2914310E50C;
-	Fri, 24 Mar 2023 07:21:22 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7CF2B10E516;
+	Fri, 24 Mar 2023 07:37:12 +0000 (UTC)
 Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9406C10E50C
- for <intel-xe@lists.freedesktop.org>; Fri, 24 Mar 2023 07:21:19 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2A66010E516
+ for <intel-xe@lists.freedesktop.org>; Fri, 24 Mar 2023 07:37:09 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1679642479; x=1711178479;
- h=date:from:to:cc:subject:message-id:references:
- in-reply-to:mime-version;
- bh=k+ithXjD/4tYcwoqMgQgphbBtP7eiLoPfUHYVwTAEos=;
- b=Y61FzE2GNk0E/dMlJ822rvK4HnsVWnKR3jn+SadAkGakfiaKFOXyb174
- iwL8M4GUfdzvVH+/jgove3j2xoLi0LPRZjHjwE2laFyDDqpcRU1AN7zgi
- Eni+Wd0kqqrd8NwzSsAkChr1dP4jeAvbrk8qDmY5Wg58zuiJLYjzyAhCq
- K5DA5QvN8MNzySU8Z3CZbjmX11/OJOycv6e3Rm1h026qxXWMi1W9pZO9o
- Nkwyhs83r+hZrigP1XwuMyx91I43NEXjNWwpu65PE3OseWmQjZXXY+DSY
- XfUs7yMqk4yUs/rx+pWcBz3V2ldA5vwrp+Rr4G9BbtFWJrD6oMqU5SSfR g==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10658"; a="328129011"
-X-IronPort-AV: E=Sophos;i="5.98,287,1673942400"; d="scan'208";a="328129011"
-Received: from fmsmga001.fm.intel.com ([10.253.24.23])
+ t=1679643430; x=1711179430;
+ h=date:from:to:cc:subject:message-id:in-reply-to:
+ references:mime-version:content-transfer-encoding;
+ bh=daQURZVqEV7FXpzZn5qT1UMzoIM4PzzcE06MexbTCQY=;
+ b=QDu7baq3FsD8P7+ULQthng7i9Ivm8rY0X9IrqlZ97rlZdmwDr+0nRod7
+ vYmqYfQXh1AXZWpuhcAFAHP6B+iUPAPlxwDrwnygdT76ySnaT0WwPsl2G
+ 9KQi+Gha3q7I1HeHh6SBsHjooqYRFHFxpjjVoVlOERUwWghAdxZ4mLp1B
+ vhcLOC2k4N+Wy7nCGuz/chryBvYkEFRIZpygIM5xoShTdMHGbyPn0jw/Y
+ V9TE1DYs+4XwyiKEoOth9LxxxARO0A5s20jWcsOoXBuYP3YXb2hhPX9q9
+ ArLz3HjvhYo76gKjI0olPvre3/zjjnMvO3N09jks9LX/bSWqoy4yPQTDV g==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10658"; a="328131642"
+X-IronPort-AV: E=Sophos;i="5.98,287,1673942400"; d="scan'208";a="328131642"
+Received: from fmsmga006.fm.intel.com ([10.253.24.20])
  by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 24 Mar 2023 00:21:17 -0700
+ 24 Mar 2023 00:37:08 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10658"; a="826145424"
-X-IronPort-AV: E=Sophos;i="5.98,287,1673942400"; d="scan'208";a="826145424"
-Received: from fmsmsx602.amr.corp.intel.com ([10.18.126.82])
- by fmsmga001.fm.intel.com with ESMTP; 24 Mar 2023 00:21:16 -0700
-Received: from fmsmsx610.amr.corp.intel.com (10.18.126.90) by
- fmsmsx602.amr.corp.intel.com (10.18.126.82) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.21; Fri, 24 Mar 2023 00:21:15 -0700
-Received: from fmsedg601.ED.cps.intel.com (10.1.192.135) by
- fmsmsx610.amr.corp.intel.com (10.18.126.90) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.21 via Frontend Transport; Fri, 24 Mar 2023 00:21:15 -0700
-Received: from NAM10-DM6-obe.outbound.protection.outlook.com (104.47.58.104)
- by edgegateway.intel.com (192.55.55.70) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2507.21; Fri, 24 Mar 2023 00:21:14 -0700
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=ZwhdRAcApjnLHczuIFQT3/Hkr+khEBRXeM3xIs1J2Y0CvsQSU+kAFPg6XNPZestDrd8b8L/M1alYj2yGvhRUy/jonAXawM84k0Mmi1kWGi7XPI7SeyTNR4krT7M2GhZfnJSbMGkfUxjSp6A3Fx24Syum96X1xOLVMF4yWiSZP1Lp5zBpKCYXJzzYjXicbs5wRUPSQFiMrAs8l74TvonKna1LzCUtK4ocsxL/BhE+B09IeKpqXjn+n9JidOPajFykBVF+bDFM165mavfvnPV900pCb+tYL39x2kRwlNtes0SGt3kO+l845IpaohAdxOq6XNZr8aUPTzcBiEZuf55g0Q==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=f8NORukbvUxI1cy9EJjm+OqJyBqcwsze5g4XsA/SGWY=;
- b=cWuwOyR+p4U754TZ+qj+d5B3EA1+WI4G3oRZ+IuBlF+yYcM4DYJZvCPg6BUEgAmdhDMaykEL9aeJeCInlKzE7x1EY6hpPGGMgbcOr6ABYuTIIyifE5t9rHX6p/lc3lYebrQhBXs8XbL//TMeCpmYZcpNTDrjsYLRn3WqyfwhoA55+1EHa0LgVUFRgCAwolnRfKqCOjV9+vPoWS9DyuQ2eAhn35Dekp6ySXD++feLVKZmNsZ/hvG7g+dijowbmzaQM0LtMXGNKxo9QGI/axT8GIwG3imPhJxjl+WCV05tzIYBxRLaPkpoP6ysK/72JMJdMmPOO7fKE8mg60WF+PnkXg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
- dkim=pass header.d=intel.com; arc=none
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=intel.com;
-Received: from PH7PR11MB6522.namprd11.prod.outlook.com (2603:10b6:510:212::12)
- by SN7PR11MB6727.namprd11.prod.outlook.com (2603:10b6:806:265::7)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6178.37; Fri, 24 Mar
- 2023 07:21:13 +0000
-Received: from PH7PR11MB6522.namprd11.prod.outlook.com
- ([fe80::fc88:c65f:4ef5:c3da]) by PH7PR11MB6522.namprd11.prod.outlook.com
- ([fe80::fc88:c65f:4ef5:c3da%5]) with mapi id 15.20.6178.037; Fri, 24 Mar 2023
- 07:21:13 +0000
-Date: Fri, 24 Mar 2023 07:20:36 +0000
-From: Matthew Brost <matthew.brost@intel.com>
-To: Niranjana Vishwanathapura <niranjana.vishwanathapura@intel.com>
-Message-ID: <ZB1PRMW0fmWvuVs3@DUT025-TGLU.fm.intel.com>
-References: <20230321234217.692726-1-matthew.brost@intel.com>
- <20230321234217.692726-3-matthew.brost@intel.com>
- <ZB0+yQ4RbWJkwwOZ@nvishwa1-DESK>
-Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
-In-Reply-To: <ZB0+yQ4RbWJkwwOZ@nvishwa1-DESK>
-X-ClientProxiedBy: SJ0PR05CA0099.namprd05.prod.outlook.com
- (2603:10b6:a03:334::14) To PH7PR11MB6522.namprd11.prod.outlook.com
- (2603:10b6:510:212::12)
+X-IronPort-AV: E=McAfee;i="6600,9927,10658"; a="928557346"
+X-IronPort-AV: E=Sophos;i="5.98,287,1673942400"; d="scan'208";a="928557346"
+Received: from linux.intel.com ([10.54.29.200])
+ by fmsmga006.fm.intel.com with ESMTP; 24 Mar 2023 00:37:08 -0700
+Received: from maurocar-mobl2 (hvanhaar-mobl.ger.corp.intel.com [10.252.27.89])
+ (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+ (No client certificate requested)
+ by linux.intel.com (Postfix) with ESMTPS id 12A1C580BF1;
+ Fri, 24 Mar 2023 00:37:06 -0700 (PDT)
+Date: Fri, 24 Mar 2023 08:37:04 +0100
+From: Mauro Carvalho Chehab <mauro.chehab@linux.intel.com>
+To: "Chang, Yu bruce" <yu.bruce.chang@intel.com>
+Message-ID: <20230324083704.645a667c@maurocar-mobl2>
+In-Reply-To: <PH8PR11MB6950295C09940BD29EE7EF52C3879@PH8PR11MB6950.namprd11.prod.outlook.com>
+References: <20230323202313.3523-1-yu.bruce.chang@intel.com>
+ <ZBzYPLlnwL86qo0d@DUT025-TGLU.fm.intel.com>
+ <PH8PR11MB6950295C09940BD29EE7EF52C3879@PH8PR11MB6950.namprd11.prod.outlook.com>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: PH7PR11MB6522:EE_|SN7PR11MB6727:EE_
-X-MS-Office365-Filtering-Correlation-Id: a5234120-9886-4362-b26a-08db2c38593c
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: QX+yV1E5kAiPA3uYTEWQkyq/d3XztaIHKM5yTYB4sBBmkOZk0oHpmtXiQqOQsPxb2u2/nm/ZEaGM/8gAADMvHuWeoNie8yRMQ0E5TluUDH8U5x5+OkOB7gdqDGcJUCudpJMGkHYDCPwUViEjHG5VdDVQ020NGc7QV+j6caJSfmWtjzKfEtn0XMVuOq7t/TfZBA2nboJ+m4GPbjBN8nMmhAQ50Uukos3s8V9TaFxMn6wuImIG+asJWpTpnBbz0G9qoFU/6ElJg7kNMEjDA4dzXvG44D5DkMFc3icSsEBprDgFrZ1OfpJh2X0uNDWNUR6f5hoP6x2D1Vj59KDMvD/RUPMoKNVSn5bmfdetSaSplfotrqvANQA3hPcGcWcO4HjaVhC+RssQsZ++95X4Fx7pZi8pJEiBaQhktcEu4tz/fH9NireuEWUHq/li1cpLcZgU1+xdizFSHNxCxEk7J5HP5YVrlER0jjRJcf3N9VEoBDpwpldy2v7SzNDg/JL1yZgX7hIstYaWNZ3R4tU3YNzpL6GqqPHMrLczGn9qztCz1VT90AqhvQrBOXE9xlyr2pfhmJvmdNCSse6os80MstEwu80BqbiEQun42rDbMR0PhFxZFX6UptZwmADX9DTQ4zKuSFQdrg+A09eYFV3TslCd4A==
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:PH7PR11MB6522.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230025)(39860400002)(396003)(366004)(376002)(346002)(136003)(451199018)(66476007)(8676002)(66556008)(66946007)(4326008)(6636002)(41300700001)(5660300002)(44832011)(82960400001)(316002)(6862004)(6512007)(26005)(6666004)(6506007)(8936002)(186003)(478600001)(83380400001)(6486002)(86362001)(38100700002)(2906002);
- DIR:OUT; SFP:1102; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?1oRSDKiKpp9vjyE/riLMmct8WS8FZekM8BX6skX8g3utiGaGL70zx/z80vFh?=
- =?us-ascii?Q?guU5lhTUq/jjGhfqScDdMOetTkp+Dmk8Rn7y5ByItoZ8w+8jfNdKTqrBpleW?=
- =?us-ascii?Q?HRSmi1PaFtoo0MmMQupnK1BVxBlqInD8VTXU74g/ainIQYD1gCoZhjZPtTmR?=
- =?us-ascii?Q?hJ6mdHkBwwX91tt7Pdabbnnq4KuCOhKilgo9haobzMCyvq06w2yJMOfPbhW/?=
- =?us-ascii?Q?xdy8tlS/+Re3FRIznPn0vNRiHqHAbNKjq2/PgR6BvelJi3Gayd33a5tJCuyc?=
- =?us-ascii?Q?tfLTbt7benCP6FkCnvXwAZ9XLwY6Xo1a6TyzJ/8dxiMLsTfQcAl8p9OWVjy0?=
- =?us-ascii?Q?I+Qe2ZKnbAT+BJWxcHl5jIZWXo+T6EZ4d/M3EjMetBErAX7YDfAtQUdHwrV6?=
- =?us-ascii?Q?OnQDiq0CKrfrhYYGAelgAbK3Kfm6kH76ZPR3YIhFKKUZaqYB3Aon6ihwNfXp?=
- =?us-ascii?Q?DOLgPvN5MP1Eib0SbnvGPhZyWNutH5idM3RDWJdeVRsWFbw597Lb7d68LlLX?=
- =?us-ascii?Q?/6a/jri5zrs2f5ePF7QZUNcvpNU9TjR1MR1HbhIPvTphH0X+DS224iSVaF6+?=
- =?us-ascii?Q?p0wtj2XpwQ1fk0Bdc9Wg62gwhdvQdxD2WpE2d3IdO1rBLB+oyQoVeCsRm6dy?=
- =?us-ascii?Q?ggqFaLUOEca1zo5GWJNVcYrl79wEYGfBHtOZm5q+MmEl2FfOltTihOt0gOl4?=
- =?us-ascii?Q?J8BVvn2DvKgpYzEKGiT2EzRB3wxUSqQKfozxgL4XySvh3ZSaqtgQyscAe1Ht?=
- =?us-ascii?Q?9XPwZA2v0qXhUCfVto2Qv6DVHfgtkvQ3sGaojG96Xri29iHaYVwF21UHw9YG?=
- =?us-ascii?Q?WtuuLQaxfawLvY+u86tjY1/Cb9I+ZPCQ8qqHlyvypG/ltmZWrP1nBzcgfSzJ?=
- =?us-ascii?Q?4aW0li159ejXUSQ6T1pNdviUhpUiVvywAvE7RYmLruEvji3FJv8IU2CBtD9n?=
- =?us-ascii?Q?tTImKGlF4KF0sWq2XcCtPIEjcrPVGqiT00RZU06v+NcYtUVyPENLpYxOg4a9?=
- =?us-ascii?Q?AZ3T0YtrPY3zD5B9ZfTgdsbxZV8mUUAEQnNguoO/cLcbRrvJRZ6pRL1Hmd9J?=
- =?us-ascii?Q?M3KY1PPK4mT0jFvWY/ZtTwO4gZOilgJgZnuioSCWepc6jlSjG3l49ExhMwG5?=
- =?us-ascii?Q?ZKSKxW3FlMKvOuRtkRfqqNPqaR/WFSzgd5lhWykDM55cSzFns+S0GhXU/VkY?=
- =?us-ascii?Q?7rx/GHROOUBX5b5+yNQx2hsqFsO4QYvJaFTtjXO0LEG85IX6hTanUT6IMjeS?=
- =?us-ascii?Q?1+oUL3647qOM6pc0rQuwpNfSxNdkAXEQINcHHKN+J349n7EDx4Z9hYHELIMd?=
- =?us-ascii?Q?6Y16LrGg43T/Lj8BVW16nfXqRWSB8KqoXqzW8nATDi0vPPq9UHdcU7tYHkOu?=
- =?us-ascii?Q?fGUxH29CUqCApDlPgbA57LeBtngfnFCSe8E7GZ7IEesAO9vwMW4ruddAL/Cj?=
- =?us-ascii?Q?QJTOys4fEtORSDk/+nSm+eY1XHNKO1R6QrJ7OZMUB9xju11ahrRFolx79s5P?=
- =?us-ascii?Q?uW5Hyxo5yT5MpeP6fuIj0AHkYkGi7FtvYuMgaOaED8W9VMmbNetN7r2kKcQN?=
- =?us-ascii?Q?XjkEQpZFf89HLBjEQraKjwET497CN/jYFvyfiXWOMdilOCSgEaPkr/dVR1xs?=
- =?us-ascii?Q?vA=3D=3D?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: a5234120-9886-4362-b26a-08db2c38593c
-X-MS-Exchange-CrossTenant-AuthSource: PH7PR11MB6522.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 24 Mar 2023 07:21:13.0935 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: EHcJgchKtfPLNjiTUgtJBXe+mri0A2WadOYHALV/4I2mKWss3izEa3RGYJJsM7bqvwLcLgfLKh0QI/bulA8sGw==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SN7PR11MB6727
-X-OriginatorOrg: intel.com
-Subject: Re: [Intel-xe] [PATCH 2/2] drm/xe: Move in fault mode / non-fault
- mode check to xe_vm_create
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
+Subject: Re: [Intel-xe] [PATCH] drm/xe: don't auto fall back to execlist
+ mode if guc failed to init
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -144,122 +63,262 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-xe@lists.freedesktop.org
+Cc: "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Thu, Mar 23, 2023 at 11:10:17PM -0700, Niranjana Vishwanathapura wrote:
-> On Tue, Mar 21, 2023 at 04:42:17PM -0700, Matthew Brost wrote:
-> > The check for fault mode / non-fault mode was in the VM create IOCTL
-> > before VM creation and not under a lock. The increment was after VM
-> > creation under the lock. This is racey. Move both the check and
-> > increment to xe_vm_create before actual creation and have the lock for
-> > both of these steps.
-> > 
-> > Suggested-by: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
-> > Signed-off-by: Matthew Brost <matthew.brost@intel.com>
-> > ---
-> > drivers/gpu/drm/xe/xe_vm.c | 45 ++++++++++++++++++++++++--------------
-> > 1 file changed, 28 insertions(+), 17 deletions(-)
-> > 
-> > diff --git a/drivers/gpu/drm/xe/xe_vm.c b/drivers/gpu/drm/xe/xe_vm.c
-> > index e7674612a57e..965cad81b02a 100644
-> > --- a/drivers/gpu/drm/xe/xe_vm.c
-> > +++ b/drivers/gpu/drm/xe/xe_vm.c
-> > @@ -1060,9 +1060,27 @@ struct xe_vm *xe_vm_create(struct xe_device *xe, u32 flags)
-> > 	struct xe_gt *gt;
-> > 	u8 id;
-> > 
-> > +	err = mutex_lock_interruptible(&xe->usm.lock);
-> > +	if (err)
-> > +		return ERR_PTR(err);
-> > +	if (XE_IOCTL_ERR(xe, flags & XE_VM_FLAG_FAULT_MODE &&
-> > +			 xe_device_in_non_fault_mode(xe)) ||
-> > +	    XE_IOCTL_ERR(xe, !(flags & XE_VM_FLAG_MIGRATION) &&
-> > +			 xe_device_in_fault_mode(xe))) {
-> 
-> NIT...is below simplification any better?
-> 
-> bool fault_mode = !!(flags & XE_VM_FLAG_FAULT_MODE);
-> if (XE_IOCTL_ERR(xe, fault_mode != xe_device_in_fault_mode(xe))
->
+On Thu, 23 Mar 2023 23:08:58 +0000
+"Chang, Yu bruce" <yu.bruce.chang@intel.com> wrote:
 
-Sure.
- 
-> > +		mutex_unlock(&xe->usm.lock);
-> > +		return ERR_PTR(-EINVAL);
-> > +	}
-> > +	if (flags & XE_VM_FLAG_FAULT_MODE)
-> > +		xe->usm.num_vm_in_fault_mode++;
-> > +	else if (!(flags & XE_VM_FLAG_MIGRATION))
-> > +		xe->usm.num_vm_in_non_fault_mode++;
-> > +	mutex_unlock(&xe->usm.lock);
-> > +
-> > 	vm = kzalloc(sizeof(*vm), GFP_KERNEL);
-> > -	if (!vm)
-> > -		return ERR_PTR(-ENOMEM);
-> > +	if (!vm) {
-> > +		err = -ENOMEM;
-> > +		goto err_usm;
-> > +	}
+> > -----Original Message-----
+> > From: Brost, Matthew <matthew.brost@intel.com>
+> > Sent: Thursday, March 23, 2023 3:53 PM
+> > To: Chang, Yu bruce <yu.bruce.chang@intel.com>
+> > Cc: intel-xe@lists.freedesktop.org
+> > Subject: Re: [Intel-xe] [PATCH] drm/xe: don't auto fall back to execlist mode
+> > if guc failed to init
 > > 
-> > 	vm->xe = xe;
-> > 	kref_init(&vm->refcount);
-> > @@ -1182,13 +1200,6 @@ struct xe_vm *xe_vm_create(struct xe_device *xe, u32 flags)
-> > 	if (number_gts > 1)
-> > 		vm->composite_fence_ctx = dma_fence_context_alloc(1);
+> > On Thu, Mar 23, 2023 at 08:23:13PM +0000, Chang, Bruce wrote:  
+> > > In general, this is due to FW load failure, should just report error
+> > > and fail the probe so that user can easily retry again.
+> > >
+> > > Cc: Matt Roper <matthew.d.roper@intel.com>
+> > > Signed-off-by: Bruce Chang <yu.bruce.chang@intel.com>  
 > > 
-> > -	mutex_lock(&xe->usm.lock);
-> > -	if (flags & XE_VM_FLAG_FAULT_MODE)
-> > -		xe->usm.num_vm_in_fault_mode++;
-> > -	else if (!(flags & XE_VM_FLAG_MIGRATION))
-> > -		xe->usm.num_vm_in_non_fault_mode++;
-> > -	mutex_unlock(&xe->usm.lock);
-> > -
-> > 	trace_xe_vm_create(vm);
-> > 
-> > 	return vm;
-> > @@ -1220,6 +1231,14 @@ struct xe_vm *xe_vm_create(struct xe_device *xe, u32 flags)
-> > 		xe_device_mem_access_put(xe);
-> > 		xe_pm_runtime_put(xe);
-> > 	}
-> > +err_usm:
-> > +	mutex_lock(&xe->usm.lock);
-> > +	if (flags & XE_VM_FLAG_FAULT_MODE)
-> > +		xe->usm.num_vm_in_fault_mode--;
-> > +	else if (!(flags & XE_VM_FLAG_MIGRATION))
-> > +		xe->usm.num_vm_in_non_fault_mode--;
-> > +	mutex_unlock(&xe->usm.lock);
-> > +
+> > I have not tested this but assuming you did:
+> > Reviewed-by: Matthew Brost <matthew.brost@intel.com>
+> >   
+> Yes, I tested on PVC and it used to fall back to execlist mode and constantly 
+> print out EXECLIST_STATUS. Now all those are not showing after this change.
 > 
-> Perhaps put these counts increment/decrement blocks into functions
-> instead of duplicating them?
->
-
-Sure.
-
-Matt
- 
-> Niranjana
+> There is still other unrelated issues during __pfx_ggtt_fini_noalloc, and need
+> to be fixed as below.
 > 
-> > 	return ERR_PTR(err);
-> > }
-> > 
-> > @@ -1843,14 +1862,6 @@ int xe_vm_create_ioctl(struct drm_device *dev, void *data,
-> > 			 args->flags & DRM_XE_VM_CREATE_FAULT_MODE))
-> > 		return -EINVAL;
-> > 
-> > -	if (XE_IOCTL_ERR(xe, args->flags & DRM_XE_VM_CREATE_FAULT_MODE &&
-> > -			 xe_device_in_non_fault_mode(xe)))
-> > -		return -EINVAL;
-> > -
-> > -	if (XE_IOCTL_ERR(xe, !(args->flags & DRM_XE_VM_CREATE_FAULT_MODE) &&
-> > -			 xe_device_in_fault_mode(xe)))
-> > -		return -EINVAL;
-> > -
-> > 	if (XE_IOCTL_ERR(xe, args->flags & DRM_XE_VM_CREATE_FAULT_MODE &&
-> > 			 !xe->info.supports_usm))
-> > 		return -EINVAL;
-> > -- 
-> > 2.34.1
-> > 
+> [  223.839894] BUG: KASAN: null-ptr-deref in ttm_resource_free+0xe4/0x140 [ttm]
+> [  223.847211] Read of size 8 at addr 0000000000000018 by task systemd-udevd/566
+> 
+> [  223.856141] CPU: 0 PID: 566 Comm: systemd-udevd Not tainted 6.2.0-xe+ #4
+> [  223.864921] Hardware name: Intel Corporation WilsonCity/WilsonCity, BIOS WLYDCRB1.SYS.0020.P84.2103030140 03/03/2021
+> [  223.877365] Call Trace:
+> [  223.881707]  <TASK>
+> [  223.885658]  dump_stack_lvl+0x5b/0x85
+> [  223.891200]  print_report+0x499/0x4aa
+> [  223.896690]  ? ttm_resource_free+0xe4/0x140 [ttm]
+> [  223.903268]  kasan_report+0x99/0x1a0
+> [  223.908683]  ? ttm_resource_free+0xe4/0x140 [ttm]
+> [  223.915210]  ttm_resource_free+0xe4/0x140 [ttm]
+> [  223.921621]  ttm_bo_release+0x3e5/0x550 [ttm]
+> [  223.927811]  ? __pfx_ttm_bo_release+0x10/0x10 [ttm]
+> [  223.934530]  ? ttm_bo_kunmap+0x11f/0x160 [ttm]
+> [  223.940775]  ? __pfx_ggtt_fini_noalloc+0x10/0x10 [xe]
+
+Xe driver release is currently buggy. there's a just added test on
+IGT that load/unload the driver 10 times[1].
+
+[1] this is a good way to check if object references are properly 
+    released and that the object lifetime cycle is correct.
+
+This is what happens if you run it (tested on TGL):
+
+	$ sudo ./build/tests/xe_module_load --run many-reload --debug
+	IGT-Version: 1.27.1-g0682c2b07c7e (x86_64) (Linux: 6.2.0-xe-1ae4dd9e8+ x86_64)
+	Starting subtest: many-reload
+	(xe_module_load:3070) DEBUG: reload cycle: 0
+	(xe_module_load:3070) igt_kmod-DEBUG: Module mei_pxp unloaded immediately
+	(xe_module_load:3070) igt_kmod-DEBUG: Module mei_hdcp unloaded immediately
+	(xe_module_load:3070) igt_kmod-DEBUG: Module drm_kms_helper could not be found or does not exist. err: -2
+	(xe_module_load:3070) igt_kmod-DEBUG: Could not remove module drm_kms_helper (No such file or directory)
+	(xe_module_load:3070) igt_kmod-DEBUG: Module drm unloaded immediately
+	(xe_module_load:3070) DEBUG: reload cycle: 1
+	(xe_module_load:3070) igt_kmod-DEBUG: Module snd_hda_intel unloaded immediately
+	(xe_module_load:3070) igt_kmod-DEBUG: Module xe unloaded immediately
+	(xe_module_load:3070) igt_kmod-DEBUG: Module drm_display_helper unloaded immediately
+	(xe_module_load:3070) igt_kmod-DEBUG: Module drm_kms_helper unloaded immediately
+	(xe_module_load:3070) igt_kmod-DEBUG: Module gpu_sched unloaded immediately
+	(xe_module_load:3070) igt_kmod-DEBUG: Module drm_suballoc_helper unloaded immediately
+	(xe_module_load:3070) igt_kmod-DEBUG: Module drm_buddy unloaded immediately
+	(xe_module_load:3070) igt_kmod-DEBUG: Module drm_ttm_helper unloaded immediately
+	(xe_module_load:3070) igt_kmod-DEBUG: Module ttm unloaded immediately
+	(xe_module_load:3070) igt_kmod-DEBUG: Module drm unloaded immediately
+	(xe_module_load:3070) DEBUG: reload cycle: 2
+	(xe_module_load:3070) igt_kmod-DEBUG: Module snd_hda_intel unloaded immediately
+	(xe_module_load:3070) igt_kmod-DEBUG: Module xe unloaded immediately
+	(xe_module_load:3070) igt_kmod-DEBUG: Module drm_display_helper unloaded immediately
+	(xe_module_load:3070) igt_kmod-DEBUG: Module drm_kms_helper unloaded immediately
+	(xe_module_load:3070) igt_kmod-DEBUG: Module gpu_sched unloaded immediately
+	(xe_module_load:3070) igt_kmod-DEBUG: Module drm_suballoc_helper unloaded immediately
+	(xe_module_load:3070) igt_kmod-DEBUG: Module drm_buddy unloaded immediately
+	(xe_module_load:3070) igt_kmod-DEBUG: Module drm_ttm_helper unloaded immediately
+	(xe_module_load:3070) igt_kmod-DEBUG: Module ttm unloaded immediately
+	(xe_module_load:3070) igt_kmod-DEBUG: Module drm unloaded immediately
+	...
+
+See the dmesg for the above below.
+
+Regards,
+Mauro
+
+Dmesg:
+
+[  330.190943] **********************************************************
+[  330.190947] **   NOTICE NOTICE NOTICE NOTICE NOTICE NOTICE NOTICE   **
+[  330.190951] **                                                      **
+[  330.190955] ** trace_printk() being used. Allocating extra memory.  **
+[  330.190959] **                                                      **
+[  330.190962] ** This means that this is a DEBUG kernel and it is     **
+[  330.190966] ** unsafe for production use.                           **
+[  330.190970] **                                                      **
+[  330.190974] ** If you see this message and you are not debugging    **
+[  330.190977] ** the kernel, report this immediately to your vendor!  **
+[  330.190981] **                                                      **
+[  330.190985] **   NOTICE NOTICE NOTICE NOTICE NOTICE NOTICE NOTICE   **
+[  330.190988] **********************************************************
+[  330.260128] xe 0000:00:02.0: vgaarb: deactivate vga console
+[  330.302169] xe 0000:00:02.0: vgaarb: deactivate vga console
+[  330.306461] xe 0000:00:02.0: vgaarb: changed VGA decodes: olddecodes=io+mem,decodes=io+mem:owns=io+mem
+[  330.312251] GT topology dss mask (geometry): 00000000,0000003f
+[  330.312259] GT topology dss mask (compute):  00000000,00000000
+[  330.312264] GT topology EU mask per DSS:     0000ffff
+[  330.321566] xe 0000:00:02.0: [drm] Finished loading DMC firmware i915/tgl_dmc_ver2_12.bin (v2.12)
+[  330.682290] xe REG[0x2340-0x235f]: allow read access
+[  330.682307] xe REG[0x7010-0x7017]: allow rw access
+[  330.682334] xe REG[0x7018-0x701f]: allow rw access
+[  330.683282] xe REG[0x223a8-0x223af]: allow read access
+[  330.684245] xe REG[0x1c03a8-0x1c03af]: allow read access
+[  330.685168] xe REG[0x1d03a8-0x1d03af]: allow read access
+[  330.686083] xe REG[0x1c83a8-0x1c83af]: allow read access
+[  330.805598] [drm] Initialized xe 1.1.0 20201103 for 0000:00:02.0 on minor 0
+[  331.008489] ACPI: video: Video Device [GFX0] (multi-head: yes  rom: no  post: no)
+[  331.056568] input: Video Bus as /devices/LNXSYSTM:00/LNXSYBUS:00/PNP0A08:00/LNXVIDEO:00/input/input8
+[  331.064576] xe 0000:00:02.0: [drm] Cannot find any crtc or sizes
+[  331.075111] xe 0000:00:02.0: [drm] Cannot find any crtc or sizes
+[  331.077136] xe 0000:00:02.0: [drm] Cannot find any crtc or sizes
+[  331.321351] snd_hda_intel 0000:00:1f.3: enabling device (0000 -> 0002)
+[  331.340407] snd_hda_intel 0000:00:1f.3: bound 0000:00:02.0 (ops i915_audio_component_bind_ops [xe])
+[  331.469991] input: HDA Intel PCH HDMI/DP,pcm=3 as /devices/pci0000:00/0000:00:1f.3/sound/card0/input9
+[  331.473074] input: HDA Intel PCH HDMI/DP,pcm=7 as /devices/pci0000:00/0000:00:1f.3/sound/card0/input10
+[  331.476405] input: HDA Intel PCH HDMI/DP,pcm=8 as /devices/pci0000:00/0000:00:1f.3/sound/card0/input11
+[  331.478857] input: HDA Intel PCH HDMI/DP,pcm=9 as /devices/pci0000:00/0000:00:1f.3/sound/card0/input12
+[  334.010143] ACPI: bus type drm_connector unregistered
+[  334.130906] ACPI: bus type drm_connector registered
+[  334.656848] xe 0000:00:02.0: vgaarb: deactivate vga console
+[  334.683973] xe 0000:00:02.0: vgaarb: deactivate vga console
+[  334.690364] GT topology dss mask (geometry): 00000000,0000003f
+[  334.690373] GT topology dss mask (compute):  00000000,00000000
+[  334.690377] GT topology EU mask per DSS:     0000ffff
+[  334.692551] xe 0000:00:02.0: [drm] Finished loading DMC firmware i915/tgl_dmc_ver2_12.bin (v2.12)
+[  335.042555] xe REG[0x2340-0x235f]: allow read access
+[  335.042574] xe REG[0x7010-0x7017]: allow rw access
+[  335.042580] xe REG[0x7018-0x701f]: allow rw access
+[  335.043634] xe REG[0x223a8-0x223af]: allow read access
+[  335.044892] xe REG[0x1c03a8-0x1c03af]: allow read access
+[  335.045951] xe REG[0x1d03a8-0x1d03af]: allow read access
+[  335.047052] xe REG[0x1c83a8-0x1c83af]: allow read access
+[  335.120059] [drm] Initialized xe 1.1.0 20201103 for 0000:00:02.0 on minor 0
+[  335.283192] ACPI: video: Video Device [GFX0] (multi-head: yes  rom: no  post: no)
+[  335.342193] input: Video Bus as /devices/LNXSYSTM:00/LNXSYBUS:00/PNP0A08:00/LNXVIDEO:00/input/input13
+[  335.349695] xe 0000:00:02.0: [drm] Cannot find any crtc or sizes
+[  335.363384] xe 0000:00:02.0: [drm] Cannot find any crtc or sizes
+[  335.365528] xe 0000:00:02.0: [drm] Cannot find any crtc or sizes
+[  335.414725] snd_hda_intel 0000:00:1f.3: bound 0000:00:02.0 (ops i915_audio_component_bind_ops [xe])
+[  336.447397] snd_hda_intel 0000:00:1f.3: azx_get_response timeout, switching to polling mode: last cmd=0x200f0000
+[  337.448522] snd_hda_intel 0000:00:1f.3: No response from codec, disabling MSI: last cmd=0x200f0000
+[  338.456521] snd_hda_intel 0000:00:1f.3: Codec #2 probe error; disabling it...
+[  339.463518] snd_hda_intel 0000:00:1f.3: azx_get_response timeout, switching to single_cmd mode: last cmd=0x200f0000
+[  339.465715] hdaudio hdaudioC0D2: no AFG or MFG node found
+[  339.466992] snd_hda_intel 0000:00:1f.3: no codecs initialized
+[  339.475013] ==================================================================
+[  339.475109] BUG: KASAN: use-after-free in snd_card_free+0x99/0x130
+[  339.475125] Read of size 1 at addr ffff88814252ccda by task xe_module_load/3070
+[  339.475143] CPU: 1 PID: 3070 Comm: xe_module_load Not tainted 6.2.0-xe-1ae4dd9e8+ #2
+[  339.475157] Hardware name: Intel(R) Client Systems NUC11TNHi7/NUC11TNBi7, BIOS TNTGL357.0062.2021.1203.1108 12/03/2021
+[  339.475171] Call Trace:
+[  339.475179]  <TASK>
+[  339.475186]  dump_stack_lvl+0x5b/0x85
+[  339.475197]  print_report+0x171/0x4aa
+[  339.475210]  ? snd_card_free+0x99/0x130
+[  339.475219]  kasan_report+0x99/0x1a0
+[  339.475230]  ? snd_card_free+0x99/0x130
+[  339.475243]  snd_card_free+0x99/0x130
+[  339.475263]  ? __pfx_snd_card_free+0x10/0x10
+[  339.475278]  ? azx_remove+0xb4/0xe0 [snd_hda_intel]
+[  339.475303]  pci_device_remove+0x66/0x100
+[  339.475316]  device_release_driver_internal+0xfa/0x1c0
+[  339.475330]  unbind_store+0x13c/0x160
+[  339.475340]  ? __pfx_sysfs_kf_write+0x10/0x10
+[  339.475351]  kernfs_fop_write_iter+0x1bc/0x260
+[  339.475363]  vfs_write+0x57d/0x760
+[  339.475374]  ? __pfx_vfs_write+0x10/0x10
+[  339.475388]  ? __fget_light+0x9e/0x100
+[  339.475399]  ksys_write+0xc7/0x170
+[  339.475409]  ? __pfx_ksys_write+0x10/0x10
+[  339.475421]  ? lockdep_hardirqs_on_prepare+0x128/0x230
+[  339.475433]  ? syscall_enter_from_user_mode+0x21/0x50
+[  339.475446]  do_syscall_64+0x3c/0x90
+[  339.475457]  entry_SYSCALL_64_after_hwframe+0x72/0xdc
+[  339.475469] RIP: 0033:0x7ff883d14a37
+[  339.475479] Code: 10 00 f7 d8 64 89 02 48 c7 c0 ff ff ff ff eb b7 0f 1f 00 f3 0f 1e fa 64 8b 04 25 18 00 00 00 85 c0 75 10 b8 01 00 00 00 0f 05 <48> 3d 00 f0 ff ff 77 51 c3 48 83 ec 28 48 89 54 24 18 48 89 74 24
+[  339.475504] RSP: 002b:00007ffcaa4f7068 EFLAGS: 00000246 ORIG_RAX: 0000000000000001
+[  339.475520] RAX: ffffffffffffffda RBX: 0000561562a83f58 RCX: 00007ff883d14a37
+[  339.475532] RDX: 000000000000000c RSI: 0000561562a83f6b RDI: 0000000000000003
+[  339.475544] RBP: 0000561562a83e80 R08: 0000000000000033 R09: 00007ffcaa4f6ef0
+[  339.475556] R10: 0000000000000100 R11: 0000000000000246 R12: 00007ffcaa4f7100
+[  339.475568] R13: 0000000000000003 R14: 0000561562a83f6b R15: 00007ff88415b040
+[  339.475583]  </TASK>
+[  339.475596] Allocated by task 3070:
+[  339.475605]  kasan_save_stack+0x22/0x50
+[  339.475608]  kasan_set_track+0x25/0x30
+[  339.475612]  __kasan_kmalloc+0x82/0x90
+[  339.475615]  __kmalloc+0x5f/0x1b0
+[  339.475619]  snd_card_new+0x60/0xc0
+[  339.475623]  azx_probe+0x14c/0xf90 [snd_hda_intel]
+[  339.475632]  pci_device_probe+0x100/0x210
+[  339.475636]  really_probe+0x143/0x4d0
+[  339.475639]  __driver_probe_device+0xc7/0x220
+[  339.475643]  driver_probe_device+0x49/0xf0
+[  339.475646]  __driver_attach+0x101/0x200
+[  339.475650]  bus_for_each_dev+0xeb/0x150
+[  339.475653]  bus_add_driver+0x2a0/0x2f0
+[  339.475656]  driver_register+0xdc/0x170
+[  339.475660]  do_one_initcall+0xbd/0x400
+[  339.475664]  do_init_module+0xe4/0x320
+[  339.475668]  load_module+0x3011/0x3320
+[  339.475671]  __do_sys_finit_module+0x110/0x1b0
+[  339.475675]  do_syscall_64+0x3c/0x90
+[  339.475678]  entry_SYSCALL_64_after_hwframe+0x72/0xdc
+[  339.475687] Freed by task 89:
+[  339.475695]  kasan_save_stack+0x22/0x50
+[  339.475698]  kasan_set_track+0x25/0x30
+[  339.475701]  kasan_save_free_info+0x2e/0x50
+[  339.475705]  __kasan_slab_free+0x109/0x1a0
+[  339.475708]  __kmem_cache_free+0x221/0x400
+[  339.475712]  device_release+0x5a/0xf0
+[  339.475715]  kobject_put+0xde/0x270
+[  339.475719]  snd_card_free+0x114/0x130
+[  339.475722]  process_one_work+0x527/0x9d0
+[  339.475727]  worker_thread+0x2d1/0x640
+[  339.475730]  kthread+0x183/0x1c0
+[  339.475734]  ret_from_fork+0x29/0x50
+[  339.475743] The buggy address belongs to the object at ffff88814252c000
+                which belongs to the cache kmalloc-4k of size 4096
+[  339.475762] The buggy address is located 3290 bytes inside of
+                4096-byte region [ffff88814252c000, ffff88814252d000)
+[  339.475786] The buggy address belongs to the physical page:
+[  339.475796] page:ffffea0005094a00 refcount:1 mapcount:0 mapping:0000000000000000 index:0x0 pfn:0x142528
+[  339.475801] head:ffffea0005094a00 order:3 compound_mapcount:0 subpages_mapcount:0 compound_pincount:0
+[  339.475804] flags: 0x4000000000010200(slab|head|zone=2)
+[  339.475810] raw: 4000000000010200 ffff8881000433c0 ffffea0004c77210 ffffea0004abb410
+[  339.475813] raw: 0000000000000000 0000000000020002 00000001ffffffff 0000000000000000
+[  339.475816] page dumped because: kasan: bad access detected
+[  339.475824] Memory state around the buggy address:
+[  339.475833]  ffff88814252cb80: fb fb fb fb fb fb fb fb fb fb fb fb fb fb fb fb
+[  339.475846]  ffff88814252cc00: fb fb fb fb fb fb fb fb fb fb fb fb fb fb fb fb
+[  339.475858] >ffff88814252cc80: fb fb fb fb fb fb fb fb fb fb fb fb fb fb fb fb
+[  339.475870]                                                     ^
+[  339.475881]  ffff88814252cd00: fb fb fb fb fb fb fb fb fb fb fb fb fb fb fb fb
+[  339.475894]  ffff88814252cd80: fb fb fb fb fb fb fb fb fb fb fb fb fb fb fb fb
+[  339.475906] ==================================================================
+[  339.475932] Disabling lock debugging due to kernel taint
+[  340.320483] ACPI: bus type drm_connector unregistered
+[  340.438735] ACPI: bus type drm_connector registered
+...
