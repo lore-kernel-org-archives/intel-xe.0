@@ -4,53 +4,53 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9F3A7C6FD1C
-	for <intel-xe@archiver.kernel.org>; Fri, 24 Mar 2023 21:37:00 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id D7B2BC6FD20
+	for <intel-xe@archiver.kernel.org>; Fri, 24 Mar 2023 21:38:59 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 740E410E1A3;
-	Fri, 24 Mar 2023 21:37:00 +0000 (UTC)
-Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 290D710E1A3
- for <intel-xe@lists.freedesktop.org>; Fri, 24 Mar 2023 21:36:58 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id AF7C110E1A3;
+	Fri, 24 Mar 2023 21:38:59 +0000 (UTC)
+Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7C7E310E1A3
+ for <intel-xe@lists.freedesktop.org>; Fri, 24 Mar 2023 21:38:57 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1679693818; x=1711229818;
+ t=1679693937; x=1711229937;
  h=message-id:date:mime-version:subject:to:references:from:
  in-reply-to:content-transfer-encoding;
- bh=DQgvr5fYLjDvD95Pp3JFl6qrCEsez6mMSD5Xf2S7RwI=;
- b=Mtq+Pnsxjdzse/T+mgK1lbLy5sYSOA5QyYvskeifJKPnwA+fIAx4KBI2
- sIx3UMaleMGuDzAFD4LBzqt0X9+i3ZiwyYvj8reROJXkERyR2IX68IahQ
- 0fM6bipzhkjCTNIREPnBUZdNW6D2ugmE5hsE7yRV6IOyfBOw0YLnpXxNP
- TEfzXR7j7Wv07KQm6i29Gad5zlpjzoYRZE0paxSUBDkGDU29QhlamBtrU
- qHhY0cc4CgwOYjI90rXNbtGUsPqKSiw35B16MM6pmyRCV0Lnw3874Npwf
- z08Bsy6KidzGzZP7j7piefuUSe9kSsViZlDOZ8IoDsh8weOHu6wRh6rYq g==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10659"; a="339913878"
-X-IronPort-AV: E=Sophos;i="5.98,288,1673942400"; d="scan'208";a="339913878"
-Received: from fmsmga008.fm.intel.com ([10.253.24.58])
- by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 24 Mar 2023 14:36:55 -0700
+ bh=Mi1wRXggBemWNHPV9WSBNdbN+GFMBlSi+PFlZwBAcNw=;
+ b=WzHw2i22mDI8vL4z0qMiUyigMCmdbIcvr3I67Bw2VeyROYgNf7yKW16m
+ J+8wkgKsNqwr/8LpcjkLaviAaiqmfjzwi7N8lJ2pe7LbeEXgtO8q6yM/D
+ 4u4xP0ZxtyfjNLL96OjpyRgT4J4PjXxRl23vzQvTNumUKLJfADCFYy6RS
+ c0Ll9rdhm/HIjatYiXrlKI3cZSSWLy019ZqthcBathky83sTrMzE8hiHf
+ KNThIP8lM6sRvETg37bP1c32etTB6fNcWY3F1ePsl9B8vSJQSyXFUqwwF
+ /I/9NLqYJST+Xo2q26qWYH49T4zSkYpMOeeg08hiXPcLrzf6VHw66DfLq g==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10659"; a="342282438"
+X-IronPort-AV: E=Sophos;i="5.98,288,1673942400"; d="scan'208";a="342282438"
+Received: from fmsmga006.fm.intel.com ([10.253.24.20])
+ by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 24 Mar 2023 14:38:56 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10659"; a="747307721"
-X-IronPort-AV: E=Sophos;i="5.98,288,1673942400"; d="scan'208";a="747307721"
+X-IronPort-AV: E=McAfee;i="6600,9927,10659"; a="928803295"
+X-IronPort-AV: E=Sophos;i="5.98,288,1673942400"; d="scan'208";a="928803295"
 Received: from nirmoyda-mobl.ger.corp.intel.com (HELO [10.252.38.175])
  ([10.252.38.175])
- by fmsmga008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 24 Mar 2023 14:36:54 -0700
-Message-ID: <635b0db0-67fe-65a0-f3c2-fd0425a20dd1@linux.intel.com>
-Date: Fri, 24 Mar 2023 22:36:52 +0100
+ by fmsmga006-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 24 Mar 2023 14:38:54 -0700
+Message-ID: <88bab2b1-5d03-58bc-4ac8-dcb7c005d45e@linux.intel.com>
+Date: Fri, 24 Mar 2023 22:38:51 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
  Thunderbird/102.9.0
 Content-Language: en-US
 To: Matt Roper <matthew.d.roper@intel.com>, intel-xe@lists.freedesktop.org
 References: <20230324210415.2434992-1-matthew.d.roper@intel.com>
- <20230324210415.2434992-4-matthew.d.roper@intel.com>
+ <20230324210415.2434992-5-matthew.d.roper@intel.com>
 From: "Das, Nirmoy" <nirmoy.das@linux.intel.com>
-In-Reply-To: <20230324210415.2434992-4-matthew.d.roper@intel.com>
+In-Reply-To: <20230324210415.2434992-5-matthew.d.roper@intel.com>
 Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
-Subject: Re: [Intel-xe] [PATCH 3/6] drm/xe/pat: Handle unicast vs MCR PAT
- registers
+Subject: Re: [Intel-xe] [PATCH 4/6] drm/xe/pat: Clean up PAT register
+ definitions
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -67,84 +67,106 @@ Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 
 On 3/24/2023 10:04 PM, Matt Roper wrote:
-> The PAT_INDEX registers are MCR registers on some platforms and unicast
-> on others.  On MTL the handling even varies between GTs:  the primary GT
-> uses MCR registers while the media GT uses unicast registers.  Let's add
-> proper MCR programming on the relevant platforms/GTs.
+> Replace the deprecated "GEN" terminology in the PAT definitions.
 >
-> Given that we PAT tables to change pretty regularly on future platforms,
-> we'll make PAT programming an exception to the usual model of assuming
-> new platforms should inherit the previous platform's behavior.  Instead
-> we'll raise a warning if the current platform isn't handled in the
-> if/else ladder.  This should help prevent subtle cache misbehavior if we
-> forget to add the table for a new platform.
->
-> Bspec: 66534, 67609, 67788
 > Signed-off-by: Matt Roper <matthew.d.roper@intel.com>
 
-Reviewed-by: Nirmoy Das<nirmoy.das@intel.com>
+
+Acked-by: Nirmoy Das<nirmoy.das@intel.com>
 
 > ---
->   drivers/gpu/drm/xe/xe_pat.c | 35 ++++++++++++++++++++++++++++-------
->   1 file changed, 28 insertions(+), 7 deletions(-)
+>   drivers/gpu/drm/xe/xe_pat.c | 73 +++++++++++++++++++------------------
+>   1 file changed, 38 insertions(+), 35 deletions(-)
 >
 > diff --git a/drivers/gpu/drm/xe/xe_pat.c b/drivers/gpu/drm/xe/xe_pat.c
-> index 75d25e0c0b9a..f511d9a54358 100644
+> index f511d9a54358..142cf11b5914 100644
 > --- a/drivers/gpu/drm/xe/xe_pat.c
 > +++ b/drivers/gpu/drm/xe/xe_pat.c
-> @@ -5,9 +5,10 @@
+> @@ -10,49 +10,52 @@
 >   
->   #include "regs/xe_reg_defs.h"
->   #include "xe_gt.h"
-> +#include "xe_gt_mcr.h"
->   #include "xe_mmio.h"
+>   #define _PAT_INDEX(index)			(0x4800 + (index) * 4)
 >   
-> -#define GEN12_PAT_INDEX(index)			_MMIO(0x4800 + (index) * 4)
-> +#define _PAT_INDEX(index)			(0x4800 + (index) * 4)
+> -#define GEN8_PPAT_WB			(3<<0)
+> -#define GEN8_PPAT_WT			(2<<0)
+> -#define GEN8_PPAT_WC			(1<<0)
+> -#define GEN8_PPAT_UC			(0<<0)
+> -#define GEN12_PPAT_CLOS(x)              ((x)<<2)
+> +#define MTL_L4_POLICY_MASK			REG_GENMASK(3, 2)
+> +#define MTL_PAT_3_UC				REG_FIELD_PREP(MTL_L4_POLICY_MASK, 3)
+> +#define MTL_PAT_1_WT				REG_FIELD_PREP(MTL_L4_POLICY_MASK, 1)
+> +#define MTL_PAT_0_WB				REG_FIELD_PREP(MTL_L4_POLICY_MASK, 0)
+> +#define MTL_INDEX_COH_MODE_MASK			REG_GENMASK(1, 0)
+> +#define MTL_3_COH_2W				REG_FIELD_PREP(MTL_INDEX_COH_MODE_MASK, 3)
+> +#define MTL_2_COH_1W				REG_FIELD_PREP(MTL_INDEX_COH_MODE_MASK, 2)
+> +#define MTL_0_COH_NON				REG_FIELD_PREP(MTL_INDEX_COH_MODE_MASK, 0)
+> +
+> +#define PVC_CLOS_LEVEL_MASK			REG_GENMASK(3, 2)
+> +#define PVC_PAT_CLOS(x)				REG_FIELD_PREP(PVC_CLOS_LEVEL_MASK, x)
+> +
+> +#define TGL_MEM_TYPE_MASK			REG_GENMASK(1, 0)
+> +#define TGL_PAT_WB				REG_FIELD_PREP(TGL_MEM_TYPE_MASK, 3)
+> +#define TGL_PAT_WT				REG_FIELD_PREP(TGL_MEM_TYPE_MASK, 2)
+> +#define TGL_PAT_WC				REG_FIELD_PREP(TGL_MEM_TYPE_MASK, 1)
+> +#define TGL_PAT_UC				REG_FIELD_PREP(TGL_MEM_TYPE_MASK, 0)
 >   
->   #define GEN8_PPAT_WB			(3<<0)
->   #define GEN8_PPAT_WT			(2<<0)
-> @@ -56,17 +57,37 @@ const u32 mtl_pat_table[] = {
+>   const u32 tgl_pat_table[] = {
+> -	[0] = GEN8_PPAT_WB,
+> -	[1] = GEN8_PPAT_WC,
+> -	[2] = GEN8_PPAT_WT,
+> -	[3] = GEN8_PPAT_UC,
+> -	[4] = GEN8_PPAT_WB,
+> -	[5] = GEN8_PPAT_WB,
+> -	[6] = GEN8_PPAT_WB,
+> -	[7] = GEN8_PPAT_WB,
+> +	[0] = TGL_PAT_WB,
+> +	[1] = TGL_PAT_WC,
+> +	[2] = TGL_PAT_WT,
+> +	[3] = TGL_PAT_UC,
+> +	[4] = TGL_PAT_WB,
+> +	[5] = TGL_PAT_WB,
+> +	[6] = TGL_PAT_WB,
+> +	[7] = TGL_PAT_WB,
+>   };
+>   
+>   const u32 pvc_pat_table[] = {
+> -	[0] = GEN8_PPAT_UC,
+> -	[1] = GEN8_PPAT_WC,
+> -	[2] = GEN8_PPAT_WT,
+> -	[3] = GEN8_PPAT_WB,
+> -	[4] = GEN12_PPAT_CLOS(1) | GEN8_PPAT_WT,
+> -	[5] = GEN12_PPAT_CLOS(1) | GEN8_PPAT_WB,
+> -	[6] = GEN12_PPAT_CLOS(2) | GEN8_PPAT_WT,
+> -	[7] = GEN12_PPAT_CLOS(2) | GEN8_PPAT_WB,
+> +	[0] = TGL_PAT_UC,
+> +	[1] = TGL_PAT_WC,
+> +	[2] = TGL_PAT_WT,
+> +	[3] = TGL_PAT_WB,
+> +	[4] = PVC_PAT_CLOS(1) | TGL_PAT_WT,
+> +	[5] = PVC_PAT_CLOS(1) | TGL_PAT_WB,
+> +	[6] = PVC_PAT_CLOS(2) | TGL_PAT_WT,
+> +	[7] = PVC_PAT_CLOS(2) | TGL_PAT_WB,
+>   };
+>   
+> -#define MTL_PPAT_L4_CACHE_POLICY_MASK   REG_GENMASK(3, 2)
+> -#define MTL_PAT_INDEX_COH_MODE_MASK     REG_GENMASK(1, 0)
+> -#define MTL_PPAT_3_UC   REG_FIELD_PREP(MTL_PPAT_L4_CACHE_POLICY_MASK, 3)
+> -#define MTL_PPAT_1_WT   REG_FIELD_PREP(MTL_PPAT_L4_CACHE_POLICY_MASK, 1)
+> -#define MTL_PPAT_0_WB   REG_FIELD_PREP(MTL_PPAT_L4_CACHE_POLICY_MASK, 0)
+> -#define MTL_3_COH_2W    REG_FIELD_PREP(MTL_PAT_INDEX_COH_MODE_MASK, 3)
+> -#define MTL_2_COH_1W    REG_FIELD_PREP(MTL_PAT_INDEX_COH_MODE_MASK, 2)
+> -#define MTL_0_COH_NON   REG_FIELD_PREP(MTL_PAT_INDEX_COH_MODE_MASK, 0)
+> -
+>   const u32 mtl_pat_table[] = {
+> -	[0] = MTL_PPAT_0_WB,
+> -	[1] = MTL_PPAT_1_WT | MTL_2_COH_1W,
+> -	[2] = MTL_PPAT_3_UC | MTL_2_COH_1W,
+> -	[3] = MTL_PPAT_0_WB | MTL_2_COH_1W,
+> -	[4] = MTL_PPAT_0_WB | MTL_3_COH_2W,
+> +	[0] = MTL_PAT_0_WB,
+> +	[1] = MTL_PAT_1_WT | MTL_2_COH_1W,
+> +	[2] = MTL_PAT_3_UC | MTL_2_COH_1W,
+> +	[3] = MTL_PAT_0_WB | MTL_2_COH_1W,
+> +	[4] = MTL_PAT_0_WB | MTL_3_COH_2W,
+>   };
 >   
 >   #define PROGRAM_PAT_UNICAST(gt, table) do { \
->   	for (int i = 0; i < ARRAY_SIZE(table); i++) \
-> -		xe_mmio_write32(gt, GEN12_PAT_INDEX(i).reg, table[i]); \
-> +		xe_mmio_write32(gt, _PAT_INDEX(i), table[i]); \
-> +} while (0)
-> +
-> +#define PROGRAM_PAT_MCR(gt, table) do { \
-> +	for (int i = 0; i < ARRAY_SIZE(table); i++) \
-> +		xe_gt_mcr_multicast_write(gt, MCR_REG(_PAT_INDEX(i)), table[i]); \
->   } while (0)
->   
->   void xe_pat_init(struct xe_gt *gt)
->   {
->   	struct xe_device *xe = gt_to_xe(gt);
->   
-> -	if (xe->info.platform == XE_METEORLAKE)
-> -		PROGRAM_PAT_UNICAST(gt, mtl_pat_table);
-> -	else if (xe->info.platform == XE_PVC)
-> -		PROGRAM_PAT_UNICAST(gt, pvc_pat_table);
-> -	else
-> +	if (xe->info.platform == XE_METEORLAKE) {
-> +		if (xe_gt_is_media_type(gt))
-> +			PROGRAM_PAT_UNICAST(gt, mtl_pat_table);
-> +		else
-> +			PROGRAM_PAT_MCR(gt, mtl_pat_table);
-> +	} else if (xe->info.platform == XE_PVC) {
-> +		PROGRAM_PAT_MCR(gt, pvc_pat_table);
-> +	} else if (xe->info.platform == XE_DG2) {
-> +		PROGRAM_PAT_MCR(gt, pvc_pat_table);
-> +	} else if (GRAPHICS_VERx100(xe) <= 1210) {
->   		PROGRAM_PAT_UNICAST(gt, tgl_pat_table);
-> +	} else {
-> +		/*
-> +		 * Going forward we expect to need new PAT settings for most
-> +		 * new platforms; failure to provide a new table can easily
-> +		 * lead to subtle, hard-to-debug problems.  If none of the
-> +		 * conditions above match the platform we're running on we'll
-> +		 * raise an error rather than trying to silently inherit the
-> +		 * most recent platform's behavior.
-> +		 */
-> +	}
->   }
