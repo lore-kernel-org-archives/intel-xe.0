@@ -4,30 +4,46 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2F2DEC6FD1C
-	for <intel-xe@archiver.kernel.org>; Thu, 23 Mar 2023 23:40:45 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9EDD5C6FD1C
+	for <intel-xe@archiver.kernel.org>; Fri, 24 Mar 2023 01:20:50 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0D71E10E49F;
-	Thu, 23 Mar 2023 23:40:45 +0000 (UTC)
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id 97D0D10E121;
- Thu, 23 Mar 2023 23:40:43 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 8F091A0003;
- Thu, 23 Mar 2023 23:40:43 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============1390332938702194118=="
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0CCD110E4A7;
+	Fri, 24 Mar 2023 01:20:50 +0000 (UTC)
+Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C79EA10E4A7
+ for <intel-xe@lists.freedesktop.org>; Fri, 24 Mar 2023 01:20:48 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1679620848; x=1711156848;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=JGipU9+ODmm2ItQRkUI3LAyt+VzLB5P/DyS90UVBcQU=;
+ b=ktLtmM8W/lnPkKFsov66/dvWeLPFj1GVqWGNhsaXcdlz0awsJviPT9Jo
+ O0Kse8IVkktWdly2RBKphLaL3g9VZdSOmVLgLN2cHw97ky3guBZRSh5zq
+ DX2kJOgEwnzMAzSoR+t8AvuY9ApBWKdA9wDgzvRklOFEqzI4Mg4NRynXL
+ zbCbmQx2huEl7j1Vn93Haw7voDd88NDrnH/rABh0c6khBU4alsDhLCwuH
+ 9lEd3ly7PieGF+EkPpQAJ0sWrgvpPmlnD/scjRlSqDCyu4qmeW0vKKRGC
+ QqRIer/1HxXf6N4KvYb7/hGuGkBC7nLEltr2YjN0MpPXSVGsXSfy2Q2QW g==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10658"; a="320060030"
+X-IronPort-AV: E=Sophos;i="5.98,286,1673942400"; d="scan'208";a="320060030"
+Received: from fmsmga004.fm.intel.com ([10.253.24.48])
+ by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 23 Mar 2023 18:20:48 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6600,9927,10658"; a="751702866"
+X-IronPort-AV: E=Sophos;i="5.98,286,1673942400"; d="scan'208";a="751702866"
+Received: from lstrano-desk.jf.intel.com ([10.24.89.184])
+ by fmsmga004-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 23 Mar 2023 18:20:48 -0700
+From: Matthew Brost <matthew.brost@intel.com>
+To: <intel-xe@lists.freedesktop.org>
+Date: Thu, 23 Mar 2023 18:20:42 -0700
+Message-Id: <20230324012042.1195872-1-matthew.brost@intel.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Lucas De Marchi" <lucas.demarchi@intel.com>
-Date: Thu, 23 Mar 2023 23:40:43 -0000
-Message-ID: <167961484354.6629.14019840580291527619@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20230323224651.1187366-1-lucas.demarchi@intel.com>
-In-Reply-To: <20230323224651.1187366-1-lucas.demarchi@intel.com>
-Subject: [Intel-xe] =?utf-8?q?=E2=97=8B_CI=2EBAT=3A_info_for_HuC_support_?=
- =?utf-8?q?for_ADL-S?=
+Content-Transfer-Encoding: 8bit
+Subject: [Intel-xe] [PATCH] drm/xe: Use fast virtual copy engine for migrate
+ engine on PVC
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -39,72 +55,85 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
-Cc: intel-xe@lists.freedesktop.org
+Cc: Bruce Chang <yu.bruce.chang@intel.com>
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============1390332938702194118==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+Some copy hardware engine instances are faster than others on PVC, use a
+virtual engine of these plus the reserved instance for the migrate
+engine on PVC. The idea being if a fast instance is available it will be
+used and the throughput of kernel copies, clears, and pagefault
+servicing will be higher.
 
-== Series Details ==
+Cc: Bruce Chang <yu.bruce.chang@intel.com>
+Signed-off-by: Matthew Brost <matthew.brost@intel.com>
+---
+ drivers/gpu/drm/xe/xe_engine.h    |  2 ++
+ drivers/gpu/drm/xe/xe_hw_engine.c | 20 ++++++++++++++++++++
+ drivers/gpu/drm/xe/xe_migrate.c   |  7 ++++---
+ 3 files changed, 26 insertions(+), 3 deletions(-)
 
-Series: HuC support for ADL-S
-URL   : https://patchwork.freedesktop.org/series/115568/
-State : info
+diff --git a/drivers/gpu/drm/xe/xe_engine.h b/drivers/gpu/drm/xe/xe_engine.h
+index 1cf7f23c4afd..0a9c35ea3d34 100644
+--- a/drivers/gpu/drm/xe/xe_engine.h
++++ b/drivers/gpu/drm/xe/xe_engine.h
+@@ -26,6 +26,8 @@ void xe_engine_destroy(struct kref *ref);
+ 
+ struct xe_engine *xe_engine_lookup(struct xe_file *xef, u32 id);
+ 
++u32 xe_hw_engine_fast_copy_logical_mask(struct xe_gt *gt);
++
+ static inline struct xe_engine *xe_engine_get(struct xe_engine *engine)
+ {
+ 	kref_get(&engine->refcount);
+diff --git a/drivers/gpu/drm/xe/xe_hw_engine.c b/drivers/gpu/drm/xe/xe_hw_engine.c
+index 63a4efd5edcc..b5335f8f7dd3 100644
+--- a/drivers/gpu/drm/xe/xe_hw_engine.c
++++ b/drivers/gpu/drm/xe/xe_hw_engine.c
+@@ -600,3 +600,23 @@ bool xe_hw_engine_is_reserved(struct xe_hw_engine *hwe)
+ 	return xe->info.supports_usm && hwe->class == XE_ENGINE_CLASS_COPY &&
+ 		hwe->instance == gt->usm.reserved_bcs_instance;
+ }
++
++u32 xe_hw_engine_fast_copy_logical_mask(struct xe_gt *gt)
++{
++	struct xe_device *xe = gt_to_xe(gt);
++	struct xe_hw_engine *hwe;
++	const u32 fast_physical_mask = 0x5b;	/* 0, 1, 3, 5, 7 */
++	u32 fast_logical_mask = 0;
++	enum xe_hw_engine_id id;
++
++	/* XXX: We only support this function on PVC for now */
++	XE_BUG_ON(!(xe->info.platform == XE_PVC));
++
++	for_each_hw_engine(hwe, gt, id) {
++		if ((fast_physical_mask | gt->usm.reserved_bcs_instance) &
++		    BIT(hwe->instance))
++			fast_logical_mask |= hwe->logical_instance;
++	}
++
++	return fast_logical_mask;
++}
+diff --git a/drivers/gpu/drm/xe/xe_migrate.c b/drivers/gpu/drm/xe/xe_migrate.c
+index 11c8af9c6c92..4a7fec5d619d 100644
+--- a/drivers/gpu/drm/xe/xe_migrate.c
++++ b/drivers/gpu/drm/xe/xe_migrate.c
+@@ -345,11 +345,12 @@ struct xe_migrate *xe_migrate_init(struct xe_gt *gt)
+ 							   XE_ENGINE_CLASS_COPY,
+ 							   gt->usm.reserved_bcs_instance,
+ 							   false);
+-		if (!hwe)
++		u32 logical_mask = xe_hw_engine_fast_copy_logical_mask(gt);
++
++		if (!hwe || !logical_mask)
+ 			return ERR_PTR(-EINVAL);
+ 
+-		m->eng = xe_engine_create(xe, vm,
+-					  BIT(hwe->logical_instance), 1,
++		m->eng = xe_engine_create(xe, vm, logical_mask, 1,
+ 					  hwe, ENGINE_FLAG_KERNEL);
+ 	} else {
+ 		m->eng = xe_engine_create_class(xe, gt, vm,
+-- 
+2.34.1
 
-== Summary ==
-
-Participating hosts:
-bat-atsm-2
-bat-dg1-8
-bat-dg2-oem2
-bat-adlp-7
-Missing hosts results[1]:
-bat-dg1-8
-Results: [xe-pw-115568v1](https://intel-gfx-ci.01.org/tree/xe/xe-pw-115568v1/index.html)
-
-
-
---===============1390332938702194118==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>HuC support for ADL-S</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/115568/">https://patchwork.freedesktop.org/series/115568/</a></td></tr>
-<tr><td><b>State:</b></td><td>info</td></tr>
-
-</table>
-
-
-    <p>Participating hosts:<br />
-bat-atsm-2<br />
-bat-dg1-8<br />
-bat-dg2-oem2<br />
-bat-adlp-7<br />
-Missing hosts results[1]:<br />
-bat-dg1-8<br />
-Results: <a href="https://intel-gfx-ci.01.org/tree/xe/xe-pw-115568v1/index.html">xe-pw-115568v1</a></p>
-
-</body>
-</html>
-
---===============1390332938702194118==--
