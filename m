@@ -4,46 +4,46 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9EDD5C6FD1C
-	for <intel-xe@archiver.kernel.org>; Fri, 24 Mar 2023 01:20:50 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id B048BC7619A
+	for <intel-xe@archiver.kernel.org>; Fri, 24 Mar 2023 01:23:29 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0CCD110E4A7;
-	Fri, 24 Mar 2023 01:20:50 +0000 (UTC)
-Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C79EA10E4A7
- for <intel-xe@lists.freedesktop.org>; Fri, 24 Mar 2023 01:20:48 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 75AA510E4A7;
+	Fri, 24 Mar 2023 01:23:29 +0000 (UTC)
+Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5861510E4A7
+ for <intel-xe@lists.freedesktop.org>; Fri, 24 Mar 2023 01:23:27 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1679620848; x=1711156848;
+ t=1679621007; x=1711157007;
  h=from:to:cc:subject:date:message-id:mime-version:
  content-transfer-encoding;
- bh=JGipU9+ODmm2ItQRkUI3LAyt+VzLB5P/DyS90UVBcQU=;
- b=ktLtmM8W/lnPkKFsov66/dvWeLPFj1GVqWGNhsaXcdlz0awsJviPT9Jo
- O0Kse8IVkktWdly2RBKphLaL3g9VZdSOmVLgLN2cHw97ky3guBZRSh5zq
- DX2kJOgEwnzMAzSoR+t8AvuY9ApBWKdA9wDgzvRklOFEqzI4Mg4NRynXL
- zbCbmQx2huEl7j1Vn93Haw7voDd88NDrnH/rABh0c6khBU4alsDhLCwuH
- 9lEd3ly7PieGF+EkPpQAJ0sWrgvpPmlnD/scjRlSqDCyu4qmeW0vKKRGC
- QqRIer/1HxXf6N4KvYb7/hGuGkBC7nLEltr2YjN0MpPXSVGsXSfy2Q2QW g==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10658"; a="320060030"
-X-IronPort-AV: E=Sophos;i="5.98,286,1673942400"; d="scan'208";a="320060030"
-Received: from fmsmga004.fm.intel.com ([10.253.24.48])
- by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 23 Mar 2023 18:20:48 -0700
+ bh=ZOdk5HvzGFuoX7q4PcHPQo1TrFMPG9NJfGDkA+UXQic=;
+ b=h9Hqg5irk0mgmG756CL2fCXn0y8//Z1fdkRXWlARCHBOodluFTIonA9F
+ RXKC+qEr+DVYlf+kWyFULib0Hujwe+3W+vKsrqkL/n7/unBw3o/ux8mIZ
+ hyWzXFVQCfOLpAXsuKs2r15DbGwiJvYrmWbI2+TPgjwttemvOBjiKJI9L
+ ZT71zMP/vd90ksAJ3XCJTJUYptcZP1AAe9wumuBuw5rpqvR9s10v/ijXJ
+ li2J5QZBJPTPSPlZ0l8vUpM41wLBan0hfrOpFF6rvV8rk1LFqleO2OTee
+ fzN9uxKCXoepapdCe/LTD6VtumHJGG3/IFHl3sdEMHQipyVxDg7tlpS6W g==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10658"; a="425943103"
+X-IronPort-AV: E=Sophos;i="5.98,286,1673942400"; d="scan'208";a="425943103"
+Received: from fmsmga008.fm.intel.com ([10.253.24.58])
+ by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 23 Mar 2023 18:23:24 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10658"; a="751702866"
-X-IronPort-AV: E=Sophos;i="5.98,286,1673942400"; d="scan'208";a="751702866"
+X-IronPort-AV: E=McAfee;i="6600,9927,10658"; a="746964707"
+X-IronPort-AV: E=Sophos;i="5.98,286,1673942400"; d="scan'208";a="746964707"
 Received: from lstrano-desk.jf.intel.com ([10.24.89.184])
- by fmsmga004-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 23 Mar 2023 18:20:48 -0700
+ by fmsmga008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 23 Mar 2023 18:23:24 -0700
 From: Matthew Brost <matthew.brost@intel.com>
 To: <intel-xe@lists.freedesktop.org>
-Date: Thu, 23 Mar 2023 18:20:42 -0700
-Message-Id: <20230324012042.1195872-1-matthew.brost@intel.com>
+Date: Thu, 23 Mar 2023 18:23:29 -0700
+Message-Id: <20230324012329.1195977-1-matthew.brost@intel.com>
 X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-xe] [PATCH] drm/xe: Use fast virtual copy engine for migrate
- engine on PVC
+Subject: [Intel-xe] [PATCH v2] drm/xe: Use fast virtual copy engine for
+ migrate engine on PVC
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -64,6 +64,8 @@ virtual engine of these plus the reserved instance for the migrate
 engine on PVC. The idea being if a fast instance is available it will be
 used and the throughput of kernel copies, clears, and pagefault
 servicing will be higher.
+
+v2: Include local change of correct mask for fast instances
 
 Cc: Bruce Chang <yu.bruce.chang@intel.com>
 Signed-off-by: Matthew Brost <matthew.brost@intel.com>
@@ -87,7 +89,7 @@ index 1cf7f23c4afd..0a9c35ea3d34 100644
  {
  	kref_get(&engine->refcount);
 diff --git a/drivers/gpu/drm/xe/xe_hw_engine.c b/drivers/gpu/drm/xe/xe_hw_engine.c
-index 63a4efd5edcc..b5335f8f7dd3 100644
+index 63a4efd5edcc..d2b43b189b14 100644
 --- a/drivers/gpu/drm/xe/xe_hw_engine.c
 +++ b/drivers/gpu/drm/xe/xe_hw_engine.c
 @@ -600,3 +600,23 @@ bool xe_hw_engine_is_reserved(struct xe_hw_engine *hwe)
@@ -99,7 +101,7 @@ index 63a4efd5edcc..b5335f8f7dd3 100644
 +{
 +	struct xe_device *xe = gt_to_xe(gt);
 +	struct xe_hw_engine *hwe;
-+	const u32 fast_physical_mask = 0x5b;	/* 0, 1, 3, 5, 7 */
++	const u32 fast_physical_mask = 0xab;	/* 0, 1, 3, 5, 7 */
 +	u32 fast_logical_mask = 0;
 +	enum xe_hw_engine_id id;
 +
