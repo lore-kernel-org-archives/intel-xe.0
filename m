@@ -4,50 +4,42 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id CEBE3C77B6D
-	for <intel-xe@archiver.kernel.org>; Mon, 27 Mar 2023 18:48:33 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id DB912C76195
+	for <intel-xe@archiver.kernel.org>; Mon, 27 Mar 2023 21:52:54 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id AA02B10E0E1;
-	Mon, 27 Mar 2023 18:48:33 +0000 (UTC)
-Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8D1AC10E131
- for <intel-xe@lists.freedesktop.org>; Mon, 27 Mar 2023 18:48:31 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1679942911; x=1711478911;
- h=message-id:date:mime-version:subject:to:references:from:
- in-reply-to:content-transfer-encoding;
- bh=2Th6FvNsaTIDCvPMwPK7brlbPj9tH2OrbP4AFKLBMTo=;
- b=gsDAkCdBv4+izvhf0dq+9Z4fnIkYPvf0HpmnUrd07s3nnQEUqG7hxWqi
- 7/RgKyIijQR5JeGAQZOeETSzjB8xy1kdNNj3fupwMrap8bp9KFx3X6K8Z
- pOkvy6/OVBNu9RzKWOcg2kfwvJl8iCo9TkKtoq6HHJIja+qNszL3nDe5U
- gZjFBqNmkA3qh6VaXTdCZVK+cP5j5z7V7fSTerCL4fMM7n3dQi/mDx8wx
- Omyg36xNCP/cPEwpEsMUzTsQuWpxVpWWbG/U0bg8L/7dVzhFH8vxNKQTX
- RBNcVMPzknHde4xrV+8zgTV8/PMtCry4yABPdFnVd+p3miOKW9FZTdWj1 Q==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10662"; a="320013447"
-X-IronPort-AV: E=Sophos;i="5.98,295,1673942400"; d="scan'208";a="320013447"
-Received: from orsmga002.jf.intel.com ([10.7.209.21])
- by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 27 Mar 2023 11:48:31 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10662"; a="683576269"
-X-IronPort-AV: E=Sophos;i="5.98,295,1673942400"; d="scan'208";a="683576269"
-Received: from nirmoyda-mobl.ger.corp.intel.com (HELO [10.252.48.146])
- ([10.252.48.146])
- by orsmga002-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 27 Mar 2023 11:48:30 -0700
-Message-ID: <92817df9-7cc9-158b-7833-82fd17977e16@linux.intel.com>
-Date: Mon, 27 Mar 2023 20:48:27 +0200
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
- Thunderbird/102.9.0
-Content-Language: en-US
-To: Matt Roper <matthew.d.roper@intel.com>, intel-xe@lists.freedesktop.org
+	by gabe.freedesktop.org (Postfix) with ESMTP id A5F2510E79B;
+	Mon, 27 Mar 2023 21:52:54 +0000 (UTC)
+Received: from dfw.source.kernel.org (dfw.source.kernel.org
+ [IPv6:2604:1380:4641:c500::1])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9C82310E779
+ for <intel-xe@lists.freedesktop.org>; Mon, 27 Mar 2023 21:50:37 +0000 (UTC)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+ (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+ (No client certificate requested)
+ by dfw.source.kernel.org (Postfix) with ESMTPS id B74C261525;
+ Mon, 27 Mar 2023 21:50:36 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 02197C4339B;
+ Mon, 27 Mar 2023 21:50:35 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+ s=k20201202; t=1679953836;
+ bh=ptN5ctiIuPUxc1vhEFeijvowILU3PEacGbW0i0f/YA8=;
+ h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+ b=gORXpLkhhyfMn46W1sROQkONya5gSFajAqJYItPa/84fMUSz7Py+WrO3xrdEElV7w
+ ZnbnxUqzg8lbbia8iYCXPl9HrzdGgY+n0TN1cV3aRMBsH/zRXpukl2RSsAfy8WZiua
+ xrOxmbOvl0ItgPDYtMkbMuly9cBEiZKKGZWPWKRyuIB0WXGhIJplps5H5xUQU1cTKB
+ Kag2cTus91KOH7MnQBTQdeMOmjJQKxjQZSrzVVNNfdQZ3aa0k/SYnVeOrSyuofcQW5
+ M3PdJukDztDrxHSB0yI36oJctFemPev/fh6PduRa7/fGSZ3Ks2CRWqnrdOeKJ8JhvS
+ PpYpwrCV+4iYw==
+Date: Mon, 27 Mar 2023 23:50:33 +0200
+From: Andi Shyti <andi.shyti@kernel.org>
+To: Matt Roper <matthew.d.roper@intel.com>
+Message-ID: <20230327215033.cr3fnbibsulfenoo@intel.intel>
 References: <20230327173433.2957645-1-matthew.d.roper@intel.com>
-From: "Das, Nirmoy" <nirmoy.das@linux.intel.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 In-Reply-To: <20230327173433.2957645-1-matthew.d.roper@intel.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+X-Mailman-Approved-At: Mon, 27 Mar 2023 21:52:52 +0000
 Subject: Re: [Intel-xe] [PATCH] fixup! drm/xe/pat: Handle unicast vs MCR PAT
  registers
 X-BeenThere: intel-xe@lists.freedesktop.org
@@ -61,33 +53,40 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Cc: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
+Hi Matt,
 
-On 3/27/2023 7:34 PM, Matt Roper wrote:
+On Mon, Mar 27, 2023 at 10:34:33AM -0700, Matt Roper wrote:
 > Somehow I dropped the error message when sending this; add it back.
->
+> 
 > To be squashed next time the Xe driver is rebased.
->
+> 
 > Fixes: 11946af00717 ("drm/xe/pat: Handle unicast vs MCR PAT registers")
+
+I don't think you need the Fixes tag here as this is not a fix.
+
+Andi
+
 > Signed-off-by: Matt Roper <matthew.d.roper@intel.com>
-
-Reviewed-by: Nirmoy Das <nirmoy.das@intel.com>
-
 > ---
->   drivers/gpu/drm/xe/xe_pat.c | 2 ++
->   1 file changed, 2 insertions(+)
->
+>  drivers/gpu/drm/xe/xe_pat.c | 2 ++
+>  1 file changed, 2 insertions(+)
+> 
 > diff --git a/drivers/gpu/drm/xe/xe_pat.c b/drivers/gpu/drm/xe/xe_pat.c
 > index a713afdd0510..c860b2122301 100644
 > --- a/drivers/gpu/drm/xe/xe_pat.c
 > +++ b/drivers/gpu/drm/xe/xe_pat.c
 > @@ -94,5 +94,7 @@ void xe_pat_init(struct xe_gt *gt)
->   		 * raise an error rather than trying to silently inherit the
->   		 * most recent platform's behavior.
->   		 */
+>  		 * raise an error rather than trying to silently inherit the
+>  		 * most recent platform's behavior.
+>  		 */
 > +		drm_err(&xe->drm, "Missing PAT table for platform with graphics version %d.%2d!\n",
 > +			GRAPHICS_VER(xe), GRAPHICS_VERx100(xe) % 100);
->   	}
->   }
+>  	}
+>  }
+> -- 
+> 2.39.2
+> 
