@@ -4,30 +4,30 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 40712C76195
-	for <intel-xe@archiver.kernel.org>; Mon, 27 Mar 2023 18:03:56 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id BAD71C6FD1D
+	for <intel-xe@archiver.kernel.org>; Mon, 27 Mar 2023 18:05:45 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id DD70210E10E;
-	Mon, 27 Mar 2023 18:03:55 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 695FC10E0C8;
+	Mon, 27 Mar 2023 18:05:45 +0000 (UTC)
 Received: from emeril.freedesktop.org (emeril.freedesktop.org
  [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id 3EE1F10E0C8;
- Mon, 27 Mar 2023 18:03:53 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTP id 8CC2E10E10E;
+ Mon, 27 Mar 2023 18:05:43 +0000 (UTC)
 Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 33606AADD6;
- Mon, 27 Mar 2023 18:03:53 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============5342695190649043062=="
+ by emeril.freedesktop.org (Postfix) with ESMTP id 85EF9AA917;
+ Mon, 27 Mar 2023 18:05:43 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: "Matt Roper" <matthew.d.roper@intel.com>
-Date: Mon, 27 Mar 2023 18:03:53 -0000
-Message-ID: <167994023317.32629.14028861771027989416@emeril.freedesktop.org>
+Date: Mon, 27 Mar 2023 18:05:43 -0000
+Message-ID: <167994034351.32630.7900909299779979165@emeril.freedesktop.org>
 X-Patchwork-Hint: ignore
-References: <20230327173433.2957645-1-matthew.d.roper@intel.com>
-In-Reply-To: <20230327173433.2957645-1-matthew.d.roper@intel.com>
-Subject: [Intel-xe] =?utf-8?q?=E2=97=8B_CI=2EBAT=3A_info_for_fixup!_drm/x?=
- =?utf-8?q?e/pat=3A_Handle_unicast_vs_MCR_PAT_registers?=
+References: <20230327175824.2967914-1-matthew.d.roper@intel.com>
+In-Reply-To: <20230327175824.2967914-1-matthew.d.roper@intel.com>
+Subject: [Intel-xe] =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_f?=
+ =?utf-8?q?or_drm/xe/pat=3A_Define_PAT_tables_as_static?=
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -44,63 +44,31 @@ Cc: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============5342695190649043062==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
 == Series Details ==
 
-Series: fixup! drm/xe/pat: Handle unicast vs MCR PAT registers
-URL   : https://patchwork.freedesktop.org/series/115679/
-State : info
+Series: drm/xe/pat: Define PAT tables as static
+URL   : https://patchwork.freedesktop.org/series/115681/
+State : success
 
 == Summary ==
 
-Participating hosts:
-bat-atsm-2
-bat-dg2-oem2
-bat-adlp-7
-Missing hosts results[0]:
-Results: [xe-pw-115679v1](https://intel-gfx-ci.01.org/tree/xe/xe-pw-115679v1/index.html)
+=== Applying kernel patches on branch 'drm-xe-next' with base: ===
+commit fdb2bd142dd74a0f04b000399f5bce18e9a551e7
+Author:     Matthew Auld <matthew.auld@intel.com>
+AuthorDate: Thu Mar 23 11:59:22 2023 +0000
+Commit:     Matthew Auld <matthew.auld@intel.com>
+CommitDate: Mon Mar 27 09:54:18 2023 +0100
+
+    drm/xe/bo: refactor try_add_vram
+    
+    Get rid of some of the duplication here. In a future patch we need to
+    also consider [fpfn, lpfn], so better adjust in only one place.
+    
+    Suggested-by: José Roberto de Souza <jose.souza@intel.com>
+    Signed-off-by: Matthew Auld <matthew.auld@intel.com>
+    Reviewed-by: José Roberto de Souza <jose.souza@intel.com>
+    Reviewed-by: Gwan-gyeong Mun <gwan-gyeong.mun@intel.com>
+=== git am output follows ===
+Applying: drm/xe/pat: Define PAT tables as static
 
 
-
---===============5342695190649043062==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>fixup! drm/xe/pat: Handle unicast vs MCR PAT registers</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/115679/">https://patchwork.freedesktop.org/series/115679/</a></td></tr>
-<tr><td><b>State:</b></td><td>info</td></tr>
-
-</table>
-
-
-    <p>Participating hosts:<br />
-bat-atsm-2<br />
-bat-dg2-oem2<br />
-bat-adlp-7<br />
-Missing hosts results[0]:<br />
-Results: <a href="https://intel-gfx-ci.01.org/tree/xe/xe-pw-115679v1/index.html">xe-pw-115679v1</a></p>
-
-</body>
-</html>
-
---===============5342695190649043062==--
