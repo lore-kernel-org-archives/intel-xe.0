@@ -4,46 +4,30 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id A6E42C6FD1D
-	for <intel-xe@archiver.kernel.org>; Mon, 27 Mar 2023 17:34:46 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id CBD73C76195
+	for <intel-xe@archiver.kernel.org>; Mon, 27 Mar 2023 17:36:30 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 54B9E10E3E9;
-	Mon, 27 Mar 2023 17:34:46 +0000 (UTC)
-Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D300E10E3E9
- for <intel-xe@lists.freedesktop.org>; Mon, 27 Mar 2023 17:34:44 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1679938484; x=1711474484;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=Rmg/P6YtcnFfdEpCboY56FmX9SyRJ5w0dntaSaS5nhk=;
- b=M2jtDWUQub3J0wkvDkKgAr0ZT67v/4/kcmlgzQ4VHJ4XxIiHFbW0KykE
- DIPrhs/10XZHgeOMgjfhnm45MJB1iywZDVYQW/QPl0YFhiFxZzz4H1R5V
- 1hyxIyCfXiWRkjZUdhJM+R7O1/Moh3YWfNo6F1dnTeDm/Zj3hrOoAIOML
- xkoqgPNqTxh5vLwRwj36hETCNjayEeKp1wlAVEw3OALF5ukXyZOaeEW4F
- 0CftcglzVF7jdsPdRnIEkubyunMJ2swzx4hn2TaP7llvlENBcGoFPTFCw
- lQSE0/xOb17jiEuQn+W9drGX3Fsjgb7r6UX6o6U7wXfau7w/MYHElRHZR Q==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10662"; a="320737083"
-X-IronPort-AV: E=Sophos;i="5.98,295,1673942400"; d="scan'208";a="320737083"
-Received: from fmsmga003.fm.intel.com ([10.253.24.29])
- by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 27 Mar 2023 10:34:44 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10662"; a="772799724"
-X-IronPort-AV: E=Sophos;i="5.98,295,1673942400"; d="scan'208";a="772799724"
-Received: from mdroper-desk1.fm.intel.com ([10.1.27.134])
- by fmsmga003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 27 Mar 2023 10:34:44 -0700
-From: Matt Roper <matthew.d.roper@intel.com>
-To: intel-xe@lists.freedesktop.org
-Date: Mon, 27 Mar 2023 10:34:33 -0700
-Message-Id: <20230327173433.2957645-1-matthew.d.roper@intel.com>
-X-Mailer: git-send-email 2.39.2
+	by gabe.freedesktop.org (Postfix) with ESMTP id A30E310E3E9;
+	Mon, 27 Mar 2023 17:36:30 +0000 (UTC)
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id A0FF210E06D;
+ Mon, 27 Mar 2023 17:36:28 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 99B69A7DFF;
+ Mon, 27 Mar 2023 17:36:28 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-xe] [PATCH] fixup! drm/xe/pat: Handle unicast vs MCR PAT
- registers
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Matt Roper" <matthew.d.roper@intel.com>
+Date: Mon, 27 Mar 2023 17:36:28 -0000
+Message-ID: <167993858861.32629.870595863105810238@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20230327173433.2957645-1-matthew.d.roper@intel.com>
+In-Reply-To: <20230327173433.2957645-1-matthew.d.roper@intel.com>
+Subject: [Intel-xe] =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_f?=
+ =?utf-8?q?or_fixup!_drm/xe/pat=3A_Handle_unicast_vs_MCR_PAT_registers?=
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -55,32 +39,36 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Cc: matthew.d.roper@intel.com
+Reply-To: intel-xe@lists.freedesktop.org
+Cc: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Somehow I dropped the error message when sending this; add it back.
+== Series Details ==
 
-To be squashed next time the Xe driver is rebased.
+Series: fixup! drm/xe/pat: Handle unicast vs MCR PAT registers
+URL   : https://patchwork.freedesktop.org/series/115679/
+State : success
 
-Fixes: 11946af00717 ("drm/xe/pat: Handle unicast vs MCR PAT registers")
-Signed-off-by: Matt Roper <matthew.d.roper@intel.com>
----
- drivers/gpu/drm/xe/xe_pat.c | 2 ++
- 1 file changed, 2 insertions(+)
+== Summary ==
 
-diff --git a/drivers/gpu/drm/xe/xe_pat.c b/drivers/gpu/drm/xe/xe_pat.c
-index a713afdd0510..c860b2122301 100644
---- a/drivers/gpu/drm/xe/xe_pat.c
-+++ b/drivers/gpu/drm/xe/xe_pat.c
-@@ -94,5 +94,7 @@ void xe_pat_init(struct xe_gt *gt)
- 		 * raise an error rather than trying to silently inherit the
- 		 * most recent platform's behavior.
- 		 */
-+		drm_err(&xe->drm, "Missing PAT table for platform with graphics version %d.%2d!\n",
-+			GRAPHICS_VER(xe), GRAPHICS_VERx100(xe) % 100);
- 	}
- }
--- 
-2.39.2
+=== Applying kernel patches on branch 'drm-xe-next' with base: ===
+commit fdb2bd142dd74a0f04b000399f5bce18e9a551e7
+Author:     Matthew Auld <matthew.auld@intel.com>
+AuthorDate: Thu Mar 23 11:59:22 2023 +0000
+Commit:     Matthew Auld <matthew.auld@intel.com>
+CommitDate: Mon Mar 27 09:54:18 2023 +0100
+
+    drm/xe/bo: refactor try_add_vram
+    
+    Get rid of some of the duplication here. In a future patch we need to
+    also consider [fpfn, lpfn], so better adjust in only one place.
+    
+    Suggested-by: José Roberto de Souza <jose.souza@intel.com>
+    Signed-off-by: Matthew Auld <matthew.auld@intel.com>
+    Reviewed-by: José Roberto de Souza <jose.souza@intel.com>
+    Reviewed-by: Gwan-gyeong Mun <gwan-gyeong.mun@intel.com>
+=== git am output follows ===
+Applying: fixup! drm/xe/pat: Handle unicast vs MCR PAT registers
+
 
