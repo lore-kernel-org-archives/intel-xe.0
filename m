@@ -4,55 +4,58 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3FDEAC76196
-	for <intel-xe@archiver.kernel.org>; Tue, 28 Mar 2023 20:48:01 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id AB795C6FD18
+	for <intel-xe@archiver.kernel.org>; Tue, 28 Mar 2023 21:03:22 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E70B110E0CC;
-	Tue, 28 Mar 2023 20:48:00 +0000 (UTC)
-Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9912F10E0CC
- for <intel-xe@lists.freedesktop.org>; Tue, 28 Mar 2023 20:47:58 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4DEFB10E4AA;
+	Tue, 28 Mar 2023 21:03:22 +0000 (UTC)
+Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B149C10E4AA
+ for <intel-xe@lists.freedesktop.org>; Tue, 28 Mar 2023 21:03:20 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1680036478; x=1711572478;
- h=message-id:date:mime-version:subject:to:references:from:
- in-reply-to:content-transfer-encoding;
- bh=MnboJvZXccySv6LohFSCbE+EQv+cX6PDbCAkMjAMG0A=;
- b=FvvJ3aVlV+ZfsGWYl/099MqTXzB/59bpFKKl0Z5YZ9Qi0VDOsoABmSzZ
- BU26S1cWpHKtqytHEMsUQDu4xo9Q2bgUu+dQ1hCqYfDQVSBFBV/A0QsDj
- y2pIE9HLgutji5BR/jCvMDOki0NGD/5RLthdLopfL/n760tHv9Gn0gDxQ
- raBc9SVP8aE5MhzqU5uD1PopaMucO+yAg5Poa+OuPFRkdJBGL82xNtJct
- nrTY76gDE8xy1m/U30DXJBQeTpz7T1/T73LWgwm1IZ6xoaYcRcpqFPqrH
- pSXAy3926LfXgfgi6XjEfwzMJp4JIqHAyFQZxyzjKvpjFFtMqX1e9cn9o w==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10663"; a="368454133"
-X-IronPort-AV: E=Sophos;i="5.98,297,1673942400"; d="scan'208";a="368454133"
-Received: from orsmga004.jf.intel.com ([10.7.209.38])
- by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 28 Mar 2023 13:47:58 -0700
+ t=1680037400; x=1711573400;
+ h=message-id:date:mime-version:subject:to:cc:references:
+ from:in-reply-to:content-transfer-encoding;
+ bh=BlV4rR4GT2YJY88I6QSycM81Q8Qqjtv6o1VYKx5UytM=;
+ b=IZAV1u3iIJ6grkqC2b2qq/izG/fjASGe/d+YDmc7VcfinCKmO0rr/4+j
+ QBMgW95leM87iHtFVb6MB9XQoTfogoGBcy8PJHRpx6BUkkViGO2IsIUx2
+ ijW+1Ht+xEOwVxXmfFteu2OH3ipL3QIXpq9cxqshQ6aQ3Ki+Ju+4WAJe2
+ QzEH7B9Vqhy0aLWVD/eB3Du5aTKJJGKQwNYz6XS/whgwWi8gc8c0BGFFa
+ hBMoOII5zPLRbS5rWcsbckkE9jLJAxGEOhVno2BQbrFTcNgnDqhk5gjit
+ azte2zR+9bjwYMhFJtDVj6aifF06Cr31pgg8FK3cNu7w0XcqqUTxNqUKV g==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10663"; a="339418020"
+X-IronPort-AV: E=Sophos;i="5.98,297,1673942400"; d="scan'208";a="339418020"
+Received: from orsmga006.jf.intel.com ([10.7.209.51])
+ by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 28 Mar 2023 14:03:20 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10663"; a="807961282"
-X-IronPort-AV: E=Sophos;i="5.98,297,1673942400"; d="scan'208";a="807961282"
+X-IronPort-AV: E=McAfee;i="6600,9927,10663"; a="661338810"
+X-IronPort-AV: E=Sophos;i="5.98,297,1673942400"; d="scan'208";a="661338810"
 Received: from irvmail002.ir.intel.com ([10.43.11.120])
- by orsmga004.jf.intel.com with ESMTP; 28 Mar 2023 13:47:56 -0700
+ by orsmga006.jf.intel.com with ESMTP; 28 Mar 2023 14:03:18 -0700
 Received: from [10.249.149.19] (mwajdecz-MOBL.ger.corp.intel.com
  [10.249.149.19])
- by irvmail002.ir.intel.com (Postfix) with ESMTP id 2D0D73494A
- for <intel-xe@lists.freedesktop.org>; Tue, 28 Mar 2023 21:47:56 +0100 (IST)
-Message-ID: <761ee09f-4b67-aac6-5252-79160abcffa2@intel.com>
-Date: Tue, 28 Mar 2023 22:47:55 +0200
+ by irvmail002.ir.intel.com (Postfix) with ESMTP id 12762340DF;
+ Tue, 28 Mar 2023 22:03:16 +0100 (IST)
+Message-ID: <09b3de5d-4b8a-bf41-5e18-c583958b39b1@intel.com>
+Date: Tue, 28 Mar 2023 23:03:16 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
  Firefox/102.0 Thunderbird/102.9.0
 Content-Language: en-US
-To: intel-xe@lists.freedesktop.org
-References: <20230328195822.1941865-1-matthew.brost@intel.com>
- <20230328195822.1941865-2-matthew.brost@intel.com>
+To: "Vivi, Rodrigo" <rodrigo.vivi@intel.com>,
+ "Roper, Matthew D" <matthew.d.roper@intel.com>,
+ Jani Nikula <jani.nikula@linux.intel.com>
+References: <20230328161021.669017-1-rodrigo.vivi@intel.com>
+ <20230328161021.669017-5-rodrigo.vivi@intel.com>
+ <20230328202446.GL4085390@mdroper-desk1.amr.corp.intel.com>
+ <fbd73cb1d45a956ed723ba4806e38c78337b37e0.camel@intel.com>
 From: Michal Wajdeczko <michal.wajdeczko@intel.com>
-In-Reply-To: <20230328195822.1941865-2-matthew.brost@intel.com>
+In-Reply-To: <fbd73cb1d45a956ed723ba4806e38c78337b37e0.camel@intel.com>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-Subject: Re: [Intel-xe] [PATCH 1/2] drm/xe: Better error messages for
- xe_gt_record_default_lrcs
+Content-Transfer-Encoding: 8bit
+Subject: Re: [Intel-xe] [RFC 4/5] drm/xe: Remove useless XE_BUG_ON.
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -64,44 +67,33 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Cc: "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 
 
-On 28.03.2023 21:58, Matthew Brost wrote:
-> Add some error messages describing the problem when
-> xe_gt_record_default_lrcs fails.
+On 28.03.2023 22:27, Vivi, Rodrigo wrote:
+> On Tue, 2023-03-28 at 13:24 -0700, Matt Roper wrote:
+>> On Tue, Mar 28, 2023 at 12:10:20PM -0400, Rodrigo Vivi wrote:
+>>> If that becomes needed for some reason we bring it
+>>> back with some written reasoning.
+>>
+>> From a quick skim through this patch, most/all of these shouldn't be
+>> BUG_ON either.  These are assertions that we don't expect to get
+>> triggered, but if we do screw up somewhere we shouldn't be bringing
+>> down
+>> the entire machine; a WARN (and possibly an early exit) would be more
+>> appropriate for most of these.
 > 
-> Signed-off-by: Matthew Brost <matthew.brost@intel.com>
-> ---
->  drivers/gpu/drm/xe/xe_gt.c | 23 ++++++++++++++++++++---
->  1 file changed, 20 insertions(+), 3 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/xe/xe_gt.c b/drivers/gpu/drm/xe/xe_gt.c
-> index 6322e0689a9e..724ba2be5d3d 100644
-> --- a/drivers/gpu/drm/xe/xe_gt.c
-> +++ b/drivers/gpu/drm/xe/xe_gt.c
-> @@ -23,6 +23,7 @@
->  #include "xe_gt_sysfs.h"
->  #include "xe_gt_tlb_invalidation.h"
->  #include "xe_gt_topology.h"
-> +#include "xe_guc_engine_types.h"
->  #include "xe_hw_fence.h"
->  #include "xe_irq.h"
->  #include "xe_lrc.h"
-> @@ -257,30 +258,46 @@ int xe_gt_record_default_lrcs(struct xe_gt *gt)
->  				     hwe, ENGINE_FLAG_WA);
->  		if (IS_ERR(e)) {
->  			err = PTR_ERR(e);
-> +			drm_err(&xe->drm, "gt%d, hwe %d:%d, xe_engine_create,e failed=%d",
-> +				gt->info.id, hwe->class, hwe->instance, err);
+> yeap! I fully agree on that. I get frustrated when I hit one of these
+> BUG_ONs that should be a graceful exit with a warn without a panic...
 
-btw, there is pending series that would print GT%u for you
+Recently there was another discussion with proposal to introduce
+XE_ASSERT as a replacement of XE_BUG_ON - is this still considered ?
 
-	#include "xe_gt_printk.h"
+We likely don't want to pollute production driver with too many
+redundant BUG_ON/WARN_ON, but still want be paranoid on debug builds
+(with just WARNs and continuing until the unavoidable crash).
 
-	xe_gt_err(gt, "hwe %d:%d, ...
-
-[1] https://patchwork.freedesktop.org/series/115083/
-
+Michal
