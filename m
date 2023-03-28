@@ -4,52 +4,24 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 34DD7C76195
-	for <intel-xe@archiver.kernel.org>; Tue, 28 Mar 2023 08:22:15 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id C1AE1C76196
+	for <intel-xe@archiver.kernel.org>; Tue, 28 Mar 2023 10:48:49 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id DE50110E844;
-	Tue, 28 Mar 2023 08:22:14 +0000 (UTC)
-Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1E9AF10E462;
- Tue, 28 Mar 2023 08:22:13 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1679991731; x=1711527731;
- h=message-id:date:mime-version:subject:to:cc:references:
- from:in-reply-to:content-transfer-encoding;
- bh=Oe2nhqoDX4bJF0z3p2ExtohJt/8TaqPbqJ5WSWZwyZI=;
- b=lIQT7sIKfahuKRXWfRiRZNOLdH7CCHN97Qrt0ZH1wRiL32vX1e3fIhAi
- Pty1MXbHp6omcGLgVXwgChfGBukd9r1mjY4rWSuBCfYt1YYdKMu8MNKNX
- 1fYa0Fn71oEQger5/Q+wppixKxx84JcD0Ft4bTOAyuQ769tGkWO7FhWEf
- mpWdRpRLv54nr40cyzTEiFBGQn5hN1WJhZfbqiwZlM+z0avIi6Z+HcHhU
- 4TktfGxDoZv+WsieESe2Q0nxqOq5iMzS7HSJlD6Vd8QvrLM+3T4Yo9Nf0
- Llwf582FciN+6v7tS4R+O82/c+JDk9D8O0ypr3PcnNz8Ifb9Ex/mlxd4n A==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10662"; a="405440743"
-X-IronPort-AV: E=Sophos;i="5.98,296,1673942400"; d="scan'208";a="405440743"
-Received: from fmsmga008.fm.intel.com ([10.253.24.58])
- by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 28 Mar 2023 01:22:10 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10662"; a="748317474"
-X-IronPort-AV: E=Sophos;i="5.98,296,1673942400"; d="scan'208";a="748317474"
-Received: from skallurr-mobl1.ger.corp.intel.com (HELO [10.249.254.201])
- ([10.249.254.201])
- by fmsmga008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 28 Mar 2023 01:22:10 -0700
-Message-ID: <d1680851-ea2a-2bfd-9a97-8539080855d4@linux.intel.com>
-Date: Tue, 28 Mar 2023 10:22:08 +0200
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9A33910E4E5;
+	Tue, 28 Mar 2023 10:48:49 +0000 (UTC)
+Received: from mblankhorst.nl (lankhorst.se
+ [IPv6:2a02:2308:0:7ec:e79c:4e97:b6c4:f0ae])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B38DD10E83F
+ for <intel-xe@lists.freedesktop.org>; Tue, 28 Mar 2023 10:48:47 +0000 (UTC)
+From: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
+To: intel-xe@lists.freedesktop.org
+Date: Tue, 28 Mar 2023 12:48:36 +0200
+Message-Id: <20230328104836.251873-1-maarten.lankhorst@linux.intel.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.8.0
-Content-Language: en-US
-To: =?UTF-8?Q?Micha=c5=82_Winiarski?= <michal@hardline.pl>
-References: <20230302083422.76608-1-thomas.hellstrom@linux.intel.com>
- <20230326094246.nthqye6fpwy3mfkc@macragge.hardline.pl>
-From: =?UTF-8?Q?Thomas_Hellstr=c3=b6m?= <thomas.hellstrom@linux.intel.com>
-In-Reply-To: <20230326094246.nthqye6fpwy3mfkc@macragge.hardline.pl>
-Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
-Subject: Re: [Intel-xe] [PATCH RESEND] drm/tests: Suballocator test
+Subject: [Intel-xe] [PATCH] drm/xe: Reshuffle and validate all of the UAPI
+ structs
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -61,505 +33,496 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org,
- Christian Koenig <christian.koenig@amd.com>, dri-devel@lists.freedesktop.org,
- intel-xe@lists.freedesktop.org
+Cc: Ryan Houdek <sonicadvance1@gmail.com>
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Hi Michal,
+Verified through pahole:
+I've created a hdrtest.c with these contents:
 
-Thanks for the review, see comments inline,
+struct xe_user_extension               __PASTE(dummy, __LINE__);
+struct drm_xe_engine_class_instance    __PASTE(dummy, __LINE__);
+struct drm_xe_query_mem_usage          __PASTE(dummy, __LINE__);
+struct drm_xe_query_config             __PASTE(dummy, __LINE__);
+struct drm_xe_query_gts                __PASTE(dummy, __LINE__);
+struct drm_xe_query_topology_mask      __PASTE(dummy, __LINE__);
+struct drm_xe_device_query             __PASTE(dummy, __LINE__);
+struct drm_xe_gem_create               __PASTE(dummy, __LINE__);
+struct drm_xe_gem_mmap_offset          __PASTE(dummy, __LINE__);
+struct drm_xe_vm_bind_op_error_capture __PASTE(dummy, __LINE__);
+struct drm_xe_ext_vm_set_property      __PASTE(dummy, __LINE__);
+struct drm_xe_vm_create                __PASTE(dummy, __LINE__);
+struct drm_xe_vm_destroy               __PASTE(dummy, __LINE__);
+struct drm_xe_vm_bind_op               __PASTE(dummy, __LINE__);
+struct drm_xe_vm_bind                  __PASTE(dummy, __LINE__);
+struct drm_xe_ext_engine_set_property  __PASTE(dummy, __LINE__);
+struct drm_xe_engine_set_property      __PASTE(dummy, __LINE__);
+struct drm_xe_engine_create            __PASTE(dummy, __LINE__);
+struct drm_xe_engine_get_property      __PASTE(dummy, __LINE__);
+struct drm_xe_engine_destroy           __PASTE(dummy, __LINE__);
+struct drm_xe_sync                     __PASTE(dummy, __LINE__);
+struct drm_xe_exec                     __PASTE(dummy, __LINE__);
+struct drm_xe_mmio                     __PASTE(dummy, __LINE__);
+struct drm_xe_wait_user_fence          __PASTE(dummy, __LINE__);
+struct drm_xe_vm_madvise               __PASTE(dummy, __LINE__);
 
-On 3/26/23 11:42, Michał Winiarski wrote:
-> On Thu, Mar 02, 2023 at 09:34:22AM +0100, Thomas Hellström wrote:
->> Add a suballocator test to get some test coverage for the new drm
->> suballocator, and perform some basic timing (elapsed time).
->>
->> Signed-off-by: Thomas Hellström <thomas.hellstrom@linux.intel.com>
->> ---
->>   drivers/gpu/drm/Kconfig                   |   1 +
->>   drivers/gpu/drm/tests/Makefile            |   3 +-
->>   drivers/gpu/drm/tests/drm_suballoc_test.c | 356 ++++++++++++++++++++++
->>   3 files changed, 359 insertions(+), 1 deletion(-)
->>   create mode 100644 drivers/gpu/drm/tests/drm_suballoc_test.c
->>
->> diff --git a/drivers/gpu/drm/Kconfig b/drivers/gpu/drm/Kconfig
->> index 8fbe57407c60..dced53723721 100644
->> --- a/drivers/gpu/drm/Kconfig
->> +++ b/drivers/gpu/drm/Kconfig
->> @@ -78,6 +78,7 @@ config DRM_KUNIT_TEST
->>   	select DRM_LIB_RANDOM
->>   	select DRM_KMS_HELPER
->>   	select DRM_BUDDY
->> +	select DRM_SUBALLOC_HELPER
->>   	select DRM_EXPORT_FOR_TESTS if m
->>   	select DRM_KUNIT_TEST_HELPERS
->>   	default KUNIT_ALL_TESTS
->> diff --git a/drivers/gpu/drm/tests/Makefile b/drivers/gpu/drm/tests/Makefile
->> index bca726a8f483..c664944a48ab 100644
->> --- a/drivers/gpu/drm/tests/Makefile
->> +++ b/drivers/gpu/drm/tests/Makefile
->> @@ -17,6 +17,7 @@ obj-$(CONFIG_DRM_KUNIT_TEST) += \
->>   	drm_modes_test.o \
->>   	drm_plane_helper_test.o \
->>   	drm_probe_helper_test.o \
->> -	drm_rect_test.o
->> +	drm_rect_test.o \
->> +	drm_suballoc_test.o
->>   
->>   CFLAGS_drm_mm_test.o := $(DISABLE_STRUCTLEAK_PLUGIN)
->> diff --git a/drivers/gpu/drm/tests/drm_suballoc_test.c b/drivers/gpu/drm/tests/drm_suballoc_test.c
->> new file mode 100644
->> index 000000000000..e7303a5505a0
->> --- /dev/null
->> +++ b/drivers/gpu/drm/tests/drm_suballoc_test.c
->> @@ -0,0 +1,356 @@
->> +// SPDX-License-Identifier: GPL-2.0 OR MIT
->> +/*
->> + * Test case for the drm_suballoc suballocator manager
->> + * Copyright 2023 Intel Corporation.
->> + */
->> +
->> +#include <kunit/test.h>
->> +
->> +#include <linux/dma-fence.h>
->> +#include <linux/ktime.h>
->> +#include <linux/hrtimer.h>
->> +#include <linux/sizes.h>
->> +#include <linux/slab.h>
->> +#include <linux/spinlock.h>
->> +#include <linux/delay.h>
->> +#include <drm/drm_suballoc.h>
->> +
->> +#define SA_ITERATIONS 10000
->> +#define SA_SIZE SZ_1M
->> +#define SA_DEFAULT_ALIGN SZ_4K
->> +
->> +static bool intr = true;
->> +static bool from_reclaim;
->> +static bool pre_throttle;
->> +static unsigned int num_rings = 4;
->> +static unsigned int iterations = SA_ITERATIONS;
->> +
->> +static atomic64_t free_space;
->> +
->> +static atomic_t other_id;
->> +
->> +struct suballoc_fence;
->> +
->> +/**
->> + * struct suballoc_ring - fake gpu engine.
->> + * @list: List of fences to signal.
->> + * @signal_time: Accumulated fence signal execution time.
->> + * @lock: Protects the suballoc ring members. hardirq safe.
->> + * @hrtimer: Fake execution time timer.
->> + * @active: The currently active fence for which we have pending work or a
->> + *          timer running.
->> + * @seqno: Fence submissin seqno.
->> + * @idx: Index for calculation of fake execution time.
->> + * @work: Work struct used solely to move the timer start to a different
->> + *        processor than that used for submission.
->> + */
->> +struct suballoc_ring {
->> +	ktime_t signal_time;
->> +	struct list_head list;
->> +	/* Protect the ring processing. */
->> +	spinlock_t lock;
->> +	struct hrtimer hrtimer;
->> +	struct suballoc_fence *active;
->> +	atomic64_t seqno;
->> +	u32 idx;
->> +	struct work_struct work;
->> +};
->> +
->> +/**
->> + * struct suballoc_fence - Hrtimer-driven fence.
->> + * @fence: The base class fence struct.
->> + * @link: Link for the ring's fence list.
->> + * @size: The size of the suballocator range associated with this fence.
->> + * @id: Cpu id likely used by the submission thread for suballoc allocation.
->> + */
->> +struct suballoc_fence {
->> +	struct dma_fence fence;
->> +	struct list_head link;
->> +	size_t size;
->> +	unsigned int id;
->> +};
->> +
->> +/* A varying but repeatable fake execution time */
->> +static ktime_t ring_next_delay(struct suballoc_ring *ring)
->> +{
->> +	return ns_to_ktime((u64)(++ring->idx % 8) * 200 * NSEC_PER_USEC);
->> +}
-> Is there any way we can avoid using time (and large number of
-> iterations) here, while keeping the coverage?
-> drm_suballoc have longest runtime out of all tests in DRM (taking ~60%
-> of the whole DRM kunit execution, drm_mm being the second and taking
-> ~35%, without those two suites DRM tests execute in milliseconds rather
-> than tens of seconds),
-> Building test cases in a way that operate on time basis makes it tricky
-> to optimize the runtime.
-> If we extract various parameters from modparams to separate test cases,
-> it's going to get even worse.
+and then ran the resulting .o file through pahole.
 
-This is intended to mimic the behaviour of different rings / engines 
-using the same suballocator but with different typical batch-buffer 
-execution time, causing suballocator fragmentation. TBH I haven't 
-thought much about test execution time here so I can take a look at 
-improving that. Also if time-based becomes an issue what's important to 
-maintain coverage is the order in which the fences are signaled, and 
-also that we are able to drain the suballocator completely. However, I'm 
-a bit afraid that trying to achieve that in other ways may complicate 
-the test even more.
+All padding holes are gone on 64-bits, some through extending the width
+of some members, others by reorganizing, and even more by explicitly
+adding padding.
 
+I'm also ensuring xe verifies that all pad and reserved members are
+zero in each ioctl implementation.
 
+Suggested-by: Ryan Houdek <sonicadvance1@gmail.com>
+Signed-off-by: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
+---
+ drivers/gpu/drm/xe/xe_bo.c              |  6 ++-
+ drivers/gpu/drm/xe/xe_engine.c          | 19 +++++--
+ drivers/gpu/drm/xe/xe_exec.c            |  4 +-
+ drivers/gpu/drm/xe/xe_mmio.c            |  3 +-
+ drivers/gpu/drm/xe/xe_query.c           |  3 +-
+ drivers/gpu/drm/xe/xe_sync.c            |  4 +-
+ drivers/gpu/drm/xe/xe_vm.c              | 21 ++++++--
+ drivers/gpu/drm/xe/xe_vm_madvise.c      |  3 +-
+ drivers/gpu/drm/xe/xe_wait_user_fence.c |  3 +-
+ include/uapi/drm/xe_drm.h               | 68 +++++++++++++++++--------
+ 10 files changed, 98 insertions(+), 36 deletions(-)
 
->
->> +
->> +/*
->> + * Launch from a work item to decrease the likelyhood of the timer expiry
->> + * callback getting called from the allocating cpu.
->> + * We want to trigger cache-line bouncing between allocating and signalling
->> + * cpus.
->> + */
->> +static void ring_launch_timer_work(struct work_struct *work)
->> +{
->> +	struct suballoc_ring *ring =
->> +		container_of(work, typeof(*ring), work);
->> +
->> +	spin_lock_irq(&ring->lock);
->> +	if (ring->active)
->> +		hrtimer_start_range_ns(&ring->hrtimer, ring_next_delay(ring),
->> +				       100ULL * NSEC_PER_USEC,
->> +				       HRTIMER_MODE_REL_PINNED);
->> +
->> +	spin_unlock_irq(&ring->lock);
->> +}
->> +
->> +/*
->> + * Signal an active fence and pull the next off the list if any and make it
->> + * active.
->> + */
->> +static enum hrtimer_restart ring_hrtimer_expired(struct hrtimer *hrtimer)
->> +{
->> +	struct suballoc_ring *ring =
->> +		container_of(hrtimer, typeof(*ring), hrtimer);
->> +	struct suballoc_fence *sfence;
->> +	ktime_t now, then;
->> +	unsigned long irqflags;
->> +
->> +	spin_lock_irqsave(&ring->lock, irqflags);
->> +	sfence = ring->active;
->> +
->> +	if (sfence) {
->> +		struct dma_fence *fence = &sfence->fence;
->> +
->> +		if (sfence->id != get_cpu())
->> +			atomic_inc(&other_id);
->> +		put_cpu();
->> +
->> +		then = ktime_get();
->> +		dma_fence_signal(fence);
->> +		now = ktime_get();
->> +		dma_fence_put(fence);
->> +		ring->signal_time = ktime_add(ring->signal_time,
->> +					      ktime_sub(now, then));
->> +		ring->active = NULL;
->> +		atomic64_add(sfence->size, &free_space);
->> +	}
->> +
->> +	sfence = list_first_entry_or_null(&ring->list, typeof(*sfence), link);
->> +	if (sfence) {
->> +		list_del_init(&sfence->link);
->> +		ring->active = sfence;
->> +		spin_unlock_irqrestore(&ring->lock, irqflags);
->> +		hrtimer_forward_now(&ring->hrtimer, ring_next_delay(ring));
->> +		return HRTIMER_RESTART;
->> +	}
->> +	spin_unlock_irqrestore(&ring->lock, irqflags);
->> +
->> +	return HRTIMER_NORESTART;
->> +}
->> +
->> +/*
->> + * Queue a fence on a ring and if it's the first fence, make it active.
->> + */
->> +static void ring_add_fence(struct suballoc_ring *ring,
->> +			   struct suballoc_fence *sfence)
->> +{
->> +	spin_lock_irq(&ring->lock);
->> +	if (!ring->active) {
->> +		ring->active = sfence;
->> +		queue_work(system_unbound_wq, &ring->work);
->> +	} else {
->> +		list_add_tail(&sfence->link, &ring->list);
->> +	}
->> +	spin_unlock_irq(&ring->lock);
->> +}
->> +
->> +static void ring_init(struct suballoc_ring *ring)
->> +{
->> +	memset(ring, 0, sizeof(*ring));
->> +	INIT_LIST_HEAD(&ring->list);
->> +	spin_lock_init(&ring->lock);
->> +	hrtimer_init(&ring->hrtimer, CLOCK_MONOTONIC, HRTIMER_MODE_REL);
->> +	ring->hrtimer.function = ring_hrtimer_expired;
->> +	INIT_WORK(&ring->work, ring_launch_timer_work);
->> +}
->> +
->> +static bool ring_idle(struct suballoc_ring *ring)
->> +{
->> +	bool tmp;
->> +
->> +	spin_lock_irq(&ring->lock);
->> +	tmp = !ring->active;
->> +	spin_unlock_irq(&ring->lock);
->> +
->> +	return tmp;
->> +}
->> +
->> +static const char *dma_fence_get_suballoc_name(struct dma_fence *fence)
->> +{
->> +	return "suballoc";
->> +}
->> +
->> +static const struct dma_fence_ops dma_fence_suballoc_ops = {
->> +	.get_driver_name = dma_fence_get_suballoc_name,
->> +	.get_timeline_name = dma_fence_get_suballoc_name,
->> +};
->> +
->> +static DEFINE_SPINLOCK(sa_fence_lock);
->> +static ktime_t alloctime, freetime;
->> +
->> +static void drm_test_suballoc(struct kunit *test)
->> +{
->> +	struct suballoc_ring *rings;
->> +	struct drm_suballoc_manager sa_manager;
->> +	struct drm_suballoc *sa;
->> +	struct suballoc_fence *sfence;
->> +	struct dma_fence *fence;
->> +	ktime_t then, now, signaltime;
->> +	int i, ring, iter_tot = 0;
->> +	size_t size;
->> +	unsigned int align;
->> +	unsigned long long soffset;
->> +	gfp_t gfp;
->> +
->> +	rings = kvmalloc_array(num_rings, sizeof(*rings), GFP_KERNEL);
->> +	if (!rings) {
->> +		KUNIT_FAIL(test, "Failed allocating %u rings.\n");
->> +		return;
->> +	}
-> KUNIT_ASSERT_NOT_NULL?
-> Though we might want to implement a test-resource managed variant
-> (kunit_kvmalloc_array) to not have to worry about lifecycle and freeing
-> the resources.
+diff --git a/drivers/gpu/drm/xe/xe_bo.c b/drivers/gpu/drm/xe/xe_bo.c
+index e4d079b61d52..b78f9d11d895 100644
+--- a/drivers/gpu/drm/xe/xe_bo.c
++++ b/drivers/gpu/drm/xe/xe_bo.c
+@@ -1505,7 +1505,8 @@ int xe_gem_create_ioctl(struct drm_device *dev, void *data,
+ 	u32 handle;
+ 	int err;
+ 
+-	if (XE_IOCTL_ERR(xe, args->extensions))
++	if (XE_IOCTL_ERR(xe, args->extensions) || XE_IOCTL_ERR(xe, args->pad) ||
++	    XE_IOCTL_ERR(xe, args->reserved[0] || args->reserved[1]))
+ 		return -EINVAL;
+ 
+ 	if (XE_IOCTL_ERR(xe, args->flags &
+@@ -1575,7 +1576,8 @@ int xe_gem_mmap_offset_ioctl(struct drm_device *dev, void *data,
+ 	struct drm_xe_gem_mmap_offset *args = data;
+ 	struct drm_gem_object *gem_obj;
+ 
+-	if (XE_IOCTL_ERR(xe, args->extensions))
++	if (XE_IOCTL_ERR(xe, args->extensions) ||
++	    XE_IOCTL_ERR(xe, args->reserved[0] || args->reserved[1]))
+ 		return -EINVAL;
+ 
+ 	if (XE_IOCTL_ERR(xe, args->flags))
+diff --git a/drivers/gpu/drm/xe/xe_engine.c b/drivers/gpu/drm/xe/xe_engine.c
+index 37209b13bcd6..d576f3c9d843 100644
+--- a/drivers/gpu/drm/xe/xe_engine.c
++++ b/drivers/gpu/drm/xe/xe_engine.c
+@@ -348,7 +348,8 @@ static int engine_user_ext_set_property(struct xe_device *xe,
+ 		return -EFAULT;
+ 
+ 	if (XE_IOCTL_ERR(xe, ext.property >=
+-			 ARRAY_SIZE(engine_set_property_funcs)))
++			 ARRAY_SIZE(engine_set_property_funcs)) ||
++	    XE_IOCTL_ERR(xe, ext.pad))
+ 		return -EINVAL;
+ 
+ 	idx = array_index_nospec(ext.property, ARRAY_SIZE(engine_set_property_funcs));
+@@ -380,7 +381,8 @@ static int engine_user_extensions(struct xe_device *xe, struct xe_engine *e,
+ 	if (XE_IOCTL_ERR(xe, err))
+ 		return -EFAULT;
+ 
+-	if (XE_IOCTL_ERR(xe, ext.name >=
++	if (XE_IOCTL_ERR(xe, ext.pad) ||
++	    XE_IOCTL_ERR(xe, ext.name >=
+ 			 ARRAY_SIZE(engine_user_extension_funcs)))
+ 		return -EINVAL;
+ 
+@@ -523,7 +525,8 @@ int xe_engine_create_ioctl(struct drm_device *dev, void *data,
+ 	int len;
+ 	int err;
+ 
+-	if (XE_IOCTL_ERR(xe, args->flags))
++	if (XE_IOCTL_ERR(xe, args->flags) ||
++	    XE_IOCTL_ERR(xe, args->reserved[0] || args->reserved[1]))
+ 		return -EINVAL;
+ 
+ 	len = args->width * args->num_placements;
+@@ -655,6 +658,10 @@ int xe_engine_get_property_ioctl(struct drm_device *dev, void *data,
+ 	struct drm_xe_engine_get_property *args = data;
+ 	struct xe_engine *e;
+ 
++	if (XE_IOCTL_ERR(xe, args->extensions) ||
++	    XE_IOCTL_ERR(xe, args->reserved[0] || args->reserved[1]))
++		return -EINVAL;
++
+ 	mutex_lock(&xef->engine.lock);
+ 	e = xa_load(&xef->engine.xa, args->engine_id);
+ 	mutex_unlock(&xef->engine.lock);
+@@ -734,7 +741,8 @@ int xe_engine_destroy_ioctl(struct drm_device *dev, void *data,
+ 	struct drm_xe_engine_destroy *args = data;
+ 	struct xe_engine *e;
+ 
+-	if (XE_IOCTL_ERR(xe, args->pad))
++	if (XE_IOCTL_ERR(xe, args->pad) ||
++	    XE_IOCTL_ERR(xe, args->reserved[0] || args->reserved[1]))
+ 		return -EINVAL;
+ 
+ 	mutex_lock(&xef->engine.lock);
+@@ -765,6 +773,9 @@ int xe_engine_set_property_ioctl(struct drm_device *dev, void *data,
+ 	int ret;
+ 	u32 idx;
+ 
++	if (XE_IOCTL_ERR(xe, args->reserved[0] || args->reserved[1]))
++		return -EINVAL;
++
+ 	e = xe_engine_lookup(xef, args->engine_id);
+ 	if (XE_IOCTL_ERR(xe, !e))
+ 		return -ENOENT;
+diff --git a/drivers/gpu/drm/xe/xe_exec.c b/drivers/gpu/drm/xe/xe_exec.c
+index ea869f2452ef..0ffbb8f8f4df 100644
+--- a/drivers/gpu/drm/xe/xe_exec.c
++++ b/drivers/gpu/drm/xe/xe_exec.c
+@@ -160,7 +160,9 @@ int xe_exec_ioctl(struct drm_device *dev, void *data, struct drm_file *file)
+ 	bool write_locked;
+ 	int err = 0;
+ 
+-	if (XE_IOCTL_ERR(xe, args->extensions))
++	if (XE_IOCTL_ERR(xe, args->extensions) ||
++	    XE_IOCTL_ERR(xe, args->pad) ||
++	    XE_IOCTL_ERR(xe, args->reserved[0] || args->reserved[1]))
+ 		return -EINVAL;
+ 
+ 	engine = xe_engine_lookup(xef, args->engine_id);
+diff --git a/drivers/gpu/drm/xe/xe_mmio.c b/drivers/gpu/drm/xe/xe_mmio.c
+index 5cacaa05759a..dc8da9c1a040 100644
+--- a/drivers/gpu/drm/xe/xe_mmio.c
++++ b/drivers/gpu/drm/xe/xe_mmio.c
+@@ -409,7 +409,8 @@ int xe_mmio_ioctl(struct drm_device *dev, void *data,
+ 	bool allowed;
+ 	int ret = 0;
+ 
+-	if (XE_IOCTL_ERR(xe, args->extensions))
++	if (XE_IOCTL_ERR(xe, args->extensions) ||
++	    XE_IOCTL_ERR(xe, args->reserved[0] || args->reserved[1]))
+ 		return -EINVAL;
+ 
+ 	if (XE_IOCTL_ERR(xe, args->flags & ~VALID_MMIO_FLAGS))
+diff --git a/drivers/gpu/drm/xe/xe_query.c b/drivers/gpu/drm/xe/xe_query.c
+index dd64ff0d2a57..97742d003c8a 100644
+--- a/drivers/gpu/drm/xe/xe_query.c
++++ b/drivers/gpu/drm/xe/xe_query.c
+@@ -374,7 +374,8 @@ int xe_query_ioctl(struct drm_device *dev, void *data, struct drm_file *file)
+ 	struct drm_xe_device_query *query = data;
+ 	u32 idx;
+ 
+-	if (XE_IOCTL_ERR(xe, query->extensions != 0))
++	if (XE_IOCTL_ERR(xe, query->extensions ||
++	    XE_IOCTL_ERR(xe, query->reserved[0] || query->reserved[1])))
+ 		return -EINVAL;
+ 
+ 	if (XE_IOCTL_ERR(xe, query->query > ARRAY_SIZE(xe_query_funcs)))
+diff --git a/drivers/gpu/drm/xe/xe_sync.c b/drivers/gpu/drm/xe/xe_sync.c
+index 99f1ed87196d..3c9ac74970c5 100644
+--- a/drivers/gpu/drm/xe/xe_sync.c
++++ b/drivers/gpu/drm/xe/xe_sync.c
+@@ -110,7 +110,9 @@ int xe_sync_entry_parse(struct xe_device *xe, struct xe_file *xef,
+ 		return -EFAULT;
+ 
+ 	if (XE_IOCTL_ERR(xe, sync_in.flags &
+-			 ~(SYNC_FLAGS_TYPE_MASK | DRM_XE_SYNC_SIGNAL)))
++			 ~(SYNC_FLAGS_TYPE_MASK | DRM_XE_SYNC_SIGNAL)) ||
++	    XE_IOCTL_ERR(xe, sync_in.pad) ||
++	    XE_IOCTL_ERR(xe, sync_in.reserved[0] || sync_in.reserved[1]))
+ 		return -EINVAL;
+ 
+ 	switch (sync_in.flags & SYNC_FLAGS_TYPE_MASK) {
+diff --git a/drivers/gpu/drm/xe/xe_vm.c b/drivers/gpu/drm/xe/xe_vm.c
+index bdf82d34eb66..3d70ca235ba3 100644
+--- a/drivers/gpu/drm/xe/xe_vm.c
++++ b/drivers/gpu/drm/xe/xe_vm.c
+@@ -1774,7 +1774,9 @@ static int vm_user_ext_set_property(struct xe_device *xe, struct xe_vm *vm,
+ 		return -EFAULT;
+ 
+ 	if (XE_IOCTL_ERR(xe, ext.property >=
+-			 ARRAY_SIZE(vm_set_property_funcs)))
++			 ARRAY_SIZE(vm_set_property_funcs)) ||
++	    XE_IOCTL_ERR(xe, ext.pad) ||
++	    XE_IOCTL_ERR(xe, ext.reserved[0] || ext.reserved[1]))
+ 		return -EINVAL;
+ 
+ 	return vm_set_property_funcs[ext.property](xe, vm, ext.value);
+@@ -1802,7 +1804,8 @@ static int vm_user_extensions(struct xe_device *xe, struct xe_vm *vm,
+ 	if (XE_IOCTL_ERR(xe, err))
+ 		return -EFAULT;
+ 
+-	if (XE_IOCTL_ERR(xe, ext.name >=
++	if (XE_IOCTL_ERR(xe, ext.pad) ||
++	    XE_IOCTL_ERR(xe, ext.name >=
+ 			 ARRAY_SIZE(vm_user_extension_funcs)))
+ 		return -EINVAL;
+ 
+@@ -1833,6 +1836,9 @@ int xe_vm_create_ioctl(struct drm_device *dev, void *data,
+ 	int err;
+ 	u32 flags = 0;
+ 
++	if (XE_IOCTL_ERR(xe, args->reserved[0] || args->reserved[1]))
++		return -EINVAL;
++
+ 	if (XE_IOCTL_ERR(xe, args->flags & ~ALL_DRM_XE_VM_CREATE_FLAGS))
+ 		return -EINVAL;
+ 
+@@ -1916,7 +1922,8 @@ int xe_vm_destroy_ioctl(struct drm_device *dev, void *data,
+ 	struct drm_xe_vm_destroy *args = data;
+ 	struct xe_vm *vm;
+ 
+-	if (XE_IOCTL_ERR(xe, args->pad))
++	if (XE_IOCTL_ERR(xe, args->pad) ||
++	    XE_IOCTL_ERR(xe, args->reserved[0] || args->reserved[1]))
+ 		return -EINVAL;
+ 
+ 	vm = xe_vm_lookup(xef, args->vm_id);
+@@ -2866,6 +2873,7 @@ static int vm_bind_ioctl_check_args(struct xe_device *xe,
+ 	int i;
+ 
+ 	if (XE_IOCTL_ERR(xe, args->extensions) ||
++	    XE_IOCTL_ERR(xe, args->reserved[0] || args->reserved[1]) ||
+ 	    XE_IOCTL_ERR(xe, !args->num_binds) ||
+ 	    XE_IOCTL_ERR(xe, args->num_binds > MAX_BINDS))
+ 		return -EINVAL;
+@@ -2898,6 +2906,13 @@ static int vm_bind_ioctl_check_args(struct xe_device *xe,
+ 		u64 obj_offset = (*bind_ops)[i].obj_offset;
+ 		u32 region = (*bind_ops)[i].region;
+ 
++		if (XE_IOCTL_ERR(xe, (*bind_ops)[i].pad) ||
++		    XE_IOCTL_ERR(xe, (*bind_ops)[i].reserved[0] ||
++				     (*bind_ops)[i].reserved[1])) {
++			err = -EINVAL;
++			goto free_bind_ops;
++		}
++
+ 		if (i == 0) {
+ 			*async = !!(op & XE_VM_BIND_FLAG_ASYNC);
+ 		} else if (XE_IOCTL_ERR(xe, !*async) ||
+diff --git a/drivers/gpu/drm/xe/xe_vm_madvise.c b/drivers/gpu/drm/xe/xe_vm_madvise.c
+index 29815852985a..c7e3ae7203d7 100644
+--- a/drivers/gpu/drm/xe/xe_vm_madvise.c
++++ b/drivers/gpu/drm/xe/xe_vm_madvise.c
+@@ -301,7 +301,8 @@ int xe_vm_madvise_ioctl(struct drm_device *dev, void *data,
+ 	struct xe_vma **vmas = NULL;
+ 	int num_vmas = 0, err = 0, idx;
+ 
+-	if (XE_IOCTL_ERR(xe, args->extensions))
++	if (XE_IOCTL_ERR(xe, args->extensions) ||
++	    XE_IOCTL_ERR(xe, args->reserved[0] || args->reserved[1]))
+ 		return -EINVAL;
+ 
+ 	if (XE_IOCTL_ERR(xe, args->property > ARRAY_SIZE(madvise_funcs)))
+diff --git a/drivers/gpu/drm/xe/xe_wait_user_fence.c b/drivers/gpu/drm/xe/xe_wait_user_fence.c
+index 15c2e5aa08d2..eef989647bb0 100644
+--- a/drivers/gpu/drm/xe/xe_wait_user_fence.c
++++ b/drivers/gpu/drm/xe/xe_wait_user_fence.c
+@@ -100,7 +100,8 @@ int xe_wait_user_fence_ioctl(struct drm_device *dev, void *data,
+ 		args->flags & DRM_XE_UFENCE_WAIT_VM_ERROR;
+ 	unsigned long timeout = args->timeout;
+ 
+-	if (XE_IOCTL_ERR(xe, args->extensions))
++	if (XE_IOCTL_ERR(xe, args->extensions) ||
++	    XE_IOCTL_ERR(xe, args->reserved[0] || args->reserved[1]))
+ 		return -EINVAL;
+ 
+ 	if (XE_IOCTL_ERR(xe, args->flags & ~VALID_FLAGS))
+diff --git a/include/uapi/drm/xe_drm.h b/include/uapi/drm/xe_drm.h
+index b0b80aae3ee8..13b50198ba04 100644
+--- a/include/uapi/drm/xe_drm.h
++++ b/include/uapi/drm/xe_drm.h
+@@ -91,7 +91,7 @@ struct xe_user_extension {
+ 	 */
+ 	__u32 name;
+ 	/**
+-	 * @flags: MBZ
++	 * @pad: MBZ
+ 	 *
+ 	 * All undefined bits must be zero.
+ 	 */
+@@ -137,7 +137,7 @@ struct xe_user_extension {
+ #define DRM_IOCTL_XE_VM_MADVISE			DRM_IOW( DRM_COMMAND_BASE + DRM_XE_VM_MADVISE, struct drm_xe_vm_madvise)
+ 
+ struct drm_xe_engine_class_instance {
+-	__u16 engine_class;
++	__u32 engine_class;
+ 
+ #define DRM_XE_ENGINE_CLASS_RENDER		0
+ #define DRM_XE_ENGINE_CLASS_COPY		1
+@@ -291,6 +291,13 @@ struct drm_xe_gem_create {
+ 	 */
+ 	__u32 handle;
+ 
++	/**
++	 * @pad: MBZ
++	 *
++	 * All undefined bits must be zero.
++	 */
++	__u32 pad;
++
+ 	/** @reserved: Reserved */
+ 	__u64 reserved[2];
+ };
+@@ -335,6 +342,9 @@ struct drm_xe_ext_vm_set_property {
+ #define XE_VM_PROPERTY_BIND_OP_ERROR_CAPTURE_ADDRESS		0
+ 	__u32 property;
+ 
++	/** @pad: MBZ */
++	__u32 pad;
++
+ 	/** @value: property value */
+ 	__u64 value;
+ 
+@@ -379,6 +389,9 @@ struct drm_xe_vm_bind_op {
+ 	 */
+ 	__u32 obj;
+ 
++	/** @pad: MBZ */
++	__u32 pad;
++
+ 	union {
+ 		/**
+ 		 * @obj_offset: Offset into the object, MBZ for CLEAR_RANGE,
+@@ -469,6 +482,12 @@ struct drm_xe_vm_bind {
+ 	/** @num_binds: number of binds in this IOCTL */
+ 	__u32 num_binds;
+ 
++	/** @num_syncs: amount of syncs to wait on */
++	__u32 num_syncs;
++
++	/** @syncs: pointer to struct drm_xe_sync array */
++	__u64 syncs;
++
+ 	union {
+ 		/** @bind: used if num_binds == 1 */
+ 		struct drm_xe_vm_bind_op bind;
+@@ -479,12 +498,6 @@ struct drm_xe_vm_bind {
+ 		__u64 vector_of_binds;
+ 	};
+ 
+-	/** @num_syncs: amount of syncs to wait on */
+-	__u32 num_syncs;
+-
+-	/** @syncs: pointer to struct drm_xe_sync array */
+-	__u64 syncs;
+-
+ 	/** @reserved: Reserved */
+ 	__u64 reserved[2];
+ };
+@@ -497,6 +510,9 @@ struct drm_xe_ext_engine_set_property {
+ 	/** @property: property to set */
+ 	__u32 property;
+ 
++	/** @pad: MBZ */
++	__u32 pad;
++
+ 	/** @value: property value */
+ 	__u64 value;
+ };
+@@ -604,8 +620,12 @@ struct drm_xe_sync {
+ 	/** @extensions: Pointer to the first extension struct, if any */
+ 	__u64 extensions;
+ 
++	/** @flags: One of DRM_XE_SYNC_* flags */
+ 	__u32 flags;
+ 
++	/** @pad: MBZ */
++	__u32 pad;
++
+ #define DRM_XE_SYNC_SYNCOBJ		0x0
+ #define DRM_XE_SYNC_TIMELINE_SYNCOBJ	0x1
+ #define DRM_XE_SYNC_DMA_BUF		0x2
+@@ -613,7 +633,7 @@ struct drm_xe_sync {
+ #define DRM_XE_SYNC_SIGNAL		0x10
+ 
+ 	union {
+-		__u32 handle;
++		__u64 handle;
+ 		/**
+ 		 * @addr: Address of user fence. When sync passed in via exec
+ 		 * IOCTL this a GPU address in the VM. When sync passed in via
+@@ -654,7 +674,10 @@ struct drm_xe_exec {
+ 	 * @num_batch_buffer: number of batch buffer in this exec, must match
+ 	 * the width of the engine
+ 	 */
+-	__u16 num_batch_buffer;
++	__u32 num_batch_buffer;
++
++	/** @pad: MBZ */
++	__u32 pad;
+ 
+ 	/** @reserved: Reserved */
+ 	__u64 reserved[2];
+@@ -664,8 +687,10 @@ struct drm_xe_mmio {
+ 	/** @extensions: Pointer to the first extension struct, if any */
+ 	__u64 extensions;
+ 
++	/** @addr: Address in mmio space to do an op on */
+ 	__u32 addr;
+ 
++	/** @flags: Combination of DRM_XE_MMIO_* flags */
+ 	__u32 flags;
+ 
+ #define DRM_XE_MMIO_8BIT	0x0
+@@ -712,12 +737,13 @@ struct drm_xe_wait_user_fence {
+ #define DRM_XE_UFENCE_WAIT_GTE	3
+ #define DRM_XE_UFENCE_WAIT_LT	4
+ #define DRM_XE_UFENCE_WAIT_LTE	5
+-	__u16 op;
++	__u32 op;
+ 	/** @flags: wait flags */
+ #define DRM_XE_UFENCE_WAIT_SOFT_OP	(1 << 0)	/* e.g. Wait on VM bind */
+ #define DRM_XE_UFENCE_WAIT_ABSTIME	(1 << 1)
+ #define DRM_XE_UFENCE_WAIT_VM_ERROR	(1 << 2)
+-	__u16 flags;
++	__u32 flags;
++
+ 	/** @value: compare value */
+ 	__u64 value;
+ 	/** @mask: comparison mask */
+@@ -747,15 +773,21 @@ struct drm_xe_vm_madvise {
+ 	/** @extensions: Pointer to the first extension struct, if any */
+ 	__u64 extensions;
+ 
+-	/** @vm_id: The ID VM in which the VMA exists */
+-	__u32 vm_id;
+-
+ 	/** @range: Number of bytes in the VMA */
+ 	__u64 range;
+ 
+ 	/** @addr: Address of the VMA to operation on */
+ 	__u64 addr;
+ 
++	/** @vm_id: The ID VM in which the VMA exists */
++	__u32 vm_id;
++
++	/** @property: property to set (DRM_XE_VM_MADVISE_*) */
++	__u32 property;
++
++	/** @value: property value */
++	__u64 value;
++
+ 	/*
+ 	 * Setting the preferred location will trigger a migrate of the VMA
+ 	 * backing store to new location if the backing store is already
+@@ -791,12 +823,6 @@ struct drm_xe_vm_madvise {
+ 	/* Pin the VMA in memory, must be elevated user */
+ #define DRM_XE_VM_MADVISE_PIN			6
+ 
+-	/** @property: property to set */
+-	__u32 property;
+-
+-	/** @value: property value */
+-	__u64 value;
+-
+ 	/** @reserved: Reserved */
+ 	__u64 reserved[2];
+ };
+-- 
+2.34.1
 
-Will fix this and the other similar issues you pointed out.
-
->
->> +
->> +	for (i = 0; i < num_rings; ++i)
->> +		ring_init(rings + i);
-> With resource managed - rings could be allocated and initialized at
-> .init(). We would then call the flush and wait at .exit(), and as a
-> result, we would be able to use asserts in test body without worrying
-> about leaking.
->
->> +
->> +	atomic64_set(&free_space, SA_SIZE);
->> +	drm_suballoc_manager_init(&sa_manager, SA_SIZE, SA_DEFAULT_ALIGN);
-> This could also be moved to .init()
->
->> +
->> +	if (from_reclaim)
->> +		gfp = GFP_NOWAIT | __GFP_NOWARN;
->> +	else
->> +		gfp = GFP_KERNEL;
->> +
->> +	for (i = 0; i < iterations; ++i) {
->> +		ring = i % num_rings;
->> +		size = (ring + 1) * SZ_4K;
->> +		align = 1 << (ring % const_ilog2(SA_DEFAULT_ALIGN));
->> +
->> +		if (pre_throttle)
->> +			while (atomic64_read(&free_space) < SA_SIZE / 2)
->> +				cpu_relax();
->> +
->> +		if (from_reclaim)
->> +			fs_reclaim_acquire(GFP_KERNEL);
->> +
->> +		then = ktime_get();
->> +		sa = drm_suballoc_new(&sa_manager, size, gfp, intr, align);
->> +		now = ktime_get();
->> +		if (from_reclaim)
->> +			fs_reclaim_release(GFP_KERNEL);
->> +
->> +		alloctime = ktime_add(alloctime, ktime_sub(now, then));
->> +
->> +		iter_tot++;
->> +		if (IS_ERR(sa)) {
-> KUNIT_ASSERT_NOT_ERR_OR_NULL?
->
->> +			if (from_reclaim) {
-> drm_suballoc_new can fail for other reasons than -ENOMEM under memory
-> pressure, while with from_reclaim we're treating all errors as a
-> success, is that intentional?
-
-No it's not. Good catch. Will fix.
-
-Thanks, Thomas
-
-
-
->
->> +				iter_tot--;
->> +				continue;
->> +			}
->> +
->> +			KUNIT_FAIL(test, "drm_suballoc_new() returned %pe\n",
->> +				   sa);
->> +			break;
->> +		}
->> +
->> +		atomic64_sub(size, &free_space);
->> +		soffset = drm_suballoc_soffset(sa);
->> +		if (!IS_ALIGNED(soffset, align)) {
->> +			drm_suballoc_free(sa, NULL);
-> Do we need to worry about calling free here? We shouldn't leak as long
-> as we wait upon all fences, as drm_suballoc_manager_fini will do the
-> clean up for us.
->
-> KUNIT_EXPECT_TRUE_MSG(..., IS_ALIGNED(soffset, align), ...)?
->
->> +			KUNIT_FAIL(test, "Incorrect alignment: offset %llu align %u rem %llu\n",
->> +				   soffset, align, soffset & (align - 1));
->> +			break;
->> +		}
->> +
->> +		if (drm_suballoc_eoffset(sa) > SA_SIZE) {
->> +			drm_suballoc_free(sa, NULL);
->> +			KUNIT_FAIL(test, "Allocation beyond end.\n");
->> +			break;
->> +		}
-> KUNIT_EXPECT_LE_MSG?
->
->> +
->> +		if (drm_suballoc_size(sa) < size ||
->> +		    drm_suballoc_size(sa) >= size + align) {
->> +			drm_suballoc_free(sa, NULL);
->> +			KUNIT_FAIL(test, "Incorrect size.\n");
->> +			break;
->> +		}
-> KUNIT_EXPECT_GE and KUNIT_EXPECT_LT?
->
->> +
->> +		sfence = kmalloc(sizeof(*sfence), GFP_KERNEL);
->> +		if (unlikely(!sfence)) {
->> +			drm_suballoc_free(sa, NULL);
->> +			KUNIT_FAIL(test, "Fence allocation failed.\n");
->> +			break;
->> +		}
-> It looks like sfence is never released. kunit_kmalloc?
-> KUNIT_ASSERT_NOT_NULL / KUNIT_ASSERT_NOT_ERR_OR_NULL?
->
->> +		fence = &sfence->fence;
->> +		dma_fence_init(fence, &dma_fence_suballoc_ops, &sa_fence_lock,
->> +			       ring + 1,
->> +			       atomic64_inc_return(&rings[ring].seqno));
->> +		sfence->size = size;
->> +		sfence->id = get_cpu();
->> +		put_cpu();
->> +
->> +		ring_add_fence(rings + ring, sfence);
->> +
->> +		then = ktime_get();
->> +		drm_suballoc_free(sa, fence);
->> +		now = ktime_get();
->> +		freetime = ktime_add(freetime, ktime_sub(now, then));
->> +	}
->> +
->> +	signaltime = ktime_set(0, 0);
->> +	for (i = 0; i < num_rings; ++i) {
->> +		struct suballoc_ring *sring = &rings[i];
->> +
->> +		flush_work(&sring->work);
->> +		while (!ring_idle(sring))
->> +			schedule();
->> +		signaltime = ktime_add(signaltime, sring->signal_time);
->> +	}
-> This (and drm_suballoc_manager_fini) could be moved to .exit()
->
->> +
->> +	kvfree(rings);
->> +
->> +	kunit_info(test, "signals on different processor: %d of %d\n",
->> +		   atomic_read(&other_id), iter_tot);
->> +	drm_suballoc_manager_fini(&sa_manager);
->> +	kunit_info(test, "Alloc time was %llu ns.\n", (unsigned long long)
->> +		   ktime_to_ns(alloctime) / iter_tot);
->> +	kunit_info(test, "Free time was %llu ns.\n", (unsigned long long)
->> +		   ktime_to_ns(freetime) / iter_tot);
->> +	kunit_info(test, "Signal time was %llu ns.\n", (unsigned long long)
->> +		   ktime_to_ns(signaltime) / iter_tot);
-> Do we need those timings?
-> If we do expect certain values (probably with some epsilon range), we
-> should handle it as a separate test.
->
->> +
->> +	if (atomic64_read(&free_space) != SA_SIZE) {
->> +		kunit_warn(test, "Test sanity check failed.\n");
->> +		kunit_warn(test, "Space left at exit is %lld of %d\n",
->> +			   (long long)atomic64_read(&free_space), SA_SIZE);
->> +	}
-> If this is an error - let's add it as an "expect".
-> Otherwise it's not printed if the test PASSes (unless we're running with
-> raw output).
->
->> +}
->> +
->> +module_param(intr, bool, 0400);
->> +MODULE_PARM_DESC(intr, "Whether to wait interruptible for space.");
-> This should be a separate test case (or param to a test case), not a
-> modparam.
->
->> +module_param(from_reclaim, bool, 0400);
->> +MODULE_PARM_DESC(from_reclaim, "Whether to suballocate from reclaim context.");
-> Same here.
->
->> +module_param(pre_throttle, bool, 0400);
->> +MODULE_PARM_DESC(pre_throttle, "Whether to have the test throttle for space "
->> +		 "before allocations.");
-> And here.
->
->> +module_param(num_rings, uint, 0400);
->> +MODULE_PARM_DESC(num_rings, "Number of rings signalling fences in order.\n");
->> +module_param(iterations, uint, 0400);
->> +MODULE_PARM_DESC(iterations, "Number of allocations to perform.\n");
-> Do we expect any difference in coverage for different number of rings /
-> iterations? What's the relation here? Would it be possible to extract
-> specific values (for which we expect different behavior) to separate
-> testcases?
->
-> -Michał
->
->> +
->> +static struct kunit_case drm_suballoc_tests[] = {
->> +	KUNIT_CASE(drm_test_suballoc),
->> +	{}
->> +};
->> +
->> +static struct kunit_suite drm_suballoc_test_suite = {
->> +	.name = "drm_suballoc",
->> +	.test_cases = drm_suballoc_tests,
->> +};
->> +
->> +kunit_test_suite(drm_suballoc_test_suite);
->> +
->> +MODULE_AUTHOR("Intel Corporation");
->> +MODULE_DESCRIPTION("DRM suballocator Kunit test");
->> +MODULE_LICENSE("Dual MIT/GPL");
->> -- 
->> 2.34.1
->>
