@@ -4,48 +4,30 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 32632C6FD18
-	for <intel-xe@archiver.kernel.org>; Tue, 28 Mar 2023 19:58:30 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 502E8C6FD18
+	for <intel-xe@archiver.kernel.org>; Tue, 28 Mar 2023 20:00:33 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0730310E491;
-	Tue, 28 Mar 2023 19:58:30 +0000 (UTC)
-Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5056D10E4AE
- for <intel-xe@lists.freedesktop.org>; Tue, 28 Mar 2023 19:58:26 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1680033504; x=1711569504;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=9zsgb/DaLcD363ffzdrc95cZK0TnEuNU/zyNePGClds=;
- b=evIzkG1nd7g+BTeoovrCjl0RcSXXgRdo4IG5GSvVeLaK97N9wWhP6KSJ
- UwhZ93Hr42DXfhsm8umFPYlaq7IG6SEVLEPpADyWg8nY6s21/HPm6iwuf
- Z/oiLrEoZPwdMrAHFUGbbbzc++/pY4p+ap5Uon8bCAbuP3eKJruLxoAP2
- o31lU5vrrBIa24Ntzsivpf7T3nffScyGpQ0aa/zxvRCaLvBZzNgVJBw9n
- KseMQIS6NJp1rStIWVKdL+1h9ZAV/70E4t+x4qybcL0lRDBe5y/yp8ahV
- fbnAYBlQIrCrtkDIb24oFx1xYOpdEGypP/cKjvJeoIRFtNOHApWmULxHG w==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10663"; a="343087487"
-X-IronPort-AV: E=Sophos;i="5.98,297,1673942400"; d="scan'208";a="343087487"
-Received: from fmsmga001.fm.intel.com ([10.253.24.23])
- by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 28 Mar 2023 12:58:23 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10663"; a="827609934"
-X-IronPort-AV: E=Sophos;i="5.98,297,1673942400"; d="scan'208";a="827609934"
-Received: from lstrano-desk.jf.intel.com ([10.24.89.184])
- by fmsmga001-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 28 Mar 2023 12:58:25 -0700
-From: Matthew Brost <matthew.brost@intel.com>
-To: <intel-xe@lists.freedesktop.org>
-Date: Tue, 28 Mar 2023 12:58:21 -0700
-Message-Id: <20230328195822.1941865-2-matthew.brost@intel.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20230328195822.1941865-1-matthew.brost@intel.com>
-References: <20230328195822.1941865-1-matthew.brost@intel.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id 19F9E10E9D1;
+	Tue, 28 Mar 2023 20:00:33 +0000 (UTC)
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id AEB2610E9D1;
+ Tue, 28 Mar 2023 20:00:31 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 97E92AADD7;
+ Tue, 28 Mar 2023 20:00:31 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Subject: [Intel-xe] [PATCH 1/2] drm/xe: Better error messages for
- xe_gt_record_default_lrcs
+Content-Transfer-Encoding: 7bit
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Matthew Brost" <matthew.brost@intel.com>
+Date: Tue, 28 Mar 2023 20:00:31 -0000
+Message-ID: <168003363161.29057.6526581146904726893@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20230328195822.1941865-1-matthew.brost@intel.com>
+In-Reply-To: <20230328195822.1941865-1-matthew.brost@intel.com>
+Subject: [Intel-xe] =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_f?=
+ =?utf-8?q?or_Extra_debug_for_driver_load_issue?=
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -57,79 +39,35 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
+Cc: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Add some error messages describing the problem when
-xe_gt_record_default_lrcs fails.
+== Series Details ==
 
-Signed-off-by: Matthew Brost <matthew.brost@intel.com>
----
- drivers/gpu/drm/xe/xe_gt.c | 23 ++++++++++++++++++++---
- 1 file changed, 20 insertions(+), 3 deletions(-)
+Series: Extra debug for driver load issue
+URL   : https://patchwork.freedesktop.org/series/115744/
+State : success
 
-diff --git a/drivers/gpu/drm/xe/xe_gt.c b/drivers/gpu/drm/xe/xe_gt.c
-index 6322e0689a9e..724ba2be5d3d 100644
---- a/drivers/gpu/drm/xe/xe_gt.c
-+++ b/drivers/gpu/drm/xe/xe_gt.c
-@@ -23,6 +23,7 @@
- #include "xe_gt_sysfs.h"
- #include "xe_gt_tlb_invalidation.h"
- #include "xe_gt_topology.h"
-+#include "xe_guc_engine_types.h"
- #include "xe_hw_fence.h"
- #include "xe_irq.h"
- #include "xe_lrc.h"
-@@ -257,30 +258,46 @@ int xe_gt_record_default_lrcs(struct xe_gt *gt)
- 				     hwe, ENGINE_FLAG_WA);
- 		if (IS_ERR(e)) {
- 			err = PTR_ERR(e);
-+			drm_err(&xe->drm, "gt%d, hwe %d:%d, xe_engine_create,e failed=%d",
-+				gt->info.id, hwe->class, hwe->instance, err);
- 			goto put_vm;
- 		}
- 
- 		/* Prime golden LRC with known good state */
- 		err = emit_wa_job(gt, e);
--		if (err)
-+		if (err) {
-+			drm_err(&xe->drm, "gt%d, hwe %d:%d, guc_id=%d, emit_wa_job,e failed=%d",
-+				gt->info.id, hwe->class, hwe->instance,
-+				e->guc->id, err);
- 			goto put_engine;
-+		}
- 
- 		nop_e = xe_engine_create(xe, vm, BIT(hwe->logical_instance),
- 					 1, hwe, ENGINE_FLAG_WA);
- 		if (IS_ERR(nop_e)) {
- 			err = PTR_ERR(nop_e);
-+			drm_err(&xe->drm, "gt%d, hwe %d:%d, xe_engine_create,nop_e failed=%d",
-+				gt->info.id, hwe->class, hwe->instance, err);
- 			goto put_engine;
- 		}
- 
- 		/* Switch to different LRC */
- 		err = emit_nop_job(gt, nop_e);
--		if (err)
-+		if (err) {
-+			drm_err(&xe->drm, "gt%d, hwe %d:%d, guc_id=%d, emit_nop_job,nop_e failed=%d",
-+				gt->info.id, hwe->class, hwe->instance,
-+				nop_e->guc->id, err);
- 			goto put_nop_e;
-+		}
- 
- 		/* Reload golden LRC to record the effect of any indirect W/A */
- 		err = emit_nop_job(gt, e);
--		if (err)
-+		if (err) {
-+			drm_err(&xe->drm, "gt%d, hwe %d:%d, guc_id=%d, emit_nop_job,e failed=%d",
-+				gt->info.id, hwe->class, hwe->instance,
-+				e->guc->id, err);
- 			goto put_nop_e;
-+		}
- 
- 		xe_map_memcpy_from(xe, default_lrc,
- 				   &e->lrc[0].bo->vmap,
--- 
-2.34.1
+== Summary ==
+
+=== Applying kernel patches on branch 'drm-xe-next' with base: ===
+commit 2bf8f26026a35cf4a24d3609f70d1fb166c4183e
+Author:     Chang, Bruce <yu.bruce.chang@intel.com>
+AuthorDate: Thu Mar 23 19:38:58 2023 +0000
+Commit:     Chang, Bruce <yu.bruce.chang@intel.com>
+CommitDate: Mon Mar 27 20:20:53 2023 +0000
+
+    drm/xe: don't auto fall back to execlist mode if guc failed to init
+    
+    In general, this is due to FW load failure, should just report
+    error and fail the probe so that user can easily retry again.
+    
+    Reviewed-by: Matthew Brost <matthew.brost@intel.com>
+    Signed-off-by: Bruce Chang <yu.bruce.chang@intel.com>
+=== git am output follows ===
+Applying: drm/xe: Better error messages for xe_gt_record_default_lrcs
+Applying: drm/xe: Dump GuC log on xe_gt_record_default_lrcs failure
+
 
