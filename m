@@ -4,55 +4,55 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id BB74EC76196
-	for <intel-xe@archiver.kernel.org>; Tue, 28 Mar 2023 16:11:08 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id BF90FC6FD18
+	for <intel-xe@archiver.kernel.org>; Tue, 28 Mar 2023 16:11:12 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7CC8710E487;
-	Tue, 28 Mar 2023 16:11:08 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9AC2510E475;
+	Tue, 28 Mar 2023 16:11:12 +0000 (UTC)
 Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
- by gabe.freedesktop.org (Postfix) with ESMTPS id ECCE910E477
- for <intel-xe@lists.freedesktop.org>; Tue, 28 Mar 2023 16:11:06 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C3AD010E477
+ for <intel-xe@lists.freedesktop.org>; Tue, 28 Mar 2023 16:11:10 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1680019866; x=1711555866;
+ t=1680019870; x=1711555870;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:content-transfer-encoding:mime-version;
- bh=aXbQKJwwbmLsq68owN2aAW+3bvQK4AvnFnnRp4si+PA=;
- b=CGK6USyyKMQVMFMTnOyk6TrHXf62amQBKJGjnLmHp5koFzrd969m8V+i
- JL7vNi8l6GYuwOMakjJU+3btov64x1T/6qFr/Ne/4hqBwup1/4IADCB5a
- oc6Eoy0KdqZslzkwaXBCFcmwo3D/od6JQduX3Sfl+a0uFOXFPh//01REw
- M2OS/OCG6egh5UTNpFyESrTNMFMNUR8jGSdrWHSVz++PtfjyAotsmtoeW
- Rli76pN3/fEEmgCMOP24LOaMBeXLUkYWx5gV6IZzG2NeDRP36y+6nxqzO
- lbNzdwh5fniJvPMbJ+4TGFUBpLz0V4xAOUZ+Otoi/k2QCgoJsqA2AB3db A==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10663"; a="338115945"
-X-IronPort-AV: E=Sophos;i="5.98,297,1673942400"; d="scan'208";a="338115945"
+ bh=WDfPwKPmpudLBjFO3PhWt0gUuigXH+bmGsjpinEWB7M=;
+ b=ldRo1qFNDdPD6ArCG7i/DqKYTPMkxc1tIfaEheCqBkvk7HtiDSgf0nQ8
+ s5uQpavaZ4ehv9xXLKsoqkDU4vQ5ACG8qv5BmCuqdFbXCTmmTznaSPi0o
+ zS4IKw0flAi4iB9V1ssUwwAxKpR0TlsjPIAQ7Ul6nQ9W4iglY+q/owXvD
+ TIotO/an1P4gn7ric9HaY8wahPcVjQcqh2geRGIyuN17QQ1FZ5vWxYnQl
+ QvuMa9A0/IrJXgkFj/S6lJxgU+eCzcWGVZCtgUScFH8DsOJE3xnBcsW/d
+ RP+TAJzkSBy0dhlRnQBouAQxldQbatPZs+kz6ZQDWc7S/8BbsylXNtKmv A==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10663"; a="338115973"
+X-IronPort-AV: E=Sophos;i="5.98,297,1673942400"; d="scan'208";a="338115973"
 Received: from orsmga004.jf.intel.com ([10.7.209.38])
  by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 28 Mar 2023 09:10:44 -0700
+ 28 Mar 2023 09:10:49 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10663"; a="807896499"
-X-IronPort-AV: E=Sophos;i="5.98,297,1673942400"; d="scan'208";a="807896499"
+X-IronPort-AV: E=McAfee;i="6600,9927,10663"; a="807896509"
+X-IronPort-AV: E=Sophos;i="5.98,297,1673942400"; d="scan'208";a="807896509"
 Received: from fmsmsx601.amr.corp.intel.com ([10.18.126.81])
- by orsmga004.jf.intel.com with ESMTP; 28 Mar 2023 09:10:43 -0700
-Received: from fmsmsx610.amr.corp.intel.com (10.18.126.90) by
+ by orsmga004.jf.intel.com with ESMTP; 28 Mar 2023 09:10:48 -0700
+Received: from fmsmsx601.amr.corp.intel.com (10.18.126.81) by
  fmsmsx601.amr.corp.intel.com (10.18.126.81) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.21; Tue, 28 Mar 2023 09:10:43 -0700
-Received: from fmsedg602.ED.cps.intel.com (10.1.192.136) by
- fmsmsx610.amr.corp.intel.com (10.18.126.90) with Microsoft SMTP Server
+ 15.1.2507.21; Tue, 28 Mar 2023 09:10:48 -0700
+Received: from fmsedg601.ED.cps.intel.com (10.1.192.135) by
+ fmsmsx601.amr.corp.intel.com (10.18.126.81) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.21 via Frontend Transport; Tue, 28 Mar 2023 09:10:43 -0700
-Received: from NAM04-DM6-obe.outbound.protection.outlook.com (104.47.73.48) by
- edgegateway.intel.com (192.55.55.71) with Microsoft SMTP Server
+ 15.1.2507.21 via Frontend Transport; Tue, 28 Mar 2023 09:10:48 -0700
+Received: from NAM10-DM6-obe.outbound.protection.outlook.com (104.47.58.108)
+ by edgegateway.intel.com (192.55.55.70) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2507.21; Tue, 28 Mar 2023 09:10:43 -0700
+ 15.1.2507.21; Tue, 28 Mar 2023 09:10:48 -0700
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=gHTV5h24LZTfaIQFLNqtFu99tHiS49by+vc8H7J2CyxRxEZBmibtDgLhD6OSCepmN1UITdjwR6dUelxX5UvWudc/NzVB8xAV23Uo6ETx3z22yyM5n08lNrgud+dl7SdtWRVmuNQgsvGcmklgGEge8elR5A9sr10l8mSM0O7Es1cRFbgYMAETAqdwT7TaUb0AMvDns75OlqsrCFuIceBZ6qXRGnh4ykueRsvORgZuP8YbtUzW1LfSJRbBuCaiKoStibSQqAESNyCwGX8+43qozFysoujUMyuhMvfP44gr7MDiosvpBGPIH4juTyfmdCXwGm5yMipbXkj+BwZsPyOgFA==
+ b=Dcnp4yVB+3WrYD+grORFYt4Tw4yvKv5G2Or7gTy/ne7nkLfwQYVKi029OucP2kaD7urcycw2Yk5XmMF9GYOyxDBi0RBkDh52mM+yVJ4k9cHZ9XmeXCH9ajSX61SSvic48HSS7ONfm9BkJEONdvjBXuWFwOHrN5WmEybt/JoY8pStg2dbDTSn9VPfBqVwwYJOlxUsCHUV442VViZUgVHHqQzpoqUQDjdEps0VC4Ee6vkYihR3StjZ+oGMZeTRMWoWgkxXwBPWTW/1iblK3J+rpF+5/cnj1ZQgHqqVPwD06+5s8OYvonb/JxkiLrxlmjkN95rehQNUOZww57RsYi6NOw==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=NeqCA+Y4knEeLxKL2ce5qAQGyxHQpdZf7um4Atvs9K0=;
- b=Mt2tRm+haP9OtTG0AFjZj6Nmx6la8J6PDz2m6duGc070AbC/YDD9V7STVj6qMuk/AY57V5AsMmgr0NGBT90il1LFx/f/5RXiEbjUz1T0+weUt0+Z8Mwm5C8xEodAIhmXo6Q2FmB4ak0WE0F/2ICmktlDs4CPHhC7CEqx/5wT2fEbAraRnw+McsRmI2HMqLCP4CkMSeNW/WlPZC1bOQKltGJLFl8ZG62pgyilp+f250gIuwl/pndoWYji4b/CFfu826LghERWTQKX3THSCDng3/42XwfP7EmCh7EwxbflPaH7VFFK0Gbzt31BGeFxluuotlbDs26zzIKe1WQdT1lASw==
+ bh=ShpoOTYn0Yyou4P32KUgC4HcXm+Co8hkIyr1YkMnqyw=;
+ b=HcrogaCtMGoqiFYw8bAgK7gVZ7YqKa/BG4dj5+5U9GQxwRwRIDd7fiWeuBOQTbhmT7mvK610zqkLELpTpd3K5bjZ0OqCQTAwYn1rRF4Gl0JCfwi194mOLPuxRup9EFUbMm37dO6I8u6ynowBcL6ISfvytf66BJIwlVzUzoSNX2ljbze6hbFiWHGqpfKI6shUpjaYwGQzHrsQ3F8CkJM5MzSsAeGzjBMgGH+sYVCT5HPl0o8ztxMoREaUveGc9c4um6OdOA8yIUN6KNIFITQ5qbztJJi7Pu/6UrbN17gLcw2YhKPKFogvzU6c68t/P6dEEItftx7x/wS5lDyvgZGB/A==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
  dkim=pass header.d=intel.com; arc=none
@@ -62,74 +62,74 @@ Received: from MN0PR11MB6059.namprd11.prod.outlook.com (2603:10b6:208:377::9)
  by SA1PR11MB6870.namprd11.prod.outlook.com (2603:10b6:806:2b4::16)
  with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6222.33; Tue, 28 Mar
- 2023 16:10:40 +0000
+ 2023 16:10:45 +0000
 Received: from MN0PR11MB6059.namprd11.prod.outlook.com
  ([fe80::2b57:646c:1b01:cd18]) by MN0PR11MB6059.namprd11.prod.outlook.com
  ([fe80::2b57:646c:1b01:cd18%6]) with mapi id 15.20.6222.032; Tue, 28 Mar 2023
- 16:10:40 +0000
+ 16:10:45 +0000
 From: Rodrigo Vivi <rodrigo.vivi@intel.com>
 To: <intel-xe@lists.freedesktop.org>
-Date: Tue, 28 Mar 2023 12:10:19 -0400
-Message-ID: <20230328161021.669017-4-rodrigo.vivi@intel.com>
+Date: Tue, 28 Mar 2023 12:10:20 -0400
+Message-ID: <20230328161021.669017-5-rodrigo.vivi@intel.com>
 X-Mailer: git-send-email 2.39.2
 In-Reply-To: <20230328161021.669017-1-rodrigo.vivi@intel.com>
 References: <20230328161021.669017-1-rodrigo.vivi@intel.com>
 Content-Transfer-Encoding: 8bit
 Content-Type: text/plain
-X-ClientProxiedBy: BYAPR08CA0030.namprd08.prod.outlook.com
- (2603:10b6:a03:100::43) To MN0PR11MB6059.namprd11.prod.outlook.com
+X-ClientProxiedBy: SJ0PR13CA0135.namprd13.prod.outlook.com
+ (2603:10b6:a03:2c6::20) To MN0PR11MB6059.namprd11.prod.outlook.com
  (2603:10b6:208:377::9)
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
 X-MS-TrafficTypeDiagnostic: MN0PR11MB6059:EE_|SA1PR11MB6870:EE_
-X-MS-Office365-Filtering-Correlation-Id: 593a19e3-be8b-4ffd-3a38-08db2fa6f97e
+X-MS-Office365-Filtering-Correlation-Id: 473c9796-fd7e-405b-a4ac-08db2fa6fbff
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: YKpo6eeUvaCjhUKpboq0UpZuIJToLaCiB4q0egKSqHRA4ElM8tEiZtIGwp8OjC2+tZmS7rGZHW4jEqJfZT0ZdzN4WI6WTtUD5AemoJfSm1pzJohOcfKggO+ea5XK4aoKC6By3YuvHHzqEWmpgVaDNOWkaJ+4hvOG1N/A6m9G58Y9mSP924LMb3qAh2iyYf+/6RU5JuDQ3T8zQ/cDLhRTEkNGju7TFOCtpVme6qGPAA06OcW9Xhrb6XVveA+13mqK+STSnG+Nfo1tB1oOxbYpaQ1TQQRpniI/E2mZYZftSt5sJ+tlTPn/8YdgT1fIHDjvwdSaCqYOiJMT5sRT4MyjQZylvWlm8cbQOXLY4TPBh7Mg4WnwT4r+hngUlctOLX6A9JMpgjgmzUfVNXkShcHXVgB9DlfoYj7xClLkujL+fMnEqVuoChux2iQLwDuGWo6cUbMV0I3MwUDIqJs4nOuA6SVyxkNvCGgmHZYgKPO1yW1UZu2zjKerPjgPSV7wQsflqnfqfMKSa7sOHLPvxZ9RmLEg/3Fme2t89pE3fAiie+WUhn2fpaGzIv4pVpXZUK9N
+X-Microsoft-Antispam-Message-Info: tczbBviHUhEH6bBiecGtDMW3jrDXRP5BR56XMUhYdzxdqo5nHJNVLij7PQj45CwLxNCdhbWgrRI8PLPnGUDbEertri8o7hqcZ5v0k5u1inXx8jqPx9yQJ8p8U75vGsytzV+fOvaHtMuT7IePqJBktGZ9XI3CK8QoUutC6wCzHjrPlMo9z0bsurAGT0TymJXKqzEExj1c5KDfX37A5CuM0+oniWGWzYPvqcMhUNu8aiTQ1SX3NlQyWO+t8yll6cCM2Fv2qaGajd80Evf+KvVU1SOOWrfLaLWxhVgi80Q0BZYvO9+PlZ8bx1+GpX2yqKfYcKOO4UsRnpE9T7++3AnUxd5ZyfEJyC/pWjwXW7FuScM3TVkfnwectB7hFBeqvvJ+wSgHK989MIWreJJiQ5kt4/mymScw3xwDYh84SRWllAz6bzv8ifBauKdfwT5Tbxmo43Tmx5PiLTjuA/rcgehOEbuuPaNQB/RljLX8eSNX+QcZoyX2AvAlHMgIKYv+nGM7N3pzIYdraLS4YB97j26WgMRRoJYd3kPtxESTBEF5wN2SBu+b/U6kwBhmtrbcRcOwdGKC59s1yMyI7rZymlORc7uXI98PYmoFPsqM42Neb7I=
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
  IPV:NLI; SFV:NSPM; H:MN0PR11MB6059.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230028)(366004)(346002)(396003)(136003)(376002)(39860400002)(451199021)(4326008)(66476007)(6916009)(8676002)(66946007)(66556008)(41300700001)(82960400001)(36756003)(2906002)(86362001)(30864003)(5660300002)(8936002)(44832011)(38100700002)(478600001)(6486002)(316002)(6506007)(1076003)(6512007)(26005)(186003)(107886003)(6666004)(2616005)(83380400001);
+ SFS:(13230028)(366004)(346002)(396003)(136003)(376002)(39860400002)(451199021)(4326008)(66476007)(6916009)(8676002)(66946007)(66556008)(41300700001)(82960400001)(36756003)(2906002)(86362001)(30864003)(5660300002)(8936002)(44832011)(38100700002)(478600001)(6486002)(316002)(6506007)(1076003)(6512007)(26005)(186003)(107886003)(6666004)(2616005)(83380400001)(66899021)(21314003)(579004)(559001);
  DIR:OUT; SFP:1102; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?BJPoechUsui9eNpeiliHrUvVyz3N7B2NGWgbt500LD6myMVJxdOIWoBoAs5L?=
- =?us-ascii?Q?BkdJCbWTrBMdqRZqO1aBn2g7Tgc6Oklm89nJ0N16QW4/wWZo3idm+r8VNZMq?=
- =?us-ascii?Q?K+lW/pUmkQXvBK/GhRuwPBdfLiVXi2xIpfUFnlT5V6VEaYFi42SpWXYG8iHO?=
- =?us-ascii?Q?8fiJD+klO8+OfPUz5Om4RXTX17fbw7nEzDyVUaOCkiTBgRGXlVdthNtFhSaC?=
- =?us-ascii?Q?cKJYUC1yp8iQRg7ZwoaBfd6rR2j65bB8q/VZA+isn1Ad3UykFYwDqhZn9nb7?=
- =?us-ascii?Q?bEMQbm93VvEeBIAq0d/kAHoAw+qRCjwc3yButLxZ0EFWCuWcsaz0wTRkjB+X?=
- =?us-ascii?Q?Dx5heol1+wLyy8tzz0uvcaciN63n4SQxMIT6DI46gMWWV/Imj9Z18PeDC3Gk?=
- =?us-ascii?Q?HaWxAGCuDudsixPGYG2a5VB+WRvHBr4SIGskeCQDtuz//UeBdXQrNY/6wku9?=
- =?us-ascii?Q?Uyog8jZu7gfW9uiXvAtG7pqowWml3Xb2+JDbJCHWZbagGM1qVyA86adxvmIK?=
- =?us-ascii?Q?xSxXfw1meiNpqtpPhGODh4IrUSLtx5t49Ej9eFxklxgnbG6qA6legeR3rt16?=
- =?us-ascii?Q?xmH/xGGUhBWEabQ+AtFxnRT8/8fEwxbH7yMDLymvj072o4ikXQ8jOx52GlBf?=
- =?us-ascii?Q?EFULh81/Rim9WTC/Fw29XA/dj00CxxZhb0LItP4lWQrTBXeyymceyNp50CRj?=
- =?us-ascii?Q?2c50PSsJKsKPDbAL2uovrFZHmhUNADomK27yipYFNP6evCnFGbw3S8/lOgdo?=
- =?us-ascii?Q?fzkoXilQ7997l7U2+vdB3DwM0cJqL5xWny6Rq65zUQ37I2UGexLWWhu0vGH9?=
- =?us-ascii?Q?m46lD+1ouA/sgPr923+NCgWvl1qgf9e+MMPbI/qu4/CtKasyhdLhGomO9lpo?=
- =?us-ascii?Q?8ESda1PP9mfvEx+G30Q5NaYoWaBc2FDcx1Atbs13ol2lZ96TWYIb9Ir14/Xo?=
- =?us-ascii?Q?hDroKNZsTf3fTXoUUwzQEXjZ9EO/P9V6hDrORguOgIoqMSDjjidCCJdwcOM+?=
- =?us-ascii?Q?wOmFa2t3X2pkurSHkoxnyUBdRN62fh7fZMmKoEZdrKjlLYnuaKSP7mxL2W9t?=
- =?us-ascii?Q?k4PB8lVJg7lcXlWP8fiiH+SgjECikbjYUdSKCqvYPksiZxLxWu1xgRPKhhrA?=
- =?us-ascii?Q?JVNDQHif7gW/pumFt7INHedKF68fihK/Exl0S13QnxBXWGe00mNDv3q+7S6K?=
- =?us-ascii?Q?OMQbqy+ZLuiz1BKWyEuEjNc3Qcj7BfsNw67sQNlYaY7KxcYdvJbnf+Qy7xZn?=
- =?us-ascii?Q?BFCroowrN8JocsiDUg4QM2NBI101NGQKcdH4r52gVI30d6vjkXHFC0NMVhwK?=
- =?us-ascii?Q?YJxUrFAdojhoB/mmTjKrfjUe9rYIVfCf7ekQXZ7CLYHhmOlcb0p3a85eaXEJ?=
- =?us-ascii?Q?Mp4iEbUjwMhUKD/VK894s8OEYjla2cyxSyz2XpA4Jd29fyQoaVq3tI+W68Bc?=
- =?us-ascii?Q?Y9W4smKcVm5C2iSxl/IPsbXV+l+cecPvhPLnJQW19psA+uLM4QW1fmOJfwWm?=
- =?us-ascii?Q?mRjqzGLCE4TTV60lbwhaEc7pHgneqxKKoIB0+RqPcvHuhaUMcrjx60QX0uNu?=
- =?us-ascii?Q?O6OWIDT3l3u8MTUPFyuOxtS7Pyd0ST31nNgPkPqP?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: 593a19e3-be8b-4ffd-3a38-08db2fa6f97e
+X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?tYkUrQJ+kBJoTBaJSijHSgGIV559DYsvN3QKMBL39CCpTydNQCzRSCbkfrFe?=
+ =?us-ascii?Q?dsmO6dPnP09SWt0SQRyUix6wXl1WhvOoXod1OIShnwjcAhHrCcNFLbr2e+rp?=
+ =?us-ascii?Q?nR1o7rvNTNdtpjynXOdGCDWNO8czodyuI6NOM69smLHLHEuwYtVSjln108K4?=
+ =?us-ascii?Q?xNf9POwa6OyqJ5oAAhRQIqM1y5jOOPDSJT7eUi2orIqKmjYDE4fshegVfVjw?=
+ =?us-ascii?Q?EQPokSuIIUcbpH6U7BdYPCX834vHB77KgqPfmL19fFSxYNgSKqkPKk3aiOSe?=
+ =?us-ascii?Q?WunyMJVbziB9exF5B1uDbG+Gwk9gEIyxEgI/USStvz5/M+yIEBbvGn4THe5a?=
+ =?us-ascii?Q?yd+EuD+1Y884aEbgOSnnQZ4Ttf7p+/BVdpDr5qyTWojI3rP9yRqH2gYzz9gw?=
+ =?us-ascii?Q?Ak4f94ahBUyoMpUlaarWTU/ZGFWn1eFUfEkoiKrCJbsDyIB0gc3nLxSMTW37?=
+ =?us-ascii?Q?FrP842iPSQIwSMUgoCDF3QDisB4Pc1M/ytbgznucI9M90WuCkhh24Tdwqyjp?=
+ =?us-ascii?Q?mrkxOk1XV96EtJ6oEX+mZTwt9ONFnO4/AvVWN5tr91dZhI8sIGZYsLTSX03D?=
+ =?us-ascii?Q?MZs5NzTCg5/ZMy+O1XJCTErP3u8g67UfAwg6T0wUtiCkx1Eb2xJxSuv54DK+?=
+ =?us-ascii?Q?gHX5+jM/gnx+mD/qbiMaNwqyrabC+SUhpVb/ZF2dseyG1DYE2JcOyueSAxm2?=
+ =?us-ascii?Q?fvIbucsf8WaF0P6Ma85SSChX+qDSwPISkrwcf1oab88QHdJ3BKSSl7LwzI5H?=
+ =?us-ascii?Q?zlJaNmzRFV44mRpeXeg4aqCSfaJ1S79cG/AK8/WRsyUXhNVJ0SJbfJirOPAQ?=
+ =?us-ascii?Q?Bqylv/DxxebivMEVvO6hIiex8AKaH4oibUlWz0THqeP+jn9OXonXPehuTXBa?=
+ =?us-ascii?Q?IHjE3cnRnBtoNT9RL0eh2sIWvbfGAOBJwjl1qhg5mgIenMhPCuclPARhziW0?=
+ =?us-ascii?Q?YSC4EYAdetjCb/YwEWwGsPk66bvaE67j0m7aB802nxnXib5yzMsA8eKgBLnq?=
+ =?us-ascii?Q?95J7Au3HwcfZUUZGDmjRbuDQIe7zFbOFCjd4b4WiFVnHQrZgfDaH7grY3SZI?=
+ =?us-ascii?Q?FHHSvWkYAYVp3l3HiqUiOsOGQhILGnMGh9VEDaRjTS4CAqQ7FVqO3aXEBPOY?=
+ =?us-ascii?Q?yeVx5P7Lzy4q3OYeikARddMP+9HtPlzeit5sPUhsmiq0JPXFe1wBRBe/ka2H?=
+ =?us-ascii?Q?VrTIRj3Z4Tl/7jhOyzmuczvDzWDDhd8bqrl6izD9Zqr069Hk7v7jEocM9WuO?=
+ =?us-ascii?Q?phZizt1d7weCD4BXJ9RovqRoDp78Trsy5tT9a40cgopmgZjBkKZOT9UZYO3z?=
+ =?us-ascii?Q?ppnZI1CE+GjfRaUP2GmwhTAyUhr3HvhhEMiRawahvxSI7criD/RYnRj5LSxp?=
+ =?us-ascii?Q?n3wOB3Wm71ZD1dLgaOQ3D3sHzpJU2uBvzDu9gsBgV14u4tfwZX5lA8A04g6W?=
+ =?us-ascii?Q?kOxS6zE6SKWN15nXvZOXfN0cj9phfENxlQAH3+Zq34dvZl7BLOpCAtpGzAaT?=
+ =?us-ascii?Q?x0HGWeHZKScGO7maJh4d1o77g8DqVAQhYTO5P6cJ9r1OGoNy4dAEVeHinJ4z?=
+ =?us-ascii?Q?6J4eqhmYv8k+/aPuLB45n+dXhLbM44bWwF5/FXhf?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: 473c9796-fd7e-405b-a4ac-08db2fa6fbff
 X-MS-Exchange-CrossTenant-AuthSource: MN0PR11MB6059.namprd11.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 28 Mar 2023 16:10:40.3551 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 28 Mar 2023 16:10:44.9658 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: 3fc5sohxPQKGJPdpdY367+dN2MH8g+FuTbJcKs7XhM0+pzl1PL628IMxdraT8197qGu5tyYB0srTS1IkhK2gSA==
+X-MS-Exchange-CrossTenant-UserPrincipalName: f3Mx3KpswQS/vYVvZmuMKKEFdEZT3zoYq15UnapgLBMmp53qUqlcOCq4pQdwwMNlTeOocmqP5+KbNTsUA9H9oA==
 X-MS-Exchange-Transport-CrossTenantHeadersStamped: SA1PR11MB6870
 X-OriginatorOrg: intel.com
-Subject: [Intel-xe] [RFC 3/5] drm/xe: Remove useless XE_WARN_ON.
+Subject: [Intel-xe] [RFC 4/5] drm/xe: Remove useless XE_BUG_ON.
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -145,981 +145,1918 @@ Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-If that ever becomes useful for something we bring it
+If that becomes needed for some reason we bring it
 back with some written reasoning.
 
 Signed-off-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
 ---
- drivers/gpu/drm/xe/display/xe_fb_pin.c      |  2 +-
- drivers/gpu/drm/xe/xe_bo.c                  | 12 +++++-----
- drivers/gpu/drm/xe/xe_debugfs.c             |  4 ++--
- drivers/gpu/drm/xe/xe_device.c              |  4 ++--
- drivers/gpu/drm/xe/xe_device.h              |  2 +-
- drivers/gpu/drm/xe/xe_dma_buf.c             |  2 +-
- drivers/gpu/drm/xe/xe_engine.c              |  2 +-
- drivers/gpu/drm/xe/xe_execlist.c            |  2 +-
- drivers/gpu/drm/xe/xe_ggtt.c                |  6 ++---
- drivers/gpu/drm/xe/xe_gt.c                  | 24 +++++++++----------
- drivers/gpu/drm/xe/xe_gt_debugfs.c          |  4 ++--
- drivers/gpu/drm/xe/xe_gt_pagefault.c        |  2 +-
- drivers/gpu/drm/xe/xe_gt_tlb_invalidation.c |  2 +-
- drivers/gpu/drm/xe/xe_guc.c                 |  4 ++--
- drivers/gpu/drm/xe/xe_guc.h                 |  2 +-
- drivers/gpu/drm/xe/xe_guc_ads.c             |  2 +-
- drivers/gpu/drm/xe/xe_guc_ct.c              |  6 ++---
- drivers/gpu/drm/xe/xe_guc_debugfs.c         |  2 +-
- drivers/gpu/drm/xe/xe_guc_pc.c              | 18 +++++++-------
- drivers/gpu/drm/xe/xe_guc_submit.c          | 10 ++++----
- drivers/gpu/drm/xe/xe_huc_debugfs.c         |  2 +-
- drivers/gpu/drm/xe/xe_hw_fence.c            |  6 ++---
+ drivers/gpu/drm/xe/display/xe_de.h          |  2 +-
+ drivers/gpu/drm/xe/xe_bb.c                  |  4 +-
+ drivers/gpu/drm/xe/xe_bo.c                  | 52 +++++++++---------
+ drivers/gpu/drm/xe/xe_bo.h                  |  8 +--
+ drivers/gpu/drm/xe/xe_bo_evict.c            |  4 +-
+ drivers/gpu/drm/xe/xe_device.h              |  6 +--
+ drivers/gpu/drm/xe/xe_execlist.c            | 14 ++---
+ drivers/gpu/drm/xe/xe_force_wake.c          |  4 +-
+ drivers/gpu/drm/xe/xe_force_wake.h          |  4 +-
+ drivers/gpu/drm/xe/xe_ggtt.c                | 10 ++--
+ drivers/gpu/drm/xe/xe_gt.c                  |  6 +--
+ drivers/gpu/drm/xe/xe_gt_clock.c            |  4 +-
+ drivers/gpu/drm/xe/xe_gt_debugfs.c          |  2 +-
+ drivers/gpu/drm/xe/xe_gt_tlb_invalidation.c | 12 ++---
+ drivers/gpu/drm/xe/xe_guc.c                 | 22 ++++----
+ drivers/gpu/drm/xe/xe_guc_ads.c             | 14 ++---
+ drivers/gpu/drm/xe/xe_guc_ct.c              | 22 ++++----
+ drivers/gpu/drm/xe/xe_guc_hwconfig.c        |  2 +-
+ drivers/gpu/drm/xe/xe_guc_log.c             |  4 +-
+ drivers/gpu/drm/xe/xe_guc_submit.c          | 44 +++++++--------
+ drivers/gpu/drm/xe/xe_huc.c                 |  2 +-
+ drivers/gpu/drm/xe/xe_hw_engine.c           | 10 ++--
+ drivers/gpu/drm/xe/xe_hw_fence.c            |  2 +-
+ drivers/gpu/drm/xe/xe_lrc.c                 |  8 +--
  drivers/gpu/drm/xe/xe_macros.h              |  1 -
- drivers/gpu/drm/xe/xe_migrate.c             |  2 +-
- drivers/gpu/drm/xe/xe_mocs.c                |  4 ++--
- drivers/gpu/drm/xe/xe_pt.c                  | 10 ++++----
- drivers/gpu/drm/xe/xe_reg_sr.c              |  4 ++--
- drivers/gpu/drm/xe/xe_res_cursor.h          |  2 +-
- drivers/gpu/drm/xe/xe_rtp.c                 |  2 +-
- drivers/gpu/drm/xe/xe_sync.c                |  4 ++--
- drivers/gpu/drm/xe/xe_uc.c                  |  2 +-
- drivers/gpu/drm/xe/xe_uc_debugfs.c          |  2 +-
- drivers/gpu/drm/xe/xe_uc_fw.c               |  2 +-
- drivers/gpu/drm/xe/xe_vm.c                  | 26 ++++++++++-----------
- drivers/gpu/drm/xe/xe_vm_madvise.c          |  2 +-
- 35 files changed, 91 insertions(+), 92 deletions(-)
+ drivers/gpu/drm/xe/xe_migrate.c             | 32 +++++------
+ drivers/gpu/drm/xe/xe_mmio.c                |  2 +-
+ drivers/gpu/drm/xe/xe_pt.c                  | 32 +++++------
+ drivers/gpu/drm/xe/xe_res_cursor.h          | 10 ++--
+ drivers/gpu/drm/xe/xe_ring_ops.c            |  8 +--
+ drivers/gpu/drm/xe/xe_sched_job.c           |  2 +-
+ drivers/gpu/drm/xe/xe_ttm_gtt_mgr.c         |  2 +-
+ drivers/gpu/drm/xe/xe_ttm_stolen_mgr.c      |  4 +-
+ drivers/gpu/drm/xe/xe_ttm_vram_mgr.c        |  2 +-
+ drivers/gpu/drm/xe/xe_uc_fw.c               | 16 +++---
+ drivers/gpu/drm/xe/xe_uc_fw.h               |  2 +-
+ drivers/gpu/drm/xe/xe_vm.c                  | 60 ++++++++++-----------
+ drivers/gpu/drm/xe/xe_wait_user_fence.c     |  2 +-
+ drivers/gpu/drm/xe/xe_wopcm.c               | 18 +++----
+ 39 files changed, 227 insertions(+), 228 deletions(-)
 
-diff --git a/drivers/gpu/drm/xe/display/xe_fb_pin.c b/drivers/gpu/drm/xe/display/xe_fb_pin.c
-index 65c0bc28a3d1..ef37dc1e9a5c 100644
---- a/drivers/gpu/drm/xe/display/xe_fb_pin.c
-+++ b/drivers/gpu/drm/xe/display/xe_fb_pin.c
-@@ -190,7 +190,7 @@ static struct i915_vma *__xe_pin_fb_vma(struct intel_framebuffer *fb,
- 		return ERR_PTR(-ENODEV);
+diff --git a/drivers/gpu/drm/xe/display/xe_de.h b/drivers/gpu/drm/xe/display/xe_de.h
+index 9f92fdb4159a..c4ed0e7d9997 100644
+--- a/drivers/gpu/drm/xe/display/xe_de.h
++++ b/drivers/gpu/drm/xe/display/xe_de.h
+@@ -115,7 +115,7 @@ intel_de_write_samevalue(struct drm_i915_private *i915, i915_reg_t reg)
+ 	 * Not implemented, requires lock on all reads/writes.
+ 	 * only required for really old FBC. Not ever going to be needed.
+ 	 */
+-	XE_BUG_ON(1);
++	BUG_ON(1);
+ }
  
- 	/* Remapped view is only required on ADL-P, which xe doesn't support. */
--	if (XE_WARN_ON(view->type == I915_GTT_VIEW_REMAPPED)) {
-+	if (WARN_ON(view->type == I915_GTT_VIEW_REMAPPED)) {
- 		ret = -ENODEV;
- 		goto err;
- 	}
+ static inline u32
+diff --git a/drivers/gpu/drm/xe/xe_bb.c b/drivers/gpu/drm/xe/xe_bb.c
+index 5b24018e2a80..5caefc03a431 100644
+--- a/drivers/gpu/drm/xe/xe_bb.c
++++ b/drivers/gpu/drm/xe/xe_bb.c
+@@ -42,7 +42,7 @@ __xe_bb_create_job(struct xe_engine *kernel_eng, struct xe_bb *bb, u64 *addr)
+ {
+ 	u32 size = drm_suballoc_size(bb->bo);
+ 
+-	XE_BUG_ON((bb->len * 4 + 1) > size);
++	BUG_ON((bb->len * 4 + 1) > size);
+ 
+ 	bb->cs[bb->len++] = MI_BATCH_BUFFER_END;
+ 
+@@ -56,7 +56,7 @@ struct xe_sched_job *xe_bb_create_wa_job(struct xe_engine *wa_eng,
+ {
+ 	u64 addr = batch_base_ofs + drm_suballoc_soffset(bb->bo);
+ 
+-	XE_BUG_ON(!(wa_eng->vm->flags & XE_VM_FLAG_MIGRATION));
++	BUG_ON(!(wa_eng->vm->flags & XE_VM_FLAG_MIGRATION));
+ 
+ 	return __xe_bb_create_job(wa_eng, bb, &addr);
+ }
 diff --git a/drivers/gpu/drm/xe/xe_bo.c b/drivers/gpu/drm/xe/xe_bo.c
-index e4d079b61d52..eb00b0a67abe 100644
+index eb00b0a67abe..db360c4e0382 100644
 --- a/drivers/gpu/drm/xe/xe_bo.c
 +++ b/drivers/gpu/drm/xe/xe_bo.c
-@@ -424,7 +424,7 @@ static int xe_bo_trigger_rebind(struct xe_device *xe, struct xe_bo *bo,
- 							MAX_SCHEDULE_TIMEOUT);
- 			if (timeout > 0) {
- 				ret = xe_vm_invalidate_vma(vma);
--				XE_WARN_ON(ret);
-+				WARN_ON(ret);
- 			} else if (!timeout) {
- 				ret = -ETIME;
- 			} else {
-@@ -661,7 +661,7 @@ static int xe_bo_move(struct ttm_buffer_object *ttm_bo, bool evict,
- 				void *new_addr = gt->mem.vram.mapping +
- 					(new_mem->start << PAGE_SHIFT);
- 
--				if (XE_WARN_ON(new_mem->start == XE_BO_INVALID_OFFSET)) {
-+				if (WARN_ON(new_mem->start == XE_BO_INVALID_OFFSET)) {
- 					ret = -EINVAL;
- 					xe_device_mem_access_put(xe);
- 					goto out;
-@@ -721,7 +721,7 @@ static bool xe_ttm_bo_lock_in_destructor(struct ttm_buffer_object *ttm_bo)
+@@ -74,7 +74,7 @@ static bool xe_bo_is_user(struct xe_bo *bo)
+ static struct xe_gt *
+ mem_type_to_gt(struct xe_device *xe, u32 mem_type)
  {
- 	bool locked;
+-	XE_BUG_ON(mem_type != XE_PL_STOLEN && !mem_type_is_vram(mem_type));
++	BUG_ON(mem_type != XE_PL_STOLEN && !mem_type_is_vram(mem_type));
  
--	XE_WARN_ON(kref_read(&ttm_bo->kref));
-+	WARN_ON(kref_read(&ttm_bo->kref));
- 
- 	/*
- 	 * We can typically only race with TTM trylocking under the
-@@ -732,7 +732,7 @@ static bool xe_ttm_bo_lock_in_destructor(struct ttm_buffer_object *ttm_bo)
- 	spin_lock(&ttm_bo->bdev->lru_lock);
- 	locked = dma_resv_trylock(ttm_bo->base.resv);
- 	spin_unlock(&ttm_bo->bdev->lru_lock);
--	XE_WARN_ON(!locked);
-+	WARN_ON(!locked);
- 
- 	return locked;
+ 	return xe_device_get_gt(xe, mem_type == XE_PL_STOLEN ? 0 : (mem_type - XE_PL_VRAM0));
  }
-@@ -748,7 +748,7 @@ static void xe_ttm_bo_release_notify(struct ttm_buffer_object *ttm_bo)
- 		return;
- 
- 	bo = ttm_to_xe_bo(ttm_bo);
--	XE_WARN_ON(bo->created && kref_read(&ttm_bo->base.refcount));
-+	WARN_ON(bo->created && kref_read(&ttm_bo->base.refcount));
- 
- 	/*
- 	 * Corner case where TTM fails to allocate memory and this BOs resv
-@@ -966,7 +966,7 @@ struct xe_bo *__xe_bo_create_locked(struct xe_device *xe, struct xe_bo *bo,
- 	/* Only kernel objects should set GT */
- 	XE_BUG_ON(gt && type != ttm_bo_type_kernel);
- 
--	if (XE_WARN_ON(!size))
-+	if (WARN_ON(!size))
- 		return ERR_PTR(-EINVAL);
- 
- 	if (!bo) {
-diff --git a/drivers/gpu/drm/xe/xe_debugfs.c b/drivers/gpu/drm/xe/xe_debugfs.c
-index 7827a785b020..fc88ee32a006 100644
---- a/drivers/gpu/drm/xe/xe_debugfs.c
-+++ b/drivers/gpu/drm/xe/xe_debugfs.c
-@@ -71,7 +71,7 @@ static int forcewake_open(struct inode *inode, struct file *file)
- 	u8 id;
- 
- 	for_each_gt(gt, xe, id)
--		XE_WARN_ON(xe_force_wake_get(gt_to_fw(gt), XE_FORCEWAKE_ALL));
-+		WARN_ON(xe_force_wake_get(gt_to_fw(gt), XE_FORCEWAKE_ALL));
- 
- 	return 0;
- }
-@@ -83,7 +83,7 @@ static int forcewake_release(struct inode *inode, struct file *file)
- 	u8 id;
- 
- 	for_each_gt(gt, xe, id)
--		XE_WARN_ON(xe_force_wake_put(gt_to_fw(gt), XE_FORCEWAKE_ALL));
-+		WARN_ON(xe_force_wake_put(gt_to_fw(gt), XE_FORCEWAKE_ALL));
- 
- 	return 0;
- }
-diff --git a/drivers/gpu/drm/xe/xe_device.c b/drivers/gpu/drm/xe/xe_device.c
-index a79f934e3d2d..49dec0b6516f 100644
---- a/drivers/gpu/drm/xe/xe_device.c
-+++ b/drivers/gpu/drm/xe/xe_device.c
-@@ -411,7 +411,7 @@ void xe_device_mem_access_get(struct xe_device *xe)
- 	if (resumed)
- 		xe_pm_runtime_put(xe);
- 
--	XE_WARN_ON(ref == S32_MAX);
-+	WARN_ON(ref == S32_MAX);
- }
- 
- void xe_device_mem_access_put(struct xe_device *xe)
-@@ -422,5 +422,5 @@ void xe_device_mem_access_put(struct xe_device *xe)
- 	if (!ref && hold)
- 		xe_pm_runtime_put(xe);
- 
--	XE_WARN_ON(ref < 0);
-+	WARN_ON(ref < 0);
- }
-diff --git a/drivers/gpu/drm/xe/xe_device.h b/drivers/gpu/drm/xe/xe_device.h
-index d277f8985f7b..5f725ed2ca6b 100644
---- a/drivers/gpu/drm/xe/xe_device.h
-+++ b/drivers/gpu/drm/xe/xe_device.h
-@@ -97,7 +97,7 @@ static inline bool xe_device_mem_access_ongoing(struct xe_device *xe)
- 
- static inline void xe_device_assert_mem_access(struct xe_device *xe)
+@@ -111,7 +111,7 @@ static void add_vram(struct xe_device *xe, struct xe_bo *bo,
  {
--	XE_WARN_ON(!xe_device_mem_access_ongoing(xe));
-+	WARN_ON(!xe_device_mem_access_ongoing(xe));
- }
+ 	struct xe_gt *gt = mem_type_to_gt(xe, mem_type);
  
- static inline bool xe_device_in_fault_mode(struct xe_device *xe)
-diff --git a/drivers/gpu/drm/xe/xe_dma_buf.c b/drivers/gpu/drm/xe/xe_dma_buf.c
-index 9b252cc782b7..485aa5ccbeca 100644
---- a/drivers/gpu/drm/xe/xe_dma_buf.c
-+++ b/drivers/gpu/drm/xe/xe_dma_buf.c
-@@ -219,7 +219,7 @@ static void xe_dma_buf_move_notify(struct dma_buf_attachment *attach)
- 	struct drm_gem_object *obj = attach->importer_priv;
- 	struct xe_bo *bo = gem_to_xe_bo(obj);
+-	XE_BUG_ON(!gt->mem.vram.size);
++	BUG_ON(!gt->mem.vram.size);
  
--	XE_WARN_ON(xe_bo_evict(bo, false));
-+	WARN_ON(xe_bo_evict(bo, false));
- }
- 
- static const struct dma_buf_attach_ops xe_dma_buf_attach_ops = {
-diff --git a/drivers/gpu/drm/xe/xe_engine.c b/drivers/gpu/drm/xe/xe_engine.c
-index 37209b13bcd6..cdd2349524d6 100644
---- a/drivers/gpu/drm/xe/xe_engine.c
-+++ b/drivers/gpu/drm/xe/xe_engine.c
-@@ -705,7 +705,7 @@ static void engine_kill_compute(struct xe_engine *e)
-  */
- bool xe_engine_is_idle(struct xe_engine *engine)
- {
--	if (XE_WARN_ON(xe_engine_is_parallel(engine)))
-+	if (WARN_ON(xe_engine_is_parallel(engine)))
- 		return false;
- 
- 	return xe_lrc_seqno(&engine->lrc[0]) ==
-diff --git a/drivers/gpu/drm/xe/xe_execlist.c b/drivers/gpu/drm/xe/xe_execlist.c
-index 02021457b1f0..127ca8c6e279 100644
---- a/drivers/gpu/drm/xe/xe_execlist.c
-+++ b/drivers/gpu/drm/xe/xe_execlist.c
-@@ -373,7 +373,7 @@ static int execlist_engine_init(struct xe_engine *e)
- 		sprintf(e->name, "ccs%d", ffs(e->logical_mask) - 1);
- 		break;
- 	default:
--		XE_WARN_ON(e->class);
-+		WARN_ON(e->class);
- 	}
- 
- 	return 0;
-diff --git a/drivers/gpu/drm/xe/xe_ggtt.c b/drivers/gpu/drm/xe/xe_ggtt.c
-index a430d1568890..bd079e823661 100644
---- a/drivers/gpu/drm/xe/xe_ggtt.c
-+++ b/drivers/gpu/drm/xe/xe_ggtt.c
-@@ -205,7 +205,7 @@ void xe_ggtt_invalidate(struct xe_gt *gt)
- 		int seqno;
- 
- 		seqno = xe_gt_tlb_invalidation_guc(gt);
--		XE_WARN_ON(seqno <= 0);
-+		WARN_ON(seqno <= 0);
- 		if (seqno > 0)
- 			xe_gt_tlb_invalidation_wait(gt, seqno);
- 	} else if (xe_device_guc_submission_enabled(gt_to_xe(gt))) {
-@@ -294,7 +294,7 @@ static int __xe_ggtt_insert_bo_at(struct xe_ggtt *ggtt, struct xe_bo *bo,
- 	if (xe_bo_is_vram(bo) && ggtt->flags & XE_GGTT_FLAGS_64K)
- 		alignment = SZ_64K;
- 
--	if (XE_WARN_ON(bo->ggtt_node.size)) {
-+	if (WARN_ON(bo->ggtt_node.size)) {
- 		return 0;
- 	}
- 
-@@ -351,7 +351,7 @@ void xe_ggtt_remove_node(struct xe_ggtt *ggtt, struct drm_mm_node *node)
- 
- void xe_ggtt_remove_bo(struct xe_ggtt *ggtt, struct xe_bo *bo)
- {
--	if (XE_WARN_ON(!bo->ggtt_node.size))
-+	if (WARN_ON(!bo->ggtt_node.size))
- 		return;
- 
- 	xe_ggtt_remove_node(ggtt, &bo->ggtt_node);
-diff --git a/drivers/gpu/drm/xe/xe_gt.c b/drivers/gpu/drm/xe/xe_gt.c
-index 6322e0689a9e..7d8b4cffcc2d 100644
---- a/drivers/gpu/drm/xe/xe_gt.c
-+++ b/drivers/gpu/drm/xe/xe_gt.c
-@@ -356,7 +356,7 @@ int xe_gt_init_noalloc(struct xe_gt *gt)
- 
- err_force_wake:
- 	err2 = xe_force_wake_put(gt_to_fw(gt), XE_FW_GT);
--	XE_WARN_ON(err2);
-+	WARN_ON(err2);
- 	xe_device_mem_access_put(gt_to_xe(gt));
- err:
- 	return err;
-@@ -401,7 +401,7 @@ static int gt_fw_domain_init(struct xe_gt *gt)
- 		goto err_force_wake;
- 
- 	err = xe_force_wake_put(gt_to_fw(gt), XE_FW_GT);
--	XE_WARN_ON(err);
-+	WARN_ON(err);
- 	xe_device_mem_access_put(gt_to_xe(gt));
- 
- 	return 0;
-@@ -482,7 +482,7 @@ static int all_fw_domain_init(struct xe_gt *gt)
- 		goto err_force_wake;
- 
- 	err = xe_force_wake_put(gt_to_fw(gt), XE_FORCEWAKE_ALL);
--	XE_WARN_ON(err);
-+	WARN_ON(err);
- 	xe_device_mem_access_put(gt_to_xe(gt));
- 
- 	return 0;
-@@ -623,16 +623,16 @@ static int gt_reset(struct xe_gt *gt)
- 
- 	xe_device_mem_access_put(gt_to_xe(gt));
- 	err = xe_force_wake_put(gt_to_fw(gt), XE_FORCEWAKE_ALL);
--	XE_WARN_ON(err);
-+	WARN_ON(err);
- 
- 	drm_info(&xe->drm, "GT reset done\n");
- 
- 	return 0;
- 
- err_out:
--	XE_WARN_ON(xe_force_wake_put(gt_to_fw(gt), XE_FORCEWAKE_ALL));
-+	WARN_ON(xe_force_wake_put(gt_to_fw(gt), XE_FORCEWAKE_ALL));
- err_msg:
--	XE_WARN_ON(xe_uc_start(&gt->uc));
-+	WARN_ON(xe_uc_start(&gt->uc));
- 	xe_device_mem_access_put(gt_to_xe(gt));
- 	drm_err(&xe->drm, "GT reset failed, err=%d\n", err);
- 
-@@ -663,12 +663,12 @@ void xe_gt_reset_async(struct xe_gt *gt)
- void xe_gt_suspend_prepare(struct xe_gt *gt)
- {
- 	xe_device_mem_access_get(gt_to_xe(gt));
--	XE_WARN_ON(xe_force_wake_get(gt_to_fw(gt), XE_FORCEWAKE_ALL));
-+	WARN_ON(xe_force_wake_get(gt_to_fw(gt), XE_FORCEWAKE_ALL));
- 
- 	xe_uc_stop_prepare(&gt->uc);
- 
- 	xe_device_mem_access_put(gt_to_xe(gt));
--	XE_WARN_ON(xe_force_wake_put(gt_to_fw(gt), XE_FORCEWAKE_ALL));
-+	WARN_ON(xe_force_wake_put(gt_to_fw(gt), XE_FORCEWAKE_ALL));
- }
- 
- int xe_gt_suspend(struct xe_gt *gt)
-@@ -692,13 +692,13 @@ int xe_gt_suspend(struct xe_gt *gt)
- 		goto err_force_wake;
- 
- 	xe_device_mem_access_put(gt_to_xe(gt));
--	XE_WARN_ON(xe_force_wake_put(gt_to_fw(gt), XE_FORCEWAKE_ALL));
-+	WARN_ON(xe_force_wake_put(gt_to_fw(gt), XE_FORCEWAKE_ALL));
- 	drm_info(&xe->drm, "GT suspended\n");
- 
- 	return 0;
- 
- err_force_wake:
--	XE_WARN_ON(xe_force_wake_put(gt_to_fw(gt), XE_FORCEWAKE_ALL));
-+	WARN_ON(xe_force_wake_put(gt_to_fw(gt), XE_FORCEWAKE_ALL));
- err_msg:
- 	xe_device_mem_access_put(gt_to_xe(gt));
- 	drm_err(&xe->drm, "GT suspend failed: %d\n", err);
-@@ -721,13 +721,13 @@ int xe_gt_resume(struct xe_gt *gt)
- 		goto err_force_wake;
- 
- 	xe_device_mem_access_put(gt_to_xe(gt));
--	XE_WARN_ON(xe_force_wake_put(gt_to_fw(gt), XE_FORCEWAKE_ALL));
-+	WARN_ON(xe_force_wake_put(gt_to_fw(gt), XE_FORCEWAKE_ALL));
- 	drm_info(&xe->drm, "GT resumed\n");
- 
- 	return 0;
- 
- err_force_wake:
--	XE_WARN_ON(xe_force_wake_put(gt_to_fw(gt), XE_FORCEWAKE_ALL));
-+	WARN_ON(xe_force_wake_put(gt_to_fw(gt), XE_FORCEWAKE_ALL));
- err_msg:
- 	xe_device_mem_access_put(gt_to_xe(gt));
- 	drm_err(&xe->drm, "GT resume failed: %d\n", err);
-diff --git a/drivers/gpu/drm/xe/xe_gt_debugfs.c b/drivers/gpu/drm/xe/xe_gt_debugfs.c
-index 9fab8017490f..639b2486803b 100644
---- a/drivers/gpu/drm/xe/xe_gt_debugfs.c
-+++ b/drivers/gpu/drm/xe/xe_gt_debugfs.c
-@@ -150,7 +150,7 @@ void xe_gt_debugfs_register(struct xe_gt *gt)
- 	sprintf(name, "gt%d", gt->info.id);
- 	root = debugfs_create_dir(name, minor->debugfs_root);
- 	if (IS_ERR(root)) {
--		XE_WARN_ON("Create GT directory failed");
-+		WARN_ON("Create GT directory failed");
- 		return;
- 	}
- 
-@@ -162,7 +162,7 @@ void xe_gt_debugfs_register(struct xe_gt *gt)
- #define DEBUGFS_SIZE	ARRAY_SIZE(debugfs_list) * sizeof(struct drm_info_list)
- 	local = drmm_kmalloc(&gt_to_xe(gt)->drm, DEBUGFS_SIZE, GFP_KERNEL);
- 	if (!local) {
--		XE_WARN_ON("Couldn't allocate memory");
-+		WARN_ON("Couldn't allocate memory");
- 		return;
- 	}
- 
-diff --git a/drivers/gpu/drm/xe/xe_gt_pagefault.c b/drivers/gpu/drm/xe/xe_gt_pagefault.c
-index 1677640e1075..de0abd322fce 100644
---- a/drivers/gpu/drm/xe/xe_gt_pagefault.c
-+++ b/drivers/gpu/drm/xe/xe_gt_pagefault.c
-@@ -346,7 +346,7 @@ int xe_guc_pagefault_handler(struct xe_guc *guc, u32 *msg, u32 len)
- 		pf_queue->tail = (pf_queue->tail + len) % PF_QUEUE_NUM_DW;
- 		queue_work(gt->usm.pf_wq, &pf_queue->worker);
- 	} else {
--		XE_WARN_ON("PF Queue full, shouldn't be possible");
-+		WARN_ON("PF Queue full, shouldn't be possible");
- 	}
- 	spin_unlock_irqrestore(&pf_queue->lock, flags);
- 
-diff --git a/drivers/gpu/drm/xe/xe_gt_tlb_invalidation.c b/drivers/gpu/drm/xe/xe_gt_tlb_invalidation.c
-index f279e21300aa..6c9a96cf3d5f 100644
---- a/drivers/gpu/drm/xe/xe_gt_tlb_invalidation.c
-+++ b/drivers/gpu/drm/xe/xe_gt_tlb_invalidation.c
-@@ -319,7 +319,7 @@ int xe_guc_tlb_invalidation_done_handler(struct xe_guc *guc, u32 *msg, u32 len)
- 	/* Sanity check on seqno */
- 	expected_seqno = (gt->tlb_invalidation.seqno_recv + 1) %
- 		TLB_INVALIDATION_SEQNO_MAX;
--	XE_WARN_ON(expected_seqno != msg[0]);
-+	WARN_ON(expected_seqno != msg[0]);
- 
- 	gt->tlb_invalidation.seqno_recv = msg[0];
- 	smp_wmb();
-diff --git a/drivers/gpu/drm/xe/xe_guc.c b/drivers/gpu/drm/xe/xe_guc.c
-index 58b9841616e4..bccdfb914f08 100644
---- a/drivers/gpu/drm/xe/xe_guc.c
-+++ b/drivers/gpu/drm/xe/xe_guc.c
-@@ -805,7 +805,7 @@ void xe_guc_reset_wait(struct xe_guc *guc)
- 
- void xe_guc_stop_prepare(struct xe_guc *guc)
- {
--	XE_WARN_ON(xe_guc_pc_stop(&guc->pc));
-+	WARN_ON(xe_guc_pc_stop(&guc->pc));
- }
- 
- int xe_guc_stop(struct xe_guc *guc)
-@@ -830,7 +830,7 @@ int xe_guc_start(struct xe_guc *guc)
- 		return ret;
- 
- 	ret = xe_guc_pc_start(&guc->pc);
--	XE_WARN_ON(ret);
-+	WARN_ON(ret);
- 
- 	return 0;
- }
-diff --git a/drivers/gpu/drm/xe/xe_guc.h b/drivers/gpu/drm/xe/xe_guc.h
-index 74a74051f354..903069a07ca4 100644
---- a/drivers/gpu/drm/xe/xe_guc.h
-+++ b/drivers/gpu/drm/xe/xe_guc.h
-@@ -51,7 +51,7 @@ static inline u16 xe_engine_class_to_guc_class(enum xe_engine_class class)
- 		return GUC_COMPUTE_CLASS;
- 	case XE_ENGINE_CLASS_OTHER:
- 	default:
--		XE_WARN_ON(class);
-+		WARN_ON(class);
- 		return -1;
- 	}
- }
-diff --git a/drivers/gpu/drm/xe/xe_guc_ads.c b/drivers/gpu/drm/xe/xe_guc_ads.c
-index 304a9501b447..d5a089694f80 100644
---- a/drivers/gpu/drm/xe/xe_guc_ads.c
-+++ b/drivers/gpu/drm/xe/xe_guc_ads.c
-@@ -313,7 +313,7 @@ int xe_guc_ads_init_post_hwconfig(struct xe_guc_ads *ads)
- 	ads->golden_lrc_size = calculate_golden_lrc_size(ads);
- 	ads->regset_size = calculate_regset_size(gt);
- 
--	XE_WARN_ON(ads->golden_lrc_size +
-+	WARN_ON(ads->golden_lrc_size +
- 		   (ads->regset_size - prev_regset_size) >
- 		   MAX_GOLDEN_LRC_SIZE);
- 
-diff --git a/drivers/gpu/drm/xe/xe_guc_ct.c b/drivers/gpu/drm/xe/xe_guc_ct.c
-index 5e00b75d3ca2..fec09ba412a8 100644
---- a/drivers/gpu/drm/xe/xe_guc_ct.c
-+++ b/drivers/gpu/drm/xe/xe_guc_ct.c
-@@ -378,7 +378,7 @@ static void g2h_reserve_space(struct xe_guc_ct *ct, u32 g2h_len, u32 num_g2h)
- static void __g2h_release_space(struct xe_guc_ct *ct, u32 g2h_len)
- {
- 	lockdep_assert_held(&ct->fast_lock);
--	XE_WARN_ON(ct->ctbs.g2h.space + g2h_len >
-+	WARN_ON(ct->ctbs.g2h.space + g2h_len >
- 		   ct->ctbs.g2h.size - ct->ctbs.g2h.resv_space);
- 
- 	ct->ctbs.g2h.space += g2h_len;
-@@ -778,7 +778,7 @@ static int parse_g2h_response(struct xe_guc_ct *ct, u32 *msg, u32 len)
- 		return 0;
- 	}
- 
--	XE_WARN_ON(fence != g2h_fence->seqno);
-+	WARN_ON(fence != g2h_fence->seqno);
- 
- 	if (type == GUC_HXG_TYPE_RESPONSE_FAILURE) {
- 		g2h_fence->fail = true;
-@@ -1009,7 +1009,7 @@ static void g2h_fast_path(struct xe_guc_ct *ct, u32 *msg, u32 len)
- 							   adj_len);
- 		break;
- 	default:
--		XE_WARN_ON("NOT_POSSIBLE");
-+		WARN_ON("NOT_POSSIBLE");
- 	}
- 
- 	if (ret)
-diff --git a/drivers/gpu/drm/xe/xe_guc_debugfs.c b/drivers/gpu/drm/xe/xe_guc_debugfs.c
-index 6b72db4d5bb2..5ee500b8c3f1 100644
---- a/drivers/gpu/drm/xe/xe_guc_debugfs.c
-+++ b/drivers/gpu/drm/xe/xe_guc_debugfs.c
-@@ -90,7 +90,7 @@ void xe_guc_debugfs_register(struct xe_guc *guc, struct dentry *parent)
- #define DEBUGFS_SIZE	ARRAY_SIZE(debugfs_list) * sizeof(struct drm_info_list)
- 	local = drmm_kmalloc(&guc_to_xe(guc)->drm, DEBUGFS_SIZE, GFP_KERNEL);
- 	if (!local) {
--		XE_WARN_ON("Couldn't allocate memory");
-+		WARN_ON("Couldn't allocate memory");
- 		return;
- 	}
- 
-diff --git a/drivers/gpu/drm/xe/xe_guc_pc.c b/drivers/gpu/drm/xe/xe_guc_pc.c
-index 5a8d827ba770..9160bcd83206 100644
---- a/drivers/gpu/drm/xe/xe_guc_pc.c
-+++ b/drivers/gpu/drm/xe/xe_guc_pc.c
-@@ -392,7 +392,7 @@ static ssize_t freq_act_show(struct device *dev,
- 
- 	ret = sysfs_emit(buf, "%d\n", decode_freq(freq));
- 
--	XE_WARN_ON(xe_force_wake_put(gt_to_fw(gt), XE_FORCEWAKE_ALL));
-+	WARN_ON(xe_force_wake_put(gt_to_fw(gt), XE_FORCEWAKE_ALL));
- 	return ret;
- }
- static DEVICE_ATTR_RO(freq_act);
-@@ -420,7 +420,7 @@ static ssize_t freq_cur_show(struct device *dev,
- 	freq = REG_FIELD_GET(REQ_RATIO_MASK, freq);
- 	ret = sysfs_emit(buf, "%d\n", decode_freq(freq));
- 
--	XE_WARN_ON(xe_force_wake_put(gt_to_fw(gt), XE_FORCEWAKE_ALL));
-+	WARN_ON(xe_force_wake_put(gt_to_fw(gt), XE_FORCEWAKE_ALL));
- 	return ret;
- }
- static DEVICE_ATTR_RO(freq_cur);
-@@ -483,7 +483,7 @@ static ssize_t freq_min_show(struct device *dev,
- 	ret = sysfs_emit(buf, "%d\n", pc_get_min_freq(pc));
- 
- fw:
--	XE_WARN_ON(xe_force_wake_put(gt_to_fw(gt), XE_FORCEWAKE_ALL));
-+	WARN_ON(xe_force_wake_put(gt_to_fw(gt), XE_FORCEWAKE_ALL));
- out:
- 	mutex_unlock(&pc->freq_lock);
- 	xe_device_mem_access_put(pc_to_xe(pc));
-@@ -620,7 +620,7 @@ static ssize_t rc6_residency_show(struct device *dev,
- 
- 	ret = sysfs_emit(buff, "%u\n", reg);
- 
--	XE_WARN_ON(xe_force_wake_put(gt_to_fw(gt), XE_FORCEWAKE_ALL));
-+	WARN_ON(xe_force_wake_put(gt_to_fw(gt), XE_FORCEWAKE_ALL));
- 	return ret;
- }
- static DEVICE_ATTR_RO(rc6_residency);
-@@ -749,7 +749,7 @@ static int pc_gucrc_disable(struct xe_guc_pc *pc)
- 	xe_mmio_write32(gt, GEN6_RC_CONTROL.reg, 0);
- 	xe_mmio_write32(gt, GEN6_RC_STATE.reg, 0);
- 
--	XE_WARN_ON(xe_force_wake_put(gt_to_fw(gt), XE_FORCEWAKE_ALL));
-+	WARN_ON(xe_force_wake_put(gt_to_fw(gt), XE_FORCEWAKE_ALL));
- 	return 0;
- }
- 
-@@ -758,7 +758,7 @@ static void pc_init_pcode_freq(struct xe_guc_pc *pc)
- 	u32 min = DIV_ROUND_CLOSEST(pc->rpn_freq, GT_FREQUENCY_MULTIPLIER);
- 	u32 max = DIV_ROUND_CLOSEST(pc->rp0_freq, GT_FREQUENCY_MULTIPLIER);
- 
--	XE_WARN_ON(xe_pcode_init_min_freq_table(pc_to_gt(pc), min, max));
-+	WARN_ON(xe_pcode_init_min_freq_table(pc_to_gt(pc), min, max));
- }
- 
- static int pc_init_freqs(struct xe_guc_pc *pc)
-@@ -801,7 +801,7 @@ int xe_guc_pc_start(struct xe_guc_pc *pc)
- 	u32 size = PAGE_ALIGN(sizeof(struct slpc_shared_data));
+ 	places[*c] = (struct ttm_place) {
+ 		.mem_type = mem_type,
+@@ -246,7 +246,7 @@ static int xe_tt_map_sg(struct ttm_tt *tt)
+ 	unsigned long num_pages = tt->num_pages;
  	int ret;
  
--	XE_WARN_ON(!xe_device_guc_submission_enabled(xe));
-+	WARN_ON(!xe_device_guc_submission_enabled(xe));
+-	XE_BUG_ON(tt->page_flags & TTM_TT_FLAG_EXTERNAL);
++	BUG_ON(tt->page_flags & TTM_TT_FLAG_EXTERNAL);
  
- 	xe_device_mem_access_get(pc_to_xe(pc));
+ 	if (xe_tt->sg)
+ 		return 0;
+@@ -481,8 +481,8 @@ static int xe_bo_move_dmabuf(struct ttm_buffer_object *ttm_bo,
+ 					       ttm);
+ 	struct sg_table *sg;
  
-@@ -836,7 +836,7 @@ int xe_guc_pc_start(struct xe_guc_pc *pc)
+-	XE_BUG_ON(!attach);
+-	XE_BUG_ON(!ttm_bo->ttm);
++	BUG_ON(!attach);
++	BUG_ON(!ttm_bo->ttm);
  
- out:
- 	xe_device_mem_access_put(pc_to_xe(pc));
--	XE_WARN_ON(xe_force_wake_put(gt_to_fw(gt), XE_FORCEWAKE_ALL));
-+	WARN_ON(xe_force_wake_put(gt_to_fw(gt), XE_FORCEWAKE_ALL));
- 	return ret;
- }
+ 	if (new_res->mem_type == XE_PL_SYSTEM)
+ 		goto out;
+@@ -636,8 +636,8 @@ static int xe_bo_move(struct ttm_buffer_object *ttm_bo, bool evict,
+ 	else if (resource_is_vram(old_mem))
+ 		gt = mem_type_to_gt(xe, old_mem->mem_type);
  
-@@ -876,7 +876,7 @@ static void pc_fini(struct drm_device *drm, void *arg)
+-	XE_BUG_ON(!gt);
+-	XE_BUG_ON(!gt->migrate);
++	BUG_ON(!gt);
++	BUG_ON(!gt->migrate);
+ 
+ 	trace_xe_bo_move(bo);
+ 	xe_device_mem_access_get(xe);
+@@ -667,7 +667,7 @@ static int xe_bo_move(struct ttm_buffer_object *ttm_bo, bool evict,
+ 					goto out;
+ 				}
+ 
+-				XE_BUG_ON(new_mem->start !=
++				BUG_ON(new_mem->start !=
+ 					  bo->placements->fpfn);
+ 
+ 				iosys_map_set_vaddr_iomem(&bo->vmap, new_addr);
+@@ -964,7 +964,7 @@ struct xe_bo *__xe_bo_create_locked(struct xe_device *xe, struct xe_bo *bo,
+ 	int err;
+ 
+ 	/* Only kernel objects should set GT */
+-	XE_BUG_ON(gt && type != ttm_bo_type_kernel);
++	BUG_ON(gt && type != ttm_bo_type_kernel);
+ 
+ 	if (WARN_ON(!size))
+ 		return ERR_PTR(-EINVAL);
+@@ -1104,7 +1104,7 @@ xe_bo_create_locked_range(struct xe_device *xe,
+ 		if (!gt && flags & XE_BO_CREATE_STOLEN_BIT)
+ 			gt = xe_device_get_gt(xe, 0);
+ 
+-		XE_BUG_ON(!gt);
++		BUG_ON(!gt);
+ 
+ 		if (flags & XE_BO_FIXED_PLACEMENT_BIT) {
+ 			err = xe_ggtt_insert_bo_at(gt->mem.ggtt, bo,
+@@ -1233,8 +1233,8 @@ int xe_bo_pin_external(struct xe_bo *bo)
+ 	struct xe_device *xe = xe_bo_device(bo);
+ 	int err;
+ 
+-	XE_BUG_ON(bo->vm);
+-	XE_BUG_ON(!xe_bo_is_user(bo));
++	BUG_ON(bo->vm);
++	BUG_ON(!xe_bo_is_user(bo));
+ 
+ 	if (!xe_bo_is_pinned(bo)) {
+ 		err = xe_bo_validate(bo, NULL, false);
+@@ -1266,20 +1266,20 @@ int xe_bo_pin(struct xe_bo *bo)
+ 	int err;
+ 
+ 	/* We currently don't expect user BO to be pinned */
+-	XE_BUG_ON(xe_bo_is_user(bo));
++	BUG_ON(xe_bo_is_user(bo));
+ 
+ 	/* Pinned object must be in GGTT or have pinned flag */
+-	XE_BUG_ON(!(bo->flags & (XE_BO_CREATE_PINNED_BIT |
++	BUG_ON(!(bo->flags & (XE_BO_CREATE_PINNED_BIT |
+ 				 XE_BO_CREATE_GGTT_BIT)));
+ 
+ 	/*
+ 	 * No reason we can't support pinning imported dma-bufs we just don't
+ 	 * expect to pin an imported dma-buf.
+ 	 */
+-	XE_BUG_ON(bo->ttm.base.import_attach);
++	BUG_ON(bo->ttm.base.import_attach);
+ 
+ 	/* We only expect at most 1 pin */
+-	XE_BUG_ON(xe_bo_is_pinned(bo));
++	BUG_ON(xe_bo_is_pinned(bo));
+ 
+ 	err = xe_bo_validate(bo, NULL, false);
+ 	if (err)
+@@ -1296,7 +1296,7 @@ int xe_bo_pin(struct xe_bo *bo)
+ 		bool vram;
+ 
+ 		if (mem_type_is_vram(place->mem_type)) {
+-			XE_BUG_ON(!(place->flags & TTM_PL_FLAG_CONTIGUOUS));
++			BUG_ON(!(place->flags & TTM_PL_FLAG_CONTIGUOUS));
+ 
+ 			place->fpfn = (xe_bo_addr(bo, 0, PAGE_SIZE, &vram) -
+ 				       vram_region_io_offset(bo)) >> PAGE_SHIFT;
+@@ -1333,9 +1333,9 @@ void xe_bo_unpin_external(struct xe_bo *bo)
  {
- 	struct xe_guc_pc *pc = arg;
+ 	struct xe_device *xe = xe_bo_device(bo);
  
--	XE_WARN_ON(xe_guc_pc_stop(pc));
-+	WARN_ON(xe_guc_pc_stop(pc));
- 	sysfs_remove_files(pc_to_gt(pc)->sysfs, pc_attrs);
- 	xe_bo_unpin_map_no_vm(pc->bo);
+-	XE_BUG_ON(bo->vm);
+-	XE_BUG_ON(!xe_bo_is_pinned(bo));
+-	XE_BUG_ON(!xe_bo_is_user(bo));
++	BUG_ON(bo->vm);
++	BUG_ON(!xe_bo_is_pinned(bo));
++	BUG_ON(!xe_bo_is_user(bo));
+ 
+ 	if (bo->ttm.pin_count == 1 && !list_empty(&bo->pinned_link)) {
+ 		spin_lock(&xe->pinned.lock);
+@@ -1356,15 +1356,15 @@ void xe_bo_unpin(struct xe_bo *bo)
+ {
+ 	struct xe_device *xe = xe_bo_device(bo);
+ 
+-	XE_BUG_ON(bo->ttm.base.import_attach);
+-	XE_BUG_ON(!xe_bo_is_pinned(bo));
++	BUG_ON(bo->ttm.base.import_attach);
++	BUG_ON(!xe_bo_is_pinned(bo));
+ 
+ 	if (IS_DGFX(xe) && !(IS_ENABLED(CONFIG_DRM_XE_DEBUG) &&
+ 	    bo->flags & XE_BO_INTERNAL_TEST)) {
+ 		struct ttm_place *place = &(bo->placements[0]);
+ 
+ 		if (mem_type_is_vram(place->mem_type)) {
+-			XE_BUG_ON(list_empty(&bo->pinned_link));
++			BUG_ON(list_empty(&bo->pinned_link));
+ 
+ 			spin_lock(&xe->pinned.lock);
+ 			list_del_init(&bo->pinned_link);
+@@ -1426,14 +1426,14 @@ dma_addr_t xe_bo_addr(struct xe_bo *bo, u64 offset,
+ 	if (!READ_ONCE(bo->ttm.pin_count))
+ 		xe_bo_assert_held(bo);
+ 
+-	XE_BUG_ON(page_size > PAGE_SIZE);
++	BUG_ON(page_size > PAGE_SIZE);
+ 	page = offset >> PAGE_SHIFT;
+ 	offset &= (PAGE_SIZE - 1);
+ 
+ 	*is_vram = xe_bo_is_vram(bo);
+ 
+ 	if (!*is_vram && !xe_bo_is_stolen(bo)) {
+-		XE_BUG_ON(!bo->ttm.ttm);
++		BUG_ON(!bo->ttm.ttm);
+ 
+ 		xe_res_first_sg(xe_bo_get_sg(bo), page << PAGE_SHIFT,
+ 				page_size, &cur);
+@@ -1599,7 +1599,7 @@ int xe_bo_lock(struct xe_bo *bo, struct ww_acquire_ctx *ww,
+ 	LIST_HEAD(objs);
+ 	LIST_HEAD(dups);
+ 
+-	XE_BUG_ON(!ww);
++	BUG_ON(!ww);
+ 
+ 	tv_bo.num_shared = num_resv;
+ 	tv_bo.bo = &bo->ttm;;
+diff --git a/drivers/gpu/drm/xe/xe_bo.h b/drivers/gpu/drm/xe/xe_bo.h
+index 9b26049521de..169c80996b26 100644
+--- a/drivers/gpu/drm/xe/xe_bo.h
++++ b/drivers/gpu/drm/xe/xe_bo.h
+@@ -149,7 +149,7 @@ void xe_bo_unlock(struct xe_bo *bo, struct ww_acquire_ctx *ww);
+ static inline void xe_bo_unlock_vm_held(struct xe_bo *bo)
+ {
+ 	if (bo) {
+-		XE_BUG_ON(bo->vm && bo->ttm.base.resv != &bo->vm->resv);
++		BUG_ON(bo->vm && bo->ttm.base.resv != &bo->vm->resv);
+ 		if (bo->vm)
+ 			xe_vm_assert_held(bo->vm);
+ 		else
+@@ -161,7 +161,7 @@ static inline void xe_bo_lock_no_vm(struct xe_bo *bo,
+ 				    struct ww_acquire_ctx *ctx)
+ {
+ 	if (bo) {
+-		XE_BUG_ON(bo->vm || (bo->ttm.type != ttm_bo_type_sg &&
++		BUG_ON(bo->vm || (bo->ttm.type != ttm_bo_type_sg &&
+ 				     bo->ttm.base.resv != &bo->ttm.base._resv));
+ 		dma_resv_lock(bo->ttm.base.resv, ctx);
+ 	}
+@@ -170,7 +170,7 @@ static inline void xe_bo_lock_no_vm(struct xe_bo *bo,
+ static inline void xe_bo_unlock_no_vm(struct xe_bo *bo)
+ {
+ 	if (bo) {
+-		XE_BUG_ON(bo->vm || (bo->ttm.type != ttm_bo_type_sg &&
++		BUG_ON(bo->vm || (bo->ttm.type != ttm_bo_type_sg &&
+ 				     bo->ttm.base.resv != &bo->ttm.base._resv));
+ 		dma_resv_unlock(bo->ttm.base.resv);
+ 	}
+@@ -213,7 +213,7 @@ xe_bo_main_addr(struct xe_bo *bo, size_t page_size)
+ static inline u32
+ xe_bo_ggtt_addr(struct xe_bo *bo)
+ {
+-	XE_BUG_ON(bo->ggtt_node.start + bo->ggtt_node.size > (1ull << 32));
++	BUG_ON(bo->ggtt_node.start + bo->ggtt_node.size > (1ull << 32));
+ 	return bo->ggtt_node.start;
  }
+ 
+diff --git a/drivers/gpu/drm/xe/xe_bo_evict.c b/drivers/gpu/drm/xe/xe_bo_evict.c
+index bbf89a58cdf5..b305d16a67ac 100644
+--- a/drivers/gpu/drm/xe/xe_bo_evict.c
++++ b/drivers/gpu/drm/xe/xe_bo_evict.c
+@@ -158,8 +158,8 @@ int xe_bo_restore_kernel(struct xe_device *xe)
+ 		 * We expect validate to trigger a move VRAM and our move code
+ 		 * should setup the iosys map.
+ 		 */
+-		XE_BUG_ON(iosys_map_is_null(&bo->vmap));
+-		XE_BUG_ON(!xe_bo_is_vram(bo));
++		BUG_ON(iosys_map_is_null(&bo->vmap));
++		BUG_ON(!xe_bo_is_vram(bo));
+ 
+ 		xe_bo_put(bo);
+ 
+diff --git a/drivers/gpu/drm/xe/xe_device.h b/drivers/gpu/drm/xe/xe_device.h
+index 5f725ed2ca6b..518ce3f0bc36 100644
+--- a/drivers/gpu/drm/xe/xe_device.h
++++ b/drivers/gpu/drm/xe/xe_device.h
+@@ -52,10 +52,10 @@ static inline struct xe_gt *xe_device_get_gt(struct xe_device *xe, u8 gt_id)
+ {
+ 	struct xe_gt *gt;
+ 
+-	XE_BUG_ON(gt_id > XE_MAX_GT);
++	BUG_ON(gt_id > XE_MAX_GT);
+ 	gt = xe->gt + gt_id;
+-	XE_BUG_ON(gt->info.id != gt_id);
+-	XE_BUG_ON(gt->info.type == XE_GT_TYPE_UNINITIALIZED);
++	BUG_ON(gt->info.id != gt_id);
++	BUG_ON(gt->info.type == XE_GT_TYPE_UNINITIALIZED);
+ 
+ 	return gt;
+ }
+diff --git a/drivers/gpu/drm/xe/xe_execlist.c b/drivers/gpu/drm/xe/xe_execlist.c
+index 127ca8c6e279..a1e49e858531 100644
+--- a/drivers/gpu/drm/xe/xe_execlist.c
++++ b/drivers/gpu/drm/xe/xe_execlist.c
+@@ -52,10 +52,10 @@ static void __start_lrc(struct xe_hw_engine *hwe, struct xe_lrc *lrc,
+ 	lrc_desc = xe_lrc_descriptor(lrc);
+ 
+ 	if (GRAPHICS_VERx100(xe) >= 1250) {
+-		XE_BUG_ON(!FIELD_FIT(XEHP_SW_CTX_ID, ctx_id));
++		BUG_ON(!FIELD_FIT(XEHP_SW_CTX_ID, ctx_id));
+ 		lrc_desc |= FIELD_PREP(XEHP_SW_CTX_ID, ctx_id);
+ 	} else {
+-		XE_BUG_ON(!FIELD_FIT(GEN11_SW_CTX_ID, ctx_id));
++		BUG_ON(!FIELD_FIT(GEN11_SW_CTX_ID, ctx_id));
+ 		lrc_desc |= FIELD_PREP(GEN11_SW_CTX_ID, ctx_id);
+ 	}
+ 
+@@ -221,9 +221,9 @@ static void xe_execlist_make_active(struct xe_execlist_engine *exl)
+ 	struct xe_execlist_port *port = exl->port;
+ 	enum drm_sched_priority priority = exl->entity.priority;
+ 
+-	XE_BUG_ON(priority == DRM_SCHED_PRIORITY_UNSET);
+-	XE_BUG_ON(priority < 0);
+-	XE_BUG_ON(priority >= ARRAY_SIZE(exl->port->active));
++	BUG_ON(priority == DRM_SCHED_PRIORITY_UNSET);
++	BUG_ON(priority < 0);
++	BUG_ON(priority >= ARRAY_SIZE(exl->port->active));
+ 
+ 	spin_lock_irq(&port->lock);
+ 
+@@ -328,7 +328,7 @@ static int execlist_engine_init(struct xe_engine *e)
+ 	struct xe_execlist_engine *exl;
+ 	int err;
+ 
+-	XE_BUG_ON(xe_device_guc_submission_enabled(gt_to_xe(e->gt)));
++	BUG_ON(xe_device_guc_submission_enabled(gt_to_xe(e->gt)));
+ 
+ 	exl = kzalloc(sizeof(*exl), GFP_KERNEL);
+ 	if (!exl)
+@@ -393,7 +393,7 @@ static void execlist_engine_fini_async(struct work_struct *w)
+ 	struct xe_execlist_engine *exl = e->execlist;
+ 	unsigned long flags;
+ 
+-	XE_BUG_ON(xe_device_guc_submission_enabled(gt_to_xe(e->gt)));
++	BUG_ON(xe_device_guc_submission_enabled(gt_to_xe(e->gt)));
+ 
+ 	spin_lock_irqsave(&exl->port->lock, flags);
+ 	if (WARN_ON(exl->active_priority != DRM_SCHED_PRIORITY_UNSET))
+diff --git a/drivers/gpu/drm/xe/xe_force_wake.c b/drivers/gpu/drm/xe/xe_force_wake.c
+index 77a210acfac3..7a3f477bd9a0 100644
+--- a/drivers/gpu/drm/xe/xe_force_wake.c
++++ b/drivers/gpu/drm/xe/xe_force_wake.c
+@@ -44,7 +44,7 @@ void xe_force_wake_init_gt(struct xe_gt *gt, struct xe_force_wake *fw)
+ 	mutex_init(&fw->lock);
+ 
+ 	/* Assuming gen11+ so assert this assumption is correct */
+-	XE_BUG_ON(GRAPHICS_VER(gt_to_xe(gt)) < 11);
++	BUG_ON(GRAPHICS_VER(gt_to_xe(gt)) < 11);
+ 
+ 	if (xe->info.graphics_verx100 >= 1270) {
+ 		domain_init(&fw->domains[XE_FW_DOMAIN_ID_GT],
+@@ -66,7 +66,7 @@ void xe_force_wake_init_engines(struct xe_gt *gt, struct xe_force_wake *fw)
+ 	int i, j;
+ 
+ 	/* Assuming gen11+ so assert this assumption is correct */
+-	XE_BUG_ON(GRAPHICS_VER(gt_to_xe(gt)) < 11);
++	BUG_ON(GRAPHICS_VER(gt_to_xe(gt)) < 11);
+ 
+ 	if (!xe_gt_is_media_type(gt))
+ 		domain_init(&fw->domains[XE_FW_DOMAIN_ID_RENDER],
+diff --git a/drivers/gpu/drm/xe/xe_force_wake.h b/drivers/gpu/drm/xe/xe_force_wake.h
+index 7c534cdd5fe9..2f176e491daf 100644
+--- a/drivers/gpu/drm/xe/xe_force_wake.h
++++ b/drivers/gpu/drm/xe/xe_force_wake.h
+@@ -24,7 +24,7 @@ static inline int
+ xe_force_wake_ref(struct xe_force_wake *fw,
+ 		  enum xe_force_wake_domains domain)
+ {
+-	XE_BUG_ON(!domain);
++	BUG_ON(!domain);
+ 	return fw->domains[ffs(domain) - 1].ref;
+ }
+ 
+@@ -32,7 +32,7 @@ static inline void
+ xe_force_wake_assert_held(struct xe_force_wake *fw,
+ 			  enum xe_force_wake_domains domain)
+ {
+-	XE_BUG_ON(!(fw->awake_domains & domain));
++	BUG_ON(!(fw->awake_domains & domain));
+ }
+ 
+ #endif
+diff --git a/drivers/gpu/drm/xe/xe_ggtt.c b/drivers/gpu/drm/xe/xe_ggtt.c
+index bd079e823661..b52ad009c74e 100644
+--- a/drivers/gpu/drm/xe/xe_ggtt.c
++++ b/drivers/gpu/drm/xe/xe_ggtt.c
+@@ -56,8 +56,8 @@ static unsigned int probe_gsm_size(struct pci_dev *pdev)
+ 
+ void xe_ggtt_set_pte(struct xe_ggtt *ggtt, u64 addr, u64 pte)
+ {
+-	XE_BUG_ON(addr & GEN8_PTE_MASK);
+-	XE_BUG_ON(addr >= ggtt->size);
++	BUG_ON(addr & GEN8_PTE_MASK);
++	BUG_ON(addr >= ggtt->size);
+ 
+ 	writeq(pte, &ggtt->gsm[addr >> GEN8_PTE_SHIFT]);
+ }
+@@ -67,7 +67,7 @@ static void xe_ggtt_clear(struct xe_ggtt *ggtt, u64 start, u64 size)
+ 	u64 end = start + size - 1;
+ 	u64 scratch_pte;
+ 
+-	XE_BUG_ON(start >= end);
++	BUG_ON(start >= end);
+ 
+ 	if (ggtt->scratch)
+ 		scratch_pte = xe_ggtt_pte_encode(ggtt->scratch, 0);
+@@ -96,7 +96,7 @@ int xe_ggtt_init_noalloc(struct xe_gt *gt, struct xe_ggtt *ggtt)
+ 	struct pci_dev *pdev = to_pci_dev(xe->drm.dev);
+ 	unsigned int gsm_size;
+ 
+-	XE_BUG_ON(xe_gt_is_media_type(gt));
++	BUG_ON(xe_gt_is_media_type(gt));
+ 
+ 	ggtt->gt = gt;
+ 
+@@ -232,7 +232,7 @@ void xe_ggtt_printk(struct xe_ggtt *ggtt, const char *prefix)
+ 	for (addr = 0; addr < ggtt->size; addr += GEN8_PAGE_SIZE) {
+ 		unsigned int i = addr / GEN8_PAGE_SIZE;
+ 
+-		XE_BUG_ON(addr > U32_MAX);
++		BUG_ON(addr > U32_MAX);
+ 		if (ggtt->gsm[i] == scratch_pte)
+ 			continue;
+ 
+diff --git a/drivers/gpu/drm/xe/xe_gt.c b/drivers/gpu/drm/xe/xe_gt.c
+index 7d8b4cffcc2d..7771008b4fee 100644
+--- a/drivers/gpu/drm/xe/xe_gt.c
++++ b/drivers/gpu/drm/xe/xe_gt.c
+@@ -48,14 +48,14 @@ struct xe_gt *xe_find_full_gt(struct xe_gt *gt)
+ 	struct xe_gt *search;
+ 	u8 id;
+ 
+-	XE_BUG_ON(!xe_gt_is_media_type(gt));
++	BUG_ON(!xe_gt_is_media_type(gt));
+ 
+ 	for_each_gt(search, gt_to_xe(gt), id) {
+ 		if (search->info.vram_id == gt->info.vram_id)
+ 			return search;
+ 	}
+ 
+-	XE_BUG_ON("NOT POSSIBLE");
++	BUG_ON("NOT POSSIBLE");
+ 	return NULL;
+ }
+ 
+@@ -63,7 +63,7 @@ int xe_gt_alloc(struct xe_device *xe, struct xe_gt *gt)
+ {
+ 	struct drm_device *drm = &xe->drm;
+ 
+-	XE_BUG_ON(gt->info.type == XE_GT_TYPE_UNINITIALIZED);
++	BUG_ON(gt->info.type == XE_GT_TYPE_UNINITIALIZED);
+ 
+ 	if (!xe_gt_is_media_type(gt)) {
+ 		gt->mem.ggtt = drmm_kzalloc(drm, sizeof(*gt->mem.ggtt),
+diff --git a/drivers/gpu/drm/xe/xe_gt_clock.c b/drivers/gpu/drm/xe/xe_gt_clock.c
+index 60a2966bc1fd..92686359b315 100644
+--- a/drivers/gpu/drm/xe/xe_gt_clock.c
++++ b/drivers/gpu/drm/xe/xe_gt_clock.c
+@@ -49,7 +49,7 @@ static u32 get_crystal_clock_freq(u32 rpm_config_reg)
+ 	case GEN11_RPM_CONFIG0_CRYSTAL_CLOCK_FREQ_25_MHZ:
+ 		return f25_mhz;
+ 	default:
+-		XE_BUG_ON("NOT_POSSIBLE");
++		BUG_ON("NOT_POSSIBLE");
+ 		return 0;
+ 	}
+ }
+@@ -60,7 +60,7 @@ int xe_gt_clock_init(struct xe_gt *gt)
+ 	u32 freq = 0;
+ 
+ 	/* Assuming gen11+ so assert this assumption is correct */
+-	XE_BUG_ON(GRAPHICS_VER(gt_to_xe(gt)) < 11);
++	BUG_ON(GRAPHICS_VER(gt_to_xe(gt)) < 11);
+ 
+ 	if ((ctc_reg & CTC_SOURCE_PARAMETER_MASK) == CTC_SOURCE_DIVIDE_LOGIC) {
+ 		freq = read_reference_ts_freq(gt);
+diff --git a/drivers/gpu/drm/xe/xe_gt_debugfs.c b/drivers/gpu/drm/xe/xe_gt_debugfs.c
+index 639b2486803b..aed49547622c 100644
+--- a/drivers/gpu/drm/xe/xe_gt_debugfs.c
++++ b/drivers/gpu/drm/xe/xe_gt_debugfs.c
+@@ -145,7 +145,7 @@ void xe_gt_debugfs_register(struct xe_gt *gt)
+ 	char name[8];
+ 	int i;
+ 
+-	XE_BUG_ON(!minor->debugfs_root);
++	BUG_ON(!minor->debugfs_root);
+ 
+ 	sprintf(name, "gt%d", gt->info.id);
+ 	root = debugfs_create_dir(name, minor->debugfs_root);
+diff --git a/drivers/gpu/drm/xe/xe_gt_tlb_invalidation.c b/drivers/gpu/drm/xe/xe_gt_tlb_invalidation.c
+index 6c9a96cf3d5f..ef4a5fc66793 100644
+--- a/drivers/gpu/drm/xe/xe_gt_tlb_invalidation.c
++++ b/drivers/gpu/drm/xe/xe_gt_tlb_invalidation.c
+@@ -194,7 +194,7 @@ int xe_gt_tlb_invalidation_vma(struct xe_gt *gt,
+ 	u32 action[MAX_TLB_INVALIDATION_LEN];
+ 	int len = 0;
+ 
+-	XE_BUG_ON(!vma);
++	BUG_ON(!vma);
+ 
+ 	action[len++] = XE_GUC_ACTION_TLB_INVALIDATION;
+ 	action[len++] = 0; /* seqno, replaced in send_tlb_invalidation */
+@@ -232,10 +232,10 @@ int xe_gt_tlb_invalidation_vma(struct xe_gt *gt,
+ 			start = ALIGN_DOWN(vma->start, length);
+ 		}
+ 
+-		XE_BUG_ON(length < SZ_4K);
+-		XE_BUG_ON(!is_power_of_2(length));
+-		XE_BUG_ON(length & GENMASK(ilog2(SZ_16M) - 1, ilog2(SZ_2M) + 1));
+-		XE_BUG_ON(!IS_ALIGNED(start, length));
++		BUG_ON(length < SZ_4K);
++		BUG_ON(!is_power_of_2(length));
++		BUG_ON(length & GENMASK(ilog2(SZ_16M) - 1, ilog2(SZ_2M) + 1));
++		BUG_ON(!IS_ALIGNED(start, length));
+ 
+ 		action[len++] = MAKE_INVAL_OP(XE_GUC_TLB_INVAL_PAGE_SELECTIVE);
+ 		action[len++] = vma->vm->usm.asid;
+@@ -244,7 +244,7 @@ int xe_gt_tlb_invalidation_vma(struct xe_gt *gt,
+ 		action[len++] = ilog2(length) - ilog2(SZ_4K);
+ 	}
+ 
+-	XE_BUG_ON(len > MAX_TLB_INVALIDATION_LEN);
++	BUG_ON(len > MAX_TLB_INVALIDATION_LEN);
+ 
+ 	return send_tlb_invalidation(&gt->uc.guc, fence, action, len);
+ }
+diff --git a/drivers/gpu/drm/xe/xe_guc.c b/drivers/gpu/drm/xe/xe_guc.c
+index bccdfb914f08..5c29e1c2de91 100644
+--- a/drivers/gpu/drm/xe/xe_guc.c
++++ b/drivers/gpu/drm/xe/xe_guc.c
+@@ -41,9 +41,9 @@ static u32 guc_bo_ggtt_addr(struct xe_guc *guc,
+ {
+ 	u32 addr = xe_bo_ggtt_addr(bo);
+ 
+-	XE_BUG_ON(addr < xe_wopcm_size(guc_to_xe(guc)));
+-	XE_BUG_ON(addr >= GUC_GGTT_TOP);
+-	XE_BUG_ON(bo->size > GUC_GGTT_TOP - addr);
++	BUG_ON(addr < xe_wopcm_size(guc_to_xe(guc)));
++	BUG_ON(addr >= GUC_GGTT_TOP);
++	BUG_ON(bo->size > GUC_GGTT_TOP - addr);
+ 
+ 	return addr;
+ }
+@@ -637,13 +637,13 @@ int xe_guc_mmio_send_recv(struct xe_guc *guc, const u32 *request,
+ 	int i;
+ 
+ 	BUILD_BUG_ON(GEN11_SOFT_SCRATCH_COUNT != MEDIA_SOFT_SCRATCH_COUNT);
+-	XE_BUG_ON(guc->ct.enabled);
+-	XE_BUG_ON(!len);
+-	XE_BUG_ON(len > GEN11_SOFT_SCRATCH_COUNT);
+-	XE_BUG_ON(len > MEDIA_SOFT_SCRATCH_COUNT);
+-	XE_BUG_ON(FIELD_GET(GUC_HXG_MSG_0_ORIGIN, request[0]) !=
++	BUG_ON(guc->ct.enabled);
++	BUG_ON(!len);
++	BUG_ON(len > GEN11_SOFT_SCRATCH_COUNT);
++	BUG_ON(len > MEDIA_SOFT_SCRATCH_COUNT);
++	BUG_ON(FIELD_GET(GUC_HXG_MSG_0_ORIGIN, request[0]) !=
+ 		  GUC_HXG_ORIGIN_HOST);
+-	XE_BUG_ON(FIELD_GET(GUC_HXG_MSG_0_TYPE, request[0]) !=
++	BUG_ON(FIELD_GET(GUC_HXG_MSG_0_TYPE, request[0]) !=
+ 		  GUC_HXG_TYPE_REQUEST);
+ 
+ retry:
+@@ -754,8 +754,8 @@ static int guc_self_cfg(struct xe_guc *guc, u16 key, u16 len, u64 val)
+ 	};
+ 	int ret;
+ 
+-	XE_BUG_ON(len > 2);
+-	XE_BUG_ON(len == 1 && upper_32_bits(val));
++	BUG_ON(len > 2);
++	BUG_ON(len == 1 && upper_32_bits(val));
+ 
+ 	/* Self config must go over MMIO */
+ 	ret = xe_guc_mmio_send(guc, request, ARRAY_SIZE(request));
+diff --git a/drivers/gpu/drm/xe/xe_guc_ads.c b/drivers/gpu/drm/xe/xe_guc_ads.c
+index d5a089694f80..cd8de752e660 100644
+--- a/drivers/gpu/drm/xe/xe_guc_ads.c
++++ b/drivers/gpu/drm/xe/xe_guc_ads.c
+@@ -118,7 +118,7 @@ struct __guc_ads_blob {
+ 
+ static size_t guc_ads_regset_size(struct xe_guc_ads *ads)
+ {
+-	XE_BUG_ON(!ads->regset_size);
++	BUG_ON(!ads->regset_size);
+ 
+ 	return ads->regset_size;
+ }
+@@ -308,7 +308,7 @@ int xe_guc_ads_init_post_hwconfig(struct xe_guc_ads *ads)
+ 	struct xe_gt *gt = ads_to_gt(ads);
+ 	u32 prev_regset_size = ads->regset_size;
+ 
+-	XE_BUG_ON(!ads->bo);
++	BUG_ON(!ads->bo);
+ 
+ 	ads->golden_lrc_size = calculate_golden_lrc_size(ads);
+ 	ads->regset_size = calculate_regset_size(gt);
+@@ -521,7 +521,7 @@ static void guc_mmio_reg_state_init(struct xe_guc_ads *ads)
+ 		regset_used += count * sizeof(struct guc_mmio_reg);
+ 	}
+ 
+-	XE_BUG_ON(regset_used > ads->regset_size);
++	BUG_ON(regset_used > ads->regset_size);
+ }
+ 
+ static void guc_um_init_params(struct xe_guc_ads *ads)
+@@ -577,7 +577,7 @@ void xe_guc_ads_populate_minimal(struct xe_guc_ads *ads)
+ 			offsetof(struct __guc_ads_blob, system_info));
+ 	u32 base = xe_bo_ggtt_addr(ads->bo);
+ 
+-	XE_BUG_ON(!ads->bo);
++	BUG_ON(!ads->bo);
+ 
+ 	xe_map_memset(ads_to_xe(ads), ads_to_map(ads), 0, 0, ads->bo->size);
+ 	guc_policies_init(ads);
+@@ -601,7 +601,7 @@ void xe_guc_ads_populate(struct xe_guc_ads *ads)
+ 			offsetof(struct __guc_ads_blob, system_info));
+ 	u32 base = xe_bo_ggtt_addr(ads->bo);
+ 
+-	XE_BUG_ON(!ads->bo);
++	BUG_ON(!ads->bo);
+ 
+ 	xe_map_memset(ads_to_xe(ads), ads_to_map(ads), 0, 0, ads->bo->size);
+ 	guc_policies_init(ads);
+@@ -651,7 +651,7 @@ static void guc_populate_golden_lrc(struct xe_guc_ads *ads)
+ 				   engine_enabled_masks[guc_class]))
+ 			continue;
+ 
+-		XE_BUG_ON(!gt->default_lrc[class]);
++		BUG_ON(!gt->default_lrc[class]);
+ 
+ 		real_size = xe_lrc_size(xe, class);
+ 		alloc_size = PAGE_ALIGN(real_size);
+@@ -680,7 +680,7 @@ static void guc_populate_golden_lrc(struct xe_guc_ads *ads)
+ 		offset += alloc_size;
+ 	}
+ 
+-	XE_BUG_ON(total_size != ads->golden_lrc_size);
++	BUG_ON(total_size != ads->golden_lrc_size);
+ }
+ 
+ void xe_guc_ads_populate_post_load(struct xe_guc_ads *ads)
+diff --git a/drivers/gpu/drm/xe/xe_guc_ct.c b/drivers/gpu/drm/xe/xe_guc_ct.c
+index fec09ba412a8..70edffe1e377 100644
+--- a/drivers/gpu/drm/xe/xe_guc_ct.c
++++ b/drivers/gpu/drm/xe/xe_guc_ct.c
+@@ -134,7 +134,7 @@ int xe_guc_ct_init(struct xe_guc_ct *ct)
+ 	struct xe_bo *bo;
+ 	int err;
+ 
+-	XE_BUG_ON(guc_ct_size() % PAGE_SIZE);
++	BUG_ON(guc_ct_size() % PAGE_SIZE);
+ 
+ 	mutex_init(&ct->lock);
+ 	spin_lock_init(&ct->fast_lock);
+@@ -280,7 +280,7 @@ int xe_guc_ct_enable(struct xe_guc_ct *ct)
+ 	struct xe_device *xe = ct_to_xe(ct);
+ 	int err;
+ 
+-	XE_BUG_ON(ct->enabled);
++	BUG_ON(ct->enabled);
+ 
+ 	guc_ct_ctb_h2g_init(xe, &ct->ctbs.h2g, &ct->bo->vmap);
+ 	guc_ct_ctb_g2h_init(xe, &ct->ctbs.g2h, &ct->bo->vmap);
+@@ -365,7 +365,7 @@ static void h2g_reserve_space(struct xe_guc_ct *ct, u32 cmd_len)
+ 
+ static void g2h_reserve_space(struct xe_guc_ct *ct, u32 g2h_len, u32 num_g2h)
+ {
+-	XE_BUG_ON(g2h_len > ct->ctbs.g2h.space);
++	BUG_ON(g2h_len > ct->ctbs.g2h.space);
+ 
+ 	if (g2h_len) {
+ 		spin_lock_irq(&ct->fast_lock);
+@@ -405,8 +405,8 @@ static int h2g_write(struct xe_guc_ct *ct, const u32 *action, u32 len,
+ 							 tail * sizeof(u32));
+ 
+ 	lockdep_assert_held(&ct->lock);
+-	XE_BUG_ON(len * sizeof(u32) > GUC_CTB_MSG_MAX_LEN);
+-	XE_BUG_ON(tail > h2g->size);
++	BUG_ON(len * sizeof(u32) > GUC_CTB_MSG_MAX_LEN);
++	BUG_ON(tail > h2g->size);
+ 
+ 	/* Command will wrap, zero fill (NOPs), return and check credits again */
+ 	if (tail + cmd_len > h2g->size) {
+@@ -460,10 +460,10 @@ static int __guc_ct_send_locked(struct xe_guc_ct *ct, const u32 *action,
+ {
+ 	int ret;
+ 
+-	XE_BUG_ON(g2h_len && g2h_fence);
+-	XE_BUG_ON(num_g2h && g2h_fence);
+-	XE_BUG_ON(g2h_len && !num_g2h);
+-	XE_BUG_ON(!g2h_len && num_g2h);
++	BUG_ON(g2h_len && g2h_fence);
++	BUG_ON(num_g2h && g2h_fence);
++	BUG_ON(g2h_len && !num_g2h);
++	BUG_ON(!g2h_len && num_g2h);
+ 	lockdep_assert_held(&ct->lock);
+ 
+ 	if (unlikely(ct->ctbs.h2g.broken)) {
+@@ -534,7 +534,7 @@ static int guc_ct_send_locked(struct xe_guc_ct *ct, const u32 *action, u32 len,
+ 	unsigned int sleep_period_ms = 1;
+ 	int ret;
+ 
+-	XE_BUG_ON(g2h_len && g2h_fence);
++	BUG_ON(g2h_len && g2h_fence);
+ 	lockdep_assert_held(&ct->lock);
+ 
+ try_again:
+@@ -601,7 +601,7 @@ static int guc_ct_send(struct xe_guc_ct *ct, const u32 *action, u32 len,
+ {
+ 	int ret;
+ 
+-	XE_BUG_ON(g2h_len && g2h_fence);
++	BUG_ON(g2h_len && g2h_fence);
+ 
+ 	mutex_lock(&ct->lock);
+ 	ret = guc_ct_send_locked(ct, action, len, g2h_len, num_g2h, g2h_fence);
+diff --git a/drivers/gpu/drm/xe/xe_guc_hwconfig.c b/drivers/gpu/drm/xe/xe_guc_hwconfig.c
+index a6982f323ed1..bcd8f4e9e393 100644
+--- a/drivers/gpu/drm/xe/xe_guc_hwconfig.c
++++ b/drivers/gpu/drm/xe/xe_guc_hwconfig.c
+@@ -119,7 +119,7 @@ void xe_guc_hwconfig_copy(struct xe_guc *guc, void *dst)
+ {
+ 	struct xe_device *xe = guc_to_xe(guc);
+ 
+-	XE_BUG_ON(!guc->hwconfig.bo);
++	BUG_ON(!guc->hwconfig.bo);
+ 
+ 	xe_map_memcpy_from(xe, dst, &guc->hwconfig.bo->vmap, 0,
+ 			   guc->hwconfig.size);
+diff --git a/drivers/gpu/drm/xe/xe_guc_log.c b/drivers/gpu/drm/xe/xe_guc_log.c
+index 9a7b5d5906c1..fbd74c27f352 100644
+--- a/drivers/gpu/drm/xe/xe_guc_log.c
++++ b/drivers/gpu/drm/xe/xe_guc_log.c
+@@ -55,12 +55,12 @@ void xe_guc_log_print(struct xe_guc_log *log, struct drm_printer *p)
+ 	size_t size;
+ 	int i, j;
+ 
+-	XE_BUG_ON(!log->bo);
++	BUG_ON(!log->bo);
+ 
+ 	size = log->bo->size;
+ 
+ #define DW_PER_READ		128
+-	XE_BUG_ON(size % (DW_PER_READ * sizeof(u32)));
++	BUG_ON(size % (DW_PER_READ * sizeof(u32)));
+ 	for (i = 0; i < size / sizeof(u32); i += DW_PER_READ) {
+ 		u32 read[DW_PER_READ];
+ 
 diff --git a/drivers/gpu/drm/xe/xe_guc_submit.c b/drivers/gpu/drm/xe/xe_guc_submit.c
-index e857013070b9..8df5513796f1 100644
+index 8df5513796f1..5a8659e99c8e 100644
 --- a/drivers/gpu/drm/xe/xe_guc_submit.c
 +++ b/drivers/gpu/drm/xe/xe_guc_submit.c
-@@ -715,7 +715,7 @@ static void disable_scheduling_deregister(struct xe_guc *guc,
- 	if (!ret) {
- 		struct drm_gpu_scheduler *sched = &e->guc->sched;
+@@ -326,7 +326,7 @@ static void __guc_engine_policy_start_klv(struct engine_policy *policy,
+ static void __guc_engine_policy_add_##func(struct engine_policy *policy, \
+ 					   u32 data) \
+ { \
+-	XE_BUG_ON(policy->count >= GUC_CONTEXT_POLICIES_KLV_NUM_IDS); \
++	BUG_ON(policy->count >= GUC_CONTEXT_POLICIES_KLV_NUM_IDS); \
+  \
+ 	policy->h2g.klv[policy->count].kl = \
+ 		FIELD_PREP(GUC_KLV_0_KEY, \
+@@ -355,7 +355,7 @@ static void init_policies(struct xe_guc *guc, struct xe_engine *e)
+ 	u32 timeslice_us = e->sched_props.timeslice_us;
+ 	u32 preempt_timeout_us = e->sched_props.preempt_timeout_us;
  
--		XE_WARN_ON("Pending enable failed to respond");
-+		WARN_ON("Pending enable failed to respond");
- 		sched->timeout = MIN_SCHED_TIMEOUT;
- 		drm_sched_run_wq_start(sched);
- 		xe_gt_reset_async(e->gt);
-@@ -794,8 +794,8 @@ guc_engine_timedout_job(struct drm_sched_job *drm_job)
- 	int i = 0;
+-	XE_BUG_ON(!engine_registered(e));
++	BUG_ON(!engine_registered(e));
  
- 	if (!test_bit(DMA_FENCE_FLAG_SIGNALED_BIT, &job->fence->flags)) {
--		XE_WARN_ON(e->flags & ENGINE_FLAG_KERNEL);
--		XE_WARN_ON(e->flags & ENGINE_FLAG_VM && !engine_killed(e));
-+		WARN_ON(e->flags & ENGINE_FLAG_KERNEL);
-+		WARN_ON(e->flags & ENGINE_FLAG_VM && !engine_killed(e));
+         __guc_engine_policy_start_klv(&policy, e->guc->id);
+         __guc_engine_policy_add_priority(&policy, drm_sched_prio_to_guc[prio]);
+@@ -413,7 +413,7 @@ static void __register_mlrc_engine(struct xe_guc *guc,
+ 	int len = 0;
+ 	int i;
  
- 		drm_warn(&xe->drm, "Timedout job: seqno=%u, guc_id=%d, flags=0x%lx",
- 			 xe_sched_job_seqno(job), e->guc->id, e->flags);
-@@ -847,7 +847,7 @@ guc_engine_timedout_job(struct drm_sched_job *drm_job)
- 					 !engine_pending_disable(e) ||
- 					 guc_read_stopped(guc), HZ * 5);
- 		if (!ret) {
--			XE_WARN_ON("Schedule disable failed to respond");
-+			WARN_ON("Schedule disable failed to respond");
- 			sched->timeout = MIN_SCHED_TIMEOUT;
- 			list_add(&drm_job->list, &sched->pending_list);
- 			drm_sched_run_wq_start(sched);
-@@ -1124,7 +1124,7 @@ static int guc_engine_init(struct xe_engine *e)
- 		sprintf(e->name, "ccs%d", e->guc->id);
+-	XE_BUG_ON(!xe_engine_is_parallel(e));
++	BUG_ON(!xe_engine_is_parallel(e));
+ 
+ 	action[len++] = XE_GUC_ACTION_REGISTER_CONTEXT_MULTI_LRC;
+ 	action[len++] = info->flags;
+@@ -436,7 +436,7 @@ static void __register_mlrc_engine(struct xe_guc *guc,
+ 		action[len++] = upper_32_bits(xe_lrc_descriptor(lrc));
+ 	}
+ 
+-	XE_BUG_ON(len > MAX_MLRC_REG_SIZE);
++	BUG_ON(len > MAX_MLRC_REG_SIZE);
+ #undef MAX_MLRC_REG_SIZE
+ 
+ 	xe_guc_ct_send(&guc->ct, action, len, 0, 0);
+@@ -470,7 +470,7 @@ static void register_engine(struct xe_engine *e)
+ 	struct xe_lrc *lrc = e->lrc;
+ 	struct guc_ctxt_registration_info info;
+ 
+-	XE_BUG_ON(engine_registered(e));
++	BUG_ON(engine_registered(e));
+ 
+ 	memset(&info, 0, sizeof(info));
+ 	info.context_idx = e->guc->id;
+@@ -552,7 +552,7 @@ static int wq_noop_append(struct xe_engine *e)
+ 	if (wq_wait_for_space(e, wq_space_until_wrap(e)))
+ 		return -ENODEV;
+ 
+-	XE_BUG_ON(!FIELD_FIT(WQ_LEN_MASK, len_dw));
++	BUG_ON(!FIELD_FIT(WQ_LEN_MASK, len_dw));
+ 
+ 	parallel_write(xe, map, wq[e->guc->wqi_tail / sizeof(u32)],
+ 		       FIELD_PREP(WQ_TYPE_MASK, WQ_TYPE_NOOP) |
+@@ -591,13 +591,13 @@ static void wq_item_append(struct xe_engine *e)
+ 		wqi[i++] = lrc->ring.tail / sizeof(u64);
+ 	}
+ 
+-	XE_BUG_ON(i != wqi_size / sizeof(u32));
++	BUG_ON(i != wqi_size / sizeof(u32));
+ 
+ 	iosys_map_incr(&map, offsetof(struct parallel_scratch,
+ 					wq[e->guc->wqi_tail / sizeof(u32)]));
+ 	xe_map_memcpy_to(xe, &map, 0, wqi, wqi_size);
+ 	e->guc->wqi_tail += wqi_size;
+-	XE_BUG_ON(e->guc->wqi_tail > WQ_SIZE);
++	BUG_ON(e->guc->wqi_tail > WQ_SIZE);
+ 
+ 	xe_device_wmb(xe);
+ 
+@@ -616,7 +616,7 @@ static void submit_engine(struct xe_engine *e)
+ 	int len = 0;
+ 	bool extra_submit = false;
+ 
+-	XE_BUG_ON(!engine_registered(e));
++	BUG_ON(!engine_registered(e));
+ 
+ 	if (xe_engine_is_parallel(e))
+ 		wq_item_append(e);
+@@ -663,7 +663,7 @@ guc_engine_run_job(struct drm_sched_job *drm_job)
+ 	struct xe_sched_job *job = to_xe_sched_job(drm_job);
+ 	struct xe_engine *e = job->engine;
+ 
+-	XE_BUG_ON((engine_destroyed(e) || engine_pending_disable(e)) &&
++	BUG_ON((engine_destroyed(e) || engine_pending_disable(e)) &&
+ 		  !engine_banned(e) && !engine_suspended(e));
+ 
+ 	trace_xe_sched_job_run(job);
+@@ -935,7 +935,7 @@ static void __guc_engine_process_msg_cleanup(struct drm_sched_msg *msg)
+ 	struct xe_engine *e = msg->private_data;
+ 	struct xe_guc *guc = engine_to_guc(e);
+ 
+-	XE_BUG_ON(e->flags & ENGINE_FLAG_KERNEL);
++	BUG_ON(e->flags & ENGINE_FLAG_KERNEL);
+ 	trace_xe_engine_cleanup_entity(e);
+ 
+ 	if (engine_registered(e))
+@@ -963,9 +963,9 @@ static void suspend_fence_signal(struct xe_engine *e)
+ {
+ 	struct xe_guc *guc = engine_to_guc(e);
+ 
+-	XE_BUG_ON(!engine_suspended(e) && !engine_killed(e) &&
++	BUG_ON(!engine_suspended(e) && !engine_killed(e) &&
+ 		  !guc_read_stopped(guc));
+-	XE_BUG_ON(!e->guc->suspend_pending);
++	BUG_ON(!e->guc->suspend_pending);
+ 
+ 	e->guc->suspend_pending = false;
+ 	smp_wmb();
+@@ -1051,7 +1051,7 @@ static void guc_engine_process_msg(struct drm_sched_msg *msg)
+ 		__guc_engine_process_msg_resume(msg);
  		break;
  	default:
--		XE_WARN_ON(e->class);
-+		WARN_ON(e->class);
+-		XE_BUG_ON("Unknown message type");
++		BUG_ON("Unknown message type");
+ 	}
+ }
+ 
+@@ -1070,7 +1070,7 @@ static int guc_engine_init(struct xe_engine *e)
+ 	long timeout;
+ 	int err;
+ 
+-	XE_BUG_ON(!xe_device_guc_submission_enabled(guc_to_xe(guc)));
++	BUG_ON(!xe_device_guc_submission_enabled(guc_to_xe(guc)));
+ 
+ 	ge = kzalloc(sizeof(*ge), GFP_KERNEL);
+ 	if (!ge)
+@@ -1231,9 +1231,9 @@ static int guc_engine_set_job_timeout(struct xe_engine *e, u32 job_timeout_ms)
+ {
+ 	struct drm_gpu_scheduler *sched = &e->guc->sched;
+ 
+-	XE_BUG_ON(engine_registered(e));
+-	XE_BUG_ON(engine_banned(e));
+-	XE_BUG_ON(engine_killed(e));
++	BUG_ON(engine_registered(e));
++	BUG_ON(engine_banned(e));
++	BUG_ON(engine_killed(e));
+ 
+ 	sched->timeout = job_timeout_ms;
+ 
+@@ -1265,7 +1265,7 @@ static void guc_engine_resume(struct xe_engine *e)
+ {
+ 	struct drm_sched_msg *msg = e->guc->static_msgs + STATIC_MSG_RESUME;
+ 
+-	XE_BUG_ON(e->guc->suspend_pending);
++	BUG_ON(e->guc->suspend_pending);
+ 
+ 	guc_engine_add_msg(e, msg, RESUME);
+ }
+@@ -1364,7 +1364,7 @@ int xe_guc_submit_stop(struct xe_guc *guc)
+ 	struct xe_engine *e;
+ 	unsigned long index;
+ 
+-	XE_BUG_ON(guc_read_stopped(guc) != 1);
++	BUG_ON(guc_read_stopped(guc) != 1);
+ 
+ 	mutex_lock(&guc->submission_state.lock);
+ 
+@@ -1403,7 +1403,7 @@ int xe_guc_submit_start(struct xe_guc *guc)
+ 	struct xe_engine *e;
+ 	unsigned long index;
+ 
+-	XE_BUG_ON(guc_read_stopped(guc) != 1);
++	BUG_ON(guc_read_stopped(guc) != 1);
+ 
+ 	mutex_lock(&guc->submission_state.lock);
+ 	atomic_dec(&guc->submission_state.stopped);
+@@ -1433,7 +1433,7 @@ g2h_engine_lookup(struct xe_guc *guc, u32 guc_id)
+ 		return NULL;
  	}
  
- 	trace_xe_engine_create(e);
-diff --git a/drivers/gpu/drm/xe/xe_huc_debugfs.c b/drivers/gpu/drm/xe/xe_huc_debugfs.c
-index ee3d8315036a..b88076242fcf 100644
---- a/drivers/gpu/drm/xe/xe_huc_debugfs.c
-+++ b/drivers/gpu/drm/xe/xe_huc_debugfs.c
-@@ -56,7 +56,7 @@ void xe_huc_debugfs_register(struct xe_huc *huc, struct dentry *parent)
- #define DEBUGFS_SIZE	ARRAY_SIZE(debugfs_list) * sizeof(struct drm_info_list)
- 	local = drmm_kmalloc(&huc_to_xe(huc)->drm, DEBUGFS_SIZE, GFP_KERNEL);
- 	if (!local) {
--		XE_WARN_ON("Couldn't allocate memory");
-+		WARN_ON("Couldn't allocate memory");
- 		return;
- 	}
+-	XE_BUG_ON(e->guc->id != guc_id);
++	BUG_ON(e->guc->id != guc_id);
  
+ 	return e;
+ }
+diff --git a/drivers/gpu/drm/xe/xe_huc.c b/drivers/gpu/drm/xe/xe_huc.c
+index a9448c6f6418..6b742fe01e1b 100644
+--- a/drivers/gpu/drm/xe/xe_huc.c
++++ b/drivers/gpu/drm/xe/xe_huc.c
+@@ -71,7 +71,7 @@ int xe_huc_auth(struct xe_huc *huc)
+ 	if (xe_uc_fw_is_disabled(&huc->fw))
+ 		return 0;
+ 
+-	XE_BUG_ON(xe_uc_fw_is_running(&huc->fw));
++	BUG_ON(xe_uc_fw_is_running(&huc->fw));
+ 
+ 	if (!xe_uc_fw_is_loaded(&huc->fw))
+ 		return -ENOEXEC;
+diff --git a/drivers/gpu/drm/xe/xe_hw_engine.c b/drivers/gpu/drm/xe/xe_hw_engine.c
+index 63a4efd5edcc..e3f967b8579f 100644
+--- a/drivers/gpu/drm/xe/xe_hw_engine.c
++++ b/drivers/gpu/drm/xe/xe_hw_engine.c
+@@ -234,7 +234,7 @@ static void hw_engine_fini(struct drm_device *drm, void *arg)
+ 
+ static void hw_engine_mmio_write32(struct xe_hw_engine *hwe, u32 reg, u32 val)
+ {
+-	XE_BUG_ON(reg & hwe->mmio_base);
++	BUG_ON(reg & hwe->mmio_base);
+ 	xe_force_wake_assert_held(gt_to_fw(hwe->gt), hwe->domain);
+ 
+ 	xe_mmio_write32(hwe->gt, reg + hwe->mmio_base, val);
+@@ -242,7 +242,7 @@ static void hw_engine_mmio_write32(struct xe_hw_engine *hwe, u32 reg, u32 val)
+ 
+ static u32 hw_engine_mmio_read32(struct xe_hw_engine *hwe, u32 reg)
+ {
+-	XE_BUG_ON(reg & hwe->mmio_base);
++	BUG_ON(reg & hwe->mmio_base);
+ 	xe_force_wake_assert_held(gt_to_fw(hwe->gt), hwe->domain);
+ 
+ 	return xe_mmio_read32(hwe->gt, reg + hwe->mmio_base);
+@@ -280,7 +280,7 @@ static void hw_engine_init_early(struct xe_gt *gt, struct xe_hw_engine *hwe,
+ 
+ 	info = &engine_infos[id];
+ 
+-	XE_BUG_ON(hwe->gt);
++	BUG_ON(hwe->gt);
+ 
+ 	hwe->gt = gt;
+ 	hwe->class = info->class;
+@@ -304,8 +304,8 @@ static int hw_engine_init(struct xe_gt *gt, struct xe_hw_engine *hwe,
+ 	struct xe_device *xe = gt_to_xe(gt);
+ 	int err;
+ 
+-	XE_BUG_ON(id >= ARRAY_SIZE(engine_infos) || !engine_infos[id].name);
+-	XE_BUG_ON(!(gt->info.engine_mask & BIT(id)));
++	BUG_ON(id >= ARRAY_SIZE(engine_infos) || !engine_infos[id].name);
++	BUG_ON(!(gt->info.engine_mask & BIT(id)));
+ 
+ 	xe_reg_sr_apply_mmio(&hwe->reg_sr, gt);
+ 	xe_reg_sr_apply_whitelist(&hwe->reg_whitelist, hwe->mmio_base, gt);
 diff --git a/drivers/gpu/drm/xe/xe_hw_fence.c b/drivers/gpu/drm/xe/xe_hw_fence.c
-index ffe1a3992ef5..bbfce9f58cd6 100644
+index bbfce9f58cd6..2a082104137d 100644
 --- a/drivers/gpu/drm/xe/xe_hw_fence.c
 +++ b/drivers/gpu/drm/xe/xe_hw_fence.c
-@@ -88,14 +88,14 @@ void xe_hw_fence_irq_finish(struct xe_hw_fence_irq *irq)
- 	int err;
- 	bool tmp;
+@@ -188,7 +188,7 @@ static void xe_hw_fence_release(struct dma_fence *dma_fence)
+ 	struct xe_hw_fence *fence = to_xe_hw_fence(dma_fence);
  
--	if (XE_WARN_ON(!list_empty(&irq->pending))) {
-+	if (WARN_ON(!list_empty(&irq->pending))) {
- 		tmp = dma_fence_begin_signalling();
- 		spin_lock_irqsave(&irq->lock, flags);
- 		list_for_each_entry_safe(fence, next, &irq->pending, irq_link) {
- 			list_del_init(&fence->irq_link);
- 			err = dma_fence_signal_locked(&fence->dma);
- 			dma_fence_put(&fence->dma);
--			XE_WARN_ON(err);
-+			WARN_ON(err);
- 		}
- 		spin_unlock_irqrestore(&irq->lock, flags);
- 		dma_fence_end_signalling(tmp);
-@@ -202,7 +202,7 @@ static const struct dma_fence_ops xe_hw_fence_ops = {
+ 	trace_xe_hw_fence_free(fence);
+-	XE_BUG_ON(!list_empty(&fence->irq_link));
++	BUG_ON(!list_empty(&fence->irq_link));
+ 	call_rcu(&dma_fence->rcu, fence_free);
+ }
  
- static struct xe_hw_fence *to_xe_hw_fence(struct dma_fence *fence)
- {
--	if (XE_WARN_ON(fence->ops != &xe_hw_fence_ops))
-+	if (WARN_ON(fence->ops != &xe_hw_fence_ops))
- 		return NULL;
+diff --git a/drivers/gpu/drm/xe/xe_lrc.c b/drivers/gpu/drm/xe/xe_lrc.c
+index fb8c6f7d6528..7ae4a0b93249 100644
+--- a/drivers/gpu/drm/xe/xe_lrc.c
++++ b/drivers/gpu/drm/xe/xe_lrc.c
+@@ -108,7 +108,7 @@ static void set_offsets(u32 *regs,
+ 		*regs |= MI_LRI_LRM_CS_MMIO;
+ 		regs++;
  
- 	return container_of(fence, struct xe_hw_fence, dma);
+-		XE_BUG_ON(!count);
++		BUG_ON(!count);
+ 		do {
+ 			u32 offset = 0;
+ 			u8 v;
+@@ -528,7 +528,7 @@ static inline struct iosys_map __xe_lrc_##elem##_map(struct xe_lrc *lrc) \
+ { \
+ 	struct iosys_map map = lrc->bo->vmap; \
+ \
+-	XE_BUG_ON(iosys_map_is_null(&map)); \
++	BUG_ON(iosys_map_is_null(&map)); \
+ 	iosys_map_incr(&map, __xe_lrc_##elem##_offset(lrc)); \
+ 	return map; \
+ } \
+@@ -759,12 +759,12 @@ void xe_lrc_write_ring(struct xe_lrc *lrc, const void *data, size_t size)
+ 	u32 rhs;
+ 	size_t aligned_size;
+ 
+-	XE_BUG_ON(!IS_ALIGNED(size, 4));
++	BUG_ON(!IS_ALIGNED(size, 4));
+ 	aligned_size = ALIGN(size, 8);
+ 
+ 	ring = __xe_lrc_ring_map(lrc);
+ 
+-	XE_BUG_ON(lrc->ring.tail >= lrc->ring.size);
++	BUG_ON(lrc->ring.tail >= lrc->ring.size);
+ 	rhs = lrc->ring.size - lrc->ring.tail;
+ 	if (size > rhs) {
+ 		__xe_lrc_write_ring(lrc, ring, data, rhs);
 diff --git a/drivers/gpu/drm/xe/xe_macros.h b/drivers/gpu/drm/xe/xe_macros.h
-index 0d24c124d202..0a42112eb247 100644
+index 0a42112eb247..826759d0fcab 100644
 --- a/drivers/gpu/drm/xe/xe_macros.h
 +++ b/drivers/gpu/drm/xe/xe_macros.h
 @@ -9,7 +9,6 @@
  #include <linux/bug.h>
  
  #define XE_EXTRA_DEBUG 1
--#define XE_WARN_ON WARN_ON
- #define XE_BUG_ON BUG_ON
+-#define XE_BUG_ON BUG_ON
  
  #define XE_IOCTL_ERR(xe, cond) \
+ 	((cond) && (drm_info(&(xe)->drm, \
 diff --git a/drivers/gpu/drm/xe/xe_migrate.c b/drivers/gpu/drm/xe/xe_migrate.c
-index 11c8af9c6c92..a98e4bad39bf 100644
+index a98e4bad39bf..83014991fdde 100644
 --- a/drivers/gpu/drm/xe/xe_migrate.c
 +++ b/drivers/gpu/drm/xe/xe_migrate.c
-@@ -463,7 +463,7 @@ static void emit_pte(struct xe_migrate *m,
- 				/* Is this a 64K PTE entry? */
- 				if ((m->eng->vm->flags & XE_VM_FLAGS_64K) &&
- 				    !(cur_ofs & (16 * 8 - 1))) {
--					XE_WARN_ON(!IS_ALIGNED(addr, SZ_64K));
-+					WARN_ON(!IS_ALIGNED(addr, SZ_64K));
- 					addr |= GEN12_PTE_PS64;
- 				}
+@@ -106,7 +106,7 @@ static void xe_migrate_fini(struct drm_device *dev, void *arg)
  
-diff --git a/drivers/gpu/drm/xe/xe_mocs.c b/drivers/gpu/drm/xe/xe_mocs.c
-index e09c6242aafc..1f0d9772e6d9 100644
---- a/drivers/gpu/drm/xe/xe_mocs.c
-+++ b/drivers/gpu/drm/xe/xe_mocs.c
-@@ -437,9 +437,9 @@ static unsigned int get_mocs_settings(struct xe_device *xe,
- 	 * is still 0 at this point, we'll assume that it was omitted by
- 	 * mistake in the switch statement above.
- 	 */
--	XE_WARN_ON(info->unused_entries_index == 0);
-+	WARN_ON(info->unused_entries_index == 0);
+ static u64 xe_migrate_vm_addr(u64 slot, u32 level)
+ {
+-	XE_BUG_ON(slot >= NUM_PT_SLOTS);
++	BUG_ON(slot >= NUM_PT_SLOTS);
  
--	if (XE_WARN_ON(info->size > info->n_entries)) {
-+	if (WARN_ON(info->size > info->n_entries)) {
- 		info->table = NULL;
- 		return 0;
+ 	/* First slot is reserved for mapping of PT bo and bb, start from 1 */
+ 	return (slot + 1ULL) << xe_pt_shift(level + 1);
+@@ -148,7 +148,7 @@ static int xe_migrate_create_cleared_bo(struct xe_migrate *m, struct xe_vm *vm)
+ 
+ 	xe_map_memset(xe, &m->cleared_bo->vmap, 0, 0x00, cleared_size);
+ 	vram_addr = xe_bo_addr(m->cleared_bo, 0, GEN8_PAGE_SIZE, &is_vram);
+-	XE_BUG_ON(!is_vram);
++	BUG_ON(!is_vram);
+ 	m->cleared_vram_ofs = xe_migrate_vram_ofs(vram_addr);
+ 
+ 	return 0;
+@@ -173,7 +173,7 @@ static int xe_migrate_prepare_vm(struct xe_gt *gt, struct xe_migrate *m,
+ 	BUILD_BUG_ON(!(NUM_KERNEL_PDE & 1));
+ 
+ 	/* Need to be sure everything fits in the first PT, or create more */
+-	XE_BUG_ON(m->batch_base_ofs + batch->size >= SZ_2M);
++	BUG_ON(m->batch_base_ofs + batch->size >= SZ_2M);
+ 
+ 	bo = xe_bo_create_pin_map(vm->xe, m->gt, vm,
+ 				  num_entries * GEN8_PAGE_SIZE,
+@@ -208,7 +208,7 @@ static int xe_migrate_prepare_vm(struct xe_gt *gt, struct xe_migrate *m,
  	}
+ 
+ 	if (!IS_DGFX(xe)) {
+-		XE_BUG_ON(xe->info.supports_usm);
++		BUG_ON(xe->info.supports_usm);
+ 
+ 		/* Write out batch too */
+ 		m->batch_base_ofs = NUM_PT_SLOTS * GEN8_PAGE_SIZE;
+@@ -318,7 +318,7 @@ struct xe_migrate *xe_migrate_init(struct xe_gt *gt)
+ 	struct ww_acquire_ctx ww;
+ 	int err;
+ 
+-	XE_BUG_ON(xe_gt_is_media_type(gt));
++	BUG_ON(xe_gt_is_media_type(gt));
+ 
+ 	m = drmm_kzalloc(&xe->drm, sizeof(*m), GFP_KERNEL);
+ 	if (!m)
+@@ -491,7 +491,7 @@ static void emit_copy_ccs(struct xe_gt *gt, struct xe_bb *bb,
+ 
+ 	num_ccs_blks = DIV_ROUND_UP(xe_device_ccs_bytes(gt_to_xe(gt), size),
+ 				    NUM_CCS_BYTES_PER_BLOCK);
+-	XE_BUG_ON(num_ccs_blks > NUM_CCS_BLKS_PER_XFER);
++	BUG_ON(num_ccs_blks > NUM_CCS_BLKS_PER_XFER);
+ 	*cs++ = XY_CTRL_SURF_COPY_BLT |
+ 		(src_is_indirect ? 0x0 : 0x1) << SRC_ACCESS_TYPE_SHIFT |
+ 		(dst_is_indirect ? 0x0 : 0x1) << DST_ACCESS_TYPE_SHIFT |
+@@ -511,9 +511,9 @@ static void emit_copy(struct xe_gt *gt, struct xe_bb *bb,
+ 		      u64 src_ofs, u64 dst_ofs, unsigned int size,
+ 		      unsigned pitch)
+ {
+-	XE_BUG_ON(size / pitch > S16_MAX);
+-	XE_BUG_ON(pitch / 4 > S16_MAX);
+-	XE_BUG_ON(pitch > U16_MAX);
++	BUG_ON(size / pitch > S16_MAX);
++	BUG_ON(pitch / 4 > S16_MAX);
++	BUG_ON(pitch > U16_MAX);
+ 
+ 	bb->cs[bb->len++] = GEN9_XY_FAST_COPY_BLT_CMD | (10 - 2);
+ 	bb->cs[bb->len++] = BLT_DEPTH_32 | pitch;
+@@ -565,7 +565,7 @@ static u32 xe_migrate_ccs_copy(struct xe_migrate *m,
+ 		 * At the moment, we don't support copying CCS metadata from
+ 		 * system to system.
+ 		 */
+-		XE_BUG_ON(!src_is_vram && !dst_is_vram);
++		BUG_ON(!src_is_vram && !dst_is_vram);
+ 
+ 		emit_copy_ccs(gt, bb, dst_ofs, dst_is_vram, src_ofs,
+ 			      src_is_vram, dst_size);
+@@ -764,7 +764,7 @@ static void emit_clear_link_copy(struct xe_gt *gt, struct xe_bb *bb, u64 src_ofs
+ 	*cs++ = upper_32_bits(src_ofs);
+ 	*cs++ = FIELD_PREP(PVC_MS_MOCS_INDEX_MASK, mocs);
+ 
+-	XE_BUG_ON(cs - bb->cs != len + bb->len);
++	BUG_ON(cs - bb->cs != len + bb->len);
+ 
+ 	bb->len += len;
+ }
+@@ -802,7 +802,7 @@ static void emit_clear_main_copy(struct xe_gt *gt, struct xe_bb *bb,
+ 		*cs++ = 0;
+ 	}
+ 
+-	XE_BUG_ON(cs - bb->cs != len + bb->len);
++	BUG_ON(cs - bb->cs != len + bb->len);
+ 
+ 	bb->len += len;
+ }
+@@ -977,14 +977,14 @@ static void write_pgtable(struct xe_gt *gt, struct xe_bb *bb, u64 ppgtt_ofs,
+ 	 * This shouldn't be possible in practice.. might change when 16K
+ 	 * pages are used. Hence the BUG_ON.
+ 	 */
+-	XE_BUG_ON(update->qwords > 0x1ff);
++	BUG_ON(update->qwords > 0x1ff);
+ 	if (!ppgtt_ofs) {
+ 		bool is_vram;
+ 
+ 		ppgtt_ofs = xe_migrate_vram_ofs(xe_bo_addr(update->pt_bo, 0,
+ 							   GEN8_PAGE_SIZE,
+ 							   &is_vram));
+-		XE_BUG_ON(!is_vram);
++		BUG_ON(!is_vram);
+ 	}
+ 
+ 	do {
+@@ -1166,7 +1166,7 @@ xe_migrate_update_pgtables(struct xe_migrate *m,
+ 	 * Worst case: Sum(2 * (each lower level page size) + (top level page size))
+ 	 * Should be reasonably bound..
+ 	 */
+-	XE_BUG_ON(batch_size >= SZ_128K);
++	BUG_ON(batch_size >= SZ_128K);
+ 
+ 	bb = xe_bb_new(gt, batch_size, !eng && xe->info.supports_usm);
+ 	if (IS_ERR(bb))
+@@ -1176,7 +1176,7 @@ xe_migrate_update_pgtables(struct xe_migrate *m,
+ 	if (!IS_DGFX(xe)) {
+ 		ppgtt_ofs = NUM_KERNEL_PDE - 1;
+ 		if (eng) {
+-			XE_BUG_ON(num_updates > NUM_VMUSA_WRITES_PER_UNIT);
++			BUG_ON(num_updates > NUM_VMUSA_WRITES_PER_UNIT);
+ 
+ 			sa_bo = drm_suballoc_new(&m->vm_update_sa, 1,
+ 						 GFP_KERNEL, true);
+diff --git a/drivers/gpu/drm/xe/xe_mmio.c b/drivers/gpu/drm/xe/xe_mmio.c
+index 5cacaa05759a..ef3dd0ffb001 100644
+--- a/drivers/gpu/drm/xe/xe_mmio.c
++++ b/drivers/gpu/drm/xe/xe_mmio.c
+@@ -246,7 +246,7 @@ int xe_mmio_probe_vram(struct xe_device *xe)
+ 			if (xe_gt_is_media_type(gt))
+ 				--adj_tile_count;
+ 
+-		XE_BUG_ON(!adj_tile_count);
++		BUG_ON(!adj_tile_count);
+ 
+ 		size = xe->mem.vram.size / adj_tile_count;
+ 		io_start = xe->mem.vram.io_start;
 diff --git a/drivers/gpu/drm/xe/xe_pt.c b/drivers/gpu/drm/xe/xe_pt.c
-index 6b2943efcdbc..ffb0e6d8f9f7 100644
+index ffb0e6d8f9f7..4bde3684fe82 100644
 --- a/drivers/gpu/drm/xe/xe_pt.c
 +++ b/drivers/gpu/drm/xe/xe_pt.c
-@@ -67,7 +67,7 @@ u64 gen8_pde_encode(struct xe_bo *bo, u64 bo_offset,
- 	pde = xe_bo_addr(bo, bo_offset, GEN8_PAGE_SIZE, &is_vram);
- 	pde |= GEN8_PAGE_PRESENT | GEN8_PAGE_RW;
+@@ -126,7 +126,7 @@ static u64 __gen8_pte_encode(u64 pte, enum xe_cache_level cache, u32 flags,
+ 		pte |= GEN8_PDPE_PS_1G;
  
--	XE_WARN_ON(IS_DGFX(xe_bo_device(bo)) && !is_vram);
-+	WARN_ON(IS_DGFX(xe_bo_device(bo)) && !is_vram);
+ 	/* XXX: Does hw support 1 GiB pages? */
+-	XE_BUG_ON(pt_level > 2);
++	BUG_ON(pt_level > 2);
  
- 	/* FIXME: I don't think the PPAT handling is correct for MTL */
- 
-@@ -636,7 +636,7 @@ xe_pt_stage_bind_entry(struct drm_pt *parent, pgoff_t offset,
- 	if (level == 0 || xe_pt_hugepte_possible(addr, next, level, xe_walk)) {
- 		struct xe_res_cursor *curs = xe_walk->curs;
- 
--		XE_WARN_ON(xe_walk->va_curs_start != addr);
-+		WARN_ON(xe_walk->va_curs_start != addr);
- 
- 		pte = __gen8_pte_encode(xe_res_dma(curs) + xe_walk->dma_offset,
- 					xe_walk->cache, xe_walk->pte_flags,
-@@ -650,7 +650,7 @@ xe_pt_stage_bind_entry(struct drm_pt *parent, pgoff_t offset,
- 		if (level == 0 && !xe_parent->is_compact) {
- 			if (xe_pt_is_pte_ps64K(addr, next, xe_walk))
- 				pte |= GEN12_PTE_PS64;
--			else if (XE_WARN_ON(xe_walk->needs_64K))
-+			else if (WARN_ON(xe_walk->needs_64K))
- 				return -EINVAL;
- 		}
- 
-@@ -1248,7 +1248,7 @@ static int invalidation_fence_init(struct xe_gt *gt,
- 		dma_fence_put(&ifence->base.base);	/* Creation ref */
- 	}
- 
--	XE_WARN_ON(ret && ret != -ENOENT);
-+	WARN_ON(ret && ret != -ENOENT);
- 
- 	return ret && ret != -ENOENT ? ret : 0;
+ 	return pte;
  }
-@@ -1677,7 +1677,7 @@ __xe_pt_unbind_vma(struct xe_gt *gt, struct xe_vma *vma, struct xe_engine *e,
- 		list_del_init(&vma->rebind_link);
+@@ -171,7 +171,7 @@ static u64 __xe_pt_empty_pte(struct xe_gt *gt, struct xe_vm *vm,
+ {
+ 	u8 id = gt->info.id;
  
- 	if (unbind_pt_update.locked) {
--		XE_WARN_ON(!xe_vma_is_userptr(vma));
-+		WARN_ON(!xe_vma_is_userptr(vma));
+-	XE_BUG_ON(xe_gt_is_media_type(gt));
++	BUG_ON(xe_gt_is_media_type(gt));
  
- 		if (!vma->gt_present) {
- 			spin_lock(&vm->userptr.invalidated_lock);
-diff --git a/drivers/gpu/drm/xe/xe_reg_sr.c b/drivers/gpu/drm/xe/xe_reg_sr.c
-index 9eaf1be27886..c1b240c4dba6 100644
---- a/drivers/gpu/drm/xe/xe_reg_sr.c
-+++ b/drivers/gpu/drm/xe/xe_reg_sr.c
-@@ -183,7 +183,7 @@ void xe_reg_sr_apply_mmio(struct xe_reg_sr *sr, struct xe_gt *gt)
- 		apply_one_mmio(gt, reg, entry);
+ 	if (!vm->scratch_bo[id])
+ 		return 0;
+@@ -229,7 +229,7 @@ struct xe_pt *xe_pt_create(struct xe_vm *vm, struct xe_gt *gt,
+ 	pt->level = level;
+ 	pt->drm.dir = level ? &as_xe_pt_dir(pt)->dir : NULL;
  
- 	err = xe_force_wake_put(&gt->mmio.fw, XE_FORCEWAKE_ALL);
--	XE_WARN_ON(err);
-+	WARN_ON(err);
+-	XE_BUG_ON(level > XE_VM_MAX_LEVEL);
++	BUG_ON(level > XE_VM_MAX_LEVEL);
  
- 	return;
+ 	return pt;
  
-@@ -224,7 +224,7 @@ void xe_reg_sr_apply_whitelist(struct xe_reg_sr *sr, u32 mmio_base,
- 				RING_NOPID(mmio_base).reg);
+@@ -255,7 +255,7 @@ void xe_pt_populate_empty(struct xe_gt *gt, struct xe_vm *vm,
+ 	u64 empty;
+ 	int i;
  
- 	err = xe_force_wake_put(&gt->mmio.fw, XE_FORCEWAKE_ALL);
--	XE_WARN_ON(err);
-+	WARN_ON(err);
+-	XE_BUG_ON(xe_gt_is_media_type(gt));
++	BUG_ON(xe_gt_is_media_type(gt));
  
- 	return;
+ 	if (!vm->scratch_bo[gt->info.id]) {
+ 		/*
+@@ -300,7 +300,7 @@ void xe_pt_destroy(struct xe_pt *pt, u32 flags, struct llist_head *deferred)
+ 	if (!pt)
+ 		return;
+ 
+-	XE_BUG_ON(!list_empty(&pt->bo->vmas));
++	BUG_ON(!list_empty(&pt->bo->vmas));
+ 	xe_bo_unpin(pt->bo);
+ 	xe_bo_put_deferred(pt->bo, deferred);
+ 
+@@ -874,8 +874,8 @@ static int xe_pt_zap_ptes_entry(struct drm_pt *parent, pgoff_t offset,
+ 	struct xe_pt *xe_child = container_of(*child, typeof(*xe_child), drm);
+ 	pgoff_t end_offset;
+ 
+-	XE_BUG_ON(!*child);
+-	XE_BUG_ON(!level && xe_child->is_compact);
++	BUG_ON(!*child);
++	BUG_ON(!level && xe_child->is_compact);
+ 
+ 	/*
+ 	 * Note that we're called from an entry callback, and we're dealing
+@@ -944,7 +944,7 @@ xe_vm_populate_pgtable(struct xe_migrate_pt_update *pt_update, struct xe_gt *gt,
+ 	u64 *ptr = data;
+ 	u32 i;
+ 
+-	XE_BUG_ON(xe_gt_is_media_type(gt));
++	BUG_ON(xe_gt_is_media_type(gt));
+ 
+ 	for (i = 0; i < num_qwords; i++) {
+ 		if (map)
+@@ -1053,7 +1053,7 @@ static void xe_vm_dbg_print_entries(struct xe_device *xe,
+ 		u64 end;
+ 		u64 start;
+ 
+-		XE_BUG_ON(entry->pt->is_compact);
++		BUG_ON(entry->pt->is_compact);
+ 		start = entry->ofs * page_size;
+ 		end = start + page_size * entry->qwords;
+ 		vm_dbg(&xe->drm,
+@@ -1297,7 +1297,7 @@ __xe_pt_bind_vma(struct xe_gt *gt, struct xe_vma *vma, struct xe_engine *e,
+ 	bind_pt_update.locked = false;
+ 	xe_bo_assert_held(vma->bo);
+ 	xe_vm_assert_held(vm);
+-	XE_BUG_ON(xe_gt_is_media_type(gt));
++	BUG_ON(xe_gt_is_media_type(gt));
+ 
+ 	vm_dbg(&vma->vm->xe->drm,
+ 	       "Preparing bind, with range [%llx...%llx) engine %p.\n",
+@@ -1306,7 +1306,7 @@ __xe_pt_bind_vma(struct xe_gt *gt, struct xe_vma *vma, struct xe_engine *e,
+ 	err = xe_pt_prepare_bind(gt, vma, entries, &num_entries, rebind);
+ 	if (err)
+ 		goto err;
+-	XE_BUG_ON(num_entries > ARRAY_SIZE(entries));
++	BUG_ON(num_entries > ARRAY_SIZE(entries));
+ 
+ 	xe_vm_dbg_print_entries(gt_to_xe(gt), entries, num_entries);
+ 
+@@ -1436,8 +1436,8 @@ static int xe_pt_stage_unbind_entry(struct drm_pt *parent, pgoff_t offset,
+ {
+ 	struct xe_pt *xe_child = container_of(*child, typeof(*xe_child), drm);
+ 
+-	XE_BUG_ON(!*child);
+-	XE_BUG_ON(!level && xe_child->is_compact);
++	BUG_ON(!*child);
++	BUG_ON(!level && xe_child->is_compact);
+ 
+ 	xe_pt_check_kill(addr, next, level - 1, xe_child, action, walk);
+ 
+@@ -1528,7 +1528,7 @@ xe_migrate_clear_pgtable_callback(struct xe_migrate_pt_update *pt_update,
+ 	u64 empty = __xe_pt_empty_pte(gt, vma->vm, update->pt->level);
+ 	int i;
+ 
+-	XE_BUG_ON(xe_gt_is_media_type(gt));
++	BUG_ON(xe_gt_is_media_type(gt));
+ 
+ 	if (map && map->is_iomem)
+ 		for (i = 0; i < num_qwords; ++i)
+@@ -1620,14 +1620,14 @@ __xe_pt_unbind_vma(struct xe_gt *gt, struct xe_vma *vma, struct xe_engine *e,
+ 
+ 	xe_bo_assert_held(vma->bo);
+ 	xe_vm_assert_held(vm);
+-	XE_BUG_ON(xe_gt_is_media_type(gt));
++	BUG_ON(xe_gt_is_media_type(gt));
+ 
+ 	vm_dbg(&vma->vm->xe->drm,
+ 	       "Preparing unbind, with range [%llx...%llx) engine %p.\n",
+ 	       vma->start, vma->end, e);
+ 
+ 	num_entries = xe_pt_stage_unbind(gt, vma, entries);
+-	XE_BUG_ON(num_entries > ARRAY_SIZE(entries));
++	BUG_ON(num_entries > ARRAY_SIZE(entries));
+ 
+ 	xe_vm_dbg_print_entries(gt_to_xe(gt), entries, num_entries);
  
 diff --git a/drivers/gpu/drm/xe/xe_res_cursor.h b/drivers/gpu/drm/xe/xe_res_cursor.h
-index 4e99fae26b4c..b34eb906dbb0 100644
+index b34eb906dbb0..3b5bf90ff655 100644
 --- a/drivers/gpu/drm/xe/xe_res_cursor.h
 +++ b/drivers/gpu/drm/xe/xe_res_cursor.h
-@@ -129,7 +129,7 @@ static inline void xe_res_first(struct ttm_resource *res,
- 	cur->remaining = size;
+@@ -80,7 +80,7 @@ static inline void xe_res_first(struct ttm_resource *res,
+ 	if (!res)
+ 		goto fallback;
+ 
+-	XE_BUG_ON(start + size > res->size);
++	BUG_ON(start + size > res->size);
+ 
+ 	cur->mem_type = res->mem_type;
+ 
+@@ -141,7 +141,7 @@ static inline void __xe_res_sg_next(struct xe_res_cursor *cur)
+ 	while (start >= sg_dma_len(sgl)) {
+ 		start -= sg_dma_len(sgl);
+ 		sgl = sg_next(sgl);
+-		XE_BUG_ON(!sgl);
++		BUG_ON(!sgl);
+ 	}
+ 
+ 	cur->start = start;
+@@ -163,8 +163,8 @@ static inline void xe_res_first_sg(const struct sg_table *sg,
+ 				   u64 start, u64 size,
+ 				   struct xe_res_cursor *cur)
+ {
+-	XE_BUG_ON(!sg);
+-	XE_BUG_ON(!IS_ALIGNED(start, PAGE_SIZE) ||
++	BUG_ON(!sg);
++	BUG_ON(!IS_ALIGNED(start, PAGE_SIZE) ||
+ 		  !IS_ALIGNED(size, PAGE_SIZE));
  	cur->node = NULL;
- 	cur->mem_type = XE_PL_TT;
--	XE_WARN_ON(res && start + size > res->size);
-+	WARN_ON(res && start + size > res->size);
- 	return;
+ 	cur->start = start;
+@@ -189,7 +189,7 @@ static inline void xe_res_next(struct xe_res_cursor *cur, u64 size)
+ 	struct list_head *next;
+ 	u64 start;
+ 
+-	XE_BUG_ON(size > cur->remaining);
++	BUG_ON(size > cur->remaining);
+ 
+ 	cur->remaining -= size;
+ 	if (!cur->remaining)
+diff --git a/drivers/gpu/drm/xe/xe_ring_ops.c b/drivers/gpu/drm/xe/xe_ring_ops.c
+index 918e819e7c91..b610a4f0dfa4 100644
+--- a/drivers/gpu/drm/xe/xe_ring_ops.c
++++ b/drivers/gpu/drm/xe/xe_ring_ops.c
+@@ -184,7 +184,7 @@ static void __emit_job_gen12_copy(struct xe_sched_job *job, struct xe_lrc *lrc,
+ 
+ 	i = emit_user_interrupt(dw, i);
+ 
+-	XE_BUG_ON(i > MAX_JOB_SIZE_DW);
++	BUG_ON(i > MAX_JOB_SIZE_DW);
+ 
+ 	xe_lrc_write_ring(lrc, dw, i * sizeof(*dw));
  }
+@@ -222,7 +222,7 @@ static void __emit_job_gen12_video(struct xe_sched_job *job, struct xe_lrc *lrc,
  
-diff --git a/drivers/gpu/drm/xe/xe_rtp.c b/drivers/gpu/drm/xe/xe_rtp.c
-index cb9dd894547d..bcaa111fd63f 100644
---- a/drivers/gpu/drm/xe/xe_rtp.c
-+++ b/drivers/gpu/drm/xe/xe_rtp.c
-@@ -77,7 +77,7 @@ static bool rule_matches(struct xe_gt *gt,
- 			break;
+ 	i = emit_user_interrupt(dw, i);
  
- 		default:
--			XE_WARN_ON(r->match_type);
-+			WARN_ON(r->match_type);
- 		}
+-	XE_BUG_ON(i > MAX_JOB_SIZE_DW);
++	BUG_ON(i > MAX_JOB_SIZE_DW);
  
- 		if (!match)
-diff --git a/drivers/gpu/drm/xe/xe_sync.c b/drivers/gpu/drm/xe/xe_sync.c
-index 99f1ed87196d..30a582c82689 100644
---- a/drivers/gpu/drm/xe/xe_sync.c
-+++ b/drivers/gpu/drm/xe/xe_sync.c
-@@ -75,7 +75,7 @@ static void user_fence_worker(struct work_struct *w)
- 	if (mmget_not_zero(ufence->mm)) {
- 		kthread_use_mm(ufence->mm);
- 		if (copy_to_user(ufence->addr, &ufence->value, sizeof(ufence->value)))
--			XE_WARN_ON("Copy to user failed");
-+			WARN_ON("Copy to user failed");
- 		kthread_unuse_mm(ufence->mm);
- 		mmput(ufence->mm);
- 	}
-@@ -246,7 +246,7 @@ bool xe_sync_entry_signal(struct xe_sync_entry *sync, struct xe_sched_job *job,
- 		if (err == -ENOENT) {
- 			kick_ufence(sync->ufence, fence);
- 		} else if (err) {
--			XE_WARN_ON("failed to add user fence");
-+			WARN_ON("failed to add user fence");
- 			user_fence_put(sync->ufence);
- 			dma_fence_put(fence);
- 		}
-diff --git a/drivers/gpu/drm/xe/xe_uc.c b/drivers/gpu/drm/xe/xe_uc.c
-index 70eabf567156..cbc55ccc5918 100644
---- a/drivers/gpu/drm/xe/xe_uc.c
-+++ b/drivers/gpu/drm/xe/xe_uc.c
-@@ -162,7 +162,7 @@ int xe_uc_init_hw(struct xe_uc *uc)
- 
- 	/* We don't fail the driver load if HuC fails to auth, but let's warn */
- 	ret = xe_huc_auth(&uc->huc);
--	XE_WARN_ON(ret);
-+	WARN_ON(ret);
- 
- 	return 0;
+ 	xe_lrc_write_ring(lrc, dw, i * sizeof(*dw));
  }
-diff --git a/drivers/gpu/drm/xe/xe_uc_debugfs.c b/drivers/gpu/drm/xe/xe_uc_debugfs.c
-index 0a39ec5a6e99..2248fc07ab3d 100644
---- a/drivers/gpu/drm/xe/xe_uc_debugfs.c
-+++ b/drivers/gpu/drm/xe/xe_uc_debugfs.c
-@@ -17,7 +17,7 @@ void xe_uc_debugfs_register(struct xe_uc *uc, struct dentry *parent)
+@@ -263,7 +263,7 @@ static void __emit_job_gen12_render_compute(struct xe_sched_job *job,
  
- 	root = debugfs_create_dir("uc", parent);
- 	if (IS_ERR(root)) {
--		XE_WARN_ON("Create UC directory failed");
-+		WARN_ON("Create UC directory failed");
- 		return;
+ 	i = emit_user_interrupt(dw, i);
+ 
+-	XE_BUG_ON(i > MAX_JOB_SIZE_DW);
++	BUG_ON(i > MAX_JOB_SIZE_DW);
+ 
+ 	xe_lrc_write_ring(lrc, dw, i * sizeof(*dw));
+ }
+@@ -293,7 +293,7 @@ static void emit_migration_job_gen12(struct xe_sched_job *job,
+ 
+ 	i = emit_user_interrupt(dw, i);
+ 
+-	XE_BUG_ON(i > MAX_JOB_SIZE_DW);
++	BUG_ON(i > MAX_JOB_SIZE_DW);
+ 
+ 	xe_lrc_write_ring(lrc, dw, i * sizeof(*dw));
+ }
+diff --git a/drivers/gpu/drm/xe/xe_sched_job.c b/drivers/gpu/drm/xe/xe_sched_job.c
+index 2985caa6097b..87854f3473db 100644
+--- a/drivers/gpu/drm/xe/xe_sched_job.c
++++ b/drivers/gpu/drm/xe/xe_sched_job.c
+@@ -142,7 +142,7 @@ struct xe_sched_job *xe_sched_job_create(struct xe_engine *e,
+ 
+ 		/* Sanity check */
+ 		for (j = 0; j < e->width; ++j)
+-			XE_BUG_ON(cf->base.seqno != fences[j]->seqno);
++			BUG_ON(cf->base.seqno != fences[j]->seqno);
+ 
+ 		job->fence = &cf->base;
  	}
+diff --git a/drivers/gpu/drm/xe/xe_ttm_gtt_mgr.c b/drivers/gpu/drm/xe/xe_ttm_gtt_mgr.c
+index 8075781070f2..c61d2fa658b5 100644
+--- a/drivers/gpu/drm/xe/xe_ttm_gtt_mgr.c
++++ b/drivers/gpu/drm/xe/xe_ttm_gtt_mgr.c
+@@ -111,7 +111,7 @@ int xe_ttm_gtt_mgr_init(struct xe_gt *gt, struct xe_ttm_gtt_mgr *mgr,
+ 	struct ttm_resource_manager *man = &mgr->manager;
+ 	int err;
+ 
+-	XE_BUG_ON(xe_gt_is_media_type(gt));
++	BUG_ON(xe_gt_is_media_type(gt));
+ 
+ 	mgr->gt = gt;
+ 	man->use_tt = true;
+diff --git a/drivers/gpu/drm/xe/xe_ttm_stolen_mgr.c b/drivers/gpu/drm/xe/xe_ttm_stolen_mgr.c
+index 31887fec1073..1343b3a862ce 100644
+--- a/drivers/gpu/drm/xe/xe_ttm_stolen_mgr.c
++++ b/drivers/gpu/drm/xe/xe_ttm_stolen_mgr.c
+@@ -184,7 +184,7 @@ u64 xe_ttm_stolen_io_offset(struct xe_bo *bo, u32 offset)
+ 	struct xe_ttm_stolen_mgr *mgr = to_stolen_mgr(ttm_mgr);
+ 	struct xe_res_cursor cur;
+ 
+-	XE_BUG_ON(!mgr->io_base);
++	BUG_ON(!mgr->io_base);
+ 
+ 	if (xe_ttm_stolen_cpu_access_needs_ggtt(xe))
+ 		return mgr->io_base + xe_bo_ggtt_addr(bo) + offset;
+@@ -224,7 +224,7 @@ static int __xe_ttm_stolen_io_mem_reserve_stolen(struct xe_device *xe,
+ #ifdef CONFIG_X86
+ 	struct xe_bo *bo = ttm_to_xe_bo(mem->bo);
+ 
+-	XE_BUG_ON(IS_DGFX(xe));
++	BUG_ON(IS_DGFX(xe));
+ 
+ 	/* XXX: Require BO to be mapped to GGTT? */
+ 	if (drm_WARN_ON(&xe->drm, !(bo->flags & XE_BO_CREATE_GGTT_BIT)))
+diff --git a/drivers/gpu/drm/xe/xe_ttm_vram_mgr.c b/drivers/gpu/drm/xe/xe_ttm_vram_mgr.c
+index 73836b9b7fed..aa50964214f8 100644
+--- a/drivers/gpu/drm/xe/xe_ttm_vram_mgr.c
++++ b/drivers/gpu/drm/xe/xe_ttm_vram_mgr.c
+@@ -357,7 +357,7 @@ int xe_ttm_vram_mgr_init(struct xe_gt *gt, struct xe_ttm_vram_mgr *mgr)
+ {
+ 	struct xe_device *xe = gt_to_xe(gt);
+ 
+-	XE_BUG_ON(xe_gt_is_media_type(gt));
++	BUG_ON(xe_gt_is_media_type(gt));
+ 
+ 	mgr->gt = gt;
  
 diff --git a/drivers/gpu/drm/xe/xe_uc_fw.c b/drivers/gpu/drm/xe/xe_uc_fw.c
-index e9b30e620fd9..3ebe651b9a1b 100644
+index 3ebe651b9a1b..bbe9239e8145 100644
 --- a/drivers/gpu/drm/xe/xe_uc_fw.c
 +++ b/drivers/gpu/drm/xe/xe_uc_fw.c
-@@ -202,7 +202,7 @@ static void guc_read_css_info(struct xe_uc_fw *uc_fw, struct uc_css_header *css)
+@@ -23,7 +23,7 @@ __uc_fw_to_gt(struct xe_uc_fw *uc_fw, enum xe_uc_fw_type type)
+ 	if (type == XE_UC_FW_TYPE_GUC)
+ 		return container_of(uc_fw, struct xe_gt, uc.guc.fw);
+ 
+-	XE_BUG_ON(type != XE_UC_FW_TYPE_HUC);
++	BUG_ON(type != XE_UC_FW_TYPE_HUC);
+ 	return container_of(uc_fw, struct xe_gt, uc.huc.fw);
+ }
+ 
+@@ -146,7 +146,7 @@ uc_fw_auto_select(struct xe_device *xe, struct xe_uc_fw *uc_fw)
+ 	u8 rev = xe->info.revid;
+ 	int i;
+ 
+-	XE_BUG_ON(uc_fw->type >= ARRAY_SIZE(blobs_all));
++	BUG_ON(uc_fw->type >= ARRAY_SIZE(blobs_all));
+ 	fw_blobs = blobs_all[uc_fw->type].blobs;
+ 	fw_count = blobs_all[uc_fw->type].count;
+ 
+@@ -176,8 +176,8 @@ size_t xe_uc_fw_copy_rsa(struct xe_uc_fw *uc_fw, void *dst, u32 max_len)
+ 	struct xe_device *xe = uc_fw_to_xe(uc_fw);
+ 	u32 size = min_t(u32, uc_fw->rsa_size, max_len);
+ 
+-	XE_BUG_ON(size % 4);
+-	XE_BUG_ON(!xe_uc_fw_is_available(uc_fw));
++	BUG_ON(size % 4);
++	BUG_ON(!xe_uc_fw_is_available(uc_fw));
+ 
+ 	xe_map_memcpy_from(xe, dst, &uc_fw->bo->vmap,
+ 			   xe_uc_fw_rsa_offset(uc_fw), size);
+@@ -201,7 +201,7 @@ static void guc_read_css_info(struct xe_uc_fw *uc_fw, struct uc_css_header *css)
+ 	struct xe_gt *gt = uc_fw_to_gt(uc_fw);
  	struct xe_guc *guc = &gt->uc.guc;
  
- 	XE_BUG_ON(uc_fw->type != XE_UC_FW_TYPE_GUC);
--	XE_WARN_ON(uc_fw->major_ver_found < 70);
-+	WARN_ON(uc_fw->major_ver_found < 70);
+-	XE_BUG_ON(uc_fw->type != XE_UC_FW_TYPE_GUC);
++	BUG_ON(uc_fw->type != XE_UC_FW_TYPE_GUC);
+ 	WARN_ON(uc_fw->major_ver_found < 70);
  
  	if (uc_fw->minor_ver_found >= 6) {
- 		/* v70.6.0 adds CSS header support */
+@@ -246,8 +246,8 @@ int xe_uc_fw_init(struct xe_uc_fw *uc_fw)
+ 	 * before we're looked at the HW caps to see if we have uc support
+ 	 */
+ 	BUILD_BUG_ON(XE_UC_FIRMWARE_UNINITIALIZED);
+-	XE_BUG_ON(uc_fw->status);
+-	XE_BUG_ON(uc_fw->path);
++	BUG_ON(uc_fw->status);
++	BUG_ON(uc_fw->path);
+ 
+ 	uc_fw_auto_select(xe, uc_fw);
+ 	xe_uc_fw_change_status(uc_fw, uc_fw->path ? *uc_fw->path ?
+@@ -418,7 +418,7 @@ int xe_uc_fw_upload(struct xe_uc_fw *uc_fw, u32 offset, u32 dma_flags)
+ 	int err;
+ 
+ 	/* make sure the status was cleared the last time we reset the uc */
+-	XE_BUG_ON(xe_uc_fw_is_loaded(uc_fw));
++	BUG_ON(xe_uc_fw_is_loaded(uc_fw));
+ 
+ 	if (!xe_uc_fw_is_loadable(uc_fw))
+ 		return -ENOEXEC;
+diff --git a/drivers/gpu/drm/xe/xe_uc_fw.h b/drivers/gpu/drm/xe/xe_uc_fw.h
+index bf31c3bb0e0f..2221f5fd3f54 100644
+--- a/drivers/gpu/drm/xe/xe_uc_fw.h
++++ b/drivers/gpu/drm/xe/xe_uc_fw.h
+@@ -104,7 +104,7 @@ static inline enum xe_uc_fw_status
+ __xe_uc_fw_status(struct xe_uc_fw *uc_fw)
+ {
+ 	/* shouldn't call this before checking hw/blob availability */
+-	XE_BUG_ON(uc_fw->status == XE_UC_FIRMWARE_UNINITIALIZED);
++	BUG_ON(uc_fw->status == XE_UC_FIRMWARE_UNINITIALIZED);
+ 	return uc_fw->status;
+ }
+ 
 diff --git a/drivers/gpu/drm/xe/xe_vm.c b/drivers/gpu/drm/xe/xe_vm.c
-index bdf82d34eb66..fb6b563378ea 100644
+index fb6b563378ea..c7247348b5d6 100644
 --- a/drivers/gpu/drm/xe/xe_vm.c
 +++ b/drivers/gpu/drm/xe/xe_vm.c
-@@ -501,7 +501,7 @@ void xe_vm_unlock_dma_resv(struct xe_vm *vm,
- 	 * and holding the dma_resv of an object is required for list
- 	 * addition, and we shouldn't add ourselves.
- 	 */
--	XE_WARN_ON(!list_empty(&vm->notifier.rebind_list));
-+	WARN_ON(!list_empty(&vm->notifier.rebind_list));
+@@ -62,7 +62,7 @@ int xe_vma_userptr_pin_pages(struct xe_vma *vma)
+ 	bool read_only = vma->pte_flags & PTE_READ_ONLY;
  
- 	ttm_eu_backoff_reservation(ww, objs);
- 	if (tv && tv != tv_onstack)
-@@ -641,7 +641,7 @@ static void preempt_rebind_work_func(struct work_struct *w)
+ 	lockdep_assert_held(&vm->lock);
+-	XE_BUG_ON(!xe_vma_is_userptr(vma));
++	BUG_ON(!xe_vma_is_userptr(vma));
+ retry:
+ 	if (vma->destroyed)
+ 		return 0;
+@@ -248,7 +248,7 @@ static void arm_preempt_fences(struct xe_vm *vm, struct list_head *list)
+ 		struct dma_fence *fence;
  
- 	free_preempt_fences(&preempt_fences);
+ 		link = list->next;
+-		XE_BUG_ON(link == list);
++		BUG_ON(link == list);
  
--	XE_WARN_ON(err < 0);	/* TODO: Kill VM or put in error state */
-+	WARN_ON(err < 0);	/* TODO: Kill VM or put in error state */
- 	trace_xe_vm_rebind_worker_exit(vm);
- }
+ 		fence = xe_preempt_fence_arm(to_preempt_fence_from_link(link),
+ 					     e, e->compute.context,
+@@ -325,7 +325,7 @@ int xe_vm_add_compute_engine(struct xe_vm *vm, struct xe_engine *e)
+ 	int err;
+ 	bool wait;
  
-@@ -703,11 +703,11 @@ static bool vma_userptr_invalidate(struct mmu_interval_notifier *mni,
- 	err = dma_resv_wait_timeout(&vm->resv,
- 				    DMA_RESV_USAGE_BOOKKEEP,
- 				    false, MAX_SCHEDULE_TIMEOUT);
--	XE_WARN_ON(err <= 0);
-+	WARN_ON(err <= 0);
+-	XE_BUG_ON(!xe_vm_in_compute_mode(vm));
++	BUG_ON(!xe_vm_in_compute_mode(vm));
  
- 	if (xe_vm_in_fault_mode(vm)) {
- 		err = xe_vm_invalidate_vma(vma);
--		XE_WARN_ON(err);
-+		WARN_ON(err);
- 	}
+ 	down_write(&vm->lock);
  
- 	trace_xe_vma_userptr_invalidate_complete(vma);
-@@ -797,7 +797,7 @@ struct dma_fence *xe_vm_rebind(struct xe_vm *vm, bool rebind_worker)
+@@ -523,7 +523,7 @@ static void preempt_rebind_work_func(struct work_struct *w)
+ 	long wait;
+ 	int __maybe_unused tries = 0;
  
- 	xe_vm_assert_held(vm);
- 	list_for_each_entry_safe(vma, next, &vm->rebind_list, rebind_link) {
--		XE_WARN_ON(!vma->gt_present);
-+		WARN_ON(!vma->gt_present);
+-	XE_BUG_ON(!xe_vm_in_compute_mode(vm));
++	BUG_ON(!xe_vm_in_compute_mode(vm));
+ 	trace_xe_vm_rebind_worker_enter(vm);
  
- 		list_del_init(&vma->rebind_link);
- 		dma_fence_put(fence);
-@@ -948,7 +948,7 @@ static void xe_vma_destroy(struct xe_vma *vma, struct dma_fence *fence)
- 	XE_BUG_ON(!list_empty(&vma->unbind_link));
+ 	if (xe_vm_is_closed(vm)) {
+@@ -660,7 +660,7 @@ static bool vma_userptr_invalidate(struct mmu_interval_notifier *mni,
+ 	struct dma_fence *fence;
+ 	long err;
+ 
+-	XE_BUG_ON(!xe_vma_is_userptr(vma));
++	BUG_ON(!xe_vma_is_userptr(vma));
+ 	trace_xe_vma_userptr_invalidate(vma);
+ 
+ 	if (!mmu_notifier_range_blockable(range))
+@@ -824,8 +824,8 @@ static struct xe_vma *xe_vma_create(struct xe_vm *vm,
+ 	struct xe_gt *gt;
+ 	u8 id;
+ 
+-	XE_BUG_ON(start >= end);
+-	XE_BUG_ON(end >= vm->size);
++	BUG_ON(start >= end);
++	BUG_ON(end >= vm->size);
+ 
+ 	vma = kzalloc(sizeof(*vma), GFP_KERNEL);
+ 	if (!vma) {
+@@ -945,7 +945,7 @@ static void xe_vma_destroy(struct xe_vma *vma, struct dma_fence *fence)
+ 	struct xe_vm *vm = vma->vm;
+ 
+ 	lockdep_assert_held_write(&vm->lock);
+-	XE_BUG_ON(!list_empty(&vma->unbind_link));
++	BUG_ON(!list_empty(&vma->unbind_link));
  
  	if (xe_vma_is_userptr(vma)) {
--		XE_WARN_ON(!vma->destroyed);
-+		WARN_ON(!vma->destroyed);
- 		spin_lock(&vm->userptr.invalidated_lock);
- 		list_del_init(&vma->userptr.invalidate_link);
- 		spin_unlock(&vm->userptr.invalidated_lock);
-@@ -969,7 +969,7 @@ static void xe_vma_destroy(struct xe_vma *vma, struct dma_fence *fence)
- 						 vma_destroy_cb);
+ 		WARN_ON(!vma->destroyed);
+@@ -1048,7 +1048,7 @@ xe_vm_find_overlapping_vma(struct xe_vm *vm, const struct xe_vma *vma)
+ 	if (xe_vm_is_closed(vm))
+ 		return NULL;
  
- 		if (ret) {
--			XE_WARN_ON(ret != -ENOENT);
-+			WARN_ON(ret != -ENOENT);
- 			xe_vma_destroy_late(vma);
- 		}
- 	} else {
-@@ -995,7 +995,7 @@ static void xe_vma_destroy_unlocked(struct xe_vma *vma)
- 		list_add(&tv[1].head, &objs);
- 	}
- 	err = ttm_eu_reserve_buffers(&ww, &objs, false, &dups);
--	XE_WARN_ON(err);
-+	WARN_ON(err);
+-	XE_BUG_ON(vma->end >= vm->size);
++	BUG_ON(vma->end >= vm->size);
+ 	lockdep_assert_held(&vm->lock);
  
- 	xe_vma_destroy(vma, NULL);
+ 	node = rb_find(vma, &vm->vmas, xe_vma_cmp_vma_cb);
+@@ -1058,7 +1058,7 @@ xe_vm_find_overlapping_vma(struct xe_vm *vm, const struct xe_vma *vma)
  
-@@ -1271,7 +1271,7 @@ static void vm_error_capture(struct xe_vm *vm, int err,
- 	}
- 
- 	if (copy_to_user(address, &capture, sizeof(capture)))
--		XE_WARN_ON("Copy to user failed");
-+		WARN_ON("Copy to user failed");
- 
- 	if (in_kthread) {
- 		kthread_unuse_mm(vm->async_ops.error_capture.mm);
-@@ -1366,7 +1366,7 @@ void xe_vm_close_and_put(struct xe_vm *vm)
- 	if (vm->async_ops.error_capture.addr)
- 		wake_up_all(&vm->async_ops.error_capture.wq);
- 
--	XE_WARN_ON(!list_empty(&vm->extobj.list));
-+	WARN_ON(!list_empty(&vm->extobj.list));
- 	up_write(&vm->lock);
- 
- 	mutex_lock(&xe->usm.lock);
-@@ -1390,7 +1390,7 @@ static void vm_destroy_work_func(struct work_struct *w)
- 	void *lookup;
- 
- 	/* xe_vm_close_and_put was not called? */
--	XE_WARN_ON(vm->size);
-+	WARN_ON(vm->size);
- 
- 	if (!(vm->flags & XE_VM_FLAG_MIGRATION)) {
- 		xe_device_mem_access_put(xe);
-@@ -1399,7 +1399,7 @@ static void vm_destroy_work_func(struct work_struct *w)
- 		if (xe->info.has_asid) {
- 			mutex_lock(&xe->usm.lock);
- 			lookup = xa_erase(&xe->usm.asid_to_vm, vm->usm.asid);
--			XE_WARN_ON(lookup != vm);
-+			WARN_ON(lookup != vm);
- 			mutex_unlock(&xe->usm.lock);
- 		}
- 	}
-@@ -1660,7 +1660,7 @@ static void add_async_op_fence_cb(struct xe_vm *vm,
- 		dma_fence_put(afence->wait_fence);
- 		dma_fence_put(&afence->fence);
- 	}
--	XE_WARN_ON(ret && ret != -ENOENT);
-+	WARN_ON(ret && ret != -ENOENT);
- }
- 
- int xe_vm_async_fence_wait_start(struct dma_fence *fence)
-diff --git a/drivers/gpu/drm/xe/xe_vm_madvise.c b/drivers/gpu/drm/xe/xe_vm_madvise.c
-index 29815852985a..267f16dd969c 100644
---- a/drivers/gpu/drm/xe/xe_vm_madvise.c
-+++ b/drivers/gpu/drm/xe/xe_vm_madvise.c
-@@ -192,7 +192,7 @@ static int madvise_priority(struct xe_device *xe, struct xe_vm *vm,
- static int madvise_pin(struct xe_device *xe, struct xe_vm *vm,
- 		       struct xe_vma **vmas, int num_vmas, u64 value)
+ static void xe_vm_insert_vma(struct xe_vm *vm, struct xe_vma *vma)
  {
--	XE_WARN_ON("NIY");
-+	WARN_ON("NIY");
- 	return 0;
- }
+-	XE_BUG_ON(vma->vm != vm);
++	BUG_ON(vma->vm != vm);
+ 	lockdep_assert_held(&vm->lock);
  
+ 	rb_add(&vma->vm_node, &vm->vmas, xe_vma_less_cb);
+@@ -1066,7 +1066,7 @@ static void xe_vm_insert_vma(struct xe_vm *vm, struct xe_vma *vma)
+ 
+ static void xe_vm_remove_vma(struct xe_vm *vm, struct xe_vma *vma)
+ {
+-	XE_BUG_ON(vma->vm != vm);
++	BUG_ON(vma->vm != vm);
+ 	lockdep_assert_held(&vm->lock);
+ 
+ 	rb_erase(&vma->vm_node, &vm->vmas);
+@@ -1290,7 +1290,7 @@ void xe_vm_close_and_put(struct xe_vm *vm)
+ 	struct xe_gt *gt;
+ 	u8 id;
+ 
+-	XE_BUG_ON(vm->preempt.num_engines);
++	BUG_ON(vm->preempt.num_engines);
+ 
+ 	vm->size = 0;
+ 	smp_mb();
+@@ -1448,7 +1448,7 @@ struct xe_vm *xe_vm_lookup(struct xe_file *xef, u32 id)
+ 
+ u64 xe_vm_pdp4_descriptor(struct xe_vm *vm, struct xe_gt *full_gt)
+ {
+-	XE_BUG_ON(xe_gt_is_media_type(full_gt));
++	BUG_ON(xe_gt_is_media_type(full_gt));
+ 
+ 	return gen8_pde_encode(vm->pt_root[full_gt->info.id]->bo, 0,
+ 			       XE_CACHE_WB);
+@@ -1481,7 +1481,7 @@ xe_vm_unbind_vma(struct xe_vma *vma, struct xe_engine *e,
+ 		if (!(vma->gt_present & BIT(id)))
+ 			goto next;
+ 
+-		XE_BUG_ON(xe_gt_is_media_type(gt));
++		BUG_ON(xe_gt_is_media_type(gt));
+ 
+ 		fence = __xe_pt_unbind_vma(gt, vma, e, syncs, num_syncs);
+ 		if (IS_ERR(fence)) {
+@@ -1553,7 +1553,7 @@ xe_vm_bind_vma(struct xe_vma *vma, struct xe_engine *e,
+ 		if (!(vma->gt_mask & BIT(id)))
+ 			goto next;
+ 
+-		XE_BUG_ON(xe_gt_is_media_type(gt));
++		BUG_ON(xe_gt_is_media_type(gt));
+ 		fence = __xe_pt_bind_vma(gt, vma, e, syncs, num_syncs,
+ 					 vma->gt_present & BIT(id));
+ 		if (IS_ERR(fence)) {
+@@ -1669,7 +1669,7 @@ int xe_vm_async_fence_wait_start(struct dma_fence *fence)
+ 		struct async_op_fence *afence =
+ 			container_of(fence, struct async_op_fence, fence);
+ 
+-		XE_BUG_ON(xe_vm_no_dma_fences(afence->vm));
++		BUG_ON(xe_vm_no_dma_fences(afence->vm));
+ 
+ 		smp_rmb();
+ 		return wait_event_interruptible(afence->wq, afence->started);
+@@ -1950,7 +1950,7 @@ static int xe_vm_prefetch(struct xe_vm *vm, struct xe_vma *vma,
+ {
+ 	int err;
+ 
+-	XE_BUG_ON(region > ARRAY_SIZE(region_to_mem_type));
++	BUG_ON(region > ARRAY_SIZE(region_to_mem_type));
+ 
+ 	if (!xe_vma_is_userptr(vma)) {
+ 		err = xe_bo_migrate(vma->bo, region_to_mem_type[region]);
+@@ -1994,7 +1994,7 @@ static int __vm_bind_ioctl(struct xe_vm *vm, struct xe_vma *vma,
+ 				      afence);
+ 		break;
+ 	default:
+-		XE_BUG_ON("NOT POSSIBLE");
++		BUG_ON("NOT POSSIBLE");
+ 		return -EINVAL;
+ 	}
+ }
+@@ -2040,7 +2040,7 @@ static int vm_bind_ioctl(struct xe_vm *vm, struct xe_vma *vma,
+ 	int err, i;
+ 
+ 	lockdep_assert_held(&vm->lock);
+-	XE_BUG_ON(!list_empty(&vma->unbind_link));
++	BUG_ON(!list_empty(&vma->unbind_link));
+ 
+ 	/* Binds deferred to faults, signal fences now */
+ 	if (xe_vm_in_fault_mode(vm) && is_map_op(bind_op->op) &&
+@@ -2190,7 +2190,7 @@ static void async_op_work_func(struct work_struct *w)
+ 
+ 					spin_lock_irq(&vm->async_ops.lock);
+ 					op = next_async_op(vm);
+-					XE_BUG_ON(!op);
++					BUG_ON(!op);
+ 					list_del_init(&op->link);
+ 					spin_unlock_irq(&vm->async_ops.lock);
+ 
+@@ -2332,7 +2332,7 @@ static int vm_bind_ioctl_async(struct xe_vm *vm, struct xe_vma *vma,
+ 	 * ref count on each rebind.
+ 	 */
+ 
+-	XE_BUG_ON(VM_BIND_OP(bind_op->op) != XE_VM_BIND_OP_UNMAP &&
++	BUG_ON(VM_BIND_OP(bind_op->op) != XE_VM_BIND_OP_UNMAP &&
+ 		  VM_BIND_OP(bind_op->op) != XE_VM_BIND_OP_UNMAP_ALL &&
+ 		  VM_BIND_OP(bind_op->op) != XE_VM_BIND_OP_PREFETCH);
+ 
+@@ -2511,7 +2511,7 @@ static int __vm_bind_ioctl_lookup_vma(struct xe_vm *vm, struct xe_bo *bo,
+ 	case XE_VM_BIND_OP_UNMAP_ALL:
+ 		break;
+ 	default:
+-		XE_BUG_ON("NOT POSSIBLE");
++		BUG_ON("NOT POSSIBLE");
+ 		return -EINVAL;
+ 	}
+ 
+@@ -2557,7 +2557,7 @@ static struct xe_vma *vm_unbind_lookup_vmas(struct xe_vm *vm,
+ 	bool first_munmap_rebind = false;
+ 
+ 	lockdep_assert_held(&vm->lock);
+-	XE_BUG_ON(!vma);
++	BUG_ON(!vma);
+ 
+ 	node = &vma->vm_node;
+ 	while ((node = rb_next(node))) {
+@@ -2774,7 +2774,7 @@ static struct xe_vma *vm_bind_ioctl_lookup_vma(struct xe_vm *vm,
+ 
+ 	switch (VM_BIND_OP(op)) {
+ 	case XE_VM_BIND_OP_MAP:
+-		XE_BUG_ON(!bo);
++		BUG_ON(!bo);
+ 
+ 		err = xe_bo_lock(bo, &ww, 0, true);
+ 		if (err)
+@@ -2806,7 +2806,7 @@ static struct xe_vma *vm_bind_ioctl_lookup_vma(struct xe_vm *vm,
+ 		vma = vm_prefetch_lookup_vmas(vm, &lookup, region);
+ 		break;
+ 	case XE_VM_BIND_OP_UNMAP_ALL:
+-		XE_BUG_ON(!bo);
++		BUG_ON(!bo);
+ 
+ 		err = xe_bo_lock(bo, &ww, 0, true);
+ 		if (err)
+@@ -2817,7 +2817,7 @@ static struct xe_vma *vm_bind_ioctl_lookup_vma(struct xe_vm *vm,
+ 		xe_bo_unlock(bo, &ww);
+ 		break;
+ 	case XE_VM_BIND_OP_MAP_USERPTR:
+-		XE_BUG_ON(bo);
++		BUG_ON(bo);
+ 
+ 		vma = xe_vma_create(vm, NULL, bo_offset_or_userptr, addr,
+ 				    addr + range - 1,
+@@ -2837,7 +2837,7 @@ static struct xe_vma *vm_bind_ioctl_lookup_vma(struct xe_vm *vm,
+ 		}
+ 		break;
+ 	default:
+-		XE_BUG_ON("NOT POSSIBLE");
++		BUG_ON("NOT POSSIBLE");
+ 		vma = ERR_PTR(-EINVAL);
+ 	}
+ 
+@@ -3213,7 +3213,7 @@ int xe_vm_bind_ioctl(struct drm_device *dev, void *data, struct drm_file *file)
+ 			if (err)
+ 				break;
+ 		} else {
+-			XE_BUG_ON(j != 0);	/* Not supported */
++			BUG_ON(j != 0);	/* Not supported */
+ 			err = vm_bind_ioctl(vm, vmas[j], e, bos[j],
+ 					    bind_ops + j, __syncs,
+ 					    __num_syncs, NULL);
+@@ -3295,7 +3295,7 @@ int xe_vm_lock(struct xe_vm *vm, struct ww_acquire_ctx *ww,
+ 	LIST_HEAD(objs);
+ 	LIST_HEAD(dups);
+ 
+-	XE_BUG_ON(!ww);
++	BUG_ON(!ww);
+ 
+ 	tv_vm.num_shared = num_resv;
+ 	tv_vm.bo = xe_vm_ttm_bo(vm);;
+@@ -3329,7 +3329,7 @@ int xe_vm_invalidate_vma(struct xe_vma *vma)
+ 	u8 id;
+ 	int ret;
+ 
+-	XE_BUG_ON(!xe_vm_in_fault_mode(vma->vm));
++	BUG_ON(!xe_vm_in_fault_mode(vma->vm));
+ 	trace_xe_vma_usm_invalidate(vma);
+ 
+ 	/* Check that we don't race with page-table updates */
+diff --git a/drivers/gpu/drm/xe/xe_wait_user_fence.c b/drivers/gpu/drm/xe/xe_wait_user_fence.c
+index 15c2e5aa08d2..f85debe599df 100644
+--- a/drivers/gpu/drm/xe/xe_wait_user_fence.c
++++ b/drivers/gpu/drm/xe/xe_wait_user_fence.c
+@@ -44,7 +44,7 @@ static int do_compare(u64 addr, u64 value, u64 mask, u16 op)
+ 		passed = (rvalue & mask) <= (value & mask);
+ 		break;
+ 	default:
+-		XE_BUG_ON("Not possible");
++		BUG_ON("Not possible");
+ 	}
+ 
+ 	return passed ? 0 : 1;
+diff --git a/drivers/gpu/drm/xe/xe_wopcm.c b/drivers/gpu/drm/xe/xe_wopcm.c
+index c8cc3f5e6154..53be0c9fc374 100644
+--- a/drivers/gpu/drm/xe/xe_wopcm.c
++++ b/drivers/gpu/drm/xe/xe_wopcm.c
+@@ -146,10 +146,10 @@ static int __wopcm_init_regs(struct xe_device *xe, struct xe_gt *gt,
+ 	u32 mask;
+ 	int err;
+ 
+-	XE_BUG_ON(!(base & GUC_WOPCM_OFFSET_MASK));
+-	XE_BUG_ON(base & ~GUC_WOPCM_OFFSET_MASK);
+-	XE_BUG_ON(!(size & GUC_WOPCM_SIZE_MASK));
+-	XE_BUG_ON(size & ~GUC_WOPCM_SIZE_MASK);
++	BUG_ON(!(base & GUC_WOPCM_OFFSET_MASK));
++	BUG_ON(base & ~GUC_WOPCM_OFFSET_MASK);
++	BUG_ON(!(size & GUC_WOPCM_SIZE_MASK));
++	BUG_ON(size & ~GUC_WOPCM_SIZE_MASK);
+ 
+ 	mask = GUC_WOPCM_SIZE_MASK | GUC_WOPCM_SIZE_LOCKED;
+ 	err = xe_mmio_write32_and_verify(gt, GUC_WOPCM_SIZE.reg, size, mask,
+@@ -215,9 +215,9 @@ int xe_wopcm_init(struct xe_wopcm *wopcm)
+ 	drm_dbg(&xe->drm, "WOPCM: %uK\n", wopcm->size / SZ_1K);
+ 
+ 	xe_force_wake_assert_held(gt_to_fw(gt), XE_FW_GT);
+-	XE_BUG_ON(guc_fw_size >= wopcm->size);
+-	XE_BUG_ON(huc_fw_size >= wopcm->size);
+-	XE_BUG_ON(ctx_rsvd + WOPCM_RESERVED_SIZE >= wopcm->size);
++	BUG_ON(guc_fw_size >= wopcm->size);
++	BUG_ON(huc_fw_size >= wopcm->size);
++	BUG_ON(ctx_rsvd + WOPCM_RESERVED_SIZE >= wopcm->size);
+ 
+ 	locked = __wopcm_regs_locked(gt, &guc_wopcm_base, &guc_wopcm_size);
+ 	if (locked) {
+@@ -258,8 +258,8 @@ int xe_wopcm_init(struct xe_wopcm *wopcm)
+ 			   guc_fw_size, huc_fw_size)) {
+ 		wopcm->guc.base = guc_wopcm_base;
+ 		wopcm->guc.size = guc_wopcm_size;
+-		XE_BUG_ON(!wopcm->guc.base);
+-		XE_BUG_ON(!wopcm->guc.size);
++		BUG_ON(!wopcm->guc.base);
++		BUG_ON(!wopcm->guc.size);
+ 	} else {
+ 		drm_notice(&xe->drm, "Unsuccessful WOPCM partitioning\n");
+ 		return -E2BIG;
 -- 
 2.39.2
 
