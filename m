@@ -4,145 +4,54 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 76B31C74A5B
-	for <intel-xe@archiver.kernel.org>; Wed, 29 Mar 2023 20:16:35 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 87DD3C761A6
+	for <intel-xe@archiver.kernel.org>; Wed, 29 Mar 2023 20:25:41 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4B78610E3BB;
-	Wed, 29 Mar 2023 20:16:35 +0000 (UTC)
-Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 99B3310E3A1
- for <intel-xe@lists.freedesktop.org>; Wed, 29 Mar 2023 20:16:32 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5BF1D10EC51;
+	Wed, 29 Mar 2023 20:25:41 +0000 (UTC)
+Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2D58D10EC54
+ for <intel-xe@lists.freedesktop.org>; Wed, 29 Mar 2023 20:25:40 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1680120992; x=1711656992;
- h=from:to:cc:subject:date:message-id:references:
- in-reply-to:content-transfer-encoding:mime-version;
- bh=A05mH0nnjTUw+Uzeo3gmlv+C0mc9t9+QJjpX4VJuyx0=;
- b=fdN4T94yG0vaLvE+Y9ngbi2c9FcjROs8s4lOPZr5m10EjGsg74tkU/x1
- GRT0uKbu2H+iNnwGgcZt1jjV0LaLy1uO6MPne3fs6sWSQuW1XhqUpT3v/
- kG4o89oeTpuQTS/ZXd8OYMLx8aYEUMzGn2+L/KrKO2Nrx34BrUGGS5D7r
- /1/ubQTFy4fWpN7NLN2xqRzRjC5Oe1trDJSa/SMG4mwULrV4xeuLA2BpU
- 4xFHP+R5gCJ8wyCFHB6ziLZ9TyLjuics/8XnSniAeduJhHlj8yu1IC9yw
- OMOwa/+LQ58mYvqnYl0GPOYyIISFPLShtKmK9ouKlDoW+qEOQJRY54sEX Q==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10664"; a="368765455"
-X-IronPort-AV: E=Sophos;i="5.98,301,1673942400"; d="scan'208";a="368765455"
-Received: from fmsmga004.fm.intel.com ([10.253.24.48])
- by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 29 Mar 2023 13:16:32 -0700
+ t=1680121540; x=1711657540;
+ h=message-id:date:mime-version:subject:to:cc:references:
+ from:in-reply-to:content-transfer-encoding;
+ bh=Ix3V8ldqwN18iizPMYy8ZsGUFkq931YpkfikpwUhUCM=;
+ b=bCFGwjgX4QMngmSz4pi86ZQsTK0OM5zG7s1NN7wftQ4mpAHjlQpEZZep
+ ilcg8IgD1b/qqfs+dmrrSeSCacg6MMs3Xa5IPCBMlWubpwjkhsx/XEkgV
+ N8sK6rEomQt0CfCAkoCDLrByR+n3nXwILzZ3MpzJYBQH+9M6I6QjZigjF
+ EziZiqd8Fkiib9vUsbaqliBPludkTtzuCBDNjzVPLSb/yop2lzwJSuKdw
+ Yuj5CyJ0N6Q8Q19djwlIEKkkMpvSFxzj8S0WokIIEhe+iUYhwNst/w6YX
+ FztddLP49sSDVFMa3sAJNSUFDgw1hRu1bJ2jXkvVG0lRLnYLFJxbF7bFN w==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10664"; a="329478910"
+X-IronPort-AV: E=Sophos;i="5.98,301,1673942400"; d="scan'208";a="329478910"
+Received: from fmsmga006.fm.intel.com ([10.253.24.20])
+ by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 29 Mar 2023 13:25:39 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10664"; a="753739215"
-X-IronPort-AV: E=Sophos;i="5.98,301,1673942400"; d="scan'208";a="753739215"
-Received: from fmsmsx603.amr.corp.intel.com ([10.18.126.83])
- by fmsmga004.fm.intel.com with ESMTP; 29 Mar 2023 13:16:32 -0700
-Received: from fmsmsx611.amr.corp.intel.com (10.18.126.91) by
- fmsmsx603.amr.corp.intel.com (10.18.126.83) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.21; Wed, 29 Mar 2023 13:16:31 -0700
-Received: from fmsmsx611.amr.corp.intel.com (10.18.126.91) by
- fmsmsx611.amr.corp.intel.com (10.18.126.91) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.21; Wed, 29 Mar 2023 13:16:31 -0700
-Received: from FMSEDG603.ED.cps.intel.com (10.1.192.133) by
- fmsmsx611.amr.corp.intel.com (10.18.126.91) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.21 via Frontend Transport; Wed, 29 Mar 2023 13:16:31 -0700
-Received: from NAM11-CO1-obe.outbound.protection.outlook.com (104.47.56.177)
- by edgegateway.intel.com (192.55.55.68) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2507.21; Wed, 29 Mar 2023 13:16:31 -0700
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=VaI6n/hi1kK501ROP07RifexzD4NSJyi43S5fMHKld3ayMVnxZAkpVRTs4rJfzNQRZ51qDySoxmZ6+wfbq2D1zvDgZd3hS7+neBinQyNmzAYNpDBw/W0WnWcWHRwytmKw92ygwqonYpP995t6A9jtgXC3KX0geUUu5WVTmhFWYTQTgUXboh4GvFbq/UYBj/fORwa3hB3JmKCbkqsCkyG5i6xcVV9V/T3/Q403wTS0ADRPa+Mkwv2yZ9lCTjePP4kFPR7xj6PkD4UFivzaYeojasyhZPt9XioDpwrGNz5HMctTyheNnnSCuBQBW5Cg/9rx95xJlfh5Ix6gwx8koOpqw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=IKo+VVXY8QHPDicYjQfLnHUEtEWgNL+EmTUB7EkrOv4=;
- b=DXze/IJ8kOyywo/qqlwiHCNP+QBIeAn1ulKqT/zOkpYk48y7RoJCBXDYAX1ifZAN8E3rCJUFxUMYO6FYBOADS/qSEqH0RXgEtFwIvZTEm60lpoLKfQ0kfJP1xtscCR6inCox8XWyKVC8DCjIBMKjCO6uVC/KriL5R0Z2168MwRTiobFaQwAFgwkQoun5p7twiKjhEHhymMtQLVtdSoqmYhjczZs7IvdUxhz/fic2SqQ9Ku2tlSVuDUzOEbhmuj4fXEHZDtFMgrvf410CYJWOUF5ZEBLsRGaEDwIhr8rIZlvEcbc/7yUpEzbnKZC0yh7BWglzuSRtsHX1ElpX6QxGtw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
- dkim=pass header.d=intel.com; arc=none
-Received: from CY8PR11MB6940.namprd11.prod.outlook.com (2603:10b6:930:58::17)
- by SA1PR11MB5923.namprd11.prod.outlook.com (2603:10b6:806:23a::17)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6178.38; Wed, 29 Mar
- 2023 20:16:29 +0000
-Received: from CY8PR11MB6940.namprd11.prod.outlook.com
- ([fe80::69f8:7f28:f29:2876]) by CY8PR11MB6940.namprd11.prod.outlook.com
- ([fe80::69f8:7f28:f29:2876%8]) with mapi id 15.20.6222.035; Wed, 29 Mar 2023
- 20:16:27 +0000
-From: "Chang, Yu bruce" <yu.bruce.chang@intel.com>
-To: "Vivi, Rodrigo" <rodrigo.vivi@intel.com>
-Thread-Topic: [Intel-xe] [PATCH] drm/xe: don't auto fall back to execlist mode
- if guc failed to init
-Thread-Index: AQHZXdpJTAsK2/AuE0m/FE6dTpuzua8I+4KggAEgeoCACA1tgIAAAG0AgAAP5ICAAACUQA==
-Date: Wed, 29 Mar 2023 20:16:27 +0000
-Message-ID: <CY8PR11MB6940CABEF01845BBBFFB206BC3899@CY8PR11MB6940.namprd11.prod.outlook.com>
-References: <20230323202313.3523-1-yu.bruce.chang@intel.com>
- <ZBzYPLlnwL86qo0d@DUT025-TGLU.fm.intel.com>
- <PH8PR11MB6950295C09940BD29EE7EF52C3879@PH8PR11MB6950.namprd11.prod.outlook.com>
- <ZB3Mn1atvjMFK29G@intel.com> <ZCSN356SJZFVB7w6@intel.com>
- <CY8PR11MB6940B98AB197C6940808DED4C3899@CY8PR11MB6940.namprd11.prod.outlook.com>
- <ZCSbjyHInE4wkKQ9@intel.com>
-In-Reply-To: <ZCSbjyHInE4wkKQ9@intel.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=intel.com;
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: CY8PR11MB6940:EE_|SA1PR11MB5923:EE_
-x-ms-office365-filtering-correlation-id: 0450bd1e-fe33-4ec7-2461-08db30927a05
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: m0kKLFWsswIefLEvhhIruIwTmmVQKOdK9kM/boHQOLsGj0pTlKCWxbsqji4ZlWc43yc3LjvzvClIFFAhGI/M8zdjPw/xiQ+U3O/dhDFu58BEQyB/3Udz2lV0Ll7cGmc769UEP8k+lT4gwtcVaUJq1s6gCSJALH7cG0muFlSjgIm6o/AArceuHW9e7t2p1fRNPx34mX2/RuMTlaZKGPiGjhGtasRcVXD+vj0crbVNiYNswwrdRda9WHWnsrpVOu/gUA48v54vVfinkbF5+jt8fDx8CmjjMcWkluPQSTS5wCG/ioxyMoKjAr1/f0ZGmdsQEPCgG4q3TBCOBO8+/oxxISyLHEIymRLXIjnI7ZVnoESiF8UYWwP+4Hs0PlC1pCR0VIQfbCRxPDky+jqSj2SYY8IU2uGCYeb10DsdmxCbpmrZHmauW8rv7WESpDO33qDuthX1w1Qj5RgvmaBoX3WX+P3hqsctQ8ZANAC9l0IW9hoWopfOebSZQPwVFgn5uOKtLCg7W7C0pirMw1StDIM7DNPoGt+V6y4glFCWtxNFJD8mtcNpP9o3PKPevHay4kxCsvzU8t0GfvifAE487Ysy2aNCWXuoy6jQe+OUuDUvA93id1g0l6b2B1uWSdVaEEfA
-x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:CY8PR11MB6940.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230028)(366004)(396003)(376002)(39860400002)(136003)(346002)(451199021)(38070700005)(71200400001)(86362001)(66476007)(76116006)(64756008)(122000001)(66556008)(66946007)(186003)(6506007)(66446008)(7696005)(55016003)(6636002)(4326008)(316002)(478600001)(33656002)(83380400001)(8936002)(9686003)(53546011)(26005)(2906002)(41300700001)(6862004)(38100700002)(5660300002)(8676002)(82960400001)(52536014);
- DIR:OUT; SFP:1102; 
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?us-ascii?Q?WEd7UQs5tyxZyECnmBVLmPy10Hm4RMuc2AsHDU6inCDDQJI/0R/Cfcpo7StV?=
- =?us-ascii?Q?G4pdywE07RniCI7BZwIDbjEib90iocK4KfpFVYSHSREDb4m+QxPFWxv0WdVG?=
- =?us-ascii?Q?SxrBHel2Tt4ITw/gbgzOEfgOGRAEWBNsfgdFTE02iVvPX9oc4YI7/KPTDaTv?=
- =?us-ascii?Q?s0hXN8xIlBEuIjNgmo3qJt5E8lvcf1/wQEeFZY4aR88k/vstz1QO8T9xqskB?=
- =?us-ascii?Q?S+0xX+O/8dL4ml2+FWbq2JUcgMlalP6xC51nebyw/AoBJEtJWTrWFrUNoLG4?=
- =?us-ascii?Q?SHhyV6zuy5x47mms7ouoYT4pukwLo0JJs5viv/rtYgI4HyRtI1+VMSqBb7+m?=
- =?us-ascii?Q?QiSOpfvvwAMC5IaALdXCujQ2G0R7iotXTqmywiZqUy6az0AGXpxT5PBxdB5q?=
- =?us-ascii?Q?ENNkzaqVno15kxsiSEuSKJ61iACM/8P9ydxge4lr/+hr8TPrryqaWoRRiarM?=
- =?us-ascii?Q?3mip93Ou+AXCR/hEBrfvTDq17pug+dAB3qrxnp08RUfk1E2T7qg3g4FfNOXN?=
- =?us-ascii?Q?eCoT3l7ziPvh0rrprkQeoAPzaI+5hGsh89t5tm2Rk5sKW2xMPmTCNjkukVoH?=
- =?us-ascii?Q?mRi4kCUQAn22YfDJpX335ZFngzi2AHNwoJV2KNwO7n9X/ev+QvSYN5uIMw8H?=
- =?us-ascii?Q?TajwqDYnQuYfb4e0TvE51eWomHTsjQAXCCMtYFeNaFgWmJv4cv/4VN6urUws?=
- =?us-ascii?Q?RzwBjEpKA7DU0/YFmHLHmVyKoTV0fl3xpoxIDScLySdI+UEFxBCn5GAlqSrc?=
- =?us-ascii?Q?26Y1xfmELo2vBP8uuWoHhtSzezkvACiPjNDc3d1JbJU4N8geQROVbxDHLIt0?=
- =?us-ascii?Q?mkYb5PpkaZmHG3TQM2wsTKoIBZlAs9EB/KRxaewmZBFV86j8HbyKK/Oqqx8C?=
- =?us-ascii?Q?seqpZmYWbgtLK5XT04rFxZZEt4Fxof8v7eqO++JQUT4tRobnIIpG2JRYWbVf?=
- =?us-ascii?Q?kmrWixm3c/La+G0+lFM+h2XIP+UmYl0o2Ez5MwJYBYwCqW2sIbNBdlbS1KsY?=
- =?us-ascii?Q?lQ/EmuFcHlN58yZN7XkXm/ZfuY6W29VnELwdS4GOzbgZGfPmkIu2qpAHwPTo?=
- =?us-ascii?Q?VUhYVXXzZfzvgk7Fu4XeuexyWrGUFTAMH/BzmLLHbm4AgQ4KD5c0i2sa6VJy?=
- =?us-ascii?Q?PfXYeBFxWOjcY+PMmhYgpKR7ezU3LrK9lz0VgE8bZWTNMH9thxQ5fZGVfxjm?=
- =?us-ascii?Q?q8PB7snugIfHllL594+3PwDj9cCZUR6gDY8Suf+Ah0Lt3tTX7+NEyXMSprXS?=
- =?us-ascii?Q?oRFaTvQ5BXMlO4RmbWGuhPWMtEjrxyJ/A3J+ksLzECC9G7NqIN12rnJGc6ty?=
- =?us-ascii?Q?oyJhziHraSteqA1qb0Vy7GBqGAYZSn6zY8VA/irtaOP2ul/IQildDxBWIjMf?=
- =?us-ascii?Q?7JWd7VJKUiPKWa5qiW5Deg8pbzS+xg85umS8Yg8FysGRm+SBM0murHeiLjjN?=
- =?us-ascii?Q?TfEhQwg4d5Mo//AkmmnEpoC83COHbvOzrlhHeR59fTZt+D3Ordb/KIVFDfGR?=
- =?us-ascii?Q?8v7DAYoxR1ZPMJu/iB35bWm/Wa8krSUVBdOsnm/BCM1RMkVaG7U091tfSUG0?=
- =?us-ascii?Q?TBVvi3qTsmvva8lNt5PvSHrwe1EWKU24oW9RKdv/?=
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+X-IronPort-AV: E=McAfee;i="6600,9927,10664"; a="930460408"
+X-IronPort-AV: E=Sophos;i="5.98,301,1673942400"; d="scan'208";a="930460408"
+Received: from irvmail002.ir.intel.com ([10.43.11.120])
+ by fmsmga006.fm.intel.com with ESMTP; 29 Mar 2023 13:25:37 -0700
+Received: from [10.249.128.53] (mwajdecz-MOBL.ger.corp.intel.com
+ [10.249.128.53])
+ by irvmail002.ir.intel.com (Postfix) with ESMTP id EA9E435FDA;
+ Wed, 29 Mar 2023 21:25:36 +0100 (IST)
+Message-ID: <1aa027f7-27cc-e135-162c-3a04692ecd7c@intel.com>
+Date: Wed, 29 Mar 2023 22:25:36 +0200
 MIME-Version: 1.0
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: CY8PR11MB6940.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 0450bd1e-fe33-4ec7-2461-08db30927a05
-X-MS-Exchange-CrossTenant-originalarrivaltime: 29 Mar 2023 20:16:27.3569 (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: Z9EJrX8jnIoB7yLYpTmH/0XzBtcSeYR2tCYnceZUVtDRLz/tQOLGsx3wqc8QGrJC0YghB7L2mtbA5AqLgMPRrsGePHDFf8Hi1A3NE2NbeF4=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SA1PR11MB5923
-X-OriginatorOrg: intel.com
-Subject: Re: [Intel-xe] [PATCH] drm/xe: don't auto fall back to execlist
- mode if guc failed to init
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+ Firefox/102.0 Thunderbird/102.9.0
+Content-Language: en-US
+To: Rodrigo Vivi <rodrigo.vivi@intel.com>
+References: <20230313080117.2320-1-michal.wajdeczko@intel.com>
+ <ZB3unyFtQlmOFZHS@intel.com>
+From: Michal Wajdeczko <michal.wajdeczko@intel.com>
+In-Reply-To: <ZB3unyFtQlmOFZHS@intel.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+Subject: Re: [Intel-xe] [PATCH] drm/xe: Promote guc_to_gt/xe helpers to .h
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -154,178 +63,225 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Cc: "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>
+Cc: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 
 
-> -----Original Message-----
-> From: Vivi, Rodrigo <rodrigo.vivi@intel.com>
-> Sent: Wednesday, March 29, 2023 1:12 PM
-> To: Chang, Yu bruce <yu.bruce.chang@intel.com>
-> Cc: intel-xe@lists.freedesktop.org
-> Subject: Re: [Intel-xe] [PATCH] drm/xe: don't auto fall back to execlist =
-mode
-> if guc failed to init
->=20
-> On Wed, Mar 29, 2023 at 08:00:35PM +0000, Chang, Yu bruce wrote:
-> >
-> >
-> > > -----Original Message-----
-> > > From: Vivi, Rodrigo <rodrigo.vivi@intel.com>
-> > > Sent: Wednesday, March 29, 2023 12:14 PM
-> > > To: Chang, Yu bruce <yu.bruce.chang@intel.com>
-> > > Cc: intel-xe@lists.freedesktop.org
-> > > Subject: Re: [Intel-xe] [PATCH] drm/xe: don't auto fall back to
-> > > execlist mode if guc failed to init
-> > >
-> > > On Fri, Mar 24, 2023 at 12:15:27PM -0400, Rodrigo Vivi wrote:
-> > > > On Thu, Mar 23, 2023 at 11:08:58PM +0000, Chang, Yu bruce wrote:
-> > > > >
-> > > > >
-> > > > > > -----Original Message-----
-> > > > > > From: Brost, Matthew <matthew.brost@intel.com>
-> > > > > > Sent: Thursday, March 23, 2023 3:53 PM
-> > > > > > To: Chang, Yu bruce <yu.bruce.chang@intel.com>
-> > > > > > Cc: intel-xe@lists.freedesktop.org
-> > > > > > Subject: Re: [Intel-xe] [PATCH] drm/xe: don't auto fall back
-> > > > > > to execlist mode if guc failed to init
-> > > > > >
-> > > > > > On Thu, Mar 23, 2023 at 08:23:13PM +0000, Chang, Bruce wrote:
-> > > > > > > In general, this is due to FW load failure, should just
-> > > > > > > report error and fail the probe so that user can easily retry=
- again.
-> > > > > > >
-> > > > > > > Cc: Matt Roper <matthew.d.roper@intel.com>
-> > > > > > > Signed-off-by: Bruce Chang <yu.bruce.chang@intel.com>
-> > > > > >
-> > > > > > I have not tested this but assuming you did:
-> > > > > > Reviewed-by: Matthew Brost <matthew.brost@intel.com>
-> > > > > >
-> > > > > Yes, I tested on PVC and it used to fall back to execlist mode
-> > > > > and constantly print out EXECLIST_STATUS. Now all those are not
-> > > > > showing
-> > > after this change.
-> > > >
-> > > > But now the entire execlist code is bogus.
-> > > > We should remove it entirely or at least add a parameter that
-> > > > allows that to be selected.
-> > >
-> > > :( My comment was entirely ignored and the patch was pushed.
-> > > Well, I complained about dead code...
-> > >
-> > [BC] I was thinking you were discussing to remove execlist completely.
-> > It is hard to make a decision in the code review.
-> >
-> > There is a "xe opens" document, I will start a conversation there, and
-> > will @you as well.
-> >
-> > > after removing the fallback we need to either add a paremeter or
-> > > kill execlists entirely. My preference is for killing that entirely.
-> > >
-> > [BC] there is a module parameter "enable_guc" to go back to execlist
-> > mode
-> >
-> > > But also I just notice that this patch actually only does half of
-> > > disabling the fallback.
-> > >
-> > > When fw is not found we still have the fallback in place:
-> > >
-> > > @xe_uc_init:
-> > > err:
-> > >         /* If any uC firmwares not found, fall back to execlists */
-> > >         xe_device_guc_submission_disable(uc_to_xe(uc));
-> > >
-> > [BC] the xe_device_guc_submission_disable(uc_to_xe(uc)); and comment
-> > should be removed, can you please double check the latest from Xe?
->=20
-> Please accept my apologies. I was in the middle of a rebase+build when I
-> checked.
-> I clearly need to setup some workdir here on my xe dev environment.
->=20
-> The only dead code now is the xe_device_guc_submission_disable() itself..=
-.
->=20
-[BC] correct, there is a moment I wanted to remove it.;) yes, this is not u=
-sed
-anymore.
+On 24.03.2023 19:40, Rodrigo Vivi wrote:
+> On Mon, Mar 13, 2023 at 09:01:17AM +0100, Michal Wajdeczko wrote:
+>> Duplicating these helpers in almost every .c file was a bad idea.
+>> Define them as inlines in .h file to allow proper reuse.
+>>
+>> Signed-off-by: Michal Wajdeczko <michal.wajdeczko@intel.com>
+>> ---
+>>  drivers/gpu/drm/xe/xe_gt_pagefault.c        |  6 ------
+>>  drivers/gpu/drm/xe/xe_gt_tlb_invalidation.c |  6 ------
+>>  drivers/gpu/drm/xe/xe_guc.c                 | 12 ------------
+>>  drivers/gpu/drm/xe/xe_guc.h                 | 11 +++++++++++
+>>  drivers/gpu/drm/xe/xe_guc_debugfs.c         | 12 ------------
+>>  drivers/gpu/drm/xe/xe_guc_hwconfig.c        | 12 ------------
+>>  drivers/gpu/drm/xe/xe_guc_submit.c          | 12 ------------
+>>  7 files changed, 11 insertions(+), 60 deletions(-)
+>>
+>> diff --git a/drivers/gpu/drm/xe/xe_gt_pagefault.c b/drivers/gpu/drm/xe/xe_gt_pagefault.c
+>> index 1677640e1075..2ae54fecf4ab 100644
+>> --- a/drivers/gpu/drm/xe/xe_gt_pagefault.c
+>> +++ b/drivers/gpu/drm/xe/xe_gt_pagefault.c
+>> @@ -58,12 +58,6 @@ struct acc {
+>>  	u8 engine_instance;
+>>  };
+>>  
+>> -static struct xe_gt *
+>> -guc_to_gt(struct xe_guc *guc)
+>> -{
+>> -	return container_of(guc, struct xe_gt, uc.guc);
+>> -}
+>> -
+>>  static bool access_is_atomic(enum access_type access_type)
+>>  {
+>>  	return access_type == ACCESS_TYPE_ATOMIC;
+>> diff --git a/drivers/gpu/drm/xe/xe_gt_tlb_invalidation.c b/drivers/gpu/drm/xe/xe_gt_tlb_invalidation.c
+>> index f279e21300aa..259382d54871 100644
+>> --- a/drivers/gpu/drm/xe/xe_gt_tlb_invalidation.c
+>> +++ b/drivers/gpu/drm/xe/xe_gt_tlb_invalidation.c
+>> @@ -12,12 +12,6 @@
+>>  
+>>  #define TLB_TIMEOUT	(HZ / 4)
+>>  
+>> -static struct xe_gt *
+>> -guc_to_gt(struct xe_guc *guc)
+>> -{
+>> -	return container_of(guc, struct xe_gt, uc.guc);
+>> -}
+>> -
+>>  static void xe_gt_tlb_fence_timeout(struct work_struct *work)
+>>  {
+>>  	struct xe_gt *gt = container_of(work, struct xe_gt,
+>> diff --git a/drivers/gpu/drm/xe/xe_guc.c b/drivers/gpu/drm/xe/xe_guc.c
+>> index 58b9841616e4..8fb2920d96da 100644
+>> --- a/drivers/gpu/drm/xe/xe_guc.c
+>> +++ b/drivers/gpu/drm/xe/xe_guc.c
+>> @@ -22,18 +22,6 @@
+>>  #include "xe_uc_fw.h"
+>>  #include "xe_wopcm.h"
+>>  
+>> -static struct xe_gt *
+>> -guc_to_gt(struct xe_guc *guc)
+>> -{
+>> -	return container_of(guc, struct xe_gt, uc.guc);
+>> -}
+>> -
+>> -static struct xe_device *
+>> -guc_to_xe(struct xe_guc *guc)
+>> -{
+>> -	return gt_to_xe(guc_to_gt(guc));
+>> -}
+>> -
+>>  /* GuC addresses above GUC_GGTT_TOP also don't map through the GTT */
+>>  #define GUC_GGTT_TOP    0xFEE00000
+>>  static u32 guc_bo_ggtt_addr(struct xe_guc *guc,
+>> diff --git a/drivers/gpu/drm/xe/xe_guc.h b/drivers/gpu/drm/xe/xe_guc.h
+>> index 74a74051f354..96f6e3f46ed7 100644
+>> --- a/drivers/gpu/drm/xe/xe_guc.h
+>> +++ b/drivers/gpu/drm/xe/xe_guc.h
+>> @@ -6,6 +6,7 @@
+>>  #ifndef _XE_GUC_H_
+>>  #define _XE_GUC_H_
+>>  
+>> +#include "xe_gt.h"
+> 
+> sometimes the duplication is better then forcing more dependencies then needed.
 
-> Sorry,
-> Rodrigo.
->=20
-> >
-> > Thanks,
-> > Bruce
-> >
-> > > >
-> > > > >
-> > > > > There is still other unrelated issues during
-> > > > > __pfx_ggtt_fini_noalloc, and need to be fixed as below.
-> > > > >
-> > > > > [  223.839894] BUG: KASAN: null-ptr-deref in
-> > > > > ttm_resource_free+0xe4/0x140 [ttm] [  223.847211] Read of size 8
-> > > > > at addr 0000000000000018 by task systemd-udevd/566
-> > > > >
-> > > > > [  223.856141] CPU: 0 PID: 566 Comm: systemd-udevd Not tainted
-> > > > > 6.2.0-xe+ #4 [  223.864921] Hardware name: Intel Corporation
-> > > > > WilsonCity/WilsonCity, BIOS WLYDCRB1.SYS.0020.P84.2103030140
-> > > 03/03/2021 [  223.877365] Call Trace:
-> > > > > [  223.881707]  <TASK>
-> > > > > [  223.885658]  dump_stack_lvl+0x5b/0x85 [  223.891200]
-> > > > > print_report+0x499/0x4aa [  223.896690]  ?
-> > > > > ttm_resource_free+0xe4/0x140 [ttm] [  223.903268]
-> > > > > kasan_report+0x99/0x1a0 [  223.908683]  ?
-> > > > > ttm_resource_free+0xe4/0x140 [ttm] [  223.915210]
-> > > > > ttm_resource_free+0xe4/0x140 [ttm] [  223.921621]
-> > > > > ttm_bo_release+0x3e5/0x550 [ttm] [  223.927811]  ?
-> > > > > __pfx_ttm_bo_release+0x10/0x10 [ttm] [  223.934530]  ?
-> > > > > ttm_bo_kunmap+0x11f/0x160 [ttm] [  223.940775]  ?
-> > > > > __pfx_ggtt_fini_noalloc+0x10/0x10 [xe]
-> > > > >
-> > > > > > > ---
-> > > > > > >  drivers/gpu/drm/xe/xe_gt.c | 4 ++--
-> > > > > > > drivers/gpu/drm/xe/xe_uc.c
-> > > > > > > | 3 ---
-> > > > > > >  2 files changed, 2 insertions(+), 5 deletions(-)
-> > > > > > >
-> > > > > > > diff --git a/drivers/gpu/drm/xe/xe_gt.c
-> > > > > > > b/drivers/gpu/drm/xe/xe_gt.c index
-> > > > > > > daa433d0f2f5..8a436c95591e
-> > > > > > > 100644
-> > > > > > > --- a/drivers/gpu/drm/xe/xe_gt.c
-> > > > > > > +++ b/drivers/gpu/drm/xe/xe_gt.c
-> > > > > > > @@ -455,9 +455,9 @@ static int gt_fw_domain_init(struct xe_gt
-> *gt)
-> > > > > > >  			goto err_force_wake;
-> > > > > > >  	}
-> > > > > > >
-> > > > > > > -	/* Allow driver to load if uC init fails (likely missing fi=
-rmware)
-> > > */
-> > > > > > >  	err =3D xe_uc_init(&gt->uc);
-> > > > > > > -	XE_WARN_ON(err);
-> > > > > > > +	if (err)
-> > > > > > > +		goto err_force_wake;
-> > > > > > >
-> > > > > > >  	err =3D xe_uc_init_hwconfig(&gt->uc);
-> > > > > > >  	if (err)
-> > > > > > > diff --git a/drivers/gpu/drm/xe/xe_uc.c
-> > > > > > > b/drivers/gpu/drm/xe/xe_uc.c index
-> > > > > > > 4ccf2b3435e1..70eabf567156
-> > > > > > > 100644
-> > > > > > > --- a/drivers/gpu/drm/xe/xe_uc.c
-> > > > > > > +++ b/drivers/gpu/drm/xe/xe_uc.c
-> > > > > > > @@ -54,9 +54,6 @@ int xe_uc_init(struct xe_uc *uc)
-> > > > > > >  	return 0;
-> > > > > > >
-> > > > > > >  err:
-> > > > > > > -	/* If any uC firmwares not found, fall back to execlists */
-> > > > > > > -	xe_device_guc_submission_disable(uc_to_xe(uc));
-> > > > > > > -
-> > > > > > >  	return ret;
-> > > > > > >  }
-> > > > > > >
-> > > > > > > --
-> > > > > > > 2.25.1
-> > > > > > >
+IMHO duplication is always bad, and unnecessary dependencies are usually
+as result of another bad decision/placement of needed functionality
+
+> 
+> I'm really not saying that this is the case here... If we are sure that the
+> xe_gt.h was already affecting all the cases that include xe_guc.h then we
+> should go with your patch...
+
+it looks so:
+
+$ cgrep include.*xe_guc\\.h -C 15 | grep include..xe_gt*u*c*\\.h
+./xe_huc.c-11-#include "xe_gt.h"
+./xe_huc.c:12:#include "xe_guc.h"
+./xe_guc_ads.c-13-#include "xe_gt.h"
+./xe_guc_ads.c:14:#include "xe_guc.h"
+./xe_irq.c-17-#include "xe_gt.h"
+./xe_irq.c:18:#include "xe_guc.h"
+./xe_guc_submit.c-20-#include "xe_gt.h"
+./xe_guc_submit.c:21:#include "xe_guc.h"
+./xe_uc.c-9-#include "xe_gt.h"
+./xe_uc.c:10:#include "xe_guc.h"
+./xe_gt_pagefault.c-15-#include "xe_gt.h"
+./xe_gt_pagefault.c:17:#include "xe_guc.h"
+./xe_guc_debugfs.c-12-#include "xe_gt.h"
+./xe_guc_debugfs.c:13:#include "xe_guc.h"
+./xe_guc_hwconfig.c-12-#include "xe_gt.h"
+./xe_guc_hwconfig.c:13:#include "xe_guc.h"
+./xe_guc_ct.c-18-#include "xe_gt.h"
+./xe_guc_ct.c:21:#include "xe_guc.h"
+./xe_guc.c:6:#include "xe_guc.h"
+./xe_guc.c-12-#include "xe_gt.h"
+./xe_gt_tlb_invalidation.c-8-#include "xe_gt.h"
+./xe_gt_tlb_invalidation.c:9:#include "xe_guc.h"
+
+
+btw, there is already rev2 [1]
+
+[1] https://patchwork.freedesktop.org/series/115083/
+
+
+> 
+>>  #include "xe_guc_types.h"
+>>  #include "xe_hw_engine_types.h"
+>>  #include "xe_macros.h"
+>> @@ -56,4 +57,14 @@ static inline u16 xe_engine_class_to_guc_class(enum xe_engine_class class)
+>>  	}
+>>  }
+>>  
+>> +static inline struct xe_gt *guc_to_gt(struct xe_guc *guc)
+>> +{
+>> +	return container_of(guc, struct xe_gt, uc.guc);
+>> +}
+>> +
+>> +static inline struct xe_device *guc_to_xe(struct xe_guc *guc)
+>> +{
+>> +	return gt_to_xe(guc_to_gt(guc));
+>> +}
+>> +
+>>  #endif
+>> diff --git a/drivers/gpu/drm/xe/xe_guc_debugfs.c b/drivers/gpu/drm/xe/xe_guc_debugfs.c
+>> index 6b72db4d5bb2..dbb3001db928 100644
+>> --- a/drivers/gpu/drm/xe/xe_guc_debugfs.c
+>> +++ b/drivers/gpu/drm/xe/xe_guc_debugfs.c
+>> @@ -15,18 +15,6 @@
+>>  #include "xe_guc_log.h"
+>>  #include "xe_macros.h"
+>>  
+>> -static struct xe_gt *
+>> -guc_to_gt(struct xe_guc *guc)
+>> -{
+>> -	return container_of(guc, struct xe_gt, uc.guc);
+>> -}
+>> -
+>> -static struct xe_device *
+>> -guc_to_xe(struct xe_guc *guc)
+>> -{
+>> -	return gt_to_xe(guc_to_gt(guc));
+>> -}
+>> -
+>>  static struct xe_guc *node_to_guc(struct drm_info_node *node)
+>>  {
+>>  	return node->info_ent->data;
+>> diff --git a/drivers/gpu/drm/xe/xe_guc_hwconfig.c b/drivers/gpu/drm/xe/xe_guc_hwconfig.c
+>> index a6982f323ed1..a89d26565fdd 100644
+>> --- a/drivers/gpu/drm/xe/xe_guc_hwconfig.c
+>> +++ b/drivers/gpu/drm/xe/xe_guc_hwconfig.c
+>> @@ -13,18 +13,6 @@
+>>  #include "xe_guc.h"
+>>  #include "xe_map.h"
+>>  
+>> -static struct xe_gt *
+>> -guc_to_gt(struct xe_guc *guc)
+>> -{
+>> -	return container_of(guc, struct xe_gt, uc.guc);
+>> -}
+>> -
+>> -static struct xe_device *
+>> -guc_to_xe(struct xe_guc *guc)
+>> -{
+>> -	return gt_to_xe(guc_to_gt(guc));
+>> -}
+>> -
+>>  static int send_get_hwconfig(struct xe_guc *guc, u32 ggtt_addr, u32 size)
+>>  {
+>>  	u32 action[] = {
+>> diff --git a/drivers/gpu/drm/xe/xe_guc_submit.c b/drivers/gpu/drm/xe/xe_guc_submit.c
+>> index e857013070b9..6b3159e75be9 100644
+>> --- a/drivers/gpu/drm/xe/xe_guc_submit.c
+>> +++ b/drivers/gpu/drm/xe/xe_guc_submit.c
+>> @@ -32,18 +32,6 @@
+>>  #include "xe_trace.h"
+>>  #include "xe_vm.h"
+>>  
+>> -static struct xe_gt *
+>> -guc_to_gt(struct xe_guc *guc)
+>> -{
+>> -	return container_of(guc, struct xe_gt, uc.guc);
+>> -}
+>> -
+>> -static struct xe_device *
+>> -guc_to_xe(struct xe_guc *guc)
+>> -{
+>> -	return gt_to_xe(guc_to_gt(guc));
+>> -}
+>> -
+>>  static struct xe_guc *
+>>  engine_to_guc(struct xe_engine *e)
+>>  {
+>> -- 
+>> 2.25.1
+>>
