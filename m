@@ -4,48 +4,48 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id AAB1DC6FD18
-	for <intel-xe@archiver.kernel.org>; Wed, 29 Mar 2023 17:33:58 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7F4D9C74A5B
+	for <intel-xe@archiver.kernel.org>; Wed, 29 Mar 2023 17:34:00 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7A9BC10EBD6;
-	Wed, 29 Mar 2023 17:33:58 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5C0DC10EBCE;
+	Wed, 29 Mar 2023 17:34:00 +0000 (UTC)
 Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 06C7F10EBCE
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B19A010EBCE
  for <intel-xe@lists.freedesktop.org>; Wed, 29 Mar 2023 17:33:53 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1680111234; x=1711647234;
+ t=1680111233; x=1711647233;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=hRlTxqb2HA7KwOyqIP4d8hYA/BshH5ADiZ1jQRTMurU=;
- b=UF98QyhMQbN1vDFpXEOx2aJgZTm3hMiy2f7qxY8tTZFwQexQAa9Aq3sV
- XpG0wqVBzRL1o2GEwSDfYAM+LESaaFeNVc8TuVcIi2qokk2eH3T9Gxy0n
- RSZwKd3gyeUwfbZfYAuisKuVCxuWchAl/mzR4EWwQjCS/jfLZy0H2tbUf
- HdgodBGpaSe30OEgCQO3w5B9xU4SWkN22Kz6yHwMMhWLrT5HRaBs5cuY8
- BsdZMY4Q+D4LhDx3rgo/kBzEss/owB/9ZU5RT2SfhOV+sYx0rhj4rBSkG
- NUPuKFvwDplgfqQh9ClEKBMqZ5PWN+0xgkt3Fp2I3FgIKEzQRgWrh3OAc g==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10664"; a="405896898"
-X-IronPort-AV: E=Sophos;i="5.98,301,1673942400"; d="scan'208";a="405896898"
+ bh=CVY1o6LLjrpYecNsyAh8MdxNM1TVqxLT5jpEs0GUKSU=;
+ b=ZJXToFM7fUIg/EnRDN1OPW1wlKjPCgnvqr1KCQ3mv4MPG3vTE/8AwKL0
+ 8O6KrnC78lahpdF/rvwxC3MEKmmAYEqjAUxwyJeoU6LcR2Trc5CtoUVBS
+ lsa2WEkmZAeAwxgta7ZBp0O4G4xgC6C2ouEbeMP4KU031Lj8qhjGMpqpq
+ MiYBfVblco/c+iqtvahpDhmD8hYXZ8Hq0lsWqNE2BN+h0+NcM/nRraWm3
+ cg4E+SHRTl39mRHykRuwDhvmsxng9RsjkcZN7pqrD2uDTuEqtKgWD1pL1
+ GKtFcrBb6bEKMfZSwpwXnVdU7rqM+AshoAxtEnxgXV5MteVS4I6E2sR58 w==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10664"; a="405896899"
+X-IronPort-AV: E=Sophos;i="5.98,301,1673942400"; d="scan'208";a="405896899"
 Received: from orsmga007.jf.intel.com ([10.7.209.58])
  by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  29 Mar 2023 10:33:46 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10664"; a="677854285"
-X-IronPort-AV: E=Sophos;i="5.98,301,1673942400"; d="scan'208";a="677854285"
+X-IronPort-AV: E=McAfee;i="6600,9927,10664"; a="677854289"
+X-IronPort-AV: E=Sophos;i="5.98,301,1673942400"; d="scan'208";a="677854289"
 Received: from mdroper-desk1.fm.intel.com ([10.1.27.134])
  by orsmga007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  29 Mar 2023 10:33:46 -0700
 From: Matt Roper <matthew.d.roper@intel.com>
 To: intel-xe@lists.freedesktop.org
-Date: Wed, 29 Mar 2023 10:33:32 -0700
-Message-Id: <20230329173334.4015124-2-matthew.d.roper@intel.com>
+Date: Wed, 29 Mar 2023 10:33:33 -0700
+Message-Id: <20230329173334.4015124-3-matthew.d.roper@intel.com>
 X-Mailer: git-send-email 2.39.2
 In-Reply-To: <20230329173334.4015124-1-matthew.d.roper@intel.com>
 References: <20230329173334.4015124-1-matthew.d.roper@intel.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-xe] [PATCH 1/3] drm/xe: Include hardware prefetch buffer in
- batchbuffer allocations
+Subject: [Intel-xe] [PATCH 2/3] drm/xe: Adjust batchbuffer space warning
+ when creating a job
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -61,67 +61,32 @@ Cc: matthew.d.roper@intel.com
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-The hardware prefetches several cachelines of data from batchbuffers
-before they are parsed.  This prefetching only stops when the parser
-encounters an MI_BATCH_BUFFER_END instruction (or a nested
-MI_BATCH_BUFFER_START), so we must ensure that there is enough padding
-at the end of the batchbuffer to prevent the prefetcher from running
-past the end of the allocation and potentially faulting.
+We should WARN (not BUG) when creating a job if the batchbuffer does not
+have sufficient space and padding.  The hardware prefetch requirements
+should also be considered.
 
-Bspec: 45717
 Signed-off-by: Matt Roper <matthew.d.roper@intel.com>
 ---
- drivers/gpu/drm/xe/xe_bb.c | 25 +++++++++++++++++++++++--
- 1 file changed, 23 insertions(+), 2 deletions(-)
+ drivers/gpu/drm/xe/xe_bb.c | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
 
 diff --git a/drivers/gpu/drm/xe/xe_bb.c b/drivers/gpu/drm/xe/xe_bb.c
-index 5b24018e2a80..f326f117ba3b 100644
+index f326f117ba3b..7172801ee570 100644
 --- a/drivers/gpu/drm/xe/xe_bb.c
 +++ b/drivers/gpu/drm/xe/xe_bb.c
-@@ -8,11 +8,26 @@
- #include "regs/xe_gpu_commands.h"
- #include "xe_device.h"
- #include "xe_engine_types.h"
-+#include "xe_gt.h"
- #include "xe_hw_fence.h"
- #include "xe_sa.h"
- #include "xe_sched_job.h"
- #include "xe_vm_types.h"
- 
-+static int bb_prefetch(struct xe_gt *gt)
-+{
-+	struct xe_device *xe = gt->xe;
-+
-+	if (GRAPHICS_VERx100(xe) >= 1250 && !xe_gt_is_media_type(gt))
-+		/*
-+		 * RCS and CCS require 1K, although other engines would be
-+		 * okay with 512.
-+		 */
-+		return SZ_1K;
-+	else
-+		return SZ_512;
-+}
-+
- struct xe_bb *xe_bb_new(struct xe_gt *gt, u32 dwords, bool usm)
+@@ -63,10 +63,10 @@ __xe_bb_create_job(struct xe_engine *kernel_eng, struct xe_bb *bb, u64 *addr)
  {
- 	struct xe_bb *bb = kmalloc(sizeof(*bb), GFP_KERNEL);
-@@ -21,8 +36,14 @@ struct xe_bb *xe_bb_new(struct xe_gt *gt, u32 dwords, bool usm)
- 	if (!bb)
- 		return ERR_PTR(-ENOMEM);
+ 	u32 size = drm_suballoc_size(bb->bo);
  
--	bb->bo = xe_sa_bo_new(!usm ? &gt->kernel_bb_pool :
--			      &gt->usm.bb_pool, 4 * dwords + 4);
-+	/*
-+	 * We need to allocate space for the requested number of dwords,
-+	 * one additional MI_BATCH_BUFFER_END dword, and additional buffer
-+	 * space to accomodate the platform-specific hardware prefetch
-+	 * requirements.
-+	 */
-+	bb->bo = xe_sa_bo_new(!usm ? &gt->kernel_bb_pool : &gt->usm.bb_pool,
-+			      4 * (dwords + 1) + bb_prefetch(gt));
- 	if (IS_ERR(bb->bo)) {
- 		err = PTR_ERR(bb->bo);
- 		goto err;
+-	XE_BUG_ON((bb->len * 4 + 1) > size);
+-
+ 	bb->cs[bb->len++] = MI_BATCH_BUFFER_END;
+ 
++	WARN_ON(bb->len * 4 + bb_prefetch(kernel_eng->gt) > size);
++
+ 	xe_sa_bo_flush_write(bb->bo);
+ 
+ 	return xe_sched_job_create(kernel_eng, addr);
 -- 
 2.39.2
 
