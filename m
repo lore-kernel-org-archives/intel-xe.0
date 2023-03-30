@@ -4,55 +4,45 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 552ADC761A6
-	for <intel-xe@archiver.kernel.org>; Thu, 30 Mar 2023 15:38:15 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6A566C77B60
+	for <intel-xe@archiver.kernel.org>; Thu, 30 Mar 2023 15:40:41 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1113C10EED9;
-	Thu, 30 Mar 2023 15:38:15 +0000 (UTC)
-Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C860D10EED1
- for <intel-xe@lists.freedesktop.org>; Thu, 30 Mar 2023 15:38:12 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0216210EEEB;
+	Thu, 30 Mar 2023 15:40:41 +0000 (UTC)
+Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4593F10EEE9
+ for <intel-xe@lists.freedesktop.org>; Thu, 30 Mar 2023 15:40:33 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1680190692; x=1711726692;
- h=message-id:date:mime-version:subject:to:references:from:
- in-reply-to:content-transfer-encoding;
- bh=psy7zpZbzOI95wcNzvHaAvbizkWSmFwF9R/flFrUx9k=;
- b=jbxn6ksYOpiFUHZBkCs7X2N+bgSByAYa7TViXg+pZ9RqDlrWV+OkMmXh
- GwMZ0B77iePhwjCY8Mf4Im2d2BwSIxfs9B151blQgPMtUgwcMSqgAl+at
- aJdcuuUHZ1NZOeg9FUq4C2mY5BRyGEZp0UfK1/HrGoslr5D4V12y/AutX
- PiJj7jYskEvjmBk3KuUPlteBabPy3FdGubUQt9Yfbwl8o+3oRVRi/744o
- A0d8cM+C/9yA+1B7XwVJaA4L+ILcqBbk1xjh3xmfiUus2ppAQp+0np+j7
- UyY2A928Ata61BppcyX2RehBDORHrLJ7SyMigg4FRySAto4LmKWtwJIyY w==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10665"; a="325154749"
-X-IronPort-AV: E=Sophos;i="5.98,305,1673942400"; d="scan'208";a="325154749"
-Received: from orsmga001.jf.intel.com ([10.7.209.18])
- by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 30 Mar 2023 08:38:12 -0700
+ t=1680190834; x=1711726834;
+ h=from:to:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=vL55DLAMrG/8noSVEnNsRgZI3em5YFO0lNBKKPzJqYY=;
+ b=mTXuBSI9u5VnEoV0qeFpS80NwwC6oL0Vm4WnG/2k5fq+HdQzFKsw44PT
+ YfDS/gVjPik49Fa4omxq62hyEi0yyEgM9PLBBGEhinn0RLAdQYAaJTzvu
+ lUOgqv+eVwDEy8nHwkhwGycyy22VWc06nplczicSMHpQb0trOkG7WQBtO
+ QcNNPCR0dPhDAbpA87ZdKA0BZvgfGzk015j6V7gvuWVlRqLKsr/C34uHn
+ zyuZVLbtVea4zwntD09dgttn6x6Vn0jlAxpLDMOdPgQb2ZAAwZsnzVCbL
+ WKChmtXs/2FqwREP5lO6y2MhX0j0PnhsxbI8T/zXUBm4LCLb46nSVOhIL g==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10665"; a="406196614"
+X-IronPort-AV: E=Sophos;i="5.98,305,1673942400"; d="scan'208";a="406196614"
+Received: from fmsmga006.fm.intel.com ([10.253.24.20])
+ by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 30 Mar 2023 08:40:31 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10665"; a="717353326"
-X-IronPort-AV: E=Sophos;i="5.98,305,1673942400"; d="scan'208";a="717353326"
-Received: from irvmail002.ir.intel.com ([10.43.11.120])
- by orsmga001.jf.intel.com with ESMTP; 30 Mar 2023 08:38:10 -0700
-Received: from [10.249.150.240] (mwajdecz-MOBL.ger.corp.intel.com
- [10.249.150.240])
- by irvmail002.ir.intel.com (Postfix) with ESMTP id 08403365BD;
- Thu, 30 Mar 2023 16:38:09 +0100 (IST)
-Message-ID: <10c2bc38-176b-5e7a-baf6-7233831eb201@intel.com>
-Date: Thu, 30 Mar 2023 17:38:09 +0200
+X-IronPort-AV: E=McAfee;i="6600,9927,10665"; a="930768617"
+X-IronPort-AV: E=Sophos;i="5.98,305,1673942400"; d="scan'208";a="930768617"
+Received: from dut731-pvc.fm.intel.com ([10.1.40.25])
+ by fmsmga006-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 30 Mar 2023 08:40:31 -0700
+From: "Chang, Bruce" <yu.bruce.chang@intel.com>
+To: intel-xe@lists.freedesktop.org
+Date: Thu, 30 Mar 2023 15:40:26 +0000
+Message-Id: <20230330154026.4282-1-yu.bruce.chang@intel.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
- Firefox/102.0 Thunderbird/102.9.0
-Content-Language: en-US
-To: Matthew Brost <matthew.brost@intel.com>, intel-xe@lists.freedesktop.org
-References: <20230328210920.2110910-1-matthew.brost@intel.com>
- <20230328210920.2110910-2-matthew.brost@intel.com>
-From: Michal Wajdeczko <michal.wajdeczko@intel.com>
-In-Reply-To: <20230328210920.2110910-2-matthew.brost@intel.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-Subject: Re: [Intel-xe] [PATCH 1/4] drm/xe/guc: Read HXG fields from DW1 of
- G2H response
+Content-Transfer-Encoding: 8bit
+Subject: [Intel-xe] [PATCH] drm/xe: fix pvc unload issue
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -67,54 +57,122 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
+Currently, unload pvc driver will generate a null dereference
+and the call stack is as below.
 
+[ 4850.618000] Call Trace:
+[ 4850.620740]  <TASK>
+[ 4850.623134]  ttm_bo_cleanup_memtype_use+0x3f/0x50 [ttm]
+[ 4850.628661]  ttm_bo_release+0x154/0x2c0 [ttm]
+[ 4850.633317]  ? drm_buddy_fini+0x62/0x80 [drm_buddy]
+[ 4850.638487]  ? __kmem_cache_free+0x27d/0x2c0
+[ 4850.643054]  ttm_bo_put+0x38/0x60 [ttm]
+[ 4850.647190]  xe_gem_object_free+0x1f/0x30 [xe]
+[ 4850.651945]  drm_gem_object_free+0x1e/0x30 [drm]
+[ 4850.656904]  ggtt_fini_noalloc+0x9d/0xe0 [xe]
+[ 4850.661574]  drm_managed_release+0xb5/0x150 [drm]
+[ 4850.666617]  drm_dev_release+0x30/0x50 [drm]
+[ 4850.671209]  devm_drm_dev_init_release+0x3c/0x60 [drm]
 
-On 28.03.2023 23:09, Matthew Brost wrote:
-> The HXG fields are DW1 not DW0, fix this.
+There are a couple issues, but the main one is due to TTM has only
+one TTM_PL_TT region, but since pvc has 2 tiles and tries to setup
+1 TTM_PL_TT each tile. The second will overwrite the first one.
 
-the problem is (was) that some of new Xe CTB code is not correctly
-distinguishing between the CTB message (transport layer) and HXG message
-(payload of CTB, actual H2G/G2H message)
+During unload time, the first tile will reset the TTM_PL_TT manger
+and when the second tile is trying to free Bo and it will generate
+the null reference since the TTM manage is already got reset to 0.
 
-note that all HXG actions definitions describe HXG messages that start
-at DW0 (hence MSG_0, MSG_1 and so on)
+The fix is to share the TTM_PL_TT manager and use a count to only
+allow the last instance to release.
 
-thus using:
+Cc: Stuart Summers <stuart.summers@intel.com>
+Cc: Matthew Brost <matthew.brost@intel.com>
+Signed-off-by: Bruce Chang <yu.bruce.chang@intel.com>
+---
+ drivers/gpu/drm/xe/xe_device_types.h |  3 +++
+ drivers/gpu/drm/xe/xe_gt.c           |  9 +++++++--
+ drivers/gpu/drm/xe/xe_ttm_gtt_mgr.c  | 25 +++++++++++++++----------
+ 3 files changed, 25 insertions(+), 12 deletions(-)
 
-	FIELD_GET(GUC_HXG_xxx_MSG_0_yyy, msg[1]);
+diff --git a/drivers/gpu/drm/xe/xe_device_types.h b/drivers/gpu/drm/xe/xe_device_types.h
+index 88f863edc41c..ea771f120c0f 100644
+--- a/drivers/gpu/drm/xe/xe_device_types.h
++++ b/drivers/gpu/drm/xe/xe_device_types.h
+@@ -195,6 +195,9 @@ struct xe_device {
+ 			/** @mapping: pointer to VRAM mappable space */
+ 			void *__iomem mapping;
+ 		} vram;
++		/** @gtt_mr: GTT TTM manager */
++		struct xe_ttm_gtt_mgr *gtt_mgr;
++		int instance;
+ 	} mem;
+ 
+ 	/** @usm: unified memory state */
+diff --git a/drivers/gpu/drm/xe/xe_gt.c b/drivers/gpu/drm/xe/xe_gt.c
+index fd7a5b43ba3e..e7ca141478ef 100644
+--- a/drivers/gpu/drm/xe/xe_gt.c
++++ b/drivers/gpu/drm/xe/xe_gt.c
+@@ -77,8 +77,13 @@ int xe_gt_alloc(struct xe_device *xe, struct xe_gt *gt)
+ 		if (!gt->mem.vram_mgr)
+ 			return -ENOMEM;
+ 
+-		gt->mem.gtt_mgr = drmm_kzalloc(drm, sizeof(*gt->mem.gtt_mgr),
+-					       GFP_KERNEL);
++		if (!xe->mem.gtt_mgr) {
++			xe->mem.gtt_mgr =
++				drmm_kzalloc(drm, sizeof(*gt->mem.gtt_mgr),
++					     GFP_KERNEL);
++			xe->mem.instance = 0;
++		}
++		gt->mem.gtt_mgr = xe->mem.gtt_mgr;
+ 		if (!gt->mem.gtt_mgr)
+ 			return -ENOMEM;
+ 	} else {
+diff --git a/drivers/gpu/drm/xe/xe_ttm_gtt_mgr.c b/drivers/gpu/drm/xe/xe_ttm_gtt_mgr.c
+index 8075781070f2..05300c71928e 100644
+--- a/drivers/gpu/drm/xe/xe_ttm_gtt_mgr.c
++++ b/drivers/gpu/drm/xe/xe_ttm_gtt_mgr.c
+@@ -94,6 +94,9 @@ static void ttm_gtt_mgr_fini(struct drm_device *drm, void *arg)
+ 	struct ttm_resource_manager *man = &mgr->manager;
+ 	int err;
+ 
++	if (--xe->mem.instance)
++		return;
++
+ 	ttm_resource_manager_set_used(man, false);
+ 
+ 	err = ttm_resource_manager_evict_all(&xe->ttm, man);
+@@ -113,18 +116,20 @@ int xe_ttm_gtt_mgr_init(struct xe_gt *gt, struct xe_ttm_gtt_mgr *mgr,
+ 
+ 	XE_BUG_ON(xe_gt_is_media_type(gt));
+ 
+-	mgr->gt = gt;
+-	man->use_tt = true;
+-	man->func = &xe_ttm_gtt_mgr_func;
+-
+-	ttm_resource_manager_init(man, &xe->ttm, gtt_size >> PAGE_SHIFT);
++	if (!xe->mem.instance) {
++		mgr->gt = gt;
++		man->use_tt = true;
++		man->func = &xe_ttm_gtt_mgr_func;
+ 
+-	ttm_set_driver_manager(&xe->ttm, XE_PL_TT, &mgr->manager);
+-	ttm_resource_manager_set_used(man, true);
++		ttm_resource_manager_init(man, &xe->ttm, gtt_size >> PAGE_SHIFT);
+ 
+-	err = drmm_add_action_or_reset(&xe->drm, ttm_gtt_mgr_fini, mgr);
+-	if (err)
+-		return err;
++		ttm_set_driver_manager(&xe->ttm, XE_PL_TT, &mgr->manager);
++		ttm_resource_manager_set_used(man, true);
++		err = drmm_add_action_or_reset(&xe->drm, ttm_gtt_mgr_fini, mgr);
++		if (err)
++			return err;
++	}
++	xe->mem.instance ++;
+ 
+ 	return 0;
+ }
+-- 
+2.25.1
 
-seems just wrong and better to be replaced with:
-
-	FIELD_GET(GUC_HXG_xxx_MSG_0_yyy, hxg[0]);
-
-where:
-
-	u32 *hxg = ctb_msg + GUC_CTB_MSG_MIN_LEN;
-
-> 
-> Signed-off-by: Matthew Brost <matthew.brost@intel.com>
-> ---
->  drivers/gpu/drm/xe/xe_guc_ct.c | 6 +++---
->  1 file changed, 3 insertions(+), 3 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/xe/xe_guc_ct.c b/drivers/gpu/drm/xe/xe_guc_ct.c
-> index 5e00b75d3ca2..e5ed9022a0a2 100644
-> --- a/drivers/gpu/drm/xe/xe_guc_ct.c
-> +++ b/drivers/gpu/drm/xe/xe_guc_ct.c
-> @@ -783,13 +783,13 @@ static int parse_g2h_response(struct xe_guc_ct *ct, u32 *msg, u32 len)
->  	if (type == GUC_HXG_TYPE_RESPONSE_FAILURE) {
->  		g2h_fence->fail = true;
->  		g2h_fence->error =
-> -			FIELD_GET(GUC_HXG_FAILURE_MSG_0_ERROR, msg[0]);
-> +			FIELD_GET(GUC_HXG_FAILURE_MSG_0_ERROR, msg[1]);
->  		g2h_fence->hint =
-> -			FIELD_GET(GUC_HXG_FAILURE_MSG_0_HINT, msg[0]);
-> +			FIELD_GET(GUC_HXG_FAILURE_MSG_0_HINT, msg[1]);
->  	} else if (type == GUC_HXG_TYPE_NO_RESPONSE_RETRY) {
->  		g2h_fence->retry = true;
->  		g2h_fence->reason =
-> -			FIELD_GET(GUC_HXG_RETRY_MSG_0_REASON, msg[0]);
-> +			FIELD_GET(GUC_HXG_RETRY_MSG_0_REASON, msg[1]);
->  	} else if (g2h_fence->response_buffer) {
->  		g2h_fence->response_len = response_len;
->  		memcpy(g2h_fence->response_buffer, msg + GUC_CTB_MSG_MIN_LEN,
