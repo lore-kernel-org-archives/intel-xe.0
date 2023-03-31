@@ -4,47 +4,30 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8EA5CC761A6
-	for <intel-xe@archiver.kernel.org>; Fri, 31 Mar 2023 17:10:13 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id AC79CC76196
+	for <intel-xe@archiver.kernel.org>; Fri, 31 Mar 2023 17:12:29 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 69D0510E15D;
-	Fri, 31 Mar 2023 17:10:13 +0000 (UTC)
-Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E898A10E1B1
- for <intel-xe@lists.freedesktop.org>; Fri, 31 Mar 2023 17:10:06 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1680282606; x=1711818606;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=kASE3EPzGMZ2yjAzofQIclTaJgZFf3IvxJZ5dsgQQh0=;
- b=CplGo2sSTqtgW9gMfJPbsSFCLWium6OeHz9dgw5O0pitWo6XK7Z4eqUV
- yIv7dfINADQJ0CiXtOFmqBtrH9C+hzAi+WvUOg987x6O+WClkyJEnfr7D
- Iq8d/h27jVdoe63ODVmJADgXsMneKqFv99a5rt6MBKJk3iQXYQXKfS/rq
- 7Y4Gv4hJK47dEO8WnQjo3BqR5Zne6x8Jnvj7mQKRORwvmX0ZZsN9CkdBx
- seO3pZZSw8nBtH4GRZu2PSqVjR5Ye5Ryd7cHHiHwDLni8UliJaEr+Zlpv
- A5vE+FIJI1c9LFqMp9ZchXNwQ5lzP14JsSkE+5EejkAJsO7rlaFUYUmGu w==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10666"; a="325490229"
-X-IronPort-AV: E=Sophos;i="5.98,307,1673942400"; d="scan'208";a="325490229"
-Received: from orsmga004.jf.intel.com ([10.7.209.38])
- by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 31 Mar 2023 10:09:34 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10666"; a="809106394"
-X-IronPort-AV: E=Sophos;i="5.98,307,1673942400"; d="scan'208";a="809106394"
-Received: from nvishwa1-desk.sc.intel.com ([172.25.29.76])
- by orsmga004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 31 Mar 2023 10:09:34 -0700
-From: Niranjana Vishwanathapura <niranjana.vishwanathapura@intel.com>
-To: intel-xe@lists.freedesktop.org
-Date: Fri, 31 Mar 2023 10:09:24 -0700
-Message-Id: <20230331170925.10883-3-niranjana.vishwanathapura@intel.com>
-X-Mailer: git-send-email 2.21.0.rc0.32.g243a4c7e27
-In-Reply-To: <20230331170925.10883-1-niranjana.vishwanathapura@intel.com>
-References: <20230331170925.10883-1-niranjana.vishwanathapura@intel.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8497C10E15D;
+	Fri, 31 Mar 2023 17:12:29 +0000 (UTC)
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id F230810E15D;
+ Fri, 31 Mar 2023 17:12:27 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id E2AB1AADDD;
+ Fri, 31 Mar 2023 17:12:27 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-xe] [PATCH 2/3] drm/xe/tests: Set correct expectation
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Niranjana Vishwanathapura" <niranjana.vishwanathapura@intel.com>
+Date: Fri, 31 Mar 2023 17:12:27 -0000
+Message-ID: <168028274789.14984.11097718780429068682@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20230331170925.10883-1-niranjana.vishwanathapura@intel.com>
+In-Reply-To: <20230331170925.10883-1-niranjana.vishwanathapura@intel.com>
+Subject: [Intel-xe] =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_f?=
+ =?utf-8?q?or_drm/xe=3A_Get_xe=5Fmigrate=5Ftest_working?=
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -56,30 +39,38 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Cc: thomas.hellstrom@intel.com
+Reply-To: intel-xe@lists.freedesktop.org
+Cc: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-In xe_migrate_sanity_kunit test, use correct expected value from
-xe_migrate_copy() operation.
+== Series Details ==
 
-Signed-off-by: Niranjana Vishwanathapura <niranjana.vishwanathapura@intel.com>
----
- drivers/gpu/drm/xe/tests/xe_migrate.c | 1 +
- 1 file changed, 1 insertion(+)
+Series: drm/xe: Get xe_migrate_test working
+URL   : https://patchwork.freedesktop.org/series/115949/
+State : success
 
-diff --git a/drivers/gpu/drm/xe/tests/xe_migrate.c b/drivers/gpu/drm/xe/tests/xe_migrate.c
-index 085ad96d7278..2a836f5bd8ff 100644
---- a/drivers/gpu/drm/xe/tests/xe_migrate.c
-+++ b/drivers/gpu/drm/xe/tests/xe_migrate.c
-@@ -148,6 +148,7 @@ static void test_copy(struct xe_migrate *m, struct xe_bo *bo,
- 	xe_map_memset(xe, &sysmem->vmap, 0, 0xc0, sysmem->size);
- 	xe_map_memset(xe, &bo->vmap, 0, 0xd0, bo->size);
- 
-+	expected = 0xc0c0c0c0c0c0c0c0;
- 	fence = xe_migrate_copy(m, sysmem, sysmem->ttm.resource,
- 				bo->ttm.resource);
- 	if (!sanity_fence_failed(xe, fence, big ? "Copying big bo sysmem -> vram" :
--- 
-2.21.0.rc0.32.g243a4c7e27
+== Summary ==
+
+=== Applying kernel patches on branch 'drm-xe-next' with base: ===
+commit 4b3608ff06e78b835a2e50eec94cd041c95e4326
+Author:     Matt Roper <matthew.d.roper@intel.com>
+AuthorDate: Wed Mar 29 10:33:34 2023 -0700
+Commit:     Matt Roper <matthew.d.roper@intel.com>
+CommitDate: Thu Mar 30 12:20:22 2023 -0700
+
+    drm/xe: Don't emit extra MI_BATCH_BUFFER_END in WA batchbuffer
+    
+    The MI_BATCH_BUFFER_END is already added automatically by
+    __xe_bb_create_job(); including it in the construction of the workaround
+    batchbuffer results in an unnecessary duplicate.
+    
+    Link: https://lore.kernel.org/r/20230329173334.4015124-4-matthew.d.roper@intel.com
+    Signed-off-by: Matt Roper <matthew.d.roper@intel.com>
+    Reviewed-by: José Roberto de Souza <jose.souza@intel.com>
+=== git am output follows ===
+Applying: drm/xe/tests: Use proper batch base address
+Applying: drm/xe/tests: Set correct expectation
+Applying: drm/xe: Use proper vram offset
+
 
