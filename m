@@ -4,134 +4,134 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 17027C761A6
-	for <intel-xe@archiver.kernel.org>; Fri, 31 Mar 2023 22:08:44 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 160E1C76196
+	for <intel-xe@archiver.kernel.org>; Fri, 31 Mar 2023 22:20:51 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 671F210E29C;
-	Fri, 31 Mar 2023 22:08:44 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8A77010F323;
+	Fri, 31 Mar 2023 22:20:48 +0000 (UTC)
 Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B58BF10E29C
- for <intel-xe@lists.freedesktop.org>; Fri, 31 Mar 2023 22:08:41 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B0AD910F323
+ for <intel-xe@lists.freedesktop.org>; Fri, 31 Mar 2023 22:20:18 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1680300521; x=1711836521;
+ t=1680301218; x=1711837218;
  h=date:from:to:cc:subject:message-id:references:
  in-reply-to:mime-version;
- bh=A2eeund4bekEHMe1cABFiLcWuAxmNh3/vP8+YLg6H6s=;
- b=QLqzCUcplMBWoBVMXZsXHzMFysSIvtSVTY42Lcw/exB4B/YnWrH/Jy6V
- cB1wy/fEVksFw3HJV3Q8G/6uweabFVd0zsZwlGK9D832n9HKFhXzrBS/0
- 4b6Lu77sncuPQBeBtVUMducvrdov5AxmNIt8CkFsTpgm3ZP34qxw6l0do
- GW5Kx72lgdRaM8ZCnIZ2R/T1EZczJsEkjPZipEjM9cQaSZIFz6UcZuLHW
- GHvio5HMFo3mn7iJ32xkbBbtLG6FTjKDpoNzyloxQte4pYJ3JmuPdpLVi
- LZnU94VPCEJM6fuW0MVUaq/c29Rvna7qZ9h3iltbbBznqyPerKRnbGEha Q==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10666"; a="321220851"
-X-IronPort-AV: E=Sophos;i="5.98,307,1673942400"; d="scan'208";a="321220851"
+ bh=AcIGHlQWzWKzxDVcpulhpzJghjDFEp+xeWUE/6p4a6w=;
+ b=Oj0+Fqz8Wxh74TE+EGhd4wkTXTZoB6rH8TPiJtW5CL8Eu9adk0pfjP0k
+ ryDyhsSDkof40t8gTlwfeXDziqd/5tq2hzagABvQgOKGw5QcqlUcqO5lS
+ k9CcNVjqt7T+/lBHwi63d2353khWnFsRcNT/eibJz4RXBnWim5sP3Ett0
+ gxgGpw+HFxqfPm+0/rVbSZuMJdrO1VDQBTJ3NU/7PnZ46HPvqoQzlKn/Z
+ SWRVxfNaANolebfh+oydfPBPNrT+zTgKrYTiNZ717aaanrMMfcS0BlegF
+ Q8ntpPUAGW+o0YjKpT49++LDDKTx5opefnTOQusULUnyht2nidhwMMRO/ Q==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10666"; a="321223165"
+X-IronPort-AV: E=Sophos;i="5.98,307,1673942400"; d="scan'208";a="321223165"
 Received: from fmsmga006.fm.intel.com ([10.253.24.20])
  by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 31 Mar 2023 15:08:41 -0700
+ 31 Mar 2023 15:20:18 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10666"; a="931334862"
-X-IronPort-AV: E=Sophos;i="5.98,307,1673942400"; d="scan'208";a="931334862"
-Received: from orsmsx603.amr.corp.intel.com ([10.22.229.16])
- by fmsmga006.fm.intel.com with ESMTP; 31 Mar 2023 15:08:41 -0700
-Received: from orsmsx610.amr.corp.intel.com (10.22.229.23) by
- ORSMSX603.amr.corp.intel.com (10.22.229.16) with Microsoft SMTP Server
+X-IronPort-AV: E=McAfee;i="6600,9927,10666"; a="931338604"
+X-IronPort-AV: E=Sophos;i="5.98,307,1673942400"; d="scan'208";a="931338604"
+Received: from fmsmsx603.amr.corp.intel.com ([10.18.126.83])
+ by fmsmga006.fm.intel.com with ESMTP; 31 Mar 2023 15:20:18 -0700
+Received: from fmsmsx610.amr.corp.intel.com (10.18.126.90) by
+ fmsmsx603.amr.corp.intel.com (10.18.126.83) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.21; Fri, 31 Mar 2023 15:08:40 -0700
-Received: from orsedg603.ED.cps.intel.com (10.7.248.4) by
- orsmsx610.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
+ 15.1.2507.21; Fri, 31 Mar 2023 15:20:17 -0700
+Received: from fmsedg602.ED.cps.intel.com (10.1.192.136) by
+ fmsmsx610.amr.corp.intel.com (10.18.126.90) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.21 via Frontend Transport; Fri, 31 Mar 2023 15:08:40 -0700
-Received: from NAM02-DM3-obe.outbound.protection.outlook.com (104.47.56.43) by
- edgegateway.intel.com (134.134.137.100) with Microsoft SMTP Server
+ 15.1.2507.21 via Frontend Transport; Fri, 31 Mar 2023 15:20:17 -0700
+Received: from NAM10-BN7-obe.outbound.protection.outlook.com (104.47.70.103)
+ by edgegateway.intel.com (192.55.55.71) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2507.21; Fri, 31 Mar 2023 15:08:40 -0700
+ 15.1.2507.21; Fri, 31 Mar 2023 15:20:17 -0700
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=k0QtY+QbyZLW6Z4FxVwu8JfRR4hgEIXE5smS6aw5kYPSW1ofvr77G97iUpqb2sn58rxMXkvcBK/MZcLX0IzKOwzOnawL1WJ7rHegDiciiEVR0uBUi07QrjDAT8egDJEvgsv2T3ibqefpT6M/1zZKbJFhofuKEPJGaw/WqFrHsp0vBnK1lLh7FvQOnk+iGaL+bW8c2GvHKsIUwiazJCkZTKulO2U9GNHoufNcw/f4+MSvNIsnZt37WzGNRZQuLsip+XHawDazCc5x9qD4AkC6WdvXJoI73AiNMP11JCAaFETXFcfetXXORmBkQu2Dk1qNN45V9REfF+XCyAHHR5XteA==
+ b=CRsILAf6klF3nvcHzpIkLU8ZFzkpOURw5Inwlb8MIXLS0cudIDs9xC4GxJWqKuqpNUoVtSBsJ4Gl3FjcAvJ3N4Ji9JwnQtcxt+f8YZpDBYSAOVo8x9gsHI7FBh86xvgk0fXfMYjPzAnBSTpPMaLTxoDFCkncP4i8x1tRR+ndKaPyRAypExsPFDUIiS/qhOV+gOD5I/FEjq7ra1KxY2DGDokdwzwinPE2TR/fpamdlVJ/1FCxqS7DYMbZ+lULuDAd0ki1iv558nhwSIF4GZ8Au5M+/lgKAudj9q+Fs7sbrJEz5iBKb2X6ahMM3uLN2rdPGvZVmiAl+Y+7SNQshX+xJQ==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=hDrF+ekWA4ARFqQrwe1VxY6BhKLUWrxz1K9PvRkKg+c=;
- b=UA8BSkK2Ew6t+x6THHgxoy2N8rM10ez16smOv/S9PCm2kzJC0aaYqjMTrbLxxzRiQ2XYcwTvT5gPIalfID34AJZbkCpN1Ut3GFZE9lC9zXGLF1LnkbxJDTq+kYpSuphVRYjd8DmvyTQkNpIYB0AkajlSNbKt7rOj02QtTJDECiDM3iUatk2OYxJtJLO9fpNLn3/tEjswkZNzyL3UzjeLRODvRbqUtr+PouoOtxj3N+8IH7S5/FTfcYHN5cGBazjVAaCSmU+vXRQkPAsy1Y9ndLJobzUwtQG7ggnxp8uc2g4iciQ0hOAoR1jrqY1uBP5bwl6rViy5xnGURERWdSI73w==
+ bh=UzVDn07G8d0z5N5/BE9mcVL8/wGEAdW3f9wKDUI/LgQ=;
+ b=AZhnMk+nVT7dKxCwxF/j++Xw8cWj/eZb0uUNFY4xtL3sMVjJEh19z9UZgSlfpYGoABZZWLDkHFdEYkelNeNOdMQ3EyJQVjDncYvFeTJoqanGVNiVe/W8kvBzjskl9983VbLDTu3Yo1ygJJ1qWs0t2orMgw9GCyhrhiju0MtW6kS+/rIhBjy3yP5hcQKqvS7Abqkb7K2U4R2JzfNWoqBIDoyT6J27I0FfrxY0KoxKRl59JOhimh+a+uwy8J7pCMsXSQ90K4Nlsp2sN1WXBnrvLuDAZG3VCQbETyhNxlsVrLkzeknltLPVClU/agGqAFuQqSfAllKdyqHDyc0JpEHwFQ==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
  dkim=pass header.d=intel.com; arc=none
 Authentication-Results: dkim=none (message not signed)
  header.d=none;dmarc=none action=none header.from=intel.com;
 Received: from CY5PR11MB6139.namprd11.prod.outlook.com (2603:10b6:930:29::17)
- by BY1PR11MB8056.namprd11.prod.outlook.com (2603:10b6:a03:533::9)
+ by SJ0PR11MB5214.namprd11.prod.outlook.com (2603:10b6:a03:2df::22)
  with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6222.33; Fri, 31 Mar
- 2023 22:08:32 +0000
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6254.22; Fri, 31 Mar
+ 2023 22:20:14 +0000
 Received: from CY5PR11MB6139.namprd11.prod.outlook.com
  ([fe80::2629:fb12:6221:3745]) by CY5PR11MB6139.namprd11.prod.outlook.com
  ([fe80::2629:fb12:6221:3745%5]) with mapi id 15.20.6254.022; Fri, 31 Mar 2023
- 22:08:32 +0000
-Date: Fri, 31 Mar 2023 15:08:29 -0700
+ 22:20:14 +0000
+Date: Fri, 31 Mar 2023 15:20:12 -0700
 From: Lucas De Marchi <lucas.demarchi@intel.com>
 To: Matt Roper <matthew.d.roper@intel.com>
-Message-ID: <20230331220829.pthvki5m75mqkppk@ldmartin-desk2.lan>
+Message-ID: <20230331222012.lm25bzafbq3z42nn@ldmartin-desk2.lan>
 References: <20230330182405.43993-1-matthew.d.roper@intel.com>
- <20230330182405.43993-3-matthew.d.roper@intel.com>
+ <20230330182405.43993-5-matthew.d.roper@intel.com>
 Content-Type: text/plain; charset="us-ascii"; format=flowed
 Content-Disposition: inline
-In-Reply-To: <20230330182405.43993-3-matthew.d.roper@intel.com>
-X-ClientProxiedBy: BY5PR16CA0024.namprd16.prod.outlook.com
- (2603:10b6:a03:1a0::37) To CY5PR11MB6139.namprd11.prod.outlook.com
+In-Reply-To: <20230330182405.43993-5-matthew.d.roper@intel.com>
+X-ClientProxiedBy: BY5PR13CA0002.namprd13.prod.outlook.com
+ (2603:10b6:a03:180::15) To CY5PR11MB6139.namprd11.prod.outlook.com
  (2603:10b6:930:29::17)
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: CY5PR11MB6139:EE_|BY1PR11MB8056:EE_
-X-MS-Office365-Filtering-Correlation-Id: a96d05f7-7d45-4e03-3ab1-08db323476f7
+X-MS-TrafficTypeDiagnostic: CY5PR11MB6139:EE_|SJ0PR11MB5214:EE_
+X-MS-Office365-Filtering-Correlation-Id: e5a3db69-a5fa-486a-5d52-08db323619bd
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: z/ZlJSukv04+UyBgbYpI9tMxlsmVNY7ydvzWGNBiKP+dcrfMN3OVDDCU3zu3Nm8M1lO9Jw6sfG6aUmDQbDbAzDmd3ECfc1l6DggSB7FUENFsKUU6XeYJmZJSXjyHcnlUwRMxDrBOuUHfPt/BRzgy6o3cw2/tkSXOPmraYCPM7qcSvLUexBvJYQF0el7aTdIvFRUWhPHYUuM0iSFZq6OQZo52vkev4F4/xxZv6MpxLhW/IYc3SltuKVQ+KWcAHx9DQt5qH0+j0S+Dkx4z8aTzNI11jRsFk3Nw/Oy3a3Z7AMFHX9iTfryX4g7QY9H/vUizvCvATcjBKpTuTthSf5hoYoGKlFLwLMcTeEg4Bi7WU20lGghEEMzQqyX2K2P0UM6zt2G5MkhwaXYzkT9kWA0z8U/xve3lsMVEBuxFfR0TY96O0W+hKUWxdC9kEkFV+6gm7b590j23Ar7mQ0VXo+hKdZ9SA8IvC+A/vU32ryh/nhRUJKaZUh1HwUlrVi6EeulFOdF6bEw5PFxn/o/gk5m/ViovssEQxTJnlTy1FqK4RzPLkuNGU662W0eBxGS9f+H0/SGQaktqsaB1vcQHZpQDlmn3eUQyc8ASTpaKqnSpqbk=
+X-Microsoft-Antispam-Message-Info: aQkp0cmAV4frERdMYckKl7z+gn6dkILvv3emQEM/1+ISZR7lVlp9s28Gn5L/Z4wxgYwYv6pX5i/mhNZizG9h3/6s2H7EfrFUwk+cGjXNuOGrOoBSgdlidn/3Cp86ZZfMDACatrqIgcj2nOxrtfe/ZM9nUUiS3l8ojkAVp4dfhkpI+cPydqL+tdRz990MZsTXaDuajSiPDgAGHuMm/CH9XtHs+1bMKbmhztNnMOTekFXSsZMQTMDQ4lhOS1Kcayoc17h3lKnoc32UuTAQFS97yyryWod1XwnCYKa06eArSi6P2/TlnW7x2Xm/1aqz/HOrABna4bRTTZ7ZAWtfYJyecP7k6PIiwAxr4liubXDQ9soNSOyuV9hvo0AdfEgfItlaShR3iGCNWrz+DZKwiT1j8Wy+jUpxkXGS3hcYJG3pgt0aeTtdsTlUavAhpJ9Oj2dO2o9XY9npHFE8u6ngBpuDc3tel1ix7rr0g9GCBeIPlmpvrbXEorUZwx8aGkPK5IqNfr0IlrAgeV0ByWV9/XskIYI3oEYc+7t/1UXySVL4D3/QDNmwE0RGs+s8MoAoZKZk
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
  IPV:NLI; SFV:NSPM; H:CY5PR11MB6139.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230028)(39860400002)(136003)(346002)(376002)(396003)(366004)(451199021)(2906002)(38100700002)(41300700001)(82960400001)(5660300002)(86362001)(8936002)(4326008)(36756003)(6862004)(6666004)(83380400001)(6486002)(9686003)(186003)(6512007)(1076003)(8676002)(478600001)(26005)(6506007)(66476007)(66556008)(66946007)(316002)(6636002)(37363002);
+ SFS:(13230028)(366004)(376002)(396003)(346002)(136003)(39860400002)(451199021)(36756003)(86362001)(6486002)(4326008)(316002)(30864003)(186003)(478600001)(83380400001)(9686003)(6636002)(6512007)(6506007)(26005)(1076003)(2906002)(5660300002)(6862004)(8936002)(8676002)(82960400001)(66476007)(41300700001)(66946007)(66556008)(38100700002);
  DIR:OUT; SFP:1102; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?Nczg8120ik8YriozJngEbEY574ZRMU/Idk9PcIm8/KoVjAcmYSpG1IywKYWQ?=
- =?us-ascii?Q?CLikSXfRnWTVQJZJ3jKIfNommUphfQeKn8LOp/4XnC/eH1Clzjpdm67MTt1q?=
- =?us-ascii?Q?iJjkPxkQzWiXptAagry3yxzswYFxsZxcbsNYqUWji4BsInIWfJ3MLUPW85NW?=
- =?us-ascii?Q?N3c66AHfw+8WHMYp+64unSOwWeSve8EYgfdljpYlIosX46UAOQJUxZdTsmHr?=
- =?us-ascii?Q?q3S+pYqqXocAA4ehsnil7/j2uQiEfEBr2SQAqbo1Kn3OZ6oSpMPXDhEzBo+e?=
- =?us-ascii?Q?tYEYB9+YvNps6LOLwfVMEgpMWr9g2kkdbjDj2+8uM2TEZ7CmH3rkR7QygLId?=
- =?us-ascii?Q?JSvK7VPUBLICzh0ThA+unpkjvaDK7pFVI0svlJC5uCqSFos5t9kQC3Iug3oE?=
- =?us-ascii?Q?W/Qy2zaiPMjQ5+noRjQr9MdXGqhPWdaIbfXywa34fK7MGWJ0yPyLbQ3F9ZiN?=
- =?us-ascii?Q?i5Id3Gc46DkWSUT1mq0uQDohuHUemWz98mg21rS8Tx4sediWHqzy9pjA8y0c?=
- =?us-ascii?Q?lQHxxxetbi5IHRw7IitpGBMsqdelSodWpFz/zmjmYeZ5vLKhy1pn0zqvIlfw?=
- =?us-ascii?Q?iEeRbaqWST01PstTwvjn2jPpLqd4C93A+QahCrhLUAdYLBJC/7PBU0R3LN9q?=
- =?us-ascii?Q?zv7rtVQ+x49DJ37ZEaLiQzBG79+RxA6I9b23RdCVGId+PYZk3zYPVSb4dApI?=
- =?us-ascii?Q?rM1iOZQEX01AkbAw8IctmPkjp5fDic3y3IJjeL5IELzXgnXKSZaELF8oG7sp?=
- =?us-ascii?Q?GYncg8iLqxf/pRdQSETP9BNu1V/Co9yNWwgMBp2DijO/wJaY41S6H6AdZoHm?=
- =?us-ascii?Q?raUFBbDSgUiiRRFcMZiciQ29WeA9YR9/FkHO3eDM4HE7EkYXCCf/HLbdP2Lb?=
- =?us-ascii?Q?b7/c9J97UlNf+41gCHLITysXeQBC3nn12s94ZHjDk0QLuO3ELkDUoDPETbwn?=
- =?us-ascii?Q?rBZfNLDDE2PDycZkL53M2VuknZZqzhk322IJevN4UXtZWzExuVMEQxGiyNYN?=
- =?us-ascii?Q?FJyftbpORHlz1SdgY/MVnTxBxrpoIV0nK3aFaww/tis4xw6MwyueMwKhZdJk?=
- =?us-ascii?Q?Db9PGnWsSnofDmgPKalFdP0Rg9iZK9/j4RYLe5kwvU98m3ZRbV58P0wh55zn?=
- =?us-ascii?Q?Q6DDH0Y3gEJY4HCWcMBQ11TsAQcnAuLNHsO7kPDYk+aFtU3qxP7WSuGawvaI?=
- =?us-ascii?Q?w4R0HJ1FSZwqqEK93VPN0QPpME0/xxoUiTlHGSy203+5JkjLBuof5YKJpnNq?=
- =?us-ascii?Q?fNcG9rwukvL3ATFPwPoVgiCPE7tuANUfxDxm5p179B4J3cBNOuaiqQFYDrpT?=
- =?us-ascii?Q?VE5lomp78bWlTPNGQT886bFk5sP11LZaAL1CiLsbmq6qJmd9l9ga8EA51SY/?=
- =?us-ascii?Q?EVt/vFDXAqmB2gfWUaBQwFnykXcNSnWqHLi5Q9I6/ycGjl2ZWFcZuO9TRr+L?=
- =?us-ascii?Q?zNGptyRng4L4NCj7jILO0xm45hjstaue08548pfzP3uU616cqLh9RlynENfO?=
- =?us-ascii?Q?z/P7h2QvS3+9jLJewxS/oElz8dEZEA0c3IFgfTZv4tiNMm5aPCCu99WrPWx5?=
- =?us-ascii?Q?pnW/4vltP9F+XwOLCSApmQ3oFfN1XdMpFd9Cdutwrh73hPhsZJvLkUFvTHoe?=
- =?us-ascii?Q?lQ=3D=3D?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: a96d05f7-7d45-4e03-3ab1-08db323476f7
+X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?uSMkD1uMdm8vTnr18kAx0blEyFiTZmqIXI1b3E8BUltse6qTZT1lq5uir5/U?=
+ =?us-ascii?Q?f8d3ao/V7RPuWgdEHdTZis9DZVZp4L4sKK+J5hBRIkkW7+fdXNsKLHJi7d1E?=
+ =?us-ascii?Q?LzjtgGxA24HvHuQGLoVj9f6ju/bCbUnGczCx6fk9PGCh9admZnlFVIEvDVVg?=
+ =?us-ascii?Q?SAufbOypBv857kDLLSkvTNMwAtMwYG+OkbkxDsHZ8fGct7fFiELZqcroR/bn?=
+ =?us-ascii?Q?ngz2F0n2yhseu66XQZny1rduUXtv+FBRMBV6lNaEjV5jRNNijLeYOZrpqygR?=
+ =?us-ascii?Q?FdsCf3dwh1vPJhltCKdoKv/dCZPfAJSNJMLX7pxe90xM7YQM8mCiuPQpiavn?=
+ =?us-ascii?Q?qOFNYhQQ7VSRUFMf1NlB9E6grcZ7q3ONQwF+2Z6jeNn3KmFO/OnHmqlyW3Cy?=
+ =?us-ascii?Q?tkmfcDvtaYOKWaiIuvP1a08bbxKcJGJ4MQ/WA88kVmV/6BLg2BLFj9cYpnf7?=
+ =?us-ascii?Q?df3cqhUmdlNpwgihFV9GMPMF+ohVzRAdrK1BZEnxrZSpBzd+3/g1VUO/MMns?=
+ =?us-ascii?Q?priLYzlYOr+3ue44TrOm8SSjPSXW4MostU4bJh/ldMKcWVW6KlYbZW7ZBY0Z?=
+ =?us-ascii?Q?wdhUeg3MwpUwtN2SRTFi8kytkO9ost0gWztn2B6pgRywVhDRaXC+wCxYM9YF?=
+ =?us-ascii?Q?8s2XirqsUHEHFaq+j/2GZpIYQDYOohCW7wGlH8EMvcv4Uy57i0ODJTxwlzU1?=
+ =?us-ascii?Q?BWglLvgUtguN+8M3jMpiN6OMaoNndkwdaAyg0xBTCdcNJtS7ZubUUrn8OcMA?=
+ =?us-ascii?Q?0wnHeeqMDaV4SI44S73f18snIjky33ENnOKhwgZTQSwteFRxS/2PeOTfyasy?=
+ =?us-ascii?Q?jIcCE5ioGoZG1O+hmXUucqBEb8a0Q/ijlcK4nzGJrQm5dDtDPagx/Tqnw48/?=
+ =?us-ascii?Q?XKS/6+LSBCquYkf0bQvkInqoSO5SzLqJvRUKXS+9KuslamL2tm6t2+fiUV/K?=
+ =?us-ascii?Q?R6P+it4k//SpdZa0NmNwI2Fu09HdDM5qr2JE2LXRxrhQjWAQN9adFBc1h1Vl?=
+ =?us-ascii?Q?Cn8gzcANvn7o0JSKuhkj26XRU+l9ReoJQ4GSBLcIvI7zAZLOJAQv2GZDkwxW?=
+ =?us-ascii?Q?x0Rw1HvaXllWbI/9oJsExNFLOrgK+BpK+fTNbySefTza6tpmhukIaEdBdKbC?=
+ =?us-ascii?Q?mQX2Sg32UcpzNWIHik7ntyPd7e3jmkj9Q7I6XS5qoJZZXnDqcXzcW8u6Qlou?=
+ =?us-ascii?Q?UOXrqynsDrsHCfr8pKfPoU/w5RfzMApYfFU0fct7Wqt1CvF39lkKtFR9dVkQ?=
+ =?us-ascii?Q?jZ2xtrLbWnJdKnITUPZAFQLWTzkevVDMI1t3Pp/lFYGoosut2H3WYn/x6nmV?=
+ =?us-ascii?Q?+r9lVCXFNPljM66QaV1f8a6i38XqjGbY+9oz1XAVSKe2evNdHo8wBGRicNSI?=
+ =?us-ascii?Q?BcVwuAMe/DluuEscWolbT9iTmXPgyQFRRC4xCGztnbaImTqIGbznwDGXWZro?=
+ =?us-ascii?Q?GG/MhweoIdFSGoKGdvduNiqC64CCc+K3X8bWvqMM924CisWCWOTYjLIskApa?=
+ =?us-ascii?Q?dDIl/POwQ+CQE2EaGhWY7Q4iCjqSS7fIk+krQ6BKXmXM1qPoQnRNgHYUe5sy?=
+ =?us-ascii?Q?/yR6bfMb8GBEK1f4cuSNN26YRanK7E+MB/Czt4a0hZsSOKjMtvTEH7FRt9NU?=
+ =?us-ascii?Q?uA=3D=3D?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: e5a3db69-a5fa-486a-5d52-08db323619bd
 X-MS-Exchange-CrossTenant-AuthSource: CY5PR11MB6139.namprd11.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 31 Mar 2023 22:08:32.1291 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 31 Mar 2023 22:20:14.8117 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: qFWeeMqKB5NsLuTq6eK1webjLI+PtJAKkzV4iydlvHyhq7Zvmh02FNkt14hboyaNavXCm5LKpsAAP5/xs8caqfHTLbRP6UZ7iW6yzl2VlRc=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: BY1PR11MB8056
+X-MS-Exchange-CrossTenant-UserPrincipalName: cFp8oJU+aviAnul9I/RRrsi+WbHqra+oPgvxviJcqtAWl7ohHAek/y/x+wKUdifzc4B8OF7lO2NnTZqiZ8rkbIPIzk73W313+Jcvd7hkucI=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SJ0PR11MB5214
 X-OriginatorOrg: intel.com
-Subject: Re: [Intel-xe] [PATCH 2/8] drm/xe/irq: Add helpers to find
- ISR/IIR/IMR/IER registers
+Subject: Re: [Intel-xe] [PATCH 4/8] drm/xe/irq: Drop unnecessary GEN11_ and
+ GEN12_ register prefixes
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -147,163 +147,410 @@ Cc: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Thu, Mar 30, 2023 at 11:23:59AM -0700, Matt Roper wrote:
->For cases where IRQ_INIT and IRQ_RESET are used, the relevant interrupt
->registers are always consecutive and ordered ISR, IMR, IIR, IER.  Adding
->helpers to look these up from a base offset will let us eliminate some
->of the CPP pasting and simplify other upcoming patches.
+On Thu, Mar 30, 2023 at 11:24:01AM -0700, Matt Roper wrote:
+>Any interrupt registers that were introduced by platforms i915
+>considered to be "gen11" or "gen12" are present on all platforms that
+>the Xe driver supports; drop the unnecessary prefixes.
+>
+>While working in the area, also convert a few open-coded bit
+>manipulations over to REG_BIT and REG_FIELD_GET notation.
 >
 >Signed-off-by: Matt Roper <matthew.d.roper@intel.com>
 >---
-> drivers/gpu/drm/xe/regs/xe_reg_defs.h |  8 ++++++++
-> drivers/gpu/drm/xe/regs/xe_regs.h     | 11 ++---------
-> drivers/gpu/drm/xe/xe_irq.c           | 24 ++++++++++++------------
-> 3 files changed, 22 insertions(+), 21 deletions(-)
->
->diff --git a/drivers/gpu/drm/xe/regs/xe_reg_defs.h b/drivers/gpu/drm/xe/regs/xe_reg_defs.h
->index b5c25e31b889..7ff3aa9322af 100644
->--- a/drivers/gpu/drm/xe/regs/xe_reg_defs.h
->+++ b/drivers/gpu/drm/xe/regs/xe_reg_defs.h
->@@ -8,4 +8,12 @@
->
-> #include "compat-i915-headers/i915_reg_defs.h"
->
->+/*
->+ * Interrupt registers for a unit are always consecutive and ordered
->+ * ISR, IMR, IIR, IER.
->+ */
->+#define IMR(offset)				_MMIO(offset + 0x4)
->+#define IIR(offset)				_MMIO(offset + 0x8)
->+#define IER(offset)				_MMIO(offset + 0xc)
+> drivers/gpu/drm/xe/regs/xe_gt_regs.h |  42 +++++------
+> drivers/gpu/drm/xe/regs/xe_regs.h    |  12 +--
 
-since this is only to ever be used while handling the irqs in xe_irq.c,
-wouldn't it be better o make it local to them local to that file?
+I was thinking more on an approach of cleaning up the entire driver:
+get all the defines from regs/* that have the GEN*_ or _GEN* suffix and
+drop the suffix.
 
-My worry is that xe_reg_defs.h is the one file included by the world,
-directly or indirectly and these IMR/IIR/IER short macros, although nice
-would be poluting the "namespace".
+I wrote it some time ago, but was having some issues with display/
+failing to compile because of that (some of the ifdef's inside i915 use
+our register defines).
+
+Since this is done for irq, with more contained changes, I won't oppose
+though. It's going in the right direction.
+
+Checked with --color-words and it does what it says
 
 
->+
-> #endif
->diff --git a/drivers/gpu/drm/xe/regs/xe_regs.h b/drivers/gpu/drm/xe/regs/xe_regs.h
->index c1c829c23df1..ffe5d726e196 100644
->--- a/drivers/gpu/drm/xe/regs/xe_regs.h
->+++ b/drivers/gpu/drm/xe/regs/xe_regs.h
->@@ -76,15 +76,8 @@
->
-> #define SOFTWARE_FLAGS_SPR33			_MMIO(0x4f084)
->
->-#define GEN8_PCU_ISR				_MMIO(0x444e0)
->-#define GEN8_PCU_IMR				_MMIO(0x444e4)
->-#define GEN8_PCU_IIR				_MMIO(0x444e8)
->-#define GEN8_PCU_IER				_MMIO(0x444ec)
->-
->-#define GEN11_GU_MISC_ISR			_MMIO(0x444f0)
->-#define GEN11_GU_MISC_IMR			_MMIO(0x444f4)
->-#define GEN11_GU_MISC_IIR			_MMIO(0x444f8)
->-#define GEN11_GU_MISC_IER			_MMIO(0x444fc)
->+#define PCU_IRQ_REGS				0x444e0
->+#define GU_MISC_IRQ_REGS			0x444f0
+Reviewed-by: Lucas De Marchi <lucas.demarchi@intel.com>
 
-we now have:
-
-	*_BASE	
-	*_OFFSET
-	*_REGS
-
-to refer to the plain u32 value. Should we consolidate in just one?
-Maybe _OFFSET  would be one that could be applied both when it's a
-"base", in the sense of HW unit, and when it's "the start of similar
-registers".
-
-otherwise the simplication and avoiding the macro pasting looks pretty
-good and a little bit more grep-able.
 
 thanks
 Lucas De Marchi
 
-> #define   GEN11_GU_MISC_GSE			(1 << 27)
+> drivers/gpu/drm/xe/xe_guc.c          |   6 +-
+> drivers/gpu/drm/xe/xe_irq.c          | 109 +++++++++++++--------------
+> 4 files changed, 84 insertions(+), 85 deletions(-)
 >
-> #define GEN11_GFX_MSTR_IRQ			_MMIO(0x190010)
+>diff --git a/drivers/gpu/drm/xe/regs/xe_gt_regs.h b/drivers/gpu/drm/xe/regs/xe_gt_regs.h
+>index f45251df5715..a8a37e6a45a3 100644
+>--- a/drivers/gpu/drm/xe/regs/xe_gt_regs.h
+>+++ b/drivers/gpu/drm/xe/regs/xe_gt_regs.h
+>@@ -348,34 +348,34 @@
+> #define GFX_FLSH_CNTL_GEN6			_MMIO(0x101008)
+> #define   GFX_FLSH_CNTL_EN			(1 << 0)
+>
+>-#define GEN11_GT_INTR_DW(x)			_MMIO(0x190018 + ((x) * 4))
+>+#define GT_INTR_DW(x)				_MMIO(0x190018 + ((x) * 4))
+>
+>-#define GEN11_GUC_SG_INTR_ENABLE		_MMIO(0x190038)
+>+#define GUC_SG_INTR_ENABLE			_MMIO(0x190038)
+> #define   ENGINE1_MASK				REG_GENMASK(31, 16)
+> #define   ENGINE0_MASK				REG_GENMASK(15, 0)
+>
+>-#define GEN11_GPM_WGBOXPERF_INTR_ENABLE		_MMIO(0x19003c)
+>+#define GPM_WGBOXPERF_INTR_ENABLE		_MMIO(0x19003c)
+>
+>-#define GEN11_INTR_IDENTITY_REG(x)		_MMIO(0x190060 + ((x) * 4))
+>-#define   GEN11_INTR_DATA_VALID			(1 << 31)
+>-#define   GEN11_INTR_ENGINE_INSTANCE(x)		(((x) & GENMASK(25, 20)) >> 20)
+>-#define   GEN11_INTR_ENGINE_CLASS(x)		(((x) & GENMASK(18, 16)) >> 16)
+>-#define   GEN11_INTR_ENGINE_INTR(x)		((x) & 0xffff)
+>+#define INTR_IDENTITY_REG(x)			_MMIO(0x190060 + ((x) * 4))
+>+#define   INTR_DATA_VALID			REG_BIT(31)
+>+#define   INTR_ENGINE_INSTANCE(x)		REG_FIELD_GET(GENMASK(25, 20), x)
+>+#define   INTR_ENGINE_CLASS(x)			REG_FIELD_GET(GENMASK(18, 16), x)
+>+#define   INTR_ENGINE_INTR(x)			REG_FIELD_GET(GENMASK(15, 0), x)
+> #define   OTHER_GUC_INSTANCE			0
+>
+>-#define GEN11_RENDER_COPY_INTR_ENABLE		_MMIO(0x190030)
+>-#define GEN11_VCS_VECS_INTR_ENABLE		_MMIO(0x190034)
+>-#define GEN12_CCS_RSVD_INTR_ENABLE		_MMIO(0x190048)
+>-#define GEN11_IIR_REG_SELECTOR(x)		_MMIO(0x190070 + ((x) * 4))
+>-#define GEN11_RCS0_RSVD_INTR_MASK		_MMIO(0x190090)
+>-#define GEN11_BCS_RSVD_INTR_MASK		_MMIO(0x1900a0)
+>-#define GEN11_VCS0_VCS1_INTR_MASK		_MMIO(0x1900a8)
+>-#define GEN11_VCS2_VCS3_INTR_MASK		_MMIO(0x1900ac)
+>-#define GEN11_VECS0_VECS1_INTR_MASK		_MMIO(0x1900d0)
+>-#define GEN11_GUC_SG_INTR_MASK			_MMIO(0x1900e8)
+>-#define GEN11_GPM_WGBOXPERF_INTR_MASK		_MMIO(0x1900ec)
+>-#define GEN12_CCS0_CCS1_INTR_MASK		_MMIO(0x190100)
+>-#define GEN12_CCS2_CCS3_INTR_MASK		_MMIO(0x190104)
+>+#define RENDER_COPY_INTR_ENABLE			_MMIO(0x190030)
+>+#define VCS_VECS_INTR_ENABLE			_MMIO(0x190034)
+>+#define CCS_RSVD_INTR_ENABLE			_MMIO(0x190048)
+>+#define IIR_REG_SELECTOR(x)			_MMIO(0x190070 + ((x) * 4))
+>+#define RCS0_RSVD_INTR_MASK			_MMIO(0x190090)
+>+#define BCS_RSVD_INTR_MASK			_MMIO(0x1900a0)
+>+#define VCS0_VCS1_INTR_MASK			_MMIO(0x1900a8)
+>+#define VCS2_VCS3_INTR_MASK			_MMIO(0x1900ac)
+>+#define VECS0_VECS1_INTR_MASK			_MMIO(0x1900d0)
+>+#define GUC_SG_INTR_MASK			_MMIO(0x1900e8)
+>+#define GPM_WGBOXPERF_INTR_MASK			_MMIO(0x1900ec)
+>+#define CCS0_CCS1_INTR_MASK			_MMIO(0x190100)
+>+#define CCS2_CCS3_INTR_MASK			_MMIO(0x190104)
+> #define XEHPC_BCS1_BCS2_INTR_MASK		_MMIO(0x190110)
+> #define XEHPC_BCS3_BCS4_INTR_MASK		_MMIO(0x190114)
+> #define XEHPC_BCS5_BCS6_INTR_MASK		_MMIO(0x190118)
+>diff --git a/drivers/gpu/drm/xe/regs/xe_regs.h b/drivers/gpu/drm/xe/regs/xe_regs.h
+>index ffe5d726e196..34f12eacd432 100644
+>--- a/drivers/gpu/drm/xe/regs/xe_regs.h
+>+++ b/drivers/gpu/drm/xe/regs/xe_regs.h
+>@@ -78,13 +78,13 @@
+>
+> #define PCU_IRQ_REGS				0x444e0
+> #define GU_MISC_IRQ_REGS			0x444f0
+>-#define   GEN11_GU_MISC_GSE			(1 << 27)
+>+#define   GU_MISC_GSE				REG_BIT(27)
+>
+>-#define GEN11_GFX_MSTR_IRQ			_MMIO(0x190010)
+>-#define   GEN11_MASTER_IRQ			(1 << 31)
+>-#define   GEN11_GU_MISC_IRQ			(1 << 29)
+>-#define   GEN11_DISPLAY_IRQ			(1 << 16)
+>-#define   GEN11_GT_DW_IRQ(x)			(1 << (x))
+>+#define GFX_MSTR_IRQ				_MMIO(0x190010)
+>+#define   MASTER_IRQ				REG_BIT(31)
+>+#define   GU_MISC_IRQ				REG_BIT(29)
+>+#define   DISPLAY_IRQ				REG_BIT(16)
+>+#define   GT_DW_IRQ(x)				REG_BIT(x)
+>
+> #define DG1_MSTR_TILE_INTR			_MMIO(0x190008)
+> #define   DG1_MSTR_IRQ				REG_BIT(31)
+>diff --git a/drivers/gpu/drm/xe/xe_guc.c b/drivers/gpu/drm/xe/xe_guc.c
+>index 58b9841616e4..ee71b969bcbf 100644
+>--- a/drivers/gpu/drm/xe/xe_guc.c
+>+++ b/drivers/gpu/drm/xe/xe_guc.c
+>@@ -561,12 +561,12 @@ static void guc_enable_irq(struct xe_guc *guc)
+> 		REG_FIELD_PREP(ENGINE0_MASK, GUC_INTR_GUC2HOST)  :
+> 		REG_FIELD_PREP(ENGINE1_MASK, GUC_INTR_GUC2HOST);
+>
+>-	xe_mmio_write32(gt, GEN11_GUC_SG_INTR_ENABLE.reg,
+>+	xe_mmio_write32(gt, GUC_SG_INTR_ENABLE.reg,
+> 			REG_FIELD_PREP(ENGINE1_MASK, GUC_INTR_GUC2HOST));
+> 	if (xe_gt_is_media_type(gt))
+>-		xe_mmio_rmw32(gt, GEN11_GUC_SG_INTR_MASK.reg, events, 0);
+>+		xe_mmio_rmw32(gt, GUC_SG_INTR_MASK.reg, events, 0);
+> 	else
+>-		xe_mmio_write32(gt, GEN11_GUC_SG_INTR_MASK.reg, ~events);
+>+		xe_mmio_write32(gt, GUC_SG_INTR_MASK.reg, ~events);
+> }
+>
+> int xe_guc_enable_communication(struct xe_guc *guc)
 >diff --git a/drivers/gpu/drm/xe/xe_irq.c b/drivers/gpu/drm/xe/xe_irq.c
->index d8fde8caff1e..74d7d999a383 100644
+>index bf097ba6a10b..b1b94ba43b3f 100644
 >--- a/drivers/gpu/drm/xe/xe_irq.c
 >+++ b/drivers/gpu/drm/xe/xe_irq.c
->@@ -48,9 +48,9 @@ static void irq_init(struct xe_gt *gt,
-> }
-> #define IRQ_INIT(gt, type, imr_val, ier_val) \
-> 	irq_init((gt), \
->-		 type##IMR, imr_val, \
->-		 type##IER, ier_val, \
->-		 type##IIR)
->+		 IMR(type), imr_val, \
->+		 IER(type), ier_val, \
->+		 IIR(type))
->
-> static void irq_reset(struct xe_gt *gt, i915_reg_t imr, i915_reg_t iir,
-> 			   i915_reg_t ier)
->@@ -67,7 +67,7 @@ static void irq_reset(struct xe_gt *gt, i915_reg_t imr, i915_reg_t iir,
-> 	xe_mmio_read32(gt, iir.reg);
-> }
-> #define IRQ_RESET(gt, type) \
->-	irq_reset((gt), type##IMR, type##IIR, type##IER)
->+	irq_reset((gt), IMR(type), IIR(type), IER(type))
+>@@ -72,7 +72,7 @@ static void mask_and_disable(struct xe_gt *gt, u32 irqregs)
 >
 > static u32 gen11_intr_disable(struct xe_gt *gt)
 > {
->@@ -90,9 +90,9 @@ gen11_gu_misc_irq_ack(struct xe_gt *gt, const u32 master_ctl)
-> 	if (!(master_ctl & GEN11_GU_MISC_IRQ))
+>-	xe_mmio_write32(gt, GEN11_GFX_MSTR_IRQ.reg, 0);
+>+	xe_mmio_write32(gt, GFX_MSTR_IRQ.reg, 0);
+>
+> 	/*
+> 	 * Now with master disabled, get a sample of level indications
+>@@ -80,7 +80,7 @@ static u32 gen11_intr_disable(struct xe_gt *gt)
+> 	 * New indications can and will light up during processing,
+> 	 * and will generate new interrupt after enabling master.
+> 	 */
+>-	return xe_mmio_read32(gt, GEN11_GFX_MSTR_IRQ.reg);
+>+	return xe_mmio_read32(gt, GFX_MSTR_IRQ.reg);
+> }
+>
+> static u32
+>@@ -88,7 +88,7 @@ gen11_gu_misc_irq_ack(struct xe_gt *gt, const u32 master_ctl)
+> {
+> 	u32 iir;
+>
+>-	if (!(master_ctl & GEN11_GU_MISC_IRQ))
+>+	if (!(master_ctl & GU_MISC_IRQ))
 > 		return 0;
 >
->-	iir = xe_mmio_read32(gt, GEN11_GU_MISC_IIR.reg);
->+	iir = xe_mmio_read32(gt, IIR(GU_MISC_IRQ_REGS).reg);
-> 	if (likely(iir))
->-		xe_mmio_write32(gt, GEN11_GU_MISC_IIR.reg, iir);
->+		xe_mmio_write32(gt, IIR(GU_MISC_IRQ_REGS).reg, iir);
+> 	iir = xe_mmio_read32(gt, IIR(GU_MISC_IRQ_REGS).reg);
+>@@ -100,9 +100,9 @@ gen11_gu_misc_irq_ack(struct xe_gt *gt, const u32 master_ctl)
 >
-> 	return iir;
+> static inline void gen11_intr_enable(struct xe_gt *gt, bool stall)
+> {
+>-	xe_mmio_write32(gt, GEN11_GFX_MSTR_IRQ.reg, GEN11_MASTER_IRQ);
+>+	xe_mmio_write32(gt, GFX_MSTR_IRQ.reg, MASTER_IRQ);
+> 	if (stall)
+>-		xe_mmio_read32(gt, GEN11_GFX_MSTR_IRQ.reg);
+>+		xe_mmio_read32(gt, GFX_MSTR_IRQ.reg);
 > }
->@@ -173,7 +173,7 @@ static void gen11_irq_postinstall(struct xe_device *xe, struct xe_gt *gt)
+>
+> static void gen11_gt_irq_postinstall(struct xe_device *xe, struct xe_gt *gt)
+>@@ -125,14 +125,14 @@ static void gen11_gt_irq_postinstall(struct xe_device *xe, struct xe_gt *gt)
+> 	smask = irqs << 16;
+>
+> 	/* Enable RCS, BCS, VCS and VECS class interrupts. */
+>-	xe_mmio_write32(gt, GEN11_RENDER_COPY_INTR_ENABLE.reg, dmask);
+>-	xe_mmio_write32(gt, GEN11_VCS_VECS_INTR_ENABLE.reg, dmask);
+>+	xe_mmio_write32(gt, RENDER_COPY_INTR_ENABLE.reg, dmask);
+>+	xe_mmio_write32(gt, VCS_VECS_INTR_ENABLE.reg, dmask);
+> 	if (ccs_mask)
+>-		xe_mmio_write32(gt, GEN12_CCS_RSVD_INTR_ENABLE.reg, smask);
+>+		xe_mmio_write32(gt, CCS_RSVD_INTR_ENABLE.reg, smask);
+>
+> 	/* Unmask irqs on RCS, BCS, VCS and VECS engines. */
+>-	xe_mmio_write32(gt, GEN11_RCS0_RSVD_INTR_MASK.reg, ~smask);
+>-	xe_mmio_write32(gt, GEN11_BCS_RSVD_INTR_MASK.reg, ~smask);
+>+	xe_mmio_write32(gt, RCS0_RSVD_INTR_MASK.reg, ~smask);
+>+	xe_mmio_write32(gt, BCS_RSVD_INTR_MASK.reg, ~smask);
+> 	if (bcs_mask & (BIT(1)|BIT(2)))
+> 		xe_mmio_write32(gt, XEHPC_BCS1_BCS2_INTR_MASK.reg, ~dmask);
+> 	if (bcs_mask & (BIT(3)|BIT(4)))
+>@@ -141,31 +141,31 @@ static void gen11_gt_irq_postinstall(struct xe_device *xe, struct xe_gt *gt)
+> 		xe_mmio_write32(gt, XEHPC_BCS5_BCS6_INTR_MASK.reg, ~dmask);
+> 	if (bcs_mask & (BIT(7)|BIT(8)))
+> 		xe_mmio_write32(gt, XEHPC_BCS7_BCS8_INTR_MASK.reg, ~dmask);
+>-	xe_mmio_write32(gt, GEN11_VCS0_VCS1_INTR_MASK.reg, ~dmask);
+>-	xe_mmio_write32(gt, GEN11_VCS2_VCS3_INTR_MASK.reg, ~dmask);
+>+	xe_mmio_write32(gt, VCS0_VCS1_INTR_MASK.reg, ~dmask);
+>+	xe_mmio_write32(gt, VCS2_VCS3_INTR_MASK.reg, ~dmask);
+> 	//if (HAS_ENGINE(gt, VCS4) || HAS_ENGINE(gt, VCS5))
+>-	//	intel_uncore_write(uncore, GEN12_VCS4_VCS5_INTR_MASK, ~dmask);
+>+	//	intel_uncore_write(uncore, VCS4_VCS5_INTR_MASK, ~dmask);
+> 	//if (HAS_ENGINE(gt, VCS6) || HAS_ENGINE(gt, VCS7))
+>-	//	intel_uncore_write(uncore, GEN12_VCS6_VCS7_INTR_MASK, ~dmask);
+>-	xe_mmio_write32(gt, GEN11_VECS0_VECS1_INTR_MASK.reg, ~dmask);
+>+	//	intel_uncore_write(uncore, VCS6_VCS7_INTR_MASK, ~dmask);
+>+	xe_mmio_write32(gt, VECS0_VECS1_INTR_MASK.reg, ~dmask);
+> 	//if (HAS_ENGINE(gt, VECS2) || HAS_ENGINE(gt, VECS3))
+>-	//	intel_uncore_write(uncore, GEN12_VECS2_VECS3_INTR_MASK, ~dmask);
+>+	//	intel_uncore_write(uncore, VECS2_VECS3_INTR_MASK, ~dmask);
+> 	if (ccs_mask & (BIT(0)|BIT(1)))
+>-		xe_mmio_write32(gt, GEN12_CCS0_CCS1_INTR_MASK.reg, ~dmask);
+>+		xe_mmio_write32(gt, CCS0_CCS1_INTR_MASK.reg, ~dmask);
+> 	if (ccs_mask & (BIT(2)|BIT(3)))
+>-		xe_mmio_write32(gt,  GEN12_CCS2_CCS3_INTR_MASK.reg, ~dmask);
+>+		xe_mmio_write32(gt,  CCS2_CCS3_INTR_MASK.reg, ~dmask);
+>
+> 	/*
+> 	 * RPS interrupts will get enabled/disabled on demand when RPS itself
+> 	 * is enabled/disabled.
+> 	 */
+> 	/* TODO: gt->pm_ier, gt->pm_imr */
+>-	xe_mmio_write32(gt, GEN11_GPM_WGBOXPERF_INTR_ENABLE.reg, 0);
+>-	xe_mmio_write32(gt, GEN11_GPM_WGBOXPERF_INTR_MASK.reg,  ~0);
+>+	xe_mmio_write32(gt, GPM_WGBOXPERF_INTR_ENABLE.reg, 0);
+>+	xe_mmio_write32(gt, GPM_WGBOXPERF_INTR_MASK.reg,  ~0);
+>
+> 	/* Same thing for GuC interrupts */
+>-	xe_mmio_write32(gt, GEN11_GUC_SG_INTR_ENABLE.reg, 0);
+>-	xe_mmio_write32(gt, GEN11_GUC_SG_INTR_MASK.reg,  ~0);
+>+	xe_mmio_write32(gt, GUC_SG_INTR_ENABLE.reg, 0);
+>+	xe_mmio_write32(gt, GUC_SG_INTR_MASK.reg,  ~0);
+> }
+>
+> static void gen11_irq_postinstall(struct xe_device *xe, struct xe_gt *gt)
+>@@ -174,7 +174,7 @@ static void gen11_irq_postinstall(struct xe_device *xe, struct xe_gt *gt)
 >
 > 	gen11_gt_irq_postinstall(xe, gt);
 >
->-	IRQ_INIT(gt, GEN11_GU_MISC_, ~GEN11_GU_MISC_GSE, GEN11_GU_MISC_GSE);
->+	IRQ_INIT(gt, GU_MISC_IRQ_REGS, ~GEN11_GU_MISC_GSE, GEN11_GU_MISC_GSE);
+>-	unmask_and_enable(gt, GU_MISC_IRQ_REGS, GEN11_GU_MISC_GSE);
+>+	unmask_and_enable(gt, GU_MISC_IRQ_REGS, GU_MISC_GSE);
 >
 > 	gen11_intr_enable(gt, true);
 > }
->@@ -336,7 +336,7 @@ static void dg1_irq_postinstall(struct xe_device *xe, struct xe_gt *gt)
+>@@ -190,7 +190,7 @@ gen11_gt_engine_identity(struct xe_device *xe,
+>
+> 	lockdep_assert_held(&xe->irq.lock);
+>
+>-	xe_mmio_write32(gt, GEN11_IIR_REG_SELECTOR(bank).reg, BIT(bit));
+>+	xe_mmio_write32(gt, IIR_REG_SELECTOR(bank).reg, BIT(bit));
+>
+> 	/*
+> 	 * NB: Specs do not specify how long to spin wait,
+>@@ -198,18 +198,17 @@ gen11_gt_engine_identity(struct xe_device *xe,
+> 	 */
+> 	timeout_ts = (local_clock() >> 10) + 100;
+> 	do {
+>-		ident = xe_mmio_read32(gt, GEN11_INTR_IDENTITY_REG(bank).reg);
+>-	} while (!(ident & GEN11_INTR_DATA_VALID) &&
+>+		ident = xe_mmio_read32(gt, INTR_IDENTITY_REG(bank).reg);
+>+	} while (!(ident & INTR_DATA_VALID) &&
+> 		 !time_after32(local_clock() >> 10, timeout_ts));
+>
+>-	if (unlikely(!(ident & GEN11_INTR_DATA_VALID))) {
+>+	if (unlikely(!(ident & INTR_DATA_VALID))) {
+> 		drm_err(&xe->drm, "INTR_IDENTITY_REG%u:%u 0x%08x not valid!\n",
+> 			bank, bit, ident);
+> 		return 0;
+> 	}
+>
+>-	xe_mmio_write32(gt, GEN11_INTR_IDENTITY_REG(bank).reg,
+>-			GEN11_INTR_DATA_VALID);
+>+	xe_mmio_write32(gt, INTR_IDENTITY_REG(bank).reg, INTR_DATA_VALID);
+>
+> 	return ident;
+> }
+>@@ -243,24 +242,24 @@ static void gen11_gt_irq_handler(struct xe_device *xe, struct xe_gt *gt,
+> 	spin_lock(&xe->irq.lock);
+>
+> 	for (bank = 0; bank < 2; bank++) {
+>-		if (!(master_ctl & GEN11_GT_DW_IRQ(bank)))
+>+		if (!(master_ctl & GT_DW_IRQ(bank)))
+> 			continue;
+>
+> 		if (!xe_gt_is_media_type(gt)) {
+> 			intr_dw[bank] =
+>-				xe_mmio_read32(gt, GEN11_GT_INTR_DW(bank).reg);
+>+				xe_mmio_read32(gt, GT_INTR_DW(bank).reg);
+> 			for_each_set_bit(bit, intr_dw + bank, 32)
+> 				identity[bit] = gen11_gt_engine_identity(xe, gt,
+> 									 bank,
+> 									 bit);
+>-			xe_mmio_write32(gt, GEN11_GT_INTR_DW(bank).reg,
+>+			xe_mmio_write32(gt, GT_INTR_DW(bank).reg,
+> 					intr_dw[bank]);
+> 		}
+>
+> 		for_each_set_bit(bit, intr_dw + bank, 32) {
+>-			class = GEN11_INTR_ENGINE_CLASS(identity[bit]);
+>-			instance = GEN11_INTR_ENGINE_INSTANCE(identity[bit]);
+>-			intr_vec = GEN11_INTR_ENGINE_INTR(identity[bit]);
+>+			class = INTR_ENGINE_CLASS(identity[bit]);
+>+			instance = INTR_ENGINE_INSTANCE(identity[bit]);
+>+			intr_vec = INTR_ENGINE_INTR(identity[bit]);
+>
+> 			if (class == XE_ENGINE_CLASS_OTHER) {
+> 				gen11_gt_other_irq_handler(gt, instance,
+>@@ -337,7 +336,7 @@ static void dg1_irq_postinstall(struct xe_device *xe, struct xe_gt *gt)
 > {
 > 	gen11_gt_irq_postinstall(xe, gt);
 >
->-	IRQ_INIT(gt, GEN11_GU_MISC_, ~GEN11_GU_MISC_GSE, GEN11_GU_MISC_GSE);
->+	IRQ_INIT(gt, GU_MISC_IRQ_REGS, ~GEN11_GU_MISC_GSE, GEN11_GU_MISC_GSE);
+>-	unmask_and_enable(gt, GU_MISC_IRQ_REGS, GEN11_GU_MISC_GSE);
+>+	unmask_and_enable(gt, GU_MISC_IRQ_REGS, GU_MISC_GSE);
 >
 > 	if (gt->info.id == XE_GT0)
 > 		dg1_intr_enable(xe, true);
->@@ -441,8 +441,8 @@ static void gen11_irq_reset(struct xe_gt *gt)
+>@@ -365,7 +364,7 @@ static irqreturn_t dg1_irq_handler(int irq, void *arg)
+> 			continue;
 >
-> 	gen11_gt_irq_reset(gt);
+> 		if (!xe_gt_is_media_type(gt))
+>-			master_ctl = xe_mmio_read32(gt, GEN11_GFX_MSTR_IRQ.reg);
+>+			master_ctl = xe_mmio_read32(gt, GFX_MSTR_IRQ.reg);
 >
->-	IRQ_RESET(gt, GEN11_GU_MISC_);
->-	IRQ_RESET(gt, GEN8_PCU_);
->+	IRQ_RESET(gt, GU_MISC_IRQ_REGS);
->+	IRQ_RESET(gt, PCU_IRQ_REGS);
+> 		/*
+> 		 * We might be in irq handler just when PCIe DPC is initiated
+>@@ -379,7 +378,7 @@ static irqreturn_t dg1_irq_handler(int irq, void *arg)
+> 		}
+>
+> 		if (!xe_gt_is_media_type(gt))
+>-			xe_mmio_write32(gt, GEN11_GFX_MSTR_IRQ.reg, master_ctl);
+>+			xe_mmio_write32(gt, GFX_MSTR_IRQ.reg, master_ctl);
+> 		gen11_gt_irq_handler(xe, gt, master_ctl, intr_dw, identity);
+> 	}
+>
+>@@ -400,14 +399,14 @@ static void gen11_gt_irq_reset(struct xe_gt *gt)
+> 	u32 bcs_mask = xe_hw_engine_mask_per_class(gt, XE_ENGINE_CLASS_COPY);
+>
+> 	/* Disable RCS, BCS, VCS and VECS class engines. */
+>-	xe_mmio_write32(gt, GEN11_RENDER_COPY_INTR_ENABLE.reg,	 0);
+>-	xe_mmio_write32(gt, GEN11_VCS_VECS_INTR_ENABLE.reg,	 0);
+>+	xe_mmio_write32(gt, RENDER_COPY_INTR_ENABLE.reg,	 0);
+>+	xe_mmio_write32(gt, VCS_VECS_INTR_ENABLE.reg,	 0);
+> 	if (ccs_mask)
+>-		xe_mmio_write32(gt, GEN12_CCS_RSVD_INTR_ENABLE.reg, 0);
+>+		xe_mmio_write32(gt, CCS_RSVD_INTR_ENABLE.reg, 0);
+>
+> 	/* Restore masks irqs on RCS, BCS, VCS and VECS engines. */
+>-	xe_mmio_write32(gt, GEN11_RCS0_RSVD_INTR_MASK.reg,	~0);
+>-	xe_mmio_write32(gt, GEN11_BCS_RSVD_INTR_MASK.reg,	~0);
+>+	xe_mmio_write32(gt, RCS0_RSVD_INTR_MASK.reg,	~0);
+>+	xe_mmio_write32(gt, BCS_RSVD_INTR_MASK.reg,	~0);
+> 	if (bcs_mask & (BIT(1)|BIT(2)))
+> 		xe_mmio_write32(gt, XEHPC_BCS1_BCS2_INTR_MASK.reg, ~0);
+> 	if (bcs_mask & (BIT(3)|BIT(4)))
+>@@ -416,24 +415,24 @@ static void gen11_gt_irq_reset(struct xe_gt *gt)
+> 		xe_mmio_write32(gt, XEHPC_BCS5_BCS6_INTR_MASK.reg, ~0);
+> 	if (bcs_mask & (BIT(7)|BIT(8)))
+> 		xe_mmio_write32(gt, XEHPC_BCS7_BCS8_INTR_MASK.reg, ~0);
+>-	xe_mmio_write32(gt, GEN11_VCS0_VCS1_INTR_MASK.reg,	~0);
+>-	xe_mmio_write32(gt, GEN11_VCS2_VCS3_INTR_MASK.reg,	~0);
+>+	xe_mmio_write32(gt, VCS0_VCS1_INTR_MASK.reg,	~0);
+>+	xe_mmio_write32(gt, VCS2_VCS3_INTR_MASK.reg,	~0);
+> //	if (HAS_ENGINE(gt, VCS4) || HAS_ENGINE(gt, VCS5))
+>-//		xe_mmio_write32(xe, GEN12_VCS4_VCS5_INTR_MASK.reg,   ~0);
+>+//		xe_mmio_write32(xe, VCS4_VCS5_INTR_MASK.reg,   ~0);
+> //	if (HAS_ENGINE(gt, VCS6) || HAS_ENGINE(gt, VCS7))
+>-//		xe_mmio_write32(xe, GEN12_VCS6_VCS7_INTR_MASK.reg,   ~0);
+>-	xe_mmio_write32(gt, GEN11_VECS0_VECS1_INTR_MASK.reg,	~0);
+>+//		xe_mmio_write32(xe, VCS6_VCS7_INTR_MASK.reg,   ~0);
+>+	xe_mmio_write32(gt, VECS0_VECS1_INTR_MASK.reg,	~0);
+> //	if (HAS_ENGINE(gt, VECS2) || HAS_ENGINE(gt, VECS3))
+>-//		xe_mmio_write32(xe, GEN12_VECS2_VECS3_INTR_MASK.reg, ~0);
+>+//		xe_mmio_write32(xe, VECS2_VECS3_INTR_MASK.reg, ~0);
+> 	if (ccs_mask & (BIT(0)|BIT(1)))
+>-		xe_mmio_write32(gt, GEN12_CCS0_CCS1_INTR_MASK.reg, ~0);
+>+		xe_mmio_write32(gt, CCS0_CCS1_INTR_MASK.reg, ~0);
+> 	if (ccs_mask & (BIT(2)|BIT(3)))
+>-		xe_mmio_write32(gt,  GEN12_CCS2_CCS3_INTR_MASK.reg, ~0);
+>+		xe_mmio_write32(gt,  CCS2_CCS3_INTR_MASK.reg, ~0);
+>
+>-	xe_mmio_write32(gt, GEN11_GPM_WGBOXPERF_INTR_ENABLE.reg, 0);
+>-	xe_mmio_write32(gt, GEN11_GPM_WGBOXPERF_INTR_MASK.reg,  ~0);
+>-	xe_mmio_write32(gt, GEN11_GUC_SG_INTR_ENABLE.reg,	 0);
+>-	xe_mmio_write32(gt, GEN11_GUC_SG_INTR_MASK.reg,		~0);
+>+	xe_mmio_write32(gt, GPM_WGBOXPERF_INTR_ENABLE.reg, 0);
+>+	xe_mmio_write32(gt, GPM_WGBOXPERF_INTR_MASK.reg,  ~0);
+>+	xe_mmio_write32(gt, GUC_SG_INTR_ENABLE.reg,	 0);
+>+	xe_mmio_write32(gt, GUC_SG_INTR_MASK.reg,		~0);
 > }
 >
-> static void dg1_irq_reset(struct xe_gt *gt)
->@@ -452,8 +452,8 @@ static void dg1_irq_reset(struct xe_gt *gt)
->
-> 	gen11_gt_irq_reset(gt);
->
->-	IRQ_RESET(gt, GEN11_GU_MISC_);
->-	IRQ_RESET(gt, GEN8_PCU_);
->+	IRQ_RESET(gt, GU_MISC_IRQ_REGS);
->+	IRQ_RESET(gt, PCU_IRQ_REGS);
-> }
->
-> static void xe_irq_reset(struct xe_device *xe)
+> static void gen11_irq_reset(struct xe_gt *gt)
 >-- 
 >2.39.2
 >
