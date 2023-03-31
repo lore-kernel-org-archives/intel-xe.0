@@ -4,30 +4,30 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0DC4BC6FD18
-	for <intel-xe@archiver.kernel.org>; Fri, 31 Mar 2023 08:49:34 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5C2BDC76196
+	for <intel-xe@archiver.kernel.org>; Fri, 31 Mar 2023 08:50:04 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D8B1E10F13E;
-	Fri, 31 Mar 2023 08:49:33 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 346C310F13E;
+	Fri, 31 Mar 2023 08:50:04 +0000 (UTC)
 Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id 7098410F14F;
- Fri, 31 Mar 2023 08:49:32 +0000 (UTC)
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id ADC7510F13E;
+ Fri, 31 Mar 2023 08:50:02 +0000 (UTC)
 Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 66DC6A00E6;
- Fri, 31 Mar 2023 08:49:32 +0000 (UTC)
+ by emeril.freedesktop.org (Postfix) with ESMTP id 9ACCDA7E03;
+ Fri, 31 Mar 2023 08:50:02 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: "Matthew Auld" <matthew.auld@intel.com>
-Date: Fri, 31 Mar 2023 08:49:32 -0000
-Message-ID: <168025257241.14984.3073500838160826927@emeril.freedesktop.org>
+Date: Fri, 31 Mar 2023 08:50:02 -0000
+Message-ID: <168025260263.14985.10807601812632905830@emeril.freedesktop.org>
 X-Patchwork-Hint: ignore
 References: <20230331084628.421814-1-matthew.auld@intel.com>
 In-Reply-To: <20230331084628.421814-1-matthew.auld@intel.com>
-Subject: [Intel-xe] =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_f?=
- =?utf-8?q?or_uAPI_bits_for_small-bar_=28rev4=29?=
+Subject: [Intel-xe] =?utf-8?q?=E2=9C=97_CI=2EKUnit=3A_failure_for_uAPI_bi?=
+ =?utf-8?q?ts_for_small-bar_=28rev4=29?=
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -48,31 +48,115 @@ Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 Series: uAPI bits for small-bar (rev4)
 URL   : https://patchwork.freedesktop.org/series/115515/
-State : success
+State : failure
 
 == Summary ==
 
-=== Applying kernel patches on branch 'drm-xe-next' with base: ===
-commit 4b3608ff06e78b835a2e50eec94cd041c95e4326
-Author:     Matt Roper <matthew.d.roper@intel.com>
-AuthorDate: Wed Mar 29 10:33:34 2023 -0700
-Commit:     Matt Roper <matthew.d.roper@intel.com>
-CommitDate: Thu Mar 30 12:20:22 2023 -0700
++ trap cleanup EXIT
++ /kernel/tools/testing/kunit/kunit.py run --kunitconfig /kernel/drivers/gpu/drm/xe/.kunitconfig
+ERROR:root:In file included from /usr/include/stdlib.h:1013,
+                 from ../arch/um/os-Linux/irq.c:8:
+/usr/include/x86_64-linux-gnu/bits/stdlib-float.h: In function ‘atof’:
+/usr/include/x86_64-linux-gnu/bits/stdlib-float.h:26:1: error: SSE register return with SSE disabled
+   26 | {
+      | ^
+In file included from /usr/include/stdlib.h:1013,
+                 from ../arch/um/os-Linux/helper.c:6:
+/usr/include/x86_64-linux-gnu/bits/stdlib-float.h: In function ‘atof’:
+/usr/include/x86_64-linux-gnu/bits/stdlib-float.h:26:1: error: SSE register return with SSE disabled
+   26 | {
+      | ^
+In file included from /usr/include/stdlib.h:1013,
+                 from ../arch/um/drivers/chan_user.c:6:
+/usr/include/x86_64-linux-gnu/bits/stdlib-float.h: In function ‘atof’:
+/usr/include/x86_64-linux-gnu/bits/stdlib-float.h:26:1: error: SSE register return with SSE disabled
+   26 | {
+      | ^
+In file included from /usr/include/stdlib.h:1013,
+                 from ../arch/um/os-Linux/skas/process.c:7:
+/usr/include/x86_64-linux-gnu/bits/stdlib-float.h: In function ‘atof’:
+/usr/include/x86_64-linux-gnu/bits/stdlib-float.h:26:1: error: SSE register return with SSE disabled
+   26 | {
+      | ^
+In file included from /usr/include/stdlib.h:1013,
+                 from ../arch/x86/um/os-Linux/registers.c:8:
+/usr/include/x86_64-linux-gnu/bits/stdlib-float.h: In function ‘atof’:
+/usr/include/x86_64-linux-gnu/bits/stdlib-float.h:26:1: error: SSE register return with SSE disabled
+   26 | {
+      | ^
+In file included from /usr/include/stdlib.h:1013,
+                 from ../arch/um/os-Linux/execvp.c:24:
+/usr/include/x86_64-linux-gnu/bits/stdlib-float.h: In function ‘atof’:
+/usr/include/x86_64-linux-gnu/bits/stdlib-float.h:26:1: error: SSE register return with SSE disabled
+   26 | {
+      | ^
+In file included from /usr/include/stdlib.h:1013,
+                 from ../arch/um/drivers/fd.c:7:
+/usr/include/x86_64-linux-gnu/bits/stdlib-float.h: In function ‘atof’:
+/usr/include/x86_64-linux-gnu/bits/stdlib-float.h:26:1: error: SSE register return with SSE disabled
+   26 | {
+      | ^
+In file included from /usr/include/stdlib.h:1013,
+                 from ../arch/um/os-Linux/main.c:8:
+/usr/include/x86_64-linux-gnu/bits/stdlib-float.h: In function ‘atof’:
+/usr/include/x86_64-linux-gnu/bits/stdlib-float.h:26:1: error: SSE register return with SSE disabled
+   26 | {
+      | ^
+In file included from /usr/include/stdlib.h:1013,
+                 from ../arch/um/os-Linux/file.c:8:
+/usr/include/x86_64-linux-gnu/bits/stdlib-float.h: In function ‘atof’:
+/usr/include/x86_64-linux-gnu/bits/stdlib-float.h:26:1: error: SSE register return with SSE disabled
+   26 | {
+      | ^
+make[3]: *** [../scripts/Makefile.build:252: arch/um/os-Linux/irq.o] Error 1
+make[3]: *** Waiting for unfinished jobs....
+make[4]: *** [../scripts/Makefile.build:252: arch/x86/um/os-Linux/registers.o] Error 1
+make[3]: *** [../scripts/Makefile.build:494: arch/x86/um/os-Linux] Error 2
+make[3]: *** Waiting for unfinished jobs....
+In file included from /usr/include/stdlib.h:1013,
+                 from ../arch/um/os-Linux/mem.c:8:
+/usr/include/x86_64-linux-gnu/bits/stdlib-float.h: In function ‘atof’:
+/usr/include/x86_64-linux-gnu/bits/stdlib-float.h:26:1: error: SSE register return with SSE disabled
+   26 | {
+      | ^
+make[3]: *** [../scripts/Makefile.build:252: arch/um/os-Linux/execvp.o] Error 1
+make[3]: *** [../scripts/Makefile.build:252: arch/um/drivers/fd.o] Error 1
+make[3]: *** Waiting for unfinished jobs....
+make[3]: *** [../scripts/Makefile.build:252: arch/um/drivers/chan_user.o] Error 1
+make[3]: *** [../scripts/Makefile.build:252: arch/um/os-Linux/helper.o] Error 1
+make[3]: *** [../scripts/Makefile.build:252: arch/um/os-Linux/main.o] Error 1
+make[4]: *** [../scripts/Makefile.build:252: arch/um/os-Linux/skas/process.o] Error 1
+make[4]: *** Waiting for unfinished jobs....
+make[3]: *** [../scripts/Makefile.build:252: arch/um/os-Linux/mem.o] Error 1
+make[3]: *** [../scripts/Makefile.build:252: arch/um/os-Linux/file.o] Error 1
+make[3]: *** [../scripts/Makefile.build:494: arch/um/os-Linux/skas] Error 2
+make[2]: *** [../scripts/Makefile.build:494: arch/um/os-Linux] Error 2
+make[2]: *** Waiting for unfinished jobs....
+make[2]: *** [../scripts/Makefile.build:494: arch/x86/um] Error 2
+make[2]: *** [../scripts/Makefile.build:494: arch/um/drivers] Error 2
+In file included from /usr/include/stdlib.h:1013,
+                 from arch/um/kernel/config.c:7:
+/usr/include/x86_64-linux-gnu/bits/stdlib-float.h: In function ‘atof’:
+/usr/include/x86_64-linux-gnu/bits/stdlib-float.h:26:1: error: SSE register return with SSE disabled
+   26 | {
+      | ^
+make[3]: *** [../scripts/Makefile.build:252: arch/um/kernel/config.o] Error 1
+make[3]: *** Waiting for unfinished jobs....
+make[2]: *** [../scripts/Makefile.build:494: arch/um/kernel] Error 2
+make[1]: *** [/kernel/Makefile:2025: .] Error 2
+make: *** [Makefile:226: __sub-make] Error 2
 
-    drm/xe: Don't emit extra MI_BATCH_BUFFER_END in WA batchbuffer
-    
-    The MI_BATCH_BUFFER_END is already added automatically by
-    __xe_bb_create_job(); including it in the construction of the workaround
-    batchbuffer results in an unnecessary duplicate.
-    
-    Link: https://lore.kernel.org/r/20230329173334.4015124-4-matthew.d.roper@intel.com
-    Signed-off-by: Matt Roper <matthew.d.roper@intel.com>
-    Reviewed-by: José Roberto de Souza <jose.souza@intel.com>
-=== git am output follows ===
-Applying: drm/xe/uapi: restrict system wide accounting
-Applying: drm/xe/uapi: add some kernel-doc for region query
-Applying: drm/xe/bo: support tiered vram allocation for small-bar
-Applying: drm/xe/uapi: add the userspace bits for small-bar
-Applying: drm/xe: fully turn on small-bar support
+[08:49:34] Configuring KUnit Kernel ...
+Generating .config ...
+Populating config with:
+$ make ARCH=um O=.kunit olddefconfig
+[08:49:38] Building KUnit Kernel ...
+Populating config with:
+$ make ARCH=um O=.kunit olddefconfig
+Building with:
+$ make ARCH=um O=.kunit --jobs=48
++ cleanup
+++ stat -c %u:%g /kernel
++ chown -R 1003:1003 /kernel
 
 
