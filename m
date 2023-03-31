@@ -4,24 +4,22 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7CAE5C761AF
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id F13B6C77B62
 	for <intel-xe@archiver.kernel.org>; Fri, 31 Mar 2023 10:24:26 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5297910F1CA;
+	by gabe.freedesktop.org (Postfix) with ESMTP id AD47C10F1C6;
 	Fri, 31 Mar 2023 10:24:26 +0000 (UTC)
 Received: from mblankhorst.nl (lankhorst.se [141.105.120.124])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D732E10F1CA
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8198110F1CA
  for <intel-xe@lists.freedesktop.org>; Fri, 31 Mar 2023 10:24:24 +0000 (UTC)
 From: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
 To: intel-xe@lists.freedesktop.org
-Date: Fri, 31 Mar 2023 12:24:14 +0200
-Message-Id: <20230331102419.521392-2-maarten.lankhorst@linux.intel.com>
+Date: Fri, 31 Mar 2023 12:24:13 +0200
+Message-Id: <20230331102419.521392-1-maarten.lankhorst@linux.intel.com>
 X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20230331102419.521392-1-maarten.lankhorst@linux.intel.com>
-References: <20230331102419.521392-1-maarten.lankhorst@linux.intel.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-xe] [PATCH 1/6] drm/xe: Fix meteorlake stolen memory
+Subject: [Intel-xe] [PATCH 0/6] drm/xe: Meteorlake fixes.
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,44 +34,40 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-MTL should use bar2 to access stolen memory, not the physical addresses
-directly. Correct the GPU address to point to stolen base, and set the
-VRAM flag to indicate it's in device memory.
+I've been trying to make MTL-P work on Xe, and noticed a few things that needed fixing.
+First of all, intel_dram needed updating for MTL. But instead of trying to keep track of
+intel_pch.c and intel_dram.c, we compile the copy from i915. Ideally we would also use the
+headers from i915, but I haven't found a clean way to make it work.
 
-Signed-off-by: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
----
- drivers/gpu/drm/xe/xe_bo.c             | 3 ++-
- drivers/gpu/drm/xe/xe_ttm_stolen_mgr.c | 3 ++-
- 2 files changed, 4 insertions(+), 2 deletions(-)
+Maybe change the compat headers to #include "../../i915/soc/FILENAME?", or allow a symlink?
 
-diff --git a/drivers/gpu/drm/xe/xe_bo.c b/drivers/gpu/drm/xe/xe_bo.c
-index e4d079b61d52..9b2f95f3ce49 100644
---- a/drivers/gpu/drm/xe/xe_bo.c
-+++ b/drivers/gpu/drm/xe/xe_bo.c
-@@ -47,7 +47,8 @@ bool mem_type_is_vram(u32 mem_type)
- 
- static bool resource_is_stolen_vram(struct xe_device *xe, struct ttm_resource *res)
- {
--	return res->mem_type == XE_PL_STOLEN && IS_DGFX(xe);
-+	return res->mem_type == XE_PL_STOLEN &&
-+	       (IS_DGFX(xe) || !xe_ttm_stolen_cpu_access_needs_ggtt(xe));
- }
- 
- static bool resource_is_vram(struct ttm_resource *res)
-diff --git a/drivers/gpu/drm/xe/xe_ttm_stolen_mgr.c b/drivers/gpu/drm/xe/xe_ttm_stolen_mgr.c
-index 31887fec1073..bd1b73fa84a5 100644
---- a/drivers/gpu/drm/xe/xe_ttm_stolen_mgr.c
-+++ b/drivers/gpu/drm/xe/xe_ttm_stolen_mgr.c
-@@ -94,7 +94,8 @@ static u32 detect_bar2_integrated(struct xe_device *xe, struct xe_ttm_stolen_mgr
- 	if (drm_WARN_ON(&xe->drm, (ggc & GGMS_MASK) != GGMS_MASK))
- 		return 0;
- 
--	mgr->stolen_base = mgr->io_base = pci_resource_start(pdev, 2) + SZ_8M;
-+	mgr->io_base = pci_resource_start(pdev, 2) + SZ_8M;
-+	mgr->stolen_base = SZ_8M;
- 
- 	/* return valid GMS value, -EIO if invalid */
- 	gms = REG_FIELD_GET(GMS_MASK, ggc);
+Maarten Lankhorst (6):
+  drm/xe: Fix meteorlake stolen memory
+  drm/xe: Use full_gt batchbuffer allocation for media tiles.
+  drm/i915: Fix comparison in intel_dram.
+  drm/xe: Fix XE_LPDP and meteorlake display info.
+  drm/xe: Build soc files directly
+  drm/xe: Fixup __intel_de_wait_for_register macro.
+
+ drivers/gpu/drm/i915/soc/intel_dram.c         |  32 +-
+ drivers/gpu/drm/xe/Makefile                   |   8 +-
+ .../gpu/drm/xe/compat-i915-headers/i915_drv.h |   2 +-
+ .../soc}/intel_dram.h                         |   1 -
+ .../soc}/intel_pch.h                          |   0
+ drivers/gpu/drm/xe/display/ext/intel_dram.c   | 495 ------------------
+ drivers/gpu/drm/xe/display/ext/intel_pch.c    | 157 ------
+ drivers/gpu/drm/xe/display/xe_de.h            |   4 +
+ drivers/gpu/drm/xe/xe_bo.c                    |   3 +-
+ drivers/gpu/drm/xe/xe_device_types.h          |   2 +-
+ drivers/gpu/drm/xe/xe_display.c               |  11 +-
+ drivers/gpu/drm/xe/xe_gt.c                    |  10 +-
+ drivers/gpu/drm/xe/xe_ttm_stolen_mgr.c        |   3 +-
+ 13 files changed, 50 insertions(+), 678 deletions(-)
+ rename drivers/gpu/drm/xe/{display/ext => compat-i915-headers/soc}/intel_dram.h (80%)
+ rename drivers/gpu/drm/xe/{display/ext => compat-i915-headers/soc}/intel_pch.h (100%)
+ delete mode 100644 drivers/gpu/drm/xe/display/ext/intel_dram.c
+ delete mode 100644 drivers/gpu/drm/xe/display/ext/intel_pch.c
+
 -- 
 2.34.1
 
