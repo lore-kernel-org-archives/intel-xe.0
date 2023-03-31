@@ -4,30 +4,24 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5C2BDC76196
-	for <intel-xe@archiver.kernel.org>; Fri, 31 Mar 2023 08:50:04 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7CAE5C761AF
+	for <intel-xe@archiver.kernel.org>; Fri, 31 Mar 2023 10:24:26 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 346C310F13E;
-	Fri, 31 Mar 2023 08:50:04 +0000 (UTC)
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id ADC7510F13E;
- Fri, 31 Mar 2023 08:50:02 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 9ACCDA7E03;
- Fri, 31 Mar 2023 08:50:02 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5297910F1CA;
+	Fri, 31 Mar 2023 10:24:26 +0000 (UTC)
+Received: from mblankhorst.nl (lankhorst.se [141.105.120.124])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D732E10F1CA
+ for <intel-xe@lists.freedesktop.org>; Fri, 31 Mar 2023 10:24:24 +0000 (UTC)
+From: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
+To: intel-xe@lists.freedesktop.org
+Date: Fri, 31 Mar 2023 12:24:14 +0200
+Message-Id: <20230331102419.521392-2-maarten.lankhorst@linux.intel.com>
+X-Mailer: git-send-email 2.34.1
+In-Reply-To: <20230331102419.521392-1-maarten.lankhorst@linux.intel.com>
+References: <20230331102419.521392-1-maarten.lankhorst@linux.intel.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Matthew Auld" <matthew.auld@intel.com>
-Date: Fri, 31 Mar 2023 08:50:02 -0000
-Message-ID: <168025260263.14985.10807601812632905830@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20230331084628.421814-1-matthew.auld@intel.com>
-In-Reply-To: <20230331084628.421814-1-matthew.auld@intel.com>
-Subject: [Intel-xe] =?utf-8?q?=E2=9C=97_CI=2EKUnit=3A_failure_for_uAPI_bi?=
- =?utf-8?q?ts_for_small-bar_=28rev4=29?=
+Subject: [Intel-xe] [PATCH 1/6] drm/xe: Fix meteorlake stolen memory
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -39,124 +33,47 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
-Cc: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-== Series Details ==
+MTL should use bar2 to access stolen memory, not the physical addresses
+directly. Correct the GPU address to point to stolen base, and set the
+VRAM flag to indicate it's in device memory.
 
-Series: uAPI bits for small-bar (rev4)
-URL   : https://patchwork.freedesktop.org/series/115515/
-State : failure
+Signed-off-by: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
+---
+ drivers/gpu/drm/xe/xe_bo.c             | 3 ++-
+ drivers/gpu/drm/xe/xe_ttm_stolen_mgr.c | 3 ++-
+ 2 files changed, 4 insertions(+), 2 deletions(-)
 
-== Summary ==
-
-+ trap cleanup EXIT
-+ /kernel/tools/testing/kunit/kunit.py run --kunitconfig /kernel/drivers/gpu/drm/xe/.kunitconfig
-ERROR:root:In file included from /usr/include/stdlib.h:1013,
-                 from ../arch/um/os-Linux/irq.c:8:
-/usr/include/x86_64-linux-gnu/bits/stdlib-float.h: In function ‘atof’:
-/usr/include/x86_64-linux-gnu/bits/stdlib-float.h:26:1: error: SSE register return with SSE disabled
-   26 | {
-      | ^
-In file included from /usr/include/stdlib.h:1013,
-                 from ../arch/um/os-Linux/helper.c:6:
-/usr/include/x86_64-linux-gnu/bits/stdlib-float.h: In function ‘atof’:
-/usr/include/x86_64-linux-gnu/bits/stdlib-float.h:26:1: error: SSE register return with SSE disabled
-   26 | {
-      | ^
-In file included from /usr/include/stdlib.h:1013,
-                 from ../arch/um/drivers/chan_user.c:6:
-/usr/include/x86_64-linux-gnu/bits/stdlib-float.h: In function ‘atof’:
-/usr/include/x86_64-linux-gnu/bits/stdlib-float.h:26:1: error: SSE register return with SSE disabled
-   26 | {
-      | ^
-In file included from /usr/include/stdlib.h:1013,
-                 from ../arch/um/os-Linux/skas/process.c:7:
-/usr/include/x86_64-linux-gnu/bits/stdlib-float.h: In function ‘atof’:
-/usr/include/x86_64-linux-gnu/bits/stdlib-float.h:26:1: error: SSE register return with SSE disabled
-   26 | {
-      | ^
-In file included from /usr/include/stdlib.h:1013,
-                 from ../arch/x86/um/os-Linux/registers.c:8:
-/usr/include/x86_64-linux-gnu/bits/stdlib-float.h: In function ‘atof’:
-/usr/include/x86_64-linux-gnu/bits/stdlib-float.h:26:1: error: SSE register return with SSE disabled
-   26 | {
-      | ^
-In file included from /usr/include/stdlib.h:1013,
-                 from ../arch/um/os-Linux/execvp.c:24:
-/usr/include/x86_64-linux-gnu/bits/stdlib-float.h: In function ‘atof’:
-/usr/include/x86_64-linux-gnu/bits/stdlib-float.h:26:1: error: SSE register return with SSE disabled
-   26 | {
-      | ^
-In file included from /usr/include/stdlib.h:1013,
-                 from ../arch/um/drivers/fd.c:7:
-/usr/include/x86_64-linux-gnu/bits/stdlib-float.h: In function ‘atof’:
-/usr/include/x86_64-linux-gnu/bits/stdlib-float.h:26:1: error: SSE register return with SSE disabled
-   26 | {
-      | ^
-In file included from /usr/include/stdlib.h:1013,
-                 from ../arch/um/os-Linux/main.c:8:
-/usr/include/x86_64-linux-gnu/bits/stdlib-float.h: In function ‘atof’:
-/usr/include/x86_64-linux-gnu/bits/stdlib-float.h:26:1: error: SSE register return with SSE disabled
-   26 | {
-      | ^
-In file included from /usr/include/stdlib.h:1013,
-                 from ../arch/um/os-Linux/file.c:8:
-/usr/include/x86_64-linux-gnu/bits/stdlib-float.h: In function ‘atof’:
-/usr/include/x86_64-linux-gnu/bits/stdlib-float.h:26:1: error: SSE register return with SSE disabled
-   26 | {
-      | ^
-make[3]: *** [../scripts/Makefile.build:252: arch/um/os-Linux/irq.o] Error 1
-make[3]: *** Waiting for unfinished jobs....
-make[4]: *** [../scripts/Makefile.build:252: arch/x86/um/os-Linux/registers.o] Error 1
-make[3]: *** [../scripts/Makefile.build:494: arch/x86/um/os-Linux] Error 2
-make[3]: *** Waiting for unfinished jobs....
-In file included from /usr/include/stdlib.h:1013,
-                 from ../arch/um/os-Linux/mem.c:8:
-/usr/include/x86_64-linux-gnu/bits/stdlib-float.h: In function ‘atof’:
-/usr/include/x86_64-linux-gnu/bits/stdlib-float.h:26:1: error: SSE register return with SSE disabled
-   26 | {
-      | ^
-make[3]: *** [../scripts/Makefile.build:252: arch/um/os-Linux/execvp.o] Error 1
-make[3]: *** [../scripts/Makefile.build:252: arch/um/drivers/fd.o] Error 1
-make[3]: *** Waiting for unfinished jobs....
-make[3]: *** [../scripts/Makefile.build:252: arch/um/drivers/chan_user.o] Error 1
-make[3]: *** [../scripts/Makefile.build:252: arch/um/os-Linux/helper.o] Error 1
-make[3]: *** [../scripts/Makefile.build:252: arch/um/os-Linux/main.o] Error 1
-make[4]: *** [../scripts/Makefile.build:252: arch/um/os-Linux/skas/process.o] Error 1
-make[4]: *** Waiting for unfinished jobs....
-make[3]: *** [../scripts/Makefile.build:252: arch/um/os-Linux/mem.o] Error 1
-make[3]: *** [../scripts/Makefile.build:252: arch/um/os-Linux/file.o] Error 1
-make[3]: *** [../scripts/Makefile.build:494: arch/um/os-Linux/skas] Error 2
-make[2]: *** [../scripts/Makefile.build:494: arch/um/os-Linux] Error 2
-make[2]: *** Waiting for unfinished jobs....
-make[2]: *** [../scripts/Makefile.build:494: arch/x86/um] Error 2
-make[2]: *** [../scripts/Makefile.build:494: arch/um/drivers] Error 2
-In file included from /usr/include/stdlib.h:1013,
-                 from arch/um/kernel/config.c:7:
-/usr/include/x86_64-linux-gnu/bits/stdlib-float.h: In function ‘atof’:
-/usr/include/x86_64-linux-gnu/bits/stdlib-float.h:26:1: error: SSE register return with SSE disabled
-   26 | {
-      | ^
-make[3]: *** [../scripts/Makefile.build:252: arch/um/kernel/config.o] Error 1
-make[3]: *** Waiting for unfinished jobs....
-make[2]: *** [../scripts/Makefile.build:494: arch/um/kernel] Error 2
-make[1]: *** [/kernel/Makefile:2025: .] Error 2
-make: *** [Makefile:226: __sub-make] Error 2
-
-[08:49:34] Configuring KUnit Kernel ...
-Generating .config ...
-Populating config with:
-$ make ARCH=um O=.kunit olddefconfig
-[08:49:38] Building KUnit Kernel ...
-Populating config with:
-$ make ARCH=um O=.kunit olddefconfig
-Building with:
-$ make ARCH=um O=.kunit --jobs=48
-+ cleanup
-++ stat -c %u:%g /kernel
-+ chown -R 1003:1003 /kernel
-
+diff --git a/drivers/gpu/drm/xe/xe_bo.c b/drivers/gpu/drm/xe/xe_bo.c
+index e4d079b61d52..9b2f95f3ce49 100644
+--- a/drivers/gpu/drm/xe/xe_bo.c
++++ b/drivers/gpu/drm/xe/xe_bo.c
+@@ -47,7 +47,8 @@ bool mem_type_is_vram(u32 mem_type)
+ 
+ static bool resource_is_stolen_vram(struct xe_device *xe, struct ttm_resource *res)
+ {
+-	return res->mem_type == XE_PL_STOLEN && IS_DGFX(xe);
++	return res->mem_type == XE_PL_STOLEN &&
++	       (IS_DGFX(xe) || !xe_ttm_stolen_cpu_access_needs_ggtt(xe));
+ }
+ 
+ static bool resource_is_vram(struct ttm_resource *res)
+diff --git a/drivers/gpu/drm/xe/xe_ttm_stolen_mgr.c b/drivers/gpu/drm/xe/xe_ttm_stolen_mgr.c
+index 31887fec1073..bd1b73fa84a5 100644
+--- a/drivers/gpu/drm/xe/xe_ttm_stolen_mgr.c
++++ b/drivers/gpu/drm/xe/xe_ttm_stolen_mgr.c
+@@ -94,7 +94,8 @@ static u32 detect_bar2_integrated(struct xe_device *xe, struct xe_ttm_stolen_mgr
+ 	if (drm_WARN_ON(&xe->drm, (ggc & GGMS_MASK) != GGMS_MASK))
+ 		return 0;
+ 
+-	mgr->stolen_base = mgr->io_base = pci_resource_start(pdev, 2) + SZ_8M;
++	mgr->io_base = pci_resource_start(pdev, 2) + SZ_8M;
++	mgr->stolen_base = SZ_8M;
+ 
+ 	/* return valid GMS value, -EIO if invalid */
+ 	gms = REG_FIELD_GET(GMS_MASK, ggc);
+-- 
+2.34.1
 
