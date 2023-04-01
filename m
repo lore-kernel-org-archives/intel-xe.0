@@ -4,30 +4,30 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id BA916C76196
-	for <intel-xe@archiver.kernel.org>; Sat,  1 Apr 2023 09:11:09 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1A3FAC6FD1D
+	for <intel-xe@archiver.kernel.org>; Sat,  1 Apr 2023 09:12:50 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1C53D10E080;
-	Sat,  1 Apr 2023 09:11:09 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id CCF5289654;
+	Sat,  1 Apr 2023 09:12:49 +0000 (UTC)
 Received: from emeril.freedesktop.org (emeril.freedesktop.org
  [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id BA50D89654;
- Sat,  1 Apr 2023 09:10:55 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTP id E350989654;
+ Sat,  1 Apr 2023 09:12:46 +0000 (UTC)
 Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 75BDBAADDC;
- Sat,  1 Apr 2023 09:10:55 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============6413402470413999028=="
+ by emeril.freedesktop.org (Postfix) with ESMTP id D70A6AADDC;
+ Sat,  1 Apr 2023 09:12:46 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: "Lucas De Marchi" <lucas.demarchi@intel.com>
-Date: Sat, 01 Apr 2023 09:10:55 -0000
-Message-ID: <168034025545.8634.5027612599440834594@emeril.freedesktop.org>
+Date: Sat, 01 Apr 2023 09:12:46 -0000
+Message-ID: <168034036687.8632.10477821267962189583@emeril.freedesktop.org>
 X-Patchwork-Hint: ignore
-References: <20230401084214.1784236-1-lucas.demarchi@intel.com>
-In-Reply-To: <20230401084214.1784236-1-lucas.demarchi@intel.com>
-Subject: [Intel-xe] =?utf-8?q?=E2=97=8B_CI=2EBAT=3A_info_for_fixup!_drm/x?=
- =?utf-8?q?e/pat=3A_Move_PAT_setup_to_a_dedicated_file?=
+References: <20230401085151.1786204-1-lucas.demarchi@intel.com>
+In-Reply-To: <20230401085151.1786204-1-lucas.demarchi@intel.com>
+Subject: [Intel-xe] =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_f?=
+ =?utf-8?q?or_Unit_tests_for_rtp_and_GT_wa/tuning_=28rev2=29?=
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -44,63 +44,38 @@ Cc: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============6413402470413999028==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
 == Series Details ==
 
-Series: fixup! drm/xe/pat: Move PAT setup to a dedicated file
-URL   : https://patchwork.freedesktop.org/series/115984/
-State : info
+Series: Unit tests for rtp and GT wa/tuning (rev2)
+URL   : https://patchwork.freedesktop.org/series/115463/
+State : success
 
 == Summary ==
 
-Participating hosts:
-bat-atsm-2
-bat-dg2-oem2
-bat-adlp-7
-Missing hosts results[0]:
-Results: [xe-pw-115984v1](https://intel-gfx-ci.01.org/tree/xe/xe-pw-115984v1/index.html)
+=== Applying kernel patches on branch 'drm-xe-next' with base: ===
+commit cbd8b47f28266aad8f9786be9a1899e3f0e0f2e0
+Author:     Matt Roper <matthew.d.roper@intel.com>
+AuthorDate: Mon Mar 27 10:34:33 2023 -0700
+Commit:     Matt Roper <matthew.d.roper@intel.com>
+CommitDate: Fri Mar 31 17:06:44 2023 -0700
+
+    fixup! drm/xe/pat: Handle unicast vs MCR PAT registers
+    
+    Somehow I dropped the error message when sending this; add it back.
+    
+    To be squashed next time the Xe driver is rebased.
+    
+    Fixes: 11946af00717 ("drm/xe/pat: Handle unicast vs MCR PAT registers")
+    Reviewed-by: Nirmoy Das <nirmoy.das@intel.com>
+    Link: https://lore.kernel.org/r/20230327173433.2957645-1-matthew.d.roper@intel.com
+    Signed-off-by: Matt Roper <matthew.d.roper@intel.com>
+=== git am output follows ===
+Applying: drm/xe: Extract function to initialize xe->info
+Applying: drm/xe: Move test infra out of xe_pci.[ch]
+Applying: drm/xe: Use symbol namespace for kunit tests
+Applying: drm/xe: Generalize fake device creation
+Applying: drm/xe/reg_sr: Save errors for kunit integration
+Applying: drm/xe: Add basic unit tests for rtp
+Applying: drm/xe: Add test for GT workarounds and tunings
 
 
-
---===============6413402470413999028==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>fixup! drm/xe/pat: Move PAT setup to a dedicated file</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/115984/">https://patchwork.freedesktop.org/series/115984/</a></td></tr>
-<tr><td><b>State:</b></td><td>info</td></tr>
-
-</table>
-
-
-    <p>Participating hosts:<br />
-bat-atsm-2<br />
-bat-dg2-oem2<br />
-bat-adlp-7<br />
-Missing hosts results[0]:<br />
-Results: <a href="https://intel-gfx-ci.01.org/tree/xe/xe-pw-115984v1/index.html">xe-pw-115984v1</a></p>
-
-</body>
-</html>
-
---===============6413402470413999028==--
