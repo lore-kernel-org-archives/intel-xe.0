@@ -4,49 +4,46 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id DACE3C77B60
-	for <intel-xe@archiver.kernel.org>; Sat,  1 Apr 2023 08:52:48 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id A6D6CC77B6D
+	for <intel-xe@archiver.kernel.org>; Sat,  1 Apr 2023 08:52:50 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id BE2A710E080;
-	Sat,  1 Apr 2023 08:52:47 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 46F8510E0DF;
+	Sat,  1 Apr 2023 08:52:50 +0000 (UTC)
 Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 14F3F10E0A2
- for <intel-xe@lists.freedesktop.org>; Sat,  1 Apr 2023 08:52:42 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id ED49510E080
+ for <intel-xe@lists.freedesktop.org>; Sat,  1 Apr 2023 08:52:40 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1680339162; x=1711875162;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=kPHUSD/Vwbw3p00MiSM/18ldW5t47/k+6pKAwysJOu8=;
- b=csApWeshZE9oZKQMl1rN9LPTUeaC0gqkKr0EkOkVwe8hnVVJ6bvEKOJ5
- tWPRpkJgwiRUY/5WqbPOCYOaY9miy1YNvFGz0qoSiXgI+QIsfKq0u6AW3
- HHe5DO6EC0JtmBY9C167fkhFcqdMPH+Q8nRFxTOq1YHWrxpd6NUWiLV+B
- iInjadOLXBTfn+9grRuSeVP4N7BNUm56Gl7eI68iI51KnEEkB/6MjIW2L
- 6B3Nyc5qsTqxy+xdui0sAxQ2Bc5vo/euwPB51p/9vAputCbhZ/Xps0dzX
- Bt0Wwd4lDVEbcrdbt+rJSEINBeMbJHrWa9YE8MzBLC106m8UFkTuHwB4S Q==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10666"; a="341651179"
-X-IronPort-AV: E=Sophos;i="5.98,310,1673942400"; d="scan'208";a="341651179"
+ t=1680339160; x=1711875160;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=xvAZomDqACo/3nggrsdgZg53812Lypx6lPVMRbgg4x8=;
+ b=Gs60ktXEpbJNepPFMMrOQB6/99/IviPaSJMzWk3tSN7oXTB4Ys94+MUz
+ /CVAxpSBFN+BS6UBSnZzy/UzF5pne34cJe7pTDISUmTZxzL6Ci94un0yy
+ 66ZRuTTtj3BFBmBEYT/EWD2nO9zULWTE9mDwf9Xvn2GBGJU/KKl/wYFiv
+ H4I83JUpDs2xtRmRnwOeyxpEJvkDsNYn59yZpfD9o38cX5Ev0i/86Gkxm
+ O4JKsh0HMu13fmpGl4ZZjS1ksVOUPCYHRK5nIwP3mBY2kQOQI46EFAGLe
+ s23z1UQyFOaysQFAgllLsoRbtIBLpk1VIIKTwK3454/5M04N1/Pix9/sI g==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10666"; a="341651165"
+X-IronPort-AV: E=Sophos;i="5.98,310,1673942400"; d="scan'208";a="341651165"
 Received: from orsmga002.jf.intel.com ([10.7.209.21])
  by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  01 Apr 2023 01:52:40 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10666"; a="685369584"
-X-IronPort-AV: E=Sophos;i="5.98,310,1673942400"; d="scan'208";a="685369584"
+X-IronPort-AV: E=McAfee;i="6600,9927,10666"; a="685369560"
+X-IronPort-AV: E=Sophos;i="5.98,310,1673942400"; d="scan'208";a="685369560"
 Received: from lucas-s2600cw.jf.intel.com ([10.165.21.196])
  by orsmga002-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  01 Apr 2023 01:52:39 -0700
 From: Lucas De Marchi <lucas.demarchi@intel.com>
 To: intel-xe@lists.freedesktop.org
-Date: Sat,  1 Apr 2023 01:51:51 -0700
-Message-Id: <20230401085151.1786204-8-lucas.demarchi@intel.com>
+Date: Sat,  1 Apr 2023 01:51:44 -0700
+Message-Id: <20230401085151.1786204-1-lucas.demarchi@intel.com>
 X-Mailer: git-send-email 2.39.0
-In-Reply-To: <20230401085151.1786204-1-lucas.demarchi@intel.com>
-References: <20230401085151.1786204-1-lucas.demarchi@intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-xe] [PATCH v2 7/7] drm/xe: Add test for GT workarounds and
- tunings
+Subject: [Intel-xe] [PATCH v2 0/7] Unit tests for rtp and GT wa/tuning
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -63,245 +60,64 @@ Cc: Lucas De Marchi <lucas.demarchi@intel.com>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-In order to avoid mistakes when populating the workarounds, it's good to
-be able to test if the entries added are all compatible for a certain
-platform. The platform itself is not needed as long as we create fake
-devices with enough configuration for the RTP helpers to process the
-tables.  Common mistakes that can be avoided:
+Add tests for the RTP infra and for the GT workaround/tuning
+programming, while building the unit test infra to be able to test with
+fake devices.
 
-	- Entries clashing the bitfields being updated
-	- Register type being mixed (MCR vs regular / masked vs regular)
-	- Unexpected errors while adding the reg_sr entry
+Notes:
 
-To test, inject a duplicate entry in gt_was, but with platform == tigerlake
-rather than the currenct graphics version check:
+- I debated a little bit whether we should use "mock" or "fake" to name
+  these helpers for running without real hardware.  Here it's using
+  "fake" since it's not a proper mock framework, and it seems to be what
+  kunit itself uses in the documentation and examples.
+- The tests themselves are "unit tests", for the
+  software part, testing the implementation for the rtp,
+  reg-save-restore and WA infrastructure.
+- Last patch is the big improvement functonality-wise, which will help
+  us detect wrong updates in the workaround tables, without running in
+  real hardware.  That patches should be followed up with similar ones
+  for the other WAs: engine and LRC.
 
-       { XE_RTP_NAME("14011059788"),
-	 XE_RTP_RULES(PLATFORM(TIGERLAKE)),
-	 XE_RTP_ACTIONS(SET(GEN10_DFR_RATIO_EN_AND_CHICKEN, DFR_DISABLE))
-       },
+v2:
+  Besides the changes documented in each patch, move commits around so the
+  additional tests are at the end, with the infrastructure as prerequisite patches.
+  Also, XE_KUNIT as symbol namespace is no more: there is a macro from
+  kunit that can be used for the same purpose.
 
-This produces the following result:
+Lucas De Marchi (7):
+  drm/xe: Extract function to initialize xe->info
+  drm/xe: Move test infra out of xe_pci.[ch]
+  drm/xe: Use symbol namespace for kunit tests
+  drm/xe: Generalize fake device creation
+  drm/xe/reg_sr: Save errors for kunit integration
+  drm/xe: Add basic unit tests for rtp
+  drm/xe: Add test for GT workarounds and tunings
 
-	$  ./tools/testing/kunit/kunit.py run \
-		--kunitconfig drivers/gpu/drm/xe/.kunitconfig  xe_wa
-
-	[14:18:02] Starting KUnit Kernel (1/1)...
-	[14:18:02] ============================================================
-	[14:18:02] ==================== xe_wa (1 subtest) =====================
-	[14:18:02] ======================== xe_wa_gt  =========================
-	[14:18:02] [drm:xe_reg_sr_add] *ERROR* Discarding save-restore reg 9550 (clear: 00000200, set: 00000200, masked: no): ret=-22
-	[14:18:02]     # xe_wa_gt: ASSERTION FAILED at drivers/gpu/drm/xe/tests/xe_wa_test.c:116
-	[14:18:02]     Expected gt->reg_sr.errors == 0, but
-	[14:18:02]         gt->reg_sr.errors == 1 (0x1)
-	[14:18:02] [FAILED] TIGERLAKE (B0)
-	[14:18:02] [PASSED] DG1 (A0)
-	[14:18:02] [PASSED] DG1 (B0)
-	...
-
-Signed-off-by: Lucas De Marchi <lucas.demarchi@intel.com>
----
- drivers/gpu/drm/xe/tests/Makefile     |   3 +-
- drivers/gpu/drm/xe/tests/xe_wa_test.c | 136 ++++++++++++++++++++++++++
- drivers/gpu/drm/xe/xe_tuning.c        |   3 +
- drivers/gpu/drm/xe/xe_wa.c            |   2 +
- 4 files changed, 143 insertions(+), 1 deletion(-)
+ drivers/gpu/drm/xe/Kconfig.debug           |   1 +
+ drivers/gpu/drm/xe/tests/Makefile          |   8 +-
+ drivers/gpu/drm/xe/tests/xe_bo.c           |   7 +-
+ drivers/gpu/drm/xe/tests/xe_bo_test.c      |   1 +
+ drivers/gpu/drm/xe/tests/xe_dma_buf.c      |   4 +-
+ drivers/gpu/drm/xe/tests/xe_dma_buf_test.c |   1 +
+ drivers/gpu/drm/xe/tests/xe_migrate.c      |   4 +-
+ drivers/gpu/drm/xe/tests/xe_migrate_test.c |   1 +
+ drivers/gpu/drm/xe/tests/xe_pci.c          | 109 +++++++
+ drivers/gpu/drm/xe/tests/xe_pci_test.h     |  31 ++
+ drivers/gpu/drm/xe/tests/xe_rtp_test.c     | 318 +++++++++++++++++++++
+ drivers/gpu/drm/xe/tests/xe_wa_test.c      | 136 +++++++++
+ drivers/gpu/drm/xe/xe_pci.c                | 150 ++++------
+ drivers/gpu/drm/xe/xe_pci.h                |   9 -
+ drivers/gpu/drm/xe/xe_reg_sr.c             |  10 +
+ drivers/gpu/drm/xe/xe_reg_sr_types.h       |   4 +
+ drivers/gpu/drm/xe/xe_rtp.c                |   3 +
+ drivers/gpu/drm/xe/xe_tuning.c             |   3 +
+ drivers/gpu/drm/xe/xe_wa.c                 |   2 +
+ 19 files changed, 692 insertions(+), 110 deletions(-)
+ create mode 100644 drivers/gpu/drm/xe/tests/xe_pci.c
+ create mode 100644 drivers/gpu/drm/xe/tests/xe_pci_test.h
+ create mode 100644 drivers/gpu/drm/xe/tests/xe_rtp_test.c
  create mode 100644 drivers/gpu/drm/xe/tests/xe_wa_test.c
 
-diff --git a/drivers/gpu/drm/xe/tests/Makefile b/drivers/gpu/drm/xe/tests/Makefile
-index c5c2f108d017..56919abb3f2a 100644
---- a/drivers/gpu/drm/xe/tests/Makefile
-+++ b/drivers/gpu/drm/xe/tests/Makefile
-@@ -4,4 +4,5 @@ obj-$(CONFIG_DRM_XE_KUNIT_TEST) += \
- 	xe_bo_test.o \
- 	xe_dma_buf_test.o \
- 	xe_migrate_test.o \
--	xe_rtp_test.o
-+	xe_rtp_test.o \
-+	xe_wa_test.o
-diff --git a/drivers/gpu/drm/xe/tests/xe_wa_test.c b/drivers/gpu/drm/xe/tests/xe_wa_test.c
-new file mode 100644
-index 000000000000..7a86be830b93
---- /dev/null
-+++ b/drivers/gpu/drm/xe/tests/xe_wa_test.c
-@@ -0,0 +1,136 @@
-+// SPDX-License-Identifier: GPL-2.0
-+/*
-+ * Copyright © 2023 Intel Corporation
-+ */
-+
-+#include <drm/drm_drv.h>
-+#include <drm/drm_kunit_helpers.h>
-+
-+#include <kunit/test.h>
-+
-+#include "xe_device.h"
-+#include "xe_pci_test.h"
-+#include "xe_reg_sr.h"
-+#include "xe_tuning.h"
-+#include "xe_wa.h"
-+
-+struct platform_test_case {
-+	const char *name;
-+	enum xe_platform platform;
-+	enum xe_subplatform subplatform;
-+	struct xe_step_info step;
-+};
-+
-+#define PLATFORM_CASE(platform__, graphics_step__)				\
-+	{									\
-+		.name = #platform__ " (" #graphics_step__ ")",			\
-+		.platform = XE_ ## platform__,					\
-+		.subplatform = XE_SUBPLATFORM_NONE,				\
-+		.step = { .graphics = STEP_ ## graphics_step__ }		\
-+	}
-+
-+
-+#define SUBPLATFORM_CASE(platform__, subplatform__, graphics_step__)			\
-+	{										\
-+		.name = #platform__ "_" #subplatform__ " (" #graphics_step__ ")",	\
-+		.platform = XE_ ## platform__,						\
-+		.subplatform = XE_SUBPLATFORM_ ## platform__ ## _ ## subplatform__,	\
-+		.step = { .graphics = STEP_ ## graphics_step__ }			\
-+	}
-+
-+static const struct platform_test_case cases[] = {
-+	PLATFORM_CASE(TIGERLAKE, B0),
-+	PLATFORM_CASE(DG1, A0),
-+	PLATFORM_CASE(DG1, B0),
-+	PLATFORM_CASE(ALDERLAKE_S, A0),
-+	PLATFORM_CASE(ALDERLAKE_S, B0),
-+	PLATFORM_CASE(ALDERLAKE_S, C0),
-+	PLATFORM_CASE(ALDERLAKE_S, D0),
-+	SUBPLATFORM_CASE(DG2, G10, A0),
-+	SUBPLATFORM_CASE(DG2, G10, A1),
-+	SUBPLATFORM_CASE(DG2, G10, B0),
-+	SUBPLATFORM_CASE(DG2, G10, C0),
-+	SUBPLATFORM_CASE(DG2, G11, A0),
-+	SUBPLATFORM_CASE(DG2, G11, B0),
-+	SUBPLATFORM_CASE(DG2, G11, B1),
-+	SUBPLATFORM_CASE(DG2, G12, A0),
-+	SUBPLATFORM_CASE(DG2, G12, A1),
-+	PLATFORM_CASE(PVC, B0),
-+	PLATFORM_CASE(PVC, B1),
-+	PLATFORM_CASE(PVC, C0),
-+};
-+
-+static void platform_desc(const struct platform_test_case *t, char *desc)
-+{
-+	strscpy(desc, t->name, KUNIT_PARAM_DESC_SIZE);
-+}
-+
-+KUNIT_ARRAY_PARAM(platform, cases, platform_desc);
-+
-+static int xe_wa_test_init(struct kunit *test)
-+{
-+	const struct platform_test_case *param = test->param_value;
-+	struct xe_device *xe;
-+	struct device *dev;
-+	int ret;
-+
-+	dev = drm_kunit_helper_alloc_device(test);
-+	KUNIT_ASSERT_NOT_ERR_OR_NULL(test, dev);
-+
-+	xe = drm_kunit_helper_alloc_drm_device(test, dev,
-+					       struct xe_device,
-+					       drm, DRIVER_GEM);
-+	KUNIT_ASSERT_NOT_ERR_OR_NULL(test, xe);
-+
-+	ret = xe_pci_fake_device_init(xe, param->platform, param->subplatform);
-+	KUNIT_ASSERT_EQ(test, ret, 0);
-+
-+	xe->info.step = param->step;
-+
-+	/* TODO: init hw engines for engine/LRC WAs */
-+	xe->drm.dev = dev;
-+	test->priv = xe;
-+
-+	return 0;
-+}
-+
-+static void xe_wa_test_exit(struct kunit *test)
-+{
-+	struct xe_device *xe = test->priv;
-+
-+	drm_kunit_helper_free_device(test, xe->drm.dev);
-+}
-+
-+static void xe_wa_gt(struct kunit *test)
-+{
-+	struct xe_device *xe = test->priv;
-+	struct xe_gt *gt;
-+	int id;
-+
-+	for_each_gt(gt, xe, id) {
-+		xe_reg_sr_init(&gt->reg_sr, "GT", xe);
-+
-+		xe_wa_process_gt(gt);
-+		xe_tuning_process_gt(gt);
-+
-+		KUNIT_ASSERT_EQ(test, gt->reg_sr.errors, 0);
-+	}
-+}
-+
-+static struct kunit_case xe_wa_tests[] = {
-+	KUNIT_CASE_PARAM(xe_wa_gt, platform_gen_params),
-+	{}
-+};
-+
-+static struct kunit_suite xe_rtp_test_suite = {
-+	.name = "xe_wa",
-+	.init = xe_wa_test_init,
-+	.exit = xe_wa_test_exit,
-+	.test_cases = xe_wa_tests,
-+};
-+
-+kunit_test_suite(xe_rtp_test_suite);
-+
-+MODULE_AUTHOR("Intel Corporation");
-+MODULE_LICENSE("GPL");
-+MODULE_IMPORT_NS(EXPORTED_FOR_KUNIT_TESTING);
-diff --git a/drivers/gpu/drm/xe/xe_tuning.c b/drivers/gpu/drm/xe/xe_tuning.c
-index 7ff5eb762da5..27cf1330facd 100644
---- a/drivers/gpu/drm/xe/xe_tuning.c
-+++ b/drivers/gpu/drm/xe/xe_tuning.c
-@@ -5,6 +5,8 @@
- 
- #include "xe_tuning.h"
- 
-+#include <kunit/visibility.h>
-+
- #include "regs/xe_gt_regs.h"
- #include "xe_gt_types.h"
- #include "xe_platform_types.h"
-@@ -62,6 +64,7 @@ void xe_tuning_process_gt(struct xe_gt *gt)
- {
- 	xe_rtp_process(gt_tunings, &gt->reg_sr, gt, NULL);
- }
-+EXPORT_SYMBOL_IF_KUNIT(xe_tuning_process_gt);
- 
- /**
-  * xe_tuning_process_lrc - process lrc tunings
-diff --git a/drivers/gpu/drm/xe/xe_wa.c b/drivers/gpu/drm/xe/xe_wa.c
-index 59d2daab5929..a7d681b7538d 100644
---- a/drivers/gpu/drm/xe/xe_wa.c
-+++ b/drivers/gpu/drm/xe/xe_wa.c
-@@ -5,6 +5,7 @@
- 
- #include "xe_wa.h"
- 
-+#include <kunit/visibility.h>
- #include <linux/compiler_types.h>
- 
- #include "regs/xe_engine_regs.h"
-@@ -628,6 +629,7 @@ void xe_wa_process_gt(struct xe_gt *gt)
- {
- 	xe_rtp_process(gt_was, &gt->reg_sr, gt, NULL);
- }
-+EXPORT_SYMBOL_IF_KUNIT(xe_wa_process_gt);
- 
- /**
-  * xe_wa_process_engine - process engine workaround table
 -- 
 2.39.0
 
