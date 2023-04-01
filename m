@@ -4,47 +4,47 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id B0BCBC76196
-	for <intel-xe@archiver.kernel.org>; Sat,  1 Apr 2023 03:03:12 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id DBF11C77B61
+	for <intel-xe@archiver.kernel.org>; Sat,  1 Apr 2023 03:03:13 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B55C510E0DF;
-	Sat,  1 Apr 2023 03:03:11 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 74A1610F37E;
+	Sat,  1 Apr 2023 03:03:13 +0000 (UTC)
 Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 70A1310E0DF
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 43E7010F37B
  for <intel-xe@lists.freedesktop.org>; Sat,  1 Apr 2023 03:03:08 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
  t=1680318188; x=1711854188;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=fpwzZEm7AYRZrC5u6azenPCCyvoCh2y33WLfO/sYauU=;
- b=bKA5e8/woSPwG9b5ZuWIpU3e2dAQoSocw2r77cMU8feCRp2OFJJ408Oa
- zUKgKSLcyxwhk/q3N/mB4ryLcQpZsORcFYafTtc6vdIrXtk8UubQq7E+A
- ROCw76K91ZdVItiwj1nPoUEgC+mBU2v4eggzVEqZtD1zWnttzADaY64vI
- NhpDmD6QmCQE8n8lg3gAgK7lKuJETbgS3Ru/hjCBI9Lf9QRcMIYgbYHPb
- EN+yF7wpbMNqUk/eRZJc+RCDpapuUhQGTXrMVoTgzkDSkia/BR8qN5g6o
- /YXC1sBp0muvRfgTS8Ytl5qwzRa3Hh7USlkYg1U8mhlGyHAXDwcbkygpf g==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10666"; a="343284487"
-X-IronPort-AV: E=Sophos;i="5.98,308,1673942400"; d="scan'208";a="343284487"
+ bh=e+KQIHVjAmqwNeozcCMiQ88LGl0ZYauTkjW0HQdRPFc=;
+ b=kt85gFGMaWd+3luDP+0okKUo+1q6NGQeXT0jdugQW5tAJgRdXattzRDR
+ Fc5cf2iMfXxSn47bh6Y9Z8Euawj4cN8ePkpKW5ZwvQrDXSx3bp+VaCxAC
+ qObW74JGCd7m4UcWXuQCms6D8hMIBPJ8cC/Iqc5buqEQzpoYfoqYr8Ah5
+ 2Pz3GfWgoIT8DtQAH8Srl0LnYmwcSMsuvaqPP6/+5WpEpS1H/0iK3RRfo
+ Ortpv7cOdWiWpufujbPq9kvQYsZTRVNj9/bjlmU/B8JyN8uj2/s2kUcXa
+ TOHg3omkTbqYJdPvLkbvsPcFX20utdzvBiyxvomTE0BHZ5hYKvX/6iwNJ A==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10666"; a="343284486"
+X-IronPort-AV: E=Sophos;i="5.98,308,1673942400"; d="scan'208";a="343284486"
 Received: from fmsmga001.fm.intel.com ([10.253.24.23])
  by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  31 Mar 2023 20:03:05 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10666"; a="828935683"
-X-IronPort-AV: E=Sophos;i="5.98,308,1673942400"; d="scan'208";a="828935683"
+X-IronPort-AV: E=McAfee;i="6600,9927,10666"; a="828935680"
+X-IronPort-AV: E=Sophos;i="5.98,308,1673942400"; d="scan'208";a="828935680"
 Received: from nvishwa1-desk.sc.intel.com ([172.25.29.76])
  by fmsmga001-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  31 Mar 2023 20:03:04 -0700
 From: Niranjana Vishwanathapura <niranjana.vishwanathapura@intel.com>
 To: intel-xe@lists.freedesktop.org
-Date: Fri, 31 Mar 2023 20:03:00 -0700
-Message-Id: <20230401030300.22568-4-niranjana.vishwanathapura@intel.com>
+Date: Fri, 31 Mar 2023 20:02:59 -0700
+Message-Id: <20230401030300.22568-3-niranjana.vishwanathapura@intel.com>
 X-Mailer: git-send-email 2.21.0.rc0.32.g243a4c7e27
 In-Reply-To: <20230401030300.22568-1-niranjana.vishwanathapura@intel.com>
 References: <20230401030300.22568-1-niranjana.vishwanathapura@intel.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-xe] [PATCH 3/3] drm/xe: Use proper vram offset
+Subject: [Intel-xe] [PATCH 2/3] drm/xe/tests: Set correct expectation
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -60,128 +60,27 @@ Cc: thomas.hellstrom@intel.com
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-In xe_migrate functions, use proper vram io offset of the
-tiles while calculating addresses.
+In xe_migrate_sanity_kunit test, use correct expected value from
+xe_migrate_copy() operation.
 
 Reviewed-by: Matthew Brost <matthew.brost@intel.com>
 Signed-off-by: Niranjana Vishwanathapura <niranjana.vishwanathapura@intel.com>
 ---
- drivers/gpu/drm/xe/xe_bo.c      | 12 ++++++------
- drivers/gpu/drm/xe/xe_bo.h      |  1 +
- drivers/gpu/drm/xe/xe_migrate.c | 13 ++++++++-----
- 3 files changed, 15 insertions(+), 11 deletions(-)
+ drivers/gpu/drm/xe/tests/xe_migrate.c | 1 +
+ 1 file changed, 1 insertion(+)
 
-diff --git a/drivers/gpu/drm/xe/xe_bo.c b/drivers/gpu/drm/xe/xe_bo.c
-index e4d079b61d52..5460e6fe3c1f 100644
---- a/drivers/gpu/drm/xe/xe_bo.c
-+++ b/drivers/gpu/drm/xe/xe_bo.c
-@@ -1207,12 +1207,12 @@ struct xe_bo *xe_bo_create_from_data(struct xe_device *xe, struct xe_gt *gt,
-  * XXX: This is in the VM bind data path, likely should calculate this once and
-  * store, with a recalculation if the BO is moved.
-  */
--static uint64_t vram_region_io_offset(struct xe_bo *bo)
-+uint64_t vram_region_io_offset(struct ttm_resource *res)
- {
--	struct xe_device *xe = xe_bo_device(bo);
--	struct xe_gt *gt = mem_type_to_gt(xe, bo->ttm.resource->mem_type);
-+	struct xe_device *xe = ttm_to_xe_device(res->bo->bdev);
-+	struct xe_gt *gt = mem_type_to_gt(xe, res->mem_type);
+diff --git a/drivers/gpu/drm/xe/tests/xe_migrate.c b/drivers/gpu/drm/xe/tests/xe_migrate.c
+index 90f4e1c4f029..862d11b2210f 100644
+--- a/drivers/gpu/drm/xe/tests/xe_migrate.c
++++ b/drivers/gpu/drm/xe/tests/xe_migrate.c
+@@ -147,6 +147,7 @@ static void test_copy(struct xe_migrate *m, struct xe_bo *bo,
+ 	xe_map_memset(xe, &sysmem->vmap, 0, 0xc0, sysmem->size);
+ 	xe_map_memset(xe, &bo->vmap, 0, 0xd0, bo->size);
  
--	if (bo->ttm.resource->mem_type == XE_PL_STOLEN)
-+	if (res->mem_type == XE_PL_STOLEN)
- 		return xe_ttm_stolen_gpu_offset(xe);
- 
- 	return gt->mem.vram.io_start - xe->mem.vram.io_start;
-@@ -1299,7 +1299,7 @@ int xe_bo_pin(struct xe_bo *bo)
- 			XE_BUG_ON(!(place->flags & TTM_PL_FLAG_CONTIGUOUS));
- 
- 			place->fpfn = (xe_bo_addr(bo, 0, PAGE_SIZE, &vram) -
--				       vram_region_io_offset(bo)) >> PAGE_SHIFT;
-+				       vram_region_io_offset(bo->ttm.resource)) >> PAGE_SHIFT;
- 			place->lpfn = place->fpfn + (bo->size >> PAGE_SHIFT);
- 
- 			spin_lock(&xe->pinned.lock);
-@@ -1443,7 +1443,7 @@ dma_addr_t xe_bo_addr(struct xe_bo *bo, u64 offset,
- 
- 		xe_res_first(bo->ttm.resource, page << PAGE_SHIFT,
- 			     page_size, &cur);
--		return cur.start + offset + vram_region_io_offset(bo);
-+		return cur.start + offset + vram_region_io_offset(bo->ttm.resource);
- 	}
- }
- 
-diff --git a/drivers/gpu/drm/xe/xe_bo.h b/drivers/gpu/drm/xe/xe_bo.h
-index 9b26049521de..8f5a7ad10d09 100644
---- a/drivers/gpu/drm/xe/xe_bo.h
-+++ b/drivers/gpu/drm/xe/xe_bo.h
-@@ -223,6 +223,7 @@ void xe_bo_vunmap(struct xe_bo *bo);
- bool mem_type_is_vram(u32 mem_type);
- bool xe_bo_is_vram(struct xe_bo *bo);
- bool xe_bo_is_stolen(struct xe_bo *bo);
-+uint64_t vram_region_io_offset(struct ttm_resource *res);
- 
- bool xe_bo_can_migrate(struct xe_bo *bo, u32 mem_type);
- 
-diff --git a/drivers/gpu/drm/xe/xe_migrate.c b/drivers/gpu/drm/xe/xe_migrate.c
-index deb4233b94fa..e8978440c725 100644
---- a/drivers/gpu/drm/xe/xe_migrate.c
-+++ b/drivers/gpu/drm/xe/xe_migrate.c
-@@ -392,6 +392,7 @@ static u64 xe_migrate_res_sizes(struct xe_res_cursor *cur)
- 
- static u32 pte_update_size(struct xe_migrate *m,
- 			   bool is_vram,
-+			   struct ttm_resource *res,
- 			   struct xe_res_cursor *cur,
- 			   u64 *L0, u64 *L0_ofs, u32 *L0_pt,
- 			   u32 cmd_size, u32 pt_ofs, u32 avail_pts)
-@@ -417,7 +418,8 @@ static u32 pte_update_size(struct xe_migrate *m,
- 		cmds += cmd_size;
- 	} else {
- 		/* Offset into identity map. */
--		*L0_ofs = xe_migrate_vram_ofs(cur->start);
-+		*L0_ofs = xe_migrate_vram_ofs(cur->start +
-+					      vram_region_io_offset(res));
- 		cmds += cmd_size;
- 	}
- 
-@@ -467,6 +469,7 @@ static void emit_pte(struct xe_migrate *m,
- 					addr |= GEN12_PTE_PS64;
- 				}
- 
-+				addr += vram_region_io_offset(bo->ttm.resource);
- 				addr |= GEN12_PPGTT_PTE_LM;
- 			}
- 			addr |= PPAT_CACHED | GEN8_PAGE_PRESENT | GEN8_PAGE_RW;
-@@ -646,17 +649,17 @@ struct dma_fence *xe_migrate_copy(struct xe_migrate *m,
- 
- 		src_L0 = min(src_L0, dst_L0);
- 
--		batch_size += pte_update_size(m, src_is_vram, &src_it, &src_L0,
-+		batch_size += pte_update_size(m, src_is_vram, src, &src_it, &src_L0,
- 					      &src_L0_ofs, &src_L0_pt, 0, 0,
- 					      NUM_PT_PER_BLIT);
- 
--		batch_size += pte_update_size(m, dst_is_vram, &dst_it, &src_L0,
-+		batch_size += pte_update_size(m, dst_is_vram, dst, &dst_it, &src_L0,
- 					      &dst_L0_ofs, &dst_L0_pt, 0,
- 					      NUM_PT_PER_BLIT, NUM_PT_PER_BLIT);
- 
- 		if (copy_system_ccs) {
- 			ccs_size = xe_device_ccs_bytes(xe, src_L0);
--			batch_size += pte_update_size(m, false, &ccs_it, &ccs_size,
-+			batch_size += pte_update_size(m, false, NULL, &ccs_it, &ccs_size,
- 						      &ccs_ofs, &ccs_pt, 0,
- 						      2 * NUM_PT_PER_BLIT,
- 						      NUM_PT_PER_BLIT);
-@@ -879,7 +882,7 @@ struct dma_fence *xe_migrate_clear(struct xe_migrate *m,
- 
- 		/* Calculate final sizes and batch size.. */
- 		batch_size = 2 +
--			pte_update_size(m, clear_vram, &src_it,
-+			pte_update_size(m, clear_vram, src, &src_it,
- 					&clear_L0, &clear_L0_ofs, &clear_L0_pt,
- 					emit_clear_cmd_len(xe), 0,
- 					NUM_PT_PER_BLIT);
++	expected = 0xc0c0c0c0c0c0c0c0;
+ 	fence = xe_migrate_copy(m, sysmem, sysmem->ttm.resource,
+ 				bo->ttm.resource);
+ 	if (!sanity_fence_failed(xe, fence, big ? "Copying big bo sysmem -> vram" :
 -- 
 2.21.0.rc0.32.g243a4c7e27
 
