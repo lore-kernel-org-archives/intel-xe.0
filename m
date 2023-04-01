@@ -4,30 +4,45 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9DF5AC76196
-	for <intel-xe@archiver.kernel.org>; Fri, 31 Mar 2023 23:36:39 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 78188C761A6
+	for <intel-xe@archiver.kernel.org>; Sat,  1 Apr 2023 00:21:13 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id AA3F610F351;
-	Fri, 31 Mar 2023 23:36:38 +0000 (UTC)
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id AE36B10F34F;
- Fri, 31 Mar 2023 23:36:35 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 9C6C1A7DFF;
- Fri, 31 Mar 2023 23:36:35 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============5140553511460958122=="
+	by gabe.freedesktop.org (Postfix) with ESMTP id DD59D10F35C;
+	Sat,  1 Apr 2023 00:21:12 +0000 (UTC)
+Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C272010E337
+ for <intel-xe@lists.freedesktop.org>; Sat,  1 Apr 2023 00:21:10 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1680308470; x=1711844470;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=RvinkQIuIZwAYZF6i2s+deGRwLueMRRVRbLjtvs7Oz0=;
+ b=BrAFjpLuo7i+R8oEKwVqevSzzRZdkogCF5f6rahoHLeTAkfqp4tAPgE3
+ wsUFQAgWvnGrBkt3gZD6AfI+dK3DVwcrDXCbrjjgsc4vgemNJHYFqEzNn
+ Ivt1et7j78PlL+8MoJ+wDQUSS7Jbw+OwcCTb2JL/AlGIq4k0aUXHimwbL
+ ERDIKdWwgT/OhRazRcyEDt02Yu57WICkTMtXLoQe8z/6y18yp5kIX9sSp
+ FgaQgUdmLRYeq05pcUXjTIC6z2zno5D6RfpZ1CaGy2+3Ppv+8XiUOLVi6
+ euR6kKO5AWBv/Z+a94fusJqiTwOqnz69LjjppvbwK4GC47L13cAisjs5+ g==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10666"; a="406624204"
+X-IronPort-AV: E=Sophos;i="5.98,308,1673942400"; d="scan'208";a="406624204"
+Received: from orsmga005.jf.intel.com ([10.7.209.41])
+ by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 31 Mar 2023 17:21:10 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6600,9927,10666"; a="859520521"
+X-IronPort-AV: E=Sophos;i="5.98,308,1673942400"; d="scan'208";a="859520521"
+Received: from mdroper-desk1.fm.intel.com ([10.1.27.134])
+ by orsmga005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 31 Mar 2023 17:21:09 -0700
+From: Matt Roper <matthew.d.roper@intel.com>
+To: intel-xe@lists.freedesktop.org
+Date: Fri, 31 Mar 2023 17:20:58 -0700
+Message-Id: <20230401002106.588656-1-matthew.d.roper@intel.com>
+X-Mailer: git-send-email 2.39.2
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Lucas De Marchi" <lucas.demarchi@intel.com>
-Date: Fri, 31 Mar 2023 23:36:35 -0000
-Message-ID: <168030579560.14985.4140368369703197470@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20230331230902.1603294-1-lucas.demarchi@intel.com>
-In-Reply-To: <20230331230902.1603294-1-lucas.demarchi@intel.com>
-Subject: [Intel-xe] =?utf-8?q?=E2=97=8B_CI=2EBAT=3A_info_for_drm/xe=3A_Fi?=
- =?utf-8?q?x_platform_order?=
+Content-Transfer-Encoding: 8bit
+Subject: [Intel-xe] [PATCH v2 0/8] Interrupt cleanup and future-proofing
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -39,68 +54,36 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
-Cc: intel-xe@lists.freedesktop.org
+Cc: Lucas De Marchi <lucas.demarchi@intel.com>, matthew.d.roper@intel.com
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============5140553511460958122==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+A lot of the interrupt code in the Xe driver was copied directly from
+i915.  Since Xe only supports Xe_LP and later platforms, there's some
+cleanup and simplification that can be done.
 
-== Series Details ==
+Also fix one mistake that would have become a bug in the future if we
+ever wind up with a multi-tile platform that also supports display.
 
-Series: drm/xe: Fix platform order
-URL   : https://patchwork.freedesktop.org/series/115973/
-State : info
+Cc: Lucas De Marchi <lucas.demarchi@intel.com>
 
-== Summary ==
+Matt Roper (8):
+  drm/xe/irq: Drop gen3_ prefixes
+  drm/xe/irq: Add helpers to find ISR/IIR/IMR/IER registers
+  drm/xe/irq: Drop IRQ_INIT and IRQ_RESET macros
+  drm/xe/irq: Drop unnecessary GEN11_ and GEN12_ register prefixes
+  drm/xe/irq: Rename and clarify top-level interrupt handling routines
+  drm/xe/irq: Drop remaining "gen11_" prefix from IRQ functions
+  drm/xe/irq: Drop commented-out code for non-existent media engines
+  drm/xe/irq: Don't clobber display interrupts on multi-tile platforms
 
-Participating hosts:
-bat-atsm-2
-bat-dg2-oem2
-bat-adlp-7
-Missing hosts results[0]:
-Results: [xe-pw-115973v1](https://intel-gfx-ci.01.org/tree/xe/xe-pw-115973v1/index.html)
+ drivers/gpu/drm/xe/regs/xe_gt_regs.h |  42 ++--
+ drivers/gpu/drm/xe/regs/xe_regs.h    |  25 +--
+ drivers/gpu/drm/xe/xe_display.c      |   4 +-
+ drivers/gpu/drm/xe/xe_guc.c          |   6 +-
+ drivers/gpu/drm/xe/xe_irq.c          | 288 ++++++++++++++-------------
+ 5 files changed, 180 insertions(+), 185 deletions(-)
 
+-- 
+2.39.2
 
-
---===============5140553511460958122==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/xe: Fix platform order</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/115973/">https://patchwork.freedesktop.org/series/115973/</a></td></tr>
-<tr><td><b>State:</b></td><td>info</td></tr>
-
-</table>
-
-
-    <p>Participating hosts:<br />
-bat-atsm-2<br />
-bat-dg2-oem2<br />
-bat-adlp-7<br />
-Missing hosts results[0]:<br />
-Results: <a href="https://intel-gfx-ci.01.org/tree/xe/xe-pw-115973v1/index.html">xe-pw-115973v1</a></p>
-
-</body>
-</html>
-
---===============5140553511460958122==--
