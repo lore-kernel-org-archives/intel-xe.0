@@ -4,47 +4,48 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id C4F8FC77B60
-	for <intel-xe@archiver.kernel.org>; Sat,  1 Apr 2023 08:52:43 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id B5299C6FD1D
+	for <intel-xe@archiver.kernel.org>; Sat,  1 Apr 2023 08:52:48 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7CE9510E0A2;
-	Sat,  1 Apr 2023 08:52:43 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5499C10E0E7;
+	Sat,  1 Apr 2023 08:52:48 +0000 (UTC)
 Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C507710E0DF
+ by gabe.freedesktop.org (Postfix) with ESMTPS id CFE6B10E0E7
  for <intel-xe@lists.freedesktop.org>; Sat,  1 Apr 2023 08:52:41 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
  t=1680339161; x=1711875161;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=jKuD5wsCNNTVdanSsiS0jHr5GuCq8H9XPQsOMCfXZ9Y=;
- b=lT37GriliNZWxFLJ2YJ1w5ssezlLHY5SDpNXBW85T0vsNtOH36z04BVf
- CIZGIzYoa3weWNWT7+dP4zyUvTQVwomezoO8R8uBgTdnQTqpFRgu1GEKN
- qEWrqPojQTbNsmiTjU396+MLmkzHHNvThsKcJppVB9J+pEwL0ViMpm2tL
- wNWW4CIXEIrAAUxtlhlsvbLKa+lvvWPf7qyQp2o1/ZjgvZu+wZxiTXf6g
- wTrYpMuaQtu23LLGrdzosmiQLxmA+NuhJdeyHOk47/fzrbO3Pk+xEajOy
- +86FeVgdCAnFAfFuWwv47WeuIFwIsv36TZYKV9Rc3RieTkvLDwwFdU+e6 A==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10666"; a="341651174"
-X-IronPort-AV: E=Sophos;i="5.98,310,1673942400"; d="scan'208";a="341651174"
+ bh=zxHMr7bbJM/qaURVIyduPa1eqXhgPbQPLPIksnxFW4c=;
+ b=cc3UV0NqEjV1fsXAZRr9Zmpr5L5qmUuShZStC3eGulakCoMrcwwBy8qO
+ r5QAuMVekLkk06uqOHHQOurINhH6cpFLZ99qCUjkwDBbtXuzS6ZGWFBAE
+ V9dd3VWt7cT78Lz/K7tS5DnvUvZGFD8Sa3D9d3KAGhl1gBbYWS9cOugTv
+ M/TNNlU2b7Rz0IqSL1V/sfLkscZ6zJD1jJFnUvLaGT2BDZJDWxojOTZA4
+ KOQrrd0RIUAC7k3AcCILM53IntymzKLATZbpdBoxC6B904ugz9d+t8qO6
+ n3uP1JM6ApwiV5wzzRSs+Uv7Dozd+LxQCiy8jEg9HK0PQD7zSaljJ6E/L g==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10666"; a="341651176"
+X-IronPort-AV: E=Sophos;i="5.98,310,1673942400"; d="scan'208";a="341651176"
 Received: from orsmga002.jf.intel.com ([10.7.209.21])
  by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  01 Apr 2023 01:52:40 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10666"; a="685369574"
-X-IronPort-AV: E=Sophos;i="5.98,310,1673942400"; d="scan'208";a="685369574"
+X-IronPort-AV: E=McAfee;i="6600,9927,10666"; a="685369577"
+X-IronPort-AV: E=Sophos;i="5.98,310,1673942400"; d="scan'208";a="685369577"
 Received: from lucas-s2600cw.jf.intel.com ([10.165.21.196])
  by orsmga002-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  01 Apr 2023 01:52:39 -0700
 From: Lucas De Marchi <lucas.demarchi@intel.com>
 To: intel-xe@lists.freedesktop.org
-Date: Sat,  1 Apr 2023 01:51:48 -0700
-Message-Id: <20230401085151.1786204-5-lucas.demarchi@intel.com>
+Date: Sat,  1 Apr 2023 01:51:49 -0700
+Message-Id: <20230401085151.1786204-6-lucas.demarchi@intel.com>
 X-Mailer: git-send-email 2.39.0
 In-Reply-To: <20230401085151.1786204-1-lucas.demarchi@intel.com>
 References: <20230401085151.1786204-1-lucas.demarchi@intel.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-xe] [PATCH v2 4/7] drm/xe: Generalize fake device creation
+Subject: [Intel-xe] [PATCH v2 5/7] drm/xe/reg_sr: Save errors for kunit
+ integration
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -61,125 +62,58 @@ Cc: Lucas De Marchi <lucas.demarchi@intel.com>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Instead of requiring tests to initialize a fake device an keep it in
-sync with xe_pci.c when it's platform-dependent, export a function from
-xe_pci.c to be used and piggy back on the device info creation. For
-simpler tests that don't need any specific platform and just need a fake
-xe device to pass around, xe_pci_fake_device_init_any() can be used.
+When there's an entry that is dropped when xe_reg_sr_add(), there's
+not much we can do other than reporting the error - it's for certain a
+driver issue or conflicting workarounds/tunings. Save the number of
+errors to be used later by kunit to report where it happens.
 
 Signed-off-by: Lucas De Marchi <lucas.demarchi@intel.com>
 ---
- drivers/gpu/drm/xe/tests/xe_pci.c      | 47 ++++++++++++++++++++++++++
- drivers/gpu/drm/xe/tests/xe_pci_test.h | 16 +++++++++
- drivers/gpu/drm/xe/xe_pci.c            |  2 +-
- 3 files changed, 64 insertions(+), 1 deletion(-)
+ drivers/gpu/drm/xe/xe_reg_sr.c       | 8 ++++++++
+ drivers/gpu/drm/xe/xe_reg_sr_types.h | 4 ++++
+ 2 files changed, 12 insertions(+)
 
-diff --git a/drivers/gpu/drm/xe/tests/xe_pci.c b/drivers/gpu/drm/xe/tests/xe_pci.c
-index 643bddb35214..cc65ac5657b3 100644
---- a/drivers/gpu/drm/xe/tests/xe_pci.c
-+++ b/drivers/gpu/drm/xe/tests/xe_pci.c
-@@ -8,6 +8,7 @@
- #include "tests/xe_test.h"
+diff --git a/drivers/gpu/drm/xe/xe_reg_sr.c b/drivers/gpu/drm/xe/xe_reg_sr.c
+index 9eaf1be27886..83f29aeb9250 100644
+--- a/drivers/gpu/drm/xe/xe_reg_sr.c
++++ b/drivers/gpu/drm/xe/xe_reg_sr.c
+@@ -84,6 +84,13 @@ static bool compatible_entries(const struct xe_reg_sr_entry *e1,
+ 	return true;
+ }
  
- #include <kunit/test.h>
-+#include <kunit/visibility.h>
- 
- struct kunit_test_data {
- 	int ndevs;
-@@ -60,3 +61,49 @@ int xe_call_for_each_device(xe_device_fn xe_fn)
++static void reg_sr_inc_error(struct xe_reg_sr *sr)
++{
++#if IS_ENABLED(CONFIG_DRM_XE_KUNIT_TEST)
++	sr->errors++;
++#endif
++}
++
+ int xe_reg_sr_add(struct xe_reg_sr *sr, u32 reg,
+ 		  const struct xe_reg_sr_entry *e)
+ {
+@@ -121,6 +128,7 @@ int xe_reg_sr_add(struct xe_reg_sr *sr, u32 reg,
+ 	DRM_ERROR("Discarding save-restore reg %04lx (clear: %08x, set: %08x, masked: %s): ret=%d\n",
+ 		  idx, e->clr_bits, e->set_bits,
+ 		  str_yes_no(e->masked_reg), ret);
++	reg_sr_inc_error(sr);
  
  	return ret;
  }
+diff --git a/drivers/gpu/drm/xe/xe_reg_sr_types.h b/drivers/gpu/drm/xe/xe_reg_sr_types.h
+index 3d2257891005..91469784fd90 100644
+--- a/drivers/gpu/drm/xe/xe_reg_sr_types.h
++++ b/drivers/gpu/drm/xe/xe_reg_sr_types.h
+@@ -32,6 +32,10 @@ struct xe_reg_sr {
+ 	} pool;
+ 	struct xarray xa;
+ 	const char *name;
 +
-+int xe_pci_fake_device_init(struct xe_device *xe, enum xe_platform platform,
-+			    enum xe_subplatform subplatform)
-+{
-+	const struct pci_device_id *ent = pciidlist;
-+	const struct xe_device_desc *desc;
-+	const struct xe_subplatform_desc *subplatform_desc;
-+
-+	if (platform == XE_TEST_PLATFORM_ANY) {
-+		desc = (const void *)ent->driver_data;
-+		subplatform_desc = NULL;
-+		goto done;
-+	}
-+
-+	for (ent = pciidlist; ent->device; ent++) {
-+		desc = (const void *)ent->driver_data;
-+		if (desc->platform == platform)
-+			break;
-+	}
-+
-+	if (!ent->device)
-+		return -ENODEV;
-+
-+	if (subplatform == XE_TEST_SUBPLATFORM_ANY) {
-+		subplatform_desc = desc->subplatforms;
-+		goto done;
-+	}
-+
-+	for (subplatform_desc = desc->subplatforms;
-+	     subplatform_desc && subplatform_desc->subplatform;
-+	     subplatform_desc++)
-+		if (subplatform_desc->subplatform == subplatform)
-+			break;
-+
-+	if (subplatform == XE_SUBPLATFORM_NONE && subplatform_desc)
-+		return -ENODEV;
-+
-+	if (subplatform != XE_SUBPLATFORM_NONE && !subplatform_desc)
-+		return -ENODEV;
-+
-+done:
-+	xe_info_init(xe, desc, subplatform_desc);
-+
-+	return 0;
-+}
-+EXPORT_SYMBOL_IF_KUNIT(xe_pci_fake_device_init);
-diff --git a/drivers/gpu/drm/xe/tests/xe_pci_test.h b/drivers/gpu/drm/xe/tests/xe_pci_test.h
-index de65d8c9ccb5..43294e8c62bb 100644
---- a/drivers/gpu/drm/xe/tests/xe_pci_test.h
-+++ b/drivers/gpu/drm/xe/tests/xe_pci_test.h
-@@ -6,10 +6,26 @@
- #ifndef _XE_PCI_TEST_H_
- #define _XE_PCI_TEST_H_
++#if IS_ENABLED(CONFIG_DRM_XE_KUNIT_TEST)
++	unsigned int errors;
++#endif
+ };
  
-+#include "xe_platform_types.h"
-+
- struct xe_device;
- 
-+/*
-+ * Some defines just for clarity: these mean the test doesn't care about what
-+ * platform it will get since it doesn't depend on any platform-specific bits
-+ */
-+#define XE_TEST_PLATFORM_ANY	XE_PLATFORM_UNINITIALIZED
-+#define XE_TEST_SUBPLATFORM_ANY	XE_SUBPLATFORM_UNINITIALIZED
-+
- typedef int (*xe_device_fn)(struct xe_device *);
- 
- int xe_call_for_each_device(xe_device_fn xe_fn);
- 
-+int xe_pci_fake_device_init(struct xe_device *xe, enum xe_platform platform,
-+			    enum xe_subplatform subplatform);
-+
-+#define xe_pci_fake_device_init_any(xe__)					\
-+	xe_pci_fake_device_init(xe__, XE_TEST_PLATFORM_ANY,			\
-+				XE_TEST_SUBPLATFORM_ANY)
-+
  #endif
-diff --git a/drivers/gpu/drm/xe/xe_pci.c b/drivers/gpu/drm/xe/xe_pci.c
-index 302f7f588da1..21ae5e6f8fe5 100644
---- a/drivers/gpu/drm/xe/xe_pci.c
-+++ b/drivers/gpu/drm/xe/xe_pci.c
-@@ -429,7 +429,7 @@ static void xe_pci_remove(struct pci_dev *pdev)
- 
- static int xe_pci_probe(struct pci_dev *pdev, const struct pci_device_id *ent)
- {
--	const struct xe_device_desc *desc = (void *)ent->driver_data;
-+	const struct xe_device_desc *desc = (const void *)ent->driver_data;
- 	const struct xe_subplatform_desc *subplatform_desc;
- 	struct xe_device *xe;
- 	int err;
 -- 
 2.39.0
 
