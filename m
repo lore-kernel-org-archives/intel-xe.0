@@ -4,42 +4,42 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id AB5B2C7619A
-	for <intel-xe@archiver.kernel.org>; Sun,  2 Apr 2023 10:51:28 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2DC7BC7619A
+	for <intel-xe@archiver.kernel.org>; Sun,  2 Apr 2023 11:18:01 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1C39F10E2A0;
-	Sun,  2 Apr 2023 10:51:28 +0000 (UTC)
-Received: from mga06.intel.com (mga06b.intel.com [134.134.136.31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E800010E2DE
- for <intel-xe@lists.freedesktop.org>; Sun,  2 Apr 2023 10:51:22 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B3B5010E2DE;
+	Sun,  2 Apr 2023 11:18:00 +0000 (UTC)
+Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9811610E2DE
+ for <intel-xe@lists.freedesktop.org>; Sun,  2 Apr 2023 11:17:55 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1680432682; x=1711968682;
+ t=1680434275; x=1711970275;
  h=message-id:date:mime-version:subject:to:cc:references:
  from:in-reply-to:content-transfer-encoding;
- bh=d9DAU4wI1Zl8lzEA3bUamVa8UMNB9teo6eaJWTxbwno=;
- b=EqYF5f1BX4hUD38zv48T/ekzsO/NZPwwGxwAYNSTnoR+WRJgCDzV7lcz
- 0sKLosrzAqcrrQ2x8KFSqYwH8JEa5fJYwQG31NlRHwVqmYGCu6XdaHdMz
- JjDxspBlefuPJKqPTcYgnf9zkY/RxAmTc/akj9bg6TGcscVNNTW9qiS6o
- W6Qwxv6LJeujVr5ZvRnL1isRq88IzW0Hr/X3cXNkDRZo89Ey3WDpTyGCU
- naV6RKFaL4WdM11z1VAZTarwlUMem4XjiozIMdgNdsbZCUCqahRmjP2SN
- j8VZ/LxJN/maDIPE/8fnyz9k1bPZDCOVb8oYQRQ+mN1kaAsGesaiREvUc A==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10667"; a="404476999"
-X-IronPort-AV: E=Sophos;i="5.98,312,1673942400"; d="scan'208";a="404476999"
+ bh=0C4RjuKrqERw7eIkO9XAyaS9Qsmfc+GR41/m3BEH8Ts=;
+ b=JLZFvwJXLIoTLbKBpQqw6tOrRbIib4ia74Ef4zr6HXdYLRuN3BoKQUMv
+ Qd1bRHCRWzzlWcxCByMefDiwK/Ky73sl3AJZMguNROYTX0+9v21VilPO9
+ ZJ7MOBpTeb/eM0p+DGCl6LT0nr8WyKckhQUOX0VmjCtwY8SHuM5o/42tH
+ w8mgoJVb8ETtSlTbpcEnZdWgV1FS7kVPV5HUaCG8Ur9IcB1FnNFL+lqeG
+ 6H5mDYYdpW1l+i3ESxye6wFB3ql/aqa5rOfe0ccAUWFOVnrFFYfXjDLtb
+ vnhTZSbkSkvk9NdvQ1tUOTIcqMJdgqshVGGAjhrqSsgPoj9ueBDxo9N+m w==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10667"; a="339220251"
+X-IronPort-AV: E=Sophos;i="5.98,312,1673942400"; d="scan'208";a="339220251"
 Received: from orsmga006.jf.intel.com ([10.7.209.51])
- by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 02 Apr 2023 03:51:21 -0700
+ by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 02 Apr 2023 04:17:53 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10667"; a="662894249"
-X-IronPort-AV: E=Sophos;i="5.98,312,1673942400"; d="scan'208";a="662894249"
+X-IronPort-AV: E=McAfee;i="6600,9927,10667"; a="662899727"
+X-IronPort-AV: E=Sophos;i="5.98,312,1673942400"; d="scan'208";a="662899727"
 Received: from irvmail002.ir.intel.com ([10.43.11.120])
- by orsmga006.jf.intel.com with ESMTP; 02 Apr 2023 03:51:19 -0700
+ by orsmga006.jf.intel.com with ESMTP; 02 Apr 2023 04:17:51 -0700
 Received: from [10.249.151.88] (mwajdecz-MOBL.ger.corp.intel.com
  [10.249.151.88])
- by irvmail002.ir.intel.com (Postfix) with ESMTP id 5865232C8B;
- Sun,  2 Apr 2023 11:51:18 +0100 (IST)
-Message-ID: <0beeefc4-478a-cea7-e244-b6a5f53f10c3@intel.com>
-Date: Sun, 2 Apr 2023 12:51:17 +0200
+ by irvmail002.ir.intel.com (Postfix) with ESMTP id DBCD233734;
+ Sun,  2 Apr 2023 12:17:50 +0100 (IST)
+Message-ID: <cb9c13f0-fbbf-415b-35a8-0c00bfe1864a@intel.com>
+Date: Sun, 2 Apr 2023 13:17:50 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
  Firefox/102.0 Thunderbird/102.9.1
@@ -49,12 +49,12 @@ To: Lucas De Marchi <lucas.demarchi@intel.com>,
 References: <20230321220527.595462-1-lucas.demarchi@intel.com>
  <20230321220527.595462-2-lucas.demarchi@intel.com>
  <adnojpupaqnivif7aqblxkuiwyiexskk4h3b36bsktbpifoip3@b7xazecr7exv>
- <20230331134334.x5u5ixt7nnr666mc@ldmartin-desk2>
- <20230401085932.g6d3zn5th64hxdya@ldmartin-desk2.lan>
- <eboeoenvzefqll4pb6c7ligtoypwttqwolmztrl7dydcjlxh4v@g5iuj2exe72x>
- <20230402012447.7p6m37l74ao2u2hf@ldmartin-desk2.lan>
+ <20230331143337.vtlyhttwwqfv2tad@ldmartin-desk2>
+ <20230401085459.ub2rgeiqbi225n42@ldmartin-desk2.lan>
+ <epatz7qx73i3kzxa4fzn7xcizmdiesgqei62ixvjvhi64i5z36@qz6l54vqdsp7>
+ <20230402013449.orx5njgiy4uyjcbj@ldmartin-desk2.lan>
 From: Michal Wajdeczko <michal.wajdeczko@intel.com>
-In-Reply-To: <20230402012447.7p6m37l74ao2u2hf@ldmartin-desk2.lan>
+In-Reply-To: <20230402013449.orx5njgiy4uyjcbj@ldmartin-desk2.lan>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 Subject: Re: [Intel-xe] [PATCH 1/7] drm/xe: Add basic unit tests for rtp
@@ -75,195 +75,115 @@ Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 
 
-On 02.04.2023 03:24, Lucas De Marchi wrote:
-> On Sat, Apr 01, 2023 at 08:54:18PM +0200, Michał Winiarski wrote:
->> On Sat, Apr 01, 2023 at 01:59:32AM -0700, Lucas De Marchi wrote:
->>> On Fri, Mar 31, 2023 at 07:43:34AM -0600, Lucas De Marchi wrote:
+On 02.04.2023 03:34, Lucas De Marchi wrote:
+> On Sat, Apr 01, 2023 at 08:26:24PM +0200, Michał Winiarski wrote:
+>> On Sat, Apr 01, 2023 at 01:54:59AM -0700, Lucas De Marchi wrote:
+>>> On Fri, Mar 31, 2023 at 08:34:21AM -0600, Lucas De Marchi wrote:
 >>> > On Mon, Mar 27, 2023 at 07:56:01PM +0200, Michał Winiarski wrote:
 >>> > > On Tue, Mar 21, 2023 at 03:05:21PM -0700, Lucas De Marchi wrote:
->>> > > > Add some basic unit tests for rtp. This is intended to prove the
->>> > > > functionality of the rtp itself, like coalescing entries,
->>> rejecting
->>> > > > non-disjoint values, etc.
->>> > > >
->>> > > > Contrary to the other tests in xe, this is a unit test to test the
->>> > > > sw-side only, so it can be executed on any machine - it doesn't
->>> interact
->>> > > > with the real hardware. For that a mock was provided with the
->>> minimum
->>> > > > initialization needed. Running it produces the following output:
->>> > > >
->>> > > >     $ ./tools/testing/kunit/kunit.py run --raw_output  \
->>> > > >         --kunitconfig drivers/gpu/drm/xe/.kunitconfig xe_rtp
->>> > > >     ...
->>> > > >     [13:46:14] Starting KUnit Kernel (1/1)...
->>> > > >     KTAP version 1
->>> > > >     1..1
->>> > > >         KTAP version 1
->>> > > >         # Subtest: xe_rtp
->>> > > >         1..3
->>> > > >         ok 1 xe_rtp_process_basic
->>> > > >     [drm:xe_reg_sr_add] *ERROR* Discarding save-restore reg
->>> 0001 (clear: 00000001, set: 00000001, masked: no): ret=-22
->>> > > >     [drm:xe_reg_sr_add] *ERROR* Discarding save-restore reg
->>> 0001 (clear: 00000003, set: 00000003, masked: no): ret=-22
->>> > > >         ok 2 xe_rtp_process_dup
->>> > > >     [drm:xe_reg_sr_add] *ERROR* Discarding save-restore reg
->>> 0001 (clear: 00000001, set: 00000001, masked: no): ret=-22
->>> > > >     [drm:xe_reg_sr_add] *ERROR* Discarding save-restore reg
->>> 0001 (clear: 00000003, set: 00000003, masked: no): ret=-22
->>> > > >         ok 3 xe_rtp_process_incompat_types
->>> > > >     # xe_rtp: pass:3 fail:0 skip:0 total:3
->>> > > >     # Totals: pass:3 fail:0 skip:0 total:3
->>> > > >     ok 1 xe_rtp
->>> > > >     [13:46:14] Elapsed time: 6.800s total, 0.002s configuring,
->>> 6.682s building, 0.073s running
->>> > > >
->>> > > > Note that the ERRORs in the kernel log are expected since it's
->>> testing
->>> > > > non-disjoint or incompatible entries.
->>> > > >
->>> > > > Signed-off-by: Lucas De Marchi <lucas.demarchi@intel.com>
->>> > > > Reviewed-by: Maarten Lankhorst<maarten.lankhorst@linux.intel.com>
->>> > > > ---
->>> > > > drivers/gpu/drm/xe/Kconfig.debug       |   1 +
->>> > > > drivers/gpu/drm/xe/tests/Makefile      |   7 +-
->>> > > > drivers/gpu/drm/xe/tests/xe_rtp.c      | 201
->>> +++++++++++++++++++++++++
->>> > > > drivers/gpu/drm/xe/tests/xe_rtp_test.c |  64 ++++++++
->>> > > > drivers/gpu/drm/xe/tests/xe_rtp_test.h |  15 ++
->>> > > > drivers/gpu/drm/xe/xe_rtp.c            |   4 +
->>> > > > 6 files changed, 290 insertions(+), 2 deletions(-)
->>> > > > create mode 100644 drivers/gpu/drm/xe/tests/xe_rtp.c
->>> > > > create mode 100644 drivers/gpu/drm/xe/tests/xe_rtp_test.c
->>> > > > create mode 100644 drivers/gpu/drm/xe/tests/xe_rtp_test.h
->>> > > >
->>> > > > diff --git a/drivers/gpu/drm/xe/Kconfig.debug
->>> b/drivers/gpu/drm/xe/Kconfig.debug
->>> > > > index 93b284cdd0a2..11bb13c73e7b 100644
->>> > > > --- a/drivers/gpu/drm/xe/Kconfig.debug
->>> > > > +++ b/drivers/gpu/drm/xe/Kconfig.debug
->>> > > > @@ -66,6 +66,7 @@ config DRM_XE_KUNIT_TEST
->>> > > >     depends on DRM_XE && KUNIT && DEBUG_FS
->>> > > >     default KUNIT_ALL_TESTS
->>> > > >     select DRM_EXPORT_FOR_TESTS if m
->>> > > > +    select DRM_KUNIT_TEST_HELPERS
->>> > > >     help
->>> > > >       Choose this option to allow the driver to perform
->>> selftests under
->>> > > >       the kunit framework
+>>> > > > +EXPORT_SYMBOL(xe_rtp_process_incompat_types);
+>>> > > > diff --git a/drivers/gpu/drm/xe/tests/xe_rtp_test.c
+>>> b/drivers/gpu/drm/xe/tests/xe_rtp_test.c
+>>> > > > new file mode 100644
+>>> > > > index 000000000000..4a12aad3f759
+>>> > > > --- /dev/null
+>>> > > > +++ b/drivers/gpu/drm/xe/tests/xe_rtp_test.c
 >>> > >
->>> > > But now we're mixing proper isolated tests with HW-interacting ones.
->>> > > Can we move the HW-interacting ones to a separate Kconfig which
->>> is not
->>> > > included in .kunitconfig and doesn't set its default value using
->>> > > KUNIT_ALL_TESTS?
+>>> > > There's no need to have this as a separate file.
+>>> > > We can move the contents of tests/xe_rtp.c into
+>>> tests/xe_rtp_test.c and
+>>> > > include tests/xe_rtp_test.c directly in xe_rtp.c
 >>> >
->>> > I'm not sure moving them to a separate kconfig is good, because that
->>> > would mean people building without one or the other. The only case it
->>> > makes sense to build without the hw-interacting ones would be for when
->>> > we are building for UML.
+>>> > this is not how the tests are currently structured.
 >>> >
->>> > I want to make sure the kconfig from CI includes both and people can
->>> > run under !UML both of them.
+>>> > xe_rtp.c includes tests/xe_rtp.c. The latter can be seen as "an
+>>> > extension of the that file, exporting whatever entrypoint is needed
+>>> > for the real test". They are then part of the xe.ko module.
 >>> >
->>> > On the positive side for your approach, we'd be moving the
->>> > *HW-interacting* ones to a separate config. This means we can
->>> create the
->>> > split between the true unit tests and the ones just using the kunit
->>> > infrastructure. I will give this a try and see how it looks in the
->>> end.
->>> >
->>> > I've been advocating for a split on a name-basis, calling these unit
->>> > tests as sw_* and the others as hw_*. Then running just the sw ones is
->>> > simply a matter of passing it as argument to kunit.py
+>>> > tests/xe_rtp_test.c is the one in the separate test module, and
+>>> contains
+>>> > the integration with kunit.
 >>>
->>> I will leave this for later as I don't want to stall the tests on
->>> something that can be converted later and... this is not making the
->>> situation any worse: actually running this in CI will provide an output
->>> a little more useful than it actually is giving: a skip on all tests.
+>>> but it's possible to keep everythin in the separate module and not need
+>>> the include of tests/xe_rtp.c. I did that on v2.
 >>>
->>> I'm almost convinced we can make it work with separate configs as you
->>> suggested, but we will need to sync with CI to make sure it fits
->>> everyody.
+>>> Lucas De Marchi
 >>
->> Sure, just something to keep in mind for the future.
+>> From my perspective - the way that the test is implemented carries an
+>> additional information.
+>> 1) Test is a separate module:
+>> Means that we're testing the API exported by the module (that's used by
+>> other modules).
+>> 2) Test is a file that's a part of a module:
+>> Means that we're testing non-static API used internally by the module.
+>> 3) Test is a file that's included at the end of a file:
+>> Means that we're testing static functions.
 >>
->> And it's not really about architecture (UML or not).
->> .kunitconfig and KUNIT_ALL_TESTS are only relevant for kunit.py users,
->> and so we want to have config for non-HW-interacting tests in
->> .kunitconfig with a default value based on KUNIT_ALL_TESTS. Adding any
->> architecture dependencies here would break kunit.py --arch=X usecase.
->>
->> For HW-interacting tests, we want a completely separate config, that's
->> not part of .kunitconfig and does not have anything to do with
->> KUNIT_ALL_TESTS.
->>
->> This way - kunit.py users won't even notice the skips (unless they build
->> custom config), and for HW, I expect CI to be using a custom kernel
->> config anyway (KUnit one is very unlikely to boot on real hardware), so
+>> Forcing everything to be a module doesn't really serve any purpose.
+>> It just makes things harder to follow, as it removes this useful
+>> additional bit of information.
 > 
-> that's why this will need to be synchronized with a change in CI config
-> as with the current config we would stop having the hw tests.
+> I strongly disagree here.  Basing the test location on how much a
+> function is exposed is a recipe for having to move the tests from one
+> place to another. There are always refactors that make function change
+> from non-static -> static, static -> non-static, and to a smaller degree
+> exporting it.
 > 
->> .kunitconfig and KUNIT_ALL_TESTS don't really matter for HW-interacting
->> tests.
+> In the end the code will just be inconsistent with the rules you
+> outlined.
 > 
-> I agree about .kunitconfig, but if we create a
-> CONFIG_DRM_XE_HW_KUNIT_TEST and default it to N instead of
-> KUNIT_ALL_TESTS as you propose, CI would stop having those tests in its
-> config. Here it's not about .kunitconfig, but the .config CI is using:
-> https://gitlab.freedesktop.org/drm/xe/ci/-/blob/main/kernel/kconfig
-
-likely we can workaround that by using
-
-	default Y if DRM_XE_DEBUG
-
-or just explicitly update the CI config to the desired value
-
+> Separating everything to a separate module means the test code doesn't
+> bloat the xe.ko module. I do think we should group all the tests into a
+> single xe_test.ko, but that is a different topic.
 > 
-> Options:
-> 1) CONFIG_DRM_XE_HW_KUNIT_TEST 2) CONFIG_DRM_XE_LIVE_TEST
-> 3) CONFIG_DRM_XE_SELFTEST
+> See v2 of this patch series where I move *all* of the rtp tests to the
+> separate module and simply use EXPORT_SYMBOL_IF_KUNIT() to export the 2
+
+but having to export static functions simply don't scale, it's fine if
+all you test needs is 2 functions, but to have full coverage we might
+end with exporting all static functions (and to some extend bloating
+xe.ko anyway, both in code and binary)
+
+there is already BKM for testing static functions [1]
+so why are we trying to force different (and IMO worst) model ?
+
+[1]
+https://docs.kernel.org/dev-tools/kunit/usage.html#testing-static-functions
+
+> functions I need (In this v1 I was using
+> EXPORT_SYMBOL_NS_GPL(..., XE_KUNIT) to make sure the tests were in a
+> separate namespace, but then I noticed kunit itself has a recommended
+> way by using its macro).
 > 
-> The above would be my order of preference, but I don't have a strong
-> opinion.
+> This makes the rule very simple to be followed:
+> 
+> 1) Place everything you can in the separate test module
 
-before choosing the name for new config for HW tests from the above
-list, we should discuss that in connection with existing config name, as
-we plan to use KUNIT in both scenarios, and maybe worth to change both
-to clearly indicate our intentions/use case.
+but why? as Michal pointed out, this works best for testing already
+exported API functions, to test internal static functions, this would be
+unnecessary complicated solution
 
-here is sample of possible pairs:
+> 2) Place it in end of the file with the #include otherwise
 
-a) CONFIG_DRM_XE_KUNIT_TEST
-   CONFIG_DRM_XE_HW_KUNIT_TEST
+this should be our primary BKM for mock/fake/sw/self/kunit/unit(*) test.
 
-b) CONFIG_DRM_XE_KUNIT_TEST
-   CONFIG_DRM_XE_LIVE_TEST
+(*) pick one
 
-c) CONFIG_DRM_XE_KUNIT_TEST
-   CONFIG_DRM_XE_SELFTEST
+note that in addition to easy maintenance (it doesn't require writing,
+building, distributing and loading separate modules), this single test
+file already has access to all required compilation unit static
+functions that we want to test.
 
-d) CONFIG_DRM_XE_KUNIT_SELFTESTS
-   CONFIG_DRM_XE_KUNIT_LIVETESTS
+also from IGT point of view, this would mean that in case of
+adding/removing some subtests all we need is just update test filter
+rather then updating list of modules to load/unload.
 
-e) CONFIG_DRM_XE_SELFTESTS
-   CONFIG_DRM_XE_LIVETESTS
-
-f) CONFIG_DRM_XE_SW_SELFTESTS
-   CONFIG_DRM_XE_HW_SELFTESTS
-
-g) CONFIG_DRM_XE_SW_UNIT_TESTS
-   CONFIG_DRM_XE_HW_LIVE_TESTS
-
-...
-
-my vote would go for e) as a good balance
+and I wouldn't count this final #include as .ko bloating factor as it
+would be primary used in UML build, where we don't care, and for the
+target builds this could be easily compiled out.
 
 thanks,
 Michal
 
 > 
-> thanks
 > Lucas De Marchi
