@@ -4,45 +4,47 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 049A8C761AF
-	for <intel-xe@archiver.kernel.org>; Mon,  3 Apr 2023 17:57:52 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id E4F2DC77B6C
+	for <intel-xe@archiver.kernel.org>; Mon,  3 Apr 2023 17:57:50 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D79A210E14E;
-	Mon,  3 Apr 2023 17:57:51 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9A00A10E0BF;
+	Mon,  3 Apr 2023 17:57:50 +0000 (UTC)
 Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 17AEE10E0BF
- for <intel-xe@lists.freedesktop.org>; Mon,  3 Apr 2023 17:57:49 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id EF6A1890BB
+ for <intel-xe@lists.freedesktop.org>; Mon,  3 Apr 2023 17:57:48 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1680544669; x=1712080669;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=8OV13goIu60rjLYhff4ESu2zgp8+QqUJBCPI7qwIRFQ=;
- b=d/QiyQgUPE9ncg6lZJlxqY6LdhhIH3/9Tv/Z0a4FpLz5ldL+3P5N2B3D
- BK+/xfAgOWlpBkXaBu0NbsgssApMbOkK08FuiBJ/Ro/dTL3D/wn3dxgin
- bfojGov3tactT+acdr4dyOuWqEhyRl8xa2s0+ws0t1oVU4ltZcRIxfZfU
- bDLxUip4jM5OZS75pOte0exBRdcpp6Zn8G4EqimLb90BFfOz8O+7kLZ51
- ERZPY3Tw4aMjhwO+zyR9UbRwM4T2+JyyRN/JNQTKRsKifowXDm7jEKgrl
- c6x0bf3x72Da0S574mggejniZ69+inpcwUrRvJQm8op9S5BfCFIl3grlk w==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10669"; a="341999530"
-X-IronPort-AV: E=Sophos;i="5.98,315,1673942400"; d="scan'208";a="341999530"
+ t=1680544668; x=1712080668;
+ h=from:to:cc:subject:date:message-id:in-reply-to:
+ references:mime-version:content-transfer-encoding;
+ bh=B1KHTC+o8ecfjnMzRYYUnNonTiaQmu6mlwPT1MBxdm4=;
+ b=j42c21HoLcjdmt+7PR/NIEsYAD0cP3M5P4+LMr3ovQY+8KbzdOpGm64+
+ injj98oSCcnto8nSle29BPHSk6u/eUCA5BcwMDiYfeUbMMoSZAEydfh2u
+ mGfIxSI0zXqttV+zVCaSRL57SknpDg9P+BjBp3MPKXgrS/zChWLjUerly
+ Van53iWe0hkxF3PdFq0XmnqfWrNnTeR6v1Fgy2Wo3vlHsxMxq+BO1Vn3+
+ CLeKNv/0wVV816XC+3FM532LwTmYc8+z6sYGYf+tFb5CE2XTIGAZlk3oq
+ aF97U8wibNbo+eDBkrDYsy6ezDCkGu2+3vrL5RpewXRwEh3HgCyEExMmn A==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10669"; a="341999532"
+X-IronPort-AV: E=Sophos;i="5.98,315,1673942400"; d="scan'208";a="341999532"
 Received: from orsmga002.jf.intel.com ([10.7.209.21])
  by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  03 Apr 2023 10:57:42 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10669"; a="686065666"
-X-IronPort-AV: E=Sophos;i="5.98,315,1673942400"; d="scan'208";a="686065666"
+X-IronPort-AV: E=McAfee;i="6600,9927,10669"; a="686065674"
+X-IronPort-AV: E=Sophos;i="5.98,315,1673942400"; d="scan'208";a="686065674"
 Received: from nvishwa1-desk.sc.intel.com ([172.25.29.76])
  by orsmga002-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  03 Apr 2023 10:57:42 -0700
 From: Niranjana Vishwanathapura <niranjana.vishwanathapura@intel.com>
 To: intel-xe@lists.freedesktop.org
-Date: Mon,  3 Apr 2023 10:57:36 -0700
-Message-Id: <20230403175739.32183-1-niranjana.vishwanathapura@intel.com>
+Date: Mon,  3 Apr 2023 10:57:38 -0700
+Message-Id: <20230403175739.32183-3-niranjana.vishwanathapura@intel.com>
 X-Mailer: git-send-email 2.21.0.rc0.32.g243a4c7e27
+In-Reply-To: <20230403175739.32183-1-niranjana.vishwanathapura@intel.com>
+References: <20230403175739.32183-1-niranjana.vishwanathapura@intel.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-xe] [PATCH v2 0/3] drm/xe: Get xe_migrate_test working
+Subject: [Intel-xe] [PATCH v2 2/3] drm/xe/tests: Set correct expectation
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -58,26 +60,31 @@ Cc: thomas.hellstrom@intel.com, lucas.demarchi@intel.com
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Resolve issues in xe_migrate functionality and kunit test and
-get the kunit test passing on all platforms includng the
-multi-tile systems.
+In xe_migrate_sanity_kunit test, use correct expected value as
+the expected value was not only used for the xe_migrate_clear(),
+but also for the xe_migrate_copy() operation.
 
-v2: Rebase and add Fixes tag where required
+v2: Add 'Fixes' tag and update commit text
 
+Fixes: c1a4e05c9aeb ("drm/xe: Stop accepting value in xe_migrate_clear")
 Reviewed-by: Matthew Brost <matthew.brost@intel.com>
 Signed-off-by: Niranjana Vishwanathapura <niranjana.vishwanathapura@intel.com>
+---
+ drivers/gpu/drm/xe/tests/xe_migrate.c | 1 +
+ 1 file changed, 1 insertion(+)
 
-Niranjana Vishwanathapura (3):
-  drm/xe/tests: Use proper batch base address
-  drm/xe/tests: Set correct expectation
-  drm/xe: Use proper vram offset
-
- drivers/gpu/drm/xe/tests/xe_migrate.c |  4 +++-
- drivers/gpu/drm/xe/xe_bo.c            | 12 ++++++------
- drivers/gpu/drm/xe/xe_bo.h            |  1 +
- drivers/gpu/drm/xe/xe_migrate.c       | 13 ++++++++-----
- 4 files changed, 18 insertions(+), 12 deletions(-)
-
+diff --git a/drivers/gpu/drm/xe/tests/xe_migrate.c b/drivers/gpu/drm/xe/tests/xe_migrate.c
+index 90f4e1c4f029..862d11b2210f 100644
+--- a/drivers/gpu/drm/xe/tests/xe_migrate.c
++++ b/drivers/gpu/drm/xe/tests/xe_migrate.c
+@@ -147,6 +147,7 @@ static void test_copy(struct xe_migrate *m, struct xe_bo *bo,
+ 	xe_map_memset(xe, &sysmem->vmap, 0, 0xc0, sysmem->size);
+ 	xe_map_memset(xe, &bo->vmap, 0, 0xd0, bo->size);
+ 
++	expected = 0xc0c0c0c0c0c0c0c0;
+ 	fence = xe_migrate_copy(m, sysmem, sysmem->ttm.resource,
+ 				bo->ttm.resource);
+ 	if (!sanity_fence_failed(xe, fence, big ? "Copying big bo sysmem -> vram" :
 -- 
 2.21.0.rc0.32.g243a4c7e27
 
