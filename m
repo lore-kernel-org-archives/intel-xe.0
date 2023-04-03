@@ -4,30 +4,47 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id F41E7C76196
-	for <intel-xe@archiver.kernel.org>; Mon,  3 Apr 2023 14:07:14 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 05A8DC76196
+	for <intel-xe@archiver.kernel.org>; Mon,  3 Apr 2023 16:46:31 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C04F810E4A4;
-	Mon,  3 Apr 2023 14:07:14 +0000 (UTC)
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id 0FC3510E49E;
- Mon,  3 Apr 2023 14:07:13 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 06E4BAADEA;
- Mon,  3 Apr 2023 14:07:13 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============7701658419481878449=="
+	by gabe.freedesktop.org (Postfix) with ESMTP id B9C3510E51D;
+	Mon,  3 Apr 2023 16:46:31 +0000 (UTC)
+Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2BD3310E51D;
+ Mon,  3 Apr 2023 16:46:30 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1680540390; x=1712076390;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=TWYkwvd3ONiOWTzYNufhC827VPe1T1/nry7OHX63TDU=;
+ b=S3dpf0U1wyiQBpl3zpA9w7YeZrvW2QV/Ix0sxRhvtUYAmGp3djNObpjp
+ zF/xyssST1B+FX7CdzuLwHWpzHw72DRnoAQWPeWtDAkA0ulxA+EK2H3km
+ /VZFS5awraexr39mBN5/cTO/DjaQ1vxERVovbazXAmEH7Q3MvorurWzyc
+ lit/9mHnHSYLrZ5GnfCE4S0ZlEdIjlwOvnx6W5yjVOy/b5S9TU4N1zpzQ
+ YS1yQ4hTBzSz5RPb+ZjtodCVNf3UV4V/z1JAzuZw7BdiSkkk5uMC1KxCO
+ 0SxkhBugU+nR0V0WgZJOIiSZoH7OrOR6cEJD/3M13FeZ5UA7jKQI+oOoS Q==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10669"; a="322350678"
+X-IronPort-AV: E=Sophos;i="5.98,315,1673942400"; d="scan'208";a="322350678"
+Received: from fmsmga002.fm.intel.com ([10.253.24.26])
+ by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 03 Apr 2023 09:46:28 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6600,9927,10669"; a="797132326"
+X-IronPort-AV: E=Sophos;i="5.98,315,1673942400"; d="scan'208";a="797132326"
+Received: from unknown (HELO josouza-mobl2.fso.intel.com) ([10.230.18.148])
+ by fmsmga002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 03 Apr 2023 09:46:26 -0700
+From: =?UTF-8?q?Jos=C3=A9=20Roberto=20de=20Souza?= <jose.souza@intel.com>
+To: intel-xe@lists.freedesktop.org
+Date: Mon,  3 Apr 2023 09:46:11 -0700
+Message-Id: <20230403164615.131633-1-jose.souza@intel.com>
+X-Mailer: git-send-email 2.40.0
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Matthew Brost" <matthew.brost@intel.com>
-Date: Mon, 03 Apr 2023 14:07:12 -0000
-Message-ID: <168053083299.24308.3456158092270280021@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20230403134230.3093580-1-matthew.brost@intel.com>
-In-Reply-To: <20230403134230.3093580-1-matthew.brost@intel.com>
-Subject: [Intel-xe] =?utf-8?q?=E2=97=8B_CI=2EBAT=3A_info_for_CI=3A_Update?=
- =?utf-8?q?_GuC_firmware_to_70=2E6=2E2?=
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+Subject: [Intel-xe] [PATCH 1/5] drm/i915: Split display locks init from
+ i915_driver_early_probe()
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -39,68 +56,64 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
-Cc: intel-xe@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============7701658419481878449==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+No behavior changes here, just adding a function to make clear
+what locks initialized here are display related or not.
 
-== Series Details ==
+Cc: intel-gfx@lists.freedesktop.org
+Signed-off-by: José Roberto de Souza <jose.souza@intel.com>
+---
+ drivers/gpu/drm/i915/i915_driver.c | 23 +++++++++++++++--------
+ 1 file changed, 15 insertions(+), 8 deletions(-)
 
-Series: CI: Update GuC firmware to 70.6.2
-URL   : https://patchwork.freedesktop.org/series/116026/
-State : info
+diff --git a/drivers/gpu/drm/i915/i915_driver.c b/drivers/gpu/drm/i915/i915_driver.c
+index 066d79c2069c4..224cb4cb43335 100644
+--- a/drivers/gpu/drm/i915/i915_driver.c
++++ b/drivers/gpu/drm/i915/i915_driver.c
+@@ -188,6 +188,20 @@ static void sanitize_gpu(struct drm_i915_private *i915)
+ 	}
+ }
+ 
++static void
++i915_driver_display_early_probe(struct drm_i915_private *dev_priv)
++{
++	spin_lock_init(&dev_priv->display.fb_tracking.lock);
++	spin_lock_init(&dev_priv->display.wm.dsparb_lock);
++	mutex_init(&dev_priv->display.backlight.lock);
++
++	mutex_init(&dev_priv->display.audio.mutex);
++	mutex_init(&dev_priv->display.wm.wm_mutex);
++	mutex_init(&dev_priv->display.pps.mutex);
++	mutex_init(&dev_priv->display.hdcp.comp_mutex);
++	spin_lock_init(&dev_priv->display.dkl.phy_lock);
++}
++
+ /**
+  * i915_driver_early_probe - setup state not requiring device access
+  * @dev_priv: device private
+@@ -213,18 +227,11 @@ static int i915_driver_early_probe(struct drm_i915_private *dev_priv)
+ 
+ 	spin_lock_init(&dev_priv->irq_lock);
+ 	spin_lock_init(&dev_priv->gpu_error.lock);
+-	spin_lock_init(&dev_priv->display.fb_tracking.lock);
+-	spin_lock_init(&dev_priv->display.wm.dsparb_lock);
+-	mutex_init(&dev_priv->display.backlight.lock);
+ 
+ 	mutex_init(&dev_priv->sb_lock);
+ 	cpu_latency_qos_add_request(&dev_priv->sb_qos, PM_QOS_DEFAULT_VALUE);
+ 
+-	mutex_init(&dev_priv->display.audio.mutex);
+-	mutex_init(&dev_priv->display.wm.wm_mutex);
+-	mutex_init(&dev_priv->display.pps.mutex);
+-	mutex_init(&dev_priv->display.hdcp.comp_mutex);
+-	spin_lock_init(&dev_priv->display.dkl.phy_lock);
++	i915_driver_display_early_probe(dev_priv);
+ 
+ 	i915_memcpy_init_early(dev_priv);
+ 	intel_runtime_pm_init_early(&dev_priv->runtime_pm);
+-- 
+2.40.0
 
-== Summary ==
-
-Participating hosts:
-bat-atsm-2
-bat-dg2-oem2
-bat-adlp-7
-Missing hosts results[0]:
-Results: [xe-pw-116026v1](https://intel-gfx-ci.01.org/tree/xe/xe-pw-116026v1/index.html)
-
-
-
---===============7701658419481878449==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>CI: Update GuC firmware to 70.6.2</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/116026/">https://patchwork.freedesktop.org/series/116026/</a></td></tr>
-<tr><td><b>State:</b></td><td>info</td></tr>
-
-</table>
-
-
-    <p>Participating hosts:<br />
-bat-atsm-2<br />
-bat-dg2-oem2<br />
-bat-adlp-7<br />
-Missing hosts results[0]:<br />
-Results: <a href="https://intel-gfx-ci.01.org/tree/xe/xe-pw-116026v1/index.html">xe-pw-116026v1</a></p>
-
-</body>
-</html>
-
---===============7701658419481878449==--
