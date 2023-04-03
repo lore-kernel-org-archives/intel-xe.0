@@ -4,78 +4,82 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id F17BAC76188
-	for <intel-xe@archiver.kernel.org>; Mon,  3 Apr 2023 18:09:18 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id C7E48C77B6C
+	for <intel-xe@archiver.kernel.org>; Mon,  3 Apr 2023 18:10:35 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9392A10E554;
-	Mon,  3 Apr 2023 18:09:18 +0000 (UTC)
-Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E6AE310E550;
- Mon,  3 Apr 2023 18:09:15 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8A85D10E544;
+	Mon,  3 Apr 2023 18:10:35 +0000 (UTC)
+Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B4ECE10E4E4;
+ Mon,  3 Apr 2023 18:10:31 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1680545355; x=1712081355;
+ t=1680545432; x=1712081432;
  h=from:to:cc:subject:date:message-id:references:
- in-reply-to:content-transfer-encoding:mime-version;
- bh=cL63UK3+eBDPdyRp2PnJtAskBPXOjruYc/WEoxi0b3I=;
- b=eP54wnHDKvM/j/4FcvVLOZ2GApG++WmG2grQaHV2y1HWoBrDIfJafFZY
- mdfaxTh3dvOYkDK4IfSp5odGl0QmV6bhd2CrSbcvteS0aV08t8+JnWw2U
- EtBtoSUMOHO99d/m68Z5hPRQrK2wtOnhcXPcLXmoQZPVs7X30eZg/kGXm
- rmnM42Qlq2HIRft9BZ7IJLz2Z+3Cvi8pdwmobVIoZVp/YPlgyWOyBtT7P
- 1jHnX3/jpKsgxpkokAXjOxwnrBUlrMPfUcj1P02FxWZGSq3jeks0ISsO7
- Xve4IcAU9gA2yj1W86sK5kzpZWkyLZ9ie/TOx5EO0e2r/kr1Ot7lQPOj2 Q==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10669"; a="339472181"
-X-IronPort-AV: E=Sophos;i="5.98,315,1673942400"; d="scan'208";a="339472181"
-Received: from orsmga008.jf.intel.com ([10.7.209.65])
- by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 03 Apr 2023 11:09:15 -0700
+ in-reply-to:content-id:content-transfer-encoding: mime-version;
+ bh=+crM6Khy9QLVJdsH5rEqUvsmtOu1SE454XniiJzAPDs=;
+ b=WAsD56oBk+OZlX/xfyLDtAnL8AFyd1J3iPMBJfcU+xmA99B97lr7olLu
+ DLvBnCPdeef3GZkR9bo6sjOkmcc2AWD/+igcZ6sjhJh/Nd2HcWAUyVvX0
+ NQX0DAV6gRMQmt+OZaGfMSAkvgJ+BNQEGkrhpEZYVYjNg5Rsx09LHzmhW
+ sfGl7tScAtp6LeQCujQwWGwLPD12uteYIhv9InOVvfStccbsPbdszMjBV
+ pkIu92+wnqSLXY4ubSfLtMbTRdX1F6Jv85HyU3lVJMDDLWp/2MjBAVhcp
+ bP+VfuXh1ZmWn8PjlPRqgjebNWByQCI7jFB15iZyetnDXfg8kBWQjLiiN Q==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10669"; a="325990003"
+X-IronPort-AV: E=Sophos;i="5.98,315,1673942400"; d="scan'208";a="325990003"
+Received: from fmsmga001.fm.intel.com ([10.253.24.23])
+ by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 03 Apr 2023 11:10:30 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10669"; a="716385680"
-X-IronPort-AV: E=Sophos;i="5.98,315,1673942400"; d="scan'208";a="716385680"
-Received: from fmsmsx602.amr.corp.intel.com ([10.18.126.82])
- by orsmga008.jf.intel.com with ESMTP; 03 Apr 2023 11:09:14 -0700
-Received: from fmsmsx601.amr.corp.intel.com (10.18.126.81) by
- fmsmsx602.amr.corp.intel.com (10.18.126.82) with Microsoft SMTP Server
+X-IronPort-AV: E=McAfee;i="6600,9927,10669"; a="829665028"
+X-IronPort-AV: E=Sophos;i="5.98,315,1673942400"; d="scan'208";a="829665028"
+Received: from fmsmsx603.amr.corp.intel.com ([10.18.126.83])
+ by fmsmga001.fm.intel.com with ESMTP; 03 Apr 2023 11:10:30 -0700
+Received: from fmsmsx611.amr.corp.intel.com (10.18.126.91) by
+ fmsmsx603.amr.corp.intel.com (10.18.126.83) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.21; Mon, 3 Apr 2023 11:09:14 -0700
-Received: from fmsedg601.ED.cps.intel.com (10.1.192.135) by
- fmsmsx601.amr.corp.intel.com (10.18.126.81) with Microsoft SMTP Server
+ 15.1.2507.21; Mon, 3 Apr 2023 11:10:30 -0700
+Received: from fmsmsx610.amr.corp.intel.com (10.18.126.90) by
+ fmsmsx611.amr.corp.intel.com (10.18.126.91) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.21 via Frontend Transport; Mon, 3 Apr 2023 11:09:14 -0700
-Received: from NAM02-DM3-obe.outbound.protection.outlook.com (104.47.56.47) by
- edgegateway.intel.com (192.55.55.70) with Microsoft SMTP Server
+ 15.1.2507.21; Mon, 3 Apr 2023 11:10:29 -0700
+Received: from FMSEDG603.ED.cps.intel.com (10.1.192.133) by
+ fmsmsx610.amr.corp.intel.com (10.18.126.90) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.21 via Frontend Transport; Mon, 3 Apr 2023 11:10:29 -0700
+Received: from NAM10-MW2-obe.outbound.protection.outlook.com (104.47.55.104)
+ by edgegateway.intel.com (192.55.55.68) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2507.21; Mon, 3 Apr 2023 11:09:13 -0700
+ 15.1.2507.21; Mon, 3 Apr 2023 11:10:29 -0700
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=ZzPgBJQi5MVy6SEXhfRjTYGqGpNYRrYLavsYJmM2Jf17dUBKznLeStFdxkFMd+SDTq0HzzXimRECYM9zyrynqiiFBC3w2ZaoXjDjuxbKqPDXPZqwsZqJgwNlZp3tMkKfGdU5eMS+KnBt6bdJdbjJHr6M7rwz5fd8JCmTZL7m7LF4aG+ShyXQuRuaA2vDWbJAL0iCaEgSKZSY3CTbtG72Walt5o4ogZ4dHb+epcQ5TV+C117tcaJ6AeHKLQmJlrmW5/nTgtSIE7qV9ow50ewVolbb63gLAFI/ZIDCCaWiMCh0lQlJ8kt4wmUUe3FqPicosAfrvFpLT+xhuPkGYI768A==
+ b=d8XYaIUS4V+HLYngc9R58guE0AE5Fvko2fDoJ33RIhHLFnZ4O6UtcgVfCXoMI+g3nVtgNAdDLzmbVWMUgDq57cKlCTyKhfa+TW6k+t+aavZg+91zx2ZTeWqlFKwD4MG5oduhxSACOotH07fAQXbgAD3fYr1WDp0w1BVUHGGAXuGbHLmxvyDbLq28lUXGNEsyUSdl/hRxcgcWrE5CF1tK6nlUGAqAwaUQa15SDmYBfNH2F6eJFOL2SSwGTxkAgWmztCu78GdnSblsS2jZ7vz0SUyusZqZN3NAEhjmtEN3C7JFssbXFqOTLpffi7gmRKfmCanrsq0ub7HXo49hIsxp6g==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=qs6yjMS9j7fICzJ5pI+eqJJibeVK9fhrD/csis/Kytk=;
- b=WwZvUTT5ZCoPeUl3dYRKTcu8tKKdxaBdJ5tiRbrdV1qxyptUvF8+eieCLKSkjfZhN+sHW8lBG8sAMy1AVVPSaUGO9v/hEx7ygUUYQk69eTyq1+mLZBXEzmrCNE6xcZp43PeQI1ww8fRKdAkpifsG8o+XrzjaDK4+z2vFNz1PEH5eSWx/hAo/dqwh2tct7wWKGyoIk5WE5Pu2o3/z5Iaz0Dbnhu0mz8camDFq1/6vzoy8M9Daph0LoJiTv2wiIWIR6cvXKmF22XRw/ZtCqFxa0u0QV1yQ4vjaeZQ8Jr210002wFwME6GmcrpQxw95nXLjYwLuRkpfJEbIAuyD6PxtKg==
+ bh=+crM6Khy9QLVJdsH5rEqUvsmtOu1SE454XniiJzAPDs=;
+ b=D3fZtxvha98vp9t0Z2eaOcSbmP/xMviXg8gE3LA4WgyRFlarmLl83B/69rnf1Q6XoMGKdqrdFPKKrJQplZ6gwBtf9rkS4UvIFwrdzI4evgMfF94fCuVFNEGFDvwE8yA+Q8lv0OYJQSCsp1hPkmzu+IXOWWMONpAgourWapHS9ttN9FrNIUOcztnTR2vcZPSDtiQa2D5mlYgnNvh236zlyl5P4K0Z89gWp03J06wZ6wwYECZy9gDhXhnwEUgDUGcf29CDeH//D8zPsTYXsv5ub/hXaCyU+YxI7ygdc/bD7Uq5Yxc4rkcVg926MsLUpdaYzXMoktTPfaST2WrQTd8rFA==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
  dkim=pass header.d=intel.com; arc=none
-Received: from SJ2PR11MB7715.namprd11.prod.outlook.com (2603:10b6:a03:4f4::20)
- by CY8PR11MB7799.namprd11.prod.outlook.com (2603:10b6:930:78::14)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6254.29; Mon, 3 Apr
- 2023 18:09:11 +0000
-Received: from SJ2PR11MB7715.namprd11.prod.outlook.com
- ([fe80::50a8:a719:92da:370a]) by SJ2PR11MB7715.namprd11.prod.outlook.com
- ([fe80::50a8:a719:92da:370a%5]) with mapi id 15.20.6222.033; Mon, 3 Apr 2023
- 18:09:10 +0000
-From: "Srivatsa, Anusha" <anusha.srivatsa@intel.com>
-To: "De Marchi, Lucas" <lucas.demarchi@intel.com>
-Thread-Topic: [PATCH 3/3] drm/xe: Update GuC/HuC firmware autoselect logic
-Thread-Index: AQHZXhBB7uOyLXjkJE6j/B6WLXpQ2q8Q2trggAHdZ4CABzkIEA==
-Date: Mon, 3 Apr 2023 18:09:10 +0000
-Message-ID: <SJ2PR11MB7715344964E17CACB72E6AE6F8929@SJ2PR11MB7715.namprd11.prod.outlook.com>
-References: <20230324051754.1346390-1-lucas.demarchi@intel.com>
- <20230324051754.1346390-4-lucas.demarchi@intel.com>
- <SJ2PR11MB771527702FC1B562638E67D1F8889@SJ2PR11MB7715.namprd11.prod.outlook.com>
- <20230330034621.zdlunvob4mc7nzxt@ldmartin-desk2>
-In-Reply-To: <20230330034621.zdlunvob4mc7nzxt@ldmartin-desk2>
+Received: from DM4PR11MB8179.namprd11.prod.outlook.com (2603:10b6:8:18e::22)
+ by CO1PR11MB4900.namprd11.prod.outlook.com (2603:10b6:303:9e::8) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6254.30; Mon, 3 Apr
+ 2023 18:10:27 +0000
+Received: from DM4PR11MB8179.namprd11.prod.outlook.com
+ ([fe80::7ad:5a7f:9d62:e51f]) by DM4PR11MB8179.namprd11.prod.outlook.com
+ ([fe80::7ad:5a7f:9d62:e51f%5]) with mapi id 15.20.6254.028; Mon, 3 Apr 2023
+ 18:10:26 +0000
+From: "Souza, Jose" <jose.souza@intel.com>
+To: "Vivi, Rodrigo" <rodrigo.vivi@intel.com>, "Nikula, Jani"
+ <jani.nikula@intel.com>
+Thread-Topic: [Intel-xe] [PATCH 1/5] drm/i915: Split display locks init from
+ i915_driver_early_probe()
+Thread-Index: AQHZZkvkBInIX1UdjEmSfi//zsyJoq8Zz9KAgAAStIA=
+Date: Mon, 3 Apr 2023 18:10:26 +0000
+Message-ID: <bc6c151c44b46ce04da7760b7ce359f2bf1764fd.camel@intel.com>
+References: <20230403164615.131633-1-jose.souza@intel.com>
+ <ZCsG32XI7XLljXGP@intel.com>
+In-Reply-To: <ZCsG32XI7XLljXGP@intel.com>
 Accept-Language: en-US
 Content-Language: en-US
 X-MS-Has-Attach: 
@@ -83,60 +87,70 @@ X-MS-TNEF-Correlator:
 authentication-results: dkim=none (message not signed)
  header.d=none;dmarc=none action=none header.from=intel.com;
 x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: SJ2PR11MB7715:EE_|CY8PR11MB7799:EE_
-x-ms-office365-filtering-correlation-id: b72c5daa-879e-45d6-d482-08db346e8659
+x-ms-traffictypediagnostic: DM4PR11MB8179:EE_|CO1PR11MB4900:EE_
+x-ms-office365-filtering-correlation-id: 3a1c7215-30a0-47a0-ba86-08db346eb37e
+x-ld-processed: 46c98d88-e344-4ed4-8496-4ed7712e255d,ExtAddr
 x-ms-exchange-senderadcheck: 1
 x-ms-exchange-antispam-relay: 0
 x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: iTtyXQPuizcULAE+vs1oB/uiQ2HLi0kX1rEspcWksjEA4X3eH1yVzURiH533cDAgFq5nbndm8BtPlg+RjNsuau4M3vbMOjkS8V/x46HFaB0QY+hGVxSXQ9YrPXoKsgrFNwOxj3i9BMFdFxeGVL0mL/rg+Ebx0QOJJU5CDhN/80RkMpiTQavCfStktzXKZLoT6xixWlyd3fsDGXCOZyMXX9HG0lqYbUry7MQiQbHVst7iw9jcVTqLCHTVkBt1w05yIzEa5zgkv9O7Yh5TTktg9YemounaJGupz2zPbAk8f5ZbfGS1fX5oR4Sk2MmgfpLdBQIaHET2orGl2dXpAbt6CtaP+b8o5QIEbOY+6OqPLG39G50wjD76VodolzCQB/UZDA++uPCrMjofDYGdfk5y1LpI88PjILMx8YuVLJw14ZrqBs0q+Rx6TMmtfFYYnvnBrvCkCkTwbTxY1MggbiCDJJ+O2qJjMLkbfDnaoZJd+rDcMQZ//wyxtBHp4+lT+uDa0CNUYeYYrDs/CAK1jgjUKWHBqaawvhpaS4T+dhKvDYXqlHmcEhsXTgHjNOeszSoQMHGy3xdjxo1ktW7e4ZGdhoQp5+X+y/eS8dwQkcBCTRM=
+x-microsoft-antispam-message-info: 55AGMNh5K6QBT/iB3DPkK/l1oxdqTVjDLoHX1ig3nSwRwrAPriPhmo+WjxcqNynnnWujBuOvpef9bNp/mAq76LtgYMqiwXBj6CHbYRx59wGMeey+99qm3gGazO/GguRMc1LOaksQiOGKGKFLMBtogYwTuhQsR+w8EiPEMRhTVbsyJoaSEEKsijYLPbmSy138BxwA4CYRZ4HakaVnDS4TZKEGEg6uAjOcYpkREy7uXNfvNeZXZMFDXFuXhpTleS27iyBkZJaqUvoNWdOl3DzgaMSuKpENljvpJm35/xmR+LutZnRx3OeZGQJy19DbBdWVtJQ+rX267o9Q4awKtOVbPE8EoOgnEBjS46XFsda639qUFAvETaO+19PY0fNbgOTm67vPs5FPBuEClcdtzq0BV+wBE3P18RLhmR2v3MZE4KTUSpOxpxcTZhshLdJH0SqpApVNkiQgKwSmu5ppjvHtjWEH9qM8TYK2GbJTOAwv7pWSnbZTh5fbsG+2NPxHnv/52iqf9DVw+WgopWoGQmnwXT9Z8PE7W1Ic8d7EROuDvM2Ca2Ett6vNXeje/wvgEdpI
 x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:SJ2PR11MB7715.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230028)(366004)(376002)(396003)(346002)(39860400002)(136003)(451199021)(30864003)(5660300002)(86362001)(186003)(83380400001)(122000001)(9686003)(53546011)(26005)(6506007)(38100700002)(82960400001)(38070700005)(6862004)(8936002)(52536014)(64756008)(66556008)(8676002)(66446008)(71200400001)(33656002)(478600001)(54906003)(66946007)(6636002)(7696005)(66476007)(55016003)(4326008)(76116006)(316002)(41300700001)(15650500001)(2906002)(579004);
+ IPV:NLI; SFV:NSPM; H:DM4PR11MB8179.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230028)(136003)(376002)(39860400002)(366004)(346002)(396003)(451199021)(71200400001)(2906002)(186003)(83380400001)(36756003)(2616005)(6512007)(26005)(6506007)(6486002)(966005)(5660300002)(122000001)(8936002)(38100700002)(54906003)(6636002)(82960400001)(110136005)(450100002)(91956017)(76116006)(66946007)(4326008)(64756008)(8676002)(66446008)(66556008)(38070700005)(41300700001)(66476007)(316002)(86362001)(478600001);
  DIR:OUT; SFP:1102; 
 x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?us-ascii?Q?Vokcd2bke5GMvSMWuHpJFPpIi985j7tcuNeR2lgghCF83qUuFpztoRbFCflX?=
- =?us-ascii?Q?fLfNyMzvNNQGfTb0pkuyud1joKYl1mR7jElOEdOlj0TVF2VAjwJYINNSSP6o?=
- =?us-ascii?Q?UXP+rTQuVvEqYCLRFe2rN3Grl0Qsp3mn8qjeW18mSMAP71LKCv410+VBxIW2?=
- =?us-ascii?Q?LmrrKXU2H3CJs81PMsGOGyabsJSUhgOM1gVH85TczIiYLdiqn+0vf1TD8Wrt?=
- =?us-ascii?Q?FE5m9niYH3A+/iNsziZSXlWTMWM4zuUXuow08VlSLhRQEXVMMYBqbCIA7Qqz?=
- =?us-ascii?Q?0hZzF2nf/46YWfUM3b2rfKS+Y1aZr+sbnza9xcAvrss3JX72QYrSf7l6Mt1F?=
- =?us-ascii?Q?5Oe16XqTgQa/nD05RuRtOGf6SXKX36JuYGrIPBYzJl4uM8dZh3VeeP/aB9qP?=
- =?us-ascii?Q?B8YnJ12Hedb9OXViqa/muStwvqUKAO34SYJtirwc1NKmrPGRopsX8IV5LmLD?=
- =?us-ascii?Q?z8oW1L4ZlpQL5ZsYVJ0/+EZtUmN2gfrNDYhwHIiFx2jX62nIPyOSJ+KklEhB?=
- =?us-ascii?Q?aQzq90w/fXXTsHPTMfKtQALYekMh0UVquxDrI+lTYn+6xHHIeCgDn0IiDVbN?=
- =?us-ascii?Q?ENRFR38SKSVwm3/mnJ7FuFHQ2W7DTl8cMDn7DqyEVijsiuw/+4hvxoLTzvo4?=
- =?us-ascii?Q?qS8Xtr3YGzJgYCNg+6jFM0wHFxDOTa9Sn7zwZlK2O8q+Nr2pO1/TMT5Z6qQB?=
- =?us-ascii?Q?mu6p6b6TgPCJpL2FewP7mgF5MW0JFnmBIswP4YIKazsjr9FSfn9WZ4Nu4+u+?=
- =?us-ascii?Q?MPXPKH/K1CZD5O3JiCptPSxFidoIt2A8D74vcJx0hkp+mvr96KIConqIbOA+?=
- =?us-ascii?Q?lPc4I/HOBrKcPIpc8iWK07y7IbLOQjQdjAzCA5zWsX4c5jBn3MZ0Y2RbWxZu?=
- =?us-ascii?Q?wbV9w1YoPOPrrxXK9TZDSZYjMWg4M9G90eJGiTOzMTO25upTCV6VarLCrcLI?=
- =?us-ascii?Q?8n9QpENyLYWoStNYojYdlACIeEvR1pdCRQkCCataOpF7oCTzGPPA1lVULCFS?=
- =?us-ascii?Q?WjZ2tEtCEoqlRPqtPP+G0Ks0hPz58J+1dQZa9kKqMk/EQ3WqPHCxrJbawbEH?=
- =?us-ascii?Q?N4fFthR4g6pDy1IMqNQ5GUxqBDbhij5PEaWFFV7iClMq5i0eBw7qccSULBIh?=
- =?us-ascii?Q?+T4GzT4wFnqeIWxwwdQ2Lj3g5b+VOfrR28ookHw4bKh0XDNBPx6d++QZ8+v8?=
- =?us-ascii?Q?LO+INWF8pknlVc6uVJJyGqmFFIzLQ3yuPkw731DGF9+8fZ5+hfZENeECELUk?=
- =?us-ascii?Q?DvwzGtHk/SDjQ2KZ3EtGor8ZzXhPnxKHhqrUZC831miIkIQHPZCp5CCQ/ZjO?=
- =?us-ascii?Q?QwWUty8sWJ3Ga3BIZQfDGeZrpykSEQ7HHpPAv4Ke7EX/QLANnAjCPV/NiTfn?=
- =?us-ascii?Q?XTEC/oZlGUBUDVnGElSTQt/B1lip6r7M2RFrfwzw2yUNRk/Q+/V7WHHhtf5C?=
- =?us-ascii?Q?hMkGlHghnNUCkhmh7bMoYruJtKU03D5ZExiIExSiMftrfQYtULsLI536snmA?=
- =?us-ascii?Q?/35hOaJ3ooQH5OGOWlHRWUPClsRNkqHSp3L/Q1df7C5jKuvIva6eNPsxiS1s?=
- =?us-ascii?Q?FhfuU18qKY2QdXiS07nGbMzqHh9Nz9dkj5la3hkSYT3raY/zllK9np3VD/+B?=
- =?us-ascii?Q?ZA=3D=3D?=
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+x-ms-exchange-antispam-messagedata-0: =?utf-8?B?YVJQejVibVJ0bDVtRnhSRDVIRWxGemdrYy9qQVQzWmFqWXl6cVVzTTZmTTFG?=
+ =?utf-8?B?eWZxR1RQQU53UXY1VzRmQm9zYTJjOW5qUjY5WlNrUG5pNEJiZ1N5QkhuMGFo?=
+ =?utf-8?B?ZWxYc1N3MWVwaFg2d3U0di8yQzlJTEsxbTN3bUc2SXg4aTNtc2RobHJVRUky?=
+ =?utf-8?B?TEpiWDByK1RtbVZqTTBzQ3N5VTNVRVZvcFluK2g3Zk4rRS81UGRGYmJmN0h3?=
+ =?utf-8?B?aHZQNG05VzZHbXRKeHd4U0VDS0hRM0ZtbS9zeVBrZi9zVjRXUXA5a0xDRWU3?=
+ =?utf-8?B?a2NIbHdHN1hiN0xzZDNBczErY1BrK1N6NlZEcVRici9lTGtIT3JTMEMwN0xq?=
+ =?utf-8?B?SmR5VUgvcktyVnhQMUxZbEU0TmYxMTZYS29Ya05GeWsvT3ZseTVucWQwUmVi?=
+ =?utf-8?B?Z0tZY0JabmVGcnY5Z0lJcHU2UnlXM2VncEZnQStvbGMvTmFMUFNTcGdjQ3Z5?=
+ =?utf-8?B?Q1hhWnlXM2l0ZjBhLzN4clhNUDBHY2s2aGZyUDI1ZnVQelVYMUdkYWRoZDQy?=
+ =?utf-8?B?S3lPbDNFbzJ2dVFNeEZNbDg1dnErY3c5Tkg1bmNMaU5Dak9sL21wbWxKTE5p?=
+ =?utf-8?B?VGZxbDBCb0IvUEJaMGx3TnpvdnVPckVEWkt1cXkvWWY2NTZlKzY3NmZRNzZC?=
+ =?utf-8?B?L0hPOXdyU041NVZaUStGbWludlplc09kTFR1dGt4RFhJSTVqMEJGOFkzcXUv?=
+ =?utf-8?B?SlhKaGlJMXJMOFZZODhOajZvMG1tUVBJNU1FUHFNYW0wNDVid0doVjc3cGNw?=
+ =?utf-8?B?QlBkSENSTDlOM2JpWnRQdzlhZ1d2Mzc2M3Y4NFhqT1QyUENOS2tOZHNUbTdu?=
+ =?utf-8?B?VHpFb0FkRkpGcFdianVwUm9MV1NvU1dIL2pic0hFbEJXcXZaNzU2U3ZlUUtN?=
+ =?utf-8?B?bnl3Vm1PTnRkaEkrZHc1T0pxUUpoZVRiRnhYZEdPSHkzUzhJUFdGZEdqMUp1?=
+ =?utf-8?B?S2g4Sk5tM2lJd2hwVFpHU29ub0lEdmpJRnFtMnZPSU50aW1QYzR1STVhZzlH?=
+ =?utf-8?B?RElRdGkzR3hrT0hEbFR1b1lNUDBhbGRnU1JHcGIxTHMxeVh6MWFuaXU1WWhr?=
+ =?utf-8?B?S29aYnV0S25mZDNvQzk0Y29VbThtMjBjTDdESlpwT2Z5UGw5MEJJY1JiK20r?=
+ =?utf-8?B?WDFsTW5NeDAzVlh1MXdIZWU0TDFwVEpKbjlRbHZadTl1bFhROHQ4WmdFMUNh?=
+ =?utf-8?B?bnpLTmtkSE5WNjhiL0JsUXh2ZHFFMEg0enh1QmtUTk5raXduVFFZVkJuVjUw?=
+ =?utf-8?B?dm0vQkhsZlRTa1h5OG9xTkNXR1ErdnN3RTJnUTB6QXZNd0dYZ3dCMktuYmx6?=
+ =?utf-8?B?RU4xVW1lRTd4MjY3OWh0em94REcvbXFPbktiOEpQWTlTQ1NZU2xjaXFscW5u?=
+ =?utf-8?B?QjBobXNmR3NhRWV4a2xINkl6NGoxUlk5K0V4Y0VqZFFZRXI2QnBmRlROYkla?=
+ =?utf-8?B?N1UvelYxeGppQS9Wa2FQQmI5VHNPNlp5eVo5a2FyTndhVUhjZzh4ME1WMncr?=
+ =?utf-8?B?SXlLeFF2U2xGRlNMS2lxTkl2OGZFeUNEdHRZQWNxdm5nM3lKUktpVHRzNXZi?=
+ =?utf-8?B?SEN1d1ByNEw2cDlHL2JIL1J2c1Jzd05BVWV0ZE1qbDlCb21NekZ5V2wxTi9W?=
+ =?utf-8?B?UmRsWCtaNnF0eEtFa21wc1RFamZvTndRRHZwRXIvU2U1Yk4yOEJVTXpnZVoz?=
+ =?utf-8?B?MytCR1dBdXZsUkdvVUdCdzNDY1NPeDdiNXBnUElYeUk5WjBrWjRaWmJTT3RD?=
+ =?utf-8?B?NURTQlFYaGM5RmVjSTdnT1FxWDBrZFFkTzZMcm93d01ON3NkTDB4MWduQVlV?=
+ =?utf-8?B?Lyt1aWRpTnpSZ1RWT2xNK2RoNnV1c1IxZWJSNjE3YVYySDRxTGZGdE9DZXFa?=
+ =?utf-8?B?TndndU5BS3ZmbU9JSFkvWjdHb0w5YytmVGx0ZnMvQ3lZYzh2eFFtSUtiUGZI?=
+ =?utf-8?B?WHgvWFQ5VTFPTlN4VGV4bnV6Q1A4SFlKUjNoYTNuU3piNG1mMm8xMEJWQXdO?=
+ =?utf-8?B?dm9tSVFKRWRxcHJKMDhza2lrNHBEb2VGOFJWa3VSRE1acEpKVFM3ejI5eDFO?=
+ =?utf-8?B?KzR6WHlUSzdnYXBSek9CQWRDWFBobHR4TTZwUjZlVjQ2Nnd2RDNDTG9icFYz?=
+ =?utf-8?Q?pN7FD5jTfNrsxt5PIlKxk72lN?=
+Content-Type: text/plain; charset="utf-8"
+Content-ID: <2D28BEA4472AEC419F77D84FE23635F2@namprd11.prod.outlook.com>
+Content-Transfer-Encoding: base64
 MIME-Version: 1.0
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: SJ2PR11MB7715.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: b72c5daa-879e-45d6-d482-08db346e8659
-X-MS-Exchange-CrossTenant-originalarrivaltime: 03 Apr 2023 18:09:10.8085 (UTC)
+X-MS-Exchange-CrossTenant-AuthSource: DM4PR11MB8179.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 3a1c7215-30a0-47a0-ba86-08db346eb37e
+X-MS-Exchange-CrossTenant-originalarrivaltime: 03 Apr 2023 18:10:26.5499 (UTC)
 X-MS-Exchange-CrossTenant-fromentityheader: Hosted
 X-MS-Exchange-CrossTenant-id: 46c98d88-e344-4ed4-8496-4ed7712e255d
 X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: 4GiiEUbj/DFPbysrWp0hucoez/s4gY2g4gPOZn3laqPSo/nB8Bi1Pdl5MrvUVvRSzC+3n2DuXEnHaKq8qZG8eqI9QRyNNipyvEEcjwKzYsU=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: CY8PR11MB7799
+X-MS-Exchange-CrossTenant-userprincipalname: sPbKOtOQUPf2jbVWFrIMMpXtc65knsAZLLxS/5kkv9pP2JrRbXb2W4GXjv4mc8K/WHL4OTgUjhV/trMxeYV/bg==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: CO1PR11MB4900
 X-OriginatorOrg: intel.com
-Subject: Re: [Intel-xe] [PATCH 3/3] drm/xe: Update GuC/HuC firmware
- autoselect logic
+Subject: Re: [Intel-xe] [PATCH 1/5] drm/i915: Split display locks init from
+ i915_driver_early_probe()
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -148,600 +162,65 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Cc: Daniel Vetter <daniel.vetter@ffwll.ch>,
- "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>,
- Dave Airlie <airlied@redhat.com>,
+Cc: "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
  "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-
-
-> -----Original Message-----
-> From: De Marchi, Lucas <lucas.demarchi@intel.com>
-> Sent: Wednesday, March 29, 2023 8:46 PM
-> To: Srivatsa, Anusha <anusha.srivatsa@intel.com>
-> Cc: intel-xe@lists.freedesktop.org; Harrison, John C
-> <john.c.harrison@intel.com>; Ceraolo Spurio, Daniele
-> <daniele.ceraolospurio@intel.com>; dri-devel@lists.freedesktop.org; Danie=
-l
-> Vetter <daniel.vetter@ffwll.ch>; Dave Airlie <airlied@redhat.com>
-> Subject: Re: [PATCH 3/3] drm/xe: Update GuC/HuC firmware autoselect logic
->=20
-> On Tue, Mar 28, 2023 at 04:31:13PM -0700, Anusha Srivatsa wrote:
-> >
-> >
-> >> -----Original Message-----
-> >> From: De Marchi, Lucas <lucas.demarchi@intel.com>
-> >> Sent: Thursday, March 23, 2023 10:18 PM
-> >> To: intel-xe@lists.freedesktop.org
-> >> Cc: Srivatsa, Anusha <anusha.srivatsa@intel.com>; Harrison, John C
-> >> <john.c.harrison@intel.com>; Ceraolo Spurio, Daniele
-> >> <daniele.ceraolospurio@intel.com>; dri-devel@lists.freedesktop.org;
-> >> Daniel Vetter <daniel.vetter@ffwll.ch>; Dave Airlie
-> >> <airlied@redhat.com>; De Marchi, Lucas <lucas.demarchi@intel.com>
-> >> Subject: [PATCH 3/3] drm/xe: Update GuC/HuC firmware autoselect logic
-> >>
-> >> Update the logic to autoselect GuC/HuC for the platforms with the
-> >> following
-> >> improvements:
-> >>
-> >> - Document what is the firmware file that is expected to be
-> >>   loaded and what is checked from blob headers
-> >> - When the platform is under force-probe it's desired to enforce
-> >>   the full-version requirement so the correct firmware is used
-> >>   before widespread adoption and backward-compatibility
-> >>
-> >Extra line ^
-> >
-> >>   commitments
-> >> - Directory from which we expect firmware blobs to be available in
-> >>   upstream linux-firmware repository depends on the platform: for
-> >>   the ones supported by i915 it uses the i915/ directory, but the ones
-> >>   expected to be supported by xe, it's on the xe/ directory. This
-> >>   means that for platforms in the intersection, the firmware is
-> >>   loaded from a different directory, but that is not much important
-> >>   in the firmware repo and it avoids firmware duplication.
-> >>
-> >> - Make the table with the firmware definitions clearly state the
-> >>   versions being expected. Now with macros to select the version it's
-> >>   possible to choose between full-version/major-version for GuC and
-> >>   full-version/no-version for HuC. These are similar to the macros use=
-d
-> >>   in i915, but implemented in a slightly different way to avoid
-> >>   duplicating the macros for each firmware/type and functionality,
-> >>   besides adding the support for different directories.
-> >>
-> >> - There is no check added regarding force-probe since xe should
-> >>   reuse the same firmware files published for i915 for past
-> >>   platforms. This can be improved later with additional
-> >>   kunit checking against a hardcoded list of platforms that
-> >Extra line here.
-> >
-> >>   falls in this category.
-> >> - As mentioned in the TODO, the major version fallback was not
-> >>   implemented before as currently each platform only supports one
-> >>   major. That can be easily added later.
-> >>
-> >> - GuC version for MTL and PVC were updated to 70.6.4, using the exact
-> >>   full version, while the
-> >>
-> >> After this the GuC firmware used by PVC changes to pvc_guc_70.5.2.bin
-> >> since it's using a file not published yet.
-> >>
-> >> Signed-off-by: Lucas De Marchi <lucas.demarchi@intel.com>
-> >> ---
-> >>  drivers/gpu/drm/xe/xe_uc_fw.c       | 315 +++++++++++++++++----------=
--
-> >>  drivers/gpu/drm/xe/xe_uc_fw.h       |   2 +-
-> >>  drivers/gpu/drm/xe/xe_uc_fw_types.h |   7 +
-> >>  3 files changed, 204 insertions(+), 120 deletions(-)
-> >>
-> >> diff --git a/drivers/gpu/drm/xe/xe_uc_fw.c
-> >> b/drivers/gpu/drm/xe/xe_uc_fw.c index 174c42873ebb..653bc3584cc5
-> >> 100644
-> >> --- a/drivers/gpu/drm/xe/xe_uc_fw.c
-> >> +++ b/drivers/gpu/drm/xe/xe_uc_fw.c
-> >> @@ -17,6 +17,137 @@
-> >>  #include "xe_mmio.h"
-> >>  #include "xe_uc_fw.h"
-> >>
-> >> +/*
-> >> + * List of required GuC and HuC binaries per-platform. They must be
-> >> +ordered
-> >> + * based on platform, from newer to older.
-> >> + *
-> >> + * Versioning follows the guidelines from
-> >> + * Documentation/driver-api/firmware/firmware-usage-guidelines.rst.
-> >> +There is a
-> >> + * distinction for platforms being officially supported by the driver=
- or not.
-> >> + * Platforms not available publicly or not yet officially supported
-> >> +by the
-> >> + * driver (under force-probe), use the mmp_ver(): the firmware
-> >> +autoselect logic
-> >> + * will select the firmware from disk with filename that matches the
-> >> +full
-> >> + * "mpp version", i.e. major.minor.patch. mmp_ver() should only be
-> >> +used for
-> >> + * this case.
-> >> + *
-> >> + * For platforms officially supported by the driver, the filename
-> >> +always only
-> >> + * ever contains the major version (GuC) or no version at all (HuC).
-> >> + *
-> >> + * After loading the file, the driver parses the versions embedded in=
- the blob.
-> >> + * The major version needs to match a major version supported by the
-> >> +driver (if
-> >> + * any). The minor version is also checked and a notice emitted to
-> >> +the log if
-> >> + * the version found is smaller than the version wanted. This is
-> >> +done only for
-> >> + * informational purposes so users may have a chance to upgrade, but
-> >> +the driver
-> >> + * still loads and use the older firmware.
-> >> + *
-> >> + * Examples:
-> >> + *
-> >> + *	1) Platform officially supported by i915 - using Tigerlake as exam=
-ple.
-> >> + *	   Driver loads the following firmware blobs from disk:
-> >> + *
-> >> + *		- i915/tgl_guc_<major>.bin
-> >> + *		- i915/tgl_huc.bin
-> >> + *
-> >> + *	   <major> number for GuC is checked that it matches the version i=
-nside
-> >> + *	   the blob. <minor> version is checked and if smaller than the ex=
-pected
-> >> + *	   an info message is emitted about that.
-> >> + *
-> >> + *	1) XE_<FUTUREINTELPLATFORM>, still under require_force_probe.
-> >> Using
-> >> + *	   "wipplat" as a short-name. Driver loads the following firmware =
-blobs
-> >> + *	   from disk:
-> >> + *
-> >> + *		- xe/wipplat_guc_<major>.<minor>.<patch>.bin
-> >> + *		- xe/wipplat_huc_<major>.<minor>.<patch>.bin
-> >> + *
-> >> + *	   <major> and <minor> are checked that they match the version ins=
-ide
-> >> + *	   the blob. Both of them need to match exactly what the driver is
-> >> + *	   expecting, otherwise it fails.
-> >> + *
-> >> + *	3) Platform officially supported by xe and out of force-probe. Usi=
-ng
-> >> + *	   "plat" as a short-name. Except for the different directory, the
-> >> + *	   behavior is the same as (1). Driver loads the following firmwar=
-e
-> >> + *	   blobs from disk:
-> >> + *
-> >> + *		- xe/plat_guc_<major>.bin
-> >> + *		- xe/plat_huc.bin
-> >> + *
-> >> + *	   <major> number for GuC is checked that it matches the version i=
-nside
-> >> + *	   the blob. <minor> version is checked and if smaller than the ex=
-pected
-> >> + *	   an info message is emitted about that.
-> >> + *
-> >> + * For the platforms already released with a major version, they
-> >> +should never be
-> >> + * removed from the table. Instead new entries with newer versions
-> >> +may be added
-> >> + * before them, so they take precedence.
-> >> + *
-> >> + * TODO: Currently there's no fallback on major version. That's
-> >> +because xe
-> >> + * driver only supports the one major version of each firmware in the=
- table.
-> >> + * This needs to be fixed when the major version of GuC is updated.
-> >> + */
-> >> +
-> >> +struct uc_fw_entry {
-> >> +	enum xe_platform platform;
-> >> +	struct {
-> >> +		const char *path;
-> >> +		u16 major;
-> >> +		u16 minor;
-> >> +		bool full_ver_required;
-> >> +	};
-> >> +};
-> >> +
-> >> +struct fw_blobs_by_type {
-> >> +	const struct uc_fw_entry *entries;
-> >> +	u32 count;
-> >> +};
-> >> +
-> >> +#define XE_GUC_FIRMWARE_DEFS(fw_def, mmp_ver, major_ver)
-> >> 		\
-> >> +	fw_def(METEORLAKE,	mmp_ver(  i915,	guc,	mtl,	70, 6, 4))
-> >> 	\
-> >> +	fw_def(PVC,		mmp_ver(  xe,	guc,	pvc,	70, 6, 4))
-> >> 	\
-> >> +	fw_def(ALDERLAKE_P,	major_ver(i915,	guc,	adlp,	70, 5))
-> >> 	\
-> >> +	fw_def(ALDERLAKE_S,	major_ver(i915,	guc,	tgl,	70, 5))
-> >> 	\
-> >> +	fw_def(DG2,		major_ver(i915,	guc,	dg2,	70, 5))
-> >> 	\
-> >> +	fw_def(DG1,		major_ver(i915,	guc,	dg1,	70, 5))
-> >> 	\
-> >> +	fw_def(TIGERLAKE,	major_ver(i915,	guc,	tgl,	70, 5))
-> >> +
-> >> +#define XE_HUC_FIRMWARE_DEFS(fw_def, mmp_ver, no_ver)
-> >> 		\
-> >> +	fw_def(ALDERLAKE_S,	no_ver(i915,	huc,	tgl))
-> >> 	\
-> >> +	fw_def(DG1,		no_ver(i915,	huc,	dg1))
-> >> 	\
-> >> +	fw_def(TIGERLAKE,	no_ver(i915,	huc,	tgl))
-> >> +
-> >> +#define MAKE_FW_PATH(dir__, uc__, shortname__, version__)
-> >> 	\
-> >> +	__stringify(dir__) "/" __stringify(shortname__) "_"
-> >> +__stringify(uc__)
-> >> version__ ".bin"
-> >> +
-> >> +#define fw_filename_mmp_ver(dir_, uc_, shortname_, a, b, c)
-> >> 	\
-> >> +	MAKE_FW_PATH(dir_, uc_, shortname_, "_" __stringify(a ## . ## b ## .
-> >> ## c))
-> >> +#define fw_filename_major_ver(dir_, uc_, shortname_, a, b)
-> >> 	\
-> >> +	MAKE_FW_PATH(dir_, uc_, shortname_, "_" __stringify(a)) #define
-> >> +fw_filename_no_ver(dir_, uc_, shortname_)
-> >> 	\
-> >> +	MAKE_FW_PATH(dir_, uc_, shortname_, "")
-> >> +
-> >> +#define uc_fw_entry_mmp_ver(dir_, uc_, shortname_, a, b, c)
-> >> 	\
-> >> +	{ fw_filename_mmp_ver(dir_, uc_, shortname_, a, b, c),
-> >> 	\
-> >> +	  a, b, true }
-> >> +#define uc_fw_entry_major_ver(dir_, uc_, shortname_, a, b)
-> >> 	\
-> >> +	{ fw_filename_major_ver(dir_, uc_, shortname_, a, b),
-> >> 	\
-> >> +	  a, b }
-> >Why is b required here?
->=20
-> because it is setting the minor in the corresponding struct uc_fw_entry.
->  From the tables above, basically for the rows using major_ver(), it will=
- use up to
-> the major version in the arguments to decide what is the
-> *file*  to load. The path for the file is constructed with the macro abov=
-e, so it
-> can be used by both MODULE_FIRMWARE and by setting the patch in the
-> uc_fw_entry.  The same major_ver() is used to fill out the rest of the
-> uc_fw_entry, where we need the minor too.
->=20
-> See doucumentation above. Copying the relevant part here:
->=20
-> 	<major> number for GuC is checked that it matches the version inside
-> 	the blob. <minor> version is checked and if smaller than the expected
-> 	an info message is emitted about that.
->=20
->=20
-> Lucas De Marchi
-
-Thanks for the explanation. The auto select logic looks good.
-With the extra lines removed from commit message,
-
- Reviewed-by: Anusha Srivatsa <anusha.srivatsa@intel.com>
-
-
-> >
-> >
-> >Anusha
-> >> +#define uc_fw_entry_no_ver(dir_, uc_, shortname_)
-> >> 	\
-> >> +	{ fw_filename_no_ver(dir_, uc_, shortname_),
-> >> 	\
-> >> +	  0, 0 }
-> >> +
-> >> +/* All blobs need to be declared via MODULE_FIRMWARE() */ #define
-> >> +XE_UC_MODULE_FIRMWARE(platform__, fw_filename)
-> >> 		\
-> >> +	MODULE_FIRMWARE(fw_filename);
-> >> +
-> >> +#define XE_UC_FW_ENTRY(platform__, entry__)
-> >> 		\
-> >> +	{
-> >> 	\
-> >> +		.platform =3D XE_ ## platform__,
-> >> 	\
-> >> +		entry__,
-> >> 	\
-> >> +	},
-> >> +
-> >> +XE_GUC_FIRMWARE_DEFS(XE_UC_MODULE_FIRMWARE,
-> >> 			\
-> >> +		     fw_filename_mmp_ver, fw_filename_major_ver)
-> >> +XE_HUC_FIRMWARE_DEFS(XE_UC_MODULE_FIRMWARE,
-> >> 			\
-> >> +		     fw_filename_mmp_ver, fw_filename_no_ver)
-> >> +
-> >>  static struct xe_gt *
-> >>  __uc_fw_to_gt(struct xe_uc_fw *uc_fw, enum xe_uc_fw_type type)  { @@
-> >> -
-> >> 37,123 +168,38 @@ static struct xe_device *uc_fw_to_xe(struct
-> >> xe_uc_fw
-> >> *uc_fw)
-> >>  	return gt_to_xe(uc_fw_to_gt(uc_fw));  }
-> >>
-> >> -/*
-> >> - * List of required GuC and HuC binaries per-platform.
-> >> - * Must be ordered based on platform, from newer to older.
-> >> - */
-> >> -#define XE_GUC_FIRMWARE_DEFS(fw_def, guc_def) \
-> >> -	fw_def(METEORLAKE,   guc_def(mtl,  70, 5, 2)) \
-> >> -	fw_def(PVC,          guc_def(pvc,  70, 5, 2)) \
-> >> -	fw_def(ALDERLAKE_P,  guc_def(adlp,  70, 5, 2)) \
-> >> -	fw_def(ALDERLAKE_S,  guc_def(tgl,  70, 5, 2)) \
-> >> -	fw_def(DG2,          guc_def(dg2,  70, 5, 2)) \
-> >> -	fw_def(DG1,          guc_def(dg1,  70, 5, 2)) \
-> >> -	fw_def(TIGERLAKE,    guc_def(tgl,  70, 5, 2))
-> >> -
-> >> -#define XE_HUC_FIRMWARE_DEFS(fw_def, huc_def, huc_ver) \
-> >> -	fw_def(ALDERLAKE_S,	huc_def(tgl)) \
-> >> -	fw_def(DG1,		huc_def(dg1)) \
-> >> -	fw_def(TIGERLAKE,	huc_def(tgl))
-> >> -
-> >> -#define __MAKE_HUC_FW_PATH(prefix_, name_) \
-> >> -        "i915/" \
-> >> -        __stringify(prefix_) "_" name_ ".bin"
-> >> -
-> >> -#define __MAKE_UC_FW_PATH_MAJOR(prefix_, name_, major_) \
-> >> -	"i915/" \
-> >> -	__stringify(prefix_) "_" name_ "_" \
-> >> -	__stringify(major_) ".bin"
-> >> -
-> >> -#define __MAKE_UC_FW_PATH_FULL_VER(prefix_, name_, major_, minor_,
-> >> patch_) \
-> >> -        "i915/" \
-> >> -       __stringify(prefix_) "_" name_ "_" \
-> >> -       __stringify(major_) "." \
-> >> -       __stringify(minor_) "." \
-> >> -       __stringify(patch_) ".bin"
-> >> -
-> >> -#define MAKE_GUC_FW_PATH(prefix_, major_, minor_, patch_) \
-> >> -	__MAKE_UC_FW_PATH_MAJOR(prefix_, "guc", major_)
-> >> -
-> >> -#define MAKE_HUC_FW_PATH(prefix_) \
-> >> -	__MAKE_HUC_FW_PATH(prefix_, "huc")
-> >> -
-> >> -#define MAKE_HUC_FW_PATH_FULL_VER(prefix_, major_, minor_, patch_)
-> \
-> >> -	__MAKE_UC_FW_PATH_FULL_VER(prefix_, "huc", major_, minor_,
-> >> patch_)
-> >> -
-> >> -
-> >> -/* All blobs need to be declared via MODULE_FIRMWARE() */ -#define
-> >> XE_UC_MODULE_FW(platform_, uc_) \
-> >> -	MODULE_FIRMWARE(uc_);
-> >> -
-> >> -XE_GUC_FIRMWARE_DEFS(XE_UC_MODULE_FW, MAKE_GUC_FW_PATH) -
-> >> XE_HUC_FIRMWARE_DEFS(XE_UC_MODULE_FW, MAKE_HUC_FW_PATH,
-> >> MAKE_HUC_FW_PATH_FULL_VER)
-> >> -
-> >> -/* The below structs and macros are used to iterate across the list
-> >> of blobs */ - struct __packed uc_fw_blob {
-> >> -	u8 major;
-> >> -	u8 minor;
-> >> -	const char *path;
-> >> -};
-> >> -
-> >> -#define UC_FW_BLOB(major_, minor_, path_) \
-> >> -	{ .major =3D major_, .minor =3D minor_, .path =3D path_ }
-> >> -
-> >> -#define GUC_FW_BLOB(prefix_, major_, minor_, patch_) \
-> >> -	UC_FW_BLOB(major_, minor_, \
-> >> -		   MAKE_GUC_FW_PATH(prefix_, major_, minor_, patch_))
-> >> -
-> >> -#define HUC_FW_BLOB(prefix_) \
-> >> -	UC_FW_BLOB(0, 0, MAKE_HUC_FW_PATH(prefix_))
-> >> -
-> >> -#define HUC_FW_VERSION_BLOB(prefix_, major_, minor_, bld_num_) \
-> >> -	UC_FW_BLOB(major_, minor_, \
-> >> -		   MAKE_HUC_FW_PATH_FULL_VER(prefix_, major_, minor_,
-> >> bld_num_))
-> >> -
-> >> -struct uc_fw_platform_requirement {
-> >> -	enum xe_platform p;
-> >> -	const struct uc_fw_blob blob;
-> >> -};
-> >> -
-> >> -#define MAKE_FW_LIST(platform_, uc_) \ -{ \
-> >> -	.p =3D XE_##platform_, \
-> >> -	.blob =3D uc_, \
-> >> -},
-> >> -
-> >> -struct fw_blobs_by_type {
-> >> -	const struct uc_fw_platform_requirement *blobs;
-> >> -	u32 count;
-> >> -};
-> >> -
-> >>  static void
-> >>  uc_fw_auto_select(struct xe_device *xe, struct xe_uc_fw *uc_fw)  {
-> >> -	static const struct uc_fw_platform_requirement blobs_guc[] =3D {
-> >> -		XE_GUC_FIRMWARE_DEFS(MAKE_FW_LIST, GUC_FW_BLOB)
-> >> +	static const struct uc_fw_entry entries_guc[] =3D {
-> >> +		XE_GUC_FIRMWARE_DEFS(XE_UC_FW_ENTRY,
-> >> +				     uc_fw_entry_mmp_ver,
-> >> +				     uc_fw_entry_major_ver)
-> >>  	};
-> >> -	static const struct uc_fw_platform_requirement blobs_huc[] =3D {
-> >> -		XE_HUC_FIRMWARE_DEFS(MAKE_FW_LIST, HUC_FW_BLOB,
-> >> HUC_FW_VERSION_BLOB)
-> >> +	static const struct uc_fw_entry entries_huc[] =3D {
-> >> +		XE_HUC_FIRMWARE_DEFS(XE_UC_FW_ENTRY,
-> >> +				     uc_fw_entry_mmp_ver,
-> >> +				     uc_fw_entry_no_ver)
-> >>  	};
-> >>  	static const struct fw_blobs_by_type
-> blobs_all[XE_UC_FW_NUM_TYPES]
-> >> =3D {
-> >> -		[XE_UC_FW_TYPE_GUC] =3D { blobs_guc, ARRAY_SIZE(blobs_guc)
-> >> },
-> >> -		[XE_UC_FW_TYPE_HUC] =3D { blobs_huc, ARRAY_SIZE(blobs_huc)
-> >> },
-> >> +		[XE_UC_FW_TYPE_GUC] =3D { entries_guc,
-> >> ARRAY_SIZE(entries_guc) },
-> >> +		[XE_UC_FW_TYPE_HUC] =3D { entries_huc,
-> >> ARRAY_SIZE(entries_huc) },
-> >>  	};
-> >> -	static const struct uc_fw_platform_requirement *fw_blobs;
-> >> +	static const struct uc_fw_entry *entries;
-> >>  	enum xe_platform p =3D xe->info.platform;
-> >> -	u32 fw_count;
-> >> +	u32 count;
-> >>  	int i;
-> >>
-> >>  	XE_BUG_ON(uc_fw->type >=3D ARRAY_SIZE(blobs_all));
-> >> -	fw_blobs =3D blobs_all[uc_fw->type].blobs;
-> >> -	fw_count =3D blobs_all[uc_fw->type].count;
-> >> -
-> >> -	for (i =3D 0; i < fw_count && p <=3D fw_blobs[i].p; i++) {
-> >> -		if (p =3D=3D fw_blobs[i].p) {
-> >> -			const struct uc_fw_blob *blob =3D &fw_blobs[i].blob;
-> >> -
-> >> -			uc_fw->path =3D blob->path;
-> >> -			uc_fw->major_ver_wanted =3D blob->major;
-> >> -			uc_fw->minor_ver_wanted =3D blob->minor;
-> >> +	entries =3D blobs_all[uc_fw->type].entries;
-> >> +	count =3D blobs_all[uc_fw->type].count;
-> >> +
-> >> +	for (i =3D 0; i < count && p <=3D entries[i].platform; i++) {
-> >> +		if (p =3D=3D entries[i].platform) {
-> >> +			uc_fw->path =3D entries[i].path;
-> >> +			uc_fw->major_ver_wanted =3D entries[i].major;
-> >> +			uc_fw->minor_ver_wanted =3D entries[i].minor;
-> >> +			uc_fw->full_ver_required =3D entries[i].full_ver_required;
-> >>  			break;
-> >>  		}
-> >>  	}
-> >> @@ -227,6 +273,47 @@ static void guc_read_css_info(struct xe_uc_fw
-> >> *uc_fw, struct uc_css_header *css)
-> >>  	uc_fw->private_data_size =3D css->private_data_size;  }
-> >>
-> >> +static int uc_fw_check_version_requirements(struct xe_uc_fw *uc_fw) {
-> >> +	struct xe_device *xe =3D uc_fw_to_xe(uc_fw);
-> >> +
-> >> +	/* Driver has no requirement on any version, any is good. */
-> >> +	if (!uc_fw->major_ver_wanted)
-> >> +		return 0;
-> >> +
-> >> +	/*
-> >> +	 * If full version is required, both major and minor should match.
-> >> +	 * Otherwise, at least the major version.
-> >> +	 */
-> >> +	if (uc_fw->major_ver_wanted !=3D uc_fw->major_ver_found ||
-> >> +	    (uc_fw->full_ver_required &&
-> >> +	     uc_fw->minor_ver_wanted !=3D uc_fw->minor_ver_found)) {
-> >> +		drm_notice(&xe->drm, "%s firmware %s: unexpected version:
-> >> %u.%u !=3D %u.%u\n",
-> >> +			   xe_uc_fw_type_repr(uc_fw->type), uc_fw->path,
-> >> +			   uc_fw->major_ver_found, uc_fw->minor_ver_found,
-> >> +			   uc_fw->major_ver_wanted, uc_fw-
-> >> >minor_ver_wanted);
-> >> +		goto fail;
-> >> +	}
-> >> +
-> >> +	if (uc_fw->minor_ver_wanted > uc_fw->minor_ver_found) {
-> >> +		drm_notice(&xe->drm, "%s firmware (%u.%u) is recommended,
-> >> but only (%u.%u) was found in %s\n",
-> >> +			   xe_uc_fw_type_repr(uc_fw->type),
-> >> +			   uc_fw->major_ver_wanted, uc_fw-
-> >> >minor_ver_wanted,
-> >> +			   uc_fw->major_ver_found, uc_fw->minor_ver_found,
-> >> +			   uc_fw->path);
-> >> +		drm_info(&xe->drm, "Consider updating your linux-firmware
-> >> pkg or downloading from %s\n",
-> >> +			 XE_UC_FIRMWARE_URL);
-> >> +	}
-> >> +
-> >> +	return 0;
-> >> +
-> >> +fail:
-> >> +	if (xe_uc_fw_is_overridden(uc_fw))
-> >> +		return 0;
-> >> +
-> >> +	return -ENOEXEC;
-> >> +}
-> >> +
-> >>  int xe_uc_fw_init(struct xe_uc_fw *uc_fw)  {
-> >>  	struct xe_device *xe =3D uc_fw_to_xe(uc_fw); @@ -308,19 +395,9 @@
-> int
-> >> xe_uc_fw_init(struct xe_uc_fw *uc_fw)
-> >>  	uc_fw->minor_ver_found =3D FIELD_GET(CSS_SW_VERSION_UC_MINOR,
-> >>  					   css->sw_version);
-> >>
-> >> -	if (uc_fw->major_ver_wanted) {
-> >> -		if (uc_fw->major_ver_found !=3D uc_fw->major_ver_wanted ||
-> >> -		    uc_fw->minor_ver_found < uc_fw->minor_ver_wanted) {
-> >> -			drm_notice(&xe->drm, "%s firmware %s: unexpected
-> >> version: %u.%u !=3D %u.%u\n",
-> >> -				   xe_uc_fw_type_repr(uc_fw->type), uc_fw-
-> >> >path,
-> >> -				   uc_fw->major_ver_found, uc_fw-
-> >> >minor_ver_found,
-> >> -				   uc_fw->major_ver_wanted, uc_fw-
-> >> >minor_ver_wanted);
-> >> -			if (!xe_uc_fw_is_overridden(uc_fw)) {
-> >> -				err =3D -ENOEXEC;
-> >> -				goto fail;
-> >> -			}
-> >> -		}
-> >> -	}
-> >> +	err =3D uc_fw_check_version_requirements(uc_fw);
-> >> +	if (err)
-> >> +		goto fail;
-> >>
-> >>  	if (uc_fw->type =3D=3D XE_UC_FW_TYPE_GUC)
-> >>  		guc_read_css_info(uc_fw, css);
-> >> diff --git a/drivers/gpu/drm/xe/xe_uc_fw.h
-> >> b/drivers/gpu/drm/xe/xe_uc_fw.h index bf31c3bb0e0f..e16267e71280
-> >> 100644
-> >> --- a/drivers/gpu/drm/xe/xe_uc_fw.h
-> >> +++ b/drivers/gpu/drm/xe/xe_uc_fw.h
-> >> @@ -175,6 +175,6 @@ static inline u32 xe_uc_fw_get_upload_size(struct
-> >> xe_uc_fw *uc_fw)
-> >>  	return __xe_uc_fw_get_upload_size(uc_fw);
-> >>  }
-> >>
-> >> -#define XE_UC_FIRMWARE_URL
-> >> "https://git.kernel.org/pub/scm/linux/kernel/git/firmware/linux-
-> >> firmware.git/tree/i915"
-> >> +#define XE_UC_FIRMWARE_URL
-> >> "https://git.kernel.org/pub/scm/linux/kernel/git/firmware/linux-
-> firmware.git"
-> >>
-> >>  #endif
-> >> diff --git a/drivers/gpu/drm/xe/xe_uc_fw_types.h
-> >> b/drivers/gpu/drm/xe/xe_uc_fw_types.h
-> >> index 1cfd30a655df..6c595aaa2399 100644
-> >> --- a/drivers/gpu/drm/xe/xe_uc_fw_types.h
-> >> +++ b/drivers/gpu/drm/xe/xe_uc_fw_types.h
-> >> @@ -78,6 +78,13 @@ struct xe_uc_fw {
-> >>  	const char *path;
-> >>  	/** @user_overridden: user provided path to uC firmware via
-> >> modparam */
-> >>  	bool user_overridden;
-> >> +	/**
-> >> +	 * @full_version_required: driver still under development and not re=
-ady
-> >> +	 * for backward-compatible firmware. To be used only for **new**
-> >> +	 * platforms, i.e. still under require_force_probe protection and no=
-t
-> >> +	 * supported by i915.
-> >> +	 */
-> >> +	bool full_ver_required;
-> >>  	/** @size: size of uC firmware including css header */
-> >>  	size_t size;
-> >>
-> >> --
-> >> 2.39.0
-> >
+T24gTW9uLCAyMDIzLTA0LTAzIGF0IDEzOjAzIC0wNDAwLCBSb2RyaWdvIFZpdmkgd3JvdGU6DQo+
+IE9uIE1vbiwgQXByIDAzLCAyMDIzIGF0IDA5OjQ2OjExQU0gLTA3MDAsIEpvc8OpIFJvYmVydG8g
+ZGUgU291emEgd3JvdGU6DQo+ID4gTm8gYmVoYXZpb3IgY2hhbmdlcyBoZXJlLCBqdXN0IGFkZGlu
+ZyBhIGZ1bmN0aW9uIHRvIG1ha2UgY2xlYXINCj4gPiB3aGF0IGxvY2tzIGluaXRpYWxpemVkIGhl
+cmUgYXJlIGRpc3BsYXkgcmVsYXRlZCBvciBub3QuDQo+ID4gDQo+ID4gQ2M6IGludGVsLWdmeEBs
+aXN0cy5mcmVlZGVza3RvcC5vcmcNCj4gPiBTaWduZWQtb2ZmLWJ5OiBKb3PDqSBSb2JlcnRvIGRl
+IFNvdXphIDxqb3NlLnNvdXphQGludGVsLmNvbT4NCj4gPiAtLS0NCj4gPiAgZHJpdmVycy9ncHUv
+ZHJtL2k5MTUvaTkxNV9kcml2ZXIuYyB8IDIzICsrKysrKysrKysrKysrKy0tLS0tLS0tDQo+ID4g
+IDEgZmlsZSBjaGFuZ2VkLCAxNSBpbnNlcnRpb25zKCspLCA4IGRlbGV0aW9ucygtKQ0KPiA+IA0K
+PiA+IGRpZmYgLS1naXQgYS9kcml2ZXJzL2dwdS9kcm0vaTkxNS9pOTE1X2RyaXZlci5jIGIvZHJp
+dmVycy9ncHUvZHJtL2k5MTUvaTkxNV9kcml2ZXIuYw0KPiA+IGluZGV4IDA2NmQ3OWMyMDY5YzQu
+LjIyNGNiNGNiNDMzMzUgMTAwNjQ0DQo+ID4gLS0tIGEvZHJpdmVycy9ncHUvZHJtL2k5MTUvaTkx
+NV9kcml2ZXIuYw0KPiA+ICsrKyBiL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2k5MTVfZHJpdmVyLmMN
+Cj4gPiBAQCAtMTg4LDYgKzE4OCwyMCBAQCBzdGF0aWMgdm9pZCBzYW5pdGl6ZV9ncHUoc3RydWN0
+IGRybV9pOTE1X3ByaXZhdGUgKmk5MTUpDQo+ID4gIAl9DQo+ID4gIH0NCj4gPiAgDQo+ID4gK3N0
+YXRpYyB2b2lkDQo+ID4gK2k5MTVfZHJpdmVyX2Rpc3BsYXlfZWFybHlfcHJvYmUoc3RydWN0IGRy
+bV9pOTE1X3ByaXZhdGUgKmRldl9wcml2KQ0KPiA+ICt7DQo+ID4gKwlzcGluX2xvY2tfaW5pdCgm
+ZGV2X3ByaXYtPmRpc3BsYXkuZmJfdHJhY2tpbmcubG9jayk7DQo+ID4gKwlzcGluX2xvY2tfaW5p
+dCgmZGV2X3ByaXYtPmRpc3BsYXkud20uZHNwYXJiX2xvY2spOw0KPiA+ICsJbXV0ZXhfaW5pdCgm
+ZGV2X3ByaXYtPmRpc3BsYXkuYmFja2xpZ2h0LmxvY2spOw0KPiA+ICsNCj4gPiArCW11dGV4X2lu
+aXQoJmRldl9wcml2LT5kaXNwbGF5LmF1ZGlvLm11dGV4KTsNCj4gPiArCW11dGV4X2luaXQoJmRl
+dl9wcml2LT5kaXNwbGF5LndtLndtX211dGV4KTsNCj4gPiArCW11dGV4X2luaXQoJmRldl9wcml2
+LT5kaXNwbGF5LnBwcy5tdXRleCk7DQo+ID4gKwltdXRleF9pbml0KCZkZXZfcHJpdi0+ZGlzcGxh
+eS5oZGNwLmNvbXBfbXV0ZXgpOw0KPiA+ICsJc3Bpbl9sb2NrX2luaXQoJmRldl9wcml2LT5kaXNw
+bGF5LmRrbC5waHlfbG9jayk7DQo+ID4gK30NCj4gPiArDQo+IA0KPiBobW1tLi4uIEkgbGlrZSB0
+aGF0LCBob3dldmVyIEphbmkgaGFkIGluZGljYXRlZCBpbiBhbm90aGVyIHNlcmllcyBbMV0NCj4g
+dGhhdCBoZSB3b3VsZCBwcmVmZXIgdGhlIHdtIG11dGV4IGluc2lkZSB0aGUgd20gY29kZSBmb3Ig
+aW5zdGFuY2UuLi4NCj4gDQo+IFNvLCBzaG91bGQgd2UgbW92ZSBhbGwgb2YgdGhlc2UgdG8gdGhl
+aXIgb3duIGNvbXBvbmVudHMgaW5zdGVhZCBvZiB0aGlzDQo+IG1vdmU/DQo+IA0KPiBbMV0gaHR0
+cHM6Ly9wYXRjaHdvcmsuZnJlZWRlc2t0b3Aub3JnL3Nlcmllcy8xMTU2NzUvDQo+IA0KPiBJIGNo
+ZWNrZWQgYW5kIGZvciBhIGZldyBjb21wb25lbnRzIGl0IGlzIHNpbXBsZSB0byBtb3ZlIHRoZW0g
+dG8gdGhlaXINCj4gb3duIGluaXQgZnVuY3Rpb25zLiBIb3dldmVyIGZvciBhIGZldyB3ZSB3b3Vs
+ZCBuZWVkIHRvIGNyZWF0ZSBuZXcgaW5pdA0KPiBmdW5jdGlvbnMgYW5kIGNhbGwgdGhlbSBoZXJl
+Lg0KPiANCj4gSmFuaSwgbW9yZSB0aG91Z2h0cz8NCg0KRm9yZ290IHRvIENDIHlvdSB0d28gaW4g
+dGhlIG5ldyB2ZXJzaW9uOiBodHRwczovL3BhdGNod29yay5mcmVlZGVza3RvcC5vcmcvc2VyaWVz
+LzExNjAzOS8NCg0KZGlzcGxheS53bS5kc3BhcmJfbG9jayBpcyBub3QgdXNlZCBhbnl3aGVyZS4N
+Ck1vdmVkIGRpc3BsYXkuZGtsLnBoeV9sb2NrLCB3aWxsIGxlYXZlIHRoZSByZXN0IHRvIHNvbWVv
+bmUgdG8gdGFrZSBvdmVyLg0KDQoNCj4gDQo+ID4gIC8qKg0KPiA+ICAgKiBpOTE1X2RyaXZlcl9l
+YXJseV9wcm9iZSAtIHNldHVwIHN0YXRlIG5vdCByZXF1aXJpbmcgZGV2aWNlIGFjY2Vzcw0KPiA+
+ICAgKiBAZGV2X3ByaXY6IGRldmljZSBwcml2YXRlDQo+ID4gQEAgLTIxMywxOCArMjI3LDExIEBA
+IHN0YXRpYyBpbnQgaTkxNV9kcml2ZXJfZWFybHlfcHJvYmUoc3RydWN0IGRybV9pOTE1X3ByaXZh
+dGUgKmRldl9wcml2KQ0KPiA+ICANCj4gPiAgCXNwaW5fbG9ja19pbml0KCZkZXZfcHJpdi0+aXJx
+X2xvY2spOw0KPiA+ICAJc3Bpbl9sb2NrX2luaXQoJmRldl9wcml2LT5ncHVfZXJyb3IubG9jayk7
+DQo+ID4gLQlzcGluX2xvY2tfaW5pdCgmZGV2X3ByaXYtPmRpc3BsYXkuZmJfdHJhY2tpbmcubG9j
+ayk7DQo+ID4gLQlzcGluX2xvY2tfaW5pdCgmZGV2X3ByaXYtPmRpc3BsYXkud20uZHNwYXJiX2xv
+Y2spOw0KPiA+IC0JbXV0ZXhfaW5pdCgmZGV2X3ByaXYtPmRpc3BsYXkuYmFja2xpZ2h0LmxvY2sp
+Ow0KPiA+ICANCj4gPiAgCW11dGV4X2luaXQoJmRldl9wcml2LT5zYl9sb2NrKTsNCj4gPiAgCWNw
+dV9sYXRlbmN5X3Fvc19hZGRfcmVxdWVzdCgmZGV2X3ByaXYtPnNiX3FvcywgUE1fUU9TX0RFRkFV
+TFRfVkFMVUUpOw0KPiA+ICANCj4gPiAtCW11dGV4X2luaXQoJmRldl9wcml2LT5kaXNwbGF5LmF1
+ZGlvLm11dGV4KTsNCj4gPiAtCW11dGV4X2luaXQoJmRldl9wcml2LT5kaXNwbGF5LndtLndtX211
+dGV4KTsNCj4gPiAtCW11dGV4X2luaXQoJmRldl9wcml2LT5kaXNwbGF5LnBwcy5tdXRleCk7DQo+
+ID4gLQltdXRleF9pbml0KCZkZXZfcHJpdi0+ZGlzcGxheS5oZGNwLmNvbXBfbXV0ZXgpOw0KPiA+
+IC0Jc3Bpbl9sb2NrX2luaXQoJmRldl9wcml2LT5kaXNwbGF5LmRrbC5waHlfbG9jayk7DQo+ID4g
+KwlpOTE1X2RyaXZlcl9kaXNwbGF5X2Vhcmx5X3Byb2JlKGRldl9wcml2KTsNCj4gPiAgDQo+ID4g
+IAlpOTE1X21lbWNweV9pbml0X2Vhcmx5KGRldl9wcml2KTsNCj4gPiAgCWludGVsX3J1bnRpbWVf
+cG1faW5pdF9lYXJseSgmZGV2X3ByaXYtPnJ1bnRpbWVfcG0pOw0KPiA+IC0tIA0KPiA+IDIuNDAu
+MA0KPiA+IA0KDQo=
