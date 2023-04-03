@@ -4,48 +4,52 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 02786C76196
-	for <intel-xe@archiver.kernel.org>; Mon,  3 Apr 2023 16:47:06 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 39D44C76188
+	for <intel-xe@archiver.kernel.org>; Mon,  3 Apr 2023 16:48:16 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C911810E51D;
-	Mon,  3 Apr 2023 16:47:06 +0000 (UTC)
-Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 31D7910E53A
- for <intel-xe@lists.freedesktop.org>; Mon,  3 Apr 2023 16:47:04 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E7EC810E527;
+	Mon,  3 Apr 2023 16:48:15 +0000 (UTC)
+Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5F1B410E51D
+ for <intel-xe@lists.freedesktop.org>; Mon,  3 Apr 2023 16:48:13 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1680540424; x=1712076424;
- h=from:to:cc:subject:date:message-id:in-reply-to:
+ t=1680540493; x=1712076493;
+ h=date:from:to:cc:subject:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=IN0fKJIzIX3+gPNPoz0FwYbikde2z230+bttTiKN7XU=;
- b=WymwuVp8WEo6saootFUqcDeLbSqX+E+D3pN1l5XV7Hd/FfsDFLAG8RRr
- wDdxNWETT9/Kq4nj8r9QibFywrNNGyR6aOT9cyVpBC/QpbcYqj5zzq2qZ
- X4AVQg6lJuMy6GXoF4b5Kv9DwJK3aAjs+XtETW1bPnJPP3aVLxiju5xLg
- QeXpApWPX/xRvN6saJA2qXrq0a9b7A07lWlwIBcIGCfSEZBlwpMcE22e1
- K7dSoGh9cvI25q+4PnmJWizaRPvSVLwzf03xbejw3zjHB1X1GniWdJpNi
- dXnPQLmm/glT6YTeUGPc6Abxz+loVtjlkWB4sQ33UM+QjkHMfCMVQ9pje Q==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10669"; a="322350771"
-X-IronPort-AV: E=Sophos;i="5.98,315,1673942400"; d="scan'208";a="322350771"
-Received: from fmsmga002.fm.intel.com ([10.253.24.26])
- by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 03 Apr 2023 09:46:32 -0700
+ bh=BSmcAor54px/wZK6x8uJWbiFX1SgtW4Yz7zImGhFBlM=;
+ b=F/dQdWnE3Ht+9+dvI3KBt7TuKUMtyDFd9i5nF1fQoi18s5VJUrVudAw0
+ ZUEPNgSMvzSQllVOMMhLGSXCdpAdjYBJaG3RAzIoQgVeIF2EVWlQMqyW1
+ nC4J5aNQ02uFF8b+t2sVr0264nsDk6eNAjnSgtmR63jrCMByrZw9OM+O1
+ LS+iJCUPj5OK106NEHKqNUmQO5tKgV/YemwHLhJ3QjzK5DMI9yLgkMrYI
+ b/HCxIiIHM8nxoXnRdFGA0asb89AVPYY8x+jk/UooN4liRsPtkgBln5/N
+ j25qSzDEOyJPGK7dMs1hpapf15LGH47Ik1JCIfs/EOhi0Mtw3I3ayqE9+ g==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10669"; a="330524921"
+X-IronPort-AV: E=Sophos;i="5.98,315,1673942400"; d="scan'208";a="330524921"
+Received: from fmsmga006.fm.intel.com ([10.253.24.20])
+ by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 03 Apr 2023 09:48:12 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10669"; a="797132381"
-X-IronPort-AV: E=Sophos;i="5.98,315,1673942400"; d="scan'208";a="797132381"
-Received: from unknown (HELO josouza-mobl2.fso.intel.com) ([10.230.18.148])
- by fmsmga002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 03 Apr 2023 09:46:31 -0700
-From: =?UTF-8?q?Jos=C3=A9=20Roberto=20de=20Souza?= <jose.souza@intel.com>
-To: intel-xe@lists.freedesktop.org
-Date: Mon,  3 Apr 2023 09:46:15 -0700
-Message-Id: <20230403164615.131633-5-jose.souza@intel.com>
-X-Mailer: git-send-email 2.40.0
-In-Reply-To: <20230403164615.131633-1-jose.souza@intel.com>
-References: <20230403164615.131633-1-jose.souza@intel.com>
+X-IronPort-AV: E=McAfee;i="6600,9927,10669"; a="932118033"
+X-IronPort-AV: E=Sophos;i="5.98,315,1673942400"; d="scan'208";a="932118033"
+Received: from linux.intel.com ([10.54.29.200])
+ by fmsmga006.fm.intel.com with ESMTP; 03 Apr 2023 09:48:11 -0700
+Received: from maurocar-mobl2 (maurocar-mobl2.ger.corp.intel.com
+ [10.252.28.164])
+ (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+ (No client certificate requested)
+ by linux.intel.com (Postfix) with ESMTPS id 2AEA75804D9;
+ Mon,  3 Apr 2023 09:48:09 -0700 (PDT)
+Date: Mon, 3 Apr 2023 18:48:07 +0200
+From: Mauro Carvalho Chehab <mauro.chehab@linux.intel.com>
+To: Zbigniew =?UTF-8?B?S2VtcGN6ecWEc2tp?= <zbigniew.kempczynski@intel.com>
+Message-ID: <20230403184807.177d7ef5@maurocar-mobl2>
+In-Reply-To: <20230328130826.61029-1-zbigniew.kempczynski@intel.com>
+References: <20230328130826.61029-1-zbigniew.kempczynski@intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-Subject: [Intel-xe] [PATCH 5/5] drm/xe: Enable Raptorlake-P
+Content-Transfer-Encoding: quoted-printable
+Subject: Re: [Intel-xe] [PATCH] drm/xe/bo: Return object bo size on create
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -57,28 +61,129 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Cc: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Raptorlake-P was tested and it is working as the same as Alderlake-P.
+On Tue, 28 Mar 2023 15:08:26 +0200
+Zbigniew Kempczy=C5=84ski <zbigniew.kempczynski@intel.com> wrote:
 
-Signed-off-by: José Roberto de Souza <jose.souza@intel.com>
----
- drivers/gpu/drm/xe/xe_pci.c | 1 +
- 1 file changed, 1 insertion(+)
+> Driver may alter bo size requested by the user. Return real object
+> size to make userspace aware how to arrange vm bindings.
+>=20
+> Signed-off-by: Zbigniew Kempczy=C5=84ski <zbigniew.kempczynski@intel.com>
+> ---
+>  drivers/gpu/drm/xe/xe_bo.c | 1 +
+>  1 file changed, 1 insertion(+)
+>=20
+> diff --git a/drivers/gpu/drm/xe/xe_bo.c b/drivers/gpu/drm/xe/xe_bo.c
+> index e4d079b61d52..410e797931ac 100644
+> --- a/drivers/gpu/drm/xe/xe_bo.c
+> +++ b/drivers/gpu/drm/xe/xe_bo.c
+> @@ -1564,6 +1564,7 @@ int xe_gem_create_ioctl(struct drm_device *dev, voi=
+d *data,
+>  		return err;
+> =20
+>  	args->handle =3D handle;
+> +	args->size =3D bo->size;
+> =20
+>  	return 0;
+>  }
 
-diff --git a/drivers/gpu/drm/xe/xe_pci.c b/drivers/gpu/drm/xe/xe_pci.c
-index 91fed9d3105e7..e3ff17671203a 100644
---- a/drivers/gpu/drm/xe/xe_pci.c
-+++ b/drivers/gpu/drm/xe/xe_pci.c
-@@ -291,6 +291,7 @@ static const struct pci_device_id pciidlist[] = {
- 	XE_DG2_IDS(INTEL_VGA_DEVICE, &dg2_desc),
- 	XE_ADLS_IDS(INTEL_VGA_DEVICE, &adl_s_desc),
- 	XE_ADLP_IDS(INTEL_VGA_DEVICE, &adl_p_desc),
-+	XE_RPLP_IDS(INTEL_VGA_DEVICE, &adl_p_desc),
- 	XE_PVC_IDS(INTEL_VGA_DEVICE, &pvc_desc),
- 	XE_MTL_IDS(INTEL_VGA_DEVICE, &mtl_desc),
- 	{ }
--- 
-2.40.0
+An alternative approach would be instead to return -EINVAL if the
+buffers aren't aligned. Something like this (untested) patch.
 
+Regards,
+Mauro
+
+[PATCH] xe/xe_bo: Don't allow creating unaligned buffers
+
+Ensure that bo will always be properly aligned.
+
+Signed-off-by: Mauro Carvalho Chehab <mchehab@kernel.org>
+
+diff --git a/drivers/gpu/drm/xe/xe_bo.c b/drivers/gpu/drm/xe/xe_bo.c
+index f25257bbfc65..ecc04b887790 100644
+--- a/drivers/gpu/drm/xe/xe_bo.c
++++ b/drivers/gpu/drm/xe/xe_bo.c
+@@ -985,6 +985,7 @@ struct xe_bo *__xe_bo_create_locked(struct xe_device *x=
+e, struct xe_bo *bo,
+ 	};
+ 	struct ttm_placement *placement;
+ 	uint32_t alignment;
++	size_t aligned_size;
+ 	int err;
+=20
+ 	/* Only kernel objects should set GT */
+@@ -993,24 +994,28 @@ struct xe_bo *__xe_bo_create_locked(struct xe_device =
+*xe, struct xe_bo *bo,
+ 	if (XE_WARN_ON(!size))
+ 		return ERR_PTR(-EINVAL);
+=20
+-	if (!bo) {
+-		bo =3D xe_bo_alloc();
+-		if (IS_ERR(bo))
+-			return bo;
+-	}
+-
+-	bo->requested_size =3D size;
+ 	if (flags & (XE_BO_CREATE_VRAM0_BIT | XE_BO_CREATE_VRAM1_BIT |
+ 		     XE_BO_CREATE_STOLEN_BIT) &&
+ 	    !(flags & XE_BO_CREATE_IGNORE_MIN_PAGE_SIZE_BIT) &&
+ 	    xe->info.vram_flags & XE_VRAM_FLAGS_NEED64K) {
+-		size =3D ALIGN(size, SZ_64K);
++		aligned_size =3D ALIGN(size, SZ_64K);
+ 		flags |=3D XE_BO_INTERNAL_64K;
+ 		alignment =3D SZ_64K >> PAGE_SHIFT;
+ 	} else {
++		aligned_size =3D ALIGN(size, SZ_4K);
++		flags &=3D ~XE_BO_INTERNAL_64K;
+ 		alignment =3D SZ_4K >> PAGE_SHIFT;
+ 	}
+=20
++	if (aligned_size !=3D size)
++		return ERR_PTR(-EINVAL);
++
++	if (!bo) {
++		bo =3D xe_bo_alloc();
++		if (IS_ERR(bo))
++			return bo;
++	}
++
+ 	bo->gt =3D gt;
+ 	bo->size =3D size;
+ 	bo->flags =3D flags;
+diff --git a/drivers/gpu/drm/xe/xe_ggtt.c b/drivers/gpu/drm/xe/xe_ggtt.c
+index a430d1568890..f8a55ef9e789 100644
+--- a/drivers/gpu/drm/xe/xe_ggtt.c
++++ b/drivers/gpu/drm/xe/xe_ggtt.c
+@@ -273,10 +273,8 @@ void xe_ggtt_map_bo(struct xe_ggtt *ggtt, struct xe_bo=
+ *bo)
+ 		xe_ggtt_set_pte(ggtt, start + offset, pte);
+ 	}
+=20
+-	if (bo->size =3D=3D bo->requested_size) {
+-		pte =3D xe_ggtt_pte_encode(ggtt->scratch ?: bo, 0);
+-		xe_ggtt_set_pte(ggtt, start + bo->size, pte);
+-	}
++	pte =3D xe_ggtt_pte_encode(ggtt->scratch ?: bo, 0);
++	xe_ggtt_set_pte(ggtt, start + bo->size, pte);
+=20
+ 	if (ggtt->invalidate) {
+ 		xe_ggtt_invalidate(ggtt->gt);
+@@ -309,11 +307,9 @@ static int __xe_ggtt_insert_bo_at(struct xe_ggtt *ggtt=
+, struct xe_bo *bo,
+ 	 * fact we have programmed this GGTT entry to a valid entry. BO aligned
+ 	 * to 64k already have padding so no need to add an extra page.
+ 	 */
+-	if (bo->size =3D=3D bo->requested_size) {
+-		size +=3D SZ_4K;
+-		if (end !=3D U64_MAX)
+-			end +=3D SZ_4K;
+-	}
++        size +=3D alignment;
++        if (end !=3D U64_MAX)
++                end +=3D alignment;
+=20
+ 	mutex_lock(&ggtt->lock);
+ 	err =3D drm_mm_insert_node_in_range(&ggtt->mm, &bo->ggtt_node, size,
