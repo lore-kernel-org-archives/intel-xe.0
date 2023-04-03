@@ -4,53 +4,46 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id A6BA4C76196
-	for <intel-xe@archiver.kernel.org>; Mon,  3 Apr 2023 20:48:19 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id EE58DC76188
+	for <intel-xe@archiver.kernel.org>; Mon,  3 Apr 2023 22:20:48 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 33F258902A;
-	Mon,  3 Apr 2023 20:48:16 +0000 (UTC)
-Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 45D8D10E19C;
- Mon,  3 Apr 2023 20:48:13 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B2F7110E5A3;
+	Mon,  3 Apr 2023 22:20:48 +0000 (UTC)
+Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B9A2110E1A3
+ for <intel-xe@lists.freedesktop.org>; Mon,  3 Apr 2023 22:20:46 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1680554893; x=1712090893;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:content-transfer-encoding:in-reply-to;
- bh=lDwF+FfaxGLD/0JpZWgKwY6x0BDxuM6upEiP540fAq4=;
- b=QF0cFzkhDBp9pS7juBoGYyogSBRPdhpKLYeC2gIVKMMJ7jctZ0Uk81o9
- 0Gzyfnz81T9S9enwao4KRLhYfYaurIEtN+FoA9VUSb2henGDoVf210uSX
- jQb1sl1rzTPxN9/S+S361swxVpM/1/13v6+fTP9g6uwtJqU1mQhNjsUAM
- 8zVBHqhk8TrgqMsUjGk7Zpx1x85K2mKo/Xkawt6ioxux0CjKbf4EA+ZGE
- l+OAT/UGCnliKN0q8/y+0D2WoyhLMhwwhzOTCvd4K1Fk4aTIYgibg0F7S
- svDxUed1VLAFxsrgfCmPyaPCBoeNRp4Qmr2WIKUvEatg2pQlGcfolK5AU w==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10669"; a="330586646"
-X-IronPort-AV: E=Sophos;i="5.98,315,1673942400"; d="scan'208";a="330586646"
-Received: from fmsmga002.fm.intel.com ([10.253.24.26])
- by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 03 Apr 2023 13:48:12 -0700
+ t=1680560446; x=1712096446;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=VAsFsDCoJNBvaUhJql4ud5XFp4DDfZanf8jto5UOhEQ=;
+ b=OZaCQr0c/wKfIdlHKVIWcN2CfRjDzNu7RYkj5uRWClTbiMV3AWri8jJF
+ OA7CERgcSovkiuro/5mKsh4zNwQYe0/gM0Hj62PCdRddk9JqH03UX3aQ/
+ 5Twnu7gSuIg7oCxN/6rrYV2NxB2JRLSHNRgN6ja/CM9X45W6SLmnndDgV
+ xvbo/+BdGWHvqQ7JOk0vvQeVexef+r+DTBmsd355rfHOZqnQhKsZWTlOV
+ FRqkNESawrXlrjTEY4nYpDqWsroMB6ME88AqTD2Q7Wa1b/+p44xFBEmoj
+ T9bGjaRUFK6Z3XAxB1VZoWIjNirFQr2OmH2t5p1AzC8tDqxCw8aNI7p7G g==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10669"; a="339519467"
+X-IronPort-AV: E=Sophos;i="5.98,315,1673942400"; d="scan'208";a="339519467"
+Received: from fmsmga003.fm.intel.com ([10.253.24.29])
+ by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 03 Apr 2023 15:20:45 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10669"; a="797206591"
-X-IronPort-AV: E=Sophos;i="5.98,315,1673942400"; d="scan'208";a="797206591"
-Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.70])
- by fmsmga002.fm.intel.com with SMTP; 03 Apr 2023 13:48:09 -0700
-Received: by stinkbox (sSMTP sendmail emulation);
- Mon, 03 Apr 2023 23:48:08 +0300
-Date: Mon, 3 Apr 2023 23:48:08 +0300
-From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-To: Matt Roper <matthew.d.roper@intel.com>
-Message-ID: <ZCs7iG0gbMWD2hoA@intel.com>
-References: <20230331102419.521392-1-maarten.lankhorst@linux.intel.com>
- <20230331102419.521392-4-maarten.lankhorst@linux.intel.com>
- <20230403203540.GY4085390@mdroper-desk1.amr.corp.intel.com>
+X-IronPort-AV: E=McAfee;i="6600,9927,10669"; a="775383335"
+X-IronPort-AV: E=Sophos;i="5.98,315,1673942400"; d="scan'208";a="775383335"
+Received: from dut731-pvc.fm.intel.com ([10.1.40.171])
+ by fmsmga003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 03 Apr 2023 15:20:45 -0700
+From: "Chang, Bruce" <yu.bruce.chang@intel.com>
+To: intel-xe@lists.freedesktop.org
+Date: Mon,  3 Apr 2023 22:20:31 +0000
+Message-Id: <20230403222031.4255-1-yu.bruce.chang@intel.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
+Content-Type: text/plain; charset=utf-8
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <20230403203540.GY4085390@mdroper-desk1.amr.corp.intel.com>
-X-Patchwork-Hint: comment
-Subject: Re: [Intel-xe] [Intel-gfx] [PATCH 3/6] drm/i915: Fix comparison in
- intel_dram.
+Subject: [Intel-xe] [PATCH] drm/xe: fix pvc unload issue
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -62,67 +55,349 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org
+Cc: Stuart Summers <stuart.summers@intel.com>,
+	Rodrigo <rodrigo.vivi@intel.com>,
+	"Chang, Bruce" <yu.bruce.chang@intel.com>, Vivi@freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Mon, Apr 03, 2023 at 01:35:40PM -0700, Matt Roper wrote:
-> On Fri, Mar 31, 2023 at 12:24:16PM +0200, Maarten Lankhorst wrote:
-> > Gen13 should probably be the same as gen12, not gen11.
-> > 
-> > Signed-off-by: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
-> > Cc: intel-gfx@lists.freedesktop.org
-> > ---
-> >  drivers/gpu/drm/i915/soc/intel_dram.c | 2 +-
-> >  1 file changed, 1 insertion(+), 1 deletion(-)
-> > 
-> > diff --git a/drivers/gpu/drm/i915/soc/intel_dram.c b/drivers/gpu/drm/i915/soc/intel_dram.c
-> > index 9f0651d48d41..9649051ed8ed 100644
-> > --- a/drivers/gpu/drm/i915/soc/intel_dram.c
-> > +++ b/drivers/gpu/drm/i915/soc/intel_dram.c
-> > @@ -548,7 +548,7 @@ static int icl_pcode_read_mem_global_info(struct drm_i915_private *dev_priv)
-> 
-> I don't think we need this change.  We were only reading the this pcode
-> mailbox for display purposes, and even on the latest graphics version 12
-> platforms we shouldn't make it into this function anymore.  Instead the
-> display IP now provides this information itself so there's no need to go
-> through the GT's pcode mailbox; we read it directly from display
-> registers in xelpdp_get_dram_info().  It looks like this condition here
-> would only matter if we had a future platform with graphics version
-> higher than 12, but display version lower than 14, which seems very
-> unlikely.
-> 
-> 
-> Matt
-> 
-> >  	if (ret)
-> >  		return ret;
-> >  
-> > -	if (GRAPHICS_VER(dev_priv) == 12) {
-> > +	if (GRAPHICS_VER(dev_priv) >= 12) {
+Currently, unload pvc driver will generate a null dereference
+and the call stack is as below.
 
-We should perhaps change all the checks here to DISPLAY_VER
-since it's the display code that needs this information.
+[ 4850.618000] Call Trace:
+[ 4850.620740]  <TASK>
+[ 4850.623134]  ttm_bo_cleanup_memtype_use+0x3f/0x50 [ttm]
+[ 4850.628661]  ttm_bo_release+0x154/0x2c0 [ttm]
+[ 4850.633317]  ? drm_buddy_fini+0x62/0x80 [drm_buddy]
+[ 4850.638487]  ? __kmem_cache_free+0x27d/0x2c0
+[ 4850.643054]  ttm_bo_put+0x38/0x60 [ttm]
+[ 4850.647190]  xe_gem_object_free+0x1f/0x30 [xe]
+[ 4850.651945]  drm_gem_object_free+0x1e/0x30 [drm]
+[ 4850.656904]  ggtt_fini_noalloc+0x9d/0xe0 [xe]
+[ 4850.661574]  drm_managed_release+0xb5/0x150 [drm]
+[ 4850.666617]  drm_dev_release+0x30/0x50 [drm]
+[ 4850.671209]  devm_drm_dev_init_release+0x3c/0x60 [drm]
 
-Though I suppose technically neither DISPLAY_VER nor
-GRAPHICS_VER is entirely correct since it's really SoC
-level stuff that we're looking at here. But the current 
-mismash of GRAPHICS_VER and DISPLAY_VER is certainly not
-helping reduce the confusion.
+There are a couple issues, but the main one is due to TTM has only
+one TTM_PL_TT region, but since pvc has 2 tiles and tries to setup
+1 TTM_PL_TT each tile. The second will overwrite the first one.
 
-> >  		switch (val & 0xf) {
-> >  		case 0:
-> >  			dram_info->type = INTEL_DRAM_DDR4;
-> > -- 
-> > 2.34.1
-> > 
-> 
-> -- 
-> Matt Roper
-> Graphics Software Engineer
-> Linux GPU Platform Enablement
-> Intel Corporation
+During unload time, the first tile will reset the TTM_PL_TT manger
+and when the second tile is trying to free Bo and it will generate
+the null reference since the TTM manage is already got reset to 0.
 
+The fix is to use one global TTM_PL_TT manager.
+
+v2: make gtt mgr global and change the name to sys_mgr
+
+Cc: Stuart Summers <stuart.summers@intel.com>
+Cc: Matthew Brost <matthew.brost@intel.com>
+Cc: Vivi, Rodrigo <rodrigo.vivi@intel.com>
+Signed-off-by: Bruce Chang <yu.bruce.chang@intel.com>
+---
+ drivers/gpu/drm/xe/Makefile                   |  2 +-
+ drivers/gpu/drm/xe/xe_device.c                |  2 +
+ drivers/gpu/drm/xe/xe_device.h                |  1 +
+ drivers/gpu/drm/xe/xe_device_types.h          |  2 +
+ drivers/gpu/drm/xe/xe_gt.c                    | 18 -----
+ drivers/gpu/drm/xe/xe_gt_types.h              |  2 -
+ drivers/gpu/drm/xe/xe_ttm_gtt_mgr.h           | 16 -----
+ drivers/gpu/drm/xe/xe_ttm_gtt_mgr_types.h     | 18 -----
+ .../xe/{xe_ttm_gtt_mgr.c => xe_ttm_sys_mgr.c} | 67 +++++++------------
+ 9 files changed, 31 insertions(+), 97 deletions(-)
+ delete mode 100644 drivers/gpu/drm/xe/xe_ttm_gtt_mgr.h
+ delete mode 100644 drivers/gpu/drm/xe/xe_ttm_gtt_mgr_types.h
+ rename drivers/gpu/drm/xe/{xe_ttm_gtt_mgr.c => xe_ttm_sys_mgr.c} (52%)
+
+diff --git a/drivers/gpu/drm/xe/Makefile b/drivers/gpu/drm/xe/Makefile
+index 669c7b6f552c..7e19a15af3dc 100644
+--- a/drivers/gpu/drm/xe/Makefile
++++ b/drivers/gpu/drm/xe/Makefile
+@@ -83,7 +83,7 @@ xe-y += xe_bb.o \
+ 	xe_step.o \
+ 	xe_sync.o \
+ 	xe_trace.o \
+-	xe_ttm_gtt_mgr.o \
++	xe_ttm_sys_mgr.o \
+ 	xe_ttm_stolen_mgr.o \
+ 	xe_ttm_vram_mgr.o \
+ 	xe_tuning.o \
+diff --git a/drivers/gpu/drm/xe/xe_device.c b/drivers/gpu/drm/xe/xe_device.c
+index a79f934e3d2d..4fb9aff27686 100644
+--- a/drivers/gpu/drm/xe/xe_device.c
++++ b/drivers/gpu/drm/xe/xe_device.c
+@@ -279,6 +279,8 @@ int xe_device_probe(struct xe_device *xe)
+ 	if (err)
+ 		goto err_irq_shutdown;
+ 
++	xe_ttm_sys_mgr_init(xe);
++
+ 	for_each_gt(gt, xe, id) {
+ 		err = xe_gt_init_noalloc(gt);
+ 		if (err)
+diff --git a/drivers/gpu/drm/xe/xe_device.h b/drivers/gpu/drm/xe/xe_device.h
+index d277f8985f7b..d9d1b09a8e38 100644
+--- a/drivers/gpu/drm/xe/xe_device.h
++++ b/drivers/gpu/drm/xe/xe_device.h
+@@ -116,4 +116,5 @@ static inline bool xe_device_has_flat_ccs(struct xe_device *xe)
+ }
+ 
+ u32 xe_device_ccs_bytes(struct xe_device *xe, u64 size);
++int xe_ttm_sys_mgr_init(struct xe_device *xe);
+ #endif
+diff --git a/drivers/gpu/drm/xe/xe_device_types.h b/drivers/gpu/drm/xe/xe_device_types.h
+index 88f863edc41c..6fb53a54913f 100644
+--- a/drivers/gpu/drm/xe/xe_device_types.h
++++ b/drivers/gpu/drm/xe/xe_device_types.h
+@@ -195,6 +195,8 @@ struct xe_device {
+ 			/** @mapping: pointer to VRAM mappable space */
+ 			void *__iomem mapping;
+ 		} vram;
++		/** @sys_mgr: system TTM manager */
++		struct ttm_resource_manager sys_mgr;
+ 	} mem;
+ 
+ 	/** @usm: unified memory state */
+diff --git a/drivers/gpu/drm/xe/xe_gt.c b/drivers/gpu/drm/xe/xe_gt.c
+index fd7a5b43ba3e..a6ea138a7877 100644
+--- a/drivers/gpu/drm/xe/xe_gt.c
++++ b/drivers/gpu/drm/xe/xe_gt.c
+@@ -36,7 +36,6 @@
+ #include "xe_ring_ops.h"
+ #include "xe_sa.h"
+ #include "xe_sched_job.h"
+-#include "xe_ttm_gtt_mgr.h"
+ #include "xe_ttm_vram_mgr.h"
+ #include "xe_tuning.h"
+ #include "xe_uc.h"
+@@ -77,16 +76,11 @@ int xe_gt_alloc(struct xe_device *xe, struct xe_gt *gt)
+ 		if (!gt->mem.vram_mgr)
+ 			return -ENOMEM;
+ 
+-		gt->mem.gtt_mgr = drmm_kzalloc(drm, sizeof(*gt->mem.gtt_mgr),
+-					       GFP_KERNEL);
+-		if (!gt->mem.gtt_mgr)
+-			return -ENOMEM;
+ 	} else {
+ 		struct xe_gt *full_gt = xe_find_full_gt(gt);
+ 
+ 		gt->mem.ggtt = full_gt->mem.ggtt;
+ 		gt->mem.vram_mgr = full_gt->mem.vram_mgr;
+-		gt->mem.gtt_mgr = full_gt->mem.gtt_mgr;
+ 	}
+ 
+ 	gt->ordered_wq = alloc_ordered_workqueue("gt-ordered-wq", 0);
+@@ -98,26 +92,14 @@ static int gt_ttm_mgr_init(struct xe_gt *gt)
+ {
+ 	struct xe_device *xe = gt_to_xe(gt);
+ 	int err;
+-	struct sysinfo si;
+-	u64 gtt_size;
+-
+-	si_meminfo(&si);
+-	gtt_size = (u64)si.totalram * si.mem_unit * 3/4;
+ 
+ 	if (gt->mem.vram.size) {
+ 		err = xe_ttm_vram_mgr_init(gt, gt->mem.vram_mgr);
+ 		if (err)
+ 			return err;
+-		gtt_size = min(max((XE_DEFAULT_GTT_SIZE_MB << 20),
+-				   (u64)gt->mem.vram.size),
+-			       gtt_size);
+ 		xe->info.mem_region_mask |= BIT(gt->info.vram_id) << 1;
+ 	}
+ 
+-	err = xe_ttm_gtt_mgr_init(gt, gt->mem.gtt_mgr, gtt_size);
+-	if (err)
+-		return err;
+-
+ 	return 0;
+ }
+ 
+diff --git a/drivers/gpu/drm/xe/xe_gt_types.h b/drivers/gpu/drm/xe/xe_gt_types.h
+index 8f29aba455e0..9d3117fad2e4 100644
+--- a/drivers/gpu/drm/xe/xe_gt_types.h
++++ b/drivers/gpu/drm/xe/xe_gt_types.h
+@@ -162,8 +162,6 @@ struct xe_gt {
+ 		} vram;
+ 		/** @vram_mgr: VRAM TTM manager */
+ 		struct xe_ttm_vram_mgr *vram_mgr;
+-		/** @gtt_mr: GTT TTM manager */
+-		struct xe_ttm_gtt_mgr *gtt_mgr;
+ 		/** @ggtt: Global graphics translation table */
+ 		struct xe_ggtt *ggtt;
+ 	} mem;
+diff --git a/drivers/gpu/drm/xe/xe_ttm_gtt_mgr.h b/drivers/gpu/drm/xe/xe_ttm_gtt_mgr.h
+deleted file mode 100644
+index d1d57cb9c2b8..000000000000
+--- a/drivers/gpu/drm/xe/xe_ttm_gtt_mgr.h
++++ /dev/null
+@@ -1,16 +0,0 @@
+-/* SPDX-License-Identifier: MIT */
+-/*
+- * Copyright Â© 2022 Intel Corporation
+- */
+-
+-#ifndef _XE_TTGM_GTT_MGR_H_
+-#define _XE_TTGM_GTT_MGR_H_
+-
+-#include "xe_ttm_gtt_mgr_types.h"
+-
+-struct xe_gt;
+-
+-int xe_ttm_gtt_mgr_init(struct xe_gt *gt, struct xe_ttm_gtt_mgr *mgr,
+-			u64 gtt_size);
+-
+-#endif
+diff --git a/drivers/gpu/drm/xe/xe_ttm_gtt_mgr_types.h b/drivers/gpu/drm/xe/xe_ttm_gtt_mgr_types.h
+deleted file mode 100644
+index c66737488326..000000000000
+--- a/drivers/gpu/drm/xe/xe_ttm_gtt_mgr_types.h
++++ /dev/null
+@@ -1,18 +0,0 @@
+-/* SPDX-License-Identifier: MIT */
+-/*
+- * Copyright Â© 2022 Intel Corporation
+- */
+-
+-#ifndef _XE_TTM_GTT_MGR_TYPES_H_
+-#define _XE_TTM_GTT_MGR_TYPES_H_
+-
+-#include <drm/ttm/ttm_device.h>
+-
+-struct xe_gt;
+-
+-struct xe_ttm_gtt_mgr {
+-	struct xe_gt *gt;
+-	struct ttm_resource_manager manager;
+-};
+-
+-#endif
+diff --git a/drivers/gpu/drm/xe/xe_ttm_gtt_mgr.c b/drivers/gpu/drm/xe/xe_ttm_sys_mgr.c
+similarity index 52%
+rename from drivers/gpu/drm/xe/xe_ttm_gtt_mgr.c
+rename to drivers/gpu/drm/xe/xe_ttm_sys_mgr.c
+index 8075781070f2..cf5f4f73d4dc 100644
+--- a/drivers/gpu/drm/xe/xe_ttm_gtt_mgr.c
++++ b/drivers/gpu/drm/xe/xe_ttm_sys_mgr.c
+@@ -12,31 +12,24 @@
+ 
+ #include "xe_bo.h"
+ #include "xe_gt.h"
+-#include "xe_ttm_gtt_mgr.h"
+ 
+-struct xe_ttm_gtt_node {
++struct xe_ttm_sys_node {
+ 	struct ttm_buffer_object *tbo;
+ 	struct ttm_range_mgr_node base;
+ };
+ 
+-static inline struct xe_ttm_gtt_mgr *
+-to_gtt_mgr(struct ttm_resource_manager *man)
++static inline struct xe_ttm_sys_node *
++to_xe_ttm_sys_node(struct ttm_resource *res)
+ {
+-	return container_of(man, struct xe_ttm_gtt_mgr, manager);
++	return container_of(res, struct xe_ttm_sys_node, base.base);
+ }
+ 
+-static inline struct xe_ttm_gtt_node *
+-to_xe_ttm_gtt_node(struct ttm_resource *res)
+-{
+-	return container_of(res, struct xe_ttm_gtt_node, base.base);
+-}
+-
+-static int xe_ttm_gtt_mgr_new(struct ttm_resource_manager *man,
++static int xe_ttm_sys_mgr_new(struct ttm_resource_manager *man,
+ 			      struct ttm_buffer_object *tbo,
+ 			      const struct ttm_place *place,
+ 			      struct ttm_resource **res)
+ {
+-	struct xe_ttm_gtt_node *node;
++	struct xe_ttm_sys_node *node;
+ 	int r;
+ 
+ 	node = kzalloc(struct_size(node, base.mm_nodes, 1), GFP_KERNEL);
+@@ -66,32 +59,31 @@ static int xe_ttm_gtt_mgr_new(struct ttm_resource_manager *man,
+ 	return r;
+ }
+ 
+-static void xe_ttm_gtt_mgr_del(struct ttm_resource_manager *man,
++static void xe_ttm_sys_mgr_del(struct ttm_resource_manager *man,
+ 			       struct ttm_resource *res)
+ {
+-	struct xe_ttm_gtt_node *node = to_xe_ttm_gtt_node(res);
++	struct xe_ttm_sys_node *node = to_xe_ttm_sys_node(res);
+ 
+ 	ttm_resource_fini(man, res);
+ 	kfree(node);
+ }
+ 
+-static void xe_ttm_gtt_mgr_debug(struct ttm_resource_manager *man,
++static void xe_ttm_sys_mgr_debug(struct ttm_resource_manager *man,
+ 				 struct drm_printer *printer)
+ {
+ 
+ }
+ 
+-static const struct ttm_resource_manager_func xe_ttm_gtt_mgr_func = {
+-	.alloc = xe_ttm_gtt_mgr_new,
+-	.free = xe_ttm_gtt_mgr_del,
+-	.debug = xe_ttm_gtt_mgr_debug
++static const struct ttm_resource_manager_func xe_ttm_sys_mgr_func = {
++	.alloc = xe_ttm_sys_mgr_new,
++	.free = xe_ttm_sys_mgr_del,
++	.debug = xe_ttm_sys_mgr_debug
+ };
+ 
+-static void ttm_gtt_mgr_fini(struct drm_device *drm, void *arg)
++static void ttm_sys_mgr_fini(struct drm_device *drm, void *arg)
+ {
+-	struct xe_ttm_gtt_mgr *mgr = arg;
+-	struct xe_device *xe = gt_to_xe(mgr->gt);
+-	struct ttm_resource_manager *man = &mgr->manager;
++	struct xe_device *xe = (struct xe_device *)arg;
++	struct ttm_resource_manager *man = &xe->mem.sys_mgr;
+ 	int err;
+ 
+ 	ttm_resource_manager_set_used(man, false);
+@@ -104,27 +96,18 @@ static void ttm_gtt_mgr_fini(struct drm_device *drm, void *arg)
+ 	ttm_set_driver_manager(&xe->ttm, XE_PL_TT, NULL);
+ }
+ 
+-int xe_ttm_gtt_mgr_init(struct xe_gt *gt, struct xe_ttm_gtt_mgr *mgr,
+-			u64 gtt_size)
++int xe_ttm_sys_mgr_init(struct xe_device *xe)
+ {
+-	struct xe_device *xe = gt_to_xe(gt);
+-	struct ttm_resource_manager *man = &mgr->manager;
+-	int err;
+-
+-	XE_BUG_ON(xe_gt_is_media_type(gt));
++	struct ttm_resource_manager *man = &xe->mem.sys_mgr;
++	struct sysinfo si;
++	u64 gtt_size;
+ 
+-	mgr->gt = gt;
++	si_meminfo(&si);
++	gtt_size = (u64)si.totalram * si.mem_unit * 3/4;
+ 	man->use_tt = true;
+-	man->func = &xe_ttm_gtt_mgr_func;
+-
++	man->func = &xe_ttm_sys_mgr_func;
+ 	ttm_resource_manager_init(man, &xe->ttm, gtt_size >> PAGE_SHIFT);
+-
+-	ttm_set_driver_manager(&xe->ttm, XE_PL_TT, &mgr->manager);
++	ttm_set_driver_manager(&xe->ttm, XE_PL_TT, man);
+ 	ttm_resource_manager_set_used(man, true);
+-
+-	err = drmm_add_action_or_reset(&xe->drm, ttm_gtt_mgr_fini, mgr);
+-	if (err)
+-		return err;
+-
+-	return 0;
++	return drmm_add_action_or_reset(&xe->drm, ttm_sys_mgr_fini, xe);
+ }
 -- 
-Ville Syrjälä
-Intel
+2.25.1
+
