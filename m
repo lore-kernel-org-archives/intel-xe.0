@@ -4,151 +4,144 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5462EC76196
-	for <intel-xe@archiver.kernel.org>; Mon,  3 Apr 2023 13:02:54 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 98653C76196
+	for <intel-xe@archiver.kernel.org>; Mon,  3 Apr 2023 13:14:18 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 295FA10E0D2;
-	Mon,  3 Apr 2023 13:02:54 +0000 (UTC)
-Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id EFF5810E0D2
- for <intel-xe@lists.freedesktop.org>; Mon,  3 Apr 2023 13:02:51 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 73AD010E155;
+	Mon,  3 Apr 2023 13:14:18 +0000 (UTC)
+Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C9AE010E155
+ for <intel-xe@lists.freedesktop.org>; Mon,  3 Apr 2023 13:14:16 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1680526971; x=1712062971;
+ t=1680527656; x=1712063656;
  h=date:from:to:cc:subject:message-id:references:
  content-transfer-encoding:in-reply-to:mime-version;
- bh=hUhAptbvMqV1l+CkseDOaj2kaSV+Qe3pcMvKe3l3xQE=;
- b=YxBgX+Zub5hohw78wUteuL3eFYcB0RcK+gSUXPNZuYR5eeO5CbvAC0b6
- Wtkv5gSTgaeNmFw2CVrWtKugnlGQIIRT55QJKMo7BdyW1Vxlnu+i5uUNn
- dNonK9wJpkH9gSN2GCiSmI9hLzOcyCLLXFFOeKlLTgVjqocc6qHYIUCA1
- NbBB6F6ZEOPsxg+ino6WfC1URlCIH+eWARlWcy81J68S1CkhBrMn5/Hby
- rv2kG2ig7/s+zNv/w7+0zwAeqVfZBO5UYP5kQQi565u0umccV8GZ2P2H/
- k8PfClWPjAMkFAdikUDvSgJW3Z/9WTznWdfOmqKe3i3dmIxo7WLWKnCMy g==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10668"; a="330462034"
-X-IronPort-AV: E=Sophos;i="5.98,314,1673942400"; d="scan'208";a="330462034"
-Received: from orsmga002.jf.intel.com ([10.7.209.21])
- by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 03 Apr 2023 06:02:51 -0700
+ bh=MbuqOfVThmrwmFIreZU0UgACxs2fp1w7fSb5srDBQUQ=;
+ b=V61gZTf39NLc9GW48v+He9wgAKcHS9HIAeDh+9JnuRFxkfzu5sFHFiV3
+ KoUxce4QVlhNz3q1yCs3+emHkcyxxUu3bOIkS02d4krIs+kGu5chICLuW
+ 0J4bE8T6jKfFNg6lqnJdxzzB8HKEHKqWSrs6xWPZxlWf474yw5x5+D24x
+ txj/FebCYbWpRbEEBxVtDhiakOvxNdTo8PEdtvEz6m0R3A+kFCQ/7kbKt
+ ilR87VidKvDSAsBF6tp50RKlHTMlyi8t6XD+D5rSwG9jfpCjCNKklkwId
+ YROBL44vDyY09NnI0pVdK+SQB8qs6+hir/47gVJQhGtIxrrCvohe1UuZo A==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10669"; a="322289502"
+X-IronPort-AV: E=Sophos;i="5.98,314,1673942400"; d="scan'208";a="322289502"
+Received: from orsmga001.jf.intel.com ([10.7.209.18])
+ by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 03 Apr 2023 06:14:15 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10668"; a="685956854"
-X-IronPort-AV: E=Sophos;i="5.98,314,1673942400"; d="scan'208";a="685956854"
-Received: from fmsmsx602.amr.corp.intel.com ([10.18.126.82])
- by orsmga002.jf.intel.com with ESMTP; 03 Apr 2023 06:02:51 -0700
+X-IronPort-AV: E=McAfee;i="6600,9927,10669"; a="718542298"
+X-IronPort-AV: E=Sophos;i="5.98,314,1673942400"; d="scan'208";a="718542298"
+Received: from fmsmsx603.amr.corp.intel.com ([10.18.126.83])
+ by orsmga001.jf.intel.com with ESMTP; 03 Apr 2023 06:14:13 -0700
 Received: from fmsmsx610.amr.corp.intel.com (10.18.126.90) by
- fmsmsx602.amr.corp.intel.com (10.18.126.82) with Microsoft SMTP Server
+ fmsmsx603.amr.corp.intel.com (10.18.126.83) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.21; Mon, 3 Apr 2023 06:02:50 -0700
-Received: from FMSEDG603.ED.cps.intel.com (10.1.192.133) by
+ 15.1.2507.21; Mon, 3 Apr 2023 06:14:10 -0700
+Received: from fmsedg602.ED.cps.intel.com (10.1.192.136) by
  fmsmsx610.amr.corp.intel.com (10.18.126.90) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.21 via Frontend Transport; Mon, 3 Apr 2023 06:02:50 -0700
-Received: from NAM10-DM6-obe.outbound.protection.outlook.com (104.47.58.105)
- by edgegateway.intel.com (192.55.55.68) with Microsoft SMTP Server
+ 15.1.2507.21 via Frontend Transport; Mon, 3 Apr 2023 06:14:10 -0700
+Received: from NAM11-CO1-obe.outbound.protection.outlook.com (104.47.56.168)
+ by edgegateway.intel.com (192.55.55.71) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2507.21; Mon, 3 Apr 2023 06:02:35 -0700
+ 15.1.2507.21; Mon, 3 Apr 2023 06:14:10 -0700
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=XV0r3Stn+ViTpnPbPY/wiX2YumXh7bCNqXnTnMzs1VNsp7A6oAtMwMhOKBT6T4dfJQ/HIxzGhlUkJmjqPWUxGodQ8XnEwh/WC3tV505DdcY+texwWb2W0XeXyc8P3QLzknTSUzn1Cad2gk5Zco22Ae9tB2FVqaUgG4EQxs8hVDk8KxN0xlRq4+dQUj/BumwEY3iztP9LQGWOl1LAV01PP6G9Q3WneXF+xHM/nDBYz5J5KRQD21kAx2VZx5ADZTzCrImiakzVRUgXRUOMeL62z1UcgnNrvLp39oRLnZxZ6SUH6qw0xAPL7sMiKnZBkpEN0IlSiY4EvKjGh4Y8Buo4Kw==
+ b=RBmhIFT5tUOn9/oWnUjxEa/B4OfTaiT4BL1HD2eWJdlbr5ko2DIUUqplSfqBuEjzSU71oiuEn59+K+fx8UM/dS+vPs/f3wp1deh2G+zoeW9hy5BGUVCx3Y+rXsW4NKhmNUXlYmV9ifSK78rJS0Yyvo7s5wbU+o9QOy1uu/x0nXJDzG0b/kiLVEVGLGmQJFfuIQ71u2B2WYRcZWO5Oc1B4iMF717ENW25UjD5fkh4k9Sem0KiaVVrDg5l67Vouj0rYZgTnotauEYOgy0Fb4481TmtwjGNJo+tqcoxIPqSRyI+9CHeY/82oF6zBfJO/Nasnua38P4nQLMtwqElnd0fOg==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=nPrmoBUilXe2HJQnBD4ITPswjiiBa5KsKzcMnr+dP68=;
- b=TnuVEQ76K87pjbFe+hFzvFH0Pl1T/uQLYmkrXSpa4T/ZP99jgtV840XSjQZ48PJnkpqAsB8Cl9C25xYs6nQMdo94HCY4T0QGGNL8MGsR8b+F8INWjkqPc2y0aO5ktI0anH+MSAJNf1ki2CwhhETgAhRmB/0HqizYFg8ICiGZ/ZD3uAsovgmNHFn7eV6qTprazUGbW9X3fv2AgLqpPcigC3AoVqJVAWq7M8H4MKqEN+ct9qtwVm4g5wfUu4E+Ub9UYkVQcpZlO6+Bijn+DGf1GGvUY6Xj4LBamn76bwY2EuDhdsO0fpbDZUZMtOSfz7GZn5jt2ww7uyAohd8o3YwpmQ==
+ bh=H7/jH0QC+IQYdV5mUN9VWgFi261elHc8aoKTkDZyP8M=;
+ b=B2Jx/DSLL2HItNfIwAOWv1/mUQFoMDub5m41qSzF6ZgSJXFnPTNX9Mvh8gMSIqk3rFBMCc8+zprMMUgMG8g1FzDyxDxyUN/pgcxaYWhnmV41k+iC5xMSQeUtGRbqdQfCFvpfuF8PNUgz6t79j4gTXwOFQUWLm+o5vfwXjvACgVdMWg6UGZGBnPrwd2gcsJtlqbptu0r86DMkcYprxz2P5B0GEG/HLQpxeDTaztjrllBXbMyYm3MqMKNqkC39KoEjzlAzTYWl7pYH4xkM6SUMtdONjHceYAfWM4wE2mH68uHEIKFTynHWvbbO2U5UeNiDtUTRVofsOKSZMrjS3lOduQ==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
  dkim=pass header.d=intel.com; arc=none
 Authentication-Results: dkim=none (message not signed)
  header.d=none;dmarc=none action=none header.from=intel.com;
-Received: from CY5PR11MB6139.namprd11.prod.outlook.com (2603:10b6:930:29::17)
- by CO1PR11MB4866.namprd11.prod.outlook.com (2603:10b6:303:91::16)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6254.33; Mon, 3 Apr
- 2023 13:02:33 +0000
-Received: from CY5PR11MB6139.namprd11.prod.outlook.com
- ([fe80::2629:fb12:6221:3745]) by CY5PR11MB6139.namprd11.prod.outlook.com
- ([fe80::2629:fb12:6221:3745%5]) with mapi id 15.20.6254.033; Mon, 3 Apr 2023
- 13:02:33 +0000
-Date: Mon, 3 Apr 2023 06:02:30 -0700
-From: Lucas De Marchi <lucas.demarchi@intel.com>
-To: Michal Wajdeczko <michal.wajdeczko@intel.com>
-Message-ID: <20230403130230.ecltjsfu2q47iliz@ldmartin-desk2.lan>
-References: <20230321220527.595462-1-lucas.demarchi@intel.com>
- <20230321220527.595462-2-lucas.demarchi@intel.com>
- <adnojpupaqnivif7aqblxkuiwyiexskk4h3b36bsktbpifoip3@b7xazecr7exv>
- <20230331143337.vtlyhttwwqfv2tad@ldmartin-desk2>
- <20230401085459.ub2rgeiqbi225n42@ldmartin-desk2.lan>
- <epatz7qx73i3kzxa4fzn7xcizmdiesgqei62ixvjvhi64i5z36@qz6l54vqdsp7>
- <20230402013449.orx5njgiy4uyjcbj@ldmartin-desk2.lan>
- <cb9c13f0-fbbf-415b-35a8-0c00bfe1864a@intel.com>
- <20230402215431.lhqn4qtqawbrefmb@ldmartin-desk2.lan>
- <0ce8d4fe-59e9-d950-4e0d-d70e74e395a6@intel.com>
-Content-Type: text/plain; charset="utf-8"; format=flowed
+Received: from DM4PR11MB5373.namprd11.prod.outlook.com (2603:10b6:5:394::7) by
+ IA1PR11MB7775.namprd11.prod.outlook.com (2603:10b6:208:3f3::9) with
+ Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.6254.28; Mon, 3 Apr 2023 13:14:08 +0000
+Received: from DM4PR11MB5373.namprd11.prod.outlook.com
+ ([fe80::87b4:14a9:fca1:cfa2]) by DM4PR11MB5373.namprd11.prod.outlook.com
+ ([fe80::87b4:14a9:fca1:cfa2%7]) with mapi id 15.20.6254.033; Mon, 3 Apr 2023
+ 13:14:08 +0000
+Date: Mon, 3 Apr 2023 15:14:03 +0200
+From: =?utf-8?Q?Micha=C5=82?= Winiarski <michal.winiarski@intel.com>
+To: Lucas De Marchi <lucas.demarchi@intel.com>
+Message-ID: <2hwjrydixenxvil2ok6cxl2tyeo4bc7eaa34mtoxxzl7yfkc6a@s7opei3pyjro>
+References: <20230401085151.1786204-1-lucas.demarchi@intel.com>
+ <20230401085151.1786204-8-lucas.demarchi@intel.com>
+Content-Type: text/plain; charset="utf-8"
 Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <0ce8d4fe-59e9-d950-4e0d-d70e74e395a6@intel.com>
-X-ClientProxiedBy: MW4P220CA0021.NAMP220.PROD.OUTLOOK.COM
- (2603:10b6:303:115::26) To CY5PR11MB6139.namprd11.prod.outlook.com
- (2603:10b6:930:29::17)
+In-Reply-To: <20230401085151.1786204-8-lucas.demarchi@intel.com>
+X-ClientProxiedBy: LO6P123CA0004.GBRP123.PROD.OUTLOOK.COM
+ (2603:10a6:600:338::11) To DM4PR11MB5373.namprd11.prod.outlook.com
+ (2603:10b6:5:394::7)
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: CY5PR11MB6139:EE_|CO1PR11MB4866:EE_
-X-MS-Office365-Filtering-Correlation-Id: dd46d21b-ad15-45b4-b492-08db3443b07b
+X-MS-TrafficTypeDiagnostic: DM4PR11MB5373:EE_|IA1PR11MB7775:EE_
+X-MS-Office365-Filtering-Correlation-Id: 1364e967-61d7-4ae2-cb19-08db34454e92
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: DJuAm840aGtPgKffVd5buFPw+XdnSSgOVefdZOQbltQLCVowFqUEGUfheV6/wK7pN6RylhPKmPQ2gKFwLGOsb9qtYweiOlCUfFhOJi0q3L4kIuiOWS138R2jGsUUJvPAt7DlS9lg+HXMmiRnCBpR2tf3K7M0QW9gQxf1EMuHnVZLvQHl1+zQtwqwhbeQINXQbewjb+W09e882pdBOG6kbnIH1jcHHynnsEn2sDCl5GYCgNUe/tOb6GkJbHRXenh9Kq5DldFThbWy9WGkdFJB6mDXWGwu3HxYZMwJqegqS1wXxJ2O5wKtd2ZxlBNexmj5/9ecQaxQFjZv/708Fdug/ijZx1buXW/SbMHK6HPGNA/5wbEAv1gOwNyN4t2iRTXy/kszVSoPAh7Inp3MdSaWR0EX1aUJUTf8w0CcrUTN5upYHycUFGig015umaqYjkfMFRPS9UAqf+CvgZHYhbO4rYOa/bBznTmOc9QEIcWfiXN41RITlk3olhY10wVoCFXv26EELEJtU2BhfB7mA5BPcoV1RUUl8vEh3z56eFs3frBsNw9P27Xujo6E+9RnsR0R47xpdtdbT+AT+30akaKB7Snf7wcljfDYKdd4dsAANmM=
+X-Microsoft-Antispam-Message-Info: utsUxBaoXW6TGpoGpMvKGfnjKe6dxGmWDk+Q5YGDhLNDuFHDuSKYUbmCQlNL6G8xUYoa7aI88maaoqVTAk52JbD6hOMibphl50NlJRf2vUAnxGlDcD/gF5980osLzUkgVkxzt7V7EoowjzbSHuwEk9apWRruaTYRuClpqeLt0Pm7MzbX9nWIbzWDaAGJH3I0WHKWAaCsR4RKWu9o6GsjdS4vXiGGYE/4FguYyjkdP4IFk16LCIlCTh4AIcrFHXX/SE9ZGziGpRQwyzbQ8FiebzEtNTWj8y/KtiaYQ/zPDD67k5i09pek1s29B7sWTNeG1GOvuPjMQynUOJSG3s8dqkYR77Wnf4Nf1q6vYuFLU9j1p2fm4sAuL7/tNJ3dsWuaDQIaEWSxmNKwwHNNs5J6SjnoDE6Uq7xdFM06IwlyLM6HGpSbYwrgQbAQJ9zuM4yMLBV+C78GY5v0AndBNkERYoyLDhbvz384zVuOdAY3lZy6m/YlHtrKfHNIpVGd/YO3vHtZT+gJbh57fTke/LmQJgkhia02nZlbv5IHOAMd7EDFTMh3vaNFdebgqoRx40m3
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:CY5PR11MB6139.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230028)(376002)(39860400002)(396003)(346002)(136003)(366004)(451199021)(2906002)(38100700002)(5660300002)(82960400001)(66476007)(66556008)(6862004)(66946007)(8936002)(41300700001)(8676002)(4326008)(36756003)(1076003)(6636002)(316002)(83380400001)(53546011)(86362001)(966005)(478600001)(186003)(107886003)(9686003)(26005)(6512007)(6506007)(6486002)(21314003);
+ IPV:NLI; SFV:NSPM; H:DM4PR11MB5373.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230028)(7916004)(376002)(39860400002)(396003)(136003)(366004)(346002)(451199021)(6486002)(83380400001)(26005)(186003)(6666004)(6512007)(9686003)(6506007)(33716001)(41300700001)(86362001)(38100700002)(82960400001)(5660300002)(66946007)(478600001)(66476007)(8676002)(4326008)(66556008)(2906002)(8936002)(6862004)(316002)(6636002);
  DIR:OUT; SFP:1102; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?UzZrcTNGNFBLRXFIc0tnL0xuem1vMWozSmxmd0FQL3I4cUFGVkZ1RW1EWE9u?=
- =?utf-8?B?SG9STVNwVXBxVHJRTE8vWFpFZTdQdWZvVVNYM09aN2xhUklTMmJ0Y3JOdzNR?=
- =?utf-8?B?NS9Bb1BPeXNhS2FtUFVjTEpsYmxmbi80eWplUjJ1NzF0WEY5MG51Ni84WVc5?=
- =?utf-8?B?T2Riand3Zk9aLzNCZDhKdVN5VHN3UDBJODVuOU5PeUEvVmM1bXJ4K1RUNytN?=
- =?utf-8?B?UmtpTFRPZVVmNnVyWElZWVhRanBDemdwWGIyUlh2ck4vUTdtMFJ5RXBlVkxB?=
- =?utf-8?B?a3ZvQ1RHZmR5bjM1WEZ4SFpSYmNlTUw0dzREeHovYU53S1k3RTdNOU8yMDJs?=
- =?utf-8?B?WExmdElwelQ5TjkwZ0hpMDJlYzk4bmVDeS8vNW80Q09IS1FTY203dE40MGlx?=
- =?utf-8?B?cytuZ1RzcUR5djV1QlNmM20vZGNXZkdOUWNTRlNpTDh0SEZFR0lCaDJtTkpv?=
- =?utf-8?B?b3VlMk9xTlV6ZzhISUlsaG5TNnZMZ3VsSEZxOXVYejdiQUFHZkl3RFZ0ejVz?=
- =?utf-8?B?QXl3bm1scHpwWEhLL3JEclVyam02QWtOVW5JTEZSYUsvSWg5NnFSMThXa2U0?=
- =?utf-8?B?ZGc4WWpHTWtNdFlVSlRyeHl5dmhKeXY2VEZ5QVp3RUJQYnRzQlRtd3IyenUv?=
- =?utf-8?B?MTdDZGkybGlCOEVTcDlQaVlrVFVwZmtxbFNiQU84aktZTVRhNGc0UnRCWEZu?=
- =?utf-8?B?NHNvOHl0eC9xVEUzMDBZRldOQ1N2eWc2UzlnQUxqUnFFUFIrQkc5Qk1Kb2cy?=
- =?utf-8?B?b3pQVHpSQzArcDJiRGhmTGRnUnRxRVhUaHFHcGxsam52OXJqSW1ObjlRdXN2?=
- =?utf-8?B?MDhRZ2lKQzRwUXJma0I4SXo4U2RsaGNHcmVGZ3J1Q3hHdnVTZkNUZVBnVk9j?=
- =?utf-8?B?eWs4ZDdYVjhzelJKdWY4aHdFcGpoRmo0SUpRYkdEUzdGY3R2cDRtU0xWYTNp?=
- =?utf-8?B?YmswYUNJZ0xxWnk0Mm9Vc0t5aklTR1A3M3hXKzk1N2ZaaXZXeENIR2dhWDU3?=
- =?utf-8?B?dmtvVG1YbWFjOFMrWVlDa2Z0WVY5K2d4YzM3TTdpd01mTkt6OWt2RmpBcE1z?=
- =?utf-8?B?MmNzcDI4Rzg3QmVXNTNPbFRkdUNKbE9QYkNOWmNqM2hHTTJmNzlCRVVTeEtt?=
- =?utf-8?B?eXRCVHhndmpnb1hFZCtlSzAwa3lkOXZRUDRyRWFEd2NoMFhDNnFxNDVLdnpj?=
- =?utf-8?B?RG9wN1h2OHFwZWREMnpVSFZXd0RDRzIwakFsYktHU0V6cVkrQVI1V0R1VWhO?=
- =?utf-8?B?OHBFd2FWVzV6M3JSOUtjeG1JcE1JNWNQVEh6NnpOUDN6eVlod0xNU2RVU3dF?=
- =?utf-8?B?amJCM2lhTmsrMWgrb2M0Um5KVVpacmttSzZiTk56WTkyV3RGdENnNjBZZTFo?=
- =?utf-8?B?b0hLb2h2Zlg1T2Iwd3JaTmdOb1pZT0Zzc1krME9HaGZLMDhrVkNFMllBVFNw?=
- =?utf-8?B?SXVzenR6Wm4wUjNwbjJRUXVITlRWQ2IrWHIwOFByU1d5bE8vWUpCK2RnQldC?=
- =?utf-8?B?UXZjSVRVWEdWVEFLdlF1OGN1dlllRGxzYitTaG9sVzQvdnk2UkkvR0hGNE5M?=
- =?utf-8?B?L1IwbExQRGtYS1NnOVVDbFAyQVRBZll0M3V3N1ExMHJNbVlkSEdHbHJNUEtO?=
- =?utf-8?B?L3BYUlNqQi8xdzhPNW5PQlNPU0pwMHJmK1lDYWFSV09rOWUrd0lVeVl1NUYr?=
- =?utf-8?B?TWp3UTF1WEdicDBWaXVycEJ0QWZRZitRamcwQ2Nsbkd3ZHJOZUdwb0VTbTFQ?=
- =?utf-8?B?dXhRaEl6WW1DUFpYTVFPSER0Y0U0SGQzRjZTV3hTNlJUbG1EWWt5dFFpdGhV?=
- =?utf-8?B?YVk3TnFtWER6VTE4ZUM1MWVnbktFckNOc2dUbVJRVFYzN1pZVVprVFZoMjRp?=
- =?utf-8?B?SG8ybzR6ZDNwdnh4VDRDeUIxcm10YURhUGZZUlo0cnM0cGtuNE51UE5ZZ0lI?=
- =?utf-8?B?SVpOTUJuZ1ZvTUJYZjRlSkdTSWlKUUlSM21JTW8rdW9CRklrVDBiSXNJOEpm?=
- =?utf-8?B?TnFKdTV5UnMwb3ZvdHloZy9vdnkzNW53MGxNS1NiZlZsRm00b3Rsb0VhTXhQ?=
- =?utf-8?B?T0p0ZG1Bd25DQzZLZk0yR0tiR3N4ZDgwUFFBMmZiQk9kWVhwdXNNVnYxb3dC?=
- =?utf-8?B?UnJTZURuWWpLWVFMeTBxSlRvUitPY0VyRW9XVGM0QUZhbkFZUjRaWlNaZjBG?=
- =?utf-8?B?MUE9PQ==?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: dd46d21b-ad15-45b4-b492-08db3443b07b
-X-MS-Exchange-CrossTenant-AuthSource: CY5PR11MB6139.namprd11.prod.outlook.com
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?UEZ0eXVQcno5OEpPWFN1L2RuUmxjUld2UnZlcTBSQUtQWVBhbFQ1eVltYXN4?=
+ =?utf-8?B?UEQ5aThOeWw5SEJRdEFWUkVpMGdkbVQxYlNLcU5ZMEtuRnM1WUh4am1EbEZW?=
+ =?utf-8?B?b3cyWUtjUGtLQnFmb3lCTVFsUzVybHlnNnZ0QXlWcERKMG1XdzlxeDgybFZY?=
+ =?utf-8?B?bzhqOFUzTnVOZDNTL29FMXEzUzMvbUI3SGU2eWkrMzlMS3M0L3V1QTk4NmxC?=
+ =?utf-8?B?Lys5TnBEQWVEMlErMGhrcXVVYmtOREd5UzMrblZXTGt6WDk2b0lRdkdKNWdv?=
+ =?utf-8?B?K0dra3E5SElOYlhjTkdWZE9URTJYblBQOEYwY01VWVU5TVpQTEZQMlFYenIr?=
+ =?utf-8?B?Sk96dDNWMG9mQ2QzKzJRcGV6MzVCZmtYcmNoSXlGMnd3UGxzYzMzYnNHSzBu?=
+ =?utf-8?B?M1h5S0lVMk5wRDVncTd3YllJUzJBeDJUNkRzaGxnR0dBeVpldDhxaHV5YnIy?=
+ =?utf-8?B?b2g1VlRGdGtkMW16YnNncUhrUnd5QXZ4THRjRGlFQXVzU3hQd0I5d0VhVyt4?=
+ =?utf-8?B?aVB2N1M2SlMyQU96cHlKN0ZlckM0ZzNZcXJkYWpwc1p1dVpUZ29haUVObml0?=
+ =?utf-8?B?RmlOY0txanE5Rm5QdUZjYXpoSHZGeE53SE41WEZiVTZQUnpwOTNFYStwUDNU?=
+ =?utf-8?B?MEhtcXNTWGh2RFFqSDhJb2N5OGdMWVNjdVVSdkErYUNoS3k0c0VIc3d5dmgz?=
+ =?utf-8?B?YzZZempEN2J6Vm5HR1VQRGZXaTUrTHR4MW1sYVorRzhKK3h6bjJwczBwMFJy?=
+ =?utf-8?B?TUJtdnRSWFlBY0htVGxRUjZETlE0a0F6aE9zMXFQTWVQZlJ3MmczaXlvQit4?=
+ =?utf-8?B?TGpBMnhaOGRrbDhLc293d2dCTkJEeGFlTzVxYzhPeU5TTUJiRGhEczhyRVZ0?=
+ =?utf-8?B?K3NEeGNVa1Ftenk0MVAvL0tJcmVBbjVGNEhxVTFyeS9NdzN1S3hBY0xpdkpT?=
+ =?utf-8?B?bjNSeXJwRHRSNUxBWGtabjMwaXdoQWV2VDdVZW56UGNXRjVMcEUzRmJYYmUx?=
+ =?utf-8?B?WXNsWG5yTHhQU1V1bzQ2QyswaHMrTndpNzdrTHFBNVRleDhoeG5wc1lVZjh0?=
+ =?utf-8?B?MDlKbXVjWDdQRCt2bHRvVmwvRmUvMmZrendGVTZvcC9lc3R1UjZEdVFqQW1o?=
+ =?utf-8?B?eDJNSTlISjhQSU1qNk1kbTdLV1dHeFJWblNGME1BV1FBOWo5SW0rWjU3bWM4?=
+ =?utf-8?B?SHVGK3YyN2F2T3BoRzA5WEtTNkJwaFkxVjNWdmpvRTg2QXNZSVllVkRGUXNJ?=
+ =?utf-8?B?aVptYXAwQUFZRStGWDNyeUs4SGl0cENPOVVOQkRuMjRXUHJRUjhJMDEvSm9x?=
+ =?utf-8?B?WVMrWWNvM3JTSVZOTllxblVoYnlzRW1FYWJuU09od01CYThxayttU2s4QnMv?=
+ =?utf-8?B?aHh4RDNuMy9HaFhCZ2pJdktjckRCV0ppaDBYb21oR2VadjZkOUVMbjJ4ckI2?=
+ =?utf-8?B?UGszdU1waTlDTkE1OTNxcThjOWpTWjNTUmo3dHNVWFhBQWVLakFxcjJ4QmJn?=
+ =?utf-8?B?K1JpVEo3NEh3cXlsQjZQcURIcThVSVA1MThiaVQyb0E2bUpmdkpiVFlsWlJj?=
+ =?utf-8?B?TTA4OVFFelltUWRPSkE4bWswTCtJQzBTNXI3MmFhMmdhL0l2NjRRS0U5Ym1X?=
+ =?utf-8?B?K2x2MTN5QXZjbi93dkF3T3V0Y0g0VVZ2M3g1a2NSUm5NdTI4ZDV2dGxQeEVr?=
+ =?utf-8?B?czJJMFZLaEpNNnRoVFk0d3hSU0hMMWxQcU55VHNWQlNWT1k2a250WXFGYzJ2?=
+ =?utf-8?B?NEt1bnY3Z0x4RXhmN1hLblMrbjZIK3IzSHFJUDVUbEJZVWZiQURsK0JxV25z?=
+ =?utf-8?B?dXkyMnV2L1c1WkxlTlZCa0pabUFHNkdKTjBJU1ZtYXhsVlk1N0JuSWZiM0Nh?=
+ =?utf-8?B?OWtncm9WWERxb0NtUHEyMnNQNkdaVEltUFRySkRYNFVMM1hRdzhqQTNnbWV5?=
+ =?utf-8?B?M09tQjJJcXlHTVhyRjRTMzRqTDZHRy8rQ0VUT3o0OFpXR3l0blN5OW4xYUk5?=
+ =?utf-8?B?a2VxenlPK2pzckVIR3dZYU4yRi9qU29oWEhudFkzNWozL0VnT2FiOS9jRGtv?=
+ =?utf-8?B?Ny9lY1dHT3E3UjdyaitSc2VFdDhVVlAvUE01UFd5RVdPS1lvd3IxaGFnUkZu?=
+ =?utf-8?B?UTZZTTZoeEVSRmJLTDQrWVQyOVlLUGcydDEvNkhTL1ZvQVJqUFhKZElhWHp3?=
+ =?utf-8?B?a3c9PQ==?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: 1364e967-61d7-4ae2-cb19-08db34454e92
+X-MS-Exchange-CrossTenant-AuthSource: DM4PR11MB5373.namprd11.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 03 Apr 2023 13:02:33.4130 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 03 Apr 2023 13:14:08.6228 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: f8GTfOqDVCnWtGTkvkJcpSKy8YpnkU40HztuJkfsdmFg6j+V87lnwF3iXawc8ZB6NXoI1EHBqSegOf39qzE+8egabPkwGnzApLofTUXW1W8=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: CO1PR11MB4866
+X-MS-Exchange-CrossTenant-UserPrincipalName: hbxh0cybJOb2zt/b6a4wo+kzmdbL0lSwSfGGKxAoHO4zFrk35323ht2xJzXfP2A8CCfN9TvV/TZ30fwJTf+U6jsuAevl2ESq4LGTp4LMoFQ=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: IA1PR11MB7775
 X-OriginatorOrg: intel.com
-Subject: Re: [Intel-xe] [PATCH 1/7] drm/xe: Add basic unit tests for rtp
+Subject: Re: [Intel-xe] [PATCH v2 7/7] drm/xe: Add test for GT workarounds
+ and tunings
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -161,254 +154,57 @@ List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
 Cc: =?utf-8?Q?Micha=C5=82?= Winiarski <michal@hardline.pl>,
- intel-xe@lists.freedesktop.org, maarten.lankhorst@intel.com
+ intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Mon, Apr 03, 2023 at 09:38:01AM +0200, Michal Wajdeczko wrote:
->
->
->On 02.04.2023 23:54, Lucas De Marchi wrote:
->> On Sun, Apr 02, 2023 at 01:17:50PM +0200, Michal Wajdeczko wrote:
->>>
->>>
->>> On 02.04.2023 03:34, Lucas De Marchi wrote:
->>>> On Sat, Apr 01, 2023 at 08:26:24PM +0200, Michał Winiarski wrote:
->>>>> On Sat, Apr 01, 2023 at 01:54:59AM -0700, Lucas De Marchi wrote:
->>>>>> On Fri, Mar 31, 2023 at 08:34:21AM -0600, Lucas De Marchi wrote:
->>>>>> > On Mon, Mar 27, 2023 at 07:56:01PM +0200, Michał Winiarski wrote:
->>>>>> > > On Tue, Mar 21, 2023 at 03:05:21PM -0700, Lucas De Marchi wrote:
->>>>>> > > > +EXPORT_SYMBOL(xe_rtp_process_incompat_types);
->>>>>> > > > diff --git a/drivers/gpu/drm/xe/tests/xe_rtp_test.c
->>>>>> b/drivers/gpu/drm/xe/tests/xe_rtp_test.c
->>>>>> > > > new file mode 100644
->>>>>> > > > index 000000000000..4a12aad3f759
->>>>>> > > > --- /dev/null
->>>>>> > > > +++ b/drivers/gpu/drm/xe/tests/xe_rtp_test.c
->>>>>> > >
->>>>>> > > There's no need to have this as a separate file.
->>>>>> > > We can move the contents of tests/xe_rtp.c into
->>>>>> tests/xe_rtp_test.c and
->>>>>> > > include tests/xe_rtp_test.c directly in xe_rtp.c
->>>>>> >
->>>>>> > this is not how the tests are currently structured.
->>>>>> >
->>>>>> > xe_rtp.c includes tests/xe_rtp.c. The latter can be seen as "an
->>>>>> > extension of the that file, exporting whatever entrypoint is needed
->>>>>> > for the real test". They are then part of the xe.ko module.
->>>>>> >
->>>>>> > tests/xe_rtp_test.c is the one in the separate test module, and
->>>>>> contains
->>>>>> > the integration with kunit.
->>>>>>
->>>>>> but it's possible to keep everythin in the separate module and not
->>>>>> need
->>>>>> the include of tests/xe_rtp.c. I did that on v2.
->>>>>>
->>>>>> Lucas De Marchi
->>>>>
->>>>> From my perspective - the way that the test is implemented carries an
->>>>> additional information.
->>>>> 1) Test is a separate module:
->>>>> Means that we're testing the API exported by the module (that's used by
->>>>> other modules).
->>>>> 2) Test is a file that's a part of a module:
->>>>> Means that we're testing non-static API used internally by the module.
->>>>> 3) Test is a file that's included at the end of a file:
->>>>> Means that we're testing static functions.
->>>>>
->>>>> Forcing everything to be a module doesn't really serve any purpose.
->>>>> It just makes things harder to follow, as it removes this useful
->>>>> additional bit of information.
->>>>
->>>> I strongly disagree here.  Basing the test location on how much a
->>>> function is exposed is a recipe for having to move the tests from one
->>>> place to another. There are always refactors that make function change
->>>> from non-static -> static, static -> non-static, and to a smaller degree
->>>> exporting it.
->>>>
->>>> In the end the code will just be inconsistent with the rules you
->>>> outlined.
->>>>
->>>> Separating everything to a separate module means the test code doesn't
->>>> bloat the xe.ko module. I do think we should group all the tests into a
->>>> single xe_test.ko, but that is a different topic.
->>>>
->>>> See v2 of this patch series where I move *all* of the rtp tests to the
->>>> separate module and simply use EXPORT_SYMBOL_IF_KUNIT() to export the 2
->>>
->>> but having to export static functions simply don't scale, it's fine if
->>> all you test needs is 2 functions, but to have full coverage we might
->>> end with exporting all static functions (and to some extend bloating
->>> xe.ko anyway, both in code and binary)
->>
->> ... the fallacy of full code coverage.
->
->so having full coverage is not our goal any more ?
->then others work like [2] seems unnecessary
->
->[2] https://patchwork.freedesktop.org/series/115513/
+On Sat, Apr 01, 2023 at 01:51:51AM -0700, Lucas De Marchi wrote:
+> In order to avoid mistakes when populating the workarounds, it's good to
+> be able to test if the entries added are all compatible for a certain
+> platform. The platform itself is not needed as long as we create fake
+> devices with enough configuration for the RTP helpers to process the
+> tables.  Common mistakes that can be avoided:
+> 
+> 	- Entries clashing the bitfields being updated
+> 	- Register type being mixed (MCR vs regular / masked vs regular)
+> 	- Unexpected errors while adding the reg_sr entry
+> 
+> To test, inject a duplicate entry in gt_was, but with platform == tigerlake
+> rather than the currenct graphics version check:
+> 
+>        { XE_RTP_NAME("14011059788"),
+> 	 XE_RTP_RULES(PLATFORM(TIGERLAKE)),
+> 	 XE_RTP_ACTIONS(SET(GEN10_DFR_RATIO_EN_AND_CHICKEN, DFR_DISABLE))
+>        },
+> 
+> This produces the following result:
+> 
+> 	$  ./tools/testing/kunit/kunit.py run \
+> 		--kunitconfig drivers/gpu/drm/xe/.kunitconfig  xe_wa
+> 
+> 	[14:18:02] Starting KUnit Kernel (1/1)...
+> 	[14:18:02] ============================================================
+> 	[14:18:02] ==================== xe_wa (1 subtest) =====================
+> 	[14:18:02] ======================== xe_wa_gt  =========================
+> 	[14:18:02] [drm:xe_reg_sr_add] *ERROR* Discarding save-restore reg 9550 (clear: 00000200, set: 00000200, masked: no): ret=-22
+> 	[14:18:02]     # xe_wa_gt: ASSERTION FAILED at drivers/gpu/drm/xe/tests/xe_wa_test.c:116
+> 	[14:18:02]     Expected gt->reg_sr.errors == 0, but
+> 	[14:18:02]         gt->reg_sr.errors == 1 (0x1)
+> 	[14:18:02] [FAILED] TIGERLAKE (B0)
+> 	[14:18:02] [PASSED] DG1 (A0)
+> 	[14:18:02] [PASSED] DG1 (B0)
+> 	...
+> 
+> Signed-off-by: Lucas De Marchi <lucas.demarchi@intel.com>
 
-no idea about that test - I'm talking about the concept about full
-*code* coverage above all else and think you are covered when you
-reached that goal... ther are multiple articles around about that.
+Reviewed-by: Michał Winiarski <michal.winiarski@intel.com>
 
->
->>
->>>
->>> there is already BKM for testing static functions [1]
->>> so why are we trying to force different (and IMO worst) model ?
->>
->> it's fine as long as the test is small and you really want/need to test
->> that single function rather than a higher order interface to it.
->>
->>>
->>> [1]
->>> https://docs.kernel.org/dev-tools/kunit/usage.html#testing-static-functions
->>
->> "If we do not want to expose functions or variables for testing ...".
->> There are several sections before that one.
->>
->> It will depend on the test. Some may be inevitable and simpler to
->> include in the file. With the dowside of bloating the module.
->
->but what exactly bothers you by "bloating the module"
->
->- additional single #include at end of .c file
->- multiple xxx_IF_KUNIT macros across all over .c file
->- bigger footprint of the xe.ko due to export tables
->- bigger footprint of the xe.ko due to inclusion of test functions
->- bigger footprint of the xe.ko due to inclusion of test suites
->- additional headers to expose test functions
->- ...
->
->>
->>>
->>>> functions I need (In this v1 I was using
->>>> EXPORT_SYMBOL_NS_GPL(..., XE_KUNIT) to make sure the tests were in a
->>>> separate namespace, but then I noticed kunit itself has a recommended
->>>> way by using its macro).
->>>>
->>>> This makes the rule very simple to be followed:
->>>>
->>>> 1) Place everything you can in the separate test module
->>>
->>> but why? as Michal pointed out, this works best for testing already
->>> exported API functions, to test internal static functions, this would be
->>> unnecessary complicated solution
->>
->> then provide a better test on the interface rather than on the static
->> function. If really needed/wanted, then including it on the bottom of
->> the file can be done.
->
->majority (if not all) of our functions are not module exported, thus
->testing them will look almost exactly as static
+-Michał
 
-I'm saying you could have good tests by using the interface of the
-module/file instead of trying to test every single static function.
-
->
->>
->>>
->>>> 2) Place it in end of the file with the #include otherwise
->>>
->>> this should be our primary BKM for mock/fake/sw/self/kunit/unit(*) test.
->>>
->>> (*) pick one
->>>
->>> note that in addition to easy maintenance (it doesn't require writing,
->>> building, distributing and loading separate modules), this single test
->>> file already has access to all required compilation unit static
->>> functions that we want to test.
->>>
->>> also from IGT point of view, this would mean that in case of
->>> adding/removing some subtests all we need is just update test filter
->>> rather then updating list of modules to load/unload.
->>
->> you are making this up as "it's harder to maintain" to justify your bias.
->> There is 1 single call you make, using the already provided kunit.py.
->> Developers can run it on their machines and so can CI.
->
->it's not about how you run such test, as in both cases this will be
->exactly the same kunit.py line
->
->problem is during creation of such test where you need to:
->- provide new .h with prototypes for the otherwise static functions
->- tag (bloat) static functions with VISIBLE_IF_KUNIT
->- export (bloat) static functions with EXPORT_SYMBOL_IF_KUNIT
->- create new .c with test module
-
-I don't think it was hard to write the v2 of this series and the
-boilerplate was very minimal. So I'm ok with the current state.
-
->- update Makefile with new module definition
-
-as I said before, this would be a good thing to consolidate, making all
-tests under a single .ko rather than 1 per area.... it's on my todo list
-
->- update IGT to consider new test module
-
-see above about 1 test module... but also it seems igt would reinvent
-kunit.py with the intergration you have in mind for it.
-
-IGT could simply have 1 test: kunit. That runs kunit.py with the rigt
-args, get the json output and interpret it.
-
->- update CI to run new module
->- update any scripts to load/unload new module
->- ..
-
-no, see above
-
->
->
->>
->>> and I wouldn't count this final #include as .ko bloating factor as it
->>> would be primary used in UML build, where we don't care, and for the
->>> target builds this could be easily compiled out.
->>
->> then you can't get the prebuilt kernel to be executed "in production"
->> and sanity check it still passes the sw tests.
->
->but really why you need to rerun those tests ?
->if you don't trust results from kunit.py UML run, then maybe
-
-CI / distro / whatever built a x86-64 / ARM64 / whatever-!UML kernel.
-User downloads *that* kernel. How can he sanity check the sw tests if
-we make the tests to run strictly under UML?
-
->
->a) we should drop it from our build step
->b) change kunit config from UML to x64 or something
->c) notify kunit maintainers about problems/gaps with UML runs
->
->as I don't expect any differences between UML and 'production' build
->then I can see no point in running them twice or more
-
-answered above.
-
-Also, it doesn't seem this is being productive as you are convinced the
-current state of test integration is completely broken and can't be
-used. I disagree. And I see that the changes you are proposing would
-bring other issues or are simply not worth it. I'd rather spend time
-adding more tests with the current state of the integration and improve
-the integration as needed.  So... I already sent v2 of this patch series
-which also covers some of the things discussed and I'd rather not reply
-to this v1 series anymore.
-
-thanks
-Lucas De Marchi
-
->
->thanks,
->Michal
->
->>
->> Lucas De Marchi
->>
->>>
->>> thanks,
->>> Michal
->>>
->>>>
->>>> Lucas De Marchi
+> ---
+>  drivers/gpu/drm/xe/tests/Makefile     |   3 +-
+>  drivers/gpu/drm/xe/tests/xe_wa_test.c | 136 ++++++++++++++++++++++++++
+>  drivers/gpu/drm/xe/xe_tuning.c        |   3 +
+>  drivers/gpu/drm/xe/xe_wa.c            |   2 +
+>  4 files changed, 143 insertions(+), 1 deletion(-)
+>  create mode 100644 drivers/gpu/drm/xe/tests/xe_wa_test.c
