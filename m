@@ -4,31 +4,30 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 13084C76188
-	for <intel-xe@archiver.kernel.org>; Mon,  3 Apr 2023 17:14:46 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 22469C76188
+	for <intel-xe@archiver.kernel.org>; Mon,  3 Apr 2023 17:16:37 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id DB99110E534;
-	Mon,  3 Apr 2023 17:14:45 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E95EB10E534;
+	Mon,  3 Apr 2023 17:16:36 +0000 (UTC)
 Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id DE2CB10E534;
- Mon,  3 Apr 2023 17:14:43 +0000 (UTC)
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id A1CB810E534;
+ Mon,  3 Apr 2023 17:16:35 +0000 (UTC)
 Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id D5055AADE4;
- Mon,  3 Apr 2023 17:14:43 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============6945562896458333137=="
+ by emeril.freedesktop.org (Postfix) with ESMTP id 7F0D2AADE3;
+ Mon,  3 Apr 2023 17:16:35 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 From: Patchwork <patchwork@emeril.freedesktop.org>
-To: =?utf-8?q?Jos=C3=A9_Roberto_de_Souza?= <jose.souza@intel.com>
-Date: Mon, 03 Apr 2023 17:14:43 -0000
-Message-ID: <168054208386.24311.3044474763562229016@emeril.freedesktop.org>
+To: "Mauro Carvalho Chehab" <mauro.chehab@linux.intel.com>
+Date: Mon, 03 Apr 2023 17:16:35 -0000
+Message-ID: <168054219549.24311.16729984225303440102@emeril.freedesktop.org>
 X-Patchwork-Hint: ignore
-References: <20230403164615.131633-1-jose.souza@intel.com>
-In-Reply-To: <20230403164615.131633-1-jose.souza@intel.com>
-Subject: [Intel-xe] =?utf-8?q?=E2=97=8B_CI=2EBAT=3A_info_for_series_start?=
- =?utf-8?q?ing_with_=5B1/5=5D_drm/i915=3A_Split_display_locks_init_from_i9?=
- =?utf-8?b?MTVfZHJpdmVyX2Vhcmx5X3Byb2JlKCk=?=
+References: <20230328130826.61029-1-zbigniew.kempczynski@intel.com>
+In-Reply-To: <20230328130826.61029-1-zbigniew.kempczynski@intel.com>
+Subject: [Intel-xe] =?utf-8?q?=E2=9C=97_CI=2EPatch=5Fapplied=3A_failure_f?=
+ =?utf-8?q?or_drm/xe/bo=3A_Return_object_bo_size_on_create_=28rev2=29?=
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -45,63 +44,39 @@ Cc: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============6945562896458333137==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
 == Series Details ==
 
-Series: series starting with [1/5] drm/i915: Split display locks init from i915_driver_early_probe()
-URL   : https://patchwork.freedesktop.org/series/116033/
-State : info
+Series: drm/xe/bo: Return object bo size on create (rev2)
+URL   : https://patchwork.freedesktop.org/series/115726/
+State : failure
 
 == Summary ==
 
-Participating hosts:
-bat-atsm-2
-bat-dg2-oem2
-bat-adlp-7
-Missing hosts results[0]:
-Results: [xe-pw-116033v1](https://intel-gfx-ci.01.org/tree/xe/xe-pw-116033v1/index.html)
+=== Applying kernel patches on branch 'drm-xe-next' with base: ===
+commit cbd8b47f28266aad8f9786be9a1899e3f0e0f2e0
+Author:     Matt Roper <matthew.d.roper@intel.com>
+AuthorDate: Mon Mar 27 10:34:33 2023 -0700
+Commit:     Matt Roper <matthew.d.roper@intel.com>
+CommitDate: Fri Mar 31 17:06:44 2023 -0700
+
+    fixup! drm/xe/pat: Handle unicast vs MCR PAT registers
+    
+    Somehow I dropped the error message when sending this; add it back.
+    
+    To be squashed next time the Xe driver is rebased.
+    
+    Fixes: 11946af00717 ("drm/xe/pat: Handle unicast vs MCR PAT registers")
+    Reviewed-by: Nirmoy Das <nirmoy.das@intel.com>
+    Link: https://lore.kernel.org/r/20230327173433.2957645-1-matthew.d.roper@intel.com
+    Signed-off-by: Matt Roper <matthew.d.roper@intel.com>
+=== git am output follows ===
+error: patch failed: drivers/gpu/drm/xe/xe_bo.c:993
+error: drivers/gpu/drm/xe/xe_bo.c: patch does not apply
+hint: Use 'git am --show-current-patch' to see the failed patch
+Applying: drm/xe/bo: Return object bo size on create
+Patch failed at 0001 drm/xe/bo: Return object bo size on create
+When you have resolved this problem, run "git am --continue".
+If you prefer to skip this patch, run "git am --skip" instead.
+To restore the original branch and stop patching, run "git am --abort".
 
 
-
---===============6945562896458333137==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>series starting with [1/5] drm/i915: Split display locks init from i915_driver_early_probe()</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/116033/">https://patchwork.freedesktop.org/series/116033/</a></td></tr>
-<tr><td><b>State:</b></td><td>info</td></tr>
-
-</table>
-
-
-    <p>Participating hosts:<br />
-bat-atsm-2<br />
-bat-dg2-oem2<br />
-bat-adlp-7<br />
-Missing hosts results[0]:<br />
-Results: <a href="https://intel-gfx-ci.01.org/tree/xe/xe-pw-116033v1/index.html">xe-pw-116033v1</a></p>
-
-</body>
-</html>
-
---===============6945562896458333137==--
