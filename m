@@ -4,61 +4,140 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7D8E8C76196
-	for <intel-xe@archiver.kernel.org>; Mon,  3 Apr 2023 17:00:21 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id DF422C76196
+	for <intel-xe@archiver.kernel.org>; Mon,  3 Apr 2023 17:04:44 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4E71110E525;
-	Mon,  3 Apr 2023 17:00:21 +0000 (UTC)
-Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 38CC610E525
- for <intel-xe@lists.freedesktop.org>; Mon,  3 Apr 2023 17:00:19 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B858B10E525;
+	Mon,  3 Apr 2023 17:04:44 +0000 (UTC)
+Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A788110E53D;
+ Mon,  3 Apr 2023 17:04:42 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1680541219; x=1712077219;
- h=message-id:date:mime-version:subject:to:references:from:
- in-reply-to:content-transfer-encoding;
- bh=thXd3ntpoEXds9pEYRXx6q0kdyDDhBRw49359gJe8Tw=;
- b=cB72sq8rM3RsBTqMYe893jQFYe7MYPotKu+PwXeTIbinAfu2hE7O65wP
- qJ7tb7tzJTEEJt17hPOGX3hHo2z0NG2AdCV2MGqQDpq6tCJtUCam399vG
- duLLOkafRZzWi/5vDz6EhqxWktWwdIGrAiLqUMSTNNOC6SDLc5KwCzIDM
- 1V09ieUb/Qzn4/RPnQKGsWg9/86a34nvusw+73+cg+04FLrx/aLMS5mBE
- HhA69N9KiTyuIy4Rz3oipR6tZFjQlS9w85A4VmyNXythSF3OjocFDdP0O
- OfkUJwRiu/YCPmglF9mCR7gqz195V6oAxcg5TReNEySw8VLsiKwMVuE+z g==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10669"; a="341981671"
-X-IronPort-AV: E=Sophos;i="5.98,315,1673942400"; d="scan'208";a="341981671"
-Received: from orsmga004.jf.intel.com ([10.7.209.38])
- by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 03 Apr 2023 10:00:18 -0700
+ t=1680541482; x=1712077482;
+ h=date:from:to:cc:subject:message-id:references:
+ content-transfer-encoding:in-reply-to:mime-version;
+ bh=B2ddO7joG83XJyg8YL5gzYqMcpH8COsCnUN16ESCk9I=;
+ b=iTXFJjEhchzNweFcb+29NYjIyfpqW053CvsiWtTckPH6jdBo/4Evlyj6
+ ps+0IuZQpx0773kNrF95Pg6RsP/JOfUeU4mQPNMcyVRbsAWo8EY0c4IDA
+ wWM/g2aTYdFYLUXV7N+iXyV+diAMHoLeV9mjRG+rsV3MEoVvfZfoUvbAI
+ fxPLqQcC/v1wCm4LpO4FN4bmq6cl7zou9FwgfiCy7MlvFV7ptv+9bMXnC
+ yF1FiTu0j1wahe7qEJflBoVzDV5Tar+nGODNH5+qKjqFwrMGZmBTkGU4d
+ N7uQcHa6QqiK3LNh1yqOm6mpksKYpXKprl6o5EcR5hGILN8M6aezA7yPZ g==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10669"; a="343649387"
+X-IronPort-AV: E=Sophos;i="5.98,315,1673942400"; d="scan'208";a="343649387"
+Received: from orsmga002.jf.intel.com ([10.7.209.21])
+ by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 03 Apr 2023 10:03:35 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10669"; a="809905873"
-X-IronPort-AV: E=Sophos;i="5.98,315,1673942400"; d="scan'208";a="809905873"
-Received: from linux.intel.com ([10.54.29.200])
- by orsmga004.jf.intel.com with ESMTP; 03 Apr 2023 10:00:17 -0700
-Received: from linux.intel.com (maurocar-mobl2.ger.corp.intel.com
- [10.252.28.164])
- (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
- (No client certificate requested)
- by linux.intel.com (Postfix) with ESMTPS id 96387580C63
- for <intel-xe@lists.freedesktop.org>; Mon,  3 Apr 2023 10:00:17 -0700 (PDT)
-Received: from localhost ([127.0.0.1])
- by linux.intel.com with esmtp (Exim 4.96)
- (envelope-from <mauro.chehab@linux.intel.com>) id 1pjNXS-000kqm-34
- for intel-xe@lists.freedesktop.org; Mon, 03 Apr 2023 19:00:14 +0200
-Message-ID: <16e6ea71-d8fd-85ec-22a3-5799b8ac1dba@linux.intel.com>
-Date: Mon, 3 Apr 2023 19:00:14 +0200
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.9.1
-Content-Language: en-US
-To: intel-xe@lists.freedesktop.org
-References: <20230401085151.1786204-1-lucas.demarchi@intel.com>
- <20230401085151.1786204-4-lucas.demarchi@intel.com>
-From: Mauro Carvalho Chehab <mauro.chehab@linux.intel.com>
-In-Reply-To: <20230401085151.1786204-4-lucas.demarchi@intel.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+X-IronPort-AV: E=McAfee;i="6600,9927,10669"; a="686047929"
+X-IronPort-AV: E=Sophos;i="5.98,315,1673942400"; d="scan'208";a="686047929"
+Received: from orsmsx603.amr.corp.intel.com ([10.22.229.16])
+ by orsmga002.jf.intel.com with ESMTP; 03 Apr 2023 10:03:35 -0700
+Received: from orsmsx611.amr.corp.intel.com (10.22.229.24) by
+ ORSMSX603.amr.corp.intel.com (10.22.229.16) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.21; Mon, 3 Apr 2023 10:03:34 -0700
+Received: from orsmsx610.amr.corp.intel.com (10.22.229.23) by
+ ORSMSX611.amr.corp.intel.com (10.22.229.24) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.21; Mon, 3 Apr 2023 10:03:34 -0700
+Received: from ORSEDG602.ED.cps.intel.com (10.7.248.7) by
+ orsmsx610.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.21 via Frontend Transport; Mon, 3 Apr 2023 10:03:34 -0700
+Received: from NAM12-MW2-obe.outbound.protection.outlook.com (104.47.66.45) by
+ edgegateway.intel.com (134.134.137.103) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.1.2507.21; Mon, 3 Apr 2023 10:03:34 -0700
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=FMEK1nsDkxpXX8YnVgZ5GyVNtFRMgm2dajc6+dkoLi0wJQx1xM2+YMpzeh4qUaRFr/MToqTZn+HR2z1tEsXwK2PBKrqCwC+oQr5vqcRO/YALEvhw0JtVQ7ShyXXg10j9q11ERVgVH7L3aSjX+jDpFRlOeOOOS84Dfyo/QTn4ldqs5LCZgrt4WCSERe2vdnJDfRTnPudU8BdOvysHfwaoWNiqkSl+o3KCpdjHLu6QAxf+31G9SBKULopfXaRgw0zoeOZ1HLYpRIwzEtMD5DMbfllS4aUZc4hnlodDagbQ5P9V7wPXOlOuJ2cDZwUkpHHX9k90s81FOFwqw4R+T6lJDw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=m2FYen2bSiisEm0BWQSgSc6B045RviScMWJfNBXDBAE=;
+ b=DWrvnkmpBqJG+lB2jQDEp6axvN4YEOdaXF2fmcB9n1R7frl0l0EqRNq37kRE/PpRQdW+tUde7//t4xUij8PVG8P79gAMv1ypCcEcMQPdfwhrnQk2Le2BHjFlYcbRcnl4UrDsa56I2hiwfle+Sl1aOUVZBUFnmJ/LDD+fLGNRP75d0gOGvCdpcSaxAXFAyGO6wvbaXr58zMnQNk9s+j23UpQCoJc4LlP8XOhDT54UEN3ursBoLn8a7b9GyJMKfR+juBwuIMMf1CF2SNpF+kyOBhcOzCe4o7hhwgbBtIkM0Ej26ufTSsTfasgBq3kQENvRD9FhHnijXH3aBh22cpPjCw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
+ dkim=pass header.d=intel.com; arc=none
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=intel.com;
+Received: from MN0PR11MB6059.namprd11.prod.outlook.com (2603:10b6:208:377::9)
+ by DM4PR11MB6043.namprd11.prod.outlook.com (2603:10b6:8:62::8) with
+ Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.6254.33; Mon, 3 Apr 2023 17:03:32 +0000
+Received: from MN0PR11MB6059.namprd11.prod.outlook.com
+ ([fe80::2b57:646c:1b01:cd18]) by MN0PR11MB6059.namprd11.prod.outlook.com
+ ([fe80::2b57:646c:1b01:cd18%9]) with mapi id 15.20.6254.033; Mon, 3 Apr 2023
+ 17:03:32 +0000
+Date: Mon, 3 Apr 2023 13:03:27 -0400
+From: Rodrigo Vivi <rodrigo.vivi@intel.com>
+To: =?iso-8859-1?Q?Jos=E9?= Roberto de Souza <jose.souza@intel.com>, "Jani
+ Nikula" <jani.nikula@intel.com>
+Message-ID: <ZCsG32XI7XLljXGP@intel.com>
+References: <20230403164615.131633-1-jose.souza@intel.com>
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-Subject: Re: [Intel-xe] [PATCH v2 3/7] drm/xe: Use symbol namespace for
- kunit tests
+In-Reply-To: <20230403164615.131633-1-jose.souza@intel.com>
+X-ClientProxiedBy: SJ0PR13CA0032.namprd13.prod.outlook.com
+ (2603:10b6:a03:2c2::7) To MN0PR11MB6059.namprd11.prod.outlook.com
+ (2603:10b6:208:377::9)
+MIME-Version: 1.0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: MN0PR11MB6059:EE_|DM4PR11MB6043:EE_
+X-MS-Office365-Filtering-Correlation-Id: b284833b-f84e-4430-7b25-08db34655a40
+X-LD-Processed: 46c98d88-e344-4ed4-8496-4ed7712e255d,ExtAddr
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: K0v5K78VMdMWxXaIabgaZFgdaRDIYpFaaKw2IJ51f4yWrCTbc8ges+g2E3cbnsBeCmmmzuQbR1q3zSv521a+f+fRC0qbOyIT3J9ZQVwgzNqbIXorvG/m3Lxr1Qgu15Uf0jpkABaxYgL/z5u1h3MN3XUV+4FRLwSH9HUhlaBUuUEzpja/8OzesaRMi/5sJiYgGoZdno/X3qcM7ISj7IIer939oO7RtKoB20T6iqWDuv9Stc5An7L5uNbMbdwTw2MpNrFtz0CUUq+P6NUE3Qh+7DdR96OGHoMVjBihYgCZ7PTHe3rduC91IXYFmhkW8naPAK9Zx87/GrwjWMaRbvoMz5ESo9A0YDYhlGngYuUs+NOjQCh1TLo7MjV7Sh1+jTCHUUXdpgKIZ2L6C1V6RiDbQsGkE6mwoSFhIjde/Cr9ZJMDzCZUO5zUxAv5AluP4vIqTuHjvELtaxxjujdwaEViNSQQUeOp0kYkjxZ1WbLwu3SSq0LTcinD5auLlVzG7TRS
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:MN0PR11MB6059.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230028)(376002)(396003)(346002)(136003)(366004)(39860400002)(451199021)(38100700002)(5660300002)(44832011)(6636002)(2616005)(83380400001)(110136005)(316002)(6486002)(966005)(478600001)(186003)(86362001)(6512007)(6506007)(26005)(6666004)(82960400001)(66476007)(41300700001)(450100002)(36756003)(4326008)(8676002)(66946007)(66556008)(8936002)(2906002);
+ DIR:OUT; SFP:1102; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?iso-8859-1?Q?qbfX5F0B3mc3yUy3zIpvhBkw1JkaRETDFW1msh6NCZymEzmqSZFb8d+3aC?=
+ =?iso-8859-1?Q?5DTyAr7JS8Pr7Z6q0x6lxPs6s64A5vpHnbs22XwP3m2qYQv7RoENxYQ8eE?=
+ =?iso-8859-1?Q?ce1K18bwSTH/l59Ma3zPDWnoYD2MSCSKeOn8aVzgbIBKUk+S6QFJ29Abcd?=
+ =?iso-8859-1?Q?k8qMIXSP1yE0hQGGfJTDIRIsa0HwDckORUKR3mocH0fvuxTTTtYNVKap7g?=
+ =?iso-8859-1?Q?JZPu8941K1fh0C6pp5qlpWkZX2lJKwxkODsRwxeBtjZzITcj4xFKjpFlDh?=
+ =?iso-8859-1?Q?My3DWzPFewiJ9Yi0m0WrWEaG3JdIFyOsmqJ2tQR/jV+1jVO7kgr8ufthHk?=
+ =?iso-8859-1?Q?LvXPTkV9O37jJy74uuY5wpW9SIYA8WCzzhH3hiqEBzZp/7gGJNKFFFWO47?=
+ =?iso-8859-1?Q?fdpRPshM5+FOrcFzdyD8PZoepkXSo2nGppCKYetVI4y0IeD42tr/KIiNmg?=
+ =?iso-8859-1?Q?LSuEoHdraNGJmPR70Om18kZ0kAE5IZGb308B6qJT/Bt9ZVHdJZBbTWvcm0?=
+ =?iso-8859-1?Q?wSVuEDDZl3SgDomVDbbYIC/poVKaFqKwoZaCiYzJ7iJVmS7pD8KSfzs62c?=
+ =?iso-8859-1?Q?VsKJVYN2YHLQKUOYufbGucbGEU72Fs4bFDW8u6/F6yRMiVbuJXJtcROyPw?=
+ =?iso-8859-1?Q?QUR4xlNmrS29i6lEakqJ1vlBdrp0L7wtKmZoGizbdpGK4oqyXQPkJPI+eP?=
+ =?iso-8859-1?Q?wl1NDjSF+zUT3TNNfVFFfP6dWfeY/aM+mqgeXkRLvVTcv8RId0spAfWG4v?=
+ =?iso-8859-1?Q?0gUgNjWbPy/x351OoaKAW+1fs8wBNdyZP5JR1I/upGDoodgMTSSAD1cNXI?=
+ =?iso-8859-1?Q?lNMHmWzE3ssx+vpe9fwtmASCQexCopTd9Wb+OGYzTee+aAFADEuZwMD61c?=
+ =?iso-8859-1?Q?CfYklGzeuDZWVoGFHelJLnm5ySX6FmABZrRWKfmZ7NnYOHqihD7BJaAtcD?=
+ =?iso-8859-1?Q?wwp/IG5jSC70Dc8WdTb9w7vzVfIhhKWl516mYP0EWv+IzNy7r2U1+JE9lq?=
+ =?iso-8859-1?Q?w82jNlbHG1KTyiZFvbM1ZbnIq5VSfAlFyb1ZPUdXeF/LNErRdmVPk0BoW4?=
+ =?iso-8859-1?Q?Zcx1GBz+BbWvAkNgLjntgTyVAENwFjhKQdi21IIrRXrt5tjDhCtTzzBvdx?=
+ =?iso-8859-1?Q?OH5IQowp5srp+aDMXv2FFCXKDgLUICNP1MGK8fikDrYbmDpo9p55Mbi7au?=
+ =?iso-8859-1?Q?mcuo3xTwpAdQEa3GSDgOMTHZ9Cve6TgPglre6McJ/FaJoEgrdNGPJqpW37?=
+ =?iso-8859-1?Q?dp72b5+gbmTPU0puNxOAa1I0rkGiCkhjtqi65Zaqe7mmIiKuy4TTKkPC6b?=
+ =?iso-8859-1?Q?90mftlf6RQRZ5lotw57JC4MXS9hg1/qKMm/r3aIqEw3D8Xp6+Ix02tgwas?=
+ =?iso-8859-1?Q?B5g9/yuVYm1YeqFwlSFr2tDlA0X9amadBNjI+VjONRbeL5B7y2mll0DjBd?=
+ =?iso-8859-1?Q?Jw9TFLJ6AHf3q1xizS3qUzPyld9Vaj0va2OsfRnffrLg8j7ZgfBqnHxzGx?=
+ =?iso-8859-1?Q?kMYdnVna5fXawRRIGEGJIESygcH+JUnVWEHkl9JyRDRZgVVw0M8F/W1Rap?=
+ =?iso-8859-1?Q?fS6TS0ZhgpFqEMEhmKvH2y/aYCbxyDrQApvAA7YJvpv21ZeSi6Yn8gJ4wC?=
+ =?iso-8859-1?Q?cXpRmj4EDltNN9wzTvPN3pFCsdcAhJdZij?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: b284833b-f84e-4430-7b25-08db34655a40
+X-MS-Exchange-CrossTenant-AuthSource: MN0PR11MB6059.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 03 Apr 2023 17:03:32.5051 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: 5Dvj91UuIDBMN/s3NUBMonARbbe/DPAR/asDaETeeWvST0Ui8XK5YPeTrSY25/8YZ/efd2Xd7PDB9j9ih2daLg==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM4PR11MB6043
+X-OriginatorOrg: intel.com
+Subject: Re: [Intel-xe] [PATCH 1/5] drm/i915: Split display locks init from
+ i915_driver_early_probe()
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -70,125 +149,80 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-
-On 4/1/23 10:51, Lucas De Marchi wrote:
-> Instead of simply using EXPORT_SYMBOL() to export the functions needed
-> in xe.ko to be be called across modules, use EXPORT_SYMBOL_IF_KUNIT()
-> which will export the symbol under the EXPORTED_FOR_KUNIT_TESTING
-> namespace.
->
-> This avoids accidentally "leaking" these functions and letting them be
-> called from outside the kunit tests. If these functiosn are accidentally
-> called from another module, they receive a modpost error like below:
->
-> 	ERROR: modpost: module XXXXXXX uses symbol
-> 	xe_ccs_migrate_kunit from namespace EXPORTED_FOR_KUNIT_TESTING,
-> 	but does not import it.
->
-> Signed-off-by: Lucas De Marchi <lucas.demarchi@intel.com>
-
-LGTM.
-Reviewed-by:Â  Mauro Carvalho Chehab <mchehab@kernel.org>
-
+On Mon, Apr 03, 2023 at 09:46:11AM -0700, José Roberto de Souza wrote:
+> No behavior changes here, just adding a function to make clear
+> what locks initialized here are display related or not.
+> 
+> Cc: intel-gfx@lists.freedesktop.org
+> Signed-off-by: José Roberto de Souza <jose.souza@intel.com>
 > ---
->   drivers/gpu/drm/xe/tests/xe_bo.c           | 5 +++--
->   drivers/gpu/drm/xe/tests/xe_bo_test.c      | 1 +
->   drivers/gpu/drm/xe/tests/xe_dma_buf.c      | 3 ++-
->   drivers/gpu/drm/xe/tests/xe_dma_buf_test.c | 1 +
->   drivers/gpu/drm/xe/tests/xe_migrate.c      | 3 ++-
->   drivers/gpu/drm/xe/tests/xe_migrate_test.c | 1 +
->   6 files changed, 10 insertions(+), 4 deletions(-)
->
-> diff --git a/drivers/gpu/drm/xe/tests/xe_bo.c b/drivers/gpu/drm/xe/tests/xe_bo.c
-> index aa433a7b59b7..9bd381e5b7a6 100644
-> --- a/drivers/gpu/drm/xe/tests/xe_bo.c
-> +++ b/drivers/gpu/drm/xe/tests/xe_bo.c
-> @@ -4,6 +4,7 @@
->    */
->   
->   #include <kunit/test.h>
-> +#include <kunit/visibility.h>
->   
->   #include "tests/xe_bo_test.h"
->   #include "tests/xe_pci_test.h"
-> @@ -166,7 +167,7 @@ void xe_ccs_migrate_kunit(struct kunit *test)
->   {
->   	xe_call_for_each_device(ccs_test_run_device);
->   }
-> -EXPORT_SYMBOL(xe_ccs_migrate_kunit);
-> +EXPORT_SYMBOL_IF_KUNIT(xe_ccs_migrate_kunit);
->   
->   static int evict_test_run_gt(struct xe_device *xe, struct xe_gt *gt, struct kunit *test)
->   {
-> @@ -304,4 +305,4 @@ void xe_bo_evict_kunit(struct kunit *test)
->   {
->   	xe_call_for_each_device(evict_test_run_device);
->   }
-> -EXPORT_SYMBOL(xe_bo_evict_kunit);
-> +EXPORT_SYMBOL_IF_KUNIT(xe_bo_evict_kunit);
-> diff --git a/drivers/gpu/drm/xe/tests/xe_bo_test.c b/drivers/gpu/drm/xe/tests/xe_bo_test.c
-> index 92dda4fca21b..1c868e3635bc 100644
-> --- a/drivers/gpu/drm/xe/tests/xe_bo_test.c
-> +++ b/drivers/gpu/drm/xe/tests/xe_bo_test.c
-> @@ -22,3 +22,4 @@ kunit_test_suite(xe_bo_test_suite);
->   
->   MODULE_AUTHOR("Intel Corporation");
->   MODULE_LICENSE("GPL");
-> +MODULE_IMPORT_NS(EXPORTED_FOR_KUNIT_TESTING);
-> diff --git a/drivers/gpu/drm/xe/tests/xe_dma_buf.c b/drivers/gpu/drm/xe/tests/xe_dma_buf.c
-> index cf9dddf1a8d7..513a3b3362e9 100644
-> --- a/drivers/gpu/drm/xe/tests/xe_dma_buf.c
-> +++ b/drivers/gpu/drm/xe/tests/xe_dma_buf.c
-> @@ -4,6 +4,7 @@
->    */
->   
->   #include <kunit/test.h>
-> +#include <kunit/visibility.h>
->   
->   #include "tests/xe_dma_buf_test.h"
->   #include "tests/xe_pci_test.h"
-> @@ -259,4 +260,4 @@ void xe_dma_buf_kunit(struct kunit *test)
->   {
->   	xe_call_for_each_device(dma_buf_run_device);
->   }
-> -EXPORT_SYMBOL(xe_dma_buf_kunit);
-> +EXPORT_SYMBOL_IF_KUNIT(xe_dma_buf_kunit);
-> diff --git a/drivers/gpu/drm/xe/tests/xe_dma_buf_test.c b/drivers/gpu/drm/xe/tests/xe_dma_buf_test.c
-> index a1adfd1e1605..35312bfd5fb7 100644
-> --- a/drivers/gpu/drm/xe/tests/xe_dma_buf_test.c
-> +++ b/drivers/gpu/drm/xe/tests/xe_dma_buf_test.c
-> @@ -21,3 +21,4 @@ kunit_test_suite(xe_dma_buf_test_suite);
->   
->   MODULE_AUTHOR("Intel Corporation");
->   MODULE_LICENSE("GPL");
-> +MODULE_IMPORT_NS(EXPORTED_FOR_KUNIT_TESTING);
-> diff --git a/drivers/gpu/drm/xe/tests/xe_migrate.c b/drivers/gpu/drm/xe/tests/xe_migrate.c
-> index d410305c9b59..95985c9c9392 100644
-> --- a/drivers/gpu/drm/xe/tests/xe_migrate.c
-> +++ b/drivers/gpu/drm/xe/tests/xe_migrate.c
-> @@ -4,6 +4,7 @@
->    */
->   
->   #include <kunit/test.h>
-> +#include <kunit/visibility.h>
->   
->   #include "tests/xe_migrate_test.h"
->   #include "tests/xe_pci_test.h"
-> @@ -407,4 +408,4 @@ void xe_migrate_sanity_kunit(struct kunit *test)
->   {
->   	xe_call_for_each_device(migrate_test_run_device);
->   }
-> -EXPORT_SYMBOL(xe_migrate_sanity_kunit);
-> +EXPORT_SYMBOL_IF_KUNIT(xe_migrate_sanity_kunit);
-> diff --git a/drivers/gpu/drm/xe/tests/xe_migrate_test.c b/drivers/gpu/drm/xe/tests/xe_migrate_test.c
-> index d6be360c3b6d..39179eae890b 100644
-> --- a/drivers/gpu/drm/xe/tests/xe_migrate_test.c
-> +++ b/drivers/gpu/drm/xe/tests/xe_migrate_test.c
-> @@ -21,3 +21,4 @@ kunit_test_suite(xe_migrate_test_suite);
->   
->   MODULE_AUTHOR("Intel Corporation");
->   MODULE_LICENSE("GPL");
-> +MODULE_IMPORT_NS(EXPORTED_FOR_KUNIT_TESTING);
+>  drivers/gpu/drm/i915/i915_driver.c | 23 +++++++++++++++--------
+>  1 file changed, 15 insertions(+), 8 deletions(-)
+> 
+> diff --git a/drivers/gpu/drm/i915/i915_driver.c b/drivers/gpu/drm/i915/i915_driver.c
+> index 066d79c2069c4..224cb4cb43335 100644
+> --- a/drivers/gpu/drm/i915/i915_driver.c
+> +++ b/drivers/gpu/drm/i915/i915_driver.c
+> @@ -188,6 +188,20 @@ static void sanitize_gpu(struct drm_i915_private *i915)
+>  	}
+>  }
+>  
+> +static void
+> +i915_driver_display_early_probe(struct drm_i915_private *dev_priv)
+> +{
+> +	spin_lock_init(&dev_priv->display.fb_tracking.lock);
+> +	spin_lock_init(&dev_priv->display.wm.dsparb_lock);
+> +	mutex_init(&dev_priv->display.backlight.lock);
+> +
+> +	mutex_init(&dev_priv->display.audio.mutex);
+> +	mutex_init(&dev_priv->display.wm.wm_mutex);
+> +	mutex_init(&dev_priv->display.pps.mutex);
+> +	mutex_init(&dev_priv->display.hdcp.comp_mutex);
+> +	spin_lock_init(&dev_priv->display.dkl.phy_lock);
+> +}
+> +
+
+hmmm... I like that, however Jani had indicated in another series [1]
+that he would prefer the wm mutex inside the wm code for instance...
+
+So, should we move all of these to their own components instead of this
+move?
+
+[1] https://patchwork.freedesktop.org/series/115675/
+
+I checked and for a few components it is simple to move them to their
+own init functions. However for a few we would need to create new init
+functions and call them here.
+
+Jani, more thoughts?
+
+>  /**
+>   * i915_driver_early_probe - setup state not requiring device access
+>   * @dev_priv: device private
+> @@ -213,18 +227,11 @@ static int i915_driver_early_probe(struct drm_i915_private *dev_priv)
+>  
+>  	spin_lock_init(&dev_priv->irq_lock);
+>  	spin_lock_init(&dev_priv->gpu_error.lock);
+> -	spin_lock_init(&dev_priv->display.fb_tracking.lock);
+> -	spin_lock_init(&dev_priv->display.wm.dsparb_lock);
+> -	mutex_init(&dev_priv->display.backlight.lock);
+>  
+>  	mutex_init(&dev_priv->sb_lock);
+>  	cpu_latency_qos_add_request(&dev_priv->sb_qos, PM_QOS_DEFAULT_VALUE);
+>  
+> -	mutex_init(&dev_priv->display.audio.mutex);
+> -	mutex_init(&dev_priv->display.wm.wm_mutex);
+> -	mutex_init(&dev_priv->display.pps.mutex);
+> -	mutex_init(&dev_priv->display.hdcp.comp_mutex);
+> -	spin_lock_init(&dev_priv->display.dkl.phy_lock);
+> +	i915_driver_display_early_probe(dev_priv);
+>  
+>  	i915_memcpy_init_early(dev_priv);
+>  	intel_runtime_pm_init_early(&dev_priv->runtime_pm);
+> -- 
+> 2.40.0
+> 
