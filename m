@@ -4,47 +4,30 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id E4F2DC77B6C
-	for <intel-xe@archiver.kernel.org>; Mon,  3 Apr 2023 17:57:50 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id A2638C76188
+	for <intel-xe@archiver.kernel.org>; Mon,  3 Apr 2023 18:00:27 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9A00A10E0BF;
-	Mon,  3 Apr 2023 17:57:50 +0000 (UTC)
-Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
- by gabe.freedesktop.org (Postfix) with ESMTPS id EF6A1890BB
- for <intel-xe@lists.freedesktop.org>; Mon,  3 Apr 2023 17:57:48 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1680544668; x=1712080668;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=B1KHTC+o8ecfjnMzRYYUnNonTiaQmu6mlwPT1MBxdm4=;
- b=j42c21HoLcjdmt+7PR/NIEsYAD0cP3M5P4+LMr3ovQY+8KbzdOpGm64+
- injj98oSCcnto8nSle29BPHSk6u/eUCA5BcwMDiYfeUbMMoSZAEydfh2u
- mGfIxSI0zXqttV+zVCaSRL57SknpDg9P+BjBp3MPKXgrS/zChWLjUerly
- Van53iWe0hkxF3PdFq0XmnqfWrNnTeR6v1Fgy2Wo3vlHsxMxq+BO1Vn3+
- CLeKNv/0wVV816XC+3FM532LwTmYc8+z6sYGYf+tFb5CE2XTIGAZlk3oq
- aF97U8wibNbo+eDBkrDYsy6ezDCkGu2+3vrL5RpewXRwEh3HgCyEExMmn A==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10669"; a="341999532"
-X-IronPort-AV: E=Sophos;i="5.98,315,1673942400"; d="scan'208";a="341999532"
-Received: from orsmga002.jf.intel.com ([10.7.209.21])
- by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 03 Apr 2023 10:57:42 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10669"; a="686065674"
-X-IronPort-AV: E=Sophos;i="5.98,315,1673942400"; d="scan'208";a="686065674"
-Received: from nvishwa1-desk.sc.intel.com ([172.25.29.76])
- by orsmga002-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 03 Apr 2023 10:57:42 -0700
-From: Niranjana Vishwanathapura <niranjana.vishwanathapura@intel.com>
-To: intel-xe@lists.freedesktop.org
-Date: Mon,  3 Apr 2023 10:57:38 -0700
-Message-Id: <20230403175739.32183-3-niranjana.vishwanathapura@intel.com>
-X-Mailer: git-send-email 2.21.0.rc0.32.g243a4c7e27
-In-Reply-To: <20230403175739.32183-1-niranjana.vishwanathapura@intel.com>
-References: <20230403175739.32183-1-niranjana.vishwanathapura@intel.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7721810E0BF;
+	Mon,  3 Apr 2023 18:00:27 +0000 (UTC)
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 8489B10E0BF;
+ Mon,  3 Apr 2023 18:00:25 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 7C801A02F0;
+ Mon,  3 Apr 2023 18:00:25 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Subject: [Intel-xe] [PATCH v2 2/3] drm/xe/tests: Set correct expectation
+Content-Transfer-Encoding: 7bit
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Niranjana Vishwanathapura" <niranjana.vishwanathapura@intel.com>
+Date: Mon, 03 Apr 2023 18:00:25 -0000
+Message-ID: <168054482550.24312.9249947684976638603@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20230403175739.32183-1-niranjana.vishwanathapura@intel.com>
+In-Reply-To: <20230403175739.32183-1-niranjana.vishwanathapura@intel.com>
+Subject: [Intel-xe] =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_f?=
+ =?utf-8?q?or_drm/xe=3A_Get_xe=5Fmigrate=5Ftest_working_=28rev3=29?=
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -56,35 +39,39 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Cc: thomas.hellstrom@intel.com, lucas.demarchi@intel.com
+Reply-To: intel-xe@lists.freedesktop.org
+Cc: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-In xe_migrate_sanity_kunit test, use correct expected value as
-the expected value was not only used for the xe_migrate_clear(),
-but also for the xe_migrate_copy() operation.
+== Series Details ==
 
-v2: Add 'Fixes' tag and update commit text
+Series: drm/xe: Get xe_migrate_test working (rev3)
+URL   : https://patchwork.freedesktop.org/series/115949/
+State : success
 
-Fixes: c1a4e05c9aeb ("drm/xe: Stop accepting value in xe_migrate_clear")
-Reviewed-by: Matthew Brost <matthew.brost@intel.com>
-Signed-off-by: Niranjana Vishwanathapura <niranjana.vishwanathapura@intel.com>
----
- drivers/gpu/drm/xe/tests/xe_migrate.c | 1 +
- 1 file changed, 1 insertion(+)
+== Summary ==
 
-diff --git a/drivers/gpu/drm/xe/tests/xe_migrate.c b/drivers/gpu/drm/xe/tests/xe_migrate.c
-index 90f4e1c4f029..862d11b2210f 100644
---- a/drivers/gpu/drm/xe/tests/xe_migrate.c
-+++ b/drivers/gpu/drm/xe/tests/xe_migrate.c
-@@ -147,6 +147,7 @@ static void test_copy(struct xe_migrate *m, struct xe_bo *bo,
- 	xe_map_memset(xe, &sysmem->vmap, 0, 0xc0, sysmem->size);
- 	xe_map_memset(xe, &bo->vmap, 0, 0xd0, bo->size);
- 
-+	expected = 0xc0c0c0c0c0c0c0c0;
- 	fence = xe_migrate_copy(m, sysmem, sysmem->ttm.resource,
- 				bo->ttm.resource);
- 	if (!sanity_fence_failed(xe, fence, big ? "Copying big bo sysmem -> vram" :
--- 
-2.21.0.rc0.32.g243a4c7e27
+=== Applying kernel patches on branch 'drm-xe-next' with base: ===
+commit cbd8b47f28266aad8f9786be9a1899e3f0e0f2e0
+Author:     Matt Roper <matthew.d.roper@intel.com>
+AuthorDate: Mon Mar 27 10:34:33 2023 -0700
+Commit:     Matt Roper <matthew.d.roper@intel.com>
+CommitDate: Fri Mar 31 17:06:44 2023 -0700
+
+    fixup! drm/xe/pat: Handle unicast vs MCR PAT registers
+    
+    Somehow I dropped the error message when sending this; add it back.
+    
+    To be squashed next time the Xe driver is rebased.
+    
+    Fixes: 11946af00717 ("drm/xe/pat: Handle unicast vs MCR PAT registers")
+    Reviewed-by: Nirmoy Das <nirmoy.das@intel.com>
+    Link: https://lore.kernel.org/r/20230327173433.2957645-1-matthew.d.roper@intel.com
+    Signed-off-by: Matt Roper <matthew.d.roper@intel.com>
+=== git am output follows ===
+Applying: drm/xe/tests: Use proper batch base address
+Applying: drm/xe/tests: Set correct expectation
+Applying: drm/xe: Use proper vram offset
+
 
