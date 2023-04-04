@@ -4,30 +4,55 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6280FC761A6
-	for <intel-xe@archiver.kernel.org>; Tue,  4 Apr 2023 17:11:38 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id B65D4C77B62
+	for <intel-xe@archiver.kernel.org>; Tue,  4 Apr 2023 17:29:32 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3DB7310E72C;
-	Tue,  4 Apr 2023 17:11:38 +0000 (UTC)
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id 1543410E730;
- Tue,  4 Apr 2023 17:11:37 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 0D033A0078;
- Tue,  4 Apr 2023 17:11:37 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4D56A10E18E;
+	Tue,  4 Apr 2023 17:29:32 +0000 (UTC)
+Received: from mga06.intel.com (mga06b.intel.com [134.134.136.31])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3898810E18E;
+ Tue,  4 Apr 2023 17:29:31 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1680629371; x=1712165371;
+ h=message-id:date:mime-version:subject:to:cc:references:
+ from:in-reply-to:content-transfer-encoding;
+ bh=T0cevVuLoVLn1+gTkF2H91jFQEK+hDzMgLPtnUt2SGo=;
+ b=fYDVa/NN5qmiI3SUK8UNkzUttvJATh9WQISzNmeiTPsj8sm51qK9zysY
+ /aSOtTw/L71KfbSVEFUHtrRdWtUxP1LhJHFdid9O9ejlgafjw5LKKAYwr
+ rAAW+jLAJCdcJOmqiuZYhJMLNBXXgZvbD9jSywr0jNIb+te9q7LIvyMh8
+ 54B+aZk4bIPfuRYxaWmSPSM16uhsPYm8dE5Q+pLLxH9scTV9T0l3VYF6O
+ KnnwfXZZK2Ul2v7S/kZXcuzBr7vHDSkYeDBwEr1tZ+A46WjyHaKWjRdud
+ ISkdvi8Xb62PcoQ7GIjHsMpj3Ph/LjqaZSiI6hn3zY5wB+5QpBCnPRDcB g==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10670"; a="405022192"
+X-IronPort-AV: E=Sophos;i="5.98,318,1673942400"; d="scan'208";a="405022192"
+Received: from orsmga005.jf.intel.com ([10.7.209.41])
+ by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 04 Apr 2023 10:29:29 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6600,9927,10670"; a="860669407"
+X-IronPort-AV: E=Sophos;i="5.98,318,1673942400"; d="scan'208";a="860669407"
+Received: from pcanders-mobl1.ger.corp.intel.com (HELO [10.213.217.134])
+ ([10.213.217.134])
+ by orsmga005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 04 Apr 2023 10:29:27 -0700
+Message-ID: <da288e41-6c5d-0595-e659-5746bfc0ee87@linux.intel.com>
+Date: Tue, 4 Apr 2023 18:29:25 +0100
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Lucas De Marchi" <lucas.demarchi@intel.com>
-Date: Tue, 04 Apr 2023 17:11:37 -0000
-Message-ID: <168062829702.18898.2086072918610257302@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20230404170737.1856619-1-lucas.demarchi@intel.com>
-In-Reply-To: <20230404170737.1856619-1-lucas.demarchi@intel.com>
-Subject: [Intel-xe] =?utf-8?q?=E2=9C=97_CI=2EPatch=5Fapplied=3A_failure_f?=
- =?utf-8?q?or_tools=3A_Add_tool_to_dump_GuC/HuC_CSS_header_=28rev2=29?=
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.8.0
+Content-Language: en-US
+To: Matthew Brost <matthew.brost@intel.com>
+References: <20230404002211.3611376-1-matthew.brost@intel.com>
+ <15dafc15-332e-2559-a9c4-61ad442ef44a@linux.intel.com>
+ <ZCwrgvAHGvdTCe7K@DUT025-TGLU.fm.intel.com>
+From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
+Organization: Intel Corporation UK Plc
+In-Reply-To: <ZCwrgvAHGvdTCe7K@DUT025-TGLU.fm.intel.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+Subject: Re: [Intel-xe] [RFC PATCH 00/10] Xe DRM scheduler and long running
+ workload plans
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -39,70 +64,163 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
-Cc: intel-xe@lists.freedesktop.org
+Cc: robdclark@chromium.org, airlied@linux.ie, lina@asahilina.net,
+ dri-devel@lists.freedesktop.org, christian.koenig@amd.com,
+ boris.brezillon@collabora.com, intel-xe@lists.freedesktop.org,
+ faith.ekstrand@collabora.com
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-== Series Details ==
 
-Series: tools: Add tool to dump GuC/HuC CSS header (rev2)
-URL   : https://patchwork.freedesktop.org/series/116048/
-State : failure
+On 04/04/2023 14:52, Matthew Brost wrote:
+> On Tue, Apr 04, 2023 at 10:43:03AM +0100, Tvrtko Ursulin wrote:
+>>
+>> On 04/04/2023 01:22, Matthew Brost wrote:
+>>> Hello,
+>>>
+>>> As a prerequisite to merging the new Intel Xe DRM driver [1] [2], we
+>>> have been asked to merge our common DRM scheduler patches first as well
+>>> as develop a common solution for long running workloads with the DRM
+>>> scheduler. This RFC series is our first attempt at doing this. We
+>>> welcome any and all feedback.
+>>>
+>>> This can we thought of as 4 parts detailed below.
+>>>
+>>> - DRM scheduler changes for 1 to 1 relationship between scheduler and
+>>> entity (patches 1-3)
+>>>
+>>> In Xe all of the scheduling of jobs is done by a firmware scheduler (the
+>>> GuC) which is a new paradigm WRT to the DRM scheduler and presents
+>>> severals problems as the DRM was originally designed to schedule jobs on
+>>> hardware queues. The main problem being that DRM scheduler expects the
+>>> submission order of jobs to be the completion order of jobs even across
+>>> multiple entities. This assumption falls apart with a firmware scheduler
+>>> as a firmware scheduler has no concept of jobs and jobs can complete out
+>>> of order. A novel solution for was originally thought of by Faith during
+>>> the initial prototype of Xe, create a 1 to 1 relationship between scheduler
+>>> and entity. I believe the AGX driver [3] is using this approach and
+>>> Boris may use approach as well for the Mali driver [4].
+>>>
+>>> To support a 1 to 1 relationship we move the main execution function
+>>> from a kthread to a work queue and add a new scheduling mode which
+>>> bypasses code in the DRM which isn't needed in a 1 to 1 relationship.
+>>> The new scheduling mode should unify all drivers usage with a 1 to 1
+>>> relationship and can be thought of as using scheduler as a dependency /
+>>> infligt job tracker rather than a true scheduler.
+>>
+>> Once you add capability for a more proper 1:1 via
+>> DRM_SCHED_POLICY_SINGLE_ENTITY, do you still have further need to replace
+>> kthreads with a wq?
+>>
+>> Or in other words, what purpose does the offloading of a job picking code to
+>> a separate execution context serve? Could it be done directly in the 1:1
+>> mode and leave kthread setup for N:M?
+>>
+> 
+> Addressed the other two on my reply to Christian...
+> 
+> For this one basically the concept of a single entity point IMO is a
+> very good concept which I'd like to keep. But most important reason
+> being the main execution thread (now worker) is kicked when a dependency
+> for a job is resolved, dependencies are dma-fences signaled via a
+> callback, and these call backs can be signaled in IRQ contexts. We
+> absolutely do not want to enter the backend in an IRQ context for a
+> variety of reasons.
 
-== Summary ==
+Sounds like a fair enough requirement but if drivers will not be 
+comfortable with the wq conversion, it is probably possible to introduce 
+some vfuncs for the 1:1 case which would allow scheduler users override 
+the scheduler wakeup and select a special "pick one job" path. That 
+could allow 1:1 users do their thing, leaving rest as is. I mean you 
+already have the special single entity scheduler, you'd just need to add 
+some more specialization on the init, wake up, etc paths.
 
-=== Applying kernel patches on branch 'drm-xe-next' with base: ===
-commit 804b2b8f9288047f496ae053c6b3dbf88fdd3dd3
-Author:     Chang, Bruce <yu.bruce.chang@intel.com>
-AuthorDate: Mon Apr 3 22:20:31 2023 +0000
-Commit:     Rodrigo Vivi <rodrigo.vivi@intel.com>
-CommitDate: Tue Apr 4 12:27:46 2023 -0400
+And I will mention once more that I find a wq item with a loop such as:
 
-    drm/xe: fix pvc unload issue
-    
-    Currently, unload pvc driver will generate a null dereference
-    and the call stack is as below.
-    
-    [ 4850.618000] Call Trace:
-    [ 4850.620740]  <TASK>
-    [ 4850.623134]  ttm_bo_cleanup_memtype_use+0x3f/0x50 [ttm]
-    [ 4850.628661]  ttm_bo_release+0x154/0x2c0 [ttm]
-    [ 4850.633317]  ? drm_buddy_fini+0x62/0x80 [drm_buddy]
-    [ 4850.638487]  ? __kmem_cache_free+0x27d/0x2c0
-    [ 4850.643054]  ttm_bo_put+0x38/0x60 [ttm]
-    [ 4850.647190]  xe_gem_object_free+0x1f/0x30 [xe]
-    [ 4850.651945]  drm_gem_object_free+0x1e/0x30 [drm]
-    [ 4850.656904]  ggtt_fini_noalloc+0x9d/0xe0 [xe]
-    [ 4850.661574]  drm_managed_release+0xb5/0x150 [drm]
-    [ 4850.666617]  drm_dev_release+0x30/0x50 [drm]
-    [ 4850.671209]  devm_drm_dev_init_release+0x3c/0x60 [drm]
-    
-    There are a couple issues, but the main one is due to TTM has only
-    one TTM_PL_TT region, but since pvc has 2 tiles and tries to setup
-    1 TTM_PL_TT each tile. The second will overwrite the first one.
-    
-    During unload time, the first tile will reset the TTM_PL_TT manger
-    and when the second tile is trying to free Bo and it will generate
-    the null reference since the TTM manage is already got reset to 0.
-    
-    The fix is to use one global TTM_PL_TT manager.
-    
-    v2: make gtt mgr global and change the name to sys_mgr
-    
-    Cc: Stuart Summers <stuart.summers@intel.com>
-    Cc: Matthew Brost <matthew.brost@intel.com>
-    Cc: Vivi, Rodrigo <rodrigo.vivi@intel.com>
-    Signed-off-by: Bruce Chang <yu.bruce.chang@intel.com>
-    Reviewed-by: Matthew Brost <matthew.brost@intel.com>
-    Signed-off-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
-=== git am output follows ===
-error: tools/meson.build: does not exist in index
-hint: Use 'git am --show-current-patch' to see the failed patch
-Applying: tools: Add tool to dump GuC/HuC CSS header
-Patch failed at 0001 tools: Add tool to dump GuC/HuC CSS header
-When you have resolved this problem, run "git am --continue".
-If you prefer to skip this patch, run "git am --skip" instead.
-To restore the original branch and stop patching, run "git am --abort".
+	while (!READ_ONCE(sched->pause_run_wq)) {
+	...
+
+A bit dodgy. If you piggy back on any system_wq it smells of system wide 
+starvation so for me any proposal with an option to use a system shared 
+wq is a no go.
+
+Regards,
+
+Tvrtko
 
 
+>> Apart from those design level questions, low level open IMO still is that
+>> default fallback of using the system_wq has the potential to affect latency
+>> for other drivers. But that's for those driver owners to approve.
+>>
+>> Regards,
+>>
+>> Tvrtko
+>>
+>>> - Generic messaging interface for DRM scheduler
+>>>
+>>> Idea is to be able to communicate to the submission backend with in band
+>>> (relative to main execution function) messages. Messages are backend
+>>> defined and flexable enough for any use case. In Xe we use these
+>>> messages to clean up entites, set properties for entites, and suspend /
+>>> resume execution of an entity [5]. I suspect other driver can leverage
+>>> this messaging concept too as it a convenient way to avoid races in the
+>>> backend.
+>>>
+>>> - Support for using TDR for all error paths of a scheduler / entity
+>>>
+>>> Fix a few races / bugs, add function to dynamically set the TDR timeout.
+>>>
+>>> - Annotate dma-fences for long running workloads.
+>>>
+>>> The idea here is to use dma-fences only as sync points within the
+>>> scheduler and never export them for long running workloads. By
+>>> annotating these fences as long running we ensure that these dma-fences
+>>> are never used in a way that breaks the dma-fence rules. A benefit of
+>>> thus approach is the scheduler can still safely flow control the
+>>> execution ring buffer via the job limit without breaking the dma-fence
+>>> rules.
+>>>
+>>> Again this a first draft and looking forward to feedback.
+>>>
+>>> Enjoy - Matt
+>>>
+>>> [1] https://gitlab.freedesktop.org/drm/xe/kernel
+>>> [2] https://patchwork.freedesktop.org/series/112188/
+>>> [3] https://patchwork.freedesktop.org/series/114772/
+>>> [4] https://patchwork.freedesktop.org/patch/515854/?series=112188&rev=1
+>>> [5] https://gitlab.freedesktop.org/drm/xe/kernel/-/blob/drm-xe-next/drivers/gpu/drm/xe/xe_guc_submit.c#L1031
+>>>
+>>> Matthew Brost (8):
+>>>     drm/sched: Convert drm scheduler to use a work queue rather than
+>>>       kthread
+>>>     drm/sched: Move schedule policy to scheduler / entity
+>>>     drm/sched: Add DRM_SCHED_POLICY_SINGLE_ENTITY scheduling policy
+>>>     drm/sched: Add generic scheduler message interface
+>>>     drm/sched: Start run wq before TDR in drm_sched_start
+>>>     drm/sched: Submit job before starting TDR
+>>>     drm/sched: Add helper to set TDR timeout
+>>>     drm/syncobj: Warn on long running dma-fences
+>>>
+>>> Thomas Hellström (2):
+>>>     dma-buf/dma-fence: Introduce long-running completion fences
+>>>     drm/sched: Support long-running sched entities
+>>>
+>>>    drivers/dma-buf/dma-fence.c                 | 142 +++++++---
+>>>    drivers/dma-buf/dma-resv.c                  |   5 +
+>>>    drivers/gpu/drm/amd/amdgpu/amdgpu_debugfs.c |  14 +-
+>>>    drivers/gpu/drm/amd/amdgpu/amdgpu_device.c  |  15 +-
+>>>    drivers/gpu/drm/drm_syncobj.c               |   5 +-
+>>>    drivers/gpu/drm/etnaviv/etnaviv_sched.c     |   5 +-
+>>>    drivers/gpu/drm/lima/lima_sched.c           |   5 +-
+>>>    drivers/gpu/drm/msm/adreno/adreno_device.c  |   6 +-
+>>>    drivers/gpu/drm/msm/msm_ringbuffer.c        |   5 +-
+>>>    drivers/gpu/drm/panfrost/panfrost_job.c     |   5 +-
+>>>    drivers/gpu/drm/scheduler/sched_entity.c    | 127 +++++++--
+>>>    drivers/gpu/drm/scheduler/sched_fence.c     |   6 +-
+>>>    drivers/gpu/drm/scheduler/sched_main.c      | 278 +++++++++++++++-----
+>>>    drivers/gpu/drm/v3d/v3d_sched.c             |  25 +-
+>>>    include/drm/gpu_scheduler.h                 | 130 +++++++--
+>>>    include/linux/dma-fence.h                   |  60 ++++-
+>>>    16 files changed, 649 insertions(+), 184 deletions(-)
+>>>
