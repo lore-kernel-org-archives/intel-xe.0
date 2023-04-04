@@ -4,30 +4,61 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id DAB9DC761A6
-	for <intel-xe@archiver.kernel.org>; Tue,  4 Apr 2023 20:11:00 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 293B7C77B6E
+	for <intel-xe@archiver.kernel.org>; Tue,  4 Apr 2023 20:12:15 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B248210E79F;
-	Tue,  4 Apr 2023 20:11:00 +0000 (UTC)
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id F367810E79F;
- Tue,  4 Apr 2023 20:10:58 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id DDFA1AADE3;
- Tue,  4 Apr 2023 20:10:58 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+	by gabe.freedesktop.org (Postfix) with ESMTP id E255510E7A5;
+	Tue,  4 Apr 2023 20:12:14 +0000 (UTC)
+Received: from mail-oi1-x232.google.com (mail-oi1-x232.google.com
+ [IPv6:2607:f8b0:4864:20::232])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 410A310E79F
+ for <intel-xe@lists.freedesktop.org>; Tue,  4 Apr 2023 20:12:12 +0000 (UTC)
+Received: by mail-oi1-x232.google.com with SMTP id bx42so9577154oib.6
+ for <intel-xe@lists.freedesktop.org>; Tue, 04 Apr 2023 13:12:12 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=ffwll.ch; s=google; t=1680639131;
+ h=content-transfer-encoding:cc:to:subject:message-id:date:from
+ :in-reply-to:references:mime-version:from:to:cc:subject:date
+ :message-id:reply-to;
+ bh=x5/KGj/UhjeVyGQaKIkD6g8841/3YNDIcs9ccW1IVew=;
+ b=jcsRiQnRVnunC9BkzQn6UYKObo48HUyPl4N2seQpPdepwInWiOGJM9bmNlJs7ujzgI
+ TXYffPwpM53QTchgcEou4NqEawuobue8Cyxvj6FFT+r26/EhF9htRU8CHzVF5Y1ypfBz
+ 6PKMDVpZ/8D9amlz8r5EUicQkHfmWgomCVsLM=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20210112; t=1680639131;
+ h=content-transfer-encoding:cc:to:subject:message-id:date:from
+ :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+ :subject:date:message-id:reply-to;
+ bh=x5/KGj/UhjeVyGQaKIkD6g8841/3YNDIcs9ccW1IVew=;
+ b=jg9JyYdE8Cbz1wW2gDWNEe6gff89Gke2raLxvihrQZbhEao/9AXFN6b7w2F5RkTwl7
+ QCm/xbgixsU4n+LM7tmoi6SumHEP5KwXPyYfX7+XNEabHF662R6xvpvz2vvvAKPVcc7O
+ krM4fLXVJF9nOE6veGoa0OR8ljYonzupjT1jxAs9W8awPUm8DVShT5nfP0SVahpO5GDS
+ 4sPVM5kPMuCXq1VOu0gzIQpQfDMw2Lej9B2lBFbKDhUQaTZtIEu+AatU/vZ3HucXkH/H
+ UcHXNvmT8heSARtYX7vp+/ftCLLtFbEQEfvGrogW0wqf125y8Kui/kq1WmCuGLqT+Ozl
+ 3/9g==
+X-Gm-Message-State: AAQBX9dAowyrKBhkK8ilLRclsMG5xrAMjSg0XwlrbdS3D1oS3VhI5AoK
+ l3h7l2bZR0QrgB3O8879GbG33whkXv44qUbQ3UsrBA==
+X-Google-Smtp-Source: AKy350aFUxWs13UaixQaY/8/oXz9M2cyNatT0c+IuI0G4EtYSLsffQqHO6LzVbNov/PdSfQ8ednN4AoRPxs/un7KWZc=
+X-Received: by 2002:a05:6808:280c:b0:386:bc3c:408b with SMTP id
+ et12-20020a056808280c00b00386bc3c408bmr1208784oib.8.1680639131030; Tue, 04
+ Apr 2023 13:12:11 -0700 (PDT)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: =?utf-8?q?Thomas_Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>
-Date: Tue, 04 Apr 2023 20:10:58 -0000
-Message-ID: <168063905890.18900.2195045307340082676@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20230404200650.11043-1-thomas.hellstrom@linux.intel.com>
-In-Reply-To: <20230404200650.11043-1-thomas.hellstrom@linux.intel.com>
-Subject: [Intel-xe] =?utf-8?q?=E2=9C=93_CI=2EKUnit=3A_success_for_drm/ttm?=
- =?utf-8?q?=3A_Small_fixes_/_cleanups_in_prep_for_shrinking?=
+References: <20230404002211.3611376-1-matthew.brost@intel.com>
+ <20230404002211.3611376-9-matthew.brost@intel.com>
+ <e5eb5ab0-8e51-389c-34ae-7c6004f4b1ba@amd.com>
+ <f7b3b70b-c798-b09e-210c-f84eaafd3251@linux.intel.com>
+ <5b2e6a78-b743-028c-f54d-af38c130164a@amd.com>
+ <CAKMK7uGeBJRQ4dKfY=wRvw-o7qdzurFHzUymxGsLWr4Y_nQPAA@mail.gmail.com>
+ <ZCyCpyFmteD0uZ3v@DUT025-TGLU.fm.intel.com>
+In-Reply-To: <ZCyCpyFmteD0uZ3v@DUT025-TGLU.fm.intel.com>
+From: Daniel Vetter <daniel@ffwll.ch>
+Date: Tue, 4 Apr 2023 22:11:59 +0200
+Message-ID: <CAKMK7uG7C9or+L4sS1e7u14wbXt2=0-wGnLxjZ3uSGvM7-Vd4g@mail.gmail.com>
+To: Matthew Brost <matthew.brost@intel.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+Subject: Re: [Intel-xe] [RFC PATCH 08/10] dma-buf/dma-fence: Introduce
+ long-running completion fences
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -39,468 +70,213 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
-Cc: intel-xe@lists.freedesktop.org
+Cc: robdclark@chromium.org, airlied@linux.ie, lina@asahilina.net,
+ dri-devel@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
+ boris.brezillon@collabora.com,
+ =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>,
+ faith.ekstrand@collabora.com
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-== Series Details ==
+On Tue, 4 Apr 2023 at 22:04, Matthew Brost <matthew.brost@intel.com> wrote:
+>
+> On Tue, Apr 04, 2023 at 09:00:59PM +0200, Daniel Vetter wrote:
+> > On Tue, 4 Apr 2023 at 15:10, Christian K=C3=B6nig <christian.koenig@amd=
+.com> wrote:
+> > >
+> > > Am 04.04.23 um 14:54 schrieb Thomas Hellstr=C3=B6m:
+> > > > Hi, Christian,
+> > > >
+> > > > On 4/4/23 11:09, Christian K=C3=B6nig wrote:
+> > > >> Am 04.04.23 um 02:22 schrieb Matthew Brost:
+> > > >>> From: Thomas Hellstr=C3=B6m <thomas.hellstrom@linux.intel.com>
+> > > >>>
+> > > >>> For long-running workloads, drivers either need to open-code comp=
+letion
+> > > >>> waits, invent their own synchronization primitives or internally =
+use
+> > > >>> dma-fences that do not obey the cross-driver dma-fence protocol, =
+but
+> > > >>> without any lockdep annotation all these approaches are error pro=
+ne.
+> > > >>>
+> > > >>> So since for example the drm scheduler uses dma-fences it is
+> > > >>> desirable for
+> > > >>> a driver to be able to use it for throttling and error handling a=
+lso
+> > > >>> with
+> > > >>> internal dma-fences tha do not obey the cros-driver dma-fence pro=
+tocol.
+> > > >>>
+> > > >>> Introduce long-running completion fences in form of dma-fences, a=
+nd add
+> > > >>> lockdep annotation for them. In particular:
+> > > >>>
+> > > >>> * Do not allow waiting under any memory management locks.
+> > > >>> * Do not allow to attach them to a dma-resv object.
+> > > >>> * Introduce a new interface for adding callbacks making the helpe=
+r
+> > > >>> adding
+> > > >>>    a callback sign off on that it is aware that the dma-fence may=
+ not
+> > > >>>    complete anytime soon. Typically this will be the scheduler ch=
+aining
+> > > >>>    a new long-running fence on another one.
+> > > >>
+> > > >> Well that's pretty much what I tried before:
+> > > >> https://lwn.net/Articles/893704/
+> > > >>
+> > > >> And the reasons why it was rejected haven't changed.
+> > > >>
+> > > >> Regards,
+> > > >> Christian.
+> > > >>
+> > > > Yes, TBH this was mostly to get discussion going how we'd best tack=
+le
+> > > > this problem while being able to reuse the scheduler for long-runni=
+ng
+> > > > workloads.
+> > > >
+> > > > I couldn't see any clear decision on your series, though, but one m=
+ain
+> > > > difference I see is that this is intended for driver-internal use
+> > > > only. (I'm counting using the drm_scheduler as a helper for
+> > > > driver-private use). This is by no means a way to try tackle the
+> > > > indefinite fence problem.
+> > >
+> > > Well this was just my latest try to tackle this, but essentially the
+> > > problems are the same as with your approach: When we express such
+> > > operations as dma_fence there is always the change that we leak that
+> > > somewhere.
+> > >
+> > > My approach of adding a flag noting that this operation is dangerous =
+and
+> > > can't be synced with something memory management depends on tried to
+> > > contain this as much as possible, but Daniel still pretty clearly
+> > > rejected it (for good reasons I think).
+> >
+> > Yeah I still don't like dma_fence that somehow have totally different
+> > semantics in that critical piece of "will it complete or will it
+> > deadlock?" :-)
+>
+> Not going to touch LR dma-fences in this reply, I think we can continue
+> the LR fence discussion of the fork of this thread I just responded to.
+> Have a response the preempt fence discussion below.
+>
+> > >
+> > > >
+> > > > We could ofc invent a completely different data-type that abstracts
+> > > > the synchronization the scheduler needs in the long-running case, o=
+r
+> > > > each driver could hack something up, like sleeping in the
+> > > > prepare_job() or run_job() callback for throttling, but those waits
+> > > > should still be annotated in one way or annotated one way or anothe=
+r
+> > > > (and probably in a similar way across drivers) to make sure we don'=
+t
+> > > > do anything bad.
+> > > >
+> > > >  So any suggestions as to what would be the better solution here wo=
+uld
+> > > > be appreciated.
+> > >
+> > > Mhm, do we really the the GPU scheduler for that?
+> > >
+> > > I mean in the 1 to 1 case  you basically just need a component which
+> > > collects the dependencies as dma_fence and if all of them are fulfill=
+ed
+> > > schedules a work item.
+> > >
+> > > As long as the work item itself doesn't produce a dma_fence it can th=
+en
+> > > still just wait for other none dma_fence dependencies.
+> >
+> > Yeah that's the important thing, for long-running jobs dependencies as
+> > dma_fence should be totally fine. You're just not allowed to have any
+> > outgoing dma_fences at all (except the magic preemption fence).
+> >
+> > > Then the work function could submit the work and wait for the result.
+> > >
+> > > The work item would then pretty much represent what you want, you can
+> > > wait for it to finish and pass it along as long running dependency.
+> > >
+> > > Maybe give it a funky name and wrap it up in a structure, but that's
+> > > basically it.
+> >
+> > Like do we need this? If the kernel ever waits for a long-running
+> > compute job to finnish I'd call that a bug. Any functional
+> > dependencies between engines or whatever are userspace's problem only,
+> > which it needs to sort out using userspace memory fences.
+> >
+> > The only things the kernel needs are some way to track dependencies as
+> > dma_fence (because memory management move the memory away and we need
+> > to move it back in, ideally pipelined). And it needs the special
+> > preempt fence (if we don't have pagefaults) so that you have a fence
+> > to attach to all the dma_resv for memory management purposes. Now the
+> > scheduler already has almost all the pieces (at least if we assume
+> > there's some magic fw which time-slices these contexts on its own),
+> > and we just need a few minimal changes:
+> > - allowing the scheduler to ignore the completion fence and just
+> > immediately push the next "job" in if its dependencies are ready
+> > - maybe minimal amounts of scaffolding to handle the preemption
+> > dma_fence because that's not entirely trivial. I think ideally we'd
+> > put that into drm_sched_entity since you can only ever have one active
+> > preempt dma_fence per gpu ctx/entity.
+> >
+>
+> Yep, preempt fence is per entity in Xe (xe_engine). We install these
+> into the VM and all external BOs mapped in the VM dma-resv slots.
+> Wondering if we can make all of this very generic between the DRM
+> scheduler + GPUVA...
 
-Series: drm/ttm: Small fixes / cleanups in prep for shrinking
-URL   : https://patchwork.freedesktop.org/series/116112/
-State : success
+I think if the drm/sched just takes care of the preempt ctx dma_fence
+(and still stores it in the same slot in the drm_sched_job struct like
+a end-of-batch dma_fence job would), and then the gpuva shared code
+just has functions to smash these into the right dma_resv structures
+then you have all the pieces. Maybe for a bit more flexibility the
+gpuva code takes dma_fence and not directly the drm_sched_job, but
+maybe even that level of integration makes sense (but imo optional, a
+bit of driver glue code is fine).
 
-== Summary ==
-
-+ trap cleanup EXIT
-+ /kernel/tools/testing/kunit/kunit.py run --kunitconfig /kernel/drivers/gpu/drm/xe/.kunitconfig
-stty: 'standard input': Inappropriate ioctl for device
-[20:09:45] Configuring KUnit Kernel ...
-Generating .config ...
-Populating config with:
-$ make ARCH=um O=.kunit olddefconfig
-[20:09:49] Building KUnit Kernel ...
-Populating config with:
-$ make ARCH=um O=.kunit olddefconfig
-Building with:
-$ make ARCH=um O=.kunit --jobs=48
-[20:10:11] Starting KUnit Kernel (1/1)...
-[20:10:11] ============================================================
-[20:10:11] ==================== xe_bo (2 subtests) ====================
-[20:10:11] [SKIPPED] xe_ccs_migrate_kunit
-[20:10:11] [SKIPPED] xe_bo_evict_kunit
-[20:10:11] ===================== [SKIPPED] xe_bo ======================
-[20:10:11] ================== xe_dma_buf (1 subtest) ==================
-[20:10:11] [SKIPPED] xe_dma_buf_kunit
-[20:10:11] =================== [SKIPPED] xe_dma_buf ===================
-[20:10:11] ================== xe_migrate (1 subtest) ==================
-[20:10:11] [SKIPPED] xe_migrate_sanity_kunit
-[20:10:11] =================== [SKIPPED] xe_migrate ===================
-[20:10:11] ==================== xe_rtp (1 subtest) ====================
-[20:10:11] ================== xe_rtp_process_tests  ===================
-[20:10:11] [PASSED] coalesce-same-reg
-[20:10:11] [PASSED] no-match-no-add
-[20:10:11] [PASSED] no-match-no-add-multiple-rules
-[20:10:11] [PASSED] two-regs-two-entries
-[20:10:11] [PASSED] clr-one-set-other
-[20:10:11] [PASSED] set-field
-[20:10:11] [PASSED] conflict-duplicate
-[20:10:11] [PASSED] conflict-not-disjoint
-[20:10:11] [PASSED] conflict-reg-type
-[20:10:11] ============== [PASSED] xe_rtp_process_tests ===============
-[20:10:11] ===================== [PASSED] xe_rtp ======================
-[20:10:11] ==================== xe_wa (1 subtest) =====================
-[20:10:11] ======================== xe_wa_gt  =========================
-[20:10:11] [PASSED] TIGERLAKE (B0)
-[20:10:11] [PASSED] DG1 (A0)
-[20:10:11] [PASSED] DG1 (B0)
-[20:10:11] [PASSED] ALDERLAKE_S (A0)
-[20:10:11] [PASSED] ALDERLAKE_S (B0)
-[20:10:11] [PASSED] ALDERLAKE_S (C0)
-[20:10:11] [PASSED] ALDERLAKE_S (D0)
-[20:10:11] [PASSED] DG2_G10 (A0)
-[20:10:11] [PASSED] DG2_G10 (A1)
-[20:10:11] [PASSED] DG2_G10 (B0)
-[20:10:11] [PASSED] DG2_G10 (C0)
-[20:10:11] [PASSED] DG2_G11 (A0)
-[20:10:11] [PASSED] DG2_G11 (B0)
-[20:10:11] [PASSED] DG2_G11 (B1)
-[20:10:11] [PASSED] DG2_G12 (A0)
-[20:10:11] [PASSED] DG2_G12 (A1)
-[20:10:11] [PASSED] PVC (B0)
-[20:10:11] [PASSED] PVC (B1)
-[20:10:11] [PASSED] PVC (C0)
-[20:10:11] ==================== [PASSED] xe_wa_gt =====================
-[20:10:11] ====================== [PASSED] xe_wa ======================
-[20:10:11] ============================================================
-[20:10:11] Testing complete. Ran 32 tests: passed: 28, skipped: 4
-[20:10:11] Elapsed time: 26.111s total, 4.174s configuring, 21.817s building, 0.116s running
-
-+ /kernel/tools/testing/kunit/kunit.py run --kunitconfig /kernel/drivers/gpu/drm/tests/.kunitconfig
-[20:10:11] Configuring KUnit Kernel ...
-Regenerating .config ...
-Populating config with:
-$ make ARCH=um O=.kunit olddefconfig
-[20:10:13] Building KUnit Kernel ...
-Populating config with:
-$ make ARCH=um O=.kunit olddefconfig
-Building with:
-$ make ARCH=um O=.kunit --jobs=48
-[20:10:31] Starting KUnit Kernel (1/1)...
-[20:10:31] ============================================================
-[20:10:31] ============ drm_test_pick_cmdline (2 subtests) ============
-[20:10:31] [PASSED] drm_test_pick_cmdline_res_1920_1080_60
-[20:10:31] =============== drm_test_pick_cmdline_named  ===============
-[20:10:31] [PASSED] NTSC
-[20:10:31] [PASSED] NTSC-J
-[20:10:31] [PASSED] PAL
-[20:10:31] [PASSED] PAL-M
-[20:10:31] =========== [PASSED] drm_test_pick_cmdline_named ===========
-[20:10:31] ============== [PASSED] drm_test_pick_cmdline ==============
-[20:10:31] ================== drm_buddy (6 subtests) ==================
-[20:10:31] [PASSED] drm_test_buddy_alloc_limit
-[20:10:31] [PASSED] drm_test_buddy_alloc_range
-[20:10:31] [PASSED] drm_test_buddy_alloc_optimistic
-[20:10:31] [PASSED] drm_test_buddy_alloc_pessimistic
-[20:10:31] [PASSED] drm_test_buddy_alloc_smoke
-[20:10:31] [PASSED] drm_test_buddy_alloc_pathological
-[20:10:31] ==================== [PASSED] drm_buddy ====================
-[20:10:31] ============= drm_cmdline_parser (40 subtests) =============
-[20:10:31] [PASSED] drm_test_cmdline_force_d_only
-[20:10:31] [PASSED] drm_test_cmdline_force_D_only_dvi
-[20:10:31] [PASSED] drm_test_cmdline_force_D_only_hdmi
-[20:10:31] [PASSED] drm_test_cmdline_force_D_only_not_digital
-[20:10:31] [PASSED] drm_test_cmdline_force_e_only
-[20:10:31] [PASSED] drm_test_cmdline_res
-[20:10:31] [PASSED] drm_test_cmdline_res_vesa
-[20:10:31] [PASSED] drm_test_cmdline_res_vesa_rblank
-[20:10:31] [PASSED] drm_test_cmdline_res_rblank
-[20:10:31] [PASSED] drm_test_cmdline_res_bpp
-[20:10:31] [PASSED] drm_test_cmdline_res_refresh
-[20:10:31] [PASSED] drm_test_cmdline_res_bpp_refresh
-[20:10:31] [PASSED] drm_test_cmdline_res_bpp_refresh_interlaced
-[20:10:31] [PASSED] drm_test_cmdline_res_bpp_refresh_margins
-[20:10:31] [PASSED] drm_test_cmdline_res_bpp_refresh_force_off
-[20:10:31] [PASSED] drm_test_cmdline_res_bpp_refresh_force_on
-[20:10:31] [PASSED] drm_test_cmdline_res_bpp_refresh_force_on_analog
-[20:10:31] [PASSED] drm_test_cmdline_res_bpp_refresh_force_on_digital
-[20:10:31] [PASSED] drm_test_cmdline_res_bpp_refresh_interlaced_margins_force_on
-[20:10:31] [PASSED] drm_test_cmdline_res_margins_force_on
-[20:10:31] [PASSED] drm_test_cmdline_res_vesa_margins
-[20:10:31] [PASSED] drm_test_cmdline_name
-[20:10:31] [PASSED] drm_test_cmdline_name_bpp
-[20:10:31] [PASSED] drm_test_cmdline_name_option
-[20:10:31] [PASSED] drm_test_cmdline_name_bpp_option
-[20:10:31] [PASSED] drm_test_cmdline_rotate_0
-[20:10:31] [PASSED] drm_test_cmdline_rotate_90
-[20:10:31] [PASSED] drm_test_cmdline_rotate_180
-[20:10:31] [PASSED] drm_test_cmdline_rotate_270
-[20:10:31] [PASSED] drm_test_cmdline_hmirror
-[20:10:31] [PASSED] drm_test_cmdline_vmirror
-[20:10:31] [PASSED] drm_test_cmdline_margin_options
-[20:10:31] [PASSED] drm_test_cmdline_multiple_options
-[20:10:31] [PASSED] drm_test_cmdline_bpp_extra_and_option
-[20:10:31] [PASSED] drm_test_cmdline_extra_and_option
-[20:10:31] [PASSED] drm_test_cmdline_freestanding_options
-[20:10:31] [PASSED] drm_test_cmdline_freestanding_force_e_and_options
-[20:10:31] [PASSED] drm_test_cmdline_panel_orientation
-[20:10:31] ================ drm_test_cmdline_invalid  =================
-[20:10:31] [PASSED] margin_only
-[20:10:31] [PASSED] interlace_only
-[20:10:31] [PASSED] res_missing_x
-[20:10:31] [PASSED] res_missing_y
-[20:10:31] [PASSED] res_bad_y
-[20:10:31] [PASSED] res_missing_y_bpp
-[20:10:31] [PASSED] res_bad_bpp
-[20:10:31] [PASSED] res_bad_refresh
-[20:10:31] [PASSED] res_bpp_refresh_force_on_off
-[20:10:31] [PASSED] res_invalid_mode
-[20:10:31] [PASSED] res_bpp_wrong_place_mode
-[20:10:31] [PASSED] name_bpp_refresh
-[20:10:31] [PASSED] name_refresh
-[20:10:31] [PASSED] name_refresh_wrong_mode
-[20:10:31] [PASSED] name_refresh_invalid_mode
-[20:10:31] [PASSED] rotate_multiple
-[20:10:31] [PASSED] rotate_invalid_val
-[20:10:31] [PASSED] rotate_truncated
-[20:10:31] [PASSED] invalid_option
-[20:10:31] [PASSED] invalid_tv_option
-[20:10:31] [PASSED] truncated_tv_option
-[20:10:31] ============ [PASSED] drm_test_cmdline_invalid =============
-[20:10:31] =============== drm_test_cmdline_tv_options  ===============
-[20:10:31] [PASSED] NTSC
-[20:10:31] [PASSED] NTSC_443
-[20:10:31] [PASSED] NTSC_J
-[20:10:31] [PASSED] PAL
-[20:10:31] [PASSED] PAL_M
-[20:10:31] [PASSED] PAL_N
-[20:10:31] [PASSED] SECAM
-[20:10:31] =========== [PASSED] drm_test_cmdline_tv_options ===========
-[20:10:31] =============== [PASSED] drm_cmdline_parser ================
-[20:10:31] ========== drm_get_tv_mode_from_name (2 subtests) ==========
-[20:10:31] ========== drm_test_get_tv_mode_from_name_valid  ===========
-[20:10:31] [PASSED] NTSC
-[20:10:31] [PASSED] NTSC-443
-[20:10:31] [PASSED] NTSC-J
-[20:10:31] [PASSED] PAL
-[20:10:31] [PASSED] PAL-M
-[20:10:31] [PASSED] PAL-N
-[20:10:31] [PASSED] SECAM
-[20:10:31] ====== [PASSED] drm_test_get_tv_mode_from_name_valid =======
-[20:10:31] [PASSED] drm_test_get_tv_mode_from_name_truncated
-[20:10:31] ============ [PASSED] drm_get_tv_mode_from_name ============
-[20:10:31] ============= drm_damage_helper (21 subtests) ==============
-[20:10:31] [PASSED] drm_test_damage_iter_no_damage
-[20:10:31] [PASSED] drm_test_damage_iter_no_damage_fractional_src
-[20:10:31] [PASSED] drm_test_damage_iter_no_damage_src_moved
-[20:10:31] [PASSED] drm_test_damage_iter_no_damage_fractional_src_moved
-[20:10:31] [PASSED] drm_test_damage_iter_no_damage_not_visible
-[20:10:31] [PASSED] drm_test_damage_iter_no_damage_no_crtc
-[20:10:31] [PASSED] drm_test_damage_iter_no_damage_no_fb
-[20:10:31] [PASSED] drm_test_damage_iter_simple_damage
-[20:10:31] [PASSED] drm_test_damage_iter_single_damage
-[20:10:31] [PASSED] drm_test_damage_iter_single_damage_intersect_src
-[20:10:31] [PASSED] drm_test_damage_iter_single_damage_outside_src
-[20:10:31] [PASSED] drm_test_damage_iter_single_damage_fractional_src
-[20:10:31] [PASSED] drm_test_damage_iter_single_damage_intersect_fractional_src
-[20:10:31] [PASSED] drm_test_damage_iter_single_damage_outside_fractional_src
-[20:10:31] [PASSED] drm_test_damage_iter_single_damage_src_moved
-[20:10:31] [PASSED] drm_test_damage_iter_single_damage_fractional_src_moved
-[20:10:31] [PASSED] drm_test_damage_iter_damage
-[20:10:31] [PASSED] drm_test_damage_iter_damage_one_intersect
-[20:10:31] [PASSED] drm_test_damage_iter_damage_one_outside
-[20:10:31] [PASSED] drm_test_damage_iter_damage_src_moved
-[20:10:31] [PASSED] drm_test_damage_iter_damage_not_visible
-[20:10:31] ================ [PASSED] drm_damage_helper ================
-[20:10:31] ============== drm_dp_mst_helper (2 subtests) ==============
-[20:10:31] ============== drm_test_dp_mst_calc_pbn_mode  ==============
-[20:10:31] [PASSED] Clock 154000 BPP 30 DSC disabled
-[20:10:31] [PASSED] Clock 234000 BPP 30 DSC disabled
-[20:10:31] [PASSED] Clock 297000 BPP 24 DSC disabled
-[20:10:31] [PASSED] Clock 332880 BPP 24 DSC enabled
-[20:10:31] [PASSED] Clock 324540 BPP 24 DSC enabled
-[20:10:31] ========== [PASSED] drm_test_dp_mst_calc_pbn_mode ==========
-[20:10:31] ========= drm_test_dp_mst_sideband_msg_req_decode  =========
-[20:10:31] [PASSED] DP_ENUM_PATH_RESOURCES with port number
-[20:10:31] [PASSED] DP_POWER_UP_PHY with port number
-[20:10:31] [PASSED] DP_POWER_DOWN_PHY with port number
-[20:10:31] [PASSED] DP_ALLOCATE_PAYLOAD with SDP stream sinks
-[20:10:31] [PASSED] DP_ALLOCATE_PAYLOAD with port number
-[20:10:31] [PASSED] DP_ALLOCATE_PAYLOAD with VCPI
-[20:10:31] [PASSED] DP_ALLOCATE_PAYLOAD with PBN
-[20:10:31] [PASSED] DP_QUERY_PAYLOAD with port number
-[20:10:31] [PASSED] DP_QUERY_PAYLOAD with VCPI
-[20:10:31] [PASSED] DP_REMOTE_DPCD_READ with port number
-[20:10:31] [PASSED] DP_REMOTE_DPCD_READ with DPCD address
-[20:10:31] [PASSED] DP_REMOTE_DPCD_READ with max number of bytes
-[20:10:31] [PASSED] DP_REMOTE_DPCD_WRITE with port number
-[20:10:31] [PASSED] DP_REMOTE_DPCD_WRITE with DPCD address
-[20:10:31] [PASSED] DP_REMOTE_DPCD_WRITE with data array
-[20:10:31] [PASSED] DP_REMOTE_I2C_READ with port number
-[20:10:31] [PASSED] DP_REMOTE_I2C_READ with I2C device ID
-[20:10:31] [PASSED] DP_REMOTE_I2C_READ with transactions array
-[20:10:31] [PASSED] DP_REMOTE_I2C_WRITE with port number
-[20:10:31] [PASSED] DP_REMOTE_I2C_WRITE with I2C device ID
-[20:10:31] [PASSED] DP_REMOTE_I2C_WRITE with data array
-[20:10:31] [PASSED] DP_QUERY_STREAM_ENC_STATUS with stream ID
-[20:10:31] [PASSED] DP_QUERY_STREAM_ENC_STATUS with client ID
-[20:10:31] [PASSED] DP_QUERY_STREAM_ENC_STATUS with stream event
-[20:10:31] [PASSED] DP_QUERY_STREAM_ENC_STATUS with valid stream event
-[20:10:31] [PASSED] DP_QUERY_STREAM_ENC_STATUS with stream behavior
-[20:10:31] [PASSED] DP_QUERY_STREAM_ENC_STATUS with a valid stream behavior
-[20:10:31] ===== [PASSED] drm_test_dp_mst_sideband_msg_req_decode =====
-[20:10:31] ================ [PASSED] drm_dp_mst_helper ================
-[20:10:31] =========== drm_format_helper_test (11 subtests) ===========
-[20:10:31] ============== drm_test_fb_xrgb8888_to_gray8  ==============
-[20:10:31] [PASSED] single_pixel_source_buffer
-[20:10:31] [PASSED] single_pixel_clip_rectangle
-[20:10:31] [PASSED] well_known_colors
-[20:10:31] [PASSED] destination_pitch
-[20:10:31] ========== [PASSED] drm_test_fb_xrgb8888_to_gray8 ==========
-[20:10:31] ============= drm_test_fb_xrgb8888_to_rgb332  ==============
-[20:10:31] [PASSED] single_pixel_source_buffer
-[20:10:31] [PASSED] single_pixel_clip_rectangle
-[20:10:31] [PASSED] well_known_colors
-[20:10:31] [PASSED] destination_pitch
-[20:10:31] ========= [PASSED] drm_test_fb_xrgb8888_to_rgb332 ==========
-[20:10:31] ============= drm_test_fb_xrgb8888_to_rgb565  ==============
-[20:10:31] [PASSED] single_pixel_source_buffer
-[20:10:31] [PASSED] single_pixel_clip_rectangle
-[20:10:31] [PASSED] well_known_colors
-[20:10:31] [PASSED] destination_pitch
-[20:10:31] ========= [PASSED] drm_test_fb_xrgb8888_to_rgb565 ==========
-[20:10:31] ============ drm_test_fb_xrgb8888_to_xrgb1555  =============
-[20:10:31] [PASSED] single_pixel_source_buffer
-[20:10:31] [PASSED] single_pixel_clip_rectangle
-[20:10:31] [PASSED] well_known_colors
-[20:10:31] [PASSED] destination_pitch
-[20:10:31] ======== [PASSED] drm_test_fb_xrgb8888_to_xrgb1555 =========
-[20:10:31] ============ drm_test_fb_xrgb8888_to_argb1555  =============
-[20:10:31] [PASSED] single_pixel_source_buffer
-[20:10:31] [PASSED] single_pixel_clip_rectangle
-[20:10:31] [PASSED] well_known_colors
-[20:10:31] [PASSED] destination_pitch
-[20:10:31] ======== [PASSED] drm_test_fb_xrgb8888_to_argb1555 =========
-[20:10:31] ============ drm_test_fb_xrgb8888_to_rgba5551  =============
-[20:10:31] [PASSED] single_pixel_source_buffer
-[20:10:31] [PASSED] single_pixel_clip_rectangle
-[20:10:31] [PASSED] well_known_colors
-[20:10:31] [PASSED] destination_pitch
-[20:10:31] ======== [PASSED] drm_test_fb_xrgb8888_to_rgba5551 =========
-[20:10:31] ============= drm_test_fb_xrgb8888_to_rgb888  ==============
-[20:10:31] [PASSED] single_pixel_source_buffer
-[20:10:31] [PASSED] single_pixel_clip_rectangle
-[20:10:31] [PASSED] well_known_colors
-[20:10:31] [PASSED] destination_pitch
-[20:10:31] ========= [PASSED] drm_test_fb_xrgb8888_to_rgb888 ==========
-[20:10:31] ============ drm_test_fb_xrgb8888_to_argb8888  =============
-[20:10:31] [PASSED] single_pixel_source_buffer
-[20:10:31] [PASSED] single_pixel_clip_rectangle
-[20:10:31] [PASSED] well_known_colors
-[20:10:31] [PASSED] destination_pitch
-[20:10:31] ======== [PASSED] drm_test_fb_xrgb8888_to_argb8888 =========
-[20:10:31] =========== drm_test_fb_xrgb8888_to_xrgb2101010  ===========
-[20:10:31] [PASSED] single_pixel_source_buffer
-[20:10:31] [PASSED] single_pixel_clip_rectangle
-[20:10:31] [PASSED] well_known_colors
-[20:10:31] [PASSED] destination_pitch
-[20:10:31] ======= [PASSED] drm_test_fb_xrgb8888_to_xrgb2101010 =======
-[20:10:31] =========== drm_test_fb_xrgb8888_to_argb2101010  ===========
-[20:10:31] [PASSED] single_pixel_source_buffer
-[20:10:31] [PASSED] single_pixel_clip_rectangle
-[20:10:31] [PASSED] well_known_colors
-[20:10:31] [PASSED] destination_pitch
-[20:10:31] ======= [PASSED] drm_test_fb_xrgb8888_to_argb2101010 =======
-[20:10:31] ============== drm_test_fb_xrgb8888_to_mono  ===============
-[20:10:31] [PASSED] single_pixel_source_buffer
-[20:10:31] [PASSED] single_pixel_clip_rectangle
-[20:10:31] [PASSED] well_known_colors
-[20:10:31] [PASSED] destination_pitch
-[20:10:31] ========== [PASSED] drm_test_fb_xrgb8888_to_mono ===========
-[20:10:31] ============= [PASSED] drm_format_helper_test ==============
-[20:10:31] ================= drm_format (18 subtests) =================
-[20:10:31] [PASSED] drm_test_format_block_width_invalid
-[20:10:31] [PASSED] drm_test_format_block_width_one_plane
-[20:10:31] [PASSED] drm_test_format_block_width_two_plane
-[20:10:31] [PASSED] drm_test_format_block_width_three_plane
-[20:10:31] [PASSED] drm_test_format_block_width_tiled
-[20:10:31] [PASSED] drm_test_format_block_height_invalid
-[20:10:31] [PASSED] drm_test_format_block_height_one_plane
-[20:10:31] [PASSED] drm_test_format_block_height_two_plane
-[20:10:31] [PASSED] drm_test_format_block_height_three_plane
-[20:10:31] [PASSED] drm_test_format_block_height_tiled
-[20:10:31] [PASSED] drm_test_format_min_pitch_invalid
-[20:10:31] [PASSED] drm_test_format_min_pitch_one_plane_8bpp
-[20:10:31] [PASSED] drm_test_format_min_pitch_one_plane_16bpp
-[20:10:31] [PASSED] drm_test_format_min_pitch_one_plane_24bpp
-[20:10:31] [PASSED] drm_test_format_min_pitch_one_plane_32bpp
-[20:10:31] [PASSED] drm_test_format_min_pitch_two_plane
-[20:10:31] [PASSED] drm_test_format_min_pitch_three_plane_8bpp
-[20:10:31] [PASSED] drm_test_format_min_pitch_tiled
-[20:10:31] =================== [PASSED] drm_format ====================
-[20:10:31] =============== drm_framebuffer (1 subtest) ================
-[20:10:31] =============== drm_test_framebuffer_create  ===============
-[20:10:31] [PASSED] ABGR8888 normal sizes
-[20:10:31] [PASSED] ABGR8888 max sizes
-[20:10:31] [PASSED] ABGR8888 pitch greater than min required
-[20:10:31] [PASSED] ABGR8888 pitch less than min required
-[20:10:31] [PASSED] ABGR8888 Invalid width
-[20:10:31] [PASSED] ABGR8888 Invalid buffer handle
-[20:10:31] [PASSED] No pixel format
-[20:10:31] [PASSED] ABGR8888 Width 0
-[20:10:31] [PASSED] ABGR8888 Height 0
-[20:10:31] [PASSED] ABGR8888 Out of bound height * pitch combination
-[20:10:31] [PASSED] ABGR8888 Large buffer offset
-[20:10:31] [PASSED] ABGR8888 Set DRM_MODE_FB_MODIFIERS without modifiers
-[20:10:31] [PASSED] ABGR8888 Valid buffer modifier
-[20:10:31] [PASSED] ABGR8888 Invalid buffer modifier(DRM_FORMAT_MOD_SAMSUNG_64_32_TILE)
-[20:10:31] [PASSED] ABGR8888 Extra pitches without DRM_MODE_FB_MODIFIERS
-[20:10:31] [PASSED] ABGR8888 Extra pitches with DRM_MODE_FB_MODIFIERS
-[20:10:31] [PASSED] NV12 Normal sizes
-[20:10:31] [PASSED] NV12 Max sizes
-[20:10:31] [PASSED] NV12 Invalid pitch
-[20:10:31] [PASSED] NV12 Invalid modifier/missing DRM_MODE_FB_MODIFIERS flag
-[20:10:31] [PASSED] NV12 different  modifier per-plane
-[20:10:31] [PASSED] NV12 with DRM_FORMAT_MOD_SAMSUNG_64_32_TILE
-[20:10:31] [PASSED] NV12 Valid modifiers without DRM_MODE_FB_MODIFIERS
-[20:10:31] [PASSED] NV12 Modifier for inexistent plane
-[20:10:31] [PASSED] NV12 Handle for inexistent plane
-[20:10:31] [PASSED] NV12 Handle for inexistent plane without DRM_MODE_FB_MODIFIERS
-[20:10:31] [PASSED] YVU420 Normal sizes
-[20:10:31] [PASSED] YVU420 DRM_MODE_FB_MODIFIERS set without modifier
-[20:10:31] [PASSED] YVU420 Max sizes
-[20:10:31] [PASSED] YVU420 Invalid pitch
-[20:10:31] [PASSED] YVU420 Different pitches
-[20:10:31] [PASSED] YVU420 Different buffer offsets/pitches
-[20:10:31] [PASSED] YVU420 Modifier set just for plane 0, without DRM_MODE_FB_MODIFIERS
-[20:10:31] [PASSED] YVU420 Modifier set just for planes 0, 1, without DRM_MODE_FB_MODIFIERS
-[20:10:31] [PASSED] YVU420 Modifier set just for plane 0, 1, with DRM_MODE_FB_MODIFIERS
-[20:10:31] [PASSED] YVU420 Valid modifier
-[20:10:31] [PASSED] YVU420 Different modifiers per plane
-[20:10:31] [PASSED] YVU420 Modifier for inexistent plane
-[20:10:31] [PASSED] X0L2 Normal sizes
-[20:10:31] [PASSED] X0L2 Max sizes
-[20:10:31] [PASSED] X0L2 Invalid pitch
-[20:10:31] [PASSED] X0L2 Pitch greater than minimum required
-stty: 'standard input': Inappropriate ioctl for device
-[20:10:31] [PASSED] X0L2 Handle for inexistent plane
-[20:10:31] [PASSED] X0L2 Offset for inexistent plane, without DRM_MODE_FB_MODIFIERS set
-[20:10:31] [PASSED] X0L2 Modifier without DRM_MODE_FB_MODIFIERS set
-[20:10:31] [PASSED] X0L2 Valid modifier
-[20:10:31] [PASSED] X0L2 Modifier for inexistent plane
-[20:10:31] =========== [PASSED] drm_test_framebuffer_create ===========
-[20:10:31] ================= [PASSED] drm_framebuffer =================
-[20:10:31] =============== drm-test-managed (1 subtest) ===============
-[20:10:31] [PASSED] drm_test_managed_run_action
-[20:10:31] ================ [PASSED] drm-test-managed =================
-[20:10:31] =================== drm_mm (19 subtests) ===================
-[20:10:31] [PASSED] drm_test_mm_init
-[20:10:31] [PASSED] drm_test_mm_debug
-[20:10:42] [PASSED] drm_test_mm_reserve
-[20:10:52] [PASSED] drm_test_mm_insert
-[20:10:53] [PASSED] drm_test_mm_replace
-[20:10:53] [PASSED] drm_test_mm_insert_range
-[20:10:53] [PASSED] drm_test_mm_frag
-[20:10:53] [PASSED] drm_test_mm_align
-[20:10:53] [PASSED] drm_test_mm_align32
-[20:10:53] [PASSED] drm_test_mm_align64
-[20:10:53] [PASSED] drm_test_mm_evict
-[20:10:53] [PASSED] drm_test_mm_evict_range
-[20:10:53] [PASSED] drm_test_mm_topdown
-[20:10:53] [PASSED] drm_test_mm_bottomup
-[20:10:53] [PASSED] drm_test_mm_lowest
-[20:10:53] [PASSED] drm_test_mm_highest
-[20:10:54] [PASSED] drm_test_mm_color
-[20:10:55] [PASSED] drm_test_mm_color_evict
-[20:10:55] [PASSED] drm_test_mm_color_evict_range
-[20:10:55] ===================== [PASSED] drm_mm ======================
-[20:10:55] ============= drm_modes_analog_tv (4 subtests) =============
-[20:10:55] [PASSED] drm_test_modes_analog_tv_ntsc_480i
-[20:10:55] [PASSED] drm_test_modes_analog_tv_ntsc_480i_inlined
-[20:10:55] [PASSED] drm_test_modes_analog_tv_pal_576i
-[20:10:55] [PASSED] drm_test_modes_analog_tv_pal_576i_inlined
-[20:10:55] =============== [PASSED] drm_modes_analog_tv ===============
-[20:10:55] ============== drm_plane_helper (2 subtests) ===============
-[20:10:55] =============== drm_test_check_plane_state  ================
-[20:10:55] [PASSED] clipping_simple
-[20:10:55] [PASSED] clipping_rotate_reflect
-[20:10:55] [PASSED] positioning_simple
-[20:10:55] [PASSED] upscaling
-[20:10:55] [PASSED] downscaling
-[20:10:55] [PASSED] rounding1
-[20:10:55] [PASSED] rounding2
-[20:10:55] [PASSED] rounding3
-[20:10:55] [PASSED] rounding4
-[20:10:55] =========== [PASSED] drm_test_check_plane_state ============
-[20:10:55] =========== drm_test_check_invalid_plane_state  ============
-[20:10:55] [PASSED] positioning_invalid
-[20:10:55] [PASSED] upscaling_invalid
-[20:10:55] [PASSED] downscaling_invalid
-[20:10:55] ======= [PASSED] drm_test_check_invalid_plane_state ========
-[20:10:55] ================ [PASSED] drm_plane_helper =================
-[20:10:55] ====== drm_connector_helper_tv_get_modes (1 subtest) =======
-[20:10:55] ====== drm_test_connector_helper_tv_get_modes_check  =======
-[20:10:55] [PASSED] None
-[20:10:55] [PASSED] PAL
-[20:10:55] [PASSED] NTSC
-[20:10:55] [PASSED] Both, NTSC Default
-[20:10:55] [PASSED] Both, PAL Default
-[20:10:55] [PASSED] Both, NTSC Default, with PAL on command-line
-[20:10:55] [PASSED] Both, PAL Default, with NTSC on command-line
-[20:10:55] == [PASSED] drm_test_connector_helper_tv_get_modes_check ===
-[20:10:55] ======== [PASSED] drm_connector_helper_tv_get_modes ========
-[20:10:55] ================== drm_rect (4 subtests) ===================
-[20:10:55] [PASSED] drm_test_rect_clip_scaled_div_by_zero
-[20:10:55] [PASSED] drm_test_rect_clip_scaled_not_clipped
-[20:10:55] [PASSED] drm_test_rect_clip_scaled_clipped
-[20:10:55] [PASSED] drm_test_rect_clip_scaled_signed_vs_unsigned
-[20:10:55] ==================== [PASSED] drm_rect =====================
-[20:10:55] ============================================================
-[20:10:55] Testing complete. Ran 294 tests: passed: 294
-[20:10:55] Elapsed time: 43.857s total, 1.705s configuring, 18.620s building, 23.494s running
-
-+ cleanup
-++ stat -c %u:%g /kernel
-+ chown -R 1003:1003 /kernel
+Yeah that's roughly what I think we should at least aim for since
+there's quiet a few drivers in-flight that all need these pieces (more
+or less at least).
+-Daniel
+>
+> Matt
+>
+> > None of this needs a dma_fence_is_lr anywhere at all.
+> >
+> > Of course there's the somewhat related issue of "how do we transport
+> > these userspace memory fences around from app to compositor", and
+> > that's a lot more gnarly. I still don't think dma_fence_is_lr is
+> > anywhere near what the solution should look like for that.
+> > -Daniel
+> >
+> >
+> > > Regards,
+> > > Christian.
+> > >
+> > > >
+> > > > Thanks,
+> > > >
+> > > > Thomas
+> > > >
+> > > >
+> > > >
+> > > >
+> > > >
+> > >
+> >
+> >
+> > --
+> > Daniel Vetter
+> > Software Engineer, Intel Corporation
+> > http://blog.ffwll.ch
 
 
+
+--=20
+Daniel Vetter
+Software Engineer, Intel Corporation
+http://blog.ffwll.ch
