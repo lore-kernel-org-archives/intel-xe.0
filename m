@@ -4,149 +4,134 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 85BDCC761A6
-	for <intel-xe@archiver.kernel.org>; Tue,  4 Apr 2023 16:25:42 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 81889C761A6
+	for <intel-xe@archiver.kernel.org>; Tue,  4 Apr 2023 16:29:18 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5898610E701;
-	Tue,  4 Apr 2023 16:25:42 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4F8D710E002;
+	Tue,  4 Apr 2023 16:29:18 +0000 (UTC)
 Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8CB6E10E700;
- Tue,  4 Apr 2023 16:25:39 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E3F9110E002
+ for <intel-xe@lists.freedesktop.org>; Tue,  4 Apr 2023 16:29:16 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1680625539; x=1712161539;
- h=content-transfer-encoding:in-reply-to:references:subject:
- from:cc:to:date:message-id:mime-version;
- bh=hx5Y6J4QLCbNzbl1+T+h5rsMUw/CeZ4Hi6qcg5zisUc=;
- b=HKpzPQ5PQ/lcp6DcBtYhHyl3z8iP4jyMPshQpMQMqL87Vv68JGYW9vPz
- V9mlqEKDEzppro98o+tYgE0xHfc1ySwaUFiAUVur0Tkno5ypdmlM4fTLS
- WnvFipVUK87+35cGMqTjxZgCzImOfJkJuZAHC5AACLT2yD+s2ccv5YXkh
- KeHwsZbb0ioItBEtadVx9C0WacKUm9HZaMJ7FZ6mYVDpGy+EKb+U0BpRr
- adacIqTc56oSKrmlIDsaWHqO0QZbq+j7jN8wWmzTK9CrXmHdFQDDHlKu3
- NkCU0Nut+7kqhcEHXtbmcr/snogaDFy1W7+xnp57zF7Uv3ohYcTHXSmsa w==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10670"; a="343940466"
-X-IronPort-AV: E=Sophos;i="5.98,318,1673942400"; d="scan'208";a="343940466"
+ t=1680625756; x=1712161756;
+ h=date:from:to:cc:subject:message-id:references:
+ content-transfer-encoding:in-reply-to:mime-version;
+ bh=tZcGhVqSApyVqcmxIgQbv0A3497KmfHpEvscZWR5NwM=;
+ b=cOjZX8PY5IEpQ1shHa87gyrxysFYpxF/OZeQwexMY4coc4ac6O8iJ4KT
+ PGBO34Xv6wJEyp5m0EBYn82sSOWRMVqNTlWOJLfHiMD6dk51myZB+Je81
+ 4V6p3mOq0pdDO//2PfHgigTRFzI+6hGPbvU5WilDeJK6Tgvxla/Vrn9Hh
+ Xq74HiQvsZTRK9KNyBWSTH+y0IerTMEClVAcT7EBUo5FPQvKsVyOgK7KD
+ WtPrQTrv4rke+XpNQiPkWNiOUVcHwAPua0HYiDivwyjNd7165xZ7iIfER
+ b1yI5hGyL9d6hl2LUug66Wu9uG2OothIfvT2WQ6K/eIS9dHRMZXFrRlTQ w==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10670"; a="343941781"
+X-IronPort-AV: E=Sophos;i="5.98,318,1673942400"; d="scan'208";a="343941781"
 Received: from orsmga002.jf.intel.com ([10.7.209.21])
  by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 04 Apr 2023 09:25:38 -0700
+ 04 Apr 2023 09:29:09 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10670"; a="686421667"
-X-IronPort-AV: E=Sophos;i="5.98,318,1673942400"; d="scan'208";a="686421667"
+X-IronPort-AV: E=McAfee;i="6600,9927,10670"; a="686422790"
+X-IronPort-AV: E=Sophos;i="5.98,318,1673942400"; d="scan'208";a="686422790"
 Received: from fmsmsx601.amr.corp.intel.com ([10.18.126.81])
- by orsmga002.jf.intel.com with ESMTP; 04 Apr 2023 09:25:38 -0700
-Received: from fmsmsx611.amr.corp.intel.com (10.18.126.91) by
+ by orsmga002.jf.intel.com with ESMTP; 04 Apr 2023 09:29:08 -0700
+Received: from fmsmsx603.amr.corp.intel.com (10.18.126.83) by
  fmsmsx601.amr.corp.intel.com (10.18.126.81) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.21; Tue, 4 Apr 2023 09:25:38 -0700
-Received: from fmsmsx603.amr.corp.intel.com (10.18.126.83) by
- fmsmsx611.amr.corp.intel.com (10.18.126.91) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.21; Tue, 4 Apr 2023 09:25:37 -0700
+ 15.1.2507.21; Tue, 4 Apr 2023 09:29:08 -0700
 Received: from fmsedg601.ED.cps.intel.com (10.1.192.135) by
  fmsmsx603.amr.corp.intel.com (10.18.126.83) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.21 via Frontend Transport; Tue, 4 Apr 2023 09:25:37 -0700
-Received: from NAM02-SN1-obe.outbound.protection.outlook.com (104.47.57.44) by
- edgegateway.intel.com (192.55.55.70) with Microsoft SMTP Server
+ 15.1.2507.21 via Frontend Transport; Tue, 4 Apr 2023 09:29:08 -0700
+Received: from NAM10-DM6-obe.outbound.protection.outlook.com (104.47.58.103)
+ by edgegateway.intel.com (192.55.55.70) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2507.21; Tue, 4 Apr 2023 09:25:37 -0700
+ 15.1.2507.21; Tue, 4 Apr 2023 09:29:08 -0700
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=Kb8hi7LgVvH6FwldxV1LAlLHXCjsHsGRJ419OmLgnNKpQxwlLAfcFvuMcduobfIN0bPoExxgwbJlDUYA4hA6uf6sCbv5L49EMUn/YFpvKIs9GR4ahdWA82I5FPNM1xIO7El1GPVYJVeT2KYlhWgQCxDu+opKFKxdVn8BwTmu9ihUghYg0/3ZAK5Tp3GBT8hnZappS7rzHzS+6Tlv3k5OFHIDGM4Crj3Bj2Ybm/G/lY1P8F85Lyd7Hai0cUYfI6410QXy/7GWOZZwsBQ+1LeoO6XMO+P0vWe+FpgMYAYBv/QZHl1Bty67xjdy05VwrTrSaqqmlumstrJ7yeijs2b6dA==
+ b=jncGuvfSrjTDcPMXn+7pHsRaxoVrE7p+5ZSpt77UqdET6UfqEcpyJh6Iv3mgW7wI+wFVV4dRDqmnZH7SShBNi7j9bUgFpJvmvMQg1hGEwT7HEvjoGkbmXpd7KNXPMdakSYLjMIM8OY0LUqbsy4EN8Pinta64+khyzsL7cVaGEcXW+uurZV2KCpQY6KC/Enl5aMgkdjPuD8+BL5hLEsQPaT8WX/gTqHCldFaVqnrNmPh3vIGJSvrcjmW3mnkv5LXYua5YPUzPscRnzTY6WkqQVMPMFcUkBDW7CkGYQH7+x/ym8+++zCnUzI11VqmmjuAIdKjfBiNDoDHLAUuFGjqX8Q==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=fRXNwQ1h1elyHYbLJCK750QShYxpM1kvVd6xeDYTXIg=;
- b=Rb9D+mcTaup4YOqkeDnChAt+frFBpCeQWXv0WYq/GecYWbKWWjXCCVC+XxxdKfHS1CskqmxRDQs+e6Cr+qBSQ1sDCdAzVI4NrLr0jlJHGooycP8ZxREokA8zeyNsSnAut+pregud/YVUReFOJcX+CgHnbor1H0kF520FJuEE4PGoLSPazk9MzQJTXgoihF2ceuaMTfA7RqCo1BSeTZUGOwuCxVvmmHv8A3iSmG5OJA2GsmnyWMdKSZFfm/O9pEY0G5OdmJ94f/xmuZ+6CXOh+eyzH4xaAIxbpLlQKMOsD/1E1Tapei10RzNRywyvXeJSS37htx4iERoBWIVnKUeefw==
+ bh=9CGYYC9z1C7yry0cDPxZ82hrTzNOHN91184NVRquK8Q=;
+ b=GYM1NUgIdIEr42QNEIgTnKeKJIjlmevdzlFxdyEvmL0eX2WKMZg4+n5VJEnE+fCkKuW9NjCIUwkAfC4uo1DTcFlAMzbGXj+n0+4jNjjMZ9z1ybAgUHSJRzcocls1FXp1Gg0eJJCXsG0hhZS8c5ws0tc0pvDsziWsQRBrb3xadgKague4MuveBcZbmzsy8jM04zdHXjz+j3n/Vfgd13ETvpfFCn3NiZ3ntRpTYkIzpdFTU3SUNzjKRRFrXvmqSt6c6jC9wvNPhzyRWfzNXVfe+GYY3kR6tqRL/68BDcF5A7zf5ISZPt5I5xv24slirV8bjdFQrMeAxMBbIiofOrNdEA==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
  dkim=pass header.d=intel.com; arc=none
 Authentication-Results: dkim=none (message not signed)
  header.d=none;dmarc=none action=none header.from=intel.com;
-Received: from BN8PR11MB3556.namprd11.prod.outlook.com (2603:10b6:408:8d::31)
- by CY8PR11MB7083.namprd11.prod.outlook.com (2603:10b6:930:51::11)
+Received: from MN0PR11MB6059.namprd11.prod.outlook.com (2603:10b6:208:377::9)
+ by CO1PR11MB4932.namprd11.prod.outlook.com (2603:10b6:303:98::14)
  with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6254.28; Tue, 4 Apr
- 2023 16:25:35 +0000
-Received: from BN8PR11MB3556.namprd11.prod.outlook.com
- ([fe80::9e31:fa24:17e3:a69a]) by BN8PR11MB3556.namprd11.prod.outlook.com
- ([fe80::9e31:fa24:17e3:a69a%3]) with mapi id 15.20.6254.033; Tue, 4 Apr 2023
- 16:25:35 +0000
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: quoted-printable
-In-Reply-To: <20230404141053.b2qi4deyus2it3p2@ldmartin-desk2.lan>
-References: <20230403202437.1816411-1-lucas.demarchi@intel.com>
- <168061139110.5056.15908803129907670095@gjsousa-mobl2>
- <20230404141053.b2qi4deyus2it3p2@ldmartin-desk2.lan>
-From: Gustavo Sousa <gustavo.sousa@intel.com>
-To: Lucas De Marchi <lucas.demarchi@intel.com>
-Date: Tue, 4 Apr 2023 13:25:28 -0300
-Message-ID: <168062552877.5056.12977298157155798040@gjsousa-mobl2>
-User-Agent: alot/0.10
-X-ClientProxiedBy: BY5PR20CA0026.namprd20.prod.outlook.com
- (2603:10b6:a03:1f4::39) To BN8PR11MB3556.namprd11.prod.outlook.com
- (2603:10b6:408:8d::31)
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6254.35; Tue, 4 Apr
+ 2023 16:29:05 +0000
+Received: from MN0PR11MB6059.namprd11.prod.outlook.com
+ ([fe80::2b57:646c:1b01:cd18]) by MN0PR11MB6059.namprd11.prod.outlook.com
+ ([fe80::2b57:646c:1b01:cd18%9]) with mapi id 15.20.6254.033; Tue, 4 Apr 2023
+ 16:29:05 +0000
+Date: Tue, 4 Apr 2023 12:29:00 -0400
+From: Rodrigo Vivi <rodrigo.vivi@intel.com>
+To: Matthew Brost <matthew.brost@intel.com>
+Message-ID: <ZCxQTG1+z698Pac+@intel.com>
+References: <20230403222031.4255-1-yu.bruce.chang@intel.com>
+ <ZCudEneYy6bOCqCa@DUT025-TGLU.fm.intel.com>
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <ZCudEneYy6bOCqCa@DUT025-TGLU.fm.intel.com>
+X-ClientProxiedBy: SJ0PR03CA0140.namprd03.prod.outlook.com
+ (2603:10b6:a03:33c::25) To MN0PR11MB6059.namprd11.prod.outlook.com
+ (2603:10b6:208:377::9)
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: BN8PR11MB3556:EE_|CY8PR11MB7083:EE_
-X-MS-Office365-Filtering-Correlation-Id: bf6a769a-f779-4c31-05d3-08db35293810
+X-MS-TrafficTypeDiagnostic: MN0PR11MB6059:EE_|CO1PR11MB4932:EE_
+X-MS-Office365-Filtering-Correlation-Id: c24ee665-938a-4141-2d8a-08db3529b4db
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: Z+Jdd7K7SZwbleGrqQ6c+hc59n5aYnOAIJDevUmIdc7h7Fv6PqwrPeXRnevxUvjqlVAI2843EBnjCUsYK1fjtpmMMwtwS2bDeiw/0LkZTSZOA6RbmDFM0lqpUXSiE6Rl1SYynbkoJIHG+Kd/YowsTV+g1/IOjcdCyhkXCPc4Lyfw/4+nurV41XpJwZrWyD+lxa7WDJN5QT4FvBfDw8KdS7M+kPHyUC7+Dp8uD7+O5bzYnvYsAPAI5CGap/4an2Qj2koLIbPRDoGmVEy7Xi7bkYrpMo5k9B3fmMZmTda46L65N7NJ/EYUQcEMwHFsZLh0nD/f+Lc2MFWBtTZkJzE46bSOzsnN4P1sMj+KLSZVQxVd5EwH5LtvKYzRFsPtT76NQCttTHsz2QTG+7Ng1Qqm9mA7zi473vcbqAKagqExzOeyyHhQBLDg3em3MNE541iowHeb3KlaAfKzIel2kCetG6FLzFkev7K+q+gwkjlBiK4I0/kUK3r+W5gMY4Ns7vf+FyfwEJzya3gHVH9nMPFoPW94y8bdQi8UU4yv2euE21iistKtw4y1Qr3FzGOnlI+ePstOF5YqtBptOnxOj1e/TFUSnmH+K5F4tlUsnxSMKGQ51HYJg0WJYkd98bwRR8jF
+X-Microsoft-Antispam-Message-Info: 0wQaAFy9JkH8rYl3qQ5vOydZINqsvaBHuakj/+mz5aWN94OWwoT09Y+7VTZ9W0NN8GZR6bIbrXEHJx4JvOQSDGyI3SF06F1czhZsLYSCwRaXXlK0XPJBGPe/PEAHhTqofB61FEjJPTnOEFZw+sth6DyvP0/J7FW4G3PdeqwNIJE86RTkpvfwFftO+tRM41/Lfmev5G3CEYwS/SiekRJSoj1hLwRiCobc7PDh6Z0ADFGfo03iIL1H+pEHTcE3lgfEryi5zhZp7HNz14GJqQCY7BeuClZxn8QY+ygPnLF6Dq5HfKPgHxlfHd8jUEHosv6q8MIWErlpXWFF/+E7lxS8H8yEEA3a0XGVf6JNOzPUZ2Aah9luhRHkDbnvK40Ow3GwTr8XycQxl1u9yP9jd9ToPcdg6SoQ9QVt8o2T5bzrPynuoOU15Stn9QkAw+85nRCeutA2Vu6vG+QvrmfGCWrfkNqGCK9X9k6HW8if1cAa+OKIDr3WY3A0Faqd9IIrlrADvdG/UOIxkiFMGAiciW/7mLne7owGEz2wGKyIBV5z/mr7mQvk3f7+4zmNxTsYJJjQ
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:BN8PR11MB3556.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230028)(7916004)(376002)(346002)(366004)(136003)(396003)(39860400002)(451199021)(86362001)(2906002)(33716001)(83380400001)(186003)(6486002)(44832011)(6666004)(9686003)(26005)(6512007)(6506007)(66476007)(450100002)(66556008)(66946007)(478600001)(82960400001)(5660300002)(38100700002)(8676002)(41300700001)(316002)(6636002)(4326008)(8936002)(6862004)(505234007);
+ IPV:NLI; SFV:NSPM; H:MN0PR11MB6059.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230028)(136003)(39860400002)(366004)(346002)(396003)(376002)(451199021)(6486002)(54906003)(66946007)(66556008)(66476007)(8676002)(41300700001)(4326008)(36756003)(6636002)(478600001)(37006003)(316002)(86362001)(83380400001)(38100700002)(6506007)(6666004)(186003)(2616005)(82960400001)(6512007)(2906002)(6862004)(5660300002)(26005)(8936002)(44832011)(30864003);
  DIR:OUT; SFP:1102; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?a3N2aDZncVFSOUdlV1pZcEcxR0NjKzk2V3dDUHpMcVYvbzlsUXZpalpRaFNj?=
- =?utf-8?B?cFNHUVExcGovVHIrdXp1VG5DRW5ZRGE3MWxCZFZ5TFFoS0c5bkY1K2VleWRU?=
- =?utf-8?B?WVZHY2lyZlBQVGNUdEZoRU5vVlUwYmdkaStyRXQ1a01qZjhVTmlwTlRuY0xp?=
- =?utf-8?B?OFY2SkhWY2pnQ0ZiYVdNY3gxbW02My9penhUckZ0S0c4RjVYWkM5TVBrZmtE?=
- =?utf-8?B?MGZEWngxMklNL0pMUFBIdGlXRXVJY0M2WDJVTURKQkVXVlBXQTJiOE1tWGE3?=
- =?utf-8?B?a21kek4xYW56TkFMSmFvQUlmMGs2L0JCVXlpemVLNXdtbFVuWDVRakZIRGpn?=
- =?utf-8?B?WWdFUEhWaGlLTWpNdUo0My80OTRqcFFPUUxLakdnUFA5cTRzdEM3MW1rcE9W?=
- =?utf-8?B?VGh0UVRqYXdLYjNLN2o2K0RSOGMvMWR0UWtibjZxUUR2b1BSS1VwSUdRaURS?=
- =?utf-8?B?K2J6Q2F0T2dGK3p5b1oybW9DN1F2ZHBmQTRqUXRYanhKM0NKVVh1Z0Q3cHNQ?=
- =?utf-8?B?bHF1NG5IMDkvaXQ1L0RBU1ZsL2xWNTZPR2RrV0d4OHJzR0UvODJQWWREVGs3?=
- =?utf-8?B?THFTTHV2ZkhaZWJiYnpTWGtHend2a3ZablFaOVhQREZmemc1L1VaS3JhSUR5?=
- =?utf-8?B?NGU0SitiNGdzMmIxSHpBakk4Vmp0VlQ2ZEdYbE9ZZTNPYmt5ZFZzeWpWUUF4?=
- =?utf-8?B?SXFJcmdiZGozMzgyd2RIREhjV21UOVMzdU9remFSRXJqTjNUY2MxQXFmOEJi?=
- =?utf-8?B?MEdNVElNMFVlTmtKRmhCMS9LVDhXSkpJUXNpckRGMkE2TTE3eThPYjBoSm5P?=
- =?utf-8?B?YkU4R1lIZWpTRU92UmFpeXhjNHhkNzI4QXh5L0o4NE1WSWd3eE0rV3ltVjdh?=
- =?utf-8?B?WEY0OEJCWk9WMXg3NE1Jbm5aWjkrNE0ycHNTMnZOOU04ME5GbVBHcHBvaktR?=
- =?utf-8?B?YkRvcTRXMG4wRm9TdjRyUXRnWHJoWFB6NWZUQkR0SHcycEt0ZEtpeEJYdEs4?=
- =?utf-8?B?T2J2RlV2ZWJmZ0xlR1paZzZHRWxtYnZtbW5QZ1drS2JoS01IT2ROTUZWN1Bo?=
- =?utf-8?B?VWFqakczYWZ6eS95TEkzREJHYkllRFhaWXRDblJ2WWwzOE03enk2WXRJeENw?=
- =?utf-8?B?NEpiU001MlhmcGRlbktpWGVUOERrQjVtSDZKSzJneFFCRWhYNkdFdzNEOWV1?=
- =?utf-8?B?T2hUNDAwcm00RkwvQW8wajEwN3c5dy9hU25TQ1Z4MUJrZFFkTVk4cDk1dnJ5?=
- =?utf-8?B?eGRnR1VBQXZiczJFQTR3dUNSRkVOYzE0YzJmUUJLa1dIUisvenZnb0RkeHRy?=
- =?utf-8?B?TEJRdVpNbEhqVUFxbkRqU3RsQW1DZG5SUTFicnY5aWt3d3J3cmRsOW1hdTVQ?=
- =?utf-8?B?TzV5VSt1RTZGUHloMmxOb01penp5a0xVNklLTEtxbVd6YmZkK1B3TEpCdHRk?=
- =?utf-8?B?WjNXb3NEb3Z4ZCs3VVE4bzFldjMvSVVaNEEvbHZXYi9STUZOcW5DdmRhUyts?=
- =?utf-8?B?amk0bDUvYUU5TklzYzlUYmwrVlJNUmlTMk5GYi9PVWZZVkxvT2NnS0U1cTVC?=
- =?utf-8?B?aWMyMU90cUo3OHdZRlhCNFI0RWE5cGRiUFhkM3krQ0JIbVducG5YUC9pNkx2?=
- =?utf-8?B?YXhIQ29hajdoRXFFWkJNbGhRUEloUkZoVXliZ0RUOHgzZzhEeXZHVExSS3oy?=
- =?utf-8?B?clJPUnR2MVR4R01sMHhVR3FYeVlaMktqRjVtZCtROW5YVWcyOVlGYlFFMmR2?=
- =?utf-8?B?R05TdVZoYjJDTkFCMmxKRWV3UG1sT0pRaWVEU3JkalJiWk9pV1JSdXB2TXBn?=
- =?utf-8?B?Nzh0YXVubEVPT2U1Mlh5OXAzWEdISUIyS3FuenFDSFU2U3Z2MCtlMTZhMTJh?=
- =?utf-8?B?MUVLWTYzVGNlTUowK2dPU01Yd29Dd3RlV2M1UmR1SzlSTTh4SjFFc0JrczVi?=
- =?utf-8?B?aDBYUG1mazRhc2V0SHlBV3FnOHUwV0ptQW9jTHVUUExsalhJQkhyRFRLaEQ3?=
- =?utf-8?B?Vjk3a0c0T1lWS28vUVZlWDFhZ2pIMVdJYVRGaEw4cUFHNUp6SHYxKy9rM3pF?=
- =?utf-8?B?VDZEOG1FL0srZEthdVZ2SGxyRjB6NGVLQUlRZTZkWXE4VFpGeUgvMWVqYkNr?=
- =?utf-8?B?TC9vcmVqanpFdnVLUXk0T2thRTVNbUpBR3NYMnNhb05LQjZkUDBnZzArdGIv?=
- =?utf-8?B?SGc9PQ==?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: bf6a769a-f779-4c31-05d3-08db35293810
-X-MS-Exchange-CrossTenant-AuthSource: BN8PR11MB3556.namprd11.prod.outlook.com
+X-MS-Exchange-AntiSpam-MessageData-0: =?iso-8859-1?Q?eASJDa214k9XRKPghsngW2h0SVKaILL3/n2ZYeWtM4TRUl0RTSOdVGNvUH?=
+ =?iso-8859-1?Q?0yfu7x/IdtSumrhK0yHr9iYOCjsCwVroTGvAX+EuN1IyqICbS9k+VX6G0Y?=
+ =?iso-8859-1?Q?tEwRaOrhAz8hMDSUaBgUjxaPQiYU8vbhlPOHjMrjN9rmKWmhY/GQOn55Lk?=
+ =?iso-8859-1?Q?EVnXjM86JULdedxYg1759MXa2Y8OYLnuCh1op+kkej6hIeUntFQavqx7u0?=
+ =?iso-8859-1?Q?sxvJEcFa2nwl8VvpGk8Oio9ESYGY3xeQFodgh54ZXSQIFNcN0pHa50s3vm?=
+ =?iso-8859-1?Q?9K1Iu++g/AOARtmGkLQwRQaVxFvPMJ2Eqr0iEnK9TL4fJV4TB/otU0sh1n?=
+ =?iso-8859-1?Q?Jy61CxxKnNzCSXJDlepUMjIivv181JV7NnUB1s1aX0JpD6Yqa+R8lBi95v?=
+ =?iso-8859-1?Q?TWutoHFzhnbof+3SY92xFpe2puoUN1uEfSsUOYld/dsGrCLzHrLVv8Gt0h?=
+ =?iso-8859-1?Q?a3/WKk2xXYFXJBcsokx9b2DISTM+9wfNttzvPgVE3cL/bhOJ0ZhRbQPflH?=
+ =?iso-8859-1?Q?Qni8GQA6EkQf/8xxgq88Lqd2mQAgVhmmMfaqoqMXxc6kwj5BQC1iXY+UNK?=
+ =?iso-8859-1?Q?glw3D5pQ4ZISmDruMGai6j4er5sPpVq8ygXHj5fHmWElFZJByp+fAIF/g4?=
+ =?iso-8859-1?Q?6+G50P0YJEb8RuhoAVckRQis0e4hqgm+PPDI8R62e+vF/YPWtuqnyI1UMt?=
+ =?iso-8859-1?Q?vxAupQ3asgcuG9mE7O4dc89+o3lC22jtxFduw0zcXr/OqQnp3KyGCtLp2d?=
+ =?iso-8859-1?Q?pgbywMInMBVaaetMPMEDf+WLHtsJ4SuiR+pW9Z6DIAZkRru8khkMrqkyvr?=
+ =?iso-8859-1?Q?aMFTDj6Xw5wC2iMDUy3jESjk/q8ArO0B3WlrOv8j02q/p09uSbiZRW3tAw?=
+ =?iso-8859-1?Q?YBVHFLiC4Y+q9R4mc3oolrhKkPRqcSGn7LrC/maL3zGwvIQoBaUr3MRII1?=
+ =?iso-8859-1?Q?0ig43G0TpqgQhlc3unxs1BmHGLHJqLYDuf1YRILHtTuk5NtU+god/RUJJu?=
+ =?iso-8859-1?Q?aJjzdvA3T7Zm1unTZzJyA9DWl7EUyHGR7W0qKC8qOAu8Ng3O/zAdW6RYVd?=
+ =?iso-8859-1?Q?cmqx9F2fWIND/tcfGy8vdRO3bk6gshObZtf5nApmDwxahgYWSJSy0nFcJN?=
+ =?iso-8859-1?Q?2ArRg/MCQokghP0u572/eTMHeNSZi5n+xy9/Vinwf90T0gTBw3SCTNU61Z?=
+ =?iso-8859-1?Q?O98FubIMd9V66G+EW/NJ7CttqoXde3fbtaQiRZV1T3QWVwVD+LDKSUKd/l?=
+ =?iso-8859-1?Q?zGk+lFjDvnJN1/iJwv8h8I45ohs/HeyzHV1op355gkA/QYFQM+MvfgleHd?=
+ =?iso-8859-1?Q?bqoTa5+Am5M0l3y6iM1gLOOfNWe/HodPbkv6gGqklNOKfzYdAI/NF9IGcN?=
+ =?iso-8859-1?Q?fPWxEFVF0WqRL2LsWMBOa5MUeP2BCLrWyhskY0of5Sd66PSC1FkpMuzzxu?=
+ =?iso-8859-1?Q?7z8FjOrJUUDqt29XAoG1dTHhEvT+bEMKu0XdCOHZHh/fWeFWThkiynqHp7?=
+ =?iso-8859-1?Q?p7p4c7ME7zY39hdjpZyF4pKWidCow1PkzaPaqVwbvKHXUFu0TASRJ1sLGN?=
+ =?iso-8859-1?Q?f4an6E+i46sM4y0tSm0nkoDU6bknmb0IBX5KXocWcgI1QWHlkafB1T0Msg?=
+ =?iso-8859-1?Q?wPXHdlEfyomdrUNrFVmfS/er2ItKO2EGSm?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: c24ee665-938a-4141-2d8a-08db3529b4db
+X-MS-Exchange-CrossTenant-AuthSource: MN0PR11MB6059.namprd11.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 04 Apr 2023 16:25:35.5883 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 04 Apr 2023 16:29:05.1305 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: Q6je7FmvtOX2RYYl0mXPpCUmhx/YERMPaIZEG1eTpkhc9AzU6VXr4yq4msxpxnUJ9WwSrPHfuMu+iQXOmY2ViA==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: CY8PR11MB7083
+X-MS-Exchange-CrossTenant-UserPrincipalName: whyge0pE6CbRo6IAWHrLaY1wE6jD2aGOTR3eyOeH9DPcao+boBB7FIbMD+S1axOUCV3gO9zfOCVtH0tTGqzFNg==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: CO1PR11MB4932
 X-OriginatorOrg: intel.com
-Subject: Re: [Intel-xe] [PATCH i-g-t] tools: Add tool to dump GuC/HuC CSS
- header
+Subject: Re: [Intel-xe] [PATCH] drm/xe: fix pvc unload issue
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -158,111 +143,356 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Cc: igt-dev@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
- intel-xe@lists.freedesktop.org
+Cc: Stuart Summers <stuart.summers@intel.com>, Vivi@dut025-tglu.fm.intel.com,
+ "Chang, Bruce" <yu.bruce.chang@intel.com>, intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Quoting Lucas De Marchi (2023-04-04 11:10:53)
-> On Tue, Apr 04, 2023 at 09:29:51AM -0300, Gustavo Sousa wrote:
-> >Quoting Lucas De Marchi (2023-04-03 17:24:37)
-> >> Since we are now using unversioned GuC/HuC, it's useful to be able to
-> >> dump the firmware blob and get that information from the CSS header.
-> >> Add a tool that decodes that information and dumps the raw header.
-> >>
-> >> Example output:
-> >>
-> >>         $ tools/intel-gfx-fw-info /lib/firmware/i915/tgl_guc_70.bin
-> >>         version: 70.5.1
-> >>         date: 2022-09-09
-> >>         raw dump:
-> >>         00000000  06 00 00 00 a1 00 00 00  00 00 01 00 00 00 00 00   .=
-...............
-> >>         00000010  86 80 00 00 09 09 22 20  71 17 01 00 40 00 00 00   .=
-....." q...@...
-> >>         00000020  40 00 00 00 01 00 00 00  09 21 45 00 73 79 73 5f   @=
-........!E.sys_
-> >>         00000030  67 62 73 62 50 43 2d 31  2e 30 2e 33 31 35 30 00   g=
-bsbPC-1.0.3150.
-> >>         00000040  01 05 46 00 00 00 00 00  00 00 00 00 00 00 00 00   .=
-.F.............
-> >>         00000050  00 00 00 00 00 00 00 00  00 00 00 00 00 00 00 00   .=
-...............
-> >>         00000060  00 00 00 00 00 00 00 00  00 00 00 00 00 00 00 00   .=
-...............
-> >>         00000070  00 00 00 00 00 00 00 00  00 10 80 00 00 01 40 00   .=
-.............@.
-> >>
-> >>         struct uc_css_header:
-> >>         - module_type: 0x6
-> >>         - header_size_dw: 0xa1
-> >>         - header_version: 0x10000
-> >>         - module_id: 0x0
-> >>         - module_vendor: 0x8086
-> >>         - date: 0x20220909
-> >>         - size_dw: 0x11771
-> >>         - key_size_dw: 0x40
-> >>         - modulus_size_dw: 0x40
-> >>         - exponent_size_dw: 0x1
-> >>         - time: 0x452109
-> >>         - username: b'sys_gbsb'
-> >>         - buildnumber: b'PC-1.0.3150\x00'
-> >>         - sw_version: 0x460501
-> >>         - vf_version: 0x0
-> >>         - reserved0: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
-> >>         - rsvd: <rsvd private_data_size=3D0x801000, reserved1=3D0x8010=
-00>
-> >>         - header_info: 0x400100
-> >>
-> >> Signed-off-by: Lucas De Marchi <lucas.demarchi@intel.com>
-> >> ---
-> >>  tools/intel-gfx-fw-info | 120 +++++++++++++++++++++++++++++++++++++++=
-+
-> >>  tools/meson.build       |   2 +-
-> >>  2 files changed, 121 insertions(+), 1 deletion(-)
-> >>  create mode 100755 tools/intel-gfx-fw-info
-> >>
-> >> diff --git a/tools/intel-gfx-fw-info b/tools/intel-gfx-fw-info
-> >> new file mode 100755
-> >> index 000000000..fc1fafdf5
-> >> --- /dev/null
-> >> +++ b/tools/intel-gfx-fw-info
-> >> @@ -0,0 +1,120 @@
-> >> +#!/usr/bin/env python3
-> >> +# pylint: disable=3DC0301
-> >> +# SPDX-License-Identifier: (GPL-2.0 OR MIT)
-> >> +#
-> >> +# Copyright (C) 2023    Intel Corporation
-> >> +
-> >> +import argparse
-> >> +import logging
-> >> +import pprint
-> >> +import sys
-> >> +import typing
-> >> +
-> >> +from dissect import cstruct
-> >
-> >Since we are not packaging this tool in a way that dependencies are
-> >automatically installed, I think it is worth to capture an ImportError
-> >here and point the user to the github repository for this dependency.
->=20
-> sounds good. I also have a minor update to this patch: we don't really
-> need to remove the comments as stated below, it's just the defines in
-> the middle of the struct that are not compatible with the minimal C
-> parser from this module.
->=20
+On Tue, Apr 04, 2023 at 03:44:18AM +0000, Matthew Brost wrote:
+> On Mon, Apr 03, 2023 at 10:20:31PM +0000, Chang, Bruce wrote:
+> > Currently, unload pvc driver will generate a null dereference
+> > and the call stack is as below.
+> > 
+> > [ 4850.618000] Call Trace:
+> > [ 4850.620740]  <TASK>
+> > [ 4850.623134]  ttm_bo_cleanup_memtype_use+0x3f/0x50 [ttm]
+> > [ 4850.628661]  ttm_bo_release+0x154/0x2c0 [ttm]
+> > [ 4850.633317]  ? drm_buddy_fini+0x62/0x80 [drm_buddy]
+> > [ 4850.638487]  ? __kmem_cache_free+0x27d/0x2c0
+> > [ 4850.643054]  ttm_bo_put+0x38/0x60 [ttm]
+> > [ 4850.647190]  xe_gem_object_free+0x1f/0x30 [xe]
+> > [ 4850.651945]  drm_gem_object_free+0x1e/0x30 [drm]
+> > [ 4850.656904]  ggtt_fini_noalloc+0x9d/0xe0 [xe]
+> > [ 4850.661574]  drm_managed_release+0xb5/0x150 [drm]
+> > [ 4850.666617]  drm_dev_release+0x30/0x50 [drm]
+> > [ 4850.671209]  devm_drm_dev_init_release+0x3c/0x60 [drm]
+> > 
+> > There are a couple issues, but the main one is due to TTM has only
+> > one TTM_PL_TT region, but since pvc has 2 tiles and tries to setup
+> > 1 TTM_PL_TT each tile. The second will overwrite the first one.
+> > 
+> > During unload time, the first tile will reset the TTM_PL_TT manger
+> > and when the second tile is trying to free Bo and it will generate
+> > the null reference since the TTM manage is already got reset to 0.
+> > 
+> > The fix is to use one global TTM_PL_TT manager.
+> > 
+> > v2: make gtt mgr global and change the name to sys_mgr
+> > 
+> > Cc: Stuart Summers <stuart.summers@intel.com>
+> > Cc: Matthew Brost <matthew.brost@intel.com>
+> > Cc: Vivi, Rodrigo <rodrigo.vivi@intel.com>
+> > Signed-off-by: Bruce Chang <yu.bruce.chang@intel.com>
+> 
+> Reviewed-by: Matthew Brost <matthew.brost@intel.com>
 
-Cool, although I'm not sure keeping the comments will be really useful for =
-this
-tool specifically, as it is mostly used to provide an easy way to parse the
-binary data with cstruct (the only fields we explicitly use in the code are
-"sw_version" and "date").
+pushed to drm-xe-next. Thanks for the patch and review.
 
-With or without the comments in the string, the ack stands. :-)
-
-> >
-> >Acked-by: Gustavo Sousa <gustavo.sousa@intel.com>
->=20
-> thanks
->=20
-> Lucas De Marchi
+> 
+> > ---
+> >  drivers/gpu/drm/xe/Makefile                   |  2 +-
+> >  drivers/gpu/drm/xe/xe_device.c                |  2 +
+> >  drivers/gpu/drm/xe/xe_device.h                |  1 +
+> >  drivers/gpu/drm/xe/xe_device_types.h          |  2 +
+> >  drivers/gpu/drm/xe/xe_gt.c                    | 18 -----
+> >  drivers/gpu/drm/xe/xe_gt_types.h              |  2 -
+> >  drivers/gpu/drm/xe/xe_ttm_gtt_mgr.h           | 16 -----
+> >  drivers/gpu/drm/xe/xe_ttm_gtt_mgr_types.h     | 18 -----
+> >  .../xe/{xe_ttm_gtt_mgr.c => xe_ttm_sys_mgr.c} | 67 +++++++------------
+> >  9 files changed, 31 insertions(+), 97 deletions(-)
+> >  delete mode 100644 drivers/gpu/drm/xe/xe_ttm_gtt_mgr.h
+> >  delete mode 100644 drivers/gpu/drm/xe/xe_ttm_gtt_mgr_types.h
+> >  rename drivers/gpu/drm/xe/{xe_ttm_gtt_mgr.c => xe_ttm_sys_mgr.c} (52%)
+> > 
+> > diff --git a/drivers/gpu/drm/xe/Makefile b/drivers/gpu/drm/xe/Makefile
+> > index 669c7b6f552c..7e19a15af3dc 100644
+> > --- a/drivers/gpu/drm/xe/Makefile
+> > +++ b/drivers/gpu/drm/xe/Makefile
+> > @@ -83,7 +83,7 @@ xe-y += xe_bb.o \
+> >  	xe_step.o \
+> >  	xe_sync.o \
+> >  	xe_trace.o \
+> > -	xe_ttm_gtt_mgr.o \
+> > +	xe_ttm_sys_mgr.o \
+> >  	xe_ttm_stolen_mgr.o \
+> >  	xe_ttm_vram_mgr.o \
+> >  	xe_tuning.o \
+> > diff --git a/drivers/gpu/drm/xe/xe_device.c b/drivers/gpu/drm/xe/xe_device.c
+> > index a79f934e3d2d..4fb9aff27686 100644
+> > --- a/drivers/gpu/drm/xe/xe_device.c
+> > +++ b/drivers/gpu/drm/xe/xe_device.c
+> > @@ -279,6 +279,8 @@ int xe_device_probe(struct xe_device *xe)
+> >  	if (err)
+> >  		goto err_irq_shutdown;
+> >  
+> > +	xe_ttm_sys_mgr_init(xe);
+> > +
+> >  	for_each_gt(gt, xe, id) {
+> >  		err = xe_gt_init_noalloc(gt);
+> >  		if (err)
+> > diff --git a/drivers/gpu/drm/xe/xe_device.h b/drivers/gpu/drm/xe/xe_device.h
+> > index d277f8985f7b..d9d1b09a8e38 100644
+> > --- a/drivers/gpu/drm/xe/xe_device.h
+> > +++ b/drivers/gpu/drm/xe/xe_device.h
+> > @@ -116,4 +116,5 @@ static inline bool xe_device_has_flat_ccs(struct xe_device *xe)
+> >  }
+> >  
+> >  u32 xe_device_ccs_bytes(struct xe_device *xe, u64 size);
+> > +int xe_ttm_sys_mgr_init(struct xe_device *xe);
+> >  #endif
+> > diff --git a/drivers/gpu/drm/xe/xe_device_types.h b/drivers/gpu/drm/xe/xe_device_types.h
+> > index 88f863edc41c..6fb53a54913f 100644
+> > --- a/drivers/gpu/drm/xe/xe_device_types.h
+> > +++ b/drivers/gpu/drm/xe/xe_device_types.h
+> > @@ -195,6 +195,8 @@ struct xe_device {
+> >  			/** @mapping: pointer to VRAM mappable space */
+> >  			void *__iomem mapping;
+> >  		} vram;
+> > +		/** @sys_mgr: system TTM manager */
+> > +		struct ttm_resource_manager sys_mgr;
+> >  	} mem;
+> >  
+> >  	/** @usm: unified memory state */
+> > diff --git a/drivers/gpu/drm/xe/xe_gt.c b/drivers/gpu/drm/xe/xe_gt.c
+> > index fd7a5b43ba3e..a6ea138a7877 100644
+> > --- a/drivers/gpu/drm/xe/xe_gt.c
+> > +++ b/drivers/gpu/drm/xe/xe_gt.c
+> > @@ -36,7 +36,6 @@
+> >  #include "xe_ring_ops.h"
+> >  #include "xe_sa.h"
+> >  #include "xe_sched_job.h"
+> > -#include "xe_ttm_gtt_mgr.h"
+> >  #include "xe_ttm_vram_mgr.h"
+> >  #include "xe_tuning.h"
+> >  #include "xe_uc.h"
+> > @@ -77,16 +76,11 @@ int xe_gt_alloc(struct xe_device *xe, struct xe_gt *gt)
+> >  		if (!gt->mem.vram_mgr)
+> >  			return -ENOMEM;
+> >  
+> > -		gt->mem.gtt_mgr = drmm_kzalloc(drm, sizeof(*gt->mem.gtt_mgr),
+> > -					       GFP_KERNEL);
+> > -		if (!gt->mem.gtt_mgr)
+> > -			return -ENOMEM;
+> >  	} else {
+> >  		struct xe_gt *full_gt = xe_find_full_gt(gt);
+> >  
+> >  		gt->mem.ggtt = full_gt->mem.ggtt;
+> >  		gt->mem.vram_mgr = full_gt->mem.vram_mgr;
+> > -		gt->mem.gtt_mgr = full_gt->mem.gtt_mgr;
+> >  	}
+> >  
+> >  	gt->ordered_wq = alloc_ordered_workqueue("gt-ordered-wq", 0);
+> > @@ -98,26 +92,14 @@ static int gt_ttm_mgr_init(struct xe_gt *gt)
+> >  {
+> >  	struct xe_device *xe = gt_to_xe(gt);
+> >  	int err;
+> > -	struct sysinfo si;
+> > -	u64 gtt_size;
+> > -
+> > -	si_meminfo(&si);
+> > -	gtt_size = (u64)si.totalram * si.mem_unit * 3/4;
+> >  
+> >  	if (gt->mem.vram.size) {
+> >  		err = xe_ttm_vram_mgr_init(gt, gt->mem.vram_mgr);
+> >  		if (err)
+> >  			return err;
+> > -		gtt_size = min(max((XE_DEFAULT_GTT_SIZE_MB << 20),
+> > -				   (u64)gt->mem.vram.size),
+> > -			       gtt_size);
+> >  		xe->info.mem_region_mask |= BIT(gt->info.vram_id) << 1;
+> >  	}
+> >  
+> > -	err = xe_ttm_gtt_mgr_init(gt, gt->mem.gtt_mgr, gtt_size);
+> > -	if (err)
+> > -		return err;
+> > -
+> >  	return 0;
+> >  }
+> >  
+> > diff --git a/drivers/gpu/drm/xe/xe_gt_types.h b/drivers/gpu/drm/xe/xe_gt_types.h
+> > index 8f29aba455e0..9d3117fad2e4 100644
+> > --- a/drivers/gpu/drm/xe/xe_gt_types.h
+> > +++ b/drivers/gpu/drm/xe/xe_gt_types.h
+> > @@ -162,8 +162,6 @@ struct xe_gt {
+> >  		} vram;
+> >  		/** @vram_mgr: VRAM TTM manager */
+> >  		struct xe_ttm_vram_mgr *vram_mgr;
+> > -		/** @gtt_mr: GTT TTM manager */
+> > -		struct xe_ttm_gtt_mgr *gtt_mgr;
+> >  		/** @ggtt: Global graphics translation table */
+> >  		struct xe_ggtt *ggtt;
+> >  	} mem;
+> > diff --git a/drivers/gpu/drm/xe/xe_ttm_gtt_mgr.h b/drivers/gpu/drm/xe/xe_ttm_gtt_mgr.h
+> > deleted file mode 100644
+> > index d1d57cb9c2b8..000000000000
+> > --- a/drivers/gpu/drm/xe/xe_ttm_gtt_mgr.h
+> > +++ /dev/null
+> > @@ -1,16 +0,0 @@
+> > -/* SPDX-License-Identifier: MIT */
+> > -/*
+> > - * Copyright © 2022 Intel Corporation
+> > - */
+> > -
+> > -#ifndef _XE_TTGM_GTT_MGR_H_
+> > -#define _XE_TTGM_GTT_MGR_H_
+> > -
+> > -#include "xe_ttm_gtt_mgr_types.h"
+> > -
+> > -struct xe_gt;
+> > -
+> > -int xe_ttm_gtt_mgr_init(struct xe_gt *gt, struct xe_ttm_gtt_mgr *mgr,
+> > -			u64 gtt_size);
+> > -
+> > -#endif
+> > diff --git a/drivers/gpu/drm/xe/xe_ttm_gtt_mgr_types.h b/drivers/gpu/drm/xe/xe_ttm_gtt_mgr_types.h
+> > deleted file mode 100644
+> > index c66737488326..000000000000
+> > --- a/drivers/gpu/drm/xe/xe_ttm_gtt_mgr_types.h
+> > +++ /dev/null
+> > @@ -1,18 +0,0 @@
+> > -/* SPDX-License-Identifier: MIT */
+> > -/*
+> > - * Copyright © 2022 Intel Corporation
+> > - */
+> > -
+> > -#ifndef _XE_TTM_GTT_MGR_TYPES_H_
+> > -#define _XE_TTM_GTT_MGR_TYPES_H_
+> > -
+> > -#include <drm/ttm/ttm_device.h>
+> > -
+> > -struct xe_gt;
+> > -
+> > -struct xe_ttm_gtt_mgr {
+> > -	struct xe_gt *gt;
+> > -	struct ttm_resource_manager manager;
+> > -};
+> > -
+> > -#endif
+> > diff --git a/drivers/gpu/drm/xe/xe_ttm_gtt_mgr.c b/drivers/gpu/drm/xe/xe_ttm_sys_mgr.c
+> > similarity index 52%
+> > rename from drivers/gpu/drm/xe/xe_ttm_gtt_mgr.c
+> > rename to drivers/gpu/drm/xe/xe_ttm_sys_mgr.c
+> > index 8075781070f2..cf5f4f73d4dc 100644
+> > --- a/drivers/gpu/drm/xe/xe_ttm_gtt_mgr.c
+> > +++ b/drivers/gpu/drm/xe/xe_ttm_sys_mgr.c
+> > @@ -12,31 +12,24 @@
+> >  
+> >  #include "xe_bo.h"
+> >  #include "xe_gt.h"
+> > -#include "xe_ttm_gtt_mgr.h"
+> >  
+> > -struct xe_ttm_gtt_node {
+> > +struct xe_ttm_sys_node {
+> >  	struct ttm_buffer_object *tbo;
+> >  	struct ttm_range_mgr_node base;
+> >  };
+> >  
+> > -static inline struct xe_ttm_gtt_mgr *
+> > -to_gtt_mgr(struct ttm_resource_manager *man)
+> > +static inline struct xe_ttm_sys_node *
+> > +to_xe_ttm_sys_node(struct ttm_resource *res)
+> >  {
+> > -	return container_of(man, struct xe_ttm_gtt_mgr, manager);
+> > +	return container_of(res, struct xe_ttm_sys_node, base.base);
+> >  }
+> >  
+> > -static inline struct xe_ttm_gtt_node *
+> > -to_xe_ttm_gtt_node(struct ttm_resource *res)
+> > -{
+> > -	return container_of(res, struct xe_ttm_gtt_node, base.base);
+> > -}
+> > -
+> > -static int xe_ttm_gtt_mgr_new(struct ttm_resource_manager *man,
+> > +static int xe_ttm_sys_mgr_new(struct ttm_resource_manager *man,
+> >  			      struct ttm_buffer_object *tbo,
+> >  			      const struct ttm_place *place,
+> >  			      struct ttm_resource **res)
+> >  {
+> > -	struct xe_ttm_gtt_node *node;
+> > +	struct xe_ttm_sys_node *node;
+> >  	int r;
+> >  
+> >  	node = kzalloc(struct_size(node, base.mm_nodes, 1), GFP_KERNEL);
+> > @@ -66,32 +59,31 @@ static int xe_ttm_gtt_mgr_new(struct ttm_resource_manager *man,
+> >  	return r;
+> >  }
+> >  
+> > -static void xe_ttm_gtt_mgr_del(struct ttm_resource_manager *man,
+> > +static void xe_ttm_sys_mgr_del(struct ttm_resource_manager *man,
+> >  			       struct ttm_resource *res)
+> >  {
+> > -	struct xe_ttm_gtt_node *node = to_xe_ttm_gtt_node(res);
+> > +	struct xe_ttm_sys_node *node = to_xe_ttm_sys_node(res);
+> >  
+> >  	ttm_resource_fini(man, res);
+> >  	kfree(node);
+> >  }
+> >  
+> > -static void xe_ttm_gtt_mgr_debug(struct ttm_resource_manager *man,
+> > +static void xe_ttm_sys_mgr_debug(struct ttm_resource_manager *man,
+> >  				 struct drm_printer *printer)
+> >  {
+> >  
+> >  }
+> >  
+> > -static const struct ttm_resource_manager_func xe_ttm_gtt_mgr_func = {
+> > -	.alloc = xe_ttm_gtt_mgr_new,
+> > -	.free = xe_ttm_gtt_mgr_del,
+> > -	.debug = xe_ttm_gtt_mgr_debug
+> > +static const struct ttm_resource_manager_func xe_ttm_sys_mgr_func = {
+> > +	.alloc = xe_ttm_sys_mgr_new,
+> > +	.free = xe_ttm_sys_mgr_del,
+> > +	.debug = xe_ttm_sys_mgr_debug
+> >  };
+> >  
+> > -static void ttm_gtt_mgr_fini(struct drm_device *drm, void *arg)
+> > +static void ttm_sys_mgr_fini(struct drm_device *drm, void *arg)
+> >  {
+> > -	struct xe_ttm_gtt_mgr *mgr = arg;
+> > -	struct xe_device *xe = gt_to_xe(mgr->gt);
+> > -	struct ttm_resource_manager *man = &mgr->manager;
+> > +	struct xe_device *xe = (struct xe_device *)arg;
+> > +	struct ttm_resource_manager *man = &xe->mem.sys_mgr;
+> >  	int err;
+> >  
+> >  	ttm_resource_manager_set_used(man, false);
+> > @@ -104,27 +96,18 @@ static void ttm_gtt_mgr_fini(struct drm_device *drm, void *arg)
+> >  	ttm_set_driver_manager(&xe->ttm, XE_PL_TT, NULL);
+> >  }
+> >  
+> > -int xe_ttm_gtt_mgr_init(struct xe_gt *gt, struct xe_ttm_gtt_mgr *mgr,
+> > -			u64 gtt_size)
+> > +int xe_ttm_sys_mgr_init(struct xe_device *xe)
+> >  {
+> > -	struct xe_device *xe = gt_to_xe(gt);
+> > -	struct ttm_resource_manager *man = &mgr->manager;
+> > -	int err;
+> > -
+> > -	XE_BUG_ON(xe_gt_is_media_type(gt));
+> > +	struct ttm_resource_manager *man = &xe->mem.sys_mgr;
+> > +	struct sysinfo si;
+> > +	u64 gtt_size;
+> >  
+> > -	mgr->gt = gt;
+> > +	si_meminfo(&si);
+> > +	gtt_size = (u64)si.totalram * si.mem_unit * 3/4;
+> >  	man->use_tt = true;
+> > -	man->func = &xe_ttm_gtt_mgr_func;
+> > -
+> > +	man->func = &xe_ttm_sys_mgr_func;
+> >  	ttm_resource_manager_init(man, &xe->ttm, gtt_size >> PAGE_SHIFT);
+> > -
+> > -	ttm_set_driver_manager(&xe->ttm, XE_PL_TT, &mgr->manager);
+> > +	ttm_set_driver_manager(&xe->ttm, XE_PL_TT, man);
+> >  	ttm_resource_manager_set_used(man, true);
+> > -
+> > -	err = drmm_add_action_or_reset(&xe->drm, ttm_gtt_mgr_fini, mgr);
+> > -	if (err)
+> > -		return err;
+> > -
+> > -	return 0;
+> > +	return drmm_add_action_or_reset(&xe->drm, ttm_sys_mgr_fini, xe);
+> >  }
+> > -- 
+> > 2.25.1
+> > 
