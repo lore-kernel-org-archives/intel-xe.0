@@ -4,118 +4,143 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0D373C6FD1D
-	for <intel-xe@archiver.kernel.org>; Tue,  4 Apr 2023 09:48:47 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3A903C761A6
+	for <intel-xe@archiver.kernel.org>; Tue,  4 Apr 2023 12:30:09 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id BBB8110E023;
-	Tue,  4 Apr 2023 09:48:46 +0000 (UTC)
-Received: from NAM10-BN7-obe.outbound.protection.outlook.com
- (mail-bn7nam10on2088.outbound.protection.outlook.com [40.107.92.88])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 26CC810E023;
- Tue,  4 Apr 2023 09:48:45 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B082910E269;
+	Tue,  4 Apr 2023 12:30:07 +0000 (UTC)
+Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 48D6D10E238;
+ Tue,  4 Apr 2023 12:30:04 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1680611404; x=1712147404;
+ h=content-transfer-encoding:in-reply-to:references:subject:
+ from:cc:to:date:message-id:mime-version;
+ bh=m+YOPpsgN+WT86QeooLgXT7Fq7LbT1YrG99bli3irqs=;
+ b=nRPxNy7jVxtCyOrQM2e1ISr/zFtbO4KdgHvOyTG2dTXpgvNdyaZhnECl
+ 9MjKNt++UkvE2Xa/+D4UL0+T0JfXSgdDf2C8IwYcVKa6xkUwJuOTn0sFY
+ I1HSpD/t+AzoATu6kvgGnK2oDZt4pcrYM/Q+JoEA8DMoQjILDb4LkVK8K
+ S1ZUM0j2qx7/7wJNcqCZyV1vdlWLmfQ6ZltrK+f2JUiopNKV4mdJtyPfb
+ SpUnpResbrABW5wDl42ZHZzAdvIdkSDIKthZVIvYyM9e5E1XI18S/2229
+ k+uHj5+/WFmuV5M67tCYEqIT6PGPsO++Qsqgv1VpXdii0nRPm+Y++lAEJ A==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10670"; a="344731793"
+X-IronPort-AV: E=Sophos;i="5.98,317,1673942400"; d="scan'208";a="344731793"
+Received: from orsmga007.jf.intel.com ([10.7.209.58])
+ by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 04 Apr 2023 05:30:03 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6600,9927,10670"; a="679868388"
+X-IronPort-AV: E=Sophos;i="5.98,317,1673942400"; d="scan'208";a="679868388"
+Received: from fmsmsx602.amr.corp.intel.com ([10.18.126.82])
+ by orsmga007.jf.intel.com with ESMTP; 04 Apr 2023 05:30:02 -0700
+Received: from fmsmsx601.amr.corp.intel.com (10.18.126.81) by
+ fmsmsx602.amr.corp.intel.com (10.18.126.82) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.21; Tue, 4 Apr 2023 05:30:02 -0700
+Received: from fmsedg602.ED.cps.intel.com (10.1.192.136) by
+ fmsmsx601.amr.corp.intel.com (10.18.126.81) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.21 via Frontend Transport; Tue, 4 Apr 2023 05:30:02 -0700
+Received: from NAM10-BN7-obe.outbound.protection.outlook.com (104.47.70.106)
+ by edgegateway.intel.com (192.55.55.71) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.1.2507.21; Tue, 4 Apr 2023 05:30:01 -0700
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=dog8gECMUCF0JAdjcc+eM4tpU642Ykqz3TGD+LWKFJ//dWnLleXbf5lqejBnXCG5r3nEuLr0yVW6MRpEGhdoqsvvmDFdaFm+bllYSSEybCyxnhJ4J8Dnnh0gUX7xfymuWUCLut1BPzfVyLkA3IQYU5GSAuQw6lclcgcNodSmhYEjz58wVcOM9U/ur1iUAZ0cq8ZmJxOafPur/NiULGG2LJsmJ6So1uU5VnDEChuLQmrj0k4JG924q5JWlgl1XpERRQPd74W05ta9WdDmJfTweUiLsryPty/4lRAieCPcVlDLVFw6SmOvx7uPeLzmXy94mwnqhS1UIg0Oj13bfcz58g==
+ b=S90LPXGud0vaQmKI7542vYkulNWpPe/YF2ZUAkteTw2b8VvzVuepyrkTfDYNCgCpCsJ85BZ51QKlwi6El1TdKjJHP+/KjB5M/mnEVIEcWc63xf84Z0NEku8sNHbIAKetHafus+wl9Rx9X987wQnpMFRYCEaUOeepMzw6pu4fKwQE9vMspQ2GNOayi8MtUzRdy3YaujkwzvzneyGC3/cxV6lJ8+SneZVe1sL+jI/9PVHGwvWYoHI/N3qlooBVWDpVeSRaTdCL1Zt8aBCKuYmeyHlRAfuakirSE7aFJVWfy4h0KftebXKY9/aRNlVb2Eo8LdoDreN8+bO3Iolwlts7PQ==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=ED8RpyCjVwJX4HyL/edrAEpdbuxKGoGARbSd6Wew6Dc=;
- b=nmJroWsq4sB0X3/LwN6bbeSsZ6bsbxL6kRCNaVYhIC0dci+JxtKdjwiXzpbNT5iVW6NSexkSQFwNOXjT+YCkNCTUDmhlFL1Z3eSwGEc8+SuZGwGJVQIg/QTVK5l+9sLyDXYj85XXzy6r6FvMEwYR1FSb6Izv2TiGduyfmJNWoqolerBBH1u7hNHcRtL0Aj7q6kxazGCHi+PtDxBFHSzy52VHDeKLTMhYXqwm3Qo0GnKfb5g0FtV/OjfFMM6m+6eFZir1TYx8a+wZCVv9/CENHtymE29MhhQSjg7ZjMTOgOLKXWs9Ucp/q4WZMRDq1UB524O0CJU5Wq0m1uUvWhOG0A==
+ bh=0kUGPqdDUfMFD0ZA/6srcaNyrE/yvzQmarwpaAE4gN0=;
+ b=I40XdKpezvoEWwen8C5LhOIOJZx4UTqwI1UObkVnf3vYGUBfvsYbv7hcBxuHfOm/YJUbBhnnf59qExJ/wDEFeai7gX4nKknZGEkvNbqIgzJvEjjSafC9mnTkh59adwW6QCRUPh4SrPpVoY9bOtW5LC1ACUPKiFWTxbx84QiJZkGatHHWf2Gp9DuRomhQT75ryHHlSBr6NbWUuTEvXx8BJGFJmBVZU6e2UUVQbiypI8CxcOng2/a+AVfN9tdnvGUNLuDFyYUX5wcAUbTVGupXunUkN9hUPhssymYg7XHSw1D/KU7ZGSHi9Al807fe72d0w4hTkGof8M82ggiXhAcsyw==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
- header.d=amd.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=ED8RpyCjVwJX4HyL/edrAEpdbuxKGoGARbSd6Wew6Dc=;
- b=uecP2WI1X1FTaK5xnbjYVnRtRqxcl4hMOXRy6S3sROY+svsHKz9oj73O6s49TqKpHY5VwR3p0o4y1hj7G//WcsMykjaKIzZDh35UuepOMnBeZ0AjWifTrqJjFaQSxmieDxD0FeOZ94dDefz16AsNL6rlYZYkm3lYVe0pHs6gJrc=
+ smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
+ dkim=pass header.d=intel.com; arc=none
 Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=amd.com;
-Received: from BN8PR12MB3587.namprd12.prod.outlook.com (2603:10b6:408:43::13)
- by DM6PR12MB4137.namprd12.prod.outlook.com (2603:10b6:5:218::21) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6254.35; Tue, 4 Apr
- 2023 09:48:42 +0000
-Received: from BN8PR12MB3587.namprd12.prod.outlook.com
- ([fe80::4624:dc39:943e:6ae]) by BN8PR12MB3587.namprd12.prod.outlook.com
- ([fe80::4624:dc39:943e:6ae%5]) with mapi id 15.20.6254.035; Tue, 4 Apr 2023
- 09:48:42 +0000
-Message-ID: <20d1816f-9b0f-6caa-43df-ddc7ac40d5e7@amd.com>
-Date: Tue, 4 Apr 2023 11:48:36 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.9.0
-Content-Language: en-US
-To: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>,
- Matthew Brost <matthew.brost@intel.com>, dri-devel@lists.freedesktop.org,
- intel-xe@lists.freedesktop.org
-References: <20230404002211.3611376-1-matthew.brost@intel.com>
- <15dafc15-332e-2559-a9c4-61ad442ef44a@linux.intel.com>
-From: =?UTF-8?Q?Christian_K=c3=b6nig?= <christian.koenig@amd.com>
-In-Reply-To: <15dafc15-332e-2559-a9c4-61ad442ef44a@linux.intel.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-X-ClientProxiedBy: FR2P281CA0145.DEUP281.PROD.OUTLOOK.COM
- (2603:10a6:d10:98::17) To BN8PR12MB3587.namprd12.prod.outlook.com
- (2603:10b6:408:43::13)
+ header.d=none;dmarc=none action=none header.from=intel.com;
+Received: from BN8PR11MB3556.namprd11.prod.outlook.com (2603:10b6:408:8d::31)
+ by BY1PR11MB7983.namprd11.prod.outlook.com (2603:10b6:a03:52b::8)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6254.30; Tue, 4 Apr
+ 2023 12:29:59 +0000
+Received: from BN8PR11MB3556.namprd11.prod.outlook.com
+ ([fe80::9e31:fa24:17e3:a69a]) by BN8PR11MB3556.namprd11.prod.outlook.com
+ ([fe80::9e31:fa24:17e3:a69a%3]) with mapi id 15.20.6254.033; Tue, 4 Apr 2023
+ 12:29:59 +0000
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: quoted-printable
+In-Reply-To: <20230403202437.1816411-1-lucas.demarchi@intel.com>
+References: <20230403202437.1816411-1-lucas.demarchi@intel.com>
+From: Gustavo Sousa <gustavo.sousa@intel.com>
+To: Lucas De Marchi <lucas.demarchi@intel.com>, <igt-dev@lists.freedesktop.org>
+Date: Tue, 4 Apr 2023 09:29:51 -0300
+Message-ID: <168061139110.5056.15908803129907670095@gjsousa-mobl2>
+User-Agent: alot/0.10
+X-ClientProxiedBy: BYAPR07CA0006.namprd07.prod.outlook.com
+ (2603:10b6:a02:bc::19) To BN8PR11MB3556.namprd11.prod.outlook.com
+ (2603:10b6:408:8d::31)
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: BN8PR12MB3587:EE_|DM6PR12MB4137:EE_
-X-MS-Office365-Filtering-Correlation-Id: 84422180-7800-4a36-8a6f-08db34f1c5e2
+X-MS-TrafficTypeDiagnostic: BN8PR11MB3556:EE_|BY1PR11MB7983:EE_
+X-MS-Office365-Filtering-Correlation-Id: c1355f4f-69fb-44c6-e9c6-08db35084df6
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: pOENf34GGSmWSLEUrHTCl8ue3rzESD8YiCcTgJFdNwTa5eP1ipqWyL1WBM6W38VDxMEzmg0M/qwjXcgDThXemHaq9HX7qLtSrVGy4US0q24dX9I64gPV5SiWvt2bqwG3v9NMgDkoMgVhvRRVv3XnlLnnfBRV8ct/ajlLkGg/Wuq37lAj7zW/4jYcb3z6rjPiemah25sa7LxtonyL9hzOq7IDXdcxCbmKKL75tPTIecVPsQnn/wXAPT/UU1WRAw0QsLMKRR0CwuXwU3qeMyEc2dEXTG09WkXJepaGVGJ9zeBP6RCT2MYLPXcz3vGaJxjw6yQqxcxnjYkt3teJdyMh2Rgv039Pg3tbj1lbMCS3JEFzr0/Pc2z88w+tAQjjU9kz5jnExASdYOfr3HMxEh5Cni+E021dLpJZMQp5hXWrxgv1pCmwR4maID2+k5RMtxggigAHpxWCRL0rDiyD4jV+JOfKS/Vt67Z1hbIpCL6afyjk36R3fQAY7WxNElW6VixWsuiRtcAe75kakP3iw8og7dCaSs23TvF148cN15k6lmj51UJQG7GD8SOAmsztd/nPUQdJ3xwFa9bBKqdVG9xRBRRN5jKF8qNZrtwYyf8QRdA=
+X-Microsoft-Antispam-Message-Info: jRHugbhoX7lCMyouUyX/IEFg4arnvMRCOSSvkPMPp/PvX16eG0fKHQCQKdZJ9DH0H4KH0Upw7fgHRUys/856jkf3rTgFMw12uD2WQhPko70e26ycqtAMHvbfhSbrPfTK78uiL4X+wvTnqkOmjG3GqfuBMXOF+Ier7sIy6nL4C4otsY8LR0RSxNOSFPxlyq1JyK5KcQBggrjt52vmgtPLo187oomRUlltFRy5sEJlBR8xinhS3t0MOTzG1tdmzbnVv+TQeSgSUvNy3vSe0tfgGTrNG8AEVtuPZOcVucJowwqgmr6D70W5RDZ0KxhjCOA8bGNqiD5HJ8SORv5gdWBjzMIXO8pTfay9QxZMAIHInl1Vrh4+CGEToIWtclFVS7RrBy/tsfk0byb1wIK2unWshI2+IHrWXq8Ub2zvlQtu6Qq8/bxBv7+uDIzAbh4Oee2rlWzz+Y5l3hOcm+OQ/HtvsLQhbkC1lvt+Yrn21GceMtGkVv7Fdtj9fpGnsEBt4K4mMqH+6eTOzx5Aio1DmIDAoE41+4xuEJAyWgnrD6dONbfmjNrhxT+FH9RF6GktcNACP2VRQewkA0eky8QereM7wSxaYUpSiQzE/iHI1uJhOAaRoRvwEtdJHShPOmf7lsAj
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:BN8PR12MB3587.namprd12.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230028)(4636009)(366004)(39860400002)(136003)(396003)(346002)(376002)(451199021)(66899021)(66574015)(31686004)(36756003)(7416002)(38100700002)(5660300002)(8936002)(66556008)(66946007)(8676002)(31696002)(86362001)(4326008)(41300700001)(66476007)(966005)(83380400001)(2616005)(53546011)(110136005)(2906002)(26005)(6506007)(6512007)(478600001)(6486002)(6666004)(186003)(316002)(45980500001)(43740500002);
- DIR:OUT; SFP:1101; 
+ IPV:NLI; SFV:NSPM; H:BN8PR11MB3556.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230028)(7916004)(366004)(39860400002)(136003)(376002)(396003)(346002)(451199021)(2906002)(26005)(83380400001)(6512007)(6506007)(6666004)(9686003)(107886003)(186003)(6486002)(5660300002)(8936002)(38100700002)(54906003)(316002)(44832011)(450100002)(4326008)(66946007)(66556008)(66476007)(33716001)(41300700001)(8676002)(82960400001)(478600001)(86362001)(505234007);
+ DIR:OUT; SFP:1102; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?bDFCbnFMSTZhTkwwbW42VHVqZnRoU0FiM1hlS1FYZjgwWldnUVRmMjJ2S01K?=
- =?utf-8?B?SzJMUTBxNy82OVJKZXBYK3N6NmxXVTNrRTNIU1Z5V2J3bHNrbTRLdU5zRWRB?=
- =?utf-8?B?SGl6MkR5SzkyQ0p1VmxSMUtrbkpxOUhPUi9zc0tINm14TlQ4bDFYbjRBcXhT?=
- =?utf-8?B?Z1RiOURkN1RCMUVXOHJzek5YR0NXQUFHWDBDYnhtbnYvdEYxNU9Mc0tEYkU2?=
- =?utf-8?B?Y214d3U1YS9ObTdzSGEzK2I5UTRZc0VOV0RHU1hqOHdNYWZZN2dPSk91SXpL?=
- =?utf-8?B?aDkzTTQrcWNtRldKMTNNOVRUMmRPTTNMdlhQYW1xQ3RNZFFMbS85RTVxR2ZD?=
- =?utf-8?B?RnZRWFdTVGFpRi9sNmx6dmNSek85V21Bai9Sam1PMmw1MFl1V1N3WHRndHpZ?=
- =?utf-8?B?NnFjQzZyY0FTVHZEbWxQd3ltOTZuL25JWnlGTDNheldTa0VQOXVCUVBnRURp?=
- =?utf-8?B?TXJJSU5jZys4Z1FHSXkvZ1NhK3VHM1gvQ0ovdFNYSGlpdURIcThBUmdYRzl5?=
- =?utf-8?B?Wm5LZVowKzlHSVdYR3cxVXprL1F2MDV0NXF5N25rditEQVlZZjI2NTNLRVhJ?=
- =?utf-8?B?Q1hyd3ZrUnJ1QkZqd1VLUmszdjRlZzBFWDdVT1A3NTl0Zy9naUNQSFE3TWo5?=
- =?utf-8?B?SDdlalp0c1FzRlRvQ0ZpaGtFSlhYUzg1dE1wZmZwZ3NQQUYwYTZDYkJXREdK?=
- =?utf-8?B?V210aExuRk5uTWpITjlDbjV6d3ZhZHJ0ZlBUUUgzV3gzMkdvYTlydFEybUtn?=
- =?utf-8?B?QVluZ0Q3c2MvZ2x0SHRraHdaVWFseVc5NUdHTlpyREJtMGFwMDR2bmNyWU83?=
- =?utf-8?B?bkN2WWIvK0EwMCtSTGtiK1FRTTBWZStQeEUwanMwRThZM1lJeWlPcEI1UllS?=
- =?utf-8?B?Wk1tbDJSMGQvY2ZOT0YrdDlnbkVlcXNNNVJCdW9IWjBoakxZd3lGZFRNUVhH?=
- =?utf-8?B?c3hmNFFTbHd4MlBnMnBteStHVDBvRmtDdVdCNTNvTWVYaUFvSEJtVzhHNFJN?=
- =?utf-8?B?ZmFkeEtQYTJRWi9aK0IxSVpjd1JiWGpXTHlmTlJQWkh0cmcrck5vYjJSak54?=
- =?utf-8?B?L2VleHNIdFNWRzA5QzQ3clFUZCtvVnhETjNWU1NiTzh4NjAzSHNpQVgrNHFE?=
- =?utf-8?B?UGZsbkZmMzNlbklOalVrekFyV2JJWnBKbGNWSkJ5VlRTQWdPZjZmeUNaU3ky?=
- =?utf-8?B?eFlQVmE1VCtmYXJ3QVA2Q05hdnM3bzQwMFpaWitaVmppREw1R0ttSTRaQXJP?=
- =?utf-8?B?OUZGaFFzSDQ2VVc2QmQyaCtKQVdYUlpEOG8vdVF5NGFnS1NTdU5CMXc4WE5F?=
- =?utf-8?B?QUtWQzdlUEJ0R2doMm9RVkd5YXBhWHM2dS9BTGM2d00vVDJ6ZWsvSkk4ejAy?=
- =?utf-8?B?WXk0bEVEL0I4eUdiYVpSZDFqd013ZG95d0ZFUmZ0NzdLQ1A0a3pUTTlIcXpo?=
- =?utf-8?B?YUtjV04xd1NWbHNxbm5LZnI5VG1LQ09pbUllT1hmK21leWtaZzRRQ1NUUlAx?=
- =?utf-8?B?cE5YeGpFeU5pL0xDRmc1blNaczZEOHljZ2xPa1Y0ZjZLQ1h2WnErbTZXRUxK?=
- =?utf-8?B?V3lTL3gwU3BINWZlQTJyTjFnUnlZQXEwRkVtRmdZVFE2d2lUYUFKWjhaOVdC?=
- =?utf-8?B?RVlvUUhIV09qT3dORnFjamFIdWUraVlGR1Q4LzFqZEkzZHUxVzdROFh6c0dK?=
- =?utf-8?B?bVhoYU9NWURMSGFoZDVvQWdwbVovekRseXhDNkx1SjNkK0E0TnNpU1JtSng4?=
- =?utf-8?B?OFV3cWJhNlNxamNLK3YwZFdneXF0czNZcnpnTTdqZXF5aUZ2aFRKMHdnOGky?=
- =?utf-8?B?MG9rVVFsM0U2MnA2STVEazdUYW13MGd4WUljcjJiY3ZOS0hLY01uem5wWlBZ?=
- =?utf-8?B?NDZUOE9jV3NIRXI1M3BLeE9uWUhiaGN0ZlRlRVZ1VitZRVpzalZ1Y0N2SWhE?=
- =?utf-8?B?alVZTnQ4S1VGR2VCNS8rdUZKWlZHNkszTStwTzZMdDkvdytXNG9vNUhFMGhR?=
- =?utf-8?B?aThuYnN6ekJ1SFRvTE1vTnRmanA3bm5ZNWpjam5za09pYUR6bnpqeU1XSTJE?=
- =?utf-8?B?T0tVemVCanVXLzd1M0Rqakd1OHovQlVGSVlhTGNVclYyVkJXMWIvZjZDVUdV?=
- =?utf-8?Q?dvqY=3D?=
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 84422180-7800-4a36-8a6f-08db34f1c5e2
-X-MS-Exchange-CrossTenant-AuthSource: BN8PR12MB3587.namprd12.prod.outlook.com
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?Sm43a3ZyUUIwL2lUYVNqQjE5alB1ZVUvOHpXTys3Z1V1U3ZjVGpNTHNJZ0pt?=
+ =?utf-8?B?M252U2ZiOUcxWXEzdG5CakZLRjhRZzFpQ3hTb3oxVWdpVDRGTXRrVWVob29r?=
+ =?utf-8?B?ZmtxNXlzaFE2eXJaMHNzUHE2MW1FMElFTXdURDV0UnA2bytaYUJiK3pFOHpM?=
+ =?utf-8?B?SlBxeDRGUHp3VzVMaXZka1NnR2Y0cytaWUVMc3AveVpnZjdBNHFQZTZsbm45?=
+ =?utf-8?B?b2o1VEc3Unlwb3ZyZVhSa0lVWXRSWUJmdUdDTmhXNE1VcWp6NHVxQXBnOVBG?=
+ =?utf-8?B?MUx2QUpzN0VLcWIvaUxiZVAvUkxvcTdFejB0ajY0b2d1NmhqTkh5dkRXM2Nx?=
+ =?utf-8?B?TE9oSk56cndaYkRoYzdGc0Iya2Z2M1dydjJ4d2hEMktzMWp4dUhidUZZQnp1?=
+ =?utf-8?B?ai9LTlZEa2NIUTZKLzcxbERtUzI2dGlEUU1iNzcyYklTNWhrUFk2TGVrelZo?=
+ =?utf-8?B?YzlESFQ2bWJEZ1BnTHZDNTdXdVptdVl3U1Y4TGhCS21URFhmWWZ1dEFraFh1?=
+ =?utf-8?B?SG5GeHpCd3grZDBpZFZOMUlBdnFKajhURUpvSy90R3kyRnBTdGdDOTQreTlY?=
+ =?utf-8?B?ay85T1hoRlF1OHJQcDdMam9EVm9aUkkyN2Fsd3RDcHJhdlJIZDVvVHFWREhy?=
+ =?utf-8?B?c2k5NWJjTXhpSWNjWk1mQUFPWGl1YVowYTNicWp1QjFPbHhuRCtoZ2FQdW9O?=
+ =?utf-8?B?NTNwdFo1RytuWnZmb0YwYnJYR0dLMXRicE1CczQxNnlFSFp6c0ltaWZNeFhO?=
+ =?utf-8?B?UkpITjBoMHF3MWhzNEtzTXJSRktuMm40aDVuVFNTQkdhSnBnQzNlRTF5RUUx?=
+ =?utf-8?B?YzhFaUJJOXFscEMzdWljeDNiamEvdlFWbFFrSGZvTnNkSk1vWmw0V0F1TkFO?=
+ =?utf-8?B?YUJBbnJDNklLWUdseUx1SnV4bDM3WDIyQ2VSZlZtaUcxQWFBb3drckZwcTVl?=
+ =?utf-8?B?NVdTUVhvdDdsa2ZLcmFIWnpHY2J0K1BRZGJYVzQyUkFGVVJPeGhLU05lL2hV?=
+ =?utf-8?B?ekphbmxtNUZxbW5xbjR3OE1XenVPQUYybUd4R0Z5eEMydWdjZUZqeEZ0bHkx?=
+ =?utf-8?B?SU43RFYyS0FMNE5EQXpHcXovQmU0RTFmeU90RXUwSzdSWSs0TlJPTkxWa01v?=
+ =?utf-8?B?Nm9JSDZyK3ZJMUVWajFsa2pNRTdwMndTZ1A1aHJvbm9vdWgwbXZNbVpPUks3?=
+ =?utf-8?B?ZDB0U3I5ZzlHYmo4NGJoZTV0YXJZZGw5WTdwMWtxRkd4azNIL0RXRE9mS1V6?=
+ =?utf-8?B?NVJiMFdneldPOG5DbjZjUW5NWGlGOTlROVpDODlhSGpvczM4SUpVUFdxYzJJ?=
+ =?utf-8?B?U3N6dEVOMXBpbjV1aVNyRW8xUkJPMS9ZRmI1ZVhoeTEzWnZiN0N5WnhSVms5?=
+ =?utf-8?B?WHlIL2NDZ1hhTWMvN3lPRXFETVZ4SEM2VllTbGFIVEp6OUtFN3NxMy9KZzFv?=
+ =?utf-8?B?SDN5d3Z0M3VHUE9TdjluT1R1b28yeUNJbkdMQWJYS2M2N1B6U01hbzNlcGxZ?=
+ =?utf-8?B?Vm5Rc1V0eTFFZ29QeE5QWS80NklNVGpDMEV3UGQrTUY4NTlESDM0QnY5V1Bi?=
+ =?utf-8?B?Wlpvd05jMkZRcEk2dzhZV3FKZnBTbDUyR2FUM1dtZU5DSXltVmI3RHZtclRY?=
+ =?utf-8?B?cDYwdDAzMFlQb0FxWTBjTjA5ODdvTXJuU20wMFE3WnlHSmo5ajZnT3k3eTdB?=
+ =?utf-8?B?OUt0Q1h4TmZwdi9DOE1MSVVlZ2NXL2IxSTZxbmlMczRqbTFMZkk4QWRUWDVF?=
+ =?utf-8?B?aFRtUlhMcHVnNk1YVzlKTnRHdlJ1VWF5Y2ZRS0hwMTdBWlJ2V3Q4SHFGaVBo?=
+ =?utf-8?B?UFlpcjR1T1ZkNDI3THdEM0pMc0RtWnRvQXIydWNPbzdvbUR4bFgveEN6R3JD?=
+ =?utf-8?B?QkdQaEhlZ0hZRE9sSEdXVDJFZS9VNVZzN2IrTUtiM0Rxb0dUKzdqakRrT2d3?=
+ =?utf-8?B?YTFrdkc3cGJsNHl5cW9neVFBNGszcUl5VFlCVmRldnJyb3cvZlVBSjhYSXl6?=
+ =?utf-8?B?M3JRa2cyUm5ybTByNFcraHlyWlgrYUxrcmFFMHl6ZlBTL1VYT1p6YWd5eFp4?=
+ =?utf-8?B?TDV4enFZa1Vhd3JySWdBZHVpZitiVC9aL2U5dXVFWk5aNmJHRHNQVzk5dmNy?=
+ =?utf-8?B?aHNFUmtWZVFXZEx2UUFHQUwweG43cURnMDh5MDNPNUJmYm5GS1Fnd0RuYk4v?=
+ =?utf-8?B?L2c9PQ==?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: c1355f4f-69fb-44c6-e9c6-08db35084df6
+X-MS-Exchange-CrossTenant-AuthSource: BN8PR11MB3556.namprd11.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 04 Apr 2023 09:48:41.7106 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 04 Apr 2023 12:29:59.1557 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: +YWc02RDKdl/YiQbKWN2xaFSyIeF2eXsUEn142dPWLXm557/LMnMp7xnsp4JndUc
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM6PR12MB4137
-Subject: Re: [Intel-xe] [RFC PATCH 00/10] Xe DRM scheduler and long running
- workload plans
+X-MS-Exchange-CrossTenant-UserPrincipalName: 4iXwYqDqU9y/CHia0Nzux4dXBpnMQhc4Je71SD1mZoQQI0ZS+L8TCAWwDTLSVRxHqG8tmKENA0JxuLmpoigM4Q==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: BY1PR11MB7983
+X-OriginatorOrg: intel.com
+Subject: Re: [Intel-xe] [PATCH i-g-t] tools: Add tool to dump GuC/HuC CSS
+ header
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -127,145 +152,215 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Cc: robdclark@chromium.org, airlied@linux.ie, lina@asahilina.net,
- boris.brezillon@collabora.com, faith.ekstrand@collabora.com
+Cc: intel-gfx@lists.freedesktop.org, Lucas
+ De Marchi <lucas.demarchi@intel.com>, intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Am 04.04.23 um 11:43 schrieb Tvrtko Ursulin:
+Quoting Lucas De Marchi (2023-04-03 17:24:37)
+> Since we are now using unversioned GuC/HuC, it's useful to be able to
+> dump the firmware blob and get that information from the CSS header.
+> Add a tool that decodes that information and dumps the raw header.
+>=20
+> Example output:
+>=20
+>         $ tools/intel-gfx-fw-info /lib/firmware/i915/tgl_guc_70.bin
+>         version: 70.5.1
+>         date: 2022-09-09
+>         raw dump:
+>         00000000  06 00 00 00 a1 00 00 00  00 00 01 00 00 00 00 00   ....=
+............
+>         00000010  86 80 00 00 09 09 22 20  71 17 01 00 40 00 00 00   ....=
+.." q...@...
+>         00000020  40 00 00 00 01 00 00 00  09 21 45 00 73 79 73 5f   @...=
+.....!E.sys_
+>         00000030  67 62 73 62 50 43 2d 31  2e 30 2e 33 31 35 30 00   gbsb=
+PC-1.0.3150.
+>         00000040  01 05 46 00 00 00 00 00  00 00 00 00 00 00 00 00   ..F.=
+............
+>         00000050  00 00 00 00 00 00 00 00  00 00 00 00 00 00 00 00   ....=
+............
+>         00000060  00 00 00 00 00 00 00 00  00 00 00 00 00 00 00 00   ....=
+............
+>         00000070  00 00 00 00 00 00 00 00  00 10 80 00 00 01 40 00   ....=
+..........@.
+>=20
+>         struct uc_css_header:
+>         - module_type: 0x6
+>         - header_size_dw: 0xa1
+>         - header_version: 0x10000
+>         - module_id: 0x0
+>         - module_vendor: 0x8086
+>         - date: 0x20220909
+>         - size_dw: 0x11771
+>         - key_size_dw: 0x40
+>         - modulus_size_dw: 0x40
+>         - exponent_size_dw: 0x1
+>         - time: 0x452109
+>         - username: b'sys_gbsb'
+>         - buildnumber: b'PC-1.0.3150\x00'
+>         - sw_version: 0x460501
+>         - vf_version: 0x0
+>         - reserved0: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+>         - rsvd: <rsvd private_data_size=3D0x801000, reserved1=3D0x801000>
+>         - header_info: 0x400100
+>=20
+> Signed-off-by: Lucas De Marchi <lucas.demarchi@intel.com>
+> ---
+>  tools/intel-gfx-fw-info | 120 ++++++++++++++++++++++++++++++++++++++++
+>  tools/meson.build       |   2 +-
+>  2 files changed, 121 insertions(+), 1 deletion(-)
+>  create mode 100755 tools/intel-gfx-fw-info
+>=20
+> diff --git a/tools/intel-gfx-fw-info b/tools/intel-gfx-fw-info
+> new file mode 100755
+> index 000000000..fc1fafdf5
+> --- /dev/null
+> +++ b/tools/intel-gfx-fw-info
+> @@ -0,0 +1,120 @@
+> +#!/usr/bin/env python3
+> +# pylint: disable=3DC0301
+> +# SPDX-License-Identifier: (GPL-2.0 OR MIT)
+> +#
+> +# Copyright (C) 2023    Intel Corporation
+> +
+> +import argparse
+> +import logging
+> +import pprint
+> +import sys
+> +import typing
+> +
+> +from dissect import cstruct
+
+Since we are not packaging this tool in a way that dependencies are
+automatically installed, I think it is worth to capture an ImportError
+here and point the user to the github repository for this dependency.
+
+Acked-by: Gustavo Sousa <gustavo.sousa@intel.com>
+
+> +
+> +# struct definition below should match the one from i915
+> +# (drivers/gpu/drm/i915/gt/uc/intel_uc_fw_abi.h) and xe
+> +# (drivers/gpu/drm/xe/xe_uc_fw_abi.h).
+> +#
+> +# For compatibility reasons with dissect.cstruct python module, the foll=
+owing
+> +# things are changed from the original kernel definition:
+> +#
+> +#       1) Comments removed
+> +#       2) No anonymous union - not compatible with the
+> +#          dumpstruct(), give it a name
+> +
+> +CDEF =3D """
+> +typedef uint32 u32;
+> +
+> +struct uc_css_header {
+> +        u32 module_type;
+> +        u32 header_size_dw;
+> +        u32 header_version;
+> +        u32 module_id;
+> +        u32 module_vendor;
+> +        u32 date;
+> +        u32 size_dw;
+> +        u32 key_size_dw;
+> +        u32 modulus_size_dw;
+> +        u32 exponent_size_dw;
+> +        u32 time;
+> +        char username[8];
+> +        char buildnumber[12];
+> +        u32 sw_version;
+> +        u32 vf_version;
+> +        u32 reserved0[12];
+> +        union {
+> +                u32 private_data_size;
+> +                u32 reserved1;
+> +        } rsvd;
+> +        u32 header_info;
+> +};
+> +"""
+> +
+> +logger =3D logging.getLogger(__name__)
+> +
+> +
+> +def ffs(x: int) -> int:
+> +    """Returns the index, counting from 0, of the
+> +    least significant set bit in `x`.
+> +    """
+> +    return (x & -x).bit_length() - 1
+> +
+> +
+> +def FIELD_GET(mask: int, value: int) -> int:
+> +    return (value & mask) >> ffs(mask)
+> +
+> +
+> +def decode(fw) -> str:
+> +    data =3D []
+> +
+> +    CSS_SW_VERSION_UC_MAJOR =3D 0xFF << 16
+> +    CSS_SW_VERSION_UC_MINOR =3D 0xFF << 8
+> +    CSS_SW_VERSION_UC_PATCH =3D 0xFF
+> +    major =3D FIELD_GET(CSS_SW_VERSION_UC_MAJOR, fw.sw_version)
+> +    minor =3D FIELD_GET(CSS_SW_VERSION_UC_MINOR, fw.sw_version)
+> +    patch =3D FIELD_GET(CSS_SW_VERSION_UC_PATCH, fw.sw_version)
+> +    data +=3D [f"version: {major}.{minor}.{patch}"]
+> +
+> +    CSS_DATE_DAY =3D 0xFF
+> +    CSS_DATE_MONTH =3D 0xFF << 8
+> +    CSS_DATE_YEAR =3D 0xFFFF << 16
+> +    day =3D FIELD_GET(CSS_DATE_DAY, fw.date)
+> +    month =3D FIELD_GET(CSS_DATE_MONTH, fw.date)
+> +    year =3D FIELD_GET(CSS_DATE_YEAR, fw.date)
+> +    data +=3D [f"date: {year:02x}-{month:02x}-{day:02x}"]
+> +
+> +    return data
+> +
+> +
+> +def parse_args(argv: typing.List[str]) -> argparse.Namespace:
+> +    description =3D "Dump GuC/HuC firmware header"
+> +    parser =3D argparse.ArgumentParser(prog=3D"intel-gfx-fw-info", descr=
+iption=3Ddescription)
+> +
+> +    parser.add_argument("filename", help=3D"GuC/HuC firmware file")
+> +
+> +    return parser.parse_args(argv)
+> +
+> +
+> +def main(argv: typing.List[str]) -> int:
+> +    args =3D parse_args(argv)
+> +
+> +    cparser =3D cstruct.cstruct()
+> +    cparser.load(CDEF)
+> +
+> +    try:
+> +        with open(args.filename, mode=3D"rb") as f:
+> +            fw =3D cparser.uc_css_header(f)
+> +    except FileNotFoundError as e:
+> +        logger.fatal(e)
+> +        return 1
+> +
+> +    print(*decode(fw), sep=3D"\n")
+> +    print("raw dump:", end=3D"")
+> +    cstruct.dumpstruct(fw, color=3Dsys.stdout.isatty())
+> +
+> +    return 0
+> +
+> +
+> +if __name__ =3D=3D "__main__":
+> +    sys.exit(main(sys.argv[1:]))
+> diff --git a/tools/meson.build b/tools/meson.build
+> index 4c45f16b9..88c58adfe 100644
+> --- a/tools/meson.build
+> +++ b/tools/meson.build
+> @@ -81,7 +81,7 @@ executable('intel_reg', sources : intel_reg_src,
+>              '-DIGT_DATADIR=3D"@0@"'.format(join_paths(prefix, datadir)),
+>            ])
+> =20
+> -install_data('intel_gpu_abrt', install_dir : bindir)
+> +install_data(['intel_gpu_abrt', 'intel-gfx-fw-info'], install_dir : bind=
+ir)
+> =20
+>  install_subdir('registers', install_dir : datadir)
+> =20
+> --=20
+> 2.39.0
 >
-> On 04/04/2023 01:22, Matthew Brost wrote:
->> Hello,
->>
->> As a prerequisite to merging the new Intel Xe DRM driver [1] [2], we
->> have been asked to merge our common DRM scheduler patches first as well
->> as develop a common solution for long running workloads with the DRM
->> scheduler. This RFC series is our first attempt at doing this. We
->> welcome any and all feedback.
->>
->> This can we thought of as 4 parts detailed below.
->>
->> - DRM scheduler changes for 1 to 1 relationship between scheduler and
->> entity (patches 1-3)
->>
->> In Xe all of the scheduling of jobs is done by a firmware scheduler (the
->> GuC) which is a new paradigm WRT to the DRM scheduler and presents
->> severals problems as the DRM was originally designed to schedule jobs on
->> hardware queues. The main problem being that DRM scheduler expects the
->> submission order of jobs to be the completion order of jobs even across
->> multiple entities. This assumption falls apart with a firmware scheduler
->> as a firmware scheduler has no concept of jobs and jobs can complete out
->> of order. A novel solution for was originally thought of by Faith during
->> the initial prototype of Xe, create a 1 to 1 relationship between 
->> scheduler
->> and entity. I believe the AGX driver [3] is using this approach and
->> Boris may use approach as well for the Mali driver [4].
->>
->> To support a 1 to 1 relationship we move the main execution function
->> from a kthread to a work queue and add a new scheduling mode which
->> bypasses code in the DRM which isn't needed in a 1 to 1 relationship.
->> The new scheduling mode should unify all drivers usage with a 1 to 1
->> relationship and can be thought of as using scheduler as a dependency /
->> infligt job tracker rather than a true scheduler.
->
-> Once you add capability for a more proper 1:1 via 
-> DRM_SCHED_POLICY_SINGLE_ENTITY, do you still have further need to 
-> replace kthreads with a wq?
-
-Yeah, I fail to see the need for that as well. On the other hand it 
-would be really nice to get rid of the rq/priority design in general.
-
->
-> Or in other words, what purpose does the offloading of a job picking 
-> code to a separate execution context serve? Could it be done directly 
-> in the 1:1 mode and leave kthread setup for N:M?
-
-Well moving from kthread to work item is beneficial on it's own since 
-the later usually follows the the source of it's queue. E.g. when this 
-is triggered by an interrupt we run on the CPU of the interrupt and not 
-have inter CPU signaling.
-
->
-> Apart from those design level questions, low level open IMO still is 
-> that default fallback of using the system_wq has the potential to 
-> affect latency for other drivers. But that's for those driver owners 
-> to approve.
-
-Oh, yeah that's a good point as well. This needs some high priority queue.
-
-Christian.
-
->
-> Regards,
->
-> Tvrtko
->
->> - Generic messaging interface for DRM scheduler
->>
->> Idea is to be able to communicate to the submission backend with in band
->> (relative to main execution function) messages. Messages are backend
->> defined and flexable enough for any use case. In Xe we use these
->> messages to clean up entites, set properties for entites, and suspend /
->> resume execution of an entity [5]. I suspect other driver can leverage
->> this messaging concept too as it a convenient way to avoid races in the
->> backend.
->>
->> - Support for using TDR for all error paths of a scheduler / entity
->>
->> Fix a few races / bugs, add function to dynamically set the TDR timeout.
->>
->> - Annotate dma-fences for long running workloads.
->>
->> The idea here is to use dma-fences only as sync points within the
->> scheduler and never export them for long running workloads. By
->> annotating these fences as long running we ensure that these dma-fences
->> are never used in a way that breaks the dma-fence rules. A benefit of
->> thus approach is the scheduler can still safely flow control the
->> execution ring buffer via the job limit without breaking the dma-fence
->> rules.
->>
->> Again this a first draft and looking forward to feedback.
->>
->> Enjoy - Matt
->>
->> [1] https://gitlab.freedesktop.org/drm/xe/kernel
->> [2] https://patchwork.freedesktop.org/series/112188/
->> [3] https://patchwork.freedesktop.org/series/114772/
->> [4] https://patchwork.freedesktop.org/patch/515854/?series=112188&rev=1
->> [5] 
->> https://gitlab.freedesktop.org/drm/xe/kernel/-/blob/drm-xe-next/drivers/gpu/drm/xe/xe_guc_submit.c#L1031
->>
->> Matthew Brost (8):
->>    drm/sched: Convert drm scheduler to use a work queue rather than
->>      kthread
->>    drm/sched: Move schedule policy to scheduler / entity
->>    drm/sched: Add DRM_SCHED_POLICY_SINGLE_ENTITY scheduling policy
->>    drm/sched: Add generic scheduler message interface
->>    drm/sched: Start run wq before TDR in drm_sched_start
->>    drm/sched: Submit job before starting TDR
->>    drm/sched: Add helper to set TDR timeout
->>    drm/syncobj: Warn on long running dma-fences
->>
->> Thomas Hellström (2):
->>    dma-buf/dma-fence: Introduce long-running completion fences
->>    drm/sched: Support long-running sched entities
->>
->>   drivers/dma-buf/dma-fence.c                 | 142 +++++++---
->>   drivers/dma-buf/dma-resv.c                  |   5 +
->>   drivers/gpu/drm/amd/amdgpu/amdgpu_debugfs.c |  14 +-
->>   drivers/gpu/drm/amd/amdgpu/amdgpu_device.c  |  15 +-
->>   drivers/gpu/drm/drm_syncobj.c               |   5 +-
->>   drivers/gpu/drm/etnaviv/etnaviv_sched.c     |   5 +-
->>   drivers/gpu/drm/lima/lima_sched.c           |   5 +-
->>   drivers/gpu/drm/msm/adreno/adreno_device.c  |   6 +-
->>   drivers/gpu/drm/msm/msm_ringbuffer.c        |   5 +-
->>   drivers/gpu/drm/panfrost/panfrost_job.c     |   5 +-
->>   drivers/gpu/drm/scheduler/sched_entity.c    | 127 +++++++--
->>   drivers/gpu/drm/scheduler/sched_fence.c     |   6 +-
->>   drivers/gpu/drm/scheduler/sched_main.c      | 278 +++++++++++++++-----
->>   drivers/gpu/drm/v3d/v3d_sched.c             |  25 +-
->>   include/drm/gpu_scheduler.h                 | 130 +++++++--
->>   include/linux/dma-fence.h                   |  60 ++++-
->>   16 files changed, 649 insertions(+), 184 deletions(-)
->>
-
