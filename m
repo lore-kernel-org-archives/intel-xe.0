@@ -4,47 +4,48 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 03DA1C77B70
-	for <intel-xe@archiver.kernel.org>; Tue,  4 Apr 2023 01:42:36 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id E8213C77B6E
+	for <intel-xe@archiver.kernel.org>; Tue,  4 Apr 2023 01:42:35 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D6C2A10E54C;
+	by gabe.freedesktop.org (Postfix) with ESMTP id CB16110E53E;
 	Tue,  4 Apr 2023 01:42:35 +0000 (UTC)
 Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D1C8D10E2B7
+ by gabe.freedesktop.org (Postfix) with ESMTPS id DC0ED10E2C8
  for <intel-xe@lists.freedesktop.org>; Tue,  4 Apr 2023 01:42:31 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
  t=1680572551; x=1712108551;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=PxjKOGhoVFmaCZXTXmvDMhShocH1bGIEdut3GQAQQKc=;
- b=hrQm4RlNYzJjau0D5c3C62pFtRUtqNdhkia8CUUVq50lLqIPFPt/EPFi
- 2yp/WRGltS2TvYOdtjMvbspod0QBCWqQjz9t89uS7/S8WtSHMlRTRL/BF
- EqmIM+F60wAfJo0cmjsiq6/OlasH10KpfhlBQcX8FIU9iuNwQ6B6J5o+P
- 5mUH/1plYiC2Yhti+25c1nZR4glnS1gW86R7fsQQpviq9SqdvAdTsq8K2
- F/JWcJWSVWSAIefBKAi6z6GFimMNpfuBtDBzOg9pdJ0QegpvI1zJ1Xcew
- KIWJWfvgfycT2zox0apsBe7LwAGob74h48bTYTyXkz39W5SSqmNngqbJ8 w==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10669"; a="322456425"
-X-IronPort-AV: E=Sophos;i="5.98,316,1673942400"; d="scan'208";a="322456425"
+ bh=WOMoJCeZEXKQU6bzijCs+MHZ1YO9SNx2o5ghfHaY0CU=;
+ b=ALUmXwITyOI81A5wmcQSTW9XBqthOHGrNHbsrkXLVuGsnON0Bc+WSxGZ
+ X98KSThnmumqY+yJVQFGif774Vpq7Jl3Ci6EH5q/T3x6Q3o9xO2huVJrd
+ OPE8UK7lmycSkcD89cmOtIS2ZM0FOXYWjZ44Ke25s/1qfc+5xtahDlWSm
+ 5jse7q8j7AaTpYDpfIcoCHshxL+A5sdidviKRbvcaAWSFNjraEBQg0pi9
+ fXTDH2s4QIgySWmSdPaDxfmvXraY5zZniYS6hLAxP31P9fHRCXiuNc6gK
+ bWBKl/THe4Bz3Ro6+Q8tbVFSGbm+zvT6B+fZTknTiJm7ksxq6zwXD9glC g==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10669"; a="322456426"
+X-IronPort-AV: E=Sophos;i="5.98,316,1673942400"; d="scan'208";a="322456426"
 Received: from fmsmga004.fm.intel.com ([10.253.24.48])
  by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  03 Apr 2023 18:42:31 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10669"; a="755470836"
-X-IronPort-AV: E=Sophos;i="5.98,316,1673942400"; d="scan'208";a="755470836"
+X-IronPort-AV: E=McAfee;i="6600,9927,10669"; a="755470839"
+X-IronPort-AV: E=Sophos;i="5.98,316,1673942400"; d="scan'208";a="755470839"
 Received: from lstrano-desk.jf.intel.com ([10.24.89.184])
  by fmsmga004-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  03 Apr 2023 18:42:31 -0700
 From: Matthew Brost <matthew.brost@intel.com>
 To: <intel-xe@lists.freedesktop.org>
-Date: Mon,  3 Apr 2023 18:42:26 -0700
-Message-Id: <20230404014228.3738347-7-matthew.brost@intel.com>
+Date: Mon,  3 Apr 2023 18:42:27 -0700
+Message-Id: <20230404014228.3738347-8-matthew.brost@intel.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20230404014228.3738347-1-matthew.brost@intel.com>
 References: <20230404014228.3738347-1-matthew.brost@intel.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-xe] [PATCH v5 6/8] drm/xe: Avoid doing rebinds
+Subject: [Intel-xe] [PATCH v5 7/8] drm/xe: Reduce the number list links in
+ xe_vma
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -59,217 +60,235 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-If we dont change page sizes we can avoid doing rebinds rather just do a
-partial unbind. The algorithm to determine is page size is greedy as we
-assume all pages in the removed VMA are the largest page used in the
-VMA.
+5 list links in can be squashed into a union in xe_vma as being on the
+various list is mutually exclusive.
 
 Signed-off-by: Matthew Brost <matthew.brost@intel.com>
 ---
- drivers/gpu/drm/xe/xe_pt.c       |  4 ++
- drivers/gpu/drm/xe/xe_vm.c       | 69 +++++++++++++++++++++++++-------
- drivers/gpu/drm/xe/xe_vm_types.h | 17 ++++----
- 3 files changed, 65 insertions(+), 25 deletions(-)
+ drivers/gpu/drm/xe/xe_gt_pagefault.c |  2 +-
+ drivers/gpu/drm/xe/xe_pt.c           |  5 +-
+ drivers/gpu/drm/xe/xe_vm.c           | 29 ++++++------
+ drivers/gpu/drm/xe/xe_vm_types.h     | 71 +++++++++++++++-------------
+ 4 files changed, 55 insertions(+), 52 deletions(-)
 
+diff --git a/drivers/gpu/drm/xe/xe_gt_pagefault.c b/drivers/gpu/drm/xe/xe_gt_pagefault.c
+index cfffe3398fe4..d7bf6b0a0697 100644
+--- a/drivers/gpu/drm/xe/xe_gt_pagefault.c
++++ b/drivers/gpu/drm/xe/xe_gt_pagefault.c
+@@ -157,7 +157,7 @@ static int handle_pagefault(struct xe_gt *gt, struct pagefault *pf)
+ 
+ 	if (xe_vma_is_userptr(vma) && write_locked) {
+ 		spin_lock(&vm->userptr.invalidated_lock);
+-		list_del_init(&vma->userptr.invalidate_link);
++		list_del_init(&vma->invalidate_link);
+ 		spin_unlock(&vm->userptr.invalidated_lock);
+ 
+ 		ret = xe_vma_userptr_pin_pages(vma);
 diff --git a/drivers/gpu/drm/xe/xe_pt.c b/drivers/gpu/drm/xe/xe_pt.c
-index 4da248484267..43e5a1054411 100644
+index 43e5a1054411..195eb78e7a31 100644
 --- a/drivers/gpu/drm/xe/xe_pt.c
 +++ b/drivers/gpu/drm/xe/xe_pt.c
-@@ -412,6 +412,8 @@ struct xe_pt_stage_bind_walk {
- 	/* Input parameters for the walk */
- 	/** @vm: The vm we're building for. */
- 	struct xe_vm *vm;
-+	/** @vma: The vma we are binding for. */
-+	struct xe_vma *vma;
- 	/** @gt: The gt we're building for. */
- 	struct xe_gt *gt;
- 	/** @cache: Desired cache level for the ptes */
-@@ -688,6 +690,7 @@ xe_pt_stage_bind_entry(struct drm_pt *parent, pgoff_t offset,
- 		if (!null)
- 			xe_res_next(curs, next - addr);
- 		xe_walk->va_curs_start = next;
-+		xe_walk->vma->gpuva.flags |= (XE_VMA_PTE_4K << level);
- 		*action = ACTION_CONTINUE;
+@@ -1116,8 +1116,7 @@ static int xe_pt_userptr_inject_eagain(struct xe_vma *vma)
  
- 		return ret;
-@@ -776,6 +779,7 @@ xe_pt_stage_bind(struct xe_gt *gt, struct xe_vma *vma,
- 			.max_level = XE_PT_HIGHEST_LEVEL,
- 		},
- 		.vm = xe_vma_vm(vma),
-+		.vma = vma,
- 		.gt = gt,
- 		.curs = &curs,
- 		.va_curs_start = xe_vma_start(vma),
+ 		vma->userptr.divisor = divisor << 1;
+ 		spin_lock(&vm->userptr.invalidated_lock);
+-		list_move_tail(&vma->userptr.invalidate_link,
+-			       &vm->userptr.invalidated);
++		list_move_tail(&vma->invalidate_link, &vm->userptr.invalidated);
+ 		spin_unlock(&vm->userptr.invalidated_lock);
+ 		return true;
+ 	}
+@@ -1724,7 +1723,7 @@ __xe_pt_unbind_vma(struct xe_gt *gt, struct xe_vma *vma, struct xe_engine *e,
+ 
+ 		if (!vma->gt_present) {
+ 			spin_lock(&vm->userptr.invalidated_lock);
+-			list_del_init(&vma->userptr.invalidate_link);
++			list_del_init(&vma->invalidate_link);
+ 			spin_unlock(&vm->userptr.invalidated_lock);
+ 		}
+ 		up_read(&vm->userptr.notifier_lock);
 diff --git a/drivers/gpu/drm/xe/xe_vm.c b/drivers/gpu/drm/xe/xe_vm.c
-index 5d74a8aa9e8d..c1e1b443cd2d 100644
+index c1e1b443cd2d..bacad720e7ba 100644
 --- a/drivers/gpu/drm/xe/xe_vm.c
 +++ b/drivers/gpu/drm/xe/xe_vm.c
-@@ -2273,6 +2273,16 @@ static struct xe_vma *new_vma(struct xe_vm *vm, struct drm_gpuva_op_map *op,
- 	return vma;
- }
+@@ -677,8 +677,7 @@ static bool vma_userptr_invalidate(struct mmu_interval_notifier *mni,
+ 	if (!xe_vm_in_fault_mode(vm) &&
+ 	    !(vma->gpuva.flags & XE_VMA_DESTROYED) && vma->gt_present) {
+ 		spin_lock(&vm->userptr.invalidated_lock);
+-		list_move_tail(&vma->userptr.invalidate_link,
+-			       &vm->userptr.invalidated);
++		list_move_tail(&vma->invalidate_link, &vm->userptr.invalidated);
+ 		spin_unlock(&vm->userptr.invalidated_lock);
+ 	}
  
-+static u64 xe_vma_max_pte_size(struct xe_vma *vma)
-+{
-+	if (vma->gpuva.flags & XE_VMA_PTE_1G)
-+		return SZ_1G;
-+	else if (vma->gpuva.flags & XE_VMA_PTE_2M)
-+		return SZ_2M;
-+
-+	return SZ_4K;
-+}
-+
- /*
-  * Parse operations list and create any resources needed for the operations
-  * prior to fully commiting to the operations. This setp can fail.
-@@ -2349,6 +2359,13 @@ static int vm_bind_ioctl_ops_parse(struct xe_vm *vm, struct xe_engine *e,
- 				break;
- 			}
- 			case DRM_GPUVA_OP_REMAP:
-+			{
-+				struct xe_vma *old =
-+					gpuva_to_vma(op->base.remap.unmap->va);
-+
-+				op->remap.start = xe_vma_start(old);
-+				op->remap.range = xe_vma_size(old);
-+
- 				if (op->base.remap.prev) {
- 					struct xe_vma *vma;
- 					bool read_only =
-@@ -2367,6 +2384,20 @@ static int vm_bind_ioctl_ops_parse(struct xe_vm *vm, struct xe_engine *e,
- 					}
+@@ -726,8 +725,8 @@ int xe_vm_userptr_pin(struct xe_vm *vm)
+ 	/* Collect invalidated userptrs */
+ 	spin_lock(&vm->userptr.invalidated_lock);
+ 	list_for_each_entry_safe(vma, next, &vm->userptr.invalidated,
+-				 userptr.invalidate_link) {
+-		list_del_init(&vma->userptr.invalidate_link);
++				 invalidate_link) {
++		list_del_init(&vma->invalidate_link);
+ 		list_move_tail(&vma->userptr_link, &vm->userptr.repin_list);
+ 	}
+ 	spin_unlock(&vm->userptr.invalidated_lock);
+@@ -830,12 +829,11 @@ static struct xe_vma *xe_vma_create(struct xe_vm *vm,
+ 		return vma;
+ 	}
  
- 					op->remap.prev = vma;
-+
-+					/*
-+					 * XXX: Not sure why userptr doesn't
-+					 * work but really shouldn't be a use
-+					 * case.
-+					 */
-+					op->remap.skip_prev = !xe_vma_is_userptr(old) &&
-+						IS_ALIGNED(xe_vma_end(vma), xe_vma_max_pte_size(old));
-+					if (op->remap.skip_prev) {
-+						op->remap.range -=
-+							xe_vma_end(vma) -
-+							xe_vma_start(old);
-+						op->remap.start = xe_vma_end(vma);
-+					}
- 				}
+-	/* FIXME: Way to many lists, should be able to reduce this */
++	/*
++	 * userptr_link, destroy_link, notifier.rebind_link,
++	 * invalidate_link
++	 */
+ 	INIT_LIST_HEAD(&vma->rebind_link);
+-	INIT_LIST_HEAD(&vma->unbind_link);
+-	INIT_LIST_HEAD(&vma->userptr_link);
+-	INIT_LIST_HEAD(&vma->userptr.invalidate_link);
+-	INIT_LIST_HEAD(&vma->notifier.rebind_link);
+ 	INIT_LIST_HEAD(&vma->extobj.link);
  
- 				if (op->base.remap.next) {
-@@ -2388,20 +2419,16 @@ static int vm_bind_ioctl_ops_parse(struct xe_vm *vm, struct xe_engine *e,
- 					}
+ 	INIT_LIST_HEAD(&vma->gpuva.head);
+@@ -953,15 +951,14 @@ static void xe_vma_destroy(struct xe_vma *vma, struct dma_fence *fence)
+ 	struct xe_vm *vm = xe_vma_vm(vma);
  
- 					op->remap.next = vma;
-+					op->remap.skip_next = !xe_vma_is_userptr(old) &&
-+						IS_ALIGNED(xe_vma_start(vma), xe_vma_max_pte_size(old));
-+					if (op->remap.skip_next)
-+						op->remap.range -=
-+							xe_vma_end(old) -
-+							xe_vma_start(vma);
- 				}
--
--				/* XXX: Support no doing remaps */
--				op->remap.start =
--					xe_vma_start(gpuva_to_vma(op->base.remap.unmap->va));
--				op->remap.range =
--					xe_vma_size(gpuva_to_vma(op->base.remap.unmap->va));
- 				break;
-+			}
- 			case DRM_GPUVA_OP_UNMAP:
--				op->unmap.start =
--					xe_vma_start(gpuva_to_vma(op->base.unmap.va));
--				op->unmap.range =
--					xe_vma_size(gpuva_to_vma(op->base.unmap.va));
--				break;
- 			case DRM_GPUVA_OP_PREFETCH:
- 				/* Nothing to do */
- 				break;
-@@ -2440,10 +2467,21 @@ static void xe_vma_op_commit(struct xe_vm *vm, struct xe_vma_op *op)
- 	case DRM_GPUVA_OP_REMAP:
- 		prep_vma_destroy(vm, gpuva_to_vma(op->base.remap.unmap->va),
- 				 true);
--		if (op->remap.prev)
-+
-+		/* Adjust for partial unbind after removin VMA from VM */
-+		op->base.remap.unmap->va->va.addr = op->remap.start;
-+		op->base.remap.unmap->va->va.range = op->remap.range;
-+
-+		if (op->remap.prev) {
- 			xe_vm_insert_vma(vm, op->remap.prev);
--		if (op->remap.next)
-+			if (op->remap.skip_prev)
-+				op->remap.prev = NULL;
-+		}
-+		if (op->remap.next) {
- 			xe_vm_insert_vma(vm, op->remap.next);
-+			if (op->remap.skip_next)
-+				op->remap.next = NULL;
-+		}
- 		break;
- 	case DRM_GPUVA_OP_UNMAP:
- 		prep_vma_destroy(vm, gpuva_to_vma(op->base.unmap.va), true);
-@@ -2508,9 +2546,10 @@ static int __xe_vma_op_execute(struct xe_vm *vm, struct xe_vma *vma,
- 		bool next = !!op->remap.next;
+ 	lockdep_assert_held_write(&vm->lock);
+-	XE_BUG_ON(!list_empty(&vma->unbind_link));
  
- 		if (!op->remap.unmap_done) {
--			vm->async_ops.munmap_rebind_inflight = true;
--			if (prev || next)
-+			if (prev || next) {
-+				vm->async_ops.munmap_rebind_inflight = true;
- 				vma->gpuva.flags |= XE_VMA_FIRST_REBIND;
-+			}
- 			err = xe_vm_unbind(vm, vma, op->engine, op->syncs,
- 					   op->num_syncs,
- 					   !prev && !next ? op->fence : NULL,
+ 	if (xe_vma_is_userptr(vma)) {
+ 		XE_WARN_ON(!(vma->gpuva.flags & XE_VMA_DESTROYED));
+ 
+ 		spin_lock(&vm->userptr.invalidated_lock);
+-		list_del_init(&vma->userptr.invalidate_link);
++		if (!list_empty(&vma->invalidate_link))
++			list_del_init(&vma->invalidate_link);
+ 		spin_unlock(&vm->userptr.invalidated_lock);
+-		list_del(&vma->userptr_link);
+ 	} else if (!xe_vma_is_null(vma)) {
+ 		xe_bo_assert_held(xe_vma_bo(vma));
+ 		drm_gpuva_unlink(&vma->gpuva);
+@@ -1325,7 +1322,9 @@ void xe_vm_close_and_put(struct xe_vm *vm)
+ 			continue;
+ 		}
+ 
+-		list_add_tail(&vma->unbind_link, &contested);
++		if (!list_empty(&vma->destroy_link))
++			list_del_init(&vma->destroy_link);
++		list_add_tail(&vma->destroy_link, &contested);
+ 	}
+ 
+ 	/*
+@@ -1353,8 +1352,8 @@ void xe_vm_close_and_put(struct xe_vm *vm)
+ 	 * Since we hold a refcount to the bo, we can remove and free
+ 	 * the members safely without locking.
+ 	 */
+-	list_for_each_entry_safe(vma, next_vma, &contested, unbind_link) {
+-		list_del_init(&vma->unbind_link);
++	list_for_each_entry_safe(vma, next_vma, &contested, destroy_link) {
++		list_del_init(&vma->destroy_link);
+ 		xe_vma_destroy_unlocked(vma);
+ 	}
+ 
 diff --git a/drivers/gpu/drm/xe/xe_vm_types.h b/drivers/gpu/drm/xe/xe_vm_types.h
-index 357f887b22ea..21c46b71b7d8 100644
+index 21c46b71b7d8..a049dfa9450a 100644
 --- a/drivers/gpu/drm/xe/xe_vm_types.h
 +++ b/drivers/gpu/drm/xe/xe_vm_types.h
-@@ -30,6 +30,9 @@ struct xe_vm;
- #define XE_VMA_FIRST_REBIND	(DRM_GPUVA_USERBITS << 3)
- #define XE_VMA_LAST_REBIND	(DRM_GPUVA_USERBITS << 4)
- #define XE_VMA_NULL		(DRM_GPUVA_USERBITS << 5)
-+#define XE_VMA_PTE_4K		(DRM_GPUVA_USERBITS << 6)
-+#define XE_VMA_PTE_2M		(DRM_GPUVA_USERBITS << 7)
-+#define XE_VMA_PTE_1G		(DRM_GPUVA_USERBITS << 8)
+@@ -50,21 +50,32 @@ struct xe_vma {
+ 	 */
+ 	u64 gt_present;
  
- struct xe_vma {
- 	/** @gpuva: Base GPUVA object */
-@@ -317,14 +320,6 @@ struct xe_vma_op_map {
- 	bool null;
- };
+-	/** @userptr_link: link into VM repin list if userptr */
+-	struct list_head userptr_link;
++	union {
++		/** @userptr_link: link into VM repin list if userptr */
++		struct list_head userptr_link;
  
--/** struct xe_vma_op_unmap - VMA unmap operation */
--struct xe_vma_op_unmap {
--	/** @start: start of the VMA unmap */
--	u64 start;
--	/** @range: range of the VMA unmap */
--	u64 range;
--};
+-	/**
+-	 * @rebind_link: link into VM if this VMA needs rebinding, and
+-	 * if it's a bo (not userptr) needs validation after a possible
+-	 * eviction. Protected by the vm's resv lock.
+-	 */
+-	struct list_head rebind_link;
++		/**
++		 * @rebind_link: link into VM if this VMA needs rebinding, and
++		 * if it's a bo (not userptr) needs validation after a possible
++		 * eviction. Protected by the vm's resv lock.
++		 */
++		struct list_head rebind_link;
+ 
+-	/**
+-	 * @unbind_link: link or list head if an unbind of multiple VMAs, in
+-	 * single unbind op, is being done.
+-	 */
+-	struct list_head unbind_link;
++		/** @destroy_link: link for contested VMAs on VM close */
++		struct list_head destroy_link;
++
++		/** @invalidate_link: Link for the vm::userptr.invalidated list */
++		struct list_head invalidate_link;
++
++		struct {
++			 /*
++			  * @notifier.rebind_link: link for
++			  * vm->notifier.rebind_list, protected by
++			  * vm->notifier.list_lock
++			  */
++			struct list_head rebind_link;
++		} notifier;
++	};
+ 
+ 	/** @destroy_cb: callback to destroy VMA when unbind job is done */
+ 	struct dma_fence_cb destroy_cb;
+@@ -72,10 +83,22 @@ struct xe_vma {
+ 	/** @destroy_work: worker to destroy this BO */
+ 	struct work_struct destroy_work;
+ 
++	/** @usm: unified shared memory state */
++	struct {
++		/** @gt_invalidated: VMA has been invalidated */
++		u64 gt_invalidated;
++	} usm;
++
++	struct {
++		/**
++		 * @extobj.link: Link into vm's external object list.
++		 * protected by the vm lock.
++		 */
++		struct list_head link;
++	} extobj;
++
+ 	/** @userptr: user pointer state */
+ 	struct {
+-		/** @invalidate_link: Link for the vm::userptr.invalidated list */
+-		struct list_head invalidate_link;
+ 		/**
+ 		 * @notifier: MMU notifier for user pointer (invalidation call back)
+ 		 */
+@@ -96,24 +119,6 @@ struct xe_vma {
+ 		u32 divisor;
+ #endif
+ 	} userptr;
 -
- /** struct xe_vma_op_remap - VMA remap operation */
- struct xe_vma_op_remap {
- 	/** @prev: VMA preceding part of a split mapping */
-@@ -335,6 +330,10 @@ struct xe_vma_op_remap {
- 	u64 start;
- 	/** @range: range of the VMA unmap */
- 	u64 range;
-+	/** @skip_prev: skip prev rebind */
-+	bool skip_prev;
-+	/** @skip_next: skip next rebind */
-+	bool skip_next;
- 	/** @unmap_done: unmap operation in done */
- 	bool unmap_done;
+-	/** @usm: unified shared memory state */
+-	struct {
+-		/** @gt_invalidated: VMA has been invalidated */
+-		u64 gt_invalidated;
+-	} usm;
+-
+-	struct {
+-		struct list_head rebind_link;
+-	} notifier;
+-
+-	struct {
+-		/**
+-		 * @extobj.link: Link into vm's external object list.
+-		 * protected by the vm lock.
+-		 */
+-		struct list_head link;
+-	} extobj;
  };
-@@ -390,8 +389,6 @@ struct xe_vma_op {
- 	union {
- 		/** @map: VMA map operation specific data */
- 		struct xe_vma_op_map map;
--		/** @unmap: VMA unmap operation specific data */
--		struct xe_vma_op_unmap unmap;
- 		/** @remap: VMA remap operation specific data */
- 		struct xe_vma_op_remap remap;
- 		/** @prefetch: VMA prefetch operation specific data */
+ 
+ struct xe_device;
 -- 
 2.34.1
 
