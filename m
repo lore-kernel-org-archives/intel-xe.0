@@ -4,53 +4,54 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 892B6C6FD1D
-	for <intel-xe@archiver.kernel.org>; Tue,  4 Apr 2023 06:51:20 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 957C6C6FD1D
+	for <intel-xe@archiver.kernel.org>; Tue,  4 Apr 2023 06:59:33 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2373210E169;
-	Tue,  4 Apr 2023 06:51:20 +0000 (UTC)
-Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 480E110E169;
- Tue,  4 Apr 2023 06:51:17 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6549B10E120;
+	Tue,  4 Apr 2023 06:59:33 +0000 (UTC)
+Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1D67910E120
+ for <intel-xe@lists.freedesktop.org>; Tue,  4 Apr 2023 06:59:30 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1680591078; x=1712127078;
+ t=1680591571; x=1712127571;
  h=message-id:date:mime-version:subject:to:cc:references:
  from:in-reply-to:content-transfer-encoding;
- bh=ows6xq4mMvsX4sSybUcUHqWG9rB/Ektk2LMIYp+2Ef0=;
- b=OyNCJVqK/fv7Sb1Hu4L0qpSvV8m/CVhOms/9OYUZ0eJ3GYg3EwhIX0pb
- bBqbLnxGsYNLsq0yb1MFWe2y9E3OQjNh/gQkiize0swQevogPJdGN2Og8
- YG+XNYBln2+qkyxUq0grhpJMDjWNhQO6uhTRZodXxKlMWSIldE+zB/ZIm
- IWJEo7Mq2LO8QVPHPnOTen1eANOryFkUSJZ7h4bzy72X7Oa8WB5DevQ1h
- saIssWHiHgN1f7jaCktklzHRyh8e4DBKqxA93Rxtjsn1o4a7ID53kktFD
- 8oGlCJx7hpHd6FEG0qbgTp5KYgV8AvRhxx+njlvPOTx8c+hBFFLvIdAgo A==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10669"; a="326123658"
-X-IronPort-AV: E=Sophos;i="5.98,317,1673942400"; d="scan'208";a="326123658"
-Received: from fmsmga004.fm.intel.com ([10.253.24.48])
- by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 03 Apr 2023 23:51:17 -0700
+ bh=j/C8OayZjxmK3KIxghudXu5p1EBgGJwZ366DbU0ZWZM=;
+ b=XmTE1ebdkYFvnMUaIC6XYCedrHAgX26TGLMwbOpwOD5JuzmECu4SnNFD
+ yYod9a4Ltze5votRW6KM8yJDi27YC7VHo90TJMjLE1XZQ9rquYckeUlIt
+ 0+i+abwkJ/rQd6hI12nHXl9XuLoE3sAltiD3lWg3rQ8DTt8c1xanjCGEJ
+ S+CX5wxRzpT2r1iOaTD2WAoM80SshKN8YhSFc4JhVbXbW5DRP21cNZgF+
+ dW6Ik7nQBzK/RbPGlfQiuqxKZ3LAUgw9vXW7rRdKxJIkPualTscv+f5fE
+ AM6oRDlb9OPQmDQDHCfxM2B5FPq8z1Gv3ajiMCuyj8Pj75LLeqctqw3rL g==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10669"; a="344669310"
+X-IronPort-AV: E=Sophos;i="5.98,317,1673942400"; d="scan'208";a="344669310"
+Received: from orsmga008.jf.intel.com ([10.7.209.65])
+ by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 03 Apr 2023 23:59:30 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10669"; a="755531763"
-X-IronPort-AV: E=Sophos;i="5.98,317,1673942400"; d="scan'208";a="755531763"
+X-IronPort-AV: E=McAfee;i="6600,9927,10669"; a="716543910"
+X-IronPort-AV: E=Sophos;i="5.98,317,1673942400"; d="scan'208";a="716543910"
 Received: from bdallmer-mobl.ger.corp.intel.com (HELO [10.249.32.152])
  ([10.249.32.152])
- by fmsmga004-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 03 Apr 2023 23:51:15 -0700
-Message-ID: <16f53bb3-a5c2-7379-c940-579e02924f66@linux.intel.com>
-Date: Tue, 4 Apr 2023 08:51:13 +0200
+ by orsmga008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 03 Apr 2023 23:59:29 -0700
+Message-ID: <fb5a81af-e95e-cbca-ec5b-7a98bafdcc34@linux.intel.com>
+Date: Tue, 4 Apr 2023 08:59:27 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Firefox/102.0 Thunderbird/102.9.1
 Content-Language: en-US
 To: Matt Roper <matthew.d.roper@intel.com>
 References: <20230331102419.521392-1-maarten.lankhorst@linux.intel.com>
- <20230331102419.521392-4-maarten.lankhorst@linux.intel.com>
- <20230403203540.GY4085390@mdroper-desk1.amr.corp.intel.com>
+ <20230331102419.521392-3-maarten.lankhorst@linux.intel.com>
+ <20230403202725.GX4085390@mdroper-desk1.amr.corp.intel.com>
 From: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
-In-Reply-To: <20230403203540.GY4085390@mdroper-desk1.amr.corp.intel.com>
+In-Reply-To: <20230403202725.GX4085390@mdroper-desk1.amr.corp.intel.com>
 Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
-Subject: Re: [Intel-xe] [PATCH 3/6] drm/i915: Fix comparison in intel_dram.
+Subject: Re: [Intel-xe] [PATCH 2/6] drm/xe: Use full_gt batchbuffer
+ allocation for media tiles.
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -62,43 +63,57 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org
+Cc: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Hey,
 
-On 2023-04-03 22:35, Matt Roper wrote:
-> On Fri, Mar 31, 2023 at 12:24:16PM +0200, Maarten Lankhorst wrote:
->> Gen13 should probably be the same as gen12, not gen11.
->>
->> Signed-off-by: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
->> Cc: intel-gfx@lists.freedesktop.org
+On 2023-04-03 22:27, Matt Roper wrote:
+> On Fri, Mar 31, 2023 at 12:24:15PM +0200, Maarten Lankhorst wrote:
+>> This fixes an oops on media tiles, because we don't initialise the
+>> bb pool.
 >> ---
->>   drivers/gpu/drm/i915/soc/intel_dram.c | 2 +-
->>   1 file changed, 1 insertion(+), 1 deletion(-)
+>>   drivers/gpu/drm/xe/xe_gt.c | 10 +++++++---
+>>   1 file changed, 7 insertions(+), 3 deletions(-)
 >>
->> diff --git a/drivers/gpu/drm/i915/soc/intel_dram.c b/drivers/gpu/drm/i915/soc/intel_dram.c
->> index 9f0651d48d41..9649051ed8ed 100644
->> --- a/drivers/gpu/drm/i915/soc/intel_dram.c
->> +++ b/drivers/gpu/drm/i915/soc/intel_dram.c
->> @@ -548,7 +548,7 @@ static int icl_pcode_read_mem_global_info(struct drm_i915_private *dev_priv)
-> I don't think we need this change.  We were only reading the this pcode
-> mailbox for display purposes, and even on the latest graphics version 12
-> platforms we shouldn't make it into this function anymore.  Instead the
-> display IP now provides this information itself so there's no need to go
-> through the GT's pcode mailbox; we read it directly from display
-> registers in xelpdp_get_dram_info().  It looks like this condition here
-> would only matter if we had a future platform with graphics version
-> higher than 12, but display version lower than 14, which seems very
-> unlikely.
+>> diff --git a/drivers/gpu/drm/xe/xe_gt.c b/drivers/gpu/drm/xe/xe_gt.c
+>> index bc821f431c45..c7a2e9baabfb 100644
+>> --- a/drivers/gpu/drm/xe/xe_gt.c
+>> +++ b/drivers/gpu/drm/xe/xe_gt.c
+>> @@ -237,6 +237,10 @@ int xe_gt_record_default_lrcs(struct xe_gt *gt)
+>>   		struct xe_engine *e, *nop_e;
+>>   		struct xe_vm *vm;
+>>   		void *default_lrc;
+>> +		struct xe_gt *full_gt = gt;
+>> +
+>> +		if (xe_gt_is_media_type(gt))
+>> +			full_gt = xe_find_full_gt(gt);
+>>   
+>>   		if (gt->default_lrc[hwe->class])
+>>   			continue;
+>> @@ -262,7 +266,7 @@ int xe_gt_record_default_lrcs(struct xe_gt *gt)
+>>   		}
+>>   
+>>   		/* Prime golden LRC with known good state */
+>> -		err = emit_wa_job(gt, e);
+>> +		err = emit_wa_job(full_gt, e);
+> If we pass the primary GT here, then we'll take the wrong path in
+> bb_prefetch().  That doesn't actually matter very much (we'll just
+> overestimate the padding needed for media engines, which is safe and
+> something we already do for BCS engines), but we should probably just
+> drop !xe_gt_is_media_type(gt) condition there as part of this patch
+> since it will always be true now.
 
-Probably not, but it's at least cosmetically more correct. We only need 
-the dram code for display, so in theory we could check for display_ver 
- >= 12 instead and have it unified.
+Yeah makes sense. That check doesn't strictly speaking seem to be 
+needed, so I'm fine with dropping it.
 
-If something breaks the pattern, we can fix it then. :)
+We could always request the engine to be specified, but I don't think we 
+really use those batchbuffers beyond initialisation outside of 
+migration/VM_BIND,
+
+which is done on a BCS engine anyway.
+
+Can I have your r-b with that check removed?
 
 ~Maarten
-
 
