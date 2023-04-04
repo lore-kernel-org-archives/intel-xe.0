@@ -4,54 +4,53 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 957C6C6FD1D
-	for <intel-xe@archiver.kernel.org>; Tue,  4 Apr 2023 06:59:33 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9959EC761AF
+	for <intel-xe@archiver.kernel.org>; Tue,  4 Apr 2023 08:15:57 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6549B10E120;
-	Tue,  4 Apr 2023 06:59:33 +0000 (UTC)
-Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1D67910E120
- for <intel-xe@lists.freedesktop.org>; Tue,  4 Apr 2023 06:59:30 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5A6D610E618;
+	Tue,  4 Apr 2023 08:15:57 +0000 (UTC)
+Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8508E10E611;
+ Tue,  4 Apr 2023 08:15:55 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1680591571; x=1712127571;
- h=message-id:date:mime-version:subject:to:cc:references:
- from:in-reply-to:content-transfer-encoding;
- bh=j/C8OayZjxmK3KIxghudXu5p1EBgGJwZ366DbU0ZWZM=;
- b=XmTE1ebdkYFvnMUaIC6XYCedrHAgX26TGLMwbOpwOD5JuzmECu4SnNFD
- yYod9a4Ltze5votRW6KM8yJDi27YC7VHo90TJMjLE1XZQ9rquYckeUlIt
- 0+i+abwkJ/rQd6hI12nHXl9XuLoE3sAltiD3lWg3rQ8DTt8c1xanjCGEJ
- S+CX5wxRzpT2r1iOaTD2WAoM80SshKN8YhSFc4JhVbXbW5DRP21cNZgF+
- dW6Ik7nQBzK/RbPGlfQiuqxKZ3LAUgw9vXW7rRdKxJIkPualTscv+f5fE
- AM6oRDlb9OPQmDQDHCfxM2B5FPq8z1Gv3ajiMCuyj8Pj75LLeqctqw3rL g==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10669"; a="344669310"
-X-IronPort-AV: E=Sophos;i="5.98,317,1673942400"; d="scan'208";a="344669310"
-Received: from orsmga008.jf.intel.com ([10.7.209.65])
- by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 03 Apr 2023 23:59:30 -0700
+ t=1680596155; x=1712132155;
+ h=from:to:cc:subject:in-reply-to:references:date:
+ message-id:mime-version:content-transfer-encoding;
+ bh=DT1NhLLFa3XglX09CH2DPBTa+Kl3i+R5VfeAGkEkpv0=;
+ b=Q7f2hKTrBaYjaRDajagAK024KX5RaNsh5y9C76jdh9Bsi6tPalhaWfsM
+ j8mFmLrf8+QtqKkO/yJ9AGcGl086g/ReEghc6t2DmGhn3nX/TC2cN17Ai
+ Tik1MIggc3x8A3Dubl9n1ZN6FWVBda/KViC5jTlzkufmVmK963wCuXAud
+ Y2Vlm/kH3lAeWwHr/j0+/5LehidDeH8CZe5Vh4vBn2/vvbffklqhyntyv
+ D465kMIktZKlMsklyakGK80fxSrMh1zingC+HDFNPnuYdYRVI4KV5aqwD
+ LeOkty7L7og9H0V9QQb6tX8dE1pAD3M9NzmeXg5mTF3LnJWfejTiiyhpL Q==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10669"; a="407181277"
+X-IronPort-AV: E=Sophos;i="5.98,317,1673942400"; d="scan'208";a="407181277"
+Received: from fmsmga006.fm.intel.com ([10.253.24.20])
+ by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 04 Apr 2023 01:15:54 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10669"; a="716543910"
-X-IronPort-AV: E=Sophos;i="5.98,317,1673942400"; d="scan'208";a="716543910"
-Received: from bdallmer-mobl.ger.corp.intel.com (HELO [10.249.32.152])
- ([10.249.32.152])
- by orsmga008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 03 Apr 2023 23:59:29 -0700
-Message-ID: <fb5a81af-e95e-cbca-ec5b-7a98bafdcc34@linux.intel.com>
-Date: Tue, 4 Apr 2023 08:59:27 +0200
+X-IronPort-AV: E=McAfee;i="6600,9927,10669"; a="932366880"
+X-IronPort-AV: E=Sophos;i="5.98,317,1673942400"; d="scan'208";a="932366880"
+Received: from rjongalo-mobl2.ger.corp.intel.com (HELO localhost)
+ ([10.252.43.58])
+ by fmsmga006-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 04 Apr 2023 01:15:52 -0700
+From: Jani Nikula <jani.nikula@intel.com>
+To: Rodrigo Vivi <rodrigo.vivi@intel.com>, "Souza, Jose" <jose.souza@intel.com>
+In-Reply-To: <ZCscKrjtYBanN1tU@intel.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+References: <20230403164615.131633-1-jose.souza@intel.com>
+ <ZCsG32XI7XLljXGP@intel.com>
+ <bc6c151c44b46ce04da7760b7ce359f2bf1764fd.camel@intel.com>
+ <ZCscKrjtYBanN1tU@intel.com>
+Date: Tue, 04 Apr 2023 11:15:50 +0300
+Message-ID: <87bkk412rt.fsf@intel.com>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Firefox/102.0 Thunderbird/102.9.1
-Content-Language: en-US
-To: Matt Roper <matthew.d.roper@intel.com>
-References: <20230331102419.521392-1-maarten.lankhorst@linux.intel.com>
- <20230331102419.521392-3-maarten.lankhorst@linux.intel.com>
- <20230403202725.GX4085390@mdroper-desk1.amr.corp.intel.com>
-From: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
-In-Reply-To: <20230403202725.GX4085390@mdroper-desk1.amr.corp.intel.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-Subject: Re: [Intel-xe] [PATCH 2/6] drm/xe: Use full_gt batchbuffer
- allocation for media tiles.
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+Subject: Re: [Intel-xe] [PATCH 1/5] drm/i915: Split display locks init from
+ i915_driver_early_probe()
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -63,57 +62,138 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-xe@lists.freedesktop.org
+Cc: "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
+ "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
+On Mon, 03 Apr 2023, Rodrigo Vivi <rodrigo.vivi@intel.com> wrote:
+> On Mon, Apr 03, 2023 at 02:10:26PM -0400, Souza, Jose wrote:
+>> On Mon, 2023-04-03 at 13:03 -0400, Rodrigo Vivi wrote:
+>> > On Mon, Apr 03, 2023 at 09:46:11AM -0700, Jos=C3=A9 Roberto de Souza w=
+rote:
+>> > > No behavior changes here, just adding a function to make clear
+>> > > what locks initialized here are display related or not.
+>> > >=20
+>> > > Cc: intel-gfx@lists.freedesktop.org
+>> > > Signed-off-by: Jos=C3=A9 Roberto de Souza <jose.souza@intel.com>
+>> > > ---
+>> > >  drivers/gpu/drm/i915/i915_driver.c | 23 +++++++++++++++--------
+>> > >  1 file changed, 15 insertions(+), 8 deletions(-)
+>> > >=20
+>> > > diff --git a/drivers/gpu/drm/i915/i915_driver.c b/drivers/gpu/drm/i9=
+15/i915_driver.c
+>> > > index 066d79c2069c4..224cb4cb43335 100644
+>> > > --- a/drivers/gpu/drm/i915/i915_driver.c
+>> > > +++ b/drivers/gpu/drm/i915/i915_driver.c
+>> > > @@ -188,6 +188,20 @@ static void sanitize_gpu(struct drm_i915_privat=
+e *i915)
+>> > >  	}
+>> > >  }
+>> > >=20=20
+>> > > +static void
+>> > > +i915_driver_display_early_probe(struct drm_i915_private *dev_priv)
+>> > > +{
+>> > > +	spin_lock_init(&dev_priv->display.fb_tracking.lock);
+>> > > +	spin_lock_init(&dev_priv->display.wm.dsparb_lock);
+>> > > +	mutex_init(&dev_priv->display.backlight.lock);
+>> > > +
+>> > > +	mutex_init(&dev_priv->display.audio.mutex);
+>> > > +	mutex_init(&dev_priv->display.wm.wm_mutex);
+>> > > +	mutex_init(&dev_priv->display.pps.mutex);
+>> > > +	mutex_init(&dev_priv->display.hdcp.comp_mutex);
+>> > > +	spin_lock_init(&dev_priv->display.dkl.phy_lock);
+>> > > +}
+>> > > +
+>> >=20
+>> > hmmm... I like that, however Jani had indicated in another series [1]
+>> > that he would prefer the wm mutex inside the wm code for instance...
+>> >=20
+>> > So, should we move all of these to their own components instead of this
+>> > move?
+>> >=20
+>> > [1] https://patchwork.freedesktop.org/series/115675/
+>> >=20
+>> > I checked and for a few components it is simple to move them to their
+>> > own init functions. However for a few we would need to create new init
+>> > functions and call them here.
+>> >=20
+>> > Jani, more thoughts?
+>>=20
+>> Forgot to CC you two in the new version: https://patchwork.freedesktop.o=
+rg/series/116039/
+>>=20
+>> display.wm.dsparb_lock is not used anywhere.
+>
+> it currently doesn't exist on drm-intel. Not sure how it appeared in drm-=
+xe...
+> Probably a !fixup needed on initial display patches.
+>
+> Please notice that my series on the link I sent earlier re-introduce it w=
+ith a proper
+> usage. Ville had already reviewed the code, but I hold the push because J=
+ani
+> asked about a better placement.
+>
+> What I tried to say earlier here is that this patch is probably not follo=
+wing
+> Jani's vision on how to organize the initialization of these many
+> locks.
 
-On 2023-04-03 22:27, Matt Roper wrote:
-> On Fri, Mar 31, 2023 at 12:24:15PM +0200, Maarten Lankhorst wrote:
->> This fixes an oops on media tiles, because we don't initialise the
->> bb pool.
->> ---
->>   drivers/gpu/drm/xe/xe_gt.c | 10 +++++++---
->>   1 file changed, 7 insertions(+), 3 deletions(-)
->>
->> diff --git a/drivers/gpu/drm/xe/xe_gt.c b/drivers/gpu/drm/xe/xe_gt.c
->> index bc821f431c45..c7a2e9baabfb 100644
->> --- a/drivers/gpu/drm/xe/xe_gt.c
->> +++ b/drivers/gpu/drm/xe/xe_gt.c
->> @@ -237,6 +237,10 @@ int xe_gt_record_default_lrcs(struct xe_gt *gt)
->>   		struct xe_engine *e, *nop_e;
->>   		struct xe_vm *vm;
->>   		void *default_lrc;
->> +		struct xe_gt *full_gt = gt;
->> +
->> +		if (xe_gt_is_media_type(gt))
->> +			full_gt = xe_find_full_gt(gt);
->>   
->>   		if (gt->default_lrc[hwe->class])
->>   			continue;
->> @@ -262,7 +266,7 @@ int xe_gt_record_default_lrcs(struct xe_gt *gt)
->>   		}
->>   
->>   		/* Prime golden LRC with known good state */
->> -		err = emit_wa_job(gt, e);
->> +		err = emit_wa_job(full_gt, e);
-> If we pass the primary GT here, then we'll take the wrong path in
-> bb_prefetch().  That doesn't actually matter very much (we'll just
-> overestimate the padding needed for media engines, which is safe and
-> something we already do for BCS engines), but we should probably just
-> drop !xe_gt_is_media_type(gt) condition there as part of this patch
-> since it will always be true now.
+That's right.
 
-Yeah makes sense. That check doesn't strictly speaking seem to be 
-needed, so I'm fine with dropping it.
+Audio init should initialize audio.mutex.
 
-We could always request the engine to be specified, but I don't think we 
-really use those batchbuffers beyond initialisation outside of 
-migration/VM_BIND,
+Watermark init should initialize wm.wm_mutex.
 
-which is done on a BCS engine anyway.
+PPS init should initialize pps.mutex.
 
-Can I have your r-b with that check removed?
+Etc.
 
-~Maarten
+Moreover, display.audio should only be accessed by intel_audio.c. Etc.
 
+BR,
+Jani.
+
+
+
+
+
+
+>
+>> Moved display.dkl.phy_lock, will leave the rest to someone to take over.
+>>=20
+>>=20
+>> >=20
+>> > >  /**
+>> > >   * i915_driver_early_probe - setup state not requiring device access
+>> > >   * @dev_priv: device private
+>> > > @@ -213,18 +227,11 @@ static int i915_driver_early_probe(struct drm_=
+i915_private *dev_priv)
+>> > >=20=20
+>> > >  	spin_lock_init(&dev_priv->irq_lock);
+>> > >  	spin_lock_init(&dev_priv->gpu_error.lock);
+>> > > -	spin_lock_init(&dev_priv->display.fb_tracking.lock);
+>> > > -	spin_lock_init(&dev_priv->display.wm.dsparb_lock);
+>> > > -	mutex_init(&dev_priv->display.backlight.lock);
+>> > >=20=20
+>> > >  	mutex_init(&dev_priv->sb_lock);
+>> > >  	cpu_latency_qos_add_request(&dev_priv->sb_qos, PM_QOS_DEFAULT_VALU=
+E);
+>> > >=20=20
+>> > > -	mutex_init(&dev_priv->display.audio.mutex);
+>> > > -	mutex_init(&dev_priv->display.wm.wm_mutex);
+>> > > -	mutex_init(&dev_priv->display.pps.mutex);
+>> > > -	mutex_init(&dev_priv->display.hdcp.comp_mutex);
+>> > > -	spin_lock_init(&dev_priv->display.dkl.phy_lock);
+>> > > +	i915_driver_display_early_probe(dev_priv);
+>> > >=20=20
+>> > >  	i915_memcpy_init_early(dev_priv);
+>> > >  	intel_runtime_pm_init_early(&dev_priv->runtime_pm);
+>> > > --=20
+>> > > 2.40.0
+>> > >=20
+>>=20
+
+--=20
+Jani Nikula, Intel Open Source Graphics Center
