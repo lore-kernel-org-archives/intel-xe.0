@@ -4,30 +4,48 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id CD1DBC76188
-	for <intel-xe@archiver.kernel.org>; Tue,  4 Apr 2023 00:24:17 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 839ECC76188
+	for <intel-xe@archiver.kernel.org>; Tue,  4 Apr 2023 01:17:43 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A95E310E05F;
-	Tue,  4 Apr 2023 00:24:17 +0000 (UTC)
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id D6B5610E05F;
- Tue,  4 Apr 2023 00:24:15 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id A9162AADE3;
- Tue,  4 Apr 2023 00:24:15 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+	by gabe.freedesktop.org (Postfix) with ESMTP id 242CE10E10E;
+	Tue,  4 Apr 2023 01:17:43 +0000 (UTC)
+X-Greylist: delayed 584 seconds by postgrey-1.36 at gabe;
+ Tue, 04 Apr 2023 01:17:41 UTC
+Received: from mail.marcansoft.com (marcansoft.com [212.63.210.85])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 19FFD10E10E
+ for <intel-xe@lists.freedesktop.org>; Tue,  4 Apr 2023 01:17:40 +0000 (UTC)
+Received: from [127.0.0.1] (localhost [127.0.0.1])
+ (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+ key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+ (No client certificate requested)
+ (Authenticated sender: lina@asahilina.net)
+ by mail.marcansoft.com (Postfix) with ESMTPSA id AA28F42463;
+ Tue,  4 Apr 2023 01:07:50 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=asahilina.net;
+ s=default; t=1680570473;
+ bh=NqFfGeRAgetr0RxYEmdjG5bzNmvvZRW80Gx/LVqUOIQ=;
+ h=Date:Subject:To:Cc:References:From:In-Reply-To;
+ b=zZ5YdSlJDGhuIkCOiu1ay0BzfsV55EZ2zTqPImZXSdIcxZawUK3q7fqU7No9AM8V6
+ Jx9eDhaCb9Vq5UU8Qnqs0OWQiJNHw8FihZqgPt8Rfxt3AxzOZXe434N3D21vEq8Hzv
+ ItSMNpxw6WpDfrG8PoNSJ9PBa0q/UDWyL3rB53pEm5Camwu5GHFlCX80wtLSNzdSI5
+ PqkvWMotrtkl6By4FZz7j1HY3AruyeWJOEqCDLMtssgoEdtDkCnw3vgulTY4/ThP64
+ t0TKKoa91PAzQA75u4/ovNeLTfymg8K6Q0CennShwwLmR+00sT+SWR9LIoiLirWM3d
+ ycJiHFpWmXgDQ==
+Message-ID: <50fff1d4-9982-d60d-23e0-66c2020af5bf@asahilina.net>
+Date: Tue, 4 Apr 2023 10:07:48 +0900
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Matthew Brost" <matthew.brost@intel.com>
-Date: Tue, 04 Apr 2023 00:24:15 -0000
-Message-ID: <168056785568.18900.3492654154090348927@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.9.0
+Content-Language: en-US
+To: Matthew Brost <matthew.brost@intel.com>, dri-devel@lists.freedesktop.org, 
+ intel-xe@lists.freedesktop.org
 References: <20230404002211.3611376-1-matthew.brost@intel.com>
+From: Asahi Lina <lina@asahilina.net>
 In-Reply-To: <20230404002211.3611376-1-matthew.brost@intel.com>
-Subject: [Intel-xe] =?utf-8?q?=E2=9C=97_CI=2EPatch=5Fapplied=3A_failure_f?=
- =?utf-8?q?or_Xe_DRM_scheduler_and_long_running_workload_plans?=
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+Subject: Re: [Intel-xe] [RFC PATCH 00/10] Xe DRM scheduler and long running
+ workload plans
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -39,58 +57,75 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
-Cc: intel-xe@lists.freedesktop.org
+Cc: robdclark@chromium.org, airlied@linux.ie, boris.brezillon@collabora.com,
+ daniel@ffwll.ch, christian.koenig@amd.com, faith.ekstrand@collabora.com
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-== Series Details ==
+Hi, thanks for the Cc!
 
-Series: Xe DRM scheduler and long running workload plans
-URL   : https://patchwork.freedesktop.org/series/116054/
-State : failure
+On 04/04/2023 09.22, Matthew Brost wrote:
+> Hello,
+> 
+> As a prerequisite to merging the new Intel Xe DRM driver [1] [2], we
+> have been asked to merge our common DRM scheduler patches first as well
+> as develop a common solution for long running workloads with the DRM
+> scheduler. This RFC series is our first attempt at doing this. We
+> welcome any and all feedback.
+> 
+> This can we thought of as 4 parts detailed below.
+> 
+> - DRM scheduler changes for 1 to 1 relationship between scheduler and
+> entity (patches 1-3)
+> 
+> In Xe all of the scheduling of jobs is done by a firmware scheduler (the
+> GuC) which is a new paradigm WRT to the DRM scheduler and presents
+> severals problems as the DRM was originally designed to schedule jobs on
+> hardware queues. The main problem being that DRM scheduler expects the
+> submission order of jobs to be the completion order of jobs even across
+> multiple entities. This assumption falls apart with a firmware scheduler
+> as a firmware scheduler has no concept of jobs and jobs can complete out
+> of order. A novel solution for was originally thought of by Faith during
+> the initial prototype of Xe, create a 1 to 1 relationship between scheduler
+> and entity. I believe the AGX driver [3] is using this approach and
+> Boris may use approach as well for the Mali driver [4].
+> 
+> To support a 1 to 1 relationship we move the main execution function
+> from a kthread to a work queue and add a new scheduling mode which
+> bypasses code in the DRM which isn't needed in a 1 to 1 relationship.
+> The new scheduling mode should unify all drivers usage with a 1 to 1
+> relationship and can be thought of as using scheduler as a dependency /
+> infligt job tracker rather than a true scheduler.
 
-== Summary ==
+Yup, we're in the exact same situation with drm/asahi, so this is very 
+welcome! We've been using the existing scheduler as-is, but this should 
+help remove some unneeded complexity in this use case.
 
-=== Applying kernel patches on branch 'drm-xe-next' with base: ===
-commit 63b79d536e96e045be4f6c63947c7d42e8dbf600
-Author:     Lucas De Marchi <lucas.demarchi@intel.com>
-AuthorDate: Fri Mar 31 16:09:02 2023 -0700
-Commit:     Lucas De Marchi <lucas.demarchi@intel.com>
-CommitDate: Mon Apr 3 13:41:08 2023 -0700
+Do you want me to pull in this series into our tree and make sure this 
+all works out for us?
 
-    drm/xe: Fix platform order
-    
-    Platform order in enum xe_platform started to be used by some parts of
-    the code, like the GuC/HuC firmware loading logic. The order itself is
-    not very important, but it's better to follow a convention: as was
-    documented in the comment above the enum, reorder the platforms by
-    graphics version. While at it, remove the gen terminology.
-    
-    v2:
-      - Use "graphics version" instead of chronological order (Matt Roper)
-      - Also change pciidlist to follow the same order
-      - Remove "gen" from comments around enum xe_platform
-    
-    Signed-off-by: Lucas De Marchi <lucas.demarchi@intel.com>
-    Reviewed-by: Matt Roper <matthew.d.roper@intel.com>
-    Link: https://lore.kernel.org/r/20230331230902.1603294-1-lucas.demarchi@intel.com
-=== git am output follows ===
-error: patch failed: drivers/gpu/drm/amd/amdgpu/amdgpu_debugfs.c:1489
-error: drivers/gpu/drm/amd/amdgpu/amdgpu_debugfs.c: patch does not apply
-error: patch failed: drivers/gpu/drm/amd/amdgpu/amdgpu_device.c:4627
-error: drivers/gpu/drm/amd/amdgpu/amdgpu_device.c: patch does not apply
-error: patch failed: drivers/gpu/drm/msm/adreno/adreno_device.c:662
-error: drivers/gpu/drm/msm/adreno/adreno_device.c: patch does not apply
-error: patch failed: drivers/gpu/drm/scheduler/sched_main.c:44
-error: drivers/gpu/drm/scheduler/sched_main.c: patch does not apply
-error: patch failed: include/drm/gpu_scheduler.h:473
-error: include/drm/gpu_scheduler.h: patch does not apply
-hint: Use 'git am --show-current-patch' to see the failed patch
-Applying: drm/sched: Convert drm scheduler to use a work queue rather than kthread
-Patch failed at 0001 drm/sched: Convert drm scheduler to use a work queue rather than kthread
-When you have resolved this problem, run "git am --continue".
-If you prefer to skip this patch, run "git am --skip" instead.
-To restore the original branch and stop patching, run "git am --abort".
+I also have a couple bugfixes for drm/sched I need to send out, but I 
+think the rebase/merge with this series should be trivial. I'll send 
+that out this week.
 
+> - Generic messaging interface for DRM scheduler
+> 
+> Idea is to be able to communicate to the submission backend with in band
+> (relative to main execution function) messages. Messages are backend
+> defined and flexable enough for any use case. In Xe we use these
+> messages to clean up entites, set properties for entites, and suspend /
+> resume execution of an entity [5]. I suspect other driver can leverage
+> this messaging concept too as it a convenient way to avoid races in the
+> backend.
+
+We haven't needed this so far (mostly by using fine-grained locking and 
+refcounting all over the place) but I can see it being useful to 
+simplify some of those constructs and maybe avoid potential deadlocks in 
+some places. I'm not sure yet whether we can fully get rid of the main 
+queue refcounting/locking (our completion/error signaling path doesn't 
+map well to DMA fences directly so we still need something there to get 
+from the global GPU completion signaling thread to individual queues) 
+but it might be a step in the right direction at least!
+
+~~ Lina
 
