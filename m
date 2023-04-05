@@ -4,139 +4,62 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3F51EC7619A
-	for <intel-xe@archiver.kernel.org>; Wed,  5 Apr 2023 22:10:53 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id F168FC7619A
+	for <intel-xe@archiver.kernel.org>; Wed,  5 Apr 2023 22:12:46 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1BBB710E5C4;
-	Wed,  5 Apr 2023 22:10:53 +0000 (UTC)
-Received: from mga06.intel.com (mga06b.intel.com [134.134.136.31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5510110E5C4
- for <intel-xe@lists.freedesktop.org>; Wed,  5 Apr 2023 22:10:50 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1680732650; x=1712268650;
- h=date:from:to:cc:subject:message-id:references:
- in-reply-to:mime-version;
- bh=+GTelZl5nBV7CobTmVmROjvdMSbe7LqyFuaNvUCVfIQ=;
- b=mlu7YeS7AiDjGpFQAkMdPM0kNGrel/xVNjbBF8TEkQUhETrXgoXAFMSw
- 5PvSXYYcgPrl68cKqTc9QbcYBoXoY1/zGnb0juOpjNymPvtOTBYt8hMS6
- U8u/3m31zAjRsaxPVMtkzQLymoEIz2WIziaOUs3SrEceucCd/d9gBF+xK
- PpN86njYT5302bskiU4+zfIJOIRuxoTqJlwyBaIsAK/io27dQh3yTrfb0
- hEpQdcHnl6/CLNaecpovOBXcVs+UNlc78DaJCNpJgyR2rebDse3axzSXr
- GUhPLcDwcPbcW2gKbQOQL5MKS3d2Hu01Ywbs6DOtv4yt04Db2e7Wer3gN Q==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10671"; a="405364955"
-X-IronPort-AV: E=Sophos;i="5.98,322,1673942400"; d="scan'208";a="405364955"
-Received: from fmsmga008.fm.intel.com ([10.253.24.58])
- by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 05 Apr 2023 15:10:49 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10671"; a="751412217"
-X-IronPort-AV: E=Sophos;i="5.98,322,1673942400"; d="scan'208";a="751412217"
-Received: from orsmsx602.amr.corp.intel.com ([10.22.229.15])
- by fmsmga008.fm.intel.com with ESMTP; 05 Apr 2023 15:10:49 -0700
-Received: from orsmsx611.amr.corp.intel.com (10.22.229.24) by
- ORSMSX602.amr.corp.intel.com (10.22.229.15) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.21; Wed, 5 Apr 2023 15:10:49 -0700
-Received: from orsmsx610.amr.corp.intel.com (10.22.229.23) by
- ORSMSX611.amr.corp.intel.com (10.22.229.24) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.21; Wed, 5 Apr 2023 15:10:48 -0700
-Received: from orsedg603.ED.cps.intel.com (10.7.248.4) by
- orsmsx610.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.21 via Frontend Transport; Wed, 5 Apr 2023 15:10:48 -0700
-Received: from NAM11-DM6-obe.outbound.protection.outlook.com (104.47.57.172)
- by edgegateway.intel.com (134.134.137.100) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2507.21; Wed, 5 Apr 2023 15:10:48 -0700
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=iePzJikEw9Kp5dGuCXPAE+SwdWiP6ZwdokWE+2p2wWlgkuz139zWNykALotSo5EJF7x1Dv/+eD7sYqmh93fvzuWVDP8Cht3QdD2BqAwPoi2wFk1/VdiIegsxTMIrGedYrX4US4JBH/CWoE1JkHnjx7Z0DFrlVJ1FbXG3pkB+ktAX+r8JK/Ab/DCs3VkbKo5wpLB1Obtklfg7uD+2o3UhNXz3DteAf5/2DOuPxX/J66Oq9pZuEKXlbNQK01Qo1ZjICafTfMjZJijYyVJPIDBfQAxB1x/PItecweEf4Qfu3wvs4+IerGQd5cpKMPn6rl7K6CqXM31SbWsbGFdBcPvcaQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=Z0LDdOPMsb7iy6R57eiVlSTcEGYxV/NnwJvZh+Z3w8I=;
- b=nxvBYbF4Ye/NnmwG+Ho08+40odStBdEx9gCmVdMXT6YICWzGGgCHmBIuggJXElNnKLRedbe61Ur6UmmjrJO195C0j9zHNvNxquLF6hB98P4iAt/36XauVR1ltPpbMAbqY+jL36bj9ST3i6cNXW/Tgo+E7xjNlOUr4plhz4CP4J6iMvsmTLxEVpoBnPvJR30ruJWAFSk58I0QO3WG/hB9DFi5/Bfvwjr9M7cSGQWRQl6TKpuL+cN54lbELBnOFsqauVaPlEy2lS6bUbaQj/V4pdxhA20O8hQqM/mkth1UpHosSAPSDUjO2u7QP69VVXK0twWR3QMkLDCmbkq4X6kfng==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
- dkim=pass header.d=intel.com; arc=none
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=intel.com;
-Received: from CY5PR11MB6139.namprd11.prod.outlook.com (2603:10b6:930:29::17)
- by DS7PR11MB5992.namprd11.prod.outlook.com (2603:10b6:8:73::10) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6254.35; Wed, 5 Apr
- 2023 22:10:41 +0000
-Received: from CY5PR11MB6139.namprd11.prod.outlook.com
- ([fe80::2629:fb12:6221:3745]) by CY5PR11MB6139.namprd11.prod.outlook.com
- ([fe80::2629:fb12:6221:3745%6]) with mapi id 15.20.6277.030; Wed, 5 Apr 2023
- 22:10:41 +0000
-Date: Wed, 5 Apr 2023 15:10:39 -0700
-From: Lucas De Marchi <lucas.demarchi@intel.com>
-To: Matt Roper <matthew.d.roper@intel.com>
-Message-ID: <20230405221039.pvkolcrknfvhot5h@ldmartin-desk2.lan>
-X-Patchwork-Hint: comment
-References: <20230403201702.996400-1-matthew.d.roper@intel.com>
- <20230403201702.996400-3-matthew.d.roper@intel.com>
-Content-Type: text/plain; charset="us-ascii"; format=flowed
-Content-Disposition: inline
-In-Reply-To: <20230403201702.996400-3-matthew.d.roper@intel.com>
-X-ClientProxiedBy: BY3PR10CA0010.namprd10.prod.outlook.com
- (2603:10b6:a03:255::15) To CY5PR11MB6139.namprd11.prod.outlook.com
- (2603:10b6:930:29::17)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A9B6C10E5C4;
+	Wed,  5 Apr 2023 22:12:46 +0000 (UTC)
+Received: from mail-ej1-x633.google.com (mail-ej1-x633.google.com
+ [IPv6:2a00:1450:4864:20::633])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id DCEDF10E5C4
+ for <intel-xe@lists.freedesktop.org>; Wed,  5 Apr 2023 22:12:44 +0000 (UTC)
+Received: by mail-ej1-x633.google.com with SMTP id
+ a640c23a62f3a-947f54f67acso7790166b.1
+ for <intel-xe@lists.freedesktop.org>; Wed, 05 Apr 2023 15:12:44 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=ffwll.ch; s=google; t=1680732763; x=1683324763;
+ h=in-reply-to:content-disposition:mime-version:references:message-id
+ :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+ bh=JPbLgkVjw/MR2xQbipjIjkRpIDp1Zwi+KbhZRaU1l1c=;
+ b=Xaj+dwtLrWWmXXl6Sq9YyrvLhkgAN1IZLnK5hqPBDh4o5WnqJnYU+7i+9VhGZmGPPL
+ 4y3TfmUugqWIM0pMaYomoTxrXNsW1CYLYz/2NPWcxqmLubp1jTiYUIHn0pIA1r+gR6jJ
+ DN/Pl4zcup870ZTzgtVm96vFpWbCBChP2zK84=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20210112; t=1680732763; x=1683324763;
+ h=in-reply-to:content-disposition:mime-version:references:message-id
+ :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+ :message-id:reply-to;
+ bh=JPbLgkVjw/MR2xQbipjIjkRpIDp1Zwi+KbhZRaU1l1c=;
+ b=Gho3YuMaMiGmbsP9pQeYkwtRtFVOho8lwv7Z/DOoc2M0R2noXFsMebEhCB4hVmsgUg
+ /kP+/Jr3ivkOdtqlAZi20onId1nKPM5QU1SlKSCNN6fI3Dn4MT6ZYum439YVsawXQmBv
+ ADoZArlPnJI2QMW1xg6aLq58ATR25qJJeNMeKm3XRCyYvGuG7qJtuBpnUET7DFqPuhNu
+ Esgv67Ninw6GrdxQ6vHqIpTjkrn8+xWZNun23KnGDPOOhdWceNdQg2E7V+oc8S0ratce
+ NAYJmfvtE61TvrLPZ9aq5sD7BEdrNYqlQQYYpRDuVGlAXDJJulD4aapKT+7ln8ScuTX/
+ p3OA==
+X-Gm-Message-State: AAQBX9cxbX+vOSNXM3m5HdgdUWhPy5mUvFBI+eZcTMp9HcahFSMFZT05
+ uQX47Q5XV4tOkJiBHlnS0Gm2EA==
+X-Google-Smtp-Source: AKy350YhOCJAiklL96IbyGawGmzRS6zBffyFXXfnJ1qyBBZHx4OJ8EKlU76n5iS0lcJ2LrP7SG9bSQ==
+X-Received: by 2002:a17:906:51cd:b0:931:5145:c51f with SMTP id
+ v13-20020a17090651cd00b009315145c51fmr2781350ejk.4.1680732763060; 
+ Wed, 05 Apr 2023 15:12:43 -0700 (PDT)
+Received: from phenom.ffwll.local (212-51-149-33.fiber7.init7.net.
+ [212.51.149.33]) by smtp.gmail.com with ESMTPSA id
+ ae14-20020a17090725ce00b00947a939f6e0sm7564328ejc.77.2023.04.05.15.12.42
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Wed, 05 Apr 2023 15:12:42 -0700 (PDT)
+Date: Thu, 6 Apr 2023 00:12:40 +0200
+From: Daniel Vetter <daniel@ffwll.ch>
+To: Jani Nikula <jani.nikula@intel.com>
+Message-ID: <ZC3yWN1FSl+dPciF@phenom.ffwll.local>
+References: <20230405153920.926583-1-jani.nikula@intel.com>
+ <87mt3mz5v5.fsf@intel.com>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: CY5PR11MB6139:EE_|DS7PR11MB5992:EE_
-X-MS-Office365-Filtering-Correlation-Id: 7e2fe95b-3fc9-49d8-bec0-08db3622984c
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: ioGRNzFRtMM14qa7PIHTQJhcc0P9aOeRiQNxGaMqdiEQSf1/OfysYLbxkP3m1ktc0EecHV1NWZZtpAy1Tn7SwHCVqd7hv86Dafox7M4YeYPkNHOG00RLK7qNwNK9AdjierVugdDDjpicVCgxeLwmPG52/T8w1aX8T6H1UKZauXggU27LP6UjgNt5hz0/+6wXWJ+3bos/DrphursGWW9jv7xDaYd32cLTdvWx79l4IgZKGy7w/q0h0dtInjariAo+NoWGFjJGW6Fqwk/GN+F2BYBRAzIupssxPHxQMh4/Ul5ezQcjcMVbIEqDTQG/V576v4HuXwY9pURXk3nRW4Z+YIfV5z/CHrncnU3inBEIYvv+tX/bRy3sm4h7x95xdol1FD2epJsfGrC12mHslecw9QAiYMyA6blW6i1KsTy0U6pRi8j0Vn0m8R1NCS5JIhsASkKf6QIA3dVulUFYcX6kW4x8C/xxThM/EkUmctGmTwbNgfx2kyK1sQcQc0o430fcU0ispsNQVDiq/vcsTsMtNnNy/5Tr9K+oKUn90Qx1KSYamRAQl30nqYdABrDm2Z36
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:CY5PR11MB6139.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230028)(39860400002)(396003)(376002)(136003)(346002)(366004)(451199021)(1076003)(6512007)(26005)(2906002)(9686003)(6506007)(4744005)(186003)(83380400001)(82960400001)(6486002)(5660300002)(6862004)(8936002)(6636002)(38100700002)(36756003)(478600001)(316002)(41300700001)(66946007)(4326008)(86362001)(66556008)(8676002)(66476007);
- DIR:OUT; SFP:1102; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?RN5yv5OuF0EeS+fwLoJQlZFiMcLLRzU6m7L2SAzE1RKlCXS1TQbYcBUW8aw8?=
- =?us-ascii?Q?GVowgR+nTbUyAl2iQpp9UqtaKlRRp9441GCM3q91YoQ7BQou66LQb7fLp9Pd?=
- =?us-ascii?Q?OxvmFD5+ImK0ICQ3tyVXTrXO7jDVkwO0TsbhDcfYp4REslNZQ5pEJHVujE4k?=
- =?us-ascii?Q?S7cak+RRi5y/80TyQoZcodePEgEbQR5FI8UARWNI4PrS23Hln/JNFL3XzhPb?=
- =?us-ascii?Q?/p8AUvwrOan8o4wB5J9zvIJUU3e20H7rDS7jxBhpA0SioaYLvDcXmn6zSbij?=
- =?us-ascii?Q?h5YWBLMMQhQZFlDIIUdyFgfVP+OXg9zP1ODVqCZVPXQ5VlirT2B8wo6stp9+?=
- =?us-ascii?Q?P1vGs9rSm2sd4ImYCBOeh36lb4jS0JbmUVydPAKGfWFOfRY6Txl4cpAvxwa3?=
- =?us-ascii?Q?vGIOzCb6AKq3m4hdFjKeaCzqP/p/sf8aaoZJFBw7K+LikVffd/r8st0cLMT4?=
- =?us-ascii?Q?5ML7Nksb1yIR0O99rxw/O5+SdgJOk5hRUteho6l5zHvBwZult84KmCSIWs+m?=
- =?us-ascii?Q?8t7KFksxbau0E5sqQudQuGcB84FkBq5ZzJT6KiDMvRmonUW0cRU4mWwqeh7l?=
- =?us-ascii?Q?i1ySIyqK36zjl7lzs8GP4co+50IyUW+ajwkSAMAElvUW5E8hEfdiPCdoYG5n?=
- =?us-ascii?Q?V/e+DKwizdwMamZ7h8ZVEUOqSXFxF5TKxg9E4KXOXBzo/85ecFj5RbZcC6RJ?=
- =?us-ascii?Q?dVSwPVxnTRloM4Ps7XLUk1mfyXa3XzNjJhoIaXP5UqqQwBbTU2FFXxjlzzLb?=
- =?us-ascii?Q?vnxbQftJdm378tuSF2A0hL0ZxyAC7qviEywPJy0jgVhV9EyfbLyz+GXhh9zK?=
- =?us-ascii?Q?kscBzi21eI//qlD3V/0uJeb6D1kgRLd2DdQFz0WlYJHNXO9Z5OiEXtS1XwQm?=
- =?us-ascii?Q?NdGAo7U7LLdtsC/EQ+PuP6dj5hog9nN2cWU2+YnH1l+oM8udTx2u3H4xF5Wd?=
- =?us-ascii?Q?dgMUi7KUMwSdUj3fnhRkKhB8TUOjOsP3wg9ac0/B+IKgeRpX1HbeXIH5SzwJ?=
- =?us-ascii?Q?ekoqiYDCWI8j8U0OyGtuuhveKRkqu4vRXx8pH55D28kuMhp4W/GYRVnJRqgB?=
- =?us-ascii?Q?frzHoTg1MF5wAqGtNqsnrClHDU7Z4l9i2DIkOw1vTR/ZrC+PpDFWIZV1MiTW?=
- =?us-ascii?Q?L/musMbsa4cUtDDaNZkcxqrzXJIElBRtWRxDDXpbz0YJ8EUJovOwWiezyhn1?=
- =?us-ascii?Q?Yu5Ns6aF2DBEbCDVRK1GNqQiDzDYRtGNyf2h1GAhZUzh6mMyV64GfrH/35f1?=
- =?us-ascii?Q?hLlKZSPq0IcvFK0UVeRDkrMd49Lrth6k3IZNsJJmCMxl2TfuGXJSyliw27kO?=
- =?us-ascii?Q?4un5eY+afx3w+p/Fo7weWLD5tQegql7lgJ2r8xABHBp730VrmA39UTLRcYTL?=
- =?us-ascii?Q?74jHt/ttdlO0eCOrcolfKTguakR6nr1lVA2AcvnTPy/cMs+HN1UWacEmjk8q?=
- =?us-ascii?Q?Iz0GvHadjkczIX+bT/HrzragzptEz8LHxqAHClSQNn9QNGS55AIw3YTnoJ6o?=
- =?us-ascii?Q?mC6InZtYjwuD1aXCH19HP0XL1paUnmkQGm9XfSCy5e+d5mxkD0z7wLf9egkJ?=
- =?us-ascii?Q?ZDLjmFk/Q4vgSNspTtFNgeWbrqUzRY3IYjAbd27QbrgF8OrhHkbK4Dvg9tX3?=
- =?us-ascii?Q?Ug=3D=3D?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: 7e2fe95b-3fc9-49d8-bec0-08db3622984c
-X-MS-Exchange-CrossTenant-AuthSource: CY5PR11MB6139.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 05 Apr 2023 22:10:41.6549 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: OsqHGPVsGgypjnKWl8igeYxbfu2gjI/xQqmGzcWVTZzOMeB+wZvD0AkQxnjGa9rIJgP1xFzuskuKrNQlekpVcDxU2ofCJHDEdJgMUj2OS/A=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DS7PR11MB5992
-X-OriginatorOrg: intel.com
-Subject: Re: [Intel-xe] [PATCH 2/6] drm/xe: Set require_force_probe in each
- platform's description
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <87mt3mz5v5.fsf@intel.com>
+X-Operating-System: Linux phenom 6.1.0-7-amd64 
+Subject: Re: [Intel-xe] [PATCH 00/21] xe & i915 display integration ifdef
+ cleanups
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -148,27 +71,113 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-xe@lists.freedesktop.org
+Cc: tvrtko.ursulin@linux.intel.com, joonas.lahtinen@linux.intel.com,
+ lucas.demarchi@intel.com, daniel@ffwll.ch, rodrigo.vivi@intel.com,
+ Dave Airlie <airlied@gmail.com>, intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Mon, Apr 03, 2023 at 01:16:58PM -0700, Matt Roper wrote:
->Set require_force_probe explicitly in each platform's description
->structure rather than embedding it within the FOO_FEATURES macros.  Even
->though we expect all platforms currently supported by the Xe driver to
->be under force_probe protection, this will help prepare for some other
->upcoming restructuring.
->
->Signed-off-by: Matt Roper <matthew.d.roper@intel.com>
+On Wed, Apr 05, 2023 at 06:49:34PM +0300, Jani Nikula wrote:
+> On Wed, 05 Apr 2023, Jani Nikula <jani.nikula@intel.com> wrote:
+> > Hey all, here's my first batch of #ifdef cleanups for xe and i915
+> > display integration.
+> >
+> > Many of the patches in this series break the build, and will get fixed
+> > by subsequent changes. It's pretty much unavoidable as many of the
+> > changes are standalone to i915, and others are fixups.
+> >
+> > This is pretty straightforward stuff for starters, really. The idea is
+> > that in the next rebase, the drm/i915 changes here go *before* any of
+> > the current i915 changes.
+> >
+> > Adding the static inline stubs for xe build in i915 (the !I915 parts) is
+> > very helpful in not sprinkling #ifdefs all over the place. A lot of the
+> > time, the compiler is able to just compile out lots and lots of
+> > unreachable static functions and data without explicitly conditionally
+> > building them out. We can leave a lot of it out from "drm/i915/display:
+> > Remaining changes to make xe compile". This is crucial especially while
+> > upstreaming by keeping the changes to i915 minimal.
+> >
+> > Also, I think the conditional build and stubs in headers is the least
+> > intrusive way of going about this before xe is actually upstream, and it
+> > also follows the usual patterns for CONFIG_FOO=n code paths, albeit I915
+> > is defined in the Makefile, not in kconfig.
+> 
+> To this end, would like to get up front acks for the approach from drm
+> maintainers and my fellow i915 maintainers.
+> 
+> Are the drm/i915 patches (i.e. all the ones that are not fixups) in the
+> series okay by you for the xe and i915 display integration?
 
-while you are touching this...
+Ack on these patches. I think for the overall approach of compiling
+i915/display twice there might be some risk with having duplicated
+symbols. Did you try to build-in both drivers and see what all breaks?
 
-#define DEV_INFO_FOR_EACH_FLAG(func) \
-         func(require_force_probe); \
-         func(is_dgfx); \
-         /* Keep has_* in alphabetical order */ \
+Since we shouldn't have EXPORT_SYMBOL on gen12+ anymore but only
+component.c and aux-bus to glue things together across devices/drivers I
+dont see an issue at least with modules. The gen5 ips stuff is I think the
+only EXPORT_SYMBOL/get_symbol horror show.
+-Daniel
 
-maybe in another patch just go ahead and remove the macro that is
-pratically not used?
+> 
+> If yes, would you also be okay with merging them to upstream i915 before
+> xe is actually submitted upstream, or only as part of the xe (display)
+> submission?
+> 
+> 
+> Thanks,
+> Jani.
+> 
+> 
+> >
+> > BR,
+> > Jani.
+> >
+> >
+> >
+> > Jani Nikula (21):
+> >   fixup! drm/i915/display: Set DISPLAY_MMIO_BASE to 0 for xe
+> >   drm/i915: define I915 during i915 driver build
+> >   drm/i915/display: add I915 conditional build to intel_lvds.h
+> >   fixup! drm/xe/display: Implement display support
+> >   drm/i915/display: add I915 conditional build to hsw_ips.h
+> >   fixup! drm/i915/display: Remaining changes to make xe compile
+> >   fixup! drm/xe/display: Implement display support
+> >   drm/i915/display: add I915 conditional build to i9xx_plane.h
+> >   fixup! drm/i915/display: Remaining changes to make xe compile
+> >   fixup! drm/i915/display: Remaining changes to make xe compile
+> >   drm/i915/display: add I915 conditional build to intel_lpe_audio.h
+> >   fixup! drm/i915/display: Remaining changes to make xe compile
+> >   drm/i915/display: add I915 conditional build to intel_pch_refclk.h
+> >   fixup! drm/i915/display: Remaining changes to make xe compile
+> >   drm/i915/display: add I915 conditional build to intel_pch_display.h
+> >   drm/i915/display: add I915 conditional build to intel_sprite.h
+> >   fixup! drm/i915/display: Remaining changes to make xe compile
+> >   fixup! drm/xe/display: Implement display support
+> >   drm/i915/display: add I915 conditional build to intel_overlay.h
+> >   fixup! drm/i915/display: Remaining changes to make xe compile
+> >   fixup! drm/xe/display: Implement display support
+> >
+> >  drivers/gpu/drm/i915/display/hsw_ips.h        | 35 +++++++++++
+> >  drivers/gpu/drm/i915/display/i9xx_plane.h     | 23 +++++++
+> >  drivers/gpu/drm/i915/display/intel_cdclk.c    |  4 +-
+> >  drivers/gpu/drm/i915/display/intel_crtc.c     |  6 +-
+> >  drivers/gpu/drm/i915/display/intel_display.c  | 15 +----
+> >  .../gpu/drm/i915/display/intel_lpe_audio.h    | 20 ++++--
+> >  drivers/gpu/drm/i915/display/intel_lvds.h     | 19 ++++++
+> >  drivers/gpu/drm/i915/display/intel_overlay.h  | 35 +++++++++++
+> >  .../gpu/drm/i915/display/intel_pch_display.h  | 63 +++++++++++++++----
+> >  .../gpu/drm/i915/display/intel_pch_refclk.h   | 25 ++++++--
+> >  drivers/gpu/drm/i915/display/intel_sprite.c   | 20 +-----
+> >  drivers/gpu/drm/i915/display/intel_sprite.h   |  8 +++
+> >  drivers/gpu/drm/xe/Makefile                   |  2 -
+> >  .../gpu/drm/xe/compat-i915-headers/i915_drv.h |  7 +--
+> >  14 files changed, 211 insertions(+), 71 deletions(-)
+> 
+> -- 
+> Jani Nikula, Intel Open Source Graphics Center
 
-Lucas De Marchi
+-- 
+Daniel Vetter
+Software Engineer, Intel Corporation
+http://blog.ffwll.ch
