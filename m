@@ -4,47 +4,30 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 853BDC76188
-	for <intel-xe@archiver.kernel.org>; Wed,  5 Apr 2023 17:08:23 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8752DC761AF
+	for <intel-xe@archiver.kernel.org>; Wed,  5 Apr 2023 17:10:27 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 37D6510E1EE;
-	Wed,  5 Apr 2023 17:08:23 +0000 (UTC)
-Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 783B610E1EE
- for <intel-xe@lists.freedesktop.org>; Wed,  5 Apr 2023 17:08:21 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1680714501; x=1712250501;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=Y1FaW9NwqcPdUuzoVERhU8i7uB11gnMPTPWWwT4JuBQ=;
- b=PIroCIOHZ9S1dFdl5x57azbIsAKn35r3MxUGRRh7xNY328k/r5KN3DS3
- dXCaFhO5FBqLof0J8tlfrHDnC/R58uB8CkpJ5Z9JcYUfWSnIf1qvGQguj
- qBftdkk9vkzHRT4PIdSUiHj5VcoZGP0KdooZYy8ZQMvYViEd8MJPVdAFC
- jrA26L++Qmfrdu6hlfWvuvE2ryCeZmUBERUY8QMw7x8yAJ4R59j3P4HkZ
- ua9BFRRbUTUEeOY1LSAKbBk0Ay30zHYRgnusYBYgivXG0goVViOjpeo4Q
- TMUlhLdogCnehkmlPMcygGBRdjl+T1x/NTWaKE7sdkZ1ZZsYNxPwyoUuH Q==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10671"; a="407599480"
-X-IronPort-AV: E=Sophos;i="5.98,321,1673942400"; d="scan'208";a="407599480"
-Received: from fmsmga006.fm.intel.com ([10.253.24.20])
- by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 05 Apr 2023 10:08:19 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10671"; a="932896576"
-X-IronPort-AV: E=Sophos;i="5.98,321,1673942400"; d="scan'208";a="932896576"
-Received: from dut731-pvc.fm.intel.com ([10.1.40.114])
- by fmsmga006-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 05 Apr 2023 10:08:19 -0700
-From: "Chang, Bruce" <yu.bruce.chang@intel.com>
-To: intel-xe@lists.freedesktop.org
-Date: Wed,  5 Apr 2023 17:08:15 +0000
-Message-Id: <20230405170815.524853-1-yu.bruce.chang@intel.com>
-X-Mailer: git-send-email 2.25.1
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5AE5010EA1F;
+	Wed,  5 Apr 2023 17:10:27 +0000 (UTC)
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 48F6110EA2F;
+ Wed,  5 Apr 2023 17:10:25 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 412B4A9932;
+ Wed,  5 Apr 2023 17:10:25 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: 8bit
-Subject: [Intel-xe] [PATCH] drm/xe: follow up on the patch to fix pvc unload
- issue
+Content-Transfer-Encoding: 7bit
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Chang, Bruce" <yu.bruce.chang@intel.com>
+Date: Wed, 05 Apr 2023 17:10:25 -0000
+Message-ID: <168071462526.14696.5553864118282149407@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20230405170815.524853-1-yu.bruce.chang@intel.com>
+In-Reply-To: <20230405170815.524853-1-yu.bruce.chang@intel.com>
+Subject: [Intel-xe] =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_f?=
+ =?utf-8?q?or_drm/xe=3A_follow_up_on_the_patch_to_fix_pvc_unload_issue?=
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -56,78 +39,37 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Cc: Lucas De Marchi <lucas.demarchi@intel.com>, "Chang,
- Bruce" <yu.bruce.chang@intel.com>, Rodrigo Vivi <rodrigo.vivi@intel.com>
+Reply-To: intel-xe@lists.freedesktop.org
+Cc: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-created xe_ttm_sys_mgr.h as suggested by Lucas
-also fixed a compile warning found by Lucas
+== Series Details ==
 
-Cc: Lucas De Marchi <lucas.demarchi@intel.com>
-Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
-Signed-off-by: Bruce Chang <yu.bruce.chang@intel.com>
----
- drivers/gpu/drm/xe/xe_device.c      |  1 +
- drivers/gpu/drm/xe/xe_device.h      |  1 -
- drivers/gpu/drm/xe/xe_ttm_sys_mgr.c |  1 +
- drivers/gpu/drm/xe/xe_ttm_sys_mgr.h | 13 +++++++++++++
- 4 files changed, 15 insertions(+), 1 deletion(-)
- create mode 100644 drivers/gpu/drm/xe/xe_ttm_sys_mgr.h
+Series: drm/xe: follow up on the patch to fix pvc unload issue
+URL   : https://patchwork.freedesktop.org/series/116164/
+State : success
 
-diff --git a/drivers/gpu/drm/xe/xe_device.c b/drivers/gpu/drm/xe/xe_device.c
-index 4fb9aff27686..85caf81ae686 100644
---- a/drivers/gpu/drm/xe/xe_device.c
-+++ b/drivers/gpu/drm/xe/xe_device.c
-@@ -27,6 +27,7 @@
- #include "xe_pcode.h"
- #include "xe_pm.h"
- #include "xe_query.h"
-+#include "xe_ttm_sys_mgr.h"
- #include "xe_ttm_stolen_mgr.h"
- #include "xe_vm.h"
- #include "xe_vm_madvise.h"
-diff --git a/drivers/gpu/drm/xe/xe_device.h b/drivers/gpu/drm/xe/xe_device.h
-index d9d1b09a8e38..d277f8985f7b 100644
---- a/drivers/gpu/drm/xe/xe_device.h
-+++ b/drivers/gpu/drm/xe/xe_device.h
-@@ -116,5 +116,4 @@ static inline bool xe_device_has_flat_ccs(struct xe_device *xe)
- }
- 
- u32 xe_device_ccs_bytes(struct xe_device *xe, u64 size);
--int xe_ttm_sys_mgr_init(struct xe_device *xe);
- #endif
-diff --git a/drivers/gpu/drm/xe/xe_ttm_sys_mgr.c b/drivers/gpu/drm/xe/xe_ttm_sys_mgr.c
-index cf5f4f73d4dc..9c2f7d4936d8 100644
---- a/drivers/gpu/drm/xe/xe_ttm_sys_mgr.c
-+++ b/drivers/gpu/drm/xe/xe_ttm_sys_mgr.c
-@@ -12,6 +12,7 @@
- 
- #include "xe_bo.h"
- #include "xe_gt.h"
-+#include "xe_ttm_sys_mgr.h"
- 
- struct xe_ttm_sys_node {
- 	struct ttm_buffer_object *tbo;
-diff --git a/drivers/gpu/drm/xe/xe_ttm_sys_mgr.h b/drivers/gpu/drm/xe/xe_ttm_sys_mgr.h
-new file mode 100644
-index 000000000000..3d70c452a660
---- /dev/null
-+++ b/drivers/gpu/drm/xe/xe_ttm_sys_mgr.h
-@@ -0,0 +1,13 @@
-+/* SPDX-License-Identifier: MIT */
-+/*
-+ *  * Copyright © 2022 Intel Corporation
-+ *   */
-+
-+#ifndef _XE_TTM_SYS_MGR_H_
-+#define _XE_TTM_SYS_MGR_H_
-+
-+struct xe_device;
-+
-+int xe_ttm_sys_mgr_init(struct xe_device *xe);
-+
-+#endif
--- 
-2.25.1
+== Summary ==
+
+=== Applying kernel patches on branch 'drm-xe-next' with base: ===
+commit acfd6dbdcdf8f27d6357580683de8fce9222d2f3
+Author:     Matthew Brost <matthew.brost@intel.com>
+AuthorDate: Tue Apr 4 21:15:59 2023 -0700
+Commit:     Matthew Brost <matthew.brost@intel.com>
+CommitDate: Wed Apr 5 08:46:04 2023 -0700
+
+    drm/xe: Use Xe BO pin / unpin functions for FB pin
+    
+    Need to use XE BO pin / unpin for suspend / resume to work properly.
+    Part this fix too is too allow xe_bo_pin to be called more than once.
+    
+    v2:
+      - (Matthew Auld) fixup unpin
+    
+    Signed-off-by: Matthew Brost <matthew.brost@intel.com>
+    Reviewed-by: Matthew Auld <matthew.auld@intel.com>
+=== git am output follows ===
+Applying: drm/xe: follow up on the patch to fix pvc unload issue
+
 
