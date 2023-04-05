@@ -4,54 +4,48 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2BD08C7619A
-	for <intel-xe@archiver.kernel.org>; Wed,  5 Apr 2023 15:31:21 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6C326C76188
+	for <intel-xe@archiver.kernel.org>; Wed,  5 Apr 2023 15:39:31 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E62A110E9EF;
-	Wed,  5 Apr 2023 15:31:20 +0000 (UTC)
-Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9159610E9EF
- for <intel-xe@lists.freedesktop.org>; Wed,  5 Apr 2023 15:31:19 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4592F10E9FE;
+	Wed,  5 Apr 2023 15:39:31 +0000 (UTC)
+Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id AEAE310EA0F
+ for <intel-xe@lists.freedesktop.org>; Wed,  5 Apr 2023 15:39:29 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1680708679; x=1712244679;
- h=message-id:date:mime-version:subject:to:cc:references:
- from:in-reply-to:content-transfer-encoding;
- bh=VDVirRtbLWsjQkjgC96YP6oWSTpnoTq4q96qFXYBsec=;
- b=PnFU+0RB+V/+OMVgtKm1IFZQIZi9abxNo5b24PhZIHftg7Oh82si1BiD
- HJKSqg31wH7/vZkXskqSLXXU8vW/Z1csvdWTp3D/fVIvVRUdiBGXX4jUC
- J9HMPWp0upECqijr3FubOOPhjxrUcFjickIB2emBAQd84cq880LnQExIu
- FjYvh0TgN0QTGR5eEzebhGV9Tm0UceiQb4SWx9ty1faWUSXsi4sqIhRc8
- 3qAVUUdLTBwbVnum5xP37tUXEDrqHbDLvqVg9oEiYBFpTAS7HeQy8+SWn
- r63kFBp3l5jusypmGe3O3v83uWvKwmM0cBu/pyQVSSM7cBVjE//AunLXW Q==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10671"; a="326522113"
-X-IronPort-AV: E=Sophos;i="5.98,321,1673942400"; d="scan'208";a="326522113"
-Received: from fmsmga005.fm.intel.com ([10.253.24.32])
- by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 05 Apr 2023 08:31:18 -0700
+ t=1680709169; x=1712245169;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=gAE8lVJz6vHH0RJpgygE8Gl+3IdYvzH7z+ifnPfmW+E=;
+ b=Xu1OzXnMnR9Xj4i2eF8RT6N6570in/VnTOHJ0f+oXi0hUUnOVy0ElLxk
+ eD634P5nUWsQ9Jl540m8yzR63OuV7Knnx6RwheVVo1Nic84mAScUHFZPC
+ yu98JcmI9cj3UJcFUgK62q47EoKQ110NulwOtN8EywIhxCyGtkET+i5Xs
+ 5UhktoOeqqe5Kdc3MRyohXjbz+m0P1ef49CbSdqIxoLw/L4FV9XLDuWpI
+ hJtLSx90n8PdKglIo7jUQ+f4sYsRwaA8aua7ohPc8VDY3/gvYtI0lNbXI
+ rBUEkKjTPPvrHOdlrChetnQJKNIFtIavZGOu++idoM6/KVqkAmLkv/+uR Q==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10671"; a="341210758"
+X-IronPort-AV: E=Sophos;i="5.98,321,1673942400"; d="scan'208";a="341210758"
+Received: from fmsmga008.fm.intel.com ([10.253.24.58])
+ by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 05 Apr 2023 08:39:28 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10671"; a="1016505907"
-X-IronPort-AV: E=Sophos;i="5.98,321,1673942400"; d="scan'208";a="1016505907"
-Received: from dcolomor-mobl1.ger.corp.intel.com (HELO [10.249.33.69])
- ([10.249.33.69])
- by fmsmga005-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 05 Apr 2023 08:31:17 -0700
-Message-ID: <5ef57cd7-0c59-20b0-ba58-ad415c31963b@linux.intel.com>
-Date: Wed, 5 Apr 2023 17:31:15 +0200
+X-IronPort-AV: E=McAfee;i="6600,9927,10671"; a="751295588"
+X-IronPort-AV: E=Sophos;i="5.98,321,1673942400"; d="scan'208";a="751295588"
+Received: from dlemiech-mobl.ger.corp.intel.com (HELO localhost)
+ ([10.252.43.158])
+ by fmsmga008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 05 Apr 2023 08:39:26 -0700
+From: Jani Nikula <jani.nikula@intel.com>
+To: intel-xe@lists.freedesktop.org
+Date: Wed,  5 Apr 2023 18:38:59 +0300
+Message-Id: <20230405153920.926583-1-jani.nikula@intel.com>
+X-Mailer: git-send-email 2.39.2
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.8.0
-Content-Language: en-US
-To: Matthew Brost <matthew.brost@intel.com>
-References: <20230404014228.3738347-1-matthew.brost@intel.com>
- <fc2de32e-9774-e5b0-3b43-e0e3eab74241@linux.intel.com>
- <ZCw6lTSIFd9FAaoC@DUT025-TGLU.fm.intel.com>
-From: =?UTF-8?Q?Thomas_Hellstr=c3=b6m?= <thomas.hellstrom@linux.intel.com>
-In-Reply-To: <ZCw6lTSIFd9FAaoC@DUT025-TGLU.fm.intel.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
 Content-Transfer-Encoding: 8bit
-Subject: Re: [Intel-xe] [PATCH v5 0/8] Port Xe to use GPUVA and implement
- NULL VM binds
+Subject: [Intel-xe] [PATCH 00/21] xe & i915 display integration ifdef
+ cleanups
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -63,159 +57,80 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-xe@lists.freedesktop.org
+Cc: tvrtko.ursulin@linux.intel.com, Jani Nikula <jani.nikula@intel.com>,
+ joonas.lahtinen@linux.intel.com, lucas.demarchi@intel.com, daniel@ffwll.ch,
+ rodrigo.vivi@intel.com
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Hi,
+Hey all, here's my first batch of #ifdef cleanups for xe and i915
+display integration.
 
-On 4/4/23 16:56, Matthew Brost wrote:
-> On Tue, Apr 04, 2023 at 03:20:47PM +0200, Thomas Hellström wrote:
->> Hi, Matthew,
->>
->>
->> On 4/4/23 03:42, Matthew Brost wrote:
->>> GPUVA is common code written primarily by Danilo with the idea being a
->>> common place to track GPUVAs (VMAs in Xe) within an address space (VMs
->>> in Xe), track all the GPUVAs attached to GEMs, and a common way
->>> implement VM binds / unbinds with MMAP / MUNMAP semantics via creating
->>> operation lists. All of this adds up to a common way to implement VK
->>> sparse bindings.
->>>
->>> This series pulls in the GPUVA code written by Danilo plus some small
->>> fixes by myself into 1 large patch. Once the GPUVA makes it upstream, we
->>> can rebase and drop this patch. I believe what lands upstream should be
->>> nearly identical to this patch at least from an API perspective.
->>>
->>> The last three patches port Xe to GPUVA and add support for NULL VM binds
->>> (writes dropped, read zero, VK sparse support). An example of the
->>> semantics of this is below.
->> Going through thew new code in xe_vm.c I'm still concerned about our error
->> handling. In the cases we attempt to handle, for example an -ENOMEM, the
->> sync ioctl appears to be doing a fragile unwind whereas the async worker
->> puts the VM in an error state that can only be exited by a RESTART ioctl
->> (pls correct me if I'm wrong here). We could of course do the same for sync
->> ioctls, but I'm still wondering what happens if, for example a MAP operation
->> on a dual-gt VM fails after binding on the first gt?
->>
-> So sync mode we don't allow advanced binds (more than 1 map operation)
-> but I failed to take into account dual-gt VMs, yea that might be an
-> issue foe sync binds. This should just for work async though. Maybe we
-> depreciate the sync mode except for unbinds when in an error state.
+Many of the patches in this series break the build, and will get fixed
+by subsequent changes. It's pretty much unavoidable as many of the
+changes are standalone to i915, and others are fixups.
 
-I think we need to separate this from sync/async and what's in the 
-current code. I've started to dig into the Nouveau code a bit to get 
-things right in the async VM_BIND document, but the error handling 
-should really be agnostic as to whether we're async or not. We should be 
-able to run RESTART also after a failing sync VM_BIND if the decision is 
-to put the VM in a recoverable error state rather than to clean 
-everything up after each failure.
+This is pretty straightforward stuff for starters, really. The idea is
+that in the next rebase, the drm/i915 changes here go *before* any of
+the current i915 changes.
 
->
->> I think we need to clearly define the desired behaviour in the uAPI and then
->> make sure we do the necessary changes with that in mind, and Even if I
->> prefer the !async_worker solution this can be don orthogonally to that
->> discussion. Ideally I'd see we find a way to *not* put the VM  in an error
->> state like this, and I figure there are various ways to aid in this, for
->> example keeping a progress cookie in the user-space data or deferring any
->> failed bind operations to the next rebind worker or exec, but in the end I
->> think this boils down to allocating all needed resources up-front for
->> operations or groups of operations that are not allowed to fail once we
->> start to modify the page-tables.
->>
-> Agree on clearly defined uAPI behavior, I'm not sure if I have answer
-> for the error handling. Personally I like the stop / restart mechanism
-> as it essentially mean binds never can fail with a well behavied user.
-> wrt to Allocating up front, I think that is what Nouveau is doing? We
-> could study that code but allocating everything up front will be a
-> pretty large change.
->
-> Obviously we need to do some work here and this is one of our biggest
-> opens left but I don't view this as a true blocker until we remove force
-> probe. GPUVA regardless is a step in the right direction which will make
-> any changes going forward easier + enable VK to get sparse implemented.
-> I'd say let's get GPUVA merged and next focus on these issues you have
-> raised.
+Adding the static inline stubs for xe build in i915 (the !I915 parts) is
+very helpful in not sprinkling #ifdefs all over the place. A lot of the
+time, the compiler is able to just compile out lots and lots of
+unreachable static functions and data without explicitly conditionally
+building them out. We can leave a lot of it out from "drm/i915/display:
+Remaining changes to make xe compile". This is crucial especially while
+upstreaming by keeping the changes to i915 minimal.
 
-I think we need a pretty major rewrite here, and I think moving over to 
-GPUVA would be cleaner with that done and possibilities of a clean error 
-recovery in place. I stumbled on these WARN_ON(err) when starting to 
-review, when it's IMO perfectly possible for that err to be non-zero, 
-and since we're not in POC mode anymore I'm reluctant to Ack something 
-that we know might blow up.
+Also, I think the conditional build and stubs in headers is the least
+intrusive way of going about this before xe is actually upstream, and it
+also follows the usual patterns for CONFIG_FOO=n code paths, albeit I915
+is defined in the Makefile, not in kconfig.
 
-What I can do, though is to dig more into, Nouveau to see how they 
-handle the error unwind, and start implementing a clean unwind also in 
-our driver and rebase the GPUVA stuff on top.
-
-/Thomas
+BR,
+Jani.
 
 
->
-> Also another VM bind issue we need address soon:
-> https://gitlab.freedesktop.org/drm/xe/kernel/-/issues/41
->
-> Matt
->
->> Thoughts?
->>
->> /Thomas
->>
->>
->>
->>
->>> MAP 0x0000-0x8000 to NULL 	- 0x0000-0x8000 writes dropped + read zero
->>> MAP 0x4000-0x5000 to a GEM 	- 0x0000-0x4000, 0x5000-0x8000 writes dropped + read zero; 0x4000-0x5000 mapped to a GEM
->>> UNMAP 0x3000-0x6000		- 0x0000-0x3000, 0x6000-0x8000 writes dropped + read zero
->>> UNMAP 0x0000-0x8000		- Nothing mapped
->>>
->>> No changins to existing behavior, rather just new functionality./
->>>
->>> v2: Fix CI build failure
->>> v3: Export mas_preallocate, add patch to avoid rebinds
->>> v5: Bug fixes, rebase, xe_vma size optimizations
->>>
->>> Signed-off-by: Matthew Brost <matthew.brost@intel.com>
->>>
->>> Danilo Krummrich (2):
->>>     maple_tree: split up MA_STATE() macro
->>>     drm: manager to keep track of GPUs VA mappings
->>>
->>> Matthew Brost (6):
->>>     maple_tree: Export mas_preallocate
->>>     drm/xe: Port Xe to GPUVA
->>>     drm/xe: NULL binding implementation
->>>     drm/xe: Avoid doing rebinds
->>>     drm/xe: Reduce the number list links in xe_vma
->>>     drm/xe: Optimize size of xe_vma allocation
->>>
->>>    Documentation/gpu/drm-mm.rst                |   31 +
->>>    drivers/gpu/drm/Makefile                    |    1 +
->>>    drivers/gpu/drm/drm_debugfs.c               |   56 +
->>>    drivers/gpu/drm/drm_gem.c                   |    3 +
->>>    drivers/gpu/drm/drm_gpuva_mgr.c             | 1890 ++++++++++++++++++
->>>    drivers/gpu/drm/xe/xe_bo.c                  |   10 +-
->>>    drivers/gpu/drm/xe/xe_bo.h                  |    1 +
->>>    drivers/gpu/drm/xe/xe_device.c              |    2 +-
->>>    drivers/gpu/drm/xe/xe_exec.c                |    4 +-
->>>    drivers/gpu/drm/xe/xe_gt_pagefault.c        |   29 +-
->>>    drivers/gpu/drm/xe/xe_gt_tlb_invalidation.c |   14 +-
->>>    drivers/gpu/drm/xe/xe_guc_ct.c              |    6 +-
->>>    drivers/gpu/drm/xe/xe_migrate.c             |    8 +-
->>>    drivers/gpu/drm/xe/xe_pt.c                  |  176 +-
->>>    drivers/gpu/drm/xe/xe_trace.h               |   10 +-
->>>    drivers/gpu/drm/xe/xe_vm.c                  | 1947 +++++++++----------
->>>    drivers/gpu/drm/xe/xe_vm.h                  |   76 +-
->>>    drivers/gpu/drm/xe/xe_vm_madvise.c          |   87 +-
->>>    drivers/gpu/drm/xe/xe_vm_types.h            |  276 ++-
->>>    include/drm/drm_debugfs.h                   |   24 +
->>>    include/drm/drm_drv.h                       |    7 +
->>>    include/drm/drm_gem.h                       |   75 +
->>>    include/drm/drm_gpuva_mgr.h                 |  734 +++++++
->>>    include/linux/maple_tree.h                  |    7 +-
->>>    include/uapi/drm/xe_drm.h                   |    8 +
->>>    lib/maple_tree.c                            |    1 +
->>>    26 files changed, 4203 insertions(+), 1280 deletions(-)
->>>    create mode 100644 drivers/gpu/drm/drm_gpuva_mgr.c
->>>    create mode 100644 include/drm/drm_gpuva_mgr.h
->>>
+
+Jani Nikula (21):
+  fixup! drm/i915/display: Set DISPLAY_MMIO_BASE to 0 for xe
+  drm/i915: define I915 during i915 driver build
+  drm/i915/display: add I915 conditional build to intel_lvds.h
+  fixup! drm/xe/display: Implement display support
+  drm/i915/display: add I915 conditional build to hsw_ips.h
+  fixup! drm/i915/display: Remaining changes to make xe compile
+  fixup! drm/xe/display: Implement display support
+  drm/i915/display: add I915 conditional build to i9xx_plane.h
+  fixup! drm/i915/display: Remaining changes to make xe compile
+  fixup! drm/i915/display: Remaining changes to make xe compile
+  drm/i915/display: add I915 conditional build to intel_lpe_audio.h
+  fixup! drm/i915/display: Remaining changes to make xe compile
+  drm/i915/display: add I915 conditional build to intel_pch_refclk.h
+  fixup! drm/i915/display: Remaining changes to make xe compile
+  drm/i915/display: add I915 conditional build to intel_pch_display.h
+  drm/i915/display: add I915 conditional build to intel_sprite.h
+  fixup! drm/i915/display: Remaining changes to make xe compile
+  fixup! drm/xe/display: Implement display support
+  drm/i915/display: add I915 conditional build to intel_overlay.h
+  fixup! drm/i915/display: Remaining changes to make xe compile
+  fixup! drm/xe/display: Implement display support
+
+ drivers/gpu/drm/i915/display/hsw_ips.h        | 35 +++++++++++
+ drivers/gpu/drm/i915/display/i9xx_plane.h     | 23 +++++++
+ drivers/gpu/drm/i915/display/intel_cdclk.c    |  4 +-
+ drivers/gpu/drm/i915/display/intel_crtc.c     |  6 +-
+ drivers/gpu/drm/i915/display/intel_display.c  | 15 +----
+ .../gpu/drm/i915/display/intel_lpe_audio.h    | 20 ++++--
+ drivers/gpu/drm/i915/display/intel_lvds.h     | 19 ++++++
+ drivers/gpu/drm/i915/display/intel_overlay.h  | 35 +++++++++++
+ .../gpu/drm/i915/display/intel_pch_display.h  | 63 +++++++++++++++----
+ .../gpu/drm/i915/display/intel_pch_refclk.h   | 25 ++++++--
+ drivers/gpu/drm/i915/display/intel_sprite.c   | 20 +-----
+ drivers/gpu/drm/i915/display/intel_sprite.h   |  8 +++
+ drivers/gpu/drm/xe/Makefile                   |  2 -
+ .../gpu/drm/xe/compat-i915-headers/i915_drv.h |  7 +--
+ 14 files changed, 211 insertions(+), 71 deletions(-)
+
+-- 
+2.39.2
+
