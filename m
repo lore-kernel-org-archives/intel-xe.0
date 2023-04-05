@@ -4,45 +4,48 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id D0354C7618D
-	for <intel-xe@archiver.kernel.org>; Wed,  5 Apr 2023 23:34:02 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id B1DA2C761A6
+	for <intel-xe@archiver.kernel.org>; Wed,  5 Apr 2023 23:34:03 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8A72610E57F;
-	Wed,  5 Apr 2023 23:34:02 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8638110EA6E;
+	Wed,  5 Apr 2023 23:34:03 +0000 (UTC)
 Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
- by gabe.freedesktop.org (Postfix) with ESMTPS id CBD2410EA7A
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0111110EA78
  for <intel-xe@lists.freedesktop.org>; Wed,  5 Apr 2023 23:34:00 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
  t=1680737642; x=1712273642;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=iXb60lETCqdcHiko+8OHFo4/53oaUXbq7ExdLt0vVeM=;
- b=EF2NjOqmekfYxC1K+X/6NJ7FMByMqWi//ec68FzqiNyQYDhFNNir2cJU
- TfAlCu7GoqRktmE3SRyspyF3ws7I0XRa0FQwBR2HfafSD6J+8evtJEFX9
- rHsiPv0xMLr1LEm4KLIdGUYnFmC/KaGmJ398Cv4ZF+8SXKxkCu2FpuI4T
- lk8h60eUIuUmI/jOo1n7yWss9pgKy504DabA4AdFgY23VOugpQzj26vE6
- 2qi3WvwDjFFYdTnqiK6L/MHuYj7HHodFBZx7EzoBPjrinmzxi0F/H8ABm
- 6yj6bxDy4zcoN3/TUhCe54MVijtDT60pKUsTNQ5DWAuPFqTgrOrEQFEoj A==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10671"; a="326632204"
-X-IronPort-AV: E=Sophos;i="5.98,322,1673942400"; d="scan'208";a="326632204"
+ h=from:to:cc:subject:date:message-id:in-reply-to:
+ references:mime-version:content-transfer-encoding;
+ bh=JrkrfJoYv2j7ez3b5Ih+eVY+Q0edhMxeP1RKqhFxWcg=;
+ b=Ay0emVD1nASsWeqYCNLPNxsxwaq0eWf3kFyC0s3ZIFEu4nRu8QYmGn2Q
+ jcAfMae0WhNKJVDlGNeekW2gOPUgvF6rih8/pjJGlrmq4yXYAO2J/1Igy
+ T3JfxaC5d/UFDEbVTDauoM0HEh58KWVmg/rnUIXrKedQZ4i2e99lyhU4h
+ BbPZip7KUCjrKpsf+nQE/nuFpd2lYtV/O8j/uqbHrxzlcfkeK9Mht3aw+
+ 3P5WvVqNhogg3L6vj0iGk0E8JFZAlBYbcE3OaEGO8vdThpb2iCIpUTgEC
+ D1Sq0PH+l3OqXpl9u1YSHS9yQSRKHc2qWcGNm9UdWlVOAlqcqX3YHdJpi w==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10671"; a="326632206"
+X-IronPort-AV: E=Sophos;i="5.98,322,1673942400"; d="scan'208";a="326632206"
 Received: from fmsmga004.fm.intel.com ([10.253.24.48])
  by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  05 Apr 2023 16:34:01 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10671"; a="756165809"
-X-IronPort-AV: E=Sophos;i="5.98,322,1673942400"; d="scan'208";a="756165809"
+X-IronPort-AV: E=McAfee;i="6600,9927,10671"; a="756165812"
+X-IronPort-AV: E=Sophos;i="5.98,322,1673942400"; d="scan'208";a="756165812"
 Received: from lstrano-desk.jf.intel.com ([10.24.89.184])
  by fmsmga004-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  05 Apr 2023 16:33:59 -0700
 From: Matthew Brost <matthew.brost@intel.com>
 To: <intel-xe@lists.freedesktop.org>
-Date: Wed,  5 Apr 2023 16:34:01 -0700
-Message-Id: <20230405233403.151088-1-matthew.brost@intel.com>
+Date: Wed,  5 Apr 2023 16:34:02 -0700
+Message-Id: <20230405233403.151088-2-matthew.brost@intel.com>
 X-Mailer: git-send-email 2.34.1
+In-Reply-To: <20230405233403.151088-1-matthew.brost@intel.com>
+References: <20230405233403.151088-1-matthew.brost@intel.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-xe] [PATCH 0/2] Try to fix driver load (again)
+Subject: [Intel-xe] [PATCH 1/2] drm/xe: Always write
+ GEN12_RCU_MODE.GEN12_RCU_MODE_CCS_ENABLE for CCS engines
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -57,22 +60,27 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Two different issues detailed in link below. Tested on TGL + DG2.
+If CCS0 was fused we did not write this register thus CCS engine were
+not enabled resulting in driver load failures.
 
-https://gitlab.freedesktop.org/drm/xe/kernel/-/issues/232
+Signed-off-by: Matthew Brost <matthew.brost@intel.com>
+---
+ drivers/gpu/drm/xe/xe_hw_engine.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-Matthew Brost (2):
-  drm/xe: Always write GEN12_RCU_MODE.GEN12_RCU_MODE_CCS_ENABLE for CCS
-    engines
-  drm/xe: Drop coalescing of GGTT invalidations
-
- drivers/gpu/drm/xe/xe_bo.c         |  1 -
- drivers/gpu/drm/xe/xe_bo_types.h   |  2 --
- drivers/gpu/drm/xe/xe_ggtt.c       | 25 +------------------------
- drivers/gpu/drm/xe/xe_ggtt_types.h |  2 --
- drivers/gpu/drm/xe/xe_hw_engine.c  |  2 +-
- 5 files changed, 2 insertions(+), 30 deletions(-)
-
+diff --git a/drivers/gpu/drm/xe/xe_hw_engine.c b/drivers/gpu/drm/xe/xe_hw_engine.c
+index 63a4efd5edcc..4b56c35b988d 100644
+--- a/drivers/gpu/drm/xe/xe_hw_engine.c
++++ b/drivers/gpu/drm/xe/xe_hw_engine.c
+@@ -253,7 +253,7 @@ void xe_hw_engine_enable_ring(struct xe_hw_engine *hwe)
+ 	u32 ccs_mask =
+ 		xe_hw_engine_mask_per_class(hwe->gt, XE_ENGINE_CLASS_COMPUTE);
+ 
+-	if (hwe->class == XE_ENGINE_CLASS_COMPUTE && ccs_mask & BIT(0))
++	if (hwe->class == XE_ENGINE_CLASS_COMPUTE && ccs_mask)
+ 		xe_mmio_write32(hwe->gt, GEN12_RCU_MODE.reg,
+ 				_MASKED_BIT_ENABLE(GEN12_RCU_MODE_CCS_ENABLE));
+ 
 -- 
 2.34.1
 
