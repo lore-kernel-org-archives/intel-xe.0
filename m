@@ -4,63 +4,63 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id CC695C76188
-	for <intel-xe@archiver.kernel.org>; Wed,  5 Apr 2023 08:34:57 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3ABA7C76188
+	for <intel-xe@archiver.kernel.org>; Wed,  5 Apr 2023 08:42:42 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 946B210E87F;
-	Wed,  5 Apr 2023 08:34:57 +0000 (UTC)
-Received: from mail-ed1-x52f.google.com (mail-ed1-x52f.google.com
- [IPv6:2a00:1450:4864:20::52f])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 79A7110E87C
- for <intel-xe@lists.freedesktop.org>; Wed,  5 Apr 2023 08:34:55 +0000 (UTC)
-Received: by mail-ed1-x52f.google.com with SMTP id
- 4fb4d7f45d1cf-502208f7cb3so27061a12.0
- for <intel-xe@lists.freedesktop.org>; Wed, 05 Apr 2023 01:34:55 -0700 (PDT)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 13A6D10E885;
+	Wed,  5 Apr 2023 08:42:42 +0000 (UTC)
+Received: from mail-ed1-x52c.google.com (mail-ed1-x52c.google.com
+ [IPv6:2a00:1450:4864:20::52c])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id F16F910E884
+ for <intel-xe@lists.freedesktop.org>; Wed,  5 Apr 2023 08:42:39 +0000 (UTC)
+Received: by mail-ed1-x52c.google.com with SMTP id
+ 4fb4d7f45d1cf-5029d4d90fbso11372a12.0
+ for <intel-xe@lists.freedesktop.org>; Wed, 05 Apr 2023 01:42:39 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=ffwll.ch; s=google; t=1680683693;
+ d=ffwll.ch; s=google; t=1680684158; x=1683276158;
  h=in-reply-to:content-transfer-encoding:content-disposition
  :mime-version:references:message-id:subject:cc:to:from:date:from:to
  :cc:subject:date:message-id:reply-to;
- bh=/AmtOX7cOZjJP7jSY6EhHNtaaL/Uq8uE02txa8229p8=;
- b=hUenY5OM2fLUezCYP2Qt7NDZF+jtX7OLHx0MSv9QAZxX9JKkBrd0rpSc51o2roiNyr
- l8SaEpQ/EbezQAzOfMDeub6G+3JwLO2E8/wnxZQzlqgiC66OYy9d3qFCUxpLxwzQ1PTp
- +ncZrqshszQi397bHJNBZzbMJFtswd9DBzCdE=
+ bh=PybsCHaHSdQO2YcpfIMauDlX9vmYDuGRTW/bhpsY2v4=;
+ b=F6thy3Bys/uF9tihV/E+j0cst8BqfQDuKcSAEg4J/yitph5su7RzfRfY62NMhTHogD
+ HXBE3QEs79Wmwk8Ir11JQmlHYjL0G52bAKZuSenAseD8BPP8NzgmojgGZHN+unLnVpDc
+ Ue6pzTuDOIwiXFZ7lCCmJ4kdzeluJylSPgD0s=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20210112; t=1680683693;
+ d=1e100.net; s=20210112; t=1680684158; x=1683276158;
  h=in-reply-to:content-transfer-encoding:content-disposition
  :mime-version:references:message-id:subject:cc:to:from:date
  :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
- bh=/AmtOX7cOZjJP7jSY6EhHNtaaL/Uq8uE02txa8229p8=;
- b=iFnWCe5DNOJFSp+ML7Mwljzr+pj+Xfoo6kXBsBnPalUsIU5Ugl4FHeA/AqNMG5myEY
- H1JnAvHdxrIBzeOo0lPUQCKMBzYtjdnZ/HP7FjAa75CpNPPa+ivza4MWZRS63PVWbUaH
- RVucH00zcZsUY52+7Hu55CO4l0O48/DJ9KA+Q/YSi1nix5gNw7cWt+XY/K8NMd5bpADJ
- SH744wjbDYLI2g7qE+NRHU6uS1wWum699cFRQ+lr8msIOp3NGqwVSKnsfW1g4QGL2MMq
- gU75iPcSJ0Y9tr0JOjER5TnLOyv8zhR4DqVx4Qpj1/wPMZv6wVw4ct/yVNQ94fPOT/6I
- BqVg==
-X-Gm-Message-State: AAQBX9ebQFIdYDvUawVXfib0iUX5wpf6C0TYgpLYxdfNQvJ/PbsFRwmi
- 8pgMYyv4g5yfuKu+3MC04ep/Kfj0DM/Id2d/olg=
-X-Google-Smtp-Source: AKy350baWS6IaRYY8NUqeGImtwvLAokHTXphpRJBFyf0XdSKNMt4boTlz7yf6fYtu0opGcVgGg1Leg==
-X-Received: by 2002:a05:6402:2811:b0:502:465:28e1 with SMTP id
- h17-20020a056402281100b00502046528e1mr1387735ede.0.1680683693469; 
- Wed, 05 Apr 2023 01:34:53 -0700 (PDT)
+ bh=PybsCHaHSdQO2YcpfIMauDlX9vmYDuGRTW/bhpsY2v4=;
+ b=BmAG6qmT6cjexHjfPkuQv8gQCCtTE/yiYrF5D0StkvbIQkjyg3/WNyjOvptCxXXVfU
+ oBYJfgnsPXIPcJ3T+ZRSlNljVQdasItFaa3HTvfj9m1x4roj3pBbNUvQaALoaEDCOQZm
+ 4MZfxBzTQPMcLk/awDAtNAN9/rhVk8/4JBxBW1BxcvDDvn3+usMw93+koujTmgte52eu
+ FbV+rTLV/6p04AYKersHK/XSj8iPyzvqmMqZENxoKNKg4nU07lqhYktBGoQdh/dZYqiH
+ R6jlMse+G3kbqdfoU/sDGQBudcwjNDUnnwdFvtXtXZEtWMxzbG3JL2Q7Udp6q72TcoRP
+ 4M8g==
+X-Gm-Message-State: AAQBX9fsZx3et3HQAs7oWIMKH9QYCzE8Wq5tso1LqtdAymL+E5UDYoFh
+ WA78CxyAMdlrtnHc1JxWBBIZuw==
+X-Google-Smtp-Source: AKy350YvqIXn1K/AWUEJPcGXc5n+t5kVVPUS0bM7fwQCptSIAq5H8MD6Z0D+vIJ+pHiIImdaRmQzrQ==
+X-Received: by 2002:a17:906:1d5:b0:949:148d:82bc with SMTP id
+ 21-20020a17090601d500b00949148d82bcmr1187671ejj.2.1680684158075; 
+ Wed, 05 Apr 2023 01:42:38 -0700 (PDT)
 Received: from phenom.ffwll.local (212-51-149-33.fiber7.init7.net.
  [212.51.149.33]) by smtp.gmail.com with ESMTPSA id
- w4-20020a50c444000000b004af5968cb3bsm6946556edf.17.2023.04.05.01.34.52
+ r3-20020a170906350300b00930876176e2sm7016384eja.29.2023.04.05.01.42.37
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Wed, 05 Apr 2023 01:34:53 -0700 (PDT)
-Date: Wed, 5 Apr 2023 10:34:51 +0200
+ Wed, 05 Apr 2023 01:42:37 -0700 (PDT)
+Date: Wed, 5 Apr 2023 10:42:35 +0200
 From: Daniel Vetter <daniel@ffwll.ch>
 To: Christian =?iso-8859-1?Q?K=F6nig?= <christian.koenig@amd.com>
-Message-ID: <ZC0yq9XZ2t9cV0Nz@phenom.ffwll.local>
+Message-ID: <ZC00eytNbbsh2q3B@phenom.ffwll.local>
 References: <20230404002211.3611376-1-matthew.brost@intel.com>
- <87c7f659-387c-3e23-69c6-03e0c9820bab@amd.com>
- <ZCwoL3Wgv90tlQWR@DUT025-TGLU.fm.intel.com>
- <d740a81a-8919-b6c8-a8c1-f5d8f9c5549c@amd.com>
+ <SA1PR11MB69913F0A0038DA307701D44092939@SA1PR11MB6991.namprd11.prod.outlook.com>
+ <ZCxnuCvmknUuLydM@DUT025-TGLU.fm.intel.com>
+ <018b891d-ec31-b8c2-f987-45a204ed77ed@amd.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=iso-8859-1
 Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <d740a81a-8919-b6c8-a8c1-f5d8f9c5549c@amd.com>
+In-Reply-To: <018b891d-ec31-b8c2-f987-45a204ed77ed@amd.com>
 X-Operating-System: Linux phenom 6.1.0-7-amd64 
 Subject: Re: [Intel-xe] [RFC PATCH 00/10] Xe DRM scheduler and long running
  workload plans
@@ -75,18 +75,110 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Cc: robdclark@chromium.org, airlied@linux.ie, lina@asahilina.net,
- dri-devel@lists.freedesktop.org, boris.brezillon@collabora.com,
- intel-xe@lists.freedesktop.org, faith.ekstrand@collabora.com
+Cc: "robdclark@chromium.org" <robdclark@chromium.org>,
+ "airlied@linux.ie" <airlied@linux.ie>,
+ "lina@asahilina.net" <lina@asahilina.net>, "Zeng, Oak" <oak.zeng@intel.com>,
+ "boris.brezillon@collabora.com" <boris.brezillon@collabora.com>,
+ "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>,
+ "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>,
+ "faith.ekstrand@collabora.com" <faith.ekstrand@collabora.com>
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Wed, Apr 05, 2023 at 09:41:23AM +0200, Christian König wrote:
-> Am 04.04.23 um 15:37 schrieb Matthew Brost:
-> > On Tue, Apr 04, 2023 at 11:13:28AM +0200, Christian König wrote:
-> > > Hi,
+On Wed, Apr 05, 2023 at 09:30:11AM +0200, Christian König wrote:
+> Am 04.04.23 um 20:08 schrieb Matthew Brost:
+> > On Tue, Apr 04, 2023 at 12:02:03PM -0600, Zeng, Oak wrote:
+> > > Hi Matt, Thomas,
 > > > 
-> > > Am 04.04.23 um 02:22 schrieb Matthew Brost:
+> > > Some very bold out of box thinking in this area:
+> > > 
+> > > 1. so you want to use drm scheduler and dma-fence for long running workload. Why you want to do this in the first place? What is the benefit? Drm scheduler is pretty much a software scheduler. Modern gpu has scheduler built at fw/hw level, as you said below for intel this is Guc. Can xe driver just directly submit job to Guc, bypassing drm scheduler?
+> > > 
+> > If we did that now we have 2 paths for dependency track, flow controling
+> > the ring, resets / error handling / backend submission implementations.
+> > We don't want this.
+> 
+> Well exactly that's the point: Why?
+> 
+> As far as I can see that are two completely distinct use cases, so you
+> absolutely do want two completely distinct implementations for this.
+> 
+> > > 2. using dma-fence for long run workload: I am well aware that page fault (and the consequent memory allocation/lock acquiring to fix the fault) can cause deadlock for a dma-fence wait. But I am not convinced that dma-fence can't be used purely because the nature of the workload that it runs very long (indefinite). I did a math: the dma_fence_wait_timeout function's third param is the timeout which is a signed long type. If HZ is 1000, this is about 23 days. If 23 days is not long enough, can we just change the timeout parameter to signed 64 bits so it is much longer than our life time...
+> > > 
+> > > So I mainly argue we can't use dma-fence for long-run workload is not because the workload runs very long, rather because of the fact that we use page fault for long-run workload. If we enable page fault for short-run workload, we can't use dma-fence either. Page fault is the key thing here.
+> > > 
+> > > Now since we use page fault which is *fundamentally* controversial with dma-fence design, why now just introduce a independent concept such as user-fence instead of extending existing dma-fence?
+> > > 
+> > > I like unified design. If drm scheduler, dma-fence can be extended to work for everything, it is beautiful. But seems we have some fundamental problem here.
+> > > 
+> > Thomas's patches turn a dma-fence into KMD sync point (e.g. we just use
+> > the signal / CB infrastructure) and enforce we don't use use these
+> > dma-fences from the scheduler in memory reclaim paths or export these to
+> > user space or other drivers. Think of this mode as SW only fence.
+> 
+> Yeah and I truly think this is an really bad idea.
+> 
+> The signal/CB infrastructure in the dma_fence turned out to be the
+> absolutely nightmare I initially predicted. Sorry to say that, but in this
+> case the "I've told you so" is appropriate in my opinion.
+> 
+> If we need infrastructure for long running dependency tracking we should
+> encapsulate that in a new framework and not try to mangle the existing code
+> for something it was never intended for.
+
+Concurring hard (already typed that up somewhere else). I'd go one step
+further and ask whether the kernel really has to handle dependencies for
+these long-running compute jobs. The entire design with userspace memory
+fences assumes that this is userspace's job.
+
+Also for drm_syncobj we've also pushed a lot of the dependency handling to
+userspace, with submit threads in mesa. So if there is any blocking to be
+done (running out of ring space), why can't we sort that out the same way?
+Meaning:
+1. superfast direct-to-hw submit path (using doorbells or whatever)
+2. submit ioctl which only succeds if it doesn't have to do any userspace
+memory fence waits, otherwise you get EWOULDBLOCK
+3. userspace sorts out the mess in a submit thread if it gets an
+EWOULDBLOCK, because fundamentally the kernel cannot guarantee a
+bottomless queue. If userspace wants bottomless, they need to handle the
+allocating and delaying imo
+
+You can even make 3 entirely as-needed, which means for the usual
+fast-path you'll never see the userspace thread created unless you do hit
+an EWOULDBLOCK.
+
+If we insist that the kernel handles the long-running dependencies fully
+then all we end up doing is implementing step 3, but entirely in the
+kernel instead of userspace. And in the kernel every bug gets you halfway
+to a CVE, and I just don't think that makes much sense for something which
+is the fallback of the fallback - once you run out of ring space you're
+not going to have a great day not matter what.
+
+I'd go as far and say if we want step 3 in the kernel someone needs to
+supply the real-world (i.e. real application running real workloads, not
+some microbenchmark) benchmark to proof it's actually worth the pain.
+Otherwise on-demand userspace submit thread.
+-Daniel
+
+> 
+> Christian.
+> 
+> > 
+> > Matt
+> > > Thanks,
+> > > Oak
+> > > 
+> > > > -----Original Message-----
+> > > > From: dri-devel <dri-devel-bounces@lists.freedesktop.org> On Behalf Of
+> > > > Matthew Brost
+> > > > Sent: April 3, 2023 8:22 PM
+> > > > To: dri-devel@lists.freedesktop.org; intel-xe@lists.freedesktop.org
+> > > > Cc: robdclark@chromium.org; thomas.hellstrom@linux.intel.com; airlied@linux.ie;
+> > > > lina@asahilina.net; boris.brezillon@collabora.com; Brost, Matthew
+> > > > <matthew.brost@intel.com>; christian.koenig@amd.com;
+> > > > faith.ekstrand@collabora.com
+> > > > Subject: [RFC PATCH 00/10] Xe DRM scheduler and long running workload plans
+> > > > 
 > > > > Hello,
 > > > > 
 > > > > As a prerequisite to merging the new Intel Xe DRM driver [1] [2], we
@@ -128,87 +220,7 @@ On Wed, Apr 05, 2023 at 09:41:23AM +0200, Christian König wrote:
 > > > > resume execution of an entity [5]. I suspect other driver can leverage
 > > > > this messaging concept too as it a convenient way to avoid races in the
 > > > > backend.
-> > > Oh, please absolutely *don't* do this.
-> > > 
-> > > This is basically the design which makes a bunch of stuff so horrible broken
-> > > on Windows.
-> > > 
-> > > I can explain it in more detail if necessary, but I strongly recommend to
-> > > not go down this path.
-> > > 
-> > I'm afraid we are going to have to discuss this further. Let me explain
-> > my reasoning, basically the idea is to have a single main entry point to
-> > backend - the work queue. This avoids the need for lock between run_job
-> > and any message that changes an entites state, also it really helps
-> > during the reset flows (either TDR or GT reset) as we can call
-> > drm_sched_run_wq_stop can ensure that nothing else is in the backend
-> > changing an entity state. It all works out really nicely actually, our
-> > GuC backend is incredibly stable (hasn't really had a bug pop in about a
-> > year) and way simpler than what we did in the i915. I think the simplity
-> > to largely due to this design of limiting the entry points.
-> > 
-> > I personally don't see how this a poor design, limiting entry points
-> > absolutely makes sense to me, if it didn't why not just call cleanup_job
-> > bypassing the main execution thread (now worker), this is the exact same
-> > concept.
-> 
-> Well then I strongly suggest to read a few analyses on the failure of the
-> message processing loop on Windows.
-> 
-> Have you ever wondered why classic Win32 applications sometimes seems to be
-> stuck and don't do anything? This design pattern combine with timeouts to
-> solve deadlocks is the reason for that.
-> 
-> The major problem with this approach is that analyzing tools like lockdep
-> have a hard time grasping the dependencies.
-
-wq is fully annotated and actually splats. Plain kthread doesn't, without
-adding something like the dma_fence_signalling stuff.
-
-But yeah if you block badly in the work items and stall the entire queue,
-then things go sideways real bad. There's not really any tools we have in
-the kernel to enforce this, since we still want to allow mutex and
-sleeping and stuff like that.
-
-> What you can do is to offload all your operations which are supposed to be
-> run in the same thread as work items into a work queue. This is something
-> lockdep understands and is able to scream out lout if someone messes up the
-> deadlock dependencies.
-
-I thought that's the plan here? Or at least what I thought the plan was,
-and why I really think we need a per engine worqqueue to make it work well
-(and also why I suggested the refactoring to split up drm_scheduler into
-the driver api struct, which stays per-engine, and the internal backend
-which would be per drm_sched_entity for fw schedulers that round-robin gpu
-ctx on their own).
-
-Also maybe we need to allow drivers to pass in the workqueue like we allow
-for the tdr handling already, since that simplifies the locking.
-
-At least for intel gpu I think this message passing design makes some
-sense because fundamentally the fw only has a single blocking message
-queue. And so intel/xe fundamentally needs to deal with the "stupid code
-might block forward progress for everyone" problem you're describing, not
-matter whether it's done with the help of drm/sched infra or not.
-
-I do agree though that we shouldn't encourage drivers to use this which
-don't have that kind of fw command queue design. So maybe a huge comment
-to explain when (and _only_ when) it's ok to use that message passing
-would be needed, and explaining why in other cases it would make things a
-lot worse?
--Daniel
-
-> 
-> Regards,
-> Christian.
-> 
-> > 
-> > FWIW Asahi liked the idea as well and think it could be useful for AGX.
-> > Matt
-> > 
-> > > Regards,
-> > > Christian.
-> > > 
+> > > > 
 > > > > - Support for using TDR for all error paths of a scheduler / entity
 > > > > 
 > > > > Fix a few races / bugs, add function to dynamically set the TDR timeout.
@@ -231,41 +243,44 @@ lot worse?
 > > > > [2] https://patchwork.freedesktop.org/series/112188/
 > > > > [3] https://patchwork.freedesktop.org/series/114772/
 > > > > [4] https://patchwork.freedesktop.org/patch/515854/?series=112188&rev=1
-> > > > [5] https://gitlab.freedesktop.org/drm/xe/kernel/-/blob/drm-xe-next/drivers/gpu/drm/xe/xe_guc_submit.c#L1031
+> > > > [5] https://gitlab.freedesktop.org/drm/xe/kernel/-/blob/drm-xe-
+> > > > next/drivers/gpu/drm/xe/xe_guc_submit.c#L1031
 > > > > 
 > > > > Matthew Brost (8):
-> > > >     drm/sched: Convert drm scheduler to use a work queue rather than
-> > > >       kthread
-> > > >     drm/sched: Move schedule policy to scheduler / entity
-> > > >     drm/sched: Add DRM_SCHED_POLICY_SINGLE_ENTITY scheduling policy
-> > > >     drm/sched: Add generic scheduler message interface
-> > > >     drm/sched: Start run wq before TDR in drm_sched_start
-> > > >     drm/sched: Submit job before starting TDR
-> > > >     drm/sched: Add helper to set TDR timeout
-> > > >     drm/syncobj: Warn on long running dma-fences
+> > > >    drm/sched: Convert drm scheduler to use a work queue rather than
+> > > >      kthread
+> > > >    drm/sched: Move schedule policy to scheduler / entity
+> > > >    drm/sched: Add DRM_SCHED_POLICY_SINGLE_ENTITY scheduling policy
+> > > >    drm/sched: Add generic scheduler message interface
+> > > >    drm/sched: Start run wq before TDR in drm_sched_start
+> > > >    drm/sched: Submit job before starting TDR
+> > > >    drm/sched: Add helper to set TDR timeout
+> > > >    drm/syncobj: Warn on long running dma-fences
 > > > > 
 > > > > Thomas Hellström (2):
-> > > >     dma-buf/dma-fence: Introduce long-running completion fences
-> > > >     drm/sched: Support long-running sched entities
+> > > >    dma-buf/dma-fence: Introduce long-running completion fences
+> > > >    drm/sched: Support long-running sched entities
 > > > > 
-> > > >    drivers/dma-buf/dma-fence.c                 | 142 +++++++---
-> > > >    drivers/dma-buf/dma-resv.c                  |   5 +
-> > > >    drivers/gpu/drm/amd/amdgpu/amdgpu_debugfs.c |  14 +-
-> > > >    drivers/gpu/drm/amd/amdgpu/amdgpu_device.c  |  15 +-
-> > > >    drivers/gpu/drm/drm_syncobj.c               |   5 +-
-> > > >    drivers/gpu/drm/etnaviv/etnaviv_sched.c     |   5 +-
-> > > >    drivers/gpu/drm/lima/lima_sched.c           |   5 +-
-> > > >    drivers/gpu/drm/msm/adreno/adreno_device.c  |   6 +-
-> > > >    drivers/gpu/drm/msm/msm_ringbuffer.c        |   5 +-
-> > > >    drivers/gpu/drm/panfrost/panfrost_job.c     |   5 +-
-> > > >    drivers/gpu/drm/scheduler/sched_entity.c    | 127 +++++++--
-> > > >    drivers/gpu/drm/scheduler/sched_fence.c     |   6 +-
-> > > >    drivers/gpu/drm/scheduler/sched_main.c      | 278 +++++++++++++++-----
-> > > >    drivers/gpu/drm/v3d/v3d_sched.c             |  25 +-
-> > > >    include/drm/gpu_scheduler.h                 | 130 +++++++--
-> > > >    include/linux/dma-fence.h                   |  60 ++++-
-> > > >    16 files changed, 649 insertions(+), 184 deletions(-)
+> > > >   drivers/dma-buf/dma-fence.c                 | 142 +++++++---
+> > > >   drivers/dma-buf/dma-resv.c                  |   5 +
+> > > >   drivers/gpu/drm/amd/amdgpu/amdgpu_debugfs.c |  14 +-
+> > > >   drivers/gpu/drm/amd/amdgpu/amdgpu_device.c  |  15 +-
+> > > >   drivers/gpu/drm/drm_syncobj.c               |   5 +-
+> > > >   drivers/gpu/drm/etnaviv/etnaviv_sched.c     |   5 +-
+> > > >   drivers/gpu/drm/lima/lima_sched.c           |   5 +-
+> > > >   drivers/gpu/drm/msm/adreno/adreno_device.c  |   6 +-
+> > > >   drivers/gpu/drm/msm/msm_ringbuffer.c        |   5 +-
+> > > >   drivers/gpu/drm/panfrost/panfrost_job.c     |   5 +-
+> > > >   drivers/gpu/drm/scheduler/sched_entity.c    | 127 +++++++--
+> > > >   drivers/gpu/drm/scheduler/sched_fence.c     |   6 +-
+> > > >   drivers/gpu/drm/scheduler/sched_main.c      | 278 +++++++++++++++-----
+> > > >   drivers/gpu/drm/v3d/v3d_sched.c             |  25 +-
+> > > >   include/drm/gpu_scheduler.h                 | 130 +++++++--
+> > > >   include/linux/dma-fence.h                   |  60 ++++-
+> > > >   16 files changed, 649 insertions(+), 184 deletions(-)
 > > > > 
+> > > > --
+> > > > 2.34.1
 > 
 
 -- 
