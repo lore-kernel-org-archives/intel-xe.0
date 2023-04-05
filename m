@@ -4,126 +4,138 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 80093C76188
-	for <intel-xe@archiver.kernel.org>; Wed,  5 Apr 2023 14:08:20 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 029DCC7619A
+	for <intel-xe@archiver.kernel.org>; Wed,  5 Apr 2023 14:15:33 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 434A810E975;
-	Wed,  5 Apr 2023 14:08:20 +0000 (UTC)
-Received: from NAM04-MW2-obe.outbound.protection.outlook.com
- (mail-mw2nam04on2079.outbound.protection.outlook.com [40.107.101.79])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9D89D10E0B1;
- Wed,  5 Apr 2023 14:08:17 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id CBA7210E989;
+	Wed,  5 Apr 2023 14:15:32 +0000 (UTC)
+Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E4C2E10E989
+ for <intel-xe@lists.freedesktop.org>; Wed,  5 Apr 2023 14:15:30 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1680704131; x=1712240131;
+ h=date:from:to:cc:subject:message-id:references:
+ in-reply-to:mime-version;
+ bh=CE7teKcdovIlW6ORVz9XdYNygMSfU3F2zjhJbkSwo+c=;
+ b=VuUBAzlvhsm+iambzf/39v2RoQDqg4PzYQzpl8ocumqCc53sOrIN0hYQ
+ ktsV9i/PcF3Szyuct6+fP03TuFdj/huGr3Z9T9E7fVRYDdYkVQqDI+6mt
+ 0VKjiV1pQtptxMGaHYEoT6mfqbqXHL1vZ/qP4W6gksQ5tFoxQMVeVqucQ
+ kudMvmy/usxlvKqKWCVTBMzNZU+YrUGXHXOTqupQfL9M3VXotOew1gCS8
+ roXzpPe9NOkgwMu0gFnZCO4jBqujzTn4QlVFEQgMmRwqQUR92K20OKqkP
+ NH222UPZwLOlDqgCBXdCnp4CkgTxUxEli5ZFOjqaflMlF3AsWnGEOi8ra g==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10671"; a="370289268"
+X-IronPort-AV: E=Sophos;i="5.98,319,1673942400"; d="scan'208";a="370289268"
+Received: from fmsmga007.fm.intel.com ([10.253.24.52])
+ by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 05 Apr 2023 07:14:31 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6600,9927,10671"; a="689307203"
+X-IronPort-AV: E=Sophos;i="5.98,319,1673942400"; d="scan'208";a="689307203"
+Received: from orsmsx601.amr.corp.intel.com ([10.22.229.14])
+ by fmsmga007.fm.intel.com with ESMTP; 05 Apr 2023 07:14:31 -0700
+Received: from orsmsx612.amr.corp.intel.com (10.22.229.25) by
+ ORSMSX601.amr.corp.intel.com (10.22.229.14) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.21; Wed, 5 Apr 2023 07:14:30 -0700
+Received: from orsmsx603.amr.corp.intel.com (10.22.229.16) by
+ ORSMSX612.amr.corp.intel.com (10.22.229.25) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.21; Wed, 5 Apr 2023 07:14:30 -0700
+Received: from orsedg603.ED.cps.intel.com (10.7.248.4) by
+ orsmsx603.amr.corp.intel.com (10.22.229.16) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.21 via Frontend Transport; Wed, 5 Apr 2023 07:14:30 -0700
+Received: from NAM11-DM6-obe.outbound.protection.outlook.com (104.47.57.175)
+ by edgegateway.intel.com (134.134.137.100) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.1.2507.21; Wed, 5 Apr 2023 07:14:29 -0700
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=HVlFitGk8Gkn39xy5037HWWDUKYQHK9lr5WViGoGqD6mg7ovzq8eemKuYSrOp3d/R+/XiMQo4faUnZopCe9HYNaHNvWzhuxPoOpqbDVZesi0WArjpnH2/xzMAh5ksOmeRrQ7OgagiNPTqljX45euCwa4KMOSi1QOoa+kJPgndV4PsQDMeD9ykRRFHHM3V3ypvNP6dUMCOpCQjELMiaIp7TmzMWiBc+Ee33NEWLR4h+e3md6eWTr4xGDe9HYp0pFLmTwGzNDSMlvuy0XR/8d8kzm7uqnwbpB3CeJ4sXnaM81SPlBSjvTG3EUI758iDgzihrDSmqlu/8NOcrxaxCllxg==
+ b=NPlH9FdXmlooUWopmsZQlhtLp6MQg38w92e3naVTm0XC1ca9XqfCP70yGwK+07BOHICPOFt7oh/PzJDis96E31KLZiufn+MhtX4xmL/7B6xslTrnhcdppG/XahTxu3iTZ4tMVx1n6eLM6Y4nOzZqC6jasVNMsYgWEc0i520pcCKk8axJc2/5d+oeaei+sfIKZWv2XRUFQfAlvpJT0+Eqb1FojxVBHUMHc/NHmYsZbLItmhR14s3+BAcOta6v9mzSWfmw7QadwbB0M/PBSoRz9QAC1KCDVRVhaEbS1vliEMLPlP9oa//vmmcjk88tnkurua8IajA0hm0W5GGiTpBwYg==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=YoZlFdk+5Tq0QdS7YZmDVfbJJ4QcVHY3IU/lcaAc6m8=;
- b=AKVQiNU3vNNgGKs0d9rPHHdbJZEM9xyUtmsF694sD7YnY2lSXpnRf6um4ETah9j27EYKxp36NjOkU0Ph7jTsOm0p5E7PpiNunm+kYhtpF5fgad15cpd33xqLYKbK8PTyHNgf+ahgei5OryGkSAYeSlj3Um1p/0vw1sEfMioLbmf7EOZQJZEruCu0vruQ7MmUgCEuFJHMp/9adV4zPsDtnoV34E+Dk0JEQmzDiv8p3k/9wfjN75jxF+mfzsxPDC1wXyDlMx24k5sKC5/+hdeCJMb/KccaqTFzEhPmdZC/MB6YsXzh7OnIkJKHHKDH7g4aXTxyohX48sIXw62x27/1tQ==
+ bh=ZAf7Uf08jOMyF0kjq+s4BnBy30pn4FwqRbE2sfNBMIQ=;
+ b=lKo6B9yuXWhlFVVEtNnBbCerfYHq2JZQLHAW4klhb9+URv9yYb17SkJ66g7R3u8ZAwzAnofYxw+FAHHOX03YobPC00lNnUQOBGVcWegJwGhGNAcbjorVHCjkXImxX4xS4+I24701/yezfQfvclAU/xwhM+hpHTYgevjiAU9C7oCW/RXjHrY8jooc9znTjPt2IMDBTI4RngQrWbjMWBiRQjWGAqv1iswU59Rv9kEIqk7J2aR6qPEAZAd0kYVKyLj+jUme6JtGNoT20FH52RiyH8tKb1VyUvSZjVDviqKl7bDv22Mjuk8aCGcAbJpmQxxweeHqS4AsG9fYF6mmBDLCuw==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
- header.d=amd.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=YoZlFdk+5Tq0QdS7YZmDVfbJJ4QcVHY3IU/lcaAc6m8=;
- b=uPOPgbRoP7iqPZa8UH8fSLNiNP86zCyKRM9mnYAqXcTL64mbQTRscrHEKHBhbxS+TssIEGKcoEf2Hbtc64+7Dj4IqysX3cI+TTwGVksyD+hrCZLW4CE6KF/4MXhssvgaQsfFM86HF/+wPiv9IRX+jLvCGmCu53im2StAq7KTRzY=
+ smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
+ dkim=pass header.d=intel.com; arc=none
 Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=amd.com;
-Received: from BN8PR12MB3587.namprd12.prod.outlook.com (2603:10b6:408:43::13)
- by CH3PR12MB9023.namprd12.prod.outlook.com (2603:10b6:610:17b::12)
+ header.d=none;dmarc=none action=none header.from=intel.com;
+Received: from PH7PR11MB6522.namprd11.prod.outlook.com (2603:10b6:510:212::12)
+ by CO6PR11MB5588.namprd11.prod.outlook.com (2603:10b6:303:13c::15)
  with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6254.35; Wed, 5 Apr
- 2023 14:08:14 +0000
-Received: from BN8PR12MB3587.namprd12.prod.outlook.com
- ([fe80::4624:dc39:943e:6ae]) by BN8PR12MB3587.namprd12.prod.outlook.com
- ([fe80::4624:dc39:943e:6ae%5]) with mapi id 15.20.6254.035; Wed, 5 Apr 2023
- 14:08:14 +0000
-Message-ID: <149ab74c-4815-1174-c66c-494408b5f8e6@amd.com>
-Date: Wed, 5 Apr 2023 16:08:06 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.9.0
-Content-Language: en-US
-To: Daniel Vetter <daniel@ffwll.ch>
-References: <20230404002211.3611376-1-matthew.brost@intel.com>
- <20230404002211.3611376-9-matthew.brost@intel.com>
- <e5eb5ab0-8e51-389c-34ae-7c6004f4b1ba@amd.com>
- <f7b3b70b-c798-b09e-210c-f84eaafd3251@linux.intel.com>
- <5b2e6a78-b743-028c-f54d-af38c130164a@amd.com>
- <16a3a3fd-47c7-d74d-4835-9438ef8d2635@shipmail.org>
- <ZCx0P7GwLh2yOVR4@DUT025-TGLU.fm.intel.com>
- <ZCx5wGTA3RCZGjA4@phenom.ffwll.local>
- <cece14bb-d3c5-3772-855e-bac0bb7766d7@linux.intel.com>
- <c57a9fcc-7721-9958-38f5-b3a1b0b56772@amd.com>
- <ZC1thkzodefVK6XU@phenom.ffwll.local>
-From: =?UTF-8?Q?Christian_K=c3=b6nig?= <christian.koenig@amd.com>
-In-Reply-To: <ZC1thkzodefVK6XU@phenom.ffwll.local>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-X-ClientProxiedBy: FR0P281CA0194.DEUP281.PROD.OUTLOOK.COM
- (2603:10a6:d10:ab::18) To BN8PR12MB3587.namprd12.prod.outlook.com
- (2603:10b6:408:43::13)
+ 2023 14:14:28 +0000
+Received: from PH7PR11MB6522.namprd11.prod.outlook.com
+ ([fe80::ff06:a115:e4eb:680e]) by PH7PR11MB6522.namprd11.prod.outlook.com
+ ([fe80::ff06:a115:e4eb:680e%9]) with mapi id 15.20.6254.033; Wed, 5 Apr 2023
+ 14:14:28 +0000
+Date: Wed, 5 Apr 2023 14:14:22 +0000
+From: Matthew Brost <matthew.brost@intel.com>
+To: Matthew Auld <matthew.william.auld@gmail.com>
+Message-ID: <ZC2CPlIIHjdfSvZI@DUT025-TGLU.fm.intel.com>
+References: <20230405041943.3980167-1-matthew.brost@intel.com>
+ <CAM0jSHPRBXz4Vk=A0aTGh0wt=kFvncE-PNchvSCoc8dnHoFPQA@mail.gmail.com>
+Content-Type: text/plain; charset="us-ascii"
+Content-Disposition: inline
+In-Reply-To: <CAM0jSHPRBXz4Vk=A0aTGh0wt=kFvncE-PNchvSCoc8dnHoFPQA@mail.gmail.com>
+X-ClientProxiedBy: SJ0PR13CA0236.namprd13.prod.outlook.com
+ (2603:10b6:a03:2c1::31) To PH7PR11MB6522.namprd11.prod.outlook.com
+ (2603:10b6:510:212::12)
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: BN8PR12MB3587:EE_|CH3PR12MB9023:EE_
-X-MS-Office365-Filtering-Correlation-Id: 55cf7f9d-3e2b-41f2-951f-08db35df320f
+X-MS-TrafficTypeDiagnostic: PH7PR11MB6522:EE_|CO6PR11MB5588:EE_
+X-MS-Office365-Filtering-Correlation-Id: c50052fb-6808-4253-fb0d-08db35e01141
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: miC9Kc1Tv77FmNb2w7ip7iQf3bEkUTXzjxrdvKHAdaLmKK5OSJzkZsexRzhwE6ntwKMIbixZKePS35Oyurbuyx+HenKmHZEAe7ir11Qqh+iR0cq2DIlp+ohUwsdHyCz0j9GEFqSD3Jd1rRUbhdIUyE8hR/HMjpnlkBENBS9A62eUCzSAbK2t+kCgyr9bwi0ItdzQPyB4J+7nNvKi3d85JxK/KSGBUSzfhMvYdjdLmRVffmPnsr3zF3VWAnm1etlBXaAb/v4nTNwmBXp4FDdtihB6mwMYLdEHtxf8kDW/PhzE5zKaZZb0GbFkxs1gq9HBWFeG460MxI+512RAB7cI1s1bt/luqQwditgjsrmkXTBXZB6jqP6PSJsamZ7Sk2MnKyWcmbwIty/adCLGcOC6rIvg/qF24Qo5WfGWZjY369cSzkfaS+yZ/TqzlE0vMPmh+1hgAy/8AIFms/hC7/y27YrYlZdTWlQHITZdcnarWgBP2Q2HXis55ynOkkPTSe5AqRExqBGaUkDmrr7G6gsaXWfrQnR1DMQ6+6vZZrX6PXERNRkFz+4srj71RDZE9P8Jk+o7675hojOe00kHS1cgXYqgHrL5jZlkh8v8YRhFqre6eU8Z2rdOOA+S+a6sIfC/B+p0pfm1zT18mG5khaqbqg==
+X-Microsoft-Antispam-Message-Info: kNVBtKBJ6LLF7gcHCuCuWM0vGS4kdz8vG915JWJt+mnf/0LAAJsy/4BSOotdSvDeeKObRUD1UvOPMH3P3HbXJVffqueVkw5iXvZKSTqHmRvD8HhMUOoIcduEsx2MWRDZxBfqvzPFA1bYGPS104+r+hNDsx7BurusMYUPFQyGQrZk0LzSqu4eSks8bQT14FENuHEvO4t/YrYnutsdlGCNb6mK8e5wkyXp4z26hCIT5SYyPtQBUOaTGHjjnP0b+eZJJoYy+aFp3JuAEeVMnVX7tp+7kr1Pay8qTF46NRbCZDwOowI4O79QISgOW1MHdCRGfqGLedaloy5GvYuFD0ncR6qtR4vW2E5O2BZxtkpUsXxsfQXgO3iexo485Z55EtMDjtCBNzobzwTmZ1f9K4Fi+3lomRrhULlMGwt7TruATCzH+EtG4wEkvrlVqapjc4sXj6LJl4pTd2GEn8+fjlgps3hzPQAcEyYGvyLBcUjomB2KMEAiT/53845gfJcRLffvGlRmwQ3w/limPlv5bfCR7g==
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:BN8PR12MB3587.namprd12.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230028)(4636009)(346002)(136003)(39860400002)(376002)(366004)(396003)(451199021)(5660300002)(8936002)(7416002)(31686004)(2906002)(54906003)(316002)(66946007)(41300700001)(186003)(66899021)(478600001)(66476007)(6916009)(4326008)(8676002)(30864003)(66556008)(966005)(6666004)(6486002)(53546011)(6512007)(6506007)(2616005)(83380400001)(36756003)(38100700002)(66574015)(31696002)(86362001)(45980500001)(43740500002);
- DIR:OUT; SFP:1101; 
+ IPV:NLI; SFV:NSPM; H:PH7PR11MB6522.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230028)(396003)(136003)(39860400002)(366004)(346002)(376002)(451199021)(38100700002)(5660300002)(44832011)(6916009)(66476007)(8676002)(66556008)(41300700001)(4326008)(66946007)(82960400001)(8936002)(86362001)(6486002)(83380400001)(966005)(2906002)(6512007)(26005)(6506007)(186003)(316002)(478600001)(6666004);
+ DIR:OUT; SFP:1102; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?TDNCTE1xZVBXbDk0UUxwcTlyNGhwNTZlNVdnSmpJM25UR3Joa25HeXVmUVRV?=
- =?utf-8?B?WkZRL1dWd0hNdUlYaXBvYWdoQ3ZwTTVBVXI5RTI3T3hoeUY0WTF3NVZnbHdG?=
- =?utf-8?B?bWRyOUF5NWNCL0EyRVJ5dmtPT0ZNZmc5cHFEdG1ZM1J3R2NmSi9hS1I1bG51?=
- =?utf-8?B?WkhCb2NCRHhZMkk1YzRONE9HMUIvMUlBSU95QmhISkxmeTB5OTRaL0hNSG05?=
- =?utf-8?B?ZmROdjVYRFRlc2M1VmZmS3hKV2lKaGRPbUthd1Z5bXIvUHI5b0ZqWC9qbklH?=
- =?utf-8?B?TnpZbkRTeENnTzV0TkpjZDcrc1NtellJSll0bzMvc29NbWRYVlpVUEc2UGsw?=
- =?utf-8?B?YlBjNldEbGQ5Y3Y4b3FoOWpaTXJ6MnUyYW9oeTVTUXRQdCt6TUw5bWkzVEFx?=
- =?utf-8?B?TXpnblR2dSt5QytEcFJmaTVHdFJPOVNDNDVudEdiVFlwcG1VWXowTVcwQmFQ?=
- =?utf-8?B?T0xhMDB5R2h3d2VsUysyTE1KS2ZOU3FnSmUxbkJrOEtrb1N3RG5FNXBOV1Zq?=
- =?utf-8?B?cjZ0dGNESGFsTGRnbmlRR1U0REFlN2FPMEdUNHEvUlVFSGtOT3diN0Nac0dG?=
- =?utf-8?B?by83dGttS2tFTVRuK2FMUnhiSTZySkg5MjZoejVKTzF6M3NlL3E2eWRFYUFP?=
- =?utf-8?B?S3FSSVRYR0xhVm1xSlRsU004V0ViOVlkMjdnSUlXdlJjQ2E4NFdJL0M5REsz?=
- =?utf-8?B?eUlHbDZpbUJ0YzgxdXhzRWhrUGZUdzJLOVlxazZweGpsSnFOdk1ZcXlSNHNZ?=
- =?utf-8?B?eFY0YXN3cXppRFZVSFpxaWwycmY4UnJlczM2K0UxWlIyRkk5alhaN01wVnMv?=
- =?utf-8?B?dCtXSFpoM2dzLzFPRTRNbHg5bnpTTXU0VXBKUThBUE1UZW80Zng2eTZ2TFN2?=
- =?utf-8?B?NFZHaUlNQzFwV2d4VTBrZUozbG5sdEczZjNBZmtwelN6SkQ5b01sL2tweE1B?=
- =?utf-8?B?K0FzeTNVdG84ZnpWSHM4RHA1VFZhRmliUll5cWo0aFVaeGQxK2FYRGs4b213?=
- =?utf-8?B?RnFhNlJidlpWanJlTE93bTZzSitVdUhPc3lCbktWU1FSa2VmVlg3b0dLMUEv?=
- =?utf-8?B?bnU2UnE4RG9YYjRRUVV1R3ZnUTlKZ0hyOFZlUzJHemhBdDZhc2ZMTjh2Uk1r?=
- =?utf-8?B?akVwa0dYWmFrY3k5Wm1lRUxiSXE1dE55UHhNM1VEUWpPVE45ekV6SlRHUk81?=
- =?utf-8?B?REtaWHVKR0xYYU92bzlFS3FjSS9RUnk5QXpxcWMyNnptWWhJOSs0L1AvS1lF?=
- =?utf-8?B?UDVzN0tTL0N3TnE5clI2c3lOVTgzQ3JRa2xxVmR4VEcvOUlOWGZXWWh0VU9z?=
- =?utf-8?B?U2x4SjJ3Sk1ONGJrQU15R2hJYllnM01sVEpOanRHSlVJMXVGSERXMGE3RTdu?=
- =?utf-8?B?Vmk3VnhQaWFMODZmYjhVd3pCNjEzK2JlQnJiNnB0VHdGS01ZWVprUmk5ckdT?=
- =?utf-8?B?MERrSWN3YlJVaUIxcHVXL3J2UkhteGliVnhhUWlFM1daV3ZiSGIzM2RPOUtM?=
- =?utf-8?B?Nkd5UTE3R0JPbWFTN3R4ZXNxVXFnMnJmSUZibVJ3THNWVUNuUDlIM2hIdjhw?=
- =?utf-8?B?djV5a0w2dmgzcFhwcGdnN01jZVlWSkdmYWpicldmZm8yMEcxWEg3V0lRbjkr?=
- =?utf-8?B?emcyVXJNZWZLUzd4WmpXTkhwS2ZTWUt0SUVPWkl0dDhnc1JERXlhZ2NTSE02?=
- =?utf-8?B?bVpIcWg3Um9tVEMvSkI4RzhhNmh1WFJMTjlSaUVIN05nRW1Yemt3dVNaUjdu?=
- =?utf-8?B?WVpzZ0JtcTNtNGVoa0QwOHljODd4NzFMUndnT0tsN080OTBHN3RpWUY1RW9O?=
- =?utf-8?B?dTRVaE1obHd5QVZHTHBjc2FVVWJMdzRVYm9FbUhzOWJqdUxVV2NIdWxVY2Ra?=
- =?utf-8?B?NDFHcmJ1a1FvSnlEdkcwTGxjT1VWTkhTeitXVThUb1NGT2NjVDNhb3AxTEVv?=
- =?utf-8?B?Ukwyc2ZobFFRRW1wbytCWmUrdGRWZUZCQmVKRFdDKzZscnpWNjdQYVRTbGtl?=
- =?utf-8?B?cFYzYzUwYU1SYTY4elJRYU9wd1RWQTY1NDh1REJ5L2ZhQzFtWHZIREVWb1Bz?=
- =?utf-8?B?eEhpbnpWdll6MjdmcVN6WlRnWGxyR29kVis4c3RCNWhWemVJQlFWZGdJaVhm?=
- =?utf-8?B?VkZ6cmdlSkNDSzJ1aThWZnhxTkhDdGlTM2NyQWtvc0UzdjZJditvMDJBNGpW?=
- =?utf-8?Q?fDLrKIqRGwV9ZSS4BviWJJzLbH6r3qnxLYmlc5vtvoz8?=
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 55cf7f9d-3e2b-41f2-951f-08db35df320f
-X-MS-Exchange-CrossTenant-AuthSource: BN8PR12MB3587.namprd12.prod.outlook.com
+X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?QCnTROzHET7jh4JM4J32fMVr6oRjH/CMqR21nU8WuYHvCANrlauxh6SsEr8C?=
+ =?us-ascii?Q?eDL56Ky/8cCq9x/JhQqZW6WTJHyRscND8zvYFisBuiFVtFosKp0ba1aBispn?=
+ =?us-ascii?Q?dak1JaegXvK+01WY/zBA1fxEtXvPjld6xkv4cS8AyLKe7cqUKrX3vMdG3ERe?=
+ =?us-ascii?Q?t8lz9+RW/J/1SgA7A0YL/mFUNU1Ifr+IlfX4I0pUhql2VT7cFZlpRJBw8XOV?=
+ =?us-ascii?Q?mlG0/Ss48Kc4Gq+SH+gRs2KC+RStvCdWQfWglQ5VFkz2TK2+v858M9iDl1x8?=
+ =?us-ascii?Q?xQ4Pr9TD488D3HT1SXV3NJbX1UjJeQfHQsZ/KB1+JUWQU7lg/bzMYWK7OmIZ?=
+ =?us-ascii?Q?iq8NwCnajg7NzJiWzPwuGA0OdPPnqHyOOcT0kdyhsTr5adg94VdPtNCJy2x9?=
+ =?us-ascii?Q?D2ZGwkSwducR9Sov0fk68n1j5S9EmJ2CF3dWF1kut9bZ2WYjJT0dno5Dy0Ry?=
+ =?us-ascii?Q?hVweldKoYTSegHnxYH39Uq7VvmSdW45q5C8fPFrk1rX73HHg4fQRsQYRg4ek?=
+ =?us-ascii?Q?3uCHs19Qqbo2hOtWPSRWwH59NLUzo+TTtktQK7odmyyn0Wk+3Xd3mvmVtszb?=
+ =?us-ascii?Q?8xSVHHwgjElcUp0gDwV/KTUWJfpsw8uAxRbbq2Kz46aTVeJ+mQdaOlhTFmY4?=
+ =?us-ascii?Q?0NtGkLq7UDnaZT7xdbPQJFj0sZwX0AnLtQ7RPsWrIPQGa+6BVWiWzDpC1t7e?=
+ =?us-ascii?Q?Prspv7TO6RSaCok4A2en3W7MDNRPvaRG5Yq21yTAfrE4n9Cog149HgYnJZZd?=
+ =?us-ascii?Q?TAJ/XWeHP85qr/UsBPwO2xU3qoQgNxcLGJ7pnFWbGzDz/s8Q0fcxLs5cu40C?=
+ =?us-ascii?Q?57og9QuQYnxcfXQzW+6wYupZ5+6BgXUimR+uLD+DdIOkIfSE0dzIZ4xpPmZK?=
+ =?us-ascii?Q?rMbM+ekG8/wnEUlhQfvIL8oN6V5d+mCqabU8IOtvISZ4Q5DiM988MdB1rNBX?=
+ =?us-ascii?Q?3XCBjCCUZCtrcrS102oa5vHWcpkCW+YxlgREH3EVbmQuR+J61UJ8riV6MhYX?=
+ =?us-ascii?Q?wFgZ+8nNWd3uXbRDn+RHtcEzSHDen9m2SBWVLcx6ZiLrAxCE8caQq+Holado?=
+ =?us-ascii?Q?2p7fx8H0pydz5ldzF2LDjLNJW73tXJvo7xgijb8PJHOX8AjRQG9DJGD2lVoB?=
+ =?us-ascii?Q?AKd24Ohvd0VOAvOaxwky62j6MAIq7K5HKJHByO/82ZsQM/Z4n7UGV3U0qVze?=
+ =?us-ascii?Q?E3l93UJ7xmfbDsyUosQnFHUGspGz4fptYTIjMLSsV67VRVqdbZJ4rwD5Ttsk?=
+ =?us-ascii?Q?uPPAHUcsNB9s3KE4NK64NJc7hYMJUpuM/Xkb5+6r6kQotYX+t6MVZXTa3LFV?=
+ =?us-ascii?Q?z3boy+zFmsM6yKXbKrL4GZ9EIalBGeVQ5k0s8oJmCk8Vi4MK9oRYoI7/lMPN?=
+ =?us-ascii?Q?OIajHKjjRKwpixpVkECiaHhG0p8VbzeOtPXsR2uSnnEdN/9b/3dd+RLwxgl9?=
+ =?us-ascii?Q?ziZZmQ7hQ6r646nSgwpbqfmJz5+yYsJrp4si3t6VXi/zi25VxkoDHL1iMXqi?=
+ =?us-ascii?Q?sQ1HdWP3iRVqMYfoDSIs5x983Mm9xbe1FqZknrR90c158DgFU0T8z3WFQ1Ft?=
+ =?us-ascii?Q?XpbmMVJyu/Cu6vg5eW4AGMUUEFu0Cr9TexNVqzuYsiESKVS89SniaJHuLl/m?=
+ =?us-ascii?Q?Iw=3D=3D?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: c50052fb-6808-4253-fb0d-08db35e01141
+X-MS-Exchange-CrossTenant-AuthSource: PH7PR11MB6522.namprd11.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 05 Apr 2023 14:08:13.9448 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 05 Apr 2023 14:14:28.2782 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: Vf5/Dwl53I9YJH8TY7KvvuGjn0sd3w2CKIgziavegNKC84EWdQ+waczhyO5wKyFj
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: CH3PR12MB9023
-Subject: Re: [Intel-xe] [RFC PATCH 08/10] dma-buf/dma-fence: Introduce
- long-running completion fences
+X-MS-Exchange-CrossTenant-UserPrincipalName: LicvxYe/UdFL2597ATVMocMW/erEqQGbW++593JVAo6PLXLy08uRToAuIqX4P7edjdaB582v4ghPhYWSVv4H3w==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: CO6PR11MB5588
+X-OriginatorOrg: intel.com
+Subject: Re: [Intel-xe] [PATCH] drm/xe: Use Xe BO pin / unpin functions for
+ FB pin
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -135,274 +147,88 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Cc: airlied@linux.ie, lina@asahilina.net,
- =?UTF-8?Q?Thomas_Hellstr=c3=b6m_=28Intel=29?= <thomas_os@shipmail.org>,
- dri-devel@lists.freedesktop.org, boris.brezillon@collabora.com,
- robdclark@chromium.org, intel-xe@lists.freedesktop.org,
- faith.ekstrand@collabora.com
+Cc: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Am 05.04.23 um 14:45 schrieb Daniel Vetter:
-> On Wed, Apr 05, 2023 at 02:39:35PM +0200, Christian König wrote:
->> Am 05.04.23 um 14:35 schrieb Thomas Hellström:
->>> Hi,
->>>
->>> On 4/4/23 21:25, Daniel Vetter wrote:
->>>> On Tue, Apr 04, 2023 at 07:02:23PM +0000, Matthew Brost wrote:
->>>>> On Tue, Apr 04, 2023 at 08:14:01PM +0200, Thomas Hellström
->>>>> (Intel) wrote:
->>>>>> On 4/4/23 15:10, Christian König wrote:
->>>>>>> Am 04.04.23 um 14:54 schrieb Thomas Hellström:
->>>>>>>> Hi, Christian,
->>>>>>>>
->>>>>>>> On 4/4/23 11:09, Christian König wrote:
->>>>>>>>> Am 04.04.23 um 02:22 schrieb Matthew Brost:
->>>>>>>>>> From: Thomas Hellström <thomas.hellstrom@linux.intel.com>
->>>>>>>>>>
->>>>>>>>>> For long-running workloads, drivers either need to open-code
->>>>>>>>>> completion
->>>>>>>>>> waits, invent their own synchronization
->>>>>>>>>> primitives or internally use
->>>>>>>>>> dma-fences that do not obey the cross-driver
->>>>>>>>>> dma-fence protocol, but
->>>>>>>>>> without any lockdep annotation all these
->>>>>>>>>> approaches are error prone.
->>>>>>>>>>
->>>>>>>>>> So since for example the drm scheduler uses dma-fences it is
->>>>>>>>>> desirable for
->>>>>>>>>> a driver to be able to use it for throttling and error
->>>>>>>>>> handling also with
->>>>>>>>>> internal dma-fences tha do not obey the cros-driver
->>>>>>>>>> dma-fence protocol.
->>>>>>>>>>
->>>>>>>>>> Introduce long-running completion fences in form of
->>>>>>>>>> dma-fences, and add
->>>>>>>>>> lockdep annotation for them. In particular:
->>>>>>>>>>
->>>>>>>>>> * Do not allow waiting under any memory management locks.
->>>>>>>>>> * Do not allow to attach them to a dma-resv object.
->>>>>>>>>> * Introduce a new interface for adding callbacks making the
->>>>>>>>>> helper adding
->>>>>>>>>>      a callback sign off on that it is aware
->>>>>>>>>> that the dma-fence may not
->>>>>>>>>>      complete anytime soon. Typically this will be the
->>>>>>>>>> scheduler chaining
->>>>>>>>>>      a new long-running fence on another one.
->>>>>>>>> Well that's pretty much what I tried before:
->>>>>>>>> https://lwn.net/Articles/893704/
->>>>>>>>>
->>>>> I don't think this quite the same, this explictly enforces that
->>>>> we don't
->>>>> break the dma-fence rules (in path of memory allocations, exported in
->>>>> any way), essentially this just SW sync point reusing dma-fence the
->>>>> infrastructure for signaling / callbacks. I believe your series
->>>>> tried to
->>>>> export these fences to user space (admittedly I haven't fully read your
->>>>> series).
->>>>>
->>>>> In this use case we essentially just want to flow control the ring via
->>>>> the dma-scheduler + maintain a list of pending jobs so the TDR can be
->>>>> used for cleanup if LR entity encounters an error. To me this seems
->>>>> perfectly reasonable but I know dma-femce rules are akin to a holy war.
->>>>>
->>>>> If we return NULL in run_job, now we have to be able to sink all jobs
->>>>> in the backend regardless on ring space, maintain a list of jobs
->>>>> pending
->>>>> for cleanup after errors, and write a different cleanup path as now the
->>>>> TDR doesn't work. Seems very, very silly to duplicate all of this code
->>>>> when the DRM scheduler provides all of this for us. Also if we go this
->>>>> route, now all drivers are going to invent ways to handle LR
->>>>> jobs /w the
->>>>> DRM scheduler.
->>>>>
->>>>> This solution is pretty clear, mark the scheduler as LR, and don't
->>>>> export any fences from the scheduler. If you try to export these fences
->>>>> a blow up happens.
->>>> The problem is if you mix things up. Like for resets you need all the
->>>> schedulers on an engine/set-of-engines to quiescent or things get
->>>> potentially hilarious. If you now have a scheduler in forever limbo, the
->>>> dma_fence guarantees are right out the window.
->>>>
->>>> But the issue you're having is fairly specific if it's just about
->>>> ringspace. I think the dumbest fix is to just block in submit if you run
->>>> out of per-ctx ringspace, and call it a day. This notion that
->>>> somehow the
->>>> kernel is supposed to provide a bottomless queue of anything userspace
->>>> submits simply doesn't hold up in reality (as much as userspace
->>>> standards
->>>> committees would like it to), and as long as it doesn't have a
->>>> real-world
->>>> perf impact it doesn't really matter why we end up blocking in the
->>>> submit
->>>> ioctl. It might also be a simple memory allocation that hits a snag in
->>>> page reclaim.
->>> So it seems the discussion around the long-running synchronization
->>> diverged a bit between threads and this thread was hijacked for
->>> preempt-fences and userptr.
->>>
->>> Do I understand it correctly that the recommendation from both Daniel
->>> and Christian is to *not* use the drm scheduler for long-running compute
->>> jobs, but track any internal dma-fence dependencies (pipelined clearing
->>> or whatever) in a separate mechanism and handle unresolved dependencies
->>> on other long-running jobs using -EWOULDBLOCK?
->> Yeah, I think that's a good summary.
->>
->> If needed we could extract some scheduler functionality into separate
->> components, but the fundamental problem is that to the GPU scheduler
->> provides a dma_fence interface to the outside to signal job completion and
->> Daniel and I seem to agree that you really don't want that.
-> I think I'm on something slightly different:
->
-> - For anything which semantically is not a dma_fence I agree it probably
->    should be handled with EWOULDBLOCK and passed to userspace. Either with
->    a submit thread or userspace memory fences. Note that in practice you
->    will have a bunch of blocking left in the ioctl, stuff like mutexes or
->    memory allocations when things get really tight and you end up in
->    synchronous reclaim. Not any different from userspace ending up in
->    synchronous reclaim due to a page fault really. Trying to shoehorn
->    userspace memory fences or anything else long-running into drm/sched
->    dependency handling is just way too much a can of worms.
->
-> - For the memory management dependencies, which are all dma_fence when
->    pipeline, I do think pushing them through the drm/sched makes sense. It
->    has all the stuff to handle that already, plus it's imo also the ideal
->    place to handle the preempt-ctx dma_fence scaffolding/semantics. Which
->    would give you a really neatly unified command submission interface
->    since in both cases (end-of-batch and long-running) you fish the
->    dma_fence you need to stuff in all the right dma_resv object (for memory
->    management purpose) out of the same place: The drm_sched_job struct.
->
-> So I'm _not_ on the "do not use drm/sched for long-running jobs at all".
-> That doesn't make much sense to me because you'll just reinventing the
-> exact same dma_fence dependency handling and memory management shuffling
-> we already have. That seems silly.
+On Wed, Apr 05, 2023 at 02:19:35PM +0100, Matthew Auld wrote:
+> On Wed, 5 Apr 2023 at 05:19, Matthew Brost <matthew.brost@intel.com> wrote:
+> >
+> > Need to use XE BO pin / unpin for suspend / resume to work properly.
+> > Part this fix too is too allow xe_bo_pin to be called more than once.
+> >
+> > Should fix:
+> > https://gitlab.freedesktop.org/drm/xe/kernel/-/issues/244
+> >
+> > Signed-off-by: Matthew Brost <matthew.brost@intel.com>
+> 
+> Change makes sense to me, but I think we also need to update xe_bo_unpin()?
+> 
 
-How about we stuff the functionality we still want to have into a 
-drm_job object?
+Yep, thought that coded correctly but was looking at xe_bo_unpin_external().
 
-I mean that really isn't that much, basically just looking at 
-drm_syncobj, dma_resv etc.. and extracting all the dependencies.
+> But I must be misunderstanding something here. AFAICT we can have
+> various pinned VRAM objects, and xe_bo_pin() still adds them to
+> pinned.kernel_bo_present, where during suspend we evict everything on
+> that list to system memory. But as these are all still pinned, suspend
+> is still going to fail with this patch, given the recent TTM changes.
 
-Christian.
+What reference recent TTM changes? This all worked at one point in time.
 
-> -Daniel
->
->> Regards,
->> Christian.
->>
->>> Thanks,
->>> Thomas
->>>
->>>
->>>
->>>
->>>
->>>>>>>>> And the reasons why it was rejected haven't changed.
->>>>>>>>>
->>>>>>>>> Regards,
->>>>>>>>> Christian.
->>>>>>>>>
->>>>>>>> Yes, TBH this was mostly to get discussion going how we'd best
->>>>>>>> tackle this problem while being able to reuse the scheduler for
->>>>>>>> long-running workloads.
->>>>>>>>
->>>>>>>> I couldn't see any clear decision on your series, though, but one
->>>>>>>> main difference I see is that this is intended for driver-internal
->>>>>>>> use only. (I'm counting using the drm_scheduler as a helper for
->>>>>>>> driver-private use). This is by no means a way to try tackle the
->>>>>>>> indefinite fence problem.
->>>>>>> Well this was just my latest try to tackle this, but essentially the
->>>>>>> problems are the same as with your approach: When we express such
->>>>>>> operations as dma_fence there is always the change that we leak that
->>>>>>> somewhere.
->>>>>>>
->>>>>>> My approach of adding a flag noting that this operation
->>>>>>> is dangerous and
->>>>>>> can't be synced with something memory management depends on tried to
->>>>>>> contain this as much as possible, but Daniel still pretty clearly
->>>>>>> rejected it (for good reasons I think).
->>>>>>>
->>>>>>>> We could ofc invent a completely different data-type that abstracts
->>>>>>>> the synchronization the scheduler needs in the long-running case, or
->>>>>>>> each driver could hack something up, like sleeping in the
->>>>>>>> prepare_job() or run_job() callback for throttling, but those waits
->>>>>>>> should still be annotated in one way or annotated one way or another
->>>>>>>> (and probably in a similar way across drivers) to make sure we don't
->>>>>>>> do anything bad.
->>>>>>>>
->>>>>>>>    So any suggestions as to what would be the better solution here
->>>>>>>> would be appreciated.
->>>>>>> Mhm, do we really the the GPU scheduler for that?
->>>>>>>
->>>>> I think we need to solve this within the DRM scheduler one way or
->>>>> another.
->>>> Yeah so if we conclude that the queue really must be bottomless then I
->>>> agree drm-sched should help out sort out the mess. Because I'm guessing
->>>> that every driver will have this issue. But that's a big if.
->>>>
->>>> I guess if we teach the drm scheduler that some jobs are fairly endless
->>>> then maybe it wouldn't be too far-fetched to also teach it to wait for a
->>>> previous one to finish (but not with the dma_fence that preempts,
->>>> which we
->>>> put into the dma_resv for memory management, but some other struct
->>>> completion). The scheduler already has a concept of not stuffing too
->>>> much
->>>> stuff into the same queue after all, so this should fit?
->>>> -Daniel
->>>>
->>>>
->>>>>>> I mean in the 1 to 1 case  you basically just need a component which
->>>>>>> collects the dependencies as dma_fence and if all of
->>>>>>> them are fulfilled
->>>>>>> schedules a work item.
->>>>>>>
->>>>>>> As long as the work item itself doesn't produce a
->>>>>>> dma_fence it can then
->>>>>>> still just wait for other none dma_fence dependencies.
->>>>>>>
->>>>>>> Then the work function could submit the work and wait for the result.
->>>>>>>
->>>>>>> The work item would then pretty much represent what you want, you can
->>>>>>> wait for it to finish and pass it along as long running dependency.
->>>>>>>
->>>>>>> Maybe give it a funky name and wrap it up in a structure, but that's
->>>>>>> basically it.
->>>>>>>
->>>>>> This very much sounds like a i915_sw_fence for the
->>>>>> dependency tracking and
->>>>>> dma_fence_work for the actual work although it's completion fence is a
->>>>>> dma_fence.
->>>>>>
->>>>> Agree this does sound to i915ish as stated below one of mandates in Xe
->>>>> was to use the DRM scheduler. Beyond that as someone who a submission
->>>>> backend in the i915 and Xe, I love how the DRM scheduler works (single
->>>>> entry point), it makes everything so much easier.
->>>>>
->>>>> Matt
->>>>>
->>>>>> Although that goes against the whole idea of a condition for
->>>>>> merging the xe
->>>>>> driver would be that we implement some sort of minimal scaffolding for
->>>>>> long-running workloads in the drm scheduler, and the
->>>>>> thinking behind that is
->>>>>> to avoid implementing intel-specific solutions like those...
->>>>>>
->>>>>> Thanks,
->>>>>>
->>>>>> Thomas
->>>>>>
->>>>>>
->>>>>>
->>>>>>> Regards,
->>>>>>> Christian.
->>>>>>>
->>>>>>>> Thanks,
->>>>>>>>
->>>>>>>> Thomas
->>>>>>>>
->>>>>>>>
->>>>>>>>
->>>>>>>>
->>>>>>>>
+Matt
 
+> What am I missing?
+> 
+> > ---
+> >  drivers/gpu/drm/xe/display/xe_fb_pin.c | 4 ++--
+> >  drivers/gpu/drm/xe/xe_bo.c             | 5 +++--
+> >  2 files changed, 5 insertions(+), 4 deletions(-)
+> >
+> > diff --git a/drivers/gpu/drm/xe/display/xe_fb_pin.c b/drivers/gpu/drm/xe/display/xe_fb_pin.c
+> > index 65c0bc28a3d1..c7c849be288f 100644
+> > --- a/drivers/gpu/drm/xe/display/xe_fb_pin.c
+> > +++ b/drivers/gpu/drm/xe/display/xe_fb_pin.c
+> > @@ -205,7 +205,7 @@ static struct i915_vma *__xe_pin_fb_vma(struct intel_framebuffer *fb,
+> >
+> >         ret = xe_bo_validate(bo, NULL, true);
+> >         if (!ret)
+> > -               ttm_bo_pin(&bo->ttm);
+> > +               xe_bo_pin(bo);
+> >         ttm_bo_unreserve(&bo->ttm);
+> >         if (ret)
+> >                 goto err;
+> > @@ -222,7 +222,7 @@ static struct i915_vma *__xe_pin_fb_vma(struct intel_framebuffer *fb,
+> >
+> >  err_unpin:
+> >         ttm_bo_reserve(&bo->ttm, false, false, NULL);
+> > -       ttm_bo_unpin(&bo->ttm);
+> > +       xe_bo_unpin(bo);
+> >         ttm_bo_unreserve(&bo->ttm);
+> >  err:
+> >         kfree(vma);
+> > diff --git a/drivers/gpu/drm/xe/xe_bo.c b/drivers/gpu/drm/xe/xe_bo.c
+> > index 3a482c61c3ec..25c696bd380c 100644
+> > --- a/drivers/gpu/drm/xe/xe_bo.c
+> > +++ b/drivers/gpu/drm/xe/xe_bo.c
+> > @@ -1278,8 +1278,8 @@ int xe_bo_pin(struct xe_bo *bo)
+> >          */
+> >         XE_BUG_ON(bo->ttm.base.import_attach);
+> >
+> > -       /* We only expect at most 1 pin */
+> > -       XE_BUG_ON(xe_bo_is_pinned(bo));
+> > +       if (xe_bo_is_pinned(bo))
+> > +               goto pin;
+> >
+> >         err = xe_bo_validate(bo, NULL, false);
+> >         if (err)
+> > @@ -1308,6 +1308,7 @@ int xe_bo_pin(struct xe_bo *bo)
+> >                 }
+> >         }
+> >
+> > +pin:
+> >         ttm_bo_pin(&bo->ttm);
+> >
+> >         /*
+> > --
+> > 2.34.1
+> >
