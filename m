@@ -4,30 +4,31 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 15C3AC76188
-	for <intel-xe@archiver.kernel.org>; Wed,  5 Apr 2023 17:26:29 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4FD53C761AF
+	for <intel-xe@archiver.kernel.org>; Wed,  5 Apr 2023 17:28:22 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D41AB10E33F;
-	Wed,  5 Apr 2023 17:26:28 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2ECD989149;
+	Wed,  5 Apr 2023 17:28:17 +0000 (UTC)
 Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id 8DFD810E33F;
- Wed,  5 Apr 2023 17:26:27 +0000 (UTC)
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 367FE10E33F;
+ Wed,  5 Apr 2023 17:28:15 +0000 (UTC)
 Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 84CAFAADE3;
- Wed,  5 Apr 2023 17:26:27 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============3745143614732341827=="
+ by emeril.freedesktop.org (Postfix) with ESMTP id 25B44AADE3;
+ Wed,  5 Apr 2023 17:28:15 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: "Chang, Bruce" <yu.bruce.chang@intel.com>
-Date: Wed, 05 Apr 2023 17:26:27 -0000
-Message-ID: <168071558750.14699.4930424842033836981@emeril.freedesktop.org>
+Date: Wed, 05 Apr 2023 17:28:15 -0000
+Message-ID: <168071569512.14699.14919691184181866651@emeril.freedesktop.org>
 X-Patchwork-Hint: ignore
-References: <20230405170815.524853-1-yu.bruce.chang@intel.com>
-In-Reply-To: <20230405170815.524853-1-yu.bruce.chang@intel.com>
-Subject: [Intel-xe] =?utf-8?q?=E2=97=8B_CI=2EBAT=3A_info_for_drm/xe=3A_fo?=
- =?utf-8?q?llow_up_on_the_patch_to_fix_pvc_unload_issue?=
+References: <20230405171303.525412-1-yu.bruce.chang@intel.com>
+In-Reply-To: <20230405171303.525412-1-yu.bruce.chang@intel.com>
+Subject: [Intel-xe] =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_f?=
+ =?utf-8?q?or_drm/xe=3A_follow_up_on_the_patch_to_fix_pvc_unload_issue_=28?=
+ =?utf-8?q?rev2=29?=
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -44,65 +45,32 @@ Cc: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============3745143614732341827==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
 == Series Details ==
 
-Series: drm/xe: follow up on the patch to fix pvc unload issue
+Series: drm/xe: follow up on the patch to fix pvc unload issue (rev2)
 URL   : https://patchwork.freedesktop.org/series/116164/
-State : info
+State : success
 
 == Summary ==
 
-Participating hosts:
-bat-atsm-2
-bat-dg2-oem2
-bat-adlp-7
-Missing hosts results[1]:
-bat-atsm-2
-Results: [xe-pw-116164v1](https://intel-gfx-ci.01.org/tree/xe/xe-pw-116164v1/index.html)
+=== Applying kernel patches on branch 'drm-xe-next' with base: ===
+commit acfd6dbdcdf8f27d6357580683de8fce9222d2f3
+Author:     Matthew Brost <matthew.brost@intel.com>
+AuthorDate: Tue Apr 4 21:15:59 2023 -0700
+Commit:     Matthew Brost <matthew.brost@intel.com>
+CommitDate: Wed Apr 5 08:46:04 2023 -0700
+
+    drm/xe: Use Xe BO pin / unpin functions for FB pin
+    
+    Need to use XE BO pin / unpin for suspend / resume to work properly.
+    Part this fix too is too allow xe_bo_pin to be called more than once.
+    
+    v2:
+      - (Matthew Auld) fixup unpin
+    
+    Signed-off-by: Matthew Brost <matthew.brost@intel.com>
+    Reviewed-by: Matthew Auld <matthew.auld@intel.com>
+=== git am output follows ===
+Applying: drm/xe: follow up on the patch to fix pvc unload issue
 
 
-
---===============3745143614732341827==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/xe: follow up on the patch to fix pvc unload issue</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/116164/">https://patchwork.freedesktop.org/series/116164/</a></td></tr>
-<tr><td><b>State:</b></td><td>info</td></tr>
-
-</table>
-
-
-    <p>Participating hosts:<br />
-bat-atsm-2<br />
-bat-dg2-oem2<br />
-bat-adlp-7<br />
-Missing hosts results[1]:<br />
-bat-atsm-2<br />
-Results: <a href="https://intel-gfx-ci.01.org/tree/xe/xe-pw-116164v1/index.html">xe-pw-116164v1</a></p>
-
-</body>
-</html>
-
---===============3745143614732341827==--
