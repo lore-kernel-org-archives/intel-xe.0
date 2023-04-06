@@ -4,48 +4,48 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9DED4C77B75
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id CDD4EC77B76
 	for <intel-xe@archiver.kernel.org>; Thu,  6 Apr 2023 23:56:41 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4F9EE10ED6C;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5F44610ED6D;
 	Thu,  6 Apr 2023 23:56:41 +0000 (UTC)
 Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 35C2810ED63
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4270F10ED65
  for <intel-xe@lists.freedesktop.org>; Thu,  6 Apr 2023 23:56:39 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
  t=1680825399; x=1712361399;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=AJ9gm/67w/7GdVwrxTdAIBW9f4Xbp8aQIloJ4SzyGUY=;
- b=OznYIMQ8Yj5m0nmi1JDOva8oKfAk5A0SoxC7RgRHnyJL2Qlo2S7xTukx
- oNz3AEk1t0bhVGPGGv++uCzcELRwfi6Y6nDg4LUIUjM7EUJHP7g7ZzeCH
- u7LRngk69sa9gZ+rlypYR+Nu7U7de5/zBJNgNokfew3yIdYKTHLslDwz3
- o5AqMC6tCSvFwVaGojaXpXe6tBixcLnR3qFajDBmQzLCNSczo9ZoFGJXu
- Wpo8hZunvc/AfVv58JaABMKVCWxmJoz/em7B5xhrB111hd753sAKf8ypE
- QKs5HIw9P5avdfYksa+m+FDdD4+jAR87Xd3xxhd7OfJpGH3Nxoh6q5mzj g==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10672"; a="344640873"
-X-IronPort-AV: E=Sophos;i="5.98,324,1673942400"; d="scan'208";a="344640873"
+ bh=9ekaoVrKI7ktORsYdhghbcJkGJNiUJ74579vfG/TRmo=;
+ b=VU42L9HbKCHE+a/ccSNGjy43+BqHxRU3JPjbUkJdID6OBQYosBd5WRJm
+ CQXWn69mHrUV8KKPQqOWEA0wzew6J4wH49Cx3So+WaDQUMt20Y0PpA7jw
+ eU12UHUMLllcN7i5nomNtfGSRn5X5mxBclriX8lyKxHlm43apNQ3vbdvT
+ 1Fgray1mkUgy8/jneQQKlNwnbazJFPZcNkLpMu5C85D82BYQuYZfSs880
+ c+DAzkZwFDWAGTl5RIgro1V1R+mEmTnOgw7LMIJlyiKqrd1npCDKtltYH
+ verLnkik70ZWAiB5HdW/G4nXsdhseEnA1bYXcdT4AqufwK7sPjCqjuN8V A==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10672"; a="344640875"
+X-IronPort-AV: E=Sophos;i="5.98,324,1673942400"; d="scan'208";a="344640875"
 Received: from orsmga005.jf.intel.com ([10.7.209.41])
  by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  06 Apr 2023 16:56:37 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10672"; a="861587187"
-X-IronPort-AV: E=Sophos;i="5.98,324,1673942400"; d="scan'208";a="861587187"
+X-IronPort-AV: E=McAfee;i="6600,9927,10672"; a="861587192"
+X-IronPort-AV: E=Sophos;i="5.98,324,1673942400"; d="scan'208";a="861587192"
 Received: from mdroper-desk1.fm.intel.com ([10.1.27.134])
  by orsmga005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  06 Apr 2023 16:56:37 -0700
 From: Matt Roper <matthew.d.roper@intel.com>
 To: intel-xe@lists.freedesktop.org
-Date: Thu,  6 Apr 2023 16:56:18 -0700
-Message-Id: <20230406235621.1914492-7-matthew.d.roper@intel.com>
+Date: Thu,  6 Apr 2023 16:56:19 -0700
+Message-Id: <20230406235621.1914492-8-matthew.d.roper@intel.com>
 X-Mailer: git-send-email 2.39.2
 In-Reply-To: <20230406235621.1914492-1-matthew.d.roper@intel.com>
 References: <20230406235621.1914492-1-matthew.d.roper@intel.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-xe] [PATCH v3 6/9] drm/xe: Add printable name to IP
- descriptors
+Subject: [Intel-xe] [PATCH v3 7/9] drm/xe: Select graphics/media descriptors
+ from GMD_ID
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -61,149 +61,338 @@ Cc: Lucas De Marchi <lucas.demarchi@intel.com>, matthew.d.roper@intel.com
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Printing the name, along with the IP version number, will help reduce
-confusion about which IP is present on a platform.
+If graphics_desc and media_desc are not specified in a platform's
+xe_device_desc, treat this as an indication that the IP version should
+be determined from the hardware's GMD_ID register.
+
+Note that leaving media_desc unset for a platform that simply doesn't
+have the IP (e.g., PVC) is also okay --- a read of the GMD_ID register
+offset will be attempted, but since there's no register at that location
+a value of '0' will be returned, effectively disabling media support.
+
+Mapping of version -> IP description is done via a table lookup; this
+table will be re-used in future patches for some KUnit testing.
+
+v2:
+ - Drop dummy structures.  NULL can be safely used for both the GMD_ID
+   cases and the "media not present case."
+ - Use a table-based lookup of GMD_ID versions rather than a simple
+   switch statement; the table will allow us to easily perform kunit
+   testing of all the IP descriptors.
 
 Cc: Lucas De Marchi <lucas.demarchi@intel.com>
+Cc: Balasubramani Vivekanandan <balasubramani.vivekanandan@intel.com>
 Signed-off-by: Matt Roper <matthew.d.roper@intel.com>
 ---
- drivers/gpu/drm/xe/xe_device_types.h |  4 ++++
- drivers/gpu/drm/xe/xe_pci.c          | 21 ++++++++++++++++++---
- drivers/gpu/drm/xe/xe_pci_types.h    |  2 ++
- 3 files changed, 24 insertions(+), 3 deletions(-)
+ drivers/gpu/drm/xe/regs/xe_gt_regs.h |   6 +
+ drivers/gpu/drm/xe/xe_pci.c          | 184 +++++++++++++++++++++------
+ drivers/gpu/drm/xe/xe_pci.h          |   5 +
+ 3 files changed, 159 insertions(+), 36 deletions(-)
 
-diff --git a/drivers/gpu/drm/xe/xe_device_types.h b/drivers/gpu/drm/xe/xe_device_types.h
-index 6fb53a54913f..f5399b284e3b 100644
---- a/drivers/gpu/drm/xe/xe_device_types.h
-+++ b/drivers/gpu/drm/xe/xe_device_types.h
-@@ -57,6 +57,10 @@ struct xe_device {
+diff --git a/drivers/gpu/drm/xe/regs/xe_gt_regs.h b/drivers/gpu/drm/xe/regs/xe_gt_regs.h
+index a8a37e6a45a3..f174758d8307 100644
+--- a/drivers/gpu/drm/xe/regs/xe_gt_regs.h
++++ b/drivers/gpu/drm/xe/regs/xe_gt_regs.h
+@@ -22,6 +22,12 @@
+ #define FORCEWAKE_ACK_MEDIA_VDBOX_GEN11(n)	_MMIO(0xd50 + (n) * 4)
+ #define FORCEWAKE_ACK_MEDIA_VEBOX_GEN11(n)	_MMIO(0xd70 + (n) * 4)
+ #define FORCEWAKE_ACK_RENDER_GEN9		_MMIO(0xd84)
++
++#define GMD_ID					_MMIO(0xd8c)
++#define   GMD_ID_ARCH_MASK			REG_GENMASK(31, 22)
++#define   GMD_ID_RELEASE_MASK			REG_GENMASK(21, 14)
++#define   GMD_ID_STEP				REG_GENMASK(5, 0)
++
+ #define FORCEWAKE_ACK_GT_MTL			_MMIO(0xdfc)
  
- 	/** @info: device info */
- 	struct intel_device_info {
-+		/** @graphics_name: graphics IP name */
-+		const char *graphics_name;
-+		/** @media_name: media IP name */
-+		const char *media_name;
- 		/** @graphics_verx100: graphics IP version */
- 		u32 graphics_verx100;
- 		/** @media_verx100: media IP version */
+ #define GEN9_LNCFCMOCS(i)			_MMIO(0xb020 + (i) * 4)	/* L3 Cache Control */
 diff --git a/drivers/gpu/drm/xe/xe_pci.c b/drivers/gpu/drm/xe/xe_pci.c
-index a5456788bca9..4442fb58202e 100644
+index 4442fb58202e..c10f2d45ae91 100644
 --- a/drivers/gpu/drm/xe/xe_pci.c
 +++ b/drivers/gpu/drm/xe/xe_pci.c
-@@ -75,6 +75,7 @@ __diag_ignore_all("-Woverride-init", "Allow field overrides in table");
- #define NOP(x)	x
+@@ -15,6 +15,7 @@
+ #include <drm/xe_pciids.h>
  
- static const struct xe_graphics_desc graphics_xelp = {
-+	.name = "Xe_LP",
- 	.ver = 12,
- 	.rel = 0,
- 
-@@ -85,6 +86,7 @@ static const struct xe_graphics_desc graphics_xelp = {
- };
- 
- static const struct xe_graphics_desc graphics_xelpp = {
-+	.name = "Xe_LP+",
- 	.ver = 12,
- 	.rel = 10,
- 
-@@ -101,6 +103,7 @@ static const struct xe_graphics_desc graphics_xelpp = {
- 	.vm_max_level = 3
- 
- static const struct xe_graphics_desc graphics_xehpg = {
-+	.name = "Xe_HPG",
- 	.ver = 12,
- 	.rel = 55,
- 
-@@ -114,6 +117,7 @@ static const struct xe_graphics_desc graphics_xehpg = {
- };
- 
- static const struct xe_graphics_desc graphics_xehpc = {
-+	.name = "Xe_HPC",
- 	.ver = 12,
- 	.rel = 60,
- 
-@@ -139,6 +143,7 @@ static const struct xe_graphics_desc graphics_xehpc = {
- };
+ #include "regs/xe_regs.h"
++#include "regs/xe_gt_regs.h"
+ #include "xe_device.h"
+ #include "xe_display.h"
+ #include "xe_drv.h"
+@@ -144,9 +145,6 @@ static const struct xe_graphics_desc graphics_xehpc = {
  
  static const struct xe_graphics_desc graphics_xelpg = {
-+	.name = "Xe_LPG",
- 	.ver = 12,
- 	.rel = 70,
- 
-@@ -151,6 +156,7 @@ static const struct xe_graphics_desc graphics_xelpg = {
- };
- 
- static const struct xe_media_desc media_xem = {
-+	.name = "Xe_M",
- 	.ver = 12,
- 	.rel = 0,
- 
-@@ -160,6 +166,7 @@ static const struct xe_media_desc media_xem = {
- };
- 
- static const struct xe_media_desc media_xehpm = {
-+	.name = "Xe_HPM",
- 	.ver = 12,
- 	.rel = 55,
- 
-@@ -169,6 +176,7 @@ static const struct xe_media_desc media_xehpm = {
- };
+ 	.name = "Xe_LPG",
+-	.ver = 12,
+-	.rel = 70,
+-
+ 	.hw_engine_mask =
+ 		BIT(XE_HW_ENGINE_RCS0) | BIT(XE_HW_ENGINE_BCS0) |
+ 		BIT(XE_HW_ENGINE_CCS0),
+@@ -177,9 +175,6 @@ static const struct xe_media_desc media_xehpm = {
  
  static const struct xe_media_desc media_xelpmp = {
-+	.name = "Xe_LPM+",
- 	.ver = 13,
- 	.rel = 0,
- 
-@@ -390,6 +398,8 @@ static void xe_info_init(struct xe_device *xe,
- 					 desc->media->rel;
- 	xe->info.is_dgfx = desc->is_dgfx;
- 	xe->info.platform = desc->platform;
-+	xe->info.graphics_name = desc->graphics->name;
-+	xe->info.media_name = desc->media ? desc->media->name : "none";
- 	xe->info.dma_mask_size = desc->graphics->dma_mask_size;
- 	xe->info.vram_flags = desc->graphics->vram_flags;
- 	xe->info.vm_max_level = desc->graphics->vm_max_level;
-@@ -493,12 +503,17 @@ static int xe_pci_probe(struct pci_dev *pdev, const struct pci_device_id *ent)
- 	xe_info_init(xe, desc, subplatform_desc);
- 	xe_display_info_init(xe);
- 
--	drm_dbg(&xe->drm, "%s %s %04x:%04x dgfx:%d gfx100:%d media100:%d dma_m_s:%d tc:%d",
-+	drm_dbg(&xe->drm, "%s %s %04x:%04x dgfx:%d gfx:%s (%d.%02d) media:%s (%d.%02d) dma_m_s:%d tc:%d",
- 		desc->platform_name,
- 		subplatform_desc ? subplatform_desc->name : "",
- 		xe->info.devid, xe->info.revid,
--		xe->info.is_dgfx, xe->info.graphics_verx100,
--		xe->info.media_verx100,
-+		xe->info.is_dgfx,
-+		xe->info.graphics_name,
-+		xe->info.graphics_verx100 / 100,
-+		xe->info.graphics_verx100 % 100,
-+		xe->info.media_name,
-+		xe->info.media_verx100 / 100,
-+		xe->info.media_verx100 % 100,
- 		xe->info.dma_mask_size, xe->info.tile_count);
- 
- 	drm_dbg(&xe->drm, "Stepping = (G:%s, M:%s, D:%s, B:%s)\n",
-diff --git a/drivers/gpu/drm/xe/xe_pci_types.h b/drivers/gpu/drm/xe/xe_pci_types.h
-index f4bc5ef1bce3..e479c1c4ed30 100644
---- a/drivers/gpu/drm/xe/xe_pci_types.h
-+++ b/drivers/gpu/drm/xe/xe_pci_types.h
-@@ -9,6 +9,7 @@
- #include <linux/types.h>
- 
- struct xe_graphics_desc {
-+	const char *name;
- 	u8 ver;
- 	u8 rel;
- 
-@@ -28,6 +29,7 @@ struct xe_graphics_desc {
+ 	.name = "Xe_LPM+",
+-	.ver = 13,
+-	.rel = 0,
+-
+ 	.hw_engine_mask =
+ 		BIT(XE_HW_ENGINE_VCS0) | BIT(XE_HW_ENGINE_VCS2) |
+ 		BIT(XE_HW_ENGINE_VECS0),	/* TODO: add GSC0 */
+@@ -281,12 +276,7 @@ static const struct xe_gt_desc xelpmp_gts[] = {
  };
  
- struct xe_media_desc {
-+	const char *name;
- 	u8 ver;
- 	u8 rel;
+ static const struct xe_device_desc mtl_desc = {
+-	/*
+-	 * FIXME:  Real graphics/media IP will be mapped from hardware
+-	 * GMD_ID register.  Hardcoded assignments here will go away soon.
+-	 */
+-	.graphics = &graphics_xelpg,
+-	.media = &media_xelpmp,
++	/* .graphics and .media determined via GMD_ID */
+ 	.require_force_probe = true,
+ 	PLATFORM(XE_METEORLAKE),
+ 	.extra_gts = xelpmp_gts,
+@@ -295,6 +285,17 @@ static const struct xe_device_desc mtl_desc = {
+ #undef PLATFORM
+ __diag_pop();
+ 
++/* Map of GMD_ID values to graphics IP */
++static struct gmdid_map graphics_ip_map[] = {
++	{ 1270, &graphics_xelpg },
++	{ 1271, &graphics_xelpg },
++};
++
++/* Map of GMD_ID values to media IP */
++static struct gmdid_map media_ip_map[] = {
++	{ 1300, &media_xelpmp },
++};
++
+ #define INTEL_VGA_DEVICE(id, info) {			\
+ 	PCI_DEVICE(PCI_VENDOR_ID_INTEL, id),		\
+ 	PCI_BASE_CLASS_DISPLAY << 16, 0xff << 16,	\
+@@ -384,31 +385,135 @@ find_subplatform(const struct xe_device *xe, const struct xe_device_desc *desc)
+ 	return NULL;
+ }
+ 
+-static void xe_info_init(struct xe_device *xe,
++static u32 peek_gmdid(struct xe_device *xe, u32 gmdid_offset)
++{
++	struct pci_dev *pdev = to_pci_dev(xe->drm.dev);
++	void __iomem *map = pci_iomap_range(pdev, 0, gmdid_offset, sizeof(u32));
++	u32 ver;
++
++	if (!map) {
++		drm_err(&xe->drm, "Failed to read GMD_ID (%#x) from PCI BAR.\n",
++			gmdid_offset);
++		return 0;
++	}
++
++	ver = ioread32(map);
++	pci_iounmap(pdev, map);
++
++	return REG_FIELD_GET(GMD_ID_ARCH_MASK, ver) * 100 +
++		REG_FIELD_GET(GMD_ID_RELEASE_MASK, ver);
++}
++
++static void handle_gmdid(struct xe_device *xe,
+ 			 const struct xe_device_desc *desc,
+-			 const struct xe_subplatform_desc *subplatform_desc)
++			 const struct xe_graphics_desc **graphics,
++			 const struct xe_media_desc **media)
++{
++	u32 ver;
++
++	if (desc->graphics) {
++		/*
++		 * Pre-GMD_ID platform; device descriptor already points to
++		 * the appropriate graphics descriptor.
++		 */
++		*graphics = desc->graphics;
++		xe->info.graphics_verx100 = (*graphics)->ver * 100 + (*graphics)->rel;
++	} else {
++		/*
++		 * GMD_ID platform; read IP version from hardware and select
++		 * graphics descriptor based on the result.
++		 */
++		ver = peek_gmdid(xe, GMD_ID.reg);
++		for (int i = 0; i < ARRAY_SIZE(graphics_ip_map); i++) {
++			if (ver == graphics_ip_map[i].ver) {
++				xe->info.graphics_verx100 = ver;
++				*graphics = graphics_ip_map[i].ip;
++
++				break;
++			}
++		}
++
++		if (!xe->info.graphics_verx100) {
++			drm_err(&xe->drm, "Hardware reports unknown graphics version %u.%02u\n",
++				ver / 100, ver % 100);
++		}
++	}
++
++	if (desc->media) {
++		/*
++		 * Pre-GMD_ID platform; device descriptor already points to
++		 * the appropriate media descriptor.
++		 */
++		*media = desc->media;
++		xe->info.media_verx100 = (*media)->ver * 100 + (*media)->rel;
++	} else {
++		/*
++		 * GMD_ID platform; read IP version from hardware and select
++		 * media descriptor based on the result.
++		 *
++		 * desc->media can also be NULL for a pre-GMD_ID platform that
++		 * simply doesn't have media (e.g., PVC); in that case the
++		 * attempt to read GMD_ID will return 0 (since there's no
++		 * register at that location).
++		 */
++		ver = peek_gmdid(xe, GMD_ID.reg + 0x380000);
++		if (ver == 0)
++			return;
++
++		for (int i = 0; i < ARRAY_SIZE(media_ip_map); i++) {
++			if (ver == media_ip_map[i].ver) {
++				xe->info.media_verx100 = ver;
++				*media = media_ip_map[i].ip;
++
++				break;
++			}
++		}
++
++		if (!xe->info.media_verx100) {
++			drm_err(&xe->drm, "Hardware reports unknown graphics version %u.%02u\n",
++				ver / 100, ver % 100);
++		}
++	}
++}
++
++
++static int xe_info_init(struct xe_device *xe,
++			const struct xe_device_desc *desc,
++			const struct xe_subplatform_desc *subplatform_desc)
+ {
++	const struct xe_graphics_desc *graphics_desc = NULL;
++	const struct xe_media_desc *media_desc = NULL;
+ 	struct xe_gt *gt;
+ 	u8 id;
+ 
+-	xe->info.graphics_verx100 = desc->graphics->ver * 100 +
+-				    desc->graphics->rel;
+-	if (desc->media)
+-		xe->info.media_verx100 = desc->media->ver * 100 +
+-					 desc->media->rel;
++	/*
++	 * If this platform supports GMD_ID, we'll detect the proper IP
++	 * descriptor to use from hardware registers.
++	 */
++	handle_gmdid(xe, desc, &graphics_desc, &media_desc);
++
++	/*
++	 * If we couldn't detect the graphics IP, that's considered a fatal
++	 * error and we should abort driver load.  Failing to detect media
++	 * IP is non-fatal; we'll just proceed without enabling media support.
++	 */
++	if (!graphics_desc)
++		return -ENODEV;
++
+ 	xe->info.is_dgfx = desc->is_dgfx;
+ 	xe->info.platform = desc->platform;
+-	xe->info.graphics_name = desc->graphics->name;
+-	xe->info.media_name = desc->media ? desc->media->name : "none";
+-	xe->info.dma_mask_size = desc->graphics->dma_mask_size;
+-	xe->info.vram_flags = desc->graphics->vram_flags;
+-	xe->info.vm_max_level = desc->graphics->vm_max_level;
+-	xe->info.supports_usm = desc->graphics->supports_usm;
+-	xe->info.has_asid = desc->graphics->has_asid;
+-	xe->info.has_flat_ccs = desc->graphics->has_flat_ccs;
++	xe->info.graphics_name = graphics_desc->name;
++	xe->info.media_name = media_desc ? media_desc->name : "none";
+ 	xe->info.has_4tile = desc->has_4tile;
+-	xe->info.has_range_tlb_invalidation = desc->graphics->has_range_tlb_invalidation;
+-	xe->info.has_link_copy_engine = desc->graphics->has_link_copy_engine;
++
++	xe->info.dma_mask_size = graphics_desc->dma_mask_size;
++	xe->info.vram_flags = graphics_desc->vram_flags;
++	xe->info.vm_max_level = graphics_desc->vm_max_level;
++	xe->info.supports_usm = graphics_desc->supports_usm;
++	xe->info.has_asid = graphics_desc->has_asid;
++	xe->info.has_flat_ccs = graphics_desc->has_flat_ccs;
++	xe->info.has_range_tlb_invalidation = graphics_desc->has_range_tlb_invalidation;
++	xe->info.has_link_copy_engine = graphics_desc->has_link_copy_engine;
+ 
+ 	/*
+ 	 * All platforms have at least one primary GT.  Any platform with media
+@@ -419,7 +524,7 @@ static void xe_info_init(struct xe_device *xe,
+ 	 * FIXME: 'tile_count' here is misnamed since the rest of the driver
+ 	 * treats it as the number of GTs rather than just the number of tiles.
+ 	 */
+-	xe->info.tile_count = 1 + desc->graphics->max_remote_tiles;
++	xe->info.tile_count = 1 + graphics_desc->max_remote_tiles;
+ 	if (MEDIA_VER(xe) >= 13)
+ 		xe->info.tile_count++;
+ 
+@@ -436,9 +541,9 @@ static void xe_info_init(struct xe_device *xe,
+ 			gt->info.type = XE_GT_TYPE_MAIN;
+ 			gt->info.vram_id = id;
+ 
+-			gt->info.__engine_mask = desc->graphics->hw_engine_mask;
+-			if (MEDIA_VER(xe) < 13 && desc->media)
+-				gt->info.__engine_mask |= desc->media->hw_engine_mask;
++			gt->info.__engine_mask = graphics_desc->hw_engine_mask;
++			if (MEDIA_VER(xe) < 13 && media_desc)
++				gt->info.__engine_mask |= media_desc->hw_engine_mask;
+ 
+ 			gt->mmio.adj_limit = 0;
+ 			gt->mmio.adj_offset = 0;
+@@ -446,14 +551,16 @@ static void xe_info_init(struct xe_device *xe,
+ 			gt->info.type = desc->extra_gts[id - 1].type;
+ 			gt->info.vram_id = desc->extra_gts[id - 1].vram_id;
+ 			gt->info.__engine_mask = (gt->info.type == XE_GT_TYPE_MEDIA) ?
+-				desc->media->hw_engine_mask :
+-				desc->graphics->hw_engine_mask;
++				media_desc->hw_engine_mask :
++				graphics_desc->hw_engine_mask;
+ 			gt->mmio.adj_limit =
+ 				desc->extra_gts[id - 1].mmio_adj_limit;
+ 			gt->mmio.adj_offset =
+ 				desc->extra_gts[id - 1].mmio_adj_offset;
+ 		}
+ 	}
++
++	return 0;
+ }
+ 
+ static void xe_pci_remove(struct pci_dev *pdev)
+@@ -500,7 +607,12 @@ static int xe_pci_probe(struct pci_dev *pdev, const struct pci_device_id *ent)
+ 
+ 	subplatform_desc = find_subplatform(xe, desc);
+ 
+-	xe_info_init(xe, desc, subplatform_desc);
++	err = xe_info_init(xe, desc, subplatform_desc);
++	if (err) {
++		drm_dev_put(&xe->drm);
++		return err;
++	}
++
+ 	xe_display_info_init(xe);
+ 
+ 	drm_dbg(&xe->drm, "%s %s %04x:%04x dgfx:%d gfx:%s (%d.%02d) media:%s (%d.%02d) dma_m_s:%d tc:%d",
+diff --git a/drivers/gpu/drm/xe/xe_pci.h b/drivers/gpu/drm/xe/xe_pci.h
+index 611c1209b14c..fb449b9319bf 100644
+--- a/drivers/gpu/drm/xe/xe_pci.h
++++ b/drivers/gpu/drm/xe/xe_pci.h
+@@ -6,6 +6,11 @@
+ #ifndef _XE_PCI_H_
+ #define _XE_PCI_H_
+ 
++struct gmdid_map {
++	unsigned int ver;
++	const void *ip;
++};
++
+ int xe_register_pci_driver(void);
+ void xe_unregister_pci_driver(void);
  
 -- 
 2.39.2
