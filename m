@@ -4,46 +4,49 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 94B04C76196
-	for <intel-xe@archiver.kernel.org>; Thu,  6 Apr 2023 14:34:12 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7AB92C77B70
+	for <intel-xe@archiver.kernel.org>; Thu,  6 Apr 2023 14:34:14 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6F4A010EC09;
-	Thu,  6 Apr 2023 14:34:12 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 455B110EC11;
+	Thu,  6 Apr 2023 14:34:14 +0000 (UTC)
 Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 555FB10EC08;
- Thu,  6 Apr 2023 14:34:10 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1176910EC09;
+ Thu,  6 Apr 2023 14:34:11 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1680791650; x=1712327650;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=eHscwEMheJ4cQOtRwB5dbjbffFkoWmLdRVEuGZAKVt4=;
- b=XTwk1WQDKyo8JS7W9BH1u+b6YwNSuD8ZsNfbfN8EzZP9MQUsRbJLt/A7
- gTR+4fAJ8HoCTuFd71nfDOYytMAncr/QxMW/cbqRfNMuWLNDDWbaCq8gW
- 5Sv9GTxvKv0EocTSYFPnaOiiPgWvYkSW8jFj+BpiQ9PU9trulsH7FrE2y
- OY/XzV6yPTvDWP5VjZQgnJJ/iBnvg16ujBro+xgdFGLCMZNVAFwO00kYu
- 1X8E47Yrf0XeIad1fJuXy09jlEybL7I0uOI1r2JwLqcqAuuu4ROyd9n1Y
- x/y5lXM17rJwaZRmV9ZAJWHlCqa64FfOr/fib0UkiDvk0CDPWWeYDw4IH g==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10672"; a="331384529"
-X-IronPort-AV: E=Sophos;i="5.98,323,1673942400"; d="scan'208";a="331384529"
+ t=1680791651; x=1712327651;
+ h=from:to:cc:subject:date:message-id:in-reply-to:
+ references:mime-version:content-transfer-encoding;
+ bh=kfVgsl0sH/QBcjbYimquAEwJBTDIavRZJjfHxjkzRic=;
+ b=cgFik+ZtL8HDPZFqipoOol1F9qlUYvrZ+5EgYLpgW39VFchBjtUQB4WB
+ M/1O4rDZexONDbm91mzR9fniFoUhZ0olN6xXbWLH8PlOWmkQ1tBk1gF4I
+ mc4+yIhppcrHf1bxjx9Zu3D/I4f46ncK8yiVjAXe6bMVbuGDSjUVmbY//
+ Oxw939MS6WCKwHXECgwB99u5NPCbcdeyhueDzBRonaWDaaKUccH4mgKy+
+ iIKvGM/ejOelJ+AGwUQRL93mWdF+3wqhJoSRVSoXbUhass5NQeHTXYyTd
+ wEUKFFfOqTYj6O/L1tg4VkavfH3lX2weZRUZfMUKYQ7xZO3gvujFvUD+D w==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10672"; a="331384549"
+X-IronPort-AV: E=Sophos;i="5.98,323,1673942400"; d="scan'208";a="331384549"
 Received: from orsmga006.jf.intel.com ([10.7.209.51])
  by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 06 Apr 2023 07:31:42 -0700
+ 06 Apr 2023 07:31:46 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10672"; a="664488414"
-X-IronPort-AV: E=Sophos;i="5.98,323,1673942400"; d="scan'208";a="664488414"
+X-IronPort-AV: E=McAfee;i="6600,9927,10672"; a="664488464"
+X-IronPort-AV: E=Sophos;i="5.98,323,1673942400"; d="scan'208";a="664488464"
 Received: from josouza-mobl2.fso.intel.com ([10.230.18.148])
  by orsmga006-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 06 Apr 2023 07:31:40 -0700
+ 06 Apr 2023 07:31:43 -0700
 From: =?UTF-8?q?Jos=C3=A9=20Roberto=20de=20Souza?= <jose.souza@intel.com>
 To: intel-xe@lists.freedesktop.org
-Date: Thu,  6 Apr 2023 07:31:28 -0700
-Message-Id: <20230406143133.29474-1-jose.souza@intel.com>
+Date: Thu,  6 Apr 2023 07:31:30 -0700
+Message-Id: <20230406143133.29474-3-jose.souza@intel.com>
 X-Mailer: git-send-email 2.40.0
+In-Reply-To: <20230406143133.29474-1-jose.souza@intel.com>
+References: <20230406143133.29474-1-jose.souza@intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-xe] [PATCH v2 rebased 1/6] drm/i915: Nuke unused dsparb_lock
+Subject: [Intel-xe] [PATCH v2 rebased 3/6] drm/i915: Only initialize dlk phy
+ lock in display 12 and newer
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -59,41 +62,27 @@ Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-dsparb_lock it not used anymore, nuke it.
+This spin lock will not be used in older display versions, so no need
+to initialize it.
 
 Cc: intel-gfx@lists.freedesktop.org
 Signed-off-by: José Roberto de Souza <jose.souza@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_display_core.h | 3 ---
- drivers/gpu/drm/i915/i915_driver.c                | 1 -
- 2 files changed, 4 deletions(-)
+ drivers/gpu/drm/i915/display/intel_dkl_phy.c | 3 ++-
+ 1 file changed, 2 insertions(+), 1 deletion(-)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_display_core.h b/drivers/gpu/drm/i915/display/intel_display_core.h
-index cc058eb303ee8..d2346d43d1162 100644
---- a/drivers/gpu/drm/i915/display/intel_display_core.h
-+++ b/drivers/gpu/drm/i915/display/intel_display_core.h
-@@ -266,9 +266,6 @@ struct intel_wm {
- 	 */
- 	struct mutex wm_mutex;
- 
--	/* protects DSPARB registers on pre-g4x/vlv/chv */
--	spinlock_t dsparb_lock;
--
- 	bool ipc_enabled;
- };
- 
-diff --git a/drivers/gpu/drm/i915/i915_driver.c b/drivers/gpu/drm/i915/i915_driver.c
-index 066d79c2069c4..ea2cc56d18a6e 100644
---- a/drivers/gpu/drm/i915/i915_driver.c
-+++ b/drivers/gpu/drm/i915/i915_driver.c
-@@ -214,7 +214,6 @@ static int i915_driver_early_probe(struct drm_i915_private *dev_priv)
- 	spin_lock_init(&dev_priv->irq_lock);
- 	spin_lock_init(&dev_priv->gpu_error.lock);
- 	spin_lock_init(&dev_priv->display.fb_tracking.lock);
--	spin_lock_init(&dev_priv->display.wm.dsparb_lock);
- 	mutex_init(&dev_priv->display.backlight.lock);
- 
- 	mutex_init(&dev_priv->sb_lock);
+diff --git a/drivers/gpu/drm/i915/display/intel_dkl_phy.c b/drivers/gpu/drm/i915/display/intel_dkl_phy.c
+index 5bce7b5b27bc7..1c5d410b74e5d 100644
+--- a/drivers/gpu/drm/i915/display/intel_dkl_phy.c
++++ b/drivers/gpu/drm/i915/display/intel_dkl_phy.c
+@@ -108,5 +108,6 @@ intel_dkl_phy_posting_read(struct drm_i915_private *i915, struct intel_dkl_phy_r
+ void
+ intel_dkl_phy_init(struct drm_i915_private *i915)
+ {
+-	spin_lock_init(&i915->display.dkl.phy_lock);
++	if (DISPLAY_VER(i915) >= 12)
++		spin_lock_init(&i915->display.dkl.phy_lock);
+ }
 -- 
 2.40.0
 
