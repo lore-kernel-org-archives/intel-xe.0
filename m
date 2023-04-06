@@ -4,49 +4,31 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id E8F5CC76196
-	for <intel-xe@archiver.kernel.org>; Thu,  6 Apr 2023 16:28:53 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 16D47C76196
+	for <intel-xe@archiver.kernel.org>; Thu,  6 Apr 2023 16:31:25 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C36C310EC63;
-	Thu,  6 Apr 2023 16:28:53 +0000 (UTC)
-Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3FBA310EC63
- for <intel-xe@lists.freedesktop.org>; Thu,  6 Apr 2023 16:28:51 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1680798531; x=1712334531;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=hfWZ8CIr+OEh6EITWX6Ni24LeC34Lyx+xdpEXe4H1lE=;
- b=GKNLBo0/WOT0I7/eAxwZI3ZzwWejKP7Bn1hPNY7ePCh2l++Ag4FR6ZuD
- YTkhN+uONSpZqTwS5kenD39/aYhCh3Fxxa8jsdPCc/mOPQcx3o1wlgv1q
- aeZIr/pGibnKdQXIjsK9wLOTDw32OkafSbrpYuIVfwV0shGiJ7/2n3+xQ
- EhC8AvDlqhmAGMT6MPaKC5V65vno09Pte/rZBFLee45C3U/ePXCVQ0JtF
- tGwwa9UDs8ueuP6Qe1ps+ZTpNdS4TYnaqeHy1MiERDpoHL4kTpfgMKS+i
- 4nuC8cCwEiWRm4BXhlq7t4hMw1SRSz3Ub9WPsMWCpLO3O3Tm6+Bg9cuyv g==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10672"; a="340272341"
-X-IronPort-AV: E=Sophos;i="5.98,323,1673942400"; d="scan'208";a="340272341"
-Received: from orsmga006.jf.intel.com ([10.7.209.51])
- by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 06 Apr 2023 09:28:39 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10672"; a="664529887"
-X-IronPort-AV: E=Sophos;i="5.98,323,1673942400"; d="scan'208";a="664529887"
-Received: from tpyra-mobl.ger.corp.intel.com (HELO mwauld-desk1.intel.com)
- ([10.252.28.243])
- by orsmga006-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 06 Apr 2023 09:28:37 -0700
-From: Matthew Auld <matthew.auld@intel.com>
-To: intel-xe@lists.freedesktop.org
-Date: Thu,  6 Apr 2023 17:26:25 +0100
-Message-Id: <20230406162625.320387-2-matthew.auld@intel.com>
-X-Mailer: git-send-email 2.39.2
-In-Reply-To: <20230406162625.320387-1-matthew.auld@intel.com>
-References: <20230406162625.320387-1-matthew.auld@intel.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id C47E910E2A2;
+	Thu,  6 Apr 2023 16:31:25 +0000 (UTC)
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 0A85C10E2A2;
+ Thu,  6 Apr 2023 16:31:24 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 8A9D6AADD7;
+ Thu,  6 Apr 2023 16:31:22 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-Subject: [Intel-xe] [PATCH 2/2] drm/xe/lrc: give start_seqno a better default
+Content-Transfer-Encoding: 7bit
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Matthew Auld" <matthew.auld@intel.com>
+Date: Thu, 06 Apr 2023 16:31:22 -0000
+Message-ID: <168079868253.9536.7936622310934663798@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20230406162625.320387-1-matthew.auld@intel.com>
+In-Reply-To: <20230406162625.320387-1-matthew.auld@intel.com>
+Subject: [Intel-xe] =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_f?=
+ =?utf-8?q?or_series_starting_with_=5B1/2=5D_drm/xe/sched=5Fjob=3A_prefer_?=
+ =?utf-8?q?dma=5Ffence=5Fis=5Flater?=
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -58,33 +40,35 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
+Cc: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-If looking at the initial engine dump we should expect this to match
-XE_FENCE_INITIAL_SEQNO - 1.
+== Series Details ==
 
-Signed-off-by: Matthew Auld <matthew.auld@intel.com>
-Cc: Thomas Hellström <thomas.hellstrom@linux.intel.com>
-Cc: Matthew Brost <matthew.brost@intel.com>
----
- drivers/gpu/drm/xe/xe_lrc.c | 3 +++
- 1 file changed, 3 insertions(+)
+Series: series starting with [1/2] drm/xe/sched_job: prefer dma_fence_is_later
+URL   : https://patchwork.freedesktop.org/series/116203/
+State : success
 
-diff --git a/drivers/gpu/drm/xe/xe_lrc.c b/drivers/gpu/drm/xe/xe_lrc.c
-index fb8c6f7d6528..ae605e7805de 100644
---- a/drivers/gpu/drm/xe/xe_lrc.c
-+++ b/drivers/gpu/drm/xe/xe_lrc.c
-@@ -700,6 +700,9 @@ int xe_lrc_init(struct xe_lrc *lrc, struct xe_hw_engine *hwe,
- 	map = __xe_lrc_seqno_map(lrc);
- 	xe_map_write32(lrc_to_xe(lrc), &map, lrc->fence_ctx.next_seqno - 1);
- 
-+	map = __xe_lrc_start_seqno_map(lrc);
-+	xe_map_write32(lrc_to_xe(lrc), &map, lrc->fence_ctx.next_seqno - 1);
-+
- 	return 0;
- 
- err_lrc_finish:
--- 
-2.39.2
+== Summary ==
+
+=== Applying kernel patches on branch 'drm-xe-next' with base: ===
+commit 58e5cc5ff399294871892dfbc06ae7b8597ee67a
+Author:     Matthew Brost <matthew.brost@intel.com>
+AuthorDate: Wed Apr 5 16:20:03 2023 -0700
+Commit:     Matthew Brost <matthew.brost@intel.com>
+CommitDate: Wed Apr 5 17:26:51 2023 -0700
+
+    drm/xe: Always write GEN12_RCU_MODE.GEN12_RCU_MODE_CCS_ENABLE for CCS engines
+    
+    If CCS0 was fused we did not write this register thus CCS engine were
+    not enabled resulting in driver load failures.
+    
+    Signed-off-by: Matthew Brost <matthew.brost@intel.com>
+    Reviewed-by: Matt Roper <matthew.d.roper@intel.com>
+=== git am output follows ===
+Applying: drm/xe/sched_job: prefer dma_fence_is_later
+Applying: drm/xe/lrc: give start_seqno a better default
+
 
