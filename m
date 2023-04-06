@@ -4,49 +4,48 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id DFCE0C77B71
-	for <intel-xe@archiver.kernel.org>; Thu,  6 Apr 2023 20:18:57 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2EFB4C77B6E
+	for <intel-xe@archiver.kernel.org>; Thu,  6 Apr 2023 20:19:01 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id BBBD510ECE6;
-	Thu,  6 Apr 2023 20:18:57 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id F16AC10ECCE;
+	Thu,  6 Apr 2023 20:19:00 +0000 (UTC)
 Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2277B10E36C
- for <intel-xe@lists.freedesktop.org>; Thu,  6 Apr 2023 20:18:53 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B80C510E36C
+ for <intel-xe@lists.freedesktop.org>; Thu,  6 Apr 2023 20:18:52 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1680812333; x=1712348333;
+ t=1680812332; x=1712348332;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=BQ9OHiy1gAWJ1DXsxCWPN+/k8ChhNwwkQD1Lta3bpxg=;
- b=MO3U3eH3vsoRhXrzRKgyYhcNqb2deG8Mk1oNPkpgyVGbyMBQjw/mQIya
- 4uSihbAEsH8lv7z/Y9VFzow7+ar0ECJRdhqf2ypbIyX+yYzPDLEpYiQJQ
- oyW5pbBguKDeH40ORqVMCHJtrgs9iC0FWg7KovkaEDtuuGtLAQ4AP5ngQ
- npNPDLRA2kygOJ7ONmQFHkn3mHz8TNlwEHNGafPC9W+e/Lp+aogUlJDhz
- nG/26iFfuBab5tbTGPbrBZwsfF6UdWDVzcqR8MrsjY7n7w2V5C6ULpHRG
- L18H1jtXJq66dSnwnfR+qwGNd4b+YWDgPQlaCeMb9bU4u4T5xc7AIgCLJ A==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10672"; a="322482256"
-X-IronPort-AV: E=Sophos;i="5.98,323,1673942400"; d="scan'208";a="322482256"
+ bh=xOkp0j0U9sfy/2XBgQKyQteTYsRIoKZdeW37JaJr28w=;
+ b=hW52E408bY5jWNLUkviwLee9hZG+rrnZXyvasZPIqODrNFsB2fIhemCb
+ 7AX2ukhePRjCYK6IMPnMPwP1SyRP/S/mL8jt3rE3GRKTv9CL3/mmpc8rl
+ ZKlW5DVqqYyCBspbt+MJ5n0+iUfvSpjRoinq+g2XxWdrcYH5FMsLMQMVa
+ EDHkN7Zv0AEUJWQPyOCgQVjK2rfcLwL/ppSLyC+YE274HsnFVEzfv16f+
+ piMSq+g6lUqukU9nSVnfljTMBMJE8COiiYSpqsjrGYeohBEbOXwMnBoDS
+ FmsBBGiD6XIZMjxITrtVX+m8MHU/6WHlpWQYZkVKZVa6vZkTWyntEAKDo g==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10672"; a="322482251"
+X-IronPort-AV: E=Sophos;i="5.98,323,1673942400"; d="scan'208";a="322482251"
 Received: from fmsmga008.fm.intel.com ([10.253.24.58])
  by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  06 Apr 2023 13:18:51 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10672"; a="751775484"
-X-IronPort-AV: E=Sophos;i="5.98,323,1673942400"; d="scan'208";a="751775484"
+X-IronPort-AV: E=McAfee;i="6600,9927,10672"; a="751775473"
+X-IronPort-AV: E=Sophos;i="5.98,323,1673942400"; d="scan'208";a="751775473"
 Received: from mdroper-desk1.fm.intel.com ([10.1.27.134])
  by fmsmga008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  06 Apr 2023 13:18:51 -0700
 From: Matt Roper <matthew.d.roper@intel.com>
 To: intel-xe@lists.freedesktop.org
-Date: Thu,  6 Apr 2023 13:18:44 -0700
-Message-Id: <20230406201845.1797532-9-matthew.d.roper@intel.com>
+Date: Thu,  6 Apr 2023 13:18:40 -0700
+Message-Id: <20230406201845.1797532-5-matthew.d.roper@intel.com>
 X-Mailer: git-send-email 2.39.2
 In-Reply-To: <20230406201845.1797532-1-matthew.d.roper@intel.com>
 References: <20230406201845.1797532-1-matthew.d.roper@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-xe] [PATCH v2 8/9] drm/xe: Add KUnit test for xe_pci.c IP
- engine lists
+Subject: [Intel-xe] [PATCH v2 4/9] drm/xe: Move engine masks into IP
+ descriptor structures
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -62,290 +61,288 @@ Cc: Lucas De Marchi <lucas.demarchi@intel.com>, matthew.d.roper@intel.com
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Add a simple KUnit test to ensure that the hardware engine lists for
-GMD_ID IP definitions are sensible (i.e., no graphics engines defined
-for the media IP and vice versa).
+Break the top-level platform_engine_mask field into separate
+hw_engine_mask fields in the graphics and media structures.  Since
+hardware has more flexibility to mix-and-match IP versions going
+forward, this allows each IP to list exactly which engines it provides;
+the final per-GT engine list can then be constructured from those:
 
-Only the IP descriptors for GMD_ID platforms are checked for now.
-Presumably the engine lists on older pre-GMD_ID platforms shouldn't be
-changing.  We can extend the KUnit testing in the future if we decide we
-want to check those as well.
+ * On platforms without a standalone media GT (i.e., media IP versions
+   prior to 13), the primary GT's engine list is the union of the
+   graphics IP's engine list and the media IP's engine list.
+ * Otherwise, GT0's engine list is the graphics IP's engine list.
+ * For GT1 and beyond, the type of GT determines which IP's engine list
+   is used.
 
-Cc: Lucas De Marchi <lucas.demarchi@intel.com>
+Reviewed-by: Lucas De Marchi <lucas.demarchi@intel.com>
 Signed-off-by: Matt Roper <matthew.d.roper@intel.com>
 ---
- drivers/gpu/drm/xe/tests/Makefile      |  1 +
- drivers/gpu/drm/xe/tests/xe_pci.c      | 42 +++++++++++++++
- drivers/gpu/drm/xe/tests/xe_pci_test.c | 74 ++++++++++++++++++++++++++
- drivers/gpu/drm/xe/tests/xe_pci_test.h |  6 +++
- drivers/gpu/drm/xe/xe_pci.c            | 29 +---------
- drivers/gpu/drm/xe/xe_pci_types.h      | 39 ++++++++++++++
- 6 files changed, 163 insertions(+), 28 deletions(-)
- create mode 100644 drivers/gpu/drm/xe/tests/xe_pci_test.c
- create mode 100644 drivers/gpu/drm/xe/xe_pci_types.h
+ drivers/gpu/drm/xe/xe_pci.c | 97 ++++++++++++++++++-------------------
+ 1 file changed, 46 insertions(+), 51 deletions(-)
 
-diff --git a/drivers/gpu/drm/xe/tests/Makefile b/drivers/gpu/drm/xe/tests/Makefile
-index 56919abb3f2a..51f1a7f017d4 100644
---- a/drivers/gpu/drm/xe/tests/Makefile
-+++ b/drivers/gpu/drm/xe/tests/Makefile
-@@ -4,5 +4,6 @@ obj-$(CONFIG_DRM_XE_KUNIT_TEST) += \
- 	xe_bo_test.o \
- 	xe_dma_buf_test.o \
- 	xe_migrate_test.o \
-+	xe_pci_test.o \
- 	xe_rtp_test.o \
- 	xe_wa_test.o
-diff --git a/drivers/gpu/drm/xe/tests/xe_pci.c b/drivers/gpu/drm/xe/tests/xe_pci.c
-index cc65ac5657b3..4c044c3b8ca9 100644
---- a/drivers/gpu/drm/xe/tests/xe_pci.c
-+++ b/drivers/gpu/drm/xe/tests/xe_pci.c
-@@ -62,6 +62,48 @@ int xe_call_for_each_device(xe_device_fn xe_fn)
- 	return ret;
- }
- 
-+/**
-+ * xe_call_for_each_graphics_ip - Iterate over all recognized graphics IPs
-+ * @xe_fn: Function to call for each device.
-+ *
-+ * This function iterated over the descriptors for all graphics IPs recognized
-+ * by the driver and calls @xe_fn: for each one of them.
-+ */
-+void xe_call_for_each_graphics_ip(xe_graphics_fn xe_fn)
-+{
-+	const struct xe_graphics_desc *ip, *last = NULL;
-+
-+	for (int i = 0; i < ARRAY_SIZE(graphics_ip_map); i++) {
-+		ip = graphics_ip_map[i].ip;
-+		if (ip == last)
-+			continue;
-+
-+		xe_fn(ip);
-+		last = ip;
-+	}
-+}
-+
-+/**
-+ * xe_call_for_each_media_ip - Iterate over all recognized media IPs
-+ * @xe_fn: Function to call for each device.
-+ *
-+ * This function iterated over the descriptors for all media IPs recognized
-+ * by the driver and calls @xe_fn: for each one of them.
-+ */
-+void xe_call_for_each_media_ip(xe_media_fn xe_fn)
-+{
-+	struct xe_media_desc *ip, *last = NULL;
-+
-+	for (int i = 0; i < ARRAY_SIZE(media_ip_map); i++) {
-+		ip = media_ip_map[i].ip;
-+		if (ip == last)
-+			continue;
-+
-+		xe_fn(ip);
-+		last = ip;
-+	}
-+}
-+
- int xe_pci_fake_device_init(struct xe_device *xe, enum xe_platform platform,
- 			    enum xe_subplatform subplatform)
- {
-diff --git a/drivers/gpu/drm/xe/tests/xe_pci_test.c b/drivers/gpu/drm/xe/tests/xe_pci_test.c
-new file mode 100644
-index 000000000000..9c6f6c2c6c6e
---- /dev/null
-+++ b/drivers/gpu/drm/xe/tests/xe_pci_test.c
-@@ -0,0 +1,74 @@
-+// SPDX-License-Identifier: GPL-2.0
-+/*
-+ * Copyright © 2023 Intel Corporation
-+ */
-+
-+#include <drm/drm_drv.h>
-+#include <drm/drm_kunit_helpers.h>
-+
-+#include <kunit/test.h>
-+
-+#include "tests/xe_test.h"
-+
-+#include "xe_device.h"
-+#include "xe_pci_test.h"
-+#include "xe_pci_types.h"
-+
-+static void check_graphics_ip(const struct xe_graphics_desc *graphics)
-+{
-+	struct kunit *test = xe_cur_kunit();
-+	u64 mask = graphics->hw_engine_mask;
-+
-+	/* RCS, CCS, and BCS engines are allowed on the graphics IP */
-+	mask &= ~(XE_HW_ENGINE_RCS_MASK |
-+		  XE_HW_ENGINE_CCS_MASK |
-+		  XE_HW_ENGINE_BCS_MASK);
-+
-+	/* Any remaining engines are an error */
-+	KUNIT_ASSERT_EQ(test, mask, 0);
-+}
-+
-+static void check_media_ip(const struct xe_media_desc *media)
-+{
-+	struct kunit *test = xe_cur_kunit();
-+	u64 mask = media->hw_engine_mask;
-+
-+	/*
-+	 * VCS and VECS engines are allowed on the media IP
-+	 *
-+	 * TODO:  Add GSCCS once support is added to the driver.
-+	 */
-+	mask &= ~(XE_HW_ENGINE_VCS_MASK |
-+		  XE_HW_ENGINE_VECS_MASK);
-+
-+	/* Any remaining engines are an error */
-+	KUNIT_ASSERT_EQ(test, mask, 0);
-+}
-+
-+static void xe_gmdid_graphics_ip(struct kunit *test)
-+{
-+	xe_call_for_each_graphics_ip(check_graphics_ip);
-+}
-+
-+static void xe_gmdid_media_ip(struct kunit *test)
-+{
-+	xe_call_for_each_media_ip(check_media_ip);
-+}
-+
-+static struct kunit_case xe_pci_tests[] = {
-+	KUNIT_CASE(xe_gmdid_graphics_ip),
-+	KUNIT_CASE(xe_gmdid_media_ip),
-+	{}
-+};
-+
-+static struct kunit_suite xe_pci_test_suite = {
-+	.name = "xe_pci",
-+	.test_cases = xe_pci_tests,
-+};
-+
-+kunit_test_suite(xe_pci_test_suite);
-+
-+MODULE_AUTHOR("Intel Corporation");
-+MODULE_LICENSE("GPL");
-+MODULE_IMPORT_NS(EXPORTED_FOR_KUNIT_TESTING);
-+
-diff --git a/drivers/gpu/drm/xe/tests/xe_pci_test.h b/drivers/gpu/drm/xe/tests/xe_pci_test.h
-index 43294e8c62bb..cc0f1d141a4d 100644
---- a/drivers/gpu/drm/xe/tests/xe_pci_test.h
-+++ b/drivers/gpu/drm/xe/tests/xe_pci_test.h
-@@ -9,6 +9,8 @@
- #include "xe_platform_types.h"
- 
- struct xe_device;
-+struct xe_graphics_desc;
-+struct xe_media_desc;
- 
- /*
-  * Some defines just for clarity: these mean the test doesn't care about what
-@@ -18,8 +20,12 @@ struct xe_device;
- #define XE_TEST_SUBPLATFORM_ANY	XE_SUBPLATFORM_UNINITIALIZED
- 
- typedef int (*xe_device_fn)(struct xe_device *);
-+typedef void (*xe_graphics_fn)(const struct xe_graphics_desc *);
-+typedef void (*xe_media_fn)(const struct xe_media_desc *);
- 
- int xe_call_for_each_device(xe_device_fn xe_fn);
-+void xe_call_for_each_graphics_ip(xe_graphics_fn xe_fn);
-+void xe_call_for_each_media_ip(xe_media_fn xe_fn);
- 
- int xe_pci_fake_device_init(struct xe_device *xe, enum xe_platform platform,
- 			    enum xe_subplatform subplatform);
 diff --git a/drivers/gpu/drm/xe/xe_pci.c b/drivers/gpu/drm/xe/xe_pci.c
-index 32d177c22a0b..c10f2d45ae91 100644
+index 332d3d31836b..4338c66834a9 100644
 --- a/drivers/gpu/drm/xe/xe_pci.c
 +++ b/drivers/gpu/drm/xe/xe_pci.c
-@@ -21,6 +21,7 @@
- #include "xe_drv.h"
- #include "xe_macros.h"
- #include "xe_module.h"
-+#include "xe_pci_types.h"
- #include "xe_pm.h"
- #include "xe_step.h"
- 
-@@ -42,34 +43,6 @@ struct xe_gt_desc {
+@@ -37,7 +37,6 @@ struct xe_subplatform_desc {
+ struct xe_gt_desc {
+ 	enum xe_gt_type type;
+ 	u8 vram_id;
+-	u64 engine_mask;
+ 	u32 mmio_adj_limit;
  	u32 mmio_adj_offset;
  };
+@@ -51,6 +50,8 @@ struct xe_graphics_desc {
+ 	u8 vm_max_level;
+ 	u8 vram_flags;
  
--struct xe_graphics_desc {
--	const char *name;
--	u8 ver;
--	u8 rel;
--
--	u8 dma_mask_size;	/* available DMA address bits */
--	u8 vm_max_level;
--	u8 vram_flags;
--
--	u64 hw_engine_mask;	/* hardware engines provided by graphics IP */
--
--	u8 max_remote_tiles:2;
--
--	u8 has_asid:1;
--	u8 has_flat_ccs:1;
--	u8 has_link_copy_engine:1;
--	u8 has_range_tlb_invalidation:1;
--	u8 supports_usm:1;
--};
--
--struct xe_media_desc {
--	const char *name;
--	u8 ver;
--	u8 rel;
--
--	u64 hw_engine_mask;	/* hardware engines provided by media IP */
--};
--
++	u64 hw_engine_mask;	/* hardware engines provided by graphics IP */
++
+ 	u8 has_asid:1;
+ 	u8 has_flat_ccs:1;
+ 	u8 has_link_copy_engine:1;
+@@ -61,14 +62,14 @@ struct xe_graphics_desc {
+ struct xe_media_desc {
+ 	u8 ver;
+ 	u8 rel;
++
++	u64 hw_engine_mask;	/* hardware engines provided by media IP */
+ };
+ 
  struct xe_device_desc {
  	const struct xe_graphics_desc *graphics;
  	const struct xe_media_desc *media;
-diff --git a/drivers/gpu/drm/xe/xe_pci_types.h b/drivers/gpu/drm/xe/xe_pci_types.h
-new file mode 100644
-index 000000000000..e479c1c4ed30
---- /dev/null
-+++ b/drivers/gpu/drm/xe/xe_pci_types.h
-@@ -0,0 +1,39 @@
-+/* SPDX-License-Identifier: MIT */
-+/*
-+ * Copyright © 2023 Intel Corporation
-+ */
+ 
+-	u64 platform_engine_mask; /* Engines supported by the HW */
+-
+ 	enum xe_platform platform;
+ 	const char *platform_name;
+ 	const struct xe_subplatform_desc *subplatforms;
+@@ -101,6 +102,8 @@ static const struct xe_graphics_desc graphics_xelp = {
+ 	.ver = 12,
+ 	.rel = 0,
+ 
++	.hw_engine_mask = BIT(XE_HW_ENGINE_RCS0) | BIT(XE_HW_ENGINE_BCS0),
 +
-+#ifndef _XE_PCI_TYPES_H_
-+#define _XE_PCI_TYPES_H_
+ 	.dma_mask_size = 39,
+ 	.vm_max_level = 3,
+ };
+@@ -109,6 +112,8 @@ static const struct xe_graphics_desc graphics_xelpp = {
+ 	.ver = 12,
+ 	.rel = 10,
+ 
++	.hw_engine_mask = BIT(XE_HW_ENGINE_RCS0) | BIT(XE_HW_ENGINE_BCS0),
 +
-+#include <linux/types.h>
+ 	.dma_mask_size = 39,
+ 	.vm_max_level = 3,
+ };
+@@ -123,6 +128,11 @@ static const struct xe_graphics_desc graphics_xehpg = {
+ 	.ver = 12,
+ 	.rel = 55,
+ 
++	.hw_engine_mask =
++		BIT(XE_HW_ENGINE_RCS0) | BIT(XE_HW_ENGINE_BCS0) |
++		BIT(XE_HW_ENGINE_CCS0) | BIT(XE_HW_ENGINE_CCS1) |
++		BIT(XE_HW_ENGINE_CCS2) | BIT(XE_HW_ENGINE_CCS3),
 +
-+struct xe_graphics_desc {
-+	const char *name;
-+	u8 ver;
-+	u8 rel;
+ 	XE_HP_FEATURES,
+ 	.vram_flags = XE_VRAM_FLAGS_NEED64K,
+ };
+@@ -131,6 +141,15 @@ static const struct xe_graphics_desc graphics_xehpc = {
+ 	.ver = 12,
+ 	.rel = 60,
+ 
++	.hw_engine_mask =
++		BIT(XE_HW_ENGINE_BCS0) | BIT(XE_HW_ENGINE_BCS1) |
++		BIT(XE_HW_ENGINE_BCS2) | BIT(XE_HW_ENGINE_BCS3) |
++		BIT(XE_HW_ENGINE_BCS4) | BIT(XE_HW_ENGINE_BCS5) |
++		BIT(XE_HW_ENGINE_BCS6) | BIT(XE_HW_ENGINE_BCS7) |
++		BIT(XE_HW_ENGINE_BCS8) |
++		BIT(XE_HW_ENGINE_CCS0) | BIT(XE_HW_ENGINE_CCS1) |
++		BIT(XE_HW_ENGINE_CCS2) | BIT(XE_HW_ENGINE_CCS3),
 +
-+	u8 dma_mask_size;	/* available DMA address bits */
-+	u8 vm_max_level;
-+	u8 vram_flags;
+ 	XE_HP_FEATURES,
+ 	.dma_mask_size = 52,
+ 	.max_tiles = 2,
+@@ -147,6 +166,10 @@ static const struct xe_graphics_desc graphics_xelpg = {
+ 	.ver = 12,
+ 	.rel = 70,
+ 
++	.hw_engine_mask =
++		BIT(XE_HW_ENGINE_RCS0) | BIT(XE_HW_ENGINE_BCS0) |
++		BIT(XE_HW_ENGINE_CCS0),
 +
-+	u64 hw_engine_mask;	/* hardware engines provided by graphics IP */
+ 	XE_HP_FEATURES,
+ 	.max_tiles = 2,
+ 
+@@ -156,16 +179,28 @@ static const struct xe_graphics_desc graphics_xelpg = {
+ static const struct xe_media_desc media_xem = {
+ 	.ver = 12,
+ 	.rel = 0,
 +
-+	u8 max_remote_tiles:2;
++	.hw_engine_mask =
++		BIT(XE_HW_ENGINE_VCS0) | BIT(XE_HW_ENGINE_VCS2) |
++		BIT(XE_HW_ENGINE_VECS0),
+ };
+ 
+ static const struct xe_media_desc media_xehpm = {
+ 	.ver = 12,
+ 	.rel = 55,
 +
-+	u8 has_asid:1;
-+	u8 has_flat_ccs:1;
-+	u8 has_link_copy_engine:1;
-+	u8 has_range_tlb_invalidation:1;
-+	u8 supports_usm:1;
-+};
++	.hw_engine_mask =
++		BIT(XE_HW_ENGINE_VCS0) | BIT(XE_HW_ENGINE_VCS2) |
++		BIT(XE_HW_ENGINE_VECS0) | BIT(XE_HW_ENGINE_VECS1),
+ };
+ 
+ static const struct xe_media_desc media_xelpmp = {
+ 	.ver = 13,
+ 	.rel = 0,
 +
-+struct xe_media_desc {
-+	const char *name;
-+	u8 ver;
-+	u8 rel;
++	.hw_engine_mask =
++		BIT(XE_HW_ENGINE_VCS0) | BIT(XE_HW_ENGINE_VCS2) |
++		BIT(XE_HW_ENGINE_VECS0),	/* TODO: add GSC0 */
+ };
+ 
+ static const struct xe_device_desc tgl_desc = {
+@@ -173,10 +208,6 @@ static const struct xe_device_desc tgl_desc = {
+ 	.media = &media_xem,
+ 	PLATFORM(XE_TIGERLAKE),
+ 	.require_force_probe = true,
+-	.platform_engine_mask =
+-		BIT(XE_HW_ENGINE_RCS0) | BIT(XE_HW_ENGINE_BCS0) |
+-		BIT(XE_HW_ENGINE_VECS0) | BIT(XE_HW_ENGINE_VCS0) |
+-		BIT(XE_HW_ENGINE_VCS2),
+ };
+ 
+ static const struct xe_device_desc adl_s_desc = {
+@@ -184,10 +215,6 @@ static const struct xe_device_desc adl_s_desc = {
+ 	.media = &media_xem,
+ 	PLATFORM(XE_ALDERLAKE_S),
+ 	.require_force_probe = true,
+-	.platform_engine_mask =
+-		BIT(XE_HW_ENGINE_RCS0) | BIT(XE_HW_ENGINE_BCS0) |
+-		BIT(XE_HW_ENGINE_VECS0) | BIT(XE_HW_ENGINE_VCS0) |
+-		BIT(XE_HW_ENGINE_VCS2),
+ };
+ 
+ static const u16 adlp_rplu_ids[] = { XE_RPLU_IDS(NOP), 0 };
+@@ -197,10 +224,6 @@ static const struct xe_device_desc adl_p_desc = {
+ 	.media = &media_xem,
+ 	PLATFORM(XE_ALDERLAKE_P),
+ 	.require_force_probe = true,
+-	.platform_engine_mask =
+-		BIT(XE_HW_ENGINE_RCS0) | BIT(XE_HW_ENGINE_BCS0) |
+-		BIT(XE_HW_ENGINE_VECS0) | BIT(XE_HW_ENGINE_VCS0) |
+-		BIT(XE_HW_ENGINE_VCS2),
+ 	.subplatforms = (const struct xe_subplatform_desc[]) {
+ 		{ XE_SUBPLATFORM_ADLP_RPLU, "RPLU", adlp_rplu_ids },
+ 		{},
+@@ -216,10 +239,6 @@ static const struct xe_device_desc dg1_desc = {
+ 	DGFX_FEATURES,
+ 	PLATFORM(XE_DG1),
+ 	.require_force_probe = true,
+-	.platform_engine_mask =
+-		BIT(XE_HW_ENGINE_RCS0) | BIT(XE_HW_ENGINE_BCS0) |
+-		BIT(XE_HW_ENGINE_VECS0) | BIT(XE_HW_ENGINE_VCS0) |
+-		BIT(XE_HW_ENGINE_VCS2),
+ };
+ 
+ static const u16 dg2_g10_ids[] = { XE_DG2_G10_IDS(NOP), XE_ATS_M150_IDS(NOP), 0 };
+@@ -235,12 +254,6 @@ static const u16 dg2_g12_ids[] = { XE_DG2_G12_IDS(NOP), 0 };
+ 		{ XE_SUBPLATFORM_DG2_G12, "G12", dg2_g12_ids }, \
+ 		{ } \
+ 	}, \
+-	.platform_engine_mask = \
+-		BIT(XE_HW_ENGINE_RCS0) | BIT(XE_HW_ENGINE_BCS0) | \
+-		BIT(XE_HW_ENGINE_VECS0) | BIT(XE_HW_ENGINE_VECS1) | \
+-		BIT(XE_HW_ENGINE_VCS0) | BIT(XE_HW_ENGINE_VCS2) | \
+-		BIT(XE_HW_ENGINE_CCS0) | BIT(XE_HW_ENGINE_CCS1) | \
+-		BIT(XE_HW_ENGINE_CCS2) | BIT(XE_HW_ENGINE_CCS3), \
+ 	.has_4tile = 1
+ 
+ static const struct xe_device_desc ats_m_desc = {
+@@ -259,22 +272,10 @@ static const struct xe_device_desc dg2_desc = {
+ 	DG2_FEATURES,
+ };
+ 
+-#define PVC_ENGINES \
+-	BIT(XE_HW_ENGINE_BCS0) | BIT(XE_HW_ENGINE_BCS1) | \
+-	BIT(XE_HW_ENGINE_BCS2) | BIT(XE_HW_ENGINE_BCS3) | \
+-	BIT(XE_HW_ENGINE_BCS4) | BIT(XE_HW_ENGINE_BCS5) | \
+-	BIT(XE_HW_ENGINE_BCS6) | BIT(XE_HW_ENGINE_BCS7) | \
+-	BIT(XE_HW_ENGINE_BCS8) | \
+-	BIT(XE_HW_ENGINE_VCS0) | BIT(XE_HW_ENGINE_VCS1) | \
+-	BIT(XE_HW_ENGINE_VCS2) | \
+-	BIT(XE_HW_ENGINE_CCS0) | BIT(XE_HW_ENGINE_CCS1) | \
+-	BIT(XE_HW_ENGINE_CCS2) | BIT(XE_HW_ENGINE_CCS3)
+-
+ static const struct xe_gt_desc pvc_gts[] = {
+ 	{
+ 		.type = XE_GT_TYPE_REMOTE,
+ 		.vram_id = 1,
+-		.engine_mask = PVC_ENGINES,
+ 		.mmio_adj_limit = 0,
+ 		.mmio_adj_offset = 0,
+ 	},
+@@ -286,27 +287,17 @@ static const struct xe_device_desc pvc_desc = {
+ 	PLATFORM(XE_PVC),
+ 	.require_force_probe = true,
+ 	.extra_gts = pvc_gts,
+-	.platform_engine_mask = PVC_ENGINES,
+ };
+ 
+-#define MTL_MEDIA_ENGINES \
+-	BIT(XE_HW_ENGINE_VCS0) | BIT(XE_HW_ENGINE_VCS2) | \
+-	BIT(XE_HW_ENGINE_VECS0)	/* TODO: GSC0 */
+-
+ static const struct xe_gt_desc xelpmp_gts[] = {
+ 	{
+ 		.type = XE_GT_TYPE_MEDIA,
+ 		.vram_id = 0,
+-		.engine_mask = MTL_MEDIA_ENGINES,
+ 		.mmio_adj_limit = 0x40000,
+ 		.mmio_adj_offset = 0x380000,
+ 	},
+ };
+ 
+-#define MTL_MAIN_ENGINES \
+-	BIT(XE_HW_ENGINE_RCS0) | BIT(XE_HW_ENGINE_BCS0) | \
+-	BIT(XE_HW_ENGINE_CCS0)
+-
+ static const struct xe_device_desc mtl_desc = {
+ 	/*
+ 	 * FIXME:  Real graphics/media IP will be mapped from hardware
+@@ -317,7 +308,6 @@ static const struct xe_device_desc mtl_desc = {
+ 	.require_force_probe = true,
+ 	PLATFORM(XE_METEORLAKE),
+ 	.extra_gts = xelpmp_gts,
+-	.platform_engine_mask = MTL_MAIN_ENGINES,
+ };
+ 
+ #undef PLATFORM
+@@ -449,14 +439,19 @@ static void xe_info_init(struct xe_device *xe,
+ 		if (id == 0) {
+ 			gt->info.type = XE_GT_TYPE_MAIN;
+ 			gt->info.vram_id = id;
+-			gt->info.__engine_mask = desc->platform_engine_mask;
 +
-+	u64 hw_engine_mask;	/* hardware engines provided by media IP */
-+};
++			gt->info.__engine_mask = desc->graphics->hw_engine_mask;
++			if (MEDIA_VER(xe) < 13 && desc->media)
++				gt->info.__engine_mask |= desc->media->hw_engine_mask;
 +
-+#endif
+ 			gt->mmio.adj_limit = 0;
+ 			gt->mmio.adj_offset = 0;
+ 		} else {
+ 			gt->info.type = desc->extra_gts[id - 1].type;
+ 			gt->info.vram_id = desc->extra_gts[id - 1].vram_id;
+-			gt->info.__engine_mask =
+-				desc->extra_gts[id - 1].engine_mask;
++			gt->info.__engine_mask = (gt->info.type == XE_GT_TYPE_MEDIA) ?
++				desc->media->hw_engine_mask :
++				desc->graphics->hw_engine_mask;
+ 			gt->mmio.adj_limit =
+ 				desc->extra_gts[id - 1].mmio_adj_limit;
+ 			gt->mmio.adj_offset =
 -- 
 2.39.2
 
