@@ -4,49 +4,49 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8204FC76196
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id E0C75C77B6F
 	for <intel-xe@archiver.kernel.org>; Thu,  6 Apr 2023 14:34:16 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 64D2010EC12;
+	by gabe.freedesktop.org (Postfix) with ESMTP id B9AF810EC0A;
 	Thu,  6 Apr 2023 14:34:16 +0000 (UTC)
 Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6AC5E10EC13
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 32E3710EC12
  for <intel-xe@lists.freedesktop.org>; Thu,  6 Apr 2023 14:34:15 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
  t=1680791655; x=1712327655;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=B/hiOVKjJ8br7HbeU6ymIT50pEUXTvKt8GylEcgJdME=;
- b=cVeyRYF92HsZdxcOlzAwKa3ZVkFMMnxrVM3o1mD1KYmqp+eEPEfnjNI4
- XUGCrX/cxWYIAT19mJZlqDRT6mOKM7hwT28US91uHa70WZtKh+IdfB48i
- 3oRmsVK5Gu+IoY7EtxENtI0vACddKDwL+/sHFg2qhQIIsaUfywhUJD90l
- LjCKMMOs1EZjDToaAjCsrkaMCj21Dx1sEiIMq1RpHchVS85UJLmIjJXUf
- bMVq+/2NSj9+AC0IvTrbjZ5p02PwPdDJ4wyan8SVRKKlXrLINCPHwMuMd
- Uac+z8d3DPppYbfQerNlIidhqzOcz9wp/aS9VO0r1A9vz89O2F5/oWi7M A==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10672"; a="331384595"
-X-IronPort-AV: E=Sophos;i="5.98,323,1673942400"; d="scan'208";a="331384595"
+ bh=UePrvI8jME4+y41dpslPGwPJDdPINEs22PcVOqHdqQk=;
+ b=K48LsDgn6OJfxkm0MrYvFZco5BtK/dGlWSRHj+WMn6JOZgkYKqOvmnqb
+ U+kOtFlW/k8BrIvVpAfPJJrBSuCaUq6j0pfo0iqVQAT1evIG5fqUzmpYE
+ TImgwC2F6QdZxbEZUiR8Dke3A7e8z+pBj6U2lB1SNgEZqNHBKlm0k73zU
+ 0gATo9UMpYMcwKH7zsTCtu/dlQOJAFb4/IBaQsrc8k3HZmjSdJ/rQT3qS
+ UiCqb4EK6zbb8046IG+Z6N5OtySgolR8jLK3CKnK38mMj0shG9QeijslS
+ Iz2kb/tzp3tPUIM5TTg9s23tqok/BFp5qVMLaNt9aaAKlqdGyZZR+SMVy A==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10672"; a="331384583"
+X-IronPort-AV: E=Sophos;i="5.98,323,1673942400"; d="scan'208";a="331384583"
 Received: from orsmga006.jf.intel.com ([10.7.209.51])
  by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 06 Apr 2023 07:31:48 -0700
+ 06 Apr 2023 07:31:47 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10672"; a="664488494"
-X-IronPort-AV: E=Sophos;i="5.98,323,1673942400"; d="scan'208";a="664488494"
+X-IronPort-AV: E=McAfee;i="6600,9927,10672"; a="664488484"
+X-IronPort-AV: E=Sophos;i="5.98,323,1673942400"; d="scan'208";a="664488484"
 Received: from josouza-mobl2.fso.intel.com ([10.230.18.148])
  by orsmga006-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 06 Apr 2023 07:31:46 -0700
+ 06 Apr 2023 07:31:45 -0700
 From: =?UTF-8?q?Jos=C3=A9=20Roberto=20de=20Souza?= <jose.souza@intel.com>
 To: intel-xe@lists.freedesktop.org
-Date: Thu,  6 Apr 2023 07:31:32 -0700
-Message-Id: <20230406143133.29474-5-jose.souza@intel.com>
+Date: Thu,  6 Apr 2023 07:31:31 -0700
+Message-Id: <20230406143133.29474-4-jose.souza@intel.com>
 X-Mailer: git-send-email 2.40.0
 In-Reply-To: <20230406143133.29474-1-jose.souza@intel.com>
 References: <20230406143133.29474-1-jose.souza@intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-xe] [PATCH v2 rebased 5/6] drm/xe/display: Disable PSR HW
- tracking for DG2 and MTL
+Subject: [Intel-xe] [PATCH v2 rebased 4/6] drm/xe/display: Enable modular
+ fia in TGL
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -61,38 +61,31 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Of the platforms supported by Xe, only TGL and DG1 has PSR HW
-tracking.
+TGL is the first platform tha has it.
+Enabling it for DG1 don't cause any issues as DG1 don't have any real
+TC ports, so intel_tc_port_init() will not be called for DG1.
 
 Signed-off-by: José Roberto de Souza <jose.souza@intel.com>
 ---
- drivers/gpu/drm/xe/xe_display.c | 6 +++---
- 1 file changed, 3 insertions(+), 3 deletions(-)
+ drivers/gpu/drm/xe/xe_display.c | 5 ++++-
+ 1 file changed, 4 insertions(+), 1 deletion(-)
 
 diff --git a/drivers/gpu/drm/xe/xe_display.c b/drivers/gpu/drm/xe/xe_display.c
-index 0001a9d02495d..edbc88500ed1e 100644
+index 5fab5b9fbde0c..0001a9d02495d 100644
 --- a/drivers/gpu/drm/xe/xe_display.c
 +++ b/drivers/gpu/drm/xe/xe_display.c
-@@ -469,7 +469,8 @@ __diag_ignore_all("-Woverride-init", "Allow field overrides in table");
- 	.has_fpga_dbg = 1,						\
- 	.has_hdcp = 1,							\
- 	.has_ipc = 1,							\
--	.has_psr = 1
-+	.has_psr = 1,							\
-+	.has_psr_hw_tracking = 0
- 
- #define XE_LPDP								\
- 	XE_LPD,								\
-@@ -502,8 +503,7 @@ void xe_display_info_init(struct xe_device *xe)
- 		xe->info.display = (struct xe_device_display_info) {
- 			XE_LPD,
- 			.has_cdclk_crawl = 1,
--			.has_modular_fia = 1,
--			.has_psr_hw_tracking = 0,
-+			.has_modular_fia = 1
- 		};
+@@ -486,7 +486,10 @@ void xe_display_info_init(struct xe_device *xe)
+ 	switch (xe->info.platform) {
+ 	case XE_TIGERLAKE:
+ 	case XE_DG1:
+-		xe->info.display = (struct xe_device_display_info) { GEN12_DISPLAY };
++		xe->info.display = (struct xe_device_display_info) {
++			GEN12_DISPLAY,
++			.has_modular_fia = 1,
++		};
  		break;
- 	case XE_DG2:
+ 	case XE_ALDERLAKE_S:
+ 		xe->info.display = (struct xe_device_display_info) {
 -- 
 2.40.0
 
