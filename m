@@ -4,72 +4,48 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id AB248C76196
-	for <intel-xe@archiver.kernel.org>; Thu,  6 Apr 2023 10:32:53 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id F02B2C7618D
+	for <intel-xe@archiver.kernel.org>; Thu,  6 Apr 2023 12:25:49 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 85ABA10EB57;
-	Thu,  6 Apr 2023 10:32:53 +0000 (UTC)
-Received: from mail-ej1-x62b.google.com (mail-ej1-x62b.google.com
- [IPv6:2a00:1450:4864:20::62b])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0B4A210EB58
- for <intel-xe@lists.freedesktop.org>; Thu,  6 Apr 2023 10:32:51 +0000 (UTC)
-Received: by mail-ej1-x62b.google.com with SMTP id
- a640c23a62f3a-930bc91df7bso129028766b.1
- for <intel-xe@lists.freedesktop.org>; Thu, 06 Apr 2023 03:32:51 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=ffwll.ch; s=google; t=1680777170;
- h=in-reply-to:content-transfer-encoding:content-disposition
- :mime-version:references:message-id:subject:cc:to:from:date:from:to
- :cc:subject:date:message-id:reply-to;
- bh=N+yMEjfXIx1xlHJdVsDNE68Lm5ZvsF+BSCROvzRygIU=;
- b=N/0749FBxhYydGjzKN1gnWoPdXFLmf2M/mMrqhOUCucM94BquGPnetjBNPdWCfFUVk
- xkjXmlh1X837TkbsYYsmELouUbCkf8Ju4HPbJj7Xc+Qb79xMEL4J2hrZThH7Po1jr5bX
- AWB2kY9uAz3S+V6t2s+ZDblgA4IemovAxX//4=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20210112; t=1680777170;
- h=in-reply-to:content-transfer-encoding:content-disposition
- :mime-version:references:message-id:subject:cc:to:from:date
- :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
- bh=N+yMEjfXIx1xlHJdVsDNE68Lm5ZvsF+BSCROvzRygIU=;
- b=mK70hE7E5oPzoHNJuN8kWI4StZO4QkIDyuVFxkvmtSc5h2AQY8g+SOFSUF4PdvvYfq
- vdsvrvhE5g4VG68izZdjYNKT4bo7N4/epc+/dtTqtvuS56tC1Iawuzb6lGz9BRFzFU5P
- 960c61iLVU0nuGBiYzAzdoVAPK5wTZVmMz+yuxzau5cMU0XWET4S+XuXQGoCyJqnp+7Q
- Cb/EdYs8ClpIvxXHm7J9/tnRmy+fZ1xeL2hKEgBSLIbdzzfxbYZnSwHzAMpdSfJSB24w
- jKbJdrekFbWBBxSUIjcmhAJzE+ZsfetRsGGsloh1UWV5tXLBfLFmX7NM7E7TqrAZFoDv
- kWPA==
-X-Gm-Message-State: AAQBX9c1kR4AL53kcrt6vuyc53pRMR0ULHAKBwjvahxXc2luHfwS8zVp
- mHUtqEiTLNLecqDaH3c4Z+xWnA==
-X-Google-Smtp-Source: AKy350YDa8hgrI+PP9bPEdYxLwxqRQJhO58hXGznAMAdLrN1arrmWHfnyldU1JL7Q65A1RxIa1DXEg==
-X-Received: by 2002:a17:906:13:b0:8f0:ba09:4abe with SMTP id
- 19-20020a170906001300b008f0ba094abemr5522793eja.2.1680777170105; 
- Thu, 06 Apr 2023 03:32:50 -0700 (PDT)
-Received: from phenom.ffwll.local (212-51-149-33.fiber7.init7.net.
- [212.51.149.33]) by smtp.gmail.com with ESMTPSA id
- u1-20020a1709064ac100b008e09deb6610sm617122ejt.200.2023.04.06.03.32.49
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Thu, 06 Apr 2023 03:32:49 -0700 (PDT)
-Date: Thu, 6 Apr 2023 12:32:47 +0200
-From: Daniel Vetter <daniel@ffwll.ch>
-To: Christian =?iso-8859-1?Q?K=F6nig?= <christian.koenig@amd.com>
-Message-ID: <ZC6fz8IeOIabg10u@phenom.ffwll.local>
-References: <ZCwoL3Wgv90tlQWR@DUT025-TGLU.fm.intel.com>
- <d740a81a-8919-b6c8-a8c1-f5d8f9c5549c@amd.com>
- <ZC0yq9XZ2t9cV0Nz@phenom.ffwll.local>
- <a2236a9d-e21a-269c-aad3-184c402065b7@amd.com>
- <ZC06Rl6TGe7itZvW@phenom.ffwll.local>
- <ec128743-699b-3722-0ab2-ff96552fdddd@amd.com>
- <CAKMK7uFEGoaOmewGmP4H_ouqZiMKAiaKwEohGCZq5T-UJYMf_w@mail.gmail.com>
- <ZC4pinCurycVe4bi@DUT025-TGLU.fm.intel.com>
- <ZC5oo8ljg5DWHjhk@phenom.ffwll.local>
- <cf04d0a6-3485-a1aa-8514-a0ecb4266f03@amd.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id B299910EB8F;
+	Thu,  6 Apr 2023 12:25:49 +0000 (UTC)
+Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 502C010EB8F
+ for <intel-xe@lists.freedesktop.org>; Thu,  6 Apr 2023 12:25:47 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1680783947; x=1712319947;
+ h=from:to:cc:subject:in-reply-to:references:date:
+ message-id:mime-version;
+ bh=wlJ2zu6jetYdn8hOCR7yEx7wysL8Rz/hS1dTCqZo7LM=;
+ b=XPdBvolIoabsQLu1A+ITUiOEBWb+2ELMPEnXA9M4qG+xJOL3AVNJGvqK
+ zZbnfHGU6RN51m9X9Knr2KJCFIVDKH71se0NQ34O450/iw1hlw/49xtXR
+ s8huUydBgP1LXJ/I+QIpuSfcFMN6UDqX5UjSZ5hqqG1xx9xMmSxj78gz3
+ iT0OETKPmTU9Ib/KReF8PnWpcofqVqA6d44+tJCEYTc1KVA7CpwnInyTp
+ KlVjCtCceQsAwnhNwsrD8kleXJoEoNsxAnxpSt3w+nq7jj9c0Sd2Ce2Ai
+ oFZ+l+PT3ReeWYIQhjOuRywpSPph94UID+QAxuQ/H2L4Bksofj9OPV2iZ g==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10671"; a="323096913"
+X-IronPort-AV: E=Sophos;i="5.98,323,1673942400"; d="scan'208";a="323096913"
+Received: from orsmga005.jf.intel.com ([10.7.209.41])
+ by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 06 Apr 2023 05:25:44 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6600,9927,10671"; a="861383772"
+X-IronPort-AV: E=Sophos;i="5.98,323,1673942400"; d="scan'208";a="861383772"
+Received: from unknown (HELO localhost) ([10.237.66.160])
+ by orsmga005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 06 Apr 2023 05:25:42 -0700
+From: Jani Nikula <jani.nikula@linux.intel.com>
+To: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>,
+ intel-xe@lists.freedesktop.org
+In-Reply-To: <20230406092631.2820028-1-himal.prasad.ghimiray@intel.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+References: <20230406092631.2820028-1-himal.prasad.ghimiray@intel.com>
+Date: Thu, 06 Apr 2023 15:25:39 +0300
+Message-ID: <871qkxyz7g.fsf@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <cf04d0a6-3485-a1aa-8514-a0ecb4266f03@amd.com>
-X-Operating-System: Linux phenom 6.1.0-7-amd64 
-Subject: Re: [Intel-xe] [RFC PATCH 00/10] Xe DRM scheduler and long running
- workload plans
+Content-Type: text/plain
+Subject: Re: [Intel-xe] [PATCH 0/4] RFC: drm/xe/ras: Supporting RAS on XE.
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -81,153 +57,49 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Cc: robdclark@chromium.org, airlied@linux.ie, lina@asahilina.net,
- dri-devel@lists.freedesktop.org, boris.brezillon@collabora.com,
- Daniel Vetter <daniel@ffwll.ch>, intel-xe@lists.freedesktop.org,
- faith.ekstrand@collabora.com
+Cc: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Thu, Apr 06, 2023 at 12:14:36PM +0200, Christian König wrote:
-> Am 06.04.23 um 08:37 schrieb Daniel Vetter:
-> > On Thu, Apr 06, 2023 at 02:08:10AM +0000, Matthew Brost wrote:
-> > > On Wed, Apr 05, 2023 at 12:12:27PM +0200, Daniel Vetter wrote:
-> > > > On Wed, 5 Apr 2023 at 11:57, Christian König <christian.koenig@amd.com> wrote:
-> > > > > Am 05.04.23 um 11:07 schrieb Daniel Vetter:
-> > > > > > [SNIP]
-> > > > > > > I would approach it from the complete other side. This component here is a
-> > > > > > > tool to decide what job should run next.
-> > > > > > > 
-> > > > > > > How that is then signaled and run should not be part of the scheduler, but
-> > > > > > > another more higher level component.
-> > > > > > > 
-> > > > > > > This way you also don't have a problem with not using DMA-fences as
-> > > > > > > dependencies as well as constrains for running more jobs.
-> > > > > > I think we're talking about two things here and mixing them up.
-> > > > > > 
-> > > > > > For the dependencies I agree with you, and imo that higher level tool
-> > > > > > should probably just be an on-demand submit thread in userspace for the
-> > > > > > rare case where the kernel would need to sort out a dependency otherwise
-> > > > > > (due to running out of ringspace in the per-ctx ringbuffer).
-> > > > > > 
-> > > > > > The other thing is the message passing stuff, and this is what I was
-> > > > > > talking about above. This has nothing to do with handling dependencies,
-> > > > > > but with talking to the gpu fw. Here the intel design issue is that the fw
-> > > > > > only provides a single queue, and it's in-order. Which means it
-> > > > > > fundamentally has the stalling issue you describe as a point against a
-> > > > > > message passing design. And fundamentally we need to be able to talk to
-> > > > > > the fw in the scheduler ->run_job callback.
-> > > > > > 
-> > > > > > The proposal here for the message passing part is that since it has the
-> > > > > > stalling issue already anyway, and the scheduler needs to be involved
-> > > > > > anyway, it makes sense to integrated this (as an optional thing, only for
-> > > > > > drivers which have this kind of fw interface) into the scheduler.
-> > > > > > Otherwise you just end up with two layers for no reason and more ping-pong
-> > > > > > delay because the ->run_job needs to kick off the subordinate driver layer
-> > > > > > first. Note that for this case the optional message passing support in the
-> > > > > > drm/scheduler actually makes things better, because it allows you to cut
-> > > > > > out one layer.
-> > > > > > 
-> > > > > > Of course if a driver with better fw interface uses this message passing
-> > > > > > support, then that's bad. Hence the big warning in the kerneldoc.
-> > > > > Well what I wanted to say is that if you design the dependency handling
-> > > > > / scheduler properly you don't need the message passing through it.
-> > > > > 
-> > > > > For example if the GPU scheduler component uses a work item to do it's
-> > > > > handling instead of a kthread you could also let the driver specify the
-> > > > > work queue where this work item is executed on.
-> > > > > 
-> > > > > When you design it like this the driver specifies the thread context of
-> > > > > execution for it's job. In other words it can specify a single threaded
-> > > > > firmware work queue as well.
-> > > > > 
-> > > > > When you then have other messages which needs to be passed to the
-> > > > > firmware you can also use the same single threaded workqueue for this.
-> > > > > 
-> > > > > Drivers which have a different firmware interface would just use one of
-> > > > > the system work queues instead.
-> > > > > 
-> > > > > This approach basically decouples the GPU scheduler component from the
-> > > > > message passing functionality.
-> > > > Hm I guess we've been talking past each another big time, because
-> > > > that's really what I thought was under discussions? Essentially the
-> > > > current rfc, but implementing with some polish.
-> > > > 
-> > > I think Daniel pretty much nailed it here (thanks), to recap:
-> > > 
-> > > 1. I want the messages in the same worker so run_job / free_job /
-> > > process_msg execution is mutual exclusive and also so during reset paths
-> > > if the worker is stopped all the entry points can't be entered.
-> > > 
-> > > If this is a NAK, then another worker is fine I guess. A lock between
-> > > run_job / free_job + process_msg should solve the exclusion issue and the
-> > > reset paths can also stop this new worker too. That being said I'd
-> > > rather leave this as is but will not fight this point.
-> > > 
-> > > 2. process_msg is just used to communicate with the firmware using the
-> > > same queue as submission. Waiting for space in this queue is the only
-> > > place this function can block (same as submission), well actually we
-> > > have the concept a preempt time slice but that sleeps for 10 ms by
-> > > default. Also preempt is only used in LR entities so I don't think it is
-> > > relavent in this case either.
-> > > 
-> > > 3. Agree this is in the dma-fence signaling path (if process_msg is in
-> > > the submission worker) so we can't block indefinitely or an unreasonable
-> > > period of time (i.e. we must obey dma-fence rules).
-> > Just to hammer this in: Not just process_msg is in the dma_fence signaling
-> > path, but the entire fw queue where everything is being funneled through,
-> > including whatever the fw is doing to process these.
-> > 
-> > Yes this is terrible and blew up a few times already :-/
-> > 
-> > But also, probably something that the docs really need to hammer in, to
-> > make sure people don't look at this and thinkg "hey this seems to be the
-> > recommended way to do this on linux". We don't want hw people to build
-> > more of these designs, they're an absolute pain to deal with with Linux'
-> > dma_fence signalling and gpu job scheduling rules.
-> > 
-> > It's just that if you're stuck with such fw, then integrating the flow
-> > into drm/sched instead of having an extra layer of workers seems the
-> > better of two pretty bad solutions.
-> 
-> Yeah and if you have such fw limitations, make sure that you use something
-> which is understood by lockdep to feed into it.
-> 
-> In other words, either locks or work item/queue and not some message passing
-> functionality through the scheduler.
-> 
-> As far as I can see the approach with the work item/queue should fit your
-> needs here.
+On Thu, 06 Apr 2023, Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com> wrote:
+> These patches in series are for adding Reliability, 
+> Availability and Serviceability support on xe.
+> Patches provide the infra for various hardware error
+> counting and logging. These error counters will be exposed to 
+> userspace in subsequent patches.
+> In current patches:
+> 1) We are adding support to handle new interrupts bits.
+> 2) Counting of GT errors.
+> 3) Soc/SGunit error counting.
+> 4) CSC HW and FW error counting and sending uvent.
+>
+> Akeem G Abodunrin (1):
+>   drm/xe/ras: Add support for reporting CSC HW and FW errors.
+>
+> Aravind Iddamsetty (2):
+>   drm/xe/ras: Log the GT hw errors.
+>   drm/xe/ras: Count SOC and SGUNIT errors
+>
+> Himal Prasad Ghimiray (1):
+>   drm/xe: Handle GRF/IC ECC error irq
+>
+>  drivers/gpu/drm/xe/regs/xe_regs.h    | 244 ++++++++
 
-dma_fence signalling annotations would also make the scheduler thread
-suitable to catch issues with lockdep, just to make double-sure it can
-catch issues.
--Daniel
+Please don't recreate i915_reg.h in xe. Please add separate regs files
+like we've been doing in i915. It's pain to split a monster register
+file later.
 
-> 
-> Christian.
-> 
-> > -Daniel
-> > 
-> > > 4. Agree the documentation for thw usage of the messaging interface
-> > > needs to be clear.
-> > > 
-> > > 5. Agree that my code could alway use polishing.
-> > > 
-> > > Lets close on #1 then can I get on general Ack on this part of the RFC
-> > > and apply the polish in the full review process?
-> > > 
-> > > Matt
-> > > 
-> > > > iow I agree with you (I think at least).
-> > > > -Daniel
-> > > > -- 
-> > > > Daniel Vetter
-> > > > Software Engineer, Intel Corporation
-> > > > http://blog.ffwll.ch
-> 
+BR,
+Jani.
+
+
+>  drivers/gpu/drm/xe/xe_device.c       |   6 +
+>  drivers/gpu/drm/xe/xe_device_types.h |   4 +
+>  drivers/gpu/drm/xe/xe_gt.c           |  30 +
+>  drivers/gpu/drm/xe/xe_gt_types.h     | 105 ++++
+>  drivers/gpu/drm/xe/xe_irq.c          | 824 +++++++++++++++++++++++++++
+>  drivers/gpu/drm/xe/xe_pci.c          |   6 +
+>  7 files changed, 1219 insertions(+)
 
 -- 
-Daniel Vetter
-Software Engineer, Intel Corporation
-http://blog.ffwll.ch
+Jani Nikula, Intel Open Source Graphics Center
