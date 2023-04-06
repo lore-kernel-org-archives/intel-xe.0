@@ -4,72 +4,72 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 18BBEC76196
-	for <intel-xe@archiver.kernel.org>; Thu,  6 Apr 2023 06:33:07 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 048D0C7618D
+	for <intel-xe@archiver.kernel.org>; Thu,  6 Apr 2023 06:37:30 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id BA00610EAEC;
-	Thu,  6 Apr 2023 06:33:06 +0000 (UTC)
-Received: from mail-ej1-x62b.google.com (mail-ej1-x62b.google.com
- [IPv6:2a00:1450:4864:20::62b])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2732510EAEC
- for <intel-xe@lists.freedesktop.org>; Thu,  6 Apr 2023 06:33:04 +0000 (UTC)
-Received: by mail-ej1-x62b.google.com with SMTP id
- a640c23a62f3a-94706a972f3so10593666b.0
- for <intel-xe@lists.freedesktop.org>; Wed, 05 Apr 2023 23:33:03 -0700 (PDT)
+	by gabe.freedesktop.org (Postfix) with ESMTP id CE64689190;
+	Thu,  6 Apr 2023 06:37:29 +0000 (UTC)
+Received: from mail-ej1-x632.google.com (mail-ej1-x632.google.com
+ [IPv6:2a00:1450:4864:20::632])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id BA7F310E114
+ for <intel-xe@lists.freedesktop.org>; Thu,  6 Apr 2023 06:37:27 +0000 (UTC)
+Received: by mail-ej1-x632.google.com with SMTP id
+ a640c23a62f3a-947a47eb908so65168266b.0
+ for <intel-xe@lists.freedesktop.org>; Wed, 05 Apr 2023 23:37:27 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=ffwll.ch; s=google; t=1680762782; x=1683354782;
+ d=ffwll.ch; s=google; t=1680763046;
  h=in-reply-to:content-transfer-encoding:content-disposition
  :mime-version:references:message-id:subject:cc:to:from:date:from:to
  :cc:subject:date:message-id:reply-to;
- bh=K39Mh87Tvwf8x3xZ5IS8vO+kaP319LqVfUqTmJnizjE=;
- b=HoAl540RYW2vE80SnLLBfn7qOBBx/ycVdxXe1F2O9sS33hOMafEoFZONAhV7BXAfW1
- CEmL1MHNs0hxkWMsuVWQRVTqa+9D8QLHN3tG1n8nR+XenubUeJhr9ry0CoxHC6ViMIkb
- i8G2hzUUyxTO3fLiBAiC476vQROSGbfjMyqZs=
+ bh=Ko2mW8NuwLC4Pqij6a0t5WM27xHJK8Wt75JHDmhBP+Q=;
+ b=bqHmya4Qjk/WzovNL7Re/PNIA8usuAR17hcUwk/yYPJmK6X+NBZjuIersg8RwTIG6z
+ 6RkPDBzkbSdqVoXciUf6mpA+GkETzxKasJfkreT/XSnEcTJMmYMQhdm1v0+Sq8JdeAWQ
+ b/3pxmjeA/dmeSYi9qvR/V9KELTtaEOmEnceQ=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20210112; t=1680762782; x=1683354782;
+ d=1e100.net; s=20210112; t=1680763046;
  h=in-reply-to:content-transfer-encoding:content-disposition
  :mime-version:references:message-id:subject:cc:to:from:date
  :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
- bh=K39Mh87Tvwf8x3xZ5IS8vO+kaP319LqVfUqTmJnizjE=;
- b=gRYsK8/FjvP8IBKLiz8HH9lO8g/pI6R2KgZ+ZgxxWDddfvGkYdpDHC8cO6SeKTXLaP
- B09bkvyzNilNIyAuT2gUE16BYxmKqTFcFGc8oTeqtBWKeqIOtGzZ7ek+TtWckhXPdSeT
- teA4ERev3xLLaTkmtrzL0bBlJYHra2xbokrNHR1DDmu7lkPI0I+fg/Q1cXRrLlIokruz
- Al5crcfi32aBmwxdstIuNqpcTh3+ymMu+B5bUMHrihQQyId37ASu8AKmLwrHtL3W/lzp
- f3SxgIIY0KgCx6PZ/RTTjv6GCJbJ1NyurWxTjh777QXL7yJ1nWnD44DcNSd8bzEQwcr+
- euFw==
-X-Gm-Message-State: AAQBX9eWz9PmH3+i87Hu2jcBnPnWqiS1d6RvRkuBNF7L5rDprpqCwpgV
- awCyPQMp5NMvhuk4bdCMkNfkFGJB0xcofa30PS8=
-X-Google-Smtp-Source: AKy350Y5xtKzywFxd7uhST/l0/6CIyyetwxlWUTHdlGgEOsh8MTS4wDbQzmPq7wVXglaLCxbF4ctbA==
-X-Received: by 2002:a05:6402:4413:b0:502:92d:4f50 with SMTP id
- y19-20020a056402441300b00502092d4f50mr4801431eda.1.1680762782011; 
- Wed, 05 Apr 2023 23:33:02 -0700 (PDT)
+ bh=Ko2mW8NuwLC4Pqij6a0t5WM27xHJK8Wt75JHDmhBP+Q=;
+ b=vh1PKvLydWgkfZ8t/IHMqh/NSm0nO1RM9wRKDw+9Q+m26j9oUPKqFtZ4JiJ1t0gcvc
+ IWQeUnf/NvhZJOkEtapxeYbh3KCC6GZncVybelwLxQOBV3MgJLV1NfY8ISUFjtD6kDPl
+ 2EA7FFEZUAX215gV7iaWRk6+GPZjK5lD7v50u1MnDjWPyePkl1ovpj6yLRT1AGGqqZw0
+ k1kbbP4+GZPvBcvNBcw3dCsBnd38r9GnXIASsv5lJO5mnmjcDkjMK5B63QoiE1DBgxVW
+ EJ+KrZBKAisu18OKDK8K434+jkQYT3AzQkbU2yiFb74KLUYRQdm2JxyhRNNjrJaovTwX
+ 8kDQ==
+X-Gm-Message-State: AAQBX9eVI36A8xGtq8pmX94X+L6o6/xB9yojmgHcjAV5SMGvJIMImbJh
+ LVx7UqmlZ/3XswPpFlCWz6AUBw==
+X-Google-Smtp-Source: AKy350YPj3wAbu9Gg7FY2HmNT7z60zuIwpFHHTe3b4EkkIy7GihaTpxsqyApPNlxJItw62Ls5rMsyg==
+X-Received: by 2002:a17:906:24b:b0:947:8734:a05b with SMTP id
+ 11-20020a170906024b00b009478734a05bmr5185860ejl.7.1680763045875; 
+ Wed, 05 Apr 2023 23:37:25 -0700 (PDT)
 Received: from phenom.ffwll.local (212-51-149-33.fiber7.init7.net.
  [212.51.149.33]) by smtp.gmail.com with ESMTPSA id
- c41-20020a509fac000000b00501fc87352fsm301823edf.13.2023.04.05.23.33.01
+ qf11-20020a1709077f0b00b009477c83c3b9sm364082ejc.133.2023.04.05.23.37.25
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Wed, 05 Apr 2023 23:33:01 -0700 (PDT)
-Date: Thu, 6 Apr 2023 08:32:59 +0200
+ Wed, 05 Apr 2023 23:37:25 -0700 (PDT)
+Date: Thu, 6 Apr 2023 08:37:23 +0200
 From: Daniel Vetter <daniel@ffwll.ch>
 To: Matthew Brost <matthew.brost@intel.com>
-Message-ID: <ZC5nm73p6SByTXDn@phenom.ffwll.local>
-References: <20230404002211.3611376-9-matthew.brost@intel.com>
- <e5eb5ab0-8e51-389c-34ae-7c6004f4b1ba@amd.com>
- <f7b3b70b-c798-b09e-210c-f84eaafd3251@linux.intel.com>
- <5b2e6a78-b743-028c-f54d-af38c130164a@amd.com>
- <16a3a3fd-47c7-d74d-4835-9438ef8d2635@shipmail.org>
- <ZCx0P7GwLh2yOVR4@DUT025-TGLU.fm.intel.com>
- <ZCx5wGTA3RCZGjA4@phenom.ffwll.local>
- <ZCx/C4cOwPcPQZ0R@DUT025-TGLU.fm.intel.com>
- <ZC1y9ON07yTYNTz6@phenom.ffwll.local>
- <ZC4LNOuOza9RX9TJ@DUT025-TGLU.fm.intel.com>
+Message-ID: <ZC5oo8ljg5DWHjhk@phenom.ffwll.local>
+References: <20230404002211.3611376-1-matthew.brost@intel.com>
+ <87c7f659-387c-3e23-69c6-03e0c9820bab@amd.com>
+ <ZCwoL3Wgv90tlQWR@DUT025-TGLU.fm.intel.com>
+ <d740a81a-8919-b6c8-a8c1-f5d8f9c5549c@amd.com>
+ <ZC0yq9XZ2t9cV0Nz@phenom.ffwll.local>
+ <a2236a9d-e21a-269c-aad3-184c402065b7@amd.com>
+ <ZC06Rl6TGe7itZvW@phenom.ffwll.local>
+ <ec128743-699b-3722-0ab2-ff96552fdddd@amd.com>
+ <CAKMK7uFEGoaOmewGmP4H_ouqZiMKAiaKwEohGCZq5T-UJYMf_w@mail.gmail.com>
+ <ZC4pinCurycVe4bi@DUT025-TGLU.fm.intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=iso-8859-1
 Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <ZC4LNOuOza9RX9TJ@DUT025-TGLU.fm.intel.com>
+In-Reply-To: <ZC4pinCurycVe4bi@DUT025-TGLU.fm.intel.com>
 X-Operating-System: Linux phenom 6.1.0-7-amd64 
-Subject: Re: [Intel-xe] [RFC PATCH 08/10] dma-buf/dma-fence: Introduce
- long-running completion fences
+Subject: Re: [Intel-xe] [RFC PATCH 00/10] Xe DRM scheduler and long running
+ workload plans
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -82,257 +82,137 @@ List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
 Cc: robdclark@chromium.org, airlied@linux.ie, lina@asahilina.net,
- Thomas =?iso-8859-1?Q?Hellstr=F6m_=28Intel=29?= <thomas_os@shipmail.org>,
- dri-devel@lists.freedesktop.org,
- Christian =?iso-8859-1?Q?K=F6nig?= <christian.koenig@amd.com>,
+ dri-devel@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
  boris.brezillon@collabora.com, Daniel Vetter <daniel@ffwll.ch>,
- intel-xe@lists.freedesktop.org, faith.ekstrand@collabora.com
+ Christian =?iso-8859-1?Q?K=F6nig?= <christian.koenig@amd.com>,
+ faith.ekstrand@collabora.com
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Wed, Apr 05, 2023 at 11:58:44PM +0000, Matthew Brost wrote:
-> On Wed, Apr 05, 2023 at 03:09:08PM +0200, Daniel Vetter wrote:
-> > On Tue, Apr 04, 2023 at 07:48:27PM +0000, Matthew Brost wrote:
-> > > On Tue, Apr 04, 2023 at 09:25:52PM +0200, Daniel Vetter wrote:
-> > > > On Tue, Apr 04, 2023 at 07:02:23PM +0000, Matthew Brost wrote:
-> > > > > On Tue, Apr 04, 2023 at 08:14:01PM +0200, Thomas Hellström (Intel) wrote:
-> > > > > > 
-> > > > > > On 4/4/23 15:10, Christian König wrote:
-> > > > > > > Am 04.04.23 um 14:54 schrieb Thomas Hellström:
-> > > > > > > > Hi, Christian,
-> > > > > > > > 
-> > > > > > > > On 4/4/23 11:09, Christian König wrote:
-> > > > > > > > > Am 04.04.23 um 02:22 schrieb Matthew Brost:
-> > > > > > > > > > From: Thomas Hellström <thomas.hellstrom@linux.intel.com>
-> > > > > > > > > > 
-> > > > > > > > > > For long-running workloads, drivers either need to open-code
-> > > > > > > > > > completion
-> > > > > > > > > > waits, invent their own synchronization primitives or internally use
-> > > > > > > > > > dma-fences that do not obey the cross-driver dma-fence protocol, but
-> > > > > > > > > > without any lockdep annotation all these approaches are error prone.
-> > > > > > > > > > 
-> > > > > > > > > > So since for example the drm scheduler uses dma-fences it is
-> > > > > > > > > > desirable for
-> > > > > > > > > > a driver to be able to use it for throttling and error
-> > > > > > > > > > handling also with
-> > > > > > > > > > internal dma-fences tha do not obey the cros-driver
-> > > > > > > > > > dma-fence protocol.
-> > > > > > > > > > 
-> > > > > > > > > > Introduce long-running completion fences in form of
-> > > > > > > > > > dma-fences, and add
-> > > > > > > > > > lockdep annotation for them. In particular:
-> > > > > > > > > > 
-> > > > > > > > > > * Do not allow waiting under any memory management locks.
-> > > > > > > > > > * Do not allow to attach them to a dma-resv object.
-> > > > > > > > > > * Introduce a new interface for adding callbacks making the
-> > > > > > > > > > helper adding
-> > > > > > > > > >    a callback sign off on that it is aware that the dma-fence may not
-> > > > > > > > > >    complete anytime soon. Typically this will be the
-> > > > > > > > > > scheduler chaining
-> > > > > > > > > >    a new long-running fence on another one.
-> > > > > > > > > 
-> > > > > > > > > Well that's pretty much what I tried before:
-> > > > > > > > > https://lwn.net/Articles/893704/
-> > > > > > > > > 
-> > > > > 
-> > > > > I don't think this quite the same, this explictly enforces that we don't
-> > > > > break the dma-fence rules (in path of memory allocations, exported in
-> > > > > any way), essentially this just SW sync point reusing dma-fence the
-> > > > > infrastructure for signaling / callbacks. I believe your series tried to
-> > > > > export these fences to user space (admittedly I haven't fully read your
-> > > > > series).
-> > > > > 
-> > > > > In this use case we essentially just want to flow control the ring via
-> > > > > the dma-scheduler + maintain a list of pending jobs so the TDR can be
-> > > > > used for cleanup if LR entity encounters an error. To me this seems
-> > > > > perfectly reasonable but I know dma-femce rules are akin to a holy war.
-> > > > > 
-> > > > > If we return NULL in run_job, now we have to be able to sink all jobs
-> > > > > in the backend regardless on ring space, maintain a list of jobs pending
-> > > > > for cleanup after errors, and write a different cleanup path as now the
-> > > > > TDR doesn't work. Seems very, very silly to duplicate all of this code
-> > > > > when the DRM scheduler provides all of this for us. Also if we go this
-> > > > > route, now all drivers are going to invent ways to handle LR jobs /w the
-> > > > > DRM scheduler.
-> > > > > 
-> > > > > This solution is pretty clear, mark the scheduler as LR, and don't
-> > > > > export any fences from the scheduler. If you try to export these fences
-> > > > > a blow up happens.
-> > > > 
-> > > > The problem is if you mix things up. Like for resets you need all the
-> > > > schedulers on an engine/set-of-engines to quiescent or things get
-> > > > potentially hilarious. If you now have a scheduler in forever limbo, the
-> > > > dma_fence guarantees are right out the window.
-> > > > 
-> > > 
-> > > Right, a GT reset on Xe is:
-> > > 
-> > > Stop all schedulers
-> > > Do a reset
-> > > Ban any schedulers which we think caused the GT reset
-> > > Resubmit all schedulers which we think were good
-> > > Restart all schedulers
-> > > 
-> > > None of this flow depends on LR dma-fences, all of this uses the DRM
-> > > sched infrastructure and work very well compared to the i915. Rewriting
-> > > all this with a driver specific implementation is what we are trying to
-> > > avoid.
-> > > 
-> > > Similarly if LR entity hangs on its own (not a GT reset, rather the
-> > > firmware does the reset for us) we use all the DRM scheduler
-> > > infrastructure to handle this. Again this works rather well...
+On Thu, Apr 06, 2023 at 02:08:10AM +0000, Matthew Brost wrote:
+> On Wed, Apr 05, 2023 at 12:12:27PM +0200, Daniel Vetter wrote:
+> > On Wed, 5 Apr 2023 at 11:57, Christian König <christian.koenig@amd.com> wrote:
+> > >
+> > > Am 05.04.23 um 11:07 schrieb Daniel Vetter:
+> > > > [SNIP]
+> > > >> I would approach it from the complete other side. This component here is a
+> > > >> tool to decide what job should run next.
+> > > >>
+> > > >> How that is then signaled and run should not be part of the scheduler, but
+> > > >> another more higher level component.
+> > > >>
+> > > >> This way you also don't have a problem with not using DMA-fences as
+> > > >> dependencies as well as constrains for running more jobs.
+> > > > I think we're talking about two things here and mixing them up.
+> > > >
+> > > > For the dependencies I agree with you, and imo that higher level tool
+> > > > should probably just be an on-demand submit thread in userspace for the
+> > > > rare case where the kernel would need to sort out a dependency otherwise
+> > > > (due to running out of ringspace in the per-ctx ringbuffer).
+> > > >
+> > > > The other thing is the message passing stuff, and this is what I was
+> > > > talking about above. This has nothing to do with handling dependencies,
+> > > > but with talking to the gpu fw. Here the intel design issue is that the fw
+> > > > only provides a single queue, and it's in-order. Which means it
+> > > > fundamentally has the stalling issue you describe as a point against a
+> > > > message passing design. And fundamentally we need to be able to talk to
+> > > > the fw in the scheduler ->run_job callback.
+> > > >
+> > > > The proposal here for the message passing part is that since it has the
+> > > > stalling issue already anyway, and the scheduler needs to be involved
+> > > > anyway, it makes sense to integrated this (as an optional thing, only for
+> > > > drivers which have this kind of fw interface) into the scheduler.
+> > > > Otherwise you just end up with two layers for no reason and more ping-pong
+> > > > delay because the ->run_job needs to kick off the subordinate driver layer
+> > > > first. Note that for this case the optional message passing support in the
+> > > > drm/scheduler actually makes things better, because it allows you to cut
+> > > > out one layer.
+> > > >
+> > > > Of course if a driver with better fw interface uses this message passing
+> > > > support, then that's bad. Hence the big warning in the kerneldoc.
+> > >
+> > > Well what I wanted to say is that if you design the dependency handling
+> > > / scheduler properly you don't need the message passing through it.
+> > >
+> > > For example if the GPU scheduler component uses a work item to do it's
+> > > handling instead of a kthread you could also let the driver specify the
+> > > work queue where this work item is executed on.
+> > >
+> > > When you design it like this the driver specifies the thread context of
+> > > execution for it's job. In other words it can specify a single threaded
+> > > firmware work queue as well.
+> > >
+> > > When you then have other messages which needs to be passed to the
+> > > firmware you can also use the same single threaded workqueue for this.
+> > >
+> > > Drivers which have a different firmware interface would just use one of
+> > > the system work queues instead.
+> > >
+> > > This approach basically decouples the GPU scheduler component from the
+> > > message passing functionality.
 > > 
-> > Yeah this is why I don't think duplicating everything that long-running
-> > jobs need makes any sense. iow I agree with you.
-> > 
-> 
-> Glad we agree.
-> 
-> > > > But the issue you're having is fairly specific if it's just about
-> > > > ringspace. I think the dumbest fix is to just block in submit if you run
-> > > > out of per-ctx ringspace, and call it a day. This notion that somehow the
-> > > 
-> > > How does that not break the dma-fence rules? A job can publish its
-> > > finished fence after ARM, if the finished fence fence waits on ring
-> > > space that may not free up in a reasonable amount of time we now have
-> > > broken the dma-dence rules. My understanding is any dma-fence must only
-> > > on other dma-fence, Christian seems to agree and NAK'd just blocking if
-> > > no space available [1]. IMO this series ensures we don't break dma-fence
-> > > rules by restricting how the finished fence can be used.
-> > 
-> > Oh I meant in the submit ioctl, _before_ you even call
-> > drm_sched_job_arm(). It's ok to block in there indefinitely.
+> > Hm I guess we've been talking past each another big time, because
+> > that's really what I thought was under discussions? Essentially the
+> > current rfc, but implementing with some polish.
 > >
 > 
-> Ok, but how do we determine if their is ring space, wait on xe_hw_fence
-> which is a dma-fence. We just move a wait from the scheduler to the exec
-> IOCTL and I realy fail to see the point of that.
-
-Fill in anything you need into the ring at ioctl time, but don't update
-the tail pointers? If there's no space, then EWOULDBLCK.
-
-> > > > kernel is supposed to provide a bottomless queue of anything userspace
-> > > > submits simply doesn't hold up in reality (as much as userspace standards
-> > > > committees would like it to), and as long as it doesn't have a real-world
-> > > > perf impact it doesn't really matter why we end up blocking in the submit
-> > > > ioctl. It might also be a simple memory allocation that hits a snag in
-> > > > page reclaim.
-> > > > 
-> > > > > > > > > And the reasons why it was rejected haven't changed.
-> > > > > > > > > 
-> > > > > > > > > Regards,
-> > > > > > > > > Christian.
-> > > > > > > > > 
-> > > > > > > > Yes, TBH this was mostly to get discussion going how we'd best
-> > > > > > > > tackle this problem while being able to reuse the scheduler for
-> > > > > > > > long-running workloads.
-> > > > > > > > 
-> > > > > > > > I couldn't see any clear decision on your series, though, but one
-> > > > > > > > main difference I see is that this is intended for driver-internal
-> > > > > > > > use only. (I'm counting using the drm_scheduler as a helper for
-> > > > > > > > driver-private use). This is by no means a way to try tackle the
-> > > > > > > > indefinite fence problem.
-> > > > > > > 
-> > > > > > > Well this was just my latest try to tackle this, but essentially the
-> > > > > > > problems are the same as with your approach: When we express such
-> > > > > > > operations as dma_fence there is always the change that we leak that
-> > > > > > > somewhere.
-> > > > > > > 
-> > > > > > > My approach of adding a flag noting that this operation is dangerous and
-> > > > > > > can't be synced with something memory management depends on tried to
-> > > > > > > contain this as much as possible, but Daniel still pretty clearly
-> > > > > > > rejected it (for good reasons I think).
-> > > > > > > 
-> > > > > > > > 
-> > > > > > > > We could ofc invent a completely different data-type that abstracts
-> > > > > > > > the synchronization the scheduler needs in the long-running case, or
-> > > > > > > > each driver could hack something up, like sleeping in the
-> > > > > > > > prepare_job() or run_job() callback for throttling, but those waits
-> > > > > > > > should still be annotated in one way or annotated one way or another
-> > > > > > > > (and probably in a similar way across drivers) to make sure we don't
-> > > > > > > > do anything bad.
-> > > > > > > > 
-> > > > > > > >  So any suggestions as to what would be the better solution here
-> > > > > > > > would be appreciated.
-> > > > > > > 
-> > > > > > > Mhm, do we really the the GPU scheduler for that?
-> > > > > > > 
-> > > > > 
-> > > > > I think we need to solve this within the DRM scheduler one way or
-> > > > > another.
-> > > > 
-> > > > Yeah so if we conclude that the queue really must be bottomless then I
-> > > > agree drm-sched should help out sort out the mess. Because I'm guessing
-> > > > that every driver will have this issue. But that's a big if.
-> > > > 
-> > > > I guess if we teach the drm scheduler that some jobs are fairly endless
-> > > > then maybe it wouldn't be too far-fetched to also teach it to wait for a
-> > > > previous one to finish (but not with the dma_fence that preempts, which we
-> > > > put into the dma_resv for memory management, but some other struct
-> > > > completion). The scheduler already has a concept of not stuffing too much
-> > > > stuff into the same queue after all, so this should fit?
-> > > 
-> > > See above, exact same situation as spinning on flow controling the ring,
-> > > this IMO absolutely breaks the dma-fence rules. IMO the correct solution
-> > > is to have a DRM that doesn't export dma-fences, this is exactly what
-> > > this series does as if we try to, boom lockdep / warn on blow up.
-> > 
-> > I dont think it's impossible to do this correctly, but definitely very,
-> > very hard. Which is why neither Christian nor me like the idea :-)
-> > 
-> > Essentially you'd have to make sure that any indefinite way will still
-> > react to drm_sched_job, so that you're not holding up a gt reset or
-> > anything like that, but only ever hold up forward progress for this
-> > specific scheduler/drm_sched_entity. Which you can do as long (and again,
-> > another hugely tricky detail) you still obey the preempt-ctx dma_fence and
-> > manage to preempt the underlying long-running ctx even when the drm/sched
-> > is stuck waiting for an indefinite fence (like waiting for ringspace or
-> > something like that).
-> > 
-> > So I don't think it's impossible, but very far away from "a good idea" :-)
-> > 
-> > Hence to proposal to bail out of this entire mess by throwing EWOULDBLCK
-> > back to userspace directly from the ioctl function, where you still can do
-> > that without breaking any dma_fence rules. Or if it's not a case that
-> > matters in practice, simply block in the ioctl handler instead of
-> > returning EWOULDBLCK.
+> I think Daniel pretty much nailed it here (thanks), to recap:
 > 
-> Returning EWOULDBLCK on a full ring is reasonsible I guess but again
-> without returning a fence in run job the TDR can't be used for clean up
-> on LR entities which will result in duplicate code open coded by each
-> driver. Same goes for checking ring full in exec.
+> 1. I want the messages in the same worker so run_job / free_job /
+> process_msg execution is mutual exclusive and also so during reset paths
+> if the worker is stopped all the entry points can't be entered.
 > 
-> How about this:
-> - We mark xe_hw_fence as LR to ensure it can't be exported, return this
->   in run_job which gives flow control on the ring + the handy TDR
->   functionality
-> - When a scheduler is marked as LR, we do not generate finished fences
->   for jobs
-> - We heavily, heavily scrutinize any usage of the LR fence flag going
->   foward
-> - We document all of this very loudly
+> If this is a NAK, then another worker is fine I guess. A lock between
+> run_job / free_job + process_msg should solve the exclusion issue and the
+> reset paths can also stop this new worker too. That being said I'd
+> rather leave this as is but will not fight this point.
 > 
-> Is this reasonable?
+> 2. process_msg is just used to communicate with the firmware using the
+> same queue as submission. Waiting for space in this queue is the only
+> place this function can block (same as submission), well actually we
+> have the concept a preempt time slice but that sleeps for 10 ms by
+> default. Also preempt is only used in LR entities so I don't think it is
+> relavent in this case either.
+> 
+> 3. Agree this is in the dma-fence signaling path (if process_msg is in
+> the submission worker) so we can't block indefinitely or an unreasonable
+> period of time (i.e. we must obey dma-fence rules).
 
-I'm not seeing why it's needed? If you're worried about TDR duplication
-then I think we need something else. Because for long-running ctx we never
-have a timeout of the ctx itself (by definition). The only thing we time
-out on is the preempt, so I guess what could be done:
-- have the minimal scaffolding to support the preempt-ctx fence in
-  drm_sched_entity
-- when the preempt ctx fence enables signalling a) callback to the driver
-  to start the preempt (which should signal the fence) b) start a timer,
-  which should catch if the preempt takes too long
-- if the timeout first (importantly we only enable that when the
-  preemption is trigger, not by default), kick of the normal drm/sched tdr
-  flow. maybe needs some adjustements in case there's different handling
-  needed for when a preemption times out compared to just a job timing out
+Just to hammer this in: Not just process_msg is in the dma_fence signaling
+path, but the entire fw queue where everything is being funneled through,
+including whatever the fw is doing to process these.
 
-I think this might make sense for sharing timeout handling needs for
-long-running context. What you proposed I don't really follow why it
-should exist, because that kind of timeout handling should not ever happen
-for long-running jobs.
+Yes this is terrible and blew up a few times already :-/
+
+But also, probably something that the docs really need to hammer in, to
+make sure people don't look at this and thinkg "hey this seems to be the
+recommended way to do this on linux". We don't want hw people to build
+more of these designs, they're an absolute pain to deal with with Linux'
+dma_fence signalling and gpu job scheduling rules.
+
+It's just that if you're stuck with such fw, then integrating the flow
+into drm/sched instead of having an extra layer of workers seems the
+better of two pretty bad solutions.
 -Daniel
+
+ 
+> 4. Agree the documentation for thw usage of the messaging interface
+> needs to be clear.
+> 
+> 5. Agree that my code could alway use polishing.
+> 
+> Lets close on #1 then can I get on general Ack on this part of the RFC
+> and apply the polish in the full review process?
+> 
+> Matt
+> 
+> > iow I agree with you (I think at least).
+> > -Daniel
+> > -- 
+> > Daniel Vetter
+> > Software Engineer, Intel Corporation
+> > http://blog.ffwll.ch
+
 -- 
 Daniel Vetter
 Software Engineer, Intel Corporation
