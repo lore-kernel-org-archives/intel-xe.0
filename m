@@ -4,48 +4,45 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 39690C76196
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6665BC77B6C
 	for <intel-xe@archiver.kernel.org>; Thu,  6 Apr 2023 20:18:54 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 17F9410ECCE;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3B73210ECD2;
 	Thu,  6 Apr 2023 20:18:54 +0000 (UTC)
 Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8478A10E36C
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 67F6610ECCE
  for <intel-xe@lists.freedesktop.org>; Thu,  6 Apr 2023 20:18:52 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
  t=1680812332; x=1712348332;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=FGZJfOC6AafdpjIgdoAInFH1Rx0h0Akdwpj23BUdvQ8=;
- b=XumxnqmgF5uUzKDc4aWQv98G1ip+fcrxSYmItawQE8mD3bLkvX7Sx1e5
- 8GFtrX4Mca5dqApB5uYgtRfMpGaVOIqnUbNzZcvMwiXh7D5ojrqy0bOr1
- U01+ZCiKBbgcYc9ZYaDDaRulCUa6mc0WLPB4yojLs/HmE5ASkojeOt4tI
- o8aTrli3nzbJyvErQPBdC3Hoz6vRrWECFeKHZY84axHa7/HWhyJHVXLGQ
- B0FJsD3ZTJKXoZr4eCOnFoSdf+Ux0giP4OAparKoZ92rLhgeuuRE7EWXr
- Da84l77VyH8kMD8A83/9QwaUCrLMNARWC2gM4U9lNBmXKDSOVbCbNIp9y A==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10672"; a="322482248"
-X-IronPort-AV: E=Sophos;i="5.98,323,1673942400"; d="scan'208";a="322482248"
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=E1cfi7qQXCuN92IG5y1Mm+8RJZ7LFRx7d3ytALSlLfc=;
+ b=Xj/GzI2yWo03XAyo05WAPv/6cNtEkBiMwcdE48lWOErJNQ6X0dXWkhnt
+ Mrgb845si7dVDVGM8NsYPXLQb+0XSUmnDwKsZmzQASN84u2tYuPW5KCPx
+ zb3ZYmJEt4Zzu1bVf7vmmzqRCvL/558K9J+CGmK9eJOwb661H5NUTvQAV
+ oDnw758DnJeNMZXKr+mvZ1xK2sWqY4G/pCsB0XmZCoPb8AiS9B6H1Be5K
+ 7UOqUJaFfQmpyQPdXrMA7a3Hwi25bwVn7UaL31fe+ctQjEJQGqNrEnoqA
+ I+wKKtWSs26bGec56XFVXacZ4Kn2hTsJBHuGW135zprickyySD1SgLSjj Q==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10672"; a="322482247"
+X-IronPort-AV: E=Sophos;i="5.98,323,1673942400"; d="scan'208";a="322482247"
 Received: from fmsmga008.fm.intel.com ([10.253.24.58])
  by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  06 Apr 2023 13:18:51 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10672"; a="751775463"
-X-IronPort-AV: E=Sophos;i="5.98,323,1673942400"; d="scan'208";a="751775463"
+X-IronPort-AV: E=McAfee;i="6600,9927,10672"; a="751775460"
+X-IronPort-AV: E=Sophos;i="5.98,323,1673942400"; d="scan'208";a="751775460"
 Received: from mdroper-desk1.fm.intel.com ([10.1.27.134])
  by fmsmga008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  06 Apr 2023 13:18:51 -0700
 From: Matt Roper <matthew.d.roper@intel.com>
 To: intel-xe@lists.freedesktop.org
-Date: Thu,  6 Apr 2023 13:18:37 -0700
-Message-Id: <20230406201845.1797532-2-matthew.d.roper@intel.com>
+Date: Thu,  6 Apr 2023 13:18:36 -0700
+Message-Id: <20230406201845.1797532-1-matthew.d.roper@intel.com>
 X-Mailer: git-send-email 2.39.2
-In-Reply-To: <20230406201845.1797532-1-matthew.d.roper@intel.com>
-References: <20230406201845.1797532-1-matthew.d.roper@intel.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-xe] [PATCH v2 1/9] drm/xe: Start splitting xe_device_desc
- into graphics/media structures
+Subject: [Intel-xe] [PATCH v2 0/9] Begin adding GMD_ID support for Xe
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -61,247 +58,95 @@ Cc: Lucas De Marchi <lucas.demarchi@intel.com>, matthew.d.roper@intel.com
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Rather than storing all characteristics for an entire platform in the
-xe_device_desc structure, create secondary graphics and media structures
-to hold traits and feature flags specific to those IPs.  This will
-eventually allow us to assign the graphics and media characteristics at
-runtime based on the contents of the relevant GMD_ID registers.
+As Intel GPUs move toward chiplet-based designs with disaggregated IP
+blocks, it's no longer considered correct to determine platform IP
+versions and most of the behavior/capabilities based on a simple PCI
+devid/revid lookup.  From Meteor Lake onward, the driver is instead
+expected to identify the specific IP blocks present on the platform by
+reading GMD_ID registers that provide the version/stepping of each unit.
+PCI IDs should only be used in the rare cases where the driver needs to
+identify the SoC and its characteristics.  Going forward, we could
+theoretically see products mixing and matching chiplets in ways that
+cross the traditional platform boundaries (e.g., it would be possible
+for a "MTL" to show up with a future graphics and/or media IP chiplet,
+or it would be possible for some future platform to directly reuse a
+graphics and/or media chiplet from MTL).  In the long term we can no
+longer rely on PCI IDs to properly reflect these types of cases.
 
-For now, just move the IP versions into the new structures to keep
-things simple.  Other IP-specific fields will migrate to these
-structures in future patches.
+This series provides the initial framework for GMD_ID matching.  The
+xe_device_desc structures used to describe platforms are broken up so
+that most of the important characteristics now reside in separate
+xe_graphics_desc and xe_media_desc structures for each IP rather than in
+the platform-level structure.  PCI devid matching will still happen at
+probe and will operate mostly unchanged on pre-MTL platforms where the
+xe_device_desc will point directly at the appropriate xe_graphics_desc
+and xe_media_desc descriptors.  However on MTL and beyond, the
+xe_device_desc structure associated with a PCI ID will initially just
+point at generic pair of descriptors with no real feature flags set,
+indicating that true matching needs to happen based on GMD_ID readout.
+The driver will then read the appropriate GMD_ID registers and select
+the corresponding set of feature flags to use, independently of the base
+platform.
 
-Note that there's one functional change introduced by this:  previously
-PVC was recognized as media version 12.60.  That's technically true, but
-in practice the media engines are fused off on all production hardware.
-By simply not assigning a media IP structure to PVC it will effectively
-be treated as IP version 0.0 now (which the rest of the driver should
-treat as non-existent media).
+MTL still isn't loading and running properly on the Xe driver, so this
+is only lightly tested; with these patches the driver seems to identify
+the IP versions correctly (already more correctly than the old
+PCI-matching code did) and pick the correct set of feature flags before
+the load fails for other pre-existing reasons.
 
-Reviewed-by: Lucas De Marchi <lucas.demarchi@intel.com>
-Signed-off-by: Matt Roper <matthew.d.roper@intel.com>
----
- drivers/gpu/drm/xe/xe_pci.c | 103 ++++++++++++++++++++++++++----------
- 1 file changed, 74 insertions(+), 29 deletions(-)
+Note that there's still more work to be done in this area after this
+series:
+ - Most subplatform matching (e.g., MTL-M vs MTL-P) should also be tied
+   to GMD_ID rather than PCI ID.
+ - Graphics/Media stepping information also comes from GMD_ID; PCI revid
+   should only be used to identify the SoC stepping (which is seldom
+   used by the driver).
+ - Various places in the driver that match a platform directly will need
+   to be updated to match on the IP version instead.  Some examples
+   would be places like GuC firmware loading or workaround definition,
+   where we only care about the graphics chiplet, not the base platform
+   it happens to be plugged into.
+ - i915 has basic GMD_ID support for version identification, but needs
+   similar reworks to select feature flags based on the GMD_ID.  Since
+   Xe recycles i915's display code, these i915 updates will be needed to
+   fully handle display IP matching properly.
 
-diff --git a/drivers/gpu/drm/xe/xe_pci.c b/drivers/gpu/drm/xe/xe_pci.c
-index 20be113544fa..d9d91eda9ee4 100644
---- a/drivers/gpu/drm/xe/xe_pci.c
-+++ b/drivers/gpu/drm/xe/xe_pci.c
-@@ -42,11 +42,19 @@ struct xe_gt_desc {
- 	u32 mmio_adj_offset;
- };
- 
-+struct xe_graphics_desc {
-+	u8 ver;
-+	u8 rel;
-+};
-+
-+struct xe_media_desc {
-+	u8 ver;
-+	u8 rel;
-+};
-+
- struct xe_device_desc {
--	u8 graphics_ver;
--	u8 graphics_rel;
--	u8 media_ver;
--	u8 media_rel;
-+	const struct xe_graphics_desc *graphics;
-+	const struct xe_media_desc *media;
- 
- 	u64 platform_engine_mask; /* Engines supported by the HW */
- 
-@@ -84,17 +92,57 @@ __diag_ignore_all("-Woverride-init", "Allow field overrides in table");
- 
- #define NOP(x)	x
- 
-+static const struct xe_graphics_desc graphics_xelp = {
-+	.ver = 12,
-+	.rel = 0,
-+};
-+
-+static const struct xe_graphics_desc graphics_xelpp = {
-+	.ver = 12,
-+	.rel = 10,
-+};
-+
-+static const struct xe_graphics_desc graphics_xehpg = {
-+	.ver = 12,
-+	.rel = 55,
-+};
-+
-+static const struct xe_graphics_desc graphics_xehpc = {
-+	.ver = 12,
-+	.rel = 60,
-+};
-+
-+static const struct xe_graphics_desc graphics_xelpg = {
-+	.ver = 12,
-+	.rel = 70,
-+};
-+
-+static const struct xe_media_desc media_xem = {
-+	.ver = 12,
-+	.rel = 0,
-+};
-+
-+static const struct xe_media_desc media_xehpm = {
-+	.ver = 12,
-+	.rel = 55,
-+};
-+
-+static const struct xe_media_desc media_xelpmp = {
-+	.ver = 13,
-+	.rel = 0,
-+};
-+
- /* Keep in gen based order, and chronological order within a gen */
- #define GEN12_FEATURES \
- 	.require_force_probe = true, \
--	.graphics_ver = 12, \
--	.media_ver = 12, \
- 	.dma_mask_size = 39, \
- 	.max_tiles = 1, \
- 	.vm_max_level = 3, \
- 	.vram_flags = 0
- 
- static const struct xe_device_desc tgl_desc = {
-+	.graphics = &graphics_xelp,
-+	.media = &media_xem,
- 	GEN12_FEATURES,
- 	PLATFORM(XE_TIGERLAKE),
- 	.platform_engine_mask =
-@@ -104,6 +152,8 @@ static const struct xe_device_desc tgl_desc = {
- };
- 
- static const struct xe_device_desc adl_s_desc = {
-+	.graphics = &graphics_xelp,
-+	.media = &media_xem,
- 	GEN12_FEATURES,
- 	PLATFORM(XE_ALDERLAKE_S),
- 	.platform_engine_mask =
-@@ -115,6 +165,8 @@ static const struct xe_device_desc adl_s_desc = {
- static const u16 adlp_rplu_ids[] = { XE_RPLU_IDS(NOP), 0 };
- 
- static const struct xe_device_desc adl_p_desc = {
-+	.graphics = &graphics_xelp,
-+	.media = &media_xem,
- 	GEN12_FEATURES,
- 	PLATFORM(XE_ALDERLAKE_P),
- 	.platform_engine_mask =
-@@ -131,9 +183,10 @@ static const struct xe_device_desc adl_p_desc = {
- 	.is_dgfx = 1
- 
- static const struct xe_device_desc dg1_desc = {
-+	.graphics = &graphics_xelpp,
-+	.media = &media_xem,
- 	GEN12_FEATURES,
- 	DGFX_FEATURES,
--	.graphics_rel = 10,
- 	PLATFORM(XE_DG1),
- 	.platform_engine_mask =
- 		BIT(XE_HW_ENGINE_RCS0) | BIT(XE_HW_ENGINE_BCS0) |
-@@ -143,26 +196,18 @@ static const struct xe_device_desc dg1_desc = {
- 
- #define XE_HP_FEATURES \
- 	.require_force_probe = true, \
--	.graphics_ver = 12, \
--	.graphics_rel = 50, \
- 	.has_range_tlb_invalidation = true, \
- 	.has_flat_ccs = true, \
- 	.dma_mask_size = 46, \
- 	.max_tiles = 1, \
- 	.vm_max_level = 3
- 
--#define XE_HPM_FEATURES \
--	.media_ver = 12, \
--	.media_rel = 50
--
- static const u16 dg2_g10_ids[] = { XE_DG2_G10_IDS(NOP), XE_ATS_M150_IDS(NOP), 0 };
- static const u16 dg2_g11_ids[] = { XE_DG2_G11_IDS(NOP), XE_ATS_M75_IDS(NOP), 0 };
- static const u16 dg2_g12_ids[] = { XE_DG2_G12_IDS(NOP), 0 };
- 
- #define DG2_FEATURES \
- 	DGFX_FEATURES, \
--	.graphics_rel = 55, \
--	.media_rel = 55, \
- 	PLATFORM(XE_DG2), \
- 	.subplatforms = (const struct xe_subplatform_desc[]) { \
- 		{ XE_SUBPLATFORM_DG2_G10, "G10", dg2_g10_ids }, \
-@@ -181,15 +226,17 @@ static const u16 dg2_g12_ids[] = { XE_DG2_G12_IDS(NOP), 0 };
- 	.has_4tile = 1
- 
- static const struct xe_device_desc ats_m_desc = {
-+	.graphics = &graphics_xehpg,
-+	.media = &media_xehpm,
- 	XE_HP_FEATURES,
--	XE_HPM_FEATURES,
- 
- 	DG2_FEATURES,
- };
- 
- static const struct xe_device_desc dg2_desc = {
-+	.graphics = &graphics_xehpg,
-+	.media = &media_xehpm,
- 	XE_HP_FEATURES,
--	XE_HPM_FEATURES,
- 
- 	DG2_FEATURES,
- };
-@@ -216,14 +263,12 @@ static const struct xe_gt_desc pvc_gts[] = {
- };
- 
- static const struct xe_device_desc pvc_desc = {
-+	.graphics = &graphics_xehpc,
- 	XE_HP_FEATURES,
--	XE_HPM_FEATURES,
- 	DGFX_FEATURES,
- 	PLATFORM(XE_PVC),
- 	.extra_gts = pvc_gts,
--	.graphics_rel = 60,
- 	.has_flat_ccs = 0,
--	.media_rel = 60,
- 	.platform_engine_mask = PVC_ENGINES,
- 	.vram_flags = XE_VRAM_FLAGS_NEED64K,
- 	.dma_mask_size = 52,
-@@ -254,16 +299,15 @@ static const struct xe_gt_desc xelpmp_gts[] = {
- 
- static const struct xe_device_desc mtl_desc = {
- 	/*
--	 * Real graphics IP version will be obtained from hardware GMD_ID
--	 * register.  Value provided here is just for sanity checking.
-+	 * FIXME:  Real graphics/media IP will be mapped from hardware
-+	 * GMD_ID register.  Hardcoded assignments here will go away soon.
- 	 */
-+	.graphics = &graphics_xelpg,
-+	.media = &media_xelpmp,
- 	.require_force_probe = true,
--	.graphics_ver = 12,
--	.graphics_rel = 70,
- 	.dma_mask_size = 46,
- 	.max_tiles = 2,
- 	.vm_max_level = 3,
--	.media_ver = 13,
- 	.has_range_tlb_invalidation = true,
- 	PLATFORM(XE_METEORLAKE),
- 	.extra_gts = xelpmp_gts,
-@@ -369,10 +413,11 @@ static void xe_info_init(struct xe_device *xe,
- 	struct xe_gt *gt;
- 	u8 id;
- 
--	xe->info.graphics_verx100 = desc->graphics_ver * 100 +
--				    desc->graphics_rel;
--	xe->info.media_verx100 = desc->media_ver * 100 +
--				 desc->media_rel;
-+	xe->info.graphics_verx100 = desc->graphics->ver * 100 +
-+				    desc->graphics->rel;
-+	if (desc->media)
-+		xe->info.media_verx100 = desc->media->ver * 100 +
-+					 desc->media->rel;
- 	xe->info.is_dgfx = desc->is_dgfx;
- 	xe->info.platform = desc->platform;
- 	xe->info.dma_mask_size = desc->dma_mask_size;
+v2:
+ - Drop dummy dummy structures for GMD_ID graphics/media; leaving these
+   set to NULL should work both for GMD_ID platforms and for pre-GMD_ID
+   platforms that lack media IP (e.g., PVC).
+ - Add KUnit test to ensure the hardware engine lists are sane in the
+   GMD_ID-based IP descriptors.
+ - Associate a printable name with the various IPs and include it in the
+   initial drm_dbg() print.
+ - General cleanup/packing for the xe_device_desc structure.
+
+Cc: Lucas De Marchi <lucas.demarchi@intel.com>
+
+Matt Roper (9):
+  drm/xe: Start splitting xe_device_desc into graphics/media structures
+  drm/xe: Set require_force_probe in each platform's description
+  drm/xe: Move most platform traits to graphics IP
+  drm/xe: Move engine masks into IP descriptor structures
+  drm/xe: Clarify GT counting logic
+  drm/xe: Add printable name to IP descriptors
+  drm/xe: Select graphics/media descriptors from GMD_ID
+  drm/xe: Add KUnit test for xe_pci.c IP engine lists
+  drm/xe: Clean up xe_device_desc
+
+ drivers/gpu/drm/xe/regs/xe_gt_regs.h   |   6 +
+ drivers/gpu/drm/xe/tests/Makefile      |   1 +
+ drivers/gpu/drm/xe/tests/xe_pci.c      |  42 +++
+ drivers/gpu/drm/xe/tests/xe_pci_test.c |  74 ++++
+ drivers/gpu/drm/xe/tests/xe_pci_test.h |   6 +
+ drivers/gpu/drm/xe/xe_device_types.h   |   4 +
+ drivers/gpu/drm/xe/xe_pci.c            | 463 ++++++++++++++++---------
+ drivers/gpu/drm/xe/xe_pci.h            |   5 +
+ drivers/gpu/drm/xe/xe_pci_types.h      |  39 +++
+ 9 files changed, 484 insertions(+), 156 deletions(-)
+ create mode 100644 drivers/gpu/drm/xe/tests/xe_pci_test.c
+ create mode 100644 drivers/gpu/drm/xe/xe_pci_types.h
+
 -- 
 2.39.2
 
