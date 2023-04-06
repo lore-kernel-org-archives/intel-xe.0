@@ -4,46 +4,47 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 77F5AC7618D
-	for <intel-xe@archiver.kernel.org>; Thu,  6 Apr 2023 20:48:22 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id E7F56C7618D
+	for <intel-xe@archiver.kernel.org>; Thu,  6 Apr 2023 20:48:49 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4138C10ED2D;
-	Thu,  6 Apr 2023 20:48:22 +0000 (UTC)
-Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3D27810E368
- for <intel-xe@lists.freedesktop.org>; Thu,  6 Apr 2023 20:48:20 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C893E10ED2E;
+	Thu,  6 Apr 2023 20:48:49 +0000 (UTC)
+Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 857BA10E368
+ for <intel-xe@lists.freedesktop.org>; Thu,  6 Apr 2023 20:48:48 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1680814100; x=1712350100;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=mHeOCVILZjDpUKbAay+kYSXHBuwma9RI9YGiiZYkoN8=;
- b=RTFmvnnQKhBNGpnAwYO8vpFZefu+CBybOGzx7bseDl2UMvxsetTbCPnM
- osRTj5Z7e35c1CU3hyNGDcbmv1hdmywafGqv3lxPuZPJfeaJvnQeglhIj
- 5oIG/4k3bk7hHrvm4gi28KwunMTUPdgL+DgVlNJC4FKCInd7awCBh3jVG
- GBAIgk9avusFOSSwdL2gTg+h/UGr0/sbawP1v/bjTfuxWKWDNa9ynVUSe
- 4r6lxcnjyksjyCtuqUqVfRp7SC9NfOnssHbRU5Vdf32g0JQz4lKcvQZkS
- slSb0WOuVHT7pcdxi5ylgZNrIYXZa3uVzC5wJTMl0AmaF53fOE4eMssFf Q==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10672"; a="370674525"
-X-IronPort-AV: E=Sophos;i="5.98,323,1673942400"; d="scan'208";a="370674525"
-Received: from orsmga005.jf.intel.com ([10.7.209.41])
- by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 06 Apr 2023 13:48:19 -0700
+ t=1680814128; x=1712350128;
+ h=from:to:cc:subject:date:message-id:in-reply-to:
+ references:mime-version:content-transfer-encoding;
+ bh=KgZeM3pD1lSRHQojN8zYhcVOhXPBgLsDey59WWeFzl8=;
+ b=U/tCRD+zoGgZ5nlRlpbd5muAXWUc1UtA9qMQRQiTDW4y2iS8b7hQfJt7
+ 12bbYu5bO7G5UO/TY6l1tIg1gV1A+pd8jy5z9ucXSjESJ/sTRkEh0R2lG
+ XQbSQfuLWde5BNG0munjurXepO9ZwscN3/GaFeaxU/59LnpgWcCw5vF8L
+ kpN81Q0U4zBhrFagiaxIV8BxB1SkLRy+rDCTkceewJLYcJpFZ+TPe9nNF
+ GtmFcGDgp+sg8WwxEetwuM2nR8EEovPc5iMjcJliKTXoLdFKntaN57fHl
+ 9XhdMq0ey5DemWFZ6hj54csNgs5vJCpeOOgDQ4WS0YQfDaeVfZcBXMlO7 Q==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10672"; a="407963919"
+X-IronPort-AV: E=Sophos;i="5.98,323,1673942400"; d="scan'208";a="407963919"
+Received: from orsmga004.jf.intel.com ([10.7.209.38])
+ by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 06 Apr 2023 13:48:48 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10672"; a="861534185"
-X-IronPort-AV: E=Sophos;i="5.98,323,1673942400"; d="scan'208";a="861534185"
-Received: from dut731-pvc.fm.intel.com ([10.1.40.73])
- by orsmga005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 06 Apr 2023 13:48:19 -0700
-From: "Chang, Bruce" <yu.bruce.chang@intel.com>
+X-IronPort-AV: E=McAfee;i="6600,9927,10672"; a="811139803"
+X-IronPort-AV: E=Sophos;i="5.98,323,1673942400"; d="scan'208";a="811139803"
+Received: from nvishwa1-desk.sc.intel.com ([172.25.29.76])
+ by orsmga004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 06 Apr 2023 13:48:47 -0700
+From: Niranjana Vishwanathapura <niranjana.vishwanathapura@intel.com>
 To: intel-xe@lists.freedesktop.org
-Date: Thu,  6 Apr 2023 20:47:45 +0000
-Message-Id: <20230406204745.272945-1-yu.bruce.chang@intel.com>
-X-Mailer: git-send-email 2.25.1
+Date: Thu,  6 Apr 2023 13:48:41 -0700
+Message-Id: <20230406204841.18774-3-niranjana.vishwanathapura@intel.com>
+X-Mailer: git-send-email 2.21.0.rc0.32.g243a4c7e27
+In-Reply-To: <20230406204841.18774-1-niranjana.vishwanathapura@intel.com>
+References: <20230406204841.18774-1-niranjana.vishwanathapura@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-xe] [PATCH] fixup! drm/xe: fix pvc unload issue
+Subject: [Intel-xe] [PATCH 2/2] Revert "drm/xe: Coalesce GGTT invalidations"
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -55,82 +56,67 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Cc: Lucas De Marchi <lucas.demarchi@intel.com>, "Chang,
- Bruce" <yu.bruce.chang@intel.com>, Rodrigo Vivi <rodrigo.vivi@intel.com>
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-fixed include file orders
-added last empty line
-fixed copyright year
+This reverts commit 9a54f70a3a33047d1c67abf790b7cfbbce2cc65b.
 
-Cc: Lucas De Marchi <lucas.demarchi@intel.com>
-Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
-Signed-off-by: Bruce Chang <yu.bruce.chang@intel.com>
+Signed-off-by: Niranjana Vishwanathapura <niranjana.vishwanathapura@intel.com>
 ---
- drivers/gpu/drm/xe/xe_device.c      | 2 +-
- drivers/gpu/drm/xe/xe_device.h      | 1 +
- drivers/gpu/drm/xe/xe_ttm_sys_mgr.c | 3 ++-
- drivers/gpu/drm/xe/xe_ttm_sys_mgr.h | 2 +-
- 4 files changed, 5 insertions(+), 3 deletions(-)
+ drivers/gpu/drm/xe/xe_ggtt.c       | 11 ++---------
+ drivers/gpu/drm/xe/xe_ggtt_types.h |  2 --
+ 2 files changed, 2 insertions(+), 11 deletions(-)
 
-diff --git a/drivers/gpu/drm/xe/xe_device.c b/drivers/gpu/drm/xe/xe_device.c
-index 85caf81ae686..45d6e5ff47fd 100644
---- a/drivers/gpu/drm/xe/xe_device.c
-+++ b/drivers/gpu/drm/xe/xe_device.c
-@@ -27,8 +27,8 @@
- #include "xe_pcode.h"
- #include "xe_pm.h"
- #include "xe_query.h"
--#include "xe_ttm_sys_mgr.h"
- #include "xe_ttm_stolen_mgr.h"
-+#include "xe_ttm_sys_mgr.h"
- #include "xe_vm.h"
- #include "xe_vm_madvise.h"
- #include "xe_wait_user_fence.h"
-diff --git a/drivers/gpu/drm/xe/xe_device.h b/drivers/gpu/drm/xe/xe_device.h
-index d277f8985f7b..cbae480a2092 100644
---- a/drivers/gpu/drm/xe/xe_device.h
-+++ b/drivers/gpu/drm/xe/xe_device.h
-@@ -116,4 +116,5 @@ static inline bool xe_device_has_flat_ccs(struct xe_device *xe)
+diff --git a/drivers/gpu/drm/xe/xe_ggtt.c b/drivers/gpu/drm/xe/xe_ggtt.c
+index 2e31b1ce3e4c..0ae373b604f6 100644
+--- a/drivers/gpu/drm/xe/xe_ggtt.c
++++ b/drivers/gpu/drm/xe/xe_ggtt.c
+@@ -263,22 +263,15 @@ int xe_ggtt_insert_special_node(struct xe_ggtt *ggtt, struct drm_mm_node *node,
+ 
+ void xe_ggtt_map_bo(struct xe_ggtt *ggtt, struct xe_bo *bo)
+ {
+-	struct xe_device *xe = gt_to_xe(ggtt->gt);
+ 	u64 start = bo->ggtt_node.start;
+ 	u64 offset, pte;
+ 
+-	lockdep_assert_held(&ggtt->lock);
+-
+ 	for (offset = 0; offset < bo->size; offset += GEN8_PAGE_SIZE) {
+ 		pte = xe_ggtt_pte_encode(bo, offset);
+ 		xe_ggtt_set_pte(ggtt, start + offset, pte);
+ 	}
+ 
+-	/* XXX: Without doing this everytime on integrated driver load fails */
+-	if (ggtt->invalidate || !IS_DGFX(xe)) {
+-		xe_ggtt_invalidate(ggtt->gt);
+-		ggtt->invalidate = false;
+-	}
++	xe_ggtt_invalidate(ggtt->gt);
  }
  
- u32 xe_device_ccs_bytes(struct xe_device *xe, u64 size);
-+
+ static int __xe_ggtt_insert_bo_at(struct xe_ggtt *ggtt, struct xe_bo *bo,
+@@ -329,7 +322,7 @@ void xe_ggtt_remove_node(struct xe_ggtt *ggtt, struct drm_mm_node *node)
+ 	drm_mm_remove_node(node);
+ 	node->size = 0;
+ 
+-	ggtt->invalidate = true;
++	xe_ggtt_invalidate(ggtt->gt);
+ 
+ 	mutex_unlock(&ggtt->lock);
+ }
+diff --git a/drivers/gpu/drm/xe/xe_ggtt_types.h b/drivers/gpu/drm/xe/xe_ggtt_types.h
+index 8198aa784654..ea70aaef4b31 100644
+--- a/drivers/gpu/drm/xe/xe_ggtt_types.h
++++ b/drivers/gpu/drm/xe/xe_ggtt_types.h
+@@ -26,8 +26,6 @@ struct xe_ggtt {
+ 	u64 __iomem *gsm;
+ 
+ 	struct drm_mm mm;
+-
+-	bool invalidate;
+ };
+ 
  #endif
-diff --git a/drivers/gpu/drm/xe/xe_ttm_sys_mgr.c b/drivers/gpu/drm/xe/xe_ttm_sys_mgr.c
-index 9c2f7d4936d8..5b0674bbb8ed 100644
---- a/drivers/gpu/drm/xe/xe_ttm_sys_mgr.c
-+++ b/drivers/gpu/drm/xe/xe_ttm_sys_mgr.c
-@@ -4,6 +4,8 @@
-  * Copyright (C) 2021-2002 Red Hat
-  */
- 
-+#include "xe_ttm_sys_mgr.h"
-+
- #include <drm/drm_managed.h>
- 
- #include <drm/ttm/ttm_placement.h>
-@@ -12,7 +14,6 @@
- 
- #include "xe_bo.h"
- #include "xe_gt.h"
--#include "xe_ttm_sys_mgr.h"
- 
- struct xe_ttm_sys_node {
- 	struct ttm_buffer_object *tbo;
-diff --git a/drivers/gpu/drm/xe/xe_ttm_sys_mgr.h b/drivers/gpu/drm/xe/xe_ttm_sys_mgr.h
-index 2f27d9117b54..e8f5cd395b28 100644
---- a/drivers/gpu/drm/xe/xe_ttm_sys_mgr.h
-+++ b/drivers/gpu/drm/xe/xe_ttm_sys_mgr.h
-@@ -1,6 +1,6 @@
- /* SPDX-License-Identifier: MIT */
- /*
-- * Copyright © 2022 Intel Corporation
-+ * Copyright © 2023 Intel Corporation
-  */
- 
- #ifndef _XE_TTM_SYS_MGR_H_
 -- 
-2.25.1
+2.21.0.rc0.32.g243a4c7e27
 
