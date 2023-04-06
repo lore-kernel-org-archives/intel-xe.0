@@ -4,136 +4,137 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9F245C7618D
-	for <intel-xe@archiver.kernel.org>; Thu,  6 Apr 2023 03:44:46 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id F14FDC76196
+	for <intel-xe@archiver.kernel.org>; Thu,  6 Apr 2023 04:23:51 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6F89F10E012;
-	Thu,  6 Apr 2023 03:44:46 +0000 (UTC)
-Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
- by gabe.freedesktop.org (Postfix) with ESMTPS id BBFF010E012
- for <intel-xe@lists.freedesktop.org>; Thu,  6 Apr 2023 03:44:43 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 79DF610E012;
+	Thu,  6 Apr 2023 04:23:51 +0000 (UTC)
+Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id BAE1C10E012
+ for <intel-xe@lists.freedesktop.org>; Thu,  6 Apr 2023 04:23:50 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1680752683; x=1712288683;
+ t=1680755030; x=1712291030;
  h=date:from:to:cc:subject:message-id:references:
  in-reply-to:mime-version;
- bh=oG2Tiu2cjkdPUYDThC73G70GUkMJ6/FeG7HoLb/jebI=;
- b=fqLVJnao9qvW7eBShQ6IqUsRjyP7hz1sKXVOnc7H/BUH5mKZ321k23wj
- wu68yhazuIcLWcuF9CwIuAdO8k1kcyfeZXUs7t93IWaQavF4jANpUkmo9
- U1TtrIjP+b9apzOr9LQBKjhrVo8wUBwx2eEf4+DRKw6xTxq72jg7c5JG+
- f/+WgS5+V/eAPOqEAYrjaXGoe1deZKs2ZOp8tnhI0QTHTr/PwY1VEZuEv
- oqPmillgRHbS14AQwnr/zQnFBW0tLjYECTgm2pkStDuHGIZMEIyfNRdgR
- 6p2/Z03KDiyyrR1I9xkIrxPKwl76nUeolfPCdXcmQFDlbhikZN2wq4tYw g==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10671"; a="370465916"
-X-IronPort-AV: E=Sophos;i="5.98,322,1673942400"; d="scan'208";a="370465916"
-Received: from fmsmga003.fm.intel.com ([10.253.24.29])
- by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 05 Apr 2023 20:44:43 -0700
+ bh=CoEB7dTR5GsHu1JAi1rGeQP1HlErA/Q4Ii3kXTG46KI=;
+ b=KG5OXFBZ7iwWJqT5Eu116TZ5vGxReSqrWnfUnitzvsVyFHDHWvEGehZX
+ U8651ptaA6twYBpKmb16PP2p5dwfqgf2UGgkQ0yq2Q0v5MT11kwFrWZhK
+ TVEPRLyaRjWEU9zb/T4YJuOP5vdxM2O/CAFGuz4SQV0j1N421KvxWLWzU
+ YWhPDA5fx7qmHWHF3/sduqsA4VeTpp2GqCN8wT/6w1newdN7EvYAqXIS3
+ sqqJC+WA22gtrPOJeQNnBVnGlUgYgWFLqsJPOebNQNcUlddmC1O05lokE
+ cAwQ5dAPcoamxqp0uEL/5rxauXOrEfoHjwXU1ikllvG05jGZf+RwYoD2o Q==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10671"; a="341365107"
+X-IronPort-AV: E=Sophos;i="5.98,322,1673942400"; d="scan'208";a="341365107"
+Received: from orsmga003.jf.intel.com ([10.7.209.27])
+ by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 05 Apr 2023 21:23:49 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10671"; a="776300894"
-X-IronPort-AV: E=Sophos;i="5.98,322,1673942400"; d="scan'208";a="776300894"
-Received: from fmsmsx602.amr.corp.intel.com ([10.18.126.82])
- by FMSMGA003.fm.intel.com with ESMTP; 05 Apr 2023 20:44:43 -0700
-Received: from fmsmsx610.amr.corp.intel.com (10.18.126.90) by
- fmsmsx602.amr.corp.intel.com (10.18.126.82) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.21; Wed, 5 Apr 2023 20:44:42 -0700
+X-IronPort-AV: E=McAfee;i="6600,9927,10671"; a="637129831"
+X-IronPort-AV: E=Sophos;i="5.98,322,1673942400"; d="scan'208";a="637129831"
+Received: from fmsmsx601.amr.corp.intel.com ([10.18.126.81])
+ by orsmga003.jf.intel.com with ESMTP; 05 Apr 2023 21:23:49 -0700
 Received: from fmsmsx612.amr.corp.intel.com (10.18.126.92) by
- fmsmsx610.amr.corp.intel.com (10.18.126.90) with Microsoft SMTP Server
+ fmsmsx601.amr.corp.intel.com (10.18.126.81) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.21; Wed, 5 Apr 2023 20:44:42 -0700
-Received: from fmsedg602.ED.cps.intel.com (10.1.192.136) by
+ 15.1.2507.21; Wed, 5 Apr 2023 21:23:49 -0700
+Received: from fmsmsx602.amr.corp.intel.com (10.18.126.82) by
  fmsmsx612.amr.corp.intel.com (10.18.126.92) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.21 via Frontend Transport; Wed, 5 Apr 2023 20:44:42 -0700
-Received: from NAM12-DM6-obe.outbound.protection.outlook.com (104.47.59.169)
- by edgegateway.intel.com (192.55.55.71) with Microsoft SMTP Server
+ 15.1.2507.21; Wed, 5 Apr 2023 21:23:48 -0700
+Received: from FMSEDG603.ED.cps.intel.com (10.1.192.133) by
+ fmsmsx602.amr.corp.intel.com (10.18.126.82) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.21 via Frontend Transport; Wed, 5 Apr 2023 21:23:48 -0700
+Received: from NAM11-CO1-obe.outbound.protection.outlook.com (104.47.56.172)
+ by edgegateway.intel.com (192.55.55.68) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2507.21; Wed, 5 Apr 2023 20:44:40 -0700
+ 15.1.2507.21; Wed, 5 Apr 2023 21:23:48 -0700
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=nDWSXpeHF8X8jMYVTjpHVLboRyJ+vWLn03zzhmfjwhDASs1SgTsAKANfXoudqi/9F9a+kwWqK+Skk/ErG1n5cq65snyUBV6Jj2/hb87PLJJOp+7ZHtR0qNAK/Sy66Hrpg7CkRuzOafIYVHbDQgft6ka3qxHwwi+Hm4LmC0IWWdwV62lHCl0mTubsQI87pf1eD3+BaSfoqFKSUTsC0kgYh67gbIeIaOP/ycxHYMZ/zh3L2FU31Rr7q5vDmEJKxNnu8mQ9i/EKY/o1TnCGijZHlIE0RXCasPpS9M91n9hucpKe0ayyTvurTy36wdhLMMDzOqHAxugLlZqwEUpjJV1AZQ==
+ b=a9jiVHEq7WV15vvBMATY6CnHZRHwijiudxviguFW4CmQ68k/yu4qjJBZi9wVVQY136fXicdZnm+7qD1dgShVZtVkZ9k9AXt9z1o/4NRDkjecwiMKjjGzxEBRdaVCJ6A1lyGQCzGdE5m1Eue3YTVzOXtVj0QmOxguCbPu5THE+lAU/7GlXXvx7dClyqqpiHVnTrgP5uiJ5oR4LjqsQblnsNngq+shPB3ru6gpllfK8kB9wWZzLMzpqBt99peFQ9ylyDzp8OzolU5X2BN8ua+EPwbRgdX1LSg3rBW9W53i26OdCZvNhugYNdCiTlCvIPu+kGzcWrPG/uow+WJGSsPizw==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=IHgTi8+QLE27+C8Ie4PkMo0Z1QKSujMdZDWkhuXcB9k=;
- b=gulxrAukMnpI7FXBkm5sO7XldwZF1GdHopFqllHTYqIIjCHOuW7oyuevMLHdNReQ2yzptdCs/8edTQm17orU5m5B2h+BBafClBPHad7RPcjhV7JFyklhZI9R6DFn++bJZrwR1FfKe6DKL0zGAjkNN3Qi4SWm3egfqaUZ7HVmLkCcxiHVa9Mfxg00PGF4b4Pevy3xp/FSpNX3EpdP3OKO0JUWNHT4eS3R9LfF+N/J51+eImH2Yo3vT/eSAo8wIARq4J3bgqjKeEf+pyft7obq8xNg4u6gEXX1pbJSZJw92wl++aTxNRkVLgAHE4PTRrKb4iCzT+6KkHndiF2gPR3zAg==
+ bh=8TaYnGLZ4m4NKIZ3mGFkn9fo60J2ZACWiEpYzq6Zo3Q=;
+ b=MrRdaCciRasSDdB/kZWtTQhApqtlMzBghmhMQ8Y8nJVW7BcMQJW+Ykt+kROFDpo4PPR5tqgioDpCs3grt4x1Kp6UYfVoqaX7kurQ/0fygzmIViME3VxTB0k4lhw9b8ethvnoFjM5SlYSRpvUIr5kytFoUaJpAZ/xU/j+gRnnDF75OYXieGrfkeU6uTeanJKPAxghGH934uNFsKBMyY/rS0AgVw7TA9tgBLfroDY09bZ7MP8faVplvmvN40ciCETXVKdh9+soiAG1T37J6mMpaousZC6eA5Y+O3p9ppzoG0IuzZyEScL4iF/5sDnYZPYLe8z0pvfcaVL5lA5rxQYkCA==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
  dkim=pass header.d=intel.com; arc=none
 Authentication-Results: dkim=none (message not signed)
  header.d=none;dmarc=none action=none header.from=intel.com;
-Received: from PH7PR11MB6522.namprd11.prod.outlook.com (2603:10b6:510:212::12)
- by SA2PR11MB5036.namprd11.prod.outlook.com (2603:10b6:806:114::24)
+Received: from PH8PR11MB6952.namprd11.prod.outlook.com (2603:10b6:510:224::13)
+ by IA1PR11MB7173.namprd11.prod.outlook.com (2603:10b6:208:41b::13)
  with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6277.30; Thu, 6 Apr
- 2023 03:44:39 +0000
-Received: from PH7PR11MB6522.namprd11.prod.outlook.com
- ([fe80::ff06:a115:e4eb:680e]) by PH7PR11MB6522.namprd11.prod.outlook.com
- ([fe80::ff06:a115:e4eb:680e%9]) with mapi id 15.20.6254.033; Thu, 6 Apr 2023
- 03:44:38 +0000
-Date: Thu, 6 Apr 2023 03:44:33 +0000
-From: Matthew Brost <matthew.brost@intel.com>
-To: Niranjana Vishwanathapura <niranjana.vishwanathapura@intel.com>
-Message-ID: <ZC5AIY7zIQdm2z3v@DUT025-TGLU.fm.intel.com>
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6254.33; Thu, 6 Apr
+ 2023 04:23:46 +0000
+Received: from PH8PR11MB6952.namprd11.prod.outlook.com
+ ([fe80::449e:6409:5bb1:912d]) by PH8PR11MB6952.namprd11.prod.outlook.com
+ ([fe80::449e:6409:5bb1:912d%6]) with mapi id 15.20.6277.031; Thu, 6 Apr 2023
+ 04:23:46 +0000
+Date: Wed, 5 Apr 2023 21:23:38 -0700
+From: Niranjana Vishwanathapura <niranjana.vishwanathapura@intel.com>
+To: Matthew Brost <matthew.brost@intel.com>
+Message-ID: <ZC5JSj7jzd5TGXUP@nvishwa1-DESK>
 References: <20230405233403.151088-1-matthew.brost@intel.com>
  <20230405233403.151088-3-matthew.brost@intel.com>
  <ZC4/rAOBkwv6z2Ed@nvishwa1-DESK>
-Content-Type: text/plain; charset="us-ascii"
+ <ZC5AIY7zIQdm2z3v@DUT025-TGLU.fm.intel.com>
+Content-Type: text/plain; charset="us-ascii"; format=flowed
 Content-Disposition: inline
-In-Reply-To: <ZC4/rAOBkwv6z2Ed@nvishwa1-DESK>
-X-ClientProxiedBy: SJ0PR05CA0079.namprd05.prod.outlook.com
- (2603:10b6:a03:332::24) To PH7PR11MB6522.namprd11.prod.outlook.com
- (2603:10b6:510:212::12)
+In-Reply-To: <ZC5AIY7zIQdm2z3v@DUT025-TGLU.fm.intel.com>
+X-ClientProxiedBy: SJ0PR03CA0344.namprd03.prod.outlook.com
+ (2603:10b6:a03:39c::19) To PH8PR11MB6952.namprd11.prod.outlook.com
+ (2603:10b6:510:224::13)
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: PH7PR11MB6522:EE_|SA2PR11MB5036:EE_
-X-MS-Office365-Filtering-Correlation-Id: ac5918d5-cad1-4e85-c4ed-08db36513f24
+X-MS-TrafficTypeDiagnostic: PH8PR11MB6952:EE_|IA1PR11MB7173:EE_
+X-MS-Office365-Filtering-Correlation-Id: f17ddd18-2f38-43f0-51b2-08db3656b670
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: 0Ku22sXjYajuIfvFZjGdojM3hrtV32EvYzLG4VNIi3zpsPKHYy9hO/5J2aD+LAU/p6iwwWCzBAYlyLhPsGxn/tDFhKj6ocrJioxv5T2k8MsTl8y9H5nJd2slwRj/90XoR7iwsfSqy9wdBFvGeeUFwHY9/6sxSPFvaPmUsmg4BUVUr88VavsNVwsP8OkGlGlW2JUEmlWonXchKt+b54eBL50J6I9eEx6dGdzE2LxpgSI1O9ZBkeBYI/kmpQKYCIN1epJO9Xxf4QQiGGOu/isfrUMlb+zkehKKwYa2+FG1zItM4H3rKu4lJdFQC0Y1T7z2AhrScqZCuWDH6saF8OB7vOH0x9DITpQzUhC7dQ+dKwMc+ouz8VNWyw/pKCgydG82ZnqcMjxTaGxdeu/ZlXwe8+osfuc7/on57iaAD9CXeEWH+uPEqeea9sXIP0jfz/d/TF+R7gRP0EUr4Gg8flQa82n2nCz7D0hIPkMgqm57wrcFZ3I+rZrEiYMmeSmY/XN3oPeKHelbAyYfQy7jtoT80ff/JwTfA8oKN35Jir76u3GBVR/UtcjQcdW1vuIn5Xbo
+X-Microsoft-Antispam-Message-Info: ddjlnSR9InNOE6NST6cGhPinCYqijhWNeTuv5DlvFMxFGAkAeDLMzpykmnwpTv+4AYjX5aXePoDTVbqqK+bUlc+vjAEUBdlC5f1QFb4hPRUdHy6m2RPHLlRjO8VXnk9qBW1dDQv4PULizTZVmFQYTQkttM84m1TV8g9HHjX//eW4pIk9OrACHOJmMAkD4ta7ZVIacyJ2FpJHJn9UNcFiB+yJ/Bl0kUlKaLoMr9C31kDmh07kW5w2z/WqS6vBmu/mNwyf0mvP8epjaZSKjrxAHhmd66BlCqVZsSnnu8iyVqxElRcoFWeolLHJlux7ozWVz973jTGN5QCM0NA2/zs7Ug+4OYmcqwWFvzoJ5w4jh+CNH2gule8NzBr8KZWi4EcZBQuKJFblwNzFDjJKo/2Hhsb+32TZVqLjFTsffbz8ppbBals0dexyJQcPwF+93DTIkmJOz/xvCsBe1uexmsOoeQw2igApZKzKsDCGSXNGX1AwEnfFdgzC+dNelRa+hJbGU2fV1UFuhLUK1x6eMYtpUt/cztepO+WsvCExoHBQKnUZOS43f6cBbIxsS8Yrx6ZU
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:PH7PR11MB6522.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230028)(346002)(366004)(136003)(376002)(396003)(39860400002)(451199021)(2906002)(6666004)(83380400001)(6486002)(6512007)(186003)(478600001)(316002)(6636002)(26005)(6506007)(5660300002)(44832011)(38100700002)(4326008)(41300700001)(66476007)(66556008)(8936002)(86362001)(82960400001)(6862004)(8676002)(66946007);
+ IPV:NLI; SFV:NSPM; H:PH8PR11MB6952.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230028)(7916004)(346002)(136003)(366004)(39860400002)(376002)(396003)(451199021)(2906002)(8676002)(8936002)(44832011)(6862004)(41300700001)(82960400001)(38100700002)(5660300002)(33716001)(86362001)(6666004)(6486002)(6506007)(26005)(478600001)(6636002)(83380400001)(9686003)(186003)(6512007)(4326008)(66946007)(66476007)(66556008)(316002);
  DIR:OUT; SFP:1102; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?VsZqulTjcjtrLswouKevztZiQGIsLsVn9ykG/s/SRsBj0YqzoyrnhuwbJo8T?=
- =?us-ascii?Q?t5ThDHs/TqiKmYcjZBXV5GAejiQYze98Ew3fzMVxwhFOlZrElCbc80seJPp1?=
- =?us-ascii?Q?XP6deLocTDZ3CX6kTHY5VG4A877DUpfKq2pW/FJTso/9yN18sfdIgGJUcYl8?=
- =?us-ascii?Q?hNjDfnbkp7mRgExGohZdQceSGeWV4aZcyvhMKn3QAZlJvEKnFVGXuaJC1x/n?=
- =?us-ascii?Q?EePHtOlpGTvbXTvMmXDEzh4XhElGMMKvLYyIXbRyECKX7D0DMGvlYMMgW8/U?=
- =?us-ascii?Q?Ekfauj6T4nPwFO337IZ2ySbnVlsrsd9l5Aj7Whjyep7nXmSLAPOXM6FcdeYD?=
- =?us-ascii?Q?LSXepf/JwG61LKSfzpYnXeQ1QUguPSbf1ww4dw5g1zLrc5UWFJzbP/qfAh9S?=
- =?us-ascii?Q?tPfvQJmfVzflEcq1v/KU8PrcTuUDU26mTn5rhc6b7e33qFDSyH6Xtj1/6azF?=
- =?us-ascii?Q?7ou+ELh/BAGpdhPDhqVdS3k6LrjuiIU3gBuL7k/tMGvnqNakGSAFaBhmbNnh?=
- =?us-ascii?Q?6Zim86c7AqKSuqUKE0/57t2EK0RZTaDdtVOBYRk9goq+Q6p9tf9GTVvtRfhV?=
- =?us-ascii?Q?vPf/CtxXVr28SOvk3W0ka0xWMPH41f/BjqhbhlpgGbnGIocZxx6CvoCG14Zg?=
- =?us-ascii?Q?SqdngwDEZMYfqE414UZeaw581uTYIxNeeEWyc3J9Y12nI86P2t63wsi8U5Li?=
- =?us-ascii?Q?ihRnxzEJg4hpQ5YSHlGU0erHZNj9p7e9oeeNqSZSrUMoluFnDPA6mLHOJItB?=
- =?us-ascii?Q?ZJd3TJEJQwG3MNehTfU7SwTThJakZl0n4AetX8reAAcnz3hATykLVbAB6coG?=
- =?us-ascii?Q?gAo6LLZdFSNlj7lgeADM23js3YptQ3ReYlKQKymFx2ZmHVTr9J8AhnG6JF3D?=
- =?us-ascii?Q?bePNblZHc+9Gd/HfBDXCjcQVhAFtuxnfN5CzUFDpbYJR5sCUkWlGSSWNS2L/?=
- =?us-ascii?Q?gyZ3JY566qApIv72TanEYsYY4yMveojlqtmhGgsYZ++2AU/x9BkHYyfLv7W7?=
- =?us-ascii?Q?hIdRCkVipr3Z7EODLwuBbVK/I1s63/WwR4cIDrSm/cenA8Kq2mebAZuBcjaW?=
- =?us-ascii?Q?awGVoHJzHkyFq3vwufm/Vvx7g9DBHg+G9/R9f6xTsrL1E11LJ0tJVs4NgSWD?=
- =?us-ascii?Q?KAC9B5c9/MQM/s+rbv1Er2aUTikZKlQ/PZ43p5/8sXFCtAEuvtSS3KGNAEhs?=
- =?us-ascii?Q?YLwg5GSlmcfkCswZJXXRzXnTApF+VgRQNTYjDD5LOtTLNzHSOefjawoOfGvP?=
- =?us-ascii?Q?6Px68lD6Tbh05NuYTRKNXh2YJRAKdcfLUjHRMBfcfbPA1pGTLZ6KTwWpQGxc?=
- =?us-ascii?Q?KzRh6qhNLBiiKBlMvC0QkrhLwvKETmSo/u1bFmpTCnd2M39fHP72h/ddX8j4?=
- =?us-ascii?Q?wiuLDhiqH+HJ1CvUwj1XxcxAkKiE9xNIc4sQiB6hJ845pOSExOLDD1h3wQ6r?=
- =?us-ascii?Q?T8cCrUfwULzy8aHkw1wByVbOGlFBKsk4w6ydB6x2TofGmt6WhNyeLO5ooHq7?=
- =?us-ascii?Q?gvbY3R9A/l/ddzMOeToq83Y2QTqS9Xf0tdMaWYfQEvJ/g4eU/xEtNEiymyJr?=
- =?us-ascii?Q?TKwYa2HAJwQ+DBJ1Z4gsmybssj4+3JoVkvqp2dR+D3NiOukJD4HOsZAG0vXn?=
- =?us-ascii?Q?Ng=3D=3D?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: ac5918d5-cad1-4e85-c4ed-08db36513f24
-X-MS-Exchange-CrossTenant-AuthSource: PH7PR11MB6522.namprd11.prod.outlook.com
+X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?YvsiLCZWJDa73mI9bnGVWVd/wDWGKqGEPGF4xBEOH55WZOcVCvE/4wvEG2NO?=
+ =?us-ascii?Q?1m1eryfyDs0CxFIDrjWxq4XOwH138Hh+zDAdGHcXxTNkiZLAg7rcmc4pUSt2?=
+ =?us-ascii?Q?h192apvypgjoJWfEBm+vUFE6BY7vhgsfbdJm3FVE0X8K0pkiO1p6lH+7QD9X?=
+ =?us-ascii?Q?erOUaw7ipbfCGWLujV2jw/5MpP8aFl5wX986sXfQmgcBACrG8c23nv2cRI0I?=
+ =?us-ascii?Q?3DQDNYcXyIX7VgX9l9mU46XLN4au3mqe1Aw/RnQ9juK8UbkGxWgFOaJS9X0W?=
+ =?us-ascii?Q?wLl34UeUpizDYQw4t/Sz384iZXs9NZH4Qjnn7OfE7hZj12k0mCKe5i8ICPet?=
+ =?us-ascii?Q?fRaz+DRlx9boQqRxww0cyqm//m8d+tGKR7uMcnzz6LFpacg7RCgwezMjKbOT?=
+ =?us-ascii?Q?dMyEBlmk1L9ympNnvLi+edhIkw2e9mdTqAISwQ3RVuZB3M+nVZmHtu9AP2x1?=
+ =?us-ascii?Q?aHIhQYCcopR+ghA043Q28AOGRZobn6ZFqtDJj7p5lIXkxpYGsWYCnDRr/UdE?=
+ =?us-ascii?Q?mYXiATqUmKWYJULnjLzxXhhNnAn8aEP2MpY/03WSjLYnT39iECgOWjAKm10G?=
+ =?us-ascii?Q?EwT0MCPs6Zqme76KCnpeDzRsepddvCZ1zZ/t4HE/01KMfAIhUwhh7lnRjayi?=
+ =?us-ascii?Q?IkVFTo9jZknzohV9cJ1cfF0MBp87u1ehT0skNEv7efRCevihcXWo4gouu2a6?=
+ =?us-ascii?Q?d42pqYKtZlqjSMxcCyfW/YUCa52aEfN1EmXm4KyLuns07XUIco/zQptW5o27?=
+ =?us-ascii?Q?pCucSH8/YEl344UC/nrDgIYM7MDSVe7iqooJRKUz1FDAOuHDD52zOWIKYP+d?=
+ =?us-ascii?Q?v0nCFMj8wLu4dhnOiuMxUE48QyRXHOfaZKtjq+V9tnLwKQ8af3RwPyUkmyd1?=
+ =?us-ascii?Q?p7IDkSjXNfbCDJZP68zNauF8gEPz4nKEiTi61VepwebeyK8Eqz/KDj7AWIZw?=
+ =?us-ascii?Q?d2cfL6jolxkgeGDkRu2AjKnU5KWMPFRBFHBK6bUV0Cc4GzXLPEpH35GOY7vG?=
+ =?us-ascii?Q?pIx4st+Enb/6ShtDXaELr1V+ZP3EC3NnxE6bQqouPf65rjy6sIHtJC3nSBCA?=
+ =?us-ascii?Q?V+4amwSkYvpDiNB8VVDN2JGkeDvYHJ4BcIfjDEzLf+styW2VcUj//IQRXcyK?=
+ =?us-ascii?Q?PCBxEpeN6yDRaHEZOZHrQu+FNZrIJikmT3UCdS4yFro6lWEggYD3K4+I9SRB?=
+ =?us-ascii?Q?v547bIxwt8H1+d0bGTiOtk4lVpUZ/qpaZXxCCYHxgdfICL5rj3lq3DxFNj9F?=
+ =?us-ascii?Q?HlHQNFovFALIq7nRLJTbhNLOkwYF/tl+O8PCLlOsW3HKlIWLUWgIzg/ziVQN?=
+ =?us-ascii?Q?uDeNQO5++SjAmrFjWMnxIJ5kpMdn2YSGYDH0OVscvWa1+bZF0gST724E3Zk8?=
+ =?us-ascii?Q?6sJZ5C+NxqUcEVHx3mfRtiqzBN04VT9xcQsaLV5OSjIJfOVX6gyFocHbvHpw?=
+ =?us-ascii?Q?OzlIUrFccmLwHus7/MhYEFh9WLso5V1w8dtnv+v9KHirqF399jhzvz5nF5py?=
+ =?us-ascii?Q?G5nSWy4cTeWphgCur5zN6X0qujGt7Q/3bZhhomavfmMRBVQngwOOmAmSaofI?=
+ =?us-ascii?Q?oAt8/CtqniP9CUwO0GCqlrVl4Np1SW6+dbUcWRJgqOY1TUB8No0RoniWleO+?=
+ =?us-ascii?Q?C2pHpcCCYzpyp7d4TKmhUNQ=3D?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: f17ddd18-2f38-43f0-51b2-08db3656b670
+X-MS-Exchange-CrossTenant-AuthSource: PH8PR11MB6952.namprd11.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 06 Apr 2023 03:44:38.4150 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 06 Apr 2023 04:23:46.1733 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: mTJL1kLUN7FOovdk3wOh1qr2xnImM8LyDh9mI6aj/b0nVNaGykMUD1kabmsR4bek3Cbc/z61WyuHtZgiF711rQ==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SA2PR11MB5036
+X-MS-Exchange-CrossTenant-UserPrincipalName: HvMxrEZfoVHBkBa03w/v8cqN5o2SY1U1MC5pLw6arMhc8FnZgKQEtnLHrPVSwdcBrRAcr+bXTvUFFHL/+dx+f6zhE+PwNuV6pgeCjDSsEVRDHE7R7Ia3lQ8/6QC19I/T
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: IA1PR11MB7173
 X-OriginatorOrg: intel.com
 Subject: Re: [Intel-xe] [PATCH 2/2] drm/xe: Drop coalescing of GGTT
  invalidations
@@ -152,120 +153,129 @@ Cc: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Wed, Apr 05, 2023 at 08:42:36PM -0700, Niranjana Vishwanathapura wrote:
-> On Wed, Apr 05, 2023 at 04:34:03PM -0700, Matthew Brost wrote:
-> > Causing a bunch of hangs driver load and in user space. Benefit is
-> > rather small too, so just drop this for to stablize the stack.
-> > 
-> 
-> Looks like this should instead be revert of following patches?
-> 
-> drm/xe: Coalesce GGTT invalidations
-> drm/xe: Pad GGTT mapping with an extra page pointing to scratch
-> 
+On Thu, Apr 06, 2023 at 03:44:33AM +0000, Matthew Brost wrote:
+>On Wed, Apr 05, 2023 at 08:42:36PM -0700, Niranjana Vishwanathapura wrote:
+>> On Wed, Apr 05, 2023 at 04:34:03PM -0700, Matthew Brost wrote:
+>> > Causing a bunch of hangs driver load and in user space. Benefit is
+>> > rather small too, so just drop this for to stablize the stack.
+>> >
+>>
+>> Looks like this should instead be revert of following patches?
+>>
+>> drm/xe: Coalesce GGTT invalidations
+>> drm/xe: Pad GGTT mapping with an extra page pointing to scratch
+>>
+>
+>git revert conflicts...
+>
 
-git revert conflicts...
+Looks like a minor conflict.
+I am seeing reverting above patches brings back some XE_BUG_ON()
+checks and a xe_ggtt_invalidate() in __xe_ggtt_insert_bo_at().
+Wondering if we need them as well.
 
-Matt
+Niranjana
 
-> Niranjana
-> 
-> > Signed-off-by: Matthew Brost <matthew.brost@intel.com>
-> > ---
-> > drivers/gpu/drm/xe/xe_bo.c         |  1 -
-> > drivers/gpu/drm/xe/xe_bo_types.h   |  2 --
-> > drivers/gpu/drm/xe/xe_ggtt.c       | 25 +------------------------
-> > drivers/gpu/drm/xe/xe_ggtt_types.h |  2 --
-> > 4 files changed, 1 insertion(+), 29 deletions(-)
-> > 
-> > diff --git a/drivers/gpu/drm/xe/xe_bo.c b/drivers/gpu/drm/xe/xe_bo.c
-> > index 5460e6fe3c1f..c7f175a149be 100644
-> > --- a/drivers/gpu/drm/xe/xe_bo.c
-> > +++ b/drivers/gpu/drm/xe/xe_bo.c
-> > @@ -975,7 +975,6 @@ struct xe_bo *__xe_bo_create_locked(struct xe_device *xe, struct xe_bo *bo,
-> > 			return bo;
-> > 	}
-> > 
-> > -	bo->requested_size = size;
-> > 	if (flags & (XE_BO_CREATE_VRAM_MASK | XE_BO_CREATE_STOLEN_BIT) &&
-> > 	    !(flags & XE_BO_CREATE_IGNORE_MIN_PAGE_SIZE_BIT) &&
-> > 	    xe->info.vram_flags & XE_VRAM_FLAGS_NEED64K) {
-> > diff --git a/drivers/gpu/drm/xe/xe_bo_types.h b/drivers/gpu/drm/xe/xe_bo_types.h
-> > index db217500a970..6071611a2b29 100644
-> > --- a/drivers/gpu/drm/xe/xe_bo_types.h
-> > +++ b/drivers/gpu/drm/xe/xe_bo_types.h
-> > @@ -23,8 +23,6 @@ struct xe_vm;
-> > struct xe_bo {
-> > 	/** @ttm: TTM base buffer object */
-> > 	struct ttm_buffer_object ttm;
-> > -	/** @requested_size: Requested size of this buffer object */
-> > -	size_t requested_size;
-> > 	/** @size: Size of this buffer object after alignment adjusting */
-> > 	size_t size;
-> > 	/** @flags: flags for this buffer object */
-> > diff --git a/drivers/gpu/drm/xe/xe_ggtt.c b/drivers/gpu/drm/xe/xe_ggtt.c
-> > index a430d1568890..93f78aba2c8e 100644
-> > --- a/drivers/gpu/drm/xe/xe_ggtt.c
-> > +++ b/drivers/gpu/drm/xe/xe_ggtt.c
-> > @@ -273,15 +273,7 @@ void xe_ggtt_map_bo(struct xe_ggtt *ggtt, struct xe_bo *bo)
-> > 		xe_ggtt_set_pte(ggtt, start + offset, pte);
-> > 	}
-> > 
-> > -	if (bo->size == bo->requested_size) {
-> > -		pte = xe_ggtt_pte_encode(ggtt->scratch ?: bo, 0);
-> > -		xe_ggtt_set_pte(ggtt, start + bo->size, pte);
-> > -	}
-> > -
-> > -	if (ggtt->invalidate) {
-> > -		xe_ggtt_invalidate(ggtt->gt);
-> > -		ggtt->invalidate = false;
-> > -	}
-> > +	xe_ggtt_invalidate(ggtt->gt);
-> > }
-> > 
-> > static int __xe_ggtt_insert_bo_at(struct xe_ggtt *ggtt, struct xe_bo *bo,
-> > @@ -302,19 +294,6 @@ static int __xe_ggtt_insert_bo_at(struct xe_ggtt *ggtt, struct xe_bo *bo,
-> > 	if (err)
-> > 		return err;
-> > 
-> > -	/*
-> > -	 * We add an extra page when mapping a BO in the GGTT so we can coalesce
-> > -	 * GGTT invalidations. Without this extra page GGTT prefetches can leave
-> > -	 * entries in the TLB pointing to an invalidation GGTT entry when in
-> > -	 * fact we have programmed this GGTT entry to a valid entry. BO aligned
-> > -	 * to 64k already have padding so no need to add an extra page.
-> > -	 */
-> > -	if (bo->size == bo->requested_size) {
-> > -		size += SZ_4K;
-> > -		if (end != U64_MAX)
-> > -			end += SZ_4K;
-> > -	}
-> > -
-> > 	mutex_lock(&ggtt->lock);
-> > 	err = drm_mm_insert_node_in_range(&ggtt->mm, &bo->ggtt_node, size,
-> > 					  alignment, 0, start, end, 0);
-> > @@ -344,8 +323,6 @@ void xe_ggtt_remove_node(struct xe_ggtt *ggtt, struct drm_mm_node *node)
-> > 	drm_mm_remove_node(node);
-> > 	node->size = 0;
-> > 
-> > -	ggtt->invalidate = true;
-> > -
-> > 	mutex_unlock(&ggtt->lock);
-> > }
-> > 
-> > diff --git a/drivers/gpu/drm/xe/xe_ggtt_types.h b/drivers/gpu/drm/xe/xe_ggtt_types.h
-> > index 8198aa784654..ea70aaef4b31 100644
-> > --- a/drivers/gpu/drm/xe/xe_ggtt_types.h
-> > +++ b/drivers/gpu/drm/xe/xe_ggtt_types.h
-> > @@ -26,8 +26,6 @@ struct xe_ggtt {
-> > 	u64 __iomem *gsm;
-> > 
-> > 	struct drm_mm mm;
-> > -
-> > -	bool invalidate;
-> > };
-> > 
-> > #endif
-> > -- 
-> > 2.34.1
-> > 
+>Matt
+>
+>> Niranjana
+>>
+>> > Signed-off-by: Matthew Brost <matthew.brost@intel.com>
+>> > ---
+>> > drivers/gpu/drm/xe/xe_bo.c         |  1 -
+>> > drivers/gpu/drm/xe/xe_bo_types.h   |  2 --
+>> > drivers/gpu/drm/xe/xe_ggtt.c       | 25 +------------------------
+>> > drivers/gpu/drm/xe/xe_ggtt_types.h |  2 --
+>> > 4 files changed, 1 insertion(+), 29 deletions(-)
+>> >
+>> > diff --git a/drivers/gpu/drm/xe/xe_bo.c b/drivers/gpu/drm/xe/xe_bo.c
+>> > index 5460e6fe3c1f..c7f175a149be 100644
+>> > --- a/drivers/gpu/drm/xe/xe_bo.c
+>> > +++ b/drivers/gpu/drm/xe/xe_bo.c
+>> > @@ -975,7 +975,6 @@ struct xe_bo *__xe_bo_create_locked(struct xe_device *xe, struct xe_bo *bo,
+>> > 			return bo;
+>> > 	}
+>> >
+>> > -	bo->requested_size = size;
+>> > 	if (flags & (XE_BO_CREATE_VRAM_MASK | XE_BO_CREATE_STOLEN_BIT) &&
+>> > 	    !(flags & XE_BO_CREATE_IGNORE_MIN_PAGE_SIZE_BIT) &&
+>> > 	    xe->info.vram_flags & XE_VRAM_FLAGS_NEED64K) {
+>> > diff --git a/drivers/gpu/drm/xe/xe_bo_types.h b/drivers/gpu/drm/xe/xe_bo_types.h
+>> > index db217500a970..6071611a2b29 100644
+>> > --- a/drivers/gpu/drm/xe/xe_bo_types.h
+>> > +++ b/drivers/gpu/drm/xe/xe_bo_types.h
+>> > @@ -23,8 +23,6 @@ struct xe_vm;
+>> > struct xe_bo {
+>> > 	/** @ttm: TTM base buffer object */
+>> > 	struct ttm_buffer_object ttm;
+>> > -	/** @requested_size: Requested size of this buffer object */
+>> > -	size_t requested_size;
+>> > 	/** @size: Size of this buffer object after alignment adjusting */
+>> > 	size_t size;
+>> > 	/** @flags: flags for this buffer object */
+>> > diff --git a/drivers/gpu/drm/xe/xe_ggtt.c b/drivers/gpu/drm/xe/xe_ggtt.c
+>> > index a430d1568890..93f78aba2c8e 100644
+>> > --- a/drivers/gpu/drm/xe/xe_ggtt.c
+>> > +++ b/drivers/gpu/drm/xe/xe_ggtt.c
+>> > @@ -273,15 +273,7 @@ void xe_ggtt_map_bo(struct xe_ggtt *ggtt, struct xe_bo *bo)
+>> > 		xe_ggtt_set_pte(ggtt, start + offset, pte);
+>> > 	}
+>> >
+>> > -	if (bo->size == bo->requested_size) {
+>> > -		pte = xe_ggtt_pte_encode(ggtt->scratch ?: bo, 0);
+>> > -		xe_ggtt_set_pte(ggtt, start + bo->size, pte);
+>> > -	}
+>> > -
+>> > -	if (ggtt->invalidate) {
+>> > -		xe_ggtt_invalidate(ggtt->gt);
+>> > -		ggtt->invalidate = false;
+>> > -	}
+>> > +	xe_ggtt_invalidate(ggtt->gt);
+>> > }
+>> >
+>> > static int __xe_ggtt_insert_bo_at(struct xe_ggtt *ggtt, struct xe_bo *bo,
+>> > @@ -302,19 +294,6 @@ static int __xe_ggtt_insert_bo_at(struct xe_ggtt *ggtt, struct xe_bo *bo,
+>> > 	if (err)
+>> > 		return err;
+>> >
+>> > -	/*
+>> > -	 * We add an extra page when mapping a BO in the GGTT so we can coalesce
+>> > -	 * GGTT invalidations. Without this extra page GGTT prefetches can leave
+>> > -	 * entries in the TLB pointing to an invalidation GGTT entry when in
+>> > -	 * fact we have programmed this GGTT entry to a valid entry. BO aligned
+>> > -	 * to 64k already have padding so no need to add an extra page.
+>> > -	 */
+>> > -	if (bo->size == bo->requested_size) {
+>> > -		size += SZ_4K;
+>> > -		if (end != U64_MAX)
+>> > -			end += SZ_4K;
+>> > -	}
+>> > -
+>> > 	mutex_lock(&ggtt->lock);
+>> > 	err = drm_mm_insert_node_in_range(&ggtt->mm, &bo->ggtt_node, size,
+>> > 					  alignment, 0, start, end, 0);
+>> > @@ -344,8 +323,6 @@ void xe_ggtt_remove_node(struct xe_ggtt *ggtt, struct drm_mm_node *node)
+>> > 	drm_mm_remove_node(node);
+>> > 	node->size = 0;
+>> >
+>> > -	ggtt->invalidate = true;
+>> > -
+>> > 	mutex_unlock(&ggtt->lock);
+>> > }
+>> >
+>> > diff --git a/drivers/gpu/drm/xe/xe_ggtt_types.h b/drivers/gpu/drm/xe/xe_ggtt_types.h
+>> > index 8198aa784654..ea70aaef4b31 100644
+>> > --- a/drivers/gpu/drm/xe/xe_ggtt_types.h
+>> > +++ b/drivers/gpu/drm/xe/xe_ggtt_types.h
+>> > @@ -26,8 +26,6 @@ struct xe_ggtt {
+>> > 	u64 __iomem *gsm;
+>> >
+>> > 	struct drm_mm mm;
+>> > -
+>> > -	bool invalidate;
+>> > };
+>> >
+>> > #endif
+>> > --
+>> > 2.34.1
+>> >
