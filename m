@@ -4,143 +4,134 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5C54FC7618D
-	for <intel-xe@archiver.kernel.org>; Thu,  6 Apr 2023 02:08:30 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9C148C7618D
+	for <intel-xe@archiver.kernel.org>; Thu,  6 Apr 2023 03:42:50 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 039E010EAB8;
-	Thu,  6 Apr 2023 02:08:30 +0000 (UTC)
-Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1706A10E004;
- Thu,  6 Apr 2023 02:08:27 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3D89810E012;
+	Thu,  6 Apr 2023 03:42:50 +0000 (UTC)
+Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2774810E012
+ for <intel-xe@lists.freedesktop.org>; Thu,  6 Apr 2023 03:42:48 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1680746908; x=1712282908;
+ t=1680752568; x=1712288568;
  h=date:from:to:cc:subject:message-id:references:
- content-transfer-encoding:in-reply-to:mime-version;
- bh=1bZSBNz+8y/sOzHiDbWW1DFTEEWMwj5q4lcxNkHmJpM=;
- b=f+m5yiHrjTiq3z+Ose0FMn1rxqAdWSS1O3eJOkk1Si6ZQf8wHkv2474k
- NAtaIxbKc0YLaeVgEhAhTAxv58dDy9UxkTnA941JFrctJWe4S+1KAFONB
- GgqfF3S/08oiTar5am35dCUx5H1Tgt76IqmTV8vEXcS3vqA0NtrxT0NmO
- 3BOrUTOVgtj42g51n2DT+h5Ylb88zuMbbvjiGK2F/gCT+icepFXbwFApi
- 0NKqs64OpitZxuV5g0MRTBYqXE7z2ff21GJSY7GKV4fFYnZfUUHkwXpgf
- DwIpnCfX/N4VZziyGiJbYnAg49yWRx+5S51jX68ChZXvQZppj6VyC1mw/ w==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10671"; a="342628558"
-X-IronPort-AV: E=Sophos;i="5.98,322,1673942400"; d="scan'208";a="342628558"
-Received: from orsmga004.jf.intel.com ([10.7.209.38])
- by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 05 Apr 2023 19:08:27 -0700
+ in-reply-to:mime-version;
+ bh=K1zJvd4FJcy+VFfR2mS+1gh0zkphPSBCcM+FsoxvRaA=;
+ b=H256ln1oAo5L4RL8lhb30oD89AWGCKWgNWOb8QtXxQM4Aa5D5SetSPG2
+ QCNJMIrty205yk5PmLVSP/5ZT1HOiF0kyc21OCC2IY10Q72sfUwJJyZZH
+ ZNUxAtmqYmnWCVxIogsA/i6uBralU3hkN1lR7BtTFjGXq/h+QXoNU9UOf
+ gKWlTGi/G7HA8Ub46n4WjKqBf19GUS7mfvLYIdpsX/ulzDdno0Hx1JHDe
+ awaF+jfRb8yluUfSRjfGAlTA6/Ks9yMkJVk/HJEhNZFQ4wmw6IctQqmED
+ Xajsu1j4Y7ROUGCuE+Egjjg29cKhq3I3IC74xI4sLA8WggWmXFNty0KAF Q==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10671"; a="322280043"
+X-IronPort-AV: E=Sophos;i="5.98,322,1673942400"; d="scan'208";a="322280043"
+Received: from fmsmga004.fm.intel.com ([10.253.24.48])
+ by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 05 Apr 2023 20:42:47 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10671"; a="810825655"
-X-IronPort-AV: E=Sophos;i="5.98,322,1673942400"; d="scan'208";a="810825655"
+X-IronPort-AV: E=McAfee;i="6600,9927,10671"; a="756215904"
+X-IronPort-AV: E=Sophos;i="5.98,322,1673942400"; d="scan'208";a="756215904"
 Received: from orsmsx603.amr.corp.intel.com ([10.22.229.16])
- by orsmga004.jf.intel.com with ESMTP; 05 Apr 2023 19:08:23 -0700
-Received: from orsmsx612.amr.corp.intel.com (10.22.229.25) by
+ by fmsmga004.fm.intel.com with ESMTP; 05 Apr 2023 20:42:47 -0700
+Received: from orsmsx610.amr.corp.intel.com (10.22.229.23) by
  ORSMSX603.amr.corp.intel.com (10.22.229.16) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.21; Wed, 5 Apr 2023 19:08:23 -0700
-Received: from ORSEDG602.ED.cps.intel.com (10.7.248.7) by
- orsmsx612.amr.corp.intel.com (10.22.229.25) with Microsoft SMTP Server
+ 15.1.2507.21; Wed, 5 Apr 2023 20:42:46 -0700
+Received: from ORSEDG601.ED.cps.intel.com (10.7.248.6) by
+ orsmsx610.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.21 via Frontend Transport; Wed, 5 Apr 2023 19:08:23 -0700
-Received: from NAM02-DM3-obe.outbound.protection.outlook.com (104.47.56.43) by
- edgegateway.intel.com (134.134.137.103) with Microsoft SMTP Server
+ 15.1.2507.21 via Frontend Transport; Wed, 5 Apr 2023 20:42:46 -0700
+Received: from NAM10-MW2-obe.outbound.protection.outlook.com (104.47.55.108)
+ by edgegateway.intel.com (134.134.137.102) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2507.21; Wed, 5 Apr 2023 19:08:22 -0700
+ 15.1.2507.21; Wed, 5 Apr 2023 20:42:46 -0700
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=Utyu1+Z+TR0usx/OZNPhvzY26SM2Aa9hFGCeZPKHy47mlfn0xsYnlqnz51Cvj/2AOBm+9DU5HBbeir8W+Zq3umOZS9oRckDN4ic9MyIwF/ix1aGkG6nTDgq4Pt+0yPEwmD5I13SOF/w9YB7PK4+WupdjFPr88Yw0zsBBiN36OyoeMTxZ2Q8UCEoTn0JYtJvecb/UVrqyJNJoWGA3hC+GkLChpgowb0qHConOxda92z0YNpC6N9OtFYjDfX0r9dHVJOSPW9lEgEO2WKIeSpY4fbvpTRUHPZaDDBFSu3j7kndjMFaQQTKya936iJDMxfxV2LPC+3oSmdmn9QrniFZUqQ==
+ b=TklIwo8J1LcbFH4MrTSuF0gddfRuWnj01GuO9obEf0xW7XeiKi9VuuuSa44YN0UvJFvALuZeCvr3f/4LaOqlNUZHEjd7YiX4s164yDuPylRHasSiSDJC9PuePnZEvI5upcsdGdTsc8rP5ruN5sD3vx5QkCUX7zU+CgYrx5Q3JeFMxdh+xJET5cF6yfQ2pAJT2/6N0vk3EAgBMDbr0GpH9HzlkpD9kV/lRcG3T9f4Xej1sSB9IWeI8R/ie4L1kD7jTHUB12Y/fBZRShEyAgh2XpYTa8pgBri7f0CdthvXMdDxJim+YlJSZvJnGwhZPDuDNXjseToIb6XpMfFVX5qcJg==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=pi88RojH4Rbn8gh7WRHtx6r0G4ANl6zC7ooIEU6qpas=;
- b=lvdS/rDCI06wLljEjYQKBx+lNNS/+5NljEP8gNSxPdvaLMLUmkZDH028YlymlD721N543ImGCf+/UhhQiUDxl//WAcGdwGml4uC83C8nepaBt2jo6oHFCrinF1o/qBfgzh9o5C8VNBNmwk/Q0FZ6Hrw/aCkmFTZq7kHzPRPG5G8V/xxsiW0zEHo4+4TDeTL4F5nZgB9/qVRjUShH5kzVhvy1MNxQnN+JbiaGZnUvCCU/A0cCSmrm/u/btpKxJlq90yqvDg6qJvrdR7joP5SWgk9h0v3lCc6tZW/7e7oJ0/XVtAEcrTfNS6b27fxZIcZmLzXJOK3lpcirgmieYs3u/Q==
+ bh=mSJ3v8tKf59yyeFIcLHh5nZLI/PvVUMTctRPGxqbJWc=;
+ b=NYHtM/A+B7rll2Q0C13VLcCDyKov/5ZGPnbNmdRHKBdAzgVGTx6If6VDQxTkJL0FnwNiRuw1fWLkt5Hmoth2+7byz6G+80IAgzub1zEzWS+YdCKReiMkYpDgMKLGCc+KpD6xuJfMiAOAop/TDojiNkYoQpmhFT35WJdfu0PiQ5b3g5GEBL3d5YZOyZi17Sy9HPUmWFYu7qh8Qbx/yBy5N0L/7yVHNLHTg3fA6FWeQwwa58ZSZsOa8WUx1nWasWO0NHmn4Ux9DprUaq0K8L+Wyq1R8gAhzuJvMq53qhq7O+TzYmFd1HzUPrR8tIqTVxKz2NfLQ61B/j4555SrgX/0ew==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
  dkim=pass header.d=intel.com; arc=none
 Authentication-Results: dkim=none (message not signed)
  header.d=none;dmarc=none action=none header.from=intel.com;
-Received: from PH7PR11MB6522.namprd11.prod.outlook.com (2603:10b6:510:212::12)
- by PH7PR11MB7147.namprd11.prod.outlook.com (2603:10b6:510:1ee::17)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6254.30; Thu, 6 Apr
- 2023 02:08:16 +0000
-Received: from PH7PR11MB6522.namprd11.prod.outlook.com
- ([fe80::ff06:a115:e4eb:680e]) by PH7PR11MB6522.namprd11.prod.outlook.com
- ([fe80::ff06:a115:e4eb:680e%9]) with mapi id 15.20.6254.033; Thu, 6 Apr 2023
- 02:08:16 +0000
-Date: Thu, 6 Apr 2023 02:08:10 +0000
-From: Matthew Brost <matthew.brost@intel.com>
-To: Daniel Vetter <daniel@ffwll.ch>
-Message-ID: <ZC4pinCurycVe4bi@DUT025-TGLU.fm.intel.com>
-References: <20230404002211.3611376-1-matthew.brost@intel.com>
- <87c7f659-387c-3e23-69c6-03e0c9820bab@amd.com>
- <ZCwoL3Wgv90tlQWR@DUT025-TGLU.fm.intel.com>
- <d740a81a-8919-b6c8-a8c1-f5d8f9c5549c@amd.com>
- <ZC0yq9XZ2t9cV0Nz@phenom.ffwll.local>
- <a2236a9d-e21a-269c-aad3-184c402065b7@amd.com>
- <ZC06Rl6TGe7itZvW@phenom.ffwll.local>
- <ec128743-699b-3722-0ab2-ff96552fdddd@amd.com>
- <CAKMK7uFEGoaOmewGmP4H_ouqZiMKAiaKwEohGCZq5T-UJYMf_w@mail.gmail.com>
-Content-Type: text/plain; charset="iso-8859-1"
+Received: from PH8PR11MB6952.namprd11.prod.outlook.com (2603:10b6:510:224::13)
+ by CY8PR11MB7106.namprd11.prod.outlook.com (2603:10b6:930:52::6) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6277.31; Thu, 6 Apr
+ 2023 03:42:44 +0000
+Received: from PH8PR11MB6952.namprd11.prod.outlook.com
+ ([fe80::449e:6409:5bb1:912d]) by PH8PR11MB6952.namprd11.prod.outlook.com
+ ([fe80::449e:6409:5bb1:912d%6]) with mapi id 15.20.6277.031; Thu, 6 Apr 2023
+ 03:42:44 +0000
+Date: Wed, 5 Apr 2023 20:42:36 -0700
+From: Niranjana Vishwanathapura <niranjana.vishwanathapura@intel.com>
+To: Matthew Brost <matthew.brost@intel.com>
+Message-ID: <ZC4/rAOBkwv6z2Ed@nvishwa1-DESK>
+References: <20230405233403.151088-1-matthew.brost@intel.com>
+ <20230405233403.151088-3-matthew.brost@intel.com>
+Content-Type: text/plain; charset="us-ascii"; format=flowed
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <CAKMK7uFEGoaOmewGmP4H_ouqZiMKAiaKwEohGCZq5T-UJYMf_w@mail.gmail.com>
-X-ClientProxiedBy: SJ0PR03CA0295.namprd03.prod.outlook.com
- (2603:10b6:a03:39e::30) To PH7PR11MB6522.namprd11.prod.outlook.com
- (2603:10b6:510:212::12)
+In-Reply-To: <20230405233403.151088-3-matthew.brost@intel.com>
+X-ClientProxiedBy: SJ0PR03CA0076.namprd03.prod.outlook.com
+ (2603:10b6:a03:331::21) To PH8PR11MB6952.namprd11.prod.outlook.com
+ (2603:10b6:510:224::13)
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: PH7PR11MB6522:EE_|PH7PR11MB7147:EE_
-X-MS-Office365-Filtering-Correlation-Id: 1f4ca115-ffad-4aaf-5f23-08db3643c88c
+X-MS-TrafficTypeDiagnostic: PH8PR11MB6952:EE_|CY8PR11MB7106:EE_
+X-MS-Office365-Filtering-Correlation-Id: d517dc07-e3b8-445c-1232-08db3650fb1b
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: 3pKgxdIVvQP6ZA0t4vjRt+zBzTGWJI88nJK4bBcrj3mt/oJCOlppHwvFVUCrchCK9qY2vgJv1JO4SVuMT5hhzZv/13wbH68RUcUhlykzKiAnaF5mz3ommf2RM52UwVPJ7VpjW7dJd5a3/qV6SrnxI6Db7bJXCjPid7PoLzNxGYFLH2kOmvE776OuB2l7MAAg1Vt4AVsoePCoRaFZAkjBldeGzC69v9nNrkhI56kPZUIl3NKFbl3ycBekDiRXw8Ce3NgmWjvvGlWttVRWCpT1VONPOxtr6SuFvjH3VcEgM7WmQKK8z9BsZrOAfq0PNhctssxZ7oZkhwbB/0dCh7gjggJjdMn7IAKO/ffzJ7czZEp7e0anRiA6/ck3QBaEXUYhGj/Gw4gxCmmgQNc7bBBJAZcoEutwQCva5o+VOeRkMxhPCbzyP2cwHl33d4h9fOPF+YyIFMhSUSgKBsEardZ1uNmTfD3NewRjq58ZjO1soh2d8huAmSXpFrwspuNsipKrv9yY6HqJAT9l6bKaKVZtQcF6cNy3ELRv3W7Aq3MwNHg=
+X-Microsoft-Antispam-Message-Info: DbwE3l6ytEMGvlsw89yE/cBWAUoUgDw4aL631xkA9Y74wps90HBywsJ71KZtoufZVgm2TKloMQmySsGq99pY5DOHVbxqM5HcSQezqklV6upfN9gIzUSuf74BoJJWEsq/UuCZCWSkjLepWID7NQ8Z91jwMHjM+30k2yGlXGzahPD+jrZDkYWA65MzQYq93w6+XDlD/k9p96y/q5lBVOuogwoON3aIMRpmes5tKvZW9dQtJrsPmZDRWc6fOGVOcGxRCJYSIQsbgqWQbH+iWapgAJRQwa9PTm4Q4kvE9YkJEhpwRzbWPKAVRyDHY3RLOZ/suId1ui8Z3KIDzycH85lujs+bfXGsdoF13wwikjeulwtUC414rpCXkkVN27NqJMdCne7GdshMduGJZlVC0TYcUsl49JxonilRKUOkeIXhvE9xlFf2dMa4NzPMQN+EagY51jAIIRZ9bF3rK0B6vEut558GXbCuSyI6LDJy1in5wZT+/mfTp3Wn82QL4VVuMQcTy5r8v1ip63TEOjupmlLRAZcJMeOk5ZUqzwChn8KRbH0hNtltQcgZOvMwxDxEUp4w
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:PH7PR11MB6522.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230028)(376002)(366004)(346002)(136003)(396003)(39860400002)(451199021)(44832011)(5660300002)(66476007)(6916009)(478600001)(4326008)(66946007)(66556008)(316002)(8936002)(7416002)(38100700002)(82960400001)(41300700001)(8676002)(83380400001)(6506007)(966005)(66574015)(6486002)(6666004)(6512007)(186003)(26005)(86362001)(2906002);
+ IPV:NLI; SFV:NSPM; H:PH8PR11MB6952.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230028)(7916004)(396003)(376002)(366004)(39860400002)(346002)(136003)(451199021)(38100700002)(5660300002)(2906002)(44832011)(8936002)(6862004)(66556008)(66946007)(66476007)(4326008)(41300700001)(86362001)(82960400001)(8676002)(6486002)(83380400001)(6666004)(6512007)(186003)(6636002)(26005)(6506007)(33716001)(9686003)(478600001)(316002);
  DIR:OUT; SFP:1102; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?iso-8859-1?Q?FTVV/mgjq4wARDTeKX3T+gbmxcAyBK5InYYe9YRLST+v0QtCZAFje5QfQR?=
- =?iso-8859-1?Q?Hd3ROwINIgvw6kZhHDlb9KOjSi+t8WIUkmeQg4oi8GsIGFVh7VymXH3cJV?=
- =?iso-8859-1?Q?4NrzVZ/2vgJotbGrmnAYQPhMyI01PtGq9GCrNdszTVM4dZNEY++IyOPAbG?=
- =?iso-8859-1?Q?Q4CVPX+WaJPKTEM65ywJ2+klFRFMVdBxa2A+QmStyVucUvnL7AiUXka2BR?=
- =?iso-8859-1?Q?MsU75vWce/7FJsdiRxzXrwkBF4plGX/pEqEDxTN9QZmi1MW9YpLawm/iTz?=
- =?iso-8859-1?Q?m27ykNHNh+boleXu7zR89hcRZRjXXP6j0FLwb4YSnq0ccll2BkjJyA8iUs?=
- =?iso-8859-1?Q?JwJxQDxy6bm90yKwiy5MhvGyOzZ8s8ySCEwqYTmAxYcJpfOsT3Xp62weYn?=
- =?iso-8859-1?Q?gyj+YYXgSqt575+5T1Lk03FOB/AK69H4JM3fRAEWc5mzzqpNJQTos3sVN5?=
- =?iso-8859-1?Q?T4gP3qwB0c3MQA2PBv6h8FAL+lgmNWRLwmqRgB6t12QjMog/gzWRE3GHLh?=
- =?iso-8859-1?Q?kA03OQBJMFWByox6YczAslZWa65y8692EaLeUysg18iEcS5GoeQ4LTpI7f?=
- =?iso-8859-1?Q?LSGV0o0yRLIlqfzrgR9zIeKsZY2CLBMZpNK2dEk/4202096ImlNRr1M4ju?=
- =?iso-8859-1?Q?i1dpfaUUjN/dZ16pwnImg0xX8Z/TLnB5a2zMuXw4bxIc2s3W5uUOX/itqf?=
- =?iso-8859-1?Q?Kjc3a5nRFZ2wUIi8unYkZHt6EppRG4aM2hl+Dw13sskJdMydLf3VbH6H96?=
- =?iso-8859-1?Q?iBoZx0H9owwA4esKgLGRbEvAqqFyvPvvvWdUGXz2mW4RKgHFPWbpTlvanH?=
- =?iso-8859-1?Q?i4pz5+x6ZSEZW+3J0e8pN2eBTGycD7526TUBd/4mjD5M0uEpRWhvvAZKnk?=
- =?iso-8859-1?Q?eRCFPuWenLafKUr24MgZRBflInk5KVTtz8YrCkFBwH217re1dZjXJHurlb?=
- =?iso-8859-1?Q?5QKFFgD0W9OxfqHFaCA0CoRvr4mUNobKGmQo9sXWZi0mGIPTYBuX+rhSLb?=
- =?iso-8859-1?Q?nIIXz4sS9iJY+dhXVuqtYT+hooyJzqNGJwKNWCEeTcyjhujLzfeTJe4ZCc?=
- =?iso-8859-1?Q?gRUEIfdXnYhM5frqGqxX1Tpg+Zl2HNPwyPQ7CWY0uTN0qoPu+8jISaGa+c?=
- =?iso-8859-1?Q?zUPE4ltbJJdQIrYW0VDXUVIKmiVXn2jlaPLMHPwv0idNjO3VFXRSbaOPtQ?=
- =?iso-8859-1?Q?h4NFJoU4VQO/xq1Yb5iSJbFwdH8auppOWh6qlmDOGfmMKPNU6ko7ujcjt+?=
- =?iso-8859-1?Q?tCKsyZHo8CqF6hUEdknhctIe8opJUuLQgcwSJPe9ohLqv4A91G7Oy4Z9Cj?=
- =?iso-8859-1?Q?slUcaln2ylYDA56Gs6yeZO2k/+08NlUhDVxgXcJRcmSg+AvM0hz4r3/Doe?=
- =?iso-8859-1?Q?r8dTh8yVmpwqTELJOXDNm7jLkSEhvU2k2VReG0mOr8DBTty17gZ+4vD4QB?=
- =?iso-8859-1?Q?Q60NsZP+tMJ7I22hbQy5zwBAQ+oe/tzvciACaGv3AXVElQ7/9NkT9kn/Mg?=
- =?iso-8859-1?Q?cmtGx+8X84CgB5PYzK2q9LQT+v77sjiB6hq5+xdspqtKSylaYDdPSVzkID?=
- =?iso-8859-1?Q?hmw7u6ZLh+QeErqOsyT56MT23AcwNwrXIqZkQZT56sTPNPlX4XfYNAlMKN?=
- =?iso-8859-1?Q?jdFtbYlRSDbYS8bsz8RE351PpgXhwxhUouj/hZ1A+yCaSM52R9n6ePWQ?=
- =?iso-8859-1?Q?=3D=3D?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: 1f4ca115-ffad-4aaf-5f23-08db3643c88c
-X-MS-Exchange-CrossTenant-AuthSource: PH7PR11MB6522.namprd11.prod.outlook.com
+X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?3lpqQOjJCu/UcKMGnR3u9hxCTl5fbyKaajtOCVL2DACNTorc1wJaOrHXkM2y?=
+ =?us-ascii?Q?GUB39u08QP98aRaPbp6QfmExUgvrPe4BJJ0KDv6EQE+gEJt/FZC7Sn9/X7kX?=
+ =?us-ascii?Q?4OCSzKDQGX755nc/tiirz09N+TJeEJ7d8RBlkge4edRWeyF3CLMmcqp/klGU?=
+ =?us-ascii?Q?lD+79MW3mE+XhlEVKmBd+SwUReNQSzYMxmxFk0y1SxLolvJP67GLkRtsJPhx?=
+ =?us-ascii?Q?tMdHO8gY9KtdGDHNS01Jhfyx3IIByB5a00N+u3gX9R11u2OqI2c8O9xMttWc?=
+ =?us-ascii?Q?wvZZOBTObPd7Lcg0EkdndCE76Am87cN9hwdZXwhj1wrQ9Lz0AxWm/bRgH5b3?=
+ =?us-ascii?Q?vpGcpTFrxlWv+x+c81e+QcKZVAyxDt0SKgxmRMh6j3y6lrVutHU6UKsGA+uW?=
+ =?us-ascii?Q?DQpp9RNrAkDavLghLtzPlEN/oJyNT3027uA4atgROU4mHh7AXAu5ZXV8IzY6?=
+ =?us-ascii?Q?0Yvad9iv+Qbqo7/11NlwCTVSRyDLznk3KrFCMB/YH4bwx+PytWrWV9fLxvXE?=
+ =?us-ascii?Q?s8qvQN6iSnLe1eWRlOHqDc3l4cRBaReVeFk+CWhEOToDzx2xIRIavvffezkO?=
+ =?us-ascii?Q?zCflIudR71Wl2T99UMALjhk7Tuky1ZM83lx5TKpixAEYMVGO5zSg7xFnKeRx?=
+ =?us-ascii?Q?cMcHq/mjeT6GrA8LJkQpI8xb5MiT+K/IG67fsPY1SHuJNjtMNWYGS3UjCqyg?=
+ =?us-ascii?Q?GP+cwBiPwO2SCUY3Pq1d9SVFI9/6vtjBxIhsskJvaxyAMM8Wlum0PKry+hFB?=
+ =?us-ascii?Q?x7Saaiceasz0wwL3WhOSZUvkVRV0OD+I0I7J7MDj4PrHdBFOZiFbARLexSRC?=
+ =?us-ascii?Q?s9taBycPv8R8LIWFfNg7RtLkAT3cVbuRU8AkvvjTr7Yv/YrT6b1Mj2tmcSwY?=
+ =?us-ascii?Q?zKpSo+0zFRkQoLIMKUEFt2gYSplxqLFe+WUFOb4y/r2rstcikdnayzmfOxzC?=
+ =?us-ascii?Q?2g13IiPDjRXYORKX3rYTwDczRPuMNUM1OmYHMtrRcN6Xn5/vD9B2TpkrXVgH?=
+ =?us-ascii?Q?ewub6MeHQx+Y6naliW/3wsR6tkaW8imCi1VrzeJr5nWnpVzT8IBQXE9VuHO3?=
+ =?us-ascii?Q?i+4gyUscUi0oLQevdJaZsKMb+tQiGwHb/38CxQCWBVUjM4XDAQHcM8pY+mYX?=
+ =?us-ascii?Q?rN/pSqnxXbIjO2IXWgDjYv/YRSg0MzezOqm5P6HIUeERkNb69T6nSzbWKBtJ?=
+ =?us-ascii?Q?jzrlakFHSRtga02fXzq/w8+hWrH1LytbLBpsaumN7OObNxAmSsjVrhT+UZvH?=
+ =?us-ascii?Q?f7P8DbWbfub8KMcYky/6gI4/0VDPcmLNUsrOJL9O/Oq9lNEG+JynqOP3gLwD?=
+ =?us-ascii?Q?hzCarEhpD+wBsiyf1XFAt1gH3XQuPcya+TxwX9Nh8FK59C3laTj+IEWjd/W7?=
+ =?us-ascii?Q?CG7dRfazKtX4UD/0wyhmk+8O4sxm//QxrbJIBkIBvnp2d98UzNidDIjey7J6?=
+ =?us-ascii?Q?tm3ktd5N0xvL39foFPJULQk2w6N/rfnBSHiGFVLNjcdMeleOoBuYCFjtJMxp?=
+ =?us-ascii?Q?KDfTH7EDRIWfzOJb2hgEK6B0I0ProyexSlmYATfyPy2a9ipigrcDiAf3OAwK?=
+ =?us-ascii?Q?E7r4PRHQpx5l4qltE1iMKLH4BQpqbkylQ474OtJ6I77Z8KTR0WfOnMJ996Y/?=
+ =?us-ascii?Q?vnAhLeAoIRZaPizZwUbogOE=3D?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: d517dc07-e3b8-445c-1232-08db3650fb1b
+X-MS-Exchange-CrossTenant-AuthSource: PH8PR11MB6952.namprd11.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 06 Apr 2023 02:08:16.0109 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 06 Apr 2023 03:42:44.4048 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: fzZ46yNkRdqGnCgNdDeZnP9RydO0lmlfMzoyHgahbdV7+Gla7cR/hdngEArp1LBWen0IB0tWNAhGoEydJOt5Gw==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH7PR11MB7147
+X-MS-Exchange-CrossTenant-UserPrincipalName: bhpL5STpEubwVaDmoFFrn0zZR/pnb7loxdflqWAgF0uPBZUc0WGy3RongE1x2yXMP9PT4sAvGmvOG2Cv8jz6cjkdYCHClbG9w6mLPYtTfkVZUuWuxpn5rTspEHg8Ieny
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: CY8PR11MB7106
 X-OriginatorOrg: intel.com
-Subject: Re: [Intel-xe] [RFC PATCH 00/10] Xe DRM scheduler and long running
- workload plans
+Subject: Re: [Intel-xe] [PATCH 2/2] drm/xe: Drop coalescing of GGTT
+ invalidations
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -152,115 +143,118 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Cc: robdclark@chromium.org, airlied@linux.ie, lina@asahilina.net,
- dri-devel@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
- boris.brezillon@collabora.com,
- Christian =?iso-8859-1?Q?K=F6nig?= <christian.koenig@amd.com>,
- faith.ekstrand@collabora.com
+Cc: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Wed, Apr 05, 2023 at 12:12:27PM +0200, Daniel Vetter wrote:
-> On Wed, 5 Apr 2023 at 11:57, Christian König <christian.koenig@amd.com> wrote:
-> >
-> > Am 05.04.23 um 11:07 schrieb Daniel Vetter:
-> > > [SNIP]
-> > >> I would approach it from the complete other side. This component here is a
-> > >> tool to decide what job should run next.
-> > >>
-> > >> How that is then signaled and run should not be part of the scheduler, but
-> > >> another more higher level component.
-> > >>
-> > >> This way you also don't have a problem with not using DMA-fences as
-> > >> dependencies as well as constrains for running more jobs.
-> > > I think we're talking about two things here and mixing them up.
-> > >
-> > > For the dependencies I agree with you, and imo that higher level tool
-> > > should probably just be an on-demand submit thread in userspace for the
-> > > rare case where the kernel would need to sort out a dependency otherwise
-> > > (due to running out of ringspace in the per-ctx ringbuffer).
-> > >
-> > > The other thing is the message passing stuff, and this is what I was
-> > > talking about above. This has nothing to do with handling dependencies,
-> > > but with talking to the gpu fw. Here the intel design issue is that the fw
-> > > only provides a single queue, and it's in-order. Which means it
-> > > fundamentally has the stalling issue you describe as a point against a
-> > > message passing design. And fundamentally we need to be able to talk to
-> > > the fw in the scheduler ->run_job callback.
-> > >
-> > > The proposal here for the message passing part is that since it has the
-> > > stalling issue already anyway, and the scheduler needs to be involved
-> > > anyway, it makes sense to integrated this (as an optional thing, only for
-> > > drivers which have this kind of fw interface) into the scheduler.
-> > > Otherwise you just end up with two layers for no reason and more ping-pong
-> > > delay because the ->run_job needs to kick off the subordinate driver layer
-> > > first. Note that for this case the optional message passing support in the
-> > > drm/scheduler actually makes things better, because it allows you to cut
-> > > out one layer.
-> > >
-> > > Of course if a driver with better fw interface uses this message passing
-> > > support, then that's bad. Hence the big warning in the kerneldoc.
-> >
-> > Well what I wanted to say is that if you design the dependency handling
-> > / scheduler properly you don't need the message passing through it.
-> >
-> > For example if the GPU scheduler component uses a work item to do it's
-> > handling instead of a kthread you could also let the driver specify the
-> > work queue where this work item is executed on.
-> >
-> > When you design it like this the driver specifies the thread context of
-> > execution for it's job. In other words it can specify a single threaded
-> > firmware work queue as well.
-> >
-> > When you then have other messages which needs to be passed to the
-> > firmware you can also use the same single threaded workqueue for this.
-> >
-> > Drivers which have a different firmware interface would just use one of
-> > the system work queues instead.
-> >
-> > This approach basically decouples the GPU scheduler component from the
-> > message passing functionality.
-> 
-> Hm I guess we've been talking past each another big time, because
-> that's really what I thought was under discussions? Essentially the
-> current rfc, but implementing with some polish.
+On Wed, Apr 05, 2023 at 04:34:03PM -0700, Matthew Brost wrote:
+>Causing a bunch of hangs driver load and in user space. Benefit is
+>rather small too, so just drop this for to stablize the stack.
 >
 
-I think Daniel pretty much nailed it here (thanks), to recap:
+Looks like this should instead be revert of following patches?
 
-1. I want the messages in the same worker so run_job / free_job /
-process_msg execution is mutual exclusive and also so during reset paths
-if the worker is stopped all the entry points can't be entered.
+drm/xe: Coalesce GGTT invalidations
+drm/xe: Pad GGTT mapping with an extra page pointing to scratch
 
-If this is a NAK, then another worker is fine I guess. A lock between
-run_job / free_job + process_msg should solve the exclusion issue and the
-reset paths can also stop this new worker too. That being said I'd
-rather leave this as is but will not fight this point.
+Niranjana
 
-2. process_msg is just used to communicate with the firmware using the
-same queue as submission. Waiting for space in this queue is the only
-place this function can block (same as submission), well actually we
-have the concept a preempt time slice but that sleeps for 10 ms by
-default. Also preempt is only used in LR entities so I don't think it is
-relavent in this case either.
-
-3. Agree this is in the dma-fence signaling path (if process_msg is in
-the submission worker) so we can't block indefinitely or an unreasonable
-period of time (i.e. we must obey dma-fence rules).
-
-4. Agree the documentation for thw usage of the messaging interface
-needs to be clear.
-
-5. Agree that my code could alway use polishing.
-
-Lets close on #1 then can I get on general Ack on this part of the RFC
-and apply the polish in the full review process?
-
-Matt
-
-> iow I agree with you (I think at least).
-> -Daniel
-> -- 
-> Daniel Vetter
-> Software Engineer, Intel Corporation
-> http://blog.ffwll.ch
+>Signed-off-by: Matthew Brost <matthew.brost@intel.com>
+>---
+> drivers/gpu/drm/xe/xe_bo.c         |  1 -
+> drivers/gpu/drm/xe/xe_bo_types.h   |  2 --
+> drivers/gpu/drm/xe/xe_ggtt.c       | 25 +------------------------
+> drivers/gpu/drm/xe/xe_ggtt_types.h |  2 --
+> 4 files changed, 1 insertion(+), 29 deletions(-)
+>
+>diff --git a/drivers/gpu/drm/xe/xe_bo.c b/drivers/gpu/drm/xe/xe_bo.c
+>index 5460e6fe3c1f..c7f175a149be 100644
+>--- a/drivers/gpu/drm/xe/xe_bo.c
+>+++ b/drivers/gpu/drm/xe/xe_bo.c
+>@@ -975,7 +975,6 @@ struct xe_bo *__xe_bo_create_locked(struct xe_device *xe, struct xe_bo *bo,
+> 			return bo;
+> 	}
+>
+>-	bo->requested_size = size;
+> 	if (flags & (XE_BO_CREATE_VRAM_MASK | XE_BO_CREATE_STOLEN_BIT) &&
+> 	    !(flags & XE_BO_CREATE_IGNORE_MIN_PAGE_SIZE_BIT) &&
+> 	    xe->info.vram_flags & XE_VRAM_FLAGS_NEED64K) {
+>diff --git a/drivers/gpu/drm/xe/xe_bo_types.h b/drivers/gpu/drm/xe/xe_bo_types.h
+>index db217500a970..6071611a2b29 100644
+>--- a/drivers/gpu/drm/xe/xe_bo_types.h
+>+++ b/drivers/gpu/drm/xe/xe_bo_types.h
+>@@ -23,8 +23,6 @@ struct xe_vm;
+> struct xe_bo {
+> 	/** @ttm: TTM base buffer object */
+> 	struct ttm_buffer_object ttm;
+>-	/** @requested_size: Requested size of this buffer object */
+>-	size_t requested_size;
+> 	/** @size: Size of this buffer object after alignment adjusting */
+> 	size_t size;
+> 	/** @flags: flags for this buffer object */
+>diff --git a/drivers/gpu/drm/xe/xe_ggtt.c b/drivers/gpu/drm/xe/xe_ggtt.c
+>index a430d1568890..93f78aba2c8e 100644
+>--- a/drivers/gpu/drm/xe/xe_ggtt.c
+>+++ b/drivers/gpu/drm/xe/xe_ggtt.c
+>@@ -273,15 +273,7 @@ void xe_ggtt_map_bo(struct xe_ggtt *ggtt, struct xe_bo *bo)
+> 		xe_ggtt_set_pte(ggtt, start + offset, pte);
+> 	}
+>
+>-	if (bo->size == bo->requested_size) {
+>-		pte = xe_ggtt_pte_encode(ggtt->scratch ?: bo, 0);
+>-		xe_ggtt_set_pte(ggtt, start + bo->size, pte);
+>-	}
+>-
+>-	if (ggtt->invalidate) {
+>-		xe_ggtt_invalidate(ggtt->gt);
+>-		ggtt->invalidate = false;
+>-	}
+>+	xe_ggtt_invalidate(ggtt->gt);
+> }
+>
+> static int __xe_ggtt_insert_bo_at(struct xe_ggtt *ggtt, struct xe_bo *bo,
+>@@ -302,19 +294,6 @@ static int __xe_ggtt_insert_bo_at(struct xe_ggtt *ggtt, struct xe_bo *bo,
+> 	if (err)
+> 		return err;
+>
+>-	/*
+>-	 * We add an extra page when mapping a BO in the GGTT so we can coalesce
+>-	 * GGTT invalidations. Without this extra page GGTT prefetches can leave
+>-	 * entries in the TLB pointing to an invalidation GGTT entry when in
+>-	 * fact we have programmed this GGTT entry to a valid entry. BO aligned
+>-	 * to 64k already have padding so no need to add an extra page.
+>-	 */
+>-	if (bo->size == bo->requested_size) {
+>-		size += SZ_4K;
+>-		if (end != U64_MAX)
+>-			end += SZ_4K;
+>-	}
+>-
+> 	mutex_lock(&ggtt->lock);
+> 	err = drm_mm_insert_node_in_range(&ggtt->mm, &bo->ggtt_node, size,
+> 					  alignment, 0, start, end, 0);
+>@@ -344,8 +323,6 @@ void xe_ggtt_remove_node(struct xe_ggtt *ggtt, struct drm_mm_node *node)
+> 	drm_mm_remove_node(node);
+> 	node->size = 0;
+>
+>-	ggtt->invalidate = true;
+>-
+> 	mutex_unlock(&ggtt->lock);
+> }
+>
+>diff --git a/drivers/gpu/drm/xe/xe_ggtt_types.h b/drivers/gpu/drm/xe/xe_ggtt_types.h
+>index 8198aa784654..ea70aaef4b31 100644
+>--- a/drivers/gpu/drm/xe/xe_ggtt_types.h
+>+++ b/drivers/gpu/drm/xe/xe_ggtt_types.h
+>@@ -26,8 +26,6 @@ struct xe_ggtt {
+> 	u64 __iomem *gsm;
+>
+> 	struct drm_mm mm;
+>-
+>-	bool invalidate;
+> };
+>
+> #endif
+>-- 
+>2.34.1
+>
