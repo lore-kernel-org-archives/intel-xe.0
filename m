@@ -4,30 +4,46 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id D912AC761A6
-	for <intel-xe@archiver.kernel.org>; Fri,  7 Apr 2023 00:24:47 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4AC55C761A6
+	for <intel-xe@archiver.kernel.org>; Fri,  7 Apr 2023 03:28:00 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 954F910E108;
-	Fri,  7 Apr 2023 00:24:47 +0000 (UTC)
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id D684010E108;
- Fri,  7 Apr 2023 00:24:44 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id CEB37A9932;
- Fri,  7 Apr 2023 00:24:44 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============6281477896655175293=="
+	by gabe.freedesktop.org (Postfix) with ESMTP id BFB5210ED73;
+	Fri,  7 Apr 2023 03:27:59 +0000 (UTC)
+Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 82EDA10E36C
+ for <intel-xe@lists.freedesktop.org>; Fri,  7 Apr 2023 03:27:57 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1680838077; x=1712374077;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=CkrZo2YLw1QrNaRnkrtCMl9k88UTgcErvx3TJx+uvLo=;
+ b=VXXyVX31GumytcQwfvWN/4jljtt8Zm1fQjp7nxqinDt9qodW3aJlF5sO
+ bCjc9wHUB/CdHGZNm2Ao8bxm8/u4mdIfAyXJuyO21g4iIZDC7VysT2HKB
+ F/wMtLgsRZTW72iVhTibaH/VKcThqgvpGtBGyTlAysg1dwnq507ZsiMN5
+ 2LKODmpzpQOEftaZlsGmYXq0gDtzGt1LzsM+Np1gAk0GykHGDYt3Fnw8P
+ AZT9xlGgfu/S4d3d7T4Im1bpO/oicxMNpOQSRmP3YgNBkWiXgI2Wmd/5h
+ bkGoF5qopGjWV4Xk5GVs52ynxetBqCpGcCirQvj3Xkwl+mkqciqrR/xYN w==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10672"; a="323289236"
+X-IronPort-AV: E=Sophos;i="5.98,324,1673942400"; d="scan'208";a="323289236"
+Received: from orsmga006.jf.intel.com ([10.7.209.51])
+ by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 06 Apr 2023 20:27:56 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6600,9927,10672"; a="664752540"
+X-IronPort-AV: E=Sophos;i="5.98,324,1673942400"; d="scan'208";a="664752540"
+Received: from nvishwa1-desk.sc.intel.com ([172.25.29.76])
+ by orsmga006-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 06 Apr 2023 20:27:55 -0700
+From: Niranjana Vishwanathapura <niranjana.vishwanathapura@intel.com>
+To: intel-xe@lists.freedesktop.org
+Date: Thu,  6 Apr 2023 20:27:49 -0700
+Message-Id: <20230407032751.31632-1-niranjana.vishwanathapura@intel.com>
+X-Mailer: git-send-email 2.21.0.rc0.32.g243a4c7e27
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Matt Roper" <matthew.d.roper@intel.com>
-Date: Fri, 07 Apr 2023 00:24:44 -0000
-Message-ID: <168082708480.5206.16648528828683130513@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20230406235621.1914492-1-matthew.d.roper@intel.com>
-In-Reply-To: <20230406235621.1914492-1-matthew.d.roper@intel.com>
-Subject: [Intel-xe] =?utf-8?q?=E2=97=8B_CI=2EBAT=3A_info_for_Begin_adding?=
- =?utf-8?q?_GMD=5FID_support_for_Xe_=28rev4=29?=
+Content-Transfer-Encoding: 8bit
+Subject: [Intel-xe] [PATCH v2 0/2] drm/xe: Revert coalescing of GGTT
+ invalidations
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -39,68 +55,38 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
-Cc: intel-xe@lists.freedesktop.org
+Cc: matthew.d.roper@intel.com, lucas.demarchi@intel.com
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============6281477896655175293==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+Coalescing GGTT invalidations is causing a bunch of hangs during
+driver load and in user space.
+https://gitlab.freedesktop.org/drm/xe/kernel/-/issues/232
 
-== Series Details ==
+Benefit is rather small too, so revert it to stabilize the stack.
 
-Series: Begin adding GMD_ID support for Xe (rev4)
-URL   : https://patchwork.freedesktop.org/series/116047/
-State : info
+Reverts below changes
+drm/xe: Pad GGTT mapping with an extra page pointing to scratch
+drm/xe: Coalesce GGTT invalidations
 
-== Summary ==
+v2: Rebase and update commit message of patches
 
-Participating hosts:
-bat-atsm-2
-bat-dg2-oem2
-bat-adlp-7
-Missing hosts results[0]:
-Results: [xe-pw-116047v4](https://intel-gfx-ci.01.org/tree/xe/xe-pw-116047v4/index.html)
+Tested-by: Matt Roper <matthew.d.roper@intel.com>  # ADL-P
+Reviewed-by: Lucas De Marchi <lucas.demarchi@intel.com>
+Signed-off-by: Niranjana Vishwanathapura <niranjana.vishwanathapura@intel.com>
 
+Niranjana Vishwanathapura (2):
+  Revert "drm/xe: Pad GGTT mapping with an extra page pointing to
+    scratch"
+  Revert "drm/xe: Coalesce GGTT invalidations"
 
+ drivers/gpu/drm/xe/xe_bo.c         |  1 -
+ drivers/gpu/drm/xe/xe_bo.h         |  1 +
+ drivers/gpu/drm/xe/xe_bo_types.h   |  4 +---
+ drivers/gpu/drm/xe/xe_ggtt.c       | 35 +++++++-----------------------
+ drivers/gpu/drm/xe/xe_ggtt_types.h |  2 --
+ 5 files changed, 10 insertions(+), 33 deletions(-)
 
---===============6281477896655175293==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+-- 
+2.21.0.rc0.32.g243a4c7e27
 
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>Begin adding GMD_ID support for Xe (rev4)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/116047/">https://patchwork.freedesktop.org/series/116047/</a></td></tr>
-<tr><td><b>State:</b></td><td>info</td></tr>
-
-</table>
-
-
-    <p>Participating hosts:<br />
-bat-atsm-2<br />
-bat-dg2-oem2<br />
-bat-adlp-7<br />
-Missing hosts results[0]:<br />
-Results: <a href="https://intel-gfx-ci.01.org/tree/xe/xe-pw-116047v4/index.html">xe-pw-116047v4</a></p>
-
-</body>
-</html>
-
---===============6281477896655175293==--
