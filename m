@@ -4,30 +4,30 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id A1DDBC77B61
-	for <intel-xe@archiver.kernel.org>; Fri,  7 Apr 2023 15:17:36 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id D5515C6FD1D
+	for <intel-xe@archiver.kernel.org>; Fri,  7 Apr 2023 15:45:42 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6333E10E0C6;
-	Fri,  7 Apr 2023 15:17:36 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 795DD10EDED;
+	Fri,  7 Apr 2023 15:45:42 +0000 (UTC)
 Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id F2AE110E0C6;
- Fri,  7 Apr 2023 15:17:34 +0000 (UTC)
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id DB46810EDD6;
+ Fri,  7 Apr 2023 15:45:41 +0000 (UTC)
 Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id EA765AADDC;
- Fri,  7 Apr 2023 15:17:34 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============6480683602689324649=="
+ by emeril.freedesktop.org (Postfix) with ESMTP id D1EBFAA3D8;
+ Fri,  7 Apr 2023 15:45:41 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: "Matthew Auld" <matthew.auld@intel.com>
-Date: Fri, 07 Apr 2023 15:17:34 -0000
-Message-ID: <168088065492.5209.9795425059892279847@emeril.freedesktop.org>
+Date: Fri, 07 Apr 2023 15:45:41 -0000
+Message-ID: <168088234182.5208.2686047056029830777@emeril.freedesktop.org>
 X-Patchwork-Hint: ignore
 References: <20230407145001.1764161-1-rodrigo.vivi@intel.com>
 In-Reply-To: <20230407145001.1764161-1-rodrigo.vivi@intel.com>
-Subject: [Intel-xe] =?utf-8?q?=E2=97=8B_CI=2EBAT=3A_info_for_drm/xe=3A_fi?=
- =?utf-8?q?x_suspend-resume_for_dgfx_=28rev2=29?=
+Subject: [Intel-xe] =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_f?=
+ =?utf-8?q?or_drm/xe=3A_fix_suspend-resume_for_dgfx_=28rev3=29?=
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -44,63 +44,39 @@ Cc: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============6480683602689324649==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
 == Series Details ==
 
-Series: drm/xe: fix suspend-resume for dgfx (rev2)
+Series: drm/xe: fix suspend-resume for dgfx (rev3)
 URL   : https://patchwork.freedesktop.org/series/116200/
-State : info
+State : success
 
 == Summary ==
 
-Participating hosts:
-bat-atsm-2
-bat-dg2-oem2
-bat-adlp-7
-Missing hosts results[0]:
-Results: [xe-pw-116200v2](https://intel-gfx-ci.01.org/tree/xe/xe-pw-116200v2/index.html)
+=== Applying kernel patches on branch 'drm-xe-next' with base: ===
+commit f6bd5c8171add2506ba52bf5c0738e5b18fcfe24
+Author:     Matt Roper <matthew.d.roper@intel.com>
+AuthorDate: Thu Apr 6 16:56:21 2023 -0700
+Commit:     Matt Roper <matthew.d.roper@intel.com>
+CommitDate: Fri Apr 7 07:54:08 2023 -0700
+
+    drm/xe: Clean up xe_device_desc
+    
+    Now that most of the characteristics of a device are associated with the
+    graphics and media IPs, the remaining contents of xe_device_desc can be
+    cleaned up a bit:
+    
+     * 'gt' is unused; drop it
+     * DEV_INFO_FOR_EACH_FLAG only covers two flags and is only used in this
+       one file; drop the unnecessary macro complexity
+     * Convert .has_4tile to a single bitfield bit so that it can be packed
+       with the other feature flags
+     * Move 'platform' lower in the structure for better packing
+    
+    Cc: Lucas De Marchi <lucas.demarchi@intel.com>
+    Reviewed-by: Lucas De Marchi <lucas.demarchi@intel.com>
+    Link: https://lore.kernel.org/r/20230406235621.1914492-10-matthew.d.roper@intel.com
+    Signed-off-by: Matt Roper <matthew.d.roper@intel.com>
+=== git am output follows ===
+Applying: drm/xe: fix suspend-resume for dgfx
 
 
-
---===============6480683602689324649==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/xe: fix suspend-resume for dgfx (rev2)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/116200/">https://patchwork.freedesktop.org/series/116200/</a></td></tr>
-<tr><td><b>State:</b></td><td>info</td></tr>
-
-</table>
-
-
-    <p>Participating hosts:<br />
-bat-atsm-2<br />
-bat-dg2-oem2<br />
-bat-adlp-7<br />
-Missing hosts results[0]:<br />
-Results: <a href="https://intel-gfx-ci.01.org/tree/xe/xe-pw-116200v2/index.html">xe-pw-116200v2</a></p>
-
-</body>
-</html>
-
---===============6480683602689324649==--
