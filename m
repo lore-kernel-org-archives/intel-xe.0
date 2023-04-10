@@ -4,48 +4,48 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4C5A6C77B6F
-	for <intel-xe@archiver.kernel.org>; Mon, 10 Apr 2023 18:14:52 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6BBC1C77B75
+	for <intel-xe@archiver.kernel.org>; Mon, 10 Apr 2023 18:32:28 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 10CA510E1DE;
-	Mon, 10 Apr 2023 18:14:52 +0000 (UTC)
-Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
- by gabe.freedesktop.org (Postfix) with ESMTPS id AFD5F10E1AD;
- Mon, 10 Apr 2023 18:14:49 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1FFC410E187;
+	Mon, 10 Apr 2023 18:32:28 +0000 (UTC)
+Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1E20710E117;
+ Mon, 10 Apr 2023 18:32:26 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1681150489; x=1712686489;
+ t=1681151546; x=1712687546;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
  bh=jr21YHmGpKB6Of6v+UPnY1Z78p9e25JmF85u+zYeZxM=;
- b=bczY/XR4AsQtID8I9iPs1teYLZy/khL/2AN0W/m769UgFM3ec8/1oaZZ
- hYjt2jvoEvyFfzNn2R7i3ldmoZsrHnkpQryf1o46W5/n0Pbh+kfXoyyK3
- U7qdO+hQdhqiHoqDe8OKI0RZ80Bhknjx8mfSP6acc2rQzcYcEhw5mhyz6
- WWZ2KHQGASuMATejAKbdVEAfqGaLvJQauv/TujX+wJ/xngdQADH6tzlzD
- QPPckJfKAq1/oSuSIGN8ge+SLk93vwUNIwe1Xf8WnaCYgATbh6ADzAhhC
- 7XedDO4TY5YXOTP6TH8TarDiKzfkbcu8/MDVCAz9ZHUSKUrfN+klbk4yc Q==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10676"; a="346087214"
-X-IronPort-AV: E=Sophos;i="5.98,333,1673942400"; d="scan'208";a="346087214"
-Received: from fmsmga001.fm.intel.com ([10.253.24.23])
- by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 10 Apr 2023 11:14:49 -0700
+ b=elngIcuVq/wkyfMQKY0Cs8ueHtWyK/YCBVgTumydPy5c3G8UPFgdAcM6
+ 8Pm4WbrIu/bmb2Nu1y49AaTclU7Vk1Ru0Sz7bU/yliEEYvaBlhUk9lqg2
+ ObfKR0ek928bEsJVp0Qp+eLdH8VelAjqtz8XdCCLQ0POC+VGjRBVhKCyd
+ NvxedHzVdKdHNzlwZq+eegDu+eWCWlxKkHC57seQzXpl/H4oUfi3mBfLp
+ 8NIOvVFqERt44TbjqgE9oTzNOf8TzXDsJL2U87Zy7NaQAGMIMz85nSbwc
+ pK9f+glWAe4usu+YyFRe3vD4gUE5jFVkbjO/ErxiACQ7d+VcjJu81LenW A==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10676"; a="408563409"
+X-IronPort-AV: E=Sophos;i="5.98,333,1673942400"; d="scan'208";a="408563409"
+Received: from orsmga007.jf.intel.com ([10.7.209.58])
+ by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 10 Apr 2023 11:32:25 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10676"; a="832056831"
-X-IronPort-AV: E=Sophos;i="5.98,333,1673942400"; d="scan'208";a="832056831"
+X-IronPort-AV: E=McAfee;i="6600,9927,10676"; a="681800967"
+X-IronPort-AV: E=Sophos;i="5.98,333,1673942400"; d="scan'208";a="681800967"
 Received: from josouza-mobl2.fso.intel.com ([10.230.18.148])
- by fmsmga001-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 10 Apr 2023 11:14:48 -0700
+ by orsmga007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 10 Apr 2023 11:32:24 -0700
 From: =?UTF-8?q?Jos=C3=A9=20Roberto=20de=20Souza?= <jose.souza@intel.com>
-To: intel-gfx@lists.freedesktop.org
-Date: Mon, 10 Apr 2023 11:14:38 -0700
-Message-Id: <20230410181438.147117-2-jose.souza@intel.com>
+To: intel-xe@lists.freedesktop.org
+Date: Mon, 10 Apr 2023 11:32:15 -0700
+Message-Id: <20230410183219.191543-2-jose.souza@intel.com>
 X-Mailer: git-send-email 2.40.0
-In-Reply-To: <20230410181438.147117-1-jose.souza@intel.com>
-References: <20230410181438.147117-1-jose.souza@intel.com>
+In-Reply-To: <20230410183219.191543-1-jose.souza@intel.com>
+References: <20230410183219.191543-1-jose.souza@intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-xe] [PATCH 2/2] drm/i915: Only initialize dlk phy lock in
+Subject: [Intel-xe] [PATCH v3 2/6] drm/i915: Only initialize dlk phy lock in
  display 12 and newer
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -58,7 +58,7 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-xe@lists.freedesktop.org, Rodrigo Vivi <rodrigo.vivi@intel.com>
+Cc: intel-gfx@lists.freedesktop.org, Rodrigo Vivi <rodrigo.vivi@intel.com>
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
