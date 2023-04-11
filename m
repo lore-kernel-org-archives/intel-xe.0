@@ -4,30 +4,31 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1D127C77B61
-	for <intel-xe@archiver.kernel.org>; Tue, 11 Apr 2023 00:58:42 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 95E44C77B61
+	for <intel-xe@archiver.kernel.org>; Tue, 11 Apr 2023 01:00:34 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id F0E8010E467;
-	Tue, 11 Apr 2023 00:58:41 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6E9C510E467;
+	Tue, 11 Apr 2023 01:00:34 +0000 (UTC)
 Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id 68E4210E467;
- Tue, 11 Apr 2023 00:58:40 +0000 (UTC)
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id D927610E467;
+ Tue, 11 Apr 2023 01:00:32 +0000 (UTC)
 Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 5B456AADE3;
- Tue, 11 Apr 2023 00:58:40 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============0837583296167860079=="
+ by emeril.freedesktop.org (Postfix) with ESMTP id D1958A00CC;
+ Tue, 11 Apr 2023 01:00:32 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Matt Roper" <matthew.d.roper@intel.com>
-Date: Tue, 11 Apr 2023 00:58:40 -0000
-Message-ID: <168117472036.13170.1779867748865173636@emeril.freedesktop.org>
+To: "Matthew Auld" <matthew.auld@intel.com>
+Date: Tue, 11 Apr 2023 01:00:32 -0000
+Message-ID: <168117483283.13173.10472078989088309695@emeril.freedesktop.org>
 X-Patchwork-Hint: ignore
-References: <20230411002800.2779322-1-matthew.d.roper@intel.com>
-In-Reply-To: <20230411002800.2779322-1-matthew.d.roper@intel.com>
-Subject: [Intel-xe] =?utf-8?q?=E2=97=8B_CI=2EBAT=3A_info_for_drm/xe=3A_In?=
- =?utf-8?q?validate_media_GT_TLB_for_objects_mapped_by_media_GT?=
+References: <20230411003610.2780651-1-matthew.d.roper@intel.com>
+In-Reply-To: <20230411003610.2780651-1-matthew.d.roper@intel.com>
+Subject: [Intel-xe] =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_f?=
+ =?utf-8?q?or_Revert_=22drm/xe=3A_Allocate_regset_space_for_Wa=5F160798381?=
+ =?utf-8?q?4_unconditionally=22_=28rev2=29?=
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -44,63 +45,33 @@ Cc: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============0837583296167860079==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
 == Series Details ==
 
-Series: drm/xe: Invalidate media GT TLB for objects mapped by media GT
-URL   : https://patchwork.freedesktop.org/series/116292/
-State : info
+Series: Revert "drm/xe: Allocate regset space for Wa_1607983814 unconditionally" (rev2)
+URL   : https://patchwork.freedesktop.org/series/115520/
+State : success
 
 == Summary ==
 
-Participating hosts:
-bat-atsm-2
-bat-dg2-oem2
-bat-adlp-7
-Missing hosts results[0]:
-Results: [xe-pw-116292v1](https://intel-gfx-ci.01.org/tree/xe/xe-pw-116292v1/index.html)
+=== Applying kernel patches on branch 'drm-xe-next' with base: ===
+commit 9e9d9c1c2444672951809702f96f8257c367771a
+Author:     Matthew Brost <matthew.brost@intel.com>
+AuthorDate: Mon Apr 10 14:26:58 2023 -0700
+Commit:     Matthew Brost <matthew.brost@intel.com>
+CommitDate: Mon Apr 10 15:04:50 2023 -0700
+
+    drm/xe: Don't grab runtime PM ref in engine create IOCTL
+    
+    A VM had a runtime PM ref, a engine can't be created without a VM, and
+    the engine holds a ref to the VM thus this is unnecessary. Beyond that
+    taking a ref in the engine create IOCTL and dropping it in the destroy
+    IOCTL is wrong as a user doesn't have to call the destroy IOCTL (e.g.
+    they can just kill the process or close the driver FD). If a user does
+    this PM refs are leaked.
+    
+    Reviewed-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
+    Signed-off-by: Matthew Brost <matthew.brost@intel.com>
+=== git am output follows ===
+Applying: Revert "drm/xe: Allocate regset space for Wa_1607983814 unconditionally"
 
 
-
---===============0837583296167860079==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/xe: Invalidate media GT TLB for objects mapped by media GT</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/116292/">https://patchwork.freedesktop.org/series/116292/</a></td></tr>
-<tr><td><b>State:</b></td><td>info</td></tr>
-
-</table>
-
-
-    <p>Participating hosts:<br />
-bat-atsm-2<br />
-bat-dg2-oem2<br />
-bat-adlp-7<br />
-Missing hosts results[0]:<br />
-Results: <a href="https://intel-gfx-ci.01.org/tree/xe/xe-pw-116292v1/index.html">xe-pw-116292v1</a></p>
-
-</body>
-</html>
-
---===============0837583296167860079==--
