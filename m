@@ -4,52 +4,64 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 099B6C76196
-	for <intel-xe@archiver.kernel.org>; Tue, 11 Apr 2023 09:20:36 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 14635C76196
+	for <intel-xe@archiver.kernel.org>; Tue, 11 Apr 2023 09:51:45 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D6D1910E513;
-	Tue, 11 Apr 2023 09:20:35 +0000 (UTC)
-Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8CE3710E513
- for <intel-xe@lists.freedesktop.org>; Tue, 11 Apr 2023 09:20:33 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1681204833; x=1712740833;
- h=message-id:date:mime-version:subject:to:references:from:
- in-reply-to:content-transfer-encoding;
- bh=tU4bTZ99FspTBsZoFSqKShCrPCfrNRA7qNVoukOb8Iw=;
- b=V9FPWyHd9ODzVvcfYSamNb6YZxN+JgfWb3WLtaJNLccW22VjlxvO6LXZ
- 3Vid3Pg+h4DAH56fFQ9kCeugxp+mvmjX4dlgUR7YafwuwQu826fO0qVFd
- De1zMb/CyqV+NmPxPlAUCQ23IMj25H6bDq6M+b/WEJ0TMNkV0pV6/3O+i
- TKVwlG1UZ8tXLKmxD6VYnOHzxPHPrlrFkL87vthMFSM8jVkvZBXQhZi11
- 4s8mBGqIsJTKm8FLjiv3KhUWPHdJhI6DReToVnl5+QBBAZvoPR+vQsy5Q
- wBn81uv1ZgNDkwNrKknKBg7F5VClyo0WAS26XJTIgQsUnUNyLxxJX9w8u g==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10676"; a="346237722"
-X-IronPort-AV: E=Sophos;i="5.98,336,1673942400"; d="scan'208";a="346237722"
-Received: from orsmga003.jf.intel.com ([10.7.209.27])
- by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 11 Apr 2023 02:20:33 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10676"; a="638740842"
-X-IronPort-AV: E=Sophos;i="5.98,336,1673942400"; d="scan'208";a="638740842"
-Received: from aburgsta-mobl.ger.corp.intel.com (HELO [10.252.45.152])
- ([10.252.45.152])
- by orsmga003-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 11 Apr 2023 02:20:32 -0700
-Message-ID: <26cd767f-059a-f049-2128-a849d57e86fd@linux.intel.com>
-Date: Tue, 11 Apr 2023 11:20:29 +0200
+	by gabe.freedesktop.org (Postfix) with ESMTP id C5A1410E0E8;
+	Tue, 11 Apr 2023 09:51:44 +0000 (UTC)
+Received: from mail-wr1-x42a.google.com (mail-wr1-x42a.google.com
+ [IPv6:2a00:1450:4864:20::42a])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8ADB710E0BE
+ for <intel-xe@lists.freedesktop.org>; Tue, 11 Apr 2023 09:51:42 +0000 (UTC)
+Received: by mail-wr1-x42a.google.com with SMTP id
+ ffacd0b85a97d-2ef2d5c92f5so600978f8f.0
+ for <intel-xe@lists.freedesktop.org>; Tue, 11 Apr 2023 02:51:42 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=ffwll.ch; s=google; t=1681206700;
+ h=in-reply-to:content-transfer-encoding:content-disposition
+ :mime-version:references:message-id:subject:cc:to:from:date:from:to
+ :cc:subject:date:message-id:reply-to;
+ bh=cO/KbpIpwG39XoaJQMFDB9EcjYRpPuUFygrQZzwo498=;
+ b=Ar+3zNTy/YEqp2q2jjaKYUpiRb+GV7+cozuuhAcCv94ectOKmU3rgOrZM1G8lqbgzp
+ 5TNNcSxBnIMxrpAmW/Q4DOi+ytODvW7TeJ5UDjCOFWNYSC+gWyPC//cCN+s4xWi0EWmw
+ rPr1ekpaY05yE6j2cH6VpiIvntkdLJgJv/1VU=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20210112; t=1681206700;
+ h=in-reply-to:content-transfer-encoding:content-disposition
+ :mime-version:references:message-id:subject:cc:to:from:date
+ :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+ bh=cO/KbpIpwG39XoaJQMFDB9EcjYRpPuUFygrQZzwo498=;
+ b=YntZ6zpmheBIfLQ9+wqpNaHzYbAjEtM97wEgED+RajkqOOuUlY0A1kPitL/CIv+OvM
+ ZMxiU0/EBXUXKb3jw8Qh+1pJrOXDlrLwY8aA8Yq8sYCpLng6slCVHq8Zr2cPSt6092Di
+ yR7En0VPrNqFwbd1p9CYoJXewDFlhsqmVBRz5SpQZ1/1glZrgIqFeuqr+w+YPkdRa5J+
+ BuugH3sLiSUMQXc2UyK8HDKbiAFuTyDH0TRUU64SlDiu3StprluG+bWCzWaT8kuMIRgf
+ VZKAYRRevmk1+7X9/lZWofwIEJnEqgyienHDICNxGUz5N6nO3msS36WjZQ0RVAZyvV67
+ tang==
+X-Gm-Message-State: AAQBX9eblAFaOsRGFU1j/LWkN0+egkd/4alxHsOlg7yGD6UWoJsarJZf
+ S9wRn7293SV2yiYdNgfb1DEvRQ==
+X-Google-Smtp-Source: AKy350aK8PKEPDlC/ZHdSCg2DHo8/4t5TJKNYcE9yTq6R4FE18ucIwO3/kSZKC6AqbbDd1syDZ/0aA==
+X-Received: by 2002:a5d:54c9:0:b0:2e4:c9ac:c492 with SMTP id
+ x9-20020a5d54c9000000b002e4c9acc492mr6345716wrv.1.1681206700577; 
+ Tue, 11 Apr 2023 02:51:40 -0700 (PDT)
+Received: from phenom.ffwll.local (212-51-149-33.fiber7.init7.net.
+ [212.51.149.33]) by smtp.gmail.com with ESMTPSA id
+ y8-20020adfee08000000b002c5a1bd5280sm14047952wrn.95.2023.04.11.02.51.39
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Tue, 11 Apr 2023 02:51:40 -0700 (PDT)
+Date: Tue, 11 Apr 2023 11:51:38 +0200
+From: Daniel Vetter <daniel@ffwll.ch>
+To: Thomas =?iso-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>
+Message-ID: <ZDUtqsNtXcU4W3O6@phenom.ffwll.local>
+References: <20230404200650.11043-1-thomas.hellstrom@linux.intel.com>
+ <20230404200650.11043-3-thomas.hellstrom@linux.intel.com>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Firefox/102.0 Thunderbird/102.9.1
-Content-Language: en-US
-To: Matt Roper <matthew.d.roper@intel.com>, intel-xe@lists.freedesktop.org
-References: <20230410200229.2726648-1-matthew.d.roper@intel.com>
-From: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
-In-Reply-To: <20230410200229.2726648-1-matthew.d.roper@intel.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-Subject: Re: [Intel-xe] [PATCH] drm/xe: Let primary and media GT share a
- kernel_bb_pool
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20230404200650.11043-3-thomas.hellstrom@linux.intel.com>
+X-Operating-System: Linux phenom 6.1.0-7-amd64 
+Subject: Re: [Intel-xe] [PATCH RESEND v3 2/3] drm/ttm: Reduce the number of
+ used allocation orders for TTM pages
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -61,257 +73,148 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Cc: intel-gfx@lists.freedesktop.org, Matthew Auld <matthew.auld@intel.com>,
+ intel-xe@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ Christian =?iso-8859-1?Q?K=F6nig?= <christian.koenig@amd.com>
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Hey,
+On Tue, Apr 04, 2023 at 10:06:49PM +0200, Thomas Hellström wrote:
+> When swapping out, we will split multi-order pages both in order to
+> move them to the swap-cache and to be able to return memory to the
+> swap cache as soon as possible on a page-by-page basis.
+> Reduce the page max order to the system PMD size, as we can then be nicer
+> to the system and avoid splitting gigantic pages.
+> 
+> Looking forward to when we might be able to swap out PMD size folios
+> without splitting, this will also be a benefit.
+> 
+> v2:
+> - Include all orders up to the PMD size (Christian König)
+> v3:
+> - Avoid compilation errors for architectures with special PFN_SHIFTs
+> 
+> Signed-off-by: Thomas Hellström <thomas.hellstrom@linux.intel.com>
+> Reviewed-by: Christian König <christian.koenig@amd.com>
 
-I guess youw ant this patch instead of the full_gt patch from my MTL series?
+Apparently this fails on ppc build testing. Please supply build fix asap
+(or I guess we need to revert). I'm kinda not clear why this only showed
+up when I merged the drm-misc-next pr into drm-next ...
+-Daniel
 
-Makes sense.
-
-On 2023-04-10 22:02, Matt Roper wrote:
-> The media GT requires a valid gt->kernel_bb_pool during driver probe to
-> allocate the WA and NOOP batchbuffers used to record default context
-> images.  Dynamically allocate the bb_pools so that the primary and media
-> GT can use the same pool during driver init.
->
-> The media GT still shouldn't be need the USM pool, so only hook up the
-> kernel_bb_pool for now.
->
-> Cc: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
-> Signed-off-by: Matt Roper <matthew.d.roper@intel.com>
 > ---
->   drivers/gpu/drm/xe/xe_bb.c         |  2 +-
->   drivers/gpu/drm/xe/xe_gt.c         | 32 ++++++++++++++++++------------
->   drivers/gpu/drm/xe/xe_gt_debugfs.c |  4 ++--
->   drivers/gpu/drm/xe/xe_gt_types.h   | 10 +++++++---
->   drivers/gpu/drm/xe/xe_migrate.c    |  4 ++--
->   drivers/gpu/drm/xe/xe_sa.c         | 23 ++++++++++++++-------
->   drivers/gpu/drm/xe/xe_sa.h         |  4 +---
->   7 files changed, 48 insertions(+), 31 deletions(-)
->
-> diff --git a/drivers/gpu/drm/xe/xe_bb.c b/drivers/gpu/drm/xe/xe_bb.c
-> index 7172801ee570..3deb2d55f421 100644
-> --- a/drivers/gpu/drm/xe/xe_bb.c
-> +++ b/drivers/gpu/drm/xe/xe_bb.c
-> @@ -42,7 +42,7 @@ struct xe_bb *xe_bb_new(struct xe_gt *gt, u32 dwords, bool usm)
->   	 * space to accomodate the platform-specific hardware prefetch
->   	 * requirements.
->   	 */
-> -	bb->bo = xe_sa_bo_new(!usm ? &gt->kernel_bb_pool : &gt->usm.bb_pool,
-> +	bb->bo = xe_sa_bo_new(!usm ? gt->kernel_bb_pool : gt->usm.bb_pool,
->   			      4 * (dwords + 1) + bb_prefetch(gt));
->   	if (IS_ERR(bb->bo)) {
->   		err = PTR_ERR(bb->bo);
-> diff --git a/drivers/gpu/drm/xe/xe_gt.c b/drivers/gpu/drm/xe/xe_gt.c
-> index daaf93e23bbf..4186f7f0d42f 100644
-> --- a/drivers/gpu/drm/xe/xe_gt.c
-> +++ b/drivers/gpu/drm/xe/xe_gt.c
-> @@ -137,7 +137,7 @@ static int emit_nop_job(struct xe_gt *gt, struct xe_engine *e)
->   	if (IS_ERR(bb))
->   		return PTR_ERR(bb);
->   
-> -	batch_ofs = xe_bo_ggtt_addr(gt->kernel_bb_pool.bo);
-> +	batch_ofs = xe_bo_ggtt_addr(gt->kernel_bb_pool->bo);
->   	job = xe_bb_create_wa_job(e, bb, batch_ofs);
->   	if (IS_ERR(job)) {
->   		xe_bb_free(bb, NULL);
-> @@ -186,7 +186,7 @@ static int emit_wa_job(struct xe_gt *gt, struct xe_engine *e)
->   		}
->   	}
->   
-> -	batch_ofs = xe_bo_ggtt_addr(gt->kernel_bb_pool.bo);
-> +	batch_ofs = xe_bo_ggtt_addr(gt->kernel_bb_pool->bo);
->   	job = xe_bb_create_wa_job(e, bb, batch_ofs);
->   	if (IS_ERR(job)) {
->   		xe_bb_free(bb, NULL);
-> @@ -439,26 +439,32 @@ static int all_fw_domain_init(struct xe_gt *gt)
->   	if (err)
->   		goto err_force_wake;
->   
-> -	/*
-> -	 * FIXME: This should be ok as SA should only be used by gt->migrate and
-> -	 * vm->gt->migrate and both should be pointing to a non-media GT. But to
-> -	 * realy safe, convert gt->kernel_bb_pool to a pointer and point a media
-> -	 * GT to the kernel_bb_pool on a real tile.
-> -	 */
->   	if (!xe_gt_is_media_type(gt)) {
-> -		err = xe_sa_bo_manager_init(gt, &gt->kernel_bb_pool, SZ_1M, 16);
-> -		if (err)
-> +		gt->kernel_bb_pool = xe_sa_bo_manager_init(gt, SZ_1M, 16);
-
-Can you rename it to _create()?
-
-Otherwise:
-
-Reviewed-by: Maarten Lankhorst <maarten.lankhorst@intel.com>
-
-> +		if (IS_ERR(gt->kernel_bb_pool)) {
-> +			err = PTR_ERR(gt->kernel_bb_pool);
->   			goto err_force_wake;
-> +		}
->   
->   		/*
->   		 * USM has its only SA pool to non-block behind user operations
->   		 */
->   		if (gt_to_xe(gt)->info.supports_usm) {
-> -			err = xe_sa_bo_manager_init(gt, &gt->usm.bb_pool,
-> -						    SZ_1M, 16);
-> -			if (err)
-> +			gt->usm.bb_pool = xe_sa_bo_manager_init(gt, SZ_1M, 16);
-> +			if (IS_ERR(gt->usm.bb_pool)) {
-> +				err = PTR_ERR(gt->usm.bb_pool);
->   				goto err_force_wake;
-> +			}
->   		}
-> +	} else {
-> +		struct xe_gt *full_gt = xe_find_full_gt(gt);
+>  drivers/gpu/drm/ttm/ttm_pool.c | 30 +++++++++++++++++++-----------
+>  1 file changed, 19 insertions(+), 11 deletions(-)
+> 
+> diff --git a/drivers/gpu/drm/ttm/ttm_pool.c b/drivers/gpu/drm/ttm/ttm_pool.c
+> index dfce896c4bae..18c342a919a2 100644
+> --- a/drivers/gpu/drm/ttm/ttm_pool.c
+> +++ b/drivers/gpu/drm/ttm/ttm_pool.c
+> @@ -47,6 +47,11 @@
+>  
+>  #include "ttm_module.h"
+>  
+> +#define TTM_MAX_ORDER (PMD_SHIFT - PAGE_SHIFT)
+> +#define __TTM_DIM_ORDER (TTM_MAX_ORDER + 1)
+> +/* Some architectures have a weird PMD_SHIFT */
+> +#define TTM_DIM_ORDER (__TTM_DIM_ORDER <= MAX_ORDER ? __TTM_DIM_ORDER : MAX_ORDER)
 > +
-> +		/*
-> +		 * Media GT's kernel_bb_pool is only used while recording the
-> +		 * default context during GT init.  The USM pool should never
-> +		 * be needed on the media GT.
-> +		 */
-> +		gt->kernel_bb_pool = full_gt->kernel_bb_pool;
->   	}
->   
->   	if (!xe_gt_is_media_type(gt)) {
-> diff --git a/drivers/gpu/drm/xe/xe_gt_debugfs.c b/drivers/gpu/drm/xe/xe_gt_debugfs.c
-> index 9fab8017490f..c45486c2015a 100644
-> --- a/drivers/gpu/drm/xe/xe_gt_debugfs.c
-> +++ b/drivers/gpu/drm/xe/xe_gt_debugfs.c
-> @@ -66,8 +66,8 @@ static int sa_info(struct seq_file *m, void *data)
->   	struct xe_gt *gt = node_to_gt(m->private);
->   	struct drm_printer p = drm_seq_file_printer(m);
->   
-> -	drm_suballoc_dump_debug_info(&gt->kernel_bb_pool.base, &p,
-> -				     gt->kernel_bb_pool.gpu_addr);
-> +	drm_suballoc_dump_debug_info(&gt->kernel_bb_pool->base, &p,
-> +				     gt->kernel_bb_pool->gpu_addr);
->   
->   	return 0;
->   }
-> diff --git a/drivers/gpu/drm/xe/xe_gt_types.h b/drivers/gpu/drm/xe/xe_gt_types.h
-> index 9d3117fad2e4..7c47d67aa8be 100644
-> --- a/drivers/gpu/drm/xe/xe_gt_types.h
-> +++ b/drivers/gpu/drm/xe/xe_gt_types.h
-> @@ -214,7 +214,7 @@ struct xe_gt {
->   		 * behind any user operations which may have resulted in a
->   		 * fault.
->   		 */
-> -		struct xe_sa_manager bb_pool;
-> +		struct xe_sa_manager *bb_pool;
->   		/**
->   		 * @reserved_bcs_instance: reserved BCS instance used for USM
->   		 * operations (e.g. mmigrations, fixing page tables)
-> @@ -304,8 +304,12 @@ struct xe_gt {
->   	/** @hw_engines: hardware engines on the GT */
->   	struct xe_hw_engine hw_engines[XE_NUM_HW_ENGINES];
->   
-> -	/** @kernel_bb_pool: Pool from which batchbuffers are allocated */
-> -	struct xe_sa_manager kernel_bb_pool;
-> +	/**
-> +	 * @kernel_bb_pool: Pool from which batchbuffers are allocated.
-> +	 *
-> +	 * Media GT shares a pool with its primary GT.
-> +	 */
-> +	struct xe_sa_manager *kernel_bb_pool;
->   
->   	/** @migrate: Migration helper for vram blits and clearing */
->   	struct xe_migrate *migrate;
-> diff --git a/drivers/gpu/drm/xe/xe_migrate.c b/drivers/gpu/drm/xe/xe_migrate.c
-> index e8978440c725..8686a2a7b035 100644
-> --- a/drivers/gpu/drm/xe/xe_migrate.c
-> +++ b/drivers/gpu/drm/xe/xe_migrate.c
-> @@ -161,7 +161,7 @@ static int xe_migrate_prepare_vm(struct xe_gt *gt, struct xe_migrate *m,
->   	u32 num_entries = NUM_PT_SLOTS, num_level = vm->pt_root[id]->level;
->   	u32 map_ofs, level, i;
->   	struct xe_device *xe = gt_to_xe(m->gt);
-> -	struct xe_bo *bo, *batch = gt->kernel_bb_pool.bo;
-> +	struct xe_bo *bo, *batch = gt->kernel_bb_pool->bo;
->   	u64 entry;
->   	int ret;
->   
-> @@ -229,7 +229,7 @@ static int xe_migrate_prepare_vm(struct xe_gt *gt, struct xe_migrate *m,
->   		m->batch_base_ofs = xe_migrate_vram_ofs(batch_addr);
->   
->   		if (xe->info.supports_usm) {
-> -			batch = gt->usm.bb_pool.bo;
-> +			batch = gt->usm.bb_pool->bo;
->   			batch_addr = xe_bo_addr(batch, 0, GEN8_PAGE_SIZE,
->   						&is_vram);
->   			m->usm_batch_base_ofs = xe_migrate_vram_ofs(batch_addr);
-> diff --git a/drivers/gpu/drm/xe/xe_sa.c b/drivers/gpu/drm/xe/xe_sa.c
-> index 96c4b0ef24fe..c16f7c14ff52 100644
-> --- a/drivers/gpu/drm/xe/xe_sa.c
-> +++ b/drivers/gpu/drm/xe/xe_sa.c
-> @@ -33,13 +33,18 @@ static void xe_sa_bo_manager_fini(struct drm_device *drm, void *arg)
->   	sa_manager->bo = NULL;
->   }
->   
-> -int xe_sa_bo_manager_init(struct xe_gt *gt,
-> -			  struct xe_sa_manager *sa_manager,
-> -			  u32 size, u32 align)
-> +struct xe_sa_manager *xe_sa_bo_manager_init(struct xe_gt *gt, u32 size, u32 align)
->   {
->   	struct xe_device *xe = gt_to_xe(gt);
->   	u32 managed_size = size - SZ_4K;
->   	struct xe_bo *bo;
-> +	int ret;
+>  /**
+>   * struct ttm_pool_dma - Helper object for coherent DMA mappings
+>   *
+> @@ -65,11 +70,11 @@ module_param(page_pool_size, ulong, 0644);
+>  
+>  static atomic_long_t allocated_pages;
+>  
+> -static struct ttm_pool_type global_write_combined[MAX_ORDER];
+> -static struct ttm_pool_type global_uncached[MAX_ORDER];
+> +static struct ttm_pool_type global_write_combined[TTM_DIM_ORDER];
+> +static struct ttm_pool_type global_uncached[TTM_DIM_ORDER];
+>  
+> -static struct ttm_pool_type global_dma32_write_combined[MAX_ORDER];
+> -static struct ttm_pool_type global_dma32_uncached[MAX_ORDER];
+> +static struct ttm_pool_type global_dma32_write_combined[TTM_DIM_ORDER];
+> +static struct ttm_pool_type global_dma32_uncached[TTM_DIM_ORDER];
+>  
+>  static spinlock_t shrinker_lock;
+>  static struct list_head shrinker_list;
+> @@ -444,7 +449,7 @@ int ttm_pool_alloc(struct ttm_pool *pool, struct ttm_tt *tt,
+>  	else
+>  		gfp_flags |= GFP_HIGHUSER;
+>  
+> -	for (order = min_t(unsigned int, MAX_ORDER - 1, __fls(num_pages));
+> +	for (order = min_t(unsigned int, TTM_MAX_ORDER, __fls(num_pages));
+>  	     num_pages;
+>  	     order = min_t(unsigned int, order, __fls(num_pages))) {
+>  		struct ttm_pool_type *pt;
+> @@ -563,7 +568,7 @@ void ttm_pool_init(struct ttm_pool *pool, struct device *dev,
+>  
+>  	if (use_dma_alloc) {
+>  		for (i = 0; i < TTM_NUM_CACHING_TYPES; ++i)
+> -			for (j = 0; j < MAX_ORDER; ++j)
+> +			for (j = 0; j < TTM_DIM_ORDER; ++j)
+>  				ttm_pool_type_init(&pool->caching[i].orders[j],
+>  						   pool, i, j);
+>  	}
+> @@ -583,7 +588,7 @@ void ttm_pool_fini(struct ttm_pool *pool)
+>  
+>  	if (pool->use_dma_alloc) {
+>  		for (i = 0; i < TTM_NUM_CACHING_TYPES; ++i)
+> -			for (j = 0; j < MAX_ORDER; ++j)
+> +			for (j = 0; j < TTM_DIM_ORDER; ++j)
+>  				ttm_pool_type_fini(&pool->caching[i].orders[j]);
+>  	}
+>  
+> @@ -637,7 +642,7 @@ static void ttm_pool_debugfs_header(struct seq_file *m)
+>  	unsigned int i;
+>  
+>  	seq_puts(m, "\t ");
+> -	for (i = 0; i < MAX_ORDER; ++i)
+> +	for (i = 0; i < TTM_DIM_ORDER; ++i)
+>  		seq_printf(m, " ---%2u---", i);
+>  	seq_puts(m, "\n");
+>  }
+> @@ -648,7 +653,7 @@ static void ttm_pool_debugfs_orders(struct ttm_pool_type *pt,
+>  {
+>  	unsigned int i;
+>  
+> -	for (i = 0; i < MAX_ORDER; ++i)
+> +	for (i = 0; i < TTM_DIM_ORDER; ++i)
+>  		seq_printf(m, " %8u", ttm_pool_type_count(&pt[i]));
+>  	seq_puts(m, "\n");
+>  }
+> @@ -751,13 +756,16 @@ int ttm_pool_mgr_init(unsigned long num_pages)
+>  {
+>  	unsigned int i;
+>  
+> +	BUILD_BUG_ON(TTM_DIM_ORDER > MAX_ORDER);
+> +	BUILD_BUG_ON(TTM_DIM_ORDER < 1);
 > +
-> +	struct xe_sa_manager *sa_manager = drmm_kzalloc(&gt_to_xe(gt)->drm,
-> +							sizeof(*sa_manager),
-> +							GFP_KERNEL);
-> +	if (!sa_manager)
-> +		return ERR_PTR(-ENOMEM);
->   
->   	sa_manager->bo = NULL;
->   
-> @@ -49,7 +54,7 @@ int xe_sa_bo_manager_init(struct xe_gt *gt,
->   	if (IS_ERR(bo)) {
->   		drm_err(&xe->drm, "failed to allocate bo for sa manager: %ld\n",
->   			PTR_ERR(bo));
-> -		return PTR_ERR(bo);
-> +		return (struct xe_sa_manager *)bo;
->   	}
->   	sa_manager->bo = bo;
->   
-> @@ -61,15 +66,19 @@ int xe_sa_bo_manager_init(struct xe_gt *gt,
->   		if (!sa_manager->cpu_ptr) {
->   			xe_bo_unpin_map_no_vm(sa_manager->bo);
->   			sa_manager->bo = NULL;
-> -			return -ENOMEM;
-> +			return ERR_PTR(-ENOMEM);
->   		}
->   	} else {
->   		sa_manager->cpu_ptr = bo->vmap.vaddr;
->   		memset(sa_manager->cpu_ptr, 0, bo->ttm.base.size);
->   	}
->   
-> -	return drmm_add_action_or_reset(&xe->drm, xe_sa_bo_manager_fini,
-> -					sa_manager);
-> +	ret = drmm_add_action_or_reset(&xe->drm, xe_sa_bo_manager_fini,
-> +				       sa_manager);
-> +	if (ret)
-> +		return ERR_PTR(ret);
-> +
-> +	return sa_manager;
->   }
->   
->   struct drm_suballoc *xe_sa_bo_new(struct xe_sa_manager *sa_manager,
-> diff --git a/drivers/gpu/drm/xe/xe_sa.h b/drivers/gpu/drm/xe/xe_sa.h
-> index 742282ef7179..3063fb34c720 100644
-> --- a/drivers/gpu/drm/xe/xe_sa.h
-> +++ b/drivers/gpu/drm/xe/xe_sa.h
-> @@ -11,9 +11,7 @@ struct dma_fence;
->   struct xe_bo;
->   struct xe_gt;
->   
-> -int xe_sa_bo_manager_init(struct xe_gt *gt,
-> -			  struct xe_sa_manager *sa_manager,
-> -			  u32 size, u32 align);
-> +struct xe_sa_manager *xe_sa_bo_manager_init(struct xe_gt *gt, u32 size, u32 align);
->   
->   struct drm_suballoc *xe_sa_bo_new(struct xe_sa_manager *sa_manager,
->   				  u32 size);
+>  	if (!page_pool_size)
+>  		page_pool_size = num_pages;
+>  
+>  	spin_lock_init(&shrinker_lock);
+>  	INIT_LIST_HEAD(&shrinker_list);
+>  
+> -	for (i = 0; i < MAX_ORDER; ++i) {
+> +	for (i = 0; i < TTM_DIM_ORDER; ++i) {
+>  		ttm_pool_type_init(&global_write_combined[i], NULL,
+>  				   ttm_write_combined, i);
+>  		ttm_pool_type_init(&global_uncached[i], NULL, ttm_uncached, i);
+> @@ -790,7 +798,7 @@ void ttm_pool_mgr_fini(void)
+>  {
+>  	unsigned int i;
+>  
+> -	for (i = 0; i < MAX_ORDER; ++i) {
+> +	for (i = 0; i < TTM_DIM_ORDER; ++i) {
+>  		ttm_pool_type_fini(&global_write_combined[i]);
+>  		ttm_pool_type_fini(&global_uncached[i]);
+>  
+> -- 
+> 2.39.2
+> 
+
+-- 
+Daniel Vetter
+Software Engineer, Intel Corporation
+http://blog.ffwll.ch
