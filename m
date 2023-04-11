@@ -4,30 +4,30 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 48964C76196
-	for <intel-xe@archiver.kernel.org>; Tue, 11 Apr 2023 10:33:31 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 33BAAC76196
+	for <intel-xe@archiver.kernel.org>; Tue, 11 Apr 2023 10:35:26 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E7D7410E0B0;
-	Tue, 11 Apr 2023 10:33:30 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0CFC610E13E;
+	Tue, 11 Apr 2023 10:35:26 +0000 (UTC)
 Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id 015D710E096;
- Tue, 11 Apr 2023 10:33:29 +0000 (UTC)
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id E184010E0B0;
+ Tue, 11 Apr 2023 10:35:23 +0000 (UTC)
 Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id EDEB2A7DFF;
- Tue, 11 Apr 2023 10:33:28 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============4252386271710901167=="
+ by emeril.freedesktop.org (Postfix) with ESMTP id D9965A9932;
+ Tue, 11 Apr 2023 10:35:23 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: "Matthew Auld" <matthew.auld@intel.com>
-Date: Tue, 11 Apr 2023 10:33:28 -0000
-Message-ID: <168120920896.13173.3289563906058984176@emeril.freedesktop.org>
+Date: Tue, 11 Apr 2023 10:35:23 -0000
+Message-ID: <168120932388.13171.1568966431663090758@emeril.freedesktop.org>
 X-Patchwork-Hint: ignore
-References: <20230411100458.24314-1-matthew.auld@intel.com>
-In-Reply-To: <20230411100458.24314-1-matthew.auld@intel.com>
-Subject: [Intel-xe] =?utf-8?q?=E2=97=8B_CI=2EBAT=3A_info_for_drm/xe/mmio?=
- =?utf-8?q?=3A_stop_incorrectly_triggering_drm=5Fwarn?=
+References: <20230331084628.421814-1-matthew.auld@intel.com>
+In-Reply-To: <20230331084628.421814-1-matthew.auld@intel.com>
+Subject: [Intel-xe] =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_f?=
+ =?utf-8?q?or_uAPI_bits_for_small-bar_=28rev5=29?=
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -44,63 +44,37 @@ Cc: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============4252386271710901167==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
 == Series Details ==
 
-Series: drm/xe/mmio: stop incorrectly triggering drm_warn
-URL   : https://patchwork.freedesktop.org/series/116304/
-State : info
+Series: uAPI bits for small-bar (rev5)
+URL   : https://patchwork.freedesktop.org/series/115515/
+State : success
 
 == Summary ==
 
-Participating hosts:
-bat-atsm-2
-bat-dg2-oem2
-bat-adlp-7
-Missing hosts results[0]:
-Results: [xe-pw-116304v1](https://intel-gfx-ci.01.org/tree/xe/xe-pw-116304v1/index.html)
+=== Applying kernel patches on branch 'drm-xe-next' with base: ===
+commit 9e9d9c1c2444672951809702f96f8257c367771a
+Author:     Matthew Brost <matthew.brost@intel.com>
+AuthorDate: Mon Apr 10 14:26:58 2023 -0700
+Commit:     Matthew Brost <matthew.brost@intel.com>
+CommitDate: Mon Apr 10 15:04:50 2023 -0700
+
+    drm/xe: Don't grab runtime PM ref in engine create IOCTL
+    
+    A VM had a runtime PM ref, a engine can't be created without a VM, and
+    the engine holds a ref to the VM thus this is unnecessary. Beyond that
+    taking a ref in the engine create IOCTL and dropping it in the destroy
+    IOCTL is wrong as a user doesn't have to call the destroy IOCTL (e.g.
+    they can just kill the process or close the driver FD). If a user does
+    this PM refs are leaked.
+    
+    Reviewed-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
+    Signed-off-by: Matthew Brost <matthew.brost@intel.com>
+=== git am output follows ===
+Applying: drm/xe/uapi: restrict system wide accounting
+Applying: drm/xe/uapi: add some kernel-doc for region query
+Applying: drm/xe/bo: support tiered vram allocation for small-bar
+Applying: drm/xe/uapi: add the userspace bits for small-bar
+Applying: drm/xe: fully turn on small-bar support
 
 
-
---===============4252386271710901167==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/xe/mmio: stop incorrectly triggering drm_warn</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/116304/">https://patchwork.freedesktop.org/series/116304/</a></td></tr>
-<tr><td><b>State:</b></td><td>info</td></tr>
-
-</table>
-
-
-    <p>Participating hosts:<br />
-bat-atsm-2<br />
-bat-dg2-oem2<br />
-bat-adlp-7<br />
-Missing hosts results[0]:<br />
-Results: <a href="https://intel-gfx-ci.01.org/tree/xe/xe-pw-116304v1/index.html">xe-pw-116304v1</a></p>
-
-</body>
-</html>
-
---===============4252386271710901167==--
