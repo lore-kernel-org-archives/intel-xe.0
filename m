@@ -4,66 +4,64 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7206BC77B6F
-	for <intel-xe@archiver.kernel.org>; Tue, 11 Apr 2023 13:45:49 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7D271C77B6F
+	for <intel-xe@archiver.kernel.org>; Tue, 11 Apr 2023 14:07:31 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 40CC010E536;
-	Tue, 11 Apr 2023 13:45:49 +0000 (UTC)
-Received: from mail-wr1-x434.google.com (mail-wr1-x434.google.com
- [IPv6:2a00:1450:4864:20::434])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5326710E4BD
- for <intel-xe@lists.freedesktop.org>; Tue, 11 Apr 2023 13:45:47 +0000 (UTC)
-Received: by mail-wr1-x434.google.com with SMTP id
- ffacd0b85a97d-2ef67bbb136so353138f8f.1
- for <intel-xe@lists.freedesktop.org>; Tue, 11 Apr 2023 06:45:47 -0700 (PDT)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3D0BF10E562;
+	Tue, 11 Apr 2023 14:07:31 +0000 (UTC)
+Received: from mail-wr1-x435.google.com (mail-wr1-x435.google.com
+ [IPv6:2a00:1450:4864:20::435])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 11BCC10E559
+ for <intel-xe@lists.freedesktop.org>; Tue, 11 Apr 2023 14:07:27 +0000 (UTC)
+Received: by mail-wr1-x435.google.com with SMTP id
+ ffacd0b85a97d-2f27a10f72bso160269f8f.0
+ for <intel-xe@lists.freedesktop.org>; Tue, 11 Apr 2023 07:07:27 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=ffwll.ch; s=google; t=1681220745; x=1683812745;
- h=in-reply-to:content-transfer-encoding:content-disposition
- :mime-version:references:message-id:subject:cc:to:from:date:from:to
- :cc:subject:date:message-id:reply-to;
- bh=gX5R1hN0JcwDizHpFIUU3PcOoEbyY5rXcs6PzWDeDeQ=;
- b=kSZel1iKl63iFvuMF0MXh4WBoY2PyrvD8HAbLkAlqQ9pzB9D8VtMCC0L0XxN+B/iD8
- GLXixk/uZ9Glq0uMqVtCryWgOC35knJ1JAvwmbFDX45om6wtJW9+O4IOBpSXqiAU8kcx
- EFJAhc3jr4nulresQnNlL0g5yE0sB8JVKiwaM=
+ d=ffwll.ch; s=google; t=1681222046; x=1683814046;
+ h=in-reply-to:content-disposition:mime-version:references:message-id
+ :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+ bh=S1Yf3WxEaFPMKcpFiR6E8tEJoZd1manaqzwwKyuE1pc=;
+ b=I3DiAcXXyrmzX5ef5grIIIp/NXsl4N9eo6SS7n23B9qVEgc1w/PBBMLwB5jZFF9kfA
+ +Ndro2PKya+5JFzfWqZeucscUgyd+tn2baxygvkwz0xbBOEY0XDHaXVsdH91U2BRKXKi
+ UhNsABBqmzXW/Xq7n4305y9mrvnztqG6Y8kAk=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20210112; t=1681220745; x=1683812745;
- h=in-reply-to:content-transfer-encoding:content-disposition
- :mime-version:references:message-id:subject:cc:to:from:date
- :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
- bh=gX5R1hN0JcwDizHpFIUU3PcOoEbyY5rXcs6PzWDeDeQ=;
- b=ckmgyp1z3ccsinWpermNaF4HXQIjGDBZopGxX1eLcBrcY9k3p2ZSbCfPMzU4HAyHIM
- E5NAaWh+Qh3AbAvk5hriFnJnWdGBwY9t1J93+fnjHylETReoyqC8g53nAx0ut/m/OHrP
- y9VNiAB7/8YX8Yr8I7e4OXWFS2VQ7pf8GqsH5rhSGvGOYOQ0YwRoq0L07I4Oq+OxplIS
- nXtlqTA21rk1J+THhjzDiKnpoPXECQWUvrosetj8SLipOVpBMeekuGI6GeiX+F3rFy8J
- cww9N2kMVR+Xwa/I1suulWgtarTD8saUBUKiG1Bq8wpCmcscbxweg1RVmhjipha+p+LV
- bR3A==
-X-Gm-Message-State: AAQBX9czR6cbKmvBJgpPha1KcM+YZpsWXoSB3h6T235JL1eDugR1Cg/G
- wbPxskzDY6NqE6I5R9Iknr6UFg==
-X-Google-Smtp-Source: AKy350Ytdc03uUNrrtHbdb3ZTObEe+fNHpCvP4qyE2i51MuL564MBb3IWbsdn1t+S+FbvE92n9/VEw==
-X-Received: by 2002:a05:6000:1050:b0:2f0:843:fc0d with SMTP id
- c16-20020a056000105000b002f00843fc0dmr4211011wrx.5.1681220745272; 
- Tue, 11 Apr 2023 06:45:45 -0700 (PDT)
+ d=1e100.net; s=20210112; t=1681222046; x=1683814046;
+ h=in-reply-to:content-disposition:mime-version:references:message-id
+ :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+ :message-id:reply-to;
+ bh=S1Yf3WxEaFPMKcpFiR6E8tEJoZd1manaqzwwKyuE1pc=;
+ b=Xlv88TZfdRVDloDI+cVfYyQt3SZhjcZAs/L/1x+SJDAVBHruLLR8vYoxad8JdL3LmO
+ Qadck9eSVsPQ7plAu2M+ihYAHAUMs0+jzVsoaq8zGvSvoRX4m7eHA+9aPkobDPPDQYsX
+ LbwnVq6t3aVs9FAJMGH6BPSeZVaIRPwn6iizUHikMpaM6M5jXGUF7CMb9oz0lnh6ag/t
+ zAhIZ6GbZoeAqdQzxD0kCt32HaVD7UD3dkEUKBpk4KJXgXZeYl67Hy9sjoM6M9dlULJZ
+ kHD7c5VrIOw6X7KHz7tfX/bTmSUylKn6XIwUj5vP0Mk89qF0LihDhF20DYIuCpyLq5a/
+ k4fg==
+X-Gm-Message-State: AAQBX9crzvCA1kieycDYTfMGxyHvKTU0AoFF4YHuf193jLjoo876DWDV
+ zmCpQCrOtfaAA0xnuQNKPsv8Ng==
+X-Google-Smtp-Source: AKy350aUo/zZrPvvBbfyXuf0Tj9dpj3W23Vi54J+qCrP2VXD18i89TEfRCsrjXghtg8v9cz/CxbEDA==
+X-Received: by 2002:a5d:6588:0:b0:2e4:aa61:a50 with SMTP id
+ q8-20020a5d6588000000b002e4aa610a50mr7592775wru.1.1681222045825; 
+ Tue, 11 Apr 2023 07:07:25 -0700 (PDT)
 Received: from phenom.ffwll.local (212-51-149-33.fiber7.init7.net.
  [212.51.149.33]) by smtp.gmail.com with ESMTPSA id
- l1-20020adfe581000000b002f22c44e974sm4808680wrm.102.2023.04.11.06.45.44
+ f4-20020adff8c4000000b002cff06039d7sm14685397wrq.39.2023.04.11.07.07.23
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Tue, 11 Apr 2023 06:45:44 -0700 (PDT)
-Date: Tue, 11 Apr 2023 15:45:42 +0200
+ Tue, 11 Apr 2023 07:07:25 -0700 (PDT)
+Date: Tue, 11 Apr 2023 16:07:22 +0200
 From: Daniel Vetter <daniel@ffwll.ch>
-To: Christian =?iso-8859-1?Q?K=F6nig?= <christian.koenig@amd.com>
-Message-ID: <ZDVkhtx1/uToLM5R@phenom.ffwll.local>
-References: <20230404200650.11043-1-thomas.hellstrom@linux.intel.com>
- <20230404200650.11043-3-thomas.hellstrom@linux.intel.com>
- <ZDUtqsNtXcU4W3O6@phenom.ffwll.local>
- <33b145f1-fce5-95f1-357d-dda128e3548d@amd.com>
+To: Asahi Lina <lina@asahilina.net>
+Message-ID: <ZDVpmpDHKx5KyD2M@phenom.ffwll.local>
+References: <20230404002211.3611376-1-matthew.brost@intel.com>
+ <50fff1d4-9982-d60d-23e0-66c2020af5bf@asahilina.net>
+ <ZCuEP2NnOich9kuI@DUT025-TGLU.fm.intel.com>
+ <b15831b9-7bca-7e78-7abc-bc06e99b7699@asahilina.net>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <33b145f1-fce5-95f1-357d-dda128e3548d@amd.com>
+In-Reply-To: <b15831b9-7bca-7e78-7abc-bc06e99b7699@asahilina.net>
 X-Operating-System: Linux phenom 6.1.0-7-amd64 
-Subject: Re: [Intel-xe] [PATCH RESEND v3 2/3] drm/ttm: Reduce the number of
- used allocation orders for TTM pages
+Subject: Re: [Intel-xe] [RFC PATCH 00/10] Xe DRM scheduler and long running
+ workload plans
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -75,149 +73,181 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- Matthew Auld <matthew.auld@intel.com>, Daniel Vetter <daniel@ffwll.ch>,
- intel-xe@lists.freedesktop.org
+Cc: airlied@linux.ie, dri-devel@lists.freedesktop.org, christian.koenig@amd.com,
+ boris.brezillon@collabora.com, daniel@ffwll.ch, robdclark@chromium.org,
+ intel-xe@lists.freedesktop.org, faith.ekstrand@collabora.com
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Tue, Apr 11, 2023 at 02:11:18PM +0200, Christian König wrote:
-> Am 11.04.23 um 11:51 schrieb Daniel Vetter:
-> > On Tue, Apr 04, 2023 at 10:06:49PM +0200, Thomas Hellström wrote:
-> > > When swapping out, we will split multi-order pages both in order to
-> > > move them to the swap-cache and to be able to return memory to the
-> > > swap cache as soon as possible on a page-by-page basis.
-> > > Reduce the page max order to the system PMD size, as we can then be nicer
-> > > to the system and avoid splitting gigantic pages.
+On Sat, Apr 08, 2023 at 04:05:20PM +0900, Asahi Lina wrote:
+> On 04/04/2023 10.58, Matthew Brost wrote:
+> > On Tue, Apr 04, 2023 at 10:07:48AM +0900, Asahi Lina wrote:
+> > > Hi, thanks for the Cc!
 > > > 
-> > > Looking forward to when we might be able to swap out PMD size folios
-> > > without splitting, this will also be a benefit.
-> > > 
-> > > v2:
-> > > - Include all orders up to the PMD size (Christian König)
-> > > v3:
-> > > - Avoid compilation errors for architectures with special PFN_SHIFTs
-> > > 
-> > > Signed-off-by: Thomas Hellström <thomas.hellstrom@linux.intel.com>
-> > > Reviewed-by: Christian König <christian.koenig@amd.com>
-> > Apparently this fails on ppc build testing. Please supply build fix asap
-> > (or I guess we need to revert). I'm kinda not clear why this only showed
-> > up when I merged the drm-misc-next pr into drm-next ...
-> 
-> I'm really wondering this as well. It looks like PMD_SHIFT isn't a constant
-> on this particular platform.
-> 
-> But from what I can find in the upstream 6.2 kernel PMD_SHIFT always seems
-> to be a constant.
-> 
-> So how exactly can that here break?
-
-There's some in-flight patches to rework MAX_ORDER and other things in
-linux-next, maybe it's recent? If you check out linux-next then you need
-to reapply the patch (since sfr reverted it).
--Daniel
-
-> 
-> Christian.
-> 
-> > -Daniel
 > > 
-> > > ---
-> > >   drivers/gpu/drm/ttm/ttm_pool.c | 30 +++++++++++++++++++-----------
-> > >   1 file changed, 19 insertions(+), 11 deletions(-)
+> > No problem.
+> > 
+> > > On 04/04/2023 09.22, Matthew Brost wrote:
+> > > > Hello,
+> > > > 
+> > > > As a prerequisite to merging the new Intel Xe DRM driver [1] [2], we
+> > > > have been asked to merge our common DRM scheduler patches first as well
+> > > > as develop a common solution for long running workloads with the DRM
+> > > > scheduler. This RFC series is our first attempt at doing this. We
+> > > > welcome any and all feedback.
+> > > > 
+> > > > This can we thought of as 4 parts detailed below.
+> > > > 
+> > > > - DRM scheduler changes for 1 to 1 relationship between scheduler and
+> > > > entity (patches 1-3)
+> > > > 
+> > > > In Xe all of the scheduling of jobs is done by a firmware scheduler (the
+> > > > GuC) which is a new paradigm WRT to the DRM scheduler and presents
+> > > > severals problems as the DRM was originally designed to schedule jobs on
+> > > > hardware queues. The main problem being that DRM scheduler expects the
+> > > > submission order of jobs to be the completion order of jobs even across
+> > > > multiple entities. This assumption falls apart with a firmware scheduler
+> > > > as a firmware scheduler has no concept of jobs and jobs can complete out
+> > > > of order. A novel solution for was originally thought of by Faith during
+> > > > the initial prototype of Xe, create a 1 to 1 relationship between scheduler
+> > > > and entity. I believe the AGX driver [3] is using this approach and
+> > > > Boris may use approach as well for the Mali driver [4].
+> > > > 
+> > > > To support a 1 to 1 relationship we move the main execution function
+> > > > from a kthread to a work queue and add a new scheduling mode which
+> > > > bypasses code in the DRM which isn't needed in a 1 to 1 relationship.
+> > > > The new scheduling mode should unify all drivers usage with a 1 to 1
+> > > > relationship and can be thought of as using scheduler as a dependency /
+> > > > infligt job tracker rather than a true scheduler.
 > > > 
-> > > diff --git a/drivers/gpu/drm/ttm/ttm_pool.c b/drivers/gpu/drm/ttm/ttm_pool.c
-> > > index dfce896c4bae..18c342a919a2 100644
-> > > --- a/drivers/gpu/drm/ttm/ttm_pool.c
-> > > +++ b/drivers/gpu/drm/ttm/ttm_pool.c
-> > > @@ -47,6 +47,11 @@
-> > >   #include "ttm_module.h"
-> > > +#define TTM_MAX_ORDER (PMD_SHIFT - PAGE_SHIFT)
-> > > +#define __TTM_DIM_ORDER (TTM_MAX_ORDER + 1)
-> > > +/* Some architectures have a weird PMD_SHIFT */
-> > > +#define TTM_DIM_ORDER (__TTM_DIM_ORDER <= MAX_ORDER ? __TTM_DIM_ORDER : MAX_ORDER)
-> > > +
-> > >   /**
-> > >    * struct ttm_pool_dma - Helper object for coherent DMA mappings
-> > >    *
-> > > @@ -65,11 +70,11 @@ module_param(page_pool_size, ulong, 0644);
-> > >   static atomic_long_t allocated_pages;
-> > > -static struct ttm_pool_type global_write_combined[MAX_ORDER];
-> > > -static struct ttm_pool_type global_uncached[MAX_ORDER];
-> > > +static struct ttm_pool_type global_write_combined[TTM_DIM_ORDER];
-> > > +static struct ttm_pool_type global_uncached[TTM_DIM_ORDER];
-> > > -static struct ttm_pool_type global_dma32_write_combined[MAX_ORDER];
-> > > -static struct ttm_pool_type global_dma32_uncached[MAX_ORDER];
-> > > +static struct ttm_pool_type global_dma32_write_combined[TTM_DIM_ORDER];
-> > > +static struct ttm_pool_type global_dma32_uncached[TTM_DIM_ORDER];
-> > >   static spinlock_t shrinker_lock;
-> > >   static struct list_head shrinker_list;
-> > > @@ -444,7 +449,7 @@ int ttm_pool_alloc(struct ttm_pool *pool, struct ttm_tt *tt,
-> > >   	else
-> > >   		gfp_flags |= GFP_HIGHUSER;
-> > > -	for (order = min_t(unsigned int, MAX_ORDER - 1, __fls(num_pages));
-> > > +	for (order = min_t(unsigned int, TTM_MAX_ORDER, __fls(num_pages));
-> > >   	     num_pages;
-> > >   	     order = min_t(unsigned int, order, __fls(num_pages))) {
-> > >   		struct ttm_pool_type *pt;
-> > > @@ -563,7 +568,7 @@ void ttm_pool_init(struct ttm_pool *pool, struct device *dev,
-> > >   	if (use_dma_alloc) {
-> > >   		for (i = 0; i < TTM_NUM_CACHING_TYPES; ++i)
-> > > -			for (j = 0; j < MAX_ORDER; ++j)
-> > > +			for (j = 0; j < TTM_DIM_ORDER; ++j)
-> > >   				ttm_pool_type_init(&pool->caching[i].orders[j],
-> > >   						   pool, i, j);
-> > >   	}
-> > > @@ -583,7 +588,7 @@ void ttm_pool_fini(struct ttm_pool *pool)
-> > >   	if (pool->use_dma_alloc) {
-> > >   		for (i = 0; i < TTM_NUM_CACHING_TYPES; ++i)
-> > > -			for (j = 0; j < MAX_ORDER; ++j)
-> > > +			for (j = 0; j < TTM_DIM_ORDER; ++j)
-> > >   				ttm_pool_type_fini(&pool->caching[i].orders[j]);
-> > >   	}
-> > > @@ -637,7 +642,7 @@ static void ttm_pool_debugfs_header(struct seq_file *m)
-> > >   	unsigned int i;
-> > >   	seq_puts(m, "\t ");
-> > > -	for (i = 0; i < MAX_ORDER; ++i)
-> > > +	for (i = 0; i < TTM_DIM_ORDER; ++i)
-> > >   		seq_printf(m, " ---%2u---", i);
-> > >   	seq_puts(m, "\n");
-> > >   }
-> > > @@ -648,7 +653,7 @@ static void ttm_pool_debugfs_orders(struct ttm_pool_type *pt,
-> > >   {
-> > >   	unsigned int i;
-> > > -	for (i = 0; i < MAX_ORDER; ++i)
-> > > +	for (i = 0; i < TTM_DIM_ORDER; ++i)
-> > >   		seq_printf(m, " %8u", ttm_pool_type_count(&pt[i]));
-> > >   	seq_puts(m, "\n");
-> > >   }
-> > > @@ -751,13 +756,16 @@ int ttm_pool_mgr_init(unsigned long num_pages)
-> > >   {
-> > >   	unsigned int i;
-> > > +	BUILD_BUG_ON(TTM_DIM_ORDER > MAX_ORDER);
-> > > +	BUILD_BUG_ON(TTM_DIM_ORDER < 1);
-> > > +
-> > >   	if (!page_pool_size)
-> > >   		page_pool_size = num_pages;
-> > >   	spin_lock_init(&shrinker_lock);
-> > >   	INIT_LIST_HEAD(&shrinker_list);
-> > > -	for (i = 0; i < MAX_ORDER; ++i) {
-> > > +	for (i = 0; i < TTM_DIM_ORDER; ++i) {
-> > >   		ttm_pool_type_init(&global_write_combined[i], NULL,
-> > >   				   ttm_write_combined, i);
-> > >   		ttm_pool_type_init(&global_uncached[i], NULL, ttm_uncached, i);
-> > > @@ -790,7 +798,7 @@ void ttm_pool_mgr_fini(void)
-> > >   {
-> > >   	unsigned int i;
-> > > -	for (i = 0; i < MAX_ORDER; ++i) {
-> > > +	for (i = 0; i < TTM_DIM_ORDER; ++i) {
-> > >   		ttm_pool_type_fini(&global_write_combined[i]);
-> > >   		ttm_pool_type_fini(&global_uncached[i]);
-> > > -- 
-> > > 2.39.2
+> > > Yup, we're in the exact same situation with drm/asahi, so this is very
+> > > welcome! We've been using the existing scheduler as-is, but this should help
+> > > remove some unneeded complexity in this use case.
 > > > 
+> > 
+> > That's the idea.
+> > 
+> > > Do you want me to pull in this series into our tree and make sure this all
+> > > works out for us?
+> > > 
+> > 
+> > We tested this in Xe and it definitely works for us but the more testing
+> > the better.
+> > 
 > 
+> I haven't gotten around to testing this series yet, but after more debugging
+> of drm_sched issues I want to hear more about how Xe uses the scheduler.
+> 
+> From what I can tell, and from what Christian says, drm_sched has the hidden
+> requirement that all job objects outlive the scheduler. I've run into
+> several UAF bugs due to this. Not only that, it also currently has the
+> requirement that all drm_sched fences outlive the scheduler object.
+> 
+> These requirements are subtle and only manifest as kernel oopses in rare
+> corner cases, so it wasn't at all obvious to me that this was somehow a
+> fundamental design assumption when I started using it.
+> 
+> As far as I can tell, this design is going to work in 99% of cases for
+> global-schedulers-per-GPU models, where those corner cases would have to be
+> hit on top of a GPU removal scenario (and GPU remove is... well, not the
+> most tested/exercised use case). When the scheduler basically lives forever,
+> none of this really matters.
+> 
+> But with a one-scheduler-per-queue model, how do you deal with this when the
+> queue goes away? So far, without any of the partial bugfixes I have sent so
+> far (which Christian objected to):
+> 
+> - If you try to tear down a scheduler with any jobs currently scheduled at
+> the hardware, drm_sched will oops when those jobs complete and the hw fences
+> signal.
+> - If you try to tear down an entity (which should cancel all its pending
+> jobs) and then the scheduler it was attached to without actually waiting for
+> all the free_job() callbacks to be called on every job that ever existed for
+> that entity, you can oops (entity cleanup is asynchronous in some cases like
+> killed processes, so it will return before all jobs are freed and then that
+> asynchronous process will crash and burn if the scheduler goes away out from
+> under its feet). Waiting for job completion fences is not enough for this,
+> you have to wait until free_job() has actually been called for all jobs.
+> - Even if you actually wait for all jobs to be truly gone and then tear down
+> the scheduler, if any scheduler job fences remain alive, that will then oops
+> if you try to call the debug functions on them (like cat
+> /sys/kernel/debug/dma_buf/bufinfo).
+> 
+> I tried to fix these things, but Christian objected implying it was the
+> driver's job to keep a reference from jobs and hw fences to the scheduler.
+> But I find that completely broken, because besides the extra memory/resource
+> usage keeping the scheduler alive when you're trying to free resources as
+> fast as possible when a process goes away, you can't even use normal
+> reference counting for that: if you try to drop the last drm_sched reference
+> from within a free_job() callback, the whole thing deadlocks since that will
+> be running in the scheduler's thread/workqueue context, which can't free
+> itself. So now you both reference count the scheduler from jobs and fences,
+> and on top of that you need to outsource drm_sched freeing to a workqueue in
+> the driver to make sure you don't deadlock.
+> 
+> For job fences this is particularly broken, because those fences can live
+> forever signaled and attached to shared buffers and there is no guarantee
+> that they will be freed in any kind of reasonable time frame. If they have
+> to keep the scheduler that created them alive, that creates a lot of dead
+> object junk we have to drag around just because a signaled fence exists
+> somewhere.
+> 
+> For a Rust abstraction we have to do all that tracking and refcounting in
+> the abstraction itself to make it safe, which is starting to sound like
+> reimplementing half of the job tracking drm_sched itself does just to fix
+> the lifetime issues, which really tells me the existing design is not sound
+> nor easy to use correctly in general.
+> 
+> How does Xe deal with this (does it deal with it at all)? What happens when
+> you kill -9 a process using the GPU? Does freeing all of this wait for all
+> jobs to complete *and be freed* with free_job()? What about exported
+> dma_bufs with fences attached from that scheduler? Do you keep the scheduler
+> alive for those?
+> 
+> Personally, after running into all this, and after seeing Christian's
+> reaction to me trying to improve the state of things, I'm starting to doubt
+> that drm_sched is the right solution at all for firmware-scheduling drivers.
 
+Bit a wash-up reply on the more fundamental thing here:
+ 
+For the current scheduler the issues you've found are indeed all driver
+bugs (or most I think at least).
+
+Which is why I think we shouldn't just try to shoehorn fundamentally new
+semantics without updating the driver interfaces (the drm_sched split into
+the driver interface part and the internal scheduler part). Once we have
+that, including kerneldoc update and what the rules are, then all the
+various uaf you've discovered become real bugs and I don't see any issue
+merging all the fixes.
+
+Without that we do have a chicken/egg problem between:
+
+"here's a bunch of hacks to make the problems disappear I've hit in my
+reuse of drm/sched for fw schedulers"
+
+vs.
+
+"this makes no sense for the current drm/sched interfaces and how current
+upstream drivers use it"
+
+I don't think there's a lot needed in terms of drm/sched driver api
+rework, but I think it's also pretty clearly not ever going to get
+anywhere with just nothing at all. Writing an entire new scheduler lib
+instead of at least trying what minimal semantic changes (instead of just
+a pile of hacks without even doc changes for the new rules) does not sound
+like a good idea to me :-)
+
+> If you want a workload to try to see if you run into any of these things,
+> running and killing lots of things in parallel is a good thing to try (mess
+> with the numbers and let it run for a while to see if you can hit any corner
+> cases):
+> 
+> while true; do for i in $(seq 1 10); do timeout -k 0.01 0.05 glxgears &
+> done; sleep 0.1; done
+
+Maybe xe gets away with this due to synchronously killing everything
+related to a ctx, but yeah I'd expect this to go boom in fun ways.
+-Daniel
 -- 
 Daniel Vetter
 Software Engineer, Intel Corporation
