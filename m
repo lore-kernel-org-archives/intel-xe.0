@@ -4,48 +4,48 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4D66AC77B73
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2AF69C7619A
 	for <intel-xe@archiver.kernel.org>; Wed, 12 Apr 2023 22:52:58 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0403F10E9D8;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0405210E9D9;
 	Wed, 12 Apr 2023 22:52:58 +0000 (UTC)
 Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
- by gabe.freedesktop.org (Postfix) with ESMTPS id DBD1610E9D7
- for <intel-xe@lists.freedesktop.org>; Wed, 12 Apr 2023 22:52:55 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 44EEE10E9D9
+ for <intel-xe@lists.freedesktop.org>; Wed, 12 Apr 2023 22:52:56 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
  t=1681339976; x=1712875976;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=1bpT3q0Cqo/RJqyU7mYwNcV2rN3Y2aYeVamRsYdXj9U=;
- b=KaD0S8xjJnPndqL33TPSSfORUdK/cvwMJWOj2DfxCOC0OUgYq2ytHwdQ
- duiBDk4XycvrXFxIoeKu1nVhuku4bblyeShzcLfJtXH08L9SRcb7tsDob
- FP8wNdGrmHFZGtEGl/VAf1P8EZtGaFF+tN83daqCZeQ8nleLt3b4a4Exv
- zVToKnagWJGSPGUq4ado8ZN6KzCvddOS2ebdDpxg6o8YFftGzuNNZsSQp
- 6hLhcKz0VbGeJ4rFY1IAQZ5QBOIXNWAmFvmIXEYyg8S9AF0fHt64x9LYU
- aCrpfujcsl+FfxeOSMBqoNC1LNMhvc/KXCfxzdsGjHch9kSGNBc9Tcj2Z w==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10678"; a="344038890"
-X-IronPort-AV: E=Sophos;i="5.98,339,1673942400"; d="scan'208";a="344038890"
+ bh=8I7qlF6ZC39+r4ptbDihbhpRz/MNfJTqvLPj0ABdmCQ=;
+ b=gxaBdxCcdyyoB3hTcmMAxLqmxR3o7kMoj/BQ+pbipi3khKYcRhsACniu
+ UbUY3xZidkfOQ211GnDNwhEWSvHjquLWgMyK75/5Lp3O4pAP48kxEj2oC
+ UNZeDCwqapPyC0E8PTauOMRzKZlFXiEK0CmKba6f47l7HYQdNC/p5SebI
+ krgdp4AoNd8Ad8AhreSxfnmdftVakZQHJC+Q0wLYMo0sHl7A8Guc7yuJp
+ SbKZ/EofC5q9i5yxYV482qLu0HkyPmgOcmYHJRnB3g1wj8QoPnFGOwKBH
+ tqCtaVPf5+/ysuAXvE3GdXV7nHJ6VFaK2ijiRhIp0JbA6W5Gg7UzTOdlP Q==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10678"; a="344038893"
+X-IronPort-AV: E=Sophos;i="5.98,339,1673942400"; d="scan'208";a="344038893"
 Received: from orsmga001.jf.intel.com ([10.7.209.18])
  by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 12 Apr 2023 15:52:54 -0700
+ 12 Apr 2023 15:52:55 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10678"; a="721757073"
-X-IronPort-AV: E=Sophos;i="5.98,339,1673942400"; d="scan'208";a="721757073"
+X-IronPort-AV: E=McAfee;i="6600,9927,10678"; a="721757077"
+X-IronPort-AV: E=Sophos;i="5.98,339,1673942400"; d="scan'208";a="721757077"
 Received: from mdroper-desk1.fm.intel.com ([10.1.27.134])
  by orsmga001-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 12 Apr 2023 15:52:53 -0700
+ 12 Apr 2023 15:52:54 -0700
 From: Matt Roper <matthew.d.roper@intel.com>
 To: intel-xe@lists.freedesktop.org
-Date: Wed, 12 Apr 2023 15:52:42 -0700
-Message-Id: <20230412225248.3229571-3-matthew.d.roper@intel.com>
+Date: Wed, 12 Apr 2023 15:52:43 -0700
+Message-Id: <20230412225248.3229571-4-matthew.d.roper@intel.com>
 X-Mailer: git-send-email 2.39.2
 In-Reply-To: <20230412225248.3229571-1-matthew.d.roper@intel.com>
 References: <20230412225248.3229571-1-matthew.d.roper@intel.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-xe] [PATCH v2 2/8] drm/xe/irq: Improve warnings and
- assertions for GT handling
+Subject: [Intel-xe] [PATCH v2 3/8] drm/xe/irq: Process Gunit interrupts in
+ relation to the device
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -61,64 +61,56 @@ Cc: matthew.d.roper@intel.com
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Improve the assertions and warnings for GT-related interrupt handling to
-help us catch any areas where we're trying to process interrupts in
-relation to the wrong GT.
+The only Gunit interrupts we handle today are GSE ASLE interrupts, which
+are an old opregion way of doing display backlight notifications.  These
+aren't related to GT at all, and if/when we have a multi-tile platform
+with display in the future, we'll expect such ASLE interrupts to always
+be delivered on the primary tile, the same as other display interrupts.
+
+dg1_irq_handler() is currently passing whatever GT was processed last as
+a parameter to gu_misc_irq_ack(), which isn't what we want.  Switch
+gu_misc_irq_ack() to just take a drm_xe_device as a parameter so that
+its handling isn't tied to the previous GT processing loop and there's
+no ambiguity about what it's doing.
 
 Signed-off-by: Matt Roper <matthew.d.roper@intel.com>
 ---
- drivers/gpu/drm/xe/xe_irq.c | 29 +++++++++++++++++++----------
- 1 file changed, 19 insertions(+), 10 deletions(-)
+ drivers/gpu/drm/xe/xe_irq.c | 7 ++++---
+ 1 file changed, 4 insertions(+), 3 deletions(-)
 
 diff --git a/drivers/gpu/drm/xe/xe_irq.c b/drivers/gpu/drm/xe/xe_irq.c
-index 7e78eecba62a..ca86c99f8007 100644
+index ca86c99f8007..2648fe53887d 100644
 --- a/drivers/gpu/drm/xe/xe_irq.c
 +++ b/drivers/gpu/drm/xe/xe_irq.c
-@@ -220,16 +220,22 @@ gt_engine_identity(struct xe_device *xe,
- static void
- gt_other_irq_handler(struct xe_gt *gt, const u8 instance, const u16 iir)
- {
--	if (instance == OTHER_GUC_INSTANCE && !xe_gt_is_media_type(gt))
--		return xe_guc_irq_handler(&gt->uc.guc, iir);
--	if (instance == OTHER_MEDIA_GUC_INSTANCE && xe_gt_is_media_type(gt))
--		return xe_guc_irq_handler(&gt->uc.guc, iir);
--
--	if (instance != OTHER_GUC_INSTANCE &&
--	    instance != OTHER_MEDIA_GUC_INSTANCE) {
--		WARN_ONCE(1, "unhandled other interrupt instance=0x%x, iir=0x%x\n",
--			  instance, iir);
-+	struct xe_device *xe = gt_to_xe(gt);
-+
-+	if (instance == OTHER_GUC_INSTANCE) {
-+		drm_WARN_ON_ONCE(&xe->drm, xe_gt_is_media_type(gt));
-+		xe_guc_irq_handler(&gt->uc.guc, iir);
-+		return;
-+	}
-+
-+	if (instance == OTHER_MEDIA_GUC_INSTANCE) {
-+		drm_WARN_ON_ONCE(&xe->drm, !xe_gt_is_media_type(gt));
-+		xe_guc_irq_handler(&gt->uc.guc, iir);
-+		return;
- 	}
-+
-+	drm_warn_once(&xe->drm, "Unhandled 'other' interrupt on GT%d: instance=0x%x, iir=0x%x\n",
-+		      gt->info.id, instance, iir);
+@@ -92,8 +92,9 @@ static u32 xelp_intr_disable(struct xe_gt *gt)
  }
  
- static struct xe_gt *find_media_gt(struct xe_device *xe)
-@@ -307,8 +313,11 @@ static void gt_irq_handler(struct xe_device *xe, struct xe_gt *full_gt,
- 			}
+ static u32
+-gu_misc_irq_ack(struct xe_gt *gt, const u32 master_ctl)
++gu_misc_irq_ack(struct xe_device *xe, const u32 master_ctl)
+ {
++	struct xe_gt *gt = xe_device_get_gt(xe, 0);
+ 	u32 iir;
  
- 			hwe = xe_gt_hw_engine(gt, class, instance, false);
--			if (!hwe)
-+			if (!hwe) {
-+				drm_warn_once(&xe->drm, "Interrupt for unknown engine on GT%d: class=%d instance=%d\n",
-+					      gt->info.id, class, instance);
- 				continue;
-+			}
+ 	if (!(master_ctl & GU_MISC_IRQ))
+@@ -348,7 +349,7 @@ static irqreturn_t xelp_irq_handler(int irq, void *arg)
  
- 			xe_hw_engine_handle_irq(hwe, intr_vec);
- 		}
+ 	xe_display_irq_handler(xe, master_ctl);
+ 
+-	gu_misc_iir = gu_misc_irq_ack(gt, master_ctl);
++	gu_misc_iir = gu_misc_irq_ack(xe, master_ctl);
+ 
+ 	xelp_intr_enable(gt, false);
+ 
+@@ -455,7 +456,7 @@ static irqreturn_t dg1_irq_handler(int irq, void *arg)
+ 	xe_display_irq_handler(xe, tile0_master_ctl);
+ 
+ 	/* Gunit GSE interrupts can trigger display backlight operations */
+-	gu_misc_iir = gu_misc_irq_ack(gt, tile0_master_ctl);
++	gu_misc_iir = gu_misc_irq_ack(xe, tile0_master_ctl);
+ 
+ 	dg1_intr_enable(xe, false);
+ 
 -- 
 2.39.2
 
