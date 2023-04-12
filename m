@@ -4,48 +4,47 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1ABF6C77B78
-	for <intel-xe@archiver.kernel.org>; Wed, 12 Apr 2023 18:48:45 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id D59DEC77B6E
+	for <intel-xe@archiver.kernel.org>; Wed, 12 Apr 2023 18:48:44 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id DBA4110E923;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 887FF10E920;
 	Wed, 12 Apr 2023 18:48:44 +0000 (UTC)
 Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B8AE310E921
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A8FD310E124
  for <intel-xe@lists.freedesktop.org>; Wed, 12 Apr 2023 18:48:42 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
  t=1681325322; x=1712861322;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=cXReASyCGIRFBIJA9auzndeQeIpGpVyujPCdBLdP7mw=;
- b=H9uSyYrGP2Yb+RtYuW6aLdpS1Fnfy+VSzG7+HNeVS7F2tsXuVvfX8x6G
- /6vvWiajGzGQ+Kq7xfRRyfH83i/prgx0/z7qifiWBzSMX0ylPTD0ctw+s
- xahq/IdoX0MRo0LDqzTp3aZ85hUVx/Phg1hUOV/7mqcDHrjLlTrOU8vyg
- YaaDVhJWeBxtoascvwMDvy33ssCNwZORtF1jRwigHBXbcK+lweVmqgPmv
- s1KjqvJOlIeffUfe3hAY9m4pH/kom6J5klHZvjCkHt0PhlCv49Kvxw3wb
- Qp499AYHtMN+gfR97VAvNJlnedY+FKTgMHAbf46gozmDTZ6mi8JS4paKM g==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10678"; a="430276546"
-X-IronPort-AV: E=Sophos;i="5.98,339,1673942400"; d="scan'208";a="430276546"
+ bh=xph29d/Q6WZtGP4VerIbrC6jqLJp4xsZQ8JbaxpSteM=;
+ b=gmQEnOA3SiaOFL6+9LXwuNzW8+2RMjhG4IuVOsdlPlt72dykC0BzWLC5
+ VoQMUibLWuWdQqpP3L7dnEG5reTelnanMU90NZuFnnsDABN01WmLMSDx0
+ e81dABN8bnVzXpCf6ol68Gw2+67IZPNs7dUpyFUFUWeqwDP8aDtbSOlA5
+ 2dOnfkgPCs83aMIiK5gbqyX+jhJHLVniCbrTw9TiHqIpPbqj7U9agZGFA
+ VXsNUVX9IY48LkzescEasJaELfGwFldYop7Me88deKInYNbDt1tidoya9
+ U3z5/cgTfJdj/h1FmXXcMgHyhroEE9b73W/kQD6XiiZWoYHIrkDtahJWa A==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10678"; a="430276545"
+X-IronPort-AV: E=Sophos;i="5.98,339,1673942400"; d="scan'208";a="430276545"
 Received: from fmsmga007.fm.intel.com ([10.253.24.52])
  by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  12 Apr 2023 11:48:41 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10678"; a="691638623"
-X-IronPort-AV: E=Sophos;i="5.98,339,1673942400"; d="scan'208";a="691638623"
+X-IronPort-AV: E=McAfee;i="6600,9927,10678"; a="691638620"
+X-IronPort-AV: E=Sophos;i="5.98,339,1673942400"; d="scan'208";a="691638620"
 Received: from mdroper-desk1.fm.intel.com ([10.1.27.134])
  by fmsmga007-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  12 Apr 2023 11:48:41 -0700
 From: Matt Roper <matthew.d.roper@intel.com>
 To: intel-xe@lists.freedesktop.org
-Date: Wed, 12 Apr 2023 11:48:34 -0700
-Message-Id: <20230412184835.3157780-6-matthew.d.roper@intel.com>
+Date: Wed, 12 Apr 2023 11:48:33 -0700
+Message-Id: <20230412184835.3157780-5-matthew.d.roper@intel.com>
 X-Mailer: git-send-email 2.39.2
 In-Reply-To: <20230412184835.3157780-1-matthew.d.roper@intel.com>
 References: <20230412184835.3157780-1-matthew.d.roper@intel.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-xe] [PATCH 5/6] drm/xe/irq: Ensure primary GuC won't clobber
- media GuC's interrupt mask
+Subject: [Intel-xe] [PATCH 4/6] drm/xe: Fix xe_mmio_rmw32 operation
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -61,42 +60,29 @@ Cc: matthew.d.roper@intel.com
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Although primary and media GuC share a single interrupt enable bit, they
-each have distinct bits in the mask register.  Although we always enable
-interrupts for the primary GuC before the media GuC today (and never
-disable either of them), this might not always be the case in the
-future, so use a RMW when updating the mask register to ensure the other
-GuC's mask doesn't get clobbered.
+xe_mmio_rmw32 was failing to invert the passed in mask, resulting in a
+register updated that wasn't the expected RMW operation.  Fortunately
+the impact of this mistake was limited, since xe_mmio_rmw32() is only
+used in two places to unmask certain GuC-related interrupts.
 
 Signed-off-by: Matt Roper <matthew.d.roper@intel.com>
 ---
- drivers/gpu/drm/xe/xe_guc.c | 11 +++++++----
- 1 file changed, 7 insertions(+), 4 deletions(-)
+ drivers/gpu/drm/xe/xe_mmio.h | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-diff --git a/drivers/gpu/drm/xe/xe_guc.c b/drivers/gpu/drm/xe/xe_guc.c
-index ee71b969bcbf..ac2151f28788 100644
---- a/drivers/gpu/drm/xe/xe_guc.c
-+++ b/drivers/gpu/drm/xe/xe_guc.c
-@@ -561,12 +561,15 @@ static void guc_enable_irq(struct xe_guc *guc)
- 		REG_FIELD_PREP(ENGINE0_MASK, GUC_INTR_GUC2HOST)  :
- 		REG_FIELD_PREP(ENGINE1_MASK, GUC_INTR_GUC2HOST);
+diff --git a/drivers/gpu/drm/xe/xe_mmio.h b/drivers/gpu/drm/xe/xe_mmio.h
+index 388a633b438b..a3b7f9f5db67 100644
+--- a/drivers/gpu/drm/xe/xe_mmio.h
++++ b/drivers/gpu/drm/xe/xe_mmio.h
+@@ -40,7 +40,7 @@ static inline u32 xe_mmio_rmw32(struct xe_gt *gt, u32 reg, u32 mask,
+ 	u32 old, reg_val;
  
-+	/* Primary GuC and media GuC share a single enable bit */
- 	xe_mmio_write32(gt, GUC_SG_INTR_ENABLE.reg,
- 			REG_FIELD_PREP(ENGINE1_MASK, GUC_INTR_GUC2HOST));
--	if (xe_gt_is_media_type(gt))
--		xe_mmio_rmw32(gt, GUC_SG_INTR_MASK.reg, events, 0);
--	else
--		xe_mmio_write32(gt, GUC_SG_INTR_MASK.reg, ~events);
-+
-+	/*
-+	 * There are separate mask bits for primary and media GuCs, so use
-+	 * a RMW operation to avoid clobbering the other GuC's setting.
-+	 */
-+	xe_mmio_rmw32(gt, GUC_SG_INTR_MASK.reg, events, 0);
- }
+ 	old = xe_mmio_read32(gt, reg);
+-	reg_val = (old & mask) | val;
++	reg_val = (old & ~mask) | val;
+ 	xe_mmio_write32(gt, reg, reg_val);
  
- int xe_guc_enable_communication(struct xe_guc *guc)
+ 	return old;
 -- 
 2.39.2
 
