@@ -4,48 +4,48 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 01FE2C7619A
-	for <intel-xe@archiver.kernel.org>; Wed, 12 Apr 2023 18:48:43 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id AB762C77B6F
+	for <intel-xe@archiver.kernel.org>; Wed, 12 Apr 2023 18:48:44 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id AEFE710E124;
-	Wed, 12 Apr 2023 18:48:43 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3DE1D10E91B;
+	Wed, 12 Apr 2023 18:48:44 +0000 (UTC)
 Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7995910E91F
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C445410E91B
  for <intel-xe@lists.freedesktop.org>; Wed, 12 Apr 2023 18:48:42 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
  t=1681325322; x=1712861322;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=FEiJYkVZK0/V8l9aF5icZBpYthh/RqUbRAUEWldQqTM=;
- b=Zv2ZQTyteYjvXHrjwgtDjwGdDnYc4g4OMq0v1wLydzSuHMOz+W5lQekg
- HEqk+kKUwYOEz6lmTK6CZoTwO0RInFKAiF1QujGW6rEST7QAW8AvFqc/T
- 1TweIEI68qe59dUNqjQSO7Q54Eoks2PGIXA3ppgQQyPAZBBq4jm17H4zm
- xoTJNuie1zgrMb4a2HES+uaNtrOFd3ZVucC6eKrfPPhGZ53kepoouXzml
- OrrcumWEKxwFevcs/kriE2xhtF1+Kwa1sZU4TAN5vBQl0bZhJnrxc59Uc
- kgXBgoJ+BOenKqKTvLhnFmgtdf893dycQMNuZ6gjB2K4wfy6uC+C05UxV w==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10678"; a="430276543"
-X-IronPort-AV: E=Sophos;i="5.98,339,1673942400"; d="scan'208";a="430276543"
+ bh=oZIsaK1lRjxXAkHvAoppgf7m2ZYFgad3tGT7jqKSawI=;
+ b=D4PaAsP361uuGH3i+sCr8xFhgadb0f5PirR1fJ2uwoREHjz9OrKBps4y
+ unnnX8bgTxsiih23Wauvn1jBAOaTRHFlA9Y7kQWD8HSmnh1avWhEkXiWU
+ 90KwP51Wa+8gYz76XRHpUF58xlay5MEYQnHGZYwjGFJrL7PRtfx0Xaumu
+ wbk8vfynPL3wTC5ogGbNLWFQXyzGqsbEZ0A8sWGyiGoe3JWmQQv4nPqIh
+ wqQHV61bXGpOG2l82Ra3tmp95dx1ygPXdy1u5v9kSsbUquqYLZydIv62o
+ XAI31ScGxcDMo/Ks60S9S+0mUFeZUi1uFht6znOFs189ctgy3dhMoJk0R g==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10678"; a="430276547"
+X-IronPort-AV: E=Sophos;i="5.98,339,1673942400"; d="scan'208";a="430276547"
 Received: from fmsmga007.fm.intel.com ([10.253.24.52])
  by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  12 Apr 2023 11:48:41 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10678"; a="691638614"
-X-IronPort-AV: E=Sophos;i="5.98,339,1673942400"; d="scan'208";a="691638614"
+X-IronPort-AV: E=McAfee;i="6600,9927,10678"; a="691638626"
+X-IronPort-AV: E=Sophos;i="5.98,339,1673942400"; d="scan'208";a="691638626"
 Received: from mdroper-desk1.fm.intel.com ([10.1.27.134])
  by fmsmga007-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  12 Apr 2023 11:48:41 -0700
 From: Matt Roper <matthew.d.roper@intel.com>
 To: intel-xe@lists.freedesktop.org
-Date: Wed, 12 Apr 2023 11:48:31 -0700
-Message-Id: <20230412184835.3157780-3-matthew.d.roper@intel.com>
+Date: Wed, 12 Apr 2023 11:48:35 -0700
+Message-Id: <20230412184835.3157780-7-matthew.d.roper@intel.com>
 X-Mailer: git-send-email 2.39.2
 In-Reply-To: <20230412184835.3157780-1-matthew.d.roper@intel.com>
 References: <20230412184835.3157780-1-matthew.d.roper@intel.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-xe] [PATCH 2/6] drm/xe/irq: Improve warnings and assertions
- for GT handling
+Subject: [Intel-xe] [PATCH 6/6] drm/xe: Include GT ID in error message if
+ TLB invalidation times out
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -61,64 +61,28 @@ Cc: matthew.d.roper@intel.com
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Improve the assertions and warnings for GT-related interrupt handling to
-help us catch any areas where we're trying to process interrupts in
-relation to the wrong GT.
+This will hopefully help debug TLB invalidation problems.
 
 Signed-off-by: Matt Roper <matthew.d.roper@intel.com>
 ---
- drivers/gpu/drm/xe/xe_irq.c | 29 +++++++++++++++++++----------
- 1 file changed, 19 insertions(+), 10 deletions(-)
+ drivers/gpu/drm/xe/xe_gt_tlb_invalidation.c | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
 
-diff --git a/drivers/gpu/drm/xe/xe_irq.c b/drivers/gpu/drm/xe/xe_irq.c
-index 72dbdcdea172..bc71ceb99de2 100644
---- a/drivers/gpu/drm/xe/xe_irq.c
-+++ b/drivers/gpu/drm/xe/xe_irq.c
-@@ -220,16 +220,22 @@ gt_engine_identity(struct xe_device *xe,
- static void
- gt_other_irq_handler(struct xe_gt *gt, const u8 instance, const u16 iir)
- {
--	if (instance == OTHER_GUC_INSTANCE && !xe_gt_is_media_type(gt))
--		return xe_guc_irq_handler(&gt->uc.guc, iir);
--	if (instance == OTHER_MEDIA_GUC_INSTANCE && xe_gt_is_media_type(gt))
--		return xe_guc_irq_handler(&gt->uc.guc, iir);
--
--	if (instance != OTHER_GUC_INSTANCE &&
--	    instance != OTHER_MEDIA_GUC_INSTANCE) {
--		WARN_ONCE(1, "unhandled other interrupt instance=0x%x, iir=0x%x\n",
--			  instance, iir);
-+	struct xe_device *xe = gt_to_xe(gt);
-+
-+	if (instance == OTHER_GUC_INSTANCE) {
-+		drm_WARN_ON_ONCE(&xe->drm, xe_gt_is_media_type(gt));
-+		xe_guc_irq_handler(&gt->uc.guc, iir);
-+		return;
-+	}
-+
-+	if (instance == OTHER_MEDIA_GUC_INSTANCE) {
-+		drm_WARN_ON_ONCE(&xe->drm, !xe_gt_is_media_type(gt));
-+		xe_guc_irq_handler(&gt->uc.guc, iir);
-+		return;
+diff --git a/drivers/gpu/drm/xe/xe_gt_tlb_invalidation.c b/drivers/gpu/drm/xe/xe_gt_tlb_invalidation.c
+index f279e21300aa..796403b82531 100644
+--- a/drivers/gpu/drm/xe/xe_gt_tlb_invalidation.c
++++ b/drivers/gpu/drm/xe/xe_gt_tlb_invalidation.c
+@@ -285,8 +285,8 @@ int xe_gt_tlb_invalidation_wait(struct xe_gt *gt, int seqno)
+ 				 tlb_invalidation_seqno_past(gt, seqno),
+ 				 TLB_TIMEOUT);
+ 	if (!ret) {
+-		drm_err(&xe->drm, "TLB invalidation time'd out, seqno=%d, recv=%d\n",
+-			seqno, gt->tlb_invalidation.seqno_recv);
++		drm_err(&xe->drm, "TLB invalidation time'd out on GT%d, seqno=%d, recv=%d\n",
++			gt->info.id, seqno, gt->tlb_invalidation.seqno_recv);
+ 		return -ETIME;
  	}
-+
-+	drm_warn_once(&xe->drm, "Unhandled 'other' interrupt on GT%d: instance=0x%x, iir=0x%x\n",
-+		      gt->info.id, instance, iir);
- }
  
- static struct xe_gt *find_media_gt(struct xe_device *xe)
-@@ -307,8 +313,11 @@ static void gt_irq_handler(struct xe_device *xe, struct xe_gt *full_gt,
- 			}
- 
- 			hwe = xe_gt_hw_engine(gt, class, instance, false);
--			if (!hwe)
-+			if (!hwe) {
-+				drm_warn_once(&xe->drm, "Interrupt for unknown engine on GT%d: class=%d instance=%d\n",
-+					      gt->info.id, class, instance);
- 				continue;
-+			}
- 
- 			xe_hw_engine_handle_irq(hwe, intr_vec);
- 		}
 -- 
 2.39.2
 
