@@ -4,47 +4,51 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id A777EC77B6E
-	for <intel-xe@archiver.kernel.org>; Wed, 12 Apr 2023 18:48:49 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 89A85C7619A
+	for <intel-xe@archiver.kernel.org>; Wed, 12 Apr 2023 19:26:47 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7E36C10E124;
-	Wed, 12 Apr 2023 18:48:49 +0000 (UTC)
-Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5FAE810E91B
- for <intel-xe@lists.freedesktop.org>; Wed, 12 Apr 2023 18:48:42 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3CB9810E939;
+	Wed, 12 Apr 2023 19:26:47 +0000 (UTC)
+Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id F31E210E939
+ for <intel-xe@lists.freedesktop.org>; Wed, 12 Apr 2023 19:26:45 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1681325322; x=1712861322;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=Wr3tBS+D9XsGyO+zQWAkhP8+K6ML7cTtBzhxukY6U60=;
- b=PDotqdY/HQF9Hgt+Ur2ZUAfwyIP9L+5ijfCiClMPwuthfBAnWWxkXLcL
- xlkSJfye+CXE9lYDeD+2igvmZ9c617niCqWZmnG0Fm0/V39VbSv+fO61g
- KKdfG3UEejPF4y970TBhWs4A01orm1J6U3N//5S8yHxLMYh4KtE0k7Nxl
- NAkbgsj+ZdDISqAEJDodEO6QPviS5o6WaA1rafi4IFjCkC0OsvhI1bHJU
- pfdnuyux5nf49Xjwhoknce5OMPIyO8wdK67vlmX/e2BHb0X1Zc/wnfVG2
- wAsjDABnY0koJ2v1l+IBF855iidXWXZL8FfzOy5B2e569Gafy/f5+yln7 A==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10678"; a="430276542"
-X-IronPort-AV: E=Sophos;i="5.98,339,1673942400"; d="scan'208";a="430276542"
-Received: from fmsmga007.fm.intel.com ([10.253.24.52])
- by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 12 Apr 2023 11:48:41 -0700
+ t=1681327606; x=1712863606;
+ h=from:to:cc:subject:in-reply-to:references:date:
+ message-id:mime-version;
+ bh=E13d9iurzY6XZ8CdS/x1C+/u78QOur+BwemvSDmu0Ms=;
+ b=RjxM1+u1aePQKIdqgPOf6WPxLTlLhD22CvVdSzCGyXkJpRGnoFwhjN5W
+ pIod5tR6e0EIf4EdvP40o0aXhuirz19WC0XEth8hD9hWqZiU4StajDpBc
+ 87dbngydBtzCv+1vVyGNQkLNI/7WsLvZyQJrMg8t5o5R5tPkaYLa+5Otm
+ Lqd+a8Yh+S5cmOuD4S8vCcRrkdF0Oe/7IMy1hmjtInFzIBqtyb0cCUvf9
+ Bo9BsqY8K6rsALCSNaEabw5wR/yvOiqYZlUWqfbBOu9YvUT9xDYo7o84Q
+ h6zu9xqSZALH9xvySLxunB/+CY5tcbhLLRLVbjHsUcyVcgN4u1N63Hw7o Q==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10678"; a="342752120"
+X-IronPort-AV: E=Sophos;i="5.98,339,1673942400"; d="scan'208";a="342752120"
+Received: from orsmga006.jf.intel.com ([10.7.209.51])
+ by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 12 Apr 2023 12:25:22 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10678"; a="691638611"
-X-IronPort-AV: E=Sophos;i="5.98,339,1673942400"; d="scan'208";a="691638611"
-Received: from mdroper-desk1.fm.intel.com ([10.1.27.134])
- by fmsmga007-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 12 Apr 2023 11:48:41 -0700
-From: Matt Roper <matthew.d.roper@intel.com>
-To: intel-xe@lists.freedesktop.org
-Date: Wed, 12 Apr 2023 11:48:30 -0700
-Message-Id: <20230412184835.3157780-2-matthew.d.roper@intel.com>
-X-Mailer: git-send-email 2.39.2
-In-Reply-To: <20230412184835.3157780-1-matthew.d.roper@intel.com>
-References: <20230412184835.3157780-1-matthew.d.roper@intel.com>
+X-IronPort-AV: E=McAfee;i="6600,9927,10678"; a="666476216"
+X-IronPort-AV: E=Sophos;i="5.98,339,1673942400"; d="scan'208";a="666476216"
+Received: from smoticic-mobl.ger.corp.intel.com (HELO localhost)
+ ([10.252.45.172])
+ by orsmga006-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 12 Apr 2023 12:25:18 -0700
+From: Jani Nikula <jani.nikula@intel.com>
+To: Lucas De Marchi <lucas.demarchi@intel.com>
+In-Reply-To: <20230412180911.i5xoctni5mr2r24n@ldmartin-desk2.lan>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+References: <20230412142006.877109-1-jani.nikula@intel.com>
+ <20230412142006.877109-22-jani.nikula@intel.com>
+ <20230412180911.i5xoctni5mr2r24n@ldmartin-desk2.lan>
+Date: Wed, 12 Apr 2023 22:25:16 +0300
+Message-ID: <87bkjsdhsz.fsf@intel.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Subject: [Intel-xe] [PATCH 1/6] drm/xe/irq: Cleanup media GT interrupt flow
+Content-Type: text/plain
+Subject: Re: [Intel-xe] [PATCH 21/41] fixup! drm/xe/display: Implement
+ display support
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -56,143 +60,59 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Cc: matthew.d.roper@intel.com
+Cc: intel-xe@lists.freedesktop.org, rodrigo.vivi@intel.com
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Although platforms like MTL have media exposed as a separate GT, it's
-important to recognize that this second GT is *not* a tile as we see in
-platforms like PVC.  The interrupt registers (including the ones related
-to GT interrupts) reside in the SGunit so there's only a single instance
-on the entire platform; they are not replicated per-GT.  Thus all media
-interrupts are delivered together with the interrupts for the primary
-GT.
+On Wed, 12 Apr 2023, Lucas De Marchi <lucas.demarchi@intel.com> wrote:
+> On Wed, Apr 12, 2023 at 05:19:46PM +0300, Jani Nikula wrote:
+>>It's okay to include uapi/drm/i915_drm.h. It provides us with structs to
+>>make stuff compile, even if we don't use them in xe.
+>>
+>>The placement is perhaps a bit random, though.
+>>
+>>Signed-off-by: Jani Nikula <jani.nikula@intel.com>
+>>---
+>> drivers/gpu/drm/xe/compat-i915-headers/i915_vma.h | 1 +
+>> 1 file changed, 1 insertion(+)
+>>
+>>diff --git a/drivers/gpu/drm/xe/compat-i915-headers/i915_vma.h b/drivers/gpu/drm/xe/compat-i915-headers/i915_vma.h
+>>index 133c60cb3a09..c40bb27ac72a 100644
+>>--- a/drivers/gpu/drm/xe/compat-i915-headers/i915_vma.h
+>>+++ b/drivers/gpu/drm/xe/compat-i915-headers/i915_vma.h
+>>@@ -1,6 +1,7 @@
+>> #ifndef I915_VMA_H
+>> #define I915_VMA_H
+>>
+>>+#include <uapi/drm/i915_drm.h>
+>
+> my worry is that this creates an implicit dependency that ends up using
+> where it shouldn't, particularly when included in a header. Where
+> exactly this is needed? Can the include be moved to a .c?
 
-Signed-off-by: Matt Roper <matthew.d.roper@intel.com>
----
- drivers/gpu/drm/xe/xe_irq.c | 73 ++++++++++++++++++++++++++++++-------
- 1 file changed, 59 insertions(+), 14 deletions(-)
+struct drm_intel_sprite_colorkey ckey member in struct
+intel_plane_state, in intel_display_types.h, and elsewhere. Can't be
+moved to a .c file.
 
-diff --git a/drivers/gpu/drm/xe/xe_irq.c b/drivers/gpu/drm/xe/xe_irq.c
-index 13f9f220bca0..72dbdcdea172 100644
---- a/drivers/gpu/drm/xe/xe_irq.c
-+++ b/drivers/gpu/drm/xe/xe_irq.c
-@@ -232,7 +232,40 @@ gt_other_irq_handler(struct xe_gt *gt, const u8 instance, const u16 iir)
- 	}
- }
- 
--static void gt_irq_handler(struct xe_device *xe, struct xe_gt *gt,
-+static struct xe_gt *find_media_gt(struct xe_device *xe)
-+{
-+	struct xe_gt *gt;
-+	int id;
-+
-+	for_each_gt(gt, xe, id)
-+		if (xe_gt_is_media_type(gt))
-+			return gt;
-+
-+	drm_WARN_ONCE(&xe->drm, 1, "Cannot find media GT for interrupt handling\n");
-+	return xe_device_get_gt(xe, 0);
-+}
-+
-+static struct xe_gt *pick_engine_gt(struct xe_gt *full_gt,
-+				    enum xe_engine_class class,
-+				    unsigned int instance)
-+{
-+	struct xe_device *xe = gt_to_xe(full_gt);
-+
-+	if (MEDIA_VER(xe) < 13)
-+		return full_gt;
-+
-+	if (class == XE_ENGINE_CLASS_VIDEO_DECODE ||
-+	    class == XE_ENGINE_CLASS_VIDEO_ENHANCE)
-+		return find_media_gt(xe);
-+
-+	if (class == XE_ENGINE_CLASS_OTHER &&
-+	    instance == OTHER_MEDIA_GUC_INSTANCE)
-+		return find_media_gt(xe);
-+
-+	return full_gt;
-+}
-+
-+static void gt_irq_handler(struct xe_device *xe, struct xe_gt *full_gt,
- 			   u32 master_ctl, long unsigned int *intr_dw,
- 			   u32 *identity)
- {
-@@ -241,27 +274,33 @@ static void gt_irq_handler(struct xe_device *xe, struct xe_gt *gt,
- 	enum xe_engine_class class;
- 	struct xe_hw_engine *hwe;
- 
-+	/*
-+	 * Media GT interrupts are delivered on the primary GT.  This function
-+	 * should never be called on the media GT itself.
-+	 */
-+	drm_WARN_ON_ONCE(&xe->drm, xe_gt_is_media_type(full_gt));
-+
- 	spin_lock(&xe->irq.lock);
- 
- 	for (bank = 0; bank < 2; bank++) {
- 		if (!(master_ctl & GT_DW_IRQ(bank)))
- 			continue;
- 
--		if (!xe_gt_is_media_type(gt)) {
--			intr_dw[bank] =
--				xe_mmio_read32(gt, GT_INTR_DW(bank).reg);
--			for_each_set_bit(bit, intr_dw + bank, 32)
--				identity[bit] = gt_engine_identity(xe, gt,
--								   bank, bit);
--			xe_mmio_write32(gt, GT_INTR_DW(bank).reg,
--					intr_dw[bank]);
--		}
-+		intr_dw[bank] = xe_mmio_read32(full_gt, GT_INTR_DW(bank).reg);
-+		for_each_set_bit(bit, intr_dw + bank, 32)
-+			identity[bit] = gt_engine_identity(xe, full_gt,
-+							   bank, bit);
-+		xe_mmio_write32(full_gt, GT_INTR_DW(bank).reg, intr_dw[bank]);
- 
- 		for_each_set_bit(bit, intr_dw + bank, 32) {
-+			struct xe_gt *gt;
-+
- 			class = INTR_ENGINE_CLASS(identity[bit]);
- 			instance = INTR_ENGINE_INSTANCE(identity[bit]);
- 			intr_vec = INTR_ENGINE_INTR(identity[bit]);
- 
-+			gt = pick_engine_gt(full_gt, class, instance);
-+
- 			if (class == XE_ENGINE_CLASS_OTHER) {
- 				gt_other_irq_handler(gt, instance, intr_vec);
- 				continue;
-@@ -369,11 +408,17 @@ static irqreturn_t dg1_irq_handler(int irq, void *arg)
- 	}
- 
- 	for_each_gt(gt, xe, id) {
-+		/*
-+		 * The media GT isn't a tile, so its interrupts are delivered
-+		 * as part of the primary GT's flow.
-+		 */
-+		if (xe_gt_is_media_type(gt))
-+			continue;
-+
- 		if ((master_tile_ctl & DG1_MSTR_TILE(gt->info.vram_id)) == 0)
- 			continue;
- 
--		if (!xe_gt_is_media_type(gt))
--			master_ctl = xe_mmio_read32(gt, GFX_MSTR_IRQ.reg);
-+		master_ctl = xe_mmio_read32(gt, GFX_MSTR_IRQ.reg);
- 
- 		/*
- 		 * We might be in irq handler just when PCIe DPC is initiated
-@@ -386,8 +431,8 @@ static irqreturn_t dg1_irq_handler(int irq, void *arg)
- 			return IRQ_HANDLED;
- 		}
- 
--		if (!xe_gt_is_media_type(gt))
--			xe_mmio_write32(gt, GFX_MSTR_IRQ.reg, master_ctl);
-+		xe_mmio_write32(gt, GFX_MSTR_IRQ.reg, master_ctl);
-+
- 		gt_irq_handler(xe, gt, master_ctl, intr_dw, identity);
- 
- 		/*
+Without this, the member needs to be conditionally compiled, as well as
+all the code referencing it all over the place. Though in most places
+the code will just go away because it'll be unreferenced. But it needs
+to compile before being optimized away.
+
+BR,
+Jani.
+
+
+
+>
+> Lucas De Marchi
+>
+>> #include <drm/drm_mm.h>
+>>
+>> struct xe_bo;
+>>-- 
+>>2.39.2
+>>
+
 -- 
-2.39.2
-
+Jani Nikula, Intel Open Source Graphics Center
