@@ -4,48 +4,48 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8883FC77B76
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4D66AC77B73
 	for <intel-xe@archiver.kernel.org>; Wed, 12 Apr 2023 22:52:58 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4D35510E9DB;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0403F10E9D8;
 	Wed, 12 Apr 2023 22:52:58 +0000 (UTC)
 Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8257610E9D8
- for <intel-xe@lists.freedesktop.org>; Wed, 12 Apr 2023 22:52:56 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id DBD1610E9D7
+ for <intel-xe@lists.freedesktop.org>; Wed, 12 Apr 2023 22:52:55 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
  t=1681339976; x=1712875976;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=S1ee/4q1NNyq4i1MS9Nne6akPbdQ9/9EkiMEV+6NIT4=;
- b=Ul+TZJhcZ5DZxTK/kDxifBlwEbnyrhG9Er3X5PUJZ5ZkbXOOaQdVjTPa
- +0NkXrcTriAVqw4dxGVFzWfJYVwt3vn9gHT1sLQYWr8Rol4NIhNEO29nr
- 181WkwR/SbIyj+WKKzqT7RSj7IkOxKLo65EjHjFRNEX7TCdP3fQXik4YC
- dbQG7rPQog5vjN6bn70W2U7HXiL7sl/AvHhD9O4Pjz5JP8tL0w4kZXH97
- uv7YwqXa3HyBr7uWyg5Q+1IOwdWfeB/FNvrIy4orgEdGudN8UjPyRf63v
- AB615KHrL4L47rMvhzvAUCwkhpWML4N1+5Mu7Yi89MhqIuN66EsfMgNXA A==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10678"; a="344038899"
-X-IronPort-AV: E=Sophos;i="5.98,339,1673942400"; d="scan'208";a="344038899"
+ bh=1bpT3q0Cqo/RJqyU7mYwNcV2rN3Y2aYeVamRsYdXj9U=;
+ b=KaD0S8xjJnPndqL33TPSSfORUdK/cvwMJWOj2DfxCOC0OUgYq2ytHwdQ
+ duiBDk4XycvrXFxIoeKu1nVhuku4bblyeShzcLfJtXH08L9SRcb7tsDob
+ FP8wNdGrmHFZGtEGl/VAf1P8EZtGaFF+tN83daqCZeQ8nleLt3b4a4Exv
+ zVToKnagWJGSPGUq4ado8ZN6KzCvddOS2ebdDpxg6o8YFftGzuNNZsSQp
+ 6hLhcKz0VbGeJ4rFY1IAQZ5QBOIXNWAmFvmIXEYyg8S9AF0fHt64x9LYU
+ aCrpfujcsl+FfxeOSMBqoNC1LNMhvc/KXCfxzdsGjHch9kSGNBc9Tcj2Z w==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10678"; a="344038890"
+X-IronPort-AV: E=Sophos;i="5.98,339,1673942400"; d="scan'208";a="344038890"
 Received: from orsmga001.jf.intel.com ([10.7.209.18])
  by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 12 Apr 2023 15:52:55 -0700
+ 12 Apr 2023 15:52:54 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10678"; a="721757096"
-X-IronPort-AV: E=Sophos;i="5.98,339,1673942400"; d="scan'208";a="721757096"
+X-IronPort-AV: E=McAfee;i="6600,9927,10678"; a="721757073"
+X-IronPort-AV: E=Sophos;i="5.98,339,1673942400"; d="scan'208";a="721757073"
 Received: from mdroper-desk1.fm.intel.com ([10.1.27.134])
  by orsmga001-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 12 Apr 2023 15:52:54 -0700
+ 12 Apr 2023 15:52:53 -0700
 From: Matt Roper <matthew.d.roper@intel.com>
 To: intel-xe@lists.freedesktop.org
-Date: Wed, 12 Apr 2023 15:52:48 -0700
-Message-Id: <20230412225248.3229571-9-matthew.d.roper@intel.com>
+Date: Wed, 12 Apr 2023 15:52:42 -0700
+Message-Id: <20230412225248.3229571-3-matthew.d.roper@intel.com>
 X-Mailer: git-send-email 2.39.2
 In-Reply-To: <20230412225248.3229571-1-matthew.d.roper@intel.com>
 References: <20230412225248.3229571-1-matthew.d.roper@intel.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-xe] [PATCH v2 8/8] drm/xe/tlb: Obtain forcewake when doing
- GGTT TLB invalidations
+Subject: [Intel-xe] [PATCH v2 2/8] drm/xe/irq: Improve warnings and
+ assertions for GT handling
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -61,44 +61,64 @@ Cc: matthew.d.roper@intel.com
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Updates to the GGTT can happen when there are no in-flight jobs keeping
-the hardware awake.  If the GT is powered down when invalidation is
-requested, we will not be able to communicate with the GuC (or MMIO) and
-the invalidation request will go missing.  Explicitly grab GT forcewake
-to ensure the GT and GuC are powered up during the TLB invalidation.
+Improve the assertions and warnings for GT-related interrupt handling to
+help us catch any areas where we're trying to process interrupts in
+relation to the wrong GT.
 
 Signed-off-by: Matt Roper <matthew.d.roper@intel.com>
 ---
- drivers/gpu/drm/xe/xe_ggtt.c | 9 +++++++++
- 1 file changed, 9 insertions(+)
+ drivers/gpu/drm/xe/xe_irq.c | 29 +++++++++++++++++++----------
+ 1 file changed, 19 insertions(+), 10 deletions(-)
 
-diff --git a/drivers/gpu/drm/xe/xe_ggtt.c b/drivers/gpu/drm/xe/xe_ggtt.c
-index 374830a7a0cf..8348380bbcaf 100644
---- a/drivers/gpu/drm/xe/xe_ggtt.c
-+++ b/drivers/gpu/drm/xe/xe_ggtt.c
-@@ -198,6 +198,13 @@ void xe_ggtt_invalidate(struct xe_gt *gt)
+diff --git a/drivers/gpu/drm/xe/xe_irq.c b/drivers/gpu/drm/xe/xe_irq.c
+index 7e78eecba62a..ca86c99f8007 100644
+--- a/drivers/gpu/drm/xe/xe_irq.c
++++ b/drivers/gpu/drm/xe/xe_irq.c
+@@ -220,16 +220,22 @@ gt_engine_identity(struct xe_device *xe,
+ static void
+ gt_other_irq_handler(struct xe_gt *gt, const u8 instance, const u16 iir)
  {
- 	/* TODO: vfunc for GuC vs. non-GuC */
- 
-+	/*
-+	 * Invalidation can happen when there's no in-flight work keeping the
-+	 * GT awake.  We need to explicitly grab forcewake to ensure the GT
-+	 * and GuC are accessible.
-+	 */
-+	xe_force_wake_get(gt_to_fw(gt), XE_FW_GT);
+-	if (instance == OTHER_GUC_INSTANCE && !xe_gt_is_media_type(gt))
+-		return xe_guc_irq_handler(&gt->uc.guc, iir);
+-	if (instance == OTHER_MEDIA_GUC_INSTANCE && xe_gt_is_media_type(gt))
+-		return xe_guc_irq_handler(&gt->uc.guc, iir);
+-
+-	if (instance != OTHER_GUC_INSTANCE &&
+-	    instance != OTHER_MEDIA_GUC_INSTANCE) {
+-		WARN_ONCE(1, "unhandled other interrupt instance=0x%x, iir=0x%x\n",
+-			  instance, iir);
++	struct xe_device *xe = gt_to_xe(gt);
 +
- 	/* TODO: i915 makes comments about this being uncached and
- 	 * therefore flushing WC buffers.  Is that really true here?
- 	 */
-@@ -222,6 +229,8 @@ void xe_ggtt_invalidate(struct xe_gt *gt)
- 			xe_mmio_write32(gt, GEN12_GUC_TLB_INV_CR.reg,
- 					GEN12_GUC_TLB_INV_CR_INVALIDATE);
++	if (instance == OTHER_GUC_INSTANCE) {
++		drm_WARN_ON_ONCE(&xe->drm, xe_gt_is_media_type(gt));
++		xe_guc_irq_handler(&gt->uc.guc, iir);
++		return;
++	}
++
++	if (instance == OTHER_MEDIA_GUC_INSTANCE) {
++		drm_WARN_ON_ONCE(&xe->drm, !xe_gt_is_media_type(gt));
++		xe_guc_irq_handler(&gt->uc.guc, iir);
++		return;
  	}
 +
-+	xe_force_wake_put(gt_to_fw(gt), XE_FW_GT);
++	drm_warn_once(&xe->drm, "Unhandled 'other' interrupt on GT%d: instance=0x%x, iir=0x%x\n",
++		      gt->info.id, instance, iir);
  }
  
- void xe_ggtt_printk(struct xe_ggtt *ggtt, const char *prefix)
+ static struct xe_gt *find_media_gt(struct xe_device *xe)
+@@ -307,8 +313,11 @@ static void gt_irq_handler(struct xe_device *xe, struct xe_gt *full_gt,
+ 			}
+ 
+ 			hwe = xe_gt_hw_engine(gt, class, instance, false);
+-			if (!hwe)
++			if (!hwe) {
++				drm_warn_once(&xe->drm, "Interrupt for unknown engine on GT%d: class=%d instance=%d\n",
++					      gt->info.id, class, instance);
+ 				continue;
++			}
+ 
+ 			xe_hw_engine_handle_irq(hwe, intr_vec);
+ 		}
 -- 
 2.39.2
 
