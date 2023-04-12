@@ -4,59 +4,30 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0DD16C7619A
-	for <intel-xe@archiver.kernel.org>; Wed, 12 Apr 2023 09:08:27 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id EE1EEC7619A
+	for <intel-xe@archiver.kernel.org>; Wed, 12 Apr 2023 10:32:44 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A790E10E74A;
-	Wed, 12 Apr 2023 09:08:27 +0000 (UTC)
-Received: from mail-oi1-x22b.google.com (mail-oi1-x22b.google.com
- [IPv6:2607:f8b0:4864:20::22b])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0A41510E742
- for <intel-xe@lists.freedesktop.org>; Wed, 12 Apr 2023 09:08:24 +0000 (UTC)
-Received: by mail-oi1-x22b.google.com with SMTP id f14so25602062oiw.10
- for <intel-xe@lists.freedesktop.org>; Wed, 12 Apr 2023 02:08:24 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=ffwll.ch; s=google; t=1681290503;
- h=content-transfer-encoding:cc:to:subject:message-id:date:from
- :in-reply-to:references:mime-version:from:to:cc:subject:date
- :message-id:reply-to;
- bh=MDKu9h07XSmG8BLT1PMkO3nxryyYNz+99k5JAa1yFlc=;
- b=NJjaBn9J6P1o8FjDOWAGbzakyXnwQ02owAEtdIV0/Soj2vrlHyZUojkRikTFNqw7Ut
- 37hxct4D74KuwiJzy99g5qvm1cB8lVv7OxOq8sSRjbLdg5ICy6lT5Rc1X89GtDenH/EF
- 7bk5oWiI3sv9eeorYFh+eN0e32TUvYGZKyktk=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20210112; t=1681290503;
- h=content-transfer-encoding:cc:to:subject:message-id:date:from
- :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
- :subject:date:message-id:reply-to;
- bh=MDKu9h07XSmG8BLT1PMkO3nxryyYNz+99k5JAa1yFlc=;
- b=VMUegh8UF3agX61xXuFPrlY6GvoklwSshCrAIH1i8T5LCI3Tl0a84crQ+xC9xuHEvb
- gVYAz0E5joXT4Trc72QV9HAO+rB09RbgNONk0N05pQ+nvuPm32oXAAme797kDzm4D57S
- XegICNQre3tECBipTpYvpVXG9laNuEhHPHUD/Ni3M6PO5xofWQOLOxyWHpdvJrOtp9oA
- wk8Sdj9yqpQK/+N4h9JvF0Bst5kVA/ocu4XsajMbeKgHvur6RBSeWqnaZaxxdntFr73N
- MFB1Hkp0KlBPc1OLMmslANkV3z81xbhj479oUu6SfowG/MWw/vRdvv10/uGbaw+Q7IWF
- dvHA==
-X-Gm-Message-State: AAQBX9dZ2kJYuO74LU7fT4u1TlnzMT5Afc6OgrXrm359WuCc3GM12oBl
- 5ePNi2mr82LRGkwVJ2+cjKDgK8jNqoWXftMIx8/LpQ==
-X-Google-Smtp-Source: AKy350YhiIV9O0+MOoL5UhAzdVEopIuUdVfTDs491jtq25WL+DJc7SdRItpzEv2WtOqX1Kx7CX+wpqvOcQZXWyNlZSw=
-X-Received: by 2002:aca:2407:0:b0:389:2b9b:fe5f with SMTP id
- n7-20020aca2407000000b003892b9bfe5fmr399260oic.8.1681290503070; Wed, 12 Apr
- 2023 02:08:23 -0700 (PDT)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A287E10E14C;
+	Wed, 12 Apr 2023 10:32:44 +0000 (UTC)
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 7585110E04D;
+ Wed, 12 Apr 2023 10:32:43 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 44200AA3D8;
+ Wed, 12 Apr 2023 10:32:43 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-References: <20230404200650.11043-1-thomas.hellstrom@linux.intel.com>
- <20230404200650.11043-3-thomas.hellstrom@linux.intel.com>
- <ZDUtqsNtXcU4W3O6@phenom.ffwll.local>
- <33b145f1-fce5-95f1-357d-dda128e3548d@amd.com>
- <ZDVkhtx1/uToLM5R@phenom.ffwll.local>
-In-Reply-To: <ZDVkhtx1/uToLM5R@phenom.ffwll.local>
-From: Daniel Vetter <daniel@ffwll.ch>
-Date: Wed, 12 Apr 2023 11:08:11 +0200
-Message-ID: <CAKMK7uEZdWjs9snGdNpzBthOWz0YSCZh-rNKOGywLWozzpFwbA@mail.gmail.com>
-To: =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-Subject: Re: [Intel-xe] [PATCH RESEND v3 2/3] drm/ttm: Reduce the number of
- used allocation orders for TTM pages
+Content-Transfer-Encoding: 7bit
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Lucas De Marchi" <lucas.demarchi@intel.com>
+Date: Wed, 12 Apr 2023 10:32:43 -0000
+Message-ID: <168129556323.10846.6424709079792418206@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20230412082054.3314568-1-lucas.demarchi@intel.com>
+In-Reply-To: <20230412082054.3314568-1-lucas.demarchi@intel.com>
+Subject: [Intel-xe] =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_f?=
+ =?utf-8?q?or_Dump_+_OOB_workarounds?=
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -68,186 +39,46 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
- dri-devel@lists.freedesktop.org, Matthew Auld <matthew.auld@intel.com>
+Reply-To: intel-xe@lists.freedesktop.org
+Cc: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Tue, 11 Apr 2023 at 15:45, Daniel Vetter <daniel@ffwll.ch> wrote:
->
-> On Tue, Apr 11, 2023 at 02:11:18PM +0200, Christian K=C3=B6nig wrote:
-> > Am 11.04.23 um 11:51 schrieb Daniel Vetter:
-> > > On Tue, Apr 04, 2023 at 10:06:49PM +0200, Thomas Hellstr=C3=B6m wrote=
-:
-> > > > When swapping out, we will split multi-order pages both in order to
-> > > > move them to the swap-cache and to be able to return memory to the
-> > > > swap cache as soon as possible on a page-by-page basis.
-> > > > Reduce the page max order to the system PMD size, as we can then be=
- nicer
-> > > > to the system and avoid splitting gigantic pages.
-> > > >
-> > > > Looking forward to when we might be able to swap out PMD size folio=
-s
-> > > > without splitting, this will also be a benefit.
-> > > >
-> > > > v2:
-> > > > - Include all orders up to the PMD size (Christian K=C3=B6nig)
-> > > > v3:
-> > > > - Avoid compilation errors for architectures with special PFN_SHIFT=
-s
-> > > >
-> > > > Signed-off-by: Thomas Hellstr=C3=B6m <thomas.hellstrom@linux.intel.=
-com>
-> > > > Reviewed-by: Christian K=C3=B6nig <christian.koenig@amd.com>
-> > > Apparently this fails on ppc build testing. Please supply build fix a=
-sap
-> > > (or I guess we need to revert). I'm kinda not clear why this only sho=
-wed
-> > > up when I merged the drm-misc-next pr into drm-next ...
-> >
-> > I'm really wondering this as well. It looks like PMD_SHIFT isn't a cons=
-tant
-> > on this particular platform.
-> >
-> > But from what I can find in the upstream 6.2 kernel PMD_SHIFT always se=
-ems
-> > to be a constant.
-> >
-> > So how exactly can that here break?
->
-> There's some in-flight patches to rework MAX_ORDER and other things in
-> linux-next, maybe it's recent? If you check out linux-next then you need
-> to reapply the patch (since sfr reverted it).
+== Series Details ==
 
-So I looked and on ppc64 PMD_SHIFT is defined in terms of
-PTE_INDEX_SIZE, which is defined (for book3s) in terms of the variable
-__pte_index_size. This is in 6.3 already and seems pretty old.
+Series: Dump + OOB workarounds
+URL   : https://patchwork.freedesktop.org/series/116365/
+State : success
 
-So revert? Or fixup patch to make this work on ppc?
+== Summary ==
+
+=== Applying kernel patches on branch 'drm-xe-next' with base: ===
+commit a4df4e15fc962559422803d7b01e5dbe3a16d89e
+Author:     Matthew Auld <matthew.auld@intel.com>
+AuthorDate: Tue Apr 11 11:04:58 2023 +0100
+Commit:     Matthew Auld <matthew.auld@intel.com>
+CommitDate: Wed Apr 12 08:47:28 2023 +0100
+
+    drm/xe/mmio: stop incorrectly triggering drm_warn
+    
+    CI keeps triggering:
+    
+    xe 0000:03:00.0: [drm] Restricting VRAM size to PCI resource size
+    (0x400000000->0x3fa000000)
+    
+    Due to usable_size vs vram_size differences. However, we only want to
+    trigger the drm_warn() to let developers know that the system they are
+    using is going clamp the VRAM size to match the IO size, where they can
+    likely only use 256M of VRAM. Once we properly support small-bar we can
+    revisit this.
+    
+    v2 (Lucas): Drop the TODO for now
+    
+    Signed-off-by: Matthew Auld <matthew.auld@intel.com>
+    Cc: Gwan-gyeong Mun <gwan-gyeong.mun@intel.com>
+    Reviewed-by: Lucas De Marchi <lucas.demarchi@intel.com>
+=== git am output follows ===
+Applying: drm/xe: Add debugfs to dump all known workarounds
+Applying: drm/xe: Register OOB workarounds
 
 
-> > > > ---
-> > > >   drivers/gpu/drm/ttm/ttm_pool.c | 30 +++++++++++++++++++----------=
--
-> > > >   1 file changed, 19 insertions(+), 11 deletions(-)
-> > > >
-> > > > diff --git a/drivers/gpu/drm/ttm/ttm_pool.c b/drivers/gpu/drm/ttm/t=
-tm_pool.c
-> > > > index dfce896c4bae..18c342a919a2 100644
-> > > > --- a/drivers/gpu/drm/ttm/ttm_pool.c
-> > > > +++ b/drivers/gpu/drm/ttm/ttm_pool.c
-> > > > @@ -47,6 +47,11 @@
-> > > >   #include "ttm_module.h"
-> > > > +#define TTM_MAX_ORDER (PMD_SHIFT - PAGE_SHIFT)
-> > > > +#define __TTM_DIM_ORDER (TTM_MAX_ORDER + 1)
-> > > > +/* Some architectures have a weird PMD_SHIFT */
-> > > > +#define TTM_DIM_ORDER (__TTM_DIM_ORDER <=3D MAX_ORDER ? __TTM_DIM_=
-ORDER : MAX_ORDER)
-> > > > +
-> > > >   /**
-> > > >    * struct ttm_pool_dma - Helper object for coherent DMA mappings
-> > > >    *
-> > > > @@ -65,11 +70,11 @@ module_param(page_pool_size, ulong, 0644);
-> > > >   static atomic_long_t allocated_pages;
-> > > > -static struct ttm_pool_type global_write_combined[MAX_ORDER];
-> > > > -static struct ttm_pool_type global_uncached[MAX_ORDER];
-> > > > +static struct ttm_pool_type global_write_combined[TTM_DIM_ORDER];
-> > > > +static struct ttm_pool_type global_uncached[TTM_DIM_ORDER];
-> > > > -static struct ttm_pool_type global_dma32_write_combined[MAX_ORDER]=
-;
-> > > > -static struct ttm_pool_type global_dma32_uncached[MAX_ORDER];
-> > > > +static struct ttm_pool_type global_dma32_write_combined[TTM_DIM_OR=
-DER];
-> > > > +static struct ttm_pool_type global_dma32_uncached[TTM_DIM_ORDER];
-> > > >   static spinlock_t shrinker_lock;
-> > > >   static struct list_head shrinker_list;
-> > > > @@ -444,7 +449,7 @@ int ttm_pool_alloc(struct ttm_pool *pool, struc=
-t ttm_tt *tt,
-> > > >           else
-> > > >                   gfp_flags |=3D GFP_HIGHUSER;
-> > > > - for (order =3D min_t(unsigned int, MAX_ORDER - 1, __fls(num_pages=
-));
-> > > > + for (order =3D min_t(unsigned int, TTM_MAX_ORDER, __fls(num_pages=
-));
-> > > >                num_pages;
-> > > >                order =3D min_t(unsigned int, order, __fls(num_pages=
-))) {
-> > > >                   struct ttm_pool_type *pt;
-> > > > @@ -563,7 +568,7 @@ void ttm_pool_init(struct ttm_pool *pool, struc=
-t device *dev,
-> > > >           if (use_dma_alloc) {
-> > > >                   for (i =3D 0; i < TTM_NUM_CACHING_TYPES; ++i)
-> > > > -                 for (j =3D 0; j < MAX_ORDER; ++j)
-> > > > +                 for (j =3D 0; j < TTM_DIM_ORDER; ++j)
-> > > >                                   ttm_pool_type_init(&pool->caching=
-[i].orders[j],
-> > > >                                                      pool, i, j);
-> > > >           }
-> > > > @@ -583,7 +588,7 @@ void ttm_pool_fini(struct ttm_pool *pool)
-> > > >           if (pool->use_dma_alloc) {
-> > > >                   for (i =3D 0; i < TTM_NUM_CACHING_TYPES; ++i)
-> > > > -                 for (j =3D 0; j < MAX_ORDER; ++j)
-> > > > +                 for (j =3D 0; j < TTM_DIM_ORDER; ++j)
-> > > >                                   ttm_pool_type_fini(&pool->caching=
-[i].orders[j]);
-> > > >           }
-> > > > @@ -637,7 +642,7 @@ static void ttm_pool_debugfs_header(struct seq_=
-file *m)
-> > > >           unsigned int i;
-> > > >           seq_puts(m, "\t ");
-> > > > - for (i =3D 0; i < MAX_ORDER; ++i)
-> > > > + for (i =3D 0; i < TTM_DIM_ORDER; ++i)
-> > > >                   seq_printf(m, " ---%2u---", i);
-> > > >           seq_puts(m, "\n");
-> > > >   }
-> > > > @@ -648,7 +653,7 @@ static void ttm_pool_debugfs_orders(struct ttm_=
-pool_type *pt,
-> > > >   {
-> > > >           unsigned int i;
-> > > > - for (i =3D 0; i < MAX_ORDER; ++i)
-> > > > + for (i =3D 0; i < TTM_DIM_ORDER; ++i)
-> > > >                   seq_printf(m, " %8u", ttm_pool_type_count(&pt[i])=
-);
-> > > >           seq_puts(m, "\n");
-> > > >   }
-> > > > @@ -751,13 +756,16 @@ int ttm_pool_mgr_init(unsigned long num_pages=
-)
-> > > >   {
-> > > >           unsigned int i;
-> > > > + BUILD_BUG_ON(TTM_DIM_ORDER > MAX_ORDER);
-> > > > + BUILD_BUG_ON(TTM_DIM_ORDER < 1);
-> > > > +
-> > > >           if (!page_pool_size)
-> > > >                   page_pool_size =3D num_pages;
-> > > >           spin_lock_init(&shrinker_lock);
-> > > >           INIT_LIST_HEAD(&shrinker_list);
-> > > > - for (i =3D 0; i < MAX_ORDER; ++i) {
-> > > > + for (i =3D 0; i < TTM_DIM_ORDER; ++i) {
-> > > >                   ttm_pool_type_init(&global_write_combined[i], NUL=
-L,
-> > > >                                      ttm_write_combined, i);
-> > > >                   ttm_pool_type_init(&global_uncached[i], NULL, ttm=
-_uncached, i);
-> > > > @@ -790,7 +798,7 @@ void ttm_pool_mgr_fini(void)
-> > > >   {
-> > > >           unsigned int i;
-> > > > - for (i =3D 0; i < MAX_ORDER; ++i) {
-> > > > + for (i =3D 0; i < TTM_DIM_ORDER; ++i) {
-> > > >                   ttm_pool_type_fini(&global_write_combined[i]);
-> > > >                   ttm_pool_type_fini(&global_uncached[i]);
-> > > > --
-> > > > 2.39.2
-> > > >
-> >
->
-> --
-> Daniel Vetter
-> Software Engineer, Intel Corporation
-> http://blog.ffwll.ch
-
-
-
---=20
-Daniel Vetter
-Software Engineer, Intel Corporation
-http://blog.ffwll.ch
