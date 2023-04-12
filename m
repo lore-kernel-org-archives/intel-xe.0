@@ -4,50 +4,50 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id C9582C77B72
-	for <intel-xe@archiver.kernel.org>; Wed, 12 Apr 2023 14:21:18 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id B09E9C77B6E
+	for <intel-xe@archiver.kernel.org>; Wed, 12 Apr 2023 14:21:24 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id AB86910E835;
-	Wed, 12 Apr 2023 14:21:18 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9046410E823;
+	Wed, 12 Apr 2023 14:21:24 +0000 (UTC)
 Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B8F3B10E823
- for <intel-xe@lists.freedesktop.org>; Wed, 12 Apr 2023 14:21:16 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B758F10E823
+ for <intel-xe@lists.freedesktop.org>; Wed, 12 Apr 2023 14:21:21 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1681309276; x=1712845276;
+ t=1681309281; x=1712845281;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=FVAh4On5XdvV9iSCLEiakjacIZp6jEqoSMEB6aLwj64=;
- b=c+agTQMy9c0iajqwzBmcnExJKoes4oslnl9AF01ZmLzUB4DO6C7IyVv+
- ecdUdTJ2PD4X43CtUZ99gyU+8IyfBaLvQxAez8ReoHxhBxZ+3iuSaAvrM
- ymm0AXBqvMPLvIyoLfLuv8Ce3bc2AZKqedGwMnOmbXe7PTMeDcI0SiFz9
- T0dmylVG8yc4juq6YSomUfxQCXZQd6gSvw0DnLNqXl9UQEYLkkuQZz3j1
- Fk3oGvCVeuLxJsLBosl89/HMxzdY0GusOnks76IgcZJWVG7roLfdtUPWV
- s6eORvFC3fmtauJNODLyiVSxK3ghkbIdhVJ1GysBfKF/7w6rk/FsV2S3E A==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10678"; a="343915317"
-X-IronPort-AV: E=Sophos;i="5.98,339,1673942400"; d="scan'208";a="343915317"
+ bh=wPKVY7+RMVS29PqhLJkaAScYHCZ9Ebias+Rk6HhXzQs=;
+ b=Y8VQyn2srb+MtB5Ao1A7LwUbg5cXrtMak9G70kkRlRy0MMk3chVe48iC
+ 6mwpX3RWF/1omAimoGZfL3r+rAju04hAhIREZejWmsCoGqPaad8FkqKYo
+ D+iSevpQiQHDAW2n7pGZ96fiCg+xzIeOQYvxCp2lNvZyfu2aBNY3Ytl/X
+ bxVKmUhPYhEuZs6QRT16O1r09j0Cy2PlZnP7vBiCGhV/a0Cmj4EsOQwA2
+ YcuijXj1XudmGJcDKbZvNAe+kklcG6ynTgMz7vBvMwWeQQ93LlnBQJUaY
+ duVXuReKqE6GcUZSlnSNYswUETMso3L+aPw8dReTXcxJZRTCpo6/U8my9 w==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10678"; a="343915343"
+X-IronPort-AV: E=Sophos;i="5.98,339,1673942400"; d="scan'208";a="343915343"
 Received: from orsmga002.jf.intel.com ([10.7.209.21])
  by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 12 Apr 2023 07:21:16 -0700
+ 12 Apr 2023 07:21:21 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10678"; a="688955683"
-X-IronPort-AV: E=Sophos;i="5.98,339,1673942400"; d="scan'208";a="688955683"
+X-IronPort-AV: E=McAfee;i="6600,9927,10678"; a="688955695"
+X-IronPort-AV: E=Sophos;i="5.98,339,1673942400"; d="scan'208";a="688955695"
 Received: from smoticic-mobl.ger.corp.intel.com (HELO localhost)
  ([10.252.45.172])
  by orsmga002-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 12 Apr 2023 07:21:13 -0700
+ 12 Apr 2023 07:21:19 -0700
 From: Jani Nikula <jani.nikula@intel.com>
 To: intel-xe@lists.freedesktop.org
-Date: Wed, 12 Apr 2023 17:19:35 +0300
-Message-Id: <20230412142006.877109-11-jani.nikula@intel.com>
+Date: Wed, 12 Apr 2023 17:19:36 +0300
+Message-Id: <20230412142006.877109-12-jani.nikula@intel.com>
 X-Mailer: git-send-email 2.39.2
 In-Reply-To: <20230412142006.877109-1-jani.nikula@intel.com>
 References: <20230412142006.877109-1-jani.nikula@intel.com>
 MIME-Version: 1.0
 Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-xe] [PATCH 10/41] drm/i915/display: add I915 conditional
- build to intel_crt.h
+Subject: [Intel-xe] [PATCH 11/41] fixup! drm/i915/display: Remaining changes
+ to make xe compile
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -63,41 +63,69 @@ Cc: jani.nikula@intel.com, lucas.demarchi@intel.com, rodrigo.vivi@intel.com
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Add stubs for !I915.
+CRT is now better abstracted. No longer needed.
 
 Signed-off-by: Jani Nikula <jani.nikula@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_crt.h | 14 ++++++++++++++
- 1 file changed, 14 insertions(+)
+ drivers/gpu/drm/i915/display/intel_display.c            | 5 ++---
+ drivers/gpu/drm/i915/display/intel_display_power_well.c | 5 +----
+ 2 files changed, 3 insertions(+), 7 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_crt.h b/drivers/gpu/drm/i915/display/intel_crt.h
-index c6071efd93ce..fe7690c2b948 100644
---- a/drivers/gpu/drm/i915/display/intel_crt.h
-+++ b/drivers/gpu/drm/i915/display/intel_crt.h
-@@ -12,9 +12,23 @@ enum pipe;
- struct drm_encoder;
- struct drm_i915_private;
+diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
+index 859db9ead755..f701b75d1f37 100644
+--- a/drivers/gpu/drm/i915/display/intel_display.c
++++ b/drivers/gpu/drm/i915/display/intel_display.c
+@@ -46,7 +46,6 @@
+ #include <drm/drm_rect.h>
  
-+#ifdef I915
- bool intel_crt_port_enabled(struct drm_i915_private *dev_priv,
- 			    i915_reg_t adpa_reg, enum pipe *pipe);
- void intel_crt_init(struct drm_i915_private *dev_priv);
- void intel_crt_reset(struct drm_encoder *encoder);
-+#else
-+static inline bool intel_crt_port_enabled(struct drm_i915_private *dev_priv,
-+					  i915_reg_t adpa_reg, enum pipe *pipe)
-+{
-+	return false;
-+}
-+static inline void intel_crt_init(struct drm_i915_private *dev_priv)
-+{
-+}
-+static inline void intel_crt_reset(struct drm_encoder *encoder)
-+{
-+}
-+#endif
+ #ifdef I915
+-#include "intel_crt.h"
+ #include "intel_dvo.h"
+ #include "intel_sdvo.h"
+ #include "intel_tv.h"
+@@ -75,6 +74,7 @@
+ #include "intel_bw.h"
+ #include "intel_cdclk.h"
+ #include "intel_color.h"
++#include "intel_crt.h"
+ #include "intel_crtc.h"
+ #include "intel_crtc_state_dump.h"
+ #include "intel_ddi.h"
+@@ -7947,10 +7947,9 @@ static void intel_setup_outputs(struct drm_i915_private *dev_priv)
+ 		intel_ddi_init(dev_priv, PORT_E);
+ 	} else if (HAS_DDI(dev_priv)) {
+ 		u32 found;
+-#ifdef I915
++
+ 		if (intel_ddi_crt_present(dev_priv))
+ 			intel_crt_init(dev_priv);
+-#endif
  
- #endif /* __INTEL_CRT_H__ */
+ 		/* Haswell uses DDI functions to detect digital outputs. */
+ 		found = intel_de_read(dev_priv, DDI_BUF_CTL(PORT_A)) & DDI_INIT_DISPLAY_DETECTED;
+diff --git a/drivers/gpu/drm/i915/display/intel_display_power_well.c b/drivers/gpu/drm/i915/display/intel_display_power_well.c
+index 7cd52e545ae1..ddea30240a5b 100644
+--- a/drivers/gpu/drm/i915/display/intel_display_power_well.c
++++ b/drivers/gpu/drm/i915/display/intel_display_power_well.c
+@@ -8,6 +8,7 @@
+ #include "intel_backlight_regs.h"
+ #include "intel_combo_phy.h"
+ #include "intel_combo_phy_regs.h"
++#include "intel_crt.h"
+ #include "intel_de.h"
+ #include "intel_display_power_well.h"
+ #include "intel_display_types.h"
+@@ -24,10 +25,6 @@
+ #include "vlv_sideband.h"
+ #include "vlv_sideband_reg.h"
+ 
+-#ifdef I915
+-#include "intel_crt.h"
+-#endif
+-
+ struct i915_power_well_regs {
+ 	i915_reg_t bios;
+ 	i915_reg_t driver;
 -- 
 2.39.2
 
