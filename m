@@ -4,50 +4,51 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id AA3BDC77B6E
-	for <intel-xe@archiver.kernel.org>; Wed, 12 Apr 2023 14:20:50 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 29A68C77B6F
+	for <intel-xe@archiver.kernel.org>; Wed, 12 Apr 2023 14:20:56 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7A24210E82A;
-	Wed, 12 Apr 2023 14:20:50 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id EB00A10E82A;
+	Wed, 12 Apr 2023 14:20:55 +0000 (UTC)
 Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1668D10E839
- for <intel-xe@lists.freedesktop.org>; Wed, 12 Apr 2023 14:20:47 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0EE0C10E82A
+ for <intel-xe@lists.freedesktop.org>; Wed, 12 Apr 2023 14:20:54 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1681309248; x=1712845248;
+ t=1681309254; x=1712845254;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=QO26e7S2l7LAcr3aQcjcXvewO22iDIxzsqQgeMgD/y8=;
- b=ZM/+IlAvlTevGxOpyvFUFklZgM+wEPYGxvaNNoeEsLsof2qxkTNnhOht
- 7HdH9y153lXMQyLmQ0bFDfJNAltypdm5WlvsIgJCu9RYNWp5mIFcrM4Xv
- 0IgecG1xwOznCNf1tIGDDIMpXIyHM9oyO9IgyBdyZCzSvep8DRyJAoCOG
- AcQES39YFRWRWWKC0VYnN1eHbvUIOjb5W2SEdsa+3iJgQwCwRpU5zUtYf
- 41il2RGoMcuIHgiqJuvY28d73/8KN+XQG940yZxFieWfPZ6hSkLmWgabY
- iE987xzWw3RKz4N0rw5P0+w4LWkM6ArVMKHVVAvR/NMZ+vGvjaNZUeK9/ Q==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10678"; a="328020080"
-X-IronPort-AV: E=Sophos;i="5.98,339,1673942400"; d="scan'208";a="328020080"
+ bh=1rHhVDuPLplEhNLrreQwrCzYuvO/F+y9TYoxdrO6N3I=;
+ b=fqK/j4Fj/btZfCzI3A/d6asOXVOLDwlqIwobMAzrZBtJwRrFNG5RxMcS
+ mQMAd5IlVYlMPZnjUyI/JaR3120V8+T9U2iP1DHcYwcbzsIdUvgq4gWny
+ 3j3hvsELYDmXA4kaH8C/GQbtVWcYGp5IOutpt53C4w7ZCFg7ftdzoIC5U
+ echX1P8ggxJTvBERW3lN4mStHL9XY+/TjV4hlYIZWtQCayNt/8reqNnH0
+ HO81AUlHMJtMvsraRIP1v0yw8YoUwK+dZXfpLIqSuY034jh5P6nvRUQsC
+ wMTKu9NIyB+1QRlaevpxvJSlT6JXRjFw6UEv0Zkzm2/wAxco0DgDVcE1I w==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10678"; a="328020163"
+X-IronPort-AV: E=Sophos;i="5.98,339,1673942400"; d="scan'208";a="328020163"
 Received: from fmsmga008.fm.intel.com ([10.253.24.58])
  by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 12 Apr 2023 07:20:34 -0700
+ 12 Apr 2023 07:20:49 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10678"; a="753544166"
-X-IronPort-AV: E=Sophos;i="5.98,339,1673942400"; d="scan'208";a="753544166"
+X-IronPort-AV: E=McAfee;i="6600,9927,10678"; a="753544234"
+X-IronPort-AV: E=Sophos;i="5.98,339,1673942400"; d="scan'208";a="753544234"
 Received: from smoticic-mobl.ger.corp.intel.com (HELO localhost)
  ([10.252.45.172])
  by fmsmga008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 12 Apr 2023 07:20:32 -0700
+ 12 Apr 2023 07:20:47 -0700
 From: Jani Nikula <jani.nikula@intel.com>
 To: intel-xe@lists.freedesktop.org
-Date: Wed, 12 Apr 2023 17:19:27 +0300
-Message-Id: <20230412142006.877109-3-jani.nikula@intel.com>
+Date: Wed, 12 Apr 2023 17:19:30 +0300
+Message-Id: <20230412142006.877109-6-jani.nikula@intel.com>
 X-Mailer: git-send-email 2.39.2
 In-Reply-To: <20230412142006.877109-1-jani.nikula@intel.com>
 References: <20230412142006.877109-1-jani.nikula@intel.com>
 MIME-Version: 1.0
 Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-xe] [PATCH 02/41] fixup! drm/i915/display: Remaining changes
- to make xe compile
+Subject: [Intel-xe] [PATCH 05/41] fixup! drm/xe/display: Implement display
+ support
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -63,44 +64,64 @@ Cc: jani.nikula@intel.com, lucas.demarchi@intel.com, rodrigo.vivi@intel.com
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Remove intel_dpio_phy.h hacky conditional compile. To be replaced with
-better stubs.
+Add proper stubs for i915_vgpu.h.
 
 Signed-off-by: Jani Nikula <jani.nikula@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_dpio_phy.h | 14 --------------
- 1 file changed, 14 deletions(-)
+ .../drm/xe/compat-i915-headers/i915_vgpu.h    | 44 +++++++++++++++++++
+ 1 file changed, 44 insertions(+)
+ create mode 100644 drivers/gpu/drm/xe/compat-i915-headers/i915_vgpu.h
 
-diff --git a/drivers/gpu/drm/i915/display/intel_dpio_phy.h b/drivers/gpu/drm/i915/display/intel_dpio_phy.h
-index 952e8d446425..855d96d670cd 100644
---- a/drivers/gpu/drm/i915/display/intel_dpio_phy.h
-+++ b/drivers/gpu/drm/i915/display/intel_dpio_phy.h
-@@ -27,7 +27,6 @@ enum dpio_phy {
- 	DPIO_PHY2,
- };
- 
--#ifdef I915
- void bxt_port_to_phy_channel(struct drm_i915_private *dev_priv, enum port port,
- 			     enum dpio_phy *phy, enum dpio_channel *ch);
- void bxt_ddi_phy_set_signal_levels(struct intel_encoder *encoder,
-@@ -73,17 +72,4 @@ void vlv_phy_pre_encoder_enable(struct intel_encoder *encoder,
- void vlv_phy_reset_lanes(struct intel_encoder *encoder,
- 			 const struct intel_crtc_state *old_crtc_state);
- 
--#else
--#define bxt_port_to_phy_channel(xe, port, phy, ch) do { *phy = 0; *ch = 0; } while (xe && port && 0)
--static inline void bxt_ddi_phy_set_signal_levels(struct intel_encoder *x,
--						 const struct intel_crtc_state *y) {}
--#define bxt_ddi_phy_init(xe, phy) do { } while (xe && phy && 0)
--#define bxt_ddi_phy_uninit(xe, phy) do { } while (xe && phy && 0)
--#define bxt_ddi_phy_is_enabled(xe, phy) (xe && phy && 0)
--static inline bool bxt_ddi_phy_verify_state(struct xe_device *xe, enum dpio_phy phy) { return false; }
--#define bxt_ddi_phy_calc_lane_lat_optim_mask(x) (x && 0)
--#define bxt_ddi_phy_set_lane_optim_mask(x, y) do { } while (x && y && 0)
--#define bxt_ddi_phy_get_lane_lat_optim_mask(x) (x && 0)
--#endif
--
- #endif /* __INTEL_DPIO_PHY_H__ */
+diff --git a/drivers/gpu/drm/xe/compat-i915-headers/i915_vgpu.h b/drivers/gpu/drm/xe/compat-i915-headers/i915_vgpu.h
+new file mode 100644
+index 000000000000..80b024d435dc
+--- /dev/null
++++ b/drivers/gpu/drm/xe/compat-i915-headers/i915_vgpu.h
+@@ -0,0 +1,44 @@
++/* SPDX-License-Identifier: MIT */
++/*
++ * Copyright © 2023 Intel Corporation
++ */
++
++#ifndef _I915_VGPU_H_
++#define _I915_VGPU_H_
++
++#include <linux/types.h>
++
++struct drm_i915_private;
++struct i915_ggtt;
++
++static inline void intel_vgpu_detect(struct drm_i915_private *i915)
++{
++}
++static inline bool intel_vgpu_active(struct drm_i915_private *i915)
++{
++	return false;
++}
++static inline void intel_vgpu_register(struct drm_i915_private *i915)
++{
++}
++static inline bool intel_vgpu_has_full_ppgtt(struct drm_i915_private *i915)
++{
++	return false;
++}
++static inline bool intel_vgpu_has_hwsp_emulation(struct drm_i915_private *i915)
++{
++	return false;
++}
++static inline bool intel_vgpu_has_huge_gtt(struct drm_i915_private *i915)
++{
++	return false;
++}
++static inline int intel_vgt_balloon(struct i915_ggtt *ggtt)
++{
++	return 0;
++}
++static inline void intel_vgt_deballoon(struct i915_ggtt *ggtt)
++{
++}
++
++#endif /* _I915_VGPU_H_ */
 -- 
 2.39.2
 
