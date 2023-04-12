@@ -4,48 +4,50 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id B11C6C77B6E
-	for <intel-xe@archiver.kernel.org>; Wed, 12 Apr 2023 14:20:26 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 64CBCC7619A
+	for <intel-xe@archiver.kernel.org>; Wed, 12 Apr 2023 14:20:48 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7DFFC10E856;
-	Wed, 12 Apr 2023 14:20:26 +0000 (UTC)
-Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 82F3810E849
- for <intel-xe@lists.freedesktop.org>; Wed, 12 Apr 2023 14:20:25 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id F391110E84B;
+	Wed, 12 Apr 2023 14:20:47 +0000 (UTC)
+Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 931AC10E823
+ for <intel-xe@lists.freedesktop.org>; Wed, 12 Apr 2023 14:20:46 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1681309225; x=1712845225;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=7en3aA7e+9IWEgGdwk3gnc8uFM2eO7TWDXqki+7LBT0=;
- b=ZoHRtMO0Nvv/Bk636QbpLzwL+OMAYWOVkQcctrZYMWa7NWoPpFxHgb3Y
- UTeS7LnQsnwXpqtlA2fyjgXJruaZGe2FLZeud8BiCBPICFEOmJnKwKJT2
- N4NpMsToMwTLxxKHBGF/tHF3sBlQ5r7lLTyyfKVkgJ+vcV1Ul95GNkfcE
- gI2rs1XVgYFFORKnquY12s4upIbLeWoFRfIA4ewkCZwjSdHTlvlmUa0MS
- rztdiO5/IEmZUuZWMeKgNDRefx3EE4Sd3ia3BAckmqjNzsjJctmPoUf68
- h5VgJOXapH7tSwt9bJyi3G4ejPcuRmoPI8KcK5fXuVeQq2XaacfH6Uxvn A==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10678"; a="409048281"
-X-IronPort-AV: E=Sophos;i="5.98,339,1673942400"; d="scan'208";a="409048281"
-Received: from orsmga001.jf.intel.com ([10.7.209.18])
- by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 12 Apr 2023 07:20:24 -0700
+ t=1681309246; x=1712845246;
+ h=from:to:cc:subject:date:message-id:in-reply-to:
+ references:mime-version:content-transfer-encoding;
+ bh=4XAQW1BHI2dlnaaUbv9hWIVV7GbB7gnTaTbdd1yN9G0=;
+ b=F6IZKcwnUh0xjwmW86os8BTn8M1SfuhD37oMGf7mQXoNt6YfiPDsHU13
+ Z4/Ggxxi6WxlTkmqCpWztIQNSpoo3VhbweG5Z8mfc1GhQbdbCveemY/J7
+ 9dNmeKjkpnpsy3r9XK/GkkqGp+VP376e7yGmo7cThikUbyWy5LqlJLeGx
+ xu90Bshkx/DkUDc6AAKRaMTX85eDmciZ704ClquiXwoteZ98jqpmOCFal
+ E3JHzMdx4pHfm5vgyITvaJ6XdyfngaV7IaXLQazaIhI3FrSnxphlgDQFi
+ C1ABXnLGi/Cn+5+M6zobW907h4PiYPkpLhtEVksdy4zQPHCoskvqF/UPE A==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10678"; a="328020058"
+X-IronPort-AV: E=Sophos;i="5.98,339,1673942400"; d="scan'208";a="328020058"
+Received: from fmsmga008.fm.intel.com ([10.253.24.58])
+ by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 12 Apr 2023 07:20:30 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10678"; a="721584345"
-X-IronPort-AV: E=Sophos;i="5.98,339,1673942400"; d="scan'208";a="721584345"
+X-IronPort-AV: E=McAfee;i="6600,9927,10678"; a="753544144"
+X-IronPort-AV: E=Sophos;i="5.98,339,1673942400"; d="scan'208";a="753544144"
 Received: from smoticic-mobl.ger.corp.intel.com (HELO localhost)
  ([10.252.45.172])
- by orsmga001-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 12 Apr 2023 07:20:22 -0700
+ by fmsmga008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 12 Apr 2023 07:20:28 -0700
 From: Jani Nikula <jani.nikula@intel.com>
 To: intel-xe@lists.freedesktop.org
-Date: Wed, 12 Apr 2023 17:19:25 +0300
-Message-Id: <20230412142006.877109-1-jani.nikula@intel.com>
+Date: Wed, 12 Apr 2023 17:19:26 +0300
+Message-Id: <20230412142006.877109-2-jani.nikula@intel.com>
 X-Mailer: git-send-email 2.39.2
+In-Reply-To: <20230412142006.877109-1-jani.nikula@intel.com>
+References: <20230412142006.877109-1-jani.nikula@intel.com>
 MIME-Version: 1.0
 Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-xe] [PATCH 00/41] xe & i915 display integration ifdef
- cleanups, part 2
+Subject: [Intel-xe] [PATCH 01/41] drm/i915/display: add I915 conditional
+ build to g4x_dp.h
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -61,98 +63,56 @@ Cc: jani.nikula@intel.com, lucas.demarchi@intel.com, rodrigo.vivi@intel.com
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-This continues the ifdef cleanups [1].
+Add stubs for !I915.
 
-BR,
-Jani.
+Signed-off-by: Jani Nikula <jani.nikula@intel.com>
+---
+ drivers/gpu/drm/i915/display/g4x_dp.h | 26 ++++++++++++++++++++++++++
+ 1 file changed, 26 insertions(+)
 
-[1] https://lore.kernel.org/r/20230405153920.926583-1-jani.nikula@intel.com
-
-Jani Nikula (41):
-  drm/i915/display: add I915 conditional build to g4x_dp.h
-  fixup! drm/i915/display: Remaining changes to make xe compile
-  drm/i915/display: add I915 conditional build to intel_dpio_phy.h
-  fixup! drm/i915/display: Remaining changes to make xe compile
-  fixup! drm/xe/display: Implement display support
-  fixup! drm/xe/display: Implement display support
-  fixup! drm/i915/display: Remaining changes to make xe compile
-  fixup! drm/xe/display: Implement display support
-  fixup! drm/i915/display: Remaining changes to make xe compile
-  drm/i915/display: add I915 conditional build to intel_crt.h
-  fixup! drm/i915/display: Remaining changes to make xe compile
-  drm/i915/display: add I915 conditional build to vlv_dsi.h
-  fixup! drm/i915/display: Remaining changes to make xe compile
-  fixup! drm/xe/display: Implement display support
-  fixup! drm/i915/display: Remaining changes to make xe compile
-  fixup! drm/i915/display: Remaining changes to make xe compile
-  fixup! drm/i915/display: Remaining changes to make xe compile
-  fixup! drm/i915/display: Remaining changes to make xe compile
-  fixup! drm/xe/display: Implement display support
-  fixup! drm/i915/display: Remaining changes to make xe compile
-  fixup! drm/xe/display: Implement display support
-  fixup! drm/i915/display: Remaining changes to make xe compile
-  fixup! drm/i915/display: Remaining changes to make xe compile
-  fixup! drm/i915/display: Remaining changes to make xe compile
-  fixup! drm/xe/display: Implement display support
-  fixup! drm/i915/display: Remaining changes to make xe compile
-  fixup! drm/i915/display: Remaining changes to make xe compile
-  fixup! drm/i915/display: Remaining changes to make xe compile
-  fixup! drm/i915/display: Remaining changes to make xe compile
-  fixup! drm/i915/display: Remaining changes to make xe compile
-  fixup! drm/i915/display: Remove all uncore mmio accesses in favor of
-    intel_de
-  drm/i915/display: remove unnecessary i915_debugfs.h includes
-  fixup! drm/i915/display: Remaining changes to make xe compile
-  fixup! drm/i915/display: Remaining changes to make xe compile
-  fixup! drm/i915/display: Remaining changes to make xe compile
-  fixup! drm/i915/display: Remaining changes to make xe compile
-  fixup! drm/xe/display: Implement display support
-  fixup! drm/i915/display: Remaining changes to make xe compile
-  fixup! drm/xe/display: Implement display support
-  fixup! drm/i915/display: Remaining changes to make xe compile
-  fixup! drm/i915/display: Remaining changes to make xe compile
-
- drivers/gpu/drm/i915/display/g4x_dp.h         |  26 ++++
- .../gpu/drm/i915/display/intel_atomic_plane.c |   5 +-
- drivers/gpu/drm/i915/display/intel_cdclk.c    |  15 --
- drivers/gpu/drm/i915/display/intel_crt.h      |  14 ++
- drivers/gpu/drm/i915/display/intel_crtc.c     |   4 -
- drivers/gpu/drm/i915/display/intel_display.c  |  55 ++------
- .../gpu/drm/i915/display/intel_display_core.h |   4 -
- .../drm/i915/display/intel_display_debugfs.c  |   9 +-
- .../drm/i915/display/intel_display_power.c    |  10 --
- .../i915/display/intel_display_power_map.c    |   8 --
- .../i915/display/intel_display_power_well.c   |  17 +--
- .../drm/i915/display/intel_display_trace.h    |   2 -
- .../drm/i915/display/intel_display_types.h    |   9 +-
- drivers/gpu/drm/i915/display/intel_dp.c       |  10 --
- drivers/gpu/drm/i915/display/intel_dp_aux.c   |   4 -
- drivers/gpu/drm/i915/display/intel_dpio_phy.h | 104 ++++++++++++--
- drivers/gpu/drm/i915/display/intel_dpll.c     |   7 -
- drivers/gpu/drm/i915/display/intel_dpll_mgr.c |   4 -
- drivers/gpu/drm/i915/display/intel_dsi_vbt.c  |  20 +--
- drivers/gpu/drm/i915/display/intel_fbc.c      |   3 +-
- drivers/gpu/drm/i915/display/intel_pps.c      |  13 +-
- drivers/gpu/drm/i915/display/intel_sprite.c   |   4 -
- drivers/gpu/drm/i915/display/skl_scaler.c     |   2 -
- .../drm/i915/display/skl_universal_plane.c    |  30 +---
- drivers/gpu/drm/i915/display/vlv_dsi.h        |  13 ++
- .../drm/xe/compat-i915-headers/i915_debugfs.h |  14 ++
- .../gpu/drm/xe/compat-i915-headers/i915_drv.h |   4 -
- .../drm/xe/compat-i915-headers/i915_trace.h   |   6 +
- .../drm/xe/compat-i915-headers/i915_vgpu.h    |  44 ++++++
- .../gpu/drm/xe/compat-i915-headers/i915_vma.h |   1 +
- .../drm/xe/compat-i915-headers/vlv_sideband.h | 132 ++++++++++++++++++
- .../xe/compat-i915-headers/vlv_sideband_reg.h |   1 +
- drivers/gpu/drm/xe/display/ext/i915_irq.h     |   8 +-
- drivers/gpu/drm/xe/xe_device_types.h          |   6 +
- 34 files changed, 383 insertions(+), 225 deletions(-)
- create mode 100644 drivers/gpu/drm/xe/compat-i915-headers/i915_debugfs.h
- create mode 100644 drivers/gpu/drm/xe/compat-i915-headers/i915_trace.h
- create mode 100644 drivers/gpu/drm/xe/compat-i915-headers/i915_vgpu.h
- create mode 100644 drivers/gpu/drm/xe/compat-i915-headers/vlv_sideband.h
- create mode 100644 drivers/gpu/drm/xe/compat-i915-headers/vlv_sideband_reg.h
-
+diff --git a/drivers/gpu/drm/i915/display/g4x_dp.h b/drivers/gpu/drm/i915/display/g4x_dp.h
+index a38b3e1e01d3..a10638ab749c 100644
+--- a/drivers/gpu/drm/i915/display/g4x_dp.h
++++ b/drivers/gpu/drm/i915/display/g4x_dp.h
+@@ -17,6 +17,7 @@ struct intel_crtc_state;
+ struct intel_dp;
+ struct intel_encoder;
+ 
++#ifdef I915
+ const struct dpll *vlv_get_dpll(struct drm_i915_private *i915);
+ enum pipe vlv_active_pipe(struct intel_dp *intel_dp);
+ void g4x_dp_set_clock(struct intel_encoder *encoder,
+@@ -26,5 +27,30 @@ bool g4x_dp_port_enabled(struct drm_i915_private *dev_priv,
+ 			 enum pipe *pipe);
+ bool g4x_dp_init(struct drm_i915_private *dev_priv,
+ 		 i915_reg_t output_reg, enum port port);
++#else
++static inline const struct dpll *vlv_get_dpll(struct drm_i915_private *i915)
++{
++	return NULL;
++}
++static inline int vlv_active_pipe(struct intel_dp *intel_dp)
++{
++	return 0;
++}
++static inline void g4x_dp_set_clock(struct intel_encoder *encoder,
++				    struct intel_crtc_state *pipe_config)
++{
++}
++static inline bool g4x_dp_port_enabled(struct drm_i915_private *dev_priv,
++				       i915_reg_t dp_reg, int port,
++				       enum pipe *pipe)
++{
++	return false;
++}
++static inline bool g4x_dp_init(struct drm_i915_private *dev_priv,
++			       i915_reg_t output_reg, int port)
++{
++	return false;
++}
++#endif
+ 
+ #endif
 -- 
 2.39.2
 
