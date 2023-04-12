@@ -4,45 +4,48 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 13F61C77B73
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1ABF6C77B78
 	for <intel-xe@archiver.kernel.org>; Wed, 12 Apr 2023 18:48:45 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D075510E921;
+	by gabe.freedesktop.org (Postfix) with ESMTP id DBA4110E923;
 	Wed, 12 Apr 2023 18:48:44 +0000 (UTC)
 Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4599110E124
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B8AE310E921
  for <intel-xe@lists.freedesktop.org>; Wed, 12 Apr 2023 18:48:42 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
  t=1681325322; x=1712861322;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=4n6S1CHxlZ7eUeuSIVk82BI2ies1kVqN17hZ28JSPC4=;
- b=Z1id6uCvJfwnnG+xczqYgWPgMKe+FVbC0pydNZvuSfadfWTkizhQscFK
- obYG+RyvdFBJYJ+VnTpJVYS5I83GqswF4BxF5fKOJ9VzFi+vISAcYUr3o
- inwRt9H2NZHlKp92Y6i6jkq+XqydyEmrR00jO0bng2/cF8RoYZm9FTmlw
- Ot/oa0Ort5uwg1NeyrEoOPGXH269Z+yTgaXc0lGFGzliBfGgl4mizAFBu
- p40/8E729AE/Jc/OLVvRVf6E79UgDhqfUkhwgqh63qoQtkq6wjAklWpe9
- tQoJx+1RdT5pwAla5OQ1XP9fRuZPD7VxgzeO56esI15Afl3J7BbQkWoez g==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10678"; a="430276541"
-X-IronPort-AV: E=Sophos;i="5.98,339,1673942400"; d="scan'208";a="430276541"
+ h=from:to:cc:subject:date:message-id:in-reply-to:
+ references:mime-version:content-transfer-encoding;
+ bh=cXReASyCGIRFBIJA9auzndeQeIpGpVyujPCdBLdP7mw=;
+ b=H9uSyYrGP2Yb+RtYuW6aLdpS1Fnfy+VSzG7+HNeVS7F2tsXuVvfX8x6G
+ /6vvWiajGzGQ+Kq7xfRRyfH83i/prgx0/z7qifiWBzSMX0ylPTD0ctw+s
+ xahq/IdoX0MRo0LDqzTp3aZ85hUVx/Phg1hUOV/7mqcDHrjLlTrOU8vyg
+ YaaDVhJWeBxtoascvwMDvy33ssCNwZORtF1jRwigHBXbcK+lweVmqgPmv
+ s1KjqvJOlIeffUfe3hAY9m4pH/kom6J5klHZvjCkHt0PhlCv49Kvxw3wb
+ Qp499AYHtMN+gfR97VAvNJlnedY+FKTgMHAbf46gozmDTZ6mi8JS4paKM g==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10678"; a="430276546"
+X-IronPort-AV: E=Sophos;i="5.98,339,1673942400"; d="scan'208";a="430276546"
 Received: from fmsmga007.fm.intel.com ([10.253.24.52])
  by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  12 Apr 2023 11:48:41 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10678"; a="691638607"
-X-IronPort-AV: E=Sophos;i="5.98,339,1673942400"; d="scan'208";a="691638607"
+X-IronPort-AV: E=McAfee;i="6600,9927,10678"; a="691638623"
+X-IronPort-AV: E=Sophos;i="5.98,339,1673942400"; d="scan'208";a="691638623"
 Received: from mdroper-desk1.fm.intel.com ([10.1.27.134])
  by fmsmga007-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  12 Apr 2023 11:48:41 -0700
 From: Matt Roper <matthew.d.roper@intel.com>
 To: intel-xe@lists.freedesktop.org
-Date: Wed, 12 Apr 2023 11:48:29 -0700
-Message-Id: <20230412184835.3157780-1-matthew.d.roper@intel.com>
+Date: Wed, 12 Apr 2023 11:48:34 -0700
+Message-Id: <20230412184835.3157780-6-matthew.d.roper@intel.com>
 X-Mailer: git-send-email 2.39.2
+In-Reply-To: <20230412184835.3157780-1-matthew.d.roper@intel.com>
+References: <20230412184835.3157780-1-matthew.d.roper@intel.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-xe] [PATCH 0/6] Meteorlake interrupt handling updates
+Subject: [Intel-xe] [PATCH 5/6] drm/xe/irq: Ensure primary GuC won't clobber
+ media GuC's interrupt mask
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -58,40 +61,42 @@ Cc: matthew.d.roper@intel.com
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Although Meteor Lake has multiple GTs, we need to be careful not to use
-multi-tile flows when processing interrupts.  The platform as a whole
-only has a single copy of the SGunit interrupt registers, and interrupts
-relating to the media GT are delivered as part of the primary GT's IRQ
-reporting flow.  Only when an engine (or GuC) interrupt is raised do we
-need to determine which GT it relates to for further processing.
+Although primary and media GuC share a single interrupt enable bit, they
+each have distinct bits in the mask register.  Although we always enable
+interrupts for the primary GuC before the media GuC today (and never
+disable either of them), this might not always be the case in the
+future, so use a RMW when updating the mask register to ensure the other
+GuC's mask doesn't get clobbered.
 
-The whole multi-GT vs multi-tile situation is made more confusing by the
-Xe driver's misuse of 'gt' as the target of all register operations.
-That's probably something we should refactor in the future so that
-xe_mmio_*() will take something more appropriate than an xe_gt
-parameter.
+Signed-off-by: Matt Roper <matthew.d.roper@intel.com>
+---
+ drivers/gpu/drm/xe/xe_guc.c | 11 +++++++----
+ 1 file changed, 7 insertions(+), 4 deletions(-)
 
-With the fixes in this series, interrupts are now properly flowing on
-both the primary and media GT for MTL.  We're still seeing some TLB
-invalidation timeouts, but those no longer seem to be caused by problems
-with interrupt handling.
-
-
-Matt Roper (6):
-  drm/xe/irq: Cleanup media GT interrupt flow
-  drm/xe/irq: Improve warnings and assertions for GT handling
-  drm/xe/irq: Process Gunit interrupts in relation to the device
-  drm/xe: Fix xe_mmio_rmw32 operation
-  drm/xe/irq: Ensure primary GuC won't clobber media GuC's interrupt
-    mask
-  drm/xe: Include GT ID in error message if TLB invalidation times out
-
- drivers/gpu/drm/xe/xe_gt_tlb_invalidation.c |   4 +-
- drivers/gpu/drm/xe/xe_guc.c                 |  11 +-
- drivers/gpu/drm/xe/xe_irq.c                 | 109 +++++++++++++++-----
- drivers/gpu/drm/xe/xe_mmio.h                |   2 +-
- 4 files changed, 92 insertions(+), 34 deletions(-)
-
+diff --git a/drivers/gpu/drm/xe/xe_guc.c b/drivers/gpu/drm/xe/xe_guc.c
+index ee71b969bcbf..ac2151f28788 100644
+--- a/drivers/gpu/drm/xe/xe_guc.c
++++ b/drivers/gpu/drm/xe/xe_guc.c
+@@ -561,12 +561,15 @@ static void guc_enable_irq(struct xe_guc *guc)
+ 		REG_FIELD_PREP(ENGINE0_MASK, GUC_INTR_GUC2HOST)  :
+ 		REG_FIELD_PREP(ENGINE1_MASK, GUC_INTR_GUC2HOST);
+ 
++	/* Primary GuC and media GuC share a single enable bit */
+ 	xe_mmio_write32(gt, GUC_SG_INTR_ENABLE.reg,
+ 			REG_FIELD_PREP(ENGINE1_MASK, GUC_INTR_GUC2HOST));
+-	if (xe_gt_is_media_type(gt))
+-		xe_mmio_rmw32(gt, GUC_SG_INTR_MASK.reg, events, 0);
+-	else
+-		xe_mmio_write32(gt, GUC_SG_INTR_MASK.reg, ~events);
++
++	/*
++	 * There are separate mask bits for primary and media GuCs, so use
++	 * a RMW operation to avoid clobbering the other GuC's setting.
++	 */
++	xe_mmio_rmw32(gt, GUC_SG_INTR_MASK.reg, events, 0);
+ }
+ 
+ int xe_guc_enable_communication(struct xe_guc *guc)
 -- 
 2.39.2
 
