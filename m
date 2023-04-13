@@ -4,30 +4,30 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id A97E1C77B61
-	for <intel-xe@archiver.kernel.org>; Thu, 13 Apr 2023 11:08:47 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0DA27C77B6C
+	for <intel-xe@archiver.kernel.org>; Thu, 13 Apr 2023 11:10:44 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7458B10EAC3;
-	Thu, 13 Apr 2023 11:08:47 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id CF30010E152;
+	Thu, 13 Apr 2023 11:10:43 +0000 (UTC)
 Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id E7F3A10E152;
- Thu, 13 Apr 2023 11:08:45 +0000 (UTC)
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 1B53010E152;
+ Thu, 13 Apr 2023 11:10:41 +0000 (UTC)
 Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id E0A57A00CC;
- Thu, 13 Apr 2023 11:08:45 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============5914180581941659706=="
+ by emeril.freedesktop.org (Postfix) with ESMTP id 13855AADDD;
+ Thu, 13 Apr 2023 11:10:41 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 From: Patchwork <patchwork@emeril.freedesktop.org>
-To: =?utf-8?q?Zbigniew_Kempczy=C5=84ski?= <zbigniew.kempczynski@intel.com>
-Date: Thu, 13 Apr 2023 11:08:45 -0000
-Message-ID: <168138412591.3695.7448688101579055877@emeril.freedesktop.org>
+To: "Riana Tauro" <riana.tauro@intel.com>
+Date: Thu, 13 Apr 2023 11:10:41 -0000
+Message-ID: <168138424105.3696.8342262587244772969@emeril.freedesktop.org>
 X-Patchwork-Hint: ignore
-References: <20230413065645.187171-1-zbigniew.kempczynski@intel.com>
-In-Reply-To: <20230413065645.187171-1-zbigniew.kempczynski@intel.com>
-Subject: [Intel-xe] =?utf-8?b?4peLIENJLkJBVDogaW5mbyBmb3IgeGUveGVfYm86?=
- =?utf-8?q?_Reject_bo_creation_of_unaligned_size?=
+References: <20230413072554.4183876-1-riana.tauro@intel.com>
+In-Reply-To: <20230413072554.4183876-1-riana.tauro@intel.com>
+Subject: [Intel-xe] =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_f?=
+ =?utf-8?q?or_drm/xe=3A_Enable_d3cold_support_for_dgfx?=
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -44,63 +44,29 @@ Cc: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============5914180581941659706==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
 == Series Details ==
 
-Series: xe/xe_bo: Reject bo creation of unaligned size
-URL   : https://patchwork.freedesktop.org/series/116419/
-State : info
+Series: drm/xe: Enable d3cold support for dgfx
+URL   : https://patchwork.freedesktop.org/series/116422/
+State : success
 
 == Summary ==
 
-Participating hosts:
-bat-atsm-2
-bat-dg2-oem2
-bat-adlp-7
-Missing hosts results[0]:
-Results: [xe-pw-116419v1](https://intel-gfx-ci.01.org/tree/xe/xe-pw-116419v1/index.html)
+=== Applying kernel patches on branch 'drm-xe-next' with base: ===
+commit 65c352d9134c4397b25f609de832ef2e2cae2241
+Author:     Lucas De Marchi <lucas.demarchi@intel.com>
+AuthorDate: Wed Apr 12 13:58:38 2023 -0700
+Commit:     Lucas De Marchi <lucas.demarchi@intel.com>
+CommitDate: Wed Apr 12 14:00:49 2023 -0700
+
+    fixup! drm/xe: Add Rocketlake device info
+    
+    Remove the continuation line that is not needed and make it follow the
+    same style as the one for .cpu_transcoder_mask just above.
+    
+    Signed-off-by: Lucas De Marchi <lucas.demarchi@intel.com>
+    Acked-by: Anusha Srivatsa <anusha.srivatsa@intel.com>
+=== git am output follows ===
+Applying: drm/xe: Enable d3cold support for dgfx
 
 
-
---===============5914180581941659706==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>xe/xe_bo: Reject bo creation of unaligned size</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/116419/">https://patchwork.freedesktop.org/series/116419/</a></td></tr>
-<tr><td><b>State:</b></td><td>info</td></tr>
-
-</table>
-
-
-    <p>Participating hosts:<br />
-bat-atsm-2<br />
-bat-dg2-oem2<br />
-bat-adlp-7<br />
-Missing hosts results[0]:<br />
-Results: <a href="https://intel-gfx-ci.01.org/tree/xe/xe-pw-116419v1/index.html">xe-pw-116419v1</a></p>
-
-</body>
-</html>
-
---===============5914180581941659706==--
