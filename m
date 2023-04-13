@@ -4,30 +4,30 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 659EAC77B6C
-	for <intel-xe@archiver.kernel.org>; Thu, 13 Apr 2023 08:49:18 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id C57DCC77B6C
+	for <intel-xe@archiver.kernel.org>; Thu, 13 Apr 2023 08:51:18 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3534B10EA7D;
-	Thu, 13 Apr 2023 08:49:18 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 93A0610EA81;
+	Thu, 13 Apr 2023 08:51:18 +0000 (UTC)
 Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id 1183110EA7D;
- Thu, 13 Apr 2023 08:49:16 +0000 (UTC)
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id EE44510EA80;
+ Thu, 13 Apr 2023 08:51:15 +0000 (UTC)
 Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 0A5F4AA917;
- Thu, 13 Apr 2023 08:49:16 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============2302739356618911660=="
+ by emeril.freedesktop.org (Postfix) with ESMTP id E650CAADE6;
+ Thu, 13 Apr 2023 08:51:15 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Mika Kuoppala" <mika.kuoppala@linux.intel.com>
-Date: Thu, 13 Apr 2023 08:49:16 -0000
-Message-ID: <168137575603.3696.6326521063300554877@emeril.freedesktop.org>
+To: "Jani Nikula" <jani.nikula@intel.com>
+Date: Thu, 13 Apr 2023 08:51:15 -0000
+Message-ID: <168137587594.3695.5861444067533450872@emeril.freedesktop.org>
 X-Patchwork-Hint: ignore
-References: <20230412110923.1081273-1-mika.kuoppala@linux.intel.com>
-In-Reply-To: <20230412110923.1081273-1-mika.kuoppala@linux.intel.com>
-Subject: [Intel-xe] =?utf-8?q?=E2=97=8B_CI=2EBAT=3A_info_for_drm/xe=3A_de?=
- =?utf-8?q?stroy_clients_engine_and_vm_xarrays_on_close?=
+References: <20230412142006.877109-1-jani.nikula@intel.com>
+In-Reply-To: <20230412142006.877109-1-jani.nikula@intel.com>
+Subject: [Intel-xe] =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_f?=
+ =?utf-8?q?or_xe_=26_i915_display_integration_ifdef_cleanups=2C_part_2?=
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -44,63 +44,69 @@ Cc: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============2302739356618911660==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
 == Series Details ==
 
-Series: drm/xe: destroy clients engine and vm xarrays on close
-URL   : https://patchwork.freedesktop.org/series/116373/
-State : info
+Series: xe & i915 display integration ifdef cleanups, part 2
+URL   : https://patchwork.freedesktop.org/series/116384/
+State : success
 
 == Summary ==
 
-Participating hosts:
-bat-atsm-2
-bat-dg2-oem2
-bat-adlp-7
-Missing hosts results[0]:
-Results: [xe-pw-116373v1](https://intel-gfx-ci.01.org/tree/xe/xe-pw-116373v1/index.html)
+=== Applying kernel patches on branch 'drm-xe-next' with base: ===
+commit 65c352d9134c4397b25f609de832ef2e2cae2241
+Author:     Lucas De Marchi <lucas.demarchi@intel.com>
+AuthorDate: Wed Apr 12 13:58:38 2023 -0700
+Commit:     Lucas De Marchi <lucas.demarchi@intel.com>
+CommitDate: Wed Apr 12 14:00:49 2023 -0700
+
+    fixup! drm/xe: Add Rocketlake device info
+    
+    Remove the continuation line that is not needed and make it follow the
+    same style as the one for .cpu_transcoder_mask just above.
+    
+    Signed-off-by: Lucas De Marchi <lucas.demarchi@intel.com>
+    Acked-by: Anusha Srivatsa <anusha.srivatsa@intel.com>
+=== git am output follows ===
+Applying: drm/i915/display: add I915 conditional build to g4x_dp.h
+Applying: fixup! drm/i915/display: Remaining changes to make xe compile
+Applying: drm/i915/display: add I915 conditional build to intel_dpio_phy.h
+Applying: fixup! drm/i915/display: Remaining changes to make xe compile
+Applying: fixup! drm/xe/display: Implement display support
+Applying: fixup! drm/xe/display: Implement display support
+Applying: fixup! drm/i915/display: Remaining changes to make xe compile
+Applying: fixup! drm/xe/display: Implement display support
+Applying: fixup! drm/i915/display: Remaining changes to make xe compile
+Applying: drm/i915/display: add I915 conditional build to intel_crt.h
+Applying: fixup! drm/i915/display: Remaining changes to make xe compile
+Applying: drm/i915/display: add I915 conditional build to vlv_dsi.h
+Applying: fixup! drm/i915/display: Remaining changes to make xe compile
+Applying: fixup! drm/xe/display: Implement display support
+Applying: fixup! drm/i915/display: Remaining changes to make xe compile
+Applying: fixup! drm/i915/display: Remaining changes to make xe compile
+Applying: fixup! drm/i915/display: Remaining changes to make xe compile
+Applying: fixup! drm/i915/display: Remaining changes to make xe compile
+Applying: fixup! drm/xe/display: Implement display support
+Applying: fixup! drm/i915/display: Remaining changes to make xe compile
+Applying: fixup! drm/xe/display: Implement display support
+Applying: fixup! drm/i915/display: Remaining changes to make xe compile
+Applying: fixup! drm/i915/display: Remaining changes to make xe compile
+Applying: fixup! drm/i915/display: Remaining changes to make xe compile
+Applying: fixup! drm/xe/display: Implement display support
+Applying: fixup! drm/i915/display: Remaining changes to make xe compile
+Applying: fixup! drm/i915/display: Remaining changes to make xe compile
+Applying: fixup! drm/i915/display: Remaining changes to make xe compile
+Applying: fixup! drm/i915/display: Remaining changes to make xe compile
+Applying: fixup! drm/i915/display: Remaining changes to make xe compile
+Applying: fixup! drm/i915/display: Remove all uncore mmio accesses in favor of intel_de
+Applying: drm/i915/display: remove unnecessary i915_debugfs.h includes
+Applying: fixup! drm/i915/display: Remaining changes to make xe compile
+Applying: fixup! drm/i915/display: Remaining changes to make xe compile
+Applying: fixup! drm/i915/display: Remaining changes to make xe compile
+Applying: fixup! drm/i915/display: Remaining changes to make xe compile
+Applying: fixup! drm/xe/display: Implement display support
+Applying: fixup! drm/i915/display: Remaining changes to make xe compile
+Applying: fixup! drm/xe/display: Implement display support
+Applying: fixup! drm/i915/display: Remaining changes to make xe compile
+Applying: fixup! drm/i915/display: Remaining changes to make xe compile
 
 
-
---===============2302739356618911660==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/xe: destroy clients engine and vm xarrays on close</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/116373/">https://patchwork.freedesktop.org/series/116373/</a></td></tr>
-<tr><td><b>State:</b></td><td>info</td></tr>
-
-</table>
-
-
-    <p>Participating hosts:<br />
-bat-atsm-2<br />
-bat-dg2-oem2<br />
-bat-adlp-7<br />
-Missing hosts results[0]:<br />
-Results: <a href="https://intel-gfx-ci.01.org/tree/xe/xe-pw-116373v1/index.html">xe-pw-116373v1</a></p>
-
-</body>
-</html>
-
---===============2302739356618911660==--
