@@ -4,45 +4,48 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0C889C77B61
-	for <intel-xe@archiver.kernel.org>; Thu, 13 Apr 2023 14:29:57 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id C4CD9C77B71
+	for <intel-xe@archiver.kernel.org>; Thu, 13 Apr 2023 14:29:59 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id BC04B10E36A;
-	Thu, 13 Apr 2023 14:29:57 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9DDC110E38E;
+	Thu, 13 Apr 2023 14:29:59 +0000 (UTC)
 Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6F45A10E36A
- for <intel-xe@lists.freedesktop.org>; Thu, 13 Apr 2023 14:29:56 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0690910E36A
+ for <intel-xe@lists.freedesktop.org>; Thu, 13 Apr 2023 14:29:57 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1681396196; x=1712932196;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=dXZkkPWp3PWlx081J9ooXjNxuNZNIIrTkufWkPWjpmc=;
- b=dit6PccxmfpHDG8uIzPeqeOkXqRJZxZPckhByLL2UrDUCmvAzA4gNWz4
- ULPijRzQcrWqwNrEmOPweLtgLVKLjECVKatGq3unFObh59U1LGoUT43H7
- sS+b8Hz9IxicQLLy4pnXjWccncCoZUqoaHHWZDSOOv9DAmnI54JzeabTC
- MUIRjEjc8rjhNtc7iTTm/rfogQnIq6bO0TBgIpXFFFNg+nFQC4UHNzSVk
- vm5vFpDBqECbUyUQK0kuX7icU68jKug3SW9NAcqTf295Rs6nbYhJafrmN
- vVnCvkdSSANCpSU0miXvq1L9f6M9ePVQ7042/d+LRkHS7QVby5y/G6D0m A==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10679"; a="342941794"
-X-IronPort-AV: E=Sophos;i="5.99,193,1677571200"; d="scan'208";a="342941794"
+ t=1681396197; x=1712932197;
+ h=from:to:cc:subject:date:message-id:in-reply-to:
+ references:mime-version:content-transfer-encoding;
+ bh=7O/Tvx/7B97jjSNLwQD61R2MEvXLxJzIEHgRMfmJ8Mk=;
+ b=CQIYoPDU+b7S7FEVT30XjFsiJ5GLL+jHE1Hnm25pkuaMQN3sjcPBBRTn
+ HU0RpTMXWC0UIdwRtjJ96s7Nrr7dqPSqvr2eNwydvciCqdfQ+DhlOnZkx
+ Y52fpHSZtO7WuDCI//8C+gm2zqaUNz1gdnXpmlfxXJfiq6ABW8yx7e/ak
+ ytzRaK47gicPFLwW6jPV/mknmXHtZkOUh+jbJV6iLGDTKEnd2VuRJDd/M
+ UJBB+jbyxjgSnEwS2UDDbxYE0hizx4y5pfOQNflox/8eTk9Kf4R8taiZH
+ fa01bph7KqVgNTAzk5nGG6Nx0ku2cAXnwW6kjnVzFcPIx3DOiMW2Xgxs0 Q==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10679"; a="342941796"
+X-IronPort-AV: E=Sophos;i="5.99,193,1677571200"; d="scan'208";a="342941796"
 Received: from orsmga002.jf.intel.com ([10.7.209.21])
  by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 13 Apr 2023 07:29:55 -0700
+ 13 Apr 2023 07:29:56 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10679"; a="689370403"
-X-IronPort-AV: E=Sophos;i="5.99,193,1677571200"; d="scan'208";a="689370403"
+X-IronPort-AV: E=McAfee;i="6600,9927,10679"; a="689370406"
+X-IronPort-AV: E=Sophos;i="5.99,193,1677571200"; d="scan'208";a="689370406"
 Received: from mkuoppal-desk.fi.intel.com ([10.237.72.193])
  by orsmga002-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 13 Apr 2023 07:29:54 -0700
+ 13 Apr 2023 07:29:55 -0700
 From: Mika Kuoppala <mika.kuoppala@linux.intel.com>
 To: intel-xe@lists.freedesktop.org
-Date: Thu, 13 Apr 2023 17:27:46 +0300
-Message-Id: <20230413142749.1097229-1-mika.kuoppala@linux.intel.com>
+Date: Thu, 13 Apr 2023 17:27:47 +0300
+Message-Id: <20230413142749.1097229-2-mika.kuoppala@linux.intel.com>
 X-Mailer: git-send-email 2.34.1
+In-Reply-To: <20230413142749.1097229-1-mika.kuoppala@linux.intel.com>
+References: <20230413142749.1097229-1-mika.kuoppala@linux.intel.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-xe] [RFC 0/3] drm/xe: Introduce eudebug event interface
+Subject: [Intel-xe] [RFC 1/3] drm/xe/eudebug: Export GPL symbol
+ ptrace_may_access
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -57,42 +60,28 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Hi,
+Export ptrace_may_access for eudebug to handle
+access checking for debugger connections.
 
-This series introduces eudebug connection and
-event uapi interface for a debugger to track
-clients drm/xe resources. xe_file (client) and the
-vm resources are introduced as a baseline, leaving
-rest of the events as follow up patches at a later
-time.
+This is needed to be able to compile xe.ko as module.
 
-To support use case where debugger is connecting
-to a drm/xe client which already has opened
-connection(s) to xe driver and allocated vm(s),
-patch 3/3 introduces discovery where all
-currently active resources are presented through
-events for the connected debugger.
+Signed-off-by: Mika Kuoppala <mika.kuoppala@linux.intel.com>
+---
+ kernel/ptrace.c | 1 +
+ 1 file changed, 1 insertion(+)
 
-Mika Kuoppala (3):
-  drm/xe/eudebug: Export GPL symbol ptrace_may_access
-  drm/xe/eudebug: Introduce eudebug support
-  drm/xe/eudebug: Introduce discovery for resources
-
- drivers/gpu/drm/xe/Makefile           |    3 +-
- drivers/gpu/drm/xe/xe_device.c        |   26 +-
- drivers/gpu/drm/xe/xe_device_types.h  |   25 +
- drivers/gpu/drm/xe/xe_eudebug.c       | 1228 +++++++++++++++++++++++++
- drivers/gpu/drm/xe/xe_eudebug.h       |   27 +
- drivers/gpu/drm/xe/xe_eudebug_types.h |  176 ++++
- drivers/gpu/drm/xe/xe_vm.c            |    5 +
- include/uapi/drm/xe_drm_tmp.h         |   76 ++
- kernel/ptrace.c                       |    1 +
- 9 files changed, 1565 insertions(+), 2 deletions(-)
- create mode 100644 drivers/gpu/drm/xe/xe_eudebug.c
- create mode 100644 drivers/gpu/drm/xe/xe_eudebug.h
- create mode 100644 drivers/gpu/drm/xe/xe_eudebug_types.h
- create mode 100644 include/uapi/drm/xe_drm_tmp.h
-
+diff --git a/kernel/ptrace.c b/kernel/ptrace.c
+index 0786450074c1..e6933bbcbd6a 100644
+--- a/kernel/ptrace.c
++++ b/kernel/ptrace.c
+@@ -364,6 +364,7 @@ bool ptrace_may_access(struct task_struct *task, unsigned int mode)
+ 	task_unlock(task);
+ 	return !err;
+ }
++EXPORT_SYMBOL_GPL(ptrace_may_access);
+ 
+ static int check_ptrace_options(unsigned long data)
+ {
 -- 
 2.34.1
 
