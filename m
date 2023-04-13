@@ -4,30 +4,30 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 67974C77B61
-	for <intel-xe@archiver.kernel.org>; Thu, 13 Apr 2023 09:17:25 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2F5D7C77B61
+	for <intel-xe@archiver.kernel.org>; Thu, 13 Apr 2023 09:19:20 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 35B7E10EA98;
-	Thu, 13 Apr 2023 09:17:25 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 11D4610E134;
+	Thu, 13 Apr 2023 09:19:20 +0000 (UTC)
 Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id DCF7310EA95;
- Thu, 13 Apr 2023 09:17:23 +0000 (UTC)
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 6C40610E12A;
+ Thu, 13 Apr 2023 09:19:17 +0000 (UTC)
 Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 6E4F7A7DFF;
- Thu, 13 Apr 2023 09:17:23 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============6304874417807570335=="
+ by emeril.freedesktop.org (Postfix) with ESMTP id 5A5C9A7DFF;
+ Thu, 13 Apr 2023 09:19:17 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Jani Nikula" <jani.nikula@intel.com>
-Date: Thu, 13 Apr 2023 09:17:23 -0000
-Message-ID: <168137744340.3697.14921046366463871833@emeril.freedesktop.org>
+To: "Matt Roper" <matthew.d.roper@intel.com>
+Date: Thu, 13 Apr 2023 09:19:17 -0000
+Message-ID: <168137755733.3695.1040777058261690186@emeril.freedesktop.org>
 X-Patchwork-Hint: ignore
-References: <20230412142006.877109-1-jani.nikula@intel.com>
-In-Reply-To: <20230412142006.877109-1-jani.nikula@intel.com>
-Subject: [Intel-xe] =?utf-8?q?=E2=97=8B_CI=2EBAT=3A_info_for_xe_=26_i915_?=
- =?utf-8?q?display_integration_ifdef_cleanups=2C_part_2?=
+References: <20230412184835.3157780-1-matthew.d.roper@intel.com>
+In-Reply-To: <20230412184835.3157780-1-matthew.d.roper@intel.com>
+Subject: [Intel-xe] =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_f?=
+ =?utf-8?q?or_Meteorlake_interrupt_handling_updates?=
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -44,63 +44,34 @@ Cc: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============6304874417807570335==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
 == Series Details ==
 
-Series: xe & i915 display integration ifdef cleanups, part 2
-URL   : https://patchwork.freedesktop.org/series/116384/
-State : info
+Series: Meteorlake interrupt handling updates
+URL   : https://patchwork.freedesktop.org/series/116394/
+State : success
 
 == Summary ==
 
-Participating hosts:
-bat-atsm-2
-bat-dg2-oem2
-bat-adlp-7
-Missing hosts results[0]:
-Results: [xe-pw-116384v1](https://intel-gfx-ci.01.org/tree/xe/xe-pw-116384v1/index.html)
+=== Applying kernel patches on branch 'drm-xe-next' with base: ===
+commit 65c352d9134c4397b25f609de832ef2e2cae2241
+Author:     Lucas De Marchi <lucas.demarchi@intel.com>
+AuthorDate: Wed Apr 12 13:58:38 2023 -0700
+Commit:     Lucas De Marchi <lucas.demarchi@intel.com>
+CommitDate: Wed Apr 12 14:00:49 2023 -0700
+
+    fixup! drm/xe: Add Rocketlake device info
+    
+    Remove the continuation line that is not needed and make it follow the
+    same style as the one for .cpu_transcoder_mask just above.
+    
+    Signed-off-by: Lucas De Marchi <lucas.demarchi@intel.com>
+    Acked-by: Anusha Srivatsa <anusha.srivatsa@intel.com>
+=== git am output follows ===
+Applying: drm/xe/irq: Cleanup media GT interrupt flow
+Applying: drm/xe/irq: Improve warnings and assertions for GT handling
+Applying: drm/xe/irq: Process Gunit interrupts in relation to the device
+Applying: drm/xe: Fix xe_mmio_rmw32 operation
+Applying: drm/xe/irq: Ensure primary GuC won't clobber media GuC's interrupt mask
+Applying: drm/xe: Include GT ID in error message if TLB invalidation times out
 
 
-
---===============6304874417807570335==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>xe &amp; i915 display integration ifdef cleanups, part 2</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/116384/">https://patchwork.freedesktop.org/series/116384/</a></td></tr>
-<tr><td><b>State:</b></td><td>info</td></tr>
-
-</table>
-
-
-    <p>Participating hosts:<br />
-bat-atsm-2<br />
-bat-dg2-oem2<br />
-bat-adlp-7<br />
-Missing hosts results[0]:<br />
-Results: <a href="https://intel-gfx-ci.01.org/tree/xe/xe-pw-116384v1/index.html">xe-pw-116384v1</a></p>
-
-</body>
-</html>
-
---===============6304874417807570335==--
