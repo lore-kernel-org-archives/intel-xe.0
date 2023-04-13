@@ -4,47 +4,50 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 717BEC77B6C
-	for <intel-xe@archiver.kernel.org>; Thu, 13 Apr 2023 06:56:59 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id AC284C77B61
+	for <intel-xe@archiver.kernel.org>; Thu, 13 Apr 2023 07:17:27 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2996C10EA35;
-	Thu, 13 Apr 2023 06:56:59 +0000 (UTC)
-Received: from mga06.intel.com (mga06b.intel.com [134.134.136.31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id EE13510EA35
- for <intel-xe@lists.freedesktop.org>; Thu, 13 Apr 2023 06:56:56 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4FE6A10E10A;
+	Thu, 13 Apr 2023 07:17:27 +0000 (UTC)
+Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A9CF010E10A
+ for <intel-xe@lists.freedesktop.org>; Thu, 13 Apr 2023 07:17:25 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1681369016; x=1712905016;
- h=from:to:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=TElkNVR4mPHmytQyd3I9V2GQ+jp75sTAOtCjUQ9p348=;
- b=MEaS614fYyaLC+SPWwgiv1fhHU04LZyYZL12Tv3r1F4eHvLyYgjeNpNl
- 6OtwLOiIA4cT8zoCitTA64Ep+P4US7ntXfMgMwm40l8FCioYA3Jjb+4up
- H+4qoumi1rnLmEGz4xnjg8nc8eYrKngGCLrpDB1RIxycaquXnsxCfMEmV
- T2vx4y1cPNgHhi3dAImucS590v3RtTR8NN7MKhxdUfN2xgANkcUwMdWL2
- h8tlbfl7xlYKXb24FJ8neEkRsfPFLgAA3JxnAMGZyUou3TH82YDQD62WY
- 2vskxy9/xBp2jADhX01sYUtf7wLqsOp7RaMvhksLRAY0dMXGCTf9wzupC A==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10678"; a="406941934"
-X-IronPort-AV: E=Sophos;i="5.98,339,1673942400"; d="scan'208";a="406941934"
-Received: from fmsmga004.fm.intel.com ([10.253.24.48])
- by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 12 Apr 2023 23:56:54 -0700
+ t=1681370245; x=1712906245;
+ h=from:to:cc:subject:in-reply-to:references:date:
+ message-id:mime-version;
+ bh=jrTR7Zd7vuALdbLpRj0Ra03jC7G9I5OWc3lokY8Nb0c=;
+ b=URzRWSTFqJIl3grHf1IqX6BZnkexo7kFMMKrz3bimJ2m4zqwrpTar09h
+ tPbdU/PKDk1rky8rnOZMgsMQXGvHOVBbhpkxu9HaPzlBbcHIPCfOlsUPJ
+ 5UfUnQ661lBkGQyQSnG0aZowC8EzD/zl1KBsRznnfK9qOPiL0sHYyL8+t
+ mdgI4TgEmx0gZUrAoB8SfA0XCDz6YSsoT8oYpO5gltQ3jti1+D+2dUWwN
+ KnZF+mO6WXPa+5XfkhLbNxLmKUVaQmwHW7FItqd+ZeXngGSaxOTrtth1E
+ yCagTJ8KJhlW/uyI6iHu9XH2fJ/JV9wx8T1LOEOqyT2QbYCHeLV5V7eNL g==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10678"; a="344106735"
+X-IronPort-AV: E=Sophos;i="5.98,339,1673942400"; d="scan'208";a="344106735"
+Received: from fmsmga005.fm.intel.com ([10.253.24.32])
+ by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 13 Apr 2023 00:17:24 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10678"; a="758574058"
-X-IronPort-AV: E=Sophos;i="5.98,339,1673942400"; d="scan'208";a="758574058"
-Received: from ntusk-mobl1.ger.corp.intel.com (HELO localhost)
- ([10.213.31.104])
- by fmsmga004-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 12 Apr 2023 23:56:53 -0700
-From: =?UTF-8?q?Zbigniew=20Kempczy=C5=84ski?= <zbigniew.kempczynski@intel.com>
-To: intel-xe@lists.freedesktop.org
-Date: Thu, 13 Apr 2023 08:56:45 +0200
-Message-Id: <20230413065645.187171-1-zbigniew.kempczynski@intel.com>
-X-Mailer: git-send-email 2.34.1
+X-IronPort-AV: E=McAfee;i="6600,9927,10678"; a="1019062775"
+X-IronPort-AV: E=Sophos;i="5.98,339,1673942400"; d="scan'208";a="1019062775"
+Received: from svadali-mobl1.amr.corp.intel.com (HELO localhost)
+ ([10.252.55.23])
+ by fmsmga005-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 13 Apr 2023 00:17:23 -0700
+From: Jani Nikula <jani.nikula@linux.intel.com>
+To: Lucas De Marchi <lucas.demarchi@intel.com>, intel-xe@lists.freedesktop.org
+In-Reply-To: <20230412232846.3411883-3-lucas.demarchi@intel.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+References: <20230412232846.3411883-1-lucas.demarchi@intel.com>
+ <20230412232846.3411883-3-lucas.demarchi@intel.com>
+Date: Thu, 13 Apr 2023 10:17:21 +0300
+Message-ID: <871qkocku6.fsf@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-Subject: [Intel-xe] [PATCH] xe/xe_bo: Reject bo creation of unaligned size
+Content-Type: text/plain
+Subject: Re: [Intel-xe] [PATCH 2/6] fixup! drm/i915/display: Remaining
+ changes to make xe compile
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -56,89 +59,32 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Cc: Lucas De Marchi <lucas.demarchi@intel.com>,
+ Matt Roper <matthew.d.roper@intel.com>
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-From: Mauro Carvalho Chehab <mauro.chehab@linux.intel.com>
+On Wed, 12 Apr 2023, Lucas De Marchi <lucas.demarchi@intel.com> wrote:
+> ---
+>  drivers/gpu/drm/i915/display/intel_fbdev.c | 2 +-
+>  1 file changed, 1 insertion(+), 1 deletion(-)
+>
+> diff --git a/drivers/gpu/drm/i915/display/intel_fbdev.c b/drivers/gpu/drm/i915/display/intel_fbdev.c
+> index ed996546edfc..46447dd58f3f 100644
+> --- a/drivers/gpu/drm/i915/display/intel_fbdev.c
+> +++ b/drivers/gpu/drm/i915/display/intel_fbdev.c
+> @@ -165,7 +165,7 @@ static int intelfb_alloc(struct drm_fb_helper *helper,
+>  				    DIV_ROUND_UP(sizes->surface_bpp, 8), 64);
+>  #else
+>  	mode_cmd.pitches[0] = ALIGN(mode_cmd.width *
+> -				    DIV_ROUND_UP(sizes->surface_bpp, 8), GEN8_PAGE_SIZE);
+> +				    DIV_ROUND_UP(sizes->surface_bpp, 8), XE_PAGE_SIZE);
 
-For xe bo creation we request passing size which matches system or
-vram minimum page alignment. This way we want to ensure userspace
-is aware of region constraints and not aligned allocations will be
-rejected returning EINVAL.
+Won't that break i915 build?
 
-Signed-off-by: Mauro Carvalho Chehab <mauro.chehab@linux.intel.com>
-Signed-off-by: Zbigniew Kempczyński <zbigniew.kempczynski@intel.com>
----
- drivers/gpu/drm/xe/xe_bo.c | 23 ++++++++++++++++-------
- include/uapi/drm/xe_drm.h  |  5 ++---
- 2 files changed, 18 insertions(+), 10 deletions(-)
+>  #endif
+>  	mode_cmd.pixel_format = drm_mode_legacy_fb_format(sizes->surface_bpp,
+>  							  sizes->surface_depth);
 
-diff --git a/drivers/gpu/drm/xe/xe_bo.c b/drivers/gpu/drm/xe/xe_bo.c
-index 3ab404e33fae..d3972c84bcce 100644
---- a/drivers/gpu/drm/xe/xe_bo.c
-+++ b/drivers/gpu/drm/xe/xe_bo.c
-@@ -1090,6 +1090,7 @@ struct xe_bo *__xe_bo_create_locked(struct xe_device *xe, struct xe_bo *bo,
- 	};
- 	struct ttm_placement *placement;
- 	uint32_t alignment;
-+	size_t aligned_size;
- 	int err;
- 
- 	/* Only kernel objects should set GT */
-@@ -1098,22 +1099,30 @@ struct xe_bo *__xe_bo_create_locked(struct xe_device *xe, struct xe_bo *bo,
- 	if (XE_WARN_ON(!size))
- 		return ERR_PTR(-EINVAL);
- 
--	if (!bo) {
--		bo = xe_bo_alloc();
--		if (IS_ERR(bo))
--			return bo;
--	}
--
- 	if (flags & (XE_BO_CREATE_VRAM_MASK | XE_BO_CREATE_STOLEN_BIT) &&
- 	    !(flags & XE_BO_CREATE_IGNORE_MIN_PAGE_SIZE_BIT) &&
- 	    xe->info.vram_flags & XE_VRAM_FLAGS_NEED64K) {
--		size = ALIGN(size, SZ_64K);
-+		aligned_size = ALIGN(size, SZ_64K);
-+		if (type != ttm_bo_type_device)
-+			size = ALIGN(size, SZ_64K);
- 		flags |= XE_BO_INTERNAL_64K;
- 		alignment = SZ_64K >> PAGE_SHIFT;
-+
- 	} else {
-+		aligned_size = ALIGN(size, SZ_4K);
-+		flags &= ~XE_BO_INTERNAL_64K;
- 		alignment = SZ_4K >> PAGE_SHIFT;
- 	}
- 
-+	if (type == ttm_bo_type_device && aligned_size != size)
-+		return ERR_PTR(-EINVAL);
-+
-+	if (!bo) {
-+		bo = xe_bo_alloc();
-+		if (IS_ERR(bo))
-+			return bo;
-+	}
-+
- 	bo->gt = gt;
- 	bo->size = size;
- 	bo->flags = flags;
-diff --git a/include/uapi/drm/xe_drm.h b/include/uapi/drm/xe_drm.h
-index b0b80aae3ee8..d3e64af7eabb 100644
---- a/include/uapi/drm/xe_drm.h
-+++ b/include/uapi/drm/xe_drm.h
-@@ -259,9 +259,8 @@ struct drm_xe_gem_create {
- 	__u64 extensions;
- 
- 	/**
--	 * @size: Requested size for the object
--	 *
--	 * The (page-aligned) allocated size for the object will be returned.
-+	 * @size: Size of the object to be created, must match region
-+	 * (system or vram) minimum alignment.
- 	 */
- 	__u64 size;
- 
 -- 
-2.34.1
-
+Jani Nikula, Intel Open Source Graphics Center
