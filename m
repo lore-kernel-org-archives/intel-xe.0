@@ -4,30 +4,30 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id E3958C77B61
-	for <intel-xe@archiver.kernel.org>; Thu, 13 Apr 2023 10:40:51 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6964CC77B6C
+	for <intel-xe@archiver.kernel.org>; Thu, 13 Apr 2023 10:42:43 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A925310EABB;
-	Thu, 13 Apr 2023 10:40:51 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3C15C10EABC;
+	Thu, 13 Apr 2023 10:42:43 +0000 (UTC)
 Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id 3D75210EABB;
- Thu, 13 Apr 2023 10:40:49 +0000 (UTC)
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id C59FE10EABC;
+ Thu, 13 Apr 2023 10:42:41 +0000 (UTC)
 Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 35BEEA7DFF;
- Thu, 13 Apr 2023 10:40:49 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============6492597181749725298=="
+ by emeril.freedesktop.org (Postfix) with ESMTP id BCDC5A7DFF;
+ Thu, 13 Apr 2023 10:42:41 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Lucas De Marchi" <lucas.demarchi@intel.com>
-Date: Thu, 13 Apr 2023 10:40:49 -0000
-Message-ID: <168138244919.3697.1690626907368361901@emeril.freedesktop.org>
+To: =?utf-8?q?Zbigniew_Kempczy=C5=84ski?= <zbigniew.kempczynski@intel.com>
+Date: Thu, 13 Apr 2023 10:42:41 -0000
+Message-ID: <168138256176.3695.17238576715467111727@emeril.freedesktop.org>
 X-Patchwork-Hint: ignore
-References: <20230412232846.3411883-1-lucas.demarchi@intel.com>
-In-Reply-To: <20230412232846.3411883-1-lucas.demarchi@intel.com>
-Subject: [Intel-xe] =?utf-8?q?=E2=97=8B_CI=2EBAT=3A_info_for_Cleanup_gen_?=
- =?utf-8?q?suffixes/prefixes_from_registers?=
+References: <20230413065645.187171-1-zbigniew.kempczynski@intel.com>
+In-Reply-To: <20230413065645.187171-1-zbigniew.kempczynski@intel.com>
+Subject: [Intel-xe] =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_f?=
+ =?utf-8?q?or_xe/xe=5Fbo=3A_Reject_bo_creation_of_unaligned_size?=
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -44,63 +44,29 @@ Cc: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============6492597181749725298==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
 == Series Details ==
 
-Series: Cleanup gen suffixes/prefixes from registers
-URL   : https://patchwork.freedesktop.org/series/116411/
-State : info
+Series: xe/xe_bo: Reject bo creation of unaligned size
+URL   : https://patchwork.freedesktop.org/series/116419/
+State : success
 
 == Summary ==
 
-Participating hosts:
-bat-atsm-2
-bat-dg2-oem2
-bat-adlp-7
-Missing hosts results[0]:
-Results: [xe-pw-116411v1](https://intel-gfx-ci.01.org/tree/xe/xe-pw-116411v1/index.html)
+=== Applying kernel patches on branch 'drm-xe-next' with base: ===
+commit 65c352d9134c4397b25f609de832ef2e2cae2241
+Author:     Lucas De Marchi <lucas.demarchi@intel.com>
+AuthorDate: Wed Apr 12 13:58:38 2023 -0700
+Commit:     Lucas De Marchi <lucas.demarchi@intel.com>
+CommitDate: Wed Apr 12 14:00:49 2023 -0700
+
+    fixup! drm/xe: Add Rocketlake device info
+    
+    Remove the continuation line that is not needed and make it follow the
+    same style as the one for .cpu_transcoder_mask just above.
+    
+    Signed-off-by: Lucas De Marchi <lucas.demarchi@intel.com>
+    Acked-by: Anusha Srivatsa <anusha.srivatsa@intel.com>
+=== git am output follows ===
+Applying: xe/xe_bo: Reject bo creation of unaligned size
 
 
-
---===============6492597181749725298==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>Cleanup gen suffixes/prefixes from registers</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/116411/">https://patchwork.freedesktop.org/series/116411/</a></td></tr>
-<tr><td><b>State:</b></td><td>info</td></tr>
-
-</table>
-
-
-    <p>Participating hosts:<br />
-bat-atsm-2<br />
-bat-dg2-oem2<br />
-bat-adlp-7<br />
-Missing hosts results[0]:<br />
-Results: <a href="https://intel-gfx-ci.01.org/tree/xe/xe-pw-116411v1/index.html">xe-pw-116411v1</a></p>
-
-</body>
-</html>
-
---===============6492597181749725298==--
