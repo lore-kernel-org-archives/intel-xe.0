@@ -4,30 +4,30 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 154B9C77B6E
-	for <intel-xe@archiver.kernel.org>; Fri, 14 Apr 2023 10:30:22 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id BE4BAC77B6F
+	for <intel-xe@archiver.kernel.org>; Fri, 14 Apr 2023 10:30:46 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id DBC9110E12D;
-	Fri, 14 Apr 2023 10:30:21 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9897210E12D;
+	Fri, 14 Apr 2023 10:30:46 +0000 (UTC)
 Received: from emeril.freedesktop.org (emeril.freedesktop.org
  [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id 87CE510ECC2;
- Fri, 14 Apr 2023 10:30:19 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTP id 97C5410E12D;
+ Fri, 14 Apr 2023 10:30:44 +0000 (UTC)
 Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 80E52A006C;
- Fri, 14 Apr 2023 10:30:19 +0000 (UTC)
+ by emeril.freedesktop.org (Postfix) with ESMTP id 93EDEA006C;
+ Fri, 14 Apr 2023 10:30:44 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: "Francois Dugast" <francois.dugast@intel.com>
-Date: Fri, 14 Apr 2023 10:30:19 -0000
-Message-ID: <168146821952.26689.10154313228430429926@emeril.freedesktop.org>
+Date: Fri, 14 Apr 2023 10:30:44 -0000
+Message-ID: <168146824460.26684.5316667062880820554@emeril.freedesktop.org>
 X-Patchwork-Hint: ignore
 References: <20230414102745.2848028-1-francois.dugast@intel.com>
 In-Reply-To: <20230414102745.2848028-1-francois.dugast@intel.com>
-Subject: [Intel-xe] =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_f?=
- =?utf-8?q?or_drm/xe=3A_switch_to_using_drm=5Fexec?=
+Subject: [Intel-xe] =?utf-8?q?=E2=9C=97_CI=2EKUnit=3A_failure_for_drm/xe?=
+ =?utf-8?q?=3A_switch_to_using_drm=5Fexec?=
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -48,25 +48,44 @@ Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 Series: drm/xe: switch to using drm_exec
 URL   : https://patchwork.freedesktop.org/series/116477/
-State : success
+State : failure
 
 == Summary ==
 
-=== Applying kernel patches on branch 'drm-xe-next' with base: ===
-commit 65c352d9134c4397b25f609de832ef2e2cae2241
-Author:     Lucas De Marchi <lucas.demarchi@intel.com>
-AuthorDate: Wed Apr 12 13:58:38 2023 -0700
-Commit:     Lucas De Marchi <lucas.demarchi@intel.com>
-CommitDate: Wed Apr 12 14:00:49 2023 -0700
++ trap cleanup EXIT
++ /kernel/tools/testing/kunit/kunit.py run --kunitconfig /kernel/drivers/gpu/drm/xe/.kunitconfig
+ERROR:root:../drivers/gpu/drm/xe/xe_bo.c:11:10: fatal error: drm/drm_exec.h: No such file or directory
+   11 | #include <drm/drm_exec.h>
+      |          ^~~~~~~~~~~~~~~~
+compilation terminated.
+make[6]: *** [../scripts/Makefile.build:252: drivers/gpu/drm/xe/xe_bo.o] Error 1
+make[6]: *** Waiting for unfinished jobs....
+In file included from ../drivers/gpu/drm/xe/xe_device.c:32:
+../drivers/gpu/drm/xe/xe_vm.h:9:10: fatal error: drm/drm_exec.h: No such file or directory
+    9 | #include <drm/drm_exec.h>
+      |          ^~~~~~~~~~~~~~~~
+compilation terminated.
+make[6]: *** [../scripts/Makefile.build:252: drivers/gpu/drm/xe/xe_device.o] Error 1
+make[5]: *** [../scripts/Makefile.build:494: drivers/gpu/drm/xe] Error 2
+make[4]: *** [../scripts/Makefile.build:494: drivers/gpu/drm] Error 2
+make[3]: *** [../scripts/Makefile.build:494: drivers/gpu] Error 2
+make[3]: *** Waiting for unfinished jobs....
+make[2]: *** [../scripts/Makefile.build:494: drivers] Error 2
+make[2]: *** Waiting for unfinished jobs....
+make[1]: *** [/kernel/Makefile:2025: .] Error 2
+make: *** [Makefile:226: __sub-make] Error 2
 
-    fixup! drm/xe: Add Rocketlake device info
-    
-    Remove the continuation line that is not needed and make it follow the
-    same style as the one for .cpu_transcoder_mask just above.
-    
-    Signed-off-by: Lucas De Marchi <lucas.demarchi@intel.com>
-    Acked-by: Anusha Srivatsa <anusha.srivatsa@intel.com>
-=== git am output follows ===
-Applying: drm/xe: switch to using drm_exec
+[10:30:21] Configuring KUnit Kernel ...
+Generating .config ...
+Populating config with:
+$ make ARCH=um O=.kunit olddefconfig
+[10:30:25] Building KUnit Kernel ...
+Populating config with:
+$ make ARCH=um O=.kunit olddefconfig
+Building with:
+$ make ARCH=um O=.kunit --jobs=48
++ cleanup
+++ stat -c %u:%g /kernel
++ chown -R 1003:1003 /kernel
 
 
