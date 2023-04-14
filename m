@@ -4,22 +4,30 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3ABFDC77B6E
-	for <intel-xe@archiver.kernel.org>; Fri, 14 Apr 2023 15:00:37 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id A8B8CC77B6E
+	for <intel-xe@archiver.kernel.org>; Fri, 14 Apr 2023 15:03:23 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D953A10ED75;
-	Fri, 14 Apr 2023 15:00:36 +0000 (UTC)
-Received: from mblankhorst.nl (lankhorst.se [141.105.120.124])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4031D10ED75
- for <intel-xe@lists.freedesktop.org>; Fri, 14 Apr 2023 15:00:34 +0000 (UTC)
-From: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
-To: intel-xe@lists.freedesktop.org
-Date: Fri, 14 Apr 2023 17:00:25 +0200
-Message-Id: <20230414150025.492558-1-maarten.lankhorst@linux.intel.com>
-X-Mailer: git-send-email 2.34.1
+	by gabe.freedesktop.org (Postfix) with ESMTP id 84EC310E052;
+	Fri, 14 Apr 2023 15:03:23 +0000 (UTC)
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 93A5F10E052;
+ Fri, 14 Apr 2023 15:03:21 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 8BA55A7DFF;
+ Fri, 14 Apr 2023 15:03:21 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Subject: [Intel-xe] [PATCH] drm/xe: Add missing spin_lock_inits for display
+Content-Transfer-Encoding: 7bit
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Maarten Lankhorst" <maarten.lankhorst@linux.intel.com>
+Date: Fri, 14 Apr 2023 15:03:21 -0000
+Message-ID: <168148460153.26689.17683542016880983432@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20230414150025.492558-1-maarten.lankhorst@linux.intel.com>
+In-Reply-To: <20230414150025.492558-1-maarten.lankhorst@linux.intel.com>
+Subject: [Intel-xe] =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_f?=
+ =?utf-8?q?or_drm/xe=3A_Add_missing_spin=5Flock=5Finits_for_display?=
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -31,29 +39,34 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
+Cc: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-We have gained 2 locks, better init those.
+== Series Details ==
 
-Signed-off-by: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
----
- drivers/gpu/drm/xe/xe_display.c | 2 ++
- 1 file changed, 2 insertions(+)
+Series: drm/xe: Add missing spin_lock_inits for display
+URL   : https://patchwork.freedesktop.org/series/116485/
+State : success
 
-diff --git a/drivers/gpu/drm/xe/xe_display.c b/drivers/gpu/drm/xe/xe_display.c
-index aae362f27c77..719a64005e29 100644
---- a/drivers/gpu/drm/xe/xe_display.c
-+++ b/drivers/gpu/drm/xe/xe_display.c
-@@ -91,6 +91,8 @@ int xe_display_create(struct xe_device *xe)
- 	int err;
- 
- 	spin_lock_init(&xe->display.fb_tracking.lock);
-+	spin_lock_init(&xe->display.dkl.phy_lock);
-+	spin_lock_init(&xe->display.wm.dsparb_lock);
- 
- 	xe->display.hotplug.dp_wq = alloc_ordered_workqueue("xe-dp", 0);
- 
--- 
-2.34.1
+== Summary ==
+
+=== Applying kernel patches on branch 'drm-xe-next' with base: ===
+commit 65c352d9134c4397b25f609de832ef2e2cae2241
+Author:     Lucas De Marchi <lucas.demarchi@intel.com>
+AuthorDate: Wed Apr 12 13:58:38 2023 -0700
+Commit:     Lucas De Marchi <lucas.demarchi@intel.com>
+CommitDate: Wed Apr 12 14:00:49 2023 -0700
+
+    fixup! drm/xe: Add Rocketlake device info
+    
+    Remove the continuation line that is not needed and make it follow the
+    same style as the one for .cpu_transcoder_mask just above.
+    
+    Signed-off-by: Lucas De Marchi <lucas.demarchi@intel.com>
+    Acked-by: Anusha Srivatsa <anusha.srivatsa@intel.com>
+=== git am output follows ===
+Applying: drm/xe: Add missing spin_lock_inits for display
+
 
