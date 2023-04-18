@@ -4,33 +4,47 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 76187C6FD18
-	for <intel-xe@archiver.kernel.org>; Tue, 18 Apr 2023 15:10:35 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4165EC7EE2A
+	for <intel-xe@archiver.kernel.org>; Tue, 18 Apr 2023 16:43:49 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4799D10E1E7;
-	Tue, 18 Apr 2023 15:10:35 +0000 (UTC)
-Received: from foss.arm.com (foss.arm.com [217.140.110.172])
- by gabe.freedesktop.org (Postfix) with ESMTP id 8A4BE10E233
- for <intel-xe@lists.freedesktop.org>; Tue, 18 Apr 2023 15:10:32 +0000 (UTC)
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
- by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 0CA382247
- for <intel-xe@lists.freedesktop.org>; Tue, 18 Apr 2023 08:11:16 -0700 (PDT)
-Received: from e110455-lin.cambridge.arm.com (usa-sjc-imap-foss1.foss.arm.com
- [10.121.207.14])
- by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPA id 159573F5A1
- for <intel-xe@lists.freedesktop.org>; Tue, 18 Apr 2023 08:10:31 -0700 (PDT)
-Date: Tue, 18 Apr 2023 16:10:29 +0100
-From: Liviu Dudau <Liviu.Dudau@arm.com>
-To: Matthew Brost <matthew.brost@intel.com>
-Message-ID: <ZD6y5V1mOPQso_jX@e110455-lin.cambridge.arm.com>
-References: <20230404002211.3611376-1-matthew.brost@intel.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0956010E37A;
+	Tue, 18 Apr 2023 16:43:49 +0000 (UTC)
+Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4DEE910E296;
+ Tue, 18 Apr 2023 16:43:47 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1681836227; x=1713372227;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=on0Gv/pDuAOriZnMrNZIUzms38yA3AY4qw01mGrEFQQ=;
+ b=add6W9dXyLas+mEbx0xJrw+Eej6h0tE+h245dmWVph4A6SocyzqaWRCT
+ XjZQtIUHSERlU+MXOHdDcRoEOPQWz62FSR8ueX1MYb3XWbVkB8qV+F7Az
+ WTaQtB9ykCAcScQ4NX2QAv5MBGXmX4brkz05U9qf9pv/BxcppF3AMDF/A
+ 0gm+koD6lcGFJqdcC738+m7JI1tVYXPBY0aiEf7Ki1+I+V4p4H0bujLj+
+ 3uEXXs7luw/aVOSLZNnvtnZUi3Qn0HeNNnfr7+hvm1hkysfZ2uHskihSg
+ 54cPEcvxkGKolimV6eUaLgzx2zAC4LRbnyOQn2DK+fmPFp3NxSF+g23ua w==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10684"; a="347076119"
+X-IronPort-AV: E=Sophos;i="5.99,207,1677571200"; d="scan'208";a="347076119"
+Received: from fmsmga004.fm.intel.com ([10.253.24.48])
+ by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 18 Apr 2023 09:43:46 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6600,9927,10684"; a="760415091"
+X-IronPort-AV: E=Sophos;i="5.99,207,1677571200"; d="scan'208";a="760415091"
+Received: from josouza-mobl2.fso.intel.com ([10.230.18.148])
+ by fmsmga004-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 18 Apr 2023 09:43:42 -0700
+From: =?UTF-8?q?Jos=C3=A9=20Roberto=20de=20Souza?= <jose.souza@intel.com>
+To: intel-gfx@lists.freedesktop.org
+Date: Tue, 18 Apr 2023 09:43:37 -0700
+Message-Id: <20230418164337.50303-1-jose.souza@intel.com>
+X-Mailer: git-send-email 2.40.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <20230404002211.3611376-1-matthew.brost@intel.com>
-Subject: Re: [Intel-xe] [RFC PATCH 00/10] Xe DRM scheduler and long running
- workload plans
+Subject: [Intel-xe] [PATCH v4] drm/i915: Initialize dkl_phy spin lock from
+ display code path
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -42,146 +56,160 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Cc: robdclark@chromium.org, airlied@linux.ie, lina@asahilina.net,
- dri-devel@lists.freedesktop.org, christian.koenig@amd.com,
- ketil.johnsen@arm.com, john.reitan@arm.com, boris.brezillon@collabora.com,
- intel-xe@lists.freedesktop.org, faith.ekstrand@collabora.com
+Cc: Jani Nikula <jani.nikula@intel.com>, Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ intel-xe@lists.freedesktop.org,
+ =?UTF-8?q?Ville=20Syrj=C3=A4l=C3=A4?= <ville.syrjala@linux.intel.com>
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Mon, Apr 03, 2023 at 05:22:01PM -0700, Matthew Brost wrote:
-> Hello,
+Start to move the initialization of display locks from
+i915_driver_early_probe(), this way it is also executed when running
+Xe kmd.
 
-Hello,
+This will fix a warning in Xe kmd:
 
-Jumping a bit late on this thread as I was waiting on some approvals and then
-holidays kicked in, but I would like to (re)introduce myself and the people
-I work with and to let you know that we are interested in the changes proposed
-here and we would like to help if we can.
+[  201.894839] xe 0000:00:02.0: [drm] [ENCODER:235:DDI A/PHY A] failed to retrieve link info, disabling eDP
+[  202.136336] xe 0000:00:02.0: [drm] *ERROR* Failed to write source OUI
+[  202.175346] INFO: trying to register non-static key.
+[  202.175347] irq event stamp: 754060
+[  202.175359] hardirqs last  enabled at (754059): [<ffffffff8122cf79>] tick_nohz_idle_enter+0x59/0x80
+[  202.180294] The code is fine but needs lockdep annotation, or maybe
+[  202.183774] hardirqs last disabled at (754060): [<ffffffff811a5539>] do_idle+0x99/0x230
+[  202.192734] you didn't initialize this object before use?
+[  202.198951] softirqs last  enabled at (753948): [<ffffffff8114abae>] irq_exit_rcu+0xbe/0x130
+[  202.206882] turning off the locking correctness validator.
+[  202.212236] softirqs last disabled at (753943): [<ffffffff8114abae>] irq_exit_rcu+0xbe/0x130
+[  202.220592] CPU: 2 PID: 1415 Comm: modprobe Tainted: G        W          6.3.0-rc4+zeh-xe+ #909
+[  202.243002] Hardware name: Intel Corporation Raptor Lake Client Platform/RaptorLake-P LP5 RVP, BIOS RPLPFWI1.R00.3361.A14.2211151548 11/15/2022
+[  202.255737] Call Trace:
+[  202.258179]  <TASK>
+[  202.260275]  dump_stack_lvl+0x58/0xc0
+[  202.263922]  register_lock_class+0x756/0x7d0
+[  202.268165]  ? find_held_lock+0x2b/0x80
+[  202.271975]  __lock_acquire+0x72/0x28b0
+[  202.275786]  ? debug_object_free+0xb4/0x160
+[  202.279946]  lock_acquire+0xd1/0x2d0
+[  202.283503]  ? intel_dkl_phy_read+0x18/0x60 [xe]
+[  202.288181]  _raw_spin_lock+0x2a/0x40
+[  202.291825]  ? intel_dkl_phy_read+0x18/0x60 [xe]
+[  202.296475]  intel_dkl_phy_read+0x18/0x60 [xe]
+[  202.300949]  icl_aux_power_well_enable+0x2bd/0x400 [xe]
+[  202.306202]  ? intel_display_power_grab_async_put_ref+0x75/0x120 [xe]
+[  202.312649]  intel_power_well_enable+0x1c/0x70 [xe]
+[  202.317543]  __intel_display_power_get_domain.part.0+0x4d/0x70 [xe]
+[  202.323812]  intel_display_power_get+0x43/0x70 [xe]
+[  202.328708]  intel_tc_port_init+0x199/0x2a0 [xe]
+[  202.333363]  intel_ddi_init+0x6ad/0xb00 [xe]
+[  202.337678]  intel_modeset_init_nogem+0x536/0x6d0 [xe]
+[  202.342838]  xe_display_init_noaccel+0x19/0x40 [xe]
+[  202.347743]  xe_device_probe+0x1f5/0x2a0 [xe]
+[  202.352127]  xe_pci_probe+0x28c/0x480 [xe]
+[  202.356260]  pci_device_probe+0x9d/0x150
+[  202.360164]  really_probe+0x19a/0x400
+[  202.363809]  ? __pfx___driver_attach+0x10/0x10
+[  202.368226]  __driver_probe_device+0x73/0x170
+[  202.372558]  driver_probe_device+0x1a/0x90
+[  202.376632]  __driver_attach+0xcd/0x1c0
+[  202.380442]  bus_for_each_dev+0x72/0xc0
+[  202.384253]  bus_add_driver+0x110/0x210
+[  202.388063]  driver_register+0x50/0x100
+[  202.391873]  ? __pfx_init_module+0x10/0x10 [xe]
+[  202.396431]  do_one_initcall+0x55/0x260
+[  202.400245]  ? rcu_is_watching+0xd/0x40
+[  202.404058]  ? kmalloc_trace+0xa0/0xb0
+[  202.407786]  do_init_module+0x45/0x1e0
+[  202.411512]  __do_sys_finit_module+0xac/0x120
+[  202.415838]  do_syscall_64+0x37/0x90
+[  202.419397]  entry_SYSCALL_64_after_hwframe+0x72/0xdc
+[  202.424409] RIP: 0033:0x7fd11291ea3d
+[  202.427967] Code: 5b 41 5c c3 66 0f 1f 84 00 00 00 00 00 f3 0f 1e fa 48 89 f8 48 89 f7 48 89 d6 48 89 ca 4d 89 c2 4d 89 c8 4c 8b 4c 24 08 0f 05 <48> 3d 01 f0 ff ff 73 01 c3 48 8b 0d c3 a3 0f 00 f7 d8 64 89 01 48
+[  202.446530] RSP: 002b:00007ffffde11368 EFLAGS: 00000246 ORIG_RAX: 0000000000000139
+[  202.454031] RAX: ffffffffffffffda RBX: 00005616a617f210 RCX: 00007fd11291ea3d
+[  202.461106] RDX: 0000000000000000 RSI: 00005616a617fe60 RDI: 000000000000000e
+[  202.468182] RBP: 0000000000040000 R08: 0000000000000000 R09: 0000000000000002
+[  202.475250] R10: 000000000000000e R11: 0000000000000246 R12: 00005616a617fe60
+[  202.482319] R13: 00005616a617f340 R14: 0000000000000000 R15: 00005616a6180650
+[  202.489396]  </TASK>
 
-I currently maintain a number of Arm Mali Display drivers but in recent times
-I have moved to the Mali GPU team and now we've got approval to start making
-contributions to the upstream driver(s). We're planning to collaborate on
-Boris' new Mali driver and make it work well on Mali GPUs. One of the first
-things to look at (besides bringing the driver up on internal dev platforms)
-are the scheduler changes proposed here.
+v2:
+- added intel_display_locks_init()
 
-As such, I would like to ask that people start including John Reitan,
-Ketil Johnsen and me on patches. As soon as we have something working and we
-can make comments on, we will do so.
+v3:
+- rebased
 
-Best regards,
-Liviu
+v4:
+- drop intel_display_locks_init()
 
+Cc: intel-gfx@lists.freedesktop.org
+Cc: intel-xe@lists.freedesktop.org
+Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
+Cc: Ville Syrjälä <ville.syrjala@linux.intel.com>
+Cc: Jani Nikula <jani.nikula@intel.com>
+Cc: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
+Signed-off-by: José Roberto de Souza <jose.souza@intel.com>
+---
+ drivers/gpu/drm/i915/display/intel_display_driver.c | 2 ++
+ drivers/gpu/drm/i915/display/intel_dkl_phy.c        | 5 +++++
+ drivers/gpu/drm/i915/display/intel_dkl_phy.h        | 1 +
+ drivers/gpu/drm/i915/i915_driver.c                  | 1 -
+ 4 files changed, 8 insertions(+), 1 deletion(-)
 
-> 
-> As a prerequisite to merging the new Intel Xe DRM driver [1] [2], we
-> have been asked to merge our common DRM scheduler patches first as well
-> as develop a common solution for long running workloads with the DRM
-> scheduler. This RFC series is our first attempt at doing this. We
-> welcome any and all feedback.
-> 
-> This can we thought of as 4 parts detailed below.
-> 
-> - DRM scheduler changes for 1 to 1 relationship between scheduler and
-> entity (patches 1-3)
-> 
-> In Xe all of the scheduling of jobs is done by a firmware scheduler (the
-> GuC) which is a new paradigm WRT to the DRM scheduler and presents
-> severals problems as the DRM was originally designed to schedule jobs on
-> hardware queues. The main problem being that DRM scheduler expects the
-> submission order of jobs to be the completion order of jobs even across
-> multiple entities. This assumption falls apart with a firmware scheduler
-> as a firmware scheduler has no concept of jobs and jobs can complete out
-> of order. A novel solution for was originally thought of by Faith during
-> the initial prototype of Xe, create a 1 to 1 relationship between scheduler
-> and entity. I believe the AGX driver [3] is using this approach and
-> Boris may use approach as well for the Mali driver [4].
-> 
-> To support a 1 to 1 relationship we move the main execution function
-> from a kthread to a work queue and add a new scheduling mode which
-> bypasses code in the DRM which isn't needed in a 1 to 1 relationship.
-> The new scheduling mode should unify all drivers usage with a 1 to 1
-> relationship and can be thought of as using scheduler as a dependency /
-> infligt job tracker rather than a true scheduler.
-> 
-> - Generic messaging interface for DRM scheduler
-> 
-> Idea is to be able to communicate to the submission backend with in band
-> (relative to main execution function) messages. Messages are backend
-> defined and flexable enough for any use case. In Xe we use these
-> messages to clean up entites, set properties for entites, and suspend /
-> resume execution of an entity [5]. I suspect other driver can leverage
-> this messaging concept too as it a convenient way to avoid races in the
-> backend.
-> 
-> - Support for using TDR for all error paths of a scheduler / entity
-> 
-> Fix a few races / bugs, add function to dynamically set the TDR timeout.
-> 
-> - Annotate dma-fences for long running workloads.
-> 
-> The idea here is to use dma-fences only as sync points within the
-> scheduler and never export them for long running workloads. By
-> annotating these fences as long running we ensure that these dma-fences
-> are never used in a way that breaks the dma-fence rules. A benefit of
-> thus approach is the scheduler can still safely flow control the
-> execution ring buffer via the job limit without breaking the dma-fence
-> rules.
-> 
-> Again this a first draft and looking forward to feedback.
-> 
-> Enjoy - Matt
-> 
-> [1] https://gitlab.freedesktop.org/drm/xe/kernel
-> [2] https://patchwork.freedesktop.org/series/112188/ 
-> [3] https://patchwork.freedesktop.org/series/114772/
-> [4] https://patchwork.freedesktop.org/patch/515854/?series=112188&rev=1
-> [5] https://gitlab.freedesktop.org/drm/xe/kernel/-/blob/drm-xe-next/drivers/gpu/drm/xe/xe_guc_submit.c#L1031
-> 
-> Matthew Brost (8):
->   drm/sched: Convert drm scheduler to use a work queue rather than
->     kthread
->   drm/sched: Move schedule policy to scheduler / entity
->   drm/sched: Add DRM_SCHED_POLICY_SINGLE_ENTITY scheduling policy
->   drm/sched: Add generic scheduler message interface
->   drm/sched: Start run wq before TDR in drm_sched_start
->   drm/sched: Submit job before starting TDR
->   drm/sched: Add helper to set TDR timeout
->   drm/syncobj: Warn on long running dma-fences
-> 
-> Thomas Hellström (2):
->   dma-buf/dma-fence: Introduce long-running completion fences
->   drm/sched: Support long-running sched entities
-> 
->  drivers/dma-buf/dma-fence.c                 | 142 +++++++---
->  drivers/dma-buf/dma-resv.c                  |   5 +
->  drivers/gpu/drm/amd/amdgpu/amdgpu_debugfs.c |  14 +-
->  drivers/gpu/drm/amd/amdgpu/amdgpu_device.c  |  15 +-
->  drivers/gpu/drm/drm_syncobj.c               |   5 +-
->  drivers/gpu/drm/etnaviv/etnaviv_sched.c     |   5 +-
->  drivers/gpu/drm/lima/lima_sched.c           |   5 +-
->  drivers/gpu/drm/msm/adreno/adreno_device.c  |   6 +-
->  drivers/gpu/drm/msm/msm_ringbuffer.c        |   5 +-
->  drivers/gpu/drm/panfrost/panfrost_job.c     |   5 +-
->  drivers/gpu/drm/scheduler/sched_entity.c    | 127 +++++++--
->  drivers/gpu/drm/scheduler/sched_fence.c     |   6 +-
->  drivers/gpu/drm/scheduler/sched_main.c      | 278 +++++++++++++++-----
->  drivers/gpu/drm/v3d/v3d_sched.c             |  25 +-
->  include/drm/gpu_scheduler.h                 | 130 +++++++--
->  include/linux/dma-fence.h                   |  60 ++++-
->  16 files changed, 649 insertions(+), 184 deletions(-)
-> 
-> -- 
-> 2.34.1
-> 
-
+diff --git a/drivers/gpu/drm/i915/display/intel_display_driver.c b/drivers/gpu/drm/i915/display/intel_display_driver.c
+index b3dbfe2a892e6..60ce10fc72058 100644
+--- a/drivers/gpu/drm/i915/display/intel_display_driver.c
++++ b/drivers/gpu/drm/i915/display/intel_display_driver.c
+@@ -30,6 +30,7 @@
+ #include "intel_display_driver.h"
+ #include "intel_display_power.h"
+ #include "intel_display_types.h"
++#include "intel_dkl_phy.h"
+ #include "intel_dmc.h"
+ #include "intel_dp.h"
+ #include "intel_dpll.h"
+@@ -175,6 +176,7 @@ void intel_display_driver_early_probe(struct drm_i915_private *i915)
+ 	if (!HAS_DISPLAY(i915))
+ 		return;
+ 
++	intel_dkl_phy_init(i915);
+ 	intel_color_init_hooks(i915);
+ 	intel_init_cdclk_hooks(i915);
+ 	intel_audio_hooks_init(i915);
+diff --git a/drivers/gpu/drm/i915/display/intel_dkl_phy.c b/drivers/gpu/drm/i915/display/intel_dkl_phy.c
+index 57cc3edba0163..69d863dfb3a03 100644
+--- a/drivers/gpu/drm/i915/display/intel_dkl_phy.c
++++ b/drivers/gpu/drm/i915/display/intel_dkl_phy.c
+@@ -104,3 +104,8 @@ intel_dkl_phy_posting_read(struct drm_i915_private *i915, struct intel_dkl_phy_r
+ 
+ 	spin_unlock(&i915->display.dkl.phy_lock);
+ }
++
++void intel_dkl_phy_init(struct drm_i915_private *i915)
++{
++	spin_lock_init(&i915->display.dkl.phy_lock);
++}
+diff --git a/drivers/gpu/drm/i915/display/intel_dkl_phy.h b/drivers/gpu/drm/i915/display/intel_dkl_phy.h
+index 570ee36f9386f..a0183d322e058 100644
+--- a/drivers/gpu/drm/i915/display/intel_dkl_phy.h
++++ b/drivers/gpu/drm/i915/display/intel_dkl_phy.h
+@@ -20,5 +20,6 @@ void
+ intel_dkl_phy_rmw(struct drm_i915_private *i915, struct intel_dkl_phy_reg reg, u32 clear, u32 set);
+ void
+ intel_dkl_phy_posting_read(struct drm_i915_private *i915, struct intel_dkl_phy_reg reg);
++void intel_dkl_phy_init(struct drm_i915_private *i915);
+ 
+ #endif /* __INTEL_DKL_PHY_H__ */
+diff --git a/drivers/gpu/drm/i915/i915_driver.c b/drivers/gpu/drm/i915/i915_driver.c
+index a52db8a809006..fd198700272b1 100644
+--- a/drivers/gpu/drm/i915/i915_driver.c
++++ b/drivers/gpu/drm/i915/i915_driver.c
+@@ -223,7 +223,6 @@ static int i915_driver_early_probe(struct drm_i915_private *dev_priv)
+ 	mutex_init(&dev_priv->display.wm.wm_mutex);
+ 	mutex_init(&dev_priv->display.pps.mutex);
+ 	mutex_init(&dev_priv->display.hdcp.comp_mutex);
+-	spin_lock_init(&dev_priv->display.dkl.phy_lock);
+ 
+ 	i915_memcpy_init_early(dev_priv);
+ 	intel_runtime_pm_init_early(&dev_priv->runtime_pm);
 -- 
-====================
-| I would like to |
-| fix the world,  |
-| but they're not |
-| giving me the   |
- \ source code!  /
-  ---------------
-    ¯\_(ツ)_/¯
+2.40.0
+
