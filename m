@@ -4,50 +4,50 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 302ADC77B73
-	for <intel-xe@archiver.kernel.org>; Wed, 19 Apr 2023 12:40:06 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1EC0EC6FD18
+	for <intel-xe@archiver.kernel.org>; Wed, 19 Apr 2023 12:40:15 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 037DF10E96B;
-	Wed, 19 Apr 2023 12:40:06 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id DC12210E96B;
+	Wed, 19 Apr 2023 12:40:14 +0000 (UTC)
 Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 262A610E96B
- for <intel-xe@lists.freedesktop.org>; Wed, 19 Apr 2023 12:40:04 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 92AE110E96B
+ for <intel-xe@lists.freedesktop.org>; Wed, 19 Apr 2023 12:40:12 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1681908004; x=1713444004;
+ t=1681908012; x=1713444012;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=8yzU0GuKxlQLIEkCesfv9da8G8CKQgsEwz/kz0XCX0A=;
- b=IPSax80HLEvf6WERfuTng6v048/ttdB8MO1yaPZamR0zPJQcSvG5Oxsn
- zXal2b7ML103ZIle1fHw/Ci4t4S+BAdCz5Za/v3p19+z2TMFTw9GTFXXM
- U7AmbiULaYbFRUpDlqXp1zmX2vTMrPCpuq7bcE7IR1lpgkXDJAayOmQfI
- 07w0uK/ijV0JMt+fyDDyfWmDKPwvaxBbjYdhU5M1ErhHM91XX6nlhvL7H
- ZHjlS2QIQJ6g/tNSnPiSyjXAOARrg4VsOCzfB2A51as7QHt2UOXFCV87J
- 8737kSikFJFwgenGL45/8kQBXrSngGUv8KfGLG9I+elbKszbSCvRWQEeK Q==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10685"; a="348189317"
-X-IronPort-AV: E=Sophos;i="5.99,208,1677571200"; d="scan'208";a="348189317"
-Received: from fmsmga006.fm.intel.com ([10.253.24.20])
+ bh=P0cElYOitY9ppHpI2d7RvgE23u/lZogtas5Ihfn5W4Y=;
+ b=jZSr3BBxr2KXgDdoPoglt7hc8prWBo2suXs1AklhNeOFNzEUl4/BwedV
+ s59VWdBhPE9HjAKc0OJ+/Qj0jPn/Y42DNn6b1GHlSAWs77sJc1RTfDARp
+ TvSpcyTFNF4h+XojM8/IVuQ0so0h8k6jdA2A3Hckn/EJUWy79efmhKLzS
+ 9Brc/gNcpb50uxFmcOWiBzoj0l0eUi6CvHtTahfERf/Y2QkMEnTa0y+E9
+ Br+eNzu38FGg38FvUbu1U964TgxCJr/dEQnc2hW6AphTNitz+NtOqwDx6
+ 33JjTwZYy1Lzuaw4a+crB64HwbJN+rrPg6wLN8t0Zg9XCCcn4kIr/7mkp A==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10685"; a="348189377"
+X-IronPort-AV: E=Sophos;i="5.99,208,1677571200"; d="scan'208";a="348189377"
+Received: from fmsmga002.fm.intel.com ([10.253.24.26])
  by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 19 Apr 2023 05:40:03 -0700
+ 19 Apr 2023 05:40:11 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10685"; a="937660142"
-X-IronPort-AV: E=Sophos;i="5.99,208,1677571200"; d="scan'208";a="937660142"
+X-IronPort-AV: E=McAfee;i="6600,9927,10685"; a="802909801"
+X-IronPort-AV: E=Sophos;i="5.99,208,1677571200"; d="scan'208";a="802909801"
 Received: from yedidyal-mobl1.ger.corp.intel.com (HELO localhost)
  ([10.252.47.37])
- by fmsmga006-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 19 Apr 2023 05:40:01 -0700
+ by fmsmga002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 19 Apr 2023 05:40:09 -0700
 From: Jani Nikula <jani.nikula@intel.com>
 To: intel-xe@lists.freedesktop.org
-Date: Wed, 19 Apr 2023 15:39:40 +0300
-Message-Id: <20230419123947.543175-3-jani.nikula@intel.com>
+Date: Wed, 19 Apr 2023 15:39:41 +0300
+Message-Id: <20230419123947.543175-4-jani.nikula@intel.com>
 X-Mailer: git-send-email 2.39.2
 In-Reply-To: <20230419123947.543175-1-jani.nikula@intel.com>
 References: <20230419123947.543175-1-jani.nikula@intel.com>
 MIME-Version: 1.0
 Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-xe] [PATCH 2/9] drm/i915/wm: remove stale and unused
- ilk_wm_max_level() declaration
+Subject: [Intel-xe] [PATCH 3/9] drm/i915/display: add I915 conditional build
+ to i9xx_wm.h
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -63,27 +63,44 @@ Cc: jani.nikula@intel.com, lucas.demarchi@intel.com, rodrigo.vivi@intel.com
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-The declaration was removed earlier, but got accidentally resurrected in
-i915xx_wm.[ch] refactoring. Remove harder.
+Add stubs for !I915.
 
 Signed-off-by: Jani Nikula <jani.nikula@intel.com>
-Link: https://patchwork.freedesktop.org/patch/msgid/20230419115449.422214-1-jani.nikula@intel.com
 ---
- drivers/gpu/drm/i915/display/i9xx_wm.h | 1 -
- 1 file changed, 1 deletion(-)
+ drivers/gpu/drm/i915/display/i9xx_wm.h | 17 +++++++++++++++++
+ 1 file changed, 17 insertions(+)
 
 diff --git a/drivers/gpu/drm/i915/display/i9xx_wm.h b/drivers/gpu/drm/i915/display/i9xx_wm.h
-index a7875cbcd05a..b87ae369685a 100644
+index b87ae369685a..de0920730ab2 100644
 --- a/drivers/gpu/drm/i915/display/i9xx_wm.h
 +++ b/drivers/gpu/drm/i915/display/i9xx_wm.h
-@@ -12,7 +12,6 @@ struct drm_i915_private;
+@@ -12,9 +12,26 @@ struct drm_i915_private;
  struct intel_crtc_state;
  struct intel_plane_state;
  
--int ilk_wm_max_level(const struct drm_i915_private *i915);
++#ifdef I915
  bool ilk_disable_lp_wm(struct drm_i915_private *i915);
  void ilk_wm_sanitize(struct drm_i915_private *i915);
  bool intel_set_memory_cxsr(struct drm_i915_private *i915, bool enable);
+ void i9xx_wm_init(struct drm_i915_private *i915);
++#else
++static inline bool ilk_disable_lp_wm(struct drm_i915_private *i915)
++{
++	return false;
++}
++static inline void ilk_wm_sanitize(struct drm_i915_private *i915)
++{
++}
++static inline bool intel_set_memory_cxsr(struct drm_i915_private *i915, bool enable)
++{
++	return false;
++}
++static inline void i9xx_wm_init(struct drm_i915_private *i915)
++{
++}
++#endif
+ 
+ #endif /* __I9XX_WM_H__ */
 -- 
 2.39.2
 
