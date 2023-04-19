@@ -4,48 +4,48 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 62332C77B73
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id CBA5AC77B7A
 	for <intel-xe@archiver.kernel.org>; Wed, 19 Apr 2023 07:45:03 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 364CE10E050;
+	by gabe.freedesktop.org (Postfix) with ESMTP id A365010E8C4;
 	Wed, 19 Apr 2023 07:45:03 +0000 (UTC)
 Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6EA8610E8D5
- for <intel-xe@lists.freedesktop.org>; Wed, 19 Apr 2023 07:44:59 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C4C8310E8E1
+ for <intel-xe@lists.freedesktop.org>; Wed, 19 Apr 2023 07:44:57 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1681890299; x=1713426299;
+ t=1681890297; x=1713426297;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=M8bol/iMSz25YmE/3FViqOTY1Mhc/TTXNSl9D7Zm7SY=;
- b=XBL0nMeNXzNzPntxtAPtUTFdm5OjMJCGKpO6JuY4ufXX2+wuaXhz7KJU
- 3YDNBOuf1RS/WxXgivLnAkrNiOCYFddKjhWTDFKVyOrK5YxR7aL9lonp8
- BYfN2jQKzG8roynDccE53Bv6wSFo8w6IKBU0Z+9lditNfEnC/BmCJzIzL
- r7T5urRCy4/X1Ep0xQQZfZSaynLZFVL0+wRDE4/0mhBdYh1R0N5CKFHZf
- TGUWszbvGVZvtXF8t5XDEvp57qTa3O+CCbDVJQfDY3xS0wrKg1J7iJ4GR
- f+rCC+yY/LZV/WyOfkjSg8x7l0w4APtDz78BagEaG+wr6FHEbi8Efj8pN Q==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10684"; a="334186125"
-X-IronPort-AV: E=Sophos;i="5.99,208,1677571200"; d="scan'208";a="334186125"
+ bh=l3s01Cj8G164tcmeJETGDlNToRUnHU44NydY/gcO9Es=;
+ b=FFB16i3I94yorCn3cpeqDl8GqVnRZJOxBRVID0e89VfoOp+wXKTBK028
+ chgRTMAVXI0FSF81seiGgdbx+WTnj+21b6DcxKa6XYehFy07PnqIYaYDS
+ MgdkRAM+VlKcd3AbqbG3cbxEkNvJWeghQ5JHCuH8FOKITYatqCsI02SeQ
+ JTVbXtnsw5YYv4Vb+d4mLXXcEIlJMCQVv/0AzauMrLdltcNksv1pnaukj
+ o5uKe0gr6ILuQ0lZo+j9f3VAthaq/QWI67gSCFqw/5dfFMBj38dXPdBsC
+ My0N8oC6VvaEBLX6D6mAOczYbGA+VjhcJQiaKtxqfk7pPIOuVB9IoTztl A==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10684"; a="334186113"
+X-IronPort-AV: E=Sophos;i="5.99,208,1677571200"; d="scan'208";a="334186113"
 Received: from fmsmga007.fm.intel.com ([10.253.24.52])
  by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 19 Apr 2023 00:44:57 -0700
+ 19 Apr 2023 00:44:56 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10684"; a="693951910"
-X-IronPort-AV: E=Sophos;i="5.99,208,1677571200"; d="scan'208";a="693951910"
+X-IronPort-AV: E=McAfee;i="6600,9927,10684"; a="693951877"
+X-IronPort-AV: E=Sophos;i="5.99,208,1677571200"; d="scan'208";a="693951877"
 Received: from lucas-s2600cw.jf.intel.com ([10.165.21.196])
  by fmsmga007-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 19 Apr 2023 00:44:57 -0700
+ 19 Apr 2023 00:44:56 -0700
 From: Lucas De Marchi <lucas.demarchi@intel.com>
 To: intel-xe@lists.freedesktop.org
-Date: Wed, 19 Apr 2023 00:44:38 -0700
-Message-Id: <20230419074440.4006398-16-lucas.demarchi@intel.com>
+Date: Wed, 19 Apr 2023 00:44:28 -0700
+Message-Id: <20230419074440.4006398-6-lucas.demarchi@intel.com>
 X-Mailer: git-send-email 2.39.0
 In-Reply-To: <20230419074440.4006398-1-lucas.demarchi@intel.com>
 References: <20230419074440.4006398-1-lucas.demarchi@intel.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-xe] [PATCH 15/17] drm/xe: Annotate masked registers used by
- RTP
+Subject: [Intel-xe] [PATCH 05/17] drm/xe: Rename instruction field to avoid
+ confusion
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -62,190 +62,46 @@ Cc: Lucas De Marchi <lucas.demarchi@intel.com>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Go over all registers used in xe_rtp tables and mark the registers as
-masked if they were passed a XE_RTP_ACTION_FLAG(MASKED_REG) flag.
-This will allow the flag to be removed in future when xe_rtp starts
-using the real xe_reg_t type.
+There was both BLT_DEPTH_32 and XY_FAST_COLOR_BLT_DEPTH_32 - also add
+the prefix to the first to make it clear this is about the FAST_**COPY**
+operation. While at it, remove the GEN9_ prefix.
 
 Signed-off-by: Lucas De Marchi <lucas.demarchi@intel.com>
 ---
- drivers/gpu/drm/xe/regs/xe_engine_regs.h |  2 +-
- drivers/gpu/drm/xe/regs/xe_gt_regs.h     | 46 ++++++++++++------------
- drivers/gpu/drm/xe/regs/xe_reg_defs.h    |  6 ++++
- 3 files changed, 30 insertions(+), 24 deletions(-)
+ drivers/gpu/drm/xe/regs/xe_gpu_commands.h | 4 ++--
+ drivers/gpu/drm/xe/xe_migrate.c           | 4 ++--
+ 2 files changed, 4 insertions(+), 4 deletions(-)
 
-diff --git a/drivers/gpu/drm/xe/regs/xe_engine_regs.h b/drivers/gpu/drm/xe/regs/xe_engine_regs.h
-index c13aac8f900c..f8851e045c0a 100644
---- a/drivers/gpu/drm/xe/regs/xe_engine_regs.h
-+++ b/drivers/gpu/drm/xe/regs/xe_engine_regs.h
-@@ -21,7 +21,7 @@
- #define   RING_CTL_SIZE(size)			((size) - PAGE_SIZE) /* in bytes -> pages */
- #define   RING_CTL_SIZE(size)			((size) - PAGE_SIZE) /* in bytes -> pages */
+diff --git a/drivers/gpu/drm/xe/regs/xe_gpu_commands.h b/drivers/gpu/drm/xe/regs/xe_gpu_commands.h
+index 9d6508d74d62..05531d43514f 100644
+--- a/drivers/gpu/drm/xe/regs/xe_gpu_commands.h
++++ b/drivers/gpu/drm/xe/regs/xe_gpu_commands.h
+@@ -55,8 +55,8 @@
+ #define   XY_FAST_COLOR_BLT_MOCS_MASK	GENMASK(27, 21)
+ #define   XY_FAST_COLOR_BLT_MEM_TYPE_SHIFT 31
  
--#define RING_PSMI_CTL(base)			XE_REG((base) + 0x50)
-+#define RING_PSMI_CTL(base)			XE_REG((base) + 0x50, XE_REG_OPTION_MASKED)
- #define   RC_SEMA_IDLE_MSG_DISABLE		REG_BIT(12)
- #define   WAIT_FOR_EVENT_POWER_DOWN_DISABLE	REG_BIT(7)
+-#define GEN9_XY_FAST_COPY_BLT_CMD	(2 << 29 | 0x42 << 22)
+-#define   BLT_DEPTH_32			(3<<24)
++#define XY_FAST_COPY_BLT_CMD		(2 << 29 | 0x42 << 22)
++#define   XY_FAST_COPY_BLT_DEPTH_32	(3<<24)
  
-diff --git a/drivers/gpu/drm/xe/regs/xe_gt_regs.h b/drivers/gpu/drm/xe/regs/xe_gt_regs.h
-index 64ab2255a406..c6949cec1dc3 100644
---- a/drivers/gpu/drm/xe/regs/xe_gt_regs.h
-+++ b/drivers/gpu/drm/xe/regs/xe_gt_regs.h
-@@ -45,19 +45,19 @@
- #define   MTL_MCR_GROUPID			REG_GENMASK(11, 8)
- #define   MTL_MCR_INSTANCEID			REG_GENMASK(3, 0)
+ #define	PVC_MEM_SET_CMD		(2 << 29 | 0x5b << 22)
+ #define   PVC_MEM_SET_CMD_LEN_DW	7
+diff --git a/drivers/gpu/drm/xe/xe_migrate.c b/drivers/gpu/drm/xe/xe_migrate.c
+index 5acb227f2b5a..f40f47ccb76f 100644
+--- a/drivers/gpu/drm/xe/xe_migrate.c
++++ b/drivers/gpu/drm/xe/xe_migrate.c
+@@ -518,8 +518,8 @@ static void emit_copy(struct xe_gt *gt, struct xe_bb *bb,
+ 	XE_BUG_ON(pitch / 4 > S16_MAX);
+ 	XE_BUG_ON(pitch > U16_MAX);
  
--#define FF_SLICE_CS_CHICKEN1			XE_REG(0x20e0)
-+#define FF_SLICE_CS_CHICKEN1			XE_REG(0x20e0, XE_REG_OPTION_MASKED)
- #define   FFSC_PERCTX_PREEMPT_CTRL		REG_BIT(14)
- 
--#define FF_SLICE_CS_CHICKEN2			XE_REG(0x20e4)
-+#define FF_SLICE_CS_CHICKEN2			XE_REG(0x20e4, XE_REG_OPTION_MASKED)
- #define   PERF_FIX_BALANCING_CFE_DISABLE	REG_BIT(15)
- 
--#define CS_DEBUG_MODE1				XE_REG(0x20ec)
-+#define CS_DEBUG_MODE1				XE_REG(0x20ec, XE_REG_OPTION_MASKED)
- #define   FF_DOP_CLOCK_GATE_DISABLE		REG_BIT(1)
- #define   REPLAY_MODE_GRANULARITY		REG_BIT(0)
- 
- #define PS_INVOCATION_COUNT			XE_REG(0x2348)
- 
--#define CS_CHICKEN1				XE_REG(0x2580)
-+#define CS_CHICKEN1				XE_REG(0x2580, XE_REG_OPTION_MASKED)
- #define   PREEMPT_GPGPU_LEVEL(hi, lo)		(((hi) << 2) | ((lo) << 1))
- #define   PREEMPT_GPGPU_MID_THREAD_LEVEL	PREEMPT_GPGPU_LEVEL(0, 0)
- #define   PREEMPT_GPGPU_THREAD_GROUP_LEVEL	PREEMPT_GPGPU_LEVEL(0, 1)
-@@ -77,10 +77,10 @@
- #define XEHP_TILE0_ADDR_RANGE			XE_REG_MCR(0x4900)
- #define XEHP_FLAT_CCS_BASE_ADDR			XE_REG_MCR(0x4910)
- 
--#define CHICKEN_RASTER_1			XE_REG_MCR(0x6204)
-+#define CHICKEN_RASTER_1			XE_REG_MCR(0x6204, XE_REG_OPTION_MASKED)
- #define   DIS_SF_ROUND_NEAREST_EVEN		REG_BIT(8)
- 
--#define CHICKEN_RASTER_2			XE_REG_MCR(0x6208)
-+#define CHICKEN_RASTER_2			XE_REG_MCR(0x6208, XE_REG_OPTION_MASKED)
- #define   TBIMR_FAST_CLIP			REG_BIT(5)
- 
- #define VFLSKPD					XE_REG_MCR(0x62a8)
-@@ -94,35 +94,35 @@
- #define   FF_MODE2_TDS_TIMER_MASK		REG_GENMASK(23, 16)
- #define   FF_MODE2_TDS_TIMER_128		REG_FIELD_PREP(FF_MODE2_TDS_TIMER_MASK, 4)
- 
--#define CACHE_MODE_1				XE_REG(0x7004)
-+#define CACHE_MODE_1				XE_REG(0x7004, XE_REG_OPTION_MASKED)
- #define   MSAA_OPTIMIZATION_REDUC_DISABLE	REG_BIT(11)
- 
--#define XEHP_PSS_MODE2				XE_REG_MCR(0x703c)
-+#define XEHP_PSS_MODE2				XE_REG_MCR(0x703c, XE_REG_OPTION_MASKED)
- #define   SCOREBOARD_STALL_FLUSH_CONTROL	REG_BIT(5)
- 
--#define HIZ_CHICKEN					XE_REG(0x7018)
-+#define HIZ_CHICKEN					XE_REG(0x7018, XE_REG_OPTION_MASKED)
- #define   DG1_HZ_READ_SUPPRESSION_OPTIMIZATION_DISABLE	REG_BIT(14)
- #define   HZ_DEPTH_TEST_LE_GE_OPT_DISABLE		REG_BIT(13)
- 
- #define COMMON_SLICE_CHICKEN1			XE_REG(0x7010)
- 
--#define COMMON_SLICE_CHICKEN4			XE_REG(0x7300)
-+#define COMMON_SLICE_CHICKEN4			XE_REG(0x7300, XE_REG_OPTION_MASKED)
- #define   DISABLE_TDC_LOAD_BALANCING_CALC	REG_BIT(6)
- 
--#define COMMON_SLICE_CHICKEN3				XE_REG(0x7304)
--#define XEHP_COMMON_SLICE_CHICKEN3			XE_REG_MCR(0x7304)
-+#define COMMON_SLICE_CHICKEN3				XE_REG(0x7304, XE_REG_OPTION_MASKED)
-+#define XEHP_COMMON_SLICE_CHICKEN3			XE_REG_MCR(0x7304, XE_REG_OPTION_MASKED)
- #define   DG1_FLOAT_POINT_BLEND_OPT_STRICT_MODE_EN	REG_BIT(12)
- #define   XEHP_DUAL_SIMD8_SEQ_MERGE_DISABLE		REG_BIT(12)
- #define   BLEND_EMB_FIX_DISABLE_IN_RCC			REG_BIT(11)
- #define   DISABLE_CPS_AWARE_COLOR_PIPE			REG_BIT(9)
- 
--#define XEHP_SLICE_COMMON_ECO_CHICKEN1		XE_REG_MCR(0x731c)
-+#define XEHP_SLICE_COMMON_ECO_CHICKEN1		XE_REG_MCR(0x731c, XE_REG_OPTION_MASKED)
- #define   MSC_MSAA_REODER_BUF_BYPASS_DISABLE	REG_BIT(14)
- 
--#define VF_PREEMPTION				XE_REG(0x83a4)
-+#define VF_PREEMPTION				XE_REG(0x83a4, XE_REG_OPTION_MASKED)
- #define   PREEMPTION_VERTEX_COUNT		REG_GENMASK(15, 0)
- 
--#define VFG_PREEMPTION_CHICKEN			XE_REG(0x83b4)
-+#define VFG_PREEMPTION_CHICKEN			XE_REG(0x83b4, XE_REG_OPTION_MASKED)
- #define   POLYGON_TRIFAN_LINELOOP_DISABLE	REG_BIT(4)
- 
- #define XEHP_SQCM				XE_REG_MCR(0x8724)
-@@ -248,7 +248,7 @@
- #define FORCEWAKE_MEDIA_VDBOX(n)		XE_REG(0xa540 + (n) * 4)
- #define FORCEWAKE_MEDIA_VEBOX(n)		XE_REG(0xa560 + (n) * 4)
- 
--#define XEHPC_LNCFMISCCFGREG0			XE_REG_MCR(0xb01c)
-+#define XEHPC_LNCFMISCCFGREG0			XE_REG_MCR(0xb01c, XE_REG_OPTION_MASKED)
- #define   XEHPC_OVRLSCCC			REG_BIT(0)
- 
- #define XEHP_L3NODEARBCFG			XE_REG_MCR(0xb0b4)
-@@ -276,20 +276,20 @@
- #define   INVALIDATION_BROADCAST_MODE_DIS	REG_BIT(12)
- #define   GLOBAL_INVALIDATION_MODE		REG_BIT(2)
- 
--#define SAMPLER_MODE				XE_REG_MCR(0xe18c)
-+#define SAMPLER_MODE				XE_REG_MCR(0xe18c, XE_REG_OPTION_MASKED)
- #define   ENABLE_SMALLPL			REG_BIT(15)
- #define   SC_DISABLE_POWER_OPTIMIZATION_EBB	REG_BIT(9)
- #define   SAMPLER_ENABLE_HEADLESS_MSG		REG_BIT(5)
- 
--#define HALF_SLICE_CHICKEN7				XE_REG_MCR(0xe194)
-+#define HALF_SLICE_CHICKEN7				XE_REG_MCR(0xe194, XE_REG_OPTION_MASKED)
- #define   DG2_DISABLE_ROUND_ENABLE_ALLOW_FOR_SSLA	REG_BIT(15)
- 
--#define CACHE_MODE_SS				XE_REG_MCR(0xe420)
-+#define CACHE_MODE_SS				XE_REG_MCR(0xe420, XE_REG_OPTION_MASKED)
- #define   ENABLE_EU_COUNT_FOR_TDL_FLUSH		REG_BIT(10)
- #define   DISABLE_ECC				REG_BIT(5)
- #define   ENABLE_PREFETCH_INTO_IC		REG_BIT(3)
- 
--#define ROW_CHICKEN4				XE_REG_MCR(0xe48c)
-+#define ROW_CHICKEN4				XE_REG_MCR(0xe48c, XE_REG_OPTION_MASKED)
- #define   DISABLE_GRF_CLEAR			REG_BIT(13)
- #define   XEHP_DIS_BBL_SYSPIPE			REG_BIT(11)
- #define   DISABLE_TDL_PUSH			REG_BIT(9)
-@@ -298,18 +298,18 @@
- #define   THREAD_EX_ARB_MODE			REG_GENMASK(3, 2)
- #define   THREAD_EX_ARB_MODE_RR_AFTER_DEP	REG_FIELD_PREP(THREAD_EX_ARB_MODE, 0x2)
- 
--#define ROW_CHICKEN				XE_REG_MCR(0xe4f0)
-+#define ROW_CHICKEN				XE_REG_MCR(0xe4f0, XE_REG_OPTION_MASKED)
- #define   UGM_BACKUP_MODE			REG_BIT(13)
- #define   MDQ_ARBITRATION_MODE			REG_BIT(12)
- 
--#define ROW_CHICKEN2				XE_REG_MCR(0xe4f4)
-+#define ROW_CHICKEN2				XE_REG_MCR(0xe4f4, XE_REG_OPTION_MASKED)
- #define   DISABLE_READ_SUPPRESSION		REG_BIT(15)
- #define   DISABLE_EARLY_READ			REG_BIT(14)
- #define   ENABLE_LARGE_GRF_MODE			REG_BIT(12)
- #define   PUSH_CONST_DEREF_HOLD_DIS		REG_BIT(8)
- #define   DISABLE_DOP_GATING			REG_BIT(0)
- 
--#define XEHP_HDC_CHICKEN0					XE_REG_MCR(0xe5f0)
-+#define XEHP_HDC_CHICKEN0					XE_REG_MCR(0xe5f0, XE_REG_OPTION_MASKED)
- #define   LSC_L1_FLUSH_CTL_3D_DATAPORT_FLUSH_EVENTS_MASK	REG_GENMASK(13, 11)
- 
- #define RT_CTRL					XE_REG_MCR(0xe530)
-diff --git a/drivers/gpu/drm/xe/regs/xe_reg_defs.h b/drivers/gpu/drm/xe/regs/xe_reg_defs.h
-index ddf734b59257..9c2d23142cb2 100644
---- a/drivers/gpu/drm/xe/regs/xe_reg_defs.h
-+++ b/drivers/gpu/drm/xe/regs/xe_reg_defs.h
-@@ -48,6 +48,12 @@ typedef union {
- #define XE_REG_OPTION_MCR		.mcr = 1
- 
- 
-+/**
-+ * XE_REG_MASKED - Register is "masked", with upper 16 bits marking the
-+ * read/written bits on the lower 16 bits
-+ */
-+#define XE_REG_MASKED		.masked = 1
-+
- /**
-  * XE_REG - Create a xe_reg_t from offset and additional flags
-  * @r: Register offset
+-	bb->cs[bb->len++] = GEN9_XY_FAST_COPY_BLT_CMD | (10 - 2);
+-	bb->cs[bb->len++] = BLT_DEPTH_32 | pitch;
++	bb->cs[bb->len++] = XY_FAST_COPY_BLT_CMD | (10 - 2);
++	bb->cs[bb->len++] = XY_FAST_COPY_BLT_DEPTH_32 | pitch;
+ 	bb->cs[bb->len++] = 0;
+ 	bb->cs[bb->len++] = (size / pitch) << 16 | pitch / 4;
+ 	bb->cs[bb->len++] = lower_32_bits(dst_ofs);
 -- 
 2.39.0
 
