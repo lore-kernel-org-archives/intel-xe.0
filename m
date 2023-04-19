@@ -4,141 +4,47 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 81A69C77B73
-	for <intel-xe@archiver.kernel.org>; Wed, 19 Apr 2023 07:29:44 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id A0F1EC6FD18
+	for <intel-xe@archiver.kernel.org>; Wed, 19 Apr 2023 07:44:58 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 41E6610E049;
-	Wed, 19 Apr 2023 07:29:44 +0000 (UTC)
-Received: from mga06.intel.com (mga06b.intel.com [134.134.136.31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C44E110E049;
- Wed, 19 Apr 2023 07:29:41 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3C84710E8D6;
+	Wed, 19 Apr 2023 07:44:58 +0000 (UTC)
+Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5AA5A10E8D6
+ for <intel-xe@lists.freedesktop.org>; Wed, 19 Apr 2023 07:44:57 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1681889381; x=1713425381;
- h=date:from:to:cc:subject:message-id:references:
- in-reply-to:mime-version;
- bh=m+nFAw3SidJTXnYieY7UXmDMVDClMNojFRT40L8q81E=;
- b=PdOVJmMPOiPsV1WBNO50Jn+W4h/qXg2+t88/UBonB+Y/PjPwnmtXCrOM
- yWSblcGp8MKyS/CSVBUAazwCNO735arlKJ4GvRGrFrKFqq4aQsC/Mbdxl
- dfSmxSDIvrxRLwrHNn+HBctBMt4fmFgJW9pNm/wSzsBLEHCWpSauXbb6/
- BcDYnfTMU2p2ncst4bFQAl/gd1JQX6IrIpX8GICnK9o7kWzyBEbZWJmBa
- TmnVTVxmLT2ilIh1Sy5Zw6WnB7ahOS9wV0uytIY0kziNSXAouiFUvCqik
- wxmVGY7lRT+LXQk4sSC3rimYr0CdsRLbVWM5tDrujf4Ng5RrswXNwMw+1 w==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10684"; a="408285571"
-X-IronPort-AV: E=Sophos;i="5.99,208,1677571200"; d="scan'208";a="408285571"
-Received: from orsmga003.jf.intel.com ([10.7.209.27])
- by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 19 Apr 2023 00:29:40 -0700
+ t=1681890297; x=1713426297;
+ h=from:to:cc:subject:date:message-id:in-reply-to:
+ references:mime-version:content-transfer-encoding;
+ bh=4vGXBSlRtZnydNw3DxbcUD81w8FHmxLQHck0+HQouP8=;
+ b=oDR6HmfVHz+mj0WEBqmhnW9jvoqoWKFqkwMWrc1yKPOpeaQVwbmj45vW
+ YLqBFtkVmAB2YnIyWyI0NgouKFv7x7d0k8gbEN6G91id7LnV8ltS+TgNg
+ t0TOjH/lL7YNxJ9QXCywjX31Gf0qNoCKanZABKjChQBFrBKgt2tbZlfpM
+ 1gazTmO/KzyPLucZjitgzzHnChtvZlIp965H8gI0ZW3qcMDEzIbT8TJm+
+ 4gKgfi7e6ZCPBaVxQztjgVB9oMiwMXGgjhbpf3p1hYIEHOif3qJYxeGHt
+ IEZvihLSpP+aKDAaQ0swQGVusWOgqcZ4VItueA639LPQ2bbRgg79JPsZs g==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10684"; a="334186109"
+X-IronPort-AV: E=Sophos;i="5.99,208,1677571200"; d="scan'208";a="334186109"
+Received: from fmsmga007.fm.intel.com ([10.253.24.52])
+ by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 19 Apr 2023 00:44:56 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10684"; a="641657158"
-X-IronPort-AV: E=Sophos;i="5.99,208,1677571200"; d="scan'208";a="641657158"
-Received: from fmsmsx603.amr.corp.intel.com ([10.18.126.83])
- by orsmga003.jf.intel.com with ESMTP; 19 Apr 2023 00:29:40 -0700
-Received: from fmsmsx611.amr.corp.intel.com (10.18.126.91) by
- fmsmsx603.amr.corp.intel.com (10.18.126.83) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.23; Wed, 19 Apr 2023 00:29:40 -0700
-Received: from fmsmsx601.amr.corp.intel.com (10.18.126.81) by
- fmsmsx611.amr.corp.intel.com (10.18.126.91) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.23; Wed, 19 Apr 2023 00:29:39 -0700
-Received: from FMSEDG603.ED.cps.intel.com (10.1.192.133) by
- fmsmsx601.amr.corp.intel.com (10.18.126.81) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.23 via Frontend Transport; Wed, 19 Apr 2023 00:29:39 -0700
-Received: from NAM11-BN8-obe.outbound.protection.outlook.com (104.47.58.169)
- by edgegateway.intel.com (192.55.55.68) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2507.23; Wed, 19 Apr 2023 00:29:39 -0700
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=UBg4ltPRdp3it2VhljoRC7he+8PnZbLK30gPiKUy894+BUcZOr9860IbMg73Inpn3GDTTYP4rzfPz1gTDEgSvD9R8yTlpdEM5f84OTQ09IAB8w3c46SsoQHfRfg0rXiursoTBb8VYLk8ItiOOv/p75/XBuWYPgddEjgrY348KVnC6+nEi2pchcxDIHWQE0gmX5PjXGml5eugJDn+UvXSUeS8tPbUrtcOGb3n2Lz7HNTj9T+XpoBRVOr5L1ChO2jLvRPt3/4ytzySZYCz9AP9WDRD0GiSQv/t8VULuG8npKEr69zNmAIxLGmuZyspmLDozZ0JLRlUZXAlJS8EecNkwg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=MsDMuqrU0mDHs+NpO/ofe0KpHvFG/VzkMwL/8RaIj6Q=;
- b=etGpcxey9BBna05ERjL75ly2vVvRskWBUjiHnHfU753b3S+9S8q2OGshQzOxfkCswEs02AQj0jKYH4e97HzE4zA7/i/t01i2bOTfMKKF46kjlGyuZEWSEfUwM2BlR5YSk2Tg2lqgbXgmBdeeDTBdsCpxuuxgmBYBmipjYgLNHEOmBpqlrtpO/0tDGv1iG+GL7YhD/xroUMvOTIj/Rd6LvYHUdKhHQgZWGfcRCXnIjO15GVZ+FJxuO8gAonG+llTAzxznzl+akVgsZ4YjKAw2i0TpBo8ViJvQkjvJ63XMkXmEAcRNeJaSLLFAfjGaG0PlI1Y/NqYL/aO/bfFmlsDMmA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
- dkim=pass header.d=intel.com; arc=none
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=intel.com;
-Received: from CY5PR11MB6139.namprd11.prod.outlook.com (2603:10b6:930:29::17)
- by MW4PR11MB6809.namprd11.prod.outlook.com (2603:10b6:303:1e9::14)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6319.22; Wed, 19 Apr
- 2023 07:29:37 +0000
-Received: from CY5PR11MB6139.namprd11.prod.outlook.com
- ([fe80::44e7:c479:62f4:3eb4]) by CY5PR11MB6139.namprd11.prod.outlook.com
- ([fe80::44e7:c479:62f4:3eb4%3]) with mapi id 15.20.6319.022; Wed, 19 Apr 2023
- 07:29:37 +0000
-Date: Wed, 19 Apr 2023 00:29:34 -0700
+X-IronPort-AV: E=McAfee;i="6600,9927,10684"; a="693951864"
+X-IronPort-AV: E=Sophos;i="5.99,208,1677571200"; d="scan'208";a="693951864"
+Received: from lucas-s2600cw.jf.intel.com ([10.165.21.196])
+ by fmsmga007-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 19 Apr 2023 00:44:55 -0700
 From: Lucas De Marchi <lucas.demarchi@intel.com>
-To: Jani Nikula <jani.nikula@intel.com>
-Message-ID: <iyxrhj6q37af2fhgk6bnj756rhofpek3n77ynmwkpd4d5eckdg@cp5jmu37fsn3>
-References: <20230418164337.50303-1-jose.souza@intel.com>
- <uiz4v7ipqtw3mtgvccmi6vgiqojptaahydvh66aaqwq2tvy7sn@ne5s2vatg2zp>
- <tfvlalzyff5hv5wxid4q5garmiburkapqo6xv3zdrdxicwt2un@64brrcp2ckgb>
- <878reo1gvt.fsf@intel.com>
-Content-Type: text/plain; charset="us-ascii"; format=flowed
-Content-Disposition: inline
-In-Reply-To: <878reo1gvt.fsf@intel.com>
-X-ClientProxiedBy: SJ0PR03CA0164.namprd03.prod.outlook.com
- (2603:10b6:a03:338::19) To CY5PR11MB6139.namprd11.prod.outlook.com
- (2603:10b6:930:29::17)
+To: intel-xe@lists.freedesktop.org
+Date: Wed, 19 Apr 2023 00:44:24 -0700
+Message-Id: <20230419074440.4006398-2-lucas.demarchi@intel.com>
+X-Mailer: git-send-email 2.39.0
+In-Reply-To: <20230419074440.4006398-1-lucas.demarchi@intel.com>
+References: <20230419074440.4006398-1-lucas.demarchi@intel.com>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: CY5PR11MB6139:EE_|MW4PR11MB6809:EE_
-X-MS-Office365-Filtering-Correlation-Id: d2de2e59-86c8-4fc5-5a21-08db40a7d463
-X-LD-Processed: 46c98d88-e344-4ed4-8496-4ed7712e255d,ExtAddr
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: hdQSRwIQm6Gw7Lm0aVdSPK0fOr7ZgF73rMapsqdzd0QYEJ2my9LzlTr/bSqeIT1T384D4QHxDFtC3t+N/Ku07YmdUFLyGEzOO+HUsQWUIqJ5ZeAUkT+HiTxk+u/jm1WOFFHmvzk6cdeQrEBYeFgMvx0Dpqa0TDLTUoCWOkfsr8R3QngeACkJ47R/iumr2KLigsx1J5/eLJxQTcH7ofRx5BrzmGsu3ZX3k+6GDsTgMl0rbdr8X6b9Qir6KQkidNIOcEz9+vZCXd7XnA/nDKw7KTq1DCCMilo0VYcTkdDBrcimZ2H4BinWNTQ8ZAsIvppvRyD9w30ekwDptOtby6QjhAe0v9dX3gIpHndSUM5B6UsfW/yinm7YTUT7FThM3UJp9id6mnvkBWvSy6fItcK40N9O23cY7FvpIuAiHUmEp3jEsb5TOGpc4sh2M0KwrFX7g7y0YlBXG1mvxC676mo2T92hnHf9oTmP/froKj/PybfsQoPQwsCvViF/JjZEUqJ27vCzvgpObxcpBG6pNBHnA8VpbqAaOT9qs7GVSgNuyrzwOckRHnfYvfXMRYyc3pRS
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:CY5PR11MB6139.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230028)(7916004)(376002)(346002)(366004)(396003)(136003)(39860400002)(451199021)(6486002)(33716001)(6666004)(54906003)(6636002)(478600001)(107886003)(26005)(186003)(9686003)(6512007)(6506007)(5660300002)(2906002)(6862004)(8676002)(450100002)(66946007)(66556008)(66476007)(41300700001)(8936002)(4326008)(316002)(86362001)(83380400001)(82960400001)(38100700002)(66899021);
- DIR:OUT; SFP:1102; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?vhA0WDYAnXOdCWZhjntFas8a6g87q0R5VXxQ6aRYFf7G6kdlVAdpUOh9tdnt?=
- =?us-ascii?Q?wp/Bdi9gXGWV8g3BjlAriGVFTRp6sCPlCKU1k8l+CJp1maLeP8HM/1d85pd8?=
- =?us-ascii?Q?SJiRJU8QYpZoEr3FmZtflbE7XvGYxNVWRTaw/Q0232bEJ65uDFaqOCoGHDAV?=
- =?us-ascii?Q?j5xrWlDDRb72raZrsxrlG2tGFJ069GglB9XWx+ZVGuGgJPaAe+WzMj4ZENKe?=
- =?us-ascii?Q?87u7bDnmnH3gmuIU0IHyJursQXXicq4yYPCBDSjHKqIPw1CMRhLqJ1pw/lY8?=
- =?us-ascii?Q?uFEAF4aj2RrpvjN92S9Pzz/DenhTXwPj62EFs7jWS6bTUQAcR6dok6SwxzOd?=
- =?us-ascii?Q?49KXuDOulelSl9ArORKJjbjIgbhzcqiDZHyrXhyIPUvwKQxX6mHuL5+bYSxo?=
- =?us-ascii?Q?vbvGkfMRXOHj6MymgNw+KxB6AtuOuLyEf/nryK8aLLeYDaY+b1jKO/vHGSH9?=
- =?us-ascii?Q?NYQfg1B/Uq3hIwdRm1MHJakVSAGnp7/ml2XIE3DTruj5XRTX38to85FsaXxQ?=
- =?us-ascii?Q?OBUHF6mfG0hwwXE+z/y4BreZEUauB4THqqlA+78TK/9D+/d4KFKShnOVHZM6?=
- =?us-ascii?Q?6QShfHtqnVicl2SCWAT9vOIU+b+YTwY8jI0vrNXI+gYSyFGAJTqWc39BRy2z?=
- =?us-ascii?Q?m7UtzASkv63weoWd241j/teFEHvw/0B3EWf90Q5f/Ca/8NA2t2oTxtH+NMk4?=
- =?us-ascii?Q?fy3kcpJ6R85IDsxcSq6z3xTnKp+odAbpV76p06H9FVClxDxAlENGEhwKDIt8?=
- =?us-ascii?Q?dZM1WLo4xVSIIm/WFTHY5sM52Zc9qoa9Ew9f/Y9LfhwD5hKiMoJrGnx8GbUw?=
- =?us-ascii?Q?+i9lL3ww1SBTZdiLJ/G9qAp+TkhZFA5uG5YuNGDDG2Jx/HC5fZ6L/guPIN9g?=
- =?us-ascii?Q?eN/yyIfXbOTZVQjtOdqU1tBaIoVLMevX5f+FXXTcoppNr9G856596cMay9pL?=
- =?us-ascii?Q?GW+bXQKKELeu4L8wXWOjQW7lEdH9JIf2dkoNNbSLu1snLDz3LtW09+UB6aXG?=
- =?us-ascii?Q?oGcikmISiOWYby2NX6Yv8HxDMjGQN10oDygB1JOffBUDUlg2RwSRAkPSln4X?=
- =?us-ascii?Q?pm6bYbvpK0G9gk6t5Ka2w8Lz9P7oaMG0BSLAJxPkUaWoefmyZBIDack6igXn?=
- =?us-ascii?Q?pkzibLrozmDZuezng4dS3FrVXzusKhteGrgvWYwZ4QRSXGqv4FpyYSFnFlUf?=
- =?us-ascii?Q?yW3efVibB9J2LKIrkImVMBNhwldS16nigcBZlVB7+behJt16ugQa2OMCeSC0?=
- =?us-ascii?Q?ts9yYKX7Jz04iLgqGTW4zkDZ2HGG10UkyuN4oQ/CJVqr+6LdV2JxMI6YwroI?=
- =?us-ascii?Q?A/X/11i7oWbZ3gChwZB5XL6W51nI5jt/lxVQ8mnyHR2Sz7lKF7wb9dfBn5Pd?=
- =?us-ascii?Q?/wy/s3R93bx/Z4zWPq6kKI95eX1Im5y+2IsODHJ57AHzfCCeO6RzG9qsCh8I?=
- =?us-ascii?Q?ZjMm0z+kjdlfKe5IEKdNiTYEQh437dmLq1cDZufzZtUMVPBJShvyO23iEtb/?=
- =?us-ascii?Q?IbQfDGUro+Bva7VUMPvThZiNhQmqBwpQf1Ou/A1/7/cahuavY8wonl32micB?=
- =?us-ascii?Q?kW3vs5gjRO5q9XM38Yu5XnbpmRfDDLSVixpHVNnXkadTcdfN8wY7RoFSErmM?=
- =?us-ascii?Q?9A=3D=3D?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: d2de2e59-86c8-4fc5-5a21-08db40a7d463
-X-MS-Exchange-CrossTenant-AuthSource: CY5PR11MB6139.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 19 Apr 2023 07:29:37.2210 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: FfbWzsvkAAwU3NORvNf7M5yhHW9r8kbpb9dCehWcfWqyOR6OWkRqAXx3PXCWQOnsVxf3cQtCoY5TNu8qGrM22mXjerYdIPOb0G+jXJbEZwA=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: MW4PR11MB6809
-X-OriginatorOrg: intel.com
-Subject: Re: [Intel-xe] [Intel-gfx] [PATCH v4] drm/i915: Initialize dkl_phy
- spin lock from display code path
+Content-Transfer-Encoding: 8bit
+Subject: [Intel-xe] [PATCH 01/17] drm/xe: Cleanup page-related defines
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -150,121 +56,786 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org, Rodrigo
- Vivi <rodrigo.vivi@intel.com>
+Cc: Lucas De Marchi <lucas.demarchi@intel.com>,
+ Matt Roper <matthew.d.roper@intel.com>, Rodrigo Vivi <rodrigo.vivi@intel.com>
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Wed, Apr 19, 2023 at 10:16:22AM +0300, Jani Nikula wrote:
->On Tue, 18 Apr 2023, Lucas De Marchi <lucas.demarchi@intel.com> wrote:
->> On Tue, Apr 18, 2023 at 11:30:18PM -0700, Lucas De Marchi wrote:
->>>On Tue, Apr 18, 2023 at 09:43:37AM -0700, Jose Souza wrote:
->>>>Start to move the initialization of display locks from
->>>>i915_driver_early_probe(), this way it is also executed when running
->>>>Xe kmd.
->>>>
->>>>This will fix a warning in Xe kmd:
->>>>
->>>>[  201.894839] xe 0000:00:02.0: [drm] [ENCODER:235:DDI A/PHY A] failed to retrieve link info, disabling eDP
->>>>[  202.136336] xe 0000:00:02.0: [drm] *ERROR* Failed to write source OUI
->>>>[  202.175346] INFO: trying to register non-static key.
->>>>[  202.175347] irq event stamp: 754060
->>>>[  202.175359] hardirqs last  enabled at (754059): [<ffffffff8122cf79>] tick_nohz_idle_enter+0x59/0x80
->>>>[  202.180294] The code is fine but needs lockdep annotation, or maybe
->>>>[  202.183774] hardirqs last disabled at (754060): [<ffffffff811a5539>] do_idle+0x99/0x230
->>>>[  202.192734] you didn't initialize this object before use?
->>>>[  202.198951] softirqs last  enabled at (753948): [<ffffffff8114abae>] irq_exit_rcu+0xbe/0x130
->>>>[  202.206882] turning off the locking correctness validator.
->>>>[  202.212236] softirqs last disabled at (753943): [<ffffffff8114abae>] irq_exit_rcu+0xbe/0x130
->>>>[  202.220592] CPU: 2 PID: 1415 Comm: modprobe Tainted: G        W          6.3.0-rc4+zeh-xe+ #909
->>>>[  202.243002] Hardware name: Intel Corporation Raptor Lake Client Platform/RaptorLake-P LP5 RVP, BIOS RPLPFWI1.R00.3361.A14.2211151548 11/15/2022
->>>>[  202.255737] Call Trace:
->>>>[  202.258179]  <TASK>
->>>>[  202.260275]  dump_stack_lvl+0x58/0xc0
->>>>[  202.263922]  register_lock_class+0x756/0x7d0
->>>>[  202.268165]  ? find_held_lock+0x2b/0x80
->>>>[  202.271975]  __lock_acquire+0x72/0x28b0
->>>>[  202.275786]  ? debug_object_free+0xb4/0x160
->>>>[  202.279946]  lock_acquire+0xd1/0x2d0
->>>>[  202.283503]  ? intel_dkl_phy_read+0x18/0x60 [xe]
->>>>[  202.288181]  _raw_spin_lock+0x2a/0x40
->>>>[  202.291825]  ? intel_dkl_phy_read+0x18/0x60 [xe]
->>>>[  202.296475]  intel_dkl_phy_read+0x18/0x60 [xe]
->>>>[  202.300949]  icl_aux_power_well_enable+0x2bd/0x400 [xe]
->>>>[  202.306202]  ? intel_display_power_grab_async_put_ref+0x75/0x120 [xe]
->>>>[  202.312649]  intel_power_well_enable+0x1c/0x70 [xe]
->>>>[  202.317543]  __intel_display_power_get_domain.part.0+0x4d/0x70 [xe]
->>>>[  202.323812]  intel_display_power_get+0x43/0x70 [xe]
->>>>[  202.328708]  intel_tc_port_init+0x199/0x2a0 [xe]
->>>>[  202.333363]  intel_ddi_init+0x6ad/0xb00 [xe]
->>>>[  202.337678]  intel_modeset_init_nogem+0x536/0x6d0 [xe]
->>>>[  202.342838]  xe_display_init_noaccel+0x19/0x40 [xe]
->>>>[  202.347743]  xe_device_probe+0x1f5/0x2a0 [xe]
->>>>[  202.352127]  xe_pci_probe+0x28c/0x480 [xe]
->>>>[  202.356260]  pci_device_probe+0x9d/0x150
->>>>[  202.360164]  really_probe+0x19a/0x400
->>>>[  202.363809]  ? __pfx___driver_attach+0x10/0x10
->>>>[  202.368226]  __driver_probe_device+0x73/0x170
->>>>[  202.372558]  driver_probe_device+0x1a/0x90
->>>>[  202.376632]  __driver_attach+0xcd/0x1c0
->>>>[  202.380442]  bus_for_each_dev+0x72/0xc0
->>>>[  202.384253]  bus_add_driver+0x110/0x210
->>>>[  202.388063]  driver_register+0x50/0x100
->>>>[  202.391873]  ? __pfx_init_module+0x10/0x10 [xe]
->>>>[  202.396431]  do_one_initcall+0x55/0x260
->>>>[  202.400245]  ? rcu_is_watching+0xd/0x40
->>>>[  202.404058]  ? kmalloc_trace+0xa0/0xb0
->>>>[  202.407786]  do_init_module+0x45/0x1e0
->>>>[  202.411512]  __do_sys_finit_module+0xac/0x120
->>>>[  202.415838]  do_syscall_64+0x37/0x90
->>>>[  202.419397]  entry_SYSCALL_64_after_hwframe+0x72/0xdc
->>>>[  202.424409] RIP: 0033:0x7fd11291ea3d
->>>>[  202.427967] Code: 5b 41 5c c3 66 0f 1f 84 00 00 00 00 00 f3 0f 1e fa 48 89 f8 48 89 f7 48 89 d6 48 89 ca 4d 89 c2 4d 89 c8 4c 8b 4c 24 08 0f 05 <48> 3d 01 f0 ff ff 73 01 c3 48 8b 0d c3 a3 0f 00 f7 d8 64 89 01 48
->>>>[  202.446530] RSP: 002b:00007ffffde11368 EFLAGS: 00000246 ORIG_RAX: 0000000000000139
->>>>[  202.454031] RAX: ffffffffffffffda RBX: 00005616a617f210 RCX: 00007fd11291ea3d
->>>>[  202.461106] RDX: 0000000000000000 RSI: 00005616a617fe60 RDI: 000000000000000e
->>>>[  202.468182] RBP: 0000000000040000 R08: 0000000000000000 R09: 0000000000000002
->>>>[  202.475250] R10: 000000000000000e R11: 0000000000000246 R12: 00005616a617fe60
->>>>[  202.482319] R13: 00005616a617f340 R14: 0000000000000000 R15: 00005616a6180650
->>>>[  202.489396]  </TASK>
->>>>
->>>>v2:
->>>>- added intel_display_locks_init()
->>>>
->>>>v3:
->>>>- rebased
->>>>
->>>>v4:
->>>>- drop intel_display_locks_init()
->>>
->>>why?
->>
->> ah... ok, now we have intel_display_driver_early_probe(). I thought you
->> were dropping the call from i915_driver.c
->>
->> Remaining question for display: do we want to spread the lock
->> initialization to each compilation unit?  Or should we just keep a
->>
->> 	static locks_init() { <all the locks here> }
->>
->> the lock init seems a very cheap init that maybe doesn't deserve to be
->> spread. Then this patch could just move all the mutexes initialization
->> that were left behind.
->
->I still think if only one file uses something, then that file should
->include the init for it too, and nobody else should touch it. Including
->locks. Ideally, they would be stowed away in allocated opaque structs
->that can't even be accessed (or initialized) by anyone else.
+Rename the following defines to lose the GEN* prefixes since they don't
+make sense for xe:
 
-so... this version of the patch?  We will need to spread the mutexes
-around then.
+GEN8_PTE_SHIFT		-> XE_PTE_SHIFT
+GEN8_PAGE_SIZE		-> XE_PAGE_SIZE
+GEN8_PTE_MASK		-> XE_PTE_MASK
+GEN8_PDE_SHIFT		-> XE_PDE_SHIFT
+GEN8_PDES		-> XE_PDES
+GEN8_PDE_MASK		-> XE_PDE_MASK
+GEN8_64K_PTE_SHIFT	-> XE_64K_PTE_SHIFT
+GEN8_64K_PAGE_SIZE	-> XE_64K_PAGE_SIZE
+GEN8_64K_PTE_MASK	-> XE_64K_PTE_MASK
+GEN8_64K_PDE_MASK	-> XE_64K_PDE_MASK
+GEN8_PDE_PS_2M		-> XE_PDE_PS_2M
+GEN8_PDPE_PS_1G		-> XE_PDPE_PS_1G
+GEN8_PDE_IPS_64K	-> XE_PDE_IPS_64K
+GEN12_GGTT_PTE_LM	-> XE_GGTT_PTE_LM
+GEN12_USM_PPGTT_PTE_AE	-> XE_USM_PPGTT_PTE_AE
+GEN12_PPGTT_PTE_LM	-> XE_PPGTT_PTE_LM
+GEN12_PDE_64K		-> XE_PDE_64K
+GEN12_PTE_PS64		-> XE_PTE_PS64
+GEN8_PAGE_PRESENT	-> XE_PAGE_PRESENT
+GEN8_PAGE_RW		-> XE_PAGE_RW
+PTE_READ_ONLY		-> XE_PTE_READ_ONLY
 
-Lucas De Marchi
+Keep an XE_ prefix to make sure we don't mix the defines for the CPU
+(e.g. PAGE_SIZE) with the ones fro the GPU).
 
->
->BR,
->Jani.
->
->
->-- 
->Jani Nikula, Intel Open Source Graphics Center
+Signed-off-by: Lucas De Marchi <lucas.demarchi@intel.com>
+---
+ drivers/gpu/drm/xe/display/xe_fb_pin.c        | 23 ++++---
+ drivers/gpu/drm/xe/display/xe_plane_initial.c |  4 +-
+ drivers/gpu/drm/xe/tests/xe_migrate.c         | 15 ++--
+ drivers/gpu/drm/xe/xe_bo.h                    | 52 +++++++-------
+ drivers/gpu/drm/xe/xe_ggtt.c                  | 24 +++----
+ drivers/gpu/drm/xe/xe_migrate.c               | 69 ++++++++++---------
+ drivers/gpu/drm/xe/xe_pt.c                    | 40 +++++------
+ drivers/gpu/drm/xe/xe_vm.c                    | 20 +++---
+ 8 files changed, 126 insertions(+), 121 deletions(-)
+
+diff --git a/drivers/gpu/drm/xe/display/xe_fb_pin.c b/drivers/gpu/drm/xe/display/xe_fb_pin.c
+index 65c0bc28a3d1..ed691d28b34d 100644
+--- a/drivers/gpu/drm/xe/display/xe_fb_pin.c
++++ b/drivers/gpu/drm/xe/display/xe_fb_pin.c
+@@ -27,7 +27,7 @@ write_dpt_rotated(struct xe_bo *bo, struct iosys_map *map, u32 *dpt_ofs, u32 bo_
+ 
+ 		for (row = 0; row < height; row++) {
+ 			iosys_map_wr(map, *dpt_ofs, u64,
+-				     xe_ggtt_pte_encode(bo, src_idx * GEN8_PAGE_SIZE));
++				     xe_ggtt_pte_encode(bo, src_idx * XE_PAGE_SIZE));
+ 			*dpt_ofs += 8;
+ 			src_idx -= src_stride;
+ 		}
+@@ -49,10 +49,11 @@ static int __xe_pin_fb_vma_dpt(struct intel_framebuffer *fb,
+ 	u32 dpt_size, size = bo->ttm.base.size;
+ 
+ 	if (view->type == I915_GTT_VIEW_NORMAL)
+-		dpt_size = ALIGN(size / GEN8_PAGE_SIZE * 8, GEN8_PAGE_SIZE);
++		dpt_size = ALIGN(size / XE_PAGE_SIZE * 8, XE_PAGE_SIZE);
+ 	else
+ 		/* display uses 4K tiles instead of bytes here, convert to entries.. */
+-		dpt_size = ALIGN(intel_rotation_info_size(&view->rotated) * 8, GEN8_PAGE_SIZE);
++		dpt_size = ALIGN(intel_rotation_info_size(&view->rotated) * 8,
++				 XE_PAGE_SIZE);
+ 
+ 	dpt = xe_bo_create_pin_map(xe, to_gt(xe), NULL, dpt_size,
+ 				  ttm_bo_type_kernel,
+@@ -74,9 +75,9 @@ static int __xe_pin_fb_vma_dpt(struct intel_framebuffer *fb,
+ 	if (view->type == I915_GTT_VIEW_NORMAL) {
+ 		u32 x;
+ 
+-		for (x = 0; x < size / GEN8_PAGE_SIZE; x++)
++		for (x = 0; x < size / XE_PAGE_SIZE; x++)
+ 			iosys_map_wr(&dpt->vmap, x * 8, u64,
+-				     xe_ggtt_pte_encode(bo, x * GEN8_PAGE_SIZE));
++				     xe_ggtt_pte_encode(bo, x * XE_PAGE_SIZE));
+ 	} else {
+ 		const struct intel_rotation_info *rot_info = &view->rotated;
+ 		u32 i, dpt_ofs = 0;
+@@ -106,13 +107,13 @@ write_ggtt_rotated(struct xe_bo *bo, struct xe_ggtt *ggtt, u32 *ggtt_ofs, u32 bo
+ 
+ 		for (row = 0; row < height; row++) {
+ 			xe_ggtt_set_pte(ggtt, *ggtt_ofs,
+-					xe_ggtt_pte_encode(bo, src_idx * GEN8_PAGE_SIZE));
+-			*ggtt_ofs += GEN8_PAGE_SIZE;
++					xe_ggtt_pte_encode(bo, src_idx * XE_PAGE_SIZE));
++			*ggtt_ofs += XE_PAGE_SIZE;
+ 			src_idx -= src_stride;
+ 		}
+ 
+ 		/* The DE ignores the PTEs for the padding tiles */
+-		*ggtt_ofs += (dst_stride - height) * GEN8_PAGE_SIZE;
++		*ggtt_ofs += (dst_stride - height) * XE_PAGE_SIZE;
+ 	}
+ }
+ 
+@@ -133,7 +134,7 @@ static int __xe_pin_fb_vma_ggtt(struct intel_framebuffer *fb,
+ 	if (ret)
+ 		return ret;
+ 
+-	align = GEN8_PAGE_SIZE;
++	align = XE_PAGE_SIZE;
+ 	if (xe_bo_is_vram(bo) && ggtt->flags & XE_GGTT_FLAGS_64K)
+ 		align = max_t(u32, align, SZ_64K);
+ 
+@@ -147,14 +148,14 @@ static int __xe_pin_fb_vma_ggtt(struct intel_framebuffer *fb,
+ 		if (ret)
+ 			goto out;
+ 
+-		for (x = 0; x < size; x += GEN8_PAGE_SIZE)
++		for (x = 0; x < size; x += XE_PAGE_SIZE)
+ 			xe_ggtt_set_pte(ggtt, vma->node.start + x, xe_ggtt_pte_encode(bo, x));
+ 	} else {
+ 		u32 i, ggtt_ofs;
+ 		const struct intel_rotation_info *rot_info = &view->rotated;
+ 
+ 		/* display seems to use tiles instead of bytes here, so convert it back.. */
+-		u32 size = intel_rotation_info_size(rot_info) * GEN8_PAGE_SIZE;
++		u32 size = intel_rotation_info_size(rot_info) * XE_PAGE_SIZE;
+ 
+ 		ret = xe_ggtt_insert_special_node_locked(ggtt, &vma->node, size,
+ 							 align, 0);
+diff --git a/drivers/gpu/drm/xe/display/xe_plane_initial.c b/drivers/gpu/drm/xe/display/xe_plane_initial.c
+index a2ef0823ed02..d0f91f37b6d8 100644
+--- a/drivers/gpu/drm/xe/display/xe_plane_initial.c
++++ b/drivers/gpu/drm/xe/display/xe_plane_initial.c
+@@ -67,10 +67,10 @@ initial_plane_bo(struct xe_device *xe,
+ 		u64 __iomem *gte = gt0->mem.ggtt->gsm;
+ 		u64 pte;
+ 
+-		gte += base / GEN8_PAGE_SIZE;
++		gte += base / XE_PAGE_SIZE;
+ 
+ 		pte = ioread64(gte);
+-		if (!(pte & GEN12_GGTT_PTE_LM)) {
++		if (!(pte & XE_GGTT_PTE_LM)) {
+ 			drm_err(&xe->drm,
+ 				"Initial plane programming missing PTE_LM bit\n");
+ 			return NULL;
+diff --git a/drivers/gpu/drm/xe/tests/xe_migrate.c b/drivers/gpu/drm/xe/tests/xe_migrate.c
+index cdcecf8d5eef..0f4371ad1fd9 100644
+--- a/drivers/gpu/drm/xe/tests/xe_migrate.c
++++ b/drivers/gpu/drm/xe/tests/xe_migrate.c
+@@ -265,7 +265,7 @@ static void xe_migrate_sanity_test(struct xe_migrate *m, struct kunit *test)
+ 		goto vunmap;
+ 	}
+ 
+-	pt = xe_bo_create_pin_map(xe, m->gt, m->eng->vm, GEN8_PAGE_SIZE,
++	pt = xe_bo_create_pin_map(xe, m->gt, m->eng->vm, XE_PAGE_SIZE,
+ 				  ttm_bo_type_kernel,
+ 				  XE_BO_CREATE_VRAM_IF_DGFX(m->gt) |
+ 				  XE_BO_CREATE_PINNED_BIT);
+@@ -294,20 +294,21 @@ static void xe_migrate_sanity_test(struct xe_migrate *m, struct kunit *test)
+ 	}
+ 
+ 	kunit_info(test, "Starting tests, top level PT addr: %lx, special pagetable base addr: %lx\n",
+-		   (unsigned long)xe_bo_main_addr(m->eng->vm->pt_root[id]->bo, GEN8_PAGE_SIZE),
+-		   (unsigned long)xe_bo_main_addr(m->pt_bo, GEN8_PAGE_SIZE));
++		   (unsigned long)xe_bo_main_addr(m->eng->vm->pt_root[id]->bo, XE_PAGE_SIZE),
++		   (unsigned long)xe_bo_main_addr(m->pt_bo, XE_PAGE_SIZE));
+ 
+ 	/* First part of the test, are we updating our pagetable bo with a new entry? */
+-	xe_map_wr(xe, &bo->vmap, GEN8_PAGE_SIZE * (NUM_KERNEL_PDE - 1), u64, 0xdeaddeadbeefbeef);
++	xe_map_wr(xe, &bo->vmap, XE_PAGE_SIZE * (NUM_KERNEL_PDE - 1), u64,
++		  0xdeaddeadbeefbeef);
+ 	expected = gen8_pte_encode(NULL, pt, 0, XE_CACHE_WB, 0, 0);
+ 	if (m->eng->vm->flags & XE_VM_FLAGS_64K)
+-		expected |= GEN12_PTE_PS64;
++		expected |= XE_PTE_PS64;
+ 	xe_res_first(pt->ttm.resource, 0, pt->size, &src_it);
+ 	emit_pte(m, bb, NUM_KERNEL_PDE - 1, xe_bo_is_vram(pt),
+-		 &src_it, GEN8_PAGE_SIZE, pt);
++		 &src_it, XE_PAGE_SIZE, pt);
+ 	run_sanity_job(m, xe, bb, bb->len, "Writing PTE for our fake PT", test);
+ 
+-	retval = xe_map_rd(xe, &bo->vmap, GEN8_PAGE_SIZE * (NUM_KERNEL_PDE - 1),
++	retval = xe_map_rd(xe, &bo->vmap, XE_PAGE_SIZE * (NUM_KERNEL_PDE - 1),
+ 			   u64);
+ 	check(retval, expected, "PTE entry write", test);
+ 
+diff --git a/drivers/gpu/drm/xe/xe_bo.h b/drivers/gpu/drm/xe/xe_bo.h
+index effa9d0cf0f6..8354d05ccdf3 100644
+--- a/drivers/gpu/drm/xe/xe_bo.h
++++ b/drivers/gpu/drm/xe/xe_bo.h
+@@ -39,32 +39,32 @@
+ #define PPAT_CACHED                     BIT_ULL(7)
+ #define PPAT_DISPLAY_ELLC               BIT_ULL(4)
+ 
+-#define GEN8_PTE_SHIFT			12
+-#define GEN8_PAGE_SIZE			(1 << GEN8_PTE_SHIFT)
+-#define GEN8_PTE_MASK			(GEN8_PAGE_SIZE - 1)
+-#define GEN8_PDE_SHIFT			(GEN8_PTE_SHIFT - 3)
+-#define GEN8_PDES			(1 << GEN8_PDE_SHIFT)
+-#define GEN8_PDE_MASK			(GEN8_PDES - 1)
+-
+-#define GEN8_64K_PTE_SHIFT		16
+-#define GEN8_64K_PAGE_SIZE		(1 << GEN8_64K_PTE_SHIFT)
+-#define GEN8_64K_PTE_MASK		(GEN8_64K_PAGE_SIZE - 1)
+-#define GEN8_64K_PDE_MASK		(GEN8_PDE_MASK >> 4)
+-
+-#define GEN8_PDE_PS_2M			BIT_ULL(7)
+-#define GEN8_PDPE_PS_1G			BIT_ULL(7)
+-#define GEN8_PDE_IPS_64K		BIT_ULL(11)
+-
+-#define GEN12_GGTT_PTE_LM		BIT_ULL(1)
+-#define GEN12_USM_PPGTT_PTE_AE		BIT_ULL(10)
+-#define GEN12_PPGTT_PTE_LM		BIT_ULL(11)
+-#define GEN12_PDE_64K			BIT_ULL(6)
+-#define GEN12_PTE_PS64                  BIT_ULL(8)
+-
+-#define GEN8_PAGE_PRESENT		BIT_ULL(0)
+-#define GEN8_PAGE_RW			BIT_ULL(1)
+-
+-#define PTE_READ_ONLY			BIT(0)
++#define XE_PTE_SHIFT			12
++#define XE_PAGE_SIZE			(1 << XE_PTE_SHIFT)
++#define XE_PTE_MASK			(XE_PAGE_SIZE - 1)
++#define XE_PDE_SHIFT			(XE_PTE_SHIFT - 3)
++#define XE_PDES				(1 << XE_PDE_SHIFT)
++#define XE_PDE_MASK			(XE_PDES - 1)
++
++#define XE_64K_PTE_SHIFT		16
++#define XE_64K_PAGE_SIZE		(1 << XE_64K_PTE_SHIFT)
++#define XE_64K_PTE_MASK			(XE_64K_PAGE_SIZE - 1)
++#define XE_64K_PDE_MASK			(XE_PDE_MASK >> 4)
++
++#define XE_PDE_PS_2M			BIT_ULL(7)
++#define XE_PDPE_PS_1G			BIT_ULL(7)
++#define XE_PDE_IPS_64K			BIT_ULL(11)
++
++#define XE_GGTT_PTE_LM			BIT_ULL(1)
++#define XE_USM_PPGTT_PTE_AE		BIT_ULL(10)
++#define XE_PPGTT_PTE_LM			BIT_ULL(11)
++#define XE_PDE_64K			BIT_ULL(6)
++#define XE_PTE_PS64			BIT_ULL(8)
++
++#define XE_PAGE_PRESENT			BIT_ULL(0)
++#define XE_PAGE_RW			BIT_ULL(1)
++
++#define XE_PTE_READ_ONLY		BIT(0)
+ 
+ #define XE_PL_SYSTEM		TTM_PL_SYSTEM
+ #define XE_PL_TT		TTM_PL_TT
+diff --git a/drivers/gpu/drm/xe/xe_ggtt.c b/drivers/gpu/drm/xe/xe_ggtt.c
+index 0ae373b604f6..862e810ef407 100644
+--- a/drivers/gpu/drm/xe/xe_ggtt.c
++++ b/drivers/gpu/drm/xe/xe_ggtt.c
+@@ -30,11 +30,11 @@ u64 xe_ggtt_pte_encode(struct xe_bo *bo, u64 bo_offset)
+ 	u64 pte;
+ 	bool is_vram;
+ 
+-	pte = xe_bo_addr(bo, bo_offset, GEN8_PAGE_SIZE, &is_vram);
+-	pte |= GEN8_PAGE_PRESENT;
++	pte = xe_bo_addr(bo, bo_offset, XE_PAGE_SIZE, &is_vram);
++	pte |= XE_PAGE_PRESENT;
+ 
+ 	if (is_vram)
+-		pte |= GEN12_GGTT_PTE_LM;
++		pte |= XE_GGTT_PTE_LM;
+ 
+ 	/* FIXME: vfunc + pass in caching rules */
+ 	if (xe->info.platform == XE_METEORLAKE) {
+@@ -56,10 +56,10 @@ static unsigned int probe_gsm_size(struct pci_dev *pdev)
+ 
+ void xe_ggtt_set_pte(struct xe_ggtt *ggtt, u64 addr, u64 pte)
+ {
+-	XE_BUG_ON(addr & GEN8_PTE_MASK);
++	XE_BUG_ON(addr & XE_PTE_MASK);
+ 	XE_BUG_ON(addr >= ggtt->size);
+ 
+-	writeq(pte, &ggtt->gsm[addr >> GEN8_PTE_SHIFT]);
++	writeq(pte, &ggtt->gsm[addr >> XE_PTE_SHIFT]);
+ }
+ 
+ static void xe_ggtt_clear(struct xe_ggtt *ggtt, u64 start, u64 size)
+@@ -76,7 +76,7 @@ static void xe_ggtt_clear(struct xe_ggtt *ggtt, u64 start, u64 size)
+ 
+ 	while (start < end) {
+ 		xe_ggtt_set_pte(ggtt, start, scratch_pte);
+-		start += GEN8_PAGE_SIZE;
++		start += XE_PAGE_SIZE;
+ 	}
+ }
+ 
+@@ -107,7 +107,7 @@ int xe_ggtt_init_noalloc(struct xe_gt *gt, struct xe_ggtt *ggtt)
+ 	}
+ 
+ 	ggtt->gsm = gt->mmio.regs + SZ_8M;
+-	ggtt->size = (gsm_size / 8) * (u64)GEN8_PAGE_SIZE;
++	ggtt->size = (gsm_size / 8) * (u64) XE_PAGE_SIZE;
+ 
+ 	if (IS_DGFX(xe) && xe->info.vram_flags & XE_VRAM_FLAGS_NEED64K)
+ 		ggtt->flags |= XE_GGTT_FLAGS_64K;
+@@ -167,7 +167,7 @@ int xe_ggtt_init(struct xe_gt *gt, struct xe_ggtt *ggtt)
+ 	else
+ 		flags |= XE_BO_CREATE_VRAM_IF_DGFX(gt);
+ 
+-	ggtt->scratch = xe_bo_create_pin_map(xe, gt, NULL, GEN8_PAGE_SIZE,
++	ggtt->scratch = xe_bo_create_pin_map(xe, gt, NULL, XE_PAGE_SIZE,
+ 					     ttm_bo_type_kernel,
+ 					     flags);
+ 
+@@ -229,8 +229,8 @@ void xe_ggtt_printk(struct xe_ggtt *ggtt, const char *prefix)
+ 	scratch_pte = xe_ggtt_pte_encode(ggtt->scratch, 0);
+ 
+ 	printk("%sGlobal GTT:", prefix);
+-	for (addr = 0; addr < ggtt->size; addr += GEN8_PAGE_SIZE) {
+-		unsigned int i = addr / GEN8_PAGE_SIZE;
++	for (addr = 0; addr < ggtt->size; addr += XE_PAGE_SIZE) {
++		unsigned int i = addr / XE_PAGE_SIZE;
+ 
+ 		XE_BUG_ON(addr > U32_MAX);
+ 		if (ggtt->gsm[i] == scratch_pte)
+@@ -266,7 +266,7 @@ void xe_ggtt_map_bo(struct xe_ggtt *ggtt, struct xe_bo *bo)
+ 	u64 start = bo->ggtt_node.start;
+ 	u64 offset, pte;
+ 
+-	for (offset = 0; offset < bo->size; offset += GEN8_PAGE_SIZE) {
++	for (offset = 0; offset < bo->size; offset += XE_PAGE_SIZE) {
+ 		pte = xe_ggtt_pte_encode(bo, offset);
+ 		xe_ggtt_set_pte(ggtt, start + offset, pte);
+ 	}
+@@ -278,7 +278,7 @@ static int __xe_ggtt_insert_bo_at(struct xe_ggtt *ggtt, struct xe_bo *bo,
+ 				  u64 start, u64 end)
+ {
+ 	int err;
+-	u64 alignment = GEN8_PAGE_SIZE;
++	u64 alignment = XE_PAGE_SIZE;
+ 
+ 	if (xe_bo_is_vram(bo) && ggtt->flags & XE_GGTT_FLAGS_64K)
+ 		alignment = SZ_64K;
+diff --git a/drivers/gpu/drm/xe/xe_migrate.c b/drivers/gpu/drm/xe/xe_migrate.c
+index 8686a2a7b035..5acb227f2b5a 100644
+--- a/drivers/gpu/drm/xe/xe_migrate.c
++++ b/drivers/gpu/drm/xe/xe_migrate.c
+@@ -147,7 +147,7 @@ static int xe_migrate_create_cleared_bo(struct xe_migrate *m, struct xe_vm *vm)
+ 		return PTR_ERR(m->cleared_bo);
+ 
+ 	xe_map_memset(xe, &m->cleared_bo->vmap, 0, 0x00, cleared_size);
+-	vram_addr = xe_bo_addr(m->cleared_bo, 0, GEN8_PAGE_SIZE, &is_vram);
++	vram_addr = xe_bo_addr(m->cleared_bo, 0, XE_PAGE_SIZE, &is_vram);
+ 	XE_BUG_ON(!is_vram);
+ 	m->cleared_vram_ofs = xe_migrate_vram_ofs(vram_addr);
+ 
+@@ -166,9 +166,9 @@ static int xe_migrate_prepare_vm(struct xe_gt *gt, struct xe_migrate *m,
+ 	int ret;
+ 
+ 	/* Can't bump NUM_PT_SLOTS too high */
+-	BUILD_BUG_ON(NUM_PT_SLOTS > SZ_2M/GEN8_PAGE_SIZE);
++	BUILD_BUG_ON(NUM_PT_SLOTS > SZ_2M/XE_PAGE_SIZE);
+ 	/* Must be a multiple of 64K to support all platforms */
+-	BUILD_BUG_ON(NUM_PT_SLOTS * GEN8_PAGE_SIZE % SZ_64K);
++	BUILD_BUG_ON(NUM_PT_SLOTS * XE_PAGE_SIZE % SZ_64K);
+ 	/* And one slot reserved for the 4KiB page table updates */
+ 	BUILD_BUG_ON(!(NUM_KERNEL_PDE & 1));
+ 
+@@ -176,7 +176,7 @@ static int xe_migrate_prepare_vm(struct xe_gt *gt, struct xe_migrate *m,
+ 	XE_BUG_ON(m->batch_base_ofs + batch->size >= SZ_2M);
+ 
+ 	bo = xe_bo_create_pin_map(vm->xe, m->gt, vm,
+-				  num_entries * GEN8_PAGE_SIZE,
++				  num_entries * XE_PAGE_SIZE,
+ 				  ttm_bo_type_kernel,
+ 				  XE_BO_CREATE_VRAM_IF_DGFX(m->gt) |
+ 				  XE_BO_CREATE_PINNED_BIT);
+@@ -189,14 +189,14 @@ static int xe_migrate_prepare_vm(struct xe_gt *gt, struct xe_migrate *m,
+ 		return ret;
+ 	}
+ 
+-	entry = gen8_pde_encode(bo, bo->size - GEN8_PAGE_SIZE, XE_CACHE_WB);
++	entry = gen8_pde_encode(bo, bo->size - XE_PAGE_SIZE, XE_CACHE_WB);
+ 	xe_pt_write(xe, &vm->pt_root[id]->bo->vmap, 0, entry);
+ 
+-	map_ofs = (num_entries - num_level) * GEN8_PAGE_SIZE;
++	map_ofs = (num_entries - num_level) * XE_PAGE_SIZE;
+ 
+ 	/* Map the entire BO in our level 0 pt */
+ 	for (i = 0, level = 0; i < num_entries; level++) {
+-		entry = gen8_pte_encode(NULL, bo, i * GEN8_PAGE_SIZE,
++		entry = gen8_pte_encode(NULL, bo, i * XE_PAGE_SIZE,
+ 					XE_CACHE_WB, 0, 0);
+ 
+ 		xe_map_wr(xe, &bo->vmap, map_ofs + level * 8, u64, entry);
+@@ -211,10 +211,10 @@ static int xe_migrate_prepare_vm(struct xe_gt *gt, struct xe_migrate *m,
+ 		XE_BUG_ON(xe->info.supports_usm);
+ 
+ 		/* Write out batch too */
+-		m->batch_base_ofs = NUM_PT_SLOTS * GEN8_PAGE_SIZE;
++		m->batch_base_ofs = NUM_PT_SLOTS * XE_PAGE_SIZE;
+ 		for (i = 0; i < batch->size;
+-		     i += vm->flags & XE_VM_FLAGS_64K ? GEN8_64K_PAGE_SIZE :
+-			     GEN8_PAGE_SIZE) {
++		     i += vm->flags & XE_VM_FLAGS_64K ? XE_64K_PAGE_SIZE :
++		     XE_PAGE_SIZE) {
+ 			entry = gen8_pte_encode(NULL, batch, i,
+ 						XE_CACHE_WB, 0, 0);
+ 
+@@ -224,13 +224,13 @@ static int xe_migrate_prepare_vm(struct xe_gt *gt, struct xe_migrate *m,
+ 		}
+ 	} else {
+ 		bool is_vram;
+-		u64 batch_addr = xe_bo_addr(batch, 0, GEN8_PAGE_SIZE, &is_vram);
++		u64 batch_addr = xe_bo_addr(batch, 0, XE_PAGE_SIZE, &is_vram);
+ 
+ 		m->batch_base_ofs = xe_migrate_vram_ofs(batch_addr);
+ 
+ 		if (xe->info.supports_usm) {
+ 			batch = gt->usm.bb_pool->bo;
+-			batch_addr = xe_bo_addr(batch, 0, GEN8_PAGE_SIZE,
++			batch_addr = xe_bo_addr(batch, 0, XE_PAGE_SIZE,
+ 						&is_vram);
+ 			m->usm_batch_base_ofs = xe_migrate_vram_ofs(batch_addr);
+ 		}
+@@ -240,20 +240,20 @@ static int xe_migrate_prepare_vm(struct xe_gt *gt, struct xe_migrate *m,
+ 		u32 flags = 0;
+ 
+ 		if (vm->flags & XE_VM_FLAGS_64K && level == 1)
+-			flags = GEN12_PDE_64K;
++			flags = XE_PDE_64K;
+ 
+ 		entry = gen8_pde_encode(bo, map_ofs + (level - 1) *
+-					GEN8_PAGE_SIZE, XE_CACHE_WB);
+-		xe_map_wr(xe, &bo->vmap, map_ofs + GEN8_PAGE_SIZE * level, u64,
++					XE_PAGE_SIZE, XE_CACHE_WB);
++		xe_map_wr(xe, &bo->vmap, map_ofs + XE_PAGE_SIZE * level, u64,
+ 			  entry | flags);
+ 	}
+ 
+ 	/* Write PDE's that point to our BO. */
+ 	for (i = 0; i < num_entries - num_level; i++) {
+-		entry = gen8_pde_encode(bo, i * GEN8_PAGE_SIZE,
++		entry = gen8_pde_encode(bo, i * XE_PAGE_SIZE,
+ 					XE_CACHE_WB);
+ 
+-		xe_map_wr(xe, &bo->vmap, map_ofs + GEN8_PAGE_SIZE +
++		xe_map_wr(xe, &bo->vmap, map_ofs + XE_PAGE_SIZE +
+ 			  (i + 1) * 8, u64, entry);
+ 	}
+ 
+@@ -262,9 +262,9 @@ static int xe_migrate_prepare_vm(struct xe_gt *gt, struct xe_migrate *m,
+ 		u64 pos, ofs, flags;
+ 
+ 		level = 2;
+-		ofs = map_ofs + GEN8_PAGE_SIZE * level + 256 * 8;
+-		flags = GEN8_PAGE_RW | GEN8_PAGE_PRESENT | PPAT_CACHED |
+-			GEN12_PPGTT_PTE_LM | GEN8_PDPE_PS_1G;
++		ofs = map_ofs + XE_PAGE_SIZE * level + 256 * 8;
++		flags = XE_PAGE_RW | XE_PAGE_PRESENT | PPAT_CACHED |
++			XE_PPGTT_PTE_LM | XE_PDPE_PS_1G;
+ 
+ 		/*
+ 		 * Use 1GB pages, it shouldn't matter the physical amount of
+@@ -294,10 +294,10 @@ static int xe_migrate_prepare_vm(struct xe_gt *gt, struct xe_migrate *m,
+ 	 * the different addresses in VM.
+ 	 */
+ #define NUM_VMUSA_UNIT_PER_PAGE	32
+-#define VM_SA_UPDATE_UNIT_SIZE	(GEN8_PAGE_SIZE / NUM_VMUSA_UNIT_PER_PAGE)
++#define VM_SA_UPDATE_UNIT_SIZE		(XE_PAGE_SIZE / NUM_VMUSA_UNIT_PER_PAGE)
+ #define NUM_VMUSA_WRITES_PER_UNIT	(VM_SA_UPDATE_UNIT_SIZE / sizeof(u64))
+ 	drm_suballoc_manager_init(&m->vm_update_sa,
+-				  (map_ofs / GEN8_PAGE_SIZE - NUM_KERNEL_PDE) *
++				  (map_ofs / XE_PAGE_SIZE - NUM_KERNEL_PDE) *
+ 				  NUM_VMUSA_UNIT_PER_PAGE, 0);
+ 
+ 	m->pt_bo = bo;
+@@ -403,7 +403,7 @@ static u32 pte_update_size(struct xe_migrate *m,
+ 	if (!is_vram) {
+ 		/* Clip L0 to available size */
+ 		u64 size = min(*L0, (u64)avail_pts * SZ_2M);
+-		u64 num_4k_pages = DIV_ROUND_UP(size, GEN8_PAGE_SIZE);
++		u64 num_4k_pages = DIV_ROUND_UP(size, XE_PAGE_SIZE);
+ 
+ 		*L0 = size;
+ 		*L0_ofs = xe_migrate_vm_addr(pt_ofs, 0);
+@@ -433,7 +433,7 @@ static void emit_pte(struct xe_migrate *m,
+ 		     u32 size, struct xe_bo *bo)
+ {
+ 	u32 ptes;
+-	u64 ofs = at_pt * GEN8_PAGE_SIZE;
++	u64 ofs = at_pt * XE_PAGE_SIZE;
+ 	u64 cur_ofs;
+ 
+ 	/*
+@@ -443,7 +443,7 @@ static void emit_pte(struct xe_migrate *m,
+ 	 * on running tests.
+ 	 */
+ 
+-	ptes = DIV_ROUND_UP(size, GEN8_PAGE_SIZE);
++	ptes = DIV_ROUND_UP(size, XE_PAGE_SIZE);
+ 
+ 	while (ptes) {
+ 		u32 chunk = min(0x1ffU, ptes);
+@@ -466,13 +466,13 @@ static void emit_pte(struct xe_migrate *m,
+ 				if ((m->eng->vm->flags & XE_VM_FLAGS_64K) &&
+ 				    !(cur_ofs & (16 * 8 - 1))) {
+ 					XE_WARN_ON(!IS_ALIGNED(addr, SZ_64K));
+-					addr |= GEN12_PTE_PS64;
++					addr |= XE_PTE_PS64;
+ 				}
+ 
+ 				addr += vram_region_io_offset(bo->ttm.resource);
+-				addr |= GEN12_PPGTT_PTE_LM;
++				addr |= XE_PPGTT_PTE_LM;
+ 			}
+-			addr |= PPAT_CACHED | GEN8_PAGE_PRESENT | GEN8_PAGE_RW;
++			addr |= PPAT_CACHED | XE_PAGE_PRESENT | XE_PAGE_RW;
+ 			bb->cs[bb->len++] = lower_32_bits(addr);
+ 			bb->cs[bb->len++] = upper_32_bits(addr);
+ 
+@@ -697,7 +697,8 @@ struct dma_fence *xe_migrate_copy(struct xe_migrate *m,
+ 		bb->cs[bb->len++] = MI_BATCH_BUFFER_END;
+ 		update_idx = bb->len;
+ 
+-		emit_copy(gt, bb, src_L0_ofs, dst_L0_ofs, src_L0, GEN8_PAGE_SIZE);
++		emit_copy(gt, bb, src_L0_ofs, dst_L0_ofs, src_L0,
++			  XE_PAGE_SIZE);
+ 		flush_flags = xe_migrate_ccs_copy(m, bb, src_L0_ofs, src_is_vram,
+ 						  dst_L0_ofs, dst_is_vram,
+ 						  src_L0, ccs_ofs, copy_ccs);
+@@ -915,7 +916,7 @@ struct dma_fence *xe_migrate_clear(struct xe_migrate *m,
+ 		bb->cs[bb->len++] = MI_BATCH_BUFFER_END;
+ 		update_idx = bb->len;
+ 
+-		emit_clear(gt, bb, clear_L0_ofs, clear_L0, GEN8_PAGE_SIZE,
++		emit_clear(gt, bb, clear_L0_ofs, clear_L0, XE_PAGE_SIZE,
+ 			   clear_vram);
+ 		if (xe_device_has_flat_ccs(xe) && clear_vram) {
+ 			emit_copy_ccs(gt, bb, clear_L0_ofs, true,
+@@ -985,7 +986,7 @@ static void write_pgtable(struct xe_gt *gt, struct xe_bb *bb, u64 ppgtt_ofs,
+ 		bool is_vram;
+ 
+ 		ppgtt_ofs = xe_migrate_vram_ofs(xe_bo_addr(update->pt_bo, 0,
+-							   GEN8_PAGE_SIZE,
++							   XE_PAGE_SIZE,
+ 							   &is_vram));
+ 		XE_BUG_ON(!is_vram);
+ 	}
+@@ -1202,7 +1203,7 @@ xe_migrate_update_pgtables(struct xe_migrate *m,
+ 		/* Map our PT's to gtt */
+ 		bb->cs[bb->len++] = MI_STORE_DATA_IMM | BIT(21) |
+ 			(num_updates * 2 + 1);
+-		bb->cs[bb->len++] = ppgtt_ofs * GEN8_PAGE_SIZE + page_ofs;
++		bb->cs[bb->len++] = ppgtt_ofs * XE_PAGE_SIZE + page_ofs;
+ 		bb->cs[bb->len++] = 0; /* upper_32_bits */
+ 
+ 		for (i = 0; i < num_updates; i++) {
+@@ -1220,9 +1221,9 @@ xe_migrate_update_pgtables(struct xe_migrate *m,
+ 		update_idx = bb->len;
+ 
+ 		addr = xe_migrate_vm_addr(ppgtt_ofs, 0) +
+-			(page_ofs / sizeof(u64)) * GEN8_PAGE_SIZE;
++			(page_ofs / sizeof(u64)) * XE_PAGE_SIZE;
+ 		for (i = 0; i < num_updates; i++)
+-			write_pgtable(m->gt, bb, addr + i * GEN8_PAGE_SIZE,
++			write_pgtable(m->gt, bb, addr + i * XE_PAGE_SIZE,
+ 				      &updates[i], pt_update);
+ 	} else {
+ 		/* phys pages, no preamble required */
+diff --git a/drivers/gpu/drm/xe/xe_pt.c b/drivers/gpu/drm/xe/xe_pt.c
+index 6b2943efcdbc..4ee5ea2cabc9 100644
+--- a/drivers/gpu/drm/xe/xe_pt.c
++++ b/drivers/gpu/drm/xe/xe_pt.c
+@@ -64,8 +64,8 @@ u64 gen8_pde_encode(struct xe_bo *bo, u64 bo_offset,
+ 	u64 pde;
+ 	bool is_vram;
+ 
+-	pde = xe_bo_addr(bo, bo_offset, GEN8_PAGE_SIZE, &is_vram);
+-	pde |= GEN8_PAGE_PRESENT | GEN8_PAGE_RW;
++	pde = xe_bo_addr(bo, bo_offset, XE_PAGE_SIZE, &is_vram);
++	pde |= XE_PAGE_PRESENT | XE_PAGE_RW;
+ 
+ 	XE_WARN_ON(IS_DGFX(xe_bo_device(bo)) && !is_vram);
+ 
+@@ -101,10 +101,10 @@ static dma_addr_t vma_addr(struct xe_vma *vma, u64 offset,
+ static u64 __gen8_pte_encode(u64 pte, enum xe_cache_level cache, u32 flags,
+ 			     u32 pt_level)
+ {
+-	pte |= GEN8_PAGE_PRESENT | GEN8_PAGE_RW;
++	pte |= XE_PAGE_PRESENT | XE_PAGE_RW;
+ 
+-	if (unlikely(flags & PTE_READ_ONLY))
+-		pte &= ~GEN8_PAGE_RW;
++	if (unlikely(flags & XE_PTE_READ_ONLY))
++		pte &= ~XE_PAGE_RW;
+ 
+ 	/* FIXME: I don't think the PPAT handling is correct for MTL */
+ 
+@@ -121,9 +121,9 @@ static u64 __gen8_pte_encode(u64 pte, enum xe_cache_level cache, u32 flags,
+ 	}
+ 
+ 	if (pt_level == 1)
+-		pte |= GEN8_PDE_PS_2M;
++		pte |= XE_PDE_PS_2M;
+ 	else if (pt_level == 2)
+-		pte |= GEN8_PDPE_PS_1G;
++		pte |= XE_PDPE_PS_1G;
+ 
+ 	/* XXX: Does hw support 1 GiB pages? */
+ 	XE_BUG_ON(pt_level > 2);
+@@ -153,14 +153,14 @@ u64 gen8_pte_encode(struct xe_vma *vma, struct xe_bo *bo,
+ 	bool is_vram;
+ 
+ 	if (vma)
+-		pte = vma_addr(vma, offset, GEN8_PAGE_SIZE, &is_vram);
++		pte = vma_addr(vma, offset, XE_PAGE_SIZE, &is_vram);
+ 	else
+-		pte = xe_bo_addr(bo, offset, GEN8_PAGE_SIZE, &is_vram);
++		pte = xe_bo_addr(bo, offset, XE_PAGE_SIZE, &is_vram);
+ 
+ 	if (is_vram) {
+-		pte |= GEN12_PPGTT_PTE_LM;
++		pte |= XE_PPGTT_PTE_LM;
+ 		if (vma && vma->use_atomic_access_pte_bit)
+-			pte |= GEN12_USM_PPGTT_PTE_AE;
++			pte |= XE_USM_PPGTT_PTE_AE;
+ 	}
+ 
+ 	return __gen8_pte_encode(pte, cache, flags, pt_level);
+@@ -211,7 +211,7 @@ struct xe_pt *xe_pt_create(struct xe_vm *vm, struct xe_gt *gt,
+ 	int err;
+ 
+ 	size = !level ?  sizeof(struct xe_pt) : sizeof(struct xe_pt_dir) +
+-		GEN8_PDES * sizeof(struct drm_pt *);
++		XE_PDES * sizeof(struct drm_pt *);
+ 	pt = kzalloc(size, GFP_KERNEL);
+ 	if (!pt)
+ 		return ERR_PTR(-ENOMEM);
+@@ -265,7 +265,7 @@ void xe_pt_populate_empty(struct xe_gt *gt, struct xe_vm *vm,
+ 		xe_map_memset(vm->xe, map, 0, 0, SZ_4K);
+ 	} else {
+ 		empty = __xe_pt_empty_pte(gt, vm, pt->level);
+-		for (i = 0; i < GEN8_PDES; i++)
++		for (i = 0; i < XE_PDES; i++)
+ 			xe_pt_write(vm->xe, map, i, empty);
+ 	}
+ }
+@@ -280,7 +280,7 @@ void xe_pt_populate_empty(struct xe_gt *gt, struct xe_vm *vm,
+  */
+ unsigned int xe_pt_shift(unsigned int level)
+ {
+-	return GEN8_PTE_SHIFT + GEN8_PDE_SHIFT * level;
++	return XE_PTE_SHIFT + XE_PDE_SHIFT * level;
+ }
+ 
+ /**
+@@ -307,7 +307,7 @@ void xe_pt_destroy(struct xe_pt *pt, u32 flags, struct llist_head *deferred)
+ 	if (pt->level > 0 && pt->num_live) {
+ 		struct xe_pt_dir *pt_dir = as_xe_pt_dir(pt);
+ 
+-		for (i = 0; i < GEN8_PDES; i++) {
++		for (i = 0; i < XE_PDES; i++) {
+ 			if (xe_pt_entry(pt_dir, i))
+ 				xe_pt_destroy(xe_pt_entry(pt_dir, i), flags,
+ 					      deferred);
+@@ -489,7 +489,7 @@ xe_pt_new_shared(struct xe_walk_update *wupd, struct xe_pt *parent,
+ 	entry->qwords = 0;
+ 
+ 	if (alloc_entries) {
+-		entry->pt_entries = kmalloc_array(GEN8_PDES,
++		entry->pt_entries = kmalloc_array(XE_PDES,
+ 						  sizeof(*entry->pt_entries),
+ 						  GFP_KERNEL);
+ 		if (!entry->pt_entries)
+@@ -649,7 +649,7 @@ xe_pt_stage_bind_entry(struct drm_pt *parent, pgoff_t offset,
+ 		 */
+ 		if (level == 0 && !xe_parent->is_compact) {
+ 			if (xe_pt_is_pte_ps64K(addr, next, xe_walk))
+-				pte |= GEN12_PTE_PS64;
++				pte |= XE_PTE_PS64;
+ 			else if (XE_WARN_ON(xe_walk->needs_64K))
+ 				return -EINVAL;
+ 		}
+@@ -699,7 +699,7 @@ xe_pt_stage_bind_entry(struct drm_pt *parent, pgoff_t offset,
+ 		if (GRAPHICS_VERx100(xe_walk->gt->xe) >= 1250 && level == 1 &&
+ 		    covers && xe_pt_scan_64K(addr, next, xe_walk)) {
+ 			walk->shifts = xe_compact_pt_shifts;
+-			flags |= GEN12_PDE_64K;
++			flags |= XE_PDE_64K;
+ 			xe_child->is_compact = true;
+ 		}
+ 
+@@ -761,9 +761,9 @@ xe_pt_stage_bind(struct xe_gt *gt, struct xe_vma *vma,
+ 	if (is_vram) {
+ 		struct xe_gt *bo_gt = xe_bo_to_gt(bo);
+ 
+-		xe_walk.default_pte = GEN12_PPGTT_PTE_LM;
++		xe_walk.default_pte = XE_PPGTT_PTE_LM;
+ 		if (vma && vma->use_atomic_access_pte_bit)
+-			xe_walk.default_pte |= GEN12_USM_PPGTT_PTE_AE;
++			xe_walk.default_pte |= XE_USM_PPGTT_PTE_AE;
+ 		xe_walk.dma_offset = bo_gt->mem.vram.io_start -
+ 			gt_to_xe(gt)->mem.vram.io_start;
+ 		xe_walk.cache = XE_CACHE_WB;
+diff --git a/drivers/gpu/drm/xe/xe_vm.c b/drivers/gpu/drm/xe/xe_vm.c
+index bdf82d34eb66..272f0f7f24fe 100644
+--- a/drivers/gpu/drm/xe/xe_vm.c
++++ b/drivers/gpu/drm/xe/xe_vm.c
+@@ -59,7 +59,7 @@ int xe_vma_userptr_pin_pages(struct xe_vma *vma)
+ 	bool in_kthread = !current->mm;
+ 	unsigned long notifier_seq;
+ 	int pinned, ret, i;
+-	bool read_only = vma->pte_flags & PTE_READ_ONLY;
++	bool read_only = vma->pte_flags & XE_PTE_READ_ONLY;
+ 
+ 	lockdep_assert_held(&vm->lock);
+ 	XE_BUG_ON(!xe_vma_is_userptr(vma));
+@@ -844,7 +844,7 @@ static struct xe_vma *xe_vma_create(struct xe_vm *vm,
+ 	vma->start = start;
+ 	vma->end = end;
+ 	if (read_only)
+-		vma->pte_flags = PTE_READ_ONLY;
++		vma->pte_flags = XE_PTE_READ_ONLY;
+ 
+ 	if (gt_mask) {
+ 		vma->gt_mask = gt_mask;
+@@ -897,7 +897,7 @@ static void xe_vma_destroy_late(struct xe_vma *vma)
+ {
+ 	struct xe_vm *vm = vma->vm;
+ 	struct xe_device *xe = vm->xe;
+-	bool read_only = vma->pte_flags & PTE_READ_ONLY;
++	bool read_only = vma->pte_flags & XE_PTE_READ_ONLY;
+ 
+ 	if (xe_vma_is_userptr(vma)) {
+ 		if (vma->userptr.sg) {
+@@ -1902,7 +1902,7 @@ int xe_vm_create_ioctl(struct drm_device *dev, void *data,
+ 
+ #if IS_ENABLED(CONFIG_DRM_XE_DEBUG_MEM)
+ 	/* Warning: Security issue - never enable by default */
+-	args->reserved[0] = xe_bo_main_addr(vm->pt_root[0]->bo, GEN8_PAGE_SIZE);
++	args->reserved[0] = xe_bo_main_addr(vm->pt_root[0]->bo, XE_PAGE_SIZE);
+ #endif
+ 
+ 	return 0;
+@@ -2593,7 +2593,7 @@ static struct xe_vma *vm_unbind_lookup_vmas(struct xe_vm *vm,
+ 					  first->userptr.ptr,
+ 					  first->start,
+ 					  lookup->start - 1,
+-					  (first->pte_flags & PTE_READ_ONLY),
++					  (first->pte_flags & XE_PTE_READ_ONLY),
+ 					  first->gt_mask);
+ 		if (first->bo)
+ 			xe_bo_unlock(first->bo, &ww);
+@@ -2624,7 +2624,7 @@ static struct xe_vma *vm_unbind_lookup_vmas(struct xe_vm *vm,
+ 					 last->userptr.ptr + chunk,
+ 					 last->start + chunk,
+ 					 last->end,
+-					 (last->pte_flags & PTE_READ_ONLY),
++					 (last->pte_flags & XE_PTE_READ_ONLY),
+ 					 last->gt_mask);
+ 		if (last->bo)
+ 			xe_bo_unlock(last->bo, &ww);
+@@ -3381,7 +3381,8 @@ int xe_analyze_vm(struct drm_printer *p, struct xe_vm *vm, int gt_id)
+ 		return 0;
+ 	}
+ 	if (vm->pt_root[gt_id]) {
+-		addr = xe_bo_addr(vm->pt_root[gt_id]->bo, 0, GEN8_PAGE_SIZE, &is_vram);
++		addr = xe_bo_addr(vm->pt_root[gt_id]->bo, 0, XE_PAGE_SIZE,
++				  &is_vram);
+ 		drm_printf(p, " VM root: A:0x%llx %s\n", addr, is_vram ? "VRAM" : "SYS");
+ 	}
+ 
+@@ -3392,10 +3393,11 @@ int xe_analyze_vm(struct drm_printer *p, struct xe_vm *vm, int gt_id)
+ 		if (is_userptr) {
+ 			struct xe_res_cursor cur;
+ 
+-			xe_res_first_sg(vma->userptr.sg, 0, GEN8_PAGE_SIZE, &cur);
++			xe_res_first_sg(vma->userptr.sg, 0, XE_PAGE_SIZE,
++					&cur);
+ 			addr = xe_res_dma(&cur);
+ 		} else {
+-			addr = xe_bo_addr(vma->bo, 0, GEN8_PAGE_SIZE, &is_vram);
++			addr = xe_bo_addr(vma->bo, 0, XE_PAGE_SIZE, &is_vram);
+ 		}
+ 		drm_printf(p, " [%016llx-%016llx] S:0x%016llx A:%016llx %s\n",
+ 			   vma->start, vma->end, vma->end - vma->start + 1ull,
+-- 
+2.39.0
+
