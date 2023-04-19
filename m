@@ -4,48 +4,47 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2403FC7EE21
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 07151C77B7F
 	for <intel-xe@archiver.kernel.org>; Wed, 19 Apr 2023 07:45:04 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id F056210E8CE;
+	by gabe.freedesktop.org (Postfix) with ESMTP id CC33110E8CC;
 	Wed, 19 Apr 2023 07:45:03 +0000 (UTC)
 Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6F72610E8DB
- for <intel-xe@lists.freedesktop.org>; Wed, 19 Apr 2023 07:44:58 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6E3F910E8C5
+ for <intel-xe@lists.freedesktop.org>; Wed, 19 Apr 2023 07:44:59 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1681890298; x=1713426298;
+ t=1681890299; x=1713426299;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=qUjLSU7ajHhy1izCwmfvNR4alPYgnQHBB2lrTiIKMf4=;
- b=WeHE+BqvikTEN4MTxYq3pSP3k6HsbywF/cVpC8jtNDhlHJygaat5aPql
- zvpMY+q0/S1xC70c5iVbAaO8nWJ5vvppK/v3x5FsNic8ZJydqHz9Ixxwf
- JocNHGH8ya5tDbsdiGNdW0p8I0o5oeS9w8nvLsSFbI6+pzMaExivJupmf
- zMg9rETh24c/Z5TRbbqGX6cF7PJyd0moLGb+aHimrz+FcTJi+tMmfDDlp
- JF/n9ZwgbUg9QuwxI06ddTrT81jRG/wNUwFL8b/tY2Ldppa43ZPfU8m7k
- rzzxbZxj42nKIH6x7HAZMEiHIzE7pWNgfeennuQlvA+cq7NED9laNWGB+ A==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10684"; a="334186119"
-X-IronPort-AV: E=Sophos;i="5.99,208,1677571200"; d="scan'208";a="334186119"
+ bh=K86r1EBpRJ8mDfZOjE/iHDCo2rgQ3116yMAoVY6Xbp8=;
+ b=UkqK3UAebQUawHTtEMVLcy5SXHMdvBOtAgcGgj52eL6TWZmoGMqcYOLN
+ ddGxdDXirZdXGUzCzckIiROeWQV3Fw3eST1hWj5stz+lcs9eSV6jJHcG3
+ IthMXgMdVDqiFC0Ee5joBuLMTjj1aUngIcVFSZ4kJl2XEOw+cDYXFlqbc
+ x9f5lNkDesadwP9z30f9lt8sCdJK0ji7q85n0Ct5/izLNIHgdasdqQ9Y4
+ /cd5NDPiwfALdQEwt8o9Uk2poaPuadqAUnXrudBo1ndJaqvK10kpxiUeD
+ Vir31yE9+bcHf0LGNzKek/f2sB3YubaS4AH09kzpgp2YIBEWytb+3c1gT g==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10684"; a="334186126"
+X-IronPort-AV: E=Sophos;i="5.99,208,1677571200"; d="scan'208";a="334186126"
 Received: from fmsmga007.fm.intel.com ([10.253.24.52])
  by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 19 Apr 2023 00:44:57 -0700
+ 19 Apr 2023 00:44:58 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10684"; a="693951892"
-X-IronPort-AV: E=Sophos;i="5.99,208,1677571200"; d="scan'208";a="693951892"
+X-IronPort-AV: E=McAfee;i="6600,9927,10684"; a="693951913"
+X-IronPort-AV: E=Sophos;i="5.99,208,1677571200"; d="scan'208";a="693951913"
 Received: from lucas-s2600cw.jf.intel.com ([10.165.21.196])
  by fmsmga007-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 19 Apr 2023 00:44:56 -0700
+ 19 Apr 2023 00:44:57 -0700
 From: Lucas De Marchi <lucas.demarchi@intel.com>
 To: intel-xe@lists.freedesktop.org
-Date: Wed, 19 Apr 2023 00:44:33 -0700
-Message-Id: <20230419074440.4006398-11-lucas.demarchi@intel.com>
+Date: Wed, 19 Apr 2023 00:44:39 -0700
+Message-Id: <20230419074440.4006398-17-lucas.demarchi@intel.com>
 X-Mailer: git-send-email 2.39.0
 In-Reply-To: <20230419074440.4006398-1-lucas.demarchi@intel.com>
 References: <20230419074440.4006398-1-lucas.demarchi@intel.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-xe] [PATCH 10/17] drm/xe: Use REG_FIELD/REG_BIT for all
- regs/*.h
+Subject: [Intel-xe] [PATCH 16/17] drm/xe: Plumb xe_reg_t into WAs, rtp, etc
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -62,282 +61,927 @@ Cc: Lucas De Marchi <lucas.demarchi@intel.com>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Convert the macro declarations to the equivalent GENMASK and
-and bitfield prep for all registers.
+Now that xe_reg_t is a type that can be used by xe, convert the rest of
+the driver to use it:
+
+	- The RTP tables don't need the MASKED flags anymore in the
+	  actions as that information now comes from the register
+	  definition
+
+	- There is no need for the _XE_RTP_REG/_XE_RTP_REG_MCR macros an
+	  the register types on RTP infra: that comes from the register
+	  definitions.
+
+	- When declaring the RTP entries, there is no need anymore to
+	  undef XE_REG and friends: the RTP macros deal with removing
+	  the cast where needed due to not being able to use a compound
+	  statement for initialization in the tables
+
+	- The index in the reg-sr xarray is the register offset only.
+	  Otherwise we wouldn't catch mistakes about adding both a
+	  MCR-style and normal-style registers. For that, the register
+	  is now also part of the entry, so the options can be compared
+	  to check for compatible entries.
 
 Signed-off-by: Lucas De Marchi <lucas.demarchi@intel.com>
 ---
- drivers/gpu/drm/xe/regs/xe_engine_regs.h | 24 +++++------
- drivers/gpu/drm/xe/regs/xe_gt_regs.h     | 53 +++++++++++-------------
- drivers/gpu/drm/xe/regs/xe_regs.h        | 12 +++---
- drivers/gpu/drm/xe/xe_gt_clock.c         | 17 ++++----
- 4 files changed, 48 insertions(+), 58 deletions(-)
+ drivers/gpu/drm/xe/tests/xe_rtp_test.c |  40 +++-----
+ drivers/gpu/drm/xe/xe_guc_ads.c        |   2 +-
+ drivers/gpu/drm/xe/xe_reg_sr.c         |  25 +++--
+ drivers/gpu/drm/xe/xe_reg_sr.h         |   3 +-
+ drivers/gpu/drm/xe/xe_reg_sr_types.h   |  10 +-
+ drivers/gpu/drm/xe/xe_reg_whitelist.c  |   5 -
+ drivers/gpu/drm/xe/xe_rtp.c            |   7 +-
+ drivers/gpu/drm/xe/xe_rtp.h            |  46 ++++-----
+ drivers/gpu/drm/xe/xe_rtp_types.h      |  14 +--
+ drivers/gpu/drm/xe/xe_tuning.c         |   8 +-
+ drivers/gpu/drm/xe/xe_wa.c             | 135 ++++++++-----------------
+ 11 files changed, 106 insertions(+), 189 deletions(-)
 
-diff --git a/drivers/gpu/drm/xe/regs/xe_engine_regs.h b/drivers/gpu/drm/xe/regs/xe_engine_regs.h
-index bfcb0e9a6d4c..938055f75492 100644
---- a/drivers/gpu/drm/xe/regs/xe_engine_regs.h
-+++ b/drivers/gpu/drm/xe/regs/xe_engine_regs.h
-@@ -22,7 +22,7 @@
- #define   RING_CTL_SIZE(size)			((size) - PAGE_SIZE) /* in bytes -> pages */
+diff --git a/drivers/gpu/drm/xe/tests/xe_rtp_test.c b/drivers/gpu/drm/xe/tests/xe_rtp_test.c
+index 51d215f08113..ad917638d088 100644
+--- a/drivers/gpu/drm/xe/tests/xe_rtp_test.c
++++ b/drivers/gpu/drm/xe/tests/xe_rtp_test.c
+@@ -18,25 +18,18 @@
+ #include "xe_reg_sr.h"
+ #include "xe_rtp.h"
  
- #define RING_PSMI_CTL(base)			_MMIO((base) + 0x50)
--#define   RC_SEMA_IDLE_MSG_DISABLE			REG_BIT(12)
-+#define   RC_SEMA_IDLE_MSG_DISABLE		REG_BIT(12)
- #define   WAIT_FOR_EVENT_POWER_DOWN_DISABLE	REG_BIT(7)
+-#undef XE_REG
+-#undef XE_REG_MCR
+-#define XE_REG(x, ...)		_XE_RTP_REG(x)
+-#define XE_REG_MCR(x, ...)	_XE_RTP_MCR_REG(x)
+-
+ #define REGULAR_REG1	XE_REG(1)
+ #define REGULAR_REG2	XE_REG(2)
+ #define REGULAR_REG3	XE_REG(3)
+ #define MCR_REG1	XE_REG_MCR(1)
+ #define MCR_REG2	XE_REG_MCR(2)
+ #define MCR_REG3	XE_REG_MCR(3)
++#define MASKED_REG1	XE_REG(1, XE_REG_OPTION_MASKED)
  
- #define RING_ACTHD_UDW(base)			_MMIO((base) + 0x5c)
-@@ -54,7 +54,7 @@
- #define	  CTX_CTRL_ENGINE_CTX_RESTORE_INHIBIT	REG_BIT(0)
+ struct rtp_test_case {
+ 	const char *name;
+-	struct {
+-		u32 offset;
+-		u32 type;
+-	} expected_reg;
+-        u32 expected_set_bits;
++	xe_reg_t expected_reg;
++	u32 expected_set_bits;
+ 	u32 expected_clr_bits;
+ 	unsigned long expected_count;
+ 	unsigned int expected_sr_errors;
+@@ -56,7 +49,7 @@ static bool match_no(const struct xe_gt *gt, const struct xe_hw_engine *hwe)
+ static const struct rtp_test_case cases[] = {
+ 	{
+ 		.name = "coalesce-same-reg",
+-		.expected_reg = { REGULAR_REG1 },
++		.expected_reg = REGULAR_REG1,
+ 		.expected_set_bits = REG_BIT(0) | REG_BIT(1),
+ 		.expected_clr_bits = REG_BIT(0) | REG_BIT(1),
+ 		.expected_count = 1,
+@@ -64,7 +57,7 @@ static const struct rtp_test_case cases[] = {
+ 		.entries = (const struct xe_rtp_entry[]) {
+ 			{ XE_RTP_NAME("basic-1"),
+ 			  XE_RTP_RULES(FUNC(match_yes)),
+-			  XE_RTP_ACTIONS(SET(REGULAR_REG1, REG_BIT(0)))
++			  XE_RTP_ACTIONS(SET(REGULAR_REG1, REG_BIT(1)))
+ 			},
+ 			{ XE_RTP_NAME("basic-2"),
+ 			  XE_RTP_RULES(FUNC(match_yes)),
+@@ -75,7 +68,7 @@ static const struct rtp_test_case cases[] = {
+ 	},
+ 	{
+ 		.name = "no-match-no-add",
+-		.expected_reg = { REGULAR_REG1 },
++		.expected_reg = REGULAR_REG1,
+ 		.expected_set_bits = REG_BIT(0),
+ 		.expected_clr_bits = REG_BIT(0),
+ 		.expected_count = 1,
+@@ -94,7 +87,7 @@ static const struct rtp_test_case cases[] = {
+ 	},
+ 	{
+ 		.name = "no-match-no-add-multiple-rules",
+-		.expected_reg = { REGULAR_REG1 },
++		.expected_reg = REGULAR_REG1,
+ 		.expected_set_bits = REG_BIT(0),
+ 		.expected_clr_bits = REG_BIT(0),
+ 		.expected_count = 1,
+@@ -113,7 +106,7 @@ static const struct rtp_test_case cases[] = {
+ 	},
+ 	{
+ 		.name = "two-regs-two-entries",
+-		.expected_reg = { REGULAR_REG1 },
++		.expected_reg = REGULAR_REG1,
+ 		.expected_set_bits = REG_BIT(0),
+ 		.expected_clr_bits = REG_BIT(0),
+ 		.expected_count = 2,
+@@ -132,7 +125,7 @@ static const struct rtp_test_case cases[] = {
+ 	},
+ 	{
+ 		.name = "clr-one-set-other",
+-		.expected_reg = { REGULAR_REG1 },
++		.expected_reg = REGULAR_REG1,
+ 		.expected_set_bits = REG_BIT(0),
+ 		.expected_clr_bits = REG_BIT(1) | REG_BIT(0),
+ 		.expected_count = 1,
+@@ -153,7 +146,7 @@ static const struct rtp_test_case cases[] = {
+ #define TEMP_MASK	REG_GENMASK(10, 8)
+ #define TEMP_FIELD	REG_FIELD_PREP(TEMP_MASK, 2)
+ 		.name = "set-field",
+-		.expected_reg = { REGULAR_REG1 },
++		.expected_reg = REGULAR_REG1,
+ 		.expected_set_bits = TEMP_FIELD,
+ 		.expected_clr_bits = TEMP_MASK,
+ 		.expected_count = 1,
+@@ -171,7 +164,7 @@ static const struct rtp_test_case cases[] = {
+ 	},
+ 	{
+ 		.name = "conflict-duplicate",
+-		.expected_reg = { REGULAR_REG1 },
++		.expected_reg = REGULAR_REG1,
+ 		.expected_set_bits = REG_BIT(0),
+ 		.expected_clr_bits = REG_BIT(0),
+ 		.expected_count = 1,
+@@ -191,7 +184,7 @@ static const struct rtp_test_case cases[] = {
+ 	},
+ 	{
+ 		.name = "conflict-not-disjoint",
+-		.expected_reg = { REGULAR_REG1 },
++		.expected_reg = REGULAR_REG1,
+ 		.expected_set_bits = REG_BIT(0),
+ 		.expected_clr_bits = REG_BIT(0),
+ 		.expected_count = 1,
+@@ -211,7 +204,7 @@ static const struct rtp_test_case cases[] = {
+ 	},
+ 	{
+ 		.name = "conflict-reg-type",
+-		.expected_reg = { REGULAR_REG1 },
++		.expected_reg = REGULAR_REG1,
+ 		.expected_set_bits = REG_BIT(0),
+ 		.expected_clr_bits = REG_BIT(0),
+ 		.expected_count = 1,
+@@ -229,8 +222,7 @@ static const struct rtp_test_case cases[] = {
+ 			/* drop: regular vs masked */
+ 			{ XE_RTP_NAME("basic-3"),
+ 			  XE_RTP_RULES(FUNC(match_yes)),
+-			  XE_RTP_ACTIONS(SET(REGULAR_REG1, REG_BIT(0),
+-					     XE_RTP_ACTION_FLAG(MASKED_REG)))
++			  XE_RTP_ACTIONS(SET(MASKED_REG1, REG_BIT(0)))
+ 			},
+ 			{}
+ 		},
+@@ -249,7 +241,7 @@ static void xe_rtp_process_tests(struct kunit *test)
+ 	xe_rtp_process(param->entries, reg_sr, &xe->gt[0], NULL);
  
- #define RING_MODE(base)				_MMIO((base) + 0x29c)
--#define   GFX_DISABLE_LEGACY_MODE		(1 << 3)
-+#define   GFX_DISABLE_LEGACY_MODE		REG_BIT(3)
+ 	xa_for_each(&reg_sr->xa, idx, sre) {
+-		if (idx == param->expected_reg.offset)
++		if (idx == param->expected_reg.reg)
+ 			sr_entry = sre;
  
- #define RING_TIMESTAMP(base)			_MMIO((base) + 0x358)
+ 		count++;
+@@ -258,7 +250,7 @@ static void xe_rtp_process_tests(struct kunit *test)
+ 	KUNIT_EXPECT_EQ(test, count, param->expected_count);
+ 	KUNIT_EXPECT_EQ(test, sr_entry->clr_bits, param->expected_clr_bits);
+ 	KUNIT_EXPECT_EQ(test, sr_entry->set_bits, param->expected_set_bits);
+-	KUNIT_EXPECT_EQ(test, sr_entry->reg_type, param->expected_reg.type);
++	KUNIT_EXPECT_EQ(test, sr_entry->reg.raw, param->expected_reg.raw);
+ 	KUNIT_EXPECT_EQ(test, reg_sr->errors, param->expected_sr_errors);
+ }
  
-@@ -68,17 +68,17 @@
+diff --git a/drivers/gpu/drm/xe/xe_guc_ads.c b/drivers/gpu/drm/xe/xe_guc_ads.c
+index 6a723bda2aa9..676137dcb510 100644
+--- a/drivers/gpu/drm/xe/xe_guc_ads.c
++++ b/drivers/gpu/drm/xe/xe_guc_ads.c
+@@ -461,7 +461,7 @@ static unsigned int guc_mmio_regset_write(struct xe_guc_ads *ads,
+ 	BUILD_BUG_ON(ARRAY_SIZE(extra_regs) > ADS_REGSET_EXTRA_MAX);
  
- #define RING_FORCE_TO_NONPRIV(base, i)		_MMIO(((base) + 0x4d0) + (i) * 4)
- #define   RING_FORCE_TO_NONPRIV_DENY		REG_BIT(30)
-+#define   RING_FORCE_TO_NONPRIV_ACCESS_MASK	REG_GENMASK(29, 28)
-+#define   RING_FORCE_TO_NONPRIV_ACCESS_RW	REG_FIELD_PREP(RING_FORCE_TO_NONPRIV_ACCESS_MASK, 0)
-+#define   RING_FORCE_TO_NONPRIV_ACCESS_RD	REG_FIELD_PREP(RING_FORCE_TO_NONPRIV_ACCESS_MASK, 1)
-+#define   RING_FORCE_TO_NONPRIV_ACCESS_WR	REG_FIELD_PREP(RING_FORCE_TO_NONPRIV_ACCESS_MASK, 2)
-+#define   RING_FORCE_TO_NONPRIV_ACCESS_INVALID	REG_FIELD_PREP(RING_FORCE_TO_NONPRIV_ACCESS_MASK, 3)
- #define   RING_FORCE_TO_NONPRIV_ADDRESS_MASK	REG_GENMASK(25, 2)
--#define   RING_FORCE_TO_NONPRIV_ACCESS_RW	(0 << 28)
--#define   RING_FORCE_TO_NONPRIV_ACCESS_RD	(1 << 28)
--#define   RING_FORCE_TO_NONPRIV_ACCESS_WR	(2 << 28)
--#define   RING_FORCE_TO_NONPRIV_ACCESS_INVALID	(3 << 28)
--#define   RING_FORCE_TO_NONPRIV_ACCESS_MASK	(3 << 28)
--#define   RING_FORCE_TO_NONPRIV_RANGE_1		(0 << 0)
--#define   RING_FORCE_TO_NONPRIV_RANGE_4		(1 << 0)
--#define   RING_FORCE_TO_NONPRIV_RANGE_16	(2 << 0)
--#define   RING_FORCE_TO_NONPRIV_RANGE_64	(3 << 0)
--#define   RING_FORCE_TO_NONPRIV_RANGE_MASK	(3 << 0)
-+#define   RING_FORCE_TO_NONPRIV_RANGE_MASK	REG_GENMASK(1, 0)
-+#define   RING_FORCE_TO_NONPRIV_RANGE_1		REG_FIELD_PREP(RING_FORCE_TO_NONPRIV_RANGE_MASK, 0)
-+#define   RING_FORCE_TO_NONPRIV_RANGE_4		REG_FIELD_PREP(RING_FORCE_TO_NONPRIV_RANGE_MASK, 1)
-+#define   RING_FORCE_TO_NONPRIV_RANGE_16	REG_FIELD_PREP(RING_FORCE_TO_NONPRIV_RANGE_MASK, 2)
-+#define   RING_FORCE_TO_NONPRIV_RANGE_64	REG_FIELD_PREP(RING_FORCE_TO_NONPRIV_RANGE_MASK, 3)
- #define   RING_FORCE_TO_NONPRIV_MASK_VALID	(RING_FORCE_TO_NONPRIV_RANGE_MASK | \
- 						 RING_FORCE_TO_NONPRIV_ACCESS_MASK | \
- 						 RING_FORCE_TO_NONPRIV_DENY)
-diff --git a/drivers/gpu/drm/xe/regs/xe_gt_regs.h b/drivers/gpu/drm/xe/regs/xe_gt_regs.h
-index 0908224737dc..4076d903b20e 100644
---- a/drivers/gpu/drm/xe/regs/xe_gt_regs.h
-+++ b/drivers/gpu/drm/xe/regs/xe_gt_regs.h
-@@ -9,15 +9,13 @@
- #include "regs/xe_reg_defs.h"
+ 	xa_for_each(&hwe->reg_sr.xa, idx, entry) {
+-		u32 flags = entry->masked_reg ? GUC_REGSET_MASKED : 0;
++		u32 flags = entry->reg.masked ? GUC_REGSET_MASKED : 0;
  
- /* RPM unit config (Gen8+) */
--#define RPM_CONFIG0				_MMIO(0xd00)
--#define   RPM_CONFIG0_CRYSTAL_CLOCK_FREQ_SHIFT	3
--#define   RPM_CONFIG0_CRYSTAL_CLOCK_FREQ_MASK	(0x7 << RPM_CONFIG0_CRYSTAL_CLOCK_FREQ_SHIFT)
--#define   RPM_CONFIG0_CRYSTAL_CLOCK_FREQ_24_MHZ	0
-+#define RPM_CONFIG0					_MMIO(0xd00)
-+#define   RPM_CONFIG0_CRYSTAL_CLOCK_FREQ_MASK		REG_GENMASK(5, 4)
-+#define   RPM_CONFIG0_CRYSTAL_CLOCK_FREQ_24_MHZ		0
- #define   RPM_CONFIG0_CRYSTAL_CLOCK_FREQ_19_2_MHZ	1
- #define   RPM_CONFIG0_CRYSTAL_CLOCK_FREQ_38_4_MHZ	2
--#define   RPM_CONFIG0_CRYSTAL_CLOCK_FREQ_25_MHZ	3
--#define   RPM_CONFIG0_CTC_SHIFT_PARAMETER_SHIFT	1
--#define   RPM_CONFIG0_CTC_SHIFT_PARAMETER_MASK	(0x3 << RPM_CONFIG0_CTC_SHIFT_PARAMETER_SHIFT)
-+#define   RPM_CONFIG0_CRYSTAL_CLOCK_FREQ_25_MHZ		3
-+#define   RPM_CONFIG0_CTC_SHIFT_PARAMETER_MASK		REG_GENMASK(2, 1)
- 
- #define FORCEWAKE_ACK_MEDIA_VDBOX(n)		_MMIO(0xd50 + (n) * 4)
- #define FORCEWAKE_ACK_MEDIA_VEBOX(n)		_MMIO(0xd70 + (n) * 4)
-@@ -39,15 +37,15 @@
- #define MCR_SELECTOR				_MMIO(0xfdc)
- #define GAM_MCR_SELECTOR			_MMIO(0xfe0)
- #define   MCR_MULTICAST				REG_BIT(31)
--#define   MCR_SLICE(slice)			(((slice) & 0xf) << 27)
--#define   MCR_SLICE_MASK			MCR_SLICE(0xf)
--#define   MCR_SUBSLICE(subslice)		(((subslice) & 0x7) << 24)
--#define   MCR_SUBSLICE_MASK			MCR_SUBSLICE(0x7)
-+#define   MCR_SLICE_MASK			REG_GENMASK(30, 27)
-+#define   MCR_SLICE(slice)			REG_FIELD_PREP(MCR_SLICE_MASK, slice)
-+#define   MCR_SUBSLICE_MASK			REG_GENMASK(26, 24)
-+#define   MCR_SUBSLICE(subslice)		REG_FIELD_PREP(MCR_SUBSLICE_MASK, subslice)
- #define   MTL_MCR_GROUPID			REG_GENMASK(11, 8)
- #define   MTL_MCR_INSTANCEID			REG_GENMASK(3, 0)
- 
- #define FF_SLICE_CS_CHICKEN1			_MMIO(0x20e0)
--#define   FFSC_PERCTX_PREEMPT_CTRL		(1 << 14)
-+#define   FFSC_PERCTX_PREEMPT_CTRL		REG_BIT(14)
- 
- #define FF_SLICE_CS_CHICKEN2			_MMIO(0x20e4)
- #define   PERF_FIX_BALANCING_CFE_DISABLE	REG_BIT(15)
-@@ -59,12 +57,12 @@
- #define PS_INVOCATION_COUNT			_MMIO(0x2348)
- 
- #define CS_CHICKEN1				_MMIO(0x2580)
--#define   PREEMPT_3D_OBJECT_LEVEL		(1 << 0)
- #define   PREEMPT_GPGPU_LEVEL(hi, lo)		(((hi) << 2) | ((lo) << 1))
- #define   PREEMPT_GPGPU_MID_THREAD_LEVEL	PREEMPT_GPGPU_LEVEL(0, 0)
- #define   PREEMPT_GPGPU_THREAD_GROUP_LEVEL	PREEMPT_GPGPU_LEVEL(0, 1)
- #define   PREEMPT_GPGPU_COMMAND_LEVEL		PREEMPT_GPGPU_LEVEL(1, 0)
- #define   PREEMPT_GPGPU_LEVEL_MASK		PREEMPT_GPGPU_LEVEL(1, 1)
-+#define   PREEMPT_3D_OBJECT_LEVEL		REG_BIT(0)
- 
- #define GLOBAL_MOCS(i)				_MMIO(0x4000 + (i) * 4) /* Global MOCS regs */
- #define GFX_CCS_AUX_NV				_MMIO(0x4208)
-@@ -131,19 +129,18 @@
- 
- #define	MIRROR_FUSE3				_MMIO(0x9118)
- #define   L3BANK_PAIR_COUNT			4
--#define   L3BANK_MASK				0x0F
-+#define   L3BANK_MASK				REG_GENMASK(3, 0)
- /* on Xe_HP the same fuses indicates mslices instead of L3 banks */
- #define   MAX_MSLICES				4
--#define   MEML3_EN_MASK				0x0F
-+#define   MEML3_EN_MASK				REG_GENMASK(3, 0)
- 
- /* Fuse readout registers for GT */
- #define XEHP_FUSE4				_MMIO(0x9114)
- #define   GT_L3_EXC_MASK			REG_GENMASK(6, 4)
- 
- #define GT_VEBOX_VDBOX_DISABLE			_MMIO(0x9140)
--#define   GT_VDBOX_DISABLE_MASK			0xff
--#define   GT_VEBOX_DISABLE_SHIFT		16
--#define   GT_VEBOX_DISABLE_MASK			(0x0f << GT_VEBOX_DISABLE_SHIFT)
-+#define   GT_VEBOX_DISABLE_MASK			REG_GENMASK(19, 16)
-+#define   GT_VDBOX_DISABLE_MASK			REG_GENMASK(7, 0)
- 
- #define XELP_EU_ENABLE				_MMIO(0x9134)	/* "_DISABLE" on Xe_LP */
- #define   XELP_EU_MASK				REG_GENMASK(7, 0)
-@@ -203,9 +200,9 @@
- #define   LTCDD_CLKGATE_DIS			REG_BIT(10)
- 
- #define XEHP_SLICE_UNIT_LEVEL_CLKGATE		MCR_REG(0x94d4)
--#define   SARBUNIT_CLKGATE_DIS			(1 << 5)
--#define   RCCUNIT_CLKGATE_DIS			(1 << 7)
--#define   MSCUNIT_CLKGATE_DIS			(1 << 10)
-+#define   SARBUNIT_CLKGATE_DIS			REG_BIT(5)
-+#define   RCCUNIT_CLKGATE_DIS			REG_BIT(7)
-+#define   MSCUNIT_CLKGATE_DIS			REG_BIT(10)
- #define   NODEDSS_CLKGATE_DIS			REG_BIT(12)
- #define   L3_CLKGATE_DIS			REG_BIT(16)
- #define   L3_CR2X_CLKGATE_DIS			REG_BIT(17)
-@@ -225,7 +222,7 @@
- #define   RTFUNIT_CLKGATE_DIS			REG_BIT(18)
- 
- #define DFR_RATIO_EN_AND_CHICKEN		MCR_REG(0x9550)
--#define   DFR_DISABLE				(1 << 9)
-+#define   DFR_DISABLE				REG_BIT(9)
- 
- #define RPNSWREQ				_MMIO(0xa008)
- #define   REQ_RATIO_MASK			REG_GENMASK(31, 23)
-@@ -233,20 +230,18 @@
- #define RC_STATE				_MMIO(0xa094)
- 
- #define PMINTRMSK				_MMIO(0xa168)
--#define   PMINTR_DISABLE_REDIRECT_TO_GUC	(1 << 31)
--#define   ARAT_EXPIRED_INTRMSK			(1 << 9)
-+#define   PMINTR_DISABLE_REDIRECT_TO_GUC	REG_BIT(31)
-+#define   ARAT_EXPIRED_INTRMSK			REG_BIT(9)
- 
- #define FORCEWAKE_GT				_MMIO(0xa188)
- 
- #define PG_ENABLE				_MMIO(0xa210)
- 
--/* GPM unit config (Gen9+) */
- #define CTC_MODE				_MMIO(0xa26c)
--#define   CTC_SOURCE_PARAMETER_MASK		1
-+#define   CTC_SHIFT_PARAMETER_MASK		REG_GENMASK(2, 1)
-+#define   CTC_SOURCE_PARAMETER_MASK		REG_BIT(0)
- #define   CTC_SOURCE_CRYSTAL_CLOCK		0
- #define   CTC_SOURCE_DIVIDE_LOGIC		1
--#define   CTC_SHIFT_PARAMETER_SHIFT		1
--#define   CTC_SHIFT_PARAMETER_MASK		(0x3 << CTC_SHIFT_PARAMETER_SHIFT)
- 
- #define FORCEWAKE_RENDER			_MMIO(0xa278)
- #define FORCEWAKE_MEDIA_VDBOX(n)		_MMIO(0xa540 + (n) * 4)
-@@ -350,7 +345,7 @@
- #define GT_GFX_RC6				_MMIO(0x138108)
- 
- #define GFX_FLSH_CNTL				_MMIO(0x101008)
--#define   GFX_FLSH_CNTL_EN			(1 << 0)
-+#define   GFX_FLSH_CNTL_EN			REG_BIT(0)
- 
- #define GT_INTR_DW(x)				_MMIO(0x190018 + ((x) * 4))
- 
-diff --git a/drivers/gpu/drm/xe/regs/xe_regs.h b/drivers/gpu/drm/xe/regs/xe_regs.h
-index e6b81bcff91f..da1d5aa6cdb7 100644
---- a/drivers/gpu/drm/xe/regs/xe_regs.h
-+++ b/drivers/gpu/drm/xe/regs/xe_regs.h
-@@ -37,10 +37,10 @@
- #define XEHPC_BCS7_RING_BASE			0x3ec000
- #define XEHPC_BCS8_RING_BASE			0x3ee000
- #define   GT_WAIT_SEMAPHORE_INTERRUPT		REG_BIT(11)
--#define   GT_CONTEXT_SWITCH_INTERRUPT		(1 <<  8)
--#define   GT_RENDER_PIPECTL_NOTIFY_INTERRUPT	(1 <<  4)
-+#define   GT_CONTEXT_SWITCH_INTERRUPT		REG_BIT(8)
-+#define   GT_RENDER_PIPECTL_NOTIFY_INTERRUPT	REG_BIT(4)
- #define   GT_CS_MASTER_ERROR_INTERRUPT		REG_BIT(3)
--#define   GT_RENDER_USER_INTERRUPT		(1 <<  0)
-+#define   GT_RENDER_USER_INTERRUPT		REG_BIT(0)
- 
- #define FF_THREAD_MODE				_MMIO(0x20a0)
- #define   FF_TESSELATION_DOP_GATE_DISABLE	BIT(19)
-@@ -90,10 +90,8 @@
- #define   DG1_MSTR_TILE(t)			REG_BIT(t)
- 
- #define TIMESTAMP_OVERRIDE					_MMIO(0x44074)
--#define   TIMESTAMP_OVERRIDE_US_COUNTER_DIVIDER_SHIFT		0
--#define   TIMESTAMP_OVERRIDE_US_COUNTER_DIVIDER_MASK		0x3ff
--#define   TIMESTAMP_OVERRIDE_US_COUNTER_DENOMINATOR_SHIFT	12
--#define   TIMESTAMP_OVERRIDE_US_COUNTER_DENOMINATOR_MASK	(0xf << 12)
-+#define   TIMESTAMP_OVERRIDE_US_COUNTER_DENOMINATOR_MASK	REG_GENMASK(15, 12)
-+#define   TIMESTAMP_OVERRIDE_US_COUNTER_DIVIDER_MASK		REG_GENMASK(9, 0)
- 
- #define GGC					_MMIO(0x108040)
- #define   GMS_MASK				REG_GENMASK(15, 8)
-diff --git a/drivers/gpu/drm/xe/xe_gt_clock.c b/drivers/gpu/drm/xe/xe_gt_clock.c
-index 1b7d00284535..384a47d3c3eb 100644
---- a/drivers/gpu/drm/xe/xe_gt_clock.c
-+++ b/drivers/gpu/drm/xe/xe_gt_clock.c
-@@ -17,13 +17,12 @@ static u32 read_reference_ts_freq(struct xe_gt *gt)
- 	u32 ts_override = xe_mmio_read32(gt, TIMESTAMP_OVERRIDE.reg);
- 	u32 base_freq, frac_freq;
- 
--	base_freq = ((ts_override & TIMESTAMP_OVERRIDE_US_COUNTER_DIVIDER_MASK) >>
--		     TIMESTAMP_OVERRIDE_US_COUNTER_DIVIDER_SHIFT) + 1;
-+	base_freq = REG_FIELD_GET(TIMESTAMP_OVERRIDE_US_COUNTER_DIVIDER_MASK,
-+				  ts_override) + 1;
- 	base_freq *= 1000000;
- 
--	frac_freq = ((ts_override &
--		      TIMESTAMP_OVERRIDE_US_COUNTER_DENOMINATOR_MASK) >>
--		     TIMESTAMP_OVERRIDE_US_COUNTER_DENOMINATOR_SHIFT);
-+	frac_freq = REG_FIELD_GET(TIMESTAMP_OVERRIDE_US_COUNTER_DENOMINATOR_MASK,
-+				  ts_override);
- 	frac_freq = 1000000 / (frac_freq + 1);
- 
- 	return base_freq + frac_freq;
-@@ -35,9 +34,8 @@ static u32 get_crystal_clock_freq(u32 rpm_config_reg)
- 	const u32 f24_mhz = 24000000;
- 	const u32 f25_mhz = 25000000;
- 	const u32 f38_4_mhz = 38400000;
--	u32 crystal_clock =
--		(rpm_config_reg & RPM_CONFIG0_CRYSTAL_CLOCK_FREQ_MASK) >>
--		RPM_CONFIG0_CRYSTAL_CLOCK_FREQ_SHIFT;
-+	u32 crystal_clock = REG_FIELD_GET(RPM_CONFIG0_CRYSTAL_CLOCK_FREQ_MASK,
-+					  rpm_config_reg);
- 
- 	switch (crystal_clock) {
- 	case RPM_CONFIG0_CRYSTAL_CLOCK_FREQ_24_MHZ :
-@@ -74,8 +72,7 @@ int xe_gt_clock_init(struct xe_gt *gt)
- 		 * register increments from this frequency (it might
- 		 * increment only every few clock cycle).
- 		 */
--		freq >>= 3 - ((c0 & RPM_CONFIG0_CTC_SHIFT_PARAMETER_MASK) >>
--			      RPM_CONFIG0_CTC_SHIFT_PARAMETER_SHIFT);
-+		freq >>= 3 - REG_FIELD_GET(RPM_CONFIG0_CTC_SHIFT_PARAMETER_MASK, c0);
+ 		guc_mmio_regset_write_one(ads, regset_map, idx, flags, count++);
  	}
+diff --git a/drivers/gpu/drm/xe/xe_reg_sr.c b/drivers/gpu/drm/xe/xe_reg_sr.c
+index 78cb0e93a7ed..ff00e1b20548 100644
+--- a/drivers/gpu/drm/xe/xe_reg_sr.c
++++ b/drivers/gpu/drm/xe/xe_reg_sr.c
+@@ -77,10 +77,7 @@ static bool compatible_entries(const struct xe_reg_sr_entry *e1,
+ 	    e1->clr_bits & e2->set_bits || e1->set_bits & e2->clr_bits)
+ 		return false;
  
- 	gt->info.clock_freq = freq;
+-	if (e1->masked_reg != e2->masked_reg)
+-		return false;
+-
+-	if (e1->reg_type != e2->reg_type)
++	if (e1->reg.raw != e2->reg.raw)
+ 		return false;
+ 
+ 	return true;
+@@ -93,10 +90,10 @@ static void reg_sr_inc_error(struct xe_reg_sr *sr)
+ #endif
+ }
+ 
+-int xe_reg_sr_add(struct xe_reg_sr *sr, u32 reg,
++int xe_reg_sr_add(struct xe_reg_sr *sr, xe_reg_t reg,
+ 		  const struct xe_reg_sr_entry *e)
+ {
+-	unsigned long idx = reg;
++	unsigned long idx = reg.reg;
+ 	struct xe_reg_sr_entry *pentry = xa_load(&sr->xa, idx);
+ 	int ret;
+ 
+@@ -127,9 +124,11 @@ int xe_reg_sr_add(struct xe_reg_sr *sr, u32 reg,
+ 	return 0;
+ 
+ fail:
+-	DRM_ERROR("Discarding save-restore reg %04lx (clear: %08x, set: %08x, masked: %s): ret=%d\n",
++	DRM_ERROR("Discarding save-restore reg %04lx (clear: %08x, set: %08x, masked: %s, mcr: %s): ret=%d\n",
+ 		  idx, e->clr_bits, e->set_bits,
+-		  str_yes_no(e->masked_reg), ret);
++		  str_yes_no(e->reg.masked),
++		  str_yes_no(e->reg.mcr),
++		  ret);
+ 	reg_sr_inc_error(sr);
+ 
+ 	return ret;
+@@ -149,10 +148,10 @@ static void apply_one_mmio(struct xe_gt *gt, u32 reg,
+ 	 * When it's not masked, we have to read it from hardware, unless we are
+ 	 * supposed to set all bits.
+ 	 */
+-	if (entry->masked_reg)
++	if (entry->reg.masked)
+ 		val = (entry->clr_bits ?: entry->set_bits << 16);
+ 	else if (entry->clr_bits + 1)
+-		val = (entry->reg_type == XE_RTP_REG_MCR ?
++		val = (entry->reg.mcr ?
+ 		       xe_gt_mcr_unicast_read_any(gt, XE_REG_MCR(reg)) :
+ 		       xe_mmio_read32(gt, reg)) & (~entry->clr_bits);
+ 	else
+@@ -167,7 +166,7 @@ static void apply_one_mmio(struct xe_gt *gt, u32 reg,
+ 
+ 	drm_dbg(&xe->drm, "REG[0x%x] = 0x%08x", reg, val);
+ 
+-	if (entry->reg_type == XE_RTP_REG_MCR)
++	if (entry->reg.mcr)
+ 		xe_gt_mcr_multicast_write(gt, XE_REG_MCR(reg), val);
+ 	else
+ 		xe_mmio_write32(gt, reg, val);
+@@ -259,6 +258,6 @@ void xe_reg_sr_dump(struct xe_reg_sr *sr, struct drm_printer *p)
+ 	xa_for_each(&sr->xa, reg, entry)
+ 		drm_printf(p, "\tREG[0x%lx] clr=0x%08x set=0x%08x masked=%s mcr=%s\n",
+ 			   reg, entry->clr_bits, entry->set_bits,
+-			   str_yes_no(entry->masked_reg),
+-			   str_yes_no(entry->reg_type == XE_RTP_REG_MCR));
++			   str_yes_no(entry->reg.masked),
++			   str_yes_no(entry->reg.mcr));
+ }
+diff --git a/drivers/gpu/drm/xe/xe_reg_sr.h b/drivers/gpu/drm/xe/xe_reg_sr.h
+index 3af369089faa..2bdea4d119fe 100644
+--- a/drivers/gpu/drm/xe/xe_reg_sr.h
++++ b/drivers/gpu/drm/xe/xe_reg_sr.h
+@@ -6,6 +6,7 @@
+ #ifndef _XE_REG_SR_
+ #define _XE_REG_SR_
+ 
++#include "regs/xe_reg_defs.h"
+ #include "xe_reg_sr_types.h"
+ 
+ /*
+@@ -19,7 +20,7 @@ struct drm_printer;
+ int xe_reg_sr_init(struct xe_reg_sr *sr, const char *name, struct xe_device *xe);
+ void xe_reg_sr_dump(struct xe_reg_sr *sr, struct drm_printer *p);
+ 
+-int xe_reg_sr_add(struct xe_reg_sr *sr, u32 reg,
++int xe_reg_sr_add(struct xe_reg_sr *sr, xe_reg_t reg,
+ 		  const struct xe_reg_sr_entry *e);
+ void xe_reg_sr_apply_mmio(struct xe_reg_sr *sr, struct xe_gt *gt);
+ void xe_reg_sr_apply_whitelist(struct xe_reg_sr *sr, u32 mmio_base,
+diff --git a/drivers/gpu/drm/xe/xe_reg_sr_types.h b/drivers/gpu/drm/xe/xe_reg_sr_types.h
+index 91469784fd90..eefbe20c0a22 100644
+--- a/drivers/gpu/drm/xe/xe_reg_sr_types.h
++++ b/drivers/gpu/drm/xe/xe_reg_sr_types.h
+@@ -9,18 +9,14 @@
+ #include <linux/types.h>
+ #include <linux/xarray.h>
+ 
++#include "regs/xe_reg_defs.h"
++
+ struct xe_reg_sr_entry {
++	xe_reg_t	reg;
+ 	u32		clr_bits;
+ 	u32		set_bits;
+ 	/* Mask for bits to consider when reading value back */
+ 	u32		read_mask;
+-	/*
+-	 * "Masked registers" are marked in spec as register with the upper 16
+-	 * bits as a mask for the bits that is being updated on the lower 16
+-	 * bits when writing to it.
+-	 */
+-	u8		masked_reg;
+-	u8		reg_type;
+ };
+ 
+ struct xe_reg_sr {
+diff --git a/drivers/gpu/drm/xe/xe_reg_whitelist.c b/drivers/gpu/drm/xe/xe_reg_whitelist.c
+index 310d5dfe30d5..e3e71b6060b2 100644
+--- a/drivers/gpu/drm/xe/xe_reg_whitelist.c
++++ b/drivers/gpu/drm/xe/xe_reg_whitelist.c
+@@ -11,11 +11,6 @@
+ #include "xe_platform_types.h"
+ #include "xe_rtp.h"
+ 
+-#undef XE_REG
+-#undef XE_REG_MCR
+-#define XE_REG(x, ...)		_XE_RTP_REG(x)
+-#define XE_REG_MCR(x, ...)	_XE_RTP_MCR_REG(x)
+-
+ static bool match_not_render(const struct xe_gt *gt,
+ 			     const struct xe_hw_engine *hwe)
+ {
+diff --git a/drivers/gpu/drm/xe/xe_rtp.c b/drivers/gpu/drm/xe/xe_rtp.c
+index 20acd43cb60b..b8c406b937df 100644
+--- a/drivers/gpu/drm/xe/xe_rtp.c
++++ b/drivers/gpu/drm/xe/xe_rtp.c
+@@ -94,15 +94,16 @@ static void rtp_add_sr_entry(const struct xe_rtp_action *action,
+ 			     u32 mmio_base,
+ 			     struct xe_reg_sr *sr)
+ {
+-	u32 reg = action->reg + mmio_base;
++	xe_reg_t reg = action->reg;
+ 	struct xe_reg_sr_entry sr_entry = {
+ 		.clr_bits = action->clr_bits,
+ 		.set_bits = action->set_bits,
+ 		.read_mask = action->read_mask,
+-		.masked_reg = action->flags & XE_RTP_ACTION_FLAG_MASKED_REG,
+-		.reg_type = action->reg_type,
+ 	};
+ 
++	reg.reg += mmio_base;
++	sr_entry.reg = reg;
++
+ 	xe_reg_sr_add(sr, reg, &sr_entry);
+ }
+ 
+diff --git a/drivers/gpu/drm/xe/xe_rtp.h b/drivers/gpu/drm/xe/xe_rtp.h
+index 9148f32baa02..ca458e4b0d3c 100644
+--- a/drivers/gpu/drm/xe/xe_rtp.h
++++ b/drivers/gpu/drm/xe/xe_rtp.h
+@@ -42,8 +42,8 @@ struct xe_reg_sr;
+ #define __XE_PASTE_3(prefix_, sep_, args_) prefix_(_XE_FIRST args_) __XE_PASTE_SEP_ ## sep_ __XE_PASTE_2(prefix_, sep_, _XE_TUPLE_TAIL args_)
+ #define __XE_PASTE_4(prefix_, sep_, args_) prefix_(_XE_FIRST args_) __XE_PASTE_SEP_ ## sep_ __XE_PASTE_3(prefix_, sep_, _XE_TUPLE_TAIL args_)
+ 
+-#define _XE_RTP_REG(x_)		(x_), XE_RTP_REG_REGULAR
+-#define _XE_RTP_MCR_REG(x_)	(x_), XE_RTP_REG_MCR
++#define _XE_DROP_FIRST(x_, ...)	__VA_ARGS__
++#define _XE_DROP_CAST(...)	_XE_ESC(_XE_DROP_FIRST _XE_ESC __VA_ARGS__)
+ 
+ /*
+  * Helper macros for concatenating prefix - do not use them directly outside
+@@ -196,7 +196,6 @@ struct xe_reg_sr;
+  * XE_RTP_ACTION_WR - Helper to write a value to the register, overriding all
+  *                    the bits
+  * @reg_: Register
+- * @reg_type_: Register type - automatically expanded by XE_REG
+  * @val_: Value to set
+  * @...: Additional fields to override in the struct xe_rtp_action entry
+  *
+@@ -204,15 +203,14 @@ struct xe_reg_sr;
+  *
+  *	REGNAME = VALUE
+  */
+-#define XE_RTP_ACTION_WR(reg_, reg_type_, val_, ...)				\
+-	{ .reg = (reg_), .reg_type = (reg_type_),				\
++#define XE_RTP_ACTION_WR(reg_, val_, ...)					\
++	{ .reg = _XE_DROP_CAST(reg_),							\
+ 	  .clr_bits = ~0u, .set_bits = (val_),					\
+ 	  .read_mask = (~0u), ##__VA_ARGS__ }
+ 
+ /**
+  * XE_RTP_ACTION_SET - Set bits from @val_ in the register.
+  * @reg_: Register
+- * @reg_type_: Register type - automatically expanded by XE_REG
+  * @val_: Bits to set in the register
+  * @...: Additional fields to override in the struct xe_rtp_action entry
+  *
+@@ -223,15 +221,14 @@ struct xe_reg_sr;
+  *	REGNAME[2] = 1
+  *	REGNAME[5] = 1
+  */
+-#define XE_RTP_ACTION_SET(reg_, reg_type_, val_, ...)				\
+-	{ .reg = (reg_), .reg_type = (reg_type_),				\
+-	  .clr_bits = (val_), .set_bits = (val_),				\
+-	  .read_mask = (val_), ##__VA_ARGS__ }
++#define XE_RTP_ACTION_SET(reg_, val_, ...)					\
++	{ .reg = _XE_DROP_CAST(reg_),							\
++	  .clr_bits = val_, .set_bits = val_,					\
++	  .read_mask = val_, ##__VA_ARGS__ }
+ 
+ /**
+  * XE_RTP_ACTION_CLR: Clear bits from @val_ in the register.
+  * @reg_: Register
+- * @reg_type_: Register type - automatically expanded by XE_REG
+  * @val_: Bits to clear in the register
+  * @...: Additional fields to override in the struct xe_rtp_action entry
+  *
+@@ -242,15 +239,14 @@ struct xe_reg_sr;
+  *	REGNAME[2] = 0
+  *	REGNAME[5] = 0
+  */
+-#define XE_RTP_ACTION_CLR(reg_, reg_type_, val_, ...)				\
+-	{ .reg = (reg_), .reg_type = (reg_type_),				\
+-	  .clr_bits = (val_), .set_bits = 0,					\
+-	  .read_mask = (val_), ##__VA_ARGS__ }
++#define XE_RTP_ACTION_CLR(reg_, val_, ...)					\
++	{ .reg = _XE_DROP_CAST(reg_),							\
++	  .clr_bits = val_, .set_bits = 0,					\
++	  .read_mask = val_, ##__VA_ARGS__ }
+ 
+ /**
+  * XE_RTP_ACTION_FIELD_SET: Set a bit range
+  * @reg_: Register
+- * @reg_type_: Register type - automatically expanded by XE_REG
+  * @mask_bits_: Mask of bits to be changed in the register, forming a field
+  * @val_: Value to set in the field denoted by @mask_bits_
+  * @...: Additional fields to override in the struct xe_rtp_action entry
+@@ -260,29 +256,29 @@ struct xe_reg_sr;
+  *
+  *	REGNAME[<end>:<start>] = VALUE
+  */
+-#define XE_RTP_ACTION_FIELD_SET(reg_, reg_type_, mask_bits_, val_, ...)		\
+-	{ .reg = (reg_), .reg_type = (reg_type_),				\
+-	  .clr_bits = (mask_bits_), .set_bits = (val_),				\
+-	  .read_mask = (mask_bits_), ##__VA_ARGS__ }
++#define XE_RTP_ACTION_FIELD_SET(reg_, mask_bits_, val_, ...)			\
++	{ .reg = _XE_DROP_CAST(reg_),							\
++	  .clr_bits = mask_bits_, .set_bits = val_,				\
++	  .read_mask = mask_bits_, ##__VA_ARGS__ }
+ 
+-#define XE_RTP_ACTION_FIELD_SET_NO_READ_MASK(reg_, reg_type_, mask_bits_, val_, ...)	\
+-	{ .reg = (reg_), .reg_type = (reg_type_),				\
++#define XE_RTP_ACTION_FIELD_SET_NO_READ_MASK(reg_, mask_bits_, val_, ...)	\
++	{ .reg = _XE_DROP_CAST(reg_),							\
+ 	  .clr_bits = (mask_bits_), .set_bits = (val_),				\
+ 	  .read_mask = 0, ##__VA_ARGS__ }
+ 
+ /**
+  * XE_RTP_ACTION_WHITELIST - Add register to userspace whitelist
+  * @reg_: Register
+- * @reg_type_: Register type - automatically expanded by XE_REG
+  * @val_: Whitelist-specific flags to set
+  * @...: Additional fields to override in the struct xe_rtp_action entry
+  *
+  * Add a register to the whitelist, allowing userspace to modify the ster with
+  * regular user privileges.
+  */
+-#define XE_RTP_ACTION_WHITELIST(reg_, reg_type_, val_, ...)			\
++#define XE_RTP_ACTION_WHITELIST(reg_, val_, ...)				\
+ 	/* TODO fail build if ((flags) & ~(RING_FORCE_TO_NONPRIV_MASK_VALID)) */\
+-	{ .reg = (reg_), .reg_type = (reg_type_), .set_bits = (val_),		\
++	{ .reg = _XE_DROP_CAST(reg_),							\
++	  .set_bits = val_,							\
+ 	  .clr_bits = RING_FORCE_TO_NONPRIV_MASK_VALID,				\
+ 	  ##__VA_ARGS__ }
+ 
+diff --git a/drivers/gpu/drm/xe/xe_rtp_types.h b/drivers/gpu/drm/xe/xe_rtp_types.h
+index e87f1b280d96..4ad6b5453992 100644
+--- a/drivers/gpu/drm/xe/xe_rtp_types.h
++++ b/drivers/gpu/drm/xe/xe_rtp_types.h
+@@ -8,14 +8,11 @@
+ 
+ #include <linux/types.h>
+ 
++#include "regs/xe_reg_defs.h"
++
+ struct xe_hw_engine;
+ struct xe_gt;
+ 
+-enum {
+-	XE_RTP_REG_REGULAR,
+-	XE_RTP_REG_MCR,
+-};
+-
+ /**
+  * struct xe_rtp_action - action to take for any matching rule
+  *
+@@ -24,7 +21,7 @@ enum {
+  */
+ struct xe_rtp_action {
+ 	/** @reg: Register */
+-	u32		reg;
++	xe_reg_t	reg;
+ 	/** @clr_bits: bits to clear when updating register */
+ 	u32		clr_bits;
+ 	/** @set_bits: bits to set when updating register */
+@@ -32,12 +29,9 @@ struct xe_rtp_action {
+ #define XE_RTP_NOCHECK		.read_mask = 0
+ 	/** @read_mask: mask for bits to consider when reading value back */
+ 	u32		read_mask;
+-#define XE_RTP_ACTION_FLAG_MASKED_REG		BIT(0)
+-#define XE_RTP_ACTION_FLAG_ENGINE_BASE		BIT(1)
++#define XE_RTP_ACTION_FLAG_ENGINE_BASE		BIT(0)
+ 	/** @flags: flags to apply on rule evaluation or action */
+ 	u8		flags;
+-	/** @reg_type: register type, see ``XE_RTP_REG_*`` */
+-	u8		reg_type;
+ };
+ 
+ enum {
+diff --git a/drivers/gpu/drm/xe/xe_tuning.c b/drivers/gpu/drm/xe/xe_tuning.c
+index f6eefa951175..041593387efc 100644
+--- a/drivers/gpu/drm/xe/xe_tuning.c
++++ b/drivers/gpu/drm/xe/xe_tuning.c
+@@ -12,11 +12,6 @@
+ #include "xe_platform_types.h"
+ #include "xe_rtp.h"
+ 
+-#undef XE_REG
+-#undef XE_REG_MCR
+-#define XE_REG(x, ...)		_XE_RTP_REG(x)
+-#define XE_REG_MCR(x, ...)	_XE_RTP_MCR_REG(x)
+-
+ static const struct xe_rtp_entry gt_tunings[] = {
+ 	{ XE_RTP_NAME("Tuning: Blend Fill Caching Optimization Disable"),
+ 	  XE_RTP_RULES(PLATFORM(DG2)),
+@@ -54,8 +49,7 @@ static const struct xe_rtp_entry lrc_tunings[] = {
+ 	},
+ 	{ XE_RTP_NAME("Tuning: TBIMR fast clip"),
+ 	  XE_RTP_RULES(PLATFORM(DG2)),
+-	  XE_RTP_ACTIONS(SET(CHICKEN_RASTER_2, TBIMR_FAST_CLIP,
+-			     XE_RTP_ACTION_FLAG(MASKED_REG)))
++	  XE_RTP_ACTIONS(SET(CHICKEN_RASTER_2, TBIMR_FAST_CLIP))
+ 	},
+ 	{}
+ };
+diff --git a/drivers/gpu/drm/xe/xe_wa.c b/drivers/gpu/drm/xe/xe_wa.c
+index b7dc71f63c8a..21ef74873553 100644
+--- a/drivers/gpu/drm/xe/xe_wa.c
++++ b/drivers/gpu/drm/xe/xe_wa.c
+@@ -87,11 +87,6 @@
+  *    a more declarative approach rather than procedural.
+  */
+ 
+-#undef XE_REG
+-#undef XE_REG_MCR
+-#define XE_REG(x, ...)		_XE_RTP_REG(x)
+-#define XE_REG_MCR(x, ...)	_XE_RTP_MCR_REG(x)
+-
+ __diag_push();
+ __diag_ignore_all("-Woverride-init", "Allow field overrides in table");
+ 
+@@ -232,8 +227,7 @@ static const struct xe_rtp_entry gt_was[] = {
+ 	},
+ 	{ XE_RTP_NAME("16016694945"),
+ 	  XE_RTP_RULES(PLATFORM(PVC)),
+-	  XE_RTP_ACTIONS(SET(XEHPC_LNCFMISCCFGREG0, XEHPC_OVRLSCCC,
+-			     XE_RTP_ACTION_FLAG(MASKED_REG)))
++	  XE_RTP_ACTIONS(SET(XEHPC_LNCFMISCCFGREG0, XEHPC_OVRLSCCC))
+ 	},
+ 	{}
+ };
+@@ -248,36 +242,30 @@ static const struct xe_rtp_entry engine_was[] = {
+ 	  XE_RTP_RULES(GRAPHICS_VERSION(1200),
+ 		       ENGINE_CLASS(RENDER),
+ 		       IS_INTEGRATED),
+-	  XE_RTP_ACTIONS(SET(ROW_CHICKEN2, PUSH_CONST_DEREF_HOLD_DIS,
+-			     XE_RTP_ACTION_FLAG(MASKED_REG)))
++	  XE_RTP_ACTIONS(SET(ROW_CHICKEN2, PUSH_CONST_DEREF_HOLD_DIS))
+ 	},
+ 	{ XE_RTP_NAME("14010229206, 1409085225"),
+ 	  XE_RTP_RULES(GRAPHICS_VERSION(1200),
+ 		       ENGINE_CLASS(RENDER),
+ 		       IS_INTEGRATED),
+-	  XE_RTP_ACTIONS(SET(ROW_CHICKEN4, DISABLE_TDL_PUSH,
+-			     XE_RTP_ACTION_FLAG(MASKED_REG)))
++	  XE_RTP_ACTIONS(SET(ROW_CHICKEN4, DISABLE_TDL_PUSH))
+ 	},
+ 	{ XE_RTP_NAME("1606931601"),
+ 	  XE_RTP_RULES(GRAPHICS_VERSION_RANGE(1200, 1210), ENGINE_CLASS(RENDER)),
+-	  XE_RTP_ACTIONS(SET(ROW_CHICKEN2, DISABLE_EARLY_READ,
+-			     XE_RTP_ACTION_FLAG(MASKED_REG)))
++	  XE_RTP_ACTIONS(SET(ROW_CHICKEN2, DISABLE_EARLY_READ))
+ 	},
+ 	{ XE_RTP_NAME("14010826681, 1606700617, 22010271021, 18019627453"),
+ 	  XE_RTP_RULES(GRAPHICS_VERSION_RANGE(1200, 1255), ENGINE_CLASS(RENDER)),
+-	  XE_RTP_ACTIONS(SET(CS_DEBUG_MODE1, FF_DOP_CLOCK_GATE_DISABLE,
+-			     XE_RTP_ACTION_FLAG(MASKED_REG)))
++	  XE_RTP_ACTIONS(SET(CS_DEBUG_MODE1, FF_DOP_CLOCK_GATE_DISABLE))
+ 	},
+ 	{ XE_RTP_NAME("1406941453"),
+ 	  XE_RTP_RULES(GRAPHICS_VERSION_RANGE(1200, 1210), ENGINE_CLASS(RENDER)),
+-	  XE_RTP_ACTIONS(SET(SAMPLER_MODE, ENABLE_SMALLPL,
+-			     XE_RTP_ACTION_FLAG(MASKED_REG)))
++	  XE_RTP_ACTIONS(SET(SAMPLER_MODE, ENABLE_SMALLPL))
+ 	},
+ 	{ XE_RTP_NAME("FtrPerCtxtPreemptionGranularityControl"),
+ 	  XE_RTP_RULES(GRAPHICS_VERSION_RANGE(1200, 1250), ENGINE_CLASS(RENDER)),
+ 	  XE_RTP_ACTIONS(SET(FF_SLICE_CS_CHICKEN1,
+-			     FFSC_PERCTX_PREEMPT_CTRL,
+-			     XE_RTP_ACTION_FLAG(MASKED_REG)))
++			     FFSC_PERCTX_PREEMPT_CTRL))
+ 	},
+ 
+ 	/* TGL */
+@@ -286,8 +274,7 @@ static const struct xe_rtp_entry engine_was[] = {
+ 	  XE_RTP_RULES(PLATFORM(TIGERLAKE), ENGINE_CLASS(RENDER)),
+ 	  XE_RTP_ACTIONS(SET(RING_PSMI_CTL(RENDER_RING_BASE),
+ 			     WAIT_FOR_EVENT_POWER_DOWN_DISABLE |
+-			     RC_SEMA_IDLE_MSG_DISABLE,
+-			     XE_RTP_ACTION_FLAG(MASKED_REG)))
++			     RC_SEMA_IDLE_MSG_DISABLE))
+ 	},
+ 
+ 	/* RKL */
+@@ -296,8 +283,7 @@ static const struct xe_rtp_entry engine_was[] = {
+ 	  XE_RTP_RULES(PLATFORM(ROCKETLAKE), ENGINE_CLASS(RENDER)),
+ 	  XE_RTP_ACTIONS(SET(RING_PSMI_CTL(RENDER_RING_BASE),
+ 			     WAIT_FOR_EVENT_POWER_DOWN_DISABLE |
+-			     RC_SEMA_IDLE_MSG_DISABLE,
+-			     XE_RTP_ACTION_FLAG(MASKED_REG)))
++			     RC_SEMA_IDLE_MSG_DISABLE))
+ 	},
+ 
+ 	/* ADL-P */
+@@ -306,8 +292,7 @@ static const struct xe_rtp_entry engine_was[] = {
+ 	  XE_RTP_RULES(PLATFORM(ALDERLAKE_P), ENGINE_CLASS(RENDER)),
+ 	  XE_RTP_ACTIONS(SET(RING_PSMI_CTL(RENDER_RING_BASE),
+ 			     WAIT_FOR_EVENT_POWER_DOWN_DISABLE |
+-			     RC_SEMA_IDLE_MSG_DISABLE,
+-			     XE_RTP_ACTION_FLAG(MASKED_REG)))
++			     RC_SEMA_IDLE_MSG_DISABLE))
+ 	},
+ 
+ 	/* DG2 */
+@@ -324,8 +309,7 @@ static const struct xe_rtp_entry engine_was[] = {
+ 	{ XE_RTP_NAME("18017747507"),
+ 	  XE_RTP_RULES(PLATFORM(DG2), FUNC(xe_rtp_match_first_render_or_compute)),
+ 	  XE_RTP_ACTIONS(SET(VFG_PREEMPTION_CHICKEN,
+-			     POLYGON_TRIFAN_LINELOOP_DISABLE,
+-			     XE_RTP_ACTION_FLAG(MASKED_REG)))
++			     POLYGON_TRIFAN_LINELOOP_DISABLE))
+ 	},
+ 	{ XE_RTP_NAME("22012826095, 22013059131"),
+ 	  XE_RTP_RULES(SUBPLATFORM(DG2, G10), STEP(B0, C0),
+@@ -366,15 +350,13 @@ static const struct xe_rtp_entry engine_was[] = {
+ 	{ XE_RTP_NAME("14015227452"),
+ 	  XE_RTP_RULES(PLATFORM(DG2),
+ 		       FUNC(xe_rtp_match_first_render_or_compute)),
+-	  XE_RTP_ACTIONS(SET(ROW_CHICKEN4, XEHP_DIS_BBL_SYSPIPE,
+-			     XE_RTP_ACTION_FLAG(MASKED_REG)))
++	  XE_RTP_ACTIONS(SET(ROW_CHICKEN4, XEHP_DIS_BBL_SYSPIPE))
+ 	},
+ 	{ XE_RTP_NAME("16015675438"),
+ 	  XE_RTP_RULES(PLATFORM(DG2),
+ 		       FUNC(xe_rtp_match_first_render_or_compute)),
+ 	  XE_RTP_ACTIONS(SET(FF_SLICE_CS_CHICKEN2,
+-			     PERF_FIX_BALANCING_CFE_DISABLE,
+-			     XE_RTP_ACTION_FLAG(MASKED_REG)))
++			     PERF_FIX_BALANCING_CFE_DISABLE))
+ 	},
+ 	{ XE_RTP_NAME("16011620976, 22015475538"),
+ 	  XE_RTP_RULES(PLATFORM(DG2),
+@@ -385,7 +367,6 @@ static const struct xe_rtp_entry engine_was[] = {
+ 	  XE_RTP_RULES(SUBPLATFORM(DG2, G10), STEP(A0, C0),
+ 		       FUNC(xe_rtp_match_first_render_or_compute)),
+ 	  XE_RTP_ACTIONS(SET(CACHE_MODE_SS, ENABLE_PREFETCH_INTO_IC,
+-			     XE_RTP_ACTION_FLAG(MASKED_REG),
+ 			     /*
+ 			      * Register can't be read back for verification on
+ 			      * DG2 due to Wa_14012342262
+@@ -396,7 +377,6 @@ static const struct xe_rtp_entry engine_was[] = {
+ 	  XE_RTP_RULES(SUBPLATFORM(DG2, G11),
+ 		       FUNC(xe_rtp_match_first_render_or_compute)),
+ 	  XE_RTP_ACTIONS(SET(CACHE_MODE_SS, ENABLE_PREFETCH_INTO_IC,
+-			     XE_RTP_ACTION_FLAG(MASKED_REG),
+ 			     /*
+ 			      * Register can't be read back for verification on
+ 			      * DG2 due to Wa_14012342262
+@@ -405,55 +385,46 @@ static const struct xe_rtp_entry engine_was[] = {
+ 	},
+ 	{ XE_RTP_NAME("1509727124"),
+ 	  XE_RTP_RULES(PLATFORM(DG2), ENGINE_CLASS(RENDER)),
+-	  XE_RTP_ACTIONS(SET(SAMPLER_MODE, SC_DISABLE_POWER_OPTIMIZATION_EBB,
+-			     XE_RTP_ACTION_FLAG(MASKED_REG)))
++	  XE_RTP_ACTIONS(SET(SAMPLER_MODE, SC_DISABLE_POWER_OPTIMIZATION_EBB))
+ 	},
+ 	{ XE_RTP_NAME("22012856258"),
+ 	  XE_RTP_RULES(PLATFORM(DG2), ENGINE_CLASS(RENDER)),
+-	  XE_RTP_ACTIONS(SET(ROW_CHICKEN2, DISABLE_READ_SUPPRESSION,
+-			     XE_RTP_ACTION_FLAG(MASKED_REG)))
++	  XE_RTP_ACTIONS(SET(ROW_CHICKEN2, DISABLE_READ_SUPPRESSION))
+ 	},
+ 	{ XE_RTP_NAME("14013392000"),
+ 	  XE_RTP_RULES(SUBPLATFORM(DG2, G11), STEP(A0, B0), ENGINE_CLASS(RENDER)),
+-	  XE_RTP_ACTIONS(SET(ROW_CHICKEN2, ENABLE_LARGE_GRF_MODE,
+-			     XE_RTP_ACTION_FLAG(MASKED_REG)))
++	  XE_RTP_ACTIONS(SET(ROW_CHICKEN2, ENABLE_LARGE_GRF_MODE))
+ 	},
+ 	{ XE_RTP_NAME("14012419201"),
+ 	  XE_RTP_RULES(SUBPLATFORM(DG2, G10), STEP(A0, B0), ENGINE_CLASS(RENDER)),
+ 	  XE_RTP_ACTIONS(SET(ROW_CHICKEN4,
+-			     DISABLE_HDR_PAST_PAYLOAD_HOLD_FIX,
+-			     XE_RTP_ACTION_FLAG(MASKED_REG)))
++			     DISABLE_HDR_PAST_PAYLOAD_HOLD_FIX))
+ 	},
+ 	{ XE_RTP_NAME("14012419201"),
+ 	  XE_RTP_RULES(SUBPLATFORM(DG2, G11), STEP(A0, B0), ENGINE_CLASS(RENDER)),
+ 	  XE_RTP_ACTIONS(SET(ROW_CHICKEN4,
+-			     DISABLE_HDR_PAST_PAYLOAD_HOLD_FIX,
+-			     XE_RTP_ACTION_FLAG(MASKED_REG)))
++			     DISABLE_HDR_PAST_PAYLOAD_HOLD_FIX))
+ 	},
+ 	{ XE_RTP_NAME("1308578152"),
+ 	  XE_RTP_RULES(SUBPLATFORM(DG2, G10), STEP(B0, C0), ENGINE_CLASS(RENDER),
+ 		       FUNC(xe_rtp_match_first_gslice_fused_off)),
+ 	  XE_RTP_ACTIONS(CLR(CS_DEBUG_MODE1,
+-			     REPLAY_MODE_GRANULARITY,
+-			     XE_RTP_ACTION_FLAG(MASKED_REG)))
++			     REPLAY_MODE_GRANULARITY))
+ 	},
+ 	{ XE_RTP_NAME("22010960976, 14013347512"),
+ 	  XE_RTP_RULES(PLATFORM(DG2), ENGINE_CLASS(RENDER)),
+ 	  XE_RTP_ACTIONS(CLR(XEHP_HDC_CHICKEN0,
+-			     LSC_L1_FLUSH_CTL_3D_DATAPORT_FLUSH_EVENTS_MASK,
+-			     XE_RTP_ACTION_FLAG(MASKED_REG)))
++			     LSC_L1_FLUSH_CTL_3D_DATAPORT_FLUSH_EVENTS_MASK))
+ 	},
+ 	{ XE_RTP_NAME("1608949956, 14010198302"),
+ 	  XE_RTP_RULES(PLATFORM(DG2), ENGINE_CLASS(RENDER)),
+ 	  XE_RTP_ACTIONS(SET(ROW_CHICKEN,
+-			     MDQ_ARBITRATION_MODE | UGM_BACKUP_MODE,
+-			     XE_RTP_ACTION_FLAG(MASKED_REG)))
++			     MDQ_ARBITRATION_MODE | UGM_BACKUP_MODE))
+ 	},
+ 	{ XE_RTP_NAME("22010430635"),
+ 	  XE_RTP_RULES(SUBPLATFORM(DG2, G10), STEP(A0, B0), ENGINE_CLASS(RENDER)),
+ 	  XE_RTP_ACTIONS(SET(ROW_CHICKEN4,
+-			     DISABLE_GRF_CLEAR,
+-			     XE_RTP_ACTION_FLAG(MASKED_REG)))
++			     DISABLE_GRF_CLEAR))
+ 	},
+ 	{ XE_RTP_NAME("14013202645"),
+ 	  XE_RTP_RULES(SUBPLATFORM(DG2, G10), STEP(B0, C0), ENGINE_CLASS(RENDER)),
+@@ -466,21 +437,18 @@ static const struct xe_rtp_entry engine_was[] = {
+ 	{ XE_RTP_NAME("22012532006"),
+ 	  XE_RTP_RULES(SUBPLATFORM(DG2, G10), STEP(A0, C0), ENGINE_CLASS(RENDER)),
+ 	  XE_RTP_ACTIONS(SET(HALF_SLICE_CHICKEN7,
+-			     DG2_DISABLE_ROUND_ENABLE_ALLOW_FOR_SSLA,
+-			     XE_RTP_ACTION_FLAG(MASKED_REG)))
++			     DG2_DISABLE_ROUND_ENABLE_ALLOW_FOR_SSLA))
+ 	},
+ 	{ XE_RTP_NAME("22012532006"),
+ 	  XE_RTP_RULES(SUBPLATFORM(DG2, G11), STEP(A0, B0), ENGINE_CLASS(RENDER)),
+ 	  XE_RTP_ACTIONS(SET(HALF_SLICE_CHICKEN7,
+-			     DG2_DISABLE_ROUND_ENABLE_ALLOW_FOR_SSLA,
+-			     XE_RTP_ACTION_FLAG(MASKED_REG)))
++			     DG2_DISABLE_ROUND_ENABLE_ALLOW_FOR_SSLA))
+ 	},
+ 	{ XE_RTP_NAME("22014600077"),
+ 	  XE_RTP_RULES(SUBPLATFORM(DG2, G11), STEP(B0, FOREVER),
+ 		       ENGINE_CLASS(RENDER)),
+ 	  XE_RTP_ACTIONS(SET(CACHE_MODE_SS,
+ 			     ENABLE_EU_COUNT_FOR_TDL_FLUSH,
+-			     XE_RTP_ACTION_FLAG(MASKED_REG),
+ 			     /* 
+ 			      * Wa_14012342262 write-only reg, so skip
+ 			      * verification
+@@ -491,7 +459,6 @@ static const struct xe_rtp_entry engine_was[] = {
+ 	  XE_RTP_RULES(SUBPLATFORM(DG2, G10), ENGINE_CLASS(RENDER)),
+ 	  XE_RTP_ACTIONS(SET(CACHE_MODE_SS,
+ 			     ENABLE_EU_COUNT_FOR_TDL_FLUSH,
+-			     XE_RTP_ACTION_FLAG(MASKED_REG),
+ 			     /* 
+ 			      * Wa_14012342262 write-only reg, so skip
+ 			      * verification
+@@ -507,18 +474,15 @@ static const struct xe_rtp_entry engine_was[] = {
+ 	},
+ 	{ XE_RTP_NAME("14015227452"),
+ 	  XE_RTP_RULES(PLATFORM(PVC), FUNC(xe_rtp_match_first_render_or_compute)),
+-	  XE_RTP_ACTIONS(SET(ROW_CHICKEN4, XEHP_DIS_BBL_SYSPIPE,
+-			     XE_RTP_ACTION_FLAG(MASKED_REG)))
++	  XE_RTP_ACTIONS(SET(ROW_CHICKEN4, XEHP_DIS_BBL_SYSPIPE))
+ 	},
+ 	{ XE_RTP_NAME("16015675438"),
+ 	  XE_RTP_RULES(PLATFORM(PVC), FUNC(xe_rtp_match_first_render_or_compute)),
+-	  XE_RTP_ACTIONS(SET(FF_SLICE_CS_CHICKEN2, PERF_FIX_BALANCING_CFE_DISABLE,
+-			     XE_RTP_ACTION_FLAG(MASKED_REG)))
++	  XE_RTP_ACTIONS(SET(FF_SLICE_CS_CHICKEN2, PERF_FIX_BALANCING_CFE_DISABLE))
+ 	},
+ 	{ XE_RTP_NAME("14014999345"),
+ 	  XE_RTP_RULES(PLATFORM(PVC), ENGINE_CLASS(COMPUTE), STEP(B0, C0)),
+-	  XE_RTP_ACTIONS(SET(CACHE_MODE_SS, DISABLE_ECC,
+-			     XE_RTP_ACTION_FLAG(MASKED_REG)))
++	  XE_RTP_ACTIONS(SET(CACHE_MODE_SS, DISABLE_ECC))
+ 	},
+ 	{}
+ };
+@@ -527,25 +491,21 @@ static const struct xe_rtp_entry lrc_was[] = {
+ 	{ XE_RTP_NAME("1409342910, 14010698770, 14010443199, 1408979724, 1409178076, 1409207793, 1409217633, 1409252684, 1409347922, 1409142259"),
+ 	  XE_RTP_RULES(GRAPHICS_VERSION_RANGE(1200, 1210)),
+ 	  XE_RTP_ACTIONS(SET(COMMON_SLICE_CHICKEN3,
+-			     DISABLE_CPS_AWARE_COLOR_PIPE,
+-			     XE_RTP_ACTION_FLAG(MASKED_REG)))
++			     DISABLE_CPS_AWARE_COLOR_PIPE))
+ 	},
+ 	{ XE_RTP_NAME("WaDisableGPGPUMidThreadPreemption"),
+ 	  XE_RTP_RULES(GRAPHICS_VERSION_RANGE(1200, 1210)),
+ 	  XE_RTP_ACTIONS(FIELD_SET(CS_CHICKEN1,
+ 				   PREEMPT_GPGPU_LEVEL_MASK,
+-				   PREEMPT_GPGPU_THREAD_GROUP_LEVEL,
+-				   XE_RTP_ACTION_FLAG(MASKED_REG)))
++				   PREEMPT_GPGPU_THREAD_GROUP_LEVEL))
+ 	},
+ 	{ XE_RTP_NAME("1806527549"),
+ 	  XE_RTP_RULES(GRAPHICS_VERSION(1200)),
+-	  XE_RTP_ACTIONS(SET(HIZ_CHICKEN, HZ_DEPTH_TEST_LE_GE_OPT_DISABLE,
+-			     XE_RTP_ACTION_FLAG(MASKED_REG)))
++	  XE_RTP_ACTIONS(SET(HIZ_CHICKEN, HZ_DEPTH_TEST_LE_GE_OPT_DISABLE))
+ 	},
+ 	{ XE_RTP_NAME("1606376872"),
+ 	  XE_RTP_RULES(GRAPHICS_VERSION(1200)),
+-	  XE_RTP_ACTIONS(SET(COMMON_SLICE_CHICKEN4, DISABLE_TDC_LOAD_BALANCING_CALC,
+-			     XE_RTP_ACTION_FLAG(MASKED_REG)))
++	  XE_RTP_ACTIONS(SET(COMMON_SLICE_CHICKEN4, DISABLE_TDC_LOAD_BALANCING_CALC))
+ 	},
+ 
+ 	/* DG1 */
+@@ -553,65 +513,54 @@ static const struct xe_rtp_entry lrc_was[] = {
+ 	{ XE_RTP_NAME("1409044764"),
+ 	  XE_RTP_RULES(PLATFORM(DG1)),
+ 	  XE_RTP_ACTIONS(CLR(COMMON_SLICE_CHICKEN3,
+-			     DG1_FLOAT_POINT_BLEND_OPT_STRICT_MODE_EN,
+-			     XE_RTP_ACTION_FLAG(MASKED_REG)))
++			     DG1_FLOAT_POINT_BLEND_OPT_STRICT_MODE_EN))
+ 	},
+ 	{ XE_RTP_NAME("22010493298"),
+ 	  XE_RTP_RULES(PLATFORM(DG1)),
+ 	  XE_RTP_ACTIONS(SET(HIZ_CHICKEN,
+-			     DG1_HZ_READ_SUPPRESSION_OPTIMIZATION_DISABLE,
+-			     XE_RTP_ACTION_FLAG(MASKED_REG)))
++			     DG1_HZ_READ_SUPPRESSION_OPTIMIZATION_DISABLE))
+ 	},
+ 
+ 	/* DG2 */
+ 
+ 	{ XE_RTP_NAME("16011186671"),
+ 	  XE_RTP_RULES(SUBPLATFORM(DG2, G11), STEP(A0, B0)),
+-	  XE_RTP_ACTIONS(CLR(VFLSKPD, DIS_MULT_MISS_RD_SQUASH,
+-			     .flags = XE_RTP_ACTION_FLAG_MASKED_REG),
+-			 SET(VFLSKPD, DIS_OVER_FETCH_CACHE,
+-			     .flags = XE_RTP_ACTION_FLAG_MASKED_REG))
++	  XE_RTP_ACTIONS(CLR(VFLSKPD, DIS_MULT_MISS_RD_SQUASH),
++			 SET(VFLSKPD, DIS_OVER_FETCH_CACHE))
+ 	},
+ 	{ XE_RTP_NAME("14010469329"),
+ 	  XE_RTP_RULES(SUBPLATFORM(DG2, G10), STEP(A0, B0)),
+ 	  XE_RTP_ACTIONS(SET(XEHP_COMMON_SLICE_CHICKEN3,
+-			     XEHP_DUAL_SIMD8_SEQ_MERGE_DISABLE,
+-			     XE_RTP_ACTION_FLAG(MASKED_REG)))
++			     XEHP_DUAL_SIMD8_SEQ_MERGE_DISABLE))
+ 	},
+ 	{ XE_RTP_NAME("14010698770, 22010613112, 22010465075"),
+ 	  XE_RTP_RULES(SUBPLATFORM(DG2, G10), STEP(A0, B0)),
+ 	  XE_RTP_ACTIONS(SET(XEHP_COMMON_SLICE_CHICKEN3,
+-			     DISABLE_CPS_AWARE_COLOR_PIPE,
+-			     XE_RTP_ACTION_FLAG(MASKED_REG)))
++			     DISABLE_CPS_AWARE_COLOR_PIPE))
+ 	},
+ 	{ XE_RTP_NAME("16013271637"),
+ 	  XE_RTP_RULES(PLATFORM(DG2)),
+ 	  XE_RTP_ACTIONS(SET(XEHP_SLICE_COMMON_ECO_CHICKEN1,
+-			     MSC_MSAA_REODER_BUF_BYPASS_DISABLE,
+-			     XE_RTP_ACTION_FLAG(MASKED_REG)))
++			     MSC_MSAA_REODER_BUF_BYPASS_DISABLE))
+ 	},
+ 	{ XE_RTP_NAME("14014947963"),
+ 	  XE_RTP_RULES(PLATFORM(DG2)),
+ 	  XE_RTP_ACTIONS(FIELD_SET(VF_PREEMPTION,
+ 				   PREEMPTION_VERTEX_COUNT,
+-				   0x4000,
+-				   XE_RTP_ACTION_FLAG(MASKED_REG)))
++				   0x4000))
+ 	},
+ 	{ XE_RTP_NAME("18018764978"),
+ 	  XE_RTP_RULES(PLATFORM(DG2)),
+ 	  XE_RTP_ACTIONS(SET(XEHP_PSS_MODE2,
+-			     SCOREBOARD_STALL_FLUSH_CONTROL,
+-			     XE_RTP_ACTION_FLAG(MASKED_REG)))
++			     SCOREBOARD_STALL_FLUSH_CONTROL))
+ 	},
+ 	{ XE_RTP_NAME("15010599737"),
+ 	  XE_RTP_RULES(PLATFORM(DG2)),
+-	  XE_RTP_ACTIONS(SET(CHICKEN_RASTER_1, DIS_SF_ROUND_NEAREST_EVEN,
+-			     XE_RTP_ACTION_FLAG(MASKED_REG)))
++	  XE_RTP_ACTIONS(SET(CHICKEN_RASTER_1, DIS_SF_ROUND_NEAREST_EVEN))
+ 	},
+ 	{ XE_RTP_NAME("18019271663"),
+ 	  XE_RTP_RULES(PLATFORM(DG2)),
+-	  XE_RTP_ACTIONS(SET(CACHE_MODE_1, MSAA_OPTIMIZATION_REDUC_DISABLE,
+-			     XE_RTP_ACTION_FLAG(MASKED_REG)))
++	  XE_RTP_ACTIONS(SET(CACHE_MODE_1, MSAA_OPTIMIZATION_REDUC_DISABLE))
+ 	},
+ 	{}
+ };
 -- 
 2.39.0
 
