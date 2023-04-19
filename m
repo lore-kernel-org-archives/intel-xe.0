@@ -4,47 +4,30 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id A4A92C6FD18
-	for <intel-xe@archiver.kernel.org>; Wed, 19 Apr 2023 08:35:50 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 18CD9C77B78
+	for <intel-xe@archiver.kernel.org>; Wed, 19 Apr 2023 08:49:00 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7701410E15B;
-	Wed, 19 Apr 2023 08:35:50 +0000 (UTC)
-Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 817AE10E15B
- for <intel-xe@lists.freedesktop.org>; Wed, 19 Apr 2023 08:35:47 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1681893347; x=1713429347;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=s7I5frZCKEnbSyP1qWMoij1oY00Hcgt5NgaMsennpdw=;
- b=KIYrny819QxSXfU3hnKRVnR8w3XfVld6qbVswASPvmeI0YAiVQr6EKWo
- jtpJl04bBw/I/wLi0xZXh0yqmWb9QEVrKhZ9ZATO69THgA+jXtkPXzF88
- LlHDocj39y+6yGHCaqEc/qKqMsCNz3VFd9LFyqKs2P8jd5L3ygoBF72Fp
- NbVBvVA+gPk1fTMIZkbY18krcuKdSO4rY2BEA+U5CRnpOoqWQv5IgtJvd
- f4EenewNBmxwkGBvCa3EsJclASouBihZsWN9r6adnuRlRciYR+SZ3qYte
- JXffIO3WB56KlHfa2HUkmrzwMZN+oWktJvSJsJtiiBRFppEPmlMHk8qc1 Q==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10684"; a="325006498"
-X-IronPort-AV: E=Sophos;i="5.99,208,1677571200"; d="scan'208";a="325006498"
-Received: from orsmga001.jf.intel.com ([10.7.209.18])
- by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 19 Apr 2023 01:35:46 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10684"; a="723969000"
-X-IronPort-AV: E=Sophos;i="5.99,208,1677571200"; d="scan'208";a="723969000"
-Received: from cbellini-mobl.ger.corp.intel.com (HELO mwauld-desk1.intel.com)
- ([10.252.8.207])
- by orsmga001-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 19 Apr 2023 01:35:45 -0700
-From: Matthew Auld <matthew.auld@intel.com>
-To: intel-xe@lists.freedesktop.org
-Date: Wed, 19 Apr 2023 09:35:34 +0100
-Message-Id: <20230419083534.221869-1-matthew.auld@intel.com>
-X-Mailer: git-send-email 2.39.2
+	by gabe.freedesktop.org (Postfix) with ESMTP id CBD8A10E1A5;
+	Wed, 19 Apr 2023 08:48:59 +0000 (UTC)
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id AAA3110E1A5;
+ Wed, 19 Apr 2023 08:48:58 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id A35E7AADD5;
+ Wed, 19 Apr 2023 08:48:58 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============4475248253018496080=="
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-Subject: [Intel-xe] [PATCH v2] drm/xe/tlb: fix expected_seqno calculation
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Balasubramani Vivekanandan" <balasubramani.vivekanandan@intel.com>
+Date: Wed, 19 Apr 2023 08:48:58 -0000
+Message-ID: <168189413863.10529.655169615679613019@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20230419082113.8758-1-balasubramani.vivekanandan@intel.com>
+In-Reply-To: <20230419082113.8758-1-balasubramani.vivekanandan@intel.com>
+Subject: [Intel-xe] =?utf-8?q?=E2=97=8B_CI=2EBAT=3A_info_for_fixup!_drm/x?=
+ =?utf-8?q?e=3A_Select_graphics/media_descriptors_from_GMD=5FID?=
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -56,48 +39,70 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
+Cc: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-It looks like when tlb_invalidation.seqno overflows
-TLB_INVALIDATION_SEQNO_MAX, we start counting again from one, as per
-send_tlb_invalidation(). This is also inline with initial value we give
-it in xe_gt_tlb_invalidation_init().  When calculating the
-expected_seqno we should also take this into account.
+--===============4475248253018496080==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-While we are here also print out the values if we ever trigger the
-warning.
+== Series Details ==
 
-v2 (José):
-  - drm_WARN_ON() is preferred over plain WARN_ON(), since it gives
-    information on the originating device.
+Series: fixup! drm/xe: Select graphics/media descriptors from GMD_ID
+URL   : https://patchwork.freedesktop.org/series/116679/
+State : info
 
-Closes: https://gitlab.freedesktop.org/drm/xe/kernel/-/issues/248
-Signed-off-by: Matthew Auld <matthew.auld@intel.com>
-Cc: José Roberto de Souza <jose.souza@intel.com>
-Reviewed-by: José Roberto de Souza <jose.souza@intel.com>
----
- drivers/gpu/drm/xe/xe_gt_tlb_invalidation.c | 7 ++++++-
- 1 file changed, 6 insertions(+), 1 deletion(-)
+== Summary ==
 
-diff --git a/drivers/gpu/drm/xe/xe_gt_tlb_invalidation.c b/drivers/gpu/drm/xe/xe_gt_tlb_invalidation.c
-index f279e21300aa..604f189dbd70 100644
---- a/drivers/gpu/drm/xe/xe_gt_tlb_invalidation.c
-+++ b/drivers/gpu/drm/xe/xe_gt_tlb_invalidation.c
-@@ -319,7 +319,12 @@ int xe_guc_tlb_invalidation_done_handler(struct xe_guc *guc, u32 *msg, u32 len)
- 	/* Sanity check on seqno */
- 	expected_seqno = (gt->tlb_invalidation.seqno_recv + 1) %
- 		TLB_INVALIDATION_SEQNO_MAX;
--	XE_WARN_ON(expected_seqno != msg[0]);
-+	if (!expected_seqno)
-+		expected_seqno = 1;
-+	if (drm_WARN_ON(&gt->xe->drm, expected_seqno != msg[0])) {
-+		drm_err(&gt->xe->drm, "TLB expected_seqno(%d) != msg(%u)\n",
-+			expected_seqno, msg[0]);
-+	}
- 
- 	gt->tlb_invalidation.seqno_recv = msg[0];
- 	smp_wmb();
--- 
-2.39.2
+Participating hosts:
+bat-atsm-2
+bat-dg2-oem2
+bat-adlp-7
+Missing hosts results[1]:
+bat-adlp-7
+Results: [xe-pw-116679v1](https://intel-gfx-ci.01.org/tree/xe/xe-pw-116679v1/index.html)
 
+
+
+--===============4475248253018496080==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>fixup! drm/xe: Select graphics/media descriptors from GMD_ID</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/116679/">https://patchwork.freedesktop.org/series/116679/</a></td></tr>
+<tr><td><b>State:</b></td><td>info</td></tr>
+
+</table>
+
+
+    <p>Participating hosts:<br />
+bat-atsm-2<br />
+bat-dg2-oem2<br />
+bat-adlp-7<br />
+Missing hosts results[1]:<br />
+bat-adlp-7<br />
+Results: <a href="https://intel-gfx-ci.01.org/tree/xe/xe-pw-116679v1/index.html">xe-pw-116679v1</a></p>
+
+</body>
+</html>
+
+--===============4475248253018496080==--
