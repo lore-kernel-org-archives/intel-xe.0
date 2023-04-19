@@ -4,50 +4,50 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6858BC6FD18
-	for <intel-xe@archiver.kernel.org>; Wed, 19 Apr 2023 12:40:02 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 302ADC77B73
+	for <intel-xe@archiver.kernel.org>; Wed, 19 Apr 2023 12:40:06 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3FBDE10E972;
-	Wed, 19 Apr 2023 12:40:02 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 037DF10E96B;
+	Wed, 19 Apr 2023 12:40:06 +0000 (UTC)
 Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
- by gabe.freedesktop.org (Postfix) with ESMTPS id DB3DC10E972
- for <intel-xe@lists.freedesktop.org>; Wed, 19 Apr 2023 12:39:59 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 262A610E96B
+ for <intel-xe@lists.freedesktop.org>; Wed, 19 Apr 2023 12:40:04 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1681907999; x=1713443999;
+ t=1681908004; x=1713444004;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=bbRBmJdW+TxMmgdPUH609tVEAawaEWUiayN9M8T6hx8=;
- b=TGxcyB/rgjMSKdPILc5yLZpbJkJ34BoVXUULgd/nxoKAFh69Bxm7RZEC
- bJYwlt53SPLoxokiLaVWlCa4o7zlUNvF3SG9n4VlgPUbzMYVIWI+G3b06
- v+/ROUCyWuEFiUe5Vw+ShGxJnLcQGTx5Fzs2gZk4U/S4J7lfmhVJkvM1W
- ghtmj9tGev7CPGa4a2ol5MzTy9NlSjiEge0WYWoVd5+fOBG+WIEusC/Vi
- LrIgsDYM+ABm/bTtSEZXa6SmxCH7CDiWPs1zEaSZEYjC+fEkf5Ayawpxf
- U6XMMkTm1+HqcfWH7e0dg1rvnkCS6t9FrMJ4+kN+GxvaM2Z6Q4EW5uhpj g==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10685"; a="348189254"
-X-IronPort-AV: E=Sophos;i="5.99,208,1677571200"; d="scan'208";a="348189254"
-Received: from fmsmga002.fm.intel.com ([10.253.24.26])
+ bh=8yzU0GuKxlQLIEkCesfv9da8G8CKQgsEwz/kz0XCX0A=;
+ b=IPSax80HLEvf6WERfuTng6v048/ttdB8MO1yaPZamR0zPJQcSvG5Oxsn
+ zXal2b7ML103ZIle1fHw/Ci4t4S+BAdCz5Za/v3p19+z2TMFTw9GTFXXM
+ U7AmbiULaYbFRUpDlqXp1zmX2vTMrPCpuq7bcE7IR1lpgkXDJAayOmQfI
+ 07w0uK/ijV0JMt+fyDDyfWmDKPwvaxBbjYdhU5M1ErhHM91XX6nlhvL7H
+ ZHjlS2QIQJ6g/tNSnPiSyjXAOARrg4VsOCzfB2A51as7QHt2UOXFCV87J
+ 8737kSikFJFwgenGL45/8kQBXrSngGUv8KfGLG9I+elbKszbSCvRWQEeK Q==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10685"; a="348189317"
+X-IronPort-AV: E=Sophos;i="5.99,208,1677571200"; d="scan'208";a="348189317"
+Received: from fmsmga006.fm.intel.com ([10.253.24.20])
  by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 19 Apr 2023 05:39:59 -0700
+ 19 Apr 2023 05:40:03 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10685"; a="802909744"
-X-IronPort-AV: E=Sophos;i="5.99,208,1677571200"; d="scan'208";a="802909744"
+X-IronPort-AV: E=McAfee;i="6600,9927,10685"; a="937660142"
+X-IronPort-AV: E=Sophos;i="5.99,208,1677571200"; d="scan'208";a="937660142"
 Received: from yedidyal-mobl1.ger.corp.intel.com (HELO localhost)
  ([10.252.47.37])
- by fmsmga002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 19 Apr 2023 05:39:57 -0700
+ by fmsmga006-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 19 Apr 2023 05:40:01 -0700
 From: Jani Nikula <jani.nikula@intel.com>
 To: intel-xe@lists.freedesktop.org
-Date: Wed, 19 Apr 2023 15:39:39 +0300
-Message-Id: <20230419123947.543175-2-jani.nikula@intel.com>
+Date: Wed, 19 Apr 2023 15:39:40 +0300
+Message-Id: <20230419123947.543175-3-jani.nikula@intel.com>
 X-Mailer: git-send-email 2.39.2
 In-Reply-To: <20230419123947.543175-1-jani.nikula@intel.com>
 References: <20230419123947.543175-1-jani.nikula@intel.com>
 MIME-Version: 1.0
 Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-xe] [PATCH 1/9] fixup! drm/xe/display: Implement display
- support
+Subject: [Intel-xe] [PATCH 2/9] drm/i915/wm: remove stale and unused
+ ilk_wm_max_level() declaration
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -63,213 +63,27 @@ Cc: jani.nikula@intel.com, lucas.demarchi@intel.com, rodrigo.vivi@intel.com
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Build the i915 display object files in i915-display sub-directory, to
-increase clarity over what's coming from i915, and to simplify the rule
-to build the object files.
+The declaration was removed earlier, but got accidentally resurrected in
+i915xx_wm.[ch] refactoring. Remove harder.
 
 Signed-off-by: Jani Nikula <jani.nikula@intel.com>
+Link: https://patchwork.freedesktop.org/patch/msgid/20230419115449.422214-1-jani.nikula@intel.com
 ---
- drivers/gpu/drm/xe/Makefile | 165 +++++++++++++++++-------------------
- 1 file changed, 78 insertions(+), 87 deletions(-)
+ drivers/gpu/drm/i915/display/i9xx_wm.h | 1 -
+ 1 file changed, 1 deletion(-)
 
-diff --git a/drivers/gpu/drm/xe/Makefile b/drivers/gpu/drm/xe/Makefile
-index aceca651de57..9fa4aaad6b8f 100644
---- a/drivers/gpu/drm/xe/Makefile
-+++ b/drivers/gpu/drm/xe/Makefile
-@@ -105,100 +105,20 @@ subdir-ccflags-$(CONFIG_DRM_XE_DISPLAY) += \
- 	-Ddrm_i915_gem_object=xe_bo \
- 	-Ddrm_i915_private=xe_device
+diff --git a/drivers/gpu/drm/i915/display/i9xx_wm.h b/drivers/gpu/drm/i915/display/i9xx_wm.h
+index a7875cbcd05a..b87ae369685a 100644
+--- a/drivers/gpu/drm/i915/display/i9xx_wm.h
++++ b/drivers/gpu/drm/i915/display/i9xx_wm.h
+@@ -12,7 +12,6 @@ struct drm_i915_private;
+ struct intel_crtc_state;
+ struct intel_plane_state;
  
--CFLAGS_display/intel_fbdev.o = $(call cc-disable-warning, override-init)
-+CFLAGS_i915-display/intel_fbdev.o = $(call cc-disable-warning, override-init)
- 
--$(obj)/display/i915_%.o: $(srctree)/drivers/gpu/drm/i915/display/i915_%.c FORCE
-+# Rule to build display code shared with i915
-+$(obj)/i915-display/%.o: $(srctree)/drivers/gpu/drm/i915/display/%.c FORCE
- 	$(call cmd,force_checksrc)
- 	$(call if_changed_rule,cc_o_c)
- 
--
--$(obj)/display/skl_%.o: $(srctree)/drivers/gpu/drm/i915/display/skl_%.c FORCE
--	$(call cmd,force_checksrc)
--	$(call if_changed_rule,cc_o_c)
--
--$(obj)/display/icl_dsi.o: $(srctree)/drivers/gpu/drm/i915/display/icl_dsi.c FORCE
--	$(call cmd,force_checksrc)
--	$(call if_changed_rule,cc_o_c)
--
--$(obj)/display/intel_%.o: $(srctree)/drivers/gpu/drm/i915/display/intel_%.c FORCE
--	$(call cmd,force_checksrc)
--	$(call if_changed_rule,cc_o_c)
--
--# Display..
-+# Display code specific to xe
- xe-$(CONFIG_DRM_XE_DISPLAY) += \
- 	xe_display.o \
--	display/icl_dsi.o \
--	display/intel_atomic.o \
--	display/intel_atomic_plane.o \
--	display/intel_audio.o \
--	display/intel_backlight.o \
--	display/intel_bios.o \
--	display/intel_bw.o \
--	display/intel_cdclk.o \
--	display/intel_color.o \
--	display/intel_combo_phy.o \
--	display/intel_connector.o \
--	display/intel_crtc_state_dump.o \
--	display/intel_crtc.o \
--	display/intel_cursor.o \
--	display/intel_ddi_buf_trans.o \
--	display/intel_ddi.o \
--	display/intel_display.o \
--	display/intel_display_debugfs.o \
--	display/intel_display_power.o \
--	display/intel_display_power_map.o \
--	display/intel_display_power_well.o \
--	display/intel_display_trace.o \
--	display/intel_dkl_phy.o \
--	display/intel_dmc.o \
--	display/intel_dp_aux_backlight.o \
--	display/intel_dp_aux.o \
--	display/intel_dp.o \
--	display/intel_dp_hdcp.o \
--	display/intel_dp_link_training.o \
--	display/intel_dp_mst.o \
--	display/intel_dpll.o \
--	display/intel_dpll_mgr.o \
--	display/intel_dpt.o \
--	display/intel_drrs.o \
--	display/intel_dsb.o \
--	display/intel_dsi.o \
--	display/intel_dsi_dcs_backlight.o \
--	display/intel_dsi_vbt.o \
--	display/intel_fb.o \
--	display/intel_fbc.o \
--	display/intel_fdi.o \
--	display/intel_fifo_underrun.o \
--	display/intel_frontbuffer.o \
--	display/intel_global_state.o \
--	display/intel_gmbus.o \
--	display/intel_hdcp.o \
--	display/intel_hdmi.o \
--	display/intel_hotplug.o \
--	display/intel_hti.o \
--	display/intel_lspcon.o \
--	display/intel_modeset_setup.o \
--	display/intel_modeset_verify.o \
--	display/intel_panel.o \
--	display/intel_pipe_crc.o \
--	display/intel_pps.o \
--	display/intel_psr.o \
--	display/intel_qp_tables.o \
--	display/intel_quirks.o \
--	display/intel_snps_phy.o \
--	display/intel_tc.o \
--	display/intel_vblank.o \
--	display/intel_vdsc.o \
--	display/intel_vga.o \
--	display/intel_vrr.o \
--	display/intel_wm.o \
- 	display/xe_fb_pin.o \
- 	display/xe_hdcp_gsc.o \
- 	display/xe_plane_initial.o \
- 	display/xe_display_rps.o \
--	display/skl_scaler.o \
--	display/skl_universal_plane.o \
--	display/skl_watermark.o \
- 	display/ext/i915_irq.o \
- 	display/ext/i9xx_wm.o \
- 	display/ext/intel_device_info.o \
-@@ -206,14 +126,85 @@ xe-$(CONFIG_DRM_XE_DISPLAY) += \
- 	display/ext/intel_pch.o \
- 	display/ext/intel_pm.o
- 
-+# Display code shared with i915
-+xe-$(CONFIG_DRM_XE_DISPLAY) += \
-+	i915-display/icl_dsi.o \
-+	i915-display/intel_atomic.o \
-+	i915-display/intel_atomic_plane.o \
-+	i915-display/intel_audio.o \
-+	i915-display/intel_backlight.o \
-+	i915-display/intel_bios.o \
-+	i915-display/intel_bw.o \
-+	i915-display/intel_cdclk.o \
-+	i915-display/intel_color.o \
-+	i915-display/intel_combo_phy.o \
-+	i915-display/intel_connector.o \
-+	i915-display/intel_crtc.o \
-+	i915-display/intel_crtc_state_dump.o \
-+	i915-display/intel_cursor.o \
-+	i915-display/intel_ddi.o \
-+	i915-display/intel_ddi_buf_trans.o \
-+	i915-display/intel_display.o \
-+	i915-display/intel_display_debugfs.o \
-+	i915-display/intel_display_power.o \
-+	i915-display/intel_display_power_map.o \
-+	i915-display/intel_display_power_well.o \
-+	i915-display/intel_display_trace.o \
-+	i915-display/intel_dkl_phy.o \
-+	i915-display/intel_dmc.o \
-+	i915-display/intel_dp.o \
-+	i915-display/intel_dp_aux.o \
-+	i915-display/intel_dp_aux_backlight.o \
-+	i915-display/intel_dp_hdcp.o \
-+	i915-display/intel_dp_link_training.o \
-+	i915-display/intel_dp_mst.o \
-+	i915-display/intel_dpll.o \
-+	i915-display/intel_dpll_mgr.o \
-+	i915-display/intel_dpt.o \
-+	i915-display/intel_drrs.o \
-+	i915-display/intel_dsb.o \
-+	i915-display/intel_dsi.o \
-+	i915-display/intel_dsi_dcs_backlight.o \
-+	i915-display/intel_dsi_vbt.o \
-+	i915-display/intel_fb.o \
-+	i915-display/intel_fbc.o \
-+	i915-display/intel_fdi.o \
-+	i915-display/intel_fifo_underrun.o \
-+	i915-display/intel_frontbuffer.o \
-+	i915-display/intel_global_state.o \
-+	i915-display/intel_gmbus.o \
-+	i915-display/intel_hdcp.o \
-+	i915-display/intel_hdmi.o \
-+	i915-display/intel_hotplug.o \
-+	i915-display/intel_hti.o \
-+	i915-display/intel_lspcon.o \
-+	i915-display/intel_modeset_setup.o \
-+	i915-display/intel_modeset_verify.o \
-+	i915-display/intel_panel.o \
-+	i915-display/intel_pipe_crc.o \
-+	i915-display/intel_pps.o \
-+	i915-display/intel_psr.o \
-+	i915-display/intel_qp_tables.o \
-+	i915-display/intel_quirks.o \
-+	i915-display/intel_snps_phy.o \
-+	i915-display/intel_tc.o \
-+	i915-display/intel_vblank.o \
-+	i915-display/intel_vdsc.o \
-+	i915-display/intel_vga.o \
-+	i915-display/intel_vrr.o \
-+	i915-display/intel_wm.o \
-+	i915-display/skl_scaler.o \
-+	i915-display/skl_universal_plane.o \
-+	i915-display/skl_watermark.o
-+
- ifeq ($(CONFIG_ACPI),y)
- 	xe-$(CONFIG_DRM_XE_DISPLAY) += \
--		display/intel_acpi.o \
--		display/intel_opregion.o
-+		i915-display/intel_acpi.o \
-+		i915-display/intel_opregion.o
- endif
- 
- ifeq ($(CONFIG_DRM_FBDEV_EMULATION),y)
--	xe-$(CONFIG_DRM_XE_DISPLAY) += display/intel_fbdev.o
-+	xe-$(CONFIG_DRM_XE_DISPLAY) += i915-display/intel_fbdev.o
- endif
- 
- obj-$(CONFIG_DRM_XE) += xe.o
+-int ilk_wm_max_level(const struct drm_i915_private *i915);
+ bool ilk_disable_lp_wm(struct drm_i915_private *i915);
+ void ilk_wm_sanitize(struct drm_i915_private *i915);
+ bool intel_set_memory_cxsr(struct drm_i915_private *i915, bool enable);
 -- 
 2.39.2
 
