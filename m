@@ -4,30 +4,30 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 18CD9C77B78
-	for <intel-xe@archiver.kernel.org>; Wed, 19 Apr 2023 08:49:00 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 66A8AC77B73
+	for <intel-xe@archiver.kernel.org>; Wed, 19 Apr 2023 08:50:56 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id CBD8A10E1A5;
-	Wed, 19 Apr 2023 08:48:59 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2355C10E1A5;
+	Wed, 19 Apr 2023 08:50:56 +0000 (UTC)
 Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id AAA3110E1A5;
- Wed, 19 Apr 2023 08:48:58 +0000 (UTC)
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 6456B10E1A5;
+ Wed, 19 Apr 2023 08:50:54 +0000 (UTC)
 Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id A35E7AADD5;
- Wed, 19 Apr 2023 08:48:58 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============4475248253018496080=="
+ by emeril.freedesktop.org (Postfix) with ESMTP id 5AE6CA0BCB;
+ Wed, 19 Apr 2023 08:50:54 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Balasubramani Vivekanandan" <balasubramani.vivekanandan@intel.com>
-Date: Wed, 19 Apr 2023 08:48:58 -0000
-Message-ID: <168189413863.10529.655169615679613019@emeril.freedesktop.org>
+To: "Matthew Auld" <matthew.auld@intel.com>
+Date: Wed, 19 Apr 2023 08:50:54 -0000
+Message-ID: <168189425433.10531.13112555369722411414@emeril.freedesktop.org>
 X-Patchwork-Hint: ignore
-References: <20230419082113.8758-1-balasubramani.vivekanandan@intel.com>
-In-Reply-To: <20230419082113.8758-1-balasubramani.vivekanandan@intel.com>
-Subject: [Intel-xe] =?utf-8?q?=E2=97=8B_CI=2EBAT=3A_info_for_fixup!_drm/x?=
- =?utf-8?q?e=3A_Select_graphics/media_descriptors_from_GMD=5FID?=
+References: <20230419083534.221869-1-matthew.auld@intel.com>
+In-Reply-To: <20230419083534.221869-1-matthew.auld@intel.com>
+Subject: [Intel-xe] =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_f?=
+ =?utf-8?q?or_drm/xe/tlb=3A_fix_expected=5Fseqno_calculation_=28rev2=29?=
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -44,65 +44,17 @@ Cc: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============4475248253018496080==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
 == Series Details ==
 
-Series: fixup! drm/xe: Select graphics/media descriptors from GMD_ID
-URL   : https://patchwork.freedesktop.org/series/116679/
-State : info
+Series: drm/xe/tlb: fix expected_seqno calculation (rev2)
+URL   : https://patchwork.freedesktop.org/series/116647/
+State : success
 
 == Summary ==
 
-Participating hosts:
-bat-atsm-2
-bat-dg2-oem2
-bat-adlp-7
-Missing hosts results[1]:
-bat-adlp-7
-Results: [xe-pw-116679v1](https://intel-gfx-ci.01.org/tree/xe/xe-pw-116679v1/index.html)
+=== Applying kernel patches on branch 'drm-xe-next' with base: ===
+Base commit: 5c309c81e fixup! drm/i915/display: Remaining changes to make xe compile
+=== git am output follows ===
+Applying: drm/xe/tlb: fix expected_seqno calculation
 
 
-
---===============4475248253018496080==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>fixup! drm/xe: Select graphics/media descriptors from GMD_ID</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/116679/">https://patchwork.freedesktop.org/series/116679/</a></td></tr>
-<tr><td><b>State:</b></td><td>info</td></tr>
-
-</table>
-
-
-    <p>Participating hosts:<br />
-bat-atsm-2<br />
-bat-dg2-oem2<br />
-bat-adlp-7<br />
-Missing hosts results[1]:<br />
-bat-adlp-7<br />
-Results: <a href="https://intel-gfx-ci.01.org/tree/xe/xe-pw-116679v1/index.html">xe-pw-116679v1</a></p>
-
-</body>
-</html>
-
---===============4475248253018496080==--
