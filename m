@@ -4,42 +4,42 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 559DDC77B73
-	for <intel-xe@archiver.kernel.org>; Wed, 19 Apr 2023 12:40:33 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 23991C6FD18
+	for <intel-xe@archiver.kernel.org>; Wed, 19 Apr 2023 12:40:34 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2FAF710E96B;
-	Wed, 19 Apr 2023 12:40:33 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0401D10E972;
+	Wed, 19 Apr 2023 12:40:34 +0000 (UTC)
 Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 32C0510E96B
- for <intel-xe@lists.freedesktop.org>; Wed, 19 Apr 2023 12:40:31 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9F07110E96B
+ for <intel-xe@lists.freedesktop.org>; Wed, 19 Apr 2023 12:40:32 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1681908031; x=1713444031;
+ t=1681908032; x=1713444032;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=DHj0/6l7cA7C6NijMmz/GuFGkFWGswmAi4bLoeGYBZ8=;
- b=KmuWAniEJHgRksxRCvG7tPXm1jJfRdjrgofTnNavQAldHbpV8rRvw48v
- kWHEyfFJJi+NQha9cRrkcnQBaO4NeZ9nfSWu70zxIy4VICYUwHAyncMhc
- M+BPgbhzj1hw/EmDDMaiEG+1fVIHlB+2j8rj+0f4dT2jqXNTGjMMhFjzv
- 095rbLJbyiVncQtJNwtacnUX2NhVthPbMDYSWqFRtark4yEsY7wzS3kgH
- BCmYPMByTfK+9p4jJJeYgV1tChjb9DpIab9Mvz68kohVQQnNRI9fAZvV8
- 0Py1cgJQwLdiSwWuVUvnS6Hz6SBBaos9fFW5aqN/wWtutdU92UujSkDeG g==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10685"; a="348189508"
-X-IronPort-AV: E=Sophos;i="5.99,208,1677571200"; d="scan'208";a="348189508"
-Received: from fmsmga002.fm.intel.com ([10.253.24.26])
+ bh=dDLJDgXUdTRGHTT0bq3L8kFOcEVGwGTAI3A7v3XgTDU=;
+ b=c2nlwzdk1ugFgCQDPVltBJQmoOEcRt+uxX/5vVoUnaqm48RfMHuanb05
+ aLsvfj1CcskLsTGtX8a3xe1KD/t9xC5zyp1KNuQmanGdHxxbzbfp/Lj6J
+ vvE20Z2Q5DP7/4zF/09nEJYqp3lgkFJVJSgTp+1XKD89MRYOFm6InFW3u
+ znSkXleliHBoWe9V4GqSdVTpKq14y8KAHXzw6zW1X1VOSEMBtbX8NjlyB
+ NtCG3TuI6Lvqv6DKjvSJUDjHpqOJwXXXJUo73ZM0m079Nz/89+wron83D
+ rpbVzosUqzL5IRBBeVr2ifvRQaoy7yjBzgSi8QCUGEdmYUfrFWignch2H w==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10685"; a="348189515"
+X-IronPort-AV: E=Sophos;i="5.99,208,1677571200"; d="scan'208";a="348189515"
+Received: from fmsmga006.fm.intel.com ([10.253.24.20])
  by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 19 Apr 2023 05:40:29 -0700
+ 19 Apr 2023 05:40:31 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10685"; a="802909828"
-X-IronPort-AV: E=Sophos;i="5.99,208,1677571200"; d="scan'208";a="802909828"
+X-IronPort-AV: E=McAfee;i="6600,9927,10685"; a="937660306"
+X-IronPort-AV: E=Sophos;i="5.99,208,1677571200"; d="scan'208";a="937660306"
 Received: from yedidyal-mobl1.ger.corp.intel.com (HELO localhost)
  ([10.252.47.37])
- by fmsmga002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 19 Apr 2023 05:40:25 -0700
+ by fmsmga006-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 19 Apr 2023 05:40:20 -0700
 From: Jani Nikula <jani.nikula@intel.com>
 To: intel-xe@lists.freedesktop.org
-Date: Wed, 19 Apr 2023 15:39:44 +0300
-Message-Id: <20230419123947.543175-7-jani.nikula@intel.com>
+Date: Wed, 19 Apr 2023 15:39:43 +0300
+Message-Id: <20230419123947.543175-6-jani.nikula@intel.com>
 X-Mailer: git-send-email 2.39.2
 In-Reply-To: <20230419123947.543175-1-jani.nikula@intel.com>
 References: <20230419123947.543175-1-jani.nikula@intel.com>
@@ -47,8 +47,8 @@ MIME-Version: 1.0
 Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-xe] [PATCH 6/9] fixup! drm/xe/display: Implement display
- support
+Subject: [Intel-xe] [PATCH 5/9] drm/i915: rename intel_pm.[ch] to
+ intel_clock_gating.[ch]
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -64,90 +64,231 @@ Cc: jani.nikula@intel.com, lucas.demarchi@intel.com, rodrigo.vivi@intel.com
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Prepare for the inevitable rebase.
+Observe that intel_pm.[ch] is now purely about clock gating, so rename
+them to intel_clock_gating.[ch]. Rename the functions to
+intel_clock_gating_*() to follow coding conventions.
 
+Reviewed-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
 Signed-off-by: Jani Nikula <jani.nikula@intel.com>
+Link: https://patchwork.freedesktop.org/patch/msgid/20230403122428.3526263-1-jani.nikula@intel.com
+(cherry picked from commit d670c78ea7564f9baf915c8e1dc5898a9e6c360b)
 ---
- drivers/gpu/drm/xe/Makefile                   |  4 +--
- .../compat-i915-headers/intel_clock_gating.h  |  1 +
- drivers/gpu/drm/xe/display/ext/i915_irq.c     |  2 +-
- .../ext/{intel_pm.c => intel_clock_gating.c}  |  4 +--
- drivers/gpu/drm/xe/display/ext/intel_pm.h     | 29 -------------------
- drivers/gpu/drm/xe/xe_display.c               |  4 +--
- 6 files changed, 8 insertions(+), 36 deletions(-)
- create mode 100644 drivers/gpu/drm/xe/compat-i915-headers/intel_clock_gating.h
- rename drivers/gpu/drm/xe/display/ext/{intel_pm.c => intel_clock_gating.c} (97%)
- delete mode 100644 drivers/gpu/drm/xe/display/ext/intel_pm.h
+ drivers/gpu/drm/i915/Makefile                  |  2 +-
+ drivers/gpu/drm/i915/display/intel_display.c   |  4 ++--
+ drivers/gpu/drm/i915/i915_driver.c             |  8 ++++----
+ drivers/gpu/drm/i915/i915_gem.c                |  8 ++++----
+ .../i915/{intel_pm.c => intel_clock_gating.c}  |  8 ++++----
+ drivers/gpu/drm/i915/intel_clock_gating.h      | 14 ++++++++++++++
+ drivers/gpu/drm/i915/intel_pm.h                | 18 ------------------
+ drivers/gpu/drm/i915/vlv_suspend.c             |  4 ++--
+ 8 files changed, 31 insertions(+), 35 deletions(-)
+ rename drivers/gpu/drm/i915/{intel_pm.c => intel_clock_gating.c} (99%)
+ create mode 100644 drivers/gpu/drm/i915/intel_clock_gating.h
+ delete mode 100644 drivers/gpu/drm/i915/intel_pm.h
 
-diff --git a/drivers/gpu/drm/xe/Makefile b/drivers/gpu/drm/xe/Makefile
-index 61739cacbc5b..ee4a95beec20 100644
---- a/drivers/gpu/drm/xe/Makefile
-+++ b/drivers/gpu/drm/xe/Makefile
-@@ -120,10 +120,10 @@ xe-$(CONFIG_DRM_XE_DISPLAY) += \
- 	display/xe_plane_initial.o \
- 	display/xe_display_rps.o \
- 	display/ext/i915_irq.o \
-+	display/ext/intel_clock_gating.o \
- 	display/ext/intel_device_info.o \
- 	display/ext/intel_dram.o \
--	display/ext/intel_pch.o \
--	display/ext/intel_pm.o
-+	display/ext/intel_pch.o
+diff --git a/drivers/gpu/drm/i915/Makefile b/drivers/gpu/drm/i915/Makefile
+index 09a8106c284b..48846365436e 100644
+--- a/drivers/gpu/drm/i915/Makefile
++++ b/drivers/gpu/drm/i915/Makefile
+@@ -47,10 +47,10 @@ i915-y += i915_driver.o \
+ 	  i915_switcheroo.o \
+ 	  i915_sysfs.o \
+ 	  i915_utils.o \
++	  intel_clock_gating.o \
+ 	  intel_device_info.o \
+ 	  intel_memory_region.o \
+ 	  intel_pcode.o \
+-	  intel_pm.o \
+ 	  intel_region_ttm.o \
+ 	  intel_runtime_pm.o \
+ 	  intel_sbi.o \
+diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
+index 6d9abc95dbcd..28a227450329 100644
+--- a/drivers/gpu/drm/i915/display/intel_display.c
++++ b/drivers/gpu/drm/i915/display/intel_display.c
+@@ -65,6 +65,7 @@
+ #include "intel_audio.h"
+ #include "intel_bw.h"
+ #include "intel_cdclk.h"
++#include "intel_clock_gating.h"
+ #include "intel_color.h"
+ #include "intel_crt.h"
+ #include "intel_crtc.h"
+@@ -106,7 +107,6 @@
+ #include "intel_pch_refclk.h"
+ #include "intel_pipe_crc.h"
+ #include "intel_plane_initial.h"
+-#include "intel_pm.h"
+ #include "intel_pps.h"
+ #include "intel_psr.h"
+ #include "intel_quirks.h"
+@@ -852,7 +852,7 @@ void intel_display_finish_reset(struct drm_i915_private *i915)
+ 		 */
+ 		intel_pps_unlock_regs_wa(i915);
+ 		intel_modeset_init_hw(i915);
+-		intel_init_clock_gating(i915);
++		intel_clock_gating_init(i915);
+ 		intel_hpd_init(i915);
  
- # Display code shared with i915
- xe-$(CONFIG_DRM_XE_DISPLAY) += \
-diff --git a/drivers/gpu/drm/xe/compat-i915-headers/intel_clock_gating.h b/drivers/gpu/drm/xe/compat-i915-headers/intel_clock_gating.h
-new file mode 100644
-index 000000000000..6e35e0bace9e
---- /dev/null
-+++ b/drivers/gpu/drm/xe/compat-i915-headers/intel_clock_gating.h
-@@ -0,0 +1 @@
-+#include "../../i915/intel_clock_gating.h"
-diff --git a/drivers/gpu/drm/xe/display/ext/i915_irq.c b/drivers/gpu/drm/xe/display/ext/i915_irq.c
-index 61faf15b6bf0..8a97c3f45620 100644
---- a/drivers/gpu/drm/xe/display/ext/i915_irq.c
-+++ b/drivers/gpu/drm/xe/display/ext/i915_irq.c
-@@ -63,7 +63,7 @@ static void raw_reg_write(void __iomem *base, i915_reg_t reg, u32 value)
- }
+ 		ret = __intel_display_resume(i915, state, ctx);
+diff --git a/drivers/gpu/drm/i915/i915_driver.c b/drivers/gpu/drm/i915/i915_driver.c
+index 066d79c2069c..f68ad1e2c529 100644
+--- a/drivers/gpu/drm/i915/i915_driver.c
++++ b/drivers/gpu/drm/i915/i915_driver.c
+@@ -79,11 +79,11 @@
+ #include "soc/intel_dram.h"
+ #include "soc/intel_gmch.h"
  
- #include "i915_irq.h"
+-#include "i915_file_private.h"
+ #include "i915_debugfs.h"
+ #include "i915_driver.h"
+ #include "i915_drm_client.h"
+ #include "i915_drv.h"
++#include "i915_file_private.h"
+ #include "i915_getparam.h"
+ #include "i915_hwmon.h"
+ #include "i915_ioc32.h"
+@@ -97,11 +97,11 @@
+ #include "i915_sysfs.h"
+ #include "i915_utils.h"
+ #include "i915_vgpu.h"
++#include "intel_clock_gating.h"
+ #include "intel_gvt.h"
+ #include "intel_memory_region.h"
+ #include "intel_pci_config.h"
+ #include "intel_pcode.h"
+-#include "intel_pm.h"
+ #include "intel_region_ttm.h"
+ #include "vlv_suspend.h"
+ 
+@@ -254,7 +254,7 @@ static int i915_driver_early_probe(struct drm_i915_private *dev_priv)
+ 
+ 	intel_irq_init(dev_priv);
+ 	intel_init_display_hooks(dev_priv);
+-	intel_init_clock_gating_hooks(dev_priv);
++	intel_clock_gating_hooks_init(dev_priv);
+ 
+ 	intel_detect_preproduction_hw(dev_priv);
+ 
+@@ -1234,7 +1234,7 @@ static int i915_drm_resume(struct drm_device *dev)
+ 	i915_gem_resume(dev_priv);
+ 
+ 	intel_modeset_init_hw(dev_priv);
+-	intel_init_clock_gating(dev_priv);
++	intel_clock_gating_init(dev_priv);
+ 	intel_hpd_init(dev_priv);
+ 
+ 	/* MST sideband requires HPD interrupts enabled */
+diff --git a/drivers/gpu/drm/i915/i915_gem.c b/drivers/gpu/drm/i915/i915_gem.c
+index cf100ce56704..c82726c37e2d 100644
+--- a/drivers/gpu/drm/i915/i915_gem.c
++++ b/drivers/gpu/drm/i915/i915_gem.c
+@@ -57,7 +57,7 @@
+ #include "i915_file_private.h"
+ #include "i915_trace.h"
+ #include "i915_vgpu.h"
 -#include "intel_pm.h"
 +#include "intel_clock_gating.h"
  
- static void gen3_irq_reset(struct xe_device *dev_priv, i915_reg_t imr,
- 		    i915_reg_t iir, i915_reg_t ier)
-diff --git a/drivers/gpu/drm/xe/display/ext/intel_pm.c b/drivers/gpu/drm/xe/display/ext/intel_clock_gating.c
-similarity index 97%
-rename from drivers/gpu/drm/xe/display/ext/intel_pm.c
-rename to drivers/gpu/drm/xe/display/ext/intel_clock_gating.c
-index 62219a010d62..7d1854652d17 100644
---- a/drivers/gpu/drm/xe/display/ext/intel_pm.c
-+++ b/drivers/gpu/drm/xe/display/ext/intel_clock_gating.c
-@@ -29,8 +29,8 @@
- #include "intel_display_trace.h"
+ static int
+ insert_mappable_node(struct i915_ggtt *ggtt, struct drm_mm_node *node, u32 size)
+@@ -1158,7 +1158,7 @@ int i915_gem_init(struct drm_i915_private *dev_priv)
+ 	}
+ 
+ 	/*
+-	 * Despite its name intel_init_clock_gating applies both display
++	 * Despite its name intel_clock_gating_init applies both display
+ 	 * clock gating workarounds; GT mmio workarounds and the occasional
+ 	 * GT power context workaround. Worse, sometimes it includes a context
+ 	 * register workaround which we need to apply before we record the
+@@ -1166,7 +1166,7 @@ int i915_gem_init(struct drm_i915_private *dev_priv)
+ 	 *
+ 	 * FIXME: break up the workarounds and apply them at the right time!
+ 	 */
+-	intel_init_clock_gating(dev_priv);
++	intel_clock_gating_init(dev_priv);
+ 
+ 	for_each_gt(gt, dev_priv, i) {
+ 		ret = intel_gt_init(gt);
+@@ -1210,7 +1210,7 @@ int i915_gem_init(struct drm_i915_private *dev_priv)
+ 		/* Minimal basic recovery for KMS */
+ 		ret = i915_ggtt_enable_hw(dev_priv);
+ 		i915_ggtt_resume(to_gt(dev_priv)->ggtt);
+-		intel_init_clock_gating(dev_priv);
++		intel_clock_gating_init(dev_priv);
+ 	}
+ 
+ 	i915_gem_drain_freed_objects(dev_priv);
+diff --git a/drivers/gpu/drm/i915/intel_pm.c b/drivers/gpu/drm/i915/intel_clock_gating.c
+similarity index 99%
+rename from drivers/gpu/drm/i915/intel_pm.c
+rename to drivers/gpu/drm/i915/intel_clock_gating.c
+index c45af0d981fd..8cfc19b48760 100644
+--- a/drivers/gpu/drm/i915/intel_pm.c
++++ b/drivers/gpu/drm/i915/intel_clock_gating.c
+@@ -36,8 +36,8 @@
+ #include "gt/intel_gt_regs.h"
  
  #include "i915_drv.h"
 +#include "intel_clock_gating.h"
  #include "intel_mchbar_regs.h"
 -#include "intel_pm.h"
+ #include "vlv_sideband.h"
  
- static void gen12lp_init_clock_gating(struct drm_i915_private *dev_priv)
- {
-@@ -104,7 +104,7 @@ static void pvc_init_clock_gating(struct drm_i915_private *dev_priv)
- 		intel_de_rmw(dev_priv, XEHP_CLOCK_GATE_DIS, 0, SGSI_SIDECLK_DIS);
+ struct drm_i915_clock_gating_funcs {
+@@ -774,7 +774,7 @@ static void i830_init_clock_gating(struct drm_i915_private *dev_priv)
+ 		   _MASKED_BIT_ENABLE(MEM_DISPLAY_B_TRICKLE_FEED_DISABLE));
  }
  
 -void intel_init_clock_gating(struct drm_i915_private *dev_priv)
 +void intel_clock_gating_init(struct drm_i915_private *dev_priv)
  {
- 	if (IS_PONTEVECCHIO(dev_priv))
- 		pvc_init_clock_gating(dev_priv);
-diff --git a/drivers/gpu/drm/xe/display/ext/intel_pm.h b/drivers/gpu/drm/xe/display/ext/intel_pm.h
+ 	dev_priv->clock_gating_funcs->init_clock_gating(dev_priv);
+ }
+@@ -818,7 +818,7 @@ CG_FUNCS(nop);
+ #undef CG_FUNCS
+ 
+ /**
+- * intel_init_clock_gating_hooks - setup the clock gating hooks
++ * intel_clock_gating_hooks_init - setup the clock gating hooks
+  * @dev_priv: device private
+  *
+  * Setup the hooks that configure which clocks of a given platform can be
+@@ -826,7 +826,7 @@ CG_FUNCS(nop);
+  * platforms. Note that some GT specific workarounds are applied separately
+  * when GPU contexts or batchbuffers start their execution.
+  */
+-void intel_init_clock_gating_hooks(struct drm_i915_private *dev_priv)
++void intel_clock_gating_hooks_init(struct drm_i915_private *dev_priv)
+ {
+ 	if (IS_METEORLAKE(dev_priv))
+ 		dev_priv->clock_gating_funcs = &nop_clock_gating_funcs;
+diff --git a/drivers/gpu/drm/i915/intel_clock_gating.h b/drivers/gpu/drm/i915/intel_clock_gating.h
+new file mode 100644
+index 000000000000..5b4e4c55b2c2
+--- /dev/null
++++ b/drivers/gpu/drm/i915/intel_clock_gating.h
+@@ -0,0 +1,14 @@
++/* SPDX-License-Identifier: MIT */
++/*
++ * Copyright © 2019 Intel Corporation
++ */
++
++#ifndef __INTEL_CLOCK_GATING_H__
++#define __INTEL_CLOCK_GATING_H__
++
++struct drm_i915_private;
++
++void intel_clock_gating_init(struct drm_i915_private *i915);
++void intel_clock_gating_hooks_init(struct drm_i915_private *i915);
++
++#endif /* __INTEL_CLOCK_GATING_H__ */
+diff --git a/drivers/gpu/drm/i915/intel_pm.h b/drivers/gpu/drm/i915/intel_pm.h
 deleted file mode 100644
-index 482b714d1d22..000000000000
---- a/drivers/gpu/drm/xe/display/ext/intel_pm.h
+index f774bddcdca6..000000000000
+--- a/drivers/gpu/drm/i915/intel_pm.h
 +++ /dev/null
-@@ -1,29 +0,0 @@
+@@ -1,18 +0,0 @@
 -/* SPDX-License-Identifier: MIT */
 -/*
 - * Copyright © 2019 Intel Corporation
@@ -163,45 +304,31 @@ index 482b714d1d22..000000000000
 -struct intel_plane_state;
 -
 -void intel_init_clock_gating(struct drm_i915_private *dev_priv);
--void intel_suspend_hw(struct drm_i915_private *dev_priv);
--int ilk_wm_max_level(const struct drm_i915_private *dev_priv);
--void intel_init_pm(struct drm_i915_private *dev_priv);
 -void intel_init_clock_gating_hooks(struct drm_i915_private *dev_priv);
--void intel_pm_setup(struct drm_i915_private *dev_priv);
--void ilk_wm_get_hw_state(struct drm_i915_private *dev_priv);
--bool intel_wm_plane_visible(const struct intel_crtc_state *crtc_state,
--			    const struct intel_plane_state *plane_state);
--void intel_print_wm_latency(struct drm_i915_private *dev_priv,
--			    const char *name, const u16 wm[]);
--
--bool intel_set_memory_cxsr(struct drm_i915_private *dev_priv, bool enable);
 -
 -#endif /* __INTEL_PM_H__ */
-diff --git a/drivers/gpu/drm/xe/xe_display.c b/drivers/gpu/drm/xe/xe_display.c
-index aae362f27c77..a8af9eddb496 100644
---- a/drivers/gpu/drm/xe/xe_display.c
-+++ b/drivers/gpu/drm/xe/xe_display.c
-@@ -17,10 +17,10 @@
- 
- #include "ext/i915_irq.h"
- #include "ext/intel_dram.h"
--#include "ext/intel_pm.h"
- #include "intel_acpi.h"
- #include "intel_audio.h"
- #include "intel_bw.h"
+diff --git a/drivers/gpu/drm/i915/vlv_suspend.c b/drivers/gpu/drm/i915/vlv_suspend.c
+index 02e63ed77f60..94595dde2b96 100644
+--- a/drivers/gpu/drm/i915/vlv_suspend.c
++++ b/drivers/gpu/drm/i915/vlv_suspend.c
+@@ -12,7 +12,7 @@
+ #include "i915_reg.h"
+ #include "i915_trace.h"
+ #include "i915_utils.h"
+-#include "intel_pm.h"
 +#include "intel_clock_gating.h"
- #include "intel_display.h"
- #include "intel_display_types.h"
- #include "intel_dmc.h"
-@@ -379,7 +379,7 @@ void xe_display_pm_resume(struct xe_device *xe)
- 		drm_mode_config_reset(&xe->drm);
+ #include "vlv_suspend.h"
  
- 	intel_modeset_init_hw(xe);
--	intel_init_clock_gating(xe);
-+	intel_clock_gating_init(xe);
- 	intel_hpd_init(xe);
+ #include "gt/intel_gt_regs.h"
+@@ -451,7 +451,7 @@ int vlv_resume_prepare(struct drm_i915_private *dev_priv, bool rpm_resume)
+ 	vlv_check_no_gt_access(dev_priv);
  
- 	/* MST sideband requires HPD interrupts enabled */
+ 	if (rpm_resume)
+-		intel_init_clock_gating(dev_priv);
++		intel_clock_gating_init(dev_priv);
+ 
+ 	return ret;
+ }
 -- 
 2.39.2
 
