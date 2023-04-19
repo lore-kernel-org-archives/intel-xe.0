@@ -4,47 +4,48 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id E7299C77B7A
-	for <intel-xe@archiver.kernel.org>; Wed, 19 Apr 2023 17:55:07 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 08BDFC6FD18
+	for <intel-xe@archiver.kernel.org>; Wed, 19 Apr 2023 17:55:06 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id AE9A010EA44;
-	Wed, 19 Apr 2023 17:55:07 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B252810EA39;
+	Wed, 19 Apr 2023 17:55:06 +0000 (UTC)
 Received: from mga06.intel.com (mga06b.intel.com [134.134.136.31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id BE72D10E1D2
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8F2D410EA39
  for <intel-xe@lists.freedesktop.org>; Wed, 19 Apr 2023 17:55:04 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
  t=1681926904; x=1713462904;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=HgQSUEqlrllY9fAi3dN39Df/J1V2uBpyqSIHeMFaFD4=;
- b=URtTyUNyZOZzuYz0QDgsU4jIihZ0TS0E2FrJ7BdP0teE2lyDQ8xhaOEn
- Q4rwqwp7LY8YMbrumPZBU9PqRX6kF9IMseP4oukOAkG+xMpSds4KseBz/
- TCLQ4LaO3vxs4MfO/FEHmGB8fLvIyGWBfAeNgeW6Foi9Q+xaqnzcka6kA
- s2wnNAoF1xUI+whl1SK9Gn+46BeOgI4G4God5ADluo99J8uu7nbz3vsWp
- 8dy59zYLeQAZV/wYXzwb8HBQ6DdNh0dcmjscuOgD01eSLcECmJf1j3Cou
- NVcykYlcsY3FnyB+OtNiKFCdXeylliZiIoUFW5AdmRZAmf+wQKAXv6kXS A==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10685"; a="408429387"
-X-IronPort-AV: E=Sophos;i="5.99,208,1677571200"; d="scan'208";a="408429387"
+ bh=6n/ngAARYaAx7JLmPVjF1iqikcS1yjt7gtg7ssynar4=;
+ b=EtOhJiMukdfJulGEVL/0ATDT9F9Ynb6GxP1KBCK8bUvzlbzD3sSYu0dh
+ myEe4vlM9vlTwNErOQH1cacT1BltwtfclLIgO7Ufq2J6rdtcTQWgjQwOG
+ SzJtBe7E576Mec5+ewa+wCB/VxT7dLlLo/MzvNxIeLo697qByl0sZK2Wd
+ yjAeS+T4Kc74M9dDaLJnIuke4831kmv33UkTmPOGxK4eCo9RfcSC46ydQ
+ 41umjjc2zQA/Hq+HwO2/0h1R/PtnnmiTP3slY2AhQ5SkHk1aAtqRNiLbV
+ x5PWioKUDXf9sEXyrOSEcacY9oMlipAIIv2/RMTh+5sutvXqgAPLey/BY w==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10685"; a="408429384"
+X-IronPort-AV: E=Sophos;i="5.99,208,1677571200"; d="scan'208";a="408429384"
 Received: from orsmga008.jf.intel.com ([10.7.209.65])
  by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  19 Apr 2023 10:55:02 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10685"; a="722022450"
-X-IronPort-AV: E=Sophos;i="5.99,208,1677571200"; d="scan'208";a="722022450"
+X-IronPort-AV: E=McAfee;i="6600,9927,10685"; a="722022447"
+X-IronPort-AV: E=Sophos;i="5.99,208,1677571200"; d="scan'208";a="722022447"
 Received: from dut125tglh.fm.intel.com ([10.105.23.23])
  by orsmga008.jf.intel.com with ESMTP; 19 Apr 2023 10:55:02 -0700
 From: Stuart Summers <stuart.summers@intel.com>
 To: 
-Date: Wed, 19 Apr 2023 17:55:01 +0000
-Message-Id: <20230419175501.155319-5-stuart.summers@intel.com>
+Date: Wed, 19 Apr 2023 17:55:00 +0000
+Message-Id: <20230419175501.155319-4-stuart.summers@intel.com>
 X-Mailer: git-send-email 2.38.1.143.g1fc3c0ad40
 In-Reply-To: <20230419175501.155319-1-stuart.summers@intel.com>
 References: <20230419175501.155319-1-stuart.summers@intel.com>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-xe] [PATCH 4/4] drm/xe: Migrate module parameters to new
- debugfs structure
+Subject: [Intel-xe] [PATCH 3/4] drm/xe: Add new device configuration debugfs
+ infrastructure
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -61,154 +62,533 @@ Cc: stuart.summers@intel.com, matthew.d.roper@intel.com,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Use the new debugfs structure for the current module parameters
-outside of force_probe. This still allows the driver to be
-manually probed without any need to change the autoprobe settings.
+The i915 driver defined an infrastructure for module parameters
+which would push these into debugfs for configurability at runtime
+with an eventual goal of removing those module parameters completely.
 
-For the rest, they can now be tuned prior to binding to the device
-by disabling the driver autoprobe.
+There is a goal in the xe driver to avoid using module parameters
+altogether. However, we do need some way to configure the driver
+for debug purposes on a per-device level either before initializing
+the GPU or even during runtime in some cases.
 
-Drop the current dummy parameter.
+Bring in the debugfs infrastructure being used in i915, but drop
+the references to module parameters.
+
+This patch adds a dummy debugfs entry just to illustrate the new
+infrastructure here. It is intended that this will be replaced with
+actual driver-usable parameters in a future patch.
 
 Signed-off-by: Stuart Summers <stuart.summers@intel.com>
 ---
- drivers/gpu/drm/xe/xe_device.c  |  4 ++--
- drivers/gpu/drm/xe/xe_display.c |  3 ++-
- drivers/gpu/drm/xe/xe_guc_log.c |  2 +-
- drivers/gpu/drm/xe/xe_mmio.c    |  4 ++--
- drivers/gpu/drm/xe/xe_module.c  | 16 ----------------
- drivers/gpu/drm/xe/xe_module.h  |  5 -----
- drivers/gpu/drm/xe/xe_params.h  |  5 ++++-
- 7 files changed, 11 insertions(+), 28 deletions(-)
+ drivers/gpu/drm/xe/Makefile            |   1 +
+ drivers/gpu/drm/xe/xe_debugfs_params.c | 235 +++++++++++++++++++++++++
+ drivers/gpu/drm/xe/xe_debugfs_params.h |  14 ++
+ drivers/gpu/drm/xe/xe_device_types.h   |   4 +
+ drivers/gpu/drm/xe/xe_params.c         | 118 +++++++++++++
+ drivers/gpu/drm/xe/xe_params.h         |  40 +++++
+ drivers/gpu/drm/xe/xe_pci.c            |   6 +
+ 7 files changed, 418 insertions(+)
+ create mode 100644 drivers/gpu/drm/xe/xe_debugfs_params.c
+ create mode 100644 drivers/gpu/drm/xe/xe_debugfs_params.h
+ create mode 100644 drivers/gpu/drm/xe/xe_params.c
+ create mode 100644 drivers/gpu/drm/xe/xe_params.h
 
-diff --git a/drivers/gpu/drm/xe/xe_device.c b/drivers/gpu/drm/xe/xe_device.c
-index 867051d74eea..b07f8fc1a515 100644
---- a/drivers/gpu/drm/xe/xe_device.c
-+++ b/drivers/gpu/drm/xe/xe_device.c
-@@ -195,8 +195,8 @@ int xe_device_init(struct xe_device *xe)
- 	if (WARN_ON(err))
- 		goto err_put;
- 
--	xe->info.enable_guc = enable_guc;
--	xe->info.enable_display = enable_display;
-+	xe->info.enable_guc = xe->info.params.enable_guc;
-+	xe->info.enable_display = xe->info.params.enable_display;
- 
- 	spin_lock_init(&xe->irq.lock);
- 
-diff --git a/drivers/gpu/drm/xe/xe_display.c b/drivers/gpu/drm/xe/xe_display.c
-index c67f6a591a58..35f8344fdc5a 100644
---- a/drivers/gpu/drm/xe/xe_display.c
-+++ b/drivers/gpu/drm/xe/xe_display.c
-@@ -29,6 +29,7 @@
- #include "intel_hotplug.h"
- #include "intel_opregion.h"
- #include "xe_module.h"
+diff --git a/drivers/gpu/drm/xe/Makefile b/drivers/gpu/drm/xe/Makefile
+index 5799589d2634..6a8794578f21 100644
+--- a/drivers/gpu/drm/xe/Makefile
++++ b/drivers/gpu/drm/xe/Makefile
+@@ -67,6 +67,7 @@ xe-y += xe_bb.o \
+ 	xe_mmio.o \
+ 	xe_mocs.o \
+ 	xe_module.o \
++	xe_params.o \
+ 	xe_pci.o \
+ 	xe_pcode.o \
+ 	xe_pm.o \
+diff --git a/drivers/gpu/drm/xe/xe_debugfs_params.c b/drivers/gpu/drm/xe/xe_debugfs_params.c
+new file mode 100644
+index 000000000000..9e7272ce153d
+--- /dev/null
++++ b/drivers/gpu/drm/xe/xe_debugfs_params.c
+@@ -0,0 +1,235 @@
++/* SPDX-License-Identifier: MIT */
++/*
++ * Copyright © 2023 Intel Corporation
++ */
++
++#include <linux/kernel.h>
++
++#include "xe_debugfs_params.h"
++#include "xe_params.h"
++
++/* int param */
++static int xe_param_int_show(struct seq_file *m, void *data)
++{
++	int *value = m->private;
++
++	seq_printf(m, "%d\n", *value);
++
++	return 0;
++}
++
++static int xe_param_int_open(struct inode *inode, struct file *file)
++{
++	return single_open(file, xe_param_int_show, inode->i_private);
++}
++
++static ssize_t xe_param_int_write(struct file *file,
++				    const char __user *ubuf, size_t len,
++				    loff_t *offp)
++{
++	struct seq_file *m = file->private_data;
++	int *value = m->private;
++	int ret;
++
++	ret = kstrtoint_from_user(ubuf, len, 0, value);
++	if (ret) {
++		/* support boolean values too */
++		bool b;
++
++		ret = kstrtobool_from_user(ubuf, len, &b);
++		if (!ret)
++			*value = b;
++	}
++
++	return ret ?: len;
++}
++
++static const struct file_operations xe_param_int_fops = {
++	.owner = THIS_MODULE,
++	.open = xe_param_int_open,
++	.read = seq_read,
++	.write = xe_param_int_write,
++	.llseek = default_llseek,
++	.release = single_release,
++};
++
++static const struct file_operations xe_param_int_fops_ro = {
++	.owner = THIS_MODULE,
++	.open = xe_param_int_open,
++	.read = seq_read,
++	.llseek = default_llseek,
++	.release = single_release,
++};
++
++/* unsigned int param */
++static int xe_param_uint_show(struct seq_file *m, void *data)
++{
++	unsigned int *value = m->private;
++
++	seq_printf(m, "%u\n", *value);
++
++	return 0;
++}
++
++static int xe_param_uint_open(struct inode *inode, struct file *file)
++{
++	return single_open(file, xe_param_uint_show, inode->i_private);
++}
++
++static ssize_t xe_param_uint_write(struct file *file,
++				     const char __user *ubuf, size_t len,
++				     loff_t *offp)
++{
++	struct drm_xe_private *xe;
++	struct seq_file *m = file->private_data;
++	unsigned int *value = m->private;
++	unsigned int old = *value;
++	int ret;
++
++	ret = kstrtouint_from_user(ubuf, len, 0, value);
++	if (ret) {
++		/* support boolean values too */
++		bool b;
++
++		ret = kstrtobool_from_user(ubuf, len, &b);
++		if (!ret)
++			*value = b;
++	}
++
++	return ret ?: len;
++}
++
++static const struct file_operations xe_param_uint_fops = {
++	.owner = THIS_MODULE,
++	.open = xe_param_uint_open,
++	.read = seq_read,
++	.write = xe_param_uint_write,
++	.llseek = default_llseek,
++	.release = single_release,
++};
++
++static const struct file_operations xe_param_uint_fops_ro = {
++	.owner = THIS_MODULE,
++	.open = xe_param_uint_open,
++	.read = seq_read,
++	.llseek = default_llseek,
++	.release = single_release,
++};
++
++/* char * param */
++static int xe_param_charp_show(struct seq_file *m, void *data)
++{
++	const char **s = m->private;
++
++	seq_printf(m, "%s\n", *s);
++
++	return 0;
++}
++
++static int xe_param_charp_open(struct inode *inode, struct file *file)
++{
++	return single_open(file, xe_param_charp_show, inode->i_private);
++}
++
++static ssize_t xe_param_charp_write(struct file *file,
++				      const char __user *ubuf, size_t len,
++				      loff_t *offp)
++{
++	struct seq_file *m = file->private_data;
++	char **s = m->private;
++	char *new, *old;
++
++	old = *s;
++	new = strndup_user(ubuf, PAGE_SIZE);
++	if (IS_ERR(new)) {
++		len = PTR_ERR(new);
++		goto out;
++	}
++
++	*s = new;
++
++	kfree(old);
++out:
++	return len;
++}
++
++static const struct file_operations xe_param_charp_fops = {
++	.owner = THIS_MODULE,
++	.open = xe_param_charp_open,
++	.read = seq_read,
++	.write = xe_param_charp_write,
++	.llseek = default_llseek,
++	.release = single_release,
++};
++
++static const struct file_operations xe_param_charp_fops_ro = {
++	.owner = THIS_MODULE,
++	.open = xe_param_charp_open,
++	.read = seq_read,
++	.llseek = default_llseek,
++	.release = single_release,
++};
++
++#define RO(mode) (((mode) & 0222) == 0)
++
++static struct dentry *
++xe_debugfs_create_int(const char *name, umode_t mode,
++			struct dentry *parent, int *value)
++{
++	return debugfs_create_file_unsafe(name, mode, parent, value,
++					  RO(mode) ? &xe_param_int_fops_ro :
++					  &xe_param_int_fops);
++}
++
++static struct dentry *
++xe_debugfs_create_uint(const char *name, umode_t mode,
++			 struct dentry *parent, unsigned int *value)
++{
++	return debugfs_create_file_unsafe(name, mode, parent, value,
++					  RO(mode) ? &xe_param_uint_fops_ro :
++					  &xe_param_uint_fops);
++}
++
++static struct dentry *
++xe_debugfs_create_charp(const char *name, umode_t mode,
++			  struct dentry *parent, char **value)
++{
++	return debugfs_create_file(name, mode, parent, value,
++				   RO(mode) ? &xe_param_charp_fops_ro :
++				   &xe_param_charp_fops);
++}
++
++#define _xe_param_create_file(parent, name, mode, valp)		\
++	do {								\
++		if (mode)						\
++			_Generic(valp,					\
++				 bool *: debugfs_create_bool,		\
++				 int *: xe_debugfs_create_int,	\
++				 unsigned int *: xe_debugfs_create_uint, \
++				 unsigned long *: debugfs_create_ulong,	\
++				 char **: xe_debugfs_create_charp)(name, mode, parent, valp); \
++	} while(0)
++
++/* add a subdirectory with files for each xe param */
++struct dentry *xe_debugfs_params(struct drm_xe_private *xe)
++{
++	struct drm_minor *minor = xe->drm.primary;
++	struct xe_params *params = &xe->info.params;
++	struct dentry *dir;
++
++	dir = debugfs_create_dir("xe_params", minor->debugfs_root);
++	if (IS_ERR(dir))
++		return dir;
++
++	/*
++	 * Note: We could create files for params needing special handling
++	 * here. Set mode in params to 0 to skip the generic create file, or
++	 * just let the generic create file fail silently with -EEXIST.
++	 */
++
++#define REGISTER(T, x, unused, mode, ...) _xe_param_create_file(dir, #x, mode, &params->x);
++	XE_PARAMS_FOR_EACH(REGISTER);
++#undef REGISTER
++
++	return dir;
++}
+diff --git a/drivers/gpu/drm/xe/xe_debugfs_params.h b/drivers/gpu/drm/xe/xe_debugfs_params.h
+new file mode 100644
+index 000000000000..d4f9b394a443
+--- /dev/null
++++ b/drivers/gpu/drm/xe/xe_debugfs_params.h
+@@ -0,0 +1,14 @@
++/* SPDX-License-Identifier: MIT */
++/*
++ * Copyright © 2023 Intel Corporation
++ */
++
++#ifndef __XE_DEBUGFS_PARAMS__
++#define __XE_DEBUGFS_PARAMS__
++
++struct dentry;
++struct drm_xe_private;
++
++struct dentry *xe_debugfs_params(struct drm_xe_private *xe);
++
++#endif /* __XE_DEBUGFS_PARAMS__ */
+diff --git a/drivers/gpu/drm/xe/xe_device_types.h b/drivers/gpu/drm/xe/xe_device_types.h
+index a02c4eb6bd0d..6847fb2d035c 100644
+--- a/drivers/gpu/drm/xe/xe_device_types.h
++++ b/drivers/gpu/drm/xe/xe_device_types.h
+@@ -15,6 +15,7 @@
+ #include "xe_gt_types.h"
+ #include "xe_platform_types.h"
+ #include "xe_step_types.h"
 +#include "xe_params.h"
  
- /* Xe device functions */
+ #if IS_ENABLED(CONFIG_DRM_XE_DISPLAY)
+ #include "ext/intel_device_info.h"
+@@ -152,6 +153,9 @@ struct xe_device {
+ 			u32 rawclk_freq;
+ 		} display;
+ #endif
++
++		/* device_info params configurable through debugfs */
++		struct xe_params params;
+ 	} info;
  
-@@ -49,7 +50,7 @@ static void xe_display_last_close(struct drm_device *dev)
-  */
- int xe_display_set_driver_hooks(struct pci_dev *pdev, struct drm_driver *driver)
- {
--	if (!enable_display)
-+	if (!xe_modparams.enable_display)
- 		return 0;
- 
- 	/* Detect if we need to wait for other drivers early on */
-diff --git a/drivers/gpu/drm/xe/xe_guc_log.c b/drivers/gpu/drm/xe/xe_guc_log.c
-index 9a7b5d5906c1..9a2930f6613f 100644
---- a/drivers/gpu/drm/xe/xe_guc_log.c
-+++ b/drivers/gpu/drm/xe/xe_guc_log.c
-@@ -100,7 +100,7 @@ int xe_guc_log_init(struct xe_guc_log *log)
- 
- 	xe_map_memset(xe, &bo->vmap, 0, 0, guc_log_size());
- 	log->bo = bo;
--	log->level = xe_guc_log_level;
-+	log->level = xe->info.params.guc_log_level;
- 
- 	err = drmm_add_action_or_reset(&xe->drm, guc_log_fini, log);
- 	if (err)
-diff --git a/drivers/gpu/drm/xe/xe_mmio.c b/drivers/gpu/drm/xe/xe_mmio.c
-index 5cacaa05759a..58c459d852ed 100644
---- a/drivers/gpu/drm/xe/xe_mmio.c
-+++ b/drivers/gpu/drm/xe/xe_mmio.c
-@@ -78,7 +78,7 @@ static int xe_resize_vram_bar(struct xe_device *xe, resource_size_t vram_size)
- 	u32 pci_cmd;
- 	int i;
- 	int ret;
--	u64 force_vram_bar_size = xe_force_vram_bar_size;
-+	u64 force_vram_bar_size = xe->info.params.force_vram_bar_size;
- 
- 	current_size = roundup_pow_of_two(pci_resource_len(pdev, GEN12_LMEM_BAR));
- 
-@@ -225,7 +225,7 @@ int xe_mmio_probe_vram(struct xe_device *xe)
- 		drm_info(&xe->drm, "Successfully resize VRAM from %lluMiB to %lluMiB\n",
- 			 (u64)original_size >> 20,
- 			 (u64)xe->mem.vram.io_size >> 20);
--	else if (xe->mem.vram.io_size < usable_size && !xe_force_vram_bar_size)
-+	else if (xe->mem.vram.io_size < usable_size && !xe->info.params.force_vram_bar_size)
- 		drm_info(&xe->drm, "Using a reduced BAR size of %lluMiB. Consider enabling 'Resizable BAR' support in your BIOS.\n",
- 			 (u64)xe->mem.vram.size >> 20);
- 	if (xe->mem.vram.size < vram_size)
-diff --git a/drivers/gpu/drm/xe/xe_module.c b/drivers/gpu/drm/xe/xe_module.c
-index 6860586ce7f8..962c89d371d8 100644
---- a/drivers/gpu/drm/xe/xe_module.c
-+++ b/drivers/gpu/drm/xe/xe_module.c
-@@ -14,22 +14,6 @@
- #include "xe_pci.h"
- #include "xe_sched_job.h"
- 
--bool enable_guc = true;
--module_param_named_unsafe(enable_guc, enable_guc, bool, 0444);
--MODULE_PARM_DESC(enable_guc, "Enable GuC submission");
--
--bool enable_display = true;
--module_param_named(enable_display, enable_display, bool, 0444);
--MODULE_PARM_DESC(enable_display, "Enable display");
--
--u32 xe_force_vram_bar_size;
--module_param_named(vram_bar_size, xe_force_vram_bar_size, uint, 0600);
--MODULE_PARM_DESC(vram_bar_size, "Set the vram bar size(in MiB)");
--
--int xe_guc_log_level = 5;
--module_param_named(guc_log_level, xe_guc_log_level, int, 0600);
--MODULE_PARM_DESC(guc_log_level, "GuC firmware logging level (0=disable, 1..5=enable with verbosity min..max)");
--
- char *xe_param_force_probe = CONFIG_DRM_XE_FORCE_PROBE;
- module_param_named_unsafe(force_probe, xe_param_force_probe, charp, 0400);
- MODULE_PARM_DESC(force_probe,
-diff --git a/drivers/gpu/drm/xe/xe_module.h b/drivers/gpu/drm/xe/xe_module.h
-index 86916c176382..fb95bff2c2f4 100644
---- a/drivers/gpu/drm/xe/xe_module.h
-+++ b/drivers/gpu/drm/xe/xe_module.h
-@@ -5,9 +5,4 @@
- 
- #include <linux/init.h>
- 
--/* Module modprobe variables */
--extern bool enable_guc;
--extern bool enable_display;
--extern u32 xe_force_vram_bar_size;
--extern int xe_guc_log_level;
- extern char *xe_param_force_probe;
+ 	/** @irq: device interrupt state */
+diff --git a/drivers/gpu/drm/xe/xe_params.c b/drivers/gpu/drm/xe/xe_params.c
+new file mode 100644
+index 000000000000..7c8f4e07b49c
+--- /dev/null
++++ b/drivers/gpu/drm/xe/xe_params.c
+@@ -0,0 +1,118 @@
++/* SPDX-License-Identifier: MIT */
++/*
++ * Copyright © 2023 Intel Corporation
++ */
++
++#include <linux/string_helpers.h>
++
++#include <drm/drm_print.h>
++
++#include "xe_params.h"
++
++struct xe_params xe_modparams __read_mostly = {
++#define MEMBER(T, member, value, ...) .member = (value),
++	XE_PARAMS_FOR_EACH(MEMBER)
++#undef MEMBER
++};
++
++/*
++ * Note: As a rule, keep module parameter sysfs permissions read-only
++ * 0400. Runtime changes are only supported through xe debugfs.
++ *
++ * For any exceptions requiring write access and runtime changes through module
++ * parameter sysfs, prevent debugfs file creation by setting the parameter's
++ * debugfs mode to 0.
++ */
++
++static void _param_print_bool(struct drm_printer *p, const char *name,
++			      bool val)
++{
++	drm_printf(p, "xe.%s=%s\n", name, str_yes_no(val));
++}
++
++static void _param_print_int(struct drm_printer *p, const char *name,
++			     int val)
++{
++	drm_printf(p, "xe.%s=%d\n", name, val);
++}
++
++static void _param_print_uint(struct drm_printer *p, const char *name,
++			      unsigned int val)
++{
++	drm_printf(p, "xe.%s=%u\n", name, val);
++}
++
++static void _param_print_ulong(struct drm_printer *p, const char *name,
++			       unsigned long val)
++{
++	drm_printf(p, "xe.%s=%lu\n", name, val);
++}
++
++static void _param_print_charp(struct drm_printer *p, const char *name,
++			       const char *val)
++{
++	drm_printf(p, "xe.%s=%s\n", name, val);
++}
++
++#define _param_print(p, name, val)				\
++	_Generic(val,						\
++		 bool: _param_print_bool,			\
++		 int: _param_print_int,				\
++		 unsigned int: _param_print_uint,		\
++		 unsigned long: _param_print_ulong,		\
++		 char *: _param_print_charp)(p, name, val)
++
++/**
++ * xe_params_dump - dump xe modparams
++ * @params: xe modparams
++ * @p: the &drm_printer
++ *
++ * Pretty printer for xe modparams.
++ */
++void xe_params_dump(const struct xe_params *params, struct drm_printer *p)
++{
++#define PRINT(T, x, ...) _param_print(p, #x, params->x);
++	XE_PARAMS_FOR_EACH(PRINT);
++#undef PRINT
++}
++
++static void _param_dup_charp(char **valp)
++{
++	*valp = kstrdup(*valp, GFP_ATOMIC);
++}
++
++static void _param_nop(void *valp)
++{
++}
++
++#define _param_dup(valp)				\
++	_Generic(valp,					\
++		 char **: _param_dup_charp,		\
++		 default: _param_nop)(valp)
++
++void xe_params_copy(struct xe_params *dest, const struct xe_params *src)
++{
++	*dest = *src;
++#define DUP(T, x, ...) _param_dup(&dest->x);
++	XE_PARAMS_FOR_EACH(DUP);
++#undef DUP
++}
++
++static void _param_free_charp(char **valp)
++{
++	kfree(*valp);
++	*valp = NULL;
++}
++
++#define _param_free(valp)				\
++	_Generic(valp,					\
++		 char **: _param_free_charp,		\
++		 default: _param_nop)(valp)
++
++/* free the allocated members, *not* the passed in params itself */
++void xe_params_free(struct xe_params *params)
++{
++#define FREE(T, x, ...) _param_free(&params->x);
++	XE_PARAMS_FOR_EACH(FREE);
++#undef FREE
++}
 diff --git a/drivers/gpu/drm/xe/xe_params.h b/drivers/gpu/drm/xe/xe_params.h
-index 26fb592e9cd6..7d17d75c1a85 100644
---- a/drivers/gpu/drm/xe/xe_params.h
+new file mode 100644
+index 000000000000..26fb592e9cd6
+--- /dev/null
 +++ b/drivers/gpu/drm/xe/xe_params.h
-@@ -23,7 +23,10 @@ struct drm_printer;
-  *       debugfs file
-  */
- #define XE_PARAMS_FOR_EACH(param) \
--	param(bool, dummy, true, 0444)
-+	param(bool, enable_guc, true, 0444) \
-+	param(bool, enable_display, true, 0444) \
-+	param(unsigned int, force_vram_bar_size, -1, 0600) \
-+	param(int, guc_log_level, 5, 0600)
+@@ -0,0 +1,40 @@
++/* SPDX-License-Identifier: MIT */
++/*
++ * Copyright © 2023 Intel Corporation
++ */
++
++#ifndef _XE_PARAMS_H_
++#define _XE_PARAMS_H_
++
++#include <linux/bitops.h>
++#include <linux/cache.h> /* for __read_mostly */
++
++struct drm_printer;
++
++/*
++ * Invoke param, a function-like macro, for each xe param, with arguments:
++ *
++ * param(type, name, value, mode)
++ *
++ * type: parameter type, one of {bool, int, unsigned int, unsigned long, char *}
++ * name: name of the parameter
++ * value: initial/default value of the parameter
++ * mode: debugfs file permissions, one of {0400, 0600, 0}, use 0 to not create
++ *       debugfs file
++ */
++#define XE_PARAMS_FOR_EACH(param) \
++	param(bool, dummy, true, 0444)
++
++#define MEMBER(T, member, ...) T member;
++struct xe_params {
++	XE_PARAMS_FOR_EACH(MEMBER);
++};
++#undef MEMBER
++
++extern struct xe_params xe_modparams __read_mostly;
++
++void xe_params_dump(const struct xe_params *params, struct drm_printer *p);
++void xe_params_copy(struct xe_params *dest, const struct xe_params *src);
++void xe_params_free(struct xe_params *params);
++
++#endif
+diff --git a/drivers/gpu/drm/xe/xe_pci.c b/drivers/gpu/drm/xe/xe_pci.c
+index f8ca179254fa..11da5abe587f 100644
+--- a/drivers/gpu/drm/xe/xe_pci.c
++++ b/drivers/gpu/drm/xe/xe_pci.c
+@@ -22,6 +22,8 @@
+ #include "xe_module.h"
+ #include "xe_pm.h"
+ #include "xe_step.h"
++#include "xe_params.h"
++#include "xe_debugfs.h"
  
- #define MEMBER(T, member, ...) T member;
- struct xe_params {
+ #define DEV_INFO_FOR_EACH_FLAG(func) \
+ 	func(require_force_probe); \
+@@ -370,6 +372,8 @@ static void xe_pci_remove(struct pci_dev *pdev)
+ 	if (!xe) /* driver load aborted, nothing to cleanup */
+ 		return;
+ 
++	xe_params_free(&xe->info.params);
++
+ 	xe_device_remove(xe);
+ 	xe_pm_runtime_fini(xe);
+ 	pci_set_drvdata(pdev, NULL);
+@@ -406,6 +410,8 @@ static int xe_pci_probe(struct pci_dev *pdev, const struct pci_device_id *ent)
+ 	if (IS_ERR(xe))
+ 		return PTR_ERR(xe);
+ 
++	xe_params_copy(&xe->info.params, &xe_modparams);
++
+ 	xe->info.graphics_verx100 = desc->graphics_ver * 100 +
+ 				    desc->graphics_rel;
+ 	xe->info.media_verx100 = desc->media_ver * 100 +
 -- 
 2.38.1.143.g1fc3c0ad40
 
