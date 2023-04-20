@@ -4,49 +4,137 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 38002C77B72
-	for <intel-xe@archiver.kernel.org>; Thu, 20 Apr 2023 09:33:03 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 70346C77B72
+	for <intel-xe@archiver.kernel.org>; Thu, 20 Apr 2023 13:03:27 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E26B410E27F;
-	Thu, 20 Apr 2023 09:33:02 +0000 (UTC)
-Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3A04210E27F
- for <intel-xe@lists.freedesktop.org>; Thu, 20 Apr 2023 09:33:01 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3853910E2C0;
+	Thu, 20 Apr 2023 13:03:27 +0000 (UTC)
+Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id BD5F110E2C0
+ for <intel-xe@lists.freedesktop.org>; Thu, 20 Apr 2023 13:03:24 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1681983181; x=1713519181;
- h=from:to:cc:subject:in-reply-to:references:date:
- message-id:mime-version;
- bh=zXwnX6yOutQ5HK5yalPfo2TNSz6uff51la6yPXVN488=;
- b=gvEgpyK0FkNOSSjMNxzrO6B0lTvgqBvu5YQK7j7vuQBx8eucFqz7Cwxi
- uzgEWfkQWDPosoqL9kY1jtW0K5QZW6r2LyXYYOdo7piXMi75Xrmtvb0dp
- r4vunfqK00Ae7+apNEnzC8cZdb+qJ6WX0gJoAldSPI1auB6aN6+WBMXKs
- 4L8N79jqwR4gPayeYqhgkkhQvvjsKBtsms3LtwSFvZzAlD94r9AfCSKFC
- 2vXG4UTy8IIXeSQ4VKvdaxZkDE5D1rwDfm9n9L5Q1KHHLzqRMhD9UFdwu
- 8p7t/6Dkbh4afz7aOI4bRoQWB8c7IfZhHvzyNscWSdxD083//jrm7Gn1s g==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10685"; a="326014361"
-X-IronPort-AV: E=Sophos;i="5.99,212,1677571200"; d="scan'208";a="326014361"
-Received: from fmsmga007.fm.intel.com ([10.253.24.52])
- by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 20 Apr 2023 02:32:59 -0700
+ t=1681995805; x=1713531805;
+ h=date:from:to:cc:subject:message-id:references:
+ in-reply-to:mime-version;
+ bh=Wx/uQ3nPtj+l6kTXQU7ROKPoQZRmmXMiVQsQmCjlktw=;
+ b=fcXNo29Z2gcw3KwD/TFzU65t2IMFlF5sSngiiVYhD2sMhLgi3pr1CNXT
+ uX3UWtK4jr+h6vAu8xUpPLCTtv26hHoppURz9rOcmwaH1zmq2EJ/I8eK3
+ l9g1d9INoNAc7A/0c0a5LzKaNWNtlsd+g/6lfK8W4SzgKKLgh+TWmM98k
+ BSOUArIqK6k8mGsSUqnIK25wBmeG4DenEdbzNMF0/Dv6+MQ88sxVCJM51
+ JFdJP0VUhhbrhV1agbPv8BVRnn0EFLHLDEHDLZtmr3ZrDfTvsiJ+QchZI
+ FHvaO3ZeAO+6Jbehe/vsQp3uA8Hc0gtRtfBeNfJ1hyzXr9x366avRC5zu A==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10686"; a="344478635"
+X-IronPort-AV: E=Sophos;i="5.99,212,1677571200"; d="scan'208";a="344478635"
+Received: from fmsmga008.fm.intel.com ([10.253.24.58])
+ by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 20 Apr 2023 06:03:23 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10685"; a="694424481"
-X-IronPort-AV: E=Sophos;i="5.99,212,1677571200"; d="scan'208";a="694424481"
-Received: from agrische-mobl1.ger.corp.intel.com (HELO localhost)
- ([10.252.57.85])
- by fmsmga007-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 20 Apr 2023 02:32:57 -0700
-From: Jani Nikula <jani.nikula@linux.intel.com>
-To: Stuart Summers <stuart.summers@intel.com>
-In-Reply-To: <20230419175501.155319-1-stuart.summers@intel.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20230419175501.155319-1-stuart.summers@intel.com>
-Date: Thu, 20 Apr 2023 12:32:55 +0300
-Message-ID: <87mt32x5iw.fsf@intel.com>
+X-IronPort-AV: E=McAfee;i="6600,9927,10686"; a="756499758"
+X-IronPort-AV: E=Sophos;i="5.99,212,1677571200"; d="scan'208";a="756499758"
+Received: from fmsmsx603.amr.corp.intel.com ([10.18.126.83])
+ by fmsmga008.fm.intel.com with ESMTP; 20 Apr 2023 06:03:23 -0700
+Received: from fmsmsx611.amr.corp.intel.com (10.18.126.91) by
+ fmsmsx603.amr.corp.intel.com (10.18.126.83) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.23; Thu, 20 Apr 2023 06:03:23 -0700
+Received: from fmsmsx610.amr.corp.intel.com (10.18.126.90) by
+ fmsmsx611.amr.corp.intel.com (10.18.126.91) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.23; Thu, 20 Apr 2023 06:03:23 -0700
+Received: from fmsedg601.ED.cps.intel.com (10.1.192.135) by
+ fmsmsx610.amr.corp.intel.com (10.18.126.90) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.23 via Frontend Transport; Thu, 20 Apr 2023 06:03:23 -0700
+Received: from NAM10-MW2-obe.outbound.protection.outlook.com (104.47.55.102)
+ by edgegateway.intel.com (192.55.55.70) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.1.2507.23; Thu, 20 Apr 2023 06:03:22 -0700
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=gxJZJ21DwKLNHjHb73YiGV1EdM5SzPZbp9vL4vGK12S05a1swMHIOSutXrcgh58B0raMeKIp5MGON7CIkpbVAwtmnocPROU78kz3KPTTRexncjfdY+QVpb13gE+cSaT6BWsZ8r2pphqyNS5NZe+B/fF0MlcK5n/BR0VMsMBpYwDFYd5qMv+0vHWPI2niB8+yXs1/3W8vepwdwTSTfPZ04m2mCKh2CSsQ16Pe4lkZ8Yi5W/U/i4778RbuH/usvjVWUKo4QpWidWu4pNHNO6SxkLGIyI2BteU14SfedDy6hncaZ6FivKXQhNF4nYPj3GwSg4ZHeOTGziSpWIkqal0Ckg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=EyaM4wP6zbUs2F74BzI6yWKQiQLMXMOGL08AZPZq0lU=;
+ b=I398bKYiPtKLIaYlymfa1zpiN4bB5nt2llH9CGReYzncusDtBRoDjKRfedLuVZ+WAHi89XJGjCfSpnR3X6jWjho9deqDYnWSFxu1tviwzmjxwN+1GCAwrfkeVM30FU+tJFANbJjPkzTN8v8ws7BR2CHMIZ0M9t7ymBDMyHa82WDv+ElnU0d8Wc+DcExAnzqJ7sKE9XyAl0F4jtx7ek7QKT0iPEMEv+VmgMF9JZQLGaSsZOYAup//Boq5JuWixmDi5hvxPbQjNHCM7+fLkzRER+Z1Ij2CH0ST2bmFb9oJf5we8maCpgERXlKOnQsl3CM4XDLd7EmbYPq1jtQwHRXBJw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
+ dkim=pass header.d=intel.com; arc=none
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=intel.com;
+Received: from MN0PR11MB6059.namprd11.prod.outlook.com (2603:10b6:208:377::9)
+ by PH0PR11MB4936.namprd11.prod.outlook.com (2603:10b6:510:42::20)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6319.22; Thu, 20 Apr
+ 2023 13:03:21 +0000
+Received: from MN0PR11MB6059.namprd11.prod.outlook.com
+ ([fe80::f7ec:aae9:1e7b:e004]) by MN0PR11MB6059.namprd11.prod.outlook.com
+ ([fe80::f7ec:aae9:1e7b:e004%6]) with mapi id 15.20.6319.022; Thu, 20 Apr 2023
+ 13:03:21 +0000
+Date: Thu, 20 Apr 2023 09:03:16 -0400
+From: Rodrigo Vivi <rodrigo.vivi@intel.com>
+To: Riana Tauro <riana.tauro@intel.com>
+Message-ID: <ZEE4FM3uzUZKnzp7@intel.com>
+References: <20230420055648.323567-1-riana.tauro@intel.com>
+Content-Type: text/plain; charset="us-ascii"
+Content-Disposition: inline
+In-Reply-To: <20230420055648.323567-1-riana.tauro@intel.com>
+X-ClientProxiedBy: SJ0PR05CA0102.namprd05.prod.outlook.com
+ (2603:10b6:a03:334::17) To MN0PR11MB6059.namprd11.prod.outlook.com
+ (2603:10b6:208:377::9)
 MIME-Version: 1.0
-Content-Type: text/plain
-Subject: Re: [Intel-xe] [PATCH 0/4] RFC: Add new device configuration
- infrastructure to
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: MN0PR11MB6059:EE_|PH0PR11MB4936:EE_
+X-MS-Office365-Filtering-Correlation-Id: f9b03b91-1fd8-4a34-2bbc-08db419f9dfb
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: aiszI+RIXYHPpk2A2L9S2BAnwuyCuE4l8bIKl8LKXrYZoJWptqZXKzKG2hv2d/jVJ4YFdzonB/6liCv1ZvpewSDaLskdB6mA7bDGjY0qFSjcfwuAWAuekcu/u2+rK6O/RIxsEhAprQv8UZjRQc08X4ClgiGco/qYzT3d3MguCQ9ei0v32S2DEGZFceyWhooCEmltuvWxq8rOBCsWTzZhKC4/SxHadG9gMNZGsPJrJJBSlPu6QZ1tIooyGF6T6L9IHS/19UBDV3sLl2PwSkyvp2Iy8ufoTd9etw/FQzJz0+UpUQbnY+egCJk6E3GC4f57N188OuPbExIhfKRjTImvnVF21o69JwjaoQ/gvb8MyTTnDggGZictcSJvJSDwIpGbxbg8JCOh7D+owIZsXif+sB4+Td1X58DC1i3sJFv5MdjMpDhFwOteB+nmJouoUFQeZjoSa9kmxRKpHCr5blncV5b1auj/ljFrJ4D967B2UQoKBn/F+2BPpBjHc/5dJ7VRAAje2pVlZd0XSQWfaP00txvf9uNoJGmvatzuwTiq+ANY/EvUrWMB/M+QRWEZ7oub
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:MN0PR11MB6059.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230028)(136003)(376002)(396003)(366004)(346002)(39860400002)(451199021)(4326008)(316002)(37006003)(6636002)(66946007)(66556008)(66476007)(186003)(26005)(6506007)(107886003)(6512007)(38100700002)(2616005)(83380400001)(6862004)(5660300002)(41300700001)(8676002)(8936002)(478600001)(6666004)(6486002)(36756003)(86362001)(2906002)(82960400001)(44832011);
+ DIR:OUT; SFP:1102; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?Omw5X+EQ0LBjVlqP9gzUEpDaghc81oRYAOU1G4XfAA9BvT7DTTqtkqIpB2uQ?=
+ =?us-ascii?Q?/Q8D1sqFr0dxPmPcsN315GCK2dUozHcvfCRLJbbQhi3S9LpFUSKbn660gIhs?=
+ =?us-ascii?Q?Pt9bOHgE+ldKMtufAiPSGesi6QIyUs45MyzXYIU2JcBcmQec+u5LomKhO/8U?=
+ =?us-ascii?Q?s/LYf3HSBTd1Kn4WrGQ3tijqa6AGAZbFcGeYz1eVQcoF/KQKXaHKbSv+TzJ6?=
+ =?us-ascii?Q?Epf3MQWvN2I+/M7KX/C3/UOMkZt4r2qCy9y3HXoUaAH/TJ7og8wP2IuZ6a9R?=
+ =?us-ascii?Q?YokNSawdrNv+wvrSgNLLZt5h20OJO3ETIWhq/lJwqfOLrsNzgAYsgQLwB0JI?=
+ =?us-ascii?Q?5BPcPG1Ie11ihbGjmzO8PpQ54ilEiQBbCtm+efsoYRBSqnzk5Sui+M6HHDHj?=
+ =?us-ascii?Q?5lDNKTTzQoPCaXcN2WX/LqFydLHrH1SyMyEwKtbOQthJ+G61eR44/tOwsfv3?=
+ =?us-ascii?Q?sbxl6VL9rNwZlrrEB2w33aI09dIUq1Ceop9ct3IMAdzdVnPR9OTVYUkM4TbT?=
+ =?us-ascii?Q?rmRqcDmIWf+ggus2IJkvY1SrPbVZu/U+/qvlj36s7IVyVKO7Q+HPmVElWRss?=
+ =?us-ascii?Q?gkHdrvMk1NmBGaMA9ewI5Hgiui7os2RQ28iXi5/iSb4YTFakiI+CKrRhZJwI?=
+ =?us-ascii?Q?SVCVH2HTCseJISFIhwFYtCShsBT4DGzfWHZAlc8KEa+aiB7vYqt2bbUiIF2S?=
+ =?us-ascii?Q?dUvvHAM1y7lCHC/ZN75t3O4f3eh+i7MzofUdPK/Px3P4+PM0SR8idaHba922?=
+ =?us-ascii?Q?wfHKZsgoW+52SUjogrepJGkLLWuxy9JHBnsSkbFexoNp91FGAgMS5KMw8hET?=
+ =?us-ascii?Q?nTV3nWzqtTy3GmTF12B8i7Di5ZzvtpT/3TzrghQfUw54Qq5pVSLdVzbVxAhN?=
+ =?us-ascii?Q?fv3GbwgqHKneeg44s8VOFSaaPdwADIsDnBXFZFvUbCGQcD6lYgkiwGblecpH?=
+ =?us-ascii?Q?2a1DNSxB5cDj/0qXo1VoTphJhBbuie46C948P9ydWOIbgLhNPIEK2/UfsVzj?=
+ =?us-ascii?Q?7Trdf7xjdzxYo4mTIesXanoLiMAYhd3VU+35MSMC0sgBFAH9sGRlC67sfF2p?=
+ =?us-ascii?Q?fu9HQFOKgRZLlG5LfcA1pT2n1/e6liFpKbgKz9fM7pSj/2vrtdFuzM/1BClH?=
+ =?us-ascii?Q?q918X2jIfQbk+okCfBcRWSI1l2k8vSbnMnevUmmAfx88Yy6weDNRBlobllKy?=
+ =?us-ascii?Q?zm4j5CeEQQBjjrIL6jQRdxx15yaoQycdld5dfe/V4xEsoHZcwO6JfK+7ifVC?=
+ =?us-ascii?Q?AOyCBwfNwT9RppLUdDhEUMR2ejLrFdY1g0BustwN7dPEmbX7xAFpIbi73WfF?=
+ =?us-ascii?Q?N6JgfXLdu2KK/i2FW2vuJnPmlj5ybrDCTHWmilmzp6irMmnVNoGb2YpxEWx8?=
+ =?us-ascii?Q?alOVy0CwpmL5B6SY+gz0zHV8ZbIGc2jUCUUJ12dycPTbkjOkSzzV9KYhUvca?=
+ =?us-ascii?Q?BXiDd5KEQ3ldc8Q+3mv0dMKXrVmS+OEbW/96VVspga9MYGm5/i+iawGR4cze?=
+ =?us-ascii?Q?oviqWhKM5WzPxnzh4hthB/tdIm57g7IlzeLTAN5Xn1gfOUZoCAF0+Cw+nGLK?=
+ =?us-ascii?Q?J9tP09SbIYINNO6PSd2sS4VoWWc7TYHYXuxYyX5/w+Bp1s6JJDRQf3BneHfY?=
+ =?us-ascii?Q?tA=3D=3D?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: f9b03b91-1fd8-4a34-2bbc-08db419f9dfb
+X-MS-Exchange-CrossTenant-AuthSource: MN0PR11MB6059.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 20 Apr 2023 13:03:21.1759 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: twQWBX9G62GTCUXLvJmNyaWZBuOsyHkAOjPqYhAhiNjL97AmT5gh26dU1wXl4hpFjKMMvcT5e3Fs+0RGpTLp3A==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH0PR11MB4936
+X-OriginatorOrg: intel.com
+Subject: Re: [Intel-xe] [PATCH v2] drm/xe/guc_pc: Reorder forcewake and
+ xe_pm_runtime calls
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -58,78 +146,114 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Cc: stuart.summers@intel.com, lucas.demarchi@intel.com,
- matthew.d.roper@intel.com, intel-xe@lists.freedesktop.org
+Cc: anshuman.gupta@intel.com, intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Wed, 19 Apr 2023, Stuart Summers <stuart.summers@intel.com> wrote:
-> This is attempting to take the best parts of i915 module parameters
-> (minus the actual module parameters) and add to xe to allow for better
-> debuggability and configuration in order to help isolate problems
-> on a per-device level instead of global module parameters.
->
-> Note that I did review a few options here: configfs (not generally
-> used by the drm stack), module parameters (we have some negative
-> history here), sysfs (not the right approach given the focus on
-> user interface here). Debugfs is used in various drm drivers to
-> configure various device characteristics. The infrastructure being
-> presented here has at a high level been present in the i915 driver
-> for some years now, so provides a good starting point for quick
-> debug additions without exposing users to some of the challenges
-> faced with module parameters in the past.
+On Thu, Apr 20, 2023 at 11:26:48AM +0530, Riana Tauro wrote:
+> When the device is runtime suspended, reading some of the sysfs
+> entries under device/gt#/ causes a resume error
+> This is due to the ordering of pm_runtime and forcewake calls.
+> Reorder to wake up using xe_pm_runtime_get and then forcewake
+> 
+> v2: add goto statements (Rodrigo)
 
-Looking into configfs has been on my todo list for a long time. It's
-something that often gets recommended as a replacement to module
-parameters, but the documentation as well as the existing examples in
-the kernel are, I think, less than stellar. Basically would require
-implementing it and seeing how it actually works.
+Reviewed-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
 
-In any case, I don't think it should be dismissed with just "not
-generally used by the drm stack". A decent implementation could set the
-example going forward.
+Although I got myself wondering if we shouldn't add the mem_access
+calls inside the forcewake or even the mmio functions...
 
-The main problem with debugfs is the inability to set the default values
-prior to probing the device. This is where module parameters are handy,
-but they aren't device specific (and, as you note, generally
-discouraged).
-
-Looking at the patches, I'm not sure I understand what the procedure for
-setting the debugfs values before probing the device would be. Can you
-provide an example sequence on the command-line please?
-
-
-BR,
-Jani.
-
->
-> Stuart Summers (4):
->   drm/xe: Refactor early device init
->   drm/xe: Refactor debugfs into an early and late part
->   drm/xe: Add new device configuration debugfs infrastructure
->   drm/xe: Migrate module parameters to new debugfs structure
->
->  drivers/gpu/drm/xe/Makefile            |   1 +
->  drivers/gpu/drm/xe/xe_debugfs.c        |  14 +-
->  drivers/gpu/drm/xe/xe_debugfs.h        |   1 +
->  drivers/gpu/drm/xe/xe_debugfs_params.c | 235 +++++++++++++++++++++++++
->  drivers/gpu/drm/xe/xe_debugfs_params.h |  14 ++
->  drivers/gpu/drm/xe/xe_device.c         |  23 ++-
->  drivers/gpu/drm/xe/xe_device.h         |   4 +-
->  drivers/gpu/drm/xe/xe_device_types.h   |   4 +
->  drivers/gpu/drm/xe/xe_display.c        |   3 +-
->  drivers/gpu/drm/xe/xe_guc_log.c        |   2 +-
->  drivers/gpu/drm/xe/xe_mmio.c           |   4 +-
->  drivers/gpu/drm/xe/xe_module.c         |  16 --
->  drivers/gpu/drm/xe/xe_module.h         |   5 -
->  drivers/gpu/drm/xe/xe_params.c         | 118 +++++++++++++
->  drivers/gpu/drm/xe/xe_params.h         |  43 +++++
->  drivers/gpu/drm/xe/xe_pci.c            |  14 +-
->  16 files changed, 461 insertions(+), 40 deletions(-)
->  create mode 100644 drivers/gpu/drm/xe/xe_debugfs_params.c
->  create mode 100644 drivers/gpu/drm/xe/xe_debugfs_params.h
->  create mode 100644 drivers/gpu/drm/xe/xe_params.c
->  create mode 100644 drivers/gpu/drm/xe/xe_params.h
-
--- 
-Jani Nikula, Intel Open Source Graphics Center
+> 
+> Signed-off-by: Riana Tauro <riana.tauro@intel.com>
+> ---
+>  drivers/gpu/drm/xe/xe_guc_pc.c | 24 ++++++++++++------------
+>  1 file changed, 12 insertions(+), 12 deletions(-)
+> 
+> diff --git a/drivers/gpu/drm/xe/xe_guc_pc.c b/drivers/gpu/drm/xe/xe_guc_pc.c
+> index 5a8d827ba770..b853831b342b 100644
+> --- a/drivers/gpu/drm/xe/xe_guc_pc.c
+> +++ b/drivers/gpu/drm/xe/xe_guc_pc.c
+> @@ -370,15 +370,14 @@ static ssize_t freq_act_show(struct device *dev,
+>  	u32 freq;
+>  	ssize_t ret;
+>  
+> +	xe_device_mem_access_get(gt_to_xe(gt));
+>  	/*
+>  	 * When in RC6, actual frequency is 0. Let's block RC6 so we are able
+>  	 * to verify that our freq requests are really happening.
+>  	 */
+>  	ret = xe_force_wake_get(gt_to_fw(gt), XE_FORCEWAKE_ALL);
+>  	if (ret)
+> -		return ret;
+> -
+> -	xe_device_mem_access_get(gt_to_xe(gt));
+> +		goto out;
+>  
+>  	if (xe->info.platform == XE_METEORLAKE) {
+>  		freq = xe_mmio_read32(gt, MTL_MIRROR_TARGET_WP1.reg);
+> @@ -388,11 +387,11 @@ static ssize_t freq_act_show(struct device *dev,
+>  		freq = REG_FIELD_GET(GEN12_CAGF_MASK, freq);
+>  	}
+>  
+> -	xe_device_mem_access_put(gt_to_xe(gt));
+> -
+>  	ret = sysfs_emit(buf, "%d\n", decode_freq(freq));
+>  
+>  	XE_WARN_ON(xe_force_wake_put(gt_to_fw(gt), XE_FORCEWAKE_ALL));
+> +out:
+> +	xe_device_mem_access_put(gt_to_xe(gt));
+>  	return ret;
+>  }
+>  static DEVICE_ATTR_RO(freq_act);
+> @@ -405,22 +404,23 @@ static ssize_t freq_cur_show(struct device *dev,
+>  	u32 freq;
+>  	ssize_t ret;
+>  
+> +	xe_device_mem_access_get(gt_to_xe(gt));
+>  	/*
+>  	 * GuC SLPC plays with cur freq request when GuCRC is enabled
+>  	 * Block RC6 for a more reliable read.
+>  	 */
+>  	ret = xe_force_wake_get(gt_to_fw(gt), XE_FORCEWAKE_ALL);
+>  	if (ret)
+> -		return ret;
+> +		goto out;
+>  
+> -	xe_device_mem_access_get(gt_to_xe(gt));
+>  	freq = xe_mmio_read32(gt, GEN6_RPNSWREQ.reg);
+> -	xe_device_mem_access_put(gt_to_xe(gt));
+>  
+>  	freq = REG_FIELD_GET(REQ_RATIO_MASK, freq);
+>  	ret = sysfs_emit(buf, "%d\n", decode_freq(freq));
+>  
+>  	XE_WARN_ON(xe_force_wake_put(gt_to_fw(gt), XE_FORCEWAKE_ALL));
+> +out:
+> +	xe_device_mem_access_put(gt_to_xe(gt));
+>  	return ret;
+>  }
+>  static DEVICE_ATTR_RO(freq_cur);
+> @@ -610,17 +610,17 @@ static ssize_t rc6_residency_show(struct device *dev,
+>  	u32 reg;
+>  	ssize_t ret;
+>  
+> +	xe_device_mem_access_get(pc_to_xe(pc));
+>  	ret = xe_force_wake_get(gt_to_fw(gt), XE_FORCEWAKE_ALL);
+>  	if (ret)
+> -		return ret;
+> +		goto out;
+>  
+> -	xe_device_mem_access_get(pc_to_xe(pc));
+>  	reg = xe_mmio_read32(gt, GEN6_GT_GFX_RC6.reg);
+> -	xe_device_mem_access_put(pc_to_xe(pc));
+> -
+>  	ret = sysfs_emit(buff, "%u\n", reg);
+>  
+>  	XE_WARN_ON(xe_force_wake_put(gt_to_fw(gt), XE_FORCEWAKE_ALL));
+> +out:
+> +	xe_device_mem_access_put(pc_to_xe(pc));
+>  	return ret;
+>  }
+>  static DEVICE_ATTR_RO(rc6_residency);
+> -- 
+> 2.40.0
+> 
