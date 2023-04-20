@@ -4,34 +4,48 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id C5CEAC7618E
-	for <intel-xe@archiver.kernel.org>; Thu, 20 Apr 2023 19:46:49 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 91836C77B73
+	for <intel-xe@archiver.kernel.org>; Thu, 20 Apr 2023 19:59:38 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5785A10E2C9;
-	Thu, 20 Apr 2023 19:46:49 +0000 (UTC)
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3B66810E2E8
- for <intel-xe@lists.freedesktop.org>; Thu, 20 Apr 2023 19:30:48 +0000 (UTC)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
- (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
- (No client certificate requested)
- by dfw.source.kernel.org (Postfix) with ESMTPS id 8396161843;
- Thu, 20 Apr 2023 19:30:47 +0000 (UTC)
-Received: from rdvivi-mobl4 (unknown [192.55.55.51])
- (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
- (No client certificate requested)
- by smtp.kernel.org (Postfix) with ESMTPSA id E4DB0C433EF;
- Thu, 20 Apr 2023 19:30:44 +0000 (UTC)
-Date: Thu, 20 Apr 2023 15:30:42 -0400
-From: Rodrigo Vivi <rodrigo.vivi@kernel.org>
-To: Jani Nikula <jani.nikula@intel.com>
-Message-ID: <ZEGS4tA905pT3ZWQ@rdvivi-mobl4>
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6427310E2EA;
+	Thu, 20 Apr 2023 19:59:38 +0000 (UTC)
+Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5320C10E2EA
+ for <intel-xe@lists.freedesktop.org>; Thu, 20 Apr 2023 19:59:36 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1682020776; x=1713556776;
+ h=from:to:cc:subject:in-reply-to:references:date:
+ message-id:mime-version;
+ bh=TqV/y+fJRUE7iIjqErm28lYAdUw1ey0Mr5hFrUkuKeI=;
+ b=nEBBEUEm0ccI1PEzezvgktoB1SYxwaNgWWG0qEdfaZAOPRDPBAj9WIRC
+ ivxKAggQdI+jStbibo9ciZglOjY/U2v6zq7iBjShWwcAjvl2sWiXk+/P4
+ NRg9M49lH9lZr5KWmxGBPU1W68m0zUKgtC72oLLO/hPuN5VaV0uUT6c+K
+ Ph7NaP7/hbCT7CG4/aEMN0+cgvyKRgYTmdbtbXgaBHmaGp0PaCfCDMt69
+ kWdC+kwf4eZqtDWq1BoonOkkuGOrFifCeZMSJqxu3A9dRLc9N/pm0Aex0
+ pHl7tHlQ+20O49k3O+nd315gWgqFSkgkT/6u1MM1olY81WbuGFLfx837t A==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10686"; a="348627985"
+X-IronPort-AV: E=Sophos;i="5.99,213,1677571200"; d="scan'208";a="348627985"
+Received: from orsmga008.jf.intel.com ([10.7.209.65])
+ by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 20 Apr 2023 12:59:35 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6600,9927,10686"; a="722500062"
+X-IronPort-AV: E=Sophos;i="5.99,213,1677571200"; d="scan'208";a="722500062"
+Received: from stoicaan-mobl.ger.corp.intel.com (HELO localhost)
+ ([10.252.56.157])
+ by orsmga008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 20 Apr 2023 12:59:33 -0700
+From: Jani Nikula <jani.nikula@intel.com>
+To: Rodrigo Vivi <rodrigo.vivi@kernel.org>
+In-Reply-To: <ZEGS4tA905pT3ZWQ@rdvivi-mobl4>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
 References: <20230419123947.543175-1-jani.nikula@intel.com>
+ <ZEGS4tA905pT3ZWQ@rdvivi-mobl4>
+Date: Thu, 20 Apr 2023 22:59:29 +0300
+Message-ID: <875y9qwcim.fsf@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20230419123947.543175-1-jani.nikula@intel.com>
-X-Mailman-Approved-At: Thu, 20 Apr 2023 19:46:47 +0000
+Content-Type: text/plain
 Subject: Re: [Intel-xe] [PATCH 0/9] xe & i915 display integration cleanups
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -49,68 +63,19 @@ Cc: lucas.demarchi@intel.com, intel-xe@lists.freedesktop.org,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Wed, Apr 19, 2023 at 03:39:38PM +0300, Jani Nikula wrote:
-> Change the way i915 display gets built for xe. Additional cleanups and
-> backports on top to make future changes simpler.
+On Thu, 20 Apr 2023, Rodrigo Vivi <rodrigo.vivi@kernel.org> wrote:
+> On Wed, Apr 19, 2023 at 03:39:38PM +0300, Jani Nikula wrote:
+>> Change the way i915 display gets built for xe. Additional cleanups and
+>> backports on top to make future changes simpler.
+>
+> I tested this series on DG2 and worked well so I pushed it already
+> so I can do the in-place rebase --autosquash.
 
-I tested this series on DG2 and worked well so I pushed it already
-so I can do the in-place rebase --autosquash.
+Thanks, much appreciated!
 
-> 
-> Jani Nikula (9):
->   fixup! drm/xe/display: Implement display support
->   drm/i915/wm: remove stale and unused ilk_wm_max_level() declaration
->   drm/i915/display: add I915 conditional build to i9xx_wm.h
->   fixup! drm/xe/display: Implement display support
->   drm/i915: rename intel_pm.[ch] to intel_clock_gating.[ch]
->   fixup! drm/xe/display: Implement display support
->   drm/i915: use explicit includes for i915_reg.h and i915_irq.h
->   fixup! drm/xe/display: Implement display support
->   fixup! drm/i915/display: Remaining changes to make xe compile
-> 
->  drivers/gpu/drm/i915/Makefile                 |   2 +-
->  drivers/gpu/drm/i915/display/i9xx_wm.c        |   1 +
->  drivers/gpu/drm/i915/display/i9xx_wm.h        |  18 +-
->  drivers/gpu/drm/i915/display/intel_display.c  |   4 +-
->  .../drm/i915/display/intel_display_power.c    |   1 +
->  .../i915/display/intel_display_power_well.c   |   1 +
->  .../drm/i915/display/intel_display_reg_defs.h |   4 -
->  .../drm/i915/display/intel_display_trace.h    |   1 -
->  drivers/gpu/drm/i915/display/intel_fbc.c      |   1 +
->  .../drm/i915/display/intel_fifo_underrun.c    |   2 +
->  drivers/gpu/drm/i915/gt/intel_gt_irq.c        |   1 +
->  drivers/gpu/drm/i915/gt/intel_reset.c         |   1 +
->  drivers/gpu/drm/i915/gt/intel_rps.c           |   1 +
->  drivers/gpu/drm/i915/gt/selftest_rps.c        |   1 +
->  drivers/gpu/drm/i915/gt/uc/intel_guc.c        |   1 +
->  drivers/gpu/drm/i915/i915_debugfs.c           |   1 +
->  drivers/gpu/drm/i915/i915_driver.c            |   8 +-
->  drivers/gpu/drm/i915/i915_gem.c               |   8 +-
->  drivers/gpu/drm/i915/i915_irq.c               |   1 +
->  drivers/gpu/drm/i915/i915_irq.h               |   2 +-
->  .../i915/{intel_pm.c => intel_clock_gating.c} |   9 +-
->  drivers/gpu/drm/i915/intel_clock_gating.h     |  14 ++
->  drivers/gpu/drm/i915/intel_pm.h               |  18 --
->  drivers/gpu/drm/i915/vlv_suspend.c            |   4 +-
->  drivers/gpu/drm/xe/Makefile                   | 170 +++++++++---------
->  .../compat-i915-headers/intel_clock_gating.h  |   1 +
->  drivers/gpu/drm/xe/display/ext/i915_irq.c     |   2 +-
->  drivers/gpu/drm/xe/display/ext/i9xx_wm.c      |  24 ---
->  drivers/gpu/drm/xe/display/ext/i9xx_wm.h      |  20 ---
->  .../ext/{intel_pm.c => intel_clock_gating.c}  |   4 +-
->  drivers/gpu/drm/xe/display/ext/intel_pm.h     |  29 ---
->  drivers/gpu/drm/xe/xe_device_types.h          |   3 +
->  drivers/gpu/drm/xe/xe_display.c               |   4 +-
->  33 files changed, 152 insertions(+), 210 deletions(-)
->  rename drivers/gpu/drm/i915/{intel_pm.c => intel_clock_gating.c} (99%)
->  create mode 100644 drivers/gpu/drm/i915/intel_clock_gating.h
->  delete mode 100644 drivers/gpu/drm/i915/intel_pm.h
->  create mode 100644 drivers/gpu/drm/xe/compat-i915-headers/intel_clock_gating.h
->  delete mode 100644 drivers/gpu/drm/xe/display/ext/i9xx_wm.c
->  delete mode 100644 drivers/gpu/drm/xe/display/ext/i9xx_wm.h
->  rename drivers/gpu/drm/xe/display/ext/{intel_pm.c => intel_clock_gating.c} (97%)
->  delete mode 100644 drivers/gpu/drm/xe/display/ext/intel_pm.h
-> 
-> -- 
-> 2.39.2
-> 
+BR,
+Jani.
+
+
+-- 
+Jani Nikula, Intel Open Source Graphics Center
