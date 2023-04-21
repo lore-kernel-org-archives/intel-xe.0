@@ -4,48 +4,47 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id B7C9FC77B7F
-	for <intel-xe@archiver.kernel.org>; Fri, 21 Apr 2023 22:33:16 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1FDC6C77B7E
+	for <intel-xe@archiver.kernel.org>; Fri, 21 Apr 2023 22:33:17 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4DC5810E118;
+	by gabe.freedesktop.org (Postfix) with ESMTP id C1BFC10E903;
 	Fri, 21 Apr 2023 22:33:16 +0000 (UTC)
 Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0BDED10E2FB
- for <intel-xe@lists.freedesktop.org>; Fri, 21 Apr 2023 22:33:15 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A305710E118
+ for <intel-xe@lists.freedesktop.org>; Fri, 21 Apr 2023 22:33:14 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1682116395; x=1713652395;
+ t=1682116394; x=1713652394;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=gsIihECOVrRx36TQFHCGYRMP6BeGOS2a33/EYNkBxDQ=;
- b=RqzA6ubsWLAyqMGmF6gxK6Cygdacj3D4ydlss9OrxHakUh7Fi6gK6i3v
- Wyi2Iv2bDvTRzPagpeOzdz8Qx6Tp5pBxBTPKOTlHb6WLQiUnzBuPt9VRR
- eiG+bqTOpKr9nPiWXDCPhTsFf/0avIQBM1V1TMeUAW5Bm+RQncw5pRxVo
- I59zi5n0EjOKRlhpLHHAn3phmdlnCsDWB+gmoLSNcbqNChbWfcTMl3myg
- zeJvXgQfx8UZ9S1AO8aPh5Xr8OdFpNYcy1R6pZXKIkOO2Ard5ZsWK/EY/
- A+4Yno2KjRRIHj9no5vVRZE6XG4xSheYxiB0D4H60gbhlkYxXqeKiumDI w==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10687"; a="325693751"
-X-IronPort-AV: E=Sophos;i="5.99,216,1677571200"; d="scan'208";a="325693751"
+ bh=J7YVTZlY9k9IyHwf1lyb+ASsN0/0BkopP1kT/xr5vaY=;
+ b=fE81JoI9ziGIiFpAK2AsMxcNShuFU45AKmKi70xuF0w7mBAIBxASBmDt
+ M5uALrLMhMAjVtLTr3hOzWSiMK3k1jCc5JsZLMjvwDGA9OgpJFNdLI3Rn
+ 9KnP/oHZczNZpm038GU62tqXmjBT1I0oSuUiencNTxxAYTQYTc0prvEyn
+ TMs2NcuRKIiZZKHi29H+uw6WRyGKF0v2TKApNvBtbGi7gB4RBDMSRECmu
+ Cjt7XllcDeDNx+eIRKKnC0ukCDcSKKbDaxy1OdgW33aIlZvCrVF6Gs/LW
+ CoxM8qs2FhwFrFT/0ZDk6iggkyaihjpwhFoFO7gqBeT3w8NkwtZvtChMt g==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10687"; a="325693741"
+X-IronPort-AV: E=Sophos;i="5.99,216,1677571200"; d="scan'208";a="325693741"
 Received: from orsmga008.jf.intel.com ([10.7.209.65])
  by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 21 Apr 2023 15:33:14 -0700
+ 21 Apr 2023 15:33:13 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10687"; a="722913760"
-X-IronPort-AV: E=Sophos;i="5.99,216,1677571200"; d="scan'208";a="722913760"
+X-IronPort-AV: E=McAfee;i="6600,9927,10687"; a="722913737"
+X-IronPort-AV: E=Sophos;i="5.99,216,1677571200"; d="scan'208";a="722913737"
 Received: from lucas-s2600cw.jf.intel.com ([10.165.21.196])
  by orsmga008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  21 Apr 2023 15:33:12 -0700
 From: Lucas De Marchi <lucas.demarchi@intel.com>
 To: intel-xe@lists.freedesktop.org
-Date: Fri, 21 Apr 2023 15:32:52 -0700
-Message-Id: <20230421223258.128781-12-lucas.demarchi@intel.com>
+Date: Fri, 21 Apr 2023 15:32:45 -0700
+Message-Id: <20230421223258.128781-5-lucas.demarchi@intel.com>
 X-Mailer: git-send-email 2.39.0
 In-Reply-To: <20230421223258.128781-1-lucas.demarchi@intel.com>
 References: <20230421223258.128781-1-lucas.demarchi@intel.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-xe] [PATCH v2 11/17] drm/xe: Clarify register types on PAT
- programming
+Subject: [Intel-xe] [PATCH v2 04/17] drm/xe: Rename RC0/RC6 macros
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -62,79 +61,47 @@ Cc: Lucas De Marchi <lucas.demarchi@intel.com>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Clarify a few things related to the PAT programming, particularly on
-MTL:
-
-	- The register type doesn't change depending on the GT - what
-	  happens is that media GT writes to other set of registers that
-	  are not MCR
-	- Remove "UNICAST": otherwise it's confusing why it's not using
-	  MCR registers with the unicast function variant
-
-Also, there isn't much reason to keep those parts as macros: promote
-them to proper functions and let the compiler inline if it sees fit.
+Follow up commits will mass-remove the gen prefix/suffix. For GEN6_RC0
+and GEN6_RC6 that would make the variable too short and easy to
+conflict. So, add "GT_" prefix that is also part of the register name.
 
 Signed-off-by: Lucas De Marchi <lucas.demarchi@intel.com>
 ---
- drivers/gpu/drm/xe/xe_pat.c | 35 ++++++++++++++++++++---------------
- 1 file changed, 20 insertions(+), 15 deletions(-)
+ drivers/gpu/drm/xe/regs/xe_gt_regs.h | 4 ++--
+ drivers/gpu/drm/xe/xe_guc_pc.c       | 4 ++--
+ 2 files changed, 4 insertions(+), 4 deletions(-)
 
-diff --git a/drivers/gpu/drm/xe/xe_pat.c b/drivers/gpu/drm/xe/xe_pat.c
-index c2faf0931649..fcf6ae2c92cc 100644
---- a/drivers/gpu/drm/xe/xe_pat.c
-+++ b/drivers/gpu/drm/xe/xe_pat.c
-@@ -62,31 +62,36 @@ static const u32 mtl_pat_table[] = {
- 	[4] = MTL_PAT_0_WB | MTL_3_COH_2W,
- };
+diff --git a/drivers/gpu/drm/xe/regs/xe_gt_regs.h b/drivers/gpu/drm/xe/regs/xe_gt_regs.h
+index f174758d8307..778d34afae93 100644
+--- a/drivers/gpu/drm/xe/regs/xe_gt_regs.h
++++ b/drivers/gpu/drm/xe/regs/xe_gt_regs.h
+@@ -345,8 +345,8 @@
  
--#define PROGRAM_PAT_UNICAST(gt, table) do { \
--	for (int i = 0; i < ARRAY_SIZE(table); i++) \
--		xe_mmio_write32(gt, _PAT_INDEX(i), table[i]); \
--} while (0)
-+static void program_pat(struct xe_gt *gt, const u32 table[], int n_entries)
-+{
-+	for (int i = 0; i < n_entries; i++)
-+		xe_mmio_write32(gt, _PAT_INDEX(i), table[i]);
-+}
+ #define GEN6_GT_CORE_STATUS			_MMIO(0x138060)
+ #define   RCN_MASK				REG_GENMASK(2, 0)
+-#define   GEN6_RC0				0
+-#define   GEN6_RC6				3
++#define   GT_RC0				0
++#define   GT_RC6				3
  
--#define PROGRAM_PAT_MCR(gt, table) do { \
--	for (int i = 0; i < ARRAY_SIZE(table); i++) \
--		xe_gt_mcr_multicast_write(gt, MCR_REG(_PAT_INDEX(i)), table[i]); \
--} while (0)
-+static void program_pat_mcr(struct xe_gt *gt, const u32 table[], int n_entries)
-+{
-+	for (int i = 0; i < n_entries; i++)
-+		xe_gt_mcr_multicast_write(gt, MCR_REG(_PAT_INDEX(i)), table[i]);
-+}
+ #define GEN6_GT_GFX_RC6_LOCKED			_MMIO(0x138104)
+ #define GEN6_GT_GFX_RC6				_MMIO(0x138108)
+diff --git a/drivers/gpu/drm/xe/xe_guc_pc.c b/drivers/gpu/drm/xe/xe_guc_pc.c
+index 5a8d827ba770..2f98544736ae 100644
+--- a/drivers/gpu/drm/xe/xe_guc_pc.c
++++ b/drivers/gpu/drm/xe/xe_guc_pc.c
+@@ -592,9 +592,9 @@ static ssize_t rc_status_show(struct device *dev,
+ 	xe_device_mem_access_put(gt_to_xe(gt));
  
- void xe_pat_init(struct xe_gt *gt)
- {
- 	struct xe_device *xe = gt_to_xe(gt);
- 
- 	if (xe->info.platform == XE_METEORLAKE) {
-+		/*
-+		 * SAMedia register offsets are adjusted by the write methods
-+		 * and they target registers that are not MCR, while for normal
-+		 * GT they are MCR
-+		 */
- 		if (xe_gt_is_media_type(gt))
--			PROGRAM_PAT_UNICAST(gt, mtl_pat_table);
-+			program_pat(gt, mtl_pat_table, ARRAY_SIZE(mtl_pat_table));
- 		else
--			PROGRAM_PAT_MCR(gt, mtl_pat_table);
--	} else if (xe->info.platform == XE_PVC) {
--		PROGRAM_PAT_MCR(gt, pvc_pat_table);
--	} else if (xe->info.platform == XE_DG2) {
--		PROGRAM_PAT_MCR(gt, pvc_pat_table);
-+			program_pat_mcr(gt, mtl_pat_table, ARRAY_SIZE(mtl_pat_table));
-+	} else if (xe->info.platform == XE_PVC || xe->info.platform == XE_DG2) {
-+		program_pat_mcr(gt, pvc_pat_table, ARRAY_SIZE(pvc_pat_table));
- 	} else if (GRAPHICS_VERx100(xe) <= 1210) {
--		PROGRAM_PAT_UNICAST(gt, tgl_pat_table);
-+		program_pat(gt, tgl_pat_table, ARRAY_SIZE(tgl_pat_table));
- 	} else {
- 		/*
- 		 * Going forward we expect to need new PAT settings for most
+ 	switch (REG_FIELD_GET(RCN_MASK, reg)) {
+-	case GEN6_RC6:
++	case GT_RC6:
+ 		return sysfs_emit(buff, "rc6\n");
+-	case GEN6_RC0:
++	case GT_RC0:
+ 		return sysfs_emit(buff, "rc0\n");
+ 	default:
+ 		return -ENOENT;
 -- 
 2.39.0
 
