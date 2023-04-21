@@ -4,48 +4,48 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 03D80C7EE23
-	for <intel-xe@archiver.kernel.org>; Fri, 21 Apr 2023 22:33:17 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3C69BC7EE25
+	for <intel-xe@archiver.kernel.org>; Fri, 21 Apr 2023 22:33:18 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3DBB510EF21;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3EC5210EF22;
 	Fri, 21 Apr 2023 22:33:17 +0000 (UTC)
 Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 238D410E118
- for <intel-xe@lists.freedesktop.org>; Fri, 21 Apr 2023 22:33:15 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E07D610E118
+ for <intel-xe@lists.freedesktop.org>; Fri, 21 Apr 2023 22:33:14 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1682116395; x=1713652395;
+ t=1682116394; x=1713652394;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=OY4JLTYLsuNW0DMRomcB0irSJoFiNT64Hxaqs8bwHbo=;
- b=irViLPmusiaZVmuxhKfqtMcuiuhRgqPMAnq91YPxGQgbhdP885394Yf4
- OJ3UNMcef3yTcHttNwyrWdnALtusqwrzrKUyaFBs9zGg9puLBdvAg/f7a
- mgW+2s++pxjOxW3Yu3ULn06gS+CPcSllUywXehDe81PDrTaIWycaVY9+/
- 7KHDFHmk0khzQ6ErY+Bi1+7jrJZqOJtu6ocisvdJgnpm8SQ5WFR3BJEaI
- 8BWrAWo0xKua3akK+QgbTZxs2qha3K1eIg6/EQPRX7arfnz63k/CBcMPa
- 7cekutKkDxx2Zo5/2IBWvbDUhhmdCglph5qWzTg+mm5k8fl7Tu2KATGZk w==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10687"; a="325693752"
-X-IronPort-AV: E=Sophos;i="5.99,216,1677571200"; d="scan'208";a="325693752"
+ bh=qUjLSU7ajHhy1izCwmfvNR4alPYgnQHBB2lrTiIKMf4=;
+ b=ghX5MRNBNzeHw2L6DbqYMNGrUMCGYRODip1f7iWttW7q8Ik0JmsHgJK1
+ kTkdkkH0OiIYXhK6bg+uRpzlVnzaUgsk6KAqU7H8h02YRupyZHaxTDJZ4
+ CIADBeTAQaaMwDVEhb46JNxK93XNBPAfJY9cY9+iX0xn6w6bvKCDhdK0B
+ Y8jJNpEyQi/oPEA6dyAjTloJ5nk14p9gx7ZhOEXbrV8IzRDPxCd/oIhJk
+ fJRDaYn5Mk7D2YS5W8GnDJcbmZNgL2JfPJYo53B5IlbYzdAPEpC/D2rIG
+ 4h25bGU65TN64EYDeUDALeoFS9YZBQu+80YkBz6Cu6kATUnLMKjmgKoC+ g==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10687"; a="325693749"
+X-IronPort-AV: E=Sophos;i="5.99,216,1677571200"; d="scan'208";a="325693749"
 Received: from orsmga008.jf.intel.com ([10.7.209.65])
  by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  21 Apr 2023 15:33:14 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10687"; a="722913763"
-X-IronPort-AV: E=Sophos;i="5.99,216,1677571200"; d="scan'208";a="722913763"
+X-IronPort-AV: E=McAfee;i="6600,9927,10687"; a="722913756"
+X-IronPort-AV: E=Sophos;i="5.99,216,1677571200"; d="scan'208";a="722913756"
 Received: from lucas-s2600cw.jf.intel.com ([10.165.21.196])
  by orsmga008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  21 Apr 2023 15:33:12 -0700
 From: Lucas De Marchi <lucas.demarchi@intel.com>
 To: intel-xe@lists.freedesktop.org
-Date: Fri, 21 Apr 2023 15:32:53 -0700
-Message-Id: <20230421223258.128781-13-lucas.demarchi@intel.com>
+Date: Fri, 21 Apr 2023 15:32:51 -0700
+Message-Id: <20230421223258.128781-11-lucas.demarchi@intel.com>
 X-Mailer: git-send-email 2.39.0
 In-Reply-To: <20230421223258.128781-1-lucas.demarchi@intel.com>
 References: <20230421223258.128781-1-lucas.demarchi@intel.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-xe] [PATCH v2 12/17] drm/xe/rtp: Improve magic macros for
- RTP tables
+Subject: [Intel-xe] [PATCH v2 10/17] drm/xe: Use REG_FIELD/REG_BIT for all
+ regs/*.h
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -62,164 +62,282 @@ Cc: Lucas De Marchi <lucas.demarchi@intel.com>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-The macros for writing the rtp tables have some downsides:
-
-	1) They are fragile, and when making a typo it's hard to know
-	   where it's failing for someone not used to them
-	2) They polute the global scope. The CONCAT/COUNT_ARGS/etc only
-	   work because they are defined exactly the same as the ones in
-	   kernel.h.
-	3) They are not compatible with rules/actions with registers
-	   passing additional options
-
-This new implementation fixes (2) and (3).
-
-For (2), prefix everything with "_XE", so there is less chance of
-clashes. Also, the maximum number of rules and actions is 4, so there is
-no need to make the helper macros go until 12: reduce that to 5, so if
-more arguments is passed, the compiler gives an error that there is not
-definition with _5 suffix.
-
-For (3), change the implementation to concentrate on "pasting a prefix
-to each argument" rather than the more general "call any macro for each
-argument". Hopefully this will avoid trying to extending this infra and
-making it more complex. The new changes to how the arguments are
-constructed using tuples will allow extending the interface where it's
-needed: passing additional register fields to allow creating our own
-xe_reg_t.
+Convert the macro declarations to the equivalent GENMASK and
+and bitfield prep for all registers.
 
 Signed-off-by: Lucas De Marchi <lucas.demarchi@intel.com>
 ---
- drivers/gpu/drm/xe/xe_rtp.h | 68 ++++++++++++++++++-------------------
- 1 file changed, 33 insertions(+), 35 deletions(-)
+ drivers/gpu/drm/xe/regs/xe_engine_regs.h | 24 +++++------
+ drivers/gpu/drm/xe/regs/xe_gt_regs.h     | 53 +++++++++++-------------
+ drivers/gpu/drm/xe/regs/xe_regs.h        | 12 +++---
+ drivers/gpu/drm/xe/xe_gt_clock.c         | 17 ++++----
+ 4 files changed, 48 insertions(+), 58 deletions(-)
 
-diff --git a/drivers/gpu/drm/xe/xe_rtp.h b/drivers/gpu/drm/xe/xe_rtp.h
-index a3be7c77753a..53650f09efe9 100644
---- a/drivers/gpu/drm/xe/xe_rtp.h
-+++ b/drivers/gpu/drm/xe/xe_rtp.h
-@@ -22,43 +22,42 @@ struct xe_reg_sr;
- /*
-  * Helper macros - not to be used outside this header.
-  */
--/* This counts to 12. Any more, it will return 13th argument. */
--#define __COUNT_ARGS(_0, _1, _2, _3, _4, _5, _6, _7, _8, _9, _10, _11, _12, _n, X...) _n
--#define COUNT_ARGS(X...) __COUNT_ARGS(, ##X, 12, 11, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1, 0)
-+#define _XE_ESC(...) __VA_ARGS__
-+#define _XE_COUNT_ARGS(...) _XE_ESC(__XE_COUNT_ARGS(__VA_ARGS__,5,4,3,2,1,))
-+#define __XE_COUNT_ARGS(_,_5,_4,_3,_2,X_,...) X_
+diff --git a/drivers/gpu/drm/xe/regs/xe_engine_regs.h b/drivers/gpu/drm/xe/regs/xe_engine_regs.h
+index bfcb0e9a6d4c..938055f75492 100644
+--- a/drivers/gpu/drm/xe/regs/xe_engine_regs.h
++++ b/drivers/gpu/drm/xe/regs/xe_engine_regs.h
+@@ -22,7 +22,7 @@
+ #define   RING_CTL_SIZE(size)			((size) - PAGE_SIZE) /* in bytes -> pages */
  
--#define __CONCAT(a, b) a ## b
--#define CONCATENATE(a, b) __CONCAT(a, b)
-+#define _XE_CONCAT(a, b) __XE_CONCAT(a, b)
-+#define __XE_CONCAT(a, b) a ## b
+ #define RING_PSMI_CTL(base)			_MMIO((base) + 0x50)
+-#define   RC_SEMA_IDLE_MSG_DISABLE			REG_BIT(12)
++#define   RC_SEMA_IDLE_MSG_DISABLE		REG_BIT(12)
+ #define   WAIT_FOR_EVENT_POWER_DOWN_DISABLE	REG_BIT(7)
  
--#define __CALL_FOR_EACH_1(MACRO_, x, ...) MACRO_(x)
--#define __CALL_FOR_EACH_2(MACRO_, x, ...)					\
--	MACRO_(x) __CALL_FOR_EACH_1(MACRO_, ##__VA_ARGS__)
--#define __CALL_FOR_EACH_3(MACRO_, x, ...)					\
--	MACRO_(x) __CALL_FOR_EACH_2(MACRO_, ##__VA_ARGS__)
--#define __CALL_FOR_EACH_4(MACRO_, x, ...)					\
--	MACRO_(x) __CALL_FOR_EACH_3(MACRO_, ##__VA_ARGS__)
-+#define _XE_FIRST(...) _XE_ESC(__XE_FIRST(__VA_ARGS__,))
-+#define __XE_FIRST(x_,...) x_
-+#define _XE_TUPLE_TAIL(...) _XE_ESC(__XE_TUPLE_TAIL(__VA_ARGS__))
-+#define __XE_TUPLE_TAIL(x_,...) (__VA_ARGS__)
+ #define RING_ACTHD_UDW(base)			_MMIO((base) + 0x5c)
+@@ -54,7 +54,7 @@
+ #define	  CTX_CTRL_ENGINE_CTX_RESTORE_INHIBIT	REG_BIT(0)
  
--#define _CALL_FOR_EACH(NARGS_, MACRO_, x, ...)					\
--	CONCATENATE(__CALL_FOR_EACH_, NARGS_)(MACRO_, x, ##__VA_ARGS__)
--#define CALL_FOR_EACH(MACRO_, x, ...)						\
--	_CALL_FOR_EACH(COUNT_ARGS(x, ##__VA_ARGS__), MACRO_, x, ##__VA_ARGS__)
-+#define __XE_PASTE_SEP_COMMA		,
-+#define __XE_PASTE_SEP_BITWISE_OR		|
-+#define __XE_PASTE(prefix_, sep_, args_) _XE_ESC(_XE_CONCAT(__XE_PASTE_,_XE_COUNT_ARGS args_)(prefix_, sep_, args_))
-+#define __XE_PASTE_1(prefix_, sep_, args_) prefix_ args_
-+#define __XE_PASTE_2(prefix_, sep_, args_) prefix_(_XE_FIRST args_) __XE_PASTE_SEP_ ## sep_ __XE_PASTE_1(prefix_, sep_, _XE_TUPLE_TAIL args_)
-+#define __XE_PASTE_3(prefix_, sep_, args_) prefix_(_XE_FIRST args_) __XE_PASTE_SEP_ ## sep_ __XE_PASTE_2(prefix_, sep_, _XE_TUPLE_TAIL args_)
-+#define __XE_PASTE_4(prefix_, sep_, args_) prefix_(_XE_FIRST args_) __XE_PASTE_SEP_ ## sep_ __XE_PASTE_3(prefix_, sep_, _XE_TUPLE_TAIL args_)
+ #define RING_MODE(base)				_MMIO((base) + 0x29c)
+-#define   GFX_DISABLE_LEGACY_MODE		(1 << 3)
++#define   GFX_DISABLE_LEGACY_MODE		REG_BIT(3)
  
--#define _XE_RTP_REG(x_)	(x_), XE_RTP_REG_REGULAR
--#define _XE_RTP_MCR_REG(x_) (x_), XE_RTP_REG_MCR
-+#define _XE_RTP_REG(x_)		(x_), XE_RTP_REG_REGULAR
-+#define _XE_RTP_MCR_REG(x_)	(x_), XE_RTP_REG_MCR
+ #define RING_TIMESTAMP(base)			_MMIO((base) + 0x358)
  
- /*
-  * Helper macros for concatenating prefix - do not use them directly outside
-  * this header
-  */
--#define __ADD_XE_RTP_ENTRY_FLAG_PREFIX(x) CONCATENATE(XE_RTP_ENTRY_FLAG_, x) |
--#define __ADD_XE_RTP_ACTION_FLAG_PREFIX(x) CONCATENATE(XE_RTP_ACTION_FLAG_, x) |
--#define __ADD_XE_RTP_RULE_PREFIX(x) CONCATENATE(XE_RTP_RULE_, x) ,
--#define __ADD_XE_RTP_ACTION_PREFIX(x) CONCATENATE(XE_RTP_ACTION_, x) ,
-+#define __XE_PASTE_XE_RTP_ENTRY_FLAG_(x_)	_XE_CONCAT(XE_RTP_ENTRY_FLAG_, x_)
-+#define __XE_PASTE_XE_RTP_ACTION_FLAG_(x_)	_XE_CONCAT(XE_RTP_ACTION_FLAG_, x_)
-+#define __XE_PASTE_XE_RTP_ACTION_(x_)	_XE_CONCAT(XE_RTP_ACTION_, x_)
-+#define __XE_PASTE_XE_RTP_RULE_(x_)	_XE_CONCAT(XE_RTP_RULE_, x_)
+@@ -68,17 +68,17 @@
  
- /*
-  * Macros to encode rules to match against platform, IP version, stepping, etc.
-  * Shouldn't be used directly - see XE_RTP_RULES()
-  */
--
- #define _XE_RTP_RULE_PLATFORM(plat__)						\
- 	{ .match_type = XE_RTP_MATCH_PLATFORM, .platform = plat__ }
+ #define RING_FORCE_TO_NONPRIV(base, i)		_MMIO(((base) + 0x4d0) + (i) * 4)
+ #define   RING_FORCE_TO_NONPRIV_DENY		REG_BIT(30)
++#define   RING_FORCE_TO_NONPRIV_ACCESS_MASK	REG_GENMASK(29, 28)
++#define   RING_FORCE_TO_NONPRIV_ACCESS_RW	REG_FIELD_PREP(RING_FORCE_TO_NONPRIV_ACCESS_MASK, 0)
++#define   RING_FORCE_TO_NONPRIV_ACCESS_RD	REG_FIELD_PREP(RING_FORCE_TO_NONPRIV_ACCESS_MASK, 1)
++#define   RING_FORCE_TO_NONPRIV_ACCESS_WR	REG_FIELD_PREP(RING_FORCE_TO_NONPRIV_ACCESS_MASK, 2)
++#define   RING_FORCE_TO_NONPRIV_ACCESS_INVALID	REG_FIELD_PREP(RING_FORCE_TO_NONPRIV_ACCESS_MASK, 3)
+ #define   RING_FORCE_TO_NONPRIV_ADDRESS_MASK	REG_GENMASK(25, 2)
+-#define   RING_FORCE_TO_NONPRIV_ACCESS_RW	(0 << 28)
+-#define   RING_FORCE_TO_NONPRIV_ACCESS_RD	(1 << 28)
+-#define   RING_FORCE_TO_NONPRIV_ACCESS_WR	(2 << 28)
+-#define   RING_FORCE_TO_NONPRIV_ACCESS_INVALID	(3 << 28)
+-#define   RING_FORCE_TO_NONPRIV_ACCESS_MASK	(3 << 28)
+-#define   RING_FORCE_TO_NONPRIV_RANGE_1		(0 << 0)
+-#define   RING_FORCE_TO_NONPRIV_RANGE_4		(1 << 0)
+-#define   RING_FORCE_TO_NONPRIV_RANGE_16	(2 << 0)
+-#define   RING_FORCE_TO_NONPRIV_RANGE_64	(3 << 0)
+-#define   RING_FORCE_TO_NONPRIV_RANGE_MASK	(3 << 0)
++#define   RING_FORCE_TO_NONPRIV_RANGE_MASK	REG_GENMASK(1, 0)
++#define   RING_FORCE_TO_NONPRIV_RANGE_1		REG_FIELD_PREP(RING_FORCE_TO_NONPRIV_RANGE_MASK, 0)
++#define   RING_FORCE_TO_NONPRIV_RANGE_4		REG_FIELD_PREP(RING_FORCE_TO_NONPRIV_RANGE_MASK, 1)
++#define   RING_FORCE_TO_NONPRIV_RANGE_16	REG_FIELD_PREP(RING_FORCE_TO_NONPRIV_RANGE_MASK, 2)
++#define   RING_FORCE_TO_NONPRIV_RANGE_64	REG_FIELD_PREP(RING_FORCE_TO_NONPRIV_RANGE_MASK, 3)
+ #define   RING_FORCE_TO_NONPRIV_MASK_VALID	(RING_FORCE_TO_NONPRIV_RANGE_MASK | \
+ 						 RING_FORCE_TO_NONPRIV_ACCESS_MASK | \
+ 						 RING_FORCE_TO_NONPRIV_DENY)
+diff --git a/drivers/gpu/drm/xe/regs/xe_gt_regs.h b/drivers/gpu/drm/xe/regs/xe_gt_regs.h
+index 0908224737dc..4076d903b20e 100644
+--- a/drivers/gpu/drm/xe/regs/xe_gt_regs.h
++++ b/drivers/gpu/drm/xe/regs/xe_gt_regs.h
+@@ -9,15 +9,13 @@
+ #include "regs/xe_reg_defs.h"
  
-@@ -315,8 +314,8 @@ struct xe_reg_sr;
-  *		...
-  *	};
-  */
--#define XE_RTP_ENTRY_FLAG(f1_, ...)						\
--	.flags = (CALL_FOR_EACH(__ADD_XE_RTP_ENTRY_FLAG_PREFIX, f1_, ##__VA_ARGS__) 0)
-+#define XE_RTP_ENTRY_FLAG(...)							\
-+	.flags = (__XE_PASTE(__XE_PASTE_XE_RTP_ENTRY_FLAG_, BITWISE_OR, (__VA_ARGS__)))
+ /* RPM unit config (Gen8+) */
+-#define RPM_CONFIG0				_MMIO(0xd00)
+-#define   RPM_CONFIG0_CRYSTAL_CLOCK_FREQ_SHIFT	3
+-#define   RPM_CONFIG0_CRYSTAL_CLOCK_FREQ_MASK	(0x7 << RPM_CONFIG0_CRYSTAL_CLOCK_FREQ_SHIFT)
+-#define   RPM_CONFIG0_CRYSTAL_CLOCK_FREQ_24_MHZ	0
++#define RPM_CONFIG0					_MMIO(0xd00)
++#define   RPM_CONFIG0_CRYSTAL_CLOCK_FREQ_MASK		REG_GENMASK(5, 4)
++#define   RPM_CONFIG0_CRYSTAL_CLOCK_FREQ_24_MHZ		0
+ #define   RPM_CONFIG0_CRYSTAL_CLOCK_FREQ_19_2_MHZ	1
+ #define   RPM_CONFIG0_CRYSTAL_CLOCK_FREQ_38_4_MHZ	2
+-#define   RPM_CONFIG0_CRYSTAL_CLOCK_FREQ_25_MHZ	3
+-#define   RPM_CONFIG0_CTC_SHIFT_PARAMETER_SHIFT	1
+-#define   RPM_CONFIG0_CTC_SHIFT_PARAMETER_MASK	(0x3 << RPM_CONFIG0_CTC_SHIFT_PARAMETER_SHIFT)
++#define   RPM_CONFIG0_CRYSTAL_CLOCK_FREQ_25_MHZ		3
++#define   RPM_CONFIG0_CTC_SHIFT_PARAMETER_MASK		REG_GENMASK(2, 1)
  
- /**
-  * XE_RTP_ACTION_FLAG - Helper to add multiple flags to a struct xe_rtp_action
-@@ -338,8 +337,8 @@ struct xe_reg_sr;
-  *		...
-  *	};
-  */
--#define XE_RTP_ACTION_FLAG(f1_, ...)						\
--	.flags = (CALL_FOR_EACH(__ADD_XE_RTP_ACTION_FLAG_PREFIX, f1_, ##__VA_ARGS__) 0)
-+#define XE_RTP_ACTION_FLAG(...)							\
-+	.flags = (__XE_PASTE(__XE_PASTE_XE_RTP_ACTION_FLAG_, BITWISE_OR, (__VA_ARGS__)))
+ #define FORCEWAKE_ACK_MEDIA_VDBOX(n)		_MMIO(0xd50 + (n) * 4)
+ #define FORCEWAKE_ACK_MEDIA_VEBOX(n)		_MMIO(0xd70 + (n) * 4)
+@@ -39,15 +37,15 @@
+ #define MCR_SELECTOR				_MMIO(0xfdc)
+ #define GAM_MCR_SELECTOR			_MMIO(0xfe0)
+ #define   MCR_MULTICAST				REG_BIT(31)
+-#define   MCR_SLICE(slice)			(((slice) & 0xf) << 27)
+-#define   MCR_SLICE_MASK			MCR_SLICE(0xf)
+-#define   MCR_SUBSLICE(subslice)		(((subslice) & 0x7) << 24)
+-#define   MCR_SUBSLICE_MASK			MCR_SUBSLICE(0x7)
++#define   MCR_SLICE_MASK			REG_GENMASK(30, 27)
++#define   MCR_SLICE(slice)			REG_FIELD_PREP(MCR_SLICE_MASK, slice)
++#define   MCR_SUBSLICE_MASK			REG_GENMASK(26, 24)
++#define   MCR_SUBSLICE(subslice)		REG_FIELD_PREP(MCR_SUBSLICE_MASK, subslice)
+ #define   MTL_MCR_GROUPID			REG_GENMASK(11, 8)
+ #define   MTL_MCR_INSTANCEID			REG_GENMASK(3, 0)
  
- /**
-  * XE_RTP_RULES - Helper to set multiple rules to a struct xe_rtp_entry entry
-@@ -361,16 +360,15 @@ struct xe_reg_sr;
-  *		...
-  *	};
-  */
--#define XE_RTP_RULES(r1, ...)							\
--	.n_rules = COUNT_ARGS(r1, ##__VA_ARGS__),				\
-+#define XE_RTP_RULES(...)							\
-+	.n_rules = _XE_COUNT_ARGS(__VA_ARGS__),					\
- 	.rules = (const struct xe_rtp_rule[]) {					\
--		CALL_FOR_EACH(__ADD_XE_RTP_RULE_PREFIX, r1, ##__VA_ARGS__)	\
-+		__XE_PASTE(__XE_PASTE_XE_RTP_RULE_, COMMA, (__VA_ARGS__))	\
+ #define FF_SLICE_CS_CHICKEN1			_MMIO(0x20e0)
+-#define   FFSC_PERCTX_PREEMPT_CTRL		(1 << 14)
++#define   FFSC_PERCTX_PREEMPT_CTRL		REG_BIT(14)
+ 
+ #define FF_SLICE_CS_CHICKEN2			_MMIO(0x20e4)
+ #define   PERF_FIX_BALANCING_CFE_DISABLE	REG_BIT(15)
+@@ -59,12 +57,12 @@
+ #define PS_INVOCATION_COUNT			_MMIO(0x2348)
+ 
+ #define CS_CHICKEN1				_MMIO(0x2580)
+-#define   PREEMPT_3D_OBJECT_LEVEL		(1 << 0)
+ #define   PREEMPT_GPGPU_LEVEL(hi, lo)		(((hi) << 2) | ((lo) << 1))
+ #define   PREEMPT_GPGPU_MID_THREAD_LEVEL	PREEMPT_GPGPU_LEVEL(0, 0)
+ #define   PREEMPT_GPGPU_THREAD_GROUP_LEVEL	PREEMPT_GPGPU_LEVEL(0, 1)
+ #define   PREEMPT_GPGPU_COMMAND_LEVEL		PREEMPT_GPGPU_LEVEL(1, 0)
+ #define   PREEMPT_GPGPU_LEVEL_MASK		PREEMPT_GPGPU_LEVEL(1, 1)
++#define   PREEMPT_3D_OBJECT_LEVEL		REG_BIT(0)
+ 
+ #define GLOBAL_MOCS(i)				_MMIO(0x4000 + (i) * 4) /* Global MOCS regs */
+ #define GFX_CCS_AUX_NV				_MMIO(0x4208)
+@@ -131,19 +129,18 @@
+ 
+ #define	MIRROR_FUSE3				_MMIO(0x9118)
+ #define   L3BANK_PAIR_COUNT			4
+-#define   L3BANK_MASK				0x0F
++#define   L3BANK_MASK				REG_GENMASK(3, 0)
+ /* on Xe_HP the same fuses indicates mslices instead of L3 banks */
+ #define   MAX_MSLICES				4
+-#define   MEML3_EN_MASK				0x0F
++#define   MEML3_EN_MASK				REG_GENMASK(3, 0)
+ 
+ /* Fuse readout registers for GT */
+ #define XEHP_FUSE4				_MMIO(0x9114)
+ #define   GT_L3_EXC_MASK			REG_GENMASK(6, 4)
+ 
+ #define GT_VEBOX_VDBOX_DISABLE			_MMIO(0x9140)
+-#define   GT_VDBOX_DISABLE_MASK			0xff
+-#define   GT_VEBOX_DISABLE_SHIFT		16
+-#define   GT_VEBOX_DISABLE_MASK			(0x0f << GT_VEBOX_DISABLE_SHIFT)
++#define   GT_VEBOX_DISABLE_MASK			REG_GENMASK(19, 16)
++#define   GT_VDBOX_DISABLE_MASK			REG_GENMASK(7, 0)
+ 
+ #define XELP_EU_ENABLE				_MMIO(0x9134)	/* "_DISABLE" on Xe_LP */
+ #define   XELP_EU_MASK				REG_GENMASK(7, 0)
+@@ -203,9 +200,9 @@
+ #define   LTCDD_CLKGATE_DIS			REG_BIT(10)
+ 
+ #define XEHP_SLICE_UNIT_LEVEL_CLKGATE		MCR_REG(0x94d4)
+-#define   SARBUNIT_CLKGATE_DIS			(1 << 5)
+-#define   RCCUNIT_CLKGATE_DIS			(1 << 7)
+-#define   MSCUNIT_CLKGATE_DIS			(1 << 10)
++#define   SARBUNIT_CLKGATE_DIS			REG_BIT(5)
++#define   RCCUNIT_CLKGATE_DIS			REG_BIT(7)
++#define   MSCUNIT_CLKGATE_DIS			REG_BIT(10)
+ #define   NODEDSS_CLKGATE_DIS			REG_BIT(12)
+ #define   L3_CLKGATE_DIS			REG_BIT(16)
+ #define   L3_CR2X_CLKGATE_DIS			REG_BIT(17)
+@@ -225,7 +222,7 @@
+ #define   RTFUNIT_CLKGATE_DIS			REG_BIT(18)
+ 
+ #define DFR_RATIO_EN_AND_CHICKEN		MCR_REG(0x9550)
+-#define   DFR_DISABLE				(1 << 9)
++#define   DFR_DISABLE				REG_BIT(9)
+ 
+ #define RPNSWREQ				_MMIO(0xa008)
+ #define   REQ_RATIO_MASK			REG_GENMASK(31, 23)
+@@ -233,20 +230,18 @@
+ #define RC_STATE				_MMIO(0xa094)
+ 
+ #define PMINTRMSK				_MMIO(0xa168)
+-#define   PMINTR_DISABLE_REDIRECT_TO_GUC	(1 << 31)
+-#define   ARAT_EXPIRED_INTRMSK			(1 << 9)
++#define   PMINTR_DISABLE_REDIRECT_TO_GUC	REG_BIT(31)
++#define   ARAT_EXPIRED_INTRMSK			REG_BIT(9)
+ 
+ #define FORCEWAKE_GT				_MMIO(0xa188)
+ 
+ #define PG_ENABLE				_MMIO(0xa210)
+ 
+-/* GPM unit config (Gen9+) */
+ #define CTC_MODE				_MMIO(0xa26c)
+-#define   CTC_SOURCE_PARAMETER_MASK		1
++#define   CTC_SHIFT_PARAMETER_MASK		REG_GENMASK(2, 1)
++#define   CTC_SOURCE_PARAMETER_MASK		REG_BIT(0)
+ #define   CTC_SOURCE_CRYSTAL_CLOCK		0
+ #define   CTC_SOURCE_DIVIDE_LOGIC		1
+-#define   CTC_SHIFT_PARAMETER_SHIFT		1
+-#define   CTC_SHIFT_PARAMETER_MASK		(0x3 << CTC_SHIFT_PARAMETER_SHIFT)
+ 
+ #define FORCEWAKE_RENDER			_MMIO(0xa278)
+ #define FORCEWAKE_MEDIA_VDBOX(n)		_MMIO(0xa540 + (n) * 4)
+@@ -350,7 +345,7 @@
+ #define GT_GFX_RC6				_MMIO(0x138108)
+ 
+ #define GFX_FLSH_CNTL				_MMIO(0x101008)
+-#define   GFX_FLSH_CNTL_EN			(1 << 0)
++#define   GFX_FLSH_CNTL_EN			REG_BIT(0)
+ 
+ #define GT_INTR_DW(x)				_MMIO(0x190018 + ((x) * 4))
+ 
+diff --git a/drivers/gpu/drm/xe/regs/xe_regs.h b/drivers/gpu/drm/xe/regs/xe_regs.h
+index e6b81bcff91f..da1d5aa6cdb7 100644
+--- a/drivers/gpu/drm/xe/regs/xe_regs.h
++++ b/drivers/gpu/drm/xe/regs/xe_regs.h
+@@ -37,10 +37,10 @@
+ #define XEHPC_BCS7_RING_BASE			0x3ec000
+ #define XEHPC_BCS8_RING_BASE			0x3ee000
+ #define   GT_WAIT_SEMAPHORE_INTERRUPT		REG_BIT(11)
+-#define   GT_CONTEXT_SWITCH_INTERRUPT		(1 <<  8)
+-#define   GT_RENDER_PIPECTL_NOTIFY_INTERRUPT	(1 <<  4)
++#define   GT_CONTEXT_SWITCH_INTERRUPT		REG_BIT(8)
++#define   GT_RENDER_PIPECTL_NOTIFY_INTERRUPT	REG_BIT(4)
+ #define   GT_CS_MASTER_ERROR_INTERRUPT		REG_BIT(3)
+-#define   GT_RENDER_USER_INTERRUPT		(1 <<  0)
++#define   GT_RENDER_USER_INTERRUPT		REG_BIT(0)
+ 
+ #define FF_THREAD_MODE				_MMIO(0x20a0)
+ #define   FF_TESSELATION_DOP_GATE_DISABLE	BIT(19)
+@@ -90,10 +90,8 @@
+ #define   DG1_MSTR_TILE(t)			REG_BIT(t)
+ 
+ #define TIMESTAMP_OVERRIDE					_MMIO(0x44074)
+-#define   TIMESTAMP_OVERRIDE_US_COUNTER_DIVIDER_SHIFT		0
+-#define   TIMESTAMP_OVERRIDE_US_COUNTER_DIVIDER_MASK		0x3ff
+-#define   TIMESTAMP_OVERRIDE_US_COUNTER_DENOMINATOR_SHIFT	12
+-#define   TIMESTAMP_OVERRIDE_US_COUNTER_DENOMINATOR_MASK	(0xf << 12)
++#define   TIMESTAMP_OVERRIDE_US_COUNTER_DENOMINATOR_MASK	REG_GENMASK(15, 12)
++#define   TIMESTAMP_OVERRIDE_US_COUNTER_DIVIDER_MASK		REG_GENMASK(9, 0)
+ 
+ #define GGC					_MMIO(0x108040)
+ #define   GMS_MASK				REG_GENMASK(15, 8)
+diff --git a/drivers/gpu/drm/xe/xe_gt_clock.c b/drivers/gpu/drm/xe/xe_gt_clock.c
+index 1b7d00284535..384a47d3c3eb 100644
+--- a/drivers/gpu/drm/xe/xe_gt_clock.c
++++ b/drivers/gpu/drm/xe/xe_gt_clock.c
+@@ -17,13 +17,12 @@ static u32 read_reference_ts_freq(struct xe_gt *gt)
+ 	u32 ts_override = xe_mmio_read32(gt, TIMESTAMP_OVERRIDE.reg);
+ 	u32 base_freq, frac_freq;
+ 
+-	base_freq = ((ts_override & TIMESTAMP_OVERRIDE_US_COUNTER_DIVIDER_MASK) >>
+-		     TIMESTAMP_OVERRIDE_US_COUNTER_DIVIDER_SHIFT) + 1;
++	base_freq = REG_FIELD_GET(TIMESTAMP_OVERRIDE_US_COUNTER_DIVIDER_MASK,
++				  ts_override) + 1;
+ 	base_freq *= 1000000;
+ 
+-	frac_freq = ((ts_override &
+-		      TIMESTAMP_OVERRIDE_US_COUNTER_DENOMINATOR_MASK) >>
+-		     TIMESTAMP_OVERRIDE_US_COUNTER_DENOMINATOR_SHIFT);
++	frac_freq = REG_FIELD_GET(TIMESTAMP_OVERRIDE_US_COUNTER_DENOMINATOR_MASK,
++				  ts_override);
+ 	frac_freq = 1000000 / (frac_freq + 1);
+ 
+ 	return base_freq + frac_freq;
+@@ -35,9 +34,8 @@ static u32 get_crystal_clock_freq(u32 rpm_config_reg)
+ 	const u32 f24_mhz = 24000000;
+ 	const u32 f25_mhz = 25000000;
+ 	const u32 f38_4_mhz = 38400000;
+-	u32 crystal_clock =
+-		(rpm_config_reg & RPM_CONFIG0_CRYSTAL_CLOCK_FREQ_MASK) >>
+-		RPM_CONFIG0_CRYSTAL_CLOCK_FREQ_SHIFT;
++	u32 crystal_clock = REG_FIELD_GET(RPM_CONFIG0_CRYSTAL_CLOCK_FREQ_MASK,
++					  rpm_config_reg);
+ 
+ 	switch (crystal_clock) {
+ 	case RPM_CONFIG0_CRYSTAL_CLOCK_FREQ_24_MHZ :
+@@ -74,8 +72,7 @@ int xe_gt_clock_init(struct xe_gt *gt)
+ 		 * register increments from this frequency (it might
+ 		 * increment only every few clock cycle).
+ 		 */
+-		freq >>= 3 - ((c0 & RPM_CONFIG0_CTC_SHIFT_PARAMETER_MASK) >>
+-			      RPM_CONFIG0_CTC_SHIFT_PARAMETER_SHIFT);
++		freq >>= 3 - REG_FIELD_GET(RPM_CONFIG0_CTC_SHIFT_PARAMETER_MASK, c0);
  	}
  
- /**
-  * XE_RTP_ACTIONS - Helper to set multiple actions to a struct xe_rtp_entry
-- * @a1: Action to take. Last part of XE_RTP_ACTION_*
-- * @...: Additional rules, defined like @r1
-+ * @...: Actions to be taken
-  *
-  * At least one rule is needed and up to 4 are supported. Multiple rules are
-  * AND'ed together, i.e. all the rules must evaluate to true for the entry to
-@@ -388,10 +386,10 @@ struct xe_reg_sr;
-  *		...
-  *	};
-  */
--#define XE_RTP_ACTIONS(a1, ...)							\
--	.n_actions = COUNT_ARGS(a1, ##__VA_ARGS__),				\
-+#define XE_RTP_ACTIONS(...)							\
-+	.n_actions = _XE_COUNT_ARGS(__VA_ARGS__),				\
- 	.actions = (const struct xe_rtp_action[]) {				\
--		CALL_FOR_EACH(__ADD_XE_RTP_ACTION_PREFIX, a1, ##__VA_ARGS__)	\
-+		__XE_PASTE(__XE_PASTE_XE_RTP_ACTION_, COMMA, (__VA_ARGS__))	\
- 	}
- 
- void xe_rtp_process(const struct xe_rtp_entry *entries, struct xe_reg_sr *sr,
+ 	gt->info.clock_freq = freq;
 -- 
 2.39.0
 
