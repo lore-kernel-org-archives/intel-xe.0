@@ -4,45 +4,48 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id BAC14C77B76
-	for <intel-xe@archiver.kernel.org>; Fri, 21 Apr 2023 22:33:15 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id B7C9FC77B7F
+	for <intel-xe@archiver.kernel.org>; Fri, 21 Apr 2023 22:33:16 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 62B3A10E2FB;
-	Fri, 21 Apr 2023 22:33:15 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4DC5810E118;
+	Fri, 21 Apr 2023 22:33:16 +0000 (UTC)
 Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E924610E118
- for <intel-xe@lists.freedesktop.org>; Fri, 21 Apr 2023 22:33:13 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0BDED10E2FB
+ for <intel-xe@lists.freedesktop.org>; Fri, 21 Apr 2023 22:33:15 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1682116393; x=1713652393;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=JR9/BBYgHixtwJNlLLMP0CPQsR+1C3FbGCkqJxVRyG4=;
- b=QAKaRykRFcqnY+ZwZ1iZAzjC19aipHPCVgZAG9+ENtOC5i92CBdbZUgy
- jRAAAnGsBt5sS/6Q3XKf0te5LCMam1LzRGj2TPZnf4x9+t9kBE3ZR4LND
- iOs9ung4fSd/aWVNw73YELibh6Kkv57kz5g4zxQbZMgGYMXySyP9lLA/P
- Dy6qR2VPPWNJXvvBMa1j6qK4pQsG5s9ez2SRcQ8zVHjSLwa8XIml1/bU/
- rfCUE8EW2EhZw5tCAIbRpoTE/AUut+cmsB/klQUnQ4sH7dkiKJJh5d11U
- NPn3vHp8pakFewX76waXxyEyJa/S+x5Ia2yCKLWBgiwCBI434XCREvR5n g==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10687"; a="325693730"
-X-IronPort-AV: E=Sophos;i="5.99,216,1677571200"; d="scan'208";a="325693730"
+ t=1682116395; x=1713652395;
+ h=from:to:cc:subject:date:message-id:in-reply-to:
+ references:mime-version:content-transfer-encoding;
+ bh=gsIihECOVrRx36TQFHCGYRMP6BeGOS2a33/EYNkBxDQ=;
+ b=RqzA6ubsWLAyqMGmF6gxK6Cygdacj3D4ydlss9OrxHakUh7Fi6gK6i3v
+ Wyi2Iv2bDvTRzPagpeOzdz8Qx6Tp5pBxBTPKOTlHb6WLQiUnzBuPt9VRR
+ eiG+bqTOpKr9nPiWXDCPhTsFf/0avIQBM1V1TMeUAW5Bm+RQncw5pRxVo
+ I59zi5n0EjOKRlhpLHHAn3phmdlnCsDWB+gmoLSNcbqNChbWfcTMl3myg
+ zeJvXgQfx8UZ9S1AO8aPh5Xr8OdFpNYcy1R6pZXKIkOO2Ard5ZsWK/EY/
+ A+4Yno2KjRRIHj9no5vVRZE6XG4xSheYxiB0D4H60gbhlkYxXqeKiumDI w==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10687"; a="325693751"
+X-IronPort-AV: E=Sophos;i="5.99,216,1677571200"; d="scan'208";a="325693751"
 Received: from orsmga008.jf.intel.com ([10.7.209.65])
  by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 21 Apr 2023 15:33:13 -0700
+ 21 Apr 2023 15:33:14 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10687"; a="722913725"
-X-IronPort-AV: E=Sophos;i="5.99,216,1677571200"; d="scan'208";a="722913725"
+X-IronPort-AV: E=McAfee;i="6600,9927,10687"; a="722913760"
+X-IronPort-AV: E=Sophos;i="5.99,216,1677571200"; d="scan'208";a="722913760"
 Received: from lucas-s2600cw.jf.intel.com ([10.165.21.196])
  by orsmga008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 21 Apr 2023 15:33:11 -0700
+ 21 Apr 2023 15:33:12 -0700
 From: Lucas De Marchi <lucas.demarchi@intel.com>
 To: intel-xe@lists.freedesktop.org
-Date: Fri, 21 Apr 2023 15:32:41 -0700
-Message-Id: <20230421223258.128781-1-lucas.demarchi@intel.com>
+Date: Fri, 21 Apr 2023 15:32:52 -0700
+Message-Id: <20230421223258.128781-12-lucas.demarchi@intel.com>
 X-Mailer: git-send-email 2.39.0
+In-Reply-To: <20230421223258.128781-1-lucas.demarchi@intel.com>
+References: <20230421223258.128781-1-lucas.demarchi@intel.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-xe] [PATCH v2 00/17] Cleanup registers and introduce xe_reg_*
+Subject: [Intel-xe] [PATCH v2 11/17] drm/xe: Clarify register types on PAT
+ programming
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -59,106 +62,79 @@ Cc: Lucas De Marchi <lucas.demarchi@intel.com>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Continuation of https://patchwork.freedesktop.org/series/116411/. Now
-not only the trivial cleanup/renames are done, but also the harder
-migration to xe's own type for registers. This is meant to replace our
-uses of i915_reg_t and i915_mcr_reg_t.
+Clarify a few things related to the PAT programming, particularly on
+MTL:
 
-Due to popular demand in this v2 the type safety between mcr/non-mcr
-registers remain. Actually it's a bit more useful now since calling
-xe_mmio_*() on a register defined in the header will fail since there's
-no such `.reg` field in it.
+	- The register type doesn't change depending on the GT - what
+	  happens is that media GT writes to other set of registers that
+	  are not MCR
+	- Remove "UNICAST": otherwise it's confusing why it's not using
+	  MCR registers with the unicast function variant
 
-Also reordered the patches a little bit to make the more mechanical
-changes first so to allow easier review and let them be merged
-regardless of the more controversial part.
+Also, there isn't much reason to keep those parts as macros: promote
+them to proper functions and let the compiler inline if it sees fit.
 
-When building with display, build breaks between these 2 patches:
-  drm/xe: Introduce xe_reg/xe_reg_mcr
-  drm/xe: Use XE_REG/XE_REG_MCR
+Signed-off-by: Lucas De Marchi <lucas.demarchi@intel.com>
+---
+ drivers/gpu/drm/xe/xe_pat.c | 35 ++++++++++++++++++++---------------
+ 1 file changed, 20 insertions(+), 15 deletions(-)
 
-I believe it's easier to review with those separates since the second is
-a mechanical change. And also, we are bringing display to the top on
-rebases, so in theory once the branch is rebased there won't be a build
-break. I can squash them if preferred when applying though. I found a
-way to remove the additional display CFLAGS  in the Makefile, but
-unfortunately there is more work needed on header deps to allow us to do
-that.
-
-Tested on a DG2 with/without display and didn't notice any regressions.
-
-Lucas De Marchi (17):
-  drm/xe: Cleanup page-related defines
-  fixup! drm/i915/display: Remaining changes to make xe compile
-  fixup! drm/i915/display: Allow fbdev to allocate stolen memory
-  drm/xe: Rename RC0/RC6 macros
-  drm/xe: Rename instruction field to avoid confusion
-  drm/xe/guc: Rename GEN11_SOFT_SCRATCH for clarity
-  drm/xe/guc: Move GuC registers to regs/
-  drm/xe/guc: Convert GuC registers to REG_FIELD/REG_BIT
-  drm/xe: Drop gen prefixes and suffixes from registers
-  drm/xe: Use REG_FIELD/REG_BIT for all regs/*.h
-  drm/xe: Clarify register types on PAT programming
-  drm/xe/rtp: Improve magic macros for RTP tables
-  drm/xe: Introduce xe_reg/xe_reg_mcr
-  drm/xe: Use XE_REG/XE_REG_MCR
-  drm/xe: Annotate masked registers used by RTP
-  drm/xe: Plumb xe_reg_t into WAs, rtp, etc
-  drm/xe: Move helper macros to separate header
-
- drivers/gpu/drm/i915/display/intel_fbdev.c    |   4 +-
- drivers/gpu/drm/xe/Makefile                   |   2 +-
- drivers/gpu/drm/xe/display/xe_fb_pin.c        |  23 +-
- drivers/gpu/drm/xe/display/xe_plane_initial.c |   4 +-
- drivers/gpu/drm/xe/regs/xe_engine_regs.h      | 100 ++---
- drivers/gpu/drm/xe/regs/xe_gpu_commands.h     |   6 +-
- drivers/gpu/drm/xe/regs/xe_gt_regs.h          | 358 +++++++++---------
- drivers/gpu/drm/xe/regs/xe_guc_regs.h         | 146 +++++++
- drivers/gpu/drm/xe/regs/xe_reg_defs.h         |  84 ++++
- drivers/gpu/drm/xe/regs/xe_regs.h             |  65 ++--
- drivers/gpu/drm/xe/tests/xe_migrate.c         |  15 +-
- drivers/gpu/drm/xe/tests/xe_rtp_test.c        |  51 ++-
- drivers/gpu/drm/xe/xe_bo.h                    |  52 +--
- drivers/gpu/drm/xe/xe_execlist.c              |   8 +-
- drivers/gpu/drm/xe/xe_force_wake.c            |  18 +-
- drivers/gpu/drm/xe/xe_ggtt.c                  |  42 +-
- drivers/gpu/drm/xe/xe_gt.c                    |   4 +-
- drivers/gpu/drm/xe/xe_gt_clock.c              |  27 +-
- drivers/gpu/drm/xe/xe_gt_mcr.c                |  66 ++--
- drivers/gpu/drm/xe/xe_gt_mcr.h                |  11 +-
- drivers/gpu/drm/xe/xe_guc.c                   |  52 ++-
- drivers/gpu/drm/xe/xe_guc_ads.c               |  16 +-
- drivers/gpu/drm/xe/xe_guc_pc.c                |  30 +-
- drivers/gpu/drm/xe/xe_guc_reg.h               | 151 --------
- drivers/gpu/drm/xe/xe_huc.c                   |   6 +-
- drivers/gpu/drm/xe/xe_hw_engine.c             |  42 +-
- drivers/gpu/drm/xe/xe_irq.c                   |   8 +-
- drivers/gpu/drm/xe/xe_migrate.c               |  73 ++--
- drivers/gpu/drm/xe/xe_mmio.c                  |   7 +-
- drivers/gpu/drm/xe/xe_mocs.c                  |  11 +-
- drivers/gpu/drm/xe/xe_pat.c                   |  35 +-
- drivers/gpu/drm/xe/xe_pcode_api.h             |   6 +-
- drivers/gpu/drm/xe/xe_pt.c                    |  40 +-
- drivers/gpu/drm/xe/xe_reg_sr.c                |  51 ++-
- drivers/gpu/drm/xe/xe_reg_sr.h                |   3 +-
- drivers/gpu/drm/xe/xe_reg_sr_types.h          |  10 +-
- drivers/gpu/drm/xe/xe_reg_whitelist.c         |  12 +-
- drivers/gpu/drm/xe/xe_ring_ops.c              |   8 +-
- drivers/gpu/drm/xe/xe_rtp.c                   |   7 +-
- drivers/gpu/drm/xe/xe_rtp.h                   | 106 ++----
- drivers/gpu/drm/xe/xe_rtp_helpers.h           |  49 +++
- drivers/gpu/drm/xe/xe_rtp_types.h             |  22 +-
- drivers/gpu/drm/xe/xe_ttm_stolen_mgr.c        |   2 +-
- drivers/gpu/drm/xe/xe_tuning.c                |  11 +-
- drivers/gpu/drm/xe/xe_uc_fw.c                 |   2 +-
- drivers/gpu/drm/xe/xe_vm.c                    |  20 +-
- drivers/gpu/drm/xe/xe_wa.c                    | 178 ++++-----
- drivers/gpu/drm/xe/xe_wopcm.c                 |   2 +-
- 48 files changed, 1044 insertions(+), 1002 deletions(-)
- create mode 100644 drivers/gpu/drm/xe/regs/xe_guc_regs.h
- delete mode 100644 drivers/gpu/drm/xe/xe_guc_reg.h
- create mode 100644 drivers/gpu/drm/xe/xe_rtp_helpers.h
-
+diff --git a/drivers/gpu/drm/xe/xe_pat.c b/drivers/gpu/drm/xe/xe_pat.c
+index c2faf0931649..fcf6ae2c92cc 100644
+--- a/drivers/gpu/drm/xe/xe_pat.c
++++ b/drivers/gpu/drm/xe/xe_pat.c
+@@ -62,31 +62,36 @@ static const u32 mtl_pat_table[] = {
+ 	[4] = MTL_PAT_0_WB | MTL_3_COH_2W,
+ };
+ 
+-#define PROGRAM_PAT_UNICAST(gt, table) do { \
+-	for (int i = 0; i < ARRAY_SIZE(table); i++) \
+-		xe_mmio_write32(gt, _PAT_INDEX(i), table[i]); \
+-} while (0)
++static void program_pat(struct xe_gt *gt, const u32 table[], int n_entries)
++{
++	for (int i = 0; i < n_entries; i++)
++		xe_mmio_write32(gt, _PAT_INDEX(i), table[i]);
++}
+ 
+-#define PROGRAM_PAT_MCR(gt, table) do { \
+-	for (int i = 0; i < ARRAY_SIZE(table); i++) \
+-		xe_gt_mcr_multicast_write(gt, MCR_REG(_PAT_INDEX(i)), table[i]); \
+-} while (0)
++static void program_pat_mcr(struct xe_gt *gt, const u32 table[], int n_entries)
++{
++	for (int i = 0; i < n_entries; i++)
++		xe_gt_mcr_multicast_write(gt, MCR_REG(_PAT_INDEX(i)), table[i]);
++}
+ 
+ void xe_pat_init(struct xe_gt *gt)
+ {
+ 	struct xe_device *xe = gt_to_xe(gt);
+ 
+ 	if (xe->info.platform == XE_METEORLAKE) {
++		/*
++		 * SAMedia register offsets are adjusted by the write methods
++		 * and they target registers that are not MCR, while for normal
++		 * GT they are MCR
++		 */
+ 		if (xe_gt_is_media_type(gt))
+-			PROGRAM_PAT_UNICAST(gt, mtl_pat_table);
++			program_pat(gt, mtl_pat_table, ARRAY_SIZE(mtl_pat_table));
+ 		else
+-			PROGRAM_PAT_MCR(gt, mtl_pat_table);
+-	} else if (xe->info.platform == XE_PVC) {
+-		PROGRAM_PAT_MCR(gt, pvc_pat_table);
+-	} else if (xe->info.platform == XE_DG2) {
+-		PROGRAM_PAT_MCR(gt, pvc_pat_table);
++			program_pat_mcr(gt, mtl_pat_table, ARRAY_SIZE(mtl_pat_table));
++	} else if (xe->info.platform == XE_PVC || xe->info.platform == XE_DG2) {
++		program_pat_mcr(gt, pvc_pat_table, ARRAY_SIZE(pvc_pat_table));
+ 	} else if (GRAPHICS_VERx100(xe) <= 1210) {
+-		PROGRAM_PAT_UNICAST(gt, tgl_pat_table);
++		program_pat(gt, tgl_pat_table, ARRAY_SIZE(tgl_pat_table));
+ 	} else {
+ 		/*
+ 		 * Going forward we expect to need new PAT settings for most
 -- 
 2.39.0
 
