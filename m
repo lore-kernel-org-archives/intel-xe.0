@@ -4,52 +4,53 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id C0AAEC77B75
-	for <intel-xe@archiver.kernel.org>; Fri, 21 Apr 2023 11:02:59 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4E2D3C77B75
+	for <intel-xe@archiver.kernel.org>; Fri, 21 Apr 2023 11:03:31 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 68DBC10E02A;
-	Fri, 21 Apr 2023 11:02:59 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1152210E02A;
+	Fri, 21 Apr 2023 11:03:31 +0000 (UTC)
 Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 461B010E02A
- for <intel-xe@lists.freedesktop.org>; Fri, 21 Apr 2023 11:02:56 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A9F2710E02A
+ for <intel-xe@lists.freedesktop.org>; Fri, 21 Apr 2023 11:03:29 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1682074977; x=1713610977;
+ t=1682075009; x=1713611009;
  h=message-id:date:mime-version:subject:to:cc:references:
  from:in-reply-to:content-transfer-encoding;
- bh=YoKK+feSOQFHSfTtMRAh9pIa1BlZdD5mrDbsMKhy7rc=;
- b=M5eJvSJ00WAhS8psPuFoHQuSTLXNA+0ixF1xLXfh9ztqsbjC84SKyaID
- l6JK60X3nCWANU4zssmaaqay68AtvPpvFda2PzXIU0Z7S9OAsytYfFYs/
- uxLKNCjzcNYVwaX9wF77Wp7+T+ZdQ9WDT1rSiQHV/Bo97jGih5cvILv9h
- Wu6yU7AQ+TggK16Caxobc9f7RgXw1pLW3YKSH3c/6xDofD5CumyW2leGw
- tWDDxkiMrhvYsdHV2hEvTRSyfwqc/tzi+lF8Cb6YswWaLGsQK9OF7kE+l
- y6P3iGV2Q5/J9vLMu0c3eyBK6PVDydZygkehwiybE5H4pUgHbpnnkcdyb A==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10686"; a="330165775"
-X-IronPort-AV: E=Sophos;i="5.99,214,1677571200"; d="scan'208";a="330165775"
+ bh=Hq2KF2LDW42TaJmBfT0ntvhyIMeSVW7Jb8/EXuIzybk=;
+ b=Kk554jpAm+U0BoRl11kacfzqXf9F9KBveyD1GOjhjj7ZJHWwv3q2oEP6
+ f1EZ+GJA3W+HfIHH+VYLXV4x12N7XKYwWfHe2XvqHSBtQdgXOyOPYNRVG
+ zQ4053kfVrNZ1Cz6M52I4yNJyjOAlvMJsBsn3zEmO6CoJxghYIpYQ6Mj/
+ NxjxAjVxAqVtTZYcpaWlGNpdKs6llUk6Qpf65IyitrbKQ7SxKrgnsos4Y
+ xiMq01S/+Q88nkmu0pce9OdOPngkSzvG2MsC4GZBWKFhT8h2eimA/C0Kw
+ S0Nl8phM5j3fywi60TAsDwCyXenooQZ8UsjXnuaLOgy698MTKfM+nW0uk Q==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10686"; a="330165965"
+X-IronPort-AV: E=Sophos;i="5.99,214,1677571200"; d="scan'208";a="330165965"
 Received: from orsmga001.jf.intel.com ([10.7.209.18])
  by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 21 Apr 2023 04:02:22 -0700
+ 21 Apr 2023 04:03:29 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10686"; a="724779584"
-X-IronPort-AV: E=Sophos;i="5.99,214,1677571200"; d="scan'208";a="724779584"
+X-IronPort-AV: E=McAfee;i="6600,9927,10686"; a="724780116"
+X-IronPort-AV: E=Sophos;i="5.99,214,1677571200"; d="scan'208";a="724780116"
 Received: from jpoulsen-mobl.ger.corp.intel.com (HELO [10.249.254.125])
  ([10.249.254.125])
  by orsmga001-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 21 Apr 2023 04:02:20 -0700
-Message-ID: <cabd2572-9ff0-57ed-f6f0-6ec13fae38df@linux.intel.com>
-Date: Fri, 21 Apr 2023 13:02:18 +0200
+ 21 Apr 2023 04:03:27 -0700
+Message-ID: <c3b034ff-bbd5-f171-9342-b97c11480768@linux.intel.com>
+Date: Fri, 21 Apr 2023 13:03:25 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.8.0
 Content-Language: en-US
 To: Matthew Auld <matthew.auld@intel.com>, intel-xe@lists.freedesktop.org
 References: <20230406162625.320387-1-matthew.auld@intel.com>
+ <20230406162625.320387-2-matthew.auld@intel.com>
 From: =?UTF-8?Q?Thomas_Hellstr=c3=b6m?= <thomas.hellstrom@linux.intel.com>
-In-Reply-To: <20230406162625.320387-1-matthew.auld@intel.com>
+In-Reply-To: <20230406162625.320387-2-matthew.auld@intel.com>
 Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
-Subject: Re: [Intel-xe] [PATCH 1/2] drm/xe/sched_job: prefer
- dma_fence_is_later
+Subject: Re: [Intel-xe] [PATCH 2/2] drm/xe/lrc: give start_seqno a better
+ default
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -66,8 +67,8 @@ Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 
 On 4/6/23 18:26, Matthew Auld wrote:
-> Doesn't look like we are accounting for seqno wrap. Just use
-> __dma_fence_is_later() like we already do for xe_hw_fence_signaled().
+> If looking at the initial engine dump we should expect this to match
+> XE_FENCE_INITIAL_SEQNO - 1.
 >
 > Signed-off-by: Matthew Auld <matthew.auld@intel.com>
 > Cc: Thomas Hellström <thomas.hellstrom@linux.intel.com>
@@ -77,31 +78,20 @@ Reviewed-by: Thomas Hellström <thomas.hellstrom@linux.intel.com>
 
 
 > ---
->   drivers/gpu/drm/xe/xe_sched_job.c | 7 +++++--
->   1 file changed, 5 insertions(+), 2 deletions(-)
+>   drivers/gpu/drm/xe/xe_lrc.c | 3 +++
+>   1 file changed, 3 insertions(+)
 >
-> diff --git a/drivers/gpu/drm/xe/xe_sched_job.c b/drivers/gpu/drm/xe/xe_sched_job.c
-> index 2985caa6097b..ed0b69ef449c 100644
-> --- a/drivers/gpu/drm/xe/xe_sched_job.c
-> +++ b/drivers/gpu/drm/xe/xe_sched_job.c
-> @@ -229,7 +229,9 @@ bool xe_sched_job_started(struct xe_sched_job *job)
->   {
->   	struct xe_lrc *lrc = job->engine->lrc;
+> diff --git a/drivers/gpu/drm/xe/xe_lrc.c b/drivers/gpu/drm/xe/xe_lrc.c
+> index fb8c6f7d6528..ae605e7805de 100644
+> --- a/drivers/gpu/drm/xe/xe_lrc.c
+> +++ b/drivers/gpu/drm/xe/xe_lrc.c
+> @@ -700,6 +700,9 @@ int xe_lrc_init(struct xe_lrc *lrc, struct xe_hw_engine *hwe,
+>   	map = __xe_lrc_seqno_map(lrc);
+>   	xe_map_write32(lrc_to_xe(lrc), &map, lrc->fence_ctx.next_seqno - 1);
 >   
-> -	return xe_lrc_start_seqno(lrc) >= xe_sched_job_seqno(job);
-> +	return !__dma_fence_is_later(xe_sched_job_seqno(job),
-> +				     xe_lrc_start_seqno(lrc),
-> +				     job->fence->ops);
->   }
+> +	map = __xe_lrc_start_seqno_map(lrc);
+> +	xe_map_write32(lrc_to_xe(lrc), &map, lrc->fence_ctx.next_seqno - 1);
+> +
+>   	return 0;
 >   
->   bool xe_sched_job_completed(struct xe_sched_job *job)
-> @@ -241,7 +243,8 @@ bool xe_sched_job_completed(struct xe_sched_job *job)
->   	 * parallel handshake is done.
->   	 */
->   
-> -	return xe_lrc_seqno(lrc) >= xe_sched_job_seqno(job);
-> +	return !__dma_fence_is_later(xe_sched_job_seqno(job), xe_lrc_seqno(lrc),
-> +				     job->fence->ops);
->   }
->   
->   void xe_sched_job_arm(struct xe_sched_job *job)
+>   err_lrc_finish:
