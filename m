@@ -4,135 +4,140 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7DD17C7618E
-	for <intel-xe@archiver.kernel.org>; Mon, 24 Apr 2023 22:50:43 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 41FC2C77B61
+	for <intel-xe@archiver.kernel.org>; Mon, 24 Apr 2023 22:59:56 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 33A5710E1F9;
-	Mon, 24 Apr 2023 22:50:43 +0000 (UTC)
-Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6084410E1F9
- for <intel-xe@lists.freedesktop.org>; Mon, 24 Apr 2023 22:50:42 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id F3A7D10E209;
+	Mon, 24 Apr 2023 22:59:55 +0000 (UTC)
+Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B3A2110E209
+ for <intel-xe@lists.freedesktop.org>; Mon, 24 Apr 2023 22:59:54 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1682376642; x=1713912642;
+ t=1682377194; x=1713913194;
  h=date:from:to:cc:subject:message-id:references:
- in-reply-to:mime-version;
- bh=bWctiiKmfqJv/ClziqN863TkYg0GdqCfIXt5hV3sYdg=;
- b=j7KqP48PUskJwMR/iSY+jB9SOwYJMymFeiyK3LXIi3mCO4WKE4p0fvl3
- WETUm4GZDdQgWYhn14OymqPCcEcdSkN2PuyHZ4vBsvP8lKamwTRu4D7ey
- kNX9dT+zkZyjFwLGZBgbOvRMd1LN3avVic8CDzbU4pUMJQtNg+jqOzx6Y
- fA06U1sqDhiURMMy3CYRArpZHN2jCK2gxcTZUGEDYjT12OucRGhZc1L2b
- J64kCzXe9ptZI2wQpjln5lErA7kisQ7xAf48NDdrS6qcLAgfrHoqfgxqw
- 34HJjOc3isxeDw85q7AGrzX6yWSLypJelNJ1hDXiIHWC8Cm5RCx4aVu0C w==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10690"; a="335485293"
-X-IronPort-AV: E=Sophos;i="5.99,223,1677571200"; d="scan'208";a="335485293"
+ content-transfer-encoding:in-reply-to:mime-version;
+ bh=4MwsSvGCzYyYhWtMPPHXaowgIb3o478q8sf6c1OQbv8=;
+ b=h3aCxPigRoKsG1+7fb4GtJR7DUTiP5WbEiqrjqq/ON/vbLaAE7sADzIx
+ reqceeGsEZ5UF1x7FkL7UzY6eYg6AQ5IzU4miDzcQBsPEELmUy21NWaJg
+ 4pSQ9sAxb4afY6TlqxQZBfVUUMdNeuulX3dUW/PRXNCorJlJK3yqQZf7D
+ bx0BK+8oHyKkTVrOUkLjfymjkGdaEVCrF6LRvbMKgF84jCaFuDn1KLaH9
+ xzHcWkvQlYP9X9LAOaUUL6T9dasn5ktO2HXjzzmVvK1lUC/sx/OTJ1y1t
+ gauIOLTauhBIMQxJlbBzMEQPKXe71gNOenc5BxlkgBDnlXediIHmnRwEo g==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10690"; a="345336906"
+X-IronPort-AV: E=Sophos;i="5.99,223,1677571200"; d="scan'208";a="345336906"
 Received: from orsmga005.jf.intel.com ([10.7.209.41])
- by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 24 Apr 2023 15:50:41 -0700
+ by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 24 Apr 2023 15:59:53 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10690"; a="867653339"
-X-IronPort-AV: E=Sophos;i="5.99,223,1677571200"; d="scan'208";a="867653339"
-Received: from fmsmsx602.amr.corp.intel.com ([10.18.126.82])
- by orsmga005.jf.intel.com with ESMTP; 24 Apr 2023 15:50:41 -0700
-Received: from fmsmsx610.amr.corp.intel.com (10.18.126.90) by
- fmsmsx602.amr.corp.intel.com (10.18.126.82) with Microsoft SMTP Server
+X-IronPort-AV: E=McAfee;i="6600,9927,10690"; a="867655161"
+X-IronPort-AV: E=Sophos;i="5.99,223,1677571200"; d="scan'208";a="867655161"
+Received: from fmsmsx601.amr.corp.intel.com ([10.18.126.81])
+ by orsmga005.jf.intel.com with ESMTP; 24 Apr 2023 15:59:53 -0700
+Received: from fmsmsx611.amr.corp.intel.com (10.18.126.91) by
+ fmsmsx601.amr.corp.intel.com (10.18.126.81) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.23; Mon, 24 Apr 2023 15:50:40 -0700
-Received: from fmsedg601.ED.cps.intel.com (10.1.192.135) by
+ 15.1.2507.23; Mon, 24 Apr 2023 15:59:53 -0700
+Received: from fmsmsx610.amr.corp.intel.com (10.18.126.90) by
+ fmsmsx611.amr.corp.intel.com (10.18.126.91) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.23; Mon, 24 Apr 2023 15:59:53 -0700
+Received: from fmsedg602.ED.cps.intel.com (10.1.192.136) by
  fmsmsx610.amr.corp.intel.com (10.18.126.90) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.23 via Frontend Transport; Mon, 24 Apr 2023 15:50:40 -0700
-Received: from NAM10-DM6-obe.outbound.protection.outlook.com (104.47.58.104)
- by edgegateway.intel.com (192.55.55.70) with Microsoft SMTP Server
+ 15.1.2507.23 via Frontend Transport; Mon, 24 Apr 2023 15:59:53 -0700
+Received: from NAM11-CO1-obe.outbound.protection.outlook.com (104.47.56.168)
+ by edgegateway.intel.com (192.55.55.71) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2507.23; Mon, 24 Apr 2023 15:50:40 -0700
+ 15.1.2507.23; Mon, 24 Apr 2023 15:59:52 -0700
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=TNZ3UogZWRfRXarX1rfIU6FZC+DS9IlfpxAT1SFKVAwpw5awwUMfCMhelBMpe2ZRkjgQaUMyqUEg8gz1J9V/J4UyBfa6sNWJfS4QWdq/ZCajisdUTZlkeUm37fzgDSfqaBcM+QSBiTgX6gOY4d7+WwXcDIWXqiMuiODIFPI8DjKJztvNdUp4HqrMXjkZh+HIL4kwQRRTm32tbXA/V1iyj/QDdYB9jiGf9HmsEfAsFC/eYSbwuDnjnkMvr6cJj6BI8L2wX1oOmHs+KGJIwM2vw9I65U24MZdXg1EcnVtvgJMmpwWDI+ke7yt+cHxKUQtScNIUKWVwFw1IaHW7yW3IIw==
+ b=QnVldQBNoD/uqKGYIR2vz8wrIUTcQzFsDhf6oJmG6RUu30Oyi831aAWZmS9A8WXcGJKyan0kPy/278ayq/jBpZ5f5ZGhIDFOCiT7f81b6qlCTervvIrsQ8loqM49DdQ1JkZAk45U10jZ2rKw00QrUWrHu4i6v8j6uuBaCdwuVEc2xIj3Q+ymXKKwI6qKHuxrvyKn+LYtXwKt02RBjUtYyx7edTTH17J7iYGiwobugi/qlaV9+G/0kBAHFKzGjV6dwaFw4Nd3cY3+VgBMM0rLsvFrtIDEGFYCCGWKFjxVXfsVxN/oRFg+vhMocJ5fh9qMr1Asv2UBK+yode3I1N/vNQ==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=3bTRP7OjKi7saV+GgpzCO359fVVvau+iYUPJrBmcKI8=;
- b=gZlikwflvAvCHyfNcG6Y073ysqM4pW/9X1u4yH8Zm32zt/IsTXsWfh5QT04PotT+ZLj/KNPSU7no1rsC7tfuTkizDAa1b8Nd+MK1XDDkb6ateXJhkKl8gJRLn5zQVREvwVAmTX+EH6V2riodSxM750orulNkXCG9KWO6F70jp/sXDUYBkEnsww0MhXePHQUXz5rB3ImPbYvvfQWaLUccTvYwaU2y5mN/qWxhrbjqu/t1GXwEOWyniOFRRfZDMnowAJLeBWubP+PNZUiOP5Z3RRnK109qX9cZw3zY+HBb74qG4iwaxGDQyW+MmbvfIoXpkaWa0f4Bb169bPtWoigdRw==
+ bh=k+pHeFvC/7I6VF2y9sYQewuL7MeqMpTs+S24+qgBrYQ=;
+ b=hJUXbS1xH7FvWBns1KFq3rAHvZCa39RU2q0fVD9MtsoYi18sq+/ZKqD+aKwjtac8Rrj6DFY8Ikcb3/yJ2zQngb18uKgYatZcILXA16q10H6TpFpEBrzcQBdycKTAXsJsI65GTOnFhQH9UFidBknZabvx8DNZLAVk0v5OUpMo8uvcNbWWrHligRtUGwJRrmF758Qp0uXggKBx/Y7QqR65tvcv1WHiRsHLC3p3wXGezwcyYVd+VkD0wJ6jyEg9l1PzGBdLTcn5s71c8mmPyYGRTVDe9OsGxR6iidMAsrpdgMqum7C/sge1DUtGbQYXxizYo5AslixJgwmN7KdQTafrew==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
  dkim=pass header.d=intel.com; arc=none
 Authentication-Results: dkim=none (message not signed)
  header.d=none;dmarc=none action=none header.from=intel.com;
-Received: from MN0PR11MB6135.namprd11.prod.outlook.com (2603:10b6:208:3c9::9)
- by MW4PR11MB6737.namprd11.prod.outlook.com (2603:10b6:303:20d::15)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6319.33; Mon, 24 Apr
- 2023 22:50:38 +0000
-Received: from MN0PR11MB6135.namprd11.prod.outlook.com
- ([fe80::e15f:6c7a:7fd1:d63a]) by MN0PR11MB6135.namprd11.prod.outlook.com
- ([fe80::e15f:6c7a:7fd1:d63a%7]) with mapi id 15.20.6319.033; Mon, 24 Apr 2023
- 22:50:38 +0000
-Date: Mon, 24 Apr 2023 15:50:34 -0700
-From: Lucas De Marchi <lucas.demarchi@intel.com>
-To: Matt Roper <matthew.d.roper@intel.com>
-Message-ID: <rl4znzdiv3poheqpgfx4uvsdqqyg35fo2ydovy4jyu6y42smxw@fxffc223lmfl>
-References: <20230421223258.128781-1-lucas.demarchi@intel.com>
- <20230421223258.128781-17-lucas.demarchi@intel.com>
- <20230424212052.GE10045@mdroper-desk1.amr.corp.intel.com>
-Content-Type: text/plain; charset="us-ascii"; format=flowed
+Received: from DS7PR11MB7859.namprd11.prod.outlook.com (2603:10b6:8:da::22) by
+ SA1PR11MB5946.namprd11.prod.outlook.com (2603:10b6:806:23a::9) with
+ Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.6319.22; Mon, 24 Apr 2023 22:59:51 +0000
+Received: from DS7PR11MB7859.namprd11.prod.outlook.com
+ ([fe80::9f98:8f3c:a608:8396]) by DS7PR11MB7859.namprd11.prod.outlook.com
+ ([fe80::9f98:8f3c:a608:8396%6]) with mapi id 15.20.6319.033; Mon, 24 Apr 2023
+ 22:59:51 +0000
+Date: Mon, 24 Apr 2023 15:59:47 -0700
+From: Matt Roper <matthew.d.roper@intel.com>
+To: =?iso-8859-1?Q?Jos=E9?= Roberto de Souza <jose.souza@intel.com>
+Message-ID: <20230424225947.GH10045@mdroper-desk1.amr.corp.intel.com>
+References: <20230415040906.13230-1-jose.souza@intel.com>
+ <20230415040906.13230-2-jose.souza@intel.com>
+Content-Type: text/plain; charset="iso-8859-1"
 Content-Disposition: inline
-In-Reply-To: <20230424212052.GE10045@mdroper-desk1.amr.corp.intel.com>
-X-ClientProxiedBy: SJ0PR03CA0289.namprd03.prod.outlook.com
- (2603:10b6:a03:39e::24) To MN0PR11MB6135.namprd11.prod.outlook.com
- (2603:10b6:208:3c9::9)
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20230415040906.13230-2-jose.souza@intel.com>
+X-ClientProxiedBy: SJ0PR13CA0063.namprd13.prod.outlook.com
+ (2603:10b6:a03:2c4::8) To DS7PR11MB7859.namprd11.prod.outlook.com
+ (2603:10b6:8:da::22)
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: MN0PR11MB6135:EE_|MW4PR11MB6737:EE_
-X-MS-Office365-Filtering-Correlation-Id: 608a21d3-8910-4dfc-2ea4-08db4516521b
+X-MS-TrafficTypeDiagnostic: DS7PR11MB7859:EE_|SA1PR11MB5946:EE_
+X-MS-Office365-Filtering-Correlation-Id: 456b5a19-5781-4f87-08bd-08db45179bc1
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: QdOrH8YeRzz7gOhgyz5qXayMTcj1Bljr9Wx0JI/mhT8+klOk8e+vPzD3S96wswywisiBahjKswHw2T60tC6NeDsLj9wd1vAbF+UfGPgh3xmGyZvmmSpX9UWkKy0jxh2deS3Frl9zEEh/MjemSMmauaPtT/+zP5VGvmOlOR4LyT/lMUM7kW3FlXq72nWF6PF1TrOwKLxt2y63LIUTe0L0ms3v3noPpxoncSOpZaXVeNZXFtOZnf7cn30m52ZtBw7YZZU7iAUO7lCN0sc64yZjMDKlfbnWLr4oIFvMpd6naOcV1L7cy1gJQN90AKrykW0OuJAmsE65wTAhDOePWXooMni0PCK/DVPjr3GdLq+VrRGoBIzRKMjUhxv27RibVffQMVMYAzb9YiLUD0DgYK1RDdvDc2UO1Rfo9Q3tAZWhXe8DkOfXauOb5u9EvCah4xl2Yh+9cNaq9n9ogbnHYrqGi6DJjP/oGRpi2vCNzVrei5RJWIa3dOf6fOlScmc6m3Z8rq1uOSLV619f4gLHi0bES3Ekr9f6QNFF7XiCdRd3fFmoxMkXCREUWfOsLB5pAsjD
+X-Microsoft-Antispam-Message-Info: l6v6UKL7aa0MNbb6P0HrEmxtT3mu41h1G0gkrofNJ7bozx2jha8xhvjiDuAtMZeqhdUkDhCTR7caIKMsjqroyQ1dEUpzypsKP4y2b8b25h6IUHZNxmmp6tLrWowQKRuZtIxPdAp3PDdXNhOjQLH9PUdb+KfT36Kn5Pi8rlaOcTMADgH9b7xvXd9sLMe+S/8oKvFxBXJGb+OG5e8kVrnMj/qYc01CEw9CqlR1/lKj3pVEmINICsOsTcS92Qv4y4sJnLNhSkprooklux0BG0VHQxXv8Z7fQPrKQiq+QrjsSXVEXHMYDe1KmVxP8tlAQZEiTLBRR016aVPH5RI54njuba7c3GBKzFqqXsFJf9/MdTmIgYQWF2TbxLiYwunXjJfXaB48x4JhKhH1l0XO2mMZMy9Zzi2ZN0vPdbwr/C8gCKdFfV4JEUaC/PjJ1msRJmVL2gdTByacdDWHwra4BtWvLeKc5GQOJmAjfeWwmbCj1wFfM2+OvwyV88fvPX3fg2L+j+gadIfhya1WROfS/khsPdkKV6ETscPlRuSCgkVy55NP+Ys+TJMVcLnu5cceAO6h
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:MN0PR11MB6135.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230028)(7916004)(39860400002)(396003)(366004)(136003)(376002)(346002)(451199021)(9686003)(6506007)(26005)(6512007)(83380400001)(33716001)(186003)(82960400001)(38100700002)(66946007)(478600001)(86362001)(66556008)(66476007)(8676002)(6862004)(8936002)(6636002)(54906003)(5660300002)(6486002)(41300700001)(2906002)(4326008)(6666004)(316002);
+ IPV:NLI; SFV:NSPM; H:DS7PR11MB7859.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230028)(346002)(39860400002)(396003)(366004)(136003)(376002)(451199021)(6636002)(478600001)(6486002)(6506007)(6512007)(1076003)(26005)(6666004)(316002)(82960400001)(4326008)(66476007)(66556008)(66946007)(186003)(5660300002)(38100700002)(6862004)(8676002)(8936002)(2906002)(41300700001)(33656002)(86362001);
  DIR:OUT; SFP:1102; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?NDqXsf6Qzi8BtUa4z76GMNuT95tCvSkgLp3H6NDBQWmYr9evPgVrT4H/7Htc?=
- =?us-ascii?Q?YtmVqp0Lej9HQUMGkzKuJEup6J3tDULCMNWsZG+ey5r3RitcdiVXvrFykOXj?=
- =?us-ascii?Q?cSca0drnXd3NzcocpB6JfiUDVnBL3mY4eMzOCtrOmx5815lPwgbRNqHtleMg?=
- =?us-ascii?Q?Neuh+a3xIo+0ioIZgBNy0RqeLaSprrU0LoU5Zv5v3JHVLFNPvcMC7Mrzqdwn?=
- =?us-ascii?Q?eQVjPeWYjHPV8iTAEC7rX0ajIpdkHzGZiaeY/3+/ZDrO4qpTtiEZlsSOp3Sx?=
- =?us-ascii?Q?Y9tspZfxMU+h0li1vJ3Fe0sM2vrntNeBK+qCdZgrKbOg4Fh7LBgqJt4ITJ3u?=
- =?us-ascii?Q?Wg0lC+LRZX4b8x0aKdqQ8JKDMdUtC+KSEjaUUi3z+bZG74PYgvXlAZcbcj+d?=
- =?us-ascii?Q?gNV4ghMdHgNaln7HWQFIvviaDrlHZNgl4x8AhKB77d1ie5iDRYJXIQvcFGB2?=
- =?us-ascii?Q?/K/cQ7Vtfx8zbBOyaYR9gHfqZ3ktgtUgBgh9HWM7pnrlSqx6BUNnAjlkPLVp?=
- =?us-ascii?Q?A7zC0KcHaqpuY+QHOjnE4BTRjv9akFNlmRwgoCsun+gzmX5RCjsTqUaKhpMQ?=
- =?us-ascii?Q?DMwrGkMwehBmMufulSQT2TAPzLAKqn9yV689IXnBTHRk+6pV4ujsWatmw8NQ?=
- =?us-ascii?Q?CmS/szHFWD+Z2BjTMtZGQ3/pZTMqJNSWql2UW5EXCKJbjHZYVMAlDvV30HJS?=
- =?us-ascii?Q?KyM/c4gssYakXLDB7d8yYPf21c22B6+5RQI40h0dtB8UWjQUzGILQ8/u3HRB?=
- =?us-ascii?Q?Y5EPThUS93udT4VkoP1SHmvMfHJxTJrcMTNQug0khQ+OxlZrAXcy8RcSL6dY?=
- =?us-ascii?Q?R9GqvaThK0gXKD0YgNRmnkzJ/3B/CSehWXI986nTtrETRn0TQl+bOdVczG1Z?=
- =?us-ascii?Q?WlAvprtPo4sPXuQ9CUAptw4MUCrFoU+ZlWT/yOTnzKrAOj4JZJnNfhQi8Z1V?=
- =?us-ascii?Q?/tmxz30tyZnSsu4a6O3dNoIJkEp9GgtoIzHV+7Oqzpnse+VCiDDMWQhwdXMc?=
- =?us-ascii?Q?M6mGdCFIN6BgPOOtHva72TrtJaqIvcc1EeY3BHc4mly3usPGPFp8G+3tZI/T?=
- =?us-ascii?Q?SfAqOZKhNJz17LX37gUgx1DfW5LxkoZ//2+EjPShTLLVgn3UdlmdE2vgWIZY?=
- =?us-ascii?Q?tZZ78FVEwRB6vwLxaJF9uldxRVXxQbPoG/ZVI7Y7soI6iriSns4Q0t4WVoRw?=
- =?us-ascii?Q?ac/hUBfmcQHgr44cyOh6pmFt3Bh81SojPkDgIt9+zTtEHYAS0eW1lW1TJMTj?=
- =?us-ascii?Q?xeGHeAMys3AL7mu8gNNcME1lwNJofLVSXXZnqoWRreKq98eY0YH4XFwLlE8R?=
- =?us-ascii?Q?GQIdxSP2Nv0IN1rW+f5c3G2SpAsGSWlrV9gSq7HUtUGGy/HAIl03usu8F4F+?=
- =?us-ascii?Q?h0BhVxhiedU+ysnfQbkW8Zbl6YuICAX9VFAXwVt4OlxAKMMire75w8v3nXwR?=
- =?us-ascii?Q?3h6iR8BXZoLArG160gl03fBGrV6Xk02ADVQLQwzLAhoTmNQztzT/WyNbiBP3?=
- =?us-ascii?Q?srpNHLh04wr9UcJTiZrRx6bWnH1fFbGyahtOSNXks4Qxj5Rzlc3tUdjukdPN?=
- =?us-ascii?Q?aj45wSqnNjrl8iwWHzNjonpan8O2l2Cv2qWwf5vurfPwvJiWJG3JJT0Lj2l3?=
- =?us-ascii?Q?+Q=3D=3D?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: 608a21d3-8910-4dfc-2ea4-08db4516521b
-X-MS-Exchange-CrossTenant-AuthSource: MN0PR11MB6135.namprd11.prod.outlook.com
+X-MS-Exchange-AntiSpam-MessageData-0: =?iso-8859-1?Q?eJ3v+uBq6l7KwDPbTQAwO1/B3Lhi3JfgKFJsacN+lQV0Z64JdJ4TLIXcLA?=
+ =?iso-8859-1?Q?5sTKvJZnsqLZrfVjOm3Th24/QZeDEGt/OoGx9wYKHp9n45BRT8qzBqxNVV?=
+ =?iso-8859-1?Q?5nbSWc17hFZsTKmO3EmC3yfTBdAZjLDVi99QOlFpvvqCNp44as27f0kLBx?=
+ =?iso-8859-1?Q?BJrt3jXlI5qT9EzWBy7vTaisUyPHN+K/QEhPeSpajkJkQ8S1zj1AJvHlJT?=
+ =?iso-8859-1?Q?HGRx79UnotAx89FbO/vUettHMhJJCZu6U5dh2tPx+RHVSZef8n3gc/Tqc/?=
+ =?iso-8859-1?Q?NEmiDIq90yMUAWpM0asX5szzaf3ZMencNzTIpqCATyLRkeEPsRI+KMsjI0?=
+ =?iso-8859-1?Q?ZoUj6JhhhlIRg07+sJSzdm4tzfwE5H0o7KoGMj2nIosM9itRYdksTXtrA4?=
+ =?iso-8859-1?Q?fD2RPOPetgG7Pje1/R04ciz53vFnE+2mSdyqZPAwi1VbbzNxGwtKTaRsio?=
+ =?iso-8859-1?Q?ln95yUczj3Y7J9MsxXdbDE7HssUXvNmSSUX76//5DfwQdGbb6OibIMbeHl?=
+ =?iso-8859-1?Q?QqAYtsda1GUhnpJakjK0IR+kKIhUVbD9oMrDk1JL9lb2cYnNKCMjN77B3E?=
+ =?iso-8859-1?Q?5GZCzTfKjeCa/dJRnkNFQI7Q+yHmYf2FG0Y8OmceN6FSxEd0oPWYVPJttS?=
+ =?iso-8859-1?Q?HuS4bKyfPuNFVSOwKEJS/917xo2L0C/1Yz8xwIFL957ttr2mF/Od9DCgs4?=
+ =?iso-8859-1?Q?w0GL3tS4282rD8672ILLPADauBYZug3XPkXPDUUzD+vEbAO5v8ffcsS2nD?=
+ =?iso-8859-1?Q?GKefuKADVsSN4iJkDMr9iQOWigCZmrXRTT5yznTJi/5HtaMsmO4kv/i8Bc?=
+ =?iso-8859-1?Q?9fWuJWjnOCeLfJuvfQgaxQKHMJBN6mRLi+rZ0loKzKs/7z2uNMnQlUmhdW?=
+ =?iso-8859-1?Q?Mn3IzQVynxkWdnV/huiIHVl3h7xEn/q4pKYafFJe9u1FKgQigSB9HEk7Vy?=
+ =?iso-8859-1?Q?AApX5CV7BoTspHT7ZdhcG6pXqHqfV2dBjHj+npP9OXFGpdkaCx0+EXZcfT?=
+ =?iso-8859-1?Q?CXJg1bDLt4itBOyl4O/ON0qbYD8ZcVRTKjcCddDttk4WZBUEAn9RRiWFPy?=
+ =?iso-8859-1?Q?5wtbCdHp+B/4/iSl75+68O3Onp5o0OdbUNQj4gwSKEusfPtYUDSJGHK/sH?=
+ =?iso-8859-1?Q?TuI4lMrgvrIcsgGyUZP330qXbA7WPeaV6fAR7aN1RscfjCI/qasFjb40Q2?=
+ =?iso-8859-1?Q?FuBKSKCAEtXMVDf/gJFwUFcm4RmDnRoXDC8nBiERelRoXSjx7KDpM15zfd?=
+ =?iso-8859-1?Q?dZLvTiBwO7IauMpakessohP+1X/ZZhfMQJkg1kCX17GNMuklM08UcdiAyP?=
+ =?iso-8859-1?Q?hymWQyqtItRS/BPaNgHL0X2T2BIkhm3iTdjqblfxSHUGzd4bOGX9JiMA85?=
+ =?iso-8859-1?Q?L1+F/QiKCod7JK1IKd6vNzc4X1/z0wuVGN9P8Xe4Fl2goiABEaOTslU5qi?=
+ =?iso-8859-1?Q?3gg1YOBSm6aHUFD8mMbOr6nFgD84FB/oPUQP01N/VS3S7Opj/1mkTOLQi+?=
+ =?iso-8859-1?Q?OR/zK3QnS0CR9YcEckUa5FbcVzgoW62e6lwqLai7VDlnCnrpSY1eoPPE/d?=
+ =?iso-8859-1?Q?Wu7mRXMjh7c4yCxhi4p6Y0p0FV6sNDletYXTukzdhr84taMMzeaG4gC+gu?=
+ =?iso-8859-1?Q?zTzgom9ammw84KyzLaXD89trcjhSRYTVYklqbfpXHiZmDV7w/lDPqeuQ?=
+ =?iso-8859-1?Q?=3D=3D?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: 456b5a19-5781-4f87-08bd-08db45179bc1
+X-MS-Exchange-CrossTenant-AuthSource: DS7PR11MB7859.namprd11.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 24 Apr 2023 22:50:38.2450 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 24 Apr 2023 22:59:50.4365 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: LuXGiGsW9d+0c6eTsa9aKLJX3s++eV4od3QumbKMdOCcCQoTUk8f1OJxcvsld6ftCg2kmVnXFBxaa4ewz3QvE093ev9Hq8T9VRxoAwVmD5M=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: MW4PR11MB6737
+X-MS-Exchange-CrossTenant-UserPrincipalName: RZE6DQJ2u0wGMX0jfym5m6YbTyfu6mj2/eHnxTPbXtj3L1+dB8fxXCCsqC4TNUXfxEb+t82gJVE9uAIiouLf+ZKfiDR6YMrqtpaVlv6sJWs=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SA1PR11MB5946
 X-OriginatorOrg: intel.com
-Subject: Re: [Intel-xe] [PATCH v2 16/17] drm/xe: Plumb xe_reg_t into WAs, rtp,
- etc
+Subject: Re: [Intel-xe] [PATCH 2/2] drm/xe: Set default MOCS value for copy
+ cs instructions
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -144,46 +149,98 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-xe@lists.freedesktop.org, Rodrigo Vivi <rodrigo.vivi@intel.com>
+Cc: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Mon, Apr 24, 2023 at 02:20:52PM -0700, Matt Roper wrote:
->On Fri, Apr 21, 2023 at 03:32:57PM -0700, Lucas De Marchi wrote:
->> Now that xe_reg_t is a type that can be used by xe, convert the rest of
->> the driver to use it:
->
->s/the rest of the driver/more of the driver/
->
->We still need to fix xe_mmio_*() to take this type instead of a u32
->before we consider the conversion "done."  I assume that's coming in
->another series after this one?
+On Fri, Apr 14, 2023 at 09:09:06PM -0700, José Roberto de Souza wrote:
+> copy cs instructions that dont have a explict MOCS field will use this
+> default MOCS value.
+> 
+> This was mainly copied from i915 source code.
+> 
+> BSpec: 45807
+> Signed-off-by: José Roberto de Souza <jose.souza@intel.com>
+> ---
+>  drivers/gpu/drm/xe/regs/xe_engine_regs.h |  9 +++++++++
+>  drivers/gpu/drm/xe/xe_wa.c               | 13 +++++++++++++
+>  2 files changed, 22 insertions(+)
+> 
+> diff --git a/drivers/gpu/drm/xe/regs/xe_engine_regs.h b/drivers/gpu/drm/xe/regs/xe_engine_regs.h
+> index cc874348f76bc..dbc4b9f15b4e8 100644
+> --- a/drivers/gpu/drm/xe/regs/xe_engine_regs.h
+> +++ b/drivers/gpu/drm/xe/regs/xe_engine_regs.h
+> @@ -105,6 +105,15 @@
+>  		(REG_FIELD_PREP(CMD_CCTL_WRITE_OVERRIDE_MASK, (write) << 1) | \
+>  		 REG_FIELD_PREP(CMD_CCTL_READ_OVERRIDE_MASK, (read) << 1))
+>  
+> +#define BLIT_CCTL(base)				_MMIO((base) + 0x204)
+> +#define   BLIT_CCTL_DST_MOCS_MASK		REG_GENMASK(14, 8)
+> +#define   BLIT_CCTL_SRC_MOCS_MASK		REG_GENMASK(6, 0)
+> +#define   BLIT_CCTL_MASK (BLIT_CCTL_DST_MOCS_MASK | \
+> +			  BLIT_CCTL_SRC_MOCS_MASK)
+> +#define   BLIT_CCTL_MOCS(dst, src)				       \
+> +		(REG_FIELD_PREP(BLIT_CCTL_DST_MOCS_MASK, (dst) << 1) | \
+> +		 REG_FIELD_PREP(BLIT_CCTL_SRC_MOCS_MASK, (src) << 1))
 
-My plan was to convert xe_mmio_* on a follow up, but then when I
-finished this series I noticed the one thing noted in the commit that introduced
-xe_reg/xe_reg_mcr: now the latter doesn't have a .reg field anymore, so passing
-a mcr reg to xe_mmio_* already breaks the build
+Same general comments from last patch about file position, mask
+definition, and potentially dropping last two macros apply to this patch
+as well.
 
-That left me wondering if we just go ahead and do the conversion to
-avoid the uses of THIS_REG.reg or just leave it as is. More from IRC:
+> +
+>  #define VDBOX_CGCTL3F10(base)			_MMIO((base) + 0x3f10)
+>  #define   IECPUNIT_CLKGATE_DIS			REG_BIT(22)
+>  
+> diff --git a/drivers/gpu/drm/xe/xe_wa.c b/drivers/gpu/drm/xe/xe_wa.c
+> index 5ef3561101466..0c12700bedde5 100644
+> --- a/drivers/gpu/drm/xe/xe_wa.c
+> +++ b/drivers/gpu/drm/xe/xe_wa.c
+> @@ -660,6 +660,19 @@ xe_wa_process_runtime_was_engine(struct xe_reg_sr *sr,
+>  					   CMD_CCTL_MOCS_OVERRIDE(mocs_w, mocs_r),
+>  					   XE_RTP_ACTION_FLAG(MASKED_REG, ENGINE_BASE))),
+>  		},
+> +		/*
+> +		 * Some blitter commands do not have a field for MOCS, those
+> +		 * commands will use MOCS index pointed by BLIT_CCTL.
+> +		 * BLIT_CCTL registers are needed to be programmed to un-cached.
+> +		 */
+> +		{ XE_RTP_NAME("BLIT_CCTL_default_MOCS"),
+> +		  XE_RTP_RULES(GRAPHICS_VERSION_RANGE(1200, XE_RTP_END_VERSION_UNDEFINED),
+> +			       ENGINE_CLASS(COPY)),
+> +		  XE_RTP_ACTIONS(FIELD_SET(BLIT_CCTL(0),
+> +				 BLIT_CCTL_MASK,
+> +				 BLIT_CCTL_MOCS(mocs_w, mocs_r),
+> +				 XE_RTP_ACTION_FLAG(MASKED_REG, ENGINE_BASE)))
 
-<demarchi> mattrope: rodrigovivi jani next version of my register cleanup
-series will retain the strong type for mcr. I also found a way to make calls to
-xe_mmio_*(gt, FOO.reg) error out, even if xe_mmio* only receives a u32, not a
-xe_reg
+Even though BLIT_CCTL looks a lot like CMD_CCTL on the surface, there
+are some important differences between the two that need to be noted
+here:
 
-<demarchi> so... the incentive to make xe_mmio receive xe_reg rather than u32
-is actually smaller. I want to do a s/.reg/.addr/  in the xe_reg struct... but
-if we are going to end up converting xe_mmio_* to xe_reg (even with the smaller
-incentive now), then maybe I should wait for that?
+ - BLIT_CCTL is not a masked register.
+ - BLIT_CCTL is part of an engine context (e.g., bspec 45585), so it
+   would need to eventually wind up on an LRC list, not a HWE list.
 
-<demarchi> thoughts?
+The inconsistency in hardware design here is frustrating...
 
-<demarchi> to see what I'm talking about:
-`git grep -e "\\.reg[^_s]" -- drivers/gpu/drm/xe`  (with a few false positives)
+Also note that BLIT_CCTL is directly writable by userspace (bspec 45546)
+so I question whether it's even our responsibility to do this in Xe.
+It's too late to fix i915 now (at least for current platforms), but I'd
+suggest just dropping this second patch for Xe and leaving it to
+userspace to program whatever value they wish for their own context.
 
-<rodrigovivi> I honestly don't have strong preferences there... as long as we
-get rid of the 'i915_reg_t' there I'm good... and a bonus if we combine the
-mcr...
 
-Lucas De Marchi
+Matt
+
+> +		},
+>  		{}
+>  	};
+>  
+> -- 
+> 2.40.0
+> 
+
+-- 
+Matt Roper
+Graphics Software Engineer
+Linux GPU Platform Enablement
+Intel Corporation
