@@ -4,48 +4,49 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7D634C77B61
-	for <intel-xe@archiver.kernel.org>; Mon, 24 Apr 2023 16:52:02 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id C06B2C77B61
+	for <intel-xe@archiver.kernel.org>; Mon, 24 Apr 2023 16:52:05 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5767D10E12B;
-	Mon, 24 Apr 2023 16:52:02 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 98D6510E1BB;
+	Mon, 24 Apr 2023 16:52:05 +0000 (UTC)
 Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1BEC310E571
- for <intel-xe@lists.freedesktop.org>; Mon, 24 Apr 2023 16:51:58 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C557910E1BB;
+ Mon, 24 Apr 2023 16:52:03 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1682355118; x=1713891118;
+ t=1682355123; x=1713891123;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=X8nntgo6QIkYVw2sVGH87HS3JDnENevfiKk86DdjzeU=;
- b=XDS3BYpyYW0d9D2YGzdGtXh2JJhsCbI2BiyFCbDFRVldeOhNZvMfkGz+
- NZ5nOcnh5BlGANi9z0xykSJVbuYuGHoNH9oPw/r6vvqUID+nrFocd32IX
- vADGUddQftiwqYYlj9OSkFIVmZ24dK4Q2fOGblAJrzuROSd2w0eUTtjjm
- Lf2ltQ2pCC6VTNhbR8zZ2qifOlSdezkSixBOQOL73As3g8E3ysDfOo++J
- T57bEa4WSMq+eFUpNQrFqCP1QuzJa6NqTLNI8ZxOVW5QVr7v9CRE/KMuz
- IlfWffX8r+RC6PiMuioUsXp+1PZ42iDR+qpsLFXtWS7MjaEsNpjWIee8i Q==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10690"; a="330704265"
-X-IronPort-AV: E=Sophos;i="5.99,223,1677571200"; d="scan'208";a="330704265"
+ bh=LVLH6ZVp04J0LVBwFzdSpQC1FBSmP5XdfHtFra+13Mk=;
+ b=MRdd6J5sQwIgt8tgOws6C2w9X1X+1T3LMK5LQHVDIZQBDwPpLKZM2D5g
+ uoOY7ZKl3ad1xAWNaNfUAzt1z1B24AxC1Mi4DlasBsnallBwGWhC6v4/E
+ 4wqdEZGuvcnwrphmzmVc04Hh+ojmfPUvecmih7gaBxQN87UYn2LmkmbiI
+ h/YbljgYNUIaE9/4h3/Rt1LQLT1DjpgMk7gViPS6gGtrrvOwQi8QSiDjy
+ 5WgWAzsep1NVjqJ6RndS2l0n+rXaLyP803osFyeCnaIAoAd5wKefxhOJB
+ 91RqwkYH379SBFebBqu51LhFetbmB1gddSNxWjbD7e4QbAzpxkMUWkAUx w==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10690"; a="330704300"
+X-IronPort-AV: E=Sophos;i="5.99,223,1677571200"; d="scan'208";a="330704300"
 Received: from fmsmga005.fm.intel.com ([10.253.24.32])
  by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 24 Apr 2023 09:51:57 -0700
+ 24 Apr 2023 09:52:03 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10690"; a="1022785470"
-X-IronPort-AV: E=Sophos;i="5.99,223,1677571200"; d="scan'208";a="1022785470"
+X-IronPort-AV: E=McAfee;i="6600,9927,10690"; a="1022785556"
+X-IronPort-AV: E=Sophos;i="5.99,223,1677571200"; d="scan'208";a="1022785556"
 Received: from josouza-mobl2.fso.intel.com ([10.230.18.148])
  by fmsmga005-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 24 Apr 2023 09:51:55 -0700
+ 24 Apr 2023 09:52:00 -0700
 From: =?UTF-8?q?Jos=C3=A9=20Roberto=20de=20Souza?= <jose.souza@intel.com>
 To: intel-xe@lists.freedesktop.org
-Date: Mon, 24 Apr 2023 09:51:28 -0700
-Message-Id: <20230424165135.132494-9-jose.souza@intel.com>
+Date: Mon, 24 Apr 2023 09:51:31 -0700
+Message-Id: <20230424165135.132494-12-jose.souza@intel.com>
 X-Mailer: git-send-email 2.40.0
 In-Reply-To: <20230424165135.132494-1-jose.souza@intel.com>
 References: <20230424165135.132494-1-jose.souza@intel.com>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-xe] [PATCH 08/15] drm/i915/display: move display
- suspend/resume to intel_display_driver.[ch]
+Subject: [Intel-xe] [PATCH 11/15] drm/i915: Initialize dkl_phy spin lock
+ from display code path
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -57,324 +58,114 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Cc: Gustavo Sousa <gustavo.sousa@intel.com>,
- Jani Nikula <jani.nikula@intel.com>, rodrigo.vivi@intel.com
+Cc: Jani Nikula <jani.nikula@intel.com>, intel-gfx@lists.freedesktop.org,
+ Lucas De Marchi <lucas.demarchi@intel.com>, rodrigo.vivi@intel.com,
+ =?UTF-8?q?Ville=20Syrj=C3=A4l=C3=A4?= <ville.syrjala@linux.intel.com>
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-From: Jani Nikula <jani.nikula@intel.com>
+drm/i915: Initialize dkl_phy spin lock from display code path
 
-High level display functionality only called from driver top level code.
+Start moving the initialization of display locks from
+i915_driver_early_probe().
+Display locks should be initialized from display-only code paths.
 
-Reviewed-by: Gustavo Sousa <gustavo.sousa@intel.com>
-Signed-off-by: Jani Nikula <jani.nikula@intel.com>
-Link: https://patchwork.freedesktop.org/patch/msgid/11fdd82437370d8f341cd546d546de5e934c000f.1681465222.git.jani.nikula@intel.com
-(cherry picked from commit 3183b9ebad7d3f1d711f152222577116ca08b299)
+It was also agreed that if a variable is only used in one file, it
+should be initialized only in that file, so intel_dkl_phy_init() was
+added.
+
+v2:
+- added intel_display_locks_init()
+
+v3:
+- rebased
+
+v4:
+- dropped intel_display_locks_init()
+
+v5:
+- moved intel_dkl_phy_init() to the beginning of file
+
+Cc: intel-gfx@lists.freedesktop.org
+Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
+Cc: Ville Syrjälä <ville.syrjala@linux.intel.com>
+Cc: Jani Nikula <jani.nikula@intel.com>
+Cc: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
+Reviewed-by: Lucas De Marchi <lucas.demarchi@intel.com>
+Signed-off-by: José Roberto de Souza <jose.souza@intel.com>
+Link: https://patchwork.freedesktop.org/patch/msgid/20230420170558.35398-1-jose.souza@intel.com
+(cherry picked from commit bfa010f608491036327db20aad1d15e28da0189e)
 ---
- drivers/gpu/drm/i915/display/intel_display.c  | 102 ------------------
- drivers/gpu/drm/i915/display/intel_display.h  |   8 --
- .../drm/i915/display/intel_display_driver.c   | 101 +++++++++++++++++
- .../drm/i915/display/intel_display_driver.h   |  10 ++
- 4 files changed, 111 insertions(+), 110 deletions(-)
+ drivers/gpu/drm/i915/display/intel_display_driver.c | 2 ++
+ drivers/gpu/drm/i915/display/intel_dkl_phy.c        | 9 +++++++++
+ drivers/gpu/drm/i915/display/intel_dkl_phy.h        | 1 +
+ drivers/gpu/drm/i915/i915_driver.c                  | 1 -
+ 4 files changed, 12 insertions(+), 1 deletion(-)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
-index 246cd9b02a739..f227244b0811f 100644
---- a/drivers/gpu/drm/i915/display/intel_display.c
-+++ b/drivers/gpu/drm/i915/display/intel_display.c
-@@ -694,46 +694,6 @@ intel_plane_fence_y_offset(const struct intel_plane_state *plane_state)
- 	return y;
- }
- 
--int
--__intel_display_resume(struct drm_i915_private *i915,
--		       struct drm_atomic_state *state,
--		       struct drm_modeset_acquire_ctx *ctx)
--{
--	struct drm_crtc_state *crtc_state;
--	struct drm_crtc *crtc;
--	int ret, i;
--
--	intel_modeset_setup_hw_state(i915, ctx);
--	intel_vga_redisable(i915);
--
--	if (!state)
--		return 0;
--
--	/*
--	 * We've duplicated the state, pointers to the old state are invalid.
--	 *
--	 * Don't attempt to use the old state until we commit the duplicated state.
--	 */
--	for_each_new_crtc_in_state(state, crtc, crtc_state, i) {
--		/*
--		 * Force recalculation even if we restore
--		 * current state. With fast modeset this may not result
--		 * in a modeset when the state is compatible.
--		 */
--		crtc_state->mode_changed = true;
--	}
--
--	/* ignore any reset values/BIOS leftovers in the WM registers */
--	if (!HAS_GMCH(i915))
--		to_intel_atomic_state(state)->skip_intermediate_wm = true;
--
--	ret = drm_atomic_helper_commit_duplicated_state(state, ctx);
--
--	drm_WARN_ON(&i915->drm, ret == -EDEADLK);
--
--	return ret;
--}
--
- static void icl_set_pipe_chicken(const struct intel_crtc_state *crtc_state)
- {
- 	struct intel_crtc *crtc = to_intel_crtc(crtc_state->uapi.crtc);
-@@ -2148,30 +2108,6 @@ static void i9xx_crtc_disable(struct intel_atomic_state *state,
- 		i830_enable_pipe(dev_priv, pipe);
- }
- 
--
--/*
-- * turn all crtc's off, but do not adjust state
-- * This has to be paired with a call to intel_modeset_setup_hw_state.
-- */
--int intel_display_suspend(struct drm_device *dev)
--{
--	struct drm_i915_private *dev_priv = to_i915(dev);
--	struct drm_atomic_state *state;
--	int ret;
--
--	if (!HAS_DISPLAY(dev_priv))
--		return 0;
--
--	state = drm_atomic_helper_suspend(dev);
--	ret = PTR_ERR_OR_ZERO(state);
--	if (ret)
--		drm_err(&dev_priv->drm, "Suspending crtc's failed with %i\n",
--			ret);
--	else
--		dev_priv->display.restore.modeset_state = state;
--	return ret;
--}
--
- void intel_encoder_destroy(struct drm_encoder *encoder)
- {
- 	struct intel_encoder *intel_encoder = to_intel_encoder(encoder);
-@@ -8353,44 +8289,6 @@ void i830_disable_pipe(struct drm_i915_private *dev_priv, enum pipe pipe)
- 	intel_de_posting_read(dev_priv, DPLL(pipe));
- }
- 
--void intel_display_resume(struct drm_device *dev)
--{
--	struct drm_i915_private *i915 = to_i915(dev);
--	struct drm_atomic_state *state = i915->display.restore.modeset_state;
--	struct drm_modeset_acquire_ctx ctx;
--	int ret;
--
--	if (!HAS_DISPLAY(i915))
--		return;
--
--	i915->display.restore.modeset_state = NULL;
--	if (state)
--		state->acquire_ctx = &ctx;
--
--	drm_modeset_acquire_init(&ctx, 0);
--
--	while (1) {
--		ret = drm_modeset_lock_all_ctx(dev, &ctx);
--		if (ret != -EDEADLK)
--			break;
--
--		drm_modeset_backoff(&ctx);
--	}
--
--	if (!ret)
--		ret = __intel_display_resume(i915, state, &ctx);
--
--	skl_watermark_ipc_update(i915);
--	drm_modeset_drop_locks(&ctx);
--	drm_modeset_acquire_fini(&ctx);
--
--	if (ret)
--		drm_err(&i915->drm,
--			"Restoring old state failed with %i\n", ret);
--	if (state)
--		drm_atomic_state_put(state);
--}
--
- void intel_hpd_poll_fini(struct drm_i915_private *i915)
- {
- 	struct intel_connector *connector;
-diff --git a/drivers/gpu/drm/i915/display/intel_display.h b/drivers/gpu/drm/i915/display/intel_display.h
-index 983cc2026405e..aa657f7a4be89 100644
---- a/drivers/gpu/drm/i915/display/intel_display.h
-+++ b/drivers/gpu/drm/i915/display/intel_display.h
-@@ -446,7 +446,6 @@ void intel_add_fb_offsets(int *x, int *y,
- unsigned int intel_rotation_info_size(const struct intel_rotation_info *rot_info);
- unsigned int intel_remapped_info_size(const struct intel_remapped_info *rem_info);
- bool intel_has_pending_fb_unpin(struct drm_i915_private *dev_priv);
--int intel_display_suspend(struct drm_device *dev);
- void intel_encoder_destroy(struct drm_encoder *encoder);
- struct drm_display_mode *
- intel_encoder_current_mode(struct intel_encoder *encoder);
-@@ -528,7 +527,6 @@ void intel_plane_fixup_bitmasks(struct intel_crtc_state *crtc_state);
- void intel_update_watermarks(struct drm_i915_private *i915);
- 
- /* modesetting */
--void intel_display_resume(struct drm_device *dev);
- int intel_modeset_all_pipes(struct intel_atomic_state *state,
- 			    const char *reason);
- void intel_modeset_get_crtc_power_domains(struct intel_crtc_state *crtc_state,
-@@ -549,12 +547,6 @@ int intel_atomic_commit(struct drm_device *dev, struct drm_atomic_state *_state,
- 
- void intel_hpd_poll_fini(struct drm_i915_private *i915);
- 
--/* interface for intel_display_reset.c */
--int
--__intel_display_resume(struct drm_i915_private *i915,
--		       struct drm_atomic_state *state,
--		       struct drm_modeset_acquire_ctx *ctx);
--
- /* modesetting asserts */
- void assert_transcoder(struct drm_i915_private *dev_priv,
- 		       enum transcoder cpu_transcoder, bool state);
 diff --git a/drivers/gpu/drm/i915/display/intel_display_driver.c b/drivers/gpu/drm/i915/display/intel_display_driver.c
-index f357feaa00a8e..db7e5ecd1b9e9 100644
+index 92c624f6d2ae7..95669ad1a7975 100644
 --- a/drivers/gpu/drm/i915/display/intel_display_driver.c
 +++ b/drivers/gpu/drm/i915/display/intel_display_driver.c
-@@ -468,3 +468,104 @@ void intel_display_driver_unregister(struct drm_i915_private *i915)
- 	acpi_video_unregister();
- 	intel_opregion_unregister(i915);
- }
-+
-+/*
-+ * turn all crtc's off, but do not adjust state
-+ * This has to be paired with a call to intel_modeset_setup_hw_state.
+@@ -30,6 +30,7 @@
+ #include "intel_display_driver.h"
+ #include "intel_display_power.h"
+ #include "intel_display_types.h"
++#include "intel_dkl_phy.h"
+ #include "intel_dmc.h"
+ #include "intel_dp.h"
+ #include "intel_dpll.h"
+@@ -177,6 +178,7 @@ void intel_display_driver_early_probe(struct drm_i915_private *i915)
+ 	if (!HAS_DISPLAY(i915))
+ 		return;
+ 
++	intel_dkl_phy_init(i915);
+ 	intel_color_init_hooks(i915);
+ 	intel_init_cdclk_hooks(i915);
+ 	intel_audio_hooks_init(i915);
+diff --git a/drivers/gpu/drm/i915/display/intel_dkl_phy.c b/drivers/gpu/drm/i915/display/intel_dkl_phy.c
+index 57cc3edba0163..a001232ad445e 100644
+--- a/drivers/gpu/drm/i915/display/intel_dkl_phy.c
++++ b/drivers/gpu/drm/i915/display/intel_dkl_phy.c
+@@ -11,6 +11,15 @@
+ #include "intel_dkl_phy.h"
+ #include "intel_dkl_phy_regs.h"
+ 
++/**
++ * intel_dkl_phy_init - initialize Dekel PHY
++ * @i915: i915 device instance
 + */
-+int intel_display_suspend(struct drm_device *dev)
++void intel_dkl_phy_init(struct drm_i915_private *i915)
 +{
-+	struct drm_i915_private *dev_priv = to_i915(dev);
-+	struct drm_atomic_state *state;
-+	int ret;
-+
-+	if (!HAS_DISPLAY(dev_priv))
-+		return 0;
-+
-+	state = drm_atomic_helper_suspend(dev);
-+	ret = PTR_ERR_OR_ZERO(state);
-+	if (ret)
-+		drm_err(&dev_priv->drm, "Suspending crtc's failed with %i\n",
-+			ret);
-+	else
-+		dev_priv->display.restore.modeset_state = state;
-+	return ret;
++	spin_lock_init(&i915->display.dkl.phy_lock);
 +}
 +
-+int
-+__intel_display_resume(struct drm_i915_private *i915,
-+		       struct drm_atomic_state *state,
-+		       struct drm_modeset_acquire_ctx *ctx)
-+{
-+	struct drm_crtc_state *crtc_state;
-+	struct drm_crtc *crtc;
-+	int ret, i;
-+
-+	intel_modeset_setup_hw_state(i915, ctx);
-+	intel_vga_redisable(i915);
-+
-+	if (!state)
-+		return 0;
-+
-+	/*
-+	 * We've duplicated the state, pointers to the old state are invalid.
-+	 *
-+	 * Don't attempt to use the old state until we commit the duplicated state.
-+	 */
-+	for_each_new_crtc_in_state(state, crtc, crtc_state, i) {
-+		/*
-+		 * Force recalculation even if we restore
-+		 * current state. With fast modeset this may not result
-+		 * in a modeset when the state is compatible.
-+		 */
-+		crtc_state->mode_changed = true;
-+	}
-+
-+	/* ignore any reset values/BIOS leftovers in the WM registers */
-+	if (!HAS_GMCH(i915))
-+		to_intel_atomic_state(state)->skip_intermediate_wm = true;
-+
-+	ret = drm_atomic_helper_commit_duplicated_state(state, ctx);
-+
-+	drm_WARN_ON(&i915->drm, ret == -EDEADLK);
-+
-+	return ret;
-+}
-+
-+void intel_display_resume(struct drm_device *dev)
-+{
-+	struct drm_i915_private *i915 = to_i915(dev);
-+	struct drm_atomic_state *state = i915->display.restore.modeset_state;
-+	struct drm_modeset_acquire_ctx ctx;
-+	int ret;
-+
-+	if (!HAS_DISPLAY(i915))
-+		return;
-+
-+	i915->display.restore.modeset_state = NULL;
-+	if (state)
-+		state->acquire_ctx = &ctx;
-+
-+	drm_modeset_acquire_init(&ctx, 0);
-+
-+	while (1) {
-+		ret = drm_modeset_lock_all_ctx(dev, &ctx);
-+		if (ret != -EDEADLK)
-+			break;
-+
-+		drm_modeset_backoff(&ctx);
-+	}
-+
-+	if (!ret)
-+		ret = __intel_display_resume(i915, state, &ctx);
-+
-+	skl_watermark_ipc_update(i915);
-+	drm_modeset_drop_locks(&ctx);
-+	drm_modeset_acquire_fini(&ctx);
-+
-+	if (ret)
-+		drm_err(&i915->drm,
-+			"Restoring old state failed with %i\n", ret);
-+	if (state)
-+		drm_atomic_state_put(state);
-+}
-diff --git a/drivers/gpu/drm/i915/display/intel_display_driver.h b/drivers/gpu/drm/i915/display/intel_display_driver.h
-index aab498617b90e..7b5ff4309dec7 100644
---- a/drivers/gpu/drm/i915/display/intel_display_driver.h
-+++ b/drivers/gpu/drm/i915/display/intel_display_driver.h
-@@ -8,7 +8,10 @@
+ static void
+ dkl_phy_set_hip_idx(struct drm_i915_private *i915, struct intel_dkl_phy_reg reg)
+ {
+diff --git a/drivers/gpu/drm/i915/display/intel_dkl_phy.h b/drivers/gpu/drm/i915/display/intel_dkl_phy.h
+index 570ee36f9386f..5956ec3e940b1 100644
+--- a/drivers/gpu/drm/i915/display/intel_dkl_phy.h
++++ b/drivers/gpu/drm/i915/display/intel_dkl_phy.h
+@@ -12,6 +12,7 @@
  
- #include <linux/types.h>
- 
-+struct drm_atomic_state;
-+struct drm_device;
  struct drm_i915_private;
-+struct drm_modeset_acquire_ctx;
- struct pci_dev;
  
- bool intel_display_driver_probe_defer(struct pci_dev *pdev);
-@@ -21,6 +24,13 @@ void intel_display_driver_remove(struct drm_i915_private *i915);
- void intel_display_driver_remove_noirq(struct drm_i915_private *i915);
- void intel_display_driver_remove_nogem(struct drm_i915_private *i915);
- void intel_display_driver_unregister(struct drm_i915_private *i915);
-+int intel_display_suspend(struct drm_device *dev);
-+void intel_display_resume(struct drm_device *dev);
-+
-+/* interface for intel_display_reset.c */
-+int __intel_display_resume(struct drm_i915_private *i915,
-+			   struct drm_atomic_state *state,
-+			   struct drm_modeset_acquire_ctx *ctx);
++void intel_dkl_phy_init(struct drm_i915_private *i915);
+ u32
+ intel_dkl_phy_read(struct drm_i915_private *i915, struct intel_dkl_phy_reg reg);
+ void
+diff --git a/drivers/gpu/drm/i915/i915_driver.c b/drivers/gpu/drm/i915/i915_driver.c
+index decaff25c36cf..a4e11a3c1842f 100644
+--- a/drivers/gpu/drm/i915/i915_driver.c
++++ b/drivers/gpu/drm/i915/i915_driver.c
+@@ -225,7 +225,6 @@ static int i915_driver_early_probe(struct drm_i915_private *dev_priv)
+ 	mutex_init(&dev_priv->display.wm.wm_mutex);
+ 	mutex_init(&dev_priv->display.pps.mutex);
+ 	mutex_init(&dev_priv->display.hdcp.comp_mutex);
+-	spin_lock_init(&dev_priv->display.dkl.phy_lock);
  
- #endif /* __INTEL_DISPLAY_DRIVER_H__ */
- 
+ 	i915_memcpy_init_early(dev_priv);
+ 	intel_runtime_pm_init_early(&dev_priv->runtime_pm);
 -- 
 2.40.0
 
