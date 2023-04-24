@@ -4,138 +4,133 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 31EADC77B61
-	for <intel-xe@archiver.kernel.org>; Mon, 24 Apr 2023 19:21:41 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2E8A7C7618E
+	for <intel-xe@archiver.kernel.org>; Mon, 24 Apr 2023 20:29:25 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A0D3E10E5DC;
-	Mon, 24 Apr 2023 19:21:40 +0000 (UTC)
-Received: from mga06.intel.com (mga06b.intel.com [134.134.136.31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B29CE10E5DC
- for <intel-xe@lists.freedesktop.org>; Mon, 24 Apr 2023 19:21:37 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id DCAFC10E613;
+	Mon, 24 Apr 2023 20:29:24 +0000 (UTC)
+Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5ABB910E2A1
+ for <intel-xe@lists.freedesktop.org>; Mon, 24 Apr 2023 20:29:21 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1682364097; x=1713900097;
+ t=1682368161; x=1713904161;
  h=date:from:to:cc:subject:message-id:references:
  in-reply-to:mime-version;
- bh=7V8dfdP/eGwTCsfkXyq3VIItFjgm2DFKpKUQI+/ubAA=;
- b=ZhUzi8/zkmEJOrAByZWEJlsq5gmU02JvGnBUiwm+zOdDOxxdLls3o3Ok
- TfDF3ULkR18beF/DifX6YKn/V4qG0QiQO8kxSd833S409HVAioLaSs7s8
- UyDeX23sYj6G3v1SFTghjSce2Gj0LJCVjZpIXPdl7Xmogmuj/YV+86uo9
- Kn4pVLEPL/T3+Of9k+lBEfHHNmVFEOzlDDymlzshSC8DIpwN1zunWWFmr
- zth8w120Jm6ORf1pInqZxy8SZVdEup1+2iErrxUbLHJM1CLvVLu7Q3BOb
- VdB0s2faKebk3qYeDfoCTe77wmULai11SBCE+e4QJvpaLMp/KcuJGVv54 A==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10690"; a="409477896"
-X-IronPort-AV: E=Sophos;i="5.99,223,1677571200"; d="scan'208";a="409477896"
-Received: from fmsmga001.fm.intel.com ([10.253.24.23])
- by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 24 Apr 2023 12:21:36 -0700
+ bh=JdRHM4T7G0qnfcuJkL/Ygx7hn4m3NHWKrlz3XLaPaLM=;
+ b=FUymJyE748nDG4zxo4PUeSVYsRe4QieH0YevrvbSWWQxUfRnw+5IN0Lw
+ RZsXfSQscyQoRnbdywin8URvV1ayD6lnUuQM6fjrALt+PhbOTsoHL55co
+ gw2Ki/FZijybtgFRbru2X/reBQuUX3YIA8uNBZ1nH9YAmrCIg4ZoYSmL3
+ 6VtG7+JguP6eK3C61zd/HPFY/M/FNH8zjeKAxOSTQPLRW6XVuW0ce8E9H
+ 6mtBuss+fXtb+29S7347Jn+D3haea7/B67bSQ30GtgTaP0OxGyVT0dyjl
+ 1a+4O1cV809Z21BxbM8CgvoJfjKBiiW8Zyyfe2avdoTkdctShzvZEtu3g Q==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10690"; a="330762024"
+X-IronPort-AV: E=Sophos;i="5.99,223,1677571200"; d="scan'208";a="330762024"
+Received: from fmsmga004.fm.intel.com ([10.253.24.48])
+ by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 24 Apr 2023 13:29:20 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10690"; a="837105992"
-X-IronPort-AV: E=Sophos;i="5.99,223,1677571200"; d="scan'208";a="837105992"
-Received: from orsmsx601.amr.corp.intel.com ([10.22.229.14])
- by fmsmga001.fm.intel.com with ESMTP; 24 Apr 2023 12:21:36 -0700
-Received: from orsmsx610.amr.corp.intel.com (10.22.229.23) by
- ORSMSX601.amr.corp.intel.com (10.22.229.14) with Microsoft SMTP Server
+X-IronPort-AV: E=McAfee;i="6600,9927,10690"; a="762578520"
+X-IronPort-AV: E=Sophos;i="5.99,223,1677571200"; d="scan'208";a="762578520"
+Received: from fmsmsx602.amr.corp.intel.com ([10.18.126.82])
+ by fmsmga004.fm.intel.com with ESMTP; 24 Apr 2023 13:29:18 -0700
+Received: from fmsmsx603.amr.corp.intel.com (10.18.126.83) by
+ fmsmsx602.amr.corp.intel.com (10.18.126.82) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.23; Mon, 24 Apr 2023 12:21:35 -0700
-Received: from orsmsx611.amr.corp.intel.com (10.22.229.24) by
- ORSMSX610.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
+ 15.1.2507.23; Mon, 24 Apr 2023 13:29:18 -0700
+Received: from FMSEDG603.ED.cps.intel.com (10.1.192.133) by
+ fmsmsx603.amr.corp.intel.com (10.18.126.83) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.23; Mon, 24 Apr 2023 12:21:35 -0700
-Received: from ORSEDG602.ED.cps.intel.com (10.7.248.7) by
- orsmsx611.amr.corp.intel.com (10.22.229.24) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.23 via Frontend Transport; Mon, 24 Apr 2023 12:21:35 -0700
-Received: from NAM12-BN8-obe.outbound.protection.outlook.com (104.47.55.174)
- by edgegateway.intel.com (134.134.137.103) with Microsoft SMTP Server
+ 15.1.2507.23 via Frontend Transport; Mon, 24 Apr 2023 13:29:18 -0700
+Received: from NAM04-DM6-obe.outbound.protection.outlook.com (104.47.73.45) by
+ edgegateway.intel.com (192.55.55.68) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2507.23; Mon, 24 Apr 2023 12:21:35 -0700
+ 15.1.2507.23; Mon, 24 Apr 2023 13:29:17 -0700
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=dMIMp/FkRYkiHvRq7Ibur+JXO9y15mKPDCkomLvMeCU3I8xs6a33bqzKKipiqpxvGfWL5225AY+oHwFgoymN7wZPPys2aQBCAwYRRywCSUHhhO2Zi5q+Pa991mouLARk7/Pp93dNv6G5bgrQzoCFX5rrc3iOmBW/Tb1JGDYvw7m0V5hacaYWERHqPPHSVY18VxGepwI0OkdkkYLamUjNVOyI0Ng70PERexepeZKYQTXLrJJoN4+Dk3rtJHlZh1HYWPqR0ODTIzT6Wu3v/FT1De1v2r3LBdElhnM3eyF7LAHehU4v7At8Gqvcx3XAJTZk5xL9cyDCwtrX2gA42EUdTA==
+ b=nXo5rpXsEDcCZIoAA9khOXcOrzjvVbeboVk4VbnPti0y7JvwDZ3ExmXcgs9P1MaswDE91OGMPES9F6dfZ5jKNRUb+aJLPEKa63YKSt1d1WNcKhNDAkJ9497mvI7vVYG8Iit96sKyoIXeyuO0eIcW1ybEg4YoPUkDFf7o6SUKfvl1JJZ2CXB+1h8Al+tugVUaEkLFosqEqGH2biiZ9bFDg0l2+yBewiABCp8cz7R0qOg/krgzgBj6SZ6Tkh2B5uXnZaoteUX1vWW+FjWmKd/Au/CMXKE+ZpQbsjfTQjlST19iIZImXGc927m/XksBB77DIjqgNWMdEhI7CI4O69CoJw==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=eZCkydDor/bMlTkejJdygwlGLI3FZg3GO2Dw/aUqMys=;
- b=jbGyC+H+ymHtsyh8YcRAKZ8WR+V0s+o2MQra1GECyCL0HLY40H5ijWbOcMpQMrLf4fwGKZj9zeRCDvO12BkQWu2k5z5FPnxz3QRdHUZ3+Rholdkh94W+lWBL0e4rcCOGIPPkAWomfSXrlxfWmXr85jsi0P10tD8UULi8Gs39piM06d1Bw5ZLcUxjZZjrrATra7KEAxcR47Gb3csULByUEeMN81pnxgOmIrSfTUmoC2UU+FuhKZHY+SqJuCeja6wyk9dC4Iy3QPY+ilmc/hFolq/7ifETJIWxx3QcO6OjPNqauo938Cz0P0PsBzcuAs3dmT/t5lCFzbSZSfiTsS8Z/g==
+ bh=ejbR2bqDvbEYtHjmROFCMuxZFcAG5isomkc+nZnCqV4=;
+ b=N+uXb1bH6SHMExOrp/YvoflDJIIqS7A4rV8Y7/PF3tBU0Zs594F1/HMpFCVvnbd6pdIvIB3zVq4ujmAPnEm/lG+fliD2xAwkgLY0bvucnDVMaDv2UrAJa2zAlQI1BjSoVgxCR7pKjXSpLoMtJdgG8eqaE/t/jKJ7Mh2Juavx5R9lP+YHAcQWlmbwi95/jkxfPjIvzofxpW3ZHhWGcc4s6VJKyp3z5MNDWdKmjWSAdYmAK8QdazKhcOjGshpGkPuf0Fdf5ExKcOjM0/2lb2M6Ljqllm7VcOjLEghL7lmAiH3aPal3e4ALfSOuXSox8hkEpeCdGoF5SneV0Q+7X8YLog==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
  dkim=pass header.d=intel.com; arc=none
 Authentication-Results: dkim=none (message not signed)
  header.d=none;dmarc=none action=none header.from=intel.com;
 Received: from DS7PR11MB7859.namprd11.prod.outlook.com (2603:10b6:8:da::22) by
- CH0PR11MB5300.namprd11.prod.outlook.com (2603:10b6:610:bf::18) with
+ DM6PR11MB4705.namprd11.prod.outlook.com (2603:10b6:5:2a9::23) with
  Microsoft
  SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.6319.33; Mon, 24 Apr 2023 19:21:31 +0000
+ 15.20.6319.33; Mon, 24 Apr 2023 20:29:16 +0000
 Received: from DS7PR11MB7859.namprd11.prod.outlook.com
  ([fe80::9f98:8f3c:a608:8396]) by DS7PR11MB7859.namprd11.prod.outlook.com
  ([fe80::9f98:8f3c:a608:8396%6]) with mapi id 15.20.6319.033; Mon, 24 Apr 2023
- 19:21:31 +0000
-Date: Mon, 24 Apr 2023 12:21:28 -0700
+ 20:29:15 +0000
+Date: Mon, 24 Apr 2023 13:29:12 -0700
 From: Matt Roper <matthew.d.roper@intel.com>
 To: Lucas De Marchi <lucas.demarchi@intel.com>
-Message-ID: <20230424192128.GA10045@mdroper-desk1.amr.corp.intel.com>
+Message-ID: <20230424202912.GB10045@mdroper-desk1.amr.corp.intel.com>
 References: <20230421223258.128781-1-lucas.demarchi@intel.com>
- <20230421223258.128781-13-lucas.demarchi@intel.com>
+ <20230421223258.128781-14-lucas.demarchi@intel.com>
 Content-Type: text/plain; charset="us-ascii"
 Content-Disposition: inline
-In-Reply-To: <20230421223258.128781-13-lucas.demarchi@intel.com>
-X-ClientProxiedBy: BY5PR03CA0017.namprd03.prod.outlook.com
- (2603:10b6:a03:1e0::27) To DS7PR11MB7859.namprd11.prod.outlook.com
+In-Reply-To: <20230421223258.128781-14-lucas.demarchi@intel.com>
+X-ClientProxiedBy: SJ0PR13CA0157.namprd13.prod.outlook.com
+ (2603:10b6:a03:2c7::12) To DS7PR11MB7859.namprd11.prod.outlook.com
  (2603:10b6:8:da::22)
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: DS7PR11MB7859:EE_|CH0PR11MB5300:EE_
-X-MS-Office365-Filtering-Correlation-Id: 2e885384-f33f-4c00-abdf-08db44f91c2c
+X-MS-TrafficTypeDiagnostic: DS7PR11MB7859:EE_|DM6PR11MB4705:EE_
+X-MS-Office365-Filtering-Correlation-Id: 5fcc8621-96d1-4b30-8d54-08db4502924d
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: PNW1L5ZP8uczSywnKcBv9lfhOc76FXH4PN5tPGSVmy98dL1v8GgEqbMTjMN647+YwLrDJcdDZqTfZm7X2E4f9kz8XXFoaHUaS7fuIcoPCgPEtfMSOZhyeLiFXqDcc6kJa/GTbKjOd/8mNYOSOHO6RzXm0EJ6VINoXxnhfJyeQ7z8JT+0chwtZzIzvAQfQEqFHoNinX5Lr4Rd8Q05F5kp5rqLlwWyvHk9327CWN1hf8vQj7ntDJBquk+bdVPZKSNm3i1EFv3GhZLPkIfXaWx9hv9fLdJID58R5Mdy+cdovXNDU8o49JNI0yTOXkKrZ2ghsBmUJgmG6P6KixoQmckerhmg6FD5xnVaSOR8NXVK/FhcEOKV/B7b4OSF6oNAiox5+tjQI/+Nd8UEOXtXuL67ZQe0T/Vw813fj4/FO9rizUNz15J/jP4Ri3svrprMZ/heliQgBqXT+oQ+RV6wHcelzOpbgfzssmKrhEQYg8gnywUdN4+eEmXfdy+3zurM64expnlwGHrxcXAUKJcw+UEy2NpkwBSX1f6ov9CpMJisL+POUVjsFweaxqa7y/0x2GoY
+X-Microsoft-Antispam-Message-Info: m+G4ele/wecw+4jjUnOFL0rq8zIhfXF7+Sx/fAHSQknCRRYSDCIObBy6LBVWPik4ns6+Uu5L3dXLrwlHQa9OSxEN0T7TnzaN3HtbHoKfpnjy0ytD35EfuWbOlsimXYVGHLkmU+V0zNrV5213lJZdGOdbjWMIgnTO08WqQOVhiQ7JpeVliJX/nyP2mO75jtlDSr5cuovP/6v0KWK8Cq/MmRp29MyDh/AlwJFvOiyy30cgACF85008zv3lJdpw/P1Ai8aMXQNao+XDNW5NRiMXD5h5q5h0VXnx34rfhLwTSiBGtV9jytmlGh7brk8xCYhTxL5Wj1wcoRKwzEo08qpVxhmbYhE0uLaATdk/OdIK1zYX0ei5dCwTTSIFhrDxUrV60Yscq7xFvBRp7WgDykDtCy6pYqYkfkbFi3UNa+l2EgWUvbx2HiNdIHSigXDO3vfR/MiCcnSdO1ffFiimFc7s7dJu+W0PoAXQlvLVp2nPXqc59w5m3+Ahulw/cMRPK3y02QVlpoki83Kh8u7gokVfYiJE9ozbfqPwdJI3zw7w+d5Y5Du5D5UaAxtFKlUecO2Z
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
  IPV:NLI; SFV:NSPM; H:DS7PR11MB7859.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230028)(366004)(376002)(136003)(39860400002)(396003)(346002)(451199021)(2906002)(66476007)(66556008)(66946007)(316002)(4326008)(6862004)(8676002)(8936002)(5660300002)(41300700001)(33656002)(86362001)(6512007)(26005)(186003)(1076003)(38100700002)(478600001)(6486002)(6666004)(83380400001)(6506007)(82960400001)(6636002)(54906003);
+ SFS:(13230028)(346002)(376002)(366004)(136003)(396003)(39860400002)(451199021)(66556008)(66476007)(8676002)(54906003)(6636002)(6862004)(8936002)(478600001)(66946007)(38100700002)(86362001)(30864003)(2906002)(41300700001)(316002)(33656002)(4326008)(6666004)(5660300002)(66899021)(6486002)(26005)(6506007)(1076003)(6512007)(186003)(82960400001)(83380400001);
  DIR:OUT; SFP:1102; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?FwkNgYKFq/URct/EMe5ceBbczuyOpRvpTr0lJ7DGgl5+DYE7ZrTZkkIyH/i4?=
- =?us-ascii?Q?kryZqcXE5xOmaz2CS8UN/wdzwzKmosMSFFwS9wzc3MAlYXTuWhMJ8+wntebN?=
- =?us-ascii?Q?Xni5RFwlxtljto+kulYBdrrihM9Lmj0ewY+k/T5g8LU68IQYw9GhqIHfNHV7?=
- =?us-ascii?Q?ELn4BGu99uBYVOlnN0VIW7TZm5OHMEex8kL/hCp9HBHo+of6DsRbBMVk/Em1?=
- =?us-ascii?Q?aPerBerqA3I8EtQn9CaAqF5cvL+saa24Ja6E+VM7+P7+wLs4s4kyD5W0JN79?=
- =?us-ascii?Q?k4uW2iRobytxT8PoRmytHl+3p1q7O3cKXIvm3MFDdLBT0uNSCn8FQzxs5D1r?=
- =?us-ascii?Q?pCIlJo1ouHP/NybABRgvIO/cM3P7k/QdQ6sYeV48SsA8HvmewAvnWFT9ILlx?=
- =?us-ascii?Q?j7FtX6Vi9JofY0SEsJmd04oXSzrWtfTE2mx6byCurc0Qqx+P1ugotftpEjyg?=
- =?us-ascii?Q?Au29Vr2A5horfwFQppAgzjKUvT0jkT9hIasLt0u3XiUuBQpuIZEonadGSTi0?=
- =?us-ascii?Q?YGq9sSBJYBe2YfIk+7jMcyS/lSgkPVxbwaqV4mrt8ujFoJk+TzWdeI6kwheU?=
- =?us-ascii?Q?l3YrB22etOIFJGs2paPeXOo46yFCV8CTW+TexYyONIs3MyQefiyKVlqCvATy?=
- =?us-ascii?Q?xigLIx+grNkLIg3nR5d68xQ19LSluVwRlZXEfY/OLdcCJjGKtVnXV8mi+dMS?=
- =?us-ascii?Q?sW7IQiSjROUY8aWlP/Mb0H0i808EOTvsZPtEAL1MZFTQKpmzoEwGXpHbAsqe?=
- =?us-ascii?Q?lqRcclSST3RaOHJoC0hiowvpBqxltHDd1dnlS8nivO7UiBDi36tUj5pktqJ4?=
- =?us-ascii?Q?NYs79mvCWw4K2hsRXu49q/973leeB9zWIO3lGy1KApdQAJlq2dX9fNrvsGAK?=
- =?us-ascii?Q?EdNnJ2NdPHPPRHN0meB3ozxaRbsZq3B7j+wl1U/N+2HGPhBADNT+GC/uU0lK?=
- =?us-ascii?Q?iax1p1PKuUg5CfnR0FFuNAJ7V7hmeMRFtmAOCn8+bAGplOtS4hs7hfA7RWC1?=
- =?us-ascii?Q?jIHqtA3mVUcsj/+RmZTZzW8ADq3bdOQpctMW0KCTDO6KJwEqKFjDprW3OIX/?=
- =?us-ascii?Q?fT7g9ydCI66E3QvLvQfHxtfdZly/QJqN5BEdwwOah5cmy7o05S9/7LIheVBr?=
- =?us-ascii?Q?y8NW2livJ0bRuJ0MQ+k5iQ4Q6gj41bsaz0Pojdm8mwDxvalo7E+50kHwsHw5?=
- =?us-ascii?Q?l/52waY0JLEZZ+ehnZv5EJ+N/eIBwFCX2MbEyNwzB1aPs4yplDGmQQAGUgmF?=
- =?us-ascii?Q?tGcqrcJbtx4YtLSDqQ0QLEZ3mt3783HE38TTOXt1MkovZyZwZ8uZQBOyj6kh?=
- =?us-ascii?Q?c8UHHTYydwO5Aw5SUJQHckq1y3VX8jvW/tujtJQ8QzLQ9Q3gr2GDApglPJZJ?=
- =?us-ascii?Q?jt0yThY1I+qNBe5tpK6PdMehB0YHFU+cO76xc1JxLPujaHV5ejuZRGPHSLMB?=
- =?us-ascii?Q?5dhvqoS63DASicspzEWu/87slYBdIJwo3UuVRSeAEBAYvHWj1rWvIO3hdT5i?=
- =?us-ascii?Q?X3QaVHGdNQZO802mPbtopLdGRIjM2PPQM+98wEiB9UOHhOljGrVa7ovwFtmS?=
- =?us-ascii?Q?04Sgo85XDWrE8R/D7SjedUs/ootJKUuLd/yb3qTj2ds+7oUKgXGd/8JKQiuU?=
- =?us-ascii?Q?hg=3D=3D?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: 2e885384-f33f-4c00-abdf-08db44f91c2c
+X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?OO4XOD0Q41GIzlsqHwS97c3GfDqAQIdCK6VjJ0LAFVRZTr+MS/9NHGNT/uov?=
+ =?us-ascii?Q?aEdoOWfnXKuR7NKnWwa+yqTfF6xk9QOEjrufa2RhSCSstLc56OZsxRYRKPdl?=
+ =?us-ascii?Q?tXyBU8vKEeUj0qPRFcqVE2Smj4Iyv0uCH9ahFCDdyClETnnZUw9AKYwP65Ln?=
+ =?us-ascii?Q?oQpA+/Ccjy7ihhU48Lce48XkMdoBrAZsn18URXk9F24thFoze3o5wQoy04hZ?=
+ =?us-ascii?Q?Ze3RsQMkG+SociPpfY/wjan1lzZcsvP5MVqaal6lUZhXr+NI7RDsMWmSmHhb?=
+ =?us-ascii?Q?P41FAljbgQtfYRa/Z4nNIbQk7Tv/q70FnddoXgY5tJdqLrBFvcOZU2REAe9w?=
+ =?us-ascii?Q?t4LBABCUOfQ97GTDnkgE2Td1qcs9loz9HEWKqMsCra1cCB7hBvLpEr85XmNQ?=
+ =?us-ascii?Q?SuJCc1yImTJawHYnn3mJ8xLEtoPA/KtxS5dYDPVdOOM8eZjMhv0Tw4fPgy47?=
+ =?us-ascii?Q?aZcmyaGHbeRSi+6vIGnlM2N5qmhBLWn58Knnf6Qv6LeCNCt0pU08h9+UTXZp?=
+ =?us-ascii?Q?taH4ntutSwnLLweeKXcGCH7GKQMX5AMQ7nvMeid/yneLPOrfaEXhy0U9qWHP?=
+ =?us-ascii?Q?N/wsFjJPGTPyDwUgeeadKPcfGPYKVxQtLHT/FUIZg3pjRzvarZ2zHSk7E8WW?=
+ =?us-ascii?Q?YehUyn/mYwe4AO99GPu68F2HL51VnotmJdBl2HF9ahZ98vjsPD94M6ILOJj+?=
+ =?us-ascii?Q?FM/xVvxsN5OCtKCmTW7wKy4izKxIEcGAoBc2MhhO13hxGnnNsyf+27MOGMrg?=
+ =?us-ascii?Q?yzigoz4F27YGGqHyiZ4t3rRmMDhP2KMnK31qjsdtBQ6aX1OGOW6p7pfvgFl0?=
+ =?us-ascii?Q?1CRwd0XYN+dDe1E8Ve/8SisF4xuHxfFcmu/uEQqzxaMsskBg5Mx+9bviUx42?=
+ =?us-ascii?Q?5X4w4EyYr0i84TvHomnsQGWq+ltU56cLhJ4eMGAr3llLp2xcRXt21mVQ759Y?=
+ =?us-ascii?Q?gMG9BqFbCsp57NIyrsN4b/iQlM7cEqBz3QpOiiHWyphhC1sa6hzTj1Zf+euJ?=
+ =?us-ascii?Q?DUIMuBDvmhZxiN7xqAJPlBbK2gaAWuaC8bmdAhq9mLA0T4eP7gxWXgXDthCj?=
+ =?us-ascii?Q?+IQq2MZrkLrcPkl7AW3MIdtb5S5EY7bq3Q9M64qQLeVMFJbmRiNDLY4qQVJy?=
+ =?us-ascii?Q?ms6WeMBQgSIzJobgqgWd+FVKI3dJ5PRJUKT5xtTbwdisKRll+mJ/GNh7sZ5V?=
+ =?us-ascii?Q?8brWQk5UNEXkoVT9yFrSYGasUxbZzL61pLalswcXyvl1pl2vTE5omQ4pjNRI?=
+ =?us-ascii?Q?doWjQnmMHkA+OpWz0cXbbAHm1dCU2pV8UADWj0oGM7D3xyQxPnhnDAou27+j?=
+ =?us-ascii?Q?jR5+GgAM2xVt8nA/mdGJB6ZwxIjuCipTJNY0QoxmvvfIrZBIOykID34HM+bO?=
+ =?us-ascii?Q?f2UQccKkhYsMMQgmLULEZZw0vv8TEY3WRh7DHxYgssfPxltRJmHfZsJiIo+E?=
+ =?us-ascii?Q?RKgptqWBhZlyr5CjA+/gMxNO+wQ+YM0pt8ojkSIoQN5mlPp3NvlNFX1t6fEz?=
+ =?us-ascii?Q?SuaU5li7Ic1Do7iILdBhTKCIsUQTGLKJv9nJ+yD7Xx4Pnl9I9jisZwL18XFr?=
+ =?us-ascii?Q?uTLeUFC/8I4rzS5w8prDs0TLzRmqwn00C9JSnP/AQb3k64b2/fdxk5pbi/KS?=
+ =?us-ascii?Q?yQ=3D=3D?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: 5fcc8621-96d1-4b30-8d54-08db4502924d
 X-MS-Exchange-CrossTenant-AuthSource: DS7PR11MB7859.namprd11.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 24 Apr 2023 19:21:31.5735 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 24 Apr 2023 20:29:15.2741 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: 2TJ2AF5GkilsUXsh/ZEmKaPCw8QeGMQ/VS+3zBGQmKhfwefTsBCI7vVGgK2afUqZeBXEvrtGWKaac5DtuLPMI46KLfyidmhPUyHeXNbtMt0=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: CH0PR11MB5300
+X-MS-Exchange-CrossTenant-UserPrincipalName: Pneb9Y861DMJbKoMHJGbAaAlAFqW30qxC3hjoJBBwVWBozvk42WVOfXKpXvU2rDydBno/ZrOOuN7yLECNXmCZ9NbiPVQrAHjGIZ52Boe9pc=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM6PR11MB4705
 X-OriginatorOrg: intel.com
-Subject: Re: [Intel-xe] [PATCH v2 12/17] drm/xe/rtp: Improve magic macros
- for RTP tables
+Subject: Re: [Intel-xe] [PATCH v2 13/17] drm/xe: Introduce xe_reg/xe_reg_mcr
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -151,170 +146,320 @@ Cc: intel-xe@lists.freedesktop.org, Rodrigo Vivi <rodrigo.vivi@intel.com>
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Fri, Apr 21, 2023 at 03:32:53PM -0700, Lucas De Marchi wrote:
-> The macros for writing the rtp tables have some downsides:
+On Fri, Apr 21, 2023 at 03:32:54PM -0700, Lucas De Marchi wrote:
+> Stop using i915 types for registers. Use our own types. Differently from
+> i915, this will keep under this will keep under the register definition
+> the knowledge for the different types of registers. For now, the "flags"
+
+This sentence got a bit garbled.
+
+> are mcr and masked, although only the former is being used.
 > 
-> 	1) They are fragile, and when making a typo it's hard to know
-> 	   where it's failing for someone not used to them
-> 	2) They polute the global scope. The CONCAT/COUNT_ARGS/etc only
-> 	   work because they are defined exactly the same as the ones in
-> 	   kernel.h.
-> 	3) They are not compatible with rules/actions with registers
-> 	   passing additional options
+> Additionally MCR registers have their own type. The only place that
+> should really look inside a xe_mcr_reg_t is that code dealing with the
+> steering and using other APIs when the register is MCR has been a source
+> of problem in the past.
 > 
-> This new implementation fixes (2) and (3).
+> Most of the driver is agnostic to the register differences since they
+> either use the definition from the header or already call the correct
+> MCR_REG()/_MMIO() macros. By embeding the struct xe_reg inside the
+> struct it's also possible to guarantee the compiler will break if
+> using RANDOM_MCR_REG.reg is attempted, since now the u32 is inside the
+> inner struct.
 > 
-> For (2), prefix everything with "_XE", so there is less chance of
-> clashes. Also, the maximum number of rules and actions is 4, so there is
-> no need to make the helper macros go until 12: reduce that to 5, so if
-> more arguments is passed, the compiler gives an error that there is not
-> definition with _5 suffix.
-> 
-> For (3), change the implementation to concentrate on "pasting a prefix
-> to each argument" rather than the more general "call any macro for each
-> argument". Hopefully this will avoid trying to extending this infra and
-> making it more complex. The new changes to how the arguments are
-> constructed using tuples will allow extending the interface where it's
-> needed: passing additional register fields to allow creating our own
-> xe_reg_t.
+> v2:
+>   - Deep a dedicated type for MCR registers to avoid misuse
+>     (Matt Roper, Jani)
+>   - Drop the typedef and just use a struct since it's not an opaque type
+>     (Jani)
+>   - Add more kernel-doc
 > 
 > Signed-off-by: Lucas De Marchi <lucas.demarchi@intel.com>
+> ---
+>  drivers/gpu/drm/xe/regs/xe_reg_defs.h | 93 +++++++++++++++++++++++++++
+>  drivers/gpu/drm/xe/xe_gt_mcr.c        | 36 +++++++----
+>  drivers/gpu/drm/xe/xe_gt_mcr.h        | 11 ++--
+>  drivers/gpu/drm/xe/xe_irq.c           |  2 +-
+>  drivers/gpu/drm/xe/xe_mmio.c          |  2 +-
+>  5 files changed, 125 insertions(+), 19 deletions(-)
+> 
+> diff --git a/drivers/gpu/drm/xe/regs/xe_reg_defs.h b/drivers/gpu/drm/xe/regs/xe_reg_defs.h
+> index b5c25e31b889..c0a091206f27 100644
+> --- a/drivers/gpu/drm/xe/regs/xe_reg_defs.h
+> +++ b/drivers/gpu/drm/xe/regs/xe_reg_defs.h
+> @@ -8,4 +8,97 @@
+>  
+>  #include "compat-i915-headers/i915_reg_defs.h"
+>  
+> +/**
+> + * struct xe_reg - Register definition
+> + *
+> + * Register defintion to be used by the individual register. Although the same
+> + * definition is used for xe_reg and xe_reg_mcr, they use different internal
+> + * APIs for accesses.
+> + */
+> +struct xe_reg {
+> +	union {
+> +		struct {
+> +			/** @reg: address */
+> +			u32 reg:30;
 
-Sill complicated, but looks correct to me.
+I wonder if we should just make this reg:22 for now?  All platforms
+supported today only have a 4MB MMIO area per tile, so 22 bits covers
+all valid reg offsets.  If someone typos an extra digit into a register
+definition, I think the compiler would help warn that they tried to
+define something outside the possible range.  It would also make it more
+clear exactly how many flag bits we have left here to work with for
+future expansion, assuming we want to stay within 32-bits total.
+
+If a future platform doubles the MMIO space for a tile, we can easily
+bump the number of bits up.  But I don't see any downside to just making
+it match the true register address space for now.
+
+Aside from that,
 
 Reviewed-by: Matt Roper <matthew.d.roper@intel.com>
 
-> ---
->  drivers/gpu/drm/xe/xe_rtp.h | 68 ++++++++++++++++++-------------------
->  1 file changed, 33 insertions(+), 35 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/xe/xe_rtp.h b/drivers/gpu/drm/xe/xe_rtp.h
-> index a3be7c77753a..53650f09efe9 100644
-> --- a/drivers/gpu/drm/xe/xe_rtp.h
-> +++ b/drivers/gpu/drm/xe/xe_rtp.h
-> @@ -22,43 +22,42 @@ struct xe_reg_sr;
->  /*
->   * Helper macros - not to be used outside this header.
+> +			/**
+> +			 * @masked: register is "masked", with upper 16bits used
+> +			 * to identify the bits that are updated on the lower
+> +			 * bits
+> +			 */
+> +			u32 masked:1;
+> +			/**
+> +			 * @__mcr: register is multicast/replicated in the
+> +			 * hardware and needs special handling. Any register
+> +			 * with this set should also use a type of xe_reg_mcr_t.
+> +			 * It's only here so the few places that deal with MCR
+> +			 * registers specially (xe_sr.c) and tests using the raw
+> +			 * value can inspect it.
+> +			 */
+> +			u32 mcr:1;
+> +		};
+> +		/** @raw: Raw value with both address and options */
+> +		u32 raw;
+> +	};
+> +};
+> +
+> +/**
+> + * xe_reg_mcr_t - MCR register is the same as a regular register, but uses
+> + * another type since the internal API used for accessing them is different:
+> + * it's never correct to use regular MMIO access.
+> + */
+> +struct xe_reg_mcr {
+> +	/** reg: The register */
+> +	struct xe_reg __reg;
+> +};
+> +
+> +
+> +/**
+> + * XE_REG_OPTION_MASKED - Register is "masked", with upper 16 bits marking the
+> + * read/written bits on the lower 16 bits.
+> + *
+> + * To be used with XE_REG(). XE_REG_MCR() and XE_REG_INITIALIZER()
+> + */
+> +#define XE_REG_OPTION_MASKED		.masked = 1
+> +
+> +/**
+> + * XE_REG_INITIALIZER - Initializer for xe_reg_t.
+> + * @r_: Register offset
+> + * @...: Additional options like access mode. See struct xe_reg for available
+> + *       options.
+> + *
+> + * Register field is mandatory, and additional options may be passed as
+> + * arguments. Usually ``XE_REG()`` should be preferred since it creates an
+> + * object of the right type. However when initializing static const storage,
+> + * where a compound statement is not allowed, this can be used instead.
+> + */
+> +#define XE_REG_INITIALIZER(r_, ...)    { .reg = r_, __VA_ARGS__ }
+> +
+> +
+> +/**
+> + * XE_REG - Create a struct xe_reg from offset and additional flags
+> + * @r: Register offset
+> + * @...: Additional options like access mode. See struct xe_reg for available
+> + *       options.
+> + */
+> +#define XE_REG(r_, ...)		((const struct xe_reg)XE_REG_INITIALIZER(r_, ##__VA_ARGS__))
+> +
+> +/**
+> + * XE_REG_MCR - Create a struct xe_reg_mcr from offset and additional flags
+> + * @r: Register offset
+> + * @...: Additional options like access mode. See struct xe_reg for available
+> + *       options.
+> + */
+> +#define XE_REG_MCR(r_, ...)	((const struct xe_reg_mcr){					\
+> +				 .__reg = XE_REG_INITIALIZER(r_,  ##__VA_ARGS__, .mcr = 1)	\
+> +				 })
+> +
+> +/*
+> + * TODO: remove these once the register declarations are not using them anymore
+> + */
+> +#undef _MMIO
+> +#undef MCR_REG
+> +#define _MMIO(r_)	((const struct xe_reg){ .reg = r_ })
+> +#define MCR_REG(r_)	((const struct xe_reg_mcr){ .__reg.reg = r_,		\
+> +						    .__reg.mcr = 1 })
+> +
+>  #endif
+> diff --git a/drivers/gpu/drm/xe/xe_gt_mcr.c b/drivers/gpu/drm/xe/xe_gt_mcr.c
+> index aa04ba5a6dbe..f5bd453849f4 100644
+> --- a/drivers/gpu/drm/xe/xe_gt_mcr.c
+> +++ b/drivers/gpu/drm/xe/xe_gt_mcr.c
+> @@ -40,6 +40,11 @@
+>   * non-terminated instance.
 >   */
-> -/* This counts to 12. Any more, it will return 13th argument. */
-> -#define __COUNT_ARGS(_0, _1, _2, _3, _4, _5, _6, _7, _8, _9, _10, _11, _12, _n, X...) _n
-> -#define COUNT_ARGS(X...) __COUNT_ARGS(, ##X, 12, 11, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1, 0)
-> +#define _XE_ESC(...) __VA_ARGS__
-> +#define _XE_COUNT_ARGS(...) _XE_ESC(__XE_COUNT_ARGS(__VA_ARGS__,5,4,3,2,1,))
-> +#define __XE_COUNT_ARGS(_,_5,_4,_3,_2,X_,...) X_
 >  
-> -#define __CONCAT(a, b) a ## b
-> -#define CONCATENATE(a, b) __CONCAT(a, b)
-> +#define _XE_CONCAT(a, b) __XE_CONCAT(a, b)
-> +#define __XE_CONCAT(a, b) a ## b
->  
-> -#define __CALL_FOR_EACH_1(MACRO_, x, ...) MACRO_(x)
-> -#define __CALL_FOR_EACH_2(MACRO_, x, ...)					\
-> -	MACRO_(x) __CALL_FOR_EACH_1(MACRO_, ##__VA_ARGS__)
-> -#define __CALL_FOR_EACH_3(MACRO_, x, ...)					\
-> -	MACRO_(x) __CALL_FOR_EACH_2(MACRO_, ##__VA_ARGS__)
-> -#define __CALL_FOR_EACH_4(MACRO_, x, ...)					\
-> -	MACRO_(x) __CALL_FOR_EACH_3(MACRO_, ##__VA_ARGS__)
-> +#define _XE_FIRST(...) _XE_ESC(__XE_FIRST(__VA_ARGS__,))
-> +#define __XE_FIRST(x_,...) x_
-> +#define _XE_TUPLE_TAIL(...) _XE_ESC(__XE_TUPLE_TAIL(__VA_ARGS__))
-> +#define __XE_TUPLE_TAIL(x_,...) (__VA_ARGS__)
->  
-> -#define _CALL_FOR_EACH(NARGS_, MACRO_, x, ...)					\
-> -	CONCATENATE(__CALL_FOR_EACH_, NARGS_)(MACRO_, x, ##__VA_ARGS__)
-> -#define CALL_FOR_EACH(MACRO_, x, ...)						\
-> -	_CALL_FOR_EACH(COUNT_ARGS(x, ##__VA_ARGS__), MACRO_, x, ##__VA_ARGS__)
-> +#define __XE_PASTE_SEP_COMMA		,
-> +#define __XE_PASTE_SEP_BITWISE_OR		|
-> +#define __XE_PASTE(prefix_, sep_, args_) _XE_ESC(_XE_CONCAT(__XE_PASTE_,_XE_COUNT_ARGS args_)(prefix_, sep_, args_))
-> +#define __XE_PASTE_1(prefix_, sep_, args_) prefix_ args_
-> +#define __XE_PASTE_2(prefix_, sep_, args_) prefix_(_XE_FIRST args_) __XE_PASTE_SEP_ ## sep_ __XE_PASTE_1(prefix_, sep_, _XE_TUPLE_TAIL args_)
-> +#define __XE_PASTE_3(prefix_, sep_, args_) prefix_(_XE_FIRST args_) __XE_PASTE_SEP_ ## sep_ __XE_PASTE_2(prefix_, sep_, _XE_TUPLE_TAIL args_)
-> +#define __XE_PASTE_4(prefix_, sep_, args_) prefix_(_XE_FIRST args_) __XE_PASTE_SEP_ ## sep_ __XE_PASTE_3(prefix_, sep_, _XE_TUPLE_TAIL args_)
->  
-> -#define _XE_RTP_REG(x_)	(x_), XE_RTP_REG_REGULAR
-> -#define _XE_RTP_MCR_REG(x_) (x_), XE_RTP_REG_MCR
-> +#define _XE_RTP_REG(x_)		(x_), XE_RTP_REG_REGULAR
-> +#define _XE_RTP_MCR_REG(x_)	(x_), XE_RTP_REG_MCR
->  
->  /*
->   * Helper macros for concatenating prefix - do not use them directly outside
->   * this header
+> +static inline struct xe_reg to_xe_reg(struct xe_reg_mcr reg_mcr)
+> +{
+> +	return reg_mcr.__reg;
+> +}
+> +
+>  enum {
+>  	MCR_OP_READ,
+>  	MCR_OP_WRITE
+> @@ -360,9 +365,10 @@ void xe_gt_mcr_set_implicit_defaults(struct xe_gt *gt)
+>   * returned.  Returns false if the caller need not perform any steering
 >   */
-> -#define __ADD_XE_RTP_ENTRY_FLAG_PREFIX(x) CONCATENATE(XE_RTP_ENTRY_FLAG_, x) |
-> -#define __ADD_XE_RTP_ACTION_FLAG_PREFIX(x) CONCATENATE(XE_RTP_ACTION_FLAG_, x) |
-> -#define __ADD_XE_RTP_RULE_PREFIX(x) CONCATENATE(XE_RTP_RULE_, x) ,
-> -#define __ADD_XE_RTP_ACTION_PREFIX(x) CONCATENATE(XE_RTP_ACTION_, x) ,
-> +#define __XE_PASTE_XE_RTP_ENTRY_FLAG_(x_)	_XE_CONCAT(XE_RTP_ENTRY_FLAG_, x_)
-> +#define __XE_PASTE_XE_RTP_ACTION_FLAG_(x_)	_XE_CONCAT(XE_RTP_ACTION_FLAG_, x_)
-> +#define __XE_PASTE_XE_RTP_ACTION_(x_)	_XE_CONCAT(XE_RTP_ACTION_, x_)
-> +#define __XE_PASTE_XE_RTP_RULE_(x_)	_XE_CONCAT(XE_RTP_RULE_, x_)
+>  static bool xe_gt_mcr_get_nonterminated_steering(struct xe_gt *gt,
+> -						 i915_mcr_reg_t reg,
+> +						 struct xe_reg_mcr reg_mcr,
+>  						 u8 *group, u8 *instance)
+>  {
+> +	const struct xe_reg reg = to_xe_reg(reg_mcr);
+>  	const struct xe_mmio_range *implicit_ranges;
 >  
->  /*
->   * Macros to encode rules to match against platform, IP version, stepping, etc.
->   * Shouldn't be used directly - see XE_RTP_RULES()
->   */
-> -
->  #define _XE_RTP_RULE_PLATFORM(plat__)						\
->  	{ .match_type = XE_RTP_MATCH_PLATFORM, .platform = plat__ }
->  
-> @@ -315,8 +314,8 @@ struct xe_reg_sr;
->   *		...
->   *	};
->   */
-> -#define XE_RTP_ENTRY_FLAG(f1_, ...)						\
-> -	.flags = (CALL_FOR_EACH(__ADD_XE_RTP_ENTRY_FLAG_PREFIX, f1_, ##__VA_ARGS__) 0)
-> +#define XE_RTP_ENTRY_FLAG(...)							\
-> +	.flags = (__XE_PASTE(__XE_PASTE_XE_RTP_ENTRY_FLAG_, BITWISE_OR, (__VA_ARGS__)))
->  
->  /**
->   * XE_RTP_ACTION_FLAG - Helper to add multiple flags to a struct xe_rtp_action
-> @@ -338,8 +337,8 @@ struct xe_reg_sr;
->   *		...
->   *	};
->   */
-> -#define XE_RTP_ACTION_FLAG(f1_, ...)						\
-> -	.flags = (CALL_FOR_EACH(__ADD_XE_RTP_ACTION_FLAG_PREFIX, f1_, ##__VA_ARGS__) 0)
-> +#define XE_RTP_ACTION_FLAG(...)							\
-> +	.flags = (__XE_PASTE(__XE_PASTE_XE_RTP_ACTION_FLAG_, BITWISE_OR, (__VA_ARGS__)))
->  
->  /**
->   * XE_RTP_RULES - Helper to set multiple rules to a struct xe_rtp_entry entry
-> @@ -361,16 +360,15 @@ struct xe_reg_sr;
->   *		...
->   *	};
->   */
-> -#define XE_RTP_RULES(r1, ...)							\
-> -	.n_rules = COUNT_ARGS(r1, ##__VA_ARGS__),				\
-> +#define XE_RTP_RULES(...)							\
-> +	.n_rules = _XE_COUNT_ARGS(__VA_ARGS__),					\
->  	.rules = (const struct xe_rtp_rule[]) {					\
-> -		CALL_FOR_EACH(__ADD_XE_RTP_RULE_PREFIX, r1, ##__VA_ARGS__)	\
-> +		__XE_PASTE(__XE_PASTE_XE_RTP_RULE_, COMMA, (__VA_ARGS__))	\
->  	}
->  
->  /**
->   * XE_RTP_ACTIONS - Helper to set multiple actions to a struct xe_rtp_entry
-> - * @a1: Action to take. Last part of XE_RTP_ACTION_*
-> - * @...: Additional rules, defined like @r1
-> + * @...: Actions to be taken
+>  	for (int type = 0; type < IMPLICIT_STEERING; type++) {
+> @@ -436,9 +442,10 @@ static void mcr_unlock(struct xe_gt *gt) {
 >   *
->   * At least one rule is needed and up to 4 are supported. Multiple rules are
->   * AND'ed together, i.e. all the rules must evaluate to true for the entry to
-> @@ -388,10 +386,10 @@ struct xe_reg_sr;
->   *		...
->   *	};
+>   * Caller needs to make sure the relevant forcewake wells are up.
 >   */
-> -#define XE_RTP_ACTIONS(a1, ...)							\
-> -	.n_actions = COUNT_ARGS(a1, ##__VA_ARGS__),				\
-> +#define XE_RTP_ACTIONS(...)							\
-> +	.n_actions = _XE_COUNT_ARGS(__VA_ARGS__),				\
->  	.actions = (const struct xe_rtp_action[]) {				\
-> -		CALL_FOR_EACH(__ADD_XE_RTP_ACTION_PREFIX, a1, ##__VA_ARGS__)	\
-> +		__XE_PASTE(__XE_PASTE_XE_RTP_ACTION_, COMMA, (__VA_ARGS__))	\
->  	}
+> -static u32 rw_with_mcr_steering(struct xe_gt *gt, i915_mcr_reg_t reg, u8 rw_flag,
+> -				int group, int instance, u32 value)
+> +static u32 rw_with_mcr_steering(struct xe_gt *gt, struct xe_reg_mcr reg_mcr,
+> +				u8 rw_flag, int group, int instance, u32 value)
+>  {
+> +	const struct xe_reg reg = to_xe_reg(reg_mcr);
+>  	u32 steer_reg, steer_val, val = 0;
 >  
->  void xe_rtp_process(const struct xe_rtp_entry *entries, struct xe_reg_sr *sr,
+>  	lockdep_assert_held(&gt->mcr_lock);
+> @@ -494,17 +501,19 @@ static u32 rw_with_mcr_steering(struct xe_gt *gt, i915_mcr_reg_t reg, u8 rw_flag
+>   *
+>   * Returns the value from a non-terminated instance of @reg.
+>   */
+> -u32 xe_gt_mcr_unicast_read_any(struct xe_gt *gt, i915_mcr_reg_t reg)
+> +u32 xe_gt_mcr_unicast_read_any(struct xe_gt *gt, struct xe_reg_mcr reg_mcr)
+>  {
+> +	const struct xe_reg reg = to_xe_reg(reg_mcr);
+>  	u8 group, instance;
+>  	u32 val;
+>  	bool steer;
+>  
+> -	steer = xe_gt_mcr_get_nonterminated_steering(gt, reg, &group, &instance);
+> +	steer = xe_gt_mcr_get_nonterminated_steering(gt, reg_mcr,
+> +						     &group, &instance);
+>  
+>  	if (steer) {
+>  		mcr_lock(gt);
+> -		val = rw_with_mcr_steering(gt, reg, MCR_OP_READ,
+> +		val = rw_with_mcr_steering(gt, reg_mcr, MCR_OP_READ,
+>  					   group, instance, 0);
+>  		mcr_unlock(gt);
+>  	} else {
+> @@ -525,13 +534,13 @@ u32 xe_gt_mcr_unicast_read_any(struct xe_gt *gt, i915_mcr_reg_t reg)
+>   * group/instance.
+>   */
+>  u32 xe_gt_mcr_unicast_read(struct xe_gt *gt,
+> -			   i915_mcr_reg_t reg,
+> +			   struct xe_reg_mcr reg_mcr,
+>  			   int group, int instance)
+>  {
+>  	u32 val;
+>  
+>  	mcr_lock(gt);
+> -	val = rw_with_mcr_steering(gt, reg, MCR_OP_READ, group, instance, 0);
+> +	val = rw_with_mcr_steering(gt, reg_mcr, MCR_OP_READ, group, instance, 0);
+>  	mcr_unlock(gt);
+>  
+>  	return val;
+> @@ -548,11 +557,11 @@ u32 xe_gt_mcr_unicast_read(struct xe_gt *gt,
+>   * Write an MCR register in unicast mode after steering toward a specific
+>   * group/instance.
+>   */
+> -void xe_gt_mcr_unicast_write(struct xe_gt *gt, i915_mcr_reg_t reg, u32 value,
+> -			     int group, int instance)
+> +void xe_gt_mcr_unicast_write(struct xe_gt *gt, struct xe_reg_mcr reg_mcr,
+> +			     u32 value, int group, int instance)
+>  {
+>  	mcr_lock(gt);
+> -	rw_with_mcr_steering(gt, reg, MCR_OP_WRITE, group, instance, value);
+> +	rw_with_mcr_steering(gt, reg_mcr, MCR_OP_WRITE, group, instance, value);
+>  	mcr_unlock(gt);
+>  }
+>  
+> @@ -564,8 +573,11 @@ void xe_gt_mcr_unicast_write(struct xe_gt *gt, i915_mcr_reg_t reg, u32 value,
+>   *
+>   * Write an MCR register in multicast mode to update all instances.
+>   */
+> -void xe_gt_mcr_multicast_write(struct xe_gt *gt, i915_mcr_reg_t reg, u32 value)
+> +void xe_gt_mcr_multicast_write(struct xe_gt *gt, struct xe_reg_mcr reg_mcr,
+> +			       u32 value)
+>  {
+> +	struct xe_reg reg = to_xe_reg(reg_mcr);
+> +
+>  	/*
+>  	 * Synchronize with any unicast operations.  Once we have exclusive
+>  	 * access, the MULTICAST bit should already be set, so there's no need
+> diff --git a/drivers/gpu/drm/xe/xe_gt_mcr.h b/drivers/gpu/drm/xe/xe_gt_mcr.h
+> index 2a6cd38c8cb7..27ca1bc880a0 100644
+> --- a/drivers/gpu/drm/xe/xe_gt_mcr.h
+> +++ b/drivers/gpu/drm/xe/xe_gt_mcr.h
+> @@ -15,13 +15,14 @@ void xe_gt_mcr_init(struct xe_gt *gt);
+>  
+>  void xe_gt_mcr_set_implicit_defaults(struct xe_gt *gt);
+>  
+> -u32 xe_gt_mcr_unicast_read(struct xe_gt *gt, i915_mcr_reg_t reg,
+> +u32 xe_gt_mcr_unicast_read(struct xe_gt *gt, struct xe_reg_mcr mcr_reg,
+>  			   int group, int instance);
+> -u32 xe_gt_mcr_unicast_read_any(struct xe_gt *gt, i915_mcr_reg_t reg);
+> +u32 xe_gt_mcr_unicast_read_any(struct xe_gt *gt, struct xe_reg_mcr mcr_reg);
+>  
+> -void xe_gt_mcr_unicast_write(struct xe_gt *gt, i915_mcr_reg_t reg, u32 value,
+> -			     int group, int instance);
+> -void xe_gt_mcr_multicast_write(struct xe_gt *gt, i915_mcr_reg_t reg, u32 value);
+> +void xe_gt_mcr_unicast_write(struct xe_gt *gt, struct xe_reg_mcr mcr_reg,
+> +			     u32 value, int group, int instance);
+> +void xe_gt_mcr_multicast_write(struct xe_gt *gt, struct xe_reg_mcr mcr_reg,
+> +			       u32 value);
+>  
+>  void xe_gt_mcr_steering_dump(struct xe_gt *gt, struct drm_printer *p);
+>  
+> diff --git a/drivers/gpu/drm/xe/xe_irq.c b/drivers/gpu/drm/xe/xe_irq.c
+> index 13f9f220bca0..4409490024a6 100644
+> --- a/drivers/gpu/drm/xe/xe_irq.c
+> +++ b/drivers/gpu/drm/xe/xe_irq.c
+> @@ -27,7 +27,7 @@
+>  #define IIR(offset)				_MMIO(offset + 0x8)
+>  #define IER(offset)				_MMIO(offset + 0xc)
+>  
+> -static void assert_iir_is_zero(struct xe_gt *gt, i915_reg_t reg)
+> +static void assert_iir_is_zero(struct xe_gt *gt, struct xe_reg reg)
+>  {
+>  	u32 val = xe_mmio_read32(gt, reg.reg);
+>  
+> diff --git a/drivers/gpu/drm/xe/xe_mmio.c b/drivers/gpu/drm/xe/xe_mmio.c
+> index a93838e23b7b..0bb83ff18599 100644
+> --- a/drivers/gpu/drm/xe/xe_mmio.c
+> +++ b/drivers/gpu/drm/xe/xe_mmio.c
+> @@ -397,7 +397,7 @@ int xe_mmio_init(struct xe_device *xe)
+>  	DRM_XE_MMIO_READ |\
+>  	DRM_XE_MMIO_WRITE)
+>  
+> -static const i915_reg_t mmio_read_whitelist[] = {
+> +static const struct xe_reg mmio_read_whitelist[] = {
+>  	RING_TIMESTAMP(RENDER_RING_BASE),
+>  };
+>  
 > -- 
 > 2.39.0
 > 
