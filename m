@@ -4,48 +4,48 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9540DC77B78
-	for <intel-xe@archiver.kernel.org>; Tue, 25 Apr 2023 19:26:36 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 443DEC77B7C
+	for <intel-xe@archiver.kernel.org>; Tue, 25 Apr 2023 19:26:38 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 596E110E137;
-	Tue, 25 Apr 2023 19:26:36 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 19CE610E598;
+	Tue, 25 Apr 2023 19:26:38 +0000 (UTC)
 Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 87C0210E598
- for <intel-xe@lists.freedesktop.org>; Tue, 25 Apr 2023 19:26:33 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 69F4310E137
+ for <intel-xe@lists.freedesktop.org>; Tue, 25 Apr 2023 19:26:35 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1682450793; x=1713986793;
+ t=1682450795; x=1713986795;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=yYLDoXMb+hkgFXwHi3+JUALRqDdbQiIqF9JREfSHjDc=;
- b=HupHLm+2cJXYKpk8VwhOUwWN4R246ZGQF0SujqmvZhGxvY8z55aW8VaS
- /TDJwweTnO1xX6ZXv/5fQ78wDMUHtPrBUcuj+/rcuAdgNhGAcT/uIXkMU
- Dee80FsV28YbzicCDMUnerf6IjISSyQVyFXLysM15tDWWan6/Au8EIrBk
- 5iep4FIp4LI7lcl0nQjhCHmigjCJ9nh8d2DzBoxhAiaUtcD8pNCVr539T
- CUHoSKNZNkkQRsJKhZEGV+FGWkyeQLt3BjcyohszZFh6pjbq6hV/FX6Fe
- tgkEGjXNtWvVHJJVlXmPq7KSSDZPeSCl9aI21+IB1a7XeUJ9Czbj90jga w==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10691"; a="331100756"
-X-IronPort-AV: E=Sophos;i="5.99,226,1677571200"; d="scan'208";a="331100756"
+ bh=MbpF0Vel2i5/4oqsAiMaClrzn93OKKfkqraCyvyS7L0=;
+ b=GDIcBoMfF0oyvhL8Jw0wY+JkvA789xt8Lyt8hZb+QL6aEahhjW+fo2Cw
+ opida0nwTDFxcWgcCtzKrLDHMoGTnwju7xRQHm7B+0arupC5ejVH7vmvf
+ rI4rb6qvceE/aXuI/pLLRMvbcucP1XYa3IkvY2nHEXoxC7PN7lfUqbubF
+ unVBUzO0IbDKCJ327SBJdfsbAyTc2PJYW/66QB/jJjfWAwQ6GZeXGJ1hE
+ DoJMJqonCCfmotIvZh1H0iQ8DhWsmEL2bKP5+Qa3uhLLOULreKfQ50sVf
+ rH3uUvJ6tNaHntB/Jml06rRfEKlitP+Fn7Rx253OUL1+P8/DlnWfiiZ4P Q==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10691"; a="331100791"
+X-IronPort-AV: E=Sophos;i="5.99,226,1677571200"; d="scan'208";a="331100791"
 Received: from fmsmga003.fm.intel.com ([10.253.24.29])
  by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 25 Apr 2023 12:26:30 -0700
+ 25 Apr 2023 12:26:33 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10691"; a="782990448"
-X-IronPort-AV: E=Sophos;i="5.99,226,1677571200"; d="scan'208";a="782990448"
+X-IronPort-AV: E=McAfee;i="6600,9927,10691"; a="782990461"
+X-IronPort-AV: E=Sophos;i="5.99,226,1677571200"; d="scan'208";a="782990461"
 Received: from josouza-mobl2.fso.intel.com ([10.230.18.148])
  by fmsmga003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 25 Apr 2023 12:26:28 -0700
+ 25 Apr 2023 12:26:32 -0700
 From: =?UTF-8?q?Jos=C3=A9=20Roberto=20de=20Souza?= <jose.souza@intel.com>
 To: intel-xe@lists.freedesktop.org
-Date: Tue, 25 Apr 2023 12:26:10 -0700
-Message-Id: <20230425192624.168640-2-jose.souza@intel.com>
+Date: Tue, 25 Apr 2023 12:26:12 -0700
+Message-Id: <20230425192624.168640-4-jose.souza@intel.com>
 X-Mailer: git-send-email 2.40.0
 In-Reply-To: <20230425192624.168640-1-jose.souza@intel.com>
 References: <20230425192624.168640-1-jose.souza@intel.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-xe] [PATCH v2 01/15] drm/i915/display: remove
- intel_display_commit_duplicated_state()
+Subject: [Intel-xe] [PATCH v2 03/15] drm/i915/display: move
+ intel_modeset_probe_defer() to intel_display_driver.[ch]
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -63,79 +63,156 @@ Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 From: Jani Nikula <jani.nikula@intel.com>
 
-This seems like an unnecessary wrapper layer. Removing it will be
-helpful later.
+High level display functionality only called from driver top level code.
 
 Reviewed-by: Gustavo Sousa <gustavo.sousa@intel.com>
 Signed-off-by: Jani Nikula <jani.nikula@intel.com>
-Link: https://patchwork.freedesktop.org/patch/msgid/a38f08e259221d71314ce6d764431147b0fba218.1681465222.git.jani.nikula@intel.com
-(cherry picked from commit ae52dd7d6d933511c90d129addfc629feff147b5)
+Link: https://patchwork.freedesktop.org/patch/msgid/831ed4d0356b51526704269038a6d2d72739e779.1681465222.git.jani.nikula@intel.com
+(cherry picked from commit ff2c80be1a002ae268ee78e3cf183b89c1aef77c)
 ---
- drivers/gpu/drm/i915/display/intel_display.c | 28 +++++++-------------
- 1 file changed, 10 insertions(+), 18 deletions(-)
+ drivers/gpu/drm/i915/display/intel_display.c  | 25 -------------------
+ drivers/gpu/drm/i915/display/intel_display.h  |  1 -
+ .../drm/i915/display/intel_display_driver.c   | 25 +++++++++++++++++++
+ .../drm/i915/display/intel_display_driver.h   |  4 +++
+ drivers/gpu/drm/i915/i915_pci.c               |  1 +
+ 5 files changed, 30 insertions(+), 26 deletions(-)
 
 diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
-index 28a2274503292..fccd067cc9cb0 100644
+index 226710bcec7a2..d22b3a2b180f1 100644
 --- a/drivers/gpu/drm/i915/display/intel_display.c
 +++ b/drivers/gpu/drm/i915/display/intel_display.c
-@@ -702,20 +702,6 @@ intel_plane_fence_y_offset(const struct intel_plane_state *plane_state)
- 	return y;
+@@ -31,7 +31,6 @@
+ #include <linux/module.h>
+ #include <linux/slab.h>
+ #include <linux/string_helpers.h>
+-#include <linux/vga_switcheroo.h>
+ 
+ #include <drm/display/drm_dp_helper.h>
+ #include <drm/drm_atomic.h>
+@@ -40,7 +39,6 @@
+ #include <drm/drm_damage_helper.h>
+ #include <drm/drm_edid.h>
+ #include <drm/drm_fourcc.h>
+-#include <drm/drm_privacy_screen_consumer.h>
+ #include <drm/drm_probe_helper.h>
+ #include <drm/drm_rect.h>
+ 
+@@ -8888,29 +8886,6 @@ void intel_modeset_driver_remove_nogem(struct drm_i915_private *i915)
+ 	intel_bios_driver_remove(i915);
  }
  
--static int
--intel_display_commit_duplicated_state(struct intel_atomic_state *state,
--				      struct drm_modeset_acquire_ctx *ctx)
+-bool intel_modeset_probe_defer(struct pci_dev *pdev)
 -{
--	struct drm_i915_private *i915 = to_i915(state->base.dev);
--	int ret;
+-	struct drm_privacy_screen *privacy_screen;
 -
--	ret = drm_atomic_helper_commit_duplicated_state(&state->base, ctx);
+-#ifdef I915
+-	/*
+-	 * apple-gmux is needed on dual GPU MacBook Pro
+-	 * to probe the panel if we're the inactive GPU.
+-	 */
+-	if (vga_switcheroo_client_probe_defer(pdev))
+-		return true;
+-#endif
 -
--	drm_WARN_ON(&i915->drm, ret == -EDEADLK);
+-	/* If the LCD panel has a privacy-screen, wait for it */
+-	privacy_screen = drm_privacy_screen_get(&pdev->dev, NULL);
+-	if (IS_ERR(privacy_screen) && PTR_ERR(privacy_screen) == -EPROBE_DEFER)
+-		return true;
 -
--	return ret;
+-	drm_privacy_screen_put(privacy_screen);
+-
+-	return false;
 -}
 -
- static int
- __intel_display_resume(struct drm_i915_private *i915,
- 		       struct drm_atomic_state *state,
-@@ -723,7 +709,7 @@ __intel_display_resume(struct drm_i915_private *i915,
+ bool intel_scanout_needs_vtd_wa(struct drm_i915_private *i915)
  {
- 	struct drm_crtc_state *crtc_state;
- 	struct drm_crtc *crtc;
--	int i;
-+	int ret, i;
+ 	return DISPLAY_VER(i915) >= 6 && i915_vtd_active(i915);
+diff --git a/drivers/gpu/drm/i915/display/intel_display.h b/drivers/gpu/drm/i915/display/intel_display.h
+index 6fa33ff74928c..66c24295f884e 100644
+--- a/drivers/gpu/drm/i915/display/intel_display.h
++++ b/drivers/gpu/drm/i915/display/intel_display.h
+@@ -529,7 +529,6 @@ void intel_plane_fixup_bitmasks(struct intel_crtc_state *crtc_state);
+ void intel_update_watermarks(struct drm_i915_private *i915);
  
- 	intel_modeset_setup_hw_state(i915, ctx);
- 	intel_vga_redisable(i915);
-@@ -749,7 +735,11 @@ __intel_display_resume(struct drm_i915_private *i915,
- 	if (!HAS_GMCH(i915))
- 		to_intel_atomic_state(state)->skip_intermediate_wm = true;
+ /* modesetting */
+-bool intel_modeset_probe_defer(struct pci_dev *pdev);
+ void intel_modeset_init_hw(struct drm_i915_private *i915);
+ int intel_modeset_init_noirq(struct drm_i915_private *i915);
+ int intel_modeset_init_nogem(struct drm_i915_private *i915);
+diff --git a/drivers/gpu/drm/i915/display/intel_display_driver.c b/drivers/gpu/drm/i915/display/intel_display_driver.c
+index d4a1893e9218a..312564aee684b 100644
+--- a/drivers/gpu/drm/i915/display/intel_display_driver.c
++++ b/drivers/gpu/drm/i915/display/intel_display_driver.c
+@@ -7,8 +7,10 @@
+  * details here.
+  */
  
--	return intel_display_commit_duplicated_state(to_intel_atomic_state(state), ctx);
-+	ret = drm_atomic_helper_commit_duplicated_state(state, ctx);
++#include <linux/vga_switcheroo.h>
+ #include <acpi/video.h>
+ #include <drm/drm_atomic_helper.h>
++#include <drm/drm_privacy_screen_consumer.h>
+ #include <drm/drm_probe_helper.h>
+ 
+ #include "i915_drv.h"
+@@ -19,6 +21,29 @@
+ #include "intel_fbdev.h"
+ #include "intel_opregion.h"
+ 
++bool intel_modeset_probe_defer(struct pci_dev *pdev)
++{
++	struct drm_privacy_screen *privacy_screen;
 +
-+	drm_WARN_ON(&i915->drm, ret == -EDEADLK);
++#ifdef I915
++	/*
++	 * apple-gmux is needed on dual GPU MacBook Pro
++	 * to probe the panel if we're the inactive GPU.
++	 */
++	if (vga_switcheroo_client_probe_defer(pdev))
++		return true;
++#endif
 +
-+	return ret;
- }
++	/* If the LCD panel has a privacy-screen, wait for it */
++	privacy_screen = drm_privacy_screen_get(&pdev->dev, NULL);
++	if (IS_ERR(privacy_screen) && PTR_ERR(privacy_screen) == -EPROBE_DEFER)
++		return true;
++
++	drm_privacy_screen_put(privacy_screen);
++
++	return false;
++}
++
+ void intel_display_driver_register(struct drm_i915_private *i915)
+ {
+ 	if (!HAS_DISPLAY(i915))
+diff --git a/drivers/gpu/drm/i915/display/intel_display_driver.h b/drivers/gpu/drm/i915/display/intel_display_driver.h
+index 4f6deef5a23ff..4c18792fcafd1 100644
+--- a/drivers/gpu/drm/i915/display/intel_display_driver.h
++++ b/drivers/gpu/drm/i915/display/intel_display_driver.h
+@@ -6,8 +6,12 @@
+ #ifndef __INTEL_DISPLAY_DRIVER_H__
+ #define __INTEL_DISPLAY_DRIVER_H__
  
- #ifdef I915
-@@ -841,10 +831,12 @@ void intel_display_finish_reset(struct drm_i915_private *i915)
- 	/* reset doesn't touch the display */
- 	if (!gpu_reset_clobbers_display(i915)) {
- 		/* for testing only restore the display */
--		ret = intel_display_commit_duplicated_state(to_intel_atomic_state(state), ctx);
--		if (ret)
-+		ret = drm_atomic_helper_commit_duplicated_state(state, ctx);
-+		if (ret) {
-+			drm_WARN_ON(&i915->drm, ret == -EDEADLK);
- 			drm_err(&i915->drm,
- 				"Restoring old state failed with %i\n", ret);
-+		}
- 	} else {
- 		/*
- 		 * The display has been reset as well,
++#include <linux/types.h>
++
+ struct drm_i915_private;
++struct pci_dev;
+ 
++bool intel_modeset_probe_defer(struct pci_dev *pdev);
+ void intel_display_driver_register(struct drm_i915_private *i915);
+ void intel_display_driver_unregister(struct drm_i915_private *i915);
+ 
+diff --git a/drivers/gpu/drm/i915/i915_pci.c b/drivers/gpu/drm/i915/i915_pci.c
+index 621730b6551c6..15a38059bacb6 100644
+--- a/drivers/gpu/drm/i915/i915_pci.c
++++ b/drivers/gpu/drm/i915/i915_pci.c
+@@ -27,6 +27,7 @@
+ #include <drm/i915_pciids.h>
+ 
+ #include "display/intel_display.h"
++#include "display/intel_display_driver.h"
+ #include "gt/intel_gt_regs.h"
+ #include "gt/intel_sa_media.h"
+ 
 -- 
 2.40.0
 
