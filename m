@@ -4,49 +4,49 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 179A1C77B7C
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 25DB0C77B78
 	for <intel-xe@archiver.kernel.org>; Tue, 25 Apr 2023 19:26:59 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id ECC8B10E7C7;
-	Tue, 25 Apr 2023 19:26:58 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0701410E7E2;
+	Tue, 25 Apr 2023 19:26:59 +0000 (UTC)
 Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E16E110E61C;
- Tue, 25 Apr 2023 19:26:52 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id EA28010E5A0
+ for <intel-xe@lists.freedesktop.org>; Tue, 25 Apr 2023 19:26:54 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1682450812; x=1713986812;
+ t=1682450815; x=1713986815;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=LVLH6ZVp04J0LVBwFzdSpQC1FBSmP5XdfHtFra+13Mk=;
- b=hBIT4QjPWfPHDUsa3THBkDtpUgknlKtAA+Z06PAS5IULmuIpziEH7knR
- s8beZvlnYgkpOaTV80CpY+LX9PzbhUwFEgdMli22QqrMvX8Jq7Vq/As8H
- g6TEeBxCGy3f8PkAUfQX171IYNPjMlGLllgZ+4mkq8VwVu+IddHHgJlcW
- TjrZ8dhvwa84fDLGhXLZZftnRACE7EuQhlaGPzsk6wydNiJ69iDCk94S1
- s0zFeAE6CqelllsKM6QmY5zTurwbTQlzCnFUdoPoV2eRXN+J7X2Mx6MNn
- jgFO+qCYmkC15HNUSHWBuGIGv9KQDQMhvuXdluydAiFYkl/HxTDUXK01z g==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10691"; a="331100882"
-X-IronPort-AV: E=Sophos;i="5.99,226,1677571200"; d="scan'208";a="331100882"
+ bh=rr8kpPUy7kahdcEKkBY5DoNzCjxNsixhTTLLfJTBGrY=;
+ b=n2BEDQm3Cfsju0oR1nREbuwSfmmlmt3C6p0KJHQiYSE+83XOikpM0Upd
+ P1efEQQT092++hXtjaDHNRu1crTVADTQhp1989cU0m3YcF64btJbdIlFq
+ DVbhaBzHhYewud0bDvobtPuMofYHhV769vxbVmA/HBLTnNnGmXePt33G4
+ uO6N5JKYIg8onGPLOzzD4YDhVSNYmFJh05VGduE1RZuoJOKIQq7tZDXCC
+ aNI5H87HQRBjLgipEVr/HyIxamHmd8Z7PJLQCeJKY8A9OAkhFZ0XKqxXI
+ jOR2Tvv+ZvdlJvqGY8FBoTPC4kW/9rZgNHAxso/byXf0/F39o72hDOtlq A==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10691"; a="331100909"
+X-IronPort-AV: E=Sophos;i="5.99,226,1677571200"; d="scan'208";a="331100909"
 Received: from fmsmga003.fm.intel.com ([10.253.24.29])
  by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 25 Apr 2023 12:26:48 -0700
+ 25 Apr 2023 12:26:51 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10691"; a="782990494"
-X-IronPort-AV: E=Sophos;i="5.99,226,1677571200"; d="scan'208";a="782990494"
+X-IronPort-AV: E=McAfee;i="6600,9927,10691"; a="782990505"
+X-IronPort-AV: E=Sophos;i="5.99,226,1677571200"; d="scan'208";a="782990505"
 Received: from josouza-mobl2.fso.intel.com ([10.230.18.148])
  by fmsmga003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 25 Apr 2023 12:26:46 -0700
+ 25 Apr 2023 12:26:49 -0700
 From: =?UTF-8?q?Jos=C3=A9=20Roberto=20de=20Souza?= <jose.souza@intel.com>
 To: intel-xe@lists.freedesktop.org
-Date: Tue, 25 Apr 2023 12:26:20 -0700
-Message-Id: <20230425192624.168640-12-jose.souza@intel.com>
+Date: Tue, 25 Apr 2023 12:26:22 -0700
+Message-Id: <20230425192624.168640-14-jose.souza@intel.com>
 X-Mailer: git-send-email 2.40.0
 In-Reply-To: <20230425192624.168640-1-jose.souza@intel.com>
 References: <20230425192624.168640-1-jose.souza@intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-xe] [PATCH v2 11/15] drm/i915: Initialize dkl_phy spin lock
- from display code path
+Subject: [Intel-xe] [PATCH v2 13/15] TEMPORARY: drm/xe/display: Enable
+ modular fia in TGL
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -58,114 +58,40 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Cc: Jani Nikula <jani.nikula@intel.com>, intel-gfx@lists.freedesktop.org,
- Lucas De Marchi <lucas.demarchi@intel.com>, rodrigo.vivi@intel.com,
- =?UTF-8?q?Ville=20Syrj=C3=A4l=C3=A4?= <ville.syrjala@linux.intel.com>
+Cc: rodrigo.vivi@intel.com
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-drm/i915: Initialize dkl_phy spin lock from display code path
+drm-tip don't have has_modular_fia anymore but to backport it to Xe
+would require us to backport several patches, so this patch is
+intended to only live until next Xe rebase.
 
-Start moving the initialization of display locks from
-i915_driver_early_probe().
-Display locks should be initialized from display-only code paths.
+TGL is the first platform tha has it, this is needed to properly
+initialize TC ports in some skus.
+Enabling it for DG1 don't cause any issues as DG1 don't have any real
+TC ports, so intel_tc_port_init() will not be called for DG1.
 
-It was also agreed that if a variable is only used in one file, it
-should be initialized only in that file, so intel_dkl_phy_init() was
-added.
-
-v2:
-- added intel_display_locks_init()
-
-v3:
-- rebased
-
-v4:
-- dropped intel_display_locks_init()
-
-v5:
-- moved intel_dkl_phy_init() to the beginning of file
-
-Cc: intel-gfx@lists.freedesktop.org
-Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
-Cc: Ville Syrjälä <ville.syrjala@linux.intel.com>
-Cc: Jani Nikula <jani.nikula@intel.com>
-Cc: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
-Reviewed-by: Lucas De Marchi <lucas.demarchi@intel.com>
 Signed-off-by: José Roberto de Souza <jose.souza@intel.com>
-Link: https://patchwork.freedesktop.org/patch/msgid/20230420170558.35398-1-jose.souza@intel.com
-(cherry picked from commit bfa010f608491036327db20aad1d15e28da0189e)
 ---
- drivers/gpu/drm/i915/display/intel_display_driver.c | 2 ++
- drivers/gpu/drm/i915/display/intel_dkl_phy.c        | 9 +++++++++
- drivers/gpu/drm/i915/display/intel_dkl_phy.h        | 1 +
- drivers/gpu/drm/i915/i915_driver.c                  | 1 -
- 4 files changed, 12 insertions(+), 1 deletion(-)
+ drivers/gpu/drm/xe/xe_display.c | 5 ++++-
+ 1 file changed, 4 insertions(+), 1 deletion(-)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_display_driver.c b/drivers/gpu/drm/i915/display/intel_display_driver.c
-index 92c624f6d2ae7..95669ad1a7975 100644
---- a/drivers/gpu/drm/i915/display/intel_display_driver.c
-+++ b/drivers/gpu/drm/i915/display/intel_display_driver.c
-@@ -30,6 +30,7 @@
- #include "intel_display_driver.h"
- #include "intel_display_power.h"
- #include "intel_display_types.h"
-+#include "intel_dkl_phy.h"
- #include "intel_dmc.h"
- #include "intel_dp.h"
- #include "intel_dpll.h"
-@@ -177,6 +178,7 @@ void intel_display_driver_early_probe(struct drm_i915_private *i915)
- 	if (!HAS_DISPLAY(i915))
- 		return;
- 
-+	intel_dkl_phy_init(i915);
- 	intel_color_init_hooks(i915);
- 	intel_init_cdclk_hooks(i915);
- 	intel_audio_hooks_init(i915);
-diff --git a/drivers/gpu/drm/i915/display/intel_dkl_phy.c b/drivers/gpu/drm/i915/display/intel_dkl_phy.c
-index 57cc3edba0163..a001232ad445e 100644
---- a/drivers/gpu/drm/i915/display/intel_dkl_phy.c
-+++ b/drivers/gpu/drm/i915/display/intel_dkl_phy.c
-@@ -11,6 +11,15 @@
- #include "intel_dkl_phy.h"
- #include "intel_dkl_phy_regs.h"
- 
-+/**
-+ * intel_dkl_phy_init - initialize Dekel PHY
-+ * @i915: i915 device instance
-+ */
-+void intel_dkl_phy_init(struct drm_i915_private *i915)
-+{
-+	spin_lock_init(&i915->display.dkl.phy_lock);
-+}
-+
- static void
- dkl_phy_set_hip_idx(struct drm_i915_private *i915, struct intel_dkl_phy_reg reg)
- {
-diff --git a/drivers/gpu/drm/i915/display/intel_dkl_phy.h b/drivers/gpu/drm/i915/display/intel_dkl_phy.h
-index 570ee36f9386f..5956ec3e940b1 100644
---- a/drivers/gpu/drm/i915/display/intel_dkl_phy.h
-+++ b/drivers/gpu/drm/i915/display/intel_dkl_phy.h
-@@ -12,6 +12,7 @@
- 
- struct drm_i915_private;
- 
-+void intel_dkl_phy_init(struct drm_i915_private *i915);
- u32
- intel_dkl_phy_read(struct drm_i915_private *i915, struct intel_dkl_phy_reg reg);
- void
-diff --git a/drivers/gpu/drm/i915/i915_driver.c b/drivers/gpu/drm/i915/i915_driver.c
-index decaff25c36cf..a4e11a3c1842f 100644
---- a/drivers/gpu/drm/i915/i915_driver.c
-+++ b/drivers/gpu/drm/i915/i915_driver.c
-@@ -225,7 +225,6 @@ static int i915_driver_early_probe(struct drm_i915_private *dev_priv)
- 	mutex_init(&dev_priv->display.wm.wm_mutex);
- 	mutex_init(&dev_priv->display.pps.mutex);
- 	mutex_init(&dev_priv->display.hdcp.comp_mutex);
--	spin_lock_init(&dev_priv->display.dkl.phy_lock);
- 
- 	i915_memcpy_init_early(dev_priv);
- 	intel_runtime_pm_init_early(&dev_priv->runtime_pm);
+diff --git a/drivers/gpu/drm/xe/xe_display.c b/drivers/gpu/drm/xe/xe_display.c
+index 408bd7c8d1c75..fbae60c179be1 100644
+--- a/drivers/gpu/drm/xe/xe_display.c
++++ b/drivers/gpu/drm/xe/xe_display.c
+@@ -489,7 +489,10 @@ void xe_display_info_init(struct xe_device *xe)
+ 	switch (xe->info.platform) {
+ 	case XE_TIGERLAKE:
+ 	case XE_DG1:
+-		xe->info.display = (struct xe_device_display_info) { GEN12_DISPLAY };
++		xe->info.display = (struct xe_device_display_info) {
++			GEN12_DISPLAY,
++			.has_modular_fia = 1,
++		};
+ 		break;
+ 	case XE_ROCKETLAKE:
+ 		xe->info.display = (struct xe_device_display_info) {
 -- 
 2.40.0
 
