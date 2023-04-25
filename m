@@ -4,39 +4,57 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3C423C77B61
-	for <intel-xe@archiver.kernel.org>; Tue, 25 Apr 2023 14:32:49 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id E3986C6FD18
+	for <intel-xe@archiver.kernel.org>; Tue, 25 Apr 2023 17:00:38 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0F2E710E771;
-	Tue, 25 Apr 2023 14:32:49 +0000 (UTC)
-Received: from dfw.source.kernel.org (dfw.source.kernel.org
- [IPv6:2604:1380:4641:c500::1])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D360E10E76E
- for <intel-xe@lists.freedesktop.org>; Tue, 25 Apr 2023 14:32:46 +0000 (UTC)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
- (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
- (No client certificate requested)
- by dfw.source.kernel.org (Postfix) with ESMTPS id EC4E962F2A;
- Tue, 25 Apr 2023 14:32:45 +0000 (UTC)
-Received: from rdvivi-mobl4 (unknown [192.55.55.57])
- (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
- (No client certificate requested)
- by smtp.kernel.org (Postfix) with ESMTPSA id 66EE4C433D2;
- Tue, 25 Apr 2023 14:32:43 +0000 (UTC)
-Date: Tue, 25 Apr 2023 10:32:40 -0400
-From: Rodrigo Vivi <rodrigo.vivi@kernel.org>
-To: "Gupta, Anshuman" <anshuman.gupta@intel.com>
-Message-ID: <ZEfLNoY6fb4HNN8D@rdvivi-mobl4>
-References: <20230421101511.3532534-1-anshuman.gupta@intel.com>
- <ZEKVvAvVm8Z7uIBK@rdvivi-mobl4>
- <CY5PR11MB6211AB6A30A90B44C8F71AF595609@CY5PR11MB6211.namprd11.prod.outlook.com>
- <ZEZ0ThMp9vwXmwg0@rdvivi-mobl4>
- <CY5PR11MB621135801959F3DD42F3330395679@CY5PR11MB6211.namprd11.prod.outlook.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9C90610E085;
+	Tue, 25 Apr 2023 17:00:38 +0000 (UTC)
+Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 02FC510E085
+ for <intel-xe@lists.freedesktop.org>; Tue, 25 Apr 2023 17:00:36 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1682442037; x=1713978037;
+ h=message-id:date:mime-version:subject:to:cc:references:
+ from:in-reply-to:content-transfer-encoding;
+ bh=J8TZnjkzS6UFC29yDUNiNBZlMhz52yuFo/HzYRicaGo=;
+ b=FXgsCL6t5PQ7Bo8RoeJyFHR3/MnTdZBU33HjxQwWiMI0CHLU4zu/YRlk
+ vhAMrw5wsdKaCRY7alWBLRBPoCMZdbicKEWsefEJ6rooihGa0hPrFMJ2k
+ KFHHioDUcgY/Ir+IWMWeOqf4Zy6yDlwJ02M72G1vCCFmMKAG4vP4uKPqX
+ wD+3NANLDapS484dXpRIGWiH4xpZRv5poWpTeoNl6E/P6iu+s9Jssux68
+ hkDO1H2zpvsZINf+GtOkRutbH0fHk38zsyh1LyhkMdaUQ8XutG0Q7S3OA
+ hvSekRek/kp2vWzdas0UkB3eztCYTYXPHHag1U49VzZeAEJ6I4EJXWajk g==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10691"; a="433100407"
+X-IronPort-AV: E=Sophos;i="5.99,225,1677571200"; d="scan'208";a="433100407"
+Received: from orsmga003.jf.intel.com ([10.7.209.27])
+ by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 25 Apr 2023 10:00:36 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6600,9927,10691"; a="643877499"
+X-IronPort-AV: E=Sophos;i="5.99,225,1677571200"; d="scan'208";a="643877499"
+Received: from irvmail002.ir.intel.com ([10.43.11.120])
+ by orsmga003.jf.intel.com with ESMTP; 25 Apr 2023 10:00:33 -0700
+Received: from [10.249.137.10] (mwajdecz-MOBL.ger.corp.intel.com
+ [10.249.137.10])
+ by irvmail002.ir.intel.com (Postfix) with ESMTP id 1DDFF37F49;
+ Tue, 25 Apr 2023 18:00:32 +0100 (IST)
+Message-ID: <475b902a-b734-53b6-cab1-4a78838a5a68@intel.com>
+Date: Tue, 25 Apr 2023 19:00:31 +0200
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <CY5PR11MB621135801959F3DD42F3330395679@CY5PR11MB6211.namprd11.prod.outlook.com>
-Subject: Re: [Intel-xe] [PATCH i-g-t] test/xe_pm: Assert on unbounded VSP
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+ Firefox/102.0 Thunderbird/102.10.0
+Content-Language: en-US
+To: Lucas De Marchi <lucas.demarchi@intel.com>
+References: <20230421223258.128781-1-lucas.demarchi@intel.com>
+ <20230421223258.128781-13-lucas.demarchi@intel.com>
+ <3286caad-48f5-01e0-6e15-4e15c69e3a3a@intel.com>
+ <fk47pjv5rnfsnxac4goeqhwlolffa3wnsyejjn23b2ji2ud6ma@llik644c37ma>
+From: Michal Wajdeczko <michal.wajdeczko@intel.com>
+In-Reply-To: <fk47pjv5rnfsnxac4goeqhwlolffa3wnsyejjn23b2ji2ud6ma@llik644c37ma>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+Subject: Re: [Intel-xe] [PATCH v2 12/17] drm/xe/rtp: Improve magic macros
+ for RTP tables
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -48,141 +66,269 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Cc: "Chehab, Mauro" <mauro.chehab@intel.com>,
- "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>, "Vivi,
- Rodrigo" <rodrigo.vivi@intel.com>
+Cc: Matt Roper <matthew.d.roper@intel.com>, intel-xe@lists.freedesktop.org,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Mon, Apr 24, 2023 at 09:50:00AM -0400, Gupta, Anshuman wrote:
+
+
+On 25.04.2023 15:17, Lucas De Marchi wrote:
+> On Tue, Apr 25, 2023 at 01:03:54PM +0200, Michal Wajdeczko wrote:
+>>
+>>
+>> On 22.04.2023 00:32, Lucas De Marchi wrote:
+>>> The macros for writing the rtp tables have some downsides:
+>>>
+>>>     1) They are fragile, and when making a typo it's hard to know
+>>>        where it's failing for someone not used to them
+>>>     2) They polute the global scope. The CONCAT/COUNT_ARGS/etc only
+>>>        work because they are defined exactly the same as the ones in
+>>>        kernel.h.
+>>
+>> hmm, I wonder why they were defined locally in first place ?
+>> Can't you always use definitions from kernel.h ?
 > 
-> 
-> > -----Original Message-----
-> > From: Rodrigo Vivi <rodrigo.vivi@kernel.org>
-> > Sent: Monday, April 24, 2023 5:52 PM
-> > To: Gupta, Anshuman <anshuman.gupta@intel.com>
-> > Cc: Chehab, Mauro <mauro.chehab@intel.com>; intel-
-> > xe@lists.freedesktop.org; Vivi, Rodrigo <rodrigo.vivi@intel.com>
-> > Subject: Re: [Intel-xe] [PATCH i-g-t] test/xe_pm: Assert on unbounded VSP
-> > 
-> > On Fri, Apr 21, 2023 at 02:30:42PM +0000, Gupta, Anshuman wrote:
-> > >
-> > >
-> > > > -----Original Message-----
-> > > > From: Rodrigo Vivi <rodrigo.vivi@kernel.org>
-> > > > Sent: Friday, April 21, 2023 7:25 PM
-> > > > To: Gupta, Anshuman <anshuman.gupta@intel.com>
-> > > > Cc: intel-xe@lists.freedesktop.org; Chehab, Mauro
-> > > > <mauro.chehab@intel.com>; Vivi, Rodrigo <rodrigo.vivi@intel.com>
-> > > > Subject: Re: [Intel-xe] [PATCH i-g-t] test/xe_pm: Assert on
-> > > > unbounded VSP
-> > > >
-> > > > On Fri, Apr 21, 2023 at 03:45:11PM +0530, Anshuman Gupta wrote:
-> > > > > Discrete GFX cards gfx may have multiple PCIe endpoints, they
-> > > > > connects to root port via pcie upstream switch port(USP) and
-> > > > > virtual pcie switch port(VSP), sometimes VSP pcie devices doesn't
-> > > > > bind to pcieport driver. Without pcieport driver pcie PM comes
-> > > > > without any warranty and with unbounded VSP runtime pm and system
-> > > > > wide suspend/resume IGT
-> > > > test
-> > > > > cases may get pass as false positive.
-> > > >
-> > > > I'm not sure if I'm following here... you mean that in cases like
-> > > > this we cannot suspend/resume at all? What are the false positive?
-> > > > I'm not following the whole scenario here...
-> > > Recently Linux core kernel revert the L1 substate save/restore feature
-> > from Linux.
-> > > That eventually requires L1 substate to be  disable from BIOS,
-> > > otherwise s2idle fails on a HOST with DG2 card as DG2 was not able to exit
-> > form L1 substate. But due to the unbounded VSP our CI missed to report
-> > such issue.
-> > > As VSP were unbounded and DG2 Link was not transitioning to low power
-> > > Link State and our tests were passing instead of failing.
-> > 
-> > But then on this case we are just avoiding the test now?
-> > Why don't we cherry-pick the linux core kernel fix as a temporary topic/core-
-> > for-CI instead of blocking the test?
-> We don't have any fix yet, Atm Linux core Kernel does not support L1 substate during Suspend/Resume.
-> https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/drivers/pci/pcie/aspm.c?id=a7152be79b627428c628da2a887ca4b2512a78fd
-> > 
-> > Or why are we not handling this case in kernel side then?
-> > Why block even s3 tests if this is only about the s2idle?
-> This is about D0/D3 and Link state for our discrete graphics card not directly related to s2idle/S3.
-> Due to unbounded VSP, PM core will always keep the bridge devices in D0, L0 state,
-> There is no point to test D3 and Suspend/Resume with unbounded VSP.
-> Unbounded VSP was the one of reason on i915 that we missed runtime pm wakeref before accessing lmem. 
+> I didn't want to include kernel.h for the 2 macros it would use
+> when people are actually trying to reduce the size of kernel.h due to
+> being kind of what our i915_reg.h became. Also the count args to 12 is
+> not exactly what we want.
 
-I have 2 problems with this patch:
+sorry, but I still don't follow
 
-1. It will fail the PM operations, while the problem is not the PM operations itself.
-2. It doesn't protect the PM operations. I'm failing to see any protection in the kernel level.
-It will be just errors that will be ignored.
+if a ready to use macro is defined, I see no reason to define own copy
+just because we don't like to include header where it was added/defined
 
-So, we need:
-1. A test that tackles the right issue.
-2. A protection at the kernel level. If we cannot do PM operations in this case,
-   we cannot simply fail in the test and ignore the kernel failure.
+if size of the kernel.h is a real problem, then I would expect moving
+CONCAT/COUNT macros to linux/concat.h/count.h rather then creating its
+own macros in private header (unless they are really non-generic)
 
 > 
-> Br,
-> Anshuman Gupta.
+>>
+>>>     3) They are not compatible with rules/actions with registers
+>>>        passing additional options
+>>>
+>>> This new implementation fixes (2) and (3).
+>>>
+>>> For (2), prefix everything with "_XE", so there is less chance of
+>>> clashes. Also, the maximum number of rules and actions is 4, so there is
+>>> no need to make the helper macros go until 12: reduce that to 5, so if
+>>> more arguments is passed, the compiler gives an error that there is not
+>>> definition with _5 suffix.
+>>
+>> I'm not convinced that adding local definitions with XE_ prefix that
+>> mimics functionality already defined in kernel.h is the right way to go
 > 
-> > 
-> > >
-> > > Br,
-> > > Anshuman Gupta.
-> > > >
-> > > > >
-> > > > > Therefore assert the xe_pm igt tests on unbounded VSP.
-> > > > >
-> > > > > Signed-off-by: Anshuman Gupta <anshuman.gupta@intel.com>
-> > > > > ---
-> > > > >  tests/xe/xe_pm.c | 11 ++++++++++-
-> > > > >  1 file changed, 10 insertions(+), 1 deletion(-)
-> > > > >
-> > > > > diff --git a/tests/xe/xe_pm.c b/tests/xe/xe_pm.c index
-> > > > > 23b8246ed..78d9374cf 100644
-> > > > > --- a/tests/xe/xe_pm.c
-> > > > > +++ b/tests/xe/xe_pm.c
-> > > > > @@ -33,6 +33,7 @@
-> > > > >  typedef struct {
-> > > > >  	int fd_xe;
-> > > > >  	struct pci_device *pci_xe;
-> > > > > +	struct pci_device *pci_parent;
-> > > > >  	struct pci_device *pci_root;
-> > > > >  } device_t;
-> > > > >
-> > > > > @@ -344,6 +345,7 @@ NULL));
-> > > > >  igt_main
-> > > > >  {
-> > > > >  	struct drm_xe_engine_class_instance *hwe;
-> > > > > +	struct drm_xe_query_config *config;
-> > > > >  	device_t device;
-> > > > >  	char d3cold_allowed[2];
-> > > > >  	const struct s_state {
-> > > > > @@ -369,8 +371,15 @@ igt_main
-> > > > >  		device.fd_xe = drm_open_driver(DRIVER_XE);
-> > > > >  		device.pci_xe = igt_device_get_pci_device(device.fd_xe);
-> > > > >  		device.pci_root =
-> > > > igt_device_get_pci_root_port(device.fd_xe);
-> > > > > +		device.pci_parent =
-> > > > pci_device_get_parent_bridge(device.pci_xe);
-> > > > >
-> > > > > -		xe_device_get(device.fd_xe);
-> > > > > +		config = xe_device_get(device.fd_xe)->config;
-> > > > > +
-> > > > > +		if (config->info[XE_QUERY_CONFIG_FLAGS] &
-> > > > XE_QUERY_CONFIG_FLAGS_HAS_VRAM) {
-> > > > > +			igt_assert(device.pci_parent);
-> > > > > +
-> > > > 	igt_assert_f(!pci_device_has_kernel_driver(device.pci_parent),
-> > > > > +				     "pci bridge device does not bind with
-> > > > pcieport driver\n");
-> > > > > +		}
-> > > > >
-> > > > >  		/* Always perform initial once-basic exec checking for health
-> > > > */
-> > > > >  		xe_for_each_hw_engine(device.fd_xe, hwe)
-> > > > > --
-> > > > > 2.25.1
-> > > > >
+> see above
+> 
+>>
+>>>
+>>> For (3), change the implementation to concentrate on "pasting a prefix
+>>> to each argument" rather than the more general "call any macro for each
+>>> argument". Hopefully this will avoid trying to extending this infra and
+>>> making it more complex. The new changes to how the arguments are
+>>> constructed using tuples will allow extending the interface where it's
+>>> needed: passing additional register fields to allow creating our own
+>>> xe_reg_t.
+>>>
+>>> Signed-off-by: Lucas De Marchi <lucas.demarchi@intel.com>
+>>> ---
+>>>  drivers/gpu/drm/xe/xe_rtp.h | 68 ++++++++++++++++++-------------------
+>>>  1 file changed, 33 insertions(+), 35 deletions(-)
+>>>
+>>> diff --git a/drivers/gpu/drm/xe/xe_rtp.h b/drivers/gpu/drm/xe/xe_rtp.h
+>>> index a3be7c77753a..53650f09efe9 100644
+>>> --- a/drivers/gpu/drm/xe/xe_rtp.h
+>>> +++ b/drivers/gpu/drm/xe/xe_rtp.h
+>>> @@ -22,43 +22,42 @@ struct xe_reg_sr;
+>>>  /*
+>>>   * Helper macros - not to be used outside this header.
+>>>   */
+>>> -/* This counts to 12. Any more, it will return 13th argument. */
+>>> -#define __COUNT_ARGS(_0, _1, _2, _3, _4, _5, _6, _7, _8, _9, _10,
+>>> _11, _12, _n, X...) _n
+>>> -#define COUNT_ARGS(X...) __COUNT_ARGS(, ##X, 12, 11, 10, 9, 8, 7, 6,
+>>> 5, 4, 3, 2, 1, 0)
+>>> +#define _XE_ESC(...) __VA_ARGS__
+>>> +#define _XE_COUNT_ARGS(...)
+>>> _XE_ESC(__XE_COUNT_ARGS(__VA_ARGS__,5,4,3,2,1,))
+>>> +#define __XE_COUNT_ARGS(_,_5,_4,_3,_2,X_,...) X_
+>>>
+>>> -#define __CONCAT(a, b) a ## b
+>>> -#define CONCATENATE(a, b) __CONCAT(a, b)
+>>> +#define _XE_CONCAT(a, b) __XE_CONCAT(a, b)
+>>> +#define __XE_CONCAT(a, b) a ## b
+>>>
+>>> -#define __CALL_FOR_EACH_1(MACRO_, x, ...) MACRO_(x)
+>>> -#define __CALL_FOR_EACH_2(MACRO_, x, ...)                    \
+>>> -    MACRO_(x) __CALL_FOR_EACH_1(MACRO_, ##__VA_ARGS__)
+>>> -#define __CALL_FOR_EACH_3(MACRO_, x, ...)                    \
+>>> -    MACRO_(x) __CALL_FOR_EACH_2(MACRO_, ##__VA_ARGS__)
+>>> -#define __CALL_FOR_EACH_4(MACRO_, x, ...)                    \
+>>> -    MACRO_(x) __CALL_FOR_EACH_3(MACRO_, ##__VA_ARGS__)
+>>> +#define _XE_FIRST(...) _XE_ESC(__XE_FIRST(__VA_ARGS__,))
+>>> +#define __XE_FIRST(x_,...) x_
+>>> +#define _XE_TUPLE_TAIL(...) _XE_ESC(__XE_TUPLE_TAIL(__VA_ARGS__))
+>>> +#define __XE_TUPLE_TAIL(x_,...) (__VA_ARGS__)
+>>>
+>>> -#define _CALL_FOR_EACH(NARGS_, MACRO_, x, ...)                    \
+>>> -    CONCATENATE(__CALL_FOR_EACH_, NARGS_)(MACRO_, x, ##__VA_ARGS__)
+>>> -#define CALL_FOR_EACH(MACRO_, x, ...)                        \
+>>> -    _CALL_FOR_EACH(COUNT_ARGS(x, ##__VA_ARGS__), MACRO_, x,
+>>> ##__VA_ARGS__)
+>>> +#define __XE_PASTE_SEP_COMMA        ,
+>>> +#define __XE_PASTE_SEP_BITWISE_OR        |
+>>> +#define __XE_PASTE(prefix_, sep_, args_)
+>>> _XE_ESC(_XE_CONCAT(__XE_PASTE_,_XE_COUNT_ARGS args_)(prefix_, sep_,
+>>> args_))
+>>> +#define __XE_PASTE_1(prefix_, sep_, args_) prefix_ args_
+>>> +#define __XE_PASTE_2(prefix_, sep_, args_) prefix_(_XE_FIRST args_)
+>>> __XE_PASTE_SEP_ ## sep_ __XE_PASTE_1(prefix_, sep_, _XE_TUPLE_TAIL
+>>> args_)
+>>> +#define __XE_PASTE_3(prefix_, sep_, args_) prefix_(_XE_FIRST args_)
+>>> __XE_PASTE_SEP_ ## sep_ __XE_PASTE_2(prefix_, sep_, _XE_TUPLE_TAIL
+>>> args_)
+>>> +#define __XE_PASTE_4(prefix_, sep_, args_) prefix_(_XE_FIRST args_)
+>>> __XE_PASTE_SEP_ ## sep_ __XE_PASTE_3(prefix_, sep_, _XE_TUPLE_TAIL
+>>> args_)
+>>>
+>>> -#define _XE_RTP_REG(x_)    (x_), XE_RTP_REG_REGULAR
+>>> -#define _XE_RTP_MCR_REG(x_) (x_), XE_RTP_REG_MCR
+>>> +#define _XE_RTP_REG(x_)        (x_), XE_RTP_REG_REGULAR
+>>> +#define _XE_RTP_MCR_REG(x_)    (x_), XE_RTP_REG_MCR
+>>>
+>>>  /*
+>>>   * Helper macros for concatenating prefix - do not use them directly
+>>> outside
+>>>   * this header
+>>>   */
+>>> -#define __ADD_XE_RTP_ENTRY_FLAG_PREFIX(x)
+>>> CONCATENATE(XE_RTP_ENTRY_FLAG_, x) |
+>>> -#define __ADD_XE_RTP_ACTION_FLAG_PREFIX(x)
+>>> CONCATENATE(XE_RTP_ACTION_FLAG_, x) |
+>>> -#define __ADD_XE_RTP_RULE_PREFIX(x) CONCATENATE(XE_RTP_RULE_, x) ,
+>>> -#define __ADD_XE_RTP_ACTION_PREFIX(x) CONCATENATE(XE_RTP_ACTION_, x) ,
+>>> +#define __XE_PASTE_XE_RTP_ENTRY_FLAG_(x_)   
+>>> _XE_CONCAT(XE_RTP_ENTRY_FLAG_, x_)
+>>> +#define __XE_PASTE_XE_RTP_ACTION_FLAG_(x_)   
+>>> _XE_CONCAT(XE_RTP_ACTION_FLAG_, x_)
+>>> +#define __XE_PASTE_XE_RTP_ACTION_(x_)    _XE_CONCAT(XE_RTP_ACTION_, x_)
+>>> +#define __XE_PASTE_XE_RTP_RULE_(x_)    _XE_CONCAT(XE_RTP_RULE_, x_)
+>>
+>> maybe local macros should be defined with full XE_RTP prefix and be
+>> tailored for your specific RTP usecases:
+>>
+>> #define _XE_RTP_CONCAT(a, b) __XE_RTP_CONCAT(a, b)
+>> #define __XE_RTP_CONCAT(a, b) XE_RTP_ ## a ## _ ## b
+> 
+> these are not to be used throughout the source code. The only difference
+> I see from this and what I did is the prefix being *XE_RTP_ rather than
+
+also the actual outcome of the macro includes "XE_RTP" prefix being
+added automatically (making this a non-generic concat macro)
+
+> *XE_.  Since this is not to be used outside the header, I'm not seeing
+> much value in make it even longer.
+> 
+>>
+>> #define __XE_PASTE_XE_RTP_ACTION_(x_)    _XE_RTP_CONCAT(ACTION, x_)
+>> #define __XE_PASTE_XE_RTP_RULE_(x_)    _XE_RTP_CONCAT(RULE, x_)
+> 
+> this contradicts what you said and following that would make it very
+> ugly:
+> 
+> #define __XE_RTP_PASTE_XE_RTP_ACTION_(x_)    _XE_RTP_CONCAT(ACTION, x_)
+> #define __XE_RTP_PASTE_XE_RTP_RULE_(x_)        _XE_RTP_CONCAT(RULE, x_)
+
+or
+
+#define __XE_RTP_PASTE_ACTION(a)    _XE_RTP_CONCAT(ACTION, a)
+#define __XE_RTP_PASTE_RULE(r)      _XE_RTP_CONCAT(RULE, r)
+
+> 
+> 
+> Lucas De Marchi
+> 
+>>
+>> then there will be no complains about overlapping functionality with
+>> macros from kernel.h
+>>
+>>>
+>>>  /*
+>>>   * Macros to encode rules to match against platform, IP version,
+>>> stepping, etc.
+>>>   * Shouldn't be used directly - see XE_RTP_RULES()
+>>>   */
+>>> -
+>>>  #define _XE_RTP_RULE_PLATFORM(plat__)                        \
+>>>      { .match_type = XE_RTP_MATCH_PLATFORM, .platform = plat__ }
+>>>
+>>> @@ -315,8 +314,8 @@ struct xe_reg_sr;
+>>>   *        ...
+>>>   *    };
+>>>   */
+>>> -#define XE_RTP_ENTRY_FLAG(f1_, ...)                        \
+>>> -    .flags = (CALL_FOR_EACH(__ADD_XE_RTP_ENTRY_FLAG_PREFIX, f1_,
+>>> ##__VA_ARGS__) 0)
+>>> +#define XE_RTP_ENTRY_FLAG(...)                            \
+>>> +    .flags = (__XE_PASTE(__XE_PASTE_XE_RTP_ENTRY_FLAG_, BITWISE_OR,
+>>> (__VA_ARGS__)))
+>>>
+>>>  /**
+>>>   * XE_RTP_ACTION_FLAG - Helper to add multiple flags to a struct
+>>> xe_rtp_action
+>>> @@ -338,8 +337,8 @@ struct xe_reg_sr;
+>>>   *        ...
+>>>   *    };
+>>>   */
+>>> -#define XE_RTP_ACTION_FLAG(f1_, ...)                        \
+>>> -    .flags = (CALL_FOR_EACH(__ADD_XE_RTP_ACTION_FLAG_PREFIX, f1_,
+>>> ##__VA_ARGS__) 0)
+>>> +#define XE_RTP_ACTION_FLAG(...)                            \
+>>> +    .flags = (__XE_PASTE(__XE_PASTE_XE_RTP_ACTION_FLAG_, BITWISE_OR,
+>>> (__VA_ARGS__)))
+>>>
+>>>  /**
+>>>   * XE_RTP_RULES - Helper to set multiple rules to a struct
+>>> xe_rtp_entry entry
+>>> @@ -361,16 +360,15 @@ struct xe_reg_sr;
+>>>   *        ...
+>>>   *    };
+>>>   */
+>>> -#define XE_RTP_RULES(r1, ...)                            \
+>>> -    .n_rules = COUNT_ARGS(r1, ##__VA_ARGS__),                \
+>>> +#define XE_RTP_RULES(...)                            \
+>>> +    .n_rules = _XE_COUNT_ARGS(__VA_ARGS__),                    \
+>>>      .rules = (const struct xe_rtp_rule[]) {                    \
+>>> -        CALL_FOR_EACH(__ADD_XE_RTP_RULE_PREFIX, r1, ##__VA_ARGS__)    \
+>>> +        __XE_PASTE(__XE_PASTE_XE_RTP_RULE_, COMMA, (__VA_ARGS__))    \
+>>>      }
+>>>
+>>>  /**
+>>>   * XE_RTP_ACTIONS - Helper to set multiple actions to a struct
+>>> xe_rtp_entry
+>>> - * @a1: Action to take. Last part of XE_RTP_ACTION_*
+>>> - * @...: Additional rules, defined like @r1
+>>> + * @...: Actions to be taken
+>>>   *
+>>>   * At least one rule is needed and up to 4 are supported. Multiple
+>>> rules are
+>>>   * AND'ed together, i.e. all the rules must evaluate to true for the
+>>> entry to
+>>> @@ -388,10 +386,10 @@ struct xe_reg_sr;
+>>>   *        ...
+>>>   *    };
+>>>   */
+>>> -#define XE_RTP_ACTIONS(a1, ...)                            \
+>>> -    .n_actions = COUNT_ARGS(a1, ##__VA_ARGS__),                \
+>>> +#define XE_RTP_ACTIONS(...)                            \
+>>> +    .n_actions = _XE_COUNT_ARGS(__VA_ARGS__),                \
+>>>      .actions = (const struct xe_rtp_action[]) {                \
+>>> -        CALL_FOR_EACH(__ADD_XE_RTP_ACTION_PREFIX, a1,
+>>> ##__VA_ARGS__)    \
+>>> +        __XE_PASTE(__XE_PASTE_XE_RTP_ACTION_, COMMA,
+>>> (__VA_ARGS__))    \
+>>>      }
+>>>
+>>>  void xe_rtp_process(const struct xe_rtp_entry *entries, struct
+>>> xe_reg_sr *sr,
