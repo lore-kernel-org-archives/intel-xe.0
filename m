@@ -4,48 +4,48 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7038CC77B61
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 49732C6FD18
 	for <intel-xe@archiver.kernel.org>; Tue, 25 Apr 2023 19:26:42 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3EC9210E5A3;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 21EB410E5A0;
 	Tue, 25 Apr 2023 19:26:42 +0000 (UTC)
 Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B05D910E5A0
- for <intel-xe@lists.freedesktop.org>; Tue, 25 Apr 2023 19:26:37 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B9EE610E5A0
+ for <intel-xe@lists.freedesktop.org>; Tue, 25 Apr 2023 19:26:40 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1682450798; x=1713986798;
+ t=1682450800; x=1713986800;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=Mv1LiMKA4dROlZXIXVEPjX/kOhci5VAqQ+5CzMx+K1c=;
- b=Bohs0xQCWWIG6ev7mANtDWrRVSXzQ21xabqqv839ubmyCDzbA8L3m0Su
- SWX3fB2UmDOktkOup4AxH0mZ31esAMrhlFOCeRQz6BNCnQPS0rKU9SfEk
- cPIJ6+aX04JngVL/Ta5DuwHltbX8xc8NjkASTw7oWpZrIO0T5CYoSA4Sg
- ULKRTxFTIYSE6EWa3YufDIN3y7liLbkIJ0Nlm+S+wTAdqIIRRNBvC86n/
- luFSSAyz9KWtQHHhNU/ArcL6uhO6WDProaHd8+erpaZ1FoWjcMEMTewlZ
- j5HyPJNtGxo+NHgxUHrCnnWXggpq1fexw5r0uVOCS0Qg65Uv3TtGl8Q8T w==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10691"; a="331100801"
-X-IronPort-AV: E=Sophos;i="5.99,226,1677571200"; d="scan'208";a="331100801"
+ bh=N2JFugeiDaAPUNdr2CsxkNley8Mwc85Mhwcc5tATVUs=;
+ b=cJeAGW254i7LIrGNxwmScbcd3wpmrQ4HsnN0dT6mJ04XP9/mm94T3+52
+ 7liNB510ixkXW+zyPFYxwqmJgaOB9rG/BT6dy/rcSNqhrY2fT/TlDgZUu
+ NaWioDUT3UhdpVbvVIwU3LJ77vWFpZcADwsq3Y5CudTe8NgCqs1G9j6A4
+ rh5gKkTeLsaujhp6rGfNu9N/iOTWIsbw/JAcngTUfQv/HFP5hfbZpS5c/
+ sac/ygghj19nrHL7j5OM4ruJv0QcR6I1+Qu+0MrPwUX68kS/5jsQGckTp
+ wu8dRrG4fshcX9B8AYG2TLf50zSD6f/bXteX4El5FnmDTQeCp0PDO0Riz w==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10691"; a="331100813"
+X-IronPort-AV: E=Sophos;i="5.99,226,1677571200"; d="scan'208";a="331100813"
 Received: from fmsmga003.fm.intel.com ([10.253.24.29])
  by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 25 Apr 2023 12:26:36 -0700
+ 25 Apr 2023 12:26:39 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10691"; a="782990464"
-X-IronPort-AV: E=Sophos;i="5.99,226,1677571200"; d="scan'208";a="782990464"
+X-IronPort-AV: E=McAfee;i="6600,9927,10691"; a="782990471"
+X-IronPort-AV: E=Sophos;i="5.99,226,1677571200"; d="scan'208";a="782990471"
 Received: from josouza-mobl2.fso.intel.com ([10.230.18.148])
  by fmsmga003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 25 Apr 2023 12:26:33 -0700
+ 25 Apr 2023 12:26:37 -0700
 From: =?UTF-8?q?Jos=C3=A9=20Roberto=20de=20Souza?= <jose.souza@intel.com>
 To: intel-xe@lists.freedesktop.org
-Date: Tue, 25 Apr 2023 12:26:13 -0700
-Message-Id: <20230425192624.168640-5-jose.souza@intel.com>
+Date: Tue, 25 Apr 2023 12:26:15 -0700
+Message-Id: <20230425192624.168640-7-jose.souza@intel.com>
 X-Mailer: git-send-email 2.40.0
 In-Reply-To: <20230425192624.168640-1-jose.souza@intel.com>
 References: <20230425192624.168640-1-jose.souza@intel.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-xe] [PATCH v2 04/15] drm/i915/display: rename
- intel_modeset_probe_defer() -> intel_display_driver_probe_defer()
+Subject: [Intel-xe] [PATCH v2 06/15] drm/i915/display: rename
+ intel_display_driver_* functions
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -57,8 +57,7 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Cc: Lucas De Marchi <lucas.demarchi@intel.com>,
- Jani Nikula <jani.nikula@intel.com>, rodrigo.vivi@intel.com
+Cc: Jani Nikula <jani.nikula@intel.com>, rodrigo.vivi@intel.com
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
@@ -66,56 +65,246 @@ From: Jani Nikula <jani.nikula@intel.com>
 
 Follow the usual naming conventions.
 
-Reviewed-by: Gustavo Sousa <gustavo.sousa@intel.com>
-Reviewed-by: Lucas De Marchi <lucas.demarchi@intel.com>
-Signed-off-by: Jani Nikula <jani.nikula@intel.com>
-Link: https://patchwork.freedesktop.org/patch/msgid/ab5023570d8ae55c0d9c98c78f588e51c0790b6c.1681465222.git.jani.nikula@intel.com
-(cherry picked from commit 15e4f0b541d4c0b2144955111a1b37b5bfabbf63)
----
- drivers/gpu/drm/i915/display/intel_display_driver.c | 2 +-
- drivers/gpu/drm/i915/display/intel_display_driver.h | 2 +-
- drivers/gpu/drm/i915/i915_pci.c                     | 2 +-
- 3 files changed, 3 insertions(+), 3 deletions(-)
+v2:
+- Also rename references in comments (Gustavo)
 
+Reviewed-by: Gustavo Sousa <gustavo.sousa@intel.com>
+Signed-off-by: Jani Nikula <jani.nikula@intel.com>
+Link: https://patchwork.freedesktop.org/patch/msgid/6ff7b76018bf4cf611037d7bf027c975cddfe2af.1681465222.git.jani.nikula@intel.com
+(cherry picked from commit 86a1758d751de03e8f3d8810fe22eaf571798871)
+---
+ drivers/gpu/drm/i915/display/intel_display.c  |  2 +-
+ .../drm/i915/display/intel_display_driver.c   | 16 ++++++------
+ .../drm/i915/display/intel_display_driver.h   | 14 +++++------
+ drivers/gpu/drm/i915/i915_driver.c            | 25 ++++++++++---------
+ drivers/gpu/drm/i915/i915_irq.c               |  2 +-
+ 5 files changed, 30 insertions(+), 29 deletions(-)
+
+diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
+index f77c867d7a791..d1eb24214bc0b 100644
+--- a/drivers/gpu/drm/i915/display/intel_display.c
++++ b/drivers/gpu/drm/i915/display/intel_display.c
+@@ -835,7 +835,7 @@ void intel_display_finish_reset(struct drm_i915_private *i915)
+ 		 * so need a full re-initialization.
+ 		 */
+ 		intel_pps_unlock_regs_wa(i915);
+-		intel_modeset_init_hw(i915);
++		intel_display_driver_init_hw(i915);
+ 		intel_clock_gating_init(i915);
+ 		intel_hpd_init(i915);
+ 
 diff --git a/drivers/gpu/drm/i915/display/intel_display_driver.c b/drivers/gpu/drm/i915/display/intel_display_driver.c
-index 312564aee684b..b341be788b43d 100644
+index 3b709dc4423ad..f357feaa00a8e 100644
 --- a/drivers/gpu/drm/i915/display/intel_display_driver.c
 +++ b/drivers/gpu/drm/i915/display/intel_display_driver.c
-@@ -21,7 +21,7 @@
- #include "intel_fbdev.h"
- #include "intel_opregion.h"
+@@ -74,7 +74,7 @@ bool intel_display_driver_probe_defer(struct pci_dev *pdev)
+ 	return false;
+ }
  
--bool intel_modeset_probe_defer(struct pci_dev *pdev)
-+bool intel_display_driver_probe_defer(struct pci_dev *pdev)
+-void intel_modeset_init_hw(struct drm_i915_private *i915)
++void intel_display_driver_init_hw(struct drm_i915_private *i915)
  {
- 	struct drm_privacy_screen *privacy_screen;
+ 	struct intel_cdclk_state *cdclk_state;
+ 
+@@ -172,7 +172,7 @@ static void intel_plane_possible_crtcs_init(struct drm_i915_private *dev_priv)
+ }
+ 
+ /* part #1: call before irq install */
+-int intel_modeset_init_noirq(struct drm_i915_private *i915)
++int intel_display_driver_probe_noirq(struct drm_i915_private *i915)
+ {
+ 	int ret;
+ 
+@@ -248,7 +248,7 @@ int intel_modeset_init_noirq(struct drm_i915_private *i915)
+ }
+ 
+ /* part #2: call after irq install, but before gem init */
+-int intel_modeset_init_nogem(struct drm_i915_private *i915)
++int intel_display_driver_probe_nogem(struct drm_i915_private *i915)
+ {
+ 	struct drm_device *dev = &i915->drm;
+ 	enum pipe pipe;
+@@ -283,7 +283,7 @@ int intel_modeset_init_nogem(struct drm_i915_private *i915)
+ 	intel_fdi_pll_freq_update(i915);
+ 
+ 	intel_update_czclk(i915);
+-	intel_modeset_init_hw(i915);
++	intel_display_driver_init_hw(i915);
+ 	intel_dpll_update_ref_clks(i915);
+ 
+ 	intel_hdcp_component_init(i915);
+@@ -320,7 +320,7 @@ int intel_modeset_init_nogem(struct drm_i915_private *i915)
+ }
+ 
+ /* part #3: call after gem init */
+-int intel_modeset_init(struct drm_i915_private *i915)
++int intel_display_driver_probe(struct drm_i915_private *i915)
+ {
+ 	int ret;
+ 
+@@ -384,7 +384,7 @@ void intel_display_driver_register(struct drm_i915_private *i915)
+ }
+ 
+ /* part #1: call before irq uninstall */
+-void intel_modeset_driver_remove(struct drm_i915_private *i915)
++void intel_display_driver_remove(struct drm_i915_private *i915)
+ {
+ 	if (!HAS_DISPLAY(i915))
+ 		return;
+@@ -404,7 +404,7 @@ void intel_modeset_driver_remove(struct drm_i915_private *i915)
+ }
+ 
+ /* part #2: call after irq uninstall */
+-void intel_modeset_driver_remove_noirq(struct drm_i915_private *i915)
++void intel_display_driver_remove_noirq(struct drm_i915_private *i915)
+ {
+ 	if (!HAS_DISPLAY(i915))
+ 		return;
+@@ -438,7 +438,7 @@ void intel_modeset_driver_remove_noirq(struct drm_i915_private *i915)
+ }
+ 
+ /* part #3: call after gem init */
+-void intel_modeset_driver_remove_nogem(struct drm_i915_private *i915)
++void intel_display_driver_remove_nogem(struct drm_i915_private *i915)
+ {
+ 	intel_dmc_fini(i915);
  
 diff --git a/drivers/gpu/drm/i915/display/intel_display_driver.h b/drivers/gpu/drm/i915/display/intel_display_driver.h
-index 4c18792fcafd1..744117b04ed42 100644
+index 947b666575ee2..aab498617b90e 100644
 --- a/drivers/gpu/drm/i915/display/intel_display_driver.h
 +++ b/drivers/gpu/drm/i915/display/intel_display_driver.h
-@@ -11,7 +11,7 @@
- struct drm_i915_private;
+@@ -12,14 +12,14 @@ struct drm_i915_private;
  struct pci_dev;
  
--bool intel_modeset_probe_defer(struct pci_dev *pdev);
-+bool intel_display_driver_probe_defer(struct pci_dev *pdev);
+ bool intel_display_driver_probe_defer(struct pci_dev *pdev);
+-void intel_modeset_init_hw(struct drm_i915_private *i915);
+-int intel_modeset_init_noirq(struct drm_i915_private *i915);
+-int intel_modeset_init_nogem(struct drm_i915_private *i915);
+-int intel_modeset_init(struct drm_i915_private *i915);
++void intel_display_driver_init_hw(struct drm_i915_private *i915);
++int intel_display_driver_probe_noirq(struct drm_i915_private *i915);
++int intel_display_driver_probe_nogem(struct drm_i915_private *i915);
++int intel_display_driver_probe(struct drm_i915_private *i915);
  void intel_display_driver_register(struct drm_i915_private *i915);
+-void intel_modeset_driver_remove(struct drm_i915_private *i915);
+-void intel_modeset_driver_remove_noirq(struct drm_i915_private *i915);
+-void intel_modeset_driver_remove_nogem(struct drm_i915_private *i915);
++void intel_display_driver_remove(struct drm_i915_private *i915);
++void intel_display_driver_remove_noirq(struct drm_i915_private *i915);
++void intel_display_driver_remove_nogem(struct drm_i915_private *i915);
  void intel_display_driver_unregister(struct drm_i915_private *i915);
  
-diff --git a/drivers/gpu/drm/i915/i915_pci.c b/drivers/gpu/drm/i915/i915_pci.c
-index 15a38059bacb6..0f15087f9fd96 100644
---- a/drivers/gpu/drm/i915/i915_pci.c
-+++ b/drivers/gpu/drm/i915/i915_pci.c
-@@ -1358,7 +1358,7 @@ static int i915_pci_probe(struct pci_dev *pdev, const struct pci_device_id *ent)
- 		return -ENXIO;
+ #endif /* __INTEL_DISPLAY_DRIVER_H__ */
+diff --git a/drivers/gpu/drm/i915/i915_driver.c b/drivers/gpu/drm/i915/i915_driver.c
+index 4ae8b12189a87..f6aa48d92e050 100644
+--- a/drivers/gpu/drm/i915/i915_driver.c
++++ b/drivers/gpu/drm/i915/i915_driver.c
+@@ -755,7 +755,7 @@ i915_driver_create(struct pci_dev *pdev, const struct pci_device_id *ent)
+  * @ent: matching PCI ID entry
+  *
+  * The driver probe routine has to do several things:
+- *   - drive output discovery via intel_modeset_init()
++ *   - drive output discovery via intel_display_driver_probe()
+  *   - initialize the memory manager
+  *   - allocate initial config memory
+  *   - setup the DRM framebuffer with the allocated memory
+@@ -793,7 +793,7 @@ int i915_driver_probe(struct pci_dev *pdev, const struct pci_device_id *ent)
+ 	if (ret < 0)
+ 		goto out_cleanup_mmio;
  
- 	/* Detect if we need to wait for other drivers early on */
--	if (intel_modeset_probe_defer(pdev))
-+	if (intel_display_driver_probe_defer(pdev))
- 		return -EPROBE_DEFER;
+-	ret = intel_modeset_init_noirq(i915);
++	ret = intel_display_driver_probe_noirq(i915);
+ 	if (ret < 0)
+ 		goto out_cleanup_hw;
  
- 	err = i915_driver_probe(pdev, ent);
+@@ -801,7 +801,7 @@ int i915_driver_probe(struct pci_dev *pdev, const struct pci_device_id *ent)
+ 	if (ret)
+ 		goto out_cleanup_modeset;
+ 
+-	ret = intel_modeset_init_nogem(i915);
++	ret = intel_display_driver_probe_nogem(i915);
+ 	if (ret)
+ 		goto out_cleanup_irq;
+ 
+@@ -811,7 +811,7 @@ int i915_driver_probe(struct pci_dev *pdev, const struct pci_device_id *ent)
+ 
+ 	intel_pxp_init(i915);
+ 
+-	ret = intel_modeset_init(i915);
++	ret = intel_display_driver_probe(i915);
+ 	if (ret)
+ 		goto out_cleanup_gem;
+ 
+@@ -831,14 +831,14 @@ int i915_driver_probe(struct pci_dev *pdev, const struct pci_device_id *ent)
+ 	i915_gem_driver_release(i915);
+ out_cleanup_modeset2:
+ 	/* FIXME clean up the error path */
+-	intel_modeset_driver_remove(i915);
++	intel_display_driver_remove(i915);
+ 	intel_irq_uninstall(i915);
+-	intel_modeset_driver_remove_noirq(i915);
++	intel_display_driver_remove_noirq(i915);
+ 	goto out_cleanup_modeset;
+ out_cleanup_irq:
+ 	intel_irq_uninstall(i915);
+ out_cleanup_modeset:
+-	intel_modeset_driver_remove_nogem(i915);
++	intel_display_driver_remove_nogem(i915);
+ out_cleanup_hw:
+ 	i915_driver_hw_remove(i915);
+ 	intel_memory_regions_driver_release(i915);
+@@ -874,16 +874,16 @@ void i915_driver_remove(struct drm_i915_private *i915)
+ 
+ 	intel_gvt_driver_remove(i915);
+ 
+-	intel_modeset_driver_remove(i915);
++	intel_display_driver_remove(i915);
+ 
+ 	intel_irq_uninstall(i915);
+ 
+-	intel_modeset_driver_remove_noirq(i915);
++	intel_display_driver_remove_noirq(i915);
+ 
+ 	i915_reset_error_state(i915);
+ 	i915_gem_driver_remove(i915);
+ 
+-	intel_modeset_driver_remove_nogem(i915);
++	intel_display_driver_remove_nogem(i915);
+ 
+ 	i915_driver_hw_remove(i915);
+ 
+@@ -1224,7 +1224,7 @@ static int i915_drm_resume(struct drm_device *dev)
+ 	 *
+ 	 * drm_mode_config_reset() needs AUX interrupts.
+ 	 *
+-	 * Modeset enabling in intel_modeset_init_hw() also needs working
++	 * Modeset enabling in intel_display_driver_init_hw() also needs working
+ 	 * interrupts.
+ 	 */
+ 	intel_runtime_pm_enable_interrupts(dev_priv);
+@@ -1234,7 +1234,8 @@ static int i915_drm_resume(struct drm_device *dev)
+ 
+ 	i915_gem_resume(dev_priv);
+ 
+-	intel_modeset_init_hw(dev_priv);
++	intel_display_driver_init_hw(dev_priv);
++
+ 	intel_clock_gating_init(dev_priv);
+ 	intel_hpd_init(dev_priv);
+ 
+diff --git a/drivers/gpu/drm/i915/i915_irq.c b/drivers/gpu/drm/i915/i915_irq.c
+index aa31829183315..0906ffaa0219c 100644
+--- a/drivers/gpu/drm/i915/i915_irq.c
++++ b/drivers/gpu/drm/i915/i915_irq.c
+@@ -4134,7 +4134,7 @@ void intel_irq_uninstall(struct drm_i915_private *dev_priv)
+ 	/*
+ 	 * FIXME we can get called twice during driver probe
+ 	 * error handling as well as during driver remove due to
+-	 * intel_modeset_driver_remove() calling us out of sequence.
++	 * intel_display_driver_remove() calling us out of sequence.
+ 	 * Would be nice if it didn't do that...
+ 	 */
+ 	if (!dev_priv->irq_enabled)
 -- 
 2.40.0
 
