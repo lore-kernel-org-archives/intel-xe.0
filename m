@@ -4,48 +4,49 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 73B11C7EE21
-	for <intel-xe@archiver.kernel.org>; Tue, 25 Apr 2023 19:26:55 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2B543C6FD18
+	for <intel-xe@archiver.kernel.org>; Tue, 25 Apr 2023 19:26:57 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4B8A210E627;
-	Tue, 25 Apr 2023 19:26:55 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0045510E50A;
+	Tue, 25 Apr 2023 19:26:57 +0000 (UTC)
 Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 298CD10E514
- for <intel-xe@lists.freedesktop.org>; Tue, 25 Apr 2023 19:26:52 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 552EC10E7C7
+ for <intel-xe@lists.freedesktop.org>; Tue, 25 Apr 2023 19:26:55 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1682450812; x=1713986812;
+ t=1682450815; x=1713986815;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=ODxPrlLZLH77ZGich0MVfCyjQthdNlYlGdH0wDsRiBw=;
- b=eRThhi3pW9mRxVGH0Spqfr0qr29oElUTjkn+2qIVq0Oer97E+RXRH9A2
- DHUs6cwkpIREjaKCvjwl/Js3DUqhRoDZWJk0X8Kvg/W0Tvl03jQGPPoTH
- wTWCAPRP3JLjA+AT9IIomxtVrnWvoZeSyr1RKXiSw6ljGgaajTQDXSS/V
- EiMuhfPhmp2yZaEaBU0b5AO39MLa0LtdeaS5orQyEZd1iUXJeSViyrTBb
- cvXKJ6F746xb7Wdm8tOd6wSmT62VXIh3/HYZeJtcOspG+sxcNWBHr8zYK
- rIX6N6LQXJoBXJSTZkXNJjuo9JIpe33OTp+bom/4QRVK9ihYlz6ImMx8q w==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10691"; a="331100869"
-X-IronPort-AV: E=Sophos;i="5.99,226,1677571200"; d="scan'208";a="331100869"
+ bh=nfchicMQ4KnpF/NryarySBl2ZnwWFlx768sS3ohcx3o=;
+ b=bxe9lj3tCz8hrrGMspxlx7ndfbj5Lp/JCJuKBaNs3scLz0ndvyQ7XAbA
+ OBfSN7Fc3GvXn5kOMuGQRCTo2KdnjQ+4q2D4UcgsaZLmG5mNnhIBztXbA
+ +1uNjZPjfsL9S9ruWUMuuD4QuBOFzxoHLf4c/ShfexsCi3hmfbH2ZnSRB
+ rimQJRZ+dZlZC8vMCz1PdO7aR+4AcY62ljHDwNnxQqBV9sh1YxfYGh+JI
+ iPZbwqfaMzhw+cIoQ9NU8VTl01VZjOyTvd/Vwtv+mQlI6/TQjsHehjBwr
+ i7lOzupCfmqLxq2Ym6EdKbysyQB35lzGwomrGRvXdDoBuhSUz8eMhv37l w==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10691"; a="331100919"
+X-IronPort-AV: E=Sophos;i="5.99,226,1677571200"; d="scan'208";a="331100919"
 Received: from fmsmga003.fm.intel.com ([10.253.24.29])
  by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 25 Apr 2023 12:26:45 -0700
+ 25 Apr 2023 12:26:52 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10691"; a="782990490"
-X-IronPort-AV: E=Sophos;i="5.99,226,1677571200"; d="scan'208";a="782990490"
+X-IronPort-AV: E=McAfee;i="6600,9927,10691"; a="782990508"
+X-IronPort-AV: E=Sophos;i="5.99,226,1677571200"; d="scan'208";a="782990508"
 Received: from josouza-mobl2.fso.intel.com ([10.230.18.148])
  by fmsmga003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 25 Apr 2023 12:26:44 -0700
+ 25 Apr 2023 12:26:51 -0700
 From: =?UTF-8?q?Jos=C3=A9=20Roberto=20de=20Souza?= <jose.souza@intel.com>
 To: intel-xe@lists.freedesktop.org
-Date: Tue, 25 Apr 2023 12:26:19 -0700
-Message-Id: <20230425192624.168640-11-jose.souza@intel.com>
+Date: Tue, 25 Apr 2023 12:26:23 -0700
+Message-Id: <20230425192624.168640-15-jose.souza@intel.com>
 X-Mailer: git-send-email 2.40.0
 In-Reply-To: <20230425192624.168640-1-jose.souza@intel.com>
 References: <20230425192624.168640-1-jose.souza@intel.com>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-xe] [PATCH v2 10/15] drm/i915/display: add
- intel_display_driver_early_probe()
+Subject: [Intel-xe] [PATCH v2 14/15] drm/xe/display: Disable PSR HW tracking
+ by default in all display versions
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -57,113 +58,66 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Cc: Jani Nikula <jani.nikula@intel.com>, rodrigo.vivi@intel.com
+Cc: rodrigo.vivi@intel.com
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-From: Jani Nikula <jani.nikula@intel.com>
+Of the platforms supported by Xe, only TGL and DG1 has PSR HW
+tracking.
 
-Add intel_display_driver_early_probe() as the early probe call to
-replace intel_init_display_hooks(). The latter will be "demoted" to
-setting up hooks in intel_display.c only.
-
-Reviewed-by: Gustavo Sousa <gustavo.sousa@intel.com>
-Signed-off-by: Jani Nikula <jani.nikula@intel.com>
-Link: https://patchwork.freedesktop.org/patch/msgid/0b02311e5343527b501b44671d2188f2a1b30a7d.1681465222.git.jani.nikula@intel.com
-(cherry picked from commit 62bb6b4920ce9d9a7cc365c4e1cc13134cd1cc24)
+Signed-off-by: José Roberto de Souza <jose.souza@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_display.c       | 11 -----------
- .../gpu/drm/i915/display/intel_display_driver.c    | 14 ++++++++++++++
- .../gpu/drm/i915/display/intel_display_driver.h    |  1 +
- drivers/gpu/drm/i915/i915_driver.c                 |  2 +-
- 4 files changed, 16 insertions(+), 12 deletions(-)
+ drivers/gpu/drm/xe/xe_display.c | 10 +++++-----
+ 1 file changed, 5 insertions(+), 5 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
-index f227244b0811f..cda0f3c3fbaed 100644
---- a/drivers/gpu/drm/i915/display/intel_display.c
-+++ b/drivers/gpu/drm/i915/display/intel_display.c
-@@ -8078,15 +8078,6 @@ static const struct intel_display_funcs i9xx_display_funcs = {
-  */
- void intel_init_display_hooks(struct drm_i915_private *dev_priv)
- {
--	if (!HAS_DISPLAY(dev_priv))
--		return;
--
--	intel_color_init_hooks(dev_priv);
--	intel_init_cdclk_hooks(dev_priv);
--	intel_audio_hooks_init(dev_priv);
--
--	intel_dpll_init_clock_hook(dev_priv);
--
- 	if (DISPLAY_VER(dev_priv) >= 9) {
- 		dev_priv->display.funcs.display = &skl_display_funcs;
- 	} else if (HAS_DDI(dev_priv)) {
-@@ -8099,8 +8090,6 @@ void intel_init_display_hooks(struct drm_i915_private *dev_priv)
- 	} else {
- 		dev_priv->display.funcs.display = &i9xx_display_funcs;
- 	}
--
--	intel_fdi_init_hook(dev_priv);
- }
+diff --git a/drivers/gpu/drm/xe/xe_display.c b/drivers/gpu/drm/xe/xe_display.c
+index fbae60c179be1..376186bc02e51 100644
+--- a/drivers/gpu/drm/xe/xe_display.c
++++ b/drivers/gpu/drm/xe/xe_display.c
+@@ -449,7 +449,7 @@ __diag_ignore_all("-Woverride-init", "Allow field overrides in table");
+ 	.has_hdcp = 1,							\
+ 	.has_ipc = 1,							\
+ 	.has_psr = 1,							\
+-	.has_psr_hw_tracking = 1,					\
++	.has_psr_hw_tracking = 0,					\
+ 	.color = { .degamma_lut_size = 33, .gamma_lut_size = 262145 }
  
- int intel_initial_commit(struct drm_device *dev)
-diff --git a/drivers/gpu/drm/i915/display/intel_display_driver.c b/drivers/gpu/drm/i915/display/intel_display_driver.c
-index 0e391066d6d3b..92c624f6d2ae7 100644
---- a/drivers/gpu/drm/i915/display/intel_display_driver.c
-+++ b/drivers/gpu/drm/i915/display/intel_display_driver.c
-@@ -32,6 +32,7 @@
- #include "intel_display_types.h"
- #include "intel_dmc.h"
- #include "intel_dp.h"
-+#include "intel_dpll.h"
- #include "intel_dpll_mgr.h"
- #include "intel_fb.h"
- #include "intel_fbc.h"
-@@ -171,6 +172,19 @@ static void intel_plane_possible_crtcs_init(struct drm_i915_private *dev_priv)
- 	}
- }
+ #define XE_LPD								\
+@@ -472,7 +472,8 @@ __diag_ignore_all("-Woverride-init", "Allow field overrides in table");
+ 	.has_fpga_dbg = 1,						\
+ 	.has_hdcp = 1,							\
+ 	.has_ipc = 1,							\
+-	.has_psr = 1
++	.has_psr = 1,							\
++	.has_psr_hw_tracking = 0
  
-+void intel_display_driver_early_probe(struct drm_i915_private *i915)
-+{
-+	if (!HAS_DISPLAY(i915))
-+		return;
-+
-+	intel_color_init_hooks(i915);
-+	intel_init_cdclk_hooks(i915);
-+	intel_audio_hooks_init(i915);
-+	intel_dpll_init_clock_hook(i915);
-+	intel_init_display_hooks(i915);
-+	intel_fdi_init_hook(i915);
-+}
-+
- /* part #1: call before irq install */
- int intel_display_driver_probe_noirq(struct drm_i915_private *i915)
- {
-diff --git a/drivers/gpu/drm/i915/display/intel_display_driver.h b/drivers/gpu/drm/i915/display/intel_display_driver.h
-index 84e7977f265ac..c276a58ee3293 100644
---- a/drivers/gpu/drm/i915/display/intel_display_driver.h
-+++ b/drivers/gpu/drm/i915/display/intel_display_driver.h
-@@ -15,6 +15,7 @@ struct pci_dev;
- 
- bool intel_display_driver_probe_defer(struct pci_dev *pdev);
- void intel_display_driver_init_hw(struct drm_i915_private *i915);
-+void intel_display_driver_early_probe(struct drm_i915_private *i915);
- int intel_display_driver_probe_noirq(struct drm_i915_private *i915);
- int intel_display_driver_probe_nogem(struct drm_i915_private *i915);
- int intel_display_driver_probe(struct drm_i915_private *i915);
-diff --git a/drivers/gpu/drm/i915/i915_driver.c b/drivers/gpu/drm/i915/i915_driver.c
-index da3bcd9d7a0d0..decaff25c36cf 100644
---- a/drivers/gpu/drm/i915/i915_driver.c
-+++ b/drivers/gpu/drm/i915/i915_driver.c
-@@ -254,7 +254,7 @@ static int i915_driver_early_probe(struct drm_i915_private *dev_priv)
- 	intel_detect_pch(dev_priv);
- 
- 	intel_irq_init(dev_priv);
--	intel_init_display_hooks(dev_priv);
-+	intel_display_driver_early_probe(dev_priv);
- 	intel_clock_gating_hooks_init(dev_priv);
- 
- 	intel_detect_preproduction_hw(dev_priv);
+ #define XE_LPDP								\
+ 	XE_LPD,								\
+@@ -492,6 +493,7 @@ void xe_display_info_init(struct xe_device *xe)
+ 		xe->info.display = (struct xe_device_display_info) {
+ 			GEN12_DISPLAY,
+ 			.has_modular_fia = 1,
++			.has_psr_hw_tracking = 1,
+ 		};
+ 		break;
+ 	case XE_ROCKETLAKE:
+@@ -511,15 +513,13 @@ void xe_display_info_init(struct xe_device *xe)
+ 		xe->info.display = (struct xe_device_display_info) {
+ 			GEN12_DISPLAY,
+ 			.has_hti = 1,
+-			.has_psr_hw_tracking = 0,
+ 		};
+ 		break;
+ 	case XE_ALDERLAKE_P:
+ 		xe->info.display = (struct xe_device_display_info) {
+ 			XE_LPD,
+ 			.has_cdclk_crawl = 1,
+-			.has_modular_fia = 1,
+-			.has_psr_hw_tracking = 0,
++			.has_modular_fia = 1
+ 		};
+ 		break;
+ 	case XE_DG2:
 -- 
 2.40.0
 
