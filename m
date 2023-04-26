@@ -4,52 +4,53 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 189FAC7618E
-	for <intel-xe@archiver.kernel.org>; Wed, 26 Apr 2023 16:16:32 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id D0A48C7618E
+	for <intel-xe@archiver.kernel.org>; Wed, 26 Apr 2023 16:47:36 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E08E310E189;
-	Wed, 26 Apr 2023 16:16:31 +0000 (UTC)
-Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C9D6910E189
- for <intel-xe@lists.freedesktop.org>; Wed, 26 Apr 2023 16:16:29 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8E37C10E123;
+	Wed, 26 Apr 2023 16:47:36 +0000 (UTC)
+Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0AC8010E123
+ for <intel-xe@lists.freedesktop.org>; Wed, 26 Apr 2023 16:47:33 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1682525789; x=1714061789;
- h=message-id:date:mime-version:subject:to:cc:references:
- from:in-reply-to:content-transfer-encoding;
- bh=u73aPv3VTmOwQ7SMOzhTM7LnEXTIlKb50XFufGx8QIY=;
- b=IFNjBEJ5MeL3tVAEyM420g4Z8fC78/EGY3LIrg2Ar9jnF2g7XyAMehi5
- ftxIAOFR4z6ZbRfURCoBjTfKQFN8QyaF8LH5ykbFWIgMOvCgdEYrhYnDF
- BKQCYiqpIbYxJAcd9agZYPvGiz09wRNoxHjy99GZ15Y4kIaWVElvud5KV
- LWU6xC7BcHGnKYuBF6HIrIdWRotucD6wnOTX5rWcfRjpiXxCtEab6GlhA
- Wj7ZrKoSk0Uy7lmTxRoZrwM+CiYmQifW1qT/4LkKW3PmKkyLY4ANkelHe
- DfiGd0LOiaz4kK4ixeEQ8NedVk4WtBW0CnjPbX4E2dJBQOGziuGvEYUly w==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10692"; a="345913728"
-X-IronPort-AV: E=Sophos;i="5.99,228,1677571200"; d="scan'208";a="345913728"
-Received: from fmsmga004.fm.intel.com ([10.253.24.48])
- by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 26 Apr 2023 09:14:25 -0700
+ t=1682527654; x=1714063654;
+ h=message-id:date:mime-version:subject:to:references:from:
+ in-reply-to:content-transfer-encoding;
+ bh=6CYPj5IADtVrQPqPLVSUdHDY/KjpnqyziZ34IyopxFw=;
+ b=WBWNM5GuvZdIkMUIHg70I61xxJYtqSikJ+nOp9FcdwgW72+p/cvstCjg
+ vDjKoNFAtX6kw6jCDHsc4tf6UqYfCxZrjLftzDUALAaNmxQBtEonUHCc/
+ 96YMHleSauIWhmik1VoKqzbcf1oudjlfRctCSAnfuGtzWvwRl39Cam0my
+ +QA8cfQKOc5ALvzjsR3aSM/u2j1qHBkv15yeI3Amr4FFrrFeTBUuM8nlZ
+ liejZmBA8cktmgDGqt62hofisKJ5oTwNE7x10dsfOuNjCFq2ONZBW7R4L
+ guDpI5Z5kdmWwKyIp92UkYkIjWdmb5ibAysj+s+Xf+X8xGkp1O5J8rB5R w==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10692"; a="327491987"
+X-IronPort-AV: E=Sophos;i="5.99,228,1677571200"; d="scan'208";a="327491987"
+Received: from fmsmga007.fm.intel.com ([10.253.24.52])
+ by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 26 Apr 2023 09:47:29 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10692"; a="763381134"
-X-IronPort-AV: E=Sophos;i="5.99,228,1677571200"; d="scan'208";a="763381134"
+X-IronPort-AV: E=McAfee;i="6600,9927,10692"; a="696705263"
+X-IronPort-AV: E=Sophos;i="5.99,228,1677571200"; d="scan'208";a="696705263"
 Received: from spmccann-mobl.ger.corp.intel.com (HELO [10.252.16.175])
  ([10.252.16.175])
- by fmsmga004-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 26 Apr 2023 09:14:23 -0700
-Message-ID: <7a5d4461-98bf-11df-2ee2-73a17893b0a8@intel.com>
-Date: Wed, 26 Apr 2023 17:14:21 +0100
+ by fmsmga007-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 26 Apr 2023 09:47:27 -0700
+Message-ID: <1f799822-5b40-15f7-d787-fb5eace041eb@intel.com>
+Date: Wed, 26 Apr 2023 17:47:26 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Firefox/102.0 Thunderbird/102.9.1
 Content-Language: en-GB
-To: Rodrigo Vivi <rodrigo.vivi@intel.com>, intel-xe@lists.freedesktop.org
-References: <20230426131234.482201-1-rodrigo.vivi@intel.com>
+To: =?UTF-8?Q?Jos=c3=a9_Roberto_de_Souza?= <jose.souza@intel.com>,
+ intel-xe@lists.freedesktop.org
+References: <20230426164410.48171-1-jose.souza@intel.com>
 From: Matthew Auld <matthew.auld@intel.com>
-In-Reply-To: <20230426131234.482201-1-rodrigo.vivi@intel.com>
+In-Reply-To: <20230426164410.48171-1-jose.souza@intel.com>
 Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
-Subject: Re: [Intel-xe] [PATCH 1/2] Revert "drm/xe: Enable d3cold support
- for dgfx"
+Subject: Re: [Intel-xe] [PATCH] drm/xe: Limit system memory size of half of
+ system memory
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -64,49 +65,32 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On 26/04/2023 14:12, Rodrigo Vivi wrote:
-> This reverts commit 7c1c3d3898c60f3e96f40737f0d8ddd4b8934aaf.
+On 26/04/2023 17:44, José Roberto de Souza wrote:
+> ttm_global_init() imposes this limitation.
 > 
-> Unfortunately we are not ready for this step yet.
-> 
-> We need to rethink our strategy on D3cold:
-> 
-> 1. rewrite the VRAM save / restore to avoid buffer object locks
-> 2. block D3cold if we have a big amount of device memory in use in order
->     to reduce the latency.
-> 3. at resume, detect if we really lost power and avoid memory restoration
->     if we were only up to d3cold
-> 
-> Reference: https://gitlab.freedesktop.org/drm/xe/kernel/-/issues/256
 > Cc: Matthew Auld <matthew.auld@intel.com>
-> Cc: Thomas Hellström <thomas.hellstrom@linux.intel.com>
-> Cc: Riana Tauro <riana.tauro@intel.com>
-> Signed-off-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
+> Signed-off-by: José Roberto de Souza <jose.souza@intel.com>
+> ---
+>   drivers/gpu/drm/xe/xe_ttm_sys_mgr.c | 5 ++++-
+>   1 file changed, 4 insertions(+), 1 deletion(-)
+> 
+> diff --git a/drivers/gpu/drm/xe/xe_ttm_sys_mgr.c b/drivers/gpu/drm/xe/xe_ttm_sys_mgr.c
+> index 5b0674bbb8ed0..3e1fa0c832cab 100644
+> --- a/drivers/gpu/drm/xe/xe_ttm_sys_mgr.c
+> +++ b/drivers/gpu/drm/xe/xe_ttm_sys_mgr.c
+> @@ -105,7 +105,10 @@ int xe_ttm_sys_mgr_init(struct xe_device *xe)
+>   	u64 gtt_size;
+>   
+>   	si_meminfo(&si);
+> -	gtt_size = (u64)si.totalram * si.mem_unit * 3/4;
+> +	gtt_size = (u64)si.totalram * si.mem_unit;
+> +	/* TTM limits allocation of all TTM devices by 50% of system memory */
+> +	gtt_size /= 2;
 
-fwiw for the series,
+Beat me to it. That indeed makes more sense,
 Reviewed-by: Matthew Auld <matthew.auld@intel.com>
 
-> ---
->   drivers/gpu/drm/xe/xe_pci.c | 9 +++++++--
->   1 file changed, 7 insertions(+), 2 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/xe/xe_pci.c b/drivers/gpu/drm/xe/xe_pci.c
-> index 14be0259a222..9324aed8a821 100644
-> --- a/drivers/gpu/drm/xe/xe_pci.c
-> +++ b/drivers/gpu/drm/xe/xe_pci.c
-> @@ -762,8 +762,13 @@ static int xe_pci_runtime_idle(struct device *dev)
->   	struct pci_dev *pdev = to_pci_dev(dev);
->   	struct xe_device *xe = pdev_to_xe_device(pdev);
->   
-> -	if (IS_DGFX(xe) && !xe_device_mem_access_ongoing(xe))
-> -		xe->d3cold_allowed = true;
-> +	/*
-> +	 * FIXME: d3cold should be allowed (true) if
-> +	 * (IS_DGFX(xe) && !xe_device_mem_access_ongoing(xe))
-> +	 * however the change to the buddy allocator broke the
-> +	 * xe_bo_restore_kernel when the pci device is disabled
-> +	 */
-> +	 xe->d3cold_allowed = false;
->   
->   	return 0;
->   }
+> +
+>   	man->use_tt = true;
+>   	man->func = &xe_ttm_sys_mgr_func;
+>   	ttm_resource_manager_init(man, &xe->ttm, gtt_size >> PAGE_SHIFT);
