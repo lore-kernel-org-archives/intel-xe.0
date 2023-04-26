@@ -4,52 +4,46 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id D0A48C7618E
-	for <intel-xe@archiver.kernel.org>; Wed, 26 Apr 2023 16:47:36 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id AD618C77B78
+	for <intel-xe@archiver.kernel.org>; Wed, 26 Apr 2023 16:48:46 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8E37C10E123;
-	Wed, 26 Apr 2023 16:47:36 +0000 (UTC)
-Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0AC8010E123
- for <intel-xe@lists.freedesktop.org>; Wed, 26 Apr 2023 16:47:33 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 804CA892F2;
+	Wed, 26 Apr 2023 16:48:46 +0000 (UTC)
+Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 87B36892F2
+ for <intel-xe@lists.freedesktop.org>; Wed, 26 Apr 2023 16:48:45 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1682527654; x=1714063654;
- h=message-id:date:mime-version:subject:to:references:from:
- in-reply-to:content-transfer-encoding;
- bh=6CYPj5IADtVrQPqPLVSUdHDY/KjpnqyziZ34IyopxFw=;
- b=WBWNM5GuvZdIkMUIHg70I61xxJYtqSikJ+nOp9FcdwgW72+p/cvstCjg
- vDjKoNFAtX6kw6jCDHsc4tf6UqYfCxZrjLftzDUALAaNmxQBtEonUHCc/
- 96YMHleSauIWhmik1VoKqzbcf1oudjlfRctCSAnfuGtzWvwRl39Cam0my
- +QA8cfQKOc5ALvzjsR3aSM/u2j1qHBkv15yeI3Amr4FFrrFeTBUuM8nlZ
- liejZmBA8cktmgDGqt62hofisKJ5oTwNE7x10dsfOuNjCFq2ONZBW7R4L
- guDpI5Z5kdmWwKyIp92UkYkIjWdmb5ibAysj+s+Xf+X8xGkp1O5J8rB5R w==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10692"; a="327491987"
-X-IronPort-AV: E=Sophos;i="5.99,228,1677571200"; d="scan'208";a="327491987"
-Received: from fmsmga007.fm.intel.com ([10.253.24.52])
- by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 26 Apr 2023 09:47:29 -0700
+ t=1682527725; x=1714063725;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=5OH5FhHQrli3oJ+i8m132Fz+2Dqe5T2mq1Vsf1bq6zA=;
+ b=MZq6JSjcWA7/j6kSSw6IKUKwgMOhDeClmfV93oMaa0o6Nb0HVCJwuFPQ
+ ptmWCYWbjmBxkE1KriN1bPAkTpnVK9wruj12xnAtslokY0418lNkyaDOk
+ BgoU8HeWYASwY8jMYsTPsytaC8mvqZXwNT+Xx7Ebm7hYH3XH2WaaEUXsG
+ C6L/xWTsbzIAkPvVQWjmK4dhQ3dC8N4rrYzTU9INehZlAtfljnPaM359i
+ 1m/nE8OH0pKuA/HqABwR58FpckP5UYXRXCkhTyTr6sMLgJf7jf1XhjEE4
+ NOWhc2JngfzTHWfxTF0NimeW3zZ0xdPu2bs1BrT8cliMBzhdb+edZSaSL A==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10692"; a="345928811"
+X-IronPort-AV: E=Sophos;i="5.99,228,1677571200"; d="scan'208";a="345928811"
+Received: from orsmga003.jf.intel.com ([10.7.209.27])
+ by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 26 Apr 2023 09:44:22 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10692"; a="696705263"
-X-IronPort-AV: E=Sophos;i="5.99,228,1677571200"; d="scan'208";a="696705263"
-Received: from spmccann-mobl.ger.corp.intel.com (HELO [10.252.16.175])
- ([10.252.16.175])
- by fmsmga007-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 26 Apr 2023 09:47:27 -0700
-Message-ID: <1f799822-5b40-15f7-d787-fb5eace041eb@intel.com>
-Date: Wed, 26 Apr 2023 17:47:26 +0100
+X-IronPort-AV: E=McAfee;i="6600,9927,10692"; a="644317930"
+X-IronPort-AV: E=Sophos;i="5.99,228,1677571200"; d="scan'208";a="644317930"
+Received: from josouza-mobl2.fso.intel.com ([10.230.18.148])
+ by orsmga003-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 26 Apr 2023 09:44:19 -0700
+From: =?UTF-8?q?Jos=C3=A9=20Roberto=20de=20Souza?= <jose.souza@intel.com>
+To: intel-xe@lists.freedesktop.org
+Date: Wed, 26 Apr 2023 09:44:10 -0700
+Message-Id: <20230426164410.48171-1-jose.souza@intel.com>
+X-Mailer: git-send-email 2.40.0
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Firefox/102.0 Thunderbird/102.9.1
-Content-Language: en-GB
-To: =?UTF-8?Q?Jos=c3=a9_Roberto_de_Souza?= <jose.souza@intel.com>,
- intel-xe@lists.freedesktop.org
-References: <20230426164410.48171-1-jose.souza@intel.com>
-From: Matthew Auld <matthew.auld@intel.com>
-In-Reply-To: <20230426164410.48171-1-jose.souza@intel.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-Subject: Re: [Intel-xe] [PATCH] drm/xe: Limit system memory size of half of
+Subject: [Intel-xe] [PATCH] drm/xe: Limit system memory size of half of
  system memory
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -62,35 +56,34 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Cc: Matthew Auld <matthew.auld@intel.com>
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On 26/04/2023 17:44, José Roberto de Souza wrote:
-> ttm_global_init() imposes this limitation.
-> 
-> Cc: Matthew Auld <matthew.auld@intel.com>
-> Signed-off-by: José Roberto de Souza <jose.souza@intel.com>
-> ---
->   drivers/gpu/drm/xe/xe_ttm_sys_mgr.c | 5 ++++-
->   1 file changed, 4 insertions(+), 1 deletion(-)
-> 
-> diff --git a/drivers/gpu/drm/xe/xe_ttm_sys_mgr.c b/drivers/gpu/drm/xe/xe_ttm_sys_mgr.c
-> index 5b0674bbb8ed0..3e1fa0c832cab 100644
-> --- a/drivers/gpu/drm/xe/xe_ttm_sys_mgr.c
-> +++ b/drivers/gpu/drm/xe/xe_ttm_sys_mgr.c
-> @@ -105,7 +105,10 @@ int xe_ttm_sys_mgr_init(struct xe_device *xe)
->   	u64 gtt_size;
->   
->   	si_meminfo(&si);
-> -	gtt_size = (u64)si.totalram * si.mem_unit * 3/4;
-> +	gtt_size = (u64)si.totalram * si.mem_unit;
-> +	/* TTM limits allocation of all TTM devices by 50% of system memory */
-> +	gtt_size /= 2;
+ttm_global_init() imposes this limitation.
 
-Beat me to it. That indeed makes more sense,
-Reviewed-by: Matthew Auld <matthew.auld@intel.com>
+Cc: Matthew Auld <matthew.auld@intel.com>
+Signed-off-by: José Roberto de Souza <jose.souza@intel.com>
+---
+ drivers/gpu/drm/xe/xe_ttm_sys_mgr.c | 5 ++++-
+ 1 file changed, 4 insertions(+), 1 deletion(-)
 
-> +
->   	man->use_tt = true;
->   	man->func = &xe_ttm_sys_mgr_func;
->   	ttm_resource_manager_init(man, &xe->ttm, gtt_size >> PAGE_SHIFT);
+diff --git a/drivers/gpu/drm/xe/xe_ttm_sys_mgr.c b/drivers/gpu/drm/xe/xe_ttm_sys_mgr.c
+index 5b0674bbb8ed0..3e1fa0c832cab 100644
+--- a/drivers/gpu/drm/xe/xe_ttm_sys_mgr.c
++++ b/drivers/gpu/drm/xe/xe_ttm_sys_mgr.c
+@@ -105,7 +105,10 @@ int xe_ttm_sys_mgr_init(struct xe_device *xe)
+ 	u64 gtt_size;
+ 
+ 	si_meminfo(&si);
+-	gtt_size = (u64)si.totalram * si.mem_unit * 3/4;
++	gtt_size = (u64)si.totalram * si.mem_unit;
++	/* TTM limits allocation of all TTM devices by 50% of system memory */
++	gtt_size /= 2;
++
+ 	man->use_tt = true;
+ 	man->func = &xe_ttm_sys_mgr_func;
+ 	ttm_resource_manager_init(man, &xe->ttm, gtt_size >> PAGE_SHIFT);
+-- 
+2.40.0
+
