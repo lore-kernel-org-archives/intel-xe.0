@@ -4,45 +4,48 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id E1EF2C77B7C
-	for <intel-xe@archiver.kernel.org>; Wed, 26 Apr 2023 21:32:59 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id D37ADC7EE25
+	for <intel-xe@archiver.kernel.org>; Wed, 26 Apr 2023 21:33:00 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A1E2510EA45;
-	Wed, 26 Apr 2023 21:32:58 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id EC53C10EA4D;
+	Wed, 26 Apr 2023 21:32:59 +0000 (UTC)
 Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1331C10E335
- for <intel-xe@lists.freedesktop.org>; Wed, 26 Apr 2023 21:32:55 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 146AD10EA45
+ for <intel-xe@lists.freedesktop.org>; Wed, 26 Apr 2023 21:32:57 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1682544776; x=1714080776;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=UnHnCIjkg/iezxyWngc9tF2drbIsFeDeybw95Zz048A=;
- b=hJS6D52/6+jHZmFmv4ljbwrIfYqSg6i0hGFWuNJa/UMM5HiHrLOBWJrT
- 7J5xFVA+dDINhLRz7VT/+Uf9VAQlyaPEJyqTCkwKRoyGGOBOHJV1f4lzW
- 2nJ6wX+JFuTf/BS2UQVUTtTWM+M2/VArbw8aFREieyi/S+dlKIAIy5bgt
- 46FliVdEEyi+tUAUbVtRHpLbkA8tHweDV53oPWvHKfw0efVbUcY+oX+3T
- UtYfVSTYb/9a2fVjTqf06ipsadISOdvXM+ZbHmjAP77eiXb9WmGvHWbMQ
- DJkO29jwJETR2IxNR+dvHRmSltC0wu4/mEFz6NDLfp/onfTd8e2lnfx3l A==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10692"; a="375213083"
-X-IronPort-AV: E=Sophos;i="5.99,229,1677571200"; d="scan'208";a="375213083"
+ t=1682544777; x=1714080777;
+ h=from:to:cc:subject:date:message-id:in-reply-to:
+ references:mime-version:content-transfer-encoding;
+ bh=PVUHNzJ+P89EXCNR1Wdp+9hCBGqZsKqeRzIkMetUT+w=;
+ b=lE57Eca/+AhVAKY6VSH/6CK5+91FZDon6t3qqvoBLRrPvR5j9mnyrs4E
+ pgmsFHCzIgAseuo2qYA66k3LPQPyLOxGH+vMTdgUdOVB0BBEpTg0Mhjia
+ qwFfDqFzhL33SPR+oDImxP50v+Oh534NudjAkPgy21quDiBkJhs/H41M1
+ C1J06XxIi5DA2v2oQ6w5qFS9qCJunY3U46eJxC1E0G27StXUPvNnKSliV
+ jmhkqVhqohYgVfhe+o34nHFPtN/2IdV+OJ6EyOMn8NV+M+hFif5yQdKNL
+ 5NrtRLTFEQnLH1AhMb4/5MCZpz0x6FcrNqaplAT7Aaoa3/dshlCFKEfOo Q==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10692"; a="375213096"
+X-IronPort-AV: E=Sophos;i="5.99,229,1677571200"; d="scan'208";a="375213096"
 Received: from orsmga003.jf.intel.com ([10.7.209.27])
  by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 26 Apr 2023 14:32:55 -0700
+ 26 Apr 2023 14:32:56 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10692"; a="644415150"
-X-IronPort-AV: E=Sophos;i="5.99,229,1677571200"; d="scan'208";a="644415150"
+X-IronPort-AV: E=McAfee;i="6600,9927,10692"; a="644415188"
+X-IronPort-AV: E=Sophos;i="5.99,229,1677571200"; d="scan'208";a="644415188"
 Received: from lucas-s2600cw.jf.intel.com ([10.165.21.196])
  by orsmga003-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 26 Apr 2023 14:32:54 -0700
+ 26 Apr 2023 14:32:55 -0700
 From: Lucas De Marchi <lucas.demarchi@intel.com>
 To: intel-xe@lists.freedesktop.org
-Date: Wed, 26 Apr 2023 14:32:25 -0700
-Message-Id: <20230426213242.1315119-1-lucas.demarchi@intel.com>
+Date: Wed, 26 Apr 2023 14:32:37 -0700
+Message-Id: <20230426213242.1315119-13-lucas.demarchi@intel.com>
 X-Mailer: git-send-email 2.40.1
+In-Reply-To: <20230426213242.1315119-1-lucas.demarchi@intel.com>
+References: <20230426213242.1315119-1-lucas.demarchi@intel.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-xe] [PATCH v2 00/17] Cleanup registers and introduce xe_reg_*
+Subject: [Intel-xe] [PATCH v2 12/17] drm/xe/rtp: Improve magic macros for
+ RTP tables
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -59,114 +62,207 @@ Cc: Lucas De Marchi <lucas.demarchi@intel.com>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Continuation of https://patchwork.freedesktop.org/series/116411/. Now
-not only the trivial cleanup/renames are done, but also the harder
-migration to xe's own type for registers. This is meant to replace our
-uses of i915_reg_t and i915_mcr_reg_t.
+The macros for writing the rtp tables have some downsides:
 
-Due to popular demand, this time the type safety between mcr/non-mcr
-registers remain. Actually it's a bit more useful now since calling
-xe_mmio_*() on a register defined in the header will fail since there's
-no such `.reg` field in it.
+	1) They are fragile, and when making a typo it's hard to know
+	   where it's failing for someone not used to them
+	2) They polute the global scope. The CONCAT/COUNT_ARGS/etc only
+	   work because they are defined exactly the same as the ones in
+	   kernel.h.
+	3) They are not compatible with rules/actions with registers
+	   passing additional options
 
-Also reordered the patches a little bit to make the more mechanical
-changes first so to allow easier review and let them be merged
-regardless of the more controversial part.
+This new implementation fixes (2) and (3).
 
-When building with display, build breaks between these 2 patches:
-  drm/xe: Introduce xe_reg/xe_reg_mcr
-  drm/xe: Use XE_REG/XE_REG_MCR
+For (2), prefix everything with "_XE" or "XE_RTP", so there is less chance of
+clashes. Also, the maximum number of rules and actions is 4, so there is
+no need to make the helper macros go until 12: reduce that to 5, so if
+more arguments is passed, the compiler gives an error that there is not
+definition with _5 suffix.
 
-I believe it's easier to review with those separates since the second is
-a mechanical change. And also, we are bringing display to the top on
-rebases, so in theory once the branch is rebased there won't be a build
-break. I can squash them if preferred when applying though. I found a
-way to remove the additional display CFLAGS  in the Makefile, but
-unfortunately there is more work needed on header deps to allow us to do
-that.
-
-Tested on a DG2 with/without display and didn't notice any regressions.
+For (3), change the implementation to concentrate on "pasting a prefix
+to each argument" rather than the more general "call any macro for each
+argument". Hopefully this will avoid trying to extending this infra and
+making it more complex. The new changes to how the arguments are
+constructed using tuples will allow extending the interface where it's
+needed: passing additional register fields to allow creating our own
+struct xe_reg.
 
 v2:
-  - Handle several review comments by Matt Roper, fixing up some
-    register fields, removing other registers, etc. See individual
-    commit messages for the changes
-  - Simplify the RTP macros and start using XE_RTP_ prefix for macros in
-    the xe_rtp_helpers.h header that are to be used in the xe_rtp.h
-    header  (Michal Wajdeczko)
+  - Prefer XE_RTP_ prefix for helpers use in the rest of rtp header
+    (Michal Wajdeczko)
+  - Remove unnecessary indirection to paste to each arg
 
-Lucas De Marchi (17):
-  drm/xe: Cleanup page-related defines
-  fixup! drm/i915/display: Remaining changes to make xe compile
-  fixup! drm/i915/display: Allow fbdev to allocate stolen memory
-  drm/xe: Rename RC0/RC6 macros
-  drm/xe: Rename instruction field to avoid confusion
-  drm/xe/guc: Rename GEN11_SOFT_SCRATCH for clarity
-  drm/xe/guc: Move GuC registers to regs/
-  drm/xe/guc: Convert GuC registers to REG_FIELD/REG_BIT
-  drm/xe: Drop gen afixes from registers
-  drm/xe: Use REG_FIELD/REG_BIT for all regs/*.h
-  drm/xe: Clarify register types on PAT programming
-  drm/xe/rtp: Improve magic macros for RTP tables
-  drm/xe: Introduce xe_reg/xe_reg_mcr
-  drm/xe: Use XE_REG/XE_REG_MCR
-  drm/xe: Annotate masked registers used by RTP
-  drm/xe: Plumb xe_reg into WAs, rtp, etc
-  drm/xe: Move helper macros to separate header
+Signed-off-by: Lucas De Marchi <lucas.demarchi@intel.com>
+Reviewed-by: Matt Roper <matthew.d.roper@intel.com> # v1
+---
+ drivers/gpu/drm/xe/xe_rtp.h | 107 +++++++++++++++++++++++-------------
+ 1 file changed, 70 insertions(+), 37 deletions(-)
 
- drivers/gpu/drm/i915/display/intel_fbdev.c    |   4 +-
- drivers/gpu/drm/xe/Makefile                   |   7 +-
- drivers/gpu/drm/xe/display/xe_fb_pin.c        |  23 +-
- drivers/gpu/drm/xe/display/xe_plane_initial.c |   4 +-
- drivers/gpu/drm/xe/regs/xe_engine_regs.h      | 100 ++---
- drivers/gpu/drm/xe/regs/xe_gpu_commands.h     |   6 +-
- drivers/gpu/drm/xe/regs/xe_gt_regs.h          | 363 +++++++++---------
- drivers/gpu/drm/xe/regs/xe_guc_regs.h         | 143 +++++++
- drivers/gpu/drm/xe/regs/xe_reg_defs.h         |  84 ++++
- drivers/gpu/drm/xe/regs/xe_regs.h             |  65 ++--
- drivers/gpu/drm/xe/tests/xe_migrate.c         |  15 +-
- drivers/gpu/drm/xe/tests/xe_rtp_test.c        |  51 ++-
- drivers/gpu/drm/xe/xe_bo.h                    |  52 +--
- drivers/gpu/drm/xe/xe_execlist.c              |   8 +-
- drivers/gpu/drm/xe/xe_force_wake.c            |  18 +-
- drivers/gpu/drm/xe/xe_ggtt.c                  |  40 +-
- drivers/gpu/drm/xe/xe_gt.c                    |   4 +-
- drivers/gpu/drm/xe/xe_gt_clock.c              |  29 +-
- drivers/gpu/drm/xe/xe_gt_mcr.c                |  74 ++--
- drivers/gpu/drm/xe/xe_gt_mcr.h                |  11 +-
- drivers/gpu/drm/xe/xe_guc.c                   |  50 ++-
- drivers/gpu/drm/xe/xe_guc_ads.c               |  16 +-
- drivers/gpu/drm/xe/xe_guc_pc.c                |  30 +-
- drivers/gpu/drm/xe/xe_guc_reg.h               | 151 --------
- drivers/gpu/drm/xe/xe_huc.c                   |   6 +-
- drivers/gpu/drm/xe/xe_hw_engine.c             |  42 +-
- drivers/gpu/drm/xe/xe_irq.c                   |   8 +-
- drivers/gpu/drm/xe/xe_migrate.c               |  73 ++--
- drivers/gpu/drm/xe/xe_mmio.c                  |   7 +-
- drivers/gpu/drm/xe/xe_mocs.c                  |  11 +-
- drivers/gpu/drm/xe/xe_pat.c                   |  35 +-
- drivers/gpu/drm/xe/xe_pcode_api.h             |   6 +-
- drivers/gpu/drm/xe/xe_pt.c                    |  40 +-
- drivers/gpu/drm/xe/xe_reg_sr.c                |  51 ++-
- drivers/gpu/drm/xe/xe_reg_sr.h                |   3 +-
- drivers/gpu/drm/xe/xe_reg_sr_types.h          |  10 +-
- drivers/gpu/drm/xe/xe_reg_whitelist.c         |  12 +-
- drivers/gpu/drm/xe/xe_ring_ops.c              |   8 +-
- drivers/gpu/drm/xe/xe_rtp.c                   |   7 +-
- drivers/gpu/drm/xe/xe_rtp.h                   | 106 ++---
- drivers/gpu/drm/xe/xe_rtp_helpers.h           |  81 ++++
- drivers/gpu/drm/xe/xe_rtp_types.h             |  22 +-
- drivers/gpu/drm/xe/xe_ttm_stolen_mgr.c        |   2 +-
- drivers/gpu/drm/xe/xe_tuning.c                |  11 +-
- drivers/gpu/drm/xe/xe_uc_fw.c                 |   2 +-
- drivers/gpu/drm/xe/xe_vm.c                    |  20 +-
- drivers/gpu/drm/xe/xe_wa.c                    | 180 ++++-----
- drivers/gpu/drm/xe/xe_wopcm.c                 |   2 +-
- 48 files changed, 1080 insertions(+), 1013 deletions(-)
- create mode 100644 drivers/gpu/drm/xe/regs/xe_guc_regs.h
- delete mode 100644 drivers/gpu/drm/xe/xe_guc_reg.h
- create mode 100644 drivers/gpu/drm/xe/xe_rtp_helpers.h
-
+diff --git a/drivers/gpu/drm/xe/xe_rtp.h b/drivers/gpu/drm/xe/xe_rtp.h
+index a3be7c77753a..67e1b4c44052 100644
+--- a/drivers/gpu/drm/xe/xe_rtp.h
++++ b/drivers/gpu/drm/xe/xe_rtp.h
+@@ -22,43 +22,77 @@ struct xe_reg_sr;
+ /*
+  * Helper macros - not to be used outside this header.
+  */
+-/* This counts to 12. Any more, it will return 13th argument. */
+-#define __COUNT_ARGS(_0, _1, _2, _3, _4, _5, _6, _7, _8, _9, _10, _11, _12, _n, X...) _n
+-#define COUNT_ARGS(X...) __COUNT_ARGS(, ##X, 12, 11, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1, 0)
++#define _XE_ESC(...) __VA_ARGS__
++#define _XE_COUNT_ARGS(...) _XE_ESC(__XE_COUNT_ARGS(__VA_ARGS__,5,4,3,2,1,))
++#define __XE_COUNT_ARGS(_,_5,_4,_3,_2,X_,...) X_
+ 
+-#define __CONCAT(a, b) a ## b
+-#define CONCATENATE(a, b) __CONCAT(a, b)
++#define _XE_FIRST(...) _XE_ESC(__XE_FIRST(__VA_ARGS__,))
++#define __XE_FIRST(x_,...) x_
++#define _XE_TUPLE_TAIL(...) _XE_ESC(__XE_TUPLE_TAIL(__VA_ARGS__))
++#define __XE_TUPLE_TAIL(x_,...) (__VA_ARGS__)
+ 
+-#define __CALL_FOR_EACH_1(MACRO_, x, ...) MACRO_(x)
+-#define __CALL_FOR_EACH_2(MACRO_, x, ...)					\
+-	MACRO_(x) __CALL_FOR_EACH_1(MACRO_, ##__VA_ARGS__)
+-#define __CALL_FOR_EACH_3(MACRO_, x, ...)					\
+-	MACRO_(x) __CALL_FOR_EACH_2(MACRO_, ##__VA_ARGS__)
+-#define __CALL_FOR_EACH_4(MACRO_, x, ...)					\
+-	MACRO_(x) __CALL_FOR_EACH_3(MACRO_, ##__VA_ARGS__)
++#define _XE_DROP_FIRST(x_, ...) __VA_ARGS__
+ 
+-#define _CALL_FOR_EACH(NARGS_, MACRO_, x, ...)					\
+-	CONCATENATE(__CALL_FOR_EACH_, NARGS_)(MACRO_, x, ##__VA_ARGS__)
+-#define CALL_FOR_EACH(MACRO_, x, ...)						\
+-	_CALL_FOR_EACH(COUNT_ARGS(x, ##__VA_ARGS__), MACRO_, x, ##__VA_ARGS__)
++#define _XE_RTP_CONCAT(a, b) __XE_RTP_CONCAT(a, b)
++#define __XE_RTP_CONCAT(a, b) XE_RTP_ ## a ## b
+ 
+-#define _XE_RTP_REG(x_)	(x_), XE_RTP_REG_REGULAR
+-#define _XE_RTP_MCR_REG(x_) (x_), XE_RTP_REG_MCR
++#define __XE_RTP_PASTE_SEP_COMMA		,
++#define __XE_RTP_PASTE_SEP_BITWISE_OR		|
+ 
+ /*
+- * Helper macros for concatenating prefix - do not use them directly outside
+- * this header
++ * XE_RTP_PASTE_FOREACH - Paste XE_RTP_<@prefix_> on each element of the tuple
++ * @args, with the end result separated by @sep_. @sep must be one of the
++ * previously declared macros __XE_RTP_PASTE_SEP_*, or declared with such
++ * prefix.
++ *
++ * Examples:
++ *
++ * 1) XE_RTP_PASTE_FOREACH(TEST_, COMMA, (FOO, BAR))
++ *    expands to:
++ *
++ *	XE_RTP_TEST_FOO , XE_RTP_TEST_BAR
++ *
++ * 2) XE_RTP_PASTE_FOREACH(TEST2_, COMMA, (FOO))
++ *    expands to:
++ *
++ *	XE_RTP_TEST2_FOO
++ *
++ * 3) XE_RTP_PASTE_FOREACH(TEST3, BITWISE_OR, (FOO, BAR))
++ *    expands to:
++ *
++ *	XE_RTP_TEST3_FOO | XE_RTP_TEST3_BAR
++ *
++ * 4) #define __XE_RTP_PASTE_SEP_MY_SEP	BANANA
++ *    XE_RTP_PASTE_FOREACH(TEST_, MY_SEP, (FOO, BAR))
++ *    expands to:
++ *
++ *	XE_RTP_TEST_FOO BANANA XE_RTP_TEST_BAR
+  */
+-#define __ADD_XE_RTP_ENTRY_FLAG_PREFIX(x) CONCATENATE(XE_RTP_ENTRY_FLAG_, x) |
+-#define __ADD_XE_RTP_ACTION_FLAG_PREFIX(x) CONCATENATE(XE_RTP_ACTION_FLAG_, x) |
+-#define __ADD_XE_RTP_RULE_PREFIX(x) CONCATENATE(XE_RTP_RULE_, x) ,
+-#define __ADD_XE_RTP_ACTION_PREFIX(x) CONCATENATE(XE_RTP_ACTION_, x) ,
++#define XE_RTP_PASTE_FOREACH(prefix_, sep_, args_) _XE_ESC(_XE_RTP_CONCAT(PASTE_,_XE_COUNT_ARGS args_)(prefix_, sep_, args_))
++#define XE_RTP_PASTE_1(prefix_, sep_, args_) _XE_RTP_CONCAT(prefix_, _XE_FIRST args_)
++#define XE_RTP_PASTE_2(prefix_, sep_, args_) _XE_RTP_CONCAT(prefix_, _XE_FIRST args_) __XE_RTP_PASTE_SEP_ ## sep_ XE_RTP_PASTE_1(prefix_, sep_, _XE_TUPLE_TAIL args_)
++#define XE_RTP_PASTE_3(prefix_, sep_, args_) _XE_RTP_CONCAT(prefix_, _XE_FIRST args_) __XE_RTP_PASTE_SEP_ ## sep_ XE_RTP_PASTE_2(prefix_, sep_, _XE_TUPLE_TAIL args_)
++#define XE_RTP_PASTE_4(prefix_, sep_, args_) _XE_RTP_CONCAT(prefix_, _XE_FIRST args_) __XE_RTP_PASTE_SEP_ ## sep_ XE_RTP_PASTE_3(prefix_, sep_, _XE_TUPLE_TAIL args_)
++
++
++/*
++ * XE_RTP_DROP_CAST - Drop cast to convert a compound statement to a initializer
++ *
++ * Example:
++ *
++ *	#define foo(a_)	((struct foo){ .a = a_ })
++ *	XE_RTP_DROP_CAST(foo(10))
++ *	expands to:
++ *
++ *	{ .a = 10 }
++ */
++#define XE_RTP_DROP_CAST(...) _XE_ESC(_XE_DROP_FIRST _XE_ESC __VA_ARGS__)
++
+ 
+ /*
+  * Macros to encode rules to match against platform, IP version, stepping, etc.
+  * Shouldn't be used directly - see XE_RTP_RULES()
+  */
+-
+ #define _XE_RTP_RULE_PLATFORM(plat__)						\
+ 	{ .match_type = XE_RTP_MATCH_PLATFORM, .platform = plat__ }
+ 
+@@ -315,8 +349,8 @@ struct xe_reg_sr;
+  *		...
+  *	};
+  */
+-#define XE_RTP_ENTRY_FLAG(f1_, ...)						\
+-	.flags = (CALL_FOR_EACH(__ADD_XE_RTP_ENTRY_FLAG_PREFIX, f1_, ##__VA_ARGS__) 0)
++#define XE_RTP_ENTRY_FLAG(...)							\
++	.flags = (XE_RTP_PASTE_FOREACH(ENTRY_FLAG_, BITWISE_OR, (__VA_ARGS__)))
+ 
+ /**
+  * XE_RTP_ACTION_FLAG - Helper to add multiple flags to a struct xe_rtp_action
+@@ -338,8 +372,8 @@ struct xe_reg_sr;
+  *		...
+  *	};
+  */
+-#define XE_RTP_ACTION_FLAG(f1_, ...)						\
+-	.flags = (CALL_FOR_EACH(__ADD_XE_RTP_ACTION_FLAG_PREFIX, f1_, ##__VA_ARGS__) 0)
++#define XE_RTP_ACTION_FLAG(...)							\
++	.flags = (XE_RTP_PASTE_FOREACH(ACTION_FLAG_, BITWISE_OR, (__VA_ARGS__)))
+ 
+ /**
+  * XE_RTP_RULES - Helper to set multiple rules to a struct xe_rtp_entry entry
+@@ -361,16 +395,15 @@ struct xe_reg_sr;
+  *		...
+  *	};
+  */
+-#define XE_RTP_RULES(r1, ...)							\
+-	.n_rules = COUNT_ARGS(r1, ##__VA_ARGS__),				\
++#define XE_RTP_RULES(...)							\
++	.n_rules = _XE_COUNT_ARGS(__VA_ARGS__),					\
+ 	.rules = (const struct xe_rtp_rule[]) {					\
+-		CALL_FOR_EACH(__ADD_XE_RTP_RULE_PREFIX, r1, ##__VA_ARGS__)	\
++		XE_RTP_PASTE_FOREACH(RULE_, COMMA, (__VA_ARGS__))	\
+ 	}
+ 
+ /**
+  * XE_RTP_ACTIONS - Helper to set multiple actions to a struct xe_rtp_entry
+- * @a1: Action to take. Last part of XE_RTP_ACTION_*
+- * @...: Additional rules, defined like @r1
++ * @...: Actions to be taken
+  *
+  * At least one rule is needed and up to 4 are supported. Multiple rules are
+  * AND'ed together, i.e. all the rules must evaluate to true for the entry to
+@@ -388,10 +421,10 @@ struct xe_reg_sr;
+  *		...
+  *	};
+  */
+-#define XE_RTP_ACTIONS(a1, ...)							\
+-	.n_actions = COUNT_ARGS(a1, ##__VA_ARGS__),				\
++#define XE_RTP_ACTIONS(...)							\
++	.n_actions = _XE_COUNT_ARGS(__VA_ARGS__),				\
+ 	.actions = (const struct xe_rtp_action[]) {				\
+-		CALL_FOR_EACH(__ADD_XE_RTP_ACTION_PREFIX, a1, ##__VA_ARGS__)	\
++		XE_RTP_PASTE_FOREACH(ACTION_, COMMA, (__VA_ARGS__))	\
+ 	}
+ 
+ void xe_rtp_process(const struct xe_rtp_entry *entries, struct xe_reg_sr *sr,
 -- 
 2.40.1
 
