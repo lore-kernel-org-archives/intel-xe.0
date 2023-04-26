@@ -4,47 +4,47 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2074AC77B7F
-	for <intel-xe@archiver.kernel.org>; Wed, 26 Apr 2023 21:33:11 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id C16E4C77B60
+	for <intel-xe@archiver.kernel.org>; Wed, 26 Apr 2023 21:33:18 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id ECFB710EA52;
-	Wed, 26 Apr 2023 21:33:10 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9C77710EA4A;
+	Wed, 26 Apr 2023 21:33:18 +0000 (UTC)
 Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6329A10EA52
- for <intel-xe@lists.freedesktop.org>; Wed, 26 Apr 2023 21:32:57 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4E2D710EA45
+ for <intel-xe@lists.freedesktop.org>; Wed, 26 Apr 2023 21:32:56 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1682544777; x=1714080777;
+ t=1682544776; x=1714080776;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=OPYXS/hKpsXKVtCRCVZ9wGmX7mBuG4R6vy0oqPoT0XA=;
- b=P4PrNONxwXw2PgZ+rQS//3cGV8ezZ3IsnC+GmM82/V/TgybzU6GSKRNh
- iPA6l/fgyewDwEz+fOOs1x1BYtZFO+3VkGC16OJJgAgDkRZJb6eOAcAAD
- T8Kfv0GQXcaRlp9to4zuXBLTNOKbl7Fd5K13STtFy6/D/gfFieuD21Uvd
- pCt10PamcvN5oxznGOsFFVMVlZvBy8fgU1qtrB+IKFiAXtqh3iIDQQMtr
- 2CjPIPnK5N8I/8xDGTwBzjRFj7p7Wy2/bKkwv+tmqPsM9rERq1YihZpeS
- j63Gfho2D3S6J8tsoj/EBMaH5X9942czMyM8rv+JrBXbchc1WPmLgkz7/ A==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10692"; a="375213101"
-X-IronPort-AV: E=Sophos;i="5.99,229,1677571200"; d="scan'208";a="375213101"
+ bh=Sm+osrLN7trmSBwhi4Azeym9MCE3t64jXsVQbVKUpgE=;
+ b=GNr5DPMBbrp/86Jtm6ywDmDQsX0Rh8ccyo9aAuPb4maOe2LlgHGtgRWn
+ wXJW4BlYa3CiPBZW8y2/F5oGoFPIS5lhVxR1wuTGBa5vOMnHQGkS5waet
+ 6T0Ny2viFwP2GASlf4oWiKaiIDJb+dZTQ+cdYG+X8WEKHcAsK42+blN+p
+ AkA/tV1qfj3rkvXiRIOJ8JJXOrWr6WVDDQfCwp2jxpu40eB9XiWo4ajGY
+ 5nxsjL0UiMsyxLqiyLEm5In1VYMmngI9uexD5AwHQJzBx7o2EVJZce1Sh
+ hLdlq+uZFAXRpELmI/Zg/Gx9G2zc9OfLXNlb93cMLRHNyyOL5Er2yZwZF Q==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10692"; a="375213085"
+X-IronPort-AV: E=Sophos;i="5.99,229,1677571200"; d="scan'208";a="375213085"
 Received: from orsmga003.jf.intel.com ([10.7.209.27])
  by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 26 Apr 2023 14:32:56 -0700
+ 26 Apr 2023 14:32:55 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10692"; a="644415201"
-X-IronPort-AV: E=Sophos;i="5.99,229,1677571200"; d="scan'208";a="644415201"
+X-IronPort-AV: E=McAfee;i="6600,9927,10692"; a="644415154"
+X-IronPort-AV: E=Sophos;i="5.99,229,1677571200"; d="scan'208";a="644415154"
 Received: from lucas-s2600cw.jf.intel.com ([10.165.21.196])
  by orsmga003-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 26 Apr 2023 14:32:55 -0700
+ 26 Apr 2023 14:32:54 -0700
 From: Lucas De Marchi <lucas.demarchi@intel.com>
 To: intel-xe@lists.freedesktop.org
-Date: Wed, 26 Apr 2023 14:32:41 -0700
-Message-Id: <20230426213242.1315119-17-lucas.demarchi@intel.com>
+Date: Wed, 26 Apr 2023 14:32:26 -0700
+Message-Id: <20230426213242.1315119-2-lucas.demarchi@intel.com>
 X-Mailer: git-send-email 2.40.1
 In-Reply-To: <20230426213242.1315119-1-lucas.demarchi@intel.com>
 References: <20230426213242.1315119-1-lucas.demarchi@intel.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-xe] [PATCH v2 16/17] drm/xe: Plumb xe_reg into WAs, rtp, etc
+Subject: [Intel-xe] [PATCH v2 01/17] drm/xe: Cleanup page-related defines
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -61,954 +61,782 @@ Cc: Lucas De Marchi <lucas.demarchi@intel.com>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Now that struct xe_reg and struct xe_reg_mcr are types that can be used
-by xe, convert more of the driver to use them. Some notes about the
-conversions:
+Rename the following defines to lose the GEN* prefixes since they don't
+make sense for xe:
 
-	- The RTP tables don't need the MASKED flags anymore in the
-	  actions as that information now comes from the register
-	  definition
+GEN8_PTE_SHIFT		-> XE_PTE_SHIFT
+GEN8_PAGE_SIZE		-> XE_PAGE_SIZE
+GEN8_PTE_MASK		-> XE_PTE_MASK
+GEN8_PDE_SHIFT		-> XE_PDE_SHIFT
+GEN8_PDES		-> XE_PDES
+GEN8_PDE_MASK		-> XE_PDE_MASK
+GEN8_64K_PTE_SHIFT	-> XE_64K_PTE_SHIFT
+GEN8_64K_PAGE_SIZE	-> XE_64K_PAGE_SIZE
+GEN8_64K_PTE_MASK	-> XE_64K_PTE_MASK
+GEN8_64K_PDE_MASK	-> XE_64K_PDE_MASK
+GEN8_PDE_PS_2M		-> XE_PDE_PS_2M
+GEN8_PDPE_PS_1G		-> XE_PDPE_PS_1G
+GEN8_PDE_IPS_64K	-> XE_PDE_IPS_64K
+GEN12_GGTT_PTE_LM	-> XE_GGTT_PTE_LM
+GEN12_USM_PPGTT_PTE_AE	-> XE_USM_PPGTT_PTE_AE
+GEN12_PPGTT_PTE_LM	-> XE_PPGTT_PTE_LM
+GEN12_PDE_64K		-> XE_PDE_64K
+GEN12_PTE_PS64		-> XE_PTE_PS64
+GEN8_PAGE_PRESENT	-> XE_PAGE_PRESENT
+GEN8_PAGE_RW		-> XE_PAGE_RW
+PTE_READ_ONLY		-> XE_PTE_READ_ONLY
 
-	- There is no need for the _XE_RTP_REG/_XE_RTP_REG_MCR macros an
-	  the register types on RTP infra: that comes from the register
-	  definitions.
-
-	- When declaring the RTP entries, there is no need anymore to
-	  undef XE_REG and friends: the RTP macros deal with removing
-	  the cast where needed due to not being able to use a compound
-	  statement for initialization in the tables
-
-	- The index in the reg-sr xarray is the register offset only.
-	  Otherwise we wouldn't catch mistakes about adding both a
-	  MCR-style and normal-style registers. For that, the register
-	  is now also part of the entry, so the options can be compared
-	  to check for compatible entries.
-
-xe_mmio_* still need to be converted, from u32 to xe_reg, but that is
-left for another change.
+Keep an XE_ prefix to make sure we don't mix the defines for the CPU
+(e.g. PAGE_SIZE) with the ones fro the GPU).
 
 Signed-off-by: Lucas De Marchi <lucas.demarchi@intel.com>
 Reviewed-by: Matt Roper <matthew.d.roper@intel.com>
 ---
- drivers/gpu/drm/xe/tests/xe_rtp_test.c |  41 ++++----
- drivers/gpu/drm/xe/xe_guc_ads.c        |   2 +-
- drivers/gpu/drm/xe/xe_reg_sr.c         |  51 ++++++----
- drivers/gpu/drm/xe/xe_reg_sr.h         |   3 +-
- drivers/gpu/drm/xe/xe_reg_sr_types.h   |  10 +-
- drivers/gpu/drm/xe/xe_reg_whitelist.c  |   4 +-
- drivers/gpu/drm/xe/xe_rtp.c            |   7 +-
- drivers/gpu/drm/xe/xe_rtp.h            |  42 ++++----
- drivers/gpu/drm/xe/xe_rtp_types.h      |  22 ++--
- drivers/gpu/drm/xe/xe_tuning.c         |   7 +-
- drivers/gpu/drm/xe/xe_wa.c             | 134 ++++++++-----------------
- 11 files changed, 129 insertions(+), 194 deletions(-)
+ drivers/gpu/drm/xe/display/xe_fb_pin.c        | 23 ++++---
+ drivers/gpu/drm/xe/display/xe_plane_initial.c |  4 +-
+ drivers/gpu/drm/xe/tests/xe_migrate.c         | 15 ++--
+ drivers/gpu/drm/xe/xe_bo.h                    | 52 +++++++-------
+ drivers/gpu/drm/xe/xe_ggtt.c                  | 24 +++----
+ drivers/gpu/drm/xe/xe_migrate.c               | 69 ++++++++++---------
+ drivers/gpu/drm/xe/xe_pt.c                    | 40 +++++------
+ drivers/gpu/drm/xe/xe_vm.c                    | 20 +++---
+ 8 files changed, 126 insertions(+), 121 deletions(-)
 
-diff --git a/drivers/gpu/drm/xe/tests/xe_rtp_test.c b/drivers/gpu/drm/xe/tests/xe_rtp_test.c
-index 51d215f08113..ad2fe8a39a78 100644
---- a/drivers/gpu/drm/xe/tests/xe_rtp_test.c
-+++ b/drivers/gpu/drm/xe/tests/xe_rtp_test.c
-@@ -18,25 +18,21 @@
- #include "xe_reg_sr.h"
- #include "xe_rtp.h"
+diff --git a/drivers/gpu/drm/xe/display/xe_fb_pin.c b/drivers/gpu/drm/xe/display/xe_fb_pin.c
+index 65c0bc28a3d1..ed691d28b34d 100644
+--- a/drivers/gpu/drm/xe/display/xe_fb_pin.c
++++ b/drivers/gpu/drm/xe/display/xe_fb_pin.c
+@@ -27,7 +27,7 @@ write_dpt_rotated(struct xe_bo *bo, struct iosys_map *map, u32 *dpt_ofs, u32 bo_
  
--#undef XE_REG
--#undef XE_REG_MCR
--#define XE_REG(x, ...)		_XE_RTP_REG(x)
--#define XE_REG_MCR(x, ...)	_XE_RTP_MCR_REG(x)
--
- #define REGULAR_REG1	XE_REG(1)
- #define REGULAR_REG2	XE_REG(2)
- #define REGULAR_REG3	XE_REG(3)
- #define MCR_REG1	XE_REG_MCR(1)
- #define MCR_REG2	XE_REG_MCR(2)
- #define MCR_REG3	XE_REG_MCR(3)
-+#define MASKED_REG1	XE_REG(1, XE_REG_OPTION_MASKED)
-+
-+#undef XE_REG_MCR
-+#define XE_REG_MCR(...)     XE_REG(__VA_ARGS__, .mcr = 1)
+ 		for (row = 0; row < height; row++) {
+ 			iosys_map_wr(map, *dpt_ofs, u64,
+-				     xe_ggtt_pte_encode(bo, src_idx * GEN8_PAGE_SIZE));
++				     xe_ggtt_pte_encode(bo, src_idx * XE_PAGE_SIZE));
+ 			*dpt_ofs += 8;
+ 			src_idx -= src_stride;
+ 		}
+@@ -49,10 +49,11 @@ static int __xe_pin_fb_vma_dpt(struct intel_framebuffer *fb,
+ 	u32 dpt_size, size = bo->ttm.base.size;
  
- struct rtp_test_case {
- 	const char *name;
--	struct {
--		u32 offset;
--		u32 type;
--	} expected_reg;
--        u32 expected_set_bits;
-+	struct xe_reg expected_reg;
-+	u32 expected_set_bits;
- 	u32 expected_clr_bits;
- 	unsigned long expected_count;
- 	unsigned int expected_sr_errors;
-@@ -56,7 +52,7 @@ static bool match_no(const struct xe_gt *gt, const struct xe_hw_engine *hwe)
- static const struct rtp_test_case cases[] = {
- 	{
- 		.name = "coalesce-same-reg",
--		.expected_reg = { REGULAR_REG1 },
-+		.expected_reg = REGULAR_REG1,
- 		.expected_set_bits = REG_BIT(0) | REG_BIT(1),
- 		.expected_clr_bits = REG_BIT(0) | REG_BIT(1),
- 		.expected_count = 1,
-@@ -75,7 +71,7 @@ static const struct rtp_test_case cases[] = {
- 	},
- 	{
- 		.name = "no-match-no-add",
--		.expected_reg = { REGULAR_REG1 },
-+		.expected_reg = REGULAR_REG1,
- 		.expected_set_bits = REG_BIT(0),
- 		.expected_clr_bits = REG_BIT(0),
- 		.expected_count = 1,
-@@ -94,7 +90,7 @@ static const struct rtp_test_case cases[] = {
- 	},
- 	{
- 		.name = "no-match-no-add-multiple-rules",
--		.expected_reg = { REGULAR_REG1 },
-+		.expected_reg = REGULAR_REG1,
- 		.expected_set_bits = REG_BIT(0),
- 		.expected_clr_bits = REG_BIT(0),
- 		.expected_count = 1,
-@@ -113,7 +109,7 @@ static const struct rtp_test_case cases[] = {
- 	},
- 	{
- 		.name = "two-regs-two-entries",
--		.expected_reg = { REGULAR_REG1 },
-+		.expected_reg = REGULAR_REG1,
- 		.expected_set_bits = REG_BIT(0),
- 		.expected_clr_bits = REG_BIT(0),
- 		.expected_count = 2,
-@@ -132,7 +128,7 @@ static const struct rtp_test_case cases[] = {
- 	},
- 	{
- 		.name = "clr-one-set-other",
--		.expected_reg = { REGULAR_REG1 },
-+		.expected_reg = REGULAR_REG1,
- 		.expected_set_bits = REG_BIT(0),
- 		.expected_clr_bits = REG_BIT(1) | REG_BIT(0),
- 		.expected_count = 1,
-@@ -153,7 +149,7 @@ static const struct rtp_test_case cases[] = {
- #define TEMP_MASK	REG_GENMASK(10, 8)
- #define TEMP_FIELD	REG_FIELD_PREP(TEMP_MASK, 2)
- 		.name = "set-field",
--		.expected_reg = { REGULAR_REG1 },
-+		.expected_reg = REGULAR_REG1,
- 		.expected_set_bits = TEMP_FIELD,
- 		.expected_clr_bits = TEMP_MASK,
- 		.expected_count = 1,
-@@ -171,7 +167,7 @@ static const struct rtp_test_case cases[] = {
- 	},
- 	{
- 		.name = "conflict-duplicate",
--		.expected_reg = { REGULAR_REG1 },
-+		.expected_reg = REGULAR_REG1,
- 		.expected_set_bits = REG_BIT(0),
- 		.expected_clr_bits = REG_BIT(0),
- 		.expected_count = 1,
-@@ -191,7 +187,7 @@ static const struct rtp_test_case cases[] = {
- 	},
- 	{
- 		.name = "conflict-not-disjoint",
--		.expected_reg = { REGULAR_REG1 },
-+		.expected_reg = REGULAR_REG1,
- 		.expected_set_bits = REG_BIT(0),
- 		.expected_clr_bits = REG_BIT(0),
- 		.expected_count = 1,
-@@ -211,7 +207,7 @@ static const struct rtp_test_case cases[] = {
- 	},
- 	{
- 		.name = "conflict-reg-type",
--		.expected_reg = { REGULAR_REG1 },
-+		.expected_reg = REGULAR_REG1,
- 		.expected_set_bits = REG_BIT(0),
- 		.expected_clr_bits = REG_BIT(0),
- 		.expected_count = 1,
-@@ -229,8 +225,7 @@ static const struct rtp_test_case cases[] = {
- 			/* drop: regular vs masked */
- 			{ XE_RTP_NAME("basic-3"),
- 			  XE_RTP_RULES(FUNC(match_yes)),
--			  XE_RTP_ACTIONS(SET(REGULAR_REG1, REG_BIT(0),
--					     XE_RTP_ACTION_FLAG(MASKED_REG)))
-+			  XE_RTP_ACTIONS(SET(MASKED_REG1, REG_BIT(0)))
- 			},
- 			{}
- 		},
-@@ -249,7 +244,7 @@ static void xe_rtp_process_tests(struct kunit *test)
- 	xe_rtp_process(param->entries, reg_sr, &xe->gt[0], NULL);
+ 	if (view->type == I915_GTT_VIEW_NORMAL)
+-		dpt_size = ALIGN(size / GEN8_PAGE_SIZE * 8, GEN8_PAGE_SIZE);
++		dpt_size = ALIGN(size / XE_PAGE_SIZE * 8, XE_PAGE_SIZE);
+ 	else
+ 		/* display uses 4K tiles instead of bytes here, convert to entries.. */
+-		dpt_size = ALIGN(intel_rotation_info_size(&view->rotated) * 8, GEN8_PAGE_SIZE);
++		dpt_size = ALIGN(intel_rotation_info_size(&view->rotated) * 8,
++				 XE_PAGE_SIZE);
  
- 	xa_for_each(&reg_sr->xa, idx, sre) {
--		if (idx == param->expected_reg.offset)
-+		if (idx == param->expected_reg.reg)
- 			sr_entry = sre;
+ 	dpt = xe_bo_create_pin_map(xe, to_gt(xe), NULL, dpt_size,
+ 				  ttm_bo_type_kernel,
+@@ -74,9 +75,9 @@ static int __xe_pin_fb_vma_dpt(struct intel_framebuffer *fb,
+ 	if (view->type == I915_GTT_VIEW_NORMAL) {
+ 		u32 x;
  
- 		count++;
-@@ -258,7 +253,7 @@ static void xe_rtp_process_tests(struct kunit *test)
- 	KUNIT_EXPECT_EQ(test, count, param->expected_count);
- 	KUNIT_EXPECT_EQ(test, sr_entry->clr_bits, param->expected_clr_bits);
- 	KUNIT_EXPECT_EQ(test, sr_entry->set_bits, param->expected_set_bits);
--	KUNIT_EXPECT_EQ(test, sr_entry->reg_type, param->expected_reg.type);
-+	KUNIT_EXPECT_EQ(test, sr_entry->reg.raw, param->expected_reg.raw);
- 	KUNIT_EXPECT_EQ(test, reg_sr->errors, param->expected_sr_errors);
- }
+-		for (x = 0; x < size / GEN8_PAGE_SIZE; x++)
++		for (x = 0; x < size / XE_PAGE_SIZE; x++)
+ 			iosys_map_wr(&dpt->vmap, x * 8, u64,
+-				     xe_ggtt_pte_encode(bo, x * GEN8_PAGE_SIZE));
++				     xe_ggtt_pte_encode(bo, x * XE_PAGE_SIZE));
+ 	} else {
+ 		const struct intel_rotation_info *rot_info = &view->rotated;
+ 		u32 i, dpt_ofs = 0;
+@@ -106,13 +107,13 @@ write_ggtt_rotated(struct xe_bo *bo, struct xe_ggtt *ggtt, u32 *ggtt_ofs, u32 bo
  
-diff --git a/drivers/gpu/drm/xe/xe_guc_ads.c b/drivers/gpu/drm/xe/xe_guc_ads.c
-index 6a723bda2aa9..676137dcb510 100644
---- a/drivers/gpu/drm/xe/xe_guc_ads.c
-+++ b/drivers/gpu/drm/xe/xe_guc_ads.c
-@@ -461,7 +461,7 @@ static unsigned int guc_mmio_regset_write(struct xe_guc_ads *ads,
- 	BUILD_BUG_ON(ARRAY_SIZE(extra_regs) > ADS_REGSET_EXTRA_MAX);
+ 		for (row = 0; row < height; row++) {
+ 			xe_ggtt_set_pte(ggtt, *ggtt_ofs,
+-					xe_ggtt_pte_encode(bo, src_idx * GEN8_PAGE_SIZE));
+-			*ggtt_ofs += GEN8_PAGE_SIZE;
++					xe_ggtt_pte_encode(bo, src_idx * XE_PAGE_SIZE));
++			*ggtt_ofs += XE_PAGE_SIZE;
+ 			src_idx -= src_stride;
+ 		}
  
- 	xa_for_each(&hwe->reg_sr.xa, idx, entry) {
--		u32 flags = entry->masked_reg ? GUC_REGSET_MASKED : 0;
-+		u32 flags = entry->reg.masked ? GUC_REGSET_MASKED : 0;
- 
- 		guc_mmio_regset_write_one(ads, regset_map, idx, flags, count++);
+ 		/* The DE ignores the PTEs for the padding tiles */
+-		*ggtt_ofs += (dst_stride - height) * GEN8_PAGE_SIZE;
++		*ggtt_ofs += (dst_stride - height) * XE_PAGE_SIZE;
  	}
-diff --git a/drivers/gpu/drm/xe/xe_reg_sr.c b/drivers/gpu/drm/xe/xe_reg_sr.c
-index 1e792ec8239b..801f211fb733 100644
---- a/drivers/gpu/drm/xe/xe_reg_sr.c
-+++ b/drivers/gpu/drm/xe/xe_reg_sr.c
-@@ -77,10 +77,7 @@ static bool compatible_entries(const struct xe_reg_sr_entry *e1,
- 	    e1->clr_bits & e2->set_bits || e1->set_bits & e2->clr_bits)
- 		return false;
- 
--	if (e1->masked_reg != e2->masked_reg)
--		return false;
--
--	if (e1->reg_type != e2->reg_type)
-+	if (e1->reg.raw != e2->reg.raw)
- 		return false;
- 
- 	return true;
-@@ -93,10 +90,10 @@ static void reg_sr_inc_error(struct xe_reg_sr *sr)
- #endif
  }
  
--int xe_reg_sr_add(struct xe_reg_sr *sr, u32 reg,
-+int xe_reg_sr_add(struct xe_reg_sr *sr,
- 		  const struct xe_reg_sr_entry *e)
+@@ -133,7 +134,7 @@ static int __xe_pin_fb_vma_ggtt(struct intel_framebuffer *fb,
+ 	if (ret)
+ 		return ret;
+ 
+-	align = GEN8_PAGE_SIZE;
++	align = XE_PAGE_SIZE;
+ 	if (xe_bo_is_vram(bo) && ggtt->flags & XE_GGTT_FLAGS_64K)
+ 		align = max_t(u32, align, SZ_64K);
+ 
+@@ -147,14 +148,14 @@ static int __xe_pin_fb_vma_ggtt(struct intel_framebuffer *fb,
+ 		if (ret)
+ 			goto out;
+ 
+-		for (x = 0; x < size; x += GEN8_PAGE_SIZE)
++		for (x = 0; x < size; x += XE_PAGE_SIZE)
+ 			xe_ggtt_set_pte(ggtt, vma->node.start + x, xe_ggtt_pte_encode(bo, x));
+ 	} else {
+ 		u32 i, ggtt_ofs;
+ 		const struct intel_rotation_info *rot_info = &view->rotated;
+ 
+ 		/* display seems to use tiles instead of bytes here, so convert it back.. */
+-		u32 size = intel_rotation_info_size(rot_info) * GEN8_PAGE_SIZE;
++		u32 size = intel_rotation_info_size(rot_info) * XE_PAGE_SIZE;
+ 
+ 		ret = xe_ggtt_insert_special_node_locked(ggtt, &vma->node, size,
+ 							 align, 0);
+diff --git a/drivers/gpu/drm/xe/display/xe_plane_initial.c b/drivers/gpu/drm/xe/display/xe_plane_initial.c
+index a2ef0823ed02..d0f91f37b6d8 100644
+--- a/drivers/gpu/drm/xe/display/xe_plane_initial.c
++++ b/drivers/gpu/drm/xe/display/xe_plane_initial.c
+@@ -67,10 +67,10 @@ initial_plane_bo(struct xe_device *xe,
+ 		u64 __iomem *gte = gt0->mem.ggtt->gsm;
+ 		u64 pte;
+ 
+-		gte += base / GEN8_PAGE_SIZE;
++		gte += base / XE_PAGE_SIZE;
+ 
+ 		pte = ioread64(gte);
+-		if (!(pte & GEN12_GGTT_PTE_LM)) {
++		if (!(pte & XE_GGTT_PTE_LM)) {
+ 			drm_err(&xe->drm,
+ 				"Initial plane programming missing PTE_LM bit\n");
+ 			return NULL;
+diff --git a/drivers/gpu/drm/xe/tests/xe_migrate.c b/drivers/gpu/drm/xe/tests/xe_migrate.c
+index cdcecf8d5eef..0f4371ad1fd9 100644
+--- a/drivers/gpu/drm/xe/tests/xe_migrate.c
++++ b/drivers/gpu/drm/xe/tests/xe_migrate.c
+@@ -265,7 +265,7 @@ static void xe_migrate_sanity_test(struct xe_migrate *m, struct kunit *test)
+ 		goto vunmap;
+ 	}
+ 
+-	pt = xe_bo_create_pin_map(xe, m->gt, m->eng->vm, GEN8_PAGE_SIZE,
++	pt = xe_bo_create_pin_map(xe, m->gt, m->eng->vm, XE_PAGE_SIZE,
+ 				  ttm_bo_type_kernel,
+ 				  XE_BO_CREATE_VRAM_IF_DGFX(m->gt) |
+ 				  XE_BO_CREATE_PINNED_BIT);
+@@ -294,20 +294,21 @@ static void xe_migrate_sanity_test(struct xe_migrate *m, struct kunit *test)
+ 	}
+ 
+ 	kunit_info(test, "Starting tests, top level PT addr: %lx, special pagetable base addr: %lx\n",
+-		   (unsigned long)xe_bo_main_addr(m->eng->vm->pt_root[id]->bo, GEN8_PAGE_SIZE),
+-		   (unsigned long)xe_bo_main_addr(m->pt_bo, GEN8_PAGE_SIZE));
++		   (unsigned long)xe_bo_main_addr(m->eng->vm->pt_root[id]->bo, XE_PAGE_SIZE),
++		   (unsigned long)xe_bo_main_addr(m->pt_bo, XE_PAGE_SIZE));
+ 
+ 	/* First part of the test, are we updating our pagetable bo with a new entry? */
+-	xe_map_wr(xe, &bo->vmap, GEN8_PAGE_SIZE * (NUM_KERNEL_PDE - 1), u64, 0xdeaddeadbeefbeef);
++	xe_map_wr(xe, &bo->vmap, XE_PAGE_SIZE * (NUM_KERNEL_PDE - 1), u64,
++		  0xdeaddeadbeefbeef);
+ 	expected = gen8_pte_encode(NULL, pt, 0, XE_CACHE_WB, 0, 0);
+ 	if (m->eng->vm->flags & XE_VM_FLAGS_64K)
+-		expected |= GEN12_PTE_PS64;
++		expected |= XE_PTE_PS64;
+ 	xe_res_first(pt->ttm.resource, 0, pt->size, &src_it);
+ 	emit_pte(m, bb, NUM_KERNEL_PDE - 1, xe_bo_is_vram(pt),
+-		 &src_it, GEN8_PAGE_SIZE, pt);
++		 &src_it, XE_PAGE_SIZE, pt);
+ 	run_sanity_job(m, xe, bb, bb->len, "Writing PTE for our fake PT", test);
+ 
+-	retval = xe_map_rd(xe, &bo->vmap, GEN8_PAGE_SIZE * (NUM_KERNEL_PDE - 1),
++	retval = xe_map_rd(xe, &bo->vmap, XE_PAGE_SIZE * (NUM_KERNEL_PDE - 1),
+ 			   u64);
+ 	check(retval, expected, "PTE entry write", test);
+ 
+diff --git a/drivers/gpu/drm/xe/xe_bo.h b/drivers/gpu/drm/xe/xe_bo.h
+index effa9d0cf0f6..8354d05ccdf3 100644
+--- a/drivers/gpu/drm/xe/xe_bo.h
++++ b/drivers/gpu/drm/xe/xe_bo.h
+@@ -39,32 +39,32 @@
+ #define PPAT_CACHED                     BIT_ULL(7)
+ #define PPAT_DISPLAY_ELLC               BIT_ULL(4)
+ 
+-#define GEN8_PTE_SHIFT			12
+-#define GEN8_PAGE_SIZE			(1 << GEN8_PTE_SHIFT)
+-#define GEN8_PTE_MASK			(GEN8_PAGE_SIZE - 1)
+-#define GEN8_PDE_SHIFT			(GEN8_PTE_SHIFT - 3)
+-#define GEN8_PDES			(1 << GEN8_PDE_SHIFT)
+-#define GEN8_PDE_MASK			(GEN8_PDES - 1)
+-
+-#define GEN8_64K_PTE_SHIFT		16
+-#define GEN8_64K_PAGE_SIZE		(1 << GEN8_64K_PTE_SHIFT)
+-#define GEN8_64K_PTE_MASK		(GEN8_64K_PAGE_SIZE - 1)
+-#define GEN8_64K_PDE_MASK		(GEN8_PDE_MASK >> 4)
+-
+-#define GEN8_PDE_PS_2M			BIT_ULL(7)
+-#define GEN8_PDPE_PS_1G			BIT_ULL(7)
+-#define GEN8_PDE_IPS_64K		BIT_ULL(11)
+-
+-#define GEN12_GGTT_PTE_LM		BIT_ULL(1)
+-#define GEN12_USM_PPGTT_PTE_AE		BIT_ULL(10)
+-#define GEN12_PPGTT_PTE_LM		BIT_ULL(11)
+-#define GEN12_PDE_64K			BIT_ULL(6)
+-#define GEN12_PTE_PS64                  BIT_ULL(8)
+-
+-#define GEN8_PAGE_PRESENT		BIT_ULL(0)
+-#define GEN8_PAGE_RW			BIT_ULL(1)
+-
+-#define PTE_READ_ONLY			BIT(0)
++#define XE_PTE_SHIFT			12
++#define XE_PAGE_SIZE			(1 << XE_PTE_SHIFT)
++#define XE_PTE_MASK			(XE_PAGE_SIZE - 1)
++#define XE_PDE_SHIFT			(XE_PTE_SHIFT - 3)
++#define XE_PDES				(1 << XE_PDE_SHIFT)
++#define XE_PDE_MASK			(XE_PDES - 1)
++
++#define XE_64K_PTE_SHIFT		16
++#define XE_64K_PAGE_SIZE		(1 << XE_64K_PTE_SHIFT)
++#define XE_64K_PTE_MASK			(XE_64K_PAGE_SIZE - 1)
++#define XE_64K_PDE_MASK			(XE_PDE_MASK >> 4)
++
++#define XE_PDE_PS_2M			BIT_ULL(7)
++#define XE_PDPE_PS_1G			BIT_ULL(7)
++#define XE_PDE_IPS_64K			BIT_ULL(11)
++
++#define XE_GGTT_PTE_LM			BIT_ULL(1)
++#define XE_USM_PPGTT_PTE_AE		BIT_ULL(10)
++#define XE_PPGTT_PTE_LM			BIT_ULL(11)
++#define XE_PDE_64K			BIT_ULL(6)
++#define XE_PTE_PS64			BIT_ULL(8)
++
++#define XE_PAGE_PRESENT			BIT_ULL(0)
++#define XE_PAGE_RW			BIT_ULL(1)
++
++#define XE_PTE_READ_ONLY		BIT(0)
+ 
+ #define XE_PL_SYSTEM		TTM_PL_SYSTEM
+ #define XE_PL_TT		TTM_PL_TT
+diff --git a/drivers/gpu/drm/xe/xe_ggtt.c b/drivers/gpu/drm/xe/xe_ggtt.c
+index 531c685cf2a1..9a5950024d9f 100644
+--- a/drivers/gpu/drm/xe/xe_ggtt.c
++++ b/drivers/gpu/drm/xe/xe_ggtt.c
+@@ -30,11 +30,11 @@ u64 xe_ggtt_pte_encode(struct xe_bo *bo, u64 bo_offset)
+ 	u64 pte;
+ 	bool is_vram;
+ 
+-	pte = xe_bo_addr(bo, bo_offset, GEN8_PAGE_SIZE, &is_vram);
+-	pte |= GEN8_PAGE_PRESENT;
++	pte = xe_bo_addr(bo, bo_offset, XE_PAGE_SIZE, &is_vram);
++	pte |= XE_PAGE_PRESENT;
+ 
+ 	if (is_vram)
+-		pte |= GEN12_GGTT_PTE_LM;
++		pte |= XE_GGTT_PTE_LM;
+ 
+ 	/* FIXME: vfunc + pass in caching rules */
+ 	if (xe->info.platform == XE_METEORLAKE) {
+@@ -56,10 +56,10 @@ static unsigned int probe_gsm_size(struct pci_dev *pdev)
+ 
+ void xe_ggtt_set_pte(struct xe_ggtt *ggtt, u64 addr, u64 pte)
  {
--	unsigned long idx = reg;
-+	unsigned long idx = e->reg.reg;
- 	struct xe_reg_sr_entry *pentry = xa_load(&sr->xa, idx);
+-	XE_BUG_ON(addr & GEN8_PTE_MASK);
++	XE_BUG_ON(addr & XE_PTE_MASK);
+ 	XE_BUG_ON(addr >= ggtt->size);
+ 
+-	writeq(pte, &ggtt->gsm[addr >> GEN8_PTE_SHIFT]);
++	writeq(pte, &ggtt->gsm[addr >> XE_PTE_SHIFT]);
+ }
+ 
+ static void xe_ggtt_clear(struct xe_ggtt *ggtt, u64 start, u64 size)
+@@ -76,7 +76,7 @@ static void xe_ggtt_clear(struct xe_ggtt *ggtt, u64 start, u64 size)
+ 
+ 	while (start < end) {
+ 		xe_ggtt_set_pte(ggtt, start, scratch_pte);
+-		start += GEN8_PAGE_SIZE;
++		start += XE_PAGE_SIZE;
+ 	}
+ }
+ 
+@@ -107,7 +107,7 @@ int xe_ggtt_init_noalloc(struct xe_gt *gt, struct xe_ggtt *ggtt)
+ 	}
+ 
+ 	ggtt->gsm = gt->mmio.regs + SZ_8M;
+-	ggtt->size = (gsm_size / 8) * (u64)GEN8_PAGE_SIZE;
++	ggtt->size = (gsm_size / 8) * (u64) XE_PAGE_SIZE;
+ 
+ 	if (IS_DGFX(xe) && xe->info.vram_flags & XE_VRAM_FLAGS_NEED64K)
+ 		ggtt->flags |= XE_GGTT_FLAGS_64K;
+@@ -167,7 +167,7 @@ int xe_ggtt_init(struct xe_gt *gt, struct xe_ggtt *ggtt)
+ 	else
+ 		flags |= XE_BO_CREATE_VRAM_IF_DGFX(gt);
+ 
+-	ggtt->scratch = xe_bo_create_pin_map(xe, gt, NULL, GEN8_PAGE_SIZE,
++	ggtt->scratch = xe_bo_create_pin_map(xe, gt, NULL, XE_PAGE_SIZE,
+ 					     ttm_bo_type_kernel,
+ 					     flags);
+ 
+@@ -224,8 +224,8 @@ void xe_ggtt_printk(struct xe_ggtt *ggtt, const char *prefix)
+ 	scratch_pte = xe_ggtt_pte_encode(ggtt->scratch, 0);
+ 
+ 	printk("%sGlobal GTT:", prefix);
+-	for (addr = 0; addr < ggtt->size; addr += GEN8_PAGE_SIZE) {
+-		unsigned int i = addr / GEN8_PAGE_SIZE;
++	for (addr = 0; addr < ggtt->size; addr += XE_PAGE_SIZE) {
++		unsigned int i = addr / XE_PAGE_SIZE;
+ 
+ 		XE_BUG_ON(addr > U32_MAX);
+ 		if (ggtt->gsm[i] == scratch_pte)
+@@ -261,7 +261,7 @@ void xe_ggtt_map_bo(struct xe_ggtt *ggtt, struct xe_bo *bo)
+ 	u64 start = bo->ggtt_node.start;
+ 	u64 offset, pte;
+ 
+-	for (offset = 0; offset < bo->size; offset += GEN8_PAGE_SIZE) {
++	for (offset = 0; offset < bo->size; offset += XE_PAGE_SIZE) {
+ 		pte = xe_ggtt_pte_encode(bo, offset);
+ 		xe_ggtt_set_pte(ggtt, start + offset, pte);
+ 	}
+@@ -273,7 +273,7 @@ static int __xe_ggtt_insert_bo_at(struct xe_ggtt *ggtt, struct xe_bo *bo,
+ 				  u64 start, u64 end)
+ {
+ 	int err;
+-	u64 alignment = GEN8_PAGE_SIZE;
++	u64 alignment = XE_PAGE_SIZE;
+ 
+ 	if (xe_bo_is_vram(bo) && ggtt->flags & XE_GGTT_FLAGS_64K)
+ 		alignment = SZ_64K;
+diff --git a/drivers/gpu/drm/xe/xe_migrate.c b/drivers/gpu/drm/xe/xe_migrate.c
+index 8686a2a7b035..5acb227f2b5a 100644
+--- a/drivers/gpu/drm/xe/xe_migrate.c
++++ b/drivers/gpu/drm/xe/xe_migrate.c
+@@ -147,7 +147,7 @@ static int xe_migrate_create_cleared_bo(struct xe_migrate *m, struct xe_vm *vm)
+ 		return PTR_ERR(m->cleared_bo);
+ 
+ 	xe_map_memset(xe, &m->cleared_bo->vmap, 0, 0x00, cleared_size);
+-	vram_addr = xe_bo_addr(m->cleared_bo, 0, GEN8_PAGE_SIZE, &is_vram);
++	vram_addr = xe_bo_addr(m->cleared_bo, 0, XE_PAGE_SIZE, &is_vram);
+ 	XE_BUG_ON(!is_vram);
+ 	m->cleared_vram_ofs = xe_migrate_vram_ofs(vram_addr);
+ 
+@@ -166,9 +166,9 @@ static int xe_migrate_prepare_vm(struct xe_gt *gt, struct xe_migrate *m,
  	int ret;
  
-@@ -127,18 +124,30 @@ int xe_reg_sr_add(struct xe_reg_sr *sr, u32 reg,
- 	return 0;
+ 	/* Can't bump NUM_PT_SLOTS too high */
+-	BUILD_BUG_ON(NUM_PT_SLOTS > SZ_2M/GEN8_PAGE_SIZE);
++	BUILD_BUG_ON(NUM_PT_SLOTS > SZ_2M/XE_PAGE_SIZE);
+ 	/* Must be a multiple of 64K to support all platforms */
+-	BUILD_BUG_ON(NUM_PT_SLOTS * GEN8_PAGE_SIZE % SZ_64K);
++	BUILD_BUG_ON(NUM_PT_SLOTS * XE_PAGE_SIZE % SZ_64K);
+ 	/* And one slot reserved for the 4KiB page table updates */
+ 	BUILD_BUG_ON(!(NUM_KERNEL_PDE & 1));
  
- fail:
--	DRM_ERROR("Discarding save-restore reg %04lx (clear: %08x, set: %08x, masked: %s): ret=%d\n",
-+	DRM_ERROR("Discarding save-restore reg %04lx (clear: %08x, set: %08x, masked: %s, mcr: %s): ret=%d\n",
- 		  idx, e->clr_bits, e->set_bits,
--		  str_yes_no(e->masked_reg), ret);
-+		  str_yes_no(e->reg.masked),
-+		  str_yes_no(e->reg.mcr),
-+		  ret);
- 	reg_sr_inc_error(sr);
+@@ -176,7 +176,7 @@ static int xe_migrate_prepare_vm(struct xe_gt *gt, struct xe_migrate *m,
+ 	XE_BUG_ON(m->batch_base_ofs + batch->size >= SZ_2M);
  
- 	return ret;
- }
+ 	bo = xe_bo_create_pin_map(vm->xe, m->gt, vm,
+-				  num_entries * GEN8_PAGE_SIZE,
++				  num_entries * XE_PAGE_SIZE,
+ 				  ttm_bo_type_kernel,
+ 				  XE_BO_CREATE_VRAM_IF_DGFX(m->gt) |
+ 				  XE_BO_CREATE_PINNED_BIT);
+@@ -189,14 +189,14 @@ static int xe_migrate_prepare_vm(struct xe_gt *gt, struct xe_migrate *m,
+ 		return ret;
+ 	}
  
--static void apply_one_mmio(struct xe_gt *gt, u32 reg,
--			   struct xe_reg_sr_entry *entry)
-+/*
-+ * Convert back from encoded value to type-safe, only to be used when reg.mcr
-+ * is true
-+ */
-+static struct xe_reg_mcr to_xe_reg_mcr(const struct xe_reg reg)
-+{
-+	return (const struct xe_reg_mcr){.__reg.raw = reg.raw };
-+}
-+
-+static void apply_one_mmio(struct xe_gt *gt, struct xe_reg_sr_entry *entry)
+-	entry = gen8_pde_encode(bo, bo->size - GEN8_PAGE_SIZE, XE_CACHE_WB);
++	entry = gen8_pde_encode(bo, bo->size - XE_PAGE_SIZE, XE_CACHE_WB);
+ 	xe_pt_write(xe, &vm->pt_root[id]->bo->vmap, 0, entry);
+ 
+-	map_ofs = (num_entries - num_level) * GEN8_PAGE_SIZE;
++	map_ofs = (num_entries - num_level) * XE_PAGE_SIZE;
+ 
+ 	/* Map the entire BO in our level 0 pt */
+ 	for (i = 0, level = 0; i < num_entries; level++) {
+-		entry = gen8_pte_encode(NULL, bo, i * GEN8_PAGE_SIZE,
++		entry = gen8_pte_encode(NULL, bo, i * XE_PAGE_SIZE,
+ 					XE_CACHE_WB, 0, 0);
+ 
+ 		xe_map_wr(xe, &bo->vmap, map_ofs + level * 8, u64, entry);
+@@ -211,10 +211,10 @@ static int xe_migrate_prepare_vm(struct xe_gt *gt, struct xe_migrate *m,
+ 		XE_BUG_ON(xe->info.supports_usm);
+ 
+ 		/* Write out batch too */
+-		m->batch_base_ofs = NUM_PT_SLOTS * GEN8_PAGE_SIZE;
++		m->batch_base_ofs = NUM_PT_SLOTS * XE_PAGE_SIZE;
+ 		for (i = 0; i < batch->size;
+-		     i += vm->flags & XE_VM_FLAGS_64K ? GEN8_64K_PAGE_SIZE :
+-			     GEN8_PAGE_SIZE) {
++		     i += vm->flags & XE_VM_FLAGS_64K ? XE_64K_PAGE_SIZE :
++		     XE_PAGE_SIZE) {
+ 			entry = gen8_pte_encode(NULL, batch, i,
+ 						XE_CACHE_WB, 0, 0);
+ 
+@@ -224,13 +224,13 @@ static int xe_migrate_prepare_vm(struct xe_gt *gt, struct xe_migrate *m,
+ 		}
+ 	} else {
+ 		bool is_vram;
+-		u64 batch_addr = xe_bo_addr(batch, 0, GEN8_PAGE_SIZE, &is_vram);
++		u64 batch_addr = xe_bo_addr(batch, 0, XE_PAGE_SIZE, &is_vram);
+ 
+ 		m->batch_base_ofs = xe_migrate_vram_ofs(batch_addr);
+ 
+ 		if (xe->info.supports_usm) {
+ 			batch = gt->usm.bb_pool->bo;
+-			batch_addr = xe_bo_addr(batch, 0, GEN8_PAGE_SIZE,
++			batch_addr = xe_bo_addr(batch, 0, XE_PAGE_SIZE,
+ 						&is_vram);
+ 			m->usm_batch_base_ofs = xe_migrate_vram_ofs(batch_addr);
+ 		}
+@@ -240,20 +240,20 @@ static int xe_migrate_prepare_vm(struct xe_gt *gt, struct xe_migrate *m,
+ 		u32 flags = 0;
+ 
+ 		if (vm->flags & XE_VM_FLAGS_64K && level == 1)
+-			flags = GEN12_PDE_64K;
++			flags = XE_PDE_64K;
+ 
+ 		entry = gen8_pde_encode(bo, map_ofs + (level - 1) *
+-					GEN8_PAGE_SIZE, XE_CACHE_WB);
+-		xe_map_wr(xe, &bo->vmap, map_ofs + GEN8_PAGE_SIZE * level, u64,
++					XE_PAGE_SIZE, XE_CACHE_WB);
++		xe_map_wr(xe, &bo->vmap, map_ofs + XE_PAGE_SIZE * level, u64,
+ 			  entry | flags);
+ 	}
+ 
+ 	/* Write PDE's that point to our BO. */
+ 	for (i = 0; i < num_entries - num_level; i++) {
+-		entry = gen8_pde_encode(bo, i * GEN8_PAGE_SIZE,
++		entry = gen8_pde_encode(bo, i * XE_PAGE_SIZE,
+ 					XE_CACHE_WB);
+ 
+-		xe_map_wr(xe, &bo->vmap, map_ofs + GEN8_PAGE_SIZE +
++		xe_map_wr(xe, &bo->vmap, map_ofs + XE_PAGE_SIZE +
+ 			  (i + 1) * 8, u64, entry);
+ 	}
+ 
+@@ -262,9 +262,9 @@ static int xe_migrate_prepare_vm(struct xe_gt *gt, struct xe_migrate *m,
+ 		u64 pos, ofs, flags;
+ 
+ 		level = 2;
+-		ofs = map_ofs + GEN8_PAGE_SIZE * level + 256 * 8;
+-		flags = GEN8_PAGE_RW | GEN8_PAGE_PRESENT | PPAT_CACHED |
+-			GEN12_PPGTT_PTE_LM | GEN8_PDPE_PS_1G;
++		ofs = map_ofs + XE_PAGE_SIZE * level + 256 * 8;
++		flags = XE_PAGE_RW | XE_PAGE_PRESENT | PPAT_CACHED |
++			XE_PPGTT_PTE_LM | XE_PDPE_PS_1G;
+ 
+ 		/*
+ 		 * Use 1GB pages, it shouldn't matter the physical amount of
+@@ -294,10 +294,10 @@ static int xe_migrate_prepare_vm(struct xe_gt *gt, struct xe_migrate *m,
+ 	 * the different addresses in VM.
+ 	 */
+ #define NUM_VMUSA_UNIT_PER_PAGE	32
+-#define VM_SA_UPDATE_UNIT_SIZE	(GEN8_PAGE_SIZE / NUM_VMUSA_UNIT_PER_PAGE)
++#define VM_SA_UPDATE_UNIT_SIZE		(XE_PAGE_SIZE / NUM_VMUSA_UNIT_PER_PAGE)
+ #define NUM_VMUSA_WRITES_PER_UNIT	(VM_SA_UPDATE_UNIT_SIZE / sizeof(u64))
+ 	drm_suballoc_manager_init(&m->vm_update_sa,
+-				  (map_ofs / GEN8_PAGE_SIZE - NUM_KERNEL_PDE) *
++				  (map_ofs / XE_PAGE_SIZE - NUM_KERNEL_PDE) *
+ 				  NUM_VMUSA_UNIT_PER_PAGE, 0);
+ 
+ 	m->pt_bo = bo;
+@@ -403,7 +403,7 @@ static u32 pte_update_size(struct xe_migrate *m,
+ 	if (!is_vram) {
+ 		/* Clip L0 to available size */
+ 		u64 size = min(*L0, (u64)avail_pts * SZ_2M);
+-		u64 num_4k_pages = DIV_ROUND_UP(size, GEN8_PAGE_SIZE);
++		u64 num_4k_pages = DIV_ROUND_UP(size, XE_PAGE_SIZE);
+ 
+ 		*L0 = size;
+ 		*L0_ofs = xe_migrate_vm_addr(pt_ofs, 0);
+@@ -433,7 +433,7 @@ static void emit_pte(struct xe_migrate *m,
+ 		     u32 size, struct xe_bo *bo)
  {
- 	struct xe_device *xe = gt_to_xe(gt);
-+	struct xe_reg reg = entry->reg;
-+	struct xe_reg_mcr reg_mcr = to_xe_reg_mcr(reg);
- 	u32 val;
+ 	u32 ptes;
+-	u64 ofs = at_pt * GEN8_PAGE_SIZE;
++	u64 ofs = at_pt * XE_PAGE_SIZE;
+ 	u64 cur_ofs;
  
  	/*
-@@ -149,12 +158,12 @@ static void apply_one_mmio(struct xe_gt *gt, u32 reg,
- 	 * When it's not masked, we have to read it from hardware, unless we are
- 	 * supposed to set all bits.
+@@ -443,7 +443,7 @@ static void emit_pte(struct xe_migrate *m,
+ 	 * on running tests.
  	 */
--	if (entry->masked_reg)
-+	if (reg.masked)
- 		val = (entry->clr_bits ?: entry->set_bits) << 16;
- 	else if (entry->clr_bits + 1)
--		val = (entry->reg_type == XE_RTP_REG_MCR ?
--		       xe_gt_mcr_unicast_read_any(gt, XE_REG_MCR(reg)) :
--		       xe_mmio_read32(gt, reg)) & (~entry->clr_bits);
-+		val = (reg.mcr ?
-+		       xe_gt_mcr_unicast_read_any(gt, reg_mcr) :
-+		       xe_mmio_read32(gt, reg.reg)) & (~entry->clr_bits);
- 	else
- 		val = 0;
  
-@@ -165,12 +174,12 @@ static void apply_one_mmio(struct xe_gt *gt, u32 reg,
- 	 */
- 	val |= entry->set_bits;
+-	ptes = DIV_ROUND_UP(size, GEN8_PAGE_SIZE);
++	ptes = DIV_ROUND_UP(size, XE_PAGE_SIZE);
  
--	drm_dbg(&xe->drm, "REG[0x%x] = 0x%08x", reg, val);
-+	drm_dbg(&xe->drm, "REG[0x%x] = 0x%08x", reg.reg, val);
+ 	while (ptes) {
+ 		u32 chunk = min(0x1ffU, ptes);
+@@ -466,13 +466,13 @@ static void emit_pte(struct xe_migrate *m,
+ 				if ((m->eng->vm->flags & XE_VM_FLAGS_64K) &&
+ 				    !(cur_ofs & (16 * 8 - 1))) {
+ 					XE_WARN_ON(!IS_ALIGNED(addr, SZ_64K));
+-					addr |= GEN12_PTE_PS64;
++					addr |= XE_PTE_PS64;
+ 				}
  
--	if (entry->reg_type == XE_RTP_REG_MCR)
--		xe_gt_mcr_multicast_write(gt, XE_REG_MCR(reg), val);
-+	if (entry->reg.mcr)
-+		xe_gt_mcr_multicast_write(gt, reg_mcr, val);
- 	else
--		xe_mmio_write32(gt, reg, val);
-+		xe_mmio_write32(gt, reg.reg, val);
- }
+ 				addr += vram_region_io_offset(bo->ttm.resource);
+-				addr |= GEN12_PPGTT_PTE_LM;
++				addr |= XE_PPGTT_PTE_LM;
+ 			}
+-			addr |= PPAT_CACHED | GEN8_PAGE_PRESENT | GEN8_PAGE_RW;
++			addr |= PPAT_CACHED | XE_PAGE_PRESENT | XE_PAGE_RW;
+ 			bb->cs[bb->len++] = lower_32_bits(addr);
+ 			bb->cs[bb->len++] = upper_32_bits(addr);
  
- void xe_reg_sr_apply_mmio(struct xe_reg_sr *sr, struct xe_gt *gt)
-@@ -190,7 +199,7 @@ void xe_reg_sr_apply_mmio(struct xe_reg_sr *sr, struct xe_gt *gt)
- 		goto err_force_wake;
+@@ -697,7 +697,8 @@ struct dma_fence *xe_migrate_copy(struct xe_migrate *m,
+ 		bb->cs[bb->len++] = MI_BATCH_BUFFER_END;
+ 		update_idx = bb->len;
  
- 	xa_for_each(&sr->xa, reg, entry)
--		apply_one_mmio(gt, reg, entry);
-+		apply_one_mmio(gt, entry);
+-		emit_copy(gt, bb, src_L0_ofs, dst_L0_ofs, src_L0, GEN8_PAGE_SIZE);
++		emit_copy(gt, bb, src_L0_ofs, dst_L0_ofs, src_L0,
++			  XE_PAGE_SIZE);
+ 		flush_flags = xe_migrate_ccs_copy(m, bb, src_L0_ofs, src_is_vram,
+ 						  dst_L0_ofs, dst_is_vram,
+ 						  src_L0, ccs_ofs, copy_ccs);
+@@ -915,7 +916,7 @@ struct dma_fence *xe_migrate_clear(struct xe_migrate *m,
+ 		bb->cs[bb->len++] = MI_BATCH_BUFFER_END;
+ 		update_idx = bb->len;
  
- 	err = xe_force_wake_put(&gt->mmio.fw, XE_FORCEWAKE_ALL);
- 	XE_WARN_ON(err);
-@@ -259,6 +268,6 @@ void xe_reg_sr_dump(struct xe_reg_sr *sr, struct drm_printer *p)
- 	xa_for_each(&sr->xa, reg, entry)
- 		drm_printf(p, "\tREG[0x%lx] clr=0x%08x set=0x%08x masked=%s mcr=%s\n",
- 			   reg, entry->clr_bits, entry->set_bits,
--			   str_yes_no(entry->masked_reg),
--			   str_yes_no(entry->reg_type == XE_RTP_REG_MCR));
-+			   str_yes_no(entry->reg.masked),
-+			   str_yes_no(entry->reg.mcr));
- }
-diff --git a/drivers/gpu/drm/xe/xe_reg_sr.h b/drivers/gpu/drm/xe/xe_reg_sr.h
-index 3af369089faa..0bfe66ea29bf 100644
---- a/drivers/gpu/drm/xe/xe_reg_sr.h
-+++ b/drivers/gpu/drm/xe/xe_reg_sr.h
-@@ -19,8 +19,7 @@ struct drm_printer;
- int xe_reg_sr_init(struct xe_reg_sr *sr, const char *name, struct xe_device *xe);
- void xe_reg_sr_dump(struct xe_reg_sr *sr, struct drm_printer *p);
+-		emit_clear(gt, bb, clear_L0_ofs, clear_L0, GEN8_PAGE_SIZE,
++		emit_clear(gt, bb, clear_L0_ofs, clear_L0, XE_PAGE_SIZE,
+ 			   clear_vram);
+ 		if (xe_device_has_flat_ccs(xe) && clear_vram) {
+ 			emit_copy_ccs(gt, bb, clear_L0_ofs, true,
+@@ -985,7 +986,7 @@ static void write_pgtable(struct xe_gt *gt, struct xe_bb *bb, u64 ppgtt_ofs,
+ 		bool is_vram;
  
--int xe_reg_sr_add(struct xe_reg_sr *sr, u32 reg,
--		  const struct xe_reg_sr_entry *e);
-+int xe_reg_sr_add(struct xe_reg_sr *sr, const struct xe_reg_sr_entry *e);
- void xe_reg_sr_apply_mmio(struct xe_reg_sr *sr, struct xe_gt *gt);
- void xe_reg_sr_apply_whitelist(struct xe_reg_sr *sr, u32 mmio_base,
- 			       struct xe_gt *gt);
-diff --git a/drivers/gpu/drm/xe/xe_reg_sr_types.h b/drivers/gpu/drm/xe/xe_reg_sr_types.h
-index 91469784fd90..ad48a52b824a 100644
---- a/drivers/gpu/drm/xe/xe_reg_sr_types.h
-+++ b/drivers/gpu/drm/xe/xe_reg_sr_types.h
-@@ -9,18 +9,14 @@
- #include <linux/types.h>
- #include <linux/xarray.h>
+ 		ppgtt_ofs = xe_migrate_vram_ofs(xe_bo_addr(update->pt_bo, 0,
+-							   GEN8_PAGE_SIZE,
++							   XE_PAGE_SIZE,
+ 							   &is_vram));
+ 		XE_BUG_ON(!is_vram);
+ 	}
+@@ -1202,7 +1203,7 @@ xe_migrate_update_pgtables(struct xe_migrate *m,
+ 		/* Map our PT's to gtt */
+ 		bb->cs[bb->len++] = MI_STORE_DATA_IMM | BIT(21) |
+ 			(num_updates * 2 + 1);
+-		bb->cs[bb->len++] = ppgtt_ofs * GEN8_PAGE_SIZE + page_ofs;
++		bb->cs[bb->len++] = ppgtt_ofs * XE_PAGE_SIZE + page_ofs;
+ 		bb->cs[bb->len++] = 0; /* upper_32_bits */
  
-+#include "regs/xe_reg_defs.h"
-+
- struct xe_reg_sr_entry {
-+	struct xe_reg	reg;
- 	u32		clr_bits;
- 	u32		set_bits;
- 	/* Mask for bits to consider when reading value back */
- 	u32		read_mask;
--	/*
--	 * "Masked registers" are marked in spec as register with the upper 16
--	 * bits as a mask for the bits that is being updated on the lower 16
--	 * bits when writing to it.
--	 */
--	u8		masked_reg;
--	u8		reg_type;
- };
+ 		for (i = 0; i < num_updates; i++) {
+@@ -1220,9 +1221,9 @@ xe_migrate_update_pgtables(struct xe_migrate *m,
+ 		update_idx = bb->len;
  
- struct xe_reg_sr {
-diff --git a/drivers/gpu/drm/xe/xe_reg_whitelist.c b/drivers/gpu/drm/xe/xe_reg_whitelist.c
-index 310d5dfe30d5..7a2bb60ebd85 100644
---- a/drivers/gpu/drm/xe/xe_reg_whitelist.c
-+++ b/drivers/gpu/drm/xe/xe_reg_whitelist.c
-@@ -11,10 +11,8 @@
- #include "xe_platform_types.h"
- #include "xe_rtp.h"
+ 		addr = xe_migrate_vm_addr(ppgtt_ofs, 0) +
+-			(page_ofs / sizeof(u64)) * GEN8_PAGE_SIZE;
++			(page_ofs / sizeof(u64)) * XE_PAGE_SIZE;
+ 		for (i = 0; i < num_updates; i++)
+-			write_pgtable(m->gt, bb, addr + i * GEN8_PAGE_SIZE,
++			write_pgtable(m->gt, bb, addr + i * XE_PAGE_SIZE,
+ 				      &updates[i], pt_update);
+ 	} else {
+ 		/* phys pages, no preamble required */
+diff --git a/drivers/gpu/drm/xe/xe_pt.c b/drivers/gpu/drm/xe/xe_pt.c
+index 6b2943efcdbc..4ee5ea2cabc9 100644
+--- a/drivers/gpu/drm/xe/xe_pt.c
++++ b/drivers/gpu/drm/xe/xe_pt.c
+@@ -64,8 +64,8 @@ u64 gen8_pde_encode(struct xe_bo *bo, u64 bo_offset,
+ 	u64 pde;
+ 	bool is_vram;
  
--#undef XE_REG
- #undef XE_REG_MCR
--#define XE_REG(x, ...)		_XE_RTP_REG(x)
--#define XE_REG_MCR(x, ...)	_XE_RTP_MCR_REG(x)
-+#define XE_REG_MCR(...)     XE_REG(__VA_ARGS__, .mcr = 1)
+-	pde = xe_bo_addr(bo, bo_offset, GEN8_PAGE_SIZE, &is_vram);
+-	pde |= GEN8_PAGE_PRESENT | GEN8_PAGE_RW;
++	pde = xe_bo_addr(bo, bo_offset, XE_PAGE_SIZE, &is_vram);
++	pde |= XE_PAGE_PRESENT | XE_PAGE_RW;
  
- static bool match_not_render(const struct xe_gt *gt,
- 			     const struct xe_hw_engine *hwe)
-diff --git a/drivers/gpu/drm/xe/xe_rtp.c b/drivers/gpu/drm/xe/xe_rtp.c
-index 20acd43cb60b..f2a0e8eb4936 100644
---- a/drivers/gpu/drm/xe/xe_rtp.c
-+++ b/drivers/gpu/drm/xe/xe_rtp.c
-@@ -94,16 +94,15 @@ static void rtp_add_sr_entry(const struct xe_rtp_action *action,
- 			     u32 mmio_base,
- 			     struct xe_reg_sr *sr)
+ 	XE_WARN_ON(IS_DGFX(xe_bo_device(bo)) && !is_vram);
+ 
+@@ -101,10 +101,10 @@ static dma_addr_t vma_addr(struct xe_vma *vma, u64 offset,
+ static u64 __gen8_pte_encode(u64 pte, enum xe_cache_level cache, u32 flags,
+ 			     u32 pt_level)
  {
--	u32 reg = action->reg + mmio_base;
- 	struct xe_reg_sr_entry sr_entry = {
-+		.reg = action->reg,
- 		.clr_bits = action->clr_bits,
- 		.set_bits = action->set_bits,
- 		.read_mask = action->read_mask,
--		.masked_reg = action->flags & XE_RTP_ACTION_FLAG_MASKED_REG,
--		.reg_type = action->reg_type,
- 	};
+-	pte |= GEN8_PAGE_PRESENT | GEN8_PAGE_RW;
++	pte |= XE_PAGE_PRESENT | XE_PAGE_RW;
  
--	xe_reg_sr_add(sr, reg, &sr_entry);
-+	sr_entry.reg.reg += mmio_base;
-+	xe_reg_sr_add(sr, &sr_entry);
+-	if (unlikely(flags & PTE_READ_ONLY))
+-		pte &= ~GEN8_PAGE_RW;
++	if (unlikely(flags & XE_PTE_READ_ONLY))
++		pte &= ~XE_PAGE_RW;
+ 
+ 	/* FIXME: I don't think the PPAT handling is correct for MTL */
+ 
+@@ -121,9 +121,9 @@ static u64 __gen8_pte_encode(u64 pte, enum xe_cache_level cache, u32 flags,
+ 	}
+ 
+ 	if (pt_level == 1)
+-		pte |= GEN8_PDE_PS_2M;
++		pte |= XE_PDE_PS_2M;
+ 	else if (pt_level == 2)
+-		pte |= GEN8_PDPE_PS_1G;
++		pte |= XE_PDPE_PS_1G;
+ 
+ 	/* XXX: Does hw support 1 GiB pages? */
+ 	XE_BUG_ON(pt_level > 2);
+@@ -153,14 +153,14 @@ u64 gen8_pte_encode(struct xe_vma *vma, struct xe_bo *bo,
+ 	bool is_vram;
+ 
+ 	if (vma)
+-		pte = vma_addr(vma, offset, GEN8_PAGE_SIZE, &is_vram);
++		pte = vma_addr(vma, offset, XE_PAGE_SIZE, &is_vram);
+ 	else
+-		pte = xe_bo_addr(bo, offset, GEN8_PAGE_SIZE, &is_vram);
++		pte = xe_bo_addr(bo, offset, XE_PAGE_SIZE, &is_vram);
+ 
+ 	if (is_vram) {
+-		pte |= GEN12_PPGTT_PTE_LM;
++		pte |= XE_PPGTT_PTE_LM;
+ 		if (vma && vma->use_atomic_access_pte_bit)
+-			pte |= GEN12_USM_PPGTT_PTE_AE;
++			pte |= XE_USM_PPGTT_PTE_AE;
+ 	}
+ 
+ 	return __gen8_pte_encode(pte, cache, flags, pt_level);
+@@ -211,7 +211,7 @@ struct xe_pt *xe_pt_create(struct xe_vm *vm, struct xe_gt *gt,
+ 	int err;
+ 
+ 	size = !level ?  sizeof(struct xe_pt) : sizeof(struct xe_pt_dir) +
+-		GEN8_PDES * sizeof(struct drm_pt *);
++		XE_PDES * sizeof(struct drm_pt *);
+ 	pt = kzalloc(size, GFP_KERNEL);
+ 	if (!pt)
+ 		return ERR_PTR(-ENOMEM);
+@@ -265,7 +265,7 @@ void xe_pt_populate_empty(struct xe_gt *gt, struct xe_vm *vm,
+ 		xe_map_memset(vm->xe, map, 0, 0, SZ_4K);
+ 	} else {
+ 		empty = __xe_pt_empty_pte(gt, vm, pt->level);
+-		for (i = 0; i < GEN8_PDES; i++)
++		for (i = 0; i < XE_PDES; i++)
+ 			xe_pt_write(vm->xe, map, i, empty);
+ 	}
+ }
+@@ -280,7 +280,7 @@ void xe_pt_populate_empty(struct xe_gt *gt, struct xe_vm *vm,
+  */
+ unsigned int xe_pt_shift(unsigned int level)
+ {
+-	return GEN8_PTE_SHIFT + GEN8_PDE_SHIFT * level;
++	return XE_PTE_SHIFT + XE_PDE_SHIFT * level;
  }
  
- static void rtp_process_one(const struct xe_rtp_entry *entry, struct xe_gt *gt,
-diff --git a/drivers/gpu/drm/xe/xe_rtp.h b/drivers/gpu/drm/xe/xe_rtp.h
-index 0139dd4d1cd7..4a333b9792ac 100644
---- a/drivers/gpu/drm/xe/xe_rtp.h
-+++ b/drivers/gpu/drm/xe/xe_rtp.h
-@@ -231,7 +231,6 @@ struct xe_reg_sr;
-  * XE_RTP_ACTION_WR - Helper to write a value to the register, overriding all
-  *                    the bits
-  * @reg_: Register
-- * @reg_type_: Register type - automatically expanded by XE_REG
-  * @val_: Value to set
-  * @...: Additional fields to override in the struct xe_rtp_action entry
-  *
-@@ -239,15 +238,14 @@ struct xe_reg_sr;
-  *
-  *	REGNAME = VALUE
-  */
--#define XE_RTP_ACTION_WR(reg_, reg_type_, val_, ...)				\
--	{ .reg = (reg_), .reg_type = (reg_type_),				\
-+#define XE_RTP_ACTION_WR(reg_, val_, ...)					\
-+	{ .reg = XE_RTP_DROP_CAST(reg_),					\
- 	  .clr_bits = ~0u, .set_bits = (val_),					\
- 	  .read_mask = (~0u), ##__VA_ARGS__ }
- 
  /**
-  * XE_RTP_ACTION_SET - Set bits from @val_ in the register.
-  * @reg_: Register
-- * @reg_type_: Register type - automatically expanded by XE_REG
-  * @val_: Bits to set in the register
-  * @...: Additional fields to override in the struct xe_rtp_action entry
-  *
-@@ -258,15 +256,14 @@ struct xe_reg_sr;
-  *	REGNAME[2] = 1
-  *	REGNAME[5] = 1
-  */
--#define XE_RTP_ACTION_SET(reg_, reg_type_, val_, ...)				\
--	{ .reg = (reg_), .reg_type = (reg_type_),				\
--	  .clr_bits = (val_), .set_bits = (val_),				\
--	  .read_mask = (val_), ##__VA_ARGS__ }
-+#define XE_RTP_ACTION_SET(reg_, val_, ...)					\
-+	{ .reg = XE_RTP_DROP_CAST(reg_),					\
-+	  .clr_bits = val_, .set_bits = val_,					\
-+	  .read_mask = val_, ##__VA_ARGS__ }
+@@ -307,7 +307,7 @@ void xe_pt_destroy(struct xe_pt *pt, u32 flags, struct llist_head *deferred)
+ 	if (pt->level > 0 && pt->num_live) {
+ 		struct xe_pt_dir *pt_dir = as_xe_pt_dir(pt);
  
- /**
-  * XE_RTP_ACTION_CLR: Clear bits from @val_ in the register.
-  * @reg_: Register
-- * @reg_type_: Register type - automatically expanded by XE_REG
-  * @val_: Bits to clear in the register
-  * @...: Additional fields to override in the struct xe_rtp_action entry
-  *
-@@ -277,15 +274,14 @@ struct xe_reg_sr;
-  *	REGNAME[2] = 0
-  *	REGNAME[5] = 0
-  */
--#define XE_RTP_ACTION_CLR(reg_, reg_type_, val_, ...)				\
--	{ .reg = (reg_), .reg_type = (reg_type_),				\
--	  .clr_bits = (val_), .set_bits = 0,					\
--	  .read_mask = (val_), ##__VA_ARGS__ }
-+#define XE_RTP_ACTION_CLR(reg_, val_, ...)					\
-+	{ .reg = XE_RTP_DROP_CAST(reg_),					\
-+	  .clr_bits = val_, .set_bits = 0,					\
-+	  .read_mask = val_, ##__VA_ARGS__ }
+-		for (i = 0; i < GEN8_PDES; i++) {
++		for (i = 0; i < XE_PDES; i++) {
+ 			if (xe_pt_entry(pt_dir, i))
+ 				xe_pt_destroy(xe_pt_entry(pt_dir, i), flags,
+ 					      deferred);
+@@ -489,7 +489,7 @@ xe_pt_new_shared(struct xe_walk_update *wupd, struct xe_pt *parent,
+ 	entry->qwords = 0;
  
- /**
-  * XE_RTP_ACTION_FIELD_SET: Set a bit range
-  * @reg_: Register
-- * @reg_type_: Register type - automatically expanded by XE_REG
-  * @mask_bits_: Mask of bits to be changed in the register, forming a field
-  * @val_: Value to set in the field denoted by @mask_bits_
-  * @...: Additional fields to override in the struct xe_rtp_action entry
-@@ -295,29 +291,29 @@ struct xe_reg_sr;
-  *
-  *	REGNAME[<end>:<start>] = VALUE
-  */
--#define XE_RTP_ACTION_FIELD_SET(reg_, reg_type_, mask_bits_, val_, ...)		\
--	{ .reg = (reg_), .reg_type = (reg_type_),				\
--	  .clr_bits = (mask_bits_), .set_bits = (val_),				\
--	  .read_mask = (mask_bits_), ##__VA_ARGS__ }
-+#define XE_RTP_ACTION_FIELD_SET(reg_, mask_bits_, val_, ...)			\
-+	{ .reg = XE_RTP_DROP_CAST(reg_),					\
-+	  .clr_bits = mask_bits_, .set_bits = val_,				\
-+	  .read_mask = mask_bits_, ##__VA_ARGS__ }
+ 	if (alloc_entries) {
+-		entry->pt_entries = kmalloc_array(GEN8_PDES,
++		entry->pt_entries = kmalloc_array(XE_PDES,
+ 						  sizeof(*entry->pt_entries),
+ 						  GFP_KERNEL);
+ 		if (!entry->pt_entries)
+@@ -649,7 +649,7 @@ xe_pt_stage_bind_entry(struct drm_pt *parent, pgoff_t offset,
+ 		 */
+ 		if (level == 0 && !xe_parent->is_compact) {
+ 			if (xe_pt_is_pte_ps64K(addr, next, xe_walk))
+-				pte |= GEN12_PTE_PS64;
++				pte |= XE_PTE_PS64;
+ 			else if (XE_WARN_ON(xe_walk->needs_64K))
+ 				return -EINVAL;
+ 		}
+@@ -699,7 +699,7 @@ xe_pt_stage_bind_entry(struct drm_pt *parent, pgoff_t offset,
+ 		if (GRAPHICS_VERx100(xe_walk->gt->xe) >= 1250 && level == 1 &&
+ 		    covers && xe_pt_scan_64K(addr, next, xe_walk)) {
+ 			walk->shifts = xe_compact_pt_shifts;
+-			flags |= GEN12_PDE_64K;
++			flags |= XE_PDE_64K;
+ 			xe_child->is_compact = true;
+ 		}
  
--#define XE_RTP_ACTION_FIELD_SET_NO_READ_MASK(reg_, reg_type_, mask_bits_, val_, ...)	\
--	{ .reg = (reg_), .reg_type = (reg_type_),				\
-+#define XE_RTP_ACTION_FIELD_SET_NO_READ_MASK(reg_, mask_bits_, val_, ...)	\
-+	{ .reg = XE_RTP_DROP_CAST(reg_),					\
- 	  .clr_bits = (mask_bits_), .set_bits = (val_),				\
- 	  .read_mask = 0, ##__VA_ARGS__ }
+@@ -761,9 +761,9 @@ xe_pt_stage_bind(struct xe_gt *gt, struct xe_vma *vma,
+ 	if (is_vram) {
+ 		struct xe_gt *bo_gt = xe_bo_to_gt(bo);
  
- /**
-  * XE_RTP_ACTION_WHITELIST - Add register to userspace whitelist
-  * @reg_: Register
-- * @reg_type_: Register type - automatically expanded by XE_REG
-  * @val_: Whitelist-specific flags to set
-  * @...: Additional fields to override in the struct xe_rtp_action entry
-  *
-  * Add a register to the whitelist, allowing userspace to modify the ster with
-  * regular user privileges.
-  */
--#define XE_RTP_ACTION_WHITELIST(reg_, reg_type_, val_, ...)			\
-+#define XE_RTP_ACTION_WHITELIST(reg_, val_, ...)				\
- 	/* TODO fail build if ((flags) & ~(RING_FORCE_TO_NONPRIV_MASK_VALID)) */\
--	{ .reg = (reg_), .reg_type = (reg_type_), .set_bits = (val_),		\
-+	{ .reg = XE_RTP_DROP_CAST(reg_),					\
-+	  .set_bits = val_,							\
- 	  .clr_bits = RING_FORCE_TO_NONPRIV_MASK_VALID,				\
- 	  ##__VA_ARGS__ }
+-		xe_walk.default_pte = GEN12_PPGTT_PTE_LM;
++		xe_walk.default_pte = XE_PPGTT_PTE_LM;
+ 		if (vma && vma->use_atomic_access_pte_bit)
+-			xe_walk.default_pte |= GEN12_USM_PPGTT_PTE_AE;
++			xe_walk.default_pte |= XE_USM_PPGTT_PTE_AE;
+ 		xe_walk.dma_offset = bo_gt->mem.vram.io_start -
+ 			gt_to_xe(gt)->mem.vram.io_start;
+ 		xe_walk.cache = XE_CACHE_WB;
+diff --git a/drivers/gpu/drm/xe/xe_vm.c b/drivers/gpu/drm/xe/xe_vm.c
+index bdf82d34eb66..272f0f7f24fe 100644
+--- a/drivers/gpu/drm/xe/xe_vm.c
++++ b/drivers/gpu/drm/xe/xe_vm.c
+@@ -59,7 +59,7 @@ int xe_vma_userptr_pin_pages(struct xe_vma *vma)
+ 	bool in_kthread = !current->mm;
+ 	unsigned long notifier_seq;
+ 	int pinned, ret, i;
+-	bool read_only = vma->pte_flags & PTE_READ_ONLY;
++	bool read_only = vma->pte_flags & XE_PTE_READ_ONLY;
  
-diff --git a/drivers/gpu/drm/xe/xe_rtp_types.h b/drivers/gpu/drm/xe/xe_rtp_types.h
-index e87f1b280d96..12df8a9e9c45 100644
---- a/drivers/gpu/drm/xe/xe_rtp_types.h
-+++ b/drivers/gpu/drm/xe/xe_rtp_types.h
-@@ -8,14 +8,11 @@
+ 	lockdep_assert_held(&vm->lock);
+ 	XE_BUG_ON(!xe_vma_is_userptr(vma));
+@@ -844,7 +844,7 @@ static struct xe_vma *xe_vma_create(struct xe_vm *vm,
+ 	vma->start = start;
+ 	vma->end = end;
+ 	if (read_only)
+-		vma->pte_flags = PTE_READ_ONLY;
++		vma->pte_flags = XE_PTE_READ_ONLY;
  
- #include <linux/types.h>
+ 	if (gt_mask) {
+ 		vma->gt_mask = gt_mask;
+@@ -897,7 +897,7 @@ static void xe_vma_destroy_late(struct xe_vma *vma)
+ {
+ 	struct xe_vm *vm = vma->vm;
+ 	struct xe_device *xe = vm->xe;
+-	bool read_only = vma->pte_flags & PTE_READ_ONLY;
++	bool read_only = vma->pte_flags & XE_PTE_READ_ONLY;
  
-+#include "regs/xe_reg_defs.h"
-+
- struct xe_hw_engine;
- struct xe_gt;
+ 	if (xe_vma_is_userptr(vma)) {
+ 		if (vma->userptr.sg) {
+@@ -1902,7 +1902,7 @@ int xe_vm_create_ioctl(struct drm_device *dev, void *data,
  
--enum {
--	XE_RTP_REG_REGULAR,
--	XE_RTP_REG_MCR,
--};
--
- /**
-  * struct xe_rtp_action - action to take for any matching rule
-  *
-@@ -24,20 +21,17 @@ enum {
-  */
- struct xe_rtp_action {
- 	/** @reg: Register */
--	u32		reg;
-+	struct xe_reg		reg;
- 	/** @clr_bits: bits to clear when updating register */
--	u32		clr_bits;
-+	u32			clr_bits;
- 	/** @set_bits: bits to set when updating register */
--	u32		set_bits;
-+	u32			set_bits;
- #define XE_RTP_NOCHECK		.read_mask = 0
- 	/** @read_mask: mask for bits to consider when reading value back */
--	u32		read_mask;
--#define XE_RTP_ACTION_FLAG_MASKED_REG		BIT(0)
--#define XE_RTP_ACTION_FLAG_ENGINE_BASE		BIT(1)
-+	u32			read_mask;
-+#define XE_RTP_ACTION_FLAG_ENGINE_BASE		BIT(0)
- 	/** @flags: flags to apply on rule evaluation or action */
--	u8		flags;
--	/** @reg_type: register type, see ``XE_RTP_REG_*`` */
--	u8		reg_type;
-+	u8			flags;
- };
+ #if IS_ENABLED(CONFIG_DRM_XE_DEBUG_MEM)
+ 	/* Warning: Security issue - never enable by default */
+-	args->reserved[0] = xe_bo_main_addr(vm->pt_root[0]->bo, GEN8_PAGE_SIZE);
++	args->reserved[0] = xe_bo_main_addr(vm->pt_root[0]->bo, XE_PAGE_SIZE);
+ #endif
  
- enum {
-diff --git a/drivers/gpu/drm/xe/xe_tuning.c b/drivers/gpu/drm/xe/xe_tuning.c
-index f6eefa951175..5fc6a408429b 100644
---- a/drivers/gpu/drm/xe/xe_tuning.c
-+++ b/drivers/gpu/drm/xe/xe_tuning.c
-@@ -12,10 +12,8 @@
- #include "xe_platform_types.h"
- #include "xe_rtp.h"
+ 	return 0;
+@@ -2593,7 +2593,7 @@ static struct xe_vma *vm_unbind_lookup_vmas(struct xe_vm *vm,
+ 					  first->userptr.ptr,
+ 					  first->start,
+ 					  lookup->start - 1,
+-					  (first->pte_flags & PTE_READ_ONLY),
++					  (first->pte_flags & XE_PTE_READ_ONLY),
+ 					  first->gt_mask);
+ 		if (first->bo)
+ 			xe_bo_unlock(first->bo, &ww);
+@@ -2624,7 +2624,7 @@ static struct xe_vma *vm_unbind_lookup_vmas(struct xe_vm *vm,
+ 					 last->userptr.ptr + chunk,
+ 					 last->start + chunk,
+ 					 last->end,
+-					 (last->pte_flags & PTE_READ_ONLY),
++					 (last->pte_flags & XE_PTE_READ_ONLY),
+ 					 last->gt_mask);
+ 		if (last->bo)
+ 			xe_bo_unlock(last->bo, &ww);
+@@ -3381,7 +3381,8 @@ int xe_analyze_vm(struct drm_printer *p, struct xe_vm *vm, int gt_id)
+ 		return 0;
+ 	}
+ 	if (vm->pt_root[gt_id]) {
+-		addr = xe_bo_addr(vm->pt_root[gt_id]->bo, 0, GEN8_PAGE_SIZE, &is_vram);
++		addr = xe_bo_addr(vm->pt_root[gt_id]->bo, 0, XE_PAGE_SIZE,
++				  &is_vram);
+ 		drm_printf(p, " VM root: A:0x%llx %s\n", addr, is_vram ? "VRAM" : "SYS");
+ 	}
  
--#undef XE_REG
- #undef XE_REG_MCR
--#define XE_REG(x, ...)		_XE_RTP_REG(x)
--#define XE_REG_MCR(x, ...)	_XE_RTP_MCR_REG(x)
-+#define XE_REG_MCR(...)     XE_REG(__VA_ARGS__, .mcr = 1)
+@@ -3392,10 +3393,11 @@ int xe_analyze_vm(struct drm_printer *p, struct xe_vm *vm, int gt_id)
+ 		if (is_userptr) {
+ 			struct xe_res_cursor cur;
  
- static const struct xe_rtp_entry gt_tunings[] = {
- 	{ XE_RTP_NAME("Tuning: Blend Fill Caching Optimization Disable"),
-@@ -54,8 +52,7 @@ static const struct xe_rtp_entry lrc_tunings[] = {
- 	},
- 	{ XE_RTP_NAME("Tuning: TBIMR fast clip"),
- 	  XE_RTP_RULES(PLATFORM(DG2)),
--	  XE_RTP_ACTIONS(SET(CHICKEN_RASTER_2, TBIMR_FAST_CLIP,
--			     XE_RTP_ACTION_FLAG(MASKED_REG)))
-+	  XE_RTP_ACTIONS(SET(CHICKEN_RASTER_2, TBIMR_FAST_CLIP))
- 	},
- 	{}
- };
-diff --git a/drivers/gpu/drm/xe/xe_wa.c b/drivers/gpu/drm/xe/xe_wa.c
-index ed3fa51ccd24..b0bb2f4438f4 100644
---- a/drivers/gpu/drm/xe/xe_wa.c
-+++ b/drivers/gpu/drm/xe/xe_wa.c
-@@ -87,10 +87,8 @@
-  *    a more declarative approach rather than procedural.
-  */
- 
--#undef XE_REG
- #undef XE_REG_MCR
--#define XE_REG(x, ...)		_XE_RTP_REG(x)
--#define XE_REG_MCR(x, ...)	_XE_RTP_MCR_REG(x)
-+#define XE_REG_MCR(...)     XE_REG(__VA_ARGS__, .mcr = 1)
- 
- __diag_push();
- __diag_ignore_all("-Woverride-init", "Allow field overrides in table");
-@@ -232,8 +230,7 @@ static const struct xe_rtp_entry gt_was[] = {
- 	},
- 	{ XE_RTP_NAME("16016694945"),
- 	  XE_RTP_RULES(PLATFORM(PVC)),
--	  XE_RTP_ACTIONS(SET(XEHPC_LNCFMISCCFGREG0, XEHPC_OVRLSCCC,
--			     XE_RTP_ACTION_FLAG(MASKED_REG)))
-+	  XE_RTP_ACTIONS(SET(XEHPC_LNCFMISCCFGREG0, XEHPC_OVRLSCCC))
- 	},
- 	{}
- };
-@@ -248,36 +245,30 @@ static const struct xe_rtp_entry engine_was[] = {
- 	  XE_RTP_RULES(GRAPHICS_VERSION(1200),
- 		       ENGINE_CLASS(RENDER),
- 		       IS_INTEGRATED),
--	  XE_RTP_ACTIONS(SET(ROW_CHICKEN2, PUSH_CONST_DEREF_HOLD_DIS,
--			     XE_RTP_ACTION_FLAG(MASKED_REG)))
-+	  XE_RTP_ACTIONS(SET(ROW_CHICKEN2, PUSH_CONST_DEREF_HOLD_DIS))
- 	},
- 	{ XE_RTP_NAME("14010229206, 1409085225"),
- 	  XE_RTP_RULES(GRAPHICS_VERSION(1200),
- 		       ENGINE_CLASS(RENDER),
- 		       IS_INTEGRATED),
--	  XE_RTP_ACTIONS(SET(ROW_CHICKEN4, DISABLE_TDL_PUSH,
--			     XE_RTP_ACTION_FLAG(MASKED_REG)))
-+	  XE_RTP_ACTIONS(SET(ROW_CHICKEN4, DISABLE_TDL_PUSH))
- 	},
- 	{ XE_RTP_NAME("1606931601"),
- 	  XE_RTP_RULES(GRAPHICS_VERSION_RANGE(1200, 1210), ENGINE_CLASS(RENDER)),
--	  XE_RTP_ACTIONS(SET(ROW_CHICKEN2, DISABLE_EARLY_READ,
--			     XE_RTP_ACTION_FLAG(MASKED_REG)))
-+	  XE_RTP_ACTIONS(SET(ROW_CHICKEN2, DISABLE_EARLY_READ))
- 	},
- 	{ XE_RTP_NAME("14010826681, 1606700617, 22010271021, 18019627453"),
- 	  XE_RTP_RULES(GRAPHICS_VERSION_RANGE(1200, 1255), ENGINE_CLASS(RENDER)),
--	  XE_RTP_ACTIONS(SET(CS_DEBUG_MODE1, FF_DOP_CLOCK_GATE_DISABLE,
--			     XE_RTP_ACTION_FLAG(MASKED_REG)))
-+	  XE_RTP_ACTIONS(SET(CS_DEBUG_MODE1, FF_DOP_CLOCK_GATE_DISABLE))
- 	},
- 	{ XE_RTP_NAME("1406941453"),
- 	  XE_RTP_RULES(GRAPHICS_VERSION_RANGE(1200, 1210), ENGINE_CLASS(RENDER)),
--	  XE_RTP_ACTIONS(SET(SAMPLER_MODE, ENABLE_SMALLPL,
--			     XE_RTP_ACTION_FLAG(MASKED_REG)))
-+	  XE_RTP_ACTIONS(SET(SAMPLER_MODE, ENABLE_SMALLPL))
- 	},
- 	{ XE_RTP_NAME("FtrPerCtxtPreemptionGranularityControl"),
- 	  XE_RTP_RULES(GRAPHICS_VERSION_RANGE(1200, 1250), ENGINE_CLASS(RENDER)),
- 	  XE_RTP_ACTIONS(SET(FF_SLICE_CS_CHICKEN1,
--			     FFSC_PERCTX_PREEMPT_CTRL,
--			     XE_RTP_ACTION_FLAG(MASKED_REG)))
-+			     FFSC_PERCTX_PREEMPT_CTRL))
- 	},
- 
- 	/* TGL */
-@@ -286,8 +277,7 @@ static const struct xe_rtp_entry engine_was[] = {
- 	  XE_RTP_RULES(PLATFORM(TIGERLAKE), ENGINE_CLASS(RENDER)),
- 	  XE_RTP_ACTIONS(SET(RING_PSMI_CTL(RENDER_RING_BASE),
- 			     WAIT_FOR_EVENT_POWER_DOWN_DISABLE |
--			     RC_SEMA_IDLE_MSG_DISABLE,
--			     XE_RTP_ACTION_FLAG(MASKED_REG)))
-+			     RC_SEMA_IDLE_MSG_DISABLE))
- 	},
- 
- 	/* RKL */
-@@ -296,8 +286,7 @@ static const struct xe_rtp_entry engine_was[] = {
- 	  XE_RTP_RULES(PLATFORM(ROCKETLAKE), ENGINE_CLASS(RENDER)),
- 	  XE_RTP_ACTIONS(SET(RING_PSMI_CTL(RENDER_RING_BASE),
- 			     WAIT_FOR_EVENT_POWER_DOWN_DISABLE |
--			     RC_SEMA_IDLE_MSG_DISABLE,
--			     XE_RTP_ACTION_FLAG(MASKED_REG)))
-+			     RC_SEMA_IDLE_MSG_DISABLE))
- 	},
- 
- 	/* ADL-P */
-@@ -306,8 +295,7 @@ static const struct xe_rtp_entry engine_was[] = {
- 	  XE_RTP_RULES(PLATFORM(ALDERLAKE_P), ENGINE_CLASS(RENDER)),
- 	  XE_RTP_ACTIONS(SET(RING_PSMI_CTL(RENDER_RING_BASE),
- 			     WAIT_FOR_EVENT_POWER_DOWN_DISABLE |
--			     RC_SEMA_IDLE_MSG_DISABLE,
--			     XE_RTP_ACTION_FLAG(MASKED_REG)))
-+			     RC_SEMA_IDLE_MSG_DISABLE))
- 	},
- 
- 	/* DG2 */
-@@ -324,8 +312,7 @@ static const struct xe_rtp_entry engine_was[] = {
- 	{ XE_RTP_NAME("18017747507"),
- 	  XE_RTP_RULES(PLATFORM(DG2), FUNC(xe_rtp_match_first_render_or_compute)),
- 	  XE_RTP_ACTIONS(SET(VFG_PREEMPTION_CHICKEN,
--			     POLYGON_TRIFAN_LINELOOP_DISABLE,
--			     XE_RTP_ACTION_FLAG(MASKED_REG)))
-+			     POLYGON_TRIFAN_LINELOOP_DISABLE))
- 	},
- 	{ XE_RTP_NAME("22012826095, 22013059131"),
- 	  XE_RTP_RULES(SUBPLATFORM(DG2, G10), STEP(B0, C0),
-@@ -366,15 +353,13 @@ static const struct xe_rtp_entry engine_was[] = {
- 	{ XE_RTP_NAME("14015227452"),
- 	  XE_RTP_RULES(PLATFORM(DG2),
- 		       FUNC(xe_rtp_match_first_render_or_compute)),
--	  XE_RTP_ACTIONS(SET(ROW_CHICKEN4, XEHP_DIS_BBL_SYSPIPE,
--			     XE_RTP_ACTION_FLAG(MASKED_REG)))
-+	  XE_RTP_ACTIONS(SET(ROW_CHICKEN4, XEHP_DIS_BBL_SYSPIPE))
- 	},
- 	{ XE_RTP_NAME("16015675438"),
- 	  XE_RTP_RULES(PLATFORM(DG2),
- 		       FUNC(xe_rtp_match_first_render_or_compute)),
- 	  XE_RTP_ACTIONS(SET(FF_SLICE_CS_CHICKEN2,
--			     PERF_FIX_BALANCING_CFE_DISABLE,
--			     XE_RTP_ACTION_FLAG(MASKED_REG)))
-+			     PERF_FIX_BALANCING_CFE_DISABLE))
- 	},
- 	{ XE_RTP_NAME("16011620976, 22015475538"),
- 	  XE_RTP_RULES(PLATFORM(DG2),
-@@ -385,7 +370,6 @@ static const struct xe_rtp_entry engine_was[] = {
- 	  XE_RTP_RULES(SUBPLATFORM(DG2, G10), STEP(A0, C0),
- 		       FUNC(xe_rtp_match_first_render_or_compute)),
- 	  XE_RTP_ACTIONS(SET(CACHE_MODE_SS, ENABLE_PREFETCH_INTO_IC,
--			     XE_RTP_ACTION_FLAG(MASKED_REG),
- 			     /*
- 			      * Register can't be read back for verification on
- 			      * DG2 due to Wa_14012342262
-@@ -396,7 +380,6 @@ static const struct xe_rtp_entry engine_was[] = {
- 	  XE_RTP_RULES(SUBPLATFORM(DG2, G11),
- 		       FUNC(xe_rtp_match_first_render_or_compute)),
- 	  XE_RTP_ACTIONS(SET(CACHE_MODE_SS, ENABLE_PREFETCH_INTO_IC,
--			     XE_RTP_ACTION_FLAG(MASKED_REG),
- 			     /*
- 			      * Register can't be read back for verification on
- 			      * DG2 due to Wa_14012342262
-@@ -405,55 +388,46 @@ static const struct xe_rtp_entry engine_was[] = {
- 	},
- 	{ XE_RTP_NAME("1509727124"),
- 	  XE_RTP_RULES(PLATFORM(DG2), ENGINE_CLASS(RENDER)),
--	  XE_RTP_ACTIONS(SET(SAMPLER_MODE, SC_DISABLE_POWER_OPTIMIZATION_EBB,
--			     XE_RTP_ACTION_FLAG(MASKED_REG)))
-+	  XE_RTP_ACTIONS(SET(SAMPLER_MODE, SC_DISABLE_POWER_OPTIMIZATION_EBB))
- 	},
- 	{ XE_RTP_NAME("22012856258"),
- 	  XE_RTP_RULES(PLATFORM(DG2), ENGINE_CLASS(RENDER)),
--	  XE_RTP_ACTIONS(SET(ROW_CHICKEN2, DISABLE_READ_SUPPRESSION,
--			     XE_RTP_ACTION_FLAG(MASKED_REG)))
-+	  XE_RTP_ACTIONS(SET(ROW_CHICKEN2, DISABLE_READ_SUPPRESSION))
- 	},
- 	{ XE_RTP_NAME("14013392000"),
- 	  XE_RTP_RULES(SUBPLATFORM(DG2, G11), STEP(A0, B0), ENGINE_CLASS(RENDER)),
--	  XE_RTP_ACTIONS(SET(ROW_CHICKEN2, ENABLE_LARGE_GRF_MODE,
--			     XE_RTP_ACTION_FLAG(MASKED_REG)))
-+	  XE_RTP_ACTIONS(SET(ROW_CHICKEN2, ENABLE_LARGE_GRF_MODE))
- 	},
- 	{ XE_RTP_NAME("14012419201"),
- 	  XE_RTP_RULES(SUBPLATFORM(DG2, G10), STEP(A0, B0), ENGINE_CLASS(RENDER)),
- 	  XE_RTP_ACTIONS(SET(ROW_CHICKEN4,
--			     DISABLE_HDR_PAST_PAYLOAD_HOLD_FIX,
--			     XE_RTP_ACTION_FLAG(MASKED_REG)))
-+			     DISABLE_HDR_PAST_PAYLOAD_HOLD_FIX))
- 	},
- 	{ XE_RTP_NAME("14012419201"),
- 	  XE_RTP_RULES(SUBPLATFORM(DG2, G11), STEP(A0, B0), ENGINE_CLASS(RENDER)),
- 	  XE_RTP_ACTIONS(SET(ROW_CHICKEN4,
--			     DISABLE_HDR_PAST_PAYLOAD_HOLD_FIX,
--			     XE_RTP_ACTION_FLAG(MASKED_REG)))
-+			     DISABLE_HDR_PAST_PAYLOAD_HOLD_FIX))
- 	},
- 	{ XE_RTP_NAME("1308578152"),
- 	  XE_RTP_RULES(SUBPLATFORM(DG2, G10), STEP(B0, C0), ENGINE_CLASS(RENDER),
- 		       FUNC(xe_rtp_match_first_gslice_fused_off)),
- 	  XE_RTP_ACTIONS(CLR(CS_DEBUG_MODE1,
--			     REPLAY_MODE_GRANULARITY,
--			     XE_RTP_ACTION_FLAG(MASKED_REG)))
-+			     REPLAY_MODE_GRANULARITY))
- 	},
- 	{ XE_RTP_NAME("22010960976, 14013347512"),
- 	  XE_RTP_RULES(PLATFORM(DG2), ENGINE_CLASS(RENDER)),
- 	  XE_RTP_ACTIONS(CLR(XEHP_HDC_CHICKEN0,
--			     LSC_L1_FLUSH_CTL_3D_DATAPORT_FLUSH_EVENTS_MASK,
--			     XE_RTP_ACTION_FLAG(MASKED_REG)))
-+			     LSC_L1_FLUSH_CTL_3D_DATAPORT_FLUSH_EVENTS_MASK))
- 	},
- 	{ XE_RTP_NAME("1608949956, 14010198302"),
- 	  XE_RTP_RULES(PLATFORM(DG2), ENGINE_CLASS(RENDER)),
- 	  XE_RTP_ACTIONS(SET(ROW_CHICKEN,
--			     MDQ_ARBITRATION_MODE | UGM_BACKUP_MODE,
--			     XE_RTP_ACTION_FLAG(MASKED_REG)))
-+			     MDQ_ARBITRATION_MODE | UGM_BACKUP_MODE))
- 	},
- 	{ XE_RTP_NAME("22010430635"),
- 	  XE_RTP_RULES(SUBPLATFORM(DG2, G10), STEP(A0, B0), ENGINE_CLASS(RENDER)),
- 	  XE_RTP_ACTIONS(SET(ROW_CHICKEN4,
--			     DISABLE_GRF_CLEAR,
--			     XE_RTP_ACTION_FLAG(MASKED_REG)))
-+			     DISABLE_GRF_CLEAR))
- 	},
- 	{ XE_RTP_NAME("14013202645"),
- 	  XE_RTP_RULES(SUBPLATFORM(DG2, G10), STEP(B0, C0), ENGINE_CLASS(RENDER)),
-@@ -466,21 +440,18 @@ static const struct xe_rtp_entry engine_was[] = {
- 	{ XE_RTP_NAME("22012532006"),
- 	  XE_RTP_RULES(SUBPLATFORM(DG2, G10), STEP(A0, C0), ENGINE_CLASS(RENDER)),
- 	  XE_RTP_ACTIONS(SET(HALF_SLICE_CHICKEN7,
--			     DG2_DISABLE_ROUND_ENABLE_ALLOW_FOR_SSLA,
--			     XE_RTP_ACTION_FLAG(MASKED_REG)))
-+			     DG2_DISABLE_ROUND_ENABLE_ALLOW_FOR_SSLA))
- 	},
- 	{ XE_RTP_NAME("22012532006"),
- 	  XE_RTP_RULES(SUBPLATFORM(DG2, G11), STEP(A0, B0), ENGINE_CLASS(RENDER)),
- 	  XE_RTP_ACTIONS(SET(HALF_SLICE_CHICKEN7,
--			     DG2_DISABLE_ROUND_ENABLE_ALLOW_FOR_SSLA,
--			     XE_RTP_ACTION_FLAG(MASKED_REG)))
-+			     DG2_DISABLE_ROUND_ENABLE_ALLOW_FOR_SSLA))
- 	},
- 	{ XE_RTP_NAME("22014600077"),
- 	  XE_RTP_RULES(SUBPLATFORM(DG2, G11), STEP(B0, FOREVER),
- 		       ENGINE_CLASS(RENDER)),
- 	  XE_RTP_ACTIONS(SET(CACHE_MODE_SS,
- 			     ENABLE_EU_COUNT_FOR_TDL_FLUSH,
--			     XE_RTP_ACTION_FLAG(MASKED_REG),
- 			     /* 
- 			      * Wa_14012342262 write-only reg, so skip
- 			      * verification
-@@ -491,7 +462,6 @@ static const struct xe_rtp_entry engine_was[] = {
- 	  XE_RTP_RULES(SUBPLATFORM(DG2, G10), ENGINE_CLASS(RENDER)),
- 	  XE_RTP_ACTIONS(SET(CACHE_MODE_SS,
- 			     ENABLE_EU_COUNT_FOR_TDL_FLUSH,
--			     XE_RTP_ACTION_FLAG(MASKED_REG),
- 			     /* 
- 			      * Wa_14012342262 write-only reg, so skip
- 			      * verification
-@@ -507,18 +477,15 @@ static const struct xe_rtp_entry engine_was[] = {
- 	},
- 	{ XE_RTP_NAME("14015227452"),
- 	  XE_RTP_RULES(PLATFORM(PVC), FUNC(xe_rtp_match_first_render_or_compute)),
--	  XE_RTP_ACTIONS(SET(ROW_CHICKEN4, XEHP_DIS_BBL_SYSPIPE,
--			     XE_RTP_ACTION_FLAG(MASKED_REG)))
-+	  XE_RTP_ACTIONS(SET(ROW_CHICKEN4, XEHP_DIS_BBL_SYSPIPE))
- 	},
- 	{ XE_RTP_NAME("16015675438"),
- 	  XE_RTP_RULES(PLATFORM(PVC), FUNC(xe_rtp_match_first_render_or_compute)),
--	  XE_RTP_ACTIONS(SET(FF_SLICE_CS_CHICKEN2, PERF_FIX_BALANCING_CFE_DISABLE,
--			     XE_RTP_ACTION_FLAG(MASKED_REG)))
-+	  XE_RTP_ACTIONS(SET(FF_SLICE_CS_CHICKEN2, PERF_FIX_BALANCING_CFE_DISABLE))
- 	},
- 	{ XE_RTP_NAME("14014999345"),
- 	  XE_RTP_RULES(PLATFORM(PVC), ENGINE_CLASS(COMPUTE), STEP(B0, C0)),
--	  XE_RTP_ACTIONS(SET(CACHE_MODE_SS, DISABLE_ECC,
--			     XE_RTP_ACTION_FLAG(MASKED_REG)))
-+	  XE_RTP_ACTIONS(SET(CACHE_MODE_SS, DISABLE_ECC))
- 	},
- 	{}
- };
-@@ -527,25 +494,21 @@ static const struct xe_rtp_entry lrc_was[] = {
- 	{ XE_RTP_NAME("1409342910, 14010698770, 14010443199, 1408979724, 1409178076, 1409207793, 1409217633, 1409252684, 1409347922, 1409142259"),
- 	  XE_RTP_RULES(GRAPHICS_VERSION_RANGE(1200, 1210)),
- 	  XE_RTP_ACTIONS(SET(COMMON_SLICE_CHICKEN3,
--			     DISABLE_CPS_AWARE_COLOR_PIPE,
--			     XE_RTP_ACTION_FLAG(MASKED_REG)))
-+			     DISABLE_CPS_AWARE_COLOR_PIPE))
- 	},
- 	{ XE_RTP_NAME("WaDisableGPGPUMidThreadPreemption"),
- 	  XE_RTP_RULES(GRAPHICS_VERSION_RANGE(1200, 1210)),
- 	  XE_RTP_ACTIONS(FIELD_SET(CS_CHICKEN1,
- 				   PREEMPT_GPGPU_LEVEL_MASK,
--				   PREEMPT_GPGPU_THREAD_GROUP_LEVEL,
--				   XE_RTP_ACTION_FLAG(MASKED_REG)))
-+				   PREEMPT_GPGPU_THREAD_GROUP_LEVEL))
- 	},
- 	{ XE_RTP_NAME("1806527549"),
- 	  XE_RTP_RULES(GRAPHICS_VERSION(1200)),
--	  XE_RTP_ACTIONS(SET(HIZ_CHICKEN, HZ_DEPTH_TEST_LE_GE_OPT_DISABLE,
--			     XE_RTP_ACTION_FLAG(MASKED_REG)))
-+	  XE_RTP_ACTIONS(SET(HIZ_CHICKEN, HZ_DEPTH_TEST_LE_GE_OPT_DISABLE))
- 	},
- 	{ XE_RTP_NAME("1606376872"),
- 	  XE_RTP_RULES(GRAPHICS_VERSION(1200)),
--	  XE_RTP_ACTIONS(SET(COMMON_SLICE_CHICKEN4, DISABLE_TDC_LOAD_BALANCING_CALC,
--			     XE_RTP_ACTION_FLAG(MASKED_REG)))
-+	  XE_RTP_ACTIONS(SET(COMMON_SLICE_CHICKEN4, DISABLE_TDC_LOAD_BALANCING_CALC))
- 	},
- 
- 	/* DG1 */
-@@ -553,65 +516,54 @@ static const struct xe_rtp_entry lrc_was[] = {
- 	{ XE_RTP_NAME("1409044764"),
- 	  XE_RTP_RULES(PLATFORM(DG1)),
- 	  XE_RTP_ACTIONS(CLR(COMMON_SLICE_CHICKEN3,
--			     DG1_FLOAT_POINT_BLEND_OPT_STRICT_MODE_EN,
--			     XE_RTP_ACTION_FLAG(MASKED_REG)))
-+			     DG1_FLOAT_POINT_BLEND_OPT_STRICT_MODE_EN))
- 	},
- 	{ XE_RTP_NAME("22010493298"),
- 	  XE_RTP_RULES(PLATFORM(DG1)),
- 	  XE_RTP_ACTIONS(SET(HIZ_CHICKEN,
--			     DG1_HZ_READ_SUPPRESSION_OPTIMIZATION_DISABLE,
--			     XE_RTP_ACTION_FLAG(MASKED_REG)))
-+			     DG1_HZ_READ_SUPPRESSION_OPTIMIZATION_DISABLE))
- 	},
- 
- 	/* DG2 */
- 
- 	{ XE_RTP_NAME("16011186671"),
- 	  XE_RTP_RULES(SUBPLATFORM(DG2, G11), STEP(A0, B0)),
--	  XE_RTP_ACTIONS(CLR(VFLSKPD, DIS_MULT_MISS_RD_SQUASH,
--			     .flags = XE_RTP_ACTION_FLAG_MASKED_REG),
--			 SET(VFLSKPD, DIS_OVER_FETCH_CACHE,
--			     .flags = XE_RTP_ACTION_FLAG_MASKED_REG))
-+	  XE_RTP_ACTIONS(CLR(VFLSKPD, DIS_MULT_MISS_RD_SQUASH),
-+			 SET(VFLSKPD, DIS_OVER_FETCH_CACHE))
- 	},
- 	{ XE_RTP_NAME("14010469329"),
- 	  XE_RTP_RULES(SUBPLATFORM(DG2, G10), STEP(A0, B0)),
- 	  XE_RTP_ACTIONS(SET(XEHP_COMMON_SLICE_CHICKEN3,
--			     XEHP_DUAL_SIMD8_SEQ_MERGE_DISABLE,
--			     XE_RTP_ACTION_FLAG(MASKED_REG)))
-+			     XEHP_DUAL_SIMD8_SEQ_MERGE_DISABLE))
- 	},
- 	{ XE_RTP_NAME("14010698770, 22010613112, 22010465075"),
- 	  XE_RTP_RULES(SUBPLATFORM(DG2, G10), STEP(A0, B0)),
- 	  XE_RTP_ACTIONS(SET(XEHP_COMMON_SLICE_CHICKEN3,
--			     DISABLE_CPS_AWARE_COLOR_PIPE,
--			     XE_RTP_ACTION_FLAG(MASKED_REG)))
-+			     DISABLE_CPS_AWARE_COLOR_PIPE))
- 	},
- 	{ XE_RTP_NAME("16013271637"),
- 	  XE_RTP_RULES(PLATFORM(DG2)),
- 	  XE_RTP_ACTIONS(SET(XEHP_SLICE_COMMON_ECO_CHICKEN1,
--			     MSC_MSAA_REODER_BUF_BYPASS_DISABLE,
--			     XE_RTP_ACTION_FLAG(MASKED_REG)))
-+			     MSC_MSAA_REODER_BUF_BYPASS_DISABLE))
- 	},
- 	{ XE_RTP_NAME("14014947963"),
- 	  XE_RTP_RULES(PLATFORM(DG2)),
- 	  XE_RTP_ACTIONS(FIELD_SET(VF_PREEMPTION,
- 				   PREEMPTION_VERTEX_COUNT,
--				   0x4000,
--				   XE_RTP_ACTION_FLAG(MASKED_REG)))
-+				   0x4000))
- 	},
- 	{ XE_RTP_NAME("18018764978"),
- 	  XE_RTP_RULES(PLATFORM(DG2)),
- 	  XE_RTP_ACTIONS(SET(XEHP_PSS_MODE2,
--			     SCOREBOARD_STALL_FLUSH_CONTROL,
--			     XE_RTP_ACTION_FLAG(MASKED_REG)))
-+			     SCOREBOARD_STALL_FLUSH_CONTROL))
- 	},
- 	{ XE_RTP_NAME("15010599737"),
- 	  XE_RTP_RULES(PLATFORM(DG2)),
--	  XE_RTP_ACTIONS(SET(CHICKEN_RASTER_1, DIS_SF_ROUND_NEAREST_EVEN,
--			     XE_RTP_ACTION_FLAG(MASKED_REG)))
-+	  XE_RTP_ACTIONS(SET(CHICKEN_RASTER_1, DIS_SF_ROUND_NEAREST_EVEN))
- 	},
- 	{ XE_RTP_NAME("18019271663"),
- 	  XE_RTP_RULES(PLATFORM(DG2)),
--	  XE_RTP_ACTIONS(SET(CACHE_MODE_1, MSAA_OPTIMIZATION_REDUC_DISABLE,
--			     XE_RTP_ACTION_FLAG(MASKED_REG)))
-+	  XE_RTP_ACTIONS(SET(CACHE_MODE_1, MSAA_OPTIMIZATION_REDUC_DISABLE))
- 	},
- 	{}
- };
+-			xe_res_first_sg(vma->userptr.sg, 0, GEN8_PAGE_SIZE, &cur);
++			xe_res_first_sg(vma->userptr.sg, 0, XE_PAGE_SIZE,
++					&cur);
+ 			addr = xe_res_dma(&cur);
+ 		} else {
+-			addr = xe_bo_addr(vma->bo, 0, GEN8_PAGE_SIZE, &is_vram);
++			addr = xe_bo_addr(vma->bo, 0, XE_PAGE_SIZE, &is_vram);
+ 		}
+ 		drm_printf(p, " [%016llx-%016llx] S:0x%016llx A:%016llx %s\n",
+ 			   vma->start, vma->end, vma->end - vma->start + 1ull,
 -- 
 2.40.1
 
