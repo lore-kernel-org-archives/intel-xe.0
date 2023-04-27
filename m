@@ -4,48 +4,48 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9A6E6C77B7F
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 42A4AC77B7C
 	for <intel-xe@archiver.kernel.org>; Thu, 27 Apr 2023 22:33:10 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6AD2510E1A0;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1A87010E19D;
 	Thu, 27 Apr 2023 22:33:10 +0000 (UTC)
 Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4263610E18D
- for <intel-xe@lists.freedesktop.org>; Thu, 27 Apr 2023 22:33:06 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id F1A0F10E18D
+ for <intel-xe@lists.freedesktop.org>; Thu, 27 Apr 2023 22:33:05 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
  t=1682634786; x=1714170786;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=U11kzwhoBUT8D35drt7pvzFsIP9oHfbcDb7CXJqwlGU=;
- b=AXgKX2bJF0G4sGCFmW4sYaRgeCMiV5PFU5HwBWj3WaGhPgohmPGUii7v
- hSDMSF5KGjKkf1K/A9Kbgs24+hkUbtUxz8gjad6slG0XMcCT9oPCUvujF
- ojeIc82G2pIWi+Z7kMMkfp6kYIhwmqA46iJQr5nSUG2RvmBWpNV5sAqpk
- hvlyNtPIEhCjJVtWLI3j60gpSYhneZZa8IoD36GZLlyrnRqVrqa3y+cMW
- QPFmwbVgTCmw73zD8yaCB2wSWq8SyYnB6BQEdvFBtilq6fF8g2aKMJ7XT
- oVv2hbaseboq6YpmabjjvI6oIg6VS/ZZKhcc+3xmch+++RnRDXJG7N0p7 g==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10693"; a="412950609"
-X-IronPort-AV: E=Sophos;i="5.99,232,1677571200"; d="scan'208";a="412950609"
+ bh=ChvPc/APvuyZ65HBTsTJC+PC+065WcDFc32lw2QbZ+k=;
+ b=N/FbEVj+NCz50RHJiqDUXJ9lpF0+M+jonp1iw8daAFkdWfmZptaSZX6H
+ QutJdUTsGKreO0doQLA7DKXV+4lj8807l0gcheB9hcFftu3DFskkIQPjs
+ Lf7fiPL2FYXD/JYwTxvYBftUHOZGJFpPmZgfLvMnl2ye0/F0Pk+S5LAki
+ 1eapErlJftANkSTSYHJesr1GGtvuF5lf7b2pvkB2CtEWDrlU3QAHEjht7
+ 0ggUo3Elc+ma2lI1yUjxtlpAneDblmu6UUXhwBroZ8yZEPzK917GtSd+P
+ 5+JW1BlDHUdto5h4zSvR4rym4IMHSsi4nuhkzJIjhExcZJ5ciKHg9FFTo Q==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10693"; a="412950599"
+X-IronPort-AV: E=Sophos;i="5.99,232,1677571200"; d="scan'208";a="412950599"
 Received: from orsmga001.jf.intel.com ([10.7.209.18])
  by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  27 Apr 2023 15:33:04 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10693"; a="727314332"
-X-IronPort-AV: E=Sophos;i="5.99,232,1677571200"; d="scan'208";a="727314332"
+X-IronPort-AV: E=McAfee;i="6600,9927,10693"; a="727314326"
+X-IronPort-AV: E=Sophos;i="5.99,232,1677571200"; d="scan'208";a="727314326"
 Received: from lucas-s2600cw.jf.intel.com ([10.165.21.196])
  by orsmga001-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  27 Apr 2023 15:33:04 -0700
 From: Lucas De Marchi <lucas.demarchi@intel.com>
 To: intel-xe@lists.freedesktop.org
-Date: Thu, 27 Apr 2023 15:32:49 -0700
-Message-Id: <20230427223256.1432787-4-lucas.demarchi@intel.com>
+Date: Thu, 27 Apr 2023 15:32:47 -0700
+Message-Id: <20230427223256.1432787-2-lucas.demarchi@intel.com>
 X-Mailer: git-send-email 2.40.1
 In-Reply-To: <20230427223256.1432787-1-lucas.demarchi@intel.com>
 References: <20230427223256.1432787-1-lucas.demarchi@intel.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-xe] [PATCH v3 03/10] drm/xe: Use REG_FIELD/REG_BIT for all
- regs/*.h
+Subject: [Intel-xe] [PATCH v3 01/10] drm/xe/guc: Convert GuC registers to
+ REG_FIELD/REG_BIT
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -62,304 +62,303 @@ Cc: Lucas De Marchi <lucas.demarchi@intel.com>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Convert the macro declarations to the equivalent GENMASK and
-and bitfield prep for all registers.
+Cleanup GuC register declarations by converting them to use REG_FIELD,
+REG_BIT and REG_GENMASK. While converting, also reorder the bitfields
+so they follow the convention of declaring the higher bits first.
 
-v2 (Matt Roper):
-  - Fix wrong conversion of RPM_CONFIG0_CRYSTAL_CLOCK_FREQ_MASK
-  - Reorder fields of XEHP_SLICE_UNIT_LEVEL_CLKGATE for consistency
-  - Simplify CTC_SOURCE_* by only defining CTC_SOURCE_DIVIDE_LOGIC
-    as REG_BIT(0)
-
-v3: Also remove DOP_CLOCK_GATE_ENABLE that is unused and wrongly defined
+v2:
+  - Drop unused HUC_LOADING_AGENT_VCR and DMA_ADDRESS_SPACE_GTT (Matt Roper)
+  - Simplify HUC_LOADING_AGENT_GUC define (Matt Roper)
 
 Signed-off-by: Lucas De Marchi <lucas.demarchi@intel.com>
 Reviewed-by: Matt Atwood <matthew.s.atwood@intel.com>
 ---
- drivers/gpu/drm/xe/regs/xe_engine_regs.h | 24 +++++-----
- drivers/gpu/drm/xe/regs/xe_gt_regs.h     | 58 ++++++++++--------------
- drivers/gpu/drm/xe/regs/xe_regs.h        | 12 ++---
- drivers/gpu/drm/xe/xe_gt_clock.c         | 19 ++++----
- 4 files changed, 50 insertions(+), 63 deletions(-)
+ drivers/gpu/drm/xe/regs/xe_guc_regs.h | 165 ++++++++++++--------------
+ drivers/gpu/drm/xe/xe_ggtt.c          |   6 +-
+ drivers/gpu/drm/xe/xe_guc.c           |   8 +-
+ drivers/gpu/drm/xe/xe_guc_ads.c       |   3 +-
+ 4 files changed, 86 insertions(+), 96 deletions(-)
 
-diff --git a/drivers/gpu/drm/xe/regs/xe_engine_regs.h b/drivers/gpu/drm/xe/regs/xe_engine_regs.h
-index 9d61f5941289..f1e75703e4bc 100644
---- a/drivers/gpu/drm/xe/regs/xe_engine_regs.h
-+++ b/drivers/gpu/drm/xe/regs/xe_engine_regs.h
-@@ -22,7 +22,7 @@
- #define   RING_CTL_SIZE(size)			((size) - PAGE_SIZE) /* in bytes -> pages */
+diff --git a/drivers/gpu/drm/xe/regs/xe_guc_regs.h b/drivers/gpu/drm/xe/regs/xe_guc_regs.h
+index 011868ff38aa..1960f9e78ec4 100644
+--- a/drivers/gpu/drm/xe/regs/xe_guc_regs.h
++++ b/drivers/gpu/drm/xe/regs/xe_guc_regs.h
+@@ -14,23 +14,18 @@
+ /* Definitions of GuC H/W registers, bits, etc */
  
- #define RING_PSMI_CTL(base)			_MMIO((base) + 0x50)
--#define   RC_SEMA_IDLE_MSG_DISABLE			REG_BIT(12)
-+#define   RC_SEMA_IDLE_MSG_DISABLE		REG_BIT(12)
- #define   WAIT_FOR_EVENT_POWER_DOWN_DISABLE	REG_BIT(7)
+ #define GUC_STATUS			_MMIO(0xc000)
+-#define   GS_RESET_SHIFT		0
+-#define   GS_MIA_IN_RESET		  (0x01 << GS_RESET_SHIFT)
+-#define   GS_BOOTROM_SHIFT		1
+-#define   GS_BOOTROM_MASK		  (0x7F << GS_BOOTROM_SHIFT)
+-#define   GS_BOOTROM_RSA_FAILED		  (0x50 << GS_BOOTROM_SHIFT)
+-#define   GS_BOOTROM_JUMP_PASSED	  (0x76 << GS_BOOTROM_SHIFT)
+-#define   GS_UKERNEL_SHIFT		8
+-#define   GS_UKERNEL_MASK		  (0xFF << GS_UKERNEL_SHIFT)
+-#define   GS_MIA_SHIFT			16
+-#define   GS_MIA_MASK			  (0x07 << GS_MIA_SHIFT)
+-#define   GS_MIA_CORE_STATE		  (0x01 << GS_MIA_SHIFT)
+-#define   GS_MIA_HALT_REQUESTED		  (0x02 << GS_MIA_SHIFT)
+-#define   GS_MIA_ISR_ENTRY		  (0x04 << GS_MIA_SHIFT)
+-#define   GS_AUTH_STATUS_SHIFT		30
+-#define   GS_AUTH_STATUS_MASK		  (0x03 << GS_AUTH_STATUS_SHIFT)
+-#define   GS_AUTH_STATUS_BAD		  (0x01 << GS_AUTH_STATUS_SHIFT)
+-#define   GS_AUTH_STATUS_GOOD		  (0x02 << GS_AUTH_STATUS_SHIFT)
++#define   GS_AUTH_STATUS_MASK		REG_GENMASK(31, 30)
++#define   GS_AUTH_STATUS_BAD		REG_FIELD_PREP(GS_AUTH_STATUS_MASK, 0x1)
++#define   GS_AUTH_STATUS_GOOD		REG_FIELD_PREP(GS_AUTH_STATUS_MASK, 0x2)
++#define   GS_MIA_MASK			REG_GENMASK(18, 16)
++#define   GS_MIA_CORE_STATE		REG_FIELD_PREP(GS_MIA_MASK, 0x1)
++#define   GS_MIA_HALT_REQUESTED		REG_FIELD_PREP(GS_MIA_MASK, 0x2)
++#define   GS_MIA_ISR_ENTRY		REG_FIELD_PREP(GS_MIA_MASK, 0x4)
++#define   GS_UKERNEL_MASK		REG_GENMASK(15, 8)
++#define   GS_BOOTROM_MASK		REG_GENMASK(7, 1)
++#define   GS_BOOTROM_RSA_FAILED		REG_FIELD_PREP(GS_BOOTROM_MASK, 0x50)
++#define   GS_BOOTROM_JUMP_PASSED	REG_FIELD_PREP(GS_BOOTROM_MASK, 0x76)
++#define   GS_MIA_IN_RESET		REG_BIT(0)
  
- #define RING_ACTHD_UDW(base)			_MMIO((base) + 0x5c)
-@@ -54,7 +54,7 @@
- #define	  CTX_CTRL_ENGINE_CTX_RESTORE_INHIBIT	REG_BIT(0)
+ #define SOFT_SCRATCH(n)			_MMIO(0xc180 + (n) * 4)
+ #define SOFT_SCRATCH_COUNT		16
+@@ -42,90 +37,86 @@
+ #define DMA_ADDR_0_HIGH			_MMIO(0xc304)
+ #define DMA_ADDR_1_LOW			_MMIO(0xc308)
+ #define DMA_ADDR_1_HIGH			_MMIO(0xc30c)
+-#define   DMA_ADDRESS_SPACE_WOPCM	  (7 << 16)
+-#define   DMA_ADDRESS_SPACE_GTT		  (8 << 16)
++#define   DMA_ADDR_SPACE_MASK		REG_GENMASK(20, 16)
++#define   DMA_ADDRESS_SPACE_WOPCM	REG_FIELD_PREP(DMA_ADDR_SPACE_MASK, 7)
+ #define DMA_COPY_SIZE			_MMIO(0xc310)
+ #define DMA_CTRL			_MMIO(0xc314)
+-#define   HUC_UKERNEL			  (1<<9)
+-#define   UOS_MOVE			  (1<<4)
+-#define   START_DMA			  (1<<0)
++#define   HUC_UKERNEL			REG_BIT(9)
++#define   UOS_MOVE			REG_BIT(4)
++#define   START_DMA			REG_BIT(0)
+ #define DMA_GUC_WOPCM_OFFSET		_MMIO(0xc340)
+-#define   GUC_WOPCM_OFFSET_VALID	  (1<<0)
+-#define   HUC_LOADING_AGENT_VCR		  (0<<1)
+-#define   HUC_LOADING_AGENT_GUC		  (1<<1)
+ #define   GUC_WOPCM_OFFSET_SHIFT	14
+-#define   GUC_WOPCM_OFFSET_MASK		  (0x3ffff << GUC_WOPCM_OFFSET_SHIFT)
+-#define GUC_MAX_IDLE_COUNT		_MMIO(0xC3E4)
++#define   GUC_WOPCM_OFFSET_MASK		REG_GENMASK(31, GUC_WOPCM_OFFSET_SHIFT)
++#define   HUC_LOADING_AGENT_GUC		REG_BIT(1)
++#define   GUC_WOPCM_OFFSET_VALID	REG_BIT(0)
++#define GUC_MAX_IDLE_COUNT		_MMIO(0xc3e4)
  
- #define RING_MODE(base)				_MMIO((base) + 0x29c)
--#define   GFX_DISABLE_LEGACY_MODE		(1 << 3)
-+#define   GFX_DISABLE_LEGACY_MODE		REG_BIT(3)
+-#define HUC_STATUS2             _MMIO(0xD3B0)
+-#define   HUC_FW_VERIFIED       (1<<7)
++#define HUC_STATUS2			_MMIO(0xd3b0)
++#define   HUC_FW_VERIFIED		REG_BIT(7)
  
- #define RING_TIMESTAMP(base)			_MMIO((base) + 0x358)
+-#define GEN11_HUC_KERNEL_LOAD_INFO	_MMIO(0xC1DC)
+-#define   HUC_LOAD_SUCCESSFUL		  (1 << 0)
++#define GEN11_HUC_KERNEL_LOAD_INFO	_MMIO(0xc1dc)
++#define   HUC_LOAD_SUCCESSFUL		REG_BIT(0)
  
-@@ -68,17 +68,17 @@
+ #define GUC_WOPCM_SIZE			_MMIO(0xc050)
+-#define   GUC_WOPCM_SIZE_LOCKED		  (1<<0)
+-#define   GUC_WOPCM_SIZE_SHIFT		12
+-#define   GUC_WOPCM_SIZE_MASK		  (0xfffff << GUC_WOPCM_SIZE_SHIFT)
++#define   GUC_WOPCM_SIZE_MASK		REG_GENMASK(31, 12)
++#define   GUC_WOPCM_SIZE_LOCKED		REG_BIT(0)
  
- #define RING_FORCE_TO_NONPRIV(base, i)		_MMIO(((base) + 0x4d0) + (i) * 4)
- #define   RING_FORCE_TO_NONPRIV_DENY		REG_BIT(30)
-+#define   RING_FORCE_TO_NONPRIV_ACCESS_MASK	REG_GENMASK(29, 28)
-+#define   RING_FORCE_TO_NONPRIV_ACCESS_RW	REG_FIELD_PREP(RING_FORCE_TO_NONPRIV_ACCESS_MASK, 0)
-+#define   RING_FORCE_TO_NONPRIV_ACCESS_RD	REG_FIELD_PREP(RING_FORCE_TO_NONPRIV_ACCESS_MASK, 1)
-+#define   RING_FORCE_TO_NONPRIV_ACCESS_WR	REG_FIELD_PREP(RING_FORCE_TO_NONPRIV_ACCESS_MASK, 2)
-+#define   RING_FORCE_TO_NONPRIV_ACCESS_INVALID	REG_FIELD_PREP(RING_FORCE_TO_NONPRIV_ACCESS_MASK, 3)
- #define   RING_FORCE_TO_NONPRIV_ADDRESS_MASK	REG_GENMASK(25, 2)
--#define   RING_FORCE_TO_NONPRIV_ACCESS_RW	(0 << 28)
--#define   RING_FORCE_TO_NONPRIV_ACCESS_RD	(1 << 28)
--#define   RING_FORCE_TO_NONPRIV_ACCESS_WR	(2 << 28)
--#define   RING_FORCE_TO_NONPRIV_ACCESS_INVALID	(3 << 28)
--#define   RING_FORCE_TO_NONPRIV_ACCESS_MASK	(3 << 28)
--#define   RING_FORCE_TO_NONPRIV_RANGE_1		(0 << 0)
--#define   RING_FORCE_TO_NONPRIV_RANGE_4		(1 << 0)
--#define   RING_FORCE_TO_NONPRIV_RANGE_16	(2 << 0)
--#define   RING_FORCE_TO_NONPRIV_RANGE_64	(3 << 0)
--#define   RING_FORCE_TO_NONPRIV_RANGE_MASK	(3 << 0)
-+#define   RING_FORCE_TO_NONPRIV_RANGE_MASK	REG_GENMASK(1, 0)
-+#define   RING_FORCE_TO_NONPRIV_RANGE_1		REG_FIELD_PREP(RING_FORCE_TO_NONPRIV_RANGE_MASK, 0)
-+#define   RING_FORCE_TO_NONPRIV_RANGE_4		REG_FIELD_PREP(RING_FORCE_TO_NONPRIV_RANGE_MASK, 1)
-+#define   RING_FORCE_TO_NONPRIV_RANGE_16	REG_FIELD_PREP(RING_FORCE_TO_NONPRIV_RANGE_MASK, 2)
-+#define   RING_FORCE_TO_NONPRIV_RANGE_64	REG_FIELD_PREP(RING_FORCE_TO_NONPRIV_RANGE_MASK, 3)
- #define   RING_FORCE_TO_NONPRIV_MASK_VALID	(RING_FORCE_TO_NONPRIV_RANGE_MASK | \
- 						 RING_FORCE_TO_NONPRIV_ACCESS_MASK | \
- 						 RING_FORCE_TO_NONPRIV_DENY)
-diff --git a/drivers/gpu/drm/xe/regs/xe_gt_regs.h b/drivers/gpu/drm/xe/regs/xe_gt_regs.h
-index 1cb63d747c6f..0538313848c9 100644
---- a/drivers/gpu/drm/xe/regs/xe_gt_regs.h
-+++ b/drivers/gpu/drm/xe/regs/xe_gt_regs.h
-@@ -9,15 +9,13 @@
- #include "regs/xe_reg_defs.h"
+ #define GEN8_GT_PM_CONFIG		_MMIO(0x138140)
+ #define GEN9LP_GT_PM_CONFIG		_MMIO(0x138140)
+ #define GEN9_GT_PM_CONFIG		_MMIO(0x13816c)
+-#define   GT_DOORBELL_ENABLE		  (1<<0)
++#define   GT_DOORBELL_ENABLE		REG_BIT(0)
  
- /* RPM unit config (Gen8+) */
--#define RPM_CONFIG0				_MMIO(0xd00)
--#define   RPM_CONFIG0_CRYSTAL_CLOCK_FREQ_SHIFT	3
--#define   RPM_CONFIG0_CRYSTAL_CLOCK_FREQ_MASK	(0x7 << RPM_CONFIG0_CRYSTAL_CLOCK_FREQ_SHIFT)
--#define   RPM_CONFIG0_CRYSTAL_CLOCK_FREQ_24_MHZ	0
-+#define RPM_CONFIG0					_MMIO(0xd00)
-+#define   RPM_CONFIG0_CRYSTAL_CLOCK_FREQ_MASK		REG_GENMASK(5, 3)
-+#define   RPM_CONFIG0_CRYSTAL_CLOCK_FREQ_24_MHZ		0
- #define   RPM_CONFIG0_CRYSTAL_CLOCK_FREQ_19_2_MHZ	1
- #define   RPM_CONFIG0_CRYSTAL_CLOCK_FREQ_38_4_MHZ	2
--#define   RPM_CONFIG0_CRYSTAL_CLOCK_FREQ_25_MHZ	3
--#define   RPM_CONFIG0_CTC_SHIFT_PARAMETER_SHIFT	1
--#define   RPM_CONFIG0_CTC_SHIFT_PARAMETER_MASK	(0x3 << RPM_CONFIG0_CTC_SHIFT_PARAMETER_SHIFT)
-+#define   RPM_CONFIG0_CRYSTAL_CLOCK_FREQ_25_MHZ		3
-+#define   RPM_CONFIG0_CTC_SHIFT_PARAMETER_MASK		REG_GENMASK(2, 1)
+ #define GEN8_GTCR			_MMIO(0x4274)
+-#define   GEN8_GTCR_INVALIDATE		  (1<<0)
+-
+-#define GEN12_GUC_TLB_INV_CR		_MMIO(0xcee8)
+-#define   GEN12_GUC_TLB_INV_CR_INVALIDATE	(1 << 0)
+-
+-#define GUC_ARAT_C6DIS			_MMIO(0xA178)
+-
+-#define GUC_SHIM_CONTROL		_MMIO(0xc064)
+-#define   GUC_DISABLE_SRAM_INIT_TO_ZEROES	(1<<0)
+-#define   GUC_ENABLE_READ_CACHE_LOGIC		(1<<1)
+-#define   GUC_ENABLE_MIA_CACHING		(1<<2)
+-#define   GUC_GEN10_MSGCH_ENABLE		(1<<4)
+-#define   GUC_ENABLE_READ_CACHE_FOR_SRAM_DATA	(1<<9)
+-#define   GUC_ENABLE_READ_CACHE_FOR_WOPCM_DATA	(1<<10)
+-#define   GUC_ENABLE_MIA_CLOCK_GATING		(1<<15)
+-#define   GUC_GEN10_SHIM_WC_ENABLE		(1<<21)
++#define   GEN8_GTCR_INVALIDATE		REG_BIT(0)
++
++#define GEN12_GUC_TLB_INV_CR			_MMIO(0xcee8)
++#define   GEN12_GUC_TLB_INV_CR_INVALIDATE	REG_BIT(0)
++
++#define GUC_ARAT_C6DIS				_MMIO(0xa178)
++
++#define GUC_SHIM_CONTROL			_MMIO(0xc064)
+ #define   PVC_GUC_MOCS_INDEX_MASK		REG_GENMASK(25, 24)
+-#define   PVC_MOCS_UC_INDEX			1
+-#define   PVC_GUC_MOCS_INDEX(index)		REG_FIELD_PREP(PVC_GUC_MOCS_INDEX_MASK,\
++#define   PVC_GUC_MOCS_UC_INDEX			1
++#define   PVC_GUC_MOCS_INDEX(index)		REG_FIELD_PREP(PVC_GUC_MOCS_INDEX_MASK, \
+ 							       index)
++#define   GUC_GEN10_SHIM_WC_ENABLE		REG_BIT(21)
++#define   GUC_ENABLE_MIA_CLOCK_GATING		REG_BIT(15)
++#define   GUC_ENABLE_READ_CACHE_FOR_WOPCM_DATA	REG_BIT(10)
++#define   GUC_ENABLE_READ_CACHE_FOR_SRAM_DATA	REG_BIT(9)
++#define   GUC_GEN10_MSGCH_ENABLE		REG_BIT(4)
++#define   GUC_ENABLE_MIA_CACHING		REG_BIT(2)
++#define   GUC_ENABLE_READ_CACHE_LOGIC		REG_BIT(1)
++#define   GUC_DISABLE_SRAM_INIT_TO_ZEROES	REG_BIT(0)
  
- #define FORCEWAKE_ACK_MEDIA_VDBOX(n)		_MMIO(0xd50 + (n) * 4)
- #define FORCEWAKE_ACK_MEDIA_VEBOX(n)		_MMIO(0xd70 + (n) * 4)
-@@ -39,15 +37,15 @@
- #define MCR_SELECTOR				_MMIO(0xfdc)
- #define GAM_MCR_SELECTOR			_MMIO(0xfe0)
- #define   MCR_MULTICAST				REG_BIT(31)
--#define   MCR_SLICE(slice)			(((slice) & 0xf) << 27)
--#define   MCR_SLICE_MASK			MCR_SLICE(0xf)
--#define   MCR_SUBSLICE(subslice)		(((subslice) & 0x7) << 24)
--#define   MCR_SUBSLICE_MASK			MCR_SUBSLICE(0x7)
-+#define   MCR_SLICE_MASK			REG_GENMASK(30, 27)
-+#define   MCR_SLICE(slice)			REG_FIELD_PREP(MCR_SLICE_MASK, slice)
-+#define   MCR_SUBSLICE_MASK			REG_GENMASK(26, 24)
-+#define   MCR_SUBSLICE(subslice)		REG_FIELD_PREP(MCR_SUBSLICE_MASK, subslice)
- #define   MTL_MCR_GROUPID			REG_GENMASK(11, 8)
- #define   MTL_MCR_INSTANCEID			REG_GENMASK(3, 0)
+-#define GUC_SEND_INTERRUPT		_MMIO(0xc4c8)
+-#define   GUC_SEND_TRIGGER		  (1<<0)
+-#define GEN11_GUC_HOST_INTERRUPT	_MMIO(0x1901f0)
  
- #define FF_SLICE_CS_CHICKEN1			_MMIO(0x20e0)
--#define   FFSC_PERCTX_PREEMPT_CTRL		(1 << 14)
-+#define   FFSC_PERCTX_PREEMPT_CTRL		REG_BIT(14)
+-#define GUC_NUM_DOORBELLS		256
++#define GUC_SEND_INTERRUPT			_MMIO(0xc4c8)
++#define   GUC_SEND_TRIGGER			REG_BIT(0)
++#define GEN11_GUC_HOST_INTERRUPT		_MMIO(0x1901f0)
++
++#define GUC_NUM_DOORBELLS			256
  
- #define FF_SLICE_CS_CHICKEN2			_MMIO(0x20e4)
- #define   PERF_FIX_BALANCING_CFE_DISABLE	REG_BIT(15)
-@@ -59,12 +57,12 @@
- #define PS_INVOCATION_COUNT			_MMIO(0x2348)
+ /* format of the HW-monitored doorbell cacheline */
+ struct guc_doorbell_info {
+ 	u32 db_status;
+-#define GUC_DOORBELL_DISABLED		0
+-#define GUC_DOORBELL_ENABLED		1
++#define GUC_DOORBELL_DISABLED			0
++#define GUC_DOORBELL_ENABLED			1
  
- #define CS_CHICKEN1				_MMIO(0x2580)
--#define   PREEMPT_3D_OBJECT_LEVEL		(1 << 0)
- #define   PREEMPT_GPGPU_LEVEL(hi, lo)		(((hi) << 2) | ((lo) << 1))
- #define   PREEMPT_GPGPU_MID_THREAD_LEVEL	PREEMPT_GPGPU_LEVEL(0, 0)
- #define   PREEMPT_GPGPU_THREAD_GROUP_LEVEL	PREEMPT_GPGPU_LEVEL(0, 1)
- #define   PREEMPT_GPGPU_COMMAND_LEVEL		PREEMPT_GPGPU_LEVEL(1, 0)
- #define   PREEMPT_GPGPU_LEVEL_MASK		PREEMPT_GPGPU_LEVEL(1, 1)
-+#define   PREEMPT_3D_OBJECT_LEVEL		REG_BIT(0)
+ 	u32 cookie;
+ 	u32 reserved[14];
+ } __packed;
  
- #define GLOBAL_MOCS(i)				_MMIO(0x4000 + (i) * 4) /* Global MOCS regs */
- #define GFX_CCS_AUX_NV				_MMIO(0x4208)
-@@ -131,19 +129,18 @@
+-#define GEN8_DRBREGL(x)			_MMIO(0x1000 + (x) * 8)
+-#define   GEN8_DRB_VALID		  (1<<0)
+-#define GEN8_DRBREGU(x)			_MMIO(0x1000 + (x) * 8 + 4)
++#define GEN8_DRBREGL(x)				_MMIO(0x1000 + (x) * 8)
++#define   GEN8_DRB_VALID			REG_BIT(0)
++#define GEN8_DRBREGU(x)				_MMIO(0x1000 + (x) * 8 + 4)
  
- #define	MIRROR_FUSE3				_MMIO(0x9118)
- #define   L3BANK_PAIR_COUNT			4
--#define   L3BANK_MASK				0x0F
-+#define   L3BANK_MASK				REG_GENMASK(3, 0)
- /* on Xe_HP the same fuses indicates mslices instead of L3 banks */
- #define   MAX_MSLICES				4
--#define   MEML3_EN_MASK				0x0F
-+#define   MEML3_EN_MASK				REG_GENMASK(3, 0)
+ #define GEN12_DIST_DBS_POPULATED		_MMIO(0xd08)
+-#define   GEN12_DOORBELLS_PER_SQIDI_SHIFT	16
+-#define   GEN12_DOORBELLS_PER_SQIDI		(0xff)
+-#define   GEN12_SQIDIS_DOORBELL_EXIST		(0xffff)
+-
+-#define DE_GUCRMR			_MMIO(0x44054)
++#define   GEN12_DOORBELLS_PER_SQIDI_MASK	REG_GENMASK(23, 16)
++#define   GEN12_SQIDIS_DOORBELL_EXIST_MASK	REG_GENMASK(15, 0)
  
- /* Fuse readout registers for GT */
- #define XEHP_FUSE4				_MMIO(0x9114)
- #define   GT_L3_EXC_MASK			REG_GENMASK(6, 4)
+-#define GUC_BCS_RCS_IER			_MMIO(0xC550)
+-#define GUC_VCS2_VCS1_IER		_MMIO(0xC554)
+-#define GUC_WD_VECS_IER			_MMIO(0xC558)
+-#define GUC_PM_P24C_IER			_MMIO(0xC55C)
++#define GUC_BCS_RCS_IER				_MMIO(0xC550)
++#define GUC_VCS2_VCS1_IER			_MMIO(0xC554)
++#define GUC_WD_VECS_IER				_MMIO(0xC558)
++#define GUC_PM_P24C_IER				_MMIO(0xC55C)
  
- #define GT_VEBOX_VDBOX_DISABLE			_MMIO(0x9140)
--#define   GT_VDBOX_DISABLE_MASK			0xff
--#define   GT_VEBOX_DISABLE_SHIFT		16
--#define   GT_VEBOX_DISABLE_MASK			(0x0f << GT_VEBOX_DISABLE_SHIFT)
-+#define   GT_VEBOX_DISABLE_MASK			REG_GENMASK(19, 16)
-+#define   GT_VDBOX_DISABLE_MASK			REG_GENMASK(7, 0)
+ #define VF_SW_FLAG(n)			_MMIO(0x190240 + (n) * 4)
+ #define VF_SW_FLAG_COUNT		4
+@@ -134,21 +125,21 @@ struct guc_doorbell_info {
+ #define MED_VF_SW_FLAG_COUNT		4
  
- #define XELP_EU_ENABLE				_MMIO(0x9134)	/* "_DISABLE" on Xe_LP */
- #define   XELP_EU_MASK				REG_GENMASK(7, 0)
-@@ -157,7 +154,6 @@
+ /* GuC Interrupt Vector */
+-#define GUC_INTR_GUC2HOST		BIT(15)
+-#define GUC_INTR_EXEC_ERROR		BIT(14)
+-#define GUC_INTR_DISPLAY_EVENT		BIT(13)
+-#define GUC_INTR_SEM_SIG		BIT(12)
+-#define GUC_INTR_IOMMU2GUC		BIT(11)
+-#define GUC_INTR_DOORBELL_RANG		BIT(10)
+-#define GUC_INTR_DMA_DONE		BIT(9)
+-#define GUC_INTR_FATAL_ERROR		BIT(8)
+-#define GUC_INTR_NOTIF_ERROR		BIT(7)
+-#define GUC_INTR_SW_INT_6		BIT(6)
+-#define GUC_INTR_SW_INT_5		BIT(5)
+-#define GUC_INTR_SW_INT_4		BIT(4)
+-#define GUC_INTR_SW_INT_3		BIT(3)
+-#define GUC_INTR_SW_INT_2		BIT(2)
+-#define GUC_INTR_SW_INT_1		BIT(1)
+-#define GUC_INTR_SW_INT_0		BIT(0)
++#define GUC_INTR_GUC2HOST			BIT(15)
++#define GUC_INTR_EXEC_ERROR			BIT(14)
++#define GUC_INTR_DISPLAY_EVENT			BIT(13)
++#define GUC_INTR_SEM_SIG			BIT(12)
++#define GUC_INTR_IOMMU2GUC			BIT(11)
++#define GUC_INTR_DOORBELL_RANG			BIT(10)
++#define GUC_INTR_DMA_DONE			BIT(9)
++#define GUC_INTR_FATAL_ERROR			BIT(8)
++#define GUC_INTR_NOTIF_ERROR			BIT(7)
++#define GUC_INTR_SW_INT_6			BIT(6)
++#define GUC_INTR_SW_INT_5			BIT(5)
++#define GUC_INTR_SW_INT_4			BIT(4)
++#define GUC_INTR_SW_INT_3			BIT(3)
++#define GUC_INTR_SW_INT_2			BIT(2)
++#define GUC_INTR_SW_INT_1			BIT(1)
++#define GUC_INTR_SW_INT_0			BIT(0)
  
- #define MISCCPCTL				_MMIO(0x9424)
- #define   DOP_CLOCK_GATE_RENDER_ENABLE		REG_BIT(1)
--#define   DOP_CLOCK_GATE_ENABLE			REG_BIT((0)
+ #endif
+diff --git a/drivers/gpu/drm/xe/xe_ggtt.c b/drivers/gpu/drm/xe/xe_ggtt.c
+index 9a5950024d9f..cc2d119bbbe8 100644
+--- a/drivers/gpu/drm/xe/xe_ggtt.c
++++ b/drivers/gpu/drm/xe/xe_ggtt.c
+@@ -186,11 +186,11 @@ int xe_ggtt_init(struct xe_gt *gt, struct xe_ggtt *ggtt)
+ }
  
- #define UNSLCGCTL9430				_MMIO(0x9430)
- #define   MSQDUNIT_CLKGATE_DIS			REG_BIT(3)
-@@ -203,12 +199,12 @@
- #define   LTCDD_CLKGATE_DIS			REG_BIT(10)
+ #define GEN12_GUC_TLB_INV_CR                     _MMIO(0xcee8)
+-#define   GEN12_GUC_TLB_INV_CR_INVALIDATE        (1 << 0)
++#define   GEN12_GUC_TLB_INV_CR_INVALIDATE        REG_BIT(0)
+ #define PVC_GUC_TLB_INV_DESC0			_MMIO(0xcf7c)
+-#define   PVC_GUC_TLB_INV_DESC0_VALID		 (1 << 0)
++#define   PVC_GUC_TLB_INV_DESC0_VALID		 REG_BIT(0)
+ #define PVC_GUC_TLB_INV_DESC1			_MMIO(0xcf80)
+-#define   PVC_GUC_TLB_INV_DESC1_INVALIDATE	 (1 << 6)
++#define   PVC_GUC_TLB_INV_DESC1_INVALIDATE	 REG_BIT(6)
  
- #define XEHP_SLICE_UNIT_LEVEL_CLKGATE		MCR_REG(0x94d4)
--#define   SARBUNIT_CLKGATE_DIS			(1 << 5)
--#define   RCCUNIT_CLKGATE_DIS			(1 << 7)
--#define   MSCUNIT_CLKGATE_DIS			(1 << 10)
--#define   NODEDSS_CLKGATE_DIS			REG_BIT(12)
--#define   L3_CLKGATE_DIS			REG_BIT(16)
- #define   L3_CR2X_CLKGATE_DIS			REG_BIT(17)
-+#define   L3_CLKGATE_DIS			REG_BIT(16)
-+#define   NODEDSS_CLKGATE_DIS			REG_BIT(12)
-+#define   MSCUNIT_CLKGATE_DIS			REG_BIT(10)
-+#define   RCCUNIT_CLKGATE_DIS			REG_BIT(7)
-+#define   SARBUNIT_CLKGATE_DIS			REG_BIT(5)
+ void xe_ggtt_invalidate(struct xe_gt *gt)
+ {
+diff --git a/drivers/gpu/drm/xe/xe_guc.c b/drivers/gpu/drm/xe/xe_guc.c
+index e00177f4d294..d18f2e25ce56 100644
+--- a/drivers/gpu/drm/xe/xe_guc.c
++++ b/drivers/gpu/drm/xe/xe_guc.c
+@@ -357,7 +357,7 @@ static void guc_prepare_xfer(struct xe_guc *guc)
+ 				GUC_ENABLE_MIA_CACHING;
  
- #define UNSLICE_UNIT_LEVEL_CLKGATE2		_MMIO(0x94e4)
- #define   VSUNIT_CLKGATE2_DIS			REG_BIT(19)
-@@ -224,7 +220,7 @@
- #define   RTFUNIT_CLKGATE_DIS			REG_BIT(18)
+ 	if (xe->info.platform == XE_PVC)
+-		shim_flags |= PVC_GUC_MOCS_INDEX(PVC_MOCS_UC_INDEX);
++		shim_flags |= PVC_GUC_MOCS_INDEX(PVC_GUC_MOCS_UC_INDEX);
  
- #define DFR_RATIO_EN_AND_CHICKEN		MCR_REG(0x9550)
--#define   DFR_DISABLE				(1 << 9)
-+#define   DFR_DISABLE				REG_BIT(9)
+ 	/* Must program this register before loading the ucode with DMA */
+ 	xe_mmio_write32(gt, GUC_SHIM_CONTROL.reg, shim_flags);
+@@ -848,11 +848,11 @@ void xe_guc_print_info(struct xe_guc *guc, struct drm_printer *p)
  
- #define RPNSWREQ				_MMIO(0xa008)
- #define   REQ_RATIO_MASK			REG_GENMASK(31, 23)
-@@ -232,20 +228,16 @@
- #define RC_STATE				_MMIO(0xa094)
+ 	drm_printf(p, "\nGuC status 0x%08x:\n", status);
+ 	drm_printf(p, "\tBootrom status = 0x%x\n",
+-		   (status & GS_BOOTROM_MASK) >> GS_BOOTROM_SHIFT);
++		   REG_FIELD_GET(GS_BOOTROM_MASK, status));
+ 	drm_printf(p, "\tuKernel status = 0x%x\n",
+-		   (status & GS_UKERNEL_MASK) >> GS_UKERNEL_SHIFT);
++		   REG_FIELD_GET(GS_UKERNEL_MASK, status));
+ 	drm_printf(p, "\tMIA Core status = 0x%x\n",
+-		   (status & GS_MIA_MASK) >> GS_MIA_SHIFT);
++		   REG_FIELD_GET(GS_MIA_MASK, status));
+ 	drm_printf(p, "\tLog level = %d\n",
+ 		   xe_guc_log_get_level(&guc->log));
  
- #define PMINTRMSK				_MMIO(0xa168)
--#define   PMINTR_DISABLE_REDIRECT_TO_GUC	(1 << 31)
--#define   ARAT_EXPIRED_INTRMSK			(1 << 9)
-+#define   PMINTR_DISABLE_REDIRECT_TO_GUC	REG_BIT(31)
-+#define   ARAT_EXPIRED_INTRMSK			REG_BIT(9)
+diff --git a/drivers/gpu/drm/xe/xe_guc_ads.c b/drivers/gpu/drm/xe/xe_guc_ads.c
+index fe1d5be1241e..d4fc2d357a78 100644
+--- a/drivers/gpu/drm/xe/xe_guc_ads.c
++++ b/drivers/gpu/drm/xe/xe_guc_ads.c
+@@ -561,8 +561,7 @@ static void guc_doorbell_init(struct xe_guc_ads *ads)
  
- #define FORCEWAKE_GT				_MMIO(0xa188)
- 
- #define PG_ENABLE				_MMIO(0xa210)
- 
--/* GPM unit config (Gen9+) */
- #define CTC_MODE				_MMIO(0xa26c)
--#define   CTC_SOURCE_PARAMETER_MASK		1
--#define   CTC_SOURCE_CRYSTAL_CLOCK		0
--#define   CTC_SOURCE_DIVIDE_LOGIC		1
--#define   CTC_SHIFT_PARAMETER_SHIFT		1
--#define   CTC_SHIFT_PARAMETER_MASK		(0x3 << CTC_SHIFT_PARAMETER_SHIFT)
-+#define   CTC_SHIFT_PARAMETER_MASK		REG_GENMASK(2, 1)
-+#define   CTC_SOURCE_DIVIDE_LOGIC		REG_BIT(0)
- 
- #define FORCEWAKE_RENDER			_MMIO(0xa278)
- #define FORCEWAKE_MEDIA_VDBOX(n)		_MMIO(0xa540 + (n) * 4)
-diff --git a/drivers/gpu/drm/xe/regs/xe_regs.h b/drivers/gpu/drm/xe/regs/xe_regs.h
-index e6b81bcff91f..da1d5aa6cdb7 100644
---- a/drivers/gpu/drm/xe/regs/xe_regs.h
-+++ b/drivers/gpu/drm/xe/regs/xe_regs.h
-@@ -37,10 +37,10 @@
- #define XEHPC_BCS7_RING_BASE			0x3ec000
- #define XEHPC_BCS8_RING_BASE			0x3ee000
- #define   GT_WAIT_SEMAPHORE_INTERRUPT		REG_BIT(11)
--#define   GT_CONTEXT_SWITCH_INTERRUPT		(1 <<  8)
--#define   GT_RENDER_PIPECTL_NOTIFY_INTERRUPT	(1 <<  4)
-+#define   GT_CONTEXT_SWITCH_INTERRUPT		REG_BIT(8)
-+#define   GT_RENDER_PIPECTL_NOTIFY_INTERRUPT	REG_BIT(4)
- #define   GT_CS_MASTER_ERROR_INTERRUPT		REG_BIT(3)
--#define   GT_RENDER_USER_INTERRUPT		(1 <<  0)
-+#define   GT_RENDER_USER_INTERRUPT		REG_BIT(0)
- 
- #define FF_THREAD_MODE				_MMIO(0x20a0)
- #define   FF_TESSELATION_DOP_GATE_DISABLE	BIT(19)
-@@ -90,10 +90,8 @@
- #define   DG1_MSTR_TILE(t)			REG_BIT(t)
- 
- #define TIMESTAMP_OVERRIDE					_MMIO(0x44074)
--#define   TIMESTAMP_OVERRIDE_US_COUNTER_DIVIDER_SHIFT		0
--#define   TIMESTAMP_OVERRIDE_US_COUNTER_DIVIDER_MASK		0x3ff
--#define   TIMESTAMP_OVERRIDE_US_COUNTER_DENOMINATOR_SHIFT	12
--#define   TIMESTAMP_OVERRIDE_US_COUNTER_DENOMINATOR_MASK	(0xf << 12)
-+#define   TIMESTAMP_OVERRIDE_US_COUNTER_DENOMINATOR_MASK	REG_GENMASK(15, 12)
-+#define   TIMESTAMP_OVERRIDE_US_COUNTER_DIVIDER_MASK		REG_GENMASK(9, 0)
- 
- #define GGC					_MMIO(0x108040)
- #define   GMS_MASK				REG_GENMASK(15, 8)
-diff --git a/drivers/gpu/drm/xe/xe_gt_clock.c b/drivers/gpu/drm/xe/xe_gt_clock.c
-index 1b7d00284535..49625d49bdcc 100644
---- a/drivers/gpu/drm/xe/xe_gt_clock.c
-+++ b/drivers/gpu/drm/xe/xe_gt_clock.c
-@@ -17,13 +17,12 @@ static u32 read_reference_ts_freq(struct xe_gt *gt)
- 	u32 ts_override = xe_mmio_read32(gt, TIMESTAMP_OVERRIDE.reg);
- 	u32 base_freq, frac_freq;
- 
--	base_freq = ((ts_override & TIMESTAMP_OVERRIDE_US_COUNTER_DIVIDER_MASK) >>
--		     TIMESTAMP_OVERRIDE_US_COUNTER_DIVIDER_SHIFT) + 1;
-+	base_freq = REG_FIELD_GET(TIMESTAMP_OVERRIDE_US_COUNTER_DIVIDER_MASK,
-+				  ts_override) + 1;
- 	base_freq *= 1000000;
- 
--	frac_freq = ((ts_override &
--		      TIMESTAMP_OVERRIDE_US_COUNTER_DENOMINATOR_MASK) >>
--		     TIMESTAMP_OVERRIDE_US_COUNTER_DENOMINATOR_SHIFT);
-+	frac_freq = REG_FIELD_GET(TIMESTAMP_OVERRIDE_US_COUNTER_DENOMINATOR_MASK,
-+				  ts_override);
- 	frac_freq = 1000000 / (frac_freq + 1);
- 
- 	return base_freq + frac_freq;
-@@ -35,9 +34,8 @@ static u32 get_crystal_clock_freq(u32 rpm_config_reg)
- 	const u32 f24_mhz = 24000000;
- 	const u32 f25_mhz = 25000000;
- 	const u32 f38_4_mhz = 38400000;
--	u32 crystal_clock =
--		(rpm_config_reg & RPM_CONFIG0_CRYSTAL_CLOCK_FREQ_MASK) >>
--		RPM_CONFIG0_CRYSTAL_CLOCK_FREQ_SHIFT;
-+	u32 crystal_clock = REG_FIELD_GET(RPM_CONFIG0_CRYSTAL_CLOCK_FREQ_MASK,
-+					  rpm_config_reg);
- 
- 	switch (crystal_clock) {
- 	case RPM_CONFIG0_CRYSTAL_CLOCK_FREQ_24_MHZ :
-@@ -62,7 +60,7 @@ int xe_gt_clock_init(struct xe_gt *gt)
- 	/* Assuming gen11+ so assert this assumption is correct */
- 	XE_BUG_ON(GRAPHICS_VER(gt_to_xe(gt)) < 11);
- 
--	if ((ctc_reg & CTC_SOURCE_PARAMETER_MASK) == CTC_SOURCE_DIVIDE_LOGIC) {
-+	if (ctc_reg & CTC_SOURCE_DIVIDE_LOGIC) {
- 		freq = read_reference_ts_freq(gt);
- 	} else {
- 		u32 c0 = xe_mmio_read32(gt, RPM_CONFIG0.reg);
-@@ -74,8 +72,7 @@ int xe_gt_clock_init(struct xe_gt *gt)
- 		 * register increments from this frequency (it might
- 		 * increment only every few clock cycle).
- 		 */
--		freq >>= 3 - ((c0 & RPM_CONFIG0_CTC_SHIFT_PARAMETER_MASK) >>
--			      RPM_CONFIG0_CTC_SHIFT_PARAMETER_SHIFT);
-+		freq >>= 3 - REG_FIELD_GET(RPM_CONFIG0_CTC_SHIFT_PARAMETER_MASK, c0);
+ 		ads_blob_write(ads,
+ 			       system_info.generic_gt_sysinfo[GUC_GENERIC_GT_SYSINFO_DOORBELL_COUNT_PER_SQIDI],
+-			       ((distdbreg >> GEN12_DOORBELLS_PER_SQIDI_SHIFT)
+-				& GEN12_DOORBELLS_PER_SQIDI) + 1);
++			       REG_FIELD_GET(GEN12_DOORBELLS_PER_SQIDI_MASK, distdbreg) + 1);
  	}
+ }
  
- 	gt->info.clock_freq = freq;
 -- 
 2.40.1
 
