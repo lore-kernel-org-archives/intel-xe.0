@@ -4,48 +4,49 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id CE679C77B61
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 121FFC77B73
 	for <intel-xe@archiver.kernel.org>; Thu, 27 Apr 2023 22:33:18 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A248010E1EB;
+	by gabe.freedesktop.org (Postfix) with ESMTP id BA6D310E201;
 	Thu, 27 Apr 2023 22:33:18 +0000 (UTC)
 Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B198110E19D
+ by gabe.freedesktop.org (Postfix) with ESMTPS id DBFFB10E1A0
  for <intel-xe@lists.freedesktop.org>; Thu, 27 Apr 2023 22:33:06 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
  t=1682634786; x=1714170786;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=LuLkmhFXyjeIhxlF9eL0mHQDqDUGM7YyE6z/HWSlxEY=;
- b=E/JvLtutthCbZI8HbcWlRh8oAJBv5U/WGxi30d/oPSHNMgfiZgpQ56I3
- aEzIdPJC6X6cMSNK/5Cyy6FXKcJQszHl2pgep5U/FNC5qAulx+Kx7CYyS
- FD0tlsGu8+RKi+HOKXbGbj077Ve4v1G3g9xnoGn1QMwPhN4Z2qexDj1Gm
- Kucl0sZYV1SffUsf7q0jJWYDHDbJ8Nb+v7IKRlSd5g8vppQ1hc2HNJ8x5
- xUMzPMe5okJ7WjZawMooMuzFuGeLq+GoQeSwIEhst7FouZqZBwn6SIfKy
- qWz1Mqd7zOWqC4xPdpDvXlT61mpeGnG6OTaaezd+QK3K6V4engprGzH/O Q==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10693"; a="412950618"
-X-IronPort-AV: E=Sophos;i="5.99,232,1677571200"; d="scan'208";a="412950618"
+ bh=icPEAZbOonAullGTrMwP0F3WtIFH6J3WHudz5fg+CuQ=;
+ b=BmNlcSb2F7/6Zp8kQWK8HTIpAPZ9z2SqZm4wKFZsAR7B3VUmel9Ol/g8
+ bLMT+FYffbApifL+hqQSnUH21TdHd7qnYoNsjbIVL1Taw3kYUq+2tgzDT
+ D3aXl9TnTtCzlfpebF5EXEt8yBw4TYYjuaeOFQdbo+dalkt/FFdVV3alm
+ onyq5ViP7CfdehjusNFYFGuXPPooxfGfY1ayyGTpoSqNQoXJvaCG+PlO7
+ j3TxEsjWrRvV8lCvtx0ah97RUC4oTME4ZQs3MIlliW5UgEQXYXOpA08M2
+ fj+lBT8pKB9sLG5qSurm7gU8mzWQzzB5nl486tnXt55etp+9wYP8+PZgQ g==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10693"; a="412950621"
+X-IronPort-AV: E=Sophos;i="5.99,232,1677571200"; d="scan'208";a="412950621"
 Received: from orsmga001.jf.intel.com ([10.7.209.18])
  by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  27 Apr 2023 15:33:05 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10693"; a="727314348"
-X-IronPort-AV: E=Sophos;i="5.99,232,1677571200"; d="scan'208";a="727314348"
+X-IronPort-AV: E=McAfee;i="6600,9927,10693"; a="727314354"
+X-IronPort-AV: E=Sophos;i="5.99,232,1677571200"; d="scan'208";a="727314354"
 Received: from lucas-s2600cw.jf.intel.com ([10.165.21.196])
  by orsmga001-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  27 Apr 2023 15:33:04 -0700
 From: Lucas De Marchi <lucas.demarchi@intel.com>
 To: intel-xe@lists.freedesktop.org
-Date: Thu, 27 Apr 2023 15:32:54 -0700
-Message-Id: <20230427223256.1432787-9-lucas.demarchi@intel.com>
+Date: Thu, 27 Apr 2023 15:32:56 -0700
+Message-Id: <20230427223256.1432787-11-lucas.demarchi@intel.com>
 X-Mailer: git-send-email 2.40.1
 In-Reply-To: <20230427223256.1432787-1-lucas.demarchi@intel.com>
 References: <20230427223256.1432787-1-lucas.demarchi@intel.com>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-xe] [PATCH v3 08/10] drm/xe: Annotate masked registers used
- by RTP
+Subject: [Intel-xe] [PATCH v3 10/10] drm/xe: Move helper macros to separate
+ header
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -62,177 +63,223 @@ Cc: Lucas De Marchi <lucas.demarchi@intel.com>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Go over all registers used in xe_rtp tables and mark the registers as
-masked if they were passed a XE_RTP_ACTION_FLAG(MASKED_REG) flag.
-This will allow the flag to be removed in future when xe_rtp starts
-using the real xe_reg_t type.
+The macros to handle the RTP tables are very scary, but shouldn't be
+used outside of the header adding the infra. Move it to a separate
+header and make sure it's only included when it can be.
 
 Signed-off-by: Lucas De Marchi <lucas.demarchi@intel.com>
 Reviewed-by: Matt Roper <matthew.d.roper@intel.com>
 ---
- drivers/gpu/drm/xe/regs/xe_engine_regs.h |  2 +-
- drivers/gpu/drm/xe/regs/xe_gt_regs.h     | 48 ++++++++++++------------
- 2 files changed, 25 insertions(+), 25 deletions(-)
+ drivers/gpu/drm/xe/Makefile         |  7 +--
+ drivers/gpu/drm/xe/xe_rtp.h         | 75 ++------------------------
+ drivers/gpu/drm/xe/xe_rtp_helpers.h | 81 +++++++++++++++++++++++++++++
+ 3 files changed, 90 insertions(+), 73 deletions(-)
+ create mode 100644 drivers/gpu/drm/xe/xe_rtp_helpers.h
 
-diff --git a/drivers/gpu/drm/xe/regs/xe_engine_regs.h b/drivers/gpu/drm/xe/regs/xe_engine_regs.h
-index 80b66844a8ec..f6b3b99a562a 100644
---- a/drivers/gpu/drm/xe/regs/xe_engine_regs.h
-+++ b/drivers/gpu/drm/xe/regs/xe_engine_regs.h
-@@ -21,7 +21,7 @@
- #define   RING_CTL_SIZE(size)			((size) - PAGE_SIZE) /* in bytes -> pages */
- #define   RING_CTL_SIZE(size)			((size) - PAGE_SIZE) /* in bytes -> pages */
+diff --git a/drivers/gpu/drm/xe/Makefile b/drivers/gpu/drm/xe/Makefile
+index ee4a95beec20..74a84080f242 100644
+--- a/drivers/gpu/drm/xe/Makefile
++++ b/drivers/gpu/drm/xe/Makefile
+@@ -209,13 +209,14 @@ endif
+ obj-$(CONFIG_DRM_XE) += xe.o
+ obj-$(CONFIG_DRM_XE_KUNIT_TEST) += tests/
  
--#define RING_PSMI_CTL(base)			XE_REG((base) + 0x50)
-+#define RING_PSMI_CTL(base)			XE_REG((base) + 0x50, XE_REG_OPTION_MASKED)
- #define   RC_SEMA_IDLE_MSG_DISABLE		REG_BIT(12)
- #define   WAIT_FOR_EVENT_POWER_DOWN_DISABLE	REG_BIT(7)
++# header test
++hdrtest_find_args := -not -path xe_rtp_helpers.h
+ ifneq ($(CONFIG_DRM_XE_DISPLAY),y)
+-	skipdisplay:=-not -path display/\* -not -path compat-i915-headers/\* -not -path xe_display.h
++	hdrtest_find_args += -not -path display/\* -not -path compat-i915-headers/\* -not -path xe_display.h
+ endif
  
-diff --git a/drivers/gpu/drm/xe/regs/xe_gt_regs.h b/drivers/gpu/drm/xe/regs/xe_gt_regs.h
-index 9b104d34f291..68e89d71cd1c 100644
---- a/drivers/gpu/drm/xe/regs/xe_gt_regs.h
-+++ b/drivers/gpu/drm/xe/regs/xe_gt_regs.h
-@@ -45,19 +45,19 @@
- #define   MTL_MCR_GROUPID			REG_GENMASK(11, 8)
- #define   MTL_MCR_INSTANCEID			REG_GENMASK(3, 0)
+-# header test
+ always-$(CONFIG_DRM_XE_WERROR) += \
+-	$(patsubst %.h,%.hdrtest, $(shell cd $(srctree)/$(src) && find * -name '*.h' $(skipdisplay)))
++	$(patsubst %.h,%.hdrtest, $(shell cd $(srctree)/$(src) && find * -name '*.h' $(hdrtest_find_args)))
  
--#define FF_SLICE_CS_CHICKEN1			XE_REG(0x20e0)
-+#define FF_SLICE_CS_CHICKEN1			XE_REG(0x20e0, XE_REG_OPTION_MASKED)
- #define   FFSC_PERCTX_PREEMPT_CTRL		REG_BIT(14)
+ quiet_cmd_hdrtest = HDRTEST $(patsubst %.hdrtest,%.h,$@)
+       cmd_hdrtest = $(CC) -DHDRTEST $(filter-out $(CFLAGS_GCOV), $(c_flags)) $(cflags-display) -S -o /dev/null -x c /dev/null -include $<; touch $@
+diff --git a/drivers/gpu/drm/xe/xe_rtp.h b/drivers/gpu/drm/xe/xe_rtp.h
+index 4a333b9792ac..8bc946694bfc 100644
+--- a/drivers/gpu/drm/xe/xe_rtp.h
++++ b/drivers/gpu/drm/xe/xe_rtp.h
+@@ -9,8 +9,13 @@
+ #include <linux/types.h>
+ #include <linux/xarray.h>
  
--#define FF_SLICE_CS_CHICKEN2			XE_REG(0x20e4)
-+#define FF_SLICE_CS_CHICKEN2			XE_REG(0x20e4, XE_REG_OPTION_MASKED)
- #define   PERF_FIX_BALANCING_CFE_DISABLE	REG_BIT(15)
++#define _XE_RTP_INCLUDE_PRIVATE_HELPERS
++
++#include "xe_rtp_helpers.h"
+ #include "xe_rtp_types.h"
  
--#define CS_DEBUG_MODE1				XE_REG(0x20ec)
-+#define CS_DEBUG_MODE1				XE_REG(0x20ec, XE_REG_OPTION_MASKED)
- #define   FF_DOP_CLOCK_GATE_DISABLE		REG_BIT(1)
- #define   REPLAY_MODE_GRANULARITY		REG_BIT(0)
++#undef _XE_RTP_INCLUDE_PRIVATE_HELPERS
++
+ /*
+  * Register table poke infrastructure
+  */
+@@ -19,76 +24,6 @@ struct xe_hw_engine;
+ struct xe_gt;
+ struct xe_reg_sr;
  
- #define PS_INVOCATION_COUNT			XE_REG(0x2348)
- 
--#define CS_CHICKEN1				XE_REG(0x2580)
-+#define CS_CHICKEN1				XE_REG(0x2580, XE_REG_OPTION_MASKED)
- #define   PREEMPT_GPGPU_LEVEL(hi, lo)		(((hi) << 2) | ((lo) << 1))
- #define   PREEMPT_GPGPU_MID_THREAD_LEVEL	PREEMPT_GPGPU_LEVEL(0, 0)
- #define   PREEMPT_GPGPU_THREAD_GROUP_LEVEL	PREEMPT_GPGPU_LEVEL(0, 1)
-@@ -77,13 +77,13 @@
- #define XEHP_TILE0_ADDR_RANGE			XE_REG_MCR(0x4900)
- #define XEHP_FLAT_CCS_BASE_ADDR			XE_REG_MCR(0x4910)
- 
--#define CHICKEN_RASTER_1			XE_REG_MCR(0x6204)
-+#define CHICKEN_RASTER_1			XE_REG_MCR(0x6204, XE_REG_OPTION_MASKED)
- #define   DIS_SF_ROUND_NEAREST_EVEN		REG_BIT(8)
- 
--#define CHICKEN_RASTER_2			XE_REG_MCR(0x6208)
-+#define CHICKEN_RASTER_2			XE_REG_MCR(0x6208, XE_REG_OPTION_MASKED)
- #define   TBIMR_FAST_CLIP			REG_BIT(5)
- 
--#define VFLSKPD					XE_REG_MCR(0x62a8)
-+#define VFLSKPD					XE_REG_MCR(0x62a8, XE_REG_OPTION_MASKED)
- #define   DIS_OVER_FETCH_CACHE			REG_BIT(1)
- #define   DIS_MULT_MISS_RD_SQUASH		REG_BIT(0)
- 
-@@ -94,35 +94,35 @@
- #define   FF_MODE2_TDS_TIMER_MASK		REG_GENMASK(23, 16)
- #define   FF_MODE2_TDS_TIMER_128		REG_FIELD_PREP(FF_MODE2_TDS_TIMER_MASK, 4)
- 
--#define CACHE_MODE_1				XE_REG(0x7004)
-+#define CACHE_MODE_1				XE_REG(0x7004, XE_REG_OPTION_MASKED)
- #define   MSAA_OPTIMIZATION_REDUC_DISABLE	REG_BIT(11)
- 
--#define XEHP_PSS_MODE2				XE_REG_MCR(0x703c)
-+#define XEHP_PSS_MODE2				XE_REG_MCR(0x703c, XE_REG_OPTION_MASKED)
- #define   SCOREBOARD_STALL_FLUSH_CONTROL	REG_BIT(5)
- 
--#define HIZ_CHICKEN					XE_REG(0x7018)
-+#define HIZ_CHICKEN					XE_REG(0x7018, XE_REG_OPTION_MASKED)
- #define   DG1_HZ_READ_SUPPRESSION_OPTIMIZATION_DISABLE	REG_BIT(14)
- #define   HZ_DEPTH_TEST_LE_GE_OPT_DISABLE		REG_BIT(13)
- 
- #define COMMON_SLICE_CHICKEN1			XE_REG(0x7010)
- 
--#define COMMON_SLICE_CHICKEN4			XE_REG(0x7300)
-+#define COMMON_SLICE_CHICKEN4			XE_REG(0x7300, XE_REG_OPTION_MASKED)
- #define   DISABLE_TDC_LOAD_BALANCING_CALC	REG_BIT(6)
- 
--#define COMMON_SLICE_CHICKEN3				XE_REG(0x7304)
--#define XEHP_COMMON_SLICE_CHICKEN3			XE_REG_MCR(0x7304)
-+#define COMMON_SLICE_CHICKEN3				XE_REG(0x7304, XE_REG_OPTION_MASKED)
-+#define XEHP_COMMON_SLICE_CHICKEN3			XE_REG_MCR(0x7304, XE_REG_OPTION_MASKED)
- #define   DG1_FLOAT_POINT_BLEND_OPT_STRICT_MODE_EN	REG_BIT(12)
- #define   XEHP_DUAL_SIMD8_SEQ_MERGE_DISABLE		REG_BIT(12)
- #define   BLEND_EMB_FIX_DISABLE_IN_RCC			REG_BIT(11)
- #define   DISABLE_CPS_AWARE_COLOR_PIPE			REG_BIT(9)
- 
--#define XEHP_SLICE_COMMON_ECO_CHICKEN1		XE_REG_MCR(0x731c)
-+#define XEHP_SLICE_COMMON_ECO_CHICKEN1		XE_REG_MCR(0x731c, XE_REG_OPTION_MASKED)
- #define   MSC_MSAA_REODER_BUF_BYPASS_DISABLE	REG_BIT(14)
- 
--#define VF_PREEMPTION				XE_REG(0x83a4)
-+#define VF_PREEMPTION				XE_REG(0x83a4, XE_REG_OPTION_MASKED)
- #define   PREEMPTION_VERTEX_COUNT		REG_GENMASK(15, 0)
- 
--#define VFG_PREEMPTION_CHICKEN			XE_REG(0x83b4)
-+#define VFG_PREEMPTION_CHICKEN			XE_REG(0x83b4, XE_REG_OPTION_MASKED)
- #define   POLYGON_TRIFAN_LINELOOP_DISABLE	REG_BIT(4)
- 
- #define XEHP_SQCM				XE_REG_MCR(0x8724)
-@@ -244,7 +244,7 @@
- #define FORCEWAKE_MEDIA_VDBOX(n)		XE_REG(0xa540 + (n) * 4)
- #define FORCEWAKE_MEDIA_VEBOX(n)		XE_REG(0xa560 + (n) * 4)
- 
--#define XEHPC_LNCFMISCCFGREG0			XE_REG_MCR(0xb01c)
-+#define XEHPC_LNCFMISCCFGREG0			XE_REG_MCR(0xb01c, XE_REG_OPTION_MASKED)
- #define   XEHPC_OVRLSCCC			REG_BIT(0)
- 
- #define XEHP_L3NODEARBCFG			XE_REG_MCR(0xb0b4)
-@@ -272,20 +272,20 @@
- #define   INVALIDATION_BROADCAST_MODE_DIS	REG_BIT(12)
- #define   GLOBAL_INVALIDATION_MODE		REG_BIT(2)
- 
--#define SAMPLER_MODE				XE_REG_MCR(0xe18c)
-+#define SAMPLER_MODE				XE_REG_MCR(0xe18c, XE_REG_OPTION_MASKED)
- #define   ENABLE_SMALLPL			REG_BIT(15)
- #define   SC_DISABLE_POWER_OPTIMIZATION_EBB	REG_BIT(9)
- #define   SAMPLER_ENABLE_HEADLESS_MSG		REG_BIT(5)
- 
--#define HALF_SLICE_CHICKEN7				XE_REG_MCR(0xe194)
-+#define HALF_SLICE_CHICKEN7				XE_REG_MCR(0xe194, XE_REG_OPTION_MASKED)
- #define   DG2_DISABLE_ROUND_ENABLE_ALLOW_FOR_SSLA	REG_BIT(15)
- 
--#define CACHE_MODE_SS				XE_REG_MCR(0xe420)
-+#define CACHE_MODE_SS				XE_REG_MCR(0xe420, XE_REG_OPTION_MASKED)
- #define   ENABLE_EU_COUNT_FOR_TDL_FLUSH		REG_BIT(10)
- #define   DISABLE_ECC				REG_BIT(5)
- #define   ENABLE_PREFETCH_INTO_IC		REG_BIT(3)
- 
--#define ROW_CHICKEN4				XE_REG_MCR(0xe48c)
-+#define ROW_CHICKEN4				XE_REG_MCR(0xe48c, XE_REG_OPTION_MASKED)
- #define   DISABLE_GRF_CLEAR			REG_BIT(13)
- #define   XEHP_DIS_BBL_SYSPIPE			REG_BIT(11)
- #define   DISABLE_TDL_PUSH			REG_BIT(9)
-@@ -294,18 +294,18 @@
- #define   THREAD_EX_ARB_MODE			REG_GENMASK(3, 2)
- #define   THREAD_EX_ARB_MODE_RR_AFTER_DEP	REG_FIELD_PREP(THREAD_EX_ARB_MODE, 0x2)
- 
--#define ROW_CHICKEN				XE_REG_MCR(0xe4f0)
-+#define ROW_CHICKEN				XE_REG_MCR(0xe4f0, XE_REG_OPTION_MASKED)
- #define   UGM_BACKUP_MODE			REG_BIT(13)
- #define   MDQ_ARBITRATION_MODE			REG_BIT(12)
- 
--#define ROW_CHICKEN2				XE_REG_MCR(0xe4f4)
-+#define ROW_CHICKEN2				XE_REG_MCR(0xe4f4, XE_REG_OPTION_MASKED)
- #define   DISABLE_READ_SUPPRESSION		REG_BIT(15)
- #define   DISABLE_EARLY_READ			REG_BIT(14)
- #define   ENABLE_LARGE_GRF_MODE			REG_BIT(12)
- #define   PUSH_CONST_DEREF_HOLD_DIS		REG_BIT(8)
- #define   DISABLE_DOP_GATING			REG_BIT(0)
- 
--#define XEHP_HDC_CHICKEN0					XE_REG_MCR(0xe5f0)
-+#define XEHP_HDC_CHICKEN0					XE_REG_MCR(0xe5f0, XE_REG_OPTION_MASKED)
- #define   LSC_L1_FLUSH_CTL_3D_DATAPORT_FLUSH_EVENTS_MASK	REG_GENMASK(13, 11)
- 
- #define RT_CTRL					XE_REG_MCR(0xe530)
+-/*
+- * Helper macros - not to be used outside this header.
+- */
+-#define _XE_ESC(...) __VA_ARGS__
+-#define _XE_COUNT_ARGS(...) _XE_ESC(__XE_COUNT_ARGS(__VA_ARGS__,5,4,3,2,1,))
+-#define __XE_COUNT_ARGS(_,_5,_4,_3,_2,X_,...) X_
+-
+-#define _XE_FIRST(...) _XE_ESC(__XE_FIRST(__VA_ARGS__,))
+-#define __XE_FIRST(x_,...) x_
+-#define _XE_TUPLE_TAIL(...) _XE_ESC(__XE_TUPLE_TAIL(__VA_ARGS__))
+-#define __XE_TUPLE_TAIL(x_,...) (__VA_ARGS__)
+-
+-#define _XE_DROP_FIRST(x_, ...) __VA_ARGS__
+-
+-#define _XE_RTP_CONCAT(a, b) __XE_RTP_CONCAT(a, b)
+-#define __XE_RTP_CONCAT(a, b) XE_RTP_ ## a ## b
+-
+-#define __XE_RTP_PASTE_SEP_COMMA		,
+-#define __XE_RTP_PASTE_SEP_BITWISE_OR		|
+-
+-/*
+- * XE_RTP_PASTE_FOREACH - Paste XE_RTP_<@prefix_> on each element of the tuple
+- * @args, with the end result separated by @sep_. @sep must be one of the
+- * previously declared macros __XE_RTP_PASTE_SEP_*, or declared with such
+- * prefix.
+- *
+- * Examples:
+- *
+- * 1) XE_RTP_PASTE_FOREACH(TEST_, COMMA, (FOO, BAR))
+- *    expands to:
+- *
+- *	XE_RTP_TEST_FOO , XE_RTP_TEST_BAR
+- *
+- * 2) XE_RTP_PASTE_FOREACH(TEST2_, COMMA, (FOO))
+- *    expands to:
+- *
+- *	XE_RTP_TEST2_FOO
+- *
+- * 3) XE_RTP_PASTE_FOREACH(TEST3, BITWISE_OR, (FOO, BAR))
+- *    expands to:
+- *
+- *	XE_RTP_TEST3_FOO | XE_RTP_TEST3_BAR
+- *
+- * 4) #define __XE_RTP_PASTE_SEP_MY_SEP	BANANA
+- *    XE_RTP_PASTE_FOREACH(TEST_, MY_SEP, (FOO, BAR))
+- *    expands to:
+- *
+- *	XE_RTP_TEST_FOO BANANA XE_RTP_TEST_BAR
+- */
+-#define XE_RTP_PASTE_FOREACH(prefix_, sep_, args_) _XE_ESC(_XE_RTP_CONCAT(PASTE_,_XE_COUNT_ARGS args_)(prefix_, sep_, args_))
+-#define XE_RTP_PASTE_1(prefix_, sep_, args_) _XE_RTP_CONCAT(prefix_, _XE_FIRST args_)
+-#define XE_RTP_PASTE_2(prefix_, sep_, args_) _XE_RTP_CONCAT(prefix_, _XE_FIRST args_) __XE_RTP_PASTE_SEP_ ## sep_ XE_RTP_PASTE_1(prefix_, sep_, _XE_TUPLE_TAIL args_)
+-#define XE_RTP_PASTE_3(prefix_, sep_, args_) _XE_RTP_CONCAT(prefix_, _XE_FIRST args_) __XE_RTP_PASTE_SEP_ ## sep_ XE_RTP_PASTE_2(prefix_, sep_, _XE_TUPLE_TAIL args_)
+-#define XE_RTP_PASTE_4(prefix_, sep_, args_) _XE_RTP_CONCAT(prefix_, _XE_FIRST args_) __XE_RTP_PASTE_SEP_ ## sep_ XE_RTP_PASTE_3(prefix_, sep_, _XE_TUPLE_TAIL args_)
+-
+-
+-/*
+- * XE_RTP_DROP_CAST - Drop cast to convert a compound statement to a initializer
+- *
+- * Example:
+- *
+- *	#define foo(a_)	((struct foo){ .a = a_ })
+- *	XE_RTP_DROP_CAST(foo(10))
+- *	expands to:
+- *
+- *	{ .a = 10 }
+- */
+-#define XE_RTP_DROP_CAST(...) _XE_ESC(_XE_DROP_FIRST _XE_ESC __VA_ARGS__)
+-
+-
+ /*
+  * Macros to encode rules to match against platform, IP version, stepping, etc.
+  * Shouldn't be used directly - see XE_RTP_RULES()
+diff --git a/drivers/gpu/drm/xe/xe_rtp_helpers.h b/drivers/gpu/drm/xe/xe_rtp_helpers.h
+new file mode 100644
+index 000000000000..1beea434d52d
+--- /dev/null
++++ b/drivers/gpu/drm/xe/xe_rtp_helpers.h
+@@ -0,0 +1,81 @@
++/* SPDX-License-Identifier: MIT */
++/*
++ * Copyright © 2023 Intel Corporation
++ */
++
++#ifndef _XE_RTP_HELPERS_
++#define _XE_RTP_HELPERS_
++
++#ifndef _XE_RTP_INCLUDE_PRIVATE_HELPERS
++#error "This header is supposed to be included by xe_rtp.h only"
++#endif
++
++/*
++ * Helper macros - not to be used outside this header.
++ */
++#define _XE_ESC(...) __VA_ARGS__
++#define _XE_COUNT_ARGS(...) _XE_ESC(__XE_COUNT_ARGS(__VA_ARGS__,5,4,3,2,1,))
++#define __XE_COUNT_ARGS(_,_5,_4,_3,_2,X_,...) X_
++
++#define _XE_FIRST(...) _XE_ESC(__XE_FIRST(__VA_ARGS__,))
++#define __XE_FIRST(x_,...) x_
++#define _XE_TUPLE_TAIL(...) _XE_ESC(__XE_TUPLE_TAIL(__VA_ARGS__))
++#define __XE_TUPLE_TAIL(x_,...) (__VA_ARGS__)
++
++#define _XE_DROP_FIRST(x_, ...) __VA_ARGS__
++
++#define _XE_RTP_CONCAT(a, b) __XE_RTP_CONCAT(a, b)
++#define __XE_RTP_CONCAT(a, b) XE_RTP_ ## a ## b
++
++#define __XE_RTP_PASTE_SEP_COMMA		,
++#define __XE_RTP_PASTE_SEP_BITWISE_OR		|
++
++/*
++ * XE_RTP_PASTE_FOREACH - Paste XE_RTP_<@prefix_> on each element of the tuple
++ * @args, with the end result separated by @sep_. @sep must be one of the
++ * previously declared macros __XE_RTP_PASTE_SEP_*, or declared with such
++ * prefix.
++ *
++ * Examples:
++ *
++ * 1) XE_RTP_PASTE_FOREACH(TEST_, COMMA, (FOO, BAR))
++ *    expands to:
++ *
++ *	XE_RTP_TEST_FOO , XE_RTP_TEST_BAR
++ *
++ * 2) XE_RTP_PASTE_FOREACH(TEST2_, COMMA, (FOO))
++ *    expands to:
++ *
++ *	XE_RTP_TEST2_FOO
++ *
++ * 3) XE_RTP_PASTE_FOREACH(TEST3, BITWISE_OR, (FOO, BAR))
++ *    expands to:
++ *
++ *	XE_RTP_TEST3_FOO | XE_RTP_TEST3_BAR
++ *
++ * 4) #define __XE_RTP_PASTE_SEP_MY_SEP	BANANA
++ *    XE_RTP_PASTE_FOREACH(TEST_, MY_SEP, (FOO, BAR))
++ *    expands to:
++ *
++ *	XE_RTP_TEST_FOO BANANA XE_RTP_TEST_BAR
++ */
++#define XE_RTP_PASTE_FOREACH(prefix_, sep_, args_) _XE_ESC(_XE_RTP_CONCAT(PASTE_,_XE_COUNT_ARGS args_)(prefix_, sep_, args_))
++#define XE_RTP_PASTE_1(prefix_, sep_, args_) _XE_RTP_CONCAT(prefix_, _XE_FIRST args_)
++#define XE_RTP_PASTE_2(prefix_, sep_, args_) _XE_RTP_CONCAT(prefix_, _XE_FIRST args_) __XE_RTP_PASTE_SEP_ ## sep_ XE_RTP_PASTE_1(prefix_, sep_, _XE_TUPLE_TAIL args_)
++#define XE_RTP_PASTE_3(prefix_, sep_, args_) _XE_RTP_CONCAT(prefix_, _XE_FIRST args_) __XE_RTP_PASTE_SEP_ ## sep_ XE_RTP_PASTE_2(prefix_, sep_, _XE_TUPLE_TAIL args_)
++#define XE_RTP_PASTE_4(prefix_, sep_, args_) _XE_RTP_CONCAT(prefix_, _XE_FIRST args_) __XE_RTP_PASTE_SEP_ ## sep_ XE_RTP_PASTE_3(prefix_, sep_, _XE_TUPLE_TAIL args_)
++
++/*
++ * XE_RTP_DROP_CAST - Drop cast to convert a compound statement to a initializer
++ *
++ * Example:
++ *
++ *	#define foo(a_)	((struct foo){ .a = a_ })
++ *	XE_RTP_DROP_CAST(foo(10))
++ *	expands to:
++ *
++ *	{ .a = 10 }
++ */
++#define XE_RTP_DROP_CAST(...) _XE_ESC(_XE_DROP_FIRST _XE_ESC __VA_ARGS__)
++
++#endif
 -- 
 2.40.1
 
