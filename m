@@ -4,48 +4,48 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4134EC77B60
-	for <intel-xe@archiver.kernel.org>; Fri, 28 Apr 2023 21:20:05 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 85680C77B61
+	for <intel-xe@archiver.kernel.org>; Fri, 28 Apr 2023 21:20:07 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1E18810EDEF;
-	Fri, 28 Apr 2023 21:20:05 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5D03F10E02F;
+	Fri, 28 Apr 2023 21:20:07 +0000 (UTC)
 Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2C1C110EDEF
- for <intel-xe@lists.freedesktop.org>; Fri, 28 Apr 2023 21:20:03 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4EBD910EDEF
+ for <intel-xe@lists.freedesktop.org>; Fri, 28 Apr 2023 21:20:04 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1682716803; x=1714252803;
+ t=1682716804; x=1714252804;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=XPp9jR3GAqyKVkAnrN/1yRmVRZdS7zpnUFkUDEGkq2A=;
- b=dWjrAEduelNutyQ6a0wanwotmkAe4Etcwh/4EGNtx9GMFbbqCdWn5iw5
- WrSjiQKogbzXEnfHtRCFnwVsIcxiVEuQfvOHxRvo64IfJqZPrldYlEY6e
- Xv/gNru+vTbAJXDwVXLMH2aXhLpFj5K/GGUUTpY7yQpdW6tM3+kAUSEX0
- ijdZLs6BmTWyT0q5aW2nDWhp5rlC1WJlZ052EWOzZsAjHOnJXvdkT65as
- dev9ibLmTeQ7jZRGHuETHxORpunGIYb4MMxMF8PsebQk63LZ5BcNXz/0e
- 8sV/G7juoELzxY9ZntWl5AsH2H/U2yD7dRmTGuWNr4LLM9DqD/bWlNo/d A==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10694"; a="349891671"
-X-IronPort-AV: E=Sophos;i="5.99,235,1677571200"; d="scan'208";a="349891671"
+ bh=qMNf/KzPqgk6I4aCO8UtlCEUV87jpcVBbISg7IHOXyI=;
+ b=U6qUmQzuKk6aQRdZIPbP0MJhHDqPEzQAoSTlFpW7PAPkTEMM6cvOLzI8
+ 4ZOa2zvYofx543DRJxnjzPS/YtsCRZZ8w+z/bzX4NIiobe/Q+bxjErKNk
+ RF+XSOJQTm4qqdkOempTlBnfhCl6kRrnU82Zi8cGW9oPV7d3Hb2OWQtgN
+ U0Kp3+4mGTRq3ZKLj++oRHwY5A8Y/cFOfQ0K8zORfVpWt1my1T88Wlf7A
+ e8PbxxTtDY8bIhw2Orl2iNCbXFEI/Kcsg54vo7o4vPTQYqlU1euj0M4k3
+ JCngWPbthKoflDMCm+r59zCfFp6Rqdig2b+jNB0v108Evg5AmFAuwpz/4 g==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10694"; a="349891678"
+X-IronPort-AV: E=Sophos;i="5.99,235,1677571200"; d="scan'208";a="349891678"
 Received: from orsmga002.jf.intel.com ([10.7.209.21])
  by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 28 Apr 2023 14:20:02 -0700
+ 28 Apr 2023 14:20:04 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10694"; a="694944805"
-X-IronPort-AV: E=Sophos;i="5.99,235,1677571200"; d="scan'208";a="694944805"
+X-IronPort-AV: E=McAfee;i="6600,9927,10694"; a="694944816"
+X-IronPort-AV: E=Sophos;i="5.99,235,1677571200"; d="scan'208";a="694944816"
 Received: from awvttdev-05.aw.intel.com ([10.228.212.156])
  by orsmga002-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 28 Apr 2023 14:20:01 -0700
+ 28 Apr 2023 14:20:03 -0700
 From: "Michael J. Ruhl" <michael.j.ruhl@intel.com>
 To: intel-xe@lists.freedesktop.org
-Date: Fri, 28 Apr 2023 17:19:47 -0400
-Message-Id: <20230428211948.4100170-4-michael.j.ruhl@intel.com>
+Date: Fri, 28 Apr 2023 17:19:48 -0400
+Message-Id: <20230428211948.4100170-5-michael.j.ruhl@intel.com>
 X-Mailer: git-send-email 2.39.2
 In-Reply-To: <20230428211948.4100170-1-michael.j.ruhl@intel.com>
 References: <20230428211948.4100170-1-michael.j.ruhl@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-xe] [PATCH 3/4] drm/xe: Size GT device memory correctly
+Subject: [Intel-xe] [PATCH 4/4] drm/xe: Rename GPU offset helper to reflect
+ true usage
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -62,262 +62,95 @@ Cc: tejas.upadhyay@intel.com, michael.j.ruhl@intel.com,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-The current method of sizing GT device memory is not quite right.
+The _io_offset helper function is returning an offset into the GPU
+address space.  Using the CPU address offset (io_) is not correct.
 
-Update the algorithm to use the relevant HW information and offsets
-to set up the sizing correctly.
+Rename to reflect usage.
+Update to use GPU offset information.
 
-Update the stolen memory sizing to reflect the changes, and to be
-GT specific.
-
+Reviewed-by: Matthew Auld <matthew.auld@intel.com>
 Signed-off-by: Michael J. Ruhl <michael.j.ruhl@intel.com>
 ---
- drivers/gpu/drm/xe/xe_device_types.h   |   4 +-
- drivers/gpu/drm/xe/xe_gt_types.h       |  14 ++--
- drivers/gpu/drm/xe/xe_mmio.c           | 102 ++++++++++++++-----------
- drivers/gpu/drm/xe/xe_mmio.h           |   2 +-
- drivers/gpu/drm/xe/xe_ttm_stolen_mgr.c |   2 +
- 5 files changed, 71 insertions(+), 53 deletions(-)
+ drivers/gpu/drm/xe/xe_bo.c      | 8 ++++----
+ drivers/gpu/drm/xe/xe_bo.h      | 2 +-
+ drivers/gpu/drm/xe/xe_migrate.c | 4 ++--
+ 3 files changed, 7 insertions(+), 7 deletions(-)
 
-diff --git a/drivers/gpu/drm/xe/xe_device_types.h b/drivers/gpu/drm/xe/xe_device_types.h
-index 2eeb10e97381..8898aea4bc2b 100644
---- a/drivers/gpu/drm/xe/xe_device_types.h
-+++ b/drivers/gpu/drm/xe/xe_device_types.h
-@@ -1,6 +1,6 @@
- /* SPDX-License-Identifier: MIT */
- /*
-- * Copyright © 2022 Intel Corporation
-+ * Copyright © 2022-2023 Intel Corporation
+diff --git a/drivers/gpu/drm/xe/xe_bo.c b/drivers/gpu/drm/xe/xe_bo.c
+index 3ab404e33fae..7ee5a135b065 100644
+--- a/drivers/gpu/drm/xe/xe_bo.c
++++ b/drivers/gpu/drm/xe/xe_bo.c
+@@ -1335,7 +1335,7 @@ struct xe_bo *xe_bo_create_from_data(struct xe_device *xe, struct xe_gt *gt,
+  * XXX: This is in the VM bind data path, likely should calculate this once and
+  * store, with a recalculation if the BO is moved.
   */
- 
- #ifndef _XE_DEVICE_TYPES_H_
-@@ -202,6 +202,8 @@ struct xe_device {
- 			 * known as small-bar.
- 			 */
- 			resource_size_t io_size;
-+			/** @base: Offset to apply for Device Physical Address control */
-+			resource_size_t base;
- 			/** @mapping: pointer to VRAM mappable space */
- 			void *__iomem mapping;
- 		} vram;
-diff --git a/drivers/gpu/drm/xe/xe_gt_types.h b/drivers/gpu/drm/xe/xe_gt_types.h
-index 7c47d67aa8be..47f059bb8c6d 100644
---- a/drivers/gpu/drm/xe/xe_gt_types.h
-+++ b/drivers/gpu/drm/xe/xe_gt_types.h
-@@ -1,6 +1,6 @@
- /* SPDX-License-Identifier: MIT */
- /*
-- * Copyright © 2022 Intel Corporation
-+ * Copyright © 2022-2023 Intel Corporation
-  */
- 
- #ifndef _XE_GT_TYPES_H_
-@@ -148,13 +148,15 @@ struct xe_gt {
- 			/**
- 			 * @io_size: IO size of this VRAM instance
- 			 *
--			 * This represents how much of this VRAM we can access
--			 * via the CPU through the VRAM BAR. This can be smaller
--			 * than @size, in which case only part of VRAM is CPU
--			 * accessible (typically the first 256M). This
--			 * configuration is known as small-bar.
-+			 * This represents how much of the VRAM the CPU can access
-+			 * via the VRAM BAR.
-+			 * This can be smaller than the actual @size, in which
-+			 * case only part of VRAM is CPU accessible (typically
-+			 * the first 256M). This configuration is known as small-bar.
- 			 */
- 			resource_size_t io_size;
-+			/** @base: offset of VRAM starting base */
-+			resource_size_t base;
- 			/** @size: size of VRAM. */
- 			resource_size_t size;
- 			/** @mapping: pointer to VRAM mappable space */
-diff --git a/drivers/gpu/drm/xe/xe_mmio.c b/drivers/gpu/drm/xe/xe_mmio.c
-index d259c11e7677..be1cd3cac661 100644
---- a/drivers/gpu/drm/xe/xe_mmio.c
-+++ b/drivers/gpu/drm/xe/xe_mmio.c
-@@ -3,6 +3,8 @@
-  * Copyright © 2021-2023 Intel Corporation
-  */
- 
-+#include <linux/minmax.h>
-+
- #include "xe_mmio.h"
- 
- #include <drm/drm_managed.h>
-@@ -184,6 +186,8 @@ static int xe_determine_lmem_bar_size(struct xe_device *xe)
- 	if (!xe->mem.vram.io_size)
- 		return -EIO;
- 
-+	xe->mem.vram.base = 0; /* DPA offset */
-+
- 	/* set up a map to the total memory area. */
- 	xe->mem.vram.mapping = ioremap_wc(xe->mem.vram.io_start, xe->mem.vram.io_size);
- 
-@@ -245,13 +249,25 @@ int xe_mmio_tile_vram_size(struct xe_gt *gt, u64 *vram_size, u64 *tile_size, u64
- 
- int xe_mmio_probe_vram(struct xe_device *xe)
+-uint64_t vram_region_io_offset(struct ttm_resource *res)
++uint64_t vram_region_gpu_offset(struct ttm_resource *res)
  {
-+	resource_size_t io_size;
-+	u64 available_size = 0;
-+	u64 total_size = 0;
- 	struct xe_gt *gt;
-+	u64 tile_offset;
-+	u64 tile_size;
-+	u64 vram_size;
- 	int err;
- 	u8 id;
+ 	struct xe_device *xe = ttm_to_xe_device(res->bo->bdev);
+ 	struct xe_gt *gt = mem_type_to_gt(xe, res->mem_type);
+@@ -1343,7 +1343,7 @@ uint64_t vram_region_io_offset(struct ttm_resource *res)
+ 	if (res->mem_type == XE_PL_STOLEN)
+ 		return xe_ttm_stolen_gpu_offset(xe);
  
- 	if (!IS_DGFX(xe))
- 		return 0;
- 
-+	/* Get the size of the gt0 vram for later accessibility comparison */
-+	gt = xe_device_get_gt(xe, 0);
-+	err = xe_mmio_tile_vram_size(gt, &vram_size, &tile_size, &tile_offset);
-+	if (err)
-+		return err;
-+
- 	err = xe_determine_lmem_bar_size(xe);
- 	if (err)
- 		return err;
-@@ -259,57 +275,56 @@ int xe_mmio_probe_vram(struct xe_device *xe)
- 	drm_info(&xe->drm, "VISIBLE VRAM: %pa, %pa\n", &xe->mem.vram.io_start,
- 		 &xe->mem.vram.io_size);
- 
--	/* FIXME: Assuming equally partitioned VRAM, incorrect */
--	if (xe->info.tile_count > 1) {
--		u8 adj_tile_count = xe->info.tile_count;
--		resource_size_t size, io_start, io_size;
-+	/* small bar issues will only cover gt0 sizes */
-+	if (xe->mem.vram.io_size < vram_size)
-+		drm_warn(&xe->drm, "Restricting VRAM size to PCI resource size (0x%llx->0x%llx)\n",
-+			 vram_size, (u64)xe->mem.vram.io_size);
- 
--		for_each_gt(gt, xe, id)
--			if (xe_gt_is_media_type(gt))
--				--adj_tile_count;
-+	io_size = xe->mem.vram.io_size;
- 
--		XE_BUG_ON(!adj_tile_count);
-+	/* gt specific ranges */
-+	for_each_gt(gt, xe, id) {
-+		if (xe_gt_is_media_type(gt))
-+			continue;
- 
--		size = xe->mem.vram.io_size / adj_tile_count;
--		io_start = xe->mem.vram.io_start;
--		io_size = xe->mem.vram.io_size;
-+		err = xe_mmio_tile_vram_size(gt, &vram_size, &tile_size, &tile_offset);
-+		if (err)
-+			return err;
- 
--		for_each_gt(gt, xe, id) {
--			if (id && !xe_gt_is_media_type(gt)) {
--				io_size -= min(io_size, size);
--				io_start += io_size;
--			}
-+		gt->mem.vram.io_start = xe->mem.vram.io_start + tile_offset;
-+		gt->mem.vram.io_size = min_t(u64, vram_size, io_size);
- 
--			gt->mem.vram.size = size;
--
--			/*
--			 * XXX: multi-tile small-bar might be wild. Hopefully
--			 * full tile without any mappable vram is not something
--			 * we care about.
--			 */
--
--			gt->mem.vram.io_size = min(size, io_size);
--			if (io_size) {
--				gt->mem.vram.io_start = io_start;
--				gt->mem.vram.mapping = xe->mem.vram.mapping +
--					(io_start - xe->mem.vram.io_start);
--			} else {
--				drm_err(&xe->drm, "Tile without any CPU visible VRAM. Aborting.\n");
--				return -ENODEV;
--			}
-+		if (!gt->mem.vram.io_size) {
-+			drm_err(&xe->drm, "Tile without any CPU visible VRAM. Aborting.\n");
-+			return -ENODEV;
-+		}
-+
-+		gt->mem.vram.base = xe->mem.vram.base + tile_offset;
-+		gt->mem.vram.size = vram_size;
-+		gt->mem.vram.mapping = xe->mem.vram.mapping + tile_offset;
-+
-+		drm_info(&xe->drm, "VRAM[%u, %u]: %pa, %pa\n", id, gt->info.vram_id,
-+			 &gt->mem.vram.io_start, &gt->mem.vram.size);
-+
-+		if (gt->mem.vram.io_size < gt->mem.vram.size)
-+			drm_info(&xe->drm, "VRAM[%u, %u]: CPU access limited to %pa\n", id,
-+				 gt->info.vram_id, &gt->mem.vram.io_size);
-+
-+		/* calculate total size using tile size to get the correct HW sizing */
-+		total_size += tile_size;
-+		available_size += vram_size;
- 
--			drm_info(&xe->drm, "VRAM[%u, %u]: %pa, %pa\n",
--				 id, gt->info.vram_id, &gt->mem.vram.io_start,
--				 &gt->mem.vram.size);
-+		if (total_size > xe->mem.vram.io_size) {
-+			drm_warn(&xe->drm, "VRAM: %pa is larger than resource %pa\n",
-+				 &total_size, &xe->mem.vram.io_size);
- 		}
--	} else {
--		gt->mem.vram.size = xe->mem.vram.io_size;
--		gt->mem.vram.io_start = xe->mem.vram.io_start;
--		gt->mem.vram.io_size = xe->mem.vram.io_size;
--		gt->mem.vram.mapping = xe->mem.vram.mapping;
- 
--		drm_info(&xe->drm, "VRAM: %pa\n", &gt->mem.vram.size);
-+		io_size -= min_t(u64, tile_size, io_size);
- 	}
-+
-+	drm_info(&xe->drm, "Available VRAM: %pa, %pa\n", &xe->mem.vram.io_start,
-+		 &available_size);
-+
- 	return 0;
+-	return gt->mem.vram.io_start - xe->mem.vram.io_start;
++	return gt->mem.vram.base;
  }
  
-@@ -329,9 +344,6 @@ static void xe_mmio_probe_tiles(struct xe_device *xe)
- 	if (xe->info.media_verx100 >= 1300)
- 		xe->info.tile_count *= 2;
+ /**
+@@ -1427,7 +1427,7 @@ int xe_bo_pin(struct xe_bo *bo)
+ 			XE_BUG_ON(!(place->flags & TTM_PL_FLAG_CONTIGUOUS));
  
--	drm_info(&xe->drm, "tile_count: %d, adj_tile_count %d\n",
--		 xe->info.tile_count, adj_tile_count);
--
- 	if (xe->info.tile_count > 1) {
- 		const int mmio_bar = 0;
- 		size_t size;
-diff --git a/drivers/gpu/drm/xe/xe_mmio.h b/drivers/gpu/drm/xe/xe_mmio.h
-index 556cf3d9e4f5..d284f84a2e60 100644
---- a/drivers/gpu/drm/xe/xe_mmio.h
-+++ b/drivers/gpu/drm/xe/xe_mmio.h
-@@ -1,6 +1,6 @@
- /* SPDX-License-Identifier: MIT */
- /*
-- * Copyright © 2021 Intel Corporation
-+ * Copyright © 2021-2023 Intel Corporation
-  */
+ 			place->fpfn = (xe_bo_addr(bo, 0, PAGE_SIZE, &vram) -
+-				       vram_region_io_offset(bo->ttm.resource)) >> PAGE_SHIFT;
++				       vram_region_gpu_offset(bo->ttm.resource)) >> PAGE_SHIFT;
+ 			place->lpfn = place->fpfn + (bo->size >> PAGE_SHIFT);
  
- #ifndef _XE_MMIO_H_
-diff --git a/drivers/gpu/drm/xe/xe_ttm_stolen_mgr.c b/drivers/gpu/drm/xe/xe_ttm_stolen_mgr.c
-index a329f12f14fe..72e0a65b1d71 100644
---- a/drivers/gpu/drm/xe/xe_ttm_stolen_mgr.c
-+++ b/drivers/gpu/drm/xe/xe_ttm_stolen_mgr.c
-@@ -12,9 +12,11 @@
- #include <drm/ttm/ttm_range_manager.h>
+ 			spin_lock(&xe->pinned.lock);
+@@ -1571,7 +1571,7 @@ dma_addr_t xe_bo_addr(struct xe_bo *bo, u64 offset,
  
- #include "regs/xe_regs.h"
-+#include "regs/xe_gt_regs.h"
- #include "xe_bo.h"
- #include "xe_device.h"
- #include "xe_gt.h"
-+#include "xe_gt_mcr.h"
- #include "xe_mmio.h"
- #include "xe_res_cursor.h"
- #include "xe_ttm_stolen_mgr.h"
+ 		xe_res_first(bo->ttm.resource, page << PAGE_SHIFT,
+ 			     page_size, &cur);
+-		return cur.start + offset + vram_region_io_offset(bo->ttm.resource);
++		return cur.start + offset + vram_region_gpu_offset(bo->ttm.resource);
+ 	}
+ }
+ 
+diff --git a/drivers/gpu/drm/xe/xe_bo.h b/drivers/gpu/drm/xe/xe_bo.h
+index 8354d05ccdf3..161d5e9f09cf 100644
+--- a/drivers/gpu/drm/xe/xe_bo.h
++++ b/drivers/gpu/drm/xe/xe_bo.h
+@@ -224,7 +224,7 @@ void xe_bo_vunmap(struct xe_bo *bo);
+ bool mem_type_is_vram(u32 mem_type);
+ bool xe_bo_is_vram(struct xe_bo *bo);
+ bool xe_bo_is_stolen(struct xe_bo *bo);
+-uint64_t vram_region_io_offset(struct ttm_resource *res);
++uint64_t vram_region_gpu_offset(struct ttm_resource *res);
+ 
+ bool xe_bo_can_migrate(struct xe_bo *bo, u32 mem_type);
+ 
+diff --git a/drivers/gpu/drm/xe/xe_migrate.c b/drivers/gpu/drm/xe/xe_migrate.c
+index a1d507db0098..c79561035b1b 100644
+--- a/drivers/gpu/drm/xe/xe_migrate.c
++++ b/drivers/gpu/drm/xe/xe_migrate.c
+@@ -419,7 +419,7 @@ static u32 pte_update_size(struct xe_migrate *m,
+ 	} else {
+ 		/* Offset into identity map. */
+ 		*L0_ofs = xe_migrate_vram_ofs(cur->start +
+-					      vram_region_io_offset(res));
++					      vram_region_gpu_offset(res));
+ 		cmds += cmd_size;
+ 	}
+ 
+@@ -469,7 +469,7 @@ static void emit_pte(struct xe_migrate *m,
+ 					addr |= XE_PTE_PS64;
+ 				}
+ 
+-				addr += vram_region_io_offset(bo->ttm.resource);
++				addr += vram_region_gpu_offset(bo->ttm.resource);
+ 				addr |= XE_PPGTT_PTE_LM;
+ 			}
+ 			addr |= PPAT_CACHED | XE_PAGE_PRESENT | XE_PAGE_RW;
 -- 
 2.39.2
 
