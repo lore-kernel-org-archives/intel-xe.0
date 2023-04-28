@@ -4,52 +4,31 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 87D9DC77B7F
-	for <intel-xe@archiver.kernel.org>; Fri, 28 Apr 2023 13:03:09 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 12863C77B61
+	for <intel-xe@archiver.kernel.org>; Fri, 28 Apr 2023 13:25:07 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 51CAF10ED44;
-	Fri, 28 Apr 2023 13:03:09 +0000 (UTC)
-Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 949E110ED40;
- Fri, 28 Apr 2023 13:03:06 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1682686987; x=1714222987;
- h=message-id:date:mime-version:subject:to:cc:references:
- from:in-reply-to:content-transfer-encoding;
- bh=hYK1XSLoRGsBKCo9w+lFLE47lpEyIhbguL7HZvkfN5s=;
- b=YP/sLzxY2DPNtKFaoB0adgMKEbR41TRZVQbEcNtrLu0dgnyE+cDIhstU
- 0P/W5hHFXlHYKgKSyDlX+6ps73F5YxX5O+MYQPzsn7tRDWLs2QGNBL02U
- X3d31P2Li0ZE3J3ZMlhxGqwTmHPb6mEqlU05CMQCMtk4lX5S8KjSFRiMl
- eN1RN2Un5zVuqLlRlLjGEzcNe0KRSAnZJTkFczYcGNC4sDOfN3U9w72nA
- fh3VYsP2cd/CxIbOGL7XxJSZg11KxCIvmGUbTjiBLNmJOEgrig1YtCkb1
- x+hrFGmwASONedTGLS+hsscjxM/fgrt0I5RU96cFQWREuG4o0MN9YL7qA w==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10694"; a="350650511"
-X-IronPort-AV: E=Sophos;i="5.99,234,1677571200"; d="scan'208";a="350650511"
-Received: from fmsmga004.fm.intel.com ([10.253.24.48])
- by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 28 Apr 2023 06:03:05 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10694"; a="764276437"
-X-IronPort-AV: E=Sophos;i="5.99,234,1677571200"; d="scan'208";a="764276437"
-Received: from kdobkakr-mobl1.ger.corp.intel.com (HELO [10.249.254.45])
- ([10.249.254.45])
- by fmsmga004-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 28 Apr 2023 06:03:03 -0700
-Message-ID: <60bb9e25-062c-a893-d5cc-1c6f1362703c@linux.intel.com>
-Date: Fri, 28 Apr 2023 15:03:01 +0200
+	by gabe.freedesktop.org (Postfix) with ESMTP id B39FD10E3BE;
+	Fri, 28 Apr 2023 13:25:07 +0000 (UTC)
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 8E60310E3BE;
+ Fri, 28 Apr 2023 13:25:05 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id D44F2A0BA8;
+ Fri, 28 Apr 2023 13:25:04 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============6265557219872519203=="
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.8.0
-Content-Language: en-US
-To: dri-devel@lists.freedesktop.org
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: =?utf-8?q?Thomas_Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>
+Date: Fri, 28 Apr 2023 13:25:04 -0000
+Message-ID: <168268830483.32438.10924052051331721396@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
 References: <20230428125233.228353-1-thomas.hellstrom@linux.intel.com>
-From: =?UTF-8?Q?Thomas_Hellstr=c3=b6m?= <thomas.hellstrom@linux.intel.com>
 In-Reply-To: <20230428125233.228353-1-thomas.hellstrom@linux.intel.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-Subject: Re: [Intel-xe] [RFC PATCH] dma-buf/dma-fence: Use a successful
- read_trylock() annotation for dma_fence_begin_signalling()
+Subject: [Intel-xe] =?utf-8?q?=E2=97=8B_CI=2EBAT=3A_info_for_dma-buf/dma-?=
+ =?utf-8?q?fence=3A_Use_a_successful_read=5Ftrylock=28=29_annotation_for_d?=
+ =?utf-8?b?bWFfZmVuY2VfYmVnaW5fc2lnbmFsbGluZygp?=
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -61,30 +40,68 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Cc: linaro-mm-sig@lists.linaro.org, Daniel Vetter <daniel.vetter@ffwll.ch>,
- intel-gfx@lists.freedesktop.org, Christian Koenig <christian.koenig@amd.com>,
- intel-xe@lists.freedesktop.org
+Reply-To: intel-xe@lists.freedesktop.org
+Cc: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
+--===============6265557219872519203==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-On 4/28/23 14:52, Thomas Hellström wrote:
-> Condsider the following call sequence:
->
-> /* Upper layer */
-> dma_fence_begin_signalling();
-> lock(tainted_shared_lock);
-> /* Driver callback */
-> dma_fence_begin_signalling();
-> ...
+== Series Details ==
 
-The "Upper layer" here currently being the drm scheduler and "Driver 
-callback" being an xe scheduler callback.
+Series: dma-buf/dma-fence: Use a successful read_trylock() annotation for dma_fence_begin_signalling()
+URL   : https://patchwork.freedesktop.org/series/117113/
+State : info
 
-While opt-in annotating the drm scheduler would achieve the same result, 
-I think this patch should be considered anyway, as I don't think we will 
-miss any true lockdep violations as a result of it.
+== Summary ==
 
-/Thomas
+Participating hosts:
+bat-atsm-2
+bat-dg2-oem2
+bat-adlp-7
+Missing hosts results[0]:
+Results: [xe-pw-117113v1](https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-117113v1/index.html)
 
 
+
+--===============6265557219872519203==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>dma-buf/dma-fence: Use a successful read_trylock() annotation for dma_fence_begin_signalling()</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/117113/">https://patchwork.freedesktop.org/series/117113/</a></td></tr>
+<tr><td><b>State:</b></td><td>info</td></tr>
+
+</table>
+
+
+    <p>Participating hosts:<br />
+bat-atsm-2<br />
+bat-dg2-oem2<br />
+bat-adlp-7<br />
+Missing hosts results[0]:<br />
+Results: <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-117113v1/index.html">xe-pw-117113v1</a></p>
+
+</body>
+</html>
+
+--===============6265557219872519203==--
