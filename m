@@ -4,30 +4,46 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6C43AC77B60
-	for <intel-xe@archiver.kernel.org>; Fri, 28 Apr 2023 21:03:18 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 74DD1C77B61
+	for <intel-xe@archiver.kernel.org>; Fri, 28 Apr 2023 21:20:00 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 471A410E02F;
-	Fri, 28 Apr 2023 21:03:18 +0000 (UTC)
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id CCB2110E02F;
- Fri, 28 Apr 2023 21:03:15 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id C5FA6AADD5;
- Fri, 28 Apr 2023 21:03:15 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+	by gabe.freedesktop.org (Postfix) with ESMTP id 36AA910E03B;
+	Fri, 28 Apr 2023 21:20:00 +0000 (UTC)
+Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2D60210E02F
+ for <intel-xe@lists.freedesktop.org>; Fri, 28 Apr 2023 21:19:57 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1682716797; x=1714252797;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=JTLlTvpYvTrHRRitryEvkwgrvxrcFvwvtw2PIxjupjk=;
+ b=N40AMS+esTCy3kSetMXITIcz5BRVjlA3CJt9ycOIoht495VZFHCN8ecr
+ Y/qDiOaFithIWjtxyLI06B9fNaGI+qx+m6Fh9QxmZLGq68MdoKsBDBt9F
+ uikog5n/wYcKD+fzUvZjlmTDbDfTqVeE7wA0oGcRyW9E5QTKJ7/DvNwe4
+ ZZ1olhMjD6Hp4d7UV6CtR2/P0hut4otKArUecakkqGnXuj6PW3iCOmkQg
+ TS/aBqxM9SWXd6exoy1BXho+REju9OkE0sFPOXoQK27PooTm+7MeJzRQ5
+ 7R6T1Je1srveErsBxNgMRKEZCZtZhBw4+U55FaggcrOapv/RRPtz6BEAV g==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10694"; a="349891633"
+X-IronPort-AV: E=Sophos;i="5.99,235,1677571200"; d="scan'208";a="349891633"
+Received: from orsmga002.jf.intel.com ([10.7.209.21])
+ by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 28 Apr 2023 14:19:56 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6600,9927,10694"; a="694944771"
+X-IronPort-AV: E=Sophos;i="5.99,235,1677571200"; d="scan'208";a="694944771"
+Received: from awvttdev-05.aw.intel.com ([10.228.212.156])
+ by orsmga002-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 28 Apr 2023 14:19:55 -0700
+From: "Michael J. Ruhl" <michael.j.ruhl@intel.com>
+To: intel-xe@lists.freedesktop.org
+Date: Fri, 28 Apr 2023 17:19:44 -0400
+Message-Id: <20230428211948.4100170-1-michael.j.ruhl@intel.com>
+X-Mailer: git-send-email 2.39.2
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Michael J. Ruhl" <michael.j.ruhl@intel.com>
-Date: Fri, 28 Apr 2023 21:03:15 -0000
-Message-ID: <168271579578.32440.8341948492103972638@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20230428210028.4084872-1-michael.j.ruhl@intel.com>
-In-Reply-To: <20230428210028.4084872-1-michael.j.ruhl@intel.com>
-Subject: [Intel-xe] =?utf-8?q?=E2=9C=97_CI=2EPatch=5Fapplied=3A_failure_f?=
- =?utf-8?q?or_drm/xe=3A_Rework_multi_tile_device_memory_initialization?=
+Content-Transfer-Encoding: 8bit
+Subject: [Intel-xe] [PATCH v2 0/4] drm/xe: Rework multi tile device memory
+ initialization
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -39,33 +55,37 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
-Cc: intel-xe@lists.freedesktop.org
+Cc: tejas.upadhyay@intel.com, michael.j.ruhl@intel.com,
+ himal.prasad.ghimiray@intel.com, matthew.auld@intel.com
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-== Series Details ==
+The vram initialization path does not take into account
+each tile's actual memory size.
 
-Series: drm/xe: Rework multi tile device memory initialization
-URL   : https://patchwork.freedesktop.org/series/117126/
-State : failure
+While updating this, simplify the rebar algorithm and clarify
+some helper functions.
 
-== Summary ==
+v2: Address review comments
+    - separate tile sizing to the initial patch
 
-=== Applying kernel patches on branch 'drm-xe-next' with base: ===
-Base commit: f7b51a4d5 drm/xe: Fix media detection for pre-GMD_ID platforms
-=== git am output follows ===
-error: patch failed: drivers/gpu/drm/xe/regs/xe_gt_regs.h:75
-error: drivers/gpu/drm/xe/regs/xe_gt_regs.h: patch does not apply
-error: patch failed: drivers/gpu/drm/xe/xe_mmio.c:148
-error: drivers/gpu/drm/xe/xe_mmio.c: patch does not apply
-error: patch failed: drivers/gpu/drm/xe/xe_ttm_stolen_mgr.c:51
-error: drivers/gpu/drm/xe/xe_ttm_stolen_mgr.c: patch does not apply
-hint: Use 'git am --show-current-patch' to see the failed patch
-Applying: drm/xe: Rework size helper to be a little more correct
-Patch failed at 0001 drm/xe: Rework size helper to be a little more correct
-When you have resolved this problem, run "git am --continue".
-If you prefer to skip this patch, run "git am --skip" instead.
-To restore the original branch and stop patching, run "git am --abort".
+Michael J. Ruhl (4):
+  drm/xe: Rework size helper to be a little more correct
+  drm/xe: Simplify rebar sizing
+  drm/xe: Size GT device memory correctly
+  drm/xe: Rename GPU offset helper to reflect true usage
 
+ drivers/gpu/drm/xe/regs/xe_gt_regs.h   |   2 +-
+ drivers/gpu/drm/xe/xe_bo.c             |   8 +-
+ drivers/gpu/drm/xe/xe_bo.h             |   2 +-
+ drivers/gpu/drm/xe/xe_device_types.h   |  18 +-
+ drivers/gpu/drm/xe/xe_gt_types.h       |  14 +-
+ drivers/gpu/drm/xe/xe_migrate.c        |   6 +-
+ drivers/gpu/drm/xe/xe_mmio.c           | 273 ++++++++++++++-----------
+ drivers/gpu/drm/xe/xe_mmio.h           |   4 +-
+ drivers/gpu/drm/xe/xe_ttm_stolen_mgr.c |  30 +--
+ 9 files changed, 200 insertions(+), 157 deletions(-)
+
+-- 
+2.39.2
 
