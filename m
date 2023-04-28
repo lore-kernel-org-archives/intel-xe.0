@@ -4,48 +4,48 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id DAAB4C77B60
-	for <intel-xe@archiver.kernel.org>; Fri, 28 Apr 2023 21:20:00 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id A31C8C77B7E
+	for <intel-xe@archiver.kernel.org>; Fri, 28 Apr 2023 21:20:04 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id BAAD410E15E;
-	Fri, 28 Apr 2023 21:20:00 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 76B1610EDF2;
+	Fri, 28 Apr 2023 21:20:04 +0000 (UTC)
 Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 97CB810E03B
- for <intel-xe@lists.freedesktop.org>; Fri, 28 Apr 2023 21:19:59 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 84EED10EDEF
+ for <intel-xe@lists.freedesktop.org>; Fri, 28 Apr 2023 21:20:01 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1682716799; x=1714252799;
+ t=1682716801; x=1714252801;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=lw8KaM6r62ZmBpovZRXuGYx/2LXdEI+gJMo63CPw26M=;
- b=KD/zEKMZKIvBpp3OC91Kfo/E3wxuCLTtCdFmM5HrbcBmUAwd3ciyjDiu
- in8JmkwFGRAeKD2notZsiPJ9D6C3W9kvAZI4giunSSSthEwEYBxAqWhoZ
- YyDK3Lkdx0Sf5ZhStp2EE2e0gahlM1iqithw0jKPGJvHHDfzkT4986wq4
- 5WvWfqksEnX8rn+9CD5FDZYeoBS+ZF/zf2Fqmu2Yf5zoLkV10TweONw4t
- a0Ysp4hHjuLo7ZJXvPyRfSq3OHQdrNcsTsAgynzJyThutgXzhoQsbGP4M
- kkoYvI5Q1eKB4eUjMzwv25TrF33PgESB9ufOoTj+b/poaT7I6bC2xNVP2 A==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10694"; a="349891647"
-X-IronPort-AV: E=Sophos;i="5.99,235,1677571200"; d="scan'208";a="349891647"
+ bh=G+5wo2BIG+8raYNiKm0LtyeAAkxMmzL3p1DV0Xz3UGI=;
+ b=KOr6LLwlzSB0fCmMCYl5Z6CJS2ohkerUZAJ7pSavNOS4sAfXUagXZnWD
+ QdTc3kcOVvjQ7kundhAPli16f96ja0j8biQpgnUrQ3LM86IoQdCTTtwOv
+ BvcBNOX94lu4YDnn/2ebTwFQ54acDnEMy4btziYR/uTlQFjIARAs+pNew
+ zOLFxEsNd6XozFLMODnTafVg03sroUiJav9oDEL6R7xosP2Bsg47tHohq
+ rP8PElSkA9jadH22+wh/e+/P/YjjMGxx+k2xMGUcBfyEqTKfroF7eGCY0
+ KwbC5a3oXzHUQv0p5LqkGF0YuClrgcwzP9RK5JTOzOxUh5x2ynoAzJHc7 Q==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10694"; a="349891655"
+X-IronPort-AV: E=Sophos;i="5.99,235,1677571200"; d="scan'208";a="349891655"
 Received: from orsmga002.jf.intel.com ([10.7.209.21])
  by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 28 Apr 2023 14:19:59 -0700
+ 28 Apr 2023 14:20:01 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10694"; a="694944779"
-X-IronPort-AV: E=Sophos;i="5.99,235,1677571200"; d="scan'208";a="694944779"
+X-IronPort-AV: E=McAfee;i="6600,9927,10694"; a="694944790"
+X-IronPort-AV: E=Sophos;i="5.99,235,1677571200"; d="scan'208";a="694944790"
 Received: from awvttdev-05.aw.intel.com ([10.228.212.156])
  by orsmga002-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 28 Apr 2023 14:19:58 -0700
+ 28 Apr 2023 14:20:00 -0700
 From: "Michael J. Ruhl" <michael.j.ruhl@intel.com>
 To: intel-xe@lists.freedesktop.org
-Date: Fri, 28 Apr 2023 17:19:45 -0400
-Message-Id: <20230428211948.4100170-2-michael.j.ruhl@intel.com>
+Date: Fri, 28 Apr 2023 17:19:46 -0400
+Message-Id: <20230428211948.4100170-3-michael.j.ruhl@intel.com>
 X-Mailer: git-send-email 2.39.2
 In-Reply-To: <20230428211948.4100170-1-michael.j.ruhl@intel.com>
 References: <20230428211948.4100170-1-michael.j.ruhl@intel.com>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-xe] [PATCH 1/4] drm/xe: Rework size helper to be a little
- more correct
+Subject: [Intel-xe] [PATCH 2/4] drm/xe: Simplify rebar sizing
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -62,223 +62,281 @@ Cc: tejas.upadhyay@intel.com, michael.j.ruhl@intel.com,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-The _total_vram_size helper is device based and is not complete.
+"Right sizing" the PCI BAR is not necessary.  If rebar is needed
+size to the maximum available.
 
-Teach the helper to be tile aware and add the ability to size
-DG1 correctly.
+Preserve the force_vram_bar_size sizing.
+
+Update associated code for consistency.
 
 Signed-off-by: Michael J. Ruhl <michael.j.ruhl@intel.com>
 ---
- drivers/gpu/drm/xe/regs/xe_gt_regs.h   |  2 +-
- drivers/gpu/drm/xe/xe_mmio.c           | 73 +++++++++++++++++---------
- drivers/gpu/drm/xe/xe_mmio.h           |  2 +-
- drivers/gpu/drm/xe/xe_ttm_stolen_mgr.c | 28 +++++-----
- 4 files changed, 64 insertions(+), 41 deletions(-)
+ drivers/gpu/drm/xe/xe_device_types.h |  14 +--
+ drivers/gpu/drm/xe/xe_migrate.c      |   2 +-
+ drivers/gpu/drm/xe/xe_mmio.c         | 136 ++++++++++++++-------------
+ 3 files changed, 77 insertions(+), 75 deletions(-)
 
-diff --git a/drivers/gpu/drm/xe/regs/xe_gt_regs.h b/drivers/gpu/drm/xe/regs/xe_gt_regs.h
-index 68e89d71cd1c..780edd4dc1bd 100644
---- a/drivers/gpu/drm/xe/regs/xe_gt_regs.h
-+++ b/drivers/gpu/drm/xe/regs/xe_gt_regs.h
-@@ -74,7 +74,7 @@
- #define VE1_AUX_NV				XE_REG(0x42b8)
- #define   AUX_INV				REG_BIT(0)
+diff --git a/drivers/gpu/drm/xe/xe_device_types.h b/drivers/gpu/drm/xe/xe_device_types.h
+index 1cb404e48aaa..2eeb10e97381 100644
+--- a/drivers/gpu/drm/xe/xe_device_types.h
++++ b/drivers/gpu/drm/xe/xe_device_types.h
+@@ -193,15 +193,15 @@ struct xe_device {
+ 			/**
+ 			 * @io_size: IO size of VRAM.
+ 			 *
+-			 * This represents how much of VRAM we can access via
+-			 * the CPU through the VRAM BAR. This can be smaller
+-			 * than @size, in which case only part of VRAM is CPU
+-			 * accessible (typically the first 256M). This
+-			 * configuration is known as small-bar.
++			 * This represents how much of VRAM the CPU can access
++			 * via the VRAM BAR.
++			 * On systems that do not support large BAR IO space,
++			 * this can be smaller than the actual memory size, in
++			 * which case only part of VRAM is CPU accessible
++			 * (typically the first 256M).  This configuration is
++			 * known as small-bar.
+ 			 */
+ 			resource_size_t io_size;
+-			/** @size: Total size of VRAM */
+-			resource_size_t size;
+ 			/** @mapping: pointer to VRAM mappable space */
+ 			void *__iomem mapping;
+ 		} vram;
+diff --git a/drivers/gpu/drm/xe/xe_migrate.c b/drivers/gpu/drm/xe/xe_migrate.c
+index f40f47ccb76f..a1d507db0098 100644
+--- a/drivers/gpu/drm/xe/xe_migrate.c
++++ b/drivers/gpu/drm/xe/xe_migrate.c
+@@ -270,7 +270,7 @@ static int xe_migrate_prepare_vm(struct xe_gt *gt, struct xe_migrate *m,
+ 		 * Use 1GB pages, it shouldn't matter the physical amount of
+ 		 * vram is less, when we don't access it.
+ 		 */
+-		for (pos = 0; pos < xe->mem.vram.size; pos += SZ_1G, ofs += 8)
++		for (pos = 0; pos < xe->mem.vram.io_size; pos += SZ_1G, ofs += 8)
+ 			xe_map_wr(xe, &bo->vmap, ofs, u64, pos | flags);
+ 	}
  
--#define XEHP_TILE0_ADDR_RANGE			XE_REG_MCR(0x4900)
-+#define XEHP_TILE_ADDR_RANGE(_idx)		XE_REG_MCR(0x4900 + (_idx) * 4)
- #define XEHP_FLAT_CCS_BASE_ADDR			XE_REG_MCR(0x4910)
- 
- #define CHICKEN_RASTER_1			XE_REG_MCR(0x6204, XE_REG_OPTION_MASKED)
 diff --git a/drivers/gpu/drm/xe/xe_mmio.c b/drivers/gpu/drm/xe/xe_mmio.c
-index 3b719c774efa..7d53d382976c 100644
+index 7d53d382976c..d259c11e7677 100644
 --- a/drivers/gpu/drm/xe/xe_mmio.c
 +++ b/drivers/gpu/drm/xe/xe_mmio.c
-@@ -148,34 +148,56 @@ static bool xe_pci_resource_valid(struct pci_dev *pdev, int bar)
+@@ -1,6 +1,6 @@
+ // SPDX-License-Identifier: MIT
+ /*
+- * Copyright © 2021 Intel Corporation
++ * Copyright © 2021-2023 Intel Corporation
+  */
+ 
+ #include "xe_mmio.h"
+@@ -21,6 +21,8 @@
+ #define TILE_COUNT		REG_GENMASK(15, 8)
+ #define GEN12_LMEM_BAR		2
+ 
++#define BAR_SIZE_SHIFT 20
++
+ static int xe_set_dma_info(struct xe_device *xe)
+ {
+ 	unsigned int mask_size = xe->info.dma_mask_size;
+@@ -61,50 +63,65 @@ _resize_bar(struct xe_device *xe, int resno, resource_size_t size)
+ 	if (ret) {
+ 		drm_info(&xe->drm, "Failed to resize BAR%d to %dM (%pe). Consider enabling 'Resizable BAR' support in your BIOS\n",
+ 			 resno, 1 << bar_size, ERR_PTR(ret));
+-		return -1;
++		return ret;
+ 	}
+ 
+ 	drm_info(&xe->drm, "BAR%d resized to %dM\n", resno, 1 << bar_size);
+-	return 1;
++	return ret;
+ }
+ 
+-static int xe_resize_vram_bar(struct xe_device *xe, resource_size_t vram_size)
++/*
++ * if force_vram_bar_size is set, attempt to set to the requested size
++ * else set to maximum possible size
++ */
++static int xe_resize_vram_bar(struct xe_device *xe)
+ {
++	u64 force_vram_bar_size = xe_force_vram_bar_size;
+ 	struct pci_dev *pdev = to_pci_dev(xe->drm.dev);
+ 	struct pci_bus *root = pdev->bus;
+-	struct resource *root_res;
+-	resource_size_t rebar_size;
+ 	resource_size_t current_size;
++	resource_size_t rebar_size;
++	struct resource *root_res;
++	u32 bar_size_mask;
+ 	u32 pci_cmd;
+ 	int i;
+ 	int ret;
+-	u64 force_vram_bar_size = xe_force_vram_bar_size;
+ 
+-	current_size = roundup_pow_of_two(pci_resource_len(pdev, GEN12_LMEM_BAR));
++	/* gather some relevant info */
++	current_size = pci_resource_len(pdev, GEN12_LMEM_BAR);
++	bar_size_mask = pci_rebar_get_possible_sizes(pdev, GEN12_LMEM_BAR);
+ 
++	if (!bar_size_mask)
++		return 0;
++
++	/* set to a specific size? */
+ 	if (force_vram_bar_size) {
+-		u32 bar_sizes;
++		u32 bar_size_bit;
+ 
+ 		rebar_size = force_vram_bar_size * (resource_size_t)SZ_1M;
+-		bar_sizes = pci_rebar_get_possible_sizes(pdev, GEN12_LMEM_BAR);
+ 
+-		if (rebar_size == current_size)
+-			return 0;
++		bar_size_bit = bar_size_mask & BIT(pci_rebar_bytes_to_size(rebar_size));
+ 
+-		if (!(bar_sizes & BIT(pci_rebar_bytes_to_size(rebar_size))) ||
+-		    rebar_size >= roundup_pow_of_two(vram_size)) {
+-			rebar_size = vram_size;
++		if (!bar_size_bit) {
+ 			drm_info(&xe->drm,
+-				 "Given bar size is not within supported size, setting it to default: %lluMiB\n",
+-				 (u64)vram_size >> 20);
++				 "Requested size: 0x%llx is not supported by rebar sizes: 0x%x. Leaving default: 0x%llx\n",
++				 (u64)rebar_size >> 2, bar_size_mask, (u64)current_size >> 20);
++			return 0;
+ 		}
++
++		rebar_size = 1ULL << (bar_size_bit + BAR_SIZE_SHIFT);
++
++		if (rebar_size == current_size)
++			return 0;
+ 	} else {
+-		rebar_size = current_size;
++		rebar_size = 1ULL << (__fls(bar_size_mask) + BAR_SIZE_SHIFT);
+ 
+-		if (rebar_size != roundup_pow_of_two(vram_size))
+-			rebar_size = vram_size;
+-		else
++		/* only resize if larger than current */
++		if (rebar_size <= current_size) {
++			drm_info(&xe->drm, "Rebar size: 0x%llx vs. actual size: 0x%llx\n",
++				 rebar_size, current_size);
+ 			return 0;
++		}
+ 	}
+ 
+ 	drm_info(&xe->drm, "Resizing bar from %lluMiB -> %lluMiB\n",
+@@ -148,6 +165,31 @@ static bool xe_pci_resource_valid(struct pci_dev *pdev, int bar)
  	return true;
  }
  
--int xe_mmio_total_vram_size(struct xe_device *xe, u64 *vram_size, u64 *usable_size)
-+/**
-+ * xe_mmio_tile_vram_size - Collect vram size and off set information
-+ * @gt: tile to get info for
-+ * @vram_size: available vram (size - device reserved portions)
-+ * @tile_size: actual vram size
-+ * @tile_offset: physical start point in the vram address space
-+ *
-+ * There are 4 places for size information:
-+ * - io size (from pci_resource_len of LMEM bar) (only used for small bar and DG1)
-+ * - TILEx size (actual vram size)
-+ * - GSMBASE offset (TILEx - "stolen")
-+ * - CSSBASE offset (TILEx - CSS space necessary)
-+ *
-+ * NOTE: CSSBASE is always a lower/smaller offset then GSMBASE.
-+ *
-+ * The actual available size of memory is to the CCS or GSM base.
-+ * NOTE: multi-tile bases will include the tile offset.
-+ *
-+ */
-+int xe_mmio_tile_vram_size(struct xe_gt *gt, u64 *vram_size, u64 *tile_size, u64 *tile_offset)
- {
--	struct xe_gt *gt = xe_device_get_gt(xe, 0);
--	struct pci_dev *pdev = to_pci_dev(xe->drm.dev);
-+	u64 offset;
- 	int err;
- 	u32 reg;
- 
--	if (!xe->info.has_flat_ccs)  {
--		*vram_size = pci_resource_len(pdev, GEN12_LMEM_BAR);
--		if (usable_size)
--			*usable_size = min(*vram_size,
--					   xe_mmio_read64(gt, GSMBASE.reg));
--		return 0;
--	}
--
- 	err = xe_force_wake_get(gt_to_fw(gt), XE_FW_GT);
- 	if (err)
- 		return err;
- 
--	reg = xe_gt_mcr_unicast_read_any(gt, XEHP_TILE0_ADDR_RANGE);
--	*vram_size = (u64)REG_FIELD_GET(GENMASK(14, 8), reg) * SZ_1G;
--	if (usable_size) {
-+	/* actual size */
-+	if (unlikely(gt->xe->info.platform == XE_DG1)) {
-+		*tile_size = pci_resource_len(to_pci_dev(gt->xe->drm.dev), GEN12_LMEM_BAR);
-+		*tile_offset = 0;
-+	} else {
-+		reg = xe_gt_mcr_unicast_read_any(gt, XEHP_TILE_ADDR_RANGE(gt->info.id));
-+		*tile_size = (u64)REG_FIELD_GET(GENMASK(14, 8), reg) * SZ_1G;
-+		*tile_offset = (u64)REG_FIELD_GET(GENMASK(7, 1), reg) * SZ_1G;
++static int xe_determine_lmem_bar_size(struct xe_device *xe)
++{
++	struct pci_dev *pdev = to_pci_dev(xe->drm.dev);
++	int err;
++
++	if (!xe_pci_resource_valid(pdev, GEN12_LMEM_BAR)) {
++		drm_err(&xe->drm, "pci resource is not valid\n");
++		return -ENXIO;
 +	}
 +
-+	/* minus device usage */
-+	if (gt->xe->info.has_flat_ccs) {
- 		reg = xe_gt_mcr_unicast_read_any(gt, XEHP_FLAT_CCS_BASE_ADDR);
--		*usable_size = (u64)REG_FIELD_GET(GENMASK(31, 8), reg) * SZ_64K;
--		drm_info(&xe->drm, "vram_size: 0x%llx usable_size: 0x%llx\n",
--			 *vram_size, *usable_size);
-+		offset = (u64)REG_FIELD_GET(GENMASK(31, 8), reg) * SZ_64K;
-+	} else {
-+		offset = xe_mmio_read64(gt, GSMBASE.reg);
- 	}
- 
-+	/* remove the tile offset so we have just the available size */
-+	*vram_size = offset - *tile_offset;
++	err = xe_resize_vram_bar(xe);
++	if (err)
++		return err;
 +
- 	return xe_force_wake_put(gt_to_fw(gt), XE_FW_GT);
- }
++	xe->mem.vram.io_start = pci_resource_start(pdev, GEN12_LMEM_BAR);
++	xe->mem.vram.io_size = pci_resource_len(pdev, GEN12_LMEM_BAR);
++	if (!xe->mem.vram.io_size)
++		return -EIO;
++
++	/* set up a map to the total memory area. */
++	xe->mem.vram.mapping = ioremap_wc(xe->mem.vram.io_start, xe->mem.vram.io_size);
++
++	return 0;
++}
++
+ /**
+  * xe_mmio_tile_vram_size - Collect vram size and off set information
+  * @gt: tile to get info for
+@@ -203,59 +245,19 @@ int xe_mmio_tile_vram_size(struct xe_gt *gt, u64 *vram_size, u64 *tile_size, u64
  
-@@ -183,11 +205,12 @@ int xe_mmio_probe_vram(struct xe_device *xe)
+ int xe_mmio_probe_vram(struct xe_device *xe)
  {
- 	struct pci_dev *pdev = to_pci_dev(xe->drm.dev);
+-	struct pci_dev *pdev = to_pci_dev(xe->drm.dev);
  	struct xe_gt *gt;
--	u8 id;
+-	u64 original_size;
+-	u64 tile_offset;
+-	u64 tile_size;
 -	u64 vram_size;
- 	u64 original_size;
--	u64 usable_size;
-+	u64 tile_offset;
-+	u64 tile_size;
-+	u64 vram_size;
  	int err;
-+	u8 id;
+ 	u8 id;
  
- 	if (!IS_DGFX(xe)) {
- 		xe->mem.vram.mapping = 0;
-@@ -212,25 +235,25 @@ int xe_mmio_probe_vram(struct xe_device *xe)
- 	gt = xe_device_get_gt(xe, 0);
- 	original_size = pci_resource_len(pdev, GEN12_LMEM_BAR);
+-	if (!IS_DGFX(xe)) {
+-		xe->mem.vram.mapping = 0;
+-		xe->mem.vram.size = 0;
+-		xe->mem.vram.io_start = 0;
+-		xe->mem.vram.io_size = 0;
+-
+-		for_each_gt(gt, xe, id) {
+-			gt->mem.vram.mapping = 0;
+-			gt->mem.vram.size = 0;
+-			gt->mem.vram.io_start = 0;
+-			gt->mem.vram.io_size = 0;
+-		}
++	if (!IS_DGFX(xe))
+ 		return 0;
+-	}
+-
+-	if (!xe_pci_resource_valid(pdev, GEN12_LMEM_BAR)) {
+-		drm_err(&xe->drm, "pci resource is not valid\n");
+-		return -ENXIO;
+-	}
+-
+-	gt = xe_device_get_gt(xe, 0);
+-	original_size = pci_resource_len(pdev, GEN12_LMEM_BAR);
  
--	err = xe_mmio_total_vram_size(xe, &vram_size, &usable_size);
-+	err = xe_mmio_tile_vram_size(gt, &vram_size, &tile_size, &tile_offset);
+-	err = xe_mmio_tile_vram_size(gt, &vram_size, &tile_size, &tile_offset);
++	err = xe_determine_lmem_bar_size(xe);
  	if (err)
  		return err;
  
- 	xe_resize_vram_bar(xe, vram_size);
- 	xe->mem.vram.io_start = pci_resource_start(pdev, GEN12_LMEM_BAR);
--	xe->mem.vram.io_size = min(usable_size,
-+	xe->mem.vram.io_size = min(vram_size,
- 				   pci_resource_len(pdev, GEN12_LMEM_BAR));
- 	xe->mem.vram.size = xe->mem.vram.io_size;
+-	xe_resize_vram_bar(xe, vram_size);
+-	xe->mem.vram.io_start = pci_resource_start(pdev, GEN12_LMEM_BAR);
+-	xe->mem.vram.io_size = min(vram_size,
+-				   pci_resource_len(pdev, GEN12_LMEM_BAR));
+-	xe->mem.vram.size = xe->mem.vram.io_size;
+-
+-	if (!xe->mem.vram.size)
+-		return -EIO;
+-
+-	if (vram_size > xe->mem.vram.io_size)
+-		drm_warn(&xe->drm, "Restricting VRAM size to PCI resource size (%lluMiB->%lluMiB)\n",
+-			 (u64)vram_size >> 20, (u64)xe->mem.vram.io_size >> 20);
+-
+-	xe->mem.vram.mapping = ioremap_wc(xe->mem.vram.io_start, xe->mem.vram.io_size);
+-	xe->mem.vram.size = min_t(u64, xe->mem.vram.size, vram_size);
+-
+-	drm_info(&xe->drm, "TOTAL VRAM: %pa, %pa\n", &xe->mem.vram.io_start, &xe->mem.vram.size);
++	drm_info(&xe->drm, "VISIBLE VRAM: %pa, %pa\n", &xe->mem.vram.io_start,
++		 &xe->mem.vram.io_size);
  
- 	if (!xe->mem.vram.size)
- 		return -EIO;
+ 	/* FIXME: Assuming equally partitioned VRAM, incorrect */
+ 	if (xe->info.tile_count > 1) {
+@@ -268,7 +270,7 @@ int xe_mmio_probe_vram(struct xe_device *xe)
  
--	if (usable_size > xe->mem.vram.io_size)
-+	if (vram_size > xe->mem.vram.io_size)
- 		drm_warn(&xe->drm, "Restricting VRAM size to PCI resource size (%lluMiB->%lluMiB)\n",
--			 (u64)usable_size >> 20, (u64)xe->mem.vram.io_size >> 20);
-+			 (u64)vram_size >> 20, (u64)xe->mem.vram.io_size >> 20);
+ 		XE_BUG_ON(!adj_tile_count);
  
- 	xe->mem.vram.mapping = ioremap_wc(xe->mem.vram.io_start, xe->mem.vram.io_size);
--	xe->mem.vram.size = min_t(u64, xe->mem.vram.size, usable_size);
-+	xe->mem.vram.size = min_t(u64, xe->mem.vram.size, vram_size);
+-		size = xe->mem.vram.size / adj_tile_count;
++		size = xe->mem.vram.io_size / adj_tile_count;
+ 		io_start = xe->mem.vram.io_start;
+ 		io_size = xe->mem.vram.io_size;
  
- 	drm_info(&xe->drm, "TOTAL VRAM: %pa, %pa\n", &xe->mem.vram.io_start, &xe->mem.vram.size);
- 
-diff --git a/drivers/gpu/drm/xe/xe_mmio.h b/drivers/gpu/drm/xe/xe_mmio.h
-index 1a32e0f52261..556cf3d9e4f5 100644
---- a/drivers/gpu/drm/xe/xe_mmio.h
-+++ b/drivers/gpu/drm/xe/xe_mmio.h
-@@ -120,6 +120,6 @@ static inline bool xe_mmio_in_range(const struct xe_mmio_range *range, u32 reg)
- }
- 
- int xe_mmio_probe_vram(struct xe_device *xe);
--int xe_mmio_total_vram_size(struct xe_device *xe, u64 *vram_size, u64 *flat_ccs_base);
-+int xe_mmio_tile_vram_size(struct xe_gt *gt, u64 *vram_size, u64 *tile_size, u64 *tile_base);
- 
- #endif
-diff --git a/drivers/gpu/drm/xe/xe_ttm_stolen_mgr.c b/drivers/gpu/drm/xe/xe_ttm_stolen_mgr.c
-index 9ce0a0585539..a329f12f14fe 100644
---- a/drivers/gpu/drm/xe/xe_ttm_stolen_mgr.c
-+++ b/drivers/gpu/drm/xe/xe_ttm_stolen_mgr.c
-@@ -51,27 +51,27 @@ bool xe_ttm_stolen_cpu_access_needs_ggtt(struct xe_device *xe)
- 	return GRAPHICS_VERx100(xe) < 1270 && !IS_DGFX(xe);
- }
- 
--static s64 detect_bar2_dgfx(struct xe_device *xe, struct xe_ttm_stolen_mgr *mgr)
-+static s64 detect_bar2_dgfx(struct xe_gt *gt, struct xe_ttm_stolen_mgr *mgr)
- {
--	struct pci_dev *pdev = to_pci_dev(xe->drm.dev);
--	struct xe_gt *gt = to_gt(xe);
--	u64 vram_size, stolen_size;
--	int err;
-+	u64 stolen_size;
-+	u64 tile_offset;
-+	u64 tile_size;
-+	u64 vram_size;
- 
--	err = xe_mmio_total_vram_size(xe, &vram_size, NULL);
--	if (err) {
--		drm_info(&xe->drm, "Querying total vram size failed\n");
-+	if (xe_mmio_tile_vram_size(gt, &vram_size, &tile_size, &tile_offset)) {
-+		drm_info(&gt->xe->drm, "Querying total vram size failed\n");
- 		return 0;
- 	}
- 
- 	/* Use DSM base address instead for stolen memory */
--	mgr->stolen_base = xe_mmio_read64(gt, DSMBASE.reg) & BDSM_MASK;
--	if (drm_WARN_ON(&xe->drm, vram_size < mgr->stolen_base))
-+	mgr->stolen_base = (xe_mmio_read64(gt, DSMBASE.reg) & BDSM_MASK) - tile_offset;
-+	if (drm_WARN_ON(&gt->xe->drm, tile_size < mgr->stolen_base))
- 		return 0;
- 
--	stolen_size = vram_size - mgr->stolen_base;
--	if (mgr->stolen_base + stolen_size <= pci_resource_len(pdev, 2))
--		mgr->io_base = pci_resource_start(pdev, 2) + mgr->stolen_base;
-+	stolen_size = tile_size - mgr->stolen_base;
-+
-+	if (mgr->stolen_base + stolen_size <= tile_size)
-+		mgr->io_base = gt->mem.vram.io_start + mgr->stolen_base;
- 
- 	/*
- 	 * There may be few KB of platform dependent reserved memory at the end
-@@ -139,7 +139,7 @@ void xe_ttm_stolen_mgr_init(struct xe_device *xe)
- 	int err;
- 
- 	if (IS_DGFX(xe))
--		stolen_size = detect_bar2_dgfx(xe, mgr);
-+		stolen_size = detect_bar2_dgfx(to_gt(xe), mgr);
- 	else if (GRAPHICS_VERx100(xe) >= 1270)
- 		stolen_size = detect_bar2_integrated(xe, mgr);
- 	else
+@@ -301,7 +303,7 @@ int xe_mmio_probe_vram(struct xe_device *xe)
+ 				 &gt->mem.vram.size);
+ 		}
+ 	} else {
+-		gt->mem.vram.size = xe->mem.vram.size;
++		gt->mem.vram.size = xe->mem.vram.io_size;
+ 		gt->mem.vram.io_start = xe->mem.vram.io_start;
+ 		gt->mem.vram.io_size = xe->mem.vram.io_size;
+ 		gt->mem.vram.mapping = xe->mem.vram.mapping;
 -- 
 2.39.2
 
