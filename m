@@ -4,47 +4,48 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 227ACC7EE2E
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 54033C7EE30
 	for <intel-xe@archiver.kernel.org>; Mon,  1 May 2023 07:51:17 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3CEFE10E366;
+	by gabe.freedesktop.org (Postfix) with ESMTP id CE30B10E379;
 	Mon,  1 May 2023 07:51:16 +0000 (UTC)
 Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3667310E366
- for <intel-xe@lists.freedesktop.org>; Mon,  1 May 2023 07:51:13 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8FD3610E303
+ for <intel-xe@lists.freedesktop.org>; Mon,  1 May 2023 07:51:12 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1682927473; x=1714463473;
+ t=1682927472; x=1714463472;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=uhZybgtuAiI8r2pm+mO2zV3T7OZoV3EmnWv39feSRQQ=;
- b=IjAt6mTfSIaWVjZNaZG3hj6Z88FSiWSH0z9KCUSsXHgrLk6svIfE5uSG
- NABv+bTwXPrx+VUCxWl8/FYX/pSODWjh/Hbzb8JYDbS2LndN2RPPNtkUX
- u+G1KZrxtKWhtdft7iU5of/qZ+Nr25qDCJFe7ZZUPUMmReZnkmJ0USMxF
- OjUS+dQ3PUDB31bqz/5kE2LCdSWO8rwlZbYEQPBxLfFIZZ9WWRurWwLQC
- i4q5+eBG8QGLJskYuYtebKA9IOvmmw5j6OeypQWzApAA7qEXenkbu6X88
- JE+uIIx6oPecIzPsZddTIC5qZOlZx7u9BMGNYtcduXFs4bv+0sWMSPV53 g==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10696"; a="346910722"
-X-IronPort-AV: E=Sophos;i="5.99,239,1677571200"; d="scan'208";a="346910722"
+ bh=djREelOxJJ953yUEG6awQKdVqat3z7oXeiwiAzPkWpo=;
+ b=MZn6AD6ligvfC1A9PfUbfL3vv1sI6utMzt/S3VsZpg0lcbc9Hp0QgAbV
+ Us98TffKVMEZicELPWLIfBv/tNTyoqvteLNCwIQEIFtDwPKbrMiZeSyQu
+ MegVWm0Aq+8f9i5YOP7lOEidBA19mHnE5ByQxLtccDeQoLqHZPOE11JjS
+ h6VM45ZRTT1FFVmQRDxhTzOaxFbRZ66qJewsSaidrWDqBL/hmrejvRU5X
+ VGjpTPI3JQQscpM7L05cWjR6uUbMT/Q7CFDn5PXd3qrkFh5gshv4gqRkU
+ cRjB3Douk+QkU3Nn9tfpJ4qUzsuTU0Iu93yg15UIkY3Y7SDKdUsd6Lo4G w==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10696"; a="346910705"
+X-IronPort-AV: E=Sophos;i="5.99,239,1677571200"; d="scan'208";a="346910705"
 Received: from orsmga005.jf.intel.com ([10.7.209.41])
  by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 01 May 2023 00:51:12 -0700
+ 01 May 2023 00:51:11 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10696"; a="870095232"
-X-IronPort-AV: E=Sophos;i="5.99,239,1677571200"; d="scan'208";a="870095232"
+X-IronPort-AV: E=McAfee;i="6600,9927,10696"; a="870095192"
+X-IronPort-AV: E=Sophos;i="5.99,239,1677571200"; d="scan'208";a="870095192"
 Received: from lstrano-desk.jf.intel.com ([10.24.89.184])
  by orsmga005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 01 May 2023 00:51:11 -0700
+ 01 May 2023 00:51:10 -0700
 From: Matthew Brost <matthew.brost@intel.com>
 To: <intel-xe@lists.freedesktop.org>
-Date: Mon,  1 May 2023 00:51:01 -0700
-Message-Id: <20230501075114.3108352-18-matthew.brost@intel.com>
+Date: Mon,  1 May 2023 00:50:47 -0700
+Message-Id: <20230501075114.3108352-4-matthew.brost@intel.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20230501075114.3108352-1-matthew.brost@intel.com>
 References: <20230501075114.3108352-1-matthew.brost@intel.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-xe] [PATCH 17/30] drm/xe: NULL binding implementation
+Subject: [Intel-xe] [PATCH 03/30] drm/sched: Add
+ DRM_SCHED_POLICY_SINGLE_ENTITY scheduling policy
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -59,580 +60,420 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Add uAPI and implementation for NULL bindings. A NULL binding is defined
-as writes dropped and read zero. A single bit in the uAPI has been added
-which results in a single bit in the PTEs being set.
-
-NULL bindings are indended to be used to implement VK sparse bindings.
+DRM_SCHED_POLICY_SINGLE_ENTITY creates a 1 to 1 relationship between
+scheduler and entity. No priorities or run queue used in this mode.
+Intended for devices with firmware schedulers.
 
 Signed-off-by: Matthew Brost <matthew.brost@intel.com>
 ---
- drivers/gpu/drm/xe/xe_bo.h           |  1 +
- drivers/gpu/drm/xe/xe_exec.c         |  2 +
- drivers/gpu/drm/xe/xe_gt_pagefault.c |  4 +-
- drivers/gpu/drm/xe/xe_pt.c           | 77 ++++++++++++++++-------
- drivers/gpu/drm/xe/xe_vm.c           | 92 ++++++++++++++++++----------
- drivers/gpu/drm/xe/xe_vm.h           | 10 +++
- drivers/gpu/drm/xe/xe_vm_madvise.c   |  2 +-
- drivers/gpu/drm/xe/xe_vm_types.h     |  3 +
- include/uapi/drm/xe_drm.h            |  8 +++
- 9 files changed, 144 insertions(+), 55 deletions(-)
+ drivers/gpu/drm/scheduler/sched_entity.c | 64 +++++++++++++++++++-----
+ drivers/gpu/drm/scheduler/sched_fence.c  |  2 +-
+ drivers/gpu/drm/scheduler/sched_main.c   | 63 ++++++++++++++++++++---
+ include/drm/gpu_scheduler.h              |  8 +++
+ 4 files changed, 115 insertions(+), 22 deletions(-)
 
-diff --git a/drivers/gpu/drm/xe/xe_bo.h b/drivers/gpu/drm/xe/xe_bo.h
-index 25457b3c757b..81051f456874 100644
---- a/drivers/gpu/drm/xe/xe_bo.h
-+++ b/drivers/gpu/drm/xe/xe_bo.h
-@@ -56,6 +56,7 @@
- #define XE_PDE_IPS_64K			BIT_ULL(11)
+diff --git a/drivers/gpu/drm/scheduler/sched_entity.c b/drivers/gpu/drm/scheduler/sched_entity.c
+index 2300b2fc06ab..8b70900c54cc 100644
+--- a/drivers/gpu/drm/scheduler/sched_entity.c
++++ b/drivers/gpu/drm/scheduler/sched_entity.c
+@@ -83,6 +83,7 @@ int drm_sched_entity_init(struct drm_sched_entity *entity,
+ 	memset(entity, 0, sizeof(struct drm_sched_entity));
+ 	INIT_LIST_HEAD(&entity->list);
+ 	entity->rq = NULL;
++	entity->single_sched = NULL;
+ 	entity->guilty = guilty;
+ 	entity->num_sched_list = num_sched_list;
+ 	entity->priority = priority;
+@@ -91,7 +92,15 @@ int drm_sched_entity_init(struct drm_sched_entity *entity,
+ 	RB_CLEAR_NODE(&entity->rb_tree_node);
  
- #define XE_GGTT_PTE_LM			BIT_ULL(1)
-+#define XE_PTE_NULL			BIT_ULL(9)
- #define XE_USM_PPGTT_PTE_AE		BIT_ULL(10)
- #define XE_PPGTT_PTE_LM			BIT_ULL(11)
- #define XE_PDE_64K			BIT_ULL(6)
-diff --git a/drivers/gpu/drm/xe/xe_exec.c b/drivers/gpu/drm/xe/xe_exec.c
-index 90c46d092737..68f876afd13c 100644
---- a/drivers/gpu/drm/xe/xe_exec.c
-+++ b/drivers/gpu/drm/xe/xe_exec.c
-@@ -116,6 +116,8 @@ static int xe_exec_begin(struct xe_engine *e, struct ww_acquire_ctx *ww,
- 	 * to a location where the GPU can access it).
- 	 */
- 	list_for_each_entry(vma, &vm->rebind_list, rebind_link) {
-+		XE_BUG_ON(xe_vma_is_null(vma));
-+
- 		if (xe_vma_is_userptr(vma))
- 			continue;
- 
-diff --git a/drivers/gpu/drm/xe/xe_gt_pagefault.c b/drivers/gpu/drm/xe/xe_gt_pagefault.c
-index f7a066090a13..cfffe3398fe4 100644
---- a/drivers/gpu/drm/xe/xe_gt_pagefault.c
-+++ b/drivers/gpu/drm/xe/xe_gt_pagefault.c
-@@ -526,8 +526,8 @@ static int handle_acc(struct xe_gt *gt, struct acc *acc)
- 
- 	trace_xe_vma_acc(vma);
- 
--	/* Userptr can't be migrated, nothing to do */
--	if (xe_vma_is_userptr(vma))
-+	/* Userptr or null can't be migrated, nothing to do */
-+	if (xe_vma_has_no_bo(vma))
- 		goto unlock_vm;
- 
- 	/* Lock VM and BOs dma-resv */
-diff --git a/drivers/gpu/drm/xe/xe_pt.c b/drivers/gpu/drm/xe/xe_pt.c
-index 2b5b05a8a084..b4edb751bfbb 100644
---- a/drivers/gpu/drm/xe/xe_pt.c
-+++ b/drivers/gpu/drm/xe/xe_pt.c
-@@ -82,7 +82,9 @@ u64 gen8_pde_encode(struct xe_bo *bo, u64 bo_offset,
- static dma_addr_t vma_addr(struct xe_vma *vma, u64 offset,
- 			   size_t page_size, bool *is_vram)
- {
--	if (xe_vma_is_userptr(vma)) {
-+	if (xe_vma_is_null(vma)) {
-+		return 0;
-+	} else if (xe_vma_is_userptr(vma)) {
- 		struct xe_res_cursor cur;
- 		u64 page;
- 
-@@ -563,6 +565,10 @@ static bool xe_pt_hugepte_possible(u64 addr, u64 next, unsigned int level,
- 	if (next - xe_walk->va_curs_start > xe_walk->curs->size)
- 		return false;
- 
-+	/* null VMA's do not have dma adresses */
-+	if (xe_walk->pte_flags & XE_PTE_NULL)
-+		return true;
-+
- 	/* Is the DMA address huge PTE size aligned? */
- 	size = next - addr;
- 	dma = addr - xe_walk->va_curs_start + xe_res_dma(xe_walk->curs);
-@@ -585,6 +591,10 @@ xe_pt_scan_64K(u64 addr, u64 next, struct xe_pt_stage_bind_walk *xe_walk)
- 	if (next > xe_walk->l0_end_addr)
- 		return false;
- 
-+	/* null VMA's do not have dma adresses */
-+	if (xe_walk->pte_flags & XE_PTE_NULL)
-+		return true;
-+
- 	xe_res_next(&curs, addr - xe_walk->va_curs_start);
- 	for (; addr < next; addr += SZ_64K) {
- 		if (!IS_ALIGNED(xe_res_dma(&curs), SZ_64K) || curs.size < SZ_64K)
-@@ -630,17 +640,34 @@ xe_pt_stage_bind_entry(struct drm_pt *parent, pgoff_t offset,
- 	struct xe_pt *xe_child;
- 	bool covers;
- 	int ret = 0;
--	u64 pte;
-+	u64 pte = 0;
- 
- 	/* Is this a leaf entry ?*/
- 	if (level == 0 || xe_pt_hugepte_possible(addr, next, level, xe_walk)) {
- 		struct xe_res_cursor *curs = xe_walk->curs;
-+		bool null = xe_walk->pte_flags & XE_PTE_NULL;
- 
- 		XE_WARN_ON(xe_walk->va_curs_start != addr);
- 
--		pte = __gen8_pte_encode(xe_res_dma(curs) + xe_walk->dma_offset,
--					xe_walk->cache, xe_walk->pte_flags,
--					level);
-+		if (null) {
-+			pte |= XE_PAGE_PRESENT | XE_PAGE_RW;
-+
-+			if (unlikely(xe_walk->pte_flags & XE_PTE_READ_ONLY))
-+				pte &= ~XE_PAGE_RW;
-+
-+			if (level == 1)
-+				pte |= XE_PDE_PS_2M;
-+			else if (level == 2)
-+				pte |= XE_PDPE_PS_1G;
-+
-+			pte |= XE_PTE_NULL;
+ 	if(num_sched_list) {
+-		entity->rq = &sched_list[0]->sched_rq[entity->priority];
++		if (sched_list[0]->sched_policy !=
++		    DRM_SCHED_POLICY_SINGLE_ENTITY) {
++			entity->rq = &sched_list[0]->sched_rq[entity->priority];
 +		} else {
-+			pte = __gen8_pte_encode(xe_res_dma(curs) +
-+						xe_walk->dma_offset,
-+						xe_walk->cache,
-+						xe_walk->pte_flags,
-+						level);
++			if (num_sched_list != 1 || sched_list[0]->single_entity)
++				return -EINVAL;
++			sched_list[0]->single_entity = entity;
++			entity->single_sched = sched_list[0];
 +		}
- 		pte |= xe_walk->default_pte;
- 
- 		/*
-@@ -658,7 +685,8 @@ xe_pt_stage_bind_entry(struct drm_pt *parent, pgoff_t offset,
- 		if (unlikely(ret))
- 			return ret;
- 
--		xe_res_next(curs, next - addr);
-+		if (!null)
-+			xe_res_next(curs, next - addr);
- 		xe_walk->va_curs_start = next;
- 		*action = ACTION_CONTINUE;
- 
-@@ -751,7 +779,8 @@ xe_pt_stage_bind(struct xe_gt *gt, struct xe_vma *vma,
- 		.gt = gt,
- 		.curs = &curs,
- 		.va_curs_start = xe_vma_start(vma),
--		.pte_flags = xe_vma_read_only(vma) ? XE_PTE_READ_ONLY : 0,
-+		.pte_flags = xe_vma_read_only(vma) ? XE_PTE_READ_ONLY : 0 |
-+			xe_vma_is_null(vma) ? XE_PTE_NULL : 0,
- 		.wupd.entries = entries,
- 		.needs_64K = (xe_vma_vm(vma)->flags & XE_VM_FLAGS_64K) &&
- 			is_vram,
-@@ -769,23 +798,28 @@ xe_pt_stage_bind(struct xe_gt *gt, struct xe_vma *vma,
- 			gt_to_xe(gt)->mem.vram.io_start;
- 		xe_walk.cache = XE_CACHE_WB;
- 	} else {
--		if (!xe_vma_is_userptr(vma) && bo->flags & XE_BO_SCANOUT_BIT)
-+		if (!xe_vma_has_no_bo(vma) && bo->flags & XE_BO_SCANOUT_BIT)
- 			xe_walk.cache = XE_CACHE_WT;
- 		else
- 			xe_walk.cache = XE_CACHE_WB;
  	}
--	if (!xe_vma_is_userptr(vma) && xe_bo_is_stolen(bo))
-+	if (!xe_vma_has_no_bo(vma) && xe_bo_is_stolen(bo))
- 		xe_walk.dma_offset = xe_ttm_stolen_gpu_offset(xe_bo_device(bo));
  
- 	xe_bo_assert_held(bo);
--	if (xe_vma_is_userptr(vma))
--		xe_res_first_sg(vma->userptr.sg, 0, xe_vma_size(vma), &curs);
--	else if (xe_bo_is_vram(bo) || xe_bo_is_stolen(bo))
--		xe_res_first(bo->ttm.resource, xe_vma_bo_offset(vma),
--			     xe_vma_size(vma), &curs);
--	else
--		xe_res_first_sg(xe_bo_get_sg(bo), xe_vma_bo_offset(vma),
--				xe_vma_size(vma), &curs);
-+	if (!xe_vma_is_null(vma)) {
-+		if (xe_vma_is_userptr(vma))
-+			xe_res_first_sg(vma->userptr.sg, 0, xe_vma_size(vma),
-+					&curs);
-+		else if (xe_bo_is_vram(bo) || xe_bo_is_stolen(bo))
-+			xe_res_first(bo->ttm.resource, xe_vma_bo_offset(vma),
-+				     xe_vma_size(vma), &curs);
-+		else
-+			xe_res_first_sg(xe_bo_get_sg(bo), xe_vma_bo_offset(vma),
-+					xe_vma_size(vma), &curs);
-+	} else {
-+		curs.size = xe_vma_size(vma);
-+	}
+ 	init_completion(&entity->entity_idle);
+@@ -125,7 +134,8 @@ void drm_sched_entity_modify_sched(struct drm_sched_entity *entity,
+ 				    struct drm_gpu_scheduler **sched_list,
+ 				    unsigned int num_sched_list)
+ {
+-	WARN_ON(!num_sched_list || !sched_list);
++	WARN_ON(!num_sched_list || !sched_list ||
++		!!entity->single_sched);
  
- 	ret = drm_pt_walk_range(&pt->drm, pt->level, xe_vma_start(vma),
- 				xe_vma_end(vma), &xe_walk.drm);
-@@ -979,7 +1013,7 @@ static void xe_pt_commit_locks_assert(struct xe_vma *vma)
+ 	entity->sched_list = sched_list;
+ 	entity->num_sched_list = num_sched_list;
+@@ -195,13 +205,15 @@ static void drm_sched_entity_kill(struct drm_sched_entity *entity)
+ {
+ 	struct drm_sched_job *job;
+ 	struct dma_fence *prev;
++	bool single_entity = !!entity->single_sched;
  
- 	if (xe_vma_is_userptr(vma))
- 		lockdep_assert_held_read(&vm->userptr.notifier_lock);
--	else
-+	else if (!xe_vma_is_null(vma))
- 		dma_resv_assert_held(xe_vma_bo(vma)->ttm.base.resv);
+-	if (!entity->rq)
++	if (!entity->rq && !single_entity)
+ 		return;
  
- 	dma_resv_assert_held(&vm->resv);
-@@ -1283,7 +1317,8 @@ __xe_pt_bind_vma(struct xe_gt *gt, struct xe_vma *vma, struct xe_engine *e,
- 	struct xe_vm_pgtable_update entries[XE_VM_MAX_LEVEL * 2 + 1];
- 	struct xe_pt_migrate_pt_update bind_pt_update = {
- 		.base = {
--			.ops = xe_vma_is_userptr(vma) ? &userptr_bind_ops : &bind_ops,
-+			.ops = xe_vma_is_userptr(vma) ? &userptr_bind_ops :
-+				&bind_ops,
- 			.vma = vma,
- 		},
- 		.bind = true,
-@@ -1348,7 +1383,7 @@ __xe_pt_bind_vma(struct xe_gt *gt, struct xe_vma *vma, struct xe_engine *e,
- 				   DMA_RESV_USAGE_KERNEL :
- 				   DMA_RESV_USAGE_BOOKKEEP);
+ 	spin_lock(&entity->rq_lock);
+ 	entity->stopped = true;
+-	drm_sched_rq_remove_entity(entity->rq, entity);
++	if (!single_entity)
++		drm_sched_rq_remove_entity(entity->rq, entity);
+ 	spin_unlock(&entity->rq_lock);
  
--		if (!xe_vma_is_userptr(vma) && !xe_vma_bo(vma)->vm)
-+		if (!xe_vma_has_no_bo(vma) && !xe_vma_bo(vma)->vm)
- 			dma_resv_add_fence(xe_vma_bo(vma)->ttm.base.resv, fence,
- 					   DMA_RESV_USAGE_BOOKKEEP);
- 		xe_pt_commit_bind(vma, entries, num_entries, rebind,
-@@ -1667,7 +1702,7 @@ __xe_pt_unbind_vma(struct xe_gt *gt, struct xe_vma *vma, struct xe_engine *e,
- 				   DMA_RESV_USAGE_BOOKKEEP);
+ 	/* Make sure this entity is not used by the scheduler at the moment */
+@@ -223,6 +235,20 @@ static void drm_sched_entity_kill(struct drm_sched_entity *entity)
+ 	dma_fence_put(prev);
+ }
  
- 		/* This fence will be installed by caller when doing eviction */
--		if (!xe_vma_is_userptr(vma) && !xe_vma_bo(vma)->vm)
-+		if (!xe_vma_has_no_bo(vma) && !xe_vma_bo(vma)->vm)
- 			dma_resv_add_fence(xe_vma_bo(vma)->ttm.base.resv, fence,
- 					   DMA_RESV_USAGE_BOOKKEEP);
- 		xe_pt_commit_unbind(vma, entries, num_entries,
-diff --git a/drivers/gpu/drm/xe/xe_vm.c b/drivers/gpu/drm/xe/xe_vm.c
-index 13e43ff08f2c..364804e86cc5 100644
---- a/drivers/gpu/drm/xe/xe_vm.c
-+++ b/drivers/gpu/drm/xe/xe_vm.c
-@@ -60,6 +60,7 @@ int xe_vma_userptr_pin_pages(struct xe_vma *vma)
++/**
++ * drm_sched_entity_to_scheduler - Schedule entity to GPU scheduler
++ * @entity: scheduler entity
++ *
++ * Returns GPU scheduler for the entity
++ */
++struct drm_gpu_scheduler *
++drm_sched_entity_to_scheduler(struct drm_sched_entity *entity)
++{
++	bool single_entity = !!entity->single_sched;
++
++	return single_entity ? entity->single_sched : entity->rq->sched;
++}
++
+ /**
+  * drm_sched_entity_flush - Flush a context entity
+  *
+@@ -240,11 +266,12 @@ long drm_sched_entity_flush(struct drm_sched_entity *entity, long timeout)
+ 	struct drm_gpu_scheduler *sched;
+ 	struct task_struct *last_user;
+ 	long ret = timeout;
++	bool single_entity = !!entity->single_sched;
  
- 	lockdep_assert_held(&vm->lock);
- 	XE_BUG_ON(!xe_vma_is_userptr(vma));
-+	XE_BUG_ON(xe_vma_is_null(vma));
- retry:
- 	if (vma->gpuva.flags & XE_VMA_DESTROYED)
+-	if (!entity->rq)
++	if (!entity->rq && !single_entity)
  		return 0;
-@@ -581,7 +582,7 @@ static void preempt_rebind_work_func(struct work_struct *w)
- 		goto out_unlock;
  
- 	list_for_each_entry(vma, &vm->rebind_list, rebind_link) {
--		if (xe_vma_is_userptr(vma) ||
-+		if (xe_vma_has_no_bo(vma) ||
- 		    vma->gpuva.flags & XE_VMA_DESTROYED)
- 			continue;
+-	sched = entity->rq->sched;
++	sched = drm_sched_entity_to_scheduler(entity);
+ 	/**
+ 	 * The client will not queue more IBs during this fini, consume existing
+ 	 * queued IBs or discard them on SIGKILL
+@@ -337,7 +364,7 @@ static void drm_sched_entity_wakeup(struct dma_fence *f,
+ 		container_of(cb, struct drm_sched_entity, cb);
  
-@@ -813,7 +814,7 @@ static struct xe_vma *xe_vma_create(struct xe_vm *vm,
- 				    struct xe_bo *bo,
- 				    u64 bo_offset_or_userptr,
- 				    u64 start, u64 end,
--				    bool read_only,
-+				    bool read_only, bool null,
- 				    u64 gt_mask)
- {
- 	struct xe_vma *vma;
-@@ -843,6 +844,8 @@ static struct xe_vma *xe_vma_create(struct xe_vm *vm,
- 	vma->gpuva.va.range = end - start + 1;
- 	if (read_only)
- 		vma->gpuva.flags |= XE_VMA_READ_ONLY;
-+	if (null)
-+		vma->gpuva.flags |= XE_VMA_NULL;
- 
- 	if (gt_mask) {
- 		vma->gt_mask = gt_mask;
-@@ -862,23 +865,26 @@ static struct xe_vma *xe_vma_create(struct xe_vm *vm,
- 		vma->gpuva.gem.obj = &bo->ttm.base;
- 		vma->gpuva.gem.offset = bo_offset_or_userptr;
- 		drm_gpuva_link(&vma->gpuva);
--	} else /* userptr */ {
--		u64 size = end - start + 1;
--		int err;
--
--		vma->gpuva.gem.offset = bo_offset_or_userptr;
-+	} else /* userptr or null */ {
-+		if (!null) {
-+			u64 size = end - start + 1;
-+			int err;
-+
-+			vma->gpuva.gem.offset = bo_offset_or_userptr;
-+			err = mmu_interval_notifier_insert(&vma->userptr.notifier,
-+							   current->mm,
-+							   xe_vma_userptr(vma),
-+							   size,
-+							   &vma_userptr_notifier_ops);
-+			if (err) {
-+				kfree(vma);
-+				vma = ERR_PTR(err);
-+				return vma;
-+			}
- 
--		err = mmu_interval_notifier_insert(&vma->userptr.notifier,
--						   current->mm,
--						   xe_vma_userptr(vma), size,
--						   &vma_userptr_notifier_ops);
--		if (err) {
--			kfree(vma);
--			vma = ERR_PTR(err);
--			return vma;
-+			vma->userptr.notifier_seq = LONG_MAX;
- 		}
- 
--		vma->userptr.notifier_seq = LONG_MAX;
- 		xe_vm_get(vm);
- 	}
- 
-@@ -916,6 +922,8 @@ static void xe_vma_destroy_late(struct xe_vma *vma)
- 		 */
- 		mmu_interval_notifier_remove(&vma->userptr.notifier);
- 		xe_vm_put(vm);
-+	} else if (xe_vma_is_null(vma)) {
-+		xe_vm_put(vm);
- 	} else {
- 		xe_bo_put(xe_vma_bo(vma));
- 	}
-@@ -954,7 +962,7 @@ static void xe_vma_destroy(struct xe_vma *vma, struct dma_fence *fence)
- 		list_del_init(&vma->userptr.invalidate_link);
- 		spin_unlock(&vm->userptr.invalidated_lock);
- 		list_del(&vma->userptr_link);
--	} else {
-+	} else if (!xe_vma_is_null(vma)) {
- 		xe_bo_assert_held(xe_vma_bo(vma));
- 		drm_gpuva_unlink(&vma->gpuva);
- 		if (!xe_vma_bo(vma)->vm)
-@@ -1305,7 +1313,7 @@ void xe_vm_close_and_put(struct xe_vm *vm)
- 	drm_gpuva_iter_for_each(gpuva, it) {
- 		vma = gpuva_to_vma(gpuva);
- 
--		if (xe_vma_is_userptr(vma)) {
-+		if (xe_vma_has_no_bo(vma)) {
- 			down_read(&vm->userptr.notifier_lock);
- 			vma->gpuva.flags |= XE_VMA_DESTROYED;
- 			up_read(&vm->userptr.notifier_lock);
-@@ -1315,7 +1323,7 @@ void xe_vm_close_and_put(struct xe_vm *vm)
- 		drm_gpuva_iter_remove(&it);
- 
- 		/* easy case, remove from VMA? */
--		if (xe_vma_is_userptr(vma) || xe_vma_bo(vma)->vm) {
-+		if (xe_vma_has_no_bo(vma) || xe_vma_bo(vma)->vm) {
- 			xe_vma_destroy(vma, NULL);
- 			continue;
- 		}
-@@ -1964,7 +1972,7 @@ static int xe_vm_prefetch(struct xe_vm *vm, struct xe_vma *vma,
- 
- 	XE_BUG_ON(region > ARRAY_SIZE(region_to_mem_type));
- 
--	if (!xe_vma_is_userptr(vma)) {
-+	if (!xe_vma_has_no_bo(vma)) {
- 		err = xe_bo_migrate(xe_vma_bo(vma), region_to_mem_type[region]);
- 		if (err)
- 			return err;
-@@ -2170,6 +2178,7 @@ vm_bind_ioctl_ops_create(struct xe_vm *vm, struct xe_bo *bo,
- 				operation & XE_VM_BIND_FLAG_IMMEDIATE;
- 			op->map.read_only =
- 				operation & XE_VM_BIND_FLAG_READONLY;
-+			op->map.null = operation & XE_VM_BIND_FLAG_NULL;
- 		}
- 		break;
- 	case XE_VM_BIND_OP_UNMAP:
-@@ -2226,7 +2235,7 @@ vm_bind_ioctl_ops_create(struct xe_vm *vm, struct xe_bo *bo,
+ 	drm_sched_entity_clear_dep(f, cb);
+-	drm_sched_wakeup(entity->rq->sched);
++	drm_sched_wakeup(drm_sched_entity_to_scheduler(entity));
  }
  
- static struct xe_vma *new_vma(struct xe_vm *vm, struct drm_gpuva_op_map *op,
--			      u64 gt_mask, bool read_only)
-+			      u64 gt_mask, bool read_only, bool null)
+ /**
+@@ -351,6 +378,8 @@ static void drm_sched_entity_wakeup(struct dma_fence *f,
+ void drm_sched_entity_set_priority(struct drm_sched_entity *entity,
+ 				   enum drm_sched_priority priority)
  {
- 	struct xe_bo *bo = op->gem.obj ? gem_to_xe_bo(op->gem.obj) : NULL;
- 	struct xe_vma *vma;
-@@ -2242,7 +2251,7 @@ static struct xe_vma *new_vma(struct xe_vm *vm, struct drm_gpuva_op_map *op,
- 	}
- 	vma = xe_vma_create(vm, bo, op->gem.offset,
- 			    op->va.addr, op->va.addr +
--			    op->va.range - 1, read_only,
-+			    op->va.range - 1, read_only, null,
- 			    gt_mask);
- 	if (bo)
- 		xe_bo_unlock(bo, &ww);
-@@ -2253,7 +2262,7 @@ static struct xe_vma *new_vma(struct xe_vm *vm, struct drm_gpuva_op_map *op,
- 			xe_vma_destroy(vma, NULL);
- 			return ERR_PTR(err);
- 		}
--	} else if(!bo->vm) {
-+	} else if(!xe_vma_has_no_bo(vma) && !bo->vm) {
- 		vm_insert_extobj(vm, vma);
- 		err = add_preempt_fences(vm, bo);
- 		if (err) {
-@@ -2330,7 +2339,8 @@ static int vm_bind_ioctl_ops_parse(struct xe_vm *vm, struct xe_engine *e,
- 				struct xe_vma *vma;
- 
- 				vma = new_vma(vm, &op->base.map,
--					      op->gt_mask, op->map.read_only);
-+					      op->gt_mask, op->map.read_only,
-+					      op->map.null );
- 				if (IS_ERR(vma)) {
- 					err = PTR_ERR(vma);
- 					goto free_fence;
-@@ -2345,9 +2355,13 @@ static int vm_bind_ioctl_ops_parse(struct xe_vm *vm, struct xe_engine *e,
- 					bool read_only =
- 						op->base.remap.unmap->va->flags &
- 						XE_VMA_READ_ONLY;
-+					bool null =
-+						op->base.remap.unmap->va->flags &
-+						XE_VMA_NULL;
- 
- 					vma = new_vma(vm, op->base.remap.prev,
--						      op->gt_mask, read_only);
-+						      op->gt_mask, read_only,
-+						      null);
- 					if (IS_ERR(vma)) {
- 						err = PTR_ERR(vma);
- 						goto free_fence;
-@@ -2362,8 +2376,13 @@ static int vm_bind_ioctl_ops_parse(struct xe_vm *vm, struct xe_engine *e,
- 						op->base.remap.unmap->va->flags &
- 						XE_VMA_READ_ONLY;
- 
-+					bool null =
-+						op->base.remap.unmap->va->flags &
-+						XE_VMA_NULL;
++	WARN_ON(!!entity->single_sched);
 +
- 					vma = new_vma(vm, op->base.remap.next,
--						      op->gt_mask, read_only);
-+						      op->gt_mask, read_only,
-+						      null);
- 					if (IS_ERR(vma)) {
- 						err = PTR_ERR(vma);
- 						goto free_fence;
-@@ -2849,11 +2868,12 @@ static void vm_bind_ioctl_ops_unwind(struct xe_vm *vm,
- #ifdef TEST_VM_ASYNC_OPS_ERROR
- #define SUPPORTED_FLAGS	\
- 	(FORCE_ASYNC_OP_ERROR | XE_VM_BIND_FLAG_ASYNC | \
--	 XE_VM_BIND_FLAG_READONLY | XE_VM_BIND_FLAG_IMMEDIATE | 0xffff)
-+	 XE_VM_BIND_FLAG_READONLY | XE_VM_BIND_FLAG_IMMEDIATE | \
-+	 XE_VM_BIND_FLAG_NULL | 0xffff)
- #else
- #define SUPPORTED_FLAGS	\
- 	(XE_VM_BIND_FLAG_ASYNC | XE_VM_BIND_FLAG_READONLY | \
--	 XE_VM_BIND_FLAG_IMMEDIATE | 0xffff)
-+	 XE_VM_BIND_FLAG_IMMEDIATE | XE_VM_BIND_FLAG_NULL | 0xffff)
- #endif
- #define XE_64K_PAGE_MASK 0xffffull
+ 	spin_lock(&entity->rq_lock);
+ 	entity->priority = priority;
+ 	spin_unlock(&entity->rq_lock);
+@@ -363,7 +392,7 @@ EXPORT_SYMBOL(drm_sched_entity_set_priority);
+  */
+ static bool drm_sched_entity_add_dependency_cb(struct drm_sched_entity *entity)
+ {
+-	struct drm_gpu_scheduler *sched = entity->rq->sched;
++	struct drm_gpu_scheduler *sched = drm_sched_entity_to_scheduler(entity);
+ 	struct dma_fence *fence = entity->dependency;
+ 	struct drm_sched_fence *s_fence;
  
-@@ -2899,6 +2919,7 @@ static int vm_bind_ioctl_check_args(struct xe_device *xe,
- 		u32 obj = (*bind_ops)[i].obj;
- 		u64 obj_offset = (*bind_ops)[i].obj_offset;
- 		u32 region = (*bind_ops)[i].region;
-+		bool null = op &  XE_VM_BIND_FLAG_NULL;
+@@ -456,7 +485,8 @@ struct drm_sched_job *drm_sched_entity_pop_job(struct drm_sched_entity *entity)
+ 	 * Update the entity's location in the min heap according to
+ 	 * the timestamp of the next job, if any.
+ 	 */
+-	if (entity->rq->sched->sched_policy == DRM_SCHED_POLICY_FIFO) {
++	if (drm_sched_entity_to_scheduler(entity)->sched_policy ==
++	    DRM_SCHED_POLICY_FIFO) {
+ 		struct drm_sched_job *next;
  
- 		if (i == 0) {
- 			*async = !!(op & XE_VM_BIND_FLAG_ASYNC);
-@@ -2925,8 +2946,12 @@ static int vm_bind_ioctl_check_args(struct xe_device *xe,
- 		if (XE_IOCTL_ERR(xe, VM_BIND_OP(op) >
- 				 XE_VM_BIND_OP_PREFETCH) ||
- 		    XE_IOCTL_ERR(xe, op & ~SUPPORTED_FLAGS) ||
-+		    XE_IOCTL_ERR(xe, obj && null) ||
-+		    XE_IOCTL_ERR(xe, obj_offset && null) ||
-+		    XE_IOCTL_ERR(xe, VM_BIND_OP(op) != XE_VM_BIND_OP_MAP &&
-+				 null) ||
- 		    XE_IOCTL_ERR(xe, !obj &&
--				 VM_BIND_OP(op) == XE_VM_BIND_OP_MAP) ||
-+				 VM_BIND_OP(op) == XE_VM_BIND_OP_MAP && !null) ||
- 		    XE_IOCTL_ERR(xe, !obj &&
- 				 VM_BIND_OP(op) == XE_VM_BIND_OP_UNMAP_ALL) ||
- 		    XE_IOCTL_ERR(xe, addr &&
-@@ -3250,6 +3275,7 @@ int xe_vm_invalidate_vma(struct xe_vma *vma)
- 	int ret;
+ 		next = to_drm_sched_job(spsc_queue_peek(&entity->job_queue));
+@@ -473,6 +503,8 @@ void drm_sched_entity_select_rq(struct drm_sched_entity *entity)
+ 	struct drm_gpu_scheduler *sched;
+ 	struct drm_sched_rq *rq;
  
- 	XE_BUG_ON(!xe_vm_in_fault_mode(xe_vma_vm(vma)));
-+	XE_BUG_ON(xe_vma_is_null(vma));
- 	trace_xe_vma_usm_invalidate(vma);
++	WARN_ON(!!entity->single_sched);
++
+ 	/* single possible engine and already selected */
+ 	if (!entity->sched_list)
+ 		return;
+@@ -522,16 +554,21 @@ void drm_sched_entity_select_rq(struct drm_sched_entity *entity)
+ void drm_sched_entity_push_job(struct drm_sched_job *sched_job)
+ {
+ 	struct drm_sched_entity *entity = sched_job->entity;
++	bool single_entity = !!entity->single_sched;
+ 	bool first;
  
- 	/* Check that we don't race with page-table updates */
-@@ -3309,8 +3335,11 @@ int xe_analyze_vm(struct drm_printer *p, struct xe_vm *vm, int gt_id)
- 	drm_gpuva_iter_for_each(gpuva, it) {
- 		struct xe_vma* vma = gpuva_to_vma(gpuva);
- 		bool is_userptr = xe_vma_is_userptr(vma);
-+		bool null = xe_vma_is_null(vma);
+ 	trace_drm_sched_job(sched_job, entity);
+-	atomic_inc(entity->rq->sched->score);
++	if (!single_entity)
++		atomic_inc(entity->rq->sched->score);
+ 	WRITE_ONCE(entity->last_user, current->group_leader);
+ 	first = spsc_queue_push(&entity->job_queue, &sched_job->queue_node);
+ 	sched_job->submit_ts = ktime_get();
  
--		if (is_userptr) {
-+		if (null) {
-+			addr = 0;
-+		} else if (is_userptr) {
- 			struct xe_res_cursor cur;
- 
- 			xe_res_first_sg(vma->userptr.sg, 0, XE_PAGE_SIZE, &cur);
-@@ -3320,7 +3349,8 @@ int xe_analyze_vm(struct drm_printer *p, struct xe_vm *vm, int gt_id)
+ 	/* first job wakes up scheduler */
+ 	if (first) {
++		struct drm_gpu_scheduler *sched =
++			drm_sched_entity_to_scheduler(entity);
++
+ 		/* Add the entity to the run queue */
+ 		spin_lock(&entity->rq_lock);
+ 		if (entity->stopped) {
+@@ -541,13 +578,14 @@ void drm_sched_entity_push_job(struct drm_sched_job *sched_job)
+ 			return;
  		}
- 		drm_printf(p, " [%016llx-%016llx] S:0x%016llx A:%016llx %s\n",
- 			   xe_vma_start(vma), xe_vma_end(vma), xe_vma_size(vma),
--			   addr, is_userptr ? "USR" : is_vram ? "VRAM" : "SYS");
-+			   addr, null ? "NULL" :
-+			   is_userptr ? "USR" : is_vram ? "VRAM" : "SYS");
- 	}
- 	up_read(&vm->lock);
  
-diff --git a/drivers/gpu/drm/xe/xe_vm.h b/drivers/gpu/drm/xe/xe_vm.h
-index 21b1054949c4..96e2c6b07bf8 100644
---- a/drivers/gpu/drm/xe/xe_vm.h
-+++ b/drivers/gpu/drm/xe/xe_vm.h
-@@ -175,7 +175,17 @@ static inline void xe_vm_reactivate_rebind(struct xe_vm *vm)
+-		drm_sched_rq_add_entity(entity->rq, entity);
++		if (!single_entity)
++			drm_sched_rq_add_entity(entity->rq, entity);
+ 		spin_unlock(&entity->rq_lock);
+ 
+-		if (entity->rq->sched->sched_policy == DRM_SCHED_POLICY_FIFO)
++		if (sched->sched_policy == DRM_SCHED_POLICY_FIFO)
+ 			drm_sched_rq_update_fifo(entity, sched_job->submit_ts);
+ 
+-		drm_sched_wakeup(entity->rq->sched);
++		drm_sched_wakeup(sched);
  	}
  }
- 
-+static inline bool xe_vma_is_null(struct xe_vma *vma)
-+{
-+	return vma->gpuva.flags & XE_VMA_NULL;
-+}
-+
- static inline bool xe_vma_is_userptr(struct xe_vma *vma)
-+{
-+	return !xe_vma_bo(vma) && !xe_vma_is_null(vma);
-+}
-+
-+static inline bool xe_vma_has_no_bo(struct xe_vma *vma)
+ EXPORT_SYMBOL(drm_sched_entity_push_job);
+diff --git a/drivers/gpu/drm/scheduler/sched_fence.c b/drivers/gpu/drm/scheduler/sched_fence.c
+index 7fd869520ef2..1ba5056851dd 100644
+--- a/drivers/gpu/drm/scheduler/sched_fence.c
++++ b/drivers/gpu/drm/scheduler/sched_fence.c
+@@ -167,7 +167,7 @@ void drm_sched_fence_init(struct drm_sched_fence *fence,
  {
- 	return !xe_vma_bo(vma);
- }
-diff --git a/drivers/gpu/drm/xe/xe_vm_madvise.c b/drivers/gpu/drm/xe/xe_vm_madvise.c
-index 02d27a354b36..03508645fa08 100644
---- a/drivers/gpu/drm/xe/xe_vm_madvise.c
-+++ b/drivers/gpu/drm/xe/xe_vm_madvise.c
-@@ -227,7 +227,7 @@ get_vmas(struct xe_vm *vm, int *num_vmas, u64 addr, u64 range)
- 	drm_gpuva_iter_for_each_range(gpuva, it, addr + range) {
- 		struct xe_vma *vma = gpuva_to_vma(gpuva);
+ 	unsigned seq;
  
--		if (xe_vma_is_userptr(vma))
-+		if (xe_vma_has_no_bo(vma))
- 			continue;
+-	fence->sched = entity->rq->sched;
++	fence->sched = drm_sched_entity_to_scheduler(entity);
+ 	seq = atomic_inc_return(&entity->fence_seq);
+ 	dma_fence_init(&fence->scheduled, &drm_sched_fence_ops_scheduled,
+ 		       &fence->lock, entity->fence_context, seq);
+diff --git a/drivers/gpu/drm/scheduler/sched_main.c b/drivers/gpu/drm/scheduler/sched_main.c
+index 6777a2db554f..870568d94f1f 100644
+--- a/drivers/gpu/drm/scheduler/sched_main.c
++++ b/drivers/gpu/drm/scheduler/sched_main.c
+@@ -32,7 +32,8 @@
+  * backend operations to the scheduler like submitting a job to hardware run queue,
+  * returning the dependencies of a job etc.
+  *
+- * The organisation of the scheduler is the following:
++ * The organisation of the scheduler is the following for scheduling policies
++ * DRM_SCHED_POLICY_RR and DRM_SCHED_POLICY_FIFO:
+  *
+  * 1. Each hw run queue has one scheduler
+  * 2. Each scheduler has multiple run queues with different priorities
+@@ -41,7 +42,22 @@
+  * 4. Entities themselves maintain a queue of jobs that will be scheduled on
+  *    the hardware.
+  *
+- * The jobs in a entity are always scheduled in the order that they were pushed.
++ * The organisation of the scheduler is the following for scheduling policy
++ * DRM_SCHED_POLICY_SINGLE_ENTITY:
++ *
++ * 1. One to one relationship between scheduler and entity
++ * 2. No priorities implemented per scheduler (single job queue)
++ * 3. No run queues in scheduler rather jobs are directly dequeued from entity
++ * 4. The entity maintains a queue of jobs that will be scheduled on the
++ * hardware
++ *
++ * The jobs in a entity are always scheduled in the order that they were pushed
++ * regardless of scheduling policy.
++ *
++ * A policy of DRM_SCHED_POLICY_RR or DRM_SCHED_POLICY_FIFO is expected to used
++ * when the KMD is scheduling directly on the hardware while a scheduling policy
++ * of DRM_SCHED_POLICY_SINGLE_ENTITY is expected to be used when there is a
++ * firmare scheduler.
+  */
  
- 		if (*num_vmas == max_vmas) {
-diff --git a/drivers/gpu/drm/xe/xe_vm_types.h b/drivers/gpu/drm/xe/xe_vm_types.h
-index 243dc91a61b0..b61007b70502 100644
---- a/drivers/gpu/drm/xe/xe_vm_types.h
-+++ b/drivers/gpu/drm/xe/xe_vm_types.h
-@@ -29,6 +29,7 @@ struct xe_vm;
- #define XE_VMA_ATOMIC_PTE_BIT	(DRM_GPUVA_USERBITS << 2)
- #define XE_VMA_FIRST_REBIND	(DRM_GPUVA_USERBITS << 3)
- #define XE_VMA_LAST_REBIND	(DRM_GPUVA_USERBITS << 4)
-+#define XE_VMA_NULL		(DRM_GPUVA_USERBITS << 5)
+ #include <linux/wait.h>
+@@ -92,6 +108,8 @@ static inline void drm_sched_rq_remove_fifo_locked(struct drm_sched_entity *enti
  
- struct xe_vma {
- 	/** @gpuva: Base GPUVA object */
-@@ -315,6 +316,8 @@ struct xe_vma_op_map {
- 	bool immediate;
- 	/** @read_only: Read only */
- 	bool read_only;
-+	/** @null: NULL (writes dropped, read zero) */
-+	bool null;
+ void drm_sched_rq_update_fifo(struct drm_sched_entity *entity, ktime_t ts)
+ {
++	WARN_ON(!!entity->single_sched);
++
+ 	/*
+ 	 * Both locks need to be grabbed, one to protect from entity->rq change
+ 	 * for entity from within concurrent drm_sched_entity_select_rq and the
+@@ -122,6 +140,8 @@ void drm_sched_rq_update_fifo(struct drm_sched_entity *entity, ktime_t ts)
+ static void drm_sched_rq_init(struct drm_gpu_scheduler *sched,
+ 			      struct drm_sched_rq *rq)
+ {
++	WARN_ON(sched->sched_policy == DRM_SCHED_POLICY_SINGLE_ENTITY);
++
+ 	spin_lock_init(&rq->lock);
+ 	INIT_LIST_HEAD(&rq->entities);
+ 	rq->rb_tree_root = RB_ROOT_CACHED;
+@@ -140,6 +160,8 @@ static void drm_sched_rq_init(struct drm_gpu_scheduler *sched,
+ void drm_sched_rq_add_entity(struct drm_sched_rq *rq,
+ 			     struct drm_sched_entity *entity)
+ {
++	WARN_ON(!!entity->single_sched);
++
+ 	if (!list_empty(&entity->list))
+ 		return;
+ 
+@@ -162,6 +184,8 @@ void drm_sched_rq_add_entity(struct drm_sched_rq *rq,
+ void drm_sched_rq_remove_entity(struct drm_sched_rq *rq,
+ 				struct drm_sched_entity *entity)
+ {
++	WARN_ON(!!entity->single_sched);
++
+ 	if (list_empty(&entity->list))
+ 		return;
+ 
+@@ -691,7 +715,7 @@ int drm_sched_job_init(struct drm_sched_job *job,
+ 		       struct drm_sched_entity *entity,
+ 		       void *owner)
+ {
+-	if (!entity->rq)
++	if (!entity->rq && !entity->single_sched)
+ 		return -ENOENT;
+ 
+ 	job->entity = entity;
+@@ -724,13 +748,16 @@ void drm_sched_job_arm(struct drm_sched_job *job)
+ {
+ 	struct drm_gpu_scheduler *sched;
+ 	struct drm_sched_entity *entity = job->entity;
++	bool single_entity = !!entity->single_sched;
+ 
+ 	BUG_ON(!entity);
+-	drm_sched_entity_select_rq(entity);
+-	sched = entity->rq->sched;
++	if (!single_entity)
++		drm_sched_entity_select_rq(entity);
++	sched = drm_sched_entity_to_scheduler(entity);
+ 
+ 	job->sched = sched;
+-	job->s_priority = entity->rq - sched->sched_rq;
++	if (!single_entity)
++		job->s_priority = entity->rq - sched->sched_rq;
+ 	job->id = atomic64_inc_return(&sched->job_id_count);
+ 
+ 	drm_sched_fence_init(job->s_fence, job->entity);
+@@ -954,6 +981,13 @@ drm_sched_select_entity(struct drm_gpu_scheduler *sched)
+ 	if (!drm_sched_ready(sched))
+ 		return NULL;
+ 
++	if (sched->single_entity) {
++		if (drm_sched_entity_is_ready(sched->single_entity))
++			return sched->single_entity;
++
++		return NULL;
++	}
++
+ 	/* Kernel run queue has higher priority than normal run queue*/
+ 	for (i = DRM_SCHED_PRIORITY_COUNT - 1; i >= DRM_SCHED_PRIORITY_MIN; i--) {
+ 		entity = sched->sched_policy == DRM_SCHED_POLICY_FIFO ?
+@@ -1210,6 +1244,7 @@ int drm_sched_init(struct drm_gpu_scheduler *sched,
+ 		return -EINVAL;
+ 
+ 	sched->ops = ops;
++	sched->single_entity = NULL;
+ 	sched->hw_submission_limit = hw_submission;
+ 	sched->name = name;
+ 	sched->run_wq = run_wq ? : system_wq;
+@@ -1222,7 +1257,9 @@ int drm_sched_init(struct drm_gpu_scheduler *sched,
+ 		sched->sched_policy = default_drm_sched_policy;
+ 	else
+ 		sched->sched_policy = sched_policy;
+-	for (i = DRM_SCHED_PRIORITY_MIN; i < DRM_SCHED_PRIORITY_COUNT; i++)
++	for (i = DRM_SCHED_PRIORITY_MIN; sched_policy !=
++	     DRM_SCHED_POLICY_SINGLE_ENTITY && i < DRM_SCHED_PRIORITY_COUNT;
++	     i++)
+ 		drm_sched_rq_init(sched, &sched->sched_rq[i]);
+ 
+ 	init_waitqueue_head(&sched->job_scheduled);
+@@ -1255,7 +1292,15 @@ void drm_sched_fini(struct drm_gpu_scheduler *sched)
+ 
+ 	drm_sched_run_wq_stop(sched);
+ 
+-	for (i = DRM_SCHED_PRIORITY_COUNT - 1; i >= DRM_SCHED_PRIORITY_MIN; i--) {
++	if (sched->single_entity) {
++		spin_lock(&sched->single_entity->rq_lock);
++		sched->single_entity->stopped = true;
++		spin_unlock(&sched->single_entity->rq_lock);
++	}
++
++	for (i = DRM_SCHED_PRIORITY_COUNT - 1; sched->sched_policy !=
++	     DRM_SCHED_POLICY_SINGLE_ENTITY && i >= DRM_SCHED_PRIORITY_MIN;
++	     i--) {
+ 		struct drm_sched_rq *rq = &sched->sched_rq[i];
+ 
+ 		if (!rq)
+@@ -1299,6 +1344,8 @@ void drm_sched_increase_karma(struct drm_sched_job *bad)
+ 	struct drm_sched_entity *entity;
+ 	struct drm_gpu_scheduler *sched = bad->sched;
+ 
++	WARN_ON(sched->sched_policy == DRM_SCHED_POLICY_SINGLE_ENTITY);
++
+ 	/* don't change @bad's karma if it's from KERNEL RQ,
+ 	 * because sometimes GPU hang would cause kernel jobs (like VM updating jobs)
+ 	 * corrupt but keep in mind that kernel jobs always considered good.
+diff --git a/include/drm/gpu_scheduler.h b/include/drm/gpu_scheduler.h
+index 3df801401028..669d6520cd3a 100644
+--- a/include/drm/gpu_scheduler.h
++++ b/include/drm/gpu_scheduler.h
+@@ -70,6 +70,7 @@ enum drm_sched_policy {
+ 	DRM_SCHED_POLICY_DEFAULT,
+ 	DRM_SCHED_POLICY_RR,
+ 	DRM_SCHED_POLICY_FIFO,
++	DRM_SCHED_POLICY_SINGLE_ENTITY,
+ 	DRM_SCHED_POLICY_COUNT,
  };
  
- /** struct xe_vma_op_unmap - VMA unmap operation */
-diff --git a/include/uapi/drm/xe_drm.h b/include/uapi/drm/xe_drm.h
-index b0b80aae3ee8..27c51946fadd 100644
---- a/include/uapi/drm/xe_drm.h
-+++ b/include/uapi/drm/xe_drm.h
-@@ -447,6 +447,14 @@ struct drm_xe_vm_bind_op {
- 	 * than differing the MAP to the page fault handler.
+@@ -103,6 +104,9 @@ struct drm_sched_entity {
  	 */
- #define XE_VM_BIND_FLAG_IMMEDIATE	(0x1 << 18)
-+	/*
-+	 * When the NULL flag is set, the page tables are setup with a special
-+	 * bit which indicates writes are dropped and all reads return zero. The
-+	 * NULL flags is only valid for XE_VM_BIND_OP_MAP operations, the BO
-+	 * handle MBZ, and the BO offset MBZ. This flag is intended to implement
-+	 * VK sparse bindings.
-+	 */
-+#define XE_VM_BIND_FLAG_NULL		(0x1 << 19)
+ 	struct drm_sched_rq		*rq;
  
- 	/** @reserved: Reserved */
- 	__u64 reserved[2];
++	/** @single_sched: Single scheduler */
++	struct drm_gpu_scheduler	*single_sched;
++
+ 	/**
+ 	 * @sched_list:
+ 	 *
+@@ -488,6 +492,7 @@ struct drm_sched_backend_ops {
+  * struct drm_gpu_scheduler - scheduler instance-specific data
+  *
+  * @ops: backend operations provided by the driver.
++ * @single_entity: Single entity for the scheduler
+  * @hw_submission_limit: the max size of the hardware queue.
+  * @timeout: the time after which a job is removed from the scheduler.
+  * @name: name of the ring for which this scheduler is being used.
+@@ -519,6 +524,7 @@ struct drm_sched_backend_ops {
+  */
+ struct drm_gpu_scheduler {
+ 	const struct drm_sched_backend_ops	*ops;
++	struct drm_sched_entity		*single_entity;
+ 	uint32_t			hw_submission_limit;
+ 	long				timeout;
+ 	const char			*name;
+@@ -604,6 +610,8 @@ int drm_sched_entity_init(struct drm_sched_entity *entity,
+ 			  struct drm_gpu_scheduler **sched_list,
+ 			  unsigned int num_sched_list,
+ 			  atomic_t *guilty);
++struct drm_gpu_scheduler *
++drm_sched_entity_to_scheduler(struct drm_sched_entity *entity);
+ long drm_sched_entity_flush(struct drm_sched_entity *entity, long timeout);
+ void drm_sched_entity_fini(struct drm_sched_entity *entity);
+ void drm_sched_entity_destroy(struct drm_sched_entity *entity);
 -- 
 2.34.1
 
