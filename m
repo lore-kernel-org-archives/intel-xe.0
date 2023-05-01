@@ -4,54 +4,46 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id E3D86C77B60
-	for <intel-xe@archiver.kernel.org>; Sun, 30 Apr 2023 17:47:45 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id E1C46C77B73
+	for <intel-xe@archiver.kernel.org>; Mon,  1 May 2023 07:51:13 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 37C2810E053;
-	Sun, 30 Apr 2023 17:47:45 +0000 (UTC)
-Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 16FB810E053
- for <intel-xe@lists.freedesktop.org>; Sun, 30 Apr 2023 17:47:42 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7B41610E38B;
+	Mon,  1 May 2023 07:51:13 +0000 (UTC)
+Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 429E510E303
+ for <intel-xe@lists.freedesktop.org>; Mon,  1 May 2023 07:51:11 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1682876863; x=1714412863;
- h=message-id:date:mime-version:subject:to:references:from:
- in-reply-to:content-transfer-encoding;
- bh=T/uNohxedv4OdHW3acZ1CgwTtFbaS/xKc+3wZ4pHoHU=;
- b=G98ewZEwccBOvR3viNRwpU9GJck+KVqpFxg41ka9rjHjSNOuZG9rp4vk
- AbqWhBqwepRTkLXCtygcqDnVSRRceu3q5mbQA/xKtaOHRXbw6kfDsGDQ8
- nf0M4BQN233YtYjvemmrgsyoIl7yoG4AwVwhMEHSjMQkzzc8ITG7t7a3a
- IaO5nxEPDpt2aqdUDRDABZwLNz7haKIeZHv8UbzgimcuLBk9Z1felSlO5
- KpLDRbeUbjVlWxePH8rweXkIsk1qgtlDt4sTYDwZ7sNZBgDfoq2LRQQ82
- 5RGx8X0VP3qdQDcA+uL3bE6/IbDftDqU8zVhLMNTn9r0m4LI4IcSDq1xh w==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10696"; a="350989716"
-X-IronPort-AV: E=Sophos;i="5.99,239,1677571200"; d="scan'208";a="350989716"
-Received: from fmsmga006.fm.intel.com ([10.253.24.20])
- by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 30 Apr 2023 10:47:42 -0700
+ t=1682927472; x=1714463472;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=WOgmMdp9B8bdA7wAc1OBP8jL9Q/DLUVIsYPf4rjo4ic=;
+ b=BtdSkOM4EFJeBYx0fq+Lyjtg1WJmt28X4khijQQKa2uy3Y7qgFNAORev
+ xoPlS8JMLXhfQHnleCZWmXRTVRRauvG2/KEmYLhHUWRL/URSEMZ6J7Apv
+ EjuZjk19VbVCzS4+lMyFkfdGRa5j7npS8WFYB0OW/UQFh6SBaywHptW91
+ 3ucSjfHzKSJrwN7rLSMAcA/9l2/b1ylCnW4J9VRCITHgfZPuI99nwQCvi
+ hAM1uL97ZQuim8gR0LV58mpjAYSOGi0hhHrzqwHUDhbTiBStzAz9XQi92
+ MqZfBGCsx7N1QbdqYQqhKjFZmFxH7L8gjXHDAalkGSLhy8YQ+376jjtIF g==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10696"; a="346910699"
+X-IronPort-AV: E=Sophos;i="5.99,239,1677571200"; d="scan'208";a="346910699"
+Received: from orsmga005.jf.intel.com ([10.7.209.41])
+ by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 01 May 2023 00:51:10 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10696"; a="941805138"
-X-IronPort-AV: E=Sophos;i="5.99,239,1677571200"; d="scan'208";a="941805138"
-Received: from irvmail002.ir.intel.com ([10.43.11.120])
- by fmsmga006.fm.intel.com with ESMTP; 30 Apr 2023 10:47:40 -0700
-Received: from [10.249.147.125] (mwajdecz-MOBL.ger.corp.intel.com
- [10.249.147.125])
- by irvmail002.ir.intel.com (Postfix) with ESMTP id A6BC4365D9;
- Sun, 30 Apr 2023 18:47:39 +0100 (IST)
-Message-ID: <8fdb51d8-0626-0d03-2080-b978f25cfa3b@intel.com>
-Date: Sun, 30 Apr 2023 19:47:38 +0200
+X-IronPort-AV: E=McAfee;i="6600,9927,10696"; a="870095182"
+X-IronPort-AV: E=Sophos;i="5.99,239,1677571200"; d="scan'208";a="870095182"
+Received: from lstrano-desk.jf.intel.com ([10.24.89.184])
+ by orsmga005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 01 May 2023 00:51:10 -0700
+From: Matthew Brost <matthew.brost@intel.com>
+To: <intel-xe@lists.freedesktop.org>
+Date: Mon,  1 May 2023 00:50:44 -0700
+Message-Id: <20230501075114.3108352-1-matthew.brost@intel.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
- Firefox/102.0 Thunderbird/102.10.1
-To: Lucas De Marchi <lucas.demarchi@intel.com>, intel-xe@lists.freedesktop.org
-References: <20230429062332.354139-1-lucas.demarchi@intel.com>
- <20230429062332.354139-4-lucas.demarchi@intel.com>
-Content-Language: en-US
-From: Michal Wajdeczko <michal.wajdeczko@intel.com>
-In-Reply-To: <20230429062332.354139-4-lucas.demarchi@intel.com>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-Subject: Re: [Intel-xe] [PATCH 3/7] drm/xe: Use media base for GMD_ID access
+Content-Transfer-Encoding: 8bit
+Subject: [Intel-xe] [PATCH 00/30] Upstreaming prep / all of mbrosts patches
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -66,117 +58,134 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
+Series includes:
 
+- DRM scheduler changes for firmware backends (1 to 1 entity to scheduler)
+- LR workload story
+- VM LRU handling
+- GuC doorbell submission
+- Basic GPUVA
+- Sparse binding support
+- GPUVA + extobj + drm exec (collaboration with dakr + Francois Dugast)
+- GPUVA + userptr (minimal, more can be once Nouveua has userptr)
+- Fix fencing rules for compute / fault mode
+- Remove async worker for VM + error handling updates
 
-On 29.04.2023 08:23, Lucas De Marchi wrote:
-> Instead of adding a hardcoded base, define GMD_ID() with a base
-> argument and use it in all places.
-> 
-> Signed-off-by: Lucas De Marchi <lucas.demarchi@intel.com>
-> ---
->  drivers/gpu/drm/xe/regs/xe_gt_regs.h | 4 +++-
->  drivers/gpu/drm/xe/xe_pci.c          | 9 +++++----
->  2 files changed, 8 insertions(+), 5 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/xe/regs/xe_gt_regs.h b/drivers/gpu/drm/xe/regs/xe_gt_regs.h
-> index 4d87f1fe010d..da7b6d2c7e01 100644
-> --- a/drivers/gpu/drm/xe/regs/xe_gt_regs.h
-> +++ b/drivers/gpu/drm/xe/regs/xe_gt_regs.h
-> @@ -8,6 +8,8 @@
->  
->  #include "regs/xe_reg_defs.h"
->  
-> +#define MTL_MEDIA_GT_BASE			0x380000
+Series is not fully ready for upstream and some of these things need to
+get merged upstream first but overall it is largely correct and
+certainly step in the right direction. Based on its size and the fact it
+took me 8 hours to rebase this today I'd say let's get this tree and
+fixup everything else in place.
 
-maybe for completeness (and to avoid using anonymous 0 offset in other
-places) we should define also:
+Minor uAPI breakage, IGT series will be posted early tomorrow.
 
-#define GRAPHICS_GT_BASE			0x0
+gitlab link:
+https://gitlab.freedesktop.org/drm/xe/kernel/-/merge_requests/344
 
-> +
->  /* RPM unit config (Gen8+) */
->  #define RPM_CONFIG0					XE_REG(0xd00)
->  #define   RPM_CONFIG0_CRYSTAL_CLOCK_FREQ_MASK		REG_GENMASK(5, 3)
-> @@ -21,7 +23,7 @@
->  #define FORCEWAKE_ACK_MEDIA_VEBOX(n)		XE_REG(0xd70 + (n) * 4)
->  #define FORCEWAKE_ACK_RENDER			XE_REG(0xd84)
->  
-> -#define GMD_ID					XE_REG(0xd8c)
-> +#define GMD_ID(base)				XE_REG((base) + 0xd8c)
+Signed-off-by: Matthew Brost <matthew.brost@intel.com>
 
-this register is not the only one that's has it's counterpart at this
-0x38000 MEDIA offset, and other registers we are treating in automatic
-way, without the need to explicitly pass the 'base', so I'm not sure we
-should change that here
+Christian König (1):
+  drm: execution context for GEM buffers v3
 
->  #define   GMD_ID_ARCH_MASK			REG_GENMASK(31, 22)
->  #define   GMD_ID_RELEASE_MASK			REG_GENMASK(21, 14)
->  #define   GMD_ID_STEP				REG_GENMASK(5, 0)
+Danilo Krummrich (2):
+  maple_tree: split up MA_STATE() macro
+  drm: manager to keep track of GPUs VA mappings
 
-btw, is there a plan to s/REG_GENMASK/XE_REG_GENMASK or something ?
+Matthew Brost (27):
+  drm/sched: Add run_wq argument to drm_sched_init
+  drm/sched: Move schedule policy to scheduler
+  drm/sched: Add DRM_SCHED_POLICY_SINGLE_ENTITY scheduling policy
+  drm/xe: Use DRM_SCHED_POLICY_SINGLE_ENTITY mode
+  drm/xe: Long running job update
+  drm/xe: Ensure LR engines are not persistent
+  drm/xe: Only try to lock external BOs in VM bind
+  drm/xe: VM LRU bulk move
+  drm/xe/guc: Read HXG fields from DW1 of G2H response
+  drm/xe/guc: Return the lower part of blocking H2G message
+  drm/xe/guc: Use doorbells for submission if possible
+  drm/xe/guc: Print doorbell ID in GuC engine debugfs entry
+  maple_tree: Export mas_preallocate
+  drm/xe: Port Xe to GPUVA
+  drm/xe: NULL binding implementation
+  drm/xe: Avoid doing rebinds
+  drm/xe: Reduce the number list links in xe_vma
+  drm/xe: Optimize size of xe_vma allocation
+  drm/gpuva: Add drm device to GPUVA manager
+  drm/gpuva: Move dma-resv to GPUVA manager
+  drm/gpuva: Add support for extobj
+  drm/xe: Userptr refactor
+  drm/exec: Always compile drm_exec
+  drm/xe: Use drm_exec for locking rather than TTM exec helpers
+  drm/xe: Allow dma-fences as in-syncs for compute / faulting VM
+  drm/xe: Allow compute VMs to output dma-fences on binds
+  drm/xe: remove async worker, sync binds, new error handling
 
-> diff --git a/drivers/gpu/drm/xe/xe_pci.c b/drivers/gpu/drm/xe/xe_pci.c
-> index 35dcb8781f2a..8687e51cb0a4 100644
-> --- a/drivers/gpu/drm/xe/xe_pci.c
-> +++ b/drivers/gpu/drm/xe/xe_pci.c
-> @@ -276,7 +276,7 @@ static const struct xe_gt_desc xelpmp_gts[] = {
->  		.type = XE_GT_TYPE_MEDIA,
->  		.vram_id = 0,
->  		.mmio_adj_limit = 0x40000,
-> -		.mmio_adj_offset = 0x380000,
-> +		.mmio_adj_offset = MTL_MEDIA_GT_BASE,
->  	},
->  };
->  
-> @@ -391,8 +391,9 @@ find_subplatform(const struct xe_device *xe, const struct xe_device_desc *desc)
->  	return NULL;
->  }
->  
-> -static u32 peek_gmdid(struct xe_device *xe, u32 gmdid_offset)
-> +static u32 peek_gmdid(struct xe_device *xe, struct xe_reg gmdid_reg)
+ Documentation/gpu/drm-mm.rst                 |   43 +
+ drivers/gpu/drm/Kconfig                      |    6 +
+ drivers/gpu/drm/Makefile                     |    4 +-
+ drivers/gpu/drm/amd/amdgpu/amdgpu_device.c   |    3 +-
+ drivers/gpu/drm/drm_debugfs.c                |   41 +
+ drivers/gpu/drm/drm_exec.c                   |  248 ++
+ drivers/gpu/drm/drm_gem.c                    |    3 +
+ drivers/gpu/drm/drm_gpuva_mgr.c              | 1779 ++++++++++++
+ drivers/gpu/drm/etnaviv/etnaviv_sched.c      |    5 +-
+ drivers/gpu/drm/i915/display/intel_display.c |    6 +-
+ drivers/gpu/drm/lima/lima_sched.c            |    5 +-
+ drivers/gpu/drm/msm/msm_ringbuffer.c         |    5 +-
+ drivers/gpu/drm/panfrost/panfrost_job.c      |    5 +-
+ drivers/gpu/drm/scheduler/sched_entity.c     |   84 +-
+ drivers/gpu/drm/scheduler/sched_fence.c      |    2 +-
+ drivers/gpu/drm/scheduler/sched_main.c       |   88 +-
+ drivers/gpu/drm/v3d/v3d_sched.c              |   25 +-
+ drivers/gpu/drm/xe/Kconfig                   |    1 +
+ drivers/gpu/drm/xe/regs/xe_guc_regs.h        |    1 +
+ drivers/gpu/drm/xe/xe_bo.c                   |  100 +-
+ drivers/gpu/drm/xe/xe_bo.h                   |   13 +-
+ drivers/gpu/drm/xe/xe_bo_evict.c             |   24 +-
+ drivers/gpu/drm/xe/xe_bo_types.h             |    1 -
+ drivers/gpu/drm/xe/xe_device.c               |    2 +-
+ drivers/gpu/drm/xe/xe_dma_buf.c              |    2 +-
+ drivers/gpu/drm/xe/xe_engine.c               |   50 +-
+ drivers/gpu/drm/xe/xe_engine.h               |    4 +
+ drivers/gpu/drm/xe/xe_engine_types.h         |    1 +
+ drivers/gpu/drm/xe/xe_exec.c                 |  117 +-
+ drivers/gpu/drm/xe/xe_execlist.c             |    3 +-
+ drivers/gpu/drm/xe/xe_gt_pagefault.c         |   84 +-
+ drivers/gpu/drm/xe/xe_gt_tlb_invalidation.c  |   14 +-
+ drivers/gpu/drm/xe/xe_guc.c                  |    6 +
+ drivers/gpu/drm/xe/xe_guc_ct.c               |   12 +-
+ drivers/gpu/drm/xe/xe_guc_engine_types.h     |    9 +
+ drivers/gpu/drm/xe/xe_guc_pc.c               |    6 +-
+ drivers/gpu/drm/xe/xe_guc_submit.c           |  398 ++-
+ drivers/gpu/drm/xe/xe_guc_submit.h           |    1 +
+ drivers/gpu/drm/xe/xe_guc_types.h            |    4 +
+ drivers/gpu/drm/xe/xe_huc.c                  |    2 +-
+ drivers/gpu/drm/xe/xe_lrc.c                  |    8 +-
+ drivers/gpu/drm/xe/xe_migrate.c              |   31 +-
+ drivers/gpu/drm/xe/xe_pt.c                   |  198 +-
+ drivers/gpu/drm/xe/xe_sync.c                 |   26 +-
+ drivers/gpu/drm/xe/xe_sync.h                 |    2 +-
+ drivers/gpu/drm/xe/xe_trace.h                |   20 +-
+ drivers/gpu/drm/xe/xe_vm.c                   | 2565 +++++++-----------
+ drivers/gpu/drm/xe/xe_vm.h                   |  135 +-
+ drivers/gpu/drm/xe/xe_vm_madvise.c           |  125 +-
+ drivers/gpu/drm/xe/xe_vm_types.h             |  324 ++-
+ drivers/gpu/drm/xe/xe_wait_user_fence.c      |   43 +-
+ include/drm/drm_debugfs.h                    |   24 +
+ include/drm/drm_drv.h                        |    7 +
+ include/drm/drm_exec.h                       |  115 +
+ include/drm/drm_gem.h                        |   75 +
+ include/drm/drm_gpuva_mgr.h                  |  759 ++++++
+ include/drm/gpu_scheduler.h                  |   29 +-
+ include/linux/maple_tree.h                   |    7 +-
+ include/uapi/drm/xe_drm.h                    |   87 +-
+ lib/maple_tree.c                             |    1 +
+ 60 files changed, 5484 insertions(+), 2304 deletions(-)
+ create mode 100644 drivers/gpu/drm/drm_exec.c
+ create mode 100644 drivers/gpu/drm/drm_gpuva_mgr.c
+ create mode 100644 include/drm/drm_exec.h
+ create mode 100644 include/drm/drm_gpuva_mgr.h
 
-better to keep u32 but defined as new 'base' for the GMD_ID:
+-- 
+2.34.1
 
-peek_gmdid(xe, GRAPHICS_GT_BASE)
-peek_gmdid(xe, MTL_MEDIA_GT_BASE)
-
-then since we parse the value according to the GMDID definition we will
-prevent passing wrong register offset and always refer to the right
-GMD_ID address inside the function:
-
-static u32 peek_gmdid(struct xe_device *xe, u32 base)
-{
-	xe_reg gmdid = XE_REG(GMD_ID.addr + base);
-...
-	WARN_ON(base != GRAPHICS_GT_BASE && base != MTL_MEDIA_GT_BASE);
-...
-  	map = pci_iomap_range(pdev, 0, gmdid.addr, sizeof(u32));
-...
-	REG_FIELD_GET(GMD_ID_ARCH_MASK, value)
-
-
-Michal
-
->  {
-> +	u32 gmdid_offset = gmdid_reg.reg;
->  	struct pci_dev *pdev = to_pci_dev(xe->drm.dev);
->  	void __iomem *map = pci_iomap_range(pdev, 0, gmdid_offset, sizeof(u32));
->  	u32 ver;
-> @@ -441,7 +442,7 @@ static void handle_gmdid(struct xe_device *xe,
->  {
->  	u32 ver;
->  
-> -	ver = peek_gmdid(xe, GMD_ID.reg);
-> +	ver = peek_gmdid(xe, GMD_ID(0));
->  	for (int i = 0; i < ARRAY_SIZE(graphics_ip_map); i++) {
->  		if (ver == graphics_ip_map[i].ver) {
->  			xe->info.graphics_verx100 = ver;
-> @@ -456,7 +457,7 @@ static void handle_gmdid(struct xe_device *xe,
->  			ver / 100, ver % 100);
->  	}
->  
-> -	ver = peek_gmdid(xe, GMD_ID.reg + 0x380000);
-> +	ver = peek_gmdid(xe, GMD_ID(MTL_MEDIA_GT_BASE));
->  	for (int i = 0; i < ARRAY_SIZE(media_ip_map); i++) {
->  		if (ver == media_ip_map[i].ver) {
->  			xe->info.media_verx100 = ver;
