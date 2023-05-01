@@ -4,48 +4,47 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8021FC87FDD
-	for <intel-xe@archiver.kernel.org>; Mon,  1 May 2023 07:51:18 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id E7138C7EE37
+	for <intel-xe@archiver.kernel.org>; Mon,  1 May 2023 07:51:17 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id EF1F810E3DC;
+	by gabe.freedesktop.org (Postfix) with ESMTP id C746810E3BE;
 	Mon,  1 May 2023 07:51:17 +0000 (UTC)
 Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 050AF10E30E
- for <intel-xe@lists.freedesktop.org>; Mon,  1 May 2023 07:51:12 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 80AD810E303
+ for <intel-xe@lists.freedesktop.org>; Mon,  1 May 2023 07:51:13 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
  t=1682927473; x=1714463473;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=8nwJVb4NqpjM4r34lGY1h73mK6adHvGEAjI5UeLVHWo=;
- b=b+oS3iLj7nl695z9k49elmSWO6VZRm22uhNp478QTeNOoiG9g/wdv/Wh
- UlFrWVwANfjJZaQdUKOeRlG1IkSa6AH4l3/t3z0cr6Ws3qUgihf3Dikm+
- mN8oOl9LFDQ43rZgtlgk45s3XaU0SrqSFryPjyAPB2cuFBWLhbgKkeBFv
- 132a0tWma1OpHp3RTmn72TNoHYX+EtcJu/tgF5f4DUue8IkIozPuLErTc
- Rfk8/KdfvHG8jLAmEjTzkOzVJ2dtb7bBmCwyx0GTLCEVixOA1Icx5BMs0
- OzsPtp3oddYgu9+R+QHyVy7P99FNnghuLLuh+AL5rTQj2tB9cTljfqHuz A==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10696"; a="346910718"
-X-IronPort-AV: E=Sophos;i="5.99,239,1677571200"; d="scan'208";a="346910718"
+ bh=1JxyK15J0JnaQkmPI6zc3JxoptE+0BuYW0mlv2tLrWc=;
+ b=BWb43XxL9zghhsBwKlXLbYZ/geFDBSatI4+B5rbJEMvLW4c7hQSkm34d
+ vW+omK/p2CRVhHAGOM09Q2J950QFdGwsszFlBcz6hdeE6EvGdOyR5EUYO
+ uoB+KmdV59I9x1wecUhqzUDN6tT/AqQ2aml0Ea1zTbUzmUmJW/4U9L4/y
+ Io1TLgb3NJyzlL/GDP00WDuimKICLowrEvauFWGx2nQE4d7iRqV1mkvIA
+ ep5trVzbqqHd0MH99P+pXApeGI38yj0+esZ0NW3DRTmpjcD6wivhSyc/U
+ XwyOLQtQQywIX0Sod+5YEy+xHOXmH4KQEuFWZXuyKUj3JUjjxV9dnS3uk w==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10696"; a="346910727"
+X-IronPort-AV: E=Sophos;i="5.99,239,1677571200"; d="scan'208";a="346910727"
 Received: from orsmga005.jf.intel.com ([10.7.209.41])
  by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 01 May 2023 00:51:11 -0700
+ 01 May 2023 00:51:12 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10696"; a="870095218"
-X-IronPort-AV: E=Sophos;i="5.99,239,1677571200"; d="scan'208";a="870095218"
+X-IronPort-AV: E=McAfee;i="6600,9927,10696"; a="870095243"
+X-IronPort-AV: E=Sophos;i="5.99,239,1677571200"; d="scan'208";a="870095243"
 Received: from lstrano-desk.jf.intel.com ([10.24.89.184])
  by orsmga005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 01 May 2023 00:51:10 -0700
+ 01 May 2023 00:51:11 -0700
 From: Matthew Brost <matthew.brost@intel.com>
 To: <intel-xe@lists.freedesktop.org>
-Date: Mon,  1 May 2023 00:50:56 -0700
-Message-Id: <20230501075114.3108352-13-matthew.brost@intel.com>
+Date: Mon,  1 May 2023 00:51:05 -0700
+Message-Id: <20230501075114.3108352-22-matthew.brost@intel.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20230501075114.3108352-1-matthew.brost@intel.com>
 References: <20230501075114.3108352-1-matthew.brost@intel.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-xe] [PATCH 12/30] drm/xe/guc: Print doorbell ID in GuC
- engine debugfs entry
+Subject: [Intel-xe] [PATCH 21/30] drm/gpuva: Add drm device to GPUVA manager
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -60,26 +59,384 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-This information is helpful so print it.
+This is the logical place for this, will help with upcoming changes too.
 
 Signed-off-by: Matthew Brost <matthew.brost@intel.com>
 ---
- drivers/gpu/drm/xe/xe_guc_submit.c | 2 ++
- 1 file changed, 2 insertions(+)
+ drivers/gpu/drm/drm_gpuva_mgr.c  |  3 +++
+ drivers/gpu/drm/xe/xe_migrate.c  | 10 +++++-----
+ drivers/gpu/drm/xe/xe_pt.c       | 18 +++++++++---------
+ drivers/gpu/drm/xe/xe_vm.c       | 31 +++++++++++++++----------------
+ drivers/gpu/drm/xe/xe_vm.h       | 10 ++++++++++
+ drivers/gpu/drm/xe/xe_vm_types.h |  2 --
+ include/drm/drm_gpuva_mgr.h      |  4 ++++
+ 7 files changed, 46 insertions(+), 32 deletions(-)
 
-diff --git a/drivers/gpu/drm/xe/xe_guc_submit.c b/drivers/gpu/drm/xe/xe_guc_submit.c
-index 1b6f36b04cd1..880f480c6d5f 100644
---- a/drivers/gpu/drm/xe/xe_guc_submit.c
-+++ b/drivers/gpu/drm/xe/xe_guc_submit.c
-@@ -2016,6 +2016,8 @@ static void guc_engine_print(struct xe_engine *e, struct drm_printer *p)
- 	drm_printf(p, "\tTimeslice: %u (us)\n", e->sched_props.timeslice_us);
- 	drm_printf(p, "\tPreempt timeout: %u (us)\n",
- 		   e->sched_props.preempt_timeout_us);
-+	drm_printf(p, "\tDoorbell ID: %u\n",
-+		   e->guc->doorbell_id);
- 	for (i = 0; i < e->width; ++i ) {
- 		struct xe_lrc *lrc = e->lrc + i;
+diff --git a/drivers/gpu/drm/drm_gpuva_mgr.c b/drivers/gpu/drm/drm_gpuva_mgr.c
+index bd7d27ee44bb..137322945e91 100644
+--- a/drivers/gpu/drm/drm_gpuva_mgr.c
++++ b/drivers/gpu/drm/drm_gpuva_mgr.c
+@@ -413,6 +413,7 @@ static void __drm_gpuva_remove(struct drm_gpuva *va);
+ /**
+  * drm_gpuva_manager_init - initialize a &drm_gpuva_manager
+  * @mgr: pointer to the &drm_gpuva_manager to initialize
++ * @drm: drm device
+  * @name: the name of the GPU VA space
+  * @start_offset: the start offset of the GPU VA space
+  * @range: the size of the GPU VA space
+@@ -427,6 +428,7 @@ static void __drm_gpuva_remove(struct drm_gpuva *va);
+  */
+ void
+ drm_gpuva_manager_init(struct drm_gpuva_manager *mgr,
++		       struct drm_device *drm,
+ 		       const char *name,
+ 		       u64 start_offset, u64 range,
+ 		       u64 reserve_offset, u64 reserve_range,
+@@ -437,6 +439,7 @@ drm_gpuva_manager_init(struct drm_gpuva_manager *mgr,
+ 	mgr->mm_start = start_offset;
+ 	mgr->mm_range = range;
  
++	mgr->drm = drm;
+ 	mgr->name = name ? name : "unknown";
+ 	mgr->ops = ops;
+ 
+diff --git a/drivers/gpu/drm/xe/xe_migrate.c b/drivers/gpu/drm/xe/xe_migrate.c
+index b44aa094a466..0a393c5772e5 100644
+--- a/drivers/gpu/drm/xe/xe_migrate.c
++++ b/drivers/gpu/drm/xe/xe_migrate.c
+@@ -129,7 +129,7 @@ static u64 xe_migrate_vram_ofs(u64 addr)
+ static int xe_migrate_create_cleared_bo(struct xe_migrate *m, struct xe_vm *vm)
+ {
+ 	struct xe_gt *gt = m->gt;
+-	struct xe_device *xe = vm->xe;
++	struct xe_device *xe = xe_vm_device(vm);
+ 	size_t cleared_size;
+ 	u64 vram_addr;
+ 	bool is_vram;
+@@ -175,7 +175,7 @@ static int xe_migrate_prepare_vm(struct xe_gt *gt, struct xe_migrate *m,
+ 	/* Need to be sure everything fits in the first PT, or create more */
+ 	XE_BUG_ON(m->batch_base_ofs + batch->size >= SZ_2M);
+ 
+-	bo = xe_bo_create_pin_map(vm->xe, m->gt, vm,
++	bo = xe_bo_create_pin_map(xe_vm_device(vm), m->gt, vm,
+ 				  num_entries * XE_PAGE_SIZE,
+ 				  ttm_bo_type_kernel,
+ 				  XE_BO_CREATE_VRAM_IF_DGFX(m->gt) |
+@@ -1051,7 +1051,7 @@ xe_migrate_update_pgtables_cpu(struct xe_migrate *m,
+ 
+ 	if (wait_vm && !dma_resv_test_signaled(&vm->resv,
+ 					       DMA_RESV_USAGE_BOOKKEEP)) {
+-		vm_dbg(&vm->xe->drm, "wait on VM for munmap");
++		vm_dbg(&xe_vm_device(vm)->drm, "wait on VM for munmap");
+ 		return ERR_PTR(-ETIME);
+ 	}
+ 
+@@ -1069,7 +1069,7 @@ xe_migrate_update_pgtables_cpu(struct xe_migrate *m,
+ 
+ 	if (vm) {
+ 		trace_xe_vm_cpu_bind(vm);
+-		xe_device_wmb(vm->xe);
++		xe_device_wmb(xe_vm_device(vm));
+ 	}
+ 
+ 	fence = dma_fence_get_stub();
+@@ -1263,7 +1263,7 @@ xe_migrate_update_pgtables(struct xe_migrate *m,
+ 	 * trigger preempts before moving forward
+ 	 */
+ 	if (first_munmap_rebind) {
+-		vm_dbg(&vm->xe->drm, "wait on first_munmap_rebind");
++		vm_dbg(&xe_vm_device(vm)->drm, "wait on first_munmap_rebind");
+ 		err = job_add_deps(job, &vm->resv,
+ 				   DMA_RESV_USAGE_BOOKKEEP);
+ 		if (err)
+diff --git a/drivers/gpu/drm/xe/xe_pt.c b/drivers/gpu/drm/xe/xe_pt.c
+index 8eab8e1bbaf0..4167f666d98d 100644
+--- a/drivers/gpu/drm/xe/xe_pt.c
++++ b/drivers/gpu/drm/xe/xe_pt.c
+@@ -218,7 +218,7 @@ struct xe_pt *xe_pt_create(struct xe_vm *vm, struct xe_gt *gt,
+ 	if (!pt)
+ 		return ERR_PTR(-ENOMEM);
+ 
+-	bo = xe_bo_create_pin_map(vm->xe, gt, vm, SZ_4K,
++	bo = xe_bo_create_pin_map(xe_vm_device(vm), gt, vm, SZ_4K,
+ 				  ttm_bo_type_kernel,
+ 				  XE_BO_CREATE_VRAM_IF_DGFX(gt) |
+ 				  XE_BO_CREATE_IGNORE_MIN_PAGE_SIZE_BIT |
+@@ -264,11 +264,11 @@ void xe_pt_populate_empty(struct xe_gt *gt, struct xe_vm *vm,
+ 		 * FIXME: Some memory is allocated already allocated to zero?
+ 		 * Find out which memory that is and avoid this memset...
+ 		 */
+-		xe_map_memset(vm->xe, map, 0, 0, SZ_4K);
++		xe_map_memset(xe_vm_device(vm), map, 0, 0, SZ_4K);
+ 	} else {
+ 		empty = __xe_pt_empty_pte(gt, vm, pt->level);
+ 		for (i = 0; i < XE_PDES; i++)
+-			xe_pt_write(vm->xe, map, i, empty);
++			xe_pt_write(xe_vm_device(vm), map, i, empty);
+ 	}
+ }
+ 
+@@ -355,7 +355,7 @@ int xe_pt_create_scratch(struct xe_device *xe, struct xe_gt *gt,
+ 	if (IS_ERR(vm->scratch_bo[id]))
+ 		return PTR_ERR(vm->scratch_bo[id]);
+ 
+-	xe_map_memset(vm->xe, &vm->scratch_bo[id]->vmap, 0, 0,
++	xe_map_memset(xe_vm_device(vm), &vm->scratch_bo[id]->vmap, 0, 0,
+ 		      vm->scratch_bo[id]->size);
+ 
+ 	for (i = 0; i < vm->pt_root[id]->level; i++) {
+@@ -538,7 +538,7 @@ xe_pt_insert_entry(struct xe_pt_stage_bind_walk *xe_walk, struct xe_pt *parent,
+ 		if (unlikely(xe_child))
+ 			parent->drm.dir->entries[offset] = &xe_child->drm;
+ 
+-		xe_pt_write(xe_walk->vm->xe, map, offset, pte);
++		xe_pt_write(xe_vm_device(xe_walk->vm), map, offset, pte);
+ 		parent->num_live++;
+ 	} else {
+ 		/* Shared pt. Stage update. */
+@@ -1337,7 +1337,7 @@ __xe_pt_bind_vma(struct xe_gt *gt, struct xe_vma *vma, struct xe_engine *e,
+ 	xe_vm_assert_held(vm);
+ 	XE_BUG_ON(xe_gt_is_media_type(gt));
+ 
+-	vm_dbg(&xe_vma_vm(vma)->xe->drm,
++	vm_dbg(&xe_vma_device(vma)->drm,
+ 	       "Preparing bind, with range [%llx...%llx) engine %p.\n",
+ 	       xe_vma_start(vma), xe_vma_end(vma) - 1, e);
+ 
+@@ -1366,7 +1366,7 @@ __xe_pt_bind_vma(struct xe_gt *gt, struct xe_vma *vma, struct xe_engine *e,
+ 
+ 
+ 		if (last_munmap_rebind)
+-			vm_dbg(&vm->xe->drm, "last_munmap_rebind");
++			vm_dbg(&xe_vm_device(vm)->drm, "last_munmap_rebind");
+ 
+ 		/* TLB invalidation must be done before signaling rebind */
+ 		if (rebind && !xe_vm_no_dma_fences(xe_vma_vm(vma))) {
+@@ -1401,7 +1401,7 @@ __xe_pt_bind_vma(struct xe_gt *gt, struct xe_vma *vma, struct xe_engine *e,
+ 			xe_bo_put_commit(&deferred);
+ 		}
+ 		if (!rebind && last_munmap_rebind && xe_vm_in_compute_mode(vm))
+-			queue_work(vm->xe->ordered_wq,
++			queue_work(xe_vm_device(vm)->ordered_wq,
+ 				   &vm->preempt.rebind_work);
+ 	} else {
+ 		kfree(ifence);
+@@ -1664,7 +1664,7 @@ __xe_pt_unbind_vma(struct xe_gt *gt, struct xe_vma *vma, struct xe_engine *e,
+ 	xe_vm_assert_held(vm);
+ 	XE_BUG_ON(xe_gt_is_media_type(gt));
+ 
+-	vm_dbg(&xe_vma_vm(vma)->xe->drm,
++	vm_dbg(&xe_vma_device(vma)->drm,
+ 	       "Preparing unbind, with range [%llx...%llx) engine %p.\n",
+ 	       xe_vma_start(vma), xe_vma_end(vma) - 1, e);
+ 
+diff --git a/drivers/gpu/drm/xe/xe_vm.c b/drivers/gpu/drm/xe/xe_vm.c
+index 3eecf1d0958f..77220a17d29c 100644
+--- a/drivers/gpu/drm/xe/xe_vm.c
++++ b/drivers/gpu/drm/xe/xe_vm.c
+@@ -50,7 +50,7 @@ int xe_vma_userptr_check_repin(struct xe_vma *vma)
+ int xe_vma_userptr_pin_pages(struct xe_vma *vma)
+ {
+ 	struct xe_vm *vm = xe_vma_vm(vma);
+-	struct xe_device *xe = vm->xe;
++	struct xe_device *xe = xe_vm_device(vm);
+ 	const unsigned long num_pages = xe_vma_size(vma) >> PAGE_SHIFT;
+ 	struct page **pages;
+ 	bool in_kthread = !current->mm;
+@@ -852,12 +852,12 @@ static struct xe_vma *xe_vma_create(struct xe_vm *vm,
+ 	if (gt_mask) {
+ 		vma->gt_mask = gt_mask;
+ 	} else {
+-		for_each_gt(gt, vm->xe, id)
++		for_each_gt(gt, xe_vm_device(vm), id)
+ 			if (!xe_gt_is_media_type(gt))
+ 				vma->gt_mask |= 0x1 << id;
+ 	}
+ 
+-	if (vm->xe->info.platform == XE_PVC)
++	if (xe_vm_device(vm)->info.platform == XE_PVC)
+ 		vma->gpuva.flags |= XE_VMA_ATOMIC_PTE_BIT;
+ 
+ 	if (bo) {
+@@ -904,7 +904,7 @@ static void vm_remove_extobj(struct xe_vma *vma)
+ static void xe_vma_destroy_late(struct xe_vma *vma)
+ {
+ 	struct xe_vm *vm = xe_vma_vm(vma);
+-	struct xe_device *xe = vm->xe;
++	struct xe_device *xe = xe_vm_device(vm);
+ 	bool read_only = xe_vma_read_only(vma);
+ 
+ 	if (xe_vma_is_userptr(vma)) {
+@@ -1084,7 +1084,6 @@ struct xe_vm *xe_vm_create(struct xe_device *xe, u32 flags)
+ 	if (!vm)
+ 		return ERR_PTR(-ENOMEM);
+ 
+-	vm->xe = xe;
+ 	kref_init(&vm->refcount);
+ 	dma_resv_init(&vm->resv);
+ 
+@@ -1125,7 +1124,7 @@ struct xe_vm *xe_vm_create(struct xe_device *xe, u32 flags)
+ 	if (err)
+ 		goto err_put;
+ 
+-	drm_gpuva_manager_init(&vm->mgr, "Xe VM", 0, vm->size, 0, 0,
++	drm_gpuva_manager_init(&vm->mgr, &xe->drm, "Xe VM", 0, vm->size, 0, 0,
+ 			       &gpuva_ops);
+ 	if (IS_DGFX(xe) && xe->info.vram_flags & XE_VRAM_FLAGS_NEED64K)
+ 		vm->flags |= XE_VM_FLAGS_64K;
+@@ -1284,7 +1283,7 @@ void xe_vm_close_and_put(struct xe_vm *vm)
+ {
+ 	struct list_head contested;
+ 	struct ww_acquire_ctx ww;
+-	struct xe_device *xe = vm->xe;
++	struct xe_device *xe = xe_vm_device(vm);
+ 	struct xe_gt *gt;
+ 	struct xe_vma *vma, *next_vma;
+ 	struct drm_gpuva *gpuva;
+@@ -1387,7 +1386,7 @@ static void vm_destroy_work_func(struct work_struct *w)
+ 	struct xe_vm *vm =
+ 		container_of(w, struct xe_vm, destroy_work);
+ 	struct ww_acquire_ctx ww;
+-	struct xe_device *xe = vm->xe;
++	struct xe_device *xe = xe_vm_device(vm);
+ 	struct xe_gt *gt;
+ 	u8 id;
+ 	void *lookup;
+@@ -1481,7 +1480,7 @@ xe_vm_unbind_vma(struct xe_vma *vma, struct xe_engine *e,
+ 			return ERR_PTR(-ENOMEM);
+ 	}
+ 
+-	for_each_gt(gt, vm->xe, id) {
++	for_each_gt(gt, xe_vm_device(vm), id) {
+ 		if (!(vma->gt_present & BIT(id)))
+ 			goto next;
+ 
+@@ -1555,7 +1554,7 @@ xe_vm_bind_vma(struct xe_vma *vma, struct xe_engine *e,
+ 			return ERR_PTR(-ENOMEM);
+ 	}
+ 
+-	for_each_gt(gt, vm->xe, id) {
++	for_each_gt(gt, xe_vm_device(vm), id) {
+ 		if (!(vma->gt_mask & BIT(id)))
+ 			goto next;
+ 
+@@ -2061,7 +2060,7 @@ static int vm_insert_extobj(struct xe_vm *vm, struct xe_vma *vma)
+ static int vm_bind_ioctl_lookup_vma(struct xe_vm *vm, struct xe_bo *bo,
+ 				    u64 addr, u64 range, u32 op)
+ {
+-	struct xe_device *xe = vm->xe;
++	struct xe_device *xe = xe_vm_device(vm);
+ 	struct xe_vma *vma;
+ 	bool async = !!(op & XE_VM_BIND_FLAG_ASYNC);
+ 
+@@ -2164,7 +2163,7 @@ vm_bind_ioctl_ops_create(struct xe_vm *vm, struct xe_bo *bo,
+ 
+ 	lockdep_assert_held_write(&vm->lock);
+ 
+-	vm_dbg(&vm->xe->drm,
++	vm_dbg(&xe_vm_device(vm)->drm,
+ 	       "op=%d, addr=0x%016llx, range=0x%016llx, bo_offset_or_userptr=0x%016llx",
+ 	       VM_BIND_OP(operation), addr, range, bo_offset_or_userptr);
+ 
+@@ -2232,7 +2231,7 @@ vm_bind_ioctl_ops_create(struct xe_vm *vm, struct xe_bo *bo,
+ 
+ 	if (!IS_ERR(ops))
+ 		drm_gpuva_for_each_op(__op, ops)
+-			print_op(vm->xe, __op);
++			print_op(xe_vm_device(vm), __op);
+ 
+ 	return ops;
+ }
+@@ -2779,7 +2778,7 @@ static void xe_vma_op_work_func(struct work_struct *w)
+ 			down_write(&vm->lock);
+ 			err = xe_vma_op_execute(vm, op);
+ 			if (err) {
+-				drm_warn(&vm->xe->drm,
++				drm_warn(&xe_vm_device(vm)->drm,
+ 					 "Async VM op(%d) failed with %d",
+ 					 op->base.op, err);
+ 				vm_set_async_error(vm, err);
+@@ -3099,7 +3098,7 @@ int xe_vm_bind_ioctl(struct drm_device *dev, void *data, struct drm_file *file)
+ 
+ 			/* Rebinds may have been blocked, give worker a kick */
+ 			if (xe_vm_in_compute_mode(vm))
+-				queue_work(vm->xe->ordered_wq,
++				queue_work(xe_vm_device(vm)->ordered_wq,
+ 					   &vm->preempt.rebind_work);
+ 		}
+ 
+@@ -3311,7 +3310,7 @@ void xe_vm_unlock(struct xe_vm *vm, struct ww_acquire_ctx *ww)
+  */
+ int xe_vm_invalidate_vma(struct xe_vma *vma)
+ {
+-	struct xe_device *xe = xe_vma_vm(vma)->xe;
++	struct xe_device *xe = xe_vm_device(xe_vma_vm(vma));
+ 	struct xe_gt *gt;
+ 	u32 gt_needs_invalidate = 0;
+ 	int seqno[XE_MAX_GT];
+diff --git a/drivers/gpu/drm/xe/xe_vm.h b/drivers/gpu/drm/xe/xe_vm.h
+index 96e2c6b07bf8..cbbe95d6291f 100644
+--- a/drivers/gpu/drm/xe/xe_vm.h
++++ b/drivers/gpu/drm/xe/xe_vm.h
+@@ -52,6 +52,11 @@ static inline bool xe_vm_is_closed(struct xe_vm *vm)
+ struct xe_vma *
+ xe_vm_find_overlapping_vma(struct xe_vm *vm, u64 start, u64 range);
+ 
++static inline struct xe_device *xe_vm_device(struct xe_vm *vm)
++{
++	return container_of(vm->mgr.drm, struct xe_device, drm);
++}
++
+ static inline struct xe_vm *gpuva_to_vm(struct drm_gpuva *gpuva)
+ {
+ 	return container_of(gpuva->mgr, struct xe_vm, mgr);
+@@ -102,6 +107,11 @@ static inline struct xe_vm *xe_vma_vm(struct xe_vma *vma)
+ 	return container_of(vma->gpuva.mgr, struct xe_vm, mgr);
+ }
+ 
++static inline struct xe_device *xe_vma_device(struct xe_vma *vma)
++{
++	return xe_vm_device(xe_vma_vm(vma));
++}
++
+ static inline bool xe_vma_read_only(struct xe_vma *vma)
+ {
+ 	return vma->gpuva.flags & XE_VMA_READ_ONLY;
+diff --git a/drivers/gpu/drm/xe/xe_vm_types.h b/drivers/gpu/drm/xe/xe_vm_types.h
+index df4797ec4d7f..fca42910dcae 100644
+--- a/drivers/gpu/drm/xe/xe_vm_types.h
++++ b/drivers/gpu/drm/xe/xe_vm_types.h
+@@ -137,8 +137,6 @@ struct xe_vm {
+ 	/** @mgr: base GPUVA used to track VMAs */
+ 	struct drm_gpuva_manager mgr;
+ 
+-	struct xe_device *xe;
+-
+ 	struct kref refcount;
+ 
+ 	/* engine used for (un)binding vma's */
+diff --git a/include/drm/drm_gpuva_mgr.h b/include/drm/drm_gpuva_mgr.h
+index 62169d850098..55b0acfdcc44 100644
+--- a/include/drm/drm_gpuva_mgr.h
++++ b/include/drm/drm_gpuva_mgr.h
+@@ -169,6 +169,9 @@ static inline bool drm_gpuva_evicted(struct drm_gpuva *va)
+  * There should be one manager instance per GPU virtual address space.
+  */
+ struct drm_gpuva_manager {
++	/** @drm: drm device */
++	struct drm_device *drm;
++
+ 	/**
+ 	 * @name: the name of the DRM GPU VA space
+ 	 */
+@@ -204,6 +207,7 @@ struct drm_gpuva_manager {
+ };
+ 
+ void drm_gpuva_manager_init(struct drm_gpuva_manager *mgr,
++			    struct drm_device *drm,
+ 			    const char *name,
+ 			    u64 start_offset, u64 range,
+ 			    u64 reserve_offset, u64 reserve_range,
 -- 
 2.34.1
 
