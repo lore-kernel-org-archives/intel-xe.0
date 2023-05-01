@@ -4,30 +4,46 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id C0798C77B73
-	for <intel-xe@archiver.kernel.org>; Mon,  1 May 2023 08:03:23 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 73073C77B61
+	for <intel-xe@archiver.kernel.org>; Mon,  1 May 2023 11:58:41 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id CE47310E315;
-	Mon,  1 May 2023 07:54:56 +0000 (UTC)
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id 032D810E315;
- Mon,  1 May 2023 07:54:55 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id DB04BA41FB;
- Mon,  1 May 2023 07:54:54 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0F99D10E0D1;
+	Mon,  1 May 2023 11:58:41 +0000 (UTC)
+Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3AC6A10E0D1
+ for <intel-xe@lists.freedesktop.org>; Mon,  1 May 2023 11:58:38 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1682942318; x=1714478318;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=+x6VSNy8BH9dj+54Ic1Kgm0/18lTyc0uOJHSmscP8mU=;
+ b=hNx6QJxp8E8wDmpDFZaH5UO06nFLYxeuGrl+EXzXS6JgbDUtV0gKVv+v
+ 21uZ19L/v09HYSxOkpUcwVFJwDu0u9aMY3NNlTdaeFe+GPNEgq+elsC3c
+ Upm1rchOlWW846sMhvCgHOSv+OYePL6QAzswv4jupytdXAyEjBrz3CZBJ
+ BskSugXZufBT8hlTyaQv7qqVTlD9aWstz6uEqCHU5aC6w9L4Auq1aCBk1
+ 8F6iXhTawSu/pPwKpqGyX7BBSIp1yLM7UZmoZIabE56Vo+UAZ8XAxzI5v
+ F74610cufkphE9f1yszkIz1OZKi0Lr09votkodoQBtw+Qx+LjmkdPK3D2 Q==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10696"; a="327762980"
+X-IronPort-AV: E=Sophos;i="5.99,241,1677571200"; d="scan'208";a="327762980"
+Received: from fmsmga004.fm.intel.com ([10.253.24.48])
+ by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 01 May 2023 04:58:37 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6600,9927,10696"; a="765276198"
+X-IronPort-AV: E=Sophos;i="5.99,241,1677571200"; d="scan'208";a="765276198"
+Received: from awvttdev-05.aw.intel.com ([10.228.212.156])
+ by fmsmga004-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 01 May 2023 04:58:34 -0700
+From: "Michael J. Ruhl" <michael.j.ruhl@intel.com>
+To: intel-xe@lists.freedesktop.org
+Date: Mon,  1 May 2023 07:58:22 -0400
+Message-Id: <20230501115826.4191472-1-michael.j.ruhl@intel.com>
+X-Mailer: git-send-email 2.39.2
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Matthew Brost" <matthew.brost@intel.com>
-Date: Mon, 01 May 2023 07:54:54 -0000
-Message-ID: <168292769489.29666.18193338653616675817@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20230501075114.3108352-1-matthew.brost@intel.com>
-In-Reply-To: <20230501075114.3108352-1-matthew.brost@intel.com>
-Subject: [Intel-xe] =?utf-8?q?=E2=9C=97_CI=2EKUnit=3A_failure_for_Upstrea?=
- =?utf-8?q?ming_prep_/_all_of_mbrosts_patches?=
+Subject: [Intel-xe] [PATCH v3 0/4] drm/xe: Rework multi tile device memory
+ initialization
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -39,162 +55,38 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
-Cc: intel-xe@lists.freedesktop.org
+Cc: tejas.upadhyay@intel.com, michael.j.ruhl@intel.com,
+ himal.prasad.ghimiray@intel.com, matthew.auld@intel.com
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-== Series Details ==
+The vram initialization path does not take into account
+each tile's actual memory size.
 
-Series: Upstreaming prep / all of mbrosts patches
-URL   : https://patchwork.freedesktop.org/series/117156/
-State : failure
+While updating this, simplify the rebar algorithm and clarify
+some helper functions.
 
-== Summary ==
+v2: Address review comments
+    - separate tile sizing to the initial patch
+v3: Re-add deleted warning for small bar systems
 
-+ trap cleanup EXIT
-+ /kernel/tools/testing/kunit/kunit.py run --kunitconfig /kernel/drivers/gpu/drm/xe/.kunitconfig
-ERROR:root:In file included from ../drivers/gpu/drm/xe/xe_bo.c:1969:
-../drivers/gpu/drm/xe/tests/xe_bo.c: In function ‘evict_test_run_gt’:
-../drivers/gpu/drm/xe/tests/xe_bo.c:185:18: error: passing argument 2 of ‘xe_vm_lock’ from incompatible pointer type [-Werror=incompatible-pointer-types]
-  185 |   xe_vm_lock(vm, &ww, 0, false);
-      |                  ^~~
-      |                  |
-      |                  struct ww_acquire_ctx *
-In file included from ../drivers/gpu/drm/xe/xe_trace.h:21,
-                 from ../drivers/gpu/drm/xe/xe_bo.c:26:
-../drivers/gpu/drm/xe/xe_vm.h:42:51: note: expected ‘struct drm_exec *’ but argument is of type ‘struct ww_acquire_ctx *’
-   42 | int xe_vm_lock(struct xe_vm *vm, struct drm_exec *exec,
-      |                                  ~~~~~~~~~~~~~~~~~^~~~
-In file included from ../drivers/gpu/drm/xe/xe_bo.c:1969:
-../drivers/gpu/drm/xe/tests/xe_bo.c:188:20: error: passing argument 2 of ‘xe_vm_unlock’ from incompatible pointer type [-Werror=incompatible-pointer-types]
-  188 |   xe_vm_unlock(vm, &ww);
-      |                    ^~~
-      |                    |
-      |                    struct ww_acquire_ctx *
-In file included from ../drivers/gpu/drm/xe/xe_trace.h:21,
-                 from ../drivers/gpu/drm/xe/xe_bo.c:26:
-../drivers/gpu/drm/xe/xe_vm.h:44:54: note: expected ‘struct drm_exec *’ but argument is of type ‘struct ww_acquire_ctx *’
-   44 | void xe_vm_unlock(struct xe_vm *vm, struct drm_exec *exec);
-      |                                     ~~~~~~~~~~~~~~~~~^~~~
-In file included from ../drivers/gpu/drm/xe/xe_bo.c:1969:
-../drivers/gpu/drm/xe/tests/xe_bo.c:201:24: error: passing argument 2 of ‘xe_bo_lock’ from incompatible pointer type [-Werror=incompatible-pointer-types]
-  201 |   xe_bo_lock(external, &ww, 0, false);
-      |                        ^~~
-      |                        |
-      |                        struct ww_acquire_ctx *
-../drivers/gpu/drm/xe/xe_bo.c:1733:51: note: expected ‘struct drm_exec *’ but argument is of type ‘struct ww_acquire_ctx *’
- 1733 | int xe_bo_lock(struct xe_bo *bo, struct drm_exec *exec,
-      |                                  ~~~~~~~~~~~~~~~~~^~~~
-In file included from ../drivers/gpu/drm/xe/xe_bo.c:1969:
-../drivers/gpu/drm/xe/tests/xe_bo.c:203:26: error: passing argument 2 of ‘xe_bo_unlock’ from incompatible pointer type [-Werror=incompatible-pointer-types]
-  203 |   xe_bo_unlock(external, &ww);
-      |                          ^~~
-      |                          |
-      |                          struct ww_acquire_ctx *
-../drivers/gpu/drm/xe/xe_bo.c:1754:54: note: expected ‘struct drm_exec *’ but argument is of type ‘struct ww_acquire_ctx *’
- 1754 | void xe_bo_unlock(struct xe_bo *bo, struct drm_exec *exec)
-      |                                     ~~~~~~~~~~~~~~~~~^~~~
-In file included from ../drivers/gpu/drm/xe/xe_bo.c:1969:
-../drivers/gpu/drm/xe/tests/xe_bo.c:243:19: error: passing argument 2 of ‘xe_vm_lock’ from incompatible pointer type [-Werror=incompatible-pointer-types]
-  243 |    xe_vm_lock(vm, &ww, 0, false);
-      |                   ^~~
-      |                   |
-      |                   struct ww_acquire_ctx *
-In file included from ../drivers/gpu/drm/xe/xe_trace.h:21,
-                 from ../drivers/gpu/drm/xe/xe_bo.c:26:
-../drivers/gpu/drm/xe/xe_vm.h:42:51: note: expected ‘struct drm_exec *’ but argument is of type ‘struct ww_acquire_ctx *’
-   42 | int xe_vm_lock(struct xe_vm *vm, struct drm_exec *exec,
-      |                                  ~~~~~~~~~~~~~~~~~^~~~
-In file included from ../drivers/gpu/drm/xe/xe_bo.c:1969:
-../drivers/gpu/drm/xe/tests/xe_bo.c:245:21: error: passing argument 2 of ‘xe_vm_unlock’ from incompatible pointer type [-Werror=incompatible-pointer-types]
-  245 |    xe_vm_unlock(vm, &ww);
-      |                     ^~~
-      |                     |
-      |                     struct ww_acquire_ctx *
-In file included from ../drivers/gpu/drm/xe/xe_trace.h:21,
-                 from ../drivers/gpu/drm/xe/xe_bo.c:26:
-../drivers/gpu/drm/xe/xe_vm.h:44:54: note: expected ‘struct drm_exec *’ but argument is of type ‘struct ww_acquire_ctx *’
-   44 | void xe_vm_unlock(struct xe_vm *vm, struct drm_exec *exec);
-      |                                     ~~~~~~~~~~~~~~~~~^~~~
-In file included from ../drivers/gpu/drm/xe/xe_bo.c:1969:
-../drivers/gpu/drm/xe/tests/xe_bo.c:252:25: error: passing argument 2 of ‘xe_bo_lock’ from incompatible pointer type [-Werror=incompatible-pointer-types]
-  252 |    xe_bo_lock(external, &ww, 0, false);
-      |                         ^~~
-      |                         |
-      |                         struct ww_acquire_ctx *
-../drivers/gpu/drm/xe/xe_bo.c:1733:51: note: expected ‘struct drm_exec *’ but argument is of type ‘struct ww_acquire_ctx *’
- 1733 | int xe_bo_lock(struct xe_bo *bo, struct drm_exec *exec,
-      |                                  ~~~~~~~~~~~~~~~~~^~~~
-In file included from ../drivers/gpu/drm/xe/xe_bo.c:1969:
-../drivers/gpu/drm/xe/tests/xe_bo.c:254:27: error: passing argument 2 of ‘xe_bo_unlock’ from incompatible pointer type [-Werror=incompatible-pointer-types]
-  254 |    xe_bo_unlock(external, &ww);
-      |                           ^~~
-      |                           |
-      |                           struct ww_acquire_ctx *
-../drivers/gpu/drm/xe/xe_bo.c:1754:54: note: expected ‘struct drm_exec *’ but argument is of type ‘struct ww_acquire_ctx *’
- 1754 | void xe_bo_unlock(struct xe_bo *bo, struct drm_exec *exec)
-      |                                     ~~~~~~~~~~~~~~~~~^~~~
-In file included from ../drivers/gpu/drm/xe/xe_bo.c:1969:
-../drivers/gpu/drm/xe/tests/xe_bo.c:262:24: error: passing argument 2 of ‘xe_bo_lock’ from incompatible pointer type [-Werror=incompatible-pointer-types]
-  262 |   xe_bo_lock(external, &ww, 0, false);
-      |                        ^~~
-      |                        |
-      |                        struct ww_acquire_ctx *
-../drivers/gpu/drm/xe/xe_bo.c:1733:51: note: expected ‘struct drm_exec *’ but argument is of type ‘struct ww_acquire_ctx *’
- 1733 | int xe_bo_lock(struct xe_bo *bo, struct drm_exec *exec,
-      |                                  ~~~~~~~~~~~~~~~~~^~~~
-In file included from ../drivers/gpu/drm/xe/xe_bo.c:1969:
-../drivers/gpu/drm/xe/tests/xe_bo.c:264:26: error: passing argument 2 of ‘xe_bo_unlock’ from incompatible pointer type [-Werror=incompatible-pointer-types]
-  264 |   xe_bo_unlock(external, &ww);
-      |                          ^~~
-      |                          |
-      |                          struct ww_acquire_ctx *
-../drivers/gpu/drm/xe/xe_bo.c:1754:54: note: expected ‘struct drm_exec *’ but argument is of type ‘struct ww_acquire_ctx *’
- 1754 | void xe_bo_unlock(struct xe_bo *bo, struct drm_exec *exec)
-      |                                     ~~~~~~~~~~~~~~~~~^~~~
-In file included from ../drivers/gpu/drm/xe/xe_bo.c:1969:
-../drivers/gpu/drm/xe/tests/xe_bo.c:271:24: error: passing argument 2 of ‘xe_bo_lock’ from incompatible pointer type [-Werror=incompatible-pointer-types]
-  271 |   xe_bo_lock(external, &ww, 0, false);
-      |                        ^~~
-      |                        |
-      |                        struct ww_acquire_ctx *
-../drivers/gpu/drm/xe/xe_bo.c:1733:51: note: expected ‘struct drm_exec *’ but argument is of type ‘struct ww_acquire_ctx *’
- 1733 | int xe_bo_lock(struct xe_bo *bo, struct drm_exec *exec,
-      |                                  ~~~~~~~~~~~~~~~~~^~~~
-In file included from ../drivers/gpu/drm/xe/xe_bo.c:1969:
-../drivers/gpu/drm/xe/tests/xe_bo.c:273:26: error: passing argument 2 of ‘xe_bo_unlock’ from incompatible pointer type [-Werror=incompatible-pointer-types]
-  273 |   xe_bo_unlock(external, &ww);
-      |                          ^~~
-      |                          |
-      |                          struct ww_acquire_ctx *
-../drivers/gpu/drm/xe/xe_bo.c:1754:54: note: expected ‘struct drm_exec *’ but argument is of type ‘struct ww_acquire_ctx *’
- 1754 | void xe_bo_unlock(struct xe_bo *bo, struct drm_exec *exec)
-      |                                     ~~~~~~~~~~~~~~~~~^~~~
-cc1: some warnings being treated as errors
-make[6]: *** [../scripts/Makefile.build:252: drivers/gpu/drm/xe/xe_bo.o] Error 1
-make[6]: *** Waiting for unfinished jobs....
-make[5]: *** [../scripts/Makefile.build:494: drivers/gpu/drm/xe] Error 2
-make[5]: *** Waiting for unfinished jobs....
-make[4]: *** [../scripts/Makefile.build:494: drivers/gpu/drm] Error 2
-make[3]: *** [../scripts/Makefile.build:494: drivers/gpu] Error 2
-make[3]: *** Waiting for unfinished jobs....
-make[2]: *** [../scripts/Makefile.build:494: drivers] Error 2
-make[2]: *** Waiting for unfinished jobs....
-make[1]: *** [/kernel/Makefile:2025: .] Error 2
-make: *** [Makefile:226: __sub-make] Error 2
+Michael J. Ruhl (4):
+  drm/xe: Rework size helper to be a little more correct
+  drm/xe: Simplify rebar sizing
+  drm/xe: Size GT device memory correctly
+  drm/xe: Rename GPU offset helper to reflect true usage
 
-[07:54:32] Configuring KUnit Kernel ...
-Generating .config ...
-Populating config with:
-$ make ARCH=um O=.kunit olddefconfig
-[07:54:36] Building KUnit Kernel ...
-Populating config with:
-$ make ARCH=um O=.kunit olddefconfig
-Building with:
-$ make ARCH=um O=.kunit --jobs=48
-+ cleanup
-++ stat -c %u:%g /kernel
-+ chown -R 1003:1003 /kernel
+ drivers/gpu/drm/xe/regs/xe_gt_regs.h   |   2 +-
+ drivers/gpu/drm/xe/xe_bo.c             |   8 +-
+ drivers/gpu/drm/xe/xe_bo.h             |   2 +-
+ drivers/gpu/drm/xe/xe_device_types.h   |  18 +-
+ drivers/gpu/drm/xe/xe_gt_types.h       |  14 +-
+ drivers/gpu/drm/xe/xe_migrate.c        |   6 +-
+ drivers/gpu/drm/xe/xe_mmio.c           | 278 ++++++++++++++-----------
+ drivers/gpu/drm/xe/xe_mmio.h           |   4 +-
+ drivers/gpu/drm/xe/xe_ttm_stolen_mgr.c |  30 +--
+ 9 files changed, 205 insertions(+), 157 deletions(-)
 
+-- 
+2.39.2
 
