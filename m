@@ -4,47 +4,48 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 674E3C7EE32
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3B394C7EE2F
 	for <intel-xe@archiver.kernel.org>; Mon,  1 May 2023 07:51:17 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0233510E38E;
-	Mon,  1 May 2023 07:51:17 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5900410E371;
+	Mon,  1 May 2023 07:51:16 +0000 (UTC)
 Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
- by gabe.freedesktop.org (Postfix) with ESMTPS id BFCB610E343
- for <intel-xe@lists.freedesktop.org>; Mon,  1 May 2023 07:51:12 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9DAD510E3B7
+ for <intel-xe@lists.freedesktop.org>; Mon,  1 May 2023 07:51:13 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1682927472; x=1714463472;
+ t=1682927473; x=1714463473;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=7HsnEKWLJVwq9bWb135vVFr9tcUTatvuSTfhCs52aJY=;
- b=DzVWBiI72UGES0Goo9L2kwnBrYd8KVfMPJGQh9Itt8YXD8DKj33xFoQV
- DYqQOLIfgIaNLvK3QMp2HZZLMZu+HLkDx+Rya8h8gmpELJkzTJRY0IKHN
- j+RTZtb+YGqzTrAxHoMkdO5EE67P0t28PoDTOxSKsKqcsjTPeW9ruQG+U
- e/DasYHLb8J2Ros6G2htYlegS3XQwHJKTSSl9wohMS9UDk2/mM91OsAAp
- p1Rz5ieuoYKc4mbNXVIr8hviRiy/z3ap9jLyB0/nQGoPO+zpXIjYEEdPs
- yQ8GaUoD22qRRSPQ2aMcNpu91SBby1PzrhEOu+bXe7NKyTqHSKyZ6eJqP g==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10696"; a="346910710"
-X-IronPort-AV: E=Sophos;i="5.99,239,1677571200"; d="scan'208";a="346910710"
+ bh=Bz7NEJcaevqsGiRBQirz2evQva4lBilvVWmISEee+vw=;
+ b=eD74LjsrURvlcVV+jG4dyNXBUpFtc5PjIdztTS1zHUsjsA2WGPeTW4oS
+ /9XQxzFoDi5WNPcnasqwur17LB6By+aB20jALJWa2ba9rh/gwbRb6isYB
+ PXUVQzI9Jn9aXTKQkaFWt8QDj4QOnexB/VjlbdFVSQV9Lpk4gmdtQJz4p
+ RmC3Yd1PeqMrGjGN6MorLdIIiP1rRDW7OzBGrdMuCHjQgcDsJrVUJTB9/
+ VJY/HYM29euiRafd7Xsica2jkucNZWyCN4OXUDjdYVb3ivbq0qRe8SYYV
+ He/LL4r1VjTv3Pvjm12ObPQQ7iIZpgvKG2uoIFiHn69NOd4WWi+Y+awLh g==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10696"; a="346910731"
+X-IronPort-AV: E=Sophos;i="5.99,239,1677571200"; d="scan'208";a="346910731"
 Received: from orsmga005.jf.intel.com ([10.7.209.41])
  by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 01 May 2023 00:51:11 -0700
+ 01 May 2023 00:51:12 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10696"; a="870095206"
-X-IronPort-AV: E=Sophos;i="5.99,239,1677571200"; d="scan'208";a="870095206"
+X-IronPort-AV: E=McAfee;i="6600,9927,10696"; a="870095253"
+X-IronPort-AV: E=Sophos;i="5.99,239,1677571200"; d="scan'208";a="870095253"
 Received: from lstrano-desk.jf.intel.com ([10.24.89.184])
  by orsmga005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 01 May 2023 00:51:10 -0700
+ 01 May 2023 00:51:11 -0700
 From: Matthew Brost <matthew.brost@intel.com>
 To: <intel-xe@lists.freedesktop.org>
-Date: Mon,  1 May 2023 00:50:52 -0700
-Message-Id: <20230501075114.3108352-9-matthew.brost@intel.com>
+Date: Mon,  1 May 2023 00:51:09 -0700
+Message-Id: <20230501075114.3108352-26-matthew.brost@intel.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20230501075114.3108352-1-matthew.brost@intel.com>
 References: <20230501075114.3108352-1-matthew.brost@intel.com>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-xe] [PATCH 08/30] drm/xe: VM LRU bulk move
+Subject: [Intel-xe] [PATCH 25/30] drm: execution context for GEM buffers v3
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -56,151 +57,463 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Cc: =?UTF-8?q?Christian=20K=C3=B6nig?= <ckoenig.leichtzumerken@gmail.com>,
+ =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Use the TTM LRU bulk move for BOs tied to a VM. Update the bulk moves
-LRU position on every exec.
+From: Christian König <ckoenig.leichtzumerken@gmail.com>
 
-Signed-off-by: Matthew Brost <matthew.brost@intel.com>
+This adds the infrastructure for an execution context for GEM buffers
+which is similar to the existinc TTMs execbuf util and intended to replace
+it in the long term.
+
+The basic functionality is that we abstracts the necessary loop to lock
+many different GEM buffers with automated deadlock and duplicate handling.
+
+v2: drop xarray and use dynamic resized array instead, the locking
+    overhead is unecessary and measureable.
+v3: drop duplicate tracking, radeon is really the only one needing that.
+
+Signed-off-by: Christian König <christian.koenig@amd.com>
 ---
- drivers/gpu/drm/xe/xe_bo.c       | 32 ++++++++++++++++++++++++++++----
- drivers/gpu/drm/xe/xe_bo.h       |  4 ++--
- drivers/gpu/drm/xe/xe_dma_buf.c  |  2 +-
- drivers/gpu/drm/xe/xe_exec.c     |  6 ++++++
- drivers/gpu/drm/xe/xe_vm_types.h |  3 +++
- 5 files changed, 40 insertions(+), 7 deletions(-)
+ Documentation/gpu/drm-mm.rst |  12 ++
+ drivers/gpu/drm/Kconfig      |   6 +
+ drivers/gpu/drm/Makefile     |   2 +
+ drivers/gpu/drm/drm_exec.c   | 248 +++++++++++++++++++++++++++++++++++
+ include/drm/drm_exec.h       | 115 ++++++++++++++++
+ 5 files changed, 383 insertions(+)
+ create mode 100644 drivers/gpu/drm/drm_exec.c
+ create mode 100644 include/drm/drm_exec.h
 
-diff --git a/drivers/gpu/drm/xe/xe_bo.c b/drivers/gpu/drm/xe/xe_bo.c
-index 3ab404e33fae..da99ee53e7d7 100644
---- a/drivers/gpu/drm/xe/xe_bo.c
-+++ b/drivers/gpu/drm/xe/xe_bo.c
-@@ -985,6 +985,23 @@ static void xe_gem_object_free(struct drm_gem_object *obj)
- 	ttm_bo_put(container_of(obj, struct ttm_buffer_object, base));
- }
+diff --git a/Documentation/gpu/drm-mm.rst b/Documentation/gpu/drm-mm.rst
+index fe40ee686f6e..c9f120cfe730 100644
+--- a/Documentation/gpu/drm-mm.rst
++++ b/Documentation/gpu/drm-mm.rst
+@@ -524,6 +524,18 @@ DRM Sync Objects
+ .. kernel-doc:: drivers/gpu/drm/drm_syncobj.c
+    :export:
  
-+static void xe_gem_object_close(struct drm_gem_object *obj,
-+				struct drm_file *file_priv)
++DRM Execution context
++=====================
++
++.. kernel-doc:: drivers/gpu/drm/drm_exec.c
++   :doc: Overview
++
++.. kernel-doc:: include/drm/drm_exec.h
++   :internal:
++
++.. kernel-doc:: drivers/gpu/drm/drm_exec.c
++   :export:
++
+ GPU Scheduler
+ =============
+ 
+diff --git a/drivers/gpu/drm/Kconfig b/drivers/gpu/drm/Kconfig
+index e928284b4357..39c9d079d52a 100644
+--- a/drivers/gpu/drm/Kconfig
++++ b/drivers/gpu/drm/Kconfig
+@@ -201,6 +201,12 @@ config DRM_TTM
+ 	  GPU memory types. Will be enabled automatically if a device driver
+ 	  uses it.
+ 
++config DRM_EXEC
++	tristate
++	depends on DRM
++	help
++	  Execution context for command submissions
++
+ config DRM_BUDDY
+ 	tristate
+ 	depends on DRM
+diff --git a/drivers/gpu/drm/Makefile b/drivers/gpu/drm/Makefile
+index ad6267273503..ab728632d8a2 100644
+--- a/drivers/gpu/drm/Makefile
++++ b/drivers/gpu/drm/Makefile
+@@ -80,6 +80,8 @@ obj-$(CONFIG_DRM_PANEL_ORIENTATION_QUIRKS) += drm_panel_orientation_quirks.o
+ #
+ # Memory-management helpers
+ #
++#
++obj-$(CONFIG_DRM_EXEC) += drm_exec.o
+ 
+ obj-$(CONFIG_DRM_BUDDY) += drm_buddy.o
+ 
+diff --git a/drivers/gpu/drm/drm_exec.c b/drivers/gpu/drm/drm_exec.c
+new file mode 100644
+index 000000000000..f645d22a0863
+--- /dev/null
++++ b/drivers/gpu/drm/drm_exec.c
+@@ -0,0 +1,248 @@
++/* SPDX-License-Identifier: GPL-2.0 OR MIT */
++
++#include <drm/drm_exec.h>
++#include <drm/drm_gem.h>
++#include <linux/dma-resv.h>
++
++/**
++ * DOC: Overview
++ *
++ * This component mainly abstracts the retry loop necessary for locking
++ * multiple GEM objects while preparing hardware operations (e.g. command
++ * submissions, page table updates etc..).
++ *
++ * If a contention is detected while locking a GEM object the cleanup procedure
++ * unlocks all previously locked GEM objects and locks the contended one first
++ * before locking any further objects.
++ *
++ * After an object is locked fences slots can optionally be reserved on the
++ * dma_resv object inside the GEM object.
++ *
++ * A typical usage pattern should look like this::
++ *
++ *	struct drm_gem_object *obj;
++ *	struct drm_exec exec;
++ *	unsigned long index;
++ *	int ret;
++ *
++ *	drm_exec_init(&exec, true);
++ *	drm_exec_while_not_all_locked(&exec) {
++ *		ret = drm_exec_prepare_obj(&exec, boA, 1);
++ *		drm_exec_continue_on_contention(&exec);
++ *		if (ret)
++ *			goto error;
++ *
++ *		ret = drm_exec_lock(&exec, boB, 1);
++ *		drm_exec_continue_on_contention(&exec);
++ *		if (ret)
++ *			goto error;
++ *	}
++ *
++ *	drm_exec_for_each_locked_object(&exec, index, obj) {
++ *		dma_resv_add_fence(obj->resv, fence, DMA_RESV_USAGE_READ);
++ *		...
++ *	}
++ *	drm_exec_fini(&exec);
++ *
++ * See struct dma_exec for more details.
++ */
++
++/* Dummy value used to initially enter the retry loop */
++#define DRM_EXEC_DUMMY (void*)~0
++
++/* Unlock all objects and drop references */
++static void drm_exec_unlock_all(struct drm_exec *exec)
 +{
-+	struct xe_bo *bo = gem_to_xe_bo(obj);
++	struct drm_gem_object *obj;
++	unsigned long index;
 +
-+	if (bo->vm && !xe_vm_no_dma_fences(bo->vm)) {
-+		struct ww_acquire_ctx ww;
++	drm_exec_for_each_locked_object(exec, index, obj) {
++		dma_resv_unlock(obj->resv);
++		drm_gem_object_put(obj);
++	}
 +
-+		XE_BUG_ON(!xe_bo_is_user(bo));
-+
-+		xe_bo_lock(bo, &ww, 0, false);
-+		ttm_bo_set_bulk_move(&bo->ttm, NULL);
-+		xe_bo_unlock(bo, &ww);
++	if (exec->prelocked) {
++		drm_gem_object_put(exec->prelocked);
++		exec->prelocked = NULL;
 +	}
 +}
 +
++/**
++ * drm_exec_init - initialize a drm_exec object
++ * @exec: the drm_exec object to initialize
++ * @interruptible: if locks should be acquired interruptible
++ *
++ * Initialize the object and make sure that we can track locked and duplicate
++ * objects.
++ */
++void drm_exec_init(struct drm_exec *exec, bool interruptible)
++{
++	exec->interruptible = interruptible;
++	exec->objects = kmalloc(PAGE_SIZE, GFP_KERNEL);
 +
- static bool should_migrate_to_system(struct xe_bo *bo)
- {
- 	struct xe_device *xe = xe_bo_device(bo);
-@@ -1040,6 +1057,7 @@ static const struct vm_operations_struct xe_gem_vm_ops = {
- 
- static const struct drm_gem_object_funcs xe_gem_object_funcs = {
- 	.free = xe_gem_object_free,
-+	.close = xe_gem_object_close,
- 	.mmap = drm_gem_ttm_mmap,
- 	.export = xe_gem_prime_export,
- 	.vm_ops = &xe_gem_vm_ops,
-@@ -1081,8 +1099,8 @@ void xe_bo_free(struct xe_bo *bo)
- 
- struct xe_bo *__xe_bo_create_locked(struct xe_device *xe, struct xe_bo *bo,
- 				    struct xe_gt *gt, struct dma_resv *resv,
--				    size_t size, enum ttm_bo_type type,
--				    u32 flags)
-+				    struct ttm_lru_bulk_move *bulk, size_t size,
-+				    enum ttm_bo_type type, u32 flags)
- {
- 	struct ttm_operation_ctx ctx = {
- 		.interruptible = true,
-@@ -1149,7 +1167,10 @@ struct xe_bo *__xe_bo_create_locked(struct xe_device *xe, struct xe_bo *bo,
- 		return ERR_PTR(err);
- 
- 	bo->created = true;
--	ttm_bo_move_to_lru_tail_unlocked(&bo->ttm);
-+	if (bulk)
-+		ttm_bo_set_bulk_move(&bo->ttm, bulk);
-+	else
-+		ttm_bo_move_to_lru_tail_unlocked(&bo->ttm);
- 
- 	return bo;
- }
-@@ -1219,7 +1240,10 @@ xe_bo_create_locked_range(struct xe_device *xe,
- 		}
- 	}
- 
--	bo = __xe_bo_create_locked(xe, bo, gt, vm ? &vm->resv : NULL, size,
-+	bo = __xe_bo_create_locked(xe, bo, gt, vm ? &vm->resv : NULL,
-+				   vm && !xe_vm_no_dma_fences(vm) &&
-+				   flags & XE_BO_CREATE_USER_BIT ?
-+				   &vm->lru_bulk_move : NULL, size,
- 				   type, flags);
- 	if (IS_ERR(bo))
- 		return bo;
-diff --git a/drivers/gpu/drm/xe/xe_bo.h b/drivers/gpu/drm/xe/xe_bo.h
-index 8354d05ccdf3..25457b3c757b 100644
---- a/drivers/gpu/drm/xe/xe_bo.h
-+++ b/drivers/gpu/drm/xe/xe_bo.h
-@@ -81,8 +81,8 @@ void xe_bo_free(struct xe_bo *bo);
- 
- struct xe_bo *__xe_bo_create_locked(struct xe_device *xe, struct xe_bo *bo,
- 				    struct xe_gt *gt, struct dma_resv *resv,
--				    size_t size, enum ttm_bo_type type,
--				    u32 flags);
-+				    struct ttm_lru_bulk_move *bulk, size_t size,
-+				    enum ttm_bo_type type, u32 flags);
- struct xe_bo *
- xe_bo_create_locked_range(struct xe_device *xe,
- 			  struct xe_gt *gt, struct xe_vm *vm,
-diff --git a/drivers/gpu/drm/xe/xe_dma_buf.c b/drivers/gpu/drm/xe/xe_dma_buf.c
-index 9b252cc782b7..975dee1f770f 100644
---- a/drivers/gpu/drm/xe/xe_dma_buf.c
-+++ b/drivers/gpu/drm/xe/xe_dma_buf.c
-@@ -199,7 +199,7 @@ xe_dma_buf_init_obj(struct drm_device *dev, struct xe_bo *storage,
- 	int ret;
- 
- 	dma_resv_lock(resv, NULL);
--	bo = __xe_bo_create_locked(xe, storage, NULL, resv, dma_buf->size,
-+	bo = __xe_bo_create_locked(xe, storage, NULL, resv, NULL, dma_buf->size,
- 				   ttm_bo_type_sg, XE_BO_CREATE_SYSTEM_BIT);
- 	if (IS_ERR(bo)) {
- 		ret = PTR_ERR(bo);
-diff --git a/drivers/gpu/drm/xe/xe_exec.c b/drivers/gpu/drm/xe/xe_exec.c
-index 44ea9bcd0066..21a9c2fddf86 100644
---- a/drivers/gpu/drm/xe/xe_exec.c
-+++ b/drivers/gpu/drm/xe/xe_exec.c
-@@ -374,6 +374,12 @@ int xe_exec_ioctl(struct drm_device *dev, void *data, struct drm_file *file)
- 	xe_sched_job_push(job);
- 	xe_vm_reactivate_rebind(vm);
- 
-+	if (!err && !xe_vm_no_dma_fences(vm)) {
-+		spin_lock(&xe->ttm.lru_lock);
-+		ttm_lru_bulk_move_tail(&vm->lru_bulk_move);
-+		spin_unlock(&xe->ttm.lru_lock);
++	/* If allocation here fails, just delay that till the first use */
++	exec->max_objects = exec->objects ? PAGE_SIZE / sizeof(void *) : 0;
++	exec->num_objects = 0;
++	exec->contended = DRM_EXEC_DUMMY;
++	exec->prelocked = NULL;
++}
++EXPORT_SYMBOL(drm_exec_init);
++
++/**
++ * drm_exec_fini - finalize a drm_exec object
++ * @exec: the drm_exec object to finilize
++ *
++ * Unlock all locked objects, drop the references to objects and free all memory
++ * used for tracking the state.
++ */
++void drm_exec_fini(struct drm_exec *exec)
++{
++	drm_exec_unlock_all(exec);
++	kvfree(exec->objects);
++	if (exec->contended != DRM_EXEC_DUMMY) {
++		drm_gem_object_put(exec->contended);
++		ww_acquire_fini(&exec->ticket);
++	}
++}
++EXPORT_SYMBOL(drm_exec_fini);
++
++/**
++ * drm_exec_cleanup - cleanup when contention is detected
++ * @exec: the drm_exec object to cleanup
++ *
++ * Cleanup the current state and return true if we should stay inside the retry
++ * loop, false if there wasn't any contention detected and we can keep the
++ * objects locked.
++ */
++bool drm_exec_cleanup(struct drm_exec *exec)
++{
++	if (likely(!exec->contended)) {
++		ww_acquire_done(&exec->ticket);
++		return false;
 +	}
 +
- err_repin:
- 	if (!xe_vm_no_dma_fences(vm))
- 		up_read(&vm->userptr.notifier_lock);
-diff --git a/drivers/gpu/drm/xe/xe_vm_types.h b/drivers/gpu/drm/xe/xe_vm_types.h
-index fada7896867f..d3e99f22510d 100644
---- a/drivers/gpu/drm/xe/xe_vm_types.h
-+++ b/drivers/gpu/drm/xe/xe_vm_types.h
-@@ -164,6 +164,9 @@ struct xe_vm {
- 	/** Protects @rebind_list and the page-table structures */
- 	struct dma_resv resv;
- 
-+	/** @lru_bulk_move: Bulk LRU move list for this VM's BOs */
-+	struct ttm_lru_bulk_move lru_bulk_move;
++	if (likely(exec->contended == DRM_EXEC_DUMMY)) {
++		exec->contended = NULL;
++		ww_acquire_init(&exec->ticket, &reservation_ww_class);
++		return true;
++	}
 +
- 	u64 size;
- 	struct rb_root vmas;
- 
++	drm_exec_unlock_all(exec);
++	exec->num_objects = 0;
++	return true;
++}
++EXPORT_SYMBOL(drm_exec_cleanup);
++
++/* Track the locked object in the xa and reserve fences */
++static int drm_exec_obj_locked(struct drm_exec *exec,
++			       struct drm_gem_object *obj)
++{
++	if (unlikely(exec->num_objects == exec->max_objects)) {
++		size_t size = exec->max_objects * sizeof(void *);
++		void *tmp;
++
++		tmp = kvrealloc(exec->objects, size, size + PAGE_SIZE,
++				GFP_KERNEL);
++		if (!tmp)
++			return -ENOMEM;
++
++		exec->objects = tmp;
++		exec->max_objects += PAGE_SIZE / sizeof(void *);
++	}
++	drm_gem_object_get(obj);
++	exec->objects[exec->num_objects++] = obj;
++
++	return 0;
++}
++
++/* Make sure the contended object is locked first */
++static int drm_exec_lock_contended(struct drm_exec *exec)
++{
++	struct drm_gem_object *obj = exec->contended;
++	int ret;
++
++	if (likely(!obj))
++		return 0;
++
++	if (exec->interruptible) {
++		ret = dma_resv_lock_slow_interruptible(obj->resv,
++						       &exec->ticket);
++		if (unlikely(ret))
++			goto error_dropref;
++	} else {
++		dma_resv_lock_slow(obj->resv, &exec->ticket);
++	}
++
++	ret = drm_exec_obj_locked(exec, obj);
++	if (unlikely(ret)) {
++		dma_resv_unlock(obj->resv);
++		goto error_dropref;
++	}
++
++	swap(exec->prelocked, obj);
++
++error_dropref:
++	/* Always cleanup the contention so that error handling can kick in */
++	drm_gem_object_put(obj);
++	exec->contended = NULL;
++	return ret;
++}
++
++/**
++ * drm_exec_prepare_obj - prepare a GEM object for use
++ * @exec: the drm_exec object with the state
++ * @obj: the GEM object to prepare
++ * @num_fences: how many fences to reserve
++ *
++ * Prepare a GEM object for use by locking it and reserving fence slots. All
++ * succesfully locked objects are put into the locked container. Duplicates
++ * detected as well and automatically moved into the duplicates container.
++ *
++ * Returns: -EDEADLK if a contention is detected, -ENOMEM when memory
++ * allocation failed and zero for success.
++ */
++int drm_exec_prepare_obj(struct drm_exec *exec, struct drm_gem_object *obj,
++			 unsigned int num_fences)
++{
++	int ret;
++
++	ret = drm_exec_lock_contended(exec);
++	if (unlikely(ret))
++		return ret;
++
++	if (exec->prelocked == obj) {
++		drm_gem_object_put(exec->prelocked);
++		exec->prelocked = NULL;
++
++		return dma_resv_reserve_fences(obj->resv, num_fences);
++	}
++
++	if (exec->interruptible)
++		ret = dma_resv_lock_interruptible(obj->resv, &exec->ticket);
++	else
++		ret = dma_resv_lock(obj->resv, &exec->ticket);
++
++	if (unlikely(ret == -EDEADLK)) {
++		drm_gem_object_get(obj);
++		exec->contended = obj;
++		return -EDEADLK;
++	}
++
++	if (unlikely(ret))
++		return ret;
++
++	ret = drm_exec_obj_locked(exec, obj);
++	if (ret)
++		goto error_unlock;
++
++	/* Keep locked when reserving fences fails */
++	return dma_resv_reserve_fences(obj->resv, num_fences);
++
++error_unlock:
++	dma_resv_unlock(obj->resv);
++	return ret;
++}
++EXPORT_SYMBOL(drm_exec_prepare_obj);
++
++MODULE_DESCRIPTION("DRM execution context");
++MODULE_LICENSE("Dual MIT/GPL");
+diff --git a/include/drm/drm_exec.h b/include/drm/drm_exec.h
+new file mode 100644
+index 000000000000..65e518c01db3
+--- /dev/null
++++ b/include/drm/drm_exec.h
+@@ -0,0 +1,115 @@
++/* SPDX-License-Identifier: GPL-2.0 OR MIT */
++
++#ifndef __DRM_EXEC_H__
++#define __DRM_EXEC_H__
++
++#include <linux/ww_mutex.h>
++
++struct drm_gem_object;
++
++/**
++ * struct drm_exec - Execution context
++ */
++struct drm_exec {
++	/**
++	 * @interruptible: If locks should be taken interruptible
++	 */
++	bool			interruptible;
++
++	/**
++	 * @ticket: WW ticket used for acquiring locks
++	 */
++	struct ww_acquire_ctx	ticket;
++
++	/**
++	 * @num_objects: number of objects locked
++	 */
++	unsigned int		num_objects;
++
++	/**
++	 * @max_objects: maximum objects in array
++	 */
++	unsigned int		max_objects;
++
++	/**
++	 * @objects: array of the locked objects
++	 */
++	struct drm_gem_object	**objects;
++
++	/**
++	 * @contended: contended GEM object we backet of for
++	 */
++	struct drm_gem_object	*contended;
++
++	/**
++	 * @prelocked: already locked GEM object because of contention
++	 */
++	struct drm_gem_object *prelocked;
++};
++
++/**
++ * drm_exec_for_each_locked_object - iterate over all the locked objects
++ * @exec: drm_exec object
++ * @index: unsigned long index for the iteration
++ * @obj: the current GEM object
++ *
++ * Iterate over all the locked GEM objects inside the drm_exec object.
++ */
++#define drm_exec_for_each_locked_object(exec, index, obj)	\
++	for (index = 0, obj = (exec)->objects[0];		\
++	     index < (exec)->num_objects;			\
++	     ++index, obj = (exec)->objects[index])
++
++/**
++ * drm_exec_while_not_all_locked - loop until all GEM objects are prepared
++ * @exec: drm_exec object
++ *
++ * Core functionality of the drm_exec object. Loops until all GEM objects are
++ * prepared and no more contention exists.
++ *
++ * At the beginning of the loop it is guaranteed that no GEM object is locked.
++ */
++#define drm_exec_while_not_all_locked(exec)	\
++	while (drm_exec_cleanup(exec))
++
++/**
++ * drm_exec_continue_on_contention - continue the loop when we need to cleanup
++ * @exec: drm_exec object
++ *
++ * Control flow helper to continue when a contention was detected and we need to
++ * clean up and re-start the loop to prepare all GEM objects.
++ */
++#define drm_exec_continue_on_contention(exec)		\
++	if (unlikely(drm_exec_is_contended(exec)))	\
++		continue
++
++/**
++ * drm_exec_break_on_contention - break a subordinal loop on contention
++ * @exec: drm_exec object
++ *
++ * Control flow helper to break a subordinal loop when a contention was detected
++ * and we need to clean up and re-start the loop to prepare all GEM objects.
++ */
++#define drm_exec_break_on_contention(exec)		\
++	if (unlikely(drm_exec_is_contended(exec)))	\
++		break
++
++/**
++ * drm_exec_is_contended - check for contention
++ * @exec: drm_exec object
++ *
++ * Returns true if the drm_exec object has run into some contention while
++ * locking a GEM object and needs to clean up.
++ */
++static inline bool drm_exec_is_contended(struct drm_exec *exec)
++{
++	return !!exec->contended;
++}
++
++void drm_exec_init(struct drm_exec *exec, bool interruptible);
++void drm_exec_fini(struct drm_exec *exec);
++bool drm_exec_cleanup(struct drm_exec *exec);
++int drm_exec_prepare_obj(struct drm_exec *exec, struct drm_gem_object *obj,
++			 unsigned int num_fences);
++
++#endif
 -- 
 2.34.1
 
