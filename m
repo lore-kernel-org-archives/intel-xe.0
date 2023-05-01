@@ -4,47 +4,47 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8DF81C7EE33
-	for <intel-xe@archiver.kernel.org>; Mon,  1 May 2023 07:51:17 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1D33FC7EE45
+	for <intel-xe@archiver.kernel.org>; Mon,  1 May 2023 07:51:18 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2938610E3B0;
+	by gabe.freedesktop.org (Postfix) with ESMTP id E6B8510E3C9;
 	Mon,  1 May 2023 07:51:17 +0000 (UTC)
 Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 720ED10E379
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2385610E363
  for <intel-xe@lists.freedesktop.org>; Mon,  1 May 2023 07:51:13 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
  t=1682927473; x=1714463473;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=IsLWGU2bZnlMfCvXmmRyjgM+Ey9c2V800386QEuXPK8=;
- b=D8C6SgaFW9rfxiia07lU45cx53TrumCwmWjk0aTyULCaZWUunJf1Q1nx
- KWPstUTLzIU4cpjjEUVZQxGQaCMAnJ2Ek2FM/5FzG36Mjc8A0QdASnrlN
- makLaGggeTn3AJ5eCf4fFLc1GbfGwa933o0lM4TpC71F3v2pCQcO1LLWd
- fo5V9pFSOXYTo2rzi7aWe+DdA8Y2lnh1B2M7z9D/BEHkkaSk7AzVmS+jA
- 7aXxFGalhoCqR4k5oxB/OPtdGCWblM+IwZ96Rb/biPKSho3RiGFhyWWhW
- P7zqH4L2Xt56CHmIxG6HK+37Gu+A3GdHPn3sKdLy2ZbSytBwy3FuJBM2f Q==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10696"; a="346910726"
-X-IronPort-AV: E=Sophos;i="5.99,239,1677571200"; d="scan'208";a="346910726"
+ bh=aY/uu5mYmmcvSeTMw/oBdB7UZoL45qbGM9nYWxNT/Fs=;
+ b=Kf/xxo61LdvHAgzcflgsl8A4D7BLxBbUTPgsLxQs+Se5qPGSAG2Gratv
+ 0QFhI7DVBy2u8MWKbX/RwqUGWiOOEC3n/wV1Qgm6V9E4jq37kJT2LkCiH
+ mqrpG0T7YVNdP3CkwFn+z6dwBcVH1tF8VTpkgAbiuLTvveT9Rg9NfmgJU
+ jNqzi3DBhfLOZzWi6BcmjRfwpFiOOir2CyJ/X80aRgDpBjlvvyixN8NcF
+ mI32yYHBzf1c9CytA4aHFJQA9IrUguQn9kXy8qBW2rmLrowwK+Ef8dU2x
+ rjYi/H7abkCOK0xYIv8k+mlIpsZip8Dqu/WBUUEbjwck/WE1GlxqHSCYf A==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10696"; a="346910720"
+X-IronPort-AV: E=Sophos;i="5.99,239,1677571200"; d="scan'208";a="346910720"
 Received: from orsmga005.jf.intel.com ([10.7.209.41])
  by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  01 May 2023 00:51:12 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10696"; a="870095240"
-X-IronPort-AV: E=Sophos;i="5.99,239,1677571200"; d="scan'208";a="870095240"
+X-IronPort-AV: E=McAfee;i="6600,9927,10696"; a="870095222"
+X-IronPort-AV: E=Sophos;i="5.99,239,1677571200"; d="scan'208";a="870095222"
 Received: from lstrano-desk.jf.intel.com ([10.24.89.184])
  by orsmga005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 01 May 2023 00:51:11 -0700
+ 01 May 2023 00:51:10 -0700
 From: Matthew Brost <matthew.brost@intel.com>
 To: <intel-xe@lists.freedesktop.org>
-Date: Mon,  1 May 2023 00:51:04 -0700
-Message-Id: <20230501075114.3108352-21-matthew.brost@intel.com>
+Date: Mon,  1 May 2023 00:50:58 -0700
+Message-Id: <20230501075114.3108352-15-matthew.brost@intel.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20230501075114.3108352-1-matthew.brost@intel.com>
 References: <20230501075114.3108352-1-matthew.brost@intel.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-xe] [PATCH 20/30] drm/xe: Optimize size of xe_vma allocation
+Subject: [Intel-xe] [PATCH 14/30] maple_tree: Export mas_preallocate
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -59,198 +59,25 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Reduce gt_mask to a u8 from a u64, only allocate userptr state if VMA is
-a userptr, and union of destroy callback and worker.
+The DRM GPUVA implementation needs this function.
 
 Signed-off-by: Matthew Brost <matthew.brost@intel.com>
 ---
- drivers/gpu/drm/xe/xe_vm.c       | 14 +++--
- drivers/gpu/drm/xe/xe_vm_types.h | 88 +++++++++++++++++---------------
- 2 files changed, 57 insertions(+), 45 deletions(-)
+ lib/maple_tree.c | 1 +
+ 1 file changed, 1 insertion(+)
 
-diff --git a/drivers/gpu/drm/xe/xe_vm.c b/drivers/gpu/drm/xe/xe_vm.c
-index 0224ef916794..3eecf1d0958f 100644
---- a/drivers/gpu/drm/xe/xe_vm.c
-+++ b/drivers/gpu/drm/xe/xe_vm.c
-@@ -814,7 +814,7 @@ static struct xe_vma *xe_vma_create(struct xe_vm *vm,
- 				    u64 bo_offset_or_userptr,
- 				    u64 start, u64 end,
- 				    bool read_only, bool null,
--				    u64 gt_mask)
-+				    u8 gt_mask)
- {
- 	struct xe_vma *vma;
- 	struct xe_gt *gt;
-@@ -823,7 +823,11 @@ static struct xe_vma *xe_vma_create(struct xe_vm *vm,
- 	XE_BUG_ON(start >= end);
- 	XE_BUG_ON(end >= vm->size);
- 
--	vma = kzalloc(sizeof(*vma), GFP_KERNEL);
-+	if (!bo && !null)	/* userptr */
-+		vma = kzalloc(sizeof(*vma), GFP_KERNEL);
-+	else
-+		vma = kzalloc(sizeof(*vma) - sizeof(struct xe_userptr),
-+			      GFP_KERNEL);
- 	if (!vma) {
- 		vma = ERR_PTR(-ENOMEM);
- 		return vma;
-@@ -2149,7 +2153,7 @@ static void print_op(struct xe_device *xe, struct drm_gpuva_op *op)
- static struct drm_gpuva_ops *
- vm_bind_ioctl_ops_create(struct xe_vm *vm, struct xe_bo *bo,
- 			 u64 bo_offset_or_userptr, u64 addr, u64 range,
--			 u32 operation, u64 gt_mask, u32 region)
-+			 u32 operation, u8 gt_mask, u32 region)
- {
- 	struct drm_gem_object *obj = bo ? &bo->ttm.base : NULL;
- 	struct ww_acquire_ctx ww;
-@@ -2234,7 +2238,7 @@ vm_bind_ioctl_ops_create(struct xe_vm *vm, struct xe_bo *bo,
+diff --git a/lib/maple_tree.c b/lib/maple_tree.c
+index 9e2735cbc2b4..ae37a167e25d 100644
+--- a/lib/maple_tree.c
++++ b/lib/maple_tree.c
+@@ -5726,6 +5726,7 @@ int mas_preallocate(struct ma_state *mas, gfp_t gfp)
+ 	mas_reset(mas);
+ 	return ret;
  }
++EXPORT_SYMBOL_GPL(mas_preallocate);
  
- static struct xe_vma *new_vma(struct xe_vm *vm, struct drm_gpuva_op_map *op,
--			      u64 gt_mask, bool read_only, bool null)
-+			      u8 gt_mask, bool read_only, bool null)
- {
- 	struct xe_bo *bo = op->gem.obj ? gem_to_xe_bo(op->gem.obj) : NULL;
- 	struct xe_vma *vma;
-@@ -3213,8 +3217,8 @@ int xe_vm_bind_ioctl(struct drm_device *dev, void *data, struct drm_file *file)
- 		u64 addr = bind_ops[i].addr;
- 		u32 op = bind_ops[i].op;
- 		u64 obj_offset = bind_ops[i].obj_offset;
--		u64 gt_mask = bind_ops[i].gt_mask;
- 		u32 region = bind_ops[i].region;
-+		u8 gt_mask = bind_ops[i].gt_mask;
- 
- 		ops[i] = vm_bind_ioctl_ops_create(vm, bos[i], obj_offset,
- 						  addr, range, op, gt_mask,
-diff --git a/drivers/gpu/drm/xe/xe_vm_types.h b/drivers/gpu/drm/xe/xe_vm_types.h
-index 22def5483c12..df4797ec4d7f 100644
---- a/drivers/gpu/drm/xe/xe_vm_types.h
-+++ b/drivers/gpu/drm/xe/xe_vm_types.h
-@@ -34,22 +34,34 @@ struct xe_vm;
- #define XE_VMA_PTE_2M		(DRM_GPUVA_USERBITS << 7)
- #define XE_VMA_PTE_1G		(DRM_GPUVA_USERBITS << 8)
- 
-+/** struct xe_userptr - User pointer */
-+struct xe_userptr {
-+	/**
-+	 * @notifier: MMU notifier for user pointer (invalidation call back)
-+	 */
-+	struct mmu_interval_notifier notifier;
-+	/** @sgt: storage for a scatter gather table */
-+	struct sg_table sgt;
-+	/** @sg: allocated scatter gather table */
-+	struct sg_table *sg;
-+	/** @notifier_seq: notifier sequence number */
-+	unsigned long notifier_seq;
-+	/**
-+	 * @initial_bind: user pointer has been bound at least once.
-+	 * write: vm->userptr.notifier_lock in read mode and vm->resv held.
-+	 * read: vm->userptr.notifier_lock in write mode or vm->resv held.
-+	 */
-+	bool initial_bind;
-+#if IS_ENABLED(CONFIG_DRM_XE_USERPTR_INVAL_INJECT)
-+	u32 divisor;
-+#endif
-+};
-+
-+/** xe_vma - Virtual memory address */
- struct xe_vma {
- 	/** @gpuva: Base GPUVA object */
- 	struct drm_gpuva gpuva;
- 
--	/** @gt_mask: GT mask of where to create binding for this VMA */
--	u64 gt_mask;
--
--	/**
--	 * @gt_present: GT mask of binding are present for this VMA.
--	 * protected by vm->lock, vm->resv and for userptrs,
--	 * vm->userptr.notifier_lock for writing. Needs either for reading,
--	 * but if reading is done under the vm->lock only, it needs to be held
--	 * in write mode.
--	 */
--	u64 gt_present;
--
- 	union {
- 		/** @userptr_link: link into VM repin list if userptr */
- 		struct list_head userptr_link;
-@@ -77,16 +89,29 @@ struct xe_vma {
- 		} notifier;
- 	};
- 
--	/** @destroy_cb: callback to destroy VMA when unbind job is done */
--	struct dma_fence_cb destroy_cb;
-+	union {
-+		/** @destroy_cb: callback to destroy VMA when unbind job is done */
-+		struct dma_fence_cb destroy_cb;
-+		/** @destroy_work: worker to destroy this BO */
-+		struct work_struct destroy_work;
-+	};
- 
--	/** @destroy_work: worker to destroy this BO */
--	struct work_struct destroy_work;
-+	/** @gt_mask: GT mask of where to create binding for this VMA */
-+	u8 gt_mask;
-+
-+	/**
-+	 * @gt_present: GT mask of binding are present for this VMA.
-+	 * protected by vm->lock, vm->resv and for userptrs,
-+	 * vm->userptr.notifier_lock for writing. Needs either for reading,
-+	 * but if reading is done under the vm->lock only, it needs to be held
-+	 * in write mode.
-+	 */
-+	u8 gt_present;
- 
- 	/** @usm: unified shared memory state */
- 	struct {
- 		/** @gt_invalidated: VMA has been invalidated */
--		u64 gt_invalidated;
-+		u8 gt_invalidated;
- 	} usm;
- 
- 	struct {
-@@ -97,28 +122,11 @@ struct xe_vma {
- 		struct list_head link;
- 	} extobj;
- 
--	/** @userptr: user pointer state */
--	struct {
--		/**
--		 * @notifier: MMU notifier for user pointer (invalidation call back)
--		 */
--		struct mmu_interval_notifier notifier;
--		/** @sgt: storage for a scatter gather table */
--		struct sg_table sgt;
--		/** @sg: allocated scatter gather table */
--		struct sg_table *sg;
--		/** @notifier_seq: notifier sequence number */
--		unsigned long notifier_seq;
--		/**
--		 * @initial_bind: user pointer has been bound at least once.
--		 * write: vm->userptr.notifier_lock in read mode and vm->resv held.
--		 * read: vm->userptr.notifier_lock in write mode or vm->resv held.
--		 */
--		bool initial_bind;
--#if IS_ENABLED(CONFIG_DRM_XE_USERPTR_INVAL_INJECT)
--		u32 divisor;
--#endif
--	} userptr;
-+	/**
-+	 * @userptr: user pointer state, only allocated for VMAs that are
-+	 * user pointers
-+	 */
-+	struct xe_userptr userptr;
- };
- 
- struct xe_device;
-@@ -387,7 +395,7 @@ struct xe_vma_op {
- 	 */
- 	struct async_op_fence *fence;
- 	/** @gt_mask: gt mask for this operation */
--	u64 gt_mask;
-+	u8 gt_mask;
- 	/** @flags: operation flags */
- 	enum xe_vma_op_flags flags;
- 
+ /*
+  * mas_destroy() - destroy a maple state.
 -- 
 2.34.1
 
