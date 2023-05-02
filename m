@@ -4,47 +4,48 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id E1E06C77B73
-	for <intel-xe@archiver.kernel.org>; Tue,  2 May 2023 00:17:29 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9C8B8C77B7C
+	for <intel-xe@archiver.kernel.org>; Tue,  2 May 2023 00:17:30 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 63E6710E32A;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8B27B10E405;
 	Tue,  2 May 2023 00:17:29 +0000 (UTC)
 Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0330510E32A
- for <intel-xe@lists.freedesktop.org>; Tue,  2 May 2023 00:17:27 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2CC8910E34B
+ for <intel-xe@lists.freedesktop.org>; Tue,  2 May 2023 00:17:28 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
  t=1682986648; x=1714522648;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=SoK7ptjyhWnHd4g2TEIDdk2hjYaOs/HpThrBJSRThtQ=;
- b=V+xCOU0VyfBy6On0xtENDWaqQQD+KoTbjsZN9L2C4vOOa23TtSs2lvX+
- 0DwVWBQpz46+yhZwQgbuBvbuJKqP3LdAy5YewcW9PMWVJOShtDsIrEly+
- crUG5U1ZPBBHjgeMpokzyNsuRSRIjgOJAbc4KVL8WRwUJawaGncHLt6G1
- 12pYtPauiE7sIxYa0WqCBzRUl+0rcqZoWoxixZCJUklYYaGMsCapEHAG0
- o4AJcgXBa5oa1j6SAdj53nJ34edrxAZk0AWpIG98ZVWOvaC8Bdk1Bndea
- rM8B9V8A7puXd3mWg9HV58iWBjAKgRWlf4NaFI4aWGTJVjF3fYQQHy4FP w==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10697"; a="332619560"
-X-IronPort-AV: E=Sophos;i="5.99,242,1677571200"; d="scan'208";a="332619560"
+ h=from:to:cc:subject:date:message-id:in-reply-to:
+ references:mime-version:content-transfer-encoding;
+ bh=q2IpqGuD6ENcjCeXdNuNQkuB6nhnKOV3LURRo0BsoKo=;
+ b=Q2pTlhegw51CfRFCOWqfCNFAFJjXcVyJUS4rmHaQrhLE9jNV4p4bb7D2
+ GLmeG0xm+lq6vQIw6OAH3dXBH9UFZNElcN3ix/lnyZjNp74sdBsnsRUJr
+ IlfQCMRGy6Bw0y5IluuPWIm5DKw+yWSr7Ai0SA+S57kfzcXShUtjVNvpf
+ zqA2FTitsZ6cDgj+qu86fl/sS4Ajhc9JntLGPXPfPGxFSl7LX4BDhOX/4
+ ldEcpVH0hPa1r8BgUoW/n9tzpdCfAxxR4thTvk6Yuo8/E2Ed8a0wgqCl+
+ lBm2Y51kt0f9lzfk5Z0h9DCNaF3493Ei/fIJbToN0V4MST3OIKu3r3G7i Q==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10697"; a="332619561"
+X-IronPort-AV: E=Sophos;i="5.99,242,1677571200"; d="scan'208";a="332619561"
 Received: from fmsmga004.fm.intel.com ([10.253.24.48])
  by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  01 May 2023 17:17:26 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10697"; a="765541660"
-X-IronPort-AV: E=Sophos;i="5.99,242,1677571200"; d="scan'208";a="765541660"
+X-IronPort-AV: E=McAfee;i="6600,9927,10697"; a="765541663"
+X-IronPort-AV: E=Sophos;i="5.99,242,1677571200"; d="scan'208";a="765541663"
 Received: from lstrano-desk.jf.intel.com ([10.24.89.184])
  by fmsmga004-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  01 May 2023 17:17:26 -0700
 From: Matthew Brost <matthew.brost@intel.com>
 To: <intel-xe@lists.freedesktop.org>
-Date: Mon,  1 May 2023 17:16:56 -0700
-Message-Id: <20230502001727.3211096-1-matthew.brost@intel.com>
+Date: Mon,  1 May 2023 17:16:57 -0700
+Message-Id: <20230502001727.3211096-2-matthew.brost@intel.com>
 X-Mailer: git-send-email 2.34.1
+In-Reply-To: <20230502001727.3211096-1-matthew.brost@intel.com>
+References: <20230502001727.3211096-1-matthew.brost@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-xe] [PATCH v2 00/31] Upstreaming prep / all of mbrosts
- patches
+Subject: [Intel-xe] [PATCH v2 01/31] drm/sched: Add run_wq argument to
+ drm_sched_init
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -59,139 +60,205 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Series includes:
-
-- DRM scheduler changes for firmware backends (1 to 1 entity to scheduler)
-- LR workload story
-- VM LRU handling
-- GuC doorbell submission
-- Basic GPUVA
-- Sparse binding support
-- GPUVA + extobj + drm exec (collaboration with dakr + Francois Dugast)
-- GPUVA + userptr (minimal, more can be once Nouveua has userptr)
-- Fix fencing rules for compute / fault mode
-- Remove async worker for VM + error handling updates
-- Kernel doc for VM bind
-
-Series is not fully ready for upstream and some of these things need to
-get merged upstream first but overall it is largely correct and
-certainly step in the right direction. Based on its size and the fact it
-took me 8 hours to rebase this today I'd say let's get this tree and
-fixup everything else in place.
-
-Minor uAPI breakage, IGT series:
-https://patchwork.freedesktop.org/series/117177/
-
-gitlab link:
-https://gitlab.freedesktop.org/drm/xe/kernel/-/merge_requests/344
+We will have this argument upstream, lets pull into the Xe repo.
 
 Signed-off-by: Matthew Brost <matthew.brost@intel.com>
+---
+ drivers/gpu/drm/amd/amdgpu/amdgpu_device.c |  2 +-
+ drivers/gpu/drm/etnaviv/etnaviv_sched.c    |  2 +-
+ drivers/gpu/drm/lima/lima_sched.c          |  2 +-
+ drivers/gpu/drm/msm/msm_ringbuffer.c       |  2 +-
+ drivers/gpu/drm/panfrost/panfrost_job.c    |  2 +-
+ drivers/gpu/drm/scheduler/sched_main.c     |  4 +++-
+ drivers/gpu/drm/v3d/v3d_sched.c            | 10 +++++-----
+ drivers/gpu/drm/xe/xe_execlist.c           |  2 +-
+ drivers/gpu/drm/xe/xe_guc_submit.c         |  2 +-
+ include/drm/gpu_scheduler.h                |  1 +
+ 10 files changed, 16 insertions(+), 13 deletions(-)
 
-Christian König (1):
-  drm: execution context for GEM buffers v3
-
-Danilo Krummrich (2):
-  maple_tree: split up MA_STATE() macro
-  drm: manager to keep track of GPUs VA mappings
-
-Matthew Brost (28):
-  drm/sched: Add run_wq argument to drm_sched_init
-  drm/sched: Move schedule policy to scheduler
-  drm/sched: Add DRM_SCHED_POLICY_SINGLE_ENTITY scheduling policy
-  drm/xe: Use DRM_SCHED_POLICY_SINGLE_ENTITY mode
-  drm/xe: Long running job update
-  drm/xe: Ensure LR engines are not persistent
-  drm/xe: Only try to lock external BOs in VM bind
-  drm/xe: VM LRU bulk move
-  drm/xe/guc: Read HXG fields from DW1 of G2H response
-  drm/xe/guc: Return the lower part of blocking H2G message
-  drm/xe/guc: Use doorbells for submission if possible
-  drm/xe/guc: Print doorbell ID in GuC engine debugfs entry
-  maple_tree: Export mas_preallocate
-  drm/xe: Port Xe to GPUVA
-  drm/xe: NULL binding implementation
-  drm/xe: Avoid doing rebinds
-  drm/xe: Reduce the number list links in xe_vma
-  drm/xe: Optimize size of xe_vma allocation
-  drm/gpuva: Add drm device to GPUVA manager
-  drm/gpuva: Move dma-resv to GPUVA manager
-  drm/gpuva: Add support for extobj
-  drm/xe: Userptr refactor
-  drm/exec: Always compile drm_exec
-  drm/xe: Use drm_exec for locking rather than TTM exec helpers
-  drm/xe: Allow dma-fences as in-syncs for compute / faulting VM
-  drm/xe: Allow compute VMs to output dma-fences on binds
-  drm/xe: remove async worker, sync binds, new error handling
-  drm/xe/uapi: Add some VM bind kernel doc
-
- Documentation/gpu/drm-mm.rst                 |   43 +
- drivers/gpu/drm/Kconfig                      |    6 +
- drivers/gpu/drm/Makefile                     |    4 +-
- drivers/gpu/drm/amd/amdgpu/amdgpu_device.c   |    3 +-
- drivers/gpu/drm/drm_debugfs.c                |   41 +
- drivers/gpu/drm/drm_exec.c                   |  248 ++
- drivers/gpu/drm/drm_gem.c                    |    3 +
- drivers/gpu/drm/drm_gpuva_mgr.c              | 1779 ++++++++++++
- drivers/gpu/drm/etnaviv/etnaviv_sched.c      |    5 +-
- drivers/gpu/drm/i915/display/intel_display.c |    6 +-
- drivers/gpu/drm/lima/lima_sched.c            |    5 +-
- drivers/gpu/drm/msm/msm_ringbuffer.c         |    5 +-
- drivers/gpu/drm/panfrost/panfrost_job.c      |    5 +-
- drivers/gpu/drm/scheduler/sched_entity.c     |   84 +-
- drivers/gpu/drm/scheduler/sched_fence.c      |    2 +-
- drivers/gpu/drm/scheduler/sched_main.c       |   88 +-
- drivers/gpu/drm/v3d/v3d_sched.c              |   25 +-
- drivers/gpu/drm/xe/Kconfig                   |    1 +
- drivers/gpu/drm/xe/regs/xe_guc_regs.h        |    1 +
- drivers/gpu/drm/xe/tests/xe_bo.c             |   26 +-
- drivers/gpu/drm/xe/tests/xe_migrate.c        |    6 +-
- drivers/gpu/drm/xe/xe_bo.c                   |  100 +-
- drivers/gpu/drm/xe/xe_bo.h                   |   13 +-
- drivers/gpu/drm/xe/xe_bo_evict.c             |   24 +-
- drivers/gpu/drm/xe/xe_bo_types.h             |    1 -
- drivers/gpu/drm/xe/xe_device.c               |    2 +-
- drivers/gpu/drm/xe/xe_dma_buf.c              |    2 +-
- drivers/gpu/drm/xe/xe_engine.c               |   50 +-
- drivers/gpu/drm/xe/xe_engine.h               |    4 +
- drivers/gpu/drm/xe/xe_engine_types.h         |    1 +
- drivers/gpu/drm/xe/xe_exec.c                 |  117 +-
- drivers/gpu/drm/xe/xe_execlist.c             |    3 +-
- drivers/gpu/drm/xe/xe_gt_pagefault.c         |   84 +-
- drivers/gpu/drm/xe/xe_gt_tlb_invalidation.c  |   14 +-
- drivers/gpu/drm/xe/xe_guc.c                  |    6 +
- drivers/gpu/drm/xe/xe_guc_ct.c               |   12 +-
- drivers/gpu/drm/xe/xe_guc_engine_types.h     |    9 +
- drivers/gpu/drm/xe/xe_guc_pc.c               |    6 +-
- drivers/gpu/drm/xe/xe_guc_submit.c           |  398 ++-
- drivers/gpu/drm/xe/xe_guc_submit.h           |    1 +
- drivers/gpu/drm/xe/xe_guc_types.h            |    4 +
- drivers/gpu/drm/xe/xe_huc.c                  |    2 +-
- drivers/gpu/drm/xe/xe_lrc.c                  |    8 +-
- drivers/gpu/drm/xe/xe_migrate.c              |   31 +-
- drivers/gpu/drm/xe/xe_pt.c                   |  198 +-
- drivers/gpu/drm/xe/xe_sync.c                 |   26 +-
- drivers/gpu/drm/xe/xe_sync.h                 |    2 +-
- drivers/gpu/drm/xe/xe_trace.h                |   20 +-
- drivers/gpu/drm/xe/xe_vm.c                   | 2567 +++++++-----------
- drivers/gpu/drm/xe/xe_vm.h                   |  135 +-
- drivers/gpu/drm/xe/xe_vm_madvise.c           |  125 +-
- drivers/gpu/drm/xe/xe_vm_types.h             |  324 ++-
- drivers/gpu/drm/xe/xe_wait_user_fence.c      |   43 +-
- include/drm/drm_debugfs.h                    |   24 +
- include/drm/drm_drv.h                        |    7 +
- include/drm/drm_exec.h                       |  115 +
- include/drm/drm_gem.h                        |   75 +
- include/drm/drm_gpuva_mgr.h                  |  759 ++++++
- include/drm/gpu_scheduler.h                  |   29 +-
- include/linux/maple_tree.h                   |    7 +-
- include/uapi/drm/xe_drm.h                    |  128 +-
- lib/maple_tree.c                             |    1 +
- 62 files changed, 5543 insertions(+), 2320 deletions(-)
- create mode 100644 drivers/gpu/drm/drm_exec.c
- create mode 100644 drivers/gpu/drm/drm_gpuva_mgr.c
- create mode 100644 include/drm/drm_exec.h
- create mode 100644 include/drm/drm_gpuva_mgr.h
-
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
+index 902f9b5ff82c..fe28f6b71fe3 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
+@@ -2364,7 +2364,7 @@ static int amdgpu_device_init_schedulers(struct amdgpu_device *adev)
+ 			break;
+ 		}
+ 
+-		r = drm_sched_init(&ring->sched, &amdgpu_sched_ops,
++		r = drm_sched_init(&ring->sched, &amdgpu_sched_ops, NULL,
+ 				   ring->num_hw_submission, amdgpu_job_hang_limit,
+ 				   timeout, adev->reset_domain->wq,
+ 				   ring->sched_score, ring->name,
+diff --git a/drivers/gpu/drm/etnaviv/etnaviv_sched.c b/drivers/gpu/drm/etnaviv/etnaviv_sched.c
+index 1ae87dfd19c4..8486a2923f1b 100644
+--- a/drivers/gpu/drm/etnaviv/etnaviv_sched.c
++++ b/drivers/gpu/drm/etnaviv/etnaviv_sched.c
+@@ -133,7 +133,7 @@ int etnaviv_sched_init(struct etnaviv_gpu *gpu)
+ {
+ 	int ret;
+ 
+-	ret = drm_sched_init(&gpu->sched, &etnaviv_sched_ops,
++	ret = drm_sched_init(&gpu->sched, &etnaviv_sched_ops, NULL,
+ 			     etnaviv_hw_jobs_limit, etnaviv_job_hang_limit,
+ 			     msecs_to_jiffies(500), NULL, NULL,
+ 			     dev_name(gpu->dev), gpu->dev);
+diff --git a/drivers/gpu/drm/lima/lima_sched.c b/drivers/gpu/drm/lima/lima_sched.c
+index ff003403fbbc..54f53bece27c 100644
+--- a/drivers/gpu/drm/lima/lima_sched.c
++++ b/drivers/gpu/drm/lima/lima_sched.c
+@@ -488,7 +488,7 @@ int lima_sched_pipe_init(struct lima_sched_pipe *pipe, const char *name)
+ 
+ 	INIT_WORK(&pipe->recover_work, lima_sched_recover_work);
+ 
+-	return drm_sched_init(&pipe->base, &lima_sched_ops, 1,
++	return drm_sched_init(&pipe->base, &lima_sched_ops, NULL, 1,
+ 			      lima_job_hang_limit,
+ 			      msecs_to_jiffies(timeout), NULL,
+ 			      NULL, name, pipe->ldev->dev);
+diff --git a/drivers/gpu/drm/msm/msm_ringbuffer.c b/drivers/gpu/drm/msm/msm_ringbuffer.c
+index 57a8e9564540..5879fc262047 100644
+--- a/drivers/gpu/drm/msm/msm_ringbuffer.c
++++ b/drivers/gpu/drm/msm/msm_ringbuffer.c
+@@ -95,7 +95,7 @@ struct msm_ringbuffer *msm_ringbuffer_new(struct msm_gpu *gpu, int id,
+ 	 /* currently managing hangcheck ourselves: */
+ 	sched_timeout = MAX_SCHEDULE_TIMEOUT;
+ 
+-	ret = drm_sched_init(&ring->sched, &msm_sched_ops,
++	ret = drm_sched_init(&ring->sched, &msm_sched_ops, NULL,
+ 			num_hw_submissions, 0, sched_timeout,
+ 			NULL, NULL, to_msm_bo(ring->bo)->name, gpu->dev->dev);
+ 	if (ret) {
+diff --git a/drivers/gpu/drm/panfrost/panfrost_job.c b/drivers/gpu/drm/panfrost/panfrost_job.c
+index dbc597ab46fb..f48b07056a16 100644
+--- a/drivers/gpu/drm/panfrost/panfrost_job.c
++++ b/drivers/gpu/drm/panfrost/panfrost_job.c
+@@ -815,7 +815,7 @@ int panfrost_job_init(struct panfrost_device *pfdev)
+ 		js->queue[j].fence_context = dma_fence_context_alloc(1);
+ 
+ 		ret = drm_sched_init(&js->queue[j].sched,
+-				     &panfrost_sched_ops,
++				     &panfrost_sched_ops, NULL,
+ 				     nentries, 0,
+ 				     msecs_to_jiffies(JOB_TIMEOUT_MS),
+ 				     pfdev->reset.wq,
+diff --git a/drivers/gpu/drm/scheduler/sched_main.c b/drivers/gpu/drm/scheduler/sched_main.c
+index cfd8a838e283..e79b9c760efe 100644
+--- a/drivers/gpu/drm/scheduler/sched_main.c
++++ b/drivers/gpu/drm/scheduler/sched_main.c
+@@ -1182,6 +1182,7 @@ static void drm_sched_main(struct work_struct *w)
+  *
+  * @sched: scheduler instance
+  * @ops: backend operations for this scheduler
++ * @run_wq: workqueue to use for run work. If NULL, the system_wq is used
+  * @hw_submission: number of hw submissions that can be in flight
+  * @hang_limit: number of times to allow a job to hang before dropping it
+  * @timeout: timeout value in jiffies for the scheduler
+@@ -1195,6 +1196,7 @@ static void drm_sched_main(struct work_struct *w)
+  */
+ int drm_sched_init(struct drm_gpu_scheduler *sched,
+ 		   const struct drm_sched_backend_ops *ops,
++		   struct workqueue_struct *run_wq,
+ 		   unsigned hw_submission, unsigned hang_limit,
+ 		   long timeout, struct workqueue_struct *timeout_wq,
+ 		   atomic_t *score, const char *name, struct device *dev)
+@@ -1203,9 +1205,9 @@ int drm_sched_init(struct drm_gpu_scheduler *sched,
+ 	sched->ops = ops;
+ 	sched->hw_submission_limit = hw_submission;
+ 	sched->name = name;
++	sched->run_wq = run_wq ? : system_wq;
+ 	sched->timeout = timeout;
+ 	sched->timeout_wq = timeout_wq ? : system_wq;
+-	sched->run_wq = system_wq;	/* FIXME: Let user pass this in */
+ 	sched->hang_limit = hang_limit;
+ 	sched->score = score ? score : &sched->_score;
+ 	sched->dev = dev;
+diff --git a/drivers/gpu/drm/v3d/v3d_sched.c b/drivers/gpu/drm/v3d/v3d_sched.c
+index 06238e6d7f5c..38e092ea41e6 100644
+--- a/drivers/gpu/drm/v3d/v3d_sched.c
++++ b/drivers/gpu/drm/v3d/v3d_sched.c
+@@ -388,7 +388,7 @@ v3d_sched_init(struct v3d_dev *v3d)
+ 	int ret;
+ 
+ 	ret = drm_sched_init(&v3d->queue[V3D_BIN].sched,
+-			     &v3d_bin_sched_ops,
++			     &v3d_bin_sched_ops, NULL,
+ 			     hw_jobs_limit, job_hang_limit,
+ 			     msecs_to_jiffies(hang_limit_ms), NULL,
+ 			     NULL, "v3d_bin", v3d->drm.dev);
+@@ -396,7 +396,7 @@ v3d_sched_init(struct v3d_dev *v3d)
+ 		return ret;
+ 
+ 	ret = drm_sched_init(&v3d->queue[V3D_RENDER].sched,
+-			     &v3d_render_sched_ops,
++			     &v3d_render_sched_ops, NULL,
+ 			     hw_jobs_limit, job_hang_limit,
+ 			     msecs_to_jiffies(hang_limit_ms), NULL,
+ 			     NULL, "v3d_render", v3d->drm.dev);
+@@ -404,7 +404,7 @@ v3d_sched_init(struct v3d_dev *v3d)
+ 		goto fail;
+ 
+ 	ret = drm_sched_init(&v3d->queue[V3D_TFU].sched,
+-			     &v3d_tfu_sched_ops,
++			     &v3d_tfu_sched_ops, NULL,
+ 			     hw_jobs_limit, job_hang_limit,
+ 			     msecs_to_jiffies(hang_limit_ms), NULL,
+ 			     NULL, "v3d_tfu", v3d->drm.dev);
+@@ -413,7 +413,7 @@ v3d_sched_init(struct v3d_dev *v3d)
+ 
+ 	if (v3d_has_csd(v3d)) {
+ 		ret = drm_sched_init(&v3d->queue[V3D_CSD].sched,
+-				     &v3d_csd_sched_ops,
++				     &v3d_csd_sched_ops, NULL,
+ 				     hw_jobs_limit, job_hang_limit,
+ 				     msecs_to_jiffies(hang_limit_ms), NULL,
+ 				     NULL, "v3d_csd", v3d->drm.dev);
+@@ -421,7 +421,7 @@ v3d_sched_init(struct v3d_dev *v3d)
+ 			goto fail;
+ 
+ 		ret = drm_sched_init(&v3d->queue[V3D_CACHE_CLEAN].sched,
+-				     &v3d_cache_clean_sched_ops,
++				     &v3d_cache_clean_sched_ops, NULL,
+ 				     hw_jobs_limit, job_hang_limit,
+ 				     msecs_to_jiffies(hang_limit_ms), NULL,
+ 				     NULL, "v3d_cache_clean", v3d->drm.dev);
+diff --git a/drivers/gpu/drm/xe/xe_execlist.c b/drivers/gpu/drm/xe/xe_execlist.c
+index de4f0044b211..d6d60ebf3d5f 100644
+--- a/drivers/gpu/drm/xe/xe_execlist.c
++++ b/drivers/gpu/drm/xe/xe_execlist.c
+@@ -336,7 +336,7 @@ static int execlist_engine_init(struct xe_engine *e)
+ 
+ 	exl->engine = e;
+ 
+-	err = drm_sched_init(&exl->sched, &drm_sched_ops,
++	err = drm_sched_init(&exl->sched, &drm_sched_ops, NULL,
+ 			     e->lrc[0].ring.size / MAX_JOB_SIZE_BYTES,
+ 			     XE_SCHED_HANG_LIMIT, XE_SCHED_JOB_TIMEOUT,
+ 			     NULL, NULL, e->hwe->name,
+diff --git a/drivers/gpu/drm/xe/xe_guc_submit.c b/drivers/gpu/drm/xe/xe_guc_submit.c
+index e857013070b9..735f31257f3a 100644
+--- a/drivers/gpu/drm/xe/xe_guc_submit.c
++++ b/drivers/gpu/drm/xe/xe_guc_submit.c
+@@ -1081,7 +1081,7 @@ static int guc_engine_init(struct xe_engine *e)
+ 	init_waitqueue_head(&ge->suspend_wait);
+ 
+ 	timeout = xe_vm_no_dma_fences(e->vm) ? MAX_SCHEDULE_TIMEOUT : HZ * 5;
+-	err = drm_sched_init(&ge->sched, &drm_sched_ops,
++	err = drm_sched_init(&ge->sched, &drm_sched_ops, NULL,
+ 			     e->lrc[0].ring.size / MAX_JOB_SIZE_BYTES,
+ 			     64, timeout, guc_to_gt(guc)->ordered_wq, NULL,
+ 			     e->name, gt_to_xe(e->gt)->drm.dev);
+diff --git a/include/drm/gpu_scheduler.h b/include/drm/gpu_scheduler.h
+index cf85f93218fc..09bc39840dc8 100644
+--- a/include/drm/gpu_scheduler.h
++++ b/include/drm/gpu_scheduler.h
+@@ -539,6 +539,7 @@ struct drm_gpu_scheduler {
+ 
+ int drm_sched_init(struct drm_gpu_scheduler *sched,
+ 		   const struct drm_sched_backend_ops *ops,
++		   struct workqueue_struct *run_wq,
+ 		   uint32_t hw_submission, unsigned hang_limit,
+ 		   long timeout, struct workqueue_struct *timeout_wq,
+ 		   atomic_t *score, const char *name, struct device *dev);
 -- 
 2.34.1
 
