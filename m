@@ -4,51 +4,45 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 458ACC77B7E
-	for <intel-xe@archiver.kernel.org>; Tue,  2 May 2023 09:38:31 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id D5F5FC77B73
+	for <intel-xe@archiver.kernel.org>; Tue,  2 May 2023 10:38:19 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id ED8C110E4E0;
-	Tue,  2 May 2023 09:38:30 +0000 (UTC)
-Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
- by gabe.freedesktop.org (Postfix) with ESMTPS id ABF8A10E4E0
- for <intel-xe@lists.freedesktop.org>; Tue,  2 May 2023 09:38:28 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8FD1A10E362;
+	Tue,  2 May 2023 10:38:19 +0000 (UTC)
+Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 19DD210E362
+ for <intel-xe@lists.freedesktop.org>; Tue,  2 May 2023 10:38:17 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1683020308; x=1714556308;
- h=from:to:cc:subject:in-reply-to:references:date:
- message-id:mime-version;
- bh=CjDG/U9I7bMD4LbpgTJyOaSIoWVR2cQScR5Vh1TEKh4=;
- b=e5jJeI8ozx35Z7WXjQWbebSLV1JmrQJjT2vzI4bx1c8wPdlqKiZCZNeu
- u2FpjKyypUl84YNQk1ZnkkBE6eVnNNbFQu1ZthIEYJYZG7AKcvPPFqrNo
- 3s26keLpNMfr/8DsAUDGAk7H0NLVkDuawPLmL1+gO05AovAz4KzZyUrKn
- a6JTS+R4xj0ceTlzgnUS776oH9NrBxeQAyu0LJno1QI1ez8xuse1AZepg
- m+osYOgC4RK8OFsdRX0DsR7sRuotlI5pJE2pKcXuq8f7QMoNusmyaQZHr
- zP+79KguTXoxCw0QqEtA4VhF43N0JVd1fbTotSdRxopvzGENtBS+LytYP g==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10697"; a="413793803"
-X-IronPort-AV: E=Sophos;i="5.99,243,1677571200"; d="scan'208";a="413793803"
-Received: from orsmga003.jf.intel.com ([10.7.209.27])
- by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 02 May 2023 02:38:27 -0700
+ t=1683023898; x=1714559898;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=nOVU4Y4sDEF7NiYf1IAH2AA6XFLsmuYtXPcamz9hgsA=;
+ b=XcPGUoYYWeAv15Cf/EXzZzIKywygqIGWd02RUoytivZaaN+KGuB26dhw
+ ymgAJFliBM2co2X/fgLbt/l8PbsKkVIWc/+5BJlphXRdW+Xu1bqJbVUG4
+ OLDvIOJU5biKsrRQ05WJygCQdiqqBCdXAgRnp5cMYJOCtj1OTs9C8ni3q
+ oY7e+3U5LtOwxOs5W0yJh1UAHyK2MW1fKhxv1CvmuKsqt+gCNY5oXG7jT
+ 5UHIgnRJsgAPzz4qOFNEeNMkjMhoOexm/GfWfCDebSndSkPBtKywK1nBH
+ XTYccaRO46jDKyuahrZvxa5/dRxZQQOkufythBaeqP+8CTVFQLtD2z+J1 g==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10697"; a="345843610"
+X-IronPort-AV: E=Sophos;i="5.99,244,1677571200"; d="scan'208";a="345843610"
+Received: from orsmga005.jf.intel.com ([10.7.209.41])
+ by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 02 May 2023 03:38:16 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10697"; a="646471384"
-X-IronPort-AV: E=Sophos;i="5.99,243,1677571200"; d="scan'208";a="646471384"
-Received: from xinpan-mobl1.ger.corp.intel.com (HELO localhost)
- ([10.252.35.163])
- by orsmga003-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 02 May 2023 02:38:25 -0700
-From: Jani Nikula <jani.nikula@linux.intel.com>
-To: "Ghimiray, Himal Prasad" <himal.prasad.ghimiray@intel.com>,
- "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>
-In-Reply-To: <SA1PR11MB70389B5E7E0207B638A90228B3659@SA1PR11MB7038.namprd11.prod.outlook.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20230406092631.2820028-1-himal.prasad.ghimiray@intel.com>
- <871qkxyz7g.fsf@intel.com>
- <SA1PR11MB70389B5E7E0207B638A90228B3659@SA1PR11MB7038.namprd11.prod.outlook.com>
-Date: Tue, 02 May 2023 12:38:21 +0300
-Message-ID: <87y1m713aq.fsf@intel.com>
+X-IronPort-AV: E=McAfee;i="6600,9927,10697"; a="870506414"
+X-IronPort-AV: E=Sophos;i="5.99,244,1677571200"; d="scan'208";a="870506414"
+Received: from mkuoppal-desk.fi.intel.com ([10.237.72.193])
+ by orsmga005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 02 May 2023 03:38:15 -0700
+From: Mika Kuoppala <mika.kuoppala@linux.intel.com>
+To: intel-xe@lists.freedesktop.org
+Date: Tue,  2 May 2023 13:35:48 +0300
+Message-Id: <20230502103550.1601556-1-mika.kuoppala@linux.intel.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-Content-Type: text/plain
-Subject: Re: [Intel-xe] [PATCH 0/4] RFC: drm/xe/ras: Supporting RAS on XE.
+Content-Transfer-Encoding: 8bit
+Subject: [Intel-xe] [RFC 0/2] drm/xe: Introduce eudebug event interface v2
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -60,90 +54,46 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Cc: Matt Roper <matthew.d.roper@intel.com>,
- Lucas De Marchi <lucas.demarchi@intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Wed, 26 Apr 2023, "Ghimiray, Himal Prasad" <himal.prasad.ghimiray@intel.com> wrote:
-> Hi Jani,
->
-> Is recommendation to create new .h file for error related registers ?
-> Can I go ahead with adding file xe_gt_error_regs.h (GT, SOC, GSC) which explicitly mentions registers related to error handling ?
+Hi,
 
-I don't know what the best grouping for this stuff would be. Maybe I'd
-go for grouping by hardware blocks rather than functionality like
-errors. Cc: Lucas, Matt, Rodrigo, just to pick a few names who might
-have a better idea.
+This series introduces eudebug connection and
+event uapi interface for a debugger to track
+clients drm/xe resources. xe_file (client) and the
+vm resources are introduced as a baseline, leaving
+rest of the events as follow up patches at a later
+time.
 
-Just don't dump register macros to a single file that will bloat to
-become unmanageable.
+To support use case where debugger is connecting
+to a drm/xe client which already has opened
+connection(s) to xe driver and allocated vm(s),
+patch 3/3 introduces discovery where all
+currently active resources are presented through
+events for the connected debugger.
 
-BR,
-Jani.
+v2: - access control root only, for now
+    - debugs streamlined
 
+Mika Kuoppala (2):
+  drm/xe/eudebug: Introduce eudebug support
+  drm/xe/eudebug: Introduce discovery for resources
 
-PS. Please also don't top-post on mailing lists.
-
-
-
->
-> BR
-> Himal Ghimiray
->
->
->> -----Original Message-----
->> From: Jani Nikula <jani.nikula@linux.intel.com>
->> Sent: 06 April 2023 17:56
->> To: Ghimiray, Himal Prasad <himal.prasad.ghimiray@intel.com>; intel-
->> xe@lists.freedesktop.org
->> Cc: Ghimiray, Himal Prasad <himal.prasad.ghimiray@intel.com>
->> Subject: Re: [Intel-xe] [PATCH 0/4] RFC: drm/xe/ras: Supporting RAS on XE.
->> 
->> On Thu, 06 Apr 2023, Himal Prasad Ghimiray
->> <himal.prasad.ghimiray@intel.com> wrote:
->> > These patches in series are for adding Reliability, Availability and
->> > Serviceability support on xe.
->> > Patches provide the infra for various hardware error counting and
->> > logging. These error counters will be exposed to userspace in
->> > subsequent patches.
->> > In current patches:
->> > 1) We are adding support to handle new interrupts bits.
->> > 2) Counting of GT errors.
->> > 3) Soc/SGunit error counting.
->> > 4) CSC HW and FW error counting and sending uvent.
->> >
->> > Akeem G Abodunrin (1):
->> >   drm/xe/ras: Add support for reporting CSC HW and FW errors.
->> >
->> > Aravind Iddamsetty (2):
->> >   drm/xe/ras: Log the GT hw errors.
->> >   drm/xe/ras: Count SOC and SGUNIT errors
->> >
->> > Himal Prasad Ghimiray (1):
->> >   drm/xe: Handle GRF/IC ECC error irq
->> >
->> >  drivers/gpu/drm/xe/regs/xe_regs.h    | 244 ++++++++
->> 
->> Please don't recreate i915_reg.h in xe. Please add separate regs files like
->> we've been doing in i915. It's pain to split a monster register file later.
->> 
->> BR,
->> Jani.
->> 
->> 
->> >  drivers/gpu/drm/xe/xe_device.c       |   6 +
->> >  drivers/gpu/drm/xe/xe_device_types.h |   4 +
->> >  drivers/gpu/drm/xe/xe_gt.c           |  30 +
->> >  drivers/gpu/drm/xe/xe_gt_types.h     | 105 ++++
->> >  drivers/gpu/drm/xe/xe_irq.c          | 824
->> +++++++++++++++++++++++++++
->> >  drivers/gpu/drm/xe/xe_pci.c          |   6 +
->> >  7 files changed, 1219 insertions(+)
->> 
->> --
->> Jani Nikula, Intel Open Source Graphics Center
+ drivers/gpu/drm/xe/Makefile           |    3 +-
+ drivers/gpu/drm/xe/xe_device.c        |   24 +-
+ drivers/gpu/drm/xe/xe_device_types.h  |   25 +
+ drivers/gpu/drm/xe/xe_eudebug.c       | 1105 +++++++++++++++++++++++++
+ drivers/gpu/drm/xe/xe_eudebug.h       |   27 +
+ drivers/gpu/drm/xe/xe_eudebug_types.h |  176 ++++
+ drivers/gpu/drm/xe/xe_vm.c            |    5 +
+ include/uapi/drm/xe_drm_tmp.h         |   76 ++
+ 8 files changed, 1439 insertions(+), 2 deletions(-)
+ create mode 100644 drivers/gpu/drm/xe/xe_eudebug.c
+ create mode 100644 drivers/gpu/drm/xe/xe_eudebug.h
+ create mode 100644 drivers/gpu/drm/xe/xe_eudebug_types.h
+ create mode 100644 include/uapi/drm/xe_drm_tmp.h
 
 -- 
-Jani Nikula, Intel Open Source Graphics Center
+2.34.1
+
