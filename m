@@ -4,48 +4,47 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id A63F2C7EE21
-	for <intel-xe@archiver.kernel.org>; Tue,  2 May 2023 00:17:35 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id C891DC7EE2C
+	for <intel-xe@archiver.kernel.org>; Tue,  2 May 2023 00:17:38 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B8B0710E48F;
-	Tue,  2 May 2023 00:17:33 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9B9BA10E499;
+	Tue,  2 May 2023 00:17:38 +0000 (UTC)
 Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 69ECA10E34B
- for <intel-xe@lists.freedesktop.org>; Tue,  2 May 2023 00:17:28 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0722310E402
+ for <intel-xe@lists.freedesktop.org>; Tue,  2 May 2023 00:17:31 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1682986648; x=1714522648;
+ t=1682986651; x=1714522651;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=GIKX6E6ddCDB0Akl2TBjonE56v7VKxAqjFITDnvXsuI=;
- b=iCmHwhDrJ8UJng6Tqpbw23nDd8UTI++e0p9GXE1c7JGvh9qpfSd4uIJ1
- cTgRzvQjbXbqRlIdFOhskoHkIcyZ0OO4wTQQFIGROgOPdFqvIGclGrOSY
- ac3zK0OTX8FlriLygp/nvPFRb1bbK/Sn6nA0udvEY9lwbU8STMhvd542V
- 0gJDpyWr+wJFbKsaaqPeyr/zAyKNrhqSCpeGZM4etHY0H2iTsFvTZbHOR
- F3j1BMrdCwJC+OtWRqmQS8TO6RA5DTPPaHW/OqQPzrli8/usrm7ChQNX/
- 9egMHCfn478afRQ3O8apooGG/yWTckAhoYL5sRut0CQu+dHNwzleD2QPW g==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10697"; a="332619564"
-X-IronPort-AV: E=Sophos;i="5.99,242,1677571200"; d="scan'208";a="332619564"
+ bh=tCjrIM3RS9Ea2myOlCCsruI88DVJY5fasQ4Kawf0fIM=;
+ b=g/5dA3v/UUrfmHFMZxKsj4GHAylL7Pqn4KshUmbScvvRiPVJvqW8KJte
+ 9gPVZND1B6TkhO3EfZaHJhb8UTm8RauwRoyd9BO6F/WdwAZxhuip6O7WL
+ hZODip0mGkkjF2u5wcjl8cZSfJ2NusF93EZ5smzbXy1MuJz+qwSdrbDt7
+ NeS3jCY00RdBKaDoD4xsArZdGZJByUNTyxtcgwRadOmac1jYV9Pjc9sTM
+ YPfpyAlrV9WTTgv7pmwDMMKmQiMGpAk2iupCpJ3ujywW3g9I2Bd9YZhpG
+ yqU5hSWOKWe6z4Swwz9o02TLNrrPQf3LrwvdVqeJHWtI14LoKarBJFUR4 Q==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10697"; a="332619595"
+X-IronPort-AV: E=Sophos;i="5.99,242,1677571200"; d="scan'208";a="332619595"
 Received: from fmsmga004.fm.intel.com ([10.253.24.48])
  by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 01 May 2023 17:17:27 -0700
+ 01 May 2023 17:17:30 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10697"; a="765541672"
-X-IronPort-AV: E=Sophos;i="5.99,242,1677571200"; d="scan'208";a="765541672"
+X-IronPort-AV: E=McAfee;i="6600,9927,10697"; a="765541735"
+X-IronPort-AV: E=Sophos;i="5.99,242,1677571200"; d="scan'208";a="765541735"
 Received: from lstrano-desk.jf.intel.com ([10.24.89.184])
  by fmsmga004-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 01 May 2023 17:17:26 -0700
+ 01 May 2023 17:17:29 -0700
 From: Matthew Brost <matthew.brost@intel.com>
 To: <intel-xe@lists.freedesktop.org>
-Date: Mon,  1 May 2023 17:17:00 -0700
-Message-Id: <20230502001727.3211096-5-matthew.brost@intel.com>
+Date: Mon,  1 May 2023 17:17:20 -0700
+Message-Id: <20230502001727.3211096-25-matthew.brost@intel.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20230502001727.3211096-1-matthew.brost@intel.com>
 References: <20230502001727.3211096-1-matthew.brost@intel.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-xe] [PATCH v2 04/31] drm/xe: Use
- DRM_SCHED_POLICY_SINGLE_ENTITY mode
+Subject: [Intel-xe] [PATCH v2 24/31] drm/xe: Userptr refactor
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -60,51 +59,357 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-We create 1 GPU scheduler per entity in Xe, use
-DRM_SCHED_POLICY_SINGLE_ENTITY scheduling which is designed for that
-paradigm.
+Add GPUVA userptr flag, add GPUVA userptr sub-struct, and drop sg
+pointer. A larger follow on cleanup may push more of userptr
+implementation to GPUVA.
 
 Signed-off-by: Matthew Brost <matthew.brost@intel.com>
 ---
- drivers/gpu/drm/xe/xe_execlist.c   | 3 ++-
- drivers/gpu/drm/xe/xe_guc_submit.c | 3 +--
- 2 files changed, 3 insertions(+), 3 deletions(-)
+ drivers/gpu/drm/xe/xe_pt.c       |  6 +--
+ drivers/gpu/drm/xe/xe_vm.c       | 41 +++++++++++----------
+ drivers/gpu/drm/xe/xe_vm.h       | 23 +++++++-----
+ drivers/gpu/drm/xe/xe_vm_types.h | 20 +++++-----
+ include/drm/drm_gpuva_mgr.h      | 63 +++++++++++++++++++++-----------
+ 5 files changed, 89 insertions(+), 64 deletions(-)
 
-diff --git a/drivers/gpu/drm/xe/xe_execlist.c b/drivers/gpu/drm/xe/xe_execlist.c
-index 48060d14547a..79fb951c2965 100644
---- a/drivers/gpu/drm/xe/xe_execlist.c
-+++ b/drivers/gpu/drm/xe/xe_execlist.c
-@@ -339,7 +339,8 @@ static int execlist_engine_init(struct xe_engine *e)
- 	err = drm_sched_init(&exl->sched, &drm_sched_ops, NULL,
- 			     e->lrc[0].ring.size / MAX_JOB_SIZE_BYTES,
- 			     XE_SCHED_HANG_LIMIT, XE_SCHED_JOB_TIMEOUT,
--			     NULL, NULL, e->hwe->name, DRM_SCHED_POLICY_DEFAULT,
-+			     NULL, NULL, e->hwe->name,
-+			     DRM_SCHED_POLICY_SINGLE_ENTITY,
- 			     gt_to_xe(e->gt)->drm.dev);
- 	if (err)
- 		goto err_free;
-diff --git a/drivers/gpu/drm/xe/xe_guc_submit.c b/drivers/gpu/drm/xe/xe_guc_submit.c
-index 9d3fadca43be..68d09e7a4cc0 100644
---- a/drivers/gpu/drm/xe/xe_guc_submit.c
-+++ b/drivers/gpu/drm/xe/xe_guc_submit.c
-@@ -1084,7 +1084,7 @@ static int guc_engine_init(struct xe_engine *e)
- 	err = drm_sched_init(&ge->sched, &drm_sched_ops, NULL,
- 			     e->lrc[0].ring.size / MAX_JOB_SIZE_BYTES,
- 			     64, timeout, guc_to_gt(guc)->ordered_wq, NULL,
--			     e->name, DRM_SCHED_POLICY_DEFAULT,
-+			     e->name, DRM_SCHED_POLICY_SINGLE_ENTITY,
- 			     gt_to_xe(e->gt)->drm.dev);
- 	if (err)
- 		goto err_free;
-@@ -1185,7 +1185,6 @@ static int guc_engine_set_priority(struct xe_engine *e,
- 	if (!msg)
+diff --git a/drivers/gpu/drm/xe/xe_pt.c b/drivers/gpu/drm/xe/xe_pt.c
+index 0f40f1950686..964baa24eba3 100644
+--- a/drivers/gpu/drm/xe/xe_pt.c
++++ b/drivers/gpu/drm/xe/xe_pt.c
+@@ -92,8 +92,8 @@ static dma_addr_t vma_addr(struct xe_vma *vma, u64 offset,
+ 		page = offset >> PAGE_SHIFT;
+ 		offset &= (PAGE_SIZE - 1);
+ 
+-		xe_res_first_sg(vma->userptr.sg, page << PAGE_SHIFT, page_size,
+-				&cur);
++		xe_res_first_sg(&vma->userptr.sgt, page << PAGE_SHIFT,
++				page_size, &cur);
+ 		return xe_res_dma(&cur) + offset;
+ 	} else {
+ 		return xe_bo_addr(xe_vma_bo(vma), offset, page_size, is_vram);
+@@ -813,7 +813,7 @@ xe_pt_stage_bind(struct xe_gt *gt, struct xe_vma *vma,
+ 	xe_bo_assert_held(bo);
+ 	if (!xe_vma_is_null(vma)) {
+ 		if (xe_vma_is_userptr(vma))
+-			xe_res_first_sg(vma->userptr.sg, 0, xe_vma_size(vma),
++			xe_res_first_sg(&vma->userptr.sgt, 0, xe_vma_size(vma),
+ 					&curs);
+ 		else if (xe_bo_is_vram(bo) || xe_bo_is_stolen(bo))
+ 			xe_res_first(bo->ttm.resource, xe_vma_bo_offset(vma),
+diff --git a/drivers/gpu/drm/xe/xe_vm.c b/drivers/gpu/drm/xe/xe_vm.c
+index 336e21c710a5..4d734ec4d6ab 100644
+--- a/drivers/gpu/drm/xe/xe_vm.c
++++ b/drivers/gpu/drm/xe/xe_vm.c
+@@ -73,13 +73,13 @@ int xe_vma_userptr_pin_pages(struct xe_vma *vma)
+ 	if (!pages)
  		return -ENOMEM;
  
--	drm_sched_entity_set_priority(e->entity, priority);
- 	guc_engine_add_msg(e, msg, SET_SCHED_PROPS);
+-	if (vma->userptr.sg) {
++	if (xe_vma_userptr_sg_mapped(vma)) {
+ 		dma_unmap_sgtable(xe->drm.dev,
+-				  vma->userptr.sg,
++				  &vma->userptr.sgt,
+ 				  read_only ? DMA_TO_DEVICE :
+ 				  DMA_BIDIRECTIONAL, 0);
+-		sg_free_table(vma->userptr.sg);
+-		vma->userptr.sg = NULL;
++		sg_free_table(&vma->userptr.sgt);
++		vma->gpuva.flags &= ~XE_VMA_USERPTR_SG_MAPPED;
+ 	}
  
- 	return 0;
+ 	pinned = ret = 0;
+@@ -119,19 +119,19 @@ int xe_vma_userptr_pin_pages(struct xe_vma *vma)
+ 					0, (u64)pinned << PAGE_SHIFT,
+ 					GFP_KERNEL);
+ 	if (ret) {
+-		vma->userptr.sg = NULL;
++		vma->gpuva.flags &= ~XE_VMA_USERPTR_SG_MAPPED;
+ 		goto out;
+ 	}
+-	vma->userptr.sg = &vma->userptr.sgt;
++	vma->gpuva.flags |= XE_VMA_USERPTR_SG_MAPPED;
+ 
+-	ret = dma_map_sgtable(xe->drm.dev, vma->userptr.sg,
++	ret = dma_map_sgtable(xe->drm.dev, &vma->userptr.sgt,
+ 			      read_only ? DMA_TO_DEVICE :
+ 			      DMA_BIDIRECTIONAL,
+ 			      DMA_ATTR_SKIP_CPU_SYNC |
+ 			      DMA_ATTR_NO_KERNEL_MAPPING);
+ 	if (ret) {
+-		sg_free_table(vma->userptr.sg);
+-		vma->userptr.sg = NULL;
++		sg_free_table(&vma->userptr.sgt);
++		vma->gpuva.flags &= ~XE_VMA_USERPTR_SG_MAPPED;
+ 		goto out;
+ 	}
+ 
+@@ -820,15 +820,13 @@ static struct xe_vma *xe_vma_create(struct xe_vm *vm,
+ 	 */
+ 	INIT_LIST_HEAD(&vma->rebind_link);
+ 
+-	INIT_LIST_HEAD(&vma->gpuva.gem.entry);
+-	INIT_LIST_HEAD(&vma->gpuva.gem.extobj_link);
+ 	vma->gpuva.mgr = &vm->mgr;
+ 	vma->gpuva.va.addr = start;
+ 	vma->gpuva.va.range = end - start + 1;
+ 	if (read_only)
+ 		vma->gpuva.flags |= XE_VMA_READ_ONLY;
+ 	if (null)
+-		vma->gpuva.flags |= XE_VMA_NULL;
++		vma->gpuva.flags |= DRM_GPUVA_SPARSE;
+ 
+ 	if (gt_mask) {
+ 		vma->gt_mask = gt_mask;
+@@ -845,6 +843,8 @@ static struct xe_vma *xe_vma_create(struct xe_vm *vm,
+ 		xe_bo_assert_held(bo);
+ 
+ 		drm_gem_object_get(&bo->ttm.base);
++		INIT_LIST_HEAD(&vma->gpuva.gem.entry);
++		INIT_LIST_HEAD(&vma->gpuva.gem.extobj_link);
+ 		vma->gpuva.gem.obj = &bo->ttm.base;
+ 		vma->gpuva.gem.offset = bo_offset_or_userptr;
+ 		if (!bo->vm)
+@@ -855,7 +855,8 @@ static struct xe_vma *xe_vma_create(struct xe_vm *vm,
+ 			u64 size = end - start + 1;
+ 			int err;
+ 
+-			vma->gpuva.gem.offset = bo_offset_or_userptr;
++			vma->gpuva.flags |= DRM_GPUVA_USERPTR;
++			vma->gpuva.userptr.address= bo_offset_or_userptr;
+ 			err = mmu_interval_notifier_insert(&vma->userptr.notifier,
+ 							   current->mm,
+ 							   xe_vma_userptr(vma),
+@@ -883,13 +884,13 @@ static void xe_vma_destroy_late(struct xe_vma *vma)
+ 	bool read_only = xe_vma_read_only(vma);
+ 
+ 	if (xe_vma_is_userptr(vma)) {
+-		if (vma->userptr.sg) {
++		if (xe_vma_userptr_sg_mapped(vma)) {
+ 			dma_unmap_sgtable(xe->drm.dev,
+-					  vma->userptr.sg,
++					  &vma->userptr.sgt,
+ 					  read_only ? DMA_TO_DEVICE :
+ 					  DMA_BIDIRECTIONAL, 0);
+-			sg_free_table(vma->userptr.sg);
+-			vma->userptr.sg = NULL;
++			sg_free_table(&vma->userptr.sgt);
++			vma->gpuva.flags &= ~XE_VMA_USERPTR_SG_MAPPED;
+ 		}
+ 
+ 		/*
+@@ -2309,7 +2310,7 @@ static int vm_bind_ioctl_ops_parse(struct xe_vm *vm, struct xe_engine *e,
+ 						XE_VMA_READ_ONLY;
+ 					bool null =
+ 						op->base.remap.unmap->va->flags &
+-						XE_VMA_NULL;
++						DRM_GPUVA_SPARSE;
+ 
+ 					vma = new_vma(vm, op->base.remap.prev,
+ 						      op->gt_mask, read_only,
+@@ -2344,7 +2345,7 @@ static int vm_bind_ioctl_ops_parse(struct xe_vm *vm, struct xe_engine *e,
+ 
+ 					bool null =
+ 						op->base.remap.unmap->va->flags &
+-						XE_VMA_NULL;
++						DRM_GPUVA_SPARSE;
+ 
+ 					vma = new_vma(vm, op->base.remap.next,
+ 						      op->gt_mask, read_only,
+@@ -3320,7 +3321,7 @@ int xe_analyze_vm(struct drm_printer *p, struct xe_vm *vm, int gt_id)
+ 		} else if (is_userptr) {
+ 			struct xe_res_cursor cur;
+ 
+-			xe_res_first_sg(vma->userptr.sg, 0, XE_PAGE_SIZE, &cur);
++			xe_res_first_sg(&vma->userptr.sgt, 0, XE_PAGE_SIZE, &cur);
+ 			addr = xe_res_dma(&cur);
+ 		} else {
+ 			addr = xe_bo_addr(xe_vma_bo(vma), 0, XE_PAGE_SIZE, &is_vram);
+diff --git a/drivers/gpu/drm/xe/xe_vm.h b/drivers/gpu/drm/xe/xe_vm.h
+index 12de652d8d1c..f279fa622260 100644
+--- a/drivers/gpu/drm/xe/xe_vm.h
++++ b/drivers/gpu/drm/xe/xe_vm.h
+@@ -101,12 +101,6 @@ static inline u64 xe_vma_bo_offset(struct xe_vma *vma)
+ 	return vma->gpuva.gem.offset;
+ }
+ 
+-static inline struct xe_bo *xe_vma_bo(struct xe_vma *vma)
+-{
+-	return !vma->gpuva.gem.obj ? NULL :
+-		container_of(vma->gpuva.gem.obj, struct xe_bo, ttm.base);
+-}
+-
+ static inline struct xe_vm *xe_vma_vm(struct xe_vma *vma)
+ {
+ 	return container_of(vma->gpuva.mgr, struct xe_vm, mgr);
+@@ -129,7 +123,7 @@ static inline bool xe_vma_read_only(struct xe_vma *vma)
+ 
+ static inline u64 xe_vma_userptr(struct xe_vma *vma)
+ {
+-	return vma->gpuva.gem.offset;
++	return vma->gpuva.userptr.address;
+ }
+ 
+ #define xe_vm_assert_held(vm) dma_resv_assert_held(&(vm)->mgr.resv)
+@@ -197,12 +191,18 @@ static inline void xe_vm_reactivate_rebind(struct xe_vm *vm)
+ 
+ static inline bool xe_vma_is_null(struct xe_vma *vma)
+ {
+-	return vma->gpuva.flags & XE_VMA_NULL;
++	return vma->gpuva.flags & DRM_GPUVA_SPARSE;
+ }
+ 
+ static inline bool xe_vma_is_userptr(struct xe_vma *vma)
+ {
+-	return !xe_vma_bo(vma) && !xe_vma_is_null(vma);
++	return vma->gpuva.flags & DRM_GPUVA_USERPTR;
++}
++
++static inline struct xe_bo *xe_vma_bo(struct xe_vma *vma)
++{
++	return xe_vma_is_null(vma) || xe_vma_is_userptr(vma) ? NULL :
++		container_of(vma->gpuva.gem.obj, struct xe_bo, ttm.base);
+ }
+ 
+ static inline bool xe_vma_has_no_bo(struct xe_vma *vma)
+@@ -210,6 +210,11 @@ static inline bool xe_vma_has_no_bo(struct xe_vma *vma)
+ 	return !xe_vma_bo(vma);
+ }
+ 
++static inline bool xe_vma_userptr_sg_mapped(struct xe_vma *vma)
++{
++	return vma->gpuva.flags & XE_VMA_USERPTR_SG_MAPPED;
++}
++
+ int xe_vma_userptr_pin_pages(struct xe_vma *vma);
+ 
+ int xe_vma_userptr_check_repin(struct xe_vma *vma);
+diff --git a/drivers/gpu/drm/xe/xe_vm_types.h b/drivers/gpu/drm/xe/xe_vm_types.h
+index 0b59bde3bc4e..ce1260b8d3ef 100644
+--- a/drivers/gpu/drm/xe/xe_vm_types.h
++++ b/drivers/gpu/drm/xe/xe_vm_types.h
+@@ -23,15 +23,15 @@ struct xe_vm;
+ #define TEST_VM_ASYNC_OPS_ERROR
+ #define FORCE_ASYNC_OP_ERROR	BIT(31)
+ 
+-#define XE_VMA_READ_ONLY	DRM_GPUVA_USERBITS
+-#define XE_VMA_DESTROYED	(DRM_GPUVA_USERBITS << 1)
+-#define XE_VMA_ATOMIC_PTE_BIT	(DRM_GPUVA_USERBITS << 2)
+-#define XE_VMA_FIRST_REBIND	(DRM_GPUVA_USERBITS << 3)
+-#define XE_VMA_LAST_REBIND	(DRM_GPUVA_USERBITS << 4)
+-#define XE_VMA_NULL		(DRM_GPUVA_USERBITS << 5)
+-#define XE_VMA_PTE_4K		(DRM_GPUVA_USERBITS << 6)
+-#define XE_VMA_PTE_2M		(DRM_GPUVA_USERBITS << 7)
+-#define XE_VMA_PTE_1G		(DRM_GPUVA_USERBITS << 8)
++#define XE_VMA_READ_ONLY		DRM_GPUVA_USERBITS
++#define XE_VMA_DESTROYED		(DRM_GPUVA_USERBITS << 1)
++#define XE_VMA_ATOMIC_PTE_BIT		(DRM_GPUVA_USERBITS << 2)
++#define XE_VMA_FIRST_REBIND		(DRM_GPUVA_USERBITS << 3)
++#define XE_VMA_LAST_REBIND		(DRM_GPUVA_USERBITS << 4)
++#define XE_VMA_USERPTR_SG_MAPPED	(DRM_GPUVA_USERBITS << 5)
++#define XE_VMA_PTE_4K			(DRM_GPUVA_USERBITS << 6)
++#define XE_VMA_PTE_2M			(DRM_GPUVA_USERBITS << 7)
++#define XE_VMA_PTE_1G			(DRM_GPUVA_USERBITS << 8)
+ 
+ /** struct xe_userptr - User pointer */
+ struct xe_userptr {
+@@ -41,8 +41,6 @@ struct xe_userptr {
+ 	struct mmu_interval_notifier notifier;
+ 	/** @sgt: storage for a scatter gather table */
+ 	struct sg_table sgt;
+-	/** @sg: allocated scatter gather table */
+-	struct sg_table *sg;
+ 	/** @notifier_seq: notifier sequence number */
+ 	unsigned long notifier_seq;
+ 	/**
+diff --git a/include/drm/drm_gpuva_mgr.h b/include/drm/drm_gpuva_mgr.h
+index 57861a7ed504..943c8fcda533 100644
+--- a/include/drm/drm_gpuva_mgr.h
++++ b/include/drm/drm_gpuva_mgr.h
+@@ -62,10 +62,17 @@ enum drm_gpuva_flags {
+ 	 */
+ 	DRM_GPUVA_EXTOBJ = (1 << 2),
+ 
++	/**
++	 * @DRM_GPUVA_USERPTR:
++	 *
++	 * Flag indicating that the &drm_gpuva is a user pointer mapping.
++	 */
++	DRM_GPUVA_USERPTR = (1 << 3),
++
+ 	/**
+ 	 * @DRM_GPUVA_USERBITS: user defined bits
+ 	 */
+-	DRM_GPUVA_USERBITS = (1 << 3),
++	DRM_GPUVA_USERBITS = (1 << 4),
+ };
+ 
+ /**
+@@ -102,31 +109,45 @@ struct drm_gpuva {
+ 		u64 range;
+ 	} va;
+ 
+-	/**
+-	 * @gem: structure containing the &drm_gem_object and it's offset
+-	 */
+-	struct {
+-		/**
+-		 * @offset: the offset within the &drm_gem_object
+-		 */
+-		u64 offset;
+-
+-		/**
+-		 * @obj: the mapped &drm_gem_object
+-		 */
+-		struct drm_gem_object *obj;
+-
++	union {
+ 		/**
+-		 * @entry: the &list_head to attach this object to a &drm_gem_object
++		 * @gem: structure containing the &drm_gem_object and it's
++		 * offset
+ 		 */
+-		struct list_head entry;
++		struct {
++			/**
++			 * @offset: the offset within the &drm_gem_object
++			 */
++			u64 offset;
++
++			/**
++			 * @obj: the mapped &drm_gem_object
++			 */
++			struct drm_gem_object *obj;
++
++			/**
++			 * @entry: the &list_head to attach this object to a
++			 * &drm_gem_object
++			 */
++			struct list_head entry;
++
++			/**
++			 * @extobj_link: the &list_head to attach this object to
++			 * a @drm_gpuva_manager.extobj.list
++			 */
++			struct list_head extobj_link;
++		} gem;
+ 
+ 		/**
+-		 * @extobj_link: the &list_head to attach this object to a
+-		 * @drm_gpuva_manager.extobj.list
++		 * @userptr: structure containing user pointer state
+ 		 */
+-		struct list_head extobj_link;
+-	} gem;
++		struct {
++			/**
++			 * @address: user pointer address
++			 */
++			u64 address;
++		} userptr;
++	};
+ };
+ 
+ void drm_gpuva_link(struct drm_gpuva *va);
 -- 
 2.34.1
 
