@@ -4,37 +4,36 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6BB29C77B78
-	for <intel-xe@archiver.kernel.org>; Tue,  2 May 2023 19:16:22 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id E7472C7EE22
+	for <intel-xe@archiver.kernel.org>; Tue,  2 May 2023 19:18:51 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 101A910E090;
-	Tue,  2 May 2023 19:16:22 +0000 (UTC)
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0FA7310E07C;
- Tue,  2 May 2023 19:16:18 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id AC6F010E01F;
+	Tue,  2 May 2023 19:18:51 +0000 (UTC)
+Received: from dfw.source.kernel.org (dfw.source.kernel.org
+ [IPv6:2604:1380:4641:c500::1])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2654210E01F
+ for <intel-xe@lists.freedesktop.org>; Tue,  2 May 2023 19:18:50 +0000 (UTC)
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
  (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
  (No client certificate requested)
- by dfw.source.kernel.org (Postfix) with ESMTPS id 405F962023;
- Tue,  2 May 2023 19:16:18 +0000 (UTC)
+ by dfw.source.kernel.org (Postfix) with ESMTPS id 4B06762585;
+ Tue,  2 May 2023 19:18:49 +0000 (UTC)
 Received: from rdvivi-mobl4 (unknown [192.55.55.58])
  (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
  (No client certificate requested)
- by smtp.kernel.org (Postfix) with ESMTPSA id E1D23C433EF;
- Tue,  2 May 2023 19:16:15 +0000 (UTC)
-Date: Tue, 2 May 2023 15:16:14 -0400
+ by smtp.kernel.org (Postfix) with ESMTPSA id 077DBC433D2;
+ Tue,  2 May 2023 19:18:46 +0000 (UTC)
+Date: Tue, 2 May 2023 15:18:44 -0400
 From: Rodrigo Vivi <rodrigo.vivi@kernel.org>
 To: =?iso-8859-1?Q?Jos=E9?= Roberto de Souza <jose.souza@intel.com>
-Message-ID: <ZFFhfsU83EftqhTD@rdvivi-mobl4>
+Message-ID: <ZFFiFFmlc4b3ZDuw@rdvivi-mobl4>
 References: <20230425192624.168640-1-jose.souza@intel.com>
- <20230425192624.168640-12-jose.souza@intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=iso-8859-1
 Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <20230425192624.168640-12-jose.souza@intel.com>
-Subject: Re: [Intel-xe] [Intel-gfx] [PATCH v2 11/15] drm/i915: Initialize
- dkl_phy spin lock from display code path
+In-Reply-To: <20230425192624.168640-1-jose.souza@intel.com>
+Subject: Re: [Intel-xe] [PATCH v2 00/15] Display fixes
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -46,121 +45,88 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Cc: Jani Nikula <jani.nikula@intel.com>, intel-gfx@lists.freedesktop.org,
- Lucas De Marchi <lucas.demarchi@intel.com>, intel-xe@lists.freedesktop.org,
- rodrigo.vivi@intel.com
+Cc: intel-xe@lists.freedesktop.org, rodrigo.vivi@intel.com
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Tue, Apr 25, 2023 at 12:26:20PM -0700, José Roberto de Souza wrote:
-> drm/i915: Initialize dkl_phy spin lock from display code path
-
-double subject!
-
-but I realized that this ended up in drm-intel-next like this as well
-so I kept in here as well...
-
+On Tue, Apr 25, 2023 at 12:26:09PM -0700, José Roberto de Souza wrote:
+> This patch series does 4 main things:
+> - fix the dkl phy mutex initialization by:
+> 	- backporting: https://patchwork.freedesktop.org/series/116431/
+> 	- backporting: https://patchwork.freedesktop.org/patch/msgid/20230420170558.35398-1-jose.souza@intel.com
+> 	- fixing display function calls
 > 
-> Start moving the initialization of display locks from
-> i915_driver_early_probe().
-> Display locks should be initialized from display-only code paths.
+> - enable modular fia in TGL
+> 	- this patch will be gone in next Xe rebase as has_modular_fia
+> 	was removed in drm-tip. Not backporting patches removing it
+> 	because it is a huge series.
 > 
-> It was also agreed that if a variable is only used in one file, it
-> should be initialized only in that file, so intel_dkl_phy_init() was
-> added.
+> - Makes has_psr_hw_tracking default as 0, as only TGL and DG1 supports
+> PSR HW tracking in Xe kmd
+> 
+> - Enable Raptorlake-P
 > 
 > v2:
-> - added intel_display_locks_init()
+> - function call fixes in 'squash! drm/xe/display: Implement display support'
 > 
-> v3:
-> - rebased
+> Closes: https://gitlab.freedesktop.org/drm/xe/kernel/-/issues/249
+
+Since I'm delaying on the rebase I was expecting for this week, I went
+ahead and pushed this series so we unblock folks.
+
+As we agreed in the chat, I added you SoB in all the backported patches
+you submit. Anyone in the way of patch deliverable needs to add the SoB
+by the rules... Let's try to follow the rules even though these patches
+will be gone on the next rebase so we don't end up accidentally missing
+something behind...
+
 > 
-> v4:
-> - dropped intel_display_locks_init()
+> Jani Nikula (10):
+>   drm/i915/display: remove intel_display_commit_duplicated_state()
+>   drm/i915/display: start high level display driver file
+>   drm/i915/display: move intel_modeset_probe_defer() to
+>     intel_display_driver.[ch]
+>   drm/i915/display: rename intel_modeset_probe_defer() ->
+>     intel_display_driver_probe_defer()
+>   drm/i915/display: move modeset probe/remove functions to
+>     intel_display_driver.c
+>   drm/i915/display: rename intel_display_driver_* functions
+>   drm/i915/display: add intel_display_reset.[ch]
+>   drm/i915/display: move display suspend/resume to
+>     intel_display_driver.[ch]
+>   drm/i915/display: rename intel_display_driver_suspend/resume functions
+>   drm/i915/display: add intel_display_driver_early_probe()
 > 
-> v5:
-> - moved intel_dkl_phy_init() to the beginning of file
+> José Roberto de Souza (5):
+>   drm/i915: Initialize dkl_phy spin lock from display code path
+>   squash! drm/xe/display: Implement display support
+>   TEMPORARY: drm/xe/display: Enable modular fia in TGL
+>   drm/xe/display: Disable PSR HW tracking by default in all display
+>     versions
+>   drm/xe: Enable Raptorlake-P
 > 
-> Cc: intel-gfx@lists.freedesktop.org
-> Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
-> Cc: Ville Syrjälä <ville.syrjala@linux.intel.com>
-> Cc: Jani Nikula <jani.nikula@intel.com>
-> Cc: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
-> Reviewed-by: Lucas De Marchi <lucas.demarchi@intel.com>
-> Signed-off-by: José Roberto de Souza <jose.souza@intel.com>
-> Link: https://patchwork.freedesktop.org/patch/msgid/20230420170558.35398-1-jose.souza@intel.com
-> (cherry picked from commit bfa010f608491036327db20aad1d15e28da0189e)
-> ---
->  drivers/gpu/drm/i915/display/intel_display_driver.c | 2 ++
->  drivers/gpu/drm/i915/display/intel_dkl_phy.c        | 9 +++++++++
->  drivers/gpu/drm/i915/display/intel_dkl_phy.h        | 1 +
->  drivers/gpu/drm/i915/i915_driver.c                  | 1 -
->  4 files changed, 12 insertions(+), 1 deletion(-)
+>  drivers/gpu/drm/i915/Makefile                 |   2 +
+>  drivers/gpu/drm/i915/display/intel_display.c  | 693 +-----------------
+>  drivers/gpu/drm/i915/display/intel_display.h  |  29 +-
+>  .../drm/i915/display/intel_display_driver.c   | 585 +++++++++++++++
+>  .../drm/i915/display/intel_display_driver.h   |  36 +
+>  .../drm/i915/display/intel_display_reset.c    | 135 ++++
+>  .../drm/i915/display/intel_display_reset.h    |  14 +
+>  drivers/gpu/drm/i915/display/intel_dkl_phy.c  |   9 +
+>  drivers/gpu/drm/i915/display/intel_dkl_phy.h  |   1 +
+>  drivers/gpu/drm/i915/gt/intel_reset.c         |   6 +-
+>  drivers/gpu/drm/i915/i915_driver.c            |  35 +-
+>  drivers/gpu/drm/i915/i915_irq.c               |   2 +-
+>  drivers/gpu/drm/i915/i915_pci.c               |   3 +-
+>  drivers/gpu/drm/xe/Makefile                   |   1 +
+>  drivers/gpu/drm/xe/xe_display.c               |  38 +-
+>  drivers/gpu/drm/xe/xe_pci.c                   |   1 +
+>  16 files changed, 854 insertions(+), 736 deletions(-)
+>  create mode 100644 drivers/gpu/drm/i915/display/intel_display_driver.c
+>  create mode 100644 drivers/gpu/drm/i915/display/intel_display_driver.h
+>  create mode 100644 drivers/gpu/drm/i915/display/intel_display_reset.c
+>  create mode 100644 drivers/gpu/drm/i915/display/intel_display_reset.h
 > 
-> diff --git a/drivers/gpu/drm/i915/display/intel_display_driver.c b/drivers/gpu/drm/i915/display/intel_display_driver.c
-> index 92c624f6d2ae7..95669ad1a7975 100644
-> --- a/drivers/gpu/drm/i915/display/intel_display_driver.c
-> +++ b/drivers/gpu/drm/i915/display/intel_display_driver.c
-> @@ -30,6 +30,7 @@
->  #include "intel_display_driver.h"
->  #include "intel_display_power.h"
->  #include "intel_display_types.h"
-> +#include "intel_dkl_phy.h"
->  #include "intel_dmc.h"
->  #include "intel_dp.h"
->  #include "intel_dpll.h"
-> @@ -177,6 +178,7 @@ void intel_display_driver_early_probe(struct drm_i915_private *i915)
->  	if (!HAS_DISPLAY(i915))
->  		return;
->  
-> +	intel_dkl_phy_init(i915);
->  	intel_color_init_hooks(i915);
->  	intel_init_cdclk_hooks(i915);
->  	intel_audio_hooks_init(i915);
-> diff --git a/drivers/gpu/drm/i915/display/intel_dkl_phy.c b/drivers/gpu/drm/i915/display/intel_dkl_phy.c
-> index 57cc3edba0163..a001232ad445e 100644
-> --- a/drivers/gpu/drm/i915/display/intel_dkl_phy.c
-> +++ b/drivers/gpu/drm/i915/display/intel_dkl_phy.c
-> @@ -11,6 +11,15 @@
->  #include "intel_dkl_phy.h"
->  #include "intel_dkl_phy_regs.h"
->  
-> +/**
-> + * intel_dkl_phy_init - initialize Dekel PHY
-> + * @i915: i915 device instance
-> + */
-> +void intel_dkl_phy_init(struct drm_i915_private *i915)
-> +{
-> +	spin_lock_init(&i915->display.dkl.phy_lock);
-> +}
-> +
->  static void
->  dkl_phy_set_hip_idx(struct drm_i915_private *i915, struct intel_dkl_phy_reg reg)
->  {
-> diff --git a/drivers/gpu/drm/i915/display/intel_dkl_phy.h b/drivers/gpu/drm/i915/display/intel_dkl_phy.h
-> index 570ee36f9386f..5956ec3e940b1 100644
-> --- a/drivers/gpu/drm/i915/display/intel_dkl_phy.h
-> +++ b/drivers/gpu/drm/i915/display/intel_dkl_phy.h
-> @@ -12,6 +12,7 @@
->  
->  struct drm_i915_private;
->  
-> +void intel_dkl_phy_init(struct drm_i915_private *i915);
->  u32
->  intel_dkl_phy_read(struct drm_i915_private *i915, struct intel_dkl_phy_reg reg);
->  void
-> diff --git a/drivers/gpu/drm/i915/i915_driver.c b/drivers/gpu/drm/i915/i915_driver.c
-> index decaff25c36cf..a4e11a3c1842f 100644
-> --- a/drivers/gpu/drm/i915/i915_driver.c
-> +++ b/drivers/gpu/drm/i915/i915_driver.c
-> @@ -225,7 +225,6 @@ static int i915_driver_early_probe(struct drm_i915_private *dev_priv)
->  	mutex_init(&dev_priv->display.wm.wm_mutex);
->  	mutex_init(&dev_priv->display.pps.mutex);
->  	mutex_init(&dev_priv->display.hdcp.comp_mutex);
-> -	spin_lock_init(&dev_priv->display.dkl.phy_lock);
->  
->  	i915_memcpy_init_early(dev_priv);
->  	intel_runtime_pm_init_early(&dev_priv->runtime_pm);
 > -- 
 > 2.40.0
 > 
