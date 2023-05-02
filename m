@@ -4,48 +4,48 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id E41F1C7EE3A
-	for <intel-xe@archiver.kernel.org>; Tue,  2 May 2023 00:17:35 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 671D9C7EE2A
+	for <intel-xe@archiver.kernel.org>; Tue,  2 May 2023 00:17:36 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E38AE10E493;
-	Tue,  2 May 2023 00:17:33 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C492210E495;
+	Tue,  2 May 2023 00:17:34 +0000 (UTC)
 Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 46EF110E40E
- for <intel-xe@lists.freedesktop.org>; Tue,  2 May 2023 00:17:31 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 53C6E10E3F9
+ for <intel-xe@lists.freedesktop.org>; Tue,  2 May 2023 00:17:29 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1682986651; x=1714522651;
+ t=1682986649; x=1714522649;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=GGM81wkRvSMeljT95Eun8/CRn8HdGVx85rYCSvjP5ZM=;
- b=nQMGHwsWaHKzbx9j3ZJHUdSIaOITRzvO7Kq5cu6y+zU1vrQ9XM4bKiv7
- uqZ09EwoTwMVb3RXPFJtWUTFn8EZPJjSXgWcGusWMgfQDUjM+moaZ7cPD
- nCW8UTIb1nuxlcBTXRgylA/1sYz/f5fZ2EaX9w6KaLLBbEiiCRaTfEkL4
- 2fkcbblj3B9BTE9o3wwxJldsSSPnM5WZ2mHdGSzUFdrIkfcDyywl1gj6a
- uE0LtPov9tiMyul0ROKvM1t7m/Z7FyHvmehQ+jHIqAkP1XLwyCiCSeOIk
- o7z6Ow3LL0hG8+5Tkd+6tIDzgY4VznJxONYZl/Q9h6plEAYDtu5QQk1at g==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10697"; a="332619599"
-X-IronPort-AV: E=Sophos;i="5.99,242,1677571200"; d="scan'208";a="332619599"
+ bh=FyObaN2WWyVSiSzYYWkuIi16VR/wQ5+sz9sOn5jcGQo=;
+ b=aogl9hvPtMEUohGJRgZD/G0jGQ7d08PP1Nkwi34X5hrB2MCIFwtXTliJ
+ G033sXi+tsYdRjkSdhhB31qK4mDlx//6y9KOcwbcVXgqIEzWI22YQNyiW
+ gtkYbhCgwDRDqXuRwvlpNgPfV0eytfH411bKK6MmzWyG78wf9pub/h1cB
+ 5zKytnY5OJqHUtyDaQ0/3RFhQtBL8ewgcs6m9d+n0FObc8cpsbTUG4Jub
+ IurAlJOtXxoGpK16WwZ8zfW8jDCRWg/SbNjs1O1Er+L5RMKEwO8ULf7ox
+ BlKIOX/LIUQ3l3zt/IVJVRUcNIMAmpVkXTSAfIo/tjSD7ZOVXXisUu1ei w==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10697"; a="332619570"
+X-IronPort-AV: E=Sophos;i="5.99,242,1677571200"; d="scan'208";a="332619570"
 Received: from fmsmga004.fm.intel.com ([10.253.24.48])
  by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 01 May 2023 17:17:30 -0700
+ 01 May 2023 17:17:27 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10697"; a="765541746"
-X-IronPort-AV: E=Sophos;i="5.99,242,1677571200"; d="scan'208";a="765541746"
+X-IronPort-AV: E=McAfee;i="6600,9927,10697"; a="765541688"
+X-IronPort-AV: E=Sophos;i="5.99,242,1677571200"; d="scan'208";a="765541688"
 Received: from lstrano-desk.jf.intel.com ([10.24.89.184])
  by fmsmga004-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 01 May 2023 17:17:29 -0700
+ 01 May 2023 17:17:27 -0700
 From: Matthew Brost <matthew.brost@intel.com>
 To: <intel-xe@lists.freedesktop.org>
-Date: Mon,  1 May 2023 17:17:24 -0700
-Message-Id: <20230502001727.3211096-29-matthew.brost@intel.com>
+Date: Mon,  1 May 2023 17:17:05 -0700
+Message-Id: <20230502001727.3211096-10-matthew.brost@intel.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20230502001727.3211096-1-matthew.brost@intel.com>
 References: <20230502001727.3211096-1-matthew.brost@intel.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-xe] [PATCH v2 28/31] drm/xe: Allow dma-fences as in-syncs
- for compute / faulting VM
+Subject: [Intel-xe] [PATCH v2 09/31] drm/xe/guc: Read HXG fields from DW1 of
+ G2H response
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -60,73 +60,34 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-This is allowed per the dma-fencing rules.
+The HXG fields are DW1 not DW0, fix this.
 
 Signed-off-by: Matthew Brost <matthew.brost@intel.com>
 ---
- drivers/gpu/drm/xe/xe_sync.c | 12 +++++++-----
- 1 file changed, 7 insertions(+), 5 deletions(-)
+ drivers/gpu/drm/xe/xe_guc_ct.c | 6 +++---
+ 1 file changed, 3 insertions(+), 3 deletions(-)
 
-diff --git a/drivers/gpu/drm/xe/xe_sync.c b/drivers/gpu/drm/xe/xe_sync.c
-index 99f1ed87196d..1e4e4acb2c4a 100644
---- a/drivers/gpu/drm/xe/xe_sync.c
-+++ b/drivers/gpu/drm/xe/xe_sync.c
-@@ -105,6 +105,7 @@ int xe_sync_entry_parse(struct xe_device *xe, struct xe_file *xef,
- {
- 	struct drm_xe_sync sync_in;
- 	int err;
-+	bool signal;
- 
- 	if (copy_from_user(&sync_in, sync_user, sizeof(*sync_user)))
- 		return -EFAULT;
-@@ -113,9 +114,10 @@ int xe_sync_entry_parse(struct xe_device *xe, struct xe_file *xef,
- 			 ~(SYNC_FLAGS_TYPE_MASK | DRM_XE_SYNC_SIGNAL)))
- 		return -EINVAL;
- 
-+	signal = sync_in.flags & DRM_XE_SYNC_SIGNAL;
- 	switch (sync_in.flags & SYNC_FLAGS_TYPE_MASK) {
- 	case DRM_XE_SYNC_SYNCOBJ:
--		if (XE_IOCTL_ERR(xe, no_dma_fences))
-+		if (XE_IOCTL_ERR(xe, no_dma_fences && signal))
- 			return -ENOTSUPP;
- 
- 		if (XE_IOCTL_ERR(xe, upper_32_bits(sync_in.addr)))
-@@ -125,7 +127,7 @@ int xe_sync_entry_parse(struct xe_device *xe, struct xe_file *xef,
- 		if (XE_IOCTL_ERR(xe, !sync->syncobj))
- 			return -ENOENT;
- 
--		if (!(sync_in.flags & DRM_XE_SYNC_SIGNAL)) {
-+		if (!signal) {
- 			sync->fence = drm_syncobj_fence_get(sync->syncobj);
- 			if (XE_IOCTL_ERR(xe, !sync->fence))
- 				return -EINVAL;
-@@ -133,7 +135,7 @@ int xe_sync_entry_parse(struct xe_device *xe, struct xe_file *xef,
- 		break;
- 
- 	case DRM_XE_SYNC_TIMELINE_SYNCOBJ:
--		if (XE_IOCTL_ERR(xe, no_dma_fences))
-+		if (XE_IOCTL_ERR(xe, no_dma_fences && signal))
- 			return -ENOTSUPP;
- 
- 		if (XE_IOCTL_ERR(xe, upper_32_bits(sync_in.addr)))
-@@ -146,7 +148,7 @@ int xe_sync_entry_parse(struct xe_device *xe, struct xe_file *xef,
- 		if (XE_IOCTL_ERR(xe, !sync->syncobj))
- 			return -ENOENT;
- 
--		if (sync_in.flags & DRM_XE_SYNC_SIGNAL) {
-+		if (signal) {
- 			sync->chain_fence = dma_fence_chain_alloc();
- 			if (!sync->chain_fence)
- 				return -ENOMEM;
-@@ -168,7 +170,7 @@ int xe_sync_entry_parse(struct xe_device *xe, struct xe_file *xef,
- 		break;
- 
- 	case DRM_XE_SYNC_USER_FENCE:
--		if (XE_IOCTL_ERR(xe, !(sync_in.flags & DRM_XE_SYNC_SIGNAL)))
-+		if (XE_IOCTL_ERR(xe, !signal))
- 			return -ENOTSUPP;
- 
- 		if (XE_IOCTL_ERR(xe, sync_in.addr & 0x7))
+diff --git a/drivers/gpu/drm/xe/xe_guc_ct.c b/drivers/gpu/drm/xe/xe_guc_ct.c
+index 9055ff133a7c..6abf1dee95af 100644
+--- a/drivers/gpu/drm/xe/xe_guc_ct.c
++++ b/drivers/gpu/drm/xe/xe_guc_ct.c
+@@ -782,13 +782,13 @@ static int parse_g2h_response(struct xe_guc_ct *ct, u32 *msg, u32 len)
+ 	if (type == GUC_HXG_TYPE_RESPONSE_FAILURE) {
+ 		g2h_fence->fail = true;
+ 		g2h_fence->error =
+-			FIELD_GET(GUC_HXG_FAILURE_MSG_0_ERROR, msg[0]);
++			FIELD_GET(GUC_HXG_FAILURE_MSG_0_ERROR, msg[1]);
+ 		g2h_fence->hint =
+-			FIELD_GET(GUC_HXG_FAILURE_MSG_0_HINT, msg[0]);
++			FIELD_GET(GUC_HXG_FAILURE_MSG_0_HINT, msg[1]);
+ 	} else if (type == GUC_HXG_TYPE_NO_RESPONSE_RETRY) {
+ 		g2h_fence->retry = true;
+ 		g2h_fence->reason =
+-			FIELD_GET(GUC_HXG_RETRY_MSG_0_REASON, msg[0]);
++			FIELD_GET(GUC_HXG_RETRY_MSG_0_REASON, msg[1]);
+ 	} else if (g2h_fence->response_buffer) {
+ 		g2h_fence->response_len = response_len;
+ 		memcpy(g2h_fence->response_buffer, msg + GUC_CTB_MSG_MIN_LEN,
 -- 
 2.34.1
 
