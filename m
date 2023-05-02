@@ -4,138 +4,140 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4A3E2C77B7E
-	for <intel-xe@archiver.kernel.org>; Tue,  2 May 2023 05:27:30 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id DF5A4C77B7E
+	for <intel-xe@archiver.kernel.org>; Tue,  2 May 2023 07:45:05 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E19D610E13A;
-	Tue,  2 May 2023 05:27:29 +0000 (UTC)
-Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 79CC410E13A;
- Tue,  2 May 2023 05:27:28 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 759C210E4A3;
+	Tue,  2 May 2023 07:45:05 +0000 (UTC)
+Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id AD42710E4A1;
+ Tue,  2 May 2023 07:45:03 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1683005248; x=1714541248;
+ t=1683013503; x=1714549503;
  h=date:from:to:cc:subject:message-id:references:
- in-reply-to:mime-version;
- bh=sAXvtBjQ8OAgcLJaGPpvE8NLgmjjtrTlRNr7A7lkhJY=;
- b=IYfL+L8Pih27l4CuDr0SLTsWriGXDBffB+ICYi5IYp+3XizvqVjJ64O2
- 6z+O3I3oKPdnSWT8arVdmP966fzr/ZrPuzB/yAWWRS1QRA6KZCvvw4cj2
- fcHZNHiPTrLqXnP8AotMOduNr7DRZwX+qZuFvbmzspLxfqOPBExSHDRvF
- dQC0D4fGCF+ATNyOr/Lx+Jjp2dDF5NjxtWXau1U4o6KgUtBBXufH+ZIgy
- Ws8aMguZhjvEfo/vdHzRdE07jGkaYJAsLP4UOAAQU2TCozJEzHV4OrQBR
- NhzP/x5vw2IZedsCbdTaqKSwj9vxnPucxKb4iVUSJlwRbNQvbU1Vnlx3i Q==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10697"; a="434632617"
-X-IronPort-AV: E=Sophos;i="5.99,243,1677571200"; d="scan'208";a="434632617"
-Received: from fmsmga002.fm.intel.com ([10.253.24.26])
- by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 01 May 2023 22:27:27 -0700
+ content-transfer-encoding:in-reply-to:mime-version;
+ bh=5285e+mPkjqS+ome2MPJt/cx6lSH3rUCms7139Osgzg=;
+ b=mG/X5fibjHVhXPBD7Tpl5yh1z+Cvm3H9KsFSMdZydgtrzlHzdhM0ol+6
+ oe81bjB3ws8LHMvpIn7ilZmb5PcdSzmvKfMXDSeXjhbQ8APDNpB7n1m/M
+ 8oIbfMtU8Bsncu1nALQWK5HzyzP9f9I63Quqa42xCJcsQVFWvR8NBxzpU
+ gmPg1N4JbMog53Mj2Ale55XN9UtJTjlhh+CRwwVBdywEPU5ojEKtUeulX
+ n3ReRldibX/WL5uBuQ6CVRmg10JIjcwZHXIHIWnAzJluV1CoBdPs7vBpZ
+ O4GWUj2JQ3mPEMzWyzYpW7/MSHGRwK199wwA9Ve+Hg7qu5VesvwZxC5l/ w==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10697"; a="376393638"
+X-IronPort-AV: E=Sophos;i="5.99,243,1677571200"; d="scan'208";a="376393638"
+Received: from orsmga001.jf.intel.com ([10.7.209.18])
+ by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 02 May 2023 00:45:02 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10697"; a="807715775"
-X-IronPort-AV: E=Sophos;i="5.99,243,1677571200"; d="scan'208";a="807715775"
-Received: from fmsmsx601.amr.corp.intel.com ([10.18.126.81])
- by fmsmga002.fm.intel.com with ESMTP; 01 May 2023 22:27:27 -0700
-Received: from fmsmsx611.amr.corp.intel.com (10.18.126.91) by
- fmsmsx601.amr.corp.intel.com (10.18.126.81) with Microsoft SMTP Server
+X-IronPort-AV: E=McAfee;i="6600,9927,10697"; a="728837086"
+X-IronPort-AV: E=Sophos;i="5.99,243,1677571200"; d="scan'208";a="728837086"
+Received: from orsmsx602.amr.corp.intel.com ([10.22.229.15])
+ by orsmga001.jf.intel.com with ESMTP; 02 May 2023 00:45:02 -0700
+Received: from orsmsx611.amr.corp.intel.com (10.22.229.24) by
+ ORSMSX602.amr.corp.intel.com (10.22.229.15) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.23; Mon, 1 May 2023 22:27:27 -0700
-Received: from fmsmsx610.amr.corp.intel.com (10.18.126.90) by
- fmsmsx611.amr.corp.intel.com (10.18.126.91) with Microsoft SMTP Server
+ 15.1.2507.23; Tue, 2 May 2023 00:45:02 -0700
+Received: from orsmsx610.amr.corp.intel.com (10.22.229.23) by
+ ORSMSX611.amr.corp.intel.com (10.22.229.24) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.23; Mon, 1 May 2023 22:27:27 -0700
-Received: from fmsedg601.ED.cps.intel.com (10.1.192.135) by
- fmsmsx610.amr.corp.intel.com (10.18.126.90) with Microsoft SMTP Server
+ 15.1.2507.23; Tue, 2 May 2023 00:45:02 -0700
+Received: from ORSEDG602.ED.cps.intel.com (10.7.248.7) by
+ orsmsx610.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.23 via Frontend Transport; Mon, 1 May 2023 22:27:27 -0700
-Received: from NAM10-BN7-obe.outbound.protection.outlook.com (104.47.70.107)
- by edgegateway.intel.com (192.55.55.70) with Microsoft SMTP Server
+ 15.1.2507.23 via Frontend Transport; Tue, 2 May 2023 00:45:02 -0700
+Received: from NAM11-CO1-obe.outbound.protection.outlook.com (104.47.56.168)
+ by edgegateway.intel.com (134.134.137.103) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2507.23; Mon, 1 May 2023 22:27:26 -0700
+ 15.1.2507.23; Tue, 2 May 2023 00:45:01 -0700
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=e42xuCAzh1xm0GnyQhfSo3Nv2+iKRgzqujjFrW/lLJXkS3TRMZNkgCRdctJJNvlRHSLwnXn5JAF3DPjp9VNfJXTr8zVPNBvbI5+6O96UWv/DVoLDvvSzpRfMiahCcWUz+KeAE0LRtFVHA49P9qPGCQFAwTxFjQBlSgtOdTO7adXNeD4s6ZLCeMte6OkWTe9OSwOp+4d66FTEUgu6igKHDvVNG3a9SLKgVPAYvXkHv9vRfdFpKekU37AAKfK6KmGbAZ0tb/zWi7yEwykhBAHPWncb/T8KHdREFA3X3rg8g9HhLzipuVgkw2zA3qFN6QSjVqsbfjCdEDROg4lpLRzJlw==
+ b=eX9z5ZFttdQ9nPb7pfwA6/ZAWE99rlVTv0pLd/sB3fbk2h2yjFK3VMPHSZuwpnZ8Mh5A03pFDIGZEJ7Rt0aARCHs3n6NI0BfL1QL+keQ3ViTYxfevF10StHKPqBy9VITRVfgtWzGN8ibr7pPRm2EKwdlNI7rzezj91a6B3TJ6Pbi3tmCcBFLQf3My5ZMDPoAHnws7AMpx6F4LHk2o5Y20Zxjy9ivufyHiRijc1EdupAEd3z72hqslRKD0KYNFGBpQkmGwsjv8/0nGBcqd1TOjAAqzMGBUq1x1zIsR21SfY2JgUCrR+wl9j7H7OfnQn7AIUskF3rroeZkxMKJmOS/qw==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=gRcy+eZdoeyu2yHRxT5MobhgzbNq2pFGah1Dzan206E=;
- b=mZ6XONUPsJ79D8PSBaSBoBNTaeybhur/vsF+i9F5BO3DWGpCKqwt8Xwdh1WS4iTH94hPDLOwXFYrYhR8BZiCGJ4M34l9B50tnvo0Z2PYNqocjw4sp9AbE7PScGpWmuUoSscCPkbsBaxWIlXxTpP93Ftdsl/i4HQ+jxffJ77O0H8CxP+5tyUQiXeL/60SyYv2Sml+4D+iWIYQxe3d7v/9tHXFihbvS9ymaSEDKJQQiCzV1PJ5Xgd7JXVic+dr98Vkwj62S/iFvVC2LLzI8yxP8PHpKplolROPqb+GkRJmeihXWVeQZY9PYtj4EiKFpeM5BU2/7HA+x/Ji6PUioc0dig==
+ bh=+i/4eFyJsUs51/vrs3bNc4+0fCH9BmEK5GyLy2LYVD4=;
+ b=MGms/F4h6ivShr6wkXlhcHIxe0dggZf4KCWp6g912RR7fvVyQOM013n3hCbWrtRmFNi3x+d53WurkliMKLl5yKrEEyEM3LPlOnpJ06ORENxWZXmcADJu3MsR8QU4UudTaSMFfAylNP8fNaTbiUpgsKIqWHJ1of3CNO2srVEQ/76SKJ4/9mKBdPpMvG0XV3xQCytUfOT0whK8Uwb8NDrb+Ay/c/WFoQyQZxTCreAxIy+ile/EKedXrHafsQEOYi90TxOc0VsbqmieWRR4x0/9fT7gYX8BtziHePSQcWUxD6iB7DIQAP7+EE775maN3mADPcXIBGHhKpekZ+B7IPyOxA==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
  dkim=pass header.d=intel.com; arc=none
 Authentication-Results: dkim=none (message not signed)
  header.d=none;dmarc=none action=none header.from=intel.com;
 Received: from PH7PR11MB6522.namprd11.prod.outlook.com (2603:10b6:510:212::12)
- by PH0PR11MB5208.namprd11.prod.outlook.com (2603:10b6:510:3b::16)
+ by PH7PR11MB6053.namprd11.prod.outlook.com (2603:10b6:510:1d1::8)
  with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6340.31; Tue, 2 May
- 2023 05:27:24 +0000
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6340.30; Tue, 2 May
+ 2023 07:45:00 +0000
 Received: from PH7PR11MB6522.namprd11.prod.outlook.com
  ([fe80::ff06:a115:e4eb:680e]) by PH7PR11MB6522.namprd11.prod.outlook.com
  ([fe80::ff06:a115:e4eb:680e%4]) with mapi id 15.20.6340.030; Tue, 2 May 2023
- 05:27:24 +0000
-Date: Tue, 2 May 2023 05:27:08 +0000
+ 07:44:59 +0000
+Date: Tue, 2 May 2023 07:44:44 +0000
 From: Matthew Brost <matthew.brost@intel.com>
 To: Rodrigo Vivi <rodrigo.vivi@intel.com>
-Message-ID: <ZFCfLB9bPSLACRsO@DUT025-TGLU.fm.intel.com>
+Message-ID: <ZFC/bEux3EERqL+0@DUT025-TGLU.fm.intel.com>
 References: <20230426205713.512695-1-rodrigo.vivi@intel.com>
- <20230426205713.512695-6-rodrigo.vivi@intel.com>
-Content-Type: text/plain; charset="us-ascii"
+ <20230426205713.512695-8-rodrigo.vivi@intel.com>
+Content-Type: text/plain; charset="iso-8859-1"
 Content-Disposition: inline
-In-Reply-To: <20230426205713.512695-6-rodrigo.vivi@intel.com>
-X-ClientProxiedBy: SJ0PR03CA0258.namprd03.prod.outlook.com
- (2603:10b6:a03:3a0::23) To PH7PR11MB6522.namprd11.prod.outlook.com
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20230426205713.512695-8-rodrigo.vivi@intel.com>
+X-ClientProxiedBy: SJ0PR05CA0131.namprd05.prod.outlook.com
+ (2603:10b6:a03:33d::16) To PH7PR11MB6522.namprd11.prod.outlook.com
  (2603:10b6:510:212::12)
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: PH7PR11MB6522:EE_|PH0PR11MB5208:EE_
-X-MS-Office365-Filtering-Correlation-Id: 88cb420a-f3ab-4c63-4145-08db4acde8cf
+X-MS-TrafficTypeDiagnostic: PH7PR11MB6522:EE_|PH7PR11MB6053:EE_
+X-MS-Office365-Filtering-Correlation-Id: 6b32ccc7-db65-43f0-7595-08db4ae12114
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: NDYEh6mUzMQKCS0EUg+JYHAnR+a5CBbM1a+JInaquSB0RXVuZ/Vzf9GoF+Itkiz/2iOTYeNpawAVDI6ePUjn1ba3d89YYG0V/tBbYgmp2KOiidsa/rORX/cY+EvSrqMdS2xD8zayl+NrnTkg98JaGnW8AFPvI+PhBzsfRM80E6Kms32kSL6Oafpm4GsCSfmJGNUf3/8PhTaM0SUTgYUZ1kenFtA7AaI28wg5sWsBDD7KXak5Jrk4lczu7JWz/TrKaNX04K1EnQ+5m06kIwmVckN1LN077owWjOrTXRSBQmNvioUsBXazjSNqodvlT8ZR8PL1NVeJcDskZpgortdF2qUIkn9jx/1zrciJPHtF7FnP4o+BCBCid5MjVvBbexmGGaQGo0Z5tHkCGBaCwNOJ5bkOr3JEOxsYwKvpJ/1UbYAs13/PaiTfQFvtEsy6K/kSktZNFanKS5fgw3uEbs7lFOxvUk2B5RCFfhGjf+pXjUWGQLuQTx79vc7DVo1Iz6gNt9m3pfzB45VvbQ9ITI/CWlB0DLB8hz7fSqcLebFl1QMCcFKSFNHQgTgo3rvoNglW
+X-Microsoft-Antispam-Message-Info: iQjBwYWg6Ift7kudYiPf5HkHpXkobWXXwPdOTA6iOkPIR+85AwON8bgqWJ5j6vSnQTuBuAvtj30upA7xtvY4ywmes6FbUpJuIa+Fk7cJ1RAtRTiU36cZL3D7jo4W6LhKPjl1/1eyheEBjF3ULaUc5w12fu2+FKyupz980RgJLi06QKn9a4McWXYYVHr+Kb+F4och2Sea0ENOu4FwQRfmjC8ii8r+UEu5WXzllTo5oYfVGMHAV0vzmU3Obg1NM1Q9QFeW+Zp+j0GGm/UX9Fa8UJDnGSCSruJDXSms4juGRfO79NEJG8jQrQ/a7J4sbAgmxYqCmX9lfeqPOaKB6sPe4b5gCISTc4UJNDL14JyvenwZKfHcPzdTiCYRAtPoCXR23++FjaFK5bzfnMijHCVMiLOjC+AWCb2lbS6N33o0F3A+kx+ZzeM1BAMxmFfcmi6iRFUCyGucoP2ecPKInvasfAGZEZpT2GfyzlFG/4OmcXgqOkkKZkPs4PKjdANntFF7ZM1VCRm/lmn8TcMKa/LCkvWNS5wRV6vsfp/NYl9FvI1GN1cdpZ4JGO1ha19E1ulZ
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
  IPV:NLI; SFV:NSPM; H:PH7PR11MB6522.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230028)(136003)(396003)(346002)(39860400002)(366004)(376002)(451199021)(83380400001)(4326008)(6636002)(450100002)(6486002)(478600001)(6666004)(6506007)(186003)(26005)(6512007)(44832011)(5660300002)(2906002)(38100700002)(66946007)(66476007)(82960400001)(66556008)(8936002)(8676002)(41300700001)(6862004)(316002)(86362001);
+ SFS:(13230028)(396003)(376002)(136003)(39860400002)(346002)(366004)(451199021)(450100002)(5660300002)(82960400001)(8676002)(6862004)(8936002)(41300700001)(44832011)(316002)(86362001)(2906002)(38100700002)(186003)(478600001)(83380400001)(6666004)(26005)(6486002)(6506007)(6512007)(6636002)(4326008)(66946007)(66556008)(66476007);
  DIR:OUT; SFP:1102; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?IZxYBiCItSOzQYiAsqOsBsWt5GGhvqL0gJmXn/toJ48g1qvmRwKPrLMkkC55?=
- =?us-ascii?Q?UDATmoHcFAH8mVkZ+ujUEt88kPfDceGOTdVQpI8l5xPUGuG5d3Lbr0WGQ9vw?=
- =?us-ascii?Q?442a/Y7rsgAKDWVjiUtOr4jDQ+mx5wQmE4rkqKiOrvgbtlGyMRMKwsxV1FSG?=
- =?us-ascii?Q?GlKd/HUIhtkR+Jd8jGTvIke2p/kyE5SyOJYMd+DD/vx6oYEoWjVFqK+OEeY4?=
- =?us-ascii?Q?FmYsOH7UCzPSSpz7Noq+mwvYxXKm8aNGhLXIeLC1pSIHxHI2a20T90EAMNmX?=
- =?us-ascii?Q?Pe1yaOssU2OK+L0PmDyAA61r3Zyq/dmBXdrlRsRn8BiT8XwiitiRSAjZGBCQ?=
- =?us-ascii?Q?u/rs3Jc+xDxinHn2P2b9D/QexAiMpZvOrnBN1kJ/TRyQW+QmsP25xnUcSAxw?=
- =?us-ascii?Q?sm5HDW7fQCdiJOKEM9of/faFTzXlglj7guc5C6k1IZjwyMDQKWteacJ+JVvA?=
- =?us-ascii?Q?/sJeAoCmp2GrkxgIOS0RFb/OKDzoCQUBFsDbSK65VTubrhlgLcZm5aw7OZbU?=
- =?us-ascii?Q?Ggth/Vmf1grPfA40TG2/rcEqlrJn/Y4hANncEYBmNhSxpsN8Gy+gXOPKXmJA?=
- =?us-ascii?Q?lqNdOfosFcmXJqS6v/6iZgCZK+YkCjvB1C09enOeMFy1axX/f3RuVeJbqkRL?=
- =?us-ascii?Q?XI+KmxZOyLmFnqUCmh1urUgImPC9T3ySUZAAhoLZODodT0DY95zk/zepEAgD?=
- =?us-ascii?Q?9gsq1gsOP/5AjTLYa5rMZVlln6UuwFD6H6AcxjeHrbCdW7lOQO+kN8+5qUmK?=
- =?us-ascii?Q?hEl3ogMqLUX3Uf+KGxgjvJReeBGg2abV9FgfLFbDX2DiUOzYJyjb3Yxicj/W?=
- =?us-ascii?Q?XeMDMUPOm0M+a6/wXo9jp7PxvNpxcse82gGd9Os6WuTpyk1p7JlVfOzt4hex?=
- =?us-ascii?Q?ilUo5t3STc82pilnNtSj47McPHory6v8GzOkFu8EKUVpfFsx1gOPXEFgGO/v?=
- =?us-ascii?Q?VJE/jQBeSt02kDMqj8Oq7j4bDF+xwXGHys1Nm3T0+OSgPV6SZBDfj6zz/D0i?=
- =?us-ascii?Q?6xKKF8EAWRSjd+5mQy8UDsYOoxw83DE1c4MwrUDZvdEtm8xM9tfiKw3fV03j?=
- =?us-ascii?Q?Minm5MmqcbfBYWi3PBlRju9AvuQPkTFUPy6Vt66ZwEEEi9cRnjeopZJky+PM?=
- =?us-ascii?Q?BLA28B70aQ0GYZHd9voz94YESJf9DmPSvy0QVUSpXoHJeBUoV1+6xeb2tr5y?=
- =?us-ascii?Q?z/WYp6fw6LHOpVvVo4ZjPXeElcqI/2EFRZzLF9CbeJFPdj2NcCH7a7ta5QjQ?=
- =?us-ascii?Q?erqyzjrlzU3r6UIZ2hyPNkgaZXHR8OxQqrPUGbfK6wNnyIbIqFPUDPmuJOVz?=
- =?us-ascii?Q?Xd9T88uyg3oJL9ssq5VJq4nilVPg6OPFsBuN15wNt/AFdxWWV5oDZcFVKxwS?=
- =?us-ascii?Q?SRtEG0rYkiw8yX0bVTZJTSfV0IXd/gzwunTGuPeAYZh21qGkkYXuEVXoN3ri?=
- =?us-ascii?Q?0TYyCj0pGUmPOw1CvZdZhrC/E2hVtdKCvDJTXqy+6n2rh72pElOXl3C/GOAZ?=
- =?us-ascii?Q?4VPWF9xCYB2U1yBNsDvBpMSZJ05kRIS6yza/0+7bBftseYNfYKJcWhK0Gt8O?=
- =?us-ascii?Q?uc/yszqartgzxatIoJOVbc4zzhZC0mMQOkpXH0p6C6WwigWj/Q9C7gfIp6dV?=
- =?us-ascii?Q?kw=3D=3D?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: 88cb420a-f3ab-4c63-4145-08db4acde8cf
+X-MS-Exchange-AntiSpam-MessageData-0: =?iso-8859-1?Q?rqshuAxp3RmewgBrrNFpygjC7Apg30xjFYzWE0zh29Na4x2SrB86SsMfkq?=
+ =?iso-8859-1?Q?S4ZfhG++LrQNHrJZ9VkT/tEBi7pwwbVp3b/cK3IZcmCTi9PcjEpnAQb0W6?=
+ =?iso-8859-1?Q?Z3yho9FACH6NYrPqYfG9wV90hRdXTln1rZ4Af9lxbYNWsUM5PIA+kKWwES?=
+ =?iso-8859-1?Q?p9Br+TAY90I3mYoJ4egXhs6Rmu3CwTZxs6kLv8f1MBuKq5ehZwVeo7TiyU?=
+ =?iso-8859-1?Q?ZYL8zO4GSkD7OMcL880Mzpv+61NSJoW/l4ZyIHF3g4vrs/dy1okaB6lvlk?=
+ =?iso-8859-1?Q?XiXRHs2KLzwtC401nIb4f/pmiEctWbj9Z/deCSVNcXTHVOeHqVSKtBjRSH?=
+ =?iso-8859-1?Q?y6Me1FUbaD9EqwNNUr9gwgtV5NdlmfUzfGPDhnXBpV5WpxvUl4kwZY5fgf?=
+ =?iso-8859-1?Q?2PKeWNfkUN5T2QfLDrHFPh1bVqMsR3LUvUriZ+yVabAPmHE3AJgfhCXAaE?=
+ =?iso-8859-1?Q?Udf0/mEF/loEId0E4QpoHqiaBqlBq1N3hyM20Iwr0pUO4+geSTeWYFgKf2?=
+ =?iso-8859-1?Q?IIF2xmt5cNozV4m1RBqq9iwq4ZtbjuU6b1mlQQDEKkBAdv2CLYHo7igU+o?=
+ =?iso-8859-1?Q?2uSbjZBUyGtCRUI0vDW44A8nBRONDoIR0HD5UgF/B2W3gn9tl9DS/yiihk?=
+ =?iso-8859-1?Q?dZH08zrdeVjP2AJnUVLObYS9xDOWU+qI4bfY7uQQe8HLVZTjzAhr5HIWtS?=
+ =?iso-8859-1?Q?wS+xY77Vsv/C6NO/Y6zhmWDRcbw9tnHHsHcSwVMA1MzdummjKze+zaY6i8?=
+ =?iso-8859-1?Q?O9GWZPUBJMxDWW4RR8qvjCx2wC1Qi7/aoJkX4tUPltfOwWNeVKMW2bPcbG?=
+ =?iso-8859-1?Q?gkY47oheJRcPaRHa8+yZdp50Q+FxmGI6kzI3S8nJEa1lSPyLp8mnEfkh2T?=
+ =?iso-8859-1?Q?7ELwHxQf3cWWV3vyxnwL7B5M/+Et9VComNbh+id0UV2Pm3BWI4BEPjo6D+?=
+ =?iso-8859-1?Q?ZuOjWnL8MGCab3MbW+RAkpm+srhLjCk4hL6TbxkBs+8BQnUdXaxvLgl20l?=
+ =?iso-8859-1?Q?EZUaFqEZT96b8Mkae5YnGarSGbY8JH8D6CLk6Ax/qemBVlQrayqnb9Fr15?=
+ =?iso-8859-1?Q?lZLAZ3qP6Vdl/CYNoXkYVmyKpMYvZrP2fd76jBBbkb/GOskOYjGuNj0i6i?=
+ =?iso-8859-1?Q?LI6AavRVZ/fs1dPRXA/nHkePZWzFMwx3J+wSS036638CH0JJdvVTONqmqm?=
+ =?iso-8859-1?Q?Z0zs6pyndWX0auVcohHEN2ryCU4qRpnkfczQ0UfDhlmnlFzXlvxr7+Icqa?=
+ =?iso-8859-1?Q?REP0bGlbWLg+EgAQ7a92FDPYRB+biWk5tJrNeUH2P9uHdzrYeFdoLN72so?=
+ =?iso-8859-1?Q?F7CeG6z42bQ2I9VexrF9ZEhu0drDifuBtmjxVl8l7I2+FU6F/DK2081G28?=
+ =?iso-8859-1?Q?xvWq6efsThU5FzehcfOdUao2JxwquXLbGUSG/LjWS/tMo2vjE4dP/RwTUz?=
+ =?iso-8859-1?Q?ei8FTJbm6VVVXhDdGQI9LPXGHrNRIDeKA5Tml4TzWiWGejl8f+kmPQxy1z?=
+ =?iso-8859-1?Q?5EbYeJHhHCoSAJBOz+husiVu21pgnJrTjNGnMKLJjTfY0uNw9PjHDF1ucA?=
+ =?iso-8859-1?Q?3AySsJejGH39DMhwLEkdFma67MrvTYceT2W/b9PlF+aRdyN55EDX3M/gw8?=
+ =?iso-8859-1?Q?uFS/01LXls6quqa+6NT+/56esnsRyTgyFayFNG6MoAsIXHY7NPUc8zOA?=
+ =?iso-8859-1?Q?=3D=3D?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: 6b32ccc7-db65-43f0-7595-08db4ae12114
 X-MS-Exchange-CrossTenant-AuthSource: PH7PR11MB6522.namprd11.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 02 May 2023 05:27:24.0638 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 02 May 2023 07:44:58.9465 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: aON1Nm/0+v+lTyJAtND4mGph0Gojmyp3lXF2ijDxTCEzCSjoxcIPpTUVjPreRUVguyqpY9eN/JGzJBWYePAUGA==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH0PR11MB5208
+X-MS-Exchange-CrossTenant-UserPrincipalName: 7JcH7fS9IS1wfzHhh1VKbZOFwY3ZkmsSyaaAXlUIEblL2PoQLxe+HKIyivpp1Bmw3KUlyI2CgsQiTx70o9m9fg==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH7PR11MB6053
 X-OriginatorOrg: intel.com
-Subject: Re: [Intel-xe] [PATCH 05/14] drm/xe: Convert GuC CT print to
- snapshot capture and print.
+Subject: Re: [Intel-xe] [PATCH 07/14] drm/xe: Introduce guc_submit_types.h
+ with relevant structs.
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -151,261 +153,223 @@ Cc: intel-xe@lists.freedesktop.org, dri-devel@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Wed, Apr 26, 2023 at 04:57:04PM -0400, Rodrigo Vivi wrote:
-> The goal is to allow for a snapshot capture to be taken at the time
-> of the crash, while the print out can happen at a later time through
-> the exposed devcoredump virtual device.
+On Wed, Apr 26, 2023 at 04:57:06PM -0400, Rodrigo Vivi wrote:
+> These structs and definitions are only used for the guc_submit
+> and they were added specifically for the parallel submission.
 > 
+> While doing that also delete the unused struct guc_wq_item.
+> 
+> Cc: Matthew Brost <matthew.brost@intel.com>
 > Signed-off-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
+
+Reviewed-by: Matthew Brost <matthew.brost@intel.com>
+
+Side note this reminds me we need to implement to parallel submission
+handsake in xe_ring_ops.c if we want parallel submission to truly work.
+Should be a straight port from the i915... Also should write an IGT for
+that too. 
+
 > ---
->  drivers/gpu/drm/xe/xe_guc_ct.c       | 132 +++++++++++++++++++++++----
->  drivers/gpu/drm/xe/xe_guc_ct.h       |   7 +-
->  drivers/gpu/drm/xe/xe_guc_ct_types.h |  26 ++++++
->  3 files changed, 145 insertions(+), 20 deletions(-)
+>  drivers/gpu/drm/xe/xe_guc_fwif.h         | 29 -----------
+>  drivers/gpu/drm/xe/xe_guc_submit.c       | 40 ++++-----------
+>  drivers/gpu/drm/xe/xe_guc_submit_types.h | 64 ++++++++++++++++++++++++
+>  3 files changed, 75 insertions(+), 58 deletions(-)
+>  create mode 100644 drivers/gpu/drm/xe/xe_guc_submit_types.h
 > 
-> diff --git a/drivers/gpu/drm/xe/xe_guc_ct.c b/drivers/gpu/drm/xe/xe_guc_ct.c
-> index e16e5fe37ed4..0b7b95dbd9be 100644
-> --- a/drivers/gpu/drm/xe/xe_guc_ct.c
-> +++ b/drivers/gpu/drm/xe/xe_guc_ct.c
-> @@ -1095,31 +1095,26 @@ static void g2h_worker_func(struct work_struct *w)
->  	xe_device_mem_access_put(ct_to_xe(ct));
+> diff --git a/drivers/gpu/drm/xe/xe_guc_fwif.h b/drivers/gpu/drm/xe/xe_guc_fwif.h
+> index 20155ba4ef07..27d132ce2087 100644
+> --- a/drivers/gpu/drm/xe/xe_guc_fwif.h
+> +++ b/drivers/gpu/drm/xe/xe_guc_fwif.h
+> @@ -46,35 +46,6 @@
+>  #define GUC_MAX_ENGINE_CLASSES		16
+>  #define GUC_MAX_INSTANCES_PER_CLASS	32
+>  
+> -/* Work item for submitting workloads into work queue of GuC. */
+> -#define WQ_STATUS_ACTIVE		1
+> -#define WQ_STATUS_SUSPENDED		2
+> -#define WQ_STATUS_CMD_ERROR		3
+> -#define WQ_STATUS_ENGINE_ID_NOT_USED	4
+> -#define WQ_STATUS_SUSPENDED_FROM_RESET	5
+> -#define WQ_TYPE_NOOP			0x4
+> -#define WQ_TYPE_MULTI_LRC		0x5
+> -#define WQ_TYPE_MASK			GENMASK(7, 0)
+> -#define WQ_LEN_MASK			GENMASK(26, 16)
+> -
+> -#define WQ_GUC_ID_MASK			GENMASK(15, 0)
+> -#define WQ_RING_TAIL_MASK		GENMASK(28, 18)
+> -
+> -struct guc_wq_item {
+> -	u32 header;
+> -	u32 context_desc;
+> -	u32 submit_element_info;
+> -	u32 fence_id;
+> -} __packed;
+> -
+> -struct guc_sched_wq_desc {
+> -	u32 head;
+> -	u32 tail;
+> -	u32 error_offset;
+> -	u32 wq_status;
+> -	u32 reserved[28];
+> -} __packed;
+> -
+>  /* Helper for context registration H2G */
+>  struct guc_ctxt_registration_info {
+>  	u32 flags;
+> diff --git a/drivers/gpu/drm/xe/xe_guc_submit.c b/drivers/gpu/drm/xe/xe_guc_submit.c
+> index 231fb4145297..a5fe7755ce4c 100644
+> --- a/drivers/gpu/drm/xe/xe_guc_submit.c
+> +++ b/drivers/gpu/drm/xe/xe_guc_submit.c
+> @@ -22,6 +22,7 @@
+>  #include "xe_guc.h"
+>  #include "xe_guc_ct.h"
+>  #include "xe_guc_engine_types.h"
+> +#include "xe_guc_submit_types.h"
+>  #include "xe_hw_engine.h"
+>  #include "xe_hw_fence.h"
+>  #include "xe_lrc.h"
+> @@ -378,32 +379,12 @@ static void set_min_preemption_timeout(struct xe_guc *guc, struct xe_engine *e)
+>  		       __guc_engine_policy_action_size(&policy), 0, 0);
 >  }
 >  
-> -static void guc_ct_ctb_print(struct xe_device *xe, struct guc_ctb *ctb,
-> -			     struct drm_printer *p)
-> +static void guc_ctb_snapshot_capture(struct xe_device *xe, struct guc_ctb *ctb,
-> +				     struct guc_ctb_snapshot *snapshot)
->  {
->  	u32 head, tail;
+> -#define PARALLEL_SCRATCH_SIZE	2048
+> -#define WQ_SIZE			(PARALLEL_SCRATCH_SIZE / 2)
+> -#define WQ_OFFSET		(PARALLEL_SCRATCH_SIZE - WQ_SIZE)
+> -#define CACHELINE_BYTES		64
+> -
+> -struct sync_semaphore {
+> -	u32 semaphore;
+> -	u8 unused[CACHELINE_BYTES - sizeof(u32)];
+> -};
+> -
+> -struct parallel_scratch {
+> -	struct guc_sched_wq_desc wq_desc;
+> -
+> -	struct sync_semaphore go;
+> -	struct sync_semaphore join[XE_HW_ENGINE_MAX_INSTANCE];
+> -
+> -	u8 unused[WQ_OFFSET - sizeof(struct guc_sched_wq_desc) -
+> -		sizeof(struct sync_semaphore) * (XE_HW_ENGINE_MAX_INSTANCE + 1)];
+> -
+> -	u32 wq[WQ_SIZE / sizeof(u32)];
+> -};
+> -
+>  #define parallel_read(xe_, map_, field_) \
+> -	xe_map_rd_field(xe_, &map_, 0, struct parallel_scratch, field_)
+> +	xe_map_rd_field(xe_, &map_, 0, struct guc_submit_parallel_scratch, \
+> +			field_)
+>  #define parallel_write(xe_, map_, field_, val_) \
+> -	xe_map_wr_field(xe_, &map_, 0, struct parallel_scratch, field_, val_)
+> +	xe_map_wr_field(xe_, &map_, 0, struct guc_submit_parallel_scratch, \
+> +			field_, val_)
 >  
-> -	drm_printf(p, "\tsize: %d\n", ctb->info.size);
-> -	drm_printf(p, "\tresv_space: %d\n", ctb->info.resv_space);
-> -	drm_printf(p, "\thead: %d\n", ctb->info.head);
-> -	drm_printf(p, "\ttail: %d\n", ctb->info.tail);
-> -	drm_printf(p, "\tspace: %d\n", ctb->info.space);
-> -	drm_printf(p, "\tbroken: %d\n", ctb->info.broken);
-> +	snapshot->cmds = kmalloc_array(ctb->info.size, sizeof(u32), GFP_ATOMIC);
-
-So since this GFP_ATOMIC I assume this so we can call this code from the
-TDR or a CTB handler (dma fence signaling paths)? Also I don't see
-where you check for this allocation failing.
-
+>  static void __register_mlrc_engine(struct xe_guc *guc,
+>  				   struct xe_engine *e,
+> @@ -486,13 +467,13 @@ static void register_engine(struct xe_engine *e)
+>  		struct iosys_map map = xe_lrc_parallel_map(lrc);
 >  
-> -	head = desc_read(xe, ctb, head);
-> -	tail = desc_read(xe, ctb, tail);
-> -	drm_printf(p, "\thead (memory): %d\n", head);
-> -	drm_printf(p, "\ttail (memory): %d\n", tail);
-> -	drm_printf(p, "\tstatus (memory): 0x%x\n", desc_read(xe, ctb, status));
-> +	xe_map_memcpy_from(xe, &snapshot->desc, &ctb->desc, 0,
-> +			   sizeof(struct guc_ct_buffer_desc));
-> +	memcpy(&snapshot->info, &ctb->info, sizeof(struct guc_ctb_info));
-> +
-> +	head = snapshot->desc.head;
-> +	tail = snapshot->desc.tail;
+>  		info.wq_desc_lo = lower_32_bits(ggtt_addr +
+> -			offsetof(struct parallel_scratch, wq_desc));
+> +			offsetof(struct guc_submit_parallel_scratch, wq_desc));
+>  		info.wq_desc_hi = upper_32_bits(ggtt_addr +
+> -			offsetof(struct parallel_scratch, wq_desc));
+> +			offsetof(struct guc_submit_parallel_scratch, wq_desc));
+>  		info.wq_base_lo = lower_32_bits(ggtt_addr +
+> -			offsetof(struct parallel_scratch, wq[0]));
+> +			offsetof(struct guc_submit_parallel_scratch, wq[0]));
+>  		info.wq_base_hi = upper_32_bits(ggtt_addr +
+> -			offsetof(struct parallel_scratch, wq[0]));
+> +			offsetof(struct guc_submit_parallel_scratch, wq[0]));
+>  		info.wq_size = WQ_SIZE;
 >  
->  	if (head != tail) {
->  		struct iosys_map map =
->  			IOSYS_MAP_INIT_OFFSET(&ctb->cmds, head * sizeof(u32));
+>  		e->guc->wqi_head = 0;
+> @@ -594,7 +575,7 @@ static void wq_item_append(struct xe_engine *e)
 >  
->  		while (head != tail) {
-> -			drm_printf(p, "\tcmd[%d]: 0x%08x\n", head,
-> -				   xe_map_rd(xe, &map, 0, u32));
-> +			snapshot->cmds[head] = xe_map_rd(xe, &map, 0, u32);
->  			++head;
->  			if (head == ctb->info.size) {
->  				head = 0;
-> @@ -1131,20 +1126,119 @@ static void guc_ct_ctb_print(struct xe_device *xe, struct guc_ctb *ctb,
->  	}
->  }
+>  	XE_BUG_ON(i != wqi_size / sizeof(u32));
 >  
-> -void xe_guc_ct_print(struct xe_guc_ct *ct, struct drm_printer *p)
-> +static void guc_ctb_snapshot_print(struct guc_ctb_snapshot *snapshot,
-> +				   struct drm_printer *p)
-> +{
-> +	u32 head, tail;
+> -	iosys_map_incr(&map, offsetof(struct parallel_scratch,
+> +	iosys_map_incr(&map, offsetof(struct guc_submit_parallel_scratch,
+>  					wq[e->guc->wqi_tail / sizeof(u32)]));
+>  	xe_map_memcpy_to(xe, &map, 0, wqi, wqi_size);
+>  	e->guc->wqi_tail += wqi_size;
+> @@ -1674,6 +1655,7 @@ static void guc_engine_print(struct xe_engine *e, struct drm_printer *p)
+>  		guc_engine_wq_print(e, p);
+>  
+>  	spin_lock(&sched->job_list_lock);
 > +
-> +	drm_printf(p, "\tsize: %d\n", snapshot->info.size);
-> +	drm_printf(p, "\tresv_space: %d\n", snapshot->info.space);
-> +	drm_printf(p, "\thead: %d\n", snapshot->info.head);
-> +	drm_printf(p, "\ttail: %d\n", snapshot->info.tail);
-> +	drm_printf(p, "\tspace: %d\n", snapshot->info.space);
-> +	drm_printf(p, "\tbroken: %d\n", snapshot->info.broken);
-> +	drm_printf(p, "\thead (memory): %d\n", snapshot->desc.head);
-> +	drm_printf(p, "\ttail (memory): %d\n", snapshot->desc.tail);
-> +	drm_printf(p, "\tstatus (memory): 0x%x\n", snapshot->desc.status);
-> +
-> +	head = snapshot->desc.head;
-> +	tail = snapshot->desc.tail;
-> +
-> +	while (head != tail) {
-> +		drm_printf(p, "\tcmd[%d]: 0x%08x\n", head,
-> +			   snapshot->cmds[head]);
-> +		++head;
-> +		if (head == snapshot->info.size)
-> +			head = 0;
-> +	}
-> +}
-> +
-> +static void guc_ctb_snapshot_free(struct guc_ctb_snapshot *snapshot)
-> +{
-> +	kfree(snapshot->cmds);
-> +}
-> +
-> +/**
-> + * xe_guc_ct_snapshot_capture - Take a quick snapshot of the CT state.
-> + * @ct: GuC CT object.
-> + *
-> + * This can be printed out in a later stage like during dev_coredump
-> + * analysis.
-> + *
-> + * Returns: a GuC CT snapshot object that must be freed by the caller
-> + * 	    by using `xe_guc_ct_snapshot_free`.
+>  	list_for_each_entry(job, &sched->pending_list, drm.list)
+>  		drm_printf(p, "\tJob: seqno=%d, fence=%d, finished=%d\n",
+>  			   xe_sched_job_seqno(job),
+> diff --git a/drivers/gpu/drm/xe/xe_guc_submit_types.h b/drivers/gpu/drm/xe/xe_guc_submit_types.h
+> new file mode 100644
+> index 000000000000..d369ea0bad60
+> --- /dev/null
+> +++ b/drivers/gpu/drm/xe/xe_guc_submit_types.h
+> @@ -0,0 +1,64 @@
+> +// SPDX-License-Identifier: MIT
+> +/*
+> + * Copyright © 2023 Intel Corporation
 > + */
-> +struct xe_guc_ct_snapshot *xe_guc_ct_snapshot_capture(struct xe_guc_ct *ct)
->  {
-> +	struct xe_guc_ct_snapshot *snapshot;
 > +
-> +	snapshot = kzalloc(sizeof(struct xe_guc_ct_snapshot), GFP_ATOMIC);
+> +#ifndef _XE_GUC_SUBMIT_TYPES_H_
+> +#define _XE_GUC_SUBMIT_TYPES_H_
 > +
-
-Same here, need to check for an alloc failure.
-
-Also maybe we should a flag to switch between GFP_ATOMIC (signaling
-path) and GFP_KERNEL (debugfs). In the case above, CMDs might be huge as
-deadlock workaround (like 16 MBs or something) so atomic seems risky.
-
-Aside from these comments, I do rather like what you have done here.
-
-Matt
-
->  	if (ct->enabled) {
-> +		snapshot->ct_enabled = true;
-> +		guc_ctb_snapshot_capture(ct_to_xe(ct), &ct->ctbs.h2g,
-> +					 &snapshot->h2g);
-> +		guc_ctb_snapshot_capture(ct_to_xe(ct), &ct->ctbs.g2h,
-> +					 &snapshot->g2h);
-> +	}
+> +#include "xe_hw_engine_types.h"
 > +
-> +	return snapshot;
-> +}
+> +/* Work item for submitting workloads into work queue of GuC. */
+> +#define WQ_STATUS_ACTIVE		1
+> +#define WQ_STATUS_SUSPENDED		2
+> +#define WQ_STATUS_CMD_ERROR		3
+> +#define WQ_STATUS_ENGINE_ID_NOT_USED	4
+> +#define WQ_STATUS_SUSPENDED_FROM_RESET	5
+> +#define WQ_TYPE_NOOP			0x4
+> +#define WQ_TYPE_MULTI_LRC		0x5
+> +#define WQ_TYPE_MASK			GENMASK(7, 0)
+> +#define WQ_LEN_MASK			GENMASK(26, 16)
 > +
-> +/**
-> + * xe_guc_ct_snapshot_print - Print out a given GuC CT snapshot.
-> + * @snapshot: GuC CT snapshot object.
-> + * @p: drm_printer where it will be printed out.
-> + *
-> + * This function prints out a given GuC CT snapshot object.
-> + */
-> +void xe_guc_ct_snapshot_print(struct xe_guc_ct_snapshot *snapshot,
-> +			      struct drm_printer *p)
-> +{
-> +	if (snapshot->ct_enabled) {
->  		drm_puts(p, "\nH2G CTB (all sizes in DW):\n");
-> -		guc_ct_ctb_print(ct_to_xe(ct), &ct->ctbs.h2g, p);
-> +		guc_ctb_snapshot_print(&snapshot->h2g, p);
->  
->  		drm_puts(p, "\nG2H CTB (all sizes in DW):\n");
-> -		guc_ct_ctb_print(ct_to_xe(ct), &ct->ctbs.g2h, p);
-> -		drm_printf(p, "\tg2h outstanding: %d\n", ct->g2h_outstanding);
-> +		guc_ctb_snapshot_print(&snapshot->g2h, p);
+> +#define WQ_GUC_ID_MASK			GENMASK(15, 0)
+> +#define WQ_RING_TAIL_MASK		GENMASK(28, 18)
 > +
-> +		drm_printf(p, "\tg2h outstanding: %d\n",
-> +			   snapshot->g2h_outstanding);
->  	} else {
->  		drm_puts(p, "\nCT disabled\n");
->  	}
->  }
->  
-> +/**
-> + * xe_guc_ct_snapshot_free - Free all allocated objects for a given snapshot.
-> + * @snapshot: GuC CT snapshot object.
-> + *
-> + * This function free all the memory that needed to be allocated at capture
-> + * time.
-> + */
-> +void xe_guc_ct_snapshot_free(struct xe_guc_ct_snapshot *snapshot)
-> +{
-> +	guc_ctb_snapshot_free(&snapshot->h2g);
-> +	guc_ctb_snapshot_free(&snapshot->g2h);
-> +	kfree(snapshot);
-> +}
+> +#define PARALLEL_SCRATCH_SIZE	2048
+> +#define WQ_SIZE			(PARALLEL_SCRATCH_SIZE / 2)
+> +#define WQ_OFFSET		(PARALLEL_SCRATCH_SIZE - WQ_SIZE)
+> +#define CACHELINE_BYTES		64
 > +
-> +/**
-> + * xe_guc_ct_print - GuC CT Print.
-> + * @ct: GuC CT.
-> + * @p: drm_printer where it will be printed out.
-> + *
-> + * This function quickly capture a snapshot and immediately print it out.
-> + */
-> +void xe_guc_ct_print(struct xe_guc_ct *ct, struct drm_printer *p)
-> +{
-> +	struct xe_guc_ct_snapshot *snapshot;
+> +struct guc_sched_wq_desc {
+> +	u32 head;
+> +	u32 tail;
+> +	u32 error_offset;
+> +	u32 wq_status;
+> +	u32 reserved[28];
+> +} __packed;
 > +
-> +	snapshot = xe_guc_ct_snapshot_capture(ct);
-> +	xe_guc_ct_snapshot_print(snapshot, p);
-> +	xe_guc_ct_snapshot_free(snapshot);
-> +}
-> +
->  #ifdef XE_GUC_CT_SELFTEST
->  /*
->   * Disable G2H processing in IRQ handler to force xe_guc_ct_send to enter flow
-> diff --git a/drivers/gpu/drm/xe/xe_guc_ct.h b/drivers/gpu/drm/xe/xe_guc_ct.h
-> index 49fb74f91e4d..29e0dff7ad9b 100644
-> --- a/drivers/gpu/drm/xe/xe_guc_ct.h
-> +++ b/drivers/gpu/drm/xe/xe_guc_ct.h
-> @@ -13,9 +13,14 @@ struct drm_printer;
->  int xe_guc_ct_init(struct xe_guc_ct *ct);
->  int xe_guc_ct_enable(struct xe_guc_ct *ct);
->  void xe_guc_ct_disable(struct xe_guc_ct *ct);
-> -void xe_guc_ct_print(struct xe_guc_ct *ct, struct drm_printer *p);
->  void xe_guc_ct_fast_path(struct xe_guc_ct *ct);
->  
-> +struct xe_guc_ct_snapshot *xe_guc_ct_snapshot_capture(struct xe_guc_ct *ct);
-> +void xe_guc_ct_snapshot_print(struct xe_guc_ct_snapshot *snapshot,
-> +			      struct drm_printer *p);
-> +void xe_guc_ct_snapshot_free(struct xe_guc_ct_snapshot *snapshot);
-> +void xe_guc_ct_print(struct xe_guc_ct *ct, struct drm_printer *p);
-> +
->  static inline void xe_guc_ct_irq_handler(struct xe_guc_ct *ct)
->  {
->  	wake_up_all(&ct->wq);
-> diff --git a/drivers/gpu/drm/xe/xe_guc_ct_types.h b/drivers/gpu/drm/xe/xe_guc_ct_types.h
-> index 64e3dd14d4b2..93046d95b009 100644
-> --- a/drivers/gpu/drm/xe/xe_guc_ct_types.h
-> +++ b/drivers/gpu/drm/xe/xe_guc_ct_types.h
-> @@ -48,6 +48,32 @@ struct guc_ctb {
->  	struct guc_ctb_info info;
->  };
->  
-> +/**
-> + * struct guc_ctb_snapshot - GuC command transport buffer (CTB) snapshot
-> + */
-> +struct guc_ctb_snapshot {
-> +	/** @desc: snapshot of the CTB descriptor */
-> +	struct guc_ct_buffer_desc desc;
-> +	/** @cmds: snapshot of the CTB commands */
-> +	u32 *cmds;
-> +	/** @info: snapshot of the CTB info */
-> +	struct guc_ctb_info info;
+> +struct sync_semaphore {
+> +	u32 semaphore;
+> +	u8 unused[CACHELINE_BYTES - sizeof(u32)];
 > +};
 > +
 > +/**
-> + * struct xe_guc_ct_snapshot - GuC command transport (CT) snapshot
+> + * Struct guc_submit_parallel_scratch - A scratch shared mapped buffer.
 > + */
-> +struct xe_guc_ct_snapshot {
-> +	/** @ct_enabled: CT enabled info at capture time. */
-> +	bool ct_enabled;
-> +	/** @g2h_outstanding: G2H outstanding info at the capture time */
-> +	u32 g2h_outstanding;
-> +	/** @g2h: G2H CTB snapshot */
-> +	struct guc_ctb_snapshot g2h;
-> +	/** @h2g: H2G CTB snapshot */
-> +	struct guc_ctb_snapshot h2g;
+> +struct guc_submit_parallel_scratch {
+> +	/** @wq_desc: Guc scheduler workqueue descriptor */
+> +	struct guc_sched_wq_desc wq_desc;
+> +
+> +	/** @go: Go Semaphore */
+> +	struct sync_semaphore go;
+> +	/** @join: Joined semaphore for the relevant hw engine instances */
+> +	struct sync_semaphore join[XE_HW_ENGINE_MAX_INSTANCE];
+> +
+> +	/** @unused: Unused/Reserved memory space */
+> +	u8 unused[WQ_OFFSET - sizeof(struct guc_sched_wq_desc) -
+> +		  sizeof(struct sync_semaphore) *
+> +		  (XE_HW_ENGINE_MAX_INSTANCE + 1)];
+> +
+> +	/** @wq: Workqueue info */
+> +	u32 wq[WQ_SIZE / sizeof(u32)];
 > +};
 > +
->  /**
->   * struct xe_guc_ct - GuC command transport (CT) layer
->   *
+> +#endif
 > -- 
 > 2.39.2
 > 
