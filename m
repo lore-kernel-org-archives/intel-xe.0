@@ -4,140 +4,53 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7CB1FC77B7F
-	for <intel-xe@archiver.kernel.org>; Wed,  3 May 2023 15:28:24 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id B3117C77B78
+	for <intel-xe@archiver.kernel.org>; Wed,  3 May 2023 15:29:43 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 52D9710E128;
-	Wed,  3 May 2023 15:28:24 +0000 (UTC)
-Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5D58C89349
- for <intel-xe@lists.freedesktop.org>; Wed,  3 May 2023 15:28:22 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 88C0310E266;
+	Wed,  3 May 2023 15:29:43 +0000 (UTC)
+Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7E2D310E266
+ for <intel-xe@lists.freedesktop.org>; Wed,  3 May 2023 15:29:42 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1683127702; x=1714663702;
- h=date:from:to:cc:subject:message-id:references:
- content-transfer-encoding:in-reply-to:mime-version;
- bh=wQX93a2OFZPEb3q+71mNEvowg+N6UlNevKnHPTRbSJ4=;
- b=ldFNiJ7hR1cc+CE5zJLdM7Hr+Kc95I3Qt0aNdJEWi1ZSPFnA6ZNWtNfX
- KVQ/ajaGOZiT8lWCZHZJNHD2c4fHCejP924oquxP4iE24hLzKim4n9ekH
- VilXK8BUpMid/4zLpqixzy/jhEDXfZYK29EktOmneeqPFWbPCpXgzQVjX
- 2e0uRfo42hdqSxd5SN7J/6Kifs4ERT/NxRiF5Ebg33heq2r992/gvLN6e
- Lbb/F78GUMTjMPGcR/nFOJd1suE5zvQu4DhS0mHRhcqYCDCQKW4qTbG8e
- VuGRY2vxiZAT12Nj75863zOVfB+62BbhGnwyhbinRdWstqaaujAAg98xX A==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10699"; a="376748629"
-X-IronPort-AV: E=Sophos;i="5.99,247,1677571200"; d="scan'208";a="376748629"
-Received: from orsmga001.jf.intel.com ([10.7.209.18])
- by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 03 May 2023 08:28:03 -0700
+ t=1683127782; x=1714663782;
+ h=message-id:date:mime-version:subject:to:cc:references:
+ from:in-reply-to:content-transfer-encoding;
+ bh=QGEFVvrzXcnS4ft6kmmpYVsBSQCheNjOCy+k73vvccw=;
+ b=hvMsM4jtS9Wk1a50jbjSy6gOufrI/i2RVUubANkS1Yn8FKl6MGgJbwYW
+ GkgDNHxIKbM2J8DeP82ziE6NlQon07euDLVVFwIo6FOgsCQ0twCGfL0/O
+ Y2IcthCY8ry9YxclFo3j2NrQGp/99PlhE2Dg4ziz1U+9DIbDEBVVOyDI9
+ Z6oVDikLm2CIuvEPRMXyhO1YDz5LM1Z/zDXWnR7gwjnpeeTnJ4Gk4oV51
+ iGxUuBRsH1x1RBsIsmRZ2CuFcEfpwvYz3yvVPywaZKrqmX3qCUPZiBzI8
+ L8w6CCOOMiR4xlror51+tNRgMURMwXQY5CatfPh9D88BHYWof22HbgfXM w==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10699"; a="434993963"
+X-IronPort-AV: E=Sophos;i="5.99,247,1677571200"; d="scan'208";a="434993963"
+Received: from fmsmga003.fm.intel.com ([10.253.24.29])
+ by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 03 May 2023 08:29:40 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10699"; a="729376489"
-X-IronPort-AV: E=Sophos;i="5.99,247,1677571200"; d="scan'208";a="729376489"
-Received: from orsmsx603.amr.corp.intel.com ([10.22.229.16])
- by orsmga001.jf.intel.com with ESMTP; 03 May 2023 08:28:01 -0700
-Received: from orsmsx611.amr.corp.intel.com (10.22.229.24) by
- ORSMSX603.amr.corp.intel.com (10.22.229.16) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.23; Wed, 3 May 2023 08:28:01 -0700
-Received: from orsmsx610.amr.corp.intel.com (10.22.229.23) by
- ORSMSX611.amr.corp.intel.com (10.22.229.24) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.23; Wed, 3 May 2023 08:28:00 -0700
-Received: from ORSEDG602.ED.cps.intel.com (10.7.248.7) by
- orsmsx610.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.23 via Frontend Transport; Wed, 3 May 2023 08:28:00 -0700
-Received: from NAM10-MW2-obe.outbound.protection.outlook.com (104.47.55.109)
- by edgegateway.intel.com (134.134.137.103) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2507.23; Wed, 3 May 2023 08:28:00 -0700
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=ecrO80HY7j5YhW5krBqqZZmDVEtlR3VbTKXDcAz+1xcgEHl1/KiS4fhzdZjkMD5Mdy7+8NgauPQ2cdhIy1RupJJ1zSjEEzK9VRhk3HYRNUakqR2+m0JCZmebP/8oIuQCUkFC2V63L3+TLnDzCOZQks+xcyigQghpagJ86G9Ks/HErWdJ3e5BEmdB6Px1UeO29pTQ9CoaN5XJodXeZKODbpz/mt5TpCztvL4HBntF+bMluIVINF1t8s5EVGJJr5k6F470SuJxBaDSFbHuxd9hiOWpRT/09IHGUlVtGExUf/bcGXdMiFfzPzfFVfXN3nw8Ak2cU37qkGu3/zan+ICSOQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=V6PH+xDu4jfGsK4mzh/Mn3o5gPtqE8nwUCYw2jO/4cE=;
- b=nDeU1SFDgLhjxYr9GGygvXIPXd/wdAMXheocXnBrR56AcEGx+UO4sApKPaNKQSy8HJhzZUXEQDDw+POODTjxkdIwhzST8r4zOBGkJ0UENvMpm+7tVSAuuOOBa1CmlrisKFhninKoi56IWCQ9qaUhzufG70KFx9eVsk/UMs9bOaDhv68GJvyL7MJqv6oM7OkY5wssIQxXiWH8UzfiitnRCHeaXp3GL1ukasXXJCRrGZeG+ZxKtV9WQNDV35MCWWxjGBEfY0xn068TDc69MTdsw7InChqSj5u1yDvQNVdQ+9z5mXyGDJfmle+mPnlAh4d0L0FWL8Fk3djR74zm1NzcFA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
- dkim=pass header.d=intel.com; arc=none
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=intel.com;
-Received: from PH7PR11MB6522.namprd11.prod.outlook.com (2603:10b6:510:212::12)
- by CY8PR11MB6961.namprd11.prod.outlook.com (2603:10b6:930:5a::7) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6340.31; Wed, 3 May
- 2023 15:27:59 +0000
-Received: from PH7PR11MB6522.namprd11.prod.outlook.com
- ([fe80::ff06:a115:e4eb:680e]) by PH7PR11MB6522.namprd11.prod.outlook.com
- ([fe80::ff06:a115:e4eb:680e%4]) with mapi id 15.20.6340.030; Wed, 3 May 2023
- 15:27:58 +0000
-Date: Wed, 3 May 2023 15:27:41 +0000
-From: Matthew Brost <matthew.brost@intel.com>
-To: Thomas =?iso-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>
-Message-ID: <ZFJ9bXFtcYAH1mwF@DUT025-TGLU.fm.intel.com>
-References: <20230502001727.3211096-1-matthew.brost@intel.com>
- <21f0b213-c307-2fbd-1312-74b26287d352@linux.intel.com>
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <21f0b213-c307-2fbd-1312-74b26287d352@linux.intel.com>
-X-ClientProxiedBy: SJ0PR05CA0002.namprd05.prod.outlook.com
- (2603:10b6:a03:33b::7) To PH7PR11MB6522.namprd11.prod.outlook.com
- (2603:10b6:510:212::12)
+X-IronPort-AV: E=McAfee;i="6600,9927,10699"; a="786130530"
+X-IronPort-AV: E=Sophos;i="5.99,247,1677571200"; d="scan'208";a="786130530"
+Received: from dmadorsx-mobl2.ger.corp.intel.com (HELO [10.252.12.249])
+ ([10.252.12.249])
+ by fmsmga003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 03 May 2023 08:29:39 -0700
+Message-ID: <0a8a5687-f519-4e4f-8b63-4293d6882d11@intel.com>
+Date: Wed, 3 May 2023 16:29:37 +0100
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: PH7PR11MB6522:EE_|CY8PR11MB6961:EE_
-X-MS-Office365-Filtering-Correlation-Id: 085ed1d5-7a5d-4ee7-bd8a-08db4beaf9c1
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: Zz0BhCGoEX3F2Ilsr0gEcdLjJkJ5pklNt5hARegkL8SLCCbp1gJ3zYYlnY/5l70gvds72uuUy/MFG1VOvKIsoWSevT7PedlVPg6TCUbIJs/DTzBDN3lvcjPwSVsAe207Wp9f+MIT1KPpv2DCHputKq3vz7D8HHKgpZS7+epEUzVtV0h5GIlUQ7g06c7PGtpNesUx9ddbOeq8KjceXw4Gw2Wqg1b9Z0j3dYNBsbAj3nKAS1hASHj7UN0BqBk5ONMAzsogXp1Dk6gS/1xuv3GSjE05zHhjKQ+r463WLOjwZK1B7tvWEN4F1D7qAMFqxFofJFxXx9V90zNIPTVNG31B/C4ZfLtv5xchLIVkCZDvuJeQsYfNrns0GYcq2xCqZmMkeBHZb5u7j784BZtlYiKaWCs7CWVAYrMRCWciLRN4iNmpnM8fYLHF1NDnX5YdFXu2bhFzS5xdMyL6BAwGwiXgwK3/uEczBV4C2nNZmhJap2oWkbRRBrldQRTiiAWbdT43FubkNPTvy7ZY/f6ivE3Uuw==
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:PH7PR11MB6522.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230028)(376002)(39860400002)(136003)(396003)(346002)(366004)(451199021)(53546011)(66574015)(83380400001)(186003)(6916009)(66476007)(66556008)(4326008)(41300700001)(2906002)(8676002)(8936002)(44832011)(66946007)(5660300002)(6512007)(6506007)(316002)(82960400001)(26005)(86362001)(478600001)(966005)(38100700002)(6666004)(6486002);
- DIR:OUT; SFP:1102; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?iso-8859-1?Q?+1PJ7XDq3iO1aeqSY6yrm1ZgmAS7qa4Rk6/imhgZWSxzOX4nwIo+ouWuUa?=
- =?iso-8859-1?Q?Glkluyhy6NgxJATsyIY46UJbLKYKLQO0o+o53Dt6v6HbguoJ5xh0TFpPzh?=
- =?iso-8859-1?Q?6SKGgJXUoKUN3ns5x3vM1ZoS7hX+ntUIz+3bwMBHFcHT+2+5xH3zfb75Tz?=
- =?iso-8859-1?Q?zt8KypMFaoUnziWFTtGnk7pcwO0M/BPMYvl3PPwo7e421KEe9WnKAjtaPd?=
- =?iso-8859-1?Q?ilM8LbF4KdBe6rdAx6AAFB6Di/9tc9eyMqyHF2k2hPk++OETwxAVvo9E6L?=
- =?iso-8859-1?Q?wl/iPu1878yHtbHlxGSL4LEngWqwZFBeL6XoZf44FqssrnGDXkgCK5V7TX?=
- =?iso-8859-1?Q?XUDIHhT7a0GbTnet9SGeO6m3qAa4ATEw1MHKFmSTGiz3b/ybWcVLmuA8p/?=
- =?iso-8859-1?Q?+RjqPS0M5ckEW8RwK1zOFV6cqdzqS2Jpq7oUtYjymXS+0McTYeYxtTbbIc?=
- =?iso-8859-1?Q?kKCY7rd3w0Rc5SdXfr/LBucGFfd++EBTk6f2QFfXG4FPEMLeS2mRiOB7Fx?=
- =?iso-8859-1?Q?+sScRLywZ3DN/KJtYrUixZy+qc0nH4K2wTB/oJLxCY0RmkghE0KP3DUJ2M?=
- =?iso-8859-1?Q?r8JHy53oIM87YYiU3GlPY1zYG76OWumxndcOggWlxMtj1UM3zqJEiQInDi?=
- =?iso-8859-1?Q?7e2s/l2jhjuXOe6xs33CqZA5iYqVnZ6prxvMzk4XH6bOe+qld/4mTh1MV5?=
- =?iso-8859-1?Q?vyB/ilsIGO2rWagcxNNdh1Cwc+AGC/kndadqyqAcC/Xf8P37HAIIqPER/c?=
- =?iso-8859-1?Q?925vOxWyuK2R5i/m2JWd3FgaJ8LBsD+er/RHd2EwXG17yxSSwpj7yVNQHX?=
- =?iso-8859-1?Q?XBJkCVQ/XTNtMNFfJ9s7XQm/KxZawCwVKxCfGJ9dCY5wwcWjB/NzZCD8ql?=
- =?iso-8859-1?Q?n7X21LFcWuUe7jzDLM4SqN8QhAXtCnm1nPFptCvhtbaWK5EtZWoiHZUlqx?=
- =?iso-8859-1?Q?pkEgceOZU2RXGFTv/CWyemAsYipbaA6rWgVH421Ia1AuLogKwXbadMOYYA?=
- =?iso-8859-1?Q?yF+2hh/wfsGEu7nGEMv8WHD7/+iuZweYoxwOU9xXCDSAov4g3TL62Fuhp3?=
- =?iso-8859-1?Q?CkGM/sDYfPsPVj9iMHtSb2hFp4xbb1itN9kBK6fyvQ5fVGhDQpkeQjYs/k?=
- =?iso-8859-1?Q?k6Huun6awD2GCTmDOa2X55hyvPEUAHtAV94uC6507FXWkAJerdC72mC3W6?=
- =?iso-8859-1?Q?6E7vmU0YndcM5tMoHXwIIRwXczS/0li/ygkSE2jWrXR4T1RwCxwJA36h6w?=
- =?iso-8859-1?Q?309Y+PT7E1yzC0gpGYmd2gx5LlpTVc88VDu2+8CYJ0MC6B7WXPC1UdN1t0?=
- =?iso-8859-1?Q?ZOjv23fMwIech3oX8kCVJ79VhU4r3ldAlnqATK/mBMYqIxuO85G33GlFYX?=
- =?iso-8859-1?Q?efPSR49JSCmHKhTYIRe3Lyyk7jhaRxCtzfiwcBClvXdVZYvanzC9r5mNtT?=
- =?iso-8859-1?Q?MyN85R0kDguIvLtOjvWBdPYtUc+eK+cETYe903UNGyUtLjL80EN/lLKeeo?=
- =?iso-8859-1?Q?TkGx2TC4pt1seIzvpRbfx3fYu3IFBJMyinTJuu7OxIr0fa71iEAU/HZx+h?=
- =?iso-8859-1?Q?+XN507hik3HrJqaG5MMhXZf8gIjf+/SmDIiZwPkRcQPMiFWmJCYh2HkMYR?=
- =?iso-8859-1?Q?SEp9JlvwPYO+r27nW6an7fmnnxME+tHdqYxSDiRn68s+CW/D7WrBUJ8A?=
- =?iso-8859-1?Q?=3D=3D?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: 085ed1d5-7a5d-4ee7-bd8a-08db4beaf9c1
-X-MS-Exchange-CrossTenant-AuthSource: PH7PR11MB6522.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 03 May 2023 15:27:58.8941 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: yJDgxJdIVg5+lErTk2kOmNLVl+qJ2B2jWwRPkMzPhvaDcOwpPk/QcgMSWck4qrJjHRKqvCyfqg6+t5X0FP/gZg==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: CY8PR11MB6961
-X-OriginatorOrg: intel.com
-Subject: Re: [Intel-xe] [PATCH v2 00/31] Upstreaming prep / all of mbrosts
- patches
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Firefox/102.0 Thunderbird/102.10.0
+Content-Language: en-GB
+To: "Michael J. Ruhl" <michael.j.ruhl@intel.com>,
+ intel-xe@lists.freedesktop.org
+References: <20230501115826.4191472-1-michael.j.ruhl@intel.com>
+ <20230501115826.4191472-4-michael.j.ruhl@intel.com>
+From: Matthew Auld <matthew.auld@intel.com>
+In-Reply-To: <20230501115826.4191472-4-michael.j.ruhl@intel.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+Subject: Re: [Intel-xe] [PATCH 3/4] drm/xe: Size GT device memory correctly
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -149,167 +62,242 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-xe@lists.freedesktop.org
+Cc: tejas.upadhyay@intel.com, himal.prasad.ghimiray@intel.com
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Wed, May 03, 2023 at 02:37:14PM +0200, Thomas Hellstr�m wrote:
-> Hi, Matthew
+On 01/05/2023 12:58, Michael J. Ruhl wrote:
+> The current method of sizing GT device memory is not quite right.
 > 
-> On 5/2/23 02:16, Matthew Brost wrote:
-> > Series includes:
-> > 
-> > - DRM scheduler changes for firmware backends (1 to 1 entity to scheduler)
-> > - LR workload story
-> > - VM LRU handling
-> > - GuC doorbell submission
-> > - Basic GPUVA
-> > - Sparse binding support
-> > - GPUVA + extobj + drm exec (collaboration with dakr + Francois Dugast)
-> > - GPUVA + userptr (minimal, more can be once Nouveua has userptr)
-> > - Fix fencing rules for compute / fault mode
-> > - Remove async worker for VM + error handling updates
-> > - Kernel doc for VM bind
+> Update the algorithm to use the relevant HW information and offsets
+> to set up the sizing correctly.
 > 
-> It would be beneficial to the reviewer if� you could make separate series
-> where applicable with links to previous discussions and add information
-> about whether all design issues /discussions were resolved or if anything
-> was remaining and a brief guidance as to what is in each patch of the
-> series.
+> Update the stolen memory sizing to reflect the changes, and to be
+> GT specific.
 > 
+> Signed-off-by: Michael J. Ruhl <michael.j.ruhl@intel.com>
+> ---
+>   drivers/gpu/drm/xe/xe_device_types.h   |  4 +-
+>   drivers/gpu/drm/xe/xe_gt_types.h       | 14 ++--
+>   drivers/gpu/drm/xe/xe_mmio.c           | 91 +++++++++++++-------------
+>   drivers/gpu/drm/xe/xe_mmio.h           |  2 +-
+>   drivers/gpu/drm/xe/xe_ttm_stolen_mgr.c |  2 +
+>   5 files changed, 60 insertions(+), 53 deletions(-)
+> 
+> diff --git a/drivers/gpu/drm/xe/xe_device_types.h b/drivers/gpu/drm/xe/xe_device_types.h
+> index 2eeb10e97381..8898aea4bc2b 100644
+> --- a/drivers/gpu/drm/xe/xe_device_types.h
+> +++ b/drivers/gpu/drm/xe/xe_device_types.h
+> @@ -1,6 +1,6 @@
+>   /* SPDX-License-Identifier: MIT */
+>   /*
+> - * Copyright © 2022 Intel Corporation
+> + * Copyright © 2022-2023 Intel Corporation
+>    */
+>   
+>   #ifndef _XE_DEVICE_TYPES_H_
+> @@ -202,6 +202,8 @@ struct xe_device {
+>   			 * known as small-bar.
+>   			 */
+>   			resource_size_t io_size;
+> +			/** @base: Offset to apply for Device Physical Address control */
+> +			resource_size_t base;
+>   			/** @mapping: pointer to VRAM mappable space */
+>   			void *__iomem mapping;
+>   		} vram;
+> diff --git a/drivers/gpu/drm/xe/xe_gt_types.h b/drivers/gpu/drm/xe/xe_gt_types.h
+> index 7c47d67aa8be..47f059bb8c6d 100644
+> --- a/drivers/gpu/drm/xe/xe_gt_types.h
+> +++ b/drivers/gpu/drm/xe/xe_gt_types.h
+> @@ -1,6 +1,6 @@
+>   /* SPDX-License-Identifier: MIT */
+>   /*
+> - * Copyright © 2022 Intel Corporation
+> + * Copyright © 2022-2023 Intel Corporation
+>    */
+>   
+>   #ifndef _XE_GT_TYPES_H_
+> @@ -148,13 +148,15 @@ struct xe_gt {
+>   			/**
+>   			 * @io_size: IO size of this VRAM instance
+>   			 *
+> -			 * This represents how much of this VRAM we can access
+> -			 * via the CPU through the VRAM BAR. This can be smaller
+> -			 * than @size, in which case only part of VRAM is CPU
+> -			 * accessible (typically the first 256M). This
+> -			 * configuration is known as small-bar.
+> +			 * This represents how much of the VRAM the CPU can access
+> +			 * via the VRAM BAR.
+> +			 * This can be smaller than the actual @size, in which
+> +			 * case only part of VRAM is CPU accessible (typically
+> +			 * the first 256M). This configuration is known as small-bar.
+>   			 */
+>   			resource_size_t io_size;
+> +			/** @base: offset of VRAM starting base */
+> +			resource_size_t base;
+>   			/** @size: size of VRAM. */
+>   			resource_size_t size;
+>   			/** @mapping: pointer to VRAM mappable space */
+> diff --git a/drivers/gpu/drm/xe/xe_mmio.c b/drivers/gpu/drm/xe/xe_mmio.c
+> index 7a5fce0ae7ab..2c35a1b79be7 100644
+> --- a/drivers/gpu/drm/xe/xe_mmio.c
+> +++ b/drivers/gpu/drm/xe/xe_mmio.c
+> @@ -186,6 +186,8 @@ static int xe_determine_lmem_bar_size(struct xe_device *xe)
+>   	if (!xe->mem.vram.io_size)
+>   		return -EIO;
+>   
+> +	xe->mem.vram.base = 0; /* DPA offset */
+> +
+>   	/* set up a map to the total memory area. */
+>   	xe->mem.vram.mapping = ioremap_wc(xe->mem.vram.io_start, xe->mem.vram.io_size);
+>   
+> @@ -247,6 +249,9 @@ int xe_mmio_tile_vram_size(struct xe_gt *gt, u64 *vram_size, u64 *tile_size, u64
+>   
+>   int xe_mmio_probe_vram(struct xe_device *xe)
+>   {
+> +	resource_size_t io_size;
+> +	u64 available_size = 0;
+> +	u64 total_size = 0;
+>   	struct xe_gt *gt;
+>   	u64 tile_offset;
+>   	u64 tile_size;
+> @@ -275,57 +280,56 @@ int xe_mmio_probe_vram(struct xe_device *xe)
+>   	drm_info(&xe->drm, "VISIBLE VRAM: %pa, %pa\n", &xe->mem.vram.io_start,
+>   		 &xe->mem.vram.io_size);
+>   
+> -	/* FIXME: Assuming equally partitioned VRAM, incorrect */
+> -	if (xe->info.tile_count > 1) {
+> -		u8 adj_tile_count = xe->info.tile_count;
+> -		resource_size_t size, io_start, io_size;
+> +	/* small bar issues will only cover gt0 sizes */
+> +	if (xe->mem.vram.io_size < vram_size)
+> +		drm_warn(&xe->drm, "Restricting VRAM size to PCI resource size (0x%llx->0x%llx)\n",
+> +			 vram_size, (u64)xe->mem.vram.io_size);
+>   
+> -		for_each_gt(gt, xe, id)
+> -			if (xe_gt_is_media_type(gt))
+> -				--adj_tile_count;
+> +	io_size = xe->mem.vram.io_size;
+>   
+> -		XE_BUG_ON(!adj_tile_count);
+> +	/* gt specific ranges */
+> +	for_each_gt(gt, xe, id) {
+> +		if (xe_gt_is_media_type(gt))
+> +			continue;
+>   
+> -		size = xe->mem.vram.io_size / adj_tile_count;
+> -		io_start = xe->mem.vram.io_start;
+> -		io_size = xe->mem.vram.io_size;
+> +		err = xe_mmio_tile_vram_size(gt, &vram_size, &tile_size, &tile_offset);
+> +		if (err)
+> +			return err;
+>   
+> -		for_each_gt(gt, xe, id) {
+> -			if (id && !xe_gt_is_media_type(gt)) {
+> -				io_size -= min(io_size, size);
+> -				io_start += io_size;
+> -			}
+> +		gt->mem.vram.io_start = xe->mem.vram.io_start + tile_offset;
+> +		gt->mem.vram.io_size = min_t(u64, vram_size, io_size);
+>   
+> -			gt->mem.vram.size = size;
+> -
+> -			/*
+> -			 * XXX: multi-tile small-bar might be wild. Hopefully
+> -			 * full tile without any mappable vram is not something
+> -			 * we care about.
+> -			 */
+> -
+> -			gt->mem.vram.io_size = min(size, io_size);
+> -			if (io_size) {
+> -				gt->mem.vram.io_start = io_start;
+> -				gt->mem.vram.mapping = xe->mem.vram.mapping +
+> -					(io_start - xe->mem.vram.io_start);
+> -			} else {
+> -				drm_err(&xe->drm, "Tile without any CPU visible VRAM. Aborting.\n");
+> -				return -ENODEV;
+> -			}
+> +		if (!gt->mem.vram.io_size) {
+> +			drm_err(&xe->drm, "Tile without any CPU visible VRAM. Aborting.\n");
+> +			return -ENODEV;
+> +		}
+> +
+> +		gt->mem.vram.base = xe->mem.vram.base + tile_offset;
+> +		gt->mem.vram.size = vram_size;
+> +		gt->mem.vram.mapping = xe->mem.vram.mapping + tile_offset;
+> +
+> +		drm_info(&xe->drm, "VRAM[%u, %u]: %pa, %pa\n", id, gt->info.vram_id,
+> +			 &gt->mem.vram.io_start, &gt->mem.vram.size);
+> +
+> +		if (gt->mem.vram.io_size < gt->mem.vram.size)
+> +			drm_info(&xe->drm, "VRAM[%u, %u]: CPU access limited to %pa\n", id,
+> +				 gt->info.vram_id, &gt->mem.vram.io_size);
+> +
+> +		/* calculate total size using tile size to get the correct HW sizing */
+> +		total_size += tile_size;
+> +		available_size += vram_size;
+>   
+> -			drm_info(&xe->drm, "VRAM[%u, %u]: %pa, %pa\n",
+> -				 id, gt->info.vram_id, &gt->mem.vram.io_start,
+> -				 &gt->mem.vram.size);
+> +		if (total_size > xe->mem.vram.io_size) {
+> +			drm_warn(&xe->drm, "VRAM: %pa is larger than resource %pa\n",
+> +				 &total_size, &xe->mem.vram.io_size);
+>   		}
+> -	} else {
+> -		gt->mem.vram.size = xe->mem.vram.io_size;
+> -		gt->mem.vram.io_start = xe->mem.vram.io_start;
+> -		gt->mem.vram.io_size = xe->mem.vram.io_size;
+> -		gt->mem.vram.mapping = xe->mem.vram.mapping;
+>   
+> -		drm_info(&xe->drm, "VRAM: %pa\n", &gt->mem.vram.size);
+> +		io_size -= min_t(u64, tile_size, io_size);
+>   	}
+> +
+> +	drm_info(&xe->drm, "Available VRAM: %pa, %pa\n", &xe->mem.vram.io_start,
+> +		 &available_size);
+> +
+>   	return 0;
+>   }
+>   
+> @@ -345,9 +349,6 @@ static void xe_mmio_probe_tiles(struct xe_device *xe)
+>   	if (xe->info.media_verx100 >= 1300)
+>   		xe->info.tile_count *= 2;
+>   
+> -	drm_info(&xe->drm, "tile_count: %d, adj_tile_count %d\n",
+> -		 xe->info.tile_count, adj_tile_count);
+> -
+>   	if (xe->info.tile_count > 1) {
+>   		const int mmio_bar = 0;
+>   		size_t size;
+> diff --git a/drivers/gpu/drm/xe/xe_mmio.h b/drivers/gpu/drm/xe/xe_mmio.h
+> index 556cf3d9e4f5..d284f84a2e60 100644
+> --- a/drivers/gpu/drm/xe/xe_mmio.h
+> +++ b/drivers/gpu/drm/xe/xe_mmio.h
+> @@ -1,6 +1,6 @@
+>   /* SPDX-License-Identifier: MIT */
+>   /*
+> - * Copyright © 2021 Intel Corporation
+> + * Copyright © 2021-2023 Intel Corporation
+>    */
+>   
+>   #ifndef _XE_MMIO_H_
+> diff --git a/drivers/gpu/drm/xe/xe_ttm_stolen_mgr.c b/drivers/gpu/drm/xe/xe_ttm_stolen_mgr.c
+> index a329f12f14fe..72e0a65b1d71 100644
+> --- a/drivers/gpu/drm/xe/xe_ttm_stolen_mgr.c
+> +++ b/drivers/gpu/drm/xe/xe_ttm_stolen_mgr.c
+> @@ -12,9 +12,11 @@
+>   #include <drm/ttm/ttm_range_manager.h>
+>   
+>   #include "regs/xe_regs.h"
+> +#include "regs/xe_gt_regs.h"
+>   #include "xe_bo.h"
+>   #include "xe_device.h"
+>   #include "xe_gt.h"
+> +#include "xe_gt_mcr.h"
 
-Basically nothing has been reviewed, sad but this where we are. Most of
-this code is 2-3 months old too, I can't maintain like 5 branches out
-code and keep everything stable, hence 1 large series. Going forward,
-I'd ask for timely reviews, I make an effort to review code actively and
-if I'm asked review code I do it in a timely manner. In case, I think
-the team is just going to have get through this. Again this isn't truely
-upstream either, we just need to get this our repo. Any of the common
-code will also go through reviews on dri-devel before we go upstream.
+git add wrong patch?
 
-Matt 
-
-> /Thomas
-> 
-> 
-> 
-> 
-> > Series is not fully ready for upstream and some of these things need to
-> > get merged upstream first but overall it is largely correct and
-> > certainly step in the right direction. Based on its size and the fact it
-> > took me 8 hours to rebase this today I'd say let's get this tree and
-> > fixup everything else in place.
-> > 
-> > Minor uAPI breakage, IGT series:
-> > https://patchwork.freedesktop.org/series/117177/
-> > 
-> > gitlab link:
-> > https://gitlab.freedesktop.org/drm/xe/kernel/-/merge_requests/344
-> > 
-> > Signed-off-by: Matthew Brost <matthew.brost@intel.com>
-> > 
-> > Christian K�nig (1):
-> >    drm: execution context for GEM buffers v3
-> > 
-> > Danilo Krummrich (2):
-> >    maple_tree: split up MA_STATE() macro
-> >    drm: manager to keep track of GPUs VA mappings
-> > 
-> > Matthew Brost (28):
-> >    drm/sched: Add run_wq argument to drm_sched_init
-> >    drm/sched: Move schedule policy to scheduler
-> >    drm/sched: Add DRM_SCHED_POLICY_SINGLE_ENTITY scheduling policy
-> >    drm/xe: Use DRM_SCHED_POLICY_SINGLE_ENTITY mode
-> >    drm/xe: Long running job update
-> >    drm/xe: Ensure LR engines are not persistent
-> >    drm/xe: Only try to lock external BOs in VM bind
-> >    drm/xe: VM LRU bulk move
-> >    drm/xe/guc: Read HXG fields from DW1 of G2H response
-> >    drm/xe/guc: Return the lower part of blocking H2G message
-> >    drm/xe/guc: Use doorbells for submission if possible
-> >    drm/xe/guc: Print doorbell ID in GuC engine debugfs entry
-> >    maple_tree: Export mas_preallocate
-> >    drm/xe: Port Xe to GPUVA
-> >    drm/xe: NULL binding implementation
-> >    drm/xe: Avoid doing rebinds
-> >    drm/xe: Reduce the number list links in xe_vma
-> >    drm/xe: Optimize size of xe_vma allocation
-> >    drm/gpuva: Add drm device to GPUVA manager
-> >    drm/gpuva: Move dma-resv to GPUVA manager
-> >    drm/gpuva: Add support for extobj
-> >    drm/xe: Userptr refactor
-> >    drm/exec: Always compile drm_exec
-> >    drm/xe: Use drm_exec for locking rather than TTM exec helpers
-> >    drm/xe: Allow dma-fences as in-syncs for compute / faulting VM
-> >    drm/xe: Allow compute VMs to output dma-fences on binds
-> >    drm/xe: remove async worker, sync binds, new error handling
-> >    drm/xe/uapi: Add some VM bind kernel doc
-> > 
-> >   Documentation/gpu/drm-mm.rst                 |   43 +
-> >   drivers/gpu/drm/Kconfig                      |    6 +
-> >   drivers/gpu/drm/Makefile                     |    4 +-
-> >   drivers/gpu/drm/amd/amdgpu/amdgpu_device.c   |    3 +-
-> >   drivers/gpu/drm/drm_debugfs.c                |   41 +
-> >   drivers/gpu/drm/drm_exec.c                   |  248 ++
-> >   drivers/gpu/drm/drm_gem.c                    |    3 +
-> >   drivers/gpu/drm/drm_gpuva_mgr.c              | 1779 ++++++++++++
-> >   drivers/gpu/drm/etnaviv/etnaviv_sched.c      |    5 +-
-> >   drivers/gpu/drm/i915/display/intel_display.c |    6 +-
-> >   drivers/gpu/drm/lima/lima_sched.c            |    5 +-
-> >   drivers/gpu/drm/msm/msm_ringbuffer.c         |    5 +-
-> >   drivers/gpu/drm/panfrost/panfrost_job.c      |    5 +-
-> >   drivers/gpu/drm/scheduler/sched_entity.c     |   84 +-
-> >   drivers/gpu/drm/scheduler/sched_fence.c      |    2 +-
-> >   drivers/gpu/drm/scheduler/sched_main.c       |   88 +-
-> >   drivers/gpu/drm/v3d/v3d_sched.c              |   25 +-
-> >   drivers/gpu/drm/xe/Kconfig                   |    1 +
-> >   drivers/gpu/drm/xe/regs/xe_guc_regs.h        |    1 +
-> >   drivers/gpu/drm/xe/tests/xe_bo.c             |   26 +-
-> >   drivers/gpu/drm/xe/tests/xe_migrate.c        |    6 +-
-> >   drivers/gpu/drm/xe/xe_bo.c                   |  100 +-
-> >   drivers/gpu/drm/xe/xe_bo.h                   |   13 +-
-> >   drivers/gpu/drm/xe/xe_bo_evict.c             |   24 +-
-> >   drivers/gpu/drm/xe/xe_bo_types.h             |    1 -
-> >   drivers/gpu/drm/xe/xe_device.c               |    2 +-
-> >   drivers/gpu/drm/xe/xe_dma_buf.c              |    2 +-
-> >   drivers/gpu/drm/xe/xe_engine.c               |   50 +-
-> >   drivers/gpu/drm/xe/xe_engine.h               |    4 +
-> >   drivers/gpu/drm/xe/xe_engine_types.h         |    1 +
-> >   drivers/gpu/drm/xe/xe_exec.c                 |  117 +-
-> >   drivers/gpu/drm/xe/xe_execlist.c             |    3 +-
-> >   drivers/gpu/drm/xe/xe_gt_pagefault.c         |   84 +-
-> >   drivers/gpu/drm/xe/xe_gt_tlb_invalidation.c  |   14 +-
-> >   drivers/gpu/drm/xe/xe_guc.c                  |    6 +
-> >   drivers/gpu/drm/xe/xe_guc_ct.c               |   12 +-
-> >   drivers/gpu/drm/xe/xe_guc_engine_types.h     |    9 +
-> >   drivers/gpu/drm/xe/xe_guc_pc.c               |    6 +-
-> >   drivers/gpu/drm/xe/xe_guc_submit.c           |  398 ++-
-> >   drivers/gpu/drm/xe/xe_guc_submit.h           |    1 +
-> >   drivers/gpu/drm/xe/xe_guc_types.h            |    4 +
-> >   drivers/gpu/drm/xe/xe_huc.c                  |    2 +-
-> >   drivers/gpu/drm/xe/xe_lrc.c                  |    8 +-
-> >   drivers/gpu/drm/xe/xe_migrate.c              |   31 +-
-> >   drivers/gpu/drm/xe/xe_pt.c                   |  198 +-
-> >   drivers/gpu/drm/xe/xe_sync.c                 |   26 +-
-> >   drivers/gpu/drm/xe/xe_sync.h                 |    2 +-
-> >   drivers/gpu/drm/xe/xe_trace.h                |   20 +-
-> >   drivers/gpu/drm/xe/xe_vm.c                   | 2567 +++++++-----------
-> >   drivers/gpu/drm/xe/xe_vm.h                   |  135 +-
-> >   drivers/gpu/drm/xe/xe_vm_madvise.c           |  125 +-
-> >   drivers/gpu/drm/xe/xe_vm_types.h             |  324 ++-
-> >   drivers/gpu/drm/xe/xe_wait_user_fence.c      |   43 +-
-> >   include/drm/drm_debugfs.h                    |   24 +
-> >   include/drm/drm_drv.h                        |    7 +
-> >   include/drm/drm_exec.h                       |  115 +
-> >   include/drm/drm_gem.h                        |   75 +
-> >   include/drm/drm_gpuva_mgr.h                  |  759 ++++++
-> >   include/drm/gpu_scheduler.h                  |   29 +-
-> >   include/linux/maple_tree.h                   |    7 +-
-> >   include/uapi/drm/xe_drm.h                    |  128 +-
-> >   lib/maple_tree.c                             |    1 +
-> >   62 files changed, 5543 insertions(+), 2320 deletions(-)
-> >   create mode 100644 drivers/gpu/drm/drm_exec.c
-> >   create mode 100644 drivers/gpu/drm/drm_gpuva_mgr.c
-> >   create mode 100644 include/drm/drm_exec.h
-> >   create mode 100644 include/drm/drm_gpuva_mgr.h
-> > 
+>   #include "xe_mmio.h"
+>   #include "xe_res_cursor.h"
+>   #include "xe_ttm_stolen_mgr.h"
