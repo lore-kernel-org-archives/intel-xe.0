@@ -4,30 +4,55 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 41E77C77B75
-	for <intel-xe@archiver.kernel.org>; Wed,  3 May 2023 08:38:48 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1DE28C77B7F
+	for <intel-xe@archiver.kernel.org>; Wed,  3 May 2023 09:11:45 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1AA1C10E1F8;
-	Wed,  3 May 2023 08:38:48 +0000 (UTC)
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id 1406810E1F8;
- Wed,  3 May 2023 08:38:47 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 10E0CAADE4;
- Wed,  3 May 2023 08:38:47 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+	by gabe.freedesktop.org (Postfix) with ESMTP id E065D10E22D;
+	Wed,  3 May 2023 09:11:44 +0000 (UTC)
+Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8E49B10E211;
+ Wed,  3 May 2023 09:11:40 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1683105101; x=1714641101;
+ h=message-id:date:mime-version:subject:to:cc:references:
+ from:in-reply-to:content-transfer-encoding;
+ bh=yZdDxF7eM2/0DaJdrpLaz+vSoS07hfHOMx2AFF1OeTM=;
+ b=ZlxfqmhP0GtMqNps8JIe86VXSChnecBASJBRT3GqdYvqhyt3l9UZIEaT
+ 7CeKI7BYZn8r3xQpZuQaJEJuvN7Myj2J96SjWcXjinpwBz5uqeDHgvOpP
+ wxV9Up3o9bH3sxZnpQpVoi4hQqQ+vlCU5PJ+pT0Mc+VxbnkSlj5o4l6GX
+ cBhNDdHc7ROhG5eoeMs99EIZKXV4VuWgQxYg7wBBX9FpQH4m88roiPFdv
+ HDDElvg3hIKx7XofGIgotHHnJiDsjkJiiE/2jHhq++wQY7kUAetfj55D/
+ UlcTcEWTFrYzOz7NJgd8pQEz72A5+TZAJ3n5QwYbuXkqpKRflSHz4F4Yr Q==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10698"; a="337745867"
+X-IronPort-AV: E=Sophos;i="5.99,246,1677571200"; d="scan'208";a="337745867"
+Received: from orsmga006.jf.intel.com ([10.7.209.51])
+ by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 03 May 2023 02:11:40 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6600,9927,10698"; a="674010950"
+X-IronPort-AV: E=Sophos;i="5.99,246,1677571200"; d="scan'208";a="674010950"
+Received: from skallurr-mobl1.ger.corp.intel.com (HELO [10.249.254.212])
+ ([10.249.254.212])
+ by orsmga006-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 03 May 2023 02:11:35 -0700
+Message-ID: <888841c4-7bd4-8174-7786-033715c995c6@linux.intel.com>
+Date: Wed, 3 May 2023 11:11:32 +0200
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Maarten Lankhorst" <maarten.lankhorst@linux.intel.com>
-Date: Wed, 03 May 2023 08:38:47 -0000
-Message-ID: <168310312706.9279.10022708354824267572@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.8.0
+Content-Language: en-US
+To: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ dri-devel@lists.freedesktop.org, cgroups@vger.kernel.org,
+ intel-xe@lists.freedesktop.org
 References: <20230503083500.645848-1-maarten.lankhorst@linux.intel.com>
-In-Reply-To: <20230503083500.645848-1-maarten.lankhorst@linux.intel.com>
-Subject: [Intel-xe] =?utf-8?q?=E2=9C=97_CI=2EKUnit=3A_failure_for_Add_sup?=
- =?utf-8?q?port_for_DRM_cgroup_memory_accounting=2E?=
+ <20230503083500.645848-4-maarten.lankhorst@linux.intel.com>
+From: =?UTF-8?Q?Thomas_Hellstr=c3=b6m?= <thomas.hellstrom@linux.intel.com>
+In-Reply-To: <20230503083500.645848-4-maarten.lankhorst@linux.intel.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+Subject: Re: [Intel-xe] [RFC PATCH 3/4] drm/ttm: Handle -EAGAIN in
+ ttm_resource_alloc as -ENOSPC.
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -39,147 +64,59 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
-Cc: intel-xe@lists.freedesktop.org
+Cc: Daniel Vetter <daniel@ffwll.ch>, Tvrtko Ursulin <tvrtko.ursulin@intel.com>,
+ Zefan Li <lizefan.x@bytedance.com>, intel-gfx@lists.freedesktop.org,
+ linux-kernel@vger.kernel.org, amd-gfx@lists.freedesktop.org,
+ Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
+ Johannes Weiner <hannes@cmpxchg.org>, Tejun Heo <tj@kernel.org>,
+ David Airlie <airlied@gmail.com>
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-== Series Details ==
+Hi, Maarten
 
-Series: Add support for DRM cgroup memory accounting.
-URL   : https://patchwork.freedesktop.org/series/117225/
-State : failure
+On 5/3/23 10:34, Maarten Lankhorst wrote:
+> This allows the drm cgroup controller to return no space is available..
+>
+> XXX: This is a hopeless simplification that changes behavior, and
+> returns -ENOSPC even if we could evict ourselves from the current
+> cgroup.
+>
+> Ideally, the eviction code becomes cgroup aware, and will force eviction
+> from the current cgroup or its parents.
+>
+> Signed-off-by: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
 
-== Summary ==
+Thinking of the shrinker analogy, do non-cgroup aware shrinkers just 
+shrink blindly or do they reject shrinking like this patch when a cgroup 
+limit is reached?
 
-+ trap cleanup EXIT
-+ /kernel/tools/testing/kunit/kunit.py run --kunitconfig /kernel/drivers/gpu/drm/xe/.kunitconfig
-ERROR:root:In file included from ../drivers/gpu/drm/xe/xe_device_types.h:15,
-                 from ../drivers/gpu/drm/xe/xe_device.h:15,
-                 from ../drivers/gpu/drm/xe/tests/xe_pci_test.c:13:
-../include/linux/cgroup_drm.h:51:16: warning: ‘struct drm_cgroup’ declared inside parameter list will not be visible outside of this definition or declaration
-   51 |         struct drm_cgroup *drm_cg)
-      |                ^~~~~~~~~~
-../include/linux/cgroup_drm.h: In function ‘drmmcg_register_device’:
-../include/linux/cgroup_drm.h:86:36: error: passing argument 2 of ‘drmcg_register_device’ from incompatible pointer type [-Werror=incompatible-pointer-types]
-   86 |  return drmcg_register_device(dev, cgdev) ?:
-      |                                    ^~~~~
-      |                                    |
-      |                                    struct drmcgroup_device *
-../include/linux/cgroup_drm.h:51:28: note: expected ‘struct drm_cgroup *’ but argument is of type ‘struct drmcgroup_device *’
-   51 |         struct drm_cgroup *drm_cg)
-      |         ~~~~~~~~~~~~~~~~~~~^~~~~~
-cc1: some warnings being treated as errors
-make[7]: *** [../scripts/Makefile.build:252: drivers/gpu/drm/xe/tests/xe_pci_test.o] Error 1
-make[7]: *** Waiting for unfinished jobs....
-In file included from ../drivers/gpu/drm/xe/xe_device_types.h:15,
-                 from ../drivers/gpu/drm/xe/xe_vm_types.h:14,
-                 from ../drivers/gpu/drm/xe/xe_bo.h:11,
-                 from ../drivers/gpu/drm/xe/xe_bo.c:6:
-../include/linux/cgroup_drm.h:51:16: warning: ‘struct drm_cgroup’ declared inside parameter list will not be visible outside of this definition or declaration
-   51 |         struct drm_cgroup *drm_cg)
-      |                ^~~~~~~~~~
-../include/linux/cgroup_drm.h: In function ‘drmmcg_register_device’:
-../include/linux/cgroup_drm.h:86:36: error: passing argument 2 of ‘drmcg_register_device’ from incompatible pointer type [-Werror=incompatible-pointer-types]
-   86 |  return drmcg_register_device(dev, cgdev) ?:
-      |                                    ^~~~~
-      |                                    |
-      |                                    struct drmcgroup_device *
-../include/linux/cgroup_drm.h:51:28: note: expected ‘struct drm_cgroup *’ but argument is of type ‘struct drmcgroup_device *’
-   51 |         struct drm_cgroup *drm_cg)
-      |         ~~~~~~~~~~~~~~~~~~~^~~~~~
-In file included from ../drivers/gpu/drm/xe/xe_device_types.h:15,
-                 from ../drivers/gpu/drm/xe/xe_vm_types.h:14,
-                 from ../drivers/gpu/drm/xe/xe_bo.h:11,
-                 from ../drivers/gpu/drm/xe/xe_bo_evict.c:8:
-../include/linux/cgroup_drm.h:51:16: warning: ‘struct drm_cgroup’ declared inside parameter list will not be visible outside of this definition or declaration
-   51 |         struct drm_cgroup *drm_cg)
-      |                ^~~~~~~~~~
-../include/linux/cgroup_drm.h: In function ‘drmmcg_register_device’:
-../include/linux/cgroup_drm.h:86:36: error: passing argument 2 of ‘drmcg_register_device’ from incompatible pointer type [-Werror=incompatible-pointer-types]
-   86 |  return drmcg_register_device(dev, cgdev) ?:
-      |                                    ^~~~~
-      |                                    |
-      |                                    struct drmcgroup_device *
-../include/linux/cgroup_drm.h:51:28: note: expected ‘struct drm_cgroup *’ but argument is of type ‘struct drmcgroup_device *’
-   51 |         struct drm_cgroup *drm_cg)
-      |         ~~~~~~~~~~~~~~~~~~~^~~~~~
-In file included from ../drivers/gpu/drm/xe/xe_device_types.h:15,
-                 from ../drivers/gpu/drm/xe/xe_device.h:15,
-                 from ../drivers/gpu/drm/xe/xe_bb.c:9:
-../include/linux/cgroup_drm.h:51:16: warning: ‘struct drm_cgroup’ declared inside parameter list will not be visible outside of this definition or declaration
-   51 |         struct drm_cgroup *drm_cg)
-      |                ^~~~~~~~~~
-../include/linux/cgroup_drm.h: In function ‘drmmcg_register_device’:
-../include/linux/cgroup_drm.h:86:36: error: passing argument 2 of ‘drmcg_register_device’ from incompatible pointer type [-Werror=incompatible-pointer-types]
-   86 |  return drmcg_register_device(dev, cgdev) ?:
-      |                                    ^~~~~
-      |                                    |
-      |                                    struct drmcgroup_device *
-../include/linux/cgroup_drm.h:51:28: note: expected ‘struct drm_cgroup *’ but argument is of type ‘struct drmcgroup_device *’
-   51 |         struct drm_cgroup *drm_cg)
-      |         ~~~~~~~~~~~~~~~~~~~^~~~~~
-cc1: some warnings being treated as errors
-make[6]: *** [../scripts/Makefile.build:252: drivers/gpu/drm/xe/xe_bb.o] Error 1
-make[6]: *** Waiting for unfinished jobs....
-cc1: some warnings being treated as errors
-In file included from ../drivers/gpu/drm/xe/xe_device_types.h:15,
-                 from ../drivers/gpu/drm/xe/tests/xe_rtp_test.c:16:
-../include/linux/cgroup_drm.h:51:16: warning: ‘struct drm_cgroup’ declared inside parameter list will not be visible outside of this definition or declaration
-   51 |         struct drm_cgroup *drm_cg)
-      |                ^~~~~~~~~~
-../include/linux/cgroup_drm.h: In function ‘drmmcg_register_device’:
-../include/linux/cgroup_drm.h:86:36: error: passing argument 2 of ‘drmcg_register_device’ from incompatible pointer type [-Werror=incompatible-pointer-types]
-   86 |  return drmcg_register_device(dev, cgdev) ?:
-      |                                    ^~~~~
-      |                                    |
-      |                                    struct drmcgroup_device *
-../include/linux/cgroup_drm.h:51:28: note: expected ‘struct drm_cgroup *’ but argument is of type ‘struct drmcgroup_device *’
-   51 |         struct drm_cgroup *drm_cg)
-      |         ~~~~~~~~~~~~~~~~~~~^~~~~~
-make[6]: *** [../scripts/Makefile.build:252: drivers/gpu/drm/xe/xe_bo_evict.o] Error 1
-In file included from ../drivers/gpu/drm/xe/xe_device_types.h:15,
-                 from ../drivers/gpu/drm/xe/xe_device.h:15,
-                 from ../drivers/gpu/drm/xe/tests/xe_wa_test.c:11:
-../include/linux/cgroup_drm.h:51:16: warning: ‘struct drm_cgroup’ declared inside parameter list will not be visible outside of this definition or declaration
-   51 |         struct drm_cgroup *drm_cg)
-      |                ^~~~~~~~~~
-../include/linux/cgroup_drm.h: In function ‘drmmcg_register_device’:
-../include/linux/cgroup_drm.h:86:36: error: passing argument 2 of ‘drmcg_register_device’ from incompatible pointer type [-Werror=incompatible-pointer-types]
-   86 |  return drmcg_register_device(dev, cgdev) ?:
-      |                                    ^~~~~
-      |                                    |
-      |                                    struct drmcgroup_device *
-../include/linux/cgroup_drm.h:51:28: note: expected ‘struct drm_cgroup *’ but argument is of type ‘struct drmcgroup_device *’
-   51 |         struct drm_cgroup *drm_cg)
-      |         ~~~~~~~~~~~~~~~~~~~^~~~~~
-cc1: some warnings being treated as errors
-make[7]: *** [../scripts/Makefile.build:252: drivers/gpu/drm/xe/tests/xe_wa_test.o] Error 1
-cc1: some warnings being treated as errors
-make[7]: *** [../scripts/Makefile.build:252: drivers/gpu/drm/xe/tests/xe_rtp_test.o] Error 1
-make[6]: *** [../scripts/Makefile.build:494: drivers/gpu/drm/xe/tests] Error 2
-cc1: some warnings being treated as errors
-make[6]: *** [../scripts/Makefile.build:252: drivers/gpu/drm/xe/xe_bo.o] Error 1
-make[5]: *** [../scripts/Makefile.build:494: drivers/gpu/drm/xe] Error 2
-make[4]: *** [../scripts/Makefile.build:494: drivers/gpu/drm] Error 2
-make[3]: *** [../scripts/Makefile.build:494: drivers/gpu] Error 2
-make[3]: *** Waiting for unfinished jobs....
-make[2]: *** [../scripts/Makefile.build:494: drivers] Error 2
-make[2]: *** Waiting for unfinished jobs....
-make[1]: *** [/kernel/Makefile:2025: .] Error 2
-make: *** [Makefile:226: __sub-make] Error 2
-
-[08:38:24] Configuring KUnit Kernel ...
-Generating .config ...
-Populating config with:
-$ make ARCH=um O=.kunit olddefconfig
-[08:38:28] Building KUnit Kernel ...
-Populating config with:
-$ make ARCH=um O=.kunit olddefconfig
-Building with:
-$ make ARCH=um O=.kunit --jobs=48
-+ cleanup
-++ stat -c %u:%g /kernel
-+ chown -R 1003:1003 /kernel
+/Thomas
 
 
+> ---
+>   drivers/gpu/drm/ttm/ttm_bo.c | 4 +++-
+>   1 file changed, 3 insertions(+), 1 deletion(-)
+>
+> diff --git a/drivers/gpu/drm/ttm/ttm_bo.c b/drivers/gpu/drm/ttm/ttm_bo.c
+> index bd5dae4d1624..e057d5d8f09a 100644
+> --- a/drivers/gpu/drm/ttm/ttm_bo.c
+> +++ b/drivers/gpu/drm/ttm/ttm_bo.c
+> @@ -731,6 +731,8 @@ static int ttm_bo_mem_force_space(struct ttm_buffer_object *bo,
+>   		ret = ttm_resource_alloc(bo, place, mem);
+>   		if (likely(!ret))
+>   			break;
+> +		if (ret == -EAGAIN)
+> +			return -ENOSPC;
+>   		if (unlikely(ret != -ENOSPC))
+>   			return ret;
+>   		ret = ttm_mem_evict_first(bdev, man, place, ctx,
+> @@ -783,7 +785,7 @@ int ttm_bo_mem_space(struct ttm_buffer_object *bo,
+>   
+>   		type_found = true;
+>   		ret = ttm_resource_alloc(bo, place, mem);
+> -		if (ret == -ENOSPC)
+> +		if (ret == -ENOSPC || ret == -EAGAIN)
+>   			continue;
+>   		if (unlikely(ret))
+>   			goto error;
