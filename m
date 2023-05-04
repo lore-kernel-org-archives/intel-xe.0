@@ -4,47 +4,49 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1DE06C7EE21
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id BAF78C7EE25
 	for <intel-xe@archiver.kernel.org>; Thu,  4 May 2023 17:16:24 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E511A10E4F3;
-	Thu,  4 May 2023 17:16:23 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 74B6810E509;
+	Thu,  4 May 2023 17:16:24 +0000 (UTC)
 Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B178C10E4F3
- for <intel-xe@lists.freedesktop.org>; Thu,  4 May 2023 17:16:21 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id DA9B610E4F3
+ for <intel-xe@lists.freedesktop.org>; Thu,  4 May 2023 17:16:22 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1683220581; x=1714756581;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=90nmP1EcFB4c8IoqOWuUfFBn73m89bh/YTZ62PJmI/c=;
- b=LV1khOU0UGqQv3gLWniaO6E/3ZtpQWW/P/iW6QY/pIenHYUygAjWHpuY
- 9Xttt8LIV3Emg813VvGQulb9m5tbfozh6zi26f3P/plg3AVW0qGbbRyGd
- Z1ZFog1NSlgaaOE2q0CnT2J28gP+KE5S0tLiGWVZ925wr3T5L0fayTaej
- pWBHw65VvuPgIpMqo3nBR7ZwuSJjoR7zbCfhKsO4Wli21yMGRRGtC2wA6
- 2pVv0lC1ftFubmTCEKXRhdXfyRasg9fjidPu6c2IcwozJ71ze6GHuSS34
- JJXW79kqohQfCmLIp+qMUDpAxP3g0JDz1xW+KdjsHq8Yn84eTPoUP8FJ0 g==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10700"; a="351118121"
-X-IronPort-AV: E=Sophos;i="5.99,250,1677571200"; d="scan'208";a="351118121"
+ t=1683220582; x=1714756582;
+ h=from:to:cc:subject:date:message-id:in-reply-to:
+ references:mime-version:content-transfer-encoding;
+ bh=dSb8+2iRWdT4RU1hF0I8nTTmQi9OcWAcwYrS+56S99g=;
+ b=HooZe1qCGHrwSkmQpUEamQXPbdvuQnnOGCWGxWPVg7z8m2nQ4dKV1hzh
+ Xykqg3K+fLmMcH9RHMAPlwg7FBTRkdQY5eEgpGxf7xQVcTLdoV5sTpY5q
+ gJOUjMUnwfEHpuaXNM7o9QMTOPoE3rHAff35wiEtWvvnXZdAf514HTkSc
+ NETvjnFLWhxY/mXmpJiB2FBvY+IyVpK2k5TqXdZgUISGk+zniezuA+AOG
+ bmtrwGU0tpeng89fpzVenqQUdeMHbr5EsGNnP9fTnQCnJPdn75DyjzUp2
+ 0VG2vB6L3tf09ulhtDzSnsTr+jf8gUoyxgxsFG0OJvPASr3WhptRacdDs A==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10700"; a="351118145"
+X-IronPort-AV: E=Sophos;i="5.99,250,1677571200"; d="scan'208";a="351118145"
 Received: from orsmga002.jf.intel.com ([10.7.209.21])
  by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 04 May 2023 10:11:20 -0700
+ 04 May 2023 10:11:22 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10700"; a="697149242"
-X-IronPort-AV: E=Sophos;i="5.99,250,1677571200"; d="scan'208";a="697149242"
+X-IronPort-AV: E=McAfee;i="6600,9927,10700"; a="697149254"
+X-IronPort-AV: E=Sophos;i="5.99,250,1677571200"; d="scan'208";a="697149254"
 Received: from josouza-mobl2.fso.intel.com ([10.230.18.148])
  by orsmga002-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 04 May 2023 10:11:19 -0700
+ 04 May 2023 10:11:20 -0700
 From: =?UTF-8?q?Jos=C3=A9=20Roberto=20de=20Souza?= <jose.souza@intel.com>
 To: intel-xe@lists.freedesktop.org
-Date: Thu,  4 May 2023 10:11:14 -0700
-Message-Id: <20230504171115.89838-1-jose.souza@intel.com>
+Date: Thu,  4 May 2023 10:11:15 -0700
+Message-Id: <20230504171115.89838-2-jose.souza@intel.com>
 X-Mailer: git-send-email 2.40.1
+In-Reply-To: <20230504171115.89838-1-jose.souza@intel.com>
+References: <20230504171115.89838-1-jose.souza@intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-xe] [PATCH v5 1/2] drm/xe: Set default MOCS value for cs
- instructions
+Subject: [Intel-xe] [PATCH v5 2/2] drm/xe: Set default MOCS value for copy
+ cs instructions
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -60,172 +62,116 @@ Cc: Matt Roper <matthew.d.roper@intel.com>
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-CS instructions that dont have a explicit MOCS field will use this
+copy cs instructions that dont have a explict MOCS field will use this
 default MOCS value.
-
-To do this, it was necessary to initialize part of the mocs earlier
-and add new function that loads another array of rtp entries set
-during run-time.
-
-This is still missing to handle of mocs read for platforms with
-HAS_L3_CCS_READ(aka PVC).
 
 v2:
 - move to xe_hw_engine.c
-- remove CMD_CCTL auxiliary macros
+- remove BLIT_CCTL auxiliary macros
+- removed MASKED_REG
 
 v3:
 - rebased
 
-Bspec: 45826
+v4:
+- process workaround in hwe->reg_lrc
+
+v5:
+- add a new function and call it from xe_gt_record_default_lrcs()
+because hwe->reg_lrc is initialized later
+
+BSpec: 45807
 Cc: Matt Roper <matthew.d.roper@intel.com>
 Signed-off-by: José Roberto de Souza <jose.souza@intel.com>
-Reviewed-by: Matt Roper <matthew.d.roper@intel.com>
+Reviewed-by: Matt Roper <matthew.d.roper@intel.com> # v4
 ---
- drivers/gpu/drm/xe/regs/xe_engine_regs.h | 12 ++++++++
- drivers/gpu/drm/xe/xe_gt.c               |  2 ++
- drivers/gpu/drm/xe/xe_hw_engine.c        | 35 ++++++++++++++++++++++++
- drivers/gpu/drm/xe/xe_mocs.c             | 11 ++++++--
- drivers/gpu/drm/xe/xe_mocs.h             |  1 +
- 5 files changed, 59 insertions(+), 2 deletions(-)
+ drivers/gpu/drm/xe/regs/xe_engine_regs.h |  6 +++++
+ drivers/gpu/drm/xe/xe_gt.c               |  1 +
+ drivers/gpu/drm/xe/xe_hw_engine.c        | 29 ++++++++++++++++++++++++
+ drivers/gpu/drm/xe/xe_hw_engine.h        |  1 +
+ 4 files changed, 37 insertions(+)
 
 diff --git a/drivers/gpu/drm/xe/regs/xe_engine_regs.h b/drivers/gpu/drm/xe/regs/xe_engine_regs.h
-index f6b3b99a562a6..717d560626cec 100644
+index 717d560626cec..79873bf64e8dd 100644
 --- a/drivers/gpu/drm/xe/regs/xe_engine_regs.h
 +++ b/drivers/gpu/drm/xe/regs/xe_engine_regs.h
-@@ -44,6 +44,18 @@
- #define RING_EIR(base)				XE_REG((base) + 0xb0)
- #define RING_EMR(base)				XE_REG((base) + 0xb4)
- #define RING_ESR(base)				XE_REG((base) + 0xb8)
-+
-+#define RING_CMD_CCTL(base)			XE_REG((base) + 0xc4, XE_REG_OPTION_MASKED)
-+/*
-+ * CMD_CCTL read/write fields take a MOCS value and _not_ a table index.
-+ * The lsb of each can be considered a separate enabling bit for encryption.
-+ * 6:0 == default MOCS value for reads  =>  6:1 == table index for reads.
-+ * 13:7 == default MOCS value for writes => 13:8 == table index for writes.
-+ * 15:14 == Reserved => 31:30 are set to 0.
-+ */
-+#define   CMD_CCTL_WRITE_OVERRIDE_MASK		REG_GENMASK(13, 8)
-+#define   CMD_CCTL_READ_OVERRIDE_MASK		REG_GENMASK(6, 1)
-+
+@@ -58,6 +58,12 @@
+ 
  #define RING_BBADDR(base)			XE_REG((base) + 0x140)
  #define RING_BBADDR_UDW(base)			XE_REG((base) + 0x168)
++
++/* Handling MOCS value in BLIT_CCTL like it was done CMD_CCTL */
++#define BLIT_CCTL(base)				XE_REG((base) + 0x204)
++#define   BLIT_CCTL_DST_MOCS_MASK		REG_GENMASK(14, 9)
++#define   BLIT_CCTL_SRC_MOCS_MASK		REG_GENMASK(6, 1)
++
  #define RING_EXECLIST_STATUS_LO(base)		XE_REG((base) + 0x234)
+ #define RING_EXECLIST_STATUS_HI(base)		XE_REG((base) + 0x234 + 4)
+ 
 diff --git a/drivers/gpu/drm/xe/xe_gt.c b/drivers/gpu/drm/xe/xe_gt.c
-index 0d4664e344dac..603bb3ae3e370 100644
+index 603bb3ae3e370..3afca3dd9657d 100644
 --- a/drivers/gpu/drm/xe/xe_gt.c
 +++ b/drivers/gpu/drm/xe/xe_gt.c
-@@ -390,6 +390,8 @@ static int gt_fw_domain_init(struct xe_gt *gt)
- 	/* Rerun MCR init as we now have hw engine list */
- 	xe_gt_mcr_init(gt);
+@@ -225,6 +225,7 @@ int xe_gt_record_default_lrcs(struct xe_gt *gt)
  
-+	xe_mocs_init_early(gt);
-+
- 	err = xe_hw_engines_init_early(gt);
- 	if (err)
- 		goto err_force_wake;
+ 		xe_reg_sr_init(&hwe->reg_lrc, hwe->name, xe);
+ 		xe_wa_process_lrc(hwe);
++		xe_hw_engine_setup_default_lrc_state(hwe);
+ 		xe_tuning_process_lrc(hwe);
+ 
+ 		default_lrc = drmm_kzalloc(&xe->drm,
 diff --git a/drivers/gpu/drm/xe/xe_hw_engine.c b/drivers/gpu/drm/xe/xe_hw_engine.c
-index 566b62815dab5..d497f0289c372 100644
+index d497f0289c372..ce9975df1c98b 100644
 --- a/drivers/gpu/drm/xe/xe_hw_engine.c
 +++ b/drivers/gpu/drm/xe/xe_hw_engine.c
-@@ -21,6 +21,7 @@
- #include "xe_macros.h"
- #include "xe_mmio.h"
- #include "xe_reg_sr.h"
-+#include "xe_rtp.h"
- #include "xe_sched_job.h"
- #include "xe_wa.h"
- 
-@@ -267,6 +268,39 @@ void xe_hw_engine_enable_ring(struct xe_hw_engine *hwe)
+@@ -268,6 +268,35 @@ void xe_hw_engine_enable_ring(struct xe_hw_engine *hwe)
  	hw_engine_mmio_read32(hwe, RING_MI_MODE(0).reg);
  }
  
-+static void
-+hw_engine_setup_default_state(struct xe_hw_engine *hwe)
++void
++xe_hw_engine_setup_default_lrc_state(struct xe_hw_engine *hwe)
 +{
 +	struct xe_gt *gt = hwe->gt;
 +	const u8 mocs_write_idx = gt->mocs.uc_index;
-+	/* TODO: missing handling of HAS_L3_CCS_READ platforms */
 +	const u8 mocs_read_idx = gt->mocs.uc_index;
-+	u32 ring_cmd_cctl_val = REG_FIELD_PREP(CMD_CCTL_WRITE_OVERRIDE_MASK, mocs_write_idx) |
-+			        REG_FIELD_PREP(CMD_CCTL_READ_OVERRIDE_MASK, mocs_read_idx);
-+	const struct xe_rtp_entry engine_was[] = {
++	u32 blit_cctl_val = REG_FIELD_PREP(BLIT_CCTL_DST_MOCS_MASK, mocs_write_idx) |
++			    REG_FIELD_PREP(BLIT_CCTL_SRC_MOCS_MASK, mocs_read_idx);
++	const struct xe_rtp_entry lrc_was[] = {
 +		/*
-+		 * RING_CMD_CCTL specifies the default MOCS entry that will be
-+		 * used by the command streamer when executing commands that
-+		 * don't have a way to explicitly specify a MOCS setting.
-+		 * The default should usually reference whichever MOCS entry
-+		 * corresponds to uncached behavior, although use of a WB cached
-+		 * entry is recommended by the spec in certain circumstances on
-+		 * specific platforms.
++		 * Some blitter commands do not have a field for MOCS, those
++		 * commands will use MOCS index pointed by BLIT_CCTL.
++		 * BLIT_CCTL registers are needed to be programmed to un-cached.
 +		 */
-+		{ XE_RTP_NAME("RING_CMD_CCTL_default_MOCS"),
-+		  XE_RTP_RULES(GRAPHICS_VERSION_RANGE(1200, XE_RTP_END_VERSION_UNDEFINED)),
-+		  XE_RTP_ACTIONS(FIELD_SET(RING_CMD_CCTL(0),
-+					   CMD_CCTL_WRITE_OVERRIDE_MASK |
-+					   CMD_CCTL_READ_OVERRIDE_MASK,
-+					   ring_cmd_cctl_val,
-+					   XE_RTP_ACTION_FLAG(ENGINE_BASE)))
++		{ XE_RTP_NAME("BLIT_CCTL_default_MOCS"),
++		  XE_RTP_RULES(GRAPHICS_VERSION_RANGE(1200, XE_RTP_END_VERSION_UNDEFINED),
++			       ENGINE_CLASS(COPY)),
++		  XE_RTP_ACTIONS(FIELD_SET(BLIT_CCTL(0),
++				 BLIT_CCTL_DST_MOCS_MASK |
++				 BLIT_CCTL_SRC_MOCS_MASK,
++				 blit_cctl_val,
++				 XE_RTP_ACTION_FLAG(ENGINE_BASE)))
 +		},
 +		{}
 +	};
 +
-+	xe_rtp_process(engine_was, &hwe->reg_sr, gt, hwe);
++	xe_rtp_process(lrc_was, &hwe->reg_lrc, gt, hwe);
 +}
 +
- static void hw_engine_init_early(struct xe_gt *gt, struct xe_hw_engine *hwe,
- 				 enum xe_hw_engine_id id)
+ static void
+ hw_engine_setup_default_state(struct xe_hw_engine *hwe)
  {
-@@ -293,6 +327,7 @@ static void hw_engine_init_early(struct xe_gt *gt, struct xe_hw_engine *hwe,
+diff --git a/drivers/gpu/drm/xe/xe_hw_engine.h b/drivers/gpu/drm/xe/xe_hw_engine.h
+index ceab653972568..013efcd6d8c5b 100644
+--- a/drivers/gpu/drm/xe/xe_hw_engine.h
++++ b/drivers/gpu/drm/xe/xe_hw_engine.h
+@@ -17,6 +17,7 @@ void xe_hw_engine_enable_ring(struct xe_hw_engine *hwe);
+ void xe_hw_engine_print_state(struct xe_hw_engine *hwe, struct drm_printer *p);
+ u32 xe_hw_engine_mask_per_class(struct xe_gt *gt,
+ 				enum xe_engine_class engine_class);
++void xe_hw_engine_setup_default_lrc_state(struct xe_hw_engine *hwe);
  
- 	xe_reg_sr_init(&hwe->reg_sr, hwe->name, gt_to_xe(gt));
- 	xe_wa_process_engine(hwe);
-+	hw_engine_setup_default_state(hwe);
- 
- 	xe_reg_sr_init(&hwe->reg_whitelist, hwe->name, gt_to_xe(gt));
- 	xe_reg_whitelist_process_engine(hwe);
-diff --git a/drivers/gpu/drm/xe/xe_mocs.c b/drivers/gpu/drm/xe/xe_mocs.c
-index f2ceecd536ed0..0d07811a573f6 100644
---- a/drivers/gpu/drm/xe/xe_mocs.c
-+++ b/drivers/gpu/drm/xe/xe_mocs.c
-@@ -518,6 +518,15 @@ static void init_l3cc_table(struct xe_gt *gt,
- 	}
- }
- 
-+void xe_mocs_init_early(struct xe_gt *gt)
-+{
-+	struct xe_mocs_info table;
-+
-+	get_mocs_settings(gt->xe, &table);
-+	gt->mocs.uc_index = table.uc_index;
-+	gt->mocs.wb_index = table.wb_index;
-+}
-+
- void xe_mocs_init(struct xe_gt *gt)
- {
- 	struct xe_mocs_info table;
-@@ -528,8 +537,6 @@ void xe_mocs_init(struct xe_gt *gt)
- 	 */
- 	flags = get_mocs_settings(gt->xe, &table);
- 	mocs_dbg(&gt->xe->drm, "flag:0x%x\n", flags);
--	gt->mocs.uc_index = table.uc_index;
--	gt->mocs.wb_index = table.wb_index;
- 
- 	if (flags & HAS_GLOBAL_MOCS)
- 		__init_mocs_table(gt, &table, GLOBAL_MOCS(0).reg);
-diff --git a/drivers/gpu/drm/xe/xe_mocs.h b/drivers/gpu/drm/xe/xe_mocs.h
-index 63500a1d6660a..25f7b35a76daf 100644
---- a/drivers/gpu/drm/xe/xe_mocs.h
-+++ b/drivers/gpu/drm/xe/xe_mocs.h
-@@ -11,6 +11,7 @@
- struct xe_engine;
- struct xe_gt;
- 
-+void xe_mocs_init_early(struct xe_gt *gt);
- void xe_mocs_init(struct xe_gt *gt);
- 
- /**
+ bool xe_hw_engine_is_reserved(struct xe_hw_engine *hwe);
+ static inline bool xe_hw_engine_is_valid(struct xe_hw_engine *hwe)
 -- 
 2.40.1
 
