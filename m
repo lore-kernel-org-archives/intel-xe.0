@@ -4,140 +4,45 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0547FC77B7F
-	for <intel-xe@archiver.kernel.org>; Fri,  5 May 2023 17:10:29 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id B06F5C77B75
+	for <intel-xe@archiver.kernel.org>; Fri,  5 May 2023 17:59:30 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id BBD6610E03B;
-	Fri,  5 May 2023 17:10:28 +0000 (UTC)
-Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1EE3210E03B
- for <intel-xe@lists.freedesktop.org>; Fri,  5 May 2023 17:10:27 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1683306627; x=1714842627;
- h=date:from:to:cc:subject:message-id:references:
- in-reply-to:mime-version;
- bh=m7cqCuZtqF4DrfuBJukCRmVpPtxY7H/QQEeV0d2WsXw=;
- b=nLt2+RgVgkBtbvGTBqWU6scHQJ/egjUTIKqNqRVVFKA+T1+zxkafhwo/
- BidwlNPb0CSfNq/jy0vJAffI+OeDjmgNHMeB/qPBrq33wDMleCmbxqpcX
- sMSMRKMrxA7K3CaUauTjWkXXM1JcjBQEK+yICfYGWgyvGghQWK0BvBRWo
- WyIsCbTqsg0CKtqwq3JEYEMBc8mFfo67DimzLV4WSeRiM+1dN7rzk4BOO
- ikjpIscvEefDtwezkHSmXhxOHUuW1Xk04mXRa80Lacb7qGfoM3C4UNDzt
- q7/jAW+6oQrPluoH/2GVS+UzT+3HfLlXK9qLbbPn/0lBqVGJWpvspvtOa Q==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10701"; a="349295560"
-X-IronPort-AV: E=Sophos;i="5.99,252,1677571200"; d="scan'208";a="349295560"
-Received: from orsmga008.jf.intel.com ([10.7.209.65])
- by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 05 May 2023 10:08:56 -0700
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5944B10E64C;
+	Fri,  5 May 2023 17:59:30 +0000 (UTC)
+Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7FA0110E53B
+ for <intel-xe@lists.freedesktop.org>; Thu,  4 May 2023 22:25:09 +0000 (UTC)
+X-IronPort-AV: E=McAfee;i="6600,9927,10700"; a="435388801"
+X-IronPort-AV: E=Sophos;i="5.99,250,1677571200"; d="scan'208";a="435388801"
+Received: from orsmga003.jf.intel.com ([10.7.209.27])
+ by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 04 May 2023 15:25:07 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10701"; a="728163064"
-X-IronPort-AV: E=Sophos;i="5.99,252,1677571200"; d="scan'208";a="728163064"
-Received: from fmsmsx602.amr.corp.intel.com ([10.18.126.82])
- by orsmga008.jf.intel.com with ESMTP; 05 May 2023 10:08:55 -0700
-Received: from fmsmsx610.amr.corp.intel.com (10.18.126.90) by
- fmsmsx602.amr.corp.intel.com (10.18.126.82) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.23; Fri, 5 May 2023 10:08:55 -0700
-Received: from fmsmsx612.amr.corp.intel.com (10.18.126.92) by
- fmsmsx610.amr.corp.intel.com (10.18.126.90) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.23; Fri, 5 May 2023 10:08:55 -0700
-Received: from fmsedg601.ED.cps.intel.com (10.1.192.135) by
- fmsmsx612.amr.corp.intel.com (10.18.126.92) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.23 via Frontend Transport; Fri, 5 May 2023 10:08:55 -0700
-Received: from NAM11-DM6-obe.outbound.protection.outlook.com (104.47.57.176)
- by edgegateway.intel.com (192.55.55.70) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2507.23; Fri, 5 May 2023 10:08:54 -0700
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=kVggi2rsadr6I3WEvAvD/9kxVG5LFoGyghxJwTtJ2pqxANfowAaluWhTg6z7L8TNgpjij5IUeijQL6bSkEaCgDLMZIKmQzfXZxo5qmqylxldXpMvpO+wn3FDxOIDwMT3wkgy6F4O6U/LJ2Uze60XyOBFUs9v60KYubsPrRnqnlFdPYGpfQo2R3vCEFX9+hvGQc9h3ANnxS2xRhlkqDvcwTDxnX8ieQpFIPEKGrMYlCBwzurI/tAZxz6tiMFGP61MJFD9jkW/0hycGn+Gfkp2DOHFILZ2sP6tW45fqSYOdwallVup/HGpXXop1tIj4uMW0BKj6UYejS0Nb/6+T+AIvA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=0z7ouYkzRJL2cUHvzXIRJfzQsVzCVzXGATnVhafT4cg=;
- b=lA+J/ZJWnW4auQXOd1bqc/vvIbwAIZBc6FfoQ0u8kHOC7SRdoHdjcStyxIDnpd3mSAfYl31kkaL9KO9V5J2+DJJ7FQDUxSmsNCbgNhaEFB3Wdqp1V0MsCRY4sRdQolz88AFflFaNwFIOy9aIjOnLc+D3kxSyCPEcrtnv76yb2nI4+Ygt5635r8K7SmitowmpLFl+fEPQTw2ombBH7IF3AoBqDmIdLOGsR2XYKrCblYTGf9WvCn9Ag7NfdfFmtO4jpedb3yMGvgWSotnyU6MkbQxx7LIQMZTB6UxVtPELqnG9iVlgg8YpOHxtgWStE9HqrYqdrLsacMiS6zp6oc52IQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
- dkim=pass header.d=intel.com; arc=none
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=intel.com;
-Received: from CY5PR11MB6139.namprd11.prod.outlook.com (2603:10b6:930:29::17)
- by PH7PR11MB6650.namprd11.prod.outlook.com (2603:10b6:510:1a8::21)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6363.26; Fri, 5 May
- 2023 17:08:51 +0000
-Received: from CY5PR11MB6139.namprd11.prod.outlook.com
- ([fe80::44e7:c479:62f4:3eb4]) by CY5PR11MB6139.namprd11.prod.outlook.com
- ([fe80::44e7:c479:62f4:3eb4%3]) with mapi id 15.20.6363.026; Fri, 5 May 2023
- 17:08:50 +0000
-Date: Fri, 5 May 2023 10:08:48 -0700
-From: Lucas De Marchi <lucas.demarchi@intel.com>
-To: Rodrigo Vivi <rodrigo.vivi@kernel.org>
-Message-ID: <fies3nkjy3spmq7w26n7kut4endjgm3wq3uku3lghl25ykqev4@s5ub2t3de6hn>
-X-Patchwork-Hint: comment
-References: <20230429062332.354139-1-lucas.demarchi@intel.com>
- <20230429062332.354139-3-lucas.demarchi@intel.com>
- <ZFU1ANfhoovA6r7I@rdvivi-mobl4>
-Content-Type: text/plain; charset="us-ascii"; format=flowed
-Content-Disposition: inline
-In-Reply-To: <ZFU1ANfhoovA6r7I@rdvivi-mobl4>
-X-ClientProxiedBy: BYAPR04CA0020.namprd04.prod.outlook.com
- (2603:10b6:a03:40::33) To CY5PR11MB6139.namprd11.prod.outlook.com
- (2603:10b6:930:29::17)
+X-IronPort-AV: E=McAfee;i="6600,9927,10700"; a="647533308"
+X-IronPort-AV: E=Sophos;i="5.99,250,1677571200"; d="scan'208";a="647533308"
+Received: from cello.jf.intel.com (HELO [172.16.0.108]) ([10.54.70.64])
+ by orsmga003-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 04 May 2023 15:25:07 -0700
+Message-ID: <d0255e51-3e9b-88dd-91a9-5ab780f56d4b@fastmail.fm>
+Date: Thu, 4 May 2023 15:25:07 -0700
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: CY5PR11MB6139:EE_|PH7PR11MB6650:EE_
-X-MS-Office365-Filtering-Correlation-Id: af427b6a-64b1-4dab-3439-08db4d8b65d5
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: mimNoYArCYTr96w7exXnJqiGa7xzVyNkNlopJ7BSkLwvffTnBXsZQ5M4AT0GLnUS2zaxGMKVUsg0VkmjvskXzriM6XWB7cKjXNTwLxsARnCGXqAxKQrUCAhIKxFTPErgr6Rh3HwJHQ7nvb432RH9Gm8wTATBe6fhhJsVqqtO4y9Hrrp5WguYLSPhocEOzKbtDifP9a+usF7AQfvUCSStDheMSqahvdYtr+96wIH62UKQPd0E70GIHboQISbf7kPmg7CAJ+xVlSHxx5yxJOFiheQ1ROaMH7zymTG1SGh8KdkTsUYep0ZX0pYJsxS8vyYK5FN7T1qDxes0YpuUppxB5+P7jcbWA0yAZSt95Mf5AdnOfP+g2ZODz1kG7uzifZZRqy425/OAv0nSnQv2H13m1FC+88Sh5NN0DbMvAawN3rPS8XblfQAVS1lYyBOjlsSNTYyHD0W7QB7cLejM/Hj/l5NH9+TgijpUn+5bAGSbT+9Lz4FGqZq9M73nbRIUiPeE3WLxPsZ909oAaGF1Dnofl2v/jlwT0qYeGzJWqMmJNy4=
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:CY5PR11MB6139.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230028)(7916004)(346002)(376002)(39860400002)(396003)(136003)(366004)(451199021)(41300700001)(33716001)(6506007)(9686003)(26005)(478600001)(6916009)(4326008)(86362001)(6486002)(66476007)(6512007)(66556008)(66946007)(38100700002)(316002)(186003)(83380400001)(5660300002)(2906002)(82960400001)(8676002)(8936002)(66899021);
- DIR:OUT; SFP:1102; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?GSrwmzK4wUEZXLjj4HhrnINj5+QgrtwDoY5aNQWDA628Dgl91Sub2jfyRCmY?=
- =?us-ascii?Q?8P2mJFMZl62TRLunT1J4jcdqiOaVdWcv4eU76m927GWACZmKaZWVwpIThAf7?=
- =?us-ascii?Q?nq6fmLDuBgmvHxqlHGokUQvY0o8sLwExcTx7GbC+S9n7Odq2/EktNCdfE5wk?=
- =?us-ascii?Q?34mnm73bSNPtm31AULPmSZ3ls5I9pR/IrCC73ts2YWPJPhOWU6NbrrIwzAmI?=
- =?us-ascii?Q?t6Mt/qyckgsnzjvxj0cdOMCFYEVSf3hx3TaJmF4Q9TAPDeWT215Nn50WWzGK?=
- =?us-ascii?Q?DsAZHh9D/OUThqx14/S5LjoyyB7z3c5una5AwVSabYkz7BedskNbZesG9uXS?=
- =?us-ascii?Q?X0oCNquDs6EooantbAD92ghrioP0kL+bN/EeOLbeEV5SWXAeCWrgNl2EvM6m?=
- =?us-ascii?Q?ypBrnNRkqOhYVVqORnj4kL+hZIc+JmxnmUTZryna9Ak6weScSzaA+mLWV2+n?=
- =?us-ascii?Q?bXnT/Ix2SI9c3wmAcVTc+YLCWPard4KESvqKSh3RGUeGZ5cmUBfH5dltyI+y?=
- =?us-ascii?Q?k4nxTgeqiaSs2+iB+M9x/mGr/Wct0PpyJUFfnBZ9BSQEy1taSRYYh/l/PIKL?=
- =?us-ascii?Q?85VyuJ0gC+IsqcKFsZg8aWFv7nDugAuUKy7NglBd8b0TjJpeYcUAbDhqZjkV?=
- =?us-ascii?Q?2K3fRWIFllp8prv2tguOmQZtgnHEZR80a9hSb0/LO7wzqvt61pqeP5JvxdWm?=
- =?us-ascii?Q?HVgvK8cpJYBI9X1ycQYSTcLFdDdZ95d4O7DMPxiqvK68fG1R1HKbOiWGUYyE?=
- =?us-ascii?Q?BzcI3VQCE7LHQVhwfFnPt1kTd2ufbdReCKm91DGmlQY1JngvwJo3Hojz3AlW?=
- =?us-ascii?Q?ApfWuWqon8mHlrYKmrJ29G4m/Y8OS2CHHcFSi9P/mRfEtRSPoUCq2qm6XtNz?=
- =?us-ascii?Q?eE5zKRCXwQ8tuf7gPjEjIuicSkOvAlNGON6p6uwG+Ojr7tjGYHtF00O0wirM?=
- =?us-ascii?Q?rmVgx9MfgbK5dyZ4FFCUJuhD/bPbHwforMa6q2Cr8PJUypmFB2Sa2/fD6bga?=
- =?us-ascii?Q?VqoUGZDZQJ4Dyxz1KPAnQo5EKwf4FyqzdAF9LQh0xF+Jav/fs7+wrxTRU6yv?=
- =?us-ascii?Q?VqS5VopKoneLNIupdzzapTMMeiCXmQs53pSOpVhWZGRveL0rZExOqMXsPNDn?=
- =?us-ascii?Q?zwahtM/X/g48+hSWpUmkwLEWkVOHHa3Qa7ZcUu2cUFuW8xbbLd8XaZQxyN74?=
- =?us-ascii?Q?lzQy5ss+R0Fcdnad14baKGkznBEXcc6caciS6yALXegXkV8w++qfs7Xml+tD?=
- =?us-ascii?Q?MgIy9MBsM4G6JU2SAuCefGVWzGtvZ8S3GhpU6dEUDQ4sS7MBx4jXNatmG8JX?=
- =?us-ascii?Q?AdA4NcZVwshv6I7vhBtLzu/8/rjXvC6oDIhInkpbG6e/gfSh6mtm8eiio+Wb?=
- =?us-ascii?Q?MaQOIe79ZwtLLs90//Z31OX99ZmoCBfOinPf2ERMd0nsBCxrlmQwlQNuqRrg?=
- =?us-ascii?Q?PlxljXpmtkAhbKaksKG3mluIWk4j0ATn0QF9Fy6uXVi5EC7hwnWvXMnO46Lh?=
- =?us-ascii?Q?BOZ9zijTdd3H0ik6q0X/oLRSY7DotjXAwrAa6P9NH+9frfi965pNy0coiFxL?=
- =?us-ascii?Q?6RVjrSyu1wkZpGLszzS4eRKffxYtcgY+q5lb3xO2IcZJ6x19r7wnEhiJZtMW?=
- =?us-ascii?Q?4A=3D=3D?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: af427b6a-64b1-4dab-3439-08db4d8b65d5
-X-MS-Exchange-CrossTenant-AuthSource: CY5PR11MB6139.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 05 May 2023 17:08:50.8926 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: +aM+3h8RGtIR2FP0ttMpdds/q7VnZjk+XbM+n+GOt7eeXX9rjJGK+vdwSo1hOrDLkMVcDq8SQKZ2iLoFu/zvcj3X8Lv0PVsmQk557nGCWvI=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH7PR11MB6650
-X-OriginatorOrg: intel.com
-Subject: Re: [Intel-xe] [PATCH 2/7] drm/xe/guc: Handle RCU_MODE as masked
- from definition
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Firefox/102.0 Thunderbird/102.6.1
+Content-Language: en-US
+To: Lucas De Marchi <lucas.demarchi@intel.com>,
+ "Souza, Jose" <jose.souza@intel.com>
+References: <20230504073250.1436293-1-lucas.demarchi@intel.com>
+ <20230504073250.1436293-8-lucas.demarchi@intel.com>
+ <d7865dca6ea77cfa8274129f584f2074e7291894.camel@intel.com>
+ <dikz4xlzc6awvlu6rol2slga2nernci2zmhrnsz5qpksgi4br2@locnvrubd734>
+ <ffbb8d71931f4aec77b4b148463272d3a6dd9be3.camel@intel.com>
+ <jgnnfqsrrh3iqyc3dmdo44kpft4z6s46lyxjqifrivgsfv36bh@hxzqtxlea3ia>
+From: Mark Janes <markjanes@fastmail.fm>
+In-Reply-To: <jgnnfqsrrh3iqyc3dmdo44kpft4z6s46lyxjqifrivgsfv36bh@hxzqtxlea3ia>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+X-Mailman-Approved-At: Fri, 05 May 2023 17:59:28 +0000
+Subject: Re: [Intel-xe] [PATCH 7/7] drm/xe/guc: Port workarounds to OOB infra
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -149,51 +54,263 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-xe@lists.freedesktop.org
+Cc: Dylan Baker <dylan.c.baker@intel.com>,
+ Kenneth Graunke <kenneth@whitecape.org>, Mark Janes <markjanes@swizzler.org>,
+ "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>,
+ Lionel Landwerlin <lionel.g.landwerlin@intel.com>
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Fri, May 05, 2023 at 12:55:28PM -0400, Rodrigo Vivi wrote:
->On Fri, Apr 28, 2023 at 11:23:27PM -0700, Lucas De Marchi wrote:
->> guc_mmio_regset_write() had a flags for the registers to be added to the
->> GuC's regset list. The only register actually using that was RCU_MODE,
->> but it was setting the flags to a bogus value. From
->> struct xe_guc_fwif.h,
+On 5/4/23 14:56, Lucas De Marchi wrote:
+> On Thu, May 04, 2023 at 12:37:05PM -0700, Jose Souza wrote:
+>> On Thu, 2023-05-04 at 12:30 -0700, Lucas De Marchi wrote:
+>>> On Thu, May 04, 2023 at 03:30:48PM +0000, Jose Souza wrote:
+>>> > On Thu, 2023-05-04 at 00:32 -0700, Lucas De Marchi wrote:
+>>> > > Let xe_guc.c start using XE_WA() for workarounds. One workaround
+>>> > > couldn't be converted due to no support for function hook checks.
+>>> > >
+>>> > > Signed-off-by: Lucas De Marchi <lucas.demarchi@intel.com>
+>>> > > ---
+>>> > >  drivers/gpu/drm/xe/xe_guc.c | 40 
+>>> +++++++++++++------------------------
+>>> > >  1 file changed, 14 insertions(+), 26 deletions(-)
+>>> > >
+>>> > > diff --git a/drivers/gpu/drm/xe/xe_guc.c 
+>>> b/drivers/gpu/drm/xe/xe_guc.c
+>>> > > index f7d32b744247..eea5ed015282 100644
+>>> > > --- a/drivers/gpu/drm/xe/xe_guc.c
+>>> > > +++ b/drivers/gpu/drm/xe/xe_guc.c
+>>> > > @@ -19,7 +19,9 @@
+>>> > >  #include "xe_guc_submit.h"
+>>> > >  #include "xe_mmio.h"
+>>> > >  #include "xe_platform_types.h"
+>>> > > +#include "xe_rtp.h"
+>>> > >  #include "xe_uc_fw.h"
+>>> > > +#include "xe_wa.h"
+>>> > >  #include "xe_wopcm.h"
+>>> > >
+>>> > >  #define MEDIA_GUC_HOST_INTERRUPT        XE_REG(0x190304)
+>>> > > @@ -136,29 +138,22 @@ static u32 guc_ctl_wa_flags(struct xe_guc 
+>>> *guc)
+>>> > >      struct xe_gt *gt = guc_to_gt(guc);
+>>> > >      u32 flags = 0;
+>>> > >
+>>> > > -    /* Wa_22012773006:gen11,gen12 < XeHP */
+>>> > > -    if (GRAPHICS_VER(xe) >= 11 &&
+>>> > > -        GRAPHICS_VERx100(xe) < 1250)
+>>> > > +    if (XE_WA(xe, "22012773006", GRAPHICS_VERSION_RANGE(1100, 
+>>> 1250)))
+>>> > >          flags |= GUC_WA_POLLCS;
+>>> >
+>>> > Just a suggestion but would be better to have the workaround rule 
+>>> defined somewhere else and here only have 'if (XE_WA(xe, 
+>>> "22012773006"))'.
+>>> >
+>>> >
+>>> > Mesa now has something like that.
+>>> > We have a Python script that generates a JSON file with workaround 
+>>> data from the workaround database API.
+>>> > During build time, another Python script generates the intel_wa.c 
+>>> file using the information in JSON, setting a bit for each workaround 
+>>> that applies
+>>> > to each platform.
+>>> > In runtime it get the bit field with the workarounds that applies 
+>>> to running platform on given stepping.
+>>>
+>>> that is one of the alternatives I shared in the RFC. There are
+>>> some issues with such approach though:
+>>>
+>>> 1) The condition is in a totally different place tha have to be checked
+>>>     to follow the code flow.
+>>>
+>>>     The upside is that if the same condition needs to be checked 
+>>> again in
+>>>     multiple places for these OOB workarounds, the condition doesn't
+>>>     need to be repeated
+>>>
+>>> 2) Not possible to encode conditions that are not platform-centric or
+>>> that needs to be decided in runtime (e.g. if an engine is fused off or
+>>> not)
+>>>
+>>> > In code Mesa we have 'if (intel_needs_workaround(devinfo, 
+>>> 14015055625))', Xe kmd would probably need additional checks like 'if 
+>>> (engine == BLIT &&
+>>> > XE_WA(xe, "xxxxxx"))'.
+>>>
+>>> yeah... that maybe solves the issue (2) above. We'd need to leave the
+>>> non-platform checks to each callers. And maybe follow the same pattern
+>>> for the gt/engine/lrc workarounds.
+>>>
+>>> >
+>>> > This solve the problem we have were workarounds are left enabled in 
+>>> platforms that already have a HW fix for it.
+>>>
+>>> not sure how that solves this issue though. We mark the stepping in
+>>> which the workaround are supposedly fixed.
 >>
->> 	#define GUC_REGSET_MASKED               BIT(0)
->> 	#define GUC_REGSET_MASKED_WITH_VALUE    BIT(2)
->> 	#define GUC_REGSET_RESTORE_ONLY         BIT(3)
+>> Mesa problems was with permanent workarounds, a example:
 >>
->> Cross checking with i915, the only flag to set in RCU_MODE is
->> GUC_REGSET_MASKED. That can be done automatically from the register, as
->> long as the definition is correct.
+>> Some workaround is required by all gen12.0 and dg2 and was implemented 
+>> with: 'if (gt_ver >= 12)' but then it was fixed in MTL.
+>> It is pretty easy to forget to update it.
+> 
+> 
+> but then the solution is not about where the check is, i.e. in the
+> caller vs a centralized place. The solution is to generate the
+> version range or platform from the spec.  If we were to move to a
+> centralized place without generating that automatically we'd still have
+> the same issue.... which goes back to the issue of having code
+> generation in the kernel.
+> 
+>  From a quick look at the mesa impl, what I don't quite understand after
+> grepping for intel_needs_workaround() and looking a the .cpp/.h
+> generation:  how do you check if the workaround is implemented/active?
+> Because 1) you generated a .json from the database, 2) you generated
+> the condition to enable the workaround for *all* platforms; 3) Now you
+> can't rely anymore on having that definition to decide it's
+> implemented/active.  Do you track callers of intel_needs_workaround?
+> Something else? This seems a little short based on the size
+> of mesa_defs.json. Or is it just because the past platforms weren't
+> converted to this new infra?
+
+HSD only provides details for gen11+ workarounds.  Workarounds up to 
+gen9 will not use this mechanism.
+
+> git grep -h intel_needs_workaround | sed -n 
+> 's/.*intel_needs_workaround(.*,\s*\([0-9]*\)).*/\1/p' | sort -u
+> 14010017096
+> 14012437816
+> 14012688258
+> 14014063774
+> 14015297576
+> 14015360517
+> 14015590813
+> 14017341140
+> 16013063087
+> 22012575642
+> 22012785325
+> 22013689345
+
+Currently, Mesa team is working on refactoring existing workarounds to 
+use intel_needs_workaround() instead of checking for the device version. 
+  As we do this, we often find that a workaround version check is too 
+narrow or too broad, applying inaccurately to some platforms.
+
+Our goal is to apply all workarounds through this mechanism, but the 
+implementation is incremental.  That is why the list is short.
+
+I would like to implement an audit of workarounds in mesa, which would 
+be accomplished by looking at callers of intel_needs_workaround().  The 
+audit is not actionable until all workarounds have been refactored.
+
+> Also Cc'ing here some other  people involved with the mesa impl to check
+> if we can improve kernel side.
+
+At the start, I wasn't sure if HSD could be properly parsed to direct 
+workarounds in Mesa.  As we refactor existing workarounds, my confidence 
+grows that the approach is a significant step forward workaround 
+handling.  There are cases where HSD has been wrong, and we have gotten 
+clarification and correction from hardware architects in HSD.
+
+One reason for hesitation is the time that it takes to update our 
+workaround json file.  A change to the sw_impact table does not update 
+the timestamp on the HSD defect.  To ensure that new analysis is 
+reflected in the json file, we have to query all details, which takes a 
+long time (20+ hrs).  Jose has been helping by adding threading to the 
+mechanism.
+
+https://github.com/intel-innersource/drivers.gpu.mesa.workarounds
+	
+> thanks
+> Lucas De Marchi
+> 
 >>
->> Add the XE_REG_OPTION_MASKED annotation to RCU_MODE and kill the "flags"
->> field in guc_mmio_regset_write(): guc_mmio_regset_write_one() can decide
->> that based on the register being passed.
+>>>
+>>> >
+>>> > Not sure if such think would be acceptable in Linux, just sharing 
+>>> what Mesa have done.
+>>>
+>>> Generating code to be built is done in a few places in the kernel
+>>> I already suggested doing that for the register definitions, but
+>>> there are always push back.  I will take a look at this again.
+>>>
+>>> Thanks
+>>> Lucas De Marchi
+>>>
+>>> >
+>>> > >
+>>> > > -    /* Wa_16011759253 */
+>>> > > -    /* Wa_22011383443 */
+>>> > > -    if (IS_SUBPLATFORM_STEP(xe, XE_DG2, XE_SUBPLATFORM_DG2_G10, 
+>>> STEP_A0, STEP_B0))
+>>> > > +    if (XE_WA(xe, "16011759253, 22011383443",
+>>> > > +          SUBPLATFORM(DG2, G10), STEP(A0, B0)))
+>>> > >          flags |= GUC_WA_GAM_CREDITS;
+>>> > >
+>>> > > -    /* Wa_14014475959 */
+>>> > > -    if (IS_PLATFORM_STEP(xe, XE_METEORLAKE, STEP_A0, STEP_B0) ||
+>>> > > -        xe->info.platform == XE_DG2)
+>>> > > +    if (XE_WA(xe, "14014475959[mtl]", PLATFORM(METEORLAKE), 
+>>> STEP(A0, B0)) ||
+>>> > > +        XE_WA(xe, "14014475959[dg2]", PLATFORM(DG2)))
+>>> > >          flags |= GUC_WA_HOLD_CCS_SWITCHOUT;
+>>> > >
+>>> > >      /*
+>>> > > -     * Wa_14012197797
+>>> > > -     * Wa_22011391025
+>>> > > -     *
+>>> > >       * The same WA bit is used for both and 22011391025 is 
+>>> applicable to
+>>> > >       * all DG2.
+>>> > >       */
+>>> > > -    if (xe->info.platform == XE_DG2)
+>>> > > +    if (XE_WA(xe, "14012197797, 22011391025", PLATFORM(DG2)))
+>>> > >          flags |= GUC_WA_DUAL_QUEUE;
+>>> > >
+>>> > >      /*
+>>> > > @@ -169,27 +164,20 @@ static u32 guc_ctl_wa_flags(struct xe_guc 
+>>> *guc)
+>>> > >      if (GRAPHICS_VERx100(xe) < 1270)
+>>> > >          flags |= GUC_WA_PRE_PARSER;
+>>> > >
+>>> > > -    /* Wa_16011777198 */
+>>> > > -    if (IS_SUBPLATFORM_STEP(xe, XE_DG2, XE_SUBPLATFORM_DG2_G10, 
+>>> STEP_A0, STEP_C0) ||
+>>> > > -        IS_SUBPLATFORM_STEP(xe, XE_DG2, XE_SUBPLATFORM_DG2_G11, 
+>>> STEP_A0,
+>>> > > -                STEP_B0))
+>>> > > +    if (XE_WA(xe, "16011777198[dg2_g10]", SUBPLATFORM(DG2, G10), 
+>>> STEP(A0, C0)) ||
+>>> > > +        XE_WA(xe, "16011777198[dg2_g11]", SUBPLATFORM(DG2, G11), 
+>>> STEP(A0, B0)))
+>>> > >          flags |= GUC_WA_RCS_RESET_BEFORE_RC6;
+>>> > >
+>>> > > -    /*
+>>> > > -     * Wa_22012727170
+>>> > > -     * Wa_22012727685
+>>> > > -     */
+>>> > > -    if (IS_SUBPLATFORM_STEP(xe, XE_DG2, XE_SUBPLATFORM_DG2_G10, 
+>>> STEP_A0, STEP_C0) ||
+>>> > > -        IS_SUBPLATFORM_STEP(xe, XE_DG2, XE_SUBPLATFORM_DG2_G11, 
+>>> STEP_A0,
+>>> > > -                STEP_FOREVER))
+>>> > > +    if (XE_WA(xe, "22012727170, 22012727685 [dg2_g10]", 
+>>> SUBPLATFORM(DG2, G10), STEP(A0, C0)) ||
+>>> > > +        XE_WA(xe, "22012727170, 22012727685 [dg2_g11]", 
+>>> SUBPLATFORM(DG2, G11), STEP(A0, FOREVER)))
+>>> > >          flags |= GUC_WA_CONTEXT_ISOLATION;
+>>> > >
+>>> > >      /* Wa_16015675438, Wa_18020744125 */
+>>> > > +    /* FIXME: currently there is no support for gt checks in 
+>>> XE_WA() */
+>>> > >      if (!xe_hw_engine_mask_per_class(gt, XE_ENGINE_CLASS_RENDER))
+>>> > >          flags |= GUC_WA_RCS_REGS_IN_CCS_REGS_LIST;
+>>> > >
+>>> > > -    /* Wa_1509372804 */
+>>> > > -    if (IS_PLATFORM_STEP(xe, XE_PVC, STEP_B0, STEP_C0))
+>>> > > +    if (XE_WA(xe, "1509372804", PLATFORM(PVC), STEP(B0, C0)))
+>>> > >          flags |= GUC_WA_RENDER_RST_RC6_EXIT;
+>>> > >
+>>> > >      return flags;
+>>> >
 >>
->> Signed-off-by: Lucas De Marchi <lucas.demarchi@intel.com>
->
->I'm still trying to get familiarized with XE_REG_OPTION_MASKED
->but this patch looks right to me:
-
-basically the definition if the register is masked or not comes from
-bspec: if the spec says the upper 16bits are the mask, we add the define
-in the header saying so.
-
-XE_REG(1) -> creates a normal register with no flags/options
-XE_REG(1, XE_REG_OPTION_MASKED) -> creates a masked register
-XE_REG_MCR(1) -> creates an MCR register: here it applies both a
-flag/option (for places that deal with that in runtime, e.g. RTP
-tables), and a different type, for the rest of the driver.
-
-it will be much easier to eventually convert to an auto-generated
-header so these options come directly from the spec, which is my
-master plan here :)
-
->
->
->Reviewed-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
-
-thanks
-Lucas De Marchi
