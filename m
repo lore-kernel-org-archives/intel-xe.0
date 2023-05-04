@@ -4,36 +4,36 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 10D0AC77B7C
-	for <intel-xe@archiver.kernel.org>; Thu,  4 May 2023 16:00:45 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1DE00C7EE21
+	for <intel-xe@archiver.kernel.org>; Thu,  4 May 2023 16:10:29 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D81DB10E494;
-	Thu,  4 May 2023 16:00:44 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id AEB1910E170;
+	Thu,  4 May 2023 16:10:28 +0000 (UTC)
 Received: from dfw.source.kernel.org (dfw.source.kernel.org
  [IPv6:2604:1380:4641:c500::1])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E9A4610E4B9
- for <intel-xe@lists.freedesktop.org>; Thu,  4 May 2023 16:00:41 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E383210E170
+ for <intel-xe@lists.freedesktop.org>; Thu,  4 May 2023 16:10:26 +0000 (UTC)
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
  (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
  (No client certificate requested)
- by dfw.source.kernel.org (Postfix) with ESMTPS id 2E9AD6353F;
- Thu,  4 May 2023 16:00:41 +0000 (UTC)
+ by dfw.source.kernel.org (Postfix) with ESMTPS id 1E6F463557;
+ Thu,  4 May 2023 16:10:26 +0000 (UTC)
 Received: from rdvivi-mobl4 (unknown [192.55.54.51])
  (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
  (No client certificate requested)
- by smtp.kernel.org (Postfix) with ESMTPSA id C332CC433D2;
- Thu,  4 May 2023 16:00:38 +0000 (UTC)
-Date: Thu, 4 May 2023 12:00:36 -0400
+ by smtp.kernel.org (Postfix) with ESMTPSA id 50191C433D2;
+ Thu,  4 May 2023 16:10:24 +0000 (UTC)
+Date: Thu, 4 May 2023 12:10:21 -0400
 From: Rodrigo Vivi <rodrigo.vivi@kernel.org>
-To: Riana Tauro <riana.tauro@intel.com>
-Message-ID: <ZFPWpABGpmzvz6or@rdvivi-mobl4>
-References: <20230503064252.830641-1-riana.tauro@intel.com>
- <20230503064252.830641-3-riana.tauro@intel.com>
+To: Lucas De Marchi <lucas.demarchi@intel.com>
+Message-ID: <ZFPY7Ton16S3OFDY@rdvivi-mobl4>
+References: <20230504073250.1436293-1-lucas.demarchi@intel.com>
+ <20230504073250.1436293-2-lucas.demarchi@intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20230503064252.830641-3-riana.tauro@intel.com>
-Subject: Re: [Intel-xe] [RFC PATCH 2/3] drm/xe : add rc6_residency in ms
+In-Reply-To: <20230504073250.1436293-2-lucas.demarchi@intel.com>
+Subject: Re: [Intel-xe] [PATCH 1/7] drm/xe: Do not mark 1809175790 as a WA
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -45,123 +45,51 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Cc: anshuman.gupta@intel.com, intel-xe@lists.freedesktop.org,
- rodrigo.vivi@intel.com
+Cc: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Wed, May 03, 2023 at 12:12:51PM +0530, Riana Tauro wrote:
-> add rc6_residency in ms instead of rc6 residency counter.
-> Handle wrap around for the counter
-> The counter can still wrap as it relies on the frequency of
-> counter being read
+On Thu, May 04, 2023 at 12:32:44AM -0700, Lucas De Marchi wrote:
+> Additional programming annotated with Wa_<number> should be reserved to
+> those that have a official workaround. Just pointing to a bug or
+> additional reference can be done with something else. Copy what i915
+> does and refer to it as "hsdes: ....".
 > 
-> Signed-off-by: Riana Tauro <riana.tauro@intel.com>
+> Signed-off-by: Lucas De Marchi <lucas.demarchi@intel.com>
+
+Reviewed-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
+
 > ---
->  drivers/gpu/drm/xe/xe_idle.c | 46 +++++++++++++++++++++++++++++-------
->  1 file changed, 37 insertions(+), 9 deletions(-)
+>  drivers/gpu/drm/xe/xe_ring_ops.c | 7 +++++--
+>  1 file changed, 5 insertions(+), 2 deletions(-)
 > 
-> diff --git a/drivers/gpu/drm/xe/xe_idle.c b/drivers/gpu/drm/xe/xe_idle.c
-> index 231bdb45a6b7..a7e97ddd7253 100644
-> --- a/drivers/gpu/drm/xe/xe_idle.c
-> +++ b/drivers/gpu/drm/xe/xe_idle.c
-> @@ -11,6 +11,8 @@
->  #include "xe_idle.h"
->  #include "xe_mmio.h"
+> diff --git a/drivers/gpu/drm/xe/xe_ring_ops.c b/drivers/gpu/drm/xe/xe_ring_ops.c
+> index 5e61b6e61f3a..75838b8bb9a8 100644
+> --- a/drivers/gpu/drm/xe/xe_ring_ops.c
+> +++ b/drivers/gpu/drm/xe/xe_ring_ops.c
+> @@ -199,7 +199,8 @@ static void __emit_job_gen12_video(struct xe_sched_job *job, struct xe_lrc *lrc,
+>  	bool decode = job->engine->class == XE_ENGINE_CLASS_VIDEO_DECODE;
 >  
-> +#define XE_RC6_MULTIPLIER      1280
+>  	dw[i++] = preparser_disable(true);
+> -	/* Wa_1809175790 */
 > +
->  /*
->   * Render-C States:
->   * ================
-> @@ -27,8 +29,7 @@
->   *
->   * device/gt#/gpu_idle/rc* *read-only* files:
->   * - rc_status: Provide the actual immediate status of Render-C: (rc0 or rc6)
-> - * - rc6_residency: Provide the rc6_residency in units of 1.28 uSec
-> - *		    Prone to overflows.
-> + * - rc6_residency_ms: Provide the rc6_residency in ms
-
-Ack on the change to _ms, but let's do keep this in xe_guc_pc for now.
-
->   */
->  
->  static struct xe_gt *idle_to_gt(struct xe_idle *idle)
-> @@ -51,6 +52,35 @@ static struct kobj_type xe_idle_kobj_type = {
->  	.sysfs_ops = &kobj_sysfs_ops,
->  };
->  
-> +static u64 rc6_residency_us(struct xe_idle *idle)
-> +{
-> +	struct xe_gt *gt = idle_to_gt(idle);
-> +	u64 cur_residency, delta, overflow_residency, prev_residency;
+> +	/* hsdes: 1809175790 */
+>  	if (!xe->info.has_flat_ccs) {
+>  		if (decode)
+>  			i = emit_aux_table_inv(gt, VD0_AUX_NV.reg, dw, i);
+> @@ -244,9 +245,11 @@ static void __emit_job_gen12_render_compute(struct xe_sched_job *job,
+>  	else if (job->engine->class == XE_ENGINE_CLASS_COMPUTE)
+>  		mask_flags = PIPE_CONTROL_3D_ENGINE_FLAGS;
+>  	i = emit_pipe_invalidate(mask_flags, dw, i);
+> -	/* Wa_1809175790 */
 > +
-> +	overflow_residency = BIT_ULL(32);
-> +	cur_residency = xe_mmio_read32(gt, GEN6_GT_GFX_RC6.reg);
+> +	/* hsdes: 1809175790 */
+>  	if (!xe->info.has_flat_ccs)
+>  		i = emit_aux_table_inv(gt, GFX_CCS_AUX_NV.reg, dw, i);
 > +
-> +	/*
-> +	 * Counter wrap handling
-> +	 * Store previous hw counter values for counter wrap-around handling
-> +	 * Relying on sufficient frequency of queries otherwise counters can still wrap.
-> +	 */
-> +	prev_residency = idle->prev_rc6_residency;
-> +	idle->prev_rc6_residency = cur_residency;
-> +
-> +	/* RC6 delta */
-> +	if (cur_residency >= prev_residency)
-> +		delta = cur_residency - prev_residency;
-> +	else
-> +		delta = cur_residency + (overflow_residency - prev_residency);
-> +
-> +	/* Add delta to RC6 extended raw driver copy. */
-> +	cur_residency = idle->cur_rc6_residency + delta;
-> +	idle->cur_rc6_residency = cur_residency;
-> +
-> +	return mul_u64_u32_div(cur_residency, XE_RC6_MULTIPLIER, 1000);
-> +}
-> +
->  static ssize_t
->  rc_status_show(struct kobject *kobj, struct kobj_attribute *attr, char *buf)
->  {
-> @@ -76,11 +106,10 @@ static const struct kobj_attribute rc_status =
->  __ATTR(rc_status, 0444, rc_status_show, NULL);
+>  	dw[i++] = preparser_disable(false);
 >  
->  static ssize_t
-> -rc6_residency_show(struct kobject *kobj, struct kobj_attribute *attr, char *buf)
-> +rc6_residency_ms_show(struct kobject *kobj, struct kobj_attribute *attr, char *buf)
->  {
->  	struct xe_idle *idle = kobj_to_idle(kobj);
->  	struct xe_gt *gt = idle_to_gt(idle);
-> -	u32 reg;
->  	ssize_t ret;
->  
->  	xe_device_mem_access_get(gt_to_xe(gt));
-> @@ -88,8 +117,7 @@ rc6_residency_show(struct kobject *kobj, struct kobj_attribute *attr, char *buf)
->  	if (ret)
->  		goto out;
->  
-> -	reg = xe_mmio_read32(gt, GEN6_GT_GFX_RC6.reg);
-> -	ret = sysfs_emit(buf, "%u\n", reg);
-> +	ret = sysfs_emit(buf, "%llu\n", DIV_ROUND_UP_ULL(rc6_residency_us(&gt->idle), 1000));
->  
->  	XE_WARN_ON(xe_force_wake_put(gt_to_fw(gt), XE_FORCEWAKE_ALL));
->  out:
-> @@ -97,12 +125,12 @@ rc6_residency_show(struct kobject *kobj, struct kobj_attribute *attr, char *buf)
->  	return ret;
->  }
->  
-> -static const struct kobj_attribute rc6_residency =
-> -__ATTR(rc6_residency, 0444, rc6_residency_show, NULL);
-> +static const struct kobj_attribute rc6_residency_ms =
-> +__ATTR(rc6_residency_ms, 0444, rc6_residency_ms_show, NULL);
->  
->  static const struct attribute *idle_attrs[] = {
->  	&rc_status.attr,
-> -	&rc6_residency.attr,
-> +	&rc6_residency_ms.attr,
->  	NULL,
->  };
->  
+>  	i = emit_store_imm_ggtt(xe_lrc_start_seqno_ggtt_addr(lrc),
 > -- 
-> 2.40.0
+> 2.40.1
 > 
