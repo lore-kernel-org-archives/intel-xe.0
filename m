@@ -4,30 +4,31 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3F9D9C77B7F
-	for <intel-xe@archiver.kernel.org>; Fri,  5 May 2023 15:54:17 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 55462C77B75
+	for <intel-xe@archiver.kernel.org>; Fri,  5 May 2023 15:56:09 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0168110E62B;
-	Fri,  5 May 2023 15:54:17 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 24CDC10E62D;
+	Fri,  5 May 2023 15:56:09 +0000 (UTC)
 Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id 24F4010E629;
- Fri,  5 May 2023 15:54:15 +0000 (UTC)
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id C73FC10E62B;
+ Fri,  5 May 2023 15:56:06 +0000 (UTC)
 Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 113B2AADE4;
- Fri,  5 May 2023 15:54:15 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============1773099646679763757=="
+ by emeril.freedesktop.org (Postfix) with ESMTP id C48CDAA01E;
+ Fri,  5 May 2023 15:56:06 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: "Matthew Auld" <matthew.auld@intel.com>
-Date: Fri, 05 May 2023 15:54:15 -0000
-Message-ID: <168330205505.5022.14451625514931296722@emeril.freedesktop.org>
+Date: Fri, 05 May 2023 15:56:06 -0000
+Message-ID: <168330216680.5020.10724984097148010764@emeril.freedesktop.org>
 X-Patchwork-Hint: ignore
-References: <20230505144910.317943-1-matthew.auld@intel.com>
-In-Reply-To: <20230505144910.317943-1-matthew.auld@intel.com>
-Subject: [Intel-xe] =?utf-8?q?=E2=97=8B_CI=2EBAT=3A_info_for_drm/xe=3A_fi?=
- =?utf-8?q?x_tlb=5Finvalidation=5Fseqno=5Fpast=28=29?=
+References: <20230505153854.343944-1-matthew.auld@intel.com>
+In-Reply-To: <20230505153854.343944-1-matthew.auld@intel.com>
+Subject: [Intel-xe] =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_f?=
+ =?utf-8?q?or_series_starting_with_=5B1/3=5D_Revert_=22drm/xe=3A_Use_atomi?=
+ =?utf-8?q?c_instead_of_mutex_for_xe=5Fdevice=5Fmem=5Faccess=5Fongoing=22?=
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -44,61 +45,19 @@ Cc: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============1773099646679763757==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
 == Series Details ==
 
-Series: drm/xe: fix tlb_invalidation_seqno_past()
-URL   : https://patchwork.freedesktop.org/series/117392/
-State : info
+Series: series starting with [1/3] Revert "drm/xe: Use atomic instead of mutex for xe_device_mem_access_ongoing"
+URL   : https://patchwork.freedesktop.org/series/117395/
+State : success
 
 == Summary ==
 
-Participating hosts:
-bat-atsm-2
-bat-dg2-oem2
-Missing hosts results[0]:
-Results: [xe-pw-117392v1](https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-117392v1/index.html)
+=== Applying kernel patches on branch 'drm-xe-next' with base: ===
+Base commit: 0ad68cd94 drm/xe: Enable the compat ioctl functionality
+=== git am output follows ===
+Applying: Revert "drm/xe: Use atomic instead of mutex for xe_device_mem_access_ongoing"
+Applying: drm/xe: fix xe_device_mem_access_get() race
+Applying: drm/xe: Use atomic for mem_access.ref
 
 
-
---===============1773099646679763757==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/xe: fix tlb_invalidation_seqno_past()</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/117392/">https://patchwork.freedesktop.org/series/117392/</a></td></tr>
-<tr><td><b>State:</b></td><td>info</td></tr>
-
-</table>
-
-
-    <p>Participating hosts:<br />
-bat-atsm-2<br />
-bat-dg2-oem2<br />
-Missing hosts results[0]:<br />
-Results: <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-117392v1/index.html">xe-pw-117392v1</a></p>
-
-</body>
-</html>
-
---===============1773099646679763757==--
