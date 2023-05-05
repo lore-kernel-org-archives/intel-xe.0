@@ -4,37 +4,140 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 92DDFC77B75
-	for <intel-xe@archiver.kernel.org>; Fri,  5 May 2023 17:05:29 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0547FC77B7F
+	for <intel-xe@archiver.kernel.org>; Fri,  5 May 2023 17:10:29 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6664310E642;
-	Fri,  5 May 2023 17:05:29 +0000 (UTC)
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8E78410E642
- for <intel-xe@lists.freedesktop.org>; Fri,  5 May 2023 17:05:27 +0000 (UTC)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
- (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
- (No client certificate requested)
- by dfw.source.kernel.org (Postfix) with ESMTPS id 0093E612A8;
- Fri,  5 May 2023 17:05:27 +0000 (UTC)
-Received: from rdvivi-mobl4 (unknown [192.55.54.48])
- (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
- (No client certificate requested)
- by smtp.kernel.org (Postfix) with ESMTPSA id 3DE6CC4339B;
- Fri,  5 May 2023 17:05:21 +0000 (UTC)
-Date: Fri, 5 May 2023 13:05:18 -0400
-From: Rodrigo Vivi <rodrigo.vivi@kernel.org>
-To: Lucas De Marchi <lucas.demarchi@intel.com>
-Message-ID: <ZFU3TuMVemulBQrX@rdvivi-mobl4>
+	by gabe.freedesktop.org (Postfix) with ESMTP id BBD6610E03B;
+	Fri,  5 May 2023 17:10:28 +0000 (UTC)
+Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1EE3210E03B
+ for <intel-xe@lists.freedesktop.org>; Fri,  5 May 2023 17:10:27 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1683306627; x=1714842627;
+ h=date:from:to:cc:subject:message-id:references:
+ in-reply-to:mime-version;
+ bh=m7cqCuZtqF4DrfuBJukCRmVpPtxY7H/QQEeV0d2WsXw=;
+ b=nLt2+RgVgkBtbvGTBqWU6scHQJ/egjUTIKqNqRVVFKA+T1+zxkafhwo/
+ BidwlNPb0CSfNq/jy0vJAffI+OeDjmgNHMeB/qPBrq33wDMleCmbxqpcX
+ sMSMRKMrxA7K3CaUauTjWkXXM1JcjBQEK+yICfYGWgyvGghQWK0BvBRWo
+ WyIsCbTqsg0CKtqwq3JEYEMBc8mFfo67DimzLV4WSeRiM+1dN7rzk4BOO
+ ikjpIscvEefDtwezkHSmXhxOHUuW1Xk04mXRa80Lacb7qGfoM3C4UNDzt
+ q7/jAW+6oQrPluoH/2GVS+UzT+3HfLlXK9qLbbPn/0lBqVGJWpvspvtOa Q==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10701"; a="349295560"
+X-IronPort-AV: E=Sophos;i="5.99,252,1677571200"; d="scan'208";a="349295560"
+Received: from orsmga008.jf.intel.com ([10.7.209.65])
+ by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 05 May 2023 10:08:56 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6600,9927,10701"; a="728163064"
+X-IronPort-AV: E=Sophos;i="5.99,252,1677571200"; d="scan'208";a="728163064"
+Received: from fmsmsx602.amr.corp.intel.com ([10.18.126.82])
+ by orsmga008.jf.intel.com with ESMTP; 05 May 2023 10:08:55 -0700
+Received: from fmsmsx610.amr.corp.intel.com (10.18.126.90) by
+ fmsmsx602.amr.corp.intel.com (10.18.126.82) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.23; Fri, 5 May 2023 10:08:55 -0700
+Received: from fmsmsx612.amr.corp.intel.com (10.18.126.92) by
+ fmsmsx610.amr.corp.intel.com (10.18.126.90) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.23; Fri, 5 May 2023 10:08:55 -0700
+Received: from fmsedg601.ED.cps.intel.com (10.1.192.135) by
+ fmsmsx612.amr.corp.intel.com (10.18.126.92) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.23 via Frontend Transport; Fri, 5 May 2023 10:08:55 -0700
+Received: from NAM11-DM6-obe.outbound.protection.outlook.com (104.47.57.176)
+ by edgegateway.intel.com (192.55.55.70) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.1.2507.23; Fri, 5 May 2023 10:08:54 -0700
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=kVggi2rsadr6I3WEvAvD/9kxVG5LFoGyghxJwTtJ2pqxANfowAaluWhTg6z7L8TNgpjij5IUeijQL6bSkEaCgDLMZIKmQzfXZxo5qmqylxldXpMvpO+wn3FDxOIDwMT3wkgy6F4O6U/LJ2Uze60XyOBFUs9v60KYubsPrRnqnlFdPYGpfQo2R3vCEFX9+hvGQc9h3ANnxS2xRhlkqDvcwTDxnX8ieQpFIPEKGrMYlCBwzurI/tAZxz6tiMFGP61MJFD9jkW/0hycGn+Gfkp2DOHFILZ2sP6tW45fqSYOdwallVup/HGpXXop1tIj4uMW0BKj6UYejS0Nb/6+T+AIvA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=0z7ouYkzRJL2cUHvzXIRJfzQsVzCVzXGATnVhafT4cg=;
+ b=lA+J/ZJWnW4auQXOd1bqc/vvIbwAIZBc6FfoQ0u8kHOC7SRdoHdjcStyxIDnpd3mSAfYl31kkaL9KO9V5J2+DJJ7FQDUxSmsNCbgNhaEFB3Wdqp1V0MsCRY4sRdQolz88AFflFaNwFIOy9aIjOnLc+D3kxSyCPEcrtnv76yb2nI4+Ygt5635r8K7SmitowmpLFl+fEPQTw2ombBH7IF3AoBqDmIdLOGsR2XYKrCblYTGf9WvCn9Ag7NfdfFmtO4jpedb3yMGvgWSotnyU6MkbQxx7LIQMZTB6UxVtPELqnG9iVlgg8YpOHxtgWStE9HqrYqdrLsacMiS6zp6oc52IQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
+ dkim=pass header.d=intel.com; arc=none
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=intel.com;
+Received: from CY5PR11MB6139.namprd11.prod.outlook.com (2603:10b6:930:29::17)
+ by PH7PR11MB6650.namprd11.prod.outlook.com (2603:10b6:510:1a8::21)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6363.26; Fri, 5 May
+ 2023 17:08:51 +0000
+Received: from CY5PR11MB6139.namprd11.prod.outlook.com
+ ([fe80::44e7:c479:62f4:3eb4]) by CY5PR11MB6139.namprd11.prod.outlook.com
+ ([fe80::44e7:c479:62f4:3eb4%3]) with mapi id 15.20.6363.026; Fri, 5 May 2023
+ 17:08:50 +0000
+Date: Fri, 5 May 2023 10:08:48 -0700
+From: Lucas De Marchi <lucas.demarchi@intel.com>
+To: Rodrigo Vivi <rodrigo.vivi@kernel.org>
+Message-ID: <fies3nkjy3spmq7w26n7kut4endjgm3wq3uku3lghl25ykqev4@s5ub2t3de6hn>
+X-Patchwork-Hint: comment
 References: <20230429062332.354139-1-lucas.demarchi@intel.com>
- <20230429062332.354139-4-lucas.demarchi@intel.com>
- <8fdb51d8-0626-0d03-2080-b978f25cfa3b@intel.com>
- <srdmqn6iwo43zl2m556sqfjqi3dexy3n7hvkitzada2mfurq43@mbeffvffzo36>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+ <20230429062332.354139-3-lucas.demarchi@intel.com>
+ <ZFU1ANfhoovA6r7I@rdvivi-mobl4>
+Content-Type: text/plain; charset="us-ascii"; format=flowed
 Content-Disposition: inline
-In-Reply-To: <srdmqn6iwo43zl2m556sqfjqi3dexy3n7hvkitzada2mfurq43@mbeffvffzo36>
-Subject: Re: [Intel-xe] [PATCH 3/7] drm/xe: Use media base for GMD_ID access
+In-Reply-To: <ZFU1ANfhoovA6r7I@rdvivi-mobl4>
+X-ClientProxiedBy: BYAPR04CA0020.namprd04.prod.outlook.com
+ (2603:10b6:a03:40::33) To CY5PR11MB6139.namprd11.prod.outlook.com
+ (2603:10b6:930:29::17)
+MIME-Version: 1.0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: CY5PR11MB6139:EE_|PH7PR11MB6650:EE_
+X-MS-Office365-Filtering-Correlation-Id: af427b6a-64b1-4dab-3439-08db4d8b65d5
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: mimNoYArCYTr96w7exXnJqiGa7xzVyNkNlopJ7BSkLwvffTnBXsZQ5M4AT0GLnUS2zaxGMKVUsg0VkmjvskXzriM6XWB7cKjXNTwLxsARnCGXqAxKQrUCAhIKxFTPErgr6Rh3HwJHQ7nvb432RH9Gm8wTATBe6fhhJsVqqtO4y9Hrrp5WguYLSPhocEOzKbtDifP9a+usF7AQfvUCSStDheMSqahvdYtr+96wIH62UKQPd0E70GIHboQISbf7kPmg7CAJ+xVlSHxx5yxJOFiheQ1ROaMH7zymTG1SGh8KdkTsUYep0ZX0pYJsxS8vyYK5FN7T1qDxes0YpuUppxB5+P7jcbWA0yAZSt95Mf5AdnOfP+g2ZODz1kG7uzifZZRqy425/OAv0nSnQv2H13m1FC+88Sh5NN0DbMvAawN3rPS8XblfQAVS1lYyBOjlsSNTYyHD0W7QB7cLejM/Hj/l5NH9+TgijpUn+5bAGSbT+9Lz4FGqZq9M73nbRIUiPeE3WLxPsZ909oAaGF1Dnofl2v/jlwT0qYeGzJWqMmJNy4=
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:CY5PR11MB6139.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230028)(7916004)(346002)(376002)(39860400002)(396003)(136003)(366004)(451199021)(41300700001)(33716001)(6506007)(9686003)(26005)(478600001)(6916009)(4326008)(86362001)(6486002)(66476007)(6512007)(66556008)(66946007)(38100700002)(316002)(186003)(83380400001)(5660300002)(2906002)(82960400001)(8676002)(8936002)(66899021);
+ DIR:OUT; SFP:1102; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?GSrwmzK4wUEZXLjj4HhrnINj5+QgrtwDoY5aNQWDA628Dgl91Sub2jfyRCmY?=
+ =?us-ascii?Q?8P2mJFMZl62TRLunT1J4jcdqiOaVdWcv4eU76m927GWACZmKaZWVwpIThAf7?=
+ =?us-ascii?Q?nq6fmLDuBgmvHxqlHGokUQvY0o8sLwExcTx7GbC+S9n7Odq2/EktNCdfE5wk?=
+ =?us-ascii?Q?34mnm73bSNPtm31AULPmSZ3ls5I9pR/IrCC73ts2YWPJPhOWU6NbrrIwzAmI?=
+ =?us-ascii?Q?t6Mt/qyckgsnzjvxj0cdOMCFYEVSf3hx3TaJmF4Q9TAPDeWT215Nn50WWzGK?=
+ =?us-ascii?Q?DsAZHh9D/OUThqx14/S5LjoyyB7z3c5una5AwVSabYkz7BedskNbZesG9uXS?=
+ =?us-ascii?Q?X0oCNquDs6EooantbAD92ghrioP0kL+bN/EeOLbeEV5SWXAeCWrgNl2EvM6m?=
+ =?us-ascii?Q?ypBrnNRkqOhYVVqORnj4kL+hZIc+JmxnmUTZryna9Ak6weScSzaA+mLWV2+n?=
+ =?us-ascii?Q?bXnT/Ix2SI9c3wmAcVTc+YLCWPard4KESvqKSh3RGUeGZ5cmUBfH5dltyI+y?=
+ =?us-ascii?Q?k4nxTgeqiaSs2+iB+M9x/mGr/Wct0PpyJUFfnBZ9BSQEy1taSRYYh/l/PIKL?=
+ =?us-ascii?Q?85VyuJ0gC+IsqcKFsZg8aWFv7nDugAuUKy7NglBd8b0TjJpeYcUAbDhqZjkV?=
+ =?us-ascii?Q?2K3fRWIFllp8prv2tguOmQZtgnHEZR80a9hSb0/LO7wzqvt61pqeP5JvxdWm?=
+ =?us-ascii?Q?HVgvK8cpJYBI9X1ycQYSTcLFdDdZ95d4O7DMPxiqvK68fG1R1HKbOiWGUYyE?=
+ =?us-ascii?Q?BzcI3VQCE7LHQVhwfFnPt1kTd2ufbdReCKm91DGmlQY1JngvwJo3Hojz3AlW?=
+ =?us-ascii?Q?ApfWuWqon8mHlrYKmrJ29G4m/Y8OS2CHHcFSi9P/mRfEtRSPoUCq2qm6XtNz?=
+ =?us-ascii?Q?eE5zKRCXwQ8tuf7gPjEjIuicSkOvAlNGON6p6uwG+Ojr7tjGYHtF00O0wirM?=
+ =?us-ascii?Q?rmVgx9MfgbK5dyZ4FFCUJuhD/bPbHwforMa6q2Cr8PJUypmFB2Sa2/fD6bga?=
+ =?us-ascii?Q?VqoUGZDZQJ4Dyxz1KPAnQo5EKwf4FyqzdAF9LQh0xF+Jav/fs7+wrxTRU6yv?=
+ =?us-ascii?Q?VqS5VopKoneLNIupdzzapTMMeiCXmQs53pSOpVhWZGRveL0rZExOqMXsPNDn?=
+ =?us-ascii?Q?zwahtM/X/g48+hSWpUmkwLEWkVOHHa3Qa7ZcUu2cUFuW8xbbLd8XaZQxyN74?=
+ =?us-ascii?Q?lzQy5ss+R0Fcdnad14baKGkznBEXcc6caciS6yALXegXkV8w++qfs7Xml+tD?=
+ =?us-ascii?Q?MgIy9MBsM4G6JU2SAuCefGVWzGtvZ8S3GhpU6dEUDQ4sS7MBx4jXNatmG8JX?=
+ =?us-ascii?Q?AdA4NcZVwshv6I7vhBtLzu/8/rjXvC6oDIhInkpbG6e/gfSh6mtm8eiio+Wb?=
+ =?us-ascii?Q?MaQOIe79ZwtLLs90//Z31OX99ZmoCBfOinPf2ERMd0nsBCxrlmQwlQNuqRrg?=
+ =?us-ascii?Q?PlxljXpmtkAhbKaksKG3mluIWk4j0ATn0QF9Fy6uXVi5EC7hwnWvXMnO46Lh?=
+ =?us-ascii?Q?BOZ9zijTdd3H0ik6q0X/oLRSY7DotjXAwrAa6P9NH+9frfi965pNy0coiFxL?=
+ =?us-ascii?Q?6RVjrSyu1wkZpGLszzS4eRKffxYtcgY+q5lb3xO2IcZJ6x19r7wnEhiJZtMW?=
+ =?us-ascii?Q?4A=3D=3D?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: af427b6a-64b1-4dab-3439-08db4d8b65d5
+X-MS-Exchange-CrossTenant-AuthSource: CY5PR11MB6139.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 05 May 2023 17:08:50.8926 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: +aM+3h8RGtIR2FP0ttMpdds/q7VnZjk+XbM+n+GOt7eeXX9rjJGK+vdwSo1hOrDLkMVcDq8SQKZ2iLoFu/zvcj3X8Lv0PVsmQk557nGCWvI=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH7PR11MB6650
+X-OriginatorOrg: intel.com
+Subject: Re: [Intel-xe] [PATCH 2/7] drm/xe/guc: Handle RCU_MODE as masked
+ from definition
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -50,148 +153,47 @@ Cc: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Mon, May 01, 2023 at 08:07:28AM -0700, Lucas De Marchi wrote:
-> On Sun, Apr 30, 2023 at 07:47:38PM +0200, Michal Wajdeczko wrote:
-> > 
-> > 
-> > On 29.04.2023 08:23, Lucas De Marchi wrote:
-> > > Instead of adding a hardcoded base, define GMD_ID() with a base
-> > > argument and use it in all places.
-> > > 
-> > > Signed-off-by: Lucas De Marchi <lucas.demarchi@intel.com>
-> > > ---
-> > >  drivers/gpu/drm/xe/regs/xe_gt_regs.h | 4 +++-
-> > >  drivers/gpu/drm/xe/xe_pci.c          | 9 +++++----
-> > >  2 files changed, 8 insertions(+), 5 deletions(-)
-> > > 
-> > > diff --git a/drivers/gpu/drm/xe/regs/xe_gt_regs.h b/drivers/gpu/drm/xe/regs/xe_gt_regs.h
-> > > index 4d87f1fe010d..da7b6d2c7e01 100644
-> > > --- a/drivers/gpu/drm/xe/regs/xe_gt_regs.h
-> > > +++ b/drivers/gpu/drm/xe/regs/xe_gt_regs.h
-> > > @@ -8,6 +8,8 @@
-> > > 
-> > >  #include "regs/xe_reg_defs.h"
-> > > 
-> > > +#define MTL_MEDIA_GT_BASE			0x380000
-> > 
-> > maybe for completeness (and to avoid using anonymous 0 offset in other
-> > places) we should define also:
-> > 
-> > #define GRAPHICS_GT_BASE			0x0
-> 
-> there are very vew places in the driver that would care about the base.
-> Today the base is automatically applied for anything using xe_mmio_,
-> just like we have it automatically applied in intel_uncore for i915.
-> So, we really don't want to change each register to receive base as
-> param.
+On Fri, May 05, 2023 at 12:55:28PM -0400, Rodrigo Vivi wrote:
+>On Fri, Apr 28, 2023 at 11:23:27PM -0700, Lucas De Marchi wrote:
+>> guc_mmio_regset_write() had a flags for the registers to be added to the
+>> GuC's regset list. The only register actually using that was RCU_MODE,
+>> but it was setting the flags to a bogus value. From
+>> struct xe_guc_fwif.h,
+>>
+>> 	#define GUC_REGSET_MASKED               BIT(0)
+>> 	#define GUC_REGSET_MASKED_WITH_VALUE    BIT(2)
+>> 	#define GUC_REGSET_RESTORE_ONLY         BIT(3)
+>>
+>> Cross checking with i915, the only flag to set in RCU_MODE is
+>> GUC_REGSET_MASKED. That can be done automatically from the register, as
+>> long as the definition is correct.
+>>
+>> Add the XE_REG_OPTION_MASKED annotation to RCU_MODE and kill the "flags"
+>> field in guc_mmio_regset_write(): guc_mmio_regset_write_one() can decide
+>> that based on the register being passed.
+>>
+>> Signed-off-by: Lucas De Marchi <lucas.demarchi@intel.com>
+>
+>I'm still trying to get familiarized with XE_REG_OPTION_MASKED
+>but this patch looks right to me:
 
-I'm with Michal here. I had the same thought when reviewing and just read
-his comment afterwards. Although it is rarely used it would be good
-to avoid later confusion.
+basically the definition if the register is masked or not comes from
+bspec: if the spec says the upper 16bits are the mask, we add the define
+in the header saying so.
 
-> 
-> > 
-> > > +
-> > >  /* RPM unit config (Gen8+) */
-> > >  #define RPM_CONFIG0					XE_REG(0xd00)
-> > >  #define   RPM_CONFIG0_CRYSTAL_CLOCK_FREQ_MASK		REG_GENMASK(5, 3)
-> > > @@ -21,7 +23,7 @@
-> > >  #define FORCEWAKE_ACK_MEDIA_VEBOX(n)		XE_REG(0xd70 + (n) * 4)
-> > >  #define FORCEWAKE_ACK_RENDER			XE_REG(0xd84)
-> > > 
-> > > -#define GMD_ID					XE_REG(0xd8c)
-> > > +#define GMD_ID(base)				XE_REG((base) + 0xd8c)
-> > 
-> > this register is not the only one that's has it's counterpart at this
-> > 0x38000 MEDIA offset, and other registers we are treating in automatic
-> > way, without the need to explicitly pass the 'base', so I'm not sure we
-> > should change that here
-> 
-> becaues in the other cases the base is applied by xe_mmio
-> 
-> > 
-> > >  #define   GMD_ID_ARCH_MASK			REG_GENMASK(31, 22)
-> > >  #define   GMD_ID_RELEASE_MASK			REG_GENMASK(21, 14)
-> > >  #define   GMD_ID_STEP				REG_GENMASK(5, 0)
-> > 
-> > btw, is there a plan to s/REG_GENMASK/XE_REG_GENMASK or something ?
-> 
-> no. My plan is to eventually submit a patch to have
-> GENMASK_U32 and use it throughout the driver
+XE_REG(1) -> creates a normal register with no flags/options
+XE_REG(1, XE_REG_OPTION_MASKED) -> creates a masked register
+XE_REG_MCR(1) -> creates an MCR register: here it applies both a
+flag/option (for places that deal with that in runtime, e.g. RTP
+tables), and a different type, for the rest of the driver.
 
-good idea!
+it will be much easier to eventually convert to an auto-generated
+header so these options come directly from the spec, which is my
+master plan here :)
 
-> 
-> > 
-> > > diff --git a/drivers/gpu/drm/xe/xe_pci.c b/drivers/gpu/drm/xe/xe_pci.c
-> > > index 35dcb8781f2a..8687e51cb0a4 100644
-> > > --- a/drivers/gpu/drm/xe/xe_pci.c
-> > > +++ b/drivers/gpu/drm/xe/xe_pci.c
-> > > @@ -276,7 +276,7 @@ static const struct xe_gt_desc xelpmp_gts[] = {
-> > >  		.type = XE_GT_TYPE_MEDIA,
-> > >  		.vram_id = 0,
-> > >  		.mmio_adj_limit = 0x40000,
-> > > -		.mmio_adj_offset = 0x380000,
-> > > +		.mmio_adj_offset = MTL_MEDIA_GT_BASE,
-> > >  	},
-> > >  };
-> > > 
-> > > @@ -391,8 +391,9 @@ find_subplatform(const struct xe_device *xe, const struct xe_device_desc *desc)
-> > >  	return NULL;
-> > >  }
-> > > 
-> > > -static u32 peek_gmdid(struct xe_device *xe, u32 gmdid_offset)
-> > > +static u32 peek_gmdid(struct xe_device *xe, struct xe_reg gmdid_reg)
-> > 
-> > better to keep u32 but defined as new 'base' for the GMD_ID:
-> > 
-> > peek_gmdid(xe, GRAPHICS_GT_BASE)
-> > peek_gmdid(xe, MTL_MEDIA_GT_BASE)
-> > 
-> > then since we parse the value according to the GMDID definition we will
-> > prevent passing wrong register offset and always refer to the right
-> > GMD_ID address inside the function:
-> > 
-> > static u32 peek_gmdid(struct xe_device *xe, u32 base)
-> > {
-> > 	xe_reg gmdid = XE_REG(GMD_ID.addr + base);
-> 
-> we try to minimize those calculations outside the header.
-> I don't see a benefit of passing the base here over passing the register
-> to be used.
-> 
-> Lucas De Marchi
-> 
-> > ...
-> > 	WARN_ON(base != GRAPHICS_GT_BASE && base != MTL_MEDIA_GT_BASE);
-> > ...
-> >  	map = pci_iomap_range(pdev, 0, gmdid.addr, sizeof(u32));
-> > ...
-> > 	REG_FIELD_GET(GMD_ID_ARCH_MASK, value)
-> > 
-> > 
-> > Michal
-> > 
-> > >  {
-> > > +	u32 gmdid_offset = gmdid_reg.reg;
-> > >  	struct pci_dev *pdev = to_pci_dev(xe->drm.dev);
-> > >  	void __iomem *map = pci_iomap_range(pdev, 0, gmdid_offset, sizeof(u32));
-> > >  	u32 ver;
-> > > @@ -441,7 +442,7 @@ static void handle_gmdid(struct xe_device *xe,
-> > >  {
-> > >  	u32 ver;
-> > > 
-> > > -	ver = peek_gmdid(xe, GMD_ID.reg);
-> > > +	ver = peek_gmdid(xe, GMD_ID(0));
-> > >  	for (int i = 0; i < ARRAY_SIZE(graphics_ip_map); i++) {
-> > >  		if (ver == graphics_ip_map[i].ver) {
-> > >  			xe->info.graphics_verx100 = ver;
-> > > @@ -456,7 +457,7 @@ static void handle_gmdid(struct xe_device *xe,
-> > >  			ver / 100, ver % 100);
-> > >  	}
-> > > 
-> > > -	ver = peek_gmdid(xe, GMD_ID.reg + 0x380000);
-> > > +	ver = peek_gmdid(xe, GMD_ID(MTL_MEDIA_GT_BASE));
-> > >  	for (int i = 0; i < ARRAY_SIZE(media_ip_map); i++) {
-> > >  		if (ver == media_ip_map[i].ver) {
-> > >  			xe->info.media_verx100 = ver;
+>
+>
+>Reviewed-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
+
+thanks
+Lucas De Marchi
