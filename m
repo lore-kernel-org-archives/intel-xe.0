@@ -4,137 +4,36 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8E599C77B7C
-	for <intel-xe@archiver.kernel.org>; Fri,  5 May 2023 20:19:09 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7B898C77B7C
+	for <intel-xe@archiver.kernel.org>; Fri,  5 May 2023 20:20:05 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6038710E08D;
-	Fri,  5 May 2023 20:19:09 +0000 (UTC)
-Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
- by gabe.freedesktop.org (Postfix) with ESMTPS id BB46610E08D
- for <intel-xe@lists.freedesktop.org>; Fri,  5 May 2023 20:19:06 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1683317946; x=1714853946;
- h=date:from:to:cc:subject:message-id:references:
- in-reply-to:mime-version;
- bh=K1iuIj0OtJQTp/EIKege4dPiNzHalGphOdJPo2dJaug=;
- b=SNBI8MDZnqMJ18mH3HFlto3Rvl+BLe+uG3QLo/NLYwMe+ViLivFSlSq7
- BdxTzFURa1KTVx8qviMtgy6jkpfL1bufuCRJDZIoJjmxJlYzBSjdg0B8/
- vzq1IjM6yaCOblfyM52QnxNyWLqNMlTMawXjwbbsSPJ/9TgJ9UFKlPIuc
- uiedCJ/rU4SbTgfpbQmVQpR9NOMu87RAsdetUbRU+nMf/nSeAwMLiKGx9
- Sm5zEvPBUCxN2K7xnXDUtycpDf3M0vs9RwnrwvGtnmp2vQi2cru8j8s39
- tJHWEVio/Ihqvvy4L4r6qCw9SOKXaNN8WboX27L7x653sMoStZ4E8XznH Q==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10701"; a="349331263"
-X-IronPort-AV: E=Sophos;i="5.99,253,1677571200"; d="scan'208";a="349331263"
-Received: from orsmga002.jf.intel.com ([10.7.209.21])
- by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 05 May 2023 13:19:05 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10701"; a="697732833"
-X-IronPort-AV: E=Sophos;i="5.99,253,1677571200"; d="scan'208";a="697732833"
-Received: from orsmsx602.amr.corp.intel.com ([10.22.229.15])
- by orsmga002.jf.intel.com with ESMTP; 05 May 2023 13:19:05 -0700
-Received: from orsmsx610.amr.corp.intel.com (10.22.229.23) by
- ORSMSX602.amr.corp.intel.com (10.22.229.15) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.23; Fri, 5 May 2023 13:19:05 -0700
-Received: from ORSEDG601.ED.cps.intel.com (10.7.248.6) by
- orsmsx610.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.23 via Frontend Transport; Fri, 5 May 2023 13:19:05 -0700
-Received: from NAM10-MW2-obe.outbound.protection.outlook.com (104.47.55.109)
- by edgegateway.intel.com (134.134.137.102) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2507.23; Fri, 5 May 2023 13:19:05 -0700
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=jrIqwlTzT89S+I6kbCPvRQ+CiMktywChcyJ8qLPbjZ9drMwzPfsnXBmwvSt3GNqpJcEw7aKuATSfz31dn7LL30KIrG5QGRIRRdF0boxUa74r32jivZEme3ar4nQX/rozwLqB04/Dwg8EFizSvhE4A71cBZKWhN1db82axMR6hh7rsratAKgBLCc6wmYPI3gae2Ig8QkswIrRD9nP31c6YIUCAYLzHP9x/NENm0eX2UI1iBHzz8volXd8qC2elfATl3QTzALKSOcBf1iU0P7qw7yKo4y7Xvu/H5aJc4xlTlr8duDIQ5FzWNBPLSe3cLJcFiacjXLDLqC1/gdgkyjvWw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=EKL+YugUCkEO2XowYOA188vymqD/DGiC1PWvKZCJErw=;
- b=HghxKDN107VY3jCmPaYi+VF13ZnVRTiB+GUkzFxXeDaspMjWKCmzMy7WZkXJkxXHnHeWYU03vHSoaJt/HjqCGtwKLVxuKgdLWa/DvLM0ylcSWz7v1RizzlG2/XuQnwl1/gHzssHTDROWNmmKeP9lwp/uX26yNDl+336X+ld+170KgXHjilCCndRNEk3URryMajTQvc8Oc3fJBfT8T/06czKlwldmsTUfI+xMWLnZL3KMOUO4iXXd+zvjWVeNEOMVyDEQ15CvkLjDJ1C78K8Bz9sqKRbkg2u5nYwwoptKFW1PaLUXNJdUc7oLJo1l3jolGvoOu/3CAAgnl9/QU/f1Ug==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
- dkim=pass header.d=intel.com; arc=none
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=intel.com;
-Received: from CY5PR11MB6139.namprd11.prod.outlook.com (2603:10b6:930:29::17)
- by BL1PR11MB5544.namprd11.prod.outlook.com (2603:10b6:208:314::19)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6363.27; Fri, 5 May
- 2023 20:19:03 +0000
-Received: from CY5PR11MB6139.namprd11.prod.outlook.com
- ([fe80::44e7:c479:62f4:3eb4]) by CY5PR11MB6139.namprd11.prod.outlook.com
- ([fe80::44e7:c479:62f4:3eb4%3]) with mapi id 15.20.6363.026; Fri, 5 May 2023
- 20:19:03 +0000
-Date: Fri, 5 May 2023 13:19:01 -0700
-From: Lucas De Marchi <lucas.demarchi@intel.com>
-To: Rodrigo Vivi <rodrigo.vivi@kernel.org>
-Message-ID: <rb6qiiaescamenz25laijelzzqfhofdo56ytxj5alq56go3otd@buqa5cgiwyrx>
-X-Patchwork-Hint: comment
-References: <20230429062332.354139-1-lucas.demarchi@intel.com>
- <20230429062332.354139-4-lucas.demarchi@intel.com>
- <8fdb51d8-0626-0d03-2080-b978f25cfa3b@intel.com>
- <srdmqn6iwo43zl2m556sqfjqi3dexy3n7hvkitzada2mfurq43@mbeffvffzo36>
- <ZFU3TuMVemulBQrX@rdvivi-mobl4>
-Content-Type: text/plain; charset="us-ascii"; format=flowed
-Content-Disposition: inline
-In-Reply-To: <ZFU3TuMVemulBQrX@rdvivi-mobl4>
-X-ClientProxiedBy: BYAPR07CA0030.namprd07.prod.outlook.com
- (2603:10b6:a02:bc::43) To CY5PR11MB6139.namprd11.prod.outlook.com
- (2603:10b6:930:29::17)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4B36210E08D;
+	Fri,  5 May 2023 20:20:05 +0000 (UTC)
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D724610E08D
+ for <intel-xe@lists.freedesktop.org>; Fri,  5 May 2023 20:20:03 +0000 (UTC)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+ (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+ (No client certificate requested)
+ by dfw.source.kernel.org (Postfix) with ESMTPS id 2CC1864049;
+ Fri,  5 May 2023 20:20:03 +0000 (UTC)
+Received: from rdvivi-mobl4 (unknown [192.55.54.48])
+ (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+ (No client certificate requested)
+ by smtp.kernel.org (Postfix) with ESMTPSA id 32B17C433D2;
+ Fri,  5 May 2023 20:20:00 +0000 (UTC)
+Date: Fri, 5 May 2023 16:19:58 -0400
+From: Rodrigo Vivi <rodrigo.vivi@kernel.org>
+To: Jani Nikula <jani.nikula@intel.com>
+Message-ID: <ZFVk7kcorA3qcpq3@rdvivi-mobl4>
+References: <20230503131005.1602412-1-jani.nikula@intel.com>
+ <20230503131005.1602412-4-jani.nikula@intel.com>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: CY5PR11MB6139:EE_|BL1PR11MB5544:EE_
-X-MS-Office365-Filtering-Correlation-Id: e99ddca9-7bf6-4a48-1061-08db4da5f80f
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: u29wnckaMh1yKOJTPU1r22Hkzy5DFWn4HMVPFEB9g5E+6qLqTVE3UFZgBdSxvmn9w9ROOZ2jcBj/oQu4lVc1fEByWpG04kwLN1owntuziH6NqAJQLUZNXqdDFjowFOATl/gbyI7KGC4m54PppgVNv03FTPyqHvc079fb/7vCmEPsnrnb6yV849rif84LdETVBWE85vjU6tJ+htNp+QTlf80yoGkFHtDtEoonAGulYy29eP61wT9urxix1RBTBqfasriFKeRRgDBMqTYgSpv4CUDrs6DzZdo54t5NCoBMYvxmpcbRHeGZmp6Ib4iGvAmv7WFtEB+3IfTsx2107cg+toRWE6g9M4zEdh9NlTYvx1PodWC+UelQPDL9miuT7DGA4QaIX1z3/lN+y4y3sYj7pdfNbRxPpP1bE4Y15ke+puZjpg/0lj8/G7FOeExLVo441Ya6Q6w9mnA5CgIgvsUJoPPRozDi0u1NpCJOzNA9/LByUu0FFjof8HHt+sj64fxeQuO+rayPHRgFiIRvZ7EBJSm5hHxjq53HN19KbKMYLkK75ELBjMbKxERexyFzcAAP
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:CY5PR11MB6139.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230028)(7916004)(346002)(136003)(366004)(396003)(39860400002)(376002)(451199021)(86362001)(316002)(66946007)(66556008)(66476007)(6916009)(4326008)(6486002)(478600001)(41300700001)(33716001)(8676002)(8936002)(2906002)(5660300002)(186003)(82960400001)(38100700002)(6506007)(53546011)(9686003)(6512007)(26005)(83380400001);
- DIR:OUT; SFP:1102; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?0tJdxwtvqBolOJ+ZsHX5c0X0wQ5v64iBI3KSor5PLhMsO9fjo/SgLRCzivBA?=
- =?us-ascii?Q?6HyBkUNWFO4dqvOHdxP6coOHW2sWmSN9S9y06oFoBTdR/u1Q00tNk86jPT8v?=
- =?us-ascii?Q?RVrvYs6qokHVwCgHwdswN1aBLqgFxiGRfLYI+JGdcoFT1H8TCdPbHEeyVoHZ?=
- =?us-ascii?Q?9nk1fY7+2QQ8UJ+d02zpIRiXpH6e4bYzqKPnF9pWYfT7XgQMchtQv2bqnue2?=
- =?us-ascii?Q?EzdYyZbxWG4vzW0DqpAo7VLbOy1p4uZHL6epFz+VqA3klmddufXUlA0U64Ok?=
- =?us-ascii?Q?oOBPgBaMDaRjYPDkXXcxlglqirptfpDwkNMCF+dT4adXQZL5JockTcyRD2Id?=
- =?us-ascii?Q?1sJYPPq3qnAOxZLucoZ5l5DVhsq6xYqetXo4GlZPjIwkdDdrQNZ80FO7fJdt?=
- =?us-ascii?Q?y06JyXC0H+I2ga5uHhok7+dO0i38YO73BMmZJRo9X7yxZCULYnNMFkE21fEg?=
- =?us-ascii?Q?LaTxzUwxbAgOn5xh6DXrk3rLxdpKO2Nti7/3xbbsU2FzLTcOai/hKvEGo59b?=
- =?us-ascii?Q?G7P7ZfZEGjSVTByWjrifgCYXhMTYCdFFEZHf2zufgDllYKMsAFOdb3Jdf5Y1?=
- =?us-ascii?Q?o3agYqRXeZuQU24zDTkeGyNltDK2EMeaa/SifntVAIJIen1Hw0C5rnSRuIzO?=
- =?us-ascii?Q?zk5MFA33Kyr01jlXgzIYKxaDipJ3cnHrQEFyyLGGZ+k7/fq3OyPmf6myrpk+?=
- =?us-ascii?Q?gEYjvPEzVRcniveOKEzjr/hPzjBlP+VSz+35gpWHdtI41wrXGoDIRF2zOz0H?=
- =?us-ascii?Q?Rvqbd+GEi9U8Y7n5gxNMsSdUX5NeOIUpSdbXgZAw7TN3jXNZPkm8bssiMlE9?=
- =?us-ascii?Q?ypgQ2wJE215JjJR2gdaB2vyC2UINHRDVJWaxpIeJrwl1Mc6CSTMgr9ioew9p?=
- =?us-ascii?Q?eYJTsn6ORnTVYubHe3IhLUyKXU8xcy9mxOyxmg/YNBmA+Kdw/ng95ATjfIlU?=
- =?us-ascii?Q?15WA9WDiTkXNcL3G/C2jEhwUhxjiMI6eXcrqRzNcdkpoVDWOJzApX628dlXe?=
- =?us-ascii?Q?1pt/Aal3iKI+VeuirnR5veL7pYKyblhXqwTGmh7UTrSdmejTD7Q2ojW0UrQk?=
- =?us-ascii?Q?omlMvu2vv454M0eqtM3UxPDvKMXYAzwOw2WBWMa8AO1sBbDlNEhTPrF9huRt?=
- =?us-ascii?Q?3jKnKIS/7nJds36HZNcaLoV49EBl9QzcBR6Y/i1VFL4ieTcaHOCHS/GXMRGl?=
- =?us-ascii?Q?rIReemoU6HMvY3UB08DJvPehAC4gYjaXQ0kJQRuHQxdcyD6ID480DIRigDdk?=
- =?us-ascii?Q?dFdXaIfKt7p+KQhRoQW4jPnMvemLrSNjV7PUJNPJcMk6nJ70MwmXr6grO/OM?=
- =?us-ascii?Q?8tLustidYVC8E2YtmJVWNZWGDi0n2oXOTKn0NLcld1GWGPMwG34Q6WREr0zy?=
- =?us-ascii?Q?chvHkXsrNS/EyEudpF8sRWpASdwSELiDgDTfiX/ZbaI3092C/h8W6nUXnt5n?=
- =?us-ascii?Q?hNT2p5XilYip47Wj0AxOdqLiYFD4NdWekpduvlshr9g8DQrZKA7tb7TsdYA3?=
- =?us-ascii?Q?QD/rIP2ZKpt8fN/HnYZ8D4Q6d7yKReZFuuJ0o/uJarjltG3wnSl2fWYd477r?=
- =?us-ascii?Q?knEfEeCSJ/MiMiiBnCChI5n+dGpLu5Y92UB0nbezipo5SZMeXmBAX7e5myWs?=
- =?us-ascii?Q?WA=3D=3D?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: e99ddca9-7bf6-4a48-1061-08db4da5f80f
-X-MS-Exchange-CrossTenant-AuthSource: CY5PR11MB6139.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 05 May 2023 20:19:03.1187 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: 9y/D0huWIEac0Bc1pewwWGKgIFLv1aSz5BTSWmuTz974P6SXDqfw+07UBOwKD4VKkVClc0ER790rMHqykuH1KgF1BkS0/lRXP4rj21MQq+k=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: BL1PR11MB5544
-X-OriginatorOrg: intel.com
-Subject: Re: [Intel-xe] [PATCH 3/7] drm/xe: Use media base for GMD_ID access
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20230503131005.1602412-4-jani.nikula@intel.com>
+Subject: Re: [Intel-xe] [PATCH 03/18] fixup! drm/xe/display: Implement
+ display support
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -146,53 +45,421 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-xe@lists.freedesktop.org
+Cc: lucas.demarchi@intel.com, intel-xe@lists.freedesktop.org,
+ rodrigo.vivi@intel.com
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Fri, May 05, 2023 at 01:05:18PM -0400, Rodrigo Vivi wrote:
->On Mon, May 01, 2023 at 08:07:28AM -0700, Lucas De Marchi wrote:
->> On Sun, Apr 30, 2023 at 07:47:38PM +0200, Michal Wajdeczko wrote:
->> >
->> >
->> > On 29.04.2023 08:23, Lucas De Marchi wrote:
->> > > Instead of adding a hardcoded base, define GMD_ID() with a base
->> > > argument and use it in all places.
->> > >
->> > > Signed-off-by: Lucas De Marchi <lucas.demarchi@intel.com>
->> > > ---
->> > >  drivers/gpu/drm/xe/regs/xe_gt_regs.h | 4 +++-
->> > >  drivers/gpu/drm/xe/xe_pci.c          | 9 +++++----
->> > >  2 files changed, 8 insertions(+), 5 deletions(-)
->> > >
->> > > diff --git a/drivers/gpu/drm/xe/regs/xe_gt_regs.h b/drivers/gpu/drm/xe/regs/xe_gt_regs.h
->> > > index 4d87f1fe010d..da7b6d2c7e01 100644
->> > > --- a/drivers/gpu/drm/xe/regs/xe_gt_regs.h
->> > > +++ b/drivers/gpu/drm/xe/regs/xe_gt_regs.h
->> > > @@ -8,6 +8,8 @@
->> > >
->> > >  #include "regs/xe_reg_defs.h"
->> > >
->> > > +#define MTL_MEDIA_GT_BASE			0x380000
->> >
->> > maybe for completeness (and to avoid using anonymous 0 offset in other
->> > places) we should define also:
->> >
->> > #define GRAPHICS_GT_BASE			0x0
->>
->> there are very vew places in the driver that would care about the base.
->> Today the base is automatically applied for anything using xe_mmio_,
->> just like we have it automatically applied in intel_uncore for i915.
->> So, we really don't want to change each register to receive base as
->> param.
->
->I'm with Michal here. I had the same thought when reviewing and just read
->his comment afterwards. Although it is rarely used it would be good
->to avoid later confusion.
+On Wed, May 03, 2023 at 04:09:50PM +0300, Jani Nikula wrote:
+> Remove the dummy wrappers and use the uncore glue layer.
 
-rather than changing this to bring the final XE_REG define to the
-header, I think I will just leave it as is and drop this patch.
+ops, I'm really sorry, but this now conflicts after I rebased
+drm-xe-next to drm-tip.
 
-Just rebased the series and end result looks ok
+Could you please provide a rebased version so I apply next week.
 
-Lucas De Marchi
+Then I'm going to do a clean-up rebase and try to move the display
+code up to the top again.
+
+> 
+> Signed-off-by: Jani Nikula <jani.nikula@intel.com>
+> ---
+>  drivers/gpu/drm/xe/display/ext/i915_irq.c | 134 +++++++++++-----------
+>  1 file changed, 64 insertions(+), 70 deletions(-)
+> 
+> diff --git a/drivers/gpu/drm/xe/display/ext/i915_irq.c b/drivers/gpu/drm/xe/display/ext/i915_irq.c
+> index 8a97c3f45620..744b00647ca6 100644
+> --- a/drivers/gpu/drm/xe/display/ext/i915_irq.c
+> +++ b/drivers/gpu/drm/xe/display/ext/i915_irq.c
+> @@ -35,7 +35,6 @@
+>  #include <drm/drm_drv.h>
+>  
+>  #include "icl_dsi_regs.h"
+> -#include "intel_de.h"
+>  #include "intel_display_trace.h"
+>  #include "intel_display_types.h"
+>  #include "intel_fifo_underrun.h"
+> @@ -44,13 +43,8 @@
+>  #include "intel_psr.h"
+>  
+>  #include "i915_drv.h"
+> -#include "intel_de.h"
+> -
+> -#define intel_uncore_read(uncore, reg) intel_de_read(dev_priv, (reg))
+> -#define intel_uncore_read64(uncore, reg) intel_de_read64(dev_priv, (reg))
+> -#define intel_uncore_write(uncore, reg, value) intel_de_write(dev_priv, reg, value)
+> -#define intel_uncore_rmw(uncore, reg, clear, set) intel_de_rmw(dev_priv, reg, clear, set)
+> -#define intel_uncore_posting_read intel_uncore_read
+> +#include "i915_reg.h"
+> +#include "intel_uncore.h"
+>  
+>  static u32 raw_reg_read(void __iomem *base, i915_reg_t reg)
+>  {
+> @@ -68,16 +62,16 @@ static void raw_reg_write(void __iomem *base, i915_reg_t reg, u32 value)
+>  static void gen3_irq_reset(struct xe_device *dev_priv, i915_reg_t imr,
+>  		    i915_reg_t iir, i915_reg_t ier)
+>  {
+> -	intel_uncore_write(dev_priv, imr, 0xffffffff);
+> -	intel_uncore_posting_read(dev_priv, imr);
+> +	intel_uncore_write(&dev_priv->uncore, imr, 0xffffffff);
+> +	intel_uncore_posting_read(&dev_priv->uncore, imr);
+>  
+> -	intel_uncore_write(dev_priv, ier, 0);
+> +	intel_uncore_write(&dev_priv->uncore, ier, 0);
+>  
+>  	/* IIR can theoretically queue up two events. Be paranoid. */
+> -	intel_uncore_write(dev_priv, iir, 0xffffffff);
+> -	intel_uncore_posting_read(dev_priv, iir);
+> -	intel_uncore_write(dev_priv, iir, 0xffffffff);
+> -	intel_uncore_posting_read(dev_priv, iir);
+> +	intel_uncore_write(&dev_priv->uncore, iir, 0xffffffff);
+> +	intel_uncore_posting_read(&dev_priv->uncore, iir);
+> +	intel_uncore_write(&dev_priv->uncore, iir, 0xffffffff);
+> +	intel_uncore_posting_read(&dev_priv->uncore, iir);
+>  }
+>  
+>  /*
+> @@ -85,7 +79,7 @@ static void gen3_irq_reset(struct xe_device *dev_priv, i915_reg_t imr,
+>   */
+>  static void gen3_assert_iir_is_zero(struct xe_device *dev_priv, i915_reg_t reg)
+>  {
+> -	u32 val = intel_uncore_read(dev_priv, reg);
+> +	u32 val = intel_uncore_read(&dev_priv->uncore, reg);
+>  
+>  	if (val == 0)
+>  		return;
+> @@ -93,10 +87,10 @@ static void gen3_assert_iir_is_zero(struct xe_device *dev_priv, i915_reg_t reg)
+>  	drm_WARN(&dev_priv->drm, 1,
+>  		 "Interrupt register 0x%x is not zero: 0x%08x\n",
+>  		 reg.reg, val);
+> -	intel_uncore_write(dev_priv, reg, 0xffffffff);
+> -	intel_uncore_posting_read(dev_priv, reg);
+> -	intel_uncore_write(dev_priv, reg, 0xffffffff);
+> -	intel_uncore_posting_read(dev_priv, reg);
+> +	intel_uncore_write(&dev_priv->uncore, reg, 0xffffffff);
+> +	intel_uncore_posting_read(&dev_priv->uncore, reg);
+> +	intel_uncore_write(&dev_priv->uncore, reg, 0xffffffff);
+> +	intel_uncore_posting_read(&dev_priv->uncore, reg);
+>  }
+>  
+>  static void gen3_irq_init(struct xe_device *dev_priv,
+> @@ -106,9 +100,9 @@ static void gen3_irq_init(struct xe_device *dev_priv,
+>  {
+>  	gen3_assert_iir_is_zero(dev_priv, iir);
+>  
+> -	intel_uncore_write(xe, ier, ier_val);
+> -	intel_uncore_write(xe, imr, imr_val);
+> -	intel_uncore_posting_read(xe, imr);
+> +	intel_uncore_write(&dev_priv->uncore, ier, ier_val);
+> +	intel_uncore_write(&dev_priv->uncore, imr, imr_val);
+> +	intel_uncore_posting_read(&dev_priv->uncore, imr);
+>  }
+>  
+>  #define GEN8_IRQ_RESET_NDX(uncore, type, which) \
+> @@ -223,10 +217,10 @@ i915_hotplug_interrupt_update_locked(struct drm_i915_private *dev_priv,
+>  	lockdep_assert_held(&dev_priv->irq_lock);
+>  	drm_WARN_ON(&dev_priv->drm, bits & ~mask);
+>  
+> -	val = intel_uncore_read(dev_priv, PORT_HOTPLUG_EN);
+> +	val = intel_uncore_read(&dev_priv->uncore, PORT_HOTPLUG_EN);
+>  	val &= ~mask;
+>  	val |= bits;
+> -	intel_uncore_write(dev_priv, PORT_HOTPLUG_EN, val);
+> +	intel_uncore_write(&dev_priv->uncore, PORT_HOTPLUG_EN, val);
+>  }
+>  
+>  /**
+> @@ -276,8 +270,8 @@ static void bdw_update_pipe_irq(struct drm_i915_private *dev_priv,
+>  
+>  	if (new_val != dev_priv->de_irq_mask[pipe]) {
+>  		dev_priv->de_irq_mask[pipe] = new_val;
+> -		intel_uncore_write(dev_priv, GEN8_DE_PIPE_IMR(pipe), dev_priv->de_irq_mask[pipe]);
+> -		intel_uncore_posting_read(dev_priv, GEN8_DE_PIPE_IMR(pipe));
+> +		intel_uncore_write(&dev_priv->uncore, GEN8_DE_PIPE_IMR(pipe), dev_priv->de_irq_mask[pipe]);
+> +		intel_uncore_posting_read(&dev_priv->uncore, GEN8_DE_PIPE_IMR(pipe));
+>  	}
+>  }
+>  
+> @@ -538,7 +532,7 @@ static void hsw_pipe_crc_irq_handler(struct drm_i915_private *dev_priv,
+>  				     enum pipe pipe)
+>  {
+>  	display_pipe_crc_irq_handler(dev_priv, pipe,
+> -				     intel_uncore_read(dev_priv, PIPE_CRC_RES_1_IVB(pipe)),
+> +				     intel_uncore_read(&dev_priv->uncore, PIPE_CRC_RES_1_IVB(pipe)),
+>  				     0, 0, 0, 0);
+>  }
+>  
+> @@ -551,8 +545,8 @@ static void icp_irq_handler(struct drm_i915_private *dev_priv, u32 pch_iir)
+>  	if (ddi_hotplug_trigger) {
+>  		u32 dig_hotplug_reg;
+>  
+> -		dig_hotplug_reg = intel_uncore_read(dev_priv, SHOTPLUG_CTL_DDI);
+> -		intel_uncore_write(dev_priv, SHOTPLUG_CTL_DDI, dig_hotplug_reg);
+> +		dig_hotplug_reg = intel_uncore_read(&dev_priv->uncore, SHOTPLUG_CTL_DDI);
+> +		intel_uncore_write(&dev_priv->uncore, SHOTPLUG_CTL_DDI, dig_hotplug_reg);
+>  
+>  		intel_get_hpd_pins(dev_priv, &pin_mask, &long_mask,
+>  				   ddi_hotplug_trigger, dig_hotplug_reg,
+> @@ -563,8 +557,8 @@ static void icp_irq_handler(struct drm_i915_private *dev_priv, u32 pch_iir)
+>  	if (tc_hotplug_trigger) {
+>  		u32 dig_hotplug_reg;
+>  
+> -		dig_hotplug_reg = intel_uncore_read(dev_priv, SHOTPLUG_CTL_TC);
+> -		intel_uncore_write(dev_priv, SHOTPLUG_CTL_TC, dig_hotplug_reg);
+> +		dig_hotplug_reg = intel_uncore_read(&dev_priv->uncore, SHOTPLUG_CTL_TC);
+> +		intel_uncore_write(&dev_priv->uncore, SHOTPLUG_CTL_TC, dig_hotplug_reg);
+>  
+>  		intel_get_hpd_pins(dev_priv, &pin_mask, &long_mask,
+>  				   tc_hotplug_trigger, dig_hotplug_reg,
+> @@ -588,8 +582,8 @@ static void gen11_hpd_irq_handler(struct drm_i915_private *dev_priv, u32 iir)
+>  	if (trigger_tc) {
+>  		u32 dig_hotplug_reg;
+>  
+> -		dig_hotplug_reg = intel_uncore_read(dev_priv, GEN11_TC_HOTPLUG_CTL);
+> -		intel_uncore_write(dev_priv, GEN11_TC_HOTPLUG_CTL, dig_hotplug_reg);
+> +		dig_hotplug_reg = intel_uncore_read(&dev_priv->uncore, GEN11_TC_HOTPLUG_CTL);
+> +		intel_uncore_write(&dev_priv->uncore, GEN11_TC_HOTPLUG_CTL, dig_hotplug_reg);
+>  
+>  		intel_get_hpd_pins(dev_priv, &pin_mask, &long_mask,
+>  				   trigger_tc, dig_hotplug_reg,
+> @@ -600,8 +594,8 @@ static void gen11_hpd_irq_handler(struct drm_i915_private *dev_priv, u32 iir)
+>  	if (trigger_tbt) {
+>  		u32 dig_hotplug_reg;
+>  
+> -		dig_hotplug_reg = intel_uncore_read(dev_priv, GEN11_TBT_HOTPLUG_CTL);
+> -		intel_uncore_write(dev_priv, GEN11_TBT_HOTPLUG_CTL, dig_hotplug_reg);
+> +		dig_hotplug_reg = intel_uncore_read(&dev_priv->uncore, GEN11_TBT_HOTPLUG_CTL);
+> +		intel_uncore_write(&dev_priv->uncore, GEN11_TBT_HOTPLUG_CTL, dig_hotplug_reg);
+>  
+>  		intel_get_hpd_pins(dev_priv, &pin_mask, &long_mask,
+>  				   trigger_tbt, dig_hotplug_reg,
+> @@ -691,8 +685,8 @@ gen8_de_misc_irq_handler(struct drm_i915_private *dev_priv, u32 iir)
+>  			else
+>  				iir_reg = EDP_PSR_IIR;
+>  
+> -			psr_iir = intel_uncore_read(dev_priv, iir_reg);
+> -			intel_uncore_write(dev_priv, iir_reg, psr_iir);
+> +			psr_iir = intel_uncore_read(&dev_priv->uncore, iir_reg);
+> +			intel_uncore_write(&dev_priv->uncore, iir_reg, psr_iir);
+>  
+>  			if (psr_iir)
+>  				found = true;
+> @@ -721,7 +715,7 @@ static void gen11_dsi_te_interrupt_handler(struct drm_i915_private *dev_priv,
+>  	 * Incase of dual link, TE comes from DSI_1
+>  	 * this is to check if dual link is enabled
+>  	 */
+> -	val = intel_uncore_read(dev_priv, TRANS_DDI_FUNC_CTL2(TRANSCODER_DSI_0));
+> +	val = intel_uncore_read(&dev_priv->uncore, TRANS_DDI_FUNC_CTL2(TRANSCODER_DSI_0));
+>  	val &= PORT_SYNC_MODE_ENABLE;
+>  
+>  	/*
+> @@ -733,7 +727,7 @@ static void gen11_dsi_te_interrupt_handler(struct drm_i915_private *dev_priv,
+>  	dsi_trans = (port == PORT_A) ? TRANSCODER_DSI_0 : TRANSCODER_DSI_1;
+>  
+>  	/* Check if DSI configured in command mode */
+> -	val = intel_uncore_read(dev_priv, DSI_TRANS_FUNC_CONF(dsi_trans));
+> +	val = intel_uncore_read(&dev_priv->uncore, DSI_TRANS_FUNC_CONF(dsi_trans));
+>  	val = val & OP_MODE_MASK;
+>  
+>  	if (val != CMD_MODE_NO_GATE && val != CMD_MODE_TE_GATE) {
+> @@ -742,7 +736,7 @@ static void gen11_dsi_te_interrupt_handler(struct drm_i915_private *dev_priv,
+>  	}
+>  
+>  	/* Get PIPE for handling VBLANK event */
+> -	val = intel_uncore_read(dev_priv, TRANS_DDI_FUNC_CTL(dsi_trans));
+> +	val = intel_uncore_read(&dev_priv->uncore, TRANS_DDI_FUNC_CTL(dsi_trans));
+>  	switch (val & TRANS_DDI_EDP_INPUT_MASK) {
+>  	case TRANS_DDI_EDP_INPUT_A_ON:
+>  		pipe = PIPE_A;
+> @@ -762,8 +756,8 @@ static void gen11_dsi_te_interrupt_handler(struct drm_i915_private *dev_priv,
+>  
+>  	/* clear TE in dsi IIR */
+>  	port = (te_trigger & DSI1_TE) ? PORT_B : PORT_A;
+> -	tmp = intel_uncore_read(dev_priv, DSI_INTR_IDENT_REG(port));
+> -	intel_uncore_write(dev_priv, DSI_INTR_IDENT_REG(port), tmp);
+> +	tmp = intel_uncore_read(&dev_priv->uncore, DSI_INTR_IDENT_REG(port));
+> +	intel_uncore_write(&dev_priv->uncore, DSI_INTR_IDENT_REG(port), tmp);
+>  }
+>  
+>  static u32 gen8_de_pipe_flip_done_mask(struct drm_i915_private *i915)
+> @@ -795,9 +789,9 @@ gen8_de_irq_handler(struct drm_i915_private *dev_priv, u32 master_ctl)
+>  	drm_WARN_ON_ONCE(&dev_priv->drm, !HAS_DISPLAY(dev_priv));
+>  
+>  	if (master_ctl & GEN8_DE_MISC_IRQ) {
+> -		iir = intel_uncore_read(dev_priv, GEN8_DE_MISC_IIR);
+> +		iir = intel_uncore_read(&dev_priv->uncore, GEN8_DE_MISC_IIR);
+>  		if (iir) {
+> -			intel_uncore_write(dev_priv, GEN8_DE_MISC_IIR, iir);
+> +			intel_uncore_write(&dev_priv->uncore, GEN8_DE_MISC_IIR, iir);
+>  			ret = IRQ_HANDLED;
+>  			gen8_de_misc_irq_handler(dev_priv, iir);
+>  		} else {
+> @@ -807,9 +801,9 @@ gen8_de_irq_handler(struct drm_i915_private *dev_priv, u32 master_ctl)
+>  	}
+>  
+>  	if (DISPLAY_VER(dev_priv) >= 11 && (master_ctl & GEN11_DE_HPD_IRQ)) {
+> -		iir = intel_uncore_read(dev_priv, GEN11_DE_HPD_IIR);
+> +		iir = intel_uncore_read(&dev_priv->uncore, GEN11_DE_HPD_IIR);
+>  		if (iir) {
+> -			intel_uncore_write(dev_priv, GEN11_DE_HPD_IIR, iir);
+> +			intel_uncore_write(&dev_priv->uncore, GEN11_DE_HPD_IIR, iir);
+>  			ret = IRQ_HANDLED;
+>  			gen11_hpd_irq_handler(dev_priv, iir);
+>  		} else {
+> @@ -819,11 +813,11 @@ gen8_de_irq_handler(struct drm_i915_private *dev_priv, u32 master_ctl)
+>  	}
+>  
+>  	if (master_ctl & GEN8_DE_PORT_IRQ) {
+> -		iir = intel_uncore_read(dev_priv, GEN8_DE_PORT_IIR);
+> +		iir = intel_uncore_read(&dev_priv->uncore, GEN8_DE_PORT_IIR);
+>  		if (iir) {
+>  			bool found = false;
+>  
+> -			intel_uncore_write(dev_priv, GEN8_DE_PORT_IIR, iir);
+> +			intel_uncore_write(&dev_priv->uncore, GEN8_DE_PORT_IIR, iir);
+>  			ret = IRQ_HANDLED;
+>  
+>  			if (iir & gen8_de_port_aux_mask(dev_priv)) {
+> @@ -855,7 +849,7 @@ gen8_de_irq_handler(struct drm_i915_private *dev_priv, u32 master_ctl)
+>  		if (!(master_ctl & GEN8_DE_PIPE_IRQ(pipe)))
+>  			continue;
+>  
+> -		iir = intel_uncore_read(dev_priv, GEN8_DE_PIPE_IIR(pipe));
+> +		iir = intel_uncore_read(&dev_priv->uncore, GEN8_DE_PIPE_IIR(pipe));
+>  		if (!iir) {
+>  			drm_err(&dev_priv->drm,
+>  				"The master control interrupt lied (DE PIPE)!\n");
+> @@ -863,7 +857,7 @@ gen8_de_irq_handler(struct drm_i915_private *dev_priv, u32 master_ctl)
+>  		}
+>  
+>  		ret = IRQ_HANDLED;
+> -		intel_uncore_write(dev_priv, GEN8_DE_PIPE_IIR(pipe), iir);
+> +		intel_uncore_write(&dev_priv->uncore, GEN8_DE_PIPE_IIR(pipe), iir);
+>  
+>  		if (iir & GEN8_PIPE_VBLANK)
+>  			intel_handle_vblank(dev_priv, pipe);
+> @@ -892,9 +886,9 @@ gen8_de_irq_handler(struct drm_i915_private *dev_priv, u32 master_ctl)
+>  		 * scheme also closed the SDE interrupt handling race we've seen
+>  		 * on older pch-split platforms. But this needs testing.
+>  		 */
+> -		iir = intel_uncore_read(dev_priv, SDEIIR);
+> +		iir = intel_uncore_read(&dev_priv->uncore, SDEIIR);
+>  		if (iir) {
+> -			intel_uncore_write(dev_priv, SDEIIR, iir);
+> +			intel_uncore_write(&dev_priv->uncore, SDEIIR, iir);
+>  			ret = IRQ_HANDLED;
+>  
+>  			if (INTEL_PCH_TYPE(dev_priv) >= PCH_ICP)
+> @@ -944,16 +938,16 @@ static bool gen11_dsi_configure_te(struct intel_crtc *intel_crtc,
+>  	else
+>  		port = PORT_A;
+>  
+> -	tmp =  intel_uncore_read(dev_priv, DSI_INTR_MASK_REG(port));
+> +	tmp =  intel_uncore_read(&dev_priv->uncore, DSI_INTR_MASK_REG(port));
+>  	if (enable)
+>  		tmp &= ~DSI_TE_EVENT;
+>  	else
+>  		tmp |= DSI_TE_EVENT;
+>  
+> -	intel_uncore_write(dev_priv, DSI_INTR_MASK_REG(port), tmp);
+> +	intel_uncore_write(&dev_priv->uncore, DSI_INTR_MASK_REG(port), tmp);
+>  
+> -	tmp = intel_uncore_read(dev_priv, DSI_INTR_IDENT_REG(port));
+> -	intel_uncore_write(dev_priv, DSI_INTR_IDENT_REG(port), tmp);
+> +	tmp = intel_uncore_read(&dev_priv->uncore, DSI_INTR_IDENT_REG(port));
+> +	intel_uncore_write(&dev_priv->uncore, DSI_INTR_IDENT_REG(port), tmp);
+>  
+>  	return true;
+>  }
+> @@ -1006,11 +1000,11 @@ void gen11_display_irq_reset(struct drm_i915_private *dev_priv)
+>  	if (!HAS_DISPLAY(dev_priv))
+>  		return;
+>  
+> -	intel_uncore_write(dev_priv, GEN11_DISPLAY_INT_CTL, 0);
+> +	intel_uncore_write(&dev_priv->uncore, GEN11_DISPLAY_INT_CTL, 0);
+>  
+>  	for_each_cpu_transcoder_masked(dev_priv, trans, trans_mask) {
+> -		intel_uncore_write(dev_priv, TRANS_PSR_IMR(trans), 0xffffffff);
+> -		intel_uncore_write(dev_priv, TRANS_PSR_IIR(trans), 0xffffffff);
+> +		intel_uncore_write(&dev_priv->uncore, TRANS_PSR_IMR(trans), 0xffffffff);
+> +		intel_uncore_write(&dev_priv->uncore, TRANS_PSR_IIR(trans), 0xffffffff);
+>  	}
+>  
+>  	for_each_pipe(dev_priv, pipe)
+> @@ -1162,12 +1156,12 @@ static void dg1_hpd_irq_setup(struct drm_i915_private *dev_priv)
+>  {
+>  	u32 val;
+>  
+> -	val = intel_uncore_read(dev_priv, SOUTH_CHICKEN1);
+> +	val = intel_uncore_read(&dev_priv->uncore, SOUTH_CHICKEN1);
+>  	val |= (INVERT_DDIA_HPD |
+>  		INVERT_DDIB_HPD |
+>  		INVERT_DDIC_HPD |
+>  		INVERT_DDID_HPD);
+> -	intel_uncore_write(dev_priv, SOUTH_CHICKEN1, val);
+> +	intel_uncore_write(&dev_priv->uncore, SOUTH_CHICKEN1, val);
+>  
+>  	icp_hpd_irq_setup(dev_priv);
+>  }
+> @@ -1176,7 +1170,7 @@ static void gen11_tc_hpd_detection_setup(struct drm_i915_private *dev_priv)
+>  {
+>  	u32 hotplug;
+>  
+> -	hotplug = intel_uncore_read(dev_priv, GEN11_TC_HOTPLUG_CTL);
+> +	hotplug = intel_uncore_read(&dev_priv->uncore, GEN11_TC_HOTPLUG_CTL);
+>  	hotplug &= ~(GEN11_HOTPLUG_CTL_ENABLE(HPD_PORT_TC1) |
+>  		     GEN11_HOTPLUG_CTL_ENABLE(HPD_PORT_TC2) |
+>  		     GEN11_HOTPLUG_CTL_ENABLE(HPD_PORT_TC3) |
+> @@ -1184,14 +1178,14 @@ static void gen11_tc_hpd_detection_setup(struct drm_i915_private *dev_priv)
+>  		     GEN11_HOTPLUG_CTL_ENABLE(HPD_PORT_TC5) |
+>  		     GEN11_HOTPLUG_CTL_ENABLE(HPD_PORT_TC6));
+>  	hotplug |= intel_hpd_hotplug_enables(dev_priv, gen11_hotplug_enables);
+> -	intel_uncore_write(dev_priv, GEN11_TC_HOTPLUG_CTL, hotplug);
+> +	intel_uncore_write(&dev_priv->uncore, GEN11_TC_HOTPLUG_CTL, hotplug);
+>  }
+>  
+>  static void gen11_tbt_hpd_detection_setup(struct drm_i915_private *dev_priv)
+>  {
+>  	u32 hotplug;
+>  
+> -	hotplug = intel_uncore_read(dev_priv, GEN11_TBT_HOTPLUG_CTL);
+> +	hotplug = intel_uncore_read(&dev_priv->uncore, GEN11_TBT_HOTPLUG_CTL);
+>  	hotplug &= ~(GEN11_HOTPLUG_CTL_ENABLE(HPD_PORT_TC1) |
+>  		     GEN11_HOTPLUG_CTL_ENABLE(HPD_PORT_TC2) |
+>  		     GEN11_HOTPLUG_CTL_ENABLE(HPD_PORT_TC3) |
+> @@ -1199,7 +1193,7 @@ static void gen11_tbt_hpd_detection_setup(struct drm_i915_private *dev_priv)
+>  		     GEN11_HOTPLUG_CTL_ENABLE(HPD_PORT_TC5) |
+>  		     GEN11_HOTPLUG_CTL_ENABLE(HPD_PORT_TC6));
+>  	hotplug |= intel_hpd_hotplug_enables(dev_priv, gen11_hotplug_enables);
+> -	intel_uncore_write(dev_priv, GEN11_TBT_HOTPLUG_CTL, hotplug);
+> +	intel_uncore_write(&dev_priv->uncore, GEN11_TBT_HOTPLUG_CTL, hotplug);
+>  }
+>  
+>  static void gen11_hpd_irq_setup(struct drm_i915_private *dev_priv)
+> @@ -1210,11 +1204,11 @@ static void gen11_hpd_irq_setup(struct drm_i915_private *dev_priv)
+>  	enabled_irqs = intel_hpd_enabled_irqs(dev_priv, dev_priv->display.hotplug.hpd);
+>  	hotplug_irqs = intel_hpd_hotplug_irqs(dev_priv, dev_priv->display.hotplug.hpd);
+>  
+> -	val = intel_uncore_read(dev_priv, GEN11_DE_HPD_IMR);
+> +	val = intel_uncore_read(&dev_priv->uncore, GEN11_DE_HPD_IMR);
+>  	val &= ~hotplug_irqs;
+>  	val |= ~enabled_irqs & hotplug_irqs;
+> -	intel_uncore_write(dev_priv, GEN11_DE_HPD_IMR, val);
+> -	intel_uncore_posting_read(dev_priv, GEN11_DE_HPD_IMR);
+> +	intel_uncore_write(&dev_priv->uncore, GEN11_DE_HPD_IMR, val);
+> +	intel_uncore_posting_read(&dev_priv->uncore, GEN11_DE_HPD_IMR);
+>  
+>  	gen11_tc_hpd_detection_setup(dev_priv);
+>  	gen11_tbt_hpd_detection_setup(dev_priv);
+> @@ -1301,7 +1295,7 @@ static void gen11_de_irq_postinstall(struct drm_i915_private *dev_priv)
+>  
+>  	gen8_de_irq_postinstall(dev_priv);
+>  
+> -	intel_uncore_write(dev_priv, GEN11_DISPLAY_INT_CTL,
+> +	intel_uncore_write(&dev_priv->uncore, GEN11_DISPLAY_INT_CTL,
+>  			   GEN11_DISPLAY_IRQ_ENABLE);
+>  }
+>  
+> -- 
+> 2.39.2
+> 
