@@ -4,36 +4,61 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7B898C77B7C
-	for <intel-xe@archiver.kernel.org>; Fri,  5 May 2023 20:20:05 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 70AD4C77B7C
+	for <intel-xe@archiver.kernel.org>; Fri,  5 May 2023 20:41:02 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4B36210E08D;
-	Fri,  5 May 2023 20:20:05 +0000 (UTC)
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D724610E08D
- for <intel-xe@lists.freedesktop.org>; Fri,  5 May 2023 20:20:03 +0000 (UTC)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
- (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
- (No client certificate requested)
- by dfw.source.kernel.org (Postfix) with ESMTPS id 2CC1864049;
- Fri,  5 May 2023 20:20:03 +0000 (UTC)
-Received: from rdvivi-mobl4 (unknown [192.55.54.48])
- (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
- (No client certificate requested)
- by smtp.kernel.org (Postfix) with ESMTPSA id 32B17C433D2;
- Fri,  5 May 2023 20:20:00 +0000 (UTC)
-Date: Fri, 5 May 2023 16:19:58 -0400
-From: Rodrigo Vivi <rodrigo.vivi@kernel.org>
-To: Jani Nikula <jani.nikula@intel.com>
-Message-ID: <ZFVk7kcorA3qcpq3@rdvivi-mobl4>
-References: <20230503131005.1602412-1-jani.nikula@intel.com>
- <20230503131005.1602412-4-jani.nikula@intel.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id 44E9910E674;
+	Fri,  5 May 2023 20:41:02 +0000 (UTC)
+Received: from mail-lf1-x12f.google.com (mail-lf1-x12f.google.com
+ [IPv6:2a00:1450:4864:20::12f])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 15DF510E674
+ for <intel-xe@lists.freedesktop.org>; Fri,  5 May 2023 20:40:59 +0000 (UTC)
+Received: by mail-lf1-x12f.google.com with SMTP id
+ 2adb3069b0e04-4f00d41df22so18349742e87.1
+ for <intel-xe@lists.freedesktop.org>; Fri, 05 May 2023 13:40:59 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=gmail.com; s=20221208; t=1683319258; x=1685911258;
+ h=content-transfer-encoding:cc:to:subject:message-id:date:from
+ :in-reply-to:references:mime-version:from:to:cc:subject:date
+ :message-id:reply-to;
+ bh=KhQKMYotRC8/O9cO/7H187WKWz/9R5BHtHHPvSR8xaI=;
+ b=czVzHeuu91Gcvkoq1a0AFz5LQ0OuRFZ5aXWB7pnTTxUaPT7hT4GjumwRTZ55PW5zQU
+ UYVfi7tC8JL/axJgRjwuDK+vlV8R6kQOPQ/2DE2iNRlbOgbCOz0HbX0tyfqZTp5dbHh5
+ MZkVJJxpywnxhU4FI1DDJZBjCIUePPFsxhQhVHI+dRJ1amKiYHDgsgC3Kj8E+05Kh3OF
+ adNAnTWIKKI4jqyHurBRFqV7UhPzV4VGAOOC93FpO/TjpXwykVDOdm4h3GJWtOVFPOEV
+ iliCXJu3kNJLtpv1maoARLFoUeBFFdjQh1gpFQBoXjZFDAMHUSpzdtkHXYcqz7n7WO+a
+ KhYA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20221208; t=1683319258; x=1685911258;
+ h=content-transfer-encoding:cc:to:subject:message-id:date:from
+ :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+ :subject:date:message-id:reply-to;
+ bh=KhQKMYotRC8/O9cO/7H187WKWz/9R5BHtHHPvSR8xaI=;
+ b=Z6SBgUjj5SpoYwPAIxUISPQfkWqYkn0PIbKhI8w5DKfhFCzTwxFoX9yDezdH9zd6MM
+ 94j88BgVvFBLoxV5IM2R+7ahKuKRRWl5hBSiDeNNMVolYnNUbd6ZExs5AvVcUCiuW+sw
+ 2UByAc8KRteN7TI6BT9y7QyJkl0ti1mOfhEHor09P6xpIVAMklAbmpx0XXSM7tvMocyO
+ vP6YTEL7gfbwap/5ZGBg4g5pcoFuOtJCxS1ZOAEPQY0swmCY0dpZ+ZPSIi9YnUzRXkOu
+ YRPYof+zZ+hcnRA4dP1O8t7YbqzwwD+s8ElCaUrX1ShfvmVH828dGxruA3fNDX9L6z22
+ kv0g==
+X-Gm-Message-State: AC+VfDx404hGZPffQ+SwjlI9bqqXWZFDtNuh+Ljj2PsukRMbel9/551d
+ xjssMdmtxRdipQlsJ5YlSEmHrGIbbV5NY+Meh3hXlO85Myg=
+X-Google-Smtp-Source: ACHHUZ4LrAvwWUag9LknJArsyUe3lijJJrJ9zg88Dlr6efVoLcM6P9k+R77rLWNKwqGeWo6LGfqrlKtixYoh2OxdUCo=
+X-Received: by 2002:ac2:554a:0:b0:4f0:13e3:a291 with SMTP id
+ l10-20020ac2554a000000b004f013e3a291mr781841lfk.28.1683319257430; Fri, 05 May
+ 2023 13:40:57 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20230503131005.1602412-4-jani.nikula@intel.com>
-Subject: Re: [Intel-xe] [PATCH 03/18] fixup! drm/xe/display: Implement
- display support
+References: <20230504205250.3898282-1-michael.j.ruhl@intel.com>
+ <20230504205250.3898282-3-michael.j.ruhl@intel.com>
+ <fa8a800c-2db5-f87d-dae8-879c580c831b@intel.com>
+ <DM5PR11MB1324261720D85804F7D28FAEC1729@DM5PR11MB1324.namprd11.prod.outlook.com>
+In-Reply-To: <DM5PR11MB1324261720D85804F7D28FAEC1729@DM5PR11MB1324.namprd11.prod.outlook.com>
+From: Matthew Auld <matthew.william.auld@gmail.com>
+Date: Fri, 5 May 2023 21:40:29 +0100
+Message-ID: <CAM0jSHNw3Q7g5VkpC2Xf1f0WRr8tfGqhFm5DTC04dqssX4SsgQ@mail.gmail.com>
+To: "Ruhl, Michael J" <michael.j.ruhl@intel.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+Subject: Re: [Intel-xe] [PATCH 2/4] drm/xe: Simplify rebar sizing
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -45,421 +70,433 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Cc: lucas.demarchi@intel.com, intel-xe@lists.freedesktop.org,
- rodrigo.vivi@intel.com
+Cc: "Upadhyay, Tejas" <tejas.upadhyay@intel.com>, "Auld,
+ Matthew" <matthew.auld@intel.com>,
+ "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Wed, May 03, 2023 at 04:09:50PM +0300, Jani Nikula wrote:
-> Remove the dummy wrappers and use the uncore glue layer.
+On Fri, 5 May 2023 at 20:59, Ruhl, Michael J <michael.j.ruhl@intel.com> wro=
+te:
+>
+> >-----Original Message-----
+> >From: Auld, Matthew <matthew.auld@intel.com>
+> >Sent: Friday, May 5, 2023 6:36 AM
+> >To: Ruhl, Michael J <michael.j.ruhl@intel.com>; intel-
+> >xe@lists.freedesktop.org
+> >Cc: Brost, Matthew <matthew.brost@intel.com>; Kershner, David
+> ><david.kershner@intel.com>; Ghimiray, Himal Prasad
+> ><himal.prasad.ghimiray@intel.com>; Upadhyay, Tejas
+> ><tejas.upadhyay@intel.com>
+> >Subject: Re: [PATCH 2/4] drm/xe: Simplify rebar sizing
+> >
+> >On 04/05/2023 21:52, Michael J. Ruhl wrote:
+> >> "Right sizing" the PCI BAR is not necessary.  If rebar is needed
+> >> size to the maximum available.
+> >>
+> >> Preserve the force_vram_bar_size sizing.
+> >>
+> >> Update associated code for consistency.
+> >>
+> >> Signed-off-by: Michael J. Ruhl <michael.j.ruhl@intel.com>
+> >> ---
+> >>   drivers/gpu/drm/xe/xe_device_types.h |  14 +--
+> >>   drivers/gpu/drm/xe/xe_migrate.c      |   2 +-
+> >>   drivers/gpu/drm/xe/xe_mmio.c         | 139 +++++++++++++++----------=
+--
+> >>   3 files changed, 88 insertions(+), 67 deletions(-)
+> >>
+> >> diff --git a/drivers/gpu/drm/xe/xe_device_types.h
+> >b/drivers/gpu/drm/xe/xe_device_types.h
+> >> index 1cb404e48aaa..2eeb10e97381 100644
+> >> --- a/drivers/gpu/drm/xe/xe_device_types.h
+> >> +++ b/drivers/gpu/drm/xe/xe_device_types.h
+> >> @@ -193,15 +193,15 @@ struct xe_device {
+> >>                      /**
+> >>                       * @io_size: IO size of VRAM.
+> >>                       *
+> >> -                     * This represents how much of VRAM we can access
+> >via
+> >> -                     * the CPU through the VRAM BAR. This can be smal=
+ler
+> >> -                     * than @size, in which case only part of VRAM is=
+ CPU
+> >> -                     * accessible (typically the first 256M). This
+> >> -                     * configuration is known as small-bar.
+> >> +                     * This represents how much of VRAM the CPU can
+> >access
+> >> +                     * via the VRAM BAR.
+> >> +                     * On systems that do not support large BAR IO sp=
+ace,
+> >> +                     * this can be smaller than the actual memory siz=
+e, in
+> >> +                     * which case only part of VRAM is CPU accessible
+> >> +                     * (typically the first 256M).  This configuratio=
+n is
+> >> +                     * known as small-bar.
+> >>                       */
+> >>                      resource_size_t io_size;
+> >> -                    /** @size: Total size of VRAM */
+> >> -                    resource_size_t size;
+> >>                      /** @mapping: pointer to VRAM mappable space */
+> >>                      void *__iomem mapping;
+> >>              } vram;
+> >> diff --git a/drivers/gpu/drm/xe/xe_migrate.c
+> >b/drivers/gpu/drm/xe/xe_migrate.c
+> >> index f40f47ccb76f..a1d507db0098 100644
+> >> --- a/drivers/gpu/drm/xe/xe_migrate.c
+> >> +++ b/drivers/gpu/drm/xe/xe_migrate.c
+> >> @@ -270,7 +270,7 @@ static int xe_migrate_prepare_vm(struct xe_gt *gt,
+> >struct xe_migrate *m,
+> >>               * Use 1GB pages, it shouldn't matter the physical amount=
+ of
+> >>               * vram is less, when we don't access it.
+> >>               */
+> >> -            for (pos =3D 0; pos < xe->mem.vram.size; pos +=3D SZ_1G, =
+ofs +=3D
+> >8)
+> >> +            for (pos =3D 0; pos < xe->mem.vram.io_size; pos +=3D SZ_1=
+G, ofs
+> >+=3D 8)
+> >
+> >Can we somehow keep this as the total amount of GPU addressable VRAM?
+> >Just realised with small-bar this would need to be changed again.
+> >Otherwise I think looks good.
+>
+> Matt,
+>
+> For this patch (because of the min() usage, this is the total amount of a=
+ddressable
+> VRAM (.size was eliminated).  So I think that this is doing what you want=
+.
+>
+> However, for the next patch, this value will expand to the total IO space=
+ for all tiles.
 
-ops, I'm really sorry, but this now conflicts after I rebased
-drm-xe-next to drm-tip.
+With small-bar we will eventually (once that code lands) end up with
+256M io_size, but then the VRAM size will be say 16G. And here we want
+to map the whole 16G.
 
-Could you please provide a rebased version so I apply next week.
+>
+> This code will "map" the whole space, gaps included (stolen, GTT space et=
+c).
+>
+> So if we need to map only the available VRAM for both tiles, we would nee=
+d
+> to probably do this on a GT level up to the GSMBASE "size" with something=
+ like this:
+>
+>         for_each_gt() {
+>                 for pos =3D gt->vram.base; pos < gt->vram.io_size + gt->v=
+ram.base;
+>                  ...
+>         }
+>
+> Does this make sense?
 
-Then I'm going to do a clean-up rebase and try to move the display
-code up to the top again.
+Yeah, the gaps are fine I think, even the stolen portion since we
+never actually touch it, so it's fine to map it.  We could maybe just
+keep the xe->mem.vram.size which just gets the total_size from patch
+2.
 
-> 
-> Signed-off-by: Jani Nikula <jani.nikula@intel.com>
-> ---
->  drivers/gpu/drm/xe/display/ext/i915_irq.c | 134 +++++++++++-----------
->  1 file changed, 64 insertions(+), 70 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/xe/display/ext/i915_irq.c b/drivers/gpu/drm/xe/display/ext/i915_irq.c
-> index 8a97c3f45620..744b00647ca6 100644
-> --- a/drivers/gpu/drm/xe/display/ext/i915_irq.c
-> +++ b/drivers/gpu/drm/xe/display/ext/i915_irq.c
-> @@ -35,7 +35,6 @@
->  #include <drm/drm_drv.h>
->  
->  #include "icl_dsi_regs.h"
-> -#include "intel_de.h"
->  #include "intel_display_trace.h"
->  #include "intel_display_types.h"
->  #include "intel_fifo_underrun.h"
-> @@ -44,13 +43,8 @@
->  #include "intel_psr.h"
->  
->  #include "i915_drv.h"
-> -#include "intel_de.h"
-> -
-> -#define intel_uncore_read(uncore, reg) intel_de_read(dev_priv, (reg))
-> -#define intel_uncore_read64(uncore, reg) intel_de_read64(dev_priv, (reg))
-> -#define intel_uncore_write(uncore, reg, value) intel_de_write(dev_priv, reg, value)
-> -#define intel_uncore_rmw(uncore, reg, clear, set) intel_de_rmw(dev_priv, reg, clear, set)
-> -#define intel_uncore_posting_read intel_uncore_read
-> +#include "i915_reg.h"
-> +#include "intel_uncore.h"
->  
->  static u32 raw_reg_read(void __iomem *base, i915_reg_t reg)
->  {
-> @@ -68,16 +62,16 @@ static void raw_reg_write(void __iomem *base, i915_reg_t reg, u32 value)
->  static void gen3_irq_reset(struct xe_device *dev_priv, i915_reg_t imr,
->  		    i915_reg_t iir, i915_reg_t ier)
->  {
-> -	intel_uncore_write(dev_priv, imr, 0xffffffff);
-> -	intel_uncore_posting_read(dev_priv, imr);
-> +	intel_uncore_write(&dev_priv->uncore, imr, 0xffffffff);
-> +	intel_uncore_posting_read(&dev_priv->uncore, imr);
->  
-> -	intel_uncore_write(dev_priv, ier, 0);
-> +	intel_uncore_write(&dev_priv->uncore, ier, 0);
->  
->  	/* IIR can theoretically queue up two events. Be paranoid. */
-> -	intel_uncore_write(dev_priv, iir, 0xffffffff);
-> -	intel_uncore_posting_read(dev_priv, iir);
-> -	intel_uncore_write(dev_priv, iir, 0xffffffff);
-> -	intel_uncore_posting_read(dev_priv, iir);
-> +	intel_uncore_write(&dev_priv->uncore, iir, 0xffffffff);
-> +	intel_uncore_posting_read(&dev_priv->uncore, iir);
-> +	intel_uncore_write(&dev_priv->uncore, iir, 0xffffffff);
-> +	intel_uncore_posting_read(&dev_priv->uncore, iir);
->  }
->  
->  /*
-> @@ -85,7 +79,7 @@ static void gen3_irq_reset(struct xe_device *dev_priv, i915_reg_t imr,
->   */
->  static void gen3_assert_iir_is_zero(struct xe_device *dev_priv, i915_reg_t reg)
->  {
-> -	u32 val = intel_uncore_read(dev_priv, reg);
-> +	u32 val = intel_uncore_read(&dev_priv->uncore, reg);
->  
->  	if (val == 0)
->  		return;
-> @@ -93,10 +87,10 @@ static void gen3_assert_iir_is_zero(struct xe_device *dev_priv, i915_reg_t reg)
->  	drm_WARN(&dev_priv->drm, 1,
->  		 "Interrupt register 0x%x is not zero: 0x%08x\n",
->  		 reg.reg, val);
-> -	intel_uncore_write(dev_priv, reg, 0xffffffff);
-> -	intel_uncore_posting_read(dev_priv, reg);
-> -	intel_uncore_write(dev_priv, reg, 0xffffffff);
-> -	intel_uncore_posting_read(dev_priv, reg);
-> +	intel_uncore_write(&dev_priv->uncore, reg, 0xffffffff);
-> +	intel_uncore_posting_read(&dev_priv->uncore, reg);
-> +	intel_uncore_write(&dev_priv->uncore, reg, 0xffffffff);
-> +	intel_uncore_posting_read(&dev_priv->uncore, reg);
->  }
->  
->  static void gen3_irq_init(struct xe_device *dev_priv,
-> @@ -106,9 +100,9 @@ static void gen3_irq_init(struct xe_device *dev_priv,
->  {
->  	gen3_assert_iir_is_zero(dev_priv, iir);
->  
-> -	intel_uncore_write(xe, ier, ier_val);
-> -	intel_uncore_write(xe, imr, imr_val);
-> -	intel_uncore_posting_read(xe, imr);
-> +	intel_uncore_write(&dev_priv->uncore, ier, ier_val);
-> +	intel_uncore_write(&dev_priv->uncore, imr, imr_val);
-> +	intel_uncore_posting_read(&dev_priv->uncore, imr);
->  }
->  
->  #define GEN8_IRQ_RESET_NDX(uncore, type, which) \
-> @@ -223,10 +217,10 @@ i915_hotplug_interrupt_update_locked(struct drm_i915_private *dev_priv,
->  	lockdep_assert_held(&dev_priv->irq_lock);
->  	drm_WARN_ON(&dev_priv->drm, bits & ~mask);
->  
-> -	val = intel_uncore_read(dev_priv, PORT_HOTPLUG_EN);
-> +	val = intel_uncore_read(&dev_priv->uncore, PORT_HOTPLUG_EN);
->  	val &= ~mask;
->  	val |= bits;
-> -	intel_uncore_write(dev_priv, PORT_HOTPLUG_EN, val);
-> +	intel_uncore_write(&dev_priv->uncore, PORT_HOTPLUG_EN, val);
->  }
->  
->  /**
-> @@ -276,8 +270,8 @@ static void bdw_update_pipe_irq(struct drm_i915_private *dev_priv,
->  
->  	if (new_val != dev_priv->de_irq_mask[pipe]) {
->  		dev_priv->de_irq_mask[pipe] = new_val;
-> -		intel_uncore_write(dev_priv, GEN8_DE_PIPE_IMR(pipe), dev_priv->de_irq_mask[pipe]);
-> -		intel_uncore_posting_read(dev_priv, GEN8_DE_PIPE_IMR(pipe));
-> +		intel_uncore_write(&dev_priv->uncore, GEN8_DE_PIPE_IMR(pipe), dev_priv->de_irq_mask[pipe]);
-> +		intel_uncore_posting_read(&dev_priv->uncore, GEN8_DE_PIPE_IMR(pipe));
->  	}
->  }
->  
-> @@ -538,7 +532,7 @@ static void hsw_pipe_crc_irq_handler(struct drm_i915_private *dev_priv,
->  				     enum pipe pipe)
->  {
->  	display_pipe_crc_irq_handler(dev_priv, pipe,
-> -				     intel_uncore_read(dev_priv, PIPE_CRC_RES_1_IVB(pipe)),
-> +				     intel_uncore_read(&dev_priv->uncore, PIPE_CRC_RES_1_IVB(pipe)),
->  				     0, 0, 0, 0);
->  }
->  
-> @@ -551,8 +545,8 @@ static void icp_irq_handler(struct drm_i915_private *dev_priv, u32 pch_iir)
->  	if (ddi_hotplug_trigger) {
->  		u32 dig_hotplug_reg;
->  
-> -		dig_hotplug_reg = intel_uncore_read(dev_priv, SHOTPLUG_CTL_DDI);
-> -		intel_uncore_write(dev_priv, SHOTPLUG_CTL_DDI, dig_hotplug_reg);
-> +		dig_hotplug_reg = intel_uncore_read(&dev_priv->uncore, SHOTPLUG_CTL_DDI);
-> +		intel_uncore_write(&dev_priv->uncore, SHOTPLUG_CTL_DDI, dig_hotplug_reg);
->  
->  		intel_get_hpd_pins(dev_priv, &pin_mask, &long_mask,
->  				   ddi_hotplug_trigger, dig_hotplug_reg,
-> @@ -563,8 +557,8 @@ static void icp_irq_handler(struct drm_i915_private *dev_priv, u32 pch_iir)
->  	if (tc_hotplug_trigger) {
->  		u32 dig_hotplug_reg;
->  
-> -		dig_hotplug_reg = intel_uncore_read(dev_priv, SHOTPLUG_CTL_TC);
-> -		intel_uncore_write(dev_priv, SHOTPLUG_CTL_TC, dig_hotplug_reg);
-> +		dig_hotplug_reg = intel_uncore_read(&dev_priv->uncore, SHOTPLUG_CTL_TC);
-> +		intel_uncore_write(&dev_priv->uncore, SHOTPLUG_CTL_TC, dig_hotplug_reg);
->  
->  		intel_get_hpd_pins(dev_priv, &pin_mask, &long_mask,
->  				   tc_hotplug_trigger, dig_hotplug_reg,
-> @@ -588,8 +582,8 @@ static void gen11_hpd_irq_handler(struct drm_i915_private *dev_priv, u32 iir)
->  	if (trigger_tc) {
->  		u32 dig_hotplug_reg;
->  
-> -		dig_hotplug_reg = intel_uncore_read(dev_priv, GEN11_TC_HOTPLUG_CTL);
-> -		intel_uncore_write(dev_priv, GEN11_TC_HOTPLUG_CTL, dig_hotplug_reg);
-> +		dig_hotplug_reg = intel_uncore_read(&dev_priv->uncore, GEN11_TC_HOTPLUG_CTL);
-> +		intel_uncore_write(&dev_priv->uncore, GEN11_TC_HOTPLUG_CTL, dig_hotplug_reg);
->  
->  		intel_get_hpd_pins(dev_priv, &pin_mask, &long_mask,
->  				   trigger_tc, dig_hotplug_reg,
-> @@ -600,8 +594,8 @@ static void gen11_hpd_irq_handler(struct drm_i915_private *dev_priv, u32 iir)
->  	if (trigger_tbt) {
->  		u32 dig_hotplug_reg;
->  
-> -		dig_hotplug_reg = intel_uncore_read(dev_priv, GEN11_TBT_HOTPLUG_CTL);
-> -		intel_uncore_write(dev_priv, GEN11_TBT_HOTPLUG_CTL, dig_hotplug_reg);
-> +		dig_hotplug_reg = intel_uncore_read(&dev_priv->uncore, GEN11_TBT_HOTPLUG_CTL);
-> +		intel_uncore_write(&dev_priv->uncore, GEN11_TBT_HOTPLUG_CTL, dig_hotplug_reg);
->  
->  		intel_get_hpd_pins(dev_priv, &pin_mask, &long_mask,
->  				   trigger_tbt, dig_hotplug_reg,
-> @@ -691,8 +685,8 @@ gen8_de_misc_irq_handler(struct drm_i915_private *dev_priv, u32 iir)
->  			else
->  				iir_reg = EDP_PSR_IIR;
->  
-> -			psr_iir = intel_uncore_read(dev_priv, iir_reg);
-> -			intel_uncore_write(dev_priv, iir_reg, psr_iir);
-> +			psr_iir = intel_uncore_read(&dev_priv->uncore, iir_reg);
-> +			intel_uncore_write(&dev_priv->uncore, iir_reg, psr_iir);
->  
->  			if (psr_iir)
->  				found = true;
-> @@ -721,7 +715,7 @@ static void gen11_dsi_te_interrupt_handler(struct drm_i915_private *dev_priv,
->  	 * Incase of dual link, TE comes from DSI_1
->  	 * this is to check if dual link is enabled
->  	 */
-> -	val = intel_uncore_read(dev_priv, TRANS_DDI_FUNC_CTL2(TRANSCODER_DSI_0));
-> +	val = intel_uncore_read(&dev_priv->uncore, TRANS_DDI_FUNC_CTL2(TRANSCODER_DSI_0));
->  	val &= PORT_SYNC_MODE_ENABLE;
->  
->  	/*
-> @@ -733,7 +727,7 @@ static void gen11_dsi_te_interrupt_handler(struct drm_i915_private *dev_priv,
->  	dsi_trans = (port == PORT_A) ? TRANSCODER_DSI_0 : TRANSCODER_DSI_1;
->  
->  	/* Check if DSI configured in command mode */
-> -	val = intel_uncore_read(dev_priv, DSI_TRANS_FUNC_CONF(dsi_trans));
-> +	val = intel_uncore_read(&dev_priv->uncore, DSI_TRANS_FUNC_CONF(dsi_trans));
->  	val = val & OP_MODE_MASK;
->  
->  	if (val != CMD_MODE_NO_GATE && val != CMD_MODE_TE_GATE) {
-> @@ -742,7 +736,7 @@ static void gen11_dsi_te_interrupt_handler(struct drm_i915_private *dev_priv,
->  	}
->  
->  	/* Get PIPE for handling VBLANK event */
-> -	val = intel_uncore_read(dev_priv, TRANS_DDI_FUNC_CTL(dsi_trans));
-> +	val = intel_uncore_read(&dev_priv->uncore, TRANS_DDI_FUNC_CTL(dsi_trans));
->  	switch (val & TRANS_DDI_EDP_INPUT_MASK) {
->  	case TRANS_DDI_EDP_INPUT_A_ON:
->  		pipe = PIPE_A;
-> @@ -762,8 +756,8 @@ static void gen11_dsi_te_interrupt_handler(struct drm_i915_private *dev_priv,
->  
->  	/* clear TE in dsi IIR */
->  	port = (te_trigger & DSI1_TE) ? PORT_B : PORT_A;
-> -	tmp = intel_uncore_read(dev_priv, DSI_INTR_IDENT_REG(port));
-> -	intel_uncore_write(dev_priv, DSI_INTR_IDENT_REG(port), tmp);
-> +	tmp = intel_uncore_read(&dev_priv->uncore, DSI_INTR_IDENT_REG(port));
-> +	intel_uncore_write(&dev_priv->uncore, DSI_INTR_IDENT_REG(port), tmp);
->  }
->  
->  static u32 gen8_de_pipe_flip_done_mask(struct drm_i915_private *i915)
-> @@ -795,9 +789,9 @@ gen8_de_irq_handler(struct drm_i915_private *dev_priv, u32 master_ctl)
->  	drm_WARN_ON_ONCE(&dev_priv->drm, !HAS_DISPLAY(dev_priv));
->  
->  	if (master_ctl & GEN8_DE_MISC_IRQ) {
-> -		iir = intel_uncore_read(dev_priv, GEN8_DE_MISC_IIR);
-> +		iir = intel_uncore_read(&dev_priv->uncore, GEN8_DE_MISC_IIR);
->  		if (iir) {
-> -			intel_uncore_write(dev_priv, GEN8_DE_MISC_IIR, iir);
-> +			intel_uncore_write(&dev_priv->uncore, GEN8_DE_MISC_IIR, iir);
->  			ret = IRQ_HANDLED;
->  			gen8_de_misc_irq_handler(dev_priv, iir);
->  		} else {
-> @@ -807,9 +801,9 @@ gen8_de_irq_handler(struct drm_i915_private *dev_priv, u32 master_ctl)
->  	}
->  
->  	if (DISPLAY_VER(dev_priv) >= 11 && (master_ctl & GEN11_DE_HPD_IRQ)) {
-> -		iir = intel_uncore_read(dev_priv, GEN11_DE_HPD_IIR);
-> +		iir = intel_uncore_read(&dev_priv->uncore, GEN11_DE_HPD_IIR);
->  		if (iir) {
-> -			intel_uncore_write(dev_priv, GEN11_DE_HPD_IIR, iir);
-> +			intel_uncore_write(&dev_priv->uncore, GEN11_DE_HPD_IIR, iir);
->  			ret = IRQ_HANDLED;
->  			gen11_hpd_irq_handler(dev_priv, iir);
->  		} else {
-> @@ -819,11 +813,11 @@ gen8_de_irq_handler(struct drm_i915_private *dev_priv, u32 master_ctl)
->  	}
->  
->  	if (master_ctl & GEN8_DE_PORT_IRQ) {
-> -		iir = intel_uncore_read(dev_priv, GEN8_DE_PORT_IIR);
-> +		iir = intel_uncore_read(&dev_priv->uncore, GEN8_DE_PORT_IIR);
->  		if (iir) {
->  			bool found = false;
->  
-> -			intel_uncore_write(dev_priv, GEN8_DE_PORT_IIR, iir);
-> +			intel_uncore_write(&dev_priv->uncore, GEN8_DE_PORT_IIR, iir);
->  			ret = IRQ_HANDLED;
->  
->  			if (iir & gen8_de_port_aux_mask(dev_priv)) {
-> @@ -855,7 +849,7 @@ gen8_de_irq_handler(struct drm_i915_private *dev_priv, u32 master_ctl)
->  		if (!(master_ctl & GEN8_DE_PIPE_IRQ(pipe)))
->  			continue;
->  
-> -		iir = intel_uncore_read(dev_priv, GEN8_DE_PIPE_IIR(pipe));
-> +		iir = intel_uncore_read(&dev_priv->uncore, GEN8_DE_PIPE_IIR(pipe));
->  		if (!iir) {
->  			drm_err(&dev_priv->drm,
->  				"The master control interrupt lied (DE PIPE)!\n");
-> @@ -863,7 +857,7 @@ gen8_de_irq_handler(struct drm_i915_private *dev_priv, u32 master_ctl)
->  		}
->  
->  		ret = IRQ_HANDLED;
-> -		intel_uncore_write(dev_priv, GEN8_DE_PIPE_IIR(pipe), iir);
-> +		intel_uncore_write(&dev_priv->uncore, GEN8_DE_PIPE_IIR(pipe), iir);
->  
->  		if (iir & GEN8_PIPE_VBLANK)
->  			intel_handle_vblank(dev_priv, pipe);
-> @@ -892,9 +886,9 @@ gen8_de_irq_handler(struct drm_i915_private *dev_priv, u32 master_ctl)
->  		 * scheme also closed the SDE interrupt handling race we've seen
->  		 * on older pch-split platforms. But this needs testing.
->  		 */
-> -		iir = intel_uncore_read(dev_priv, SDEIIR);
-> +		iir = intel_uncore_read(&dev_priv->uncore, SDEIIR);
->  		if (iir) {
-> -			intel_uncore_write(dev_priv, SDEIIR, iir);
-> +			intel_uncore_write(&dev_priv->uncore, SDEIIR, iir);
->  			ret = IRQ_HANDLED;
->  
->  			if (INTEL_PCH_TYPE(dev_priv) >= PCH_ICP)
-> @@ -944,16 +938,16 @@ static bool gen11_dsi_configure_te(struct intel_crtc *intel_crtc,
->  	else
->  		port = PORT_A;
->  
-> -	tmp =  intel_uncore_read(dev_priv, DSI_INTR_MASK_REG(port));
-> +	tmp =  intel_uncore_read(&dev_priv->uncore, DSI_INTR_MASK_REG(port));
->  	if (enable)
->  		tmp &= ~DSI_TE_EVENT;
->  	else
->  		tmp |= DSI_TE_EVENT;
->  
-> -	intel_uncore_write(dev_priv, DSI_INTR_MASK_REG(port), tmp);
-> +	intel_uncore_write(&dev_priv->uncore, DSI_INTR_MASK_REG(port), tmp);
->  
-> -	tmp = intel_uncore_read(dev_priv, DSI_INTR_IDENT_REG(port));
-> -	intel_uncore_write(dev_priv, DSI_INTR_IDENT_REG(port), tmp);
-> +	tmp = intel_uncore_read(&dev_priv->uncore, DSI_INTR_IDENT_REG(port));
-> +	intel_uncore_write(&dev_priv->uncore, DSI_INTR_IDENT_REG(port), tmp);
->  
->  	return true;
->  }
-> @@ -1006,11 +1000,11 @@ void gen11_display_irq_reset(struct drm_i915_private *dev_priv)
->  	if (!HAS_DISPLAY(dev_priv))
->  		return;
->  
-> -	intel_uncore_write(dev_priv, GEN11_DISPLAY_INT_CTL, 0);
-> +	intel_uncore_write(&dev_priv->uncore, GEN11_DISPLAY_INT_CTL, 0);
->  
->  	for_each_cpu_transcoder_masked(dev_priv, trans, trans_mask) {
-> -		intel_uncore_write(dev_priv, TRANS_PSR_IMR(trans), 0xffffffff);
-> -		intel_uncore_write(dev_priv, TRANS_PSR_IIR(trans), 0xffffffff);
-> +		intel_uncore_write(&dev_priv->uncore, TRANS_PSR_IMR(trans), 0xffffffff);
-> +		intel_uncore_write(&dev_priv->uncore, TRANS_PSR_IIR(trans), 0xffffffff);
->  	}
->  
->  	for_each_pipe(dev_priv, pipe)
-> @@ -1162,12 +1156,12 @@ static void dg1_hpd_irq_setup(struct drm_i915_private *dev_priv)
->  {
->  	u32 val;
->  
-> -	val = intel_uncore_read(dev_priv, SOUTH_CHICKEN1);
-> +	val = intel_uncore_read(&dev_priv->uncore, SOUTH_CHICKEN1);
->  	val |= (INVERT_DDIA_HPD |
->  		INVERT_DDIB_HPD |
->  		INVERT_DDIC_HPD |
->  		INVERT_DDID_HPD);
-> -	intel_uncore_write(dev_priv, SOUTH_CHICKEN1, val);
-> +	intel_uncore_write(&dev_priv->uncore, SOUTH_CHICKEN1, val);
->  
->  	icp_hpd_irq_setup(dev_priv);
->  }
-> @@ -1176,7 +1170,7 @@ static void gen11_tc_hpd_detection_setup(struct drm_i915_private *dev_priv)
->  {
->  	u32 hotplug;
->  
-> -	hotplug = intel_uncore_read(dev_priv, GEN11_TC_HOTPLUG_CTL);
-> +	hotplug = intel_uncore_read(&dev_priv->uncore, GEN11_TC_HOTPLUG_CTL);
->  	hotplug &= ~(GEN11_HOTPLUG_CTL_ENABLE(HPD_PORT_TC1) |
->  		     GEN11_HOTPLUG_CTL_ENABLE(HPD_PORT_TC2) |
->  		     GEN11_HOTPLUG_CTL_ENABLE(HPD_PORT_TC3) |
-> @@ -1184,14 +1178,14 @@ static void gen11_tc_hpd_detection_setup(struct drm_i915_private *dev_priv)
->  		     GEN11_HOTPLUG_CTL_ENABLE(HPD_PORT_TC5) |
->  		     GEN11_HOTPLUG_CTL_ENABLE(HPD_PORT_TC6));
->  	hotplug |= intel_hpd_hotplug_enables(dev_priv, gen11_hotplug_enables);
-> -	intel_uncore_write(dev_priv, GEN11_TC_HOTPLUG_CTL, hotplug);
-> +	intel_uncore_write(&dev_priv->uncore, GEN11_TC_HOTPLUG_CTL, hotplug);
->  }
->  
->  static void gen11_tbt_hpd_detection_setup(struct drm_i915_private *dev_priv)
->  {
->  	u32 hotplug;
->  
-> -	hotplug = intel_uncore_read(dev_priv, GEN11_TBT_HOTPLUG_CTL);
-> +	hotplug = intel_uncore_read(&dev_priv->uncore, GEN11_TBT_HOTPLUG_CTL);
->  	hotplug &= ~(GEN11_HOTPLUG_CTL_ENABLE(HPD_PORT_TC1) |
->  		     GEN11_HOTPLUG_CTL_ENABLE(HPD_PORT_TC2) |
->  		     GEN11_HOTPLUG_CTL_ENABLE(HPD_PORT_TC3) |
-> @@ -1199,7 +1193,7 @@ static void gen11_tbt_hpd_detection_setup(struct drm_i915_private *dev_priv)
->  		     GEN11_HOTPLUG_CTL_ENABLE(HPD_PORT_TC5) |
->  		     GEN11_HOTPLUG_CTL_ENABLE(HPD_PORT_TC6));
->  	hotplug |= intel_hpd_hotplug_enables(dev_priv, gen11_hotplug_enables);
-> -	intel_uncore_write(dev_priv, GEN11_TBT_HOTPLUG_CTL, hotplug);
-> +	intel_uncore_write(&dev_priv->uncore, GEN11_TBT_HOTPLUG_CTL, hotplug);
->  }
->  
->  static void gen11_hpd_irq_setup(struct drm_i915_private *dev_priv)
-> @@ -1210,11 +1204,11 @@ static void gen11_hpd_irq_setup(struct drm_i915_private *dev_priv)
->  	enabled_irqs = intel_hpd_enabled_irqs(dev_priv, dev_priv->display.hotplug.hpd);
->  	hotplug_irqs = intel_hpd_hotplug_irqs(dev_priv, dev_priv->display.hotplug.hpd);
->  
-> -	val = intel_uncore_read(dev_priv, GEN11_DE_HPD_IMR);
-> +	val = intel_uncore_read(&dev_priv->uncore, GEN11_DE_HPD_IMR);
->  	val &= ~hotplug_irqs;
->  	val |= ~enabled_irqs & hotplug_irqs;
-> -	intel_uncore_write(dev_priv, GEN11_DE_HPD_IMR, val);
-> -	intel_uncore_posting_read(dev_priv, GEN11_DE_HPD_IMR);
-> +	intel_uncore_write(&dev_priv->uncore, GEN11_DE_HPD_IMR, val);
-> +	intel_uncore_posting_read(&dev_priv->uncore, GEN11_DE_HPD_IMR);
->  
->  	gen11_tc_hpd_detection_setup(dev_priv);
->  	gen11_tbt_hpd_detection_setup(dev_priv);
-> @@ -1301,7 +1295,7 @@ static void gen11_de_irq_postinstall(struct drm_i915_private *dev_priv)
->  
->  	gen8_de_irq_postinstall(dev_priv);
->  
-> -	intel_uncore_write(dev_priv, GEN11_DISPLAY_INT_CTL,
-> +	intel_uncore_write(&dev_priv->uncore, GEN11_DISPLAY_INT_CTL,
->  			   GEN11_DISPLAY_IRQ_ENABLE);
->  }
->  
-> -- 
-> 2.39.2
-> 
+>
+> I am not clear on what this mapping is for.  Can you explain a bit?
+
+I think it's just the usual trick to 1:1 map all of VRAM to matching
+addresses in some special ppGTT. Like say we have VRAM
+phys_addr=3D0x100000 we would then also have gtt_addr=3D0x100000, which
+maps the same VRAM address in the PTE. We do that for all VRAM and for
+every tile, and since we use 1G GTT entries we can do that very
+cheaply. The idea is that we can now access any part of VRAM using the
+GPU, and can trivially get the GTT address, without needing to worry
+about dynamically allocating and binding any page-tables on the fly,
+which is useful when clearing, copying/evicting, writing page-tables
+etc. Also since the addresses we touch here must belong to an object,
+we can be sure they never touch anything out of bounds, like stolen
+etc, which is important since we map all of VRAM, and not just the
+usable portion.
+
+
+>
+> Thoughts?
+>
+> m
+>
+>
+> >
+> >>                      xe_map_wr(xe, &bo->vmap, ofs, u64, pos | flags);
+> >>      }
+> >>
+> >> diff --git a/drivers/gpu/drm/xe/xe_mmio.c
+> >b/drivers/gpu/drm/xe/xe_mmio.c
+> >> index bc6835d67352..8ec044473886 100644
+> >> --- a/drivers/gpu/drm/xe/xe_mmio.c
+> >> +++ b/drivers/gpu/drm/xe/xe_mmio.c
+> >> @@ -1,8 +1,10 @@
+> >>   // SPDX-License-Identifier: MIT
+> >>   /*
+> >> - * Copyright =C2=A9 2021 Intel Corporation
+> >> + * Copyright =C2=A9 2021-2023 Intel Corporation
+> >>    */
+> >>
+> >> +#include <linux/minmax.h>
+> >> +
+> >>   #include "xe_mmio.h"
+> >>
+> >>   #include <drm/drm_managed.h>
+> >> @@ -20,6 +22,8 @@
+> >>   #define XEHP_MTCFG_ADDR            XE_REG(0x101800)
+> >>   #define TILE_COUNT         REG_GENMASK(15, 8)
+> >>
+> >> +#define BAR_SIZE_SHIFT 20
+> >> +
+> >>   static int xe_set_dma_info(struct xe_device *xe)
+> >>   {
+> >>      unsigned int mask_size =3D xe->info.dma_mask_size;
+> >> @@ -60,50 +64,65 @@ _resize_bar(struct xe_device *xe, int resno,
+> >resource_size_t size)
+> >>      if (ret) {
+> >>              drm_info(&xe->drm, "Failed to resize BAR%d to %dM (%pe).
+> >Consider enabling 'Resizable BAR' support in your BIOS\n",
+> >>                       resno, 1 << bar_size, ERR_PTR(ret));
+> >> -            return -1;
+> >> +            return ret;
+> >>      }
+> >>
+> >>      drm_info(&xe->drm, "BAR%d resized to %dM\n", resno, 1 <<
+> >bar_size);
+> >> -    return 1;
+> >> +    return ret;
+> >>   }
+> >>
+> >> -static int xe_resize_vram_bar(struct xe_device *xe, resource_size_t
+> >vram_size)
+> >> +/*
+> >> + * if force_vram_bar_size is set, attempt to set to the requested siz=
+e
+> >> + * else set to maximum possible size
+> >> + */
+> >> +static int xe_resize_vram_bar(struct xe_device *xe)
+> >>   {
+> >> +    u64 force_vram_bar_size =3D xe_force_vram_bar_size;
+> >>      struct pci_dev *pdev =3D to_pci_dev(xe->drm.dev);
+> >>      struct pci_bus *root =3D pdev->bus;
+> >> -    struct resource *root_res;
+> >> -    resource_size_t rebar_size;
+> >>      resource_size_t current_size;
+> >> +    resource_size_t rebar_size;
+> >> +    struct resource *root_res;
+> >> +    u32 bar_size_mask;
+> >>      u32 pci_cmd;
+> >>      int i;
+> >>      int ret;
+> >> -    u64 force_vram_bar_size =3D xe_force_vram_bar_size;
+> >>
+> >> -    current_size =3D roundup_pow_of_two(pci_resource_len(pdev,
+> >GEN12_LMEM_BAR));
+> >> +    /* gather some relevant info */
+> >> +    current_size =3D pci_resource_len(pdev, GEN12_LMEM_BAR);
+> >> +    bar_size_mask =3D pci_rebar_get_possible_sizes(pdev,
+> >GEN12_LMEM_BAR);
+> >>
+> >> +    if (!bar_size_mask)
+> >> +            return 0;
+> >> +
+> >> +    /* set to a specific size? */
+> >>      if (force_vram_bar_size) {
+> >> -            u32 bar_sizes;
+> >> +            u32 bar_size_bit;
+> >>
+> >>              rebar_size =3D force_vram_bar_size * (resource_size_t)SZ_=
+1M;
+> >> -            bar_sizes =3D pci_rebar_get_possible_sizes(pdev,
+> >GEN12_LMEM_BAR);
+> >>
+> >> -            if (rebar_size =3D=3D current_size)
+> >> -                    return 0;
+> >> +            bar_size_bit =3D bar_size_mask &
+> >BIT(pci_rebar_bytes_to_size(rebar_size));
+> >>
+> >> -            if (!(bar_sizes & BIT(pci_rebar_bytes_to_size(rebar_size)=
+)) ||
+> >> -                rebar_size >=3D roundup_pow_of_two(vram_size)) {
+> >> -                    rebar_size =3D vram_size;
+> >> +            if (!bar_size_bit) {
+> >>                      drm_info(&xe->drm,
+> >> -                             "Given bar size is not within supported =
+size,
+> >setting it to default: %lluMiB\n",
+> >> -                             (u64)vram_size >> 20);
+> >> +                             "Requested size: 0x%llx is not supported=
+ by
+> >rebar sizes: 0x%x. Leaving default: 0x%llx\n",
+> >> +                             (u64)rebar_size >> 2, bar_size_mask,
+> >(u64)current_size >> 20);
+> >> +                    return 0;
+> >>              }
+> >> +
+> >> +            rebar_size =3D 1ULL << (bar_size_bit + BAR_SIZE_SHIFT);
+> >> +
+> >> +            if (rebar_size =3D=3D current_size)
+> >> +                    return 0;
+> >>      } else {
+> >> -            rebar_size =3D current_size;
+> >> +            rebar_size =3D 1ULL << (__fls(bar_size_mask) +
+> >BAR_SIZE_SHIFT);
+> >>
+> >> -            if (rebar_size !=3D roundup_pow_of_two(vram_size))
+> >> -                    rebar_size =3D vram_size;
+> >> -            else
+> >> +            /* only resize if larger than current */
+> >> +            if (rebar_size <=3D current_size) {
+> >> +                    drm_info(&xe->drm, "Rebar size: 0x%llx vs. actual
+> >size: 0x%llx\n",
+> >> +                             rebar_size, current_size);
+> >>                      return 0;
+> >> +            }
+> >>      }
+> >>
+> >>      drm_info(&xe->drm, "Resizing bar from %lluMiB -> %lluMiB\n",
+> >> @@ -147,6 +166,31 @@ static bool xe_pci_resource_valid(struct pci_dev
+> >*pdev, int bar)
+> >>      return true;
+> >>   }
+> >>
+> >> +static int xe_determine_lmem_bar_size(struct xe_device *xe)
+> >> +{
+> >> +    struct pci_dev *pdev =3D to_pci_dev(xe->drm.dev);
+> >> +    int err;
+> >> +
+> >> +    if (!xe_pci_resource_valid(pdev, GEN12_LMEM_BAR)) {
+> >> +            drm_err(&xe->drm, "pci resource is not valid\n");
+> >> +            return -ENXIO;
+> >> +    }
+> >> +
+> >> +    err =3D xe_resize_vram_bar(xe);
+> >> +    if (err)
+> >> +            return err;
+> >> +
+> >> +    xe->mem.vram.io_start =3D pci_resource_start(pdev,
+> >GEN12_LMEM_BAR);
+> >> +    xe->mem.vram.io_size =3D pci_resource_len(pdev,
+> >GEN12_LMEM_BAR);
+> >> +    if (!xe->mem.vram.io_size)
+> >> +            return -EIO;
+> >> +
+> >> +    /* set up a map to the total memory area. */
+> >> +    xe->mem.vram.mapping =3D ioremap_wc(xe->mem.vram.io_start, xe-
+> >>mem.vram.io_size);
+> >> +
+> >> +    return 0;
+> >> +}
+> >> +
+> >>   /**
+> >>    * xe_mmio_tile_vram_size - Collect vram size and off set informatio=
+n
+> >>    * @gt: tile to get info for
+> >> @@ -202,59 +246,36 @@ int xe_mmio_tile_vram_size(struct xe_gt *gt, u64
+> >*vram_size, u64 *tile_size, u64
+> >>
+> >>   int xe_mmio_probe_vram(struct xe_device *xe)
+> >>   {
+> >> -    struct pci_dev *pdev =3D to_pci_dev(xe->drm.dev);
+> >>      struct xe_gt *gt;
+> >> -    u64 original_size;
+> >>      u64 tile_offset;
+> >>      u64 tile_size;
+> >>      u64 vram_size;
+> >>      int err;
+> >>      u8 id;
+> >>
+> >> -    if (!IS_DGFX(xe)) {
+> >> -            xe->mem.vram.mapping =3D 0;
+> >> -            xe->mem.vram.size =3D 0;
+> >> -            xe->mem.vram.io_start =3D 0;
+> >> -            xe->mem.vram.io_size =3D 0;
+> >> -
+> >> -            for_each_gt(gt, xe, id) {
+> >> -                    gt->mem.vram.mapping =3D 0;
+> >> -                    gt->mem.vram.size =3D 0;
+> >> -                    gt->mem.vram.io_start =3D 0;
+> >> -                    gt->mem.vram.io_size =3D 0;
+> >> -            }
+> >> +    if (!IS_DGFX(xe))
+> >>              return 0;
+> >> -    }
+> >> -
+> >> -    if (!xe_pci_resource_valid(pdev, GEN12_LMEM_BAR)) {
+> >> -            drm_err(&xe->drm, "pci resource is not valid\n");
+> >> -            return -ENXIO;
+> >> -    }
+> >>
+> >> +    /* Get the size of the gt0 vram for later accessibility compariso=
+n */
+> >>      gt =3D xe_device_get_gt(xe, 0);
+> >> -    original_size =3D pci_resource_len(pdev, GEN12_LMEM_BAR);
+> >> -
+> >>      err =3D xe_mmio_tile_vram_size(gt, &vram_size, &tile_size,
+> >&tile_offset);
+> >>      if (err)
+> >>              return err;
+> >>
+> >> -    xe_resize_vram_bar(xe, vram_size);
+> >> -    xe->mem.vram.io_start =3D pci_resource_start(pdev,
+> >GEN12_LMEM_BAR);
+> >> -    xe->mem.vram.io_size =3D min(vram_size,
+> >> -                               pci_resource_len(pdev,
+> >GEN12_LMEM_BAR));
+> >> -    xe->mem.vram.size =3D xe->mem.vram.io_size;
+> >> -
+> >> -    if (!xe->mem.vram.size)
+> >> -            return -EIO;
+> >> +    err =3D xe_determine_lmem_bar_size(xe);
+> >> +    if (err)
+> >> +            return err;
+> >>
+> >> -    if (vram_size > xe->mem.vram.io_size)
+> >> -            drm_warn(&xe->drm, "Restricting VRAM size to PCI resource
+> >size (%lluMiB->%lluMiB)\n",
+> >> -                     (u64)vram_size >> 20, (u64)xe->mem.vram.io_size =
+>>
+> >20);
+> >> +    /* small bar issues will only cover gt0 sizes */
+> >> +    if (xe->mem.vram.io_size < vram_size)
+> >> +            drm_warn(&xe->drm, "Restricting VRAM size to PCI resource
+> >size (0x%llx->0x%llx)\n",
+> >> +                     vram_size, (u64)xe->mem.vram.io_size);
+> >>
+> >> -    xe->mem.vram.mapping =3D ioremap_wc(xe->mem.vram.io_start, xe-
+> >>mem.vram.io_size);
+> >> -    xe->mem.vram.size =3D min_t(u64, xe->mem.vram.size, vram_size);
+> >> +    /* Limit size to available memory to account for the current memo=
+ry
+> >algorithm */
+> >> +    xe->mem.vram.io_size =3D min_t(u64, xe->mem.vram.io_size,
+> >vram_size);
+> >>
+> >> -    drm_info(&xe->drm, "TOTAL VRAM: %pa, %pa\n", &xe-
+> >>mem.vram.io_start, &xe->mem.vram.size);
+> >> +    drm_info(&xe->drm, "VISIBLE VRAM: %pa, %pa\n", &xe-
+> >>mem.vram.io_start,
+> >> +             &xe->mem.vram.io_size);
+> >>
+> >>      /* FIXME: Assuming equally partitioned VRAM, incorrect */
+> >>      if (xe->info.tile_count > 1) {
+> >> @@ -267,7 +288,7 @@ int xe_mmio_probe_vram(struct xe_device *xe)
+> >>
+> >>              XE_BUG_ON(!adj_tile_count);
+> >>
+> >> -            size =3D xe->mem.vram.size / adj_tile_count;
+> >> +            size =3D xe->mem.vram.io_size / adj_tile_count;
+> >>              io_start =3D xe->mem.vram.io_start;
+> >>              io_size =3D xe->mem.vram.io_size;
+> >>
+> >> @@ -300,7 +321,7 @@ int xe_mmio_probe_vram(struct xe_device *xe)
+> >>                               &gt->mem.vram.size);
+> >>              }
+> >>      } else {
+> >> -            gt->mem.vram.size =3D xe->mem.vram.size;
+> >> +            gt->mem.vram.size =3D xe->mem.vram.io_size;
+> >>              gt->mem.vram.io_start =3D xe->mem.vram.io_start;
+> >>              gt->mem.vram.io_size =3D xe->mem.vram.io_size;
+> >>              gt->mem.vram.mapping =3D xe->mem.vram.mapping;
