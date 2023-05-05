@@ -4,35 +4,30 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 24D44C77B7F
-	for <intel-xe@archiver.kernel.org>; Fri,  5 May 2023 13:08:53 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2B938C77B7F
+	for <intel-xe@archiver.kernel.org>; Fri,  5 May 2023 13:13:20 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D5B2D10E5EF;
-	Fri,  5 May 2023 13:08:52 +0000 (UTC)
-Received: from dfw.source.kernel.org (dfw.source.kernel.org
- [IPv6:2604:1380:4641:c500::1])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5899C10E5EF
- for <intel-xe@lists.freedesktop.org>; Fri,  5 May 2023 13:08:51 +0000 (UTC)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
- (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
- (No client certificate requested)
- by dfw.source.kernel.org (Postfix) with ESMTPS id 57A616130A;
- Fri,  5 May 2023 13:08:50 +0000 (UTC)
-Received: from rdvivi-mobl4 (unknown [192.55.54.48])
- (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
- (No client certificate requested)
- by smtp.kernel.org (Postfix) with ESMTPSA id 7B4ADC433D2;
- Fri,  5 May 2023 13:08:48 +0000 (UTC)
-Date: Fri, 5 May 2023 09:08:46 -0400
-From: Rodrigo Vivi <rodrigo.vivi@kernel.org>
-To: Nirmoy Das <nirmoy.das@intel.com>
-Message-ID: <ZFT/0xa2fvYMDv+g@rdvivi-mobl4>
-References: <20230505124019.11268-1-nirmoy.das@intel.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id B24A710E5F2;
+	Fri,  5 May 2023 13:13:19 +0000 (UTC)
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 465F110E5F0;
+ Fri,  5 May 2023 13:13:18 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 3A3C5AADE3;
+ Fri,  5 May 2023 13:13:18 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============4344151887080773535=="
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Nirmoy Das" <nirmoy.das@intel.com>
+Date: Fri, 05 May 2023 13:13:18 -0000
+Message-ID: <168329239823.5019.7141776219877901476@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20230505124019.11268-1-nirmoy.das@intel.com>
 In-Reply-To: <20230505124019.11268-1-nirmoy.das@intel.com>
-Subject: Re: [Intel-xe] [PATCH] drm/xe: Do not sleep in atomic
+Subject: [Intel-xe] =?utf-8?q?=E2=97=8B_CI=2EBAT=3A_info_for_drm/xe=3A_Do?=
+ =?utf-8?q?_not_sleep_in_atomic?=
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -44,38 +39,66 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-xe@lists.freedesktop.org, Rodrigo Vivi <rodrigo.vivi@intel.com>
+Reply-To: intel-xe@lists.freedesktop.org
+Cc: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Fri, May 05, 2023 at 02:40:19PM +0200, Nirmoy Das wrote:
-> Set atomic in xe_mmio_wait32() otherwise we would
-> be scheduling in atomic context.
-> 
-> Fixes: b7bcef224bdd ("drm/xe: Remove i915_utils dependency from xe_pcode.")
-> Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
-> 
-> Signed-off-by: Nirmoy Das <nirmoy.das@intel.com>
+--===============4344151887080773535==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-Reviewed-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
+== Series Details ==
 
-> ---
->  drivers/gpu/drm/xe/xe_gt_mcr.c | 2 +-
->  1 file changed, 1 insertion(+), 1 deletion(-)
-> 
-> diff --git a/drivers/gpu/drm/xe/xe_gt_mcr.c b/drivers/gpu/drm/xe/xe_gt_mcr.c
-> index 55b240a5eaa7..300b4a6968a9 100644
-> --- a/drivers/gpu/drm/xe/xe_gt_mcr.c
-> +++ b/drivers/gpu/drm/xe/xe_gt_mcr.c
-> @@ -424,7 +424,7 @@ static void mcr_lock(struct xe_gt *gt)
->  	 */
->  	if (GRAPHICS_VERx100(xe) >= 1270)
->  		ret = xe_mmio_wait32(gt, STEER_SEMAPHORE, 0, 0x1, 10, NULL,
-> -				     false);
-> +				     true);
->  
->  	drm_WARN_ON_ONCE(&xe->drm, ret == -ETIMEDOUT);
->  }
-> -- 
-> 2.39.0
-> 
+Series: drm/xe: Do not sleep in atomic
+URL   : https://patchwork.freedesktop.org/series/117379/
+State : info
+
+== Summary ==
+
+Participating hosts:
+bat-atsm-2
+bat-dg2-oem2
+Missing hosts results[0]:
+Results: [xe-pw-117379v1](https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-117379v1/index.html)
+
+
+
+--===============4344151887080773535==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/xe: Do not sleep in atomic</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/117379/">https://patchwork.freedesktop.org/series/117379/</a></td></tr>
+<tr><td><b>State:</b></td><td>info</td></tr>
+
+</table>
+
+
+    <p>Participating hosts:<br />
+bat-atsm-2<br />
+bat-dg2-oem2<br />
+Missing hosts results[0]:<br />
+Results: <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-117379v1/index.html">xe-pw-117379v1</a></p>
+
+</body>
+</html>
+
+--===============4344151887080773535==--
