@@ -4,56 +4,30 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0AAEFC77B7F
-	for <intel-xe@archiver.kernel.org>; Fri,  5 May 2023 14:21:11 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id BB31CC77B7F
+	for <intel-xe@archiver.kernel.org>; Fri,  5 May 2023 14:21:30 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B722310E61A;
-	Fri,  5 May 2023 14:21:10 +0000 (UTC)
-Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6E35010E61B;
- Fri,  5 May 2023 14:21:08 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1683296468; x=1714832468;
- h=message-id:date:mime-version:subject:to:cc:references:
- from:in-reply-to:content-transfer-encoding;
- bh=NZWJ3Q5+rSqIgUlecZoPu1CnitpcX/OQtos+1FiW7mQ=;
- b=lKTgvz7XZE38zJMnh2xasw7xTdNPnmoMTP0rScWbawZ+b+rS9wh8hHx/
- O+ZbZ0aGtAhwWK+iKIfPorcjfgfF7o3I6gSXafAPB0bDAAP092fntzRbX
- 5E/YffnOY7F900jnwXhqCS/xNs7TFLbugYyzTUXbabVG8enDJ7vxjMxlG
- ieINqygKCZ5SUtY+1ESVxJO/MOyAY7G3ckm06IYQOxip+sH14jspFSSsM
- iLcUzpTvk00qvo7l1uHC+6b0K0XKHiiZwMyUndCz6n9UdH7AvtuYtXjQJ
- MAzTV/rWHxxf4f8pOUvFoaJuYtK/I6yA6D1YpmYPE5RNpqlIll4MMMFtt w==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10701"; a="338408136"
-X-IronPort-AV: E=Sophos;i="5.99,252,1677571200"; d="scan'208";a="338408136"
-Received: from fmsmga008.fm.intel.com ([10.253.24.58])
- by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 05 May 2023 07:21:07 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10701"; a="762474884"
-X-IronPort-AV: E=Sophos;i="5.99,252,1677571200"; d="scan'208";a="762474884"
-Received: from rvuia-mobl.ger.corp.intel.com (HELO [10.249.37.174])
- ([10.249.37.174])
- by fmsmga008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 05 May 2023 07:21:03 -0700
-Message-ID: <0a77fbd1-159a-4a59-65e4-315049e121c7@linux.intel.com>
-Date: Fri, 5 May 2023 16:21:01 +0200
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8CB1F10E619;
+	Fri,  5 May 2023 14:21:30 +0000 (UTC)
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id A677110E614;
+ Fri,  5 May 2023 14:21:28 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 89DCAA010E;
+ Fri,  5 May 2023 14:21:28 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Firefox/102.0 Thunderbird/102.10.1
-To: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>,
- dri-devel@lists.freedesktop.org, cgroups@vger.kernel.org,
- intel-xe@lists.freedesktop.org
-References: <20230503083500.645848-1-maarten.lankhorst@linux.intel.com>
- <20230503083500.645848-3-maarten.lankhorst@linux.intel.com>
- <c9d1e666-50e9-d66a-d751-f4ec39fcb7bb@linux.intel.com>
-Content-Language: en-US
-From: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
-In-Reply-To: <c9d1e666-50e9-d66a-d751-f4ec39fcb7bb@linux.intel.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-Subject: Re: [Intel-xe] [Intel-gfx] [RFC PATCH 2/4] drm/cgroup: Add memory
- accounting to DRM cgroup
+Content-Transfer-Encoding: 7bit
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: =?utf-8?q?Thomas_Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>
+Date: Fri, 05 May 2023 14:21:28 -0000
+Message-ID: <168329648856.5021.12186018700144835448@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20230505141719.332109-1-thomas.hellstrom@linux.intel.com>
+In-Reply-To: <20230505141719.332109-1-thomas.hellstrom@linux.intel.com>
+Subject: [Intel-xe] =?utf-8?q?=E2=9C=93_CI=2EKUnit=3A_success_for_drm/ttm?=
+ =?utf-8?q?=3A_Allow_the_driver_to_resolve_a_WW_transaction_rollback?=
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -65,695 +39,521 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Cc: Daniel Vetter <daniel@ffwll.ch>, Zefan Li <lizefan.x@bytedance.com>,
- intel-gfx@lists.freedesktop.org, linux-kernel@vger.kernel.org,
- Maxime Ripard <mripard@kernel.org>, amd-gfx@lists.freedesktop.org,
- Thomas Zimmermann <tzimmermann@suse.de>, Johannes Weiner <hannes@cmpxchg.org>,
- Tejun Heo <tj@kernel.org>, David Airlie <airlied@gmail.com>
+Reply-To: intel-xe@lists.freedesktop.org
+Cc: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-I just now noticed the other comments. Wiill address them.
+== Series Details ==
 
-On 2023-05-03 17:31, Tvrtko Ursulin wrote:
->
-> On 03/05/2023 09:34, Maarten Lankhorst wrote:
->> Based roughly on the rdma and misc cgroup controllers, with a lot of
->> the accounting code borrowed from rdma.
->>
->> The interface is simple:
->> - populate drmcgroup_device->regions[..] name and size for each active
->>    region.
->> - Call drm(m)cg_register_device()
->> - Use drmcg_try_charge to check if you can allocate a chunk of memory,
->>    use drmcg_uncharge when freeing it. This may return an error code,
->>    or -EAGAIN when the cgroup limit is reached.
->>
->> The ttm code transforms -EAGAIN back to -ENOSPC since it has specific
->> logic for -ENOSPC, and returning -EAGAIN to userspace causes drmIoctl
->> to restart infinitely.
->>
->> This API allows you to limit stuff with cgroups.
->> You can see the supported cards in /sys/fs/cgroup/drm.capacity
->> You need to echo +drm to cgroup.subtree_control, and then you can
->> partition memory.
->>
->> In each cgroup subdir:
->> drm.max shows the current limits of the cgroup.
->> drm.current the current amount of allocated memory used by this cgroup.
->> drm.events shows the amount of time max memory was reached.
->
-> Events is not in the patch?
->
->> Signed-off-by: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
->> ---
->>   Documentation/admin-guide/cgroup-v2.rst |  46 ++
->>   Documentation/gpu/drm-compute.rst       |  54 +++
->>   include/linux/cgroup_drm.h              |  81 ++++
->>   kernel/cgroup/drm.c                     | 539 +++++++++++++++++++++++-
->>   4 files changed, 699 insertions(+), 21 deletions(-)
->>   create mode 100644 Documentation/gpu/drm-compute.rst
->>
->> diff --git a/Documentation/admin-guide/cgroup-v2.rst 
->> b/Documentation/admin-guide/cgroup-v2.rst
->> index f67c0829350b..b858d99cb2ef 100644
->> --- a/Documentation/admin-guide/cgroup-v2.rst
->> +++ b/Documentation/admin-guide/cgroup-v2.rst
->> @@ -2374,6 +2374,52 @@ RDMA Interface Files
->>         mlx4_0 hca_handle=1 hca_object=20
->>         ocrdma1 hca_handle=1 hca_object=23
->>   +DRM
->> +----
->> +
->> +The "drm" controller regulates the distribution and accounting of
->> +DRM resources.
->> +
->> +DRM Interface Files
->> +~~~~~~~~~~~~~~~~~~~~
->> +
->> +  drm.max
->> +    A readwrite nested-keyed file that exists for all the cgroups
->> +    except root that describes current configured resource limit
->> +    for a DRM device.
->> +
->> +    Lines are keyed by device name and are not ordered.
->> +    Each line contains space separated resource name and its configured
->> +    limit that can be distributed.
->> +
->> +    The following nested keys are defined.
->> +
->> +      ========== 
->> =======================================================
->> +      region.*     Maximum amount of bytes that allocatable in this 
->> region
->> +      ========== 
->> =======================================================
->> +
->> +    An example for xe follows::
->> +
->> +      0000:03:00.0 region.vram0=1073741824 region.stolen=max
->> +
->> +  drm.capacity
->> +    A read-only file that describes maximum region capacity.
->> +    It only exists on the root cgroup. Not all memory can be
->> +    allocated by cgroups, as the kernel reserves some for
->> +    internal use.
->> +
->> +    An example for xe follows::
->> +
->> +      0000:03:00.0 region.vram0=8514437120 region.stolen=67108864
->> +
->> +  drm.current
->> +    A read-only file that describes current resource usage.
->> +    It exists for all the cgroup except root.
->> +
->> +    An example for xe follows::
->> +
->> +      0000:03:00.0 region.vram0=12550144 region.stolen=8650752
->> +
->>   HugeTLB
->>   -------
->>   diff --git a/Documentation/gpu/drm-compute.rst 
->> b/Documentation/gpu/drm-compute.rst
->> new file mode 100644
->> index 000000000000..116270976ef7
->> --- /dev/null
->> +++ b/Documentation/gpu/drm-compute.rst
->> @@ -0,0 +1,54 @@
->> +==================================
->> +Long running workloads and compute
->> +==================================
->> +
->> +Long running workloads (compute) are workloads that will not 
->> complete in 10
->> +seconds. (The time let the user wait before he reaches for the power 
->> button).
->> +This means that other techniques need to be used to manage those 
->> workloads,
->> +that cannot use fences.
->> +
->> +Some hardware may schedule compute jobs, and have no way to pre-empt 
->> them, or
->> +have their memory swapped out from them. Or they simply want their 
->> workload
->> +not to be preempted or swapped out at all.
->> +
->> +This means that it differs from what is described in 
->> driver-api/dma-buf.rst.
->> +
->> +As with normal compute jobs, dma-fence may not be used at all. In 
->> this case,
->> +not even to force preemption. The driver with is simply forced to 
->> unmap a BO
->> +from the long compute job's address space on unbind immediately, not 
->> even
->> +waiting for the workload to complete. Effectively this terminates 
->> the workload
->> +when there is no hardware support to recover.
->> +
->> +Since this is undesirable, there need to be mitigations to prevent a 
->> workload
->> +from being terminated. There are several possible approach, all with 
->> their
->> +advantages and drawbacks.
->> +
->> +The first approach you will likely try is to pin all buffers used by 
->> compute.
->> +This guarantees that the job will run uninterrupted, but also allows 
->> a very
->> +denial of service attack by pinning as much memory as possible, 
->> hogging the
->> +all GPU memory, and possibly a huge chunk of CPU memory.
->> +
->> +A second approach that will work slightly better on its own is 
->> adding an option
->> +not to evict when creating a new job (any kind). If all of userspace 
->> opts in
->> +to this flag, it would prevent cooperating userspace from forced 
->> terminating
->> +older compute jobs to start a new one.
->> +
->> +If job preemption and recoverable pagefaults are not available, 
->> those are the
->> +only approaches possible. So even with those, you want a separate 
->> way of
->> +controlling resources. The standard kernel way of doing so is cgroups.
->> +
->> +This creates a third option, using cgroups to prevent eviction. Both 
->> GPU and
->> +driver-allocated CPU memory would be accounted to the correct 
->> cgroup, and
->> +eviction would be made cgroup aware. This allows the GPU to be 
->> partitioned
->> +into cgroups, that will allow jobs to run next to each other without
->> +interference.
->
-> The 3rd approach is only valid if used strictly with device local 
-> memory, right? Because as soon as system memory backed buffers are 
-> used this approach cannot guarantee no eviction can be triggered.
->
->> +
->> +The interface to the cgroup would be similar to the current CPU memory
->> +interface, with similar semantics for min/low/high/max, if eviction can
->> +be made cgroup aware. For now only max is implemented.
->> +
->> +What should be noted is that each memory region (tiled memory for 
->> example)
->> +should have its own accounting, using $card key0 = value0 key1 = 
->> value1.
->> +
->> +The key is set to the regionid set by the driver, for example "tile0".
->> +For the value of $card, we use drmGetUnique().
->> diff --git a/include/linux/cgroup_drm.h b/include/linux/cgroup_drm.h
->> index 8ef66a47619f..4f17b1c85f47 100644
->> --- a/include/linux/cgroup_drm.h
->> +++ b/include/linux/cgroup_drm.h
->> @@ -6,4 +6,85 @@
->>   #ifndef _CGROUP_DRM_H
->>   #define _CGROUP_DRM_H
->>   +#include <linux/types.h>
->> +
->> +#include <drm/drm_managed.h>
->> +
->> +struct drm_device;
->> +struct drm_file;
->> +
->> +struct drmcgroup_state;
->> +
->> +/*
->> + * Use 8 as max, because of N^2 lookup when setting things, can be 
->> bumped if needed
->> + * Identical to TTM_NUM_MEM_TYPES to allow simplifying that code.
->> + */
->> +#define DRMCG_MAX_REGIONS 8
->> +
->> +struct drmcgroup_device {
->> +    struct list_head list;
->> +    struct list_head pools;
->> +
->> +    struct {
->> +        u64 size;
->> +        const char *name;
->> +    } regions[DRMCG_MAX_REGIONS];
->> +
->> +    /* Name describing the card, set by drmcg_register_device */
->> +    const char *name;
->> +
->> +};
->> +
->> +#if IS_ENABLED(CONFIG_CGROUP_DRM)
->> +int drmcg_register_device(struct drm_device *dev,
->> +               struct drmcgroup_device *drm_cg);
->> +void drmcg_unregister_device(struct drmcgroup_device *cgdev);
->> +int drmcg_try_charge(struct drmcgroup_state **drmcg,
->> +             struct drmcgroup_device *cgdev,
->> +             u32 index, u64 size);
->> +void drmcg_uncharge(struct drmcgroup_state *drmcg,
->> +            struct drmcgroup_device *cgdev,
->> +            u32 index, u64 size);
->> +#else
->> +static inline int
->> +drmcg_register_device(struct drm_device *dev,
->> +              struct drm_cgroup *drm_cg)
->> +{
->> +    return 0;
->> +}
->> +
->> +static inline void drmcg_unregister_device(struct drmcgroup_device 
->> *cgdev)
->> +{
->> +}
->> +
->> +static inline int drmcg_try_charge(struct drmcgroup_state **drmcg,
->> +                   struct drmcgroup_device *cgdev,
->> +                   u32 index, u64 size)
->> +{
->> +    *drmcg = NULL;
->> +    return 0;
->> +}
->> +
->> +static inline void drmcg_uncharge(struct drmcgroup_state *drmcg,
->> +                  struct drmcgroup_device *cgdev,
->> +                  u32 index, u64 size)
->> +{ }
->> +#endif
->> +
->> +static inline void drmmcg_unregister_device(struct drm_device *dev, 
->> void *arg)
->> +{
->> +    drmcg_unregister_device(arg);
->> +}
->> +
->> +/*
->> + * This needs to be done as inline, because cgroup lives in the core
->> + * kernel and it cannot call drm calls directly
->> + */
->> +static inline int drmmcg_register_device(struct drm_device *dev,
->> +                     struct drmcgroup_device *cgdev)
->> +{
->> +    return drmcg_register_device(dev, cgdev) ?:
->> +        drmm_add_action_or_reset(dev, drmmcg_unregister_device, cgdev);
->> +}
->> +
->>   #endif    /* _CGROUP_DRM_H */
->> diff --git a/kernel/cgroup/drm.c b/kernel/cgroup/drm.c
->> index 02c8eaa633d3..a93d9344fd36 100644
->> --- a/kernel/cgroup/drm.c
->> +++ b/kernel/cgroup/drm.c
->> @@ -1,60 +1,557 @@
->> -/* SPDX-License-Identifier: MIT */
->> +// SPDX-License-Identifier: GPL-2.0
->>   /*
->> - * Copyright © 2023 Intel Corporation
->> + * Copyright 2023 Intel
->> + * Partially based on the rdma and misc controllers, which bear the 
->> following copyrights:
->> + *
->> + * Copyright 2020 Google LLC
->> + * Copyright (C) 2016 Parav Pandit <pandit.parav@gmail.com>
->>    */
->>     #include <linux/cgroup.h>
->>   #include <linux/cgroup_drm.h>
->> +#include <linux/list.h>
->> +#include <linux/mutex.h>
->> +#include <linux/parser.h>
->>   #include <linux/slab.h>
->>   -struct drm_cgroup_state {
->
-> As a side note, it'd be easier to read the diff if you left the name 
-> as is, and some other details too, like the static root group (I need 
-> to remind myself if/why I needed it, but does it harm you?) and my 
-> missed static keywords and needless static struct initialization. I 
-> will fix that up in my patch localy. Aynway, that way it would maybe 
-> be less churn from one patch to the other in the series.
->
->> +#include <drm/drm_device.h>
->> +#include <drm/drm_drv.h>
->> +#include <drm/drm_file.h>
->> +#include <drm/drm_managed.h>
->> +
->> +struct drmcgroup_state {
->>       struct cgroup_subsys_state css;
->> +
->> +    struct list_head pools;
->>   };
->>   -struct drm_root_cgroup_state {
->> -    struct drm_cgroup_state drmcs;
->> +struct drmcgroup_pool_state {
->> +    struct drmcgroup_device *device;
->> +    struct drmcgroup_resource {
->> +        s64 max, used;
->> +    } resources[DRMCG_MAX_REGIONS];
->> +
->> +    s64 usage_sum;
->> +
->> +    struct list_head    cg_node;
->
-> cg always makes me think cgroup and not css so it is a bit confusing.
->
-> Why are two lists needed?
+Series: drm/ttm: Allow the driver to resolve a WW transaction rollback
+URL   : https://patchwork.freedesktop.org/series/117388/
+State : success
 
-The second list is used during teardown of a specific device, but it 
-could probably traverse the entirety of  the cgroup hierarchy instead.
+== Summary ==
 
-This probably needs some more core locks though, and since other cgroups 
-implementations used the dual list approach I've used that instead.
++ trap cleanup EXIT
++ /kernel/tools/testing/kunit/kunit.py run --kunitconfig /kernel/drivers/gpu/drm/xe/.kunitconfig
+stty: 'standard input': Inappropriate ioctl for device
+[14:20:17] Configuring KUnit Kernel ...
+Generating .config ...
+Populating config with:
+$ make ARCH=um O=.kunit olddefconfig
+[14:20:21] Building KUnit Kernel ...
+Populating config with:
+$ make ARCH=um O=.kunit olddefconfig
+Building with:
+$ make ARCH=um O=.kunit --jobs=48
+[14:20:43] Starting KUnit Kernel (1/1)...
+[14:20:43] ============================================================
+[14:20:43] ==================== xe_bo (2 subtests) ====================
+[14:20:43] [SKIPPED] xe_ccs_migrate_kunit
+[14:20:43] [SKIPPED] xe_bo_evict_kunit
+[14:20:43] ===================== [SKIPPED] xe_bo ======================
+[14:20:43] ================== xe_dma_buf (1 subtest) ==================
+[14:20:43] [SKIPPED] xe_dma_buf_kunit
+[14:20:43] =================== [SKIPPED] xe_dma_buf ===================
+[14:20:43] ================== xe_migrate (1 subtest) ==================
+[14:20:43] [SKIPPED] xe_migrate_sanity_kunit
+[14:20:43] =================== [SKIPPED] xe_migrate ===================
+[14:20:43] =================== xe_pci (2 subtests) ====================
+[14:20:43] [PASSED] xe_gmdid_graphics_ip
+[14:20:43] [PASSED] xe_gmdid_media_ip
+[14:20:43] ===================== [PASSED] xe_pci ======================
+[14:20:43] ==================== xe_rtp (1 subtest) ====================
+[14:20:43] ================== xe_rtp_process_tests  ===================
+[14:20:43] [PASSED] coalesce-same-reg
+[14:20:43] [PASSED] no-match-no-add
+[14:20:43] [PASSED] no-match-no-add-multiple-rules
+[14:20:43] [PASSED] two-regs-two-entries
+[14:20:43] [PASSED] clr-one-set-other
+[14:20:43] [PASSED] set-field
+[14:20:43] [PASSED] conflict-duplicate
+[14:20:43] [PASSED] conflict-not-disjoint
+[14:20:43] [PASSED] conflict-reg-type
+[14:20:43] ============== [PASSED] xe_rtp_process_tests ===============
+[14:20:43] ===================== [PASSED] xe_rtp ======================
+[14:20:43] ==================== xe_wa (1 subtest) =====================
+[14:20:43] ======================== xe_wa_gt  =========================
+[14:20:43] [PASSED] TIGERLAKE (B0)
+[14:20:43] [PASSED] DG1 (A0)
+[14:20:43] [PASSED] DG1 (B0)
+[14:20:43] [PASSED] ALDERLAKE_S (A0)
+[14:20:43] [PASSED] ALDERLAKE_S (B0)
+[14:20:43] [PASSED] ALDERLAKE_S (C0)
+[14:20:43] [PASSED] ALDERLAKE_S (D0)
+[14:20:43] [PASSED] DG2_G10 (A0)
+[14:20:43] [PASSED] DG2_G10 (A1)
+[14:20:43] [PASSED] DG2_G10 (B0)
+[14:20:43] [PASSED] DG2_G10 (C0)
+[14:20:43] [PASSED] DG2_G11 (A0)
+[14:20:43] [PASSED] DG2_G11 (B0)
+[14:20:43] [PASSED] DG2_G11 (B1)
+[14:20:43] [PASSED] DG2_G12 (A0)
+[14:20:43] [PASSED] DG2_G12 (A1)
+[14:20:43] [PASSED] PVC (B0)
+[14:20:43] [PASSED] PVC (B1)
+[14:20:43] [PASSED] PVC (C0)
+[14:20:43] ==================== [PASSED] xe_wa_gt =====================
+[14:20:43] ====================== [PASSED] xe_wa ======================
+[14:20:43] ============================================================
+[14:20:43] Testing complete. Ran 34 tests: passed: 30, skipped: 4
+[14:20:43] Elapsed time: 26.198s total, 4.226s configuring, 21.852s building, 0.098s running
 
->
->> +    struct list_head    dev_node;
->>   };
->>   -static struct drm_root_cgroup_state root_drmcs;
->> +static DEFINE_MUTEX(drmcg_mutex);
->> +static LIST_HEAD(drmcg_devices);
->>   -static inline struct drm_cgroup_state *
->> +static inline struct drmcgroup_state *
->>   css_to_drmcs(struct cgroup_subsys_state *css)
->>   {
->> -    return container_of(css, struct drm_cgroup_state, css);
->> +    return container_of(css, struct drmcgroup_state, css);
->> +}
->> +
->> +static inline struct drmcgroup_state *get_current_drmcg(void)
->> +{
->> +    return css_to_drmcs(task_get_css(current, drm_cgrp_id));
->> +}
->> +
->> +static struct drmcgroup_state *parent_drmcg(struct drmcgroup_state *cg)
->> +{
->> +    return css_to_drmcs(cg->css.parent);
->> +}
->> +
->> +static void free_cg_pool_locked(struct drmcgroup_pool_state *pool)
->> +{
->> +    lockdep_assert_held(&drmcg_mutex);
->> +
->> +    list_del(&pool->cg_node);
->> +    list_del(&pool->dev_node);
->> +    kfree(pool);
->> +}
->> +
->> +static void
->> +set_resource_max(struct drmcgroup_pool_state *pool, int i, u64 new_max)
->> +{
->> +    pool->resources[i].max = new_max;
->> +}
->> +
->> +static void set_all_resource_max_limit(struct drmcgroup_pool_state 
->> *rpool)
->> +{
->> +    int i;
->> +
->> +    for (i = 0; i < DRMCG_MAX_REGIONS; i++)
->> +        set_resource_max(rpool, i, S64_MAX);
->> +}
->> +
->> +static void drmcs_offline(struct cgroup_subsys_state *css)
->> +{
->> +    struct drmcgroup_state *drmcs = css_to_drmcs(css);
->> +    struct drmcgroup_pool_state *pool, *next;
->> +
->> +    mutex_lock(&drmcg_mutex);
->> +    list_for_each_entry_safe(pool, next, &drmcs->pools, cg_node) {
->> +        if (!pool->usage_sum) {
->> +            free_cg_pool_locked(pool);
->> +        } else {
->> +            /* Reset all regions, last uncharge will remove pool */
->> +            set_all_resource_max_limit(pool);
->> +        }
->> +    }
->> +    mutex_unlock(&drmcg_mutex);
->>   }
->>     static void drmcs_free(struct cgroup_subsys_state *css)
->>   {
->> -    struct drm_cgroup_state *drmcs = css_to_drmcs(css);
->> +    struct drmcgroup_state *drmcs = css_to_drmcs(css);
->>   -    if (drmcs != &root_drmcs.drmcs)
->> -        kfree(drmcs);
->> +    kfree(drmcs);
->>   }
->>     static struct cgroup_subsys_state *
->>   drmcs_alloc(struct cgroup_subsys_state *parent_css)
->>   {
->> -    struct drm_cgroup_state *drmcs;
->> +    struct drmcgroup_state *drmcs = kzalloc(sizeof(*drmcs), 
->> GFP_KERNEL);
->> +    if (!drmcs)
->> +        return ERR_PTR(-ENOMEM);
->> +
->> +    INIT_LIST_HEAD(&drmcs->pools);
->> +    return &drmcs->css;
->> +}
->> +
->> +static struct drmcgroup_pool_state *
->> +find_cg_pool_locked(struct drmcgroup_state *drmcs, struct 
->> drmcgroup_device *dev)
->> +{
->> +    struct drmcgroup_pool_state *pool;
->> +
->> +    list_for_each_entry(pool, &drmcs->pools, cg_node)
->> +        if (pool->device == dev)
->> +            return pool;
->> +
->> +    return NULL;
->> +}
->> +
->> +static struct drmcgroup_pool_state *
->> +get_cg_pool_locked(struct drmcgroup_state *drmcs, struct 
->> drmcgroup_device *dev)
->> +{
->> +    struct drmcgroup_pool_state *pool;
->> +
->> +    pool = find_cg_pool_locked(drmcs, dev);
->> +    if (pool)
->> +        return pool;
->> +
->> +    pool = kzalloc(sizeof(*pool), GFP_KERNEL);
->> +    if (!pool)
->> +        return ERR_PTR(-ENOMEM);
->> +
->> +    pool->device = dev;
->> +    set_all_resource_max_limit(pool);
->>   -    if (!parent_css) {
->> -        drmcs = &root_drmcs.drmcs;
->> -    } else {
->> -        drmcs = kzalloc(sizeof(*drmcs), GFP_KERNEL);
->> -        if (!drmcs)
->> -            return ERR_PTR(-ENOMEM);
->> +    INIT_LIST_HEAD(&pool->cg_node);
->> +    INIT_LIST_HEAD(&pool->dev_node);
->> +    list_add_tail(&pool->cg_node, &drmcs->pools);
->> +    list_add_tail(&pool->dev_node, &dev->pools);
->> +    return pool;
->> +}
->> +
->> +void drmcg_unregister_device(struct drmcgroup_device *cgdev)
->> +{
->> +    struct drmcgroup_pool_state *pool, *next;
->> +
->> +    mutex_lock(&drmcg_mutex);
->> +    list_del(&cgdev->list);
->> +
->> +    list_for_each_entry_safe(pool, next, &cgdev->pools, dev_node)
->> +        free_cg_pool_locked(pool);
->> +    mutex_unlock(&drmcg_mutex);
->> +    kfree(cgdev->name);
->> +}
->> +
->> +EXPORT_SYMBOL_GPL(drmcg_unregister_device);
->> +
->> +int drmcg_register_device(struct drm_device *dev,
->> +              struct drmcgroup_device *cgdev)
->> +{
->> +    char *name = kstrdup(dev->unique, GFP_KERNEL);
->> +    if (!name)
->> +        return -ENOMEM;
->> +
->> +    INIT_LIST_HEAD(&cgdev->pools);
->> +    mutex_lock(&drmcg_mutex);
->> +    cgdev->name = name;
->> +    list_add_tail(&cgdev->list, &drmcg_devices);
->> +    mutex_unlock(&drmcg_mutex);
->> +
->> +    return 0;
->> +}
->> +EXPORT_SYMBOL_GPL(drmcg_register_device);
->> +
->> +static int drmcg_max_show(struct seq_file *sf, void *v)
->> +{
->> +    struct drmcgroup_state *drmcs = css_to_drmcs(seq_css(sf));
->> +    struct drmcgroup_pool_state *pool;
->> +
->> +    mutex_lock(&drmcg_mutex);
->> +    list_for_each_entry(pool, &drmcs->pools, cg_node) {
->> +        struct drmcgroup_device *dev = pool->device;
->> +        int i;
->> +
->> +        seq_puts(sf, dev->name);
->> +
->> +        for (i = 0; i < DRMCG_MAX_REGIONS; i++) {
->> +            if (!dev->regions[i].name)
->> +                continue;
->> +
->> +            if (pool->resources[i].max < S64_MAX)
->> +                seq_printf(sf, " region.%s=%lld", dev->regions[i].name,
->> +                       pool->resources[i].max);
->> +            else
->> +                seq_printf(sf, " region.%s=max", dev->regions[i].name);
->> +        }
->> +
->> +        seq_putc(sf, '\n');
->>       }
->> +    mutex_unlock(&drmcg_mutex);
->>   -    return &drmcs->css;
->> +    return 0;
->> +}
->> +
->> +static struct drmcgroup_device *drmcg_get_device_locked(const char 
->> *name)
->> +{
->> +    struct drmcgroup_device *dev;
->> +
->> +    lockdep_assert_held(&drmcg_mutex);
->> +
->> +    list_for_each_entry(dev, &drmcg_devices, list)
->> +        if (!strcmp(name, dev->name))
->> +            return dev;
->> +
->> +    return NULL;
->> +}
->> +
->> +static void try_to_free_cg_pool_locked(struct drmcgroup_pool_state 
->> *pool)
->> +{
->> +    struct drmcgroup_device *dev = pool->device;
->> +    u32 i;
->> +
->> +    /* Memory charged to this pool */
->> +    if (pool->usage_sum)
->> +        return;
->> +
->> +    for (i = 0; i < DRMCG_MAX_REGIONS; i++) {
->> +        if (!dev->regions[i].name)
->> +            continue;
->> +
->> +        /* Is a specific limit set? */
->> +        if (pool->resources[i].max < S64_MAX)
->> +            return;
->> +    }
->> +
->> +    /*
->> +     * No user of the pool and all entries are set to defaults;
->> +     * safe to delete this pool.
->> +     */
->> +    free_cg_pool_locked(pool);
->> +}
->> +
->> +
->> +static void
->> +uncharge_cg_locked(struct drmcgroup_state *drmcs,
->> +           struct drmcgroup_device *cgdev,
->> +           u32 index, u64 size)
->> +{
->> +    struct drmcgroup_pool_state *pool;
->> +
->> +    pool = find_cg_pool_locked(drmcs, cgdev);
->> +
->> +    if (unlikely(!pool)) {
->> +        pr_warn("Invalid device %p or drm cgroup %p\n", cgdev, drmcs);
->> +        return;
->> +    }
->> +
->> +    pool->resources[index].used -= size;
->> +
->> +    /*
->> +     * A negative count (or overflow) is invalid,
->> +     * it indicates a bug in the rdma controller.
->> +     */
->> +    WARN_ON_ONCE(pool->resources[index].used < 0);
->> +    pool->usage_sum--;
->> +    try_to_free_cg_pool_locked(pool);
->> +}
->> +
->> +static void drmcg_uncharge_hierarchy(struct drmcgroup_state *drmcs,
->> +                     struct drmcgroup_device *cgdev,
->> +                     struct drmcgroup_state *stop_cg,
->> +                     u32 index, u64 size)
->> +{
->> +    struct drmcgroup_state *p;
->> +
->> +    mutex_lock(&drmcg_mutex);
->> +
->> +    for (p = drmcs; p != stop_cg; p = parent_drmcg(p))
->> +        uncharge_cg_locked(p, cgdev, index, size);
->> +
->> +    mutex_unlock(&drmcg_mutex);
->> +
->> +    css_put(&drmcs->css);
->> +}
->> +
->> +void drmcg_uncharge(struct drmcgroup_state *drmcs,
->> +            struct drmcgroup_device *cgdev,
->> +            u32 index,
->> +            u64 size)
->> +{
->> +    if (index >= DRMCG_MAX_REGIONS)
->> +        return;
->> +
->> +    drmcg_uncharge_hierarchy(drmcs, cgdev, NULL, index, size);
->> +}
->> +EXPORT_SYMBOL_GPL(drmcg_uncharge);
->> +
->> +int drmcg_try_charge(struct drmcgroup_state **drmcs,
->> +             struct drmcgroup_device *cgdev,
->> +             u32 index,
->> +             u64 size)
->> +{
->> +    struct drmcgroup_state *cg, *p;
->> +    struct drmcgroup_pool_state *pool;
->> +    u64 new;
->> +    int ret = 0;
->> +
->> +    if (index >= DRMCG_MAX_REGIONS)
->> +        return -EINVAL;
->> +
->> +    /*
->> +     * hold on to css, as cgroup can be removed but resource
->> +     * accounting happens on css.
->> +     */
->> +    cg = get_current_drmcg();
->
-> 1)
->
-> I am not familiar with the Xe flows - charging is at the point of 
-> actual backing store allocation?
->
-> What about buffer sharing?
->
-> Also, given how the css is permanently stored in the caller - you 
-> deliberately decided not to deal with task migrations? I am not sure 
-> that will work. Or maybe just omitted for RFC v1?
++ /kernel/tools/testing/kunit/kunit.py run --kunitconfig /kernel/drivers/gpu/drm/tests/.kunitconfig
+[14:20:43] Configuring KUnit Kernel ...
+Regenerating .config ...
+Populating config with:
+$ make ARCH=um O=.kunit olddefconfig
+[14:20:45] Building KUnit Kernel ...
+Populating config with:
+$ make ARCH=um O=.kunit olddefconfig
+Building with:
+$ make ARCH=um O=.kunit --jobs=48
+[14:21:03] Starting KUnit Kernel (1/1)...
+[14:21:03] ============================================================
+[14:21:03] ============ drm_test_pick_cmdline (2 subtests) ============
+[14:21:03] [PASSED] drm_test_pick_cmdline_res_1920_1080_60
+[14:21:03] =============== drm_test_pick_cmdline_named  ===============
+[14:21:03] [PASSED] NTSC
+[14:21:03] [PASSED] NTSC-J
+[14:21:03] [PASSED] PAL
+[14:21:03] [PASSED] PAL-M
+[14:21:03] =========== [PASSED] drm_test_pick_cmdline_named ===========
+[14:21:03] ============== [PASSED] drm_test_pick_cmdline ==============
+[14:21:03] ================== drm_buddy (6 subtests) ==================
+[14:21:03] [PASSED] drm_test_buddy_alloc_limit
+[14:21:03] [PASSED] drm_test_buddy_alloc_range
+[14:21:03] [PASSED] drm_test_buddy_alloc_optimistic
+[14:21:03] [PASSED] drm_test_buddy_alloc_pessimistic
+[14:21:03] [PASSED] drm_test_buddy_alloc_smoke
+[14:21:03] [PASSED] drm_test_buddy_alloc_pathological
+[14:21:03] ==================== [PASSED] drm_buddy ====================
+[14:21:03] ============= drm_cmdline_parser (40 subtests) =============
+[14:21:03] [PASSED] drm_test_cmdline_force_d_only
+[14:21:03] [PASSED] drm_test_cmdline_force_D_only_dvi
+[14:21:03] [PASSED] drm_test_cmdline_force_D_only_hdmi
+[14:21:03] [PASSED] drm_test_cmdline_force_D_only_not_digital
+[14:21:03] [PASSED] drm_test_cmdline_force_e_only
+[14:21:03] [PASSED] drm_test_cmdline_res
+[14:21:03] [PASSED] drm_test_cmdline_res_vesa
+[14:21:03] [PASSED] drm_test_cmdline_res_vesa_rblank
+[14:21:03] [PASSED] drm_test_cmdline_res_rblank
+[14:21:03] [PASSED] drm_test_cmdline_res_bpp
+[14:21:03] [PASSED] drm_test_cmdline_res_refresh
+[14:21:03] [PASSED] drm_test_cmdline_res_bpp_refresh
+[14:21:03] [PASSED] drm_test_cmdline_res_bpp_refresh_interlaced
+[14:21:03] [PASSED] drm_test_cmdline_res_bpp_refresh_margins
+[14:21:03] [PASSED] drm_test_cmdline_res_bpp_refresh_force_off
+[14:21:03] [PASSED] drm_test_cmdline_res_bpp_refresh_force_on
+[14:21:03] [PASSED] drm_test_cmdline_res_bpp_refresh_force_on_analog
+[14:21:03] [PASSED] drm_test_cmdline_res_bpp_refresh_force_on_digital
+[14:21:03] [PASSED] drm_test_cmdline_res_bpp_refresh_interlaced_margins_force_on
+[14:21:03] [PASSED] drm_test_cmdline_res_margins_force_on
+[14:21:03] [PASSED] drm_test_cmdline_res_vesa_margins
+[14:21:03] [PASSED] drm_test_cmdline_name
+[14:21:03] [PASSED] drm_test_cmdline_name_bpp
+[14:21:03] [PASSED] drm_test_cmdline_name_option
+[14:21:03] [PASSED] drm_test_cmdline_name_bpp_option
+[14:21:03] [PASSED] drm_test_cmdline_rotate_0
+[14:21:03] [PASSED] drm_test_cmdline_rotate_90
+[14:21:03] [PASSED] drm_test_cmdline_rotate_180
+[14:21:03] [PASSED] drm_test_cmdline_rotate_270
+[14:21:03] [PASSED] drm_test_cmdline_hmirror
+[14:21:03] [PASSED] drm_test_cmdline_vmirror
+[14:21:03] [PASSED] drm_test_cmdline_margin_options
+[14:21:03] [PASSED] drm_test_cmdline_multiple_options
+[14:21:03] [PASSED] drm_test_cmdline_bpp_extra_and_option
+[14:21:03] [PASSED] drm_test_cmdline_extra_and_option
+[14:21:03] [PASSED] drm_test_cmdline_freestanding_options
+[14:21:03] [PASSED] drm_test_cmdline_freestanding_force_e_and_options
+[14:21:03] [PASSED] drm_test_cmdline_panel_orientation
+[14:21:03] ================ drm_test_cmdline_invalid  =================
+[14:21:03] [PASSED] margin_only
+[14:21:03] [PASSED] interlace_only
+[14:21:03] [PASSED] res_missing_x
+[14:21:03] [PASSED] res_missing_y
+[14:21:03] [PASSED] res_bad_y
+[14:21:03] [PASSED] res_missing_y_bpp
+[14:21:03] [PASSED] res_bad_bpp
+[14:21:03] [PASSED] res_bad_refresh
+[14:21:03] [PASSED] res_bpp_refresh_force_on_off
+[14:21:03] [PASSED] res_invalid_mode
+[14:21:03] [PASSED] res_bpp_wrong_place_mode
+[14:21:03] [PASSED] name_bpp_refresh
+[14:21:03] [PASSED] name_refresh
+[14:21:03] [PASSED] name_refresh_wrong_mode
+[14:21:03] [PASSED] name_refresh_invalid_mode
+[14:21:03] [PASSED] rotate_multiple
+[14:21:03] [PASSED] rotate_invalid_val
+[14:21:03] [PASSED] rotate_truncated
+[14:21:03] [PASSED] invalid_option
+[14:21:03] [PASSED] invalid_tv_option
+[14:21:03] [PASSED] truncated_tv_option
+[14:21:03] ============ [PASSED] drm_test_cmdline_invalid =============
+[14:21:03] =============== drm_test_cmdline_tv_options  ===============
+[14:21:03] [PASSED] NTSC
+[14:21:03] [PASSED] NTSC_443
+[14:21:03] [PASSED] NTSC_J
+[14:21:03] [PASSED] PAL
+[14:21:03] [PASSED] PAL_M
+[14:21:03] [PASSED] PAL_N
+[14:21:03] [PASSED] SECAM
+[14:21:03] =========== [PASSED] drm_test_cmdline_tv_options ===========
+[14:21:03] =============== [PASSED] drm_cmdline_parser ================
+[14:21:03] ========== drm_get_tv_mode_from_name (2 subtests) ==========
+[14:21:03] ========== drm_test_get_tv_mode_from_name_valid  ===========
+[14:21:03] [PASSED] NTSC
+[14:21:03] [PASSED] NTSC-443
+[14:21:03] [PASSED] NTSC-J
+[14:21:03] [PASSED] PAL
+[14:21:03] [PASSED] PAL-M
+[14:21:03] [PASSED] PAL-N
+[14:21:03] [PASSED] SECAM
+[14:21:03] ====== [PASSED] drm_test_get_tv_mode_from_name_valid =======
+[14:21:03] [PASSED] drm_test_get_tv_mode_from_name_truncated
+[14:21:03] ============ [PASSED] drm_get_tv_mode_from_name ============
+[14:21:03] ============= drm_damage_helper (21 subtests) ==============
+[14:21:03] [PASSED] drm_test_damage_iter_no_damage
+[14:21:03] [PASSED] drm_test_damage_iter_no_damage_fractional_src
+[14:21:03] [PASSED] drm_test_damage_iter_no_damage_src_moved
+[14:21:03] [PASSED] drm_test_damage_iter_no_damage_fractional_src_moved
+[14:21:03] [PASSED] drm_test_damage_iter_no_damage_not_visible
+[14:21:03] [PASSED] drm_test_damage_iter_no_damage_no_crtc
+[14:21:03] [PASSED] drm_test_damage_iter_no_damage_no_fb
+[14:21:03] [PASSED] drm_test_damage_iter_simple_damage
+[14:21:03] [PASSED] drm_test_damage_iter_single_damage
+[14:21:03] [PASSED] drm_test_damage_iter_single_damage_intersect_src
+[14:21:03] [PASSED] drm_test_damage_iter_single_damage_outside_src
+[14:21:03] [PASSED] drm_test_damage_iter_single_damage_fractional_src
+[14:21:03] [PASSED] drm_test_damage_iter_single_damage_intersect_fractional_src
+[14:21:03] [PASSED] drm_test_damage_iter_single_damage_outside_fractional_src
+[14:21:03] [PASSED] drm_test_damage_iter_single_damage_src_moved
+[14:21:03] [PASSED] drm_test_damage_iter_single_damage_fractional_src_moved
+[14:21:03] [PASSED] drm_test_damage_iter_damage
+[14:21:03] [PASSED] drm_test_damage_iter_damage_one_intersect
+[14:21:03] [PASSED] drm_test_damage_iter_damage_one_outside
+[14:21:03] [PASSED] drm_test_damage_iter_damage_src_moved
+[14:21:03] [PASSED] drm_test_damage_iter_damage_not_visible
+[14:21:03] ================ [PASSED] drm_damage_helper ================
+[14:21:03] ============== drm_dp_mst_helper (2 subtests) ==============
+[14:21:03] ============== drm_test_dp_mst_calc_pbn_mode  ==============
+[14:21:03] [PASSED] Clock 154000 BPP 30 DSC disabled
+[14:21:03] [PASSED] Clock 234000 BPP 30 DSC disabled
+[14:21:03] [PASSED] Clock 297000 BPP 24 DSC disabled
+[14:21:03] [PASSED] Clock 332880 BPP 24 DSC enabled
+[14:21:03] [PASSED] Clock 324540 BPP 24 DSC enabled
+[14:21:03] ========== [PASSED] drm_test_dp_mst_calc_pbn_mode ==========
+[14:21:03] ========= drm_test_dp_mst_sideband_msg_req_decode  =========
+[14:21:03] [PASSED] DP_ENUM_PATH_RESOURCES with port number
+[14:21:03] [PASSED] DP_POWER_UP_PHY with port number
+[14:21:03] [PASSED] DP_POWER_DOWN_PHY with port number
+[14:21:03] [PASSED] DP_ALLOCATE_PAYLOAD with SDP stream sinks
+[14:21:03] [PASSED] DP_ALLOCATE_PAYLOAD with port number
+[14:21:03] [PASSED] DP_ALLOCATE_PAYLOAD with VCPI
+[14:21:03] [PASSED] DP_ALLOCATE_PAYLOAD with PBN
+[14:21:03] [PASSED] DP_QUERY_PAYLOAD with port number
+[14:21:03] [PASSED] DP_QUERY_PAYLOAD with VCPI
+[14:21:03] [PASSED] DP_REMOTE_DPCD_READ with port number
+[14:21:03] [PASSED] DP_REMOTE_DPCD_READ with DPCD address
+[14:21:03] [PASSED] DP_REMOTE_DPCD_READ with max number of bytes
+[14:21:03] [PASSED] DP_REMOTE_DPCD_WRITE with port number
+[14:21:03] [PASSED] DP_REMOTE_DPCD_WRITE with DPCD address
+[14:21:03] [PASSED] DP_REMOTE_DPCD_WRITE with data array
+[14:21:03] [PASSED] DP_REMOTE_I2C_READ with port number
+[14:21:03] [PASSED] DP_REMOTE_I2C_READ with I2C device ID
+[14:21:03] [PASSED] DP_REMOTE_I2C_READ with transactions array
+[14:21:03] [PASSED] DP_REMOTE_I2C_WRITE with port number
+[14:21:03] [PASSED] DP_REMOTE_I2C_WRITE with I2C device ID
+[14:21:03] [PASSED] DP_REMOTE_I2C_WRITE with data array
+[14:21:03] [PASSED] DP_QUERY_STREAM_ENC_STATUS with stream ID
+[14:21:03] [PASSED] DP_QUERY_STREAM_ENC_STATUS with client ID
+[14:21:03] [PASSED] DP_QUERY_STREAM_ENC_STATUS with stream event
+[14:21:03] [PASSED] DP_QUERY_STREAM_ENC_STATUS with valid stream event
+[14:21:03] [PASSED] DP_QUERY_STREAM_ENC_STATUS with stream behavior
+[14:21:03] [PASSED] DP_QUERY_STREAM_ENC_STATUS with a valid stream behavior
+[14:21:03] ===== [PASSED] drm_test_dp_mst_sideband_msg_req_decode =====
+[14:21:03] ================ [PASSED] drm_dp_mst_helper ================
+[14:21:03] =========== drm_format_helper_test (11 subtests) ===========
+[14:21:03] ============== drm_test_fb_xrgb8888_to_gray8  ==============
+[14:21:03] [PASSED] single_pixel_source_buffer
+[14:21:03] [PASSED] single_pixel_clip_rectangle
+[14:21:03] [PASSED] well_known_colors
+[14:21:03] [PASSED] destination_pitch
+[14:21:03] ========== [PASSED] drm_test_fb_xrgb8888_to_gray8 ==========
+[14:21:03] ============= drm_test_fb_xrgb8888_to_rgb332  ==============
+[14:21:03] [PASSED] single_pixel_source_buffer
+[14:21:03] [PASSED] single_pixel_clip_rectangle
+[14:21:03] [PASSED] well_known_colors
+[14:21:03] [PASSED] destination_pitch
+[14:21:03] ========= [PASSED] drm_test_fb_xrgb8888_to_rgb332 ==========
+[14:21:03] ============= drm_test_fb_xrgb8888_to_rgb565  ==============
+[14:21:03] [PASSED] single_pixel_source_buffer
+[14:21:03] [PASSED] single_pixel_clip_rectangle
+[14:21:03] [PASSED] well_known_colors
+[14:21:03] [PASSED] destination_pitch
+[14:21:03] ========= [PASSED] drm_test_fb_xrgb8888_to_rgb565 ==========
+[14:21:03] ============ drm_test_fb_xrgb8888_to_xrgb1555  =============
+[14:21:03] [PASSED] single_pixel_source_buffer
+[14:21:03] [PASSED] single_pixel_clip_rectangle
+[14:21:03] [PASSED] well_known_colors
+[14:21:03] [PASSED] destination_pitch
+[14:21:03] ======== [PASSED] drm_test_fb_xrgb8888_to_xrgb1555 =========
+[14:21:03] ============ drm_test_fb_xrgb8888_to_argb1555  =============
+[14:21:03] [PASSED] single_pixel_source_buffer
+[14:21:03] [PASSED] single_pixel_clip_rectangle
+[14:21:03] [PASSED] well_known_colors
+[14:21:03] [PASSED] destination_pitch
+[14:21:03] ======== [PASSED] drm_test_fb_xrgb8888_to_argb1555 =========
+[14:21:03] ============ drm_test_fb_xrgb8888_to_rgba5551  =============
+[14:21:03] [PASSED] single_pixel_source_buffer
+[14:21:03] [PASSED] single_pixel_clip_rectangle
+[14:21:03] [PASSED] well_known_colors
+[14:21:03] [PASSED] destination_pitch
+[14:21:03] ======== [PASSED] drm_test_fb_xrgb8888_to_rgba5551 =========
+[14:21:03] ============= drm_test_fb_xrgb8888_to_rgb888  ==============
+[14:21:03] [PASSED] single_pixel_source_buffer
+[14:21:03] [PASSED] single_pixel_clip_rectangle
+[14:21:03] [PASSED] well_known_colors
+[14:21:03] [PASSED] destination_pitch
+[14:21:03] ========= [PASSED] drm_test_fb_xrgb8888_to_rgb888 ==========
+[14:21:03] ============ drm_test_fb_xrgb8888_to_argb8888  =============
+[14:21:03] [PASSED] single_pixel_source_buffer
+[14:21:03] [PASSED] single_pixel_clip_rectangle
+[14:21:03] [PASSED] well_known_colors
+[14:21:03] [PASSED] destination_pitch
+[14:21:03] ======== [PASSED] drm_test_fb_xrgb8888_to_argb8888 =========
+[14:21:03] =========== drm_test_fb_xrgb8888_to_xrgb2101010  ===========
+[14:21:03] [PASSED] single_pixel_source_buffer
+[14:21:03] [PASSED] single_pixel_clip_rectangle
+[14:21:03] [PASSED] well_known_colors
+[14:21:03] [PASSED] destination_pitch
+[14:21:03] ======= [PASSED] drm_test_fb_xrgb8888_to_xrgb2101010 =======
+[14:21:03] =========== drm_test_fb_xrgb8888_to_argb2101010  ===========
+[14:21:03] [PASSED] single_pixel_source_buffer
+[14:21:03] [PASSED] single_pixel_clip_rectangle
+[14:21:03] [PASSED] well_known_colors
+[14:21:03] [PASSED] destination_pitch
+[14:21:03] ======= [PASSED] drm_test_fb_xrgb8888_to_argb2101010 =======
+[14:21:03] ============== drm_test_fb_xrgb8888_to_mono  ===============
+[14:21:03] [PASSED] single_pixel_source_buffer
+[14:21:03] [PASSED] single_pixel_clip_rectangle
+[14:21:03] [PASSED] well_known_colors
+[14:21:03] [PASSED] destination_pitch
+[14:21:03] ========== [PASSED] drm_test_fb_xrgb8888_to_mono ===========
+[14:21:03] ============= [PASSED] drm_format_helper_test ==============
+[14:21:03] ================= drm_format (18 subtests) =================
+[14:21:03] [PASSED] drm_test_format_block_width_invalid
+[14:21:03] [PASSED] drm_test_format_block_width_one_plane
+[14:21:03] [PASSED] drm_test_format_block_width_two_plane
+[14:21:03] [PASSED] drm_test_format_block_width_three_plane
+[14:21:03] [PASSED] drm_test_format_block_width_tiled
+[14:21:03] [PASSED] drm_test_format_block_height_invalid
+[14:21:03] [PASSED] drm_test_format_block_height_one_plane
+[14:21:03] [PASSED] drm_test_format_block_height_two_plane
+[14:21:03] [PASSED] drm_test_format_block_height_three_plane
+[14:21:03] [PASSED] drm_test_format_block_height_tiled
+[14:21:03] [PASSED] drm_test_format_min_pitch_invalid
+[14:21:03] [PASSED] drm_test_format_min_pitch_one_plane_8bpp
+[14:21:03] [PASSED] drm_test_format_min_pitch_one_plane_16bpp
+[14:21:03] [PASSED] drm_test_format_min_pitch_one_plane_24bpp
+[14:21:03] [PASSED] drm_test_format_min_pitch_one_plane_32bpp
+[14:21:03] [PASSED] drm_test_format_min_pitch_two_plane
+[14:21:03] [PASSED] drm_test_format_min_pitch_three_plane_8bpp
+[14:21:03] [PASSED] drm_test_format_min_pitch_tiled
+[14:21:03] =================== [PASSED] drm_format ====================
+[14:21:03] =============== drm_framebuffer (1 subtest) ================
+[14:21:03] =============== drm_test_framebuffer_create  ===============
+[14:21:03] [PASSED] ABGR8888 normal sizes
+[14:21:03] [PASSED] ABGR8888 max sizes
+[14:21:03] [PASSED] ABGR8888 pitch greater than min required
+[14:21:03] [PASSED] ABGR8888 pitch less than min required
+[14:21:03] [PASSED] ABGR8888 Invalid width
+[14:21:03] [PASSED] ABGR8888 Invalid buffer handle
+[14:21:03] [PASSED] No pixel format
+[14:21:03] [PASSED] ABGR8888 Width 0
+[14:21:03] [PASSED] ABGR8888 Height 0
+[14:21:03] [PASSED] ABGR8888 Out of bound height * pitch combination
+[14:21:03] [PASSED] ABGR8888 Large buffer offset
+[14:21:03] [PASSED] ABGR8888 Set DRM_MODE_FB_MODIFIERS without modifiers
+[14:21:03] [PASSED] ABGR8888 Valid buffer modifier
+[14:21:03] [PASSED] ABGR8888 Invalid buffer modifier(DRM_FORMAT_MOD_SAMSUNG_64_32_TILE)
+[14:21:03] [PASSED] ABGR8888 Extra pitches without DRM_MODE_FB_MODIFIERS
+[14:21:03] [PASSED] ABGR8888 Extra pitches with DRM_MODE_FB_MODIFIERS
+[14:21:03] [PASSED] NV12 Normal sizes
+[14:21:03] [PASSED] NV12 Max sizes
+[14:21:03] [PASSED] NV12 Invalid pitch
+[14:21:03] [PASSED] NV12 Invalid modifier/missing DRM_MODE_FB_MODIFIERS flag
+[14:21:03] [PASSED] NV12 different  modifier per-plane
+[14:21:03] [PASSED] NV12 with DRM_FORMAT_MOD_SAMSUNG_64_32_TILE
+[14:21:03] [PASSED] NV12 Valid modifiers without DRM_MODE_FB_MODIFIERS
+[14:21:03] [PASSED] NV12 Modifier for inexistent plane
+[14:21:03] [PASSED] NV12 Handle for inexistent plane
+[14:21:03] [PASSED] NV12 Handle for inexistent plane without DRM_MODE_FB_MODIFIERS
+[14:21:03] [PASSED] YVU420 Normal sizes
+[14:21:03] [PASSED] YVU420 DRM_MODE_FB_MODIFIERS set without modifier
+[14:21:03] [PASSED] YVU420 Max sizes
+[14:21:03] [PASSED] YVU420 Invalid pitch
+[14:21:03] [PASSED] YVU420 Different pitches
+[14:21:03] [PASSED] YVU420 Different buffer offsets/pitches
+[14:21:03] [PASSED] YVU420 Modifier set just for plane 0, without DRM_MODE_FB_MODIFIERS
+[14:21:03] [PASSED] YVU420 Modifier set just for planes 0, 1, without DRM_MODE_FB_MODIFIERS
+[14:21:03] [PASSED] YVU420 Modifier set just for plane 0, 1, with DRM_MODE_FB_MODIFIERS
+[14:21:03] [PASSED] YVU420 Valid modifier
+[14:21:03] [PASSED] YVU420 Different modifiers per plane
+[14:21:03] [PASSED] YVU420 Modifier for inexistent plane
+[14:21:03] [PASSED] X0L2 Normal sizes
+[14:21:03] [PASSED] X0L2 Max sizes
+[14:21:03] [PASSED] X0L2 Invalid pitch
+[14:21:03] [PASSED] X0L2 Pitch greater than minimum required
+stty: 'standard input': Inappropriate ioctl for device
+[14:21:03] [PASSED] X0L2 Handle for inexistent plane
+[14:21:03] [PASSED] X0L2 Offset for inexistent plane, without DRM_MODE_FB_MODIFIERS set
+[14:21:03] [PASSED] X0L2 Modifier without DRM_MODE_FB_MODIFIERS set
+[14:21:03] [PASSED] X0L2 Valid modifier
+[14:21:03] [PASSED] X0L2 Modifier for inexistent plane
+[14:21:03] =========== [PASSED] drm_test_framebuffer_create ===========
+[14:21:03] ================= [PASSED] drm_framebuffer =================
+[14:21:03] =============== drm-test-managed (1 subtest) ===============
+[14:21:03] [PASSED] drm_test_managed_run_action
+[14:21:03] ================ [PASSED] drm-test-managed =================
+[14:21:03] =================== drm_mm (19 subtests) ===================
+[14:21:03] [PASSED] drm_test_mm_init
+[14:21:03] [PASSED] drm_test_mm_debug
+[14:21:13] [PASSED] drm_test_mm_reserve
+[14:21:23] [PASSED] drm_test_mm_insert
+[14:21:23] [PASSED] drm_test_mm_replace
+[14:21:24] [PASSED] drm_test_mm_insert_range
+[14:21:24] [PASSED] drm_test_mm_frag
+[14:21:24] [PASSED] drm_test_mm_align
+[14:21:24] [PASSED] drm_test_mm_align32
+[14:21:24] [PASSED] drm_test_mm_align64
+[14:21:24] [PASSED] drm_test_mm_evict
+[14:21:24] [PASSED] drm_test_mm_evict_range
+[14:21:24] [PASSED] drm_test_mm_topdown
+[14:21:24] [PASSED] drm_test_mm_bottomup
+[14:21:24] [PASSED] drm_test_mm_lowest
+[14:21:24] [PASSED] drm_test_mm_highest
+[14:21:25] [PASSED] drm_test_mm_color
+[14:21:26] [PASSED] drm_test_mm_color_evict
+[14:21:26] [PASSED] drm_test_mm_color_evict_range
+[14:21:26] ===================== [PASSED] drm_mm ======================
+[14:21:26] ============= drm_modes_analog_tv (4 subtests) =============
+[14:21:26] [PASSED] drm_test_modes_analog_tv_ntsc_480i
+[14:21:26] [PASSED] drm_test_modes_analog_tv_ntsc_480i_inlined
+[14:21:26] [PASSED] drm_test_modes_analog_tv_pal_576i
+[14:21:26] [PASSED] drm_test_modes_analog_tv_pal_576i_inlined
+[14:21:26] =============== [PASSED] drm_modes_analog_tv ===============
+[14:21:26] ============== drm_plane_helper (2 subtests) ===============
+[14:21:26] =============== drm_test_check_plane_state  ================
+[14:21:26] [PASSED] clipping_simple
+[14:21:26] [PASSED] clipping_rotate_reflect
+[14:21:26] [PASSED] positioning_simple
+[14:21:26] [PASSED] upscaling
+[14:21:26] [PASSED] downscaling
+[14:21:26] [PASSED] rounding1
+[14:21:26] [PASSED] rounding2
+[14:21:26] [PASSED] rounding3
+[14:21:26] [PASSED] rounding4
+[14:21:26] =========== [PASSED] drm_test_check_plane_state ============
+[14:21:26] =========== drm_test_check_invalid_plane_state  ============
+[14:21:26] [PASSED] positioning_invalid
+[14:21:26] [PASSED] upscaling_invalid
+[14:21:26] [PASSED] downscaling_invalid
+[14:21:26] ======= [PASSED] drm_test_check_invalid_plane_state ========
+[14:21:26] ================ [PASSED] drm_plane_helper =================
+[14:21:26] ====== drm_connector_helper_tv_get_modes (1 subtest) =======
+[14:21:26] ====== drm_test_connector_helper_tv_get_modes_check  =======
+[14:21:26] [PASSED] None
+[14:21:26] [PASSED] PAL
+[14:21:26] [PASSED] NTSC
+[14:21:26] [PASSED] Both, NTSC Default
+[14:21:26] [PASSED] Both, PAL Default
+[14:21:26] [PASSED] Both, NTSC Default, with PAL on command-line
+[14:21:26] [PASSED] Both, PAL Default, with NTSC on command-line
+[14:21:26] == [PASSED] drm_test_connector_helper_tv_get_modes_check ===
+[14:21:26] ======== [PASSED] drm_connector_helper_tv_get_modes ========
+[14:21:26] ================== drm_rect (9 subtests) ===================
+[14:21:26] [PASSED] drm_test_rect_clip_scaled_div_by_zero
+[14:21:26] [PASSED] drm_test_rect_clip_scaled_not_clipped
+[14:21:26] [PASSED] drm_test_rect_clip_scaled_clipped
+[14:21:26] [PASSED] drm_test_rect_clip_scaled_signed_vs_unsigned
+[14:21:26] ================= drm_test_rect_intersect  =================
+[14:21:26] [PASSED] top-left x bottom-right: 2x2+1+1 x 2x2+0+0
+[14:21:26] [PASSED] top-right x bottom-left: 2x2+0+0 x 2x2+1-1
+[14:21:26] [PASSED] bottom-left x top-right: 2x2+1-1 x 2x2+0+0
+[14:21:26] [PASSED] bottom-right x top-left: 2x2+0+0 x 2x2+1+1
+[14:21:26] [PASSED] right x left: 2x1+0+0 x 3x1+1+0
+[14:21:26] [PASSED] left x right: 3x1+1+0 x 2x1+0+0
+[14:21:26] [PASSED] up x bottom: 1x2+0+0 x 1x3+0-1
+[14:21:26] [PASSED] bottom x up: 1x3+0-1 x 1x2+0+0
+[14:21:26] [PASSED] touching corner: 1x1+0+0 x 2x2+1+1
+[14:21:26] [PASSED] touching side: 1x1+0+0 x 1x1+1+0
+[14:21:26] [PASSED] equal rects: 2x2+0+0 x 2x2+0+0
+[14:21:26] [PASSED] inside another: 2x2+0+0 x 1x1+1+1
+[14:21:26] [PASSED] far away: 1x1+0+0 x 1x1+3+6
+[14:21:26] [PASSED] points intersecting: 0x0+5+10 x 0x0+5+10
+[14:21:26] [PASSED] points not intersecting: 0x0+0+0 x 0x0+5+10
+[14:21:26] ============= [PASSED] drm_test_rect_intersect =============
+[14:21:26] ================ drm_test_rect_calc_hscale  ================
+[14:21:26] [PASSED] normal use
+[14:21:26] [PASSED] out of max range
+[14:21:26] [PASSED] out of min range
+[14:21:26] [PASSED] zero dst
+[14:21:26] [PASSED] negative src
+[14:21:26] [PASSED] negative dst
+[14:21:26] ============ [PASSED] drm_test_rect_calc_hscale ============
+[14:21:26] ================ drm_test_rect_calc_vscale  ================
+[14:21:26] [PASSED] normal use
+[14:21:26] [PASSED] out of max range
+[14:21:26] [PASSED] out of min range
+[14:21:26] [PASSED] zero dst
+[14:21:26] [PASSED] negative src
+[14:21:26] [PASSED] negative dst
+[14:21:26] ============ [PASSED] drm_test_rect_calc_vscale ============
+[14:21:26] ================== drm_test_rect_rotate  ===================
+[14:21:26] [PASSED] reflect-x
+[14:21:26] [PASSED] reflect-y
+[14:21:26] [PASSED] rotate-0
+[14:21:26] [PASSED] rotate-90
+[14:21:26] [PASSED] rotate-180
+[14:21:26] [PASSED] rotate-270
+[14:21:26] ============== [PASSED] drm_test_rect_rotate ===============
+[14:21:26] ================ drm_test_rect_rotate_inv  =================
+[14:21:26] [PASSED] reflect-x
+[14:21:26] [PASSED] reflect-y
+[14:21:26] [PASSED] rotate-0
+[14:21:26] [PASSED] rotate-90
+[14:21:26] [PASSED] rotate-180
+[14:21:26] [PASSED] rotate-270
+[14:21:26] ============ [PASSED] drm_test_rect_rotate_inv =============
+[14:21:26] ==================== [PASSED] drm_rect =====================
+[14:21:26] ============================================================
+[14:21:26] Testing complete. Ran 333 tests: passed: 333
+[14:21:26] Elapsed time: 42.605s total, 1.675s configuring, 18.498s building, 22.429s running
 
-The other cgroup implementations don' really seem to implement 
-migration; when a resource is allocated, it is charged to the process 
-allocating it. I guess we could implement handover in dma-buf, but
++ cleanup
+++ stat -c %u:%g /kernel
++ chown -R 1003:1003 /kernel
 
-but I think the lack of migration should be harmless.
-
-> 2)
->
-> Buffer objects which Xe can migrate between memory regions will be 
-> correctly charge/uncharged as they are moved?
-
-Correct. It will be charged in both places while moving, and afterwards 
-the old allocation is uncharged when freeing.
-
-I'm working on making TTM more cgroups aware while evicting, by adding 
-the limiting css as possible return pointer. TTM
-
-can only evict memory that is charged to the cgroup for which the limit 
-is hit, or one of its subgroups.
-
-Cheers,
-
-~Maarten
 
