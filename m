@@ -4,30 +4,38 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6603FC77B75
-	for <intel-xe@archiver.kernel.org>; Fri,  5 May 2023 14:50:44 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id B7E54C77B75
+	for <intel-xe@archiver.kernel.org>; Fri,  5 May 2023 14:50:56 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 37C3410E61D;
-	Fri,  5 May 2023 14:50:44 +0000 (UTC)
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id B96BF10E61D;
- Fri,  5 May 2023 14:50:42 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id B1BA7A00CC;
- Fri,  5 May 2023 14:50:42 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============8037350073367063350=="
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8AE2110E61D;
+	Fri,  5 May 2023 14:50:56 +0000 (UTC)
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1DD0310E624
+ for <intel-xe@lists.freedesktop.org>; Fri,  5 May 2023 14:50:55 +0000 (UTC)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+ (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+ (No client certificate requested)
+ by dfw.source.kernel.org (Postfix) with ESMTPS id 8553061085;
+ Fri,  5 May 2023 14:50:54 +0000 (UTC)
+Received: from rdvivi-mobl4 (unknown [192.55.54.48])
+ (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+ (No client certificate requested)
+ by smtp.kernel.org (Postfix) with ESMTPSA id 8D10BC43442;
+ Fri,  5 May 2023 14:50:52 +0000 (UTC)
+Date: Fri, 5 May 2023 10:50:50 -0400
+From: Rodrigo Vivi <rodrigo.vivi@kernel.org>
+To: Thomas =?iso-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>
+Message-ID: <ZFUXyufEB1Rflvpl@rdvivi-mobl4>
+References: <20230425021921.1695760-1-kode54@gmail.com>
+ <20230425021921.1695760-2-kode54@gmail.com>
+ <d413ac6e-f1b8-7e47-418e-639864626bfa@linux.intel.com>
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: =?utf-8?q?Thomas_Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>
-Date: Fri, 05 May 2023 14:50:42 -0000
-Message-ID: <168329824272.5021.5135537392278376418@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20230505141719.332109-1-thomas.hellstrom@linux.intel.com>
-In-Reply-To: <20230505141719.332109-1-thomas.hellstrom@linux.intel.com>
-Subject: [Intel-xe] =?utf-8?q?=E2=97=8B_CI=2EBAT=3A_info_for_drm/ttm=3A_A?=
- =?utf-8?q?llow_the_driver_to_resolve_a_WW_transaction_rollback?=
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <d413ac6e-f1b8-7e47-418e-639864626bfa@linux.intel.com>
+Subject: Re: [Intel-xe] [PATCH 1/1] drm/xe: Enable the compat ioctl
+ functionality
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -39,66 +47,39 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Cc: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============8037350073367063350==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+On Tue, Apr 25, 2023 at 09:46:54AM +0200, Thomas Hellström wrote:
+> 
+> On 4/25/23 04:19, Christopher Snowhill wrote:
+> > This is required at the minimum for the DRM UAPI to function from
+> > 32-bit userspace with a 64-bit kernel.
+> > 
+> > Signed-off-by: Christopher Snowhill <kode54@gmail.com>
+> 
+> LGTM.
+> 
+> Reviewed-by: Thomas Hellström <thomas.hellstrom@linux.intel.com>
 
-== Series Details ==
+Pushed. thanks for the patch and review.
 
-Series: drm/ttm: Allow the driver to resolve a WW transaction rollback
-URL   : https://patchwork.freedesktop.org/series/117388/
-State : info
-
-== Summary ==
-
-Participating hosts:
-bat-atsm-2
-bat-dg2-oem2
-Missing hosts results[0]:
-Results: [xe-pw-117388v1](https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-117388v1/index.html)
-
-
-
---===============8037350073367063350==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/ttm: Allow the driver to resolve a WW transaction rollback</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/117388/">https://patchwork.freedesktop.org/series/117388/</a></td></tr>
-<tr><td><b>State:</b></td><td>info</td></tr>
-
-</table>
-
-
-    <p>Participating hosts:<br />
-bat-atsm-2<br />
-bat-dg2-oem2<br />
-Missing hosts results[0]:<br />
-Results: <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-117388v1/index.html">xe-pw-117388v1</a></p>
-
-</body>
-</html>
-
---===============8037350073367063350==--
+> 
+> 
+> > ---
+> >   drivers/gpu/drm/xe/xe_device.c | 2 +-
+> >   1 file changed, 1 insertion(+), 1 deletion(-)
+> > 
+> > diff --git a/drivers/gpu/drm/xe/xe_device.c b/drivers/gpu/drm/xe/xe_device.c
+> > index 45d6e5ff47fd..00f1d9e386f1 100644
+> > --- a/drivers/gpu/drm/xe/xe_device.c
+> > +++ b/drivers/gpu/drm/xe/xe_device.c
+> > @@ -113,7 +113,7 @@ static const struct file_operations xe_driver_fops = {
+> >   	.mmap = drm_gem_mmap,
+> >   	.poll = drm_poll,
+> >   	.read = drm_read,
+> > -//	.compat_ioctl = i915_ioc32_compat_ioctl,
+> > +	.compat_ioctl = drm_compat_ioctl,
+> >   	.llseek = noop_llseek,
+> >   };
