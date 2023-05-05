@@ -4,48 +4,30 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1C7A0C77B7F
-	for <intel-xe@archiver.kernel.org>; Fri,  5 May 2023 13:34:43 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id BF168C77B7C
+	for <intel-xe@archiver.kernel.org>; Fri,  5 May 2023 13:37:08 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id DEF5310E5FD;
-	Fri,  5 May 2023 13:34:42 +0000 (UTC)
-Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E0E0310E5FD
- for <intel-xe@lists.freedesktop.org>; Fri,  5 May 2023 13:34:41 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1683293681; x=1714829681;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=omHwMYO69Kz0PM/MD6/TelihAhRPAbTF1BCBeKfhoSk=;
- b=J3AkmR9O18lxSbvKl/V1uRw+RjgJVrELI2abZk0KiCIAz2zCmlYzq7q1
- cvibWQ7V8nKDo6e6ux6WvDIySmhv14AwN+E11lryvOSQ3URrx7cgr5+7E
- 0jf9hhNjNGrRJDtfcEeSqom6wrsA9tOeXqcaqJDg0e/YecENofsTFVKG1
- vKFmBE3Cpb7onFJasIiofmquMa+FFmnVwtGW/2VNlE5N4aRrkst4q0Ksl
- g2KgvTYAGJf29p5ZWqjREEKuFOVfBTo12LIekS78SV6NyQcfeACpjM6Gl
- wcbg7+s/tiLcutB9BlF/02sgUna0SChHITb9YbFYBwUxdnJFqbvjZe0Fi g==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10701"; a="377285418"
-X-IronPort-AV: E=Sophos;i="5.99,252,1677571200"; d="scan'208";a="377285418"
-Received: from fmsmga007.fm.intel.com ([10.253.24.52])
- by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 05 May 2023 06:34:41 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10701"; a="700435658"
-X-IronPort-AV: E=Sophos;i="5.99,252,1677571200"; d="scan'208";a="700435658"
-Received: from nirmoyda-desk.igk.intel.com ([10.102.138.190])
- by fmsmga007-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 05 May 2023 06:34:40 -0700
-From: Nirmoy Das <nirmoy.das@intel.com>
-To: intel-xe@lists.freedesktop.org
-Date: Fri,  5 May 2023 15:34:33 +0200
-Message-Id: <20230505133433.9642-1-nirmoy.das@intel.com>
-X-Mailer: git-send-email 2.39.0
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9594110E600;
+	Fri,  5 May 2023 13:37:08 +0000 (UTC)
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id B8ACA10E5FD;
+ Fri,  5 May 2023 13:37:06 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id B11DBA00E6;
+ Fri,  5 May 2023 13:37:06 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Organization: Intel Deutschland GmbH, Registered Address: Am Campeon 10,
- 85579 Neubiberg, Germany,
- Commercial Register: Amtsgericht Muenchen HRB 186928 
-Content-Transfer-Encoding: 8bit
-Subject: [Intel-xe] [PATCH] drm/xe: Print GT info on TLB inv failure
+Content-Transfer-Encoding: 7bit
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Nirmoy Das" <nirmoy.das@intel.com>
+Date: Fri, 05 May 2023 13:37:06 -0000
+Message-ID: <168329382672.5020.9241339818489676355@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20230505133433.9642-1-nirmoy.das@intel.com>
+In-Reply-To: <20230505133433.9642-1-nirmoy.das@intel.com>
+Subject: [Intel-xe] =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_f?=
+ =?utf-8?q?or_drm/xe=3A_Print_GT_info_on_TLB_inv_failure?=
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -57,43 +39,22 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Cc: Nirmoy Das <nirmoy.das@intel.com>
+Reply-To: intel-xe@lists.freedesktop.org
+Cc: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Print GT info on TLB inv failure for better debugbility.
+== Series Details ==
 
-Signed-off-by: Nirmoy Das <nirmoy.das@intel.com>
----
- drivers/gpu/drm/xe/xe_gt_tlb_invalidation.c | 8 ++++----
- 1 file changed, 4 insertions(+), 4 deletions(-)
+Series: drm/xe: Print GT info on TLB inv failure
+URL   : https://patchwork.freedesktop.org/series/117385/
+State : success
 
-diff --git a/drivers/gpu/drm/xe/xe_gt_tlb_invalidation.c b/drivers/gpu/drm/xe/xe_gt_tlb_invalidation.c
-index 604f189dbd70..9e7fe8d9bca4 100644
---- a/drivers/gpu/drm/xe/xe_gt_tlb_invalidation.c
-+++ b/drivers/gpu/drm/xe/xe_gt_tlb_invalidation.c
-@@ -34,8 +34,8 @@ static void xe_gt_tlb_fence_timeout(struct work_struct *work)
- 			break;
- 
- 		trace_xe_gt_tlb_invalidation_fence_timeout(fence);
--		drm_err(&gt_to_xe(gt)->drm, "TLB invalidation fence timeout, seqno=%d",
--			fence->seqno);
-+		drm_err(&gt_to_xe(gt)->drm, "gt%d: TLB invalidation fence timeout, seqno=%d",
-+			gt->info.id, fence->seqno);
- 
- 		list_del(&fence->link);
- 		fence->base.error = -ETIME;
-@@ -285,8 +285,8 @@ int xe_gt_tlb_invalidation_wait(struct xe_gt *gt, int seqno)
- 				 tlb_invalidation_seqno_past(gt, seqno),
- 				 TLB_TIMEOUT);
- 	if (!ret) {
--		drm_err(&xe->drm, "TLB invalidation time'd out, seqno=%d, recv=%d\n",
--			seqno, gt->tlb_invalidation.seqno_recv);
-+		drm_err(&xe->drm, "gt%d: TLB invalidation time'd out, seqno=%d, recv=%d\n",
-+			gt->info.id, seqno, gt->tlb_invalidation.seqno_recv);
- 		return -ETIME;
- 	}
- 
--- 
-2.39.0
+== Summary ==
+
+=== Applying kernel patches on branch 'drm-xe-next' with base: ===
+Base commit: 8681a3941 drm/xe: Fix splat during error dump
+=== git am output follows ===
+Applying: drm/xe: Print GT info on TLB inv failure
+
 
