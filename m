@@ -4,135 +4,136 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1EAF9C77B7D
-	for <intel-xe@archiver.kernel.org>; Fri,  5 May 2023 19:27:03 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id DADE0C77B7D
+	for <intel-xe@archiver.kernel.org>; Fri,  5 May 2023 19:30:00 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C728010E665;
-	Fri,  5 May 2023 19:27:02 +0000 (UTC)
-Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B11B510E665
- for <intel-xe@lists.freedesktop.org>; Fri,  5 May 2023 19:27:01 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id AD70810E664;
+	Fri,  5 May 2023 19:30:00 +0000 (UTC)
+Received: from mga06.intel.com (mga06b.intel.com [134.134.136.31])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E80B010E664
+ for <intel-xe@lists.freedesktop.org>; Fri,  5 May 2023 19:29:57 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1683314821; x=1714850821;
+ t=1683314998; x=1714850998;
  h=date:from:to:cc:subject:message-id:references:
  in-reply-to:mime-version;
- bh=X2xIP/9qhKz58Cm2CIQG/FNQn+OBfqB1ZcReygwYp9o=;
- b=ROdm0Qhm/DsNsXO7M+SVfaUvL35DDk4ROI5uv4X43GwQBrWJQxX5ICki
- wFX00DTmCkyMI93f+vF3vLdvkdhzur0puwfg62xlMNLd1OtpRzrBRwY2r
- g34bCGaopFV2SbIqYi+jpmSBCBQ6HP95TPYzHYALgq9Cqy6LgROi+VuQK
- r5pj4g2Rrc6JwLQ8/tyi/NSKXARuwZf4dJgtLPa4hloyUpTCst+pTYwqb
- DAESCCnxomidcWpYq/lFf9+oliK5hXF0KnoYEI2+2DyYnZGqdHr2mli8d
- PZ4vTF6qTlHTCfF/jBwphDfGyH1+dmbeQb6wLXyscqskpuS/IFbD5q1Zx Q==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10701"; a="377366462"
-X-IronPort-AV: E=Sophos;i="5.99,252,1677571200"; d="scan'208";a="377366462"
-Received: from fmsmga002.fm.intel.com ([10.253.24.26])
- by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 05 May 2023 12:27:00 -0700
+ bh=W00u1GYz6QoKmbr9vMG51oqXtWy1tvdfDNbcGYX8ljg=;
+ b=Tv82+1H2hILq4dxOk1wC1nw08XCZxxt3K5p3d3g3w8hcUl3zv19285pL
+ Id3pvJ6V5ovPOzwTz7S6NhI5jjuZe0LHvOlUlCOj/SiHVAHnjxTUkYyhr
+ bEtvJYVIsIL/jcJ1C0RJlH5BLw4cVKNf1R4iwLsu6RGGCy1YBiufPgbeq
+ mEIFvALgPetw9slSrpUdb5AHxZ7wphQGfvoVoyu7jAA0UkOSIi4+PuSjc
+ uosJrz4M7751VcMt5yWqJK3a5OkmoYrh0oIMzVBHAO19+KHgiLXyxRWl1
+ +3HWvtyhD1MA6sa8vBk0z5hAJ1y5RnNMjEo6J3vIHg/AQdL/ViWK+panZ A==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10701"; a="412525134"
+X-IronPort-AV: E=Sophos;i="5.99,252,1677571200"; d="scan'208";a="412525134"
+Received: from orsmga002.jf.intel.com ([10.7.209.21])
+ by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 05 May 2023 12:29:54 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10701"; a="809376981"
-X-IronPort-AV: E=Sophos;i="5.99,252,1677571200"; d="scan'208";a="809376981"
-Received: from orsmsx602.amr.corp.intel.com ([10.22.229.15])
- by fmsmga002.fm.intel.com with ESMTP; 05 May 2023 12:27:00 -0700
+X-IronPort-AV: E=McAfee;i="6600,9927,10701"; a="697720025"
+X-IronPort-AV: E=Sophos;i="5.99,252,1677571200"; d="scan'208";a="697720025"
+Received: from orsmsx603.amr.corp.intel.com ([10.22.229.16])
+ by orsmga002.jf.intel.com with ESMTP; 05 May 2023 12:29:54 -0700
 Received: from orsmsx610.amr.corp.intel.com (10.22.229.23) by
- ORSMSX602.amr.corp.intel.com (10.22.229.15) with Microsoft SMTP Server
+ ORSMSX603.amr.corp.intel.com (10.22.229.16) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.23; Fri, 5 May 2023 12:27:00 -0700
-Received: from ORSEDG601.ED.cps.intel.com (10.7.248.6) by
+ 15.1.2507.23; Fri, 5 May 2023 12:29:53 -0700
+Received: from ORSEDG602.ED.cps.intel.com (10.7.248.7) by
  orsmsx610.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.23 via Frontend Transport; Fri, 5 May 2023 12:27:00 -0700
-Received: from NAM04-MW2-obe.outbound.protection.outlook.com (104.47.73.169)
- by edgegateway.intel.com (134.134.137.102) with Microsoft SMTP Server
+ 15.1.2507.23 via Frontend Transport; Fri, 5 May 2023 12:29:53 -0700
+Received: from NAM12-BN8-obe.outbound.protection.outlook.com (104.47.55.172)
+ by edgegateway.intel.com (134.134.137.103) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2507.23; Fri, 5 May 2023 12:26:59 -0700
+ 15.1.2507.23; Fri, 5 May 2023 12:29:53 -0700
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=l436lOW/Gv4IL5/KQwBLVy2Kprppyqnyuyx62F0yuN3NE/6ba8OZiM5VuBs5iDkkcYpHSZbRiawqWCH3IxTTiEB1IOwxF7CUlHQyqn3mIYwzqu/GbBTY8opa9d6Q2QkCHNLltdzRUdNp6vTiJHpczoLPw2pELso9qBvFxMiLPUWKVHcYhPF7wAtoyEt2uKi0yFcZfT0I2FIP5glvy9cTcgha/aSqDQL4WrWp2u8puXoxrKPQ0tGWNBIFyw0fFRvNYHZoFAr0AmMAWxNwxB9tYNUE8nECLzRg/S5PLjSIKqgUPbiARfswXp7fSRNcEed8JRk5se/IhLy9scZZdjMFjg==
+ b=dao/EV6fzQAPNAyu6kgJqF2NNGOuJnNOHb9DfJvmVAGD28ZN69q2RyUikUs4icVSJwBL8wUmzljnN+ZRH6hMzDMt9PMzdwOsNCSP5OB0iSwvs47J8yFrikyZMjER1po2pm/1N990QrA58VaSJuhE26Y40GWYyX3i6kqqvdL9qPVpn4Due8gB2do+f3p8SgmaAe6aneNbVE2hE2S38SwvsPkbwoFl96uriaNXlGOSko/CKqRSm3tVIuhT2hPH52mcQ3lscT+MQcj/DipFMktSrvismTuPcfGfufOuWrk0uakehO0hfZwZVIJMNxJEZHcRbhLXUQwixe40+FZuloYerA==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=nqgfIbwn7DW0h6Lo5tsw7drz2fXDD5t7vAYYocvLgXQ=;
- b=WI4fs0GZyhFH482MDlW920kTnkiXv9g0o/GlS1tjmiAb1f6FxPwg2Bk7lXHcr+TzCUkfps041pNQCx+PrJfJxF/KDAsVgClzlsLTGTlzJOfE4drzPPzfsbZ3LACLbV4NDZ0GE0OTTVtopkbu0Rivf7QOGYWX1hDI3GYtPqtc6d0jlApjBC0V1lkx92VuZwS35ayFuq2JasjBZX89n85U/JaQq+yXmPMX1j8+JicHONr/Lv3dovPwNOe4eDn+zCE+ua6cAP/OnsTXEfAYj4HjIw6VMAGHtzTUnUgR8wGbFBaP2oj5ubVU7Ue1aUXaCwAiOtzulEZt2NkokJqWA7Ljow==
+ bh=6B5QwpFay/elQ14UKnp+n7bQ5bAif0dJE3ODCsdc91E=;
+ b=cDioNCUat63lq/ONULrRd2lCXnboMI1nZ6AFGlr0+mqFEXEBJ3EFDleg81eJ3jvuvr+/JjDFJi0E8Ava9TR0eZhpflzjuSSxWWDWKymh39syBVg/qOjfCCKj4KgU2Dw930TIaPchDF2XYsURB2nAt2Q0QoyJ+yhuCHtt+ZQLBCtA0QnyUHG+M7u3+b3tBBbepZ1UIqsJZIsR9/VEEwa/xzVnj06Y4il/fT7WZ8rzZ4PDn2qfEKTSBlJ+czxLzgC2to6qjx51CFY/6wurzUI3TlBVQVN0V95kIxmTNRo46B38p/epQYUjlGUbOSBE+YDaf/VSmb+47AeA3vloalqzVw==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
  dkim=pass header.d=intel.com; arc=none
 Authentication-Results: dkim=none (message not signed)
  header.d=none;dmarc=none action=none header.from=intel.com;
 Received: from CY5PR11MB6139.namprd11.prod.outlook.com (2603:10b6:930:29::17)
- by DS0PR11MB7734.namprd11.prod.outlook.com (2603:10b6:8:df::7) with
- Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.6363.27; Fri, 5 May 2023 19:26:56 +0000
+ by SJ0PR11MB6765.namprd11.prod.outlook.com (2603:10b6:a03:47b::10)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6363.26; Fri, 5 May
+ 2023 19:29:45 +0000
 Received: from CY5PR11MB6139.namprd11.prod.outlook.com
  ([fe80::44e7:c479:62f4:3eb4]) by CY5PR11MB6139.namprd11.prod.outlook.com
  ([fe80::44e7:c479:62f4:3eb4%3]) with mapi id 15.20.6363.026; Fri, 5 May 2023
- 19:26:56 +0000
-Date: Fri, 5 May 2023 12:26:53 -0700
+ 19:29:45 +0000
+Date: Fri, 5 May 2023 12:29:42 -0700
 From: Lucas De Marchi <lucas.demarchi@intel.com>
 To: Rodrigo Vivi <rodrigo.vivi@kernel.org>
-Message-ID: <4vyizwiuzjkdelxh2hhfilmgclm2ykbimqbinz6us4uzdlvjly@c47rnplg7box>
+Message-ID: <w2qlrfen5zqwvcj4foqvf4b3ac53lqkcwyxvuynxpl77p6qnf3@b7cl4scp6ieu>
 X-Patchwork-Hint: comment
 References: <20230429062332.354139-1-lucas.demarchi@intel.com>
- <20230429062332.354139-5-lucas.demarchi@intel.com>
- <ZFU1lOZo/lZs4Ygd@rdvivi-mobl4>
+ <20230429062332.354139-6-lucas.demarchi@intel.com>
+ <ZFU19MkYZWI+ttvK@rdvivi-mobl4>
 Content-Type: text/plain; charset="us-ascii"; format=flowed
 Content-Disposition: inline
-In-Reply-To: <ZFU1lOZo/lZs4Ygd@rdvivi-mobl4>
-X-ClientProxiedBy: SJ0PR05CA0133.namprd05.prod.outlook.com
- (2603:10b6:a03:33d::18) To CY5PR11MB6139.namprd11.prod.outlook.com
+In-Reply-To: <ZFU19MkYZWI+ttvK@rdvivi-mobl4>
+X-ClientProxiedBy: BYAPR05CA0057.namprd05.prod.outlook.com
+ (2603:10b6:a03:74::34) To CY5PR11MB6139.namprd11.prod.outlook.com
  (2603:10b6:930:29::17)
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: CY5PR11MB6139:EE_|DS0PR11MB7734:EE_
-X-MS-Office365-Filtering-Correlation-Id: a2af2056-f35c-4a66-f232-08db4d9eb015
+X-MS-TrafficTypeDiagnostic: CY5PR11MB6139:EE_|SJ0PR11MB6765:EE_
+X-MS-Office365-Filtering-Correlation-Id: 3dee558f-a804-4d74-550f-08db4d9f150a
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: P8ErrsRGMxZX2yXWna46U3bCJnHqeykwUG+3WI860Uj9XNcNmVpmqEyWE3HPLkUUO4/sQD1KKnVgd9eS/fcj0sGOufQc1h1HNcAKfp7rcZ9zxkq/P8zx248gmkw889tML8hq6QhmCxazmPOuILmSDAsrG4SV0jB1nFMsN6XqV54OzQ5qeyyMFP/gu0sko+cqOrmoWKyCmrs8+B2fBVnf01nLc0n8DhzmeC6FQEEwp0CkVb/bUiEtb3RXxMmt0mChdGCqSth0iDT2PDp5WbIFG16W8hBneLV06x74ydZXxS54G8KSsFT1cvbIIZVR4gJH1+eGAUiADTb/SysiAfs3VhM0W/MNletJkN+q6wVYUuAH+HmvjloA5gfGKpXg2TH3uzA+sQRsaA5n5zMjFJsM/H+2gaf/tNAyOusVw8DHdhBLssRHibWUvCxdXSvZ3HLBVUbIV4vDnCLlIgNo+aBxL8zrK8Kk9QEC0stbsZUxv6rvSN7g5ZzCIMLWE6Yv+w1gcR191P3U5DCKm+mJD0uQcIGgdeag/cVubK/W5tvT9SBf2y/YpLNKzKeNywRFBo6d
+X-Microsoft-Antispam-Message-Info: VbDSJMWYLG6SM4hwfkvJvyZB6hb9gNQuk3uGXM98/GUgVONor+it6MJz5I5fSG104OSdPwyXh7FAkU+WYz2+Ks5jXza8t481EMKgvvm73QpVheuGeiiuvz+DSOfMRo52U4PliKKeDDKB+BuB2a4F3vPGlcokpikb0mgYRXQr6z+nSv74jkKqOFiiFNtRKlryj23vbxHn04EUVA0ugZJHjnTAoiFz/qYwAttD9M6D2vCY7mz/PQUC9eriLxs83WbTw+hLcK7G2oI4UVB1DFhNDsA9PIUNvkZdoUUvTr/x8gAVw0Sb8LT82bcQz1dPn6FFp6iHsS4VxpofNX/MHSnM+2MHmzfzUytLD5Ra7jcIn5tVqa7kbSD8nrnIBl+M6iAuZYkgVXLQ189D82zM/HqF1S7yf0KiWONGl5JDQCwmygMVet787uo2iro+BUafO/FFDCPJJbHlBpAJVDfMJQMGL+BHRQ0+9MfaWxumMoGAquvgLp2SBM7OLzIZrbsSLScM8sKFbcr1h17gS1DE12ANaUpUx04QDEMug2reVKRyh/MZmnKRcQOwuBR8MIIwmIJk
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
  IPV:NLI; SFV:NSPM; H:CY5PR11MB6139.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230028)(7916004)(136003)(366004)(346002)(396003)(39860400002)(376002)(451199021)(86362001)(478600001)(6666004)(316002)(66476007)(4326008)(66556008)(66946007)(6916009)(6486002)(41300700001)(5660300002)(33716001)(8676002)(8936002)(2906002)(30864003)(186003)(38100700002)(82960400001)(9686003)(6506007)(26005)(83380400001)(6512007)(66899021)(579004)(559001);
+ SFS:(13230028)(7916004)(39860400002)(366004)(136003)(376002)(346002)(396003)(451199021)(38100700002)(5660300002)(2906002)(8936002)(82960400001)(316002)(4326008)(86362001)(66476007)(66556008)(6916009)(66946007)(41300700001)(83380400001)(186003)(26005)(33716001)(6512007)(9686003)(6506007)(8676002)(478600001)(6486002)(6666004);
  DIR:OUT; SFP:1102; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?Sc6NVNXZ9ttMyxxhgsRGgUJ7KyznazoioGY+2zjUDenKNKIojBCu6c3sS+R8?=
- =?us-ascii?Q?jJ2Y8lmE7RrLF8YUjdhQU56knWIKAitqU6+0gKOiMz0fGxU12asgWHujcUFd?=
- =?us-ascii?Q?5L6ICOOCF+JVQGq/WMm6MEOzIKdx00+Nst1gVmgJLAwNzZ0jAny3jwWrigFk?=
- =?us-ascii?Q?w5YjaM45uLb//gs3VGzuKhBVmBMay7+Hhh9ULSmbQWRo9QwCXkw7OEx4U9pF?=
- =?us-ascii?Q?N6MfGqzbEcE4WhEVB4dvqbLINAujTcajiFaSojDm7I8Zg1tJxSBA7llLWd5R?=
- =?us-ascii?Q?7qbzjFpX22fuNAubhHrGui2ezOlumMb7PDO3am4mwUnpAoT3VJeb/bGPdOYN?=
- =?us-ascii?Q?rg32QyM7FjAqnsgSmN4lJ8QlKDhZwE/nBBrRB9qjHQEcoUmIpHwoOB/aznWj?=
- =?us-ascii?Q?66cTMrVs9mLY04Fa9vJwuU5rQbSpR31NcNp7oSup1uyJ0xuYqCL7TJ7g6/qX?=
- =?us-ascii?Q?cR/2rNQWl9wba5YKIrwYl0gy6x2eF4LtHq/sM5Fct5XxsmKRyzBX/u1kqNCQ?=
- =?us-ascii?Q?NdJj4sNaqzjxzyRX4IKe/n/2T2sLx8lEA8peG+3zKFmSOHi6kWN0eWwywRl3?=
- =?us-ascii?Q?tsCCfs28XW2jU/CWqWGCCaIbTjDEpC2DdZVSN+j6i80k3EnVrPqpv7fu1uk1?=
- =?us-ascii?Q?Y4jBpZnm9ejx56/ZcG1Iyj9DtvbmbrFbv+xly/uWLjoW75kcqIPVlJqYGMtL?=
- =?us-ascii?Q?fYI3xYTwC22DPAaZPP5sQcNGdai3ObOTMGUsbkYeUMRX01A0ux9q9MNdWXWQ?=
- =?us-ascii?Q?JmS1C1hHodf7KB5SJbOVIoKp4mww1POQxeJoNeX7+jX/CInGVnzV8Czd1rbH?=
- =?us-ascii?Q?GNAZldHKnVWMLDezgmxsyQTOAJGSPjhywV275wO3SlQKCdG3fOMkknRjijjg?=
- =?us-ascii?Q?eLbcLoglfBOof/7HCjLb4otvWMxbq48YjZP9Ed3eU2aimkMMEhwmP97oTicp?=
- =?us-ascii?Q?zVvqoWEytpE5jaDEqCGZ/HOHHFnjgtMlisZic/H62GMW/aU/DruC4YWRxqj7?=
- =?us-ascii?Q?JMLPcA2NCUAZie4fkKnRbybHaAE6YN4CYbm0wYUocGxxUHJA45nVpl3c3rS9?=
- =?us-ascii?Q?Ke0BxeJtFYTbYx9flE/1MZKmMm2jK3aFaBd9z53YmDGlANzTyNySjFcLPEzs?=
- =?us-ascii?Q?YzV4HlTJUzLh5J/mKgFBOsfWfmhuvKB+HWX0MGL6B+v8SEoFpqSsw2re1Z6m?=
- =?us-ascii?Q?FvovdEuzt9IRhSrDib0UqlBkcu+a8uTA280fHapg2vJGP0ec5DRJmOWcjBNj?=
- =?us-ascii?Q?9HdFKWtZA7SLgBWqC1elV4JQC4BdO8R8ZxU65PtHD3eDy6f/Ug0woh2XI9H4?=
- =?us-ascii?Q?bQUNK3DYD5P+DZZ7RfkF0DL++Yegt/8PnvcuzPt9PxXvjMuIzJNzeA+1nH09?=
- =?us-ascii?Q?mO9CnRemUvzNxLTmWFFTYZvfGzB6TbwpG7FzrxcJT2GyQJ5bJYURT3mergG/?=
- =?us-ascii?Q?sxcR8EcHYzNO6qNIvAQUsanIhPFqa+f9HB9t0U/3PXZk6mTlFt70QuMfv9o7?=
- =?us-ascii?Q?ApN4Bb4CgRSC2de0hUrrRujAlD26CdVB09Lgxp32e1W0WyhjZFakL3k1OcTg?=
- =?us-ascii?Q?828bJZtklB0XXIfSAx2bl+7bWXDd4BpdE+lNWLPoCKYVU3L64J7J0qlBZ4oH?=
- =?us-ascii?Q?7g=3D=3D?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: a2af2056-f35c-4a66-f232-08db4d9eb015
+X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?H7Mh9+v/Zp2mT7E6hknA8G2re+iNgguEiztLufCR/WdBQJg+ObRqPtzYtm0v?=
+ =?us-ascii?Q?ExjtnBousahf99YJDWdjoE0UlJ1rooDUdQZD5hskRBOHVZg9TuOJajYjAkTu?=
+ =?us-ascii?Q?3HinUbquVcsnYtI7Dt77UsfG7T4pT3ZzeguumnEuzrHmdWoJipnB2GRe9TJD?=
+ =?us-ascii?Q?Yz7YJu9QDC+fLK6wmtVRFdAXG34uzGQ0vZpBquGJmccU9YNjfkBVT7Gh6DRs?=
+ =?us-ascii?Q?nNcphVGLt0UGn3B1AYUjD945xzR18BIoG7TP38bI+L30JfJjHb/hFvBrlVj5?=
+ =?us-ascii?Q?ZNvsZZxkO2sJD8flj/6kSBUc8se/5WRhzfovBF1/JMj5JGXd/7C3RZk2C7g9?=
+ =?us-ascii?Q?mgLdirwdGTWE6ayw4yu7rnENIJvkHpze58NBiXjvr8WYWIBeh+5fkU3JJKJN?=
+ =?us-ascii?Q?F3g+Cc0MwYOrejkOHDiH3Cq1Js2+kt1qL8PwW/ViryJGKKbiiXrZkcJa56Ww?=
+ =?us-ascii?Q?uOEdR8rgL3Ohs7ro6ZNAPpMbz04kH03IfizyJUHPQT70KCfAqdOg68JvQa1g?=
+ =?us-ascii?Q?GvomnGQbMyCwcizCu9cfyP6viGbBKh8P4ZPtDRVLEk8T665nGvSMxqPj/SeF?=
+ =?us-ascii?Q?qj1nOIi9ALzBB2asJ5icZG16yptFwetAJ4oynSaR+jPwTDRH0RC3C8up+yBr?=
+ =?us-ascii?Q?/8CosP6PX66pYH+6Ki+6qt3oQrZGtMfbdWdtAx6aDILeM2xxnqWigKf3dLjm?=
+ =?us-ascii?Q?qdJA223QWDC4vxlUCrc5acT7kJp2zI+9T3/Ul3TFS8+pNjCiW7voZZ/oAqpo?=
+ =?us-ascii?Q?6Rml7e8wYjp4A5m6C2cd5aI07Pbag771uTLXVVKYs1ZJdKK7K4wLydpog2bS?=
+ =?us-ascii?Q?+iQFco0dowO5KPh6HDxoDDnT29lqsnGQIh3jhsgaDE+BsxzdS7o3qtrqat4b?=
+ =?us-ascii?Q?Aph/mvx3U2YtY4y9XkYoC87dta7ySvaPSbIWzyDZk5vKR7Aw2bKT8fBZh5No?=
+ =?us-ascii?Q?xF00TzJIQYWrN56VR105YgvwPyRWHx41fInFP4GAg0jtd0HwNDUyo8bOz0q0?=
+ =?us-ascii?Q?nWJzJNrUMy+aNjeupJMPkOo5pmBYw/sU7yuDaWuzSPd5ZtMmmGnLbT3wh8Oq?=
+ =?us-ascii?Q?zDsSpRFgmuDasYSeeR5wKLRYpDXw+2L7bBaVX/E+Si4Wux//dmwYBSlUnHgO?=
+ =?us-ascii?Q?BkUn4fb5s23wq20QbQimFlIIbCgBhnU6bmW/iraaBxaJbvz8b+ZLhpZqZzWM?=
+ =?us-ascii?Q?w2oXIfJ2SToSpMmiftlReolBvzwkeSf5zjy6bJ8sLVXS15dOrqFntE9DEexb?=
+ =?us-ascii?Q?0+rEucUGOwVSZ+/QuKNwauJsY4X9x61XvW1uM9HD0y7rgCKAJDxnkqH94Pep?=
+ =?us-ascii?Q?e6dQl2k4ZDbH8Nb2dtjX5dL/dOes5kZmVGLtEP48k6IFZjK9RfwZ9t6E7hYk?=
+ =?us-ascii?Q?3+spzVHhr2Zz0Mt7KpH8dzPrX6GNIGEWs/S7d0SIbM4dYAk0VvzzIwubhCO3?=
+ =?us-ascii?Q?6xLzsJIzBEGdlx3c+F41t/XmIn4eAaKNkGLXK3zy4ITeFX9u+F38sE3D8kR3?=
+ =?us-ascii?Q?c2LYXeGUl/7omCD8DoHlFPv3prWOGYPqDGg0B7cuNr4uYApuIMOzHZYtDRU9?=
+ =?us-ascii?Q?RtLVi2jeMxIV3kRcrR1tYCuGZWJ+7t6HtiIafx6hW4hScq1KH0ONnANHDDDs?=
+ =?us-ascii?Q?/Q=3D=3D?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: 3dee558f-a804-4d74-550f-08db4d9f150a
 X-MS-Exchange-CrossTenant-AuthSource: CY5PR11MB6139.namprd11.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 05 May 2023 19:26:55.9967 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 05 May 2023 19:29:45.2999 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: mI8LgACq9VFVVthWBTehd5hcy401/HQvjygtxJJxdkUAdfZMTqMBiM+5hIQISZnC1oB4boCX9FRR/7DrbDUL4spFcULvtw5F3jg/jFtaPGw=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DS0PR11MB7734
+X-MS-Exchange-CrossTenant-UserPrincipalName: R2OkiAQMDdYr9u8edi3kCexcj5hxa8MiLpQ5oklJ1uUpe9jBjReHSLv5DSLG3jO6MSc0l6WKxF/Ad53GK3VXCxH6R9SlYtclXfUtMWVm+/0=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SJ0PR11MB6765
 X-OriginatorOrg: intel.com
-Subject: Re: [Intel-xe] [PATCH 4/7] drm/xe/mmio: Use struct xe_reg
+Subject: Re: [Intel-xe] [PATCH 5/7] fixup! drm/xe/display: Implement display
+ support
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -148,1834 +149,214 @@ Cc: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Fri, May 05, 2023 at 12:57:56PM -0400, Rodrigo Vivi wrote:
->On Fri, Apr 28, 2023 at 11:23:29PM -0700, Lucas De Marchi wrote:
->> Convert all the callers to deal with xe_mmio_*() using struct xe_reg
->> instead of plain u32. In a few places there was also a rename
->> s/reg/reg_val/ when dealing with the value returned so it doesn't get
->> mixed up with the register address.
+On Fri, May 05, 2023 at 12:59:32PM -0400, Rodrigo Vivi wrote:
+>On Fri, Apr 28, 2023 at 11:23:30PM -0700, Lucas De Marchi wrote:
+>> With the move of display above xe_reg conversion in xe_mmio,
+>> it should use the new types everywhere.
 >>
 >> Signed-off-by: Lucas De Marchi <lucas.demarchi@intel.com>
 >
->have you auto generated this?
+>and this is the one that will likely conflict with the series from Jani
+>right?
+>
+>I will try to merge his series today, then on your rebase you change
+>both this and the previous at once.
 
-kind of. More like a search and replace approach and fixing code nearby,
-possibly in a separate commit.
+not sure I understand. Aren't we going to move display up anymore?
 
-Looking at my bash history I see things like:
-
-	git grep -l  "[A-Z_0-9]\+\.reg" -- drivers/gpu/drm/xe | \
-		xargs sed -i 's/\([A-Z_0-9]\+\)\.reg/\1/g'
-
-but that is far from the end result in this patch.
-
->is this the possible conflict after rebasing that you had raised?
-
-it will, for sure.
+If I squash this patch on the previous one, it will create a conflict
+when we move display up again, so I'd rather keep this separate as a
+fixup commit to be squashed in the initial display commit.
 
 Lucas De Marchi
 
 >
+>anyway, on the approach:
+>
 >Acked-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
 >
+>
 >> ---
->>  drivers/gpu/drm/xe/xe_device.c           |   2 +-
->>  drivers/gpu/drm/xe/xe_execlist.c         |  18 +--
->>  drivers/gpu/drm/xe/xe_force_wake.c       |  25 ++--
->>  drivers/gpu/drm/xe/xe_force_wake_types.h |   6 +-
->>  drivers/gpu/drm/xe/xe_ggtt.c             |   6 +-
->>  drivers/gpu/drm/xe/xe_gt.c               |   4 +-
->>  drivers/gpu/drm/xe/xe_gt_clock.c         |   6 +-
->>  drivers/gpu/drm/xe/xe_gt_mcr.c           |  37 +++---
->>  drivers/gpu/drm/xe/xe_gt_topology.c      |  18 +--
->>  drivers/gpu/drm/xe/xe_guc.c              |  61 +++++-----
->>  drivers/gpu/drm/xe/xe_guc_ads.c          |   3 +-
->>  drivers/gpu/drm/xe/xe_guc_pc.c           |  32 +++---
->>  drivers/gpu/drm/xe/xe_guc_types.h        |   3 +-
->>  drivers/gpu/drm/xe/xe_huc.c              |   4 +-
->>  drivers/gpu/drm/xe/xe_hw_engine.c        |  85 +++++++-------
->>  drivers/gpu/drm/xe/xe_irq.c              | 138 +++++++++++------------
->>  drivers/gpu/drm/xe/xe_mmio.c             |  31 +++--
->>  drivers/gpu/drm/xe/xe_mmio.h             |  47 ++++----
->>  drivers/gpu/drm/xe/xe_mocs.c             |   7 +-
->>  drivers/gpu/drm/xe/xe_pat.c              |  14 ++-
->>  drivers/gpu/drm/xe/xe_pcode.c            |  16 +--
->>  drivers/gpu/drm/xe/xe_reg_sr.c           |  14 ++-
->>  drivers/gpu/drm/xe/xe_ring_ops.c         |  11 +-
->>  drivers/gpu/drm/xe/xe_ttm_stolen_mgr.c   |   4 +-
->>  drivers/gpu/drm/xe/xe_uc_fw.c            |  16 +--
->>  drivers/gpu/drm/xe/xe_wopcm.c            |  12 +-
->>  26 files changed, 325 insertions(+), 295 deletions(-)
+>>  drivers/gpu/drm/xe/display/xe_de.h | 89 +++++++++++++++++++-----------
+>>  1 file changed, 57 insertions(+), 32 deletions(-)
 >>
->> diff --git a/drivers/gpu/drm/xe/xe_device.c b/drivers/gpu/drm/xe/xe_device.c
->> index 45d6e5ff47fd..f7f4837ded37 100644
->> --- a/drivers/gpu/drm/xe/xe_device.c
->> +++ b/drivers/gpu/drm/xe/xe_device.c
->> @@ -393,7 +393,7 @@ void xe_device_wmb(struct xe_device *xe)
+>> diff --git a/drivers/gpu/drm/xe/display/xe_de.h b/drivers/gpu/drm/xe/display/xe_de.h
+>> index 0c76b0d24d96..e6021f6d031d 100644
+>> --- a/drivers/gpu/drm/xe/display/xe_de.h
+>> +++ b/drivers/gpu/drm/xe/display/xe_de.h
+>> @@ -14,79 +14,95 @@
+>>  #include "i915_reg.h"
 >>
->>  	wmb();
->>  	if (IS_DGFX(xe))
->> -		xe_mmio_write32(gt, SOFTWARE_FLAGS_SPR33.reg, 0);
->> +		xe_mmio_write32(gt, SOFTWARE_FLAGS_SPR33, 0);
->>  }
->>
->>  u32 xe_device_ccs_bytes(struct xe_device *xe, u64 size)
->> diff --git a/drivers/gpu/drm/xe/xe_execlist.c b/drivers/gpu/drm/xe/xe_execlist.c
->> index de4f0044b211..5d2d26e361b9 100644
->> --- a/drivers/gpu/drm/xe/xe_execlist.c
->> +++ b/drivers/gpu/drm/xe/xe_execlist.c
->> @@ -60,7 +60,7 @@ static void __start_lrc(struct xe_hw_engine *hwe, struct xe_lrc *lrc,
->>  	}
->>
->>  	if (hwe->class == XE_ENGINE_CLASS_COMPUTE)
->> -		xe_mmio_write32(hwe->gt, RCU_MODE.reg,
->> +		xe_mmio_write32(hwe->gt, RCU_MODE,
->>  				_MASKED_BIT_ENABLE(RCU_MODE_CCS_ENABLE));
->>
->>  	xe_lrc_write_ctx_reg(lrc, CTX_RING_TAIL, lrc->ring.tail);
->> @@ -78,17 +78,17 @@ static void __start_lrc(struct xe_hw_engine *hwe, struct xe_lrc *lrc,
->>  	 */
->>  	wmb();
->>
->> -	xe_mmio_write32(gt, RING_HWS_PGA(hwe->mmio_base).reg,
->> +	xe_mmio_write32(gt, RING_HWS_PGA(hwe->mmio_base),
->>  			xe_bo_ggtt_addr(hwe->hwsp));
->> -	xe_mmio_read32(gt, RING_HWS_PGA(hwe->mmio_base).reg);
->> -	xe_mmio_write32(gt, RING_MODE(hwe->mmio_base).reg,
->> +	xe_mmio_read32(gt, RING_HWS_PGA(hwe->mmio_base));
->> +	xe_mmio_write32(gt, RING_MODE(hwe->mmio_base),
->>  			_MASKED_BIT_ENABLE(GFX_DISABLE_LEGACY_MODE));
->>
->> -	xe_mmio_write32(gt, RING_EXECLIST_SQ_CONTENTS_LO(hwe->mmio_base).reg,
->> +	xe_mmio_write32(gt, RING_EXECLIST_SQ_CONTENTS_LO(hwe->mmio_base),
->>  			lower_32_bits(lrc_desc));
->> -	xe_mmio_write32(gt, RING_EXECLIST_SQ_CONTENTS_HI(hwe->mmio_base).reg,
->> +	xe_mmio_write32(gt, RING_EXECLIST_SQ_CONTENTS_HI(hwe->mmio_base),
->>  			upper_32_bits(lrc_desc));
->> -	xe_mmio_write32(gt, RING_EXECLIST_CONTROL(hwe->mmio_base).reg,
->> +	xe_mmio_write32(gt, RING_EXECLIST_CONTROL(hwe->mmio_base),
->>  			EL_CTRL_LOAD);
->>  }
->>
->> @@ -173,8 +173,8 @@ static u64 read_execlist_status(struct xe_hw_engine *hwe)
->>  	struct xe_gt *gt = hwe->gt;
->>  	u32 hi, lo;
->>
->> -	lo = xe_mmio_read32(gt, RING_EXECLIST_STATUS_LO(hwe->mmio_base).reg);
->> -	hi = xe_mmio_read32(gt, RING_EXECLIST_STATUS_HI(hwe->mmio_base).reg);
->> +	lo = xe_mmio_read32(gt, RING_EXECLIST_STATUS_LO(hwe->mmio_base));
->> +	hi = xe_mmio_read32(gt, RING_EXECLIST_STATUS_HI(hwe->mmio_base));
->>
->>  	printk(KERN_INFO "EXECLIST_STATUS %d:%d = 0x%08x %08x\n", hwe->class,
->>  	       hwe->instance, hi, lo);
->> diff --git a/drivers/gpu/drm/xe/xe_force_wake.c b/drivers/gpu/drm/xe/xe_force_wake.c
->> index 53d73f36a121..363b81c3d746 100644
->> --- a/drivers/gpu/drm/xe/xe_force_wake.c
->> +++ b/drivers/gpu/drm/xe/xe_force_wake.c
->> @@ -8,6 +8,7 @@
->>  #include <drm/drm_util.h>
->>
->>  #include "regs/xe_gt_regs.h"
->> +#include "regs/xe_reg_defs.h"
->>  #include "xe_gt.h"
->>  #include "xe_mmio.h"
->>
->> @@ -27,7 +28,7 @@ fw_to_xe(struct xe_force_wake *fw)
->>
->>  static void domain_init(struct xe_force_wake_domain *domain,
->>  			enum xe_force_wake_domain_id id,
->> -			u32 reg, u32 ack, u32 val, u32 mask)
->> +			struct xe_reg reg, struct xe_reg ack, u32 val, u32 mask)
+>>  static inline u32
+>> -intel_de_read(struct drm_i915_private *i915, i915_reg_t reg)
+>> +intel_de_read(struct drm_i915_private *i915, i915_reg_t i915_reg)
 >>  {
->>  	domain->id = id;
->>  	domain->reg_ctl = reg;
->> @@ -49,14 +50,14 @@ void xe_force_wake_init_gt(struct xe_gt *gt, struct xe_force_wake *fw)
->>  	if (xe->info.graphics_verx100 >= 1270) {
->>  		domain_init(&fw->domains[XE_FW_DOMAIN_ID_GT],
->>  			    XE_FW_DOMAIN_ID_GT,
->> -			    FORCEWAKE_GT.reg,
->> -			    FORCEWAKE_ACK_GT_MTL.reg,
->> +			    FORCEWAKE_GT,
->> +			    FORCEWAKE_ACK_GT_MTL,
->>  			    BIT(0), BIT(16));
->>  	} else {
->>  		domain_init(&fw->domains[XE_FW_DOMAIN_ID_GT],
->>  			    XE_FW_DOMAIN_ID_GT,
->> -			    FORCEWAKE_GT.reg,
->> -			    FORCEWAKE_ACK_GT.reg,
->> +			    FORCEWAKE_GT,
->> +			    FORCEWAKE_ACK_GT,
->>  			    BIT(0), BIT(16));
->>  	}
->>  }
->> @@ -71,8 +72,8 @@ void xe_force_wake_init_engines(struct xe_gt *gt, struct xe_force_wake *fw)
->>  	if (!xe_gt_is_media_type(gt))
->>  		domain_init(&fw->domains[XE_FW_DOMAIN_ID_RENDER],
->>  			    XE_FW_DOMAIN_ID_RENDER,
->> -			    FORCEWAKE_RENDER.reg,
->> -			    FORCEWAKE_ACK_RENDER.reg,
->> +			    FORCEWAKE_RENDER,
->> +			    FORCEWAKE_ACK_RENDER,
->>  			    BIT(0), BIT(16));
->>
->>  	for (i = XE_HW_ENGINE_VCS0, j = 0; i <= XE_HW_ENGINE_VCS7; ++i, ++j) {
->> @@ -81,8 +82,8 @@ void xe_force_wake_init_engines(struct xe_gt *gt, struct xe_force_wake *fw)
->>
->>  		domain_init(&fw->domains[XE_FW_DOMAIN_ID_MEDIA_VDBOX0 + j],
->>  			    XE_FW_DOMAIN_ID_MEDIA_VDBOX0 + j,
->> -			    FORCEWAKE_MEDIA_VDBOX(j).reg,
->> -			    FORCEWAKE_ACK_MEDIA_VDBOX(j).reg,
->> +			    FORCEWAKE_MEDIA_VDBOX(j),
->> +			    FORCEWAKE_ACK_MEDIA_VDBOX(j),
->>  			    BIT(0), BIT(16));
->>  	}
->>
->> @@ -92,8 +93,8 @@ void xe_force_wake_init_engines(struct xe_gt *gt, struct xe_force_wake *fw)
->>
->>  		domain_init(&fw->domains[XE_FW_DOMAIN_ID_MEDIA_VEBOX0 + j],
->>  			    XE_FW_DOMAIN_ID_MEDIA_VEBOX0 + j,
->> -			    FORCEWAKE_MEDIA_VEBOX(j).reg,
->> -			    FORCEWAKE_ACK_MEDIA_VEBOX(j).reg,
->> +			    FORCEWAKE_MEDIA_VEBOX(j),
->> +			    FORCEWAKE_ACK_MEDIA_VEBOX(j),
->>  			    BIT(0), BIT(16));
->>  	}
->>  }
->> @@ -128,7 +129,7 @@ static int domain_sleep_wait(struct xe_gt *gt,
->>  	for (tmp__ = (mask__); tmp__; tmp__ &= ~BIT(ffs(tmp__) - 1)) \
->>  		for_each_if((domain__ = ((fw__)->domains + \
->>  					 (ffs(tmp__) - 1))) && \
->> -					 domain__->reg_ctl)
->> +					 domain__->reg_ctl.reg)
->>
->>  int xe_force_wake_get(struct xe_force_wake *fw,
->>  		      enum xe_force_wake_domains domains)
->> diff --git a/drivers/gpu/drm/xe/xe_force_wake_types.h b/drivers/gpu/drm/xe/xe_force_wake_types.h
->> index 208dd629d7b1..cb782696855b 100644
->> --- a/drivers/gpu/drm/xe/xe_force_wake_types.h
->> +++ b/drivers/gpu/drm/xe/xe_force_wake_types.h
->> @@ -9,6 +9,8 @@
->>  #include <linux/mutex.h>
->>  #include <linux/types.h>
->>
->> +#include "regs/xe_reg_defs.h"
+>> -	return xe_mmio_read32(to_gt(i915), reg.reg);
+>> +	struct xe_reg reg = XE_REG(i915_mmio_reg_offset(i915_reg));
 >> +
->>  enum xe_force_wake_domain_id {
->>  	XE_FW_DOMAIN_ID_GT = 0,
->>  	XE_FW_DOMAIN_ID_RENDER,
->> @@ -56,9 +58,9 @@ struct xe_force_wake_domain {
->>  	/** @id: domain force wake id */
->>  	enum xe_force_wake_domain_id id;
->>  	/** @reg_ctl: domain wake control register address */
->> -	u32 reg_ctl;
->> +	struct xe_reg reg_ctl;
->>  	/** @reg_ack: domain ack register address */
->> -	u32 reg_ack;
->> +	struct xe_reg reg_ack;
->>  	/** @val: domain wake write value */
->>  	u32 val;
->>  	/** @mask: domain mask */
->> diff --git a/drivers/gpu/drm/xe/xe_ggtt.c b/drivers/gpu/drm/xe/xe_ggtt.c
->> index 9c08031c9350..546240261e0a 100644
->> --- a/drivers/gpu/drm/xe/xe_ggtt.c
->> +++ b/drivers/gpu/drm/xe/xe_ggtt.c
->> @@ -207,12 +207,12 @@ void xe_ggtt_invalidate(struct xe_gt *gt)
->>  		struct xe_device *xe = gt_to_xe(gt);
->>
->>  		if (xe->info.platform == XE_PVC) {
->> -			xe_mmio_write32(gt, PVC_GUC_TLB_INV_DESC1.reg,
->> +			xe_mmio_write32(gt, PVC_GUC_TLB_INV_DESC1,
->>  					PVC_GUC_TLB_INV_DESC1_INVALIDATE);
->> -			xe_mmio_write32(gt, PVC_GUC_TLB_INV_DESC0.reg,
->> +			xe_mmio_write32(gt, PVC_GUC_TLB_INV_DESC0,
->>  					PVC_GUC_TLB_INV_DESC0_VALID);
->>  		} else
->> -			xe_mmio_write32(gt, GUC_TLB_INV_CR.reg,
->> +			xe_mmio_write32(gt, GUC_TLB_INV_CR,
->>  					GUC_TLB_INV_CR_INVALIDATE);
->>  	}
+>> +	return xe_mmio_read32(to_gt(i915), reg);
 >>  }
->> diff --git a/drivers/gpu/drm/xe/xe_gt.c b/drivers/gpu/drm/xe/xe_gt.c
->> index 0d4664e344da..1cc9314e0d43 100644
->> --- a/drivers/gpu/drm/xe/xe_gt.c
->> +++ b/drivers/gpu/drm/xe/xe_gt.c
->> @@ -541,8 +541,8 @@ static int do_gt_reset(struct xe_gt *gt)
->>  	struct xe_device *xe = gt_to_xe(gt);
->>  	int err;
 >>
->> -	xe_mmio_write32(gt, GDRST.reg, GRDOM_FULL);
->> -	err = xe_mmio_wait32(gt, GDRST.reg, 0, GRDOM_FULL, 5000,
->> +	xe_mmio_write32(gt, GDRST, GRDOM_FULL);
->> +	err = xe_mmio_wait32(gt, GDRST, 0, GRDOM_FULL, 5000,
->>  			     NULL, false);
->>  	if (err)
->>  		drm_err(&xe->drm,
->> diff --git a/drivers/gpu/drm/xe/xe_gt_clock.c b/drivers/gpu/drm/xe/xe_gt_clock.c
->> index 49625d49bdcc..7cf11078ff57 100644
->> --- a/drivers/gpu/drm/xe/xe_gt_clock.c
->> +++ b/drivers/gpu/drm/xe/xe_gt_clock.c
->> @@ -14,7 +14,7 @@
->>
->>  static u32 read_reference_ts_freq(struct xe_gt *gt)
+>>  static inline u64
+>>  intel_de_read64_2x32(struct drm_i915_private *i915,
+>> -		     i915_reg_t lower_reg, i915_reg_t upper_reg)
+>> +		     i915_reg_t i915_lower_reg, i915_reg_t i915_upper_reg)
 >>  {
->> -	u32 ts_override = xe_mmio_read32(gt, TIMESTAMP_OVERRIDE.reg);
->> +	u32 ts_override = xe_mmio_read32(gt, TIMESTAMP_OVERRIDE);
->>  	u32 base_freq, frac_freq;
+>> +	struct xe_reg lower_reg = XE_REG(i915_mmio_reg_offset(i915_lower_reg));
+>> +	struct xe_reg upper_reg = XE_REG(i915_mmio_reg_offset(i915_upper_reg));
+>>  	u32 upper, lower;
 >>
->>  	base_freq = REG_FIELD_GET(TIMESTAMP_OVERRIDE_US_COUNTER_DIVIDER_MASK,
->> @@ -54,7 +54,7 @@ static u32 get_crystal_clock_freq(u32 rpm_config_reg)
+>> -	lower = xe_mmio_read32(to_gt(i915), lower_reg.reg);
+>> -	upper = xe_mmio_read32(to_gt(i915), upper_reg.reg);
+>> +	lower = xe_mmio_read32(to_gt(i915), lower_reg);
+>> +	upper = xe_mmio_read32(to_gt(i915), upper_reg);
+>>  	return (u64)upper << 32 | lower;
+>>  }
 >>
->>  int xe_gt_clock_init(struct xe_gt *gt)
+>>  static inline void
+>> -intel_de_posting_read(struct drm_i915_private *i915, i915_reg_t reg)
+>> +intel_de_posting_read(struct drm_i915_private *i915, i915_reg_t i915_reg)
 >>  {
->> -	u32 ctc_reg = xe_mmio_read32(gt, CTC_MODE.reg);
->> +	u32 ctc_reg = xe_mmio_read32(gt, CTC_MODE);
->>  	u32 freq = 0;
+>> -	xe_mmio_read32(to_gt(i915), reg.reg);
+>> +	struct xe_reg reg = XE_REG(i915_mmio_reg_offset(i915_reg));
+>> +
+>> +	xe_mmio_read32(to_gt(i915), reg);
+>>  }
 >>
->>  	/* Assuming gen11+ so assert this assumption is correct */
->> @@ -63,7 +63,7 @@ int xe_gt_clock_init(struct xe_gt *gt)
->>  	if (ctc_reg & CTC_SOURCE_DIVIDE_LOGIC) {
->>  		freq = read_reference_ts_freq(gt);
->>  	} else {
->> -		u32 c0 = xe_mmio_read32(gt, RPM_CONFIG0.reg);
->> +		u32 c0 = xe_mmio_read32(gt, RPM_CONFIG0);
+>>  static inline void
+>> -intel_de_write(struct drm_i915_private *i915, i915_reg_t reg, u32 val)
+>> +intel_de_write(struct drm_i915_private *i915, i915_reg_t i915_reg, u32 val)
+>>  {
+>> -	xe_mmio_write32(to_gt(i915), reg.reg, val);
+>> +	struct xe_reg reg = XE_REG(i915_mmio_reg_offset(i915_reg));
+>> +
+>> +	xe_mmio_write32(to_gt(i915), reg, val);
+>>  }
 >>
->>  		freq = get_crystal_clock_freq(c0);
+>>  static inline u32
+>> -intel_de_rmw(struct drm_i915_private *i915, i915_reg_t reg, u32 clear, u32 set)
+>> +intel_de_rmw(struct drm_i915_private *i915, i915_reg_t i915_reg, u32 clear, u32 set)
+>>  {
+>> -	return xe_mmio_rmw32(to_gt(i915), reg.reg, clear, set);
+>> +	struct xe_reg reg = XE_REG(i915_mmio_reg_offset(i915_reg));
+>> +
+>> +	return xe_mmio_rmw32(to_gt(i915), reg, clear, set);
+>>  }
 >>
->> diff --git a/drivers/gpu/drm/xe/xe_gt_mcr.c b/drivers/gpu/drm/xe/xe_gt_mcr.c
->> index 55b240a5eaa7..2461e51c0abf 100644
->> --- a/drivers/gpu/drm/xe/xe_gt_mcr.c
->> +++ b/drivers/gpu/drm/xe/xe_gt_mcr.c
->> @@ -40,6 +40,8 @@
->>   * non-terminated instance.
+>>  static inline int
+>> -intel_de_wait_for_register(struct drm_i915_private *i915, i915_reg_t reg,
+>> +intel_de_wait_for_register(struct drm_i915_private *i915, i915_reg_t i915_reg,
+>>  			   u32 mask, u32 value, unsigned int timeout)
+>>  {
+>> -	return xe_mmio_wait32(to_gt(i915), reg.reg, value, mask, timeout * USEC_PER_MSEC, NULL,
+>> -			      false);
+>> +	struct xe_reg reg = XE_REG(i915_mmio_reg_offset(i915_reg));
+>> +
+>> +	return xe_mmio_wait32(to_gt(i915), reg, value, mask,
+>> +			      timeout * USEC_PER_MSEC, NULL, false);
+>>  }
+>>
+>>  static inline int
+>> -intel_de_wait_for_register_fw(struct drm_i915_private *i915, i915_reg_t reg,
+>> +intel_de_wait_for_register_fw(struct drm_i915_private *i915, i915_reg_t i915_reg,
+>>  			      u32 mask, u32 value, unsigned int timeout)
+>>  {
+>> -	return xe_mmio_wait32(to_gt(i915), reg.reg, value, mask, timeout * USEC_PER_MSEC, NULL,
+>> -			      false);
+>> +	struct xe_reg reg = XE_REG(i915_mmio_reg_offset(i915_reg));
+>> +
+>> +	return xe_mmio_wait32(to_gt(i915), reg, value, mask,
+>> +			      timeout * USEC_PER_MSEC, NULL, false);
+>>  }
+>>
+>>  static inline int
+>> -__intel_de_wait_for_register(struct drm_i915_private *i915, i915_reg_t reg,
+>> +__intel_de_wait_for_register(struct drm_i915_private *i915, i915_reg_t i915_reg,
+>>  			     u32 mask, u32 value,
+>>  			     unsigned int fast_timeout_us,
+>>  			     unsigned int slow_timeout_ms, u32 *out_value)
+>>  {
+>> -	return xe_mmio_wait32(to_gt(i915), reg.reg, value, mask,
+>> +	struct xe_reg reg = XE_REG(i915_mmio_reg_offset(i915_reg));
+>> +
+>> +	return xe_mmio_wait32(to_gt(i915), reg, value, mask,
+>>  			      fast_timeout_us + 1000 * slow_timeout_ms,
+>>  			      out_value, false);
+>>  }
+>>
+>>  static inline int
+>> -intel_de_wait_for_set(struct drm_i915_private *i915, i915_reg_t reg,
+>> +intel_de_wait_for_set(struct drm_i915_private *i915, i915_reg_t i915_reg,
+>>  		      u32 mask, unsigned int timeout)
+>>  {
+>> -	return intel_de_wait_for_register(i915, reg, mask, mask, timeout);
+>> +	return intel_de_wait_for_register(i915, i915_reg, mask, mask, timeout);
+>>  }
+>>
+>>  static inline int
+>> -intel_de_wait_for_clear(struct drm_i915_private *i915, i915_reg_t reg,
+>> +intel_de_wait_for_clear(struct drm_i915_private *i915, i915_reg_t i915_reg,
+>>  			u32 mask, unsigned int timeout)
+>>  {
+>> -	return intel_de_wait_for_register(i915, reg, mask, 0, timeout);
+>> +	return intel_de_wait_for_register(i915, i915_reg, mask, 0, timeout);
+>>  }
+>>
+>>  /*
+>> @@ -98,19 +114,23 @@ intel_de_wait_for_clear(struct drm_i915_private *i915, i915_reg_t reg,
+>>   * a more localised lock guarding all access to that bank of registers.
 >>   */
->>
->> +#define STEER_SEMAPHORE		XE_REG(0xFD0)
+>>  static inline u32
+>> -intel_de_read_fw(struct drm_i915_private *i915, i915_reg_t reg)
+>> +intel_de_read_fw(struct drm_i915_private *i915, i915_reg_t i915_reg)
+>>  {
+>> -	return xe_mmio_read32(to_gt(i915), reg.reg);
+>> +	struct xe_reg reg = XE_REG(i915_mmio_reg_offset(i915_reg));
 >> +
->>  static inline struct xe_reg to_xe_reg(struct xe_reg_mcr reg_mcr)
+>> +	return xe_mmio_read32(to_gt(i915), reg);
+>>  }
+>>
+>>  static inline void
+>> -intel_de_write_fw(struct drm_i915_private *i915, i915_reg_t reg, u32 val)
+>> +intel_de_write_fw(struct drm_i915_private *i915, i915_reg_t i915_reg, u32 val)
 >>  {
->>  	return reg_mcr.__reg;
->> @@ -183,9 +185,9 @@ static void init_steering_l3bank(struct xe_gt *gt)
->>  {
->>  	if (GRAPHICS_VERx100(gt_to_xe(gt)) >= 1270) {
->>  		u32 mslice_mask = REG_FIELD_GET(MEML3_EN_MASK,
->> -						xe_mmio_read32(gt, MIRROR_FUSE3.reg));
->> +						xe_mmio_read32(gt, MIRROR_FUSE3));
->>  		u32 bank_mask = REG_FIELD_GET(GT_L3_EXC_MASK,
->> -					      xe_mmio_read32(gt, XEHP_FUSE4.reg));
->> +					      xe_mmio_read32(gt, XEHP_FUSE4));
->>
->>  		/*
->>  		 * Group selects mslice, instance selects bank within mslice.
->> @@ -196,7 +198,7 @@ static void init_steering_l3bank(struct xe_gt *gt)
->>  			bank_mask & BIT(0) ? 0 : 2;
->>  	} else if (gt_to_xe(gt)->info.platform == XE_DG2) {
->>  		u32 mslice_mask = REG_FIELD_GET(MEML3_EN_MASK,
->> -						xe_mmio_read32(gt, MIRROR_FUSE3.reg));
->> +						xe_mmio_read32(gt, MIRROR_FUSE3));
->>  		u32 bank = __ffs(mslice_mask) * 8;
->>
->>  		/*
->> @@ -208,7 +210,7 @@ static void init_steering_l3bank(struct xe_gt *gt)
->>  		gt->steering[L3BANK].instance_target = bank & 0x3;
->>  	} else {
->>  		u32 fuse = REG_FIELD_GET(L3BANK_MASK,
->> -					 ~xe_mmio_read32(gt, MIRROR_FUSE3.reg));
->> +					 ~xe_mmio_read32(gt, MIRROR_FUSE3));
->>
->>  		gt->steering[L3BANK].group_target = 0;	/* unused */
->>  		gt->steering[L3BANK].instance_target = __ffs(fuse);
->> @@ -218,7 +220,7 @@ static void init_steering_l3bank(struct xe_gt *gt)
->>  static void init_steering_mslice(struct xe_gt *gt)
->>  {
->>  	u32 mask = REG_FIELD_GET(MEML3_EN_MASK,
->> -				 xe_mmio_read32(gt, MIRROR_FUSE3.reg));
->> +				 xe_mmio_read32(gt, MIRROR_FUSE3));
->>
->>  	/*
->>  	 * mslice registers are valid (not terminated) if either the meml3
->> @@ -337,8 +339,8 @@ void xe_gt_mcr_set_implicit_defaults(struct xe_gt *gt)
->>  		u32 steer_val = REG_FIELD_PREP(MCR_SLICE_MASK, 0) |
->>  			REG_FIELD_PREP(MCR_SUBSLICE_MASK, 2);
->>
->> -		xe_mmio_write32(gt, MCFG_MCR_SELECTOR.reg, steer_val);
->> -		xe_mmio_write32(gt, SF_MCR_SELECTOR.reg, steer_val);
->> +		xe_mmio_write32(gt, MCFG_MCR_SELECTOR, steer_val);
->> +		xe_mmio_write32(gt, SF_MCR_SELECTOR, steer_val);
->>  		/*
->>  		 * For GAM registers, all reads should be directed to instance 1
->>  		 * (unicast reads against other instances are not allowed),
->> @@ -376,7 +378,7 @@ static bool xe_gt_mcr_get_nonterminated_steering(struct xe_gt *gt,
->>  			continue;
->>
->>  		for (int i = 0; gt->steering[type].ranges[i].end > 0; i++) {
->> -			if (xe_mmio_in_range(&gt->steering[type].ranges[i], reg.reg)) {
->> +			if (xe_mmio_in_range(&gt->steering[type].ranges[i], reg)) {
->>  				*group = gt->steering[type].group_target;
->>  				*instance = gt->steering[type].instance_target;
->>  				return true;
->> @@ -387,7 +389,7 @@ static bool xe_gt_mcr_get_nonterminated_steering(struct xe_gt *gt,
->>  	implicit_ranges = gt->steering[IMPLICIT_STEERING].ranges;
->>  	if (implicit_ranges)
->>  		for (int i = 0; implicit_ranges[i].end > 0; i++)
->> -			if (xe_mmio_in_range(&implicit_ranges[i], reg.reg))
->> +			if (xe_mmio_in_range(&implicit_ranges[i], reg))
->>  				return false;
->>
->>  	/*
->> @@ -403,8 +405,6 @@ static bool xe_gt_mcr_get_nonterminated_steering(struct xe_gt *gt,
->>  	return true;
->>  }
->>
->> -#define STEER_SEMAPHORE		0xFD0
->> -
->>  /*
->>   * Obtain exclusive access to MCR steering.  On MTL and beyond we also need
->>   * to synchronize with external clients (e.g., firmware), so a semaphore
->> @@ -446,16 +446,17 @@ static u32 rw_with_mcr_steering(struct xe_gt *gt, struct xe_reg_mcr reg_mcr,
->>  				u8 rw_flag, int group, int instance, u32 value)
->>  {
->>  	const struct xe_reg reg = to_xe_reg(reg_mcr);
->> -	u32 steer_reg, steer_val, val = 0;
->> +	struct xe_reg steer_reg;
->> +	u32 steer_val, val = 0;
->>
->>  	lockdep_assert_held(&gt->mcr_lock);
->>
->>  	if (GRAPHICS_VERx100(gt_to_xe(gt)) >= 1270) {
->> -		steer_reg = MTL_MCR_SELECTOR.reg;
->> +		steer_reg = MTL_MCR_SELECTOR;
->>  		steer_val = REG_FIELD_PREP(MTL_MCR_GROUPID, group) |
->>  			REG_FIELD_PREP(MTL_MCR_INSTANCEID, instance);
->>  	} else {
->> -		steer_reg = MCR_SELECTOR.reg;
->> +		steer_reg = MCR_SELECTOR;
->>  		steer_val = REG_FIELD_PREP(MCR_SLICE_MASK, group) |
->>  			REG_FIELD_PREP(MCR_SUBSLICE_MASK, instance);
->>  	}
->> @@ -473,9 +474,9 @@ static u32 rw_with_mcr_steering(struct xe_gt *gt, struct xe_reg_mcr reg_mcr,
->>  	xe_mmio_write32(gt, steer_reg, steer_val);
->>
->>  	if (rw_flag == MCR_OP_READ)
->> -		val = xe_mmio_read32(gt, reg.reg);
->> +		val = xe_mmio_read32(gt, reg);
->>  	else
->> -		xe_mmio_write32(gt, reg.reg, value);
->> +		xe_mmio_write32(gt, reg, value);
->>
->>  	/*
->>  	 * If we turned off the multicast bit (during a write) we're required
->> @@ -517,7 +518,7 @@ u32 xe_gt_mcr_unicast_read_any(struct xe_gt *gt, struct xe_reg_mcr reg_mcr)
->>  					   group, instance, 0);
->>  		mcr_unlock(gt);
->>  	} else {
->> -		val = xe_mmio_read32(gt, reg.reg);
->> +		val = xe_mmio_read32(gt, reg);
->>  	}
->>
->>  	return val;
->> @@ -584,7 +585,7 @@ void xe_gt_mcr_multicast_write(struct xe_gt *gt, struct xe_reg_mcr reg_mcr,
->>  	 * to touch the steering register.
->>  	 */
->>  	mcr_lock(gt);
->> -	xe_mmio_write32(gt, reg.reg, value);
->> +	xe_mmio_write32(gt, reg, value);
->>  	mcr_unlock(gt);
->>  }
->>
->> diff --git a/drivers/gpu/drm/xe/xe_gt_topology.c b/drivers/gpu/drm/xe/xe_gt_topology.c
->> index 14cf135fd648..7c3e347e4d74 100644
->> --- a/drivers/gpu/drm/xe/xe_gt_topology.c
->> +++ b/drivers/gpu/drm/xe/xe_gt_topology.c
->> @@ -26,7 +26,7 @@ load_dss_mask(struct xe_gt *gt, xe_dss_mask_t mask, int numregs, ...)
->>
->>  	va_start(argp, numregs);
->>  	for (i = 0; i < numregs; i++)
->> -		fuse_val[i] = xe_mmio_read32(gt, va_arg(argp, u32));
->> +		fuse_val[i] = xe_mmio_read32(gt, va_arg(argp, struct xe_reg));
->>  	va_end(argp);
->>
->>  	bitmap_from_arr32(mask, fuse_val, numregs * 32);
->> @@ -36,7 +36,7 @@ static void
->>  load_eu_mask(struct xe_gt *gt, xe_eu_mask_t mask)
->>  {
->>  	struct xe_device *xe = gt_to_xe(gt);
->> -	u32 reg = xe_mmio_read32(gt, XELP_EU_ENABLE.reg);
->> +	u32 reg_val = xe_mmio_read32(gt, XELP_EU_ENABLE);
->>  	u32 val = 0;
->>  	int i;
->>
->> @@ -47,15 +47,15 @@ load_eu_mask(struct xe_gt *gt, xe_eu_mask_t mask)
->>  	 * of enable).
->>  	 */
->>  	if (GRAPHICS_VERx100(xe) < 1250)
->> -		reg = ~reg & XELP_EU_MASK;
->> +		reg_val = ~reg_val & XELP_EU_MASK;
->>
->>  	/* On PVC, one bit = one EU */
->>  	if (GRAPHICS_VERx100(xe) == 1260) {
->> -		val = reg;
->> +		val = reg_val;
->>  	} else {
->>  		/* All other platforms, one bit = 2 EU */
->> -		for (i = 0; i < fls(reg); i++)
->> -			if (reg & BIT(i))
->> +		for (i = 0; i < fls(reg_val); i++)
->> +			if (reg_val & BIT(i))
->>  				val |= 0x3 << 2 * i;
->>  	}
->>
->> @@ -95,10 +95,10 @@ xe_gt_topology_init(struct xe_gt *gt)
->>
->>  	load_dss_mask(gt, gt->fuse_topo.g_dss_mask,
->>  		      num_geometry_regs,
->> -		      XELP_GT_GEOMETRY_DSS_ENABLE.reg);
->> +		      XELP_GT_GEOMETRY_DSS_ENABLE);
->>  	load_dss_mask(gt, gt->fuse_topo.c_dss_mask, num_compute_regs,
->> -		      XEHP_GT_COMPUTE_DSS_ENABLE.reg,
->> -		      XEHPC_GT_COMPUTE_DSS_ENABLE_EXT.reg);
->> +		      XEHP_GT_COMPUTE_DSS_ENABLE,
->> +		      XEHPC_GT_COMPUTE_DSS_ENABLE_EXT);
->>  	load_eu_mask(gt, gt->fuse_topo.eu_mask_per_dss);
->>
->>  	xe_gt_topology_dump(gt, &p);
->> diff --git a/drivers/gpu/drm/xe/xe_guc.c b/drivers/gpu/drm/xe/xe_guc.c
->> index 89d20faced19..12b636910460 100644
->> --- a/drivers/gpu/drm/xe/xe_guc.c
->> +++ b/drivers/gpu/drm/xe/xe_guc.c
->> @@ -240,10 +240,10 @@ static void guc_write_params(struct xe_guc *guc)
->>
->>  	xe_force_wake_assert_held(gt_to_fw(gt), XE_FW_GT);
->>
->> -	xe_mmio_write32(gt, SOFT_SCRATCH(0).reg, 0);
->> +	xe_mmio_write32(gt, SOFT_SCRATCH(0), 0);
->>
->>  	for (i = 0; i < GUC_CTL_MAX_DWORDS; i++)
->> -		xe_mmio_write32(gt, SOFT_SCRATCH(1 + i).reg, guc->params[i]);
->> +		xe_mmio_write32(gt, SOFT_SCRATCH(1 + i), guc->params[i]);
->>  }
->>
->>  int xe_guc_init(struct xe_guc *guc)
->> @@ -276,9 +276,9 @@ int xe_guc_init(struct xe_guc *guc)
->>  	guc_init_params(guc);
->>
->>  	if (xe_gt_is_media_type(gt))
->> -		guc->notify_reg = MEDIA_GUC_HOST_INTERRUPT.reg;
->> +		guc->notify_reg = MEDIA_GUC_HOST_INTERRUPT;
->>  	else
->> -		guc->notify_reg = GUC_HOST_INTERRUPT.reg;
->> +		guc->notify_reg = GUC_HOST_INTERRUPT;
->>
->>  	xe_uc_fw_change_status(&guc->fw, XE_UC_FIRMWARE_LOADABLE);
->>
->> @@ -317,9 +317,9 @@ int xe_guc_reset(struct xe_guc *guc)
->>
->>  	xe_force_wake_assert_held(gt_to_fw(gt), XE_FW_GT);
->>
->> -	xe_mmio_write32(gt, GDRST.reg, GRDOM_GUC);
->> +	xe_mmio_write32(gt, GDRST, GRDOM_GUC);
->>
->> -	ret = xe_mmio_wait32(gt, GDRST.reg, 0, GRDOM_GUC, 5000,
->> +	ret = xe_mmio_wait32(gt, GDRST, 0, GRDOM_GUC, 5000,
->>  			     &gdrst, false);
->>  	if (ret) {
->>  		drm_err(&xe->drm, "GuC reset timed out, GEN6_GDRST=0x%8x\n",
->> @@ -327,7 +327,7 @@ int xe_guc_reset(struct xe_guc *guc)
->>  		goto err_out;
->>  	}
->>
->> -	guc_status = xe_mmio_read32(gt, GUC_STATUS.reg);
->> +	guc_status = xe_mmio_read32(gt, GUC_STATUS);
->>  	if (!(guc_status & GS_MIA_IN_RESET)) {
->>  		drm_err(&xe->drm,
->>  			"GuC status: 0x%x, MIA core expected to be in reset\n",
->> @@ -360,9 +360,9 @@ static void guc_prepare_xfer(struct xe_guc *guc)
->>  		shim_flags |= PVC_GUC_MOCS_INDEX(PVC_GUC_MOCS_UC_INDEX);
->>
->>  	/* Must program this register before loading the ucode with DMA */
->> -	xe_mmio_write32(gt, GUC_SHIM_CONTROL.reg, shim_flags);
->> +	xe_mmio_write32(gt, GUC_SHIM_CONTROL, shim_flags);
->>
->> -	xe_mmio_write32(gt, GT_PM_CONFIG.reg, GT_DOORBELL_ENABLE);
->> +	xe_mmio_write32(gt, GT_PM_CONFIG, GT_DOORBELL_ENABLE);
->>  }
->>
->>  /*
->> @@ -378,7 +378,7 @@ static int guc_xfer_rsa(struct xe_guc *guc)
->>  	if (guc->fw.rsa_size > 256) {
->>  		u32 rsa_ggtt_addr = xe_bo_ggtt_addr(guc->fw.bo) +
->>  				    xe_uc_fw_rsa_offset(&guc->fw);
->> -		xe_mmio_write32(gt, UOS_RSA_SCRATCH(0).reg, rsa_ggtt_addr);
->> +		xe_mmio_write32(gt, UOS_RSA_SCRATCH(0), rsa_ggtt_addr);
->>  		return 0;
->>  	}
->>
->> @@ -387,7 +387,7 @@ static int guc_xfer_rsa(struct xe_guc *guc)
->>  		return -ENOMEM;
->>
->>  	for (i = 0; i < UOS_RSA_SCRATCH_COUNT; i++)
->> -		xe_mmio_write32(gt, UOS_RSA_SCRATCH(i).reg, rsa[i]);
->> +		xe_mmio_write32(gt, UOS_RSA_SCRATCH(i), rsa[i]);
->>
->>  	return 0;
->>  }
->> @@ -415,7 +415,7 @@ static int guc_wait_ucode(struct xe_guc *guc)
->>  	 * 200ms. Even at slowest clock, this should be sufficient. And
->>  	 * in the working case, a larger timeout makes no difference.
->>  	 */
->> -	ret = xe_mmio_wait32(guc_to_gt(guc), GUC_STATUS.reg,
->> +	ret = xe_mmio_wait32(guc_to_gt(guc), GUC_STATUS,
->>  			     FIELD_PREP(GS_UKERNEL_MASK,
->>  					XE_GUC_LOAD_STATUS_READY),
->>  			     GS_UKERNEL_MASK, 200000, &status, false);
->> @@ -443,7 +443,7 @@ static int guc_wait_ucode(struct xe_guc *guc)
->>  		    XE_GUC_LOAD_STATUS_EXCEPTION) {
->>  			drm_info(drm, "GuC firmware exception. EIP: %#x\n",
->>  				 xe_mmio_read32(guc_to_gt(guc),
->> -						SOFT_SCRATCH(13).reg));
->> +						SOFT_SCRATCH(13)));
->>  			ret = -ENXIO;
->>  		}
->>
->> @@ -540,10 +540,10 @@ static void guc_handle_mmio_msg(struct xe_guc *guc)
->>
->>  	xe_force_wake_assert_held(gt_to_fw(gt), XE_FW_GT);
->>
->> -	msg = xe_mmio_read32(gt, SOFT_SCRATCH(15).reg);
->> +	msg = xe_mmio_read32(gt, SOFT_SCRATCH(15));
->>  	msg &= XE_GUC_RECV_MSG_EXCEPTION |
->>  		XE_GUC_RECV_MSG_CRASH_DUMP_POSTED;
->> -	xe_mmio_write32(gt, SOFT_SCRATCH(15).reg, 0);
->> +	xe_mmio_write32(gt, SOFT_SCRATCH(15), 0);
->>
->>  	if (msg & XE_GUC_RECV_MSG_CRASH_DUMP_POSTED)
->>  		drm_err(&guc_to_xe(guc)->drm,
->> @@ -561,12 +561,12 @@ static void guc_enable_irq(struct xe_guc *guc)
->>  		REG_FIELD_PREP(ENGINE0_MASK, GUC_INTR_GUC2HOST)  :
->>  		REG_FIELD_PREP(ENGINE1_MASK, GUC_INTR_GUC2HOST);
->>
->> -	xe_mmio_write32(gt, GUC_SG_INTR_ENABLE.reg,
->> +	xe_mmio_write32(gt, GUC_SG_INTR_ENABLE,
->>  			REG_FIELD_PREP(ENGINE1_MASK, GUC_INTR_GUC2HOST));
->>  	if (xe_gt_is_media_type(gt))
->> -		xe_mmio_rmw32(gt, GUC_SG_INTR_MASK.reg, events, 0);
->> +		xe_mmio_rmw32(gt, GUC_SG_INTR_MASK, events, 0);
->>  	else
->> -		xe_mmio_write32(gt, GUC_SG_INTR_MASK.reg, ~events);
->> +		xe_mmio_write32(gt, GUC_SG_INTR_MASK, ~events);
->>  }
->>
->>  int xe_guc_enable_communication(struct xe_guc *guc)
->> @@ -575,7 +575,7 @@ int xe_guc_enable_communication(struct xe_guc *guc)
->>
->>  	guc_enable_irq(guc);
->>
->> -	xe_mmio_rmw32(guc_to_gt(guc), PMINTRMSK.reg,
->> +	xe_mmio_rmw32(guc_to_gt(guc), PMINTRMSK,
->>  		      ARAT_EXPIRED_INTRMSK, 0);
->>
->>  	err = xe_guc_ct_enable(&guc->ct);
->> @@ -628,8 +628,8 @@ int xe_guc_mmio_send_recv(struct xe_guc *guc, const u32 *request,
->>  	struct xe_device *xe = guc_to_xe(guc);
->>  	struct xe_gt *gt = guc_to_gt(guc);
->>  	u32 header, reply;
->> -	u32 reply_reg = xe_gt_is_media_type(gt) ?
->> -		MED_VF_SW_FLAG(0).reg : VF_SW_FLAG(0).reg;
->> +	struct xe_reg reply_reg = xe_gt_is_media_type(gt) ?
->> +		MED_VF_SW_FLAG(0) : VF_SW_FLAG(0);
->>  	const u32 LAST_INDEX = VF_SW_FLAG_COUNT;
->>  	int ret;
->>  	int i;
->> @@ -649,14 +649,14 @@ int xe_guc_mmio_send_recv(struct xe_guc *guc, const u32 *request,
->>  	/* Not in critical data-path, just do if else for GT type */
->>  	if (xe_gt_is_media_type(gt)) {
->>  		for (i = 0; i < len; ++i)
->> -			xe_mmio_write32(gt, MED_VF_SW_FLAG(i).reg,
->> +			xe_mmio_write32(gt, MED_VF_SW_FLAG(i),
->>  					request[i]);
->> -		xe_mmio_read32(gt, MED_VF_SW_FLAG(LAST_INDEX).reg);
->> +		xe_mmio_read32(gt, MED_VF_SW_FLAG(LAST_INDEX));
->>  	} else {
->>  		for (i = 0; i < len; ++i)
->> -			xe_mmio_write32(gt, VF_SW_FLAG(i).reg,
->> +			xe_mmio_write32(gt, VF_SW_FLAG(i),
->>  					request[i]);
->> -		xe_mmio_read32(gt, VF_SW_FLAG(LAST_INDEX).reg);
->> +		xe_mmio_read32(gt, VF_SW_FLAG(LAST_INDEX));
->>  	}
->>
->>  	xe_guc_notify(guc);
->> @@ -720,9 +720,10 @@ int xe_guc_mmio_send_recv(struct xe_guc *guc, const u32 *request,
->>  	if (response_buf) {
->>  		response_buf[0] = header;
->>
->> -		for (i = 1; i < VF_SW_FLAG_COUNT; i++)
->> -			response_buf[i] =
->> -				xe_mmio_read32(gt, reply_reg + i * sizeof(u32));
->> +		for (i = 1; i < VF_SW_FLAG_COUNT; i++) {
->> +			reply_reg.reg += i * sizeof(u32);
->> +			response_buf[i] = xe_mmio_read32(gt, reply_reg);
->> +		}
->>  	}
->>
->>  	/* Use data from the GuC response as our return value */
->> @@ -844,7 +845,7 @@ void xe_guc_print_info(struct xe_guc *guc, struct drm_printer *p)
->>  	if (err)
->>  		return;
->>
->> -	status = xe_mmio_read32(gt, GUC_STATUS.reg);
->> +	status = xe_mmio_read32(gt, GUC_STATUS);
->>
->>  	drm_printf(p, "\nGuC status 0x%08x:\n", status);
->>  	drm_printf(p, "\tBootrom status = 0x%x\n",
->> @@ -859,7 +860,7 @@ void xe_guc_print_info(struct xe_guc *guc, struct drm_printer *p)
->>  	drm_puts(p, "\nScratch registers:\n");
->>  	for (i = 0; i < SOFT_SCRATCH_COUNT; i++) {
->>  		drm_printf(p, "\t%2d: \t0x%x\n",
->> -			   i, xe_mmio_read32(gt, SOFT_SCRATCH(i).reg));
->> +			   i, xe_mmio_read32(gt, SOFT_SCRATCH(i)));
->>  	}
->>
->>  	xe_force_wake_put(gt_to_fw(gt), XE_FW_GT);
->> diff --git a/drivers/gpu/drm/xe/xe_guc_ads.c b/drivers/gpu/drm/xe/xe_guc_ads.c
->> index 84c2d7c624c6..683f2df09c49 100644
->> --- a/drivers/gpu/drm/xe/xe_guc_ads.c
->> +++ b/drivers/gpu/drm/xe/xe_guc_ads.c
->> @@ -428,7 +428,6 @@ static void guc_mmio_regset_write_one(struct xe_guc_ads *ads,
->>  	struct guc_mmio_reg entry = {
->>  		.offset = reg.reg,
->>  		.flags = reg.masked ? GUC_REGSET_MASKED : 0,
->> -		/* TODO: steering */
->>  	};
->>
->>  	xe_map_memcpy_to(ads_to_xe(ads), regset_map, n_entry * sizeof(entry),
->> @@ -551,7 +550,7 @@ static void guc_doorbell_init(struct xe_guc_ads *ads)
->>
->>  	if (GRAPHICS_VER(xe) >= 12 && !IS_DGFX(xe)) {
->>  		u32 distdbreg =
->> -			xe_mmio_read32(gt, DIST_DBS_POPULATED.reg);
->> +			xe_mmio_read32(gt, DIST_DBS_POPULATED);
->>
->>  		ads_blob_write(ads,
->>  			       system_info.generic_gt_sysinfo[GUC_GENERIC_GT_SYSINFO_DOORBELL_COUNT_PER_SQIDI],
->> diff --git a/drivers/gpu/drm/xe/xe_guc_pc.c b/drivers/gpu/drm/xe/xe_guc_pc.c
->> index 72d460d5323b..e799faa1c6b8 100644
->> --- a/drivers/gpu/drm/xe/xe_guc_pc.c
->> +++ b/drivers/gpu/drm/xe/xe_guc_pc.c
->> @@ -317,9 +317,9 @@ static void mtl_update_rpe_value(struct xe_guc_pc *pc)
->>  	u32 reg;
->>
->>  	if (xe_gt_is_media_type(gt))
->> -		reg = xe_mmio_read32(gt, MTL_MPE_FREQUENCY.reg);
->> +		reg = xe_mmio_read32(gt, MTL_MPE_FREQUENCY);
->>  	else
->> -		reg = xe_mmio_read32(gt, MTL_GT_RPE_FREQUENCY.reg);
->> +		reg = xe_mmio_read32(gt, MTL_GT_RPE_FREQUENCY);
->>
->>  	pc->rpe_freq = REG_FIELD_GET(MTL_RPE_MASK, reg) * GT_FREQUENCY_MULTIPLIER;
->>  }
->> @@ -336,9 +336,9 @@ static void tgl_update_rpe_value(struct xe_guc_pc *pc)
->>  	 * PCODE at a different register
->>  	 */
->>  	if (xe->info.platform == XE_PVC)
->> -		reg = xe_mmio_read32(gt, PVC_RP_STATE_CAP.reg);
->> +		reg = xe_mmio_read32(gt, PVC_RP_STATE_CAP);
->>  	else
->> -		reg = xe_mmio_read32(gt, GEN10_FREQ_INFO_REC.reg);
->> +		reg = xe_mmio_read32(gt, GEN10_FREQ_INFO_REC);
->>
->>  	pc->rpe_freq = REG_FIELD_GET(RPE_MASK, reg) * GT_FREQUENCY_MULTIPLIER;
->>  }
->> @@ -380,10 +380,10 @@ static ssize_t freq_act_show(struct device *dev,
->>  		goto out;
->>
->>  	if (xe->info.platform == XE_METEORLAKE) {
->> -		freq = xe_mmio_read32(gt, MTL_MIRROR_TARGET_WP1.reg);
->> +		freq = xe_mmio_read32(gt, MTL_MIRROR_TARGET_WP1);
->>  		freq = REG_FIELD_GET(MTL_CAGF_MASK, freq);
->>  	} else {
->> -		freq = xe_mmio_read32(gt, GEN12_RPSTAT1.reg);
->> +		freq = xe_mmio_read32(gt, GEN12_RPSTAT1);
->>  		freq = REG_FIELD_GET(GEN12_CAGF_MASK, freq);
->>  	}
->>
->> @@ -413,7 +413,7 @@ static ssize_t freq_cur_show(struct device *dev,
->>  	if (ret)
->>  		goto out;
->>
->> -	freq = xe_mmio_read32(gt, RPNSWREQ.reg);
->> +	freq = xe_mmio_read32(gt, RPNSWREQ);
->>
->>  	freq = REG_FIELD_GET(REQ_RATIO_MASK, freq);
->>  	ret = sysfs_emit(buf, "%d\n", decode_freq(freq));
->> @@ -588,7 +588,7 @@ static ssize_t rc_status_show(struct device *dev,
->>  	u32 reg;
->>
->>  	xe_device_mem_access_get(gt_to_xe(gt));
->> -	reg = xe_mmio_read32(gt, GT_CORE_STATUS.reg);
->> +	reg = xe_mmio_read32(gt, GT_CORE_STATUS);
->>  	xe_device_mem_access_put(gt_to_xe(gt));
->>
->>  	switch (REG_FIELD_GET(RCN_MASK, reg)) {
->> @@ -615,7 +615,7 @@ static ssize_t rc6_residency_show(struct device *dev,
->>  	if (ret)
->>  		goto out;
->>
->> -	reg = xe_mmio_read32(gt, GT_GFX_RC6.reg);
->> +	reg = xe_mmio_read32(gt, GT_GFX_RC6);
->>  	ret = sysfs_emit(buff, "%u\n", reg);
->>
->>  	XE_WARN_ON(xe_force_wake_put(gt_to_fw(gt), XE_FORCEWAKE_ALL));
->> @@ -646,9 +646,9 @@ static void mtl_init_fused_rp_values(struct xe_guc_pc *pc)
->>  	xe_device_assert_mem_access(pc_to_xe(pc));
->>
->>  	if (xe_gt_is_media_type(gt))
->> -		reg = xe_mmio_read32(gt, MTL_MEDIAP_STATE_CAP.reg);
->> +		reg = xe_mmio_read32(gt, MTL_MEDIAP_STATE_CAP);
->>  	else
->> -		reg = xe_mmio_read32(gt, MTL_RP_STATE_CAP.reg);
->> +		reg = xe_mmio_read32(gt, MTL_RP_STATE_CAP);
->>  	pc->rp0_freq = REG_FIELD_GET(MTL_RP0_CAP_MASK, reg) *
->>  		GT_FREQUENCY_MULTIPLIER;
->>  	pc->rpn_freq = REG_FIELD_GET(MTL_RPN_CAP_MASK, reg) *
->> @@ -664,9 +664,9 @@ static void tgl_init_fused_rp_values(struct xe_guc_pc *pc)
->>  	xe_device_assert_mem_access(pc_to_xe(pc));
->>
->>  	if (xe->info.platform == XE_PVC)
->> -		reg = xe_mmio_read32(gt, PVC_RP_STATE_CAP.reg);
->> +		reg = xe_mmio_read32(gt, PVC_RP_STATE_CAP);
->>  	else
->> -		reg = xe_mmio_read32(gt, GEN6_RP_STATE_CAP.reg);
->> +		reg = xe_mmio_read32(gt, GEN6_RP_STATE_CAP);
->>  	pc->rp0_freq = REG_FIELD_GET(RP0_MASK, reg) * GT_FREQUENCY_MULTIPLIER;
->>  	pc->rpn_freq = REG_FIELD_GET(RPN_MASK, reg) * GT_FREQUENCY_MULTIPLIER;
->>  }
->> @@ -745,9 +745,9 @@ static int pc_gucrc_disable(struct xe_guc_pc *pc)
->>  	if (ret)
->>  		return ret;
->>
->> -	xe_mmio_write32(gt, PG_ENABLE.reg, 0);
->> -	xe_mmio_write32(gt, RC_CONTROL.reg, 0);
->> -	xe_mmio_write32(gt, RC_STATE.reg, 0);
->> +	xe_mmio_write32(gt, PG_ENABLE, 0);
->> +	xe_mmio_write32(gt, RC_CONTROL, 0);
->> +	xe_mmio_write32(gt, RC_STATE, 0);
->>
->>  	XE_WARN_ON(xe_force_wake_put(gt_to_fw(gt), XE_FORCEWAKE_ALL));
->>  	return 0;
->> diff --git a/drivers/gpu/drm/xe/xe_guc_types.h b/drivers/gpu/drm/xe/xe_guc_types.h
->> index ac7eec28934d..a304dce4e9f4 100644
->> --- a/drivers/gpu/drm/xe/xe_guc_types.h
->> +++ b/drivers/gpu/drm/xe/xe_guc_types.h
->> @@ -9,6 +9,7 @@
->>  #include <linux/idr.h>
->>  #include <linux/xarray.h>
->>
->> +#include "regs/xe_reg_defs.h"
->>  #include "xe_guc_ads_types.h"
->>  #include "xe_guc_ct_types.h"
->>  #include "xe_guc_fwif.h"
->> @@ -74,7 +75,7 @@ struct xe_guc {
->>  	/**
->>  	 * @notify_reg: Register which is written to notify GuC of H2G messages
->>  	 */
->> -	u32 notify_reg;
->> +	struct xe_reg notify_reg;
->>  	/** @params: Control params for fw initialization */
->>  	u32 params[GUC_CTL_MAX_DWORDS];
->>  };
->> diff --git a/drivers/gpu/drm/xe/xe_huc.c b/drivers/gpu/drm/xe/xe_huc.c
->> index 55dcaab34ea4..e0377083d1f2 100644
->> --- a/drivers/gpu/drm/xe/xe_huc.c
->> +++ b/drivers/gpu/drm/xe/xe_huc.c
->> @@ -84,7 +84,7 @@ int xe_huc_auth(struct xe_huc *huc)
->>  		goto fail;
->>  	}
->>
->> -	ret = xe_mmio_wait32(gt, HUC_KERNEL_LOAD_INFO.reg,
->> +	ret = xe_mmio_wait32(gt, HUC_KERNEL_LOAD_INFO,
->>  			     HUC_LOAD_SUCCESSFUL,
->>  			     HUC_LOAD_SUCCESSFUL, 100000, NULL, false);
->>  	if (ret) {
->> @@ -126,7 +126,7 @@ void xe_huc_print_info(struct xe_huc *huc, struct drm_printer *p)
->>  		return;
->>
->>  	drm_printf(p, "\nHuC status: 0x%08x\n",
->> -		   xe_mmio_read32(gt, HUC_KERNEL_LOAD_INFO.reg));
->> +		   xe_mmio_read32(gt, HUC_KERNEL_LOAD_INFO));
->>
->>  	xe_force_wake_put(gt_to_fw(gt), XE_FW_GT);
->>  }
->> diff --git a/drivers/gpu/drm/xe/xe_hw_engine.c b/drivers/gpu/drm/xe/xe_hw_engine.c
->> index 795302bcd3ae..d1b7ac35c4a0 100644
->> --- a/drivers/gpu/drm/xe/xe_hw_engine.c
->> +++ b/drivers/gpu/drm/xe/xe_hw_engine.c
->> @@ -232,20 +232,25 @@ static void hw_engine_fini(struct drm_device *drm, void *arg)
->>  	hwe->gt = NULL;
->>  }
->>
->> -static void hw_engine_mmio_write32(struct xe_hw_engine *hwe, u32 reg, u32 val)
->> +static void hw_engine_mmio_write32(struct xe_hw_engine *hwe, struct xe_reg reg,
->> +				   u32 val)
->>  {
->> -	XE_BUG_ON(reg & hwe->mmio_base);
->> +	XE_BUG_ON(reg.reg & hwe->mmio_base);
->>  	xe_force_wake_assert_held(gt_to_fw(hwe->gt), hwe->domain);
->>
->> -	xe_mmio_write32(hwe->gt, reg + hwe->mmio_base, val);
->> +	reg.reg += hwe->mmio_base;
+>> -	xe_mmio_write32(to_gt(i915), reg.reg, val);
+>> +	struct xe_reg reg = XE_REG(i915_mmio_reg_offset(i915_reg));
 >> +
->> +	xe_mmio_write32(hwe->gt, reg, val);
+>> +	xe_mmio_write32(to_gt(i915), reg, val);
 >>  }
 >>
->> -static u32 hw_engine_mmio_read32(struct xe_hw_engine *hwe, u32 reg)
->> +static u32 hw_engine_mmio_read32(struct xe_hw_engine *hwe, struct xe_reg reg)
+>>  static inline void
+>> -intel_de_write_samevalue(struct drm_i915_private *i915, i915_reg_t reg)
+>> +intel_de_write_samevalue(struct drm_i915_private *i915, i915_reg_t i915_reg)
 >>  {
->> -	XE_BUG_ON(reg & hwe->mmio_base);
->> +	XE_BUG_ON(reg.reg & hwe->mmio_base);
->>  	xe_force_wake_assert_held(gt_to_fw(hwe->gt), hwe->domain);
->>
->> -	return xe_mmio_read32(hwe->gt, reg + hwe->mmio_base);
->> +	reg.reg += hwe->mmio_base;
->> +
->> +	return xe_mmio_read32(hwe->gt, reg);
->>  }
->>
->>  void xe_hw_engine_enable_ring(struct xe_hw_engine *hwe)
->> @@ -254,17 +259,17 @@ void xe_hw_engine_enable_ring(struct xe_hw_engine *hwe)
->>  		xe_hw_engine_mask_per_class(hwe->gt, XE_ENGINE_CLASS_COMPUTE);
->>
->>  	if (hwe->class == XE_ENGINE_CLASS_COMPUTE && ccs_mask)
->> -		xe_mmio_write32(hwe->gt, RCU_MODE.reg,
->> +		xe_mmio_write32(hwe->gt, RCU_MODE,
->>  				_MASKED_BIT_ENABLE(RCU_MODE_CCS_ENABLE));
->>
->> -	hw_engine_mmio_write32(hwe, RING_HWSTAM(0).reg, ~0x0);
->> -	hw_engine_mmio_write32(hwe, RING_HWS_PGA(0).reg,
->> +	hw_engine_mmio_write32(hwe, RING_HWSTAM(0), ~0x0);
->> +	hw_engine_mmio_write32(hwe, RING_HWS_PGA(0),
->>  			       xe_bo_ggtt_addr(hwe->hwsp));
->> -	hw_engine_mmio_write32(hwe, RING_MODE(0).reg,
->> +	hw_engine_mmio_write32(hwe, RING_MODE(0),
->>  			       _MASKED_BIT_ENABLE(GFX_DISABLE_LEGACY_MODE));
->> -	hw_engine_mmio_write32(hwe, RING_MI_MODE(0).reg,
->> +	hw_engine_mmio_write32(hwe, RING_MI_MODE(0),
->>  			       _MASKED_BIT_DISABLE(STOP_RING));
->> -	hw_engine_mmio_read32(hwe, RING_MI_MODE(0).reg);
->> +	hw_engine_mmio_read32(hwe, RING_MI_MODE(0));
->>  }
->>
->>  static void hw_engine_init_early(struct xe_gt *gt, struct xe_hw_engine *hwe,
->> @@ -379,7 +384,7 @@ static void read_media_fuses(struct xe_gt *gt)
->>
->>  	xe_force_wake_assert_held(gt_to_fw(gt), XE_FW_GT);
->>
->> -	media_fuse = xe_mmio_read32(gt, GT_VEBOX_VDBOX_DISABLE.reg);
->> +	media_fuse = xe_mmio_read32(gt, GT_VEBOX_VDBOX_DISABLE);
->>
 >>  	/*
->>  	 * Pre-Xe_HP platforms had register bits representing absent engines,
->> @@ -421,7 +426,7 @@ static void read_copy_fuses(struct xe_gt *gt)
->>
->>  	xe_force_wake_assert_held(gt_to_fw(gt), XE_FW_GT);
->>
->> -	bcs_mask = xe_mmio_read32(gt, MIRROR_FUSE3.reg);
->> +	bcs_mask = xe_mmio_read32(gt, MIRROR_FUSE3);
->>  	bcs_mask = REG_FIELD_GET(MEML3_EN_MASK, bcs_mask);
->>
->>  	/* BCS0 is always present; only BCS1-BCS8 may be fused off */
->> @@ -518,63 +523,63 @@ void xe_hw_engine_print_state(struct xe_hw_engine *hwe, struct drm_printer *p)
->>  	drm_printf(p, "\tMMIO base: 0x%08x\n", hwe->mmio_base);
->>
->>  	drm_printf(p, "\tHWSTAM: 0x%08x\n",
->> -		hw_engine_mmio_read32(hwe, RING_HWSTAM(0).reg));
->> +		hw_engine_mmio_read32(hwe, RING_HWSTAM(0)));
->>  	drm_printf(p, "\tRING_HWS_PGA: 0x%08x\n",
->> -		hw_engine_mmio_read32(hwe, RING_HWS_PGA(0).reg));
->> +		hw_engine_mmio_read32(hwe, RING_HWS_PGA(0)));
->>
->>  	drm_printf(p, "\tRING_EXECLIST_STATUS_LO: 0x%08x\n",
->> -		hw_engine_mmio_read32(hwe, RING_EXECLIST_STATUS_LO(0).reg));
->> +		hw_engine_mmio_read32(hwe, RING_EXECLIST_STATUS_LO(0)));
->>  	drm_printf(p, "\tRING_EXECLIST_STATUS_HI: 0x%08x\n",
->> -		hw_engine_mmio_read32(hwe, RING_EXECLIST_STATUS_HI(0).reg));
->> +		hw_engine_mmio_read32(hwe, RING_EXECLIST_STATUS_HI(0)));
->>  	drm_printf(p, "\tRING_EXECLIST_SQ_CONTENTS_LO: 0x%08x\n",
->>  		hw_engine_mmio_read32(hwe,
->> -					 RING_EXECLIST_SQ_CONTENTS_LO(0).reg));
->> +					 RING_EXECLIST_SQ_CONTENTS_LO(0)));
->>  	drm_printf(p, "\tRING_EXECLIST_SQ_CONTENTS_HI: 0x%08x\n",
->>  		hw_engine_mmio_read32(hwe,
->> -					 RING_EXECLIST_SQ_CONTENTS_HI(0).reg));
->> +					 RING_EXECLIST_SQ_CONTENTS_HI(0)));
->>  	drm_printf(p, "\tRING_EXECLIST_CONTROL: 0x%08x\n",
->> -		hw_engine_mmio_read32(hwe, RING_EXECLIST_CONTROL(0).reg));
->> +		hw_engine_mmio_read32(hwe, RING_EXECLIST_CONTROL(0)));
->>
->>  	drm_printf(p, "\tRING_START: 0x%08x\n",
->> -		hw_engine_mmio_read32(hwe, RING_START(0).reg));
->> +		hw_engine_mmio_read32(hwe, RING_START(0)));
->>  	drm_printf(p, "\tRING_HEAD:  0x%08x\n",
->> -		hw_engine_mmio_read32(hwe, RING_HEAD(0).reg) & HEAD_ADDR);
->> +		hw_engine_mmio_read32(hwe, RING_HEAD(0)) & HEAD_ADDR);
->>  	drm_printf(p, "\tRING_TAIL:  0x%08x\n",
->> -		hw_engine_mmio_read32(hwe, RING_TAIL(0).reg) & TAIL_ADDR);
->> +		hw_engine_mmio_read32(hwe, RING_TAIL(0)) & TAIL_ADDR);
->>  	drm_printf(p, "\tRING_CTL: 0x%08x\n",
->> -		hw_engine_mmio_read32(hwe, RING_CTL(0).reg));
->> +		hw_engine_mmio_read32(hwe, RING_CTL(0)));
->>  	drm_printf(p, "\tRING_MODE: 0x%08x\n",
->> -		hw_engine_mmio_read32(hwe, RING_MI_MODE(0).reg));
->> +		hw_engine_mmio_read32(hwe, RING_MI_MODE(0)));
->>  	drm_printf(p, "\tRING_MODE_GEN7: 0x%08x\n",
->> -		hw_engine_mmio_read32(hwe, RING_MODE(0).reg));
->> +		hw_engine_mmio_read32(hwe, RING_MODE(0)));
->>
->>  	drm_printf(p, "\tRING_IMR:   0x%08x\n",
->> -		hw_engine_mmio_read32(hwe, RING_IMR(0).reg));
->> +		hw_engine_mmio_read32(hwe, RING_IMR(0)));
->>  	drm_printf(p, "\tRING_ESR:   0x%08x\n",
->> -		hw_engine_mmio_read32(hwe, RING_ESR(0).reg));
->> +		hw_engine_mmio_read32(hwe, RING_ESR(0)));
->>  	drm_printf(p, "\tRING_EMR:   0x%08x\n",
->> -		hw_engine_mmio_read32(hwe, RING_EMR(0).reg));
->> +		hw_engine_mmio_read32(hwe, RING_EMR(0)));
->>  	drm_printf(p, "\tRING_EIR:   0x%08x\n",
->> -		hw_engine_mmio_read32(hwe, RING_EIR(0).reg));
->> +		hw_engine_mmio_read32(hwe, RING_EIR(0)));
->>
->>          drm_printf(p, "\tACTHD:  0x%08x_%08x\n",
->> -		hw_engine_mmio_read32(hwe, RING_ACTHD_UDW(0).reg),
->> -		hw_engine_mmio_read32(hwe, RING_ACTHD(0).reg));
->> +		hw_engine_mmio_read32(hwe, RING_ACTHD_UDW(0)),
->> +		hw_engine_mmio_read32(hwe, RING_ACTHD(0)));
->>          drm_printf(p, "\tBBADDR: 0x%08x_%08x\n",
->> -		hw_engine_mmio_read32(hwe, RING_BBADDR_UDW(0).reg),
->> -		hw_engine_mmio_read32(hwe, RING_BBADDR(0).reg));
->> +		hw_engine_mmio_read32(hwe, RING_BBADDR_UDW(0)),
->> +		hw_engine_mmio_read32(hwe, RING_BBADDR(0)));
->>          drm_printf(p, "\tDMA_FADDR: 0x%08x_%08x\n",
->> -		hw_engine_mmio_read32(hwe, RING_DMA_FADD_UDW(0).reg),
->> -		hw_engine_mmio_read32(hwe, RING_DMA_FADD(0).reg));
->> +		hw_engine_mmio_read32(hwe, RING_DMA_FADD_UDW(0)),
->> +		hw_engine_mmio_read32(hwe, RING_DMA_FADD(0)));
->>
->>  	drm_printf(p, "\tIPEIR: 0x%08x\n",
->> -		hw_engine_mmio_read32(hwe, IPEIR(0).reg));
->> +		hw_engine_mmio_read32(hwe, IPEIR(0)));
->>  	drm_printf(p, "\tIPEHR: 0x%08x\n\n",
->> -		hw_engine_mmio_read32(hwe, IPEHR(0).reg));
->> +		hw_engine_mmio_read32(hwe, IPEHR(0)));
->>
->>  	if (hwe->class == XE_ENGINE_CLASS_COMPUTE)
->>  		drm_printf(p, "\tRCU_MODE: 0x%08x\n",
->> -			xe_mmio_read32(hwe->gt, RCU_MODE.reg));
->> +			xe_mmio_read32(hwe->gt, RCU_MODE));
->>
+>>  	 * Not implemented, requires lock on all reads/writes.
+>> @@ -120,15 +140,20 @@ intel_de_write_samevalue(struct drm_i915_private *i915, i915_reg_t reg)
 >>  }
 >>
->> diff --git a/drivers/gpu/drm/xe/xe_irq.c b/drivers/gpu/drm/xe/xe_irq.c
->> index ac72c1a38e5c..7aa245792927 100644
->> --- a/drivers/gpu/drm/xe/xe_irq.c
->> +++ b/drivers/gpu/drm/xe/xe_irq.c
->> @@ -29,7 +29,7 @@
->>
->>  static void assert_iir_is_zero(struct xe_gt *gt, struct xe_reg reg)
+>>  static inline u32
+>> -intel_de_read_notrace(struct drm_i915_private *i915, i915_reg_t reg)
+>> +intel_de_read_notrace(struct drm_i915_private *i915, i915_reg_t i915_reg)
 >>  {
->> -	u32 val = xe_mmio_read32(gt, reg.reg);
->> +	u32 val = xe_mmio_read32(gt, reg);
->>
->>  	if (val == 0)
->>  		return;
->> @@ -37,10 +37,10 @@ static void assert_iir_is_zero(struct xe_gt *gt, struct xe_reg reg)
->>  	drm_WARN(&gt_to_xe(gt)->drm, 1,
->>  		 "Interrupt register 0x%x is not zero: 0x%08x\n",
->>  		 reg.reg, val);
->> -	xe_mmio_write32(gt, reg.reg, 0xffffffff);
->> -	xe_mmio_read32(gt, reg.reg);
->> -	xe_mmio_write32(gt, reg.reg, 0xffffffff);
->> -	xe_mmio_read32(gt, reg.reg);
->> +	xe_mmio_write32(gt, reg, 0xffffffff);
->> +	xe_mmio_read32(gt, reg);
->> +	xe_mmio_write32(gt, reg, 0xffffffff);
->> +	xe_mmio_read32(gt, reg);
->>  }
->>
->>  /*
->> @@ -55,32 +55,32 @@ static void unmask_and_enable(struct xe_gt *gt, u32 irqregs, u32 bits)
->>  	 */
->>  	assert_iir_is_zero(gt, IIR(irqregs));
->>
->> -	xe_mmio_write32(gt, IER(irqregs).reg, bits);
->> -	xe_mmio_write32(gt, IMR(irqregs).reg, ~bits);
->> +	xe_mmio_write32(gt, IER(irqregs), bits);
->> +	xe_mmio_write32(gt, IMR(irqregs), ~bits);
->>
->>  	/* Posting read */
->> -	xe_mmio_read32(gt, IMR(irqregs).reg);
->> +	xe_mmio_read32(gt, IMR(irqregs));
->>  }
->>
->>  /* Mask and disable all interrupts. */
->>  static void mask_and_disable(struct xe_gt *gt, u32 irqregs)
->>  {
->> -	xe_mmio_write32(gt, IMR(irqregs).reg, ~0);
->> +	xe_mmio_write32(gt, IMR(irqregs), ~0);
->>  	/* Posting read */
->> -	xe_mmio_read32(gt, IMR(irqregs).reg);
->> +	xe_mmio_read32(gt, IMR(irqregs));
->>
->> -	xe_mmio_write32(gt, IER(irqregs).reg, 0);
->> +	xe_mmio_write32(gt, IER(irqregs), 0);
->>
->>  	/* IIR can theoretically queue up two events. Be paranoid. */
->> -	xe_mmio_write32(gt, IIR(irqregs).reg, ~0);
->> -	xe_mmio_read32(gt, IIR(irqregs).reg);
->> -	xe_mmio_write32(gt, IIR(irqregs).reg, ~0);
->> -	xe_mmio_read32(gt, IIR(irqregs).reg);
->> +	xe_mmio_write32(gt, IIR(irqregs), ~0);
->> +	xe_mmio_read32(gt, IIR(irqregs));
->> +	xe_mmio_write32(gt, IIR(irqregs), ~0);
->> +	xe_mmio_read32(gt, IIR(irqregs));
->>  }
->>
->>  static u32 xelp_intr_disable(struct xe_gt *gt)
->>  {
->> -	xe_mmio_write32(gt, GFX_MSTR_IRQ.reg, 0);
->> +	xe_mmio_write32(gt, GFX_MSTR_IRQ, 0);
->>
->>  	/*
->>  	 * Now with master disabled, get a sample of level indications
->> @@ -88,7 +88,7 @@ static u32 xelp_intr_disable(struct xe_gt *gt)
->>  	 * New indications can and will light up during processing,
->>  	 * and will generate new interrupt after enabling master.
->>  	 */
->> -	return xe_mmio_read32(gt, GFX_MSTR_IRQ.reg);
->> +	return xe_mmio_read32(gt, GFX_MSTR_IRQ);
->>  }
->>
->>  static u32
->> @@ -99,18 +99,18 @@ gu_misc_irq_ack(struct xe_gt *gt, const u32 master_ctl)
->>  	if (!(master_ctl & GU_MISC_IRQ))
->>  		return 0;
->>
->> -	iir = xe_mmio_read32(gt, IIR(GU_MISC_IRQ_OFFSET).reg);
->> +	iir = xe_mmio_read32(gt, IIR(GU_MISC_IRQ_OFFSET));
->>  	if (likely(iir))
->> -		xe_mmio_write32(gt, IIR(GU_MISC_IRQ_OFFSET).reg, iir);
->> +		xe_mmio_write32(gt, IIR(GU_MISC_IRQ_OFFSET), iir);
->>
->>  	return iir;
->>  }
->>
->>  static inline void xelp_intr_enable(struct xe_gt *gt, bool stall)
->>  {
->> -	xe_mmio_write32(gt, GFX_MSTR_IRQ.reg, MASTER_IRQ);
->> +	xe_mmio_write32(gt, GFX_MSTR_IRQ, MASTER_IRQ);
->>  	if (stall)
->> -		xe_mmio_read32(gt, GFX_MSTR_IRQ.reg);
->> +		xe_mmio_read32(gt, GFX_MSTR_IRQ);
->>  }
->>
->>  static void gt_irq_postinstall(struct xe_device *xe, struct xe_gt *gt)
->> @@ -133,41 +133,41 @@ static void gt_irq_postinstall(struct xe_device *xe, struct xe_gt *gt)
->>  	smask = irqs << 16;
->>
->>  	/* Enable RCS, BCS, VCS and VECS class interrupts. */
->> -	xe_mmio_write32(gt, RENDER_COPY_INTR_ENABLE.reg, dmask);
->> -	xe_mmio_write32(gt, VCS_VECS_INTR_ENABLE.reg, dmask);
->> +	xe_mmio_write32(gt, RENDER_COPY_INTR_ENABLE, dmask);
->> +	xe_mmio_write32(gt, VCS_VECS_INTR_ENABLE, dmask);
->>  	if (ccs_mask)
->> -		xe_mmio_write32(gt, CCS_RSVD_INTR_ENABLE.reg, smask);
->> +		xe_mmio_write32(gt, CCS_RSVD_INTR_ENABLE, smask);
->>
->>  	/* Unmask irqs on RCS, BCS, VCS and VECS engines. */
->> -	xe_mmio_write32(gt, RCS0_RSVD_INTR_MASK.reg, ~smask);
->> -	xe_mmio_write32(gt, BCS_RSVD_INTR_MASK.reg, ~smask);
->> +	xe_mmio_write32(gt, RCS0_RSVD_INTR_MASK, ~smask);
->> +	xe_mmio_write32(gt, BCS_RSVD_INTR_MASK, ~smask);
->>  	if (bcs_mask & (BIT(1)|BIT(2)))
->> -		xe_mmio_write32(gt, XEHPC_BCS1_BCS2_INTR_MASK.reg, ~dmask);
->> +		xe_mmio_write32(gt, XEHPC_BCS1_BCS2_INTR_MASK, ~dmask);
->>  	if (bcs_mask & (BIT(3)|BIT(4)))
->> -		xe_mmio_write32(gt, XEHPC_BCS3_BCS4_INTR_MASK.reg, ~dmask);
->> +		xe_mmio_write32(gt, XEHPC_BCS3_BCS4_INTR_MASK, ~dmask);
->>  	if (bcs_mask & (BIT(5)|BIT(6)))
->> -		xe_mmio_write32(gt, XEHPC_BCS5_BCS6_INTR_MASK.reg, ~dmask);
->> +		xe_mmio_write32(gt, XEHPC_BCS5_BCS6_INTR_MASK, ~dmask);
->>  	if (bcs_mask & (BIT(7)|BIT(8)))
->> -		xe_mmio_write32(gt, XEHPC_BCS7_BCS8_INTR_MASK.reg, ~dmask);
->> -	xe_mmio_write32(gt, VCS0_VCS1_INTR_MASK.reg, ~dmask);
->> -	xe_mmio_write32(gt, VCS2_VCS3_INTR_MASK.reg, ~dmask);
->> -	xe_mmio_write32(gt, VECS0_VECS1_INTR_MASK.reg, ~dmask);
->> +		xe_mmio_write32(gt, XEHPC_BCS7_BCS8_INTR_MASK, ~dmask);
->> +	xe_mmio_write32(gt, VCS0_VCS1_INTR_MASK, ~dmask);
->> +	xe_mmio_write32(gt, VCS2_VCS3_INTR_MASK, ~dmask);
->> +	xe_mmio_write32(gt, VECS0_VECS1_INTR_MASK, ~dmask);
->>  	if (ccs_mask & (BIT(0)|BIT(1)))
->> -		xe_mmio_write32(gt, CCS0_CCS1_INTR_MASK.reg, ~dmask);
->> +		xe_mmio_write32(gt, CCS0_CCS1_INTR_MASK, ~dmask);
->>  	if (ccs_mask & (BIT(2)|BIT(3)))
->> -		xe_mmio_write32(gt,  CCS2_CCS3_INTR_MASK.reg, ~dmask);
->> +		xe_mmio_write32(gt,  CCS2_CCS3_INTR_MASK, ~dmask);
->>
->>  	/*
->>  	 * RPS interrupts will get enabled/disabled on demand when RPS itself
->>  	 * is enabled/disabled.
->>  	 */
->>  	/* TODO: gt->pm_ier, gt->pm_imr */
->> -	xe_mmio_write32(gt, GPM_WGBOXPERF_INTR_ENABLE.reg, 0);
->> -	xe_mmio_write32(gt, GPM_WGBOXPERF_INTR_MASK.reg,  ~0);
->> +	xe_mmio_write32(gt, GPM_WGBOXPERF_INTR_ENABLE, 0);
->> +	xe_mmio_write32(gt, GPM_WGBOXPERF_INTR_MASK,  ~0);
->>
->>  	/* Same thing for GuC interrupts */
->> -	xe_mmio_write32(gt, GUC_SG_INTR_ENABLE.reg, 0);
->> -	xe_mmio_write32(gt, GUC_SG_INTR_MASK.reg,  ~0);
->> +	xe_mmio_write32(gt, GUC_SG_INTR_ENABLE, 0);
->> +	xe_mmio_write32(gt, GUC_SG_INTR_MASK,  ~0);
->>  }
->>
->>  static void xelp_irq_postinstall(struct xe_device *xe, struct xe_gt *gt)
->> @@ -192,7 +192,7 @@ gt_engine_identity(struct xe_device *xe,
->>
->>  	lockdep_assert_held(&xe->irq.lock);
->>
->> -	xe_mmio_write32(gt, IIR_REG_SELECTOR(bank).reg, BIT(bit));
->> +	xe_mmio_write32(gt, IIR_REG_SELECTOR(bank), BIT(bit));
->>
->>  	/*
->>  	 * NB: Specs do not specify how long to spin wait,
->> @@ -200,7 +200,7 @@ gt_engine_identity(struct xe_device *xe,
->>  	 */
->>  	timeout_ts = (local_clock() >> 10) + 100;
->>  	do {
->> -		ident = xe_mmio_read32(gt, INTR_IDENTITY_REG(bank).reg);
->> +		ident = xe_mmio_read32(gt, INTR_IDENTITY_REG(bank));
->>  	} while (!(ident & INTR_DATA_VALID) &&
->>  		 !time_after32(local_clock() >> 10, timeout_ts));
->>
->> @@ -210,7 +210,7 @@ gt_engine_identity(struct xe_device *xe,
->>  		return 0;
->>  	}
->>
->> -	xe_mmio_write32(gt, INTR_IDENTITY_REG(bank).reg, INTR_DATA_VALID);
->> +	xe_mmio_write32(gt, INTR_IDENTITY_REG(bank), INTR_DATA_VALID);
->>
->>  	return ident;
->>  }
->> @@ -249,11 +249,11 @@ static void gt_irq_handler(struct xe_device *xe, struct xe_gt *gt,
->>
->>  		if (!xe_gt_is_media_type(gt)) {
->>  			intr_dw[bank] =
->> -				xe_mmio_read32(gt, GT_INTR_DW(bank).reg);
->> +				xe_mmio_read32(gt, GT_INTR_DW(bank));
->>  			for_each_set_bit(bit, intr_dw + bank, 32)
->>  				identity[bit] = gt_engine_identity(xe, gt,
->>  								   bank, bit);
->> -			xe_mmio_write32(gt, GT_INTR_DW(bank).reg,
->> +			xe_mmio_write32(gt, GT_INTR_DW(bank),
->>  					intr_dw[bank]);
->>  		}
->>
->> @@ -315,14 +315,14 @@ static u32 dg1_intr_disable(struct xe_device *xe)
->>  	u32 val;
->>
->>  	/* First disable interrupts */
->> -	xe_mmio_write32(gt, DG1_MSTR_TILE_INTR.reg, 0);
->> +	xe_mmio_write32(gt, DG1_MSTR_TILE_INTR, 0);
->>
->>  	/* Get the indication levels and ack the master unit */
->> -	val = xe_mmio_read32(gt, DG1_MSTR_TILE_INTR.reg);
->> +	val = xe_mmio_read32(gt, DG1_MSTR_TILE_INTR);
->>  	if (unlikely(!val))
->>  		return 0;
->>
->> -	xe_mmio_write32(gt, DG1_MSTR_TILE_INTR.reg, val);
->> +	xe_mmio_write32(gt, DG1_MSTR_TILE_INTR, val);
->>
->>  	return val;
->>  }
->> @@ -331,9 +331,9 @@ static void dg1_intr_enable(struct xe_device *xe, bool stall)
->>  {
->>  	struct xe_gt *gt = xe_device_get_gt(xe, 0);
->>
->> -	xe_mmio_write32(gt, DG1_MSTR_TILE_INTR.reg, DG1_MSTR_IRQ);
->> +	xe_mmio_write32(gt, DG1_MSTR_TILE_INTR, DG1_MSTR_IRQ);
->>  	if (stall)
->> -		xe_mmio_read32(gt, DG1_MSTR_TILE_INTR.reg);
->> +		xe_mmio_read32(gt, DG1_MSTR_TILE_INTR);
->>  }
->>
->>  static void dg1_irq_postinstall(struct xe_device *xe, struct xe_gt *gt)
->> @@ -373,7 +373,7 @@ static irqreturn_t dg1_irq_handler(int irq, void *arg)
->>  			continue;
->>
->>  		if (!xe_gt_is_media_type(gt))
->> -			master_ctl = xe_mmio_read32(gt, GFX_MSTR_IRQ.reg);
->> +			master_ctl = xe_mmio_read32(gt, GFX_MSTR_IRQ);
->>
->>  		/*
->>  		 * We might be in irq handler just when PCIe DPC is initiated
->> @@ -387,7 +387,7 @@ static irqreturn_t dg1_irq_handler(int irq, void *arg)
->>  		}
->>
->>  		if (!xe_gt_is_media_type(gt))
->> -			xe_mmio_write32(gt, GFX_MSTR_IRQ.reg, master_ctl);
->> +			xe_mmio_write32(gt, GFX_MSTR_IRQ, master_ctl);
->>  		gt_irq_handler(xe, gt, master_ctl, intr_dw, identity);
->>
->>  		/*
->> @@ -416,34 +416,34 @@ static void gt_irq_reset(struct xe_gt *gt)
->>  	u32 bcs_mask = xe_hw_engine_mask_per_class(gt, XE_ENGINE_CLASS_COPY);
->>
->>  	/* Disable RCS, BCS, VCS and VECS class engines. */
->> -	xe_mmio_write32(gt, RENDER_COPY_INTR_ENABLE.reg,	 0);
->> -	xe_mmio_write32(gt, VCS_VECS_INTR_ENABLE.reg,	 0);
->> +	xe_mmio_write32(gt, RENDER_COPY_INTR_ENABLE,	 0);
->> +	xe_mmio_write32(gt, VCS_VECS_INTR_ENABLE,	 0);
->>  	if (ccs_mask)
->> -		xe_mmio_write32(gt, CCS_RSVD_INTR_ENABLE.reg, 0);
->> +		xe_mmio_write32(gt, CCS_RSVD_INTR_ENABLE, 0);
->>
->>  	/* Restore masks irqs on RCS, BCS, VCS and VECS engines. */
->> -	xe_mmio_write32(gt, RCS0_RSVD_INTR_MASK.reg,	~0);
->> -	xe_mmio_write32(gt, BCS_RSVD_INTR_MASK.reg,	~0);
->> +	xe_mmio_write32(gt, RCS0_RSVD_INTR_MASK,	~0);
->> +	xe_mmio_write32(gt, BCS_RSVD_INTR_MASK,	~0);
->>  	if (bcs_mask & (BIT(1)|BIT(2)))
->> -		xe_mmio_write32(gt, XEHPC_BCS1_BCS2_INTR_MASK.reg, ~0);
->> +		xe_mmio_write32(gt, XEHPC_BCS1_BCS2_INTR_MASK, ~0);
->>  	if (bcs_mask & (BIT(3)|BIT(4)))
->> -		xe_mmio_write32(gt, XEHPC_BCS3_BCS4_INTR_MASK.reg, ~0);
->> +		xe_mmio_write32(gt, XEHPC_BCS3_BCS4_INTR_MASK, ~0);
->>  	if (bcs_mask & (BIT(5)|BIT(6)))
->> -		xe_mmio_write32(gt, XEHPC_BCS5_BCS6_INTR_MASK.reg, ~0);
->> +		xe_mmio_write32(gt, XEHPC_BCS5_BCS6_INTR_MASK, ~0);
->>  	if (bcs_mask & (BIT(7)|BIT(8)))
->> -		xe_mmio_write32(gt, XEHPC_BCS7_BCS8_INTR_MASK.reg, ~0);
->> -	xe_mmio_write32(gt, VCS0_VCS1_INTR_MASK.reg,	~0);
->> -	xe_mmio_write32(gt, VCS2_VCS3_INTR_MASK.reg,	~0);
->> -	xe_mmio_write32(gt, VECS0_VECS1_INTR_MASK.reg,	~0);
->> +		xe_mmio_write32(gt, XEHPC_BCS7_BCS8_INTR_MASK, ~0);
->> +	xe_mmio_write32(gt, VCS0_VCS1_INTR_MASK,	~0);
->> +	xe_mmio_write32(gt, VCS2_VCS3_INTR_MASK,	~0);
->> +	xe_mmio_write32(gt, VECS0_VECS1_INTR_MASK,	~0);
->>  	if (ccs_mask & (BIT(0)|BIT(1)))
->> -		xe_mmio_write32(gt, CCS0_CCS1_INTR_MASK.reg, ~0);
->> +		xe_mmio_write32(gt, CCS0_CCS1_INTR_MASK, ~0);
->>  	if (ccs_mask & (BIT(2)|BIT(3)))
->> -		xe_mmio_write32(gt,  CCS2_CCS3_INTR_MASK.reg, ~0);
->> +		xe_mmio_write32(gt,  CCS2_CCS3_INTR_MASK, ~0);
->>
->> -	xe_mmio_write32(gt, GPM_WGBOXPERF_INTR_ENABLE.reg, 0);
->> -	xe_mmio_write32(gt, GPM_WGBOXPERF_INTR_MASK.reg,  ~0);
->> -	xe_mmio_write32(gt, GUC_SG_INTR_ENABLE.reg,	 0);
->> -	xe_mmio_write32(gt, GUC_SG_INTR_MASK.reg,		~0);
->> +	xe_mmio_write32(gt, GPM_WGBOXPERF_INTR_ENABLE, 0);
->> +	xe_mmio_write32(gt, GPM_WGBOXPERF_INTR_MASK,  ~0);
->> +	xe_mmio_write32(gt, GUC_SG_INTR_ENABLE,	 0);
->> +	xe_mmio_write32(gt, GUC_SG_INTR_MASK,		~0);
->>  }
->>
->>  static void xelp_irq_reset(struct xe_gt *gt)
->> diff --git a/drivers/gpu/drm/xe/xe_mmio.c b/drivers/gpu/drm/xe/xe_mmio.c
->> index 3b719c774efa..0e91004fa06d 100644
->> --- a/drivers/gpu/drm/xe/xe_mmio.c
->> +++ b/drivers/gpu/drm/xe/xe_mmio.c
->> @@ -153,13 +153,13 @@ int xe_mmio_total_vram_size(struct xe_device *xe, u64 *vram_size, u64 *usable_si
->>  	struct xe_gt *gt = xe_device_get_gt(xe, 0);
->>  	struct pci_dev *pdev = to_pci_dev(xe->drm.dev);
->>  	int err;
->> -	u32 reg;
->> +	u32 reg_val;
->>
->>  	if (!xe->info.has_flat_ccs)  {
->>  		*vram_size = pci_resource_len(pdev, GEN12_LMEM_BAR);
->>  		if (usable_size)
->>  			*usable_size = min(*vram_size,
->> -					   xe_mmio_read64(gt, GSMBASE.reg));
->> +					   xe_mmio_read64(gt, GSMBASE));
->>  		return 0;
->>  	}
->>
->> @@ -167,11 +167,11 @@ int xe_mmio_total_vram_size(struct xe_device *xe, u64 *vram_size, u64 *usable_si
->>  	if (err)
->>  		return err;
->>
->> -	reg = xe_gt_mcr_unicast_read_any(gt, XEHP_TILE0_ADDR_RANGE);
->> -	*vram_size = (u64)REG_FIELD_GET(GENMASK(14, 8), reg) * SZ_1G;
->> +	reg_val = xe_gt_mcr_unicast_read_any(gt, XEHP_TILE0_ADDR_RANGE);
->> +	*vram_size = (u64)REG_FIELD_GET(GENMASK(14, 8), reg_val) * SZ_1G;
->>  	if (usable_size) {
->> -		reg = xe_gt_mcr_unicast_read_any(gt, XEHP_FLAT_CCS_BASE_ADDR);
->> -		*usable_size = (u64)REG_FIELD_GET(GENMASK(31, 8), reg) * SZ_64K;
->> +		reg_val = xe_gt_mcr_unicast_read_any(gt, XEHP_FLAT_CCS_BASE_ADDR);
->> +		*usable_size = (u64)REG_FIELD_GET(GENMASK(31, 8), reg_val) * SZ_64K;
->>  		drm_info(&xe->drm, "vram_size: 0x%llx usable_size: 0x%llx\n",
->>  			 *vram_size, *usable_size);
->>  	}
->> @@ -298,7 +298,7 @@ static void xe_mmio_probe_tiles(struct xe_device *xe)
->>  	if (xe->info.tile_count == 1)
->>  		return;
->>
->> -	mtcfg = xe_mmio_read64(gt, XEHP_MTCFG_ADDR.reg);
->> +	mtcfg = xe_mmio_read64(gt, XEHP_MTCFG_ADDR);
->>  	adj_tile_count = xe->info.tile_count =
->>  		REG_FIELD_GET(TILE_COUNT, mtcfg) + 1;
->>  	if (xe->info.media_verx100 >= 1300)
->> @@ -374,7 +374,7 @@ int xe_mmio_init(struct xe_device *xe)
->>  	 * keep the GT powered down; we won't be able to communicate with it
->>  	 * and we should not continue with driver initialization.
->>  	 */
->> -	if (IS_DGFX(xe) && !(xe_mmio_read32(gt, GU_CNTL.reg) & LMEM_INIT)) {
->> +	if (IS_DGFX(xe) && !(xe_mmio_read32(gt, GU_CNTL) & LMEM_INIT)) {
->>  		drm_err(&xe->drm, "VRAM not initialized by firmware\n");
->>  		return -ENODEV;
->>  	}
->> @@ -403,6 +403,7 @@ int xe_mmio_ioctl(struct drm_device *dev, void *data,
->>  	struct xe_device *xe = to_xe_device(dev);
->>  	struct drm_xe_mmio *args = data;
->>  	unsigned int bits_flag, bytes;
->> +	struct xe_reg reg;
->>  	bool allowed;
->>  	int ret = 0;
->>
->> @@ -435,6 +436,12 @@ int xe_mmio_ioctl(struct drm_device *dev, void *data,
->>  	if (XE_IOCTL_ERR(xe, args->addr + bytes > xe->mmio.size))
->>  		return -EINVAL;
->>
->> +	/*
->> +	 * TODO: migrate to xe_gt_mcr to lookup the mmio range and handle
->> +	 * multicast registers. Steering would need uapi extension.
->> +	 */
->> +	reg = XE_REG(args->addr);
+>> -	return xe_mmio_read32(to_gt(i915), reg.reg);
+>> +	struct xe_reg reg = XE_REG(i915_mmio_reg_offset(i915_reg));
 >> +
->>  	xe_force_wake_get(gt_to_fw(&xe->gt[0]), XE_FORCEWAKE_ALL);
->>
->>  	if (args->flags & DRM_XE_MMIO_WRITE) {
->> @@ -444,10 +451,10 @@ int xe_mmio_ioctl(struct drm_device *dev, void *data,
->>  				ret = -EINVAL;
->>  				goto exit;
->>  			}
->> -			xe_mmio_write32(to_gt(xe), args->addr, args->value);
->> +			xe_mmio_write32(to_gt(xe), reg, args->value);
->>  			break;
->>  		case DRM_XE_MMIO_64BIT:
->> -			xe_mmio_write64(to_gt(xe), args->addr, args->value);
->> +			xe_mmio_write64(to_gt(xe), reg, args->value);
->>  			break;
->>  		default:
->>  			drm_dbg(&xe->drm, "Invalid MMIO bit size");
->> @@ -462,10 +469,10 @@ int xe_mmio_ioctl(struct drm_device *dev, void *data,
->>  	if (args->flags & DRM_XE_MMIO_READ) {
->>  		switch (bits_flag) {
->>  		case DRM_XE_MMIO_32BIT:
->> -			args->value = xe_mmio_read32(to_gt(xe), args->addr);
->> +			args->value = xe_mmio_read32(to_gt(xe), reg);
->>  			break;
->>  		case DRM_XE_MMIO_64BIT:
->> -			args->value = xe_mmio_read64(to_gt(xe), args->addr);
->> +			args->value = xe_mmio_read64(to_gt(xe), reg);
->>  			break;
->>  		default:
->>  			drm_dbg(&xe->drm, "Invalid MMIO bit size");
->> diff --git a/drivers/gpu/drm/xe/xe_mmio.h b/drivers/gpu/drm/xe/xe_mmio.h
->> index 1a32e0f52261..0f792a196545 100644
->> --- a/drivers/gpu/drm/xe/xe_mmio.h
->> +++ b/drivers/gpu/drm/xe/xe_mmio.h
->> @@ -9,6 +9,7 @@
->>  #include <linux/delay.h>
->>  #include <linux/io-64-nonatomic-lo-hi.h>
->>
->> +#include "regs/xe_reg_defs.h"
->>  #include "xe_gt_types.h"
->>
->>  struct drm_device;
->> @@ -18,23 +19,23 @@ struct xe_device;
->>  int xe_mmio_init(struct xe_device *xe);
->>
->>  static inline void xe_mmio_write32(struct xe_gt *gt,
->> -				   u32 reg, u32 val)
->> +				   struct xe_reg reg, u32 val)
->>  {
->> -	if (reg < gt->mmio.adj_limit)
->> -		reg += gt->mmio.adj_offset;
->> +	if (reg.reg < gt->mmio.adj_limit)
->> +		reg.reg += gt->mmio.adj_offset;
->>
->> -	writel(val, gt->mmio.regs + reg);
->> +	writel(val, gt->mmio.regs + reg.reg);
+>> +	return xe_mmio_read32(to_gt(i915), reg);
 >>  }
 >>
->> -static inline u32 xe_mmio_read32(struct xe_gt *gt, u32 reg)
->> +static inline u32 xe_mmio_read32(struct xe_gt *gt, struct xe_reg reg)
+>>  static inline void
+>> -intel_de_write_notrace(struct drm_i915_private *i915, i915_reg_t reg, u32 val)
+>> +intel_de_write_notrace(struct drm_i915_private *i915, i915_reg_t i915_reg,
+>> +		       u32 val)
 >>  {
->> -	if (reg < gt->mmio.adj_limit)
->> -		reg += gt->mmio.adj_offset;
->> +	if (reg.reg < gt->mmio.adj_limit)
->> +		reg.reg += gt->mmio.adj_offset;
->>
->> -	return readl(gt->mmio.regs + reg);
->> +	return readl(gt->mmio.regs + reg.reg);
->>  }
->>
->> -static inline u32 xe_mmio_rmw32(struct xe_gt *gt, u32 reg, u32 clr,
->> +static inline u32 xe_mmio_rmw32(struct xe_gt *gt, struct xe_reg reg, u32 clr,
->>  				 u32 set)
->>  {
->>  	u32 old, reg_val;
->> @@ -47,24 +48,24 @@ static inline u32 xe_mmio_rmw32(struct xe_gt *gt, u32 reg, u32 clr,
->>  }
->>
->>  static inline void xe_mmio_write64(struct xe_gt *gt,
->> -				   u32 reg, u64 val)
->> +				   struct xe_reg reg, u64 val)
->>  {
->> -	if (reg < gt->mmio.adj_limit)
->> -		reg += gt->mmio.adj_offset;
->> +	if (reg.reg < gt->mmio.adj_limit)
->> +		reg.reg += gt->mmio.adj_offset;
->>
->> -	writeq(val, gt->mmio.regs + reg);
->> +	writeq(val, gt->mmio.regs + reg.reg);
->>  }
->>
->> -static inline u64 xe_mmio_read64(struct xe_gt *gt, u32 reg)
->> +static inline u64 xe_mmio_read64(struct xe_gt *gt, struct xe_reg reg)
->>  {
->> -	if (reg < gt->mmio.adj_limit)
->> -		reg += gt->mmio.adj_offset;
->> +	if (reg.reg < gt->mmio.adj_limit)
->> +		reg.reg += gt->mmio.adj_offset;
->>
->> -	return readq(gt->mmio.regs + reg);
->> +	return readq(gt->mmio.regs + reg.reg);
->>  }
->>
->>  static inline int xe_mmio_write32_and_verify(struct xe_gt *gt,
->> -					     u32 reg, u32 val,
->> +					     struct xe_reg reg, u32 val,
->>  					     u32 mask, u32 eval)
->>  {
->>  	u32 reg_val;
->> @@ -75,8 +76,9 @@ static inline int xe_mmio_write32_and_verify(struct xe_gt *gt,
->>  	return (reg_val & mask) != eval ? -EINVAL : 0;
->>  }
->>
->> -static inline int xe_mmio_wait32(struct xe_gt *gt, u32 reg, u32 val, u32 mask,
->> -				 u32 timeout_us, u32 *out_val, bool atomic)
->> +static inline int xe_mmio_wait32(struct xe_gt *gt, struct xe_reg reg, u32 val,
->> +				 u32 mask, u32 timeout_us, u32 *out_val,
->> +				 bool atomic)
->>  {
->>  	ktime_t cur = ktime_get_raw();
->>  	const ktime_t end = ktime_add_us(cur, timeout_us);
->> @@ -114,9 +116,10 @@ static inline int xe_mmio_wait32(struct xe_gt *gt, u32 reg, u32 val, u32 mask,
->>  int xe_mmio_ioctl(struct drm_device *dev, void *data,
->>  		  struct drm_file *file);
->>
->> -static inline bool xe_mmio_in_range(const struct xe_mmio_range *range, u32 reg)
->> +static inline bool xe_mmio_in_range(const struct xe_mmio_range *range,
->> +				    struct xe_reg reg)
->>  {
->> -	return range && reg >= range->start && reg <= range->end;
->> +	return range && reg.reg >= range->start && reg.reg <= range->end;
->>  }
->>
->>  int xe_mmio_probe_vram(struct xe_device *xe);
->> diff --git a/drivers/gpu/drm/xe/xe_mocs.c b/drivers/gpu/drm/xe/xe_mocs.c
->> index f2ceecd536ed..7ad43e53f826 100644
->> --- a/drivers/gpu/drm/xe/xe_mocs.c
->> +++ b/drivers/gpu/drm/xe/xe_mocs.c
->> @@ -477,8 +477,9 @@ static void __init_mocs_table(struct xe_gt *gt,
->>  	for (i = 0;
->>  	     i < info->n_entries ? (mocs = get_entry_control(info, i)), 1 : 0;
->>  	     i++) {
->> -		mocs_dbg(&gt->xe->drm, "%d 0x%x 0x%x\n", i, XE_REG(addr + i * 4).reg, mocs);
->> -		xe_mmio_write32(gt, XE_REG(addr + i * 4).reg, mocs);
->> +		struct xe_reg reg = XE_REG(addr + i * 4);
->> +		mocs_dbg(&gt->xe->drm, "%d 0x%x 0x%x\n", i, reg.reg, mocs);
->> +		xe_mmio_write32(gt, reg, mocs);
->>  	}
->>  }
->>
->> @@ -514,7 +515,7 @@ static void init_l3cc_table(struct xe_gt *gt,
->>  	     i++) {
->>  		mocs_dbg(&gt->xe->drm, "%d 0x%x 0x%x\n", i, LNCFCMOCS(i).reg,
->>  			 l3cc);
->> -		xe_mmio_write32(gt, LNCFCMOCS(i).reg, l3cc);
->> +		xe_mmio_write32(gt, LNCFCMOCS(i), l3cc);
->>  	}
->>  }
->>
->> diff --git a/drivers/gpu/drm/xe/xe_pat.c b/drivers/gpu/drm/xe/xe_pat.c
->> index abee41fa3cb9..b56a65779d26 100644
->> --- a/drivers/gpu/drm/xe/xe_pat.c
->> +++ b/drivers/gpu/drm/xe/xe_pat.c
->> @@ -64,14 +64,20 @@ static const u32 mtl_pat_table[] = {
->>
->>  static void program_pat(struct xe_gt *gt, const u32 table[], int n_entries)
->>  {
->> -	for (int i = 0; i < n_entries; i++)
->> -		xe_mmio_write32(gt, _PAT_INDEX(i), table[i]);
->> +	for (int i = 0; i < n_entries; i++) {
->> +		struct xe_reg reg = XE_REG(_PAT_INDEX(i));
+>> -	xe_mmio_write32(to_gt(i915), reg.reg, val);
+>> +	struct xe_reg reg = XE_REG(i915_mmio_reg_offset(i915_reg));
 >> +
->> +		xe_mmio_write32(gt, reg, table[i]);
->> +	}
+>> +	xe_mmio_write32(to_gt(i915), reg, val);
 >>  }
 >>
->>  static void program_pat_mcr(struct xe_gt *gt, const u32 table[], int n_entries)
->>  {
->> -	for (int i = 0; i < n_entries; i++)
->> -		xe_gt_mcr_multicast_write(gt, XE_REG_MCR(_PAT_INDEX(i)), table[i]);
->> +	for (int i = 0; i < n_entries; i++) {
->> +		struct xe_reg_mcr reg_mcr = XE_REG_MCR(_PAT_INDEX(i));
->> +
->> +		xe_gt_mcr_multicast_write(gt, reg_mcr, table[i]);
->> +	}
->>  }
->>
->>  void xe_pat_init(struct xe_gt *gt)
->> diff --git a/drivers/gpu/drm/xe/xe_pcode.c b/drivers/gpu/drm/xe/xe_pcode.c
->> index 99bb730684ed..7ab70a83f88d 100644
->> --- a/drivers/gpu/drm/xe/xe_pcode.c
->> +++ b/drivers/gpu/drm/xe/xe_pcode.c
->> @@ -43,7 +43,7 @@ static int pcode_mailbox_status(struct xe_gt *gt)
->>
->>  	lockdep_assert_held(&gt->pcode.lock);
->>
->> -	err = xe_mmio_read32(gt, PCODE_MAILBOX.reg) & PCODE_ERROR_MASK;
->> +	err = xe_mmio_read32(gt, PCODE_MAILBOX) & PCODE_ERROR_MASK;
->>  	if (err) {
->>  		drm_err(&gt_to_xe(gt)->drm, "PCODE Mailbox failed: %d %s", err,
->>  			err_decode[err].str ?: "Unknown");
->> @@ -60,22 +60,22 @@ static int pcode_mailbox_rw(struct xe_gt *gt, u32 mbox, u32 *data0, u32 *data1,
->>  	int err;
->>  	lockdep_assert_held(&gt->pcode.lock);
->>
->> -	if ((xe_mmio_read32(gt, PCODE_MAILBOX.reg) & PCODE_READY) != 0)
->> +	if ((xe_mmio_read32(gt, PCODE_MAILBOX) & PCODE_READY) != 0)
->>  		return -EAGAIN;
->>
->> -	xe_mmio_write32(gt, PCODE_DATA0.reg, *data0);
->> -	xe_mmio_write32(gt, PCODE_DATA1.reg, data1 ? *data1 : 0);
->> -	xe_mmio_write32(gt, PCODE_MAILBOX.reg, PCODE_READY | mbox);
->> +	xe_mmio_write32(gt, PCODE_DATA0, *data0);
->> +	xe_mmio_write32(gt, PCODE_DATA1, data1 ? *data1 : 0);
->> +	xe_mmio_write32(gt, PCODE_MAILBOX, PCODE_READY | mbox);
->>
->> -	err = xe_mmio_wait32(gt, PCODE_MAILBOX.reg, 0, PCODE_READY,
->> +	err = xe_mmio_wait32(gt, PCODE_MAILBOX, 0, PCODE_READY,
->>  			     timeout_ms * 1000, NULL, atomic);
->>  	if (err)
->>  		return err;
->>
->>  	if (return_data) {
->> -		*data0 = xe_mmio_read32(gt, PCODE_DATA0.reg);
->> +		*data0 = xe_mmio_read32(gt, PCODE_DATA0);
->>  		if (data1)
->> -			*data1 = xe_mmio_read32(gt, PCODE_DATA1.reg);
->> +			*data1 = xe_mmio_read32(gt, PCODE_DATA1);
->>  	}
->>
->>  	return pcode_mailbox_status(gt);
->> diff --git a/drivers/gpu/drm/xe/xe_reg_sr.c b/drivers/gpu/drm/xe/xe_reg_sr.c
->> index 801f211fb733..51a40a9e532d 100644
->> --- a/drivers/gpu/drm/xe/xe_reg_sr.c
->> +++ b/drivers/gpu/drm/xe/xe_reg_sr.c
->> @@ -163,7 +163,7 @@ static void apply_one_mmio(struct xe_gt *gt, struct xe_reg_sr_entry *entry)
->>  	else if (entry->clr_bits + 1)
->>  		val = (reg.mcr ?
->>  		       xe_gt_mcr_unicast_read_any(gt, reg_mcr) :
->> -		       xe_mmio_read32(gt, reg.reg)) & (~entry->clr_bits);
->> +		       xe_mmio_read32(gt, reg)) & (~entry->clr_bits);
->>  	else
->>  		val = 0;
->>
->> @@ -179,7 +179,7 @@ static void apply_one_mmio(struct xe_gt *gt, struct xe_reg_sr_entry *entry)
->>  	if (entry->reg.mcr)
->>  		xe_gt_mcr_multicast_write(gt, reg_mcr, val);
->>  	else
->> -		xe_mmio_write32(gt, reg.reg, val);
->> +		xe_mmio_write32(gt, reg, val);
->>  }
->>
->>  void xe_reg_sr_apply_mmio(struct xe_reg_sr *sr, struct xe_gt *gt)
->> @@ -232,15 +232,17 @@ void xe_reg_sr_apply_whitelist(struct xe_reg_sr *sr, u32 mmio_base,
->>  	p = drm_debug_printer(KBUILD_MODNAME);
->>  	xa_for_each(&sr->xa, reg, entry) {
->>  		xe_reg_whitelist_print_entry(&p, 0, reg, entry);
->> -		xe_mmio_write32(gt, RING_FORCE_TO_NONPRIV(mmio_base, slot).reg,
->> +		xe_mmio_write32(gt, RING_FORCE_TO_NONPRIV(mmio_base, slot),
->>  				reg | entry->set_bits);
->>  		slot++;
->>  	}
->>
->>  	/* And clear the rest just in case of garbage */
->> -	for (; slot < RING_MAX_NONPRIV_SLOTS; slot++)
->> -		xe_mmio_write32(gt, RING_FORCE_TO_NONPRIV(mmio_base, slot).reg,
->> -				RING_NOPID(mmio_base).reg);
->> +	for (; slot < RING_MAX_NONPRIV_SLOTS; slot++) {
->> +		u32 addr = RING_NOPID(mmio_base).reg;
->> +
->> +		xe_mmio_write32(gt, RING_FORCE_TO_NONPRIV(mmio_base, slot), addr);
->> +	}
->>
->>  	err = xe_force_wake_put(&gt->mmio.fw, XE_FORCEWAKE_ALL);
->>  	XE_WARN_ON(err);
->> diff --git a/drivers/gpu/drm/xe/xe_ring_ops.c b/drivers/gpu/drm/xe/xe_ring_ops.c
->> index 5e61b6e61f3a..efc59eb4a491 100644
->> --- a/drivers/gpu/drm/xe/xe_ring_ops.c
->> +++ b/drivers/gpu/drm/xe/xe_ring_ops.c
->> @@ -44,10 +44,11 @@ static u32 preparser_disable(bool state)
->>  	return MI_ARB_CHECK | BIT(8) | state;
->>  }
->>
->> -static int emit_aux_table_inv(struct xe_gt *gt, u32 addr, u32 *dw, int i)
->> +static int emit_aux_table_inv(struct xe_gt *gt, struct xe_reg reg,
->> +			      u32 *dw, int i)
->>  {
->>  	dw[i++] = MI_LOAD_REGISTER_IMM(1) | MI_LRI_MMIO_REMAP_EN;
->> -	dw[i++] = addr + gt->mmio.adj_offset;
->> +	dw[i++] = reg.reg + gt->mmio.adj_offset;
->>  	dw[i++] = AUX_INV;
->>  	dw[i++] = MI_NOOP;
->>
->> @@ -202,9 +203,9 @@ static void __emit_job_gen12_video(struct xe_sched_job *job, struct xe_lrc *lrc,
->>  	/* Wa_1809175790 */
->>  	if (!xe->info.has_flat_ccs) {
->>  		if (decode)
->> -			i = emit_aux_table_inv(gt, VD0_AUX_NV.reg, dw, i);
->> +			i = emit_aux_table_inv(gt, VD0_AUX_NV, dw, i);
->>  		else
->> -			i = emit_aux_table_inv(gt, VE0_AUX_NV.reg, dw, i);
->> +			i = emit_aux_table_inv(gt, VE0_AUX_NV, dw, i);
->>  	}
->>  	dw[i++] = preparser_disable(false);
->>
->> @@ -246,7 +247,7 @@ static void __emit_job_gen12_render_compute(struct xe_sched_job *job,
->>  	i = emit_pipe_invalidate(mask_flags, dw, i);
->>  	/* Wa_1809175790 */
->>  	if (!xe->info.has_flat_ccs)
->> -		i = emit_aux_table_inv(gt, GFX_CCS_AUX_NV.reg, dw, i);
->> +		i = emit_aux_table_inv(gt, GFX_CCS_AUX_NV, dw, i);
->>  	dw[i++] = preparser_disable(false);
->>
->>  	i = emit_store_imm_ggtt(xe_lrc_start_seqno_ggtt_addr(lrc),
->> diff --git a/drivers/gpu/drm/xe/xe_ttm_stolen_mgr.c b/drivers/gpu/drm/xe/xe_ttm_stolen_mgr.c
->> index 9ce0a0585539..a3855870321f 100644
->> --- a/drivers/gpu/drm/xe/xe_ttm_stolen_mgr.c
->> +++ b/drivers/gpu/drm/xe/xe_ttm_stolen_mgr.c
->> @@ -65,7 +65,7 @@ static s64 detect_bar2_dgfx(struct xe_device *xe, struct xe_ttm_stolen_mgr *mgr)
->>  	}
->>
->>  	/* Use DSM base address instead for stolen memory */
->> -	mgr->stolen_base = xe_mmio_read64(gt, DSMBASE.reg) & BDSM_MASK;
->> +	mgr->stolen_base = xe_mmio_read64(gt, DSMBASE) & BDSM_MASK;
->>  	if (drm_WARN_ON(&xe->drm, vram_size < mgr->stolen_base))
->>  		return 0;
->>
->> @@ -88,7 +88,7 @@ static u32 detect_bar2_integrated(struct xe_device *xe, struct xe_ttm_stolen_mgr
->>  	u32 stolen_size;
->>  	u32 ggc, gms;
->>
->> -	ggc = xe_mmio_read32(to_gt(xe), GGC.reg);
->> +	ggc = xe_mmio_read32(to_gt(xe), GGC);
->>
->>  	/* check GGMS, should be fixed 0x3 (8MB) */
->>  	if (drm_WARN_ON(&xe->drm, (ggc & GGMS_MASK) != GGMS_MASK))
->> diff --git a/drivers/gpu/drm/xe/xe_uc_fw.c b/drivers/gpu/drm/xe/xe_uc_fw.c
->> index cd5433b5c970..5c3a571d2a29 100644
->> --- a/drivers/gpu/drm/xe/xe_uc_fw.c
->> +++ b/drivers/gpu/drm/xe/xe_uc_fw.c
->> @@ -462,33 +462,33 @@ static int uc_fw_xfer(struct xe_uc_fw *uc_fw, u32 offset, u32 dma_flags)
->>
->>  	/* Set the source address for the uCode */
->>  	src_offset = uc_fw_ggtt_offset(uc_fw);
->> -	xe_mmio_write32(gt, DMA_ADDR_0_LOW.reg, lower_32_bits(src_offset));
->> -	xe_mmio_write32(gt, DMA_ADDR_0_HIGH.reg, upper_32_bits(src_offset));
->> +	xe_mmio_write32(gt, DMA_ADDR_0_LOW, lower_32_bits(src_offset));
->> +	xe_mmio_write32(gt, DMA_ADDR_0_HIGH, upper_32_bits(src_offset));
->>
->>  	/* Set the DMA destination */
->> -	xe_mmio_write32(gt, DMA_ADDR_1_LOW.reg, offset);
->> -	xe_mmio_write32(gt, DMA_ADDR_1_HIGH.reg, DMA_ADDRESS_SPACE_WOPCM);
->> +	xe_mmio_write32(gt, DMA_ADDR_1_LOW, offset);
->> +	xe_mmio_write32(gt, DMA_ADDR_1_HIGH, DMA_ADDRESS_SPACE_WOPCM);
->>
->>  	/*
->>  	 * Set the transfer size. The header plus uCode will be copied to WOPCM
->>  	 * via DMA, excluding any other components
->>  	 */
->> -	xe_mmio_write32(gt, DMA_COPY_SIZE.reg,
->> +	xe_mmio_write32(gt, DMA_COPY_SIZE,
->>  			sizeof(struct uc_css_header) + uc_fw->ucode_size);
->>
->>  	/* Start the DMA */
->> -	xe_mmio_write32(gt, DMA_CTRL.reg,
->> +	xe_mmio_write32(gt, DMA_CTRL,
->>  			_MASKED_BIT_ENABLE(dma_flags | START_DMA));
->>
->>  	/* Wait for DMA to finish */
->> -	ret = xe_mmio_wait32(gt, DMA_CTRL.reg, 0, START_DMA, 100000, &dma_ctrl,
->> +	ret = xe_mmio_wait32(gt, DMA_CTRL, 0, START_DMA, 100000, &dma_ctrl,
->>  			     false);
->>  	if (ret)
->>  		drm_err(&xe->drm, "DMA for %s fw failed, DMA_CTRL=%u\n",
->>  			xe_uc_fw_type_repr(uc_fw->type), dma_ctrl);
->>
->>  	/* Disable the bits once DMA is over */
->> -	xe_mmio_write32(gt, DMA_CTRL.reg, _MASKED_BIT_DISABLE(dma_flags));
->> +	xe_mmio_write32(gt, DMA_CTRL, _MASKED_BIT_DISABLE(dma_flags));
->>
->>  	return ret;
->>  }
->> diff --git a/drivers/gpu/drm/xe/xe_wopcm.c b/drivers/gpu/drm/xe/xe_wopcm.c
->> index 7b5014aea9c8..11eea970c207 100644
->> --- a/drivers/gpu/drm/xe/xe_wopcm.c
->> +++ b/drivers/gpu/drm/xe/xe_wopcm.c
->> @@ -124,8 +124,8 @@ static bool __check_layout(struct xe_device *xe, u32 wopcm_size,
->>  static bool __wopcm_regs_locked(struct xe_gt *gt,
->>  				u32 *guc_wopcm_base, u32 *guc_wopcm_size)
->>  {
->> -	u32 reg_base = xe_mmio_read32(gt, DMA_GUC_WOPCM_OFFSET.reg);
->> -	u32 reg_size = xe_mmio_read32(gt, GUC_WOPCM_SIZE.reg);
->> +	u32 reg_base = xe_mmio_read32(gt, DMA_GUC_WOPCM_OFFSET);
->> +	u32 reg_size = xe_mmio_read32(gt, GUC_WOPCM_SIZE);
->>
->>  	if (!(reg_size & GUC_WOPCM_SIZE_LOCKED) ||
->>  	    !(reg_base & GUC_WOPCM_OFFSET_VALID))
->> @@ -152,13 +152,13 @@ static int __wopcm_init_regs(struct xe_device *xe, struct xe_gt *gt,
->>  	XE_BUG_ON(size & ~GUC_WOPCM_SIZE_MASK);
->>
->>  	mask = GUC_WOPCM_SIZE_MASK | GUC_WOPCM_SIZE_LOCKED;
->> -	err = xe_mmio_write32_and_verify(gt, GUC_WOPCM_SIZE.reg, size, mask,
->> +	err = xe_mmio_write32_and_verify(gt, GUC_WOPCM_SIZE, size, mask,
->>  					 size | GUC_WOPCM_SIZE_LOCKED);
->>  	if (err)
->>  		goto err_out;
->>
->>  	mask = GUC_WOPCM_OFFSET_MASK | GUC_WOPCM_OFFSET_VALID | huc_agent;
->> -	err = xe_mmio_write32_and_verify(gt, DMA_GUC_WOPCM_OFFSET.reg,
->> +	err = xe_mmio_write32_and_verify(gt, DMA_GUC_WOPCM_OFFSET,
->>  					 base | huc_agent, mask,
->>  					 base | huc_agent |
->>  					 GUC_WOPCM_OFFSET_VALID);
->> @@ -171,10 +171,10 @@ static int __wopcm_init_regs(struct xe_device *xe, struct xe_gt *gt,
->>  	drm_notice(&xe->drm, "Failed to init uC WOPCM registers!\n");
->>  	drm_notice(&xe->drm, "%s(%#x)=%#x\n", "DMA_GUC_WOPCM_OFFSET",
->>  		   DMA_GUC_WOPCM_OFFSET.reg,
->> -		   xe_mmio_read32(gt, DMA_GUC_WOPCM_OFFSET.reg));
->> +		   xe_mmio_read32(gt, DMA_GUC_WOPCM_OFFSET));
->>  	drm_notice(&xe->drm, "%s(%#x)=%#x\n", "GUC_WOPCM_SIZE",
->>  		   GUC_WOPCM_SIZE.reg,
->> -		   xe_mmio_read32(gt, GUC_WOPCM_SIZE.reg));
->> +		   xe_mmio_read32(gt, GUC_WOPCM_SIZE));
->>
->>  	return err;
->>  }
+>>  static inline int
 >> --
 >> 2.40.1
 >>
