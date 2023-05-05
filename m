@@ -4,36 +4,36 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1BE15C77B75
-	for <intel-xe@archiver.kernel.org>; Fri,  5 May 2023 19:43:22 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 68132C77B75
+	for <intel-xe@archiver.kernel.org>; Fri,  5 May 2023 19:45:34 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E6E9410E664;
-	Fri,  5 May 2023 19:43:21 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2D34510E664;
+	Fri,  5 May 2023 19:45:34 +0000 (UTC)
 Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 60F2810E664
- for <intel-xe@lists.freedesktop.org>; Fri,  5 May 2023 19:43:20 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5169910E674
+ for <intel-xe@lists.freedesktop.org>; Fri,  5 May 2023 19:45:31 +0000 (UTC)
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
  (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
  (No client certificate requested)
- by dfw.source.kernel.org (Postfix) with ESMTPS id C63D464044;
- Fri,  5 May 2023 19:43:19 +0000 (UTC)
+ by dfw.source.kernel.org (Postfix) with ESMTPS id C30E260F72;
+ Fri,  5 May 2023 19:45:30 +0000 (UTC)
 Received: from rdvivi-mobl4 (unknown [192.55.54.48])
  (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
  (No client certificate requested)
- by smtp.kernel.org (Postfix) with ESMTPSA id B65C8C4339E;
- Fri,  5 May 2023 19:43:17 +0000 (UTC)
-Date: Fri, 5 May 2023 15:43:15 -0400
+ by smtp.kernel.org (Postfix) with ESMTPSA id 050D7C433D2;
+ Fri,  5 May 2023 19:45:28 +0000 (UTC)
+Date: Fri, 5 May 2023 15:45:26 -0400
 From: Rodrigo Vivi <rodrigo.vivi@kernel.org>
 To: Matthew Brost <matthew.brost@intel.com>
-Message-ID: <ZFVcU5VPibAp/Umi@rdvivi-mobl4>
+Message-ID: <ZFVc1kd8KTEzrlAq@rdvivi-mobl4>
 References: <20230502001727.3211096-1-matthew.brost@intel.com>
- <20230502001727.3211096-29-matthew.brost@intel.com>
+ <20230502001727.3211096-32-matthew.brost@intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20230502001727.3211096-29-matthew.brost@intel.com>
-Subject: Re: [Intel-xe] [PATCH v2 28/31] drm/xe: Allow dma-fences as
- in-syncs for compute / faulting VM
+In-Reply-To: <20230502001727.3211096-32-matthew.brost@intel.com>
+Subject: Re: [Intel-xe] [PATCH v2 31/31] drm/xe/uapi: Add some VM bind
+ kernel doc
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -49,78 +49,110 @@ Cc: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Mon, May 01, 2023 at 05:17:24PM -0700, Matthew Brost wrote:
-> This is allowed per the dma-fencing rules.
+On Mon, May 01, 2023 at 05:17:27PM -0700, Matthew Brost wrote:
+> Try to explain how VM bind works in Xe.
 
-it would be good a word saying 'why' we are doing this.
-only because we can it doesn't mean we should...
+We will need more doc and likely with examples and all...
+but this is already something we need.
+
+Reviewed-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
 
 > 
 > Signed-off-by: Matthew Brost <matthew.brost@intel.com>
 > ---
->  drivers/gpu/drm/xe/xe_sync.c | 12 +++++++-----
->  1 file changed, 7 insertions(+), 5 deletions(-)
+>  include/uapi/drm/xe_drm.h | 45 ++++++++++++++++++++++++++++++++++++---
+>  1 file changed, 42 insertions(+), 3 deletions(-)
 > 
-> diff --git a/drivers/gpu/drm/xe/xe_sync.c b/drivers/gpu/drm/xe/xe_sync.c
-> index 99f1ed87196d..1e4e4acb2c4a 100644
-> --- a/drivers/gpu/drm/xe/xe_sync.c
-> +++ b/drivers/gpu/drm/xe/xe_sync.c
-> @@ -105,6 +105,7 @@ int xe_sync_entry_parse(struct xe_device *xe, struct xe_file *xef,
->  {
->  	struct drm_xe_sync sync_in;
->  	int err;
-> +	bool signal;
+> diff --git a/include/uapi/drm/xe_drm.h b/include/uapi/drm/xe_drm.h
+> index cb4debe4ebda..c7137db2cbe8 100644
+> --- a/include/uapi/drm/xe_drm.h
+> +++ b/include/uapi/drm/xe_drm.h
+> @@ -148,7 +148,16 @@ struct drm_xe_engine_class_instance {
+>  	 * Kernel only classes (not actual hardware engine class). Used for
+>  	 * creating ordered queues of VM bind operations.
+>  	 */
+> +	/**
+> +	 * @DRM_XE_ENGINE_CLASS_VM_BIND_ASYNC: VM bind engine which are allowed
+> +	 * to use in / out syncs. The out sync indicates bind op(s) completion.
+> +	 */
+>  #define DRM_XE_ENGINE_CLASS_VM_BIND_ASYNC	5
+> +	/**
+> +	 * @DRM_XE_ENGINE_CLASS_VM_BIND_SYNC: VM bind engine which are not
+> +	 * allowed to use in / out syncs, The IOCTL return indicates bind op(s)
+> +	 * completion.
+> +	 */
+>  #define DRM_XE_ENGINE_CLASS_VM_BIND_SYNC	6
 >  
->  	if (copy_from_user(&sync_in, sync_user, sizeof(*sync_user)))
->  		return -EFAULT;
-> @@ -113,9 +114,10 @@ int xe_sync_entry_parse(struct xe_device *xe, struct xe_file *xef,
->  			 ~(SYNC_FLAGS_TYPE_MASK | DRM_XE_SYNC_SIGNAL)))
->  		return -EINVAL;
+>  	__u16 engine_instance;
+> @@ -322,6 +331,7 @@ struct drm_xe_vm_create {
 >  
-> +	signal = sync_in.flags & DRM_XE_SYNC_SIGNAL;
->  	switch (sync_in.flags & SYNC_FLAGS_TYPE_MASK) {
->  	case DRM_XE_SYNC_SYNCOBJ:
-> -		if (XE_IOCTL_ERR(xe, no_dma_fences))
-> +		if (XE_IOCTL_ERR(xe, no_dma_fences && signal))
->  			return -ENOTSUPP;
+>  #define DRM_XE_VM_CREATE_SCRATCH_PAGE	(0x1 << 0)
+>  #define DRM_XE_VM_CREATE_COMPUTE_MODE	(0x1 << 1)
+> +	/** @DRM_XE_VM_CREATE_ASYNC_DEFAULT: Default VM bind engine is async */
+>  #define DRM_XE_VM_CREATE_ASYNC_DEFAULT	(0x1 << 2)
+>  #define DRM_XE_VM_CREATE_FAULT_MODE	(0x1 << 3)
 >  
->  		if (XE_IOCTL_ERR(xe, upper_32_bits(sync_in.addr)))
-> @@ -125,7 +127,7 @@ int xe_sync_entry_parse(struct xe_device *xe, struct xe_file *xef,
->  		if (XE_IOCTL_ERR(xe, !sync->syncobj))
->  			return -ENOENT;
+> @@ -379,21 +389,44 @@ struct drm_xe_vm_bind_op {
+>  	/** @mem_region: Memory region to prefetch VMA to, instance not a mask */
+>  	__u32 region;
 >  
-> -		if (!(sync_in.flags & DRM_XE_SYNC_SIGNAL)) {
-> +		if (!signal) {
->  			sync->fence = drm_syncobj_fence_get(sync->syncobj);
->  			if (XE_IOCTL_ERR(xe, !sync->fence))
->  				return -EINVAL;
-> @@ -133,7 +135,7 @@ int xe_sync_entry_parse(struct xe_device *xe, struct xe_file *xef,
->  		break;
+> +	/** @XE_VM_BIND_OP_MAP: Map a buffer object */
+>  #define XE_VM_BIND_OP_MAP		0x0
+> +	/** @XE_VM_BIND_OP_UNMAP: Unmap a buffer object or userptr */
+>  #define XE_VM_BIND_OP_UNMAP		0x1
+> +	/** @XE_VM_BIND_OP_MAP_USERPTR: Map a userptr */
+>  #define XE_VM_BIND_OP_MAP_USERPTR	0x2
+> +	/**
+> +	 * @XE_VM_BIND_OP_RESTART: Restart last bind operation that failed with
+> +	 * -ENOSPC
+> +	 */
+>  #define XE_VM_BIND_OP_RESTART		0x3
+> +	/**
+> +	 * @XE_VM_BIND_OP_UNMAP_ALL: Unmap all mappings associated with a
+> +	 * buffer ibject
+> +	 */
+>  #define XE_VM_BIND_OP_UNMAP_ALL		0x4
+> +	/**
+> +	 * @XE_VM_BIND_OP_PREFETCH: For a deferred bind (faulting VM)
+> +	 * validate buffer object and (re)bind
+> +	 */
+>  #define XE_VM_BIND_OP_PREFETCH		0x5
+> -
+> +	/** @XE_VM_BIND_FLAG_READONLY: Set mapping to read only */
+>  #define XE_VM_BIND_FLAG_READONLY	(0x1 << 16)
+> +	/**
+> +	 * @XE_VM_BIND_FLAG_ASYNC: Sanity check for if using async bind engine
+> +	 * (in / out syncs) this set needs to be set.
+> +	 */
+>  #define XE_VM_BIND_FLAG_ASYNC		(0x1 << 17)
+> -	/*
+> +	/**
+> +	 * @XE_VM_BIND_FLAG_IMMEDIATE:
+> +	 *
+>  	 * Valid on a faulting VM only, do the MAP operation immediately rather
+>  	 * than differing the MAP to the page fault handler.
+>  	 */
+>  #define XE_VM_BIND_FLAG_IMMEDIATE	(0x1 << 18)
+> -	/*
+> +	/**
+> +	 * @XE_VM_BIND_FLAG_NULL:
+> +	 *
+>  	 * When the NULL flag is set, the page tables are setup with a special
+>  	 * bit which indicates writes are dropped and all reads return zero. The
+>  	 * NULL flags is only valid for XE_VM_BIND_OP_MAP operations, the BO
+> @@ -401,6 +434,12 @@ struct drm_xe_vm_bind_op {
+>  	 * VK sparse bindings.
+>  	 */
+>  #define XE_VM_BIND_FLAG_NULL		(0x1 << 19)
+> +	/**
+> +	 * @XE_VM_BIND_FLAG_RECLAIM: Should be set when a VM is in an error
+> +	 * state (bind op returns -ENOSPC), used with sync bind engines to issue
+> +	 * UNMAP operations which hopefully free enough memory so when VM is
+> +	 * restarted via @XE_VM_BIND_OP_RESTART the failed bind ops succeed.
+> +	 */
+>  #define XE_VM_BIND_FLAG_RECLAIM		(0x1 << 20)
 >  
->  	case DRM_XE_SYNC_TIMELINE_SYNCOBJ:
-> -		if (XE_IOCTL_ERR(xe, no_dma_fences))
-> +		if (XE_IOCTL_ERR(xe, no_dma_fences && signal))
->  			return -ENOTSUPP;
->  
->  		if (XE_IOCTL_ERR(xe, upper_32_bits(sync_in.addr)))
-> @@ -146,7 +148,7 @@ int xe_sync_entry_parse(struct xe_device *xe, struct xe_file *xef,
->  		if (XE_IOCTL_ERR(xe, !sync->syncobj))
->  			return -ENOENT;
->  
-> -		if (sync_in.flags & DRM_XE_SYNC_SIGNAL) {
-> +		if (signal) {
->  			sync->chain_fence = dma_fence_chain_alloc();
->  			if (!sync->chain_fence)
->  				return -ENOMEM;
-> @@ -168,7 +170,7 @@ int xe_sync_entry_parse(struct xe_device *xe, struct xe_file *xef,
->  		break;
->  
->  	case DRM_XE_SYNC_USER_FENCE:
-> -		if (XE_IOCTL_ERR(xe, !(sync_in.flags & DRM_XE_SYNC_SIGNAL)))
-> +		if (XE_IOCTL_ERR(xe, !signal))
->  			return -ENOTSUPP;
->  
->  		if (XE_IOCTL_ERR(xe, sync_in.addr & 0x7))
+>  	/** @reserved: Reserved */
 > -- 
 > 2.34.1
 > 
