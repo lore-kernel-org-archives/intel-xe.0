@@ -4,42 +4,42 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id DA2F8C77B7C
-	for <intel-xe@archiver.kernel.org>; Fri,  5 May 2023 08:31:17 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4F039C77B7C
+	for <intel-xe@archiver.kernel.org>; Fri,  5 May 2023 08:31:20 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B439F10E5A7;
-	Fri,  5 May 2023 08:31:17 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2FC4F10E5AB;
+	Fri,  5 May 2023 08:31:20 +0000 (UTC)
 Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0368710E5A7
- for <intel-xe@lists.freedesktop.org>; Fri,  5 May 2023 08:31:15 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id EB32610E5AD
+ for <intel-xe@lists.freedesktop.org>; Fri,  5 May 2023 08:31:18 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1683275476; x=1714811476;
+ t=1683275478; x=1714811478;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=WVINniGxMKT5DiNKTZ0X0VgwjIjqfxzoryMqA//Gu0M=;
- b=VCzW1tML4M8q2IZ0z5wUx2kLwNNH6ziXe2FYgeegdGDW41/jUmwGlX8X
- d6HMg1Qc5WSa6nGcF6a4YxHtdUkrcJ7t49Q9HiKW7qXsEXpphnQK/l6QR
- 3YtFWqStlMS5SeyoMEWiD/SIreoWe0G2rmhG6FBUS+MACajB8x+L7l6ZW
- iZOoJL4cb5wW4Jk6QWUdpm5fNsewl+nM1gihirL0Z8R6HydEKKz10qx2o
- 1zjpMZO0/49PXjzag2VXE2MNe2qJeSo/cAKzwWrPOAFdCWxdYp0/QsvlD
- SUn1Ca4YPba5oP7veIbAF1ogsrhBm/6bAHKzkbLj65F38q6Xcvgf1iQt9 A==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10700"; a="328783315"
-X-IronPort-AV: E=Sophos;i="5.99,251,1677571200"; d="scan'208";a="328783315"
+ bh=O5iKJDc8iH0sNPrKeNBbSWv/JXmiZbRqJqV1k52jt+k=;
+ b=SyB71jS16jcyoOs3TcmSSQfAbo6aSMmCp3662tZaBGUqbeRQR+YCcmFX
+ VURRZP9Q1ebKZ3AZwcO1g+YndkeR01CPIPNsPl+ciF8igRZ8Q5mKNV+Wl
+ LfpOQyNOzutrf9I08hFvKuKtvWrPm1lm6t+ygUvNGZ2xwh7/Se3ixRu+4
+ DWnTWU8SibT9wAcXS6UJibM8Uo0nnTTvte6jm6PSDi49iMFWeQhXXdwqe
+ SSVgMXI0QSzOVapBZqSduzFUqfL2eIHNA1fSUKTyX7QhhvUuSSarrGLyP
+ EqyT/n8WzDBXQVJaqSnSo0IMVyOVjRtnGYBlFE9e8PetOFJZztqt+xqOP Q==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10700"; a="328783319"
+X-IronPort-AV: E=Sophos;i="5.99,251,1677571200"; d="scan'208";a="328783319"
 Received: from fmsmga006.fm.intel.com ([10.253.24.20])
  by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 05 May 2023 01:31:15 -0700
+ 05 May 2023 01:31:18 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10700"; a="943749634"
-X-IronPort-AV: E=Sophos;i="5.99,251,1677571200"; d="scan'208";a="943749634"
+X-IronPort-AV: E=McAfee;i="6600,9927,10700"; a="943749649"
+X-IronPort-AV: E=Sophos;i="5.99,251,1677571200"; d="scan'208";a="943749649"
 Received: from pklosowski.ger.corp.intel.com (HELO
  jhogande-mobl1.ger.corp.intel.com) ([10.252.36.178])
  by fmsmga006-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 05 May 2023 01:31:13 -0700
+ 05 May 2023 01:31:16 -0700
 From: =?UTF-8?q?Jouni=20H=C3=B6gander?= <jouni.hogander@intel.com>
 To: intel-xe@lists.freedesktop.org
-Date: Fri,  5 May 2023 11:29:50 +0300
-Message-Id: <20230505082956.2247875-15-jouni.hogander@intel.com>
+Date: Fri,  5 May 2023 11:29:51 +0300
+Message-Id: <20230505082956.2247875-16-jouni.hogander@intel.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20230505082956.2247875-1-jouni.hogander@intel.com>
 References: <20230505082956.2247875-1-jouni.hogander@intel.com>
@@ -47,8 +47,8 @@ MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
 Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-xe] [RFC PATCH 14/20] drm/xe: Add function to clear scanout
- flag
+Subject: [Intel-xe] [RFC PATCH 15/20] drm/i915/display: Use
+ i915_ggtt_clear_scanout
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -66,42 +66,36 @@ Cc: jani.nikula@intel.com,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Add function to clear scanout flag. This will be called by frontbuffer
-tracking code.
+Use i915_ggtt_clear_scanout instead of directly clearing scanout
+flag.
 
 Signed-off-by: Jouni Högander <jouni.hogander@intel.com>
 ---
- drivers/gpu/drm/xe/compat-i915-headers/i915_vma.h | 13 ++++++++++++-
- 1 file changed, 12 insertions(+), 1 deletion(-)
+ drivers/gpu/drm/i915/display/intel_frontbuffer.c | 8 +-------
+ 1 file changed, 1 insertion(+), 7 deletions(-)
 
-diff --git a/drivers/gpu/drm/xe/compat-i915-headers/i915_vma.h b/drivers/gpu/drm/xe/compat-i915-headers/i915_vma.h
-index c40bb27ac72a..dec11721ef6a 100644
---- a/drivers/gpu/drm/xe/compat-i915-headers/i915_vma.h
-+++ b/drivers/gpu/drm/xe/compat-i915-headers/i915_vma.h
-@@ -4,11 +4,22 @@
- #include <uapi/drm/i915_drm.h>
- #include <drm/drm_mm.h>
+diff --git a/drivers/gpu/drm/i915/display/intel_frontbuffer.c b/drivers/gpu/drm/i915/display/intel_frontbuffer.c
+index d4788be078dd..f44a36b3af3b 100644
+--- a/drivers/gpu/drm/i915/display/intel_frontbuffer.c
++++ b/drivers/gpu/drm/i915/display/intel_frontbuffer.c
+@@ -227,16 +227,10 @@ static void frontbuffer_release(struct kref *ref)
+ 	struct intel_frontbuffer *front =
+ 		container_of(ref, typeof(*front), ref);
+ 	struct drm_i915_gem_object *obj = front->obj;
+-	struct i915_vma *vma;
  
--struct xe_bo;
-+#include <xe_bo.h>
-+#include <xe_bo_types.h>
+ 	drm_WARN_ON(&intel_bo_to_i915(obj)->drm, atomic_read(&front->bits));
  
- struct i915_vma {
- 	struct xe_bo *bo, *dpt;
- 	struct drm_mm_node node;
- };
+-	spin_lock(&obj->vma.lock);
+-	for_each_ggtt_vma(vma, obj) {
+-		i915_vma_clear_scanout(vma);
+-		vma->display_alignment = I915_GTT_MIN_ALIGNMENT;
+-	}
+-	spin_unlock(&obj->vma.lock);
++	i915_ggtt_clear_scanout(obj);
  
-+static inline void i915_ggtt_clear_scanout(struct xe_bo *bo)
-+{
-+	int ret;
-+
-+	ret = ttm_bo_reserve(&bo->ttm, true, false, NULL);
-+	XE_WARN_ON(ret);
-+	bo->flags &= ~XE_BO_SCANOUT_BIT;
-+	ttm_bo_unreserve(&bo->ttm);
-+}
-+
- #endif
+ 	RCU_INIT_POINTER(obj->frontbuffer, NULL);
+ 	spin_unlock(&intel_bo_to_i915(front->obj)->display.fb_tracking.lock);
 -- 
 2.34.1
 
