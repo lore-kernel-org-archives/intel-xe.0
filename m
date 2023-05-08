@@ -4,59 +4,55 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 520CFC77B7C
-	for <intel-xe@archiver.kernel.org>; Mon,  8 May 2023 01:20:23 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id C9435C77B75
+	for <intel-xe@archiver.kernel.org>; Mon,  8 May 2023 01:22:06 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D62AB10E08F;
-	Mon,  8 May 2023 01:20:22 +0000 (UTC)
-Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6F91F10E08F
- for <intel-xe@lists.freedesktop.org>; Mon,  8 May 2023 01:20:20 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8C7BA10E08F;
+	Mon,  8 May 2023 01:22:06 +0000 (UTC)
+Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 10EBC10E08F
+ for <intel-xe@lists.freedesktop.org>; Mon,  8 May 2023 01:22:03 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1683508820; x=1715044820;
+ t=1683508924; x=1715044924;
  h=date:from:to:cc:subject:message-id:references:
  in-reply-to:mime-version;
- bh=CwF7yLIHgkpGxGqwYuAMm5+j2VExFr+IYjuBqEFs5g0=;
- b=I/UZkc/4NckQBdve6ycWAYGK4IkrxVb0pMZhsQXVUkepzGSAzd6zcIAj
- Pdv+01liNouiCgeiVr43a1donODEPiKJp660H8hfBBrOmTebnc7MNL7Su
- 8ZirX39AWDfm2a+d73FrCD3JWLkLA96I7bTOLk0DDvW25ZOmmjM6SzTJe
- 0VREORFeEDue3uzbTPHYNeMchExj6CYiGTBn4r2Ski2LD0WX7DPwcfr8q
- gnnOYR7wRudcuWqiyVuFOsz3gFAy7eGHed2iwznUyNpiYtOfCu4w6hHRu
- 7mjLUAcCfLFXEww/lKs2hjb4cu6cGnbuSfmrufB2Iy20vIILBBp7G08e+ w==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10703"; a="349559818"
-X-IronPort-AV: E=Sophos;i="5.99,258,1677571200"; d="scan'208";a="349559818"
-Received: from orsmga002.jf.intel.com ([10.7.209.21])
- by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 07 May 2023 18:20:19 -0700
+ bh=bx1RO6n+A9M2ted1YCgryxEb6XfsG8mjOtw60IbdTAw=;
+ b=Vexrngbkp25pBrpXAOEZIf5/ZUeem3bJ+zNuYWri8jZlRAecF3HkqSft
+ CG1OKW6IJRCFhhSWr7oHblY0INFFipvwAEMomBL1KNQ7tMikRn0c9/2Fi
+ JDInB9+KXPBmXqYTzRd+7OC8AZNOB3r24AJ55fLq6edfmEjp0i4FRgvQL
+ gIZOHOt0hJ+4IEW1ctWX3JMjGz6sYH5bvc5zHuXaMfynpjSmnin5D4bRN
+ ATs7fCVyIDmSxdJxMNo1Rc2fElNrUn/C22hG0LtIykRLyP8bDCrxS3fnG
+ +K7uQY5Axzk0/zfxK1QHY/+O7b8TX/dPBwvfUP33hkRsP2E5dK6ms0G7N g==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10703"; a="435848342"
+X-IronPort-AV: E=Sophos;i="5.99,258,1677571200"; d="scan'208";a="435848342"
+Received: from orsmga004.jf.intel.com ([10.7.209.38])
+ by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 07 May 2023 18:22:03 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10703"; a="698328694"
-X-IronPort-AV: E=Sophos;i="5.99,258,1677571200"; d="scan'208";a="698328694"
+X-IronPort-AV: E=McAfee;i="6600,9927,10703"; a="822484706"
+X-IronPort-AV: E=Sophos;i="5.99,258,1677571200"; d="scan'208";a="822484706"
 Received: from fmsmsx601.amr.corp.intel.com ([10.18.126.81])
- by orsmga002.jf.intel.com with ESMTP; 07 May 2023 18:20:18 -0700
-Received: from fmsmsx612.amr.corp.intel.com (10.18.126.92) by
+ by orsmga004.jf.intel.com with ESMTP; 07 May 2023 18:22:02 -0700
+Received: from fmsmsx610.amr.corp.intel.com (10.18.126.90) by
  fmsmsx601.amr.corp.intel.com (10.18.126.81) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.23; Sun, 7 May 2023 18:20:19 -0700
-Received: from fmsmsx610.amr.corp.intel.com (10.18.126.90) by
- fmsmsx612.amr.corp.intel.com (10.18.126.92) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.23; Sun, 7 May 2023 18:20:19 -0700
-Received: from fmsedg601.ED.cps.intel.com (10.1.192.135) by
+ 15.1.2507.23; Sun, 7 May 2023 18:22:01 -0700
+Received: from fmsedg602.ED.cps.intel.com (10.1.192.136) by
  fmsmsx610.amr.corp.intel.com (10.18.126.90) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.23 via Frontend Transport; Sun, 7 May 2023 18:20:19 -0700
-Received: from NAM10-BN7-obe.outbound.protection.outlook.com (104.47.70.100)
- by edgegateway.intel.com (192.55.55.70) with Microsoft SMTP Server
+ 15.1.2507.23 via Frontend Transport; Sun, 7 May 2023 18:22:01 -0700
+Received: from NAM10-MW2-obe.outbound.protection.outlook.com (104.47.55.104)
+ by edgegateway.intel.com (192.55.55.71) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2507.23; Sun, 7 May 2023 18:20:18 -0700
+ 15.1.2507.23; Sun, 7 May 2023 18:22:00 -0700
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=PI7DEYdCJ80M6XXem+zfYWLPocWMU4gY9ZYTXJAXT4iQa5ZQ6eWH3y3ZG399NHteq6p9H8q/m79tYekp1IO3tDUKE/D40SbjqtlSGKoiYBJzRYs0HR40+0EJmeHgv+b3dEPggYc29lULJU71RvkOmOAtUZeHsHPsrgwQYvUGkY/Jq93VuPTt6SbFElbHqY7S4r5opp5gP5vqZQylIfmVhQCuQ0uKv+4ruF1tSmvq1cMdJ+dOUX5Nv65K/LVth3edpPstGvsk0SbI9WRtWaNFJF2yypQAyqVMZ0xaCwUjXGZJtO1eiW89bUskNCSVuM46QDq/zS/ctKM3cSiusxkYtQ==
+ b=HzYLvEt17h5GHldYlb86EnPmldiYAcqwdlPbDqWHlIWF+9qhAJo+OWgT2Ta+uoOa46o+s0zCQej+M1xoy4ouZwRSomYXWR8/CdOC02/fvxXlC3/PPTBdv4h490VeuLNoXaX9gNXSb+67k+2OS7yaIkJzc9H1Om+dmeck8DRyhZPrvSkrPX6YagcJ5vemTVuduDTCNy3OnD4EIDaK8uswiaDGAouElH5GAkB8sd4Zq+w1d7KKwDOr5sfinMXzpsOO4CDrMIQqZP3gPwee2+pJqn48s6lTOA7K/uh9jwbSK9IR5VlZBrrgwafpci2v+YC4isDsdn+g966IQtx5KLumPQ==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=oRYsNigmX1PCd0fWo9YwyJNnlP29BB06BFceoD52Noo=;
- b=YylC0Z7doYnzyVhmA/9NhsRcvqDsVUx9enmA6+xClIyduEl2LS/lxzelUZIjE+DRF2AzKppCXtrn9p0KPJpomuAbTsyEzmxHOVsEiTLFu4DxagJ4dFyVREXx9srCpxwxVFjmFu1LxVRSnU3Oqpna10WVYNgNGpwEFNgWiJ8OumoDpIL3szG3/iLt5IETs9kIe89uK4mV6/OYAkVb1Eq6TnlJGLstzP8jSS8p7s8nE+hO3XQNJIblfGsOnB8O03oG+JuHJEbQtKz/M4qHvoiTNGB3TISCUdAJtYvbEgEWSnw19OFJFB1Xb9vo6b8fOBlg+dgorsooTOJN/uPK54pwBw==
+ bh=vPpinQ4BLpzsW3tmbTfIn6IEt4V96e6eRZDOvoa37Jc=;
+ b=DPIHixbMzsNRY5z9cWAsNJDny2ibDiFtid5WiqLyjqTp5BCk77buhBpuzqS30+Yk4A6oA1zGpFPUvbFDfiT1eM2p5BV8pACugJKGYcOh4zl4pWwR5WFO6nn9s4iCVRsZ+MyOrkW5pCzCL0sOixLC1cpf3944MKn6HrH1vqd4jfitd3levGT7DjMH2dl14uhm/k8/w+WBiIWP0gr90em2n9CF/4kNfVvKNRCxb4cEN9MVZj68IdyXiz25vJ9tEDBOa7qhFchPoYuGhZLtNUpA+OL+6x8JY6mCOK3358HkQonyecKI0YTYr35ZolYL4k8swhQcMqthFrdxWdfKcDZzeA==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
  dkim=pass header.d=intel.com; arc=none
@@ -66,77 +62,77 @@ Received: from PH7PR11MB6522.namprd11.prod.outlook.com (2603:10b6:510:212::12)
  by PH7PR11MB5886.namprd11.prod.outlook.com (2603:10b6:510:135::10)
  with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6363.32; Mon, 8 May
- 2023 01:20:17 +0000
+ 2023 01:21:54 +0000
 Received: from PH7PR11MB6522.namprd11.prod.outlook.com
  ([fe80::ff06:a115:e4eb:680e]) by PH7PR11MB6522.namprd11.prod.outlook.com
  ([fe80::ff06:a115:e4eb:680e%4]) with mapi id 15.20.6363.032; Mon, 8 May 2023
- 01:20:17 +0000
-Date: Mon, 8 May 2023 01:19:48 +0000
+ 01:21:54 +0000
+Date: Mon, 8 May 2023 01:21:26 +0000
 From: Matthew Brost <matthew.brost@intel.com>
 To: Rodrigo Vivi <rodrigo.vivi@kernel.org>
-Message-ID: <ZFhONAGmO8X+qD1f@DUT025-TGLU.fm.intel.com>
+Message-ID: <ZFhOllLfnhLWvBhr@DUT025-TGLU.fm.intel.com>
 References: <20230502001727.3211096-1-matthew.brost@intel.com>
- <20230502001727.3211096-29-matthew.brost@intel.com>
- <ZFVcU5VPibAp/Umi@rdvivi-mobl4>
+ <20230502001727.3211096-21-matthew.brost@intel.com>
+ <ZFVa3vSr93uMGhDi@rdvivi-mobl4>
 Content-Type: text/plain; charset="us-ascii"
 Content-Disposition: inline
-In-Reply-To: <ZFVcU5VPibAp/Umi@rdvivi-mobl4>
-X-ClientProxiedBy: BYAPR08CA0013.namprd08.prod.outlook.com
- (2603:10b6:a03:100::26) To PH7PR11MB6522.namprd11.prod.outlook.com
+In-Reply-To: <ZFVa3vSr93uMGhDi@rdvivi-mobl4>
+X-ClientProxiedBy: BYAPR01CA0060.prod.exchangelabs.com (2603:10b6:a03:94::37)
+ To PH7PR11MB6522.namprd11.prod.outlook.com
  (2603:10b6:510:212::12)
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
 X-MS-TrafficTypeDiagnostic: PH7PR11MB6522:EE_|PH7PR11MB5886:EE_
-X-MS-Office365-Filtering-Correlation-Id: d671565b-b843-4601-fd11-08db4f62614e
+X-MS-Office365-Filtering-Correlation-Id: 912e839d-e5a3-4615-b24a-08db4f629ba2
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: nzYHRhgguppmlai5Cmb91IPAM4g6UW7+W1DOLN+i3ctIcLgdhuLl3w22YATdrTb1lg/BmGNqq8sTEMpj6XZkFBkI1QAMG366Fj174SBsLjdF0uAw2zjqFKAikwOMeJog20SOBFLfVj580nHk60gpt99SYUJvnAVpTUWLbAkQOZ2FMKLOuaeLbiYYm09LEM1+UutR84cH+fpeaXdDNxmNCVSgzdc42yDA/rR+ztRIJVuUv0oZIoO6hc7dRLC2mpuwG3I5sK61s2UlL7+kmlPwM8R2HrCPYhfYyUTF6qOIGSCt1OekbYp9jPZO+9qWali1lhdSvOKbzYhn05lLPBeU/9Tbg6Qvv6x6x0tQddw2CAyWfNu0aCOGHHh+XC6cQ3yN3Mr350BR3EAQ4UdK/ZtI4NKSxFp6VdwxAgm7NNlejvijuFSOHMVfmw9/5A2e+VO7vZK6zAwiNMI6YjcdeaTdi+VvQwl1EtItaB+yQCOMapzGHMEpA8xpxW5ZzCxF5z3jZuFVoCeYMkQXzqHIw7ZyuTjqhNihqVBC6pvidXfxLrC3nIwfF4cx2wPoV5SiiEnN31hqXrwjebut+wty5mswkzLALFMDEKjdff9eGq+dYO4=
+X-Microsoft-Antispam-Message-Info: yUSfWg1ChKzPGJkZfpIRQHX67VWwIolTd1LpSYqeRC+wOg9lro+M4+tCOvrIFlNX3yhLeM+CHuR/qCUPjENKnix6UJMy+0LAE4e+yrCtEmvV+26rEhrgZpxexIRmjHD+mXm3falXNYRuKic6C9i6SXBT7VbQWfyuYortNnLtVlm7ymz9DZIs3IWZ4bTgjCRPR3/kK9SCVaxSu8BUpMujbmpz1ND4UbrzchsiKHLXSSCsD7QM/eLitD62G33qrkQDL9qJTtkdmCjDfjpodByH/VjrjF5fN2In4b6HCgLrt+Q0Ocl+LfZspXOGj9tPPnsoVHk7bUn9nc4HPpe85gIET6gNJxPCrKwGXm88RR+LZ6AXkfs0MaoeEWj00DU26epm3+MLNJPVp9NVBurErsBRAjh+0ObfUGE4fvWN/a+t2TwSk0o+kU+ixjHZ0KsShW2rChFL0bHwm4OqVCuNyvWpiUWWERIFxd4aL5NW61/dNPMHeDU2jvDSiGurDraM9y5kh44PUxOZVyjeJTHebQ+QIxpiLLe0PFN3S/nw5T9g4mJT6r/ZtMkhrZjRAfYSxOYy
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
  IPV:NLI; SFV:NSPM; H:PH7PR11MB6522.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230028)(346002)(39860400002)(136003)(396003)(366004)(376002)(451199021)(86362001)(316002)(66946007)(66556008)(66476007)(6916009)(4326008)(6486002)(478600001)(6666004)(8676002)(8936002)(5660300002)(2906002)(44832011)(41300700001)(82960400001)(38100700002)(186003)(6512007)(6506007)(26005)(83380400001)(67856001);
+ SFS:(13230028)(346002)(39860400002)(136003)(396003)(366004)(376002)(451199021)(86362001)(316002)(66946007)(66556008)(66476007)(6916009)(4326008)(6486002)(478600001)(6666004)(8676002)(8936002)(5660300002)(2906002)(44832011)(41300700001)(82960400001)(38100700002)(186003)(6512007)(6506007)(26005)(83380400001);
  DIR:OUT; SFP:1102; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?lQs9ypN9lytqHMjh8JbJnN0b5DsudJGCTxpR1FN0Wom0MCd8k0wk0GSiJhWO?=
- =?us-ascii?Q?OzcKLThmMi7ySqvnMX+FkS2AY1PVFnYAYrIevT0r/Oxp6e9UlT+OKJEufsy7?=
- =?us-ascii?Q?c7At6Rnzk2qaUWaCuU/SSWRRBAMutDoA+91jWD6j0JikYDvTuQSvZH5nTcui?=
- =?us-ascii?Q?TJRh+6+Fc5ctcqrrh/W184hWIXxSSx5wTCru7Mo2bwPVoVAGja55G5TDDeEo?=
- =?us-ascii?Q?D7uTn15LG5qbaooi1S6tHlhA39OJa5WV6wwRx7EAft0rGWx46fuiXl0uLyua?=
- =?us-ascii?Q?xnMYUEbIWs/HsLBkQAK0LGKHFYFuDPQ4ILFJLRHqaRtP+AdactR90xAC0iBQ?=
- =?us-ascii?Q?pswksmD5vKagq3xVW7kOfcWBFRD4N4T6fLTcXpeUk+MbJbxzB7JdJ/WSEwfY?=
- =?us-ascii?Q?vBOYaHbSiXuNCk7HzYFvUSNfsr3HK1orCVxRhTSDQ/Zxm734RqSmuoGJJTfj?=
- =?us-ascii?Q?5SJgmWNp9MzQbDuolQeQdw6mbg8Bc2CKbtMwQOx/W1RK5ftMPXEIREUmfMh2?=
- =?us-ascii?Q?vWt9CHXqdweOfS2obiQbtV+tEC620gpx2yKXg2H3tCSQDlMn94Rl4kJWrqHg?=
- =?us-ascii?Q?ZQhz7mB18DD1R8P10by+7QNPsctgMizDNGXuZPkga9/ojXxVNsJ4+2X5AtL7?=
- =?us-ascii?Q?SvTvjh4LPs4BMj9Z8S7Y1jlMWttoQVTFAksji8UXTsMhDlsjRA6IuQGj/amg?=
- =?us-ascii?Q?xXwdtSeUW8tE3+Kzas0vAv8RTGggWI8bOSDUJDf13ju1rdvU9ECb3yZa1dJQ?=
- =?us-ascii?Q?tMSw6lyNIKsH9vqNxn+J/px9D2N9z7ZhlW/5T6wJh3WIWIHFaBbtOBmuRSx9?=
- =?us-ascii?Q?Y7RO2m8U/lEOSaV2ZKG/YUEiJFqqEbAb5RJ9RPJo9Q6/+6NmPrINZiJYRlLW?=
- =?us-ascii?Q?nGxcWp6VoOyg9qKAn9W1gIzDnAhfuM8CtHzv+4iH1NSoq1ZkkUE09xMS/8Ua?=
- =?us-ascii?Q?aZwJijSxeIBUPTghUUbeLeZR9Pj0fsesd7SaeJbxPa8cYzfVN6QKE5bJ1FcN?=
- =?us-ascii?Q?L11PYr0Nj5tuIE0zCOpFgEAqbQNyL71u2YgNgoRI4GpOHeS809tGGqJQvs2i?=
- =?us-ascii?Q?xXkwi2OQX3HVbiCuYj2ZYm89HYzNg/iYWWSu6c7PuNSuXase/b3mL5+qz57d?=
- =?us-ascii?Q?YtXYj3u/yiqIDgmbvPJBuSl4HgKfz0DrcUDiNT7vCryIAjcioHoLwNa+0HEw?=
- =?us-ascii?Q?tues336JkWXu1Knftu8kUvF1bq8FOqspkN/c+TDU0htNQBddOrlQ1ow4y6U4?=
- =?us-ascii?Q?Ulyfl1Cq6s6RNM0XSl/44z0VpM+12osJYaUCy3YKs2k3patmZfgDSn2y+1B2?=
- =?us-ascii?Q?OU9AMzrRWUIeNS6vJfRuHHJru32DcLNlfDmoGd2gZhnNfVp5OdOJRle96Rs6?=
- =?us-ascii?Q?ILGuKC2CQcHKG/AZfXN5j+c60tyi7v4p3dC7Jhg0s6bm5Zx6IsRcW0glTLLm?=
- =?us-ascii?Q?geDd9wkjCFptNEItWr8Ln3OgbSAFR5gGItWwQgDCmcQWxGDju1JCiuouTys3?=
- =?us-ascii?Q?eNthG3VR0ijS+ai7wpzDAxGl/rXdHWtlmU+3jYE37tVrA1Va+XH08MItvAgO?=
- =?us-ascii?Q?DphKRARVgIaTAOG0MBRM55flKK3f4mT0rGa9HMTCSsi+kF04P7H11xfSsjhn?=
- =?us-ascii?Q?Lg=3D=3D?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: d671565b-b843-4601-fd11-08db4f62614e
+X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?P3J0FoUSnet0O7ouwAyfjOiCeDr/FcA7RzABfiPhb5PLtUITvDk7JqSN+tWZ?=
+ =?us-ascii?Q?/tcX1HM0yYl6Be0XYvtmf+OpF9mezpTWnxE6ImAQZUBF9mefO4CgqAmdIBCP?=
+ =?us-ascii?Q?tPuJ/iz8Bch7EyM9t0KHh/EFTXHntvTYisD4QqtwOFH3zMtIHdk7ZfiMrcma?=
+ =?us-ascii?Q?7wyclweBbfa/xTzzIlYu57ZiqpHoKytyDcL/NS90g8MWal32XkPaaqMlV9bK?=
+ =?us-ascii?Q?MU7Kezqzo+mHkO/k/0i7CLtVqLMafi5JhqYS9bXJdo9FOIZ/eXPRMMlWGlNj?=
+ =?us-ascii?Q?yb7ddfpEPb9kUwjawTe4RFbex9P3qSN6H0ktXcv447RffP5wLpLo8MwRHrin?=
+ =?us-ascii?Q?yaWIO+XCcugPiegT9K09pjHzWWHL+uyuS67AVmLedCyE97osrMWxrIMMhX44?=
+ =?us-ascii?Q?eg8sm3qknoVEfoo6GxtLILEx4VwabtR8wnljmxMmSwbv2kXIo0UMv4n/L6Hn?=
+ =?us-ascii?Q?39aP4b7IaHEFExy5X6pEALAmlZ56s1Ct5XF1IP9H9AjLjkS8LrOUdeWV913q?=
+ =?us-ascii?Q?WdtBW53iB/0RMKVswPYb4i4Ux4sBIlKe+ITNPI2Yjky5/tKrLXSaLxaoLFNp?=
+ =?us-ascii?Q?MVuC5Mg19J0iX2EfIfWWUc9gF3XkyuVy5iyQ2OFlNgspgcyp/TyFqkW2csI5?=
+ =?us-ascii?Q?PQYRzSOi0M1D9N33fnt71+mQq64zDdOYqMmSrrJDrdw6usmmyI7jiG4nTV9E?=
+ =?us-ascii?Q?lKPxGI5Py3yUUZwMVAWQaAd9rz0BfrzURCiq3WeApvPPwxoEiDN1/k93RES6?=
+ =?us-ascii?Q?FPcvvFFy5jrgYnC/7EwwXMTAJ66Sg1AOpfidx6w7AZhwWAbxhjpcAVt6c+YS?=
+ =?us-ascii?Q?jOYT3MAsnhDuPqANcnT29Sw0hJ1tfgbUw+esiESwswWwDB3RAgyaT35A0WBc?=
+ =?us-ascii?Q?kr3VcJtjnvSrrdYN2w+3huTQYJv1aIqTfcaUluptQ29ripA5B0UWcixULcBT?=
+ =?us-ascii?Q?qm7Tic8/K2sjEBpXgKUB6JHl8c2bs7VS1pXYNJKJFgj3TBBUJE1Wz1QoGzuh?=
+ =?us-ascii?Q?rRjicZqIHtbi0k1hARVTRzK3hXMo8lWWW7qhd6S14Gm9haadTrTJgbThrKam?=
+ =?us-ascii?Q?zI293gFUTdXX2g4zuWpW6xQof8B2VbIT3Dju9jpuAXV5K022/OiWnxSs8lnz?=
+ =?us-ascii?Q?Dnv+mbq+RgRUJgYEaWcEhnoLQWoJ4wJTxcZzcj+l19fPu5Uke8hvmJLE7zfR?=
+ =?us-ascii?Q?Lw6XoKV5nKLvluB/C0cuVMnh7SE9kPhz6C+oqDCi6cTm9/CdcgyoY4O9f93m?=
+ =?us-ascii?Q?WuK/5YIx5gXZAJNqfXrYGreSTkk3J7+hzzOpdLcutlVB5wLk8KIWGwEpT1aZ?=
+ =?us-ascii?Q?eCWqtNAZ1WTLEVDPoXqItSOqYcfMoPdnjCcCjcJNHVfnXnPtyZ9prPKXPfdV?=
+ =?us-ascii?Q?k4DY8Air/UjDvD6jIZgKxxz0enqTKRp4lkwRqgeLBA2X3Fq58hDYcHKHiGWK?=
+ =?us-ascii?Q?XHlPEmu+HCa5VnvGiqhaOQftYk0sUf16nRaPzPmXOY0VEztuWEL1ApL9yCay?=
+ =?us-ascii?Q?jI5eLDulk/QwSK2ER5vkduTNjSji7l5XauAyGx0bd2HkCHqF/7eQlxDlL9Ry?=
+ =?us-ascii?Q?dOdaLuIAe4sf11gtH91IxlEtmTTnAoF3V7NAt1Ri43VGXqMdKhlMKNmn+U9u?=
+ =?us-ascii?Q?TA=3D=3D?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: 912e839d-e5a3-4615-b24a-08db4f629ba2
 X-MS-Exchange-CrossTenant-AuthSource: PH7PR11MB6522.namprd11.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 08 May 2023 01:20:16.5150 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 08 May 2023 01:21:54.1066 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: nwB7JugsxCDsHCrw04kTU8Ij5QtBe8Ty9w6zoMk247oYlEu6g3PgB4yX3xIhX1Kc71WKi048c6dKZrT/xNXL0Q==
+X-MS-Exchange-CrossTenant-UserPrincipalName: ZJILoOSyh3xTxj30AtIFiyY4WUDJJQaQZbBHGx68q0vLD8iWHhnsKa1oAu61ckgY0kHS2uN3L4Dz1oV15oUhQA==
 X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH7PR11MB5886
 X-OriginatorOrg: intel.com
-Subject: Re: [Intel-xe] [PATCH v2 28/31] drm/xe: Allow dma-fences as
- in-syncs for compute / faulting VM
+Subject: Re: [Intel-xe] [PATCH v2 20/31] drm/xe: Optimize size of xe_vma
+ allocation
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -152,88 +148,208 @@ Cc: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Fri, May 05, 2023 at 03:43:15PM -0400, Rodrigo Vivi wrote:
-> On Mon, May 01, 2023 at 05:17:24PM -0700, Matthew Brost wrote:
-> > This is allowed per the dma-fencing rules.
+On Fri, May 05, 2023 at 03:37:02PM -0400, Rodrigo Vivi wrote:
+> On Mon, May 01, 2023 at 05:17:16PM -0700, Matthew Brost wrote:
+> > Reduce gt_mask to a u8 from a u64, only allocate userptr state if VMA is
+> > a userptr, and union of destroy callback and worker.
 > 
-> it would be good a word saying 'why' we are doing this.
-> only because we can it doesn't mean we should...
+> too many different things in one patch. could you please split the patch?
 > 
 
-This is allowed and encouraged the dma-fencing rule. This along with
-allowing compute VMs to export dma-fences on binds will result in a
-simpler compute UMD.
-
-Sound ok?
+Yes, will do.
 
 Matt
-  
+
 > > 
 > > Signed-off-by: Matthew Brost <matthew.brost@intel.com>
 > > ---
-> >  drivers/gpu/drm/xe/xe_sync.c | 12 +++++++-----
-> >  1 file changed, 7 insertions(+), 5 deletions(-)
+> >  drivers/gpu/drm/xe/xe_vm.c       | 14 +++--
+> >  drivers/gpu/drm/xe/xe_vm_types.h | 88 +++++++++++++++++---------------
+> >  2 files changed, 57 insertions(+), 45 deletions(-)
 > > 
-> > diff --git a/drivers/gpu/drm/xe/xe_sync.c b/drivers/gpu/drm/xe/xe_sync.c
-> > index 99f1ed87196d..1e4e4acb2c4a 100644
-> > --- a/drivers/gpu/drm/xe/xe_sync.c
-> > +++ b/drivers/gpu/drm/xe/xe_sync.c
-> > @@ -105,6 +105,7 @@ int xe_sync_entry_parse(struct xe_device *xe, struct xe_file *xef,
+> > diff --git a/drivers/gpu/drm/xe/xe_vm.c b/drivers/gpu/drm/xe/xe_vm.c
+> > index e5f2fffb2aec..e8d9939ee535 100644
+> > --- a/drivers/gpu/drm/xe/xe_vm.c
+> > +++ b/drivers/gpu/drm/xe/xe_vm.c
+> > @@ -814,7 +814,7 @@ static struct xe_vma *xe_vma_create(struct xe_vm *vm,
+> >  				    u64 bo_offset_or_userptr,
+> >  				    u64 start, u64 end,
+> >  				    bool read_only, bool null,
+> > -				    u64 gt_mask)
+> > +				    u8 gt_mask)
 > >  {
-> >  	struct drm_xe_sync sync_in;
-> >  	int err;
-> > +	bool signal;
+> >  	struct xe_vma *vma;
+> >  	struct xe_gt *gt;
+> > @@ -823,7 +823,11 @@ static struct xe_vma *xe_vma_create(struct xe_vm *vm,
+> >  	XE_BUG_ON(start >= end);
+> >  	XE_BUG_ON(end >= vm->size);
 > >  
-> >  	if (copy_from_user(&sync_in, sync_user, sizeof(*sync_user)))
-> >  		return -EFAULT;
-> > @@ -113,9 +114,10 @@ int xe_sync_entry_parse(struct xe_device *xe, struct xe_file *xef,
-> >  			 ~(SYNC_FLAGS_TYPE_MASK | DRM_XE_SYNC_SIGNAL)))
-> >  		return -EINVAL;
+> > -	vma = kzalloc(sizeof(*vma), GFP_KERNEL);
+> > +	if (!bo && !null)	/* userptr */
+> > +		vma = kzalloc(sizeof(*vma), GFP_KERNEL);
+> > +	else
+> > +		vma = kzalloc(sizeof(*vma) - sizeof(struct xe_userptr),
+> > +			      GFP_KERNEL);
+> >  	if (!vma) {
+> >  		vma = ERR_PTR(-ENOMEM);
+> >  		return vma;
+> > @@ -2149,7 +2153,7 @@ static void print_op(struct xe_device *xe, struct drm_gpuva_op *op)
+> >  static struct drm_gpuva_ops *
+> >  vm_bind_ioctl_ops_create(struct xe_vm *vm, struct xe_bo *bo,
+> >  			 u64 bo_offset_or_userptr, u64 addr, u64 range,
+> > -			 u32 operation, u64 gt_mask, u32 region)
+> > +			 u32 operation, u8 gt_mask, u32 region)
+> >  {
+> >  	struct drm_gem_object *obj = bo ? &bo->ttm.base : NULL;
+> >  	struct ww_acquire_ctx ww;
+> > @@ -2234,7 +2238,7 @@ vm_bind_ioctl_ops_create(struct xe_vm *vm, struct xe_bo *bo,
+> >  }
 > >  
-> > +	signal = sync_in.flags & DRM_XE_SYNC_SIGNAL;
-> >  	switch (sync_in.flags & SYNC_FLAGS_TYPE_MASK) {
-> >  	case DRM_XE_SYNC_SYNCOBJ:
-> > -		if (XE_IOCTL_ERR(xe, no_dma_fences))
-> > +		if (XE_IOCTL_ERR(xe, no_dma_fences && signal))
-> >  			return -ENOTSUPP;
+> >  static struct xe_vma *new_vma(struct xe_vm *vm, struct drm_gpuva_op_map *op,
+> > -			      u64 gt_mask, bool read_only, bool null)
+> > +			      u8 gt_mask, bool read_only, bool null)
+> >  {
+> >  	struct xe_bo *bo = op->gem.obj ? gem_to_xe_bo(op->gem.obj) : NULL;
+> >  	struct xe_vma *vma;
+> > @@ -3217,8 +3221,8 @@ int xe_vm_bind_ioctl(struct drm_device *dev, void *data, struct drm_file *file)
+> >  		u64 addr = bind_ops[i].addr;
+> >  		u32 op = bind_ops[i].op;
+> >  		u64 obj_offset = bind_ops[i].obj_offset;
+> > -		u64 gt_mask = bind_ops[i].gt_mask;
+> >  		u32 region = bind_ops[i].region;
+> > +		u8 gt_mask = bind_ops[i].gt_mask;
 > >  
-> >  		if (XE_IOCTL_ERR(xe, upper_32_bits(sync_in.addr)))
-> > @@ -125,7 +127,7 @@ int xe_sync_entry_parse(struct xe_device *xe, struct xe_file *xef,
-> >  		if (XE_IOCTL_ERR(xe, !sync->syncobj))
-> >  			return -ENOENT;
+> >  		ops[i] = vm_bind_ioctl_ops_create(vm, bos[i], obj_offset,
+> >  						  addr, range, op, gt_mask,
+> > diff --git a/drivers/gpu/drm/xe/xe_vm_types.h b/drivers/gpu/drm/xe/xe_vm_types.h
+> > index 22def5483c12..df4797ec4d7f 100644
+> > --- a/drivers/gpu/drm/xe/xe_vm_types.h
+> > +++ b/drivers/gpu/drm/xe/xe_vm_types.h
+> > @@ -34,22 +34,34 @@ struct xe_vm;
+> >  #define XE_VMA_PTE_2M		(DRM_GPUVA_USERBITS << 7)
+> >  #define XE_VMA_PTE_1G		(DRM_GPUVA_USERBITS << 8)
 > >  
-> > -		if (!(sync_in.flags & DRM_XE_SYNC_SIGNAL)) {
-> > +		if (!signal) {
-> >  			sync->fence = drm_syncobj_fence_get(sync->syncobj);
-> >  			if (XE_IOCTL_ERR(xe, !sync->fence))
-> >  				return -EINVAL;
-> > @@ -133,7 +135,7 @@ int xe_sync_entry_parse(struct xe_device *xe, struct xe_file *xef,
-> >  		break;
+> > +/** struct xe_userptr - User pointer */
+> > +struct xe_userptr {
+> > +	/**
+> > +	 * @notifier: MMU notifier for user pointer (invalidation call back)
+> > +	 */
+> > +	struct mmu_interval_notifier notifier;
+> > +	/** @sgt: storage for a scatter gather table */
+> > +	struct sg_table sgt;
+> > +	/** @sg: allocated scatter gather table */
+> > +	struct sg_table *sg;
+> > +	/** @notifier_seq: notifier sequence number */
+> > +	unsigned long notifier_seq;
+> > +	/**
+> > +	 * @initial_bind: user pointer has been bound at least once.
+> > +	 * write: vm->userptr.notifier_lock in read mode and vm->resv held.
+> > +	 * read: vm->userptr.notifier_lock in write mode or vm->resv held.
+> > +	 */
+> > +	bool initial_bind;
+> > +#if IS_ENABLED(CONFIG_DRM_XE_USERPTR_INVAL_INJECT)
+> > +	u32 divisor;
+> > +#endif
+> > +};
+> > +
+> > +/** xe_vma - Virtual memory address */
+> >  struct xe_vma {
+> >  	/** @gpuva: Base GPUVA object */
+> >  	struct drm_gpuva gpuva;
 > >  
-> >  	case DRM_XE_SYNC_TIMELINE_SYNCOBJ:
-> > -		if (XE_IOCTL_ERR(xe, no_dma_fences))
-> > +		if (XE_IOCTL_ERR(xe, no_dma_fences && signal))
-> >  			return -ENOTSUPP;
+> > -	/** @gt_mask: GT mask of where to create binding for this VMA */
+> > -	u64 gt_mask;
+> > -
+> > -	/**
+> > -	 * @gt_present: GT mask of binding are present for this VMA.
+> > -	 * protected by vm->lock, vm->resv and for userptrs,
+> > -	 * vm->userptr.notifier_lock for writing. Needs either for reading,
+> > -	 * but if reading is done under the vm->lock only, it needs to be held
+> > -	 * in write mode.
+> > -	 */
+> > -	u64 gt_present;
+> > -
+> >  	union {
+> >  		/** @userptr_link: link into VM repin list if userptr */
+> >  		struct list_head userptr_link;
+> > @@ -77,16 +89,29 @@ struct xe_vma {
+> >  		} notifier;
+> >  	};
 > >  
-> >  		if (XE_IOCTL_ERR(xe, upper_32_bits(sync_in.addr)))
-> > @@ -146,7 +148,7 @@ int xe_sync_entry_parse(struct xe_device *xe, struct xe_file *xef,
-> >  		if (XE_IOCTL_ERR(xe, !sync->syncobj))
-> >  			return -ENOENT;
+> > -	/** @destroy_cb: callback to destroy VMA when unbind job is done */
+> > -	struct dma_fence_cb destroy_cb;
+> > +	union {
+> > +		/** @destroy_cb: callback to destroy VMA when unbind job is done */
+> > +		struct dma_fence_cb destroy_cb;
+> > +		/** @destroy_work: worker to destroy this BO */
+> > +		struct work_struct destroy_work;
+> > +	};
 > >  
-> > -		if (sync_in.flags & DRM_XE_SYNC_SIGNAL) {
-> > +		if (signal) {
-> >  			sync->chain_fence = dma_fence_chain_alloc();
-> >  			if (!sync->chain_fence)
-> >  				return -ENOMEM;
-> > @@ -168,7 +170,7 @@ int xe_sync_entry_parse(struct xe_device *xe, struct xe_file *xef,
-> >  		break;
+> > -	/** @destroy_work: worker to destroy this BO */
+> > -	struct work_struct destroy_work;
+> > +	/** @gt_mask: GT mask of where to create binding for this VMA */
+> > +	u8 gt_mask;
+> > +
+> > +	/**
+> > +	 * @gt_present: GT mask of binding are present for this VMA.
+> > +	 * protected by vm->lock, vm->resv and for userptrs,
+> > +	 * vm->userptr.notifier_lock for writing. Needs either for reading,
+> > +	 * but if reading is done under the vm->lock only, it needs to be held
+> > +	 * in write mode.
+> > +	 */
+> > +	u8 gt_present;
 > >  
-> >  	case DRM_XE_SYNC_USER_FENCE:
-> > -		if (XE_IOCTL_ERR(xe, !(sync_in.flags & DRM_XE_SYNC_SIGNAL)))
-> > +		if (XE_IOCTL_ERR(xe, !signal))
-> >  			return -ENOTSUPP;
+> >  	/** @usm: unified shared memory state */
+> >  	struct {
+> >  		/** @gt_invalidated: VMA has been invalidated */
+> > -		u64 gt_invalidated;
+> > +		u8 gt_invalidated;
+> >  	} usm;
 > >  
-> >  		if (XE_IOCTL_ERR(xe, sync_in.addr & 0x7))
+> >  	struct {
+> > @@ -97,28 +122,11 @@ struct xe_vma {
+> >  		struct list_head link;
+> >  	} extobj;
+> >  
+> > -	/** @userptr: user pointer state */
+> > -	struct {
+> > -		/**
+> > -		 * @notifier: MMU notifier for user pointer (invalidation call back)
+> > -		 */
+> > -		struct mmu_interval_notifier notifier;
+> > -		/** @sgt: storage for a scatter gather table */
+> > -		struct sg_table sgt;
+> > -		/** @sg: allocated scatter gather table */
+> > -		struct sg_table *sg;
+> > -		/** @notifier_seq: notifier sequence number */
+> > -		unsigned long notifier_seq;
+> > -		/**
+> > -		 * @initial_bind: user pointer has been bound at least once.
+> > -		 * write: vm->userptr.notifier_lock in read mode and vm->resv held.
+> > -		 * read: vm->userptr.notifier_lock in write mode or vm->resv held.
+> > -		 */
+> > -		bool initial_bind;
+> > -#if IS_ENABLED(CONFIG_DRM_XE_USERPTR_INVAL_INJECT)
+> > -		u32 divisor;
+> > -#endif
+> > -	} userptr;
+> > +	/**
+> > +	 * @userptr: user pointer state, only allocated for VMAs that are
+> > +	 * user pointers
+> > +	 */
+> > +	struct xe_userptr userptr;
+> >  };
+> >  
+> >  struct xe_device;
+> > @@ -387,7 +395,7 @@ struct xe_vma_op {
+> >  	 */
+> >  	struct async_op_fence *fence;
+> >  	/** @gt_mask: gt mask for this operation */
+> > -	u64 gt_mask;
+> > +	u8 gt_mask;
+> >  	/** @flags: operation flags */
+> >  	enum xe_vma_op_flags flags;
+> >  
 > > -- 
 > > 2.34.1
 > > 
