@@ -4,52 +4,142 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8A5E6C77B7F
-	for <intel-xe@archiver.kernel.org>; Mon,  8 May 2023 13:14:15 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 09D61C77B75
+	for <intel-xe@archiver.kernel.org>; Mon,  8 May 2023 13:35:32 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5D87D10E28B;
-	Mon,  8 May 2023 13:14:15 +0000 (UTC)
-Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B38D310E28B
- for <intel-xe@lists.freedesktop.org>; Mon,  8 May 2023 13:14:14 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D6B4E10E2A4;
+	Mon,  8 May 2023 13:35:31 +0000 (UTC)
+Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C8ED310E2A4
+ for <intel-xe@lists.freedesktop.org>; Mon,  8 May 2023 13:35:30 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1683551654; x=1715087654;
- h=message-id:date:mime-version:subject:to:references:from:
- in-reply-to:content-transfer-encoding;
- bh=pR7f2B5l9+1S8oF9F0WXK+BKgt5MNJGSto7Yi9I8fIg=;
- b=OTUYwekkMOVu13PwB0TrqzXjLBmNPBnirk1e9b+Sf/D3SQI7+sYcTvTd
- t2wf4XYiW1Gvp0ufefW2fEw1GRa5DLMluJjaOlZ+DHDk8athfQVTrKBcG
- gDg54NhK5LSP/5w9FqhRBdpFsLpgMPlAM2KnauAmWZIZ6auY20WpQcaCu
- U2vHMtZYu70hIR76nHy/ctpWuadDNCkQzqOJ3NDTJ/JJeCNLjSkTnlDDZ
- gpTVK9Wev2wr2bDj+2krERO1lc8ENV5rboh5K7dy7GOgAozBxhXRXx6+r
- X74i1+iz3gzUCYUQauB5UY1P3dZ77QJ3449n9zf4YyeKbcg+MnTh8hLRl A==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10703"; a="435959422"
-X-IronPort-AV: E=Sophos;i="5.99,259,1677571200"; d="scan'208";a="435959422"
-Received: from orsmga005.jf.intel.com ([10.7.209.41])
- by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 May 2023 06:14:14 -0700
+ t=1683552930; x=1715088930;
+ h=date:from:to:cc:subject:message-id:references:
+ content-transfer-encoding:in-reply-to:mime-version;
+ bh=p73cbfSirVHAkGtYneSia+Lejat5bCpY3afYEqZtiJc=;
+ b=AT6u9URVa1urUMhqQLSNlgRXo2wn3O0cR6oiCETCtmZ7jxI6Hr5C7JVO
+ If+QuPfc8nBf9UtpKfCdXi4GwOtvXPiEtb/YWEfITVsih5zFfifAkZD8P
+ X5iZKhVgTw6cPvnTQt/Qxg/gYomkQdRZUX5gJ3fWmzKjkWBfco16NVWEa
+ r9ZbSoJWVapsZ0wYbG+HbLL7R9oKrJGf4BH7apFx9/OB+RbGVVLGF6KmV
+ ekUq49uTO0quB9FH/9k8xuk3ZmF1B9GlEFb4qCx3/mLRJ5jYsVQA+NpZD
+ ahrQTlS+H/tuHGOoBeB9wtr4EhsiDrFtJxd5+4Vjs4VxkpvslLzvrZVkr Q==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10703"; a="349677789"
+X-IronPort-AV: E=Sophos;i="5.99,259,1677571200"; d="scan'208";a="349677789"
+Received: from orsmga003.jf.intel.com ([10.7.209.27])
+ by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 08 May 2023 06:35:29 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10703"; a="872793942"
-X-IronPort-AV: E=Sophos;i="5.99,259,1677571200"; d="scan'208";a="872793942"
-Received: from igorhaza-mobl1.ger.corp.intel.com (HELO [10.249.254.232])
- ([10.249.254.232])
- by orsmga005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 May 2023 06:14:11 -0700
-Message-ID: <90b4e835-c21a-f9b3-4b22-aa59c911f54f@linux.intel.com>
-Date: Mon, 8 May 2023 15:14:10 +0200
+X-IronPort-AV: E=McAfee;i="6600,9927,10703"; a="648876344"
+X-IronPort-AV: E=Sophos;i="5.99,259,1677571200"; d="scan'208";a="648876344"
+Received: from fmsmsx602.amr.corp.intel.com ([10.18.126.82])
+ by orsmga003.jf.intel.com with ESMTP; 08 May 2023 06:35:25 -0700
+Received: from fmsmsx612.amr.corp.intel.com (10.18.126.92) by
+ fmsmsx602.amr.corp.intel.com (10.18.126.82) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.23; Mon, 8 May 2023 06:35:25 -0700
+Received: from fmsmsx612.amr.corp.intel.com (10.18.126.92) by
+ fmsmsx612.amr.corp.intel.com (10.18.126.92) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.23; Mon, 8 May 2023 06:35:24 -0700
+Received: from fmsedg602.ED.cps.intel.com (10.1.192.136) by
+ fmsmsx612.amr.corp.intel.com (10.18.126.92) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.23 via Frontend Transport; Mon, 8 May 2023 06:35:24 -0700
+Received: from NAM11-BN8-obe.outbound.protection.outlook.com (104.47.58.168)
+ by edgegateway.intel.com (192.55.55.71) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.1.2507.23; Mon, 8 May 2023 06:35:22 -0700
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=WkxrIYq3Xk+IPToURQ4KrPkexhJIg8u36EgchIh+aMJLtqNTgfktv2va6eEwm+RyrTyzFa9fNaDwyKsib8Z+qLMZoBJ1LlFDY3nLUyd2lDyWUVpg7MPjBp6mkulx1mgdx24S07q8j4GnjY7mz5TNISW4MimQzKQq8sAWy326O0SZEdSh1FDHhoUzOwW98m+YLr3/HXp/cvrqDEv8m2uyoFj0S8NyodbEEu4xFmUKpgTHQXJj7a1YjzKtkARueL80CTIQsYri8paB4EuM5ktTL16WEzK0voNtYXNh24a6Kz60BdI6VXbbPbGP4tKi4bWNdcBiPm+ZSFIKm/xBjjB06Q==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=PtwW1ohl2XR8Ap0ey0fxyF3I7QMnOd+UgSN2K2AIIr4=;
+ b=fAT/AyRy5XgfyneoMYwr/4WfDZnYGMsU4WYi8WFfit0c4cSO9MyPNMfAYoVvPYTsx/Gki1VAtFritj7oXar7yUCYpWoKor+YRAJVPzohVC7vm+VgK7H6iq2nFbs8jinog2/xWww9e0pPKSmPToz6yeIGcQxrwQ/BNOcinARjWxwevcpRYBJgWsJ+GFhYUycsGtjI4H5cpbsw9XtUUGdA5axT4o1fCVU7Savqit0R63Yq6L8EsqeQUNFVCkd1ngkoe0yC2Dy46o5oRN8+UB3MGt7yTgQkJtkJrJ9YtS7V3vV/4gzZOhJrRnDmTiXxgfqBEpTozNvgkCubk+YqLFRw7w==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
+ dkim=pass header.d=intel.com; arc=none
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=intel.com;
+Received: from MN0PR11MB6059.namprd11.prod.outlook.com (2603:10b6:208:377::9)
+ by SN7PR11MB8026.namprd11.prod.outlook.com (2603:10b6:806:2dd::16)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6363.32; Mon, 8 May
+ 2023 13:35:21 +0000
+Received: from MN0PR11MB6059.namprd11.prod.outlook.com
+ ([fe80::f7ec:aae9:1e7b:e004]) by MN0PR11MB6059.namprd11.prod.outlook.com
+ ([fe80::f7ec:aae9:1e7b:e004%6]) with mapi id 15.20.6363.032; Mon, 8 May 2023
+ 13:35:20 +0000
+Date: Mon, 8 May 2023 09:35:16 -0400
+From: Rodrigo Vivi <rodrigo.vivi@intel.com>
+To: "Hogander, Jouni" <jouni.hogander@intel.com>
+Message-ID: <ZFj6lOUI6J0jv46K@intel.com>
+References: <20230505082956.2247875-1-jouni.hogander@intel.com>
+ <20230505082956.2247875-5-jouni.hogander@intel.com>
+ <ZFUWaYXt4guHj2F/@rdvivi-mobl4>
+ <2fd68f32e780c1c1436a45b410dfb4e903bdf0b2.camel@intel.com>
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <2fd68f32e780c1c1436a45b410dfb4e903bdf0b2.camel@intel.com>
+X-ClientProxiedBy: BY5PR03CA0023.namprd03.prod.outlook.com
+ (2603:10b6:a03:1e0::33) To MN0PR11MB6059.namprd11.prod.outlook.com
+ (2603:10b6:208:377::9)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.8.0
-Content-Language: en-US
-To: Matthew Brost <matthew.brost@intel.com>, intel-xe@lists.freedesktop.org
-References: <20230502001727.3211096-1-matthew.brost@intel.com>
- <20230502001727.3211096-6-matthew.brost@intel.com>
-From: =?UTF-8?Q?Thomas_Hellstr=c3=b6m?= <thomas.hellstrom@linux.intel.com>
-In-Reply-To: <20230502001727.3211096-6-matthew.brost@intel.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-Subject: Re: [Intel-xe] [PATCH v2 05/31] drm/xe: Long running job update
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: MN0PR11MB6059:EE_|SN7PR11MB8026:EE_
+X-MS-Office365-Filtering-Correlation-Id: 2b6bffe9-9fe1-4ebf-07e1-08db4fc911a2
+X-LD-Processed: 46c98d88-e344-4ed4-8496-4ed7712e255d,ExtAddr
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: 54wdWmPiP/K87w6DjXxE9RJtE+gkIkINcIN+KRKTIIwN+lNE+1Das7FBLeNiHcu3i62ZaMkfLNZzNuw72X8WMEYedKCI3kerAbaBZPx3+MIDsdmQ+ctXKfEZKodWO4hKCu0+76yEJoj44+bA2urfmzalKDwkrzuuFvTu8Xf30Qxj+zVaAWuK4PKqhEM2Wm2enwOltxnDIHy1sIKOmCHLDIGO8c9CjU9+xoRcr4MJkLuy8qeJ4rKBGdRoQykB7qyslPQKMXWyj5p+6lxssJDu6PsIVlOO9uDUisG2jwDbkqpVzP2h+dMx3H7z9CAuYuGSg6Vr8Qz+ewZ6ngfsUdMlN1MUvZenXPHiQQTRxb+hAWnGr02v6WT4fCV9rxPmlAUDVDAJPv67VgPRXRN2WGlAqgpq19ou34W771rlD2SX/KgHZIj4D14Lb3hRxBjOQ8kvl1J21GcDNudQ2ra6Rb4xYonAz/8gRrJGNHKU0asxF29BHom+YEC9l8A7H6Wdte70u2YOXP/omXR/EE1mZIldvNjXf2ZyBWHb8jLEVkFbcWk/UbAu5wtxkWTqHD2TAHtY
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:MN0PR11MB6059.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230028)(346002)(39860400002)(396003)(366004)(376002)(136003)(451199021)(66946007)(66556008)(66476007)(6636002)(4326008)(478600001)(6666004)(6486002)(316002)(37006003)(54906003)(36756003)(86362001)(83380400001)(66574015)(26005)(6512007)(6506007)(2616005)(8936002)(5660300002)(8676002)(6862004)(44832011)(41300700001)(2906002)(82960400001)(186003)(38100700002);
+ DIR:OUT; SFP:1102; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?iso-8859-1?Q?3LDmWSLKWuW9gRseH1A08tY05uS0b5rCGbtBxCmAGcBpQPlD0OOHU+QBVU?=
+ =?iso-8859-1?Q?v1g7aGWzlXU5uPgCVUl9vlp2pJjv5p29peZqbnMoVIc9pgKbDaGNfonA0W?=
+ =?iso-8859-1?Q?55NTn5kLZO1ill5EijZYalLZPt+fu/jztXknUQgZJvX1sOKF0hj6LaWJtI?=
+ =?iso-8859-1?Q?3ZWk9DLd+3kgU2C7WexOfuWDaQtXjsfdBXJJdte87K874Axy0pr21BKybn?=
+ =?iso-8859-1?Q?ioiswWrsq1BJyomVU3+C6hVPjnhkTWtubXbUs1YifVmhInc6pWLBFUn7mp?=
+ =?iso-8859-1?Q?5iWW9tPQ1c53cWM99VE9f4QGvCZCV44BzU7v4uVKuVZUSfk6kA1oSMgIa3?=
+ =?iso-8859-1?Q?eaamBjrEtwq0KuA0mzm1RtmnBM63jHRlWdZmL1zvriTkh7wCf2Oj0Cj36G?=
+ =?iso-8859-1?Q?vf5YS+muv+TH6mwf7rNZWhzVitUEa9idpVhIPpbe38GQkX94NppYZS5Sil?=
+ =?iso-8859-1?Q?Xy281yhGQwFnuY8aV7uwR/Mg9qYmcleZjC+LdCxHK8R4hmqbBziqalExN7?=
+ =?iso-8859-1?Q?rswJeCN7fzjX6XK3pOvxET6mHOak13XaCL71Npa7VHpSQsTSGjNGYwuY8O?=
+ =?iso-8859-1?Q?X7GZ+juDwIAx25YcZnPuJHBgz6W7eFxFTP7OMpABXAtBPljXvO6pZfpYXj?=
+ =?iso-8859-1?Q?sL2CSJPjmqtYuOqAfj+u5aXSMGlinynZUCX77kjBeRTMPfM6Iw2b6QT2ti?=
+ =?iso-8859-1?Q?bJa4Osa6FVDslXTNmo1twFZObsDbKRBEgXe4Rb4YaD6hBfCEAQiyw18QRd?=
+ =?iso-8859-1?Q?qz+HjlrqjJ/Sv0F4Nq3str/o6kmNUxKTKf/Y9t6/YF6T+TacI4QgNQ2Pc+?=
+ =?iso-8859-1?Q?FsjX2pfhd2oNc9UIvcNj1qR5tGCLRWl/SHTNn1/ZRXj6sZOyT2WsrsPy9U?=
+ =?iso-8859-1?Q?7jGiz6hJR04uyuRJeByXMA02VCly/8/6ZXOu7FO+Ruc0hF5wv49JbzfUKD?=
+ =?iso-8859-1?Q?cGLfqKDxgde3PN3MlQXNzFESu7XW5pl7Sl1vYncS5MOkv55iezIVOPxJ/3?=
+ =?iso-8859-1?Q?njdKXHDelUdvZyS2qTvjL/SR/cioGgJFJEHHXi7QqAeoK0SbwM+1f0EMpd?=
+ =?iso-8859-1?Q?Ss19o6IwZW8QitgeybUCbdRYpOHS86F+jchZWd08uvWcPYkGU+g7jSFdYI?=
+ =?iso-8859-1?Q?Ov7CIc6lcfKWcovWBY7X+cKHwgA5RzCoL0F69ueT9aCikiDnao0miiK18U?=
+ =?iso-8859-1?Q?wV0X/TuhFKqilv6qRi1X0ryczTJjNINDp8abmUkK/F1Oz5fW0IyA4VLA9E?=
+ =?iso-8859-1?Q?K5D2YfgFFXY+riOf72jpAU2leZGowjyuJZKo4NFcJn8+vZZuPh8A09VDxl?=
+ =?iso-8859-1?Q?OTAEeC3OHRMePeWlabU+RyrR1HfiTrP3KsbsRBC2DXmVVaWHTYCjjhkdAW?=
+ =?iso-8859-1?Q?88Hh7aXkn+MVFBGstlE5U1fVgwTg22opfjuZu4S9qh1U2tSvcWd3Pml9/t?=
+ =?iso-8859-1?Q?b6IO21HNwXGO8YGBXOXx/tX0Fd1C7xrq96JhFgntumCcEHcx1IQfMS8kpQ?=
+ =?iso-8859-1?Q?/5zm0RXmmj5y6/b0i4PGBD1858HxVWF17JPK1eVWVwvMuQ5YrBeki4Kqs8?=
+ =?iso-8859-1?Q?ewX41OVEYg2UrAyU+BA7PL9iALzgZ3IRSZp1mEROWFNokSA8Gd+9Kj65rY?=
+ =?iso-8859-1?Q?kY0/ficCiB61OyPKa96HGNOEZckB3HcQXP?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: 2b6bffe9-9fe1-4ebf-07e1-08db4fc911a2
+X-MS-Exchange-CrossTenant-AuthSource: MN0PR11MB6059.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 08 May 2023 13:35:20.8819 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: NP/m6dghIMnMTHaN9P2yLns3GoMEaemmLIisC7VUcSqcZkpDLEFEmYUFoHsOTI9sGcxhoi/30pfktsiwo+Af1A==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SN7PR11MB8026
+X-OriginatorOrg: intel.com
+Subject: Re: [Intel-xe] [RFC PATCH 04/20] fixup! drm/xe/display: Implement
+ display support
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -61,375 +151,60 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Cc: "rodrigo.vivi@kernel.org" <rodrigo.vivi@kernel.org>, "Nikula,
+ Jani" <jani.nikula@intel.com>,
+ "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>,
+ "ville.syrjala@linux.intel.com" <ville.syrjala@linux.intel.com>
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Hi, Matthew
+On Mon, May 08, 2023 at 09:19:48AM +0000, Hogander, Jouni wrote:
+> On Fri, 2023-05-05 at 10:44 -0400, Rodrigo Vivi wrote:
+> > 
+> > I believe we could already start merging patches 1-4, no?!
+> 
+> Patches 1-4 alone are currently breaking build. I can fix that. 
 
-In addition to Rodrigo's comments:
+That shouldn't ever happen anyway.
 
-On 5/2/23 02:17, Matthew Brost wrote:
-> Flow control + write ring in exec, return NULL in run_job, siganl
-> xe_hw_fence immediately, and override TDR for LR jobs.
->
-> Signed-off-by: Matthew Brost <matthew.brost@intel.com>
-> ---
->   drivers/gpu/drm/xe/xe_engine.c           | 32 ++++++++
->   drivers/gpu/drm/xe/xe_engine.h           |  4 +
->   drivers/gpu/drm/xe/xe_exec.c             |  8 ++
->   drivers/gpu/drm/xe/xe_guc_engine_types.h |  2 +
->   drivers/gpu/drm/xe/xe_guc_submit.c       | 95 +++++++++++++++++++++---
->   drivers/gpu/drm/xe/xe_trace.h            |  5 ++
->   6 files changed, 137 insertions(+), 9 deletions(-)
->
-> diff --git a/drivers/gpu/drm/xe/xe_engine.c b/drivers/gpu/drm/xe/xe_engine.c
-> index 094ec17d3004..d1e84d7adbd4 100644
-> --- a/drivers/gpu/drm/xe/xe_engine.c
-> +++ b/drivers/gpu/drm/xe/xe_engine.c
-> @@ -18,6 +18,7 @@
->   #include "xe_macros.h"
->   #include "xe_migrate.h"
->   #include "xe_pm.h"
-> +#include "xe_ring_ops_types.h"
->   #include "xe_trace.h"
->   #include "xe_vm.h"
->   
-> @@ -673,6 +674,37 @@ static void engine_kill_compute(struct xe_engine *e)
->   	up_write(&e->vm->lock);
->   }
->   
-> +/**
-> + * xe_engine_is_lr() - Whether an engine is long-running
-> + * @e: The engine
-> + *
-> + * Return: True if the engine is long-running, false otherwise.
-> + */
-> +bool xe_engine_is_lr(struct xe_engine *e)
-> +{
-> +	return e->vm && xe_vm_no_dma_fences(e->vm) &&
-> +		!(e->flags & ENGINE_FLAG_VM);
-> +}
-> +
-> +static s32 xe_engine_num_job_inflight(struct xe_engine *e)
-> +{
-> +	return e->lrc->fence_ctx.next_seqno - xe_lrc_seqno(e->lrc) - 1;
-> +}
-> +
-> +/**
-> + * xe_engine_ring_full() - Whether an engine's ring is full
-> + * @e: The engine
-> + *
-> + * Return: True if the engine's ring is full, false otherwise.
-> + */
-> +bool xe_engine_ring_full(struct xe_engine *e)
-> +{
-> +	struct xe_lrc *lrc = e->lrc;
-> +	s32 max_job = lrc->ring.size / MAX_JOB_SIZE_BYTES;
-> +
-> +	return xe_engine_num_job_inflight(e) >= max_job;
-> +}
-> +
->   /**
->    * xe_engine_is_idle() - Whether an engine is idle.
->    * @engine: The engine
-> diff --git a/drivers/gpu/drm/xe/xe_engine.h b/drivers/gpu/drm/xe/xe_engine.h
-> index a49cf2ab405e..2e60f6d90226 100644
-> --- a/drivers/gpu/drm/xe/xe_engine.h
-> +++ b/drivers/gpu/drm/xe/xe_engine.h
-> @@ -42,6 +42,10 @@ static inline bool xe_engine_is_parallel(struct xe_engine *engine)
->   	return engine->width > 1;
->   }
->   
-> +bool xe_engine_is_lr(struct xe_engine *e);
-> +
-> +bool xe_engine_ring_full(struct xe_engine *e);
-> +
->   bool xe_engine_is_idle(struct xe_engine *engine);
->   
->   void xe_engine_kill(struct xe_engine *e);
-> diff --git a/drivers/gpu/drm/xe/xe_exec.c b/drivers/gpu/drm/xe/xe_exec.c
-> index ea869f2452ef..44ea9bcd0066 100644
-> --- a/drivers/gpu/drm/xe/xe_exec.c
-> +++ b/drivers/gpu/drm/xe/xe_exec.c
-> @@ -13,6 +13,7 @@
->   #include "xe_device.h"
->   #include "xe_engine.h"
->   #include "xe_macros.h"
-> +#include "xe_ring_ops_types.h"
->   #include "xe_sched_job.h"
->   #include "xe_sync.h"
->   #include "xe_vm.h"
-> @@ -277,6 +278,11 @@ int xe_exec_ioctl(struct drm_device *dev, void *data, struct drm_file *file)
->   		goto err_engine_end;
->   	}
->   
-> +	if (xe_engine_is_lr(engine) && xe_engine_ring_full(engine)) {
-> +		err = -EWOULDBLOCK;
-> +		goto err_engine_end;
-> +	}
-> +
->   	job = xe_sched_job_create(engine, xe_engine_is_parallel(engine) ?
->   				  addresses : &args->address);
->   	if (IS_ERR(job)) {
-> @@ -363,6 +369,8 @@ int xe_exec_ioctl(struct drm_device *dev, void *data, struct drm_file *file)
->   		xe_sync_entry_signal(&syncs[i], job,
->   				     &job->drm.s_fence->finished);
->   
-> +	if (xe_engine_is_lr(engine))
-> +		engine->ring_ops->emit_job(job);
->   	xe_sched_job_push(job);
->   	xe_vm_reactivate_rebind(vm);
->   
-> diff --git a/drivers/gpu/drm/xe/xe_guc_engine_types.h b/drivers/gpu/drm/xe/xe_guc_engine_types.h
-> index cbfb13026ec1..5d83132034a6 100644
-> --- a/drivers/gpu/drm/xe/xe_guc_engine_types.h
-> +++ b/drivers/gpu/drm/xe/xe_guc_engine_types.h
-> @@ -31,6 +31,8 @@ struct xe_guc_engine {
->   	 */
->   #define MAX_STATIC_MSG_TYPE	3
->   	struct drm_sched_msg static_msgs[MAX_STATIC_MSG_TYPE];
-> +	/** @lr_tdr: long running TDR worker */
-> +	struct work_struct lr_tdr;
->   	/** @fini_async: do final fini async from this worker */
->   	struct work_struct fini_async;
->   	/** @resume_time: time of last resume */
-> diff --git a/drivers/gpu/drm/xe/xe_guc_submit.c b/drivers/gpu/drm/xe/xe_guc_submit.c
-> index 68d09e7a4cc0..0a41f5d04f6d 100644
-> --- a/drivers/gpu/drm/xe/xe_guc_submit.c
-> +++ b/drivers/gpu/drm/xe/xe_guc_submit.c
-> @@ -500,6 +500,14 @@ static void register_engine(struct xe_engine *e)
->   		parallel_write(xe, map, wq_desc.wq_status, WQ_STATUS_ACTIVE);
->   	}
->   
-> +	/*
-> +	 * We must keep a reference for LR engines if engine is registered with
-> +	 * the GuC as jobs signal immediately and can't destroy an engine if the
-> +	 * GuC has a reference to it.
-> +	 */
-> +	if (xe_engine_is_lr(e))
-> +		xe_engine_get(e);
-> +
->   	set_engine_registered(e);
->   	trace_xe_engine_register(e);
->   	if (xe_engine_is_parallel(e))
-> @@ -662,6 +670,7 @@ guc_engine_run_job(struct drm_sched_job *drm_job)
->   {
->   	struct xe_sched_job *job = to_xe_sched_job(drm_job);
->   	struct xe_engine *e = job->engine;
-> +	bool lr = xe_engine_is_lr(e);
->   
->   	XE_BUG_ON((engine_destroyed(e) || engine_pending_disable(e)) &&
->   		  !engine_banned(e) && !engine_suspended(e));
-> @@ -671,14 +680,19 @@ guc_engine_run_job(struct drm_sched_job *drm_job)
->   	if (!engine_killed_or_banned(e) && !xe_sched_job_is_error(job)) {
->   		if (!engine_registered(e))
->   			register_engine(e);
-> -		e->ring_ops->emit_job(job);
-> +		if (!lr)	/* Written in IOCTL */
+Every single patch needs to build and be self-sufficient, otherwise
+we break bisects and auto-bisects.
 
-Hmm? What does "Written in IOCTL mean?" Could you rephrase to something 
-more descriptive?
-
-> +			e->ring_ops->emit_job(job);
->   		submit_engine(e);
->   	}
->   
-> -	if (test_and_set_bit(JOB_FLAG_SUBMIT, &job->fence->flags))
-> +	if (lr) {
-> +		xe_sched_job_set_error(job, -ENOTSUPP);
-> +		return NULL;
-> +	} else if (test_and_set_bit(JOB_FLAG_SUBMIT, &job->fence->flags)) {
->   		return job->fence;
-> -	else
-> +	} else {
->   		return dma_fence_get(job->fence);
-> +	}
->   }
->   
->   static void guc_engine_free_job(struct drm_sched_job *drm_job)
-> @@ -782,6 +796,57 @@ static void simple_error_capture(struct xe_engine *e)
->   }
->   #endif
->   
-> +static void xe_guc_engine_trigger_cleanup(struct xe_engine *e)
-> +{
-> +	struct xe_guc *guc = engine_to_guc(e);
-> +
-> +	if (xe_engine_is_lr(e))
-> +		queue_work(guc_to_gt(guc)->ordered_wq, &e->guc->lr_tdr);
-> +	else
-> +		drm_sched_set_timeout(&e->guc->sched, MIN_SCHED_TIMEOUT);
-> +}
-> +
-> +static void xe_guc_engine_lr_cleanup(struct work_struct *w)
-> +{
-> +	struct xe_guc_engine *ge =
-> +		container_of(w, struct xe_guc_engine, lr_tdr);
-> +	struct xe_engine *e = ge->engine;
-> +	struct drm_gpu_scheduler *sched = &ge->sched;
-> +
-> +	XE_BUG_ON(!xe_engine_is_lr(e));
-> +	trace_xe_engine_lr_cleanup(e);
-> +
-> +	/* Kill the run_job / process_msg entry points */
-> +	drm_sched_run_wq_stop(sched);
-> +
-> +	/* Engine state now stable, disable scheduling / deregister if needed */
-> +	if (engine_registered(e)) {
-> +		struct xe_guc *guc = engine_to_guc(e);
-> +		int ret;
-> +
-> +		set_engine_banned(e);
-> +		xe_engine_get(e);
-> +		disable_scheduling_deregister(guc, e);
-> +
-> +		/*
-> +		 * Must wait for scheduling to be disabled before signalling
-> +		 * any fences, if GT broken the GT reset code should signal us.
-> +		 */
-> +		smp_rmb();
-
-wait_event() paired with wake_up() family of functions typically set the 
-necessary barriers to make sure anything written prior to wake_up() is 
-seen in wait_event(). So that smp_rmb() is most likely not needed. If it 
-still is, its pairing smp_wmb() should be documented and pointed to as 
-well. See documentation of set_current_state() vs __set_current_state().
-
-> +		ret = wait_event_timeout(guc->ct.wq,
-> +					 !engine_pending_disable(e) ||
-> +					 guc_read_stopped(guc), HZ * 5);
-> +		if (!ret) {
-> +			XE_WARN_ON("Schedule disable failed to respond");
-> +			drm_sched_run_wq_start(sched);
-> +			xe_gt_reset_async(e->gt);
-> +			return;
-> +		}
-> +	}
-> +
-> +	drm_sched_run_wq_start(sched);
-> +}
-> +
->   static enum drm_gpu_sched_stat
->   guc_engine_timedout_job(struct drm_sched_job *drm_job)
->   {
-> @@ -832,7 +897,7 @@ guc_engine_timedout_job(struct drm_sched_job *drm_job)
->   			err = -EIO;
->   		set_engine_banned(e);
->   		xe_engine_get(e);
-> -		disable_scheduling_deregister(engine_to_guc(e), e);
-> +		disable_scheduling_deregister(guc, e);
->   
->   		/*
->   		 * Must wait for scheduling to be disabled before signalling
-> @@ -865,7 +930,7 @@ guc_engine_timedout_job(struct drm_sched_job *drm_job)
->   	 */
->   	list_add(&drm_job->list, &sched->pending_list);
->   	drm_sched_run_wq_start(sched);
-> -	drm_sched_set_timeout(&e->guc->sched, MIN_SCHED_TIMEOUT);
-> +	xe_guc_engine_trigger_cleanup(e);
->   
->   	/* Mark all outstanding jobs as bad, thus completing them */
->   	spin_lock(&sched->job_list_lock);
-> @@ -889,6 +954,8 @@ static void __guc_engine_fini_async(struct work_struct *w)
->   
->   	trace_xe_engine_destroy(e);
->   
-> +	if (xe_engine_is_lr(e))
-> +		cancel_work_sync(&ge->lr_tdr);
->   	if (e->flags & ENGINE_FLAG_PERSISTENT)
->   		xe_device_remove_persistent_engines(gt_to_xe(e->gt), e);
->   	release_guc_id(guc, e);
-> @@ -906,7 +973,7 @@ static void guc_engine_fini_async(struct xe_engine *e)
->   	bool kernel = e->flags & ENGINE_FLAG_KERNEL;
->   
->   	INIT_WORK(&e->guc->fini_async, __guc_engine_fini_async);
-> -	queue_work(system_unbound_wq, &e->guc->fini_async);
-> +	queue_work(system_wq, &e->guc->fini_async);
->   
->   	/* We must block on kernel engines so slabs are empty on driver unload */
->   	if (kernel) {
-> @@ -1089,12 +1156,16 @@ static int guc_engine_init(struct xe_engine *e)
->   	if (err)
->   		goto err_free;
->   
-> +
-
-Unrelated whitespace?
-
-
->   	sched = &ge->sched;
->   	err = drm_sched_entity_init(&ge->entity, DRM_SCHED_PRIORITY_NORMAL,
->   				    &sched, 1, NULL);
->   	if (err)
->   		goto err_sched;
->   
-> +	if (xe_engine_is_lr(e))
-> +		INIT_WORK(&e->guc->lr_tdr, xe_guc_engine_lr_cleanup);
-> +
->   	mutex_lock(&guc->submission_state.lock);
->   
->   	err = alloc_guc_id(guc, e);
-> @@ -1146,7 +1217,7 @@ static void guc_engine_kill(struct xe_engine *e)
->   {
->   	trace_xe_engine_kill(e);
->   	set_engine_killed(e);
-> -	drm_sched_set_timeout(&e->guc->sched, MIN_SCHED_TIMEOUT);
-> +	xe_guc_engine_trigger_cleanup(e);
->   }
->   
->   static void guc_engine_add_msg(struct xe_engine *e, struct drm_sched_msg *msg,
-> @@ -1296,6 +1367,9 @@ static void guc_engine_stop(struct xe_guc *guc, struct xe_engine *e)
->   	/* Stop scheduling + flush any DRM scheduler operations */
->   	drm_sched_run_wq_stop(sched);
->   
-> +	if (engine_registered(e) && xe_engine_is_lr(e))
-> +		xe_engine_put(e);
-> +
->   	/* Clean up lost G2H + reset engine state */
->   	if (engine_destroyed(e) && engine_registered(e)) {
->   		if (engine_banned(e))
-> @@ -1520,6 +1594,9 @@ int xe_guc_deregister_done_handler(struct xe_guc *guc, u32 *msg, u32 len)
->   	trace_xe_engine_deregister_done(e);
->   
->   	clear_engine_registered(e);
-> +	if (xe_engine_is_lr(e))
-> +		xe_engine_put(e);
-> +
->   	if (engine_banned(e))
->   		xe_engine_put(e);
->   	else
-> @@ -1557,7 +1634,7 @@ int xe_guc_engine_reset_handler(struct xe_guc *guc, u32 *msg, u32 len)
->   	 */
->   	set_engine_reset(e);
->   	if (!engine_banned(e))
-> -		drm_sched_set_timeout(&e->guc->sched, MIN_SCHED_TIMEOUT);
-> +		xe_guc_engine_trigger_cleanup(e);
->   
->   	return 0;
->   }
-> @@ -1584,7 +1661,7 @@ int xe_guc_engine_memory_cat_error_handler(struct xe_guc *guc, u32 *msg,
->   	/* Treat the same as engine reset */
->   	set_engine_reset(e);
->   	if (!engine_banned(e))
-> -		drm_sched_set_timeout(&e->guc->sched, MIN_SCHED_TIMEOUT);
-> +		xe_guc_engine_trigger_cleanup(e);
->   
->   	return 0;
->   }
-> diff --git a/drivers/gpu/drm/xe/xe_trace.h b/drivers/gpu/drm/xe/xe_trace.h
-> index 2f8eb7ebe9a7..02861c26e145 100644
-> --- a/drivers/gpu/drm/xe/xe_trace.h
-> +++ b/drivers/gpu/drm/xe/xe_trace.h
-> @@ -219,6 +219,11 @@ DEFINE_EVENT(xe_engine, xe_engine_resubmit,
->   	     TP_ARGS(e)
->   );
->   
-> +DEFINE_EVENT(xe_engine, xe_engine_lr_cleanup,
-> +	     TP_PROTO(struct xe_engine *e),
-> +	     TP_ARGS(e)
-> +);
-> +
->   DECLARE_EVENT_CLASS(xe_sched_job,
->   		    TP_PROTO(struct xe_sched_job *job),
->   		    TP_ARGS(job),
-
+> 
+> Generally: in current form GPU frontbuffer rendering + PSR,FBC doesn't
+> work with Xe driver in drm-xe-next branch. Additionally it is breaking
+> it for i915 as well. If patches 1-4 are applied i915 GPU frontbuffer
+> rendering + PSR,FBC is not broken anymore. Drawback is that neither CPU
+> or GPU fronbuffer rendering + PSR,FBC is working anymore with Xe
+> driver. Subsequent patches are fixing that.
+> > 
+> > Maarten?
+> > 
+> > On Fri, May 05, 2023 at 11:29:40AM +0300, Jouni Högander wrote:
+> > > Signed-off-by: Jouni Högander <jouni.hogander@intel.com>
+> > > ---
+> > >  drivers/gpu/drm/xe/display/xe_plane_initial.c | 2 +-
+> > >  1 file changed, 1 insertion(+), 1 deletion(-)
+> > > 
+> > > diff --git a/drivers/gpu/drm/xe/display/xe_plane_initial.c
+> > > b/drivers/gpu/drm/xe/display/xe_plane_initial.c
+> > > index d0f91f37b6d8..34ae461865a7 100644
+> > > --- a/drivers/gpu/drm/xe/display/xe_plane_initial.c
+> > > +++ b/drivers/gpu/drm/xe/display/xe_plane_initial.c
+> > > @@ -228,7 +228,7 @@ intel_find_initial_plane_obj(struct intel_crtc
+> > > *crtc,
+> > >         plane_state->uapi.crtc = &crtc->base;
+> > >         intel_plane_copy_uapi_to_hw_state(plane_state, plane_state,
+> > > crtc);
+> > >  
+> > > -       atomic_or(plane->frontbuffer_bit,
+> > > &to_intel_framebuffer(fb)->bits);
+> > > +       atomic_or(plane->frontbuffer_bit,
+> > > &to_intel_frontbuffer(fb)->bits);
+> > >  
+> > >         plane_config->vma = vma;
+> > >  
+> > > -- 
+> > > 2.34.1
+> > > 
+> 
