@@ -4,47 +4,48 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id F3B02C77B75
-	for <intel-xe@archiver.kernel.org>; Mon,  8 May 2023 22:54:07 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id E6E88C7EE2C
+	for <intel-xe@archiver.kernel.org>; Mon,  8 May 2023 22:54:10 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id BABD710E314;
-	Mon,  8 May 2023 22:54:07 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id AA1FC10E31A;
+	Mon,  8 May 2023 22:54:10 +0000 (UTC)
 Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 03F5410E318
- for <intel-xe@lists.freedesktop.org>; Mon,  8 May 2023 22:54:06 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 17B4010E314
+ for <intel-xe@lists.freedesktop.org>; Mon,  8 May 2023 22:54:07 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
  t=1683586447; x=1715122447;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=2SROQcR/EQANAhoSG8OM1AgumQxkXlQrT3bUDMv3X1Y=;
- b=ZWpX8rWef3wQu6nqHy6ybMrRbbTMoTZAVU89m8O4b5/9Wq0CIVVQ1yuU
- 80D7uTR8gKY6uy2QUKb2dpuC0aKGQvr6Re67cXrF7ss8HKIp+bj3bn2W6
- JDUfYGziLhj6Hhs2yOJGH7eAhABgIRNsHztRhfBzzPFSakI+GEUY2IJat
- eckslJz5478mGtc4c+ktQ/ruywwAzB1dyN1BIsMoc7q9DxxQ71+TI4Yg/
- s6Yi4oI+lnj+TKvQsWwJlEb8H9bYLeYFRn/LGWpSt85smUO+QA7684y57
- EFWg5/pKH4xaAnoQtkHPAE1dcR0kl3dibBjIajjlU+YL7QQ83optl5wzQ w==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10704"; a="330130316"
-X-IronPort-AV: E=Sophos;i="5.99,259,1677571200"; d="scan'208";a="330130316"
+ bh=MMSg51BN2RaEyDm1KojUN/rIk5H2Yvk3pCGDa/YL1Mk=;
+ b=XmrCjMpH/itZGyY1uzlS3wPSL5PCUWhnAA8TRdBaA3x6kvcSCAfJbRdm
+ PaPsT/zFTd6rvI/a/+oqBrIiyam+INbefUq1a5xH79CLhG0vBoz6X12hr
+ IOsyE9OdxPLtuZ1PRSOgH8YYCl5MsbNabGKXf8tixq8vWm6KrCQhcExzE
+ 9DhvoIh5yRicPn6PrbLn9wMsC/zpPC+BZjSXXIgElDjnhSCZKJDQem6Cm
+ XflcTXeLi/tGPBaCq9gfNlRcM6sd/ucqBuOIUFpe7OWArfiSHGNU11oi6
+ FXoL1D8xpa1gR3zi5rbukOyBiGUzPcrA/C6QLXU5Qw7lo4w69vqdU3aye w==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10704"; a="330130318"
+X-IronPort-AV: E=Sophos;i="5.99,259,1677571200"; d="scan'208";a="330130318"
 Received: from fmsmga004.fm.intel.com ([10.253.24.48])
  by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  08 May 2023 15:54:06 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10704"; a="768232377"
-X-IronPort-AV: E=Sophos;i="5.99,259,1677571200"; d="scan'208";a="768232377"
+X-IronPort-AV: E=McAfee;i="6600,9927,10704"; a="768232388"
+X-IronPort-AV: E=Sophos;i="5.99,259,1677571200"; d="scan'208";a="768232388"
 Received: from lucas-s2600cw.jf.intel.com ([10.165.21.196])
  by fmsmga004-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  08 May 2023 15:54:06 -0700
 From: Lucas De Marchi <lucas.demarchi@intel.com>
 To: intel-xe@lists.freedesktop.org
-Date: Mon,  8 May 2023 15:53:21 -0700
-Message-Id: <20230508225322.2692066-4-lucas.demarchi@intel.com>
+Date: Mon,  8 May 2023 15:53:22 -0700
+Message-Id: <20230508225322.2692066-5-lucas.demarchi@intel.com>
 X-Mailer: git-send-email 2.40.1
 In-Reply-To: <20230508225322.2692066-1-lucas.demarchi@intel.com>
 References: <20230508225322.2692066-1-lucas.demarchi@intel.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-xe] [PATCH v2 3/4] drm/xe: Rename reg field to addr
+Subject: [Intel-xe] [PATCH v2 4/4] drm/xe: Fix indent in
+ xe_hw_engine_print_state()
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -61,376 +62,123 @@ Cc: Lucas De Marchi <lucas.demarchi@intel.com>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Rename the address field to "addr" rather than "reg" so it's easier to
-understand what it is.
+Fix the indent to align with open parenthesis, following the coding
+style.
 
 Signed-off-by: Lucas De Marchi <lucas.demarchi@intel.com>
-Acked-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
+Reviewed-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
 ---
- drivers/gpu/drm/xe/regs/xe_reg_defs.h  |  6 ++---
- drivers/gpu/drm/xe/tests/xe_rtp_test.c |  2 +-
- drivers/gpu/drm/xe/xe_force_wake.c     |  2 +-
- drivers/gpu/drm/xe/xe_gt_mcr.c         |  2 +-
- drivers/gpu/drm/xe/xe_guc.c            |  2 +-
- drivers/gpu/drm/xe/xe_guc_ads.c        |  2 +-
- drivers/gpu/drm/xe/xe_hw_engine.c      |  8 +++----
- drivers/gpu/drm/xe/xe_irq.c            |  2 +-
- drivers/gpu/drm/xe/xe_mmio.c           |  2 +-
- drivers/gpu/drm/xe/xe_mmio.h           | 32 +++++++++++++-------------
- drivers/gpu/drm/xe/xe_mocs.c           |  6 ++---
- drivers/gpu/drm/xe/xe_pci.c            |  4 ++--
- drivers/gpu/drm/xe/xe_reg_sr.c         |  6 ++---
- drivers/gpu/drm/xe/xe_ring_ops.c       |  2 +-
- drivers/gpu/drm/xe/xe_rtp.c            |  2 +-
- drivers/gpu/drm/xe/xe_wopcm.c          |  4 ++--
- 16 files changed, 42 insertions(+), 42 deletions(-)
+ drivers/gpu/drm/xe/xe_hw_engine.c | 66 +++++++++++++++----------------
+ 1 file changed, 33 insertions(+), 33 deletions(-)
 
-diff --git a/drivers/gpu/drm/xe/regs/xe_reg_defs.h b/drivers/gpu/drm/xe/regs/xe_reg_defs.h
-index da781bc7bdc7..4554362ff4d9 100644
---- a/drivers/gpu/drm/xe/regs/xe_reg_defs.h
-+++ b/drivers/gpu/drm/xe/regs/xe_reg_defs.h
-@@ -18,8 +18,8 @@
- struct xe_reg {
- 	union {
- 		struct {
--			/** @reg: address */
--			u32 reg:22;
-+			/** @addr: address */
-+			u32 addr:22;
- 			/**
- 			 * @masked: register is "masked", with upper 16bits used
- 			 * to identify the bits that are updated on the lower
-@@ -71,7 +71,7 @@ struct xe_reg_mcr {
-  * object of the right type. However when initializing static const storage,
-  * where a compound statement is not allowed, this can be used instead.
-  */
--#define XE_REG_INITIALIZER(r_, ...)    { .reg = r_, __VA_ARGS__ }
-+#define XE_REG_INITIALIZER(r_, ...)    { .addr = r_, __VA_ARGS__ }
- 
- 
- /**
-diff --git a/drivers/gpu/drm/xe/tests/xe_rtp_test.c b/drivers/gpu/drm/xe/tests/xe_rtp_test.c
-index ad2fe8a39a78..4b2aac5ccf28 100644
---- a/drivers/gpu/drm/xe/tests/xe_rtp_test.c
-+++ b/drivers/gpu/drm/xe/tests/xe_rtp_test.c
-@@ -244,7 +244,7 @@ static void xe_rtp_process_tests(struct kunit *test)
- 	xe_rtp_process(param->entries, reg_sr, &xe->gt[0], NULL);
- 
- 	xa_for_each(&reg_sr->xa, idx, sre) {
--		if (idx == param->expected_reg.reg)
-+		if (idx == param->expected_reg.addr)
- 			sr_entry = sre;
- 
- 		count++;
-diff --git a/drivers/gpu/drm/xe/xe_force_wake.c b/drivers/gpu/drm/xe/xe_force_wake.c
-index 363b81c3d746..f0f0592fc598 100644
---- a/drivers/gpu/drm/xe/xe_force_wake.c
-+++ b/drivers/gpu/drm/xe/xe_force_wake.c
-@@ -129,7 +129,7 @@ static int domain_sleep_wait(struct xe_gt *gt,
- 	for (tmp__ = (mask__); tmp__; tmp__ &= ~BIT(ffs(tmp__) - 1)) \
- 		for_each_if((domain__ = ((fw__)->domains + \
- 					 (ffs(tmp__) - 1))) && \
--					 domain__->reg_ctl.reg)
-+					 domain__->reg_ctl.addr)
- 
- int xe_force_wake_get(struct xe_force_wake *fw,
- 		      enum xe_force_wake_domains domains)
-diff --git a/drivers/gpu/drm/xe/xe_gt_mcr.c b/drivers/gpu/drm/xe/xe_gt_mcr.c
-index c6b9e9869fee..3db550c85e32 100644
---- a/drivers/gpu/drm/xe/xe_gt_mcr.c
-+++ b/drivers/gpu/drm/xe/xe_gt_mcr.c
-@@ -398,7 +398,7 @@ static bool xe_gt_mcr_get_nonterminated_steering(struct xe_gt *gt,
- 	 */
- 	drm_WARN(&gt_to_xe(gt)->drm, true,
- 		 "Did not find MCR register %#x in any MCR steering table\n",
--		 reg.reg);
-+		 reg.addr);
- 	*group = 0;
- 	*instance = 0;
- 
-diff --git a/drivers/gpu/drm/xe/xe_guc.c b/drivers/gpu/drm/xe/xe_guc.c
-index e8a126ad400f..eb4af4c71124 100644
---- a/drivers/gpu/drm/xe/xe_guc.c
-+++ b/drivers/gpu/drm/xe/xe_guc.c
-@@ -713,7 +713,7 @@ int xe_guc_mmio_send_recv(struct xe_guc *guc, const u32 *request,
- 		response_buf[0] = header;
- 
- 		for (i = 1; i < VF_SW_FLAG_COUNT; i++) {
--			reply_reg.reg += i * sizeof(u32);
-+			reply_reg.addr += i * sizeof(u32);
- 			response_buf[i] = xe_mmio_read32(gt, reply_reg);
- 		}
- 	}
-diff --git a/drivers/gpu/drm/xe/xe_guc_ads.c b/drivers/gpu/drm/xe/xe_guc_ads.c
-index 683f2df09c49..6d550d746909 100644
---- a/drivers/gpu/drm/xe/xe_guc_ads.c
-+++ b/drivers/gpu/drm/xe/xe_guc_ads.c
-@@ -426,7 +426,7 @@ static void guc_mmio_regset_write_one(struct xe_guc_ads *ads,
- 				      unsigned int n_entry)
- {
- 	struct guc_mmio_reg entry = {
--		.offset = reg.reg,
-+		.offset = reg.addr,
- 		.flags = reg.masked ? GUC_REGSET_MASKED : 0,
- 	};
- 
 diff --git a/drivers/gpu/drm/xe/xe_hw_engine.c b/drivers/gpu/drm/xe/xe_hw_engine.c
-index 5e275aff8974..696b9d949163 100644
+index 696b9d949163..751f6c3bba17 100644
 --- a/drivers/gpu/drm/xe/xe_hw_engine.c
 +++ b/drivers/gpu/drm/xe/xe_hw_engine.c
-@@ -236,20 +236,20 @@ static void hw_engine_fini(struct drm_device *drm, void *arg)
- static void hw_engine_mmio_write32(struct xe_hw_engine *hwe, struct xe_reg reg,
- 				   u32 val)
- {
--	XE_BUG_ON(reg.reg & hwe->mmio_base);
-+	XE_BUG_ON(reg.addr & hwe->mmio_base);
- 	xe_force_wake_assert_held(gt_to_fw(hwe->gt), hwe->domain);
+@@ -580,70 +580,70 @@ void xe_hw_engine_print_state(struct xe_hw_engine *hwe, struct drm_printer *p)
+ 		return;
  
--	reg.reg += hwe->mmio_base;
-+	reg.addr += hwe->mmio_base;
+ 	drm_printf(p, "%s (physical), logical instance=%d\n", hwe->name,
+-		hwe->logical_instance);
++		   hwe->logical_instance);
+ 	drm_printf(p, "\tForcewake: domain 0x%x, ref %d\n",
+-		hwe->domain,
+-		xe_force_wake_ref(gt_to_fw(hwe->gt), hwe->domain));
++		   hwe->domain,
++		   xe_force_wake_ref(gt_to_fw(hwe->gt), hwe->domain));
+ 	drm_printf(p, "\tMMIO base: 0x%08x\n", hwe->mmio_base);
  
- 	xe_mmio_write32(hwe->gt, reg, val);
+ 	drm_printf(p, "\tHWSTAM: 0x%08x\n",
+-		hw_engine_mmio_read32(hwe, RING_HWSTAM(0)));
++		   hw_engine_mmio_read32(hwe, RING_HWSTAM(0)));
+ 	drm_printf(p, "\tRING_HWS_PGA: 0x%08x\n",
+-		hw_engine_mmio_read32(hwe, RING_HWS_PGA(0)));
++		   hw_engine_mmio_read32(hwe, RING_HWS_PGA(0)));
+ 
+ 	drm_printf(p, "\tRING_EXECLIST_STATUS_LO: 0x%08x\n",
+-		hw_engine_mmio_read32(hwe, RING_EXECLIST_STATUS_LO(0)));
++		   hw_engine_mmio_read32(hwe, RING_EXECLIST_STATUS_LO(0)));
+ 	drm_printf(p, "\tRING_EXECLIST_STATUS_HI: 0x%08x\n",
+-		hw_engine_mmio_read32(hwe, RING_EXECLIST_STATUS_HI(0)));
++		   hw_engine_mmio_read32(hwe, RING_EXECLIST_STATUS_HI(0)));
+ 	drm_printf(p, "\tRING_EXECLIST_SQ_CONTENTS_LO: 0x%08x\n",
+-		hw_engine_mmio_read32(hwe,
++		   hw_engine_mmio_read32(hwe,
+ 					 RING_EXECLIST_SQ_CONTENTS_LO(0)));
+ 	drm_printf(p, "\tRING_EXECLIST_SQ_CONTENTS_HI: 0x%08x\n",
+-		hw_engine_mmio_read32(hwe,
++		   hw_engine_mmio_read32(hwe,
+ 					 RING_EXECLIST_SQ_CONTENTS_HI(0)));
+ 	drm_printf(p, "\tRING_EXECLIST_CONTROL: 0x%08x\n",
+-		hw_engine_mmio_read32(hwe, RING_EXECLIST_CONTROL(0)));
++		   hw_engine_mmio_read32(hwe, RING_EXECLIST_CONTROL(0)));
+ 
+ 	drm_printf(p, "\tRING_START: 0x%08x\n",
+-		hw_engine_mmio_read32(hwe, RING_START(0)));
++		   hw_engine_mmio_read32(hwe, RING_START(0)));
+ 	drm_printf(p, "\tRING_HEAD:  0x%08x\n",
+-		hw_engine_mmio_read32(hwe, RING_HEAD(0)) & HEAD_ADDR);
++		   hw_engine_mmio_read32(hwe, RING_HEAD(0)) & HEAD_ADDR);
+ 	drm_printf(p, "\tRING_TAIL:  0x%08x\n",
+-		hw_engine_mmio_read32(hwe, RING_TAIL(0)) & TAIL_ADDR);
++		   hw_engine_mmio_read32(hwe, RING_TAIL(0)) & TAIL_ADDR);
+ 	drm_printf(p, "\tRING_CTL: 0x%08x\n",
+-		hw_engine_mmio_read32(hwe, RING_CTL(0)));
++		   hw_engine_mmio_read32(hwe, RING_CTL(0)));
+ 	drm_printf(p, "\tRING_MODE: 0x%08x\n",
+-		hw_engine_mmio_read32(hwe, RING_MI_MODE(0)));
++		   hw_engine_mmio_read32(hwe, RING_MI_MODE(0)));
+ 	drm_printf(p, "\tRING_MODE_GEN7: 0x%08x\n",
+-		hw_engine_mmio_read32(hwe, RING_MODE(0)));
++		   hw_engine_mmio_read32(hwe, RING_MODE(0)));
+ 
+ 	drm_printf(p, "\tRING_IMR:   0x%08x\n",
+-		hw_engine_mmio_read32(hwe, RING_IMR(0)));
++		   hw_engine_mmio_read32(hwe, RING_IMR(0)));
+ 	drm_printf(p, "\tRING_ESR:   0x%08x\n",
+-		hw_engine_mmio_read32(hwe, RING_ESR(0)));
++		   hw_engine_mmio_read32(hwe, RING_ESR(0)));
+ 	drm_printf(p, "\tRING_EMR:   0x%08x\n",
+-		hw_engine_mmio_read32(hwe, RING_EMR(0)));
++		   hw_engine_mmio_read32(hwe, RING_EMR(0)));
+ 	drm_printf(p, "\tRING_EIR:   0x%08x\n",
+-		hw_engine_mmio_read32(hwe, RING_EIR(0)));
+-
+-        drm_printf(p, "\tACTHD:  0x%08x_%08x\n",
+-		hw_engine_mmio_read32(hwe, RING_ACTHD_UDW(0)),
+-		hw_engine_mmio_read32(hwe, RING_ACTHD(0)));
+-        drm_printf(p, "\tBBADDR: 0x%08x_%08x\n",
+-		hw_engine_mmio_read32(hwe, RING_BBADDR_UDW(0)),
+-		hw_engine_mmio_read32(hwe, RING_BBADDR(0)));
+-        drm_printf(p, "\tDMA_FADDR: 0x%08x_%08x\n",
+-		hw_engine_mmio_read32(hwe, RING_DMA_FADD_UDW(0)),
+-		hw_engine_mmio_read32(hwe, RING_DMA_FADD(0)));
++		   hw_engine_mmio_read32(hwe, RING_EIR(0)));
++
++	drm_printf(p, "\tACTHD:  0x%08x_%08x\n",
++		   hw_engine_mmio_read32(hwe, RING_ACTHD_UDW(0)),
++		   hw_engine_mmio_read32(hwe, RING_ACTHD(0)));
++	drm_printf(p, "\tBBADDR: 0x%08x_%08x\n",
++		   hw_engine_mmio_read32(hwe, RING_BBADDR_UDW(0)),
++		   hw_engine_mmio_read32(hwe, RING_BBADDR(0)));
++	drm_printf(p, "\tDMA_FADDR: 0x%08x_%08x\n",
++		   hw_engine_mmio_read32(hwe, RING_DMA_FADD_UDW(0)),
++		   hw_engine_mmio_read32(hwe, RING_DMA_FADD(0)));
+ 
+ 	drm_printf(p, "\tIPEIR: 0x%08x\n",
+-		hw_engine_mmio_read32(hwe, IPEIR(0)));
++		   hw_engine_mmio_read32(hwe, IPEIR(0)));
+ 	drm_printf(p, "\tIPEHR: 0x%08x\n\n",
+-		hw_engine_mmio_read32(hwe, IPEHR(0)));
++		   hw_engine_mmio_read32(hwe, IPEHR(0)));
+ 
+ 	if (hwe->class == XE_ENGINE_CLASS_COMPUTE)
+ 		drm_printf(p, "\tRCU_MODE: 0x%08x\n",
+-			xe_mmio_read32(hwe->gt, RCU_MODE));
++			   xe_mmio_read32(hwe->gt, RCU_MODE));
+ 
  }
  
- static u32 hw_engine_mmio_read32(struct xe_hw_engine *hwe, struct xe_reg reg)
- {
--	XE_BUG_ON(reg.reg & hwe->mmio_base);
-+	XE_BUG_ON(reg.addr & hwe->mmio_base);
- 	xe_force_wake_assert_held(gt_to_fw(hwe->gt), hwe->domain);
- 
--	reg.reg += hwe->mmio_base;
-+	reg.addr += hwe->mmio_base;
- 
- 	return xe_mmio_read32(hwe->gt, reg);
- }
-diff --git a/drivers/gpu/drm/xe/xe_irq.c b/drivers/gpu/drm/xe/xe_irq.c
-index 7aa245792927..5bf359c81cc5 100644
---- a/drivers/gpu/drm/xe/xe_irq.c
-+++ b/drivers/gpu/drm/xe/xe_irq.c
-@@ -36,7 +36,7 @@ static void assert_iir_is_zero(struct xe_gt *gt, struct xe_reg reg)
- 
- 	drm_WARN(&gt_to_xe(gt)->drm, 1,
- 		 "Interrupt register 0x%x is not zero: 0x%08x\n",
--		 reg.reg, val);
-+		 reg.addr, val);
- 	xe_mmio_write32(gt, reg, 0xffffffff);
- 	xe_mmio_read32(gt, reg);
- 	xe_mmio_write32(gt, reg, 0xffffffff);
-diff --git a/drivers/gpu/drm/xe/xe_mmio.c b/drivers/gpu/drm/xe/xe_mmio.c
-index 0e91004fa06d..c7fbb1cc1f64 100644
---- a/drivers/gpu/drm/xe/xe_mmio.c
-+++ b/drivers/gpu/drm/xe/xe_mmio.c
-@@ -421,7 +421,7 @@ int xe_mmio_ioctl(struct drm_device *dev, void *data,
- 		unsigned int i;
- 
- 		for (i = 0; i < ARRAY_SIZE(mmio_read_whitelist); i++) {
--			if (mmio_read_whitelist[i].reg == args->addr) {
-+			if (mmio_read_whitelist[i].addr == args->addr) {
- 				allowed = true;
- 				break;
- 			}
-diff --git a/drivers/gpu/drm/xe/xe_mmio.h b/drivers/gpu/drm/xe/xe_mmio.h
-index 821701f8ada6..01732ff7e4c6 100644
---- a/drivers/gpu/drm/xe/xe_mmio.h
-+++ b/drivers/gpu/drm/xe/xe_mmio.h
-@@ -20,27 +20,27 @@ int xe_mmio_init(struct xe_device *xe);
- 
- static inline u8 xe_mmio_read8(struct xe_gt *gt, struct xe_reg reg)
- {
--	if (reg.reg < gt->mmio.adj_limit)
--		reg.reg += gt->mmio.adj_offset;
-+	if (reg.addr < gt->mmio.adj_limit)
-+		reg.addr += gt->mmio.adj_offset;
- 
--	return readb(gt->mmio.regs + reg.reg);
-+	return readb(gt->mmio.regs + reg.addr);
- }
- 
- static inline void xe_mmio_write32(struct xe_gt *gt,
- 				   struct xe_reg reg, u32 val)
- {
--	if (reg.reg < gt->mmio.adj_limit)
--		reg.reg += gt->mmio.adj_offset;
-+	if (reg.addr < gt->mmio.adj_limit)
-+		reg.addr += gt->mmio.adj_offset;
- 
--	writel(val, gt->mmio.regs + reg.reg);
-+	writel(val, gt->mmio.regs + reg.addr);
- }
- 
- static inline u32 xe_mmio_read32(struct xe_gt *gt, struct xe_reg reg)
- {
--	if (reg.reg < gt->mmio.adj_limit)
--		reg.reg += gt->mmio.adj_offset;
-+	if (reg.addr < gt->mmio.adj_limit)
-+		reg.addr += gt->mmio.adj_offset;
- 
--	return readl(gt->mmio.regs + reg.reg);
-+	return readl(gt->mmio.regs + reg.addr);
- }
- 
- static inline u32 xe_mmio_rmw32(struct xe_gt *gt, struct xe_reg reg, u32 clr,
-@@ -58,18 +58,18 @@ static inline u32 xe_mmio_rmw32(struct xe_gt *gt, struct xe_reg reg, u32 clr,
- static inline void xe_mmio_write64(struct xe_gt *gt,
- 				   struct xe_reg reg, u64 val)
- {
--	if (reg.reg < gt->mmio.adj_limit)
--		reg.reg += gt->mmio.adj_offset;
-+	if (reg.addr < gt->mmio.adj_limit)
-+		reg.addr += gt->mmio.adj_offset;
- 
--	writeq(val, gt->mmio.regs + reg.reg);
-+	writeq(val, gt->mmio.regs + reg.addr);
- }
- 
- static inline u64 xe_mmio_read64(struct xe_gt *gt, struct xe_reg reg)
- {
--	if (reg.reg < gt->mmio.adj_limit)
--		reg.reg += gt->mmio.adj_offset;
-+	if (reg.addr < gt->mmio.adj_limit)
-+		reg.addr += gt->mmio.adj_offset;
- 
--	return readq(gt->mmio.regs + reg.reg);
-+	return readq(gt->mmio.regs + reg.addr);
- }
- 
- static inline int xe_mmio_write32_and_verify(struct xe_gt *gt,
-@@ -127,7 +127,7 @@ int xe_mmio_ioctl(struct drm_device *dev, void *data,
- static inline bool xe_mmio_in_range(const struct xe_mmio_range *range,
- 				    struct xe_reg reg)
- {
--	return range && reg.reg >= range->start && reg.reg <= range->end;
-+	return range && reg.addr >= range->start && reg.addr <= range->end;
- }
- 
- int xe_mmio_probe_vram(struct xe_device *xe);
-diff --git a/drivers/gpu/drm/xe/xe_mocs.c b/drivers/gpu/drm/xe/xe_mocs.c
-index 1175dec5d90b..5698df87aba7 100644
---- a/drivers/gpu/drm/xe/xe_mocs.c
-+++ b/drivers/gpu/drm/xe/xe_mocs.c
-@@ -478,7 +478,7 @@ static void __init_mocs_table(struct xe_gt *gt,
- 	     i < info->n_entries ? (mocs = get_entry_control(info, i)), 1 : 0;
- 	     i++) {
- 		struct xe_reg reg = XE_REG(addr + i * 4);
--		mocs_dbg(&gt->xe->drm, "%d 0x%x 0x%x\n", i, reg.reg, mocs);
-+		mocs_dbg(&gt->xe->drm, "%d 0x%x 0x%x\n", i, reg.addr, mocs);
- 		xe_mmio_write32(gt, reg, mocs);
- 	}
- }
-@@ -513,7 +513,7 @@ static void init_l3cc_table(struct xe_gt *gt,
- 	     (l3cc = l3cc_combine(get_entry_l3cc(info, 2 * i),
- 				  get_entry_l3cc(info, 2 * i + 1))), 1 : 0;
- 	     i++) {
--		mocs_dbg(&gt->xe->drm, "%d 0x%x 0x%x\n", i, LNCFCMOCS(i).reg,
-+		mocs_dbg(&gt->xe->drm, "%d 0x%x 0x%x\n", i, LNCFCMOCS(i).addr,
- 			 l3cc);
- 		xe_mmio_write32(gt, LNCFCMOCS(i), l3cc);
- 	}
-@@ -540,7 +540,7 @@ void xe_mocs_init(struct xe_gt *gt)
- 	mocs_dbg(&gt->xe->drm, "flag:0x%x\n", flags);
- 
- 	if (flags & HAS_GLOBAL_MOCS)
--		__init_mocs_table(gt, &table, GLOBAL_MOCS(0).reg);
-+		__init_mocs_table(gt, &table, GLOBAL_MOCS(0).addr);
- 
- 	/*
- 	 * Initialize the L3CC table as part of mocs initalization to make
-diff --git a/drivers/gpu/drm/xe/xe_pci.c b/drivers/gpu/drm/xe/xe_pci.c
-index 855cf8557056..a6858fc7fe8d 100644
---- a/drivers/gpu/drm/xe/xe_pci.c
-+++ b/drivers/gpu/drm/xe/xe_pci.c
-@@ -442,7 +442,7 @@ static void handle_gmdid(struct xe_device *xe,
- {
- 	u32 ver;
- 
--	ver = peek_gmdid(xe, GMD_ID.reg);
-+	ver = peek_gmdid(xe, GMD_ID.addr);
- 	for (int i = 0; i < ARRAY_SIZE(graphics_ip_map); i++) {
- 		if (ver == graphics_ip_map[i].ver) {
- 			xe->info.graphics_verx100 = ver;
-@@ -457,7 +457,7 @@ static void handle_gmdid(struct xe_device *xe,
- 			ver / 100, ver % 100);
- 	}
- 
--	ver = peek_gmdid(xe, GMD_ID.reg + 0x380000);
-+	ver = peek_gmdid(xe, GMD_ID.addr + 0x380000);
- 	for (int i = 0; i < ARRAY_SIZE(media_ip_map); i++) {
- 		if (ver == media_ip_map[i].ver) {
- 			xe->info.media_verx100 = ver;
-diff --git a/drivers/gpu/drm/xe/xe_reg_sr.c b/drivers/gpu/drm/xe/xe_reg_sr.c
-index 51a40a9e532d..0312823101ad 100644
---- a/drivers/gpu/drm/xe/xe_reg_sr.c
-+++ b/drivers/gpu/drm/xe/xe_reg_sr.c
-@@ -93,7 +93,7 @@ static void reg_sr_inc_error(struct xe_reg_sr *sr)
- int xe_reg_sr_add(struct xe_reg_sr *sr,
- 		  const struct xe_reg_sr_entry *e)
- {
--	unsigned long idx = e->reg.reg;
-+	unsigned long idx = e->reg.addr;
- 	struct xe_reg_sr_entry *pentry = xa_load(&sr->xa, idx);
- 	int ret;
- 
-@@ -174,7 +174,7 @@ static void apply_one_mmio(struct xe_gt *gt, struct xe_reg_sr_entry *entry)
- 	 */
- 	val |= entry->set_bits;
- 
--	drm_dbg(&xe->drm, "REG[0x%x] = 0x%08x", reg.reg, val);
-+	drm_dbg(&xe->drm, "REG[0x%x] = 0x%08x", reg.addr, val);
- 
- 	if (entry->reg.mcr)
- 		xe_gt_mcr_multicast_write(gt, reg_mcr, val);
-@@ -239,7 +239,7 @@ void xe_reg_sr_apply_whitelist(struct xe_reg_sr *sr, u32 mmio_base,
- 
- 	/* And clear the rest just in case of garbage */
- 	for (; slot < RING_MAX_NONPRIV_SLOTS; slot++) {
--		u32 addr = RING_NOPID(mmio_base).reg;
-+		u32 addr = RING_NOPID(mmio_base).addr;
- 
- 		xe_mmio_write32(gt, RING_FORCE_TO_NONPRIV(mmio_base, slot), addr);
- 	}
-diff --git a/drivers/gpu/drm/xe/xe_ring_ops.c b/drivers/gpu/drm/xe/xe_ring_ops.c
-index 733ed8a30c2e..74c1b5dfbaee 100644
---- a/drivers/gpu/drm/xe/xe_ring_ops.c
-+++ b/drivers/gpu/drm/xe/xe_ring_ops.c
-@@ -48,7 +48,7 @@ static int emit_aux_table_inv(struct xe_gt *gt, struct xe_reg reg,
- 			      u32 *dw, int i)
- {
- 	dw[i++] = MI_LOAD_REGISTER_IMM(1) | MI_LRI_MMIO_REMAP_EN;
--	dw[i++] = reg.reg + gt->mmio.adj_offset;
-+	dw[i++] = reg.addr + gt->mmio.adj_offset;
- 	dw[i++] = AUX_INV;
- 	dw[i++] = MI_NOOP;
- 
-diff --git a/drivers/gpu/drm/xe/xe_rtp.c b/drivers/gpu/drm/xe/xe_rtp.c
-index f2a0e8eb4936..0c6a23e14a71 100644
---- a/drivers/gpu/drm/xe/xe_rtp.c
-+++ b/drivers/gpu/drm/xe/xe_rtp.c
-@@ -101,7 +101,7 @@ static void rtp_add_sr_entry(const struct xe_rtp_action *action,
- 		.read_mask = action->read_mask,
- 	};
- 
--	sr_entry.reg.reg += mmio_base;
-+	sr_entry.reg.addr += mmio_base;
- 	xe_reg_sr_add(sr, &sr_entry);
- }
- 
-diff --git a/drivers/gpu/drm/xe/xe_wopcm.c b/drivers/gpu/drm/xe/xe_wopcm.c
-index 11eea970c207..35fde8965bca 100644
---- a/drivers/gpu/drm/xe/xe_wopcm.c
-+++ b/drivers/gpu/drm/xe/xe_wopcm.c
-@@ -170,10 +170,10 @@ static int __wopcm_init_regs(struct xe_device *xe, struct xe_gt *gt,
- err_out:
- 	drm_notice(&xe->drm, "Failed to init uC WOPCM registers!\n");
- 	drm_notice(&xe->drm, "%s(%#x)=%#x\n", "DMA_GUC_WOPCM_OFFSET",
--		   DMA_GUC_WOPCM_OFFSET.reg,
-+		   DMA_GUC_WOPCM_OFFSET.addr,
- 		   xe_mmio_read32(gt, DMA_GUC_WOPCM_OFFSET));
- 	drm_notice(&xe->drm, "%s(%#x)=%#x\n", "GUC_WOPCM_SIZE",
--		   GUC_WOPCM_SIZE.reg,
-+		   GUC_WOPCM_SIZE.addr,
- 		   xe_mmio_read32(gt, GUC_WOPCM_SIZE));
- 
- 	return err;
 -- 
 2.40.1
 
