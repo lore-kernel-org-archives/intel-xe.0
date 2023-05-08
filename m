@@ -4,135 +4,52 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id E33D8C77B7F
-	for <intel-xe@archiver.kernel.org>; Mon,  8 May 2023 12:50:12 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8A5E6C77B7F
+	for <intel-xe@archiver.kernel.org>; Mon,  8 May 2023 13:14:15 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id AD25E10E27E;
-	Mon,  8 May 2023 12:50:12 +0000 (UTC)
-Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5822610E27E
- for <intel-xe@lists.freedesktop.org>; Mon,  8 May 2023 12:50:11 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5D87D10E28B;
+	Mon,  8 May 2023 13:14:15 +0000 (UTC)
+Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B38D310E28B
+ for <intel-xe@lists.freedesktop.org>; Mon,  8 May 2023 13:14:14 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1683550211; x=1715086211;
- h=date:from:to:cc:subject:message-id:references:
- content-transfer-encoding:in-reply-to:mime-version;
- bh=a3vBRm2gZ7CDwlhXOGn1fN6LfuiEa8IFHMuzlW5wV0s=;
- b=gxp7E2DY2bh+ZJwsS7dd0b907ETBVFebFuzsM3SV54udx+h8murH48xM
- 5Vvsrr6LWzYtP8mRPFuHOJ3GEaY8O88GsT576fDbmoz4ZZqkscXZBTGFz
- efL/2YDOpabKieXNhe75ovSXEAej8hTzw2Yg4qeUciFopsk2cdvwytAWx
- 6CEI3NBKtyA8zPfq/oBCn4k1Fhgw71Hi5LANM7TuCQvz5HK6g7ID1N1Rp
- Ljz3G0QdkiXv2ZAcp1jEiIOEzBU4nXf9OOS0Wk5FoBSEPEUXIc+3kvxsG
- cHz+DcEruSapP52wyO+TKQiRbS2c9OH+CNjTqKpWCb8269H2duQUj0pnd A==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10703"; a="338856779"
-X-IronPort-AV: E=Sophos;i="5.99,259,1677571200"; d="scan'208";a="338856779"
-Received: from orsmga001.jf.intel.com ([10.7.209.18])
- by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 May 2023 05:50:10 -0700
+ t=1683551654; x=1715087654;
+ h=message-id:date:mime-version:subject:to:references:from:
+ in-reply-to:content-transfer-encoding;
+ bh=pR7f2B5l9+1S8oF9F0WXK+BKgt5MNJGSto7Yi9I8fIg=;
+ b=OTUYwekkMOVu13PwB0TrqzXjLBmNPBnirk1e9b+Sf/D3SQI7+sYcTvTd
+ t2wf4XYiW1Gvp0ufefW2fEw1GRa5DLMluJjaOlZ+DHDk8athfQVTrKBcG
+ gDg54NhK5LSP/5w9FqhRBdpFsLpgMPlAM2KnauAmWZIZ6auY20WpQcaCu
+ U2vHMtZYu70hIR76nHy/ctpWuadDNCkQzqOJ3NDTJ/JJeCNLjSkTnlDDZ
+ gpTVK9Wev2wr2bDj+2krERO1lc8ENV5rboh5K7dy7GOgAozBxhXRXx6+r
+ X74i1+iz3gzUCYUQauB5UY1P3dZ77QJ3449n9zf4YyeKbcg+MnTh8hLRl A==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10703"; a="435959422"
+X-IronPort-AV: E=Sophos;i="5.99,259,1677571200"; d="scan'208";a="435959422"
+Received: from orsmga005.jf.intel.com ([10.7.209.41])
+ by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 08 May 2023 06:14:14 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10703"; a="731282696"
-X-IronPort-AV: E=Sophos;i="5.99,259,1677571200"; d="scan'208";a="731282696"
-Received: from fmsmsx603.amr.corp.intel.com ([10.18.126.83])
- by orsmga001.jf.intel.com with ESMTP; 08 May 2023 05:50:10 -0700
-Received: from fmsmsx610.amr.corp.intel.com (10.18.126.90) by
- fmsmsx603.amr.corp.intel.com (10.18.126.83) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.23; Mon, 8 May 2023 05:50:09 -0700
-Received: from fmsedg601.ED.cps.intel.com (10.1.192.135) by
- fmsmsx610.amr.corp.intel.com (10.18.126.90) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.23 via Frontend Transport; Mon, 8 May 2023 05:50:09 -0700
-Received: from NAM04-BN8-obe.outbound.protection.outlook.com (104.47.74.42) by
- edgegateway.intel.com (192.55.55.70) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2507.23; Mon, 8 May 2023 05:50:09 -0700
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=TvBUpRRbtfPvSa2gzdwLdeaI1VzEGrBOmNK0voDKEZ01KaHoHevGsgRE39bZgcfiJpk5EPX8gavJWh/o0MkSRovGb19KRmeRsKZ2nERWlYBbWiQ1aFalmuhOh21BCGesTqhd6Mga898QKxn1wMjq52q/KrvcMRpMMg9LfEmnhrsth0vwpdwgCQCXpYnKutk+BcciV/C1ygY3sNiu5yygtlZ4Mf9GmCNReKJp+Vk0wTZ2sL6P2mrkakgX4dvmGtbaoasZC7+jsrbevq3gZQ0NnYLsQIE4NckdZEKrYmm7CoEILH/Kf6TpBC6X9C8EuGnVXpMB8ugLKtpjuOw+/BwTNA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=FblUgKxiAL2dvzl9WBaiS1T33ypY0aw08r0bO3KJWSU=;
- b=jA/WV2CEKii6rtmD+o5Ij74UYorVshKfYYDIxUBBJS1P1UHHrKqCOla5vBvvOPZQUP9mPS4/hxMANJH/QC0JeqynLnd/AHBtHI2vLh36BbiT6KKxIDFJICWC+15d5S6sFSUKjyxfyuYVa8dbkVWey0hbq7ScgyI2FJAIelNPKLAEVfaI6rYrXnRAXu9Hkft+6etuDk6+c4sGmdFiF2Sfj+7CaVNBEd0IWw9o1nQkTGIooAL+baOdB9Fc330Wmj8SUCosMT68yLt09Hz919etCNa5Sic+EXG6hSccAXpGvFueayGJkOYKq/M4m/YbNidx4/Tnz0jGgZPcCKeYPA+8CA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
- dkim=pass header.d=intel.com; arc=none
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=intel.com;
-Received: from PH7PR11MB6522.namprd11.prod.outlook.com (2603:10b6:510:212::12)
- by IA1PR11MB6217.namprd11.prod.outlook.com (2603:10b6:208:3eb::16)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6363.32; Mon, 8 May
- 2023 12:50:07 +0000
-Received: from PH7PR11MB6522.namprd11.prod.outlook.com
- ([fe80::ff06:a115:e4eb:680e]) by PH7PR11MB6522.namprd11.prod.outlook.com
- ([fe80::ff06:a115:e4eb:680e%4]) with mapi id 15.20.6363.032; Mon, 8 May 2023
- 12:50:07 +0000
-Date: Mon, 8 May 2023 12:49:37 +0000
-From: Matthew Brost <matthew.brost@intel.com>
-To: "Hellstrom, Thomas" <thomas.hellstrom@intel.com>
-Message-ID: <ZFjv4dFp5B57mmNz@DUT025-TGLU.fm.intel.com>
-References: <20230508062730.1509-1-niranjana.vishwanathapura@intel.com>
- <2bf9e00bbcec0a4bfe0c4d4a194a3cd031fe6d42.camel@intel.com>
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <2bf9e00bbcec0a4bfe0c4d4a194a3cd031fe6d42.camel@intel.com>
-X-ClientProxiedBy: BYAPR07CA0087.namprd07.prod.outlook.com
- (2603:10b6:a03:12b::28) To PH7PR11MB6522.namprd11.prod.outlook.com
- (2603:10b6:510:212::12)
+X-IronPort-AV: E=McAfee;i="6600,9927,10703"; a="872793942"
+X-IronPort-AV: E=Sophos;i="5.99,259,1677571200"; d="scan'208";a="872793942"
+Received: from igorhaza-mobl1.ger.corp.intel.com (HELO [10.249.254.232])
+ ([10.249.254.232])
+ by orsmga005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 08 May 2023 06:14:11 -0700
+Message-ID: <90b4e835-c21a-f9b3-4b22-aa59c911f54f@linux.intel.com>
+Date: Mon, 8 May 2023 15:14:10 +0200
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: PH7PR11MB6522:EE_|IA1PR11MB6217:EE_
-X-MS-Office365-Filtering-Correlation-Id: 1072df7c-5a66-4354-ac49-08db4fc2bffd
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: lP0SoO87Yqvw498RNKuZzPCW+a8CYyhVjbZwdPAI/qJati8TTPBDkqT1E/iFpYDrB/bOJ8s8EsYRlSd+uRkBiDfnME53Rb2PCJz0dmGeqvXJ76vM1ByTwC9OgRBKkhNzpMeLTo1mQmp+FAORD013ohhUhn5Mx+Qr8wqOy4wjnXo01hnCJUWiNMMTWtjAl0BYfg+SvqP0GXAdvz/oSXNzlx15xZvabNDdxMOtzvXz9KMAwMOuVJ9VZ7C7Uw0lYo6+sI6Kc/UkidsO3OZ0PS69Fp2wcepiSg30JNWT7kJCX83D5V9G7J69dF3GkKhz9m7Dal/pTUWn2ntVsZY1u3+pbtRfotaNETcRxHjwMHrvREkN6k4v2BRuQk8rQnYkjpavzd/+nSBqUZEyxGvRFu78ty3bNlDk3/dJHgYBImK5KikC7fJY0vBukgw5usFGI/6oC6+DzwGye/AcrHrmSpj5PSLEwHhjboH3MQ1NWCKBkloDMVPk0eUzYQKapawBo9bHnPYp8uWL+IhKfkEcDUXJqXRcOTIqIQbAQ+rCq07vixMHF6JoeJSvsjVfFI4479z+
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:PH7PR11MB6522.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230028)(39860400002)(376002)(136003)(366004)(396003)(346002)(451199021)(86362001)(6666004)(316002)(54906003)(66556008)(66476007)(6636002)(4326008)(6486002)(66946007)(478600001)(5660300002)(8676002)(6862004)(44832011)(2906002)(8936002)(41300700001)(82960400001)(38100700002)(186003)(6506007)(6512007)(26005)(83380400001);
- DIR:OUT; SFP:1102; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?iso-8859-1?Q?qMirau1OshMx4OE/xEGcs+ptRIoRKV/k+80dUNI2kBoTB3zKVyk7+OZE2l?=
- =?iso-8859-1?Q?ft2uopQ2S337ErphOmr8NH5cMUcriQBF0g0NC0YT51PoQt8cFPZoiniNDQ?=
- =?iso-8859-1?Q?sJIXepnGAJj9HbTtz8He+WoeqB7OMkggwmgI3NuVsIA88DrH7CMKV+GSza?=
- =?iso-8859-1?Q?cLZZKQocfETFFRAXINa5W+P9Ff5QrO9Q6X+wsChGUzwF0MrfOPmIdOparp?=
- =?iso-8859-1?Q?972o2668CJet6ZeDeU2wtNvdKD7hhR0DBeh/sG0NHUI7NZb5faxIB7DtmX?=
- =?iso-8859-1?Q?zrBy6Qz+H2JktJEJMWHUDDN5pbJUN1M8xE+2iqoPWP2cyYaYtJNhtTvFMM?=
- =?iso-8859-1?Q?v8ETmGt5k6oBAE9oYNd4q6S7mZFeuSF7ARq/HQno3x88QfoTiMfi/k+ix1?=
- =?iso-8859-1?Q?Ql8XZoVTW++VGkF2LjmgxYD2CJsF0X2k9Wxcw4yAYpyvLIxCjoAKYBn+VN?=
- =?iso-8859-1?Q?y1FbGs6METxhozH2HTsuRGjyb9++otK1L7HYs38D4IfznmMjZieYt7Tr9m?=
- =?iso-8859-1?Q?oicUhqox1eEoCj2ftWnlrxEAejG7aval0lBwy+Y4FnNpBcbwy77npFb/s9?=
- =?iso-8859-1?Q?LWLWqh9dEWyovzEY5uLBo8yJSBlhQdGn9UQDa/b+hoJL9LTj6T3jV43B7m?=
- =?iso-8859-1?Q?CUSXtCQnGWP2rfsOI2WVUUoa1OPp2Myo+PzAlkFCT5xc1fe/AvrzwLVzD1?=
- =?iso-8859-1?Q?5QPYAHkl0htfK0EhQu8guMf924e261IYYPsbPgHS6HNrTMpqVX7zDvNx4t?=
- =?iso-8859-1?Q?rYXOlWdHQRnM/tBbE97DXPOBkedk+LVS4MtJd/cf4xzv7gbLYVZMa1HpUB?=
- =?iso-8859-1?Q?QcYvHxdv+QByAUhx5RQsrV+G1yMSBxljb29Ar+I/Bq8jYktS/OXbJc15xl?=
- =?iso-8859-1?Q?P/QtI5gAxZlg+5r1Skd1OYoshobaVksmuvf/Co/YlcFKQA3oLpE+oXVV7w?=
- =?iso-8859-1?Q?s1q1eqk/sfijdR2yNahnXGPPIBSamTqM0XZ4QtHzdOqwlOe/5Bz7JRMCAe?=
- =?iso-8859-1?Q?3YVXIrjFDv5vnxtgtCPgTDSuEflB7dWOwuemCUUG2fMppLW6RX60GoE8c0?=
- =?iso-8859-1?Q?3Z+7ruUNUQwoHUM9pC++0c3Aab3qVBKADik48kLNusT4KZx/VsfAxijWKu?=
- =?iso-8859-1?Q?1/pvAmkeRfW+rfcVuggHpBN9c/UmyRaNQa6Lcbva2XKNK5dBYtQBmPpPMS?=
- =?iso-8859-1?Q?NlgXpe/XIXDbkkP6TaXlHKpRUDEdyLtlEt42mHtHLC1fxRXZOSYzcmAZyc?=
- =?iso-8859-1?Q?cpadzHxQtnglFVcBRdhbImV5KQr0Ti830KGCD/nwBbwC1lOv7UubBpEwzm?=
- =?iso-8859-1?Q?bnG7kJ9004PNQKeKRFu/U3/3LGr6T8RT8h+ghEztiHYwZpqHKsUGwH1DW5?=
- =?iso-8859-1?Q?CqV04/YMZBUAavqDVuf//NPwoJhcEn2QBjLEJSIrOd49+H6dPuIBknW00f?=
- =?iso-8859-1?Q?25fovnpWj9HG9oCSfjstw5Chs6YC5VGfo6RErFvDO+fgVxsfoIH5Pq8bsW?=
- =?iso-8859-1?Q?+mHtn78CWR43yGt34dy+4AwQXc34AfUbFWrWoO583KBTRaK1BMdPrXAke/?=
- =?iso-8859-1?Q?sl7OlUGeEVi2yexYAoCs1KrjpbHmGQUxS//KUugZKZbf//cViK0zF1WkB7?=
- =?iso-8859-1?Q?1ddXzTkX/ZrA2qu3sg0RGGCJ4b+QNR8w/b/M5Q9gjAbfD6EDZmfT0qKA?=
- =?iso-8859-1?Q?=3D=3D?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: 1072df7c-5a66-4354-ac49-08db4fc2bffd
-X-MS-Exchange-CrossTenant-AuthSource: PH7PR11MB6522.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 08 May 2023 12:50:06.8514 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: d2+55lPTSiJ9MJKPbA2jsAGcuvYmaiO4+KurIJ5nQHYLYAVGd/Pd1f02gkWju4eygT2inBiGr4ZbdWzg5XJTcw==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: IA1PR11MB6217
-X-OriginatorOrg: intel.com
-Subject: Re: [Intel-xe] [RFC] drm/xe: Handle -EDEADLK case in preempt worker
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.8.0
+Content-Language: en-US
+To: Matthew Brost <matthew.brost@intel.com>, intel-xe@lists.freedesktop.org
+References: <20230502001727.3211096-1-matthew.brost@intel.com>
+ <20230502001727.3211096-6-matthew.brost@intel.com>
+From: =?UTF-8?Q?Thomas_Hellstr=c3=b6m?= <thomas.hellstrom@linux.intel.com>
+In-Reply-To: <20230502001727.3211096-6-matthew.brost@intel.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+Subject: Re: [Intel-xe] [PATCH v2 05/31] drm/xe: Long running job update
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -144,94 +61,375 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Cc: "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>,
- "christian.koenig@amd.com" <christian.koenig@amd.com>
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Mon, May 08, 2023 at 09:25:04AM +0000, Hellstrom, Thomas wrote:
-> On Sun, 2023-05-07 at 23:27 -0700, Niranjana Vishwanathapura wrote:
-> > With multiple active VMs, under memory pressure, it is possible that
-> > ttm_bo_validate() run into -EDEADLK in ttm_mem_evict_wait_busy() and
-> > return -ENOMEM.
-> > 
-> > Until ttm properly handles locking in such scenarios, best thing the
-> > driver can do is unwind the lock and retry.
-> > 
-> > Signed-off-by: Niranjana Vishwanathapura
-> > <niranjana.vishwanathapura@intel.com>
-> > ---
-> >  drivers/gpu/drm/xe/xe_vm.c | 18 ++++++++++++++++++
-> >  1 file changed, 18 insertions(+)
-> > 
-> > diff --git a/drivers/gpu/drm/xe/xe_vm.c b/drivers/gpu/drm/xe/xe_vm.c
-> > index 91576cec000d..df1214f00a06 100644
-> > --- a/drivers/gpu/drm/xe/xe_vm.c
-> > +++ b/drivers/gpu/drm/xe/xe_vm.c
-> > @@ -10,6 +10,7 @@
-> >  #include <drm/ttm/ttm_execbuf_util.h>
-> >  #include <drm/ttm/ttm_tt.h>
-> >  #include <drm/xe_drm.h>
-> > +#include <linux/delay.h>
-> >  #include <linux/kthread.h>
-> >  #include <linux/mm.h>
-> >  #include <linux/swap.h>
-> > @@ -508,11 +509,15 @@ void xe_vm_unlock_dma_resv(struct xe_vm *vm,
-> >                 kvfree(tv);
-> >  }
-> >  
-> > +#define XE_VM_REBIND_RETRY_TIMEOUT_MS 1000
-> > +
-> >  static void preempt_rebind_work_func(struct work_struct *w)
-> >  {
-> >         struct xe_vm *vm = container_of(w, struct xe_vm,
-> > preempt.rebind_work);
-> >         struct xe_vma *vma;
-> >         struct ttm_validate_buffer tv_onstack[XE_ONSTACK_TV];
-> > +       const ktime_t retry_end = ktime_add_ms(ktime_get(),
-> > +                                             
-> > XE_VM_REBIND_RETRY_TIMEOUT_MS);
-> 
-> The preempt_rebind worker may actually take considerable time if stuck
-> on locks. Could we do the retry_end calculation at the time of the
-> first affected retry?
-> 
+Hi, Matthew
 
-I like this idea as well.
+In addition to Rodrigo's comments:
 
-Matt
+On 5/2/23 02:17, Matthew Brost wrote:
+> Flow control + write ring in exec, return NULL in run_job, siganl
+> xe_hw_fence immediately, and override TDR for LR jobs.
+>
+> Signed-off-by: Matthew Brost <matthew.brost@intel.com>
+> ---
+>   drivers/gpu/drm/xe/xe_engine.c           | 32 ++++++++
+>   drivers/gpu/drm/xe/xe_engine.h           |  4 +
+>   drivers/gpu/drm/xe/xe_exec.c             |  8 ++
+>   drivers/gpu/drm/xe/xe_guc_engine_types.h |  2 +
+>   drivers/gpu/drm/xe/xe_guc_submit.c       | 95 +++++++++++++++++++++---
+>   drivers/gpu/drm/xe/xe_trace.h            |  5 ++
+>   6 files changed, 137 insertions(+), 9 deletions(-)
+>
+> diff --git a/drivers/gpu/drm/xe/xe_engine.c b/drivers/gpu/drm/xe/xe_engine.c
+> index 094ec17d3004..d1e84d7adbd4 100644
+> --- a/drivers/gpu/drm/xe/xe_engine.c
+> +++ b/drivers/gpu/drm/xe/xe_engine.c
+> @@ -18,6 +18,7 @@
+>   #include "xe_macros.h"
+>   #include "xe_migrate.h"
+>   #include "xe_pm.h"
+> +#include "xe_ring_ops_types.h"
+>   #include "xe_trace.h"
+>   #include "xe_vm.h"
+>   
+> @@ -673,6 +674,37 @@ static void engine_kill_compute(struct xe_engine *e)
+>   	up_write(&e->vm->lock);
+>   }
+>   
+> +/**
+> + * xe_engine_is_lr() - Whether an engine is long-running
+> + * @e: The engine
+> + *
+> + * Return: True if the engine is long-running, false otherwise.
+> + */
+> +bool xe_engine_is_lr(struct xe_engine *e)
+> +{
+> +	return e->vm && xe_vm_no_dma_fences(e->vm) &&
+> +		!(e->flags & ENGINE_FLAG_VM);
+> +}
+> +
+> +static s32 xe_engine_num_job_inflight(struct xe_engine *e)
+> +{
+> +	return e->lrc->fence_ctx.next_seqno - xe_lrc_seqno(e->lrc) - 1;
+> +}
+> +
+> +/**
+> + * xe_engine_ring_full() - Whether an engine's ring is full
+> + * @e: The engine
+> + *
+> + * Return: True if the engine's ring is full, false otherwise.
+> + */
+> +bool xe_engine_ring_full(struct xe_engine *e)
+> +{
+> +	struct xe_lrc *lrc = e->lrc;
+> +	s32 max_job = lrc->ring.size / MAX_JOB_SIZE_BYTES;
+> +
+> +	return xe_engine_num_job_inflight(e) >= max_job;
+> +}
+> +
+>   /**
+>    * xe_engine_is_idle() - Whether an engine is idle.
+>    * @engine: The engine
+> diff --git a/drivers/gpu/drm/xe/xe_engine.h b/drivers/gpu/drm/xe/xe_engine.h
+> index a49cf2ab405e..2e60f6d90226 100644
+> --- a/drivers/gpu/drm/xe/xe_engine.h
+> +++ b/drivers/gpu/drm/xe/xe_engine.h
+> @@ -42,6 +42,10 @@ static inline bool xe_engine_is_parallel(struct xe_engine *engine)
+>   	return engine->width > 1;
+>   }
+>   
+> +bool xe_engine_is_lr(struct xe_engine *e);
+> +
+> +bool xe_engine_ring_full(struct xe_engine *e);
+> +
+>   bool xe_engine_is_idle(struct xe_engine *engine);
+>   
+>   void xe_engine_kill(struct xe_engine *e);
+> diff --git a/drivers/gpu/drm/xe/xe_exec.c b/drivers/gpu/drm/xe/xe_exec.c
+> index ea869f2452ef..44ea9bcd0066 100644
+> --- a/drivers/gpu/drm/xe/xe_exec.c
+> +++ b/drivers/gpu/drm/xe/xe_exec.c
+> @@ -13,6 +13,7 @@
+>   #include "xe_device.h"
+>   #include "xe_engine.h"
+>   #include "xe_macros.h"
+> +#include "xe_ring_ops_types.h"
+>   #include "xe_sched_job.h"
+>   #include "xe_sync.h"
+>   #include "xe_vm.h"
+> @@ -277,6 +278,11 @@ int xe_exec_ioctl(struct drm_device *dev, void *data, struct drm_file *file)
+>   		goto err_engine_end;
+>   	}
+>   
+> +	if (xe_engine_is_lr(engine) && xe_engine_ring_full(engine)) {
+> +		err = -EWOULDBLOCK;
+> +		goto err_engine_end;
+> +	}
+> +
+>   	job = xe_sched_job_create(engine, xe_engine_is_parallel(engine) ?
+>   				  addresses : &args->address);
+>   	if (IS_ERR(job)) {
+> @@ -363,6 +369,8 @@ int xe_exec_ioctl(struct drm_device *dev, void *data, struct drm_file *file)
+>   		xe_sync_entry_signal(&syncs[i], job,
+>   				     &job->drm.s_fence->finished);
+>   
+> +	if (xe_engine_is_lr(engine))
+> +		engine->ring_ops->emit_job(job);
+>   	xe_sched_job_push(job);
+>   	xe_vm_reactivate_rebind(vm);
+>   
+> diff --git a/drivers/gpu/drm/xe/xe_guc_engine_types.h b/drivers/gpu/drm/xe/xe_guc_engine_types.h
+> index cbfb13026ec1..5d83132034a6 100644
+> --- a/drivers/gpu/drm/xe/xe_guc_engine_types.h
+> +++ b/drivers/gpu/drm/xe/xe_guc_engine_types.h
+> @@ -31,6 +31,8 @@ struct xe_guc_engine {
+>   	 */
+>   #define MAX_STATIC_MSG_TYPE	3
+>   	struct drm_sched_msg static_msgs[MAX_STATIC_MSG_TYPE];
+> +	/** @lr_tdr: long running TDR worker */
+> +	struct work_struct lr_tdr;
+>   	/** @fini_async: do final fini async from this worker */
+>   	struct work_struct fini_async;
+>   	/** @resume_time: time of last resume */
+> diff --git a/drivers/gpu/drm/xe/xe_guc_submit.c b/drivers/gpu/drm/xe/xe_guc_submit.c
+> index 68d09e7a4cc0..0a41f5d04f6d 100644
+> --- a/drivers/gpu/drm/xe/xe_guc_submit.c
+> +++ b/drivers/gpu/drm/xe/xe_guc_submit.c
+> @@ -500,6 +500,14 @@ static void register_engine(struct xe_engine *e)
+>   		parallel_write(xe, map, wq_desc.wq_status, WQ_STATUS_ACTIVE);
+>   	}
+>   
+> +	/*
+> +	 * We must keep a reference for LR engines if engine is registered with
+> +	 * the GuC as jobs signal immediately and can't destroy an engine if the
+> +	 * GuC has a reference to it.
+> +	 */
+> +	if (xe_engine_is_lr(e))
+> +		xe_engine_get(e);
+> +
+>   	set_engine_registered(e);
+>   	trace_xe_engine_register(e);
+>   	if (xe_engine_is_parallel(e))
+> @@ -662,6 +670,7 @@ guc_engine_run_job(struct drm_sched_job *drm_job)
+>   {
+>   	struct xe_sched_job *job = to_xe_sched_job(drm_job);
+>   	struct xe_engine *e = job->engine;
+> +	bool lr = xe_engine_is_lr(e);
+>   
+>   	XE_BUG_ON((engine_destroyed(e) || engine_pending_disable(e)) &&
+>   		  !engine_banned(e) && !engine_suspended(e));
+> @@ -671,14 +680,19 @@ guc_engine_run_job(struct drm_sched_job *drm_job)
+>   	if (!engine_killed_or_banned(e) && !xe_sched_job_is_error(job)) {
+>   		if (!engine_registered(e))
+>   			register_engine(e);
+> -		e->ring_ops->emit_job(job);
+> +		if (!lr)	/* Written in IOCTL */
 
-> /Thomas
-> 
-> 
-> >         struct ttm_validate_buffer *tv;
-> >         struct ww_acquire_ctx ww;
-> >         struct list_head objs;
-> > @@ -637,6 +642,19 @@ static void preempt_rebind_work_func(struct
-> > work_struct *w)
-> >                 trace_xe_vm_rebind_worker_retry(vm);
-> >                 goto retry;
-> >         }
-> > +
-> > +       /*
-> > +        * With multiple active VMs, under memory pressure, it is
-> > possible that
-> > +        * ttm_bo_validate() run into -EDEADLK and in such case
-> > returns -ENOMEM.
-> > +        * Until ttm properly handles locking in such scenarios, best
-> > thing the
-> > +        * driver can do is retry with a timeout. Killing the VM or
-> > putting it
-> > +        * in error state after timeout or other error scenarios is
-> > still TBD.
-> > +        */
-> > +       if ((err == -ENOMEM) && ktime_before(ktime_get(), retry_end))
-> > {
-> > +               msleep(20);
-> > +               trace_xe_vm_rebind_worker_retry(vm);
-> > +               goto retry;
-> > +       }
-> >         up_write(&vm->lock);
-> >  
-> >         free_preempt_fences(&preempt_fences);
-> 
+Hmm? What does "Written in IOCTL mean?" Could you rephrase to something 
+more descriptive?
+
+> +			e->ring_ops->emit_job(job);
+>   		submit_engine(e);
+>   	}
+>   
+> -	if (test_and_set_bit(JOB_FLAG_SUBMIT, &job->fence->flags))
+> +	if (lr) {
+> +		xe_sched_job_set_error(job, -ENOTSUPP);
+> +		return NULL;
+> +	} else if (test_and_set_bit(JOB_FLAG_SUBMIT, &job->fence->flags)) {
+>   		return job->fence;
+> -	else
+> +	} else {
+>   		return dma_fence_get(job->fence);
+> +	}
+>   }
+>   
+>   static void guc_engine_free_job(struct drm_sched_job *drm_job)
+> @@ -782,6 +796,57 @@ static void simple_error_capture(struct xe_engine *e)
+>   }
+>   #endif
+>   
+> +static void xe_guc_engine_trigger_cleanup(struct xe_engine *e)
+> +{
+> +	struct xe_guc *guc = engine_to_guc(e);
+> +
+> +	if (xe_engine_is_lr(e))
+> +		queue_work(guc_to_gt(guc)->ordered_wq, &e->guc->lr_tdr);
+> +	else
+> +		drm_sched_set_timeout(&e->guc->sched, MIN_SCHED_TIMEOUT);
+> +}
+> +
+> +static void xe_guc_engine_lr_cleanup(struct work_struct *w)
+> +{
+> +	struct xe_guc_engine *ge =
+> +		container_of(w, struct xe_guc_engine, lr_tdr);
+> +	struct xe_engine *e = ge->engine;
+> +	struct drm_gpu_scheduler *sched = &ge->sched;
+> +
+> +	XE_BUG_ON(!xe_engine_is_lr(e));
+> +	trace_xe_engine_lr_cleanup(e);
+> +
+> +	/* Kill the run_job / process_msg entry points */
+> +	drm_sched_run_wq_stop(sched);
+> +
+> +	/* Engine state now stable, disable scheduling / deregister if needed */
+> +	if (engine_registered(e)) {
+> +		struct xe_guc *guc = engine_to_guc(e);
+> +		int ret;
+> +
+> +		set_engine_banned(e);
+> +		xe_engine_get(e);
+> +		disable_scheduling_deregister(guc, e);
+> +
+> +		/*
+> +		 * Must wait for scheduling to be disabled before signalling
+> +		 * any fences, if GT broken the GT reset code should signal us.
+> +		 */
+> +		smp_rmb();
+
+wait_event() paired with wake_up() family of functions typically set the 
+necessary barriers to make sure anything written prior to wake_up() is 
+seen in wait_event(). So that smp_rmb() is most likely not needed. If it 
+still is, its pairing smp_wmb() should be documented and pointed to as 
+well. See documentation of set_current_state() vs __set_current_state().
+
+> +		ret = wait_event_timeout(guc->ct.wq,
+> +					 !engine_pending_disable(e) ||
+> +					 guc_read_stopped(guc), HZ * 5);
+> +		if (!ret) {
+> +			XE_WARN_ON("Schedule disable failed to respond");
+> +			drm_sched_run_wq_start(sched);
+> +			xe_gt_reset_async(e->gt);
+> +			return;
+> +		}
+> +	}
+> +
+> +	drm_sched_run_wq_start(sched);
+> +}
+> +
+>   static enum drm_gpu_sched_stat
+>   guc_engine_timedout_job(struct drm_sched_job *drm_job)
+>   {
+> @@ -832,7 +897,7 @@ guc_engine_timedout_job(struct drm_sched_job *drm_job)
+>   			err = -EIO;
+>   		set_engine_banned(e);
+>   		xe_engine_get(e);
+> -		disable_scheduling_deregister(engine_to_guc(e), e);
+> +		disable_scheduling_deregister(guc, e);
+>   
+>   		/*
+>   		 * Must wait for scheduling to be disabled before signalling
+> @@ -865,7 +930,7 @@ guc_engine_timedout_job(struct drm_sched_job *drm_job)
+>   	 */
+>   	list_add(&drm_job->list, &sched->pending_list);
+>   	drm_sched_run_wq_start(sched);
+> -	drm_sched_set_timeout(&e->guc->sched, MIN_SCHED_TIMEOUT);
+> +	xe_guc_engine_trigger_cleanup(e);
+>   
+>   	/* Mark all outstanding jobs as bad, thus completing them */
+>   	spin_lock(&sched->job_list_lock);
+> @@ -889,6 +954,8 @@ static void __guc_engine_fini_async(struct work_struct *w)
+>   
+>   	trace_xe_engine_destroy(e);
+>   
+> +	if (xe_engine_is_lr(e))
+> +		cancel_work_sync(&ge->lr_tdr);
+>   	if (e->flags & ENGINE_FLAG_PERSISTENT)
+>   		xe_device_remove_persistent_engines(gt_to_xe(e->gt), e);
+>   	release_guc_id(guc, e);
+> @@ -906,7 +973,7 @@ static void guc_engine_fini_async(struct xe_engine *e)
+>   	bool kernel = e->flags & ENGINE_FLAG_KERNEL;
+>   
+>   	INIT_WORK(&e->guc->fini_async, __guc_engine_fini_async);
+> -	queue_work(system_unbound_wq, &e->guc->fini_async);
+> +	queue_work(system_wq, &e->guc->fini_async);
+>   
+>   	/* We must block on kernel engines so slabs are empty on driver unload */
+>   	if (kernel) {
+> @@ -1089,12 +1156,16 @@ static int guc_engine_init(struct xe_engine *e)
+>   	if (err)
+>   		goto err_free;
+>   
+> +
+
+Unrelated whitespace?
+
+
+>   	sched = &ge->sched;
+>   	err = drm_sched_entity_init(&ge->entity, DRM_SCHED_PRIORITY_NORMAL,
+>   				    &sched, 1, NULL);
+>   	if (err)
+>   		goto err_sched;
+>   
+> +	if (xe_engine_is_lr(e))
+> +		INIT_WORK(&e->guc->lr_tdr, xe_guc_engine_lr_cleanup);
+> +
+>   	mutex_lock(&guc->submission_state.lock);
+>   
+>   	err = alloc_guc_id(guc, e);
+> @@ -1146,7 +1217,7 @@ static void guc_engine_kill(struct xe_engine *e)
+>   {
+>   	trace_xe_engine_kill(e);
+>   	set_engine_killed(e);
+> -	drm_sched_set_timeout(&e->guc->sched, MIN_SCHED_TIMEOUT);
+> +	xe_guc_engine_trigger_cleanup(e);
+>   }
+>   
+>   static void guc_engine_add_msg(struct xe_engine *e, struct drm_sched_msg *msg,
+> @@ -1296,6 +1367,9 @@ static void guc_engine_stop(struct xe_guc *guc, struct xe_engine *e)
+>   	/* Stop scheduling + flush any DRM scheduler operations */
+>   	drm_sched_run_wq_stop(sched);
+>   
+> +	if (engine_registered(e) && xe_engine_is_lr(e))
+> +		xe_engine_put(e);
+> +
+>   	/* Clean up lost G2H + reset engine state */
+>   	if (engine_destroyed(e) && engine_registered(e)) {
+>   		if (engine_banned(e))
+> @@ -1520,6 +1594,9 @@ int xe_guc_deregister_done_handler(struct xe_guc *guc, u32 *msg, u32 len)
+>   	trace_xe_engine_deregister_done(e);
+>   
+>   	clear_engine_registered(e);
+> +	if (xe_engine_is_lr(e))
+> +		xe_engine_put(e);
+> +
+>   	if (engine_banned(e))
+>   		xe_engine_put(e);
+>   	else
+> @@ -1557,7 +1634,7 @@ int xe_guc_engine_reset_handler(struct xe_guc *guc, u32 *msg, u32 len)
+>   	 */
+>   	set_engine_reset(e);
+>   	if (!engine_banned(e))
+> -		drm_sched_set_timeout(&e->guc->sched, MIN_SCHED_TIMEOUT);
+> +		xe_guc_engine_trigger_cleanup(e);
+>   
+>   	return 0;
+>   }
+> @@ -1584,7 +1661,7 @@ int xe_guc_engine_memory_cat_error_handler(struct xe_guc *guc, u32 *msg,
+>   	/* Treat the same as engine reset */
+>   	set_engine_reset(e);
+>   	if (!engine_banned(e))
+> -		drm_sched_set_timeout(&e->guc->sched, MIN_SCHED_TIMEOUT);
+> +		xe_guc_engine_trigger_cleanup(e);
+>   
+>   	return 0;
+>   }
+> diff --git a/drivers/gpu/drm/xe/xe_trace.h b/drivers/gpu/drm/xe/xe_trace.h
+> index 2f8eb7ebe9a7..02861c26e145 100644
+> --- a/drivers/gpu/drm/xe/xe_trace.h
+> +++ b/drivers/gpu/drm/xe/xe_trace.h
+> @@ -219,6 +219,11 @@ DEFINE_EVENT(xe_engine, xe_engine_resubmit,
+>   	     TP_ARGS(e)
+>   );
+>   
+> +DEFINE_EVENT(xe_engine, xe_engine_lr_cleanup,
+> +	     TP_PROTO(struct xe_engine *e),
+> +	     TP_ARGS(e)
+> +);
+> +
+>   DECLARE_EVENT_CLASS(xe_sched_job,
+>   		    TP_PROTO(struct xe_sched_job *job),
+>   		    TP_ARGS(job),
+
