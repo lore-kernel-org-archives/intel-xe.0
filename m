@@ -4,49 +4,50 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id AECD4C77B7F
-	for <intel-xe@archiver.kernel.org>; Mon,  8 May 2023 14:47:30 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 64CB3C77B7F
+	for <intel-xe@archiver.kernel.org>; Mon,  8 May 2023 14:47:34 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8973210E2E5;
-	Mon,  8 May 2023 14:47:30 +0000 (UTC)
-Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5BB7A10E2E9
- for <intel-xe@lists.freedesktop.org>; Mon,  8 May 2023 14:47:27 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3EF2610E2C2;
+	Mon,  8 May 2023 14:47:34 +0000 (UTC)
+Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 40FED10E2C2
+ for <intel-xe@lists.freedesktop.org>; Mon,  8 May 2023 14:47:32 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1683557247; x=1715093247;
+ t=1683557252; x=1715093252;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=jDg3Pw7DW/EugTiBJMYtDyJ1M6DjrYodYrvyztWBEVM=;
- b=KL8ckruChRRInRjS/MM/JMdZJF+4MHyRRoLp060leZ/q2a2WMv2c3xYq
- u6AFOHFQMd2jmZwpfxEF1bXy+EYH+v7eyfV1wcDycxnsPGI54ujRXpoCY
- smxdSAfDIfAc0KEGh0qt6KAR4YMVid52GoiacCOq4aeEUI0JwSzE33yZG
- lnSuOstdRxsixS2xjePsXcvF0ryJ4Hr9IEjGx8MYPAiKkrJxfFfo8O+Ec
- xYiH2QA1hkPbL73+7CaZoxZG8ZvlBawZgCDA9QKX4OKyxNSZo5z29spq1
- KbI/BUcEa0otvUyxkaha7cr4HLmmaDZelBaB09UMxcBeFUp7wdsGYW8x/ A==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10704"; a="349697916"
-X-IronPort-AV: E=Sophos;i="5.99,259,1677571200"; d="scan'208";a="349697916"
-Received: from orsmga003.jf.intel.com ([10.7.209.27])
- by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 May 2023 07:47:26 -0700
+ bh=e3w1oIlc/ls9MY1cFwACugmzIJxtmp+oeaa+h/2fugc=;
+ b=WtBd9IDkdPZkyzRA+9efSdj0WijpVch5YTQvm+LJ6MxKrreNYuJfqjqM
+ j2agMUEhSMNpj+SMX9RKG/Fs7NQ++XZAN8n6IswIn5uTZ1nDnoCWpG7kc
+ w+oGKhUKyWdseywM2S5XiRlmBjnwpUYPOC/RvpPs9tVN9fOZiy9kDxDAc
+ DDiKFqsOM82jBk3tmOFH9f/f2JTvhQtbwb5i8cRqXg4VZhAJfp3o0TqaI
+ aihS0zh5r86hkEovPqgnWpKUX2Xaru1CrpRMeICVeQV6CeKU+b+QpH5yP
+ LG4es38fdt9yvGyedUPagmlQOL6kbU9Nb35tmeJQbQCUrf2oytEIFUi94 w==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10704"; a="352724235"
+X-IronPort-AV: E=Sophos;i="5.99,259,1677571200"; d="scan'208";a="352724235"
+Received: from orsmga001.jf.intel.com ([10.7.209.18])
+ by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 08 May 2023 07:47:31 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10704"; a="648908168"
-X-IronPort-AV: E=Sophos;i="5.99,259,1677571200"; d="scan'208";a="648908168"
+X-IronPort-AV: E=McAfee;i="6600,9927,10704"; a="731330028"
+X-IronPort-AV: E=Sophos;i="5.99,259,1677571200"; d="scan'208";a="731330028"
 Received: from heid-mobl1.ger.corp.intel.com (HELO localhost) ([10.252.62.78])
- by orsmga003-auth.jf.intel.com with
- ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 08 May 2023 07:47:24 -0700
+ by orsmga001-auth.jf.intel.com with
+ ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 08 May 2023 07:47:29 -0700
 From: Jani Nikula <jani.nikula@intel.com>
 To: intel-xe@lists.freedesktop.org
-Date: Mon,  8 May 2023 17:46:11 +0300
-Message-Id: <20230508144618.162140-12-jani.nikula@intel.com>
+Date: Mon,  8 May 2023 17:46:12 +0300
+Message-Id: <20230508144618.162140-13-jani.nikula@intel.com>
 X-Mailer: git-send-email 2.39.2
 In-Reply-To: <20230508144618.162140-1-jani.nikula@intel.com>
 References: <20230508144618.162140-1-jani.nikula@intel.com>
 MIME-Version: 1.0
 Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-xe] [PATCH 11/18] fixup! drm/xe: Introduce a new DRM driver
- for Intel GPUs
+Subject: [Intel-xe] [PATCH 12/18] fixup! drm/xe/display: Implement display
+ support
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -62,32 +63,62 @@ Cc: jani.nikula@intel.com, lucas.demarchi@intel.com, rodrigo.vivi@intel.com
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Add the read8 accessor to support intel_de_read8.
+Add compat intel_pcode.h glue layer.
 
 Signed-off-by: Jani Nikula <jani.nikula@intel.com>
 ---
- drivers/gpu/drm/xe/xe_mmio.h | 8 ++++++++
- 1 file changed, 8 insertions(+)
+ .../drm/xe/compat-i915-headers/intel_pcode.h  | 42 +++++++++++++++++++
+ 1 file changed, 42 insertions(+)
+ create mode 100644 drivers/gpu/drm/xe/compat-i915-headers/intel_pcode.h
 
-diff --git a/drivers/gpu/drm/xe/xe_mmio.h b/drivers/gpu/drm/xe/xe_mmio.h
-index 1a32e0f52261..b72a0a75259f 100644
---- a/drivers/gpu/drm/xe/xe_mmio.h
-+++ b/drivers/gpu/drm/xe/xe_mmio.h
-@@ -17,6 +17,14 @@ struct xe_device;
- 
- int xe_mmio_init(struct xe_device *xe);
- 
-+static inline u8 xe_mmio_read8(struct xe_gt *gt, u32 reg)
-+{
-+	if (reg < gt->mmio.adj_limit)
-+		reg += gt->mmio.adj_offset;
+diff --git a/drivers/gpu/drm/xe/compat-i915-headers/intel_pcode.h b/drivers/gpu/drm/xe/compat-i915-headers/intel_pcode.h
+new file mode 100644
+index 000000000000..71f1fd1de2fd
+--- /dev/null
++++ b/drivers/gpu/drm/xe/compat-i915-headers/intel_pcode.h
+@@ -0,0 +1,42 @@
++/* SPDX-License-Identifier: MIT */
++/*
++ * Copyright © 2023 Intel Corporation
++ */
 +
-+	return readb(gt->mmio.regs + reg);
++#ifndef __INTEL_PCODE_H__
++#define __INTEL_PCODE_H__
++
++#include "intel_uncore.h"
++#include "xe_pcode.h"
++
++static inline int
++snb_pcode_write_timeout(struct fake_uncore *uncore, u32 mbox, u32 val,
++			int fast_timeout_us, int slow_timeout_ms)
++{
++	return xe_pcode_write_timeout(__fake_uncore_to_gt(uncore), mbox, val,
++				      slow_timeout_ms ?: 1);
 +}
 +
- static inline void xe_mmio_write32(struct xe_gt *gt,
- 				   u32 reg, u32 val)
- {
++static inline int
++snb_pcode_write(struct fake_uncore *uncore, u32 mbox, u32 val)
++{
++
++	return xe_pcode_write(__fake_uncore_to_gt(uncore), mbox, val);
++}
++
++static inline int
++snb_pcode_read(struct fake_uncore *uncore, u32 mbox, u32 *val, u32 *val1)
++{
++	return xe_pcode_read(__fake_uncore_to_gt(uncore), mbox, val, val1);
++}
++
++static inline int
++skl_pcode_request(struct fake_uncore *uncore, u32 mbox,
++		  u32 request, u32 reply_mask, u32 reply,
++		  int timeout_base_ms)
++{
++	return xe_pcode_request(__fake_uncore_to_gt(uncore), mbox, request, reply_mask, reply,
++				timeout_base_ms);
++}
++
++#endif /* __INTEL_PCODE_H__ */
 -- 
 2.39.2
 
