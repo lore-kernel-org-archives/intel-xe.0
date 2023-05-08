@@ -4,133 +4,143 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0EB81C7EE24
-	for <intel-xe@archiver.kernel.org>; Mon,  8 May 2023 17:06:56 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4FE55C77B7F
+	for <intel-xe@archiver.kernel.org>; Mon,  8 May 2023 17:06:57 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D564110E17E;
-	Mon,  8 May 2023 17:06:55 +0000 (UTC)
-Received: from mga06.intel.com (mga06b.intel.com [134.134.136.31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id CD90E10E17E
- for <intel-xe@lists.freedesktop.org>; Mon,  8 May 2023 17:06:53 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 06FF510E2D8;
+	Mon,  8 May 2023 17:06:57 +0000 (UTC)
+Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 87D7710E17E
+ for <intel-xe@lists.freedesktop.org>; Mon,  8 May 2023 17:06:54 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1683565613; x=1715101613;
+ t=1683565614; x=1715101614;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:content-transfer-encoding:mime-version;
- bh=GPoM3F13StpdDnHh69WZSTaQmXjIA3LPYWqfC4HQZEM=;
- b=RO9zSlfycmrUu7PAPUpj9pXZGb0k3wSAtVOcZJCspLUQsaXM6lreKymW
- f97P6xThfu1jJ8ukpP9KMUjI00OpPddb93KwY1qPBYwJN0imoQbBehtQi
- ZG8GD8IxR4grf9szhPYOSYlYdAUXNMj5eRZKMHlNxiQbPguAWavpYv8oO
- KHOPaxazXMaVtt+Bspshyp7/HvvXMbkgg88iYdNuG0ofGJTSMU+U+dMMo
- WclNSEPQ73dA2jFMYG50nR/GpKB4/hrNI+ucgr7//W2mo06R+hmvJmZXZ
- K37YguMJe9YDH1V7ixnRJyPF4AE7laS+IiOELOplwD1Wq1aKqmlCNOMcF A==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10704"; a="412963326"
-X-IronPort-AV: E=Sophos;i="5.99,259,1677571200"; d="scan'208";a="412963326"
-Received: from orsmga008.jf.intel.com ([10.7.209.65])
- by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 May 2023 10:06:42 -0700
+ bh=7x+Vu9UzFHxanf8Pt5LSUylf/bxF6aKod/pyA1HHLmc=;
+ b=Hi98bQuhsE75NtrV4boe7jMWnPyULc4EoGTq6/VBtwdnTa+4wM0kAMXp
+ hkp78RifOEXNOpkckj/uc0t1XNdwOvzkYoodH3wtDMXb4qwtH82t9Qz2w
+ uanIN5Dxz8jl2MDH+iaL0uDUdF26bDOR4K8+mXUHCFwQGZF45AsVK9aGT
+ +0p07lQ4k0UYtPm2bw5P2R4fpUH0N9tkJYyCQ57IcxEfehA1n45C7FwUM
+ jbjRmuWeP1p240nM9dD+HLzubU5PpjTWDUcf86CPuVk8GMCwsUsm465wE
+ EC2jnNyWO5ap/+MO6jSuEtnyh2RIHnPBb6/iD8/BEVmg3qWvbKvV2jXk3 Q==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10704"; a="377800185"
+X-IronPort-AV: E=Sophos;i="5.99,259,1677571200"; d="scan'208";a="377800185"
+Received: from fmsmga005.fm.intel.com ([10.253.24.32])
+ by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 08 May 2023 10:06:53 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10704"; a="729149497"
-X-IronPort-AV: E=Sophos;i="5.99,259,1677571200"; d="scan'208";a="729149497"
-Received: from orsmsx602.amr.corp.intel.com ([10.22.229.15])
- by orsmga008.jf.intel.com with ESMTP; 08 May 2023 10:06:42 -0700
-Received: from orsmsx610.amr.corp.intel.com (10.22.229.23) by
- ORSMSX602.amr.corp.intel.com (10.22.229.15) with Microsoft SMTP Server
+X-IronPort-AV: E=McAfee;i="6600,9927,10704"; a="1028469995"
+X-IronPort-AV: E=Sophos;i="5.99,259,1677571200"; d="scan'208";a="1028469995"
+Received: from orsmsx603.amr.corp.intel.com ([10.22.229.16])
+ by fmsmga005.fm.intel.com with ESMTP; 08 May 2023 10:06:53 -0700
+Received: from orsmsx601.amr.corp.intel.com (10.22.229.14) by
+ ORSMSX603.amr.corp.intel.com (10.22.229.16) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.23; Mon, 8 May 2023 10:06:42 -0700
+ 15.1.2507.23; Mon, 8 May 2023 10:06:53 -0700
 Received: from ORSEDG602.ED.cps.intel.com (10.7.248.7) by
- orsmsx610.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
+ orsmsx601.amr.corp.intel.com (10.22.229.14) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.23 via Frontend Transport; Mon, 8 May 2023 10:06:42 -0700
-Received: from NAM10-BN7-obe.outbound.protection.outlook.com (104.47.70.105)
+ 15.1.2507.23 via Frontend Transport; Mon, 8 May 2023 10:06:53 -0700
+Received: from NAM11-DM6-obe.outbound.protection.outlook.com (104.47.57.173)
  by edgegateway.intel.com (134.134.137.103) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2507.23; Mon, 8 May 2023 10:06:41 -0700
+ 15.1.2507.23; Mon, 8 May 2023 10:06:53 -0700
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=DcTJ/Xzt0gqjTm2Hss881zKihBIbyzlSmRZZzOrM+H8IwmOfRYldjyKcCcoMHxLq4dndX00vN1JzpRn86G2SEnyp2maCdBCxibEn20KG643X84maxwORK+0CWWUn/Q0GsEsdIexYBwp5hkZAArFtH5jMsyqsKi7lnc5c03WWyENyucv5abFNsUVmTKGyHXc0gVEAZQ19ZKo+iIRochMg0X/9NrmBRfXFbRWLXMFnzgQxvvnEXlYe63VJU0uCdI6pBtixTUvohXZBsjqq0gPwGSqG7Gto2y901Lq+QUlWchB/5x4cYIcwFO0xlDct/v7zG77PmaTYYhCRPxpyKBZd4A==
+ b=aGnNry9mjMgrAKkupUy+HZWU0R7bso7utYabA/mwaDt/RAZGdEZ0OmhaEhNYa1S+HlFpjp8WKNf0s6KP1gOI5awXJHvf6AUn+pEQ+WJvbXLGQP2WaZvHa/uCPV98uTrPDAGl5a267V0Zpxb73kPJgxMO+pxS3hR5cOCfkYnzuoSAC7G3q/xxC0gICVepKI3+/aUYZv2Mw4qUG45MKTBYyQkbEkKcni1bfhRtgEB1lCY2MJBzpwVqwjzb9RMGeBeOhTG86m1043rxrHikqbkkHA1DWNOaPcxhm0oR+n3d/JDTEhJi4IKYyvjjAFgUfQqlV/TIK5d0j6+FDvT0DUotOA==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=mbTKx4ufv7oqfiM7m6jcKwKUPLY4p+i+iWgPjpcP6og=;
- b=ASHfiNWBrITef5B4SqNtIUqwrKlHcaVStedFAzgotjYL2UJkyNNo6nrfMWjyJcpsI0bzMnk0XC3+45u1zIU2LxeVUi6Su2cEv5VHw2qRMEf757bLqp0zdsHJnaqbmOWtCMZH/AXBmAeieIZKzalR8jmjE7KNdKvDaTlvqi+8fCc5l7gIY/shx6owfbblegOkcyiZ5/8ZIhFoQK1fcofxtU+zW86VIK60zg9wqBgDsomXfqHvTaiGgSUBHjQ1Ytj878iSATei3ClAO8im8ytz/IloUO9uhO62DV/x1kJyCNRGGxyoGv6G12xT2UXvmI2eY4JvzE2HbqazWw9QNBqlSQ==
+ bh=W7lNeYqwMf6WHJq3UTkQ3SoQu4muhffmLqMsVYKcATg=;
+ b=XPVrJQoRK0hJb7UlXnQC6bUXxAcqgty9YUaruzRtKR+g1kBuh/AtplvtV+yYSXKpFu09IlGipGxhmeVAf4RS2VmRHxfbusJiRRGpWjDrb0Dv3HRrljFcgdX0kQXY9TakyD6PLzmOH7JoO4u9J/8ZhM9aUTvh7+1ART/fOTtNF1sTb9kaoA1FfCB69J1X9viWSk6/0eo18zrZ7U61fZVWnel3kLyfItwq39e8L5y7CqCZ5i1/zP6ItfKYdzeMACuplDFzKF8SllczM7MGEUUyRoRB+0nqvKmyag3zc6/GqCXArnszn3fRU9PiV6QoCawE3NDaYx6e83PXRCPn6CwyuQ==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
  dkim=pass header.d=intel.com; arc=none
 Authentication-Results: dkim=none (message not signed)
  header.d=none;dmarc=none action=none header.from=intel.com;
 Received: from MN0PR11MB6059.namprd11.prod.outlook.com (2603:10b6:208:377::9)
- by CO1PR11MB4913.namprd11.prod.outlook.com (2603:10b6:303:9f::20)
- with Microsoft SMTP Server (version=TLS1_2,
+ by DM6PR11MB4675.namprd11.prod.outlook.com (2603:10b6:5:2ac::17) with
+ Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6363.32; Mon, 8 May
- 2023 17:06:39 +0000
+ 2023 17:06:51 +0000
 Received: from MN0PR11MB6059.namprd11.prod.outlook.com
  ([fe80::f7ec:aae9:1e7b:e004]) by MN0PR11MB6059.namprd11.prod.outlook.com
  ([fe80::f7ec:aae9:1e7b:e004%6]) with mapi id 15.20.6363.032; Mon, 8 May 2023
- 17:06:39 +0000
+ 17:06:51 +0000
 From: Rodrigo Vivi <rodrigo.vivi@intel.com>
 To: <intel-xe@lists.freedesktop.org>
-Date: Mon, 8 May 2023 13:06:08 -0400
-Message-ID: <20230508170616.1289914-4-rodrigo.vivi@intel.com>
+Date: Mon, 8 May 2023 13:06:11 -0400
+Message-ID: <20230508170616.1289914-7-rodrigo.vivi@intel.com>
 X-Mailer: git-send-email 2.39.2
 In-Reply-To: <20230508170616.1289914-1-rodrigo.vivi@intel.com>
 References: <20230508170616.1289914-1-rodrigo.vivi@intel.com>
+Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-ClientProxiedBy: BYAPR06CA0022.namprd06.prod.outlook.com
- (2603:10b6:a03:d4::35) To MN0PR11MB6059.namprd11.prod.outlook.com
+X-ClientProxiedBy: BY3PR04CA0020.namprd04.prod.outlook.com
+ (2603:10b6:a03:217::25) To MN0PR11MB6059.namprd11.prod.outlook.com
  (2603:10b6:208:377::9)
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: MN0PR11MB6059:EE_|CO1PR11MB4913:EE_
-X-MS-Office365-Filtering-Correlation-Id: 8ec50b6c-b3b8-47bd-619a-08db4fe696c6
+X-MS-TrafficTypeDiagnostic: MN0PR11MB6059:EE_|DM6PR11MB4675:EE_
+X-MS-Office365-Filtering-Correlation-Id: 8e3127d7-46ef-4e10-0b8c-08db4fe69dbb
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: rG04kMWbshXeanO/dcJxzkelj8fchLYN8QkjLfWxS7Qp9yikCx967x9+WRr8SCOnVQUBzzpnT/uFTB3/jAVwMca9qvczsUQhN3YK3UtyA2fX7GkLVDTOT9yeHT/MI/RAgV8oHUVf7jmZRKsWYzK9n7fwy8E3OG/WlmQ8yVowuoHVH2B1HMxxRmlUKW2d5H8mwAS96VCj98Eg1x9sz3nTe+/cMgJ41r4MRY2benfg2tP1bVAqV7rwQ+HsQWYW71fI+RvQfJNO/1VGbZRulAwc9SfeDOLKb7xYGQ28JKB1+beKwkR4TVjSW2jItVvj1LyVRNX2lkG1RIwCWG2Ubzv/EjCqfh+UdSClUOdEZCUeHT2Pup8nuqAvH8PnXlAiKsmzwj7XtgN8cpdYFpXsl9IthqiSP5rG4U7wG2F/9Ms3l8T62AZkXwXwjt7/7RJUNDNhY8M+OdGd8bxtLWlQcnYqM0AEY9aPFos3V93OTPyNPfSwBhsAZB59wttYPaVUuybt91+zYjoVxrTzqfYjPvj9hh0QJ6SoBBwp0fZnw9FMqzoqF20f6WHRGRT2KcAHik2P
+X-Microsoft-Antispam-Message-Info: RJcUJjaYGCNVg0mQAxyDLlrJHE60qZrZ99frr/RP7hdOB8H1SRj7633DSwIWm/ToiRwba2OkORNsAr3g3mrhOxqCpvZVJ+Wdx4JIaizSYDZo66GHr6X6xJEqKjedybRtXVG8+hLDa0JWmypc8W1eJQwwD6bFb/v3A/+7lklMStZiSAg0pvR7+KJvUMdZQuXct4KXHBG4EvfG1gXHfkUEG+AFf2BvZkQeVwgdNv4nhypQZ9jKgnlxXEKxjjSrqbO0YiIM8jaQ+DORGLxq5+tprKEmGEFaNBWrL7/bdCGrsJIEfWTh11ZrzLCRLPIkShyUvjqnx8wTInS29OHW6n1S4xQkwifmHseX5Kr0TPyJ+m2ikwvQ6I/JyZz/rrPdvvBlnGuHJ3wHeG6QzTlaA+s7dx2jFSqAnHcXn3Sy4Ol8GbiQME/+zNNSIPn8zvja/O2t3gjp/dRCFuwXXnTp5j1hJNWvBtjyEoILR3vlsYmNevEvLKmOrxB/vTtXpktN174rVW7d2oKi8CZw9gEFn1P4rqGV2UkpFOFPXBSN2nFbp8MhiJWiU3s9V+2hSGdv83NH
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
  IPV:NLI; SFV:NSPM; H:MN0PR11MB6059.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230028)(136003)(376002)(366004)(396003)(39860400002)(346002)(451199021)(30864003)(54906003)(2906002)(8936002)(316002)(478600001)(8676002)(4326008)(66476007)(6916009)(5660300002)(66556008)(41300700001)(6666004)(44832011)(66946007)(6486002)(1076003)(6512007)(26005)(6506007)(107886003)(186003)(82960400001)(2616005)(36756003)(83380400001)(38100700002)(86362001);
+ SFS:(13230028)(396003)(376002)(39860400002)(366004)(136003)(346002)(451199021)(36756003)(38100700002)(2906002)(44832011)(316002)(5660300002)(8676002)(8936002)(86362001)(66556008)(66946007)(6916009)(82960400001)(41300700001)(66476007)(83380400001)(186003)(107886003)(26005)(6506007)(6512007)(1076003)(6486002)(478600001)(6666004)(2616005)(54906003)(4326008);
  DIR:OUT; SFP:1102; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?wcyDxlYWpvhuZhQUJdfo7YnkdJcuu8cJiF/Ij7IkaBBJgeivzGxOaQRHq/SR?=
- =?us-ascii?Q?uEvmZB2T2iuUvVtIvh1uGNc8ByRi0tGxDrMcRmrKAt3EkdO7vjAspoOOYp2t?=
- =?us-ascii?Q?sn2GzoOvB9uqMbSH87NNuDexvPVwLo7HQxP8sEClHcBXn9ABSXAPYCNC4CPq?=
- =?us-ascii?Q?NQtY+wCWWeqkhz2nkRYjBr9kQ6xbCZ+jflqqf9fRfb2YpIPdTWbcdlpuJJAo?=
- =?us-ascii?Q?y6dGgxxbqQyiUEXezTO7G8EK91ZIY985oQV0wtSa4tfQz5R/b98/aB0gITTS?=
- =?us-ascii?Q?gm325y6P3Ovh9WW+ovpV4TN3YWeaXMr8JF3XqIwgJMg9aojILC36uIj2cx7w?=
- =?us-ascii?Q?Np4fdZbVpfP599ZnCKh0zKn+jl94W1apWxbcv/7dVZh4hWKaUHInXM3btjs+?=
- =?us-ascii?Q?nCiXVxubpkmy/5qc+Y6M/biTnUpbzeDaRL+aH7EzHwYjc9TeZONWOD6zT9B1?=
- =?us-ascii?Q?EyedacqJvZa4aqU4gNrVnErhz5g9IX5gO58EBdNmC9Dx53Aygng2IpRlONqA?=
- =?us-ascii?Q?Yms/iN9ezJRzoqVnQbLjtfBFru9BSyXkl/Rc2U5MJuWsuufzCdhYisGNb4+/?=
- =?us-ascii?Q?vXk8WVl8fDvhUY8I6mRgtbDM3inrmL8k+WPtnYzT+1UxcmCHv/paSp4KaaAR?=
- =?us-ascii?Q?Wz2K1Sn1b7IYlFhnL2tlTjiUO/4BK7kcF0nF9UCqty0HU/gU84sKxn9zDsD3?=
- =?us-ascii?Q?E1LvK+kPnAO6RAVV8Kvhk2uAP7OI5MSzpwlZRL/3GJjQJh8u3oWLuXjt9rSo?=
- =?us-ascii?Q?NhEjWo8Hhl+Dl4OIpiqtOfJQykLRLIlC6UvE4zXYLUgZEG097vsmdtsQEaie?=
- =?us-ascii?Q?hTVnnJcmBDfw52+OMxIT7ioxmV6OrkA2uYkFhAZ54kehLi4TvlgZvNtC6RzD?=
- =?us-ascii?Q?uj30YZt+b34u4tt9Xr/w9fFxYF+yz63bPwe/+SnnR3I+24IM+soIkc+hQv6g?=
- =?us-ascii?Q?yF0b2p62821DNfcBvG+7o9nUyR1U/c47WT8HyYpJb8vCwMFlZ5UScNTLrQOs?=
- =?us-ascii?Q?nNSKxf6ClxlJq7cjCXuKB+inPYPPVynrKfExnfafnA9enlOd5DkceH6LuJw2?=
- =?us-ascii?Q?C479AyFC3yA9BRdAynJ468TEr8+s88G3ocN+oQ5OW1cB0VVsnOqRtNt5ENoC?=
- =?us-ascii?Q?y7oR6b14xw7RVtnj6+vVDAnkxOBRrszuhy0+duHeXyiMrhkIMJJ7FrbI4b6X?=
- =?us-ascii?Q?bn4EP5TfQLvq+i6rPw5oiZzk6kHhdnSz/vYxsZjy7Se1J3h4mTpvr++jVUMN?=
- =?us-ascii?Q?Y+rCfX14Mhooh09IuXHH6eRCjYSg/y1JBPCTSPsiBGF+DDcOTEyZPwHwjKlx?=
- =?us-ascii?Q?2EwMKth0FtCmuKWi4GyElDPbtoVhuc3itv/i4Gg8Dpy5emw+9elvLizjbe05?=
- =?us-ascii?Q?NWsFO/9OxVbQv2iejUA2P7RqYmK76DkBt10zIm4KsypC8Vcia/GEwbohTNWt?=
- =?us-ascii?Q?fIjZ5/LUozktirBTsAL+iKK+37Ctw/vZP9WihaK+PyLmSTYk48I+R/EvLZn+?=
- =?us-ascii?Q?q16sV+q0uht3tZbpwjoIx47dUmpQmBzLL/4j2mFph3DwCBGFXo5bDx2ywlrp?=
- =?us-ascii?Q?nQF8KDIUAz40yO30eqpmnT3f6KBgNjv4NVuIaUbR?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: 8ec50b6c-b3b8-47bd-619a-08db4fe696c6
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?bW9Xb3ZFaTM4K3ZNbklIeTZWanl0bDJMWlRrRnF6cUY2dWt2dUxVNDlCRGVa?=
+ =?utf-8?B?MnlCbTNmZWFXSDg0OE05T002WlVhcUphb3Q4bHJRenZqNzVyTzYxYXRlU2hN?=
+ =?utf-8?B?WWR3OStuejd3eFh0d1NEVGEwZHNDYXd1WG9ncDcrNnRHMjBGMUxYTkFtVkIr?=
+ =?utf-8?B?OUgvb2FMRHRDQWtiREY3QnhYRUdwSDk0dEdSN25OTHhTTkhMeTJYUFgyWkhp?=
+ =?utf-8?B?TXZSWDhiSHBGQXBPd1F1UC9UWVhaT1M0SGkwc0hiNWxLeTNxREFLeUVsVTJY?=
+ =?utf-8?B?emk4SlNHNEllMENGWjYyUkFZTU9uYi9oMnZETXBBUzNvTkJKVTdKOUdBZUtv?=
+ =?utf-8?B?MWVsd24rUXhEVVR0ODBOUlFDdTRmanBQLzdHUjNXY2IyUGN1TVExUjRjaFM0?=
+ =?utf-8?B?anJJMWJHM24zYkNqNHhpelc0elUrbUdMalBkQVJWeTd2WXp1T1JoWFA2Z0tR?=
+ =?utf-8?B?NWtNT20zY2RQL2lwdFJuYU5yZkhPajdwWFR2akhNOGtHM0sxNzNISnRSMHhM?=
+ =?utf-8?B?T3FnUm1uZkhvU2Y4d3JXTHRZOHhZb2ttcFl5aGZ4WVhSZlZIZnQ1R2cxYll6?=
+ =?utf-8?B?Mm9VNFhIVnFLWmd0ZnMxZUJCSHdJcUk5VjFjWUd2WVNQNWlOcXN0bVdpRUEy?=
+ =?utf-8?B?YmpVaGZJK3pjYWdYRmx4M2hlbTE5OUVpUTM0aWVGWVFqSUd3NXJVamtFazdr?=
+ =?utf-8?B?OSsyR2NiUlNIeEhSZUpLczVLWkRWUFpoUk9kVmx5U25zNmtXZDFNRjBsdmx1?=
+ =?utf-8?B?VXAxSUZub2U4MUFlSEFhcndTK3ViMzNYSGNNQ25veHd5RHJyNG9zaVNhWm5L?=
+ =?utf-8?B?MnhaKzJFUGM5eUVoa2M3a0UzNmZJYkppY1I2dVNFSG4xaDBFOStDc2NkbzFG?=
+ =?utf-8?B?aWQwcWI5VHVzVUtqeVo4S2dST1lkZkZaV1NxbzFLbUV1RG5hRGQwY2tMSmRM?=
+ =?utf-8?B?ZjcyUXoyQzJMZUdzWnBrYXp6NkdhbDh4VmxYZzhiMHJCanROU1gxMHRaU3Na?=
+ =?utf-8?B?VDB0c09BTzRKZE5nRXh4YktBQTA2T1NsSGN5UUpyemIwK0tjam5rMUJTSjlZ?=
+ =?utf-8?B?Wm1ZL3dHbkNjRWhrZEdEL0hPN0hadVhwT3Zpc3BOTGpsRFh1cEpVSXA0bVU4?=
+ =?utf-8?B?ajdab0hPWXI0LzFpbHRyVkwrbzIvR2s0RmZVNWhZK2drR2tva1lLNmRhS2dV?=
+ =?utf-8?B?clB5Wm01aW4xMlB4eUkxS21zRnUrUXBnYUFqSXNEd0NIS1FqVFhrcTFBbjF5?=
+ =?utf-8?B?cHViZnBnTCtiSTFxc2RYNHFBSXV1SVpEZUl0aUthYmdnRU91ckVJcGdaa0Yy?=
+ =?utf-8?B?bU9JWVgwb201WXV2ekR0WkFLZy9DcGM5VnNnZ0c3Uk9GWXJ2RGZiM0sySjBH?=
+ =?utf-8?B?RFlJK2c3VkhjNVZGVytOOGt3SUllZHM5clVjcU5SUkpaeHlza1FKbHByS0RW?=
+ =?utf-8?B?c3YvVWt0aUdLcmZaZGFLbEFPT1BzOVBHZngwQU5HZW5xNjFaL1dKdFB4cytW?=
+ =?utf-8?B?bWhULzhaNUVlQXhiYW9NWC81bzE2QnExOXVyeURnc0IrYnY5MHRCeHNmYnNo?=
+ =?utf-8?B?bVhwOCszQTdHSkFDb3hoeGN3czVEekVzalpWaWtZOXJEaWtDVFE1bHZxaUNS?=
+ =?utf-8?B?ZmJvOENyK0hqMXhsWlBTRGl0Z1p4T3BWK0x4V0hCdDRrUlNlUWkwN2w4UExj?=
+ =?utf-8?B?ZFRtcVYvWkthd3FPZ2FiQlUrUGRJY1U1Y2JSNXowQXdjSXF1TnNHckJSSjdX?=
+ =?utf-8?B?bjA1TGtOYTBKYk5zRlZ0ZjZ1ZWJoeG1mbytlSmZ0aUdVREpFWTk0UlczUXcv?=
+ =?utf-8?B?UjJxQ1dFZTNwR3BvcVQ4QnNDT1BKWFlqOXpVR2UwMFNFOFFxSWg2MjZHVzR4?=
+ =?utf-8?B?aTNkWVBSWTVNb1JTaHBjU2QyOS9oWWtqNzd0OGo0eUsyLzlnRzk4R1UrSDZT?=
+ =?utf-8?B?bXZxQkEvN0lybjlxQytjYWpHdERZam9CV1NkcDNoazFsUnc2TE1VckRnNDAx?=
+ =?utf-8?B?RWtiMmpmMjJkcnhxU0NScUloMXNRNHBQR0t3SjMzMjBGZGtQWEdMRGU5Y3R0?=
+ =?utf-8?B?Q3owdlNJMWhsbmJ6dklrQ3NqSWlOK29XamtjN3k2aFpVVlhldUUwUWNNM2xn?=
+ =?utf-8?B?bXVGVkdmUll3T3ZTVllXNXV0NnkyRklTOEJWL2thdklJcVlzb0l0RmVxYUlG?=
+ =?utf-8?B?TlE9PQ==?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: 8e3127d7-46ef-4e10-0b8c-08db4fe69dbb
 X-MS-Exchange-CrossTenant-AuthSource: MN0PR11MB6059.namprd11.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 08 May 2023 17:06:39.5857 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 08 May 2023 17:06:51.2781 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: ZPJebE4rugSOZtapDzzdjQ+Jk1IMmBxu2bprD8cX6lz+BbY0/rgDRl8IzF30DTR23JZJhbRq+BF4/LDFZ5KksA==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: CO1PR11MB4913
+X-MS-Exchange-CrossTenant-UserPrincipalName: eaES1u3dnDFcJxpQ+qKpBFUAA9VSZLcwBJBd6uJ/YkiGLMYSe/o9dIUyB5YvfDMUdmiOlyBEjsH8NLzRcGandw==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM6PR11MB4675
 X-OriginatorOrg: intel.com
-Subject: [Intel-xe] [PATCH 03/11] drm/xe: Extract non mapped regions out of
- GuC CTB into its own struct.
+Subject: [Intel-xe] [PATCH 06/11] drm/xe: Introduce guc_submit_types.h with
+ relevant structs.
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -146,425 +156,215 @@ Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-No functional change here. The goal is to have a clear split between
-the mapped portions of the CTB and the static information, so we can
-easily capture snapshots that will be used for later read out with
-the devcoredump infrastructure.
+These structs and definitions are only used for the guc_submit
+and they were added specifically for the parallel submission.
 
+While doing that also delete the unused struct guc_wq_item.
+
+Cc: Matthew Brost <matthew.brost@intel.com>
 Signed-off-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
 Reviewed-by: Matthew Brost <matthew.brost@intel.com>
 ---
- drivers/gpu/drm/xe/xe_guc_ct.c       | 155 ++++++++++++++-------------
- drivers/gpu/drm/xe/xe_guc_ct_types.h |  20 ++--
- 2 files changed, 95 insertions(+), 80 deletions(-)
+ drivers/gpu/drm/xe/xe_guc_fwif.h         | 29 -----------
+ drivers/gpu/drm/xe/xe_guc_submit.c       | 40 ++++-----------
+ drivers/gpu/drm/xe/xe_guc_submit_types.h | 64 ++++++++++++++++++++++++
+ 3 files changed, 75 insertions(+), 58 deletions(-)
+ create mode 100644 drivers/gpu/drm/xe/xe_guc_submit_types.h
 
-diff --git a/drivers/gpu/drm/xe/xe_guc_ct.c b/drivers/gpu/drm/xe/xe_guc_ct.c
-index 9055ff133a7c..e16e5fe37ed4 100644
---- a/drivers/gpu/drm/xe/xe_guc_ct.c
-+++ b/drivers/gpu/drm/xe/xe_guc_ct.c
-@@ -172,13 +172,14 @@ int xe_guc_ct_init(struct xe_guc_ct *ct)
- static void guc_ct_ctb_h2g_init(struct xe_device *xe, struct guc_ctb *h2g,
- 				struct iosys_map *map)
- {
--	h2g->size = CTB_H2G_BUFFER_SIZE / sizeof(u32);
--	h2g->resv_space = 0;
--	h2g->tail = 0;
--	h2g->head = 0;
--	h2g->space = CIRC_SPACE(h2g->tail, h2g->head, h2g->size) -
--		h2g->resv_space;
--	h2g->broken = false;
-+	h2g->info.size = CTB_H2G_BUFFER_SIZE / sizeof(u32);
-+	h2g->info.resv_space = 0;
-+	h2g->info.tail = 0;
-+	h2g->info.head = 0;
-+	h2g->info.space = CIRC_SPACE(h2g->info.tail, h2g->info.head,
-+				     h2g->info.size) -
-+			  h2g->info.resv_space;
-+	h2g->info.broken = false;
+diff --git a/drivers/gpu/drm/xe/xe_guc_fwif.h b/drivers/gpu/drm/xe/xe_guc_fwif.h
+index 20155ba4ef07..27d132ce2087 100644
+--- a/drivers/gpu/drm/xe/xe_guc_fwif.h
++++ b/drivers/gpu/drm/xe/xe_guc_fwif.h
+@@ -46,35 +46,6 @@
+ #define GUC_MAX_ENGINE_CLASSES		16
+ #define GUC_MAX_INSTANCES_PER_CLASS	32
  
- 	h2g->desc = *map;
- 	xe_map_memset(xe, &h2g->desc, 0, 0, sizeof(struct guc_ct_buffer_desc));
-@@ -189,13 +190,14 @@ static void guc_ct_ctb_h2g_init(struct xe_device *xe, struct guc_ctb *h2g,
- static void guc_ct_ctb_g2h_init(struct xe_device *xe, struct guc_ctb *g2h,
- 				struct iosys_map *map)
- {
--	g2h->size = CTB_G2H_BUFFER_SIZE / sizeof(u32);
--	g2h->resv_space = G2H_ROOM_BUFFER_SIZE / sizeof(u32);
--	g2h->head = 0;
--	g2h->tail = 0;
--	g2h->space = CIRC_SPACE(g2h->tail, g2h->head, g2h->size) -
--		g2h->resv_space;
--	g2h->broken = false;
-+	g2h->info.size = CTB_G2H_BUFFER_SIZE / sizeof(u32);
-+	g2h->info.resv_space = G2H_ROOM_BUFFER_SIZE / sizeof(u32);
-+	g2h->info.head = 0;
-+	g2h->info.tail = 0;
-+	g2h->info.space = CIRC_SPACE(g2h->info.tail, g2h->info.head,
-+				     g2h->info.size) -
-+			  g2h->info.resv_space;
-+	g2h->info.broken = false;
- 
- 	g2h->desc = IOSYS_MAP_INIT_OFFSET(map, CTB_DESC_SIZE);
- 	xe_map_memset(xe, &g2h->desc, 0, 0, sizeof(struct guc_ct_buffer_desc));
-@@ -212,7 +214,7 @@ static int guc_ct_ctb_h2g_register(struct xe_guc_ct *ct)
- 
- 	desc_addr = xe_bo_ggtt_addr(ct->bo);
- 	ctb_addr = xe_bo_ggtt_addr(ct->bo) + CTB_DESC_SIZE * 2;
--	size = ct->ctbs.h2g.size * sizeof(u32);
-+	size = ct->ctbs.h2g.info.size * sizeof(u32);
- 
- 	err = xe_guc_self_cfg64(guc,
- 				GUC_KLV_SELF_CFG_H2G_CTB_DESCRIPTOR_ADDR_KEY,
-@@ -240,7 +242,7 @@ static int guc_ct_ctb_g2h_register(struct xe_guc_ct *ct)
- 	desc_addr = xe_bo_ggtt_addr(ct->bo) + CTB_DESC_SIZE;
- 	ctb_addr = xe_bo_ggtt_addr(ct->bo) + CTB_DESC_SIZE * 2 +
- 		CTB_H2G_BUFFER_SIZE;
--	size = ct->ctbs.g2h.size * sizeof(u32);
-+	size = ct->ctbs.g2h.info.size * sizeof(u32);
- 
- 	err = xe_guc_self_cfg64(guc,
- 				GUC_KLV_SELF_CFG_G2H_CTB_DESCRIPTOR_ADDR_KEY,
-@@ -329,11 +331,12 @@ static bool h2g_has_room(struct xe_guc_ct *ct, u32 cmd_len)
- 
- 	lockdep_assert_held(&ct->lock);
- 
--	if (cmd_len > h2g->space) {
--		h2g->head = desc_read(ct_to_xe(ct), h2g, head);
--		h2g->space = CIRC_SPACE(h2g->tail, h2g->head, h2g->size) -
--			h2g->resv_space;
--		if (cmd_len > h2g->space)
-+	if (cmd_len > h2g->info.space) {
-+		h2g->info.head = desc_read(ct_to_xe(ct), h2g, head);
-+		h2g->info.space = CIRC_SPACE(h2g->info.tail, h2g->info.head,
-+					     h2g->info.size) -
-+				  h2g->info.resv_space;
-+		if (cmd_len > h2g->info.space)
- 			return false;
- 	}
- 
-@@ -344,7 +347,7 @@ static bool g2h_has_room(struct xe_guc_ct *ct, u32 g2h_len)
- {
- 	lockdep_assert_held(&ct->lock);
- 
--	return ct->ctbs.g2h.space > g2h_len;
-+	return ct->ctbs.g2h.info.space > g2h_len;
+-/* Work item for submitting workloads into work queue of GuC. */
+-#define WQ_STATUS_ACTIVE		1
+-#define WQ_STATUS_SUSPENDED		2
+-#define WQ_STATUS_CMD_ERROR		3
+-#define WQ_STATUS_ENGINE_ID_NOT_USED	4
+-#define WQ_STATUS_SUSPENDED_FROM_RESET	5
+-#define WQ_TYPE_NOOP			0x4
+-#define WQ_TYPE_MULTI_LRC		0x5
+-#define WQ_TYPE_MASK			GENMASK(7, 0)
+-#define WQ_LEN_MASK			GENMASK(26, 16)
+-
+-#define WQ_GUC_ID_MASK			GENMASK(15, 0)
+-#define WQ_RING_TAIL_MASK		GENMASK(28, 18)
+-
+-struct guc_wq_item {
+-	u32 header;
+-	u32 context_desc;
+-	u32 submit_element_info;
+-	u32 fence_id;
+-} __packed;
+-
+-struct guc_sched_wq_desc {
+-	u32 head;
+-	u32 tail;
+-	u32 error_offset;
+-	u32 wq_status;
+-	u32 reserved[28];
+-} __packed;
+-
+ /* Helper for context registration H2G */
+ struct guc_ctxt_registration_info {
+ 	u32 flags;
+diff --git a/drivers/gpu/drm/xe/xe_guc_submit.c b/drivers/gpu/drm/xe/xe_guc_submit.c
+index 9e2950f1fd0d..168e2b0dfc5b 100644
+--- a/drivers/gpu/drm/xe/xe_guc_submit.c
++++ b/drivers/gpu/drm/xe/xe_guc_submit.c
+@@ -22,6 +22,7 @@
+ #include "xe_guc.h"
+ #include "xe_guc_ct.h"
+ #include "xe_guc_engine_types.h"
++#include "xe_guc_submit_types.h"
+ #include "xe_hw_engine.h"
+ #include "xe_hw_fence.h"
+ #include "xe_lrc.h"
+@@ -378,32 +379,12 @@ static void set_min_preemption_timeout(struct xe_guc *guc, struct xe_engine *e)
+ 		       __guc_engine_policy_action_size(&policy), 0, 0);
  }
  
- static int has_room(struct xe_guc_ct *ct, u32 cmd_len, u32 g2h_len)
-@@ -360,16 +363,16 @@ static int has_room(struct xe_guc_ct *ct, u32 cmd_len, u32 g2h_len)
- static void h2g_reserve_space(struct xe_guc_ct *ct, u32 cmd_len)
- {
- 	lockdep_assert_held(&ct->lock);
--	ct->ctbs.h2g.space -= cmd_len;
-+	ct->ctbs.h2g.info.space -= cmd_len;
- }
+-#define PARALLEL_SCRATCH_SIZE	2048
+-#define WQ_SIZE			(PARALLEL_SCRATCH_SIZE / 2)
+-#define WQ_OFFSET		(PARALLEL_SCRATCH_SIZE - WQ_SIZE)
+-#define CACHELINE_BYTES		64
+-
+-struct sync_semaphore {
+-	u32 semaphore;
+-	u8 unused[CACHELINE_BYTES - sizeof(u32)];
+-};
+-
+-struct parallel_scratch {
+-	struct guc_sched_wq_desc wq_desc;
+-
+-	struct sync_semaphore go;
+-	struct sync_semaphore join[XE_HW_ENGINE_MAX_INSTANCE];
+-
+-	u8 unused[WQ_OFFSET - sizeof(struct guc_sched_wq_desc) -
+-		sizeof(struct sync_semaphore) * (XE_HW_ENGINE_MAX_INSTANCE + 1)];
+-
+-	u32 wq[WQ_SIZE / sizeof(u32)];
+-};
+-
+ #define parallel_read(xe_, map_, field_) \
+-	xe_map_rd_field(xe_, &map_, 0, struct parallel_scratch, field_)
++	xe_map_rd_field(xe_, &map_, 0, struct guc_submit_parallel_scratch, \
++			field_)
+ #define parallel_write(xe_, map_, field_, val_) \
+-	xe_map_wr_field(xe_, &map_, 0, struct parallel_scratch, field_, val_)
++	xe_map_wr_field(xe_, &map_, 0, struct guc_submit_parallel_scratch, \
++			field_, val_)
  
- static void g2h_reserve_space(struct xe_guc_ct *ct, u32 g2h_len, u32 num_g2h)
- {
--	XE_BUG_ON(g2h_len > ct->ctbs.g2h.space);
-+	XE_BUG_ON(g2h_len > ct->ctbs.g2h.info.space);
+ static void __register_mlrc_engine(struct xe_guc *guc,
+ 				   struct xe_engine *e,
+@@ -486,13 +467,13 @@ static void register_engine(struct xe_engine *e)
+ 		struct iosys_map map = xe_lrc_parallel_map(lrc);
  
- 	if (g2h_len) {
- 		spin_lock_irq(&ct->fast_lock);
--		ct->ctbs.g2h.space -= g2h_len;
-+		ct->ctbs.g2h.info.space -= g2h_len;
- 		ct->g2h_outstanding += num_g2h;
- 		spin_unlock_irq(&ct->fast_lock);
- 	}
-@@ -378,10 +381,10 @@ static void g2h_reserve_space(struct xe_guc_ct *ct, u32 g2h_len, u32 num_g2h)
- static void __g2h_release_space(struct xe_guc_ct *ct, u32 g2h_len)
- {
- 	lockdep_assert_held(&ct->fast_lock);
--	XE_WARN_ON(ct->ctbs.g2h.space + g2h_len >
--		   ct->ctbs.g2h.size - ct->ctbs.g2h.resv_space);
-+	XE_WARN_ON(ct->ctbs.g2h.info.space + g2h_len >
-+		   ct->ctbs.g2h.info.size - ct->ctbs.g2h.info.resv_space);
+ 		info.wq_desc_lo = lower_32_bits(ggtt_addr +
+-			offsetof(struct parallel_scratch, wq_desc));
++			offsetof(struct guc_submit_parallel_scratch, wq_desc));
+ 		info.wq_desc_hi = upper_32_bits(ggtt_addr +
+-			offsetof(struct parallel_scratch, wq_desc));
++			offsetof(struct guc_submit_parallel_scratch, wq_desc));
+ 		info.wq_base_lo = lower_32_bits(ggtt_addr +
+-			offsetof(struct parallel_scratch, wq[0]));
++			offsetof(struct guc_submit_parallel_scratch, wq[0]));
+ 		info.wq_base_hi = upper_32_bits(ggtt_addr +
+-			offsetof(struct parallel_scratch, wq[0]));
++			offsetof(struct guc_submit_parallel_scratch, wq[0]));
+ 		info.wq_size = WQ_SIZE;
  
--	ct->ctbs.g2h.space += g2h_len;
-+	ct->ctbs.g2h.info.space += g2h_len;
- 	--ct->g2h_outstanding;
- }
+ 		e->guc->wqi_head = 0;
+@@ -594,7 +575,7 @@ static void wq_item_append(struct xe_engine *e)
  
-@@ -400,20 +403,21 @@ static int h2g_write(struct xe_guc_ct *ct, const u32 *action, u32 len,
- 	u32 cmd[GUC_CTB_MSG_MAX_LEN / sizeof(u32)];
- 	u32 cmd_len = len + GUC_CTB_HDR_LEN;
- 	u32 cmd_idx = 0, i;
--	u32 tail = h2g->tail;
-+	u32 tail = h2g->info.tail;
- 	struct iosys_map map = IOSYS_MAP_INIT_OFFSET(&h2g->cmds,
- 							 tail * sizeof(u32));
+ 	XE_BUG_ON(i != wqi_size / sizeof(u32));
  
- 	lockdep_assert_held(&ct->lock);
- 	XE_BUG_ON(len * sizeof(u32) > GUC_CTB_MSG_MAX_LEN);
--	XE_BUG_ON(tail > h2g->size);
-+	XE_BUG_ON(tail > h2g->info.size);
+-	iosys_map_incr(&map, offsetof(struct parallel_scratch,
++	iosys_map_incr(&map, offsetof(struct guc_submit_parallel_scratch,
+ 					wq[e->guc->wqi_tail / sizeof(u32)]));
+ 	xe_map_memcpy_to(xe, &map, 0, wqi, wqi_size);
+ 	e->guc->wqi_tail += wqi_size;
+@@ -1674,6 +1655,7 @@ static void guc_engine_print(struct xe_engine *e, struct drm_printer *p)
+ 		guc_engine_wq_print(e, p);
  
- 	/* Command will wrap, zero fill (NOPs), return and check credits again */
--	if (tail + cmd_len > h2g->size) {
--		xe_map_memset(xe, &map, 0, 0, (h2g->size - tail) * sizeof(u32));
--		h2g_reserve_space(ct, (h2g->size - tail));
--		h2g->tail = 0;
--		desc_write(xe, h2g, tail, h2g->tail);
-+	if (tail + cmd_len > h2g->info.size) {
-+		xe_map_memset(xe, &map, 0, 0,
-+			      (h2g->info.size - tail) * sizeof(u32));
-+		h2g_reserve_space(ct, (h2g->info.size - tail));
-+		h2g->info.tail = 0;
-+		desc_write(xe, h2g, tail, h2g->info.tail);
- 
- 		return -EAGAIN;
- 	}
-@@ -445,11 +449,11 @@ static int h2g_write(struct xe_guc_ct *ct, const u32 *action, u32 len,
- 	xe_device_wmb(ct_to_xe(ct));
- 
- 	/* Update local copies */
--	h2g->tail = (tail + cmd_len) % h2g->size;
-+	h2g->info.tail = (tail + cmd_len) % h2g->info.size;
- 	h2g_reserve_space(ct, cmd_len);
- 
- 	/* Update descriptor */
--	desc_write(xe, h2g, tail, h2g->tail);
-+	desc_write(xe, h2g, tail, h2g->info.tail);
- 
- 	return 0;
- }
-@@ -466,7 +470,7 @@ static int __guc_ct_send_locked(struct xe_guc_ct *ct, const u32 *action,
- 	XE_BUG_ON(!g2h_len && num_g2h);
- 	lockdep_assert_held(&ct->lock);
- 
--	if (unlikely(ct->ctbs.h2g.broken)) {
-+	if (unlikely(ct->ctbs.h2g.info.broken)) {
- 		ret = -EPIPE;
- 		goto out;
- 	}
-@@ -554,8 +558,9 @@ static int guc_ct_send_locked(struct xe_guc_ct *ct, const u32 *action, u32 len,
- 		if (sleep_period_ms == 1024)
- 			goto broken;
- 
--		trace_xe_guc_ct_h2g_flow_control(h2g->head, h2g->tail,
--						 h2g->size, h2g->space,
-+		trace_xe_guc_ct_h2g_flow_control(h2g->info.head, h2g->info.tail,
-+						 h2g->info.size,
-+						 h2g->info.space,
- 						 len + GUC_CTB_HDR_LEN);
- 		msleep(sleep_period_ms);
- 		sleep_period_ms <<= 1;
-@@ -565,15 +570,16 @@ static int guc_ct_send_locked(struct xe_guc_ct *ct, const u32 *action, u32 len,
- 		struct xe_device *xe = ct_to_xe(ct);
- 		struct guc_ctb *g2h = &ct->ctbs.g2h;
- 
--		trace_xe_guc_ct_g2h_flow_control(g2h->head,
-+		trace_xe_guc_ct_g2h_flow_control(g2h->info.head,
- 						 desc_read(xe, g2h, tail),
--						 g2h->size, g2h->space,
-+						 g2h->info.size,
-+						 g2h->info.space,
- 						 g2h_fence ?
- 						 GUC_CTB_HXG_MSG_MAX_LEN :
- 						 g2h_len);
- 
- #define g2h_avail(ct)	\
--	(desc_read(ct_to_xe(ct), (&ct->ctbs.g2h), tail) != ct->ctbs.g2h.head)
-+	(desc_read(ct_to_xe(ct), (&ct->ctbs.g2h), tail) != ct->ctbs.g2h.info.head)
- 		if (!wait_event_timeout(ct->wq, !ct->g2h_outstanding ||
- 					g2h_avail(ct), HZ))
- 			goto broken;
-@@ -590,7 +596,7 @@ static int guc_ct_send_locked(struct xe_guc_ct *ct, const u32 *action, u32 len,
- broken:
- 	drm_err(drm, "No forward process on H2G, reset required");
- 	xe_guc_ct_print(ct, &p);
--	ct->ctbs.h2g.broken = true;
-+	ct->ctbs.h2g.info.broken = true;
- 
- 	return -EDEADLK;
- }
-@@ -656,7 +662,7 @@ static bool retry_failure(struct xe_guc_ct *ct, int ret)
- 		return false;
- 
- #define ct_alive(ct)	\
--	(ct->enabled && !ct->ctbs.h2g.broken && !ct->ctbs.g2h.broken)
-+	(ct->enabled && !ct->ctbs.h2g.info.broken && !ct->ctbs.g2h.info.broken)
- 	if (!wait_event_interruptible_timeout(ct->wq, ct_alive(ct),  HZ * 5))
- 		return false;
- #undef ct_alive
-@@ -821,7 +827,7 @@ static int parse_g2h_msg(struct xe_guc_ct *ct, u32 *msg, u32 len)
- 		drm_err(&xe->drm,
- 			"G2H channel broken on read, origin=%d, reset required\n",
- 			origin);
--		ct->ctbs.g2h.broken = true;
-+		ct->ctbs.g2h.info.broken = true;
- 
- 		return -EPROTO;
- 	}
-@@ -840,7 +846,7 @@ static int parse_g2h_msg(struct xe_guc_ct *ct, u32 *msg, u32 len)
- 		drm_err(&xe->drm,
- 			"G2H channel broken on read, type=%d, reset required\n",
- 			type);
--		ct->ctbs.g2h.broken = true;
-+		ct->ctbs.g2h.info.broken = true;
- 
- 		ret = -EOPNOTSUPP;
- 	}
-@@ -919,36 +925,37 @@ static int g2h_read(struct xe_guc_ct *ct, u32 *msg, bool fast_path)
- 	if (!ct->enabled)
- 		return -ENODEV;
- 
--	if (g2h->broken)
-+	if (g2h->info.broken)
- 		return -EPIPE;
- 
- 	/* Calculate DW available to read */
- 	tail = desc_read(xe, g2h, tail);
--	avail = tail - g2h->head;
-+	avail = tail - g2h->info.head;
- 	if (unlikely(avail == 0))
- 		return 0;
- 
- 	if (avail < 0)
--		avail += g2h->size;
-+		avail += g2h->info.size;
- 
- 	/* Read header */
--	xe_map_memcpy_from(xe, msg, &g2h->cmds, sizeof(u32) * g2h->head, sizeof(u32));
-+	xe_map_memcpy_from(xe, msg, &g2h->cmds, sizeof(u32) * g2h->info.head,
-+			   sizeof(u32));
- 	len = FIELD_GET(GUC_CTB_MSG_0_NUM_DWORDS, msg[0]) + GUC_CTB_MSG_MIN_LEN;
- 	if (len > avail) {
- 		drm_err(&xe->drm,
- 			"G2H channel broken on read, avail=%d, len=%d, reset required\n",
- 			avail, len);
--		g2h->broken = true;
-+		g2h->info.broken = true;
- 
- 		return -EPROTO;
- 	}
- 
--	head = (g2h->head + 1) % g2h->size;
-+	head = (g2h->info.head + 1) % g2h->info.size;
- 	avail = len - 1;
- 
- 	/* Read G2H message */
--	if (avail + head > g2h->size) {
--		u32 avail_til_wrap = g2h->size - head;
-+	if (avail + head > g2h->info.size) {
-+		u32 avail_til_wrap = g2h->info.size - head;
- 
- 		xe_map_memcpy_from(xe, msg + 1,
- 				   &g2h->cmds, sizeof(u32) * head,
-@@ -983,8 +990,8 @@ static int g2h_read(struct xe_guc_ct *ct, u32 *msg, bool fast_path)
- 	}
- 
- 	/* Update local / descriptor header */
--	g2h->head = (head + avail) % g2h->size;
--	desc_write(xe, g2h, head, g2h->head);
-+	g2h->info.head = (head + avail) % g2h->info.size;
-+	desc_write(xe, g2h, head, g2h->info.head);
- 
- 	return len;
- }
-@@ -1093,12 +1100,12 @@ static void guc_ct_ctb_print(struct xe_device *xe, struct guc_ctb *ctb,
- {
- 	u32 head, tail;
- 
--	drm_printf(p, "\tsize: %d\n", ctb->size);
--	drm_printf(p, "\tresv_space: %d\n", ctb->resv_space);
--	drm_printf(p, "\thead: %d\n", ctb->head);
--	drm_printf(p, "\ttail: %d\n", ctb->tail);
--	drm_printf(p, "\tspace: %d\n", ctb->space);
--	drm_printf(p, "\tbroken: %d\n", ctb->broken);
-+	drm_printf(p, "\tsize: %d\n", ctb->info.size);
-+	drm_printf(p, "\tresv_space: %d\n", ctb->info.resv_space);
-+	drm_printf(p, "\thead: %d\n", ctb->info.head);
-+	drm_printf(p, "\ttail: %d\n", ctb->info.tail);
-+	drm_printf(p, "\tspace: %d\n", ctb->info.space);
-+	drm_printf(p, "\tbroken: %d\n", ctb->info.broken);
- 
- 	head = desc_read(xe, ctb, head);
- 	tail = desc_read(xe, ctb, tail);
-@@ -1114,7 +1121,7 @@ static void guc_ct_ctb_print(struct xe_device *xe, struct guc_ctb *ctb,
- 			drm_printf(p, "\tcmd[%d]: 0x%08x\n", head,
- 				   xe_map_rd(xe, &map, 0, u32));
- 			++head;
--			if (head == ctb->size) {
-+			if (head == ctb->info.size) {
- 				head = 0;
- 				map = ctb->cmds;
- 			} else {
-@@ -1168,12 +1175,12 @@ void xe_guc_ct_selftest(struct xe_guc_ct *ct, struct drm_printer *p)
- 	if (!ret) {
- 		xe_guc_ct_irq_handler(ct);
- 		msleep(200);
--		if (g2h->space !=
--		    CIRC_SPACE(0, 0, g2h->size) - g2h->resv_space) {
-+		if (g2h->info.space !=
-+		    CIRC_SPACE(0, 0, g2h->info.size) - g2h->info.resv_space) {
- 			drm_printf(p, "Mismatch on space %d, %d\n",
--				   g2h->space,
--				   CIRC_SPACE(0, 0, g2h->size) -
--				   g2h->resv_space);
-+				   g2h->info.space,
-+				   CIRC_SPACE(0, 0, g2h->info.size) -
-+				   g2h->info.resv_space);
- 			ret = -EIO;
- 		}
- 		if (ct->g2h_outstanding) {
-@@ -1185,12 +1192,12 @@ void xe_guc_ct_selftest(struct xe_guc_ct *ct, struct drm_printer *p)
- 
- 	/* Check failure path for blocking CTs too */
- 	xe_guc_ct_send_block(ct, bad_action, ARRAY_SIZE(bad_action));
--	if (g2h->space !=
--	    CIRC_SPACE(0, 0, g2h->size) - g2h->resv_space) {
-+	if (g2h->info.space !=
-+	    CIRC_SPACE(0, 0, g2h->info.size) - g2h->info.resv_space) {
- 		drm_printf(p, "Mismatch on space %d, %d\n",
--			   g2h->space,
--			   CIRC_SPACE(0, 0, g2h->size) -
--			   g2h->resv_space);
-+			   g2h->info.space,
-+			   CIRC_SPACE(0, 0, g2h->info.size) -
-+			   g2h->info.resv_space);
- 		ret = -EIO;
- 	}
- 	if (ct->g2h_outstanding) {
-diff --git a/drivers/gpu/drm/xe/xe_guc_ct_types.h b/drivers/gpu/drm/xe/xe_guc_ct_types.h
-index fd27dacf00c5..64e3dd14d4b2 100644
---- a/drivers/gpu/drm/xe/xe_guc_ct_types.h
-+++ b/drivers/gpu/drm/xe/xe_guc_ct_types.h
-@@ -19,13 +19,9 @@
- struct xe_bo;
- 
- /**
-- * struct guc_ctb - GuC command transport buffer (CTB)
-+ * struct guc_ctb_info - GuC command transport buffer (CTB) info
-  */
--struct guc_ctb {
--	/** @desc: dma buffer map for CTB descriptor */
--	struct iosys_map desc;
--	/** @cmds: dma buffer map for CTB commands */
--	struct iosys_map cmds;
-+struct guc_ctb_info {
- 	/** @size: size of CTB commands (DW) */
- 	u32 size;
- 	/** @resv_space: reserved space of CTB commands (DW) */
-@@ -40,6 +36,18 @@ struct guc_ctb {
- 	bool broken;
- };
- 
-+/**
-+ * struct guc_ctb - GuC command transport buffer (CTB)
+ 	spin_lock(&sched->job_list_lock);
++
+ 	list_for_each_entry(job, &sched->pending_list, drm.list)
+ 		drm_printf(p, "\tJob: seqno=%d, fence=%d, finished=%d\n",
+ 			   xe_sched_job_seqno(job),
+diff --git a/drivers/gpu/drm/xe/xe_guc_submit_types.h b/drivers/gpu/drm/xe/xe_guc_submit_types.h
+new file mode 100644
+index 000000000000..d369ea0bad60
+--- /dev/null
++++ b/drivers/gpu/drm/xe/xe_guc_submit_types.h
+@@ -0,0 +1,64 @@
++// SPDX-License-Identifier: MIT
++/*
++ * Copyright © 2023 Intel Corporation
 + */
-+struct guc_ctb {
-+	/** @desc: dma buffer map for CTB descriptor */
-+	struct iosys_map desc;
-+	/** @cmds: dma buffer map for CTB commands */
-+	struct iosys_map cmds;
-+	/** @info: CTB info */
-+	struct guc_ctb_info info;
++
++#ifndef _XE_GUC_SUBMIT_TYPES_H_
++#define _XE_GUC_SUBMIT_TYPES_H_
++
++#include "xe_hw_engine_types.h"
++
++/* Work item for submitting workloads into work queue of GuC. */
++#define WQ_STATUS_ACTIVE		1
++#define WQ_STATUS_SUSPENDED		2
++#define WQ_STATUS_CMD_ERROR		3
++#define WQ_STATUS_ENGINE_ID_NOT_USED	4
++#define WQ_STATUS_SUSPENDED_FROM_RESET	5
++#define WQ_TYPE_NOOP			0x4
++#define WQ_TYPE_MULTI_LRC		0x5
++#define WQ_TYPE_MASK			GENMASK(7, 0)
++#define WQ_LEN_MASK			GENMASK(26, 16)
++
++#define WQ_GUC_ID_MASK			GENMASK(15, 0)
++#define WQ_RING_TAIL_MASK		GENMASK(28, 18)
++
++#define PARALLEL_SCRATCH_SIZE	2048
++#define WQ_SIZE			(PARALLEL_SCRATCH_SIZE / 2)
++#define WQ_OFFSET		(PARALLEL_SCRATCH_SIZE - WQ_SIZE)
++#define CACHELINE_BYTES		64
++
++struct guc_sched_wq_desc {
++	u32 head;
++	u32 tail;
++	u32 error_offset;
++	u32 wq_status;
++	u32 reserved[28];
++} __packed;
++
++struct sync_semaphore {
++	u32 semaphore;
++	u8 unused[CACHELINE_BYTES - sizeof(u32)];
 +};
 +
- /**
-  * struct xe_guc_ct - GuC command transport (CT) layer
-  *
++/**
++ * Struct guc_submit_parallel_scratch - A scratch shared mapped buffer.
++ */
++struct guc_submit_parallel_scratch {
++	/** @wq_desc: Guc scheduler workqueue descriptor */
++	struct guc_sched_wq_desc wq_desc;
++
++	/** @go: Go Semaphore */
++	struct sync_semaphore go;
++	/** @join: Joined semaphore for the relevant hw engine instances */
++	struct sync_semaphore join[XE_HW_ENGINE_MAX_INSTANCE];
++
++	/** @unused: Unused/Reserved memory space */
++	u8 unused[WQ_OFFSET - sizeof(struct guc_sched_wq_desc) -
++		  sizeof(struct sync_semaphore) *
++		  (XE_HW_ENGINE_MAX_INSTANCE + 1)];
++
++	/** @wq: Workqueue info */
++	u32 wq[WQ_SIZE / sizeof(u32)];
++};
++
++#endif
 -- 
 2.39.2
 
