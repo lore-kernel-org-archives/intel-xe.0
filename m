@@ -4,30 +4,51 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id F292FC77B75
-	for <intel-xe@archiver.kernel.org>; Tue,  9 May 2023 07:30:53 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2184FC7EE22
+	for <intel-xe@archiver.kernel.org>; Tue,  9 May 2023 07:57:35 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C5F5610E341;
-	Tue,  9 May 2023 07:30:53 +0000 (UTC)
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id EA1ED10E340;
- Tue,  9 May 2023 07:30:51 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 809F4A9932;
- Tue,  9 May 2023 07:30:51 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============8954686347168034687=="
+	by gabe.freedesktop.org (Postfix) with ESMTP id D7C7010E345;
+	Tue,  9 May 2023 07:57:34 +0000 (UTC)
+Received: from mga06.intel.com (mga06b.intel.com [134.134.136.31])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2D62810E345;
+ Tue,  9 May 2023 07:57:33 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1683619052; x=1715155052;
+ h=from:to:cc:subject:in-reply-to:references:date:
+ message-id:mime-version;
+ bh=HyMZvjVK4PWg2zKaACEjXyLpCS8bkLdXvTElw8PwpKo=;
+ b=SbO04ES9jEwm6XlcRAc9N7dohbds2voBYDEUhS7hwW572dVO2JnGkeDN
+ vQYlTap/ifmS/t7NhJq773qSqf+ImVEnZVj0ei+2efhXOlqGL01S7FU7b
+ z/Y3Y/sS33n8oDerj/ICCChcPxmgxO3iqcDHvISH1aul2H4maCzajhFCj
+ +XYPiNS3aGRiakjTqzKaqt9sIlwBndeElJSSTxx8KLcysGCV1kdvAxe8L
+ MhwbzD+MQ5Gx+65mE7hyM6305N4MSm1XeN3B+xrUkPDvHfqbWErf+B578
+ GFH7PntYjxsOyqmH5T4A/a0jRTCRKfEkQ7LBGr4WfKdHzTnyFsvwv/kDS w==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10704"; a="413102012"
+X-IronPort-AV: E=Sophos;i="5.99,261,1677571200"; d="scan'208";a="413102012"
+Received: from fmsmga006.fm.intel.com ([10.253.24.20])
+ by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 09 May 2023 00:57:25 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6600,9927,10704"; a="945165860"
+X-IronPort-AV: E=Sophos;i="5.99,261,1677571200"; d="scan'208";a="945165860"
+Received: from unknown (HELO localhost) ([10.252.39.92])
+ by fmsmga006-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 09 May 2023 00:57:21 -0700
+From: Jani Nikula <jani.nikula@linux.intel.com>
+To: Lucas De Marchi <lucas.demarchi@intel.com>,
+ intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
+ dri-devel@lists.freedesktop.org
+In-Reply-To: <20230509051403.2748545-4-lucas.demarchi@intel.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+References: <20230509051403.2748545-1-lucas.demarchi@intel.com>
+ <20230509051403.2748545-4-lucas.demarchi@intel.com>
+Date: Tue, 09 May 2023 10:57:19 +0300
+Message-ID: <87cz3andi8.fsf@intel.com>
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Niranjana Vishwanathapura" <niranjana.vishwanathapura@intel.com>
-Date: Tue, 09 May 2023 07:30:51 -0000
-Message-ID: <168361745152.14158.835017657515906083@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20230509065709.30393-1-niranjana.vishwanathapura@intel.com>
-In-Reply-To: <20230509065709.30393-1-niranjana.vishwanathapura@intel.com>
-Subject: [Intel-xe] =?utf-8?q?=E2=97=8B_CI=2EBAT=3A_info_for_drm/xe=3A_Ha?=
- =?utf-8?q?ndle_-EDEADLK_case_during_BO_validation?=
+Content-Type: text/plain
+Subject: Re: [Intel-xe] [PATCH 3/3] drm/i915: Temporary conversion to new
+ GENMASK/BIT macros
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -39,66 +60,100 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
-Cc: intel-xe@lists.freedesktop.org
+Cc: Masahiro Yamada <masahiroy@kernel.org>,
+ Kevin Brodsky <kevin.brodsky@arm.com>,
+ Lucas De Marchi <lucas.demarchi@intel.com>, linux-kernel@vger.kernel.org,
+ Christian =?utf-8?Q?K=C3=B6nig?= <christian.koenig@amd.com>,
+ Alex Deucher <alexander.deucher@amd.com>, Thomas Gleixner <tglx@linutronix.de>,
+ Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
+ Andrew Morton <akpm@linux-foundation.org>
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============8954686347168034687==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+On Mon, 08 May 2023, Lucas De Marchi <lucas.demarchi@intel.com> wrote:
+> Convert the REG_* macros from i915_reg_defs.h to use the new macros
+> defined in linux/bits.h. This is just to help on the implementation
+> of the new macros and not intended to be applied.
 
-== Series Details ==
+This drops a number of build time input checks as well as casts to the
+specified types.
 
-Series: drm/xe: Handle -EDEADLK case during BO validation
-URL   : https://patchwork.freedesktop.org/series/117496/
-State : info
+BR,
+Jani.
 
-== Summary ==
+>
+> Signed-off-by: Lucas De Marchi <lucas.demarchi@intel.com>
+> ---
+>  drivers/gpu/drm/i915/i915_reg_defs.h | 28 +++++-----------------------
+>  1 file changed, 5 insertions(+), 23 deletions(-)
+>
+> diff --git a/drivers/gpu/drm/i915/i915_reg_defs.h b/drivers/gpu/drm/i915/i915_reg_defs.h
+> index 622d603080f9..61fbb8d62b25 100644
+> --- a/drivers/gpu/drm/i915/i915_reg_defs.h
+> +++ b/drivers/gpu/drm/i915/i915_reg_defs.h
+> @@ -17,10 +17,7 @@
+>   *
+>   * @return: Value with bit @__n set.
+>   */
+> -#define REG_BIT(__n)							\
+> -	((u32)(BIT(__n) +						\
+> -	       BUILD_BUG_ON_ZERO(__is_constexpr(__n) &&		\
+> -				 ((__n) < 0 || (__n) > 31))))
+> +#define REG_BIT(__n) BIT_U32(__n)
+>  
+>  /**
+>   * REG_BIT8() - Prepare a u8 bit value
+> @@ -30,10 +27,7 @@
+>   *
+>   * @return: Value with bit @__n set.
+>   */
+> -#define REG_BIT8(__n)                                                   \
+> -	((u8)(BIT(__n) +                                                \
+> -	       BUILD_BUG_ON_ZERO(__is_constexpr(__n) &&         \
+> -				 ((__n) < 0 || (__n) > 7))))
+> +#define REG_BIT8(__n) BIT_U8(__n)
+>  
+>  /**
+>   * REG_GENMASK() - Prepare a continuous u32 bitmask
+> @@ -44,11 +38,7 @@
+>   *
+>   * @return: Continuous bitmask from @__high to @__low, inclusive.
+>   */
+> -#define REG_GENMASK(__high, __low)					\
+> -	((u32)(GENMASK(__high, __low) +					\
+> -	       BUILD_BUG_ON_ZERO(__is_constexpr(__high) &&	\
+> -				 __is_constexpr(__low) &&		\
+> -				 ((__low) < 0 || (__high) > 31 || (__low) > (__high)))))
+> +#define REG_GENMASK(__high, __low) GENMASK_U32(__high, __low)
+>  
+>  /**
+>   * REG_GENMASK64() - Prepare a continuous u64 bitmask
+> @@ -59,11 +49,7 @@
+>   *
+>   * @return: Continuous bitmask from @__high to @__low, inclusive.
+>   */
+> -#define REG_GENMASK64(__high, __low)					\
+> -	((u64)(GENMASK_ULL(__high, __low) +				\
+> -	       BUILD_BUG_ON_ZERO(__is_constexpr(__high) &&		\
+> -				 __is_constexpr(__low) &&		\
+> -				 ((__low) < 0 || (__high) > 63 || (__low) > (__high)))))
+> +#define REG_GENMASK64(__high, __low) GENMASK_ULL(__high, __low)
+>  
+>  /**
+>   * REG_GENMASK8() - Prepare a continuous u8 bitmask
+> @@ -74,11 +60,7 @@
+>   *
+>   * @return: Continuous bitmask from @__high to @__low, inclusive.
+>   */
+> -#define REG_GENMASK8(__high, __low)                                     \
+> -	((u8)(GENMASK(__high, __low) +                                  \
+> -	       BUILD_BUG_ON_ZERO(__is_constexpr(__high) &&      \
+> -				 __is_constexpr(__low) &&               \
+> -				 ((__low) < 0 || (__high) > 7 || (__low) > (__high)))))
+> +#define REG_GENMASK8(__high, __low) GENMASK_U8(__high, __low)
+>  
+>  /*
+>   * Local integer constant expression version of is_power_of_2().
 
-Participating hosts:
-bat-atsm-2
-bat-dg2-oem2
-Missing hosts results[0]:
-Results: [xe-pw-117496v1](https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-117496v1/index.html)
-
-
-
---===============8954686347168034687==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/xe: Handle -EDEADLK case during BO validation</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/117496/">https://patchwork.freedesktop.org/series/117496/</a></td></tr>
-<tr><td><b>State:</b></td><td>info</td></tr>
-
-</table>
-
-
-    <p>Participating hosts:<br />
-bat-atsm-2<br />
-bat-dg2-oem2<br />
-Missing hosts results[0]:<br />
-Results: <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-117496v1/index.html">xe-pw-117496v1</a></p>
-
-</body>
-</html>
-
---===============8954686347168034687==--
+-- 
+Jani Nikula, Intel Open Source Graphics Center
