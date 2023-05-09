@@ -4,47 +4,46 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 522BCC77B7C
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 010E1C7EE24
 	for <intel-xe@archiver.kernel.org>; Tue,  9 May 2023 05:24:26 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1D40510E22B;
+	by gabe.freedesktop.org (Postfix) with ESMTP id D36C610E23A;
 	Tue,  9 May 2023 05:24:26 +0000 (UTC)
 Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 729E210E31F
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4AB9610E22B
  for <intel-xe@lists.freedesktop.org>; Tue,  9 May 2023 05:24:25 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
  t=1683609865; x=1715145865;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=kEwueu9ZqEw1AJVb76P6HeFHzWeCmMElmJdLGQzlvCQ=;
- b=Sr0ZsmvvjUdIMMt9D6V9XcZ97g9P4Q3HfK/F6gT+tX3Nku5aKYWBP26e
- y4qs/PmEawCickOFjJsWd4vyNjNYDNaaCj883+ST5UFc7cmVv5mTopXZ9
- BheFck+yFXadmh+ebcQOEoYnnZRrI+tgbSfxhFB/KGyXtcQzuORGShZVH
- fM7S13+0tkiuhtDHnNMwNsDCqsP3cRF3aZ5SdLatxWEL5/bX75dqIfTEE
- CDBTTFmjQ+mKb/Nq1wGuDxoO/DoUqkEFuSoXOkAPS1jXAOCSZc6S8rcIS
- U4vNx4V/Orn72WUBbcFzAJD9YARvcdFuXz2T1ahJ+og88jSki/p2ZCaxR w==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10704"; a="329433750"
-X-IronPort-AV: E=Sophos;i="5.99,261,1677571200"; d="scan'208";a="329433750"
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=AwbOzkh3mb85xlAYBGDbnSRV/yV7ZtygHBrItFKdr7g=;
+ b=Lz2S5MS/FE7IX64YLT2h1jmy7qxhzMASyJ6n08Cwolwo9+DSN0dCHDD4
+ JGxngibC8GDfJl3cbFXJW6SHtD1Hra5ei2TGwJMPmTjo4IdLyTsEmxvDv
+ zw73IhsvHIlsDr6gnMCj2b5L3hp68ELe4MFX+oty7/t//zw0Sf9NyQ5w8
+ 9DDgTSxDEjwTcCpHGPsEMHoNpCM22je72UsJQz4Fz6PMrozklH/Xnbtxd
+ eaVjtubcWL7KZneXuSJtsuXitTMMMeIMIwNGktwGumDcwOCFhFNwY6cJP
+ 3RXHgEyw+OkFXxTzclyOdC5MK1rc+ArNGZGfc+6p7NLsvXvfvpBChfscK Q==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10704"; a="329433746"
+X-IronPort-AV: E=Sophos;i="5.99,261,1677571200"; d="scan'208";a="329433746"
 Received: from orsmga008.jf.intel.com ([10.7.209.65])
  by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 May 2023 22:24:25 -0700
+ 08 May 2023 22:24:24 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10704"; a="729336031"
-X-IronPort-AV: E=Sophos;i="5.99,261,1677571200"; d="scan'208";a="729336031"
+X-IronPort-AV: E=McAfee;i="6600,9927,10704"; a="729336024"
+X-IronPort-AV: E=Sophos;i="5.99,261,1677571200"; d="scan'208";a="729336024"
 Received: from nvishwa1-desk.sc.intel.com ([172.25.29.76])
  by orsmga008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  08 May 2023 22:24:24 -0700
 From: Niranjana Vishwanathapura <niranjana.vishwanathapura@intel.com>
 To: intel-xe@lists.freedesktop.org
-Date: Mon,  8 May 2023 22:24:19 -0700
-Message-Id: <20230509052419.28430-3-niranjana.vishwanathapura@intel.com>
+Date: Mon,  8 May 2023 22:24:17 -0700
+Message-Id: <20230509052419.28430-1-niranjana.vishwanathapura@intel.com>
 X-Mailer: git-send-email 2.21.0.rc0.32.g243a4c7e27
-In-Reply-To: <20230509052419.28430-1-niranjana.vishwanathapura@intel.com>
-References: <20230509052419.28430-1-niranjana.vishwanathapura@intel.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-xe] [PATCH 2/2] drm/xe: Handle -EDEADLK case in exec ioctl
+Subject: [Intel-xe] [PATCH 0/2] drm/xe: Handle -EDEADLK case during BO
+ validation
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -67,81 +66,16 @@ return -ENOMEM.
 Until ttm properly handles locking in such scenarios, best thing the
 driver can do is unwind the lock and retry.
 
-Update xe_exec_begin to retry validating BOs with a timeout upon
--ENOMEM.
-
 Signed-off-by: Niranjana Vishwanathapura <niranjana.vishwanathapura@intel.com>
----
- drivers/gpu/drm/xe/xe_exec.c | 27 ++++++++++++++++++++++++---
- 1 file changed, 24 insertions(+), 3 deletions(-)
 
-diff --git a/drivers/gpu/drm/xe/xe_exec.c b/drivers/gpu/drm/xe/xe_exec.c
-index ea869f2452ef..3db1b159586e 100644
---- a/drivers/gpu/drm/xe/xe_exec.c
-+++ b/drivers/gpu/drm/xe/xe_exec.c
-@@ -8,6 +8,7 @@
- #include <drm/drm_device.h>
- #include <drm/drm_file.h>
- #include <drm/xe_drm.h>
-+#include <linux/delay.h>
- 
- #include "xe_bo.h"
- #include "xe_device.h"
-@@ -91,6 +92,8 @@
-  *	Unlock all
-  */
- 
-+#define XE_EXEC_BIND_RETRY_TIMEOUT_MS 1000
-+
- static int xe_exec_begin(struct xe_engine *e, struct ww_acquire_ctx *ww,
- 			 struct ttm_validate_buffer tv_onstack[],
- 			 struct ttm_validate_buffer **tv,
-@@ -99,12 +102,14 @@ static int xe_exec_begin(struct xe_engine *e, struct ww_acquire_ctx *ww,
- 	struct xe_vm *vm = e->vm;
- 	struct xe_vma *vma;
- 	LIST_HEAD(dups);
--	int err;
-+	ktime_t end = 0;
-+	int err = 0;
- 
- 	*tv = NULL;
- 	if (xe_vm_no_dma_fences(e->vm))
- 		return 0;
- 
-+retry:
- 	err = xe_vm_lock_dma_resv(vm, ww, tv_onstack, tv, objs, true, 1);
- 	if (err)
- 		return err;
-@@ -122,11 +127,27 @@ static int xe_exec_begin(struct xe_engine *e, struct ww_acquire_ctx *ww,
- 		if (err) {
- 			xe_vm_unlock_dma_resv(vm, tv_onstack, *tv, ww, objs);
- 			*tv = NULL;
--			return err;
-+			break;
-+		}
-+	}
-+
-+	/*
-+	 * With multiple active VMs, under memory pressure, it is possible that
-+	 * ttm_bo_validate() run into -EDEADLK and in such case returns -ENOMEM.
-+	 * Until ttm properly handles locking in such scenarios, best thing the
-+	 * driver can do is retry with a timeout.
-+	 */
-+	if (err == -ENOMEM) {
-+		ktime_t cur = ktime_get();
-+
-+		end = end ? : ktime_add_ms(cur, XE_EXEC_BIND_RETRY_TIMEOUT_MS);
-+		if (ktime_before(cur, end)) {
-+			msleep(20);
-+			goto retry;
- 		}
- 	}
- 
--	return 0;
-+	return err;
- }
- 
- static void xe_exec_end(struct xe_engine *e,
+Niranjana Vishwanathapura (2):
+  drm/xe: Handle -EDEADLK case in preempt worker
+  drm/xe: Handle -EDEADLK case in exec ioctl
+
+ drivers/gpu/drm/xe/xe_exec.c | 27 ++++++++++++++++++++++++---
+ drivers/gpu/drm/xe/xe_vm.c   | 25 ++++++++++++++++++++++---
+ 2 files changed, 46 insertions(+), 6 deletions(-)
+
 -- 
 2.21.0.rc0.32.g243a4c7e27
 
