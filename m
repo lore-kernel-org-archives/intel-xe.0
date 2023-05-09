@@ -4,40 +4,37 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1A33BC77B7C
-	for <intel-xe@archiver.kernel.org>; Tue,  9 May 2023 17:16:42 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6A87CC7EE22
+	for <intel-xe@archiver.kernel.org>; Tue,  9 May 2023 17:25:43 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D990C10E3B4;
-	Tue,  9 May 2023 17:16:41 +0000 (UTC)
-Received: from dfw.source.kernel.org (dfw.source.kernel.org
- [IPv6:2604:1380:4641:c500::1])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 357B210E3B3
- for <intel-xe@lists.freedesktop.org>; Tue,  9 May 2023 17:16:39 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2A31710E3B4;
+	Tue,  9 May 2023 17:25:43 +0000 (UTC)
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8B4AD10E3B4
+ for <intel-xe@lists.freedesktop.org>; Tue,  9 May 2023 17:25:42 +0000 (UTC)
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
  (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
  (No client certificate requested)
- by dfw.source.kernel.org (Postfix) with ESMTPS id 6DCCB614C6;
- Tue,  9 May 2023 17:16:37 +0000 (UTC)
+ by dfw.source.kernel.org (Postfix) with ESMTPS id 459EA62B5D;
+ Tue,  9 May 2023 17:25:41 +0000 (UTC)
 Received: from rdvivi-mobl4 (unknown [192.55.54.50])
  (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
  (No client certificate requested)
- by smtp.kernel.org (Postfix) with ESMTPSA id D2EE0C4339B;
- Tue,  9 May 2023 17:16:34 +0000 (UTC)
-Date: Tue, 9 May 2023 13:16:33 -0400
+ by smtp.kernel.org (Postfix) with ESMTPSA id 8AD75C433EF;
+ Tue,  9 May 2023 17:25:38 +0000 (UTC)
+Date: Tue, 9 May 2023 13:25:36 -0400
 From: Rodrigo Vivi <rodrigo.vivi@kernel.org>
-To: Lucas De Marchi <lucas.demarchi@intel.com>,
- Jani Nikula <jani.nikula@intel.com>
-Message-ID: <ZFp/5YDyICIjpv6h@rdvivi-mobl4>
-References: <20230508225322.2692066-1-lucas.demarchi@intel.com>
- <20230508225322.2692066-3-lucas.demarchi@intel.com>
- <ZFpmQOxiO1DGB5/b@intel.com>
- <t3xgc2hzjtbru3k2x7emvrxtypsuejj4ms25rq6x2lsoo4auai@v77oi3plujhm>
+To: "Ghimiray, Himal Prasad" <himal.prasad.ghimiray@intel.com>
+Message-ID: <ZFqCEBcGqDFxTN/F@rdvivi-mobl4>
+References: <20230508134823.585186-1-himal.prasad.ghimiray@intel.com>
+ <22d0494f-0db8-01b2-7611-8d43b2d79e2b@intel.com>
+ <MW4PR11MB705692159947D102BB4E3F0BB3769@MW4PR11MB7056.namprd11.prod.outlook.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <t3xgc2hzjtbru3k2x7emvrxtypsuejj4ms25rq6x2lsoo4auai@v77oi3plujhm>
-Subject: Re: [Intel-xe] [PATCH v2 2/4] fixup! drm/xe/display: Implement
- display support
+In-Reply-To: <MW4PR11MB705692159947D102BB4E3F0BB3769@MW4PR11MB7056.namprd11.prod.outlook.com>
+Subject: Re: [Intel-xe] [RFC 1/1] drm/xe: Notify Userspace when engine/gt
+ reset fails.
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -49,218 +46,204 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-xe@lists.freedesktop.org, Rodrigo Vivi <rodrigo.vivi@intel.com>
+Cc: "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>, "Vivi,
+ Rodrigo" <rodrigo.vivi@intel.com>
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Tue, May 09, 2023 at 10:09:08AM -0700, Lucas De Marchi wrote:
-> On Tue, May 09, 2023 at 11:26:56AM -0400, Rodrigo Vivi wrote:
-> > On Mon, May 08, 2023 at 03:53:20PM -0700, Lucas De Marchi wrote:
-> > > WARNING: This should only be squashed when the display implementation
-> > > moves above commit "drm/xe/mmio: Use struct xe_reg".
+On Tue, May 09, 2023 at 06:28:07AM +0000, Ghimiray, Himal Prasad wrote:
+> 
+> 
+> > -----Original Message-----
+> > From: Iddamsetty, Aravind <aravind.iddamsetty@intel.com>
+> > Sent: 09 May 2023 10:42
+> > To: Ghimiray, Himal Prasad <himal.prasad.ghimiray@intel.com>; intel-
+> > xe@lists.freedesktop.org; Vivi, Rodrigo <rodrigo.vivi@intel.com>
+> > Subject: Re: [RFC 1/1] drm/xe: Notify Userspace when engine/gt reset fails.
 > > 
-> > I wonder if we should then try to move this patch under the display
-> 
-> that is the v1 of the patch
-> 
-> > instead waiting for the next round of moving the display up...
-> 
-> but that then means build will be broken for all the commits between the
-> current place display is in and the previous commit, rather than just 1
-> commit.
-> 
-> I think the next display move will be messy as there are commits in the
-> middle that depend on the display being down. My attempt to moving it up
-> last week
-> (https://gitlab.freedesktop.org/demarchi/xe/-/tree/tip-display-rebase)
-> led to a bigger squash at the end because leaving some commits behind
-> didn't make sense and adding them on top didn't look good neither.
-> 
-> Question: is display in an acceptable enough state now that we can stop
-> doing this and just leave it behind the build config? Maybe just move it
-> once more and stop doing that? Another option is to accept the display
-> move is painful enough and maintain it with just a single commit on top.
+> > 
+> > 
+> > On 08-05-2023 19:18, Himal Prasad Ghimiray wrote:
+> > > Send uevent in case of engine reset or gt reset failure.
+> > > L0 sysman would like to generate device reset needed event when gt
+> > > reset fails
+> > > https://one-api.gitlab-pages.devtools.intel.com/level_zero/sysman/api.
+> > > html#_CPPv441ZES_EVENT_TYPE_FLAG_DEVICE_RESET_REQUIRED
+> > This could rather be an intimation to userpace monitoring tool to do the
+> > device level reset/reboot when GT reset fails. udevadm can be used to
+> > monitor the uevents.
+> Hmm. Makes sense. 
+> > 
+> > @rodrigo, your thoughts?
 
-Jani, what are your thoughts on this?
+It would be awesome if this is an indication that user space needs to call
+FLR/SBR... so we would do this when we are unable to reset ("wedged")
 
-> 
-> Lucas De Marchi
-> 
+but let's get some confirmation on the true meaning before moving on...
+
 > > 
-> > Also, could we change the subject from fixup to future-fixup so the
-> > a git autosquash doesn't try to move this before we are ready?
 > > 
-> > > 
-> > > With the move of display above xe_reg conversion in xe_mmio,
-> > > it should use the new types everywhere.
-> > > 
-> > > Signed-off-by: Lucas De Marchi <lucas.demarchi@intel.com>
-> > > Acked-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
+> > >
+> > > Cc: Aravind Iddamsetty <aravind.iddamsetty@intel.com>
+> > > Signed-off-by: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
 > > > ---
-> > >  .../drm/xe/compat-i915-headers/intel_uncore.h | 103 +++++++++++++-----
-> > >  1 file changed, 74 insertions(+), 29 deletions(-)
-> > > 
-> > > diff --git a/drivers/gpu/drm/xe/compat-i915-headers/intel_uncore.h b/drivers/gpu/drm/xe/compat-i915-headers/intel_uncore.h
-> > > index 90d79290a211..14f195fe275d 100644
-> > > --- a/drivers/gpu/drm/xe/compat-i915-headers/intel_uncore.h
-> > > +++ b/drivers/gpu/drm/xe/compat-i915-headers/intel_uncore.h
-> > > @@ -17,82 +17,127 @@ static inline struct xe_gt *__fake_uncore_to_gt(struct fake_uncore *uncore)
-> > >  	return to_gt(xe);
+> > >  drivers/gpu/drm/xe/xe_gt.c         | 18 ++++++++++++++++++
+> > >  drivers/gpu/drm/xe/xe_guc.h        | 18 ++++++++++++++++++
+> > >  drivers/gpu/drm/xe/xe_guc_submit.c | 23 +++++++++++++++++++++++
+> > >  include/uapi/drm/xe_drm.h          |  8 ++++++++
+> > >  4 files changed, 67 insertions(+)
+> > >
+> > > diff --git a/drivers/gpu/drm/xe/xe_gt.c b/drivers/gpu/drm/xe/xe_gt.c
+> > > index 3afca3dd9657..2c3ffa1db74e 100644
+> > > --- a/drivers/gpu/drm/xe/xe_gt.c
+> > > +++ b/drivers/gpu/drm/xe/xe_gt.c
+> > > @@ -8,6 +8,7 @@
+> > >  #include <linux/minmax.h>
+> > >
+> > >  #include <drm/drm_managed.h>
+> > > +#include <drm/xe_drm.h>
+> > >
+> > >  #include "regs/xe_gt_regs.h"
+> > >  #include "xe_bb.h"
+> > > @@ -590,6 +591,20 @@ static int do_gt_restart(struct xe_gt *gt)
+> > >  	return 0;
 > > >  }
-> > > 
-> > > -static inline u32 intel_uncore_read(struct fake_uncore *uncore, i915_reg_t reg)
-> > > +static inline u32 intel_uncore_read(struct fake_uncore *uncore,
-> > > +				    i915_reg_t i915_reg)
-> > >  {
-> > > -	return xe_mmio_read32(__fake_uncore_to_gt(uncore), reg.reg);
-> > > +	struct xe_reg reg = XE_REG(i915_mmio_reg_offset(i915_reg));
+> > >
+> > > +static void xe_uevent_gt_reset_failure(struct xe_device *xe, u8 id) {
+> > > +	char *reset_event[5];
 > > > +
-> > > +	return xe_mmio_read32(__fake_uncore_to_gt(uncore), reg);
-> > >  }
-> > > 
-> > > -static inline u32 intel_uncore_read8(struct fake_uncore *uncore, i915_reg_t reg)
-> > > +static inline u32 intel_uncore_read8(struct fake_uncore *uncore,
-> > > +				     i915_reg_t i915_reg)
-> > >  {
-> > > -	return xe_mmio_read8(__fake_uncore_to_gt(uncore), reg.reg);
-> > > +	struct xe_reg reg = XE_REG(i915_mmio_reg_offset(i915_reg));
+> > > +	reset_event[0] = XE_RESET_FAILED_UEVENT "=1";
+> > > +	reset_event[1] = "RESET_ENABLED=1";
+> > > +	reset_event[2] = "RESET_UNIT=gt";
+> > > +	reset_event[3] = kasprintf(GFP_KERNEL, "RESET_ID=%d", id);
+> > > +	reset_event[4] = NULL;
+> > > +	kobject_uevent_env(&xe->drm.primary->kdev->kobj,
+> > KOBJ_CHANGE,
+> > > +reset_event);
 > > > +
-> > > +	return xe_mmio_read8(__fake_uncore_to_gt(uncore), reg);
-> > >  }
-> > > 
-> > > -static inline u64 intel_uncore_read64_2x32(struct fake_uncore *uncore, i915_reg_t lower_reg, i915_reg_t upper_reg)
-> > > +static inline u64
-> > > +intel_uncore_read64_2x32(struct fake_uncore *uncore,
-> > > +			 i915_reg_t i915_lower_reg, i915_reg_t i915_upper_reg)
-> > >  {
-> > > +	struct xe_reg lower_reg = XE_REG(i915_mmio_reg_offset(i915_lower_reg));
-> > > +	struct xe_reg upper_reg = XE_REG(i915_mmio_reg_offset(i915_upper_reg));
-> > >  	u32 upper, lower, old_upper;
-> > >  	int loop = 0;
-> > > 
-> > > -	upper = xe_mmio_read32(__fake_uncore_to_gt(uncore), upper_reg.reg);
-> > > +	upper = xe_mmio_read32(__fake_uncore_to_gt(uncore), upper_reg);
-> > >  	do {
-> > >  		old_upper = upper;
-> > > -		lower = xe_mmio_read32(__fake_uncore_to_gt(uncore), lower_reg.reg);
-> > > -		upper = xe_mmio_read32(__fake_uncore_to_gt(uncore), upper_reg.reg);
-> > > +		lower = xe_mmio_read32(__fake_uncore_to_gt(uncore), lower_reg);
-> > > +		upper = xe_mmio_read32(__fake_uncore_to_gt(uncore), upper_reg);
-> > >  	} while (upper != old_upper && loop++ < 2);
-> > > 
-> > >  	return (u64)upper << 32 | lower;
-> > >  }
-> > > 
-> > > -static inline void intel_uncore_posting_read(struct fake_uncore *uncore, i915_reg_t reg)
-> > > +static inline void intel_uncore_posting_read(struct fake_uncore *uncore,
-> > > +					     i915_reg_t i915_reg)
-> > >  {
-> > > -	xe_mmio_read32(__fake_uncore_to_gt(uncore), reg.reg);
-> > > +	struct xe_reg reg = XE_REG(i915_mmio_reg_offset(i915_reg));
+> > > +	kfree(reset_event[3]);
+> > > +}
 > > > +
-> > > +	xe_mmio_read32(__fake_uncore_to_gt(uncore), reg);
-> > >  }
-> > > 
-> > > -static inline void intel_uncore_write(struct fake_uncore *uncore, i915_reg_t reg, u32 val)
-> > > +static inline void intel_uncore_write(struct fake_uncore *uncore,
-> > > +				      i915_reg_t i915_reg, u32 val)
-> > >  {
-> > > -	xe_mmio_write32(__fake_uncore_to_gt(uncore), reg.reg, val);
-> > > +	struct xe_reg reg = XE_REG(i915_mmio_reg_offset(i915_reg));
+> > >  static int gt_reset(struct xe_gt *gt)  {
+> > >  	struct xe_device *xe = gt_to_xe(gt); @@ -639,6 +654,9 @@ static int
+> > > gt_reset(struct xe_gt *gt)
+> > >  	xe_device_mem_access_put(gt_to_xe(gt));
+> > >  	drm_err(&xe->drm, "GT reset failed, err=%d\n", err);
+> > >
+> > > +	/* Notify userspace about gt reset failure */
+> > > +	xe_uevent_gt_reset_failure(xe, gt->info.id);
 > > > +
-> > > +	xe_mmio_write32(__fake_uncore_to_gt(uncore), reg, val);
+> > >  	return err;
 > > >  }
-> > > 
-> > > -static inline u32 intel_uncore_rmw(struct fake_uncore *uncore, i915_reg_t reg, u32 clear, u32 set)
-> > > +static inline u32 intel_uncore_rmw(struct fake_uncore *uncore,
-> > > +				   i915_reg_t i915_reg, u32 clear, u32 set)
-> > >  {
-> > > -	return xe_mmio_rmw32(__fake_uncore_to_gt(uncore), reg.reg, clear, set);
-> > > +	struct xe_reg reg = XE_REG(i915_mmio_reg_offset(i915_reg));
+> > >
+> > > diff --git a/drivers/gpu/drm/xe/xe_guc.h b/drivers/gpu/drm/xe/xe_guc.h
+> > > index 74a74051f354..845c57b95562 100644
+> > > --- a/drivers/gpu/drm/xe/xe_guc.h
+> > > +++ b/drivers/gpu/drm/xe/xe_guc.h
+> > > @@ -56,4 +56,22 @@ static inline u16 xe_engine_class_to_guc_class(enum
+> > xe_engine_class class)
+> > >  	}
+> > >  }
+> > >
+> > > +static inline u16 xe_guc_class_to_engine_class(u8 guc_class) {
+> > > +	switch (guc_class) {
+> > > +	case GUC_RENDER_CLASS:
+> > > +		return XE_ENGINE_CLASS_RENDER;
+> > > +	case GUC_VIDEO_CLASS:
+> > > +		return XE_ENGINE_CLASS_VIDEO_DECODE;
+> > > +	case GUC_VIDEOENHANCE_CLASS:
+> > > +		return XE_ENGINE_CLASS_VIDEO_ENHANCE;
+> > > +	case GUC_BLITTER_CLASS:
+> > > +		return XE_ENGINE_CLASS_COPY;
+> > > +	case GUC_COMPUTE_CLASS:
+> > > +		return XE_ENGINE_CLASS_COMPUTE;
+> > > +	default:
+> > > +		XE_WARN_ON(guc_class);
+> > > +		return -1;
+> > > +	}
+> > > +}
+> > >  #endif
+> > > diff --git a/drivers/gpu/drm/xe/xe_guc_submit.c
+> > > b/drivers/gpu/drm/xe/xe_guc_submit.c
+> > > index e857013070b9..663908573d5c 100644
+> > > --- a/drivers/gpu/drm/xe/xe_guc_submit.c
+> > > +++ b/drivers/gpu/drm/xe/xe_guc_submit.c
+> > > @@ -12,6 +12,7 @@
+> > >  #include <linux/dma-fence-array.h>
+> > >
+> > >  #include <drm/drm_managed.h>
+> > > +#include <drm/xe_drm.h>
+> > >
+> > >  #include "regs/xe_lrc_layout.h"
+> > >  #include "xe_device.h"
+> > > @@ -1589,9 +1590,25 @@ int
+> > xe_guc_engine_memory_cat_error_handler(struct xe_guc *guc, u32 *msg,
+> > >  	return 0;
+> > >  }
+> > >
+> > > +static void xe_uevent_engine_reset_failure(struct xe_device *xe,
+> > > +const char *name) {
+> > > +	char *reset_event[5];
 > > > +
-> > > +	return xe_mmio_rmw32(__fake_uncore_to_gt(uncore), reg, clear, set);
-> > >  }
-> > > 
-> > > -static inline int intel_wait_for_register(struct fake_uncore *uncore, i915_reg_t reg, u32 mask, u32 value, unsigned int timeout)
-> > > +static inline int intel_wait_for_register(struct fake_uncore *uncore,
-> > > +					  i915_reg_t i915_reg, u32 mask,
-> > > +					  u32 value, unsigned int timeout)
-> > >  {
-> > > -	return xe_mmio_wait32(__fake_uncore_to_gt(uncore), reg.reg, value, mask, timeout * USEC_PER_MSEC, NULL, false);
-> > > +	struct xe_reg reg = XE_REG(i915_mmio_reg_offset(i915_reg));
+> > > +	reset_event[0] = XE_RESET_FAILED_UEVENT "=1";
+> > > +	reset_event[1] = "RESET_ENABLED=1";
+> > > +	reset_event[2] = "RESET_UNIT=engine";
+> > > +	reset_event[3] = kasprintf(GFP_KERNEL, "RESET_ID=%s", name);
+> > > +	reset_event[4] = NULL;
+> > > +	kobject_uevent_env(&xe->drm.primary->kdev->kobj,
+> > KOBJ_CHANGE,
+> > > +reset_event);
 > > > +
-> > > +	return xe_mmio_wait32(__fake_uncore_to_gt(uncore), reg, value, mask,
-> > > +			      timeout * USEC_PER_MSEC, NULL, false);
-> > >  }
-> > > 
-> > > -static inline int intel_wait_for_register_fw(struct fake_uncore *uncore, i915_reg_t reg, u32 mask, u32 value, unsigned int timeout)
-> > > +static inline int intel_wait_for_register_fw(struct fake_uncore *uncore,
-> > > +					     i915_reg_t i915_reg, u32 mask,
-> > > +					     u32 value, unsigned int timeout)
-> > >  {
-> > > -	return xe_mmio_wait32(__fake_uncore_to_gt(uncore), reg.reg, value, mask, timeout * USEC_PER_MSEC, NULL, false);
-> > > +	struct xe_reg reg = XE_REG(i915_mmio_reg_offset(i915_reg));
+> > > +	kfree(reset_event[3]);
+> > > +}
 > > > +
-> > > +	return xe_mmio_wait32(__fake_uncore_to_gt(uncore), reg, value, mask,
-> > > +			      timeout * USEC_PER_MSEC, NULL, false);
-> > >  }
-> > > 
-> > > -static inline int __intel_wait_for_register(struct fake_uncore *uncore, i915_reg_t reg, u32 mask, u32 value,
-> > > -					    unsigned int fast_timeout_us, unsigned int slow_timeout_ms, u32 *out_value)
-> > > +static inline int
-> > > +__intel_wait_for_register(struct fake_uncore *uncore, i915_reg_t i915_reg,
-> > > +			  u32 mask, u32 value, unsigned int fast_timeout_us,
-> > > +			  unsigned int slow_timeout_ms, u32 *out_value)
-> > >  {
-> > > -	return xe_mmio_wait32(__fake_uncore_to_gt(uncore), reg.reg, value, mask,
-> > > +	struct xe_reg reg = XE_REG(i915_mmio_reg_offset(i915_reg));
+> > >  int xe_guc_engine_reset_failure_handler(struct xe_guc *guc, u32 *msg,
+> > > u32 len)  {
+> > >  	struct xe_device *xe = guc_to_xe(guc);
+> > > +	struct xe_hw_engine *hwe;
+> > > +	u16 engine_class;
+> > >  	u8 guc_class, instance;
+> > >  	u32 reason;
+> > >
+> > > @@ -1608,6 +1625,12 @@ int xe_guc_engine_reset_failure_handler(struct
+> > xe_guc *guc, u32 *msg, u32 len)
+> > >  	drm_err(&xe->drm, "GuC engine reset request failed on %d:%d
+> > because 0x%08X",
+> > >  		guc_class, instance, reason);
+> > >
+> > > +	engine_class = xe_guc_class_to_engine_class(guc_class);
+> > > +	hwe = xe_gt_hw_engine(guc_to_gt(guc), engine_class, instance,
+> > > +false);
+> > 
+> > this can return NULL, so a check is needed here.
+> Will address in next patch.
+> > 
+> > Thanks,
+> > Aravind.
 > > > +
-> > > +	return xe_mmio_wait32(__fake_uncore_to_gt(uncore), reg, value, mask,
-> > >  			      fast_timeout_us + 1000 * slow_timeout_ms,
-> > >  			      out_value, false);
-> > >  }
-> > > 
-> > > -static inline u32 intel_uncore_read_fw(struct fake_uncore *uncore, i915_reg_t reg)
-> > > +static inline u32 intel_uncore_read_fw(struct fake_uncore *uncore,
-> > > +				       i915_reg_t i915_reg)
-> > >  {
-> > > -	return xe_mmio_read32(__fake_uncore_to_gt(uncore), reg.reg);
-> > > +	struct xe_reg reg = XE_REG(i915_mmio_reg_offset(i915_reg));
+> > > +	/* Notify userspace about engine reset failure */
+> > > +	xe_uevent_engine_reset_failure(xe, hwe->name);
 > > > +
-> > > +	return xe_mmio_read32(__fake_uncore_to_gt(uncore), reg);
-> > >  }
-> > > 
-> > > -static inline void intel_uncore_write_fw(struct fake_uncore *uncore, i915_reg_t reg, u32 val)
-> > > +static inline void intel_uncore_write_fw(struct fake_uncore *uncore,
-> > > +					 i915_reg_t i915_reg, u32 val)
-> > >  {
-> > > -	xe_mmio_write32(__fake_uncore_to_gt(uncore), reg.reg, val);
-> > > +	struct xe_reg reg = XE_REG(i915_mmio_reg_offset(i915_reg));
+> > >  	xe_gt_reset_async(guc_to_gt(guc));
+> > >
+> > >  	return 0;
+> > > diff --git a/include/uapi/drm/xe_drm.h b/include/uapi/drm/xe_drm.h
+> > > index b0b80aae3ee8..79ef5947c172 100644
+> > > --- a/include/uapi/drm/xe_drm.h
+> > > +++ b/include/uapi/drm/xe_drm.h
+> > > @@ -36,6 +36,14 @@ extern "C" {
+> > >   * subject to backwards-compatibility constraints.
+> > >   */
+> > >
+> > > +/*
+> > > + * Uevents generated by xe on it's device node.
+> > > + *
+> > > + * XE_RESET_FAILED_UEVENT - Event is generated when attempt to reset
+> > engine
+> > > + *	or gt fails. The value supplied with the event is always 1.
+> > > + */
+> > > +#define XE_RESET_FAILED_UEVENT "RESET_FAILED"
 > > > +
-> > > +	xe_mmio_write32(__fake_uncore_to_gt(uncore), reg, val);
-> > >  }
-> > > 
-> > > -static inline u32 intel_uncore_read_notrace(struct fake_uncore *uncore, i915_reg_t reg)
-> > > +static inline u32 intel_uncore_read_notrace(struct fake_uncore *uncore,
-> > > +					    i915_reg_t i915_reg)
-> > >  {
-> > > -	return xe_mmio_read32(__fake_uncore_to_gt(uncore), reg.reg);
-> > > +	struct xe_reg reg = XE_REG(i915_mmio_reg_offset(i915_reg));
-> > > +
-> > > +	return xe_mmio_read32(__fake_uncore_to_gt(uncore), reg);
-> > >  }
-> > > 
-> > > -static inline void intel_uncore_write_notrace(struct fake_uncore *uncore, i915_reg_t reg, u32 val)
-> > > +static inline void intel_uncore_write_notrace(struct fake_uncore *uncore,
-> > > +					      i915_reg_t i915_reg, u32 val)
-> > >  {
-> > > -	xe_mmio_write32(__fake_uncore_to_gt(uncore), reg.reg, val);
-> > > +	struct xe_reg reg = XE_REG(i915_mmio_reg_offset(i915_reg));
-> > > +
-> > > +	xe_mmio_write32(__fake_uncore_to_gt(uncore), reg, val);
-> > >  }
-> > > 
-> > >  #endif /* __INTEL_UNCORE_H__ */
-> > > --
-> > > 2.40.1
-> > > 
+> > >  /**
+> > >   * struct xe_user_extension - Base class for defining a chain of extensions
+> > >   *
