@@ -4,51 +4,50 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2184FC7EE22
-	for <intel-xe@archiver.kernel.org>; Tue,  9 May 2023 07:57:35 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id DB776C77B7C
+	for <intel-xe@archiver.kernel.org>; Tue,  9 May 2023 08:11:29 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D7C7010E345;
-	Tue,  9 May 2023 07:57:34 +0000 (UTC)
-Received: from mga06.intel.com (mga06b.intel.com [134.134.136.31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2D62810E345;
- Tue,  9 May 2023 07:57:33 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B618310E352;
+	Tue,  9 May 2023 08:11:29 +0000 (UTC)
+Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 728A710E352
+ for <intel-xe@lists.freedesktop.org>; Tue,  9 May 2023 08:11:27 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1683619052; x=1715155052;
+ t=1683619887; x=1715155887;
  h=from:to:cc:subject:in-reply-to:references:date:
  message-id:mime-version;
- bh=HyMZvjVK4PWg2zKaACEjXyLpCS8bkLdXvTElw8PwpKo=;
- b=SbO04ES9jEwm6XlcRAc9N7dohbds2voBYDEUhS7hwW572dVO2JnGkeDN
- vQYlTap/ifmS/t7NhJq773qSqf+ImVEnZVj0ei+2efhXOlqGL01S7FU7b
- z/Y3Y/sS33n8oDerj/ICCChcPxmgxO3iqcDHvISH1aul2H4maCzajhFCj
- +XYPiNS3aGRiakjTqzKaqt9sIlwBndeElJSSTxx8KLcysGCV1kdvAxe8L
- MhwbzD+MQ5Gx+65mE7hyM6305N4MSm1XeN3B+xrUkPDvHfqbWErf+B578
- GFH7PntYjxsOyqmH5T4A/a0jRTCRKfEkQ7LBGr4WfKdHzTnyFsvwv/kDS w==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10704"; a="413102012"
-X-IronPort-AV: E=Sophos;i="5.99,261,1677571200"; d="scan'208";a="413102012"
-Received: from fmsmga006.fm.intel.com ([10.253.24.20])
- by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 09 May 2023 00:57:25 -0700
+ bh=nxyHI+qU0uuqAfVEy1Qgq3MBagu1LaNGL8oPM+8BlUw=;
+ b=jFBzdRFRoXvnsXj6jKtzKz6cCVDnT8sdBfYcEDbotIbOhckkeXnzh/pv
+ 6fRsXGrLX9Oga3eScV0ip38ljkbFywhuVYmHM3kR7avOHT1a4wWgBl29y
+ +Sx5yVC0Sb0qU8YapS9KHgQwogv7DiiJomVNGbuBUrjIIYI64iI9tJOkV
+ Rg6b8+d7GyGRFSQ39kak+w9p0et/xDdjW5qZV/hGPsN4yNXRVIAonSjpb
+ lzUtFhKYQiJ0Dkq3n9d6W+0X0Wm+y4gL/kGfWNweUhHt7hlt1TgFdcJmm
+ MB/NBZNqhTFej8Mt29/JSjvIj5xKhhL036X2IdNuuQWq2/WxBG3Kjm+DO Q==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10704"; a="339060021"
+X-IronPort-AV: E=Sophos;i="5.99,261,1677571200"; d="scan'208";a="339060021"
+Received: from fmsmga004.fm.intel.com ([10.253.24.48])
+ by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 09 May 2023 01:11:26 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10704"; a="945165860"
-X-IronPort-AV: E=Sophos;i="5.99,261,1677571200"; d="scan'208";a="945165860"
+X-IronPort-AV: E=McAfee;i="6600,9927,10704"; a="768364886"
+X-IronPort-AV: E=Sophos;i="5.99,261,1677571200"; d="scan'208";a="768364886"
 Received: from unknown (HELO localhost) ([10.252.39.92])
- by fmsmga006-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 09 May 2023 00:57:21 -0700
-From: Jani Nikula <jani.nikula@linux.intel.com>
-To: Lucas De Marchi <lucas.demarchi@intel.com>,
- intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
- dri-devel@lists.freedesktop.org
-In-Reply-To: <20230509051403.2748545-4-lucas.demarchi@intel.com>
+ by fmsmga004-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 09 May 2023 01:11:24 -0700
+From: Jani Nikula <jani.nikula@intel.com>
+To: Matt Roper <matthew.d.roper@intel.com>
+In-Reply-To: <20230508203215.GV10045@mdroper-desk1.amr.corp.intel.com>
 Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20230509051403.2748545-1-lucas.demarchi@intel.com>
- <20230509051403.2748545-4-lucas.demarchi@intel.com>
-Date: Tue, 09 May 2023 10:57:19 +0300
-Message-ID: <87cz3andi8.fsf@intel.com>
+References: <20230508144618.162140-1-jani.nikula@intel.com>
+ <20230508144618.162140-12-jani.nikula@intel.com>
+ <20230508203215.GV10045@mdroper-desk1.amr.corp.intel.com>
+Date: Tue, 09 May 2023 11:11:22 +0300
+Message-ID: <878rdxorf9.fsf@intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain
-Subject: Re: [Intel-xe] [PATCH 3/3] drm/i915: Temporary conversion to new
- GENMASK/BIT macros
+Subject: Re: [Intel-xe] [PATCH 11/18] fixup! drm/xe: Introduce a new DRM
+ driver for Intel GPUs
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -60,100 +59,80 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Cc: Masahiro Yamada <masahiroy@kernel.org>,
- Kevin Brodsky <kevin.brodsky@arm.com>,
- Lucas De Marchi <lucas.demarchi@intel.com>, linux-kernel@vger.kernel.org,
- Christian =?utf-8?Q?K=C3=B6nig?= <christian.koenig@amd.com>,
- Alex Deucher <alexander.deucher@amd.com>, Thomas Gleixner <tglx@linutronix.de>,
- Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
- Andrew Morton <akpm@linux-foundation.org>
+Cc: lucas.demarchi@intel.com, intel-xe@lists.freedesktop.org,
+ rodrigo.vivi@intel.com
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Mon, 08 May 2023, Lucas De Marchi <lucas.demarchi@intel.com> wrote:
-> Convert the REG_* macros from i915_reg_defs.h to use the new macros
-> defined in linux/bits.h. This is just to help on the implementation
-> of the new macros and not intended to be applied.
+On Mon, 08 May 2023, Matt Roper <matthew.d.roper@intel.com> wrote:
+> On Mon, May 08, 2023 at 05:46:11PM +0300, Jani Nikula wrote:
+>> Add the read8 accessor to support intel_de_read8.
+>> 
+>> Signed-off-by: Jani Nikula <jani.nikula@intel.com>
+>> ---
+>>  drivers/gpu/drm/xe/xe_mmio.h | 8 ++++++++
+>>  1 file changed, 8 insertions(+)
+>> 
+>> diff --git a/drivers/gpu/drm/xe/xe_mmio.h b/drivers/gpu/drm/xe/xe_mmio.h
+>> index 1a32e0f52261..b72a0a75259f 100644
+>> --- a/drivers/gpu/drm/xe/xe_mmio.h
+>> +++ b/drivers/gpu/drm/xe/xe_mmio.h
+>> @@ -17,6 +17,14 @@ struct xe_device;
+>>  
+>>  int xe_mmio_init(struct xe_device *xe);
+>>  
+>> +static inline u8 xe_mmio_read8(struct xe_gt *gt, u32 reg)
+>> +{
+>> +	if (reg < gt->mmio.adj_limit)
+>> +		reg += gt->mmio.adj_offset;
+>
+> This could probably be a warn_on; as far as I know, there are no 8-bit
+> registers in the GT, so if we wind up trying to read sgunit or display
+> registers through a media GT's pointer it's a clue that something has
+> probably gone wrong.
 
-This drops a number of build time input checks as well as casts to the
-specified types.
+Looks like Rodrigo already pushed this, so this would need to be added
+separately.
+
+> Of course this MMIO stuff is a confusing mess due to the fact that xe_gt
+> is being used all over the driver for things that are completely
+> unrelated to any GT.
+
+This. The abstractions don't match reality.
+
 
 BR,
 Jani.
 
+
+> After cleaning up the GT vs tile mess, I plan to
+> work on coming up with something more sane for MMIO windows too.  I'm
+> thinking something like a "struct xe_mmio_view" that will replace xe_gt
+> as the first parameter to the xe_mmio_* functions and can provide them
+> with additional information to also do range validation on debug builds
+> to ensure you're accessing the subset of registers you think you are,
+> and functions to hand you an appropriate xe_mmio_view:
+>  - xe_mmio_for_display(xe): warns if read/write outside display range
+>  - xe_mmio_for_gt(gt): warns if read/write outside a GT range; if media
+>    GT is the parameter, also warns if outside the GSI range or one of
+>    the media engines
+>  - xe_mmio_for_tile(tile):  unrestricted MMIO access for a tile, mostly
+>    intended for use with sgunit, soc, etc. registers that are outside
+>    the GT
 >
-> Signed-off-by: Lucas De Marchi <lucas.demarchi@intel.com>
-> ---
->  drivers/gpu/drm/i915/i915_reg_defs.h | 28 +++++-----------------------
->  1 file changed, 5 insertions(+), 23 deletions(-)
 >
-> diff --git a/drivers/gpu/drm/i915/i915_reg_defs.h b/drivers/gpu/drm/i915/i915_reg_defs.h
-> index 622d603080f9..61fbb8d62b25 100644
-> --- a/drivers/gpu/drm/i915/i915_reg_defs.h
-> +++ b/drivers/gpu/drm/i915/i915_reg_defs.h
-> @@ -17,10 +17,7 @@
->   *
->   * @return: Value with bit @__n set.
->   */
-> -#define REG_BIT(__n)							\
-> -	((u32)(BIT(__n) +						\
-> -	       BUILD_BUG_ON_ZERO(__is_constexpr(__n) &&		\
-> -				 ((__n) < 0 || (__n) > 31))))
-> +#define REG_BIT(__n) BIT_U32(__n)
->  
->  /**
->   * REG_BIT8() - Prepare a u8 bit value
-> @@ -30,10 +27,7 @@
->   *
->   * @return: Value with bit @__n set.
->   */
-> -#define REG_BIT8(__n)                                                   \
-> -	((u8)(BIT(__n) +                                                \
-> -	       BUILD_BUG_ON_ZERO(__is_constexpr(__n) &&         \
-> -				 ((__n) < 0 || (__n) > 7))))
-> +#define REG_BIT8(__n) BIT_U8(__n)
->  
->  /**
->   * REG_GENMASK() - Prepare a continuous u32 bitmask
-> @@ -44,11 +38,7 @@
->   *
->   * @return: Continuous bitmask from @__high to @__low, inclusive.
->   */
-> -#define REG_GENMASK(__high, __low)					\
-> -	((u32)(GENMASK(__high, __low) +					\
-> -	       BUILD_BUG_ON_ZERO(__is_constexpr(__high) &&	\
-> -				 __is_constexpr(__low) &&		\
-> -				 ((__low) < 0 || (__high) > 31 || (__low) > (__high)))))
-> +#define REG_GENMASK(__high, __low) GENMASK_U32(__high, __low)
->  
->  /**
->   * REG_GENMASK64() - Prepare a continuous u64 bitmask
-> @@ -59,11 +49,7 @@
->   *
->   * @return: Continuous bitmask from @__high to @__low, inclusive.
->   */
-> -#define REG_GENMASK64(__high, __low)					\
-> -	((u64)(GENMASK_ULL(__high, __low) +				\
-> -	       BUILD_BUG_ON_ZERO(__is_constexpr(__high) &&		\
-> -				 __is_constexpr(__low) &&		\
-> -				 ((__low) < 0 || (__high) > 63 || (__low) > (__high)))))
-> +#define REG_GENMASK64(__high, __low) GENMASK_ULL(__high, __low)
->  
->  /**
->   * REG_GENMASK8() - Prepare a continuous u8 bitmask
-> @@ -74,11 +60,7 @@
->   *
->   * @return: Continuous bitmask from @__high to @__low, inclusive.
->   */
-> -#define REG_GENMASK8(__high, __low)                                     \
-> -	((u8)(GENMASK(__high, __low) +                                  \
-> -	       BUILD_BUG_ON_ZERO(__is_constexpr(__high) &&      \
-> -				 __is_constexpr(__low) &&               \
-> -				 ((__low) < 0 || (__high) > 7 || (__low) > (__high)))))
-> +#define REG_GENMASK8(__high, __low) GENMASK_U8(__high, __low)
->  
->  /*
->   * Local integer constant expression version of is_power_of_2().
+> Matt
+>
+>> +
+>> +	return readb(gt->mmio.regs + reg);
+>> +}
+>> +
+>>  static inline void xe_mmio_write32(struct xe_gt *gt,
+>>  				   u32 reg, u32 val)
+>>  {
+>> -- 
+>> 2.39.2
+>> 
 
 -- 
 Jani Nikula, Intel Open Source Graphics Center
