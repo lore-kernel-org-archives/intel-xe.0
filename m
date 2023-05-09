@@ -4,30 +4,30 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 08755C77B7C
-	for <intel-xe@archiver.kernel.org>; Tue,  9 May 2023 15:13:10 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id D7885C77B7C
+	for <intel-xe@archiver.kernel.org>; Tue,  9 May 2023 15:13:28 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C8D4C10E391;
-	Tue,  9 May 2023 15:13:09 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B153910E113;
+	Tue,  9 May 2023 15:13:28 +0000 (UTC)
 Received: from emeril.freedesktop.org (emeril.freedesktop.org
  [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id 84A4710E113;
- Tue,  9 May 2023 15:13:07 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTP id D97A310E169;
+ Tue,  9 May 2023 15:13:25 +0000 (UTC)
 Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 75BBBA00CC;
- Tue,  9 May 2023 15:13:07 +0000 (UTC)
+ by emeril.freedesktop.org (Postfix) with ESMTP id D4158A00CC;
+ Tue,  9 May 2023 15:13:25 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: "Rodrigo Vivi" <rodrigo.vivi@intel.com>
-Date: Tue, 09 May 2023 15:13:07 -0000
-Message-ID: <168364518745.14158.5684412755950796685@emeril.freedesktop.org>
+Date: Tue, 09 May 2023 15:13:25 -0000
+Message-ID: <168364520586.14158.8742068582725944721@emeril.freedesktop.org>
 X-Patchwork-Hint: ignore
 References: <20230509151008.1434683-1-rodrigo.vivi@intel.com>
 In-Reply-To: <20230509151008.1434683-1-rodrigo.vivi@intel.com>
-Subject: [Intel-xe] =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_f?=
- =?utf-8?q?or_drm/xe=3A_Make_xe_build_dependent_on_STAGING=2E?=
+Subject: [Intel-xe] =?utf-8?q?=E2=9C=97_CI=2EKUnit=3A_failure_for_drm/xe?=
+ =?utf-8?q?=3A_Make_xe_build_dependent_on_STAGING=2E?=
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -48,13 +48,22 @@ Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 Series: drm/xe: Make xe build dependent on STAGING.
 URL   : https://patchwork.freedesktop.org/series/117521/
-State : success
+State : failure
 
 == Summary ==
 
-=== Applying kernel patches on branch 'drm-xe-next' with base: ===
-Base commit: b99d11e80 drm/xe: destroy clients engine and vm xarrays on close
-=== git am output follows ===
-Applying: drm/xe: Make xe build dependent on STAGING.
++ trap cleanup EXIT
++ /kernel/tools/testing/kunit/kunit.py run --kunitconfig /kernel/drivers/gpu/drm/xe/.kunitconfig
+ERROR:root:Not all Kconfig options selected in kunitconfig were in the generated .config.
+This is probably due to unsatisfied dependencies.
+Missing: CONFIG_DRM_XE=y, CONFIG_DRM_FBDEV_EMULATION=y, CONFIG_DRM_KMS_HELPER=y, CONFIG_DRM_XE_KUNIT_TEST=y
+Note: many Kconfig options aren't available on UML. You can try running on a different architecture with something like "--arch=x86_64".
+[15:13:19] Configuring KUnit Kernel ...
+Generating .config ...
+Populating config with:
+$ make ARCH=um O=.kunit olddefconfig
++ cleanup
+++ stat -c %u:%g /kernel
++ chown -R 1003:1003 /kernel
 
 
