@@ -4,46 +4,49 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 14E85C77B75
-	for <intel-xe@archiver.kernel.org>; Tue,  9 May 2023 05:14:54 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8A278C77B75
+	for <intel-xe@archiver.kernel.org>; Tue,  9 May 2023 05:14:56 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B720910E23A;
+	by gabe.freedesktop.org (Postfix) with ESMTP id E6CAA10E31F;
 	Tue,  9 May 2023 05:14:53 +0000 (UTC)
 Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6FD8910E0AD;
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D5AB710E1A1;
  Tue,  9 May 2023 05:14:50 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
  t=1683609290; x=1715145290;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=XM2Ye2n0y+Kiee92BBLzr685tndOBfrVRty6jZErojY=;
- b=F4CIYMCOg56ZIVKKWm3kzCfkzFkFis2LOC4tthLbeJrfz6awNDWwazGs
- mOBVNr9ST/8ra8BrWL8w45IQKDXJRQUrXjLZyZkCsFiDF2w0yj46aGsVh
- i0XSsVVde3RBtABTGj+c2VCtriGgHgPGf1gEs7C4k3YcoUVH80W8nbJxl
- 9vVlcUJ9DirM7ORVV0nG1ZSAPjMRUagZepv2wqM1JT85D3lRVDMnweo6X
- K6ZrCVn7qo2aJWSwx3YEw/vW3IzKZx4njLa41hdpk81PMhU8De6l7Cqs0
- 2aegajtFtMdc/eNN4lYtbS4Ol0tZ/UrCZV5ABcd5/N2R0lmeXPHKmJ0Jm g==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10704"; a="339037101"
-X-IronPort-AV: E=Sophos;i="5.99,261,1677571200"; d="scan'208";a="339037101"
+ h=from:to:cc:subject:date:message-id:in-reply-to:
+ references:mime-version:content-transfer-encoding;
+ bh=Ci3h/ZFdl5D0Hl7kzFcbanHfMsv6+NX1ka7tFtfJ1yc=;
+ b=XM+C5mHrL2DPvDQgjNznPzhQDBSw0B920c1CTHF3/FsyjEyf8BHdLANb
+ 1VVasaZ/S0nI1nMziWulXjB0ioRmOQBpmrgHmXgVvXTG13RjeVGy7XAji
+ Xqkrj1gOqrpxz9RCQTTdHqrdvPZbzhNX0DnHHKiq/kKQB9kX6Eejs5OMu
+ K+6dFn6spZ69ztXXGuQHOUwBYUCWvlxN+kr5QX+fgToF6ZtUQqrgoKFIR
+ 6XaENbIjQEymYGoAxrK7/m9cZ9+qJN5Tf0JLzxo9/CGmuclOD6FTV7qz1
+ d6jEzUmMfZeQAAUyb09Aw2yJFngvOqTmGhd/sBS2JQZHl8d88TIYpF53L Q==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10704"; a="339037114"
+X-IronPort-AV: E=Sophos;i="5.99,261,1677571200"; d="scan'208";a="339037114"
 Received: from orsmga005.jf.intel.com ([10.7.209.41])
  by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  08 May 2023 22:14:48 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10704"; a="873033247"
-X-IronPort-AV: E=Sophos;i="5.99,261,1677571200"; d="scan'208";a="873033247"
+X-IronPort-AV: E=McAfee;i="6600,9927,10704"; a="873033253"
+X-IronPort-AV: E=Sophos;i="5.99,261,1677571200"; d="scan'208";a="873033253"
 Received: from lucas-s2600cw.jf.intel.com ([10.165.21.196])
  by orsmga005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  08 May 2023 22:14:45 -0700
 From: Lucas De Marchi <lucas.demarchi@intel.com>
 To: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
  dri-devel@lists.freedesktop.org
-Date: Mon,  8 May 2023 22:14:00 -0700
-Message-Id: <20230509051403.2748545-1-lucas.demarchi@intel.com>
+Date: Mon,  8 May 2023 22:14:02 -0700
+Message-Id: <20230509051403.2748545-3-lucas.demarchi@intel.com>
 X-Mailer: git-send-email 2.40.1
+In-Reply-To: <20230509051403.2748545-1-lucas.demarchi@intel.com>
+References: <20230509051403.2748545-1-lucas.demarchi@intel.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-xe] [PATCH 0/3] Fixed-width mask/bit helpers
+Subject: [Intel-xe] [PATCH 2/3] linux/bits.h: Add fixed-width GENMASK and
+ BIT macros
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -65,36 +68,108 @@ Cc: Masahiro Yamada <masahiroy@kernel.org>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Generalize the REG_GENMASK*() and REG_BIT*() macros so they can be used
-by other drivers. The intention is to migrate i915 to the generic
-helpers and also make use of them on the upcoming xe driver. There are
-possibly other users in the kernel that need u32/u16/u8 bit handling.
+Add GENMASK_U32(), GENMASK_U16() and GENMASK_U8()  macros to create
+masks for fixed-width types and also the corresponding BIT_U32(),
+BIT_U16() and BIT_U8().
 
-First patch is one of the possible alternatives in radeon/amdgpu drivers
-so they use the U32() that is planned to be used here. Other
-alternatives would be to use a amd/radeon prefix or use a _Generic().
+All of those depend on a new "U" suffix added to the integer constant.
+Due to naming clashes it's better to call the macro U32. Since C doesn't
+have a proper suffix for short and char types, the U16 and U18 variants
+just use U32 with one additional check in the BIT_* macros to make
+sure the compiler gives an error when the those types overflow.
+The BIT_U16() and BIT_U8() need the help of GENMASK_INPUT_CHECK(),
+as otherwise they would allow an invalid bit to be passed. Hence
+implement them in include/linux/bits.h rather than together with
+the other BIT* variants.
 
-Last patch is a temporary one to demonstrate what would be changed on
-the i915 side. However instead of replacing the implementation of the
-REG_* macros, the goal is to replace the callers as well.
+The following test file is is used to test this:
 
-Patches here are currently based on drm-tip branch.
+	$ cat mask.c
+	#include <linux/types.h>
+	#include <linux/bits.h>
 
-Lucas De Marchi (3):
-  drm/amd: Remove wrapper macros over get_u{32,16,8}
-  linux/bits.h: Add fixed-width GENMASK and BIT macros
-  drm/i915: Temporary conversion to new GENMASK/BIT macros
+	static const u32 a = GENMASK_U32(31, 0);
+	static const u16 b = GENMASK_U16(15, 0);
+	static const u8 c = GENMASK_U8(7, 0);
+	static const u32 x = BIT_U32(31);
+	static const u16 y = BIT_U16(15);
+	static const u8 z = BIT_U8(7);
 
- drivers/gpu/drm/amd/amdgpu/atom.c       | 212 ++++++++++++------------
- drivers/gpu/drm/amd/include/atom-bits.h |   9 +-
- drivers/gpu/drm/i915/i915_reg_defs.h    |  28 +---
- drivers/gpu/drm/radeon/atom-bits.h      |   9 +-
- drivers/gpu/drm/radeon/atom.c           | 209 +++++++++++------------
- include/linux/bits.h                    |  22 +++
- include/uapi/linux/const.h              |   2 +
- include/vdso/const.h                    |   1 +
- 8 files changed, 249 insertions(+), 243 deletions(-)
+	#if FAIL
+	static const u32 a2 = GENMASK_U32(32, 0);
+	static const u16 b2 = GENMASK_U16(16, 0);
+	static const u8 c2 = GENMASK_U8(8, 0);
+	static const u32 x2 = BIT_U32(32);
+	static const u16 y2 = BIT_U16(16);
+	static const u8 z2 = BIT_U8(8);
+	#endif
 
+Signed-off-by: Lucas De Marchi <lucas.demarchi@intel.com>
+---
+ include/linux/bits.h       | 22 ++++++++++++++++++++++
+ include/uapi/linux/const.h |  2 ++
+ include/vdso/const.h       |  1 +
+ 3 files changed, 25 insertions(+)
+
+diff --git a/include/linux/bits.h b/include/linux/bits.h
+index 7c0cf5031abe..ff4786c99b8c 100644
+--- a/include/linux/bits.h
++++ b/include/linux/bits.h
+@@ -42,4 +42,26 @@
+ #define GENMASK_ULL(h, l) \
+ 	(GENMASK_INPUT_CHECK(h, l) + __GENMASK_ULL(h, l))
+ 
++#define __GENMASK_U32(h, l) \
++	(((~U32(0)) - (U32(1) << (l)) + 1) & \
++	 (~U32(0) >> (32 - 1 - (h))))
++#define GENMASK_U32(h, l) \
++	(GENMASK_INPUT_CHECK(h, l) + __GENMASK_U32(h, l))
++
++#define __GENMASK_U16(h, l) \
++	((U32(0xffff) - (U32(1) << (l)) + 1) & \
++	 (U32(0xffff) >> (16 - 1 - (h))))
++#define GENMASK_U16(h, l) \
++	(GENMASK_INPUT_CHECK(h, l) + __GENMASK_U16(h, l))
++
++#define __GENMASK_U8(h, l) \
++	(((U32(0xff)) - (U32(1) << (l)) + 1) & \
++	 (U32(0xff) >> (8 - 1 - (h))))
++#define GENMASK_U8(h, l) \
++	(GENMASK_INPUT_CHECK(h, l) + __GENMASK_U8(h, l))
++
++#define BIT_U32(nr)	_BITU32(nr)
++#define BIT_U16(nr)	(GENMASK_INPUT_CHECK(16 - 1, nr) + (U32(1) << (nr)))
++#define BIT_U8(nr)	(GENMASK_INPUT_CHECK(32 - 1, nr) + (U32(1) << (nr)))
++
+ #endif	/* __LINUX_BITS_H */
+diff --git a/include/uapi/linux/const.h b/include/uapi/linux/const.h
+index a429381e7ca5..3a4e152520f4 100644
+--- a/include/uapi/linux/const.h
++++ b/include/uapi/linux/const.h
+@@ -22,9 +22,11 @@
+ #define _AT(T,X)	((T)(X))
+ #endif
+ 
++#define _U32(x)		(_AC(x, U))
+ #define _UL(x)		(_AC(x, UL))
+ #define _ULL(x)		(_AC(x, ULL))
+ 
++#define _BITU32(x)	(_U32(1) << (x))
+ #define _BITUL(x)	(_UL(1) << (x))
+ #define _BITULL(x)	(_ULL(1) << (x))
+ 
+diff --git a/include/vdso/const.h b/include/vdso/const.h
+index 94b385ad438d..417384a9795b 100644
+--- a/include/vdso/const.h
++++ b/include/vdso/const.h
+@@ -4,6 +4,7 @@
+ 
+ #include <uapi/linux/const.h>
+ 
++#define U32(x)		(_U32(x))
+ #define UL(x)		(_UL(x))
+ #define ULL(x)		(_ULL(x))
+ 
 -- 
 2.40.1
 
