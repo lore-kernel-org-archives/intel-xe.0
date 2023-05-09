@@ -4,56 +4,52 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id B91D5C7EE22
-	for <intel-xe@archiver.kernel.org>; Tue,  9 May 2023 12:29:29 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6BAF0C7EE22
+	for <intel-xe@archiver.kernel.org>; Tue,  9 May 2023 12:48:00 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7F1C910E0A5;
-	Tue,  9 May 2023 12:29:29 +0000 (UTC)
-Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2404E10E0A5
- for <intel-xe@lists.freedesktop.org>; Tue,  9 May 2023 12:29:28 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2DFC310E087;
+	Tue,  9 May 2023 12:48:00 +0000 (UTC)
+Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9530810E087
+ for <intel-xe@lists.freedesktop.org>; Tue,  9 May 2023 12:47:58 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1683635368; x=1715171368;
- h=message-id:date:mime-version:subject:to:cc:references:
- from:in-reply-to:content-transfer-encoding;
- bh=zfMmr1O6d4FcRatlmbWfEO0Z82wgg/9DTLfYdsrln0Q=;
- b=hbS2B47qyzJpDb11rqehTkh1dJeV3O1POYaEUzNxQCzcsWu1mDgBLiL5
- JUCDV6sDJigdteDPCMdir/fzRbJStbJuim/bxe2ACAc4T8K8Bge/mAQmE
- 2fHuJDmbdpMoxqMFLIhR7pw5oxitm7CAhjm4RKaNH0FKhlOmELYaQeOZS
- 8AmabPwWNTEsARlCJLPE37x4Gc8rtDMFiO2pnZfZIoqh77IdXyQ+ZIiWb
- 5tS0A6zLI4nFJeafqFDctBvJLk1193FECLOCAykd647zL/qUcgLCb6heL
- rv+j2rw4YQvN1ljOfpj9kIWGLq452gc8djgJ2XJipe6zHUenuQYRFR66e Q==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10704"; a="349945276"
-X-IronPort-AV: E=Sophos;i="5.99,262,1677571200"; d="scan'208";a="349945276"
-Received: from orsmga002.jf.intel.com ([10.7.209.21])
- by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 09 May 2023 05:29:27 -0700
+ t=1683636478; x=1715172478;
+ h=message-id:date:mime-version:subject:to:references:from:
+ in-reply-to:content-transfer-encoding;
+ bh=QEIQpSmjK1UXi56N+a5Ob8St1y/pPO6v4J7owWeJ9/o=;
+ b=OWIMOlPita/0515eEya/uPBEoinMj4swpQ/rOCpifMz3JlrMNKlI/9Al
+ 9vf99YgzaF4BoEHkKba6M2gd/HZwtO58nAAFRnkOiE/quM8QqXKdF25ri
+ ZYNjEiLNX8MQLgI/J+VaDtsdlvwAgA90QH01IZSPfe9HdWlHyUwPOI27H
+ VE++M/tvMeqzHy7gfjOLVo2hZ+c3jFWPWrQBxY0qwXziqjVGUs5zwKhRV
+ jRK1kLTUe9Ke0tYrba5C6ACVJW0r8tn4OxHUkl2TO5yth5nMh4rRahghB
+ gl9YU8TApn3nuB7aZh4hVEoCOjJaDHf7WvtoYd0uumG8UXJlJ0t1PvKso w==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10705"; a="330275129"
+X-IronPort-AV: E=Sophos;i="5.99,262,1677571200"; d="scan'208";a="330275129"
+Received: from fmsmga006.fm.intel.com ([10.253.24.20])
+ by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 09 May 2023 05:47:57 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10704"; a="698879563"
-X-IronPort-AV: E=Sophos;i="5.99,262,1677571200"; d="scan'208";a="698879563"
+X-IronPort-AV: E=McAfee;i="6600,9927,10705"; a="945259250"
+X-IronPort-AV: E=Sophos;i="5.99,262,1677571200"; d="scan'208";a="945259250"
 Received: from jparkkin-mobl.ger.corp.intel.com (HELO [10.249.254.236])
  ([10.249.254.236])
- by orsmga002-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 09 May 2023 05:29:26 -0700
-Message-ID: <58a2affd-fb1f-f703-80f7-836bf2a7e28b@linux.intel.com>
-Date: Tue, 9 May 2023 14:29:23 +0200
+ by fmsmga006-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 09 May 2023 05:47:55 -0700
+Message-ID: <ef984a4c-82a3-4e4d-f0ad-2d50558b3051@linux.intel.com>
+Date: Tue, 9 May 2023 14:47:54 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.8.0
 Content-Language: en-US
-To: Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Matthew Brost <matthew.brost@intel.com>
+To: Matthew Brost <matthew.brost@intel.com>, intel-xe@lists.freedesktop.org
 References: <20230502001727.3211096-1-matthew.brost@intel.com>
- <20230502001727.3211096-8-matthew.brost@intel.com>
- <ZFVNqF+iqsN059E3@rdvivi-mobl4> <ZFhLejusrFMU3dIk@DUT025-TGLU.fm.intel.com>
- <ZFlrAJI44mbZcq7X@intel.com>
+ <20230502001727.3211096-9-matthew.brost@intel.com>
 From: =?UTF-8?Q?Thomas_Hellstr=c3=b6m?= <thomas.hellstrom@linux.intel.com>
-In-Reply-To: <ZFlrAJI44mbZcq7X@intel.com>
+In-Reply-To: <20230502001727.3211096-9-matthew.brost@intel.com>
 Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
-Subject: Re: [Intel-xe] [PATCH v2 07/31] drm/xe: Only try to lock external
- BOs in VM bind
+Subject: Re: [Intel-xe] [PATCH v2 08/31] drm/xe: VM LRU bulk move
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -65,69 +61,48 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Cc: Rodrigo Vivi <rodrigo.vivi@kernel.org>, intel-xe@lists.freedesktop.org,
- Matthew Brost <mattthew.brost@intel.com>
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 
-On 5/8/23 23:34, Rodrigo Vivi wrote:
-> On Mon, May 08, 2023 at 01:08:10AM +0000, Matthew Brost wrote:
->> On Fri, May 05, 2023 at 02:40:40PM -0400, Rodrigo Vivi wrote:
->>> On Mon, May 01, 2023 at 05:17:03PM -0700, Matthew Brost wrote:
->>>> Not needed and causes some issues with bulk LRU moves.
->>> I'm confused with this explanation and the code below.
->>> could you please provide a bit more wording here?
->>>
->> We only need to try to lock a BO if it external as non-external BOs
->> share the dma-resv with the already locked VM. Trying to lock
->> non-external BOs caused an issue (list corruption) in an uncoming patch
-
-s/uncoming/upcoming/
-
-Also it's not clear to me how this could fix a list corruption in the 
-bulk LRU moves? I mean, if it's a duplicate lock then it gets removed 
-from the tv list and not touched again? Could you explain the mechanism 
-of the fix?
-
-Thanks,
-
-Thomas
-
-
->> which adds bulk LRU move. Since this code isn't needed, remove it.
-> it makes more sense now. with this in commit msg (but with Christopher fix)
+On 5/2/23 02:17, Matthew Brost wrote:
+> Use the TTM LRU bulk move for BOs tied to a VM. Update the bulk moves
+> LRU position on every exec.
 >
+> Signed-off-by: Matthew Brost <matthew.brost@intel.com>
+> ---
+>   drivers/gpu/drm/xe/xe_bo.c       | 32 ++++++++++++++++++++++++++++----
+>   drivers/gpu/drm/xe/xe_bo.h       |  4 ++--
+>   drivers/gpu/drm/xe/xe_dma_buf.c  |  2 +-
+>   drivers/gpu/drm/xe/xe_exec.c     |  6 ++++++
+>   drivers/gpu/drm/xe/xe_vm_types.h |  3 +++
+>   5 files changed, 40 insertions(+), 7 deletions(-)
 >
-> Reviewed-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
->
->
->> ^^^ How about this.
->>
->>>> Signed-off-by: Matthew Brost <mattthew.brost@intel.com>
->>>> ---
->>>>   drivers/gpu/drm/xe/xe_vm.c | 8 +++++---
->>>>   1 file changed, 5 insertions(+), 3 deletions(-)
->>>>
->>>> diff --git a/drivers/gpu/drm/xe/xe_vm.c b/drivers/gpu/drm/xe/xe_vm.c
->>>> index 272f0f7f24fe..6c427ff92c44 100644
->>>> --- a/drivers/gpu/drm/xe/xe_vm.c
->>>> +++ b/drivers/gpu/drm/xe/xe_vm.c
->>>> @@ -2064,9 +2064,11 @@ static int vm_bind_ioctl(struct xe_vm *vm, struct xe_vma *vma,
->>>>   		 */
->>>>   		xe_bo_get(vbo);
->>>>   
->>>> -		tv_bo.bo = &vbo->ttm;
->>>> -		tv_bo.num_shared = 1;
->>>> -		list_add(&tv_bo.head, &objs);
->>>> +		if (!vbo->vm) {
->>>> +			tv_bo.bo = &vbo->ttm;
->>>> +			tv_bo.num_shared = 1;
->>>> +			list_add(&tv_bo.head, &objs);
->>>> +		}
->>>>   	}
->>>>   
->>>>   again:
->>>> -- 
->>>> 2.34.1
->>>>
+> diff --git a/drivers/gpu/drm/xe/xe_bo.c b/drivers/gpu/drm/xe/xe_bo.c
+> index 3ab404e33fae..da99ee53e7d7 100644
+> --- a/drivers/gpu/drm/xe/xe_bo.c
+> +++ b/drivers/gpu/drm/xe/xe_bo.c
+> @@ -985,6 +985,23 @@ static void xe_gem_object_free(struct drm_gem_object *obj)
+>   	ttm_bo_put(container_of(obj, struct ttm_buffer_object, base));
+>   }
+>   
+> +static void xe_gem_object_close(struct drm_gem_object *obj,
+> +				struct drm_file *file_priv)
+> +{
+> +	struct xe_bo *bo = gem_to_xe_bo(obj);
+> +
+> +	if (bo->vm && !xe_vm_no_dma_fences(bo->vm)) {
+Is there a reason we don't use bulk moves for LR vms? Admittedly bumping 
+LRU doesn't make much sense when we support user-space command buffer 
+chaining, but I think we should be doing it on exec at least, no?
+> +		struct ww_acquire_ctx ww;
+> +
+> +		XE_BUG_ON(!xe_bo_is_user(bo));
+
+Also why can't we use this for kernel objects as well? At some point we 
+want to get to evictable page-table objects? Could we do this in the 
+release_notify() callback to cover all potential bos?
+
+/Thomas
+
+
