@@ -4,55 +4,53 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id DAF16C7EE24
-	for <intel-xe@archiver.kernel.org>; Tue,  9 May 2023 13:02:42 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id D2AC4C77B7C
+	for <intel-xe@archiver.kernel.org>; Tue,  9 May 2023 13:22:02 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8D39410E0A5;
-	Tue,  9 May 2023 13:02:42 +0000 (UTC)
-Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6BA5F10E0A5
- for <intel-xe@lists.freedesktop.org>; Tue,  9 May 2023 13:02:40 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 909BA10E12D;
+	Tue,  9 May 2023 13:22:02 +0000 (UTC)
+Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D626310E12D
+ for <intel-xe@lists.freedesktop.org>; Tue,  9 May 2023 13:22:00 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1683637360; x=1715173360;
+ t=1683638519; x=1715174519;
  h=message-id:date:mime-version:subject:to:cc:references:
  from:in-reply-to:content-transfer-encoding;
- bh=NIeFCYndArNLjz+TDqOb+xSljMCqRo5gxZX8Ea23aqA=;
- b=enh/7uGFUT6ND9hiamdOOwCpjmSDhaFlpPaEcQ9qph/zfQGf1scbh7p1
- BvsL1zOJAS/3dO7TQqC0da9ctu3276L/QCXJaOmS0BOZ2l7KnXVAd3PB3
- xG/jehPTyyj6WkecKRT6wy78yO6Gk+cyMPkBENrkieCoYDufblnybJ8iI
- bZy26js2QOoUGOxJOnDnm5Rm+kwLULjZGK9TnO+DJjtQ13KntQfo0i/GU
- S8Q6+OmtQRb27BNSvVbrapnLMtfIfpBz+1SeGOFEZ64u4BB3g9potr6gj
- YN3/4pZH8vu735zfkjE7Y81/I9dZtHco2WTCgKpM+zuWGJA/1Bk+vx974 g==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10705"; a="349951558"
-X-IronPort-AV: E=Sophos;i="5.99,262,1677571200"; d="scan'208";a="349951558"
-Received: from orsmga002.jf.intel.com ([10.7.209.21])
- by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 09 May 2023 06:01:51 -0700
+ bh=gjxeV9UklEhoe43iKuny31wBabIGz+ugzkQt5WqbHH8=;
+ b=E/bGtgKPLiJ7aMrYw7DEgkQzBmXz1ZfIHDyFgDcpS+Y0nXoyYPt0Fenc
+ vWn0pb87actPOOg1rFwU3WqbvKeFkN8ikag8Pw/7BoRH14prFqrrQQbaD
+ 97kunTBAxXqJgyg0XhEWlfhTb0A7WSRDnyDSV2nU/8RfBHB2rndRqnaSs
+ VIMb6/GaCXN8oaudc0O/uOUOwz8M4rOjf6uhrakl5Z2D/e1O2ckt9PC53
+ SF9EbsPR8TrXxY0Foj6p8rq4PMe2hXgv4wxfPBqpagAcSO9R1bMOt205x
+ eFSywmy+6jlIzco+cVwxM6xJS+2xODipdbyUUtanQDl/AXmExzCeCbj+Q g==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10705"; a="352986657"
+X-IronPort-AV: E=Sophos;i="5.99,262,1677571200"; d="scan'208";a="352986657"
+Received: from orsmga008.jf.intel.com ([10.7.209.65])
+ by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 09 May 2023 06:21:59 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10705"; a="698891633"
-X-IronPort-AV: E=Sophos;i="5.99,262,1677571200"; d="scan'208";a="698891633"
+X-IronPort-AV: E=McAfee;i="6600,9927,10705"; a="729507564"
+X-IronPort-AV: E=Sophos;i="5.99,262,1677571200"; d="scan'208";a="729507564"
 Received: from jparkkin-mobl.ger.corp.intel.com (HELO [10.249.254.236])
  ([10.249.254.236])
- by orsmga002-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 09 May 2023 06:01:49 -0700
-Message-ID: <25d089bb-3055-87e7-4940-c980081e98ba@linux.intel.com>
-Date: Tue, 9 May 2023 15:01:48 +0200
+ by orsmga008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 09 May 2023 06:21:58 -0700
+Message-ID: <f5c99897-c577-eb39-b6c0-d46e00832b40@linux.intel.com>
+Date: Tue, 9 May 2023 15:21:56 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.8.0
 Content-Language: en-US
-To: Rodrigo Vivi <rodrigo.vivi@kernel.org>,
- Matthew Brost <matthew.brost@intel.com>
+To: Matthew Brost <matthew.brost@intel.com>, intel-xe@lists.freedesktop.org
 References: <20230502001727.3211096-1-matthew.brost@intel.com>
- <20230502001727.3211096-13-matthew.brost@intel.com>
- <ZFVRExwzbhsqTvVm@rdvivi-mobl4>
+ <20230502001727.3211096-14-matthew.brost@intel.com>
 From: =?UTF-8?Q?Thomas_Hellstr=c3=b6m?= <thomas.hellstrom@linux.intel.com>
-In-Reply-To: <ZFVRExwzbhsqTvVm@rdvivi-mobl4>
+In-Reply-To: <20230502001727.3211096-14-matthew.brost@intel.com>
 Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-Subject: Re: [Intel-xe] [PATCH v2 12/31] drm/xe/guc: Print doorbell ID in
- GuC engine debugfs entry
+Content-Transfer-Encoding: 7bit
+Subject: Re: [Intel-xe] [PATCH v2 13/31] maple_tree: split up MA_STATE()
+ macro
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -64,38 +62,91 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-xe@lists.freedesktop.org
+Cc: Danilo Krummrich <dakr@redhat.com>
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 
-On 5/5/23 20:55, Rodrigo Vivi wrote:
-> On Mon, May 01, 2023 at 05:17:08PM -0700, Matthew Brost wrote:
->> This information is helpful so print it.
->>
->> Signed-off-by: Matthew Brost <matthew.brost@intel.com>
-> Reviewed-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
+On 5/2/23 02:17, Matthew Brost wrote:
+> From: Danilo Krummrich <dakr@redhat.com>
+>
+> Split up the MA_STATE() macro such that components using the maple tree
+> can easily inherit from struct ma_state and build custom tree walk
+> macros to hide their internals from users.
 
-Reviewed-by: Thomas Hellström <thomas.hellstrom@intel.com>
+I might misunderstand the patch, but isn't the real purpose to provide 
+an MA_STATE initializer,and the way to achieve that is to split up the 
+MA_STATE macro?
 
 >
->> ---
->>   drivers/gpu/drm/xe/xe_guc_submit.c | 2 ++
->>   1 file changed, 2 insertions(+)
->>
->> diff --git a/drivers/gpu/drm/xe/xe_guc_submit.c b/drivers/gpu/drm/xe/xe_guc_submit.c
->> index 1b6f36b04cd1..880f480c6d5f 100644
->> --- a/drivers/gpu/drm/xe/xe_guc_submit.c
->> +++ b/drivers/gpu/drm/xe/xe_guc_submit.c
->> @@ -2016,6 +2016,8 @@ static void guc_engine_print(struct xe_engine *e, struct drm_printer *p)
->>   	drm_printf(p, "\tTimeslice: %u (us)\n", e->sched_props.timeslice_us);
->>   	drm_printf(p, "\tPreempt timeout: %u (us)\n",
->>   		   e->sched_props.preempt_timeout_us);
->> +	drm_printf(p, "\tDoorbell ID: %u\n",
->> +		   e->guc->doorbell_id);
->>   	for (i = 0; i < e->width; ++i ) {
->>   		struct xe_lrc *lrc = e->lrc + i;
->>   
->> -- 
->> 2.34.1
->>
+> Example:
+>
+> struct sample_iterator {
+>          struct ma_state mas;
+>          struct sample_mgr *mgr;
+> };
+>
+> \#define SAMPLE_ITERATOR(name, __mgr, start)                    \
+>          struct sample_iterator name = {                         \
+>                  .mas = MA_STATE_INIT(&(__mgr)->mt, start, 0),   \
+>                  .mgr = __mgr,                                   \
+>          }
+>
+> \#define sample_iter_for_each_range(it__, entry__, end__) \
+>          mas_for_each(&(it__).mas, entry__, end__)
+>
+> --
+>
+> struct sample *sample;
+> SAMPLE_ITERATOR(si, min);
+>
+> sample_iter_for_each_range(&si, sample, max) {
+>          frob(mgr, sample);
+> }
+>
+> Signed-off-by: Danilo Krummrich <dakr@redhat.com>
+> ---
+>   include/linux/maple_tree.h | 7 +++++--
+>   1 file changed, 5 insertions(+), 2 deletions(-)
+>
+> diff --git a/include/linux/maple_tree.h b/include/linux/maple_tree.h
+> index 1fadb5f5978b..87d55334f1c2 100644
+> --- a/include/linux/maple_tree.h
+> +++ b/include/linux/maple_tree.h
+> @@ -423,8 +423,8 @@ struct ma_wr_state {
+>   #define MA_ERROR(err) \
+>   		((struct maple_enode *)(((unsigned long)err << 2) | 2UL))
+>   
+> -#define MA_STATE(name, mt, first, end)					\
+> -	struct ma_state name = {					\
+> +#define MA_STATE_INIT(mt, first, end)					\
+> +	{								\
+
+Naming: following the convention in, for example, the mutex and ww mutex 
+code this should've been called
+
+__MA_STATE_INITIALIZER(),
+
+whereas the decapitalized name ma_state_init() would've been a (possibly 
+inline) init function if it existed.
+
+But this all should ofc be run by the maple tree maintainer(s).
+
+FWIW, with these things addressed the change LGTM.
+
+/Thomas
+
+
+>   		.tree = mt,						\
+>   		.index = first,						\
+>   		.last = end,						\
+> @@ -435,6 +435,9 @@ struct ma_wr_state {
+>   		.mas_flags = 0,						\
+>   	}
+>   
+> +#define MA_STATE(name, mt, first, end)					\
+> +	struct ma_state name = MA_STATE_INIT(mt, first, end)
+> +
+>   #define MA_WR_STATE(name, ma_state, wr_entry)				\
+>   	struct ma_wr_state name = {					\
+>   		.mas = ma_state,					\
