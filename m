@@ -4,49 +4,31 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id A307AC77B7C
-	for <intel-xe@archiver.kernel.org>; Wed, 10 May 2023 15:50:47 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4BC92C77B7D
+	for <intel-xe@archiver.kernel.org>; Wed, 10 May 2023 15:53:07 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4B8E010E4CB;
-	Wed, 10 May 2023 15:50:47 +0000 (UTC)
-Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E8C9610E4CB
- for <intel-xe@lists.freedesktop.org>; Wed, 10 May 2023 15:50:45 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1683733845; x=1715269845;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=bkoNlcXTXYS65T4m500RNLwZIA0yzJo4Ej5WrDmFKmk=;
- b=HgAgXOLf5IDMsY3Raian3cmtYeim/La+9xUuDyN84JkSzukC/rDsksuZ
- Ym5lZMZVsntzL1iYU8inc6NYvKwRGVLMdzGnvaf3qprg68W4QcW4uaRpz
- KpR4c07Gr061qvJx6PW6X8xGiOWmfVXibCJkfB4tBkEgy9U/x+VJhAC5i
- XyaADdoSKvLJd4MCoRQhD2grcN14e/pWEa/tIRvKIOQFRMNhep5zpD4Mn
- VGBg6b7GeMhUihJEQK6b+WMWGeI07NY7gHvFw0LQz6ifwSAta0OdWA9B9
- jsc/3eosF4gZMHDNZykF08gsHjdRK2EAQF7B70X9HCNcFRZQxjY8pyHkU g==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10706"; a="415824037"
-X-IronPort-AV: E=Sophos;i="5.99,265,1677571200"; d="scan'208";a="415824037"
-Received: from fmsmga002.fm.intel.com ([10.253.24.26])
- by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 10 May 2023 08:50:44 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10706"; a="811188249"
-X-IronPort-AV: E=Sophos;i="5.99,265,1677571200"; d="scan'208";a="811188249"
-Received: from azaki-mobl.amr.corp.intel.com (HELO localhost) ([10.252.63.3])
- by fmsmga002-auth.fm.intel.com with
- ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 10 May 2023 08:50:43 -0700
-From: Jani Nikula <jani.nikula@intel.com>
-To: intel-xe@lists.freedesktop.org
-Date: Wed, 10 May 2023 18:46:44 +0300
-Message-Id: <20230510154644.712030-2-jani.nikula@intel.com>
-X-Mailer: git-send-email 2.39.2
-In-Reply-To: <20230510154644.712030-1-jani.nikula@intel.com>
-References: <20230510154644.712030-1-jani.nikula@intel.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0804A10E4CD;
+	Wed, 10 May 2023 15:53:07 +0000 (UTC)
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 3BCFF10E4CD;
+ Wed, 10 May 2023 15:53:05 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 320EEAADD2;
+ Wed, 10 May 2023 15:53:05 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-Content-Transfer-Encoding: 8bit
-Subject: [Intel-xe] [PATCH 2/2] fixup! drm/i915/display: Remaining changes
- to make xe compile
+Content-Transfer-Encoding: 7bit
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Jani Nikula" <jani.nikula@intel.com>
+Date: Wed, 10 May 2023 15:53:05 -0000
+Message-ID: <168373398518.7575.7785940561335347905@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20230510154644.712030-1-jani.nikula@intel.com>
+In-Reply-To: <20230510154644.712030-1-jani.nikula@intel.com>
+Subject: [Intel-xe] =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_f?=
+ =?utf-8?q?or_series_starting_with_=5B1/2=5D_DUMMY_COMMIT=2E_REMOVE_AT_NEX?=
+ =?utf-8?q?T_REBASE=2E?=
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -58,37 +40,23 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Cc: Jani Nikula <jani.nikula@intel.com>, rodrigo.vivi@intel.com
+Reply-To: intel-xe@lists.freedesktop.org
+Cc: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Currently "drm/xe: Introduce a new DRM driver for Intel GPUs" removes
-these lines, so don't add them in "drm/i915/display: Remaining changes
-to make xe compile" to begin with!
+== Series Details ==
 
-Signed-off-by: Jani Nikula <jani.nikula@intel.com>
----
- drivers/gpu/drm/i915/i915_reg_defs.h | 4 ----
- 1 file changed, 4 deletions(-)
+Series: series starting with [1/2] DUMMY COMMIT. REMOVE AT NEXT REBASE.
+URL   : https://patchwork.freedesktop.org/series/117583/
+State : success
 
-diff --git a/drivers/gpu/drm/i915/i915_reg_defs.h b/drivers/gpu/drm/i915/i915_reg_defs.h
-index a7c4101370ad..eac5a4141bfa 100644
---- a/drivers/gpu/drm/i915/i915_reg_defs.h
-+++ b/drivers/gpu/drm/i915/i915_reg_defs.h
-@@ -218,13 +218,9 @@ typedef struct {
- 
- #define _MMIO(r) ((const i915_reg_t){ .reg = (r) })
- 
--#ifdef I915
- typedef struct {
- 	u32 reg;
- } i915_mcr_reg_t;
--#else
--#define i915_mcr_reg_t i915_reg_t
--#endif
- 
- #define MCR_REG(offset)	((const i915_mcr_reg_t){ .reg = (offset) })
- 
--- 
-2.39.2
+== Summary ==
+
+=== Applying kernel patches on branch 'drm-xe-next' with base: ===
+Base commit: fa603f7d5 drm/xe: fix tlb_invalidation_seqno_past()
+=== git am output follows ===
+Applying: DUMMY COMMIT. REMOVE AT NEXT REBASE.
+Applying: fixup! drm/i915/display: Remaining changes to make xe compile
+
 
