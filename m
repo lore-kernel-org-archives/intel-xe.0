@@ -4,137 +4,141 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 33CCDC7EE22
-	for <intel-xe@archiver.kernel.org>; Wed, 10 May 2023 00:51:57 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5F1B7C7EE22
+	for <intel-xe@archiver.kernel.org>; Wed, 10 May 2023 00:56:07 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id F175010E1F1;
-	Wed, 10 May 2023 00:51:56 +0000 (UTC)
-Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 50EF710E1F1
- for <intel-xe@lists.freedesktop.org>; Wed, 10 May 2023 00:51:54 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 332DB10E1F1;
+	Wed, 10 May 2023 00:56:07 +0000 (UTC)
+Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E6D2C10E1F1
+ for <intel-xe@lists.freedesktop.org>; Wed, 10 May 2023 00:56:04 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1683679914; x=1715215914;
+ t=1683680164; x=1715216164;
  h=date:from:to:cc:subject:message-id:references:
  content-transfer-encoding:in-reply-to:mime-version;
- bh=/iBQdeWxg0lUsMUkclK2URniYDM0iYSUbubtYUlGFWc=;
- b=Cc4pYGBrimcTbyslsJdB7Fztrzp9xE1FduRmGG88mHqSn285pdT2BtUc
- 6xri9zW4bBftN+AKdZ7V27YbVYQs1+CnGPNVVtd30piZC6C4EFKifqsIb
- KB7yN5Mi2kVrl8BrsNAVBLz9V91UYULSiJJDGy3XD1Pxz7tPRCW3MvWfx
- q3FnGd9dg2zv6A27SXBPnDD62G3VjqBoR0BE9RZ99ZQ4AzZzojf/HgptF
- YGPlHOiRXD5uzJtcm8xfS4fdPVXmX7U62E/NDoq4ptYxuiAIoXsm1fpop
- +XrATJCyGzwMZYstc+z41QEG7n8qs4kM/1iudWiNdC+03AXM2y2hcQg3Y w==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10705"; a="329713692"
-X-IronPort-AV: E=Sophos;i="5.99,263,1677571200"; d="scan'208";a="329713692"
-Received: from fmsmga006.fm.intel.com ([10.253.24.20])
- by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 09 May 2023 17:51:53 -0700
+ bh=6s+NnQe2qxQ1AuLZrAJrmSOSmkXkf/GKdgav8A3+vVk=;
+ b=FBLMFzERIdiHVkd029CCHRvwX7hvHlRIc943G0pc40ev8wLsohlGNSZK
+ W21mOH+rvV0EnBgdUAS/1Yn6WVijYIDqVBCRqDrx45OdaRT0ghDVih9o3
+ 2TtqFbiiffkEMX0hb/2mP3M0Ay9ekhwkbyc66rZZAfcT/MNY0GsH91lAV
+ mR3NXKXNXAd5MQkA0MgwgHfp1TUG4pRd/NmQvA8Yon4oMyjPRBqEOUE4R
+ p0xu6KnkBHJXcBeU0RlLcEnEj5z+NQtJLEXNeiNhg21I25PmxMGiqoCjc
+ Rl52y1tYmpQduQ2l1p7Nq6UDQXXbCYagsWPTFkq8POIIYgK4jI9YJbrRW Q==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10705"; a="436417414"
+X-IronPort-AV: E=Sophos;i="5.99,263,1677571200"; d="scan'208";a="436417414"
+Received: from fmsmga002.fm.intel.com ([10.253.24.26])
+ by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 09 May 2023 17:56:04 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10705"; a="945498618"
-X-IronPort-AV: E=Sophos;i="5.99,263,1677571200"; d="scan'208";a="945498618"
-Received: from orsmsx602.amr.corp.intel.com ([10.22.229.15])
- by fmsmga006.fm.intel.com with ESMTP; 09 May 2023 17:51:52 -0700
-Received: from orsmsx610.amr.corp.intel.com (10.22.229.23) by
- ORSMSX602.amr.corp.intel.com (10.22.229.15) with Microsoft SMTP Server
+X-IronPort-AV: E=McAfee;i="6600,9927,10705"; a="810927677"
+X-IronPort-AV: E=Sophos;i="5.99,263,1677571200"; d="scan'208";a="810927677"
+Received: from fmsmsx602.amr.corp.intel.com ([10.18.126.82])
+ by fmsmga002.fm.intel.com with ESMTP; 09 May 2023 17:56:04 -0700
+Received: from fmsmsx611.amr.corp.intel.com (10.18.126.91) by
+ fmsmsx602.amr.corp.intel.com (10.18.126.82) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.23; Tue, 9 May 2023 17:51:52 -0700
-Received: from ORSEDG602.ED.cps.intel.com (10.7.248.7) by
- orsmsx610.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
+ 15.1.2507.23; Tue, 9 May 2023 17:56:03 -0700
+Received: from fmsmsx602.amr.corp.intel.com (10.18.126.82) by
+ fmsmsx611.amr.corp.intel.com (10.18.126.91) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.23 via Frontend Transport; Tue, 9 May 2023 17:51:52 -0700
-Received: from NAM10-DM6-obe.outbound.protection.outlook.com (104.47.58.107)
- by edgegateway.intel.com (134.134.137.103) with Microsoft SMTP Server
+ 15.1.2507.23; Tue, 9 May 2023 17:56:03 -0700
+Received: from fmsedg601.ED.cps.intel.com (10.1.192.135) by
+ fmsmsx602.amr.corp.intel.com (10.18.126.82) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.23 via Frontend Transport; Tue, 9 May 2023 17:56:03 -0700
+Received: from NAM02-SN1-obe.outbound.protection.outlook.com (104.47.57.41) by
+ edgegateway.intel.com (192.55.55.70) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2507.23; Tue, 9 May 2023 17:51:52 -0700
+ 15.1.2507.23; Tue, 9 May 2023 17:56:03 -0700
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=XNjgUxXvBkR3I43+e/gHGiya8znZwPY5oL4EJSGRwPCO45tbMB7s0bS2z9m7KSWmEciFl7xoEIha7HXdYj1TwGfOhKq/7R3CsiiiZaOXrW1DJ9uLWIWoSypCgxtSVluI/a5Qx2857MM6Ojd7QdEXdoRzikywBJI8v7LAAN+o79n2S7n2TzBB24WsuluUfECqf1I/oibokRiKqhpGJ8sfNJpDsQk3b+3tfxUHat6L6OR3xDan5cgJXDs/00zZK+lUvVb4zQf2XriYuOgLbbEpd0ysbRcGbknZdOv0nT/BDLnjsxNj2gV0uT625dyyynytVvusxIyCkXyE2QgCYqjVFQ==
+ b=ZaWKdxMZ3K22tYywpRocxExkP2miNTJkAEK6++qjWhA4Jfmk15JOF8c0FAqzKOiTCG4W2Q5TAgtK6v9D+vYpv/9ApE3UNMNIJClMYGKXb7zMANpdWreL4KmjbmunX7yBtmJU59WVkEMDtjBB9dmWnynSWkUw20qCd7vdgX1Y6wVyWRGNATjFuuUrRrdRgplv1EWI7vL1VYUXERqC1dKxWSs2tdZrZeBBkkFyzhlQO/BprSqDU6GiTw6o6nVIrWp8AThbMGu58M/awJLCg5V/aCqN5rJMKazCyv0gnGGVYtlqG7Dv3opP+r04RxFL/9AmCCpmPf2gu21vqKCygFIvDg==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=bGiOm5P1CfRwS+vMOO1z7g7nyPmtHVKNhhMgDKCZa+E=;
- b=cXhvfzCQLQGZKnyBkagg/oCHSBplyDP9xDomHDKIMEc58gq0yjMtib6IfRA3mOvE135YrmMO46KJiaZer1Xv9Syi+BQTjwSXIGrS8Bx43j6ti9SfLT7chPJ3zf5spg47B0Y0y6e4GhZPbocThHs5vYGL+WXvY75KcXwXLcUBko2jDbmh+u51F/h6LTuI8YYs5kAYqJtHETFWnduNJgsHI1ehXMaWVLjNDtBsxtdpPqxQgcySUYQ0RnQYHTgR2jKrMUmL9t4ososxn3nCOGG7PsUNhlJ7g7xDJTWu0375Lf3fAGaNECaL9kNyOI8jaXDfSb+dLnCmULwOgrhpvhOLyw==
+ bh=F8b4vATz39Y6AHlJTXiWrqfnnPsvGpIKJCkmgAbQ0ys=;
+ b=dzBfbjAWUjKklh5H3b04O/o458oUVc4HpkHNmfjiI5iaUxDJ/BpaPV1muFgwqNEBuirAqdA/Lt3KRwamBKHJSIeNrr4S8zLdK6AvNyHs72gPraPd9DuMlIht18qVuQDhNMuH+vmcSNxTj21Cg0zAK3nhPl5bY3pv5EctStxnuDORwiGwo3ozDJ+cXMBYCBUSha2O6UMv0h7mP5hsF9BLIaJX38OiHekTG50xcZe1UgeUmQBbA+dbTWYF0H2iswtaq6bJ9t2KFD4uc2bgnK0lEtAlW968XJoclgykZaQ9Rd+pwYiWGHeyOo82ePyc0gdkD3qvKxomXwi9GKgs147g9A==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
  dkim=pass header.d=intel.com; arc=none
 Authentication-Results: dkim=none (message not signed)
  header.d=none;dmarc=none action=none header.from=intel.com;
 Received: from PH7PR11MB6522.namprd11.prod.outlook.com (2603:10b6:510:212::12)
- by PH7PR11MB6356.namprd11.prod.outlook.com (2603:10b6:510:1fc::10)
+ by CH0PR11MB5491.namprd11.prod.outlook.com (2603:10b6:610:d6::19)
  with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6363.22; Wed, 10 May
- 2023 00:51:50 +0000
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6363.33; Wed, 10 May
+ 2023 00:56:01 +0000
 Received: from PH7PR11MB6522.namprd11.prod.outlook.com
  ([fe80::ff06:a115:e4eb:680e]) by PH7PR11MB6522.namprd11.prod.outlook.com
  ([fe80::ff06:a115:e4eb:680e%4]) with mapi id 15.20.6363.032; Wed, 10 May 2023
- 00:51:50 +0000
-Date: Wed, 10 May 2023 00:51:14 +0000
+ 00:56:01 +0000
+Date: Wed, 10 May 2023 00:55:25 +0000
 From: Matthew Brost <matthew.brost@intel.com>
 To: Thomas =?iso-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>
-Message-ID: <ZFrqgugPDAk1nn9v@DUT025-TGLU.fm.intel.com>
+Message-ID: <ZFrrfVy22/clBQks@DUT025-TGLU.fm.intel.com>
 References: <20230502001727.3211096-1-matthew.brost@intel.com>
- <20230502001727.3211096-12-matthew.brost@intel.com>
- <18f0a4c5-78ce-980a-cdbb-be2e31fd261a@linux.intel.com>
+ <20230502001727.3211096-16-matthew.brost@intel.com>
+ <3387ce41-173d-c8c0-2610-1fbfd89193a4@linux.intel.com>
 Content-Type: text/plain; charset="iso-8859-1"
 Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <18f0a4c5-78ce-980a-cdbb-be2e31fd261a@linux.intel.com>
-X-ClientProxiedBy: SJ0PR03CA0114.namprd03.prod.outlook.com
- (2603:10b6:a03:333::29) To PH7PR11MB6522.namprd11.prod.outlook.com
+In-Reply-To: <3387ce41-173d-c8c0-2610-1fbfd89193a4@linux.intel.com>
+X-ClientProxiedBy: BY3PR05CA0033.namprd05.prod.outlook.com
+ (2603:10b6:a03:39b::8) To PH7PR11MB6522.namprd11.prod.outlook.com
  (2603:10b6:510:212::12)
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: PH7PR11MB6522:EE_|PH7PR11MB6356:EE_
-X-MS-Office365-Filtering-Correlation-Id: 72a311b8-9a4f-415d-6b63-08db50f0bd57
+X-MS-TrafficTypeDiagnostic: PH7PR11MB6522:EE_|CH0PR11MB5491:EE_
+X-MS-Office365-Filtering-Correlation-Id: 9de42f6a-7b45-4487-568d-08db50f152b7
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: 4QyRvtDomEdTd0Iy9y0VRQLS993h4Tg1uInRYKZwQRvuekwjFy+sl2ZMlWTc9LYx4DyMrNcPDYDPxyuV5y84OvGUSUM3iBWEK3MH4i8pz3CDRlIjdGY2Azm4qwq0OV63gXQm3FJr0BJ80e8XuId56sW2qb/2JX4PgUBDo5LUF5ja54ErrWShyE9DG9LvVGgy0uY8buMn5Z2LgQKjOy+ekRR0kjAS4d3jzveH2i22c1VgwnxRVIedpDrsbG+dqDAPxm69jPrHU+Px0HpMI5rYv4Bebo/vty+om1ZYaeoZFylHo2iSEUENpwI0G0Cin6RJgO7283yICn0XHyxlN6xHNvZU4BQoQBUNyj9hCxYzaqDRU6Ed8JMwUoxV6seg9qyL0OEH/y9qPvwhNOu+N+THmPPoPVGR6EvXw877Xfk9fGpy89asBbrlITVrY9oU+N5aHZAZG2b9PdSJb4vkLfGpfPv/arxYEQ+X9x8qTftdRcE3i7KXjYSUssa8owyW3duMsYIorkvP2cr/J/xBLxg9ZDaI7hb/yydUxqYj/7xteenTPjUBDOfId0NKV6Mfg4wN9zRErIxbkD9mNb8Xb9jN4FeMUC3kOQ0neGc6ndrmcT0=
+X-Microsoft-Antispam-Message-Info: ynRk5Ohl/kIiIfhsZz5uAug7aGxw29kgnsocg/hg2uuyYUA2X6XdyUEt8g56Ev0QzCi7dY/T3dY0znUlH6y3i6wE4k6VJLsTDJiAWeTcbrpuQasADAt5U49iaKryzHzB6wwVv9J/FSyoMCuKkJu93FqQJkf+3mceq1sOuUTWvS8JWFJDiCqku2/4lHZR4qsCl6EEiYcX1O3XbuDEAw/InrOgzak9+tpJarPkN+zUTBKpcaAWciXa0EClb8lQZxuWG4Osc1AKLdonTSga2T8A1qyhQntjvMKBj7i1DnqB6iCNgi02h9fR/Ppb2oAUVCg2pXk/z88Q6JsyfmdUgT5L2zKE5fvt0RgzHVJyKArJGaQSr+zWpiD4p7GhUMGGk/oormkIGIUvcEdXUYmRP7zN08GN98b4XhLrrnvNCYgXfaGm+LYMBZI7oSlHN87+PTkhjfMNv7orQxfH5Gxuompk7vwPEFNXmxpV6GHjn7+k7BTRQVG+Eq20CV/ae/Afp0RxzxFulxycZ26PaoFoZTQG8Fy0zmN17/Uu3dnkcyLS9ReHahADIHsJW9ekqZ4ZOWvE
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
  IPV:NLI; SFV:NSPM; H:PH7PR11MB6522.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230028)(396003)(346002)(366004)(136003)(39860400002)(376002)(451199021)(4326008)(478600001)(86362001)(66476007)(66556008)(6486002)(6666004)(316002)(5660300002)(44832011)(8936002)(2906002)(41300700001)(8676002)(186003)(38100700002)(82960400001)(53546011)(6512007)(6506007)(26005)(66574015)(83380400001)(6916009)(66946007)(30864003)(66899021)(21314003);
+ SFS:(13230028)(346002)(136003)(366004)(39860400002)(376002)(396003)(451199021)(54906003)(83380400001)(66574015)(38100700002)(316002)(82960400001)(6506007)(6512007)(41300700001)(53546011)(26005)(86362001)(5660300002)(8936002)(8676002)(6916009)(4326008)(66476007)(66946007)(66556008)(44832011)(478600001)(186003)(2906002)(6486002)(6666004);
  DIR:OUT; SFP:1102; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?iso-8859-1?Q?LQv0f2EMh6YC2yUvfCfS8tij7VUSokeVGRyn9nq5f/ocEqtPJSM8BlyLQK?=
- =?iso-8859-1?Q?XR9YJqxbK2vuhKQoEFtAIAfg3RQtpx00MPR/45OVZwqieANnTCKAjenoFP?=
- =?iso-8859-1?Q?mdHXIuJS+JFryNk/s7Dk+2puydHFzFgQBHc/4HYyn2E/wQ7Hj4DVfdLNas?=
- =?iso-8859-1?Q?jfHCU8cqXHlfmfHHrm6Qu6otpq6R2F5q4w7BHh+sk1i4+bTgfmRQWcXImq?=
- =?iso-8859-1?Q?XXhjhAu/sEyAch/f6I+loJWC9N6eTYx+jtb36fBUml9gj+UzJ8bnAmYpMk?=
- =?iso-8859-1?Q?0UYqIeOP5m0QhncMiEtLkfQIRUpr7iRWu0EKDVjABypH1QgNxmSqIRgmdB?=
- =?iso-8859-1?Q?js1Ycg43Fj7fYpYn4w98zdqHq4W3dXYzSPtJJHPzwJtgxkMXzALPbV3Ltv?=
- =?iso-8859-1?Q?16sfQxg0qwybNyYITSAL7l4MDDjfAx2O0JkdvteSBrO13GyNiNaLpyLen+?=
- =?iso-8859-1?Q?jhTU+Wou5OIVeW4zv+hiSFovek0p9iH7O51BcI+FZkftNtwJw74xbxKw5m?=
- =?iso-8859-1?Q?kfxbGBYzk7tImspnpb3SGiqroI1mUQcAiYvia9BLoUqZiDlZX5fQTMUqdl?=
- =?iso-8859-1?Q?R8d6BCBnQVqvTwtxTDxZ2fU8227AHE9vnXzl5547eqVIjgoJXUbMPR1kO7?=
- =?iso-8859-1?Q?TWxleko2pqLkWf+T9/JSofojjNz2JOYUpVXnzaxnBEC7yN0yHLbJlD7q+t?=
- =?iso-8859-1?Q?Usn6R8qDWmzAdP5HrCcPtuGIqX670AUgnqRJNOnXT4fqX1lMKXDvO5WnM2?=
- =?iso-8859-1?Q?7+1Wz+Oao32WWO/I6LeprbRBg5FHW/M6LwIDCkRxJjxcVCgrYITpRO4CWQ?=
- =?iso-8859-1?Q?pfYJyZUe7cx67se4gEZ2Cu8kTABeq8c0BiO/UUwZ6ouRAzviTtxBF23mol?=
- =?iso-8859-1?Q?4rMPX65GaJGjz0HhvddZglFbz8K/kzj9uLkww+Yf9Z0AFAOBmo34d9l2lz?=
- =?iso-8859-1?Q?gc2dz03+6X9RtgPpGLe6qIFeYhub9S0wKrohupFL8KyU35dH4EWpnT0fcP?=
- =?iso-8859-1?Q?MZnBi8JziaQBrakVWZN3q0J24WKcoGAqdZvCe1ZZrvXBf/iJKQrHn67HKV?=
- =?iso-8859-1?Q?rjzI1LpKSEdgXFhi+ze0AIMe0gOOoVOGzVcwie8/bDfM7HGuVt1CavnL/N?=
- =?iso-8859-1?Q?AYLD6AWPRkYCYJE5r2M/kA0gmQqHoRzQZyjLrpXjr5FHSE5nMnR+O+Zi6V?=
- =?iso-8859-1?Q?SnnItASYgmLUzwXpQ0qUX+riCGTu4n5G91bAOabJ0Tba36D7mddoV6xq9E?=
- =?iso-8859-1?Q?Q3J+w4RSfjXOl2pD2z1hJextpSMykqnwXwxE//ITszwFPpJ2a0awKXmYK5?=
- =?iso-8859-1?Q?Whf6xh42WAibeoCWJcC6zjlOJunrZci/up8Aqm4WxkrwhtjLtYiWNLEJNH?=
- =?iso-8859-1?Q?gS0yVqS/VqVmp429/6EW/Y4632BHaDfW3YKyMCL07qOTO4BWMyCINunnUL?=
- =?iso-8859-1?Q?MT8YsN9DoTTgyrvGmuSGQW5fv4DHe78CFQt5CApn7wbFW6Xbvqmpo3zR3B?=
- =?iso-8859-1?Q?X0nigcTsz1qt8/vohrXKH4pSykRFCfDcLcwhu75o7hZ+nBvMvCphoWcJwa?=
- =?iso-8859-1?Q?0OsfeNBk1MOoxpWtBfC01KtRch6zEcFp7XYCDfGDou1LQn9eyZib+RHsNO?=
- =?iso-8859-1?Q?h6Xj9XdmV9on4hKUNFMoHhLiW84KJS5Hq9MtLAW+tm/dKjRmRS5h32Ow?=
+X-MS-Exchange-AntiSpam-MessageData-0: =?iso-8859-1?Q?zrALh8cS43NtfrcyacQwxUF4+f4KkjwAHvSRnd2VhTBPIflPC6OJ9oFg+H?=
+ =?iso-8859-1?Q?w9wNICBRCJB3Cjrl3uOJsCLdVc/5oDye0l8+UEOs7zC6DhzFt+Qsrmqe9/?=
+ =?iso-8859-1?Q?0dVbVuOAQPSBYhB8qsIWuIwiBxxUVwcNHXfk+OhIzS7G5xQDoE6WIvVXDu?=
+ =?iso-8859-1?Q?Kb6jv9WOf1Jn8ezCqDeeytdv8YJ/aj0HBQ1SjZYW2tMS/zPfMH0a4AssH8?=
+ =?iso-8859-1?Q?F78pyRbEVZ5HNBHR5qWjIqDy7O/eBv0fBGY07ouQuZyZCugaaibC9lmiR3?=
+ =?iso-8859-1?Q?JzuytYy2CA9j+kumNfzgQt3ZExpexcwNL47UJUSMZ7+JuC6DaBi1XqNAJQ?=
+ =?iso-8859-1?Q?Pzj3ilct2Sks5dPS/DncuZspkWStqzfEt0KrkKCz0g/RbD9j/+3lxA3arj?=
+ =?iso-8859-1?Q?BXn3PgLLWxePr6eaVb8Fv19Tr32vRkuiSH68sqfbRuqYFnKhhHALkE5+Xs?=
+ =?iso-8859-1?Q?RbY6i7bYjEIQhH9NsF3UxyQG6lalFXmjOStlfon1hmKIMFid8Fg5SNhZex?=
+ =?iso-8859-1?Q?sdvKKRC8EaCnE1NJc8QolwvDKn+SKs82PLjg5Cz4jXM2l8YintaohONrBR?=
+ =?iso-8859-1?Q?GDA6JBKyQJahzuy/k4hQhuZqI+JNlMJ4DDdnYpEw/kIK41XpcqHiCIQqu+?=
+ =?iso-8859-1?Q?s0VQWUdkM0FxLXEWJdwyV6L76GRc5WHnON3hZD5HZcjjbmVbkqlh6tbmap?=
+ =?iso-8859-1?Q?b94Yk9zZxgZpfpssxGYgQaJjlLpJPDCkD8ldx6AVhAaKaD4AGy1s6Ai2av?=
+ =?iso-8859-1?Q?y+zk9/yvzdK3wWBKAHlAdtnhtBjwTyUHulkgAum5sjhdCsxjY9Tkf/mjJA?=
+ =?iso-8859-1?Q?QJOVokK9qeXhKbT/ZJR14vBGWOhHUtCtiSe2o4oegl/9slMmIiHco0eEgz?=
+ =?iso-8859-1?Q?kmxVNVOet2NAiPhEWAL71ZhRriYqvw2GkfJfBodyU5xa1cMaCs8sBJ4oBr?=
+ =?iso-8859-1?Q?lICA+SBin4bL8cXp7F5nUAHlgdvu5skuwCA8M/coZSflcjUk1SGkbdREIP?=
+ =?iso-8859-1?Q?u0AtDTLwR/YsPkCvzyDLAjltCXeUE8ValQk/udDavEfW4inpi1k3vwmIRi?=
+ =?iso-8859-1?Q?H5FMp1Ahpb31BC2c9ZbcORC0GFL4bofOvrI0eBEWpKcrBswZog/Szs5kWB?=
+ =?iso-8859-1?Q?CM/SKUYkyKqvdrp55uQ5Cm1e5rVPxTV2/Bzd2Ex5WP/vLc3d8iHqAC/YAX?=
+ =?iso-8859-1?Q?DN8dhpMlkAs7WbhN8Udb7DS/hQD8QpT5PUtkR7SULsF3jdmv1dBy8FUpKa?=
+ =?iso-8859-1?Q?nhOjswd1+KiwBEfeWDKoqn4+5DerBPRisjtqdYQVTjrSJH0ncg3vpXCNjF?=
+ =?iso-8859-1?Q?fl1RlMzB5RYmID5hW0o+KtMDKIQHK1nf+pJ3TB0V0d2KfZd0vfpoxp8Kfm?=
+ =?iso-8859-1?Q?0aS8eOZCQtcIoepaUaXqrp55kMqwQxgC92aDqMmvOxnKFGx1yAxM2DTqi2?=
+ =?iso-8859-1?Q?nQQqp1al5pp1V/LxGxrzVx4SIB0I4X//QRPMfdh8Qn0ZrWfeeD3iQK5jrP?=
+ =?iso-8859-1?Q?ojwUsdmvBbLtOkyR9H4PUXw1LBHrPVjoeNlqIzQQqHwLu2MrBLzVIxDHOV?=
+ =?iso-8859-1?Q?TDdGey9hUlwfZxgtC3D+Nt+QPLrf3SGEH2r2pZzX/oJSux1Fzn10/L9oIS?=
+ =?iso-8859-1?Q?NCnqt7oj5eajLuDcXEV/4Mf08+ldKWE43BZ1VDd/O7Rtvbp/DpC6j4Pg?=
  =?iso-8859-1?Q?=3D=3D?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: 72a311b8-9a4f-415d-6b63-08db50f0bd57
+X-MS-Exchange-CrossTenant-Network-Message-Id: 9de42f6a-7b45-4487-568d-08db50f152b7
 X-MS-Exchange-CrossTenant-AuthSource: PH7PR11MB6522.namprd11.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 10 May 2023 00:51:50.4841 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 10 May 2023 00:56:01.1664 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: b2d2sNGaKIvp6qJdZClgWaERQqRE62HqP5VhMxTlGl/zTwmYWuT37U8FEDCUfgor6BuK0iMFPsrEEhwVDxDu1Q==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH7PR11MB6356
+X-MS-Exchange-CrossTenant-UserPrincipalName: 8IaKuMFw4fwsbE5rWTpffzX5AqKKJKMyDyyWb0c/pog8SgiPYuMzndYkxSvPuVJ6QngqrjefIEoSHLu2lHDWcg==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: CH0PR11MB5491
 X-OriginatorOrg: intel.com
-Subject: Re: [Intel-xe] [PATCH v2 11/31] drm/xe/guc: Use doorbells for
- submission if possible
+Subject: Re: [Intel-xe] [PATCH v2 15/31] drm: manager to keep track of GPUs
+ VA mappings
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -146,537 +150,64 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-xe@lists.freedesktop.org,
- Faith Ekstrand <faith.ekstrand@collabora.com>
+Cc: Dave Airlie <airlied@redhat.com>, Danilo Krummrich <dakr@redhat.com>,
+ intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Tue, May 09, 2023 at 03:00:17PM +0200, Thomas Hellström wrote:
+On Tue, May 09, 2023 at 03:49:12PM +0200, Thomas Hellström wrote:
 > 
 > On 5/2/23 02:17, Matthew Brost wrote:
-> > We have 256 doorbells (on most platforms) that we can allocate to bypass
-> > using the H2G channel for submission. This will avoid contention on the
-> > CT mutex.
+> > From: Danilo Krummrich <dakr@redhat.com>
 > > 
+> > Add infrastructure to keep track of GPU virtual address (VA) mappings
+> > with a decicated VA space manager implementation.
+> > 
+> > New UAPIs, motivated by Vulkan sparse memory bindings graphics drivers
+> > start implementing, allow userspace applications to request multiple and
+> > arbitrary GPU VA mappings of buffer objects. The DRM GPU VA manager is
+> > intended to serve the following purposes in this context.
+> > 
+> > 1) Provide infrastructure to track GPU VA allocations and mappings,
+> >     making use of the maple_tree.
+> > 
+> > 2) Generically connect GPU VA mappings to their backing buffers, in
+> >     particular DRM GEM objects.
+> > 
+> > 3) Provide a common implementation to perform more complex mapping
+> >     operations on the GPU VA space. In particular splitting and merging
+> >     of GPU VA mappings, e.g. for intersecting mapping requests or partial
+> >     unmap requests.
+> > 
+> > Suggested-by: Dave Airlie <airlied@redhat.com>
+> > Signed-off-by: Danilo Krummrich <dakr@redhat.com>
 > > Signed-off-by: Matthew Brost <matthew.brost@intel.com>
-> > Suggested-by: Faith Ekstrand <faith.ekstrand@collabora.com>
 > 
-> Could we describe in a DOC section how doorbells are distributed and if
-> there are any suggestions on how to improve that moving forward?
+> Danilo, Matthew
+> 
+> Before embarking on a full review of this (saving this for last) I heard
+> there might be plans to add userptr support, rebind_work interaction and
+> such and resolve any driver differences using vfuncs.
+> 
+> Just wanted to raise a warning that helpers that attempt to "do it all" and
+> depend on vfuncs are easy traps to start creating middle layers (like TTM)
+> which are typically frowned upon. (See for example the discussion on the
+> partly rejected patch series on the TTM shrinker).
+> 
+> So just as a recommendation to avoid redoing a lot of stuff, please be
+> careful with additional helpers that require vfuncs and check if they can be
+> implemented in another way by rethinking the layering.
 > 
 
-We I do the GuC documentation (not yet done) I can include some doorbell
-documentation.
+Noted. This series goes as far as supporting userptr as a GPUVA in a
+standard way, an extobj list per manager (VM in Xe), plus common ways to
+lock a manager. Agree much more than would be difficult to do in a
+standard way.
 
 Matt
 
-> /Thomas
+> Thanks,
 > 
-> > ---
-> >   drivers/gpu/drm/xe/regs/xe_guc_regs.h    |   1 +
-> >   drivers/gpu/drm/xe/xe_guc.c              |   6 +
-> >   drivers/gpu/drm/xe/xe_guc_engine_types.h |   7 +
-> >   drivers/gpu/drm/xe/xe_guc_submit.c       | 295 ++++++++++++++++++++++-
-> >   drivers/gpu/drm/xe/xe_guc_submit.h       |   1 +
-> >   drivers/gpu/drm/xe/xe_guc_types.h        |   4 +
-> >   drivers/gpu/drm/xe/xe_trace.h            |   5 +
-> >   7 files changed, 315 insertions(+), 4 deletions(-)
-> > 
-> > diff --git a/drivers/gpu/drm/xe/regs/xe_guc_regs.h b/drivers/gpu/drm/xe/regs/xe_guc_regs.h
-> > index 37e0ac550931..11b117293a62 100644
-> > --- a/drivers/gpu/drm/xe/regs/xe_guc_regs.h
-> > +++ b/drivers/gpu/drm/xe/regs/xe_guc_regs.h
-> > @@ -109,6 +109,7 @@ struct guc_doorbell_info {
-> >   #define DIST_DBS_POPULATED			XE_REG(0xd08)
-> >   #define   DOORBELLS_PER_SQIDI_MASK		REG_GENMASK(23, 16)
-> > +#define	  DOORBELLS_PER_SQIDI_SHIFT		16
-> >   #define   SQIDIS_DOORBELL_EXIST_MASK		REG_GENMASK(15, 0)
-> >   #define GUC_BCS_RCS_IER				XE_REG(0xC550)
-> > diff --git a/drivers/gpu/drm/xe/xe_guc.c b/drivers/gpu/drm/xe/xe_guc.c
-> > index 89d20faced19..0c87f78a868b 100644
-> > --- a/drivers/gpu/drm/xe/xe_guc.c
-> > +++ b/drivers/gpu/drm/xe/xe_guc.c
-> > @@ -297,6 +297,12 @@ int xe_guc_init(struct xe_guc *guc)
-> >    */
-> >   int xe_guc_init_post_hwconfig(struct xe_guc *guc)
-> >   {
-> > +	int ret;
-> > +
-> > +	ret = xe_guc_submit_init_post_hwconfig(guc);
-> > +	if (ret)
-> > +		return ret;
-> > +
-> >   	return xe_guc_ads_init_post_hwconfig(&guc->ads);
-> >   }
-> > diff --git a/drivers/gpu/drm/xe/xe_guc_engine_types.h b/drivers/gpu/drm/xe/xe_guc_engine_types.h
-> > index 5d83132034a6..420b7f53e649 100644
-> > --- a/drivers/gpu/drm/xe/xe_guc_engine_types.h
-> > +++ b/drivers/gpu/drm/xe/xe_guc_engine_types.h
-> > @@ -12,6 +12,7 @@
-> >   #include <drm/gpu_scheduler.h>
-> >   struct dma_fence;
-> > +struct xe_bo;
-> >   struct xe_engine;
-> >   /**
-> > @@ -37,6 +38,10 @@ struct xe_guc_engine {
-> >   	struct work_struct fini_async;
-> >   	/** @resume_time: time of last resume */
-> >   	u64 resume_time;
-> > +	/** @doorbell_bo: BO for memory doorbell */
-> > +	struct xe_bo *doorbell_bo;
-> > +	/** @doorbell_offset: MMIO doorbell offset */
-> > +	u32 doorbell_offset;
-> >   	/** @state: GuC specific state for this xe_engine */
-> >   	atomic_t state;
-> >   	/** @wqi_head: work queue item tail */
-> > @@ -45,6 +50,8 @@ struct xe_guc_engine {
-> >   	u32 wqi_tail;
-> >   	/** @id: GuC id for this xe_engine */
-> >   	u16 id;
-> > +	/** @doorbell_id: doorbell id */
-> > +	u16 doorbell_id;
-> >   	/** @suspend_wait: wait queue used to wait on pending suspends */
-> >   	wait_queue_head_t suspend_wait;
-> >   	/** @suspend_pending: a suspend of the engine is pending */
-> > diff --git a/drivers/gpu/drm/xe/xe_guc_submit.c b/drivers/gpu/drm/xe/xe_guc_submit.c
-> > index 0a41f5d04f6d..1b6f36b04cd1 100644
-> > --- a/drivers/gpu/drm/xe/xe_guc_submit.c
-> > +++ b/drivers/gpu/drm/xe/xe_guc_submit.c
-> > @@ -13,7 +13,10 @@
-> >   #include <drm/drm_managed.h>
-> > +#include "regs/xe_guc_regs.h"
-> >   #include "regs/xe_lrc_layout.h"
-> > +
-> > +#include "xe_bo.h"
-> >   #include "xe_device.h"
-> >   #include "xe_engine.h"
-> >   #include "xe_force_wake.h"
-> > @@ -26,12 +29,22 @@
-> >   #include "xe_lrc.h"
-> >   #include "xe_macros.h"
-> >   #include "xe_map.h"
-> > +#include "xe_mmio.h"
-> >   #include "xe_mocs.h"
-> >   #include "xe_ring_ops_types.h"
-> >   #include "xe_sched_job.h"
-> >   #include "xe_trace.h"
-> >   #include "xe_vm.h"
-> > +#define HAS_GUC_MMIO_DB(xe) (IS_DGFX(xe) || GRAPHICS_VERx100(xe) >= 1250)
-> > +#define HAS_GUC_DIST_DB(xe) \
-> > +	(GRAPHICS_VERx100(xe) >= 1200 && !HAS_GUC_MMIO_DB(xe))
-> > +
-> > +#define GUC_NUM_HW_DOORBELLS 256
-> > +
-> > +#define GUC_MMIO_DB_BAR_OFFSET SZ_4M
-> > +#define GUC_MMIO_DB_BAR_SIZE SZ_4M
-> > +
-> >   static struct xe_gt *
-> >   guc_to_gt(struct xe_guc *guc)
-> >   {
-> > @@ -63,6 +76,7 @@ engine_to_guc(struct xe_engine *e)
-> >   #define ENGINE_STATE_SUSPENDED		(1 << 5)
-> >   #define ENGINE_STATE_RESET		(1 << 6)
-> >   #define ENGINE_STATE_KILLED		(1 << 7)
-> > +#define ENGINE_STATE_DB_REGISTERED	(1 << 8)
-> >   static bool engine_registered(struct xe_engine *e)
-> >   {
-> > @@ -179,6 +193,16 @@ static void set_engine_killed(struct xe_engine *e)
-> >   	atomic_or(ENGINE_STATE_KILLED, &e->guc->state);
-> >   }
-> > +static bool engine_doorbell_registered(struct xe_engine *e)
-> > +{
-> > +	return atomic_read(&e->guc->state) & ENGINE_STATE_DB_REGISTERED;
-> > +}
-> > +
-> > +static void set_engine_doorbell_registered(struct xe_engine *e)
-> > +{
-> > +	atomic_or(ENGINE_STATE_DB_REGISTERED, &e->guc->state);
-> > +}
-> > +
-> >   static bool engine_killed_or_banned(struct xe_engine *e)
-> >   {
-> >   	return engine_killed(e) || engine_banned(e);
-> > @@ -190,6 +214,7 @@ static void guc_submit_fini(struct drm_device *drm, void *arg)
-> >   	xa_destroy(&guc->submission_state.engine_lookup);
-> >   	ida_destroy(&guc->submission_state.guc_ids);
-> > +	ida_destroy(&guc->submission_state.doorbell_ids);
-> >   	bitmap_free(guc->submission_state.guc_ids_bitmap);
-> >   }
-> > @@ -230,6 +255,7 @@ int xe_guc_submit_init(struct xe_guc *guc)
-> >   	mutex_init(&guc->submission_state.lock);
-> >   	xa_init(&guc->submission_state.engine_lookup);
-> >   	ida_init(&guc->submission_state.guc_ids);
-> > +	ida_init(&guc->submission_state.doorbell_ids);
-> >   	spin_lock_init(&guc->submission_state.suspend.lock);
-> >   	guc->submission_state.suspend.context = dma_fence_context_alloc(1);
-> > @@ -243,6 +269,237 @@ int xe_guc_submit_init(struct xe_guc *guc)
-> >   	return 0;
-> >   }
-> > +int xe_guc_submit_init_post_hwconfig(struct xe_guc *guc)
-> > +{
-> > +	if (HAS_GUC_DIST_DB(guc_to_xe(guc))) {
-> > +		u32 distdbreg = xe_mmio_read32(guc_to_gt(guc),
-> > +					       DIST_DBS_POPULATED.reg);
-> > +		u32 num_sqidi =
-> > +			hweight32(distdbreg & SQIDIS_DOORBELL_EXIST_MASK);
-> > +		u32 doorbells_per_sqidi =
-> > +			((distdbreg >> DOORBELLS_PER_SQIDI_SHIFT) &
-> > +			 DOORBELLS_PER_SQIDI_MASK) + 1;
-> > +
-> > +		guc->submission_state.num_doorbells =
-> > +			num_sqidi * doorbells_per_sqidi;
-> > +	} else {
-> > +		guc->submission_state.num_doorbells = GUC_NUM_HW_DOORBELLS;
-> > +	}
-> > +
-> > +	return 0;
-> > +}
-> > +
-> > +static bool alloc_doorbell_id(struct xe_guc *guc, struct xe_engine *e)
-> > +{
-> > +	int ret;
-> > +
-> > +	lockdep_assert_held(&guc->submission_state.lock);
-> > +
-> > +	e->guc->doorbell_id = GUC_NUM_HW_DOORBELLS;
-> > +	ret = ida_simple_get(&guc->submission_state.doorbell_ids, 0,
-> > +			     guc->submission_state.num_doorbells, GFP_NOWAIT);
-> > +	if (ret < 0)
-> > +		return false;
-> > +
-> > +	e->guc->doorbell_id = ret;
-> > +
-> > +	return true;
-> > +}
-> > +
-> > +static void release_doorbell_id(struct xe_guc *guc, struct xe_engine *e)
-> > +{
-> > +	mutex_lock(&guc->submission_state.lock);
-> > +	ida_simple_remove(&guc->submission_state.doorbell_ids,
-> > +			  e->guc->doorbell_id);
-> > +	mutex_unlock(&guc->submission_state.lock);
-> > +
-> > +	e->guc->doorbell_id = GUC_NUM_HW_DOORBELLS;
-> > +}
-> > +
-> > +static int allocate_doorbell(struct xe_guc *guc, u16 guc_id, u16 doorbell_id,
-> > +			     u64 gpa, u32 gtt_addr)
-> > +{
-> > +	u32 action[] = {
-> > +		XE_GUC_ACTION_ALLOCATE_DOORBELL,
-> > +		guc_id,
-> > +		doorbell_id,
-> > +		lower_32_bits(gpa),
-> > +		upper_32_bits(gpa),
-> > +		gtt_addr
-> > +	};
-> > +
-> > +	return xe_guc_ct_send_block(&guc->ct, action, ARRAY_SIZE(action));
-> > +}
-> > +
-> > +static void deallocate_doorbell(struct xe_guc *guc, u16 guc_id)
-> > +{
-> > +	u32 action[] = {
-> > +		XE_GUC_ACTION_DEALLOCATE_DOORBELL,
-> > +		guc_id
-> > +	};
-> > +
-> > +	xe_guc_ct_send(&guc->ct, action, ARRAY_SIZE(action), 0, 0);
-> > +}
-> > +
-> > +static bool has_doorbell(struct xe_engine *e)
-> > +{
-> > +	return e->guc->doorbell_id != GUC_NUM_HW_DOORBELLS;
-> > +}
-> > +
-> > +#define doorbell_read(guc_, e_, field_) ({			\
-> > +	struct iosys_map _vmap = (e_)->guc->doorbell_bo->vmap;	\
-> > +	iosys_map_incr(&_vmap, (e_)->guc->doorbell_offset);	\
-> > +	xe_map_rd_field(guc_to_xe((guc_)), &_vmap, 0,		\
-> > +				  struct guc_doorbell_info, field_); \
-> > +	})
-> > +#define doorbell_write(guc_, e_, field_, val_) ({		\
-> > +	struct iosys_map _vmap = (e_)->guc->doorbell_bo->vmap;	\
-> > +	iosys_map_incr(&_vmap, (e_)->guc->doorbell_offset);	\
-> > +	xe_map_wr_field(guc_to_xe((guc_)), &_vmap, 0,		\
-> > +				  struct guc_doorbell_info, field_, val_); \
-> > +	})
-> > +
-> > +static void init_doorbell(struct xe_guc *guc, struct xe_engine *e)
-> > +{
-> > +	struct xe_device *xe = guc_to_xe(guc);
-> > +
-> > +	/* GuC does the initialization with distributed and MMIO doorbells */
-> > +	if (!HAS_GUC_DIST_DB(xe) && !HAS_GUC_MMIO_DB(xe)) {
-> > +		doorbell_write(guc, e, db_status, GUC_DOORBELL_ENABLED);
-> > +		doorbell_write(guc, e, cookie, 0);
-> > +	}
-> > +}
-> > +
-> > +static void fini_doorbell(struct xe_guc *guc, struct xe_engine *e)
-> > +{
-> > +	if (!HAS_GUC_MMIO_DB(guc_to_xe(guc)) &&
-> > +	    xe_device_mem_access_ongoing(guc_to_xe(guc)))
-> > +		doorbell_write(guc, e, db_status, GUC_DOORBELL_DISABLED);
-> > +}
-> > +
-> > +static void destroy_doorbell(struct xe_guc *guc, struct xe_engine *e)
-> > +{
-> > +	if (has_doorbell(e)) {
-> > +		release_doorbell_id(guc, e);
-> > +		xe_bo_unpin_map_no_vm(e->guc->doorbell_bo);
-> > +	}
-> > +}
-> > +
-> > +static void ring_memory_doorbell(struct xe_guc *guc, struct xe_engine *e)
-> > +{
-> > +	u32 cookie;
-> > +
-> > +	cookie = doorbell_read(guc, e, cookie);
-> > +	doorbell_write(guc, e, cookie, cookie + 1 ?: cookie + 2);
-> > +
-> > +	XE_WARN_ON(doorbell_read(guc, e, db_status) != GUC_DOORBELL_ENABLED);
-> > +}
-> > +
-> > +#define GUC_MMIO_DOORBELL_RING_ACK	0xACEDBEEF
-> > +#define GUC_MMIO_DOORBELL_RING_NACK	0xDEADBEEF
-> > +static void ring_mmio_doorbell(struct xe_guc *guc, u32 doorbell_offset)
-> > +{
-> > +	u32 db_value;
-> > +
-> > +	db_value = xe_mmio_read32(guc_to_gt(guc), GUC_MMIO_DB_BAR_OFFSET +
-> > +				  doorbell_offset);
-> > +
-> > +	/*
-> > +	 * The read from the doorbell page will return ack/nack. We don't remove
-> > +	 * doorbells from active clients so we don't expect to ever get a nack.
-> > +	 * XXX: if doorbell is lost, re-acquire it?
-> > +	 */
-> > +	XE_WARN_ON(db_value == GUC_MMIO_DOORBELL_RING_NACK);
-> > +	XE_WARN_ON(db_value != GUC_MMIO_DOORBELL_RING_ACK);
-> > +}
-> > +
-> > +static void ring_doorbell(struct xe_guc *guc, struct xe_engine *e)
-> > +{
-> > +	XE_BUG_ON(!has_doorbell(e));
-> > +
-> > +	if (HAS_GUC_MMIO_DB(guc_to_xe(guc)))
-> > +		ring_mmio_doorbell(guc, e->guc->doorbell_offset);
-> > +	else
-> > +		ring_memory_doorbell(guc, e);
-> > +
-> > +	trace_xe_engine_ring_db(e);
-> > +}
-> > +
-> > +static void register_engine(struct xe_engine *e);
-> > +
-> > +static int create_doorbell(struct xe_guc *guc, struct xe_engine *e, bool init)
-> > +{
-> > +	struct xe_gt *gt = guc_to_gt(guc);
-> > +	struct xe_device *xe = gt_to_xe(gt);
-> > +	u64 gpa;
-> > +	u32 gtt_addr;
-> > +	int ret;
-> > +
-> > +	XE_BUG_ON(!has_doorbell(e));
-> > +
-> > +	if (HAS_GUC_MMIO_DB(xe)) {
-> > +		e->guc->doorbell_offset = PAGE_SIZE * e->guc->doorbell_id;
-> > +		gpa = GUC_MMIO_DB_BAR_OFFSET + e->guc->doorbell_offset;
-> > +		gtt_addr = 0;
-> > +	} else {
-> > +		struct xe_bo *bo;
-> > +
-> > +		if (!e->guc->doorbell_bo) {
-> > +			bo = xe_bo_create_pin_map(xe, gt, NULL, PAGE_SIZE,
-> > +						  ttm_bo_type_kernel,
-> > +						  XE_BO_CREATE_VRAM_IF_DGFX(gt) |
-> > +						  XE_BO_CREATE_GGTT_BIT);
-> > +			if (IS_ERR(bo))
-> > +				return PTR_ERR(bo);
-> > +
-> > +			e->guc->doorbell_bo = bo;
-> > +		} else {
-> > +			bo = e->guc->doorbell_bo;
-> > +		}
-> > +
-> > +		init_doorbell(guc, e);
-> > +		gpa = xe_bo_main_addr(bo, PAGE_SIZE);
-> > +		gtt_addr = xe_bo_ggtt_addr(bo);
-> > +	}
-> > +
-> > +	if (init && e->flags & ENGINE_FLAG_KERNEL)
-> > +		return 0;
-> > +
-> > +	register_engine(e);
-> > +	ret = allocate_doorbell(guc, e->guc->id, e->guc->doorbell_id, gpa,
-> > +				gtt_addr);
-> > +	if (ret < 0) {
-> > +		fini_doorbell(guc, e);
-> > +		return ret;
-> > +	}
-> > +
-> > +	/*
-> > +	 * In distributed doorbells, guc is returning the cacheline selected
-> > +	 * by HW as part of the 7bit data from the allocate doorbell command:
-> > +	 *  bit [22]   - Cacheline allocated
-> > +	 *  bit [21:16] - Cacheline offset address
-> > +	 * (bit 21 must be zero, or our assumption of only using half a page is
-> > +	 * no longer correct).
-> > +	 */
-> > +	if (HAS_GUC_DIST_DB(xe)) {
-> > +		u32 dd_cacheline_info;
-> > +
-> > +		XE_WARN_ON(!(ret & BIT(22)));
-> > +		XE_WARN_ON(ret & BIT(21));
-> > +
-> > +		dd_cacheline_info = FIELD_GET(GENMASK(21, 16), ret);
-> > +		e->guc->doorbell_offset = dd_cacheline_info * cache_line_size();
-> > +
-> > +		/* and verify db status was updated correctly by the guc fw */
-> > +		XE_WARN_ON(doorbell_read(guc, e, db_status) !=
-> > +			   GUC_DOORBELL_ENABLED);
-> > +	}
-> > +
-> > +	set_engine_doorbell_registered(e);
-> > +
-> > +	return 0;
-> > +}
-> > +
-> >   static int alloc_guc_id(struct xe_guc *guc, struct xe_engine *e)
-> >   {
-> >   	int ret;
-> > @@ -623,6 +880,7 @@ static void submit_engine(struct xe_engine *e)
-> >   	u32 num_g2h = 0;
-> >   	int len = 0;
-> >   	bool extra_submit = false;
-> > +	bool enable = false;
-> >   	XE_BUG_ON(!engine_registered(e));
-> > @@ -642,6 +900,7 @@ static void submit_engine(struct xe_engine *e)
-> >   		num_g2h = 1;
-> >   		if (xe_engine_is_parallel(e))
-> >   			extra_submit = true;
-> > +		enable = true;
-> >   		e->guc->resume_time = RESUME_PENDING;
-> >   		set_engine_pending_enable(e);
-> > @@ -653,7 +912,10 @@ static void submit_engine(struct xe_engine *e)
-> >   		trace_xe_engine_submit(e);
-> >   	}
-> > -	xe_guc_ct_send(&guc->ct, action, len, g2h_len, num_g2h);
-> > +	if (enable || !engine_doorbell_registered(e))
-> > +		xe_guc_ct_send(&guc->ct, action, len, g2h_len, num_g2h);
-> > +	else
-> > +		ring_doorbell(guc, e);
-> >   	if (extra_submit) {
-> >   		len = 0;
-> > @@ -678,8 +940,17 @@ guc_engine_run_job(struct drm_sched_job *drm_job)
-> >   	trace_xe_sched_job_run(job);
-> >   	if (!engine_killed_or_banned(e) && !xe_sched_job_is_error(job)) {
-> > -		if (!engine_registered(e))
-> > -			register_engine(e);
-> > +		if (!engine_registered(e)) {
-> > +			if (has_doorbell(e)) {
-> > +				int err = create_doorbell(engine_to_guc(e), e,
-> > +							  false);
-> > +
-> > +				/* Not fatal, but let's warn */
-> > +				XE_WARN_ON(err);
-> > +			} else {
-> > +				register_engine(e);
-> > +			}
-> > +		}
-> >   		if (!lr)	/* Written in IOCTL */
-> >   			e->ring_ops->emit_job(job);
-> >   		submit_engine(e);
-> > @@ -722,6 +993,11 @@ static void disable_scheduling_deregister(struct xe_guc *guc,
-> >   	MAKE_SCHED_CONTEXT_ACTION(e, DISABLE);
-> >   	int ret;
-> > +	if (has_doorbell(e)) {
-> > +		fini_doorbell(guc, e);
-> > +		deallocate_doorbell(guc, e->guc->id);
-> > +	}
-> > +
-> >   	set_min_preemption_timeout(guc, e);
-> >   	smp_rmb();
-> >   	ret = wait_event_timeout(guc->ct.wq, !engine_pending_enable(e) ||
-> > @@ -958,6 +1234,7 @@ static void __guc_engine_fini_async(struct work_struct *w)
-> >   		cancel_work_sync(&ge->lr_tdr);
-> >   	if (e->flags & ENGINE_FLAG_PERSISTENT)
-> >   		xe_device_remove_persistent_engines(gt_to_xe(e->gt), e);
-> > +	destroy_doorbell(guc, e);
-> >   	release_guc_id(guc, e);
-> >   	drm_sched_entity_fini(&ge->entity);
-> >   	drm_sched_fini(&ge->sched);
-> > @@ -1136,6 +1413,7 @@ static int guc_engine_init(struct xe_engine *e)
-> >   	struct xe_guc_engine *ge;
-> >   	long timeout;
-> >   	int err;
-> > +	bool create_db = false;
-> >   	XE_BUG_ON(!xe_device_guc_submission_enabled(guc_to_xe(guc)));
-> > @@ -1177,8 +1455,17 @@ static int guc_engine_init(struct xe_engine *e)
-> >   	if (guc_read_stopped(guc))
-> >   		drm_sched_stop(sched, NULL);
-> > +	create_db = alloc_doorbell_id(guc, e);
-> > +
-> >   	mutex_unlock(&guc->submission_state.lock);
-> > +	if (create_db) {
-> > +		/* Error isn't fatal as we don't need a doorbell */
-> > +		err = create_doorbell(guc, e, true);
-> > +		if (err)
-> > +			release_doorbell_id(guc, e);
-> > +	}
-> > +
-> >   	switch (e->class) {
-> >   	case XE_ENGINE_CLASS_RENDER:
-> >   		sprintf(e->name, "rcs%d", e->guc->id);
-> > @@ -1302,7 +1589,7 @@ static int guc_engine_set_job_timeout(struct xe_engine *e, u32 job_timeout_ms)
-> >   {
-> >   	struct drm_gpu_scheduler *sched = &e->guc->sched;
-> > -	XE_BUG_ON(engine_registered(e));
-> > +	XE_BUG_ON(engine_registered(e) && !has_doorbell(e));
-> >   	XE_BUG_ON(engine_banned(e));
-> >   	XE_BUG_ON(engine_killed(e));
-> > diff --git a/drivers/gpu/drm/xe/xe_guc_submit.h b/drivers/gpu/drm/xe/xe_guc_submit.h
-> > index 8002734d6f24..bada6c02d6aa 100644
-> > --- a/drivers/gpu/drm/xe/xe_guc_submit.h
-> > +++ b/drivers/gpu/drm/xe/xe_guc_submit.h
-> > @@ -13,6 +13,7 @@ struct xe_engine;
-> >   struct xe_guc;
-> >   int xe_guc_submit_init(struct xe_guc *guc);
-> > +int xe_guc_submit_init_post_hwconfig(struct xe_guc *guc);
-> >   void xe_guc_submit_print(struct xe_guc *guc, struct drm_printer *p);
-> >   int xe_guc_submit_reset_prepare(struct xe_guc *guc);
-> > diff --git a/drivers/gpu/drm/xe/xe_guc_types.h b/drivers/gpu/drm/xe/xe_guc_types.h
-> > index ac7eec28934d..9ee4d572f4e0 100644
-> > --- a/drivers/gpu/drm/xe/xe_guc_types.h
-> > +++ b/drivers/gpu/drm/xe/xe_guc_types.h
-> > @@ -36,10 +36,14 @@ struct xe_guc {
-> >   		struct xarray engine_lookup;
-> >   		/** @guc_ids: used to allocate new guc_ids, single-lrc */
-> >   		struct ida guc_ids;
-> > +		/** @doorbell_ids: use to allocate new doorbells */
-> > +		struct ida doorbell_ids;
-> >   		/** @guc_ids_bitmap: used to allocate new guc_ids, multi-lrc */
-> >   		unsigned long *guc_ids_bitmap;
-> >   		/** @stopped: submissions are stopped */
-> >   		atomic_t stopped;
-> > +		/** @num_doorbells: number of doorbels */
-> > +		int num_doorbells;
-> >   		/** @lock: protects submission state */
-> >   		struct mutex lock;
-> >   		/** @suspend: suspend fence state */
-> > diff --git a/drivers/gpu/drm/xe/xe_trace.h b/drivers/gpu/drm/xe/xe_trace.h
-> > index 02861c26e145..38e9d7c6197b 100644
-> > --- a/drivers/gpu/drm/xe/xe_trace.h
-> > +++ b/drivers/gpu/drm/xe/xe_trace.h
-> > @@ -149,6 +149,11 @@ DEFINE_EVENT(xe_engine, xe_engine_submit,
-> >   	     TP_ARGS(e)
-> >   );
-> > +DEFINE_EVENT(xe_engine, xe_engine_ring_db,
-> > +	     TP_PROTO(struct xe_engine *e),
-> > +	     TP_ARGS(e)
-> > +);
-> > +
-> >   DEFINE_EVENT(xe_engine, xe_engine_scheduling_enable,
-> >   	     TP_PROTO(struct xe_engine *e),
-> >   	     TP_ARGS(e)
+> Thomas
+> 
+> 
