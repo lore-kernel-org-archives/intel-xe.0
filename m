@@ -4,47 +4,48 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3B567C77B7C
-	for <intel-xe@archiver.kernel.org>; Wed, 10 May 2023 19:54:51 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id BB34FC7EE22
+	for <intel-xe@archiver.kernel.org>; Wed, 10 May 2023 19:54:53 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id F419410E513;
-	Wed, 10 May 2023 19:54:50 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 814A910E516;
+	Wed, 10 May 2023 19:54:53 +0000 (UTC)
 Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 12C7C10E515
- for <intel-xe@lists.freedesktop.org>; Wed, 10 May 2023 19:54:49 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id EDBC710E513
+ for <intel-xe@lists.freedesktop.org>; Wed, 10 May 2023 19:54:48 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1683748489; x=1715284489;
+ t=1683748488; x=1715284488;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=rbTd9AupD3X6tBXsjg3kWLu3pJQZExRFQGxFPzJTS7Y=;
- b=Co0HKcZAY4QAYZrA809HNzzjwfhnEhe0h6WdBbkPImMlgyabc7nt9QQM
- yrj5/GEchiaRDME44p5XrgpHpKRqLcnMcqDF8XD0SYAilhaNwIFcdxMiB
- E6erxJ5bxZ0Wj0dq2v3xUmK7LXXRm8QFxzsfvBEYSFzZU6Lgl01KWz/2U
- 0DThXTMdVoWUhOS5WblLLEHBgzm9SREn0Sy+vzaYo6T/AA2qROg0mEjxE
- 32FVCl2A5InvhywXftrsjC+0vf6x4utT7r2j4puw8tKeutXX9UjghEnrn
- deB25izW5S49YQn0n6cM9F0BRdWEhzKLh+0PTDsVc0Lvp7wJeE5mSal+T g==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10706"; a="350336278"
-X-IronPort-AV: E=Sophos;i="5.99,265,1677571200"; d="scan'208";a="350336278"
+ bh=6HrlmtEd8wujB7Lz7B1Y8lQGsxEo3PPpSZvzy8p/Z1Q=;
+ b=TrQDc36T/ufoBWsVTE7DgKkFxXp/MKvOZEG+m3QqkZronbh8Ea20g88n
+ 68s5NaloXwEVFSXNqtkaI0upyKSYHZQ5uVf7/Qg2l6a7X1AMyc+EdKgMi
+ AaFzYKj9a+WzuksvESK1Hpg4i7YNowASzM4YaB9rBjtb66GlJNwEO+Atc
+ hfc21D8m+jDk7GtCHJrdlYt4/Z7YktxPNzajE5fuaJugVF/rK0nzGdoCZ
+ Yl4aSK7GwqsohhGw4QkJNK4gPtm/V0hDRqYzLlOZ/Ttqe3aUhotktgmD1
+ TiHQEn6f13MsWzY8/TTmAXKCwZwY7iLUBmmGSbqnMBB0Z+8sO/codclfw A==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10706"; a="350336276"
+X-IronPort-AV: E=Sophos;i="5.99,265,1677571200"; d="scan'208";a="350336276"
 Received: from orsmga008.jf.intel.com ([10.7.209.65])
  by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  10 May 2023 12:54:48 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10706"; a="730056894"
-X-IronPort-AV: E=Sophos;i="5.99,265,1677571200"; d="scan'208";a="730056894"
+X-IronPort-AV: E=McAfee;i="6600,9927,10706"; a="730056891"
+X-IronPort-AV: E=Sophos;i="5.99,265,1677571200"; d="scan'208";a="730056891"
 Received: from lucas-s2600cw.jf.intel.com ([10.165.21.196])
  by orsmga008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  10 May 2023 12:54:47 -0700
 From: Lucas De Marchi <lucas.demarchi@intel.com>
 To: intel-xe@lists.freedesktop.org
-Date: Wed, 10 May 2023 12:54:24 -0700
-Message-Id: <20230510195424.3045127-5-lucas.demarchi@intel.com>
+Date: Wed, 10 May 2023 12:54:23 -0700
+Message-Id: <20230510195424.3045127-4-lucas.demarchi@intel.com>
 X-Mailer: git-send-email 2.40.1
 In-Reply-To: <20230510195424.3045127-1-lucas.demarchi@intel.com>
 References: <20230510195424.3045127-1-lucas.demarchi@intel.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-xe] [PATCH 4/4] drm/xe/display: Use xe_display_driver prefix
+Subject: [Intel-xe] [PATCH 3/4] drm/xe/display: Consider has_display to
+ enable it
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -60,167 +61,90 @@ Cc: Lucas De Marchi <lucas.demarchi@intel.com>
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Use a separate xe_display_driver prefix for functions dealing with the
-DRM driver struct or the early probe. This splits
-xe_display_set_driver_hooks() in 2: one to allow the driver to defer the
-probe if the display needs that and the other to set the additional
-hooks in the driver struct.  Although the hooks are set by every device
-binding to the module, they only depend on the module param
-enable_display, so that is safe.
+Stop the dance of enabling the display-related driver_features to later
+disable them on display info init if the platform doesn't have display
+IP. Besides being needless work, it wasn't covering the ATS-M case that
+is the same platform as DG2, but without display.
 
-Since unset_driver_hooks() is not really tweaking the driver, but rather
-the driver_features saved in the device, rename it to
-unset_display_features() to clarify that.
+Since now the display is created after the complete device info is
+populated, the new has_display flag can be consider to enable it.
 
+References: https://gitlab.freedesktop.org/drm/xe/kernel/-/issues/265
 Signed-off-by: Lucas De Marchi <lucas.demarchi@intel.com>
 ---
- drivers/gpu/drm/xe/xe_device.c  |  4 +--
- drivers/gpu/drm/xe/xe_display.c | 44 ++++++++++++++++++++-------------
- drivers/gpu/drm/xe/xe_display.h |  8 +++---
- drivers/gpu/drm/xe/xe_pci.c     |  4 +++
- 4 files changed, 37 insertions(+), 23 deletions(-)
+ drivers/gpu/drm/xe/xe_device.c  | 1 -
+ drivers/gpu/drm/xe/xe_display.c | 6 ++++--
+ drivers/gpu/drm/xe/xe_pci.c     | 6 +++++-
+ 3 files changed, 9 insertions(+), 4 deletions(-)
 
 diff --git a/drivers/gpu/drm/xe/xe_device.c b/drivers/gpu/drm/xe/xe_device.c
-index 1daacc533083..cb37e8556b37 100644
+index 32cc83c43b2a..1daacc533083 100644
 --- a/drivers/gpu/drm/xe/xe_device.c
 +++ b/drivers/gpu/drm/xe/xe_device.c
-@@ -171,9 +171,7 @@ struct xe_device *xe_device_create(struct pci_dev *pdev,
- 	struct xe_device *xe;
- 	int err;
+@@ -192,7 +192,6 @@ struct xe_device *xe_device_create(struct pci_dev *pdev,
+ 	xe->info.devid = pdev->device;
+ 	xe->info.revid = pdev->revision;
+ 	xe->info.enable_guc = enable_guc;
+-	xe->info.enable_display = enable_display;
  
--	err = xe_display_set_driver_hooks(pdev, &driver);
--	if (err)
--		return ERR_PTR(err);
-+	xe_display_driver_set_hooks(&driver);
+ 	spin_lock_init(&xe->irq.lock);
  
- 	err = drm_aperture_remove_conflicting_pci_framebuffers(pdev, &driver);
- 	if (err)
 diff --git a/drivers/gpu/drm/xe/xe_display.c b/drivers/gpu/drm/xe/xe_display.c
-index 43c5af1ff80e..d1782e0737ed 100644
+index 77a158ecf4cb..43c5af1ff80e 100644
 --- a/drivers/gpu/drm/xe/xe_display.c
 +++ b/drivers/gpu/drm/xe/xe_display.c
-@@ -34,37 +34,47 @@
+@@ -487,8 +487,10 @@ __diag_ignore_all("-Woverride-init", "Allow field overrides in table");
  
- /* Xe device functions */
- 
-+/**
-+ * xe_display_driver_probe_defer - Detect if we need to wait for other drivers
-+ *				   early on
-+ * @pdev: PCI device
-+ *
-+ * Returns: 0 if probe can continue, -EPROBE_DEFER otherwise
-+ */
-+int xe_display_driver_probe_defer(struct pci_dev *pdev)
-+{
-+	if (!enable_display)
-+		return 0;
-+
-+	return intel_display_driver_probe_defer(pdev);
-+}
-+
- static void xe_display_last_close(struct drm_device *dev)
- {
--	intel_fbdev_restore_mode(to_xe_device(dev));
-+	struct xe_device *xe = to_xe_device(dev);
-+
-+	if (xe->info.enable_display)
-+		intel_fbdev_restore_mode(to_xe_device(dev));
- }
- 
- /**
-- * xe_display_set_driver_hooks - set driver flags and hooks for display
-- * @pdev: PCI device
-+ * xe_display_driver_set_hooks - Add driver flags and hooks for display
-  * @driver: DRM device driver
-  *
-  * Set features and function hooks in @driver that are needed for driving the
-- * display IP, when that is enabled.
-- *
-- * Returns: 0 on success
-+ * display IP. This sets the driver's capability of driving display, regardless
-+ * if the device has it enabled
-  */
--int xe_display_set_driver_hooks(struct pci_dev *pdev, struct drm_driver *driver)
-+void xe_display_driver_set_hooks(struct drm_driver *driver)
- {
- 	if (!enable_display)
--		return 0;
--
--	/* Detect if we need to wait for other drivers early on */
--	if (intel_display_driver_probe_defer(pdev))
--		return -EPROBE_DEFER;
-+		return;
- 
- 	driver->driver_features |= DRIVER_MODESET | DRIVER_ATOMIC;
- 	driver->lastclose = xe_display_last_close;
--
--	return 0;
- }
- 
--static void unset_driver_hooks(struct xe_device *xe)
-+static void unset_display_features(struct xe_device *xe)
- {
- 	xe->drm.driver_features &= ~(DRIVER_MODESET | DRIVER_ATOMIC);
- }
-@@ -488,7 +498,7 @@ __diag_ignore_all("-Woverride-init", "Allow field overrides in table");
  void xe_display_info_init(struct xe_device *xe)
  {
- 	if (!xe->info.enable_display) {
--		unset_driver_hooks(xe);
-+		unset_display_features(xe);
+-	if (!xe->info.enable_display)
++	if (!xe->info.enable_display) {
++		unset_driver_hooks(xe);
  		return;
- 	}
++	}
  
-@@ -539,7 +549,7 @@ void xe_display_info_init(struct xe_device *xe)
+ 	switch (xe->info.platform) {
+ 	case XE_TIGERLAKE:
+@@ -535,7 +537,7 @@ void xe_display_info_init(struct xe_device *xe)
+ 		xe->info.display = (struct xe_device_display_info) { XE_LPDP };
+ 		break;
  	default:
- 		drm_warn(&xe->drm, "Unknown display IP\n");
+-		drm_dbg(&xe->drm, "No display IP, skipping\n");
++		drm_warn(&xe->drm, "Unknown display IP\n");
  		xe->info.enable_display = false;
--		unset_driver_hooks(xe);
-+		unset_display_features(xe);
+ 		unset_driver_hooks(xe);
  		return;
- 	}
- }
-diff --git a/drivers/gpu/drm/xe/xe_display.h b/drivers/gpu/drm/xe/xe_display.h
-index 84c556111c91..9e29de012df7 100644
---- a/drivers/gpu/drm/xe/xe_display.h
-+++ b/drivers/gpu/drm/xe/xe_display.h
-@@ -12,7 +12,8 @@ struct drm_driver;
- 
- #if IS_ENABLED(CONFIG_DRM_XE_DISPLAY)
- 
--int xe_display_set_driver_hooks(struct pci_dev *pdev, struct drm_driver *driver);
-+int xe_display_driver_probe_defer(struct pci_dev *pdev);
-+void xe_display_driver_set_hooks(struct drm_driver *driver);
- 
- int xe_display_create(struct xe_device *xe);
- 
-@@ -47,8 +48,9 @@ void xe_display_pm_resume(struct xe_device *xe);
- 
- #else
- 
--static inline int
--xe_display_set_driver_hooks(struct pci_dev *pdev, struct drm_driver *driver) { return 0; }
-+static inline int xe_display_driver_probe_defer(struct pci_dev *pdev) { return 0; }
-+
-+static inline void xe_display_driver_set_hooks(struct drm_driver *driver) { }
- 
- static inline int
- xe_display_create(struct xe_device *xe) { return 0; }
 diff --git a/drivers/gpu/drm/xe/xe_pci.c b/drivers/gpu/drm/xe/xe_pci.c
-index 3fa3e8706d98..8b3d4d5006e8 100644
+index 7dfbc4fa138a..3fa3e8706d98 100644
 --- a/drivers/gpu/drm/xe/xe_pci.c
 +++ b/drivers/gpu/drm/xe/xe_pci.c
-@@ -618,6 +618,10 @@ static int xe_pci_probe(struct pci_dev *pdev, const struct pci_device_id *ent)
- 		return -ENODEV;
- 	}
+@@ -529,6 +529,9 @@ static int xe_info_init(struct xe_device *xe,
+ 	xe->info.has_range_tlb_invalidation = graphics_desc->has_range_tlb_invalidation;
+ 	xe->info.has_link_copy_engine = graphics_desc->has_link_copy_engine;
  
-+	err = xe_display_driver_probe_defer(pdev);
-+	if (err)
-+		return err;
-+
- 	xe = xe_device_create(pdev, ent);
- 	if (IS_ERR(xe))
- 		return PTR_ERR(xe);
++	xe->info.enable_display = IS_ENABLED(CONFIG_DRM_DISPLAY) && \
++				  enable_display && \
++				  desc->has_display;
+ 	/*
+ 	 * All platforms have at least one primary GT.  Any platform with media
+ 	 * version 13 or higher has an additional dedicated media GT.  And
+@@ -629,7 +632,7 @@ static int xe_pci_probe(struct pci_dev *pdev, const struct pci_device_id *ent)
+ 
+ 	xe_display_info_init(xe);
+ 
+-	drm_dbg(&xe->drm, "%s %s %04x:%04x dgfx:%d gfx:%s (%d.%02d) media:%s (%d.%02d) dma_m_s:%d tc:%d",
++	drm_dbg(&xe->drm, "%s %s %04x:%04x dgfx:%d gfx:%s (%d.%02d) media:%s (%d.%02d) display:%s dma_m_s:%d tc:%d",
+ 		desc->platform_name,
+ 		subplatform_desc ? subplatform_desc->name : "",
+ 		xe->info.devid, xe->info.revid,
+@@ -640,6 +643,7 @@ static int xe_pci_probe(struct pci_dev *pdev, const struct pci_device_id *ent)
+ 		xe->info.media_name,
+ 		xe->info.media_verx100 / 100,
+ 		xe->info.media_verx100 % 100,
++		str_yes_no(xe->info.enable_display),
+ 		xe->info.dma_mask_size, xe->info.tile_count);
+ 
+ 	drm_dbg(&xe->drm, "Stepping = (G:%s, M:%s, D:%s, B:%s)\n",
 -- 
 2.40.1
 
