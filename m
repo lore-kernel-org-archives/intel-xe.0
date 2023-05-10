@@ -4,57 +4,48 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id C415BC77B7D
-	for <intel-xe@archiver.kernel.org>; Wed, 10 May 2023 11:54:33 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2FA31C77B7C
+	for <intel-xe@archiver.kernel.org>; Wed, 10 May 2023 12:12:13 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7CC4210E2C7;
-	Wed, 10 May 2023 11:54:33 +0000 (UTC)
-Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 937E110E2C7
- for <intel-xe@lists.freedesktop.org>; Wed, 10 May 2023 11:54:32 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C059610E48C;
+	Wed, 10 May 2023 12:12:12 +0000 (UTC)
+Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 85FFE10E484
+ for <intel-xe@lists.freedesktop.org>; Wed, 10 May 2023 12:12:11 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1683719672; x=1715255672;
- h=message-id:date:mime-version:subject:to:cc:references:
- from:in-reply-to:content-transfer-encoding;
- bh=aloxWRwNXUKBCTHF7nX/V8TDZfRK1jQrF3aa+2f+7qA=;
- b=HCqEYm5OjuvC3YcHBmjNZtyiMTuPf564JeZRsVG44RdFLuJciz1N2sXy
- p64m2AgaUTDia21MMs82hvz2anQSCRJ422MG7C8U18Z2f9GnDLoGx3GDg
- 3zWc6M5TMSAdzAiPOLekxbUGvBdZI+ICGzLfJFC2uC66GyiZQ3BQ/XJcr
- yvbMBtI73mHKCiH4OhkWKhrrnzsPr5Q9T1ay5i1DNnEfAkpEVq1CyApEs
- Bs4G0YyDkXE4j1OOUnJUCqz/jnRUYsWYKW+nJwc4BWXJMm4w6VhZofVHc
- 8+mQmNsy241eh/K9lylyJ1viR7JXPVtatrbz2H5k+sqGw3GkBnIJzeTm5 w==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10705"; a="329814042"
-X-IronPort-AV: E=Sophos;i="5.99,264,1677571200"; d="scan'208";a="329814042"
-Received: from fmsmga005.fm.intel.com ([10.253.24.32])
- by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 10 May 2023 04:54:31 -0700
+ t=1683720731; x=1715256731;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=W6d951HqdP6Rzl6X1eMpIhUEgy0arX7S6CklXaE1iQs=;
+ b=RNLEeQgdaC076Fyx7pO9j4tnmcaw/mKs48Bb3YxrAEFYk3HvVRyQJQJm
+ z58bMI0+cta2fp8y4OeZZIdGAFwk0P9ClDPXVHhUCQGT+JfkkBEYrne8L
+ BrHD+1/QzkV5K7ny9l6FFK9NkeIUbMsQjyzhyFQLrdB8TvfWYlVjGUm94
+ GYb1RZ8E1MNm/iMBDFbtRnhd5IOFm99BrhfO9oZX/mRyrCf7V6ZiQ3LOY
+ tuMraLdQn3hYMOzWqqS3DMqQi8iKs/NS7DnSZLVOtJOPtlBBZTK2crRd2
+ TCM06OZMVWNXjmP4lLyjPeFxDxk+FMQc1Ta8DVne3XKeeBN0VObmlsVsJ w==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10705"; a="353268045"
+X-IronPort-AV: E=Sophos;i="5.99,264,1677571200"; d="scan'208";a="353268045"
+Received: from fmsmga003.fm.intel.com ([10.253.24.29])
+ by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 10 May 2023 05:12:10 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10705"; a="1029190157"
-X-IronPort-AV: E=Sophos;i="5.99,264,1677571200"; d="scan'208";a="1029190157"
-Received: from respir1x-mobl1.ger.corp.intel.com (HELO [10.252.14.125])
- ([10.252.14.125])
- by fmsmga005-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 10 May 2023 04:54:30 -0700
-Message-ID: <47f0df51-ea7e-b206-5de0-3582cb397e2d@intel.com>
-Date: Wed, 10 May 2023 12:54:28 +0100
+X-IronPort-AV: E=McAfee;i="6600,9927,10705"; a="788905993"
+X-IronPort-AV: E=Sophos;i="5.99,264,1677571200"; d="scan'208";a="788905993"
+Received: from iisaev-mobl2.ger.corp.intel.com (HELO
+ jhogande-mobl1.ger.corp.intel.com) ([10.252.62.141])
+ by fmsmga003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 10 May 2023 05:12:06 -0700
+From: =?UTF-8?q?Jouni=20H=C3=B6gander?= <jouni.hogander@intel.com>
+To: intel-xe@lists.freedesktop.org
+Date: Wed, 10 May 2023 15:11:29 +0300
+Message-Id: <20230510121152.736148-1-jouni.hogander@intel.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Firefox/102.0 Thunderbird/102.10.0
-Content-Language: en-GB
-To: "Ruhl, Michael J" <michael.j.ruhl@intel.com>,
- Matthew Auld <matthew.william.auld@gmail.com>
-References: <20230504205250.3898282-1-michael.j.ruhl@intel.com>
- <20230504205250.3898282-3-michael.j.ruhl@intel.com>
- <fa8a800c-2db5-f87d-dae8-879c580c831b@intel.com>
- <DM5PR11MB1324261720D85804F7D28FAEC1729@DM5PR11MB1324.namprd11.prod.outlook.com>
- <CAM0jSHNw3Q7g5VkpC2Xf1f0WRr8tfGqhFm5DTC04dqssX4SsgQ@mail.gmail.com>
- <DM5PR11MB1324FC107C0A0A457D93C72BC1719@DM5PR11MB1324.namprd11.prod.outlook.com>
-From: Matthew Auld <matthew.auld@intel.com>
-In-Reply-To: <DM5PR11MB1324FC107C0A0A457D93C72BC1719@DM5PR11MB1324.namprd11.prod.outlook.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Type: text/plain; charset=UTF-8
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
 Content-Transfer-Encoding: 8bit
-Subject: Re: [Intel-xe] [PATCH 2/4] drm/xe: Simplify rebar sizing
+Subject: [Intel-xe] [RFC PATCH v2 00/23] Xe frontbuffer tracking
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -66,483 +57,123 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Cc: "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>
+Cc: jani.nikula@intel.com, Lucas De Marchi <lucas.demarchi@intel.com>,
+ =?UTF-8?q?Jouni=20H=C3=B6gander?= <jouni.hogander@intel.com>,
+ Uma Shankar <uma.shankar@intel.com>, Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ rodrigo.vivi@kernel.org, ville.syrjala@linux.intel.com
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On 08/05/2023 21:45, Ruhl, Michael J wrote:
->> -----Original Message-----
->> From: Matthew Auld <matthew.william.auld@gmail.com>
->> Sent: Friday, May 5, 2023 4:40 PM
->> To: Ruhl, Michael J <michael.j.ruhl@intel.com>
->> Cc: Auld, Matthew <matthew.auld@intel.com>; intel-
->> xe@lists.freedesktop.org; Upadhyay, Tejas <tejas.upadhyay@intel.com>
->> Subject: Re: [Intel-xe] [PATCH 2/4] drm/xe: Simplify rebar sizing
->>
->> On Fri, 5 May 2023 at 20:59, Ruhl, Michael J <michael.j.ruhl@intel.com> wrote:
->>>
->>>> -----Original Message-----
->>>> From: Auld, Matthew <matthew.auld@intel.com>
->>>> Sent: Friday, May 5, 2023 6:36 AM
->>>> To: Ruhl, Michael J <michael.j.ruhl@intel.com>; intel-
->>>> xe@lists.freedesktop.org
->>>> Cc: Brost, Matthew <matthew.brost@intel.com>; Kershner, David
->>>> <david.kershner@intel.com>; Ghimiray, Himal Prasad
->>>> <himal.prasad.ghimiray@intel.com>; Upadhyay, Tejas
->>>> <tejas.upadhyay@intel.com>
->>>> Subject: Re: [PATCH 2/4] drm/xe: Simplify rebar sizing
->>>>
->>>> On 04/05/2023 21:52, Michael J. Ruhl wrote:
->>>>> "Right sizing" the PCI BAR is not necessary.  If rebar is needed
->>>>> size to the maximum available.
->>>>>
->>>>> Preserve the force_vram_bar_size sizing.
->>>>>
->>>>> Update associated code for consistency.
->>>>>
->>>>> Signed-off-by: Michael J. Ruhl <michael.j.ruhl@intel.com>
->>>>> ---
->>>>>    drivers/gpu/drm/xe/xe_device_types.h |  14 +--
->>>>>    drivers/gpu/drm/xe/xe_migrate.c      |   2 +-
->>>>>    drivers/gpu/drm/xe/xe_mmio.c         | 139 +++++++++++++++------------
->>>>>    3 files changed, 88 insertions(+), 67 deletions(-)
->>>>>
->>>>> diff --git a/drivers/gpu/drm/xe/xe_device_types.h
->>>> b/drivers/gpu/drm/xe/xe_device_types.h
->>>>> index 1cb404e48aaa..2eeb10e97381 100644
->>>>> --- a/drivers/gpu/drm/xe/xe_device_types.h
->>>>> +++ b/drivers/gpu/drm/xe/xe_device_types.h
->>>>> @@ -193,15 +193,15 @@ struct xe_device {
->>>>>                       /**
->>>>>                        * @io_size: IO size of VRAM.
->>>>>                        *
->>>>> -                     * This represents how much of VRAM we can access
->>>> via
->>>>> -                     * the CPU through the VRAM BAR. This can be smaller
->>>>> -                     * than @size, in which case only part of VRAM is CPU
->>>>> -                     * accessible (typically the first 256M). This
->>>>> -                     * configuration is known as small-bar.
->>>>> +                     * This represents how much of VRAM the CPU can
->>>> access
->>>>> +                     * via the VRAM BAR.
->>>>> +                     * On systems that do not support large BAR IO space,
->>>>> +                     * this can be smaller than the actual memory size, in
->>>>> +                     * which case only part of VRAM is CPU accessible
->>>>> +                     * (typically the first 256M).  This configuration is
->>>>> +                     * known as small-bar.
->>>>>                        */
->>>>>                       resource_size_t io_size;
->>>>> -                    /** @size: Total size of VRAM */
->>>>> -                    resource_size_t size;
->>>>>                       /** @mapping: pointer to VRAM mappable space */
->>>>>                       void *__iomem mapping;
->>>>>               } vram;
->>>>> diff --git a/drivers/gpu/drm/xe/xe_migrate.c
->>>> b/drivers/gpu/drm/xe/xe_migrate.c
->>>>> index f40f47ccb76f..a1d507db0098 100644
->>>>> --- a/drivers/gpu/drm/xe/xe_migrate.c
->>>>> +++ b/drivers/gpu/drm/xe/xe_migrate.c
->>>>> @@ -270,7 +270,7 @@ static int xe_migrate_prepare_vm(struct xe_gt
->> *gt,
->>>> struct xe_migrate *m,
->>>>>                * Use 1GB pages, it shouldn't matter the physical amount of
->>>>>                * vram is less, when we don't access it.
->>>>>                */
->>>>> -            for (pos = 0; pos < xe->mem.vram.size; pos += SZ_1G, ofs +=
->>>> 8)
->>>>> +            for (pos = 0; pos < xe->mem.vram.io_size; pos += SZ_1G, ofs
->>>> += 8)
->>>>
->>>> Can we somehow keep this as the total amount of GPU addressable
->> VRAM?
->>>> Just realised with small-bar this would need to be changed again.
->>>> Otherwise I think looks good.
->>>
->>> Matt,
->>>
->>> For this patch (because of the min() usage, this is the total amount of
->> addressable
->>> VRAM (.size was eliminated).  So I think that this is doing what you want.
->>>
->>> However, for the next patch, this value will expand to the total IO space for
->> all tiles.
->>
->> With small-bar we will eventually (once that code lands) end up with
->> 256M io_size, but then the VRAM size will be say 16G. And here we want
->> to map the whole 16G.
-> 
-> The original code sets xe->mem.vram.size = min(usable_size, resource_len())
-> 
-> So the current mapping will only get the available vram, i.e. below GSM, or the available
-> PCI size.
-> 
-> It does NOT map the entire available vram.
+This patch set is taking frontbuffer tracking into use for Xe driver as
+well.  This allows using custom dirtyfb ioctl implemented for i915 instead
+of doing full atomic commit on dirtyfb ioctl. It also provides support for
+CPU/GPU frontbuffer rendering with features like PSR, DRRS and FBC. Even as
+frontbuffer tracking is targeted being discontinued it is seen as too risky
+to remove it completely at this point.
 
-Right, we just want to map the *GPU* accessible VRAM (either the 
-usable_size or everything), so nothing to do with io_size.
+DirtyFB IOCTL
+Dirtyfb ioctl is modified to be dma fence aware:
+1. If all the fences for the buffer dirtyfb ioctl is called on are all signaled
+perform flush.
+2. If there are unsignaled fences for the buffer perform invalidate and add
+dma fence callback for them and initiate flushes when these each of these
+happens. Also perfrom flush immediately on each fence which are already
+signaled.
 
-> 
-> Note that the current code only maps the vram from tile0, so adding tile1 memory
-> (the new patches) is extending the current mapping.....
-> 
-> Do we need to verify the NUM_PT_SLOTS value for 128GB memory space?
+i915
+Patch set is keeping current frontbuffer tracking implementation as it
+is. It is just refactoring the code to allow using it with Xe driver as
+well. I915 is currently using hooks in gem code to perform frontbuffer
+tracking flush when GPU rendering completes. Patch set is initiating extra
+flushes which are perform on dma fence signaling. This will be triggering
+extra updates for features like PSR and FBC addition to the flush
+triggerd by the gem hooks.
 
-You mean check if it fits? I haven't looked at this code in detail, but 
-AFAICT that is only for accessing system memory. We can't identity map 
-the whole thing so we just have some fixed sized window or so somewhere 
-in the VM pointing at some of its own PTEs, which we can then remap on 
-the fly.
+Xe
+Instead of modifying frontbuffer tracking for Xe driver this patch set is
+doing minimalistic changes to current implemenation and using it as needed
+for Xe as well. Functionality is pretty much same as with i915 driver. As
+Xe doesn't have gem hooks to trigger frontbuffer tracking flush it will be
+relying completely on dirtyfb ioctl and frontbuffer tracking flush
+initiated by the ioctl. This requires user-space using GPU frontbuffer
+rendering to import completion fence using dmabuf_import_sync_file. Also
+carrying intel_frontbuffer pointer in xe_bo is not done because we don't
+really need that as we don't have those gem hooks.
 
-> 
->>>
->>> This code will "map" the whole space, gaps included (stolen, GTT space etc).
->>>
->>> So if we need to map only the available VRAM for both tiles, we would need
->>> to probably do this on a GT level up to the GSMBASE "size" with something
->> like this:
->>>
->>>          for_each_gt() {
->>>                  for pos = gt->vram.base; pos < gt->vram.io_size + gt->vram.base;
->>>                   ...
->>>          }
->>>
->>> Does this make sense?
->>
->> Yeah, the gaps are fine I think, even the stolen portion since we
->> never actually touch it, so it's fine to map it.  We could maybe just
->> keep the xe->mem.vram.size which just gets the total_size from patch
->> 2.
-> 
-> For the "new code", the io_size is the maximum allowable PCI access size.
-> The total size of the vram is not "stored", other than walking the GT list
-> and adding up each gt->mem.vram.size.
-> 
-> I do display the accumulated total, but did not store it.
-> 
-> So I see two mappings here:
-> 
-> 	for_each_gt(gt, xe, id) {
-> 		ofs = map_ofs + XE_PAGE_SIZE * level + 256 * 8 + gt->mem.vram.base;
-> 		for (pos = 0; pos < gt->mem.vram.size; pos += SZ_1G, ofs += 8) {
-> 			entry = pos + xe->mem.vram.base + gt->mem.vram.base;
-> 			xe_map_wr(xe, &bo->vmap, ofs, u64, entry | flags);
-> 	}
-> 
-> This will map the available memory for each available tile.  This would be ony the "usable" vram,
-> or this mapping: (current patch version):
-> 
-> 	for (pos = 0; pos < xe->mem.vram.io_size; pos += SZ_1G, ofs += 8) {
-> 		xe_map_wr(xe, &bo->vmap, ofs, u64, pos | flags);
-> 
-> which only maps the space available to the CPU... so if we have a "small bar", this mapping
-> would not be "accurate".
-> 
-> Umm, I could add a xe->mem.vram.size third mapping) which would be the accumulated tile sizes and then
-> do this:
-> 
-> 	for (pos = 0; pos < xe->mem.vram.size; pos += SZ_1G, ofs += 8) {
-> 		xe_map_wr(xe, &bo->vmap, ofs, u64, pos | flags);
-> 
-> This would map everything in the vram address space?
+Build Breakage
+In current form this patch set is breaking build between patches 2-20. I
+couldn't find reasonable way to keep build working as originally reverted
+frontbuffer tracking removal patches (2-3) are breaking build. Then this
+broken build is fixed later in several patches.
 
-Yes, and hopefully that's all we need here.
+v2: Remove intel_frontbuffer pointer from struct xe_bo
 
-> 
-> Thoughts?
-> 
-> M
-> 
->>
->>>
->>> I am not clear on what this mapping is for.  Can you explain a bit?
->>
->> I think it's just the usual trick to 1:1 map all of VRAM to matching
->> addresses in some special ppGTT. Like say we have VRAM
->> phys_addr=0x100000 we would then also have gtt_addr=0x100000, which
->> maps the same VRAM address in the PTE. We do that for all VRAM and for
->> every tile, and since we use 1G GTT entries we can do that very
->> cheaply. The idea is that we can now access any part of VRAM using the
->> GPU, and can trivially get the GTT address, without needing to worry
->> about dynamically allocating and binding any page-tables on the fly,
->> which is useful when clearing, copying/evicting, writing page-tables
->> etc. Also since the addresses we touch here must belong to an object,
->> we can be sure they never touch anything out of bounds, like stolen
->> etc, which is important since we map all of VRAM, and not just the
->> usable portion.
->>
->>
->>>
->>> Thoughts?
->>>
->>> m
->>>
->>>
->>>>
->>>>>                       xe_map_wr(xe, &bo->vmap, ofs, u64, pos | flags);
->>>>>       }
->>>>>
->>>>> diff --git a/drivers/gpu/drm/xe/xe_mmio.c
->>>> b/drivers/gpu/drm/xe/xe_mmio.c
->>>>> index bc6835d67352..8ec044473886 100644
->>>>> --- a/drivers/gpu/drm/xe/xe_mmio.c
->>>>> +++ b/drivers/gpu/drm/xe/xe_mmio.c
->>>>> @@ -1,8 +1,10 @@
->>>>>    // SPDX-License-Identifier: MIT
->>>>>    /*
->>>>> - * Copyright © 2021 Intel Corporation
->>>>> + * Copyright © 2021-2023 Intel Corporation
->>>>>     */
->>>>>
->>>>> +#include <linux/minmax.h>
->>>>> +
->>>>>    #include "xe_mmio.h"
->>>>>
->>>>>    #include <drm/drm_managed.h>
->>>>> @@ -20,6 +22,8 @@
->>>>>    #define XEHP_MTCFG_ADDR            XE_REG(0x101800)
->>>>>    #define TILE_COUNT         REG_GENMASK(15, 8)
->>>>>
->>>>> +#define BAR_SIZE_SHIFT 20
->>>>> +
->>>>>    static int xe_set_dma_info(struct xe_device *xe)
->>>>>    {
->>>>>       unsigned int mask_size = xe->info.dma_mask_size;
->>>>> @@ -60,50 +64,65 @@ _resize_bar(struct xe_device *xe, int resno,
->>>> resource_size_t size)
->>>>>       if (ret) {
->>>>>               drm_info(&xe->drm, "Failed to resize BAR%d to %dM (%pe).
->>>> Consider enabling 'Resizable BAR' support in your BIOS\n",
->>>>>                        resno, 1 << bar_size, ERR_PTR(ret));
->>>>> -            return -1;
->>>>> +            return ret;
->>>>>       }
->>>>>
->>>>>       drm_info(&xe->drm, "BAR%d resized to %dM\n", resno, 1 <<
->>>> bar_size);
->>>>> -    return 1;
->>>>> +    return ret;
->>>>>    }
->>>>>
->>>>> -static int xe_resize_vram_bar(struct xe_device *xe, resource_size_t
->>>> vram_size)
->>>>> +/*
->>>>> + * if force_vram_bar_size is set, attempt to set to the requested size
->>>>> + * else set to maximum possible size
->>>>> + */
->>>>> +static int xe_resize_vram_bar(struct xe_device *xe)
->>>>>    {
->>>>> +    u64 force_vram_bar_size = xe_force_vram_bar_size;
->>>>>       struct pci_dev *pdev = to_pci_dev(xe->drm.dev);
->>>>>       struct pci_bus *root = pdev->bus;
->>>>> -    struct resource *root_res;
->>>>> -    resource_size_t rebar_size;
->>>>>       resource_size_t current_size;
->>>>> +    resource_size_t rebar_size;
->>>>> +    struct resource *root_res;
->>>>> +    u32 bar_size_mask;
->>>>>       u32 pci_cmd;
->>>>>       int i;
->>>>>       int ret;
->>>>> -    u64 force_vram_bar_size = xe_force_vram_bar_size;
->>>>>
->>>>> -    current_size = roundup_pow_of_two(pci_resource_len(pdev,
->>>> GEN12_LMEM_BAR));
->>>>> +    /* gather some relevant info */
->>>>> +    current_size = pci_resource_len(pdev, GEN12_LMEM_BAR);
->>>>> +    bar_size_mask = pci_rebar_get_possible_sizes(pdev,
->>>> GEN12_LMEM_BAR);
->>>>>
->>>>> +    if (!bar_size_mask)
->>>>> +            return 0;
->>>>> +
->>>>> +    /* set to a specific size? */
->>>>>       if (force_vram_bar_size) {
->>>>> -            u32 bar_sizes;
->>>>> +            u32 bar_size_bit;
->>>>>
->>>>>               rebar_size = force_vram_bar_size * (resource_size_t)SZ_1M;
->>>>> -            bar_sizes = pci_rebar_get_possible_sizes(pdev,
->>>> GEN12_LMEM_BAR);
->>>>>
->>>>> -            if (rebar_size == current_size)
->>>>> -                    return 0;
->>>>> +            bar_size_bit = bar_size_mask &
->>>> BIT(pci_rebar_bytes_to_size(rebar_size));
->>>>>
->>>>> -            if (!(bar_sizes & BIT(pci_rebar_bytes_to_size(rebar_size))) ||
->>>>> -                rebar_size >= roundup_pow_of_two(vram_size)) {
->>>>> -                    rebar_size = vram_size;
->>>>> +            if (!bar_size_bit) {
->>>>>                       drm_info(&xe->drm,
->>>>> -                             "Given bar size is not within supported size,
->>>> setting it to default: %lluMiB\n",
->>>>> -                             (u64)vram_size >> 20);
->>>>> +                             "Requested size: 0x%llx is not supported by
->>>> rebar sizes: 0x%x. Leaving default: 0x%llx\n",
->>>>> +                             (u64)rebar_size >> 2, bar_size_mask,
->>>> (u64)current_size >> 20);
->>>>> +                    return 0;
->>>>>               }
->>>>> +
->>>>> +            rebar_size = 1ULL << (bar_size_bit + BAR_SIZE_SHIFT);
->>>>> +
->>>>> +            if (rebar_size == current_size)
->>>>> +                    return 0;
->>>>>       } else {
->>>>> -            rebar_size = current_size;
->>>>> +            rebar_size = 1ULL << (__fls(bar_size_mask) +
->>>> BAR_SIZE_SHIFT);
->>>>>
->>>>> -            if (rebar_size != roundup_pow_of_two(vram_size))
->>>>> -                    rebar_size = vram_size;
->>>>> -            else
->>>>> +            /* only resize if larger than current */
->>>>> +            if (rebar_size <= current_size) {
->>>>> +                    drm_info(&xe->drm, "Rebar size: 0x%llx vs. actual
->>>> size: 0x%llx\n",
->>>>> +                             rebar_size, current_size);
->>>>>                       return 0;
->>>>> +            }
->>>>>       }
->>>>>
->>>>>       drm_info(&xe->drm, "Resizing bar from %lluMiB -> %lluMiB\n",
->>>>> @@ -147,6 +166,31 @@ static bool xe_pci_resource_valid(struct pci_dev
->>>> *pdev, int bar)
->>>>>       return true;
->>>>>    }
->>>>>
->>>>> +static int xe_determine_lmem_bar_size(struct xe_device *xe)
->>>>> +{
->>>>> +    struct pci_dev *pdev = to_pci_dev(xe->drm.dev);
->>>>> +    int err;
->>>>> +
->>>>> +    if (!xe_pci_resource_valid(pdev, GEN12_LMEM_BAR)) {
->>>>> +            drm_err(&xe->drm, "pci resource is not valid\n");
->>>>> +            return -ENXIO;
->>>>> +    }
->>>>> +
->>>>> +    err = xe_resize_vram_bar(xe);
->>>>> +    if (err)
->>>>> +            return err;
->>>>> +
->>>>> +    xe->mem.vram.io_start = pci_resource_start(pdev,
->>>> GEN12_LMEM_BAR);
->>>>> +    xe->mem.vram.io_size = pci_resource_len(pdev,
->>>> GEN12_LMEM_BAR);
->>>>> +    if (!xe->mem.vram.io_size)
->>>>> +            return -EIO;
->>>>> +
->>>>> +    /* set up a map to the total memory area. */
->>>>> +    xe->mem.vram.mapping = ioremap_wc(xe->mem.vram.io_start, xe-
->>>>> mem.vram.io_size);
->>>>> +
->>>>> +    return 0;
->>>>> +}
->>>>> +
->>>>>    /**
->>>>>     * xe_mmio_tile_vram_size - Collect vram size and off set information
->>>>>     * @gt: tile to get info for
->>>>> @@ -202,59 +246,36 @@ int xe_mmio_tile_vram_size(struct xe_gt *gt,
->> u64
->>>> *vram_size, u64 *tile_size, u64
->>>>>
->>>>>    int xe_mmio_probe_vram(struct xe_device *xe)
->>>>>    {
->>>>> -    struct pci_dev *pdev = to_pci_dev(xe->drm.dev);
->>>>>       struct xe_gt *gt;
->>>>> -    u64 original_size;
->>>>>       u64 tile_offset;
->>>>>       u64 tile_size;
->>>>>       u64 vram_size;
->>>>>       int err;
->>>>>       u8 id;
->>>>>
->>>>> -    if (!IS_DGFX(xe)) {
->>>>> -            xe->mem.vram.mapping = 0;
->>>>> -            xe->mem.vram.size = 0;
->>>>> -            xe->mem.vram.io_start = 0;
->>>>> -            xe->mem.vram.io_size = 0;
->>>>> -
->>>>> -            for_each_gt(gt, xe, id) {
->>>>> -                    gt->mem.vram.mapping = 0;
->>>>> -                    gt->mem.vram.size = 0;
->>>>> -                    gt->mem.vram.io_start = 0;
->>>>> -                    gt->mem.vram.io_size = 0;
->>>>> -            }
->>>>> +    if (!IS_DGFX(xe))
->>>>>               return 0;
->>>>> -    }
->>>>> -
->>>>> -    if (!xe_pci_resource_valid(pdev, GEN12_LMEM_BAR)) {
->>>>> -            drm_err(&xe->drm, "pci resource is not valid\n");
->>>>> -            return -ENXIO;
->>>>> -    }
->>>>>
->>>>> +    /* Get the size of the gt0 vram for later accessibility comparison */
->>>>>       gt = xe_device_get_gt(xe, 0);
->>>>> -    original_size = pci_resource_len(pdev, GEN12_LMEM_BAR);
->>>>> -
->>>>>       err = xe_mmio_tile_vram_size(gt, &vram_size, &tile_size,
->>>> &tile_offset);
->>>>>       if (err)
->>>>>               return err;
->>>>>
->>>>> -    xe_resize_vram_bar(xe, vram_size);
->>>>> -    xe->mem.vram.io_start = pci_resource_start(pdev,
->>>> GEN12_LMEM_BAR);
->>>>> -    xe->mem.vram.io_size = min(vram_size,
->>>>> -                               pci_resource_len(pdev,
->>>> GEN12_LMEM_BAR));
->>>>> -    xe->mem.vram.size = xe->mem.vram.io_size;
->>>>> -
->>>>> -    if (!xe->mem.vram.size)
->>>>> -            return -EIO;
->>>>> +    err = xe_determine_lmem_bar_size(xe);
->>>>> +    if (err)
->>>>> +            return err;
->>>>>
->>>>> -    if (vram_size > xe->mem.vram.io_size)
->>>>> -            drm_warn(&xe->drm, "Restricting VRAM size to PCI resource
->>>> size (%lluMiB->%lluMiB)\n",
->>>>> -                     (u64)vram_size >> 20, (u64)xe->mem.vram.io_size >>
->>>> 20);
->>>>> +    /* small bar issues will only cover gt0 sizes */
->>>>> +    if (xe->mem.vram.io_size < vram_size)
->>>>> +            drm_warn(&xe->drm, "Restricting VRAM size to PCI resource
->>>> size (0x%llx->0x%llx)\n",
->>>>> +                     vram_size, (u64)xe->mem.vram.io_size);
->>>>>
->>>>> -    xe->mem.vram.mapping = ioremap_wc(xe->mem.vram.io_start, xe-
->>>>> mem.vram.io_size);
->>>>> -    xe->mem.vram.size = min_t(u64, xe->mem.vram.size, vram_size);
->>>>> +    /* Limit size to available memory to account for the current memory
->>>> algorithm */
->>>>> +    xe->mem.vram.io_size = min_t(u64, xe->mem.vram.io_size,
->>>> vram_size);
->>>>>
->>>>> -    drm_info(&xe->drm, "TOTAL VRAM: %pa, %pa\n", &xe-
->>>>> mem.vram.io_start, &xe->mem.vram.size);
->>>>> +    drm_info(&xe->drm, "VISIBLE VRAM: %pa, %pa\n", &xe-
->>>>> mem.vram.io_start,
->>>>> +             &xe->mem.vram.io_size);
->>>>>
->>>>>       /* FIXME: Assuming equally partitioned VRAM, incorrect */
->>>>>       if (xe->info.tile_count > 1) {
->>>>> @@ -267,7 +288,7 @@ int xe_mmio_probe_vram(struct xe_device *xe)
->>>>>
->>>>>               XE_BUG_ON(!adj_tile_count);
->>>>>
->>>>> -            size = xe->mem.vram.size / adj_tile_count;
->>>>> +            size = xe->mem.vram.io_size / adj_tile_count;
->>>>>               io_start = xe->mem.vram.io_start;
->>>>>               io_size = xe->mem.vram.io_size;
->>>>>
->>>>> @@ -300,7 +321,7 @@ int xe_mmio_probe_vram(struct xe_device *xe)
->>>>>                                &gt->mem.vram.size);
->>>>>               }
->>>>>       } else {
->>>>> -            gt->mem.vram.size = xe->mem.vram.size;
->>>>> +            gt->mem.vram.size = xe->mem.vram.io_size;
->>>>>               gt->mem.vram.io_start = xe->mem.vram.io_start;
->>>>>               gt->mem.vram.io_size = xe->mem.vram.io_size;
->>>>>               gt->mem.vram.mapping = xe->mem.vram.mapping;
+Cc: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
+Cc: Ville Syrjälä <ville.syrjala@linux.intel.com>
+Cc: Uma Shankar <uma.shankar@intel.com>
+Cc: Jani Nikula <jani.nikula@intel.com>
+Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
+Cc: Lucas De Marchi <lucas.demarchi@intel.com>
+
+Jouni Högander (23):
+  fixup! drm/i915/display: Remaining changes to make xe compile
+  Revert "drm/i915/display: Neuter frontbuffer tracking harder"
+  Revert "drm/i915: Remove gem and overlay frontbuffer tracking"
+  fixup! drm/i915/display: Remaining changes to make xe compile
+  fixup! drm/xe/display: Implement display support
+  drm/i915: Add macros to get i915 device from i915_gem_object
+  drm/xe: Add macro to get i915 device from xe_bo
+  drm/i915: Add getter for i915_gem_object->frontbuffer
+  drm/xe: Add frontbuffer setter/getter for xe_bo
+  drm/i915/display: Remove i915_gem_object_types.h from
+    intel_frontbuffer.h
+  drm/xe: Add intel_bo_flush_if_display define for Xe
+  drm/i915: Add intel_bo_flush_if_display define for i915
+  drm/xe: Add struct i915_active for Xe
+  drm/xe: Add i915_active.h compatibility header
+  drm/xe/display: Include i916_active header
+  drm/i915: Add function to clear scanout flag for vmas
+  drm/xe: Add empty define for i915_ggtt_clear_scanout
+  drm/i915/display: Use i915_ggtt_clear_scanout
+  drm/i915/display: Use drm_gem_object_get/put
+  drm/xe/display: Use frontbuffer tracking for Xe as well
+  drm/i915: Add new frontbuffer tracking interface to queue flush
+  drm/i915: Handle dma fences in dirtyfb callback
+  drm/xe/display: Use custom dirtyfb for Xe as well
+
+ drivers/gpu/drm/i915/display/i9xx_plane.c     |   1 -
+ drivers/gpu/drm/i915/display/intel_cursor.c   |   6 +-
+ drivers/gpu/drm/i915/display/intel_display.c  |   4 +-
+ .../drm/i915/display/intel_display_types.h    |   8 +-
+ drivers/gpu/drm/i915/display/intel_fb.c       |  75 +++++++++--
+ drivers/gpu/drm/i915/display/intel_fb_pin.c   |   8 +-
+ drivers/gpu/drm/i915/display/intel_fbdev.c    |   7 +-
+ .../gpu/drm/i915/display/intel_frontbuffer.c  | 127 ++++++++++++++++--
+ .../gpu/drm/i915/display/intel_frontbuffer.h  |  43 ++++--
+ drivers/gpu/drm/i915/display/intel_overlay.c  |  14 ++
+ .../drm/i915/display/intel_plane_initial.c    |   3 +-
+ drivers/gpu/drm/i915/display/intel_sprite.c   |   1 -
+ drivers/gpu/drm/i915/gem/i915_gem_clflush.c   |   4 +
+ drivers/gpu/drm/i915/gem/i915_gem_domain.c    |   7 +
+ .../gpu/drm/i915/gem/i915_gem_execbuffer.c    |   2 +
+ drivers/gpu/drm/i915/gem/i915_gem_object.c    |  91 +++++++++++++
+ drivers/gpu/drm/i915/gem/i915_gem_object.h    |  28 ++++
+ .../gpu/drm/i915/gem/i915_gem_object_types.h  |   5 +
+ drivers/gpu/drm/i915/gem/i915_gem_phys.c      |   4 +
+ drivers/gpu/drm/i915/i915_driver.c            |   1 -
+ drivers/gpu/drm/i915/i915_gem.c               |   8 ++
+ drivers/gpu/drm/i915/i915_gem_gtt.c           |   1 +
+ drivers/gpu/drm/i915/i915_vma.c               |  32 +++++
+ drivers/gpu/drm/i915/i915_vma.h               |   2 +
+ .../drm/xe/compat-i915-headers/i915_active.h  |  22 +++
+ .../compat-i915-headers/i915_active_types.h   |  13 ++
+ .../gpu/drm/xe/compat-i915-headers/i915_vma.h |   2 +
+ drivers/gpu/drm/xe/display/xe_plane_initial.c |   2 +-
+ drivers/gpu/drm/xe/xe_bo.h                    |   9 ++
+ drivers/gpu/drm/xe/xe_bo_types.h              |   5 +
+ 30 files changed, 488 insertions(+), 47 deletions(-)
+ create mode 100644 drivers/gpu/drm/xe/compat-i915-headers/i915_active.h
+
+-- 
+2.34.1
+
