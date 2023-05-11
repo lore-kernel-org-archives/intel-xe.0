@@ -4,31 +4,31 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1365AC77B7C
-	for <intel-xe@archiver.kernel.org>; Thu, 11 May 2023 19:51:07 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id B423AC77B7F
+	for <intel-xe@archiver.kernel.org>; Thu, 11 May 2023 19:52:19 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id DA51010E0D0;
-	Thu, 11 May 2023 19:51:06 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6F5FE10E0BE;
+	Thu, 11 May 2023 19:52:19 +0000 (UTC)
 Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id 57E3210E0BE;
- Thu, 11 May 2023 19:51:05 +0000 (UTC)
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 2D94810E0BE;
+ Thu, 11 May 2023 19:52:18 +0000 (UTC)
 Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 50D09AADE7;
- Thu, 11 May 2023 19:51:05 +0000 (UTC)
+ by emeril.freedesktop.org (Postfix) with ESMTP id 28A85AADE7;
+ Thu, 11 May 2023 19:52:18 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: "Gustavo Sousa" <gustavo.sousa@intel.com>
-Date: Thu, 11 May 2023 19:51:05 -0000
-Message-ID: <168383466530.29007.16171970365416615736@emeril.freedesktop.org>
+Date: Thu, 11 May 2023 19:52:18 -0000
+Message-ID: <168383473816.29009.3395662529817608935@emeril.freedesktop.org>
 X-Patchwork-Hint: ignore
 References: <20230511194822.626036-1-gustavo.sousa@intel.com>
 In-Reply-To: <20230511194822.626036-1-gustavo.sousa@intel.com>
-Subject: [Intel-xe] =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_f?=
- =?utf-8?q?or_drm/xe=3A_Call_exit_functions_when_xe=5Fregister=5Fpci=5Fdri?=
- =?utf-8?b?dmVyKCkgZmFpbHMgKHJldjIp?=
+Subject: [Intel-xe] =?utf-8?q?=E2=9C=97_CI=2EKUnit=3A_failure_for_drm/xe?=
+ =?utf-8?q?=3A_Call_exit_functions_when_xe=5Fregister=5Fpci=5Fdriver=28=29?=
+ =?utf-8?q?_fails_=28rev2=29?=
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -49,14 +49,27 @@ Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 Series: drm/xe: Call exit functions when xe_register_pci_driver() fails (rev2)
 URL   : https://patchwork.freedesktop.org/series/117559/
-State : success
+State : failure
 
 == Summary ==
 
-=== Applying kernel patches on branch 'drm-xe-next' with base: ===
-Base commit: ca8f59eea fixup! drm/xe/display: Add intel_pps support too
-=== git am output follows ===
-Applying: drm/xe: Get rid of MAKE_INIT_EXIT_FUNCS
-Applying: drm/xe: Call exit functions when xe_register_pci_driver() fails
++ trap cleanup EXIT
++ /kernel/tools/testing/kunit/kunit.py run --kunitconfig /kernel/drivers/gpu/drm/xe/.kunitconfig
+ERROR:root:make[1]: Entering directory '/kernel/.kunit'
+***
+*** The source tree is not clean, please run 'make ARCH=um mrproper'
+*** in /kernel
+***
+make[1]: *** [/kernel/Makefile:646: outputmakefile] Error 1
+make[1]: Leaving directory '/kernel/.kunit'
+make: *** [Makefile:226: __sub-make] Error 2
+
+[19:52:16] Configuring KUnit Kernel ...
+Generating .config ...
+Populating config with:
+$ make ARCH=um O=.kunit olddefconfig
++ cleanup
+++ stat -c %u:%g /kernel
++ chown -R 1003:1003 /kernel
 
 
