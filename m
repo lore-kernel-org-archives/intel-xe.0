@@ -4,47 +4,47 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9BDB3C7EE30
-	for <intel-xe@archiver.kernel.org>; Thu, 11 May 2023 03:47:37 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5FA40C77B7F
+	for <intel-xe@archiver.kernel.org>; Thu, 11 May 2023 03:47:38 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id F06B310E59C;
-	Thu, 11 May 2023 03:47:35 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0F82110E59E;
+	Thu, 11 May 2023 03:47:36 +0000 (UTC)
 Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C7A7710E59B
- for <intel-xe@lists.freedesktop.org>; Thu, 11 May 2023 03:47:31 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 67DEE10E590
+ for <intel-xe@lists.freedesktop.org>; Thu, 11 May 2023 03:47:30 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1683776851; x=1715312851;
+ t=1683776850; x=1715312850;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=GYWyVvYEhfd0uVtr+Cb/YgikqThOPR+aXRg+FSXH1/Y=;
- b=bjONh0sL25KEgeMvXUmWSLJRi7OEpoD+w1QiT/v3V4AX65Bms4mQtWLb
- x2RoM39h71SUs3d00oi0OjTRcihmJ6571WCR79hPRLIyoT4xGXEuYMIw/
- CbJfLkCergqj9TWLcXhj01JdxAMbVqG1Tdl3fWjPMvzD/TkwmM6F5U/dH
- y1njGJXYknQXhMhnvwCLOIz6Jwi1TBemUTPV31JG1URWGt1ZJBHZaB5vQ
- wgHRtUmJ10nglocRZGl/3GI3Fx8DTS5Wptv76rtOJXaKoy88AfC55Jf7k
- R8H/slf3hxayMrZRPLc8gEaK7szgHIXUAhwUifdBsHfZkliNwRsPn6NM2 g==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10706"; a="347850656"
-X-IronPort-AV: E=Sophos;i="5.99,266,1677571200"; d="scan'208";a="347850656"
+ bh=zPr+znhNptO0Y5IdGhWqpvgBhTu0HtwjI4JHmWrGrIA=;
+ b=TOeFAxRlrLmMTjUegXZFb06H/jT9CEGbj/fwSp8btPg+IZxJOUkLStie
+ FD1Jj3JiEm5ZN8IMmzazhQUAhIX4WS9rdcaw/kk4FlRacphqwub1JgGoL
+ SBpqwyNNy5oWsmZSw+CGwDYaHg/TAErpB45jRd/KLFna9RoKV9rZIa0+I
+ bYpjR3KSwy1YJ5FJXbq7nCVM9/fqMBCgh+0GlzoR/EV4WRlXZAyq+MrZS
+ wOVrhFCxKfo3hm8R8hEf4E3Ws+eH1F5sVhx/AN035SSERhqsaSdlhFoN8
+ TYCxciTK6HYWwkFtytzl9hiJapaeokjR34+qUsr7R07nfPpPeasy+9iI0 w==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10706"; a="347850629"
+X-IronPort-AV: E=Sophos;i="5.99,266,1677571200"; d="scan'208";a="347850629"
 Received: from fmsmga003.fm.intel.com ([10.253.24.29])
  by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 10 May 2023 20:47:31 -0700
+ 10 May 2023 20:47:30 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10706"; a="789203256"
-X-IronPort-AV: E=Sophos;i="5.99,266,1677571200"; d="scan'208";a="789203256"
+X-IronPort-AV: E=McAfee;i="6600,9927,10706"; a="789203176"
+X-IronPort-AV: E=Sophos;i="5.99,266,1677571200"; d="scan'208";a="789203176"
 Received: from mdroper-desk1.fm.intel.com ([10.1.27.134])
  by fmsmga003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  10 May 2023 20:47:30 -0700
 From: Matt Roper <matthew.d.roper@intel.com>
 To: intel-xe@lists.freedesktop.org
-Date: Wed, 10 May 2023 20:47:22 -0700
-Message-Id: <20230511034722.1929038-27-matthew.d.roper@intel.com>
+Date: Wed, 10 May 2023 20:46:57 -0700
+Message-Id: <20230511034722.1929038-2-matthew.d.roper@intel.com>
 X-Mailer: git-send-email 2.40.0
 In-Reply-To: <20230511034722.1929038-1-matthew.d.roper@intel.com>
 References: <20230511034722.1929038-1-matthew.d.roper@intel.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-xe] [PATCH 26/26] drm/xe: Clarify source of GT log messages
+Subject: [Intel-xe] [PATCH 01/26] drm/xe/mtl: Disable media GT
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -60,207 +60,95 @@ Cc: matthew.d.roper@intel.com
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-The various functions in xe_gt.h can print a lot of important error and
-information messages; ensure that we always include the GT ID in those
-prints for clarity.
-
-In the future we may want to place the new macros in a dedicated header
-like we've done in i915.  For now we're just using them within this one
-file, so including them at the top of the .c is fine.
+Xe incorrectly conflates the concept of 'tile' and 'GT.'  Since MTL's
+media support is not yet functioning properly, let's just disable it
+completely for now while we fix the fundamental driver design.  Support
+for media GTs on platforms like MTL will be re-added later.
 
 Signed-off-by: Matt Roper <matthew.d.roper@intel.com>
 ---
- drivers/gpu/drm/xe/xe_gt.c | 52 ++++++++++++++++++--------------------
- 1 file changed, 25 insertions(+), 27 deletions(-)
+ drivers/gpu/drm/xe/xe_gt_mcr.c |  2 +-
+ drivers/gpu/drm/xe/xe_mmio.c   |  2 --
+ drivers/gpu/drm/xe/xe_pci.c    | 15 ++-------------
+ 3 files changed, 3 insertions(+), 16 deletions(-)
 
-diff --git a/drivers/gpu/drm/xe/xe_gt.c b/drivers/gpu/drm/xe/xe_gt.c
-index 2a3457fb97fa..edcb8ccde346 100644
---- a/drivers/gpu/drm/xe/xe_gt.c
-+++ b/drivers/gpu/drm/xe/xe_gt.c
-@@ -42,6 +42,11 @@
- #include "xe_wa.h"
- #include "xe_wopcm.h"
+diff --git a/drivers/gpu/drm/xe/xe_gt_mcr.c b/drivers/gpu/drm/xe/xe_gt_mcr.c
+index 3db550c85e32..be80fdc4b5a2 100644
+--- a/drivers/gpu/drm/xe/xe_gt_mcr.c
++++ b/drivers/gpu/drm/xe/xe_gt_mcr.c
+@@ -293,7 +293,7 @@ void xe_gt_mcr_init(struct xe_gt *gt)
  
-+#define gt_info(_gt, _fmt, ...) \
-+	drm_info(&gt_to_xe(_gt)->drm, "GT%u (Tile%u): " _fmt, (_gt)->info.id, gt_to_tile(_gt)->id, ##__VA_ARGS__)
-+#define gt_err(_gt, _fmt, ...) \
-+	drm_err(&gt_to_xe(_gt)->drm, "GT%u (Tile%u): " _fmt, (_gt)->info.id, gt_to_tile(_gt)->id, ##__VA_ARGS__)
-+
- struct xe_gt *xe_gt_alloc(struct xe_tile *tile)
- {
- 	struct xe_gt *gt;
-@@ -193,16 +198,16 @@ int xe_gt_record_default_lrcs(struct xe_gt *gt)
- 				     hwe, ENGINE_FLAG_WA);
- 		if (IS_ERR(e)) {
- 			err = PTR_ERR(e);
--			drm_err(&xe->drm, "gt%d, hwe %s, xe_engine_create,e failed=%d",
--				gt->info.id, hwe->name, err);
-+			gt_err(gt, "hwe %s, xe_engine_create,e failed=%d",
-+			       hwe->name, err);
- 			goto put_vm;
- 		}
+ 	spin_lock_init(&gt->mcr_lock);
  
- 		/* Prime golden LRC with known good state */
- 		err = emit_wa_job(gt, e);
- 		if (err) {
--			drm_err(&xe->drm, "gt%d, hwe %s, guc_id=%d, emit_wa_job,e failed=%d",
--				gt->info.id, hwe->name, e->guc->id, err);
-+			gt_err(gt, "hwe %s, guc_id=%d, emit_wa_job,e failed=%d",
-+				hwe->name, e->guc->id, err);
- 			goto put_engine;
- 		}
+-	if (gt->info.type == XE_GT_TYPE_MEDIA) {
++	if (xe_gt_is_media_type(gt)) {
+ 		drm_WARN_ON(&xe->drm, MEDIA_VER(xe) < 13);
  
-@@ -210,24 +215,24 @@ int xe_gt_record_default_lrcs(struct xe_gt *gt)
- 					 1, hwe, ENGINE_FLAG_WA);
- 		if (IS_ERR(nop_e)) {
- 			err = PTR_ERR(nop_e);
--			drm_err(&xe->drm, "gt%d, hwe %s, xe_engine_create,nop_e failed=%d",
--				gt->info.id, hwe->name, err);
-+			gt_err(gt, "hwe %s, xe_engine_create,nop_e failed=%d",
-+				hwe->name, err);
- 			goto put_engine;
- 		}
+ 		gt->steering[OADDRM].ranges = xelpmp_oaddrm_steering_table;
+diff --git a/drivers/gpu/drm/xe/xe_mmio.c b/drivers/gpu/drm/xe/xe_mmio.c
+index c7fbb1cc1f64..4804616a3c44 100644
+--- a/drivers/gpu/drm/xe/xe_mmio.c
++++ b/drivers/gpu/drm/xe/xe_mmio.c
+@@ -301,8 +301,6 @@ static void xe_mmio_probe_tiles(struct xe_device *xe)
+ 	mtcfg = xe_mmio_read64(gt, XEHP_MTCFG_ADDR);
+ 	adj_tile_count = xe->info.tile_count =
+ 		REG_FIELD_GET(TILE_COUNT, mtcfg) + 1;
+-	if (xe->info.media_verx100 >= 1300)
+-		xe->info.tile_count *= 2;
  
- 		/* Switch to different LRC */
- 		err = emit_nop_job(gt, nop_e);
- 		if (err) {
--			drm_err(&xe->drm, "gt%d, hwe %s, guc_id=%d, emit_nop_job,nop_e failed=%d",
--				gt->info.id, hwe->name, nop_e->guc->id, err);
-+			gt_err(gt, "hwe %s, guc_id=%d, emit_nop_job,nop_e failed=%d",
-+				hwe->name, nop_e->guc->id, err);
- 			goto put_nop_e;
- 		}
+ 	drm_info(&xe->drm, "tile_count: %d, adj_tile_count %d\n",
+ 		 xe->info.tile_count, adj_tile_count);
+diff --git a/drivers/gpu/drm/xe/xe_pci.c b/drivers/gpu/drm/xe/xe_pci.c
+index a6858fc7fe8d..bf2c234c4f6e 100644
+--- a/drivers/gpu/drm/xe/xe_pci.c
++++ b/drivers/gpu/drm/xe/xe_pci.c
+@@ -19,6 +19,7 @@
+ #include "xe_device.h"
+ #include "xe_display.h"
+ #include "xe_drv.h"
++#include "xe_gt.h"
+ #include "xe_macros.h"
+ #include "xe_module.h"
+ #include "xe_pci_types.h"
+@@ -271,20 +272,10 @@ static const struct xe_device_desc pvc_desc = {
+ 	.extra_gts = pvc_gts,
+ };
  
- 		/* Reload golden LRC to record the effect of any indirect W/A */
- 		err = emit_nop_job(gt, e);
- 		if (err) {
--			drm_err(&xe->drm, "gt%d, hwe %s, guc_id=%d, emit_nop_job,e failed=%d",
--				gt->info.id, hwe->name, e->guc->id, err);
-+			gt_err(gt, "hwe %s, guc_id=%d, emit_nop_job,e failed=%d",
-+				hwe->name, e->guc->id, err);
- 			goto put_nop_e;
- 		}
- 
-@@ -443,15 +448,13 @@ int xe_gt_init(struct xe_gt *gt)
- 
- static int do_gt_reset(struct xe_gt *gt)
- {
--	struct xe_device *xe = gt_to_xe(gt);
- 	int err;
- 
- 	xe_mmio_write32(gt, GDRST, GRDOM_FULL);
- 	err = xe_mmio_wait32(gt, GDRST, 0, GRDOM_FULL, 5000,
- 			     NULL, false);
- 	if (err)
--		drm_err(&xe->drm,
--			"GT reset failed to clear GEN11_GRDOM_FULL\n");
-+		gt_err(gt, "reset failed to clear GRDOM_FULL\n");
- 
- 	return err;
- }
-@@ -494,14 +497,13 @@ static int do_gt_restart(struct xe_gt *gt)
- 
- static int gt_reset(struct xe_gt *gt)
- {
--	struct xe_device *xe = gt_to_xe(gt);
- 	int err;
- 
- 	/* We only support GT resets with GuC submission */
- 	if (!xe_device_guc_submission_enabled(gt_to_xe(gt)))
- 		return -ENODEV;
- 
--	drm_info(&xe->drm, "GT reset started\n");
-+	gt_info(gt, "reset started\n");
- 
- 	xe_gt_sanitize(gt);
- 
-@@ -530,7 +532,7 @@ static int gt_reset(struct xe_gt *gt)
- 	err = xe_force_wake_put(gt_to_fw(gt), XE_FORCEWAKE_ALL);
- 	XE_WARN_ON(err);
- 
--	drm_info(&xe->drm, "GT reset done\n");
-+	gt_info(gt, "reset done\n");
- 
- 	return 0;
- 
-@@ -539,7 +541,7 @@ static int gt_reset(struct xe_gt *gt)
- err_msg:
- 	XE_WARN_ON(xe_uc_start(&gt->uc));
- 	xe_device_mem_access_put(gt_to_xe(gt));
--	drm_err(&xe->drm, "GT reset failed, err=%d\n", err);
-+	gt_err(gt, "reset failed, err=%d\n", err);
- 
- 	return err;
- }
-@@ -553,15 +555,13 @@ static void gt_reset_worker(struct work_struct *w)
- 
- void xe_gt_reset_async(struct xe_gt *gt)
- {
--	struct xe_device *xe = gt_to_xe(gt);
+-static const struct xe_gt_desc xelpmp_gts[] = {
+-	{
+-		.type = XE_GT_TYPE_MEDIA,
+-		.vram_id = 0,
+-		.mmio_adj_limit = 0x40000,
+-		.mmio_adj_offset = 0x380000,
+-	},
+-};
 -
--	drm_info(&xe->drm, "Try GT reset\n");
-+	gt_info(gt, "Try GT reset\n");
+ static const struct xe_device_desc mtl_desc = {
+ 	/* .graphics and .media determined via GMD_ID */
+ 	.require_force_probe = true,
+ 	PLATFORM(XE_METEORLAKE),
+-	.extra_gts = xelpmp_gts,
+ };
  
- 	/* Don't do a reset while one is already in flight */
- 	if (xe_uc_reset_prepare(&gt->uc))
- 		return;
+ #undef PLATFORM
+@@ -528,8 +519,6 @@ static int xe_info_init(struct xe_device *xe,
+ 	 * treats it as the number of GTs rather than just the number of tiles.
+ 	 */
+ 	xe->info.tile_count = 1 + graphics_desc->max_remote_tiles;
+-	if (MEDIA_VER(xe) >= 13)
+-		xe->info.tile_count++;
  
--	drm_info(&xe->drm, "Doing GT reset\n");
-+	gt_info(gt, "Doing GT reset\n");
- 	queue_work(gt->ordered_wq, &gt->reset.worker);
- }
- 
-@@ -578,7 +578,6 @@ void xe_gt_suspend_prepare(struct xe_gt *gt)
- 
- int xe_gt_suspend(struct xe_gt *gt)
- {
--	struct xe_device *xe = gt_to_xe(gt);
- 	int err;
- 
- 	/* For now suspend/resume is only allowed with GuC */
-@@ -598,7 +597,7 @@ int xe_gt_suspend(struct xe_gt *gt)
- 
- 	xe_device_mem_access_put(gt_to_xe(gt));
- 	XE_WARN_ON(xe_force_wake_put(gt_to_fw(gt), XE_FORCEWAKE_ALL));
--	drm_info(&xe->drm, "GT suspended\n");
-+	gt_info(gt, "suspended\n");
- 
- 	return 0;
- 
-@@ -606,14 +605,13 @@ int xe_gt_suspend(struct xe_gt *gt)
- 	XE_WARN_ON(xe_force_wake_put(gt_to_fw(gt), XE_FORCEWAKE_ALL));
- err_msg:
- 	xe_device_mem_access_put(gt_to_xe(gt));
--	drm_err(&xe->drm, "GT suspend failed: %d\n", err);
-+	gt_err(gt, "suspend failed: %d\n", err);
- 
- 	return err;
- }
- 
- int xe_gt_resume(struct xe_gt *gt)
- {
--	struct xe_device *xe = gt_to_xe(gt);
- 	int err;
- 
- 	xe_device_mem_access_get(gt_to_xe(gt));
-@@ -627,7 +625,7 @@ int xe_gt_resume(struct xe_gt *gt)
- 
- 	xe_device_mem_access_put(gt_to_xe(gt));
- 	XE_WARN_ON(xe_force_wake_put(gt_to_fw(gt), XE_FORCEWAKE_ALL));
--	drm_info(&xe->drm, "GT resumed\n");
-+	gt_info(gt, "resumed\n");
- 
- 	return 0;
- 
-@@ -635,7 +633,7 @@ int xe_gt_resume(struct xe_gt *gt)
- 	XE_WARN_ON(xe_force_wake_put(gt_to_fw(gt), XE_FORCEWAKE_ALL));
- err_msg:
- 	xe_device_mem_access_put(gt_to_xe(gt));
--	drm_err(&xe->drm, "GT resume failed: %d\n", err);
-+	gt_err(gt, "resume failed: %d\n", err);
- 
- 	return err;
- }
+ 	xe->info.subplatform = subplatform_desc ?
+ 		subplatform_desc->subplatform : XE_SUBPLATFORM_NONE;
+@@ -553,7 +542,7 @@ static int xe_info_init(struct xe_device *xe,
+ 		} else {
+ 			gt->info.type = desc->extra_gts[id - 1].type;
+ 			gt->info.vram_id = desc->extra_gts[id - 1].vram_id;
+-			gt->info.__engine_mask = (gt->info.type == XE_GT_TYPE_MEDIA) ?
++			gt->info.__engine_mask = xe_gt_is_media_type(gt) ?
+ 				media_desc->hw_engine_mask :
+ 				graphics_desc->hw_engine_mask;
+ 			gt->mmio.adj_limit =
 -- 
 2.40.0
 
