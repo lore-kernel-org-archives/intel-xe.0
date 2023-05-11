@@ -4,57 +4,55 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0479BC7EE24
-	for <intel-xe@archiver.kernel.org>; Thu, 11 May 2023 10:14:15 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 19C68C7EE25
+	for <intel-xe@archiver.kernel.org>; Thu, 11 May 2023 10:14:17 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 12EB410E5D3;
+	by gabe.freedesktop.org (Postfix) with ESMTP id A182010E5D4;
 	Thu, 11 May 2023 10:14:13 +0000 (UTC)
 Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 274D110E21E;
- Thu, 11 May 2023 10:14:09 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1D44910E21E
+ for <intel-xe@lists.freedesktop.org>; Thu, 11 May 2023 10:14:11 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1683800049; x=1715336049;
+ t=1683800051; x=1715336051;
  h=message-id:date:mime-version:subject:to:cc:references:
  from:in-reply-to:content-transfer-encoding;
- bh=OX6/RLsUKcu9rpPuGAmUsq6PrFANuvVqJn6z7EUYoHE=;
- b=dQYWMa1djTPA9nCkoytAoRVIvc1ysPx6r4XG59tQsUGRKs+3AGy3FTWY
- Mjz7yTOzYyMXcvmBWlh+vyH4ZMD751vRexMcN5Qt5FMYw4BTp8X9ndv57
- ZfgAtc8o61OtgAo8BJn+kHlNVnRKtLzjn6lRy4pel+9g+z65yyymn/cIh
- y8nFU4Pce4ApOX3MtJYDDmSViWWPq//LXY9jY5CBLaZRUsnpRfUktcTXL
- 19mrZ3iGWP8XbDuhVcsPXVPrMrUWfKvCfS36GF1zU0NBiVg1V+a/q1A83
- loH2i3jV6Q6A6raJZpYEfoeH6Wr1kDJLLZFvvT63txplMM81wkAICESro w==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10706"; a="350490023"
-X-IronPort-AV: E=Sophos;i="5.99,266,1677571200"; d="scan'208";a="350490023"
+ bh=1fR97jsVydmMsHQviNjNCm2wzXS6lyfNRYgQSmdVZSM=;
+ b=oDztdU2DWVIb8To0NIVNZ46stysUZJxSy3QtFQRdrrUiFfAm71dQGZTl
+ QbOh6aBt0XrWKwjcH1U0pN2RnfLxVidwEF1l/o3ukKomQTThTXhcerNUm
+ fyMsHJuQAuvaJ83Dm6x+EC/jszWsS4rStha4sPoO1Y5tMCJVVUu8E1OB+
+ hz3g5AOHsHBWd0G8t1LYVaEI3STUgNUsaag8kdfZfnva1/4FgKT21RrfJ
+ qOS1/jeVFythLiRTh3qjLsdFe1rAwGvci7dr7f+m/p71cNSLZTfXERje6
+ f97vEM/XVFcqpnRbE12dgHxqyz1h64vxpqI1tFhAcWGuzuDDE47IIWn8Y w==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10706"; a="350490035"
+X-IronPort-AV: E=Sophos;i="5.99,266,1677571200"; d="scan'208";a="350490035"
 Received: from fmsmga006.fm.intel.com ([10.253.24.20])
  by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 11 May 2023 03:14:07 -0700
+ 11 May 2023 03:14:10 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10706"; a="946094895"
-X-IronPort-AV: E=Sophos;i="5.99,266,1677571200"; d="scan'208";a="946094895"
-Received: from thenehan-mobl1.ger.corp.intel.com (HELO [10.213.214.244])
- ([10.213.214.244])
+X-IronPort-AV: E=McAfee;i="6600,9927,10706"; a="946094931"
+X-IronPort-AV: E=Sophos;i="5.99,266,1677571200"; d="scan'208";a="946094931"
+Received: from cuphoff-mobl.ger.corp.intel.com (HELO [10.249.254.120])
+ ([10.249.254.120])
  by fmsmga006-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 11 May 2023 03:14:03 -0700
-Message-ID: <562bd20d-36b9-a617-92cc-460f2eece22e@linux.intel.com>
-Date: Thu, 11 May 2023 11:14:01 +0100
+ 11 May 2023 03:14:09 -0700
+Message-ID: <bc8f6ada-5cac-9f39-9888-7e282247ffcb@linux.intel.com>
+Date: Thu, 11 May 2023 12:14:06 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.10.0
+ Thunderbird/102.8.0
 Content-Language: en-US
-To: Tejun Heo <tj@kernel.org>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
-References: <20230503083500.645848-1-maarten.lankhorst@linux.intel.com>
- <ZFVeI2DKQXddKDNl@slm.duckdns.org>
- <4d6fbce3-a676-f648-7a09-6f6dcc4bdb46@linux.intel.com>
- <ZFvmaGNo0buQEUi1@slm.duckdns.org>
-From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
-Organization: Intel Corporation UK Plc
-In-Reply-To: <ZFvmaGNo0buQEUi1@slm.duckdns.org>
+To: Rodrigo Vivi <rodrigo.vivi@kernel.org>,
+ Matthew Brost <matthew.brost@intel.com>
+References: <20230502001727.3211096-1-matthew.brost@intel.com>
+ <20230502001727.3211096-32-matthew.brost@intel.com>
+ <ZFVc1kd8KTEzrlAq@rdvivi-mobl4>
+From: =?UTF-8?Q?Thomas_Hellstr=c3=b6m?= <thomas.hellstrom@linux.intel.com>
+In-Reply-To: <ZFVc1kd8KTEzrlAq@rdvivi-mobl4>
 Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-Subject: Re: [Intel-xe] [Intel-gfx] [RFC PATCH 0/4] Add support for DRM
- cgroup memory accounting.
+Content-Transfer-Encoding: 8bit
+Subject: Re: [Intel-xe] [PATCH v2 31/31] drm/xe/uapi: Add some VM bind
+ kernel doc
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -66,100 +64,118 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Cc: amd-gfx@lists.freedesktop.org, Daniel Vetter <daniel@ffwll.ch>,
- Zefan Li <lizefan.x@bytedance.com>, intel-gfx@lists.freedesktop.org,
- linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org,
- Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
- Johannes Weiner <hannes@cmpxchg.org>, cgroups@vger.kernel.org,
- David Airlie <airlied@gmail.com>, intel-xe@lists.freedesktop.org
+Cc: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 
-On 10/05/2023 19:46, Tejun Heo wrote:
-> Hello,
-> 
-> On Wed, May 10, 2023 at 04:59:01PM +0200, Maarten Lankhorst wrote:
->> The misc controller is not granular enough. A single computer may have any number of
->> graphics cards, some of them with multiple regions of vram inside a single card.
-> 
-> Extending the misc controller to support dynamic keys shouldn't be that
-> difficult.
-> 
-> ...
->> In the next version, I will move all the code for handling the resource limit to
->> TTM's eviction layer, because otherwise it cannot handle the resource limit correctly.
+On 5/5/23 21:45, Rodrigo Vivi wrote:
+> On Mon, May 01, 2023 at 05:17:27PM -0700, Matthew Brost wrote:
+>> Try to explain how VM bind works in Xe.
+> We will need more doc and likely with examples and all...
+> but this is already something we need.
+>
+> Reviewed-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
+
+Reviewed-by: Thomas Hellström <thomas.hellstrom@linux.intel.com>
+
+
+>
+>> Signed-off-by: Matthew Brost <matthew.brost@intel.com>
+>> ---
+>>   include/uapi/drm/xe_drm.h | 45 ++++++++++++++++++++++++++++++++++++---
+>>   1 file changed, 42 insertions(+), 3 deletions(-)
 >>
->> The effect of moving the code to TTM, is that it will make the code even more generic
->> for drivers that have vram and use TTM. When using TTM, you only have to describe your
->> VRAM, update some fields in the TTM manager and (un)register your device with the
->> cgroup handler on (un)load. It's quite trivial to add vram accounting to amdgpu and
->> nouveau. [2]
+>> diff --git a/include/uapi/drm/xe_drm.h b/include/uapi/drm/xe_drm.h
+>> index cb4debe4ebda..c7137db2cbe8 100644
+>> --- a/include/uapi/drm/xe_drm.h
+>> +++ b/include/uapi/drm/xe_drm.h
+>> @@ -148,7 +148,16 @@ struct drm_xe_engine_class_instance {
+>>   	 * Kernel only classes (not actual hardware engine class). Used for
+>>   	 * creating ordered queues of VM bind operations.
+>>   	 */
+>> +	/**
+>> +	 * @DRM_XE_ENGINE_CLASS_VM_BIND_ASYNC: VM bind engine which are allowed
+>> +	 * to use in / out syncs. The out sync indicates bind op(s) completion.
+>> +	 */
+>>   #define DRM_XE_ENGINE_CLASS_VM_BIND_ASYNC	5
+>> +	/**
+>> +	 * @DRM_XE_ENGINE_CLASS_VM_BIND_SYNC: VM bind engine which are not
+>> +	 * allowed to use in / out syncs, The IOCTL return indicates bind op(s)
+>> +	 * completion.
+>> +	 */
+>>   #define DRM_XE_ENGINE_CLASS_VM_BIND_SYNC	6
+>>   
+>>   	__u16 engine_instance;
+>> @@ -322,6 +331,7 @@ struct drm_xe_vm_create {
+>>   
+>>   #define DRM_XE_VM_CREATE_SCRATCH_PAGE	(0x1 << 0)
+>>   #define DRM_XE_VM_CREATE_COMPUTE_MODE	(0x1 << 1)
+>> +	/** @DRM_XE_VM_CREATE_ASYNC_DEFAULT: Default VM bind engine is async */
+>>   #define DRM_XE_VM_CREATE_ASYNC_DEFAULT	(0x1 << 2)
+>>   #define DRM_XE_VM_CREATE_FAULT_MODE	(0x1 << 3)
+>>   
+>> @@ -379,21 +389,44 @@ struct drm_xe_vm_bind_op {
+>>   	/** @mem_region: Memory region to prefetch VMA to, instance not a mask */
+>>   	__u32 region;
+>>   
+>> +	/** @XE_VM_BIND_OP_MAP: Map a buffer object */
+>>   #define XE_VM_BIND_OP_MAP		0x0
+>> +	/** @XE_VM_BIND_OP_UNMAP: Unmap a buffer object or userptr */
+>>   #define XE_VM_BIND_OP_UNMAP		0x1
+>> +	/** @XE_VM_BIND_OP_MAP_USERPTR: Map a userptr */
+>>   #define XE_VM_BIND_OP_MAP_USERPTR	0x2
+>> +	/**
+>> +	 * @XE_VM_BIND_OP_RESTART: Restart last bind operation that failed with
+>> +	 * -ENOSPC
+>> +	 */
+>>   #define XE_VM_BIND_OP_RESTART		0x3
+>> +	/**
+>> +	 * @XE_VM_BIND_OP_UNMAP_ALL: Unmap all mappings associated with a
+>> +	 * buffer ibject
+>> +	 */
+>>   #define XE_VM_BIND_OP_UNMAP_ALL		0x4
+>> +	/**
+>> +	 * @XE_VM_BIND_OP_PREFETCH: For a deferred bind (faulting VM)
+>> +	 * validate buffer object and (re)bind
+>> +	 */
+>>   #define XE_VM_BIND_OP_PREFETCH		0x5
+>> -
+>> +	/** @XE_VM_BIND_FLAG_READONLY: Set mapping to read only */
+>>   #define XE_VM_BIND_FLAG_READONLY	(0x1 << 16)
+>> +	/**
+>> +	 * @XE_VM_BIND_FLAG_ASYNC: Sanity check for if using async bind engine
+>> +	 * (in / out syncs) this set needs to be set.
+>> +	 */
+>>   #define XE_VM_BIND_FLAG_ASYNC		(0x1 << 17)
+>> -	/*
+>> +	/**
+>> +	 * @XE_VM_BIND_FLAG_IMMEDIATE:
+>> +	 *
+>>   	 * Valid on a faulting VM only, do the MAP operation immediately rather
+>>   	 * than differing the MAP to the page fault handler.
+>>   	 */
+>>   #define XE_VM_BIND_FLAG_IMMEDIATE	(0x1 << 18)
+>> -	/*
+>> +	/**
+>> +	 * @XE_VM_BIND_FLAG_NULL:
+>> +	 *
+>>   	 * When the NULL flag is set, the page tables are setup with a special
+>>   	 * bit which indicates writes are dropped and all reads return zero. The
+>>   	 * NULL flags is only valid for XE_VM_BIND_OP_MAP operations, the BO
+>> @@ -401,6 +434,12 @@ struct drm_xe_vm_bind_op {
+>>   	 * VK sparse bindings.
+>>   	 */
+>>   #define XE_VM_BIND_FLAG_NULL		(0x1 << 19)
+>> +	/**
+>> +	 * @XE_VM_BIND_FLAG_RECLAIM: Should be set when a VM is in an error
+>> +	 * state (bind op returns -ENOSPC), used with sync bind engines to issue
+>> +	 * UNMAP operations which hopefully free enough memory so when VM is
+>> +	 * restarted via @XE_VM_BIND_OP_RESTART the failed bind ops succeed.
+>> +	 */
+>>   #define XE_VM_BIND_FLAG_RECLAIM		(0x1 << 20)
+>>   
+>>   	/** @reserved: Reserved */
+>> -- 
+>> 2.34.1
 >>
->> If you want to add a knob for scheduling weight for a process, it makes sense to
->> also add resource usage as a knob, otherwise the effect of that knob is very
->> limited. So even for Tvrtko's original proposed usecase, it would make sense.
-> 
-> It does make sense but unlike Tvrtko's scheduling weights what's being
-> proposed doesn't seem to encapsulate GPU memory resource in a generic enough
-> manner at least to my untrained eyes. ie. w/ drm.weight, I don't need any
-> specific knoweldge of how a specific GPU operates to say "this guy should
-> get 2x processing power over that guy". This more or less holds for other
-> major resources including CPU, memory and IO. What you're proposing seems a
-> lot more tied to hardware details and users would have to know a lot more
-> about how memory is configured on that particular GPU.
-> 
-> Now, if this is inherent to how all, or at least most, GPUs operate, sure,
-> but otherwise let's start small in terms of interface and not take up space
-> which should be for something universal. If this turns out to be the way,
-> expanding to take up the generic interface space isn't difficult.
-> 
-> I don't know GPU space so please educate me where I'm wrong.
-
-I was hoping it might be passable in principle (in some form, pending 
-discussion on semantics) given how Maarten's proposal starts with only 
-very specific per-device-per-memory regions controls, which is 
-applicable to many devices. And hard limit at that, which probably has 
-less complicated semantics, or at least implementation.
-
-My understanding of the proposal is that the allocation either fits, or 
-it evicts from the parent's hierarchy (if possible) and then fits, or it 
-fails. Which sounds simple enough.
-
-I do however agree that it is a limited use case. So from the negative 
-side of the debating camp I have to ask if this use case could be simply 
-satisfied by providing a driver/device global over commit yes/no 
-control? In other words, is it really important to partition the vram 
-space ahead of time, and from the kernel side too? Wouldn't the relevant 
-(highly specialised) applications work just fine with global over commit 
-disabled? Even if the option to configure their maximum allowed working 
-set from the userspace side was needed.
-
-Or if we conclude cgroup controller is the way to go, would adding less 
-specific limits make it more palatable? I am thinking here some generic 
-"device memory resident". Not per device, not per memory region. So 
-userspace/admins have some chance of configuring generic limits. That 
-would require coming up with more generic use cases though so another 
-thing to discuss. Like who would use that and for what.
-
-Assuming also we can agree that "device memory resident" is a 
-stable/solid concept across drm. Should be easier than for integrated 
-GPUs, for which I have to admit I currently don't remember if 
-allocations are already consistently covered by the memory controller. 
-Even if they are ownership is probably wrong.
-
-Group ownership is possibly a concern in this proposal too. Because I 
-remember the previous attempt of adding some drm stats to memcg 
-explained that for instance on Android all buffers are allocated by a 
-central process and then handed over to other processes. So transferring 
-ownership was explained as critical.
-
-Regards,
-
-Tvrtko
-
-P.S.
-On the matter of naming the uapi interface - in any case I wouldn't use 
-the "unqualified" drm namespace such as drm.max/current/capacity. I 
-think all those should include a specific prefix to signify it is about 
-memory. In some way.
