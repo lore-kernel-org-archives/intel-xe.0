@@ -4,54 +4,150 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5E131C7EE22
-	for <intel-xe@archiver.kernel.org>; Thu, 11 May 2023 11:43:44 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 617B9C7EE23
+	for <intel-xe@archiver.kernel.org>; Thu, 11 May 2023 12:14:46 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0001610E09C;
-	Thu, 11 May 2023 11:43:43 +0000 (UTC)
-Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2C8CA10E09C
- for <intel-xe@lists.freedesktop.org>; Thu, 11 May 2023 11:43:41 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 18C7A10E09C;
+	Thu, 11 May 2023 12:14:46 +0000 (UTC)
+Received: from mga06.intel.com (mga06b.intel.com [134.134.136.31])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4AFB110E09C
+ for <intel-xe@lists.freedesktop.org>; Thu, 11 May 2023 12:14:44 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1683805421; x=1715341421;
- h=message-id:date:mime-version:subject:to:cc:references:
- from:in-reply-to:content-transfer-encoding;
- bh=/G8nXUuiA1yluQOmDEvDFdWTT2XnaplCRIGl+Kd8qHc=;
- b=kWnb/ctEnSa6WdRPnopk8f8dRsDCYaCz8mYqsihnW5gc0hSADhc0BGOU
- A49HokbrzWYWpwrvvfi2bUsb46hJrggiuU9GfM7Onvg/zO/XNOpYJpTRz
- JPXzs5dA6GrgnuLGI8fRogH94nyfaSf21RHYcxS5M/8UWQw9xMn1TN6Q3
- LMAEF5ZzCgQFkw8KxF9d3Yf1sLzTNzWtp7iscgu1UXdiibjDgqZhoAuse
- ORxjL/gU+2OsGmC/rpUGISe/S3sFxTUKox+fu3pJEhR1av7AEzftYx/5f
- OjxVgvqxInXD3gm5CDtL67S2EESb6Psnn3+EqqN6qCH1sLC/h9R7usbmQ A==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10706"; a="330096656"
-X-IronPort-AV: E=Sophos;i="5.99,266,1677571200"; d="scan'208";a="330096656"
-Received: from fmsmga002.fm.intel.com ([10.253.24.26])
- by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 11 May 2023 04:43:40 -0700
+ t=1683807284; x=1715343284;
+ h=message-id:date:subject:to:references:from:in-reply-to:
+ content-transfer-encoding:mime-version;
+ bh=QnEBdU4jaGThS0zH8U6F73ENEu+7T9kX/Xqb+BpTKR4=;
+ b=lJZI3CRCZF+JJh+U4+riT4kpO6+fEuiK6mxsPnhgam28EiixTDhuX+Eh
+ sjthl7bxAR9/rHw3YbX2R19sfE2C3esplLxDMMR0utyywIjdhwoN3Orzk
+ t2BXMf9p6izoGOXYPfbGFx3KoHfbRJtKRG+OlxYQCTuTQ+eBqH73qQFLv
+ oTNUqYaqSv878GS33z1Dk5Mb8kBKgWNjjZgGNt2AjtQdPk0UpxhktUIfN
+ 1Up8dQJ4RiCe0xZG8e84YGU797oPHJnFQQM+EFqToRtATFUtdeiWGkblx
+ GpA409mc4G5HeT8E/YBGnPsalQSw5WTR2O1H1I5jC5g8zPh5NxmKNcmiN w==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10706"; a="413812065"
+X-IronPort-AV: E=Sophos;i="5.99,266,1677571200"; d="scan'208";a="413812065"
+Received: from orsmga003.jf.intel.com ([10.7.209.27])
+ by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 11 May 2023 05:14:43 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10706"; a="811553347"
-X-IronPort-AV: E=Sophos;i="5.99,266,1677571200"; d="scan'208";a="811553347"
-Received: from dmansoco-mobl.ger.corp.intel.com (HELO [10.252.14.116])
- ([10.252.14.116])
- by fmsmga002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 11 May 2023 04:43:38 -0700
-Message-ID: <0a7f7d48-4423-1187-63d2-dfa6b85beba9@intel.com>
-Date: Thu, 11 May 2023 12:43:36 +0100
+X-IronPort-AV: E=McAfee;i="6600,9927,10706"; a="650146630"
+X-IronPort-AV: E=Sophos;i="5.99,266,1677571200"; d="scan'208";a="650146630"
+Received: from orsmsx601.amr.corp.intel.com ([10.22.229.14])
+ by orsmga003.jf.intel.com with ESMTP; 11 May 2023 05:14:43 -0700
+Received: from orsmsx610.amr.corp.intel.com (10.22.229.23) by
+ ORSMSX601.amr.corp.intel.com (10.22.229.14) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.23; Thu, 11 May 2023 05:14:42 -0700
+Received: from orsmsx610.amr.corp.intel.com (10.22.229.23) by
+ ORSMSX610.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.23; Thu, 11 May 2023 05:14:42 -0700
+Received: from ORSEDG602.ED.cps.intel.com (10.7.248.7) by
+ orsmsx610.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.23 via Frontend Transport; Thu, 11 May 2023 05:14:42 -0700
+Received: from NAM10-MW2-obe.outbound.protection.outlook.com (104.47.55.100)
+ by edgegateway.intel.com (134.134.137.103) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.1.2507.23; Thu, 11 May 2023 05:14:42 -0700
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=ACZkx3Ddd6FfQCtsPI/87XqQg7jcW4+R97iEGKlNkNXTp9fjKip0JYZVK4txU6AOVm/gEEetzqS95U9e1C5Yr+wasjnEKwfKZCzoPORWk+FfhuELhnEbY/0NfweoWxVN+44tS+ljHZalXRgv4MZVz4nwqE+nIL0g4l7BC/iCpuOKU15Kcwvw4DMeYclurzpVh7E/r+EmV6+D/qHBmIGg3FMfBJG6WX/O2CmE9TGvkLl77rKaASlGRG5mJZY8V8UmttN99ZcYoJlYrDtyrnvbcylMZPG92OQRGwlNxLoI+7nwYhJhzIPfWKQVcAZ4LtIMTHKCiwqEkZ6KgtM+TLtzRg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=GRJcsULH0SZEzXPOKQoEsBSm69bsMsP4t8a6Ca75xE4=;
+ b=DURV4MxGoXaNjY0OVFL+J8bThcJ9d2iL93qNmXca7hfO5HLioda8ZsuUtjvQpcxTImAvlu95KpuvNY5o6dn5SvJgWcA1FP9ZDeVlzA10hJ/oCZVHVdEgb2Vt9zZxpxxGPvJ4Xtus48AOz10+pNGBFJdmDdo/3VVhqFfFmwUp65efqSmq02eM7rWU996HambOaaCiIf1qHSB3+JFXNEByb7EWQuxDwJkMT3PIWX8pApj02VEg3By8TOQ20xsctFO1pFoqTDstFkOeeF/FN0OQI+bfBabMTAxyIcJgem2N8FvygbPLnWK2/ixHmCR968AqqcKywQCPPX+udC4dfDzB3w==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
+ dkim=pass header.d=intel.com; arc=none
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=intel.com;
+Received: from BL1PR11MB5480.namprd11.prod.outlook.com (2603:10b6:208:314::6)
+ by CY8PR11MB6940.namprd11.prod.outlook.com (2603:10b6:930:58::17)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6363.33; Thu, 11 May
+ 2023 12:14:28 +0000
+Received: from BL1PR11MB5480.namprd11.prod.outlook.com
+ ([fe80::7313:20af:ba84:eb1b]) by BL1PR11MB5480.namprd11.prod.outlook.com
+ ([fe80::7313:20af:ba84:eb1b%4]) with mapi id 15.20.6387.020; Thu, 11 May 2023
+ 12:14:27 +0000
+Message-ID: <5dcf50c8-0963-813f-68d4-b206549f1c31@intel.com>
+Date: Thu, 11 May 2023 17:44:18 +0530
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+ Firefox/102.0 Thunderbird/102.10.1
+Content-Language: en-US
+To: Matt Roper <matthew.d.roper@intel.com>, <intel-xe@lists.freedesktop.org>
+References: <20230511034722.1929038-1-matthew.d.roper@intel.com>
+ <20230511034722.1929038-16-matthew.d.roper@intel.com>
+From: "Iddamsetty, Aravind" <aravind.iddamsetty@intel.com>
+In-Reply-To: <20230511034722.1929038-16-matthew.d.roper@intel.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: PN2PR01CA0017.INDPRD01.PROD.OUTLOOK.COM
+ (2603:1096:c01:25::22) To BL1PR11MB5480.namprd11.prod.outlook.com
+ (2603:10b6:208:314::6)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Firefox/102.0 Thunderbird/102.10.0
-Content-Language: en-GB
-To: Rodrigo Vivi <rodrigo.vivi@kernel.org>
-References: <20230505153854.343944-1-matthew.auld@intel.com>
- <20230505153854.343944-2-matthew.auld@intel.com>
- <ZFUyhLPt8MmBi+A8@rdvivi-mobl4>
-From: Matthew Auld <matthew.auld@intel.com>
-In-Reply-To: <ZFUyhLPt8MmBi+A8@rdvivi-mobl4>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-Subject: Re: [Intel-xe] [PATCH 2/3] drm/xe: fix xe_device_mem_access_get()
- race
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: BL1PR11MB5480:EE_|CY8PR11MB6940:EE_
+X-MS-Office365-Filtering-Correlation-Id: 951de01a-bfc3-494d-c185-08db52194409
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: zSMVOvnyBBUdJVX/ym+CFSqTn3cDglQrQqV5wvw2ugANoLHkxFMLHAMeR1LS1bFd1KDj03noj7yxsAddS5lC0Fx18RnKB7cAeUHaazQbbxdzVsXzW2xP2ab/MNJaMocnkDW2X+4/0I/tDjcGhWOjhj42MvJcojHXg1l1ZyUi4tpqf2+a2aI440v8KH52ctRivqlKAIAu3hcB3fSu3KdnBGBzxj68MS85klkWFZa+kAYXb4IbV9Nvcdlw2yS+SoWS/9qhQAxV9gg04aMLZJQds4rasxKM4952JuZs5fbVxeoJMEDYw3BZUhStxzDJ3IQgRlCbCZdiM74Ylq0bWPRuX5xQnZC8ClkXi92zSUvwhf3Cc0EHheHUdSshsnBbfloTSV5fgcyX+hyoU3sZuCERFTd05UbDwWwl1Wn9+T8JfZviKE+jgG06SEZYrBuIDHqP+DNZpOK0c6NCaKr5YqwLNFwOQudHzz/HLADpQA5hm5HH+3e0u5iPiSe1H9HTOV95d2uguWV1H8391dxF5teAQR+Xi7EMnq21F7bHsjPj953vVn1oi+HOW6pbtYG0oyjDTrDnYV7cpVbpsWu0w3ElNzKaCT7QMwtWhyFmQNCs7ej2MiEq2Glc1cJXkVB9ROr7W1AYv3TNQeRMqX823/GZ1g==
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:BL1PR11MB5480.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230028)(376002)(346002)(366004)(136003)(39860400002)(396003)(451199021)(5660300002)(478600001)(31686004)(6486002)(8676002)(8936002)(41300700001)(316002)(6666004)(53546011)(66556008)(66476007)(66946007)(26005)(6506007)(6512007)(2906002)(83380400001)(2616005)(186003)(82960400001)(86362001)(31696002)(36756003)(38100700002)(43740500002)(45980500001);
+ DIR:OUT; SFP:1102; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?aEd6WW4vZFA0ZHVVTFdEdGtVWWJNZVRscmQ3QjJlRXY0ZU91eUlpNVRUQ0x6?=
+ =?utf-8?B?cC9xRzdMc3pCcWNGNEY1blBQekFST1l1QU9WT09PeG1SdjduN1RUc3ErMEN3?=
+ =?utf-8?B?bTliTnMwclJjQm5Na0xZcmxKYkREWG1ROXNUcUN5c0t5WEI1ZmpaeEFsUVVp?=
+ =?utf-8?B?b0xwSmNxaTBLNWhsd3hqUklKbzNscGh3RjBDNW81WFNYek9aSldDa2R0VXZw?=
+ =?utf-8?B?YXhoYzBTYlBRRFNkTzFZRFVDVVl0Zm1EODRIWENhZ3R6TGdFUzJBbUU3NEdD?=
+ =?utf-8?B?SzJ0ajdwV0NvK0hBbnNPNWMyRDVSK2E4K3V4MDFpNHcwTGhoNGVRWlpjMVNy?=
+ =?utf-8?B?YU1rc0FCRnFUOTRKa1hPeGlYZzBKb09aNkkxQ2MzdzJMUlRZUTJQWVliRURV?=
+ =?utf-8?B?RkNGT2o4dHh3clJwTmx2b1dlRjdPNnJPMG9XSTZUOGh3VFFpSXY4K1BURXho?=
+ =?utf-8?B?RjZVTFlhREJnUWE4U2FHUFdvYUtJUGo3eG5BQldaUlU5SW5BdWdJN2VZcGVR?=
+ =?utf-8?B?QUFiNWRKNTV3NjFnZ3pVak9vdTByWHFER3VNWlRiV2lsNXRydmZwb1FRT05r?=
+ =?utf-8?B?WlY1SnRKMTNjdGNLYnBVbUhSZ0Z1UEg1UU81azM5Z1lienBLZ2l1OXl6S3dZ?=
+ =?utf-8?B?S3pic0xFZzZhU0NCRkl1NFp0Rm5XOUUwVXVLSndUeDJVeGtnQUdLOEg0emhO?=
+ =?utf-8?B?cDdJOXQ3VGZJbndWVHRXa0xMSWhmeVZlTkxGdHZJNjg4Q3dVbHFYOG43cStv?=
+ =?utf-8?B?WnpvUUtXZ2FoOGFBRnl5MUdaUHI5Ym5HWUZIbHN6K0lTZDFOVjFvbHpXVDVB?=
+ =?utf-8?B?ZnB3SllxTG1hZEJYNEpOS3pYSVB2RGlUQUNOL3BQTkFZMVNWV2Z6SmtzRnNh?=
+ =?utf-8?B?VW83bWFOOHZzampYWXI1K3NLMWdtdi9mbit3MUdnaVRIb0NkcjQ2V2ZObnlM?=
+ =?utf-8?B?U051WDY2UVdOclk3Y2pHeXBBMFEvS1FlaXhaNWVsdXlwYTk1YTBDQ1JVRkFL?=
+ =?utf-8?B?WnJIdVVERkUvQnRhcE92SzlpOENxcmMvMU1pdFlmWkUyNzdnRk10SlNpWDVt?=
+ =?utf-8?B?dWlLZStzcVhzMjNYa3I1elovdEtDVEcybWF5alZ3YWJ0QUNvS3BnOVZLTy9l?=
+ =?utf-8?B?bk03Zi8rK21QcjVPbUxCMEZoeGZuZXFxU05xeG8vQy9Vd294cVl1Vk4vaUJL?=
+ =?utf-8?B?SW9VRUd3bnZ1VnQ1MTVqL1lhMzJqVFJ2YVE4TU5vdUJEQ2hDTWtTaW5SL0ha?=
+ =?utf-8?B?UUhQTm9ML3VSWG5ZdnVHcW1EU1B1ZXh1ZmRlS0RyZkpMYW1rck15QmRMTnhl?=
+ =?utf-8?B?OGtOTlA1MU1vYXB4enlDNFBTK2greDR4RjdqL1k5R0tjaEdUTG4zTEhCYXli?=
+ =?utf-8?B?MWNMY3lRdGI0anRXYnFMMktHcGtOeUppV1V6MlB1ZWdYdVhzQzhLOWo5aEJq?=
+ =?utf-8?B?bkc4QS8wZjEzQmgrWmhBN25kc0xRWVEvTHpibStXb2xnRWxoMDZHT3VQd1lB?=
+ =?utf-8?B?aituSFIrbEs4VTY3QUFOYTBHYUhicXBKR1dCWTNDWE43RzRWQ0dLNjV1b2lO?=
+ =?utf-8?B?WHdxQW52R2VzR3hNREJrRy9zNGhQWWVmOFdiOURUSlcrdUZFYm92c0pvUHhU?=
+ =?utf-8?B?cVNoNzlPaW5PYzFOVHJYUEdZalRWY0gvSjF6QWJrUWtzZEVYUlZKWFFRRmtH?=
+ =?utf-8?B?WXlWdEtGZWI5YzlZYWFKZUtSdmJvSG02OG9OMlRBNVBENUp1UTJGWE9lWXpF?=
+ =?utf-8?B?ZkhpQk5Yc002VmdWaEJxMUZTTERYQlJ3Z1BWNGRzSVhrcTNYVXJGMzdNVk9m?=
+ =?utf-8?B?M1RvWDlFVkE5UHRPdmFLQzkwWkNOWjlpY0pUZEl3MlFlT1N1ZkhrUU9CYy8r?=
+ =?utf-8?B?T1poUTVmdFZJenlyaXNUMVhuQ28zb3JNK0UzLzNZUERqWFpIUDZuTER3SFNl?=
+ =?utf-8?B?Z0xYTmhYaEhYejlZNWFPSnZIRFM0UjR5MCt6VlR2a21lZHhGT2pjN0h2bTdW?=
+ =?utf-8?B?SE4yZmNqY3d4L3dGZ0FMTVVOR3ZEY0ZWUkJGcEs4OFhLSGpxcEdEcmwrZXYw?=
+ =?utf-8?B?YkwwOEQ4U0MvLzJpWTlaUUxOZ01RRm1zc3U0Uk9uR1Q5OWQ0QUxiZitlRVBT?=
+ =?utf-8?B?WDRlRTF3eFBmekJsdGFmc2M5Y05qRklnZmNvMWs2VTFmRkRIeEtySlNQaFpH?=
+ =?utf-8?B?UEE9PQ==?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: 951de01a-bfc3-494d-c185-08db52194409
+X-MS-Exchange-CrossTenant-AuthSource: BL1PR11MB5480.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 11 May 2023 12:14:27.6484 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: GL+PaFCdcV3cuHmMuWHNuzaDvr9zqlNydnfgRLnuXiXkPDDDIMJclgipv9Q3njSw2cuvkFnv0iGn2P3ihai4pAhL8L7vmdnstJxPAnphPhs=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: CY8PR11MB6940
+X-OriginatorOrg: intel.com
+Subject: Re: [Intel-xe] [PATCH 15/26] drm/xe: Interrupts are delivered
+ per-tile, not per-GT
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -63,144 +159,81 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-xe@lists.freedesktop.org, Rodrigo Vivi <rodrigo.vivi@intel.com>
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On 05/05/2023 17:44, Rodrigo Vivi wrote:
-> On Fri, May 05, 2023 at 04:38:53PM +0100, Matthew Auld wrote:
->> It looks like there is at least one race here, given that the
->> pm_runtime_suspended() check looks to return false if we are in the
->> process of suspending the device (RPM_SUSPENDING vs RPM_SUSPENDED). We
->> later also do xe_pm_runtime_get_if_active(), but since the device is
->> suspending or has now suspended, this doesn't do anything either.
->> Following from this we can potentially return from
->> xe_device_mem_access_get() with the device suspended or about to be,
->> leading to broken behaviour.
->>
->> Attempt to fix this by always grabbing the runtime ref when our internal
->> ref transitions from 0 -> 1, and then wrap the whole thing with a lock
->> to ensure callers are serialized.
->>
->> Closes: https://gitlab.freedesktop.org/drm/xe/kernel/-/issues/258
->> Signed-off-by: Matthew Auld <matthew.auld@intel.com>
->> Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
->> Cc: Thomas Hellström <thomas.hellstrom@linux.intel.com>
->> Cc: Matthew Brost <matthew.brost@intel.com>
->> ---
->>   drivers/gpu/drm/xe/xe_device.c       | 11 +++--------
->>   drivers/gpu/drm/xe/xe_device_types.h |  5 ++++-
->>   drivers/gpu/drm/xe/xe_pm.c           |  9 ++-------
->>   drivers/gpu/drm/xe/xe_pm.h           |  2 +-
->>   4 files changed, 10 insertions(+), 17 deletions(-)
->>
->> diff --git a/drivers/gpu/drm/xe/xe_device.c b/drivers/gpu/drm/xe/xe_device.c
->> index 01c497bcf9a5..0a18b41a0e1a 100644
->> --- a/drivers/gpu/drm/xe/xe_device.c
->> +++ b/drivers/gpu/drm/xe/xe_device.c
->> @@ -406,17 +406,12 @@ u32 xe_device_ccs_bytes(struct xe_device *xe, u64 size)
->>   
->>   void xe_device_mem_access_get(struct xe_device *xe)
->>   {
->> -	bool resumed = xe_pm_runtime_resume_if_suspended(xe);
->> -
->>   	mutex_lock(&xe->mem_access.lock);
->> -	if (xe->mem_access.ref++ == 0)
->> -		xe->mem_access.hold_rpm = xe_pm_runtime_get_if_active(xe);
->> +	if (xe->mem_access.ref == 0)
->> +		xe->mem_access.hold_rpm = xe_pm_runtime_resume_and_get(xe);
->> +	xe->mem_access.ref++;
-> 
-> my memory is good to the point that I have tried this before...
-> but not good enough to remember the issues that I got with this
-> approach :(
 
-Ok, it seems one big issue is around xe_pm_runtime_resume() et al. The 
-lock fixes all the races, but xe_pm_runtime_resume() seems to call 
-xe_device_mem_access_{get,put}() in loads of places AFAICT, but that is 
-ofc going to deadlock if we introduce a lock, since we are inside the 
-callback. But I think even without that lock it will still deadlock, 
-since the runtime_pm code will see that we are PM_RESUMING and wait for 
-itself. I'm guessing that explains why we had the conditional 
-pm_runtime_suspended() and if_active(), since that prevents triggering 
-the runtime_pm from our callbacks (we will either be PM_SUSPENDING or 
-PM_RESUMING), but then we are ofc left with all the nasty races. Any 
-ideas? It seems like the resume/suspend callbacks should fundamentally 
-never be calling xe_device_mem_access_{get,put}()?
 
+On 11-05-2023 09:17, Matt Roper wrote:
+> IRQ delivery and handling needs to be handled on a per-tile basis.  Note
+> that this is true even for the "GT interrupts" relating to engines and
+> GuCs --- the interrupts relating to both GTs get raised through a single
+> set of registers in the tile's sgunit range.
 > 
->>   	mutex_unlock(&xe->mem_access.lock);
->>   
->> -	/* The usage counter increased if device was immediately resumed */
->> -	if (resumed)
->> -		xe_pm_runtime_put(xe);
->> -
->>   	XE_WARN_ON(xe->mem_access.ref == S32_MAX);
->>   }
->>   
->> diff --git a/drivers/gpu/drm/xe/xe_device_types.h b/drivers/gpu/drm/xe/xe_device_types.h
->> index 59462933f67a..9e37189d5745 100644
->> --- a/drivers/gpu/drm/xe/xe_device_types.h
->> +++ b/drivers/gpu/drm/xe/xe_device_types.h
->> @@ -256,7 +256,10 @@ struct xe_device {
->>   	 * triggering additional actions when they occur.
->>   	 */
->>   	struct {
->> -		/** @lock: protect the ref count */
->> +		/**
->> +		 * @lock: Serialize xe_device_mem_access users,
->> +		 * and protect the below internal state, like @ref.
->> +		 */
->>   		struct mutex lock;
->>   		/** @ref: ref count of memory accesses */
->>   		s32 ref;
->> diff --git a/drivers/gpu/drm/xe/xe_pm.c b/drivers/gpu/drm/xe/xe_pm.c
->> index b7b57f10ba25..b2ffa001e6f7 100644
->> --- a/drivers/gpu/drm/xe/xe_pm.c
->> +++ b/drivers/gpu/drm/xe/xe_pm.c
->> @@ -210,14 +210,9 @@ int xe_pm_runtime_put(struct xe_device *xe)
->>   	return pm_runtime_put_autosuspend(xe->drm.dev);
->>   }
->>   
->> -/* Return true if resume operation happened and usage count was increased */
->> -bool xe_pm_runtime_resume_if_suspended(struct xe_device *xe)
->> +bool xe_pm_runtime_resume_and_get(struct xe_device *xe)
->>   {
->> -	/* In case we are suspended we need to immediately wake up */
->> -	if (pm_runtime_suspended(xe->drm.dev))
->> -		return !pm_runtime_resume_and_get(xe->drm.dev);
->> -
->> -	return false;
->> +	return !pm_runtime_resume_and_get(xe->drm.dev);
+> The (mis)use of struct xe_gt as a target for MMIO operations in the
+> driver makes the code somewhat confusing since we wind up needing a GT
+> pointer to handle programming that's unrelated to the GT.  To mitigate
+> this confusion, all of the xe_gt structures used solely as an MMIO
+> target in interrupt code are renamed to 'mmio.'  Reworking the driver's
+> MMIO handling to not be dependent on xe_gt is planned as a future
+> update.
 > 
-> now with similar name I feel strange that we are not aligned with their
-> return. Although I prefer our one...
+> Note that GT initialization code currently calls xe_gt_irq_postinstall()
+> in an attempt to enable the HWE interrupts for the GT being initialized.
+> Unfortunately xe_gt_irq_postinstall() doesn't really match its name and
+> does a bunch of other stuff unrelated to the GT interrupts (such as
+> enabling the top-level device interrupts).  That will be addressed in
+> future patches.
 > 
-> Anyway, the code is right... if you are testing and it is working well
-> let's move with this.
+> Signed-off-by: Matt Roper <matthew.d.roper@intel.com>
+> ---
+>  drivers/gpu/drm/xe/xe_gt.c  |   2 +-
+>  drivers/gpu/drm/xe/xe_irq.c | 334 ++++++++++++++++++++----------------
+>  drivers/gpu/drm/xe/xe_irq.h |   4 +-
+>  3 files changed, 187 insertions(+), 153 deletions(-)
 > 
-> Reviewed-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
-> (for the series)
-> 
-> but let's get an Ack from Maarten since he was kept as author on patch 3
-> and it is modified from his merged one.
-> 
->>   }
->>   
->>   int xe_pm_runtime_get_if_active(struct xe_device *xe)
->> diff --git a/drivers/gpu/drm/xe/xe_pm.h b/drivers/gpu/drm/xe/xe_pm.h
->> index 6a885585f653..1b4c15b5e71a 100644
->> --- a/drivers/gpu/drm/xe/xe_pm.h
->> +++ b/drivers/gpu/drm/xe/xe_pm.h
->> @@ -19,7 +19,7 @@ int xe_pm_runtime_suspend(struct xe_device *xe);
->>   int xe_pm_runtime_resume(struct xe_device *xe);
->>   int xe_pm_runtime_get(struct xe_device *xe);
->>   int xe_pm_runtime_put(struct xe_device *xe);
->> -bool xe_pm_runtime_resume_if_suspended(struct xe_device *xe);
->> +bool xe_pm_runtime_resume_and_get(struct xe_device *xe);
->>   int xe_pm_runtime_get_if_active(struct xe_device *xe);
->>   
->>   #endif
->> -- 
->> 2.40.0
->>
+
+
+<snip>
+>  static u32 dg1_intr_disable(struct xe_device *xe)
+>  {
+> -	struct xe_gt *gt = xe_primary_mmio_gt(xe);
+> +	struct xe_gt *mmio = xe_primary_mmio_gt(xe);
+>  	u32 val;
+>  
+>  	/* First disable interrupts */
+> -	xe_mmio_write32(gt, DG1_MSTR_TILE_INTR, 0);
+> +	xe_mmio_write32(mmio, DG1_MSTR_TILE_INTR, 0);
+
+if sgunit registers are replicated per tile, but why DG1_MSR_TILE_INTR
+is handled on primary tile only, is this not a sgunit register?
+
+>  
+>  	/* Get the indication levels and ack the master unit */
+> -	val = xe_mmio_read32(gt, DG1_MSTR_TILE_INTR);
+> +	val = xe_mmio_read32(mmio, DG1_MSTR_TILE_INTR);
+>  	if (unlikely(!val))
+>  		return 0;
+>  
+> -	xe_mmio_write32(gt, DG1_MSTR_TILE_INTR, val);
+> +	xe_mmio_write32(mmio, DG1_MSTR_TILE_INTR, val);
+>  
+>  	return val;
+>  }
+>  
+>  static void dg1_intr_enable(struct xe_device *xe, bool stall)
+>  {
+> -	struct xe_gt *gt = xe_primary_mmio_gt(xe);
+> +	struct xe_gt *mmio = xe_primary_mmio_gt(xe);
+>  
+> -	xe_mmio_write32(gt, DG1_MSTR_TILE_INTR, DG1_MSTR_IRQ);
+> +	xe_mmio_write32(mmio, DG1_MSTR_TILE_INTR, DG1_MSTR_IRQ);
+>  	if (stall)
+> -		xe_mmio_read32(gt, DG1_MSTR_TILE_INTR);
+> +		xe_mmio_read32(mmio, DG1_MSTR_TILE_INTR);
+>  }
+>
+
+Thanks,
+Aravind.
+
