@@ -4,56 +4,152 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id BB89EC77B7C
-	for <intel-xe@archiver.kernel.org>; Thu, 11 May 2023 19:58:11 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6B710C7EE2D
+	for <intel-xe@archiver.kernel.org>; Thu, 11 May 2023 20:03:43 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5EB5210E0D0;
-	Thu, 11 May 2023 19:58:11 +0000 (UTC)
-Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 355C410E0D0;
- Thu, 11 May 2023 19:58:10 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3C1ED10E0DB;
+	Thu, 11 May 2023 20:03:43 +0000 (UTC)
+Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8A58810E0DB
+ for <intel-xe@lists.freedesktop.org>; Thu, 11 May 2023 20:03:41 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1683835090; x=1715371090;
- h=message-id:date:mime-version:subject:to:cc:references:
- from:in-reply-to:content-transfer-encoding;
- bh=oZQ2G4WUfAcfYRxx/1cCaNzzx8xkE/WLQXfCP4Oc3BE=;
- b=RQVkXxgujRE31u6lc6o95mbsv+b6k2nCThiGWri/sDONhfJE6LJJ2LZd
- phrgQ+djsmncOWjBn0z9QgWlsG1Rq84YtqKe9xRZlPot8nfHExgT9U8LA
- X9DbpHT6MR51OiBtDLfx/EdOfuIkqXpL0S2IAINCh5g1QbhRgw/JmX0ZF
- IlTn/7VKkfZ8P3d2LhOg5aSgbAKKApqd5ID/srDhlHO1wl6AhkFrm1siP
- L9lUIQFrCbYi14qehWLLbPtFqytW6y+bSgzkyj8bHOnSgwKIRVMacmYIF
- Ty/l9GhQL8lQq0RC/CN7hu/xhNwC3f/X9w+XO+f9jm7VBO4zbK2jJek1t A==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10707"; a="349456621"
-X-IronPort-AV: E=Sophos;i="5.99,268,1677571200"; d="scan'208";a="349456621"
-Received: from fmsmga006.fm.intel.com ([10.253.24.20])
- by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 11 May 2023 12:58:08 -0700
+ t=1683835422; x=1715371422;
+ h=from:to:cc:subject:date:message-id:references:
+ in-reply-to:content-id:content-transfer-encoding: mime-version;
+ bh=oXob5UCP+VMsfn/ksB/xqohzQjMsOWPss75UYsNI3vw=;
+ b=TLrdXIf7ElLnGizXp97IHXqn0ArSGIW2ywnOrkbCwR2Xbhm0UA9zuuAX
+ 0U5rSnpvXrrsTyGnj7EM1U2lPo6jSKReNrJS7j9utN6wkxW4/0yIeuSMM
+ P6R+c6ZqzRXrI3xYK93f8ucV1DivFUxZ0chKsBGaSUE07+0vYOE96dlKD
+ 1fcWqLqfKWpExYECswNq5uRCK8mBbXMWetZKNpwD6S3SGinThG9/C/+qt
+ IZwrwLf2KqR9ECf/M9AYhw8mQCcLyXxQM1A5oBAAC+NbEEEUC7i2jV5xA
+ G7HUGc3Wk1ARhFaUnf1V7q1VIAIVpuj8YENBtWq88GSpmD8dmi0BJDd9t A==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10707"; a="378753422"
+X-IronPort-AV: E=Sophos;i="5.99,268,1677571200"; d="scan'208";a="378753422"
+Received: from orsmga005.jf.intel.com ([10.7.209.41])
+ by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 11 May 2023 13:03:40 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10707"; a="946319301"
-X-IronPort-AV: E=Sophos;i="5.99,268,1677571200"; d="scan'208";a="946319301"
-Received: from acharach-mobl.ger.corp.intel.com (HELO [10.251.219.38])
- ([10.251.219.38])
- by fmsmga006-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 11 May 2023 12:58:03 -0700
-Message-ID: <a7200fd7-769c-6a32-0fa7-6a37b7214d70@linux.intel.com>
-Date: Thu, 11 May 2023 21:58:02 +0200
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Firefox/102.0 Thunderbird/102.11.0
+X-IronPort-AV: E=McAfee;i="6600,9927,10707"; a="874112221"
+X-IronPort-AV: E=Sophos;i="5.99,268,1677571200"; d="scan'208";a="874112221"
+Received: from fmsmsx602.amr.corp.intel.com ([10.18.126.82])
+ by orsmga005.jf.intel.com with ESMTP; 11 May 2023 13:03:40 -0700
+Received: from fmsmsx603.amr.corp.intel.com (10.18.126.83) by
+ fmsmsx602.amr.corp.intel.com (10.18.126.82) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.23; Thu, 11 May 2023 13:03:39 -0700
+Received: from fmsedg602.ED.cps.intel.com (10.1.192.136) by
+ fmsmsx603.amr.corp.intel.com (10.18.126.83) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.23 via Frontend Transport; Thu, 11 May 2023 13:03:39 -0700
+Received: from NAM10-MW2-obe.outbound.protection.outlook.com (104.47.55.107)
+ by edgegateway.intel.com (192.55.55.71) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.1.2507.23; Thu, 11 May 2023 13:03:39 -0700
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=EM3ECp1vwebo9bk+oFVQWr+ZyuabGloEszTx+MM88USR/Ct16K370rx45HRQaTvfTauy4aKTbIll397kE0k5YlzyHBs1Kz3kYl7XDB8tF5DDXB93b2XVzLYv0JuDC3Y9Gd5G+66zeZ1E9rEqafUVWHMLtm9m96sm77/4dDgs7c2IGPROBOHW4UNgVOQVKO9fJdfeS7LeWdMs75sKVRfInhkjBBwDWw9XF8GO3XhjaoUvDSpOB/2wcoqZwkJhMaEkimRZhaY+yBDZ6+EdZ1QGdkWTMlGNK3gh0inIqiymz71fFz/MljqmV3MlQr0sCXeT7hj2QWqrKdYr9FpDHUyMUw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=oXob5UCP+VMsfn/ksB/xqohzQjMsOWPss75UYsNI3vw=;
+ b=NprEBnH8J5Yie2b+61hs3+h7LSuMMa/vbzJJ+QN+XxYUsWgABX8f6OC3p0CWQzAlt3pEyLIf7O3VD60E6bq45c1J8iZtD4r3gx3R/qhhCwaMBL0xseEAn/V5UG2iLL6i9rLJB3FCia3a0Z+OL+b2YOk4HjEMOX4D7Y36/iOFJEkGag8jmK+Y4YOy7GLpKvJJRHFlehgr7fKw3wQBWh8279WFeUwjjCgZH3/KREwsH4NQFgR7Zkuatife2CONJcBPXVU0z4qZw+S57Xs8fUDVeGlWAf6f50IeETDFb1r5y1G6Fr7cDW97YjZkXSqvlhZM+ToaIGVbmw8J3kVmUnZodw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
+ dkim=pass header.d=intel.com; arc=none
+Received: from DM4PR11MB8179.namprd11.prod.outlook.com (2603:10b6:8:18e::22)
+ by BY1PR11MB8055.namprd11.prod.outlook.com (2603:10b6:a03:530::18) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6363.33; Thu, 11 May
+ 2023 20:03:37 +0000
+Received: from DM4PR11MB8179.namprd11.prod.outlook.com
+ ([fe80::3fa1:b97c:a5bb:651]) by DM4PR11MB8179.namprd11.prod.outlook.com
+ ([fe80::3fa1:b97c:a5bb:651%3]) with mapi id 15.20.6387.021; Thu, 11 May 2023
+ 20:03:37 +0000
+From: "Souza, Jose" <jose.souza@intel.com>
+To: "De Marchi, Lucas" <lucas.demarchi@intel.com>,
+ "jani.nikula@linux.intel.com" <jani.nikula@linux.intel.com>
+Thread-Topic: [Intel-xe] [PATCH 3/4] drm/xe/display: Consider has_display to
+ enable it
+Thread-Index: AQHZg3lXlCg7AEmARk2GyxyIlQQR0q9VBoIAgABJ/YCAAALjgIAACyAAgAAh3oA=
+Date: Thu, 11 May 2023 20:03:36 +0000
+Message-ID: <a07d22dca00b723638da0db67dd7b797f1bdbcb0.camel@intel.com>
+References: <20230510195424.3045127-1-lucas.demarchi@intel.com>
+ <20230510195424.3045127-4-lucas.demarchi@intel.com>
+ <defdf14f7a039003218c4f32c0375c33131e8164.camel@intel.com>
+ <njuthgb5uutcknbsxvvvxfx5636bofmwmfyjq6nbxkpbxai4xp@4vwutipfdpd7>
+ <9d04fce692222624580527c6d07ea88460a32ca7.camel@intel.com>
+ <oedsuayuo3wtdea6cvmzaoesji25bwbqohgemayj5ocybbzgtn@el2d34rwqfsn>
+In-Reply-To: <oedsuayuo3wtdea6cvmzaoesji25bwbqohgemayj5ocybbzgtn@el2d34rwqfsn>
+Accept-Language: en-US
 Content-Language: en-US
-To: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>, Tejun Heo <tj@kernel.org>
-References: <20230503083500.645848-1-maarten.lankhorst@linux.intel.com>
- <ZFVeI2DKQXddKDNl@slm.duckdns.org>
- <4d6fbce3-a676-f648-7a09-6f6dcc4bdb46@linux.intel.com>
- <ZFvmaGNo0buQEUi1@slm.duckdns.org>
- <562bd20d-36b9-a617-92cc-460f2eece22e@linux.intel.com>
-From: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
-In-Reply-To: <562bd20d-36b9-a617-92cc-460f2eece22e@linux.intel.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-Subject: Re: [Intel-xe] [Intel-gfx] [RFC PATCH 0/4] Add support for DRM
- cgroup memory accounting.
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+authentication-results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=intel.com;
+x-ms-publictraffictype: Email
+x-ms-traffictypediagnostic: DM4PR11MB8179:EE_|BY1PR11MB8055:EE_
+x-ms-office365-filtering-correlation-id: 9f7537a5-aee3-4793-d846-08db525ace80
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info: hFOm1SXYGgfhiTePFATM/CQ21CW2hbqqoFovtRWHZE4388/iRNr46PPNebkfGCar14tmVxuolfUeinAjD6O5g+HoUEwTLlZZvd/6pRSlOFe+WE3c/U2Ib2IMS8wnZDkWjs0JfEtcd7znmBlSx03HnNsV3ec8eZvb8r5aW8/T4/GyPyPjKvtyYgqaHZRDP9bVXsd7Zb6dxascvmKdQNv8nrjL8aGZv466ynRFr1+HK3deVpwzzqfg1P6pAMIMPrCJSukL8cwFypPr6E9ixE9Wt5F47LlstxxegtNwoIjTX6LLQm+8eXf5XcZkLRToewOHZ7rsaIOwqMxrHzwq5kT1zWd1otOme4HukHJCvvbu8nxM2Kv5C8eqR60n7+JzEIY0rM47wuczI7AkWnj5oUttHJzfiVVpGhEvNS2ffAQdPiuQIUrPrB+a1Ot1bUqzFFzdoE/pUdct/HnxXJ1kR2KtwTkVkNfG4pI/Tn7AsNYY2kteYX0DZcc+Iz2RoAoD753Lfn4DCMowMcoVe8qlmmaysheQWlXJpBK1/MiCw90Ps2HXQ+89stF5Cq9U0/e7pxpkXTw5Nud2XTpFN1pkuulNy9qfkSPq8uecgfpxiM3hMfo=
+x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:DM4PR11MB8179.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230028)(396003)(39860400002)(376002)(366004)(346002)(136003)(451199021)(2906002)(91956017)(76116006)(66446008)(66946007)(64756008)(478600001)(6512007)(66476007)(26005)(83380400001)(6486002)(6506007)(316002)(71200400001)(966005)(2616005)(66556008)(186003)(110136005)(4326008)(54906003)(86362001)(36756003)(41300700001)(38070700005)(122000001)(82960400001)(8936002)(38100700002)(8676002)(5660300002)(66899021);
+ DIR:OUT; SFP:1102; 
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0: =?utf-8?B?RkFwUjBSd09kNWJBMFhLSmVmMU5DSWVGVStBd2VtQmdRMmhvMGZsQmNMc1VD?=
+ =?utf-8?B?Wm0zMkU4NVlIY2ZZbHRMYTdkdHFINS9vTTh5YVZ5MmRPdzJmejFGSzVkNTZl?=
+ =?utf-8?B?Z0NIQi9VOXlaa3lKWTlWeFRESUpNMnBONmt3Mkt5MUpnRTREK1FPRlIwMWZh?=
+ =?utf-8?B?emFYS1kvQVg2M1pKaGpXNEo5d2I0Mjg3NmdVbmc1ZGUrcVFCZzlXSXFLV05B?=
+ =?utf-8?B?OFlPSmRFenZ1aERlakFTSVd4Mk1aWFRDajFDSkFOUFFKV2hkQzM2M25NSUk5?=
+ =?utf-8?B?ME5IWFBzdkd2TkcweTJhamRabjd1Q3lpSlVqUUVKM0E3dmNLQ3VJTXU4WE1i?=
+ =?utf-8?B?WDlEVlFQV3BiMVpNTjAzUnBjN2xVVDRvR0VmNmJVVGlLRG4xNG5uYVRUZWky?=
+ =?utf-8?B?TU5HMktCSEdjYmRFbTZQajFrUkhoZ1hTQjYwUjNOUkJCSlRwV2Q4Rk1wc09k?=
+ =?utf-8?B?Q2VmVmVGOHF5Ny90dnhSZ0NteGpwWjFjSUZCQ1RkazdTUGUxM04zUFdkb0cw?=
+ =?utf-8?B?M1hZNTJlMml4QlBtdUV5b1dXcXRwUHBrSFlUVVVvbk9zRHB2aENFQ0hFeTRh?=
+ =?utf-8?B?eGJGc2NnUG90OUt1NGY4MHdoZTA4cFJXbmRINkxwcnpaNzVDSmI4Y2lMN1ZK?=
+ =?utf-8?B?RnVUWGErcndVQ2NaTzZrMm0rT0xIaGhmalE4TkVmNWFENmV3V21aQWdqbXNH?=
+ =?utf-8?B?elZjSVBacmpuTWtSVktBRkNVZWY5bTNRZEEwZ3BRcWdKQlZXRXhWYnhvb21u?=
+ =?utf-8?B?ckhuVXN6QjhUYVJDYXEwWDhTaVovRnNtQ1RidzM4NU1KTllJaGZnUUZDZWhK?=
+ =?utf-8?B?MjRjaFFneUNrWnpnUzJKNzJUV0pDVUFkc0VTRjNMZFJYTzZZbXdDalVyaHlj?=
+ =?utf-8?B?U2U1QmFBSjFZdVNhbU8ySWpNV3I3czMvb3p5bnJhUHp6dXdXOG5DczIzZFhw?=
+ =?utf-8?B?Skx6RjlGdWJ0dFZyTHNFNTAwdFBIQk02WDNOL2RGNlhmajNNWWdWVkRzYlRM?=
+ =?utf-8?B?MkZHV1VQWkZzV244VCtUUmFuK1hRYytTRzNjWmc5d0crR0xlY2NhUkhYRlBu?=
+ =?utf-8?B?UlhqQ0FCL01JSFFzSG1qeVptUlhvT0ZDdnVMallQT1UyVENEYWc2bDFERHBN?=
+ =?utf-8?B?NkI0L0xSb2NSUU81eVhESGh6dXF1K05UMnBXNHY1MUFtenBzd25jWURHN1FZ?=
+ =?utf-8?B?Y2NQVzZCRk40eCtqWHJPSFdjcWVBTkdqN2hjbFZkdnNuRktwUzQ1alo4RFVk?=
+ =?utf-8?B?alRiSXB5Nngzc2ZWOWhTYmRDTnVFcmZJRWdsLzA1VFdMYXIvSGsxeTVpWHVq?=
+ =?utf-8?B?clR5UGdNdEQrRG1mOGdiVFNQS3REM2VHVThHVDk0Vnp0ekVXd3UrWjROVCtZ?=
+ =?utf-8?B?SUY5YS84cTJsYkZENXRZdkVmTmxwM3NqUXNQNWo1ZGZoL04vMzZZZmdJaDVo?=
+ =?utf-8?B?aDZ5Mm14UFlja0l4Q2pQYkdETzdHSGZrRENmNUZwWHdCOVQyNnU0WmZNaVla?=
+ =?utf-8?B?WUpqY2VaN0ZzL0VvaURBR0pPdHk5RkF1M1p5VjNNL04vSEMrTm5zZElMcUJY?=
+ =?utf-8?B?aGRlT21lb1ZSOTZDVStOOWJicDVvNEJIa2xza2ZKV0lYeGkxQXdmSytvdlVY?=
+ =?utf-8?B?dTFBWFVESEdVTzY4Ny9nS2pWMnFqaGhXcWZ1eDBManA5NTcxTUZjMitjT3N5?=
+ =?utf-8?B?bk5Ddk96YWZDMU9mTloyS1l5cVFiM0JJc01BYTFCWDZIVWRqamFNRldRV0JS?=
+ =?utf-8?B?N2JFSDhsVk1JYTdUaWU1WmE4cUtKeE1pN1Exb0RGWWppUFJMbzJCRlo1aURS?=
+ =?utf-8?B?eVRralRrbUVlZ0grZjRzcytlNGYyaDRBUkZtRTlFZnZHWU9saFBnRDVPQ0RC?=
+ =?utf-8?B?WmN0OEQ2OW1SbHdGNUtQS2lUY2VIUEZDSEY0UnFUZmFtUktDa0FMamt5K0dM?=
+ =?utf-8?B?T2VlbkZzM3JWK0FnbDR5Mys3a0ZudDhlNzhIa3J4Y3pwZ1pOY1ByeXhnZWxZ?=
+ =?utf-8?B?cWtGUkNvZXFUOStyVndwc0d6Qm9YRUMyUk5HZy9FMUYxc29lczlLSHlIU3BQ?=
+ =?utf-8?B?WHEwS0tjbGhLaElKRk8yVTluVGZJbHZ0MFJwL0NwTWhiR3AyL0U3MzRQZFB2?=
+ =?utf-8?Q?5Taf6cSLDpfP8qHz45PPgHUSX?=
+Content-Type: text/plain; charset="utf-8"
+Content-ID: <09349D414DAED44E94ADDFA88D01B74F@namprd11.prod.outlook.com>
+Content-Transfer-Encoding: base64
+MIME-Version: 1.0
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: DM4PR11MB8179.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 9f7537a5-aee3-4793-d846-08db525ace80
+X-MS-Exchange-CrossTenant-originalarrivaltime: 11 May 2023 20:03:36.7529 (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: 44vAxoH5RBcWcP1AZBxTdTSX3L2+5gIHDuxhnXwMJx2xwkkMuKly7siE+HqpYUO/iOOUyCcDO3Yrqjt06IYHXw==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: BY1PR11MB8055
+X-OriginatorOrg: intel.com
+Subject: Re: [Intel-xe] [PATCH 3/4] drm/xe/display: Consider has_display to
+ enable it
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -65,100 +161,81 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Cc: amd-gfx@lists.freedesktop.org, Daniel Vetter <daniel@ffwll.ch>,
- Zefan Li <lizefan.x@bytedance.com>, intel-gfx@lists.freedesktop.org,
- linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org,
- Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
- Johannes Weiner <hannes@cmpxchg.org>, cgroups@vger.kernel.org,
- David Airlie <airlied@gmail.com>, intel-xe@lists.freedesktop.org
+Cc: "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Hey,
-
-On 2023-05-11 12:14, Tvrtko Ursulin wrote:
->
-> On 10/05/2023 19:46, Tejun Heo wrote:
->> Hello,
->>
->> On Wed, May 10, 2023 at 04:59:01PM +0200, Maarten Lankhorst wrote:
->>> The misc controller is not granular enough. A single computer may have any number of
->>> graphics cards, some of them with multiple regions of vram inside a single card.
->>
->> Extending the misc controller to support dynamic keys shouldn't be that
->> difficult.
->>
->> ...
->>> In the next version, I will move all the code for handling the resource limit to
->>> TTM's eviction layer, because otherwise it cannot handle the resource limit correctly.
->>>
->>> The effect of moving the code to TTM, is that it will make the code even more generic
->>> for drivers that have vram and use TTM. When using TTM, you only have to describe your
->>> VRAM, update some fields in the TTM manager and (un)register your device with the
->>> cgroup handler on (un)load. It's quite trivial to add vram accounting to amdgpu and
->>> nouveau. [2]
->>>
->>> If you want to add a knob for scheduling weight for a process, it makes sense to
->>> also add resource usage as a knob, otherwise the effect of that knob is very
->>> limited. So even for Tvrtko's original proposed usecase, it would make sense.
->>
->> It does make sense but unlike Tvrtko's scheduling weights what's being
->> proposed doesn't seem to encapsulate GPU memory resource in a generic enough
->> manner at least to my untrained eyes. ie. w/ drm.weight, I don't need any
->> specific knoweldge of how a specific GPU operates to say "this guy should
->> get 2x processing power over that guy". This more or less holds for other
->> major resources including CPU, memory and IO. What you're proposing seems a
->> lot more tied to hardware details and users would have to know a lot more
->> about how memory is configured on that particular GPU.
->>
->> Now, if this is inherent to how all, or at least most, GPUs operate, sure,
->> but otherwise let's start small in terms of interface and not take up space
->> which should be for something universal. If this turns out to be the way,
->> expanding to take up the generic interface space isn't difficult.
->>
->> I don't know GPU space so please educate me where I'm wrong.
->
-> I was hoping it might be passable in principle (in some form, pending discussion on semantics) given how Maarten's proposal starts with only very specific per-device-per-memory regions controls, which is applicable to many devices. And hard limit at that, which probably has less complicated semantics, or at least implementation.
->
-> My understanding of the proposal is that the allocation either fits, or it evicts from the parent's hierarchy (if possible) and then fits, or it fails. Which sounds simple enough.
-
-Yeah, for vram itś that simple. I think for mapped and sysmem regions we may require the
-possiblity to ignore the limits as well, as it's possible to move to those regions from
-eviction. We probably don't want eviction to fail because of too low limits.
-
-> I do however agree that it is a limited use case. So from the negative side of the debating camp I have to ask if this use case could be simply satisfied by providing a driver/device global over commit yes/no control? In other words, is it really important to partition the vram space ahead of time, and from the kernel side too? Wouldn't the relevant (highly specialised) applications work just fine with global over commit disabled? Even if the option to configure their maximum allowed working set from the userspace side was needed.
-
-Disabling overcommit? Do you mean pinning the memory workload? This causes a denial of service if
-done without limits, and that's what we're trying to avoid. There is no need for immunity from
-eviction. Overcommit is still useful inside the cgroup itself, we only want immunity from being
-evicted by another process performing another workload.
-
-> Or if we conclude cgroup controller is the way to go, would adding less specific limits make it more palatable? I am thinking here some generic "device memory resident". Not per device, not per memory region. So userspace/admins have some chance of configuring generic limits. That would require coming up with more generic use cases though so another thing to discuss. Like who would use that and for what.
-
-You would run into ambiguity with that. I think it's fine to assume any number of vram regions. In most cases, the number is 1.
-
-I don't see that number going much higher, 2 is already on the high side. A simple controller could just half each region separately.
-
-> Assuming also we can agree that "device memory resident" is a stable/solid concept across drm. Should be easier than for integrated GPUs, for which I have to admit I currently don't remember if allocations are already consistently covered by the memory controller. Even if they are ownership is probably wrong.
-Likely, especially when evicting another process' memory. That needs some thought. Likely we have to keep the original cgroup as an owner.
-> Group ownership is possibly a concern in this proposal too. Because I remember the previous attempt of adding some drm stats to memcg explained that for instance on Android all buffers are allocated by a central process and then handed over to other processes. So transferring ownership was explained as critical.
-Is this done using dma-buf? Ownership could be handed over on import then. If not, what is the mechanism they use?
-> Regards,
->
-> Tvrtko
->
-> P.S.
-> On the matter of naming the uapi interface - in any case I wouldn't use the "unqualified" drm namespace such as drm.max/current/capacity. I think all those should include a specific prefix to signify it is about memory. In some way.
-
-I've deliberately added region to each key, so what happens is that drm.capacity/max/current contains: $pciid region.vram0=$value, that way, if we want to add non-memory resources, it becomes possible to do so by choosing a different prefix.
-
-For example number of engines that can be created would also be possible to add to those files, but that might be more driver specific.
-
-I tried to keep it generic like that. In this way I didn't immediately pollute the entire namespace.
-
-Of course, if needed, we can make it drm.region_max etc instead and drop it from the cgroup key entries instead.
-
-Cheers,
-
-Maarten
-
+T24gVGh1LCAyMDIzLTA1LTExIGF0IDExOjAyIC0wNzAwLCBMdWNhcyBEZSBNYXJjaGkgd3JvdGU6
+DQo+IE9uIFRodSwgTWF5IDExLCAyMDIzIGF0IDA1OjIyOjM0UE0gKzAwMDAsIEpvc2UgU291emEg
+d3JvdGU6DQo+ID4gT24gVGh1LCAyMDIzLTA1LTExIGF0IDEwOjEyIC0wNzAwLCBMdWNhcyBEZSBN
+YXJjaGkgd3JvdGU6DQo+ID4gPiBPbiBUaHUsIE1heSAxMSwgMjAyMyBhdCAxMjo0NzoyNlBNICsw
+MDAwLCBKb3NlIFNvdXphIHdyb3RlOg0KPiA+ID4gPiBPbiBXZWQsIDIwMjMtMDUtMTAgYXQgMTI6
+NTQgLTA3MDAsIEx1Y2FzIERlIE1hcmNoaSB3cm90ZToNCj4gPiA+ID4gPiBTdG9wIHRoZSBkYW5j
+ZSBvZiBlbmFibGluZyB0aGUgZGlzcGxheS1yZWxhdGVkIGRyaXZlcl9mZWF0dXJlcyB0byBsYXRl
+cg0KPiA+ID4gPiA+IGRpc2FibGUgdGhlbSBvbiBkaXNwbGF5IGluZm8gaW5pdCBpZiB0aGUgcGxh
+dGZvcm0gZG9lc24ndCBoYXZlIGRpc3BsYXkNCj4gPiA+ID4gPiBJUC4gQmVzaWRlcyBiZWluZyBu
+ZWVkbGVzcyB3b3JrLCBpdCB3YXNuJ3QgY292ZXJpbmcgdGhlIEFUUy1NIGNhc2UgdGhhdA0KPiA+
+ID4gPiA+IGlzIHRoZSBzYW1lIHBsYXRmb3JtIGFzIERHMiwgYnV0IHdpdGhvdXQgZGlzcGxheS4N
+Cj4gPiA+ID4gDQo+ID4gPiA+IFhlIHNob3VsZCBzZXQgcGlwZV9tYXNrID0gMCBhbmQgY2FsbCBp
+OTE1IGZ1bmN0aW9ucyB0aGF0IHdpbGwgaGFuZGxlIG5vIGRpc3BsYXkgY2FzZXMuDQo+ID4gPiAN
+Cj4gPiA+IGluIHhlLCBlbmFibGVfZGlzcGxheSBpcyB0aGUgcnVudGltZSBjb25maWcgdG8gYmUg
+dGhlIGVxdWl2YWxlbnQgb2YNCj4gPiA+IERSTV9YRV9ESVNQTEFZPW4uIEl0IGlzICpub3QqIHRv
+IG1lYW50IGRpc2FibGluZyB0aGUgZGlzcGxheS4NCj4gPiA+IA0KPiA+ID4gaGlzdG9yeSB3aHkg
+dGhpcyBldmVyIGNhbWUgdG8gYmUgd2FzOg0KPiA+ID4gDQo+ID4gPiAxKSBkaXNwbGF5IGludGVn
+cmF0aW9uIGJhY2sgaW4gdGhlIGRheSB3YXMgbGVzcyB0aGFuIGlkZWFsIChzdGlsbCBpcyksDQo+
+ID4gPiAgICAgYW5kIGRldmVsb3BlcnMgY291bGRuJ3QgdGVzdCB0aGluZ3MgaWdub3JpbmcgZGlz
+cGxheQ0KPiA+IA0KPiA+IFhlIENJIGlzIG5vdyB0ZXN0aW5nIGRpc3BsYXksIGluIG15IG9waW5p
+b24gdGhpcyBvcHRpb24gdG8gZGlzYWJsZSBkaXNwbGF5IHNob3VsZCBiZSByZW1vdmVkIGFuZCBk
+aXNwbGF5IHN1cHBvcnQgYWx3YXlzIGJ1aWx0Lg0KPiANCj4gbWF5YmUuIExhc3QgdGltZSBJIGNo
+ZWNrZWQgdGhlcmUgd2FzIGEgNTAlIGRpdmlkZSBvbiBoYXZpbmcgb3Igbm90DQo+IGhhdmluZyBp
+dCBhbmQgYWZhaXIgSSB3YXMgYWdhaW5zdC4gSSdkIG5vdCB0b3VjaCB0aGF0IHVudGlsIGRpc3Bs
+YXkNCj4gaW50ZWdyYXRpb24gc2V0dGxlcyBhbmQgc3RvcCBtb3ZpbmcgaW4gdGhlIGJyYW5jaC4N
+Cj4gDQo+IAk5NWRkNGRiYjVmODkgKCJkcm0veGU6IE1ha2UgY29tcGlsYXRpb24gb2YgZGlzcGxh
+eSBvcHRpb25hbCIpDQo+IAk2YTUzYjAwYWZhMGIgKCJkcm0veGU6IEFkZCBiaWcgd2FybmluZyBm
+b3IgIUNPTkZJR19EUk1fWEVfRElTUExBWSBwYXRoLiIpDQo+IA0KPiBVbmZvcnR1bmF0ZWx5IEkg
+Y2FuJ3QgZWFzaWx5IG1hcCB0byB0aGUgTVIgd2hlcmUgdGhhdCB3YXMgZGlzY3Vzc2VkLg0KPiAN
+Cj4gK01hYXJ0ZW4NCj4gDQo+IEFsc28sICJYZSBDSSBpcyBub3cgdGVzdGluZyBkaXNwbGF5IiBp
+cyBub3QgYSBnb29kIGp1c3RpZmljYXRpb24gd3J0IGF0cy1tLg0KPiBCZXNpZGVzIG5vdCBub3Qg
+Y292ZXJpbmcgYWxsIGF0cy1tIChzZWUNCj4gaHR0cHM6Ly9pbnRlbC1nZngtY2kuMDEub3JnL3Ry
+ZWUvaW50ZWwteGUvYmF0LWFsbC5odG1sPyksIGl0J3MgYWN0dWFsbHkNCj4gcnVubmluZyBkaXNw
+bGF5IHRlc3RzIG9uIHRoZSBBU1QgZHJpdmVyLiAgU2VlDQo+IGh0dHBzOi8vaW50ZWwtZ2Z4LWNp
+LjAxLm9yZy90cmVlL2ludGVsLXhlL2JhdC1hbGwuaHRtbD8NCj4gDQo+ID4gDQo+ID4gPiAyKSBo
+YXZlIGEgd2F5IHRvIHRlbGwgdGhlIGRyaXZlciAiZG9uJ3QgZXZlciB0b3VjaCBkaXNwbGF5IElQ
+IiBmb3INCj4gPiA+ICAgICBicmluZy11cCBzaXR1YXRpb25zLg0KPiA+IA0KPiA+IHBpcGVfbWFz
+ayA9IDAvSEFTX0RJU1BMQVkoKSBzaG91bGQgdGFrZSBjYXJlIG9mIGl0Lg0KPiA+IGRldmVsb3Bl
+cnMgY291bGQgZm9yY2UgcGlwZV9tYXNrID0gMCBmb3IgZ2l2aW5nIHBsYXRmb3JtIGJyaW5nLXVw
+Lg0KPiANCj4gVGhlIGhvbGUgaXMgZGVlcGVyIHRoYW4geW91IHRoaW5rLiBTZWU6DQo+IGRyaXZl
+cnMvZ3B1L2RybS94ZS9kaXNwbGF5L2V4dC9pbnRlbF9kZXZpY2VfaW5mby5jDQo+IA0KPiBJbiBp
+OTE1LCBwaXBlX21hc2sgc2V0IHRoZSBkZXZpY2UgaW5mbyBiYXNlZCBvbiB0aGUgUENJIElEOg0K
+PiANCj4gCXN0YXRpYyBjb25zdCBzdHJ1Y3QgaW50ZWxfZGV2aWNlX2luZm8gYXRzX21faW5mbyA9
+IHsNCj4gCQkuLi4uDQo+IAkgICAgICAgIE5PX0RJU1BMQVksDQo+IAl9Ow0KPiANCj4gCUlOVEVM
+X0FUU19NX0lEUygmYXRzX21faW5mbyksDQo+IA0KPiBUaGlzIGlzIGhvdyBpOTE1IGRpZmZlcmVu
+dGlhdGVzIERHMiBmcm9tIEFUUy1NLiBOb3cgbG9vayBhdCB4ZSB3aXRoIHRoZQ0KPiBkZXZpY2Ug
+aW5mbyBzcGxpdCBpbiAyIHBsYWNlcywgeGVfcGNpLmMgYW5kIHhlX2Rpc3BsYXkuYy4NCj4gV2Ug
+Y2FuJ3QgdXNlIHRoZSBQQ0kgSUQgbWFwcGluZyB0byBrbm93IEFUUy1NIGlzIG5vdCBERzIuIFdl
+IGNhbid0IHVzZQ0KPiB0aGUgc3VicGxhdGZvcm0gbmVpdGhlciwgYXMgdGhleSBhcmUgYWxyZWFk
+eSBwYXJ0IG9mIG90aGVyIHN1YnBsYXRmb3JtczoNCj4gDQo+IAlzdGF0aWMgY29uc3QgdTE2IGRn
+Ml9nMTBfaWRzW10gPSB7IFhFX0RHMl9HMTBfSURTKE5PUCksIFhFX0FUU19NMTUwX0lEUyhOT1Ap
+LCAwIH07DQo+IAlzdGF0aWMgY29uc3QgdTE2IGRnMl9nMTFfaWRzW10gPSB7IFhFX0RHMl9HMTFf
+SURTKE5PUCksIFhFX0FUU19NNzVfSURTKE5PUCksIDAgfTsNCj4gDQo+IENoYW5naW5nIHRoYXQg
+Zm9yIHRoZSBzYWtlIG9mIGRpc3BsYXkgYmFzaWNhbGx5IG1lYW5zIGhhdmluZyB0byB0cmVhdA0K
+PiB0aGVtIGRpZmZlcmVudGx5IHRocm91Z2hvdXQgdGhlIGRyaXZlciwgd2hpY2ggaXMgd29yc2Ug
+dGhhbiBzaW1wbHkNCj4gaGF2aW5nIGEgYGhhc19kaXNwbGF5YCBmbGFnIGFkZGVkLiBXaGVuIHdl
+IGV2ZW50dWFsbHkgbWlncmF0ZSB0byBkaXNhYmxlDQo+IGRpc3BsYXksIHRoZSBoYXNfZGlzcGxh
+eSBmbGFnIGluIHRoZSB4ZSdzICBkZXZpY2UgaW5mbyBjYW4gc3RpbGwgc3RheQ0KPiBhbmQgaG93
+IHdlIHRlbGwgeGVfZGlzcGxheS5jIHRoYXQgdGhlIHBsYXRmb3JtIGhhcyBvciBub3QgZGlzcGxh
+eSAoYXMNCj4gb3Bwb3NlZCB0byBzZXR0aW5nIGluZm8uZW5hYmxlX2Rpc3BsYXkpDQo+IA0KPiAN
+Cj4gQXMgSSBzYWlkIGFib3ZlLCBJJ20gbm90IHJlYWxseSBhZ2FpbnN0IHRoZSBsb25nIHRlcm0g
+cGxhbiBvZiByZW1vdmluZw0KPiB0aGUga2VybmVsIGNvbmZpZy4gSW4gdGhhdCBsb25nIHRlcm0g
+cGxhbiB3ZSdkIG5vdCBoYXZlIGENCj4gZW5hYmxlX2Rpc3BsYXk9IG1vZHVsZSBwYXJhbSBuZWl0
+aGVyIGFzIHdlJ2QgaGF2ZSBhbHJlYWR5IGEgcmVwbGFjZW1lbnQNCj4gZm9yIHRoZSBnbG9iYWwg
+bW9kdWxlIGNvbmZpZ3VyYXRpb24sIGFsbG93aW5nIGl0IHRvIGJlIGRvbmUgcGVyIGRldmljZS4N
+Cj4gQnV0IEkgZG9uJ3QgdGhpbmsgaXQgc2hvdWxkIGJsb2NrIHRoZSBmaXggZm9yIGF0cy1tIGRv
+bmUgaGVyZS4NCg0KQXMgc2hvcnQgdGVybSBzb2x1dGlvbiBhY2sgb24gdGhpcyBwYXRjaCBmcm9t
+IG1lLg0KRG8geW91IGFncmVlIHRvbyBKYW5pPw0KDQo+IA0KPiBMdWNhcyBEZSBNYXJjaGkNCj4g
+DQo+ID4gDQo+ID4gPiANCj4gPiA+IEZvciAoMSkgd2UgbWF5IHR1cm4gdGhhdCBpbnRvICJkaXNh
+YmxlIGRpc3BsYXkiIG5vdywgYnV0IG5vdCBmb3IgKDIpLg0KPiA+ID4gDQo+ID4gPiBJJ2xsIHRh
+a2UgYSBsb29rIG9uIGhvdyBtdWNoIHdvcmsgaXQgd291bGQgYmUgdG8gbWlncmF0ZSB0byBhDQo+
+ID4gPiBkaXNhYmxlLWRpc3BsYXkgc2NlbmFyaW8gcmF0aGVyIHRoYW4gdGhlIHNpbXBsZSAiRml4
+IGF0cy1tIiBiZWluZyBkb25lDQo+ID4gPiBoZXJlLg0KPiA+ID4gDQo+ID4gPiBMdWNhcyBEZSBN
+YXJjaGkNCj4gPiANCg0K
