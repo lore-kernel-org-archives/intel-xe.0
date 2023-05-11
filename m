@@ -4,56 +4,54 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id E0EEAC77B7F
-	for <intel-xe@archiver.kernel.org>; Thu, 11 May 2023 07:24:12 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 07DE3C7EE22
+	for <intel-xe@archiver.kernel.org>; Thu, 11 May 2023 07:39:14 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8FD9610E194;
-	Thu, 11 May 2023 07:24:12 +0000 (UTC)
-Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 819E110E194
- for <intel-xe@lists.freedesktop.org>; Thu, 11 May 2023 07:24:10 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C339810E1AA;
+	Thu, 11 May 2023 07:39:14 +0000 (UTC)
+Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E650410E1AF
+ for <intel-xe@lists.freedesktop.org>; Thu, 11 May 2023 07:39:13 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1683789850; x=1715325850;
+ t=1683790753; x=1715326753;
  h=message-id:date:mime-version:subject:to:cc:references:
  from:in-reply-to:content-transfer-encoding;
- bh=hMsZZIssAvRuHSO89HsaVDXZ9mL5HaTuREHzLu1TWNk=;
- b=NaCKTcmswEI/J+Hx0jT+Dn9eQ0LR1YQyhyQzIJ6p79scpwj3aX8926yw
- /XPKIP7LM4pJv9ftq1ZrPlKlhDJzTGRgQ7YTnB03J/vtPgmNr9ixJdqPp
- no932WW1Dk0c96V0qEYc2EdsaZLssDSOpBoEqIiRXaaG9AlQV1zqoRObW
- 9wO2F9t2I2lKaUUHmY4d+USAB2z+6Wypa4pTzRLPWIC+XawDjasspFMIX
- JoJvbH9C42rPb9mFrOYYOWZdvisDIcJXdtNZQ/0A+jMScagVuSkIYblqu
- 7YJpK+vcrG2NseFx8DveZ0K2psk45szy9baqHujc/nIoW/IPI7b49nTx+ g==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10706"; a="349261298"
-X-IronPort-AV: E=Sophos;i="5.99,266,1677571200"; d="scan'208";a="349261298"
-Received: from fmsmga003.fm.intel.com ([10.253.24.29])
- by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 11 May 2023 00:24:08 -0700
+ bh=tEi6lgu04CHW+Rskw72K/Cl0CsK4ZvpXYfRHyBOBn7Q=;
+ b=M1hEguM70vn9uZ4gGVvcnhQMic81KVAAUE7o2t+sXNW3TrBfWsVfFATZ
+ Ej17BVlXdutqB1KXXX6fWUNmGWe7dEP0IbOwPAsQIdrXtKIsACui4YVNE
+ vFy2Tzx4DicrNrvnF4/0V90/xSjcXCEQA6jg8nQ586W457H9DGc+bfuRY
+ EQjdxUXMUf+qyS9w65VKVzloWDxdaApk8qsWdumycE7J4rEwoxwBw1IQg
+ 773BZbPIoat4KdO2CwfESmCLlpWyicpZT1Wx/jxC8uhBpWXD+jdAlJ6pW
+ 8UOvGmc1qk5KEiv6OImzaBW/PPpkDl2LAsWjWlb+qmy1rt/H4I69IcwBC Q==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10706"; a="416017580"
+X-IronPort-AV: E=Sophos;i="5.99,266,1677571200"; d="scan'208";a="416017580"
+Received: from fmsmga001.fm.intel.com ([10.253.24.23])
+ by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 11 May 2023 00:39:12 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10706"; a="789273509"
-X-IronPort-AV: E=Sophos;i="5.99,266,1677571200"; d="scan'208";a="789273509"
+X-IronPort-AV: E=McAfee;i="6600,9927,10706"; a="843837241"
+X-IronPort-AV: E=Sophos;i="5.99,266,1677571200"; d="scan'208";a="843837241"
 Received: from cuphoff-mobl.ger.corp.intel.com (HELO [10.249.254.120])
  ([10.249.254.120])
- by fmsmga003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 11 May 2023 00:24:07 -0700
-Message-ID: <f47d74e7-51f8-07aa-f845-2ea3f241653b@linux.intel.com>
-Date: Thu, 11 May 2023 09:24:05 +0200
+ by fmsmga001-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 11 May 2023 00:39:11 -0700
+Message-ID: <c8d813b2-0cb5-7c90-194e-9b09151a1759@linux.intel.com>
+Date: Thu, 11 May 2023 09:39:09 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.8.0
 Content-Language: en-US
 To: Matthew Brost <matthew.brost@intel.com>
 References: <20230502001727.3211096-1-matthew.brost@intel.com>
- <20230502001727.3211096-9-matthew.brost@intel.com>
- <ef984a4c-82a3-4e4d-f0ad-2d50558b3051@linux.intel.com>
- <ZFrDjttRaPf6hBeo@DUT025-TGLU.fm.intel.com>
- <c58f99e3-a11d-7f2c-cfa3-dfb14a44c6c4@linux.intel.com>
- <ZFvlBMEvuhiT9QSB@DUT025-TGLU.fm.intel.com>
+ <20230502001727.3211096-17-matthew.brost@intel.com>
+ <87710316-f6d8-5fa4-e320-7c2a1969ca6c@linux.intel.com>
+ <ZFxV7ko6wKRvFF3W@DUT025-TGLU.fm.intel.com>
 From: =?UTF-8?Q?Thomas_Hellstr=c3=b6m?= <thomas.hellstrom@linux.intel.com>
-In-Reply-To: <ZFvlBMEvuhiT9QSB@DUT025-TGLU.fm.intel.com>
+In-Reply-To: <ZFxV7ko6wKRvFF3W@DUT025-TGLU.fm.intel.com>
 Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
-Subject: Re: [Intel-xe] [PATCH v2 08/31] drm/xe: VM LRU bulk move
+Subject: Re: [Intel-xe] [PATCH v2 16/31] drm/xe: Port Xe to GPUVA
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -70,81 +68,62 @@ Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 
-On 5/10/23 20:40, Matthew Brost wrote:
-> On Wed, May 10, 2023 at 10:14:12AM +0200, Thomas Hellström wrote:
->> On 5/10/23 00:05, Matthew Brost wrote:
->>> On Tue, May 09, 2023 at 02:47:54PM +0200, Thomas Hellström wrote:
->>>> On 5/2/23 02:17, Matthew Brost wrote:
->>>>> Use the TTM LRU bulk move for BOs tied to a VM. Update the bulk moves
->>>>> LRU position on every exec.
->>>>>
->>>>> Signed-off-by: Matthew Brost <matthew.brost@intel.com>
->>>>> ---
->>>>>     drivers/gpu/drm/xe/xe_bo.c       | 32 ++++++++++++++++++++++++++++----
->>>>>     drivers/gpu/drm/xe/xe_bo.h       |  4 ++--
->>>>>     drivers/gpu/drm/xe/xe_dma_buf.c  |  2 +-
->>>>>     drivers/gpu/drm/xe/xe_exec.c     |  6 ++++++
->>>>>     drivers/gpu/drm/xe/xe_vm_types.h |  3 +++
->>>>>     5 files changed, 40 insertions(+), 7 deletions(-)
->>>>>
->>>>> diff --git a/drivers/gpu/drm/xe/xe_bo.c b/drivers/gpu/drm/xe/xe_bo.c
->>>>> index 3ab404e33fae..da99ee53e7d7 100644
->>>>> --- a/drivers/gpu/drm/xe/xe_bo.c
->>>>> +++ b/drivers/gpu/drm/xe/xe_bo.c
->>>>> @@ -985,6 +985,23 @@ static void xe_gem_object_free(struct drm_gem_object *obj)
->>>>>     	ttm_bo_put(container_of(obj, struct ttm_buffer_object, base));
->>>>>     }
->>>>> +static void xe_gem_object_close(struct drm_gem_object *obj,
->>>>> +				struct drm_file *file_priv)
->>>>> +{
->>>>> +	struct xe_bo *bo = gem_to_xe_bo(obj);
->>>>> +
->>>>> +	if (bo->vm && !xe_vm_no_dma_fences(bo->vm)) {
->>>> Is there a reason we don't use bulk moves for LR vms? Admittedly bumping LRU
->>>> doesn't make much sense when we support user-space command buffer chaining,
->>>> but I think we should be doing it on exec at least, no?
->>> Maybe you could make the argument for compute VMs, the preempt worker in
->>> that case should probably do a bulk move. I can change this if desired.
->> Yes, please.
->>> Fot a fault VM it makes no sense as the fault handler updates the LRU
->>> for individual BOs.
->> Yes that makes sense.
->>>>> +		struct ww_acquire_ctx ww;
->>>>> +
->>>>> +		XE_BUG_ON(!xe_bo_is_user(bo));
->>>> Also why can't we use this for kernel objects as well? At some point we want
->>>> to get to evictable page-table objects? Could we do this in the
->>>> release_notify() callback to cover all potential bos?
->>>>
->>> xe_gem_object_close is a user call, right? We can't call this on kernel
->>> BOs. This also could be outside the if statement.
->> Hmm, yes the question was can we stop doing this in xe_gem_object_close()
->> and instead do it in release_notify() to cover also kernel objects. Since
->> release_notify() is called just after individualizing dma_resv, it makes
->> sense to individualize also LRU at that point?
+On 5/11/23 04:41, Matthew Brost wrote:
+> On Tue, May 09, 2023 at 03:52:24PM +0200, Thomas Hellström wrote:
+>> Hi, Matthew,
 >>
-> If we ever support moving kernel BOs, then yes. We need to do a lot of
-> work to get there, with I'd rather leave this where is but I'll add a
-> comment indicating if we want to support kernel BO eviction, this should
-> be updated.
+>> On 5/2/23 02:17, Matthew Brost wrote:
+>>> Rather than open coding VM binds and VMA tracking, use the GPUVA
+>>> library. GPUVA provides a common infrastructure for VM binds to use mmap
+>>> / munmap semantics and support for VK sparse bindings.
+>>>
+>>> The concepts are:
+>>>
+>>> 1) xe_vm inherits from drm_gpuva_manager
+>>> 2) xe_vma inherits from drm_gpuva
+>>> 3) xe_vma_op inherits from drm_gpuva_op
+>>> 4) VM bind operations (MAP, UNMAP, PREFETCH, UNMAP_ALL) call into the
+>>> GPUVA code to generate an VMA operations list which is parsed, commited,
+>>> and executed.
+>>>
+>>> v2 (CI): Add break after default in case statement.
+>>> v3: Rebase
+>>> v4: Fix some error handling
+>>>
+>>> Signed-off-by: Matthew Brost <matthew.brost@intel.com>
+>> Before embarking on a second review of this code it would really be
+>> beneficial if you could address some comments from the first review. In
+>> particular splitting this huge patch up if possible (and I also think that
+>> removing the async worker *before* this patch if at all possible would
+>> really ease the review both for me and potential upcoming reviewers).
+>>
+> My bad that I missed your comments on the list, yes I will address your
+> comments in the respin, expect it by Mondayish.
+
+NP, basically this was a comment saying I'd rather wait for a respin 
+before tackling this again :).
+
 >
-> Sound good?
+> Removing the async worker first doesn't make a ton of sense as GPUVA
+> makes the error handling a lot easier plus that basically means a
+> complete rewrite.
 
-Well, I can't see the motivation to have it in gem close? Are other 
-drivers doing that? Whether the object should be bulk moved or not is 
-tied to whether it's a vm private object or not and that is closely tied 
-to whether the reservation object is the vm resv or the object resv?
+OK, yes I guess from a reviewer's point of view the other way around 
+would be easier, but if you keep the ordering please split into separate 
+patch series for GPUVA and async removal, because invasive changes in 
+code that is later removed in the same series is typically not well 
+received.
 
-/Thomas
+Thanks,
+
+Thomas
+
 
 >
 > Matt
 >
->> /Thomas
+>> Thanks,
+>>
+>> Thomas
 >>
 >>
->>> Matt
->>>
->>>> /Thomas
->>>>
->>>>
