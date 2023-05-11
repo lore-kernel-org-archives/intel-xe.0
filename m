@@ -4,30 +4,30 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 651F3C77B7C
-	for <intel-xe@archiver.kernel.org>; Thu, 11 May 2023 07:08:57 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9D4A3C77B7C
+	for <intel-xe@archiver.kernel.org>; Thu, 11 May 2023 07:11:00 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 16F5B10E085;
-	Thu, 11 May 2023 07:08:57 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 768EC10E085;
+	Thu, 11 May 2023 07:11:00 +0000 (UTC)
 Received: from emeril.freedesktop.org (emeril.freedesktop.org
  [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id 6B3D310E085;
- Thu, 11 May 2023 07:08:54 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTP id 3F84310E085;
+ Thu, 11 May 2023 07:10:58 +0000 (UTC)
 Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 603FEAADE7;
- Thu, 11 May 2023 07:08:54 +0000 (UTC)
+ by emeril.freedesktop.org (Postfix) with ESMTP id 37622AADD7;
+ Thu, 11 May 2023 07:10:58 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: "Matt Roper" <matthew.d.roper@intel.com>
-Date: Thu, 11 May 2023 07:08:54 -0000
-Message-ID: <168378893436.29008.10868044297586219581@emeril.freedesktop.org>
+Date: Thu, 11 May 2023 07:10:58 -0000
+Message-ID: <168378905820.29010.8731212234035219141@emeril.freedesktop.org>
 X-Patchwork-Hint: ignore
 References: <20230511034722.1929038-1-matthew.d.roper@intel.com>
 In-Reply-To: <20230511034722.1929038-1-matthew.d.roper@intel.com>
-Subject: [Intel-xe] =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_f?=
- =?utf-8?q?or_Separate_GT_and_tile_=28rev2=29?=
+Subject: [Intel-xe] =?utf-8?q?=E2=9C=97_CI=2EKUnit=3A_failure_for_Separat?=
+ =?utf-8?q?e_GT_and_tile_=28rev2=29?=
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -48,38 +48,27 @@ Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 Series: Separate GT and tile (rev2)
 URL   : https://patchwork.freedesktop.org/series/117614/
-State : success
+State : failure
 
 == Summary ==
 
-=== Applying kernel patches on branch 'drm-xe-next' with base: ===
-Base commit: 6db883a16 drm/xe/adln: Enable ADL-N
-=== git am output follows ===
-Applying: drm/xe/mtl: Disable media GT
-Applying: drm/xe: Introduce xe_tile
-Applying: drm/xe: Add backpointer from gt to tile
-Applying: drm/xe: Add for_each_tile iterator
-Applying: drm/xe: Move register MMIO into xe_tile
-Applying: drm/xe: Move VRAM from GT to tile
-Applying: drm/xe: Memory allocations are tile-based, not GT-based
-Applying: drm/xe: Move migration from GT to tile
-Applying: drm/xe: Clarify 'gt' retrieval for primary tile
-Applying: drm/xe: Drop vram_id
-Applying: drm/xe: Drop extra_gts[] declarations and XE_GT_TYPE_REMOTE
-Applying: drm/xe: Allocate GT dynamically
-Applying: drm/xe: Add media GT to tile
-Applying: drm/xe: Move display IRQ postinstall out of GT function
-Applying: drm/xe: Interrupts are delivered per-tile, not per-GT
-Applying: drm/xe/irq: Handle ASLE backlight interrupts at same time as display
-Applying: drm/xe/irq: Actually call xe_irq_postinstall()
-Applying: drm/xe/irq: Ensure primary GuC won't clobber media GuC's interrupt mask
-Applying: drm/xe/irq: Untangle postinstall functions
-Applying: drm/xe: Replace xe_gt_irq_postinstall with xe_irq_enable_hwe
-Applying: drm/xe: Invalidate TLB on all affected GTs during GGTT updates
-Applying: drm/xe/tlb: Obtain forcewake when doing GGTT TLB invalidations
-Applying: drm/xe: Allow GT looping and lookup on standalone media
-Applying: drm/xe: Update query uapi to support standalone media
-Applying: drm/xe: Reinstate media GT support
-Applying: drm/xe: Clarify source of GT log messages
++ trap cleanup EXIT
++ /kernel/tools/testing/kunit/kunit.py run --kunitconfig /kernel/drivers/gpu/drm/xe/.kunitconfig
+ERROR:root:make[1]: Entering directory '/kernel/.kunit'
+***
+*** The source tree is not clean, please run 'make ARCH=um mrproper'
+*** in /kernel
+***
+make[1]: *** [/kernel/Makefile:646: outputmakefile] Error 1
+make[1]: Leaving directory '/kernel/.kunit'
+make: *** [Makefile:226: __sub-make] Error 2
+
+[07:10:56] Configuring KUnit Kernel ...
+Generating .config ...
+Populating config with:
+$ make ARCH=um O=.kunit olddefconfig
++ cleanup
+++ stat -c %u:%g /kernel
++ chown -R 1003:1003 /kernel
 
 
