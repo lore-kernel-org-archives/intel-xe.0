@@ -4,55 +4,53 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 052C3C77B7F
-	for <intel-xe@archiver.kernel.org>; Thu, 11 May 2023 10:03:17 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 04361C77B7F
+	for <intel-xe@archiver.kernel.org>; Thu, 11 May 2023 10:04:03 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C263010E5CA;
-	Thu, 11 May 2023 10:03:16 +0000 (UTC)
-Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2066810E5C8;
- Thu, 11 May 2023 10:03:13 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C6C9C10E21E;
+	Thu, 11 May 2023 10:04:03 +0000 (UTC)
+Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 413BC10E21E
+ for <intel-xe@lists.freedesktop.org>; Thu, 11 May 2023 10:04:01 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1683799394; x=1715335394;
- h=message-id:date:mime-version:subject:to:cc:references:
- from:in-reply-to:content-transfer-encoding;
- bh=QlT9To/OXd8EOJgtiTI8cBaN4OaCchdOcuG26O4bS00=;
- b=U/4pwlahc+E5N5fH9o27ywR+K5AqXm0VyqaXYUuenoqn1HVbKF0jwsfu
- sCokzkYOIQ8v2tbS0/TvUoVj5TA/a+jinRtxE0INUs8vf1vYVxVJHKt0Q
- HiP9CrI39v2uIHXW6LaWgacuTFB4UM6IF3chGyfNkGhFdrBumMCDeZWa1
- CtX1LI31KizVISsmUYCAgjo8p+OnWyFPMc8KziXsDcBOl201CwnBMU6L/
- CqwRQSLAak9uzKEbjEewNITkwKDfhJVP/f6Fg2SaZuPdJtJLZRFMw7SeY
- y8TKVnwp2Pi5dudKP2dUdsTu7rBNgQYXkXOgrbL5V1JplRZ6SauIWWHAW A==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10706"; a="353549909"
-X-IronPort-AV: E=Sophos;i="5.99,266,1677571200"; d="scan'208";a="353549909"
-Received: from fmsmga001.fm.intel.com ([10.253.24.23])
- by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 11 May 2023 03:03:13 -0700
+ t=1683799441; x=1715335441;
+ h=message-id:date:mime-version:subject:to:references:from:
+ in-reply-to:content-transfer-encoding;
+ bh=6S1Tf1wY41YYZg0k2n9O+c3pZoZYKPrMoc1ElsKAKBE=;
+ b=B0GQrcRw1ao7w+wdRFHgmvUG8qILbUO4NsvfmIG0a+K71/vp6ElMn0CT
+ eubaY5jf61D6Y8MjT8W5O1Up0JuEDdvoSrvHeLtBYxtnzIgu8upbtW/Xw
+ 4q8EbZDYRmOs/kOOZnssfxbRqfRxfA9vCEVep7vtr9SJabBAiY1sZygSn
+ 6UE7XNks56sfbYEdzqK9kF+idIadEHbevZ3Tq6f9ypkHjuDq6dWYzEXEz
+ aqAgJBrszWNVfibkoibJDUFrrreikJ48F5s7VBZwpStdpxMi+IHVBWvhO
+ W3hSJCwf7G3p3Olt8qG1VksPUn5SDHtO2KtG+ETqhRHWTlPSB9ksTgTbc Q==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10706"; a="330078541"
+X-IronPort-AV: E=Sophos;i="5.99,266,1677571200"; d="scan'208";a="330078541"
+Received: from orsmga003.jf.intel.com ([10.7.209.27])
+ by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 11 May 2023 03:04:00 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10706"; a="843886962"
-X-IronPort-AV: E=Sophos;i="5.99,266,1677571200"; d="scan'208";a="843886962"
-Received: from acharach-mobl.ger.corp.intel.com (HELO [10.251.219.38])
- ([10.251.219.38])
- by fmsmga001-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 11 May 2023 03:03:06 -0700
-Message-ID: <56668e29-f697-bd9b-2c13-182e8456dbce@linux.intel.com>
-Date: Thu, 11 May 2023 12:03:04 +0200
+X-IronPort-AV: E=McAfee;i="6600,9927,10706"; a="650099432"
+X-IronPort-AV: E=Sophos;i="5.99,266,1677571200"; d="scan'208";a="650099432"
+Received: from cuphoff-mobl.ger.corp.intel.com (HELO [10.249.254.120])
+ ([10.249.254.120])
+ by orsmga003-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 11 May 2023 03:03:59 -0700
+Message-ID: <76b803aa-46aa-37ac-ee43-837744257984@linux.intel.com>
+Date: Thu, 11 May 2023 12:03:57 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Firefox/102.0 Thunderbird/102.11.0
+ Thunderbird/102.8.0
 Content-Language: en-US
-To: Tejun Heo <tj@kernel.org>
-References: <20230503083500.645848-1-maarten.lankhorst@linux.intel.com>
- <ZFVeI2DKQXddKDNl@slm.duckdns.org>
- <4d6fbce3-a676-f648-7a09-6f6dcc4bdb46@linux.intel.com>
- <ZFvmaGNo0buQEUi1@slm.duckdns.org>
-From: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
-In-Reply-To: <ZFvmaGNo0buQEUi1@slm.duckdns.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-Subject: Re: [Intel-xe] [RFC PATCH 0/4] Add support for DRM cgroup memory
- accounting.
+To: Matthew Brost <matthew.brost@intel.com>, intel-xe@lists.freedesktop.org
+References: <20230502001727.3211096-1-matthew.brost@intel.com>
+ <20230502001727.3211096-29-matthew.brost@intel.com>
+From: =?UTF-8?Q?Thomas_Hellstr=c3=b6m?= <thomas.hellstrom@linux.intel.com>
+In-Reply-To: <20230502001727.3211096-29-matthew.brost@intel.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+Subject: Re: [Intel-xe] [PATCH v2 28/31] drm/xe: Allow dma-fences as
+ in-syncs for compute / faulting VM
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -64,91 +62,82 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Cc: Maxime Ripard <mripard@kernel.org>, Daniel Vetter <daniel@ffwll.ch>,
- Tvrtko Ursulin <tvrtko.ursulin@intel.com>,
- Thomas Zimmermann <tzimmermann@suse.de>, intel-gfx@lists.freedesktop.org,
- linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org,
- amd-gfx@lists.freedesktop.org, Zefan Li <lizefan.x@bytedance.com>,
- Johannes Weiner <hannes@cmpxchg.org>, cgroups@vger.kernel.org,
- David Airlie <airlied@gmail.com>, intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Hey,
 
-On 2023-05-10 20:46, Tejun Heo wrote:
-> Hello,
+On 5/2/23 02:17, Matthew Brost wrote:
+> This is allowed per the dma-fencing rules.
 >
-> On Wed, May 10, 2023 at 04:59:01PM +0200, Maarten Lankhorst wrote:
->> The misc controller is not granular enough. A single computer may have any number of
->> graphics cards, some of them with multiple regions of vram inside a single card.
-> Extending the misc controller to support dynamic keys shouldn't be that
-> difficult.
+> Signed-off-by: Matthew Brost <matthew.brost@intel.com>
+
+LGTM.
+
+Reviewed-by: Thomas Hellström <thomas.hellstrom@linux.intel.com>
+
+
+
+> ---
+>   drivers/gpu/drm/xe/xe_sync.c | 12 +++++++-----
+>   1 file changed, 7 insertions(+), 5 deletions(-)
 >
-> ...
->> In the next version, I will move all the code for handling the resource limit to
->> TTM's eviction layer, because otherwise it cannot handle the resource limit correctly.
->>
->> The effect of moving the code to TTM, is that it will make the code even more generic
->> for drivers that have vram and use TTM. When using TTM, you only have to describe your
->> VRAM, update some fields in the TTM manager and (un)register your device with the
->> cgroup handler on (un)load. It's quite trivial to add vram accounting to amdgpu and
->> nouveau. [2]
->>
->> If you want to add a knob for scheduling weight for a process, it makes sense to
->> also add resource usage as a knob, otherwise the effect of that knob is very
->> limited. So even for Tvrtko's original proposed usecase, it would make sense.
-> It does make sense but unlike Tvrtko's scheduling weights what's being
-> proposed doesn't seem to encapsulate GPU memory resource in a generic enough
-> manner at least to my untrained eyes. ie. w/ drm.weight, I don't need any
-> specific knoweldge of how a specific GPU operates to say "this guy should
-> get 2x processing power over that guy". This more or less holds for other
-> major resources including CPU, memory and IO. What you're proposing seems a
-> lot more tied to hardware details and users would have to know a lot more
-> about how memory is configured on that particular GPU.
-
-There's not much need of knowing the specifics of a card, but there might
-be a need of knowing the workload to determine what allocation limits to set.
-
-I've left region to be implementation specific, but it would make sense to
-standardise it.
-TTM, the layer used by drivers that support VRAM, have the following regions:
-* sysmem - All system memory allocated; includes evicted VRAM.
-* mapped - All physical system memory that is mapped to the GPU, when unbound
-           moves to sysmem. When evicting VRAM to sysmem, it's temporarily
-           mapped here.
-* vramN - All VRAM regions of the device.
-* driver specific regions - probably doesn't make sense to put in cgroup at all,
-  this includes stolen from the PoC.
-
-That leaves the question, what regions would make sense for a cgroup?
-Since vramN can be moved to mapped and sysmem (VRAM eviction, suspend/resume,
-driver_madvise), it becomes a subject of debate if we should include the other
-regions, since things become complicated fast.
-
-For the first iteration, I focus on a single category, vramN.
-
-Even when not knowing anything about a GPU, it will be easy to partition its
-memory like that.
-
-If you can assign a weight for the scheduler, then you can also partition it's
-vram by parsing /drm.capacity for total amount, and then splitting it across
-cgroups.
-
-
-> Now, if this is inherent to how all, or at least most, GPUs operate, sure,
-> but otherwise let's start small in terms of interface and not take up space
-> which should be for something universal. If this turns out to be the way,
-> expanding to take up the generic interface space isn't difficult.
->
-> I don't know GPU space so please educate me where I'm wrong.
-
-Most GPU's have dedicated vram that works roughly in the same way, some
-integrated chips like i915 or arm use shared memory from the host system
-only. I would say amd, nvidia and intel's chips with dedicated memory work
-roughly in the same way for vram.
-
-I hope this explains it a little bit more,
-
-~Maarten
-
+> diff --git a/drivers/gpu/drm/xe/xe_sync.c b/drivers/gpu/drm/xe/xe_sync.c
+> index 99f1ed87196d..1e4e4acb2c4a 100644
+> --- a/drivers/gpu/drm/xe/xe_sync.c
+> +++ b/drivers/gpu/drm/xe/xe_sync.c
+> @@ -105,6 +105,7 @@ int xe_sync_entry_parse(struct xe_device *xe, struct xe_file *xef,
+>   {
+>   	struct drm_xe_sync sync_in;
+>   	int err;
+> +	bool signal;
+>   
+>   	if (copy_from_user(&sync_in, sync_user, sizeof(*sync_user)))
+>   		return -EFAULT;
+> @@ -113,9 +114,10 @@ int xe_sync_entry_parse(struct xe_device *xe, struct xe_file *xef,
+>   			 ~(SYNC_FLAGS_TYPE_MASK | DRM_XE_SYNC_SIGNAL)))
+>   		return -EINVAL;
+>   
+> +	signal = sync_in.flags & DRM_XE_SYNC_SIGNAL;
+>   	switch (sync_in.flags & SYNC_FLAGS_TYPE_MASK) {
+>   	case DRM_XE_SYNC_SYNCOBJ:
+> -		if (XE_IOCTL_ERR(xe, no_dma_fences))
+> +		if (XE_IOCTL_ERR(xe, no_dma_fences && signal))
+>   			return -ENOTSUPP;
+>   
+>   		if (XE_IOCTL_ERR(xe, upper_32_bits(sync_in.addr)))
+> @@ -125,7 +127,7 @@ int xe_sync_entry_parse(struct xe_device *xe, struct xe_file *xef,
+>   		if (XE_IOCTL_ERR(xe, !sync->syncobj))
+>   			return -ENOENT;
+>   
+> -		if (!(sync_in.flags & DRM_XE_SYNC_SIGNAL)) {
+> +		if (!signal) {
+>   			sync->fence = drm_syncobj_fence_get(sync->syncobj);
+>   			if (XE_IOCTL_ERR(xe, !sync->fence))
+>   				return -EINVAL;
+> @@ -133,7 +135,7 @@ int xe_sync_entry_parse(struct xe_device *xe, struct xe_file *xef,
+>   		break;
+>   
+>   	case DRM_XE_SYNC_TIMELINE_SYNCOBJ:
+> -		if (XE_IOCTL_ERR(xe, no_dma_fences))
+> +		if (XE_IOCTL_ERR(xe, no_dma_fences && signal))
+>   			return -ENOTSUPP;
+>   
+>   		if (XE_IOCTL_ERR(xe, upper_32_bits(sync_in.addr)))
+> @@ -146,7 +148,7 @@ int xe_sync_entry_parse(struct xe_device *xe, struct xe_file *xef,
+>   		if (XE_IOCTL_ERR(xe, !sync->syncobj))
+>   			return -ENOENT;
+>   
+> -		if (sync_in.flags & DRM_XE_SYNC_SIGNAL) {
+> +		if (signal) {
+>   			sync->chain_fence = dma_fence_chain_alloc();
+>   			if (!sync->chain_fence)
+>   				return -ENOMEM;
+> @@ -168,7 +170,7 @@ int xe_sync_entry_parse(struct xe_device *xe, struct xe_file *xef,
+>   		break;
+>   
+>   	case DRM_XE_SYNC_USER_FENCE:
+> -		if (XE_IOCTL_ERR(xe, !(sync_in.flags & DRM_XE_SYNC_SIGNAL)))
+> +		if (XE_IOCTL_ERR(xe, !signal))
+>   			return -ENOTSUPP;
+>   
+>   		if (XE_IOCTL_ERR(xe, sync_in.addr & 0x7))
