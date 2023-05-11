@@ -4,47 +4,48 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 33BC1C7EE23
-	for <intel-xe@archiver.kernel.org>; Thu, 11 May 2023 03:47:33 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id F2B65C7EE26
+	for <intel-xe@archiver.kernel.org>; Thu, 11 May 2023 03:47:34 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id CBCDD10E593;
-	Thu, 11 May 2023 03:47:32 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B675A10E591;
+	Thu, 11 May 2023 03:47:34 +0000 (UTC)
 Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
- by gabe.freedesktop.org (Postfix) with ESMTPS id BCB0610E590
- for <intel-xe@lists.freedesktop.org>; Thu, 11 May 2023 03:47:30 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 666BB10E597
+ for <intel-xe@lists.freedesktop.org>; Thu, 11 May 2023 03:47:31 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1683776850; x=1715312850;
+ t=1683776851; x=1715312851;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=Bt0xey5bwhQMGg1vRM4CkmC4K3n5uHkUxabXqkn3zbY=;
- b=g0cO8xSPlHz4LIuKvnd8dp7I3teYR21X3BF5r2RliMKQQh/ZKjlD6bSl
- 3LgxQalYUhgkzYHZRLXObyNUahE/hh7VJaOD+tH/yaZh2M0JOBcTWC3rE
- 9h9yM5OM9o909pki4Gbt1WV1V/Dy3qeEp5/2iLYfVDUr/B579nRbN1ChS
- FwoPuwj4B9kmZ9yWpt2GvaF9VczkzGldppppBvc33rTXsxr0KRe5E03dM
- k5ZtQ1izrwlJwzbvNyPvtbMRZeHVgcqkxUwvdPVw2VIBNaJevpXiHqCCg
- /M0M17FCABGI9w7HM8m9JhTzXKi3QLpArNLEMhigbdZ11Owky2K9VP39w w==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10706"; a="347850632"
-X-IronPort-AV: E=Sophos;i="5.99,266,1677571200"; d="scan'208";a="347850632"
+ bh=sE3avj31Y8sp6ipsWQGGFAgMUOvG2oFtEjMSU5wyOA0=;
+ b=MGnFnrAyWWtwlhUECzs0E42Ee/T6BNVaYbIrsCFUTOebO/Zow48IrAoN
+ yJd9a86bFoaduPjjPl7B1/zq8NfBYaQvqWUXURgXU9BWh7j7199OqmLh0
+ NCkQfh+p0URdQXqfnl08bwUJyWlCz1Fa41xIinyO+fTKRN60GCskjbOu7
+ Q83IJ59H6W1+AQvqaQmR01V5bas2ZgypRoLqT3XJifPV/e5jIFy2LbzK8
+ kCv+vNMpPn3BRShrixTpTzAxX6ZJvy5UNUHV1siKh7N9cQDod91YNNwu5
+ urPm8BjRQPFOht5QNXrQLEoRI8bi8zL/g6d+qjqZfCYW7hdAxhMK3VkC3 A==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10706"; a="347850645"
+X-IronPort-AV: E=Sophos;i="5.99,266,1677571200"; d="scan'208";a="347850645"
 Received: from fmsmga003.fm.intel.com ([10.253.24.29])
  by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  10 May 2023 20:47:30 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10706"; a="789203185"
-X-IronPort-AV: E=Sophos;i="5.99,266,1677571200"; d="scan'208";a="789203185"
+X-IronPort-AV: E=McAfee;i="6600,9927,10706"; a="789203226"
+X-IronPort-AV: E=Sophos;i="5.99,266,1677571200"; d="scan'208";a="789203226"
 Received: from mdroper-desk1.fm.intel.com ([10.1.27.134])
  by fmsmga003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  10 May 2023 20:47:30 -0700
 From: Matt Roper <matthew.d.roper@intel.com>
 To: intel-xe@lists.freedesktop.org
-Date: Wed, 10 May 2023 20:47:00 -0700
-Message-Id: <20230511034722.1929038-5-matthew.d.roper@intel.com>
+Date: Wed, 10 May 2023 20:47:12 -0700
+Message-Id: <20230511034722.1929038-17-matthew.d.roper@intel.com>
 X-Mailer: git-send-email 2.40.0
 In-Reply-To: <20230511034722.1929038-1-matthew.d.roper@intel.com>
 References: <20230511034722.1929038-1-matthew.d.roper@intel.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-xe] [PATCH 04/26] drm/xe: Add for_each_tile iterator
+Subject: [Intel-xe] [PATCH 16/26] drm/xe/irq: Handle ASLE backlight
+ interrupts at same time as display
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -60,45 +61,81 @@ Cc: matthew.d.roper@intel.com
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-As we start splitting tile handling out from GT handling, we'll need to
-be able to iterate over tiles separately from GTs.  This iterator will
-be used in upcoming patches.
+Our only use of GUnit interrupts is to handle ASLE backlight operations
+that are reported as GUnit GSE interrupts.  Move the enable/disable of
+these interrupts adjacent to display interrupts.
+
+In the future we may want to even move these inside the
+xe_display_irq_*() functions.  But since these rely on xe_irq static
+functions like mask_and_disable() it's easier to keep them separate for
+now.
 
 Signed-off-by: Matt Roper <matthew.d.roper@intel.com>
 ---
- drivers/gpu/drm/xe/xe_device.h | 4 ++++
- drivers/gpu/drm/xe/xe_pci.c    | 3 +--
- 2 files changed, 5 insertions(+), 2 deletions(-)
+ drivers/gpu/drm/xe/xe_irq.c | 15 +++++++++------
+ 1 file changed, 9 insertions(+), 6 deletions(-)
 
-diff --git a/drivers/gpu/drm/xe/xe_device.h b/drivers/gpu/drm/xe/xe_device.h
-index f7acaf51a1fc..745dbb16d417 100644
---- a/drivers/gpu/drm/xe/xe_device.h
-+++ b/drivers/gpu/drm/xe/xe_device.h
-@@ -83,6 +83,10 @@ static inline void xe_device_guc_submission_disable(struct xe_device *xe)
- 	xe->info.enable_guc = false;
+diff --git a/drivers/gpu/drm/xe/xe_irq.c b/drivers/gpu/drm/xe/xe_irq.c
+index fa7d04ba23c0..02f44b58ce3e 100644
+--- a/drivers/gpu/drm/xe/xe_irq.c
++++ b/drivers/gpu/drm/xe/xe_irq.c
+@@ -187,8 +187,6 @@ static void xelp_irq_postinstall(struct xe_device *xe, struct xe_tile *tile)
+ 
+ 	gt_irq_postinstall(tile);
+ 
+-	unmask_and_enable(tile, GU_MISC_IRQ_OFFSET, GU_MISC_GSE);
+-
+ 	xelp_intr_enable(xe, true);
  }
  
-+#define for_each_tile(tile__, xe__, id__) \
-+	for ((id__) = 0; (id__) < (xe__)->info.tile_count; (id__++)) \
-+		for_each_if ((tile__) = &(xe__)->tiles[(id__)])
+@@ -372,8 +370,6 @@ static void dg1_irq_postinstall(struct xe_device *xe, struct xe_tile *tile)
+ {
+ 	gt_irq_postinstall(tile);
+ 
+-	unmask_and_enable(tile, GU_MISC_IRQ_OFFSET, GU_MISC_GSE);
+-
+ 	if (tile->id == 0)
+ 		dg1_intr_enable(xe, true);
+ }
+@@ -486,7 +482,6 @@ static void xelp_irq_reset(struct xe_tile *tile)
+ 
+ 	gt_irq_reset(tile);
+ 
+-	mask_and_disable(tile, GU_MISC_IRQ_OFFSET);
+ 	mask_and_disable(tile, PCU_IRQ_OFFSET);
+ }
+ 
+@@ -497,7 +492,6 @@ static void dg1_irq_reset(struct xe_tile *tile)
+ 
+ 	gt_irq_reset(tile);
+ 
+-	mask_and_disable(tile, GU_MISC_IRQ_OFFSET);
+ 	mask_and_disable(tile, PCU_IRQ_OFFSET);
+ }
+ 
+@@ -513,6 +507,8 @@ static void xe_irq_reset(struct xe_device *xe)
+ 			xelp_irq_reset(tile);
+ 	}
+ 
++	tile = xe_device_get_root_tile(xe);
++	mask_and_disable(tile, GU_MISC_IRQ_OFFSET);
+ 	xe_display_irq_reset(xe);
+ }
+ 
+@@ -535,6 +531,13 @@ static void xe_irq_postinstall(struct xe_device *xe)
+ 		xe_gt_irq_postinstall(tile);
+ 
+ 	xe_display_irq_postinstall(xe, xe_primary_mmio_gt(xe));
 +
- #define for_each_gt(gt__, xe__, id__) \
- 	for ((id__) = 0; (id__) < (xe__)->info.tile_count; (id__++)) \
- 		for_each_if ((gt__) = xe_device_get_gt((xe__), (id__)))
-diff --git a/drivers/gpu/drm/xe/xe_pci.c b/drivers/gpu/drm/xe/xe_pci.c
-index 87c328106aca..bef65d3a440e 100644
---- a/drivers/gpu/drm/xe/xe_pci.c
-+++ b/drivers/gpu/drm/xe/xe_pci.c
-@@ -525,8 +525,7 @@ static int xe_info_init(struct xe_device *xe,
- 		subplatform_desc->subplatform : XE_SUBPLATFORM_NONE;
- 	xe->info.step = xe_step_get(xe);
++	/*
++	 * ASLE backlight operations are reported via GUnit GSE interrupts
++	 * on the root tile.
++	 */
++	unmask_and_enable(xe_device_get_root_tile(xe),
++			  GU_MISC_IRQ_OFFSET, GU_MISC_GSE);
+ }
  
--	for (id = 0; id < xe->info.tile_count; ++id) {
--		tile = &xe->tiles[id];
-+	for_each_tile(tile, xe, id) {
- 		tile->xe = xe;
- 		tile->id = id;
- 
+ static irq_handler_t xe_irq_handler(struct xe_device *xe)
 -- 
 2.40.0
 
