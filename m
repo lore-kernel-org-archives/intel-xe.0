@@ -4,52 +4,31 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id B2AECC77B7F
-	for <intel-xe@archiver.kernel.org>; Fri, 12 May 2023 11:14:28 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2E2DAC77B75
+	for <intel-xe@archiver.kernel.org>; Fri, 12 May 2023 11:24:44 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 70DC410E67E;
-	Fri, 12 May 2023 11:14:28 +0000 (UTC)
-Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 31D9010E67E;
- Fri, 12 May 2023 11:14:27 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1683890067; x=1715426067;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:in-reply-to;
- bh=b2bSeUNs7PpWjC5QOLRCXQ3B+M8q/ixInf2CByxcbkc=;
- b=gj9XEe2VknQn6wEV8Y05OvawKu3ykM1mrh+gPLW2X82B/i6VmAqhuqMK
- kWkiB1pcCTrcsCrubFa5NqdfXe39bgqUyqiHBoV1HrQZlaJ62W8RlfcCJ
- BUm/qZFjMUlR3OhshgV5ccUjJPg0xohlBd0HxFkR7PEkanLIEPnoymYke
- nBkVUtlIpzqzeKa2vXFOrVXha48Y2wOfZhmNgpUSrKqYkN1elKXtxGGJd
- Q+uQEbSPo7MmvCjy+erntMIXtJxYPjEr7JfRxpOYxSQXdG/hMT/+YUHg8
- NuFQERLSq1RbYPIvx/SB0VJM2d8d3j6J5Q7UTnam8GDRAnnwAPbeyADua Q==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10707"; a="378900273"
-X-IronPort-AV: E=Sophos;i="5.99,269,1677571200"; d="scan'208";a="378900273"
-Received: from orsmga008.jf.intel.com ([10.7.209.65])
- by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 12 May 2023 04:14:25 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10707"; a="730785709"
-X-IronPort-AV: E=Sophos;i="5.99,269,1677571200"; d="scan'208";a="730785709"
-Received: from smile.fi.intel.com ([10.237.72.54])
- by orsmga008.jf.intel.com with ESMTP; 12 May 2023 04:14:22 -0700
-Received: from andy by smile.fi.intel.com with local (Exim 4.96)
- (envelope-from <andriy.shevchenko@linux.intel.com>)
- id 1pxQj5-0004b6-3D; Fri, 12 May 2023 14:14:19 +0300
-Date: Fri, 12 May 2023 14:14:19 +0300
-From: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
-To: Lucas De Marchi <lucas.demarchi@intel.com>
-Message-ID: <ZF4fi5B7PPlgZBOI@smile.fi.intel.com>
-References: <20230509051403.2748545-1-lucas.demarchi@intel.com>
- <20230509051403.2748545-3-lucas.demarchi@intel.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id A4FB210E686;
+	Fri, 12 May 2023 11:24:43 +0000 (UTC)
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 52E9310E687;
+ Fri, 12 May 2023 11:24:42 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 4C06FA47E9;
+ Fri, 12 May 2023 11:24:42 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============4955482992023383751=="
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20230509051403.2748545-3-lucas.demarchi@intel.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-Subject: Re: [Intel-xe] [PATCH 2/3] linux/bits.h: Add fixed-width GENMASK
- and BIT macros
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Jani Nikula" <jani.nikula@intel.com>
+Date: Fri, 12 May 2023 11:24:42 -0000
+Message-ID: <168389068230.26102.5678377608667496760@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20230512074335.1293293-1-jani.nikula@intel.com>
+In-Reply-To: <20230512074335.1293293-1-jani.nikula@intel.com>
+Subject: [Intel-xe] =?utf-8?q?=E2=97=8B_CI=2EBAT=3A_info_for_series_start?=
+ =?utf-8?q?ing_with_=5B1/2=5D_fixup!_drm/i915/display=3A_Remaining_changes?=
+ =?utf-8?q?_to_make_xe_compile?=
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -61,36 +40,66 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Cc: Andrew Morton <akpm@linux-foundation.org>,
- Christian =?iso-8859-1?Q?K=F6nig?= <christian.koenig@amd.com>,
- intel-gfx@lists.freedesktop.org, Kevin Brodsky <kevin.brodsky@arm.com>,
- linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org,
- intel-xe@lists.freedesktop.org, Alex Deucher <alexander.deucher@amd.com>,
- Thomas Gleixner <tglx@linutronix.de>, Masahiro Yamada <masahiroy@kernel.org>
+Reply-To: intel-xe@lists.freedesktop.org
+Cc: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Mon, May 08, 2023 at 10:14:02PM -0700, Lucas De Marchi wrote:
-> Add GENMASK_U32(), GENMASK_U16() and GENMASK_U8()  macros to create
-> masks for fixed-width types and also the corresponding BIT_U32(),
-> BIT_U16() and BIT_U8().
+--===============4955482992023383751==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-Why?
+== Series Details ==
 
-> All of those depend on a new "U" suffix added to the integer constant.
-> Due to naming clashes it's better to call the macro U32. Since C doesn't
-> have a proper suffix for short and char types, the U16 and U18 variants
-> just use U32 with one additional check in the BIT_* macros to make
-> sure the compiler gives an error when the those types overflow.
-> The BIT_U16() and BIT_U8() need the help of GENMASK_INPUT_CHECK(),
-> as otherwise they would allow an invalid bit to be passed. Hence
-> implement them in include/linux/bits.h rather than together with
-> the other BIT* variants.
+Series: series starting with [1/2] fixup! drm/i915/display: Remaining changes to make xe compile
+URL   : https://patchwork.freedesktop.org/series/117666/
+State : info
 
-So, we have _Generic() in case you still wish to implement this.
+== Summary ==
 
--- 
-With Best Regards,
-Andy Shevchenko
+Participating hosts:
+bat-dg2-oem2
+bat-adlp-7
+Missing hosts results[0]:
+Results: [xe-pw-117666v1](https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-117666v1/index.html)
 
 
+
+--===============4955482992023383751==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>series starting with [1/2] fixup! drm/i915/display: Remaining changes to make xe compile</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/117666/">https://patchwork.freedesktop.org/series/117666/</a></td></tr>
+<tr><td><b>State:</b></td><td>info</td></tr>
+
+</table>
+
+
+    <p>Participating hosts:<br />
+bat-dg2-oem2<br />
+bat-adlp-7<br />
+Missing hosts results[0]:<br />
+Results: <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-117666v1/index.html">xe-pw-117666v1</a></p>
+
+</body>
+</html>
+
+--===============4955482992023383751==--
