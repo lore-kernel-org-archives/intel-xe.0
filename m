@@ -4,31 +4,30 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id A3978C77B75
-	for <intel-xe@archiver.kernel.org>; Fri, 12 May 2023 10:53:28 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1B8B4C77B7C
+	for <intel-xe@archiver.kernel.org>; Fri, 12 May 2023 10:55:20 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6739010E67E;
-	Fri, 12 May 2023 10:53:28 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D857A10E135;
+	Fri, 12 May 2023 10:55:19 +0000 (UTC)
 Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id A1CD210E67E;
- Fri, 12 May 2023 10:53:25 +0000 (UTC)
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 3E80410E135;
+ Fri, 12 May 2023 10:55:18 +0000 (UTC)
 Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 9A0D7AA01E;
- Fri, 12 May 2023 10:53:25 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============1544711094036334345=="
+ by emeril.freedesktop.org (Postfix) with ESMTP id 38A9FAADE3;
+ Fri, 12 May 2023 10:55:18 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Gustavo Sousa" <gustavo.sousa@intel.com>
-Date: Fri, 12 May 2023 10:53:25 -0000
-Message-ID: <168388880559.26101.11929545409498758841@emeril.freedesktop.org>
+To: "Riana Tauro" <riana.tauro@intel.com>
+Date: Fri, 12 May 2023 10:55:18 -0000
+Message-ID: <168388891821.26101.17862486810637382058@emeril.freedesktop.org>
 X-Patchwork-Hint: ignore
-References: <20230511194822.626036-1-gustavo.sousa@intel.com>
-In-Reply-To: <20230511194822.626036-1-gustavo.sousa@intel.com>
-Subject: [Intel-xe] =?utf-8?q?=E2=97=8B_CI=2EBAT=3A_info_for_drm/xe=3A_Ca?=
- =?utf-8?q?ll_exit_functions_when_xe=5Fregister=5Fpci=5Fdriver=28=29_fails?=
- =?utf-8?q?_=28rev2=29?=
+References: <20230512052050.1308879-1-riana.tauro@intel.com>
+In-Reply-To: <20230512052050.1308879-1-riana.tauro@intel.com>
+Subject: [Intel-xe] =?utf-8?q?=E2=9C=97_CI=2EPatch=5Fapplied=3A_failure_f?=
+ =?utf-8?q?or_drm/xe=3A_add_a_new_sysfs_directory_for_gtidle_properties?=
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -45,61 +44,24 @@ Cc: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============1544711094036334345==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
 == Series Details ==
 
-Series: drm/xe: Call exit functions when xe_register_pci_driver() fails (rev2)
-URL   : https://patchwork.freedesktop.org/series/117559/
-State : info
+Series: drm/xe: add a new sysfs directory for gtidle properties
+URL   : https://patchwork.freedesktop.org/series/117660/
+State : failure
 
 == Summary ==
 
-Participating hosts:
-bat-dg2-oem2
-bat-adlp-7
-Missing hosts results[0]:
-Results: [xe-pw-117559v2](https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-117559v2/index.html)
+=== Applying kernel patches on branch 'drm-xe-next' with base: ===
+Base commit: a9affcc66 fixup! drm/i915/display: Remaining changes to make xe compile
+=== git am output follows ===
+error: patch failed: drivers/gpu/drm/xe/xe_guc_pc.c:593
+error: drivers/gpu/drm/xe/xe_guc_pc.c: patch does not apply
+hint: Use 'git am --show-current-patch' to see the failed patch
+Applying: drm/xe: add a new sysfs directory for gtidle properties
+Patch failed at 0001 drm/xe: add a new sysfs directory for gtidle properties
+When you have resolved this problem, run "git am --continue".
+If you prefer to skip this patch, run "git am --skip" instead.
+To restore the original branch and stop patching, run "git am --abort".
 
 
-
---===============1544711094036334345==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/xe: Call exit functions when xe_register_pci_driver() fails (rev2)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/117559/">https://patchwork.freedesktop.org/series/117559/</a></td></tr>
-<tr><td><b>State:</b></td><td>info</td></tr>
-
-</table>
-
-
-    <p>Participating hosts:<br />
-bat-dg2-oem2<br />
-bat-adlp-7<br />
-Missing hosts results[0]:<br />
-Results: <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-117559v2/index.html">xe-pw-117559v2</a></p>
-
-</body>
-</html>
-
---===============1544711094036334345==--
