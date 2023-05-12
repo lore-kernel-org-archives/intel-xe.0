@@ -4,48 +4,51 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2ED6FC77B75
-	for <intel-xe@archiver.kernel.org>; Fri, 12 May 2023 07:43:43 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 825FDC77B7C
+	for <intel-xe@archiver.kernel.org>; Fri, 12 May 2023 07:43:47 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id DFEBD10E107;
-	Fri, 12 May 2023 07:43:42 +0000 (UTC)
-Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 12CA510E107
- for <intel-xe@lists.freedesktop.org>; Fri, 12 May 2023 07:43:40 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 53E7C10E4BF;
+	Fri, 12 May 2023 07:43:47 +0000 (UTC)
+Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 74AAA10E4BF
+ for <intel-xe@lists.freedesktop.org>; Fri, 12 May 2023 07:43:45 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1683877421; x=1715413421;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=lCUTQVmn4DrtHMcoaiwv0gEM08h8P6qcGLUyGXqwyqw=;
- b=DE9JRkxkJ6KdFpLce556se9QRxgUSGuHdShgHVS4w1TbMMgGpIM8NVxm
- Vk3TpUQIgfOE8Anj2LOfW6k9sjw1+M0pHe9J95846yl1KYUg3fA1Cchau
- 8rw+/IzJWIkqlC4o1MILtY7D6uV6KrlzS4RGNyO7UHsCx8hsbioAQT01r
- K6djNf6v213hgLwOn/gh5Eu/Ge9GneUZPJD94I2oaIv0C6fM+Pn3ZCqB6
- fFg2VH1ytCVZOvpketkibgDWZQDb/LI/qQGKRExMwX+fSEXddUNNapb2a
- /WSMqAwlmMj+1BUoMrlx+cyGBG2jnKs4OdilML8JKAx1+8WVX1ZI7UmEx Q==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10707"; a="352975533"
-X-IronPort-AV: E=Sophos;i="5.99,269,1677571200"; d="scan'208";a="352975533"
-Received: from fmsmga006.fm.intel.com ([10.253.24.20])
- by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 12 May 2023 00:43:40 -0700
+ t=1683877425; x=1715413425;
+ h=from:to:cc:subject:date:message-id:in-reply-to:
+ references:mime-version:content-transfer-encoding;
+ bh=CN369+3lFMjhPFs+RbBKn//29yGPokGrjyroS74NYKo=;
+ b=B+t4UjGfhXE/OpOkG7tZak+tcUeFGqpRkYtJIhyUCyyOYArQFH5oPPk3
+ M71eQ56Qt7o6lE7/pAaTipMeRoddU/MWkruMC+iIVxDbSWNLdf1ptYI2k
+ cJlUrZYMBNceTn2lq6oPaUwkCe/0ll5+xQImmFYy6i+qlS7MWuZzhXu/6
+ k9mujymYwrtFbkmAQWOmEy2sjme1mcM4Zv0vU3788ClWALoARrfYdI8U+
+ 5Kzd079qklePC1RtXm8pIMTgRh26mUnPM99B2q+Z34ncGaIe0/jD+5jSi
+ 2hEFMF8SHCxSelHGHj9z5yQMgYJZraELwV6rLvt694MmUQ33s2V38zB6X A==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10707"; a="330348790"
+X-IronPort-AV: E=Sophos;i="5.99,269,1677571200"; d="scan'208";a="330348790"
+Received: from fmsmga004.fm.intel.com ([10.253.24.48])
+ by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 12 May 2023 00:43:44 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10707"; a="946523816"
-X-IronPort-AV: E=Sophos;i="5.99,269,1677571200"; d="scan'208";a="946523816"
+X-IronPort-AV: E=McAfee;i="6600,9927,10707"; a="769687769"
+X-IronPort-AV: E=Sophos;i="5.99,269,1677571200"; d="scan'208";a="769687769"
 Received: from mshimon1-mobl1.ger.corp.intel.com (HELO localhost)
  ([10.252.63.243])
- by fmsmga006-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 12 May 2023 00:43:38 -0700
+ by fmsmga004-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 12 May 2023 00:43:43 -0700
 From: Jani Nikula <jani.nikula@intel.com>
 To: intel-xe@lists.freedesktop.org
-Date: Fri, 12 May 2023 10:43:34 +0300
-Message-Id: <20230512074335.1293293-1-jani.nikula@intel.com>
+Date: Fri, 12 May 2023 10:43:35 +0300
+Message-Id: <20230512074335.1293293-2-jani.nikula@intel.com>
 X-Mailer: git-send-email 2.39.2
+In-Reply-To: <20230512074335.1293293-1-jani.nikula@intel.com>
+References: <20230512074335.1293293-1-jani.nikula@intel.com>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
 Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-xe] [PATCH 1/2] fixup! drm/i915/display: Remaining changes
- to make xe compile
+Subject: [Intel-xe] [PATCH 2/2] drm/i915/gt: drop dependency on
+ VLV_DISPLAY_BASE
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -61,29 +64,47 @@ Cc: jani.nikula@intel.com
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-The dependency on display/intel_display_reg_defs.h is removed by
-upstream commit 6e4e9fbd5ba0 ("drm/i915/gt: drop dependency on
-VLV_DISPLAY_BASE").
+CHV_FUSE_GT (0x182168) is purely about GT fuses, therefore belongs in
+intel_gt_regs.h, is in the gcfgmmio unit, but is technically in the VLV
+display base area.
 
+Add VLV_GUNIT_BASE to drop dependency on VLV_DISPLAY_BASE and thus
+display/intel_display_reg_defs.h in intel_gt_regs.h.
+
+v2: Add VLV_GUNIT_BASE (Ville)
+
+Cc: Ville Syrjälä <ville.syrjala@linux.intel.com>
 Signed-off-by: Jani Nikula <jani.nikula@intel.com>
+Reviewed-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
+Link: https://patchwork.freedesktop.org/patch/msgid/20230511152153.986676-1-jani.nikula@intel.com
+(cherry picked from commit 6e4e9fbd5ba01eed13cb086ea645f8513370761d)
 ---
- drivers/gpu/drm/i915/gt/intel_gt_regs.h | 2 --
- 1 file changed, 2 deletions(-)
+ drivers/gpu/drm/i915/gt/intel_gt_regs.h | 5 +++--
+ 1 file changed, 3 insertions(+), 2 deletions(-)
 
 diff --git a/drivers/gpu/drm/i915/gt/intel_gt_regs.h b/drivers/gpu/drm/i915/gt/intel_gt_regs.h
-index 7ae5fa5a8ff7..af80d2fe739b 100644
+index af80d2fe739b..61ef9b2c8878 100644
 --- a/drivers/gpu/drm/i915/gt/intel_gt_regs.h
 +++ b/drivers/gpu/drm/i915/gt/intel_gt_regs.h
-@@ -7,9 +7,7 @@
+@@ -7,7 +7,8 @@
  #define __INTEL_GT_REGS__
  
  #include "i915_reg_defs.h"
--#ifdef I915
- #include "display/intel_display_reg_defs.h"	/* VLV_DISPLAY_BASE */
--#endif
+-#include "display/intel_display_reg_defs.h"	/* VLV_DISPLAY_BASE */
++
++#define VLV_GUNIT_BASE			0x180000
  
  /*
   * The perf control registers are technically multicast registers, but the
+@@ -1469,7 +1470,7 @@
+ #define GEN12_RCU_MODE				_MMIO(0x14800)
+ #define   GEN12_RCU_MODE_CCS_ENABLE		REG_BIT(0)
+ 
+-#define CHV_FUSE_GT				_MMIO(VLV_DISPLAY_BASE + 0x2168)
++#define CHV_FUSE_GT				_MMIO(VLV_GUNIT_BASE + 0x2168)
+ #define   CHV_FGT_DISABLE_SS0			(1 << 10)
+ #define   CHV_FGT_DISABLE_SS1			(1 << 11)
+ #define   CHV_FGT_EU_DIS_SS0_R0_SHIFT		16
 -- 
 2.39.2
 
