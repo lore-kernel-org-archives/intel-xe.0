@@ -4,31 +4,31 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 92CECC77B7F
-	for <intel-xe@archiver.kernel.org>; Fri, 12 May 2023 09:40:17 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id B669FC77B7C
+	for <intel-xe@archiver.kernel.org>; Fri, 12 May 2023 09:42:09 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6B1A910E65C;
-	Fri, 12 May 2023 09:40:17 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6D8A510E65F;
+	Fri, 12 May 2023 09:42:09 +0000 (UTC)
 Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id 85FAB10E65C;
- Fri, 12 May 2023 09:40:15 +0000 (UTC)
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 3C5DF10E65F;
+ Fri, 12 May 2023 09:42:07 +0000 (UTC)
 Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 72C8EA7E03;
- Fri, 12 May 2023 09:40:15 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============2757275506340070343=="
+ by emeril.freedesktop.org (Postfix) with ESMTP id 07343A7E03;
+ Fri, 12 May 2023 09:42:07 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Anshuman Gupta" <anshuman.gupta@intel.com>
-Date: Fri, 12 May 2023 09:40:15 -0000
-Message-ID: <168388441546.26102.12528484616330194964@emeril.freedesktop.org>
+To: "Jani Nikula" <jani.nikula@intel.com>
+Date: Fri, 12 May 2023 09:42:07 -0000
+Message-ID: <168388452702.26100.7499206864807050786@emeril.freedesktop.org>
 X-Patchwork-Hint: ignore
-References: <20230511094817.2734836-1-anshuman.gupta@intel.com>
-In-Reply-To: <20230511094817.2734836-1-anshuman.gupta@intel.com>
-Subject: [Intel-xe] =?utf-8?q?=E2=97=8B_CI=2EBAT=3A_info_for_drm/xe/pm=3A?=
- =?utf-8?q?_WARN=5FON=28=29_on_unbounded_pcie_parent_bridge_device_=28rev2?=
- =?utf-8?q?=29?=
+References: <20230511122901.872670-1-jani.nikula@intel.com>
+In-Reply-To: <20230511122901.872670-1-jani.nikula@intel.com>
+Subject: [Intel-xe] =?utf-8?q?=E2=9C=97_CI=2EPatch=5Fapplied=3A_failure_f?=
+ =?utf-8?q?or_fixup!_drm/i915/display=3A_Remaining_changes_to_make_xe_comp?=
+ =?utf-8?q?ile_=28rev2=29?=
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -45,61 +45,24 @@ Cc: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============2757275506340070343==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
 == Series Details ==
 
-Series: drm/xe/pm: WARN_ON() on unbounded pcie parent bridge device (rev2)
-URL   : https://patchwork.freedesktop.org/series/117445/
-State : info
+Series: fixup! drm/i915/display: Remaining changes to make xe compile (rev2)
+URL   : https://patchwork.freedesktop.org/series/117621/
+State : failure
 
 == Summary ==
 
-Participating hosts:
-bat-dg2-oem2
-bat-adlp-7
-Missing hosts results[0]:
-Results: [xe-pw-117445v2](https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-117445v2/index.html)
+=== Applying kernel patches on branch 'drm-xe-next' with base: ===
+Base commit: a9affcc66 fixup! drm/i915/display: Remaining changes to make xe compile
+=== git am output follows ===
+error: patch failed: drivers/gpu/drm/i915/i915_reg_defs.h:231
+error: drivers/gpu/drm/i915/i915_reg_defs.h: patch does not apply
+hint: Use 'git am --show-current-patch' to see the failed patch
+Applying: fixup! drm/i915/display: Remaining changes to make xe compile
+Patch failed at 0001 fixup! drm/i915/display: Remaining changes to make xe compile
+When you have resolved this problem, run "git am --continue".
+If you prefer to skip this patch, run "git am --skip" instead.
+To restore the original branch and stop patching, run "git am --abort".
 
 
-
---===============2757275506340070343==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/xe/pm: WARN_ON() on unbounded pcie parent bridge device (rev2)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/117445/">https://patchwork.freedesktop.org/series/117445/</a></td></tr>
-<tr><td><b>State:</b></td><td>info</td></tr>
-
-</table>
-
-
-    <p>Participating hosts:<br />
-bat-dg2-oem2<br />
-bat-adlp-7<br />
-Missing hosts results[0]:<br />
-Results: <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-117445v2/index.html">xe-pw-117445v2</a></p>
-
-</body>
-</html>
-
---===============2757275506340070343==--
