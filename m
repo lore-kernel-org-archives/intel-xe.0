@@ -4,137 +4,133 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 32D91C7EE22
-	for <intel-xe@archiver.kernel.org>; Thu, 11 May 2023 23:30:18 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id CCA24C7EE22
+	for <intel-xe@archiver.kernel.org>; Fri, 12 May 2023 00:08:06 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 04A8710E5FB;
-	Thu, 11 May 2023 23:30:18 +0000 (UTC)
-Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 76E2F10E5FB
- for <intel-xe@lists.freedesktop.org>; Thu, 11 May 2023 23:30:16 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8B43B10E5FB;
+	Fri, 12 May 2023 00:08:06 +0000 (UTC)
+Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 066C510E600
+ for <intel-xe@lists.freedesktop.org>; Fri, 12 May 2023 00:08:03 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1683847816; x=1715383816;
+ t=1683850084; x=1715386084;
  h=date:from:to:cc:subject:message-id:references:
  in-reply-to:mime-version;
- bh=738nEgDLtWhngi3XoFG4xrgocznh/s+ASvWhbtcKYqY=;
- b=hn1/iMHKn4bDgAg7UOke6Vk4hi2G32s+OV9hexBWlLxbdtxo6KKUwrh/
- wxaVb/xJfI440aj0bWMYqlDsjqY+GVpy8WDTBkwQFKcmUO7btvAMVXxn3
- Z48c9gYvto3K6p1KV7VdKAQCDa/88VP9cl15T25Jd4mGj3G06q4HLW68e
- TSerdO1lYLepG88z09JyM95CWc32wMa0MAoearuIckhql88aIzVwd3pdq
- /Aou6bcgH+Pmyt3YJte7CXeCf549m0h8OT1QgQB6aDEiiDAFrSjh4gQJ5
- 2JXY0i9qltL3aiGf58zANXIffkO+CYUexBwKQFKLoD/jiop/1jXzH6f56 g==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10707"; a="348153237"
-X-IronPort-AV: E=Sophos;i="5.99,268,1677571200"; d="scan'208";a="348153237"
-Received: from fmsmga001.fm.intel.com ([10.253.24.23])
- by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 11 May 2023 16:30:01 -0700
+ bh=CB9srfSZ8iIHqp+9mkb8BxxnDxhTmQJorZ9I9qLtBRg=;
+ b=EtufVIpXh5GSJie/ZyZIlRGx0QaiGtPUKibZ2Ys9DLmVuGAKn4sqRgEK
+ u3sHAME1vkZtgLehgWn41omNZIjM4bEWGmLsfdWlb3YfrwlJXw2JQh56p
+ RzIF4wu5kY4K9iTaj7TDMN9Y9H6qaoFebkK6bH18GnDKxkjUItojKDtVk
+ PlTibNrMLwoMRURqrX6rKFfNjzr3EzV72oiMCTQuREGHtqm5aRda9aeXG
+ XlDcf8k6kTjunnnl8urUFI9jcfHg/Z8wi0hXqwT3wtS4ysqneAHCNLPnW
+ yyWLsl96YyAutmRmWF25Y6YSh7uJdInk+gNKzaNR6YNgCXG3XdurkYFk7 g==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10707"; a="416287260"
+X-IronPort-AV: E=Sophos;i="5.99,268,1677571200"; d="scan'208";a="416287260"
+Received: from orsmga008.jf.intel.com ([10.7.209.65])
+ by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 11 May 2023 17:08:02 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10707"; a="844181089"
-X-IronPort-AV: E=Sophos;i="5.99,268,1677571200"; d="scan'208";a="844181089"
-Received: from orsmsx601.amr.corp.intel.com ([10.22.229.14])
- by fmsmga001.fm.intel.com with ESMTP; 11 May 2023 16:30:01 -0700
-Received: from orsmsx610.amr.corp.intel.com (10.22.229.23) by
- ORSMSX601.amr.corp.intel.com (10.22.229.14) with Microsoft SMTP Server
+X-IronPort-AV: E=McAfee;i="6600,9927,10707"; a="730596359"
+X-IronPort-AV: E=Sophos;i="5.99,268,1677571200"; d="scan'208";a="730596359"
+Received: from fmsmsx602.amr.corp.intel.com ([10.18.126.82])
+ by orsmga008.jf.intel.com with ESMTP; 11 May 2023 17:08:02 -0700
+Received: from fmsmsx612.amr.corp.intel.com (10.18.126.92) by
+ fmsmsx602.amr.corp.intel.com (10.18.126.82) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.23; Thu, 11 May 2023 16:30:01 -0700
-Received: from orsmsx610.amr.corp.intel.com (10.22.229.23) by
- ORSMSX610.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
+ 15.1.2507.23; Thu, 11 May 2023 17:08:02 -0700
+Received: from FMSEDG603.ED.cps.intel.com (10.1.192.133) by
+ fmsmsx612.amr.corp.intel.com (10.18.126.92) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.23; Thu, 11 May 2023 16:30:00 -0700
-Received: from ORSEDG602.ED.cps.intel.com (10.7.248.7) by
- orsmsx610.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.23 via Frontend Transport; Thu, 11 May 2023 16:30:00 -0700
-Received: from NAM11-DM6-obe.outbound.protection.outlook.com (104.47.57.168)
- by edgegateway.intel.com (134.134.137.103) with Microsoft SMTP Server
+ 15.1.2507.23 via Frontend Transport; Thu, 11 May 2023 17:08:02 -0700
+Received: from NAM10-MW2-obe.outbound.protection.outlook.com (104.47.55.109)
+ by edgegateway.intel.com (192.55.55.68) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2507.23; Thu, 11 May 2023 16:30:00 -0700
+ 15.1.2507.23; Thu, 11 May 2023 17:07:58 -0700
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=UUUjQfQpwXDACLFF5iQrcZR6RsHi5MwkQcZx1vdajmiXYreFZBdeyIHPsi4ZVb7tInKCJoOrkPkD0CTWhEEpazefcrDidS6lqG95uWkBanDxYGjBGWHtYTtpHKgkLQP6yYAw5LryjvxRsZWED1xdZyAG4McPDTjVM/3pYq4C9PJFaHOmDubQ8wykpjYhbmo/M4zM/7SiH7v6vQ/p1dsn8Nftj/B3dHwD3tNB0OhPtmvhvhXkR65CJSOHUILNyBiLqVRpYXxJrET7KES8YFDAjG3vAMtuVzpenld8Tsbf8Yy7vqlG/SDbC58NOFn4KqvHR0FZ2p0sGD79427kd9iufQ==
+ b=NlgrUQukwPAT4BVD63F9WpzzNLYP/IfWLBWC6xr2J9TYI4QOI8tVi54XYm9YwVCU8mxYOJ/VCq+rF7lPisbOour82F97eUCibTDsoGzPO12AxNiopqYm00OpPN2lvGWYtM11leR4pCmHiir8tmGr5YYK9cFFrT+WmHcn7SqROq6+pbyoHC5OGzRWXUs0Ft9tBsjWpvCCSTVT6gR38Zd69ME+/xc+1jQkORoV8/1j33ShO0jYAlAs1TVc63DzZAp7OHVSSr/Nc7LBYK7zbuE+ApNQ44/CJQLCLq3RYuKKk2PDceqQbJ9nJOIEmvU6B0AYI4a2/zOMqk7vLKvnqQGymg==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=OK1wovdTl/8CEZ+tYlfYjSGfU/1lCIJ7agBuVTUB7CU=;
- b=FTxwZUwDr1L8wZAbO//0ynJvpULoFUjy7dwJLyJnuMNXj1wwIi/tqOh8OPfD7N5hvT4PK1rFJOM3Qvb51eDN7mFokkkzCjbPeyN5CmcnaCNuOOkSud3YulQJ1JRbQuGf/QbuWbmgoeCvG9xF9jqDolwkrcpn08M417SNvjqmJ5MeISXCbHbA/VP6oZW9NZn16+RZl/S+MBxhVdKRuZP2iZRo5EcfD+MZYn/AtYgKeGtpTmDHfldNfs/bcIDYHKR2B2IPn+bzQuKhP4lr31+497yK8hw27zAGxgOn8Mf7TAaWEr1Q+xBvOIgP1u60vvFXLRbyjAJzpkFnUE2yW4G2nw==
+ bh=OxAs2BBLJ88oNo+TEWlTBh+7myFPO1ddtbDBUJUWFjE=;
+ b=gPpRHNQq2GO0wLOzLYEeJ/x/i7VSCKGdbVhdHIxo8Jp765GlH1FEfL3q8lqBea/wmpbhlZEivVMkvTuOXMeKorZ0WbwAms4qt/QLYuPhIravB1x5T7p1JfdAcvoQkT6/JBuyZhblG3GmHhRVXoEkrJGkoE8Pl4FH6k9x/758jWHfvdtlG7JnS1Lk4byw5e8KIM7btjGlpYFhPj2IunYvolEBtQeHmqFlDBP1QOAtGJYT+bBmJ87+9WuwXWb/2R4ULLEmFDxPcDEP9GFzpVYYgSUS10yb58mxeaJVSi6FWXj4Zz9LL9BdDC2J0rmUbBJC9gryBcaTuXzgBtBQ6h1ayQ==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
  dkim=pass header.d=intel.com; arc=none
 Authentication-Results: dkim=none (message not signed)
  header.d=none;dmarc=none action=none header.from=intel.com;
 Received: from CY5PR11MB6139.namprd11.prod.outlook.com (2603:10b6:930:29::17)
- by MW5PR11MB5929.namprd11.prod.outlook.com (2603:10b6:303:194::8)
+ by BL1PR11MB5554.namprd11.prod.outlook.com (2603:10b6:208:31d::24)
  with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6363.33; Thu, 11 May
- 2023 23:29:58 +0000
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6387.20; Fri, 12 May
+ 2023 00:07:50 +0000
 Received: from CY5PR11MB6139.namprd11.prod.outlook.com
  ([fe80::44e7:c479:62f4:3eb4]) by CY5PR11MB6139.namprd11.prod.outlook.com
- ([fe80::44e7:c479:62f4:3eb4%3]) with mapi id 15.20.6363.033; Thu, 11 May 2023
- 23:29:58 +0000
-Date: Thu, 11 May 2023 16:29:55 -0700
+ ([fe80::44e7:c479:62f4:3eb4%3]) with mapi id 15.20.6363.033; Fri, 12 May 2023
+ 00:07:49 +0000
+Date: Thu, 11 May 2023 17:07:46 -0700
 From: Lucas De Marchi <lucas.demarchi@intel.com>
 To: Matt Roper <matthew.d.roper@intel.com>
-Message-ID: <4yoscvqo3xq6my647273h25mqnx23ena7mcnj7vvog3k4o2ane@azity4pbplx2>
+Message-ID: <qf2idx37zw7ss2s4lp6zpfomk4v3q6jid3iqfnnxi4avyh6med@qa3htrgeal4n>
 References: <20230511034722.1929038-1-matthew.d.roper@intel.com>
- <20230511034722.1929038-2-matthew.d.roper@intel.com>
+ <20230511034722.1929038-4-matthew.d.roper@intel.com>
 Content-Type: text/plain; charset="us-ascii"; format=flowed
 Content-Disposition: inline
-In-Reply-To: <20230511034722.1929038-2-matthew.d.roper@intel.com>
-X-ClientProxiedBy: BYAPR07CA0010.namprd07.prod.outlook.com
- (2603:10b6:a02:bc::23) To CY5PR11MB6139.namprd11.prod.outlook.com
+In-Reply-To: <20230511034722.1929038-4-matthew.d.roper@intel.com>
+X-ClientProxiedBy: BYAPR11CA0091.namprd11.prod.outlook.com
+ (2603:10b6:a03:f4::32) To CY5PR11MB6139.namprd11.prod.outlook.com
  (2603:10b6:930:29::17)
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: CY5PR11MB6139:EE_|MW5PR11MB5929:EE_
-X-MS-Office365-Filtering-Correlation-Id: a1df5769-08b4-40d6-3cab-08db5277a279
+X-MS-TrafficTypeDiagnostic: CY5PR11MB6139:EE_|BL1PR11MB5554:EE_
+X-MS-Office365-Filtering-Correlation-Id: 411dfcb4-db6f-4b9b-6875-08db527cec1b
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: Rs643H5J8AyWPozurz52ziPSNWvBNRlAmB//t5PbZBjqfcwvawsvnsUG7Rgcob8OBA3IJoKdC0tTdgdCqtDNdixsoNHJQsLzsGvMXTgZR7Qd3iKTOdx91FmT4EE+5rdkMeiBLpO60WXzdB5ChqsQZHmwSAWw9+hKyFX2JOzaNKUK+GwbQtY83cQwmuwl4Iz8kYjhfS2fbU0PkRmPSblZukTMhBguHrbZI6L5FLI+Pp7Wk/7wC2vfXnd6mVo9J2N+72e/ciFaMhye1MG2RgkRDSBlCQzPGCOAka+ISrzd6LlQoEqYuDIdjU9yAdjzqL7FrcNxYfK6wYUNcGyAEgz+eFr8Ch9lGdgYlQiCMe3FZOKwSaUtD6xkh2nsJih5yv889ABphlYdaXbhwRhe9Gux15NYdlT08zU8VpXtLkn9v2tGoGN8sKJATY7FIZfhaBvPF7FKfMAG61D/ywteNmP90hF2V3VVbwN7Nm7EHHgJMsD9m7eM173qggEiamU+yq8mwlb//QG0TC5FDdu61dKjJDLlkl8H+C5mePa3XrjXKvRPbMyWwaAJ72WkW9VyK/2T
+X-Microsoft-Antispam-Message-Info: pPWhxpTjqfZRMKxGBssgR+lWZ0N8RaZfihxE7U11eVTovni6VIIh4sYs4B32IiRrOV6JTWz+h/w3h6p+dCMjjlcIyDo/sba9kHXgp7889J7TrshLx9cvC+h8//jJdnq7FB7QPyVBrXdGVvEI9zWUXqJbMNsBoJ/s7HV0ted/PpoLDZTiltOSe5rpF9rxpCj7AGtdggc8Uxrz1ii9fpNPrZ0d7aVLaWiQUzUAOAvu4crlb1VcZsvHrYNQtHKJiJsj4lknIagLITqpzUhPQbFkmJ7nKNCXZOIAdrhOIVAnelA2lyQfUKa6W9VlEFnqJhwKn4Kq4dWSr+IDrQjxkOLAykxwSQJNyRxKYDtwfG48AqXwK7w6TWI8yMXR6AbjGFqyZtaljR73uTHAV4T/Nv1xiEHO2cN8X1AwPSkTiL1CPnQX3zpgcIp+AXjma1fTUiQMafpCwMkfxIqCTfKwkCzIbHimfC7VEY83aMcVVJY738lDdK1b3wSHkLSIZH03hYuvpce1XrcCmpH1/Cr89NLcTfFVQs6+PbWYpOEb5fFbHw5RNTPWPil3pI+I7w33Zac1
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
  IPV:NLI; SFV:NSPM; H:CY5PR11MB6139.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230028)(7916004)(346002)(39860400002)(396003)(366004)(376002)(136003)(451199021)(38100700002)(6486002)(6666004)(5660300002)(33716001)(8936002)(8676002)(6862004)(478600001)(316002)(82960400001)(66946007)(66556008)(6636002)(4326008)(66476007)(86362001)(2906002)(186003)(83380400001)(41300700001)(9686003)(6512007)(26005)(6506007);
+ SFS:(13230028)(7916004)(136003)(39860400002)(376002)(396003)(366004)(346002)(451199021)(316002)(478600001)(86362001)(6486002)(6666004)(6636002)(4326008)(66946007)(66556008)(66476007)(83380400001)(8676002)(33716001)(41300700001)(8936002)(38100700002)(6862004)(82960400001)(26005)(2906002)(186003)(6512007)(5660300002)(6506007)(9686003);
  DIR:OUT; SFP:1102; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?kcr+4F8l9aou8BSkgHPcQtVkVeeVXkM1YsviQ4W5iz0M6Kwbl7mdvoCN66Iv?=
- =?us-ascii?Q?i+NlR2igOIl1zgWt1+/rH4wqRMDy3pJkm+ka0+9NlNgjhvuOxTlW8f6Z7Xnf?=
- =?us-ascii?Q?n4Esln2Wbohfwp4Sj3qEYMsXpnPKD05LperB92oMgBlmY471Oo8n+hMzTDLZ?=
- =?us-ascii?Q?Hr2Q0o1mph8DxHZ1EXEovVHPotig7kH3N240ln98TW+Fv24/cKUZygUj99xB?=
- =?us-ascii?Q?MwUEzMZa0daQAk+vNZSByUWhflBxZPmn6BKa2Xn22q4XsJa0PH49iGlueInq?=
- =?us-ascii?Q?lS+fak+ovHY1UKY8/o4uoK6rWLvwk3PLrFnuQdc+0yPndaoL2J/dL5g6b9/t?=
- =?us-ascii?Q?1IeGmESRpAdyC+plcs5KPnIlnUiua8D6DnF3r8zgS8whNV+Wk5+qpf3OHvQw?=
- =?us-ascii?Q?i6agH9Hqp1NYwSTEszqTkN+Nh4vkw8a3/igVUFrzEB9ALqYhOvrCkIS3hiDe?=
- =?us-ascii?Q?gIVe1+PPXxTrHGiE+JxVPblltVXNk4ZMm3zfyumh7Njxe/IQ3RDe1xFkk6Z0?=
- =?us-ascii?Q?jQYdsGj1o0LG1B6IISrxuPudbGHkOPsDAeNbCXOSbzNxuysSKWBMLhEMHIJL?=
- =?us-ascii?Q?/Xm4YGyQDUM+YWkJWOJyFeK2TkQ4cN/v4nhg+GLCgmLUJOU6tRuzQiMMzRtA?=
- =?us-ascii?Q?IME9eotHGCvQPyLtd4l8tFmvW3UcmHtY6MYndoKycT6Rfmj55jWp6kVnSTSX?=
- =?us-ascii?Q?dXE3QGu0aDH90VhTQxjwcMDbTZgQTlzIrit3t/iYiw/+jFxJVrwkunQBYjjM?=
- =?us-ascii?Q?Rr0y4oQ5RdXcQIzvrHPYR5COpbCC2P3+EQ6de6Mdbvf3Kn4zM+sx1CKNvmsP?=
- =?us-ascii?Q?D4iX+ZZKi/5JmYXurOE32G7VSWLXm1mhvzqpFTgPIO7TiAkv81i2Qg2rdc/e?=
- =?us-ascii?Q?SCKq7QUc5U/zZb9RA/Wn6PTOm8xkynI2rluIIn2iiB/JgbX17KUAfRtMVE0X?=
- =?us-ascii?Q?HO1qLaFQWIhSmDVfpe/++x2bjRWBRoLeDgvC/Oc2cYpKamBP0Aeeb66SH/d6?=
- =?us-ascii?Q?jVOOV8MFU/Q8O8vNDFnY4BTTev8pjGVkw9k8FOi9xSjtA9d1AAipEnXqVy4O?=
- =?us-ascii?Q?y00JsTfj/W145jaxGXMyefZf6BW5E7Aj090vQv5CpSM1eUVTS6yMeffjxpHA?=
- =?us-ascii?Q?KG8sUsSdhwL6+1rYvo9BptFlJDLv0ZAI1by5Om7z7G4ffxlZF1H46Jms2rmm?=
- =?us-ascii?Q?bmZ9EsmUSAgEdpHuS2nuuXoCq4rkRsOa+DmEMSffVWmLjzj4FQMDxpatAYzx?=
- =?us-ascii?Q?KYDghc2AX5ODqWptVZvKqlavvArKZR+SqKBdX9E0Bi5A+wJrF8ht0N7diKrK?=
- =?us-ascii?Q?W97VnULExOhaIkVcf9YLUTvmwom39OgJqhC60gEay2B0viTMZkWQ5gzQOcm3?=
- =?us-ascii?Q?m7Ql8sx43T3W4ZQz8lUP1K0fTUP4uK5d1OaIm0KdftYhkUHoZmZTtr6dSseL?=
- =?us-ascii?Q?+rB6TDIjkLjPeOk0q0MNGJr9fiMqcapKRDsLATEaj5g1Jlj+N+wlNDOZESQZ?=
- =?us-ascii?Q?MxK85ChPbeU1if6h7ZWNxUw9ikgqEZJls4o9ZsPo/6sZsycN3UXsLysxCTlK?=
- =?us-ascii?Q?6WpmWfAtVvpwX8poWybUzQPNtqkzhzN8HLeBCj4ZGQiZP1bhiCGPO15RYYNf?=
- =?us-ascii?Q?ZA=3D=3D?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: a1df5769-08b4-40d6-3cab-08db5277a279
+X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?cBbF6s/4O/kXjzGPC7zWFaMdFrSEXxA813d7J4BF4gtSkgzJuYpmTvNv9SA3?=
+ =?us-ascii?Q?D9Mqa7Bsdej9WaN5fojAIlYtDKmZUiMBhyhYZRKb6qZr07tMavzHR6ynU+7O?=
+ =?us-ascii?Q?i7HTze3N8iuOw9c5hdFS8B2ii47ZQnfJShmdJAGFYR0EN6CjvI12Ez57Izw7?=
+ =?us-ascii?Q?cEcnQvj1wODEw3GgRC//U+qnhz8zFOOm7xWhhGY22r2RbGp3PcbimrKAn8gO?=
+ =?us-ascii?Q?tBKG7Ibbf2H1N+fbaxIWZO0cSjcwve9OgVVE0vVDP7H+lEIEpCL0RvQdsvOB?=
+ =?us-ascii?Q?vjHXQtOEp8ftZ78wK3PivcMClNjVgbJPk0Xk5HLmrkLHMtXDcZi/6FWWrWQh?=
+ =?us-ascii?Q?ecKp6nMukFC5DU8s1q1rzwySKvGe0VlPLF/GktWgSpIpy01m/o56YZ+CkF1N?=
+ =?us-ascii?Q?GyN565rFdPzDpMtnGJZ/riEyfOQrbVyUfhYLu4p9H8tXCATGvxFA61jv8N8w?=
+ =?us-ascii?Q?NfmvbBJdIhW5kSJ7FkGsfWi3HO0Fn5ocZ2c1Oq3HXMl7tzqoEE8qGqcSpbvc?=
+ =?us-ascii?Q?7i8c29hPm8JzpvrfJ2FXcQq39jUOW95E33JVOZNjsEQlJhfpWdMz394beuKJ?=
+ =?us-ascii?Q?04Fu+z5Nhg77089lOwp/c/o39/cLJi/jStFoPd+/6WD/OEjtOnhmXvyzB9ie?=
+ =?us-ascii?Q?38v1llyN+wzfBXy9Ah47fdW8PuDHaKbMLG3oPiZQeiGFc6fD5swN3hQkg7Nd?=
+ =?us-ascii?Q?3B5dF9qwlZKnhHnubP5FzpNHQPGiuIDkRWA9sMU9LCVYqz3gS+YlLH/4wq/5?=
+ =?us-ascii?Q?IHYev5CzmmmlIvXGknm567CREdzgcJUMnUVk0f0uzXUQQTql62H+cR9YQQmf?=
+ =?us-ascii?Q?orHfmL9nN4iJQauBMV5yP0Rip7mWRIGH+F+HTnvB7HmnimpfsbYUs/TY/lOh?=
+ =?us-ascii?Q?VEs58JG0gFeGxCrd8If1+61YmZaecxD9VSLSwMxj/Ko4IyeI/Vmr3L+Py3CI?=
+ =?us-ascii?Q?2A6iGNgNr1tR7L7V8A7RgHW4b3ggbh5xaRmNbpdSDhDSL1ZJINufdUEaCo8c?=
+ =?us-ascii?Q?zpARUBpR+8b7B7i94l0l/e3QfN3c3JdcM5BYRWmeO6Y8tMf66bF3alkBR+eU?=
+ =?us-ascii?Q?IldeMalGFdfx9yhvL4LtjROZugCQeBNNtVfHsGGND4x2hw2ZDZKlbdK7uaNa?=
+ =?us-ascii?Q?WNr9hRiy7omhykJxKhs7OXTbecyZ9kwljAG1tAbQnXJtc96MJWwSVR4Q6Dno?=
+ =?us-ascii?Q?/Y0vOfBug51dW6X16ovOWESZ78G2YXqcDy0VOprKXycnsKrfg+XO6Z7H5Nr7?=
+ =?us-ascii?Q?9Os2NELlDo0BRFqNPEYt9m5cZJbY/mT/saRpvnUiWh8fwoVqrGqL0fbzscuw?=
+ =?us-ascii?Q?9ITZFWo7UU7n0NjCTwFh/7EjyOgB2KeFXmRfFi6L/VPijKUTgIrpYDK0rc2r?=
+ =?us-ascii?Q?6WMlCmzQ+QnEl4zebr1DrBzIKxl0S7xcmr/p1TSe8ioRc+D7RI5TIj0jnq9z?=
+ =?us-ascii?Q?t/PKSz1xrb4H1OMVR5pdHR0j5NMabeMvnaVw1eXCaSVGVDk1el8z17dySuGx?=
+ =?us-ascii?Q?6iht5c7CTUtdvsX5Wsaq06A2/xTwE6S9/Rvvfu2bPqi7M8U6Hwj+lNzrxh7o?=
+ =?us-ascii?Q?AOy4J1ER51WGiCxITPLMLTsYOlajMGQBoS5vGsNUw4+RGqWrPo9uEqfvdcBy?=
+ =?us-ascii?Q?UA=3D=3D?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: 411dfcb4-db6f-4b9b-6875-08db527cec1b
 X-MS-Exchange-CrossTenant-AuthSource: CY5PR11MB6139.namprd11.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 11 May 2023 23:29:58.4977 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 12 May 2023 00:07:49.6869 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: 8l4LJInHCIfrjACfDdNJ/A4R9ynRVaybi9r4pi7vDeHk0x4U4FzRA9lLe+6hYMk8j7heAJYxNukEyv8MfbJ3O0oiLeliolKfpFkwl2H81Lw=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: MW5PR11MB5929
+X-MS-Exchange-CrossTenant-UserPrincipalName: gaB3sFSAsZAYXhDpPIhhtmD/IwlCXZo3EpMsw6Z409jH2SXvxxJXwWebtbPtGu2PdBJEclYOIZ3yah+8Xay1MDC/xg6yJNPfjtouNgWOxpc=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: BL1PR11MB5554
 X-OriginatorOrg: intel.com
-Subject: Re: [Intel-xe] [PATCH 01/26] drm/xe/mtl: Disable media GT
+Subject: Re: [Intel-xe] [PATCH 03/26] drm/xe: Add backpointer from gt to tile
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -150,113 +146,222 @@ Cc: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Wed, May 10, 2023 at 08:46:57PM -0700, Matt Roper wrote:
->Xe incorrectly conflates the concept of 'tile' and 'GT.'  Since MTL's
->media support is not yet functioning properly, let's just disable it
->completely for now while we fix the fundamental driver design.  Support
->for media GTs on platforms like MTL will be re-added later.
+On Wed, May 10, 2023 at 08:46:59PM -0700, Matt Roper wrote:
+>Rather than a backpointer to the xe_device, a GT should have a
+>backpointer to its tile (which can then be used to lookup the device if
+>necessary).
+>
+>The gt_to_xe() helper macro (which moves from xe_gt.h to xe_gt_types.h)
+>can and should still be used to jump directly from an xe_gt to
+>xe_device.
 >
 >Signed-off-by: Matt Roper <matthew.d.roper@intel.com>
 >---
-> drivers/gpu/drm/xe/xe_gt_mcr.c |  2 +-
-> drivers/gpu/drm/xe/xe_mmio.c   |  2 --
-> drivers/gpu/drm/xe/xe_pci.c    | 15 ++-------------
-> 3 files changed, 3 insertions(+), 16 deletions(-)
+> drivers/gpu/drm/xe/xe_bb.c                  |  2 +-
+> drivers/gpu/drm/xe/xe_gt.h                  |  5 -----
+> drivers/gpu/drm/xe/xe_gt_tlb_invalidation.c |  4 ++--
+> drivers/gpu/drm/xe/xe_gt_types.h            | 14 ++++++++++++--
+> drivers/gpu/drm/xe/xe_mocs.c                | 14 +++++++-------
+> drivers/gpu/drm/xe/xe_pci.c                 | 11 +++++++----
+> drivers/gpu/drm/xe/xe_pt.c                  |  2 +-
+> 7 files changed, 30 insertions(+), 22 deletions(-)
 >
->diff --git a/drivers/gpu/drm/xe/xe_gt_mcr.c b/drivers/gpu/drm/xe/xe_gt_mcr.c
->index 3db550c85e32..be80fdc4b5a2 100644
->--- a/drivers/gpu/drm/xe/xe_gt_mcr.c
->+++ b/drivers/gpu/drm/xe/xe_gt_mcr.c
->@@ -293,7 +293,7 @@ void xe_gt_mcr_init(struct xe_gt *gt)
+>diff --git a/drivers/gpu/drm/xe/xe_bb.c b/drivers/gpu/drm/xe/xe_bb.c
+>index 3deb2d55f421..bf7c94b769d7 100644
+>--- a/drivers/gpu/drm/xe/xe_bb.c
+>+++ b/drivers/gpu/drm/xe/xe_bb.c
+>@@ -16,7 +16,7 @@
 >
-> 	spin_lock_init(&gt->mcr_lock);
+> static int bb_prefetch(struct xe_gt *gt)
+> {
+>-	struct xe_device *xe = gt->xe;
+>+	struct xe_device *xe = gt_to_xe(gt);
 >
->-	if (gt->info.type == XE_GT_TYPE_MEDIA) {
->+	if (xe_gt_is_media_type(gt)) {
-
-was there a squashing issue here?  if media GT is being removed,
-why are you replacing the gt type check xe_gt_is_media_type()?
-Shouldn't you then remove xe_gt_is_media_type() is all this branch here
-since it's for MEDIA_VER(xe) >= 13?
-
-or just leave this branch as is...
-
-> 		drm_WARN_ON(&xe->drm, MEDIA_VER(xe) < 13);
+> 	if (GRAPHICS_VERx100(xe) >= 1250 && !xe_gt_is_media_type(gt))
+> 		/*
+>diff --git a/drivers/gpu/drm/xe/xe_gt.h b/drivers/gpu/drm/xe/xe_gt.h
+>index 086369f7ee6d..f4e98f499b36 100644
+>--- a/drivers/gpu/drm/xe/xe_gt.h
+>+++ b/drivers/gpu/drm/xe/xe_gt.h
+>@@ -49,11 +49,6 @@ static inline bool xe_gt_is_media_type(struct xe_gt *gt)
+> 	return gt->info.type == XE_GT_TYPE_MEDIA;
+> }
 >
-> 		gt->steering[OADDRM].ranges = xelpmp_oaddrm_steering_table;
->diff --git a/drivers/gpu/drm/xe/xe_mmio.c b/drivers/gpu/drm/xe/xe_mmio.c
->index c7fbb1cc1f64..4804616a3c44 100644
->--- a/drivers/gpu/drm/xe/xe_mmio.c
->+++ b/drivers/gpu/drm/xe/xe_mmio.c
->@@ -301,8 +301,6 @@ static void xe_mmio_probe_tiles(struct xe_device *xe)
-> 	mtcfg = xe_mmio_read64(gt, XEHP_MTCFG_ADDR);
-> 	adj_tile_count = xe->info.tile_count =
-> 		REG_FIELD_GET(TILE_COUNT, mtcfg) + 1;
->-	if (xe->info.media_verx100 >= 1300)
->-		xe->info.tile_count *= 2;
+>-#define gt_to_xe(gt__)								\
+>-	_Generic(gt__,								\
+>-		 const struct xe_gt *: (const struct xe_device *)((gt__)->xe),	\
+>-		 struct xe_gt *: (gt__)->xe)
+>-
+> static inline bool xe_gt_is_usm_hwe(struct xe_gt *gt, struct xe_hw_engine *hwe)
+> {
+> 	struct xe_device *xe = gt_to_xe(gt);
+>diff --git a/drivers/gpu/drm/xe/xe_gt_tlb_invalidation.c b/drivers/gpu/drm/xe/xe_gt_tlb_invalidation.c
+>index c815a42e2cdb..c9e8825c02aa 100644
+>--- a/drivers/gpu/drm/xe/xe_gt_tlb_invalidation.c
+>+++ b/drivers/gpu/drm/xe/xe_gt_tlb_invalidation.c
+>@@ -322,8 +322,8 @@ int xe_guc_tlb_invalidation_done_handler(struct xe_guc *guc, u32 *msg, u32 len)
+> 		TLB_INVALIDATION_SEQNO_MAX;
+> 	if (!expected_seqno)
+> 		expected_seqno = 1;
+>-	if (drm_WARN_ON(&gt->xe->drm, expected_seqno != msg[0])) {
+>-		drm_err(&gt->xe->drm, "TLB expected_seqno(%d) != msg(%u)\n",
+>+	if (drm_WARN_ON(&gt_to_xe(gt)->drm, expected_seqno != msg[0])) {
+>+		drm_err(&gt_to_xe(gt)->drm, "TLB expected_seqno(%d) != msg(%u)\n",
+> 			expected_seqno, msg[0]);
+> 	}
 >
-> 	drm_info(&xe->drm, "tile_count: %d, adj_tile_count %d\n",
-> 		 xe->info.tile_count, adj_tile_count);
+>diff --git a/drivers/gpu/drm/xe/xe_gt_types.h b/drivers/gpu/drm/xe/xe_gt_types.h
+>index e0ed4508269b..c4376d50786b 100644
+>--- a/drivers/gpu/drm/xe/xe_gt_types.h
+>+++ b/drivers/gpu/drm/xe/xe_gt_types.h
+>@@ -76,6 +76,16 @@ enum xe_steering_type {
+> 	NUM_STEERING_TYPES
+> };
+>
+>+#define gt_to_tile(gt__)							\
+>+	_Generic(gt__,								\
+>+		 const struct xe_gt *: (const struct xe_tile *)((gt__)->tile),	\
+>+		 struct xe_gt *: (gt__)->tile)
+>+
+>+#define gt_to_xe(gt__)										\
+>+	_Generic(gt__,										\
+>+		 const struct xe_gt *: (const struct xe_device *)(gt_to_tile(gt__)->xe),	\
+>+		 struct xe_gt *: gt_to_tile(gt__)->xe)
+>+
+> /**
+>  * struct xe_gt - A "Graphics Technology" unit of the GPU
+>  *
+>@@ -90,8 +100,8 @@ enum xe_steering_type {
+>  * within a tile.
+>  */
+> struct xe_gt {
+>-	/** @xe: backpointer to XE device */
+>-	struct xe_device *xe;
+>+	/** @tile: Backpointer to GT's tile */
+>+	struct xe_tile *tile;
+>
+> 	/** @info: GT info */
+> 	struct {
+>diff --git a/drivers/gpu/drm/xe/xe_mocs.c b/drivers/gpu/drm/xe/xe_mocs.c
+>index 817afd301d52..d57fbf16a3ef 100644
+>--- a/drivers/gpu/drm/xe/xe_mocs.c
+>+++ b/drivers/gpu/drm/xe/xe_mocs.c
+>@@ -471,7 +471,7 @@ static void __init_mocs_table(struct xe_gt *gt,
+> 	unsigned int i;
+> 	u32 mocs;
+>
+>-	mocs_dbg(&gt->xe->drm, "entries:%d\n", info->n_entries);
+>+	mocs_dbg(&gt_to_xe(gt)->drm, "entries:%d\n", info->n_entries);
+> 	drm_WARN_ONCE(&xe->drm, !info->unused_entries_index,
+> 		      "Unused entries index should have been defined\n");
+> 	for (i = 0;
+>@@ -479,7 +479,7 @@ static void __init_mocs_table(struct xe_gt *gt,
+> 	     i++) {
+> 		struct xe_reg reg = XE_REG(addr + i * 4);
+>
+>-		mocs_dbg(&gt->xe->drm, "%d 0x%x 0x%x\n", i, reg.addr, mocs);
+>+		mocs_dbg(&gt_to_xe(gt)->drm, "%d 0x%x 0x%x\n", i, reg.addr, mocs);
+> 		xe_mmio_write32(gt, reg, mocs);
+> 	}
+> }
+>@@ -508,13 +508,13 @@ static void init_l3cc_table(struct xe_gt *gt,
+> 	unsigned int i;
+> 	u32 l3cc;
+>
+>-	mocs_dbg(&gt->xe->drm, "entries:%d\n", info->n_entries);
+>+	mocs_dbg(&gt_to_xe(gt)->drm, "entries:%d\n", info->n_entries);
+> 	for (i = 0;
+> 	     i < (info->n_entries + 1) / 2 ?
+> 	     (l3cc = l3cc_combine(get_entry_l3cc(info, 2 * i),
+> 				  get_entry_l3cc(info, 2 * i + 1))), 1 : 0;
+> 	     i++) {
+>-		mocs_dbg(&gt->xe->drm, "%d 0x%x 0x%x\n", i, LNCFCMOCS(i).addr,
+>+		mocs_dbg(&gt_to_xe(gt)->drm, "%d 0x%x 0x%x\n", i, LNCFCMOCS(i).addr,
+> 			 l3cc);
+> 		xe_mmio_write32(gt, LNCFCMOCS(i), l3cc);
+> 	}
+>@@ -524,7 +524,7 @@ void xe_mocs_init_early(struct xe_gt *gt)
+> {
+> 	struct xe_mocs_info table;
+>
+>-	get_mocs_settings(gt->xe, &table);
+>+	get_mocs_settings(gt_to_xe(gt), &table);
+> 	gt->mocs.uc_index = table.uc_index;
+> 	gt->mocs.wb_index = table.wb_index;
+> }
+>@@ -537,8 +537,8 @@ void xe_mocs_init(struct xe_gt *gt)
+> 	/*
+> 	 * LLC and eDRAM control values are not applicable to dgfx
+> 	 */
+>-	flags = get_mocs_settings(gt->xe, &table);
+>-	mocs_dbg(&gt->xe->drm, "flag:0x%x\n", flags);
+>+	flags = get_mocs_settings(gt_to_xe(gt), &table);
+>+	mocs_dbg(&gt_to_xe(gt)->drm, "flag:0x%x\n", flags);
+>
+> 	if (flags & HAS_GLOBAL_MOCS)
+> 		__init_mocs_table(gt, &table, GLOBAL_MOCS(0).addr);
 >diff --git a/drivers/gpu/drm/xe/xe_pci.c b/drivers/gpu/drm/xe/xe_pci.c
->index a6858fc7fe8d..bf2c234c4f6e 100644
+>index e79b16d8bf7f..87c328106aca 100644
 >--- a/drivers/gpu/drm/xe/xe_pci.c
 >+++ b/drivers/gpu/drm/xe/xe_pci.c
->@@ -19,6 +19,7 @@
-> #include "xe_device.h"
-> #include "xe_display.h"
-> #include "xe_drv.h"
->+#include "xe_gt.h"
-> #include "xe_macros.h"
-> #include "xe_module.h"
-> #include "xe_pci_types.h"
->@@ -271,20 +272,10 @@ static const struct xe_device_desc pvc_desc = {
-> 	.extra_gts = pvc_gts,
-> };
+>@@ -471,6 +471,7 @@ static int xe_info_init(struct xe_device *xe,
+> {
+> 	const struct xe_graphics_desc *graphics_desc = NULL;
+> 	const struct xe_media_desc *media_desc = NULL;
+>+	struct xe_tile *tile;
+> 	struct xe_gt *gt;
+> 	u8 id;
 >
->-static const struct xe_gt_desc xelpmp_gts[] = {
->-	{
->-		.type = XE_GT_TYPE_MEDIA,
->-		.vram_id = 0,
->-		.mmio_adj_limit = 0x40000,
->-		.mmio_adj_offset = 0x380000,
->-	},
->-};
->-
-> static const struct xe_device_desc mtl_desc = {
-> 	/* .graphics and .media determined via GMD_ID */
-> 	.require_force_probe = true,
-> 	PLATFORM(XE_METEORLAKE),
->-	.extra_gts = xelpmp_gts,
-> };
+>@@ -525,13 +526,15 @@ static int xe_info_init(struct xe_device *xe,
+> 	xe->info.step = xe_step_get(xe);
 >
-> #undef PLATFORM
->@@ -528,8 +519,6 @@ static int xe_info_init(struct xe_device *xe,
-> 	 * treats it as the number of GTs rather than just the number of tiles.
-> 	 */
-> 	xe->info.tile_count = 1 + graphics_desc->max_remote_tiles;
->-	if (MEDIA_VER(xe) >= 13)
->-		xe->info.tile_count++;
+> 	for (id = 0; id < xe->info.tile_count; ++id) {
+>-		xe->tiles[id].xe = xe;
+>-		xe->tiles[id].id = id;
+>+		tile = &xe->tiles[id];
+>+		tile->xe = xe;
+>+		tile->id = id;
 >
-> 	xe->info.subplatform = subplatform_desc ?
-> 		subplatform_desc->subplatform : XE_SUBPLATFORM_NONE;
->@@ -553,7 +542,7 @@ static int xe_info_init(struct xe_device *xe,
-> 		} else {
-> 			gt->info.type = desc->extra_gts[id - 1].type;
-> 			gt->info.vram_id = desc->extra_gts[id - 1].vram_id;
->-			gt->info.__engine_mask = (gt->info.type == XE_GT_TYPE_MEDIA) ?
->+			gt->info.__engine_mask = xe_gt_is_media_type(gt) ?
+>-		gt = &xe->tiles[id].primary_gt;
+>+		gt = &tile->primary_gt;
 
-same thing here. /me confused
+these seem to have been squash in the wrong patch, changing the style
+from using xe->tiles[i].* to declaring a local var. Maybe squash it in
+the previous one to avoid the back and forth here?
 
-The rest of the patch makes sense and we could leave these lines alone.
-It seems the main goal of this patch is actually to free up the
-tile_count to be used with proper tile in later patches rather than gt.
+otherwise,
+
+
+Reviewed-by: Lucas De Marchi <lucas.demarchi@intel.com>
+
+> 		gt->info.id = id;
+>-		gt->xe = xe;
+>+		gt->tile = tile;
+>
+>+		gt->info.id = id;
+
+the gt than has the id of the tile? Because right now there can only be
+primary_gt? Looks odd, but it's a consequence of removing the only
+platform with 1 tile and multiple gts.
 
 Lucas De Marchi
 
-> 				media_desc->hw_engine_mask :
-> 				graphics_desc->hw_engine_mask;
-> 			gt->mmio.adj_limit =
+> 		if (id == 0) {
+> 			gt->info.type = XE_GT_TYPE_MAIN;
+> 			gt->info.vram_id = id;
+>diff --git a/drivers/gpu/drm/xe/xe_pt.c b/drivers/gpu/drm/xe/xe_pt.c
+>index f15282996c3b..61126cefe0b5 100644
+>--- a/drivers/gpu/drm/xe/xe_pt.c
+>+++ b/drivers/gpu/drm/xe/xe_pt.c
+>@@ -695,7 +695,7 @@ xe_pt_stage_bind_entry(struct xe_ptw *parent, pgoff_t offset,
+> 		 * TODO: Suballocate the pt bo to avoid wasting a lot of
+> 		 * memory.
+> 		 */
+>-		if (GRAPHICS_VERx100(xe_walk->gt->xe) >= 1250 && level == 1 &&
+>+		if (GRAPHICS_VERx100(gt_to_xe(xe_walk->gt)) >= 1250 && level == 1 &&
+> 		    covers && xe_pt_scan_64K(addr, next, xe_walk)) {
+> 			walk->shifts = xe_compact_pt_shifts;
+> 			flags |= XE_PDE_64K;
 >-- 
 >2.40.0
 >
