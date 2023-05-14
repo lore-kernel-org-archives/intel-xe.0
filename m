@@ -4,30 +4,51 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 95F89C77B7D
-	for <intel-xe@archiver.kernel.org>; Sat, 13 May 2023 06:51:10 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id CB9F0C77B7D
+	for <intel-xe@archiver.kernel.org>; Sun, 14 May 2023 22:14:28 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4CE6610E048;
-	Sat, 13 May 2023 06:51:10 +0000 (UTC)
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id 5594810E048;
- Sat, 13 May 2023 06:51:08 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 4F9E7AADDD;
- Sat, 13 May 2023 06:51:08 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============2029035407780138427=="
+	by gabe.freedesktop.org (Postfix) with ESMTP id 68A8210E0F8;
+	Sun, 14 May 2023 22:14:28 +0000 (UTC)
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D32BC10E0F8
+ for <intel-xe@lists.freedesktop.org>; Sun, 14 May 2023 22:14:26 +0000 (UTC)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+ (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+ (No client certificate requested)
+ by dfw.source.kernel.org (Postfix) with ESMTPS id A1D6F61209
+ for <intel-xe@lists.freedesktop.org>; Sun, 14 May 2023 22:14:25 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id F3D0BC433D2
+ for <intel-xe@lists.freedesktop.org>; Sun, 14 May 2023 22:14:24 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+ s=k20201202; t=1684102465;
+ bh=PQNhGzBD6qk/Bk7aHzVsoW9L/JuNQJ9aH+G7yEZAU6s=;
+ h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+ b=QlYzXjiLSGpzBr4TEZr2fXwACM5ijY4Zsn7z6dACegqrxBNYqLycyv6g5uPdJKJIl
+ Oiaj7mBfLNHKwtRCUqyW7tblMB9MK6jEZOJb7clShABp8RWXPewRCf8sPZc3F5Ak3a
+ Ofe73zoI11wGfBgPNFhwODRz1slFEQCHQb+L+XXy7bkQQKpZqS+uEJsgR1UwAGWyKi
+ uUWNu7qB4NNjw2newa1uCFUNEFBnAQfwATbV8+nTB4UNKBsEGOdrstLbAoWrAsKSuD
+ mfvMaRM7DrbRRHDwsJfrQb5QLww/WXWnVJq0MEiIZ37PwLUF4lhglHKJ8254LUDsFb
+ IMSuA2hRD+y0g==
+Received: by mail-yb1-f174.google.com with SMTP id
+ 3f1490d57ef6-ba7a7423cc9so1004125276.1
+ for <intel-xe@lists.freedesktop.org>; Sun, 14 May 2023 15:14:24 -0700 (PDT)
+X-Gm-Message-State: AC+VfDxA0e0T9+uS9o+Elkjyt9WSorr1/y6P/8DbgLssRJekfmhyeLFZ
+ Z6OZzVlX+7QPlPM48fg9O/MnAnBhFH9DeiGpxP4=
+X-Google-Smtp-Source: ACHHUZ4OMXbQiV6ogSIv+5CtQ6xl9ZzUjQRyWSf2aWQxCrdhSc38QrS4WVP2yvQO/1TnpKp54CoNowjnVlG+ReLwd8U=
+X-Received: by 2002:a25:ab0c:0:b0:ba7:4c6b:672d with SMTP id
+ u12-20020a25ab0c000000b00ba74c6b672dmr5538599ybi.51.1684102463988; Sun, 14
+ May 2023 15:14:23 -0700 (PDT)
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Lucas De Marchi" <lucas.demarchi@intel.com>
-Date: Sat, 13 May 2023 06:51:08 -0000
-Message-ID: <168396066829.18762.14952644556138561256@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20230513062632.3258063-1-lucas.demarchi@intel.com>
-In-Reply-To: <20230513062632.3258063-1-lucas.demarchi@intel.com>
-Subject: [Intel-xe] =?utf-8?q?=E2=97=8B_CI=2EBAT=3A_info_for_fixup!_drm/x?=
- =?utf-8?q?e/display=3A_Consider_has=5Fdisplay_to_enable_it?=
+References: <b7c7cdf6-fadf-9e3a-0e55-2be2c4987738@linux.intel.com>
+In-Reply-To: <b7c7cdf6-fadf-9e3a-0e55-2be2c4987738@linux.intel.com>
+From: Oded Gabbay <ogabbay@kernel.org>
+Date: Mon, 15 May 2023 01:13:57 +0300
+X-Gmail-Original-Message-ID: <CAFCwf10HincWtN4ArCtrW4c-iPn4iV6kDEZY-tNOmidgsVyQ8Q@mail.gmail.com>
+Message-ID: <CAFCwf10HincWtN4ArCtrW4c-iPn4iV6kDEZY-tNOmidgsVyQ8Q@mail.gmail.com>
+To: =?UTF-8?Q?Thomas_Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+Subject: Re: [Intel-xe] Small fixup for the initial review
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -39,70 +60,27 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
-Cc: intel-xe@lists.freedesktop.org
+Cc: "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============2029035407780138427==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-== Series Details ==
-
-Series: fixup! drm/xe/display: Consider has_display to enable it
-URL   : https://patchwork.freedesktop.org/series/117720/
-State : info
-
-== Summary ==
-
-Participating hosts:
-bat-atsm-2
-bat-dg2-oem2
-bat-adlp-7
-Missing hosts results[1]:
-bat-atsm-2
-Results: [xe-pw-117720v1](https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-117720v1/index.html)
-
-
-
---===============2029035407780138427==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>fixup! drm/xe/display: Consider has_display to enable it</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/117720/">https://patchwork.freedesktop.org/series/117720/</a></td></tr>
-<tr><td><b>State:</b></td><td>info</td></tr>
-
-</table>
-
-
-    <p>Participating hosts:<br />
-bat-atsm-2<br />
-bat-dg2-oem2<br />
-bat-adlp-7<br />
-Missing hosts results[1]:<br />
-bat-atsm-2<br />
-Results: <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-117720v1/index.html">xe-pw-117720v1</a></p>
-
-</body>
-</html>
-
---===============2029035407780138427==--
+On Fri, May 12, 2023 at 4:33=E2=80=AFPM Thomas Hellstr=C3=B6m
+<thomas.hellstrom@linux.intel.com> wrote:
+>
+> Hi, Oded,
+>
+> I found and fixed two locking issues in the initial commit you are
+> reviewing.
+>
+> Are you ok with me pushing those as fixup commits?
+>
+> https://patchwork.freedesktop.org/series/117668/
+>
+> Thanks,
+>
+> Thomas
+>
+>
+Yes, no problem.
+Thanks,
+Oded
