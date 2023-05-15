@@ -4,30 +4,32 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0FFBFC7EE23
-	for <intel-xe@archiver.kernel.org>; Mon, 15 May 2023 15:39:58 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id D0CDAC77B75
+	for <intel-xe@archiver.kernel.org>; Mon, 15 May 2023 15:41:47 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C5AF710E034;
-	Mon, 15 May 2023 15:39:58 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A082210E24B;
+	Mon, 15 May 2023 15:41:47 +0000 (UTC)
 Received: from emeril.freedesktop.org (emeril.freedesktop.org
  [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id 1BF8310E034;
- Mon, 15 May 2023 15:39:57 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTP id 66CDB10E265;
+ Mon, 15 May 2023 15:41:46 +0000 (UTC)
 Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 13B98A7DFF;
- Mon, 15 May 2023 15:39:57 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============0873472850548929254=="
+ by emeril.freedesktop.org (Postfix) with ESMTP id 5EEBEAADEB;
+ Mon, 15 May 2023 15:41:46 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Lucas De Marchi" <lucas.demarchi@intel.com>
-Date: Mon, 15 May 2023 15:39:57 -0000
-Message-ID: <168416519705.22013.18190994279369155981@emeril.freedesktop.org>
+To: "Matthew Auld" <matthew.auld@intel.com>
+Date: Mon, 15 May 2023 15:41:46 -0000
+Message-ID: <168416530635.22013.13330418515788258063@emeril.freedesktop.org>
 X-Patchwork-Hint: ignore
-References: <20230515151548.13-1-francois.dugast@intel.com>
-In-Reply-To: <20230515151548.13-1-francois.dugast@intel.com>
-Subject: [Intel-xe] =?utf-8?q?=E2=97=8B_CI=2EBAT=3A_info_for_fixup!_drm/x?=
- =?utf-8?q?e=3A_Introduce_a_new_DRM_driver_for_Intel_GPUs_=28rev2=29?=
+References: <20230515144027.82857-1-matthew.auld@intel.com>
+In-Reply-To: <20230515144027.82857-1-matthew.auld@intel.com>
+Subject: [Intel-xe] =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_f?=
+ =?utf-8?q?or_series_starting_with_=5Bv3=2C1/6=5D_Revert_=22drm/xe=3A_Use_?=
+ =?utf-8?q?atomic_instead_of_mutex_for_xe=5Fdevice=5Fmem=5Faccess=5Fongoin?=
+ =?utf-8?b?ZyIgKHJldjIp?=
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -44,65 +46,22 @@ Cc: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============0873472850548929254==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
 == Series Details ==
 
-Series: fixup! drm/xe: Introduce a new DRM driver for Intel GPUs (rev2)
-URL   : https://patchwork.freedesktop.org/series/115290/
-State : info
+Series: series starting with [v3,1/6] Revert "drm/xe: Use atomic instead of mutex for xe_device_mem_access_ongoing" (rev2)
+URL   : https://patchwork.freedesktop.org/series/117775/
+State : success
 
 == Summary ==
 
-Participating hosts:
-bat-atsm-2
-bat-dg2-oem2
-bat-adlp-7
-Missing hosts results[1]:
-bat-atsm-2
-Results: [xe-pw-115290v2](https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-115290v2/index.html)
+=== Applying kernel patches on branch 'drm-xe-next' with base: ===
+Base commit: a90abdba7 drm/xe: Remove unused define
+=== git am output follows ===
+Applying: Revert "drm/xe: Use atomic instead of mutex for xe_device_mem_access_ongoing"
+Applying: drm/xe: don't allocate under ct->lock
+Applying: drm/xe: keep pulling mem_access_get further back
+Applying: drm/xe/ggtt: prime ggtt->lock against FS_RECLAIM
+Applying: drm/xe: fix xe_device_mem_access_get() races
+Applying: drm/xe: Use atomic for mem_access.ref
 
 
-
---===============0873472850548929254==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>fixup! drm/xe: Introduce a new DRM driver for Intel GPUs (rev2)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/115290/">https://patchwork.freedesktop.org/series/115290/</a></td></tr>
-<tr><td><b>State:</b></td><td>info</td></tr>
-
-</table>
-
-
-    <p>Participating hosts:<br />
-bat-atsm-2<br />
-bat-dg2-oem2<br />
-bat-adlp-7<br />
-Missing hosts results[1]:<br />
-bat-atsm-2<br />
-Results: <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-115290v2/index.html">xe-pw-115290v2</a></p>
-
-</body>
-</html>
-
---===============0873472850548929254==--
