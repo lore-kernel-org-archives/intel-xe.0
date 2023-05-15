@@ -4,37 +4,32 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 67895C77B7D
-	for <intel-xe@archiver.kernel.org>; Mon, 15 May 2023 14:43:26 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id F1ED1C7EE22
+	for <intel-xe@archiver.kernel.org>; Mon, 15 May 2023 14:44:08 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3B1BD10E216;
-	Mon, 15 May 2023 14:43:26 +0000 (UTC)
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 74D0810E216
- for <intel-xe@lists.freedesktop.org>; Mon, 15 May 2023 14:43:24 +0000 (UTC)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
- (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
- (No client certificate requested)
- by dfw.source.kernel.org (Postfix) with ESMTPS id 8D52C61E92;
- Mon, 15 May 2023 14:43:23 +0000 (UTC)
-Received: from rdvivi-mobl4 (unknown [192.55.54.48])
- (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
- (No client certificate requested)
- by smtp.kernel.org (Postfix) with ESMTPSA id 48C66C4339E;
- Mon, 15 May 2023 14:43:21 +0000 (UTC)
-Date: Mon, 15 May 2023 10:43:19 -0400
-From: Rodrigo Vivi <rodrigo.vivi@kernel.org>
-To: Lucas De Marchi <lucas.demarchi@intel.com>
-Message-ID: <ZGJFB8V/jf87eqzq@rdvivi-mobl4>
-References: <20230512180313.1765011-1-rodrigo.vivi@intel.com>
- <20230512180313.1765011-6-rodrigo.vivi@intel.com>
- <kogwn7anb5kflqjizp3ncaop7z3dcklcbfnyhina2ylqzcidb7@ccqvfvavu4rq>
+	by gabe.freedesktop.org (Postfix) with ESMTP id C844910E20A;
+	Mon, 15 May 2023 14:44:08 +0000 (UTC)
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 7592789FD4;
+ Mon, 15 May 2023 14:44:06 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 6E139AADD7;
+ Mon, 15 May 2023 14:44:06 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <kogwn7anb5kflqjizp3ncaop7z3dcklcbfnyhina2ylqzcidb7@ccqvfvavu4rq>
-Subject: Re: [Intel-xe] [PATCH 5/7] fixup! drm/xe: Cleanup page-related
- defines
+Content-Transfer-Encoding: 7bit
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Matthew Auld" <matthew.auld@intel.com>
+Date: Mon, 15 May 2023 14:44:06 -0000
+Message-ID: <168416184644.22015.6278815812463487987@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20230515144027.82857-1-matthew.auld@intel.com>
+In-Reply-To: <20230515144027.82857-1-matthew.auld@intel.com>
+Subject: [Intel-xe] =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_f?=
+ =?utf-8?q?or_series_starting_with_=5Bv3=2C1/6=5D_Revert_=22drm/xe=3A_Use_?=
+ =?utf-8?q?atomic_instead_of_mutex_for_xe=5Fdevice=5Fmem=5Faccess=5Fongoin?=
+ =?utf-8?q?g=22?=
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -46,51 +41,27 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-xe@lists.freedesktop.org, Rodrigo Vivi <rodrigo.vivi@intel.com>
+Reply-To: intel-xe@lists.freedesktop.org
+Cc: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Mon, May 15, 2023 at 06:15:27AM -0700, Lucas De Marchi wrote:
-> On Fri, May 12, 2023 at 02:03:11PM -0400, Rodrigo Vivi wrote:
-> > Signed-off-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
-> > ---
-> > drivers/gpu/drm/i915/display/intel_fbdev.c | 4 ++--
-> > 1 file changed, 2 insertions(+), 2 deletions(-)
-> > 
-> > diff --git a/drivers/gpu/drm/i915/display/intel_fbdev.c b/drivers/gpu/drm/i915/display/intel_fbdev.c
-> > index d89edd98e5d7..6362c4ce15b6 100644
-> > --- a/drivers/gpu/drm/i915/display/intel_fbdev.c
-> > +++ b/drivers/gpu/drm/i915/display/intel_fbdev.c
-> > @@ -179,7 +179,7 @@ static int intelfb_alloc(struct drm_fb_helper *helper,
-> > 				    DIV_ROUND_UP(sizes->surface_bpp, 8), 64);
-> > #else
-> > 	mode_cmd.pitches[0] = ALIGN(mode_cmd.width *
-> > -				    DIV_ROUND_UP(sizes->surface_bpp, 8), GEN8_PAGE_SIZE);
-> > +				    DIV_ROUND_UP(sizes->surface_bpp, 8), XE_PAGE_SIZE);
-> 
-> Same issue as in patch 3: it fixes it now, but it will be broken on
-> rebase. If display is above b3b102692dcd ("drm/xe: Cleanup page-related defines")m
-> this change here should not exist...
+== Series Details ==
 
-Yeap, I wondered about that... but ideally when that happens we fix the patches
-in place again, otherwise we cannot run automated git rebase -x make
-while we don't move display up... :(
+Series: series starting with [v3,1/6] Revert "drm/xe: Use atomic instead of mutex for xe_device_mem_access_ongoing"
+URL   : https://patchwork.freedesktop.org/series/117775/
+State : success
 
-> 
-> Lucas De Marchi
-> 
-> > #endif
-> > 	mode_cmd.pixel_format = drm_mode_legacy_fb_format(sizes->surface_bpp,
-> > 							  sizes->surface_depth);
-> > @@ -363,7 +363,7 @@ static int intelfb_create(struct drm_fb_helper *helper,
-> > 		else
-> > 			info->fix.smem_start =
-> > 				pci_resource_start(pdev, 2) +
-> > -				xe_bo_addr(obj, 0, GEN8_PAGE_SIZE, &lmem);
-> > +				xe_bo_addr(obj, 0, XE_PAGE_SIZE, &lmem);
-> > 
-> > 		info->fix.smem_len = obj->ttm.base.size;
-> > 	} else {
-> > -- 
-> > 2.39.2
-> > 
+== Summary ==
+
+=== Applying kernel patches on branch 'drm-xe-next' with base: ===
+Base commit: a90abdba7 drm/xe: Remove unused define
+=== git am output follows ===
+Applying: Revert "drm/xe: Use atomic instead of mutex for xe_device_mem_access_ongoing"
+Applying: drm/xe: don't allocate under ct->lock
+Applying: drm/xe: keep pulling mem_access_get further back
+Applying: drm/xe/ggtt: prime ggtt->lock against FS_RECLAIM
+Applying: drm/xe: fix xe_device_mem_access_get() races
+Applying: drm/xe: Use atomic for mem_access.ref
+
+
