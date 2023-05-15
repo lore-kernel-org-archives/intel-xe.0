@@ -4,42 +4,42 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7CF55C77B7D
-	for <intel-xe@archiver.kernel.org>; Mon, 15 May 2023 09:46:48 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 29592C7EE24
+	for <intel-xe@archiver.kernel.org>; Mon, 15 May 2023 09:46:49 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 506C310E1A3;
-	Mon, 15 May 2023 09:46:48 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0C27E10E198;
+	Mon, 15 May 2023 09:46:49 +0000 (UTC)
 Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1EF5510E1A3
- for <intel-xe@lists.freedesktop.org>; Mon, 15 May 2023 09:46:43 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id CCB7410E1A6
+ for <intel-xe@lists.freedesktop.org>; Mon, 15 May 2023 09:46:46 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
  t=1684144006; x=1715680006;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=VgYj8NY/v7Lr53XpsyjAFnYluYemJ9RoO83e75SAxm8=;
- b=PqTve0J7sAgJfq8mmDsgUp5A0K14ZrU8a9KV4YSIMeqsAJ2BVo8PgoBQ
- pN8FPvxBV6Zv6bVB/efRpTtLZqMy4XJFJDV4w5YkmvS27aUhwU41G0IAc
- xgNYmrCQhR75Yaqsxr224GWO5iQ/T/4vX1jQTiGRmSpa2eRjJI/E1bnTj
- sdrIQJwszLskivomV39n6UHsRXTBkNHz2tEdJ41mhx3VL2msxjn3kAz/I
- nW1ecxkwViVG1Rgq3RKkpa80wgpUY/WXg9gc0wmYR77fugfOJ9PqfSDyR
- 8erOU4LlB5KfhKMMHWumQnkBtNylZf4lD/agEip3n54ya1JSAsAHCVal+ Q==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10710"; a="340510196"
-X-IronPort-AV: E=Sophos;i="5.99,276,1677571200"; d="scan'208";a="340510196"
+ bh=Sy/u3iPP6DHbsPoygnQaYf3BmX6COnqDT6Tw2HvtLxM=;
+ b=fg5K2L8W7Mvg4L/DOuGMQkI/gG5BVL0BFp2zcDANapvd77mgb58S28qI
+ FaBjBxgAKolexUiNXMUX34E7X+p0C+Puf9acvAtIiLWks+RCOoQ8WwIyv
+ lSTNB0GF2pFv2ovsV/QBdyyuo5dfpKAZ1ROkh7M8/o9jeV2Aaxcm7kDVf
+ 7AyI/3tMlj3ot3jF3UaPR3AmozMQJTzVr6oN6GOnGIviSD9T6fy5yrfIf
+ oihyg8uxkB+einKRd9CUzCdS4XRSXARovyfSzIx0/ORTYuNgPF4mwy81F
+ YNw/jfJHGM4rt6nwS2r6TR92LDgtMDLN3AeWLENx7x1UlxJY+IyCH6cEQ Q==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10710"; a="340510198"
+X-IronPort-AV: E=Sophos;i="5.99,276,1677571200"; d="scan'208";a="340510198"
 Received: from orsmga007.jf.intel.com ([10.7.209.58])
  by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 15 May 2023 02:46:41 -0700
+ 15 May 2023 02:46:42 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10710"; a="694947285"
-X-IronPort-AV: E=Sophos;i="5.99,276,1677571200"; d="scan'208";a="694947285"
+X-IronPort-AV: E=McAfee;i="6600,9927,10710"; a="694947288"
+X-IronPort-AV: E=Sophos;i="5.99,276,1677571200"; d="scan'208";a="694947288"
 Received: from dbenelli-mobl.ger.corp.intel.com (HELO
  jhogande-mobl1.ger.corp.intel.com) ([10.252.48.185])
  by orsmga007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 15 May 2023 02:46:37 -0700
+ 15 May 2023 02:46:40 -0700
 From: =?UTF-8?q?Jouni=20H=C3=B6gander?= <jouni.hogander@intel.com>
 To: intel-xe@lists.freedesktop.org
-Date: Mon, 15 May 2023 12:46:12 +0300
-Message-Id: <20230515094614.1850878-3-jouni.hogander@intel.com>
+Date: Mon, 15 May 2023 12:46:13 +0300
+Message-Id: <20230515094614.1850878-4-jouni.hogander@intel.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20230515094614.1850878-1-jouni.hogander@intel.com>
 References: <20230515094614.1850878-1-jouni.hogander@intel.com>
@@ -47,8 +47,8 @@ MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
 Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-xe] [PATCH 2/4] Revert "drm/i915: Remove gem and overlay
- frontbuffer tracking"
+Subject: [Intel-xe] [PATCH 3/4] fixup! drm/i915/display: Remaining changes
+ to make xe compile
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -66,424 +66,280 @@ Cc: jani.nikula@intel.com, lucas.demarchi@intel.com, uma.shankar@intel.com,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-This reverts commit a38443669f03189621844fec25b2aa4f96e99276.
-
-We want to keep frontbuffer tracking as removing it would break GPU
-rendering in i915 driver.
+After reverting frontbuffer tracking removal our build is broken. Fix this
+by adding some includes and ifdefs.
 
 Signed-off-by: Jouni Högander <jouni.hogander@intel.com>
 ---
- drivers/gpu/drm/i915/display/i9xx_plane.c     |  1 -
- drivers/gpu/drm/i915/display/intel_drrs.c     |  1 -
- drivers/gpu/drm/i915/display/intel_fb.c       |  1 -
- drivers/gpu/drm/i915/display/intel_overlay.c  | 14 +++++++++++
- .../drm/i915/display/intel_plane_initial.c    |  1 -
- drivers/gpu/drm/i915/display/intel_psr.c      |  1 -
- .../drm/i915/display/skl_universal_plane.c    |  1 -
- drivers/gpu/drm/i915/gem/i915_gem_clflush.c   |  4 +++
- drivers/gpu/drm/i915/gem/i915_gem_domain.c    |  7 ++++++
- .../gpu/drm/i915/gem/i915_gem_execbuffer.c    |  2 ++
- drivers/gpu/drm/i915/gem/i915_gem_object.c    | 25 +++++++++++++++++++
- drivers/gpu/drm/i915/gem/i915_gem_object.h    | 22 ++++++++++++++++
- drivers/gpu/drm/i915/gem/i915_gem_phys.c      |  4 +++
- drivers/gpu/drm/i915/i915_driver.c            |  1 -
- drivers/gpu/drm/i915/i915_gem.c               |  8 ++++++
- drivers/gpu/drm/i915/i915_gem_gtt.c           |  1 +
- drivers/gpu/drm/i915/i915_vma.c               | 12 +++++++++
- 17 files changed, 99 insertions(+), 7 deletions(-)
+ drivers/gpu/drm/i915/display/intel_drrs.c     |  1 +
+ drivers/gpu/drm/i915/display/intel_fb.c       |  5 ++-
+ .../gpu/drm/i915/display/intel_frontbuffer.c  | 43 +++++++++++++++----
+ .../gpu/drm/i915/display/intel_frontbuffer.h  |  9 ++++
+ drivers/gpu/drm/i915/display/intel_psr.c      |  1 +
+ .../drm/i915/display/skl_universal_plane.c    |  1 +
+ 6 files changed, 49 insertions(+), 11 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/display/i9xx_plane.c b/drivers/gpu/drm/i915/display/i9xx_plane.c
-index 633e462d96a0..ecaeb7dc196b 100644
---- a/drivers/gpu/drm/i915/display/i9xx_plane.c
-+++ b/drivers/gpu/drm/i915/display/i9xx_plane.c
-@@ -17,7 +17,6 @@
- #include "intel_display_types.h"
- #include "intel_fb.h"
- #include "intel_fbc.h"
--#include "intel_frontbuffer.h"
- #include "intel_sprite.h"
- 
- /* Primary plane formats for gen <= 3 */
 diff --git a/drivers/gpu/drm/i915/display/intel_drrs.c b/drivers/gpu/drm/i915/display/intel_drrs.c
-index 59527a4667f4..760e63cdc0c8 100644
+index 760e63cdc0c8..59527a4667f4 100644
 --- a/drivers/gpu/drm/i915/display/intel_drrs.c
 +++ b/drivers/gpu/drm/i915/display/intel_drrs.c
-@@ -9,7 +9,6 @@
+@@ -9,6 +9,7 @@
  #include "intel_de.h"
  #include "intel_display_types.h"
  #include "intel_drrs.h"
--#include "intel_frontbuffer.h"
++#include "intel_frontbuffer.h"
  #include "intel_panel.h"
  
  /**
 diff --git a/drivers/gpu/drm/i915/display/intel_fb.c b/drivers/gpu/drm/i915/display/intel_fb.c
-index 9a7928f7fa08..953e3a4269b6 100644
+index 953e3a4269b6..7856b6191cd8 100644
 --- a/drivers/gpu/drm/i915/display/intel_fb.c
 +++ b/drivers/gpu/drm/i915/display/intel_fb.c
-@@ -13,7 +13,6 @@
+@@ -13,6 +13,7 @@
  #include "intel_display_types.h"
  #include "intel_dpt.h"
  #include "intel_fb.h"
--#include "intel_frontbuffer.h"
++#include "intel_frontbuffer.h"
  
  #ifdef I915
  /*
-diff --git a/drivers/gpu/drm/i915/display/intel_overlay.c b/drivers/gpu/drm/i915/display/intel_overlay.c
-index bcab587c634b..d6fe2bbabe55 100644
---- a/drivers/gpu/drm/i915/display/intel_overlay.c
-+++ b/drivers/gpu/drm/i915/display/intel_overlay.c
-@@ -186,6 +186,7 @@ struct intel_overlay {
- 	struct intel_crtc *crtc;
- 	struct i915_vma *vma;
- 	struct i915_vma *old_vma;
-+	struct intel_frontbuffer *frontbuffer;
- 	bool active;
- 	bool pfit_active;
- 	u32 pfit_vscale_ratio; /* shifted-point number, (1<<12) == 1.0 */
-@@ -286,9 +287,20 @@ static void intel_overlay_flip_prepare(struct intel_overlay *overlay,
- 				       struct i915_vma *vma)
+@@ -1923,11 +1924,13 @@ int intel_framebuffer_init(struct intel_framebuffer *intel_fb,
+ 	int i;
+ #ifdef I915
+ 	unsigned tiling, stride;
++#endif
+ 
+ 	intel_fb->frontbuffer = intel_frontbuffer_get(obj);
+ 	if (!intel_fb->frontbuffer)
+ 		return -ENOMEM;
+ 
++#ifdef I915
+ 	i915_gem_object_lock(obj, NULL);
+ 	tiling = i915_gem_object_get_tiling(obj);
+ 	stride = i915_gem_object_get_stride(obj);
+@@ -1975,8 +1978,6 @@ int intel_framebuffer_init(struct intel_framebuffer *intel_fb,
+ 	ttm_bo_unreserve(&obj->ttm);
+ #endif
+ 
+-	atomic_set(&intel_fb->bits, 0);
+-
+ 	if (!drm_any_plane_has_format(&dev_priv->drm,
+ 				      mode_cmd->pixel_format,
+ 				      mode_cmd->modifier[0])) {
+diff --git a/drivers/gpu/drm/i915/display/intel_frontbuffer.c b/drivers/gpu/drm/i915/display/intel_frontbuffer.c
+index 17a7aa8b28c2..64fdc7880381 100644
+--- a/drivers/gpu/drm/i915/display/intel_frontbuffer.c
++++ b/drivers/gpu/drm/i915/display/intel_frontbuffer.c
+@@ -163,11 +163,17 @@ void intel_frontbuffer_flip(struct drm_i915_private *i915,
+ 	frontbuffer_flush(i915, frontbuffer_bits, ORIGIN_FLIP);
+ }
+ 
++#ifdef I915
++#define intel_bo_to_i915(obj) to_i915((obj)->base.dev)
++#else
++#define intel_bo_to_i915(obj) to_i915((obj)->ttm.base.dev)
++#endif
++
+ void __intel_fb_invalidate(struct intel_frontbuffer *front,
+ 			   enum fb_op_origin origin,
+ 			   unsigned int frontbuffer_bits)
  {
- 	enum pipe pipe = overlay->crtc->pipe;
-+	struct intel_frontbuffer *frontbuffer = NULL;
+-	struct drm_i915_private *i915 = to_i915(front->obj->base.dev);
++	struct drm_i915_private *i915 = intel_bo_to_i915(front->obj);
  
- 	drm_WARN_ON(&overlay->i915->drm, overlay->old_vma);
+ 	if (origin == ORIGIN_CS) {
+ 		spin_lock(&i915->display.fb_tracking.lock);
+@@ -188,7 +194,7 @@ void __intel_fb_flush(struct intel_frontbuffer *front,
+ 		      enum fb_op_origin origin,
+ 		      unsigned int frontbuffer_bits)
+ {
+-	struct drm_i915_private *i915 = to_i915(front->obj->base.dev);
++	struct drm_i915_private *i915 = intel_bo_to_i915((front->obj));
  
-+	if (vma)
-+		frontbuffer = intel_frontbuffer_get(vma->obj);
-+
-+	intel_frontbuffer_track(overlay->frontbuffer, frontbuffer,
-+				INTEL_FRONTBUFFER_OVERLAY(pipe));
-+
-+	if (overlay->frontbuffer)
-+		intel_frontbuffer_put(overlay->frontbuffer);
-+	overlay->frontbuffer = frontbuffer;
-+
- 	intel_frontbuffer_flip_prepare(overlay->i915,
- 				       INTEL_FRONTBUFFER_OVERLAY(pipe));
+ 	if (origin == ORIGIN_CS) {
+ 		spin_lock(&i915->display.fb_tracking.lock);
+@@ -202,6 +208,7 @@ void __intel_fb_flush(struct intel_frontbuffer *front,
+ 		frontbuffer_flush(i915, frontbuffer_bits, origin);
+ }
  
-@@ -798,6 +810,8 @@ static int intel_overlay_do_put_image(struct intel_overlay *overlay,
- 		goto out_pin_section;
++#ifdef I915
+ static int frontbuffer_active(struct i915_active *ref)
+ {
+ 	struct intel_frontbuffer *front =
+@@ -219,17 +226,21 @@ static void frontbuffer_retire(struct i915_active *ref)
+ 	intel_frontbuffer_flush(front, ORIGIN_CS);
+ 	intel_frontbuffer_put(front);
+ }
++#endif
+ 
+ static void frontbuffer_release(struct kref *ref)
+-	__releases(&to_i915(front->obj->base.dev)->display.fb_tracking.lock)
++	__releases(&intel_bo_to_i915(front->obj)->display.fb_tracking.lock)
+ {
+ 	struct intel_frontbuffer *front =
+ 		container_of(ref, typeof(*front), ref);
+ 	struct drm_i915_gem_object *obj = front->obj;
++#ifdef I915
+ 	struct i915_vma *vma;
++#endif
+ 
+-	drm_WARN_ON(obj->base.dev, atomic_read(&front->bits));
++	drm_WARN_ON(&intel_bo_to_i915(obj)->drm, atomic_read(&front->bits));
+ 
++#ifdef I915
+ 	spin_lock(&obj->vma.lock);
+ 	for_each_ggtt_vma(vma, obj) {
+ 		i915_vma_clear_scanout(vma);
+@@ -238,23 +249,32 @@ static void frontbuffer_release(struct kref *ref)
+ 	spin_unlock(&obj->vma.lock);
+ 
+ 	RCU_INIT_POINTER(obj->frontbuffer, NULL);
+-	spin_unlock(&to_i915(obj->base.dev)->display.fb_tracking.lock);
++#endif
++	spin_unlock(&intel_bo_to_i915(obj)->display.fb_tracking.lock);
+ 
++#ifdef I915
+ 	i915_active_fini(&front->write);
+ 
+ 	i915_gem_object_put(obj);
++#else
++	xe_bo_get(obj);
++#endif
+ 	kfree_rcu(front, rcu);
+ }
+ 
+ struct intel_frontbuffer *
+ intel_frontbuffer_get(struct drm_i915_gem_object *obj)
+ {
+-	struct drm_i915_private *i915 = to_i915(obj->base.dev);
++#ifdef I915
++	struct drm_i915_private *i915 = intel_bo_to_i915(obj);
++#endif
+ 	struct intel_frontbuffer *front;
+ 
++#ifdef I915
+ 	front = __intel_frontbuffer_get(obj);
+ 	if (front)
+ 		return front;
++#endif
+ 
+ 	front = kmalloc(sizeof(*front), GFP_KERNEL);
+ 	if (!front)
+@@ -263,6 +283,7 @@ intel_frontbuffer_get(struct drm_i915_gem_object *obj)
+ 	front->obj = obj;
+ 	kref_init(&front->ref);
+ 	atomic_set(&front->bits, 0);
++#ifdef I915
+ 	i915_active_init(&front->write,
+ 			 frontbuffer_active,
+ 			 frontbuffer_retire,
+@@ -274,10 +295,14 @@ intel_frontbuffer_get(struct drm_i915_gem_object *obj)
+ 		front = rcu_dereference_protected(obj->frontbuffer, true);
+ 		kref_get(&front->ref);
+ 	} else {
++
+ 		i915_gem_object_get(obj);
+ 		rcu_assign_pointer(obj->frontbuffer, front);
+ 	}
+ 	spin_unlock(&i915->display.fb_tracking.lock);
++#else
++	xe_bo_get(obj);
++#endif
+ 
+ 	return front;
+ }
+@@ -286,7 +311,7 @@ void intel_frontbuffer_put(struct intel_frontbuffer *front)
+ {
+ 	kref_put_lock(&front->ref,
+ 		      frontbuffer_release,
+-		      &to_i915(front->obj->base.dev)->display.fb_tracking.lock);
++		      &intel_bo_to_i915(front->obj)->display.fb_tracking.lock);
+ }
+ 
+ /**
+@@ -315,13 +340,13 @@ void intel_frontbuffer_track(struct intel_frontbuffer *old,
+ 	BUILD_BUG_ON(I915_MAX_PLANES > INTEL_FRONTBUFFER_BITS_PER_PIPE);
+ 
+ 	if (old) {
+-		drm_WARN_ON(old->obj->base.dev,
++		drm_WARN_ON(&intel_bo_to_i915(old->obj)->drm,
+ 			    !(atomic_read(&old->bits) & frontbuffer_bits));
+ 		atomic_andnot(frontbuffer_bits, &old->bits);
  	}
  
-+	i915_gem_object_flush_frontbuffer(new_bo, ORIGIN_DIRTYFB);
-+
- 	if (!overlay->active) {
- 		const struct intel_crtc_state *crtc_state =
- 			overlay->crtc->config;
-diff --git a/drivers/gpu/drm/i915/display/intel_plane_initial.c b/drivers/gpu/drm/i915/display/intel_plane_initial.c
-index 451a642e106e..736072a8b2b0 100644
---- a/drivers/gpu/drm/i915/display/intel_plane_initial.c
-+++ b/drivers/gpu/drm/i915/display/intel_plane_initial.c
-@@ -9,7 +9,6 @@
- #include "intel_display.h"
- #include "intel_display_types.h"
- #include "intel_fb.h"
--#include "intel_frontbuffer.h"
- #include "intel_plane_initial.h"
+ 	if (new) {
+-		drm_WARN_ON(new->obj->base.dev,
++		drm_WARN_ON(&intel_bo_to_i915(old->obj)->drm,
+ 			    atomic_read(&new->bits) & frontbuffer_bits);
+ 		atomic_or(frontbuffer_bits, &new->bits);
+ 	}
+diff --git a/drivers/gpu/drm/i915/display/intel_frontbuffer.h b/drivers/gpu/drm/i915/display/intel_frontbuffer.h
+index 3c474ed937fb..be33bc2a84cd 100644
+--- a/drivers/gpu/drm/i915/display/intel_frontbuffer.h
++++ b/drivers/gpu/drm/i915/display/intel_frontbuffer.h
+@@ -28,7 +28,12 @@
+ #include <linux/bits.h>
+ #include <linux/kref.h>
  
- static bool
++#ifdef I915
+ #include "gem/i915_gem_object_types.h"
++#else
++#include "xe_bo.h"
++#endif
++
+ #include "i915_active_types.h"
+ 
+ struct drm_i915_private;
+@@ -44,7 +49,9 @@ enum fb_op_origin {
+ struct intel_frontbuffer {
+ 	struct kref ref;
+ 	atomic_t bits;
++#ifdef I915
+ 	struct i915_active write;
++#endif
+ 	struct drm_i915_gem_object *obj;
+ 	struct rcu_head rcu;
+ };
+@@ -75,6 +82,7 @@ void intel_frontbuffer_flip(struct drm_i915_private *i915,
+ 
+ void intel_frontbuffer_put(struct intel_frontbuffer *front);
+ 
++#ifdef I915
+ static inline struct intel_frontbuffer *
+ __intel_frontbuffer_get(const struct drm_i915_gem_object *obj)
+ {
+@@ -101,6 +109,7 @@ __intel_frontbuffer_get(const struct drm_i915_gem_object *obj)
+ 
+ 	return front;
+ }
++#endif
+ 
+ struct intel_frontbuffer *
+ intel_frontbuffer_get(struct drm_i915_gem_object *obj);
 diff --git a/drivers/gpu/drm/i915/display/intel_psr.c b/drivers/gpu/drm/i915/display/intel_psr.c
-index 2ecc902a85a2..ea0389c5f656 100644
+index ea0389c5f656..2ecc902a85a2 100644
 --- a/drivers/gpu/drm/i915/display/intel_psr.c
 +++ b/drivers/gpu/drm/i915/display/intel_psr.c
-@@ -32,7 +32,6 @@
+@@ -32,6 +32,7 @@
  #include "intel_display_types.h"
  #include "intel_dp.h"
  #include "intel_dp_aux.h"
--#include "intel_frontbuffer.h"
++#include "intel_frontbuffer.h"
  #include "intel_hdmi.h"
  #include "intel_psr.h"
  #include "intel_psr_regs.h"
 diff --git a/drivers/gpu/drm/i915/display/skl_universal_plane.c b/drivers/gpu/drm/i915/display/skl_universal_plane.c
-index 0f1e4e61d32e..71ba544eda71 100644
+index 71ba544eda71..0f1e4e61d32e 100644
 --- a/drivers/gpu/drm/i915/display/skl_universal_plane.c
 +++ b/drivers/gpu/drm/i915/display/skl_universal_plane.c
-@@ -16,7 +16,6 @@
+@@ -16,6 +16,7 @@
  #include "intel_display_types.h"
  #include "intel_fb.h"
  #include "intel_fbc.h"
--#include "intel_frontbuffer.h"
++#include "intel_frontbuffer.h"
  #include "intel_psr.h"
  #include "skl_scaler.h"
  #include "skl_universal_plane.h"
-diff --git a/drivers/gpu/drm/i915/gem/i915_gem_clflush.c b/drivers/gpu/drm/i915/gem/i915_gem_clflush.c
-index 1718252cf20f..385ffc575b48 100644
---- a/drivers/gpu/drm/i915/gem/i915_gem_clflush.c
-+++ b/drivers/gpu/drm/i915/gem/i915_gem_clflush.c
-@@ -6,6 +6,8 @@
- 
- #include <drm/drm_cache.h>
- 
-+#include "display/intel_frontbuffer.h"
-+
- #include "i915_config.h"
- #include "i915_drv.h"
- #include "i915_gem_clflush.h"
-@@ -21,6 +23,8 @@ static void __do_clflush(struct drm_i915_gem_object *obj)
- {
- 	GEM_BUG_ON(!i915_gem_object_has_pages(obj));
- 	drm_clflush_sg(obj->mm.pages);
-+
-+	i915_gem_object_flush_frontbuffer(obj, ORIGIN_CPU);
- }
- 
- static void clflush_work(struct dma_fence_work *base)
-diff --git a/drivers/gpu/drm/i915/gem/i915_gem_domain.c b/drivers/gpu/drm/i915/gem/i915_gem_domain.c
-index c165ee50e00f..d2d5a24301b2 100644
---- a/drivers/gpu/drm/i915/gem/i915_gem_domain.c
-+++ b/drivers/gpu/drm/i915/gem/i915_gem_domain.c
-@@ -5,6 +5,7 @@
-  */
- 
- #include "display/intel_display.h"
-+#include "display/intel_frontbuffer.h"
- #include "gt/intel_gt.h"
- 
- #include "i915_drv.h"
-@@ -65,6 +66,8 @@ flush_write_domain(struct drm_i915_gem_object *obj, unsigned int flush_domains)
- 				intel_gt_flush_ggtt_writes(vma->vm->gt);
- 		}
- 		spin_unlock(&obj->vma.lock);
-+
-+		i915_gem_object_flush_frontbuffer(obj, ORIGIN_CPU);
- 		break;
- 
- 	case I915_GEM_DOMAIN_WC:
-@@ -631,6 +634,9 @@ i915_gem_set_domain_ioctl(struct drm_device *dev, void *data,
- out_unlock:
- 	i915_gem_object_unlock(obj);
- 
-+	if (!err && write_domain)
-+		i915_gem_object_invalidate_frontbuffer(obj, ORIGIN_CPU);
-+
- out:
- 	i915_gem_object_put(obj);
- 	return err;
-@@ -741,6 +747,7 @@ int i915_gem_object_prepare_write(struct drm_i915_gem_object *obj,
- 	}
- 
- out:
-+	i915_gem_object_invalidate_frontbuffer(obj, ORIGIN_CPU);
- 	obj->mm.dirty = true;
- 	/* return with the pages pinned */
- 	return 0;
-diff --git a/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c b/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c
-index 25cf8ab4037e..3aeede6aee4d 100644
---- a/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c
-+++ b/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c
-@@ -11,6 +11,8 @@
- 
- #include <drm/drm_syncobj.h>
- 
-+#include "display/intel_frontbuffer.h"
-+
- #include "gem/i915_gem_ioctls.h"
- #include "gt/intel_context.h"
- #include "gt/intel_gpu_commands.h"
-diff --git a/drivers/gpu/drm/i915/gem/i915_gem_object.c b/drivers/gpu/drm/i915/gem/i915_gem_object.c
-index 82500f73e9ff..4666bb82f312 100644
---- a/drivers/gpu/drm/i915/gem/i915_gem_object.c
-+++ b/drivers/gpu/drm/i915/gem/i915_gem_object.c
-@@ -27,6 +27,7 @@
- 
- #include <drm/drm_cache.h>
- 
-+#include "display/intel_frontbuffer.h"
- #include "pxp/intel_pxp.h"
- 
- #include "i915_drv.h"
-@@ -399,6 +400,30 @@ static void i915_gem_free_object(struct drm_gem_object *gem_obj)
- 		queue_work(i915->wq, &i915->mm.free_work);
- }
- 
-+void __i915_gem_object_flush_frontbuffer(struct drm_i915_gem_object *obj,
-+					 enum fb_op_origin origin)
-+{
-+	struct intel_frontbuffer *front;
-+
-+	front = __intel_frontbuffer_get(obj);
-+	if (front) {
-+		intel_frontbuffer_flush(front, origin);
-+		intel_frontbuffer_put(front);
-+	}
-+}
-+
-+void __i915_gem_object_invalidate_frontbuffer(struct drm_i915_gem_object *obj,
-+					      enum fb_op_origin origin)
-+{
-+	struct intel_frontbuffer *front;
-+
-+	front = __intel_frontbuffer_get(obj);
-+	if (front) {
-+		intel_frontbuffer_invalidate(front, origin);
-+		intel_frontbuffer_put(front);
-+	}
-+}
-+
- static void
- i915_gem_object_read_from_page_kmap(struct drm_i915_gem_object *obj, u64 offset, void *dst, int size)
- {
-diff --git a/drivers/gpu/drm/i915/gem/i915_gem_object.h b/drivers/gpu/drm/i915/gem/i915_gem_object.h
-index 83b615a9e628..885ccde9dc3c 100644
---- a/drivers/gpu/drm/i915/gem/i915_gem_object.h
-+++ b/drivers/gpu/drm/i915/gem/i915_gem_object.h
-@@ -11,6 +11,7 @@
- #include <drm/drm_file.h>
- #include <drm/drm_device.h>
- 
-+#include "display/intel_frontbuffer.h"
- #include "intel_memory_region.h"
- #include "i915_gem_object_types.h"
- #include "i915_gem_gtt.h"
-@@ -801,6 +802,27 @@ int i915_gem_object_wait_priority(struct drm_i915_gem_object *obj,
- 				  unsigned int flags,
- 				  const struct i915_sched_attr *attr);
- 
-+void __i915_gem_object_flush_frontbuffer(struct drm_i915_gem_object *obj,
-+					 enum fb_op_origin origin);
-+void __i915_gem_object_invalidate_frontbuffer(struct drm_i915_gem_object *obj,
-+					      enum fb_op_origin origin);
-+
-+static inline void
-+i915_gem_object_flush_frontbuffer(struct drm_i915_gem_object *obj,
-+				  enum fb_op_origin origin)
-+{
-+	if (unlikely(rcu_access_pointer(obj->frontbuffer)))
-+		__i915_gem_object_flush_frontbuffer(obj, origin);
-+}
-+
-+static inline void
-+i915_gem_object_invalidate_frontbuffer(struct drm_i915_gem_object *obj,
-+				       enum fb_op_origin origin)
-+{
-+	if (unlikely(rcu_access_pointer(obj->frontbuffer)))
-+		__i915_gem_object_invalidate_frontbuffer(obj, origin);
-+}
-+
- int i915_gem_object_read_from_page(struct drm_i915_gem_object *obj, u64 offset, void *dst, int size);
- 
- bool i915_gem_object_is_shmem(const struct drm_i915_gem_object *obj);
-diff --git a/drivers/gpu/drm/i915/gem/i915_gem_phys.c b/drivers/gpu/drm/i915/gem/i915_gem_phys.c
-index f2c4ed5cdab0..76efe98eaa14 100644
---- a/drivers/gpu/drm/i915/gem/i915_gem_phys.c
-+++ b/drivers/gpu/drm/i915/gem/i915_gem_phys.c
-@@ -160,11 +160,15 @@ int i915_gem_object_pwrite_phys(struct drm_i915_gem_object *obj,
- 	 * We manually control the domain here and pretend that it
- 	 * remains coherent i.e. in the GTT domain, like shmem_pwrite.
- 	 */
-+	i915_gem_object_invalidate_frontbuffer(obj, ORIGIN_CPU);
-+
- 	if (copy_from_user(vaddr, user_data, args->size))
- 		return -EFAULT;
- 
- 	drm_clflush_virt_range(vaddr, args->size);
- 	intel_gt_chipset_flush(to_gt(i915));
-+
-+	i915_gem_object_flush_frontbuffer(obj, ORIGIN_CPU);
- 	return 0;
- }
- 
-diff --git a/drivers/gpu/drm/i915/i915_driver.c b/drivers/gpu/drm/i915/i915_driver.c
-index 5d302602793c..0dee8c19d9ee 100644
---- a/drivers/gpu/drm/i915/i915_driver.c
-+++ b/drivers/gpu/drm/i915/i915_driver.c
-@@ -214,7 +214,6 @@ static int i915_driver_early_probe(struct drm_i915_private *dev_priv)
- 
- 	spin_lock_init(&dev_priv->irq_lock);
- 	spin_lock_init(&dev_priv->gpu_error.lock);
--	spin_lock_init(&dev_priv->display.fb_tracking.lock);
- 	spin_lock_init(&dev_priv->display.wm.dsparb_lock);
- 	mutex_init(&dev_priv->display.backlight.lock);
- 
-diff --git a/drivers/gpu/drm/i915/i915_gem.c b/drivers/gpu/drm/i915/i915_gem.c
-index 2870bf791153..0a78bdbd36b1 100644
---- a/drivers/gpu/drm/i915/i915_gem.c
-+++ b/drivers/gpu/drm/i915/i915_gem.c
-@@ -40,6 +40,7 @@
- #include <drm/drm_vma_manager.h>
- 
- #include "display/intel_display.h"
-+#include "display/intel_frontbuffer.h"
- 
- #include "gem/i915_gem_clflush.h"
- #include "gem/i915_gem_context.h"
-@@ -577,6 +578,8 @@ i915_gem_gtt_pwrite_fast(struct drm_i915_gem_object *obj,
- 		goto out_rpm;
- 	}
- 
-+	i915_gem_object_invalidate_frontbuffer(obj, ORIGIN_CPU);
-+
- 	user_data = u64_to_user_ptr(args->data_ptr);
- 	offset = args->offset;
- 	remain = args->size;
-@@ -619,6 +622,7 @@ i915_gem_gtt_pwrite_fast(struct drm_i915_gem_object *obj,
- 	}
- 
- 	intel_gt_flush_ggtt_writes(ggtt->vm.gt);
-+	i915_gem_object_flush_frontbuffer(obj, ORIGIN_CPU);
- 
- 	i915_gem_gtt_cleanup(obj, &node, vma);
- out_rpm:
-@@ -706,6 +710,8 @@ i915_gem_shmem_pwrite(struct drm_i915_gem_object *obj,
- 		offset = 0;
- 	}
- 
-+	i915_gem_object_flush_frontbuffer(obj, ORIGIN_CPU);
-+
- 	i915_gem_object_unpin_pages(obj);
- 	return ret;
- 
-@@ -1276,6 +1282,8 @@ void i915_gem_init_early(struct drm_i915_private *dev_priv)
- {
- 	i915_gem_init__mm(dev_priv);
- 	i915_gem_init__contexts(dev_priv);
-+
-+	spin_lock_init(&dev_priv->display.fb_tracking.lock);
- }
- 
- void i915_gem_cleanup_early(struct drm_i915_private *dev_priv)
-diff --git a/drivers/gpu/drm/i915/i915_gem_gtt.c b/drivers/gpu/drm/i915/i915_gem_gtt.c
-index a9662cc6ed1e..7bd1861ddbdf 100644
---- a/drivers/gpu/drm/i915/i915_gem_gtt.c
-+++ b/drivers/gpu/drm/i915/i915_gem_gtt.c
-@@ -15,6 +15,7 @@
- #include <asm/set_memory.h>
- #include <asm/smp.h>
- 
-+#include "display/intel_frontbuffer.h"
- #include "gt/intel_gt.h"
- #include "gt/intel_gt_requests.h"
- 
-diff --git a/drivers/gpu/drm/i915/i915_vma.c b/drivers/gpu/drm/i915/i915_vma.c
-index dd3604f63019..20a44788999e 100644
---- a/drivers/gpu/drm/i915/i915_vma.c
-+++ b/drivers/gpu/drm/i915/i915_vma.c
-@@ -27,6 +27,7 @@
- #include <drm/drm_gem.h>
- 
- #include "display/intel_display.h"
-+#include "display/intel_frontbuffer.h"
- #include "gem/i915_gem_lmem.h"
- #include "gem/i915_gem_tiling.h"
- #include "gt/intel_engine.h"
-@@ -1902,6 +1903,17 @@ int _i915_vma_move_to_active(struct i915_vma *vma,
- 			return err;
- 	}
- 
-+	if (flags & EXEC_OBJECT_WRITE) {
-+		struct intel_frontbuffer *front;
-+
-+		front = __intel_frontbuffer_get(obj);
-+		if (unlikely(front)) {
-+			if (intel_frontbuffer_invalidate(front, ORIGIN_CS))
-+				i915_active_add_request(&front->write, rq);
-+			intel_frontbuffer_put(front);
-+		}
-+	}
-+
- 	if (fence) {
- 		struct dma_fence *curr;
- 		enum dma_resv_usage usage;
 -- 
 2.34.1
 
