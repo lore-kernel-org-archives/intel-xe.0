@@ -4,49 +4,49 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2ED66C77B7D
-	for <intel-xe@archiver.kernel.org>; Mon, 15 May 2023 14:00:24 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id EB7B0C77B7D
+	for <intel-xe@archiver.kernel.org>; Mon, 15 May 2023 14:41:11 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 02C7010E1E1;
-	Mon, 15 May 2023 14:00:24 +0000 (UTC)
-Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0A0E710E1E1
- for <intel-xe@lists.freedesktop.org>; Mon, 15 May 2023 14:00:22 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id ACCC810E1F8;
+	Mon, 15 May 2023 14:41:11 +0000 (UTC)
+Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id BDE0310E1F8
+ for <intel-xe@lists.freedesktop.org>; Mon, 15 May 2023 14:41:09 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1684159223; x=1715695223;
- h=from:to:cc:subject:in-reply-to:references:date:
- message-id:mime-version;
- bh=+4XgUw9Ko3DSKyWbx15/XIJp4+e3U4CG1HbVWW1F7Bs=;
- b=OlT11O08bU/mf8/IsLBTIIKlcpMI1esVaq8f+EZ0lkvAY4o0UnANC0eW
- Uxn/CIkuVE3oheVQHJ1e3vhcS+udpWmeKmdS0Iu8bIfDQW3xaHF1qHUgB
- u4+ecRizc3yVVADXPl4U9PPE6J4xqZIwWeXbz8Rv0oUqOTXn76/vXLrwx
- dIi8TXktZGbUJ+/U5co7m3c21RBB3avkR45KDtIqK/aZxG3MG06NIuZWB
- hrxH020ZoKolvT+yYjjvRQ6ET4o5/Xxv/INL5U7y+zn/OX4ZUTpqvJxRP
- 0asg9JbIFOWqrddkHgaC647Y+Is4SnnVuKhT2L26WvQK9cjb0mgiO4/tU w==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10711"; a="331575802"
-X-IronPort-AV: E=Sophos;i="5.99,276,1677571200"; d="scan'208";a="331575802"
-Received: from fmsmga008.fm.intel.com ([10.253.24.58])
- by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 15 May 2023 07:00:22 -0700
+ t=1684161669; x=1715697669;
+ h=from:to:cc:subject:date:message-id:in-reply-to:
+ references:mime-version:content-transfer-encoding;
+ bh=TgOrB64FsE0XkZozoI1xrtn4+exBTB9guez71KJG+/A=;
+ b=XDx4VjY0nHg9DSMjs5annyn3hVv0o7SXiJhAbagRrDKAJH8x2qsW7phr
+ zO5+35YSPUGcmBOBLfnzANAJv+SeWpor3tuBe8KXyPGuAZqIl+5+VIYRP
+ XvMPSz+pPKlyTvQaCGoMBvJkr/z3GM3Tj5+xXaRCSgVB5Xg/K47VFeNUa
+ iO2hvS0jSH2YrpBzYAOOReix5w8porzNyVFk4XtFKIbaErDC1gj3Rkw4n
+ Y10rhaKIra5qjcn9rH8LTe3mP76gq82j2/9kixtm31ojZ+uS6vyqSa0Q7
+ XHvNuUuCMpysrhHmMms78Pbb71FnpYO4RFA4G2TrF91tOrrXJKtlc/6lk Q==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10711"; a="340569333"
+X-IronPort-AV: E=Sophos;i="5.99,276,1677571200"; d="scan'208";a="340569333"
+Received: from orsmga002.jf.intel.com ([10.7.209.21])
+ by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 15 May 2023 07:41:07 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10711"; a="765937478"
-X-IronPort-AV: E=Sophos;i="5.99,276,1677571200"; d="scan'208";a="765937478"
-Received: from lveltman-mobl.ger.corp.intel.com (HELO localhost)
- ([10.252.42.56])
- by fmsmga008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 15 May 2023 07:00:19 -0700
-From: Jani Nikula <jani.nikula@intel.com>
+X-IronPort-AV: E=McAfee;i="6600,9927,10711"; a="700974560"
+X-IronPort-AV: E=Sophos;i="5.99,276,1677571200"; d="scan'208";a="700974560"
+Received: from kaelanhx-mobl1.ger.corp.intel.com (HELO mwauld-desk1.intel.com)
+ ([10.252.19.149])
+ by orsmga002-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 15 May 2023 07:41:05 -0700
+From: Matthew Auld <matthew.auld@intel.com>
 To: intel-xe@lists.freedesktop.org
-In-Reply-To: <20230512074335.1293293-1-jani.nikula@intel.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20230512074335.1293293-1-jani.nikula@intel.com>
-Date: Mon, 15 May 2023 17:00:17 +0300
-Message-ID: <87jzx9itji.fsf@intel.com>
+Date: Mon, 15 May 2023 15:40:23 +0100
+Message-Id: <20230515144027.82857-2-matthew.auld@intel.com>
+X-Mailer: git-send-email 2.40.1
+In-Reply-To: <20230515144027.82857-1-matthew.auld@intel.com>
+References: <20230515144027.82857-1-matthew.auld@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain
-Subject: Re: [Intel-xe] [PATCH 1/2] fixup! drm/i915/display: Remaining
- changes to make xe compile
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+Subject: [Intel-xe] [PATCH v3 2/6] drm/xe: don't allocate under ct->lock
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -58,42 +58,110 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Cc: Lucas De Marchi <lucas.demarchi@intel.com>, "Vivi,
- Rodrigo" <rodrigo.vivi@intel.com>
+Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
+Seems to be a sensitive lock, where ct->lock looks to be primed with
+fs_reclaim, so holding that and then allocating memory will cause
+lockdep to complain. We need to change the ordering wrt to grabbing the
+ct->lock and potentially grabbing the runtime_pm, since some of the
+runtime_pm routines can allocate memory (or at least that's what lockdep
+seems to suggest).
 
-Lucas, Rodrigo, r-b on these two?
+Signed-off-by: Matthew Auld <matthew.auld@intel.com>
+Cc: Thomas Hellström <thomas.hellstrom@linux.intel.com>
+Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
+---
+ drivers/gpu/drm/xe/xe_gt_tlb_invalidation.c |  4 ++++
+ drivers/gpu/drm/xe/xe_guc_ct.c              | 13 +++++++------
+ 2 files changed, 11 insertions(+), 6 deletions(-)
 
-Thanks,
-Jani.
-
-
-On Fri, 12 May 2023, Jani Nikula <jani.nikula@intel.com> wrote:
-> The dependency on display/intel_display_reg_defs.h is removed by
-> upstream commit 6e4e9fbd5ba0 ("drm/i915/gt: drop dependency on
-> VLV_DISPLAY_BASE").
->
-> Signed-off-by: Jani Nikula <jani.nikula@intel.com>
-> ---
->  drivers/gpu/drm/i915/gt/intel_gt_regs.h | 2 --
->  1 file changed, 2 deletions(-)
->
-> diff --git a/drivers/gpu/drm/i915/gt/intel_gt_regs.h b/drivers/gpu/drm/i915/gt/intel_gt_regs.h
-> index 7ae5fa5a8ff7..af80d2fe739b 100644
-> --- a/drivers/gpu/drm/i915/gt/intel_gt_regs.h
-> +++ b/drivers/gpu/drm/i915/gt/intel_gt_regs.h
-> @@ -7,9 +7,7 @@
->  #define __INTEL_GT_REGS__
->  
->  #include "i915_reg_defs.h"
-> -#ifdef I915
->  #include "display/intel_display_reg_defs.h"	/* VLV_DISPLAY_BASE */
-> -#endif
->  
->  /*
->   * The perf control registers are technically multicast registers, but the
-
+diff --git a/drivers/gpu/drm/xe/xe_gt_tlb_invalidation.c b/drivers/gpu/drm/xe/xe_gt_tlb_invalidation.c
+index c815a42e2cdb..20f8f0aae6b4 100644
+--- a/drivers/gpu/drm/xe/xe_gt_tlb_invalidation.c
++++ b/drivers/gpu/drm/xe/xe_gt_tlb_invalidation.c
+@@ -5,6 +5,7 @@
+ 
+ #include "xe_gt_tlb_invalidation.h"
+ 
++#include "xe_device.h"
+ #include "xe_gt.h"
+ #include "xe_guc.h"
+ #include "xe_guc_ct.h"
+@@ -112,6 +113,8 @@ static int send_tlb_invalidation(struct xe_guc *guc,
+ 	 * in order which they currently are, if that changes the algorithm will
+ 	 * need to be updated.
+ 	 */
++
++	xe_device_mem_access_get(gt->xe);
+ 	mutex_lock(&guc->ct.lock);
+ 	seqno = gt->tlb_invalidation.seqno;
+ 	if (fence) {
+@@ -140,6 +143,7 @@ static int send_tlb_invalidation(struct xe_guc *guc,
+ 	if (ret < 0 && fence)
+ 		invalidation_fence_signal(fence);
+ 	mutex_unlock(&guc->ct.lock);
++	xe_device_mem_access_put(gt->xe);
+ 
+ 	return ret;
+ }
+diff --git a/drivers/gpu/drm/xe/xe_guc_ct.c b/drivers/gpu/drm/xe/xe_guc_ct.c
+index 9055ff133a7c..579d7f341f13 100644
+--- a/drivers/gpu/drm/xe/xe_guc_ct.c
++++ b/drivers/gpu/drm/xe/xe_guc_ct.c
+@@ -494,26 +494,22 @@ static int __guc_ct_send_locked(struct xe_guc_ct *ct, const u32 *action,
+ 		}
+ 	}
+ 
+-	xe_device_mem_access_get(ct_to_xe(ct));
+ retry:
+ 	ret = has_room(ct, len + GUC_CTB_HDR_LEN, g2h_len);
+ 	if (unlikely(ret))
+-		goto put_wa;
++		goto out;
+ 
+ 	ret = h2g_write(ct, action, len, g2h_fence ? g2h_fence->seqno : 0,
+ 			!!g2h_fence);
+ 	if (unlikely(ret)) {
+ 		if (ret == -EAGAIN)
+ 			goto retry;
+-		goto put_wa;
++		goto out;
+ 	}
+ 
+ 	g2h_reserve_space(ct, g2h_len, num_g2h);
+ 	xe_guc_notify(ct_to_guc(ct));
+-put_wa:
+-	xe_device_mem_access_put(ct_to_xe(ct));
+ out:
+-
+ 	return ret;
+ }
+ 
+@@ -535,6 +531,7 @@ static int guc_ct_send_locked(struct xe_guc_ct *ct, const u32 *action, u32 len,
+ 
+ 	XE_BUG_ON(g2h_len && g2h_fence);
+ 	lockdep_assert_held(&ct->lock);
++	xe_device_assert_mem_access(ct_to_xe(ct));
+ 
+ try_again:
+ 	ret = __guc_ct_send_locked(ct, action, len, g2h_len, num_g2h,
+@@ -602,10 +599,14 @@ static int guc_ct_send(struct xe_guc_ct *ct, const u32 *action, u32 len,
+ 
+ 	XE_BUG_ON(g2h_len && g2h_fence);
+ 
++	xe_device_mem_access_get(ct_to_xe(ct));
++
+ 	mutex_lock(&ct->lock);
+ 	ret = guc_ct_send_locked(ct, action, len, g2h_len, num_g2h, g2h_fence);
+ 	mutex_unlock(&ct->lock);
+ 
++	xe_device_mem_access_put(ct_to_xe(ct));
++
+ 	return ret;
+ }
+ 
 -- 
-Jani Nikula, Intel Open Source Graphics Center
+2.40.1
+
