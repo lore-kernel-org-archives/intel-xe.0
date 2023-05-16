@@ -4,55 +4,47 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3D634C77B7A
-	for <intel-xe@archiver.kernel.org>; Tue, 16 May 2023 10:02:47 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id BF51EC77B75
+	for <intel-xe@archiver.kernel.org>; Tue, 16 May 2023 10:54:32 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 06DE310E332;
-	Tue, 16 May 2023 10:02:47 +0000 (UTC)
-Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B788F10E332
- for <intel-xe@lists.freedesktop.org>; Tue, 16 May 2023 10:02:44 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9A0FC10E21E;
+	Tue, 16 May 2023 10:54:32 +0000 (UTC)
+Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8F63710E21E
+ for <intel-xe@lists.freedesktop.org>; Tue, 16 May 2023 10:54:31 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1684231364; x=1715767364;
- h=message-id:date:mime-version:subject:to:cc:references:
- from:in-reply-to:content-transfer-encoding;
- bh=Zv3CNxHccT97FTqcMWubXl53KyIO2Ir+XQtXDZJrIdw=;
- b=M8l2wfruzEinr5kyemgQk4RF4z31fvD6e/FeUf7uyyf/A+raf05Kdcb+
- cjKCOSGnDZxVSpE65a5UzPKaouGykc7b1O+WoN/0juy05IwK9vOwqarPD
- +ClXuqdRP9xVJxBM3lfo2fDZnQwrAP8ihNiWHaQEG+nJGHMleNgfTdLIt
- JOxmd/8X7k50qAq5rDp1WXKqZOQ2FFaW1FJlxRRzMoIuV+OkkJn3PZjUN
- gx3HDn6WhtZjFrmuHykbFOc1xP58cPYPns642k/CkVBe01q1mkFogAThJ
- 42gQUgJspvAkuSwZxCAuRBqg7joiRno71OK8iaAa1f4uy9D6RcbDMfhZr g==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10711"; a="351469139"
-X-IronPort-AV: E=Sophos;i="5.99,278,1677571200"; d="scan'208";a="351469139"
-Received: from orsmga002.jf.intel.com ([10.7.209.21])
- by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 16 May 2023 03:02:36 -0700
+ t=1684234471; x=1715770471;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=fZGmRCC03wRjOVrwhl9o8Ld3ed3LSSAUFFVb7+R62zw=;
+ b=Ed8NfngrAVPqYv+aXvwhISVHAemoVGqask/1vLIFjg8jBhe8akvRKmur
+ HLFG4cKZxZAOSeDMETf4FUgm1QPgeAls/1VThR5KhrJzVav3r3X111oJb
+ YkS2ZgOTpQofG0VHlY9ADSNTc+/HLLta9nfv94sBSSHfR8tmAIOZPFS7q
+ Prycbfga0gT+hMUUtNiWe9Dxcd+bsnBMF5D/ozCS4sCSmqqtGsYykz8Zx
+ qB5BC8yaA7gpj9jnkDMWX7Dwgni4IGQGOPAxBJn8J5E24hKYub+SwTShs
+ 0l9/mp/AdnOYxFxpxQywXENYAkwp7Wfky3wZUOw3zZ3CfqZflfKtu6JHb g==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10711"; a="331064947"
+X-IronPort-AV: E=Sophos;i="5.99,278,1677571200"; d="scan'208";a="331064947"
+Received: from fmsmga007.fm.intel.com ([10.253.24.52])
+ by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 16 May 2023 03:54:30 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10711"; a="701284344"
-X-IronPort-AV: E=Sophos;i="5.99,278,1677571200"; d="scan'208";a="701284344"
-Received: from dmarkey-mobl1.ger.corp.intel.com (HELO [10.252.19.120])
+X-IronPort-AV: E=McAfee;i="6600,9927,10711"; a="704354456"
+X-IronPort-AV: E=Sophos;i="5.99,278,1677571200"; d="scan'208";a="704354456"
+Received: from dmarkey-mobl1.ger.corp.intel.com (HELO mwauld-desk1.intel.com)
  ([10.252.19.120])
- by orsmga002-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 16 May 2023 03:02:35 -0700
-Message-ID: <64224799-bd3c-dba4-99f9-ff176917ebf9@intel.com>
-Date: Tue, 16 May 2023 11:02:33 +0100
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Firefox/102.0 Thunderbird/102.11.0
-Content-Language: en-GB
-To: =?UTF-8?Q?Thomas_Hellstr=c3=b6m?= <thomas.hellstrom@linux.intel.com>,
- intel-xe@lists.freedesktop.org
-References: <20230515144027.82857-1-matthew.auld@intel.com>
- <20230515144027.82857-5-matthew.auld@intel.com>
- <371afdde-ab58-475c-2308-6d5ac21c6f29@linux.intel.com>
+ by fmsmga007-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 16 May 2023 03:54:29 -0700
 From: Matthew Auld <matthew.auld@intel.com>
-In-Reply-To: <371afdde-ab58-475c-2308-6d5ac21c6f29@linux.intel.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+To: intel-xe@lists.freedesktop.org
+Date: Tue, 16 May 2023 11:53:52 +0100
+Message-Id: <20230516105357.148846-1-matthew.auld@intel.com>
+X-Mailer: git-send-email 2.40.1
+MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-Subject: Re: [Intel-xe] [PATCH v3 5/6] drm/xe: fix
- xe_device_mem_access_get() races
+Subject: [Intel-xe] [PATCH v4 1/6] Revert "drm/xe: Use atomic instead of
+ mutex for xe_device_mem_access_ongoing"
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -68,285 +60,113 @@ Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On 16/05/2023 08:06, Thomas Hellström wrote:
-> 
-> On 5/15/23 16:40, Matthew Auld wrote:
->> It looks like there is at least one race here, given that the
->> pm_runtime_suspended() check looks to return false if we are in the
->> process of suspending the device (RPM_SUSPENDING vs RPM_SUSPENDED).  We
->> later also do xe_pm_runtime_get_if_active(), but since the device is
->> suspending or has now suspended, this doesn't do anything either.
->> Following from this we can potentially return from
->> xe_device_mem_access_get() with the device suspended or about to be,
->> leading to broken behaviour.
->>
->> Attempt to fix this by always grabbing the runtime ref when our
->> internal ref transitions from 0 -> 1, and then wrap the whole thing with
->> a lock to ensure callers are serialized.
->>
->> v2:
->>   - ct->lock looks to be primed with fs_reclaim, so holding that and then
->>     allocating memory will cause lockdep to complain. Now that we
->>     unconditionally grab the mem_access.lock around 
->> mem_access_{get,put}, we
->>     need to change the ordering wrt to grabbing the ct->lock, since 
->> some of
->>     the runtime_pm routines can allocate memory (or at least that's what
->>     lockdep seems to suggest). Hopefully not a big deal.  It might be 
->> that
->>     there were already issues with this, just that the atomics where
->>     "hiding" the potential issues.
->> v3:
->>   - Use Thomas Hellström' idea with tracking the active task that is
->>     executing in the resume or suspend callback, in order to avoid
->>     recursive resume/suspend calls deadlocking on itself.
->>   - Split the ct->lock change.
->>
->> Closes: https://gitlab.freedesktop.org/drm/xe/kernel/-/issues/258
->> Signed-off-by: Matthew Auld <matthew.auld@intel.com>
->> Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
->> Cc: Thomas Hellström <thomas.hellstrom@linux.intel.com>
->> Cc: Matthew Brost <matthew.brost@intel.com>
->> Signed-off-by: Matthew Auld <matthew.auld@intel.com>
->> ---
->>   drivers/gpu/drm/xe/xe_device.c       | 30 ++++++++++++++-----
->>   drivers/gpu/drm/xe/xe_device.h       |  6 ++++
->>   drivers/gpu/drm/xe/xe_device_types.h | 11 ++++++-
->>   drivers/gpu/drm/xe/xe_pm.c           | 45 +++++++++++++++-------------
->>   drivers/gpu/drm/xe/xe_pm.h           |  2 +-
->>   5 files changed, 64 insertions(+), 30 deletions(-)
->>
->> diff --git a/drivers/gpu/drm/xe/xe_device.c 
->> b/drivers/gpu/drm/xe/xe_device.c
->> index d0297ee432b2..123343bc33b0 100644
->> --- a/drivers/gpu/drm/xe/xe_device.c
->> +++ b/drivers/gpu/drm/xe/xe_device.c
->> @@ -405,22 +405,38 @@ u32 xe_device_ccs_bytes(struct xe_device *xe, 
->> u64 size)
->>   void xe_device_mem_access_get(struct xe_device *xe)
->>   {
->> -    bool resumed = xe_pm_runtime_resume_if_suspended(xe);
->> +    /*
->> +     * This looks racy, but should be fine since the pm_callback_task 
->> only
->> +     * transitions from NULL -> current (and back to NULL again), 
->> during the
->> +     * runtime_resume() or runtime_suspend() callbacks, for which 
->> there can
->> +     * only be a single one running for our device. We only need to 
->> prevent
->> +     * recursively calling the runtime_get or runtime_put from those
->> +     * callbacks, as well as preventing triggering any access_ongoing
->> +     * asserts.
->> +     */
->> +    if (READ_ONCE(xe->pm_callback_task) == current)
->> +        return;
-> 
-> I figure in theory with excessive write reordering if the 
-> pm_callback_task writes NULL and then dies and a new task gets assigned 
-> that exact same task pointer on another processor, it might incorrectly 
-> read the old value pointing to itself before the reordered NULL write is 
-> actually executed, so we might actually need an smp_mb() before the 
-> pm_callback_task read and after the smp_mb() of the pm_callback_task 
-> write, with a "pairs with" comment. This is of course not needed if a 
-> task exit and a task init execute a memory barrier, but I don't know  if 
-> they do. What do you think?
+This reverts commit c3712d924f6b5022498f4357009943c326389f9c.
 
-Good point, yeah I figure we just add the barrier and play it safe here.
+We add a similar version back, once we fix the locking inside
+xe_device_mem_access.
 
-> 
-> Otherwise LGTM,
+Signed-off-by: Matthew Auld <matthew.auld@intel.com>
+Reviewed-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
+---
+ drivers/gpu/drm/xe/xe_device.c       | 18 ++++++++++--------
+ drivers/gpu/drm/xe/xe_device.h       | 18 ++++++++++++------
+ drivers/gpu/drm/xe/xe_device_types.h |  4 +++-
+ 3 files changed, 25 insertions(+), 15 deletions(-)
 
-Thanks.
+diff --git a/drivers/gpu/drm/xe/xe_device.c b/drivers/gpu/drm/xe/xe_device.c
+index f7f6a6a97757..d0297ee432b2 100644
+--- a/drivers/gpu/drm/xe/xe_device.c
++++ b/drivers/gpu/drm/xe/xe_device.c
+@@ -216,6 +216,8 @@ struct xe_device *xe_device_create(struct pci_dev *pdev,
+ 	if (err)
+ 		goto err_put;
+ 
++	drmm_mutex_init(&xe->drm, &xe->mem_access.lock);
++
+ 	return xe;
+ 
+ err_put:
+@@ -404,25 +406,25 @@ u32 xe_device_ccs_bytes(struct xe_device *xe, u64 size)
+ void xe_device_mem_access_get(struct xe_device *xe)
+ {
+ 	bool resumed = xe_pm_runtime_resume_if_suspended(xe);
+-	int ref = atomic_inc_return(&xe->mem_access.ref);
+ 
+-	if (ref == 1)
++	mutex_lock(&xe->mem_access.lock);
++	if (xe->mem_access.ref++ == 0)
+ 		xe->mem_access.hold_rpm = xe_pm_runtime_get_if_active(xe);
++	mutex_unlock(&xe->mem_access.lock);
+ 
+ 	/* The usage counter increased if device was immediately resumed */
+ 	if (resumed)
+ 		xe_pm_runtime_put(xe);
+ 
+-	XE_WARN_ON(ref == S32_MAX);
++	XE_WARN_ON(xe->mem_access.ref == S32_MAX);
+ }
+ 
+ void xe_device_mem_access_put(struct xe_device *xe)
+ {
+-	bool hold = xe->mem_access.hold_rpm;
+-	int ref = atomic_dec_return(&xe->mem_access.ref);
+-
+-	if (!ref && hold)
++	mutex_lock(&xe->mem_access.lock);
++	if (--xe->mem_access.ref == 0 && xe->mem_access.hold_rpm)
+ 		xe_pm_runtime_put(xe);
++	mutex_unlock(&xe->mem_access.lock);
+ 
+-	XE_WARN_ON(ref < 0);
++	XE_WARN_ON(xe->mem_access.ref < 0);
+ }
+diff --git a/drivers/gpu/drm/xe/xe_device.h b/drivers/gpu/drm/xe/xe_device.h
+index cbae480a2092..9ab7e6134f89 100644
+--- a/drivers/gpu/drm/xe/xe_device.h
++++ b/drivers/gpu/drm/xe/xe_device.h
+@@ -90,14 +90,20 @@ static inline struct xe_force_wake * gt_to_fw(struct xe_gt *gt)
+ void xe_device_mem_access_get(struct xe_device *xe);
+ void xe_device_mem_access_put(struct xe_device *xe);
+ 
+-static inline bool xe_device_mem_access_ongoing(struct xe_device *xe)
+-{
+-	return atomic_read(&xe->mem_access.ref);
+-}
+-
+ static inline void xe_device_assert_mem_access(struct xe_device *xe)
+ {
+-	XE_WARN_ON(!xe_device_mem_access_ongoing(xe));
++	XE_WARN_ON(!xe->mem_access.ref);
++}
++
++static inline bool xe_device_mem_access_ongoing(struct xe_device *xe)
++{
++	bool ret;
++
++	mutex_lock(&xe->mem_access.lock);
++	ret = xe->mem_access.ref;
++	mutex_unlock(&xe->mem_access.lock);
++
++	return ret;
+ }
+ 
+ static inline bool xe_device_in_fault_mode(struct xe_device *xe)
+diff --git a/drivers/gpu/drm/xe/xe_device_types.h b/drivers/gpu/drm/xe/xe_device_types.h
+index 6490a04614ce..d91193c41d2e 100644
+--- a/drivers/gpu/drm/xe/xe_device_types.h
++++ b/drivers/gpu/drm/xe/xe_device_types.h
+@@ -256,8 +256,10 @@ struct xe_device {
+ 	 * triggering additional actions when they occur.
+ 	 */
+ 	struct {
++		/** @lock: protect the ref count */
++		struct mutex lock;
+ 		/** @ref: ref count of memory accesses */
+-		atomic_t ref;
++		s32 ref;
+ 		/** @hold_rpm: need to put rpm ref back at the end */
+ 		bool hold_rpm;
+ 	} mem_access;
+-- 
+2.40.1
 
-> 
-> /Thomas
-> 
-> 
->> +    /*
->> +     * It's possible to get rid of the mem_access.lock here, however 
->> lockdep
->> +     * has an easier time digesting the mem_access.lock -> runtime_pm 
->> chain
->> +     * (and any locks the caller is holding), on all transitions, and 
->> not
->> +     * for example just on the 0 -> 1.
->> +     */
->>       mutex_lock(&xe->mem_access.lock);
->> -    if (xe->mem_access.ref++ == 0)
->> -        xe->mem_access.hold_rpm = xe_pm_runtime_get_if_active(xe);
->> +    if (xe->mem_access.ref == 0)
->> +        xe->mem_access.hold_rpm = xe_pm_runtime_resume_and_get(xe);
->> +    xe->mem_access.ref++;
->>       mutex_unlock(&xe->mem_access.lock);
->> -    /* The usage counter increased if device was immediately resumed */
->> -    if (resumed)
->> -        xe_pm_runtime_put(xe);
->> -
->>       XE_WARN_ON(xe->mem_access.ref == S32_MAX);
->>   }
->>   void xe_device_mem_access_put(struct xe_device *xe)
->>   {
->> +    if (READ_ONCE(xe->pm_callback_task) == current)
->> +        return;
->> +
->>       mutex_lock(&xe->mem_access.lock);
->>       if (--xe->mem_access.ref == 0 && xe->mem_access.hold_rpm)
->>           xe_pm_runtime_put(xe);
->> diff --git a/drivers/gpu/drm/xe/xe_device.h 
->> b/drivers/gpu/drm/xe/xe_device.h
->> index 9ab7e6134f89..7a4ba5212d9c 100644
->> --- a/drivers/gpu/drm/xe/xe_device.h
->> +++ b/drivers/gpu/drm/xe/xe_device.h
->> @@ -92,6 +92,9 @@ void xe_device_mem_access_put(struct xe_device *xe);
->>   static inline void xe_device_assert_mem_access(struct xe_device *xe)
->>   {
->> +    if (READ_ONCE(xe->pm_callback_task) == current)
->> +        return;
->> +
->>       XE_WARN_ON(!xe->mem_access.ref);
->>   }
->> @@ -99,6 +102,9 @@ static inline bool 
->> xe_device_mem_access_ongoing(struct xe_device *xe)
->>   {
->>       bool ret;
->> +    if (READ_ONCE(xe->pm_callback_task) == current)
->> +        return true;
->> +
->>       mutex_lock(&xe->mem_access.lock);
->>       ret = xe->mem_access.ref;
->>       mutex_unlock(&xe->mem_access.lock);
->> diff --git a/drivers/gpu/drm/xe/xe_device_types.h 
->> b/drivers/gpu/drm/xe/xe_device_types.h
->> index d91193c41d2e..0f4f00fa4d18 100644
->> --- a/drivers/gpu/drm/xe/xe_device_types.h
->> +++ b/drivers/gpu/drm/xe/xe_device_types.h
->> @@ -256,7 +256,10 @@ struct xe_device {
->>        * triggering additional actions when they occur.
->>        */
->>       struct {
->> -        /** @lock: protect the ref count */
->> +        /**
->> +         * @lock: Serialize xe_device_mem_access users,
->> +         * and protect the below internal state, like @ref.
->> +         */
->>           struct mutex lock;
->>           /** @ref: ref count of memory accesses */
->>           s32 ref;
->> @@ -264,6 +267,12 @@ struct xe_device {
->>           bool hold_rpm;
->>       } mem_access;
->> +    /**
->> +     * @pm_callback_task: Track the active task that is running in 
->> either
->> +     * the runtime_suspend or runtime_resume callbacks.
->> +     */
->> +    struct task_struct *pm_callback_task;
->> +
->>       /** @d3cold_allowed: Indicates if d3cold is a valid device state */
->>       bool d3cold_allowed;
->> diff --git a/drivers/gpu/drm/xe/xe_pm.c b/drivers/gpu/drm/xe/xe_pm.c
->> index b7b57f10ba25..6f25268ca492 100644
->> --- a/drivers/gpu/drm/xe/xe_pm.c
->> +++ b/drivers/gpu/drm/xe/xe_pm.c
->> @@ -141,39 +141,46 @@ int xe_pm_runtime_suspend(struct xe_device *xe)
->>   {
->>       struct xe_gt *gt;
->>       u8 id;
->> -    int err;
->> +    int err = 0;
->> +
->> +    if (xe->d3cold_allowed && xe_device_mem_access_ongoing(xe))
->> +        return -EBUSY;
->> +
->> +    /* Disable access_ongoing asserts and prevent recursive pm calls */
->> +    WRITE_ONCE(xe->pm_callback_task, current);
->>       if (xe->d3cold_allowed) {
->> -        if (xe_device_mem_access_ongoing(xe))
->> -            return -EBUSY;
->> -
->>           err = xe_bo_evict_all(xe);
->>           if (err)
->> -            return err;
->> +            goto out;
->>       }
->>       for_each_gt(gt, xe, id) {
->>           err = xe_gt_suspend(gt);
->>           if (err)
->> -            return err;
->> +            goto out;
->>       }
->>       xe_irq_suspend(xe);
->> -
->> -    return 0;
->> +out:
->> +    WRITE_ONCE(xe->pm_callback_task, NULL);
->> +    return err;
->>   }
->>   int xe_pm_runtime_resume(struct xe_device *xe)
->>   {
->>       struct xe_gt *gt;
->>       u8 id;
->> -    int err;
->> +    int err = 0;
->> +
->> +    /* Disable access_ongoing asserts and prevent recursive pm calls */
->> +    WRITE_ONCE(xe->pm_callback_task, current);
->>       if (xe->d3cold_allowed) {
->>           for_each_gt(gt, xe, id) {
->>               err = xe_pcode_init(gt);
->>               if (err)
->> -                return err;
->> +                goto out;
->>           }
->>           /*
->> @@ -182,7 +189,7 @@ int xe_pm_runtime_resume(struct xe_device *xe)
->>            */
->>           err = xe_bo_restore_kernel(xe);
->>           if (err)
->> -            return err;
->> +            goto out;
->>       }
->>       xe_irq_resume(xe);
->> @@ -193,10 +200,11 @@ int xe_pm_runtime_resume(struct xe_device *xe)
->>       if (xe->d3cold_allowed) {
->>           err = xe_bo_restore_user(xe);
->>           if (err)
->> -            return err;
->> +            goto out;
->>       }
->> -
->> -    return 0;
->> +out:
->> +    WRITE_ONCE(xe->pm_callback_task, NULL);
->> +    return err;
->>   }
->>   int xe_pm_runtime_get(struct xe_device *xe)
->> @@ -210,14 +218,9 @@ int xe_pm_runtime_put(struct xe_device *xe)
->>       return pm_runtime_put_autosuspend(xe->drm.dev);
->>   }
->> -/* Return true if resume operation happened and usage count was 
->> increased */
->> -bool xe_pm_runtime_resume_if_suspended(struct xe_device *xe)
->> +bool xe_pm_runtime_resume_and_get(struct xe_device *xe)
->>   {
->> -    /* In case we are suspended we need to immediately wake up */
->> -    if (pm_runtime_suspended(xe->drm.dev))
->> -        return !pm_runtime_resume_and_get(xe->drm.dev);
->> -
->> -    return false;
->> +    return !pm_runtime_resume_and_get(xe->drm.dev);
->>   }
->>   int xe_pm_runtime_get_if_active(struct xe_device *xe)
->> diff --git a/drivers/gpu/drm/xe/xe_pm.h b/drivers/gpu/drm/xe/xe_pm.h
->> index 6a885585f653..1b4c15b5e71a 100644
->> --- a/drivers/gpu/drm/xe/xe_pm.h
->> +++ b/drivers/gpu/drm/xe/xe_pm.h
->> @@ -19,7 +19,7 @@ int xe_pm_runtime_suspend(struct xe_device *xe);
->>   int xe_pm_runtime_resume(struct xe_device *xe);
->>   int xe_pm_runtime_get(struct xe_device *xe);
->>   int xe_pm_runtime_put(struct xe_device *xe);
->> -bool xe_pm_runtime_resume_if_suspended(struct xe_device *xe);
->> +bool xe_pm_runtime_resume_and_get(struct xe_device *xe);
->>   int xe_pm_runtime_get_if_active(struct xe_device *xe);
->>   #endif
