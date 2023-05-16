@@ -4,53 +4,55 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 81B8AC77B7F
-	for <intel-xe@archiver.kernel.org>; Tue, 16 May 2023 09:44:47 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3D634C77B7A
+	for <intel-xe@archiver.kernel.org>; Tue, 16 May 2023 10:02:47 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 58EED10E331;
-	Tue, 16 May 2023 09:44:47 +0000 (UTC)
-Received: from mga06.intel.com (mga06b.intel.com [134.134.136.31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 34EA910E331
- for <intel-xe@lists.freedesktop.org>; Tue, 16 May 2023 09:44:46 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 06DE310E332;
+	Tue, 16 May 2023 10:02:47 +0000 (UTC)
+Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B788F10E332
+ for <intel-xe@lists.freedesktop.org>; Tue, 16 May 2023 10:02:44 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1684230286; x=1715766286;
+ t=1684231364; x=1715767364;
  h=message-id:date:mime-version:subject:to:cc:references:
  from:in-reply-to:content-transfer-encoding;
- bh=EMC7q+LlF7mfIzKY1TZ2rkALXUwL/xeZLtE4AKwM68I=;
- b=Z5t5w+BjQp1T+YwVlx7Vn4krUHkL8GQtsQ/lr/lrSAab0VO1vmIlIl7/
- E/wae8htyG0TojI7VdrnkyE+GsNcEYLkt3mXAge/ZjQcTDCZXYDiUhg0u
- orNH0xFIUe4DVrUzFN/8fpy4rmar0+72WmexE0A0g4QFQ5ubazOWBPoG0
- +RU6eIUtiStLiKCdZrBmhlm9AVFa/ieHyzggxxNnz7JU0z5zP4NEDgkhD
- xy+3qFnfjrceIK1nsXG2YGyMORbPjfSnAWyrsP0UYPkfIjTSExtgIzAAQ
- 9AKP+6kTxmNqBsBGCWVSGTG33r6gy9U1jBvj4Imp/XQCiQmbFwC9Bbxg6 Q==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10711"; a="414840814"
-X-IronPort-AV: E=Sophos;i="5.99,278,1677571200"; d="scan'208";a="414840814"
+ bh=Zv3CNxHccT97FTqcMWubXl53KyIO2Ir+XQtXDZJrIdw=;
+ b=M8l2wfruzEinr5kyemgQk4RF4z31fvD6e/FeUf7uyyf/A+raf05Kdcb+
+ cjKCOSGnDZxVSpE65a5UzPKaouGykc7b1O+WoN/0juy05IwK9vOwqarPD
+ +ClXuqdRP9xVJxBM3lfo2fDZnQwrAP8ihNiWHaQEG+nJGHMleNgfTdLIt
+ JOxmd/8X7k50qAq5rDp1WXKqZOQ2FFaW1FJlxRRzMoIuV+OkkJn3PZjUN
+ gx3HDn6WhtZjFrmuHykbFOc1xP58cPYPns642k/CkVBe01q1mkFogAThJ
+ 42gQUgJspvAkuSwZxCAuRBqg7joiRno71OK8iaAa1f4uy9D6RcbDMfhZr g==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10711"; a="351469139"
+X-IronPort-AV: E=Sophos;i="5.99,278,1677571200"; d="scan'208";a="351469139"
 Received: from orsmga002.jf.intel.com ([10.7.209.21])
- by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 16 May 2023 02:44:45 -0700
+ by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 16 May 2023 03:02:36 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10711"; a="701279366"
-X-IronPort-AV: E=Sophos;i="5.99,278,1677571200"; d="scan'208";a="701279366"
+X-IronPort-AV: E=McAfee;i="6600,9927,10711"; a="701284344"
+X-IronPort-AV: E=Sophos;i="5.99,278,1677571200"; d="scan'208";a="701284344"
 Received: from dmarkey-mobl1.ger.corp.intel.com (HELO [10.252.19.120])
  ([10.252.19.120])
  by orsmga002-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 16 May 2023 02:44:43 -0700
-Message-ID: <0486d296-ecdf-715f-41b0-46e08a421a83@intel.com>
-Date: Tue, 16 May 2023 10:44:41 +0100
+ 16 May 2023 03:02:35 -0700
+Message-ID: <64224799-bd3c-dba4-99f9-ff176917ebf9@intel.com>
+Date: Tue, 16 May 2023 11:02:33 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Firefox/102.0 Thunderbird/102.11.0
 Content-Language: en-GB
-To: "Michael J. Ruhl" <michael.j.ruhl@intel.com>,
+To: =?UTF-8?Q?Thomas_Hellstr=c3=b6m?= <thomas.hellstrom@linux.intel.com>,
  intel-xe@lists.freedesktop.org
-References: <20230515192628.1990279-1-michael.j.ruhl@intel.com>
- <20230515192628.1990279-4-michael.j.ruhl@intel.com>
+References: <20230515144027.82857-1-matthew.auld@intel.com>
+ <20230515144027.82857-5-matthew.auld@intel.com>
+ <371afdde-ab58-475c-2308-6d5ac21c6f29@linux.intel.com>
 From: Matthew Auld <matthew.auld@intel.com>
-In-Reply-To: <20230515192628.1990279-4-michael.j.ruhl@intel.com>
+In-Reply-To: <371afdde-ab58-475c-2308-6d5ac21c6f29@linux.intel.com>
 Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-Subject: Re: [Intel-xe] [PATCH 3/4] drm/xe: Size GT device memory correctly
+Content-Transfer-Encoding: 8bit
+Subject: Re: [Intel-xe] [PATCH v3 5/6] drm/xe: fix
+ xe_device_mem_access_get() races
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -62,222 +64,289 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On 15/05/2023 20:26, Michael J. Ruhl wrote:
-> The current method of sizing GT device memory is not quite right.
+On 16/05/2023 08:06, Thomas Hellström wrote:
 > 
-> Update the algorithm to use the relevant HW information and offsets
-> to set up the sizing correctly.
+> On 5/15/23 16:40, Matthew Auld wrote:
+>> It looks like there is at least one race here, given that the
+>> pm_runtime_suspended() check looks to return false if we are in the
+>> process of suspending the device (RPM_SUSPENDING vs RPM_SUSPENDED).  We
+>> later also do xe_pm_runtime_get_if_active(), but since the device is
+>> suspending or has now suspended, this doesn't do anything either.
+>> Following from this we can potentially return from
+>> xe_device_mem_access_get() with the device suspended or about to be,
+>> leading to broken behaviour.
+>>
+>> Attempt to fix this by always grabbing the runtime ref when our
+>> internal ref transitions from 0 -> 1, and then wrap the whole thing with
+>> a lock to ensure callers are serialized.
+>>
+>> v2:
+>>   - ct->lock looks to be primed with fs_reclaim, so holding that and then
+>>     allocating memory will cause lockdep to complain. Now that we
+>>     unconditionally grab the mem_access.lock around 
+>> mem_access_{get,put}, we
+>>     need to change the ordering wrt to grabbing the ct->lock, since 
+>> some of
+>>     the runtime_pm routines can allocate memory (or at least that's what
+>>     lockdep seems to suggest). Hopefully not a big deal.  It might be 
+>> that
+>>     there were already issues with this, just that the atomics where
+>>     "hiding" the potential issues.
+>> v3:
+>>   - Use Thomas Hellström' idea with tracking the active task that is
+>>     executing in the resume or suspend callback, in order to avoid
+>>     recursive resume/suspend calls deadlocking on itself.
+>>   - Split the ct->lock change.
+>>
+>> Closes: https://gitlab.freedesktop.org/drm/xe/kernel/-/issues/258
+>> Signed-off-by: Matthew Auld <matthew.auld@intel.com>
+>> Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
+>> Cc: Thomas Hellström <thomas.hellstrom@linux.intel.com>
+>> Cc: Matthew Brost <matthew.brost@intel.com>
+>> Signed-off-by: Matthew Auld <matthew.auld@intel.com>
+>> ---
+>>   drivers/gpu/drm/xe/xe_device.c       | 30 ++++++++++++++-----
+>>   drivers/gpu/drm/xe/xe_device.h       |  6 ++++
+>>   drivers/gpu/drm/xe/xe_device_types.h | 11 ++++++-
+>>   drivers/gpu/drm/xe/xe_pm.c           | 45 +++++++++++++++-------------
+>>   drivers/gpu/drm/xe/xe_pm.h           |  2 +-
+>>   5 files changed, 64 insertions(+), 30 deletions(-)
+>>
+>> diff --git a/drivers/gpu/drm/xe/xe_device.c 
+>> b/drivers/gpu/drm/xe/xe_device.c
+>> index d0297ee432b2..123343bc33b0 100644
+>> --- a/drivers/gpu/drm/xe/xe_device.c
+>> +++ b/drivers/gpu/drm/xe/xe_device.c
+>> @@ -405,22 +405,38 @@ u32 xe_device_ccs_bytes(struct xe_device *xe, 
+>> u64 size)
+>>   void xe_device_mem_access_get(struct xe_device *xe)
+>>   {
+>> -    bool resumed = xe_pm_runtime_resume_if_suspended(xe);
+>> +    /*
+>> +     * This looks racy, but should be fine since the pm_callback_task 
+>> only
+>> +     * transitions from NULL -> current (and back to NULL again), 
+>> during the
+>> +     * runtime_resume() or runtime_suspend() callbacks, for which 
+>> there can
+>> +     * only be a single one running for our device. We only need to 
+>> prevent
+>> +     * recursively calling the runtime_get or runtime_put from those
+>> +     * callbacks, as well as preventing triggering any access_ongoing
+>> +     * asserts.
+>> +     */
+>> +    if (READ_ONCE(xe->pm_callback_task) == current)
+>> +        return;
 > 
-> Update the stolen memory sizing to reflect the changes, and to be
-> GT specific.
+> I figure in theory with excessive write reordering if the 
+> pm_callback_task writes NULL and then dies and a new task gets assigned 
+> that exact same task pointer on another processor, it might incorrectly 
+> read the old value pointing to itself before the reordered NULL write is 
+> actually executed, so we might actually need an smp_mb() before the 
+> pm_callback_task read and after the smp_mb() of the pm_callback_task 
+> write, with a "pairs with" comment. This is of course not needed if a 
+> task exit and a task init execute a memory barrier, but I don't know  if 
+> they do. What do you think?
+
+Good point, yeah I figure we just add the barrier and play it safe here.
+
 > 
-> Signed-off-by: Michael J. Ruhl <michael.j.ruhl@intel.com>
-> ---
->   drivers/gpu/drm/xe/xe_device_types.h |  2 +
->   drivers/gpu/drm/xe/xe_gt_types.h     |  2 +
->   drivers/gpu/drm/xe/xe_mmio.c         | 91 ++++++++++++++--------------
->   3 files changed, 49 insertions(+), 46 deletions(-)
+> Otherwise LGTM,
+
+Thanks.
+
 > 
-> diff --git a/drivers/gpu/drm/xe/xe_device_types.h b/drivers/gpu/drm/xe/xe_device_types.h
-> index a10ce67f11df..b00a23199492 100644
-> --- a/drivers/gpu/drm/xe/xe_device_types.h
-> +++ b/drivers/gpu/drm/xe/xe_device_types.h
-> @@ -203,6 +203,8 @@ struct xe_device {
->   			resource_size_t io_size;
->   			/** @size: Total size of VRAM */
->   			resource_size_t size;
-> +			/** @base: Offset to apply for Device Physical Address control */
-> +			resource_size_t base;
->   			/** @mapping: pointer to VRAM mappable space */
->   			void *__iomem mapping;
->   		} vram;
-> diff --git a/drivers/gpu/drm/xe/xe_gt_types.h b/drivers/gpu/drm/xe/xe_gt_types.h
-> index 4b66e059ba9b..47f059bb8c6d 100644
-> --- a/drivers/gpu/drm/xe/xe_gt_types.h
-> +++ b/drivers/gpu/drm/xe/xe_gt_types.h
-> @@ -155,6 +155,8 @@ struct xe_gt {
->   			 * the first 256M). This configuration is known as small-bar.
->   			 */
->   			resource_size_t io_size;
-> +			/** @base: offset of VRAM starting base */
-> +			resource_size_t base;
->   			/** @size: size of VRAM. */
->   			resource_size_t size;
->   			/** @mapping: pointer to VRAM mappable space */
-> diff --git a/drivers/gpu/drm/xe/xe_mmio.c b/drivers/gpu/drm/xe/xe_mmio.c
-> index c8b0eb5aab36..02fe2e71abe2 100644
-> --- a/drivers/gpu/drm/xe/xe_mmio.c
-> +++ b/drivers/gpu/drm/xe/xe_mmio.c
-> @@ -185,6 +185,8 @@ static int xe_determine_lmem_bar_size(struct xe_device *xe)
->   	if (!xe->mem.vram.io_size)
->   		return -EIO;
->   
-> +	xe->mem.vram.base = 0; /* DPA offset */
-> +
->   	/* set up a map to the total memory area. */
->   	xe->mem.vram.mapping = ioremap_wc(xe->mem.vram.io_start, xe->mem.vram.io_size);
->   
-> @@ -246,6 +248,9 @@ int xe_mmio_tile_vram_size(struct xe_gt *gt, u64 *vram_size, u64 *tile_size, u64
->   
->   int xe_mmio_probe_vram(struct xe_device *xe)
->   {
-> +	resource_size_t io_size;
-> +	u64 available_size = 0;
-> +	u64 total_size = 0;
->   	struct xe_gt *gt;
->   	u64 tile_offset;
->   	u64 tile_size;
-> @@ -271,64 +276,58 @@ int xe_mmio_probe_vram(struct xe_device *xe)
->   		drm_warn(&xe->drm, "Restricting VRAM size to PCI resource size (0x%llx->0x%llx)\n",
->   			 vram_size, (u64)xe->mem.vram.io_size);
->   
-> -	/* Limit size to available memory to account for the current memory algorithm */
-> -	xe->mem.vram.io_size = min_t(u64, xe->mem.vram.io_size, vram_size);
-> -	xe->mem.vram.size = xe->mem.vram.io_size;
-> -
->   	drm_info(&xe->drm, "VISIBLE VRAM: %pa, %pa\n", &xe->mem.vram.io_start,
->   		 &xe->mem.vram.io_size);
->   
-> -	/* FIXME: Assuming equally partitioned VRAM, incorrect */
-> -	if (xe->info.tile_count > 1) {
-> -		u8 adj_tile_count = xe->info.tile_count;
-> -		resource_size_t size, io_start, io_size;
-> +	io_size = xe->mem.vram.io_size;
->   
-> -		for_each_gt(gt, xe, id)
-> -			if (xe_gt_is_media_type(gt))
-> -				--adj_tile_count;
-> +	/* gt specific ranges */
-> +	for_each_gt(gt, xe, id) {
-> +		if (xe_gt_is_media_type(gt))
-> +			continue;
->   
-> -		XE_BUG_ON(!adj_tile_count);
-> +		err = xe_mmio_tile_vram_size(gt, &vram_size, &tile_size, &tile_offset);
-> +		if (err)
-> +			return err;
->   
-> -		size = xe->mem.vram.size / adj_tile_count;
-> -		io_start = xe->mem.vram.io_start;
-> -		io_size = xe->mem.vram.io_size;
-> +		gt->mem.vram.io_start = xe->mem.vram.io_start + tile_offset;
-> +		gt->mem.vram.io_size = min_t(u64, vram_size, io_size);
->   
-> -		for_each_gt(gt, xe, id) {
-> -			if (id && !xe_gt_is_media_type(gt)) {
-> -				io_size -= min(io_size, size);
-> -				io_start += io_size;
-> -			}
-> +		if (!gt->mem.vram.io_size) {
-> +			drm_err(&xe->drm, "Tile without any CPU visible VRAM. Aborting.\n");
-> +			return -ENODEV;
-> +		}
->   
-> -			gt->mem.vram.size = size;
-> -
-> -			/*
-> -			 * XXX: multi-tile small-bar might be wild. Hopefully
-> -			 * full tile without any mappable vram is not something
-> -			 * we care about.
-> -			 */
-> -
-> -			gt->mem.vram.io_size = min(size, io_size);
-> -			if (io_size) {
-> -				gt->mem.vram.io_start = io_start;
-> -				gt->mem.vram.mapping = xe->mem.vram.mapping +
-> -					(io_start - xe->mem.vram.io_start);
-> -			} else {
-> -				drm_err(&xe->drm, "Tile without any CPU visible VRAM. Aborting.\n");
-> -				return -ENODEV;
-> -			}
-> +		gt->mem.vram.base = tile_offset;
-> +		gt->mem.vram.size = vram_size;
-
-Here I think we need the min(io_size, vram_size) or similar. Otherwise 
-we will get crashes like:
-
-[ 1724.144058] BUG: unable to handle page fault for address: 
-ffffc9032a000000
-[ 1724.144062] #PF: supervisor write access in kernel mode
-[ 1724.144064] #PF: error_code(0x0002) - not-present page
-[ 1724.144066] PGD 100000067 P4D 100000067 PUD 0
-[ 1724.144069] Oops: 0002 [#1] PREEMPT SMP NOPTI
-[ 1724.144072] CPU: 8 PID: 6557 Comm: i915_module_loa Tainted: G     U 
-           6.3.0+ #27
-[ 1724.144075] Hardware name: Intel Corporation Alder Lake Client 
-Platform/AlderLake-S ADP-S DDR5 UDIMM CRB, BIOS 
-ADLSFWI1.R00.3275.A00.2207010640 07/01/2022
-[ 1724.144078] RIP: 0010:memset_erms+0x9/0x20
-[ 1724.144083] Code: cc cc cc cc 66 66 2e 0f 1f 84 00 00 00 00 00 66 90 
-90 90 90 90 90 90 90 90 90 90 90 90 90 90 90 90 49 89 f9 40 88 f0 48 89 
-d1 <f3> aa 4c 89 c8 c3 cc cc cc cc 66 66 2e 0f 1f 84 00 00 00 00 00 66
-[ 1724.144087] RSP: 0018:ffffc90003a6bba0 EFLAGS: 00010202
-[ 1724.144089] RAX: ffff88813e345000 RBX: ffff88812fff3b70 RCX: 
-0000000000850000
-[ 1724.144091] RDX: 0000000000850000 RSI: 0000000000000000 RDI: 
-ffffc9032a000000
-[ 1724.144093] RBP: ffffc90003a6bbd0 R08: 0000000000850000 R09: 
-ffffc9032a000000
-[ 1724.144095] R10: 0000000000000001 R11: 0000000000000001 R12: 
-0000000000660000
-[ 1724.144097] R13: ffff88812fff4958 R14: ffff88812fff2210 R15: 
-ffff88812fff3b20
-[ 1724.144099] FS:  00007fa921a819c0(0000) GS:ffff88888b000000(0000) 
-knlGS:0000000000000000
-[ 1724.144101] CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
-[ 1724.144103] CR2: ffffc9032a000000 CR3: 000000012ef62006 CR4: 
-0000000000770ee0
-[ 1724.144105] PKRU: 55555554
-[ 1724.144106] Call Trace:
-[ 1724.144107]  <TASK>
-[ 1724.144108]  xe_guc_ads_populate_minimal+0x195/0x1e0 [xe]
-[ 1724.144164]  xe_guc_min_load_for_hwconfig+0xd/0x40 [xe]
-[ 1724.144201]  xe_gt_init+0x182/0x3d0 [xe]
-[ 1724.144236]  xe_device_probe+0x23b/0x2b0 [xe]
-[ 1724.144270]  xe_pci_probe+0x4da/0x810 [xe]
-
-With that fixed everything seems fine when testing locally.
-
-> +		gt->mem.vram.mapping = xe->mem.vram.mapping + tile_offset;
->   
-> -			drm_info(&xe->drm, "VRAM[%u, %u]: %pa, %pa\n",
-> -				 id, gt->info.vram_id, &gt->mem.vram.io_start,
-> -				 &gt->mem.vram.size);
-> +		drm_info(&xe->drm, "VRAM[%u, %u]: %pa, %pa\n", id, gt->info.vram_id,
-> +			 &gt->mem.vram.io_start, &gt->mem.vram.size);
-> +
-> +		if (gt->mem.vram.io_size < gt->mem.vram.size)
-> +			drm_info(&xe->drm, "VRAM[%u, %u]: CPU access limited to %pa\n", id,
-> +				 gt->info.vram_id, &gt->mem.vram.io_size);
-> +
-> +		/* calculate total size using tile size to get the correct HW sizing */
-> +		total_size += tile_size;
-> +		available_size += vram_size;
-> +
-> +		if (total_size > xe->mem.vram.io_size) {
-> +			drm_warn(&xe->drm, "VRAM: %pa is larger than resource %pa\n",
-> +				 &total_size, &xe->mem.vram.io_size);
->   		}
-> -	} else {
-> -		gt->mem.vram.size = xe->mem.vram.size;
-> -		gt->mem.vram.io_start = xe->mem.vram.io_start;
-> -		gt->mem.vram.io_size = xe->mem.vram.io_size;
-> -		gt->mem.vram.mapping = xe->mem.vram.mapping;
->   
-> -		drm_info(&xe->drm, "VRAM: %pa\n", &gt->mem.vram.size);
-> +		io_size -= min_t(u64, tile_size, io_size);
->   	}
-> +
-> +	xe->mem.vram.size = total_size;
-> +
-> +	drm_info(&xe->drm, "Total VRAM: %pa, %pa\n", &xe->mem.vram.io_start,
-> +		 &xe->mem.vram.size);
-> +	drm_info(&xe->drm, "Available VRAM: %pa, %pa\n", &xe->mem.vram.io_start,
-> +		 &available_size);
-> +
->   	return 0;
->   }
->   
+> /Thomas
+> 
+> 
+>> +    /*
+>> +     * It's possible to get rid of the mem_access.lock here, however 
+>> lockdep
+>> +     * has an easier time digesting the mem_access.lock -> runtime_pm 
+>> chain
+>> +     * (and any locks the caller is holding), on all transitions, and 
+>> not
+>> +     * for example just on the 0 -> 1.
+>> +     */
+>>       mutex_lock(&xe->mem_access.lock);
+>> -    if (xe->mem_access.ref++ == 0)
+>> -        xe->mem_access.hold_rpm = xe_pm_runtime_get_if_active(xe);
+>> +    if (xe->mem_access.ref == 0)
+>> +        xe->mem_access.hold_rpm = xe_pm_runtime_resume_and_get(xe);
+>> +    xe->mem_access.ref++;
+>>       mutex_unlock(&xe->mem_access.lock);
+>> -    /* The usage counter increased if device was immediately resumed */
+>> -    if (resumed)
+>> -        xe_pm_runtime_put(xe);
+>> -
+>>       XE_WARN_ON(xe->mem_access.ref == S32_MAX);
+>>   }
+>>   void xe_device_mem_access_put(struct xe_device *xe)
+>>   {
+>> +    if (READ_ONCE(xe->pm_callback_task) == current)
+>> +        return;
+>> +
+>>       mutex_lock(&xe->mem_access.lock);
+>>       if (--xe->mem_access.ref == 0 && xe->mem_access.hold_rpm)
+>>           xe_pm_runtime_put(xe);
+>> diff --git a/drivers/gpu/drm/xe/xe_device.h 
+>> b/drivers/gpu/drm/xe/xe_device.h
+>> index 9ab7e6134f89..7a4ba5212d9c 100644
+>> --- a/drivers/gpu/drm/xe/xe_device.h
+>> +++ b/drivers/gpu/drm/xe/xe_device.h
+>> @@ -92,6 +92,9 @@ void xe_device_mem_access_put(struct xe_device *xe);
+>>   static inline void xe_device_assert_mem_access(struct xe_device *xe)
+>>   {
+>> +    if (READ_ONCE(xe->pm_callback_task) == current)
+>> +        return;
+>> +
+>>       XE_WARN_ON(!xe->mem_access.ref);
+>>   }
+>> @@ -99,6 +102,9 @@ static inline bool 
+>> xe_device_mem_access_ongoing(struct xe_device *xe)
+>>   {
+>>       bool ret;
+>> +    if (READ_ONCE(xe->pm_callback_task) == current)
+>> +        return true;
+>> +
+>>       mutex_lock(&xe->mem_access.lock);
+>>       ret = xe->mem_access.ref;
+>>       mutex_unlock(&xe->mem_access.lock);
+>> diff --git a/drivers/gpu/drm/xe/xe_device_types.h 
+>> b/drivers/gpu/drm/xe/xe_device_types.h
+>> index d91193c41d2e..0f4f00fa4d18 100644
+>> --- a/drivers/gpu/drm/xe/xe_device_types.h
+>> +++ b/drivers/gpu/drm/xe/xe_device_types.h
+>> @@ -256,7 +256,10 @@ struct xe_device {
+>>        * triggering additional actions when they occur.
+>>        */
+>>       struct {
+>> -        /** @lock: protect the ref count */
+>> +        /**
+>> +         * @lock: Serialize xe_device_mem_access users,
+>> +         * and protect the below internal state, like @ref.
+>> +         */
+>>           struct mutex lock;
+>>           /** @ref: ref count of memory accesses */
+>>           s32 ref;
+>> @@ -264,6 +267,12 @@ struct xe_device {
+>>           bool hold_rpm;
+>>       } mem_access;
+>> +    /**
+>> +     * @pm_callback_task: Track the active task that is running in 
+>> either
+>> +     * the runtime_suspend or runtime_resume callbacks.
+>> +     */
+>> +    struct task_struct *pm_callback_task;
+>> +
+>>       /** @d3cold_allowed: Indicates if d3cold is a valid device state */
+>>       bool d3cold_allowed;
+>> diff --git a/drivers/gpu/drm/xe/xe_pm.c b/drivers/gpu/drm/xe/xe_pm.c
+>> index b7b57f10ba25..6f25268ca492 100644
+>> --- a/drivers/gpu/drm/xe/xe_pm.c
+>> +++ b/drivers/gpu/drm/xe/xe_pm.c
+>> @@ -141,39 +141,46 @@ int xe_pm_runtime_suspend(struct xe_device *xe)
+>>   {
+>>       struct xe_gt *gt;
+>>       u8 id;
+>> -    int err;
+>> +    int err = 0;
+>> +
+>> +    if (xe->d3cold_allowed && xe_device_mem_access_ongoing(xe))
+>> +        return -EBUSY;
+>> +
+>> +    /* Disable access_ongoing asserts and prevent recursive pm calls */
+>> +    WRITE_ONCE(xe->pm_callback_task, current);
+>>       if (xe->d3cold_allowed) {
+>> -        if (xe_device_mem_access_ongoing(xe))
+>> -            return -EBUSY;
+>> -
+>>           err = xe_bo_evict_all(xe);
+>>           if (err)
+>> -            return err;
+>> +            goto out;
+>>       }
+>>       for_each_gt(gt, xe, id) {
+>>           err = xe_gt_suspend(gt);
+>>           if (err)
+>> -            return err;
+>> +            goto out;
+>>       }
+>>       xe_irq_suspend(xe);
+>> -
+>> -    return 0;
+>> +out:
+>> +    WRITE_ONCE(xe->pm_callback_task, NULL);
+>> +    return err;
+>>   }
+>>   int xe_pm_runtime_resume(struct xe_device *xe)
+>>   {
+>>       struct xe_gt *gt;
+>>       u8 id;
+>> -    int err;
+>> +    int err = 0;
+>> +
+>> +    /* Disable access_ongoing asserts and prevent recursive pm calls */
+>> +    WRITE_ONCE(xe->pm_callback_task, current);
+>>       if (xe->d3cold_allowed) {
+>>           for_each_gt(gt, xe, id) {
+>>               err = xe_pcode_init(gt);
+>>               if (err)
+>> -                return err;
+>> +                goto out;
+>>           }
+>>           /*
+>> @@ -182,7 +189,7 @@ int xe_pm_runtime_resume(struct xe_device *xe)
+>>            */
+>>           err = xe_bo_restore_kernel(xe);
+>>           if (err)
+>> -            return err;
+>> +            goto out;
+>>       }
+>>       xe_irq_resume(xe);
+>> @@ -193,10 +200,11 @@ int xe_pm_runtime_resume(struct xe_device *xe)
+>>       if (xe->d3cold_allowed) {
+>>           err = xe_bo_restore_user(xe);
+>>           if (err)
+>> -            return err;
+>> +            goto out;
+>>       }
+>> -
+>> -    return 0;
+>> +out:
+>> +    WRITE_ONCE(xe->pm_callback_task, NULL);
+>> +    return err;
+>>   }
+>>   int xe_pm_runtime_get(struct xe_device *xe)
+>> @@ -210,14 +218,9 @@ int xe_pm_runtime_put(struct xe_device *xe)
+>>       return pm_runtime_put_autosuspend(xe->drm.dev);
+>>   }
+>> -/* Return true if resume operation happened and usage count was 
+>> increased */
+>> -bool xe_pm_runtime_resume_if_suspended(struct xe_device *xe)
+>> +bool xe_pm_runtime_resume_and_get(struct xe_device *xe)
+>>   {
+>> -    /* In case we are suspended we need to immediately wake up */
+>> -    if (pm_runtime_suspended(xe->drm.dev))
+>> -        return !pm_runtime_resume_and_get(xe->drm.dev);
+>> -
+>> -    return false;
+>> +    return !pm_runtime_resume_and_get(xe->drm.dev);
+>>   }
+>>   int xe_pm_runtime_get_if_active(struct xe_device *xe)
+>> diff --git a/drivers/gpu/drm/xe/xe_pm.h b/drivers/gpu/drm/xe/xe_pm.h
+>> index 6a885585f653..1b4c15b5e71a 100644
+>> --- a/drivers/gpu/drm/xe/xe_pm.h
+>> +++ b/drivers/gpu/drm/xe/xe_pm.h
+>> @@ -19,7 +19,7 @@ int xe_pm_runtime_suspend(struct xe_device *xe);
+>>   int xe_pm_runtime_resume(struct xe_device *xe);
+>>   int xe_pm_runtime_get(struct xe_device *xe);
+>>   int xe_pm_runtime_put(struct xe_device *xe);
+>> -bool xe_pm_runtime_resume_if_suspended(struct xe_device *xe);
+>> +bool xe_pm_runtime_resume_and_get(struct xe_device *xe);
+>>   int xe_pm_runtime_get_if_active(struct xe_device *xe);
+>>   #endif
