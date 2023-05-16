@@ -4,48 +4,32 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 201A9C77B7A
-	for <intel-xe@archiver.kernel.org>; Tue, 16 May 2023 17:33:35 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 78925C7EE24
+	for <intel-xe@archiver.kernel.org>; Tue, 16 May 2023 17:36:04 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E064D10E351;
-	Tue, 16 May 2023 17:33:34 +0000 (UTC)
-Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1144710E353
- for <intel-xe@lists.freedesktop.org>; Tue, 16 May 2023 17:33:28 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1684258408; x=1715794408;
- h=from:to:subject:date:message-id:in-reply-to:references:
- mime-version:content-transfer-encoding;
- bh=8UCQMhiPFZsLgJXYFxLS29hbRCm3iYdVRbmzjMtXIOM=;
- b=I7CX3y6OAWtJLdTlPumGZCFNlDjsbM/vvaX4ssFSCv35Du4co2FS7rbJ
- Lrfr4yR/LLYnPLqE0rkPEabvdcGDsihr6Qk1djgFQD+DzIeOv4K6m+z/I
- uPWHEHc7IkjRt0DqrYL6o0q/G5avZIlCA77bPs6aP3hUPiMSUfslZWWJp
- EL9Fufg+HNtPRemH8JXFc2kpuZJrUfW2B6EPlFeA1VB5wN1MAutwplSqd
- PYucFzAtmxUWbGMP1jm+kyKIIbEl/XtiYEnAU+DZQuN70MCHuLJYWyabz
- czJCYATWabafMfEi2WiP5J9sRnYy6qAcArFhqs5Ah/9EDOEzagwzllPTz Q==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10712"; a="331904083"
-X-IronPort-AV: E=Sophos;i="5.99,278,1677571200"; d="scan'208";a="331904083"
-Received: from fmsmga003.fm.intel.com ([10.253.24.29])
- by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 16 May 2023 10:33:27 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10712"; a="791146488"
-X-IronPort-AV: E=Sophos;i="5.99,278,1677571200"; d="scan'208";a="791146488"
-Received: from dmarkey-mobl1.ger.corp.intel.com (HELO mwauld-desk1.intel.com)
- ([10.252.19.120])
- by fmsmga003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 16 May 2023 10:33:27 -0700
-From: Matthew Auld <matthew.auld@intel.com>
-To: intel-xe@lists.freedesktop.org
-Date: Tue, 16 May 2023 18:32:58 +0100
-Message-Id: <20230516173258.181118-7-matthew.auld@intel.com>
-X-Mailer: git-send-email 2.40.1
-In-Reply-To: <20230516173258.181118-1-matthew.auld@intel.com>
-References: <20230516173258.181118-1-matthew.auld@intel.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4A22C10E069;
+	Tue, 16 May 2023 17:36:04 +0000 (UTC)
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 75C7010E069;
+ Tue, 16 May 2023 17:36:01 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 6D92CAADD7;
+ Tue, 16 May 2023 17:36:01 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Subject: [Intel-xe] [CI 7/7] HAX
+Content-Transfer-Encoding: 7bit
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Matthew Auld" <matthew.auld@intel.com>
+Date: Tue, 16 May 2023 17:36:01 -0000
+Message-ID: <168425856141.14225.1454190191089217440@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20230516173258.181118-1-matthew.auld@intel.com>
+In-Reply-To: <20230516173258.181118-1-matthew.auld@intel.com>
+Subject: [Intel-xe] =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_f?=
+ =?utf-8?q?or_series_starting_with_=5BCI=2C1/7=5D_Revert_=22drm/xe=3A_Use_?=
+ =?utf-8?q?atomic_instead_of_mutex_for_xe=5Fdevice=5Fmem=5Faccess=5Fongoin?=
+ =?utf-8?q?g=22?=
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -57,63 +41,28 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
+Cc: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Just for lockdep.
+== Series Details ==
 
-Signed-off-by: Matthew Auld <matthew.auld@intel.com>
----
- drivers/gpu/drm/xe/xe_device.c | 5 +++--
- drivers/gpu/drm/xe/xe_pci.c    | 5 +++++
- 2 files changed, 8 insertions(+), 2 deletions(-)
+Series: series starting with [CI,1/7] Revert "drm/xe: Use atomic instead of mutex for xe_device_mem_access_ongoing"
+URL   : https://patchwork.freedesktop.org/series/117829/
+State : success
 
-diff --git a/drivers/gpu/drm/xe/xe_device.c b/drivers/gpu/drm/xe/xe_device.c
-index 01ef88bf099d..d45cd1617cca 100644
---- a/drivers/gpu/drm/xe/xe_device.c
-+++ b/drivers/gpu/drm/xe/xe_device.c
-@@ -163,6 +163,7 @@ static void xe_device_destroy(struct drm_device *dev, void *dummy)
- 
- 	destroy_workqueue(xe->ordered_wq);
- 	ttm_device_fini(&xe->ttm);
-+	mutex_destroy(&xe->mem_access.lock);
- }
- 
- struct xe_device *xe_device_create(struct pci_dev *pdev,
-@@ -208,6 +209,8 @@ struct xe_device *xe_device_create(struct pci_dev *pdev,
- 
- 	xe->ordered_wq = alloc_ordered_workqueue("xe-ordered-wq", 0);
- 
-+	mutex_init(&xe->mem_access.lock);
-+
- 	err = xe_display_create(xe);
- 	if (WARN_ON(err))
- 		goto err_put;
-@@ -216,8 +219,6 @@ struct xe_device *xe_device_create(struct pci_dev *pdev,
- 	if (err)
- 		goto err_put;
- 
--	drmm_mutex_init(&xe->drm, &xe->mem_access.lock);
--
- 	return xe;
- 
- err_put:
-diff --git a/drivers/gpu/drm/xe/xe_pci.c b/drivers/gpu/drm/xe/xe_pci.c
-index e789a50a1310..c311199b09e6 100644
---- a/drivers/gpu/drm/xe/xe_pci.c
-+++ b/drivers/gpu/drm/xe/xe_pci.c
-@@ -684,6 +684,11 @@ static int xe_pci_probe(struct pci_dev *pdev, const struct pci_device_id *ent)
- 		return err;
- 	}
- 
-+
-+	mutex_lock(&xe->mem_access.lock);
-+	xe_pm_runtime_resume(xe);
-+	mutex_unlock(&xe->mem_access.lock);
-+
- 	xe_pm_runtime_init(xe);
- 
- 	return 0;
--- 
-2.40.1
+== Summary ==
+
+=== Applying kernel patches on branch 'drm-xe-next' with base: ===
+Base commit: 9e6366d33 drm/i915/gt: drop dependency on VLV_DISPLAY_BASE
+=== git am output follows ===
+Applying: Revert "drm/xe: Use atomic instead of mutex for xe_device_mem_access_ongoing"
+Applying: drm/xe: don't allocate under ct->lock
+Applying: drm/xe: keep pulling mem_access_get further back
+Applying: drm/xe/ggtt: prime ggtt->lock against FS_RECLAIM
+Applying: drm/xe: fix xe_device_mem_access_get() races
+Applying: drm/xe: Use atomic for mem_access.ref
+Applying: HAX
+
 
