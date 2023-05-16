@@ -4,48 +4,50 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id E393DC77B7A
-	for <intel-xe@archiver.kernel.org>; Tue, 16 May 2023 14:47:51 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 565D6C77B7A
+	for <intel-xe@archiver.kernel.org>; Tue, 16 May 2023 14:47:56 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 99C1610E271;
-	Tue, 16 May 2023 14:47:51 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 253D310E253;
+	Tue, 16 May 2023 14:47:56 +0000 (UTC)
 Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 546DE10E271
- for <intel-xe@lists.freedesktop.org>; Tue, 16 May 2023 14:47:49 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 68EA110E25A
+ for <intel-xe@lists.freedesktop.org>; Tue, 16 May 2023 14:47:53 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1684248469; x=1715784469;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=XEd/v8pTqPWUXv3gkMiRyJPim3uu0zlv4fAu0DH8Z4k=;
- b=BjWN5bu3jtuVcWdxXWihFOqAGeVeqvhXgV45lKiQjeVA8syL2BCmurTo
- 2pu7Ai78QFWIQ1rvQTDt/Y4dSc53PiVnT4szJJ6bhKsmoiVz7G3QpJ8yg
- X/IPW6B1O+0wmSEm99bFBVhcHLODmxlzx/+3UjO2e9X9jC20B0/UZ5Rx3
- fsBbKpCcZwVF7qfY7wt9I88TpqW3IgWlbVdzILjG6v+gswI4+3oQ77zc1
- Hyb4XD827ygfMOgWIcl7FxHgebJ6rw4+pWt4EJ9rMONSwqEUUvJ1uWBN1
- 4xGI8ccKmPnoAoPJxZTUI6AQ93AnqwdhQGEvE+nExgjpgIm6u1aOpIcb3 g==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10711"; a="340865864"
-X-IronPort-AV: E=Sophos;i="5.99,278,1677571200"; d="scan'208";a="340865864"
+ t=1684248473; x=1715784473;
+ h=from:to:cc:subject:date:message-id:in-reply-to:
+ references:mime-version:content-transfer-encoding;
+ bh=qgeqp/t2C4C7+kmgqUdin7Wp+T+C5hNMvN7cq0ja5lo=;
+ b=KQWWt0asAr9C4P4YChaQdBUUSwappCnN84PBpfudhNfVRTUkzekNUxYq
+ dwh/8HQvd5pK65nJKjbSpk4gRDB/A99ZhTcZq8GY6Spxtr1gXRXsimnLV
+ NHZuV7xupwiYhB0BA759awSwT/nGJmZ0c7fhNV8VYzCIrg0J8udItflU2
+ vs15jg42zcy5ZmjPdwTFd2cPxt1Y+ccRByBmB5NjnlEFQJNb8/RGxFFpr
+ EgQ57juW1VOy6xMIjzOXOlY37ug3mQ8Z+spygVJhuxdDlFuegDTqheCOB
+ Q+p5saHQVo1gNnMaetpmeV8MWC61f67+QoD3K9Ekg7Q1hKPSmuzPmr3g+ Q==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10711"; a="340865888"
+X-IronPort-AV: E=Sophos;i="5.99,278,1677571200"; d="scan'208";a="340865888"
 Received: from fmsmga005.fm.intel.com ([10.253.24.32])
  by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 16 May 2023 07:47:44 -0700
+ 16 May 2023 07:47:53 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10711"; a="1031315111"
-X-IronPort-AV: E=Sophos;i="5.99,278,1677571200"; d="scan'208";a="1031315111"
+X-IronPort-AV: E=McAfee;i="6600,9927,10711"; a="1031315118"
+X-IronPort-AV: E=Sophos;i="5.99,278,1677571200"; d="scan'208";a="1031315118"
 Received: from aboreiko-mobl3.ger.corp.intel.com (HELO
  thellstr-mobl1.intel.com) ([10.249.254.22])
  by fmsmga005-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 16 May 2023 07:47:43 -0700
+ 16 May 2023 07:47:51 -0700
 From: =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>
 To: intel-xe@lists.freedesktop.org
-Date: Tue, 16 May 2023 16:47:28 +0200
-Message-Id: <20230516144730.38898-1-thomas.hellstrom@linux.intel.com>
+Date: Tue, 16 May 2023 16:47:29 +0200
+Message-Id: <20230516144730.38898-2-thomas.hellstrom@linux.intel.com>
 X-Mailer: git-send-email 2.39.2
+In-Reply-To: <20230516144730.38898-1-thomas.hellstrom@linux.intel.com>
+References: <20230516144730.38898-1-thomas.hellstrom@linux.intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-xe] [PATCH v3 0/2] drm/xe: Fix unprotected rebind_list
- accesses
+Subject: [Intel-xe] [PATCH v3 1/2] fixup! drm/xe: Introduce a new DRM driver
+ for Intel GPUs
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -60,27 +62,57 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Each VM has two rebind lists, one protected by the VM resv, the other
-one protected essentially by the VM notifier.list_lock. This series
-intends to fix two points of illegal access.
+drm/xe: Fix unlocked access of the vma::rebind_link
 
-Patch 1 fixes an access of VM rebind_lists' link without the VM resv held.
-Patch 2 fixes an issue where the VMA may not be removed from the
-VM notifier.rebind_list on VMA destruction.
+the vma::rebind_link is protected by the vm's resv, but we were
+modifying it without. Fix this by use the vma::userptr_link instead
+for the tmp_evict list. The vma::userptr_link is protected by the
+vm lock.
 
-v2:
-- Remove a code comment. (Matthew Brost)
+Cc: Oded Gabbay <ogabbay@kernel.org>
+Signed-off-by: Thomas Hellström <thomas.hellstrom@linux.intel.com>
+Reviewed-by: Matthew Brost <matthew.brost@intel.com>
+---
+ drivers/gpu/drm/xe/xe_vm.c | 14 +++++++-------
+ 1 file changed, 7 insertions(+), 7 deletions(-)
 
-v3:
-- Introduce as fixup patches.
-
-Thomas Hellström (2):
-  fixup! drm/xe: Introduce a new DRM driver for Intel GPUs
-  fixup! drm/xe: Introduce a new DRM driver for Intel GPUs
-
- drivers/gpu/drm/xe/xe_vm.c | 17 ++++++++++-------
- 1 file changed, 10 insertions(+), 7 deletions(-)
-
+diff --git a/drivers/gpu/drm/xe/xe_vm.c b/drivers/gpu/drm/xe/xe_vm.c
+index 0a4becdf4675..5f93d78c2e58 100644
+--- a/drivers/gpu/drm/xe/xe_vm.c
++++ b/drivers/gpu/drm/xe/xe_vm.c
+@@ -764,8 +764,7 @@ int xe_vm_userptr_pin(struct xe_vm *vm)
+ 		if (err < 0)
+ 			goto out_err;
+ 
+-		list_del_init(&vma->userptr_link);
+-		list_move_tail(&vma->rebind_link, &tmp_evict);
++		list_move_tail(&vma->userptr_link, &tmp_evict);
+ 	}
+ 
+ 	/* Take lock and move to rebind_list for rebinding. */
+@@ -773,16 +772,17 @@ int xe_vm_userptr_pin(struct xe_vm *vm)
+ 	if (err)
+ 		goto out_err;
+ 
+-	list_splice_tail(&tmp_evict, &vm->rebind_list);
++	list_for_each_entry_safe(vma, next, &tmp_evict, userptr_link) {
++		list_del_init(&vma->userptr_link);
++		list_move_tail(&vma->rebind_link, &vm->rebind_list);
++	}
++
+ 	dma_resv_unlock(&vm->resv);
+ 
+ 	return 0;
+ 
+ out_err:
+-	list_for_each_entry_safe(vma, next, &tmp_evict, rebind_link) {
+-		list_del_init(&vma->rebind_link);
+-		list_add_tail(&vma->userptr_link, &vm->userptr.repin_list);
+-	}
++	list_splice_tail(&tmp_evict, &vm->userptr.repin_list);
+ 
+ 	return err;
+ }
 -- 
 2.39.2
 
