@@ -4,30 +4,31 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0C856C77B7F
-	for <intel-xe@archiver.kernel.org>; Tue, 16 May 2023 15:13:25 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 45AD0C77B7F
+	for <intel-xe@archiver.kernel.org>; Tue, 16 May 2023 15:15:19 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B500C10E02A;
-	Tue, 16 May 2023 15:13:25 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E87A010E02A;
+	Tue, 16 May 2023 15:15:18 +0000 (UTC)
 Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id 7BB6810E02A;
- Tue, 16 May 2023 15:13:24 +0000 (UTC)
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id C101F10E02A;
+ Tue, 16 May 2023 15:15:16 +0000 (UTC)
 Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 74907AADFB;
- Tue, 16 May 2023 15:13:24 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============1084004048826734327=="
+ by emeril.freedesktop.org (Postfix) with ESMTP id 7501BACC22;
+ Tue, 16 May 2023 15:15:16 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 From: Patchwork <patchwork@emeril.freedesktop.org>
-To: =?utf-8?q?Thomas_Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>
-Date: Tue, 16 May 2023 15:13:24 -0000
-Message-ID: <168425000444.14225.17379672923751449814@emeril.freedesktop.org>
+To: "Rodrigo Vivi" <rodrigo.vivi@intel.com>
+Date: Tue, 16 May 2023 15:15:16 -0000
+Message-ID: <168425011644.14223.9617800861402353198@emeril.freedesktop.org>
 X-Patchwork-Hint: ignore
-References: <20230516144730.38898-1-thomas.hellstrom@linux.intel.com>
-In-Reply-To: <20230516144730.38898-1-thomas.hellstrom@linux.intel.com>
-Subject: [Intel-xe] =?utf-8?q?=E2=97=8B_CI=2EBAT=3A_info_for_drm/xe=3A_Fi?=
- =?utf-8?q?x_unprotected_rebind=5Flist_accesses?=
+References: <20230516145416.1851984-1-rodrigo.vivi@intel.com>
+In-Reply-To: <20230516145416.1851984-1-rodrigo.vivi@intel.com>
+Subject: [Intel-xe] =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_f?=
+ =?utf-8?q?or_series_starting_with_=5Bv4=2C01/11=5D_drm/xe=3A_Introduce_th?=
+ =?utf-8?q?e_dev=5Fcoredump_infrastructure=2E?=
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -44,65 +45,27 @@ Cc: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============1084004048826734327==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
 == Series Details ==
 
-Series: drm/xe: Fix unprotected rebind_list accesses
-URL   : https://patchwork.freedesktop.org/series/117820/
-State : info
+Series: series starting with [v4,01/11] drm/xe: Introduce the dev_coredump infrastructure.
+URL   : https://patchwork.freedesktop.org/series/117821/
+State : success
 
 == Summary ==
 
-Participating hosts:
-bat-atsm-2
-bat-dg2-oem2
-bat-adlp-7
-Missing hosts results[1]:
-bat-atsm-2
-Results: [xe-pw-117820v1](https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-117820v1/index.html)
+=== Applying kernel patches on branch 'drm-xe-next' with base: ===
+Base commit: 9e6366d33 drm/i915/gt: drop dependency on VLV_DISPLAY_BASE
+=== git am output follows ===
+Applying: drm/xe: Introduce the dev_coredump infrastructure.
+Applying: drm/xe: Do not take any action if our device was removed.
+Applying: drm/xe: Extract non mapped regions out of GuC CTB into its own struct.
+Applying: drm/xe: Convert GuC CT print to snapshot capture and print.
+Applying: drm/xe: Add GuC CT snapshot to xe_devcoredump.
+Applying: drm/xe: Introduce guc_submit_types.h with relevant structs.
+Applying: drm/xe: Convert GuC Engine print to snapshot capture and print.
+Applying: drm/xe: Add GuC Submit Engine snapshot to xe_devcoredump.
+Applying: drm/xe: Convert Xe HW Engine print to snapshot capture and print.
+Applying: drm/xe: Add HW Engine snapshot to xe_devcoredump.
+Applying: drm/xe: Limit CONFIG_DRM_XE_SIMPLE_ERROR_CAPTURE to itself.
 
 
-
---===============1084004048826734327==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/xe: Fix unprotected rebind_list accesses</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/117820/">https://patchwork.freedesktop.org/series/117820/</a></td></tr>
-<tr><td><b>State:</b></td><td>info</td></tr>
-
-</table>
-
-
-    <p>Participating hosts:<br />
-bat-atsm-2<br />
-bat-dg2-oem2<br />
-bat-adlp-7<br />
-Missing hosts results[1]:<br />
-bat-atsm-2<br />
-Results: <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-117820v1/index.html">xe-pw-117820v1</a></p>
-
-</body>
-</html>
-
---===============1084004048826734327==--
