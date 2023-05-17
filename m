@@ -4,47 +4,46 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 12125C77B7F
-	for <intel-xe@archiver.kernel.org>; Wed, 17 May 2023 16:05:30 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2F903C77B75
+	for <intel-xe@archiver.kernel.org>; Wed, 17 May 2023 16:15:06 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C3EAE10E19B;
-	Wed, 17 May 2023 16:05:30 +0000 (UTC)
-Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4226710E19B;
- Wed, 17 May 2023 16:05:27 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id DC54A10E450;
+	Wed, 17 May 2023 16:15:05 +0000 (UTC)
+Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 55C9010E450
+ for <intel-xe@lists.freedesktop.org>; Wed, 17 May 2023 16:15:04 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1684339528; x=1715875528;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:in-reply-to;
- bh=hHCacUkHNFVr1TLeuXXuOoHKVuUURTA9Q0Ewj6Y7U+o=;
- b=gaBVFzFmyCVw5v+bVP0djD5ITImFv/BqMgPxg8YEZkzqrAL7HL+I+nQm
- F7Jz4M5g+WAzDJ8pIJKQZ5dCdG0hcVRHwwnp3VGAxJkBZ7acjvsRN6KV2
- 2D1r2Ok706gym5moBSbW8ADrzN7GHF7Qerf4W+r71I42Xal6IpOQGTCD7
- u1Wwt5qR8CEaC4EGLM0by9Snu4M25v8E8FsZvQG/22EDg37SczNxY8Th5
- XCgMYDR3dWg1oZSQr88xnq/NSJkYJSjGhsZjpBXKCkDTh0XsL07qiYVQL
- TNxqvxjGPOqg4c5zDyKZl0WL5PDM6C6rJ+l0Mw0RWh9v1Cs/s9um2CXeK A==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10713"; a="354100656"
-X-IronPort-AV: E=Sophos;i="5.99,282,1677571200"; d="scan'208";a="354100656"
-Received: from fmsmga008.fm.intel.com ([10.253.24.58])
- by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 17 May 2023 09:05:26 -0700
+ t=1684340104; x=1715876104;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=jRvu4QaSOdiBNpZIhN4p2f9RNFOKGxViPYyb2ErHi90=;
+ b=Vis++c+Mj9RF8IM/gTOVB2VxOUIahUSk3igYHn3yGzUwTSJAOfH4BSmd
+ mjoab+Ay/vYJ3vZVYLnzh5hu3HdQBswHBe/0RtTBkCdvafaTqhcJAEUXs
+ GArzm8Tw3WBbxOMFSOvc6TRvIg74JTRopLsck0VkUMUIGSnUYEEZ9E5pv
+ 1tGPJSuG/7kST6Q54PnJ89lv9QKK6TSinFLwQaL2c+/KKHjplpTfkwt3b
+ eJOBoRXXkMniuyl/7Y93NJjiXViUZlOZy84pulmMWtT1cGBh0Qg+2uGBt
+ bF1GoHjs33sWvREwaDqrP2fu3aNwu+7Dt7ABAqfVd+8URmOmTsfLfLzUO Q==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10713"; a="351823444"
+X-IronPort-AV: E=Sophos;i="5.99,282,1677571200"; d="scan'208";a="351823444"
+Received: from orsmga001.jf.intel.com ([10.7.209.18])
+ by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 17 May 2023 09:09:05 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10713"; a="766831188"
-X-IronPort-AV: E=Sophos;i="5.99,282,1677571200"; d="scan'208";a="766831188"
-Received: from joe-255.igk.intel.com (HELO localhost) ([10.91.220.57])
- by fmsmga008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 17 May 2023 09:05:25 -0700
-Date: Wed, 17 May 2023 18:05:23 +0200
-From: Stanislaw Gruszka <stanislaw.gruszka@linux.intel.com>
-To: Matthew Auld <matthew.auld@intel.com>
-Message-ID: <20230517160523.GA607652@linux.intel.com>
-References: <20230517152244.348171-1-matthew.auld@intel.com>
+X-IronPort-AV: E=McAfee;i="6600,9927,10713"; a="734744806"
+X-IronPort-AV: E=Sophos;i="5.99,282,1677571200"; d="scan'208";a="734744806"
+Received: from awvttdev-05.aw.intel.com ([10.228.212.156])
+ by orsmga001-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 17 May 2023 09:09:03 -0700
+From: "Michael J. Ruhl" <michael.j.ruhl@intel.com>
+To: intel-xe@lists.freedesktop.org
+Date: Wed, 17 May 2023 12:08:53 -0400
+Message-Id: <20230517160857.2791619-1-michael.j.ruhl@intel.com>
+X-Mailer: git-send-email 2.39.2
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20230517152244.348171-1-matthew.auld@intel.com>
-Subject: Re: [Intel-xe] [PATCH v5 1/7] drm: fix drmm_mutex_init()
+Content-Transfer-Encoding: 8bit
+Subject: [Intel-xe] [PATCH v6 0/4] drm/xe: Rework multi tile device memory
+ initialization
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -56,58 +55,44 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Cc: Jocelyn Falempe <jfalempe@redhat.com>,
- Daniel Vetter <daniel.vetter@ffwll.ch>, dri-devel@lists.freedesktop.org,
- Thomas Zimmermann <tzimmermann@suse.de>, intel-xe@lists.freedesktop.org
+Cc: matthew.auld@intel.com
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Wed, May 17, 2023 at 04:22:38PM +0100, Matthew Auld wrote:
-> In mutex_init() lockdep seems to identify a lock by defining a static
-> key for each lock class. However if we wrap the whole thing in a
-> function the static key will be the same for everything calling that
-> function, which looks to be the case for drmm_mutex_init(). This then
-> results in impossible lockdep splats since lockdep thinks completely
-> unrelated locks are the same lock class. The other issue is that when
-> looking at splats we lose the actual lock name, where instead of seeing
-> something like xe->mem_access.lock for the name, we just see something
-> generic like lock#8.
-> 
-> Attempt to fix this by converting drmm_mutex_init() into a macro, which
-> should ensure that mutex_init() behaves as expected.
+The vram initialization path does not take into account
+each tile's actual memory size.
 
-Nice catch :-) we observed lockdep deadlock false alarms too, but I could
-not spot it out and were adding lockdep_set_class(key) to avoid those.
+While updating this, simplify the rebar algorithm and clarify
+some helper functions.
 
+v2: Address review comments
+    - separate tile sizing to the initial patch
+v3: Re-add deleted warning for small bar systems
+v4: Address review comments
+    - stolen size check should be against pci resource
+    - limit size (patch 2) to keep bisection correct
+v5: Include actual memory size for Xe level for use (1:1 map for xe_migrate,
+    for example)
+v6: Limit gt memory size to visible size (small bar)
+    Fix forced resize missed __fls
 
-> +static inline void __drmm_mutex_release(struct drm_device *dev, void *res)
+Michael J. Ruhl (4):
+  drm/xe: Rework size helper to be a little more correct
+  drm/xe: Simplify rebar sizing
+  drm/xe: Size GT device memory correctly
+  drm/xe: Rename GPU offset helper to reflect true usage
 
-Can this be inline if used in drmm_add_action_or_reset() ? 
+ drivers/gpu/drm/xe/regs/xe_gt_regs.h   |   2 +-
+ drivers/gpu/drm/xe/xe_bo.c             |   8 +-
+ drivers/gpu/drm/xe/xe_bo.h             |   2 +-
+ drivers/gpu/drm/xe/xe_device_types.h   |  16 +-
+ drivers/gpu/drm/xe/xe_gt_types.h       |  14 +-
+ drivers/gpu/drm/xe/xe_migrate.c        |   4 +-
+ drivers/gpu/drm/xe/xe_mmio.c           | 279 ++++++++++++++-----------
+ drivers/gpu/drm/xe/xe_mmio.h           |   6 +-
+ drivers/gpu/drm/xe/xe_ttm_stolen_mgr.c |  34 +--
+ 9 files changed, 210 insertions(+), 155 deletions(-)
 
-
-> +{
-> +	struct mutex *lock = res;
-> +
-> +	mutex_destroy(lock);
-> +}
-> +
-> +/**
-> + * drmm_mutex_init - &drm_device-managed mutex_init()
-> + * @dev: DRM device
-> + * @lock: lock to be initialized
-> + *
-> + * Returns:
-> + * 0 on success, or a negative errno code otherwise.
-> + *
-> + * This is a &drm_device-managed version of mutex_init(). The initialized
-> + * lock is automatically destroyed on the final drm_dev_put().
-> + */
-> +#define drmm_mutex_init(dev, lock) ({					     \
-> +	mutex_init(lock);						     \
-> +	drmm_add_action_or_reset(dev, __drmm_mutex_release, lock);	     \
-> +})									     \
-
-Regards
-Stanislaw
-
+-- 
+2.39.2
 
