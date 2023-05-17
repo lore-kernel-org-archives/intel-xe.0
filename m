@@ -4,52 +4,47 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 85887C77B7D
-	for <intel-xe@archiver.kernel.org>; Wed, 17 May 2023 16:29:17 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 68A56C77B75
+	for <intel-xe@archiver.kernel.org>; Wed, 17 May 2023 16:29:34 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6399A10E214;
-	Wed, 17 May 2023 16:29:17 +0000 (UTC)
-Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B45A810E214;
- Wed, 17 May 2023 16:29:15 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3A2E810E214;
+	Wed, 17 May 2023 16:29:34 +0000 (UTC)
+Received: from mga06.intel.com (mga06b.intel.com [134.134.136.31])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 368EC10E214
+ for <intel-xe@lists.freedesktop.org>; Wed, 17 May 2023 16:29:32 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1684340955; x=1715876955;
- h=message-id:date:mime-version:subject:to:cc:references:
- from:in-reply-to:content-transfer-encoding;
- bh=lqfIH+ZxKpwFoP3/tKuuVLaw0nihNRJzpk38qw2csIQ=;
- b=LTFGgl+JX2oOddc/BVsDqpfXudl+gjYOJ8zZpJQqji8X1HmaJJyBQ+zN
- cRV1S2Y+2wTove8B+44SGs2cMQ0BhwFWGhseCkeocGd+1VhPGWTEmmY8h
- G/FRjo8J0qH8V6m96YRTZeNsBAJ1UKAGfn14unTS9AlsioeIxqTSNbFrK
- pRcnbsr7aZjwTer9OTKjjJh2PDD7i4LDLl//TBeXoBHBAPJsOBplhLNUE
- ROORsOR0wa8VTvRppW8AG/k730763yP2aLW85/zcYAsVXNjqPL0h/vMOm
- FEkY2auPXeOf4RKgo/+zAFT76UJzp9oqLQP05vfviKaIjqo9oj5l9UF43 Q==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10713"; a="350642004"
-X-IronPort-AV: E=Sophos;i="5.99,282,1677571200"; d="scan'208";a="350642004"
-Received: from orsmga004.jf.intel.com ([10.7.209.38])
- by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 17 May 2023 09:29:04 -0700
+ t=1684340972; x=1715876972;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=6aFi20sJ32/i81MY3Du9NV5mLBjFlEgHUatmbnTPTq0=;
+ b=hoJmW09vyg/uQ7qEKgS3G0LL/JiVagCSDzqrNpgabHkUGV8nkM1FRRa1
+ og7dkkvP+RB6P6l89HM0DJnFBeHmNUfl+eJi+EZXoYPkjv6mktt9twCfC
+ zh7h8MPixyW8OhBwOznZgFOBhJs9wnvB+xmhgkgW/oEbF+8JQtopmn14U
+ 79vC+gKcair71ITn8rAP+k7fQUz7RM3QvYlz9KiJ8uJ5hvbERhhFXPGgC
+ v3GDYlBzX5Jk9ZSv829F0wao4ARxf86yJ4XLC9MfA7aecS50TXVCjAAxm
+ BFKntfqEyw2Q++XYVaK7c8QnXPdL4gsp43trKRxVixsWuMN9BzqEKDpwS A==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10713"; a="415223084"
+X-IronPort-AV: E=Sophos;i="5.99,282,1677571200"; d="scan'208";a="415223084"
+Received: from fmsmga001.fm.intel.com ([10.253.24.23])
+ by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 17 May 2023 09:29:31 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10713"; a="826016987"
-X-IronPort-AV: E=Sophos;i="5.99,282,1677571200"; d="scan'208";a="826016987"
-Received: from fskirtun-mobl-g8.ger.corp.intel.com (HELO [10.252.15.194])
- ([10.252.15.194])
- by orsmga004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 17 May 2023 09:29:03 -0700
-Message-ID: <dcaf0964-3264-6a35-469d-75ff520d5f6b@intel.com>
-Date: Wed, 17 May 2023 17:29:00 +0100
+X-IronPort-AV: E=McAfee;i="6600,9927,10713"; a="846153519"
+X-IronPort-AV: E=Sophos;i="5.99,282,1677571200"; d="scan'208";a="846153519"
+Received: from josouza-mobl2.bz.intel.com ([10.87.243.88])
+ by fmsmga001-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 17 May 2023 09:29:29 -0700
+From: =?UTF-8?q?Jos=C3=A9=20Roberto=20de=20Souza?= <jose.souza@intel.com>
+To: intel-xe@lists.freedesktop.org
+Date: Wed, 17 May 2023 09:29:18 -0700
+Message-Id: <20230517162918.59058-1-jose.souza@intel.com>
+X-Mailer: git-send-email 2.40.1
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Firefox/102.0 Thunderbird/102.11.0
-Content-Language: en-GB
-To: Stanislaw Gruszka <stanislaw.gruszka@linux.intel.com>
-References: <20230517152244.348171-1-matthew.auld@intel.com>
- <20230517160523.GA607652@linux.intel.com>
-From: Matthew Auld <matthew.auld@intel.com>
-In-Reply-To: <20230517160523.GA607652@linux.intel.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-Subject: Re: [Intel-xe] [PATCH v5 1/7] drm: fix drmm_mutex_init()
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+Subject: [Intel-xe] [PATCH] drm/xe: Allow scanout of bos that can be
+ migrated to lmem
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -61,62 +56,75 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Cc: Jocelyn Falempe <jfalempe@redhat.com>,
- Daniel Vetter <daniel.vetter@ffwll.ch>, dri-devel@lists.freedesktop.org,
- Thomas Zimmermann <tzimmermann@suse.de>, intel-xe@lists.freedesktop.org
+Cc: Matthew Auld <matthew.auld@intel.com>
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On 17/05/2023 17:05, Stanislaw Gruszka wrote:
-> On Wed, May 17, 2023 at 04:22:38PM +0100, Matthew Auld wrote:
->> In mutex_init() lockdep seems to identify a lock by defining a static
->> key for each lock class. However if we wrap the whole thing in a
->> function the static key will be the same for everything calling that
->> function, which looks to be the case for drmm_mutex_init(). This then
->> results in impossible lockdep splats since lockdep thinks completely
->> unrelated locks are the same lock class. The other issue is that when
->> looking at splats we lose the actual lock name, where instead of seeing
->> something like xe->mem_access.lock for the name, we just see something
->> generic like lock#8.
->>
->> Attempt to fix this by converting drmm_mutex_init() into a macro, which
->> should ensure that mutex_init() behaves as expected.
-> 
-> Nice catch :-) we observed lockdep deadlock false alarms too, but I could
-> not spot it out and were adding lockdep_set_class(key) to avoid those.
-> 
-> 
->> +static inline void __drmm_mutex_release(struct drm_device *dev, void *res)
-> 
-> Can this be inline if used in drmm_add_action_or_reset() ?
+OpenGL stack makes scanout buffers exported as well because usually
+it will be exported from client application to compositor.
 
-I think so. Did I missing something here? It at least builds for me.
+Exported buffers needs to be placed in SMEM so it can be accessed
+by different GPUs if needed, so in discrete GPUs it is placed in
+SMEM+LMEM.
 
-> 
-> 
->> +{
->> +	struct mutex *lock = res;
->> +
->> +	mutex_destroy(lock);
->> +}
->> +
->> +/**
->> + * drmm_mutex_init - &drm_device-managed mutex_init()
->> + * @dev: DRM device
->> + * @lock: lock to be initialized
->> + *
->> + * Returns:
->> + * 0 on success, or a negative errno code otherwise.
->> + *
->> + * This is a &drm_device-managed version of mutex_init(). The initialized
->> + * lock is automatically destroyed on the final drm_dev_put().
->> + */
->> +#define drmm_mutex_init(dev, lock) ({					     \
->> +	mutex_init(lock);						     \
->> +	drmm_add_action_or_reset(dev, __drmm_mutex_release, lock);	     \
->> +})									     \
-> 
-> Regards
-> Stanislaw
-> 
-> 
+But this combination is causing aplications like kmscube to be able
+to create framebuffers.
+
+So here doing the same handling as i915 and allowing bos that can
+migrate to lmem0/vram0 to be promoted to framebuffer.
+
+At least all current discrete GPUs with display only have one lmem
+region, so we don't need to check for vram1 but we might need to
+extend it in future.
+
+Signed-off-by: José Roberto de Souza <jose.souza@intel.com>
+Signed-off-by: Matthew Auld <matthew.auld@intel.com>
+---
+ drivers/gpu/drm/i915/display/intel_fb.c | 5 +++--
+ drivers/gpu/drm/xe/display/xe_fb_pin.c  | 7 ++++++-
+ 2 files changed, 9 insertions(+), 3 deletions(-)
+
+diff --git a/drivers/gpu/drm/i915/display/intel_fb.c b/drivers/gpu/drm/i915/display/intel_fb.c
+index 015aacbad1b11..feb8a0f5fbdf6 100644
+--- a/drivers/gpu/drm/i915/display/intel_fb.c
++++ b/drivers/gpu/drm/i915/display/intel_fb.c
+@@ -2121,8 +2121,9 @@ intel_user_framebuffer_create(struct drm_device *dev,
+ 		return ERR_PTR(-ENOENT);
+ 
+ 	obj = gem_to_xe_bo(gem);
+-	/* Require vram exclusive objects, but allow dma-buf imports */
+-	if (IS_DGFX(i915) && obj->flags & XE_BO_CREATE_SYSTEM_BIT &&
++	/* Require vram placement or dma-buf import */
++	if (IS_DGFX(i915) &&
++	    !xe_bo_can_migrate(gem_to_xe_bo(gem), XE_PL_VRAM0) &&
+ 	    obj->ttm.type != ttm_bo_type_sg) {
+ 		drm_gem_object_put(gem);
+ 		return ERR_PTR(-EREMOTE);
+diff --git a/drivers/gpu/drm/xe/display/xe_fb_pin.c b/drivers/gpu/drm/xe/display/xe_fb_pin.c
+index ed691d28b34d7..c7c4df18e439b 100644
+--- a/drivers/gpu/drm/xe/display/xe_fb_pin.c
++++ b/drivers/gpu/drm/xe/display/xe_fb_pin.c
+@@ -183,6 +183,8 @@ static int __xe_pin_fb_vma_ggtt(struct intel_framebuffer *fb,
+ static struct i915_vma *__xe_pin_fb_vma(struct intel_framebuffer *fb,
+ 					const struct i915_gtt_view *view)
+ {
++	struct drm_device *dev = fb->base.dev;
++	struct xe_device *xe = to_xe_device(dev);
+ 	struct i915_vma *vma = kzalloc(sizeof(*vma), GFP_KERNEL);
+ 	struct xe_bo *bo = intel_fb_obj(&fb->base);
+ 	int ret;
+@@ -204,7 +206,10 @@ static struct i915_vma *__xe_pin_fb_vma(struct intel_framebuffer *fb,
+ 	if (ret)
+ 		goto err;
+ 
+-	ret = xe_bo_validate(bo, NULL, true);
++	if (IS_DGFX(xe))
++		ret = xe_bo_migrate(bo, XE_PL_VRAM0);
++	else
++		ret = xe_bo_validate(bo, NULL, true);
+ 	if (!ret)
+ 		ttm_bo_pin(&bo->ttm);
+ 	ttm_bo_unreserve(&bo->ttm);
+-- 
+2.40.1
+
