@@ -4,38 +4,47 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9DDB4C77B7A
-	for <intel-xe@archiver.kernel.org>; Wed, 17 May 2023 15:58:22 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 12125C77B7F
+	for <intel-xe@archiver.kernel.org>; Wed, 17 May 2023 16:05:30 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id CBE3010E44A;
-	Wed, 17 May 2023 15:48:16 +0000 (UTC)
-Received: from dfw.source.kernel.org (dfw.source.kernel.org
- [IPv6:2604:1380:4641:c500::1])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7FB6A10E44A
- for <intel-xe@lists.freedesktop.org>; Wed, 17 May 2023 15:48:14 +0000 (UTC)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
- (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
- (No client certificate requested)
- by dfw.source.kernel.org (Postfix) with ESMTPS id 4D40C64927;
- Wed, 17 May 2023 15:48:12 +0000 (UTC)
-Received: from rdvivi-mobl4 (fmdmzpr02-ext.fm.intel.com [192.55.54.37])
- (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
- (No client certificate requested)
- by smtp.kernel.org (Postfix) with ESMTPSA id 7A385C433EF;
- Wed, 17 May 2023 15:48:10 +0000 (UTC)
-Date: Wed, 17 May 2023 11:48:02 -0400
-From: Rodrigo Vivi <rodrigo.vivi@kernel.org>
+	by gabe.freedesktop.org (Postfix) with ESMTP id C3EAE10E19B;
+	Wed, 17 May 2023 16:05:30 +0000 (UTC)
+Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4226710E19B;
+ Wed, 17 May 2023 16:05:27 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1684339528; x=1715875528;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:in-reply-to;
+ bh=hHCacUkHNFVr1TLeuXXuOoHKVuUURTA9Q0Ewj6Y7U+o=;
+ b=gaBVFzFmyCVw5v+bVP0djD5ITImFv/BqMgPxg8YEZkzqrAL7HL+I+nQm
+ F7Jz4M5g+WAzDJ8pIJKQZ5dCdG0hcVRHwwnp3VGAxJkBZ7acjvsRN6KV2
+ 2D1r2Ok706gym5moBSbW8ADrzN7GHF7Qerf4W+r71I42Xal6IpOQGTCD7
+ u1Wwt5qR8CEaC4EGLM0by9Snu4M25v8E8FsZvQG/22EDg37SczNxY8Th5
+ XCgMYDR3dWg1oZSQr88xnq/NSJkYJSjGhsZjpBXKCkDTh0XsL07qiYVQL
+ TNxqvxjGPOqg4c5zDyKZl0WL5PDM6C6rJ+l0Mw0RWh9v1Cs/s9um2CXeK A==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10713"; a="354100656"
+X-IronPort-AV: E=Sophos;i="5.99,282,1677571200"; d="scan'208";a="354100656"
+Received: from fmsmga008.fm.intel.com ([10.253.24.58])
+ by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 17 May 2023 09:05:26 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6600,9927,10713"; a="766831188"
+X-IronPort-AV: E=Sophos;i="5.99,282,1677571200"; d="scan'208";a="766831188"
+Received: from joe-255.igk.intel.com (HELO localhost) ([10.91.220.57])
+ by fmsmga008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 17 May 2023 09:05:25 -0700
+Date: Wed, 17 May 2023 18:05:23 +0200
+From: Stanislaw Gruszka <stanislaw.gruszka@linux.intel.com>
 To: Matthew Auld <matthew.auld@intel.com>
-Message-ID: <ZGT3Mq1b3Gp/+tgx@rdvivi-mobl4>
+Message-ID: <20230517160523.GA607652@linux.intel.com>
 References: <20230517152244.348171-1-matthew.auld@intel.com>
- <20230517152244.348171-5-matthew.auld@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20230517152244.348171-5-matthew.auld@intel.com>
-Subject: Re: [Intel-xe] [PATCH v5 5/7] drm/xe/ggtt: prime ggtt->lock against
- FS_RECLAIM
+In-Reply-To: <20230517152244.348171-1-matthew.auld@intel.com>
+Subject: Re: [Intel-xe] [PATCH v5 1/7] drm: fix drmm_mutex_init()
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -47,55 +56,58 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-xe@lists.freedesktop.org, Rodrigo Vivi <rodrigo.vivi@intel.com>
+Cc: Jocelyn Falempe <jfalempe@redhat.com>,
+ Daniel Vetter <daniel.vetter@ffwll.ch>, dri-devel@lists.freedesktop.org,
+ Thomas Zimmermann <tzimmermann@suse.de>, intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Wed, May 17, 2023 at 04:22:42PM +0100, Matthew Auld wrote:
-> Increase the sensitivity of the ggtt->lock by priming it against
-> FS_RECLAIM, such that allocating memory while holding will result in
-> lockdep splats.
+On Wed, May 17, 2023 at 04:22:38PM +0100, Matthew Auld wrote:
+> In mutex_init() lockdep seems to identify a lock by defining a static
+> key for each lock class. However if we wrap the whole thing in a
+> function the static key will be the same for everything calling that
+> function, which looks to be the case for drmm_mutex_init(). This then
+> results in impossible lockdep splats since lockdep thinks completely
+> unrelated locks are the same lock class. The other issue is that when
+> looking at splats we lose the actual lock name, where instead of seeing
+> something like xe->mem_access.lock for the name, we just see something
+> generic like lock#8.
 > 
-> Signed-off-by: Matthew Auld <matthew.auld@intel.com>
-> Cc: Thomas Hellström <thomas.hellstrom@linux.intel.com>
-> Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
-> ---
->  drivers/gpu/drm/xe/xe_ggtt.c | 11 +++++++++++
->  1 file changed, 11 insertions(+)
-> 
-> diff --git a/drivers/gpu/drm/xe/xe_ggtt.c b/drivers/gpu/drm/xe/xe_ggtt.c
-> index f986e8218820..e25eb70d44f6 100644
-> --- a/drivers/gpu/drm/xe/xe_ggtt.c
-> +++ b/drivers/gpu/drm/xe/xe_ggtt.c
-> @@ -90,6 +90,16 @@ static void ggtt_fini_noalloc(struct drm_device *drm, void *arg)
->  	xe_bo_unpin_map_no_vm(ggtt->scratch);
->  }
->  
-> +static void primelockdep(struct xe_ggtt *ggtt)
+> Attempt to fix this by converting drmm_mutex_init() into a macro, which
+> should ensure that mutex_init() behaves as expected.
+
+Nice catch :-) we observed lockdep deadlock false alarms too, but I could
+not spot it out and were adding lockdep_set_class(key) to avoid those.
+
+
+> +static inline void __drmm_mutex_release(struct drm_device *dev, void *res)
+
+Can this be inline if used in drmm_add_action_or_reset() ? 
+
+
 > +{
-> +	if (!IS_ENABLED(CONFIG_LOCKDEP))
-> +		return;
+> +	struct mutex *lock = res;
 > +
-> +	fs_reclaim_acquire(GFP_KERNEL);
-> +	might_lock(&ggtt->lock);
-> +	fs_reclaim_release(GFP_KERNEL);
-
-should we use the might_alloc instead of these fs_reclaim directly?
-or the order here with the ggtt->lock in the middle matters?
-
+> +	mutex_destroy(lock);
 > +}
 > +
->  int xe_ggtt_init_noalloc(struct xe_gt *gt, struct xe_ggtt *ggtt)
->  {
->  	struct xe_device *xe = gt_to_xe(gt);
-> @@ -132,6 +142,7 @@ int xe_ggtt_init_noalloc(struct xe_gt *gt, struct xe_ggtt *ggtt)
->  	drm_mm_init(&ggtt->mm, xe_wopcm_size(xe),
->  		    ggtt->size - xe_wopcm_size(xe));
->  	mutex_init(&ggtt->lock);
-> +	primelockdep(ggtt);
->  
->  	return drmm_add_action_or_reset(&xe->drm, ggtt_fini_noalloc, ggtt);
->  }
-> -- 
-> 2.40.1
-> 
+> +/**
+> + * drmm_mutex_init - &drm_device-managed mutex_init()
+> + * @dev: DRM device
+> + * @lock: lock to be initialized
+> + *
+> + * Returns:
+> + * 0 on success, or a negative errno code otherwise.
+> + *
+> + * This is a &drm_device-managed version of mutex_init(). The initialized
+> + * lock is automatically destroyed on the final drm_dev_put().
+> + */
+> +#define drmm_mutex_init(dev, lock) ({					     \
+> +	mutex_init(lock);						     \
+> +	drmm_add_action_or_reset(dev, __drmm_mutex_release, lock);	     \
+> +})									     \
+
+Regards
+Stanislaw
+
+
