@@ -4,30 +4,30 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 00F31C77B7F
-	for <intel-xe@archiver.kernel.org>; Wed, 17 May 2023 16:39:59 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id A09F9C77B7D
+	for <intel-xe@archiver.kernel.org>; Wed, 17 May 2023 16:41:51 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id CB57A10E214;
-	Wed, 17 May 2023 16:39:59 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7BBBA10E214;
+	Wed, 17 May 2023 16:41:51 +0000 (UTC)
 Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id B985310E214;
- Wed, 17 May 2023 16:39:57 +0000 (UTC)
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id A0D9510E214;
+ Wed, 17 May 2023 16:41:49 +0000 (UTC)
 Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id B18F1A47DF;
- Wed, 17 May 2023 16:39:57 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============7519007374782034144=="
+ by emeril.freedesktop.org (Postfix) with ESMTP id 99832AADFB;
+ Wed, 17 May 2023 16:41:49 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Michael J. Ruhl" <michael.j.ruhl@intel.com>
-Date: Wed, 17 May 2023 16:39:57 -0000
-Message-ID: <168434159769.6591.16737768674318873274@emeril.freedesktop.org>
+To: =?utf-8?q?Jos=C3=A9_Roberto_de_Souza?= <jose.souza@intel.com>
+Date: Wed, 17 May 2023 16:41:49 -0000
+Message-ID: <168434170959.6591.12250502018098375149@emeril.freedesktop.org>
 X-Patchwork-Hint: ignore
-References: <20230517160857.2791619-1-michael.j.ruhl@intel.com>
-In-Reply-To: <20230517160857.2791619-1-michael.j.ruhl@intel.com>
-Subject: [Intel-xe] =?utf-8?q?=E2=97=8B_CI=2EBAT=3A_info_for_drm/xe=3A_Re?=
- =?utf-8?q?work_multi_tile_device_memory_initialization_=28rev6=29?=
+References: <20230517162918.59058-1-jose.souza@intel.com>
+In-Reply-To: <20230517162918.59058-1-jose.souza@intel.com>
+Subject: [Intel-xe] =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_f?=
+ =?utf-8?q?or_drm/xe=3A_Allow_scanout_of_bos_that_can_be_migrated_to_lmem?=
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -44,65 +44,17 @@ Cc: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============7519007374782034144==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
 == Series Details ==
 
-Series: drm/xe: Rework multi tile device memory initialization (rev6)
-URL   : https://patchwork.freedesktop.org/series/117126/
-State : info
+Series: drm/xe: Allow scanout of bos that can be migrated to lmem
+URL   : https://patchwork.freedesktop.org/series/117898/
+State : success
 
 == Summary ==
 
-Participating hosts:
-bat-atsm-2
-bat-dg2-oem2
-bat-adlp-7
-Missing hosts results[1]:
-bat-atsm-2
-Results: [xe-pw-117126v6](https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-117126v6/index.html)
+=== Applying kernel patches on branch 'drm-xe-next' with base: ===
+Base commit: 0909fec9b fixup! drm/xe/display: Implement display support
+=== git am output follows ===
+Applying: drm/xe: Allow scanout of bos that can be migrated to lmem
 
 
-
---===============7519007374782034144==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/xe: Rework multi tile device memory initialization (rev6)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/117126/">https://patchwork.freedesktop.org/series/117126/</a></td></tr>
-<tr><td><b>State:</b></td><td>info</td></tr>
-
-</table>
-
-
-    <p>Participating hosts:<br />
-bat-atsm-2<br />
-bat-dg2-oem2<br />
-bat-adlp-7<br />
-Missing hosts results[1]:<br />
-bat-atsm-2<br />
-Results: <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-117126v6/index.html">xe-pw-117126v6</a></p>
-
-</body>
-</html>
-
---===============7519007374782034144==--
