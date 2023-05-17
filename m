@@ -4,53 +4,30 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id A7CE3C77B7A
-	for <intel-xe@archiver.kernel.org>; Wed, 17 May 2023 17:03:21 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8327AC77B7D
+	for <intel-xe@archiver.kernel.org>; Wed, 17 May 2023 17:03:54 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5AB7910E1F5;
-	Wed, 17 May 2023 17:03:21 +0000 (UTC)
-Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C19C410E127;
- Wed, 17 May 2023 17:03:18 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1684342998; x=1715878998;
- h=message-id:subject:from:to:cc:date:in-reply-to:
- references:content-transfer-encoding:mime-version;
- bh=RZEcdw0n+wSEuOnmF0nicbByFX6z1wWU3WJ0adZ2GDg=;
- b=HwgMbZspY0f2w3YFb5MfPyxWh/X3toQJKwISTBvY79IYrwW4D7mGsnpI
- F5PaT1i8WT4Vdt350AFFHFJMnkJEs9wJqkY4HGF9GnhLb5OtPycIjS6nB
- emmsxkyCjB9Nvp6IcZ3JSmjCATBH763ZwIQsEoh48St4wg7OXcNmVX0Yw
- TnXwFcblJrSY2ETpK05vnrJ4LCnHU5Pq1FGHNj8FfL+FZwJRFc2Fplo4I
- hg2hIMb3amdi7itToma6AzeS+cCVrBKV5LXD4nbknzEnczfsg+pjaH0th
- yhasfH9S12a3KK7k36E/abLFo02ybmjRP7KzE675dUdZid8ORTPwQQWIB Q==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10713"; a="341209910"
-X-IronPort-AV: E=Sophos;i="5.99,282,1677571200"; d="scan'208";a="341209910"
-Received: from orsmga004.jf.intel.com ([10.7.209.38])
- by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 17 May 2023 10:03:15 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10713"; a="826037839"
-X-IronPort-AV: E=Sophos;i="5.99,282,1677571200"; d="scan'208";a="826037839"
-Received: from ettammin-mobl1.ger.corp.intel.com (HELO [10.249.254.183])
- ([10.249.254.183])
- by orsmga004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 17 May 2023 10:03:13 -0700
-Message-ID: <79df281c4b74ef7de401b6f93ea65301377a5319.camel@linux.intel.com>
-From: Thomas =?ISO-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>
-To: Matthew Auld <matthew.auld@intel.com>, Stanislaw Gruszka
- <stanislaw.gruszka@linux.intel.com>
-Date: Wed, 17 May 2023 19:03:10 +0200
-In-Reply-To: <dcaf0964-3264-6a35-469d-75ff520d5f6b@intel.com>
-References: <20230517152244.348171-1-matthew.auld@intel.com>
- <20230517160523.GA607652@linux.intel.com>
- <dcaf0964-3264-6a35-469d-75ff520d5f6b@intel.com>
-Organization: Intel Sweden AB, Registration Number: 556189-6027
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.46.4 (3.46.4-1.fc37) 
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5888C10E1F5;
+	Wed, 17 May 2023 17:03:54 +0000 (UTC)
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 39FCD10E1AA;
+ Wed, 17 May 2023 17:03:52 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 0FE14AA3D8;
+ Wed, 17 May 2023 17:03:52 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============3297053160614457080=="
 MIME-Version: 1.0
-Subject: Re: [Intel-xe] [PATCH v5 1/7] drm: fix drmm_mutex_init()
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: =?utf-8?q?Jos=C3=A9_Roberto_de_Souza?= <jose.souza@intel.com>
+Date: Wed, 17 May 2023 17:03:52 -0000
+Message-ID: <168434303205.6589.17349586731279788733@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20230517162918.59058-1-jose.souza@intel.com>
+In-Reply-To: <20230517162918.59058-1-jose.souza@intel.com>
+Subject: [Intel-xe] =?utf-8?q?=E2=97=8B_CI=2EBAT=3A_info_for_drm/xe=3A_Al?=
+ =?utf-8?q?low_scanout_of_bos_that_can_be_migrated_to_lmem?=
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -62,105 +39,70 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Cc: Thomas Zimmermann <tzimmermann@suse.de>,
- Jocelyn Falempe <jfalempe@redhat.com>, intel-xe@lists.freedesktop.org,
- dri-devel@lists.freedesktop.org, Daniel Vetter <daniel.vetter@ffwll.ch>
+Reply-To: intel-xe@lists.freedesktop.org
+Cc: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Wed, 2023-05-17 at 17:29 +0100, Matthew Auld wrote:
-> On 17/05/2023 17:05, Stanislaw Gruszka wrote:
-> > On Wed, May 17, 2023 at 04:22:38PM +0100, Matthew Auld wrote:
-> > > In mutex_init() lockdep seems to identify a lock by defining a
-> > > static
-> > > key for each lock class. However if we wrap the whole thing in a
-> > > function the static key will be the same for everything calling
-> > > that
-> > > function, which looks to be the case for drmm_mutex_init(). This
-> > > then
-> > > results in impossible lockdep splats since lockdep thinks
-> > > completely
-> > > unrelated locks are the same lock class. The other issue is that
-> > > when
-> > > looking at splats we lose the actual lock name, where instead of
-> > > seeing
-> > > something like xe->mem_access.lock for the name, we just see
-> > > something
-> > > generic like lock#8.
-> > >=20
-> > > Attempt to fix this by converting drmm_mutex_init() into a macro,
-> > > which
-> > > should ensure that mutex_init() behaves as expected.
-> >=20
-> > Nice catch :-) we observed lockdep deadlock false alarms too, but I
-> > could
-> > not spot it out and were adding lockdep_set_class(key) to avoid
-> > those.
-> >=20
-> >=20
-> > > +static inline void __drmm_mutex_release(struct drm_device *dev,
-> > > void *res)
-> >=20
-> > Can this be inline if used in drmm_add_action_or_reset() ?
->=20
-> I think so. Did I missing something here? It at least builds for me.
+--===============3297053160614457080==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-I think in each file that contains a drmm_mutex_init(), the code will
-need a pointer to the function __drmm_mutex_release() and the compiler
-will therefore need to emit a non-inlined static version of the
-function in that file. Not sure if that's a problem, though. If so
-could make it extern?
+== Series Details ==
 
-/Thomas
+Series: drm/xe: Allow scanout of bos that can be migrated to lmem
+URL   : https://patchwork.freedesktop.org/series/117898/
+State : info
+
+== Summary ==
+
+Participating hosts:
+bat-atsm-2
+bat-dg2-oem2
+bat-adlp-7
+Missing hosts results[1]:
+bat-atsm-2
+Results: [xe-pw-117898v1](https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-117898v1/index.html)
 
 
 
->=20
-> >=20
-> >=20
-> > > +{
-> > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0struct mutex *lock =3D res=
-;
-> > > +
-> > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0mutex_destroy(lock);
-> > > +}
-> > > +
-> > > +/**
-> > > + * drmm_mutex_init - &drm_device-managed mutex_init()
-> > > + * @dev: DRM device
-> > > + * @lock: lock to be initialized
-> > > + *
-> > > + * Returns:
-> > > + * 0 on success, or a negative errno code otherwise.
-> > > + *
-> > > + * This is a &drm_device-managed version of mutex_init(). The
-> > > initialized
-> > > + * lock is automatically destroyed on the final drm_dev_put().
-> > > + */
-> > > +#define drmm_mutex_init(dev, lock)
-> > > ({=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0 \
-> > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0mutex_init(lock);=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0
-> > > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 \
-> > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0drmm_add_action_or_reset(d=
-ev, __drmm_mutex_release,
-> > > lock);=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 \
-> > > +})=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0
-> > > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 \
-> >=20
-> > Regards
-> > Stanislaw
-> >=20
-> >=20
+--===============3297053160614457080==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/xe: Allow scanout of bos that can be migrated to lmem</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/117898/">https://patchwork.freedesktop.org/series/117898/</a></td></tr>
+<tr><td><b>State:</b></td><td>info</td></tr>
+
+</table>
+
+
+    <p>Participating hosts:<br />
+bat-atsm-2<br />
+bat-dg2-oem2<br />
+bat-adlp-7<br />
+Missing hosts results[1]:<br />
+bat-atsm-2<br />
+Results: <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-117898v1/index.html">xe-pw-117898v1</a></p>
+
+</body>
+</html>
+
+--===============3297053160614457080==--
