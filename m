@@ -4,52 +4,50 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4455DC77B7D
-	for <intel-xe@archiver.kernel.org>; Wed, 17 May 2023 06:01:14 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 47F6CC77B7A
+	for <intel-xe@archiver.kernel.org>; Wed, 17 May 2023 07:53:28 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 051F310E3AA;
-	Wed, 17 May 2023 06:01:14 +0000 (UTC)
-Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C850B10E3AA
- for <intel-xe@lists.freedesktop.org>; Wed, 17 May 2023 06:01:12 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 09BF210E3CB;
+	Wed, 17 May 2023 07:53:28 +0000 (UTC)
+Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0073810E3C9
+ for <intel-xe@lists.freedesktop.org>; Wed, 17 May 2023 07:53:25 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1684303272; x=1715839272;
- h=message-id:date:mime-version:subject:to:cc:references:
- from:in-reply-to:content-transfer-encoding;
- bh=PTq+0Oq7wzMoqJci3yawFIXobJ+kOgbDm0gtkz0OJR0=;
- b=WpRbGOux4kq6BRI54qRAurJRVDdwXT9NxUSexlZOocQtefqNro8O54dL
- vnvRJSN5TiazlL8UzLXNAF0/6nua/754Ii6OivPm6T9vkswLfOhKm2qRI
- 0LPqrJw9SaCMynAQCokRlFHTe153041NV5lGqok6liUIGcC9gQqu5+nFq
- vsW3WjQD+DeWyIENtcK1h91EZbviSYuGhSX8MtOLKFn3Wwg5Q1YtV9A2D
- 7GDm1cKXoHKDv7JAwZ1g9llQ9TsaY1W+s+YIPVuH6rdX57e+djFp8MVfi
- CW7ggg6TUMaezxoqXBqhdK8GLQsogSAQx4NafZZpz/mutSQJbmHX85+tE A==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10712"; a="341056232"
-X-IronPort-AV: E=Sophos;i="5.99,281,1677571200"; d="scan'208";a="341056232"
-Received: from orsmga008.jf.intel.com ([10.7.209.65])
- by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 16 May 2023 23:01:11 -0700
+ t=1684310006; x=1715846006;
+ h=from:to:cc:subject:in-reply-to:references:date:
+ message-id:mime-version;
+ bh=9UItBAJYjj2qKuOiAn1Tc0q3c0qGtYAluOl9E+kEQXc=;
+ b=JdnLDa/h1LPRmptlIy3gHlycwiOISrecrwngR9rGXlY3PfwOz/gi90FM
+ l0APdZaovfaTTAzS/F8adJzgPcO73lHaBSLaygMFSjXjU8XCs4IHkigu3
+ QxwsNEbp5JaOIJG5C8A/wKd1Kk/qd0ruoXX+kwD0sBV4l7KzSqYv3pHfy
+ G3rZ08M9t9E5+zN9yEJdRu3SYnIrdDKK1G7vZ5ouD0wKqg8zl1IgsTCAE
+ DnCKjhTTgOiDbQkOgn/ma0WKkLJyFtxAAcTaxg/GxcaV6tPmT69d/xdPO
+ RIIVZBOv1pfVZ9jyHhgqU96OPsZD8fOJW0SUTjxJKyPrY4a2GGId8A9ob A==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10712"; a="353984804"
+X-IronPort-AV: E=Sophos;i="5.99,281,1677571200"; d="scan'208";a="353984804"
+Received: from fmsmga007.fm.intel.com ([10.253.24.52])
+ by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 17 May 2023 00:53:25 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10712"; a="732264712"
-X-IronPort-AV: E=Sophos;i="5.99,281,1677571200"; d="scan'208";a="732264712"
-Received: from skofoed-mobl.ger.corp.intel.com (HELO [10.249.254.12])
- ([10.249.254.12])
- by orsmga008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 16 May 2023 23:01:10 -0700
-Message-ID: <f87a9e48-adf3-489b-23e2-abe45b18b569@linux.intel.com>
-Date: Wed, 17 May 2023 08:01:08 +0200
+X-IronPort-AV: E=McAfee;i="6600,9927,10712"; a="704723936"
+X-IronPort-AV: E=Sophos;i="5.99,281,1677571200"; d="scan'208";a="704723936"
+Received: from pakurapo-mobl3.ger.corp.intel.com (HELO localhost)
+ ([10.252.50.207])
+ by fmsmga007-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 17 May 2023 00:53:23 -0700
+From: Jani Nikula <jani.nikula@intel.com>
+To: Rodrigo Vivi <rodrigo.vivi@kernel.org>
+In-Reply-To: <ZGPuwpv4tg03730V@rdvivi-mobl4>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+References: <20230511092828.833211-1-jani.nikula@intel.com>
+ <ZGPuwpv4tg03730V@rdvivi-mobl4>
+Date: Wed, 17 May 2023 10:53:20 +0300
+Message-ID: <87sfbvgzrj.fsf@intel.com>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.8.0
-Content-Language: en-US
-To: Niranjana Vishwanathapura <niranjana.vishwanathapura@intel.com>,
- intel-xe@lists.freedesktop.org
-References: <20230516184420.11806-1-niranjana.vishwanathapura@intel.com>
-From: =?UTF-8?Q?Thomas_Hellstr=c3=b6m?= <thomas.hellstrom@linux.intel.com>
-In-Reply-To: <20230516184420.11806-1-niranjana.vishwanathapura@intel.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-Subject: Re: [Intel-xe] [PATCH] drm/xe: Apply upper limit to sg element size
+Content-Type: text/plain
+Subject: Re: [Intel-xe] [PATCH] fixup! drm/i915/display: Remaining changes
+ to make xe compile
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -61,101 +59,62 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Cc: thomas.hellstrom@intel.com
+Cc: intel-xe@lists.freedesktop.org, Rodrigo Vivi <rodrigo.vivi@intel.com>
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Hi, Niranjana
-
-On 5/16/23 20:44, Niranjana Vishwanathapura wrote:
-> Specify maximum segment size for sg elements by using
-> sg_alloc_table_from_pages_segment() to allocate sg_table.
+On Tue, 16 May 2023, Rodrigo Vivi <rodrigo.vivi@kernel.org> wrote:
+> On Thu, May 11, 2023 at 12:28:28PM +0300, Jani Nikula wrote:
+>> The dsparb_lock may be coming back with [1] later, but adding it here is
+>> probably just a rebase leftover. Drop it.
+>> 
+>> [1] https://patchwork.freedesktop.org/patch/msgid/20230327161223.406573-1-rodrigo.vivi@intel.com
 >
-> Signed-off-by: Niranjana Vishwanathapura <niranjana.vishwanathapura@intel.com>
-> ---
->   drivers/gpu/drm/xe/xe_bo.c |  8 +++++---
->   drivers/gpu/drm/xe/xe_bo.h | 21 +++++++++++++++++++++
->   drivers/gpu/drm/xe/xe_vm.c |  8 +++++---
->   3 files changed, 31 insertions(+), 6 deletions(-)
+> ouch...
 >
-> diff --git a/drivers/gpu/drm/xe/xe_bo.c b/drivers/gpu/drm/xe/xe_bo.c
-> index c82e995df779..21c5aca424dd 100644
-> --- a/drivers/gpu/drm/xe/xe_bo.c
-> +++ b/drivers/gpu/drm/xe/xe_bo.c
-> @@ -251,9 +251,11 @@ static int xe_tt_map_sg(struct ttm_tt *tt)
->   	if (xe_tt->sg)
->   		return 0;
->   
-> -	ret = sg_alloc_table_from_pages(&xe_tt->sgt, tt->pages, num_pages,
-> -					0, (u64)num_pages << PAGE_SHIFT,
-> -					GFP_KERNEL);
-> +	ret = sg_alloc_table_from_pages_segment(&xe_tt->sgt, tt->pages,
-> +						num_pages, 0,
-> +						(u64)num_pages << PAGE_SHIFT,
-> +						xe_sg_segment_size(xe_tt->dev),
-> +						GFP_KERNEL);
->   	if (ret)
->   		return ret;
->   
-> diff --git a/drivers/gpu/drm/xe/xe_bo.h b/drivers/gpu/drm/xe/xe_bo.h
-> index 7e111332c35a..a1c51cc0ac3c 100644
-> --- a/drivers/gpu/drm/xe/xe_bo.h
-> +++ b/drivers/gpu/drm/xe/xe_bo.h
-> @@ -296,6 +296,27 @@ void xe_bo_put_commit(struct llist_head *deferred);
->   
->   struct sg_table *xe_bo_get_sg(struct xe_bo *bo);
->   
-> +/*
-> + * xe_sg_segment_size() - Provides upper limit for sg segment size.
-> + * @dev: device pointer
-> + *
-> + * Returns the maximum segment size for the 'struct scatterlist'
-> + * elements.
-> + */
-> +static inline unsigned int xe_sg_segment_size(struct device *dev)
-> +{
-> +	size_t max = min_t(size_t, UINT_MAX, dma_max_mapping_size(dev));
-> +
-> +	/*
-> +	 * The iommu_dma_map_sg() function ensures iova allocation doesn't
-> +	 * cross dma segment boundary. It does so by padding some sg elements.
-> +	 * This can cause overflow, ending up with sg->length being set to 0.
-> +	 * Avoid this by ensuring maximum segment size is half of 'max'
-> +	 * rounded down to PAGE_SIZE.
-> +	 */
+> Reviewed-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
 
-Is this a bug in the IOMMU code? In any case, shouldn't the fix on our 
-side be using
+Thanks, pushed.
 
-dma_set_seg_boundary() and
-dma_set_max_seg_size()
+>
+>
+>> 
+>> Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
+>> Signed-off-by: Jani Nikula <jani.nikula@intel.com>
+>> ---
+>>  drivers/gpu/drm/i915/display/intel_display_core.h | 3 ---
+>>  drivers/gpu/drm/i915/i915_driver.c                | 1 -
+>>  2 files changed, 4 deletions(-)
+>> 
+>> diff --git a/drivers/gpu/drm/i915/display/intel_display_core.h b/drivers/gpu/drm/i915/display/intel_display_core.h
+>> index 437f623337e3..e36f88a39b86 100644
+>> --- a/drivers/gpu/drm/i915/display/intel_display_core.h
+>> +++ b/drivers/gpu/drm/i915/display/intel_display_core.h
+>> @@ -264,9 +264,6 @@ struct intel_wm {
+>>  	 */
+>>  	struct mutex wm_mutex;
+>>  
+>> -	/* protects DSPARB registers on pre-g4x/vlv/chv */
+>> -	spinlock_t dsparb_lock;
+>> -
+>>  	bool ipc_enabled;
+>>  };
+>>  
+>> diff --git a/drivers/gpu/drm/i915/i915_driver.c b/drivers/gpu/drm/i915/i915_driver.c
+>> index 5d302602793c..12ba7cf78b1e 100644
+>> --- a/drivers/gpu/drm/i915/i915_driver.c
+>> +++ b/drivers/gpu/drm/i915/i915_driver.c
+>> @@ -215,7 +215,6 @@ static int i915_driver_early_probe(struct drm_i915_private *dev_priv)
+>>  	spin_lock_init(&dev_priv->irq_lock);
+>>  	spin_lock_init(&dev_priv->gpu_error.lock);
+>>  	spin_lock_init(&dev_priv->display.fb_tracking.lock);
+>> -	spin_lock_init(&dev_priv->display.wm.dsparb_lock);
+>>  	mutex_init(&dev_priv->display.backlight.lock);
+>>  
+>>  	mutex_init(&dev_priv->sb_lock);
+>> -- 
+>> 2.39.2
+>> 
 
-to set reasonable values that avoid that problem?
-
-/Thomas
-
-> +	return round_down(max / 2, PAGE_SIZE);
-> +}
-> +
->   #if IS_ENABLED(CONFIG_DRM_XE_KUNIT_TEST)
->   /**
->    * xe_bo_is_mem_type - Whether the bo currently resides in the given
-> diff --git a/drivers/gpu/drm/xe/xe_vm.c b/drivers/gpu/drm/xe/xe_vm.c
-> index 2aa5bf9cfee1..5c2fdfc0e836 100644
-> --- a/drivers/gpu/drm/xe/xe_vm.c
-> +++ b/drivers/gpu/drm/xe/xe_vm.c
-> @@ -117,9 +117,11 @@ int xe_vma_userptr_pin_pages(struct xe_vma *vma)
->   	if (ret)
->   		goto out;
->   
-> -	ret = sg_alloc_table_from_pages(&vma->userptr.sgt, pages, pinned,
-> -					0, (u64)pinned << PAGE_SHIFT,
-> -					GFP_KERNEL);
-> +	ret = sg_alloc_table_from_pages_segment(&vma->userptr.sgt, pages,
-> +						pinned, 0,
-> +						(u64)pinned << PAGE_SHIFT,
-> +						xe_sg_segment_size(xe->drm.dev),
-> +						GFP_KERNEL);
->   	if (ret) {
->   		vma->userptr.sg = NULL;
->   		goto out;
+-- 
+Jani Nikula, Intel Open Source Graphics Center
