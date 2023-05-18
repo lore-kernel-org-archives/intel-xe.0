@@ -4,30 +4,50 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id BA4A2C7EE22
-	for <intel-xe@archiver.kernel.org>; Thu, 18 May 2023 09:03:18 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 08D4AC7EE24
+	for <intel-xe@archiver.kernel.org>; Thu, 18 May 2023 09:29:42 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5190210E4ED;
-	Thu, 18 May 2023 09:03:18 +0000 (UTC)
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id DFCDB10E4ED;
- Thu, 18 May 2023 09:03:15 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 643EBAADE7;
- Thu, 18 May 2023 09:03:15 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+	by gabe.freedesktop.org (Postfix) with ESMTP id C10C910E4EF;
+	Thu, 18 May 2023 09:29:41 +0000 (UTC)
+Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3A1F810E4ED;
+ Thu, 18 May 2023 09:29:38 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1684402178; x=1715938178;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:in-reply-to;
+ bh=kHoFbGtXBYViPYQcb8AXtSO4L5dtUq2xfW8k60FG9Qk=;
+ b=fYF/AEgdA02TviFv8g+FMpqTVOU2aO5039uNnHk71qojl3SOh9k8SxYI
+ 2l8yrYDvX1NuJodgwUyW0fDjoKvvsYAgaf482V4xZ3CRtkDCPIl8DNR3M
+ r6D56FkJEa2ttKYJWkMsivpAu8gsTniU84A+mvm8Zi9gVgqw/xo5n6+Og
+ Pd64kxEQgXjhQXOonclJNztApPl7MVZG+eDLUAb2h9+NmqPPvFTZkuf0o
+ WAp4s/mxqitZJuOuYOXZUlg/QxHH6s1fAQqKPUhJ9amEbTl9+6MbaRLik
+ WfBKdFtmivg/T4cfWSjkufeBsT3eJq7t32sCKkim/Hfer4Dv5OLu9W1OA w==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10713"; a="341424882"
+X-IronPort-AV: E=Sophos;i="5.99,284,1677571200"; d="scan'208";a="341424882"
+Received: from fmsmga002.fm.intel.com ([10.253.24.26])
+ by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 18 May 2023 02:29:35 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6600,9927,10713"; a="814252203"
+X-IronPort-AV: E=Sophos;i="5.99,284,1677571200"; d="scan'208";a="814252203"
+Received: from lkp-server01.sh.intel.com (HELO dea6d5a4f140) ([10.239.97.150])
+ by fmsmga002.fm.intel.com with ESMTP; 18 May 2023 02:29:19 -0700
+Received: from kbuild by dea6d5a4f140 with local (Exim 4.96)
+ (envelope-from <lkp@intel.com>) id 1pzZwk-0009pF-1F;
+ Thu, 18 May 2023 09:29:18 +0000
+Date: Thu, 18 May 2023 17:28:41 +0800
+From: kernel test robot <lkp@intel.com>
+To: Matt Roper <matthew.d.roper@intel.com>, intel-gfx@lists.freedesktop.org
+Message-ID: <202305181708.Ze7kK58y-lkp@intel.com>
+References: <20230518031804.3133486-6-matthew.d.roper@intel.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Anshuman Gupta" <anshuman.gupta@intel.com>
-Date: Thu, 18 May 2023 09:03:15 -0000
-Message-ID: <168440059536.2372.2610632446999341081@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20230518085259.4083944-1-anshuman.gupta@intel.com>
-In-Reply-To: <20230518085259.4083944-1-anshuman.gupta@intel.com>
-Subject: [Intel-xe] =?utf-8?q?=E2=9C=93_CI=2EBuild=3A_success_for_drm/xe/?=
- =?utf-8?q?pm=3A_Disable_PM_on_unbounded_pcie_parent_bridge?=
+Content-Type: multipart/mixed; boundary="/GGXerJyieNrfpB4"
+Content-Disposition: inline
+In-Reply-To: <20230518031804.3133486-6-matthew.d.roper@intel.com>
+Subject: Re: [Intel-xe] [Intel-gfx] [PATCH 5/5] drm/i915/display: Handle
+ GMD_ID identification in display code
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -39,6923 +59,6353 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
-Cc: intel-xe@lists.freedesktop.org
+Cc: Matt Roper <matthew.d.roper@intel.com>, intel-xe@lists.freedesktop.org,
+ oe-kbuild-all@lists.linux.dev
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-== Series Details ==
 
-Series: drm/xe/pm: Disable PM on unbounded pcie parent bridge
-URL   : https://patchwork.freedesktop.org/series/117945/
-State : success
+--/GGXerJyieNrfpB4
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 
-== Summary ==
+Hi Matt,
 
-+ trap cleanup EXIT
-+ cd /kernel
-+ git clone https://gitlab.freedesktop.org/drm/xe/ci.git .ci
-Cloning into '.ci'...
-++ date +%s
-+ echo -e '\e[0Ksection_start:1684400373:build_x86_64[collapsed=true]\r\e[0KBuild x86-64'
-+ mkdir -p build64
-[0Ksection_start:1684400373:build_x86_64[collapsed=true]
-[0KBuild x86-64
-+ cat .ci/kernel/kconfig
-+ make O=build64 olddefconfig
-make[1]: Entering directory '/kernel/build64'
-  GEN     Makefile
-  HOSTCC  scripts/basic/fixdep
-  HOSTCC  scripts/kconfig/conf.o
-  HOSTCC  scripts/kconfig/confdata.o
-  HOSTCC  scripts/kconfig/expr.o
-  LEX     scripts/kconfig/lexer.lex.c
-  YACC    scripts/kconfig/parser.tab.[ch]
-  HOSTCC  scripts/kconfig/lexer.lex.o
-  HOSTCC  scripts/kconfig/menu.o
-  HOSTCC  scripts/kconfig/parser.tab.o
-  HOSTCC  scripts/kconfig/preprocess.o
-  HOSTCC  scripts/kconfig/symbol.o
-  HOSTCC  scripts/kconfig/util.o
-  HOSTLD  scripts/kconfig/conf
+kernel test robot noticed the following build warnings:
+
+[auto build test WARNING on drm-tip/drm-tip]
+
+url:    https://github.com/intel-lab-lkp/linux/commits/Matt-Roper/drm-i915-display-Move-display-device-info-to-header-under-display/20230518-112007
+base:   git://anongit.freedesktop.org/drm/drm-tip drm-tip
+patch link:    https://lore.kernel.org/r/20230518031804.3133486-6-matthew.d.roper%40intel.com
+patch subject: [Intel-gfx] [PATCH 5/5] drm/i915/display: Handle GMD_ID identification in display code
+config: i386-randconfig-s001
+compiler: gcc-11 (Debian 11.3.0-12) 11.3.0
+reproduce:
+        # apt-get install sparse
+        # sparse version: v0.6.4-39-gce1a6720-dirty
+        # https://github.com/intel-lab-lkp/linux/commit/fc14367208dfb37157d27e941b61827dc058c60b
+        git remote add linux-review https://github.com/intel-lab-lkp/linux
+        git fetch --no-tags linux-review Matt-Roper/drm-i915-display-Move-display-device-info-to-header-under-display/20230518-112007
+        git checkout fc14367208dfb37157d27e941b61827dc058c60b
+        # save the config file
+        mkdir build_dir && cp config build_dir/.config
+        make W=1 C=1 CF='-fdiagnostic-prefix -D__CHECK_ENDIAN__' O=build_dir ARCH=i386 olddefconfig
+        make W=1 C=1 CF='-fdiagnostic-prefix -D__CHECK_ENDIAN__' O=build_dir ARCH=i386 SHELL=/bin/bash drivers/gpu/drm/i915/
+
+If you fix the issue, kindly add following tag where applicable
+| Reported-by: kernel test robot <lkp@intel.com>
+| Closes: https://lore.kernel.org/oe-kbuild-all/202305181708.Ze7kK58y-lkp@intel.com/
+
+sparse warnings: (new ones prefixed by >>)
+>> drivers/gpu/drm/i915/display/intel_display_device.c:691:3: sparse: sparse: symbol 'gmdid_display_map' was not declared. Should it be static?
+
+vim +/gmdid_display_map +691 drivers/gpu/drm/i915/display/intel_display_device.c
+
+   686	
+   687	struct {
+   688		u16 ver;
+   689		u16 rel;
+   690		const struct intel_display_device_info *display;
+ > 691	} gmdid_display_map[] = {
+   692		{ 14,  0, &xe_lpdp_display },
+   693	};
+   694	
+
+-- 
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
+
+--/GGXerJyieNrfpB4
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: attachment; filename=config
+
 #
-# configuration written to .config
+# Automatically generated file; DO NOT EDIT.
+# Linux/i386 6.4.0-rc2 Kernel Configuration
 #
-make[1]: Leaving directory '/kernel/build64'
-++ nproc
-+ make O=build64 -j48
-make[1]: Entering directory '/kernel/build64'
-  GEN     Makefile
-  WRAP    arch/x86/include/generated/uapi/asm/bpf_perf_event.h
-  WRAP    arch/x86/include/generated/uapi/asm/errno.h
-  SYSHDR  arch/x86/include/generated/uapi/asm/unistd_32.h
-  WRAP    arch/x86/include/generated/uapi/asm/fcntl.h
-  WRAP    arch/x86/include/generated/uapi/asm/ioctl.h
-  SYSHDR  arch/x86/include/generated/uapi/asm/unistd_64.h
-  SYSHDR  arch/x86/include/generated/uapi/asm/unistd_x32.h
-  WRAP    arch/x86/include/generated/uapi/asm/ioctls.h
-  SYSTBL  arch/x86/include/generated/asm/syscalls_32.h
-  WRAP    arch/x86/include/generated/uapi/asm/ipcbuf.h
-  SYSHDR  arch/x86/include/generated/asm/unistd_32_ia32.h
-  WRAP    arch/x86/include/generated/uapi/asm/param.h
-  WRAP    arch/x86/include/generated/uapi/asm/poll.h
-  SYSHDR  arch/x86/include/generated/asm/unistd_64_x32.h
-  WRAP    arch/x86/include/generated/uapi/asm/resource.h
-  WRAP    arch/x86/include/generated/uapi/asm/socket.h
-  SYSTBL  arch/x86/include/generated/asm/syscalls_64.h
-  WRAP    arch/x86/include/generated/uapi/asm/sockios.h
-  WRAP    arch/x86/include/generated/uapi/asm/termbits.h
-  WRAP    arch/x86/include/generated/uapi/asm/types.h
-  WRAP    arch/x86/include/generated/uapi/asm/termios.h
-  UPD     include/generated/uapi/linux/version.h
-  UPD     include/config/kernel.release
-  WRAP    arch/x86/include/generated/asm/early_ioremap.h
-  WRAP    arch/x86/include/generated/asm/export.h
-  WRAP    arch/x86/include/generated/asm/mcs_spinlock.h
-  WRAP    arch/x86/include/generated/asm/irq_regs.h
-  WRAP    arch/x86/include/generated/asm/kmap_size.h
-  WRAP    arch/x86/include/generated/asm/local64.h
-  WRAP    arch/x86/include/generated/asm/mmiowb.h
-  WRAP    arch/x86/include/generated/asm/module.lds.h
-  WRAP    arch/x86/include/generated/asm/rwonce.h
-  HOSTCC  arch/x86/tools/relocs_32.o
-  WRAP    arch/x86/include/generated/asm/unaligned.h
-  UPD     include/generated/compile.h
-  HOSTCC  arch/x86/tools/relocs_64.o
-  HOSTCC  arch/x86/tools/relocs_common.o
-  HOSTCC  scripts/unifdef
-  UPD     include/generated/utsrelease.h
-  HOSTCC  scripts/kallsyms
-  HOSTCC  scripts/sorttable
-  HOSTCC  scripts/asn1_compiler
-  DESCEND objtool
-  HOSTCC  /kernel/build64/tools/objtool/fixdep.o
-  HOSTLD  /kernel/build64/tools/objtool/fixdep-in.o
-  LINK    /kernel/build64/tools/objtool/fixdep
-  INSTALL /kernel/build64/tools/objtool/libsubcmd/include/subcmd/exec-cmd.h
-  INSTALL /kernel/build64/tools/objtool/libsubcmd/include/subcmd/help.h
-  INSTALL /kernel/build64/tools/objtool/libsubcmd/include/subcmd/pager.h
-  INSTALL /kernel/build64/tools/objtool/libsubcmd/include/subcmd/parse-options.h
-  INSTALL /kernel/build64/tools/objtool/libsubcmd/include/subcmd/run-command.h
-  CC      /kernel/build64/tools/objtool/libsubcmd/exec-cmd.o
-  INSTALL libsubcmd_headers
-  CC      /kernel/build64/tools/objtool/libsubcmd/help.o
-  CC      /kernel/build64/tools/objtool/libsubcmd/pager.o
-  CC      /kernel/build64/tools/objtool/libsubcmd/parse-options.o
-  CC      /kernel/build64/tools/objtool/libsubcmd/run-command.o
-  CC      /kernel/build64/tools/objtool/libsubcmd/sigchain.o
-  CC      /kernel/build64/tools/objtool/libsubcmd/subcmd-config.o
-  HOSTLD  arch/x86/tools/relocs
-  CC      scripts/mod/empty.o
-  HOSTCC  scripts/mod/mk_elfconfig
-  CC      scripts/mod/devicetable-offsets.s
-  HDRINST usr/include/video/edid.h
-  HDRINST usr/include/video/sisfb.h
-  HDRINST usr/include/video/uvesafb.h
-  HDRINST usr/include/drm/amdgpu_drm.h
-  HDRINST usr/include/drm/qaic_accel.h
-  HDRINST usr/include/drm/i915_drm.h
-  HDRINST usr/include/drm/vgem_drm.h
-  HDRINST usr/include/drm/virtgpu_drm.h
-  HDRINST usr/include/drm/xe_drm.h
-  HDRINST usr/include/drm/omap_drm.h
-  HDRINST usr/include/drm/radeon_drm.h
-  HDRINST usr/include/drm/tegra_drm.h
-  HDRINST usr/include/drm/drm_mode.h
-  HDRINST usr/include/drm/ivpu_accel.h
-  HDRINST usr/include/drm/exynos_drm.h
-  HDRINST usr/include/drm/drm_sarea.h
-  HDRINST usr/include/drm/v3d_drm.h
-  HDRINST usr/include/drm/qxl_drm.h
-  HDRINST usr/include/drm/drm_fourcc.h
-  HDRINST usr/include/drm/nouveau_drm.h
-  HDRINST usr/include/drm/habanalabs_accel.h
-  HDRINST usr/include/drm/vmwgfx_drm.h
-  HDRINST usr/include/drm/msm_drm.h
-  HDRINST usr/include/drm/etnaviv_drm.h
-  HDRINST usr/include/drm/vc4_drm.h
-  HDRINST usr/include/drm/panfrost_drm.h
-  HDRINST usr/include/drm/lima_drm.h
-  HDRINST usr/include/drm/armada_drm.h
-  HDRINST usr/include/drm/drm.h
-  HDRINST usr/include/mtd/inftl-user.h
-  HDRINST usr/include/mtd/nftl-user.h
-  HDRINST usr/include/mtd/mtd-user.h
-  HDRINST usr/include/mtd/ubi-user.h
-  HDRINST usr/include/mtd/mtd-abi.h
-  HDRINST usr/include/xen/gntdev.h
-  HDRINST usr/include/xen/gntalloc.h
-  HDRINST usr/include/xen/evtchn.h
-  HDRINST usr/include/xen/privcmd.h
-  HDRINST usr/include/asm-generic/auxvec.h
-  HDRINST usr/include/asm-generic/bitsperlong.h
-  HDRINST usr/include/asm-generic/posix_types.h
-  HDRINST usr/include/asm-generic/ioctls.h
-  HDRINST usr/include/asm-generic/mman.h
-  HDRINST usr/include/asm-generic/shmbuf.h
-  HDRINST usr/include/asm-generic/bpf_perf_event.h
-  HDRINST usr/include/asm-generic/types.h
-  HDRINST usr/include/asm-generic/poll.h
-  HDRINST usr/include/asm-generic/msgbuf.h
-  HDRINST usr/include/asm-generic/swab.h
-  HDRINST usr/include/asm-generic/statfs.h
-  HDRINST usr/include/asm-generic/unistd.h
-  HDRINST usr/include/asm-generic/hugetlb_encode.h
-  HDRINST usr/include/asm-generic/resource.h
-  HDRINST usr/include/asm-generic/param.h
-  HDRINST usr/include/asm-generic/termbits-common.h
-  HDRINST usr/include/asm-generic/sockios.h
-  HDRINST usr/include/asm-generic/kvm_para.h
-  HDRINST usr/include/asm-generic/errno.h
-  HDRINST usr/include/asm-generic/termios.h
-  HDRINST usr/include/asm-generic/mman-common.h
-  HDRINST usr/include/asm-generic/ioctl.h
-  HDRINST usr/include/asm-generic/socket.h
-  HDRINST usr/include/asm-generic/signal-defs.h
-  HDRINST usr/include/asm-generic/termbits.h
-  HDRINST usr/include/asm-generic/int-ll64.h
-  HDRINST usr/include/asm-generic/signal.h
-  HDRINST usr/include/asm-generic/siginfo.h
-  HDRINST usr/include/asm-generic/stat.h
-  HDRINST usr/include/asm-generic/int-l64.h
-  HDRINST usr/include/asm-generic/errno-base.h
-  HDRINST usr/include/asm-generic/fcntl.h
-  HDRINST usr/include/asm-generic/setup.h
-  HDRINST usr/include/asm-generic/ipcbuf.h
-  HDRINST usr/include/asm-generic/sembuf.h
-  HDRINST usr/include/asm-generic/ucontext.h
-  HDRINST usr/include/rdma/mlx5_user_ioctl_cmds.h
-  HDRINST usr/include/rdma/irdma-abi.h
-  HDRINST usr/include/rdma/mana-abi.h
-  HDRINST usr/include/rdma/hfi/hfi1_user.h
-  HDRINST usr/include/rdma/hfi/hfi1_ioctl.h
-  HDRINST usr/include/rdma/rdma_user_rxe.h
-  HDRINST usr/include/rdma/rdma_user_ioctl.h
-  HDRINST usr/include/rdma/mlx5_user_ioctl_verbs.h
-  HDRINST usr/include/rdma/bnxt_re-abi.h
-  HDRINST usr/include/rdma/hns-abi.h
-  HDRINST usr/include/rdma/qedr-abi.h
-  UPD     scripts/mod/devicetable-offsets.h
-  HDRINST usr/include/rdma/ib_user_ioctl_cmds.h
-  HDRINST usr/include/rdma/vmw_pvrdma-abi.h
-  HDRINST usr/include/rdma/ib_user_sa.h
-  HDRINST usr/include/rdma/ib_user_ioctl_verbs.h
-  HDRINST usr/include/rdma/rvt-abi.h
-  HDRINST usr/include/rdma/mlx5-abi.h
-  HDRINST usr/include/rdma/rdma_netlink.h
-  HDRINST usr/include/rdma/erdma-abi.h
-  HDRINST usr/include/rdma/rdma_user_ioctl_cmds.h
-  HDRINST usr/include/rdma/rdma_user_cm.h
-  HDRINST usr/include/rdma/ib_user_verbs.h
-  HDRINST usr/include/rdma/efa-abi.h
-  HDRINST usr/include/rdma/siw-abi.h
-  HDRINST usr/include/rdma/mlx4-abi.h
-  HDRINST usr/include/rdma/mthca-abi.h
-  HDRINST usr/include/rdma/ib_user_mad.h
-  HDRINST usr/include/rdma/ocrdma-abi.h
-  HDRINST usr/include/rdma/cxgb4-abi.h
-  HDRINST usr/include/misc/xilinx_sdfec.h
-  HDRINST usr/include/misc/uacce/hisi_qm.h
-  HDRINST usr/include/misc/uacce/uacce.h
-  HDRINST usr/include/misc/cxl.h
-  HDRINST usr/include/misc/ocxl.h
-  HDRINST usr/include/misc/fastrpc.h
-  HDRINST usr/include/misc/pvpanic.h
-  HDRINST usr/include/linux/i8k.h
-  HDRINST usr/include/linux/acct.h
-  HDRINST usr/include/linux/atmmpc.h
-  HDRINST usr/include/linux/fs.h
-  HDRINST usr/include/linux/cifs/cifs_mount.h
-  HDRINST usr/include/linux/cifs/cifs_netlink.h
-  HDRINST usr/include/linux/if_packet.h
-  HDRINST usr/include/linux/patchkey.h
-  HDRINST usr/include/linux/route.h
-  HDRINST usr/include/linux/tc_ematch/tc_em_ipt.h
-  HDRINST usr/include/linux/tc_ematch/tc_em_cmp.h
-  HDRINST usr/include/linux/tc_ematch/tc_em_meta.h
-  HDRINST usr/include/linux/tc_ematch/tc_em_nbyte.h
-  HDRINST usr/include/linux/tc_ematch/tc_em_text.h
-  HDRINST usr/include/linux/virtio_pmem.h
-  HDRINST usr/include/linux/rkisp1-config.h
-  HDRINST usr/include/linux/vhost.h
-  HDRINST usr/include/linux/cec-funcs.h
-  HDRINST usr/include/linux/ppdev.h
-  HDRINST usr/include/linux/isdn/capicmd.h
-  MKELF   scripts/mod/elfconfig.h
-  HDRINST usr/include/linux/virtio_fs.h
-  HDRINST usr/include/linux/netfilter_ipv6.h
-  HDRINST usr/include/linux/lirc.h
-  HDRINST usr/include/linux/mroute6.h
-  HDRINST usr/include/linux/nl80211-vnd-intel.h
-  HOSTCC  scripts/mod/modpost.o
-  HOSTCC  scripts/mod/file2alias.o
-  HDRINST usr/include/linux/ivtvfb.h
-  HDRINST usr/include/linux/auxvec.h
-  HOSTCC  scripts/mod/sumversion.o
-  HDRINST usr/include/linux/dm-log-userspace.h
-  HDRINST usr/include/linux/dccp.h
-  HDRINST usr/include/linux/virtio_scmi.h
-  HDRINST usr/include/linux/atmarp.h
-  HDRINST usr/include/linux/arcfb.h
-  HDRINST usr/include/linux/nbd-netlink.h
-  HDRINST usr/include/linux/sched/types.h
-  HDRINST usr/include/linux/tcp.h
-  HDRINST usr/include/linux/neighbour.h
-  HDRINST usr/include/linux/dlm_device.h
-  HDRINST usr/include/linux/wmi.h
-  HDRINST usr/include/linux/btrfs_tree.h
-  HDRINST usr/include/linux/virtio_crypto.h
-  HDRINST usr/include/linux/vbox_err.h
-  HDRINST usr/include/linux/edd.h
-  HDRINST usr/include/linux/loop.h
-  HDRINST usr/include/linux/nvme_ioctl.h
-  HDRINST usr/include/linux/mmtimer.h
-  HDRINST usr/include/linux/if_pppol2tp.h
-  HDRINST usr/include/linux/mtio.h
-  HDRINST usr/include/linux/if_arcnet.h
-  HDRINST usr/include/linux/romfs_fs.h
-  HDRINST usr/include/linux/posix_types.h
-  HDRINST usr/include/linux/rtc.h
-  HDRINST usr/include/linux/landlock.h
-  HDRINST usr/include/linux/gpio.h
-  HDRINST usr/include/linux/selinux_netlink.h
-  HDRINST usr/include/linux/pps.h
-  HDRINST usr/include/linux/ndctl.h
-  HDRINST usr/include/linux/virtio_gpu.h
-  HDRINST usr/include/linux/android/binder.h
-  HDRINST usr/include/linux/android/binderfs.h
-  HDRINST usr/include/linux/virtio_vsock.h
-  HDRINST usr/include/linux/sound.h
-  HDRINST usr/include/linux/vtpm_proxy.h
-  HDRINST usr/include/linux/nfs_fs.h
-  HDRINST usr/include/linux/elf-fdpic.h
-  HDRINST usr/include/linux/adfs_fs.h
-  HDRINST usr/include/linux/target_core_user.h
-  HDRINST usr/include/linux/netlink_diag.h
-  HDRINST usr/include/linux/const.h
-  HDRINST usr/include/linux/firewire-cdev.h
-  HDRINST usr/include/linux/vdpa.h
-  HDRINST usr/include/linux/if_infiniband.h
-  HDRINST usr/include/linux/serial.h
-  HDRINST usr/include/linux/iio/types.h
-  HDRINST usr/include/linux/iio/buffer.h
-  HDRINST usr/include/linux/iio/events.h
-  HDRINST usr/include/linux/baycom.h
-  HDRINST usr/include/linux/major.h
-  HDRINST usr/include/linux/atmppp.h
-  HDRINST usr/include/linux/ipv6_route.h
-  HDRINST usr/include/linux/spi/spidev.h
-  HDRINST usr/include/linux/spi/spi.h
-  HDRINST usr/include/linux/virtio_ring.h
-  HDRINST usr/include/linux/hdlc/ioctl.h
-  HDRINST usr/include/linux/remoteproc_cdev.h
-  HDRINST usr/include/linux/hyperv.h
-  HDRINST usr/include/linux/rpl_iptunnel.h
-  HDRINST usr/include/linux/sync_file.h
-  HDRINST usr/include/linux/igmp.h
-  HDRINST usr/include/linux/v4l2-dv-timings.h
-  HDRINST usr/include/linux/virtio_i2c.h
-  HDRINST usr/include/linux/xfrm.h
-  HDRINST usr/include/linux/capability.h
-  HDRINST usr/include/linux/gtp.h
-  HDRINST usr/include/linux/xdp_diag.h
-  HDRINST usr/include/linux/pkt_cls.h
-  HDRINST usr/include/linux/suspend_ioctls.h
-  HDRINST usr/include/linux/vt.h
-  HDRINST usr/include/linux/loadpin.h
-  HDRINST usr/include/linux/dlm_plock.h
-  HDRINST usr/include/linux/fb.h
-  HDRINST usr/include/linux/max2175.h
-  HDRINST usr/include/linux/sunrpc/debug.h
-  HDRINST usr/include/linux/gsmmux.h
-  HDRINST usr/include/linux/watchdog.h
-  HDRINST usr/include/linux/vhost_types.h
-  HDRINST usr/include/linux/vduse.h
-  HDRINST usr/include/linux/ila.h
-  HDRINST usr/include/linux/tdx-guest.h
-  HDRINST usr/include/linux/close_range.h
-  HDRINST usr/include/linux/ivtv.h
-  HDRINST usr/include/linux/cryptouser.h
-  HDRINST usr/include/linux/netfilter/xt_string.h
-  HDRINST usr/include/linux/netfilter/nfnetlink_compat.h
-  HDRINST usr/include/linux/netfilter/nf_nat.h
-  HDRINST usr/include/linux/netfilter/xt_recent.h
-  HDRINST usr/include/linux/netfilter/xt_addrtype.h
-  HDRINST usr/include/linux/netfilter/nf_conntrack_tcp.h
-  HDRINST usr/include/linux/netfilter/xt_MARK.h
-  HDRINST usr/include/linux/netfilter/xt_SYNPROXY.h
-  HDRINST usr/include/linux/netfilter/xt_multiport.h
-  HDRINST usr/include/linux/netfilter/nfnetlink.h
-  HDRINST usr/include/linux/netfilter/xt_cgroup.h
-  HDRINST usr/include/linux/netfilter/nf_synproxy.h
-  HDRINST usr/include/linux/netfilter/xt_TCPOPTSTRIP.h
-  HDRINST usr/include/linux/netfilter/nfnetlink_log.h
-  HDRINST usr/include/linux/netfilter/xt_TPROXY.h
-  HDRINST usr/include/linux/netfilter/xt_u32.h
-  HDRINST usr/include/linux/netfilter/nfnetlink_osf.h
-  HDRINST usr/include/linux/netfilter/xt_ecn.h
-  HDRINST usr/include/linux/netfilter/xt_esp.h
-  HDRINST usr/include/linux/netfilter/nfnetlink_hook.h
-  HDRINST usr/include/linux/netfilter/xt_mac.h
-  HDRINST usr/include/linux/netfilter/xt_comment.h
-  HDRINST usr/include/linux/netfilter/xt_NFQUEUE.h
-  HDRINST usr/include/linux/netfilter/xt_osf.h
-  HDRINST usr/include/linux/netfilter/xt_hashlimit.h
-  HDRINST usr/include/linux/netfilter/nf_conntrack_sctp.h
-  HDRINST usr/include/linux/netfilter/xt_socket.h
-  HDRINST usr/include/linux/netfilter/xt_connmark.h
-  HDRINST usr/include/linux/netfilter/xt_sctp.h
-  HDRINST usr/include/linux/netfilter/xt_tcpudp.h
-  HDRINST usr/include/linux/netfilter/xt_DSCP.h
-  HDRINST usr/include/linux/netfilter/xt_time.h
-  HDRINST usr/include/linux/netfilter/xt_IDLETIMER.h
-  HDRINST usr/include/linux/netfilter/xt_policy.h
-  HDRINST usr/include/linux/netfilter/xt_rpfilter.h
-  HDRINST usr/include/linux/netfilter/xt_nfacct.h
-  HDRINST usr/include/linux/netfilter/xt_SECMARK.h
-  HDRINST usr/include/linux/netfilter/xt_length.h
-  HDRINST usr/include/linux/netfilter/nfnetlink_cthelper.h
-  HDRINST usr/include/linux/netfilter/xt_quota.h
-  HDRINST usr/include/linux/netfilter/xt_CLASSIFY.h
-  HDRINST usr/include/linux/netfilter/xt_ipcomp.h
-  HDRINST usr/include/linux/netfilter/xt_iprange.h
-  HDRINST usr/include/linux/netfilter/xt_bpf.h
-  HDRINST usr/include/linux/netfilter/xt_LOG.h
-  HDRINST usr/include/linux/netfilter/xt_rateest.h
-  HDRINST usr/include/linux/netfilter/xt_CONNSECMARK.h
-  HDRINST usr/include/linux/netfilter/xt_HMARK.h
-  HDRINST usr/include/linux/netfilter/xt_CONNMARK.h
-  HDRINST usr/include/linux/netfilter/xt_pkttype.h
-  HDRINST usr/include/linux/netfilter/xt_ipvs.h
-  HDRINST usr/include/linux/netfilter/xt_devgroup.h
-  HDRINST usr/include/linux/netfilter/xt_AUDIT.h
-  HDRINST usr/include/linux/netfilter/xt_realm.h
-  HDRINST usr/include/linux/netfilter/nf_conntrack_common.h
-  HDRINST usr/include/linux/netfilter/xt_set.h
-  HDRINST usr/include/linux/netfilter/xt_LED.h
-  HDRINST usr/include/linux/netfilter/xt_connlabel.h
-  HDRINST usr/include/linux/netfilter/xt_owner.h
-  HDRINST usr/include/linux/netfilter/xt_dccp.h
-  HDRINST usr/include/linux/netfilter/xt_limit.h
-  HDRINST usr/include/linux/netfilter/xt_conntrack.h
-  HDRINST usr/include/linux/netfilter/xt_TEE.h
-  HDRINST usr/include/linux/netfilter/xt_RATEEST.h
-  HDRINST usr/include/linux/netfilter/xt_connlimit.h
-  HDRINST usr/include/linux/netfilter/ipset/ip_set.h
-  HDRINST usr/include/linux/netfilter/ipset/ip_set_list.h
-  HDRINST usr/include/linux/netfilter/ipset/ip_set_hash.h
-  HDRINST usr/include/linux/netfilter/ipset/ip_set_bitmap.h
-  HDRINST usr/include/linux/netfilter/x_tables.h
-  HDRINST usr/include/linux/netfilter/xt_dscp.h
-  HDRINST usr/include/linux/netfilter/nf_conntrack_ftp.h
-  HDRINST usr/include/linux/netfilter/xt_cluster.h
-  HDRINST usr/include/linux/netfilter/nf_conntrack_tuple_common.h
-  HDRINST usr/include/linux/netfilter/nf_log.h
-  HDRINST usr/include/linux/netfilter/xt_tcpmss.h
-  HDRINST usr/include/linux/netfilter/xt_NFLOG.h
-  HDRINST usr/include/linux/netfilter/xt_l2tp.h
-  HDRINST usr/include/linux/netfilter/xt_helper.h
-  HDRINST usr/include/linux/netfilter/xt_statistic.h
-  HDRINST usr/include/linux/netfilter/nfnetlink_queue.h
-  HDRINST usr/include/linux/netfilter/nfnetlink_cttimeout.h
-  HDRINST usr/include/linux/netfilter/xt_CT.h
-  HDRINST usr/include/linux/netfilter/xt_CHECKSUM.h
-  HDRINST usr/include/linux/netfilter/xt_connbytes.h
-  HDRINST usr/include/linux/netfilter/xt_state.h
-  HDRINST usr/include/linux/netfilter/nf_tables.h
-  HDRINST usr/include/linux/netfilter/xt_mark.h
-  HDRINST usr/include/linux/netfilter/xt_cpu.h
-  HDRINST usr/include/linux/netfilter/nf_tables_compat.h
-  HDRINST usr/include/linux/netfilter/xt_physdev.h
-  HDRINST usr/include/linux/netfilter/nfnetlink_conntrack.h
-  HDRINST usr/include/linux/netfilter/nfnetlink_acct.h
-  HDRINST usr/include/linux/netfilter/xt_TCPMSS.h
-  HDRINST usr/include/linux/tty_flags.h
-  HDRINST usr/include/linux/if_phonet.h
-  HDRINST usr/include/linux/elf-em.h
-  HDRINST usr/include/linux/vm_sockets.h
-  HDRINST usr/include/linux/dlmconstants.h
-  HDRINST usr/include/linux/bsg.h
-  HDRINST usr/include/linux/matroxfb.h
-  HDRINST usr/include/linux/sysctl.h
-  HDRINST usr/include/linux/unix_diag.h
-  HDRINST usr/include/linux/pcitest.h
-  HDRINST usr/include/linux/mman.h
-  HDRINST usr/include/linux/if_plip.h
-  HDRINST usr/include/linux/virtio_balloon.h
-  HDRINST usr/include/linux/pidfd.h
-  HDRINST usr/include/linux/f2fs.h
-  HDRINST usr/include/linux/x25.h
-  HDRINST usr/include/linux/if_cablemodem.h
-  HDRINST usr/include/linux/utsname.h
-  HDRINST usr/include/linux/counter.h
-  HDRINST usr/include/linux/atm_tcp.h
-  HDRINST usr/include/linux/atalk.h
-  HDRINST usr/include/linux/virtio_rng.h
-  HDRINST usr/include/linux/vboxguest.h
-  HDRINST usr/include/linux/bpf_perf_event.h
-  HDRINST usr/include/linux/ipmi_ssif_bmc.h
-  HDRINST usr/include/linux/nfs_mount.h
-  HDRINST usr/include/linux/sonet.h
-  HDRINST usr/include/linux/netfilter.h
-  HDRINST usr/include/linux/keyctl.h
-  HDRINST usr/include/linux/nl80211.h
-  HDRINST usr/include/linux/misc/bcm_vk.h
-  HDRINST usr/include/linux/audit.h
-  HDRINST usr/include/linux/tipc_config.h
-  HDRINST usr/include/linux/tipc_sockets_diag.h
-  HDRINST usr/include/linux/futex.h
-  HDRINST usr/include/linux/sev-guest.h
-  HDRINST usr/include/linux/ublk_cmd.h
-  HDRINST usr/include/linux/types.h
-  HDRINST usr/include/linux/virtio_input.h
-  HDRINST usr/include/linux/if_slip.h
-  HDRINST usr/include/linux/personality.h
-  HDRINST usr/include/linux/openat2.h
-  HDRINST usr/include/linux/poll.h
-  HDRINST usr/include/linux/posix_acl.h
-  HDRINST usr/include/linux/smc_diag.h
-  HDRINST usr/include/linux/snmp.h
-  HDRINST usr/include/linux/errqueue.h
-  HDRINST usr/include/linux/if_tunnel.h
-  HDRINST usr/include/linux/fanotify.h
-  HDRINST usr/include/linux/kernel.h
-  HDRINST usr/include/linux/rtnetlink.h
-  HDRINST usr/include/linux/rpl.h
-  HDRINST usr/include/linux/memfd.h
-  HDRINST usr/include/linux/serial_core.h
-  HDRINST usr/include/linux/dns_resolver.h
-  HDRINST usr/include/linux/pr.h
-  HDRINST usr/include/linux/atm_eni.h
-  HDRINST usr/include/linux/lp.h
-  HDRINST usr/include/linux/virtio_mem.h
-  HDRINST usr/include/linux/ultrasound.h
-  HDRINST usr/include/linux/sctp.h
-  HDRINST usr/include/linux/uio.h
-  HDRINST usr/include/linux/tcp_metrics.h
-  HDRINST usr/include/linux/wwan.h
-  HDRINST usr/include/linux/atmbr2684.h
-  HDRINST usr/include/linux/in_route.h
-  HDRINST usr/include/linux/qemu_fw_cfg.h
-  HDRINST usr/include/linux/if_macsec.h
-  HDRINST usr/include/linux/usb/charger.h
-  HDRINST usr/include/linux/usb/g_uvc.h
-  HDRINST usr/include/linux/usb/gadgetfs.h
-  HDRINST usr/include/linux/usb/raw_gadget.h
-  HDRINST usr/include/linux/usb/cdc-wdm.h
-  HDRINST usr/include/linux/usb/g_printer.h
-  HDRINST usr/include/linux/usb/midi.h
-  HDRINST usr/include/linux/usb/tmc.h
-  HDRINST usr/include/linux/usb/video.h
-  HDRINST usr/include/linux/usb/functionfs.h
-  HDRINST usr/include/linux/usb/audio.h
-  HDRINST usr/include/linux/usb/ch11.h
-  HDRINST usr/include/linux/usb/ch9.h
-  HDRINST usr/include/linux/usb/cdc.h
-  HDRINST usr/include/linux/jffs2.h
-  HDRINST usr/include/linux/ax25.h
-  HDRINST usr/include/linux/auto_fs.h
-  HDRINST usr/include/linux/tiocl.h
-  HDRINST usr/include/linux/scc.h
-  HDRINST usr/include/linux/psci.h
-  HDRINST usr/include/linux/swab.h
-  HDRINST usr/include/linux/cec.h
-  HDRINST usr/include/linux/kfd_ioctl.h
-  HDRINST usr/include/linux/smc.h
-  HDRINST usr/include/linux/qrtr.h
-  HDRINST usr/include/linux/screen_info.h
-  HDRINST usr/include/linux/nfsacl.h
-  HDRINST usr/include/linux/seg6_hmac.h
-  HDRINST usr/include/linux/gameport.h
-  HDRINST usr/include/linux/wireless.h
-  HDRINST usr/include/linux/fdreg.h
-  HDRINST usr/include/linux/cciss_defs.h
-  HDRINST usr/include/linux/serial_reg.h
-  HDRINST usr/include/linux/perf_event.h
-  HDRINST usr/include/linux/in6.h
-  HDRINST usr/include/linux/hid.h
-  HDRINST usr/include/linux/netlink.h
-  HDRINST usr/include/linux/fuse.h
-  HDRINST usr/include/linux/magic.h
-  HDRINST usr/include/linux/ioam6_iptunnel.h
-  HDRINST usr/include/linux/stm.h
-  HDRINST usr/include/linux/vsockmon.h
-  HDRINST usr/include/linux/seg6.h
-  HDRINST usr/include/linux/idxd.h
-  HDRINST usr/include/linux/nitro_enclaves.h
-  HDRINST usr/include/linux/ptrace.h
-  HDRINST usr/include/linux/ioam6_genl.h
-  HDRINST usr/include/linux/qnx4_fs.h
-  HDRINST usr/include/linux/fsl_mc.h
-  HDRINST usr/include/linux/net_tstamp.h
-  HDRINST usr/include/linux/msg.h
-  HDRINST usr/include/linux/netfilter_ipv4/ipt_TTL.h
-  HDRINST usr/include/linux/netfilter_ipv4/ipt_ttl.h
-  HDRINST usr/include/linux/netfilter_ipv4/ipt_ah.h
-  HDRINST usr/include/linux/netfilter_ipv4/ipt_ECN.h
-  HDRINST usr/include/linux/netfilter_ipv4/ip_tables.h
-  HDRINST usr/include/linux/netfilter_ipv4/ipt_ecn.h
-  HDRINST usr/include/linux/netfilter_ipv4/ipt_CLUSTERIP.h
-  HDRINST usr/include/linux/netfilter_ipv4/ipt_REJECT.h
-  HDRINST usr/include/linux/netfilter_ipv4/ipt_LOG.h
-  HDRINST usr/include/linux/sem.h
-  HDRINST usr/include/linux/net_namespace.h
-  HDRINST usr/include/linux/radeonfb.h
-  HDRINST usr/include/linux/tee.h
-  HDRINST usr/include/linux/udp.h
-  HDRINST usr/include/linux/virtio_bt.h
-  HDRINST usr/include/linux/v4l2-subdev.h
-  HDRINST usr/include/linux/posix_acl_xattr.h
-  HDRINST usr/include/linux/v4l2-mediabus.h
-  HDRINST usr/include/linux/atmapi.h
-  HDRINST usr/include/linux/raid/md_p.h
-  HDRINST usr/include/linux/raid/md_u.h
-  HDRINST usr/include/linux/zorro_ids.h
-  HDRINST usr/include/linux/nbd.h
-  HDRINST usr/include/linux/isst_if.h
-  HDRINST usr/include/linux/rxrpc.h
-  HDRINST usr/include/linux/unistd.h
-  HDRINST usr/include/linux/if_arp.h
-  HDRINST usr/include/linux/atm_zatm.h
-  HDRINST usr/include/linux/io_uring.h
-  HDRINST usr/include/linux/if_fddi.h
-  HDRINST usr/include/linux/bpqether.h
-  HDRINST usr/include/linux/sysinfo.h
-  HDRINST usr/include/linux/auto_dev-ioctl.h
-  HDRINST usr/include/linux/nfs4_mount.h
-  HDRINST usr/include/linux/keyboard.h
-  HDRINST usr/include/linux/virtio_mmio.h
-  HDRINST usr/include/linux/input.h
-  HDRINST usr/include/linux/qnxtypes.h
-  HDRINST usr/include/linux/mdio.h
-  HDRINST usr/include/linux/lwtunnel.h
-  HDRINST usr/include/linux/gfs2_ondisk.h
-  HDRINST usr/include/linux/nfs4.h
-  HDRINST usr/include/linux/ptp_clock.h
-  HDRINST usr/include/linux/nubus.h
-  HDRINST usr/include/linux/if_bonding.h
-  HDRINST usr/include/linux/kcov.h
-  HDRINST usr/include/linux/fadvise.h
-  HDRINST usr/include/linux/taskstats.h
-  HDRINST usr/include/linux/veth.h
-  HDRINST usr/include/linux/atm.h
-  HDRINST usr/include/linux/ipmi.h
-  HDRINST usr/include/linux/kdev_t.h
-  HDRINST usr/include/linux/mount.h
-  HDRINST usr/include/linux/shm.h
-  HDRINST usr/include/linux/resource.h
-  HDRINST usr/include/linux/prctl.h
-  HDRINST usr/include/linux/watch_queue.h
-  HDRINST usr/include/linux/sched.h
-  HDRINST usr/include/linux/phonet.h
-  HDRINST usr/include/linux/random.h
-  HDRINST usr/include/linux/tty.h
-  HDRINST usr/include/linux/apm_bios.h
-  HDRINST usr/include/linux/fd.h
-  HDRINST usr/include/linux/um_timetravel.h
-  HDRINST usr/include/linux/tls.h
-  HDRINST usr/include/linux/rpmsg_types.h
-  HDRINST usr/include/linux/pfrut.h
-  HDRINST usr/include/linux/mei.h
-  HDRINST usr/include/linux/fsi.h
-  HDRINST usr/include/linux/rds.h
-  HDRINST usr/include/linux/if_x25.h
-  HDRINST usr/include/linux/param.h
-  HDRINST usr/include/linux/netdevice.h
-  HDRINST usr/include/linux/binfmts.h
-  HDRINST usr/include/linux/if_pppox.h
-  HDRINST usr/include/linux/sockios.h
-  HDRINST usr/include/linux/kcm.h
-  HDRINST usr/include/linux/virtio_9p.h
-  HDRINST usr/include/linux/genwqe/genwqe_card.h
-  HDRINST usr/include/linux/if_tun.h
-  HDRINST usr/include/linux/if_ether.h
-  HDRINST usr/include/linux/kvm_para.h
-  HDRINST usr/include/linux/kernel-page-flags.h
-  HDRINST usr/include/linux/cdrom.h
-  HDRINST usr/include/linux/un.h
-  HDRINST usr/include/linux/module.h
-  HDRINST usr/include/linux/mqueue.h
-  HDRINST usr/include/linux/a.out.h
-  HDRINST usr/include/linux/input-event-codes.h
-  HDRINST usr/include/linux/coda.h
-  HDRINST usr/include/linux/rio_mport_cdev.h
-  HDRINST usr/include/linux/ipsec.h
-  HDRINST usr/include/linux/blkpg.h
-  HDRINST usr/include/linux/blkzoned.h
-  HDRINST usr/include/linux/netfilter_bridge/ebt_arpreply.h
-  HDRINST usr/include/linux/netfilter_bridge/ebt_redirect.h
-  HDRINST usr/include/linux/netfilter_bridge/ebt_nflog.h
-  HDRINST usr/include/linux/netfilter_bridge/ebt_802_3.h
-  HDRINST usr/include/linux/netfilter_bridge/ebt_nat.h
-  HDRINST usr/include/linux/netfilter_bridge/ebt_mark_m.h
-  HDRINST usr/include/linux/netfilter_bridge/ebtables.h
-  HDRINST usr/include/linux/netfilter_bridge/ebt_vlan.h
-  HDRINST usr/include/linux/netfilter_bridge/ebt_limit.h
-  HDRINST usr/include/linux/netfilter_bridge/ebt_log.h
-  HDRINST usr/include/linux/netfilter_bridge/ebt_stp.h
-  HDRINST usr/include/linux/netfilter_bridge/ebt_pkttype.h
-  HDRINST usr/include/linux/netfilter_bridge/ebt_ip.h
-  HDRINST usr/include/linux/netfilter_bridge/ebt_ip6.h
-  HDRINST usr/include/linux/netfilter_bridge/ebt_arp.h
-  HDRINST usr/include/linux/netfilter_bridge/ebt_mark_t.h
-  HDRINST usr/include/linux/netfilter_bridge/ebt_among.h
-  HDRINST usr/include/linux/reiserfs_fs.h
-  HDRINST usr/include/linux/cciss_ioctl.h
-  HDRINST usr/include/linux/fsmap.h
-  HDRINST usr/include/linux/smiapp.h
-  HDRINST usr/include/linux/switchtec_ioctl.h
-  HDRINST usr/include/linux/atmdev.h
-  HDRINST usr/include/linux/hpet.h
-  HDRINST usr/include/linux/virtio_config.h
-  HDRINST usr/include/linux/string.h
-  HDRINST usr/include/linux/kfd_sysfs.h
-  HDRINST usr/include/linux/inet_diag.h
-  HDRINST usr/include/linux/netdev.h
-  HDRINST usr/include/linux/xattr.h
-  HDRINST usr/include/linux/iommufd.h
-  HDRINST usr/include/linux/errno.h
-  HDRINST usr/include/linux/icmp.h
-  HDRINST usr/include/linux/i2o-dev.h
-  HDRINST usr/include/linux/pg.h
-  HDRINST usr/include/linux/if_bridge.h
-  HDRINST usr/include/linux/thermal.h
-  HDRINST usr/include/linux/uinput.h
-  HDRINST usr/include/linux/dqblk_xfs.h
-  HDRINST usr/include/linux/v4l2-common.h
-  HDRINST usr/include/linux/nvram.h
-  HDRINST usr/include/linux/if_vlan.h
-  HDRINST usr/include/linux/uhid.h
-  HDRINST usr/include/linux/omap3isp.h
-  HDRINST usr/include/linux/rose.h
-  HDRINST usr/include/linux/phantom.h
-  HDRINST usr/include/linux/ipmi_msgdefs.h
-  HDRINST usr/include/linux/bcm933xx_hcs.h
-  HDRINST usr/include/linux/bpf.h
-  HDRINST usr/include/linux/mempolicy.h
-  HDRINST usr/include/linux/efs_fs_sb.h
-  HDRINST usr/include/linux/nexthop.h
-  HDRINST usr/include/linux/net_dropmon.h
-  HDRINST usr/include/linux/surface_aggregator/cdev.h
-  HDRINST usr/include/linux/surface_aggregator/dtx.h
-  HDRINST usr/include/linux/net.h
-  HDRINST usr/include/linux/mii.h
-  HDRINST usr/include/linux/cm4000_cs.h
-  HDRINST usr/include/linux/virtio_pcidev.h
-  HDRINST usr/include/linux/termios.h
-  HDRINST usr/include/linux/cgroupstats.h
-  HDRINST usr/include/linux/mpls.h
-  HDRINST usr/include/linux/iommu.h
-  HDRINST usr/include/linux/toshiba.h
-  HDRINST usr/include/linux/virtio_scsi.h
-  HDRINST usr/include/linux/zorro.h
-  HDRINST usr/include/linux/chio.h
-  HDRINST usr/include/linux/pkt_sched.h
-  HDRINST usr/include/linux/cramfs_fs.h
-  HDRINST usr/include/linux/nfs3.h
-  HDRINST usr/include/linux/vfio_ccw.h
-  HDRINST usr/include/linux/atm_nicstar.h
-  HDRINST usr/include/linux/ncsi.h
-  HDRINST usr/include/linux/ioctl.h
-  HDRINST usr/include/linux/virtio_net.h
-  HDRINST usr/include/linux/stddef.h
-  HDRINST usr/include/linux/limits.h
-  HDRINST usr/include/linux/ipmi_bmc.h
-  HDRINST usr/include/linux/netfilter_arp.h
-  HDRINST usr/include/linux/if_addr.h
-  HDRINST usr/include/linux/rpmsg.h
-  HDRINST usr/include/linux/media-bus-format.h
-  HDRINST usr/include/linux/kernelcapi.h
-  HDRINST usr/include/linux/ppp_defs.h
-  HDRINST usr/include/linux/ethtool.h
-  HDRINST usr/include/linux/aspeed-video.h
-  HDRINST usr/include/linux/hdlc.h
-  HDRINST usr/include/linux/fscrypt.h
-  HDRINST usr/include/linux/batadv_packet.h
-  HDRINST usr/include/linux/uuid.h
-  HDRINST usr/include/linux/capi.h
-  HDRINST usr/include/linux/mptcp.h
-  HDRINST usr/include/linux/hidraw.h
-  HDRINST usr/include/linux/virtio_console.h
-  HDRINST usr/include/linux/irqnr.h
-  HDRINST usr/include/linux/coresight-stm.h
-  HDRINST usr/include/linux/cxl_mem.h
-  HDRINST usr/include/linux/iso_fs.h
-  HDRINST usr/include/linux/virtio_blk.h
-  HDRINST usr/include/linux/udf_fs_i.h
-  HDRINST usr/include/linux/coff.h
-  HDRINST usr/include/linux/dma-buf.h
-  HDRINST usr/include/linux/ife.h
-  HDRINST usr/include/linux/agpgart.h
-  HDRINST usr/include/linux/socket.h
-  HDRINST usr/include/linux/nilfs2_ondisk.h
-  HDRINST usr/include/linux/connector.h
-  HDRINST usr/include/linux/auto_fs4.h
-  HDRINST usr/include/linux/bt-bmc.h
-  HDRINST usr/include/linux/map_to_7segment.h
-  HDRINST usr/include/linux/tc_act/tc_skbedit.h
-  HDRINST usr/include/linux/tc_act/tc_ctinfo.h
-  HDRINST usr/include/linux/tc_act/tc_defact.h
-  HDRINST usr/include/linux/tc_act/tc_gact.h
-  HDRINST usr/include/linux/tc_act/tc_vlan.h
-  HDRINST usr/include/linux/tc_act/tc_skbmod.h
-  HDRINST usr/include/linux/tc_act/tc_sample.h
-  HDRINST usr/include/linux/tc_act/tc_tunnel_key.h
-  HDRINST usr/include/linux/tc_act/tc_gate.h
-  HDRINST usr/include/linux/tc_act/tc_mirred.h
-  HDRINST usr/include/linux/tc_act/tc_nat.h
-  LD      /kernel/build64/tools/objtool/libsubcmd/libsubcmd-in.o
-  HDRINST usr/include/linux/tc_act/tc_csum.h
-  HDRINST usr/include/linux/tc_act/tc_connmark.h
-  HDRINST usr/include/linux/tc_act/tc_mpls.h
-  HDRINST usr/include/linux/tc_act/tc_ife.h
-  HDRINST usr/include/linux/tc_act/tc_ct.h
-  HDRINST usr/include/linux/tc_act/tc_pedit.h
-  HDRINST usr/include/linux/tc_act/tc_bpf.h
-  HDRINST usr/include/linux/tc_act/tc_ipt.h
-  HDRINST usr/include/linux/netrom.h
-  HDRINST usr/include/linux/joystick.h
-  HDRINST usr/include/linux/falloc.h
-  HDRINST usr/include/linux/cycx_cfm.h
-  HDRINST usr/include/linux/omapfb.h
-  HDRINST usr/include/linux/msdos_fs.h
-  HDRINST usr/include/linux/virtio_types.h
-  HDRINST usr/include/linux/mroute.h
-  HDRINST usr/include/linux/psample.h
-  HDRINST usr/include/linux/ipv6.h
-  HDRINST usr/include/linux/dw100.h
-  HDRINST usr/include/linux/psp-sev.h
-  HDRINST usr/include/linux/vfio.h
-  HDRINST usr/include/linux/if_ppp.h
-  HDRINST usr/include/linux/byteorder/big_endian.h
-  HDRINST usr/include/linux/byteorder/little_endian.h
-  HDRINST usr/include/linux/comedi.h
-  HDRINST usr/include/linux/scif_ioctl.h
-  HDRINST usr/include/linux/timerfd.h
-  HDRINST usr/include/linux/time_types.h
-  HDRINST usr/include/linux/firewire-constants.h
-  HDRINST usr/include/linux/virtio_snd.h
-  HDRINST usr/include/linux/ppp-ioctl.h
-  AR      /kernel/build64/tools/objtool/libsubcmd/libsubcmd.a
-  HDRINST usr/include/linux/fib_rules.h
-  HDRINST usr/include/linux/gen_stats.h
-  HDRINST usr/include/linux/virtio_iommu.h
-  HDRINST usr/include/linux/genetlink.h
-  HDRINST usr/include/linux/uvcvideo.h
-  HDRINST usr/include/linux/pfkeyv2.h
-  HDRINST usr/include/linux/soundcard.h
-  HDRINST usr/include/linux/times.h
-  HDRINST usr/include/linux/nfc.h
-  HDRINST usr/include/linux/affs_hardblocks.h
-  HDRINST usr/include/linux/nilfs2_api.h
-  HDRINST usr/include/linux/rseq.h
-  HDRINST usr/include/linux/caif/caif_socket.h
-  HDRINST usr/include/linux/caif/if_caif.h
-  HDRINST usr/include/linux/i2c-dev.h
-  HDRINST usr/include/linux/cuda.h
-  HDRINST usr/include/linux/cn_proc.h
-  HDRINST usr/include/linux/parport.h
-  HDRINST usr/include/linux/v4l2-controls.h
-  HDRINST usr/include/linux/hsi/cs-protocol.h
-  HDRINST usr/include/linux/hsi/hsi_char.h
-  HDRINST usr/include/linux/seg6_genl.h
-  HDRINST usr/include/linux/am437x-vpfe.h
-  HDRINST usr/include/linux/amt.h
-  HDRINST usr/include/linux/netconf.h
-  HDRINST usr/include/linux/erspan.h
-  HDRINST usr/include/linux/nsfs.h
-  HDRINST usr/include/linux/xilinx-v4l2-controls.h
-  HDRINST usr/include/linux/aspeed-p2a-ctrl.h
-  HDRINST usr/include/linux/vfio_zdev.h
-  HDRINST usr/include/linux/serio.h
-  HDRINST usr/include/linux/acrn.h
-  HDRINST usr/include/linux/nfs2.h
-  HDRINST usr/include/linux/virtio_pci.h
-  HDRINST usr/include/linux/ipc.h
-  HDRINST usr/include/linux/ethtool_netlink.h
-  HDRINST usr/include/linux/kd.h
-  HDRINST usr/include/linux/elf.h
-  HDRINST usr/include/linux/videodev2.h
-  HDRINST usr/include/linux/if_alg.h
-  HDRINST usr/include/linux/sonypi.h
-  HDRINST usr/include/linux/fsverity.h
-  HDRINST usr/include/linux/if.h
-  HDRINST usr/include/linux/btrfs.h
-  HDRINST usr/include/linux/vm_sockets_diag.h
-  HDRINST usr/include/linux/netfilter_bridge.h
-  HDRINST usr/include/linux/packet_diag.h
-  HDRINST usr/include/linux/netfilter_ipv4.h
-  HDRINST usr/include/linux/kvm.h
-  HDRINST usr/include/linux/pci.h
-  HDRINST usr/include/linux/if_addrlabel.h
-  HDRINST usr/include/linux/hdlcdrv.h
-  HDRINST usr/include/linux/cfm_bridge.h
-  HDRINST usr/include/linux/fiemap.h
-  HDRINST usr/include/linux/dm-ioctl.h
-  HDRINST usr/include/linux/aspeed-lpc-ctrl.h
-  HDRINST usr/include/linux/atmioc.h
-  HDRINST usr/include/linux/dlm.h
-  HDRINST usr/include/linux/pci_regs.h
-  HDRINST usr/include/linux/cachefiles.h
-  HDRINST usr/include/linux/membarrier.h
-  HDRINST usr/include/linux/nfs_idmap.h
-  HDRINST usr/include/linux/ip.h
-  HDRINST usr/include/linux/atm_he.h
-  HDRINST usr/include/linux/nfsd/export.h
-  HDRINST usr/include/linux/nfsd/stats.h
-  HDRINST usr/include/linux/nfsd/debug.h
-  HDRINST usr/include/linux/nfsd/cld.h
-  HDRINST usr/include/linux/ip_vs.h
-  HDRINST usr/include/linux/vmcore.h
-  HDRINST usr/include/linux/vbox_vmmdev_types.h
-  CC      /kernel/build64/tools/objtool/weak.o
-  HDRINST usr/include/linux/dvb/osd.h
-  CC      /kernel/build64/tools/objtool/check.o
-  HDRINST usr/include/linux/dvb/dmx.h
-  CC      /kernel/build64/tools/objtool/special.o
-  CC      /kernel/build64/tools/objtool/builtin-check.o
-  HDRINST usr/include/linux/dvb/net.h
-  MKDIR   /kernel/build64/tools/objtool/arch/x86/
-  HDRINST usr/include/linux/dvb/frontend.h
-  CC      /kernel/build64/tools/objtool/elf.o
-  HDRINST usr/include/linux/dvb/ca.h
-  HDRINST usr/include/linux/dvb/version.h
-  MKDIR   /kernel/build64/tools/objtool/arch/x86/lib/
-  CC      /kernel/build64/tools/objtool/objtool.o
-  HDRINST usr/include/linux/dvb/video.h
-  HDRINST usr/include/linux/dvb/audio.h
-  CC      /kernel/build64/tools/objtool/arch/x86/special.o
-  CC      /kernel/build64/tools/objtool/orc_gen.o
-  HDRINST usr/include/linux/nfs.h
-  CC      /kernel/build64/tools/objtool/orc_dump.o
-  HDRINST usr/include/linux/if_link.h
-  GEN     /kernel/build64/tools/objtool/arch/x86/lib/inat-tables.c
-  HDRINST usr/include/linux/wait.h
-  HDRINST usr/include/linux/icmpv6.h
-  CC      /kernel/build64/tools/objtool/libstring.o
-  HDRINST usr/include/linux/media.h
-  HDRINST usr/include/linux/seg6_local.h
-  CC      /kernel/build64/tools/objtool/libctype.o
-  HDRINST usr/include/linux/openvswitch.h
-  HDRINST usr/include/linux/atmsap.h
-  CC      /kernel/build64/tools/objtool/str_error_r.o
-  HDRINST usr/include/linux/bpfilter.h
-  HDRINST usr/include/linux/fpga-dfl.h
-  HDRINST usr/include/linux/userio.h
-  CC      /kernel/build64/tools/objtool/librbtree.o
-  HDRINST usr/include/linux/signal.h
-  HDRINST usr/include/linux/map_to_14segment.h
-  HDRINST usr/include/linux/hdreg.h
-  HDRINST usr/include/linux/utime.h
-  HDRINST usr/include/linux/usbdevice_fs.h
-  HDRINST usr/include/linux/timex.h
-  HDRINST usr/include/linux/if_fc.h
-  HDRINST usr/include/linux/reiserfs_xattr.h
-  HDRINST usr/include/linux/quota.h
-  HDRINST usr/include/linux/hw_breakpoint.h
-  HDRINST usr/include/linux/ioprio.h
-  HDRINST usr/include/linux/eventpoll.h
-  HDRINST usr/include/linux/atmclip.h
-  HDRINST usr/include/linux/can.h
-  HDRINST usr/include/linux/if_team.h
-  HDRINST usr/include/linux/usbip.h
-  HDRINST usr/include/linux/stat.h
-  HDRINST usr/include/linux/fou.h
-  HDRINST usr/include/linux/hash_info.h
-  HDRINST usr/include/linux/ppp-comp.h
-  HDRINST usr/include/linux/ip6_tunnel.h
-  HDRINST usr/include/linux/tipc_netlink.h
-  HDRINST usr/include/linux/in.h
-  HDRINST usr/include/linux/wireguard.h
-  HDRINST usr/include/linux/btf.h
-  HDRINST usr/include/linux/batman_adv.h
-  HDRINST usr/include/linux/fcntl.h
-  HDRINST usr/include/linux/if_ltalk.h
-  HDRINST usr/include/linux/i2c.h
-  HDRINST usr/include/linux/atm_idt77105.h
-  HDRINST usr/include/linux/kexec.h
-  HDRINST usr/include/linux/arm_sdei.h
-  HDRINST usr/include/linux/netfilter_ipv6/ip6_tables.h
-  HDRINST usr/include/linux/netfilter_ipv6/ip6t_ah.h
-  HDRINST usr/include/linux/netfilter_ipv6/ip6t_NPT.h
-  HDRINST usr/include/linux/netfilter_ipv6/ip6t_rt.h
-  HDRINST usr/include/linux/netfilter_ipv6/ip6t_REJECT.h
-  HDRINST usr/include/linux/netfilter_ipv6/ip6t_opts.h
-  HDRINST usr/include/linux/netfilter_ipv6/ip6t_srh.h
-  HDRINST usr/include/linux/netfilter_ipv6/ip6t_LOG.h
-  HDRINST usr/include/linux/netfilter_ipv6/ip6t_mh.h
-  HDRINST usr/include/linux/netfilter_ipv6/ip6t_HL.h
-  HDRINST usr/include/linux/netfilter_ipv6/ip6t_hl.h
-  HDRINST usr/include/linux/netfilter_ipv6/ip6t_frag.h
-  HDRINST usr/include/linux/netfilter_ipv6/ip6t_ipv6header.h
-  HDRINST usr/include/linux/minix_fs.h
-  HDRINST usr/include/linux/aio_abi.h
-  HDRINST usr/include/linux/pktcdvd.h
-  HDRINST usr/include/linux/libc-compat.h
-  HDRINST usr/include/linux/atmlec.h
-  HDRINST usr/include/linux/signalfd.h
-  HDRINST usr/include/linux/bpf_common.h
-  HDRINST usr/include/linux/seg6_iptunnel.h
-  HDRINST usr/include/linux/synclink.h
-  HDRINST usr/include/linux/mpls_iptunnel.h
-  HDRINST usr/include/linux/mctp.h
-  HDRINST usr/include/linux/if_xdp.h
-  HDRINST usr/include/linux/llc.h
-  HDRINST usr/include/linux/atmsvc.h
-  HDRINST usr/include/linux/sed-opal.h
-  HDRINST usr/include/linux/sock_diag.h
-  HDRINST usr/include/linux/time.h
-  HDRINST usr/include/linux/securebits.h
-  HDRINST usr/include/linux/fsl_hypervisor.h
-  HDRINST usr/include/linux/if_hippi.h
-  HDRINST usr/include/linux/dlm_netlink.h
-  HDRINST usr/include/linux/seccomp.h
-  HDRINST usr/include/linux/oom.h
-  HDRINST usr/include/linux/filter.h
-  HDRINST usr/include/linux/inotify.h
-  HDRINST usr/include/linux/rfkill.h
-  HDRINST usr/include/linux/reboot.h
-  HDRINST usr/include/linux/can/vxcan.h
-  HDRINST usr/include/linux/can/j1939.h
-  HDRINST usr/include/linux/can/netlink.h
-  CC      /kernel/build64/tools/objtool/arch/x86/decode.o
-  HDRINST usr/include/linux/can/bcm.h
-  HDRINST usr/include/linux/can/raw.h
-  HDRINST usr/include/linux/can/gw.h
-  HDRINST usr/include/linux/can/error.h
-  HDRINST usr/include/linux/can/isotp.h
-  HDRINST usr/include/linux/if_eql.h
-  HDRINST usr/include/linux/hiddev.h
-  HDRINST usr/include/linux/blktrace_api.h
-  HDRINST usr/include/linux/ccs.h
-  HDRINST usr/include/linux/ioam6.h
-  HDRINST usr/include/linux/hsr_netlink.h
-  HDRINST usr/include/linux/mmc/ioctl.h
-  HDRINST usr/include/linux/bfs_fs.h
-  HDRINST usr/include/linux/rio_cm_cdev.h
-  HDRINST usr/include/linux/uleds.h
-  HDRINST usr/include/linux/mrp_bridge.h
-  HDRINST usr/include/linux/adb.h
-  HDRINST usr/include/linux/pmu.h
-  HDRINST usr/include/linux/udmabuf.h
-  HDRINST usr/include/linux/kcmp.h
-  HDRINST usr/include/linux/dma-heap.h
-  HDRINST usr/include/linux/userfaultfd.h
-  HDRINST usr/include/linux/netfilter_arp/arpt_mangle.h
-  HDRINST usr/include/linux/netfilter_arp/arp_tables.h
-  HDRINST usr/include/linux/tipc.h
-  HDRINST usr/include/linux/virtio_ids.h
-  HDRINST usr/include/linux/l2tp.h
-  HDRINST usr/include/linux/devlink.h
-  HDRINST usr/include/linux/virtio_gpio.h
-  HDRINST usr/include/linux/dcbnl.h
-  HDRINST usr/include/linux/cyclades.h
-  HDRINST usr/include/sound/intel/avs/tokens.h
-  HDRINST usr/include/sound/sof/fw.h
-  HDRINST usr/include/sound/sof/abi.h
-  HDRINST usr/include/sound/sof/tokens.h
-  HDRINST usr/include/sound/sof/header.h
-  HDRINST usr/include/sound/usb_stream.h
-  HDRINST usr/include/sound/sfnt_info.h
-  HDRINST usr/include/sound/asequencer.h
-  HDRINST usr/include/sound/tlv.h
-  HDRINST usr/include/sound/asound.h
-  HDRINST usr/include/sound/asoc.h
-  HDRINST usr/include/sound/sb16_csp.h
-  HDRINST usr/include/sound/compress_offload.h
-  HDRINST usr/include/sound/hdsp.h
-  HDRINST usr/include/sound/emu10k1.h
-  HDRINST usr/include/sound/snd_ar_tokens.h
-  HDRINST usr/include/sound/snd_sst_tokens.h
-  HDRINST usr/include/sound/asound_fm.h
-  HDRINST usr/include/sound/hdspm.h
-  HDRINST usr/include/sound/compress_params.h
-  HDRINST usr/include/sound/firewire.h
-  HDRINST usr/include/sound/skl-tplg-interface.h
-  HDRINST usr/include/scsi/scsi_bsg_ufs.h
-  HDRINST usr/include/scsi/scsi_netlink_fc.h
-  HDRINST usr/include/scsi/scsi_bsg_mpi3mr.h
-  HDRINST usr/include/scsi/fc/fc_ns.h
-  HDRINST usr/include/scsi/fc/fc_fs.h
-  HDRINST usr/include/scsi/fc/fc_els.h
-  HDRINST usr/include/scsi/fc/fc_gs.h
-  HDRINST usr/include/scsi/scsi_bsg_fc.h
-  HDRINST usr/include/scsi/cxlflash_ioctl.h
-  HDRINST usr/include/scsi/scsi_netlink.h
-  HDRINST usr/include/linux/version.h
-  HDRINST usr/include/asm/processor-flags.h
-  HDRINST usr/include/asm/auxvec.h
-  HDRINST usr/include/asm/svm.h
-  HDRINST usr/include/asm/bitsperlong.h
-  HDRINST usr/include/asm/kvm_perf.h
-  HDRINST usr/include/asm/mce.h
-  HDRINST usr/include/asm/posix_types.h
-  HDRINST usr/include/asm/msr.h
-  HDRINST usr/include/asm/sigcontext32.h
-  HDRINST usr/include/asm/mman.h
-  HDRINST usr/include/asm/shmbuf.h
-  HDRINST usr/include/asm/e820.h
-  HDRINST usr/include/asm/posix_types_64.h
-  HDRINST usr/include/asm/vsyscall.h
-  HDRINST usr/include/asm/msgbuf.h
-  HDRINST usr/include/asm/swab.h
-  HDRINST usr/include/asm/statfs.h
-  HDRINST usr/include/asm/posix_types_x32.h
-  HDRINST usr/include/asm/ptrace.h
-  HDRINST usr/include/asm/unistd.h
-  HDRINST usr/include/asm/ist.h
-  HDRINST usr/include/asm/prctl.h
-  HDRINST usr/include/asm/boot.h
-  HDRINST usr/include/asm/sigcontext.h
-  HDRINST usr/include/asm/posix_types_32.h
-  HDRINST usr/include/asm/kvm_para.h
-  HDRINST usr/include/asm/a.out.h
-  HDRINST usr/include/asm/mtrr.h
-  HDRINST usr/include/asm/amd_hsmp.h
-  HDRINST usr/include/asm/hwcap2.h
-  HDRINST usr/include/asm/ptrace-abi.h
-  HDRINST usr/include/asm/vm86.h
-  HDRINST usr/include/asm/vmx.h
-  HDRINST usr/include/asm/ldt.h
-  HDRINST usr/include/asm/perf_regs.h
-  HDRINST usr/include/asm/kvm.h
-  HDRINST usr/include/asm/debugreg.h
-  HDRINST usr/include/asm/signal.h
-  HDRINST usr/include/asm/bootparam.h
-  HDRINST usr/include/asm/siginfo.h
-  HDRINST usr/include/asm/hw_breakpoint.h
-  HDRINST usr/include/asm/stat.h
-  HDRINST usr/include/asm/setup.h
-  HDRINST usr/include/asm/sembuf.h
-  HDRINST usr/include/asm/sgx.h
-  HDRINST usr/include/asm/ucontext.h
-  HDRINST usr/include/asm/byteorder.h
-  HDRINST usr/include/asm/unistd_64.h
-  HDRINST usr/include/asm/ioctls.h
-  HDRINST usr/include/asm/bpf_perf_event.h
-  HDRINST usr/include/asm/types.h
-  HDRINST usr/include/asm/poll.h
-  HDRINST usr/include/asm/resource.h
-  HDRINST usr/include/asm/param.h
-  HDRINST usr/include/asm/sockios.h
-  HDRINST usr/include/asm/errno.h
-  HDRINST usr/include/asm/unistd_x32.h
-  HDRINST usr/include/asm/termios.h
-  HDRINST usr/include/asm/ioctl.h
-  HDRINST usr/include/asm/socket.h
-  HDRINST usr/include/asm/unistd_32.h
-  HDRINST usr/include/asm/termbits.h
-  HDRINST usr/include/asm/fcntl.h
-  HDRINST usr/include/asm/ipcbuf.h
-  HOSTLD  scripts/mod/modpost
-  CC      kernel/bounds.s
-  CHKSHA1 ../include/linux/atomic/atomic-arch-fallback.h
-  CHKSHA1 ../include/linux/atomic/atomic-instrumented.h
-  CHKSHA1 ../include/linux/atomic/atomic-long.h
-  UPD     include/generated/timeconst.h
-  UPD     include/generated/bounds.h
-  CC      arch/x86/kernel/asm-offsets.s
-  LD      /kernel/build64/tools/objtool/arch/x86/objtool-in.o
-  UPD     include/generated/asm-offsets.h
-  CALL    ../scripts/checksyscalls.sh
-  LD      /kernel/build64/tools/objtool/objtool-in.o
-  LINK    /kernel/build64/tools/objtool/objtool
-  LDS     scripts/module.lds
-  CC      ipc/compat.o
-  CC      ipc/util.o
-  CC      ipc/msgutil.o
-  CC      ipc/msg.o
-  CC      ipc/sem.o
-  CC      ipc/shm.o
-  HOSTCC  usr/gen_init_cpio
-  AR      certs/built-in.a
-  CC      ipc/syscall.o
-  CC      ipc/ipc_sysctl.o
-  CC      init/main.o
-  CC      ipc/mqueue.o
-  CC      arch/x86/power/cpu.o
-  CC      ipc/namespace.o
-  CC      io_uring/io_uring.o
-  AS      arch/x86/lib/clear_page_64.o
-  CC      block/bdev.o
-  CC      security/commoncap.o
-  CC      ipc/mq_sysctl.o
-  CC      arch/x86/power/hibernate_64.o
-  CC      arch/x86/lib/cmdline.o
-  CC      block/fops.o
-  CC      init/do_mounts.o
-  AR      arch/x86/video/built-in.a
-  UPD     init/utsversion-tmp.h
-  CC      arch/x86/pci/i386.o
-  CC      io_uring/xattr.o
-  AR      virt/lib/built-in.a
-  AS      arch/x86/lib/cmpxchg16b_emu.o
-  CC      block/partitions/core.o
-  CC      security/keys/gc.o
-  CC [M]  virt/lib/irqbypass.o
-  CC      net/ethernet/eth.o
-  CC [M]  arch/x86/video/fbdev.o
-  CC      arch/x86/realmode/init.o
-  AR      drivers/irqchip/built-in.a
-  CC      net/llc/llc_core.o
-  CC      net/core/sock.o
-  AS      arch/x86/crypto/aesni-intel_asm.o
-  CC      sound/core/seq/seq.o
-  AR      sound/i2c/other/built-in.a
-  CC      arch/x86/crypto/aesni-intel_glue.o
-  CC      fs/notify/dnotify/dnotify.o
-  CC      arch/x86/events/amd/core.o
-  AR      sound/drivers/opl3/built-in.a
-  CC      arch/x86/mm/pat/set_memory.o
-  CC      arch/x86/kernel/fpu/init.o
-  AR      sound/i2c/built-in.a
-  CC      net/core/request_sock.o
-  AR      drivers/bus/mhi/built-in.a
-  AR      sound/drivers/opl4/built-in.a
-  CC      lib/kunit/test.o
-  AR      sound/drivers/mpu401/built-in.a
-  AR      drivers/bus/built-in.a
-  CC      arch/x86/entry/vdso/vma.o
-  AR      sound/drivers/vx/built-in.a
-  CC      mm/kasan/common.o
-  CC      kernel/sched/core.o
-  CC      arch/x86/kernel/cpu/mce/core.o
-  AR      sound/drivers/pcsp/built-in.a
-  AR      sound/isa/ad1816a/built-in.a
-  AR      drivers/phy/allwinner/built-in.a
-  AR      sound/drivers/built-in.a
-  AS      arch/x86/crypto/aesni-intel_avx-x86_64.o
-  AR      sound/isa/ad1848/built-in.a
-  AR      drivers/phy/amlogic/built-in.a
-  CC      crypto/api.o
-  CC      arch/x86/kernel/cpu/mce/severity.o
-  AR      sound/isa/cs423x/built-in.a
-  AR      drivers/phy/broadcom/built-in.a
-  AR      sound/isa/es1688/built-in.a
-  AR      drivers/phy/cadence/built-in.a
-  AR      sound/isa/galaxy/built-in.a
-  AR      drivers/phy/freescale/built-in.a
-  CC      arch/x86/lib/copy_mc.o
-  AR      sound/isa/gus/built-in.a
-  AR      drivers/phy/hisilicon/built-in.a
-  AR      sound/isa/msnd/built-in.a
-  AR      drivers/phy/ingenic/built-in.a
-  AR      drivers/phy/intel/built-in.a
-  AR      sound/isa/opti9xx/built-in.a
-  AR      drivers/phy/lantiq/built-in.a
-  AR      sound/isa/sb/built-in.a
-  AR      sound/isa/wavefront/built-in.a
-  AR      drivers/phy/marvell/built-in.a
-  AR      sound/isa/wss/built-in.a
-  AR      drivers/phy/mediatek/built-in.a
-  AR      sound/isa/built-in.a
-  AR      drivers/phy/microchip/built-in.a
-  CC      mm/filemap.o
-  AR      drivers/phy/motorola/built-in.a
-  AR      drivers/phy/mscc/built-in.a
-  AR      drivers/phy/qualcomm/built-in.a
-  AR      drivers/phy/ralink/built-in.a
-  AR      drivers/phy/renesas/built-in.a
-  AR      drivers/phy/rockchip/built-in.a
-  AR      drivers/phy/samsung/built-in.a
-  AR      drivers/phy/socionext/built-in.a
-  GEN     usr/initramfs_data.cpio
-  AR      drivers/phy/st/built-in.a
-  COPY    usr/initramfs_inc_data
-  AS      usr/initramfs_data.o
-  AR      drivers/phy/sunplus/built-in.a
-  AR      drivers/phy/tegra/built-in.a
-  AR      usr/built-in.a
-  AR      drivers/phy/ti/built-in.a
-  AR      drivers/phy/xilinx/built-in.a
-  CC      net/llc/llc_input.o
-  CC      drivers/phy/phy-core.o
-  CC      block/bio.o
-  CC      block/elevator.o
-  AS      arch/x86/lib/copy_mc_64.o
-  AS      arch/x86/lib/copy_page_64.o
-  AR      virt/built-in.a
-  AS      arch/x86/lib/copy_user_64.o
-  AS      arch/x86/realmode/rm/header.o
-  CC      arch/x86/lib/cpu.o
-  AS      arch/x86/realmode/rm/trampoline_64.o
-  CC      sound/core/seq/seq_lock.o
-  AS      arch/x86/crypto/aes_ctrby8_avx-x86_64.o
-  AS      arch/x86/realmode/rm/stack.o
-  AS      arch/x86/realmode/rm/reboot.o
-  CC      arch/x86/lib/delay.o
-  CC      arch/x86/kernel/fpu/bugs.o
-  AS      arch/x86/lib/getuser.o
-  GEN     arch/x86/lib/inat-tables.c
-  AS      arch/x86/realmode/rm/wakeup_asm.o
-  CC      security/keys/key.o
-  CC      io_uring/nop.o
-  CC      arch/x86/realmode/rm/wakemain.o
-  CC      arch/x86/realmode/rm/video-mode.o
-  CC      security/min_addr.o
-  AR      sound/pci/ac97/built-in.a
-  AR      sound/ppc/built-in.a
-  AS [M]  arch/x86/crypto/ghash-clmulni-intel_asm.o
-  AR      sound/pci/ali5451/built-in.a
-  CC      arch/x86/lib/insn-eval.o
-  AR      sound/pci/asihpi/built-in.a
-  AR      fs/notify/dnotify/built-in.a
-  AR      sound/pci/au88x0/built-in.a
-  CC      fs/notify/inotify/inotify_fsnotify.o
-  CC      fs/notify/inotify/inotify_user.o
-  AR      sound/pci/aw2/built-in.a
-  CC      arch/x86/pci/init.o
-  AR      sound/pci/ctxfi/built-in.a
-  CC      sound/core/seq/seq_clientmgr.o
-  AR      sound/pci/ca0106/built-in.a
-  AR      sound/pci/cs46xx/built-in.a
-  CC      arch/x86/kernel/fpu/core.o
-  CC      arch/x86/events/intel/core.o
-  AR      sound/pci/cs5535audio/built-in.a
-  AS      arch/x86/realmode/rm/copy.o
-  CC      lib/kunit/resource.o
-  AR      sound/pci/lola/built-in.a
-  CC      lib/kunit/static_stub.o
-  AR      sound/pci/lx6464es/built-in.a
-  AS      arch/x86/realmode/rm/bioscall.o
-  CC      lib/kunit/string-stream.o
-  AR      sound/pci/echoaudio/built-in.a
-  CC      arch/x86/entry/vdso/extable.o
-  AR      sound/pci/emu10k1/built-in.a
-  CC      arch/x86/realmode/rm/regs.o
-  AR      sound/pci/hda/built-in.a
-  CC [M]  sound/pci/hda/hda_bind.o
-  CC      crypto/cipher.o
-  CC      arch/x86/events/intel/bts.o
-  CC      mm/kasan/report.o
-  AS      arch/x86/power/hibernate_asm_64.o
-  CC      block/partitions/ldm.o
-  CC      arch/x86/realmode/rm/video-vga.o
-  CC      crypto/compress.o
-  CC      arch/x86/power/hibernate.o
-  CC      crypto/algapi.o
-  CC      arch/x86/events/intel/ds.o
-  CC      arch/x86/events/intel/knc.o
-  CC      arch/x86/realmode/rm/video-vesa.o
-  CC [M]  arch/x86/crypto/ghash-clmulni-intel_glue.o
-  CC      security/keys/keyring.o
-  CC      arch/x86/realmode/rm/video-bios.o
-  CC      kernel/sched/fair.o
-  CC      arch/x86/events/amd/lbr.o
-  PASYMS  arch/x86/realmode/rm/pasyms.h
-  LDS     arch/x86/realmode/rm/realmode.lds
-  CC      net/llc/llc_output.o
-  CC      arch/x86/events/amd/ibs.o
-  CC      security/inode.o
-  LD      arch/x86/realmode/rm/realmode.elf
-  RELOCS  arch/x86/realmode/rm/realmode.relocs
-  OBJCOPY arch/x86/realmode/rm/realmode.bin
-  CC      kernel/sched/build_policy.o
-  AS      arch/x86/realmode/rmpiggy.o
-  AR      arch/x86/realmode/built-in.a
-  AR      net/ethernet/built-in.a
-  AS [M]  arch/x86/crypto/crc32-pclmul_asm.o
-  CC      arch/x86/kernel/cpu/mce/genpool.o
-  CC      net/802/p8022.o
-  CC      arch/x86/kernel/cpu/mce/intel.o
-  CC      net/802/psnap.o
-  CC      fs/notify/fanotify/fanotify.o
-  CC      kernel/sched/build_utility.o
-  AR      arch/x86/ia32/built-in.a
-  CC      lib/kunit/assert.o
-  CC      lib/kunit/try-catch.o
-  CC      arch/x86/pci/mmconfig_64.o
-  AR      arch/x86/platform/atom/built-in.a
-  CC      init/do_mounts_initrd.o
-  AR      arch/x86/platform/ce4100/built-in.a
-  CC      net/802/stp.o
-  CC      arch/x86/platform/efi/memmap.o
-  AR      drivers/phy/built-in.a
-  AR      drivers/pinctrl/actions/built-in.a
-  AR      drivers/pinctrl/bcm/built-in.a
-  AR      drivers/pinctrl/cirrus/built-in.a
-  AR      drivers/pinctrl/freescale/built-in.a
-  CC      arch/x86/entry/vdso/vdso32-setup.o
-  CC      drivers/pinctrl/intel/pinctrl-baytrail.o
-  LDS     arch/x86/entry/vdso/vdso.lds
-  CC      arch/x86/platform/efi/quirks.o
-  CC      net/core/skbuff.o
-  CC      kernel/locking/mutex.o
-  CC [M]  arch/x86/crypto/crc32-pclmul_glue.o
-  CC [M]  sound/pci/hda/hda_codec.o
-  AR      arch/x86/power/built-in.a
-  CC      kernel/locking/semaphore.o
-  CC      arch/x86/lib/insn.o
-  AS      arch/x86/lib/memcpy_64.o
-  CC      block/blk-core.o
-  CC      arch/x86/mm/pat/memtype.o
-  CC      mm/kasan/init.o
-  CC      arch/x86/events/intel/lbr.o
-  AS      arch/x86/entry/vdso/vdso-note.o
-  CC      arch/x86/entry/vdso/vclock_gettime.o
-  AR      fs/notify/inotify/built-in.a
-  CC      arch/x86/mm/pat/memtype_interval.o
-  CC      arch/x86/kernel/cpu/mce/threshold.o
-  CC      arch/x86/mm/init.o
-  AR      drivers/pinctrl/mediatek/built-in.a
-  CC      arch/x86/entry/vdso/vgetcpu.o
-  CC      arch/x86/events/amd/uncore.o
-  CC      fs/notify/fsnotify.o
-  CC      lib/kunit/executor.o
-  CC      arch/x86/kernel/cpu/mtrr/mtrr.o
-  CC      arch/x86/kernel/cpu/cacheinfo.o
-  CC      arch/x86/kernel/fpu/regset.o
-  CC      arch/x86/events/intel/p4.o
-  AR      net/llc/built-in.a
-  CC      net/sched/sch_generic.o
-  AS      arch/x86/lib/memmove_64.o
-  CC      init/initramfs.o
-  CC      block/partitions/msdos.o
-  AS      arch/x86/lib/memset_64.o
-  CC      arch/x86/pci/direct.o
-  AS [M]  arch/x86/crypto/crct10dif-pcl-asm_64.o
-  CC      net/sched/sch_mq.o
-  CC      arch/x86/lib/misc.o
-  CC [M]  arch/x86/crypto/crct10dif-pclmul_glue.o
-  CC      arch/x86/lib/pc-conf-reg.o
-  CC      arch/x86/platform/efi/efi.o
-  CC      arch/x86/events/intel/p6.o
-  AR      sound/arm/built-in.a
-  CC      block/blk-sysfs.o
-  AR      sound/sh/built-in.a
-  AR      net/802/built-in.a
-  CC      lib/math/div64.o
-  CC      arch/x86/events/intel/pt.o
-  CC      crypto/scatterwalk.o
-  AR      ipc/built-in.a
-  CC      sound/core/seq/seq_memory.o
-  CC      net/netlink/af_netlink.o
-  CC      lib/math/gcd.o
-  HOSTCC  arch/x86/entry/vdso/vdso2c
-  CC      security/keys/keyctl.o
-  AS      arch/x86/lib/putuser.o
-  CC      fs/notify/notification.o
-  CC      fs/notify/fanotify/fanotify_user.o
-  CC      lib/math/lcm.o
-  CC      arch/x86/entry/vsyscall/vsyscall_64.o
-  CC      lib/kunit/hooks.o
-  AS      arch/x86/lib/retpoline.o
-  CC      lib/math/int_pow.o
-  CC      arch/x86/lib/usercopy.o
-  AS      arch/x86/entry/vsyscall/vsyscall_emu_64.o
-  AR      drivers/pinctrl/mvebu/built-in.a
-  CC      arch/x86/events/intel/uncore.o
-  CC      lib/math/int_sqrt.o
-  AR      drivers/pinctrl/nomadik/built-in.a
-  CC      sound/core/seq/seq_queue.o
-  CC      lib/math/reciprocal_div.o
-  LD [M]  arch/x86/crypto/ghash-clmulni-intel.o
-  LD [M]  arch/x86/crypto/crc32-pclmul.o
-  AR      arch/x86/mm/pat/built-in.a
-  CC      mm/kasan/generic.o
-  CC      block/partitions/efi.o
-  CC      drivers/pinctrl/intel/pinctrl-intel.o
-  LD [M]  arch/x86/crypto/crct10dif-pclmul.o
-  AR      arch/x86/crypto/built-in.a
-  CC      lib/math/rational.o
-  AR      lib/kunit/built-in.a
-  CC      arch/x86/kernel/cpu/mce/apei.o
-  CC      fs/nfs_common/grace.o
-  CC      fs/iomap/trace.o
-  LDS     arch/x86/entry/vdso/vdso32/vdso32.lds
-  AS      arch/x86/entry/vdso/vdso32/note.o
-  CC      arch/x86/kernel/cpu/mtrr/if.o
-  CC      arch/x86/kernel/fpu/signal.o
-  AS      arch/x86/entry/vdso/vdso32/system_call.o
-  CC      init/calibrate.o
-  CC      fs/iomap/iter.o
-  AS      arch/x86/entry/vdso/vdso32/sigreturn.o
-  CC      arch/x86/entry/vdso/vdso32/vclock_gettime.o
-  AR      arch/x86/events/amd/built-in.a
-  CC      arch/x86/pci/mmconfig-shared.o
-  CC      arch/x86/events/zhaoxin/core.o
-  CC      arch/x86/mm/init_64.o
-  CC      kernel/locking/rwsem.o
-  CC      crypto/proc.o
-  CC      arch/x86/lib/usercopy_64.o
-  CC      arch/x86/events/core.o
-  CC      lib/crypto/memneq.o
-  CC      arch/x86/entry/vdso/vdso32/vgetcpu.o
-  CC      fs/iomap/buffered-io.o
-  CC      lib/zlib_inflate/inffast.o
-  CC      fs/iomap/direct-io.o
-  CC      fs/notify/group.o
-  CC [M]  lib/math/prime_numbers.o
-  CC      lib/crypto/utils.o
-  CC      lib/crypto/chacha.o
-  CC      init/init_task.o
-  CC      arch/x86/platform/efi/efi_64.o
-  AR      arch/x86/entry/vsyscall/built-in.a
-  CC      lib/zlib_inflate/inflate.o
-  CC      arch/x86/kernel/fpu/xstate.o
-  CC      block/blk-flush.o
-  CC      lib/zlib_deflate/deflate.o
-  AR      arch/x86/kernel/cpu/mce/built-in.a
-  CC [M]  drivers/pinctrl/intel/pinctrl-cherryview.o
-  CC      sound/core/seq/seq_fifo.o
-  CC      arch/x86/kernel/cpu/mtrr/generic.o
-  VDSO    arch/x86/entry/vdso/vdso64.so.dbg
-  CC      crypto/aead.o
-  CC [M]  drivers/pinctrl/intel/pinctrl-broxton.o
-  AR      fs/nfs_common/built-in.a
-  CC      lib/crypto/aes.o
-  VDSO    arch/x86/entry/vdso/vdso32.so.dbg
-  CC      fs/notify/mark.o
-  CC      arch/x86/lib/msr-smp.o
-  OBJCOPY arch/x86/entry/vdso/vdso64.so
-  OBJCOPY arch/x86/entry/vdso/vdso32.so
-  VDSO2C  arch/x86/entry/vdso/vdso-image-64.c
-  VDSO2C  arch/x86/entry/vdso/vdso-image-32.c
-  CC      arch/x86/entry/vdso/vdso-image-64.o
-  CC      mm/kasan/report_generic.o
-  AS      arch/x86/platform/efi/efi_stub_64.o
-  AR      block/partitions/built-in.a
-  CC      arch/x86/kernel/cpu/scattered.o
-  CC      arch/x86/kernel/acpi/boot.o
-  CC      io_uring/fs.o
-  CC      security/keys/permission.o
-  CC      net/core/datagram.o
-  CC      arch/x86/kernel/acpi/sleep.o
-  AR      lib/math/built-in.a
-  CC      arch/x86/mm/fault.o
-  CC      arch/x86/lib/cache-smp.o
-  AR      arch/x86/events/zhaoxin/built-in.a
-  CC      arch/x86/kernel/apic/apic.o
-  CC      arch/x86/kernel/apic/apic_common.o
-  CC      arch/x86/kernel/cpu/mtrr/cleanup.o
-  CC      arch/x86/entry/vdso/vdso-image-32.o
-  CC      arch/x86/kernel/apic/apic_noop.o
-  CC      init/version.o
-  CC      sound/core/seq/seq_prioq.o
-  CC      mm/kasan/shadow.o
-  CC      arch/x86/pci/fixup.o
-  CC      arch/x86/lib/msr.o
-  AR      fs/notify/fanotify/built-in.a
-  AR      drivers/pinctrl/nuvoton/built-in.a
-  AR      net/bpf/built-in.a
-  CC [M]  sound/pci/hda/hda_jack.o
-  CC      lib/zlib_inflate/infutil.o
-  CC      arch/x86/kernel/apic/ipi.o
-  AR      arch/x86/entry/vdso/built-in.a
-  CC      arch/x86/kernel/apic/vector.o
-  AS      arch/x86/entry/entry.o
-  CC      fs/notify/fdinfo.o
-  AR      arch/x86/platform/efi/built-in.a
-  CC      arch/x86/kernel/apic/hw_nmi.o
-  AR      arch/x86/platform/geode/built-in.a
-  CC      arch/x86/kernel/apic/io_apic.o
-  CC [M]  drivers/pinctrl/intel/pinctrl-geminilake.o
-  AS      arch/x86/entry/entry_64.o
-  AR      arch/x86/platform/iris/built-in.a
-  CC      arch/x86/platform/intel/iosf_mbi.o
-  AR      init/built-in.a
-  CC      mm/kasan/quarantine.o
-  CC      arch/x86/mm/ioremap.o
-  CC      block/blk-settings.o
-  CC      arch/x86/entry/syscall_64.o
-  CC      arch/x86/mm/extable.o
-  CC      lib/crypto/gf128mul.o
-  CC      security/keys/process_keys.o
-  CC      arch/x86/events/intel/uncore_nhmex.o
-  CC [M]  sound/pci/hda/hda_auto_parser.o
-  CC      net/sched/sch_frag.o
-  CC      lib/zlib_deflate/deftree.o
-  CC      crypto/geniv.o
-  CC      lib/zlib_deflate/deflate_syms.o
-  CC      kernel/locking/percpu-rwsem.o
-  CC      lib/zlib_inflate/inftrees.o
-  AR      sound/pci/ice1712/built-in.a
-  CC      arch/x86/events/intel/uncore_snb.o
-  AS      arch/x86/kernel/acpi/wakeup_64.o
-  CC      kernel/locking/irqflag-debug.o
-  CC      arch/x86/kernel/apic/msi.o
-  CC      arch/x86/kernel/acpi/apei.o
-  AS      arch/x86/lib/msr-reg.o
-  CC      crypto/skcipher.o
-  CC      arch/x86/mm/mmap.o
-  CC      lib/zlib_inflate/inflate_syms.o
-  CC      sound/core/seq/seq_timer.o
-  CC      arch/x86/kernel/kprobes/core.o
-  CC      crypto/seqiv.o
-  CC [M]  drivers/pinctrl/intel/pinctrl-sunrisepoint.o
-  CC      lib/crypto/blake2s.o
-  AR      arch/x86/kernel/fpu/built-in.a
-  CC      crypto/echainiv.o
-  CC      arch/x86/kernel/apic/x2apic_phys.o
-  CC      net/core/stream.o
-  AR      fs/notify/built-in.a
-  CC      lib/lzo/lzo1x_compress.o
-  CC      arch/x86/pci/acpi.o
-  CC      arch/x86/lib/msr-reg-export.o
-  AR      arch/x86/kernel/cpu/mtrr/built-in.a
-  CC      arch/x86/entry/common.o
-  CC      arch/x86/kernel/cpu/topology.o
-  AR      arch/x86/platform/intel/built-in.a
-  CC      lib/lzo/lzo1x_decompress_safe.o
-  AR      arch/x86/platform/intel-mid/built-in.a
-  AR      arch/x86/platform/intel-quark/built-in.a
-  AR      arch/x86/platform/olpc/built-in.a
-  AR      lib/zlib_inflate/built-in.a
-  AS      arch/x86/lib/hweight.o
-  AR      mm/kasan/built-in.a
-  CC      io_uring/splice.o
-  CC      mm/mempool.o
-  AR      arch/x86/platform/scx200/built-in.a
-  AR      arch/x86/platform/ts5500/built-in.a
-  CC      arch/x86/lib/iomem.o
-  CC      lib/lz4/lz4_compress.o
-  AR      arch/x86/platform/uv/built-in.a
-  AR      arch/x86/platform/built-in.a
-  CC      lib/lz4/lz4hc_compress.o
-  AR      arch/x86/net/built-in.a
-  AS      arch/x86/entry/thunk_64.o
-  CC      kernel/locking/mutex-debug.o
-  AS      arch/x86/entry/entry_64_compat.o
-  CC      sound/core/seq/seq_system.o
-  CC      arch/x86/mm/pgtable.o
-  AR      lib/zlib_deflate/built-in.a
-  CC      lib/crypto/blake2s-generic.o
-  CC      arch/x86/kernel/apic/x2apic_cluster.o
-  AR      sound/pci/korg1212/built-in.a
-  CC      kernel/locking/lockdep.o
-  AR      sound/synth/emux/built-in.a
-  CC [M]  sound/pci/hda/hda_sysfs.o
-  AR      sound/synth/built-in.a
-  CC      arch/x86/kernel/acpi/cppc.o
-  CC      arch/x86/kernel/acpi/cstate.o
-  CC      lib/lz4/lz4_decompress.o
-  CC      arch/x86/events/probe.o
-  CC      block/blk-ioc.o
-  CC      fs/iomap/fiemap.o
-  AR      drivers/pinctrl/intel/built-in.a
-  AR      drivers/pinctrl/sprd/built-in.a
-  CC      arch/x86/mm/physaddr.o
-  AR      drivers/pinctrl/sunplus/built-in.a
-  AR      drivers/pinctrl/ti/built-in.a
-  CC      drivers/pinctrl/core.o
-  CC      arch/x86/events/utils.o
-  CC      arch/x86/kernel/apic/apic_flat_64.o
-  CC      arch/x86/kernel/apic/probe_64.o
-  CC      arch/x86/kernel/cpu/common.o
-  CC      arch/x86/kernel/cpu/rdrand.o
-  CC      block/blk-map.o
-  CC      security/keys/request_key.o
-  CC      security/keys/request_key_auth.o
-  CC      net/netlink/genetlink.o
-  CC      fs/iomap/seek.o
-  AS      arch/x86/lib/iomap_copy_64.o
-  CC      block/blk-merge.o
-  CC      arch/x86/lib/inat.o
-  AR      lib/lzo/built-in.a
-  CC      sound/core/seq/seq_ports.o
-  CC      net/netlink/policy.o
-  CC      kernel/locking/lockdep_proc.o
-  CC      net/sched/sch_api.o
-  CC      arch/x86/events/intel/uncore_snbep.o
-  CC      arch/x86/mm/tlb.o
-  AR      arch/x86/lib/built-in.a
-  CC      arch/x86/entry/syscall_32.o
-  AR      arch/x86/lib/lib.a
-  CC      drivers/pinctrl/pinctrl-utils.o
-  CC      arch/x86/kernel/cpu/match.o
-  CC      arch/x86/pci/legacy.o
-  CC      security/device_cgroup.o
-  CC      sound/core/seq/seq_info.o
-  AR      sound/pci/mixart/built-in.a
-  CC      arch/x86/kernel/kprobes/opt.o
-  CC      net/core/scm.o
-  CC      arch/x86/events/intel/uncore_discovery.o
-  CC      net/netlink/diag.o
-  CC      io_uring/sync.o
-  AR      arch/x86/kernel/acpi/built-in.a
-  CC      arch/x86/mm/cpu_entry_area.o
-  CC      arch/x86/kernel/cpu/bugs.o
-  CC [M]  sound/pci/hda/hda_controller.o
-  CC [M]  sound/pci/hda/hda_proc.o
-  CC      crypto/ahash.o
-  AR      fs/quota/built-in.a
-  CC      arch/x86/kernel/kprobes/ftrace.o
-  CC      mm/oom_kill.o
-  CC      lib/crypto/blake2s-selftest.o
-  CC      fs/iomap/swapfile.o
-  CC      lib/crypto/des.o
-  AR      arch/x86/kernel/apic/built-in.a
-  LDS     arch/x86/kernel/vmlinux.lds
-  CC      drivers/gpio/gpiolib.o
-  AR      drivers/pwm/built-in.a
-  AR      sound/pci/nm256/built-in.a
-  CC      drivers/pci/msi/pcidev_msi.o
-  CC      drivers/video/console/dummycon.o
-  CC      drivers/idle/intel_idle.o
-  CC      drivers/video/console/vgacon.o
-  CC      arch/x86/mm/maccess.o
-  CC      drivers/pci/msi/api.o
-  CC      drivers/pci/msi/msi.o
-  CC      drivers/gpio/gpiolib-devres.o
-  CC      security/keys/user_defined.o
-  AR      arch/x86/entry/built-in.a
-  CC      arch/x86/pci/irq.o
-  CC      drivers/video/logo/logo.o
-  HOSTCC  drivers/video/logo/pnmtologo
-  AR      sound/core/seq/built-in.a
-  CC      security/keys/compat.o
-  CC      sound/core/sound.o
-  CC      drivers/pci/msi/irqdomain.o
-  CC      drivers/video/backlight/backlight.o
-  CC      arch/x86/pci/common.o
-  CC      fs/kernfs/mount.o
-  AR      drivers/char/ipmi/built-in.a
-  CC      fs/kernfs/inode.o
-  CC      arch/x86/mm/pgprot.o
-  CC      fs/proc/task_mmu.o
-  CC      arch/x86/kernel/cpu/aperfmperf.o
-  CC      io_uring/advise.o
-  CC      arch/x86/kernel/cpu/cpuid-deps.o
-  AR      arch/x86/kernel/kprobes/built-in.a
-  CC      sound/core/init.o
-  AR      fs/iomap/built-in.a
-  CC      kernel/power/qos.o
-  CC      drivers/pinctrl/pinmux.o
-  CC      kernel/power/main.o
-  CC      drivers/pinctrl/pinconf.o
-  LOGO    drivers/video/logo/logo_linux_clut224.c
-  CC      drivers/video/logo/logo_linux_clut224.o
-  CC [M]  arch/x86/kvm/../../../virt/kvm/kvm_main.o
-  AR      lib/lz4/built-in.a
-  CC      drivers/pinctrl/pinconf-generic.o
-  CC      drivers/acpi/acpica/dsargs.o
-  AR      drivers/video/logo/built-in.a
-  CC      arch/x86/mm/hugetlbpage.o
-  CC      kernel/power/console.o
-  CC      kernel/power/process.o
-  CC      lib/zstd/zstd_compress_module.o
-  CC      crypto/shash.o
-  CC      lib/zstd/compress/fse_compress.o
-  CC      lib/zstd/compress/hist.o
-  CC      lib/xz/xz_dec_syms.o
-  CC      fs/sysfs/file.o
-  CC      fs/sysfs/dir.o
-  AR      kernel/sched/built-in.a
-  CC [M]  sound/pci/hda/hda_hwdep.o
-  CC      drivers/acpi/acpica/dscontrol.o
-  CC      drivers/acpi/acpica/dsdebug.o
-  CC      lib/xz/xz_dec_stream.o
-  CC      kernel/power/suspend.o
-  CC      fs/proc/inode.o
-  CC      block/blk-timeout.o
-  CC      lib/crypto/sha1.o
-  CC      security/keys/proc.o
-  CC      lib/crypto/sha256.o
-  CC      net/core/gen_stats.o
-  AR      net/netlink/built-in.a
-  CC      fs/configfs/inode.o
-  CC      fs/configfs/file.o
-  CC      fs/devpts/inode.o
-  CC      fs/ext4/balloc.o
-  AR      drivers/pci/msi/built-in.a
-  CC      drivers/pci/pcie/portdrv.o
-  AR      drivers/video/console/built-in.a
-  CC      fs/kernfs/dir.o
-  CC      net/ethtool/ioctl.o
-  CC      drivers/pci/pcie/rcec.o
-  CC      drivers/pci/hotplug/pci_hotplug_core.o
-  AR      drivers/pci/controller/dwc/built-in.a
-  AR      drivers/pci/switch/built-in.a
-  CC      fs/proc/root.o
-  AR      drivers/pci/controller/mobiveil/built-in.a
-  AR      drivers/video/backlight/built-in.a
-  CC      drivers/pci/controller/vmd.o
-  AR      drivers/idle/built-in.a
-  CC      lib/zstd/compress/huf_compress.o
-  CC      drivers/pci/hotplug/acpi_pcihp.o
-  CC      drivers/video/fbdev/core/fb_notify.o
-  CC      drivers/gpio/gpiolib-legacy.o
-  CC      drivers/gpio/gpiolib-cdev.o
-  CC      arch/x86/kernel/cpu/umwait.o
-  CC      io_uring/filetable.o
-  CC      drivers/gpio/gpiolib-sysfs.o
-  CC      drivers/acpi/acpica/dsfield.o
-  AR      drivers/video/fbdev/omap/built-in.a
-  CC      fs/kernfs/file.o
-  AR      drivers/video/fbdev/omap2/omapfb/dss/built-in.a
-  CC [M]  net/netfilter/ipvs/ip_vs_conn.o
-  AR      drivers/pinctrl/built-in.a
-  AR      drivers/video/fbdev/omap2/omapfb/displays/built-in.a
-  CC      kernel/power/hibernate.o
-  AR      drivers/video/fbdev/omap2/omapfb/built-in.a
-  CC      kernel/power/snapshot.o
-  AR      drivers/video/fbdev/omap2/built-in.a
-  CC      drivers/acpi/acpica/dsinit.o
-  CC      arch/x86/mm/kasan_init_64.o
-  CC      arch/x86/pci/early.o
-  CC      lib/xz/xz_dec_lzma2.o
-  CC      sound/core/memory.o
-  CC [M]  sound/pci/hda/hda_generic.o
-  CC [M]  net/netfilter/ipvs/ip_vs_core.o
-  CC [M]  lib/crypto/arc4.o
-  CC      block/blk-lib.o
-  CC      net/sched/sch_blackhole.o
-  CC      fs/sysfs/symlink.o
-  CC      security/keys/sysctl.o
-  AR      sound/usb/misc/built-in.a
-  CC      kernel/power/swap.o
-  AR      sound/usb/usx2y/built-in.a
-  CC      mm/fadvise.o
-  CC      kernel/power/user.o
-  AR      sound/usb/caiaq/built-in.a
-  AR      sound/usb/6fire/built-in.a
-  CC      crypto/akcipher.o
-  CC      arch/x86/events/intel/cstate.o
-  AR      sound/usb/hiface/built-in.a
-  CC      kernel/power/poweroff.o
-  AR      sound/usb/bcd2000/built-in.a
-  AR      sound/usb/built-in.a
-  CC      crypto/kpp.o
-  CC      fs/configfs/dir.o
-  CC      crypto/acompress.o
-  CC      drivers/gpio/gpiolib-acpi.o
-  AR      fs/devpts/built-in.a
-  CC      lib/raid6/algos.o
-  CC      drivers/acpi/acpica/dsmethod.o
-  CC      lib/xz/xz_dec_bcj.o
-  CC      drivers/pci/pcie/aspm.o
-  CC      sound/core/control.o
-  CC      arch/x86/kernel/cpu/proc.o
-  CC      fs/proc/base.o
-  AR      lib/crypto/built-in.a
-  CC [M]  drivers/video/fbdev/core/fbmem.o
-  LD [M]  lib/crypto/libarc4.o
-  CC [M]  net/netfilter/ipvs/ip_vs_ctl.o
-  CC      arch/x86/mm/pkeys.o
-  CC      drivers/pci/hotplug/pciehp_core.o
-  CC      drivers/pci/pcie/aer.o
-  CC      lib/raid6/recov.o
-  CC      arch/x86/pci/bus_numa.o
-  CC      net/core/gen_estimator.o
-  CC [M]  net/netfilter/ipvs/ip_vs_sched.o
-  CC      fs/configfs/symlink.o
-  CC      fs/sysfs/mount.o
-  CC      fs/proc/generic.o
-  AR      security/keys/built-in.a
-  AR      security/built-in.a
-  AR      drivers/pci/controller/built-in.a
-  AR      sound/pci/oxygen/built-in.a
-  CC      kernel/printk/printk.o
-  CC      kernel/printk/printk_safe.o
-  CC      net/ethtool/common.o
-  CC      io_uring/openclose.o
-  CC      kernel/irq/irqdesc.o
-  CC      fs/kernfs/symlink.o
-  CC      block/blk-mq.o
-  CC      drivers/acpi/acpica/dsmthdat.o
-  AR      lib/xz/built-in.a
-  CC      kernel/irq/handle.o
-  CC      io_uring/uring_cmd.o
-  CC      net/sched/sch_fifo.o
-  CC      mm/maccess.o
-  AR      sound/pci/pcxhr/built-in.a
-  CC      net/ethtool/netlink.o
-  AR      sound/pci/riptide/built-in.a
-  CC      kernel/irq/manage.o
-  CC      drivers/video/aperture.o
-  CC      crypto/scompress.o
-  AR      arch/x86/events/intel/built-in.a
-  CC      arch/x86/events/rapl.o
-  MKCAP   arch/x86/kernel/cpu/capflags.c
-  CC      arch/x86/events/msr.o
-  HOSTCC  lib/raid6/mktables
-  CC      arch/x86/mm/pti.o
-  CC      lib/zstd/compress/zstd_compress.o
-  CC      arch/x86/pci/amd_bus.o
-  CC      fs/ext4/bitmap.o
-  CC      drivers/pci/hotplug/pciehp_ctrl.o
-  CC      kernel/printk/printk_ringbuffer.o
-  CC [M]  arch/x86/kvm/../../../virt/kvm/eventfd.o
-  UNROLL  lib/raid6/int1.c
-  AR      sound/pci/rme9652/built-in.a
-  UNROLL  lib/raid6/int2.c
-  UNROLL  lib/raid6/int4.c
-  UNROLL  lib/raid6/int8.c
-  CC      kernel/irq/spurious.o
-  UNROLL  lib/raid6/int16.c
-  CC      kernel/rcu/update.o
-  UNROLL  lib/raid6/int32.c
-  CC      lib/raid6/recov_ssse3.o
-  CC      drivers/acpi/acpica/dsobject.o
-  CC      fs/sysfs/group.o
-  CC      kernel/rcu/sync.o
-  AR      fs/kernfs/built-in.a
-  CC      kernel/rcu/srcutree.o
-  CC      drivers/gpio/gpiolib-swnode.o
-  AR      kernel/power/built-in.a
-  CC      kernel/locking/spinlock.o
-  CC      fs/configfs/mount.o
-  CC      kernel/printk/sysctl.o
-  AR      sound/firewire/built-in.a
-  AR      kernel/livepatch/built-in.a
-  CC      fs/configfs/item.o
-  CC      kernel/dma/mapping.o
-  CC      mm/page-writeback.o
-  CC      drivers/pci/pcie/err.o
-  CC      net/core/net_namespace.o
-  CC      net/core/secure_seq.o
-  CC      arch/x86/kernel/cpu/powerflags.o
-  CC      arch/x86/kernel/cpu/feat_ctl.o
-  CC      arch/x86/kernel/cpu/intel.o
-  CC      net/core/flow_dissector.o
-  CC      kernel/entry/common.o
-  CC      drivers/pci/access.o
-  CC      drivers/acpi/apei/apei-base.o
-  CC      crypto/algboss.o
-  CC      fs/proc/array.o
-  CC      drivers/video/cmdline.o
-  AR      net/sched/built-in.a
-  CC      drivers/acpi/acpica/dsopcode.o
-  AR      drivers/acpi/pmic/built-in.a
-  AR      arch/x86/mm/built-in.a
-  CC      kernel/irq/resend.o
-  CC      drivers/pnp/pnpacpi/core.o
-  CC      drivers/pci/pcie/aer_inject.o
-  AR      arch/x86/events/built-in.a
-  CC      lib/zstd/compress/zstd_compress_literals.o
-  CC      drivers/pci/bus.o
-  AR      arch/x86/pci/built-in.a
-  CC      fs/ext4/block_validity.o
-  CC      drivers/pnp/core.o
-  CC      io_uring/epoll.o
-  CC      lib/raid6/recov_avx2.o
-  CC      kernel/locking/osq_lock.o
-  CC      kernel/irq/chip.o
-  AR      drivers/gpio/built-in.a
-  CC      drivers/pci/probe.o
-  CC [M]  drivers/video/fbdev/core/fbmon.o
-  AR      fs/sysfs/built-in.a
-  CC      drivers/pci/hotplug/pciehp_pci.o
-  CC      lib/zstd/compress/zstd_compress_sequences.o
-  CC [M]  drivers/video/fbdev/core/fbcmap.o
-  CC      kernel/entry/syscall_user_dispatch.o
-  AR      fs/configfs/built-in.a
-  AR      drivers/amba/built-in.a
-  CC      kernel/rcu/tree.o
-  AR      drivers/clk/actions/built-in.a
-  CC      sound/core/misc.o
-  AR      drivers/clk/analogbits/built-in.a
-  AR      drivers/clk/bcm/built-in.a
-  AR      drivers/clk/imgtec/built-in.a
-  CC      arch/x86/kernel/cpu/intel_pconfig.o
-  AR      drivers/clk/imx/built-in.a
-  CC      fs/jbd2/transaction.o
-  AR      drivers/clk/ingenic/built-in.a
-  AR      drivers/clk/mediatek/built-in.a
-  AR      drivers/clk/microchip/built-in.a
-  AR      drivers/clk/mstar/built-in.a
-  CC      net/ethtool/bitset.o
-  AR      drivers/clk/mvebu/built-in.a
-  AR      drivers/clk/ralink/built-in.a
-  CC      kernel/locking/qspinlock.o
-  AR      drivers/clk/renesas/built-in.a
-  AR      drivers/clk/socfpga/built-in.a
-  AR      sound/sparc/built-in.a
-  CC      kernel/entry/kvm.o
-  AR      drivers/clk/sprd/built-in.a
-  AR      drivers/clk/sunxi-ng/built-in.a
-  AR      drivers/clk/ti/built-in.a
-  AR      drivers/clk/versatile/built-in.a
-  CC      drivers/pnp/card.o
-  CC      drivers/clk/x86/clk-lpss-atom.o
-  CC      drivers/acpi/acpica/dspkginit.o
-  CC      drivers/clk/x86/clk-pmc-atom.o
-  CC      kernel/rcu/rcu_segcblist.o
-  AR      sound/spi/built-in.a
-  CC      block/blk-mq-tag.o
-  AR      sound/parisc/built-in.a
-  CC      lib/zstd/compress/zstd_compress_superblock.o
-  CC      drivers/pnp/pnpacpi/rsparser.o
-  CC [M]  net/netfilter/ipvs/ip_vs_xmit.o
-  CC [M]  net/netfilter/ipvs/ip_vs_app.o
-  CC      kernel/dma/direct.o
-  CC      fs/jbd2/commit.o
-  CC      lib/raid6/mmx.o
-  CC      lib/raid6/sse1.o
-  CC      crypto/testmgr.o
-  CC      net/ethtool/strset.o
-  CC      lib/raid6/sse2.o
-  CC      io_uring/statx.o
-  CC      drivers/dma/dw/core.o
-  CC      drivers/acpi/apei/hest.o
-  CC      drivers/pci/pcie/pme.o
-  CC      fs/proc/fd.o
-  CC      io_uring/net.o
-  CC      drivers/pci/hotplug/pciehp_hpc.o
-  CC      drivers/acpi/apei/erst.o
-  CC      drivers/dma/hsu/hsu.o
-  AR      drivers/dma/idxd/built-in.a
-  AR      drivers/dma/mediatek/built-in.a
-  AR      drivers/soc/apple/built-in.a
-  CC      kernel/locking/rtmutex_api.o
-  AR      drivers/soc/aspeed/built-in.a
-  CC      lib/zstd/compress/zstd_double_fast.o
-  AR      drivers/soc/bcm/bcm63xx/built-in.a
-  CC      lib/zstd/compress/zstd_fast.o
-  AR      drivers/soc/bcm/built-in.a
-  CC      fs/ext4/dir.o
-  CC      sound/core/device.o
-  AR      drivers/soc/fsl/built-in.a
-  AR      kernel/printk/built-in.a
-  AR      drivers/soc/fujitsu/built-in.a
-  AS      arch/x86/kernel/head_64.o
-  AR      drivers/dma/qcom/built-in.a
-  AR      drivers/soc/imx/built-in.a
-  CC      arch/x86/kernel/head64.o
-  CC      drivers/acpi/acpica/dsutils.o
-  AR      drivers/soc/ixp4xx/built-in.a
-  AR      drivers/soc/loongson/built-in.a
-  AR      drivers/soc/mediatek/built-in.a
-  AR      drivers/soc/microchip/built-in.a
-  AR      drivers/dma/ti/built-in.a
-  AR      drivers/soc/nuvoton/built-in.a
-  CC      kernel/locking/spinlock_debug.o
-  AR      drivers/dma/xilinx/built-in.a
-  AR      drivers/soc/pxa/built-in.a
-  AR      drivers/soc/amlogic/built-in.a
-  CC      io_uring/msg_ring.o
-  AR      drivers/soc/qcom/built-in.a
-  CC      kernel/dma/ops_helpers.o
-  AR      drivers/soc/renesas/built-in.a
-  AR      drivers/soc/rockchip/built-in.a
-  AR      drivers/soc/sifive/built-in.a
-  AR      drivers/clk/x86/built-in.a
-  AR      drivers/soc/sunxi/built-in.a
-  AR      drivers/soc/ti/built-in.a
-  AR      drivers/clk/xilinx/built-in.a
-  CC      drivers/clk/clk-devres.o
-  AR      drivers/soc/xilinx/built-in.a
-  AR      drivers/soc/built-in.a
-  CC      kernel/irq/dummychip.o
-  CC      kernel/module/main.o
-  CC      drivers/virtio/virtio.o
-  AR      kernel/entry/built-in.a
-  CC      kernel/module/strict_rwx.o
-  CC      drivers/virtio/virtio_ring.o
-  CC      drivers/acpi/acpica/dswexec.o
-  CC [M]  drivers/video/fbdev/core/fbsysfs.o
-  CC [M]  drivers/video/fbdev/core/modedb.o
-  CC      sound/core/info.o
-  CC      drivers/acpi/acpica/dswload.o
-  CC      lib/raid6/avx2.o
-  AR      sound/pci/trident/built-in.a
-  CC      drivers/acpi/acpica/dswload2.o
-  CC [M]  drivers/video/fbdev/core/fbcvt.o
-  CC      kernel/time/time.o
-  AR      drivers/pnp/pnpacpi/built-in.a
-  CC      drivers/pci/pcie/dpc.o
-  CC      drivers/pnp/driver.o
-  CC      drivers/clk/clk-bulk.o
-  CC      drivers/pnp/resource.o
-  CC      crypto/cmac.o
-  CC [M]  drivers/video/fbdev/core/fb_cmdline.o
-  CC      fs/proc/proc_tty.o
-  CC      kernel/irq/devres.o
-  CC      kernel/dma/dummy.o
-  CC      drivers/virtio/virtio_anchor.o
-  AR      drivers/dma/hsu/built-in.a
-  CC      kernel/module/tree_lookup.o
-  CC      fs/ramfs/inode.o
-  CC      net/ethtool/linkinfo.o
-  CC      fs/ramfs/file-mmu.o
-  CC [M]  net/netfilter/ipvs/ip_vs_sync.o
-  CC      mm/folio-compat.o
-  CC      net/core/sysctl_net_core.o
-  CC      drivers/acpi/apei/bert.o
-  CC      drivers/pci/hotplug/acpiphp_core.o
-  CC [M]  sound/pci/hda/patch_realtek.o
-  CC      fs/ext4/ext4_jbd2.o
-  CC      fs/hugetlbfs/inode.o
-  CC [M]  arch/x86/kvm/../../../virt/kvm/binary_stats.o
-  CC      kernel/module/debug_kmemleak.o
-  CC      block/blk-stat.o
-  CC      block/blk-mq-sysfs.o
-  CC      kernel/locking/qrwlock.o
-  CC      drivers/acpi/acpica/dswscope.o
-  CC      drivers/dma/dw/dw.o
-  CC      drivers/clk/clkdev.o
-  CC      crypto/hmac.o
-  CC      fs/fat/cache.o
-  CC      fs/fat/dir.o
-  CC      fs/jbd2/recovery.o
-  CC      kernel/irq/autoprobe.o
-  CC      lib/raid6/avx512.o
-  CC      kernel/dma/contiguous.o
-  CC      fs/proc/cmdline.o
-  CC      lib/raid6/recov_avx512.o
-  AR      drivers/pci/pcie/built-in.a
-  CC [M]  net/netfilter/ipvs/ip_vs_est.o
-  CC      fs/proc/consoles.o
-  CC [M]  sound/pci/hda/patch_analog.o
-  CC      drivers/acpi/apei/ghes.o
-  CC [M]  drivers/video/fbdev/core/fb_defio.o
-  CC      sound/core/isadma.o
-  CC [M]  net/netfilter/ipvs/ip_vs_proto.o
-  CC      net/ethtool/linkmodes.o
-  CC      drivers/acpi/acpica/dswstate.o
-  CC [M]  drivers/video/fbdev/core/fbcon.o
-  AR      sound/pci/ymfpci/built-in.a
-  AR      fs/ramfs/built-in.a
-  CC      drivers/pnp/manager.o
-  CC      drivers/virtio/virtio_pci_modern_dev.o
-  AR      sound/pci/vx222/built-in.a
-  CC [M]  arch/x86/kvm/../../../virt/kvm/vfio.o
-  CC [M]  drivers/video/fbdev/uvesafb.o
-  AR      kernel/locking/built-in.a
-  CC      drivers/acpi/acpica/evevent.o
-  CC      kernel/time/timer.o
-  CC      arch/x86/kernel/cpu/tsx.o
-  CC      fs/ext4/extents.o
-  CC      drivers/pci/hotplug/acpiphp_glue.o
-  CC      mm/readahead.o
-  CC      io_uring/timeout.o
-  CC      drivers/clk/clk.o
-  CC      drivers/dma/dw/idma32.o
-  CC      mm/swap.o
-  CC      block/blk-mq-cpumap.o
-  CC      fs/ext4/extents_status.o
-  CC      kernel/irq/irqdomain.o
-  CC      fs/ext4/file.o
-  CC      block/blk-mq-sched.o
-  CC [M]  arch/x86/kvm/../../../virt/kvm/coalesced_mmio.o
-  CC      net/ethtool/rss.o
-  CC      drivers/pnp/support.o
-  CC      sound/core/vmaster.o
-  CC      fs/proc/cpuinfo.o
-  CC      kernel/dma/swiotlb.o
-  CC [M]  arch/x86/kvm/../../../virt/kvm/async_pf.o
-  CC      net/core/dev.o
-  TABLE   lib/raid6/tables.c
-  CC      lib/raid6/int1.o
-  CC      drivers/acpi/acpica/evgpe.o
-  CC [M]  drivers/dma/ioat/init.o
-  CC      arch/x86/kernel/cpu/intel_epb.o
-  CC      drivers/dma/dmaengine.o
-  CC      crypto/vmac.o
-  CC      sound/core/ctljack.o
-  CC      fs/jbd2/checkpoint.o
-  CC [M]  sound/pci/hda/patch_hdmi.o
-  CC      fs/ext4/fsmap.o
-  CC      drivers/pnp/interface.o
-  CC      drivers/virtio/virtio_pci_legacy_dev.o
-  CC      kernel/module/kallsyms.o
-  AR      fs/hugetlbfs/built-in.a
-  CC      net/core/dev_addr_lists.o
-  CC      drivers/clk/clk-divider.o
-  CC      kernel/futex/core.o
-  CC      drivers/dma/dw/acpi.o
-  CC      fs/proc/devices.o
-  CC      kernel/futex/syscalls.o
-  CC      arch/x86/kernel/cpu/amd.o
-  CC      sound/core/jack.o
-  CC      kernel/futex/pi.o
-  CC [M]  arch/x86/kvm/../../../virt/kvm/irqchip.o
-  CC      drivers/acpi/acpica/evgpeblk.o
-  AR      drivers/acpi/apei/built-in.a
-  CC      drivers/acpi/dptf/int340x_thermal.o
-  CC [M]  arch/x86/kvm/../../../virt/kvm/dirty_ring.o
-  CC      lib/raid6/int2.o
-  CC [M]  net/netfilter/ipvs/ip_vs_pe.o
-  CC      sound/core/timer.o
-  CC      fs/fat/fatent.o
-  CC [M]  arch/x86/kvm/../../../virt/kvm/pfncache.o
-  CC      io_uring/sqpoll.o
-  AR      drivers/pci/hotplug/built-in.a
-  CC      net/ethtool/linkstate.o
-  CC      drivers/pci/host-bridge.o
-  CC      drivers/dma/dw/pci.o
-  CC [M]  drivers/video/fbdev/core/bitblit.o
-  CC      block/ioctl.o
-  CC      drivers/video/nomodeset.o
-  CC      drivers/pnp/quirks.o
-  CC      drivers/virtio/virtio_mmio.o
-  CC      crypto/xcbc.o
-  CC      drivers/virtio/virtio_pci_modern.o
-  CC      kernel/irq/proc.o
-  CC      fs/proc/interrupts.o
-  CC      kernel/dma/remap.o
-  CC      drivers/acpi/acpica/evgpeinit.o
-  CC      lib/raid6/int4.o
-  AR      drivers/acpi/dptf/built-in.a
-  CC      kernel/cgroup/cgroup.o
-  CC      fs/jbd2/revoke.o
-  CC      kernel/cgroup/rstat.o
-  CC      kernel/module/procfs.o
-  CC      kernel/cgroup/namespace.o
-  CC [M]  drivers/dma/ioat/dma.o
-  CC      kernel/cgroup/cgroup-v1.o
-  CC      drivers/acpi/tables.o
-  CC [M]  drivers/video/fbdev/simplefb.o
-  CC [M]  arch/x86/kvm/x86.o
-  CC      drivers/virtio/virtio_pci_common.o
-  CC      kernel/futex/requeue.o
-  CC      arch/x86/kernel/cpu/hygon.o
-  CC      drivers/pci/remove.o
-  CC      kernel/futex/waitwake.o
-  CC [M]  drivers/video/fbdev/core/softcursor.o
-  AR      drivers/dma/dw/built-in.a
-  CC      drivers/acpi/acpica/evgpeutil.o
-  CC [M]  arch/x86/kvm/emulate.o
-  CC      lib/zstd/compress/zstd_lazy.o
-  CC      crypto/crypto_null.o
-  CC      fs/proc/loadavg.o
-  CC      net/netfilter/core.o
-  CC [M]  sound/pci/hda/hda_eld.o
-  CC      fs/proc/meminfo.o
-  AR      kernel/dma/built-in.a
-  CC      fs/proc/stat.o
-  CC      fs/proc/uptime.o
-  CC      kernel/time/hrtimer.o
-  CC      drivers/pnp/system.o
-  CC      mm/truncate.o
-  CC [M]  net/netfilter/ipvs/ip_vs_proto_tcp.o
-  CC      net/ethtool/debug.o
-  CC      lib/raid6/int8.o
-  CC      kernel/irq/migration.o
-  CC      net/ethtool/wol.o
-  CC      net/ethtool/features.o
-  CC      kernel/module/sysfs.o
-  CC      drivers/virtio/virtio_pci_legacy.o
-  CC      kernel/time/timekeeping.o
-  CC      io_uring/fdinfo.o
-  CC      fs/fat/file.o
-  CC      block/genhd.o
-  CC      fs/fat/inode.o
-  CC      arch/x86/kernel/cpu/centaur.o
-  CC [M]  net/netfilter/ipvs/ip_vs_proto_udp.o
-  CC      drivers/acpi/acpica/evglock.o
-  CC      drivers/acpi/acpica/evhandler.o
-  AR      kernel/rcu/built-in.a
-  CC [M]  drivers/video/fbdev/core/tileblit.o
-  CC      fs/jbd2/journal.o
-  AR      kernel/futex/built-in.a
-  CC      kernel/trace/trace_clock.o
-  CC      kernel/trace/ftrace.o
-  CC      drivers/pci/pci.o
-  CC [M]  drivers/dma/ioat/prep.o
-  CC      crypto/md5.o
-  CC [M]  drivers/dma/ioat/dca.o
-  CC      fs/proc/util.o
-  AR      drivers/pnp/built-in.a
-  CC      drivers/acpi/blacklist.o
-  CC      drivers/tty/vt/vt_ioctl.o
-  CC      drivers/char/hw_random/core.o
-  CC      drivers/char/hw_random/intel-rng.o
-  CC [M]  drivers/dma/ioat/sysfs.o
-  CC      kernel/bpf/core.o
-  CC      kernel/irq/cpuhotplug.o
-  CC      sound/core/hrtimer.o
-  AR      drivers/iommu/amd/built-in.a
-  CC      drivers/iommu/intel/dmar.o
-  CC      fs/proc/version.o
-  CC      drivers/iommu/intel/iommu.o
-  CC      arch/x86/kernel/cpu/zhaoxin.o
-  CC      drivers/acpi/acpica/evmisc.o
-  CC      kernel/trace/ring_buffer.o
-  CC      drivers/iommu/intel/pasid.o
-  CC [M]  drivers/virtio/virtio_mem.o
-  CC [M]  sound/pci/hda/hda_intel.o
-  AR      kernel/module/built-in.a
-  CC      drivers/tty/vt/vc_screen.o
-  CC      lib/raid6/int16.o
-  CC      lib/raid6/int32.o
-  CC      drivers/tty/vt/selection.o
-  CC      crypto/sha1_generic.o
-  CC      drivers/char/agp/backend.o
-  CC      drivers/char/tpm/tpm-chip.o
-  CC      drivers/char/tpm/tpm-dev-common.o
-  CC [M]  drivers/video/fbdev/core/cfbfillrect.o
-  CC      mm/vmscan.o
-  CC      net/ethtool/privflags.o
-  AR      drivers/gpu/host1x/built-in.a
-  CC      fs/fat/misc.o
-  CC      sound/core/seq_device.o
-  AR      drivers/gpu/drm/tests/built-in.a
-  CC [M]  drivers/gpu/drm/tests/drm_kunit_helpers.o
-  CC      kernel/irq/pm.o
-  CC      arch/x86/kernel/cpu/perfctr-watchdog.o
-  CC      fs/proc/softirqs.o
-  CC      drivers/acpi/acpica/evregion.o
-  CC      arch/x86/kernel/cpu/vmware.o
-  CC      drivers/connector/cn_queue.o
-  CC [M]  drivers/gpu/drm/tests/drm_buddy_test.o
-  AR      drivers/char/hw_random/built-in.a
-  CC      kernel/events/core.o
-  CC      drivers/clk/clk-fixed-factor.o
-  CC      io_uring/tctx.o
-  CC      kernel/events/ring_buffer.o
-  CC      drivers/acpi/acpica/evrgnini.o
-  CC [M]  net/netfilter/ipvs/ip_vs_nfct.o
-  CC [M]  arch/x86/kvm/i8259.o
-  CC      lib/raid6/tables.o
-  CC      block/ioprio.o
-  LD [M]  drivers/dma/ioat/ioatdma.o
-  CC      drivers/dma/virt-dma.o
-  CC      crypto/sha256_generic.o
-  CC [M]  arch/x86/kvm/irq.o
-  CC      kernel/time/ntp.o
-  CC      kernel/time/clocksource.o
-  AR      sound/pcmcia/vx/built-in.a
-  AR      sound/pcmcia/pdaudiocf/built-in.a
-  AR      sound/pcmcia/built-in.a
-  CC      fs/proc/namespaces.o
-  CC [M]  net/netfilter/ipvs/ip_vs_rr.o
-  CC      drivers/tty/vt/keyboard.o
-  AR      drivers/gpu/vga/built-in.a
-  AR      sound/mips/built-in.a
-  CC      drivers/char/agp/generic.o
-  CC      fs/proc/self.o
-  CC [M]  sound/core/control_led.o
-  CC      kernel/trace/trace.o
-  CC      drivers/iommu/intel/trace.o
-  CC      fs/ext4/fsync.o
-  CC      drivers/acpi/acpica/evsci.o
-  CC      drivers/char/tpm/tpm-dev.o
-  CC      arch/x86/kernel/cpu/hypervisor.o
-  CC      drivers/clk/clk-fixed-rate.o
-  CC      fs/fat/nfs.o
-  CC      kernel/irq/msi.o
-  CC [M]  drivers/video/fbdev/core/cfbcopyarea.o
-  CC      drivers/clk/clk-gate.o
-  CC      fs/ext4/hash.o
-  CC      net/ethtool/rings.o
-  CC      arch/x86/kernel/cpu/mshyperv.o
-  CC      crypto/sha512_generic.o
-  AR      lib/raid6/built-in.a
-  CC      net/ethtool/channels.o
-  CC      drivers/connector/connector.o
-  CC      drivers/dma/acpi-dma.o
-  CC      drivers/acpi/acpica/evxface.o
-  CC      drivers/tty/vt/consolemap.o
-  CC      io_uring/poll.o
-  CC [M]  drivers/gpu/drm/tests/drm_cmdline_parser_test.o
-  CC      block/badblocks.o
-  CC      drivers/clk/clk-multiplier.o
-  CC      kernel/trace/trace_output.o
-  CC      drivers/iommu/intel/cap_audit.o
-  CC      fs/proc/thread_self.o
-  LD [M]  sound/pci/hda/snd-hda-codec.o
-  CC      fs/proc/proc_sysctl.o
-  CC      drivers/clk/clk-mux.o
-  CC      drivers/char/tpm/tpm-interface.o
-  LD [M]  sound/pci/hda/snd-hda-codec-generic.o
-  CC [M]  sound/core/hwdep.o
-  LD [M]  sound/pci/hda/snd-hda-codec-realtek.o
-  CC      fs/fat/namei_vfat.o
-  AR      drivers/virtio/built-in.a
-  CC      kernel/events/callchain.o
-  LD [M]  sound/pci/hda/snd-hda-codec-analog.o
-  CC      drivers/clk/clk-composite.o
-  LD [M]  sound/pci/hda/snd-hda-codec-hdmi.o
-  CC      drivers/clk/clk-fractional-divider.o
-  CC      kernel/time/jiffies.o
-  LD [M]  sound/pci/hda/snd-hda-intel.o
-  AR      sound/pci/built-in.a
-  HOSTCC  drivers/tty/vt/conmakehash
-  CC [M]  drivers/gpu/drm/tests/drm_connector_test.o
-  CC [M]  arch/x86/kvm/lapic.o
-  LD [M]  net/netfilter/ipvs/ip_vs.o
-  CC      fs/fat/namei_msdos.o
-  CC [M]  drivers/video/fbdev/core/cfbimgblt.o
-  CC      net/netfilter/nf_log.o
-  CC      drivers/char/agp/isoch.o
-  CC      drivers/acpi/acpica/evxfevnt.o
-  CC      net/netfilter/nf_queue.o
-  CC      drivers/acpi/acpica/evxfgpe.o
-  CC      crypto/blake2b_generic.o
-  CC      arch/x86/kernel/cpu/capflags.o
-  CC      fs/proc/proc_net.o
-  AR      arch/x86/kernel/cpu/built-in.a
-  AR      drivers/dma/built-in.a
-  CC      block/blk-rq-qos.o
-  CC      arch/x86/kernel/ebda.o
-  CC      drivers/acpi/acpica/evxfregn.o
-  CC      kernel/time/timer_list.o
-  CC      kernel/time/timeconv.o
-  CC      block/disk-events.o
-  CC      fs/ext4/ialloc.o
-  CC      drivers/connector/cn_proc.o
-  AR      fs/jbd2/built-in.a
-  CC      net/netfilter/nf_sockopt.o
-  CC      kernel/irq/affinity.o
-  CC      net/ethtool/coalesce.o
-  CC      drivers/tty/vt/vt.o
-  AR      kernel/bpf/built-in.a
-  CC      drivers/acpi/acpica/exconcat.o
-  AR      drivers/gpu/drm/arm/built-in.a
-  CC      drivers/clk/clk-gpio.o
-  CC      drivers/acpi/acpica/exconfig.o
-  CC      drivers/pci/pci-driver.o
-  CC [M]  arch/x86/kvm/i8254.o
-  CC      kernel/irq/matrix.o
-  CC      kernel/events/hw_breakpoint.o
-  CC [M]  sound/core/pcm.o
-  CC      drivers/acpi/acpica/exconvrt.o
-  CC      drivers/char/tpm/tpm1-cmd.o
-  CC      drivers/base/power/sysfs.o
-  CC      drivers/block/loop.o
-  CC      drivers/iommu/intel/irq_remapping.o
-  AR      drivers/misc/eeprom/built-in.a
-  CC      drivers/base/firmware_loader/builtin/main.o
-  AR      drivers/misc/cb710/built-in.a
-  AR      drivers/misc/ti-st/built-in.a
-  AR      drivers/misc/lis3lv02d/built-in.a
-  AR      drivers/misc/cardreader/built-in.a
-  CC [M]  drivers/misc/mei/hdcp/mei_hdcp.o
-  CC      arch/x86/kernel/platform-quirks.o
-  CC      io_uring/cancel.o
-  CC      drivers/char/agp/intel-agp.o
-  CC      block/blk-ia-ranges.o
-  CC      arch/x86/kernel/process_64.o
-  CC      block/bsg.o
-  AR      drivers/misc/built-in.a
-  CC [M]  drivers/video/fbdev/core/sysfillrect.o
-  CC      drivers/mfd/mfd-core.o
-  AR      fs/fat/built-in.a
-  CC      kernel/time/timecounter.o
-  CC [M]  drivers/video/fbdev/core/syscopyarea.o
-  CC      drivers/acpi/acpica/excreate.o
-  CC      drivers/iommu/intel/perfmon.o
-  AR      drivers/clk/built-in.a
-  CC      kernel/time/alarmtimer.o
-  AR      drivers/nfc/built-in.a
-  CC      fs/ext4/indirect.o
-  CC      fs/ext4/inline.o
-  AR      drivers/dax/hmem/built-in.a
-  CC      crypto/ecb.o
-  CC      drivers/dax/super.o
-  CC      drivers/dax/bus.o
-  AR      drivers/base/firmware_loader/builtin/built-in.a
-  CC      drivers/base/firmware_loader/main.o
-  CC      block/bsg-lib.o
-  CC      kernel/events/uprobes.o
-  CC      crypto/cbc.o
-  CC      net/netfilter/utils.o
-  CC [M]  net/netfilter/nfnetlink.o
-  CC      drivers/base/power/generic_ops.o
-  CC [M]  drivers/gpu/drm/tests/drm_damage_helper_test.o
-  CC      drivers/base/power/common.o
-  CC      fs/proc/kcore.o
-  CC [M]  drivers/misc/mei/pxp/mei_pxp.o
-  CC      net/ethtool/pause.o
-  CC      drivers/acpi/acpica/exdebug.o
-  CC [M]  sound/core/pcm_native.o
-  CC      drivers/char/tpm/tpm2-cmd.o
-  AR      drivers/connector/built-in.a
-  CC      crypto/pcbc.o
-  CC [M]  drivers/gpu/drm/tests/drm_dp_mst_helper_test.o
-  CC      kernel/fork.o
-  COPY    drivers/tty/vt/defkeymap.c
-  CC      block/blk-cgroup.o
-  CC [M]  drivers/misc/mei/init.o
-  AR      sound/soc/built-in.a
-  CC      crypto/cts.o
-  CC      drivers/char/agp/intel-gtt.o
-  CC      kernel/cgroup/freezer.o
-  CC      io_uring/kbuf.o
-  CC      lib/zstd/compress/zstd_ldm.o
-  CC [M]  net/netfilter/nf_conntrack_core.o
-  AR      kernel/irq/built-in.a
-  CC      io_uring/rsrc.o
-  CC      drivers/base/power/qos.o
-  CC [M]  arch/x86/kvm/ioapic.o
-  CC      drivers/mfd/intel-lpss.o
-  CC      drivers/pci/search.o
-  CC      kernel/trace/trace_seq.o
-  CC [M]  drivers/video/fbdev/core/sysimgblt.o
-  CC      lib/zstd/compress/zstd_opt.o
-  CC      drivers/acpi/acpica/exdump.o
-  CC      drivers/base/regmap/regmap.o
-  CC      drivers/pci/pci-sysfs.o
-  CC      arch/x86/kernel/signal.o
-  CC      arch/x86/kernel/signal_64.o
-  AR      drivers/base/firmware_loader/built-in.a
-  CC      drivers/char/mem.o
-  CC [M]  drivers/misc/mei/hbm.o
-  CC      kernel/time/posix-timers.o
-  AR      drivers/iommu/intel/built-in.a
-  AR      drivers/iommu/arm/arm-smmu/built-in.a
-  AR      drivers/dax/built-in.a
-  AR      drivers/iommu/arm/arm-smmu-v3/built-in.a
-  CC      kernel/time/posix-cpu-timers.o
-  AR      drivers/iommu/arm/built-in.a
-  CC      drivers/base/power/runtime.o
-  AR      drivers/iommu/iommufd/built-in.a
-  CC      mm/shmem.o
-  CC      drivers/iommu/iommu.o
-  CC      drivers/base/power/wakeirq.o
-  CC      drivers/acpi/acpica/exfield.o
-  CC      fs/proc/kmsg.o
-  CC [M]  sound/core/pcm_lib.o
-  CC      arch/x86/kernel/traps.o
-  CC [M]  drivers/gpu/drm/tests/drm_format_helper_test.o
-  CC      drivers/block/virtio_blk.o
-  CC      crypto/lrw.o
-  CC      net/ethtool/eee.o
-  CC      drivers/char/tpm/tpmrm-dev.o
-  CC      drivers/mfd/intel-lpss-pci.o
-  AR      net/ipv4/netfilter/built-in.a
-  CC      net/core/dst.o
-  CC [M]  net/ipv4/netfilter/nf_defrag_ipv4.o
-  CC      kernel/cgroup/legacy_freezer.o
-  CC      kernel/trace/trace_stat.o
-  CC [M]  sound/core/pcm_misc.o
-  CC      net/xfrm/xfrm_policy.o
-  AR      drivers/gpu/drm/display/built-in.a
-  CC [M]  drivers/gpu/drm/display/drm_display_helper_mod.o
-  AR      drivers/gpu/drm/rcar-du/built-in.a
-  CC      io_uring/rw.o
-  CC [M]  net/ipv4/netfilter/nf_reject_ipv4.o
-  AR      drivers/char/agp/built-in.a
-  CC [M]  drivers/gpu/drm/tests/drm_format_test.o
-  CC      drivers/acpi/acpica/exfldio.o
-  CC [M]  drivers/gpu/drm/display/drm_dp_dual_mode_helper.o
-  CC [M]  drivers/video/fbdev/core/fb_sys_fops.o
-  CC      fs/proc/page.o
-  CC [M]  net/netfilter/nf_conntrack_standalone.o
-  CC      mm/util.o
-  CC      fs/ext4/inode.o
-  CC [M]  drivers/gpu/drm/display/drm_dp_helper.o
-  CC      net/ipv4/route.o
-  CC      arch/x86/kernel/idt.o
-  CC      net/xfrm/xfrm_state.o
-  CC      crypto/xts.o
-  CONMK   drivers/tty/vt/consolemap_deftbl.c
-  CC      kernel/trace/trace_printk.o
-  CC      drivers/tty/vt/defkeymap.o
-  CC      drivers/char/random.o
-  CC      drivers/mfd/intel-lpss-acpi.o
-  CC      drivers/char/tpm/tpm2-space.o
-  CC [M]  drivers/misc/mei/interrupt.o
-  CC      drivers/pci/rom.o
-  CC      drivers/tty/vt/consolemap_deftbl.o
-  CC [M]  drivers/gpu/drm/tests/drm_framebuffer_test.o
-  AR      drivers/tty/vt/built-in.a
-  CC      net/ethtool/tsinfo.o
-  CC      drivers/tty/hvc/hvc_console.o
-  CC      drivers/tty/serial/8250/8250_core.o
-  CC      net/ethtool/cabletest.o
-  CC      drivers/acpi/acpica/exmisc.o
-  CC      kernel/cgroup/pids.o
-  CC      drivers/tty/serial/serial_core.o
-  CC      drivers/base/power/main.o
-  CC      arch/x86/kernel/irq.o
-  CC      block/blk-cgroup-rwstat.o
-  LD [M]  drivers/video/fbdev/core/fb.o
-  CC [M]  net/ipv4/netfilter/ip_tables.o
-  CC      drivers/acpi/acpica/exmutex.o
-  AR      drivers/video/fbdev/core/built-in.a
-  AR      drivers/video/fbdev/built-in.a
-  CC      drivers/video/hdmi.o
-  CC      kernel/time/posix-clock.o
-  CC      drivers/acpi/acpica/exnames.o
-  CC      net/core/netevent.o
-  CC      drivers/mfd/intel_soc_pmic_crc.o
-  CC [M]  drivers/block/nbd.o
-  CC      drivers/tty/serial/8250/8250_pnp.o
-  CC      drivers/tty/serial/8250/8250_port.o
-  AR      fs/proc/built-in.a
-  CC      drivers/char/misc.o
-  CC      drivers/acpi/acpica/exoparg1.o
-  CC [M]  drivers/gpu/drm/tests/drm_managed_test.o
-  CC      crypto/ctr.o
-  CC      drivers/char/virtio_console.o
-  CC      kernel/trace/pid_list.o
-  CC      drivers/pci/setup-res.o
-  CC      drivers/char/tpm/tpm-sysfs.o
-  CC      kernel/cgroup/cpuset.o
-  CC [M]  net/ipv4/netfilter/iptable_filter.o
-  CC      block/blk-throttle.o
-  CC [M]  drivers/misc/mei/client.o
-  CC [M]  sound/core/pcm_memory.o
-  CC      drivers/dma-buf/dma-buf.o
-  CC [M]  drivers/misc/mei/main.o
-  CC [M]  drivers/gpu/drm/display/drm_dp_mst_topology.o
-  CC      net/ethtool/tunnels.o
-  CC      block/mq-deadline.o
-  AR      drivers/tty/hvc/built-in.a
-  CC [M]  drivers/gpu/drm/display/drm_dsc_helper.o
-  CC      io_uring/opdef.o
-  CC      drivers/iommu/iommu-traces.o
-  CC      kernel/time/itimer.o
-  CC [M]  drivers/gpu/drm/tests/drm_mm_test.o
-  CC [M]  net/netfilter/nf_conntrack_expect.o
-  CC [M]  drivers/gpu/drm/tests/drm_modes_test.o
-  CC      drivers/base/power/wakeup.o
-  CC [M]  drivers/mfd/lpc_sch.o
-  CC      crypto/gcm.o
-  CC      drivers/pci/irq.o
-  CC      net/core/neighbour.o
-  CC      drivers/acpi/acpica/exoparg2.o
-  AR      drivers/video/built-in.a
-  AR      drivers/cxl/core/built-in.a
-  CC      net/ethtool/fec.o
-  CC      drivers/tty/serial/8250/8250_dma.o
-  AR      drivers/cxl/built-in.a
-  CC      crypto/pcrypt.o
-  CC      io_uring/notif.o
-  CC      drivers/pci/vpd.o
-  CC      kernel/trace/trace_sched_switch.o
-  CC      drivers/base/regmap/regcache.o
-  CC [M]  sound/core/memalloc.o
-  CC      drivers/char/tpm/eventlog/common.o
-  CC [M]  sound/core/pcm_timer.o
-  CC      drivers/acpi/acpica/exoparg3.o
-  CC      drivers/pci/setup-bus.o
-  CC      mm/mmzone.o
-  LD [M]  sound/core/snd-ctl-led.o
-  CC      io_uring/io-wq.o
-  CC [M]  drivers/mfd/lpc_ich.o
-  CC [M]  drivers/gpu/drm/tests/drm_plane_helper_test.o
-  CC      fs/nfs/client.o
-  CC      fs/exportfs/expfs.o
-  CC      arch/x86/kernel/irq_64.o
-  CC [M]  drivers/misc/mei/dma-ring.o
-  CC      drivers/iommu/iommu-sysfs.o
-  CC      kernel/time/clockevents.o
-  CC      drivers/dma-buf/dma-fence.o
-  CC [M]  drivers/gpu/drm/tests/drm_probe_helper_test.o
-  CC      lib/zstd/zstd_decompress_module.o
-  CC      kernel/exec_domain.o
-  CC      arch/x86/kernel/dumpstack_64.o
-  CC      drivers/acpi/acpica/exoparg6.o
-  CC [M]  net/ipv4/netfilter/iptable_mangle.o
-  CC      drivers/base/power/wakeup_stats.o
-  CC [M]  drivers/misc/mei/bus.o
-  CC [M]  drivers/gpu/drm/display/drm_hdcp_helper.o
-  CC      drivers/char/tpm/eventlog/tpm1.o
-  CC      drivers/tty/serial/earlycon.o
-  CC      crypto/cryptd.o
-  CC [M]  drivers/misc/mei/bus-fixup.o
-  CC      net/ethtool/eeprom.o
-  CC      kernel/trace/trace_functions.o
-  CC [M]  drivers/misc/mei/debugfs.o
-  CC      mm/vmstat.o
-  CC      drivers/tty/serial/serial_mctrl_gpio.o
-  CC      block/kyber-iosched.o
-  LD [M]  sound/core/snd-hwdep.o
-  CC      drivers/iommu/dma-iommu.o
-  CC      drivers/tty/serial/8250/8250_dwlib.o
-  CC      drivers/base/regmap/regcache-rbtree.o
-  CC      kernel/panic.o
-  AR      sound/core/built-in.a
-  AR      kernel/events/built-in.a
-  LD [M]  sound/core/snd-pcm.o
-  CC      net/ethtool/stats.o
-  CC [M]  drivers/misc/mei/mei-trace.o
-  AR      fs/exportfs/built-in.a
-  CC      net/ethtool/phc_vclocks.o
-  AR      sound/atmel/built-in.a
-  CC      fs/lockd/clntlock.o
-  AR      sound/hda/built-in.a
-  CC [M]  sound/hda/hda_bus_type.o
-  AR      sound/x86/built-in.a
-  CC      drivers/acpi/acpica/exprep.o
-  AR      sound/xen/built-in.a
-  CC [M]  drivers/misc/mei/pci-me.o
-  CC [M]  net/netfilter/nf_conntrack_helper.o
-  CC [M]  drivers/misc/mei/hw-me.o
-  AR      drivers/mfd/built-in.a
-  AR      sound/virtio/built-in.a
-  CC      drivers/base/power/domain.o
-  CC [M]  drivers/gpu/drm/display/drm_hdmi_helper.o
-  CC      sound/sound_core.o
-  CC      arch/x86/kernel/time.o
-  CC      kernel/time/tick-common.o
-  CC      net/ipv4/inetpeer.o
-  CC [M]  drivers/gpu/drm/display/drm_scdc_helper.o
-  CC [M]  drivers/gpu/drm/tests/drm_rect_test.o
-  CC      drivers/char/tpm/eventlog/tpm2.o
-  CC      net/ipv4/protocol.o
-  CC      fs/lockd/clntproc.o
-  CC [M]  net/netfilter/nf_conntrack_proto.o
-  AR      drivers/block/built-in.a
-  CC [M]  net/ipv4/netfilter/iptable_nat.o
-  CC [M]  drivers/gpu/drm/display/drm_dp_aux_dev.o
-  CC      block/bfq-iosched.o
-  CC      drivers/acpi/acpica/exregion.o
-  CC [M]  net/netfilter/nf_conntrack_proto_generic.o
-  CC      sound/last.o
-  CC      drivers/tty/serial/8250/8250_pcilib.o
-  CC      drivers/char/tpm/tpm_ppi.o
-  CC [M]  net/ipv4/netfilter/ipt_REJECT.o
-  CC      arch/x86/kernel/ioport.o
-  CC      drivers/base/regmap/regcache-flat.o
-  CC [M]  sound/hda/hdac_bus.o
-  CC      kernel/trace/trace_preemptirq.o
-  CC      drivers/dma-buf/dma-fence-array.o
-  CC      drivers/base/regmap/regmap-debugfs.o
-  CC      crypto/des_generic.o
-  CC      net/ipv4/ip_input.o
-  CC      drivers/tty/serial/8250/8250_pci.o
-  CC      drivers/dma-buf/dma-fence-chain.o
-  CC      drivers/dma-buf/dma-fence-unwrap.o
-  AR      io_uring/built-in.a
-  AR      drivers/macintosh/built-in.a
-  CC      net/ethtool/mm.o
-  CC      net/ethtool/module.o
-  CC      drivers/char/tpm/eventlog/acpi.o
-  CC      drivers/pci/vc.o
-  CC      net/ipv4/ip_fragment.o
-  CC      net/unix/af_unix.o
-  CC      drivers/acpi/acpica/exresnte.o
-  AR      kernel/cgroup/built-in.a
-  CC      net/unix/garbage.o
-  CC      fs/nfs/dir.o
-  CC      net/unix/sysctl_net_unix.o
-  CC      drivers/char/tpm/eventlog/efi.o
-  CC      mm/backing-dev.o
-  CC      kernel/time/tick-broadcast.o
-  CC      kernel/cpu.o
-  AR      drivers/gpu/drm/omapdrm/built-in.a
-  CC      drivers/char/tpm/tpm_crb.o
-  CC      crypto/aes_generic.o
-  CC      drivers/iommu/ioasid.o
-  CC      net/ethtool/pse-pd.o
-  CC      drivers/base/regmap/regmap-i2c.o
-  CC      drivers/base/regmap/regmap-irq.o
-  CC      kernel/time/tick-broadcast-hrtimer.o
-  CC      drivers/acpi/acpica/exresolv.o
-  CC      net/xfrm/xfrm_hash.o
-  CC      fs/nfs/file.o
-  CC [M]  sound/hda/hdac_device.o
-  CC      drivers/pci/mmap.o
-  CC      arch/x86/kernel/dumpstack.o
-  CC      mm/mm_init.o
-  CC [M]  sound/hda/hdac_sysfs.o
-  CC      kernel/time/tick-oneshot.o
-  CC      drivers/dma-buf/dma-resv.o
-  AR      drivers/gpu/drm/tilcdc/built-in.a
-  CC      drivers/acpi/acpica/exresop.o
-  CC      kernel/trace/trace_nop.o
-  CC      mm/percpu.o
-  AR      net/ipv6/netfilter/built-in.a
-  CC      mm/slab_common.o
-  CC [M]  net/ipv6/netfilter/nf_defrag_ipv6_hooks.o
-  LD [M]  drivers/gpu/drm/display/drm_display_helper.o
-  CC      mm/compaction.o
-  CC [M]  net/netfilter/nf_conntrack_proto_tcp.o
-  AR      drivers/gpu/drm/imx/built-in.a
-  CC [M]  net/ipv6/netfilter/nf_conntrack_reasm.o
-  AR      drivers/gpu/drm/i2c/built-in.a
-  CC      fs/lockd/clntxdr.o
-  AR      drivers/gpu/drm/panel/built-in.a
-  AR      drivers/base/test/built-in.a
-  AR      drivers/gpu/drm/bridge/analogix/built-in.a
-  AR      drivers/gpu/drm/hisilicon/built-in.a
-  CC      net/xfrm/xfrm_input.o
-  AR      drivers/gpu/drm/bridge/cadence/built-in.a
-  AR      drivers/gpu/drm/bridge/imx/built-in.a
-  AR      drivers/gpu/drm/bridge/synopsys/built-in.a
-  AR      drivers/gpu/drm/bridge/built-in.a
-  CC      fs/lockd/host.o
-  AR      drivers/gpu/drm/mxsfb/built-in.a
-  CC      drivers/iommu/iova.o
-  CC      drivers/iommu/irq_remapping.o
-  AR      drivers/gpu/drm/tiny/built-in.a
-  AR      drivers/gpu/drm/xlnx/built-in.a
-  CC      drivers/base/power/domain_governor.o
-  CC      drivers/char/hpet.o
-  AR      drivers/gpu/drm/gud/built-in.a
-  CC      fs/ext4/ioctl.o
-  CC [M]  drivers/misc/mei/gsc-me.o
-  CC      net/xfrm/xfrm_output.o
-  LD [M]  drivers/misc/mei/mei.o
-  AR      drivers/gpu/drm/solomon/built-in.a
-  CC [M]  drivers/gpu/drm/ttm/ttm_tt.o
-  LD [M]  drivers/misc/mei/mei-me.o
-  CC      fs/ext4/mballoc.o
-  CC      fs/ext4/migrate.o
-  CC      kernel/time/tick-sched.o
-  CC      drivers/dma-buf/sync_file.o
-  CC      drivers/acpi/acpica/exserial.o
-  CC      drivers/pci/setup-irq.o
-  CC      net/packet/af_packet.o
-  CC      net/key/af_key.o
-  AR      drivers/char/tpm/built-in.a
-  CC      block/bfq-wf2q.o
-  CC      drivers/char/nvram.o
-  CC      arch/x86/kernel/nmi.o
-  CC      net/packet/diag.o
-  CC      drivers/tty/serial/8250/8250_exar.o
-  CC      kernel/trace/trace_functions_graph.o
-  CC      net/core/rtnetlink.o
-  CC      net/ethtool/plca.o
-  CC      net/ipv4/ip_forward.o
-  CC      net/xfrm/xfrm_sysctl.o
-  CC [M]  sound/hda/hdac_regmap.o
-  CC      drivers/base/power/clock_ops.o
-  CC      crypto/deflate.o
-  CC [M]  drivers/gpu/drm/scheduler/sched_main.o
-  CC      drivers/acpi/acpica/exstore.o
-  CC      crypto/crc32c_generic.o
-  LD [M]  drivers/misc/mei/mei-gsc.o
-  CC      drivers/dma-buf/sw_sync.o
-  AR      drivers/base/regmap/built-in.a
-  CC      net/ipv4/ip_options.o
-  CC      drivers/base/component.o
-  CC      kernel/trace/fgraph.o
-  CC      drivers/pci/proc.o
-  CC [M]  arch/x86/kvm/irq_comm.o
-  CC      net/xfrm/xfrm_replay.o
-  AR      drivers/iommu/built-in.a
-  CC      crypto/crct10dif_common.o
-  CC [M]  drivers/gpu/drm/ttm/ttm_bo.o
-  CC      block/bfq-cgroup.o
-  CC      net/ipv4/ip_output.o
-  CC [M]  sound/hda/hdac_controller.o
-  CC      fs/nls/nls_base.o
-  AR      fs/unicode/built-in.a
-  AR      drivers/char/built-in.a
-  CC      drivers/acpi/acpica/exstoren.o
-  CC      fs/nls/nls_cp437.o
-  CC      fs/ntfs/aops.o
-  CC      kernel/time/vsyscall.o
-  CC      fs/ntfs/attrib.o
-  AR      drivers/base/power/built-in.a
-  CC      drivers/acpi/acpica/exstorob.o
-  CC      drivers/tty/serial/8250/8250_early.o
-  CC      arch/x86/kernel/ldt.o
-  CC      fs/autofs/init.o
-  CC      fs/lockd/svc.o
-  CC      crypto/crct10dif_generic.o
-  LD [M]  net/ipv6/netfilter/nf_defrag_ipv6.o
-  CC      fs/autofs/inode.o
-  CC      net/ipv6/af_inet6.o
-  CC      fs/lockd/svclock.o
-  CC      kernel/time/timekeeping_debug.o
-  AR      net/ethtool/built-in.a
-  CC      fs/lockd/svcshare.o
-  CC      drivers/base/core.o
-  CC      net/ipv4/ip_sockglue.o
-  CC      fs/nfs/getroot.o
-  CC      net/ipv6/anycast.o
-  CC      net/xfrm/xfrm_device.o
-  CC      net/xfrm/xfrm_algo.o
-  CC [M]  sound/hda/hdac_stream.o
-  CC      fs/nls/nls_ascii.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/amdgpu_drv.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/amdgpu_device.o
-  CC [M]  net/netfilter/nf_conntrack_proto_udp.o
-  CC      drivers/pci/slot.o
-  CC      drivers/dma-buf/sync_debug.o
-  CC      drivers/acpi/acpica/exsystem.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/amdgpu_kms.o
-  CC      crypto/authenc.o
-  CC      kernel/trace/blktrace.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/amdgpu_atombios.o
-  CC      mm/interval_tree.o
-  CC      kernel/exit.o
-  CC      net/unix/diag.o
-  CC      drivers/tty/serial/8250/8250_dw.o
-  CC [M]  arch/x86/kvm/cpuid.o
-  CC      net/unix/scm.o
-  CC [M]  drivers/gpu/drm/scheduler/sched_fence.o
-  CC      mm/list_lru.o
-  CC      block/blk-mq-pci.o
-  CC      fs/nls/nls_iso8859-1.o
-  CC [M]  drivers/gpu/drm/ttm/ttm_bo_util.o
-  CC      fs/autofs/root.o
-  CC      kernel/time/namespace.o
-  CC      fs/autofs/symlink.o
-  CC      drivers/acpi/acpica/extrace.o
-  CC [M]  drivers/dma-buf/selftest.o
-  CC      net/xfrm/xfrm_user.o
-  CC      fs/ntfs/collate.o
-  CC [M]  arch/x86/kvm/pmu.o
-  CC [M]  arch/x86/kvm/mtrr.o
-  CC      arch/x86/kernel/setup.o
-  CC [M]  drivers/gpu/drm/ttm/ttm_bo_vm.o
-  CC      drivers/pci/pci-acpi.o
-  CC      drivers/tty/serial/8250/8250_lpss.o
-  CC      fs/nls/nls_utf8.o
-  CC [M]  drivers/gpu/drm/scheduler/sched_entity.o
-  CC      fs/lockd/svcproc.o
-  CC      fs/nfs/inode.o
-  CC [M]  sound/hda/array.o
-  CC      fs/nfs/super.o
-  CC      drivers/acpi/acpica/exutils.o
-  CC      kernel/trace/trace_events.o
-  CC      mm/workingset.o
-  CC      block/blk-mq-virtio.o
-  CC      fs/lockd/svcsubs.o
-  CC      block/blk-mq-debugfs.o
-  CC      crypto/authencesn.o
-  CC [M]  drivers/dma-buf/st-dma-fence.o
-  CC      fs/ntfs/compress.o
-  CC [M]  net/netfilter/nf_conntrack_proto_icmp.o
-  AR      fs/nls/built-in.a
-  AR      kernel/time/built-in.a
-  CC [M]  net/netfilter/nf_conntrack_extend.o
-  CC [M]  arch/x86/kvm/hyperv.o
-  CC [M]  arch/x86/kvm/debugfs.o
-  CC      block/blk-pm.o
-  CC      net/ipv6/ip6_output.o
-  CC      crypto/lzo.o
-  CC      fs/ext4/mmp.o
-  AR      net/key/built-in.a
-  CC      kernel/softirq.o
-  CC      block/holder.o
-  CC      fs/autofs/waitq.o
-  AR      net/unix/built-in.a
-  CC [M]  drivers/gpu/drm/ttm/ttm_module.o
-  CC      mm/debug.o
-  CC [M]  drivers/gpu/drm/i915/i915_driver.o
-  CC      drivers/acpi/acpica/hwacpi.o
-  CC [M]  drivers/gpu/drm/i915/i915_drm_client.o
-  CC      drivers/tty/serial/8250/8250_mid.o
-  CC [M]  sound/hda/hdmi_chmap.o
-  CC      fs/debugfs/inode.o
-  CC      arch/x86/kernel/x86_init.o
-  LD [M]  drivers/gpu/drm/scheduler/gpu-sched.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/atombios_crtc.o
-  CC      fs/autofs/expire.o
-  CC      lib/zstd/decompress/huf_decompress.o
-  CC      drivers/acpi/osi.o
-  CC      drivers/tty/serial/8250/8250_pericom.o
-  CC [M]  drivers/gpu/drm/ttm/ttm_execbuf_util.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/amdgpu_connectors.o
-  CC      drivers/acpi/acpica/hwesleep.o
-  CC [M]  drivers/gpu/drm/xe/tests/xe_bo_test.o
-  CC [M]  drivers/dma-buf/st-dma-fence-chain.o
-  CC [M]  drivers/gpu/drm/ttm/ttm_range_manager.o
-  CC      drivers/pci/quirks.o
-  CC [M]  drivers/dma-buf/st-dma-fence-unwrap.o
-  CC [M]  drivers/gpu/drm/xe/tests/xe_dma_buf_test.o
-  CC [M]  drivers/gpu/drm/xe/xe_bb.o
-  CC      net/ipv4/inet_hashtables.o
-  CC [M]  drivers/gpu/drm/xe/xe_bo.o
-  AR      net/bridge/netfilter/built-in.a
-  CC      net/bridge/br.o
-  CC      drivers/acpi/osl.o
-  AR      block/built-in.a
-  CC      net/bridge/br_device.o
-  CC      crypto/lzo-rle.o
-  CC      net/ipv6/ip6_input.o
-  CC      drivers/acpi/utils.o
-  CC      mm/gup.o
-  AR      net/packet/built-in.a
-  CC      fs/lockd/mon.o
-  CC      net/ipv4/inet_timewait_sock.o
-  CC [M]  net/netfilter/nf_conntrack_acct.o
-  CC      net/ipv4/inet_connection_sock.o
-  CC      kernel/resource.o
-  CC [M]  sound/hda/trace.o
-  CC      fs/ext4/move_extent.o
-  CC      drivers/acpi/acpica/hwgpe.o
-  CC [M]  drivers/gpu/drm/xe/tests/xe_migrate_test.o
-  CC      fs/ntfs/debug.o
-  CC      fs/lockd/xdr.o
-  CC      drivers/acpi/reboot.o
-  CC      arch/x86/kernel/i8259.o
-  CC      fs/debugfs/file.o
-  CC      net/ipv4/tcp.o
-  CC      fs/autofs/dev-ioctl.o
-  CC [M]  drivers/gpu/drm/i915/i915_config.o
-  CC      fs/ntfs/dir.o
-  AR      drivers/tty/serial/8250/built-in.a
-  AR      drivers/tty/serial/built-in.a
-  CC      lib/fonts/fonts.o
-  AR      drivers/tty/ipwireless/built-in.a
-  CC      drivers/base/bus.o
-  CC [M]  drivers/gpu/drm/i915/i915_getparam.o
-  CC [M]  drivers/gpu/drm/ttm/ttm_resource.o
-  CC      drivers/tty/tty_io.o
-  CC      lib/fonts/font_8x8.o
-  CC [M]  drivers/gpu/drm/ttm/ttm_pool.o
-  CC      drivers/pci/ats.o
-  CC      crypto/lz4.o
-  CC [M]  drivers/gpu/drm/xe/tests/xe_pci_test.o
-  CC      fs/ntfs/file.o
-  CC      fs/ntfs/index.o
-  CC      drivers/acpi/acpica/hwregs.o
-  CC [M]  drivers/dma-buf/st-dma-resv.o
-  CC      lib/fonts/font_8x16.o
-  CC      net/core/utils.o
-  CC      kernel/sysctl.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/atom.o
-  CC      arch/x86/kernel/irqinit.o
-  CC      drivers/pci/iov.o
-  CC [M]  drivers/gpu/drm/xe/tests/xe_rtp_test.o
-  CC [M]  net/netfilter/nf_conntrack_seqadj.o
-  CC      crypto/lz4hc.o
-  AR      fs/autofs/built-in.a
-  CC [M]  arch/x86/kvm/mmu/mmu.o
-  CC [M]  sound/hda/hdac_component.o
-  CC      drivers/tty/n_tty.o
-  AR      net/xfrm/built-in.a
-  CC      drivers/tty/tty_ioctl.o
-  CC      fs/lockd/clnt4xdr.o
-  CC [M]  drivers/gpu/drm/i915/i915_ioctl.o
-  AR      lib/fonts/built-in.a
-  CC      lib/argv_split.o
-  CC      crypto/xxhash_generic.o
-  CC      net/bridge/br_fdb.o
-  CC      kernel/trace/trace_export.o
-  CC      crypto/rng.o
-  CC      drivers/base/dd.o
-  CC      net/bridge/br_forward.o
-  AR      drivers/dma-buf/built-in.a
-  LD [M]  drivers/dma-buf/dmabuf_selftests.o
-  AR      fs/debugfs/built-in.a
-  CC      drivers/acpi/acpica/hwsleep.o
-  CC      net/ipv4/tcp_input.o
-  CC      drivers/acpi/acpica/hwvalid.o
-  CC [M]  drivers/gpu/drm/xe/tests/xe_wa_test.o
-  CC      drivers/base/syscore.o
-  CC      fs/nfs/io.o
-  CC      crypto/drbg.o
-  CC      crypto/jitterentropy.o
-  CC      arch/x86/kernel/jump_label.o
-  CC      crypto/jitterentropy-kcapi.o
-  CC [M]  drivers/gpu/drm/ttm/ttm_device.o
-  CC      drivers/scsi/scsi.o
-  CC      drivers/nvme/host/core.o
-  AR      drivers/nvme/target/built-in.a
-  CC      fs/ext4/namei.o
-  CC      fs/tracefs/inode.o
-  CC      fs/pstore/inode.o
-  CC      fs/ntfs/inode.o
-  CC      lib/bug.o
-  CC      fs/btrfs/super.o
-  CC      fs/lockd/xdr4.o
-  CC      drivers/scsi/hosts.o
-  CC [M]  net/sunrpc/auth_gss/auth_gss.o
-  CC      arch/x86/kernel/irq_work.o
-  CC      net/8021q/vlan_core.o
-  CC      drivers/acpi/acpica/hwxface.o
-  CC [M]  sound/hda/hdac_i915.o
-  CC      net/sunrpc/clnt.o
-  CC [M]  sound/hda/intel-dsp-config.o
-  CC      arch/x86/kernel/probe_roms.o
-  CC      net/core/link_watch.o
-  CC      kernel/trace/trace_event_perf.o
-  CC [M]  arch/x86/kvm/mmu/page_track.o
-  CC      drivers/pci/pci-label.o
-  CC      net/ipv4/tcp_output.o
-  CC      drivers/ata/libata-core.o
-  CC      net/core/filter.o
-  CC      drivers/ata/libata-scsi.o
-  CC [M]  drivers/gpu/drm/xe/xe_bo_evict.o
-  CC [M]  drivers/gpu/drm/i915/i915_irq.o
-  CC [M]  drivers/gpu/drm/ttm/ttm_sys_manager.o
-  CC      drivers/ata/libata-eh.o
-  CC      drivers/base/driver.o
-  CC      drivers/tty/tty_ldisc.o
-  CC      fs/pstore/platform.o
-  CC [M]  net/netfilter/nf_conntrack_proto_icmpv6.o
-  CC      drivers/acpi/acpica/hwxfsleep.o
-  AR      fs/tracefs/built-in.a
-  CC      net/ipv4/tcp_timer.o
-  CC      net/core/sock_diag.o
-  CC      drivers/tty/tty_buffer.o
-  CC      drivers/acpi/acpica/hwpci.o
-  CC      mm/mmap_lock.o
-  CC      fs/nfs/direct.o
-  CC      net/ipv6/addrconf.o
-  CC      fs/ntfs/mft.o
-  CC      net/bridge/br_if.o
-  CC      net/ipv4/tcp_ipv4.o
-  CC      arch/x86/kernel/sys_ia32.o
-  CC      crypto/ghash-generic.o
-  CC [M]  sound/hda/intel-nhlt.o
-  CC      drivers/acpi/nvs.o
-  CC [M]  drivers/gpu/drm/ttm/ttm_agp_backend.o
-  CC      drivers/pci/pci-stub.o
-  CC      net/core/dev_ioctl.o
-  CC      net/dcb/dcbnl.o
-  CC      drivers/scsi/scsi_ioctl.o
-  CC      drivers/base/class.o
-  CC      fs/lockd/svc4proc.o
-  CC      net/dcb/dcbevent.o
-  CC      drivers/acpi/acpica/nsaccess.o
-  CC      net/core/tso.o
-  CC      kernel/trace/trace_events_filter.o
-  CC [M]  drivers/gpu/drm/xe/xe_debugfs.o
-  CC      fs/pstore/pmsg.o
-  CC      lib/zstd/decompress/zstd_ddict.o
-  CC      net/bridge/br_input.o
-  CC      drivers/acpi/wakeup.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/amdgpu_fence.o
-  CC [M]  net/8021q/vlan.o
-  CC      crypto/af_alg.o
-  CC      drivers/acpi/sleep.o
-  CC      drivers/tty/tty_port.o
-  CC      lib/zstd/decompress/zstd_decompress.o
-  CC      fs/ntfs/mst.o
-  CC [M]  sound/hda/intel-sdw-acpi.o
-  CC      drivers/tty/tty_mutex.o
-  CC      drivers/pci/vgaarb.o
-  LD [M]  drivers/gpu/drm/ttm/ttm.o
-  CC      drivers/acpi/acpica/nsalloc.o
-  CC [M]  drivers/gpu/drm/vgem/vgem_drv.o
-  CC      mm/highmem.o
-  CC      arch/x86/kernel/signal_32.o
-  CC [M]  drivers/gpu/drm/vgem/vgem_fence.o
-  AR      fs/pstore/built-in.a
-  CC      fs/efivarfs/inode.o
-  CC [M]  net/netfilter/nf_conntrack_proto_dccp.o
-  CC      drivers/base/platform.o
-  CC [M]  net/netfilter/nf_conntrack_proto_sctp.o
-  CC      net/sunrpc/xprt.o
-  CC [M]  drivers/gpu/drm/nouveau/nvif/object.o
-  CC [M]  drivers/gpu/drm/xe/xe_device.o
-  CC      drivers/scsi/scsicam.o
-  LD [M]  sound/hda/snd-hda-core.o
-  CC      fs/ntfs/namei.o
-  LD [M]  sound/hda/snd-intel-dspcfg.o
-  LD [M]  sound/hda/snd-intel-sdw-acpi.o
-  CC      drivers/acpi/acpica/nsarguments.o
-  AR      sound/built-in.a
-  CC [M]  drivers/gpu/drm/nouveau/nvif/client.o
-  CC      net/ipv4/tcp_minisocks.o
-  CC      net/core/sock_reuseport.o
-  CC      drivers/nvme/host/ioctl.o
-  CC      net/core/fib_notifier.o
-  CC      fs/lockd/procfs.o
-  CC [M]  drivers/gpu/drm/xe/xe_dma_buf.o
-  CC      drivers/tty/tty_ldsem.o
-  CC      lib/zstd/decompress/zstd_decompress_block.o
-  CC      mm/memory.o
-  CC      fs/efivarfs/file.o
-  CC      net/ipv4/tcp_cong.o
-  CC      net/ipv4/tcp_metrics.o
-  CC [M]  net/sunrpc/auth_gss/gss_generic_token.o
-  LD [M]  drivers/gpu/drm/vgem/vgem.o
-  CC [M]  drivers/gpu/drm/xe/xe_engine.o
-  CC      fs/efivarfs/super.o
-  CC [M]  net/8021q/vlan_dev.o
-  CC      fs/nfs/pagelist.o
-  CC      drivers/spi/spi.o
-  CC      arch/x86/kernel/sys_x86_64.o
-  CC      drivers/acpi/acpica/nsconvert.o
-  CC      kernel/trace/trace_events_trigger.o
-  CC      drivers/scsi/scsi_error.o
-  CC      net/bridge/br_ioctl.o
-  CC      fs/ntfs/runlist.o
-  AR      drivers/pci/built-in.a
-  CC [M]  drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.o
-  CC      drivers/net/phy/mdio-boardinfo.o
-  CC      drivers/net/phy/mdio_devres.o
-  AR      drivers/net/pse-pd/built-in.a
-  CC [M]  drivers/gpu/drm/xe/xe_exec.o
-  AR      fs/lockd/built-in.a
-  CC      drivers/net/phy/phy.o
-  CC      drivers/base/cpu.o
-  CC [M]  drivers/gpu/drm/nouveau/nvif/conn.o
-  CC      lib/zstd/zstd_common_module.o
-  AR      net/dcb/built-in.a
-  CC      lib/zstd/common/debug.o
-  CC [M]  net/netfilter/nf_conntrack_netlink.o
-  CC      net/bridge/br_stp.o
-  CC      fs/ext4/page-io.o
-  CC      crypto/algif_hash.o
-  CC      drivers/tty/tty_baudrate.o
-  CC      drivers/acpi/acpica/nsdump.o
-  CC [M]  net/sunrpc/auth_gss/gss_mech_switch.o
-  CC      fs/efivarfs/vars.o
-  CC      drivers/net/mdio/acpi_mdio.o
-  CC      drivers/net/mdio/fwnode_mdio.o
-  CC [M]  drivers/gpu/drm/i915/i915_mitigations.o
-  CC [M]  drivers/gpu/drm/nouveau/nvif/device.o
-  CC      net/sunrpc/socklib.o
-  CC      drivers/nvme/host/trace.o
-  CC      lib/zstd/common/entropy_common.o
-  CC      arch/x86/kernel/espfix_64.o
-  CC [M]  fs/netfs/buffered_read.o
-  CC      net/core/xdp.o
-  CC      drivers/acpi/acpica/nseval.o
-  CC      drivers/net/phy/phy-c45.o
-  CC [M]  fs/fscache/cache.o
-  CC      drivers/base/firmware.o
-  CC [M]  drivers/gpu/drm/i915/i915_module.o
-  CC      drivers/nvme/host/pci.o
-  CC      drivers/tty/tty_jobctrl.o
-  CC      lib/zstd/common/error_private.o
-  CC      lib/zstd/common/fse_decompress.o
-  CC [M]  drivers/gpu/drm/i915/i915_params.o
-  CC [M]  net/8021q/vlan_netlink.o
-  CC [M]  drivers/gpu/drm/ast/ast_drv.o
-  CC [M]  drivers/gpu/drm/xe/xe_execlist.o
-  CC      net/l3mdev/l3mdev.o
-  CC [M]  drivers/gpu/drm/xe/xe_force_wake.o
-  CC      kernel/trace/trace_eprobe.o
-  CC      net/ipv4/tcp_fastopen.o
-  CC      fs/ntfs/super.o
-  CC      net/bridge/br_stp_bpdu.o
-  CC      drivers/tty/n_null.o
-  AR      fs/efivarfs/built-in.a
-  CC [M]  fs/smbfs_common/cifs_arc4.o
-  AR      drivers/net/mdio/built-in.a
-  CC [M]  fs/cifs/trace.o
-  CC      drivers/acpi/acpica/nsinit.o
-  CC      drivers/base/init.o
-  CC [M]  drivers/gpu/drm/nouveau/nvif/disp.o
-  CC      fs/ext4/readpage.o
-  CC      drivers/base/map.o
-  CC      crypto/algif_skcipher.o
-  CC [M]  drivers/gpu/drm/i915/i915_pci.o
-  CC      arch/x86/kernel/ksysfs.o
-  CC      arch/x86/kernel/bootflag.o
-  CC      drivers/scsi/scsi_lib.o
-  CC [M]  fs/smbfs_common/cifs_md4.o
-  CC      net/ipv4/tcp_rate.o
-  CC [M]  net/sunrpc/auth_gss/svcauth_gss.o
-  CC [M]  net/8021q/vlanproc.o
-  CC      drivers/acpi/acpica/nsload.o
-  CC [M]  fs/netfs/io.o
-  CC      kernel/trace/trace_kprobe.o
-  CC [M]  fs/netfs/iterator.o
-  CC      drivers/tty/pty.o
-  CC [M]  fs/fscache/cookie.o
-  CC [M]  fs/fuse/dev.o
-  CC [M]  fs/fuse/dir.o
-  CC [M]  drivers/gpu/drm/ast/ast_i2c.o
-  CC [M]  drivers/gpu/drm/ast/ast_main.o
-  CC      drivers/base/devres.o
-  CC      drivers/acpi/acpica/nsnames.o
-  CC [M]  fs/overlayfs/super.o
-  CC [M]  drivers/gpu/drm/xe/xe_ggtt.o
-  AR      net/l3mdev/built-in.a
-  CC [M]  fs/overlayfs/namei.o
-  CC [M]  fs/fuse/file.o
-  CC      fs/nfs/read.o
-  CC [M]  drivers/gpu/drm/i915/i915_scatterlist.o
-  CC [M]  net/bluetooth/af_bluetooth.o
-  CC      drivers/net/phy/phy-core.o
-  CC [M]  net/bluetooth/hci_core.o
-  CC [M]  drivers/gpu/drm/nouveau/nvif/driver.o
-  CC [M]  net/dns_resolver/dns_key.o
-  CC      arch/x86/kernel/e820.o
-  CC      drivers/ata/libata-transport.o
-  CC [M]  net/bluetooth/hci_conn.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/amdgpu_object.o
-  CC      net/core/flow_offload.o
-  CC      fs/ext4/resize.o
-  CC      net/bridge/br_stp_if.o
-  CC      crypto/xor.o
-  CC      drivers/acpi/acpica/nsobject.o
-  CC      fs/ntfs/sysctl.o
-  CC [M]  drivers/gpu/drm/i915/i915_suspend.o
-  CC      fs/ntfs/unistr.o
-  AR      net/8021q/built-in.a
-  LD [M]  net/8021q/8021q.o
-  CC [M]  fs/netfs/main.o
-  CC      net/devres.o
-  CC      fs/ext4/super.o
-  CC      drivers/tty/sysrq.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/amdgpu_gart.o
-  CC      net/ipv6/addrlabel.o
-  CC      fs/ntfs/upcase.o
-  CC      net/ipv4/tcp_recovery.o
-  CC [M]  net/dns_resolver/dns_query.o
-  CC [M]  net/netfilter/nf_nat_core.o
-  CC [M]  drivers/gpu/drm/xe/xe_gt.o
-  CC      drivers/base/attribute_container.o
-  CC [M]  drivers/gpu/drm/ast/ast_mm.o
-  CC [M]  drivers/gpu/drm/nouveau/nvif/event.o
-  CC [M]  net/netfilter/nf_nat_proto.o
-  CC      lib/zstd/common/zstd_common.o
-  CC      drivers/acpi/acpica/nsparse.o
-  CC      crypto/hash_info.o
-  AR      lib/zstd/built-in.a
-  CC      drivers/net/phy/phy_device.o
-  CC      net/ipv4/tcp_ulp.o
-  CC      lib/buildid.o
-  CC      crypto/simd.o
-  CC [M]  net/sunrpc/auth_gss/gss_rpc_upcall.o
-  CC      drivers/ata/libata-trace.o
-  AR      drivers/spi/built-in.a
-  AR      drivers/firewire/built-in.a
-  CC [M]  drivers/gpu/drm/amd/amdgpu/amdgpu_encoders.o
-  CC [M]  fs/fscache/io.o
-  CC      fs/btrfs/ctree.o
-  CC      arch/x86/kernel/pci-dma.o
-  CC      fs/btrfs/extent-tree.o
-  AR      fs/ntfs/built-in.a
-  CC      fs/ext4/symlink.o
-  AR      drivers/nvme/host/built-in.a
-  AR      drivers/nvme/built-in.a
-  CC [M]  fs/overlayfs/util.o
-  CC      drivers/acpi/acpica/nspredef.o
-  CC [M]  fs/overlayfs/inode.o
-  CC      drivers/acpi/device_sysfs.o
-  CC      arch/x86/kernel/quirks.o
-  CC      drivers/base/transport_class.o
-  CC [M]  arch/x86/kvm/mmu/spte.o
-  CC      drivers/ata/libata-sata.o
-  LD [M]  net/dns_resolver/dns_resolver.o
-  CC [M]  drivers/gpu/drm/i915/i915_switcheroo.o
-  CC      net/bridge/br_stp_timer.o
-  AR      drivers/cdrom/built-in.a
-  CC      drivers/scsi/scsi_lib_dma.o
-  CC      net/core/gro.o
-  CC [M]  drivers/gpu/drm/i915/i915_sysfs.o
-  CC [M]  drivers/gpu/drm/ast/ast_mode.o
-  CC      lib/cmdline.o
-  CC [M]  fs/netfs/objects.o
-  CC [M]  crypto/md4.o
-  AR      drivers/tty/built-in.a
-  CC [M]  drivers/gpu/drm/nouveau/nvif/fifo.o
-  CC      lib/cpumask.o
-  CC      net/ipv6/route.o
-  CC      net/ipv6/ip6_fib.o
-  CC      kernel/trace/error_report-traces.o
-  CC      fs/nfs/symlink.o
-  CC [M]  fs/fuse/inode.o
-  CC      drivers/acpi/acpica/nsprepkg.o
-  CC [M]  drivers/gpu/drm/xe/xe_gt_clock.o
-  CC      drivers/base/topology.o
-  CC      fs/ext4/sysfs.o
-  CC      fs/ext4/xattr.o
-  CC      drivers/gpu/drm/drm_mipi_dsi.o
-  CC [M]  drivers/gpu/drm/ast/ast_post.o
-  CC [M]  drivers/gpu/drm/nouveau/nvif/head.o
-  CC      drivers/scsi/scsi_scan.o
-  CC      net/sunrpc/xprtsock.o
-  CC [M]  fs/cifs/cifsfs.o
-  CC [M]  fs/fscache/main.o
-  CC      net/bridge/br_netlink.o
-  CC      net/ipv4/tcp_offload.o
-  CC      net/ipv6/ipv6_sockglue.o
-  CC      arch/x86/kernel/topology.o
-  CC [M]  net/sunrpc/auth_gss/gss_rpc_xdr.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/amdgpu_display.o
-  CC [M]  crypto/ccm.o
-  CC      lib/ctype.o
-  CC      drivers/acpi/acpica/nsrepair.o
-  CC      lib/dec_and_lock.o
-  CC      drivers/ata/libata-sff.o
-  CC      drivers/acpi/acpica/nsrepair2.o
-  CC [M]  arch/x86/kvm/mmu/tdp_iter.o
-  CC      kernel/trace/power-traces.o
-  CC      drivers/acpi/acpica/nssearch.o
-  CC [M]  fs/overlayfs/file.o
-  LD [M]  fs/netfs/netfs.o
-  CC      drivers/base/container.o
-  CC      kernel/trace/rpm-traces.o
-  CC [M]  net/netfilter/nf_nat_helper.o
-  CC [M]  drivers/gpu/drm/i915/i915_utils.o
-  CC      mm/mincore.o
-  CC [M]  arch/x86/kvm/mmu/tdp_mmu.o
-  CC [M]  fs/fuse/control.o
-  CC [M]  drivers/gpu/drm/xe/xe_gt_debugfs.o
-  CC      fs/btrfs/print-tree.o
-  CC      lib/decompress.o
-  CC      net/bridge/br_netlink_tunnel.o
-  CC [M]  crypto/arc4.o
-  CC      lib/decompress_bunzip2.o
-  CC      arch/x86/kernel/kdebugfs.o
-  CC [M]  net/sunrpc/auth_gss/trace.o
-  CC [M]  drivers/gpu/drm/drm_aperture.o
-  CC [M]  drivers/gpu/drm/nouveau/nvif/mem.o
-  GEN     drivers/scsi/scsi_devinfo_tbl.c
-  CC      drivers/acpi/acpica/nsutils.o
-  AR      drivers/net/pcs/built-in.a
-  AR      drivers/net/ethernet/adi/built-in.a
-  AR      drivers/net/ethernet/alacritech/built-in.a
-  AR      drivers/net/ethernet/amazon/built-in.a
-  AR      drivers/net/ethernet/aquantia/built-in.a
-  CC      fs/nfs/unlink.o
-  AR      drivers/net/ethernet/asix/built-in.a
-  CC      drivers/base/property.o
-  AR      drivers/net/ethernet/cadence/built-in.a
-  AR      drivers/net/ethernet/broadcom/built-in.a
-  CC [M]  drivers/net/ethernet/broadcom/b44.o
-  AR      drivers/net/ethernet/cavium/common/built-in.a
-  AR      drivers/net/ethernet/cavium/thunder/built-in.a
-  AR      drivers/net/ethernet/cortina/built-in.a
-  AR      drivers/net/ethernet/cavium/liquidio/built-in.a
-  CC [M]  drivers/net/ethernet/broadcom/bnx2.o
-  AR      drivers/net/ethernet/cavium/octeon/built-in.a
-  AR      drivers/net/ethernet/cavium/built-in.a
-  CC      drivers/net/phy/linkmode.o
-  CC      net/core/netdev-genl.o
-  CC [M]  drivers/gpu/drm/ast/ast_dp501.o
-  AR      drivers/net/usb/built-in.a
-  CC [M]  drivers/net/usb/pegasus.o
-  CC [M]  drivers/net/usb/rtl8150.o
-  AR      drivers/net/ethernet/engleder/built-in.a
-  CC [M]  drivers/net/ethernet/broadcom/cnic.o
-  CC [M]  crypto/ecc.o
-  CC      arch/x86/kernel/alternative.o
-  CC [M]  drivers/gpu/drm/xe/xe_gt_mcr.o
-  CC [M]  drivers/net/ethernet/broadcom/tg3.o
-  CC [M]  drivers/gpu/drm/ast/ast_dp.o
-  CC      drivers/scsi/scsi_devinfo.o
-  CC [M]  drivers/gpu/drm/drm_atomic.o
-  CC [M]  fs/fuse/xattr.o
-  CC [M]  fs/fscache/volume.o
-  CC [M]  drivers/net/usb/r8152.o
-  CC [M]  drivers/gpu/drm/drm_atomic_uapi.o
-  CC [M]  net/bluetooth/hci_event.o
-  CC [M]  net/bluetooth/mgmt.o
-  CC      drivers/acpi/acpica/nswalk.o
-  CC      lib/decompress_inflate.o
-  CC [M]  fs/overlayfs/dir.o
-  CC      mm/mlock.o
-  CC [M]  drivers/gpu/drm/i915/intel_clock_gating.o
-  CC      net/ipv4/tcp_plb.o
-  CC [M]  drivers/gpu/drm/nouveau/nvif/mmu.o
-  CC      drivers/net/phy/mdio_bus.o
-  CC [M]  net/netfilter/nf_nat_redirect.o
-  CC      net/bridge/br_arp_nd_proxy.o
-  CC      drivers/acpi/acpica/nsxfeval.o
-  CC      net/bridge/br_sysfs_if.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/amdgpu_i2c.o
-  CC      net/core/netdev-genl-gen.o
-  AR      drivers/auxdisplay/built-in.a
-  CC      net/core/net-sysfs.o
-  CC      lib/decompress_unlz4.o
-  CC      lib/decompress_unlzma.o
-  CC [M]  fs/fuse/acl.o
-  CC      kernel/trace/trace_dynevent.o
-  CC      drivers/base/cacheinfo.o
-  CC      drivers/base/swnode.o
-  CC [M]  fs/cifs/cifs_debug.o
-  CC      drivers/scsi/scsi_sysctl.o
-  LD [M]  drivers/gpu/drm/ast/ast.o
-  CC [M]  net/netfilter/nf_nat_masquerade.o
-  CC      lib/decompress_unlzo.o
-  CC [M]  drivers/gpu/drm/xe/xe_gt_pagefault.o
-  CC [M]  drivers/gpu/drm/xe/xe_gt_sysfs.o
-  CC [M]  fs/fscache/proc.o
-  CC      drivers/acpi/acpica/nsxfname.o
-  CC [M]  drivers/gpu/drm/nouveau/nvif/outp.o
-  CC      net/socket.o
-  CC      net/compat.o
-  CC      drivers/ata/libata-pmp.o
-  CC      drivers/scsi/scsi_debugfs.o
-  CC      net/ipv4/datagram.o
-  CC [M]  fs/overlayfs/readdir.o
-  CC      fs/nfs/write.o
-  CC      net/ipv4/raw.o
-  AR      drivers/net/ethernet/ezchip/built-in.a
-  CC      drivers/scsi/scsi_trace.o
-  CC [M]  drivers/gpu/drm/nouveau/nvif/timer.o
-  CC      arch/x86/kernel/i8253.o
-  CC      drivers/base/auxiliary.o
-  CC [M]  fs/fuse/readdir.o
-  CC      drivers/base/devtmpfs.o
-  CC [M]  arch/x86/kvm/smm.o
-  CC      lib/decompress_unxz.o
-  CC      drivers/ata/libata-acpi.o
-  CC      kernel/trace/trace_probe.o
-  CC      drivers/scsi/scsi_logging.o
-  CC [M]  net/netfilter/x_tables.o
-  CC      drivers/base/memory.o
-  CC [M]  net/sunrpc/auth_gss/gss_krb5_mech.o
-  CC      drivers/acpi/acpica/nsxfobj.o
-  CC [M]  net/sunrpc/auth_gss/gss_krb5_seal.o
-  CC      mm/mmap.o
-  CC      net/bridge/br_sysfs_br.o
-  LD [M]  fs/fscache/fscache.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/amdgpu_gem.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/amdgpu_ring.o
-  CC      drivers/base/module.o
-  CC      fs/open.o
-  CC      drivers/net/phy/mdio_device.o
-  CC      net/sysctl_net.o
-  CC [M]  crypto/essiv.o
-  CC      arch/x86/kernel/hw_breakpoint.o
-  CC [M]  drivers/gpu/drm/i915/intel_device_info.o
-  CC      drivers/scsi/scsi_pm.o
-  CC      drivers/base/pinctrl.o
-  CC      lib/decompress_unzstd.o
-  CC      drivers/acpi/acpica/psargs.o
-  CC      lib/dump_stack.o
-  CC      fs/btrfs/root-tree.o
-  CC      drivers/scsi/scsi_bsg.o
-  CC [M]  drivers/gpu/drm/xe/xe_gt_tlb_invalidation.o
-  CC [M]  drivers/gpu/drm/i915/intel_memory_region.o
-  CC [M]  drivers/gpu/drm/nouveau/nvif/vmm.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/amdgpu_cs.o
-  CC      drivers/base/platform-msi.o
-  CC [M]  fs/cifs/connect.o
-  CC      drivers/scsi/scsi_common.o
-  CC [M]  fs/fuse/ioctl.o
-  CC [M]  drivers/gpu/drm/xe/xe_gt_topology.o
-  CC [M]  net/netfilter/xt_tcpudp.o
-  CC      drivers/scsi/sd.o
-  CC      arch/x86/kernel/tsc.o
-  CC [M]  net/sunrpc/auth_gss/gss_krb5_unseal.o
-  CC [M]  fs/overlayfs/copy_up.o
-  CC      net/core/net-procfs.o
-  CC [M]  fs/cifs/dir.o
-  CC [M]  drivers/net/ipvlan/ipvlan_core.o
-  CC      drivers/ata/libata-pata-timings.o
-  CC      drivers/net/phy/swphy.o
-  CC [M]  fs/cifs/file.o
-  CC [M]  net/sunrpc/auth_gss/gss_krb5_seqnum.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/amdgpu_bios.o
-  CC      drivers/acpi/acpica/psloop.o
-  CC      lib/earlycpio.o
-  CC [M]  crypto/ecdh.o
-  CC [M]  arch/x86/kvm/vmx/vmx.o
-  CC      mm/mmu_gather.o
-  CC [M]  drivers/net/ipvlan/ipvlan_main.o
-  CC [M]  net/sunrpc/auth_gss/gss_krb5_wrap.o
-  CC      lib/extable.o
-  CC      drivers/base/physical_location.o
-  CC      fs/nfs/namespace.o
-  CC      kernel/trace/trace_uprobe.o
-  CC [M]  drivers/gpu/drm/nouveau/nvif/user.o
-  CC      net/bridge/br_nf_core.o
-  CC [M]  drivers/gpu/drm/i915/intel_pcode.o
-  CC      net/bridge/br_multicast.o
-  CC      net/ipv4/udp.o
-  CC [M]  arch/x86/kvm/kvm-asm-offsets.s
-  CC [M]  drivers/gpu/drm/xe/xe_guc.o
-  CC      drivers/net/phy/fixed_phy.o
-  LD [M]  fs/fuse/fuse.o
-  CC [M]  drivers/gpu/drm/i915/intel_region_ttm.o
-  CC      lib/flex_proportions.o
-  CC      drivers/acpi/acpica/psobject.o
-  CC [M]  drivers/net/phy/phylink.o
-  CC      drivers/ata/ahci.o
-  CC [M]  crypto/ecdh_helper.o
-  CC      kernel/trace/rethook.o
-  CC      drivers/base/trace.o
-  CC      drivers/acpi/acpica/psopcode.o
-  CC      fs/btrfs/dir-item.o
-  CC      arch/x86/kernel/tsc_msr.o
-  CC      net/core/netpoll.o
-  CC [M]  net/sunrpc/auth_gss/gss_krb5_crypto.o
-  CC [M]  drivers/net/usb/asix_devices.o
-  CC [M]  fs/overlayfs/export.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/amdgpu_benchmark.o
-  CC      lib/idr.o
-  CC [M]  net/netfilter/xt_mark.o
-  LD [M]  crypto/ecdh_generic.o
-  AR      crypto/built-in.a
-  CC [M]  net/netfilter/xt_nat.o
-  CC      arch/x86/kernel/io_delay.o
-  CC      drivers/ata/libahci.o
-  CC      drivers/acpi/acpica/psopinfo.o
-  CC      drivers/ata/ata_piix.o
-  CC [M]  drivers/gpu/drm/nouveau/nvif/userc361.o
-  CC      arch/x86/kernel/rtc.o
-  CC [M]  drivers/gpu/drm/nouveau/nvkm/core/client.o
-  CC      net/ipv6/ndisc.o
-  CC      net/ipv6/udp.o
-  CC      net/bridge/br_mdb.o
-  CC      net/ipv4/udplite.o
-  CC [M]  drivers/gpu/drm/drm_auth.o
-  AR      drivers/base/built-in.a
-  CC      net/core/fib_rules.o
-  CC      fs/btrfs/file-item.o
-  CC      drivers/scsi/sg.o
-  CC      net/ipv4/udp_offload.o
-  CC      fs/nfs/mount_clnt.o
-  CC      net/ipv4/arp.o
-  CC      drivers/acpi/acpica/psparse.o
-  CC [M]  drivers/gpu/drm/i915/intel_runtime_pm.o
-  CC [M]  drivers/net/ipvlan/ipvlan_l3s.o
-  CC [M]  drivers/gpu/drm/xe/xe_guc_ads.o
-  CC      lib/irq_regs.o
-  CC [M]  drivers/gpu/drm/i915/intel_sbi.o
-  CC [M]  arch/x86/kvm/vmx/pmu_intel.o
-  LD [M]  fs/overlayfs/overlay.o
-  CC [M]  drivers/gpu/drm/xe/xe_guc_ct.o
-  CC      fs/read_write.o
-  CC      lib/is_single_threaded.o
-  CC      mm/mprotect.o
-  CC      drivers/acpi/acpica/psscope.o
-  CC      net/ipv4/icmp.o
-  CC      arch/x86/kernel/resource.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/atombios_dp.o
-  CC      net/ipv4/devinet.o
-  CC [M]  net/sunrpc/auth_gss/gss_krb5_keys.o
-  CC [M]  drivers/gpu/drm/nouveau/nvkm/core/engine.o
-  CC      fs/btrfs/inode-item.o
-  CC      lib/klist.o
-  CC [M]  drivers/gpu/drm/nouveau/nvkm/core/enum.o
-  AS      arch/x86/kernel/irqflags.o
-  AR      kernel/trace/built-in.a
-  CC      arch/x86/kernel/static_call.o
-  CC      kernel/capability.o
-  CC [M]  net/netfilter/xt_REDIRECT.o
-  CC      arch/x86/kernel/process.o
-  CC      lib/kobject.o
-  CC      mm/mremap.o
-  LD [M]  net/sunrpc/auth_gss/auth_rpcgss.o
-  CC      drivers/acpi/acpica/pstree.o
-  CC [M]  drivers/net/vxlan/vxlan_core.o
-  CC      drivers/acpi/acpica/psutils.o
-  CC      drivers/net/loopback.o
-  CC      net/core/net-traces.o
-  CC [M]  drivers/gpu/drm/drm_blend.o
-  CC      fs/nfs/nfstrace.o
-  CC [M]  drivers/gpu/drm/i915/intel_step.o
-  CC [M]  drivers/net/vxlan/vxlan_multicast.o
-  CC      fs/ext4/xattr_hurd.o
-  CC [M]  drivers/net/usb/asix_common.o
-  CC [M]  net/bluetooth/hci_sock.o
-  LD [M]  drivers/net/ipvlan/ipvlan.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/amdgpu_afmt.o
-  CC      drivers/acpi/acpica/pswalk.o
-  CC [M]  drivers/gpu/drm/nouveau/nvkm/core/event.o
-  CC      fs/nfs/export.o
-  CC      fs/ext4/xattr_trusted.o
-  LD [M]  net/sunrpc/auth_gss/rpcsec_gss_krb5.o
-  CC      fs/ext4/xattr_user.o
-  CC      net/sunrpc/sched.o
-  CC [M]  drivers/net/phy/aquantia_main.o
-  AR      drivers/ata/built-in.a
-  CC      fs/ext4/fast_commit.o
-  CC      drivers/acpi/acpica/psxface.o
-  CC      lib/kobject_uevent.o
-  CC      kernel/ptrace.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/amdgpu_trace_points.o
-  CC      drivers/scsi/scsi_sysfs.o
-  CC      drivers/usb/common/common.o
-  CC      net/core/selftests.o
-  CC [M]  net/bluetooth/hci_sysfs.o
-  CC      drivers/usb/core/usb.o
-  CC      drivers/input/serio/serio.o
-  CC      drivers/input/serio/i8042.o
-  CC [M]  drivers/gpu/drm/xe/xe_guc_debugfs.o
-  CC      drivers/input/serio/libps2.o
-  CC [M]  drivers/gpu/drm/xe/xe_guc_hwconfig.o
-  CC [M]  net/netfilter/xt_MASQUERADE.o
-  CC      net/sunrpc/auth.o
-  CC      drivers/net/netconsole.o
-  AR      drivers/usb/phy/built-in.a
-  CC      drivers/acpi/acpica/rsaddr.o
-  CC      drivers/usb/host/pci-quirks.o
-  CC      drivers/acpi/acpica/rscalc.o
-  CC      mm/msync.o
-  CC      arch/x86/kernel/ptrace.o
-  CC      drivers/usb/host/ehci-hcd.o
-  CC [M]  net/netfilter/xt_addrtype.o
-  CC      fs/ext4/orphan.o
-  CC      fs/btrfs/disk-io.o
-  CC [M]  drivers/gpu/drm/i915/intel_uncore.o
-  CC [M]  net/bluetooth/l2cap_core.o
-  CC      mm/page_vma_mapped.o
-  CC [M]  drivers/gpu/drm/nouveau/nvkm/core/firmware.o
-  CC      mm/pagewalk.o
-  CC      lib/logic_pio.o
-  CC      drivers/usb/common/debug.o
-  CC [M]  drivers/net/usb/ax88172a.o
-  CC [M]  drivers/net/phy/aquantia_hwmon.o
-  CC [M]  drivers/net/phy/ax88796b.o
-  CC [M]  drivers/net/vxlan/vxlan_vnifilter.o
-  CC      net/ipv6/udplite.o
-  CC      mm/pgtable-generic.o
-  CC [M]  net/bluetooth/l2cap_sock.o
-  AR      drivers/usb/common/built-in.a
-  CC      fs/btrfs/transaction.o
-  CC      drivers/acpi/acpica/rscreate.o
-  CC [M]  drivers/gpu/drm/xe/xe_guc_log.o
-  CC      lib/maple_tree.o
-  CC      lib/memcat_p.o
-  CC [M]  net/netfilter/xt_conntrack.o
-  CC [M]  net/bluetooth/smp.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/atombios_encoders.o
-  CC      fs/nfs/sysfs.o
-  CC      drivers/usb/core/hub.o
-  CC      kernel/user.o
-  CC      net/ipv4/af_inet.o
-  CC [M]  net/netfilter/xt_ipvs.o
-  CC [M]  drivers/gpu/drm/xe/xe_guc_pc.o
-  CC [M]  net/bluetooth/lib.o
-  CC      net/core/ptp_classifier.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/amdgpu_sa.o
-  CC      net/ipv6/raw.o
-  CC      drivers/acpi/acpica/rsdumpinfo.o
-  CC [M]  drivers/gpu/drm/xe/xe_guc_submit.o
-  AR      drivers/scsi/built-in.a
-  AR      drivers/input/serio/built-in.a
-  CC [M]  net/bluetooth/ecdh_helper.o
-  CC      net/ipv6/icmp.o
-  CC [M]  drivers/gpu/drm/nouveau/nvkm/core/gpuobj.o
-  CC      drivers/usb/core/hcd.o
-  CC      arch/x86/kernel/tls.o
-  CC      drivers/usb/core/urb.o
-  CC [M]  drivers/net/phy/bcm7xxx.o
-  CC      drivers/usb/core/message.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/atombios_i2c.o
-  CC      mm/rmap.o
-  CC      fs/nfs/fs_context.o
-  CC [M]  fs/cifs/inode.o
-  CC      kernel/signal.o
-  CC [M]  drivers/net/usb/ax88179_178a.o
-  CC      drivers/acpi/acpica/rsinfo.o
-  CC      net/bridge/br_multicast_eht.o
-  CC      drivers/net/virtio_net.o
-  CC [M]  net/bluetooth/hci_request.o
-  CC      fs/nfs/sysctl.o
-  CC      drivers/input/keyboard/atkbd.o
-  CC      drivers/rtc/lib.o
-  AR      fs/ext4/built-in.a
-  CC      fs/nfs/nfs2super.o
-  AR      drivers/input/mouse/built-in.a
-  CC      drivers/input/input.o
-  CC      drivers/acpi/acpica/rsio.o
-  CC      drivers/rtc/class.o
-  CC [M]  fs/cifs/link.o
-  CC [M]  arch/x86/kvm/vmx/vmcs12.o
-  CC      arch/x86/kernel/step.o
-  AR      drivers/i2c/algos/built-in.a
-  CC [M]  drivers/i2c/algos/i2c-algo-bit.o
-  CC [M]  drivers/gpu/drm/nouveau/nvkm/core/intr.o
-  AR      drivers/i3c/built-in.a
-  LD [M]  net/netfilter/nf_conntrack.o
-  CC      net/sunrpc/auth_null.o
-  CC [M]  drivers/net/phy/bcm87xx.o
-  CC      net/sunrpc/auth_unix.o
-  LD [M]  net/netfilter/nf_nat.o
-  AR      net/netfilter/built-in.a
-  CC      drivers/net/net_failover.o
-  CC [M]  net/bluetooth/mgmt_util.o
-  CC      drivers/acpi/acpica/rsirq.o
-  CC [M]  net/bluetooth/mgmt_config.o
-  CC      kernel/sys.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/amdgpu_dma_buf.o
-  CC      fs/nfs/proc.o
-  CC      drivers/rtc/interface.o
-  CC      arch/x86/kernel/i8237.o
-  CC      drivers/acpi/acpica/rslist.o
-  CC      arch/x86/kernel/stacktrace.o
-  CC [M]  drivers/net/dummy.o
-  CC [M]  drivers/net/usb/cdc_ether.o
-  CC      kernel/umh.o
-  CC      net/bridge/br_vlan.o
-  CC [M]  drivers/gpu/drm/i915/intel_wakeref.o
-  CC [M]  drivers/net/phy/bcm-phy-lib.o
-  CC [M]  arch/x86/kvm/vmx/hyperv.o
-  CC      drivers/usb/core/driver.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/amdgpu_vm.o
-  AR      drivers/input/keyboard/built-in.a
-  CC      kernel/workqueue.o
-  CC [M]  fs/cifs/misc.o
-  CC      drivers/i2c/busses/i2c-designware-common.o
-  CC      net/ipv4/igmp.o
-  CC      net/ipv6/mcast.o
-  CC      net/ipv6/reassembly.o
-  CC      drivers/i2c/i2c-boardinfo.o
-  AR      drivers/i2c/muxes/built-in.a
-  CC [M]  drivers/i2c/muxes/i2c-mux-gpio.o
-  CC [M]  drivers/gpu/drm/nouveau/nvkm/core/ioctl.o
-  LD [M]  drivers/net/vxlan/vxlan.o
-  CC      fs/nfs/nfs2xdr.o
-  CC      drivers/acpi/acpica/rsmemory.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/amdgpu_vm_pt.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/amdgpu_ib.o
-  CC      net/core/netprio_cgroup.o
-  CC [M]  drivers/gpu/drm/xe/xe_hw_engine.o
-  CC [M]  net/bluetooth/hci_codec.o
-  CC [M]  drivers/gpu/drm/i915/vlv_sideband.o
-  CC      arch/x86/kernel/reboot.o
-  CC      net/ipv4/fib_frontend.o
-  CC      drivers/rtc/nvmem.o
-  CC      drivers/i2c/busses/i2c-designware-master.o
-  CC      fs/nfs/nfs3super.o
-  CC [M]  drivers/gpu/drm/nouveau/nvkm/core/memory.o
-  CC [M]  drivers/gpu/drm/drm_bridge.o
-  CC      drivers/acpi/acpica/rsmisc.o
-  CC      drivers/input/input-compat.o
-  AR      drivers/net/ethernet/fungible/built-in.a
-  CC      drivers/rtc/dev.o
-  CC      drivers/acpi/device_pm.o
-  AR      drivers/media/i2c/built-in.a
-  AR      drivers/media/tuners/built-in.a
-  AR      drivers/media/rc/keymaps/built-in.a
-  AR      drivers/media/rc/built-in.a
-  CC      mm/vmalloc.o
-  AR      drivers/media/common/b2c2/built-in.a
-  AR      drivers/media/common/saa7146/built-in.a
-  AR      drivers/media/common/siano/built-in.a
-  CC [M]  drivers/gpu/drm/amd/amdgpu/amdgpu_pll.o
-  AR      drivers/media/common/v4l2-tpg/built-in.a
-  AR      drivers/media/common/videobuf2/built-in.a
-  AR      drivers/media/common/built-in.a
-  CC [M]  drivers/net/usb/cdc_eem.o
-  AR      drivers/media/platform/allegro-dvt/built-in.a
-  AR      drivers/media/platform/amlogic/meson-ge2d/built-in.a
-  AR      drivers/media/platform/amlogic/built-in.a
-  AR      drivers/media/platform/amphion/built-in.a
-  AR      drivers/media/pci/ttpci/built-in.a
-  AR      drivers/media/platform/aspeed/built-in.a
-  AR      drivers/media/pci/b2c2/built-in.a
-  AR      drivers/media/platform/atmel/built-in.a
-  AR      drivers/media/pci/pluto2/built-in.a
-  AR      drivers/media/platform/cadence/built-in.a
-  AR      drivers/media/pci/dm1105/built-in.a
-  AR      drivers/media/platform/chips-media/built-in.a
-  AR      drivers/media/pci/pt1/built-in.a
-  AR      drivers/media/platform/intel/built-in.a
-  AR      drivers/media/pci/pt3/built-in.a
-  AR      drivers/media/platform/marvell/built-in.a
-  AR      drivers/media/pci/mantis/built-in.a
-  CC      drivers/rtc/proc.o
-  AR      drivers/media/pci/ngene/built-in.a
-  AR      drivers/media/platform/mediatek/jpeg/built-in.a
-  AR      drivers/media/pci/ddbridge/built-in.a
-  CC [M]  drivers/gpu/drm/xe/xe_hw_fence.o
-  AR      drivers/media/platform/mediatek/mdp/built-in.a
-  AR      drivers/media/pci/saa7146/built-in.a
-  AR      drivers/media/pci/smipcie/built-in.a
-  AR      drivers/media/platform/mediatek/vcodec/built-in.a
-  CC [M]  drivers/net/phy/broadcom.o
-  CC      fs/btrfs/inode.o
-  CC      fs/btrfs/file.o
-  CC [M]  arch/x86/kvm/vmx/nested.o
-  AR      drivers/media/pci/netup_unidvb/built-in.a
-  AR      drivers/media/platform/mediatek/vpu/built-in.a
-  AR      drivers/media/platform/mediatek/mdp3/built-in.a
-  AR      drivers/media/pci/intel/ipu3/built-in.a
-  AR      drivers/media/platform/mediatek/built-in.a
-  AR      drivers/media/pci/intel/built-in.a
-  AR      drivers/media/pci/built-in.a
-  AR      drivers/media/platform/microchip/built-in.a
-  CC [M]  drivers/gpu/drm/xe/xe_huc.o
-  AR      drivers/media/platform/nvidia/tegra-vde/built-in.a
-  AR      drivers/media/platform/nvidia/built-in.a
-  AR      drivers/media/platform/nxp/dw100/built-in.a
-  AR      drivers/media/platform/nxp/imx-jpeg/built-in.a
-  AR      drivers/media/platform/nxp/built-in.a
-  AR      drivers/media/platform/qcom/camss/built-in.a
-  AR      drivers/media/platform/qcom/venus/built-in.a
-  CC [M]  drivers/gpu/drm/xe/xe_huc_debugfs.o
-  AR      drivers/media/platform/qcom/built-in.a
-  CC [M]  drivers/net/usb/smsc75xx.o
-  CC      net/bridge/br_vlan_tunnel.o
-  AR      drivers/media/platform/renesas/rcar-vin/built-in.a
-  CC      drivers/acpi/acpica/rsserial.o
-  CC      drivers/usb/core/config.o
-  AR      drivers/media/platform/renesas/rzg2l-cru/built-in.a
-  CC      drivers/input/input-mt.o
-  AR      drivers/media/platform/renesas/vsp1/built-in.a
-  AR      drivers/media/platform/renesas/built-in.a
-  AR      drivers/media/platform/rockchip/rga/built-in.a
-  AR      drivers/media/platform/rockchip/rkisp1/built-in.a
-  CC      fs/nfs/nfs3client.o
-  AR      drivers/media/platform/rockchip/built-in.a
-  CC      net/core/dst_cache.o
-  AR      drivers/media/platform/samsung/exynos-gsc/built-in.a
-  AR      drivers/media/platform/samsung/exynos4-is/built-in.a
-  CC [M]  drivers/gpu/drm/nouveau/nvkm/core/mm.o
-  CC      fs/nfs/nfs3proc.o
-  AR      drivers/media/platform/samsung/s3c-camif/built-in.a
-  CC      drivers/usb/host/ehci-pci.o
-  AR      drivers/media/platform/samsung/s5p-g2d/built-in.a
-  CC      arch/x86/kernel/msr.o
-  AR      drivers/media/platform/samsung/s5p-jpeg/built-in.a
-  AR      drivers/media/platform/samsung/s5p-mfc/built-in.a
-  AR      drivers/media/platform/samsung/built-in.a
-  CC [M]  drivers/gpu/drm/xe/xe_irq.o
-  AR      drivers/media/platform/st/sti/bdisp/built-in.a
-  AR      drivers/media/platform/sunxi/sun4i-csi/built-in.a
-  AR      drivers/media/platform/st/sti/c8sectpfe/built-in.a
-  AR      drivers/media/platform/sunxi/sun6i-csi/built-in.a
-  CC      fs/nfs/nfs3xdr.o
-  AR      drivers/media/platform/sunxi/sun6i-mipi-csi2/built-in.a
-  AR      drivers/media/platform/st/sti/delta/built-in.a
-  AR      drivers/media/platform/sunxi/sun8i-a83t-mipi-csi2/built-in.a
-  AR      drivers/media/platform/st/sti/hva/built-in.a
-  AR      drivers/media/platform/sunxi/sun8i-di/built-in.a
-  AR      drivers/media/platform/st/stm32/built-in.a
-  AR      drivers/media/platform/st/built-in.a
-  AR      drivers/media/platform/sunxi/sun8i-rotate/built-in.a
-  AR      drivers/media/platform/sunxi/built-in.a
-  CC      net/core/gro_cells.o
-  CC      net/bridge/br_vlan_options.o
-  CC      drivers/rtc/sysfs.o
-  AR      drivers/media/platform/ti/am437x/built-in.a
-  CC      drivers/rtc/rtc-mc146818-lib.o
-  AR      drivers/media/platform/ti/cal/built-in.a
-  CC      drivers/rtc/rtc-cmos.o
-  CC      drivers/i2c/busses/i2c-designware-platdrv.o
-  AR      drivers/media/platform/ti/vpe/built-in.a
-  AR      drivers/media/platform/ti/davinci/built-in.a
-  CC [M]  fs/cifs/netmisc.o
-  AR      drivers/media/platform/ti/omap/built-in.a
-  AR      drivers/media/platform/ti/omap3isp/built-in.a
-  AR      drivers/media/platform/ti/built-in.a
-  CC      drivers/acpi/acpica/rsutils.o
-  CC [M]  drivers/gpu/drm/i915/vlv_suspend.o
-  AR      drivers/net/ethernet/huawei/built-in.a
-  AR      drivers/media/platform/verisilicon/built-in.a
-  CC [M]  drivers/net/ethernet/intel/e1000/e1000_main.o
-  AR      drivers/media/platform/via/built-in.a
-  AR      drivers/media/platform/xilinx/built-in.a
-  AR      drivers/media/platform/built-in.a
-  CC [M]  drivers/net/ethernet/intel/e1000e/82571.o
-  AR      drivers/media/usb/b2c2/built-in.a
-  AR      drivers/media/usb/dvb-usb/built-in.a
-  AR      drivers/media/usb/dvb-usb-v2/built-in.a
-  AR      drivers/media/usb/s2255/built-in.a
-  AR      drivers/media/usb/siano/built-in.a
-  AR      drivers/media/usb/ttusb-budget/built-in.a
-  AR      drivers/media/usb/ttusb-dec/built-in.a
-  AR      drivers/media/usb/built-in.a
-  CC [M]  fs/cifs/smbencrypt.o
-  CC [M]  drivers/net/ethernet/intel/igb/igb_main.o
-  CC      drivers/acpi/acpica/rsxface.o
-  AR      drivers/media/mmc/siano/built-in.a
-  CC      drivers/acpi/acpica/tbdata.o
-  AR      drivers/media/mmc/built-in.a
-  CC [M]  drivers/net/ethernet/intel/igc/igc_main.o
-  CC [M]  drivers/net/ethernet/intel/igbvf/vf.o
-  AR      drivers/media/firewire/built-in.a
-  AR      drivers/media/spi/built-in.a
-  CC [M]  drivers/net/ethernet/intel/igc/igc_mac.o
-  AR      drivers/media/test-drivers/built-in.a
-  AR      drivers/media/built-in.a
-  CC      drivers/input/input-poller.o
-  CC      net/bridge/br_mst.o
-  CC [M]  drivers/net/phy/lxt.o
-  CC [M]  drivers/net/ethernet/intel/igc/igc_i225.o
-  CC [M]  drivers/net/ethernet/intel/ixgbe/ixgbe_main.o
-  CC      arch/x86/kernel/cpuid.o
-  CC [M]  drivers/net/ethernet/intel/ixgbe/ixgbe_common.o
-  CC      drivers/usb/host/ohci-hcd.o
-  CC [M]  drivers/gpu/drm/xe/xe_lrc.o
-  CC [M]  drivers/net/ethernet/intel/igbvf/mbx.o
-  CC [M]  drivers/net/ethernet/intel/igbvf/ethtool.o
-  CC [M]  drivers/net/ethernet/intel/igc/igc_base.o
-  CC [M]  drivers/gpu/drm/nouveau/nvkm/core/object.o
-  CC      net/core/failover.o
-  CC [M]  drivers/gpu/drm/nouveau/nvkm/core/oproxy.o
-  CC [M]  drivers/net/ethernet/intel/ixgbevf/vf.o
-  CC      drivers/i2c/busses/i2c-designware-baytrail.o
-  CC [M]  drivers/net/ethernet/intel/ixgbevf/mbx.o
-  CC      drivers/usb/core/file.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/amdgpu_ucode.o
-  CC [M]  drivers/gpu/drm/nouveau/nvkm/core/option.o
-  CC      net/ipv4/fib_semantics.o
-  CC      drivers/acpi/acpica/tbfadt.o
-  CC [M]  drivers/net/macvlan.o
-  CC      drivers/input/ff-core.o
-  AR      drivers/rtc/built-in.a
-  CC      arch/x86/kernel/early-quirks.o
-  AR      drivers/ptp/built-in.a
-  CC [M]  drivers/ptp/ptp_clock.o
-  CC [M]  net/bluetooth/eir.o
-  CC      arch/x86/kernel/smp.o
-  CC [M]  drivers/gpu/drm/i915/soc/intel_dram.o
-  CC [M]  drivers/net/ethernet/intel/igb/igb_ethtool.o
-  CC      net/sunrpc/svc.o
-  CC      drivers/i2c/i2c-core-base.o
-  CC [M]  drivers/net/phy/realtek.o
-  CC      drivers/input/touchscreen.o
-  CC      drivers/usb/storage/scsiglue.o
-  CC      drivers/usb/serial/usb-serial.o
-  CC [M]  drivers/net/usb/smsc95xx.o
-  CC [M]  drivers/net/ethernet/intel/igbvf/netdev.o
-  CC      mm/page_alloc.o
-  CC [M]  fs/cifs/transport.o
-  CC      drivers/acpi/acpica/tbfind.o
-  CC [M]  drivers/i2c/busses/i2c-scmi.o
-  CC      drivers/usb/core/buffer.o
-  CC [M]  drivers/net/ethernet/intel/e1000e/ich8lan.o
-  CC [M]  drivers/net/ethernet/intel/igc/igc_nvm.o
-  CC [M]  drivers/net/phy/smsc.o
-  CC      drivers/input/ff-memless.o
-  CC [M]  drivers/net/ethernet/intel/igb/e1000_82575.o
-  CC [M]  net/bridge/br_netfilter_hooks.o
-  CC [M]  drivers/gpu/drm/xe/xe_migrate.o
-  CC      arch/x86/kernel/smpboot.o
-  AR      net/core/built-in.a
-  CC [M]  drivers/net/usb/mcs7830.o
-  CC [M]  drivers/gpu/drm/nouveau/nvkm/core/ramht.o
-  CC      drivers/usb/serial/generic.o
-  CC      lib/nmi_backtrace.o
-  AR      fs/nfs/built-in.a
-  CC      fs/btrfs/defrag.o
-  CC      kernel/pid.o
-  CC [M]  drivers/net/ethernet/intel/ixgbevf/ethtool.o
-  CC      drivers/acpi/acpica/tbinstal.o
-  CC [M]  drivers/net/ethernet/intel/igc/igc_phy.o
-  CC [M]  drivers/ptp/ptp_chardev.o
-  CC [M]  drivers/gpu/drm/xe/xe_mmio.o
-  CC      arch/x86/kernel/tsc_sync.o
-  CC      net/ipv6/tcp_ipv6.o
-  CC [M]  net/bluetooth/hci_sync.o
-  CC      drivers/usb/storage/protocol.o
-  CC      drivers/usb/core/sysfs.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/amdgpu_bo_list.o
-  CC      drivers/usb/storage/transport.o
-  CC      drivers/acpi/acpica/tbprint.o
-  CC [M]  drivers/gpu/drm/i915/soc/intel_gmch.o
-  CC [M]  drivers/i2c/busses/i2c-ccgx-ucsi.o
-  CC [M]  drivers/i2c/busses/i2c-i801.o
-  CC      lib/plist.o
-  CC [M]  drivers/i2c/busses/i2c-isch.o
-  CC      drivers/input/vivaldi-fmap.o
-  CC [M]  drivers/ptp/ptp_sysfs.o
-  CC [M]  drivers/gpu/drm/nouveau/nvkm/core/subdev.o
-  CC      lib/radix-tree.o
-  LD [M]  drivers/net/phy/aquantia.o
-  AR      drivers/net/phy/built-in.a
-  CC      net/sunrpc/svcsock.o
-  CC      drivers/usb/serial/bus.o
-  CC [M]  drivers/net/usb/usbnet.o
-  CC [M]  drivers/net/ethernet/intel/ixgb/ixgb_main.o
-  CC [M]  drivers/net/usb/cdc_ncm.o
-  CC      drivers/acpi/acpica/tbutils.o
-  AR      drivers/usb/misc/built-in.a
-  CC [M]  drivers/usb/misc/ftdi-elan.o
-  CC      drivers/input/input-leds.o
-  CC      drivers/input/mousedev.o
-  CC [M]  net/bluetooth/sco.o
-  CC      drivers/usb/host/ohci-pci.o
-  CC      drivers/usb/gadget/udc/core.o
-  CC      drivers/usb/host/uhci-hcd.o
-  CC [M]  drivers/usb/class/usbtmc.o
-  CC      net/ipv4/fib_trie.o
-  CC [M]  drivers/gpu/drm/nouveau/nvkm/core/uevent.o
-  CC [M]  drivers/gpu/drm/xe/xe_mocs.o
-  CC      arch/x86/kernel/setup_percpu.o
-  CC [M]  drivers/net/ethernet/intel/ixgbevf/ixgbevf_main.o
-  CC      kernel/task_work.o
-  CC      drivers/usb/core/endpoint.o
-  CC      drivers/acpi/acpica/tbxface.o
-  CC [M]  drivers/i2c/busses/i2c-ismt.o
-  CC [M]  drivers/gpu/drm/i915/soc/intel_pch.o
-  CC      drivers/usb/serial/console.o
-  CC [M]  drivers/net/ethernet/intel/ixgbevf/ipsec.o
-  CC      drivers/usb/storage/usb.o
-  CC [M]  drivers/ptp/ptp_vclock.o
-  AR      drivers/net/ethernet/intel/built-in.a
-  CC [M]  drivers/ptp/ptp_kvm_x86.o
-  CC      drivers/usb/serial/ftdi_sio.o
-  CC [M]  drivers/net/ethernet/intel/igb/e1000_mac.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/amdgpu_ctx.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/amdgpu_sync.o
-  CC [M]  drivers/net/ethernet/intel/e1000/e1000_hw.o
-  CC [M]  drivers/net/ethernet/intel/ixgbe/ixgbe_ethtool.o
-  LD [M]  drivers/net/ethernet/intel/igbvf/igbvf.o
-  CC [M]  drivers/net/ethernet/intel/e100.o
-  AR      drivers/power/reset/built-in.a
-  CC      lib/ratelimit.o
-  CC      drivers/power/supply/power_supply_core.o
-  CC [M]  drivers/net/ethernet/intel/ixgbe/ixgbe_82599.o
-  CC [M]  fs/cifs/cached_dir.o
-  CC      arch/x86/kernel/ftrace.o
-  CC      drivers/acpi/acpica/tbxfload.o
-  CC      drivers/input/evdev.o
-  CC [M]  net/bridge/br_netfilter_ipv6.o
-  CC      drivers/power/supply/power_supply_sysfs.o
-  CC      kernel/extable.o
-  CC      drivers/usb/core/devio.o
-  CC      lib/rbtree.o
-  CC      fs/btrfs/extent_map.o
-  CC [M]  drivers/gpu/drm/nouveau/nvkm/nvfw/fw.o
-  CC [M]  drivers/gpu/drm/xe/xe_module.o
-  CC      drivers/usb/serial/pl2303.o
-  CC      net/sunrpc/svcauth.o
-  CC [M]  drivers/ptp/ptp_kvm_common.o
-  CC      drivers/acpi/acpica/tbxfroot.o
-  CC      drivers/usb/gadget/udc/trace.o
-  CC      drivers/usb/storage/initializers.o
-  CC [M]  drivers/i2c/busses/i2c-piix4.o
-  CC      lib/seq_buf.o
-  CC [M]  drivers/net/ethernet/intel/e1000e/80003es2lan.o
-  CC [M]  drivers/net/usb/r8153_ecm.o
-  CC      kernel/params.o
-  CC [M]  drivers/gpu/drm/xe/xe_pat.o
-  CC [M]  drivers/net/ethernet/intel/igc/igc_diag.o
-  CC [M]  drivers/gpu/drm/i915/i915_memcpy.o
-  CC [M]  drivers/net/ethernet/intel/ixgb/ixgb_hw.o
-  CC      drivers/power/supply/power_supply_leds.o
-  CC      kernel/kthread.o
-  CC      net/ipv6/ping.o
-  CC      kernel/sys_ni.o
-  AS      arch/x86/kernel/ftrace_64.o
-  CC      arch/x86/kernel/trace_clock.o
-  CC      net/ipv6/exthdrs.o
-  CC      drivers/usb/storage/sierra_ms.o
-  CC [M]  drivers/gpu/drm/xe/xe_pci.o
-  CC      drivers/acpi/acpica/utaddress.o
-  CC [M]  drivers/gpu/drm/xe/xe_pcode.o
-  CC [M]  drivers/gpu/drm/nouveau/nvkm/nvfw/hs.o
-  CC      arch/x86/kernel/trace.o
-  CC      net/ipv6/datagram.o
-  LD [M]  drivers/ptp/ptp.o
-  CC [M]  drivers/gpu/drm/i915/i915_mm.o
-  CC      net/ipv6/ip6_flowlabel.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/amdgpu_gtt_mgr.o
-  LD [M]  drivers/ptp/ptp_kvm.o
-  CC [M]  drivers/gpu/drm/nouveau/nvkm/nvfw/ls.o
-  CC      drivers/usb/storage/option_ms.o
-  AR      drivers/input/built-in.a
-  CC [M]  arch/x86/kvm/vmx/posted_intr.o
-  CC [M]  drivers/gpu/drm/drm_cache.o
-  CC [M]  drivers/net/ethernet/intel/e1000e/mac.o
-  AR      drivers/usb/serial/built-in.a
-  CC      drivers/usb/core/notify.o
-  CC      drivers/power/supply/power_supply_hwmon.o
-  CC [M]  drivers/gpu/drm/nouveau/nvkm/nvfw/acr.o
-  CC      lib/show_mem.o
-  AR      net/bridge/built-in.a
-  LD [M]  net/bridge/br_netfilter.o
-  CC      lib/siphash.o
-  CC [M]  fs/cifs/cifs_unicode.o
-  CC      drivers/acpi/acpica/utalloc.o
-  CC [M]  fs/cifs/nterr.o
-  AR      drivers/usb/gadget/function/built-in.a
-  CC [M]  drivers/net/mii.o
-  CC      drivers/usb/host/xhci.o
-  CC      arch/x86/kernel/rethook.o
-  LD [M]  drivers/net/usb/asix.o
-  CC [M]  drivers/net/ethernet/intel/igc/igc_ethtool.o
-  CC      drivers/usb/storage/usual-tables.o
-  CC      kernel/nsproxy.o
-  CC [M]  drivers/net/ethernet/intel/igc/igc_ptp.o
-  CC      lib/string.o
-  AR      drivers/usb/gadget/udc/built-in.a
-  AR      drivers/usb/gadget/legacy/built-in.a
-  CC      drivers/usb/gadget/usbstring.o
-  CC      drivers/usb/core/generic.o
-  CC [M]  drivers/i2c/busses/i2c-designware-pcidrv.o
-  CC      drivers/acpi/acpica/utascii.o
-  CC      drivers/acpi/acpica/utbuffer.o
-  CC      lib/timerqueue.o
-  CC      lib/vsprintf.o
-  CC      net/sunrpc/svcauth_unix.o
-  AR      drivers/power/supply/built-in.a
-  CC      drivers/usb/host/xhci-mem.o
-  CC [M]  drivers/net/ethernet/intel/ixgb/ixgb_ee.o
-  AR      drivers/power/built-in.a
-  CC      drivers/usb/core/quirks.o
-  CC      net/sunrpc/addr.o
-  CC      drivers/usb/gadget/config.o
-  CC [M]  drivers/gpu/drm/xe/xe_pm.o
-  CC [M]  drivers/gpu/drm/xe/xe_preempt_fence.o
-  CC      drivers/acpi/acpica/utcksum.o
-  CC      drivers/hwmon/hwmon.o
-  CC      fs/btrfs/sysfs.o
-  CC [M]  drivers/gpu/drm/nouveau/nvkm/nvfw/flcn.o
-  CC [M]  drivers/hwmon/acpi_power_meter.o
-  CC [M]  drivers/gpu/drm/i915/i915_sw_fence.o
-  CC [M]  drivers/gpu/drm/i915/i915_sw_fence_work.o
-  CC      net/ipv4/fib_notifier.o
-  CC [M]  drivers/gpu/drm/nouveau/nvkm/falcon/base.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/amdgpu_preempt_mgr.o
-  CC      arch/x86/kernel/crash_core_64.o
-  AR      drivers/usb/storage/built-in.a
-  CC [M]  net/bluetooth/iso.o
-  CC      kernel/notifier.o
-  CC [M]  drivers/net/ethernet/intel/igc/igc_dump.o
-  CC [M]  drivers/net/ethernet/intel/igb/e1000_nvm.o
-  CC [M]  drivers/gpu/drm/drm_client.o
-  CC [M]  drivers/net/ethernet/intel/e1000/e1000_ethtool.o
-  CC [M]  drivers/gpu/drm/nouveau/nvkm/falcon/cmdq.o
-  CC      drivers/acpi/proc.o
-  LD [M]  arch/x86/kvm/kvm.o
-  CC [M]  drivers/net/ethernet/intel/igb/e1000_phy.o
-  CC [M]  drivers/gpu/drm/drm_client_modeset.o
-  CC      drivers/acpi/acpica/utcopy.o
-  CC      drivers/acpi/acpica/utexcep.o
-  CC [M]  drivers/net/ethernet/intel/ixgbe/ixgbe_82598.o
-  CC      drivers/usb/core/devices.o
-  CC [M]  fs/cifs/cifsencrypt.o
-  CC [M]  drivers/gpu/drm/i915/i915_syncmap.o
-  CC [M]  drivers/net/ethernet/intel/igb/e1000_mbx.o
-  CC [M]  drivers/net/mdio.o
-  CC      net/ipv6/inet6_connection_sock.o
-  AR      drivers/i2c/busses/built-in.a
-  LD [M]  drivers/i2c/busses/i2c-designware-pci.o
-  CC      drivers/i2c/i2c-core-smbus.o
-  CC      drivers/usb/gadget/epautoconf.o
-  CC      drivers/usb/gadget/composite.o
-  CC      arch/x86/kernel/module.o
-  UPD     arch/x86/kvm/kvm-asm-offsets.h
-  CC [M]  drivers/gpu/drm/xe/xe_pt.o
-  CC [M]  drivers/net/ethernet/intel/ixgb/ixgb_ethtool.o
-  CC      drivers/acpi/acpica/utdebug.o
-  AS [M]  arch/x86/kvm/vmx/vmenter.o
-  LD [M]  drivers/net/ethernet/intel/ixgbevf/ixgbevf.o
-  CC      drivers/usb/gadget/functions.o
-  CC [M]  drivers/net/ethernet/intel/e1000e/manage.o
-  LD [M]  arch/x86/kvm/kvm-intel.o
-  CC [M]  drivers/net/ethernet/intel/igb/e1000_i210.o
-  CC      mm/init-mm.o
-  CC      fs/file_table.o
-  CC [M]  drivers/net/ethernet/intel/ixgbe/ixgbe_phy.o
-  CC [M]  drivers/gpu/drm/xe/xe_pt_walk.o
-  CC [M]  drivers/net/ethernet/intel/igb/igb_ptp.o
-  CC      mm/memblock.o
-  CC      kernel/ksysfs.o
-  CC      drivers/acpi/acpica/utdecode.o
-  CC [M]  drivers/net/ethernet/intel/ixgbe/ixgbe_sriov.o
-  CC      net/ipv4/inet_fragment.o
-  CC      drivers/acpi/bus.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/amdgpu_vram_mgr.o
-  CC [M]  drivers/net/ethernet/intel/igc/igc_tsn.o
-  CC [M]  drivers/net/ethernet/intel/igb/igb_hwmon.o
-  CC      drivers/i2c/i2c-core-acpi.o
-  CC      net/ipv6/udp_offload.o
-  CC [M]  drivers/hwmon/coretemp.o
-  CC      mm/memory_hotplug.o
-  CC      drivers/i2c/i2c-core-slave.o
-  CC [M]  drivers/net/ethernet/intel/ixgbe/ixgbe_mbx.o
-  CC [M]  drivers/net/ethernet/intel/ixgbe/ixgbe_x540.o
-  CC [M]  drivers/gpu/drm/nouveau/nvkm/falcon/fw.o
-  CC      drivers/usb/core/phy.o
-  CC [M]  drivers/net/tun.o
-  CC [M]  drivers/net/veth.o
-  CC      drivers/usb/gadget/configfs.o
-  CC      arch/x86/kernel/early_printk.o
-  CC      net/sunrpc/rpcb_clnt.o
-  CC [M]  drivers/net/ethernet/intel/ixgbe/ixgbe_x550.o
-  CC      drivers/acpi/acpica/utdelete.o
-  CC      lib/win_minmax.o
-  CC [M]  fs/cifs/readdir.o
-  CC [M]  drivers/net/ethernet/intel/ixgb/ixgb_param.o
-  CC      kernel/cred.o
-  CC [M]  drivers/net/ethernet/intel/ixgbe/ixgbe_lib.o
-  CC      drivers/usb/core/port.o
-  CC [M]  drivers/gpu/drm/i915/i915_user_extensions.o
-  CC      fs/super.o
-  CC      arch/x86/kernel/hpet.o
-  CC      fs/char_dev.o
-  CC [M]  drivers/net/ethernet/intel/e1000e/nvm.o
-  CC [M]  drivers/gpu/drm/nouveau/nvkm/falcon/msgq.o
-  CC      drivers/acpi/glue.o
-  CC      fs/btrfs/accessors.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/amdgpu_virt.o
-  CC      drivers/acpi/acpica/uterror.o
-  CC      drivers/usb/core/hcd-pci.o
-  CC [M]  drivers/net/ethernet/intel/igc/igc_xdp.o
-  CC [M]  net/bluetooth/a2mp.o
-  CC      fs/btrfs/xattr.o
-  CC      lib/xarray.o
-  CC      drivers/usb/core/usb-acpi.o
-  CC      drivers/i2c/i2c-dev.o
-  CC [M]  drivers/gpu/drm/i915/i915_ioc32.o
-  AR      drivers/hwmon/built-in.a
-  CC [M]  drivers/gpu/drm/i915/i915_debugfs.o
-  CC      fs/btrfs/ordered-data.o
-  CC [M]  net/bluetooth/amp.o
-  CC [M]  net/bluetooth/hci_debugfs.o
-  CC [M]  drivers/net/ethernet/intel/e1000/e1000_param.o
-  CC      drivers/acpi/scan.o
-  CC      lib/lockref.o
-  CC      net/ipv6/seg6.o
-  CC      net/ipv6/fib6_notifier.o
-  CC [M]  drivers/net/ethernet/intel/ixgbe/ixgbe_ptp.o
-  CC [M]  drivers/gpu/drm/nouveau/nvkm/falcon/qmgr.o
-  CC [M]  drivers/gpu/drm/xe/xe_query.o
-  AR      drivers/thermal/broadcom/built-in.a
-  CC      drivers/acpi/acpica/uteval.o
-  CC      lib/bcd.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/amdgpu_atomfirmware.o
-  AR      drivers/thermal/samsung/built-in.a
-  CC      drivers/thermal/intel/intel_tcc.o
-  LD [M]  drivers/net/ethernet/intel/igb/igb.o
-  CC      drivers/acpi/acpica/utglobal.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/amdgpu_vf_error.o
-  CC      kernel/reboot.o
-  LD [M]  drivers/net/ethernet/intel/ixgb/ixgb.o
-  CC      drivers/usb/host/xhci-ext-caps.o
-  CC      drivers/usb/host/xhci-ring.o
-  CC      drivers/acpi/acpica/uthex.o
-  CC      net/ipv4/ping.o
-  CC      drivers/thermal/intel/therm_throt.o
-  CC      fs/stat.o
-  CC      net/ipv6/rpl.o
-  CC [M]  drivers/gpu/drm/drm_color_mgmt.o
-  CC      mm/madvise.o
-  CC      mm/page_io.o
-  CC      drivers/usb/gadget/u_f.o
-  CC      mm/swap_state.o
-  CC      arch/x86/kernel/amd_nb.o
-  CC      drivers/acpi/acpica/utids.o
-  AR      drivers/net/ethernet/i825xx/built-in.a
-  CC      drivers/acpi/resource.o
-  AR      drivers/usb/core/built-in.a
-  CC      drivers/acpi/acpi_processor.o
-  CC      fs/exec.o
-  CC [M]  drivers/gpu/drm/drm_connector.o
-  CC      net/ipv6/ioam6.o
-  LD [M]  drivers/net/ethernet/intel/igc/igc.o
-  CC [M]  drivers/net/ethernet/intel/e1000e/phy.o
-  CC [M]  drivers/net/ethernet/intel/e1000e/param.o
-  AR      drivers/thermal/st/built-in.a
-  CC      mm/swapfile.o
-  AR      drivers/net/ethernet/microsoft/built-in.a
-  CC      arch/x86/kernel/kvm.o
-  AR      drivers/net/ethernet/litex/built-in.a
-  CC [M]  drivers/i2c/i2c-smbus.o
-  AR      drivers/net/ethernet/microchip/built-in.a
-  CC [M]  drivers/net/ethernet/intel/e1000e/ethtool.o
-  CC      net/sunrpc/timer.o
-  CC [M]  drivers/gpu/drm/nouveau/nvkm/falcon/v1.o
-  CC      net/ipv6/sysctl_net_ipv6.o
-  CC      lib/sort.o
-  CC      lib/parser.o
-  CC [M]  drivers/gpu/drm/i915/i915_debugfs_params.o
-  LD [M]  drivers/net/ethernet/intel/e1000/e1000.o
-  AR      drivers/net/ethernet/mscc/built-in.a
-  CC      fs/pipe.o
-  CC [M]  drivers/gpu/drm/xe/xe_reg_sr.o
-  AR      drivers/usb/gadget/built-in.a
-  CC [M]  drivers/gpu/drm/xe/xe_reg_whitelist.o
-  CC [M]  drivers/net/ethernet/intel/ixgbe/ixgbe_xsk.o
-  AR      drivers/net/ethernet/neterion/built-in.a
-  CC      drivers/acpi/acpica/utinit.o
-  CC      drivers/acpi/acpica/utlock.o
-  CC      fs/namei.o
-  CC [M]  drivers/gpu/drm/xe/xe_rtp.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/amdgpu_sched.o
-  CC [M]  fs/cifs/ioctl.o
-  CC [M]  fs/cifs/sess.o
-  AR      drivers/net/ethernet/netronome/built-in.a
-  CC      net/ipv6/xfrm6_policy.o
-  AR      drivers/net/ethernet/ni/built-in.a
-  AR      drivers/net/ethernet/packetengines/built-in.a
-  CC      fs/btrfs/extent_io.o
-  AR      drivers/net/ethernet/realtek/built-in.a
-  CC [M]  drivers/net/ethernet/realtek/8139cp.o
-  CC      kernel/async.o
-  CC      drivers/watchdog/watchdog_core.o
-  CC      drivers/watchdog/watchdog_dev.o
-  CC [M]  drivers/md/persistent-data/dm-array.o
-  CC [M]  drivers/thermal/intel/x86_pkg_temp_thermal.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/amdgpu_debugfs.o
-  CC [M]  drivers/net/ethernet/realtek/8139too.o
-  CC      drivers/watchdog/softdog.o
-  CC      lib/debug_locks.o
-  CC [M]  drivers/md/persistent-data/dm-bitset.o
-  LD [M]  net/bluetooth/bluetooth.o
-  CC [M]  drivers/md/persistent-data/dm-block-manager.o
-  CC [M]  drivers/md/persistent-data/dm-space-map-common.o
-  CC [M]  drivers/net/ethernet/intel/ixgbe/ixgbe_dcb.o
-  CC      drivers/acpi/acpica/utmath.o
-  CC      fs/btrfs/volumes.o
-  CC      lib/random32.o
-  CC      net/ipv6/xfrm6_state.o
-  CC [M]  drivers/i2c/i2c-mux.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/amdgpu_ids.o
-  CC [M]  drivers/gpu/drm/xe/xe_ring_ops.o
-  CC [M]  drivers/thermal/intel/intel_menlow.o
-  CC [M]  drivers/gpu/drm/nouveau/nvkm/falcon/gm200.o
-  CC [M]  drivers/gpu/drm/drm_crtc.o
-  CC      kernel/range.o
-  CC      fs/btrfs/async-thread.o
-  CC      drivers/opp/core.o
-  CC      net/sunrpc/xdr.o
-  CC      drivers/opp/cpu.o
-  CC      net/ipv6/xfrm6_input.o
-  CC [M]  drivers/net/ethernet/intel/e1000e/netdev.o
-  CC      kernel/smpboot.o
-  CC      drivers/acpi/acpica/utmisc.o
-  CC [M]  drivers/gpu/drm/i915/display/intel_display_debugfs.o
-  CC      lib/bust_spinlocks.o
-  CC      net/ipv4/ip_tunnel_core.o
-  CC      drivers/opp/debugfs.o
-  CC [M]  drivers/gpu/drm/drm_displayid.o
-  CC      lib/kasprintf.o
-  CC      arch/x86/kernel/kvmclock.o
-  CC      arch/x86/kernel/paravirt.o
-  CC      lib/bitmap.o
-  CC [M]  drivers/gpu/drm/drm_drv.o
-  CC [M]  drivers/md/persistent-data/dm-space-map-disk.o
-  CC [M]  drivers/gpu/drm/i915/display/intel_pipe_crc.o
-  AR      drivers/watchdog/built-in.a
-  CC      net/ipv4/gre_offload.o
-  CC      drivers/acpi/processor_core.o
-  CC      drivers/acpi/acpica/utmutex.o
-  CC      drivers/acpi/processor_pdc.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/amdgpu_gmc.o
-  CC [M]  drivers/md/persistent-data/dm-space-map-metadata.o
-  CC      net/ipv4/metrics.o
-  CC [M]  drivers/gpu/drm/xe/xe_sa.o
-  AR      drivers/i2c/built-in.a
-  CC      drivers/md/md.o
-  CC [M]  drivers/net/ethernet/intel/ixgbe/ixgbe_dcb_82598.o
-  AR      drivers/thermal/intel/built-in.a
-  CC [M]  drivers/net/ethernet/intel/ixgbe/ixgbe_dcb_82599.o
-  AR      drivers/thermal/qcom/built-in.a
-  CC      drivers/cpufreq/cpufreq.o
-  AR      drivers/thermal/tegra/built-in.a
-  CC      drivers/cpuidle/cpuidle.o
-  CC      drivers/cpuidle/governors/menu.o
-  CC      drivers/cpuidle/driver.o
-  CC      drivers/cpuidle/governors/haltpoll.o
-  AR      drivers/thermal/mediatek/built-in.a
-  CC      kernel/ucount.o
-  CC      drivers/thermal/thermal_core.o
-  CC [M]  drivers/net/ethernet/intel/e1000e/ptp.o
-  CC [M]  drivers/md/persistent-data/dm-transaction-manager.o
-  CC      lib/scatterlist.o
-  CC      drivers/cpufreq/freq_table.o
-  CC [M]  drivers/gpu/drm/xe/xe_sched_job.o
-  CC [M]  drivers/net/ethernet/intel/ixgbe/ixgbe_dcb_nl.o
-  AR      drivers/net/ethernet/renesas/built-in.a
-  CC [M]  drivers/gpu/drm/amd/amdgpu/amdgpu_mmhub.o
-  CC [M]  drivers/gpu/drm/nouveau/nvkm/falcon/gp102.o
-  CC      drivers/acpi/acpica/utnonansi.o
-  CC      arch/x86/kernel/pvclock.o
-  CC [M]  drivers/md/persistent-data/dm-btree.o
-  CC [M]  drivers/net/ethernet/realtek/r8169_main.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/amdgpu_hdp.o
-  CC      fs/btrfs/ioctl.o
-  CC      drivers/mmc/core/core.o
-  CC      fs/btrfs/locking.o
-  CC      drivers/mmc/core/bus.o
-  CC      drivers/cpuidle/governor.o
-  CC      drivers/mmc/core/host.o
-  AR      drivers/ufs/built-in.a
-  CC [M]  drivers/net/ethernet/realtek/r8169_firmware.o
-  AR      drivers/leds/trigger/built-in.a
-  CC [M]  drivers/leds/trigger/ledtrig-audio.o
-  CC      kernel/regset.o
-  CC [M]  drivers/md/persistent-data/dm-btree-remove.o
-  CC      net/ipv6/xfrm6_output.o
-  AR      drivers/leds/blink/built-in.a
-  CC [M]  drivers/gpu/drm/drm_dumb_buffers.o
-  AR      drivers/leds/simple/built-in.a
-  CC      drivers/acpi/ec.o
-  CC      drivers/mmc/host/sdhci.o
-  CC      drivers/acpi/acpica/utobject.o
-  AR      drivers/opp/built-in.a
-  CC      drivers/acpi/acpica/utosi.o
-  CC [M]  fs/cifs/export.o
-  AR      drivers/firmware/arm_ffa/built-in.a
-  AR      drivers/cpuidle/governors/built-in.a
-  AR      drivers/firmware/arm_scmi/built-in.a
-  AR      drivers/crypto/stm32/built-in.a
-  AR      drivers/firmware/broadcom/built-in.a
-  AR      drivers/crypto/xilinx/built-in.a
-  AR      drivers/firmware/cirrus/built-in.a
-  CC [M]  fs/cifs/unc.o
-  AR      drivers/crypto/hisilicon/built-in.a
-  CC      mm/swap_slots.o
-  AR      drivers/firmware/meson/built-in.a
-  CC      drivers/cpuidle/sysfs.o
-  AR      drivers/crypto/keembay/built-in.a
-  AR      drivers/crypto/built-in.a
-  CC      drivers/firmware/efi/efi-bgrt.o
-  CC      arch/x86/kernel/pcspeaker.o
-  CC      mm/dmapool.o
-  CC      arch/x86/kernel/check.o
-  CC      net/ipv4/netlink.o
-  CC      drivers/acpi/dock.o
-  CC      drivers/firmware/efi/libstub/efi-stub-helper.o
-  CC      lib/list_sort.o
-  CC      drivers/leds/led-core.o
-  CC      kernel/kmod.o
-  CC      drivers/mmc/core/mmc.o
-  CC [M]  fs/cifs/winucase.o
-  CC      drivers/acpi/pci_root.o
-  CC      drivers/usb/host/xhci-hub.o
-  CC [M]  drivers/gpu/drm/nouveau/nvkm/falcon/ga100.o
-  CC      net/ipv4/nexthop.o
-  CC      drivers/cpuidle/poll_state.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/amdgpu_xgmi.o
-  CC      lib/uuid.o
-  CC      fs/fcntl.o
-  CC [M]  drivers/gpu/drm/xe/xe_step.o
-  CC [M]  drivers/gpu/drm/xe/xe_sync.o
-  CC      kernel/groups.o
-  CC      drivers/acpi/acpica/utownerid.o
-  CC      drivers/cpuidle/cpuidle-haltpoll.o
-  CC [M]  fs/cifs/smb2ops.o
-  CC      drivers/clocksource/acpi_pm.o
-  CC [M]  drivers/net/ethernet/intel/ixgbe/ixgbe_sysfs.o
-  CC [M]  drivers/gpu/drm/i915/i915_pmu.o
-  CC      lib/iov_iter.o
-  CC      drivers/clocksource/i8253.o
-  CC      drivers/mmc/core/mmc_ops.o
-  CC      net/sunrpc/sunrpc_syms.o
-  CC      drivers/acpi/acpica/utpredef.o
-  CC      drivers/hid/usbhid/hid-core.o
-  CC      arch/x86/kernel/uprobes.o
-  CC      drivers/thermal/thermal_sysfs.o
-  CC [M]  drivers/md/persistent-data/dm-btree-spine.o
-  CC      arch/x86/kernel/perf_regs.o
-  CC      drivers/leds/led-class.o
-  CC      mm/hugetlb.o
-  CC      drivers/hid/hid-core.o
-  CC      net/ipv4/udp_tunnel_stub.o
-  CC      mm/hugetlb_vmemmap.o
-  CC [M]  fs/cifs/smb2maperror.o
-  AR      drivers/cpuidle/built-in.a
-  CC [M]  drivers/gpu/drm/drm_edid.o
-  CC      drivers/firmware/efi/libstub/gop.o
-  CC [M]  drivers/gpu/drm/drm_encoder.o
-  CC [M]  drivers/gpu/drm/drm_file.o
-  CC      arch/x86/kernel/tracepoint.o
-  CC [M]  drivers/net/ethernet/intel/ixgbe/ixgbe_debugfs.o
-  CC      drivers/mmc/host/sdhci-pci-core.o
-  CC      net/ipv6/xfrm6_protocol.o
-  CC      arch/x86/kernel/itmt.o
-  CC      drivers/acpi/acpica/utresdecode.o
-  AR      drivers/clocksource/built-in.a
-  CC      drivers/cpufreq/cpufreq_performance.o
-  CC [M]  drivers/gpu/drm/drm_fourcc.o
-  CC [M]  drivers/gpu/drm/nouveau/nvkm/falcon/ga102.o
-  CC      kernel/kcmp.o
-  CC      drivers/hid/usbhid/hiddev.o
-  CC      drivers/firmware/efi/efi.o
-  CC [M]  drivers/gpu/drm/xe/xe_trace.o
-  CC [M]  drivers/net/ethernet/intel/ixgbe/ixgbe_ipsec.o
-  AR      drivers/staging/media/built-in.a
-  CC      drivers/acpi/acpica/utresrc.o
-  AR      drivers/staging/built-in.a
-  CC      drivers/acpi/pci_link.o
-  CC      drivers/leds/led-triggers.o
-  CC      arch/x86/kernel/umip.o
-  LD [M]  drivers/md/persistent-data/dm-persistent-data.o
-  CC      drivers/thermal/thermal_trip.o
-  AR      drivers/platform/x86/amd/built-in.a
-  AR      drivers/platform/surface/built-in.a
-  CC      drivers/platform/x86/intel/pmc/core.o
-  CC      drivers/acpi/pci_irq.o
-  CC      drivers/md/md-bitmap.o
-  CC      drivers/mmc/host/sdhci-pci-o2micro.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/amdgpu_csa.o
-  CC      drivers/cpufreq/cpufreq_ondemand.o
-  CC      net/ipv6/netfilter.o
-  CC [M]  drivers/platform/x86/intel/pmt/class.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/amdgpu_ras.o
-  CC      mm/sparse.o
-  CC      net/sunrpc/cache.o
-  CC      drivers/cpufreq/cpufreq_governor.o
-  CC [M]  drivers/gpu/drm/xe/xe_ttm_sys_mgr.o
-  CC      drivers/firmware/efi/libstub/secureboot.o
-  CC      mm/sparse-vmemmap.o
-  CC      net/ipv6/fib6_rules.o
-  CC      drivers/mmc/core/sd.o
-  CC      drivers/acpi/acpica/utstate.o
-  CC      fs/btrfs/orphan.o
-  CC [M]  drivers/gpu/drm/drm_framebuffer.o
-  CC [M]  drivers/gpu/drm/i915/gt/gen2_engine_cs.o
-  CC      drivers/thermal/thermal_helpers.o
-  CC      kernel/freezer.o
-  CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/acr/base.o
-  CC      drivers/usb/host/xhci-dbg.o
-  CC      arch/x86/kernel/unwind_orc.o
-  AR      drivers/leds/built-in.a
-  CC      drivers/mailbox/mailbox.o
-  CC      drivers/mailbox/pcc.o
-  CC      kernel/stacktrace.o
-  CC      drivers/acpi/acpica/utstring.o
-  CC      drivers/firmware/efi/vars.o
-  CC      drivers/acpi/acpi_lpss.o
-  CC [M]  drivers/platform/x86/intel/pmt/telemetry.o
-  CC      drivers/firmware/efi/libstub/tpm.o
-  AR      drivers/hid/usbhid/built-in.a
-  CC      drivers/platform/x86/p2sb.o
-  CC      drivers/acpi/acpi_apd.o
-  CC      drivers/hid/hid-input.o
-  CC      drivers/hid/hid-quirks.o
-  CC      drivers/cpufreq/cpufreq_governor_attr_set.o
-  CC [M]  drivers/net/ethernet/realtek/r8169_phy_config.o
-  CC      drivers/devfreq/devfreq.o
-  CC      drivers/thermal/thermal_hwmon.o
-  CC [M]  fs/cifs/smb2transport.o
-  CC      drivers/mmc/host/sdhci-pci-arasan.o
-  CC [M]  drivers/gpu/drm/xe/xe_ttm_stolen_mgr.o
-  CC      drivers/powercap/powercap_sys.o
-  CC [M]  drivers/platform/x86/intel/pmt/crashlog.o
-  CC      drivers/powercap/intel_rapl_common.o
-  CC      drivers/acpi/acpica/utstrsuppt.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/amdgpu_vm_cpu.o
-  CC      drivers/usb/host/xhci-trace.o
-  CC      drivers/platform/x86/intel/pmc/spt.o
-  CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/acr/lsfw.o
-  CC      drivers/cpufreq/acpi-cpufreq.o
-  CC      drivers/acpi/acpica/utstrtoul64.o
-  CC      kernel/dma.o
-  CC      drivers/firmware/efi/libstub/file.o
-  CC      drivers/mmc/host/sdhci-pci-dwc-mshc.o
-  CC      drivers/firmware/efi/libstub/mem.o
-  LD [M]  drivers/net/ethernet/intel/ixgbe/ixgbe.o
-  AR      drivers/mailbox/built-in.a
-  CC [M]  drivers/gpu/drm/amd/amdgpu/amdgpu_vm_sdma.o
-  CC      drivers/platform/x86/intel/pmc/cnp.o
-  CC      drivers/acpi/acpi_platform.o
-  CC      drivers/platform/x86/intel/turbo_max_3.o
-  CC      drivers/mmc/core/sd_ops.o
-  CC      arch/x86/kernel/callthunks.o
-  CC      lib/clz_ctz.o
-  CC      net/ipv6/proc.o
-  CC      drivers/thermal/gov_fair_share.o
-  CC      drivers/thermal/gov_step_wise.o
-  CC [M]  drivers/gpu/drm/xe/xe_ttm_vram_mgr.o
-  CC      fs/btrfs/export.o
-  CC      net/ipv6/syncookies.o
-  LD [M]  drivers/net/ethernet/intel/e1000e/e1000e.o
-  CC      fs/ioctl.o
-  CC      lib/bsearch.o
-  CC [M]  drivers/gpu/drm/i915/gt/gen6_engine_cs.o
-  CC      drivers/mmc/host/sdhci-pci-gli.o
-  CC [M]  drivers/gpu/drm/drm_gem.o
-  CC      net/ipv6/mip6.o
-  CC [M]  drivers/gpu/drm/xe/xe_tuning.o
-  CC      drivers/hid/hid-debug.o
-  CC      drivers/platform/x86/intel/pmc/icl.o
-  LD [M]  drivers/platform/x86/intel/pmt/pmt_class.o
-  LD [M]  drivers/platform/x86/intel/pmt/pmt_telemetry.o
-  LD [M]  drivers/platform/x86/intel/pmt/pmt_crashlog.o
-  CC      net/ipv4/sysctl_net_ipv4.o
-  CC      mm/mmu_notifier.o
-  CC [M]  drivers/platform/x86/intel/vsec.o
-  CC      net/ipv6/addrconf_core.o
-  CC      drivers/acpi/acpica/utxface.o
-  CC      kernel/smp.o
-  LD [M]  drivers/net/ethernet/realtek/r8169.o
-  CC      drivers/usb/host/xhci-debugfs.o
-  CC      drivers/cpufreq/intel_pstate.o
-  CC      fs/btrfs/tree-log.o
-  AR      drivers/net/ethernet/sfc/built-in.a
-  AR      drivers/net/ethernet/smsc/built-in.a
-  CC      net/ipv4/proc.o
-  CC [M]  drivers/net/ethernet/smsc/smsc9420.o
-  CC      drivers/mmc/host/sdhci-acpi.o
-  CC      drivers/thermal/gov_user_space.o
-  CC      drivers/mmc/host/cqhci-core.o
-  CC      drivers/firmware/efi/libstub/random.o
-  CC      drivers/powercap/intel_rapl_msr.o
-  CC [M]  drivers/mmc/host/sdhci-pltfm.o
-  CC [M]  drivers/platform/x86/intel/rst.o
-  CC      lib/find_bit.o
-  CC      drivers/acpi/acpi_pnp.o
-  CC      lib/llist.o
-  CC      drivers/mmc/core/sdio.o
-  CC      drivers/platform/x86/intel/pmc/tgl.o
-  CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/acr/gm200.o
-  CC      drivers/acpi/power.o
-  CC      drivers/acpi/acpica/utxfinit.o
-  CC      arch/x86/kernel/mmconf-fam10h_64.o
-  CC      drivers/firmware/efi/reboot.o
-  CC      drivers/mmc/core/sdio_ops.o
-  CC      kernel/uid16.o
-  CC [M]  drivers/gpu/drm/drm_ioctl.o
-  CC      lib/memweight.o
-  AR      drivers/thermal/built-in.a
-  CC      drivers/platform/x86/pmc_atom.o
-  CC      arch/x86/kernel/vsmp_64.o
-  CC [M]  drivers/devfreq/governor_simpleondemand.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/amdgpu_discovery.o
-  CC [M]  drivers/gpu/drm/xe/xe_uc.o
-  CC      net/sunrpc/rpc_pipe.o
-  CC [M]  drivers/gpu/drm/xe/xe_uc_debugfs.o
-  CC      lib/kfifo.o
-  CC [M]  drivers/platform/x86/wmi.o
-  CC      drivers/acpi/acpica/utxferror.o
-  CC      drivers/platform/x86/intel/pmc/adl.o
-  LD [M]  drivers/platform/x86/intel/intel_vsec.o
-  CC      drivers/firmware/efi/libstub/randomalloc.o
-  CC      drivers/acpi/event.o
-  CC      drivers/acpi/acpica/utxfmutex.o
-  CC      drivers/hid/hidraw.o
-  AR      drivers/firmware/imx/built-in.a
-  AR      drivers/firmware/psci/built-in.a
-  CC      drivers/hid/hid-generic.o
-  CC      net/ipv6/exthdrs_core.o
-  CC      drivers/acpi/evged.o
-  AR      drivers/powercap/built-in.a
-  CC [M]  drivers/platform/x86/wmi-bmof.o
-  CC      mm/ksm.o
-  CC      fs/btrfs/free-space-cache.o
-  CC      drivers/platform/x86/intel/pmc/mtl.o
-  CC [M]  drivers/gpu/drm/i915/gt/gen6_ppgtt.o
-  AR      drivers/perf/built-in.a
-  CC [M]  drivers/platform/x86/mxm-wmi.o
-  CC      drivers/md/md-autodetect.o
-  CC [M]  fs/cifs/smb2misc.o
-  CC      drivers/firmware/efi/memattr.o
-  CC      drivers/firmware/efi/tpm.o
-  CC [M]  drivers/devfreq/governor_performance.o
-  CC      drivers/hid/hid-a4tech.o
-  CC [M]  drivers/gpu/drm/i915/gt/gen7_renderclear.o
-  AR      arch/x86/kernel/built-in.a
-  CC [M]  drivers/gpu/drm/drm_lease.o
-  AR      arch/x86/built-in.a
-  CC      fs/btrfs/zlib.o
-  CC      drivers/firmware/efi/memmap.o
-  CC      mm/slub.o
-  CC      mm/migrate.o
-  AR      drivers/acpi/acpica/built-in.a
-  CC      drivers/hid/hid-apple.o
-  CC      drivers/acpi/sysfs.o
-  CC      net/ipv4/syncookies.o
-  LD [M]  drivers/platform/x86/intel/intel-rst.o
-  CC      drivers/platform/x86/intel/pmc/pltdrv.o
-  CC      drivers/mmc/core/sdio_bus.o
-  CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/acr/gm20b.o
-  CC      drivers/mmc/core/sdio_cis.o
-  CC [M]  drivers/gpu/drm/xe/xe_uc_fw.o
-  CC      mm/migrate_device.o
-  CC      mm/huge_memory.o
-  CC      kernel/kallsyms.o
-  CC [M]  drivers/gpu/drm/xe/xe_vm.o
-  CC      drivers/firmware/efi/libstub/pci.o
-  AR      drivers/mmc/host/built-in.a
-  CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/acr/gp102.o
-  CC      drivers/mmc/core/sdio_io.o
-  CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/acr/gp108.o
-  CC      drivers/usb/host/xhci-pci.o
-  CC [M]  drivers/platform/x86/intel_ips.o
-  AR      drivers/devfreq/built-in.a
-  CC      fs/btrfs/lzo.o
-  CC      drivers/hid/hid-belkin.o
-  CC      fs/btrfs/zstd.o
-  CC      lib/percpu-refcount.o
-  CC      drivers/firmware/efi/esrt.o
-  AR      drivers/net/ethernet/socionext/built-in.a
-  CC [M]  fs/cifs/smb2pdu.o
-  AR      drivers/net/ethernet/vertexcom/built-in.a
-  AR      drivers/net/ethernet/wangxun/built-in.a
-  CC      drivers/md/dm-uevent.o
-  CC      drivers/firmware/efi/efi-pstore.o
-  AR      drivers/net/ethernet/xilinx/built-in.a
-  AR      drivers/net/ethernet/synopsys/built-in.a
-  AR      drivers/net/ethernet/pensando/built-in.a
-  AR      drivers/net/ethernet/built-in.a
-  CC      drivers/acpi/property.o
-  AR      drivers/net/built-in.a
-  CC      mm/khugepaged.o
-  AR      drivers/platform/x86/intel/pmc/built-in.a
-  CC [M]  fs/cifs/smb2inode.o
-  CC      drivers/ras/ras.o
-  CC      net/ipv6/ip6_checksum.o
-  AR      drivers/platform/x86/intel/built-in.a
-  CC      drivers/acpi/acpi_cmos_rtc.o
-  CC      drivers/ras/debugfs.o
-  CC      drivers/firmware/efi/libstub/skip_spaces.o
-  CC      drivers/firmware/efi/libstub/lib-cmdline.o
-  CC      drivers/firmware/efi/cper.o
-  AR      drivers/cpufreq/built-in.a
-  CC      drivers/acpi/x86/apple.o
-  CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/acr/gv100.o
-  AR      drivers/hwtracing/intel_th/built-in.a
-  CC [M]  drivers/gpu/drm/xe/xe_vm_madvise.o
-  CC [M]  drivers/gpu/drm/drm_managed.o
-  CC      net/ipv6/ip6_icmp.o
-  CC      drivers/firmware/efi/libstub/lib-ctype.o
-  CC      drivers/firmware/efi/cper_cxl.o
-  CC      drivers/firmware/efi/libstub/alignedmem.o
-  CC [M]  drivers/gpu/drm/i915/gt/gen8_engine_cs.o
-  CC      drivers/mmc/core/sdio_irq.o
-  CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/acr/gp10b.o
-  CC      drivers/hid/hid-cherry.o
-  CC      drivers/android/binderfs.o
-  CC      drivers/nvmem/core.o
-  CC      lib/rhashtable.o
-  CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/acr/tu102.o
-  CC [M]  drivers/mtd/chips/chipreg.o
-  CC [M]  drivers/uio/uio.o
-  CC      net/sunrpc/sysfs.o
-  CC      drivers/firmware/efi/libstub/relocate.o
-  CC      net/sunrpc/svc_xprt.o
-  CC      net/sunrpc/xprtmultipath.o
-  CC [M]  drivers/gpu/drm/i915/gt/gen8_ppgtt.o
-  CC      drivers/md/dm.o
-  CC      drivers/acpi/x86/utils.o
-  CC      drivers/acpi/x86/s2idle.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/amdgpu_ras_eeprom.o
-  AR      drivers/platform/x86/built-in.a
-  AR      drivers/platform/built-in.a
-  CC [M]  drivers/vfio/pci/vfio_pci_core.o
-  CC      net/ipv4/esp4.o
-  CC [M]  drivers/vfio/pci/vfio_pci_intrs.o
-  CC      kernel/acct.o
-  CC      drivers/firmware/efi/runtime-wrappers.o
-  CC [M]  drivers/vfio/pci/vfio_pci_rdwr.o
-  CC [M]  drivers/vfio/vfio_main.o
-  AR      drivers/usb/host/built-in.a
-  AR      drivers/usb/built-in.a
-  CC      drivers/md/dm-table.o
-  CC [M]  drivers/gpu/drm/drm_mm.o
-  CC      drivers/firmware/efi/libstub/printk.o
-  CC [M]  drivers/gpu/drm/drm_mode_config.o
-  AR      drivers/ras/built-in.a
-  CC [M]  drivers/gpu/drm/drm_mode_object.o
-  CC      drivers/firmware/efi/libstub/vsprintf.o
-  CC [M]  drivers/vfio/group.o
-  CC [M]  drivers/mtd/mtdcore.o
-  CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/acr/ga100.o
-  CC      drivers/hid/hid-chicony.o
-  CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/acr/ga102.o
-  CC      drivers/mmc/core/slot-gpio.o
-  CC [M]  drivers/vfio/iova_bitmap.o
-  CC      fs/btrfs/compression.o
-  CC [M]  drivers/gpu/drm/i915/gt/intel_breadcrumbs.o
-  CC      drivers/firmware/efi/dev-path-parser.o
-  CC      drivers/firmware/efi/apple-properties.o
-  CC      drivers/android/binder.o
-  CC      drivers/firmware/efi/libstub/x86-stub.o
-  CC      net/ipv6/output_core.o
-  CC      mm/page_counter.o
-  CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/bar/base.o
-  CC      mm/memcontrol.o
-  CC [M]  drivers/pps/pps.o
-  AR      drivers/nvmem/built-in.a
-  CC [M]  drivers/gpu/drm/i915/gt/intel_context.o
-  CC      drivers/acpi/debugfs.o
-  CC      net/sunrpc/stats.o
-  CC      net/sunrpc/sysctl.o
-  CC      drivers/mmc/core/regulator.o
-  CC [M]  drivers/vfio/pci/vfio_pci_config.o
-  CC      drivers/mmc/core/debugfs.o
-  CC      drivers/android/binder_alloc.o
-  CC [M]  drivers/pps/kapi.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/amdgpu_nbio.o
-  CC      kernel/crash_core.o
-  CC      lib/base64.o
-  CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/bar/nv50.o
-  CC      drivers/firmware/efi/earlycon.o
-  STUBCPY drivers/firmware/efi/libstub/alignedmem.stub.o
-  CC      drivers/acpi/acpi_lpat.o
-  STUBCPY drivers/firmware/efi/libstub/efi-stub-helper.stub.o
-  CC      drivers/hid/hid-cypress.o
-  CC [M]  drivers/gpu/drm/i915/gt/intel_context_sseu.o
-  CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/bar/g84.o
-  CC [M]  drivers/vfio/container.o
-  CC [M]  fs/cifs/smb2file.o
-  CC      lib/once.o
-  CC [M]  fs/cifs/cifsacl.o
-  CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/bar/gf100.o
-  CC [M]  drivers/vfio/virqfd.o
-  CC [M]  drivers/gpu/drm/i915/gt/intel_engine_cs.o
-  CC      drivers/acpi/acpi_lpit.o
-  CC      drivers/mmc/core/block.o
-  CC      net/ipv6/protocol.o
-  CC [M]  drivers/gpu/drm/drm_modes.o
-  CC [M]  drivers/gpu/drm/drm_modeset_lock.o
-  STUBCPY drivers/firmware/efi/libstub/file.stub.o
-  STUBCPY drivers/firmware/efi/libstub/gop.stub.o
-  STUBCPY drivers/firmware/efi/libstub/lib-cmdline.stub.o
-  STUBCPY drivers/firmware/efi/libstub/lib-ctype.stub.o
-  STUBCPY drivers/firmware/efi/libstub/mem.stub.o
-  STUBCPY drivers/firmware/efi/libstub/pci.stub.o
-  CC      lib/refcount.o
-  CC [M]  drivers/pps/sysfs.o
-  STUBCPY drivers/firmware/efi/libstub/printk.stub.o
-  STUBCPY drivers/firmware/efi/libstub/random.stub.o
-  STUBCPY drivers/firmware/efi/libstub/randomalloc.stub.o
-  STUBCPY drivers/firmware/efi/libstub/relocate.stub.o
-  CC [M]  drivers/gpu/drm/i915/gt/intel_engine_heartbeat.o
-  STUBCPY drivers/firmware/efi/libstub/secureboot.stub.o
-  STUBCPY drivers/firmware/efi/libstub/skip_spaces.stub.o
-  STUBCPY drivers/firmware/efi/libstub/tpm.stub.o
-  STUBCPY drivers/firmware/efi/libstub/vsprintf.stub.o
-  STUBCPY drivers/firmware/efi/libstub/x86-stub.stub.o
-  AR      drivers/firmware/efi/libstub/lib.a
-  CC      drivers/firmware/efi/cper-x86.o
-  CC [M]  drivers/gpu/drm/i915/gt/intel_engine_pm.o
-  CC      lib/usercopy.o
-  CC [M]  drivers/gpu/drm/drm_plane.o
-  CC      drivers/hid/hid-ezkey.o
-  CC      kernel/compat.o
-  CC      kernel/utsname.o
-  CC [M]  drivers/vfio/vfio_iommu_type1.o
-  CC [M]  drivers/mtd/mtdsuper.o
-  CC      drivers/md/dm-target.o
-  CC [M]  drivers/gpu/drm/i915/gt/intel_engine_user.o
-  CC      net/ipv4/esp4_offload.o
-  CC [M]  drivers/gpu/drm/i915/gt/intel_execlists_submission.o
-  CC [M]  fs/cifs/fs_context.o
-  CC [M]  drivers/vfio/pci/vfio_pci.o
-  CC      drivers/hid/hid-kensington.o
-  CC      drivers/hid/hid-lg.o
-  LD [M]  drivers/pps/pps_core.o
-  CC      drivers/hid/hid-lg-g15.o
-  CC      drivers/acpi/prmt.o
-  CC      lib/errseq.o
-  CC [M]  drivers/bluetooth/btusb.o
-  CC [M]  drivers/bluetooth/btintel.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/amdgpu_umc.o
-  CC [M]  drivers/bluetooth/btbcm.o
-  CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/bar/gk20a.o
-  CC [M]  drivers/dca/dca-core.o
-  CC      lib/bucket_locks.o
-  CC      net/ipv4/netfilter.o
-  CC      fs/btrfs/delayed-ref.o
-  CC [M]  drivers/mtd/mtdconcat.o
-  CC [M]  drivers/gpu/drm/i915/gt/intel_ggtt.o
-  CC      kernel/user_namespace.o
-  CC      mm/vmpressure.o
-  AR      drivers/firmware/efi/built-in.a
-  CC      net/ipv6/ip6_offload.o
-  CC [M]  drivers/gpu/drm/i915/gt/intel_ggtt_fencing.o
-  AR      drivers/firmware/smccc/built-in.a
-  LD [M]  drivers/vfio/vfio.o
-  AR      drivers/firmware/tegra/built-in.a
-  AR      drivers/firmware/xilinx/built-in.a
-  CC      mm/swap_cgroup.o
-  CC      drivers/firmware/dmi_scan.o
-  CC      mm/hugetlb_cgroup.o
-  CC [M]  drivers/mtd/mtdpart.o
-  CC      kernel/pid_namespace.o
-  CC [M]  drivers/mtd/mtdchar.o
-  CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/bar/gm107.o
-  CC [M]  drivers/gpu/drm/xe/xe_wait_user_fence.o
-  AR      net/sunrpc/built-in.a
-  CC [M]  drivers/gpu/drm/xe/xe_wa.o
-  CC      net/ipv6/tcpv6_offload.o
-  CC      drivers/md/dm-linear.o
-  LD [M]  drivers/vfio/pci/vfio-pci-core.o
-  LD [M]  drivers/vfio/pci/vfio-pci.o
-  CC      lib/generic-radix-tree.o
-  CC      lib/string_helpers.o
-  CC      drivers/firmware/dmi-sysfs.o
-  CC [M]  fs/cifs/dns_resolve.o
-  CC [M]  drivers/gpu/drm/i915/gt/intel_gt.o
-  CC [M]  drivers/gpu/drm/drm_prime.o
-  CC      drivers/acpi/acpi_pcc.o
-  CC [M]  drivers/dca/dca-sysfs.o
-  CC      fs/readdir.o
-  CC [M]  drivers/gpu/drm/drm_print.o
-  CC [M]  drivers/gpu/drm/drm_property.o
-  UPD     kernel/config_data
-  CC      kernel/stop_machine.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/smu_v11_0_i2c.o
-  CC      lib/hexdump.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/amdgpu_fru_eeprom.o
-  CC [M]  drivers/bluetooth/btrtl.o
-  CC      drivers/hid/hid-microsoft.o
-  ASN.1   fs/cifs/cifs_spnego_negtokeninit.asn1.[ch]
-  CC [M]  fs/cifs/smb1ops.o
-  CC      net/ipv4/inet_diag.o
-  CC [M]  drivers/gpu/drm/drm_syncobj.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/amdgpu_rap.o
-  CC      mm/kmemleak.o
-  CC      drivers/md/dm-stripe.o
-  CC      drivers/md/dm-ioctl.o
-  CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/bar/gm20b.o
-  CC      mm/page_isolation.o
-  CC      drivers/hid/hid-monterey.o
-  CC [M]  drivers/gpu/drm/xe/xe_wopcm.o
-  CC [M]  drivers/gpu/drm/i915/gt/intel_gt_buffer_pool.o
-  CC      drivers/firmware/dmi-id.o
-  CC [M]  drivers/gpu/drm/drm_sysfs.o
-  CC [M]  drivers/gpu/drm/xe/xe_display.o
-  CC      drivers/mmc/core/queue.o
-  CC      drivers/acpi/ac.o
-  CC [M]  fs/cifs/cifssmb.o
-  CC      lib/kstrtox.o
-  CC [M]  drivers/ssb/main.o
-  LD [M]  drivers/dca/dca.o
-  CC      drivers/firmware/memmap.o
-  CC [M]  drivers/gpu/drm/drm_trace_points.o
-  CC      net/ipv4/tcp_diag.o
-  LD [M]  drivers/mtd/mtd.o
-  CC [M]  fs/cifs/cifs_spnego_negtokeninit.asn1.o
-  CC [M]  drivers/gpu/drm/xe/display/xe_fb_pin.o
-  CC      net/ipv6/exthdrs_offload.o
-  CC [M]  fs/cifs/asn1.o
-  CC [M]  drivers/gpu/drm/drm_vblank.o
-  CC      lib/debug_info.o
-  CC      fs/btrfs/relocation.o
-  CC      kernel/kprobes.o
-  CC      drivers/acpi/button.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/amdgpu_fw_attestation.o
-  CC      drivers/md/dm-io.o
-  CC      mm/early_ioremap.o
-  CC      fs/btrfs/delayed-inode.o
-  CC      drivers/acpi/fan_core.o
-  CC [M]  drivers/vhost/net.o
-  CC [M]  drivers/vhost/vhost.o
-  CC [M]  drivers/gpu/drm/drm_vblank_work.o
-  CC [M]  drivers/gpu/drm/drm_vma_manager.o
-  CC      net/ipv4/udp_diag.o
-  CC [M]  drivers/ssb/scan.o
-  AR      drivers/hid/built-in.a
-  CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/bar/tu102.o
-  CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/bios/base.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/amdgpu_securedisplay.o
-  CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/bios/bit.o
-  CC      drivers/acpi/fan_attr.o
-  CC [M]  drivers/gpu/drm/drm_writeback.o
-  AR      drivers/mmc/core/built-in.a
-  AR      drivers/mmc/built-in.a
-  AR      drivers/firmware/built-in.a
-  CC [M]  drivers/gpu/drm/lib/drm_random.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/amdgpu_eeprom.o
-  CC      mm/cma.o
-  CC [M]  drivers/vhost/iotlb.o
-  CC      drivers/md/dm-kcopyd.o
-  CC      mm/secretmem.o
-  CC [M]  drivers/gpu/drm/drm_ioc32.o
-  CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/bios/boost.o
-  CC      kernel/hung_task.o
-  CC      drivers/acpi/processor_driver.o
-  CC      mm/userfaultfd.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/amdgpu_mca.o
-  CC      net/ipv4/tcp_cubic.o
-  CC      net/ipv6/inet6_hashtables.o
-  CC      mm/memremap.o
-  CC      drivers/acpi/processor_thermal.o
-  CC [M]  drivers/gpu/drm/drm_panel.o
-  CC      drivers/acpi/processor_idle.o
-  CC [M]  drivers/gpu/drm/i915/gt/intel_gt_clock_utils.o
-  CC      net/ipv4/xfrm4_policy.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/amdgpu_psp_ta.o
-  CC [M]  drivers/ssb/sprom.o
-  CC [M]  drivers/gpu/drm/drm_pci.o
-../drivers/gpu/drm/i915/gt/intel_engine_cs.c:1525: warning: expecting prototype for intel_engines_cleanup_common(). Prototype was for intel_engine_cleanup_common() instead
-  CC      drivers/acpi/processor_throttling.o
-  CC [M]  drivers/gpu/drm/xe/display/xe_hdcp_gsc.o
-  CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/bios/conn.o
-  CC [M]  drivers/gpu/drm/xe/display/xe_plane_initial.o
-  CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/bios/cstep.o
-  CC [M]  drivers/ssb/pci.o
-  CC      kernel/watchdog.o
-  CC      fs/select.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/amdgpu_lsdma.o
-  CC      mm/hmm.o
-  CC [M]  drivers/ssb/pcihost_wrapper.o
-  CC      fs/dcache.o
-  CC [M]  drivers/ssb/driver_chipcommon.o
-  CC      lib/iomap.o
-  CC      lib/pci_iomap.o
-  CC      drivers/acpi/processor_perflib.o
-  CC      net/ipv4/xfrm4_state.o
-  CC      drivers/acpi/container.o
-  CC      net/ipv6/mcast_snoop.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/amdgpu_ring_mux.o
-  CC      mm/memfd.o
-  LD [M]  drivers/vhost/vhost_iotlb.o
-  CC      mm/bootmem_info.o
-  CC [M]  drivers/gpu/drm/xe/display/xe_display_rps.o
-  CC      lib/iomap_copy.o
-  CC      lib/devres.o
-  CC      kernel/watchdog_hld.o
-  CC [M]  net/ipv6/ip6_udp_tunnel.o
-  CC      drivers/md/dm-sysfs.o
-  AR      drivers/android/built-in.a
-  CC [M]  drivers/ssb/driver_chipcommon_pmu.o
-  CC      drivers/acpi/thermal.o
-  CC [M]  drivers/gpu/drm/xe/display/ext/i915_irq.o
-  CC [M]  drivers/gpu/drm/drm_debugfs.o
-  CC      kernel/seccomp.o
-  CC      lib/check_signature.o
-  CC      fs/btrfs/scrub.o
-  CC      fs/btrfs/backref.o
-  CC      drivers/md/dm-stats.o
-  CC      lib/interval_tree.o
-  CC      fs/inode.o
-  CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/bios/dcb.o
-  CC      fs/attr.o
-  CC      fs/bad_inode.o
-  CC      drivers/md/dm-rq.o
-  CC      lib/assoc_array.o
-  CC      kernel/relay.o
-  CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/bios/disp.o
-  CC      fs/file.o
-  CC      fs/filesystems.o
-  CC      drivers/acpi/acpi_memhotplug.o
-  LD [M]  drivers/vhost/vhost_net.o
-  CC      net/ipv4/xfrm4_input.o
-  CC [M]  drivers/gpu/drm/drm_debugfs_crc.o
-  CC      net/ipv4/xfrm4_output.o
-  CC [M]  drivers/ssb/driver_pcicore.o
-  CC      lib/list_debug.o
-  CC      kernel/utsname_sysctl.o
-  CC      drivers/acpi/ioapic.o
-  CC      fs/btrfs/ulist.o
-  CC      fs/namespace.o
-  CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/bios/dp.o
-  CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/bios/extdev.o
-  CC [M]  drivers/gpu/drm/i915/gt/intel_gt_debugfs.o
-  CC [M]  drivers/gpu/drm/drm_edid_load.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/amdgpu_fdinfo.o
-  CC      lib/debugobjects.o
-  CC      net/ipv4/xfrm4_protocol.o
-  CC      fs/btrfs/qgroup.o
-  CC [M]  net/ipv4/ip_tunnel.o
-  CC [M]  drivers/gpu/drm/i915/gt/intel_gt_engines_debugfs.o
-  CC      kernel/delayacct.o
-  CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/bios/fan.o
-  CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/bios/gpio.o
-  CC      fs/btrfs/send.o
-  CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/bios/i2c.o
-  AR      mm/built-in.a
-  CC [M]  drivers/gpu/drm/amd/amdgpu/amdgpu_pmu.o
-  CC      drivers/acpi/battery.o
-  CC [M]  drivers/gpu/drm/drm_panel_orientation_quirks.o
-  CC [M]  net/ipv4/udp_tunnel_core.o
-  CC      kernel/taskstats.o
-  CC      kernel/tsacct.o
-  CC      fs/seq_file.o
-  AR      net/ipv6/built-in.a
-  CC      lib/bitrev.o
-  CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/bios/iccsense.o
-  CC      fs/xattr.o
-  LD [M]  drivers/ssb/ssb.o
-  CC [M]  drivers/gpu/drm/drm_buddy.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/cik.o
-  CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/bios/image.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/cik_ih.o
-  CC      fs/libfs.o
-  CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/bios/init.o
-  CC      drivers/md/dm-io-rewind.o
-  CC      kernel/tracepoint.o
-  CC      kernel/latencytop.o
-  CC      drivers/md/dm-builtin.o
-  CC      fs/btrfs/dev-replace.o
-  CC      lib/crc16.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/dce_v8_0.o
-  CC      fs/btrfs/raid56.o
-  CC [M]  net/ipv4/udp_tunnel_nic.o
-  CC [M]  drivers/gpu/drm/i915/gt/intel_gt_irq.o
-  CC [M]  drivers/gpu/drm/xe/display/ext/intel_clock_gating.o
-  CC [M]  drivers/gpu/drm/drm_gem_shmem_helper.o
-  CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/bios/mxm.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/gfx_v7_0.o
-  CC [M]  drivers/md/dm-bufio.o
-  CC [M]  drivers/gpu/drm/i915/gt/intel_gt_mcr.o
-  CC      lib/crc-t10dif.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/cik_sdma.o
-  CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/bios/npde.o
-  CC [M]  drivers/gpu/drm/i915/gt/intel_gt_pm.o
-  CC [M]  drivers/gpu/drm/xe/display/ext/intel_device_info.o
-  HOSTCC  lib/gen_crc32table
-  CC [M]  drivers/gpu/drm/amd/amdgpu/uvd_v4_2.o
-  CC      drivers/acpi/hed.o
-  CC      kernel/irq_work.o
-  CC      fs/btrfs/uuid-tree.o
-  CC      lib/libcrc32c.o
-  CC      lib/xxhash.o
-  AR      net/ipv4/built-in.a
-  CC [M]  drivers/gpu/drm/i915/gt/intel_gt_pm_debugfs.o
-  CC      drivers/acpi/bgrt.o
-  CC      fs/fs-writeback.o
-  CC [M]  drivers/gpu/drm/i915/gt/intel_gt_pm_irq.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/vce_v2_0.o
-  LD [M]  fs/cifs/cifs.o
-  CC      kernel/static_call.o
-  CC [M]  drivers/gpu/drm/i915/gt/intel_gt_requests.o
-  CC      lib/genalloc.o
-  CC      fs/pnode.o
-  CC [M]  drivers/gpu/drm/drm_suballoc.o
-  CC      lib/percpu_counter.o
-  CC [M]  drivers/gpu/drm/i915/gt/intel_gt_sysfs.o
-  CC [M]  drivers/gpu/drm/drm_gem_ttm_helper.o
-  CC [M]  drivers/gpu/drm/i915/gt/intel_gt_sysfs_pm.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/si.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/gmc_v6_0.o
-  CC      drivers/acpi/cppc_acpi.o
-  CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/bios/pcir.o
-  CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/bios/perf.o
-  CC [M]  drivers/gpu/drm/i915/gt/intel_gtt.o
-  CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/bios/pll.o
-  CC      drivers/acpi/spcr.o
-  CC      kernel/static_call_inline.o
-  CC [M]  drivers/md/dm-bio-prison-v1.o
-  CC [M]  drivers/gpu/drm/xe/display/ext/intel_dram.o
-  CC [M]  drivers/md/dm-bio-prison-v2.o
-  CC      drivers/acpi/acpi_pad.o
-  CC [M]  drivers/gpu/drm/drm_atomic_helper.o
-  CC [M]  drivers/gpu/drm/xe/display/ext/intel_pch.o
-  CC      lib/fault-inject.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/gfx_v6_0.o
-  CC [M]  drivers/gpu/drm/drm_atomic_state_helper.o
-  CC [M]  drivers/gpu/drm/i915/gt/intel_llc.o
-  CC [M]  drivers/gpu/drm/drm_bridge_connector.o
-  CC [M]  drivers/gpu/drm/drm_crtc_helper.o
-  CC      fs/splice.o
-  CC      lib/syscall.o
-  CC [M]  drivers/gpu/drm/i915/gt/intel_lrc.o
-  CC      lib/dynamic_debug.o
-  CC      fs/sync.o
-  LD [M]  net/ipv4/udp_tunnel.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/si_ih.o
-  AR      net/built-in.a
-  CC      fs/btrfs/props.o
-  CC      kernel/user-return-notifier.o
-  CC      kernel/padata.o
-  CC [M]  drivers/gpu/drm/drm_damage_helper.o
-  CC [M]  drivers/gpu/drm/xe/i915-display/icl_dsi.o
-  CC      kernel/jump_label.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/si_dma.o
-  CC [M]  drivers/md/dm-crypt.o
-  CC      lib/errname.o
-  CC      fs/utimes.o
-  CC      lib/nlattr.o
-  CC [M]  drivers/gpu/drm/i915/gt/intel_migrate.o
-  CC      kernel/context_tracking.o
-  CC [M]  drivers/md/dm-thin.o
-  CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/bios/pmu.o
-  CC      fs/btrfs/free-space-tree.o
-  CC [M]  drivers/md/dm-thin-metadata.o
-  CC [M]  drivers/gpu/drm/i915/gt/intel_mocs.o
-  CC      lib/checksum.o
-  CC [M]  drivers/gpu/drm/i915/gt/intel_ppgtt.o
-  CC [M]  drivers/gpu/drm/xe/i915-display/intel_atomic.o
-  CC [M]  drivers/gpu/drm/xe/i915-display/intel_atomic_plane.o
-  CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/bios/power_budget.o
-  CC      fs/d_path.o
-  CC [M]  drivers/gpu/drm/i915/gt/intel_rc6.o
-  CC      fs/stack.o
-  CC      fs/btrfs/tree-checker.o
-  CC [M]  drivers/acpi/acpi_video.o
-  CC [M]  drivers/gpu/drm/drm_encoder_slave.o
-  CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/bios/ramcfg.o
-  CC [M]  drivers/gpu/drm/i915/gt/intel_region_lmem.o
-  CC [M]  drivers/gpu/drm/xe/i915-display/intel_audio.o
-  CC [M]  drivers/gpu/drm/drm_flip_work.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/dce_v6_0.o
-  CC      fs/fs_struct.o
-  CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/bios/rammap.o
-  CC [M]  drivers/gpu/drm/drm_format_helper.o
-  LD [M]  drivers/md/dm-bio-prison.o
-  AR      drivers/md/built-in.a
-  CC      fs/btrfs/space-info.o
-  CC      fs/btrfs/block-rsv.o
-  CC      fs/statfs.o
-  CC [M]  drivers/gpu/drm/i915/gt/intel_renderstate.o
-  CC [M]  drivers/gpu/drm/xe/i915-display/intel_backlight.o
-  CC      fs/btrfs/delalloc-space.o
-  CC [M]  drivers/gpu/drm/xe/i915-display/intel_bios.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/uvd_v3_1.o
-  CC [M]  drivers/gpu/drm/drm_gem_atomic_helper.o
-  CC      kernel/iomem.o
-  CC [M]  drivers/gpu/drm/drm_gem_framebuffer_helper.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/vi.o
-  CC      lib/cpu_rmap.o
-  CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/bios/shadow.o
-  CC      lib/dynamic_queue_limits.o
-  CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/bios/shadowacpi.o
-  CC [M]  drivers/gpu/drm/drm_kms_helper_common.o
-  CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/bios/shadowof.o
-  CC [M]  drivers/gpu/drm/drm_modeset_helper.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/mxgpu_vi.o
-  CC [M]  drivers/gpu/drm/xe/i915-display/intel_bw.o
-  CC [M]  drivers/acpi/video_detect.o
-  CC      fs/fs_pin.o
-  CC      kernel/rseq.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/nbio_v6_1.o
-  CC      fs/btrfs/block-group.o
-  CC [M]  drivers/gpu/drm/i915/gt/intel_reset.o
-  CC      lib/glob.o
-  CC      lib/strncpy_from_user.o
-  CC      lib/strnlen_user.o
-  CC      fs/nsfs.o
-  CC [M]  drivers/gpu/drm/i915/gt/intel_ring.o
-  CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/bios/shadowpci.o
-  CC      fs/fs_types.o
-  CC [M]  drivers/gpu/drm/drm_plane_helper.o
-  CC      fs/fs_context.o
-  CC [M]  drivers/gpu/drm/i915/gt/intel_ring_submission.o
-  CC      fs/fs_parser.o
-  CC [M]  drivers/gpu/drm/xe/i915-display/intel_cdclk.o
-  CC [M]  drivers/gpu/drm/drm_probe_helper.o
-  CC [M]  drivers/gpu/drm/drm_rect.o
-  CC [M]  drivers/gpu/drm/drm_self_refresh_helper.o
-  CC      fs/btrfs/discard.o
-  CC      fs/fsopen.o
-  AR      drivers/acpi/built-in.a
-  CC [M]  drivers/gpu/drm/amd/amdgpu/soc15.o
-  CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/bios/shadowramin.o
-  CC [M]  drivers/gpu/drm/drm_simple_kms_helper.o
-  CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/bios/shadowrom.o
-  CC      fs/init.o
-  CC [M]  drivers/gpu/drm/bridge/panel.o
-  CC [M]  drivers/gpu/drm/xe/i915-display/intel_color.o
-  CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/bios/timing.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/emu_soc.o
-  CC      lib/net_utils.o
-  CC      lib/sg_pool.o
-  CC      fs/kernel_read_file.o
-  LD [M]  drivers/acpi/video.o
-  CC [M]  drivers/gpu/drm/i915/gt/intel_rps.o
-  CC [M]  drivers/gpu/drm/drm_fbdev_generic.o
-  CC      fs/mnt_idmapping.o
-  CC      fs/btrfs/reflink.o
-  CC      fs/remap_range.o
-  CC      fs/btrfs/subpage.o
-  GZIP    kernel/config_data.gz
-  CC      kernel/configs.o
-  CC      fs/btrfs/tree-mod-log.o
-  CC [M]  drivers/gpu/drm/drm_fb_helper.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/mxgpu_ai.o
-  CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/bios/therm.o
-  CC      fs/buffer.o
-  LD [M]  drivers/gpu/drm/drm.o
-  CC [M]  drivers/gpu/drm/xe/i915-display/intel_combo_phy.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/nbio_v7_0.o
-  CC [M]  drivers/gpu/drm/xe/i915-display/intel_connector.o
-  CC      lib/stackdepot.o
-  CC      fs/mpage.o
-  LD [M]  drivers/gpu/drm/drm_shmem_helper.o
-  LD [M]  drivers/gpu/drm/drm_suballoc_helper.o
-  LD [M]  drivers/gpu/drm/drm_ttm_helper.o
-  CC      fs/btrfs/extent-io-tree.o
-  AR      drivers/gpu/drm/built-in.a
-  CC      fs/btrfs/fs.o
-  CC      fs/proc_namespace.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/vega10_reg_init.o
-  CC      fs/direct-io.o
-  CC [M]  drivers/gpu/drm/xe/i915-display/intel_crtc.o
-  LD [M]  drivers/md/dm-thin-pool.o
-  CC [M]  drivers/gpu/drm/xe/i915-display/intel_crtc_state_dump.o
-  CC      lib/ucs2_string.o
-  CC [M]  drivers/gpu/drm/xe/i915-display/intel_cursor.o
-  CC      fs/eventpoll.o
-  CC      fs/btrfs/messages.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/vega20_reg_init.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/nbio_v7_4.o
-  CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/bios/vmap.o
-  CC [M]  drivers/gpu/drm/xe/i915-display/intel_cx0_phy.o
-  CC [M]  drivers/gpu/drm/xe/i915-display/intel_ddi.o
-  AR      kernel/built-in.a
-  CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/bios/volt.o
-  CC      lib/sbitmap.o
-  CC [M]  drivers/gpu/drm/i915/gt/intel_sa_media.o
-  CC [M]  drivers/gpu/drm/i915/gt/intel_sseu.o
-  CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/bios/vpstate.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/nbio_v2_3.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/nv.o
-  CC      fs/anon_inodes.o
-  CC      fs/signalfd.o
-  CC [M]  drivers/gpu/drm/i915/gt/intel_sseu_debugfs.o
-  CC      lib/group_cpus.o
-  CC      fs/timerfd.o
-  CC      fs/btrfs/bio.o
-  CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/bios/xpio.o
-  CC [M]  lib/asn1_decoder.o
-  CC      fs/eventfd.o
-  CC [M]  drivers/gpu/drm/xe/i915-display/intel_ddi_buf_trans.o
-  CC      fs/userfaultfd.o
-  CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/bios/M0203.o
-  CC      fs/btrfs/lru_cache.o
-  CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/bios/M0205.o
-  CC      fs/btrfs/acl.o
-  CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/bios/M0209.o
-  CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/bios/P0260.o
-  CC [M]  drivers/gpu/drm/i915/gt/intel_timeline.o
-  CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/bus/base.o
-  CC [M]  drivers/gpu/drm/xe/i915-display/intel_display.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/arct_reg_init.o
-  GEN     lib/oid_registry_data.c
-  CC [M]  lib/oid_registry.o
-  CC [M]  drivers/gpu/drm/xe/i915-display/intel_display_driver.o
-  AR      lib/lib.a
-  GEN     lib/crc32table.h
-  CC [M]  drivers/gpu/drm/i915/gt/intel_wopcm.o
-  CC      fs/aio.o
-  CC      fs/locks.o
-  CC      fs/binfmt_script.o
-  CC      lib/crc32.o
-  CC [M]  drivers/gpu/drm/xe/i915-display/intel_display_debugfs.o
-  CC [M]  drivers/gpu/drm/xe/i915-display/intel_display_power.o
-  CC [M]  drivers/gpu/drm/i915/gt/intel_workarounds.o
-  CC [M]  drivers/gpu/drm/xe/i915-display/intel_display_power_map.o
-  CC [M]  drivers/gpu/drm/xe/i915-display/intel_display_power_well.o
-  CC [M]  drivers/gpu/drm/xe/i915-display/intel_display_trace.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/mxgpu_nv.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/nbio_v7_2.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/hdp_v4_0.o
-  CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/bus/hwsq.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/hdp_v5_0.o
-  CC      fs/binfmt_elf.o
-  CC [M]  drivers/gpu/drm/i915/gt/shmem_utils.o
-  CC [M]  drivers/gpu/drm/i915/gt/sysfs_engines.o
-  CC      fs/compat_binfmt_elf.o
-  CC      fs/mbcache.o
-  CC [M]  drivers/gpu/drm/i915/gt/intel_ggtt_gmch.o
-  CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/bus/nv04.o
-  CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/bus/nv31.o
-  CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/bus/nv50.o
-  CC      fs/posix_acl.o
-  CC      fs/coredump.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/aldebaran_reg_init.o
-  CC [M]  drivers/gpu/drm/i915/gt/gen6_renderstate.o
-  CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/bus/g94.o
-  CC [M]  drivers/gpu/drm/i915/gt/gen7_renderstate.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/aldebaran.o
-  CC      fs/drop_caches.o
-  AR      lib/built-in.a
-  CC      fs/fhandle.o
-  CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/bus/gf100.o
-  CC [M]  drivers/gpu/drm/xe/i915-display/intel_dkl_phy.o
-  CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/clk/base.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/soc21.o
-  CC [M]  drivers/gpu/drm/xe/i915-display/intel_dmc.o
-  AR      fs/btrfs/built-in.a
-  CC [M]  drivers/gpu/drm/i915/gt/gen8_renderstate.o
-  CC [M]  drivers/gpu/drm/i915/gt/gen9_renderstate.o
-  CC [M]  drivers/gpu/drm/i915/gem/i915_gem_busy.o
-  CC [M]  drivers/gpu/drm/xe/i915-display/intel_dp.o
-  CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/clk/nv04.o
-  CC [M]  drivers/gpu/drm/i915/gem/i915_gem_clflush.o
-  CC [M]  drivers/gpu/drm/i915/gem/i915_gem_context.o
-  CC [M]  drivers/gpu/drm/i915/gem/i915_gem_create.o
-  CC [M]  drivers/gpu/drm/xe/i915-display/intel_dp_aux.o
-  CC [M]  drivers/gpu/drm/xe/i915-display/intel_dp_aux_backlight.o
-  CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/clk/nv40.o
-  CC [M]  drivers/gpu/drm/xe/i915-display/intel_dp_hdcp.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/sienna_cichlid.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/smu_v13_0_10.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/nbio_v4_3.o
-  CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/clk/nv50.o
-  CC [M]  drivers/gpu/drm/i915/gem/i915_gem_dmabuf.o
-  CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/clk/g84.o
-  CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/clk/gt215.o
-  CC [M]  drivers/gpu/drm/i915/gem/i915_gem_domain.o
-  CC [M]  drivers/gpu/drm/i915/gem/i915_gem_execbuffer.o
-  CC [M]  drivers/gpu/drm/i915/gem/i915_gem_internal.o
-  CC [M]  drivers/gpu/drm/i915/gem/i915_gem_object.o
-  CC [M]  drivers/gpu/drm/i915/gem/i915_gem_lmem.o
-  CC [M]  drivers/gpu/drm/i915/gem/i915_gem_mman.o
-  CC [M]  drivers/gpu/drm/i915/gem/i915_gem_pages.o
-  CC [M]  drivers/gpu/drm/i915/gem/i915_gem_phys.o
-  CC [M]  drivers/gpu/drm/i915/gem/i915_gem_pm.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/hdp_v6_0.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/nbio_v7_7.o
-  CC [M]  drivers/gpu/drm/xe/i915-display/intel_dp_link_training.o
-  CC [M]  drivers/gpu/drm/xe/i915-display/intel_dp_mst.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/hdp_v5_2.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/lsdma_v6_0.o
-  CC [M]  drivers/gpu/drm/xe/i915-display/intel_dpll.o
-  CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/clk/mcp77.o
-  CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/clk/gf100.o
-  CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/clk/gk104.o
-  CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/clk/gk20a.o
-  CC [M]  drivers/gpu/drm/i915/gem/i915_gem_region.o
-  CC [M]  drivers/gpu/drm/i915/gem/i915_gem_shmem.o
-  CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/clk/gm20b.o
-  CC [M]  drivers/gpu/drm/xe/i915-display/intel_dpll_mgr.o
-  CC [M]  drivers/gpu/drm/xe/i915-display/intel_dpt.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/nbio_v7_9.o
-  CC [M]  drivers/gpu/drm/xe/i915-display/intel_drrs.o
-  CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/clk/pllnv04.o
-  CC [M]  drivers/gpu/drm/i915/gem/i915_gem_shrinker.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/df_v1_7.o
-  CC [M]  drivers/gpu/drm/xe/i915-display/intel_dsb.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/df_v3_6.o
-  CC [M]  drivers/gpu/drm/i915/gem/i915_gem_stolen.o
-  CC [M]  drivers/gpu/drm/xe/i915-display/intel_dsi.o
-  CC [M]  drivers/gpu/drm/xe/i915-display/intel_dsi_dcs_backlight.o
-  CC [M]  drivers/gpu/drm/i915/gem/i915_gem_throttle.o
-  CC [M]  drivers/gpu/drm/i915/gem/i915_gem_tiling.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/df_v4_3.o
-  CC [M]  drivers/gpu/drm/xe/i915-display/intel_dsi_vbt.o
-  CC [M]  drivers/gpu/drm/i915/gem/i915_gem_ttm.o
-  AR      fs/built-in.a
-  CC [M]  drivers/gpu/drm/amd/amdgpu/gmc_v7_0.o
-  CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/clk/pllgt215.o
-  CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/devinit/base.o
-  CC [M]  drivers/gpu/drm/i915/gem/i915_gem_ttm_move.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/gmc_v8_0.o
-  CC [M]  drivers/gpu/drm/i915/gem/i915_gem_ttm_pm.o
-  CC [M]  drivers/gpu/drm/i915/gem/i915_gem_userptr.o
-  CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/devinit/nv04.o
-  CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/devinit/nv05.o
-  CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/devinit/nv10.o
-  CC [M]  drivers/gpu/drm/xe/i915-display/intel_fb.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/gfxhub_v1_0.o
-  CC [M]  drivers/gpu/drm/xe/i915-display/intel_fbc.o
-  CC [M]  drivers/gpu/drm/i915/gem/i915_gem_wait.o
-  CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/devinit/nv1a.o
-  CC [M]  drivers/gpu/drm/xe/i915-display/intel_fdi.o
-  CC [M]  drivers/gpu/drm/xe/i915-display/intel_fifo_underrun.o
-  CC [M]  drivers/gpu/drm/i915/gem/i915_gemfs.o
-  CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/devinit/nv20.o
-  CC [M]  drivers/gpu/drm/xe/i915-display/intel_frontbuffer.o
-  CC [M]  drivers/gpu/drm/xe/i915-display/intel_global_state.o
-  CC [M]  drivers/gpu/drm/xe/i915-display/intel_gmbus.o
-  CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/devinit/nv50.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/mmhub_v1_0.o
-  CC [M]  drivers/gpu/drm/i915/i915_active.o
-  CC [M]  drivers/gpu/drm/xe/i915-display/intel_hdcp.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/gmc_v9_0.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/gfxhub_v1_1.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/mmhub_v9_4.o
-  CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/devinit/g84.o
-  CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/devinit/g98.o
-  CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/devinit/gt215.o
-  CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/devinit/mcp89.o
-  CC [M]  drivers/gpu/drm/i915/i915_cmd_parser.o
-  CC [M]  drivers/gpu/drm/i915/i915_deps.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/gfxhub_v2_0.o
-  LD [M]  drivers/gpu/drm/drm_kms_helper.o
-  CC [M]  drivers/gpu/drm/i915/i915_gem_evict.o
-  CC [M]  drivers/gpu/drm/i915/i915_gem_gtt.o
-  CC [M]  drivers/gpu/drm/xe/i915-display/intel_hdmi.o
-  CC [M]  drivers/gpu/drm/xe/i915-display/intel_hotplug.o
-  CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/devinit/gf100.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/mmhub_v2_0.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/gmc_v10_0.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/gfxhub_v2_1.o
-  CC [M]  drivers/gpu/drm/xe/i915-display/intel_hotplug_irq.o
-  CC [M]  drivers/gpu/drm/i915/i915_gem_ww.o
-  CC [M]  drivers/gpu/drm/xe/i915-display/intel_hti.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/mmhub_v2_3.o
-  CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/devinit/gm107.o
-  CC [M]  drivers/gpu/drm/i915/i915_gem.o
-  CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/devinit/gm200.o
-  CC [M]  drivers/gpu/drm/i915/i915_query.o
-  CC [M]  drivers/gpu/drm/i915/i915_request.o
-  CC [M]  drivers/gpu/drm/i915/i915_scheduler.o
-  CC [M]  drivers/gpu/drm/i915/i915_trace_points.o
-  CC [M]  drivers/gpu/drm/i915/i915_ttm_buddy_manager.o
-  CC [M]  drivers/gpu/drm/xe/i915-display/intel_lspcon.o
-  CC [M]  drivers/gpu/drm/i915/i915_vma.o
-  CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/devinit/gv100.o
-  CC [M]  drivers/gpu/drm/xe/i915-display/intel_modeset_setup.o
-  CC [M]  drivers/gpu/drm/i915/i915_vma_resource.o
-  CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/devinit/tu102.o
-  CC [M]  drivers/gpu/drm/i915/gt/uc/intel_gsc_fw.o
-  CC [M]  drivers/gpu/drm/xe/i915-display/intel_modeset_verify.o
-  CC [M]  drivers/gpu/drm/i915/gt/uc/intel_gsc_uc.o
-  CC [M]  drivers/gpu/drm/xe/i915-display/intel_panel.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/mmhub_v1_7.o
-  CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/devinit/ga100.o
-  CC [M]  drivers/gpu/drm/i915/gt/uc/intel_gsc_uc_heci_cmd_submit.o
-  CC [M]  drivers/gpu/drm/xe/i915-display/intel_pipe_crc.o
-  CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/fault/base.o
-  CC [M]  drivers/gpu/drm/xe/i915-display/intel_pps.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/gfxhub_v3_0.o
-  CC [M]  drivers/gpu/drm/xe/i915-display/intel_psr.o
-  CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/fault/user.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/mmhub_v3_0.o
-  CC [M]  drivers/gpu/drm/i915/gt/uc/intel_guc.o
-  CC [M]  drivers/gpu/drm/i915/gt/uc/intel_guc_ads.o
-  CC [M]  drivers/gpu/drm/xe/i915-display/intel_qp_tables.o
-  CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/fault/gp100.o
-  CC [M]  drivers/gpu/drm/xe/i915-display/intel_quirks.o
-  CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/fault/gp10b.o
-  CC [M]  drivers/gpu/drm/i915/gt/uc/intel_guc_capture.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/mmhub_v3_0_2.o
-  CC [M]  drivers/gpu/drm/i915/gt/uc/intel_guc_ct.o
-  CC [M]  drivers/gpu/drm/i915/gt/uc/intel_guc_debugfs.o
-  CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/fault/gv100.o
-  CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/fault/tu102.o
-  CC [M]  drivers/gpu/drm/i915/gt/uc/intel_guc_fw.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/gmc_v11_0.o
-  CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/fb/base.o
-  CC [M]  drivers/gpu/drm/xe/i915-display/intel_snps_phy.o
-  CC [M]  drivers/gpu/drm/xe/i915-display/intel_tc.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/mmhub_v3_0_1.o
-  CC [M]  drivers/gpu/drm/i915/gt/uc/intel_guc_hwconfig.o
-  CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/fb/nv04.o
-  CC [M]  drivers/gpu/drm/i915/gt/uc/intel_guc_log.o
-  CC [M]  drivers/gpu/drm/i915/gt/uc/intel_guc_log_debugfs.o
-  CC [M]  drivers/gpu/drm/i915/gt/uc/intel_guc_rc.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/gfxhub_v3_0_3.o
-  CC [M]  drivers/gpu/drm/i915/gt/uc/intel_guc_slpc.o
-  CC [M]  drivers/gpu/drm/xe/i915-display/intel_vblank.o
-  CC [M]  drivers/gpu/drm/i915/gt/uc/intel_guc_submission.o
-  CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/fb/nv10.o
-  CC [M]  drivers/gpu/drm/i915/gt/uc/intel_huc.o
-  CC [M]  drivers/gpu/drm/xe/i915-display/intel_vdsc.o
-  CC [M]  drivers/gpu/drm/i915/gt/uc/intel_huc_debugfs.o
-  CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/fb/nv1a.o
-  CC [M]  drivers/gpu/drm/xe/i915-display/intel_vga.o
-  CC [M]  drivers/gpu/drm/i915/gt/uc/intel_huc_fw.o
-  CC [M]  drivers/gpu/drm/xe/i915-display/intel_vrr.o
-  CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/fb/nv20.o
-  CC [M]  drivers/gpu/drm/xe/i915-display/intel_wm.o
-  CC [M]  drivers/gpu/drm/i915/gt/uc/intel_uc.o
-  CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/fb/nv25.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/gfxhub_v1_2.o
-  CC [M]  drivers/gpu/drm/xe/i915-display/skl_scaler.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/mmhub_v1_8.o
-  CC [M]  drivers/gpu/drm/xe/i915-display/skl_universal_plane.o
-  CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/fb/nv30.o
-  CC [M]  drivers/gpu/drm/i915/gt/uc/intel_uc_debugfs.o
-  CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/fb/nv35.o
-  CC [M]  drivers/gpu/drm/xe/i915-display/skl_watermark.o
-  CC [M]  drivers/gpu/drm/i915/gt/uc/intel_uc_fw.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/umc_v6_0.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/umc_v6_1.o
-  CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/fb/nv36.o
-  CC [M]  drivers/gpu/drm/i915/gt/intel_gsc.o
-  CC [M]  drivers/gpu/drm/i915/i915_hwmon.o
-  CC [M]  drivers/gpu/drm/xe/i915-display/intel_acpi.o
-  CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/fb/nv40.o
-  CC [M]  drivers/gpu/drm/i915/display/hsw_ips.o
-  CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/fb/nv41.o
-  CC [M]  drivers/gpu/drm/xe/i915-display/intel_opregion.o
-  CC [M]  drivers/gpu/drm/i915/display/intel_atomic.o
-  CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/fb/nv44.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/umc_v6_7.o
-  CC [M]  drivers/gpu/drm/i915/display/intel_atomic_plane.o
-  CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/fb/nv46.o
-  CC [M]  drivers/gpu/drm/i915/display/intel_audio.o
-  CC [M]  drivers/gpu/drm/xe/i915-display/intel_fbdev.o
-  CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/fb/nv47.o
-  HDRTEST drivers/gpu/drm/xe/abi/guc_klvs_abi.h
-  CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/fb/nv49.o
-  CC [M]  drivers/gpu/drm/i915/display/intel_bios.o
-  CC [M]  drivers/gpu/drm/i915/display/intel_bw.o
-  HDRTEST drivers/gpu/drm/xe/abi/guc_errors_abi.h
-  HDRTEST drivers/gpu/drm/xe/abi/guc_actions_slpc_abi.h
-  CC [M]  drivers/gpu/drm/i915/display/intel_cdclk.o
-  CC [M]  drivers/gpu/drm/i915/display/intel_color.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/umc_v8_7.o
-  CC [M]  drivers/gpu/drm/i915/display/intel_combo_phy.o
-  HDRTEST drivers/gpu/drm/xe/abi/guc_communication_mmio_abi.h
-  CC [M]  drivers/gpu/drm/amd/amdgpu/umc_v8_10.o
-  HDRTEST drivers/gpu/drm/xe/abi/guc_actions_abi.h
-  CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/fb/nv4e.o
-  CC [M]  drivers/gpu/drm/i915/display/intel_connector.o
-  CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/fb/nv50.o
-  CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/fb/g84.o
-  HDRTEST drivers/gpu/drm/xe/abi/guc_communication_ctb_abi.h
-  HDRTEST drivers/gpu/drm/xe/abi/guc_messages_abi.h
-  CC [M]  drivers/gpu/drm/i915/display/intel_crtc.o
-  HDRTEST drivers/gpu/drm/xe/compat-i915-headers/i915_vma_types.h
-  HDRTEST drivers/gpu/drm/xe/compat-i915-headers/vlv_sideband_reg.h
-  CC [M]  drivers/gpu/drm/i915/display/intel_crtc_state_dump.o
-  HDRTEST drivers/gpu/drm/xe/compat-i915-headers/intel_wakeref.h
-  HDRTEST drivers/gpu/drm/xe/compat-i915-headers/intel_pcode.h
-  HDRTEST drivers/gpu/drm/xe/compat-i915-headers/i915_drv.h
-  CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/fb/gt215.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/amdgpu_irq.o
-  HDRTEST drivers/gpu/drm/xe/compat-i915-headers/i915_reg_defs.h
-  HDRTEST drivers/gpu/drm/xe/compat-i915-headers/i915_trace.h
-  HDRTEST drivers/gpu/drm/xe/compat-i915-headers/i915_reg.h
-  CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/fb/mcp77.o
-  CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/fb/mcp89.o
-  HDRTEST drivers/gpu/drm/xe/compat-i915-headers/i915_active_types.h
-  HDRTEST drivers/gpu/drm/xe/compat-i915-headers/i915_utils.h
-  HDRTEST drivers/gpu/drm/xe/compat-i915-headers/i915_config.h
-  HDRTEST drivers/gpu/drm/xe/compat-i915-headers/i915_vma.h
-  CC [M]  drivers/gpu/drm/amd/amdgpu/amdgpu_ih.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/iceland_ih.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/tonga_ih.o
-  CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/fb/gf100.o
-  CC [M]  drivers/gpu/drm/i915/display/intel_cursor.o
-  HDRTEST drivers/gpu/drm/xe/compat-i915-headers/vlv_sideband.h
-  CC [M]  drivers/gpu/drm/amd/amdgpu/cz_ih.o
-  CC [M]  drivers/gpu/drm/i915/display/intel_display.o
-  CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/fb/gf108.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/vega10_ih.o
-  HDRTEST drivers/gpu/drm/xe/compat-i915-headers/intel_mchbar_regs.h
-  CC [M]  drivers/gpu/drm/amd/amdgpu/vega20_ih.o
-  CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/fb/gk104.o
-  HDRTEST drivers/gpu/drm/xe/compat-i915-headers/i915_debugfs.h
-  HDRTEST drivers/gpu/drm/xe/compat-i915-headers/soc/intel_gmch.h
-  CC [M]  drivers/gpu/drm/amd/amdgpu/navi10_ih.o
-  HDRTEST drivers/gpu/drm/xe/compat-i915-headers/i915_vgpu.h
-  HDRTEST drivers/gpu/drm/xe/compat-i915-headers/i915_fixed.h
-  CC [M]  drivers/gpu/drm/i915/display/intel_display_driver.o
-  HDRTEST drivers/gpu/drm/xe/compat-i915-headers/intel_runtime_pm.h
-  CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/fb/gk110.o
-  HDRTEST drivers/gpu/drm/xe/compat-i915-headers/intel_pm_types.h
-  CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/fb/gk20a.o
-  HDRTEST drivers/gpu/drm/xe/compat-i915-headers/intel_uncore.h
-  CC [M]  drivers/gpu/drm/i915/display/intel_display_power.o
-  HDRTEST drivers/gpu/drm/xe/compat-i915-headers/intel_pci_config.h
-  HDRTEST drivers/gpu/drm/xe/compat-i915-headers/intel_clock_gating.h
-  HDRTEST drivers/gpu/drm/xe/display/ext/i915_irq.h
-  CC [M]  drivers/gpu/drm/i915/display/intel_display_power_map.o
-  HDRTEST drivers/gpu/drm/xe/display/ext/intel_pch.h
-  CC [M]  drivers/gpu/drm/amd/amdgpu/ih_v6_0.o
-  HDRTEST drivers/gpu/drm/xe/display/ext/intel_dram.h
-  HDRTEST drivers/gpu/drm/xe/display/ext/intel_device_info.h
-  HDRTEST drivers/gpu/drm/xe/regs/xe_reg_defs.h
-  HDRTEST drivers/gpu/drm/xe/regs/xe_guc_regs.h
-  HDRTEST drivers/gpu/drm/xe/regs/xe_gt_regs.h
-  HDRTEST drivers/gpu/drm/xe/regs/xe_regs.h
-  HDRTEST drivers/gpu/drm/xe/regs/xe_gpu_commands.h
-  CC [M]  drivers/gpu/drm/amd/amdgpu/amdgpu_psp.o
-  CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/fb/gm107.o
-  CC [M]  drivers/gpu/drm/i915/display/intel_display_power_well.o
-  CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/fb/gm200.o
-  CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/fb/gm20b.o
-  HDRTEST drivers/gpu/drm/xe/regs/xe_lrc_layout.h
-  CC [M]  drivers/gpu/drm/amd/amdgpu/psp_v3_1.o
-  HDRTEST drivers/gpu/drm/xe/regs/xe_engine_regs.h
-  CC [M]  drivers/gpu/drm/i915/display/intel_display_reset.o
-  HDRTEST drivers/gpu/drm/xe/tests/xe_test.h
-  CC [M]  drivers/gpu/drm/i915/display/intel_display_rps.o
-  HDRTEST drivers/gpu/drm/xe/tests/xe_pci_test.h
-  CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/fb/gp100.o
-  HDRTEST drivers/gpu/drm/xe/tests/xe_migrate_test.h
-  CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/fb/gp102.o
-  HDRTEST drivers/gpu/drm/xe/tests/xe_dma_buf_test.h
-  HDRTEST drivers/gpu/drm/xe/tests/xe_bo_test.h
-  HDRTEST drivers/gpu/drm/xe/xe_bb.h
-  HDRTEST drivers/gpu/drm/xe/xe_bb_types.h
-  HDRTEST drivers/gpu/drm/xe/xe_bo.h
-  CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/fb/gp10b.o
-  CC [M]  drivers/gpu/drm/i915/display/intel_dmc.o
-  CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/fb/gv100.o
-  CC [M]  drivers/gpu/drm/i915/display/intel_dpio_phy.o
-  CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/fb/tu102.o
-  CC [M]  drivers/gpu/drm/i915/display/intel_dpll.o
-  HDRTEST drivers/gpu/drm/xe/xe_bo_doc.h
-  HDRTEST drivers/gpu/drm/xe/xe_bo_evict.h
-  CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/fb/ga100.o
-  CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/fb/ga102.o
-  CC [M]  drivers/gpu/drm/i915/display/intel_dpll_mgr.o
-  HDRTEST drivers/gpu/drm/xe/xe_bo_types.h
-  CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/fb/ram.o
-  HDRTEST drivers/gpu/drm/xe/xe_debugfs.h
-  CC [M]  drivers/gpu/drm/i915/display/intel_dpt.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/psp_v10_0.o
-  CC [M]  drivers/gpu/drm/i915/display/intel_drrs.o
-  CC [M]  drivers/gpu/drm/i915/display/intel_dsb.o
-  CC [M]  drivers/gpu/drm/i915/display/intel_fb.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/psp_v11_0.o
-  CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/fb/ramnv04.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/psp_v11_0_8.o
-  CC [M]  drivers/gpu/drm/i915/display/intel_fb_pin.o
-  CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/fb/ramnv10.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/psp_v12_0.o
-  CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/fb/ramnv1a.o
-  CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/fb/ramnv20.o
-  CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/fb/ramnv40.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/psp_v13_0.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/psp_v13_0_4.o
-  HDRTEST drivers/gpu/drm/xe/xe_device.h
-  CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/fb/ramnv41.o
-  CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/fb/ramnv44.o
-  HDRTEST drivers/gpu/drm/xe/xe_device_types.h
-  HDRTEST drivers/gpu/drm/xe/xe_display.h
-  CC [M]  drivers/gpu/drm/amd/amdgpu/dce_v10_0.o
-  CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/fb/ramnv49.o
-  CC [M]  drivers/gpu/drm/i915/display/intel_fbc.o
-  CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/fb/ramnv4e.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/dce_v11_0.o
-  CC [M]  drivers/gpu/drm/i915/display/intel_fdi.o
-  CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/fb/ramnv50.o
-  CC [M]  drivers/gpu/drm/i915/display/intel_fifo_underrun.o
-  CC [M]  drivers/gpu/drm/i915/display/intel_frontbuffer.o
-  CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/fb/ramgt215.o
-  CC [M]  drivers/gpu/drm/i915/display/intel_global_state.o
-  CC [M]  drivers/gpu/drm/i915/display/intel_hdcp.o
-  CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/fb/rammcp77.o
-  CC [M]  drivers/gpu/drm/i915/display/intel_hdcp_gsc.o
-  CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/fb/ramgf100.o
-  CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/fb/ramgf108.o
-  HDRTEST drivers/gpu/drm/xe/xe_dma_buf.h
-  CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/fb/ramgk104.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/amdgpu_vkms.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/amdgpu_gfx.o
-  HDRTEST drivers/gpu/drm/xe/xe_drv.h
-  CC [M]  drivers/gpu/drm/i915/display/intel_hotplug.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/amdgpu_rlc.o
-  HDRTEST drivers/gpu/drm/xe/xe_engine.h
-  HDRTEST drivers/gpu/drm/xe/xe_engine_types.h
-  CC [M]  drivers/gpu/drm/i915/display/intel_hotplug_irq.o
-  CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/fb/ramgm107.o
-  HDRTEST drivers/gpu/drm/xe/xe_exec.h
-  HDRTEST drivers/gpu/drm/xe/xe_execlist.h
-  CC [M]  drivers/gpu/drm/i915/display/intel_hti.o
-  HDRTEST drivers/gpu/drm/xe/xe_execlist_types.h
-  CC [M]  drivers/gpu/drm/amd/amdgpu/gfx_v8_0.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/gfx_v9_0.o
-  CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/fb/ramgm200.o
-  CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/fb/ramgp100.o
-  HDRTEST drivers/gpu/drm/xe/xe_force_wake.h
-  CC [M]  drivers/gpu/drm/i915/display/intel_load_detect.o
-  CC [M]  drivers/gpu/drm/i915/display/intel_lpe_audio.o
-  CC [M]  drivers/gpu/drm/i915/display/intel_modeset_verify.o
-  CC [M]  drivers/gpu/drm/i915/display/intel_modeset_setup.o
-  HDRTEST drivers/gpu/drm/xe/xe_force_wake_types.h
-  CC [M]  drivers/gpu/drm/amd/amdgpu/gfx_v9_4.o
-  CC [M]  drivers/gpu/drm/i915/display/intel_overlay.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/gfx_v9_4_2.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/gfx_v9_4_3.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/gfx_v10_0.o
-  HDRTEST drivers/gpu/drm/xe/xe_ggtt.h
-  CC [M]  drivers/gpu/drm/i915/display/intel_pch_display.o
-  CC [M]  drivers/gpu/drm/i915/display/intel_pch_refclk.o
-  HDRTEST drivers/gpu/drm/xe/xe_ggtt_types.h
-  HDRTEST drivers/gpu/drm/xe/xe_gt.h
-  CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/fb/ramga102.o
-  CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/fb/sddr2.o
-  CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/fb/sddr3.o
-  HDRTEST drivers/gpu/drm/xe/xe_gt_clock.h
-  HDRTEST drivers/gpu/drm/xe/xe_gt_debugfs.h
-  HDRTEST drivers/gpu/drm/xe/xe_gt_mcr.h
-  HDRTEST drivers/gpu/drm/xe/xe_gt_pagefault.h
-  HDRTEST drivers/gpu/drm/xe/xe_gt_sysfs.h
-  CC [M]  drivers/gpu/drm/i915/display/intel_plane_initial.o
-  CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/fb/gddr3.o
-  CC [M]  drivers/gpu/drm/i915/display/intel_psr.o
-  CC [M]  drivers/gpu/drm/i915/display/intel_quirks.o
-  HDRTEST drivers/gpu/drm/xe/xe_gt_sysfs_types.h
-  HDRTEST drivers/gpu/drm/xe/xe_gt_tlb_invalidation.h
-  CC [M]  drivers/gpu/drm/i915/display/intel_sprite.o
-  CC [M]  drivers/gpu/drm/i915/display/intel_sprite_uapi.o
-  CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/fb/gddr5.o
-  HDRTEST drivers/gpu/drm/xe/xe_gt_tlb_invalidation_types.h
-  CC [M]  drivers/gpu/drm/amd/amdgpu/imu_v11_0.o
-  CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/fuse/base.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/gfx_v11_0.o
-  CC [M]  drivers/gpu/drm/i915/display/intel_tc.o
-  CC [M]  drivers/gpu/drm/i915/display/intel_vblank.o
-  HDRTEST drivers/gpu/drm/xe/xe_gt_topology.h
-  CC [M]  drivers/gpu/drm/i915/display/intel_vga.o
-  HDRTEST drivers/gpu/drm/xe/xe_gt_types.h
-  HDRTEST drivers/gpu/drm/xe/xe_guc.h
-  HDRTEST drivers/gpu/drm/xe/xe_guc_ads.h
-  CC [M]  drivers/gpu/drm/i915/display/intel_wm.o
-  HDRTEST drivers/gpu/drm/xe/xe_guc_ads_types.h
-  HDRTEST drivers/gpu/drm/xe/xe_guc_ct.h
-  CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/fuse/nv50.o
-  CC [M]  drivers/gpu/drm/i915/display/i9xx_plane.o
-  CC [M]  drivers/gpu/drm/i915/display/i9xx_wm.o
-  CC [M]  drivers/gpu/drm/i915/display/skl_scaler.o
-  CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/fuse/gf100.o
-  CC [M]  drivers/gpu/drm/i915/display/skl_universal_plane.o
-  CC [M]  drivers/gpu/drm/i915/display/skl_watermark.o
-  CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/fuse/gm107.o
-  CC [M]  drivers/gpu/drm/i915/display/intel_acpi.o
-  CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/gpio/base.o
-  CC [M]  drivers/gpu/drm/i915/display/intel_opregion.o
-  HDRTEST drivers/gpu/drm/xe/xe_guc_ct_types.h
-  HDRTEST drivers/gpu/drm/xe/xe_guc_debugfs.h
-  HDRTEST drivers/gpu/drm/xe/xe_guc_engine_types.h
-  HDRTEST drivers/gpu/drm/xe/xe_guc_fwif.h
-  CC [M]  drivers/gpu/drm/amd/amdgpu/gfx_v11_0_3.o
-  CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/gpio/nv10.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/imu_v11_0_3.o
-  HDRTEST drivers/gpu/drm/xe/xe_guc_hwconfig.h
-  CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/gpio/nv50.o
-  HDRTEST drivers/gpu/drm/xe/xe_guc_log.h
-  CC [M]  drivers/gpu/drm/amd/amdgpu/amdgpu_sdma.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/sdma_v2_4.o
-  CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/gpio/g94.o
-  CC [M]  drivers/gpu/drm/i915/display/intel_fbdev.o
-  CC [M]  drivers/gpu/drm/i915/display/dvo_ch7017.o
-  CC [M]  drivers/gpu/drm/i915/display/dvo_ch7xxx.o
-  CC [M]  drivers/gpu/drm/i915/display/dvo_ivch.o
-  CC [M]  drivers/gpu/drm/i915/display/dvo_ns2501.o
-  CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/gpio/gf119.o
-  CC [M]  drivers/gpu/drm/i915/display/dvo_sil164.o
-  HDRTEST drivers/gpu/drm/xe/xe_guc_log_types.h
-  HDRTEST drivers/gpu/drm/xe/xe_guc_pc.h
-  HDRTEST drivers/gpu/drm/xe/xe_guc_pc_types.h
-  HDRTEST drivers/gpu/drm/xe/xe_guc_submit.h
-  CC [M]  drivers/gpu/drm/i915/display/dvo_tfp410.o
-  CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/gpio/gk104.o
-  HDRTEST drivers/gpu/drm/xe/xe_guc_types.h
-  CC [M]  drivers/gpu/drm/amd/amdgpu/sdma_v3_0.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/sdma_v4_0.o
-  CC [M]  drivers/gpu/drm/i915/display/g4x_dp.o
-  HDRTEST drivers/gpu/drm/xe/xe_huc.h
-  CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/gpio/ga102.o
-  CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/gsp/base.o
-  HDRTEST drivers/gpu/drm/xe/xe_huc_debugfs.h
-  CC [M]  drivers/gpu/drm/i915/display/g4x_hdmi.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/sdma_v4_4.o
-  HDRTEST drivers/gpu/drm/xe/xe_huc_types.h
-  CC [M]  drivers/gpu/drm/i915/display/icl_dsi.o
-  HDRTEST drivers/gpu/drm/xe/xe_hw_engine.h
-  CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/gsp/gv100.o
-  CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/gsp/ga102.o
-  HDRTEST drivers/gpu/drm/xe/xe_hw_engine_types.h
-  CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/i2c/base.o
-  CC [M]  drivers/gpu/drm/i915/display/intel_backlight.o
-  CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/i2c/nv04.o
-  CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/i2c/nv4e.o
-  CC [M]  drivers/gpu/drm/i915/display/intel_crt.o
-  CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/i2c/nv50.o
-  CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/i2c/g94.o
-  HDRTEST drivers/gpu/drm/xe/xe_hw_fence.h
-  CC [M]  drivers/gpu/drm/amd/amdgpu/sdma_v4_4_2.o
-  CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/i2c/gf117.o
-  HDRTEST drivers/gpu/drm/xe/xe_hw_fence_types.h
-  CC [M]  drivers/gpu/drm/i915/display/intel_cx0_phy.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/sdma_v5_0.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/sdma_v5_2.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/sdma_v6_0.o
-  HDRTEST drivers/gpu/drm/xe/xe_irq.h
-  HDRTEST drivers/gpu/drm/xe/xe_lrc.h
-  CC [M]  drivers/gpu/drm/i915/display/intel_ddi.o
-  CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/i2c/gf119.o
-  CC [M]  drivers/gpu/drm/i915/display/intel_ddi_buf_trans.o
-  CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/i2c/gk104.o
-  CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/i2c/gk110.o
-  CC [M]  drivers/gpu/drm/i915/display/intel_display_trace.o
-  CC [M]  drivers/gpu/drm/i915/display/intel_dkl_phy.o
-  HDRTEST drivers/gpu/drm/xe/xe_lrc_types.h
-  CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/i2c/gm200.o
-  CC [M]  drivers/gpu/drm/i915/display/intel_dp.o
-  CC [M]  drivers/gpu/drm/i915/display/intel_dp_aux.o
-  CC [M]  drivers/gpu/drm/i915/display/intel_dp_aux_backlight.o
-  CC [M]  drivers/gpu/drm/i915/display/intel_dp_hdcp.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/amdgpu_mes.o
-  HDRTEST drivers/gpu/drm/xe/xe_macros.h
-  CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/i2c/pad.o
-  CC [M]  drivers/gpu/drm/i915/display/intel_dp_link_training.o
-  HDRTEST drivers/gpu/drm/xe/xe_map.h
-  HDRTEST drivers/gpu/drm/xe/xe_migrate.h
-  CC [M]  drivers/gpu/drm/i915/display/intel_dp_mst.o
-  HDRTEST drivers/gpu/drm/xe/xe_migrate_doc.h
-  CC [M]  drivers/gpu/drm/i915/display/intel_dsi.o
-  CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/i2c/padnv04.o
-  HDRTEST drivers/gpu/drm/xe/xe_mmio.h
-  HDRTEST drivers/gpu/drm/xe/xe_mocs.h
-  HDRTEST drivers/gpu/drm/xe/xe_module.h
-  CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/i2c/padnv4e.o
-  HDRTEST drivers/gpu/drm/xe/xe_pat.h
-  HDRTEST drivers/gpu/drm/xe/xe_pci.h
-  CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/i2c/padnv50.o
-  HDRTEST drivers/gpu/drm/xe/xe_pci_types.h
-  CC [M]  drivers/gpu/drm/i915/display/intel_dsi_dcs_backlight.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/mes_v10_1.o
-  CC [M]  drivers/gpu/drm/i915/display/intel_dsi_vbt.o
-  CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/i2c/padg94.o
-  HDRTEST drivers/gpu/drm/xe/xe_pcode.h
-  CC [M]  drivers/gpu/drm/amd/amdgpu/mes_v11_0.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/amdgpu_uvd.o
-  CC [M]  drivers/gpu/drm/i915/display/intel_dvo.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/uvd_v5_0.o
-  CC [M]  drivers/gpu/drm/i915/display/intel_gmbus.o
-  CC [M]  drivers/gpu/drm/i915/display/intel_hdmi.o
-  CC [M]  drivers/gpu/drm/i915/display/intel_lspcon.o
-  HDRTEST drivers/gpu/drm/xe/xe_pcode_api.h
-  CC [M]  drivers/gpu/drm/i915/display/intel_lvds.o
-  CC [M]  drivers/gpu/drm/i915/display/intel_panel.o
-  HDRTEST drivers/gpu/drm/xe/xe_platform_types.h
-  HDRTEST drivers/gpu/drm/xe/xe_pm.h
-  HDRTEST drivers/gpu/drm/xe/xe_preempt_fence.h
-  CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/i2c/padgf119.o
-  CC [M]  drivers/gpu/drm/i915/display/intel_pps.o
-  CC [M]  drivers/gpu/drm/i915/display/intel_qp_tables.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/uvd_v6_0.o
-  CC [M]  drivers/gpu/drm/i915/display/intel_sdvo.o
-  CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/i2c/padgm200.o
-  CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/i2c/bus.o
-  HDRTEST drivers/gpu/drm/xe/xe_preempt_fence_types.h
-  HDRTEST drivers/gpu/drm/xe/xe_pt.h
-  CC [M]  drivers/gpu/drm/i915/display/intel_snps_phy.o
-  CC [M]  drivers/gpu/drm/i915/display/intel_tv.o
-  CC [M]  drivers/gpu/drm/i915/display/intel_vdsc.o
-  HDRTEST drivers/gpu/drm/xe/xe_pt_types.h
-  CC [M]  drivers/gpu/drm/i915/display/intel_vrr.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/uvd_v7_0.o
-  HDRTEST drivers/gpu/drm/xe/xe_pt_walk.h
-  CC [M]  drivers/gpu/drm/amd/amdgpu/amdgpu_vce.o
-  CC [M]  drivers/gpu/drm/i915/display/vlv_dsi.o
-  CC [M]  drivers/gpu/drm/i915/display/vlv_dsi_pll.o
-  CC [M]  drivers/gpu/drm/i915/i915_perf.o
-  CC [M]  drivers/gpu/drm/i915/pxp/intel_pxp.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/vce_v3_0.o
-  CC [M]  drivers/gpu/drm/i915/pxp/intel_pxp_tee.o
-  CC [M]  drivers/gpu/drm/i915/pxp/intel_pxp_huc.o
-  CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/i2c/busnv04.o
-  HDRTEST drivers/gpu/drm/xe/xe_query.h
-  HDRTEST drivers/gpu/drm/xe/xe_reg_sr.h
-  HDRTEST drivers/gpu/drm/xe/xe_reg_sr_types.h
-  CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/i2c/busnv4e.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/vce_v4_0.o
-  CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/i2c/busnv50.o
-  CC [M]  drivers/gpu/drm/i915/pxp/intel_pxp_cmd.o
-  CC [M]  drivers/gpu/drm/i915/pxp/intel_pxp_debugfs.o
-  HDRTEST drivers/gpu/drm/xe/xe_reg_whitelist.h
-  CC [M]  drivers/gpu/drm/i915/pxp/intel_pxp_irq.o
-  HDRTEST drivers/gpu/drm/xe/xe_res_cursor.h
-  CC [M]  drivers/gpu/drm/i915/pxp/intel_pxp_pm.o
-  HDRTEST drivers/gpu/drm/xe/xe_ring_ops.h
-  CC [M]  drivers/gpu/drm/amd/amdgpu/amdgpu_vcn.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/vcn_sw_ring.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/vcn_v1_0.o
-  CC [M]  drivers/gpu/drm/i915/pxp/intel_pxp_session.o
-  HDRTEST drivers/gpu/drm/xe/xe_ring_ops_types.h
-  HDRTEST drivers/gpu/drm/xe/xe_rtp.h
-  HDRTEST drivers/gpu/drm/xe/xe_rtp_types.h
-  HDRTEST drivers/gpu/drm/xe/xe_sa.h
-  CC [M]  drivers/gpu/drm/i915/i915_gpu_error.o
-  HDRTEST drivers/gpu/drm/xe/xe_sa_types.h
-  CC [M]  drivers/gpu/drm/amd/amdgpu/vcn_v2_0.o
-  CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/i2c/busgf119.o
-  CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/i2c/bit.o
-  HDRTEST drivers/gpu/drm/xe/xe_sched_job.h
-  CC [M]  drivers/gpu/drm/i915/gem/selftests/i915_gem_client_blt.o
-  CC [M]  drivers/gpu/drm/i915/gem/selftests/igt_gem_utils.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/vcn_v2_5.o
-  HDRTEST drivers/gpu/drm/xe/xe_sched_job_types.h
-  CC [M]  drivers/gpu/drm/i915/selftests/intel_scheduler_helpers.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/vcn_v3_0.o
-  CC [M]  drivers/gpu/drm/i915/selftests/i915_random.o
-  HDRTEST drivers/gpu/drm/xe/xe_step.h
-  CC [M]  drivers/gpu/drm/i915/selftests/i915_selftest.o
-  HDRTEST drivers/gpu/drm/xe/xe_step_types.h
-  CC [M]  drivers/gpu/drm/amd/amdgpu/vcn_v4_0.o
-  HDRTEST drivers/gpu/drm/xe/xe_sync.h
-  CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/i2c/aux.o
-  HDRTEST drivers/gpu/drm/xe/xe_sync_types.h
-  HDRTEST drivers/gpu/drm/xe/xe_trace.h
-  HDRTEST drivers/gpu/drm/xe/xe_ttm_stolen_mgr.h
-  HDRTEST drivers/gpu/drm/xe/xe_ttm_sys_mgr.h
-  CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/i2c/auxg94.o
-  CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/i2c/auxgf119.o
-  CC [M]  drivers/gpu/drm/i915/selftests/igt_atomic.o
-  HDRTEST drivers/gpu/drm/xe/xe_ttm_vram_mgr.h
-  HDRTEST drivers/gpu/drm/xe/xe_ttm_vram_mgr_types.h
-  CC [M]  drivers/gpu/drm/i915/selftests/igt_flush_test.o
-  HDRTEST drivers/gpu/drm/xe/xe_tuning.h
-  CC [M]  drivers/gpu/drm/i915/selftests/igt_live_test.o
-  HDRTEST drivers/gpu/drm/xe/xe_uc.h
-  CC [M]  drivers/gpu/drm/i915/selftests/igt_mmap.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/amdgpu_jpeg.o
-  CC [M]  drivers/gpu/drm/i915/selftests/igt_reset.o
-  CC [M]  drivers/gpu/drm/i915/selftests/igt_spinner.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/jpeg_v1_0.o
-  CC [M]  drivers/gpu/drm/i915/selftests/librapl.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/jpeg_v2_0.o
-  CC [M]  drivers/gpu/drm/i915/i915_vgpu.o
-  CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/i2c/auxgm200.o
-  CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/i2c/anx9805.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/jpeg_v2_5.o
-  HDRTEST drivers/gpu/drm/i915/display/intel_dkl_phy_regs.h
-  HDRTEST drivers/gpu/drm/i915/display/intel_crtc_state_dump.h
-  HDRTEST drivers/gpu/drm/i915/display/hsw_ips.h
-  HDRTEST drivers/gpu/drm/i915/display/g4x_hdmi.h
-  HDRTEST drivers/gpu/drm/i915/display/intel_hdcp_regs.h
-  HDRTEST drivers/gpu/drm/xe/xe_uc_debugfs.h
-  HDRTEST drivers/gpu/drm/i915/display/intel_overlay.h
-  HDRTEST drivers/gpu/drm/i915/display/intel_display.h
-  HDRTEST drivers/gpu/drm/xe/xe_uc_fw.h
-  HDRTEST drivers/gpu/drm/i915/display/skl_watermark_regs.h
-  HDRTEST drivers/gpu/drm/xe/xe_uc_fw_abi.h
-  HDRTEST drivers/gpu/drm/i915/display/intel_dmc.h
-  HDRTEST drivers/gpu/drm/i915/display/intel_vga.h
-  HDRTEST drivers/gpu/drm/xe/xe_uc_fw_types.h
-  HDRTEST drivers/gpu/drm/xe/xe_uc_types.h
-  HDRTEST drivers/gpu/drm/i915/display/intel_audio.h
-  CC [M]  drivers/gpu/drm/amd/amdgpu/jpeg_v3_0.o
-  HDRTEST drivers/gpu/drm/xe/xe_vm.h
-  CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/iccsense/base.o
-  HDRTEST drivers/gpu/drm/i915/display/intel_lvds.h
-  HDRTEST drivers/gpu/drm/i915/display/intel_modeset_setup.h
-  HDRTEST drivers/gpu/drm/i915/display/intel_cdclk.h
-  HDRTEST drivers/gpu/drm/i915/display/intel_display_limits.h
-  CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/iccsense/gf100.o
-  HDRTEST drivers/gpu/drm/i915/display/intel_hotplug.h
-  HDRTEST drivers/gpu/drm/i915/display/intel_dkl_phy.h
-  CC [M]  drivers/gpu/drm/amd/amdgpu/jpeg_v4_0.o
-  HDRTEST drivers/gpu/drm/i915/display/intel_atomic.h
-  HDRTEST drivers/gpu/drm/xe/xe_vm_doc.h
-  HDRTEST drivers/gpu/drm/xe/xe_vm_madvise.h
-  HDRTEST drivers/gpu/drm/i915/display/intel_display_driver.h
-  CC [M]  drivers/gpu/drm/amd/amdgpu/athub_v1_0.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/athub_v2_0.o
-  HDRTEST drivers/gpu/drm/xe/xe_vm_types.h
-  HDRTEST drivers/gpu/drm/xe/xe_wa.h
-  HDRTEST drivers/gpu/drm/i915/display/intel_dpll.h
-  CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/instmem/base.o
-  HDRTEST drivers/gpu/drm/i915/display/vlv_dsi_pll_regs.h
-  CC [M]  drivers/gpu/drm/amd/amdgpu/athub_v2_1.o
-  HDRTEST drivers/gpu/drm/i915/display/intel_dp_mst.h
-  HDRTEST drivers/gpu/drm/xe/xe_wait_user_fence.h
-  HDRTEST drivers/gpu/drm/i915/display/intel_fdi_regs.h
-  HDRTEST drivers/gpu/drm/xe/xe_wopcm.h
-  HDRTEST drivers/gpu/drm/i915/display/g4x_dp.h
-  CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/instmem/nv04.o
-  HDRTEST drivers/gpu/drm/xe/xe_wopcm_types.h
-  HDRTEST drivers/gpu/drm/i915/display/intel_tc.h
-  CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/instmem/nv40.o
-  LD [M]  drivers/gpu/drm/xe/xe.o
-  HDRTEST drivers/gpu/drm/i915/display/intel_frontbuffer.h
-  CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/instmem/nv50.o
-  HDRTEST drivers/gpu/drm/i915/display/intel_dsi_vbt.h
-  CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/instmem/gk20a.o
-  HDRTEST drivers/gpu/drm/i915/display/intel_psr.h
-  HDRTEST drivers/gpu/drm/i915/display/intel_crt.h
-  CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/ltc/base.o
-  HDRTEST drivers/gpu/drm/i915/display/intel_opregion.h
-  HDRTEST drivers/gpu/drm/i915/display/intel_snps_phy_regs.h
-  HDRTEST drivers/gpu/drm/i915/display/i9xx_wm.h
-  HDRTEST drivers/gpu/drm/i915/display/intel_cx0_phy_regs.h
-  HDRTEST drivers/gpu/drm/i915/display/intel_global_state.h
-  HDRTEST drivers/gpu/drm/i915/display/intel_lpe_audio.h
-  CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/ltc/gf100.o
-  HDRTEST drivers/gpu/drm/i915/display/intel_drrs.h
-  HDRTEST drivers/gpu/drm/i915/display/intel_display_rps.h
-  CC [M]  drivers/gpu/drm/amd/amdgpu/athub_v3_0.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/smuio_v9_0.o
-  CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/ltc/gk104.o
-  CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/ltc/gm107.o
-  CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/ltc/gm200.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/smuio_v11_0.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/smuio_v11_0_6.o
-  CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/ltc/gp100.o
-  HDRTEST drivers/gpu/drm/i915/display/intel_fbdev.h
-  CC [M]  drivers/gpu/drm/amd/amdgpu/smuio_v13_0.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/smuio_v13_0_6.o
-  HDRTEST drivers/gpu/drm/i915/display/intel_pps_regs.h
-  HDRTEST drivers/gpu/drm/i915/display/intel_hdmi.h
-  HDRTEST drivers/gpu/drm/i915/display/intel_fdi.h
-  HDRTEST drivers/gpu/drm/i915/display/intel_fb.h
-  CC [M]  drivers/gpu/drm/amd/amdgpu/amdgpu_reset.o
-  HDRTEST drivers/gpu/drm/i915/display/intel_qp_tables.h
-  HDRTEST drivers/gpu/drm/i915/display/intel_dsb_regs.h
-  HDRTEST drivers/gpu/drm/i915/display/intel_vdsc.h
-  HDRTEST drivers/gpu/drm/i915/display/intel_snps_phy.h
-  HDRTEST drivers/gpu/drm/i915/display/intel_display_core.h
-  CC [M]  drivers/gpu/drm/amd/amdgpu/mca_v3_0.o
-  CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/ltc/gp102.o
-  HDRTEST drivers/gpu/drm/i915/display/vlv_dsi_pll.h
-  HDRTEST drivers/gpu/drm/i915/display/intel_dvo_dev.h
-  HDRTEST drivers/gpu/drm/i915/display/intel_hdcp.h
-  HDRTEST drivers/gpu/drm/i915/display/intel_sdvo_regs.h
-  HDRTEST drivers/gpu/drm/i915/display/intel_pch_refclk.h
-  HDRTEST drivers/gpu/drm/i915/display/intel_display_trace.h
-drivers/gpu/drm/xe/xe.o: warning: objtool: intel_set_cpu_fifo_underrun_reporting+0x2b7: unreachable instruction
-  CC [M]  drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd.o
-  HDRTEST drivers/gpu/drm/i915/display/intel_display_power.h
-  HDRTEST drivers/gpu/drm/i915/display/intel_dp_aux_regs.h
-  HDRTEST drivers/gpu/drm/i915/display/i9xx_plane.h
-  HDRTEST drivers/gpu/drm/i915/display/intel_dp_aux_backlight.h
-  HDRTEST drivers/gpu/drm/i915/display/intel_dpll_mgr.h
-  CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/ltc/gp10b.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/../amdkfd/kfd_module.o
-  CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/ltc/ga102.o
-  HDRTEST drivers/gpu/drm/i915/display/vlv_dsi.h
-  HDRTEST drivers/gpu/drm/i915/display/intel_plane_initial.h
-  CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/mc/base.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/../amdkfd/kfd_device.o
-  CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/mc/nv04.o
-  CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/mc/nv11.o
-  HDRTEST drivers/gpu/drm/i915/display/intel_fifo_underrun.h
-  CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/mc/nv17.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/../amdkfd/kfd_chardev.o
-  CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/mc/nv44.o
-  CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/mc/nv50.o
-  CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/mc/g84.o
-  CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/mc/g98.o
-  CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/mc/gt215.o
-  HDRTEST drivers/gpu/drm/i915/display/intel_cursor.h
-  HDRTEST drivers/gpu/drm/i915/display/vlv_dsi_regs.h
-  CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/mc/gf100.o
-../drivers/gpu/drm/i915/i915_gpu_error.c:2174: warning: Function parameter or member 'dump_flags' not described in 'i915_capture_error_state'
-  HDRTEST drivers/gpu/drm/i915/display/intel_cx0_phy.h
-../drivers/gpu/drm/i915/display/intel_frontbuffer.h:84: warning: Function parameter or member 'fb' not described in 'intel_frontbuffer_invalidate'
-../drivers/gpu/drm/i915/display/intel_frontbuffer.h:84: warning: Excess function parameter 'front' description in 'intel_frontbuffer_invalidate'
-../drivers/gpu/drm/i915/display/intel_frontbuffer.h:112: warning: Function parameter or member 'fb' not described in 'intel_frontbuffer_flush'
-../drivers/gpu/drm/i915/display/intel_frontbuffer.h:112: warning: Excess function parameter 'front' description in 'intel_frontbuffer_flush'
-  HDRTEST drivers/gpu/drm/i915/display/skl_scaler.h
-  HDRTEST drivers/gpu/drm/i915/display/intel_hti.h
-  HDRTEST drivers/gpu/drm/i915/display/icl_dsi_regs.h
-  HDRTEST drivers/gpu/drm/i915/display/intel_atomic_plane.h
-  CC [M]  drivers/gpu/drm/amd/amdgpu/../amdkfd/kfd_topology.o
-  HDRTEST drivers/gpu/drm/i915/display/skl_watermark.h
-  CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/mc/gk104.o
-  CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/mc/gk20a.o
-  HDRTEST drivers/gpu/drm/i915/display/intel_fbc.h
-  HDRTEST drivers/gpu/drm/i915/display/intel_display_reg_defs.h
-  CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/mc/gp100.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/../amdkfd/kfd_pasid.o
-  HDRTEST drivers/gpu/drm/i915/display/intel_acpi.h
-  CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/mc/gp10b.o
-  HDRTEST drivers/gpu/drm/i915/display/intel_connector.h
-  CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/mc/ga100.o
-  HDRTEST drivers/gpu/drm/i915/display/intel_dpt.h
-  HDRTEST drivers/gpu/drm/i915/display/intel_quirks.h
-  CC [M]  drivers/gpu/drm/amd/amdgpu/../amdkfd/kfd_doorbell.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/../amdkfd/kfd_flat_memory.o
-  HDRTEST drivers/gpu/drm/i915/display/intel_dp_link_training.h
-  CC [M]  drivers/gpu/drm/amd/amdgpu/../amdkfd/kfd_process.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/../amdkfd/kfd_queue.o
-  HDRTEST drivers/gpu/drm/i915/display/intel_color.h
-  HDRTEST drivers/gpu/drm/i915/display/intel_crtc.h
-  HDRTEST drivers/gpu/drm/i915/display/intel_display_debugfs.h
-  HDRTEST drivers/gpu/drm/i915/display/intel_modeset_verify.h
-  CC [M]  drivers/gpu/drm/amd/amdgpu/../amdkfd/kfd_mqd_manager.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/../amdkfd/kfd_mqd_manager_cik.o
-  CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/mmu/base.o
-  HDRTEST drivers/gpu/drm/i915/display/intel_display_power_well.h
-  HDRTEST drivers/gpu/drm/i915/display/intel_psr_regs.h
-  HDRTEST drivers/gpu/drm/i915/display/intel_wm.h
-  HDRTEST drivers/gpu/drm/i915/display/intel_pipe_crc.h
-  HDRTEST drivers/gpu/drm/i915/display/intel_audio_regs.h
-  HDRTEST drivers/gpu/drm/i915/display/intel_panel.h
-  HDRTEST drivers/gpu/drm/i915/display/intel_sprite.h
-  CC [M]  drivers/gpu/drm/amd/amdgpu/../amdkfd/kfd_mqd_manager_vi.o
-  HDRTEST drivers/gpu/drm/i915/display/intel_wm_types.h
-  CC [M]  drivers/gpu/drm/amd/amdgpu/../amdkfd/kfd_mqd_manager_v9.o
-  HDRTEST drivers/gpu/drm/i915/display/intel_tv.h
-  HDRTEST drivers/gpu/drm/i915/display/intel_hti_regs.h
-  HDRTEST drivers/gpu/drm/i915/display/intel_vrr.h
-  HDRTEST drivers/gpu/drm/i915/display/intel_load_detect.h
-  HDRTEST drivers/gpu/drm/i915/display/skl_universal_plane.h
-  HDRTEST drivers/gpu/drm/i915/display/intel_mg_phy_regs.h
-../drivers/gpu/drm/i915/i915_perf.c:5307: warning: Function parameter or member 'i915' not described in 'i915_perf_ioctl_version'
-  CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/mmu/nv04.o
-  HDRTEST drivers/gpu/drm/i915/display/intel_bw.h
-  CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/mmu/nv41.o
-  CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/mmu/nv44.o
-  HDRTEST drivers/gpu/drm/i915/display/intel_de.h
-  CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/mmu/nv50.o
-  HDRTEST drivers/gpu/drm/i915/display/intel_lvds_regs.h
-  HDRTEST drivers/gpu/drm/i915/display/intel_gmbus_regs.h
-  HDRTEST drivers/gpu/drm/i915/display/intel_dsi_dcs_backlight.h
-  HDRTEST drivers/gpu/drm/i915/display/intel_dvo.h
-  CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/mmu/g84.o
-  CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/mmu/mcp77.o
-  HDRTEST drivers/gpu/drm/i915/display/intel_sdvo.h
-  HDRTEST drivers/gpu/drm/i915/display/intel_dp_aux.h
-  CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/mmu/gf100.o
-  HDRTEST drivers/gpu/drm/i915/display/intel_vdsc_regs.h
-  CC [M]  drivers/gpu/drm/amd/amdgpu/../amdkfd/kfd_mqd_manager_v10.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/../amdkfd/kfd_mqd_manager_v11.o
-  HDRTEST drivers/gpu/drm/i915/display/intel_combo_phy.h
-  HDRTEST drivers/gpu/drm/i915/display/intel_dvo_regs.h
-  HDRTEST drivers/gpu/drm/i915/display/intel_gmbus.h
-  HDRTEST drivers/gpu/drm/i915/display/intel_hdcp_gsc.h
-  CC [M]  drivers/gpu/drm/amd/amdgpu/../amdkfd/kfd_kernel_queue.o
-  HDRTEST drivers/gpu/drm/i915/display/intel_dsi.h
-  HDRTEST drivers/gpu/drm/i915/display/intel_dmc_regs.h
-  HDRTEST drivers/gpu/drm/i915/display/intel_ddi.h
-  HDRTEST drivers/gpu/drm/i915/display/intel_hotplug_irq.h
-  HDRTEST drivers/gpu/drm/i915/display/intel_tv_regs.h
-  HDRTEST drivers/gpu/drm/i915/display/intel_dsb.h
-  HDRTEST drivers/gpu/drm/i915/display/intel_bios.h
-  CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/mmu/gk104.o
-  HDRTEST drivers/gpu/drm/i915/display/intel_pch_display.h
-  CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/mmu/gk20a.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/../amdkfd/kfd_packet_manager.o
-  HDRTEST drivers/gpu/drm/i915/display/intel_display_types.h
-  HDRTEST drivers/gpu/drm/i915/display/intel_backlight.h
-  CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/mmu/gm200.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/../amdkfd/kfd_packet_manager_vi.o
-  HDRTEST drivers/gpu/drm/i915/display/intel_vblank.h
-  CC [M]  drivers/gpu/drm/amd/amdgpu/../amdkfd/kfd_packet_manager_v9.o
-  HDRTEST drivers/gpu/drm/i915/display/intel_dp.h
-  HDRTEST drivers/gpu/drm/i915/display/intel_backlight_regs.h
-  CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/mmu/gm20b.o
-  HDRTEST drivers/gpu/drm/i915/display/intel_combo_phy_regs.h
-  HDRTEST drivers/gpu/drm/i915/display/intel_display_reset.h
-  HDRTEST drivers/gpu/drm/i915/display/intel_display_power_map.h
-  HDRTEST drivers/gpu/drm/i915/display/intel_ddi_buf_trans.h
-  HDRTEST drivers/gpu/drm/i915/display/icl_dsi.h
-  CC [M]  drivers/gpu/drm/amd/amdgpu/../amdkfd/kfd_process_queue_manager.o
-  HDRTEST drivers/gpu/drm/i915/display/intel_lspcon.h
-  CC [M]  drivers/gpu/drm/amd/amdgpu/../amdkfd/kfd_device_queue_manager.o
-  HDRTEST drivers/gpu/drm/i915/display/intel_dpio_phy.h
-  HDRTEST drivers/gpu/drm/i915/display/intel_dp_hdcp.h
-  HDRTEST drivers/gpu/drm/i915/display/intel_fb_pin.h
-  HDRTEST drivers/gpu/drm/i915/display/intel_pps.h
-  HDRTEST drivers/gpu/drm/i915/display/intel_sprite_uapi.h
-  HDRTEST drivers/gpu/drm/i915/gem/i915_gem_ttm.h
-  CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/mmu/gp100.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/../amdkfd/kfd_device_queue_manager_cik.o
-  HDRTEST drivers/gpu/drm/i915/gem/i915_gem_region.h
-  HDRTEST drivers/gpu/drm/i915/gem/i915_gem_context_types.h
-  HDRTEST drivers/gpu/drm/i915/gem/i915_gem_lmem.h
-  HDRTEST drivers/gpu/drm/i915/gem/i915_gem_mman.h
-  CC [M]  drivers/gpu/drm/amd/amdgpu/../amdkfd/kfd_device_queue_manager_vi.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/../amdkfd/kfd_device_queue_manager_v9.o
-  HDRTEST drivers/gpu/drm/i915/gem/i915_gem_object_types.h
-  CC [M]  drivers/gpu/drm/amd/amdgpu/../amdkfd/kfd_device_queue_manager_v10.o
-../drivers/gpu/drm/i915/gem/i915_gem_region.h:25: warning: Incorrect use of kernel-doc format:          * process_obj - Process the current object
-../drivers/gpu/drm/i915/gem/i915_gem_region.h:35: warning: Function parameter or member 'process_obj' not described in 'i915_gem_apply_to_region_ops'
-  CC [M]  drivers/gpu/drm/amd/amdgpu/../amdkfd/kfd_device_queue_manager_v11.o
-  CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/mmu/gp10b.o
-  HDRTEST drivers/gpu/drm/i915/gem/i915_gem_context.h
-  HDRTEST drivers/gpu/drm/i915/gem/i915_gem_clflush.h
-  CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/mmu/gv100.o
-  HDRTEST drivers/gpu/drm/i915/gem/i915_gem_tiling.h
-  CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/mmu/tu102.o
-  HDRTEST drivers/gpu/drm/i915/gem/i915_gem_stolen.h
-  CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/mmu/mem.o
-  CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/mmu/memnv04.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/../amdkfd/kfd_interrupt.o
-  HDRTEST drivers/gpu/drm/i915/gem/i915_gem_ttm_pm.h
-  CC [M]  drivers/gpu/drm/amd/amdgpu/../amdkfd/kfd_events.o
-  HDRTEST drivers/gpu/drm/i915/gem/i915_gem_create.h
-  HDRTEST drivers/gpu/drm/i915/gem/i915_gem_ttm_move.h
-  HDRTEST drivers/gpu/drm/i915/gem/i915_gem_ioctls.h
-  HDRTEST drivers/gpu/drm/i915/gem/i915_gem_domain.h
-  HDRTEST drivers/gpu/drm/i915/gem/i915_gem_internal.h
-  CC [M]  drivers/gpu/drm/amd/amdgpu/../amdkfd/cik_event_interrupt.o
-  HDRTEST drivers/gpu/drm/i915/gem/i915_gem_dmabuf.h
-  HDRTEST drivers/gpu/drm/i915/gem/selftests/mock_context.h
-  HDRTEST drivers/gpu/drm/i915/gem/selftests/huge_gem_object.h
-  CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/mmu/memnv50.o
-  HDRTEST drivers/gpu/drm/i915/gem/selftests/mock_gem_object.h
-  HDRTEST drivers/gpu/drm/i915/gem/selftests/mock_dmabuf.h
-  HDRTEST drivers/gpu/drm/i915/gem/selftests/igt_gem_utils.h
-  HDRTEST drivers/gpu/drm/i915/gem/i915_gem_userptr.h
-  CC [M]  drivers/gpu/drm/amd/amdgpu/../amdkfd/kfd_int_process_v9.o
-  CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/mmu/memgf100.o
-  CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/mmu/vmm.o
-  HDRTEST drivers/gpu/drm/i915/gem/i915_gem_pm.h
-  HDRTEST drivers/gpu/drm/i915/gem/i915_gem_shrinker.h
-  HDRTEST drivers/gpu/drm/i915/gem/i915_gemfs.h
-  HDRTEST drivers/gpu/drm/i915/gem/i915_gem_object.h
-  HDRTEST drivers/gpu/drm/i915/gt/intel_timeline_types.h
-  HDRTEST drivers/gpu/drm/i915/gt/selftest_engine.h
-  CC [M]  drivers/gpu/drm/amd/amdgpu/../amdkfd/kfd_int_process_v11.o
-  CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/mmu/vmmnv04.o
-  HDRTEST drivers/gpu/drm/i915/gt/intel_breadcrumbs.h
-  HDRTEST drivers/gpu/drm/i915/gt/intel_engine_heartbeat.h
-  CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/mmu/vmmnv41.o
-  HDRTEST drivers/gpu/drm/i915/gt/intel_context_types.h
-  CC [M]  drivers/gpu/drm/amd/amdgpu/../amdkfd/kfd_smi_events.o
-  CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/mmu/vmmnv44.o
-  HDRTEST drivers/gpu/drm/i915/gt/intel_execlists_submission.h
-  CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/mmu/vmmnv50.o
-  HDRTEST drivers/gpu/drm/i915/gt/intel_gt_pm.h
-../drivers/gpu/drm/i915/gem/i915_gem_ttm.h:50: warning: Function parameter or member 'bo' not described in 'i915_ttm_to_gem'
-  HDRTEST drivers/gpu/drm/i915/gt/selftest_rc6.h
-  CC [M]  drivers/gpu/drm/amd/amdgpu/../amdkfd/kfd_crat.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/../amdkfd/kfd_debugfs.o
-  HDRTEST drivers/gpu/drm/i915/gt/intel_llc_types.h
-  CC [M]  drivers/gpu/drm/amd/amdgpu/../amdkfd/kfd_svm.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/../amdkfd/kfd_migrate.o
-  HDRTEST drivers/gpu/drm/i915/gt/intel_gt.h
-  HDRTEST drivers/gpu/drm/i915/gt/intel_region_lmem.h
-  HDRTEST drivers/gpu/drm/i915/gt/intel_gt_requests.h
-  HDRTEST drivers/gpu/drm/i915/gt/intel_ggtt_gmch.h
-  HDRTEST drivers/gpu/drm/i915/gt/intel_gt_print.h
-  CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/mmu/vmmmcp77.o
-  HDRTEST drivers/gpu/drm/i915/gt/gen8_ppgtt.h
-  HDRTEST drivers/gpu/drm/i915/gt/intel_gt_mcr.h
-  HDRTEST drivers/gpu/drm/i915/gt/intel_timeline.h
-  CC [M]  drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd_fence.o
-  CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/mmu/vmmgf100.o
-  CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/mmu/vmmgk104.o
-  HDRTEST drivers/gpu/drm/i915/gt/gen6_engine_cs.h
-  HDRTEST drivers/gpu/drm/i915/gt/intel_gt_pm_debugfs.h
-  CC [M]  drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd_gpuvm.o
-  CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/mmu/vmmgk20a.o
-  HDRTEST drivers/gpu/drm/i915/gt/intel_workarounds_types.h
-  HDRTEST drivers/gpu/drm/i915/gt/selftest_rps.h
-  HDRTEST drivers/gpu/drm/i915/gt/intel_sa_media.h
-  CC [M]  drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd_gfx_v8.o
-  HDRTEST drivers/gpu/drm/i915/gt/intel_gt_debugfs.h
-  HDRTEST drivers/gpu/drm/i915/gt/intel_gt_clock_utils.h
-  CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/mmu/vmmgm200.o
-  HDRTEST drivers/gpu/drm/i915/gt/intel_rps_types.h
-  CC [M]  drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd_gfx_v9.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd_arcturus.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd_aldebaran.o
-  HDRTEST drivers/gpu/drm/i915/gt/selftest_engine_heartbeat.h
-  CC [M]  drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd_gfx_v10.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd_gfx_v10_3.o
-  CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/mmu/vmmgm20b.o
-  HDRTEST drivers/gpu/drm/i915/gt/sysfs_engines.h
-  HDRTEST drivers/gpu/drm/i915/gt/gen7_renderclear.h
-  CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/mmu/vmmgp100.o
-  HDRTEST drivers/gpu/drm/i915/gt/intel_context.h
-  CC [M]  drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd_gfx_v11.o
-  HDRTEST drivers/gpu/drm/i915/gt/intel_wopcm.h
-  CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/mmu/vmmgp10b.o
-  HDRTEST drivers/gpu/drm/i915/gt/intel_mocs.h
-  HDRTEST drivers/gpu/drm/i915/gt/intel_engine_pm.h
-  CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/mmu/vmmgv100.o
-  HDRTEST drivers/gpu/drm/i915/gt/intel_gt_sysfs.h
-  HDRTEST drivers/gpu/drm/i915/gt/intel_rc6.h
-  HDRTEST drivers/gpu/drm/i915/gt/intel_ring_types.h
-  HDRTEST drivers/gpu/drm/i915/gt/intel_workarounds.h
-  HDRTEST drivers/gpu/drm/i915/gt/intel_engine_regs.h
-../drivers/gpu/drm/i915/gem/i915_gem_object.h:93: warning: Function parameter or member 'file' not described in 'i915_gem_object_lookup_rcu'
-../drivers/gpu/drm/i915/gem/i915_gem_object.h:93: warning: Excess function parameter 'filp' description in 'i915_gem_object_lookup_rcu'
-  HDRTEST drivers/gpu/drm/i915/gt/intel_gt_pm_irq.h
-  HDRTEST drivers/gpu/drm/i915/gt/shmem_utils.h
-  HDRTEST drivers/gpu/drm/i915/gt/intel_engine.h
-  HDRTEST drivers/gpu/drm/i915/gt/intel_reset_types.h
-  CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/mmu/vmmtu102.o
-  CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/mmu/umem.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd_gfx_v7.o
-  CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/mmu/ummu.o
-  HDRTEST drivers/gpu/drm/i915/gt/intel_gt_regs.h
-  HDRTEST drivers/gpu/drm/i915/gt/intel_reset.h
-  HDRTEST drivers/gpu/drm/i915/gt/uc/intel_gsc_fw.h
-  CC [M]  drivers/gpu/drm/amd/amdgpu/amdgpu_cgs.o
-  HDRTEST drivers/gpu/drm/i915/gt/uc/guc_capture_fwif.h
-  HDRTEST drivers/gpu/drm/i915/gt/uc/intel_uc.h
-  CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/mmu/uvmm.o
-  HDRTEST drivers/gpu/drm/i915/gt/uc/intel_uc_fw_abi.h
-  CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/mxm/base.o
-  CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/mxm/mxms.o
-  HDRTEST drivers/gpu/drm/i915/gt/uc/intel_guc_print.h
-  CC [M]  drivers/gpu/drm/amd/amdgpu/amdgpu_job.o
-  HDRTEST drivers/gpu/drm/i915/gt/uc/intel_guc_fw.h
-  HDRTEST drivers/gpu/drm/i915/gt/uc/intel_guc_debugfs.h
-  CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/mxm/nv50.o
-  HDRTEST drivers/gpu/drm/i915/gt/uc/abi/guc_klvs_abi.h
-  CC [M]  drivers/gpu/drm/amd/amdgpu/amdgpu_acp.o
-  CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/pci/agp.o
-  HDRTEST drivers/gpu/drm/i915/gt/uc/abi/guc_errors_abi.h
-  CC [M]  drivers/gpu/drm/amd/amdgpu/../acp/acp_hw.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/amdgpu_ioc32.o
-  HDRTEST drivers/gpu/drm/i915/gt/uc/abi/guc_actions_slpc_abi.h
-  HDRTEST drivers/gpu/drm/i915/gt/uc/abi/guc_communication_mmio_abi.h
-  HDRTEST drivers/gpu/drm/i915/gt/uc/abi/guc_actions_abi.h
-  HDRTEST drivers/gpu/drm/i915/gt/uc/abi/guc_communication_ctb_abi.h
-  HDRTEST drivers/gpu/drm/i915/gt/uc/abi/guc_messages_abi.h
-  HDRTEST drivers/gpu/drm/i915/gt/uc/intel_gsc_uc_heci_cmd_submit.h
-  CC [M]  drivers/gpu/drm/amd/amdgpu/amdgpu_acpi.o
-  HDRTEST drivers/gpu/drm/i915/gt/uc/intel_guc_reg.h
-  HDRTEST drivers/gpu/drm/i915/gt/uc/intel_gsc_uc.h
-  HDRTEST drivers/gpu/drm/i915/gt/uc/intel_huc.h
-  CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/pci/base.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/amdgpu_hmm.o
-  HDRTEST drivers/gpu/drm/i915/gt/uc/intel_guc.h
-  HDRTEST drivers/gpu/drm/i915/gt/uc/intel_huc_fw.h
-  CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/pci/pcie.o
-  HDRTEST drivers/gpu/drm/i915/gt/uc/intel_guc_fwif.h
-  CC [M]  drivers/gpu/drm/amd/amdgpu/../pm/swsmu/smu11/arcturus_ppt.o
-  CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/pci/nv04.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/../pm/swsmu/smu11/navi10_ppt.o
-  CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/pci/nv40.o
-  CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/pci/nv46.o
-  HDRTEST drivers/gpu/drm/i915/gt/uc/intel_guc_capture.h
-../drivers/gpu/drm/i915/gt/intel_context.h:108: warning: Function parameter or member 'ce' not described in 'intel_context_lock_pinned'
-../drivers/gpu/drm/i915/gt/intel_context.h:123: warning: Function parameter or member 'ce' not described in 'intel_context_is_pinned'
-../drivers/gpu/drm/i915/gt/intel_context.h:142: warning: Function parameter or member 'ce' not described in 'intel_context_unlock_pinned'
-  HDRTEST drivers/gpu/drm/i915/gt/uc/intel_guc_log_debugfs.h
-  HDRTEST drivers/gpu/drm/i915/gt/uc/intel_guc_submission.h
-  HDRTEST drivers/gpu/drm/i915/gt/uc/intel_guc_slpc_types.h
-  CC [M]  drivers/gpu/drm/amd/amdgpu/../pm/swsmu/smu11/sienna_cichlid_ppt.o
-  HDRTEST drivers/gpu/drm/i915/gt/uc/intel_guc_log.h
-  HDRTEST drivers/gpu/drm/i915/gt/uc/intel_guc_ct.h
-  CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/pci/nv4c.o
-  HDRTEST drivers/gpu/drm/i915/gt/uc/intel_guc_slpc.h
-  HDRTEST drivers/gpu/drm/i915/gt/uc/intel_uc_fw.h
-  HDRTEST drivers/gpu/drm/i915/gt/uc/intel_guc_ads.h
-  CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/pci/g84.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/../pm/swsmu/smu11/vangogh_ppt.o
-../drivers/gpu/drm/i915/gt/uc/guc_capture_fwif.h:27: warning: Function parameter or member 'size' not described in '__guc_capture_bufstate'
-../drivers/gpu/drm/i915/gt/uc/guc_capture_fwif.h:27: warning: Function parameter or member 'data' not described in '__guc_capture_bufstate'
-../drivers/gpu/drm/i915/gt/uc/guc_capture_fwif.h:27: warning: Function parameter or member 'rd' not described in '__guc_capture_bufstate'
-../drivers/gpu/drm/i915/gt/uc/guc_capture_fwif.h:27: warning: Function parameter or member 'wr' not described in '__guc_capture_bufstate'
-../drivers/gpu/drm/i915/gt/uc/guc_capture_fwif.h:59: warning: Function parameter or member 'link' not described in '__guc_capture_parsed_output'
-../drivers/gpu/drm/i915/gt/uc/guc_capture_fwif.h:59: warning: Function parameter or member 'is_partial' not described in '__guc_capture_parsed_output'
-../drivers/gpu/drm/i915/gt/uc/guc_capture_fwif.h:59: warning: Function parameter or member 'eng_class' not described in '__guc_capture_parsed_output'
-../drivers/gpu/drm/i915/gt/uc/guc_capture_fwif.h:59: warning: Function parameter or member 'eng_inst' not described in '__guc_capture_parsed_output'
-../drivers/gpu/drm/i915/gt/uc/guc_capture_fwif.h:59: warning: Function parameter or member 'guc_id' not described in '__guc_capture_parsed_output'
-../drivers/gpu/drm/i915/gt/uc/guc_capture_fwif.h:59: warning: Function parameter or member 'lrca' not described in '__guc_capture_parsed_output'
-../drivers/gpu/drm/i915/gt/uc/guc_capture_fwif.h:59: warning: Function parameter or member 'reginfo' not described in '__guc_capture_parsed_output'
-../drivers/gpu/drm/i915/gt/uc/guc_capture_fwif.h:62: warning: wrong kernel-doc identifier on line:
- * struct guc_debug_capture_list_header / struct guc_debug_capture_list
-../drivers/gpu/drm/i915/gt/uc/guc_capture_fwif.h:80: warning: wrong kernel-doc identifier on line:
- * struct __guc_mmio_reg_descr / struct __guc_mmio_reg_descr_group
-../drivers/gpu/drm/i915/gt/uc/guc_capture_fwif.h:105: warning: wrong kernel-doc identifier on line:
- * struct guc_state_capture_header_t / struct guc_state_capture_t /
-../drivers/gpu/drm/i915/gt/uc/guc_capture_fwif.h:163: warning: Function parameter or member 'is_valid' not described in '__guc_capture_ads_cache'
-../drivers/gpu/drm/i915/gt/uc/guc_capture_fwif.h:163: warning: Function parameter or member 'ptr' not described in '__guc_capture_ads_cache'
-../drivers/gpu/drm/i915/gt/uc/guc_capture_fwif.h:163: warning: Function parameter or member 'size' not described in '__guc_capture_ads_cache'
-../drivers/gpu/drm/i915/gt/uc/guc_capture_fwif.h:163: warning: Function parameter or member 'status' not described in '__guc_capture_ads_cache'
-../drivers/gpu/drm/i915/gt/uc/guc_capture_fwif.h:216: warning: Function parameter or member 'ads_null_cache' not described in 'intel_guc_state_capture'
-../drivers/gpu/drm/i915/gt/uc/guc_capture_fwif.h:216: warning: Function parameter or member 'max_mmio_per_node' not described in 'intel_guc_state_capture'
-  CC [M]  drivers/gpu/drm/amd/amdgpu/../pm/swsmu/smu11/cyan_skillfish_ppt.o
-  CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/pci/g92.o
-  HDRTEST drivers/gpu/drm/i915/gt/uc/intel_uc_debugfs.h
-  CC [M]  drivers/gpu/drm/amd/amdgpu/../pm/swsmu/smu11/smu_v11_0.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/../pm/swsmu/smu12/renoir_ppt.o
-  CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/pci/g94.o
-  HDRTEST drivers/gpu/drm/i915/gt/uc/intel_guc_rc.h
-  HDRTEST drivers/gpu/drm/i915/gt/uc/intel_huc_debugfs.h
-  HDRTEST drivers/gpu/drm/i915/gt/intel_hwconfig.h
-  CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/pci/gf100.o
-  HDRTEST drivers/gpu/drm/i915/gt/intel_llc.h
-  HDRTEST drivers/gpu/drm/i915/gt/gen8_engine_cs.h
-  HDRTEST drivers/gpu/drm/i915/gt/intel_sseu_debugfs.h
-  HDRTEST drivers/gpu/drm/i915/gt/intel_rc6_types.h
-  HDRTEST drivers/gpu/drm/i915/gt/intel_context_param.h
-  HDRTEST drivers/gpu/drm/i915/gt/intel_gpu_commands.h
-  HDRTEST drivers/gpu/drm/i915/gt/intel_engine_user.h
-  CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/pci/gf106.o
-  CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/pci/gk104.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/../pm/swsmu/smu12/smu_v12_0.o
-  HDRTEST drivers/gpu/drm/i915/gt/intel_gt_irq.h
-  HDRTEST drivers/gpu/drm/i915/gt/intel_gsc.h
-  HDRTEST drivers/gpu/drm/i915/gt/intel_rps.h
-  CC [M]  drivers/gpu/drm/amd/amdgpu/../pm/swsmu/smu13/smu_v13_0.o
-  HDRTEST drivers/gpu/drm/i915/gt/selftest_llc.h
-  CC [M]  drivers/gpu/drm/amd/amdgpu/../pm/swsmu/smu13/aldebaran_ppt.o
-  HDRTEST drivers/gpu/drm/i915/gt/gen6_ppgtt.h
-  HDRTEST drivers/gpu/drm/i915/gt/intel_ggtt_fencing.h
-  HDRTEST drivers/gpu/drm/i915/gt/intel_migrate_types.h
-  CC [M]  drivers/gpu/drm/amd/amdgpu/../pm/swsmu/smu13/yellow_carp_ppt.o
-  HDRTEST drivers/gpu/drm/i915/gt/selftests/mock_timeline.h
-  HDRTEST drivers/gpu/drm/i915/gt/intel_lrc.h
-../drivers/gpu/drm/i915/gt/uc/intel_guc_fwif.h:491: warning: Function parameter or member 'marker' not described in 'guc_log_buffer_state'
-../drivers/gpu/drm/i915/gt/uc/intel_guc_fwif.h:491: warning: Function parameter or member 'read_ptr' not described in 'guc_log_buffer_state'
-../drivers/gpu/drm/i915/gt/uc/intel_guc_fwif.h:491: warning: Function parameter or member 'write_ptr' not described in 'guc_log_buffer_state'
-../drivers/gpu/drm/i915/gt/uc/intel_guc_fwif.h:491: warning: Function parameter or member 'size' not described in 'guc_log_buffer_state'
-../drivers/gpu/drm/i915/gt/uc/intel_guc_fwif.h:491: warning: Function parameter or member 'sampled_write_ptr' not described in 'guc_log_buffer_state'
-../drivers/gpu/drm/i915/gt/uc/intel_guc_fwif.h:491: warning: Function parameter or member 'wrap_offset' not described in 'guc_log_buffer_state'
-../drivers/gpu/drm/i915/gt/uc/intel_guc_fwif.h:491: warning: Function parameter or member 'flush_to_file' not described in 'guc_log_buffer_state'
-../drivers/gpu/drm/i915/gt/uc/intel_guc_fwif.h:491: warning: Function parameter or member 'buffer_full_cnt' not described in 'guc_log_buffer_state'
-../drivers/gpu/drm/i915/gt/uc/intel_guc_fwif.h:491: warning: Function parameter or member 'reserved' not described in 'guc_log_buffer_state'
-../drivers/gpu/drm/i915/gt/uc/intel_guc_fwif.h:491: warning: Function parameter or member 'flags' not described in 'guc_log_buffer_state'
-../drivers/gpu/drm/i915/gt/uc/intel_guc_fwif.h:491: warning: Function parameter or member 'version' not described in 'guc_log_buffer_state'
-  HDRTEST drivers/gpu/drm/i915/gt/intel_lrc_reg.h
-  HDRTEST drivers/gpu/drm/i915/gt/intel_migrate.h
-../drivers/gpu/drm/i915/gt/uc/intel_guc.h:274: warning: Function parameter or member 'dbgfs_node' not described in 'intel_guc'
-  CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/pci/gp100.o
-  HDRTEST drivers/gpu/drm/i915/gt/intel_gt_sysfs_pm.h
-  CC [M]  drivers/gpu/drm/amd/amdgpu/../pm/swsmu/smu13/smu_v13_0_0_ppt.o
-  CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/pmu/base.o
-  HDRTEST drivers/gpu/drm/i915/gt/intel_breadcrumbs_types.h
-  CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/pmu/memx.o
-  HDRTEST drivers/gpu/drm/i915/gt/intel_gt_buffer_pool.h
-  CC [M]  drivers/gpu/drm/amd/amdgpu/../pm/swsmu/smu13/smu_v13_0_4_ppt.o
-  CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/pmu/gt215.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/../pm/swsmu/smu13/smu_v13_0_5_ppt.o
-  HDRTEST drivers/gpu/drm/i915/gt/mock_engine.h
-  HDRTEST drivers/gpu/drm/i915/gt/intel_engine_stats.h
-  CC [M]  drivers/gpu/drm/amd/amdgpu/../pm/swsmu/smu13/smu_v13_0_7_ppt.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/../pm/swsmu/smu13/smu_v13_0_6_ppt.o
-  HDRTEST drivers/gpu/drm/i915/gt/intel_gtt.h
-  HDRTEST drivers/gpu/drm/i915/gt/intel_gt_buffer_pool_types.h
-  HDRTEST drivers/gpu/drm/i915/gt/intel_ring.h
-  HDRTEST drivers/gpu/drm/i915/gt/intel_gt_types.h
-  CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/pmu/gf100.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/../pm/swsmu/amdgpu_smu.o
-  HDRTEST drivers/gpu/drm/i915/gt/intel_renderstate.h
-  HDRTEST drivers/gpu/drm/i915/gt/intel_sseu.h
-  CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/pmu/gf119.o
-  CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/pmu/gk104.o
-  CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/pmu/gk110.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/../pm/swsmu/smu_cmn.o
-  CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/pmu/gk208.o
-  HDRTEST drivers/gpu/drm/i915/gt/intel_engine_types.h
-  HDRTEST drivers/gpu/drm/i915/gt/intel_gt_engines_debugfs.h
-  HDRTEST drivers/gpu/drm/i915/gt/gen2_engine_cs.h
-  CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/pmu/gk20a.o
-  HDRTEST drivers/gpu/drm/i915/gvt/gvt.h
-  CC [M]  drivers/gpu/drm/amd/amdgpu/../pm/powerplay/smumgr/smumgr.o
-  HDRTEST drivers/gpu/drm/i915/gvt/trace.h
-  CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/pmu/gm107.o
-  HDRTEST drivers/gpu/drm/i915/gvt/debug.h
-  HDRTEST drivers/gpu/drm/i915/gvt/edid.h
-  HDRTEST drivers/gpu/drm/i915/gvt/page_track.h
-  CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/pmu/gm200.o
-  HDRTEST drivers/gpu/drm/i915/gvt/mmio.h
-  HDRTEST drivers/gpu/drm/i915/gvt/sched_policy.h
-  HDRTEST drivers/gpu/drm/i915/gvt/fb_decoder.h
-  HDRTEST drivers/gpu/drm/i915/gvt/cmd_parser.h
-  HDRTEST drivers/gpu/drm/i915/gvt/dmabuf.h
-  HDRTEST drivers/gpu/drm/i915/gvt/mmio_context.h
-  HDRTEST drivers/gpu/drm/i915/gvt/display.h
-  CC [M]  drivers/gpu/drm/amd/amdgpu/../pm/powerplay/smumgr/smu8_smumgr.o
-  HDRTEST drivers/gpu/drm/i915/gvt/gtt.h
-  HDRTEST drivers/gpu/drm/i915/gvt/scheduler.h
-  HDRTEST drivers/gpu/drm/i915/gvt/reg.h
-  CC [M]  drivers/gpu/drm/amd/amdgpu/../pm/powerplay/smumgr/tonga_smumgr.o
-  HDRTEST drivers/gpu/drm/i915/gvt/execlist.h
-  HDRTEST drivers/gpu/drm/i915/gvt/interrupt.h
-  HDRTEST drivers/gpu/drm/i915/i915_active.h
-  CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/pmu/gm20b.o
-  HDRTEST drivers/gpu/drm/i915/i915_active_types.h
-  HDRTEST drivers/gpu/drm/i915/i915_cmd_parser.h
-../drivers/gpu/drm/i915/gt/intel_gtt.h:515: warning: Function parameter or member 'vm' not described in 'i915_vm_resv_put'
-../drivers/gpu/drm/i915/gt/intel_gtt.h:515: warning: Excess function parameter 'resv' description in 'i915_vm_resv_put'
-  CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/pmu/gp102.o
-  HDRTEST drivers/gpu/drm/i915/i915_config.h
-  HDRTEST drivers/gpu/drm/i915/i915_debugfs.h
-  HDRTEST drivers/gpu/drm/i915/i915_debugfs_params.h
-  HDRTEST drivers/gpu/drm/i915/i915_deps.h
-  HDRTEST drivers/gpu/drm/i915/i915_driver.h
-  CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/pmu/gp10b.o
-  HDRTEST drivers/gpu/drm/i915/i915_drm_client.h
-  HDRTEST drivers/gpu/drm/i915/i915_drv.h
-  CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/privring/gf100.o
-  HDRTEST drivers/gpu/drm/i915/i915_file_private.h
-  HDRTEST drivers/gpu/drm/i915/i915_fixed.h
-  HDRTEST drivers/gpu/drm/i915/i915_gem.h
-  HDRTEST drivers/gpu/drm/i915/i915_gem_evict.h
-  HDRTEST drivers/gpu/drm/i915/i915_gem_gtt.h
-  HDRTEST drivers/gpu/drm/i915/i915_gem_ww.h
-  CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/privring/gf117.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/../pm/powerplay/smumgr/fiji_smumgr.o
-  CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/privring/gk104.o
-  HDRTEST drivers/gpu/drm/i915/i915_getparam.h
-  HDRTEST drivers/gpu/drm/i915/i915_gpu_error.h
-  HDRTEST drivers/gpu/drm/i915/i915_hwmon.h
-  CC [M]  drivers/gpu/drm/amd/amdgpu/../pm/powerplay/smumgr/polaris10_smumgr.o
-../drivers/gpu/drm/i915/gt/intel_engine_types.h:293: warning: Function parameter or member 'preempt_hang' not described in 'intel_engine_execlists'
-  HDRTEST drivers/gpu/drm/i915/i915_ioc32.h
-  HDRTEST drivers/gpu/drm/i915/i915_ioctl.h
-  HDRTEST drivers/gpu/drm/i915/i915_iosf_mbi.h
-  HDRTEST drivers/gpu/drm/i915/i915_irq.h
-  CC [M]  drivers/gpu/drm/amd/amdgpu/../pm/powerplay/smumgr/iceland_smumgr.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/../pm/powerplay/smumgr/smu7_smumgr.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/../pm/powerplay/smumgr/vega10_smumgr.o
-  HDRTEST drivers/gpu/drm/i915/i915_memcpy.h
-  HDRTEST drivers/gpu/drm/i915/i915_mitigations.h
-  HDRTEST drivers/gpu/drm/i915/i915_mm.h
-  CC [M]  drivers/gpu/drm/amd/amdgpu/../pm/powerplay/smumgr/smu10_smumgr.o
-  HDRTEST drivers/gpu/drm/i915/i915_params.h
-  CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/privring/gk20a.o
-  CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/privring/gm200.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/../pm/powerplay/smumgr/ci_smumgr.o
-  CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/privring/gp10b.o
-  CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/therm/base.o
-  CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/therm/fan.o
-  HDRTEST drivers/gpu/drm/i915/i915_pci.h
-  HDRTEST drivers/gpu/drm/i915/i915_perf.h
-  CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/therm/fannil.o
-  HDRTEST drivers/gpu/drm/i915/i915_perf_oa_regs.h
-  HDRTEST drivers/gpu/drm/i915/i915_perf_types.h
-  HDRTEST drivers/gpu/drm/i915/i915_pmu.h
-  HDRTEST drivers/gpu/drm/i915/i915_priolist_types.h
-  HDRTEST drivers/gpu/drm/i915/i915_pvinfo.h
-  HDRTEST drivers/gpu/drm/i915/i915_query.h
-  HDRTEST drivers/gpu/drm/i915/i915_reg.h
-  HDRTEST drivers/gpu/drm/i915/i915_reg_defs.h
-  CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/therm/fanpwm.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/../pm/powerplay/smumgr/vega12_smumgr.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/../pm/powerplay/smumgr/vegam_smumgr.o
-  HDRTEST drivers/gpu/drm/i915/i915_request.h
-  HDRTEST drivers/gpu/drm/i915/i915_scatterlist.h
-  CC [M]  drivers/gpu/drm/amd/amdgpu/../pm/powerplay/smumgr/smu9_smumgr.o
-  HDRTEST drivers/gpu/drm/i915/i915_scheduler.h
-  CC [M]  drivers/gpu/drm/amd/amdgpu/../pm/powerplay/smumgr/vega20_smumgr.o
-  HDRTEST drivers/gpu/drm/i915/i915_scheduler_types.h
-../drivers/gpu/drm/i915/i915_active.h:66: warning: Function parameter or member 'active' not described in '__i915_active_fence_init'
-../drivers/gpu/drm/i915/i915_active.h:66: warning: Function parameter or member 'fence' not described in '__i915_active_fence_init'
-../drivers/gpu/drm/i915/i915_active.h:66: warning: Function parameter or member 'fn' not described in '__i915_active_fence_init'
-../drivers/gpu/drm/i915/i915_active.h:89: warning: Function parameter or member 'active' not described in 'i915_active_fence_set'
-../drivers/gpu/drm/i915/i915_active.h:89: warning: Function parameter or member 'rq' not described in 'i915_active_fence_set'
-../drivers/gpu/drm/i915/i915_active.h:102: warning: Function parameter or member 'active' not described in 'i915_active_fence_get'
-../drivers/gpu/drm/i915/i915_active.h:122: warning: Function parameter or member 'active' not described in 'i915_active_fence_isset'
-  HDRTEST drivers/gpu/drm/i915/i915_selftest.h
-  HDRTEST drivers/gpu/drm/i915/i915_suspend.h
-  HDRTEST drivers/gpu/drm/i915/i915_sw_fence.h
-  HDRTEST drivers/gpu/drm/i915/i915_sw_fence_work.h
-  HDRTEST drivers/gpu/drm/i915/i915_switcheroo.h
-  CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/therm/fantog.o
-  HDRTEST drivers/gpu/drm/i915/i915_syncmap.h
-  CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/therm/ic.o
-  HDRTEST drivers/gpu/drm/i915/i915_sysfs.h
-  CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/therm/temp.o
-  HDRTEST drivers/gpu/drm/i915/i915_tasklet.h
-  CC [M]  drivers/gpu/drm/amd/amdgpu/../pm/powerplay/hwmgr/hwmgr.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/../pm/powerplay/hwmgr/processpptables.o
-  HDRTEST drivers/gpu/drm/i915/i915_trace.h
-  CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/therm/nv40.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/../pm/powerplay/hwmgr/hardwaremanager.o
-  CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/therm/nv50.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/../pm/powerplay/hwmgr/smu8_hwmgr.o
-  CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/therm/g84.o
-  HDRTEST drivers/gpu/drm/i915/i915_ttm_buddy_manager.h
-  HDRTEST drivers/gpu/drm/i915/i915_user_extensions.h
-  CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/therm/gt215.o
-  HDRTEST drivers/gpu/drm/i915/i915_utils.h
-  HDRTEST drivers/gpu/drm/i915/i915_vgpu.h
-  HDRTEST drivers/gpu/drm/i915/i915_vma.h
-  HDRTEST drivers/gpu/drm/i915/i915_vma_resource.h
-  CC [M]  drivers/gpu/drm/amd/amdgpu/../pm/powerplay/hwmgr/pppcielanes.o
-  CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/therm/gf100.o
-  HDRTEST drivers/gpu/drm/i915/i915_vma_types.h
-  HDRTEST drivers/gpu/drm/i915/intel_clock_gating.h
-  HDRTEST drivers/gpu/drm/i915/intel_device_info.h
-../drivers/gpu/drm/i915/i915_pmu.h:21: warning: cannot understand function prototype: 'enum i915_pmu_tracked_events '
-../drivers/gpu/drm/i915/i915_pmu.h:32: warning: cannot understand function prototype: 'enum '
-../drivers/gpu/drm/i915/i915_pmu.h:41: warning: This comment starts with '/**', but isn't a kernel-doc comment. Refer Documentation/doc-guide/kernel-doc.rst
- * How many different events we track in the global PMU mask.
-  CC [M]  drivers/gpu/drm/amd/amdgpu/../pm/powerplay/hwmgr/process_pptables_v1_0.o
-  HDRTEST drivers/gpu/drm/i915/intel_gvt.h
-  CC [M]  drivers/gpu/drm/amd/amdgpu/../pm/powerplay/hwmgr/ppatomctrl.o
-  HDRTEST drivers/gpu/drm/i915/intel_mchbar_regs.h
-  HDRTEST drivers/gpu/drm/i915/intel_memory_region.h
-  HDRTEST drivers/gpu/drm/i915/intel_pci_config.h
-  CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/therm/gf119.o
-../drivers/gpu/drm/i915/i915_scatterlist.h:160: warning: Incorrect use of kernel-doc format:          * release() - Free the memory of the struct i915_refct_sgt
-../drivers/gpu/drm/i915/i915_scatterlist.h:164: warning: Function parameter or member 'release' not described in 'i915_refct_sgt_ops'
-../drivers/gpu/drm/i915/i915_scatterlist.h:187: warning: Function parameter or member 'rsgt' not described in 'i915_refct_sgt_put'
-../drivers/gpu/drm/i915/i915_scatterlist.h:198: warning: Function parameter or member 'rsgt' not described in 'i915_refct_sgt_get'
-../drivers/gpu/drm/i915/i915_scatterlist.h:214: warning: Function parameter or member 'rsgt' not described in '__i915_refct_sgt_init'
-  HDRTEST drivers/gpu/drm/i915/intel_pcode.h
-  CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/therm/gk104.o
-  HDRTEST drivers/gpu/drm/i915/intel_region_ttm.h
-  HDRTEST drivers/gpu/drm/i915/intel_runtime_pm.h
-  HDRTEST drivers/gpu/drm/i915/intel_sbi.h
-  HDRTEST drivers/gpu/drm/i915/intel_step.h
-../drivers/gpu/drm/i915/i915_request.h:176: warning: This comment starts with '/**', but isn't a kernel-doc comment. Refer Documentation/doc-guide/kernel-doc.rst
- * Request queue structure.
-../drivers/gpu/drm/i915/i915_request.h:477: warning: This comment starts with '/**', but isn't a kernel-doc comment. Refer Documentation/doc-guide/kernel-doc.rst
- * Returns true if seq1 is later than seq2.
-../drivers/gpu/drm/i915/i915_utils.h:284: warning: Function parameter or member 'OP' not described in '__wait_for'
-../drivers/gpu/drm/i915/i915_utils.h:284: warning: Function parameter or member 'COND' not described in '__wait_for'
-../drivers/gpu/drm/i915/i915_utils.h:284: warning: Function parameter or member 'US' not described in '__wait_for'
-../drivers/gpu/drm/i915/i915_utils.h:284: warning: Function parameter or member 'Wmin' not described in '__wait_for'
-../drivers/gpu/drm/i915/i915_utils.h:284: warning: Function parameter or member 'Wmax' not described in '__wait_for'
-  HDRTEST drivers/gpu/drm/i915/intel_uncore.h
-  CC [M]  drivers/gpu/drm/amd/amdgpu/../pm/powerplay/hwmgr/ppatomfwctrl.o
-  HDRTEST drivers/gpu/drm/i915/intel_wakeref.h
-  HDRTEST drivers/gpu/drm/i915/pxp/intel_pxp_tee.h
-  HDRTEST drivers/gpu/drm/i915/pxp/intel_pxp_irq.h
-  CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/therm/gm107.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/../pm/powerplay/hwmgr/smu7_hwmgr.o
-  HDRTEST drivers/gpu/drm/i915/pxp/intel_pxp_session.h
-  HDRTEST drivers/gpu/drm/i915/pxp/intel_pxp_cmd_interface_43.h
-  HDRTEST drivers/gpu/drm/i915/pxp/intel_pxp_cmd.h
-  HDRTEST drivers/gpu/drm/i915/pxp/intel_pxp.h
-  HDRTEST drivers/gpu/drm/i915/pxp/intel_pxp_types.h
-  HDRTEST drivers/gpu/drm/i915/pxp/intel_pxp_debugfs.h
-  HDRTEST drivers/gpu/drm/i915/pxp/intel_pxp_cmd_interface_cmn.h
-  CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/therm/gm200.o
-  HDRTEST drivers/gpu/drm/i915/pxp/intel_pxp_huc.h
-  HDRTEST drivers/gpu/drm/i915/pxp/intel_pxp_pm.h
-  CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/therm/gp100.o
-  HDRTEST drivers/gpu/drm/i915/pxp/intel_pxp_cmd_interface_42.h
-  HDRTEST drivers/gpu/drm/i915/selftests/igt_live_test.h
-  HDRTEST drivers/gpu/drm/i915/selftests/igt_atomic.h
-  HDRTEST drivers/gpu/drm/i915/selftests/mock_gem_device.h
-  CC [M]  drivers/gpu/drm/amd/amdgpu/../pm/powerplay/hwmgr/smu7_powertune.o
-  HDRTEST drivers/gpu/drm/i915/selftests/mock_drm.h
-  CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/timer/base.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/../pm/powerplay/hwmgr/smu7_thermal.o
-  HDRTEST drivers/gpu/drm/i915/selftests/igt_reset.h
-  HDRTEST drivers/gpu/drm/i915/selftests/intel_scheduler_helpers.h
-  HDRTEST drivers/gpu/drm/i915/selftests/lib_sw_fence.h
-  HDRTEST drivers/gpu/drm/i915/selftests/i915_perf_selftests.h
-  HDRTEST drivers/gpu/drm/i915/selftests/mock_uncore.h
-  CC [M]  drivers/gpu/drm/amd/amdgpu/../pm/powerplay/hwmgr/smu7_clockpowergating.o
-  CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/timer/nv04.o
-  HDRTEST drivers/gpu/drm/i915/selftests/mock_gtt.h
-../drivers/gpu/drm/i915/i915_vma_resource.h:91: warning: Incorrect use of kernel-doc format:          * struct i915_vma_bindinfo - Information needed for async bind
-../drivers/gpu/drm/i915/i915_vma_resource.h:129: warning: Function parameter or member 'wakeref' not described in 'i915_vma_resource'
-../drivers/gpu/drm/i915/i915_vma_resource.h:129: warning: Function parameter or member 'bi' not described in 'i915_vma_resource'
-  CC [M]  drivers/gpu/drm/amd/amdgpu/../pm/powerplay/hwmgr/vega10_processpptables.o
-  HDRTEST drivers/gpu/drm/i915/selftests/i915_mock_selftests.h
-../drivers/gpu/drm/i915/pxp/intel_pxp_types.h:96: warning: Function parameter or member 'dev_link' not described in 'intel_pxp'
-  HDRTEST drivers/gpu/drm/i915/selftests/mock_request.h
-  CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/timer/nv40.o
-  HDRTEST drivers/gpu/drm/i915/selftests/i915_random.h
-  HDRTEST drivers/gpu/drm/i915/selftests/igt_spinner.h
-  CC [M]  drivers/gpu/drm/amd/amdgpu/../pm/powerplay/hwmgr/vega10_hwmgr.o
-  HDRTEST drivers/gpu/drm/i915/selftests/librapl.h
-  CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/timer/nv41.o
-  CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/timer/gk20a.o
-  HDRTEST drivers/gpu/drm/i915/selftests/mock_region.h
-  HDRTEST drivers/gpu/drm/i915/selftests/i915_live_selftests.h
-  CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/top/base.o
-  HDRTEST drivers/gpu/drm/i915/selftests/igt_mmap.h
-  CC [M]  drivers/gpu/drm/amd/amdgpu/../pm/powerplay/hwmgr/vega10_powertune.o
-  CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/top/gk104.o
-  HDRTEST drivers/gpu/drm/i915/selftests/igt_flush_test.h
-../drivers/gpu/drm/i915/i915_vma.h:145: warning: expecting prototype for i915_vma_offset(). Prototype was for i915_vma_size() instead
-  HDRTEST drivers/gpu/drm/i915/soc/intel_pch.h
-  HDRTEST drivers/gpu/drm/i915/soc/intel_dram.h
-  HDRTEST drivers/gpu/drm/i915/soc/intel_gmch.h
-  CC [M]  drivers/gpu/drm/amd/amdgpu/../pm/powerplay/hwmgr/vega10_thermal.o
-  HDRTEST drivers/gpu/drm/i915/vlv_sideband.h
-  HDRTEST drivers/gpu/drm/i915/vlv_sideband_reg.h
-  HDRTEST drivers/gpu/drm/i915/vlv_suspend.h
-  LD [M]  drivers/gpu/drm/i915/i915.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/../pm/powerplay/hwmgr/smu10_hwmgr.o
-  CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/top/ga100.o
-  CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/vfn/base.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/../pm/powerplay/hwmgr/pp_psm.o
-  CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/vfn/uvfn.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/../pm/powerplay/hwmgr/vega12_processpptables.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/../pm/powerplay/hwmgr/vega12_hwmgr.o
-  CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/vfn/gv100.o
-  CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/vfn/tu102.o
-  CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/vfn/ga100.o
-  CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/volt/base.o
-  CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/volt/gpio.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/../pm/powerplay/hwmgr/vega12_thermal.o
-  CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/volt/nv40.o
-  CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/volt/gf100.o
-  CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/volt/gf117.o
-  CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/volt/gk104.o
-  CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/volt/gk20a.o
-  CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/volt/gm20b.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/../pm/powerplay/hwmgr/pp_overdriver.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/../pm/powerplay/hwmgr/smu_helper.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/../pm/powerplay/hwmgr/vega20_processpptables.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/../pm/powerplay/hwmgr/vega20_hwmgr.o
-  CC [M]  drivers/gpu/drm/nouveau/nvkm/engine/falcon.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/../pm/powerplay/hwmgr/vega20_powertune.o
-  CC [M]  drivers/gpu/drm/nouveau/nvkm/engine/xtensa.o
-  CC [M]  drivers/gpu/drm/nouveau/nvkm/engine/bsp/g84.o
-  CC [M]  drivers/gpu/drm/nouveau/nvkm/engine/ce/gt215.o
-  CC [M]  drivers/gpu/drm/nouveau/nvkm/engine/ce/gf100.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/../pm/powerplay/hwmgr/vega20_thermal.o
-  CC [M]  drivers/gpu/drm/nouveau/nvkm/engine/ce/gk104.o
-  CC [M]  drivers/gpu/drm/nouveau/nvkm/engine/ce/gm107.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/../pm/powerplay/hwmgr/common_baco.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/../pm/powerplay/hwmgr/vega10_baco.o
-  CC [M]  drivers/gpu/drm/nouveau/nvkm/engine/ce/gm200.o
-  CC [M]  drivers/gpu/drm/nouveau/nvkm/engine/ce/gp100.o
-  CC [M]  drivers/gpu/drm/nouveau/nvkm/engine/ce/gp102.o
-  CC [M]  drivers/gpu/drm/nouveau/nvkm/engine/ce/gv100.o
-  CC [M]  drivers/gpu/drm/nouveau/nvkm/engine/ce/tu102.o
-  CC [M]  drivers/gpu/drm/nouveau/nvkm/engine/ce/ga100.o
-  CC [M]  drivers/gpu/drm/nouveau/nvkm/engine/ce/ga102.o
-  CC [M]  drivers/gpu/drm/nouveau/nvkm/engine/cipher/g84.o
-  CC [M]  drivers/gpu/drm/nouveau/nvkm/engine/device/acpi.o
-  CC [M]  drivers/gpu/drm/nouveau/nvkm/engine/device/base.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/../pm/powerplay/hwmgr/vega20_baco.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/../pm/powerplay/hwmgr/vega12_baco.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/../pm/powerplay/hwmgr/smu9_baco.o
-  CC [M]  drivers/gpu/drm/nouveau/nvkm/engine/device/ctrl.o
-  CC [M]  drivers/gpu/drm/nouveau/nvkm/engine/device/pci.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/../pm/powerplay/hwmgr/tonga_baco.o
-  CC [M]  drivers/gpu/drm/nouveau/nvkm/engine/device/tegra.o
-  CC [M]  drivers/gpu/drm/nouveau/nvkm/engine/device/user.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/../pm/powerplay/hwmgr/polaris_baco.o
-  CC [M]  drivers/gpu/drm/nouveau/nvkm/engine/disp/base.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/../pm/powerplay/hwmgr/fiji_baco.o
-  CC [M]  drivers/gpu/drm/nouveau/nvkm/engine/disp/chan.o
-  CC [M]  drivers/gpu/drm/nouveau/nvkm/engine/disp/conn.o
-  CC [M]  drivers/gpu/drm/nouveau/nvkm/engine/disp/dp.o
-  CC [M]  drivers/gpu/drm/nouveau/nvkm/engine/disp/hdmi.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/../pm/powerplay/hwmgr/ci_baco.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/../pm/powerplay/hwmgr/smu7_baco.o
-  CC [M]  drivers/gpu/drm/nouveau/nvkm/engine/disp/head.o
-  CC [M]  drivers/gpu/drm/nouveau/nvkm/engine/disp/ior.o
-  CC [M]  drivers/gpu/drm/nouveau/nvkm/engine/disp/outp.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/../pm/powerplay/amd_powerplay.o
-  CC [M]  drivers/gpu/drm/nouveau/nvkm/engine/disp/vga.o
-  CC [M]  drivers/gpu/drm/nouveau/nvkm/engine/disp/nv04.o
-  CC [M]  drivers/gpu/drm/nouveau/nvkm/engine/disp/nv50.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/../pm/legacy-dpm/legacy_dpm.o
-  CC [M]  drivers/gpu/drm/nouveau/nvkm/engine/disp/g84.o
-  CC [M]  drivers/gpu/drm/nouveau/nvkm/engine/disp/g94.o
-  CC [M]  drivers/gpu/drm/nouveau/nvkm/engine/disp/gt200.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/../pm/legacy-dpm/kv_dpm.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/../pm/legacy-dpm/kv_smc.o
-  CC [M]  drivers/gpu/drm/nouveau/nvkm/engine/disp/mcp77.o
-  CC [M]  drivers/gpu/drm/nouveau/nvkm/engine/disp/gt215.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/../pm/legacy-dpm/si_dpm.o
-  CC [M]  drivers/gpu/drm/nouveau/nvkm/engine/disp/mcp89.o
-  CC [M]  drivers/gpu/drm/nouveau/nvkm/engine/disp/gf119.o
-  CC [M]  drivers/gpu/drm/nouveau/nvkm/engine/disp/gk104.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/../pm/legacy-dpm/si_smc.o
-  CC [M]  drivers/gpu/drm/nouveau/nvkm/engine/disp/gk110.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/../pm/amdgpu_dpm.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/../pm/amdgpu_pm.o
-  CC [M]  drivers/gpu/drm/nouveau/nvkm/engine/disp/gm107.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/../pm/amdgpu_dpm_internal.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/../display/amdgpu_dm/amdgpu_dm.o
-  CC [M]  drivers/gpu/drm/nouveau/nvkm/engine/disp/gm200.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/../display/amdgpu_dm/amdgpu_dm_plane.o
-  CC [M]  drivers/gpu/drm/nouveau/nvkm/engine/disp/gp100.o
-  CC [M]  drivers/gpu/drm/nouveau/nvkm/engine/disp/gp102.o
-  CC [M]  drivers/gpu/drm/nouveau/nvkm/engine/disp/gv100.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/../display/amdgpu_dm/amdgpu_dm_crtc.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/../display/amdgpu_dm/amdgpu_dm_irq.o
-  CC [M]  drivers/gpu/drm/nouveau/nvkm/engine/disp/tu102.o
-  CC [M]  drivers/gpu/drm/nouveau/nvkm/engine/disp/ga102.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/../display/amdgpu_dm/amdgpu_dm_mst_types.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/../display/amdgpu_dm/amdgpu_dm_color.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/../display/amdgpu_dm/dc_fpu.o
-  CC [M]  drivers/gpu/drm/nouveau/nvkm/engine/disp/udisp.o
-  CC [M]  drivers/gpu/drm/nouveau/nvkm/engine/disp/uconn.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/../display/amdgpu_dm/amdgpu_dm_services.o
-  CC [M]  drivers/gpu/drm/nouveau/nvkm/engine/disp/uoutp.o
-  CC [M]  drivers/gpu/drm/nouveau/nvkm/engine/disp/uhead.o
-  CC [M]  drivers/gpu/drm/nouveau/nvkm/engine/dma/base.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/../display/amdgpu_dm/amdgpu_dm_helpers.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/../display/amdgpu_dm/amdgpu_dm_pp_smu.o
-  CC [M]  drivers/gpu/drm/nouveau/nvkm/engine/dma/nv04.o
-  CC [M]  drivers/gpu/drm/nouveau/nvkm/engine/dma/nv50.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/../display/amdgpu_dm/amdgpu_dm_psr.o
-  CC [M]  drivers/gpu/drm/nouveau/nvkm/engine/dma/gf100.o
-  CC [M]  drivers/gpu/drm/nouveau/nvkm/engine/dma/gf119.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/../display/amdgpu_dm/amdgpu_dm_hdcp.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/../display/amdgpu_dm/amdgpu_dm_crc.o
-  CC [M]  drivers/gpu/drm/nouveau/nvkm/engine/dma/gv100.o
-  CC [M]  drivers/gpu/drm/nouveau/nvkm/engine/dma/user.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/../display/amdgpu_dm/amdgpu_dm_debugfs.o
-  CC [M]  drivers/gpu/drm/nouveau/nvkm/engine/dma/usernv04.o
-  CC [M]  drivers/gpu/drm/nouveau/nvkm/engine/dma/usernv50.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dc/basics/conversion.o
-  CC [M]  drivers/gpu/drm/nouveau/nvkm/engine/dma/usergf100.o
-  CC [M]  drivers/gpu/drm/nouveau/nvkm/engine/dma/usergf119.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dc/basics/fixpt31_32.o
-  CC [M]  drivers/gpu/drm/nouveau/nvkm/engine/dma/usergv100.o
-  CC [M]  drivers/gpu/drm/nouveau/nvkm/engine/fifo/base.o
-  CC [M]  drivers/gpu/drm/nouveau/nvkm/engine/fifo/cgrp.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dc/basics/vector.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dc/basics/dc_common.o
-  CC [M]  drivers/gpu/drm/nouveau/nvkm/engine/fifo/chan.o
-  CC [M]  drivers/gpu/drm/nouveau/nvkm/engine/fifo/chid.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dc/bios/bios_parser.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dc/bios/bios_parser_interface.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dc/bios/bios_parser_helper.o
-  CC [M]  drivers/gpu/drm/nouveau/nvkm/engine/fifo/runl.o
-  CC [M]  drivers/gpu/drm/nouveau/nvkm/engine/fifo/runq.o
-  CC [M]  drivers/gpu/drm/nouveau/nvkm/engine/fifo/nv04.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dc/bios/command_table.o
-  CC [M]  drivers/gpu/drm/nouveau/nvkm/engine/fifo/nv10.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dc/bios/command_table_helper.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dc/bios/bios_parser_common.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dc/bios/command_table2.o
-  CC [M]  drivers/gpu/drm/nouveau/nvkm/engine/fifo/nv17.o
-  CC [M]  drivers/gpu/drm/nouveau/nvkm/engine/fifo/nv40.o
-  CC [M]  drivers/gpu/drm/nouveau/nvkm/engine/fifo/nv50.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dc/bios/command_table_helper2.o
-  CC [M]  drivers/gpu/drm/nouveau/nvkm/engine/fifo/g84.o
-  CC [M]  drivers/gpu/drm/nouveau/nvkm/engine/fifo/g98.o
-  CC [M]  drivers/gpu/drm/nouveau/nvkm/engine/fifo/gf100.o
-  CC [M]  drivers/gpu/drm/nouveau/nvkm/engine/fifo/gk104.o
-  CC [M]  drivers/gpu/drm/nouveau/nvkm/engine/fifo/gk110.o
-  CC [M]  drivers/gpu/drm/nouveau/nvkm/engine/fifo/gk208.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dc/bios/bios_parser2.o
-  CC [M]  drivers/gpu/drm/nouveau/nvkm/engine/fifo/gk20a.o
-  CC [M]  drivers/gpu/drm/nouveau/nvkm/engine/fifo/gm107.o
-  CC [M]  drivers/gpu/drm/nouveau/nvkm/engine/fifo/gm200.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dc/bios/dce60/command_table_helper_dce60.o
-  CC [M]  drivers/gpu/drm/nouveau/nvkm/engine/fifo/gp100.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dc/bios/dce80/command_table_helper_dce80.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dc/bios/dce110/command_table_helper_dce110.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dc/bios/dce112/command_table_helper_dce112.o
-  CC [M]  drivers/gpu/drm/nouveau/nvkm/engine/fifo/gv100.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dc/bios/dce112/command_table_helper2_dce112.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dc/dml/calcs/dce_calcs.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dc/dml/calcs/custom_float.o
-  CC [M]  drivers/gpu/drm/nouveau/nvkm/engine/fifo/tu102.o
-  CC [M]  drivers/gpu/drm/nouveau/nvkm/engine/fifo/ga100.o
-  CC [M]  drivers/gpu/drm/nouveau/nvkm/engine/fifo/ga102.o
-  CC [M]  drivers/gpu/drm/nouveau/nvkm/engine/fifo/ucgrp.o
-  CC [M]  drivers/gpu/drm/nouveau/nvkm/engine/fifo/uchan.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dc/dml/calcs/bw_fixed.o
-  CC [M]  drivers/gpu/drm/nouveau/nvkm/engine/gr/base.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dc/dml/display_mode_lib.o
-  CC [M]  drivers/gpu/drm/nouveau/nvkm/engine/gr/nv04.o
-  CC [M]  drivers/gpu/drm/nouveau/nvkm/engine/gr/nv10.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dc/dml/display_rq_dlg_helpers.o
-  CC [M]  drivers/gpu/drm/nouveau/nvkm/engine/gr/nv15.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dc/dml/dml1_display_rq_dlg_calc.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dc/dml/dcn10/dcn10_fpu.o
-  CC [M]  drivers/gpu/drm/nouveau/nvkm/engine/gr/nv17.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dc/dml/dcn20/dcn20_fpu.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dc/dml/display_mode_vba.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dc/dml/dcn20/display_rq_dlg_calc_20.o
-  CC [M]  drivers/gpu/drm/nouveau/nvkm/engine/gr/nv20.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dc/dml/dcn20/display_mode_vba_20.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dc/dml/dcn20/display_rq_dlg_calc_20v2.o
-  CC [M]  drivers/gpu/drm/nouveau/nvkm/engine/gr/nv25.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dc/dml/dcn20/display_mode_vba_20v2.o
-  CC [M]  drivers/gpu/drm/nouveau/nvkm/engine/gr/nv2a.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dc/dml/dcn21/display_rq_dlg_calc_21.o
-  CC [M]  drivers/gpu/drm/nouveau/nvkm/engine/gr/nv30.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dc/dml/dcn21/display_mode_vba_21.o
-  CC [M]  drivers/gpu/drm/nouveau/nvkm/engine/gr/nv34.o
-  CC [M]  drivers/gpu/drm/nouveau/nvkm/engine/gr/nv35.o
-  CC [M]  drivers/gpu/drm/nouveau/nvkm/engine/gr/nv40.o
-  CC [M]  drivers/gpu/drm/nouveau/nvkm/engine/gr/nv44.o
-  CC [M]  drivers/gpu/drm/nouveau/nvkm/engine/gr/nv50.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dc/dml/dcn30/dcn30_fpu.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dc/dml/dcn30/display_mode_vba_30.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dc/dml/dcn30/display_rq_dlg_calc_30.o
-  CC [M]  drivers/gpu/drm/nouveau/nvkm/engine/gr/g84.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dc/dml/dcn31/display_mode_vba_31.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dc/dml/dcn31/display_rq_dlg_calc_31.o
-  CC [M]  drivers/gpu/drm/nouveau/nvkm/engine/gr/gt200.o
-  CC [M]  drivers/gpu/drm/nouveau/nvkm/engine/gr/mcp79.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dc/dml/dcn314/display_mode_vba_314.o
-  CC [M]  drivers/gpu/drm/nouveau/nvkm/engine/gr/gt215.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dc/dml/dcn314/display_rq_dlg_calc_314.o
-  CC [M]  drivers/gpu/drm/nouveau/nvkm/engine/gr/mcp89.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dc/dml/dcn32/display_mode_vba_32.o
-  CC [M]  drivers/gpu/drm/nouveau/nvkm/engine/gr/gf100.o
-  CC [M]  drivers/gpu/drm/nouveau/nvkm/engine/gr/gf104.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dc/dml/dcn32/display_rq_dlg_calc_32.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dc/dml/dcn32/display_mode_vba_util_32.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dc/dml/dcn31/dcn31_fpu.o
-  CC [M]  drivers/gpu/drm/nouveau/nvkm/engine/gr/gf108.o
-  CC [M]  drivers/gpu/drm/nouveau/nvkm/engine/gr/gf110.o
-  CC [M]  drivers/gpu/drm/amd/amdgpu/../disp
+CONFIG_CC_VERSION_TEXT="gcc-11 (Debian 11.3.0-12) 11.3.0"
+CONFIG_CC_IS_GCC=y
+CONFIG_GCC_VERSION=110300
+CONFIG_CLANG_VERSION=0
+CONFIG_AS_IS_GNU=y
+CONFIG_AS_VERSION=24000
+CONFIG_LD_IS_BFD=y
+CONFIG_LD_VERSION=24000
+CONFIG_LLD_VERSION=0
+CONFIG_CC_CAN_LINK=y
+CONFIG_CC_CAN_LINK_STATIC=y
+CONFIG_CC_HAS_ASM_GOTO_OUTPUT=y
+CONFIG_CC_HAS_ASM_GOTO_TIED_OUTPUT=y
+CONFIG_TOOLS_SUPPORT_RELR=y
+CONFIG_CC_HAS_ASM_INLINE=y
+CONFIG_CC_HAS_NO_PROFILE_FN_ATTR=y
+CONFIG_PAHOLE_VERSION=125
+CONFIG_IRQ_WORK=y
+CONFIG_BUILDTIME_TABLE_SORT=y
+CONFIG_THREAD_INFO_IN_TASK=y
 
+#
+# General setup
+#
+CONFIG_BROKEN_ON_SMP=y
+CONFIG_INIT_ENV_ARG_LIMIT=32
+# CONFIG_COMPILE_TEST is not set
+# CONFIG_WERROR is not set
+# CONFIG_UAPI_HEADER_TEST is not set
+CONFIG_LOCALVERSION=""
+CONFIG_LOCALVERSION_AUTO=y
+CONFIG_BUILD_SALT=""
+CONFIG_HAVE_KERNEL_GZIP=y
+CONFIG_HAVE_KERNEL_BZIP2=y
+CONFIG_HAVE_KERNEL_LZMA=y
+CONFIG_HAVE_KERNEL_XZ=y
+CONFIG_HAVE_KERNEL_LZO=y
+CONFIG_HAVE_KERNEL_LZ4=y
+CONFIG_HAVE_KERNEL_ZSTD=y
+# CONFIG_KERNEL_GZIP is not set
+# CONFIG_KERNEL_BZIP2 is not set
+# CONFIG_KERNEL_LZMA is not set
+# CONFIG_KERNEL_XZ is not set
+# CONFIG_KERNEL_LZO is not set
+CONFIG_KERNEL_LZ4=y
+# CONFIG_KERNEL_ZSTD is not set
+CONFIG_DEFAULT_INIT=""
+CONFIG_DEFAULT_HOSTNAME="(none)"
+CONFIG_SYSVIPC=y
+CONFIG_SYSVIPC_SYSCTL=y
+# CONFIG_POSIX_MQUEUE is not set
+# CONFIG_WATCH_QUEUE is not set
+# CONFIG_CROSS_MEMORY_ATTACH is not set
+CONFIG_USELIB=y
+# CONFIG_AUDIT is not set
+CONFIG_HAVE_ARCH_AUDITSYSCALL=y
 
+#
+# IRQ subsystem
+#
+CONFIG_GENERIC_IRQ_PROBE=y
+CONFIG_GENERIC_IRQ_SHOW=y
+CONFIG_GENERIC_IRQ_INJECTION=y
+CONFIG_HARDIRQS_SW_RESEND=y
+CONFIG_GENERIC_IRQ_CHIP=y
+CONFIG_IRQ_DOMAIN=y
+CONFIG_IRQ_SIM=y
+CONFIG_IRQ_DOMAIN_HIERARCHY=y
+CONFIG_GENERIC_MSI_IRQ=y
+CONFIG_GENERIC_IRQ_MATRIX_ALLOCATOR=y
+CONFIG_GENERIC_IRQ_RESERVATION_MODE=y
+CONFIG_IRQ_FORCED_THREADING=y
+CONFIG_SPARSE_IRQ=y
+CONFIG_GENERIC_IRQ_DEBUGFS=y
+# end of IRQ subsystem
+
+CONFIG_CLOCKSOURCE_WATCHDOG=y
+CONFIG_ARCH_CLOCKSOURCE_INIT=y
+CONFIG_CLOCKSOURCE_VALIDATE_LAST_CYCLE=y
+CONFIG_GENERIC_TIME_VSYSCALL=y
+CONFIG_GENERIC_CLOCKEVENTS=y
+CONFIG_GENERIC_CLOCKEVENTS_BROADCAST=y
+CONFIG_GENERIC_CLOCKEVENTS_MIN_ADJUST=y
+CONFIG_GENERIC_CMOS_UPDATE=y
+CONFIG_HAVE_POSIX_CPU_TIMERS_TASK_WORK=y
+CONFIG_POSIX_CPU_TIMERS_TASK_WORK=y
+
+#
+# Timers subsystem
+#
+CONFIG_TICK_ONESHOT=y
+CONFIG_NO_HZ_COMMON=y
+# CONFIG_HZ_PERIODIC is not set
+CONFIG_NO_HZ_IDLE=y
+CONFIG_NO_HZ=y
+CONFIG_HIGH_RES_TIMERS=y
+CONFIG_CLOCKSOURCE_WATCHDOG_MAX_SKEW_US=125
+# end of Timers subsystem
+
+CONFIG_BPF=y
+CONFIG_HAVE_EBPF_JIT=y
+
+#
+# BPF subsystem
+#
+# CONFIG_BPF_SYSCALL is not set
+# CONFIG_BPF_JIT is not set
+# end of BPF subsystem
+
+CONFIG_PREEMPT_VOLUNTARY_BUILD=y
+# CONFIG_PREEMPT_NONE is not set
+CONFIG_PREEMPT_VOLUNTARY=y
+# CONFIG_PREEMPT is not set
+CONFIG_PREEMPT_COUNT=y
+# CONFIG_PREEMPT_DYNAMIC is not set
+
+#
+# CPU/Task time and stats accounting
+#
+CONFIG_TICK_CPU_ACCOUNTING=y
+CONFIG_IRQ_TIME_ACCOUNTING=y
+# CONFIG_BSD_PROCESS_ACCT is not set
+# CONFIG_TASKSTATS is not set
+# CONFIG_PSI is not set
+# end of CPU/Task time and stats accounting
+
+#
+# RCU Subsystem
+#
+CONFIG_TINY_RCU=y
+CONFIG_RCU_EXPERT=y
+CONFIG_TINY_SRCU=y
+CONFIG_TASKS_RCU_GENERIC=y
+CONFIG_FORCE_TASKS_RCU=y
+CONFIG_TASKS_RCU=y
+CONFIG_FORCE_TASKS_RUDE_RCU=y
+CONFIG_TASKS_RUDE_RCU=y
+CONFIG_FORCE_TASKS_TRACE_RCU=y
+CONFIG_TASKS_TRACE_RCU=y
+CONFIG_RCU_NEED_SEGCBLIST=y
+CONFIG_TASKS_TRACE_RCU_READ_MB=y
+# end of RCU Subsystem
+
+CONFIG_IKCONFIG=y
+CONFIG_IKCONFIG_PROC=y
+# CONFIG_IKHEADERS is not set
+CONFIG_LOG_BUF_SHIFT=20
+# CONFIG_PRINTK_INDEX is not set
+CONFIG_HAVE_UNSTABLE_SCHED_CLOCK=y
+
+#
+# Scheduler features
+#
+# end of Scheduler features
+
+CONFIG_ARCH_WANT_BATCHED_UNMAP_TLB_FLUSH=y
+CONFIG_CC_IMPLICIT_FALLTHROUGH="-Wimplicit-fallthrough=5"
+CONFIG_GCC11_NO_ARRAY_BOUNDS=y
+CONFIG_CC_NO_ARRAY_BOUNDS=y
+CONFIG_CGROUPS=y
+CONFIG_PAGE_COUNTER=y
+# CONFIG_CGROUP_FAVOR_DYNMODS is not set
+CONFIG_MEMCG=y
+CONFIG_MEMCG_KMEM=y
+CONFIG_CGROUP_SCHED=y
+CONFIG_FAIR_GROUP_SCHED=y
+CONFIG_CFS_BANDWIDTH=y
+# CONFIG_RT_GROUP_SCHED is not set
+# CONFIG_CGROUP_PIDS is not set
+CONFIG_CGROUP_RDMA=y
+CONFIG_CGROUP_FREEZER=y
+# CONFIG_CGROUP_DEVICE is not set
+CONFIG_CGROUP_CPUACCT=y
+CONFIG_CGROUP_PERF=y
+# CONFIG_CGROUP_MISC is not set
+# CONFIG_CGROUP_DEBUG is not set
+# CONFIG_NAMESPACES is not set
+CONFIG_CHECKPOINT_RESTORE=y
+CONFIG_SCHED_AUTOGROUP=y
+CONFIG_RELAY=y
+CONFIG_BLK_DEV_INITRD=y
+CONFIG_INITRAMFS_SOURCE=""
+CONFIG_RD_GZIP=y
+CONFIG_RD_BZIP2=y
+CONFIG_RD_LZMA=y
+CONFIG_RD_XZ=y
+CONFIG_RD_LZO=y
+CONFIG_RD_LZ4=y
+CONFIG_RD_ZSTD=y
+# CONFIG_BOOT_CONFIG is not set
+CONFIG_INITRAMFS_PRESERVE_MTIME=y
+CONFIG_CC_OPTIMIZE_FOR_PERFORMANCE=y
+# CONFIG_CC_OPTIMIZE_FOR_SIZE is not set
+CONFIG_LD_ORPHAN_WARN=y
+CONFIG_LD_ORPHAN_WARN_LEVEL="warn"
+CONFIG_SYSCTL=y
+CONFIG_HAVE_UID16=y
+CONFIG_SYSCTL_EXCEPTION_TRACE=y
+CONFIG_HAVE_PCSPKR_PLATFORM=y
+CONFIG_EXPERT=y
+CONFIG_UID16=y
+CONFIG_MULTIUSER=y
+CONFIG_SGETMASK_SYSCALL=y
+CONFIG_SYSFS_SYSCALL=y
+CONFIG_FHANDLE=y
+CONFIG_POSIX_TIMERS=y
+CONFIG_PRINTK=y
+CONFIG_BUG=y
+CONFIG_PCSPKR_PLATFORM=y
+# CONFIG_BASE_FULL is not set
+CONFIG_FUTEX=y
+CONFIG_FUTEX_PI=y
+CONFIG_EPOLL=y
+CONFIG_SIGNALFD=y
+CONFIG_TIMERFD=y
+CONFIG_EVENTFD=y
+CONFIG_SHMEM=y
+CONFIG_AIO=y
+CONFIG_IO_URING=y
+# CONFIG_ADVISE_SYSCALLS is not set
+# CONFIG_MEMBARRIER is not set
+CONFIG_KALLSYMS=y
+# CONFIG_KALLSYMS_SELFTEST is not set
+CONFIG_KALLSYMS_ALL=y
+CONFIG_KALLSYMS_BASE_RELATIVE=y
+CONFIG_ARCH_HAS_MEMBARRIER_SYNC_CORE=y
+CONFIG_KCMP=y
+# CONFIG_RSEQ is not set
+CONFIG_EMBEDDED=y
+CONFIG_HAVE_PERF_EVENTS=y
+# CONFIG_PC104 is not set
+
+#
+# Kernel Performance Events And Counters
+#
+CONFIG_PERF_EVENTS=y
+# CONFIG_DEBUG_PERF_USE_VMALLOC is not set
+# end of Kernel Performance Events And Counters
+
+CONFIG_PROFILING=y
+CONFIG_TRACEPOINTS=y
+# end of General setup
+
+CONFIG_X86_32=y
+CONFIG_FORCE_DYNAMIC_FTRACE=y
+CONFIG_X86=y
+CONFIG_INSTRUCTION_DECODER=y
+CONFIG_OUTPUT_FORMAT="elf32-i386"
+CONFIG_LOCKDEP_SUPPORT=y
+CONFIG_STACKTRACE_SUPPORT=y
+CONFIG_MMU=y
+CONFIG_ARCH_MMAP_RND_BITS_MIN=8
+CONFIG_ARCH_MMAP_RND_BITS_MAX=16
+CONFIG_ARCH_MMAP_RND_COMPAT_BITS_MIN=8
+CONFIG_ARCH_MMAP_RND_COMPAT_BITS_MAX=16
+CONFIG_GENERIC_ISA_DMA=y
+CONFIG_GENERIC_BUG=y
+CONFIG_ARCH_MAY_HAVE_PC_FDC=y
+CONFIG_GENERIC_CALIBRATE_DELAY=y
+CONFIG_ARCH_HAS_CPU_RELAX=y
+CONFIG_ARCH_HIBERNATION_POSSIBLE=y
+CONFIG_ARCH_SUSPEND_POSSIBLE=y
+CONFIG_ARCH_SUPPORTS_UPROBES=y
+CONFIG_FIX_EARLYCON_MEM=y
+CONFIG_PGTABLE_LEVELS=2
+CONFIG_CC_HAS_SANE_STACKPROTECTOR=y
+
+#
+# Processor type and features
+#
+# CONFIG_SMP is not set
+CONFIG_X86_FEATURE_NAMES=y
+CONFIG_X86_MPPARSE=y
+CONFIG_GOLDFISH=y
+# CONFIG_X86_EXTENDED_PLATFORM is not set
+# CONFIG_X86_INTEL_LPSS is not set
+# CONFIG_X86_AMD_PLATFORM_DEVICE is not set
+CONFIG_IOSF_MBI=y
+# CONFIG_IOSF_MBI_DEBUG is not set
+CONFIG_X86_32_IRIS=y
+# CONFIG_SCHED_OMIT_FRAME_POINTER is not set
+CONFIG_HYPERVISOR_GUEST=y
+CONFIG_PARAVIRT=y
+# CONFIG_PARAVIRT_DEBUG is not set
+CONFIG_X86_HV_CALLBACK_VECTOR=y
+CONFIG_KVM_GUEST=y
+CONFIG_ARCH_CPUIDLE_HALTPOLL=y
+# CONFIG_PVH is not set
+# CONFIG_PARAVIRT_TIME_ACCOUNTING is not set
+CONFIG_PARAVIRT_CLOCK=y
+# CONFIG_M486SX is not set
+# CONFIG_M486 is not set
+# CONFIG_M586 is not set
+# CONFIG_M586TSC is not set
+# CONFIG_M586MMX is not set
+# CONFIG_M686 is not set
+# CONFIG_MPENTIUMII is not set
+# CONFIG_MPENTIUMIII is not set
+# CONFIG_MPENTIUMM is not set
+# CONFIG_MPENTIUM4 is not set
+# CONFIG_MK6 is not set
+# CONFIG_MK7 is not set
+# CONFIG_MK8 is not set
+# CONFIG_MCRUSOE is not set
+# CONFIG_MEFFICEON is not set
+# CONFIG_MWINCHIPC6 is not set
+CONFIG_MWINCHIP3D=y
+# CONFIG_MELAN is not set
+# CONFIG_MGEODEGX1 is not set
+# CONFIG_MGEODE_LX is not set
+# CONFIG_MCYRIXIII is not set
+# CONFIG_MVIAC3_2 is not set
+# CONFIG_MVIAC7 is not set
+# CONFIG_MCORE2 is not set
+# CONFIG_MATOM is not set
+CONFIG_X86_GENERIC=y
+CONFIG_X86_INTERNODE_CACHE_SHIFT=6
+CONFIG_X86_L1_CACHE_SHIFT=6
+CONFIG_X86_ALIGNMENT_16=y
+CONFIG_X86_INTEL_USERCOPY=y
+CONFIG_X86_USE_PPRO_CHECKSUM=y
+CONFIG_X86_TSC=y
+CONFIG_X86_MINIMUM_CPU_FAMILY=4
+CONFIG_PROCESSOR_SELECT=y
+# CONFIG_CPU_SUP_INTEL is not set
+# CONFIG_CPU_SUP_CYRIX_32 is not set
+# CONFIG_CPU_SUP_AMD is not set
+# CONFIG_CPU_SUP_HYGON is not set
+# CONFIG_CPU_SUP_CENTAUR is not set
+# CONFIG_CPU_SUP_TRANSMETA_32 is not set
+# CONFIG_CPU_SUP_UMC_32 is not set
+# CONFIG_CPU_SUP_ZHAOXIN is not set
+CONFIG_CPU_SUP_VORTEX_32=y
+CONFIG_HPET_TIMER=y
+CONFIG_HPET_EMULATE_RTC=y
+CONFIG_DMI=y
+CONFIG_NR_CPUS_RANGE_BEGIN=1
+CONFIG_NR_CPUS_RANGE_END=1
+CONFIG_NR_CPUS_DEFAULT=1
+CONFIG_NR_CPUS=1
+CONFIG_UP_LATE_INIT=y
+CONFIG_X86_UP_APIC=y
+# CONFIG_X86_UP_IOAPIC is not set
+CONFIG_X86_LOCAL_APIC=y
+CONFIG_X86_IO_APIC=y
+CONFIG_X86_REROUTE_FOR_BROKEN_BOOT_IRQS=y
+# CONFIG_X86_MCE is not set
+
+#
+# Performance monitoring
+#
+# end of Performance monitoring
+
+# CONFIG_X86_LEGACY_VM86 is not set
+CONFIG_X86_IOPL_IOPERM=y
+CONFIG_TOSHIBA=y
+# CONFIG_X86_REBOOTFIXUPS is not set
+CONFIG_X86_MSR=y
+CONFIG_X86_CPUID=m
+# CONFIG_NOHIGHMEM is not set
+CONFIG_HIGHMEM4G=y
+# CONFIG_VMSPLIT_3G is not set
+# CONFIG_VMSPLIT_3G_OPT is not set
+CONFIG_VMSPLIT_2G=y
+# CONFIG_VMSPLIT_2G_OPT is not set
+# CONFIG_VMSPLIT_1G is not set
+CONFIG_PAGE_OFFSET=0x80000000
+CONFIG_HIGHMEM=y
+# CONFIG_X86_CPA_STATISTICS is not set
+CONFIG_ARCH_FLATMEM_ENABLE=y
+CONFIG_ARCH_SPARSEMEM_ENABLE=y
+CONFIG_ARCH_SELECT_MEMORY_MODEL=y
+CONFIG_ILLEGAL_POINTER_VALUE=0
+CONFIG_HIGHPTE=y
+# CONFIG_X86_CHECK_BIOS_CORRUPTION is not set
+# CONFIG_MTRR is not set
+CONFIG_X86_UMIP=y
+CONFIG_CC_HAS_IBT=y
+# CONFIG_EFI is not set
+CONFIG_HZ_100=y
+# CONFIG_HZ_250 is not set
+# CONFIG_HZ_300 is not set
+# CONFIG_HZ_1000 is not set
+CONFIG_HZ=100
+CONFIG_SCHED_HRTICK=y
+CONFIG_KEXEC=y
+# CONFIG_CRASH_DUMP is not set
+CONFIG_PHYSICAL_START=0x1000000
+# CONFIG_RELOCATABLE is not set
+CONFIG_PHYSICAL_ALIGN=0x200000
+# CONFIG_COMPAT_VDSO is not set
+# CONFIG_CMDLINE_BOOL is not set
+# CONFIG_MODIFY_LDT_SYSCALL is not set
+# CONFIG_STRICT_SIGALTSTACK_SIZE is not set
+# end of Processor type and features
+
+CONFIG_CC_HAS_SLS=y
+CONFIG_CC_HAS_RETURN_THUNK=y
+CONFIG_CC_HAS_ENTRY_PADDING=y
+CONFIG_FUNCTION_PADDING_CFI=11
+CONFIG_FUNCTION_PADDING_BYTES=16
+CONFIG_SPECULATION_MITIGATIONS=y
+# CONFIG_RETPOLINE is not set
+CONFIG_ARCH_MHP_MEMMAP_ON_MEMORY_ENABLE=y
+
+#
+# Power management and ACPI options
+#
+# CONFIG_SUSPEND is not set
+# CONFIG_PM is not set
+CONFIG_ARCH_SUPPORTS_ACPI=y
+CONFIG_ACPI=y
+CONFIG_ACPI_LEGACY_TABLES_LOOKUP=y
+CONFIG_ARCH_MIGHT_HAVE_ACPI_PDC=y
+CONFIG_ACPI_SYSTEM_POWER_STATES_SUPPORT=y
+# CONFIG_ACPI_DEBUGGER is not set
+CONFIG_ACPI_SPCR_TABLE=y
+CONFIG_ACPI_REV_OVERRIDE_POSSIBLE=y
+# CONFIG_ACPI_EC_DEBUGFS is not set
+CONFIG_ACPI_AC=y
+CONFIG_ACPI_BATTERY=y
+CONFIG_ACPI_BUTTON=y
+CONFIG_ACPI_VIDEO=y
+CONFIG_ACPI_FAN=y
+# CONFIG_ACPI_DOCK is not set
+CONFIG_ACPI_CPU_FREQ_PSS=y
+CONFIG_ACPI_PROCESSOR_CSTATE=y
+CONFIG_ACPI_PROCESSOR_IDLE=y
+CONFIG_ACPI_PROCESSOR=y
+# CONFIG_ACPI_PROCESSOR_AGGREGATOR is not set
+CONFIG_ACPI_THERMAL=y
+CONFIG_ACPI_CUSTOM_DSDT_FILE=""
+CONFIG_ARCH_HAS_ACPI_TABLE_UPGRADE=y
+CONFIG_ACPI_TABLE_UPGRADE=y
+# CONFIG_ACPI_DEBUG is not set
+# CONFIG_ACPI_PCI_SLOT is not set
+# CONFIG_ACPI_CONTAINER is not set
+CONFIG_ACPI_HOTPLUG_IOAPIC=y
+# CONFIG_ACPI_SBS is not set
+# CONFIG_ACPI_HED is not set
+# CONFIG_ACPI_CUSTOM_METHOD is not set
+# CONFIG_ACPI_REDUCED_HARDWARE_ONLY is not set
+CONFIG_HAVE_ACPI_APEI=y
+CONFIG_HAVE_ACPI_APEI_NMI=y
+# CONFIG_ACPI_APEI is not set
+# CONFIG_ACPI_DPTF is not set
+# CONFIG_ACPI_CONFIGFS is not set
+# CONFIG_ACPI_FFH is not set
+# CONFIG_PMIC_OPREGION is not set
+CONFIG_X86_PM_TIMER=y
+
+#
+# CPU Frequency scaling
+#
+CONFIG_CPU_FREQ=y
+CONFIG_CPU_FREQ_GOV_ATTR_SET=y
+CONFIG_CPU_FREQ_GOV_COMMON=y
+# CONFIG_CPU_FREQ_STAT is not set
+# CONFIG_CPU_FREQ_DEFAULT_GOV_PERFORMANCE is not set
+CONFIG_CPU_FREQ_DEFAULT_GOV_POWERSAVE=y
+# CONFIG_CPU_FREQ_DEFAULT_GOV_USERSPACE is not set
+# CONFIG_CPU_FREQ_DEFAULT_GOV_ONDEMAND is not set
+# CONFIG_CPU_FREQ_DEFAULT_GOV_CONSERVATIVE is not set
+CONFIG_CPU_FREQ_GOV_PERFORMANCE=y
+CONFIG_CPU_FREQ_GOV_POWERSAVE=y
+CONFIG_CPU_FREQ_GOV_USERSPACE=m
+CONFIG_CPU_FREQ_GOV_ONDEMAND=y
+CONFIG_CPU_FREQ_GOV_CONSERVATIVE=y
+
+#
+# CPU frequency scaling drivers
+#
+CONFIG_CPUFREQ_DT=y
+CONFIG_CPUFREQ_DT_PLATDEV=y
+CONFIG_X86_INTEL_PSTATE=y
+# CONFIG_X86_PCC_CPUFREQ is not set
+# CONFIG_X86_AMD_PSTATE is not set
+# CONFIG_X86_AMD_PSTATE_UT is not set
+# CONFIG_X86_ACPI_CPUFREQ is not set
+CONFIG_X86_POWERNOW_K6=m
+CONFIG_X86_POWERNOW_K7=m
+CONFIG_X86_POWERNOW_K7_ACPI=y
+CONFIG_X86_GX_SUSPMOD=m
+CONFIG_X86_SPEEDSTEP_CENTRINO=y
+CONFIG_X86_SPEEDSTEP_CENTRINO_TABLE=y
+CONFIG_X86_SPEEDSTEP_ICH=y
+# CONFIG_X86_SPEEDSTEP_SMI is not set
+CONFIG_X86_P4_CLOCKMOD=y
+# CONFIG_X86_CPUFREQ_NFORCE2 is not set
+# CONFIG_X86_LONGRUN is not set
+# CONFIG_X86_LONGHAUL is not set
+# CONFIG_X86_E_POWERSAVER is not set
+
+#
+# shared options
+#
+CONFIG_X86_SPEEDSTEP_LIB=y
+# CONFIG_X86_SPEEDSTEP_RELAXED_CAP_CHECK is not set
+# end of CPU Frequency scaling
+
+#
+# CPU Idle
+#
+CONFIG_CPU_IDLE=y
+# CONFIG_CPU_IDLE_GOV_LADDER is not set
+# CONFIG_CPU_IDLE_GOV_MENU is not set
+CONFIG_CPU_IDLE_GOV_TEO=y
+CONFIG_CPU_IDLE_GOV_HALTPOLL=y
+CONFIG_HALTPOLL_CPUIDLE=y
+# end of CPU Idle
+# end of Power management and ACPI options
+
+#
+# Bus options (PCI etc.)
+#
+# CONFIG_PCI_GOBIOS is not set
+# CONFIG_PCI_GOMMCONFIG is not set
+# CONFIG_PCI_GODIRECT is not set
+CONFIG_PCI_GOOLPC=y
+# CONFIG_PCI_GOANY is not set
+CONFIG_PCI_DIRECT=y
+CONFIG_PCI_OLPC=y
+CONFIG_PCI_CNB20LE_QUIRK=y
+CONFIG_ISA_BUS=y
+CONFIG_ISA_DMA_API=y
+# CONFIG_ISA is not set
+# CONFIG_SCx200 is not set
+CONFIG_OLPC=y
+# CONFIG_OLPC_XO15_SCI is not set
+CONFIG_ALIX=y
+# CONFIG_NET5501 is not set
+CONFIG_GEOS=y
+# end of Bus options (PCI etc.)
+
+#
+# Binary Emulations
+#
+CONFIG_COMPAT_32=y
+# end of Binary Emulations
+
+CONFIG_HAVE_ATOMIC_IOMAP=y
+CONFIG_HAVE_KVM=y
+CONFIG_VIRTUALIZATION=y
+# CONFIG_KVM is not set
+CONFIG_AS_AVX512=y
+CONFIG_AS_SHA1_NI=y
+CONFIG_AS_SHA256_NI=y
+CONFIG_AS_TPAUSE=y
+CONFIG_AS_GFNI=y
+
+#
+# General architecture-dependent options
+#
+CONFIG_CRASH_CORE=y
+CONFIG_KEXEC_CORE=y
+CONFIG_GENERIC_ENTRY=y
+CONFIG_KPROBES=y
+# CONFIG_JUMP_LABEL is not set
+# CONFIG_STATIC_CALL_SELFTEST is not set
+CONFIG_OPTPROBES=y
+CONFIG_KPROBES_ON_FTRACE=y
+CONFIG_HAVE_EFFICIENT_UNALIGNED_ACCESS=y
+CONFIG_ARCH_USE_BUILTIN_BSWAP=y
+CONFIG_KRETPROBES=y
+CONFIG_KRETPROBE_ON_RETHOOK=y
+CONFIG_HAVE_IOREMAP_PROT=y
+CONFIG_HAVE_KPROBES=y
+CONFIG_HAVE_KRETPROBES=y
+CONFIG_HAVE_OPTPROBES=y
+CONFIG_HAVE_KPROBES_ON_FTRACE=y
+CONFIG_ARCH_CORRECT_STACKTRACE_ON_KRETPROBE=y
+CONFIG_HAVE_FUNCTION_ERROR_INJECTION=y
+CONFIG_HAVE_NMI=y
+CONFIG_TRACE_IRQFLAGS_SUPPORT=y
+CONFIG_TRACE_IRQFLAGS_NMI_SUPPORT=y
+CONFIG_HAVE_ARCH_TRACEHOOK=y
+CONFIG_HAVE_DMA_CONTIGUOUS=y
+CONFIG_GENERIC_SMP_IDLE_THREAD=y
+CONFIG_ARCH_HAS_FORTIFY_SOURCE=y
+CONFIG_ARCH_HAS_SET_MEMORY=y
+CONFIG_ARCH_HAS_SET_DIRECT_MAP=y
+CONFIG_HAVE_ARCH_THREAD_STRUCT_WHITELIST=y
+CONFIG_ARCH_WANTS_DYNAMIC_TASK_STRUCT=y
+CONFIG_ARCH_WANTS_NO_INSTR=y
+CONFIG_ARCH_32BIT_OFF_T=y
+CONFIG_HAVE_ASM_MODVERSIONS=y
+CONFIG_HAVE_REGS_AND_STACK_ACCESS_API=y
+CONFIG_HAVE_RSEQ=y
+CONFIG_HAVE_FUNCTION_ARG_ACCESS_API=y
+CONFIG_HAVE_HW_BREAKPOINT=y
+CONFIG_HAVE_MIXED_BREAKPOINTS_REGS=y
+CONFIG_HAVE_USER_RETURN_NOTIFIER=y
+CONFIG_HAVE_PERF_EVENTS_NMI=y
+CONFIG_HAVE_HARDLOCKUP_DETECTOR_PERF=y
+CONFIG_HAVE_PERF_REGS=y
+CONFIG_HAVE_PERF_USER_STACK_DUMP=y
+CONFIG_HAVE_ARCH_JUMP_LABEL=y
+CONFIG_HAVE_ARCH_JUMP_LABEL_RELATIVE=y
+CONFIG_MMU_GATHER_TABLE_FREE=y
+CONFIG_MMU_GATHER_RCU_TABLE_FREE=y
+CONFIG_MMU_GATHER_MERGE_VMAS=y
+CONFIG_MMU_LAZY_TLB_REFCOUNT=y
+CONFIG_ARCH_HAVE_NMI_SAFE_CMPXCHG=y
+CONFIG_ARCH_HAS_NMI_SAFE_THIS_CPU_OPS=y
+CONFIG_HAVE_ALIGNED_STRUCT_PAGE=y
+CONFIG_HAVE_CMPXCHG_LOCAL=y
+CONFIG_HAVE_CMPXCHG_DOUBLE=y
+CONFIG_ARCH_WANT_IPC_PARSE_VERSION=y
+CONFIG_HAVE_ARCH_SECCOMP=y
+CONFIG_HAVE_ARCH_SECCOMP_FILTER=y
+# CONFIG_SECCOMP is not set
+CONFIG_HAVE_ARCH_STACKLEAK=y
+CONFIG_HAVE_STACKPROTECTOR=y
+CONFIG_STACKPROTECTOR=y
+# CONFIG_STACKPROTECTOR_STRONG is not set
+CONFIG_ARCH_SUPPORTS_LTO_CLANG=y
+CONFIG_ARCH_SUPPORTS_LTO_CLANG_THIN=y
+CONFIG_LTO_NONE=y
+CONFIG_HAVE_ARCH_WITHIN_STACK_FRAMES=y
+CONFIG_HAVE_IRQ_TIME_ACCOUNTING=y
+CONFIG_HAVE_MOVE_PUD=y
+CONFIG_HAVE_MOVE_PMD=y
+CONFIG_HAVE_ARCH_TRANSPARENT_HUGEPAGE=y
+CONFIG_ARCH_WANT_HUGE_PMD_SHARE=y
+CONFIG_HAVE_MOD_ARCH_SPECIFIC=y
+CONFIG_MODULES_USE_ELF_REL=y
+CONFIG_HAVE_SOFTIRQ_ON_OWN_STACK=y
+CONFIG_SOFTIRQ_ON_OWN_STACK=y
+CONFIG_ARCH_HAS_ELF_RANDOMIZE=y
+CONFIG_HAVE_ARCH_MMAP_RND_BITS=y
+CONFIG_HAVE_EXIT_THREAD=y
+CONFIG_ARCH_MMAP_RND_BITS=8
+CONFIG_PAGE_SIZE_LESS_THAN_64KB=y
+CONFIG_PAGE_SIZE_LESS_THAN_256KB=y
+CONFIG_ISA_BUS_API=y
+CONFIG_CLONE_BACKWARDS=y
+CONFIG_OLD_SIGSUSPEND3=y
+CONFIG_OLD_SIGACTION=y
+CONFIG_COMPAT_32BIT_TIME=y
+CONFIG_HAVE_ARCH_RANDOMIZE_KSTACK_OFFSET=y
+CONFIG_RANDOMIZE_KSTACK_OFFSET=y
+# CONFIG_RANDOMIZE_KSTACK_OFFSET_DEFAULT is not set
+CONFIG_ARCH_HAS_STRICT_KERNEL_RWX=y
+CONFIG_STRICT_KERNEL_RWX=y
+CONFIG_ARCH_HAS_STRICT_MODULE_RWX=y
+CONFIG_STRICT_MODULE_RWX=y
+CONFIG_HAVE_ARCH_PREL32_RELOCATIONS=y
+# CONFIG_LOCK_EVENT_COUNTS is not set
+CONFIG_ARCH_HAS_MEM_ENCRYPT=y
+CONFIG_HAVE_STATIC_CALL=y
+CONFIG_HAVE_PREEMPT_DYNAMIC=y
+CONFIG_HAVE_PREEMPT_DYNAMIC_CALL=y
+CONFIG_ARCH_WANT_LD_ORPHAN_WARN=y
+CONFIG_ARCH_SUPPORTS_DEBUG_PAGEALLOC=y
+CONFIG_ARCH_SPLIT_ARG64=y
+CONFIG_ARCH_HAS_PARANOID_L1D_FLUSH=y
+CONFIG_DYNAMIC_SIGFRAME=y
+
+#
+# GCOV-based kernel profiling
+#
+# CONFIG_GCOV_KERNEL is not set
+CONFIG_ARCH_HAS_GCOV_PROFILE_ALL=y
+# end of GCOV-based kernel profiling
+
+CONFIG_HAVE_GCC_PLUGINS=y
+CONFIG_GCC_PLUGINS=y
+# CONFIG_GCC_PLUGIN_LATENT_ENTROPY is not set
+CONFIG_FUNCTION_ALIGNMENT_4B=y
+CONFIG_FUNCTION_ALIGNMENT_16B=y
+CONFIG_FUNCTION_ALIGNMENT=16
+# end of General architecture-dependent options
+
+CONFIG_RT_MUTEXES=y
+CONFIG_BASE_SMALL=1
+CONFIG_MODULES=y
+# CONFIG_MODULE_DEBUG is not set
+# CONFIG_MODULE_FORCE_LOAD is not set
+CONFIG_MODULE_UNLOAD=y
+CONFIG_MODULE_FORCE_UNLOAD=y
+# CONFIG_MODULE_UNLOAD_TAINT_TRACKING is not set
+# CONFIG_MODVERSIONS is not set
+# CONFIG_MODULE_SRCVERSION_ALL is not set
+# CONFIG_MODULE_SIG is not set
+CONFIG_MODULE_COMPRESS_NONE=y
+# CONFIG_MODULE_COMPRESS_GZIP is not set
+# CONFIG_MODULE_COMPRESS_XZ is not set
+# CONFIG_MODULE_COMPRESS_ZSTD is not set
+CONFIG_MODULE_ALLOW_MISSING_NAMESPACE_IMPORTS=y
+CONFIG_MODPROBE_PATH="/sbin/modprobe"
+CONFIG_TRIM_UNUSED_KSYMS=y
+CONFIG_UNUSED_KSYMS_WHITELIST=""
+CONFIG_MODULES_TREE_LOOKUP=y
+# CONFIG_BLOCK is not set
+CONFIG_ASN1=y
+CONFIG_UNINLINE_SPIN_UNLOCK=y
+CONFIG_ARCH_SUPPORTS_ATOMIC_RMW=y
+CONFIG_ARCH_USE_QUEUED_SPINLOCKS=y
+CONFIG_ARCH_USE_QUEUED_RWLOCKS=y
+CONFIG_ARCH_HAS_NON_OVERLAPPING_ADDRESS_SPACE=y
+CONFIG_ARCH_HAS_SYNC_CORE_BEFORE_USERMODE=y
+CONFIG_ARCH_HAS_SYSCALL_WRAPPER=y
+CONFIG_FREEZER=y
+
+#
+# Executable file formats
+#
+CONFIG_BINFMT_ELF=y
+CONFIG_ELFCORE=y
+CONFIG_BINFMT_SCRIPT=y
+# CONFIG_BINFMT_MISC is not set
+# CONFIG_COREDUMP is not set
+# end of Executable file formats
+
+#
+# Memory Management options
+#
+
+#
+# SLAB allocator options
+#
+# CONFIG_SLAB is not set
+CONFIG_SLUB=y
+# CONFIG_SLUB_TINY is not set
+# CONFIG_SLAB_MERGE_DEFAULT is not set
+CONFIG_SLAB_FREELIST_RANDOM=y
+CONFIG_SLAB_FREELIST_HARDENED=y
+# CONFIG_SLUB_STATS is not set
+# end of SLAB allocator options
+
+CONFIG_SHUFFLE_PAGE_ALLOCATOR=y
+CONFIG_COMPAT_BRK=y
+CONFIG_SELECT_MEMORY_MODEL=y
+# CONFIG_FLATMEM_MANUAL is not set
+CONFIG_SPARSEMEM_MANUAL=y
+CONFIG_SPARSEMEM=y
+CONFIG_SPARSEMEM_STATIC=y
+CONFIG_HAVE_FAST_GUP=y
+CONFIG_MEMORY_ISOLATION=y
+CONFIG_EXCLUSIVE_SYSTEM_RAM=y
+CONFIG_SPLIT_PTLOCK_CPUS=4
+CONFIG_COMPACTION=y
+CONFIG_COMPACT_UNEVICTABLE_DEFAULT=1
+CONFIG_PAGE_REPORTING=y
+CONFIG_MIGRATION=y
+CONFIG_CONTIG_ALLOC=y
+CONFIG_MMU_NOTIFIER=y
+# CONFIG_KSM is not set
+CONFIG_DEFAULT_MMAP_MIN_ADDR=4096
+CONFIG_ARCH_WANT_GENERAL_HUGETLB=y
+CONFIG_TRANSPARENT_HUGEPAGE=y
+# CONFIG_TRANSPARENT_HUGEPAGE_ALWAYS is not set
+CONFIG_TRANSPARENT_HUGEPAGE_MADVISE=y
+CONFIG_READ_ONLY_THP_FOR_FS=y
+CONFIG_NEED_PER_CPU_KM=y
+CONFIG_NEED_PER_CPU_EMBED_FIRST_CHUNK=y
+CONFIG_NEED_PER_CPU_PAGE_FIRST_CHUNK=y
+CONFIG_HAVE_SETUP_PER_CPU_AREA=y
+CONFIG_CMA=y
+CONFIG_CMA_DEBUG=y
+# CONFIG_CMA_DEBUGFS is not set
+# CONFIG_CMA_SYSFS is not set
+CONFIG_CMA_AREAS=7
+CONFIG_GENERIC_EARLY_IOREMAP=y
+# CONFIG_IDLE_PAGE_TRACKING is not set
+CONFIG_ARCH_HAS_CACHE_LINE_SIZE=y
+CONFIG_ARCH_HAS_CURRENT_STACK_POINTER=y
+CONFIG_ARCH_HAS_ZONE_DMA_SET=y
+CONFIG_ZONE_DMA=y
+CONFIG_VMAP_PFN=y
+CONFIG_VM_EVENT_COUNTERS=y
+CONFIG_PERCPU_STATS=y
+# CONFIG_GUP_TEST is not set
+# CONFIG_DMAPOOL_TEST is not set
+CONFIG_ARCH_HAS_PTE_SPECIAL=y
+CONFIG_MAPPING_DIRTY_HELPERS=y
+CONFIG_KMAP_LOCAL=y
+CONFIG_SECRETMEM=y
+# CONFIG_USERFAULTFD is not set
+
+#
+# Data Access Monitoring
+#
+# CONFIG_DAMON is not set
+# end of Data Access Monitoring
+# end of Memory Management options
+
+CONFIG_NET=y
+CONFIG_SKB_EXTENSIONS=y
+
+#
+# Networking options
+#
+CONFIG_PACKET=y
+# CONFIG_PACKET_DIAG is not set
+CONFIG_UNIX=y
+CONFIG_UNIX_SCM=y
+CONFIG_AF_UNIX_OOB=y
+# CONFIG_UNIX_DIAG is not set
+# CONFIG_TLS is not set
+# CONFIG_XFRM_USER is not set
+# CONFIG_NET_KEY is not set
+CONFIG_NET_HANDSHAKE=y
+CONFIG_INET=y
+# CONFIG_IP_MULTICAST is not set
+# CONFIG_IP_ADVANCED_ROUTER is not set
+CONFIG_IP_PNP=y
+CONFIG_IP_PNP_DHCP=y
+# CONFIG_IP_PNP_BOOTP is not set
+# CONFIG_IP_PNP_RARP is not set
+# CONFIG_NET_IPIP is not set
+# CONFIG_NET_IPGRE_DEMUX is not set
+CONFIG_NET_IP_TUNNEL=y
+# CONFIG_SYN_COOKIES is not set
+# CONFIG_NET_IPVTI is not set
+# CONFIG_NET_FOU is not set
+# CONFIG_NET_FOU_IP_TUNNELS is not set
+# CONFIG_INET_AH is not set
+# CONFIG_INET_ESP is not set
+# CONFIG_INET_IPCOMP is not set
+CONFIG_INET_TABLE_PERTURB_ORDER=16
+CONFIG_INET_TUNNEL=y
+CONFIG_INET_DIAG=y
+CONFIG_INET_TCP_DIAG=y
+# CONFIG_INET_UDP_DIAG is not set
+# CONFIG_INET_RAW_DIAG is not set
+# CONFIG_INET_DIAG_DESTROY is not set
+# CONFIG_TCP_CONG_ADVANCED is not set
+CONFIG_TCP_CONG_CUBIC=y
+CONFIG_DEFAULT_TCP_CONG="cubic"
+# CONFIG_TCP_MD5SIG is not set
+CONFIG_IPV6=y
+# CONFIG_IPV6_ROUTER_PREF is not set
+# CONFIG_IPV6_OPTIMISTIC_DAD is not set
+# CONFIG_INET6_AH is not set
+# CONFIG_INET6_ESP is not set
+# CONFIG_INET6_IPCOMP is not set
+# CONFIG_IPV6_MIP6 is not set
+# CONFIG_IPV6_VTI is not set
+CONFIG_IPV6_SIT=y
+# CONFIG_IPV6_SIT_6RD is not set
+CONFIG_IPV6_NDISC_NODETYPE=y
+# CONFIG_IPV6_TUNNEL is not set
+# CONFIG_IPV6_MULTIPLE_TABLES is not set
+# CONFIG_IPV6_MROUTE is not set
+# CONFIG_IPV6_SEG6_LWTUNNEL is not set
+# CONFIG_IPV6_SEG6_HMAC is not set
+# CONFIG_IPV6_RPL_LWTUNNEL is not set
+# CONFIG_IPV6_IOAM6_LWTUNNEL is not set
+# CONFIG_NETLABEL is not set
+CONFIG_MPTCP=y
+CONFIG_INET_MPTCP_DIAG=y
+CONFIG_MPTCP_IPV6=y
+# CONFIG_NETWORK_SECMARK is not set
+CONFIG_NET_PTP_CLASSIFY=y
+# CONFIG_NETWORK_PHY_TIMESTAMPING is not set
+# CONFIG_NETFILTER is not set
+# CONFIG_BPFILTER is not set
+# CONFIG_IP_DCCP is not set
+# CONFIG_IP_SCTP is not set
+# CONFIG_RDS is not set
+# CONFIG_TIPC is not set
+# CONFIG_ATM is not set
+# CONFIG_L2TP is not set
+# CONFIG_BRIDGE is not set
+# CONFIG_NET_DSA is not set
+# CONFIG_VLAN_8021Q is not set
+# CONFIG_LLC2 is not set
+# CONFIG_ATALK is not set
+# CONFIG_X25 is not set
+# CONFIG_LAPB is not set
+# CONFIG_PHONET is not set
+# CONFIG_6LOWPAN is not set
+# CONFIG_IEEE802154 is not set
+# CONFIG_NET_SCHED is not set
+# CONFIG_DCB is not set
+CONFIG_DNS_RESOLVER=m
+# CONFIG_BATMAN_ADV is not set
+# CONFIG_OPENVSWITCH is not set
+# CONFIG_VSOCKETS is not set
+# CONFIG_NETLINK_DIAG is not set
+# CONFIG_MPLS is not set
+# CONFIG_NET_NSH is not set
+# CONFIG_HSR is not set
+# CONFIG_NET_SWITCHDEV is not set
+# CONFIG_NET_L3_MASTER_DEV is not set
+# CONFIG_QRTR is not set
+# CONFIG_NET_NCSI is not set
+CONFIG_MAX_SKB_FRAGS=17
+# CONFIG_CGROUP_NET_PRIO is not set
+# CONFIG_CGROUP_NET_CLASSID is not set
+CONFIG_NET_RX_BUSY_POLL=y
+CONFIG_BQL=y
+
+#
+# Network testing
+#
+# CONFIG_NET_PKTGEN is not set
+# CONFIG_NET_DROP_MONITOR is not set
+# end of Network testing
+# end of Networking options
+
+# CONFIG_HAMRADIO is not set
+# CONFIG_CAN is not set
+# CONFIG_BT is not set
+# CONFIG_AF_RXRPC is not set
+# CONFIG_AF_KCM is not set
+# CONFIG_MCTP is not set
+CONFIG_WIRELESS=y
+# CONFIG_CFG80211 is not set
+
+#
+# CFG80211 needs to be enabled for MAC80211
+#
+CONFIG_MAC80211_STA_HASH_MAX_SIZE=0
+# CONFIG_RFKILL is not set
+CONFIG_NET_9P=y
+CONFIG_NET_9P_FD=y
+CONFIG_NET_9P_VIRTIO=y
+# CONFIG_NET_9P_DEBUG is not set
+# CONFIG_CAIF is not set
+# CONFIG_CEPH_LIB is not set
+# CONFIG_NFC is not set
+# CONFIG_PSAMPLE is not set
+# CONFIG_NET_IFE is not set
+# CONFIG_LWTUNNEL is not set
+CONFIG_DST_CACHE=y
+CONFIG_GRO_CELLS=y
+CONFIG_FAILOVER=m
+CONFIG_ETHTOOL_NETLINK=y
+
+#
+# Device Drivers
+#
+CONFIG_HAVE_EISA=y
+# CONFIG_EISA is not set
+CONFIG_HAVE_PCI=y
+CONFIG_PCI=y
+CONFIG_PCI_DOMAINS=y
+CONFIG_PCIEPORTBUS=y
+CONFIG_HOTPLUG_PCI_PCIE=y
+CONFIG_PCIEAER=y
+CONFIG_PCIEAER_INJECT=m
+# CONFIG_PCIE_ECRC is not set
+# CONFIG_PCIEASPM is not set
+# CONFIG_PCIE_DPC is not set
+CONFIG_PCIE_PTM=y
+CONFIG_PCI_MSI=y
+CONFIG_PCI_QUIRKS=y
+# CONFIG_PCI_DEBUG is not set
+CONFIG_PCI_REALLOC_ENABLE_AUTO=y
+CONFIG_PCI_STUB=m
+# CONFIG_PCI_PF_STUB is not set
+CONFIG_PCI_ATS=y
+CONFIG_PCI_ECAM=y
+CONFIG_PCI_LOCKLESS_CONFIG=y
+CONFIG_PCI_IOV=y
+CONFIG_PCI_PRI=y
+CONFIG_PCI_PASID=y
+CONFIG_PCI_LABEL=y
+# CONFIG_PCIE_BUS_TUNE_OFF is not set
+CONFIG_PCIE_BUS_DEFAULT=y
+# CONFIG_PCIE_BUS_SAFE is not set
+# CONFIG_PCIE_BUS_PERFORMANCE is not set
+# CONFIG_PCIE_BUS_PEER2PEER is not set
+# CONFIG_VGA_ARB is not set
+CONFIG_HOTPLUG_PCI=y
+# CONFIG_HOTPLUG_PCI_ACPI is not set
+CONFIG_HOTPLUG_PCI_CPCI=y
+CONFIG_HOTPLUG_PCI_CPCI_ZT5550=y
+# CONFIG_HOTPLUG_PCI_CPCI_GENERIC is not set
+CONFIG_HOTPLUG_PCI_SHPC=y
+
+#
+# PCI controller drivers
+#
+# CONFIG_PCI_FTPCI100 is not set
+CONFIG_PCI_HOST_COMMON=y
+# CONFIG_PCI_HOST_GENERIC is not set
+CONFIG_PCIE_MICROCHIP_HOST=y
+# CONFIG_PCIE_XILINX is not set
+
+#
+# Cadence-based PCIe controllers
+#
+CONFIG_PCIE_CADENCE=y
+CONFIG_PCIE_CADENCE_HOST=y
+CONFIG_PCIE_CADENCE_EP=y
+# CONFIG_PCIE_CADENCE_PLAT_HOST is not set
+# CONFIG_PCIE_CADENCE_PLAT_EP is not set
+CONFIG_PCI_J721E=y
+CONFIG_PCI_J721E_HOST=y
+CONFIG_PCI_J721E_EP=y
+# end of Cadence-based PCIe controllers
+
+#
+# DesignWare-based PCIe controllers
+#
+CONFIG_PCIE_DW=y
+CONFIG_PCIE_DW_HOST=y
+CONFIG_PCIE_DW_EP=y
+CONFIG_PCI_MESON=y
+CONFIG_PCIE_INTEL_GW=y
+CONFIG_PCIE_DW_PLAT=y
+# CONFIG_PCIE_DW_PLAT_HOST is not set
+CONFIG_PCIE_DW_PLAT_EP=y
+# end of DesignWare-based PCIe controllers
+
+#
+# Mobiveil-based PCIe controllers
+#
+# end of Mobiveil-based PCIe controllers
+# end of PCI controller drivers
+
+#
+# PCI Endpoint
+#
+CONFIG_PCI_ENDPOINT=y
+# CONFIG_PCI_ENDPOINT_CONFIGFS is not set
+# CONFIG_PCI_EPF_TEST is not set
+# CONFIG_PCI_EPF_NTB is not set
+# CONFIG_PCI_EPF_VNTB is not set
+# end of PCI Endpoint
+
+#
+# PCI switch controller drivers
+#
+CONFIG_PCI_SW_SWITCHTEC=y
+# end of PCI switch controller drivers
+
+# CONFIG_CXL_BUS is not set
+# CONFIG_PCCARD is not set
+# CONFIG_RAPIDIO is not set
+
+#
+# Generic Driver Options
+#
+CONFIG_AUXILIARY_BUS=y
+CONFIG_UEVENT_HELPER=y
+CONFIG_UEVENT_HELPER_PATH=""
+CONFIG_DEVTMPFS=y
+# CONFIG_DEVTMPFS_MOUNT is not set
+# CONFIG_DEVTMPFS_SAFE is not set
+# CONFIG_STANDALONE is not set
+CONFIG_PREVENT_FIRMWARE_BUILD=y
+
+#
+# Firmware loader
+#
+CONFIG_FW_LOADER=y
+CONFIG_FW_LOADER_PAGED_BUF=y
+CONFIG_EXTRA_FIRMWARE=""
+# CONFIG_FW_LOADER_USER_HELPER is not set
+CONFIG_FW_LOADER_COMPRESS=y
+CONFIG_FW_LOADER_COMPRESS_XZ=y
+# CONFIG_FW_LOADER_COMPRESS_ZSTD is not set
+# CONFIG_FW_UPLOAD is not set
+# end of Firmware loader
+
+CONFIG_WANT_DEV_COREDUMP=y
+# CONFIG_ALLOW_DEV_COREDUMP is not set
+# CONFIG_DEBUG_DRIVER is not set
+# CONFIG_DEBUG_DEVRES is not set
+# CONFIG_DEBUG_TEST_DRIVER_REMOVE is not set
+# CONFIG_TEST_ASYNC_DRIVER_PROBE is not set
+CONFIG_GENERIC_CPU_AUTOPROBE=y
+CONFIG_GENERIC_CPU_VULNERABILITIES=y
+CONFIG_REGMAP=y
+CONFIG_REGMAP_I2C=y
+CONFIG_REGMAP_SPMI=y
+CONFIG_REGMAP_W1=m
+CONFIG_REGMAP_MMIO=y
+CONFIG_REGMAP_IRQ=y
+CONFIG_REGMAP_SCCB=m
+CONFIG_REGMAP_I3C=m
+CONFIG_DMA_SHARED_BUFFER=y
+CONFIG_DMA_FENCE_TRACE=y
+# CONFIG_FW_DEVLINK_SYNC_STATE_TIMEOUT is not set
+# end of Generic Driver Options
+
+#
+# Bus devices
+#
+CONFIG_MHI_BUS=m
+# CONFIG_MHI_BUS_DEBUG is not set
+# CONFIG_MHI_BUS_PCI_GENERIC is not set
+# CONFIG_MHI_BUS_EP is not set
+# end of Bus devices
+
+# CONFIG_CONNECTOR is not set
+
+#
+# Firmware Drivers
+#
+
+#
+# ARM System Control and Management Interface Protocol
+#
+# end of ARM System Control and Management Interface Protocol
+
+CONFIG_EDD=y
+CONFIG_EDD_OFF=y
+# CONFIG_FIRMWARE_MEMMAP is not set
+CONFIG_DMIID=y
+CONFIG_DMI_SYSFS=y
+CONFIG_DMI_SCAN_MACHINE_NON_EFI_FALLBACK=y
+CONFIG_FW_CFG_SYSFS=y
+CONFIG_FW_CFG_SYSFS_CMDLINE=y
+# CONFIG_SYSFB_SIMPLEFB is not set
+# CONFIG_GOOGLE_FIRMWARE is not set
+
+#
+# Tegra firmware driver
+#
+# end of Tegra firmware driver
+# end of Firmware Drivers
+
+# CONFIG_GNSS is not set
+CONFIG_MTD=y
+# CONFIG_MTD_TESTS is not set
+
+#
+# Partition parsers
+#
+# CONFIG_MTD_AR7_PARTS is not set
+CONFIG_MTD_CMDLINE_PARTS=y
+# CONFIG_MTD_OF_PARTS is not set
+CONFIG_MTD_REDBOOT_PARTS=m
+CONFIG_MTD_REDBOOT_DIRECTORY_BLOCK=-1
+# CONFIG_MTD_REDBOOT_PARTS_UNALLOCATED is not set
+CONFIG_MTD_REDBOOT_PARTS_READONLY=y
+# end of Partition parsers
+
+#
+# User Modules And Translation Layers
+#
+CONFIG_MTD_OOPS=y
+CONFIG_MTD_PARTITIONED_MASTER=y
+
+#
+# RAM/ROM/Flash chip drivers
+#
+CONFIG_MTD_CFI=m
+# CONFIG_MTD_JEDECPROBE is not set
+CONFIG_MTD_GEN_PROBE=m
+# CONFIG_MTD_CFI_ADV_OPTIONS is not set
+CONFIG_MTD_MAP_BANK_WIDTH_1=y
+CONFIG_MTD_MAP_BANK_WIDTH_2=y
+CONFIG_MTD_MAP_BANK_WIDTH_4=y
+CONFIG_MTD_CFI_I1=y
+CONFIG_MTD_CFI_I2=y
+CONFIG_MTD_CFI_INTELEXT=m
+# CONFIG_MTD_CFI_AMDSTD is not set
+CONFIG_MTD_CFI_STAA=m
+CONFIG_MTD_CFI_UTIL=m
+CONFIG_MTD_RAM=y
+# CONFIG_MTD_ROM is not set
+CONFIG_MTD_ABSENT=y
+# end of RAM/ROM/Flash chip drivers
+
+#
+# Mapping drivers for chip access
+#
+CONFIG_MTD_COMPLEX_MAPPINGS=y
+CONFIG_MTD_PHYSMAP=m
+CONFIG_MTD_PHYSMAP_COMPAT=y
+CONFIG_MTD_PHYSMAP_START=0x8000000
+CONFIG_MTD_PHYSMAP_LEN=0
+CONFIG_MTD_PHYSMAP_BANKWIDTH=2
+# CONFIG_MTD_PHYSMAP_OF is not set
+CONFIG_MTD_PHYSMAP_GPIO_ADDR=y
+CONFIG_MTD_SBC_GXX=m
+CONFIG_MTD_PCI=m
+CONFIG_MTD_INTEL_VR_NOR=y
+CONFIG_MTD_PLATRAM=y
+# end of Mapping drivers for chip access
+
+#
+# Self-contained MTD device drivers
+#
+CONFIG_MTD_PMC551=y
+CONFIG_MTD_PMC551_BUGFIX=y
+CONFIG_MTD_PMC551_DEBUG=y
+# CONFIG_MTD_SLRAM is not set
+CONFIG_MTD_PHRAM=y
+CONFIG_MTD_MTDRAM=y
+CONFIG_MTDRAM_TOTAL_SIZE=4096
+CONFIG_MTDRAM_ERASE_SIZE=128
+
+#
+# Disk-On-Chip Device Drivers
+#
+# CONFIG_MTD_DOCG3 is not set
+# end of Self-contained MTD device drivers
+
+#
+# NAND
+#
+CONFIG_MTD_ONENAND=m
+CONFIG_MTD_ONENAND_VERIFY_WRITE=y
+# CONFIG_MTD_ONENAND_GENERIC is not set
+CONFIG_MTD_ONENAND_OTP=y
+# CONFIG_MTD_ONENAND_2X_PROGRAM is not set
+# CONFIG_MTD_RAW_NAND is not set
+
+#
+# ECC engine support
+#
+# CONFIG_MTD_NAND_ECC_SW_HAMMING is not set
+# CONFIG_MTD_NAND_ECC_SW_BCH is not set
+# CONFIG_MTD_NAND_ECC_MXIC is not set
+# end of ECC engine support
+# end of NAND
+
+#
+# LPDDR & LPDDR2 PCM memory drivers
+#
+CONFIG_MTD_LPDDR=y
+CONFIG_MTD_QINFO_PROBE=y
+# end of LPDDR & LPDDR2 PCM memory drivers
+
+CONFIG_MTD_UBI=y
+CONFIG_MTD_UBI_WL_THRESHOLD=4096
+CONFIG_MTD_UBI_BEB_LIMIT=20
+# CONFIG_MTD_UBI_FASTMAP is not set
+CONFIG_MTD_UBI_GLUEBI=y
+# CONFIG_MTD_HYPERBUS is not set
+CONFIG_DTC=y
+CONFIG_OF=y
+# CONFIG_OF_UNITTEST is not set
+CONFIG_OF_FLATTREE=y
+CONFIG_OF_PROMTREE=y
+CONFIG_OF_KOBJ=y
+CONFIG_OF_DYNAMIC=y
+CONFIG_OF_ADDRESS=y
+CONFIG_OF_IRQ=y
+CONFIG_OF_RESOLVE=y
+CONFIG_OF_OVERLAY=y
+CONFIG_ARCH_MIGHT_HAVE_PC_PARPORT=y
+CONFIG_PARPORT=y
+CONFIG_PARPORT_PC=y
+# CONFIG_PARPORT_SERIAL is not set
+# CONFIG_PARPORT_PC_FIFO is not set
+# CONFIG_PARPORT_PC_SUPERIO is not set
+CONFIG_PARPORT_1284=y
+CONFIG_PNP=y
+CONFIG_PNP_DEBUG_MESSAGES=y
+
+#
+# Protocols
+#
+CONFIG_PNPACPI=y
+
+#
+# NVME Support
+#
+# end of NVME Support
+
+#
+# Misc devices
+#
+CONFIG_AD525X_DPOT=y
+# CONFIG_AD525X_DPOT_I2C is not set
+# CONFIG_DUMMY_IRQ is not set
+# CONFIG_IBM_ASM is not set
+CONFIG_PHANTOM=y
+CONFIG_TIFM_CORE=m
+CONFIG_TIFM_7XX1=m
+CONFIG_ICS932S401=m
+CONFIG_ENCLOSURE_SERVICES=y
+CONFIG_CS5535_MFGPT=m
+CONFIG_CS5535_MFGPT_DEFAULT_IRQ=7
+CONFIG_CS5535_CLOCK_EVENT_SRC=m
+# CONFIG_HI6421V600_IRQ is not set
+CONFIG_HP_ILO=y
+CONFIG_APDS9802ALS=y
+# CONFIG_ISL29003 is not set
+CONFIG_ISL29020=m
+CONFIG_SENSORS_TSL2550=m
+CONFIG_SENSORS_BH1770=y
+CONFIG_SENSORS_APDS990X=m
+CONFIG_HMC6352=y
+CONFIG_DS1682=y
+CONFIG_PCH_PHUB=y
+CONFIG_SRAM=y
+# CONFIG_DW_XDATA_PCIE is not set
+# CONFIG_PCI_ENDPOINT_TEST is not set
+CONFIG_XILINX_SDFEC=m
+CONFIG_MISC_RTSX=m
+CONFIG_HISI_HIKEY_USB=m
+# CONFIG_VCPU_STALL_DETECTOR is not set
+CONFIG_C2PORT=y
+CONFIG_C2PORT_DURAMAR_2150=y
+
+#
+# EEPROM support
+#
+CONFIG_EEPROM_AT24=y
+# CONFIG_EEPROM_LEGACY is not set
+CONFIG_EEPROM_MAX6875=y
+CONFIG_EEPROM_93CX6=m
+# CONFIG_EEPROM_IDT_89HPESX is not set
+# CONFIG_EEPROM_EE1004 is not set
+# end of EEPROM support
+
+CONFIG_CB710_CORE=m
+CONFIG_CB710_DEBUG=y
+CONFIG_CB710_DEBUG_ASSUMPTIONS=y
+
+#
+# Texas Instruments shared transport line discipline
+#
+# CONFIG_TI_ST is not set
+# end of Texas Instruments shared transport line discipline
+
+# CONFIG_SENSORS_LIS3_I2C is not set
+CONFIG_ALTERA_STAPL=m
+CONFIG_INTEL_MEI=y
+CONFIG_INTEL_MEI_ME=y
+CONFIG_INTEL_MEI_TXE=m
+# CONFIG_INTEL_MEI_GSC is not set
+# CONFIG_INTEL_MEI_HDCP is not set
+CONFIG_INTEL_MEI_PXP=y
+# CONFIG_INTEL_MEI_GSC_PROXY is not set
+# CONFIG_VMWARE_VMCI is not set
+CONFIG_ECHO=m
+# CONFIG_BCM_VK is not set
+# CONFIG_MISC_ALCOR_PCI is not set
+# CONFIG_MISC_RTSX_PCI is not set
+CONFIG_MISC_RTSX_USB=m
+CONFIG_UACCE=m
+# CONFIG_PVPANIC is not set
+# CONFIG_GP_PCI1XXXX is not set
+# end of Misc devices
+
+#
+# SCSI device support
+#
+# end of SCSI device support
+
+# CONFIG_FUSION is not set
+
+#
+# IEEE 1394 (FireWire) support
+#
+CONFIG_FIREWIRE=y
+CONFIG_FIREWIRE_OHCI=y
+# CONFIG_FIREWIRE_NET is not set
+CONFIG_FIREWIRE_NOSY=y
+# end of IEEE 1394 (FireWire) support
+
+CONFIG_MACINTOSH_DRIVERS=y
+# CONFIG_MAC_EMUMOUSEBTN is not set
+CONFIG_NETDEVICES=y
+CONFIG_NET_CORE=y
+# CONFIG_BONDING is not set
+# CONFIG_DUMMY is not set
+# CONFIG_WIREGUARD is not set
+# CONFIG_EQUALIZER is not set
+# CONFIG_NET_TEAM is not set
+# CONFIG_MACVLAN is not set
+# CONFIG_IPVLAN is not set
+# CONFIG_VXLAN is not set
+# CONFIG_GENEVE is not set
+# CONFIG_BAREUDP is not set
+# CONFIG_GTP is not set
+# CONFIG_MACSEC is not set
+# CONFIG_NETCONSOLE is not set
+# CONFIG_TUN is not set
+# CONFIG_TUN_VNET_CROSS_LE is not set
+# CONFIG_VETH is not set
+CONFIG_VIRTIO_NET=m
+# CONFIG_NLMON is not set
+# CONFIG_MHI_NET is not set
+# CONFIG_ARCNET is not set
+CONFIG_ETHERNET=y
+CONFIG_NET_VENDOR_3COM=y
+# CONFIG_VORTEX is not set
+# CONFIG_TYPHOON is not set
+CONFIG_NET_VENDOR_ADAPTEC=y
+# CONFIG_ADAPTEC_STARFIRE is not set
+CONFIG_NET_VENDOR_AGERE=y
+# CONFIG_ET131X is not set
+CONFIG_NET_VENDOR_ALACRITECH=y
+# CONFIG_SLICOSS is not set
+CONFIG_NET_VENDOR_ALTEON=y
+# CONFIG_ACENIC is not set
+# CONFIG_ALTERA_TSE is not set
+CONFIG_NET_VENDOR_AMAZON=y
+# CONFIG_ENA_ETHERNET is not set
+# CONFIG_NET_VENDOR_AMD is not set
+CONFIG_NET_VENDOR_AQUANTIA=y
+# CONFIG_AQTION is not set
+CONFIG_NET_VENDOR_ARC=y
+CONFIG_NET_VENDOR_ASIX=y
+CONFIG_NET_VENDOR_ATHEROS=y
+# CONFIG_ATL2 is not set
+# CONFIG_ATL1 is not set
+# CONFIG_ATL1E is not set
+# CONFIG_ATL1C is not set
+# CONFIG_ALX is not set
+# CONFIG_CX_ECAT is not set
+CONFIG_NET_VENDOR_BROADCOM=y
+# CONFIG_B44 is not set
+# CONFIG_BCMGENET is not set
+# CONFIG_BNX2 is not set
+# CONFIG_CNIC is not set
+# CONFIG_TIGON3 is not set
+# CONFIG_BNX2X is not set
+# CONFIG_SYSTEMPORT is not set
+# CONFIG_BNXT is not set
+CONFIG_NET_VENDOR_CADENCE=y
+# CONFIG_MACB is not set
+CONFIG_NET_VENDOR_CAVIUM=y
+CONFIG_NET_VENDOR_CHELSIO=y
+# CONFIG_CHELSIO_T1 is not set
+# CONFIG_CHELSIO_T3 is not set
+# CONFIG_CHELSIO_T4 is not set
+# CONFIG_CHELSIO_T4VF is not set
+CONFIG_NET_VENDOR_CISCO=y
+# CONFIG_ENIC is not set
+CONFIG_NET_VENDOR_CORTINA=y
+# CONFIG_GEMINI_ETHERNET is not set
+CONFIG_NET_VENDOR_DAVICOM=y
+# CONFIG_DNET is not set
+CONFIG_NET_VENDOR_DEC=y
+# CONFIG_NET_TULIP is not set
+CONFIG_NET_VENDOR_DLINK=y
+# CONFIG_DL2K is not set
+# CONFIG_SUNDANCE is not set
+CONFIG_NET_VENDOR_EMULEX=y
+# CONFIG_BE2NET is not set
+CONFIG_NET_VENDOR_ENGLEDER=y
+# CONFIG_TSNEP is not set
+CONFIG_NET_VENDOR_EZCHIP=y
+# CONFIG_EZCHIP_NPS_MANAGEMENT_ENET is not set
+CONFIG_NET_VENDOR_FUNGIBLE=y
+# CONFIG_FUN_ETH is not set
+CONFIG_NET_VENDOR_GOOGLE=y
+# CONFIG_GVE is not set
+CONFIG_NET_VENDOR_HUAWEI=y
+# CONFIG_HINIC is not set
+CONFIG_NET_VENDOR_I825XX=y
+CONFIG_NET_VENDOR_INTEL=y
+# CONFIG_E100 is not set
+CONFIG_E1000=y
+# CONFIG_E1000E is not set
+# CONFIG_IGB is not set
+# CONFIG_IGBVF is not set
+# CONFIG_IXGBE is not set
+# CONFIG_IXGBEVF is not set
+# CONFIG_I40E is not set
+# CONFIG_I40EVF is not set
+# CONFIG_ICE is not set
+# CONFIG_FM10K is not set
+# CONFIG_IGC is not set
+# CONFIG_JME is not set
+CONFIG_NET_VENDOR_LITEX=y
+# CONFIG_LITEX_LITEETH is not set
+CONFIG_NET_VENDOR_MARVELL=y
+# CONFIG_MVMDIO is not set
+# CONFIG_SKGE is not set
+# CONFIG_SKY2 is not set
+CONFIG_NET_VENDOR_MELLANOX=y
+# CONFIG_MLX4_EN is not set
+# CONFIG_MLX5_CORE is not set
+# CONFIG_MLXSW_CORE is not set
+# CONFIG_MLXFW is not set
+CONFIG_NET_VENDOR_MICREL=y
+# CONFIG_KS8851_MLL is not set
+# CONFIG_KSZ884X_PCI is not set
+CONFIG_NET_VENDOR_MICROCHIP=y
+# CONFIG_LAN743X is not set
+# CONFIG_VCAP is not set
+CONFIG_NET_VENDOR_MICROSEMI=y
+CONFIG_NET_VENDOR_MICROSOFT=y
+CONFIG_NET_VENDOR_MYRI=y
+# CONFIG_MYRI10GE is not set
+# CONFIG_FEALNX is not set
+CONFIG_NET_VENDOR_NI=y
+# CONFIG_NI_XGE_MANAGEMENT_ENET is not set
+CONFIG_NET_VENDOR_NATSEMI=y
+# CONFIG_NATSEMI is not set
+# CONFIG_NS83820 is not set
+CONFIG_NET_VENDOR_NETERION=y
+# CONFIG_S2IO is not set
+CONFIG_NET_VENDOR_NETRONOME=y
+# CONFIG_NFP is not set
+CONFIG_NET_VENDOR_8390=y
+# CONFIG_NE2K_PCI is not set
+CONFIG_NET_VENDOR_NVIDIA=y
+# CONFIG_FORCEDETH is not set
+CONFIG_NET_VENDOR_OKI=y
+# CONFIG_PCH_GBE is not set
+# CONFIG_ETHOC is not set
+CONFIG_NET_VENDOR_PACKET_ENGINES=y
+# CONFIG_HAMACHI is not set
+# CONFIG_YELLOWFIN is not set
+CONFIG_NET_VENDOR_PENSANDO=y
+CONFIG_NET_VENDOR_QLOGIC=y
+# CONFIG_QLA3XXX is not set
+# CONFIG_QLCNIC is not set
+# CONFIG_NETXEN_NIC is not set
+# CONFIG_QED is not set
+CONFIG_NET_VENDOR_BROCADE=y
+# CONFIG_BNA is not set
+CONFIG_NET_VENDOR_QUALCOMM=y
+# CONFIG_QCOM_EMAC is not set
+# CONFIG_RMNET is not set
+CONFIG_NET_VENDOR_RDC=y
+# CONFIG_R6040 is not set
+CONFIG_NET_VENDOR_REALTEK=y
+# CONFIG_ATP is not set
+# CONFIG_8139CP is not set
+# CONFIG_8139TOO is not set
+# CONFIG_R8169 is not set
+CONFIG_NET_VENDOR_RENESAS=y
+CONFIG_NET_VENDOR_ROCKER=y
+CONFIG_NET_VENDOR_SAMSUNG=y
+# CONFIG_SXGBE_ETH is not set
+CONFIG_NET_VENDOR_SEEQ=y
+CONFIG_NET_VENDOR_SILAN=y
+# CONFIG_SC92031 is not set
+CONFIG_NET_VENDOR_SIS=y
+# CONFIG_SIS900 is not set
+# CONFIG_SIS190 is not set
+CONFIG_NET_VENDOR_SOLARFLARE=y
+# CONFIG_SFC is not set
+# CONFIG_SFC_FALCON is not set
+# CONFIG_SFC_SIENA is not set
+CONFIG_NET_VENDOR_SMSC=y
+# CONFIG_EPIC100 is not set
+# CONFIG_SMSC911X is not set
+# CONFIG_SMSC9420 is not set
+CONFIG_NET_VENDOR_SOCIONEXT=y
+CONFIG_NET_VENDOR_STMICRO=y
+# CONFIG_STMMAC_ETH is not set
+CONFIG_NET_VENDOR_SUN=y
+# CONFIG_HAPPYMEAL is not set
+# CONFIG_SUNGEM is not set
+# CONFIG_CASSINI is not set
+# CONFIG_NIU is not set
+CONFIG_NET_VENDOR_SYNOPSYS=y
+# CONFIG_DWC_XLGMAC is not set
+CONFIG_NET_VENDOR_TEHUTI=y
+# CONFIG_TEHUTI is not set
+CONFIG_NET_VENDOR_TI=y
+# CONFIG_TI_CPSW_PHY_SEL is not set
+# CONFIG_TLAN is not set
+CONFIG_NET_VENDOR_VERTEXCOM=y
+CONFIG_NET_VENDOR_VIA=y
+# CONFIG_VIA_RHINE is not set
+# CONFIG_VIA_VELOCITY is not set
+CONFIG_NET_VENDOR_WANGXUN=y
+# CONFIG_NGBE is not set
+# CONFIG_TXGBE is not set
+CONFIG_NET_VENDOR_WIZNET=y
+# CONFIG_WIZNET_W5100 is not set
+# CONFIG_WIZNET_W5300 is not set
+CONFIG_NET_VENDOR_XILINX=y
+# CONFIG_XILINX_EMACLITE is not set
+# CONFIG_XILINX_AXI_EMAC is not set
+# CONFIG_XILINX_LL_TEMAC is not set
+# CONFIG_FDDI is not set
+# CONFIG_HIPPI is not set
+# CONFIG_NET_SB1000 is not set
+# CONFIG_PHYLIB is not set
+# CONFIG_PSE_CONTROLLER is not set
+# CONFIG_MDIO_DEVICE is not set
+
+#
+# PCS device drivers
+#
+# end of PCS device drivers
+
+# CONFIG_PLIP is not set
+# CONFIG_PPP is not set
+# CONFIG_SLIP is not set
+
+#
+# Host-side USB support is needed for USB Network Adapter support
+#
+CONFIG_USB_NET_DRIVERS=m
+# CONFIG_USB_CATC is not set
+# CONFIG_USB_KAWETH is not set
+# CONFIG_USB_PEGASUS is not set
+# CONFIG_USB_RTL8150 is not set
+# CONFIG_USB_RTL8152 is not set
+# CONFIG_USB_LAN78XX is not set
+# CONFIG_USB_USBNET is not set
+# CONFIG_USB_IPHETH is not set
+CONFIG_WLAN=y
+CONFIG_WLAN_VENDOR_ADMTEK=y
+CONFIG_WLAN_VENDOR_ATH=y
+# CONFIG_ATH_DEBUG is not set
+# CONFIG_ATH5K_PCI is not set
+CONFIG_WLAN_VENDOR_ATMEL=y
+CONFIG_WLAN_VENDOR_BROADCOM=y
+CONFIG_WLAN_VENDOR_CISCO=y
+CONFIG_WLAN_VENDOR_INTEL=y
+CONFIG_WLAN_VENDOR_INTERSIL=y
+# CONFIG_HOSTAP is not set
+CONFIG_WLAN_VENDOR_MARVELL=y
+CONFIG_WLAN_VENDOR_MEDIATEK=y
+CONFIG_WLAN_VENDOR_MICROCHIP=y
+CONFIG_WLAN_VENDOR_PURELIFI=y
+CONFIG_WLAN_VENDOR_RALINK=y
+CONFIG_WLAN_VENDOR_REALTEK=y
+CONFIG_WLAN_VENDOR_RSI=y
+CONFIG_WLAN_VENDOR_SILABS=y
+CONFIG_WLAN_VENDOR_ST=y
+CONFIG_WLAN_VENDOR_TI=y
+CONFIG_WLAN_VENDOR_ZYDAS=y
+CONFIG_WLAN_VENDOR_QUANTENNA=y
+# CONFIG_WAN is not set
+
+#
+# Wireless WAN
+#
+# CONFIG_WWAN is not set
+# end of Wireless WAN
+
+# CONFIG_VMXNET3 is not set
+# CONFIG_FUJITSU_ES is not set
+# CONFIG_USB4_NET is not set
+# CONFIG_NETDEVSIM is not set
+CONFIG_NET_FAILOVER=m
+# CONFIG_ISDN is not set
+
+#
+# Input device support
+#
+CONFIG_INPUT=y
+CONFIG_INPUT_LEDS=m
+CONFIG_INPUT_FF_MEMLESS=m
+# CONFIG_INPUT_SPARSEKMAP is not set
+CONFIG_INPUT_MATRIXKMAP=m
+CONFIG_INPUT_VIVALDIFMAP=y
+
+#
+# Userland interfaces
+#
+CONFIG_INPUT_MOUSEDEV=m
+# CONFIG_INPUT_MOUSEDEV_PSAUX is not set
+CONFIG_INPUT_MOUSEDEV_SCREEN_X=1024
+CONFIG_INPUT_MOUSEDEV_SCREEN_Y=768
+CONFIG_INPUT_JOYDEV=m
+CONFIG_INPUT_EVDEV=m
+# CONFIG_INPUT_EVBUG is not set
+
+#
+# Input Device Drivers
+#
+CONFIG_INPUT_KEYBOARD=y
+# CONFIG_KEYBOARD_ADC is not set
+CONFIG_KEYBOARD_ADP5520=m
+CONFIG_KEYBOARD_ADP5588=m
+# CONFIG_KEYBOARD_ADP5589 is not set
+CONFIG_KEYBOARD_ATKBD=y
+# CONFIG_KEYBOARD_QT1050 is not set
+CONFIG_KEYBOARD_QT1070=m
+# CONFIG_KEYBOARD_QT2160 is not set
+CONFIG_KEYBOARD_DLINK_DIR685=m
+CONFIG_KEYBOARD_LKKBD=m
+CONFIG_KEYBOARD_GPIO=m
+CONFIG_KEYBOARD_GPIO_POLLED=m
+# CONFIG_KEYBOARD_TCA6416 is not set
+CONFIG_KEYBOARD_TCA8418=m
+CONFIG_KEYBOARD_MATRIX=m
+# CONFIG_KEYBOARD_LM8323 is not set
+CONFIG_KEYBOARD_LM8333=m
+CONFIG_KEYBOARD_MAX7359=m
+# CONFIG_KEYBOARD_MCS is not set
+CONFIG_KEYBOARD_MPR121=m
+# CONFIG_KEYBOARD_NEWTON is not set
+CONFIG_KEYBOARD_OPENCORES=m
+# CONFIG_KEYBOARD_PINEPHONE is not set
+# CONFIG_KEYBOARD_SAMSUNG is not set
+CONFIG_KEYBOARD_GOLDFISH_EVENTS=m
+# CONFIG_KEYBOARD_STOWAWAY is not set
+# CONFIG_KEYBOARD_SUNKBD is not set
+CONFIG_KEYBOARD_OMAP4=m
+CONFIG_KEYBOARD_TC3589X=m
+# CONFIG_KEYBOARD_TM2_TOUCHKEY is not set
+CONFIG_KEYBOARD_XTKBD=m
+# CONFIG_KEYBOARD_CAP11XX is not set
+CONFIG_KEYBOARD_BCM=m
+# CONFIG_KEYBOARD_CYPRESS_SF is not set
+# CONFIG_INPUT_MOUSE is not set
+CONFIG_INPUT_JOYSTICK=y
+CONFIG_JOYSTICK_ANALOG=m
+CONFIG_JOYSTICK_A3D=m
+CONFIG_JOYSTICK_ADC=m
+CONFIG_JOYSTICK_ADI=m
+CONFIG_JOYSTICK_COBRA=m
+CONFIG_JOYSTICK_GF2K=m
+CONFIG_JOYSTICK_GRIP=m
+CONFIG_JOYSTICK_GRIP_MP=m
+# CONFIG_JOYSTICK_GUILLEMOT is not set
+CONFIG_JOYSTICK_INTERACT=m
+# CONFIG_JOYSTICK_SIDEWINDER is not set
+# CONFIG_JOYSTICK_TMDC is not set
+# CONFIG_JOYSTICK_IFORCE is not set
+CONFIG_JOYSTICK_WARRIOR=m
+CONFIG_JOYSTICK_MAGELLAN=m
+CONFIG_JOYSTICK_SPACEORB=m
+CONFIG_JOYSTICK_SPACEBALL=m
+# CONFIG_JOYSTICK_STINGER is not set
+CONFIG_JOYSTICK_TWIDJOY=m
+CONFIG_JOYSTICK_ZHENHUA=m
+CONFIG_JOYSTICK_DB9=m
+CONFIG_JOYSTICK_GAMECON=m
+# CONFIG_JOYSTICK_TURBOGRAFX is not set
+# CONFIG_JOYSTICK_AS5011 is not set
+# CONFIG_JOYSTICK_JOYDUMP is not set
+CONFIG_JOYSTICK_XPAD=m
+# CONFIG_JOYSTICK_XPAD_FF is not set
+# CONFIG_JOYSTICK_XPAD_LEDS is not set
+CONFIG_JOYSTICK_WALKERA0701=m
+CONFIG_JOYSTICK_PXRC=m
+# CONFIG_JOYSTICK_QWIIC is not set
+CONFIG_JOYSTICK_FSIA6B=m
+# CONFIG_JOYSTICK_SENSEHAT is not set
+# CONFIG_INPUT_TABLET is not set
+# CONFIG_INPUT_TOUCHSCREEN is not set
+# CONFIG_INPUT_MISC is not set
+# CONFIG_RMI4_CORE is not set
+
+#
+# Hardware I/O ports
+#
+CONFIG_SERIO=y
+CONFIG_ARCH_MIGHT_HAVE_PC_SERIO=y
+CONFIG_SERIO_I8042=y
+CONFIG_SERIO_SERPORT=y
+CONFIG_SERIO_CT82C710=m
+CONFIG_SERIO_PARKBD=y
+CONFIG_SERIO_PCIPS2=y
+CONFIG_SERIO_LIBPS2=y
+CONFIG_SERIO_RAW=y
+# CONFIG_SERIO_ALTERA_PS2 is not set
+# CONFIG_SERIO_PS2MULT is not set
+CONFIG_SERIO_ARC_PS2=y
+CONFIG_SERIO_APBPS2=y
+CONFIG_SERIO_GPIO_PS2=m
+# CONFIG_USERIO is not set
+CONFIG_GAMEPORT=m
+CONFIG_GAMEPORT_NS558=m
+# CONFIG_GAMEPORT_L4 is not set
+CONFIG_GAMEPORT_EMU10K1=m
+CONFIG_GAMEPORT_FM801=m
+# end of Hardware I/O ports
+# end of Input device support
+
+#
+# Character devices
+#
+CONFIG_TTY=y
+# CONFIG_VT is not set
+CONFIG_UNIX98_PTYS=y
+# CONFIG_LEGACY_PTYS is not set
+CONFIG_LEGACY_TIOCSTI=y
+CONFIG_LDISC_AUTOLOAD=y
+
+#
+# Serial drivers
+#
+CONFIG_SERIAL_EARLYCON=y
+CONFIG_SERIAL_8250=y
+# CONFIG_SERIAL_8250_DEPRECATED_OPTIONS is not set
+CONFIG_SERIAL_8250_PNP=y
+# CONFIG_SERIAL_8250_16550A_VARIANTS is not set
+# CONFIG_SERIAL_8250_FINTEK is not set
+CONFIG_SERIAL_8250_CONSOLE=y
+CONFIG_SERIAL_8250_PCILIB=y
+CONFIG_SERIAL_8250_PCI=m
+CONFIG_SERIAL_8250_EXAR=m
+CONFIG_SERIAL_8250_NR_UARTS=4
+CONFIG_SERIAL_8250_RUNTIME_UARTS=4
+# CONFIG_SERIAL_8250_EXTENDED is not set
+# CONFIG_SERIAL_8250_PCI1XXXX is not set
+CONFIG_SERIAL_8250_DWLIB=y
+CONFIG_SERIAL_8250_DW=y
+# CONFIG_SERIAL_8250_RT288X is not set
+# CONFIG_SERIAL_8250_LPSS is not set
+CONFIG_SERIAL_8250_MID=y
+CONFIG_SERIAL_8250_PERICOM=y
+CONFIG_SERIAL_OF_PLATFORM=y
+
+#
+# Non-8250 serial port support
+#
+CONFIG_SERIAL_UARTLITE=m
+CONFIG_SERIAL_UARTLITE_NR_UARTS=1
+CONFIG_SERIAL_CORE=y
+CONFIG_SERIAL_CORE_CONSOLE=y
+CONFIG_SERIAL_JSM=m
+CONFIG_SERIAL_SIFIVE=y
+CONFIG_SERIAL_SIFIVE_CONSOLE=y
+CONFIG_SERIAL_LANTIQ=y
+# CONFIG_SERIAL_LANTIQ_CONSOLE is not set
+# CONFIG_SERIAL_SCCNXP is not set
+# CONFIG_SERIAL_SC16IS7XX is not set
+# CONFIG_SERIAL_TIMBERDALE is not set
+CONFIG_SERIAL_ALTERA_JTAGUART=m
+CONFIG_SERIAL_ALTERA_UART=y
+CONFIG_SERIAL_ALTERA_UART_MAXPORTS=4
+CONFIG_SERIAL_ALTERA_UART_BAUDRATE=115200
+# CONFIG_SERIAL_ALTERA_UART_CONSOLE is not set
+# CONFIG_SERIAL_PCH_UART is not set
+CONFIG_SERIAL_XILINX_PS_UART=m
+CONFIG_SERIAL_ARC=m
+CONFIG_SERIAL_ARC_NR_PORTS=1
+CONFIG_SERIAL_RP2=m
+CONFIG_SERIAL_RP2_NR_UARTS=32
+CONFIG_SERIAL_FSL_LPUART=y
+# CONFIG_SERIAL_FSL_LPUART_CONSOLE is not set
+# CONFIG_SERIAL_FSL_LINFLEXUART is not set
+CONFIG_SERIAL_CONEXANT_DIGICOLOR=m
+CONFIG_SERIAL_SPRD=m
+# end of Serial drivers
+
+CONFIG_SERIAL_MCTRL_GPIO=y
+CONFIG_SERIAL_NONSTANDARD=y
+CONFIG_MOXA_INTELLIO=m
+CONFIG_MOXA_SMARTIO=m
+CONFIG_SYNCLINK_GT=y
+# CONFIG_N_HDLC is not set
+# CONFIG_GOLDFISH_TTY is not set
+# CONFIG_N_GSM is not set
+# CONFIG_NOZOMI is not set
+# CONFIG_NULL_TTY is not set
+# CONFIG_RPMSG_TTY is not set
+# CONFIG_SERIAL_DEV_BUS is not set
+CONFIG_TTY_PRINTK=m
+CONFIG_TTY_PRINTK_LEVEL=6
+CONFIG_PRINTER=y
+CONFIG_LP_CONSOLE=y
+# CONFIG_PPDEV is not set
+# CONFIG_VIRTIO_CONSOLE is not set
+# CONFIG_IPMI_HANDLER is not set
+# CONFIG_SSIF_IPMI_BMC is not set
+# CONFIG_IPMB_DEVICE_INTERFACE is not set
+CONFIG_HW_RANDOM=y
+# CONFIG_HW_RANDOM_TIMERIOMEM is not set
+# CONFIG_HW_RANDOM_INTEL is not set
+# CONFIG_HW_RANDOM_AMD is not set
+CONFIG_HW_RANDOM_BA431=m
+CONFIG_HW_RANDOM_GEODE=y
+# CONFIG_HW_RANDOM_VIA is not set
+CONFIG_HW_RANDOM_VIRTIO=y
+CONFIG_HW_RANDOM_CCTRNG=y
+CONFIG_HW_RANDOM_XIPHERA=y
+# CONFIG_APPLICOM is not set
+CONFIG_SONYPI=m
+# CONFIG_MWAVE is not set
+CONFIG_PC8736x_GPIO=y
+CONFIG_NSC_GPIO=y
+# CONFIG_DEVMEM is not set
+CONFIG_NVRAM=m
+CONFIG_DEVPORT=y
+# CONFIG_HPET is not set
+CONFIG_HANGCHECK_TIMER=y
+CONFIG_TCG_TPM=y
+# CONFIG_HW_RANDOM_TPM is not set
+CONFIG_TCG_TIS_CORE=m
+CONFIG_TCG_TIS=m
+# CONFIG_TCG_TIS_I2C is not set
+# CONFIG_TCG_TIS_I2C_CR50 is not set
+CONFIG_TCG_TIS_I2C_ATMEL=m
+# CONFIG_TCG_TIS_I2C_INFINEON is not set
+CONFIG_TCG_TIS_I2C_NUVOTON=y
+CONFIG_TCG_NSC=y
+# CONFIG_TCG_ATMEL is not set
+# CONFIG_TCG_INFINEON is not set
+# CONFIG_TCG_CRB is not set
+CONFIG_TCG_VTPM_PROXY=y
+CONFIG_TCG_TIS_ST33ZP24=m
+CONFIG_TCG_TIS_ST33ZP24_I2C=m
+# CONFIG_TELCLOCK is not set
+CONFIG_XILLYBUS_CLASS=m
+CONFIG_XILLYBUS=m
+# CONFIG_XILLYBUS_PCIE is not set
+CONFIG_XILLYBUS_OF=m
+# CONFIG_XILLYUSB is not set
+# end of Character devices
+
+#
+# I2C support
+#
+CONFIG_I2C=y
+CONFIG_ACPI_I2C_OPREGION=y
+CONFIG_I2C_BOARDINFO=y
+# CONFIG_I2C_COMPAT is not set
+CONFIG_I2C_CHARDEV=y
+CONFIG_I2C_MUX=y
+
+#
+# Multiplexer I2C Chip support
+#
+CONFIG_I2C_ARB_GPIO_CHALLENGE=y
+# CONFIG_I2C_MUX_GPIO is not set
+CONFIG_I2C_MUX_GPMUX=y
+# CONFIG_I2C_MUX_LTC4306 is not set
+# CONFIG_I2C_MUX_PCA9541 is not set
+CONFIG_I2C_MUX_PCA954x=y
+# CONFIG_I2C_MUX_PINCTRL is not set
+# CONFIG_I2C_MUX_REG is not set
+# CONFIG_I2C_DEMUX_PINCTRL is not set
+CONFIG_I2C_MUX_MLXCPLD=y
+# end of Multiplexer I2C Chip support
+
+CONFIG_I2C_HELPER_AUTO=y
+CONFIG_I2C_SMBUS=y
+CONFIG_I2C_ALGOBIT=y
+CONFIG_I2C_ALGOPCA=y
+
+#
+# I2C Hardware Bus support
+#
+
+#
+# PC SMBus host controller drivers
+#
+CONFIG_I2C_CCGX_UCSI=m
+CONFIG_I2C_ALI1535=m
+# CONFIG_I2C_ALI1563 is not set
+CONFIG_I2C_ALI15X3=m
+# CONFIG_I2C_AMD756 is not set
+# CONFIG_I2C_AMD8111 is not set
+# CONFIG_I2C_AMD_MP2 is not set
+CONFIG_I2C_I801=y
+# CONFIG_I2C_ISCH is not set
+CONFIG_I2C_ISMT=m
+CONFIG_I2C_PIIX4=m
+# CONFIG_I2C_NFORCE2 is not set
+# CONFIG_I2C_NVIDIA_GPU is not set
+CONFIG_I2C_SIS5595=m
+# CONFIG_I2C_SIS630 is not set
+CONFIG_I2C_SIS96X=m
+CONFIG_I2C_VIA=y
+# CONFIG_I2C_VIAPRO is not set
+
+#
+# ACPI drivers
+#
+# CONFIG_I2C_SCMI is not set
+
+#
+# I2C system bus drivers (mostly embedded / system-on-chip)
+#
+CONFIG_I2C_CBUS_GPIO=y
+CONFIG_I2C_DESIGNWARE_CORE=m
+CONFIG_I2C_DESIGNWARE_SLAVE=y
+# CONFIG_I2C_DESIGNWARE_PLATFORM is not set
+CONFIG_I2C_DESIGNWARE_PCI=m
+CONFIG_I2C_EG20T=m
+CONFIG_I2C_EMEV2=m
+CONFIG_I2C_GPIO=m
+CONFIG_I2C_GPIO_FAULT_INJECTOR=y
+# CONFIG_I2C_OCORES is not set
+CONFIG_I2C_PCA_PLATFORM=y
+# CONFIG_I2C_PXA is not set
+# CONFIG_I2C_RK3X is not set
+CONFIG_I2C_SIMTEC=m
+CONFIG_I2C_XILINX=y
+
+#
+# External I2C/SMBus adapter drivers
+#
+CONFIG_I2C_DIOLAN_U2C=m
+# CONFIG_I2C_DLN2 is not set
+# CONFIG_I2C_CP2615 is not set
+CONFIG_I2C_PARPORT=y
+# CONFIG_I2C_PCI1XXXX is not set
+CONFIG_I2C_ROBOTFUZZ_OSIF=m
+CONFIG_I2C_TAOS_EVM=y
+CONFIG_I2C_TINY_USB=m
+# CONFIG_I2C_VIPERBOARD is not set
+
+#
+# Other I2C/SMBus bus drivers
+#
+# CONFIG_SCx200_ACB is not set
+CONFIG_I2C_FSI=m
+# CONFIG_I2C_VIRTIO is not set
+# end of I2C Hardware Bus support
+
+# CONFIG_I2C_STUB is not set
+CONFIG_I2C_SLAVE=y
+# CONFIG_I2C_SLAVE_EEPROM is not set
+# CONFIG_I2C_SLAVE_TESTUNIT is not set
+# CONFIG_I2C_DEBUG_CORE is not set
+# CONFIG_I2C_DEBUG_ALGO is not set
+# CONFIG_I2C_DEBUG_BUS is not set
+# end of I2C support
+
+CONFIG_I3C=m
+CONFIG_CDNS_I3C_MASTER=m
+CONFIG_DW_I3C_MASTER=m
+# CONFIG_SVC_I3C_MASTER is not set
+# CONFIG_MIPI_I3C_HCI is not set
+# CONFIG_SPI is not set
+CONFIG_SPMI=y
+# CONFIG_SPMI_HISI3670 is not set
+# CONFIG_HSI is not set
+CONFIG_PPS=y
+# CONFIG_PPS_DEBUG is not set
+
+#
+# PPS clients support
+#
+# CONFIG_PPS_CLIENT_KTIMER is not set
+CONFIG_PPS_CLIENT_LDISC=m
+CONFIG_PPS_CLIENT_PARPORT=m
+CONFIG_PPS_CLIENT_GPIO=m
+
+#
+# PPS generators support
+#
+
+#
+# PTP clock support
+#
+CONFIG_PTP_1588_CLOCK=y
+CONFIG_PTP_1588_CLOCK_OPTIONAL=y
+
+#
+# Enable PHYLIB and NETWORK_PHY_TIMESTAMPING to see the additional clocks.
+#
+# CONFIG_PTP_1588_CLOCK_PCH is not set
+CONFIG_PTP_1588_CLOCK_KVM=y
+# CONFIG_PTP_1588_CLOCK_IDT82P33 is not set
+# CONFIG_PTP_1588_CLOCK_IDTCM is not set
+# CONFIG_PTP_1588_CLOCK_VMW is not set
+# CONFIG_PTP_1588_CLOCK_OCP is not set
+# end of PTP clock support
+
+CONFIG_PINCTRL=y
+CONFIG_GENERIC_PINCTRL_GROUPS=y
+CONFIG_PINMUX=y
+CONFIG_GENERIC_PINMUX_FUNCTIONS=y
+CONFIG_PINCONF=y
+CONFIG_GENERIC_PINCONF=y
+# CONFIG_DEBUG_PINCTRL is not set
+# CONFIG_PINCTRL_AMD is not set
+CONFIG_PINCTRL_AXP209=m
+# CONFIG_PINCTRL_CY8C95X0 is not set
+CONFIG_PINCTRL_EQUILIBRIUM=m
+# CONFIG_PINCTRL_MAX77620 is not set
+# CONFIG_PINCTRL_MCP23S08 is not set
+# CONFIG_PINCTRL_MICROCHIP_SGPIO is not set
+CONFIG_PINCTRL_OCELOT=y
+CONFIG_PINCTRL_SINGLE=y
+CONFIG_PINCTRL_STMFX=m
+CONFIG_PINCTRL_SX150X=y
+CONFIG_PINCTRL_MADERA=m
+CONFIG_PINCTRL_CS47L90=y
+
+#
+# Intel pinctrl drivers
+#
+# CONFIG_PINCTRL_BAYTRAIL is not set
+# CONFIG_PINCTRL_CHERRYVIEW is not set
+# CONFIG_PINCTRL_LYNXPOINT is not set
+# CONFIG_PINCTRL_ALDERLAKE is not set
+# CONFIG_PINCTRL_BROXTON is not set
+# CONFIG_PINCTRL_CANNONLAKE is not set
+# CONFIG_PINCTRL_CEDARFORK is not set
+# CONFIG_PINCTRL_DENVERTON is not set
+# CONFIG_PINCTRL_ELKHARTLAKE is not set
+# CONFIG_PINCTRL_EMMITSBURG is not set
+# CONFIG_PINCTRL_GEMINILAKE is not set
+# CONFIG_PINCTRL_ICELAKE is not set
+# CONFIG_PINCTRL_JASPERLAKE is not set
+# CONFIG_PINCTRL_LAKEFIELD is not set
+# CONFIG_PINCTRL_LEWISBURG is not set
+# CONFIG_PINCTRL_METEORLAKE is not set
+# CONFIG_PINCTRL_SUNRISEPOINT is not set
+# CONFIG_PINCTRL_TIGERLAKE is not set
+# end of Intel pinctrl drivers
+
+#
+# Renesas pinctrl drivers
+#
+# end of Renesas pinctrl drivers
+
+CONFIG_GPIOLIB=y
+CONFIG_GPIOLIB_FASTPATH_LIMIT=512
+CONFIG_OF_GPIO=y
+CONFIG_GPIO_ACPI=y
+CONFIG_GPIOLIB_IRQCHIP=y
+CONFIG_DEBUG_GPIO=y
+CONFIG_GPIO_SYSFS=y
+CONFIG_GPIO_CDEV=y
+CONFIG_GPIO_CDEV_V1=y
+CONFIG_GPIO_GENERIC=y
+
+#
+# Memory mapped GPIO drivers
+#
+CONFIG_GPIO_74XX_MMIO=y
+# CONFIG_GPIO_ALTERA is not set
+# CONFIG_GPIO_AMDPT is not set
+# CONFIG_GPIO_CADENCE is not set
+# CONFIG_GPIO_DWAPB is not set
+CONFIG_GPIO_EXAR=m
+CONFIG_GPIO_FTGPIO010=y
+CONFIG_GPIO_GENERIC_PLATFORM=m
+CONFIG_GPIO_GRGPIO=y
+CONFIG_GPIO_HLWD=y
+CONFIG_GPIO_LOGICVC=y
+# CONFIG_GPIO_MB86S7X is not set
+# CONFIG_GPIO_SIFIVE is not set
+CONFIG_GPIO_SYSCON=y
+# CONFIG_GPIO_VX855 is not set
+CONFIG_GPIO_XILINX=y
+# CONFIG_GPIO_AMD_FCH is not set
+# end of Memory mapped GPIO drivers
+
+#
+# Port-mapped I/O GPIO drivers
+#
+CONFIG_GPIO_F7188X=m
+CONFIG_GPIO_IT87=y
+# CONFIG_GPIO_SCH is not set
+CONFIG_GPIO_SCH311X=y
+CONFIG_GPIO_WINBOND=m
+CONFIG_GPIO_WS16C48=y
+# end of Port-mapped I/O GPIO drivers
+
+#
+# I2C GPIO expanders
+#
+CONFIG_GPIO_ADNP=y
+# CONFIG_GPIO_FXL6408 is not set
+# CONFIG_GPIO_GW_PLD is not set
+# CONFIG_GPIO_MAX7300 is not set
+CONFIG_GPIO_MAX732X=y
+# CONFIG_GPIO_MAX732X_IRQ is not set
+# CONFIG_GPIO_PCA953X is not set
+CONFIG_GPIO_PCA9570=m
+CONFIG_GPIO_PCF857X=y
+CONFIG_GPIO_TPIC2810=y
+# end of I2C GPIO expanders
+
+#
+# MFD GPIO expanders
+#
+# CONFIG_GPIO_ADP5520 is not set
+# CONFIG_GPIO_BD71815 is not set
+CONFIG_GPIO_BD71828=m
+CONFIG_GPIO_CS5535=m
+CONFIG_GPIO_DA9055=y
+CONFIG_GPIO_DLN2=m
+# CONFIG_GPIO_ELKHARTLAKE is not set
+# CONFIG_GPIO_JANZ_TTL is not set
+CONFIG_GPIO_LP3943=y
+CONFIG_GPIO_LP873X=m
+CONFIG_GPIO_MADERA=m
+CONFIG_GPIO_MAX77620=m
+CONFIG_GPIO_MAX77650=m
+# CONFIG_GPIO_TC3589X is not set
+CONFIG_GPIO_TPS65086=m
+CONFIG_GPIO_TPS65218=y
+# CONFIG_GPIO_TPS6586X is not set
+CONFIG_GPIO_TPS65912=m
+# CONFIG_GPIO_TQMX86 is not set
+CONFIG_GPIO_TWL6040=y
+CONFIG_GPIO_WM8994=y
+# end of MFD GPIO expanders
+
+#
+# PCI GPIO expanders
+#
+# CONFIG_GPIO_AMD8111 is not set
+# CONFIG_GPIO_BT8XX is not set
+# CONFIG_GPIO_ML_IOH is not set
+CONFIG_GPIO_PCH=y
+# CONFIG_GPIO_PCI_IDIO_16 is not set
+CONFIG_GPIO_PCIE_IDIO_24=y
+# CONFIG_GPIO_RDC321X is not set
+CONFIG_GPIO_SODAVILLE=y
+# end of PCI GPIO expanders
+
+#
+# USB GPIO expanders
+#
+CONFIG_GPIO_VIPERBOARD=m
+# end of USB GPIO expanders
+
+#
+# Virtual GPIO drivers
+#
+CONFIG_GPIO_AGGREGATOR=y
+# CONFIG_GPIO_LATCH is not set
+CONFIG_GPIO_MOCKUP=y
+# CONFIG_GPIO_VIRTIO is not set
+# CONFIG_GPIO_SIM is not set
+# end of Virtual GPIO drivers
+
+CONFIG_W1=m
+
+#
+# 1-wire Bus Masters
+#
+CONFIG_W1_MASTER_MATROX=m
+CONFIG_W1_MASTER_DS2490=m
+CONFIG_W1_MASTER_DS2482=m
+# CONFIG_W1_MASTER_GPIO is not set
+# CONFIG_W1_MASTER_SGI is not set
+# end of 1-wire Bus Masters
+
+#
+# 1-wire Slaves
+#
+CONFIG_W1_SLAVE_THERM=m
+CONFIG_W1_SLAVE_SMEM=m
+CONFIG_W1_SLAVE_DS2405=m
+CONFIG_W1_SLAVE_DS2408=m
+# CONFIG_W1_SLAVE_DS2408_READBACK is not set
+# CONFIG_W1_SLAVE_DS2413 is not set
+CONFIG_W1_SLAVE_DS2406=m
+# CONFIG_W1_SLAVE_DS2423 is not set
+# CONFIG_W1_SLAVE_DS2805 is not set
+# CONFIG_W1_SLAVE_DS2430 is not set
+CONFIG_W1_SLAVE_DS2431=m
+# CONFIG_W1_SLAVE_DS2433 is not set
+CONFIG_W1_SLAVE_DS2438=m
+CONFIG_W1_SLAVE_DS250X=m
+CONFIG_W1_SLAVE_DS2780=m
+CONFIG_W1_SLAVE_DS2781=m
+CONFIG_W1_SLAVE_DS28E04=m
+CONFIG_W1_SLAVE_DS28E17=m
+# end of 1-wire Slaves
+
+# CONFIG_POWER_RESET is not set
+CONFIG_POWER_SUPPLY=y
+# CONFIG_POWER_SUPPLY_DEBUG is not set
+# CONFIG_POWER_SUPPLY_HWMON is not set
+# CONFIG_GENERIC_ADC_BATTERY is not set
+# CONFIG_IP5XXX_POWER is not set
+# CONFIG_MAX8925_POWER is not set
+# CONFIG_TEST_POWER is not set
+# CONFIG_BATTERY_88PM860X is not set
+CONFIG_CHARGER_ADP5061=m
+CONFIG_BATTERY_CW2015=y
+CONFIG_BATTERY_DS2760=m
+CONFIG_BATTERY_DS2780=m
+# CONFIG_BATTERY_DS2781 is not set
+CONFIG_BATTERY_DS2782=y
+CONFIG_BATTERY_OLPC=m
+# CONFIG_BATTERY_SAMSUNG_SDI is not set
+CONFIG_BATTERY_SBS=y
+CONFIG_CHARGER_SBS=m
+CONFIG_MANAGER_SBS=m
+CONFIG_BATTERY_BQ27XXX=y
+# CONFIG_BATTERY_BQ27XXX_I2C is not set
+CONFIG_BATTERY_BQ27XXX_HDQ=m
+CONFIG_BATTERY_DA9030=m
+CONFIG_BATTERY_DA9150=m
+CONFIG_AXP20X_POWER=m
+CONFIG_AXP288_FUEL_GAUGE=m
+# CONFIG_BATTERY_MAX17040 is not set
+CONFIG_BATTERY_MAX17042=m
+CONFIG_BATTERY_MAX1721X=m
+CONFIG_CHARGER_PCF50633=m
+CONFIG_CHARGER_ISP1704=m
+# CONFIG_CHARGER_MAX8903 is not set
+# CONFIG_CHARGER_LP8727 is not set
+CONFIG_CHARGER_GPIO=m
+CONFIG_CHARGER_MANAGER=y
+# CONFIG_CHARGER_LT3651 is not set
+# CONFIG_CHARGER_LTC4162L is not set
+CONFIG_CHARGER_MAX14577=m
+# CONFIG_CHARGER_DETECTOR_MAX14656 is not set
+CONFIG_CHARGER_MAX77650=m
+CONFIG_CHARGER_MAX77693=m
+# CONFIG_CHARGER_MAX77976 is not set
+# CONFIG_CHARGER_MAX8998 is not set
+# CONFIG_CHARGER_MT6360 is not set
+CONFIG_CHARGER_BQ2415X=y
+CONFIG_CHARGER_BQ24190=m
+CONFIG_CHARGER_BQ24257=y
+CONFIG_CHARGER_BQ24735=y
+# CONFIG_CHARGER_BQ2515X is not set
+CONFIG_CHARGER_BQ25890=m
+CONFIG_CHARGER_BQ25980=m
+# CONFIG_CHARGER_BQ256XX is not set
+CONFIG_CHARGER_SMB347=m
+# CONFIG_BATTERY_GAUGE_LTC2941 is not set
+CONFIG_BATTERY_GOLDFISH=y
+# CONFIG_BATTERY_RT5033 is not set
+CONFIG_CHARGER_RT9455=m
+# CONFIG_CHARGER_RT9467 is not set
+# CONFIG_CHARGER_RT9471 is not set
+CONFIG_CHARGER_UCS1002=y
+CONFIG_CHARGER_BD99954=y
+# CONFIG_RN5T618_POWER is not set
+# CONFIG_BATTERY_UG3105 is not set
+CONFIG_HWMON=y
+CONFIG_HWMON_VID=y
+# CONFIG_HWMON_DEBUG_CHIP is not set
+
+#
+# Native drivers
+#
+# CONFIG_SENSORS_ABITUGURU is not set
+CONFIG_SENSORS_ABITUGURU3=m
+CONFIG_SENSORS_AD7414=m
+# CONFIG_SENSORS_AD7418 is not set
+CONFIG_SENSORS_ADM1021=m
+CONFIG_SENSORS_ADM1025=y
+# CONFIG_SENSORS_ADM1026 is not set
+CONFIG_SENSORS_ADM1029=m
+# CONFIG_SENSORS_ADM1031 is not set
+CONFIG_SENSORS_ADM1177=y
+# CONFIG_SENSORS_ADM9240 is not set
+CONFIG_SENSORS_ADT7X10=m
+CONFIG_SENSORS_ADT7410=m
+CONFIG_SENSORS_ADT7411=m
+CONFIG_SENSORS_ADT7462=y
+CONFIG_SENSORS_ADT7470=y
+# CONFIG_SENSORS_ADT7475 is not set
+# CONFIG_SENSORS_AHT10 is not set
+CONFIG_SENSORS_AS370=m
+CONFIG_SENSORS_ASC7621=y
+# CONFIG_SENSORS_AXI_FAN_CONTROL is not set
+CONFIG_SENSORS_K8TEMP=m
+CONFIG_SENSORS_APPLESMC=m
+CONFIG_SENSORS_ASB100=y
+CONFIG_SENSORS_ATXP1=m
+# CONFIG_SENSORS_CORSAIR_CPRO is not set
+# CONFIG_SENSORS_CORSAIR_PSU is not set
+# CONFIG_SENSORS_DS620 is not set
+CONFIG_SENSORS_DS1621=y
+CONFIG_SENSORS_DELL_SMM=y
+# CONFIG_I8K is not set
+CONFIG_SENSORS_DA9055=y
+# CONFIG_SENSORS_I5K_AMB is not set
+# CONFIG_SENSORS_F71805F is not set
+CONFIG_SENSORS_F71882FG=y
+# CONFIG_SENSORS_F75375S is not set
+# CONFIG_SENSORS_FSCHMD is not set
+# CONFIG_SENSORS_GL518SM is not set
+# CONFIG_SENSORS_GL520SM is not set
+CONFIG_SENSORS_G760A=m
+CONFIG_SENSORS_G762=m
+CONFIG_SENSORS_GPIO_FAN=y
+CONFIG_SENSORS_HIH6130=y
+CONFIG_SENSORS_IIO_HWMON=m
+CONFIG_SENSORS_I5500=m
+CONFIG_SENSORS_CORETEMP=y
+# CONFIG_SENSORS_IT87 is not set
+CONFIG_SENSORS_JC42=m
+CONFIG_SENSORS_POWR1220=y
+CONFIG_SENSORS_LINEAGE=y
+# CONFIG_SENSORS_LTC2945 is not set
+CONFIG_SENSORS_LTC2947=m
+CONFIG_SENSORS_LTC2947_I2C=m
+CONFIG_SENSORS_LTC2990=m
+# CONFIG_SENSORS_LTC2992 is not set
+# CONFIG_SENSORS_LTC4151 is not set
+CONFIG_SENSORS_LTC4215=y
+# CONFIG_SENSORS_LTC4222 is not set
+CONFIG_SENSORS_LTC4245=y
+# CONFIG_SENSORS_LTC4260 is not set
+CONFIG_SENSORS_LTC4261=m
+# CONFIG_SENSORS_MAX127 is not set
+CONFIG_SENSORS_MAX16065=y
+CONFIG_SENSORS_MAX1619=m
+CONFIG_SENSORS_MAX1668=y
+# CONFIG_SENSORS_MAX197 is not set
+CONFIG_SENSORS_MAX31730=y
+# CONFIG_SENSORS_MAX31760 is not set
+# CONFIG_SENSORS_MAX6620 is not set
+CONFIG_SENSORS_MAX6621=y
+# CONFIG_SENSORS_MAX6639 is not set
+# CONFIG_SENSORS_MAX6642 is not set
+# CONFIG_SENSORS_MAX6650 is not set
+CONFIG_SENSORS_MAX6697=y
+CONFIG_SENSORS_MAX31790=y
+# CONFIG_SENSORS_MC34VR500 is not set
+CONFIG_SENSORS_MCP3021=y
+# CONFIG_SENSORS_TC654 is not set
+# CONFIG_SENSORS_TPS23861 is not set
+CONFIG_SENSORS_MENF21BMC_HWMON=m
+CONFIG_SENSORS_MR75203=m
+# CONFIG_SENSORS_LM63 is not set
+CONFIG_SENSORS_LM73=y
+# CONFIG_SENSORS_LM75 is not set
+# CONFIG_SENSORS_LM77 is not set
+# CONFIG_SENSORS_LM78 is not set
+# CONFIG_SENSORS_LM80 is not set
+# CONFIG_SENSORS_LM83 is not set
+# CONFIG_SENSORS_LM85 is not set
+CONFIG_SENSORS_LM87=y
+# CONFIG_SENSORS_LM90 is not set
+# CONFIG_SENSORS_LM92 is not set
+# CONFIG_SENSORS_LM93 is not set
+# CONFIG_SENSORS_LM95234 is not set
+CONFIG_SENSORS_LM95241=m
+CONFIG_SENSORS_LM95245=y
+# CONFIG_SENSORS_PC87360 is not set
+CONFIG_SENSORS_PC87427=y
+CONFIG_SENSORS_NTC_THERMISTOR=m
+CONFIG_SENSORS_NCT6683=m
+CONFIG_SENSORS_NCT6775_CORE=y
+CONFIG_SENSORS_NCT6775=y
+# CONFIG_SENSORS_NCT6775_I2C is not set
+# CONFIG_SENSORS_NCT7802 is not set
+# CONFIG_SENSORS_NPCM7XX is not set
+# CONFIG_SENSORS_OCC_P8_I2C is not set
+# CONFIG_SENSORS_OXP is not set
+CONFIG_SENSORS_PCF8591=m
+CONFIG_PMBUS=y
+CONFIG_SENSORS_PMBUS=m
+# CONFIG_SENSORS_ACBEL_FSG032 is not set
+CONFIG_SENSORS_ADM1266=y
+CONFIG_SENSORS_ADM1275=m
+CONFIG_SENSORS_BEL_PFE=y
+# CONFIG_SENSORS_BPA_RS600 is not set
+# CONFIG_SENSORS_DELTA_AHE50DC_FAN is not set
+# CONFIG_SENSORS_FSP_3Y is not set
+CONFIG_SENSORS_IBM_CFFPS=m
+# CONFIG_SENSORS_DPS920AB is not set
+CONFIG_SENSORS_INSPUR_IPSPS=m
+# CONFIG_SENSORS_IR35221 is not set
+# CONFIG_SENSORS_IR36021 is not set
+# CONFIG_SENSORS_IR38064 is not set
+CONFIG_SENSORS_IRPS5401=m
+CONFIG_SENSORS_ISL68137=m
+CONFIG_SENSORS_LM25066=y
+# CONFIG_SENSORS_LM25066_REGULATOR is not set
+# CONFIG_SENSORS_LT7182S is not set
+CONFIG_SENSORS_LTC2978=y
+# CONFIG_SENSORS_LTC2978_REGULATOR is not set
+# CONFIG_SENSORS_LTC3815 is not set
+# CONFIG_SENSORS_MAX15301 is not set
+CONFIG_SENSORS_MAX16064=y
+CONFIG_SENSORS_MAX16601=y
+CONFIG_SENSORS_MAX20730=m
+CONFIG_SENSORS_MAX20751=y
+CONFIG_SENSORS_MAX31785=y
+CONFIG_SENSORS_MAX34440=y
+CONFIG_SENSORS_MAX8688=m
+# CONFIG_SENSORS_MP2888 is not set
+# CONFIG_SENSORS_MP2975 is not set
+# CONFIG_SENSORS_MP5023 is not set
+# CONFIG_SENSORS_MPQ7932 is not set
+# CONFIG_SENSORS_PIM4328 is not set
+# CONFIG_SENSORS_PLI1209BC is not set
+# CONFIG_SENSORS_PM6764TR is not set
+CONFIG_SENSORS_PXE1610=m
+# CONFIG_SENSORS_Q54SJ108A2 is not set
+# CONFIG_SENSORS_STPDDC60 is not set
+# CONFIG_SENSORS_TDA38640 is not set
+CONFIG_SENSORS_TPS40422=y
+# CONFIG_SENSORS_TPS53679 is not set
+# CONFIG_SENSORS_TPS546D24 is not set
+CONFIG_SENSORS_UCD9000=y
+CONFIG_SENSORS_UCD9200=m
+# CONFIG_SENSORS_XDPE152 is not set
+# CONFIG_SENSORS_XDPE122 is not set
+CONFIG_SENSORS_ZL6100=y
+# CONFIG_SENSORS_PWM_FAN is not set
+# CONFIG_SENSORS_SBTSI is not set
+# CONFIG_SENSORS_SBRMI is not set
+CONFIG_SENSORS_SHT15=m
+CONFIG_SENSORS_SHT21=y
+CONFIG_SENSORS_SHT3x=y
+# CONFIG_SENSORS_SHT4x is not set
+CONFIG_SENSORS_SHTC1=y
+CONFIG_SENSORS_SIS5595=y
+CONFIG_SENSORS_DME1737=y
+CONFIG_SENSORS_EMC1403=y
+CONFIG_SENSORS_EMC2103=m
+# CONFIG_SENSORS_EMC2305 is not set
+# CONFIG_SENSORS_EMC6W201 is not set
+CONFIG_SENSORS_SMSC47M1=m
+CONFIG_SENSORS_SMSC47M192=m
+CONFIG_SENSORS_SMSC47B397=m
+# CONFIG_SENSORS_STTS751 is not set
+CONFIG_SENSORS_SMM665=y
+# CONFIG_SENSORS_ADC128D818 is not set
+# CONFIG_SENSORS_ADS7828 is not set
+# CONFIG_SENSORS_AMC6821 is not set
+# CONFIG_SENSORS_INA209 is not set
+CONFIG_SENSORS_INA2XX=y
+# CONFIG_SENSORS_INA238 is not set
+CONFIG_SENSORS_INA3221=m
+# CONFIG_SENSORS_TC74 is not set
+# CONFIG_SENSORS_THMC50 is not set
+# CONFIG_SENSORS_TMP102 is not set
+# CONFIG_SENSORS_TMP103 is not set
+# CONFIG_SENSORS_TMP108 is not set
+CONFIG_SENSORS_TMP401=y
+CONFIG_SENSORS_TMP421=y
+# CONFIG_SENSORS_TMP464 is not set
+CONFIG_SENSORS_TMP513=y
+CONFIG_SENSORS_VIA_CPUTEMP=y
+CONFIG_SENSORS_VIA686A=m
+CONFIG_SENSORS_VT1211=y
+CONFIG_SENSORS_VT8231=y
+CONFIG_SENSORS_W83773G=y
+CONFIG_SENSORS_W83781D=y
+CONFIG_SENSORS_W83791D=m
+CONFIG_SENSORS_W83792D=m
+CONFIG_SENSORS_W83793=m
+# CONFIG_SENSORS_W83795 is not set
+# CONFIG_SENSORS_W83L785TS is not set
+CONFIG_SENSORS_W83L786NG=m
+CONFIG_SENSORS_W83627HF=y
+CONFIG_SENSORS_W83627EHF=m
+
+#
+# ACPI drivers
+#
+# CONFIG_SENSORS_ACPI_POWER is not set
+# CONFIG_SENSORS_ATK0110 is not set
+# CONFIG_SENSORS_ASUS_WMI is not set
+# CONFIG_SENSORS_ASUS_EC is not set
+CONFIG_THERMAL=y
+# CONFIG_THERMAL_NETLINK is not set
+CONFIG_THERMAL_STATISTICS=y
+CONFIG_THERMAL_EMERGENCY_POWEROFF_DELAY_MS=0
+CONFIG_THERMAL_HWMON=y
+CONFIG_THERMAL_OF=y
+CONFIG_THERMAL_ACPI=y
+# CONFIG_THERMAL_WRITABLE_TRIPS is not set
+# CONFIG_THERMAL_DEFAULT_GOV_STEP_WISE is not set
+CONFIG_THERMAL_DEFAULT_GOV_FAIR_SHARE=y
+# CONFIG_THERMAL_DEFAULT_GOV_USER_SPACE is not set
+CONFIG_THERMAL_GOV_FAIR_SHARE=y
+# CONFIG_THERMAL_GOV_STEP_WISE is not set
+CONFIG_THERMAL_GOV_BANG_BANG=y
+# CONFIG_THERMAL_GOV_USER_SPACE is not set
+CONFIG_CPU_THERMAL=y
+# CONFIG_CPU_FREQ_THERMAL is not set
+CONFIG_THERMAL_EMULATION=y
+CONFIG_THERMAL_MMIO=y
+CONFIG_MAX77620_THERMAL=y
+
+#
+# Intel thermal drivers
+#
+# CONFIG_INTEL_SOC_DTS_THERMAL is not set
+
+#
+# ACPI INT340X thermal drivers
+#
+# end of ACPI INT340X thermal drivers
+
+CONFIG_INTEL_PCH_THERMAL=y
+# CONFIG_INTEL_TCC_COOLING is not set
+# end of Intel thermal drivers
+
+CONFIG_GENERIC_ADC_THERMAL=m
+# CONFIG_WATCHDOG is not set
+CONFIG_SSB_POSSIBLE=y
+CONFIG_SSB=y
+CONFIG_SSB_PCIHOST_POSSIBLE=y
+# CONFIG_SSB_PCIHOST is not set
+# CONFIG_SSB_DRIVER_GPIO is not set
+CONFIG_BCMA_POSSIBLE=y
+# CONFIG_BCMA is not set
+
+#
+# Multifunction device drivers
+#
+CONFIG_MFD_CORE=y
+CONFIG_MFD_CS5535=m
+# CONFIG_MFD_ACT8945A is not set
+# CONFIG_MFD_AS3711 is not set
+# CONFIG_MFD_SMPRO is not set
+# CONFIG_MFD_AS3722 is not set
+CONFIG_PMIC_ADP5520=y
+# CONFIG_MFD_AAT2870_CORE is not set
+CONFIG_MFD_ATMEL_FLEXCOM=m
+# CONFIG_MFD_ATMEL_HLCDC is not set
+# CONFIG_MFD_BCM590XX is not set
+# CONFIG_MFD_BD9571MWV is not set
+CONFIG_MFD_AXP20X=y
+CONFIG_MFD_AXP20X_I2C=y
+CONFIG_MFD_MADERA=m
+# CONFIG_MFD_MADERA_I2C is not set
+# CONFIG_MFD_MAX597X is not set
+# CONFIG_MFD_CS47L15 is not set
+# CONFIG_MFD_CS47L35 is not set
+# CONFIG_MFD_CS47L85 is not set
+CONFIG_MFD_CS47L90=y
+# CONFIG_MFD_CS47L92 is not set
+CONFIG_PMIC_DA903X=y
+# CONFIG_MFD_DA9052_I2C is not set
+CONFIG_MFD_DA9055=y
+# CONFIG_MFD_DA9062 is not set
+CONFIG_MFD_DA9063=y
+CONFIG_MFD_DA9150=m
+CONFIG_MFD_DLN2=m
+# CONFIG_MFD_GATEWORKS_GSC is not set
+# CONFIG_MFD_MC13XXX_I2C is not set
+CONFIG_MFD_MP2629=y
+CONFIG_MFD_HI6421_PMIC=y
+# CONFIG_MFD_HI6421_SPMI is not set
+CONFIG_MFD_INTEL_QUARK_I2C_GPIO=y
+# CONFIG_LPC_ICH is not set
+CONFIG_LPC_SCH=y
+CONFIG_MFD_INTEL_LPSS=y
+# CONFIG_MFD_INTEL_LPSS_ACPI is not set
+CONFIG_MFD_INTEL_LPSS_PCI=y
+# CONFIG_MFD_INTEL_PMC_BXT is not set
+# CONFIG_MFD_IQS62X is not set
+CONFIG_MFD_JANZ_CMODIO=m
+# CONFIG_MFD_KEMPLD is not set
+CONFIG_MFD_88PM800=m
+# CONFIG_MFD_88PM805 is not set
+CONFIG_MFD_88PM860X=y
+CONFIG_MFD_MAX14577=m
+CONFIG_MFD_MAX77620=y
+CONFIG_MFD_MAX77650=m
+CONFIG_MFD_MAX77686=m
+CONFIG_MFD_MAX77693=m
+# CONFIG_MFD_MAX77714 is not set
+# CONFIG_MFD_MAX77843 is not set
+CONFIG_MFD_MAX8907=y
+CONFIG_MFD_MAX8925=y
+# CONFIG_MFD_MAX8997 is not set
+CONFIG_MFD_MAX8998=y
+CONFIG_MFD_MT6360=y
+# CONFIG_MFD_MT6370 is not set
+# CONFIG_MFD_MT6397 is not set
+CONFIG_MFD_MENF21BMC=m
+CONFIG_MFD_VIPERBOARD=m
+# CONFIG_MFD_NTXEC is not set
+CONFIG_MFD_RETU=m
+CONFIG_MFD_PCF50633=m
+CONFIG_PCF50633_ADC=m
+# CONFIG_PCF50633_GPIO is not set
+# CONFIG_MFD_SY7636A is not set
+CONFIG_MFD_RDC321X=m
+# CONFIG_MFD_RT4831 is not set
+# CONFIG_MFD_RT5033 is not set
+# CONFIG_MFD_RT5120 is not set
+# CONFIG_MFD_RC5T583 is not set
+# CONFIG_MFD_RK808 is not set
+CONFIG_MFD_RN5T618=y
+CONFIG_MFD_SEC_CORE=y
+CONFIG_MFD_SI476X_CORE=y
+CONFIG_MFD_SM501=m
+CONFIG_MFD_SM501_GPIO=y
+# CONFIG_MFD_SKY81452 is not set
+# CONFIG_MFD_STMPE is not set
+CONFIG_MFD_SYSCON=y
+CONFIG_MFD_TI_AM335X_TSCADC=m
+CONFIG_MFD_LP3943=y
+# CONFIG_MFD_LP8788 is not set
+CONFIG_MFD_TI_LMU=m
+# CONFIG_MFD_PALMAS is not set
+# CONFIG_TPS6105X is not set
+# CONFIG_TPS65010 is not set
+CONFIG_TPS6507X=m
+CONFIG_MFD_TPS65086=m
+# CONFIG_MFD_TPS65090 is not set
+# CONFIG_MFD_TPS65217 is not set
+CONFIG_MFD_TI_LP873X=m
+# CONFIG_MFD_TI_LP87565 is not set
+CONFIG_MFD_TPS65218=y
+# CONFIG_MFD_TPS65219 is not set
+CONFIG_MFD_TPS6586X=y
+# CONFIG_MFD_TPS65910 is not set
+CONFIG_MFD_TPS65912=m
+CONFIG_MFD_TPS65912_I2C=m
+# CONFIG_TWL4030_CORE is not set
+CONFIG_TWL6040_CORE=y
+CONFIG_MFD_WL1273_CORE=y
+CONFIG_MFD_LM3533=y
+# CONFIG_MFD_TIMBERDALE is not set
+CONFIG_MFD_TC3589X=y
+CONFIG_MFD_TQMX86=m
+# CONFIG_MFD_VX855 is not set
+# CONFIG_MFD_LOCHNAGAR is not set
+# CONFIG_MFD_ARIZONA_I2C is not set
+# CONFIG_MFD_WM8400 is not set
+# CONFIG_MFD_WM831X_I2C is not set
+# CONFIG_MFD_WM8350_I2C is not set
+CONFIG_MFD_WM8994=y
+CONFIG_MFD_ROHM_BD718XX=y
+CONFIG_MFD_ROHM_BD71828=m
+# CONFIG_MFD_ROHM_BD957XMUF is not set
+# CONFIG_MFD_STPMIC1 is not set
+CONFIG_MFD_STMFX=m
+# CONFIG_MFD_WCD934X is not set
+# CONFIG_MFD_ATC260X_I2C is not set
+CONFIG_MFD_QCOM_PM8008=y
+# CONFIG_MFD_RSMU_I2C is not set
+# end of Multifunction device drivers
+
+CONFIG_REGULATOR=y
+CONFIG_REGULATOR_DEBUG=y
+# CONFIG_REGULATOR_FIXED_VOLTAGE is not set
+# CONFIG_REGULATOR_VIRTUAL_CONSUMER is not set
+CONFIG_REGULATOR_USERSPACE_CONSUMER=y
+# CONFIG_REGULATOR_88PG86X is not set
+CONFIG_REGULATOR_88PM800=m
+CONFIG_REGULATOR_88PM8607=m
+# CONFIG_REGULATOR_ACT8865 is not set
+# CONFIG_REGULATOR_AD5398 is not set
+# CONFIG_REGULATOR_AXP20X is not set
+# CONFIG_REGULATOR_BD71815 is not set
+CONFIG_REGULATOR_BD71828=m
+# CONFIG_REGULATOR_BD718XX is not set
+CONFIG_REGULATOR_DA903X=y
+CONFIG_REGULATOR_DA9055=y
+CONFIG_REGULATOR_DA9063=y
+# CONFIG_REGULATOR_DA9121 is not set
+CONFIG_REGULATOR_DA9210=y
+# CONFIG_REGULATOR_DA9211 is not set
+# CONFIG_REGULATOR_FAN53555 is not set
+# CONFIG_REGULATOR_FAN53880 is not set
+CONFIG_REGULATOR_GPIO=y
+CONFIG_REGULATOR_HI6421=y
+CONFIG_REGULATOR_HI6421V530=m
+CONFIG_REGULATOR_ISL9305=y
+# CONFIG_REGULATOR_ISL6271A is not set
+# CONFIG_REGULATOR_LM363X is not set
+# CONFIG_REGULATOR_LP3971 is not set
+CONFIG_REGULATOR_LP3972=m
+CONFIG_REGULATOR_LP872X=y
+# CONFIG_REGULATOR_LP873X is not set
+CONFIG_REGULATOR_LP8755=m
+CONFIG_REGULATOR_LTC3589=y
+# CONFIG_REGULATOR_LTC3676 is not set
+# CONFIG_REGULATOR_MAX14577 is not set
+CONFIG_REGULATOR_MAX1586=y
+CONFIG_REGULATOR_MAX77620=m
+CONFIG_REGULATOR_MAX77650=m
+CONFIG_REGULATOR_MAX8649=m
+# CONFIG_REGULATOR_MAX8660 is not set
+# CONFIG_REGULATOR_MAX8893 is not set
+CONFIG_REGULATOR_MAX8907=m
+CONFIG_REGULATOR_MAX8925=m
+CONFIG_REGULATOR_MAX8952=m
+CONFIG_REGULATOR_MAX8973=m
+CONFIG_REGULATOR_MAX8998=m
+# CONFIG_REGULATOR_MAX20086 is not set
+# CONFIG_REGULATOR_MAX20411 is not set
+CONFIG_REGULATOR_MAX77686=m
+CONFIG_REGULATOR_MAX77693=m
+CONFIG_REGULATOR_MAX77802=m
+CONFIG_REGULATOR_MAX77826=m
+CONFIG_REGULATOR_MCP16502=y
+CONFIG_REGULATOR_MP5416=m
+# CONFIG_REGULATOR_MP8859 is not set
+CONFIG_REGULATOR_MP886X=m
+# CONFIG_REGULATOR_MPQ7920 is not set
+CONFIG_REGULATOR_MT6311=m
+CONFIG_REGULATOR_MT6315=y
+CONFIG_REGULATOR_MT6360=m
+CONFIG_REGULATOR_PCA9450=y
+# CONFIG_REGULATOR_PCF50633 is not set
+# CONFIG_REGULATOR_PF8X00 is not set
+CONFIG_REGULATOR_PFUZE100=m
+CONFIG_REGULATOR_PV88060=m
+# CONFIG_REGULATOR_PV88080 is not set
+# CONFIG_REGULATOR_PV88090 is not set
+CONFIG_REGULATOR_PWM=m
+# CONFIG_REGULATOR_QCOM_SPMI is not set
+CONFIG_REGULATOR_QCOM_USB_VBUS=m
+CONFIG_REGULATOR_RASPBERRYPI_TOUCHSCREEN_ATTINY=m
+CONFIG_REGULATOR_RN5T618=m
+CONFIG_REGULATOR_ROHM=m
+CONFIG_REGULATOR_RT4801=m
+# CONFIG_REGULATOR_RT4803 is not set
+# CONFIG_REGULATOR_RT5190A is not set
+# CONFIG_REGULATOR_RT5739 is not set
+# CONFIG_REGULATOR_RT5759 is not set
+# CONFIG_REGULATOR_RT6160 is not set
+# CONFIG_REGULATOR_RT6190 is not set
+# CONFIG_REGULATOR_RT6245 is not set
+# CONFIG_REGULATOR_RTQ2134 is not set
+# CONFIG_REGULATOR_RTMV20 is not set
+# CONFIG_REGULATOR_RTQ6752 is not set
+# CONFIG_REGULATOR_S2MPA01 is not set
+# CONFIG_REGULATOR_S2MPS11 is not set
+CONFIG_REGULATOR_S5M8767=m
+CONFIG_REGULATOR_SLG51000=m
+# CONFIG_REGULATOR_SY8106A is not set
+# CONFIG_REGULATOR_SY8824X is not set
+CONFIG_REGULATOR_SY8827N=m
+CONFIG_REGULATOR_TPS51632=y
+CONFIG_REGULATOR_TPS62360=m
+# CONFIG_REGULATOR_TPS6286X is not set
+# CONFIG_REGULATOR_TPS65023 is not set
+# CONFIG_REGULATOR_TPS6507X is not set
+# CONFIG_REGULATOR_TPS65086 is not set
+CONFIG_REGULATOR_TPS65132=m
+# CONFIG_REGULATOR_TPS65218 is not set
+CONFIG_REGULATOR_TPS6586X=y
+CONFIG_REGULATOR_TPS65912=m
+CONFIG_REGULATOR_VCTRL=m
+CONFIG_REGULATOR_WM8994=m
+CONFIG_REGULATOR_QCOM_LABIBB=m
+# CONFIG_RC_CORE is not set
+CONFIG_CEC_CORE=y
+CONFIG_CEC_NOTIFIER=y
+
+#
+# CEC support
+#
+CONFIG_MEDIA_CEC_SUPPORT=y
+CONFIG_CEC_CH7322=y
+CONFIG_CEC_SECO=m
+CONFIG_USB_PULSE8_CEC=m
+# CONFIG_USB_RAINSHADOW_CEC is not set
+# end of CEC support
+
+CONFIG_MEDIA_SUPPORT=y
+# CONFIG_MEDIA_SUPPORT_FILTER is not set
+CONFIG_MEDIA_SUBDRV_AUTOSELECT=y
+
+#
+# Media device types
+#
+CONFIG_MEDIA_CAMERA_SUPPORT=y
+CONFIG_MEDIA_ANALOG_TV_SUPPORT=y
+CONFIG_MEDIA_DIGITAL_TV_SUPPORT=y
+CONFIG_MEDIA_RADIO_SUPPORT=y
+CONFIG_MEDIA_SDR_SUPPORT=y
+CONFIG_MEDIA_PLATFORM_SUPPORT=y
+CONFIG_MEDIA_TEST_SUPPORT=y
+# end of Media device types
+
+#
+# Media core support
+#
+CONFIG_VIDEO_DEV=m
+CONFIG_MEDIA_CONTROLLER=y
+CONFIG_DVB_CORE=y
+# end of Media core support
+
+#
+# Video4Linux options
+#
+CONFIG_VIDEO_V4L2_I2C=y
+CONFIG_VIDEO_V4L2_SUBDEV_API=y
+CONFIG_VIDEO_ADV_DEBUG=y
+# CONFIG_VIDEO_FIXED_MINOR_RANGES is not set
+CONFIG_VIDEO_TUNER=m
+CONFIG_V4L2_MEM2MEM_DEV=m
+CONFIG_V4L2_FLASH_LED_CLASS=m
+CONFIG_V4L2_FWNODE=m
+CONFIG_V4L2_ASYNC=m
+# end of Video4Linux options
+
+#
+# Media controller options
+#
+# CONFIG_MEDIA_CONTROLLER_DVB is not set
+# end of Media controller options
+
+#
+# Digital TV options
+#
+CONFIG_DVB_NET=y
+CONFIG_DVB_MAX_ADAPTERS=16
+CONFIG_DVB_DYNAMIC_MINORS=y
+# CONFIG_DVB_DEMUX_SECTION_LOSS_LOG is not set
+CONFIG_DVB_ULE_DEBUG=y
+# end of Digital TV options
+
+#
+# Media drivers
+#
+
+#
+# Media drivers
+#
+# CONFIG_MEDIA_USB_SUPPORT is not set
+CONFIG_MEDIA_PCI_SUPPORT=y
+
+#
+# Media capture support
+#
+CONFIG_VIDEO_SOLO6X10=m
+# CONFIG_VIDEO_TW5864 is not set
+# CONFIG_VIDEO_TW68 is not set
+CONFIG_VIDEO_TW686X=m
+# CONFIG_VIDEO_ZORAN is not set
+
+#
+# Media capture/analog TV support
+#
+# CONFIG_VIDEO_DT3155 is not set
+# CONFIG_VIDEO_HEXIUM_GEMINI is not set
+# CONFIG_VIDEO_HEXIUM_ORION is not set
+CONFIG_VIDEO_MXB=m
+
+#
+# Media capture/analog/hybrid TV support
+#
+CONFIG_VIDEO_CX25821=m
+CONFIG_VIDEO_CX25821_ALSA=m
+# CONFIG_VIDEO_SAA7134 is not set
+CONFIG_VIDEO_SAA7164=m
+
+#
+# Media digital TV PCI Adapters
+#
+# CONFIG_DVB_B2C2_FLEXCOP_PCI is not set
+CONFIG_DVB_DDBRIDGE=y
+CONFIG_DVB_DDBRIDGE_MSIENABLE=y
+# CONFIG_DVB_NGENE is not set
+CONFIG_DVB_PLUTO2=y
+CONFIG_DVB_PT1=y
+# CONFIG_DVB_PT3 is not set
+# CONFIG_DVB_BUDGET_CORE is not set
+# CONFIG_VIDEO_IPU3_CIO2 is not set
+CONFIG_RADIO_ADAPTERS=m
+CONFIG_RADIO_MAXIRADIO=m
+# CONFIG_RADIO_SAA7706H is not set
+CONFIG_RADIO_SHARK=m
+# CONFIG_RADIO_SHARK2 is not set
+CONFIG_RADIO_SI4713=m
+CONFIG_RADIO_TEA575X=m
+# CONFIG_RADIO_TEA5764 is not set
+CONFIG_RADIO_TEF6862=m
+# CONFIG_RADIO_WL1273 is not set
+# CONFIG_USB_DSBR is not set
+CONFIG_USB_KEENE=m
+# CONFIG_USB_MA901 is not set
+CONFIG_USB_MR800=m
+CONFIG_USB_RAREMONO=m
+# CONFIG_RADIO_SI470X is not set
+# CONFIG_USB_SI4713 is not set
+CONFIG_PLATFORM_SI4713=m
+CONFIG_I2C_SI4713=m
+CONFIG_MEDIA_PLATFORM_DRIVERS=y
+# CONFIG_V4L_PLATFORM_DRIVERS is not set
+# CONFIG_SDR_PLATFORM_DRIVERS is not set
+# CONFIG_DVB_PLATFORM_DRIVERS is not set
+CONFIG_V4L_MEM2MEM_DRIVERS=y
+CONFIG_VIDEO_MEM2MEM_DEINTERLACE=m
+
+#
+# Allegro DVT media platform drivers
+#
+
+#
+# Amlogic media platform drivers
+#
+
+#
+# Amphion drivers
+#
+
+#
+# Aspeed media platform drivers
+#
+
+#
+# Atmel media platform drivers
+#
+
+#
+# Cadence media platform drivers
+#
+# CONFIG_VIDEO_CADENCE_CSI2RX is not set
+# CONFIG_VIDEO_CADENCE_CSI2TX is not set
+
+#
+# Chips&Media media platform drivers
+#
+
+#
+# Intel media platform drivers
+#
+
+#
+# Marvell media platform drivers
+#
+
+#
+# Mediatek media platform drivers
+#
+
+#
+# Microchip Technology, Inc. media platform drivers
+#
+
+#
+# NVidia media platform drivers
+#
+
+#
+# NXP media platform drivers
+#
+
+#
+# Qualcomm media platform drivers
+#
+
+#
+# Renesas media platform drivers
+#
+
+#
+# Rockchip media platform drivers
+#
+
+#
+# Samsung media platform drivers
+#
+
+#
+# STMicroelectronics media platform drivers
+#
+
+#
+# Sunxi media platform drivers
+#
+
+#
+# Texas Instruments drivers
+#
+
+#
+# Verisilicon media platform drivers
+#
+
+#
+# VIA media platform drivers
+#
+
+#
+# Xilinx media platform drivers
+#
+# CONFIG_V4L_TEST_DRIVERS is not set
+# CONFIG_DVB_TEST_DRIVERS is not set
+
+#
+# FireWire (IEEE 1394) Adapters
+#
+CONFIG_DVB_FIREDTV=m
+CONFIG_DVB_FIREDTV_INPUT=y
+CONFIG_VIDEO_TVEEPROM=m
+CONFIG_VIDEO_SAA7146=m
+CONFIG_VIDEO_SAA7146_VV=m
+CONFIG_VIDEOBUF2_CORE=m
+CONFIG_VIDEOBUF2_V4L2=m
+CONFIG_VIDEOBUF2_MEMOPS=m
+CONFIG_VIDEOBUF2_DMA_CONTIG=m
+CONFIG_VIDEOBUF2_VMALLOC=m
+CONFIG_VIDEOBUF2_DMA_SG=m
+# end of Media drivers
+
+#
+# Media ancillary drivers
+#
+CONFIG_MEDIA_ATTACH=y
+
+#
+# Camera sensor devices
+#
+# CONFIG_VIDEO_AR0521 is not set
+CONFIG_VIDEO_HI556=m
+# CONFIG_VIDEO_HI846 is not set
+# CONFIG_VIDEO_HI847 is not set
+# CONFIG_VIDEO_IMX208 is not set
+CONFIG_VIDEO_IMX214=m
+CONFIG_VIDEO_IMX219=m
+CONFIG_VIDEO_IMX258=m
+CONFIG_VIDEO_IMX274=m
+# CONFIG_VIDEO_IMX290 is not set
+# CONFIG_VIDEO_IMX296 is not set
+CONFIG_VIDEO_IMX319=m
+# CONFIG_VIDEO_IMX334 is not set
+# CONFIG_VIDEO_IMX335 is not set
+# CONFIG_VIDEO_IMX355 is not set
+# CONFIG_VIDEO_IMX412 is not set
+# CONFIG_VIDEO_IMX415 is not set
+CONFIG_VIDEO_MAX9271_LIB=m
+CONFIG_VIDEO_MT9M001=m
+CONFIG_VIDEO_MT9M111=m
+# CONFIG_VIDEO_MT9P031 is not set
+CONFIG_VIDEO_MT9T112=m
+CONFIG_VIDEO_MT9V011=m
+CONFIG_VIDEO_MT9V032=m
+CONFIG_VIDEO_MT9V111=m
+# CONFIG_VIDEO_OG01A1B is not set
+CONFIG_VIDEO_OV02A10=m
+# CONFIG_VIDEO_OV08D10 is not set
+# CONFIG_VIDEO_OV08X40 is not set
+CONFIG_VIDEO_OV13858=m
+# CONFIG_VIDEO_OV13B10 is not set
+# CONFIG_VIDEO_OV2640 is not set
+CONFIG_VIDEO_OV2659=m
+CONFIG_VIDEO_OV2680=m
+CONFIG_VIDEO_OV2685=m
+# CONFIG_VIDEO_OV2740 is not set
+# CONFIG_VIDEO_OV4689 is not set
+# CONFIG_VIDEO_OV5640 is not set
+CONFIG_VIDEO_OV5645=m
+CONFIG_VIDEO_OV5647=m
+CONFIG_VIDEO_OV5670=m
+CONFIG_VIDEO_OV5675=m
+# CONFIG_VIDEO_OV5693 is not set
+# CONFIG_VIDEO_OV5695 is not set
+CONFIG_VIDEO_OV6650=m
+CONFIG_VIDEO_OV7251=m
+CONFIG_VIDEO_OV7640=m
+CONFIG_VIDEO_OV7670=m
+CONFIG_VIDEO_OV772X=m
+CONFIG_VIDEO_OV7740=m
+# CONFIG_VIDEO_OV8856 is not set
+# CONFIG_VIDEO_OV9282 is not set
+CONFIG_VIDEO_OV9640=m
+CONFIG_VIDEO_OV9650=m
+# CONFIG_VIDEO_OV9734 is not set
+CONFIG_VIDEO_RDACM20=m
+# CONFIG_VIDEO_RDACM21 is not set
+CONFIG_VIDEO_RJ54N1=m
+# CONFIG_VIDEO_S5K5BAF is not set
+CONFIG_VIDEO_S5K6A3=m
+# CONFIG_VIDEO_ST_VGXY61 is not set
+# CONFIG_VIDEO_CCS is not set
+CONFIG_VIDEO_ET8EK8=m
+# end of Camera sensor devices
+
+#
+# Lens drivers
+#
+CONFIG_VIDEO_AD5820=m
+CONFIG_VIDEO_AK7375=m
+CONFIG_VIDEO_DW9714=m
+CONFIG_VIDEO_DW9768=m
+# CONFIG_VIDEO_DW9807_VCM is not set
+# end of Lens drivers
+
+#
+# Flash devices
+#
+CONFIG_VIDEO_ADP1653=m
+CONFIG_VIDEO_LM3560=m
+# CONFIG_VIDEO_LM3646 is not set
+# end of Flash devices
+
+#
+# Audio decoders, processors and mixers
+#
+# CONFIG_VIDEO_CS3308 is not set
+# CONFIG_VIDEO_CS5345 is not set
+# CONFIG_VIDEO_CS53L32A is not set
+CONFIG_VIDEO_MSP3400=m
+# CONFIG_VIDEO_SONY_BTF_MPX is not set
+CONFIG_VIDEO_TDA7432=m
+CONFIG_VIDEO_TDA9840=m
+CONFIG_VIDEO_TEA6415C=m
+CONFIG_VIDEO_TEA6420=m
+CONFIG_VIDEO_TLV320AIC23B=m
+CONFIG_VIDEO_TVAUDIO=m
+# CONFIG_VIDEO_UDA1342 is not set
+CONFIG_VIDEO_VP27SMPX=m
+CONFIG_VIDEO_WM8739=m
+# CONFIG_VIDEO_WM8775 is not set
+# end of Audio decoders, processors and mixers
+
+#
+# RDS decoders
+#
+CONFIG_VIDEO_SAA6588=m
+# end of RDS decoders
+
+#
+# Video decoders
+#
+# CONFIG_VIDEO_ADV7180 is not set
+# CONFIG_VIDEO_ADV7183 is not set
+CONFIG_VIDEO_ADV748X=m
+CONFIG_VIDEO_ADV7604=m
+CONFIG_VIDEO_ADV7604_CEC=y
+CONFIG_VIDEO_ADV7842=m
+# CONFIG_VIDEO_ADV7842_CEC is not set
+CONFIG_VIDEO_BT819=m
+# CONFIG_VIDEO_BT856 is not set
+CONFIG_VIDEO_BT866=m
+# CONFIG_VIDEO_ISL7998X is not set
+# CONFIG_VIDEO_KS0127 is not set
+CONFIG_VIDEO_MAX9286=m
+# CONFIG_VIDEO_ML86V7667 is not set
+CONFIG_VIDEO_SAA7110=m
+CONFIG_VIDEO_SAA711X=m
+# CONFIG_VIDEO_TC358743 is not set
+CONFIG_VIDEO_TVP514X=m
+CONFIG_VIDEO_TVP5150=m
+CONFIG_VIDEO_TVP7002=m
+CONFIG_VIDEO_TW2804=m
+# CONFIG_VIDEO_TW9903 is not set
+CONFIG_VIDEO_TW9906=m
+CONFIG_VIDEO_TW9910=m
+CONFIG_VIDEO_VPX3220=m
+
+#
+# Video and audio decoders
+#
+# CONFIG_VIDEO_SAA717X is not set
+CONFIG_VIDEO_CX25840=m
+# end of Video decoders
+
+#
+# Video encoders
+#
+CONFIG_VIDEO_ADV7170=m
+# CONFIG_VIDEO_ADV7175 is not set
+# CONFIG_VIDEO_ADV7343 is not set
+# CONFIG_VIDEO_ADV7393 is not set
+# CONFIG_VIDEO_AK881X is not set
+# CONFIG_VIDEO_SAA7127 is not set
+CONFIG_VIDEO_SAA7185=m
+# CONFIG_VIDEO_THS8200 is not set
+# end of Video encoders
+
+#
+# Video improvement chips
+#
+CONFIG_VIDEO_UPD64031A=m
+# CONFIG_VIDEO_UPD64083 is not set
+# end of Video improvement chips
+
+#
+# Audio/Video compression chips
+#
+CONFIG_VIDEO_SAA6752HS=m
+# end of Audio/Video compression chips
+
+#
+# SDR tuner chips
+#
+CONFIG_SDR_MAX2175=m
+# end of SDR tuner chips
+
+#
+# Miscellaneous helper chips
+#
+# CONFIG_VIDEO_I2C is not set
+CONFIG_VIDEO_M52790=m
+CONFIG_VIDEO_ST_MIPID02=m
+# CONFIG_VIDEO_THS7303 is not set
+# end of Miscellaneous helper chips
+
+CONFIG_MEDIA_TUNER=y
+
+#
+# Customize TV tuners
+#
+CONFIG_MEDIA_TUNER_E4000=m
+CONFIG_MEDIA_TUNER_FC0011=m
+CONFIG_MEDIA_TUNER_FC0012=m
+CONFIG_MEDIA_TUNER_FC0013=m
+# CONFIG_MEDIA_TUNER_FC2580 is not set
+# CONFIG_MEDIA_TUNER_IT913X is not set
+CONFIG_MEDIA_TUNER_M88RS6000T=m
+CONFIG_MEDIA_TUNER_MAX2165=y
+CONFIG_MEDIA_TUNER_MC44S803=y
+# CONFIG_MEDIA_TUNER_MT2060 is not set
+CONFIG_MEDIA_TUNER_MT2063=y
+CONFIG_MEDIA_TUNER_MT20XX=y
+CONFIG_MEDIA_TUNER_MT2131=y
+# CONFIG_MEDIA_TUNER_MT2266 is not set
+CONFIG_MEDIA_TUNER_MXL301RF=y
+CONFIG_MEDIA_TUNER_MXL5005S=y
+CONFIG_MEDIA_TUNER_MXL5007T=y
+CONFIG_MEDIA_TUNER_QM1D1B0004=y
+CONFIG_MEDIA_TUNER_QM1D1C0042=y
+CONFIG_MEDIA_TUNER_QT1010=y
+# CONFIG_MEDIA_TUNER_R820T is not set
+CONFIG_MEDIA_TUNER_SI2157=m
+CONFIG_MEDIA_TUNER_SIMPLE=y
+CONFIG_MEDIA_TUNER_TDA18212=y
+CONFIG_MEDIA_TUNER_TDA18218=m
+# CONFIG_MEDIA_TUNER_TDA18250 is not set
+CONFIG_MEDIA_TUNER_TDA18271=y
+CONFIG_MEDIA_TUNER_TDA827X=y
+CONFIG_MEDIA_TUNER_TDA8290=y
+CONFIG_MEDIA_TUNER_TDA9887=y
+CONFIG_MEDIA_TUNER_TEA5761=y
+CONFIG_MEDIA_TUNER_TEA5767=y
+CONFIG_MEDIA_TUNER_TUA9001=m
+CONFIG_MEDIA_TUNER_XC2028=y
+CONFIG_MEDIA_TUNER_XC4000=y
+CONFIG_MEDIA_TUNER_XC5000=y
+# end of Customize TV tuners
+
+#
+# Customise DVB Frontends
+#
+
+#
+# Multistandard (satellite) frontends
+#
+CONFIG_DVB_M88DS3103=m
+CONFIG_DVB_MXL5XX=y
+CONFIG_DVB_STB0899=m
+CONFIG_DVB_STB6100=m
+CONFIG_DVB_STV090x=y
+CONFIG_DVB_STV0910=y
+CONFIG_DVB_STV6110x=y
+CONFIG_DVB_STV6111=y
+
+#
+# Multistandard (cable + terrestrial) frontends
+#
+CONFIG_DVB_DRXK=y
+CONFIG_DVB_MN88472=y
+CONFIG_DVB_MN88473=m
+# CONFIG_DVB_SI2165 is not set
+CONFIG_DVB_TDA18271C2DD=y
+
+#
+# DVB-S (satellite) frontends
+#
+CONFIG_DVB_CX24110=m
+# CONFIG_DVB_CX24116 is not set
+# CONFIG_DVB_CX24117 is not set
+CONFIG_DVB_CX24120=m
+CONFIG_DVB_CX24123=m
+CONFIG_DVB_DS3000=y
+CONFIG_DVB_MB86A16=y
+# CONFIG_DVB_MT312 is not set
+# CONFIG_DVB_S5H1420 is not set
+CONFIG_DVB_SI21XX=y
+CONFIG_DVB_STB6000=m
+CONFIG_DVB_STV0288=y
+CONFIG_DVB_STV0299=m
+CONFIG_DVB_STV0900=y
+CONFIG_DVB_STV6110=y
+CONFIG_DVB_TDA10071=m
+# CONFIG_DVB_TDA10086 is not set
+CONFIG_DVB_TDA8083=m
+CONFIG_DVB_TDA8261=m
+CONFIG_DVB_TDA826X=m
+# CONFIG_DVB_TS2020 is not set
+CONFIG_DVB_TUA6100=y
+# CONFIG_DVB_TUNER_CX24113 is not set
+CONFIG_DVB_TUNER_ITD1000=y
+CONFIG_DVB_VES1X93=m
+# CONFIG_DVB_ZL10036 is not set
+CONFIG_DVB_ZL10039=y
+
+#
+# DVB-T (terrestrial) frontends
+#
+CONFIG_DVB_AF9013=m
+CONFIG_DVB_CX22700=m
+CONFIG_DVB_CX22702=y
+# CONFIG_DVB_CXD2820R is not set
+CONFIG_DVB_CXD2841ER=y
+# CONFIG_DVB_DIB3000MB is not set
+# CONFIG_DVB_DIB3000MC is not set
+# CONFIG_DVB_DIB7000M is not set
+CONFIG_DVB_DIB7000P=m
+# CONFIG_DVB_DIB9000 is not set
+CONFIG_DVB_DRXD=y
+CONFIG_DVB_EC100=m
+CONFIG_DVB_L64781=y
+CONFIG_DVB_MT352=y
+CONFIG_DVB_NXT6000=y
+# CONFIG_DVB_RTL2830 is not set
+# CONFIG_DVB_RTL2832 is not set
+# CONFIG_DVB_RTL2832_SDR is not set
+# CONFIG_DVB_S5H1432 is not set
+# CONFIG_DVB_SI2168 is not set
+CONFIG_DVB_SP887X=m
+CONFIG_DVB_STV0367=y
+CONFIG_DVB_TDA10048=m
+CONFIG_DVB_TDA1004X=y
+# CONFIG_DVB_ZD1301_DEMOD is not set
+# CONFIG_DVB_ZL10353 is not set
+
+#
+# DVB-C (cable) frontends
+#
+CONFIG_DVB_STV0297=m
+CONFIG_DVB_TDA10021=y
+CONFIG_DVB_TDA10023=y
+# CONFIG_DVB_VES1820 is not set
+
+#
+# ATSC (North American/Korean Terrestrial/Cable DTV) frontends
+#
+CONFIG_DVB_AU8522=m
+CONFIG_DVB_AU8522_DTV=m
+CONFIG_DVB_AU8522_V4L=m
+# CONFIG_DVB_BCM3510 is not set
+# CONFIG_DVB_LG2160 is not set
+# CONFIG_DVB_LGDT3305 is not set
+# CONFIG_DVB_LGDT3306A is not set
+CONFIG_DVB_LGDT330X=m
+# CONFIG_DVB_MXL692 is not set
+CONFIG_DVB_NXT200X=m
+CONFIG_DVB_OR51132=m
+CONFIG_DVB_OR51211=m
+CONFIG_DVB_S5H1409=m
+CONFIG_DVB_S5H1411=m
+
+#
+# ISDB-T (terrestrial) frontends
+#
+CONFIG_DVB_DIB8000=y
+# CONFIG_DVB_MB86A20S is not set
+CONFIG_DVB_S921=y
+
+#
+# ISDB-S (satellite) & ISDB-T (terrestrial) frontends
+#
+# CONFIG_DVB_MN88443X is not set
+CONFIG_DVB_TC90522=y
+
+#
+# Digital terrestrial only tuners/PLL
+#
+CONFIG_DVB_PLL=y
+CONFIG_DVB_TUNER_DIB0070=m
+# CONFIG_DVB_TUNER_DIB0090 is not set
+
+#
+# SEC control devices for DVB-S
+#
+# CONFIG_DVB_A8293 is not set
+CONFIG_DVB_AF9033=y
+CONFIG_DVB_ASCOT2E=y
+CONFIG_DVB_ATBM8830=m
+# CONFIG_DVB_HELENE is not set
+CONFIG_DVB_HORUS3A=y
+CONFIG_DVB_ISL6405=y
+CONFIG_DVB_ISL6421=m
+CONFIG_DVB_ISL6423=m
+CONFIG_DVB_IX2505V=m
+CONFIG_DVB_LGS8GL5=m
+# CONFIG_DVB_LGS8GXX is not set
+CONFIG_DVB_LNBH25=y
+CONFIG_DVB_LNBH29=y
+CONFIG_DVB_LNBP21=y
+# CONFIG_DVB_LNBP22 is not set
+CONFIG_DVB_M88RS2000=y
+# CONFIG_DVB_TDA665x is not set
+# CONFIG_DVB_DRX39XYJ is not set
+
+#
+# Common Interface (EN50221) controller drivers
+#
+CONFIG_DVB_CXD2099=y
+CONFIG_DVB_SP2=y
+# end of Customise DVB Frontends
+
+#
+# Tools to develop new frontends
+#
+CONFIG_DVB_DUMMY_FE=m
+# end of Media ancillary drivers
+
+#
+# Graphics support
+#
+CONFIG_APERTURE_HELPERS=y
+CONFIG_VIDEO_CMDLINE=y
+CONFIG_VIDEO_NOMODESET=y
+# CONFIG_AGP is not set
+CONFIG_INTEL_GTT=y
+# CONFIG_VGA_SWITCHEROO is not set
+CONFIG_DRM=y
+CONFIG_DRM_MIPI_DSI=y
+CONFIG_DRM_DEBUG_MM=y
+CONFIG_DRM_KMS_HELPER=y
+# CONFIG_DRM_DEBUG_DP_MST_TOPOLOGY_REFS is not set
+CONFIG_DRM_DEBUG_MODESET_LOCK=y
+CONFIG_DRM_LOAD_EDID_FIRMWARE=y
+CONFIG_DRM_DISPLAY_HELPER=y
+CONFIG_DRM_DISPLAY_DP_HELPER=y
+CONFIG_DRM_DISPLAY_HDCP_HELPER=y
+CONFIG_DRM_DISPLAY_HDMI_HELPER=y
+CONFIG_DRM_DP_AUX_CHARDEV=y
+# CONFIG_DRM_DP_CEC is not set
+CONFIG_DRM_TTM=y
+CONFIG_DRM_BUDDY=y
+CONFIG_DRM_VRAM_HELPER=m
+CONFIG_DRM_TTM_HELPER=y
+CONFIG_DRM_GEM_DMA_HELPER=m
+CONFIG_DRM_GEM_SHMEM_HELPER=y
+CONFIG_DRM_SCHED=y
+
+#
+# I2C encoder or helper chips
+#
+CONFIG_DRM_I2C_CH7006=m
+CONFIG_DRM_I2C_SIL164=m
+# CONFIG_DRM_I2C_NXP_TDA998X is not set
+CONFIG_DRM_I2C_NXP_TDA9950=m
+# end of I2C encoder or helper chips
+
+#
+# ARM devices
+#
+CONFIG_DRM_KOMEDA=m
+# end of ARM devices
+
+# CONFIG_DRM_RADEON is not set
+# CONFIG_DRM_AMDGPU is not set
+# CONFIG_DRM_NOUVEAU is not set
+CONFIG_DRM_I915=y
+CONFIG_DRM_I915_FORCE_PROBE=""
+CONFIG_DRM_I915_CAPTURE_ERROR=y
+# CONFIG_DRM_I915_COMPRESS_ERROR is not set
+CONFIG_DRM_I915_USERPTR=y
+# CONFIG_DRM_I915_PXP is not set
+
+#
+# drm/i915 Debugging
+#
+CONFIG_DRM_I915_WERROR=y
+# CONFIG_DRM_I915_DEBUG is not set
+CONFIG_DRM_I915_DEBUG_MMIO=y
+CONFIG_DRM_I915_DEBUG_GEM=y
+CONFIG_DRM_I915_DEBUG_GEM_ONCE=y
+CONFIG_DRM_I915_ERRLOG_GEM=y
+# CONFIG_DRM_I915_TRACE_GEM is not set
+# CONFIG_DRM_I915_TRACE_GTT is not set
+CONFIG_DRM_I915_SW_FENCE_DEBUG_OBJECTS=y
+CONFIG_DRM_I915_SW_FENCE_CHECK_DAG=y
+# CONFIG_DRM_I915_DEBUG_GUC is not set
+# CONFIG_DRM_I915_SELFTEST is not set
+# CONFIG_DRM_I915_LOW_LEVEL_TRACEPOINTS is not set
+# CONFIG_DRM_I915_DEBUG_VBLANK_EVADE is not set
+CONFIG_DRM_I915_DEBUG_RUNTIME_PM=y
+# end of drm/i915 Debugging
+
+#
+# drm/i915 Profile Guided Optimisation
+#
+CONFIG_DRM_I915_REQUEST_TIMEOUT=20000
+CONFIG_DRM_I915_FENCE_TIMEOUT=10000
+CONFIG_DRM_I915_USERFAULT_AUTOSUSPEND=250
+CONFIG_DRM_I915_HEARTBEAT_INTERVAL=2500
+CONFIG_DRM_I915_PREEMPT_TIMEOUT=640
+CONFIG_DRM_I915_PREEMPT_TIMEOUT_COMPUTE=7500
+CONFIG_DRM_I915_MAX_REQUEST_BUSYWAIT=8000
+CONFIG_DRM_I915_STOP_TIMEOUT=100
+CONFIG_DRM_I915_TIMESLICE_DURATION=1
+# end of drm/i915 Profile Guided Optimisation
+
+CONFIG_DRM_VGEM=y
+CONFIG_DRM_VKMS=y
+CONFIG_DRM_VMWGFX=y
+# CONFIG_DRM_VMWGFX_MKSSTATS is not set
+CONFIG_DRM_GMA500=m
+CONFIG_DRM_UDL=m
+CONFIG_DRM_AST=m
+# CONFIG_DRM_MGAG200 is not set
+CONFIG_DRM_QXL=m
+CONFIG_DRM_PANEL=y
+
+#
+# Display Panels
+#
+CONFIG_DRM_PANEL_ARM_VERSATILE=y
+CONFIG_DRM_PANEL_ASUS_Z00T_TM5P5_NT35596=m
+# CONFIG_DRM_PANEL_BOE_BF060Y8M_AJ0 is not set
+CONFIG_DRM_PANEL_BOE_HIMAX8279D=y
+CONFIG_DRM_PANEL_BOE_TV101WUM_NL6=y
+CONFIG_DRM_PANEL_DSI_CM=m
+# CONFIG_DRM_PANEL_LVDS is not set
+# CONFIG_DRM_PANEL_EBBG_FT8719 is not set
+CONFIG_DRM_PANEL_ELIDA_KD35T133=m
+CONFIG_DRM_PANEL_FEIXIN_K101_IM2BA02=m
+# CONFIG_DRM_PANEL_FEIYANG_FY07024DI26A30D is not set
+# CONFIG_DRM_PANEL_HIMAX_HX8394 is not set
+# CONFIG_DRM_PANEL_ILITEK_ILI9881C is not set
+# CONFIG_DRM_PANEL_INNOLUX_P079ZCA is not set
+# CONFIG_DRM_PANEL_JADARD_JD9365DA_H3 is not set
+CONFIG_DRM_PANEL_JDI_LT070ME05000=m
+# CONFIG_DRM_PANEL_JDI_R63452 is not set
+CONFIG_DRM_PANEL_KHADAS_TS050=y
+CONFIG_DRM_PANEL_KINGDISPLAY_KD097D04=y
+CONFIG_DRM_PANEL_LEADTEK_LTK050H3146W=m
+CONFIG_DRM_PANEL_LEADTEK_LTK500HD1829=y
+# CONFIG_DRM_PANEL_NEWVISION_NV3051D is not set
+# CONFIG_DRM_PANEL_NOVATEK_NT35510 is not set
+# CONFIG_DRM_PANEL_NOVATEK_NT35560 is not set
+# CONFIG_DRM_PANEL_NOVATEK_NT35950 is not set
+# CONFIG_DRM_PANEL_NOVATEK_NT36523 is not set
+# CONFIG_DRM_PANEL_NOVATEK_NT36672A is not set
+CONFIG_DRM_PANEL_MANTIX_MLAF057WE51=y
+CONFIG_DRM_PANEL_OLIMEX_LCD_OLINUXINO=m
+CONFIG_DRM_PANEL_ORISETECH_OTM8009A=y
+CONFIG_DRM_PANEL_OSD_OSD101T2587_53TS=m
+CONFIG_DRM_PANEL_PANASONIC_VVX10F034N00=y
+CONFIG_DRM_PANEL_RASPBERRYPI_TOUCHSCREEN=m
+CONFIG_DRM_PANEL_RAYDIUM_RM67191=y
+CONFIG_DRM_PANEL_RAYDIUM_RM68200=y
+# CONFIG_DRM_PANEL_RONBO_RB070D30 is not set
+CONFIG_DRM_PANEL_SAMSUNG_S6D16D0=y
+CONFIG_DRM_PANEL_SAMSUNG_S6E3HA2=m
+CONFIG_DRM_PANEL_SAMSUNG_S6E63J0X03=m
+# CONFIG_DRM_PANEL_SAMSUNG_S6E63M0 is not set
+CONFIG_DRM_PANEL_SAMSUNG_S6E88A0_AMS452EF01=y
+# CONFIG_DRM_PANEL_SAMSUNG_S6E8AA0 is not set
+CONFIG_DRM_PANEL_SAMSUNG_SOFEF00=m
+CONFIG_DRM_PANEL_SEIKO_43WVF1G=m
+CONFIG_DRM_PANEL_SHARP_LQ101R1SX01=m
+CONFIG_DRM_PANEL_SHARP_LS037V7DW01=m
+# CONFIG_DRM_PANEL_SHARP_LS043T1LE01 is not set
+# CONFIG_DRM_PANEL_SHARP_LS060T1SX01 is not set
+CONFIG_DRM_PANEL_SITRONIX_ST7701=m
+# CONFIG_DRM_PANEL_SITRONIX_ST7703 is not set
+# CONFIG_DRM_PANEL_SONY_TD4353_JDI is not set
+# CONFIG_DRM_PANEL_SONY_TULIP_TRULY_NT35521 is not set
+CONFIG_DRM_PANEL_TDO_TL070WSH30=y
+# CONFIG_DRM_PANEL_TRULY_NT35597_WQXGA is not set
+# CONFIG_DRM_PANEL_VISIONOX_RM69299 is not set
+# CONFIG_DRM_PANEL_VISIONOX_VTDR6130 is not set
+# CONFIG_DRM_PANEL_XINPENG_XPP055C272 is not set
+# end of Display Panels
+
+CONFIG_DRM_BRIDGE=y
+CONFIG_DRM_PANEL_BRIDGE=y
+
+#
+# Display Interface Bridges
+#
+CONFIG_DRM_CHIPONE_ICN6211=y
+# CONFIG_DRM_CHRONTEL_CH7033 is not set
+# CONFIG_DRM_DISPLAY_CONNECTOR is not set
+# CONFIG_DRM_ITE_IT6505 is not set
+CONFIG_DRM_LONTIUM_LT8912B=y
+# CONFIG_DRM_LONTIUM_LT9211 is not set
+CONFIG_DRM_LONTIUM_LT9611=y
+# CONFIG_DRM_LONTIUM_LT9611UXC is not set
+CONFIG_DRM_ITE_IT66121=y
+CONFIG_DRM_LVDS_CODEC=y
+CONFIG_DRM_MEGACHIPS_STDPXXXX_GE_B850V3_FW=y
+CONFIG_DRM_NWL_MIPI_DSI=m
+CONFIG_DRM_NXP_PTN3460=y
+CONFIG_DRM_PARADE_PS8622=m
+# CONFIG_DRM_PARADE_PS8640 is not set
+# CONFIG_DRM_SAMSUNG_DSIM is not set
+# CONFIG_DRM_SIL_SII8620 is not set
+CONFIG_DRM_SII902X=m
+CONFIG_DRM_SII9234=m
+CONFIG_DRM_SIMPLE_BRIDGE=y
+CONFIG_DRM_THINE_THC63LVD1024=y
+CONFIG_DRM_TOSHIBA_TC358762=m
+# CONFIG_DRM_TOSHIBA_TC358764 is not set
+# CONFIG_DRM_TOSHIBA_TC358767 is not set
+CONFIG_DRM_TOSHIBA_TC358768=m
+# CONFIG_DRM_TOSHIBA_TC358775 is not set
+# CONFIG_DRM_TI_DLPC3433 is not set
+# CONFIG_DRM_TI_TFP410 is not set
+CONFIG_DRM_TI_SN65DSI83=y
+# CONFIG_DRM_TI_SN65DSI86 is not set
+CONFIG_DRM_TI_TPD12S015=y
+# CONFIG_DRM_ANALOGIX_ANX6345 is not set
+CONFIG_DRM_ANALOGIX_ANX78XX=y
+CONFIG_DRM_ANALOGIX_DP=y
+# CONFIG_DRM_ANALOGIX_ANX7625 is not set
+CONFIG_DRM_I2C_ADV7511=m
+CONFIG_DRM_I2C_ADV7511_CEC=y
+# CONFIG_DRM_CDNS_DSI is not set
+CONFIG_DRM_CDNS_MHDP8546=y
+# end of Display Interface Bridges
+
+CONFIG_DRM_ETNAVIV=y
+CONFIG_DRM_ETNAVIV_THERMAL=y
+# CONFIG_DRM_LOGICVC is not set
+CONFIG_DRM_ARCPGU=m
+# CONFIG_DRM_BOCHS is not set
+CONFIG_DRM_CIRRUS_QEMU=m
+CONFIG_DRM_GM12U320=m
+CONFIG_DRM_SIMPLEDRM=y
+CONFIG_DRM_VBOXVIDEO=m
+CONFIG_DRM_GUD=m
+# CONFIG_DRM_SSD130X is not set
+CONFIG_DRM_LEGACY=y
+CONFIG_DRM_PANEL_ORIENTATION_QUIRKS=y
+
+#
+# Frame buffer Devices
+#
+CONFIG_FB_NOTIFY=y
+CONFIG_FB=m
+CONFIG_FIRMWARE_EDID=y
+CONFIG_FB_DDC=m
+CONFIG_FB_CFB_FILLRECT=m
+CONFIG_FB_CFB_COPYAREA=m
+CONFIG_FB_CFB_IMAGEBLIT=m
+CONFIG_FB_SYS_FILLRECT=m
+CONFIG_FB_SYS_COPYAREA=m
+CONFIG_FB_SYS_IMAGEBLIT=m
+# CONFIG_FB_FOREIGN_ENDIAN is not set
+CONFIG_FB_SYS_FOPS=m
+CONFIG_FB_DEFERRED_IO=y
+CONFIG_FB_HECUBA=m
+CONFIG_FB_SVGALIB=m
+CONFIG_FB_BACKLIGHT=m
+CONFIG_FB_MODE_HELPERS=y
+CONFIG_FB_TILEBLITTING=y
+
+#
+# Frame buffer hardware drivers
+#
+CONFIG_FB_CIRRUS=m
+CONFIG_FB_PM2=m
+CONFIG_FB_PM2_FIFO_DISCONNECT=y
+CONFIG_FB_CYBER2000=m
+# CONFIG_FB_CYBER2000_DDC is not set
+CONFIG_FB_ARC=m
+# CONFIG_FB_VGA16 is not set
+CONFIG_FB_N411=m
+CONFIG_FB_HGA=m
+# CONFIG_FB_OPENCORES is not set
+CONFIG_FB_S1D13XXX=m
+CONFIG_FB_NVIDIA=m
+# CONFIG_FB_NVIDIA_I2C is not set
+CONFIG_FB_NVIDIA_DEBUG=y
+CONFIG_FB_NVIDIA_BACKLIGHT=y
+CONFIG_FB_RIVA=m
+CONFIG_FB_RIVA_I2C=y
+CONFIG_FB_RIVA_DEBUG=y
+# CONFIG_FB_RIVA_BACKLIGHT is not set
+CONFIG_FB_I740=m
+# CONFIG_FB_LE80578 is not set
+# CONFIG_FB_MATROX is not set
+# CONFIG_FB_RADEON is not set
+CONFIG_FB_ATY128=m
+CONFIG_FB_ATY128_BACKLIGHT=y
+CONFIG_FB_ATY=m
+# CONFIG_FB_ATY_CT is not set
+CONFIG_FB_ATY_GX=y
+CONFIG_FB_ATY_BACKLIGHT=y
+CONFIG_FB_S3=m
+CONFIG_FB_S3_DDC=y
+# CONFIG_FB_SAVAGE is not set
+CONFIG_FB_SIS=m
+CONFIG_FB_SIS_300=y
+# CONFIG_FB_SIS_315 is not set
+CONFIG_FB_VIA=m
+# CONFIG_FB_VIA_DIRECT_PROCFS is not set
+CONFIG_FB_VIA_X_COMPATIBILITY=y
+CONFIG_FB_NEOMAGIC=m
+CONFIG_FB_KYRO=m
+# CONFIG_FB_3DFX is not set
+# CONFIG_FB_VOODOO1 is not set
+CONFIG_FB_VT8623=m
+CONFIG_FB_TRIDENT=m
+# CONFIG_FB_ARK is not set
+CONFIG_FB_PM3=m
+CONFIG_FB_CARMINE=m
+CONFIG_FB_CARMINE_DRAM_EVAL=y
+# CONFIG_CARMINE_DRAM_CUSTOM is not set
+CONFIG_FB_GEODE=y
+CONFIG_FB_GEODE_LX=m
+CONFIG_FB_GEODE_GX=m
+CONFIG_FB_GEODE_GX1=m
+# CONFIG_FB_SM501 is not set
+CONFIG_FB_SMSCUFX=m
+CONFIG_FB_UDL=m
+# CONFIG_FB_IBM_GXT4500 is not set
+CONFIG_FB_GOLDFISH=m
+# CONFIG_FB_VIRTUAL is not set
+# CONFIG_FB_METRONOME is not set
+# CONFIG_FB_MB862XX is not set
+CONFIG_FB_SSD1307=m
+CONFIG_FB_SM712=m
+# end of Frame buffer Devices
+
+#
+# Backlight & LCD device support
+#
+# CONFIG_LCD_CLASS_DEVICE is not set
+CONFIG_BACKLIGHT_CLASS_DEVICE=y
+CONFIG_BACKLIGHT_KTD253=m
+# CONFIG_BACKLIGHT_KTZ8866 is not set
+CONFIG_BACKLIGHT_LM3533=m
+CONFIG_BACKLIGHT_PWM=m
+# CONFIG_BACKLIGHT_DA903X is not set
+CONFIG_BACKLIGHT_MAX8925=y
+# CONFIG_BACKLIGHT_APPLE is not set
+# CONFIG_BACKLIGHT_QCOM_WLED is not set
+CONFIG_BACKLIGHT_SAHARA=m
+CONFIG_BACKLIGHT_ADP5520=y
+# CONFIG_BACKLIGHT_ADP8860 is not set
+CONFIG_BACKLIGHT_ADP8870=m
+CONFIG_BACKLIGHT_88PM860X=m
+CONFIG_BACKLIGHT_PCF50633=m
+# CONFIG_BACKLIGHT_LM3630A is not set
+CONFIG_BACKLIGHT_LM3639=m
+CONFIG_BACKLIGHT_LP855X=y
+CONFIG_BACKLIGHT_GPIO=y
+# CONFIG_BACKLIGHT_LV5207LP is not set
+# CONFIG_BACKLIGHT_BD6107 is not set
+CONFIG_BACKLIGHT_ARCXCNN=m
+CONFIG_BACKLIGHT_LED=m
+# end of Backlight & LCD device support
+
+CONFIG_VGASTATE=m
+CONFIG_VIDEOMODE_HELPERS=y
+CONFIG_HDMI=y
+# CONFIG_LOGO is not set
+# end of Graphics support
+
+# CONFIG_DRM_ACCEL is not set
+CONFIG_SOUND=y
+CONFIG_SND=y
+CONFIG_SND_TIMER=y
+CONFIG_SND_PCM=y
+# CONFIG_SND_OSSEMUL is not set
+CONFIG_SND_PCM_TIMER=y
+CONFIG_SND_HRTIMER=y
+# CONFIG_SND_DYNAMIC_MINORS is not set
+# CONFIG_SND_SUPPORT_OLD_API is not set
+# CONFIG_SND_PROC_FS is not set
+CONFIG_SND_VERBOSE_PRINTK=y
+CONFIG_SND_CTL_FAST_LOOKUP=y
+CONFIG_SND_DEBUG=y
+CONFIG_SND_DEBUG_VERBOSE=y
+# CONFIG_SND_CTL_INPUT_VALIDATION is not set
+# CONFIG_SND_CTL_DEBUG is not set
+CONFIG_SND_DMA_SGBUF=y
+# CONFIG_SND_SEQUENCER is not set
+# CONFIG_SND_DRIVERS is not set
+# CONFIG_SND_PCI is not set
+
+#
+# HD-Audio
+#
+# end of HD-Audio
+
+CONFIG_SND_HDA_PREALLOC_SIZE=0
+# CONFIG_SND_USB is not set
+# CONFIG_SND_FIREWIRE is not set
+# CONFIG_SND_SOC is not set
+# CONFIG_SND_X86 is not set
+# CONFIG_SND_VIRTIO is not set
+CONFIG_HID_SUPPORT=y
+CONFIG_HID=m
+# CONFIG_HID_BATTERY_STRENGTH is not set
+CONFIG_HIDRAW=y
+CONFIG_UHID=m
+# CONFIG_HID_GENERIC is not set
+
+#
+# Special HID drivers
+#
+CONFIG_HID_A4TECH=m
+# CONFIG_HID_ACRUX is not set
+# CONFIG_HID_APPLE is not set
+# CONFIG_HID_AUREAL is not set
+CONFIG_HID_BELKIN=m
+# CONFIG_HID_CHERRY is not set
+CONFIG_HID_COUGAR=m
+# CONFIG_HID_MACALLY is not set
+# CONFIG_HID_CMEDIA is not set
+CONFIG_HID_CYPRESS=m
+CONFIG_HID_DRAGONRISE=m
+# CONFIG_DRAGONRISE_FF is not set
+CONFIG_HID_EMS_FF=m
+CONFIG_HID_ELECOM=m
+# CONFIG_HID_EVISION is not set
+CONFIG_HID_EZKEY=m
+CONFIG_HID_GEMBIRD=m
+# CONFIG_HID_GFRM is not set
+CONFIG_HID_GLORIOUS=m
+CONFIG_HID_VIVALDI_COMMON=m
+CONFIG_HID_VIVALDI=m
+CONFIG_HID_KEYTOUCH=m
+CONFIG_HID_KYE=m
+# CONFIG_HID_WALTOP is not set
+CONFIG_HID_VIEWSONIC=m
+# CONFIG_HID_VRC2 is not set
+# CONFIG_HID_XIAOMI is not set
+CONFIG_HID_GYRATION=m
+CONFIG_HID_ICADE=m
+CONFIG_HID_ITE=m
+CONFIG_HID_JABRA=m
+# CONFIG_HID_TWINHAN is not set
+CONFIG_HID_KENSINGTON=m
+# CONFIG_HID_LCPOWER is not set
+CONFIG_HID_LED=m
+CONFIG_HID_LENOVO=m
+# CONFIG_HID_MAGICMOUSE is not set
+CONFIG_HID_MALTRON=m
+# CONFIG_HID_MAYFLASH is not set
+# CONFIG_HID_REDRAGON is not set
+CONFIG_HID_MICROSOFT=m
+CONFIG_HID_MONTEREY=m
+# CONFIG_HID_MULTITOUCH is not set
+CONFIG_HID_NINTENDO=m
+# CONFIG_NINTENDO_FF is not set
+# CONFIG_HID_NTI is not set
+CONFIG_HID_ORTEK=m
+CONFIG_HID_PANTHERLORD=m
+CONFIG_PANTHERLORD_FF=y
+# CONFIG_HID_PETALYNX is not set
+CONFIG_HID_PICOLCD=m
+CONFIG_HID_PICOLCD_FB=y
+CONFIG_HID_PICOLCD_BACKLIGHT=y
+# CONFIG_HID_PICOLCD_LEDS is not set
+CONFIG_HID_PLANTRONICS=m
+# CONFIG_HID_PLAYSTATION is not set
+# CONFIG_HID_PXRC is not set
+# CONFIG_HID_RAZER is not set
+CONFIG_HID_PRIMAX=m
+CONFIG_HID_SAITEK=m
+# CONFIG_HID_SEMITEK is not set
+# CONFIG_HID_SPEEDLINK is not set
+CONFIG_HID_STEAM=m
+# CONFIG_STEAM_FF is not set
+CONFIG_HID_STEELSERIES=m
+CONFIG_HID_SUNPLUS=m
+# CONFIG_HID_RMI is not set
+# CONFIG_HID_GREENASIA is not set
+CONFIG_HID_SMARTJOYPLUS=m
+# CONFIG_SMARTJOYPLUS_FF is not set
+# CONFIG_HID_TIVO is not set
+# CONFIG_HID_TOPSEED is not set
+# CONFIG_HID_TOPRE is not set
+CONFIG_HID_THINGM=m
+CONFIG_HID_UDRAW_PS3=m
+# CONFIG_HID_WIIMOTE is not set
+CONFIG_HID_XINMO=m
+CONFIG_HID_ZEROPLUS=m
+CONFIG_ZEROPLUS_FF=y
+CONFIG_HID_ZYDACRON=m
+CONFIG_HID_SENSOR_HUB=m
+CONFIG_HID_SENSOR_CUSTOM_SENSOR=m
+CONFIG_HID_ALPS=m
+# end of Special HID drivers
+
+#
+# HID-BPF support
+#
+# end of HID-BPF support
+
+#
+# USB HID support
+#
+# CONFIG_USB_HID is not set
+# CONFIG_HID_PID is not set
+
+#
+# USB HID Boot Protocol drivers
+#
+CONFIG_USB_KBD=m
+# CONFIG_USB_MOUSE is not set
+# end of USB HID Boot Protocol drivers
+# end of USB HID support
+
+CONFIG_I2C_HID=m
+# CONFIG_I2C_HID_ACPI is not set
+CONFIG_I2C_HID_OF=m
+# CONFIG_I2C_HID_OF_ELAN is not set
+CONFIG_I2C_HID_OF_GOODIX=m
+CONFIG_I2C_HID_CORE=m
+CONFIG_USB_OHCI_LITTLE_ENDIAN=y
+CONFIG_USB_SUPPORT=y
+CONFIG_USB_COMMON=y
+# CONFIG_USB_LED_TRIG is not set
+CONFIG_USB_ULPI_BUS=y
+CONFIG_USB_CONN_GPIO=m
+CONFIG_USB_ARCH_HAS_HCD=y
+CONFIG_USB=m
+CONFIG_USB_PCI=y
+# CONFIG_USB_ANNOUNCE_NEW_DEVICES is not set
+
+#
+# Miscellaneous USB options
+#
+# CONFIG_USB_DEFAULT_PERSIST is not set
+# CONFIG_USB_FEW_INIT_RETRIES is not set
+# CONFIG_USB_DYNAMIC_MINORS is not set
+CONFIG_USB_OTG_PRODUCTLIST=y
+CONFIG_USB_OTG_DISABLE_EXTERNAL_HUB=y
+CONFIG_USB_LEDS_TRIGGER_USBPORT=m
+CONFIG_USB_AUTOSUSPEND_DELAY=2
+CONFIG_USB_MON=m
+
+#
+# USB Host Controller Drivers
+#
+# CONFIG_USB_C67X00_HCD is not set
+# CONFIG_USB_XHCI_HCD is not set
+# CONFIG_USB_EHCI_HCD is not set
+# CONFIG_USB_OXU210HP_HCD is not set
+CONFIG_USB_ISP116X_HCD=m
+CONFIG_USB_OHCI_HCD=m
+# CONFIG_USB_OHCI_HCD_PCI is not set
+CONFIG_USB_OHCI_HCD_SSB=y
+CONFIG_USB_OHCI_HCD_PLATFORM=m
+CONFIG_USB_UHCI_HCD=m
+# CONFIG_USB_SL811_HCD is not set
+CONFIG_USB_R8A66597_HCD=m
+CONFIG_USB_HCD_SSB=m
+# CONFIG_USB_HCD_TEST_MODE is not set
+
+#
+# USB Device Class drivers
+#
+CONFIG_USB_ACM=m
+CONFIG_USB_PRINTER=m
+CONFIG_USB_WDM=m
+# CONFIG_USB_TMC is not set
+
+#
+# NOTE: USB_STORAGE depends on SCSI but BLK_DEV_SD may
+#
+
+#
+# also be needed; see USB_STORAGE Help for more info
+#
+
+#
+# USB Imaging devices
+#
+CONFIG_USB_MDC800=m
+# CONFIG_USBIP_CORE is not set
+
+#
+# USB dual-mode controller drivers
+#
+# CONFIG_USB_CDNS_SUPPORT is not set
+CONFIG_USB_MUSB_HDRC=m
+# CONFIG_USB_MUSB_HOST is not set
+CONFIG_USB_MUSB_GADGET=y
+# CONFIG_USB_MUSB_DUAL_ROLE is not set
+
+#
+# Platform Glue Layer
+#
+
+#
+# MUSB DMA mode
+#
+# CONFIG_MUSB_PIO_ONLY is not set
+# CONFIG_USB_DWC3 is not set
+CONFIG_USB_DWC2=m
+CONFIG_USB_DWC2_HOST=y
+
+#
+# Gadget/Dual-role mode requires USB Gadget support to be enabled
+#
+# CONFIG_USB_DWC2_PERIPHERAL is not set
+# CONFIG_USB_DWC2_DUAL_ROLE is not set
+CONFIG_USB_DWC2_PCI=m
+# CONFIG_USB_DWC2_DEBUG is not set
+# CONFIG_USB_DWC2_TRACK_MISSED_SOFS is not set
+CONFIG_USB_CHIPIDEA=m
+# CONFIG_USB_CHIPIDEA_UDC is not set
+# CONFIG_USB_CHIPIDEA_PCI is not set
+# CONFIG_USB_CHIPIDEA_MSM is not set
+# CONFIG_USB_CHIPIDEA_IMX is not set
+# CONFIG_USB_CHIPIDEA_GENERIC is not set
+CONFIG_USB_CHIPIDEA_TEGRA=m
+CONFIG_USB_ISP1760=m
+CONFIG_USB_ISP1761_UDC=y
+# CONFIG_USB_ISP1760_HOST_ROLE is not set
+CONFIG_USB_ISP1760_GADGET_ROLE=y
+# CONFIG_USB_ISP1760_DUAL_ROLE is not set
+
+#
+# USB port drivers
+#
+# CONFIG_USB_SERIAL is not set
+
+#
+# USB Miscellaneous drivers
+#
+# CONFIG_USB_USS720 is not set
+CONFIG_USB_EMI62=m
+CONFIG_USB_EMI26=m
+CONFIG_USB_ADUTUX=m
+CONFIG_USB_SEVSEG=m
+# CONFIG_USB_LEGOTOWER is not set
+# CONFIG_USB_LCD is not set
+CONFIG_USB_CYPRESS_CY7C63=m
+# CONFIG_USB_CYTHERM is not set
+CONFIG_USB_IDMOUSE=m
+CONFIG_USB_APPLEDISPLAY=m
+CONFIG_APPLE_MFI_FASTCHARGE=m
+# CONFIG_USB_SISUSBVGA is not set
+# CONFIG_USB_LD is not set
+CONFIG_USB_TRANCEVIBRATOR=m
+CONFIG_USB_IOWARRIOR=m
+# CONFIG_USB_TEST is not set
+# CONFIG_USB_EHSET_TEST_FIXTURE is not set
+CONFIG_USB_ISIGHTFW=m
+CONFIG_USB_YUREX=m
+CONFIG_USB_EZUSB_FX2=m
+CONFIG_USB_HUB_USB251XB=m
+# CONFIG_USB_HSIC_USB3503 is not set
+# CONFIG_USB_HSIC_USB4604 is not set
+# CONFIG_USB_LINK_LAYER_TEST is not set
+CONFIG_USB_CHAOSKEY=m
+# CONFIG_USB_ONBOARD_HUB is not set
+
+#
+# USB Physical Layer drivers
+#
+CONFIG_USB_PHY=y
+CONFIG_NOP_USB_XCEIV=y
+# CONFIG_USB_GPIO_VBUS is not set
+CONFIG_TAHVO_USB=m
+# CONFIG_TAHVO_USB_HOST_BY_DEFAULT is not set
+# CONFIG_USB_ISP1301 is not set
+# end of USB Physical Layer drivers
+
+CONFIG_USB_GADGET=y
+CONFIG_USB_GADGET_DEBUG=y
+# CONFIG_USB_GADGET_VERBOSE is not set
+CONFIG_USB_GADGET_DEBUG_FILES=y
+# CONFIG_USB_GADGET_DEBUG_FS is not set
+CONFIG_USB_GADGET_VBUS_DRAW=2
+CONFIG_USB_GADGET_STORAGE_NUM_BUFFERS=2
+CONFIG_U_SERIAL_CONSOLE=y
+
+#
+# USB Peripheral Controller
+#
+CONFIG_USB_FUSB300=y
+CONFIG_USB_GR_UDC=m
+# CONFIG_USB_R8A66597 is not set
+# CONFIG_USB_PXA27X is not set
+CONFIG_USB_MV_UDC=m
+CONFIG_USB_MV_U3D=y
+CONFIG_USB_SNP_CORE=m
+CONFIG_USB_SNP_UDC_PLAT=m
+# CONFIG_USB_M66592 is not set
+# CONFIG_USB_BDC_UDC is not set
+# CONFIG_USB_AMD5536UDC is not set
+# CONFIG_USB_NET2272 is not set
+CONFIG_USB_NET2280=y
+CONFIG_USB_GOKU=y
+# CONFIG_USB_EG20T is not set
+CONFIG_USB_GADGET_XILINX=m
+# end of USB Peripheral Controller
+
+CONFIG_USB_LIBCOMPOSITE=y
+CONFIG_USB_F_ACM=y
+CONFIG_USB_F_SS_LB=m
+CONFIG_USB_U_SERIAL=y
+CONFIG_USB_U_AUDIO=m
+CONFIG_USB_F_SERIAL=y
+CONFIG_USB_F_OBEX=m
+CONFIG_USB_F_FS=y
+CONFIG_USB_F_UAC1_LEGACY=y
+CONFIG_USB_F_UAC2=m
+CONFIG_USB_F_HID=y
+CONFIG_USB_F_PRINTER=y
+CONFIG_USB_CONFIGFS=y
+CONFIG_USB_CONFIGFS_SERIAL=y
+CONFIG_USB_CONFIGFS_ACM=y
+# CONFIG_USB_CONFIGFS_OBEX is not set
+# CONFIG_USB_CONFIGFS_NCM is not set
+# CONFIG_USB_CONFIGFS_ECM is not set
+# CONFIG_USB_CONFIGFS_ECM_SUBSET is not set
+# CONFIG_USB_CONFIGFS_RNDIS is not set
+# CONFIG_USB_CONFIGFS_EEM is not set
+# CONFIG_USB_CONFIGFS_F_LB_SS is not set
+CONFIG_USB_CONFIGFS_F_FS=y
+# CONFIG_USB_CONFIGFS_F_UAC1 is not set
+CONFIG_USB_CONFIGFS_F_UAC1_LEGACY=y
+# CONFIG_USB_CONFIGFS_F_UAC2 is not set
+# CONFIG_USB_CONFIGFS_F_MIDI is not set
+CONFIG_USB_CONFIGFS_F_HID=y
+# CONFIG_USB_CONFIGFS_F_UVC is not set
+CONFIG_USB_CONFIGFS_F_PRINTER=y
+
+#
+# USB Gadget precomposed configurations
+#
+CONFIG_USB_ZERO=m
+CONFIG_USB_AUDIO=m
+# CONFIG_GADGET_UAC1 is not set
+# CONFIG_USB_ETH is not set
+# CONFIG_USB_G_NCM is not set
+# CONFIG_USB_GADGETFS is not set
+CONFIG_USB_FUNCTIONFS=y
+# CONFIG_USB_FUNCTIONFS_ETH is not set
+# CONFIG_USB_FUNCTIONFS_RNDIS is not set
+CONFIG_USB_FUNCTIONFS_GENERIC=y
+CONFIG_USB_G_SERIAL=m
+# CONFIG_USB_MIDI_GADGET is not set
+CONFIG_USB_G_PRINTER=y
+# CONFIG_USB_CDC_COMPOSITE is not set
+CONFIG_USB_G_HID=m
+CONFIG_USB_G_DBGP=m
+# CONFIG_USB_G_DBGP_PRINTK is not set
+CONFIG_USB_G_DBGP_SERIAL=y
+# CONFIG_USB_G_WEBCAM is not set
+CONFIG_USB_RAW_GADGET=y
+# end of USB Gadget precomposed configurations
+
+# CONFIG_TYPEC is not set
+CONFIG_USB_ROLE_SWITCH=y
+# CONFIG_USB_ROLES_INTEL_XHCI is not set
+# CONFIG_MMC is not set
+# CONFIG_MEMSTICK is not set
+CONFIG_NEW_LEDS=y
+CONFIG_LEDS_CLASS=y
+CONFIG_LEDS_CLASS_FLASH=m
+CONFIG_LEDS_CLASS_MULTICOLOR=m
+# CONFIG_LEDS_BRIGHTNESS_HW_CHANGED is not set
+
+#
+# LED drivers
+#
+# CONFIG_LEDS_88PM860X is not set
+# CONFIG_LEDS_AN30259A is not set
+CONFIG_LEDS_APU=m
+CONFIG_LEDS_AW2013=m
+# CONFIG_LEDS_BCM6328 is not set
+CONFIG_LEDS_BCM6358=m
+CONFIG_LEDS_LM3530=m
+# CONFIG_LEDS_LM3532 is not set
+CONFIG_LEDS_LM3533=y
+# CONFIG_LEDS_LM3642 is not set
+CONFIG_LEDS_LM3692X=y
+CONFIG_LEDS_PCA9532=m
+CONFIG_LEDS_PCA9532_GPIO=y
+CONFIG_LEDS_GPIO=y
+CONFIG_LEDS_LP3944=m
+CONFIG_LEDS_LP3952=m
+CONFIG_LEDS_LP50XX=m
+# CONFIG_LEDS_LP55XX_COMMON is not set
+# CONFIG_LEDS_LP8860 is not set
+CONFIG_LEDS_PCA955X=m
+CONFIG_LEDS_PCA955X_GPIO=y
+# CONFIG_LEDS_PCA963X is not set
+CONFIG_LEDS_DA903X=y
+CONFIG_LEDS_PWM=m
+CONFIG_LEDS_REGULATOR=y
+# CONFIG_LEDS_BD2606MVV is not set
+CONFIG_LEDS_BD2802=m
+# CONFIG_LEDS_INTEL_SS4200 is not set
+# CONFIG_LEDS_LT3593 is not set
+CONFIG_LEDS_ADP5520=y
+# CONFIG_LEDS_TCA6507 is not set
+CONFIG_LEDS_TLC591XX=m
+# CONFIG_LEDS_MAX77650 is not set
+CONFIG_LEDS_LM355x=y
+CONFIG_LEDS_OT200=y
+CONFIG_LEDS_MENF21BMC=m
+# CONFIG_LEDS_IS31FL319X is not set
+CONFIG_LEDS_IS31FL32XX=m
+
+#
+# LED driver for blink(1) USB RGB LED is under Special HID drivers (HID_THINGM)
+#
+CONFIG_LEDS_BLINKM=m
+CONFIG_LEDS_SYSCON=y
+CONFIG_LEDS_MLXCPLD=y
+CONFIG_LEDS_MLXREG=y
+CONFIG_LEDS_USER=m
+# CONFIG_LEDS_NIC78BX is not set
+# CONFIG_LEDS_TI_LMU_COMMON is not set
+# CONFIG_LEDS_LGM is not set
+
+#
+# Flash and Torch LED drivers
+#
+# CONFIG_LEDS_AAT1290 is not set
+CONFIG_LEDS_AS3645A=m
+# CONFIG_LEDS_KTD2692 is not set
+CONFIG_LEDS_LM3601X=m
+# CONFIG_LEDS_MAX77693 is not set
+# CONFIG_LEDS_MT6360 is not set
+# CONFIG_LEDS_RT4505 is not set
+# CONFIG_LEDS_RT8515 is not set
+CONFIG_LEDS_SGM3140=m
+
+#
+# RGB LED drivers
+#
+# CONFIG_LEDS_PWM_MULTICOLOR is not set
+# CONFIG_LEDS_QCOM_LPG is not set
+
+#
+# LED Triggers
+#
+CONFIG_LEDS_TRIGGERS=y
+CONFIG_LEDS_TRIGGER_TIMER=y
+# CONFIG_LEDS_TRIGGER_ONESHOT is not set
+# CONFIG_LEDS_TRIGGER_MTD is not set
+CONFIG_LEDS_TRIGGER_HEARTBEAT=y
+CONFIG_LEDS_TRIGGER_BACKLIGHT=m
+# CONFIG_LEDS_TRIGGER_CPU is not set
+CONFIG_LEDS_TRIGGER_ACTIVITY=m
+CONFIG_LEDS_TRIGGER_DEFAULT_ON=m
+
+#
+# iptables trigger is under Netfilter config (LED target)
+#
+CONFIG_LEDS_TRIGGER_TRANSIENT=y
+CONFIG_LEDS_TRIGGER_CAMERA=m
+# CONFIG_LEDS_TRIGGER_PANIC is not set
+# CONFIG_LEDS_TRIGGER_NETDEV is not set
+# CONFIG_LEDS_TRIGGER_PATTERN is not set
+# CONFIG_LEDS_TRIGGER_AUDIO is not set
+# CONFIG_LEDS_TRIGGER_TTY is not set
+
+#
+# Simple LED drivers
+#
+CONFIG_ACCESSIBILITY=y
+
+#
+# Speakup console speech
+#
+# end of Speakup console speech
+
+# CONFIG_INFINIBAND is not set
+CONFIG_EDAC_ATOMIC_SCRUB=y
+CONFIG_EDAC_SUPPORT=y
+# CONFIG_EDAC is not set
+CONFIG_RTC_LIB=y
+CONFIG_RTC_MC146818_LIB=y
+CONFIG_RTC_CLASS=y
+CONFIG_RTC_HCTOSYS=y
+CONFIG_RTC_HCTOSYS_DEVICE="rtc0"
+# CONFIG_RTC_SYSTOHC is not set
+CONFIG_RTC_DEBUG=y
+# CONFIG_RTC_NVMEM is not set
+
+#
+# RTC interfaces
+#
+# CONFIG_RTC_INTF_SYSFS is not set
+# CONFIG_RTC_INTF_PROC is not set
+# CONFIG_RTC_INTF_DEV is not set
+# CONFIG_RTC_DRV_TEST is not set
+
+#
+# I2C RTC drivers
+#
+CONFIG_RTC_DRV_88PM860X=y
+CONFIG_RTC_DRV_88PM80X=m
+CONFIG_RTC_DRV_ABB5ZES3=m
+CONFIG_RTC_DRV_ABEOZ9=m
+CONFIG_RTC_DRV_ABX80X=y
+CONFIG_RTC_DRV_DS1307=m
+# CONFIG_RTC_DRV_DS1307_CENTURY is not set
+CONFIG_RTC_DRV_DS1374=m
+# CONFIG_RTC_DRV_DS1672 is not set
+CONFIG_RTC_DRV_HYM8563=m
+CONFIG_RTC_DRV_MAX6900=m
+# CONFIG_RTC_DRV_MAX8907 is not set
+CONFIG_RTC_DRV_MAX8925=y
+CONFIG_RTC_DRV_MAX8998=y
+CONFIG_RTC_DRV_MAX77686=m
+# CONFIG_RTC_DRV_NCT3018Y is not set
+CONFIG_RTC_DRV_RS5C372=y
+CONFIG_RTC_DRV_ISL1208=m
+CONFIG_RTC_DRV_ISL12022=m
+CONFIG_RTC_DRV_ISL12026=y
+CONFIG_RTC_DRV_X1205=y
+CONFIG_RTC_DRV_PCF8523=m
+CONFIG_RTC_DRV_PCF85063=y
+CONFIG_RTC_DRV_PCF85363=m
+CONFIG_RTC_DRV_PCF8563=m
+CONFIG_RTC_DRV_PCF8583=m
+CONFIG_RTC_DRV_M41T80=y
+# CONFIG_RTC_DRV_M41T80_WDT is not set
+# CONFIG_RTC_DRV_BD70528 is not set
+# CONFIG_RTC_DRV_BQ32K is not set
+# CONFIG_RTC_DRV_TPS6586X is not set
+CONFIG_RTC_DRV_RC5T619=m
+# CONFIG_RTC_DRV_S35390A is not set
+CONFIG_RTC_DRV_FM3130=y
+CONFIG_RTC_DRV_RX8010=y
+# CONFIG_RTC_DRV_RX8581 is not set
+CONFIG_RTC_DRV_RX8025=m
+CONFIG_RTC_DRV_EM3027=m
+# CONFIG_RTC_DRV_RV3028 is not set
+# CONFIG_RTC_DRV_RV3032 is not set
+CONFIG_RTC_DRV_RV8803=m
+CONFIG_RTC_DRV_S5M=m
+CONFIG_RTC_DRV_SD3078=y
+
+#
+# SPI RTC drivers
+#
+CONFIG_RTC_I2C_AND_SPI=y
+
+#
+# SPI and I2C RTC drivers
+#
+# CONFIG_RTC_DRV_DS3232 is not set
+CONFIG_RTC_DRV_PCF2127=y
+CONFIG_RTC_DRV_RV3029C2=y
+CONFIG_RTC_DRV_RV3029_HWMON=y
+# CONFIG_RTC_DRV_RX6110 is not set
+
+#
+# Platform RTC drivers
+#
+CONFIG_RTC_DRV_CMOS=m
+CONFIG_RTC_DRV_DS1286=y
+CONFIG_RTC_DRV_DS1511=y
+# CONFIG_RTC_DRV_DS1553 is not set
+CONFIG_RTC_DRV_DS1685_FAMILY=y
+# CONFIG_RTC_DRV_DS1685 is not set
+# CONFIG_RTC_DRV_DS1689 is not set
+CONFIG_RTC_DRV_DS17285=y
+# CONFIG_RTC_DRV_DS17485 is not set
+# CONFIG_RTC_DRV_DS17885 is not set
+CONFIG_RTC_DRV_DS1742=m
+CONFIG_RTC_DRV_DS2404=y
+# CONFIG_RTC_DRV_DA9055 is not set
+CONFIG_RTC_DRV_DA9063=m
+# CONFIG_RTC_DRV_STK17TA8 is not set
+# CONFIG_RTC_DRV_M48T86 is not set
+CONFIG_RTC_DRV_M48T35=m
+CONFIG_RTC_DRV_M48T59=m
+CONFIG_RTC_DRV_MSM6242=y
+CONFIG_RTC_DRV_BQ4802=m
+CONFIG_RTC_DRV_RP5C01=y
+CONFIG_RTC_DRV_PCF50633=m
+CONFIG_RTC_DRV_ZYNQMP=m
+
+#
+# on-CPU RTC drivers
+#
+CONFIG_RTC_DRV_CADENCE=m
+CONFIG_RTC_DRV_FTRTC010=y
+# CONFIG_RTC_DRV_R7301 is not set
+
+#
+# HID Sensor RTC drivers
+#
+CONFIG_RTC_DRV_GOLDFISH=y
+# CONFIG_DMADEVICES is not set
+
+#
+# DMABUF options
+#
+CONFIG_SYNC_FILE=y
+CONFIG_SW_SYNC=y
+# CONFIG_UDMABUF is not set
+# CONFIG_DMABUF_MOVE_NOTIFY is not set
+CONFIG_DMABUF_DEBUG=y
+# CONFIG_DMABUF_SELFTESTS is not set
+CONFIG_DMABUF_HEAPS=y
+# CONFIG_DMABUF_SYSFS_STATS is not set
+# CONFIG_DMABUF_HEAPS_SYSTEM is not set
+CONFIG_DMABUF_HEAPS_CMA=y
+# end of DMABUF options
+
+CONFIG_AUXDISPLAY=y
+CONFIG_CHARLCD=y
+CONFIG_LINEDISP=y
+CONFIG_HD44780_COMMON=y
+CONFIG_HD44780=m
+CONFIG_KS0108=y
+CONFIG_KS0108_PORT=0x378
+CONFIG_KS0108_DELAY=2
+# CONFIG_CFAG12864B is not set
+CONFIG_IMG_ASCII_LCD=y
+CONFIG_HT16K33=m
+# CONFIG_LCD2S is not set
+CONFIG_PARPORT_PANEL=y
+CONFIG_PANEL_PARPORT=0
+CONFIG_PANEL_PROFILE=5
+CONFIG_PANEL_CHANGE_MESSAGE=y
+CONFIG_PANEL_BOOT_MESSAGE=""
+# CONFIG_CHARLCD_BL_OFF is not set
+CONFIG_CHARLCD_BL_ON=y
+# CONFIG_CHARLCD_BL_FLASH is not set
+# CONFIG_PANEL is not set
+CONFIG_UIO=m
+# CONFIG_UIO_CIF is not set
+CONFIG_UIO_PDRV_GENIRQ=m
+CONFIG_UIO_DMEM_GENIRQ=m
+CONFIG_UIO_AEC=m
+CONFIG_UIO_SERCOS3=m
+CONFIG_UIO_PCI_GENERIC=m
+CONFIG_UIO_NETX=m
+CONFIG_UIO_PRUSS=m
+CONFIG_UIO_MF624=m
+CONFIG_VFIO=y
+CONFIG_VFIO_CONTAINER=y
+CONFIG_VFIO_IOMMU_TYPE1=y
+# CONFIG_VFIO_NOIOMMU is not set
+CONFIG_VFIO_VIRQFD=y
+CONFIG_VFIO_PCI_CORE=y
+CONFIG_VFIO_PCI_MMAP=y
+CONFIG_VFIO_PCI_INTX=y
+CONFIG_VFIO_PCI=y
+CONFIG_VFIO_PCI_IGD=y
+CONFIG_IRQ_BYPASS_MANAGER=y
+CONFIG_VIRT_DRIVERS=y
+CONFIG_VMGENID=y
+CONFIG_VBOXGUEST=m
+CONFIG_VIRTIO_ANCHOR=y
+CONFIG_VIRTIO=y
+# CONFIG_VIRTIO_MENU is not set
+CONFIG_VDPA=y
+# CONFIG_VDPA_USER is not set
+# CONFIG_IFCVF is not set
+# CONFIG_MLX5_VDPA_STEERING_DEBUG is not set
+# CONFIG_VP_VDPA is not set
+# CONFIG_ALIBABA_ENI_VDPA is not set
+# CONFIG_SNET_VDPA is not set
+# CONFIG_VHOST_MENU is not set
+
+#
+# Microsoft Hyper-V guest support
+#
+# CONFIG_HYPERV is not set
+# end of Microsoft Hyper-V guest support
+
+# CONFIG_GREYBUS is not set
+# CONFIG_COMEDI is not set
+# CONFIG_STAGING is not set
+CONFIG_GOLDFISH_PIPE=m
+# CONFIG_CHROME_PLATFORMS is not set
+# CONFIG_MELLANOX_PLATFORM is not set
+CONFIG_OLPC_EC=y
+CONFIG_SURFACE_PLATFORMS=y
+# CONFIG_SURFACE_3_POWER_OPREGION is not set
+# CONFIG_SURFACE_GPE is not set
+# CONFIG_SURFACE_HOTPLUG is not set
+# CONFIG_SURFACE_PRO3_BUTTON is not set
+CONFIG_X86_PLATFORM_DEVICES=y
+CONFIG_ACPI_WMI=y
+CONFIG_WMI_BMOF=y
+# CONFIG_HUAWEI_WMI is not set
+# CONFIG_MXM_WMI is not set
+# CONFIG_NVIDIA_WMI_EC_BACKLIGHT is not set
+# CONFIG_XIAOMI_WMI is not set
+# CONFIG_GIGABYTE_WMI is not set
+# CONFIG_YOGABOOK_WMI is not set
+# CONFIG_ACERHDF is not set
+# CONFIG_ACER_WIRELESS is not set
+# CONFIG_ACER_WMI is not set
+# CONFIG_ADV_SWBUTTON is not set
+# CONFIG_APPLE_GMUX is not set
+# CONFIG_ASUS_LAPTOP is not set
+# CONFIG_ASUS_WIRELESS is not set
+# CONFIG_ASUS_WMI is not set
+# CONFIG_ASUS_TF103C_DOCK is not set
+# CONFIG_EEEPC_LAPTOP is not set
+# CONFIG_X86_PLATFORM_DRIVERS_DELL is not set
+# CONFIG_FUJITSU_LAPTOP is not set
+# CONFIG_FUJITSU_TABLET is not set
+# CONFIG_GPD_POCKET_FAN is not set
+# CONFIG_X86_PLATFORM_DRIVERS_HP is not set
+# CONFIG_WIRELESS_HOTKEY is not set
+# CONFIG_IBM_RTL is not set
+# CONFIG_LENOVO_YMC is not set
+# CONFIG_SENSORS_HDAPS is not set
+# CONFIG_THINKPAD_ACPI is not set
+# CONFIG_THINKPAD_LMI is not set
+# CONFIG_INTEL_ATOMISP2_LED is not set
+# CONFIG_INTEL_SAR_INT1092 is not set
+# CONFIG_INTEL_SKL_INT3472 is not set
+# CONFIG_INTEL_PMC_CORE is not set
+# CONFIG_INTEL_WMI_SBL_FW_UPDATE is not set
+# CONFIG_INTEL_WMI_THUNDERBOLT is not set
+# CONFIG_INTEL_HID_EVENT is not set
+# CONFIG_INTEL_VBTN is not set
+# CONFIG_INTEL_PUNIT_IPC is not set
+# CONFIG_INTEL_RST is not set
+# CONFIG_INTEL_SMARTCONNECT is not set
+# CONFIG_INTEL_VSEC is not set
+# CONFIG_MSI_EC is not set
+# CONFIG_MSI_WMI is not set
+# CONFIG_XO15_EBOOK is not set
+# CONFIG_PCENGINES_APU2 is not set
+# CONFIG_BARCO_P50_GPIO is not set
+# CONFIG_SAMSUNG_LAPTOP is not set
+# CONFIG_SAMSUNG_Q10 is not set
+# CONFIG_ACPI_TOSHIBA is not set
+# CONFIG_TOSHIBA_BT_RFKILL is not set
+# CONFIG_TOSHIBA_HAPS is not set
+# CONFIG_TOSHIBA_WMI is not set
+# CONFIG_ACPI_CMPC is not set
+# CONFIG_LG_LAPTOP is not set
+# CONFIG_PANASONIC_LAPTOP is not set
+# CONFIG_SYSTEM76_ACPI is not set
+# CONFIG_TOPSTAR_LAPTOP is not set
+# CONFIG_MLX_PLATFORM is not set
+# CONFIG_INTEL_IPS is not set
+# CONFIG_INTEL_SCU_PCI is not set
+# CONFIG_INTEL_SCU_PLATFORM is not set
+# CONFIG_SIEMENS_SIMATIC_IPC is not set
+# CONFIG_WINMATE_FM07_KEYS is not set
+CONFIG_P2SB=y
+CONFIG_HAVE_CLK=y
+CONFIG_HAVE_CLK_PREPARE=y
+CONFIG_COMMON_CLK=y
+# CONFIG_COMMON_CLK_MAX77686 is not set
+CONFIG_COMMON_CLK_MAX9485=m
+# CONFIG_COMMON_CLK_SI5341 is not set
+CONFIG_COMMON_CLK_SI5351=y
+CONFIG_COMMON_CLK_SI514=y
+CONFIG_COMMON_CLK_SI544=m
+CONFIG_COMMON_CLK_SI570=y
+CONFIG_COMMON_CLK_CDCE706=m
+CONFIG_COMMON_CLK_CDCE925=y
+# CONFIG_COMMON_CLK_CS2000_CP is not set
+# CONFIG_COMMON_CLK_S2MPS11 is not set
+CONFIG_CLK_TWL6040=y
+# CONFIG_COMMON_CLK_AXI_CLKGEN is not set
+CONFIG_COMMON_CLK_PWM=y
+# CONFIG_COMMON_CLK_RS9_PCIE is not set
+# CONFIG_COMMON_CLK_SI521XX is not set
+CONFIG_COMMON_CLK_VC5=m
+# CONFIG_COMMON_CLK_VC7 is not set
+CONFIG_COMMON_CLK_BD718XX=m
+# CONFIG_COMMON_CLK_FIXED_MMIO is not set
+# CONFIG_CLK_LGM_CGU is not set
+CONFIG_XILINX_VCU=m
+# CONFIG_COMMON_CLK_XLNX_CLKWZRD is not set
+# CONFIG_HWSPINLOCK is not set
+
+#
+# Clock Source drivers
+#
+CONFIG_CLKSRC_I8253=y
+CONFIG_CLKEVT_I8253=y
+CONFIG_I8253_LOCK=y
+CONFIG_CLKBLD_I8253=y
+# end of Clock Source drivers
+
+CONFIG_MAILBOX=y
+# CONFIG_PLATFORM_MHU is not set
+# CONFIG_PCC is not set
+CONFIG_ALTERA_MBOX=y
+# CONFIG_MAILBOX_TEST is not set
+CONFIG_IOMMU_API=y
+# CONFIG_IOMMU_SUPPORT is not set
+
+#
+# Remoteproc drivers
+#
+CONFIG_REMOTEPROC=y
+CONFIG_REMOTEPROC_CDEV=y
+# end of Remoteproc drivers
+
+#
+# Rpmsg drivers
+#
+CONFIG_RPMSG=m
+# CONFIG_RPMSG_CHAR is not set
+# CONFIG_RPMSG_CTRL is not set
+CONFIG_RPMSG_NS=m
+# CONFIG_RPMSG_QCOM_GLINK_RPM is not set
+CONFIG_RPMSG_VIRTIO=m
+# end of Rpmsg drivers
+
+CONFIG_SOUNDWIRE=y
+
+#
+# SoundWire Devices
+#
+
+#
+# SOC (System On Chip) specific Drivers
+#
+
+#
+# Amlogic SoC drivers
+#
+# end of Amlogic SoC drivers
+
+#
+# Broadcom SoC drivers
+#
+# end of Broadcom SoC drivers
+
+#
+# NXP/Freescale QorIQ SoC drivers
+#
+# end of NXP/Freescale QorIQ SoC drivers
+
+#
+# fujitsu SoC drivers
+#
+# end of fujitsu SoC drivers
+
+#
+# i.MX SoC drivers
+#
+# end of i.MX SoC drivers
+
+#
+# Enable LiteX SoC Builder specific drivers
+#
+# CONFIG_LITEX_SOC_CONTROLLER is not set
+# end of Enable LiteX SoC Builder specific drivers
+
+# CONFIG_WPCM450_SOC is not set
+
+#
+# Qualcomm SoC drivers
+#
+# end of Qualcomm SoC drivers
+
+CONFIG_SOC_TI=y
+
+#
+# Xilinx SoC drivers
+#
+# end of Xilinx SoC drivers
+# end of SOC (System On Chip) specific Drivers
+
+# CONFIG_PM_DEVFREQ is not set
+CONFIG_EXTCON=y
+
+#
+# Extcon Device Drivers
+#
+CONFIG_EXTCON_ADC_JACK=m
+# CONFIG_EXTCON_AXP288 is not set
+CONFIG_EXTCON_FSA9480=m
+# CONFIG_EXTCON_GPIO is not set
+# CONFIG_EXTCON_INTEL_INT3496 is not set
+CONFIG_EXTCON_MAX14577=m
+CONFIG_EXTCON_MAX3355=m
+CONFIG_EXTCON_MAX77693=m
+CONFIG_EXTCON_PTN5150=m
+# CONFIG_EXTCON_RT8973A is not set
+CONFIG_EXTCON_SM5502=m
+# CONFIG_EXTCON_USB_GPIO is not set
+CONFIG_MEMORY=y
+CONFIG_IIO=m
+CONFIG_IIO_BUFFER=y
+CONFIG_IIO_BUFFER_CB=m
+CONFIG_IIO_BUFFER_DMA=m
+CONFIG_IIO_BUFFER_DMAENGINE=m
+CONFIG_IIO_BUFFER_HW_CONSUMER=m
+CONFIG_IIO_KFIFO_BUF=m
+CONFIG_IIO_TRIGGERED_BUFFER=m
+CONFIG_IIO_CONFIGFS=m
+CONFIG_IIO_TRIGGER=y
+CONFIG_IIO_CONSUMERS_PER_TRIGGER=2
+CONFIG_IIO_SW_DEVICE=m
+CONFIG_IIO_SW_TRIGGER=m
+CONFIG_IIO_TRIGGERED_EVENT=m
+
+#
+# Accelerometers
+#
+# CONFIG_ADXL313_I2C is not set
+CONFIG_ADXL345=m
+CONFIG_ADXL345_I2C=m
+# CONFIG_ADXL355_I2C is not set
+# CONFIG_ADXL367_I2C is not set
+CONFIG_ADXL372=m
+CONFIG_ADXL372_I2C=m
+CONFIG_BMA180=m
+CONFIG_BMA400=m
+CONFIG_BMA400_I2C=m
+# CONFIG_BMC150_ACCEL is not set
+CONFIG_DA280=m
+# CONFIG_DA311 is not set
+CONFIG_DMARD06=m
+# CONFIG_DMARD09 is not set
+CONFIG_DMARD10=m
+# CONFIG_FXLS8962AF_I2C is not set
+# CONFIG_HID_SENSOR_ACCEL_3D is not set
+CONFIG_IIO_ST_ACCEL_3AXIS=m
+CONFIG_IIO_ST_ACCEL_I2C_3AXIS=m
+# CONFIG_IIO_KX022A_I2C is not set
+# CONFIG_KXSD9 is not set
+CONFIG_KXCJK1013=m
+CONFIG_MC3230=m
+# CONFIG_MMA7455_I2C is not set
+# CONFIG_MMA7660 is not set
+CONFIG_MMA8452=m
+# CONFIG_MMA9551 is not set
+# CONFIG_MMA9553 is not set
+# CONFIG_MSA311 is not set
+CONFIG_MXC4005=m
+CONFIG_MXC6255=m
+CONFIG_STK8312=m
+CONFIG_STK8BA50=m
+# end of Accelerometers
+
+#
+# Analog to digital converters
+#
+CONFIG_AD7091R5=m
+# CONFIG_AD7291 is not set
+CONFIG_AD7606=m
+CONFIG_AD7606_IFACE_PARALLEL=m
+CONFIG_AD799X=m
+CONFIG_ADI_AXI_ADC=m
+# CONFIG_AXP20X_ADC is not set
+CONFIG_AXP288_ADC=m
+# CONFIG_CC10001_ADC is not set
+# CONFIG_DA9150_GPADC is not set
+# CONFIG_DLN2_ADC is not set
+# CONFIG_ENVELOPE_DETECTOR is not set
+# CONFIG_HX711 is not set
+# CONFIG_LTC2471 is not set
+CONFIG_LTC2485=m
+CONFIG_LTC2497=m
+CONFIG_MAX1363=m
+CONFIG_MAX9611=m
+CONFIG_MCP3422=m
+# CONFIG_MEDIATEK_MT6360_ADC is not set
+# CONFIG_MP2629_ADC is not set
+# CONFIG_NAU7802 is not set
+CONFIG_QCOM_VADC_COMMON=m
+# CONFIG_QCOM_SPMI_IADC is not set
+CONFIG_QCOM_SPMI_VADC=m
+CONFIG_QCOM_SPMI_ADC5=m
+CONFIG_RN5T618_ADC=m
+# CONFIG_RICHTEK_RTQ6056 is not set
+# CONFIG_SD_ADC_MODULATOR is not set
+CONFIG_TI_ADC081C=m
+# CONFIG_TI_ADS1015 is not set
+# CONFIG_TI_ADS7924 is not set
+# CONFIG_TI_ADS1100 is not set
+# CONFIG_TI_AM335X_ADC is not set
+# CONFIG_VF610_ADC is not set
+CONFIG_VIPERBOARD_ADC=m
+CONFIG_XILINX_XADC=m
+# end of Analog to digital converters
+
+#
+# Analog to digital and digital to analog converters
+#
+# end of Analog to digital and digital to analog converters
+
+#
+# Analog Front Ends
+#
+CONFIG_IIO_RESCALE=m
+# end of Analog Front Ends
+
+#
+# Amplifiers
+#
+CONFIG_HMC425=m
+# end of Amplifiers
+
+#
+# Capacitance to digital converters
+#
+# CONFIG_AD7150 is not set
+# CONFIG_AD7746 is not set
+# end of Capacitance to digital converters
+
+#
+# Chemical Sensors
+#
+CONFIG_ATLAS_PH_SENSOR=m
+CONFIG_ATLAS_EZO_SENSOR=m
+CONFIG_BME680=m
+CONFIG_BME680_I2C=m
+CONFIG_CCS811=m
+# CONFIG_IAQCORE is not set
+# CONFIG_SCD30_CORE is not set
+# CONFIG_SCD4X is not set
+CONFIG_SENSIRION_SGP30=m
+# CONFIG_SENSIRION_SGP40 is not set
+# CONFIG_SPS30_I2C is not set
+# CONFIG_SENSEAIR_SUNRISE_CO2 is not set
+CONFIG_VZ89X=m
+# end of Chemical Sensors
+
+#
+# Hid Sensor IIO Common
+#
+CONFIG_HID_SENSOR_IIO_COMMON=m
+CONFIG_HID_SENSOR_IIO_TRIGGER=m
+# end of Hid Sensor IIO Common
+
+CONFIG_IIO_MS_SENSORS_I2C=m
+
+#
+# IIO SCMI Sensors
+#
+# end of IIO SCMI Sensors
+
+#
+# SSP Sensor Common
+#
+# end of SSP Sensor Common
+
+CONFIG_IIO_ST_SENSORS_I2C=m
+CONFIG_IIO_ST_SENSORS_CORE=m
+
+#
+# Digital to analog converters
+#
+# CONFIG_AD5064 is not set
+# CONFIG_AD5380 is not set
+CONFIG_AD5446=m
+CONFIG_AD5592R_BASE=m
+CONFIG_AD5593R=m
+CONFIG_AD5686=m
+CONFIG_AD5696_I2C=m
+# CONFIG_CIO_DAC is not set
+CONFIG_DPOT_DAC=m
+CONFIG_DS4424=m
+CONFIG_M62332=m
+CONFIG_MAX517=m
+CONFIG_MAX5821=m
+CONFIG_MCP4725=m
+CONFIG_TI_DAC5571=m
+CONFIG_VF610_DAC=m
+# end of Digital to analog converters
+
+#
+# IIO dummy driver
+#
+# CONFIG_IIO_SIMPLE_DUMMY is not set
+# end of IIO dummy driver
+
+#
+# Filters
+#
+# end of Filters
+
+#
+# Frequency Synthesizers DDS/PLL
+#
+
+#
+# Clock Generator/Distribution
+#
+# end of Clock Generator/Distribution
+
+#
+# Phase-Locked Loop (PLL) frequency synthesizers
+#
+# end of Phase-Locked Loop (PLL) frequency synthesizers
+# end of Frequency Synthesizers DDS/PLL
+
+#
+# Digital gyroscope sensors
+#
+CONFIG_BMG160=m
+CONFIG_BMG160_I2C=m
+CONFIG_FXAS21002C=m
+CONFIG_FXAS21002C_I2C=m
+CONFIG_HID_SENSOR_GYRO_3D=m
+CONFIG_MPU3050=m
+CONFIG_MPU3050_I2C=m
+CONFIG_IIO_ST_GYRO_3AXIS=m
+CONFIG_IIO_ST_GYRO_I2C_3AXIS=m
+CONFIG_ITG3200=m
+# end of Digital gyroscope sensors
+
+#
+# Health Sensors
+#
+
+#
+# Heart Rate Monitors
+#
+CONFIG_AFE4404=m
+CONFIG_MAX30100=m
+CONFIG_MAX30102=m
+# end of Heart Rate Monitors
+# end of Health Sensors
+
+#
+# Humidity sensors
+#
+CONFIG_AM2315=m
+CONFIG_DHT11=m
+CONFIG_HDC100X=m
+# CONFIG_HDC2010 is not set
+CONFIG_HID_SENSOR_HUMIDITY=m
+CONFIG_HTS221=m
+CONFIG_HTS221_I2C=m
+CONFIG_HTU21=m
+CONFIG_SI7005=m
+CONFIG_SI7020=m
+# end of Humidity sensors
+
+#
+# Inertial measurement units
+#
+# CONFIG_BMI160_I2C is not set
+# CONFIG_BOSCH_BNO055_I2C is not set
+CONFIG_FXOS8700=m
+CONFIG_FXOS8700_I2C=m
+CONFIG_KMX61=m
+CONFIG_INV_ICM42600=m
+CONFIG_INV_ICM42600_I2C=m
+CONFIG_INV_MPU6050_IIO=m
+CONFIG_INV_MPU6050_I2C=m
+CONFIG_IIO_ST_LSM6DSX=m
+CONFIG_IIO_ST_LSM6DSX_I2C=m
+CONFIG_IIO_ST_LSM6DSX_I3C=m
+# CONFIG_IIO_ST_LSM9DS0 is not set
+# end of Inertial measurement units
+
+#
+# Light sensors
+#
+# CONFIG_ACPI_ALS is not set
+CONFIG_ADJD_S311=m
+CONFIG_ADUX1020=m
+CONFIG_AL3010=m
+# CONFIG_AL3320A is not set
+# CONFIG_APDS9300 is not set
+# CONFIG_APDS9960 is not set
+# CONFIG_AS73211 is not set
+CONFIG_BH1750=m
+# CONFIG_BH1780 is not set
+CONFIG_CM32181=m
+# CONFIG_CM3232 is not set
+# CONFIG_CM3323 is not set
+# CONFIG_CM3605 is not set
+CONFIG_CM36651=m
+CONFIG_GP2AP002=m
+# CONFIG_GP2AP020A00F is not set
+CONFIG_SENSORS_ISL29018=m
+# CONFIG_SENSORS_ISL29028 is not set
+# CONFIG_ISL29125 is not set
+CONFIG_HID_SENSOR_ALS=m
+CONFIG_HID_SENSOR_PROX=m
+CONFIG_JSA1212=m
+# CONFIG_ROHM_BU27034 is not set
+# CONFIG_RPR0521 is not set
+# CONFIG_SENSORS_LM3533 is not set
+CONFIG_LTR501=m
+# CONFIG_LTRF216A is not set
+CONFIG_LV0104CS=m
+# CONFIG_MAX44000 is not set
+CONFIG_MAX44009=m
+CONFIG_NOA1305=m
+# CONFIG_OPT3001 is not set
+# CONFIG_PA12203001 is not set
+# CONFIG_SI1133 is not set
+# CONFIG_SI1145 is not set
+CONFIG_STK3310=m
+# CONFIG_ST_UVIS25 is not set
+CONFIG_TCS3414=m
+CONFIG_TCS3472=m
+CONFIG_SENSORS_TSL2563=m
+CONFIG_TSL2583=m
+# CONFIG_TSL2591 is not set
+# CONFIG_TSL2772 is not set
+CONFIG_TSL4531=m
+CONFIG_US5182D=m
+CONFIG_VCNL4000=m
+# CONFIG_VCNL4035 is not set
+CONFIG_VEML6030=m
+# CONFIG_VEML6070 is not set
+# CONFIG_VL6180 is not set
+# CONFIG_ZOPT2201 is not set
+# end of Light sensors
+
+#
+# Magnetometer sensors
+#
+# CONFIG_AK8974 is not set
+CONFIG_AK8975=m
+CONFIG_AK09911=m
+CONFIG_BMC150_MAGN=m
+CONFIG_BMC150_MAGN_I2C=m
+CONFIG_MAG3110=m
+CONFIG_HID_SENSOR_MAGNETOMETER_3D=m
+# CONFIG_MMC35240 is not set
+CONFIG_IIO_ST_MAGN_3AXIS=m
+CONFIG_IIO_ST_MAGN_I2C_3AXIS=m
+CONFIG_SENSORS_HMC5843=m
+CONFIG_SENSORS_HMC5843_I2C=m
+CONFIG_SENSORS_RM3100=m
+CONFIG_SENSORS_RM3100_I2C=m
+# CONFIG_TI_TMAG5273 is not set
+# CONFIG_YAMAHA_YAS530 is not set
+# end of Magnetometer sensors
+
+#
+# Multiplexers
+#
+# CONFIG_IIO_MUX is not set
+# end of Multiplexers
+
+#
+# Inclinometer sensors
+#
+# CONFIG_HID_SENSOR_INCLINOMETER_3D is not set
+CONFIG_HID_SENSOR_DEVICE_ROTATION=m
+# end of Inclinometer sensors
+
+#
+# Triggers - standalone
+#
+CONFIG_IIO_HRTIMER_TRIGGER=m
+# CONFIG_IIO_INTERRUPT_TRIGGER is not set
+CONFIG_IIO_TIGHTLOOP_TRIGGER=m
+# CONFIG_IIO_SYSFS_TRIGGER is not set
+# end of Triggers - standalone
+
+#
+# Linear and angular position sensors
+#
+# CONFIG_HID_SENSOR_CUSTOM_INTEL_HINGE is not set
+# end of Linear and angular position sensors
+
+#
+# Digital potentiometers
+#
+# CONFIG_AD5110 is not set
+# CONFIG_AD5272 is not set
+CONFIG_DS1803=m
+# CONFIG_MAX5432 is not set
+# CONFIG_MCP4018 is not set
+CONFIG_MCP4531=m
+CONFIG_TPL0102=m
+# end of Digital potentiometers
+
+#
+# Digital potentiostats
+#
+CONFIG_LMP91000=m
+# end of Digital potentiostats
+
+#
+# Pressure sensors
+#
+CONFIG_ABP060MG=m
+CONFIG_BMP280=m
+CONFIG_BMP280_I2C=m
+# CONFIG_DLHL60D is not set
+# CONFIG_DPS310 is not set
+CONFIG_HID_SENSOR_PRESS=m
+# CONFIG_HP03 is not set
+# CONFIG_ICP10100 is not set
+CONFIG_MPL115=m
+CONFIG_MPL115_I2C=m
+# CONFIG_MPL3115 is not set
+# CONFIG_MS5611 is not set
+CONFIG_MS5637=m
+CONFIG_IIO_ST_PRESS=m
+CONFIG_IIO_ST_PRESS_I2C=m
+CONFIG_T5403=m
+# CONFIG_HP206C is not set
+CONFIG_ZPA2326=m
+CONFIG_ZPA2326_I2C=m
+# end of Pressure sensors
+
+#
+# Lightning sensors
+#
+# end of Lightning sensors
+
+#
+# Proximity and distance sensors
+#
+CONFIG_ISL29501=m
+CONFIG_LIDAR_LITE_V2=m
+# CONFIG_MB1232 is not set
+# CONFIG_PING is not set
+# CONFIG_RFD77402 is not set
+CONFIG_SRF04=m
+# CONFIG_SX9310 is not set
+# CONFIG_SX9324 is not set
+# CONFIG_SX9360 is not set
+# CONFIG_SX9500 is not set
+CONFIG_SRF08=m
+CONFIG_VCNL3020=m
+# CONFIG_VL53L0X_I2C is not set
+# end of Proximity and distance sensors
+
+#
+# Resolver to digital converters
+#
+# end of Resolver to digital converters
+
+#
+# Temperature sensors
+#
+# CONFIG_HID_SENSOR_TEMP is not set
+CONFIG_MLX90614=m
+CONFIG_MLX90632=m
+# CONFIG_TMP006 is not set
+CONFIG_TMP007=m
+# CONFIG_TMP117 is not set
+# CONFIG_TSYS01 is not set
+CONFIG_TSYS02D=m
+# CONFIG_MAX30208 is not set
+# end of Temperature sensors
+
+CONFIG_NTB=m
+CONFIG_NTB_MSI=y
+# CONFIG_NTB_IDT is not set
+# CONFIG_NTB_EPF is not set
+CONFIG_NTB_SWITCHTEC=m
+CONFIG_NTB_PINGPONG=m
+CONFIG_NTB_TOOL=m
+# CONFIG_NTB_PERF is not set
+# CONFIG_NTB_MSI_TEST is not set
+# CONFIG_NTB_TRANSPORT is not set
+CONFIG_PWM=y
+CONFIG_PWM_SYSFS=y
+CONFIG_PWM_DEBUG=y
+# CONFIG_PWM_ATMEL_TCB is not set
+# CONFIG_PWM_CLK is not set
+# CONFIG_PWM_DWC is not set
+CONFIG_PWM_FSL_FTM=m
+# CONFIG_PWM_INTEL_LGM is not set
+CONFIG_PWM_LP3943=m
+CONFIG_PWM_LPSS=m
+CONFIG_PWM_LPSS_PCI=m
+# CONFIG_PWM_LPSS_PLATFORM is not set
+CONFIG_PWM_PCA9685=m
+# CONFIG_PWM_XILINX is not set
+
+#
+# IRQ chip support
+#
+CONFIG_IRQCHIP=y
+CONFIG_AL_FIC=y
+CONFIG_MADERA_IRQ=m
+# CONFIG_XILINX_INTC is not set
+# end of IRQ chip support
+
+CONFIG_IPACK_BUS=y
+CONFIG_BOARD_TPCI200=m
+# CONFIG_SERIAL_IPOCTAL is not set
+CONFIG_RESET_CONTROLLER=y
+CONFIG_RESET_INTEL_GW=y
+# CONFIG_RESET_SIMPLE is not set
+CONFIG_RESET_TI_SYSCON=y
+# CONFIG_RESET_TI_TPS380X is not set
+
+#
+# PHY Subsystem
+#
+CONFIG_GENERIC_PHY=y
+CONFIG_GENERIC_PHY_MIPI_DPHY=y
+# CONFIG_USB_LGM_PHY is not set
+# CONFIG_PHY_CAN_TRANSCEIVER is not set
+
+#
+# PHY drivers for Broadcom platforms
+#
+CONFIG_BCM_KONA_USB2_PHY=m
+# end of PHY drivers for Broadcom platforms
+
+# CONFIG_PHY_CADENCE_TORRENT is not set
+# CONFIG_PHY_CADENCE_DPHY is not set
+# CONFIG_PHY_CADENCE_DPHY_RX is not set
+CONFIG_PHY_CADENCE_SIERRA=y
+# CONFIG_PHY_CADENCE_SALVO is not set
+CONFIG_PHY_PXA_28NM_HSIC=y
+CONFIG_PHY_PXA_28NM_USB2=m
+# CONFIG_PHY_LAN966X_SERDES is not set
+CONFIG_PHY_CPCAP_USB=m
+CONFIG_PHY_MAPPHONE_MDM6600=y
+CONFIG_PHY_OCELOT_SERDES=y
+# CONFIG_PHY_QCOM_USB_HS is not set
+CONFIG_PHY_QCOM_USB_HSIC=y
+CONFIG_PHY_SAMSUNG_USB2=m
+CONFIG_PHY_TUSB1210=m
+CONFIG_PHY_INTEL_LGM_COMBO=y
+# CONFIG_PHY_INTEL_LGM_EMMC is not set
+# end of PHY Subsystem
+
+# CONFIG_POWERCAP is not set
+# CONFIG_MCB is not set
+
+#
+# Performance monitor support
+#
+# end of Performance monitor support
+
+CONFIG_RAS=y
+CONFIG_USB4=m
+CONFIG_USB4_DEBUGFS_WRITE=y
+# CONFIG_USB4_DEBUGFS_MARGINING is not set
+# CONFIG_USB4_DMA_TEST is not set
+
+#
+# Android
+#
+# CONFIG_ANDROID_BINDER_IPC is not set
+# end of Android
+
+# CONFIG_DAX is not set
+CONFIG_NVMEM=y
+CONFIG_NVMEM_SYSFS=y
+
+#
+# Layout Types
+#
+# CONFIG_NVMEM_LAYOUT_SL28_VPD is not set
+# CONFIG_NVMEM_LAYOUT_ONIE_TLV is not set
+# end of Layout Types
+
+# CONFIG_NVMEM_RMEM is not set
+# CONFIG_NVMEM_SPMI_SDAM is not set
+# CONFIG_NVMEM_U_BOOT_ENV is not set
+
+#
+# HW tracing support
+#
+CONFIG_STM=y
+CONFIG_STM_PROTO_BASIC=y
+CONFIG_STM_PROTO_SYS_T=m
+CONFIG_STM_DUMMY=m
+CONFIG_STM_SOURCE_CONSOLE=y
+CONFIG_STM_SOURCE_HEARTBEAT=y
+CONFIG_STM_SOURCE_FTRACE=y
+CONFIG_INTEL_TH=y
+CONFIG_INTEL_TH_PCI=m
+# CONFIG_INTEL_TH_ACPI is not set
+CONFIG_INTEL_TH_GTH=y
+CONFIG_INTEL_TH_STH=m
+# CONFIG_INTEL_TH_MSU is not set
+CONFIG_INTEL_TH_PTI=m
+CONFIG_INTEL_TH_DEBUG=y
+# end of HW tracing support
+
+# CONFIG_FPGA is not set
+CONFIG_FSI=m
+CONFIG_FSI_NEW_DEV_NODE=y
+CONFIG_FSI_MASTER_GPIO=m
+CONFIG_FSI_MASTER_HUB=m
+CONFIG_FSI_MASTER_ASPEED=m
+CONFIG_FSI_SCOM=m
+# CONFIG_FSI_SBEFIFO is not set
+CONFIG_MULTIPLEXER=y
+
+#
+# Multiplexer drivers
+#
+CONFIG_MUX_ADG792A=y
+# CONFIG_MUX_GPIO is not set
+CONFIG_MUX_MMIO=y
+# end of Multiplexer drivers
+
+CONFIG_PM_OPP=y
+# CONFIG_SIOX is not set
+CONFIG_SLIMBUS=y
+CONFIG_SLIM_QCOM_CTRL=m
+# CONFIG_INTERCONNECT is not set
+CONFIG_COUNTER=m
+# CONFIG_INTEL_QEP is not set
+# CONFIG_INTERRUPT_CNT is not set
+CONFIG_MOST=y
+# CONFIG_MOST_USB_HDM is not set
+CONFIG_MOST_CDEV=y
+# CONFIG_MOST_SND is not set
+# CONFIG_PECI is not set
+# CONFIG_HTE is not set
+# end of Device Drivers
+
+#
+# File systems
+#
+CONFIG_DCACHE_WORD_ACCESS=y
+CONFIG_VALIDATE_FS_PARSER=y
+CONFIG_FS_POSIX_ACL=y
+CONFIG_EXPORTFS=y
+CONFIG_EXPORTFS_BLOCK_OPS=y
+CONFIG_FILE_LOCKING=y
+CONFIG_FS_ENCRYPTION=y
+# CONFIG_FS_VERITY is not set
+CONFIG_FSNOTIFY=y
+# CONFIG_DNOTIFY is not set
+CONFIG_INOTIFY_USER=y
+CONFIG_FANOTIFY=y
+# CONFIG_FANOTIFY_ACCESS_PERMISSIONS is not set
+# CONFIG_QUOTA is not set
+CONFIG_AUTOFS4_FS=m
+CONFIG_AUTOFS_FS=m
+CONFIG_FUSE_FS=m
+CONFIG_CUSE=m
+CONFIG_VIRTIO_FS=m
+CONFIG_OVERLAY_FS=y
+CONFIG_OVERLAY_FS_REDIRECT_DIR=y
+# CONFIG_OVERLAY_FS_REDIRECT_ALWAYS_FOLLOW is not set
+# CONFIG_OVERLAY_FS_INDEX is not set
+CONFIG_OVERLAY_FS_METACOPY=y
+
+#
+# Caches
+#
+CONFIG_NETFS_SUPPORT=m
+# CONFIG_NETFS_STATS is not set
+# CONFIG_FSCACHE is not set
+# end of Caches
+
+#
+# Pseudo filesystems
+#
+CONFIG_PROC_FS=y
+CONFIG_PROC_KCORE=y
+CONFIG_PROC_SYSCTL=y
+# CONFIG_PROC_PAGE_MONITOR is not set
+CONFIG_PROC_CHILDREN=y
+CONFIG_PROC_PID_ARCH_STATUS=y
+CONFIG_KERNFS=y
+CONFIG_SYSFS=y
+CONFIG_TMPFS=y
+CONFIG_TMPFS_POSIX_ACL=y
+CONFIG_TMPFS_XATTR=y
+# CONFIG_HUGETLBFS is not set
+CONFIG_MEMFD_CREATE=y
+CONFIG_CONFIGFS_FS=y
+# end of Pseudo filesystems
+
+# CONFIG_MISC_FILESYSTEMS is not set
+CONFIG_NETWORK_FILESYSTEMS=y
+CONFIG_NFS_FS=y
+CONFIG_NFS_V2=y
+CONFIG_NFS_V3=y
+# CONFIG_NFS_V3_ACL is not set
+CONFIG_NFS_V4=m
+# CONFIG_NFS_V4_1 is not set
+# CONFIG_ROOT_NFS is not set
+# CONFIG_NFS_USE_LEGACY_DNS is not set
+CONFIG_NFS_USE_KERNEL_DNS=y
+CONFIG_NFS_DISABLE_UDP_SUPPORT=y
+# CONFIG_NFSD is not set
+CONFIG_GRACE_PERIOD=y
+CONFIG_LOCKD=y
+CONFIG_LOCKD_V4=y
+CONFIG_NFS_COMMON=y
+CONFIG_SUNRPC=y
+CONFIG_SUNRPC_GSS=y
+CONFIG_RPCSEC_GSS_KRB5=y
+CONFIG_RPCSEC_GSS_KRB5_CRYPTOSYSTEM=y
+# CONFIG_RPCSEC_GSS_KRB5_ENCTYPES_DES is not set
+CONFIG_RPCSEC_GSS_KRB5_ENCTYPES_AES_SHA1=y
+# CONFIG_RPCSEC_GSS_KRB5_ENCTYPES_CAMELLIA is not set
+# CONFIG_RPCSEC_GSS_KRB5_ENCTYPES_AES_SHA2 is not set
+# CONFIG_SUNRPC_DEBUG is not set
+# CONFIG_CEPH_FS is not set
+CONFIG_CIFS=m
+CONFIG_CIFS_STATS2=y
+CONFIG_CIFS_ALLOW_INSECURE_LEGACY=y
+# CONFIG_CIFS_UPCALL is not set
+# CONFIG_CIFS_XATTR is not set
+CONFIG_CIFS_DEBUG=y
+# CONFIG_CIFS_DEBUG2 is not set
+# CONFIG_CIFS_DEBUG_DUMP_KEYS is not set
+# CONFIG_CIFS_DFS_UPCALL is not set
+# CONFIG_CIFS_SWN_UPCALL is not set
+# CONFIG_SMB_SERVER is not set
+CONFIG_SMBFS_COMMON=m
+# CONFIG_CODA_FS is not set
+# CONFIG_AFS_FS is not set
+# CONFIG_9P_FS is not set
+CONFIG_NLS=y
+CONFIG_NLS_DEFAULT="iso8859-1"
+CONFIG_NLS_CODEPAGE_437=m
+CONFIG_NLS_CODEPAGE_737=m
+# CONFIG_NLS_CODEPAGE_775 is not set
+CONFIG_NLS_CODEPAGE_850=y
+CONFIG_NLS_CODEPAGE_852=m
+CONFIG_NLS_CODEPAGE_855=m
+CONFIG_NLS_CODEPAGE_857=y
+CONFIG_NLS_CODEPAGE_860=m
+CONFIG_NLS_CODEPAGE_861=y
+CONFIG_NLS_CODEPAGE_862=m
+CONFIG_NLS_CODEPAGE_863=m
+CONFIG_NLS_CODEPAGE_864=y
+CONFIG_NLS_CODEPAGE_865=m
+CONFIG_NLS_CODEPAGE_866=m
+CONFIG_NLS_CODEPAGE_869=y
+CONFIG_NLS_CODEPAGE_936=y
+CONFIG_NLS_CODEPAGE_950=y
+CONFIG_NLS_CODEPAGE_932=y
+CONFIG_NLS_CODEPAGE_949=m
+CONFIG_NLS_CODEPAGE_874=y
+CONFIG_NLS_ISO8859_8=y
+CONFIG_NLS_CODEPAGE_1250=m
+CONFIG_NLS_CODEPAGE_1251=m
+CONFIG_NLS_ASCII=m
+CONFIG_NLS_ISO8859_1=y
+CONFIG_NLS_ISO8859_2=m
+CONFIG_NLS_ISO8859_3=m
+CONFIG_NLS_ISO8859_4=y
+# CONFIG_NLS_ISO8859_5 is not set
+# CONFIG_NLS_ISO8859_6 is not set
+# CONFIG_NLS_ISO8859_7 is not set
+CONFIG_NLS_ISO8859_9=m
+CONFIG_NLS_ISO8859_13=m
+CONFIG_NLS_ISO8859_14=m
+# CONFIG_NLS_ISO8859_15 is not set
+CONFIG_NLS_KOI8_R=m
+CONFIG_NLS_KOI8_U=y
+CONFIG_NLS_MAC_ROMAN=m
+CONFIG_NLS_MAC_CELTIC=m
+# CONFIG_NLS_MAC_CENTEURO is not set
+# CONFIG_NLS_MAC_CROATIAN is not set
+# CONFIG_NLS_MAC_CYRILLIC is not set
+# CONFIG_NLS_MAC_GAELIC is not set
+CONFIG_NLS_MAC_GREEK=y
+CONFIG_NLS_MAC_ICELAND=y
+CONFIG_NLS_MAC_INUIT=y
+CONFIG_NLS_MAC_ROMANIAN=y
+CONFIG_NLS_MAC_TURKISH=m
+CONFIG_NLS_UTF8=y
+# CONFIG_DLM is not set
+CONFIG_UNICODE=y
+# CONFIG_UNICODE_NORMALIZATION_SELFTEST is not set
+CONFIG_IO_WQ=y
+# end of File systems
+
+#
+# Security options
+#
+CONFIG_KEYS=y
+CONFIG_KEYS_REQUEST_CACHE=y
+# CONFIG_PERSISTENT_KEYRINGS is not set
+CONFIG_TRUSTED_KEYS=m
+CONFIG_TRUSTED_KEYS_TPM=y
+# CONFIG_ENCRYPTED_KEYS is not set
+CONFIG_KEY_DH_OPERATIONS=y
+# CONFIG_SECURITY_DMESG_RESTRICT is not set
+CONFIG_SECURITY=y
+# CONFIG_SECURITYFS is not set
+# CONFIG_SECURITY_NETWORK is not set
+# CONFIG_SECURITY_PATH is not set
+CONFIG_HAVE_HARDENED_USERCOPY_ALLOCATOR=y
+CONFIG_HARDENED_USERCOPY=y
+CONFIG_FORTIFY_SOURCE=y
+# CONFIG_STATIC_USERMODEHELPER is not set
+# CONFIG_SECURITY_SMACK is not set
+# CONFIG_SECURITY_TOMOYO is not set
+# CONFIG_SECURITY_APPARMOR is not set
+# CONFIG_SECURITY_YAMA is not set
+# CONFIG_SECURITY_SAFESETID is not set
+# CONFIG_SECURITY_LOCKDOWN_LSM is not set
+# CONFIG_SECURITY_LANDLOCK is not set
+CONFIG_INTEGRITY=y
+# CONFIG_INTEGRITY_SIGNATURE is not set
+# CONFIG_IMA is not set
+# CONFIG_EVM is not set
+CONFIG_DEFAULT_SECURITY_DAC=y
+CONFIG_LSM="lockdown,yama,loadpin,safesetid,integrity,bpf"
+
+#
+# Kernel hardening options
+#
+
+#
+# Memory initialization
+#
+CONFIG_INIT_STACK_NONE=y
+# CONFIG_GCC_PLUGIN_STRUCTLEAK_USER is not set
+# CONFIG_GCC_PLUGIN_STRUCTLEAK_BYREF is not set
+# CONFIG_GCC_PLUGIN_STRUCTLEAK_BYREF_ALL is not set
+# CONFIG_GCC_PLUGIN_STACKLEAK is not set
+CONFIG_INIT_ON_ALLOC_DEFAULT_ON=y
+CONFIG_INIT_ON_FREE_DEFAULT_ON=y
+CONFIG_CC_HAS_ZERO_CALL_USED_REGS=y
+# CONFIG_ZERO_CALL_USED_REGS is not set
+# end of Memory initialization
+
+CONFIG_RANDSTRUCT_NONE=y
+# CONFIG_RANDSTRUCT_FULL is not set
+# CONFIG_RANDSTRUCT_PERFORMANCE is not set
+# end of Kernel hardening options
+# end of Security options
+
+CONFIG_CRYPTO=y
+
+#
+# Crypto core or helper
+#
+CONFIG_CRYPTO_ALGAPI=y
+CONFIG_CRYPTO_ALGAPI2=y
+CONFIG_CRYPTO_AEAD=y
+CONFIG_CRYPTO_AEAD2=y
+CONFIG_CRYPTO_SKCIPHER=y
+CONFIG_CRYPTO_SKCIPHER2=y
+CONFIG_CRYPTO_HASH=y
+CONFIG_CRYPTO_HASH2=y
+CONFIG_CRYPTO_RNG=y
+CONFIG_CRYPTO_RNG2=y
+CONFIG_CRYPTO_RNG_DEFAULT=y
+CONFIG_CRYPTO_AKCIPHER2=y
+CONFIG_CRYPTO_AKCIPHER=y
+CONFIG_CRYPTO_KPP2=y
+CONFIG_CRYPTO_KPP=y
+CONFIG_CRYPTO_ACOMP2=y
+CONFIG_CRYPTO_MANAGER=y
+CONFIG_CRYPTO_MANAGER2=y
+# CONFIG_CRYPTO_USER is not set
+CONFIG_CRYPTO_MANAGER_DISABLE_TESTS=y
+CONFIG_CRYPTO_NULL=y
+CONFIG_CRYPTO_NULL2=y
+CONFIG_CRYPTO_CRYPTD=y
+CONFIG_CRYPTO_AUTHENC=y
+# CONFIG_CRYPTO_TEST is not set
+CONFIG_CRYPTO_SIMD=y
+CONFIG_CRYPTO_ENGINE=y
+# end of Crypto core or helper
+
+#
+# Public-key cryptography
+#
+CONFIG_CRYPTO_RSA=y
+CONFIG_CRYPTO_DH=y
+# CONFIG_CRYPTO_DH_RFC7919_GROUPS is not set
+CONFIG_CRYPTO_ECC=y
+CONFIG_CRYPTO_ECDH=y
+# CONFIG_CRYPTO_ECDSA is not set
+CONFIG_CRYPTO_ECRDSA=m
+CONFIG_CRYPTO_SM2=y
+CONFIG_CRYPTO_CURVE25519=y
+# end of Public-key cryptography
+
+#
+# Block ciphers
+#
+CONFIG_CRYPTO_AES=y
+# CONFIG_CRYPTO_AES_TI is not set
+# CONFIG_CRYPTO_ARIA is not set
+# CONFIG_CRYPTO_BLOWFISH is not set
+CONFIG_CRYPTO_CAMELLIA=m
+CONFIG_CRYPTO_CAST_COMMON=y
+# CONFIG_CRYPTO_CAST5 is not set
+CONFIG_CRYPTO_CAST6=y
+CONFIG_CRYPTO_DES=m
+CONFIG_CRYPTO_FCRYPT=m
+CONFIG_CRYPTO_SERPENT=y
+CONFIG_CRYPTO_SM4=m
+CONFIG_CRYPTO_SM4_GENERIC=m
+# CONFIG_CRYPTO_TWOFISH is not set
+CONFIG_CRYPTO_TWOFISH_COMMON=m
+# end of Block ciphers
+
+#
+# Length-preserving ciphers and modes
+#
+CONFIG_CRYPTO_ADIANTUM=y
+CONFIG_CRYPTO_CHACHA20=y
+CONFIG_CRYPTO_CBC=y
+CONFIG_CRYPTO_CFB=y
+CONFIG_CRYPTO_CTR=y
+CONFIG_CRYPTO_CTS=m
+CONFIG_CRYPTO_ECB=y
+# CONFIG_CRYPTO_HCTR2 is not set
+CONFIG_CRYPTO_KEYWRAP=y
+# CONFIG_CRYPTO_LRW is not set
+# CONFIG_CRYPTO_OFB is not set
+CONFIG_CRYPTO_PCBC=y
+CONFIG_CRYPTO_XTS=y
+CONFIG_CRYPTO_NHPOLY1305=y
+# end of Length-preserving ciphers and modes
+
+#
+# AEAD (authenticated encryption with associated data) ciphers
+#
+CONFIG_CRYPTO_AEGIS128=m
+# CONFIG_CRYPTO_CHACHA20POLY1305 is not set
+CONFIG_CRYPTO_CCM=m
+CONFIG_CRYPTO_GCM=m
+CONFIG_CRYPTO_SEQIV=m
+CONFIG_CRYPTO_ECHAINIV=m
+CONFIG_CRYPTO_ESSIV=m
+# end of AEAD (authenticated encryption with associated data) ciphers
+
+#
+# Hashes, digests, and MACs
+#
+CONFIG_CRYPTO_BLAKE2B=m
+CONFIG_CRYPTO_CMAC=m
+CONFIG_CRYPTO_GHASH=m
+CONFIG_CRYPTO_HMAC=y
+CONFIG_CRYPTO_MD4=m
+CONFIG_CRYPTO_MD5=y
+# CONFIG_CRYPTO_MICHAEL_MIC is not set
+# CONFIG_CRYPTO_POLY1305 is not set
+CONFIG_CRYPTO_RMD160=m
+CONFIG_CRYPTO_SHA1=y
+CONFIG_CRYPTO_SHA256=y
+CONFIG_CRYPTO_SHA512=y
+# CONFIG_CRYPTO_SHA3 is not set
+CONFIG_CRYPTO_SM3=y
+CONFIG_CRYPTO_SM3_GENERIC=m
+CONFIG_CRYPTO_STREEBOG=m
+# CONFIG_CRYPTO_VMAC is not set
+CONFIG_CRYPTO_WP512=y
+CONFIG_CRYPTO_XCBC=y
+# CONFIG_CRYPTO_XXHASH is not set
+# end of Hashes, digests, and MACs
+
+#
+# CRCs (cyclic redundancy checks)
+#
+CONFIG_CRYPTO_CRC32C=y
+CONFIG_CRYPTO_CRC32=y
+CONFIG_CRYPTO_CRCT10DIF=y
+# end of CRCs (cyclic redundancy checks)
+
+#
+# Compression
+#
+CONFIG_CRYPTO_DEFLATE=m
+CONFIG_CRYPTO_LZO=y
+CONFIG_CRYPTO_842=m
+# CONFIG_CRYPTO_LZ4 is not set
+# CONFIG_CRYPTO_LZ4HC is not set
+# CONFIG_CRYPTO_ZSTD is not set
+# end of Compression
+
+#
+# Random number generation
+#
+CONFIG_CRYPTO_ANSI_CPRNG=m
+CONFIG_CRYPTO_DRBG_MENU=y
+CONFIG_CRYPTO_DRBG_HMAC=y
+# CONFIG_CRYPTO_DRBG_HASH is not set
+CONFIG_CRYPTO_DRBG_CTR=y
+CONFIG_CRYPTO_DRBG=y
+CONFIG_CRYPTO_JITTERENTROPY=y
+CONFIG_CRYPTO_KDF800108_CTR=y
+# end of Random number generation
+
+#
+# Userspace interface
+#
+# CONFIG_CRYPTO_USER_API_HASH is not set
+# CONFIG_CRYPTO_USER_API_SKCIPHER is not set
+# CONFIG_CRYPTO_USER_API_RNG is not set
+# CONFIG_CRYPTO_USER_API_AEAD is not set
+# end of Userspace interface
+
+CONFIG_CRYPTO_HASH_INFO=y
+
+#
+# Accelerated Cryptographic Algorithms for CPU (x86)
+#
+CONFIG_CRYPTO_AES_NI_INTEL=y
+# CONFIG_CRYPTO_SERPENT_SSE2_586 is not set
+CONFIG_CRYPTO_TWOFISH_586=m
+CONFIG_CRYPTO_CRC32C_INTEL=y
+CONFIG_CRYPTO_CRC32_PCLMUL=y
+# end of Accelerated Cryptographic Algorithms for CPU (x86)
+
+CONFIG_CRYPTO_HW=y
+CONFIG_CRYPTO_DEV_PADLOCK=y
+# CONFIG_CRYPTO_DEV_PADLOCK_AES is not set
+# CONFIG_CRYPTO_DEV_PADLOCK_SHA is not set
+CONFIG_CRYPTO_DEV_GEODE=y
+# CONFIG_CRYPTO_DEV_HIFN_795X is not set
+CONFIG_CRYPTO_DEV_ATMEL_I2C=y
+CONFIG_CRYPTO_DEV_ATMEL_ECC=y
+# CONFIG_CRYPTO_DEV_ATMEL_SHA204A is not set
+CONFIG_CRYPTO_DEV_CCP=y
+CONFIG_CRYPTO_DEV_QAT=y
+# CONFIG_CRYPTO_DEV_QAT_DH895xCC is not set
+# CONFIG_CRYPTO_DEV_QAT_C3XXX is not set
+CONFIG_CRYPTO_DEV_QAT_C62X=y
+# CONFIG_CRYPTO_DEV_QAT_4XXX is not set
+# CONFIG_CRYPTO_DEV_QAT_DH895xCCVF is not set
+CONFIG_CRYPTO_DEV_QAT_C3XXXVF=m
+CONFIG_CRYPTO_DEV_QAT_C62XVF=m
+CONFIG_CRYPTO_DEV_VIRTIO=m
+# CONFIG_CRYPTO_DEV_SAFEXCEL is not set
+CONFIG_CRYPTO_DEV_CCREE=m
+CONFIG_CRYPTO_DEV_AMLOGIC_GXL=y
+# CONFIG_CRYPTO_DEV_AMLOGIC_GXL_DEBUG is not set
+CONFIG_ASYMMETRIC_KEY_TYPE=y
+CONFIG_ASYMMETRIC_PUBLIC_KEY_SUBTYPE=y
+CONFIG_X509_CERTIFICATE_PARSER=y
+# CONFIG_PKCS8_PRIVATE_KEY_PARSER is not set
+CONFIG_PKCS7_MESSAGE_PARSER=y
+# CONFIG_FIPS_SIGNATURE_SELFTEST is not set
+
+#
+# Certificates for signature checking
+#
+# CONFIG_SYSTEM_TRUSTED_KEYRING is not set
+CONFIG_SYSTEM_BLACKLIST_KEYRING=y
+CONFIG_SYSTEM_BLACKLIST_HASH_LIST=""
+CONFIG_SYSTEM_REVOCATION_LIST=y
+CONFIG_SYSTEM_REVOCATION_KEYS=""
+# end of Certificates for signature checking
+
+CONFIG_BINARY_PRINTF=y
+
+#
+# Library routines
+#
+CONFIG_LINEAR_RANGES=y
+CONFIG_PACKING=y
+CONFIG_BITREVERSE=y
+CONFIG_GENERIC_STRNCPY_FROM_USER=y
+CONFIG_GENERIC_STRNLEN_USER=y
+CONFIG_GENERIC_NET_UTILS=y
+CONFIG_CORDIC=y
+CONFIG_PRIME_NUMBERS=y
+CONFIG_RATIONAL=y
+CONFIG_GENERIC_PCI_IOMAP=y
+CONFIG_GENERIC_IOMAP=y
+CONFIG_ARCH_HAS_FAST_MULTIPLIER=y
+CONFIG_ARCH_USE_SYM_ANNOTATIONS=y
+
+#
+# Crypto library routines
+#
+CONFIG_CRYPTO_LIB_UTILS=y
+CONFIG_CRYPTO_LIB_AES=y
+CONFIG_CRYPTO_LIB_GF128MUL=m
+CONFIG_CRYPTO_LIB_BLAKE2S_GENERIC=y
+CONFIG_CRYPTO_LIB_CHACHA_GENERIC=y
+CONFIG_CRYPTO_LIB_CHACHA=m
+CONFIG_CRYPTO_LIB_CURVE25519_GENERIC=y
+# CONFIG_CRYPTO_LIB_CURVE25519 is not set
+CONFIG_CRYPTO_LIB_DES=m
+CONFIG_CRYPTO_LIB_POLY1305_RSIZE=1
+CONFIG_CRYPTO_LIB_POLY1305_GENERIC=y
+CONFIG_CRYPTO_LIB_POLY1305=y
+CONFIG_CRYPTO_LIB_CHACHA20POLY1305=m
+CONFIG_CRYPTO_LIB_SHA1=y
+CONFIG_CRYPTO_LIB_SHA256=y
+# end of Crypto library routines
+
+CONFIG_CRC_CCITT=y
+CONFIG_CRC16=y
+CONFIG_CRC_T10DIF=y
+# CONFIG_CRC64_ROCKSOFT is not set
+CONFIG_CRC_ITU_T=y
+CONFIG_CRC32=y
+# CONFIG_CRC32_SELFTEST is not set
+# CONFIG_CRC32_SLICEBY8 is not set
+# CONFIG_CRC32_SLICEBY4 is not set
+CONFIG_CRC32_SARWATE=y
+# CONFIG_CRC32_BIT is not set
+# CONFIG_CRC64 is not set
+CONFIG_CRC4=y
+# CONFIG_CRC7 is not set
+CONFIG_LIBCRC32C=m
+CONFIG_CRC8=y
+CONFIG_XXHASH=y
+# CONFIG_RANDOM32_SELFTEST is not set
+CONFIG_842_COMPRESS=m
+CONFIG_842_DECOMPRESS=m
+CONFIG_ZLIB_INFLATE=y
+CONFIG_ZLIB_DEFLATE=m
+CONFIG_LZO_COMPRESS=y
+CONFIG_LZO_DECOMPRESS=y
+CONFIG_LZ4_COMPRESS=m
+CONFIG_LZ4_DECOMPRESS=y
+CONFIG_ZSTD_COMMON=y
+CONFIG_ZSTD_DECOMPRESS=y
+CONFIG_XZ_DEC=y
+# CONFIG_XZ_DEC_X86 is not set
+CONFIG_XZ_DEC_POWERPC=y
+# CONFIG_XZ_DEC_IA64 is not set
+CONFIG_XZ_DEC_ARM=y
+# CONFIG_XZ_DEC_ARMTHUMB is not set
+# CONFIG_XZ_DEC_SPARC is not set
+# CONFIG_XZ_DEC_MICROLZMA is not set
+CONFIG_XZ_DEC_BCJ=y
+# CONFIG_XZ_DEC_TEST is not set
+CONFIG_DECOMPRESS_GZIP=y
+CONFIG_DECOMPRESS_BZIP2=y
+CONFIG_DECOMPRESS_LZMA=y
+CONFIG_DECOMPRESS_XZ=y
+CONFIG_DECOMPRESS_LZO=y
+CONFIG_DECOMPRESS_LZ4=y
+CONFIG_DECOMPRESS_ZSTD=y
+CONFIG_GENERIC_ALLOCATOR=y
+CONFIG_INTERVAL_TREE=y
+CONFIG_XARRAY_MULTI=y
+CONFIG_ASSOCIATIVE_ARRAY=y
+CONFIG_HAS_IOMEM=y
+CONFIG_HAS_IOPORT=y
+CONFIG_HAS_IOPORT_MAP=y
+CONFIG_HAS_DMA=y
+CONFIG_NEED_SG_DMA_LENGTH=y
+CONFIG_DMA_CMA=y
+CONFIG_DMA_PERNUMA_CMA=y
+
+#
+# Default contiguous memory area size:
+#
+CONFIG_CMA_SIZE_PERCENTAGE=0
+# CONFIG_CMA_SIZE_SEL_MBYTES is not set
+CONFIG_CMA_SIZE_SEL_PERCENTAGE=y
+# CONFIG_CMA_SIZE_SEL_MIN is not set
+# CONFIG_CMA_SIZE_SEL_MAX is not set
+CONFIG_CMA_ALIGNMENT=8
+# CONFIG_DMA_API_DEBUG is not set
+# CONFIG_DMA_MAP_BENCHMARK is not set
+CONFIG_SGL_ALLOC=y
+CONFIG_CHECK_SIGNATURE=y
+CONFIG_DQL=y
+CONFIG_GLOB=y
+# CONFIG_GLOB_SELFTEST is not set
+CONFIG_NLATTR=y
+CONFIG_CLZ_TAB=y
+# CONFIG_IRQ_POLL is not set
+CONFIG_MPILIB=y
+CONFIG_LIBFDT=y
+CONFIG_OID_REGISTRY=y
+CONFIG_HAVE_GENERIC_VDSO=y
+CONFIG_GENERIC_GETTIMEOFDAY=y
+CONFIG_GENERIC_VDSO_32=y
+CONFIG_GENERIC_VDSO_TIME_NS=y
+CONFIG_FONT_SUPPORT=m
+CONFIG_FONT_8x16=y
+CONFIG_FONT_AUTOSELECT=y
+CONFIG_ARCH_HAS_CPU_CACHE_INVALIDATE_MEMREGION=y
+CONFIG_ARCH_STACKWALK=y
+CONFIG_STACKDEPOT=y
+CONFIG_STACKDEPOT_ALWAYS_INIT=y
+# end of Library routines
+
+CONFIG_ASN1_ENCODER=m
+
+#
+# Kernel hacking
+#
+
+#
+# printk and dmesg options
+#
+CONFIG_PRINTK_TIME=y
+CONFIG_PRINTK_CALLER=y
+# CONFIG_STACKTRACE_BUILD_ID is not set
+CONFIG_CONSOLE_LOGLEVEL_DEFAULT=7
+CONFIG_CONSOLE_LOGLEVEL_QUIET=4
+CONFIG_MESSAGE_LOGLEVEL_DEFAULT=4
+# CONFIG_BOOT_PRINTK_DELAY is not set
+# CONFIG_DYNAMIC_DEBUG is not set
+# CONFIG_DYNAMIC_DEBUG_CORE is not set
+CONFIG_SYMBOLIC_ERRNAME=y
+CONFIG_DEBUG_BUGVERBOSE=y
+# end of printk and dmesg options
+
+CONFIG_DEBUG_KERNEL=y
+CONFIG_DEBUG_MISC=y
+
+#
+# Compile-time checks and compiler options
+#
+CONFIG_DEBUG_INFO=y
+CONFIG_AS_HAS_NON_CONST_LEB128=y
+# CONFIG_DEBUG_INFO_NONE is not set
+CONFIG_DEBUG_INFO_DWARF_TOOLCHAIN_DEFAULT=y
+# CONFIG_DEBUG_INFO_DWARF4 is not set
+# CONFIG_DEBUG_INFO_DWARF5 is not set
+CONFIG_DEBUG_INFO_REDUCED=y
+CONFIG_DEBUG_INFO_COMPRESSED_NONE=y
+# CONFIG_DEBUG_INFO_COMPRESSED_ZLIB is not set
+# CONFIG_DEBUG_INFO_SPLIT is not set
+CONFIG_PAHOLE_HAS_SPLIT_BTF=y
+CONFIG_PAHOLE_HAS_LANG_EXCLUDE=y
+# CONFIG_GDB_SCRIPTS is not set
+CONFIG_FRAME_WARN=8192
+# CONFIG_STRIP_ASM_SYMS is not set
+CONFIG_READABLE_ASM=y
+CONFIG_HEADERS_INSTALL=y
+CONFIG_DEBUG_SECTION_MISMATCH=y
+CONFIG_SECTION_MISMATCH_WARN_ONLY=y
+CONFIG_FRAME_POINTER=y
+# CONFIG_VMLINUX_MAP is not set
+CONFIG_DEBUG_FORCE_WEAK_PER_CPU=y
+# end of Compile-time checks and compiler options
+
+#
+# Generic Kernel Debugging Instruments
+#
+CONFIG_MAGIC_SYSRQ=y
+CONFIG_MAGIC_SYSRQ_DEFAULT_ENABLE=0x1
+CONFIG_MAGIC_SYSRQ_SERIAL=y
+CONFIG_MAGIC_SYSRQ_SERIAL_SEQUENCE=""
+CONFIG_DEBUG_FS=y
+# CONFIG_DEBUG_FS_ALLOW_ALL is not set
+# CONFIG_DEBUG_FS_DISALLOW_MOUNT is not set
+CONFIG_DEBUG_FS_ALLOW_NONE=y
+CONFIG_HAVE_ARCH_KGDB=y
+# CONFIG_KGDB is not set
+CONFIG_ARCH_HAS_UBSAN_SANITIZE_ALL=y
+CONFIG_UBSAN=y
+# CONFIG_UBSAN_TRAP is not set
+CONFIG_CC_HAS_UBSAN_BOUNDS=y
+CONFIG_UBSAN_BOUNDS=y
+CONFIG_UBSAN_ONLY_BOUNDS=y
+CONFIG_UBSAN_SHIFT=y
+# CONFIG_UBSAN_DIV_ZERO is not set
+CONFIG_UBSAN_UNREACHABLE=y
+# CONFIG_UBSAN_BOOL is not set
+# CONFIG_UBSAN_ENUM is not set
+# CONFIG_UBSAN_ALIGNMENT is not set
+CONFIG_UBSAN_SANITIZE_ALL=y
+# CONFIG_TEST_UBSAN is not set
+CONFIG_HAVE_KCSAN_COMPILER=y
+# end of Generic Kernel Debugging Instruments
+
+#
+# Networking Debugging
+#
+# CONFIG_NET_DEV_REFCNT_TRACKER is not set
+# CONFIG_NET_NS_REFCNT_TRACKER is not set
+# CONFIG_DEBUG_NET is not set
+# end of Networking Debugging
+
+#
+# Memory Debugging
+#
+CONFIG_PAGE_EXTENSION=y
+# CONFIG_DEBUG_PAGEALLOC is not set
+CONFIG_SLUB_DEBUG=y
+# CONFIG_SLUB_DEBUG_ON is not set
+CONFIG_PAGE_OWNER=y
+CONFIG_PAGE_POISONING=y
+CONFIG_DEBUG_PAGE_REF=y
+# CONFIG_DEBUG_RODATA_TEST is not set
+CONFIG_ARCH_HAS_DEBUG_WX=y
+# CONFIG_DEBUG_WX is not set
+CONFIG_GENERIC_PTDUMP=y
+# CONFIG_PTDUMP_DEBUGFS is not set
+CONFIG_HAVE_DEBUG_KMEMLEAK=y
+CONFIG_DEBUG_KMEMLEAK=y
+CONFIG_DEBUG_KMEMLEAK_MEM_POOL_SIZE=16000
+# CONFIG_DEBUG_KMEMLEAK_DEFAULT_OFF is not set
+# CONFIG_DEBUG_KMEMLEAK_AUTO_SCAN is not set
+CONFIG_DEBUG_OBJECTS=y
+# CONFIG_DEBUG_OBJECTS_SELFTEST is not set
+# CONFIG_DEBUG_OBJECTS_FREE is not set
+# CONFIG_DEBUG_OBJECTS_TIMERS is not set
+CONFIG_DEBUG_OBJECTS_WORK=y
+CONFIG_DEBUG_OBJECTS_RCU_HEAD=y
+CONFIG_DEBUG_OBJECTS_PERCPU_COUNTER=y
+CONFIG_DEBUG_OBJECTS_ENABLE_DEFAULT=1
+# CONFIG_SHRINKER_DEBUG is not set
+CONFIG_DEBUG_STACK_USAGE=y
+CONFIG_SCHED_STACK_END_CHECK=y
+CONFIG_ARCH_HAS_DEBUG_VM_PGTABLE=y
+CONFIG_DEBUG_VM_IRQSOFF=y
+CONFIG_DEBUG_VM=y
+# CONFIG_DEBUG_VM_MAPLE_TREE is not set
+# CONFIG_DEBUG_VM_RB is not set
+# CONFIG_DEBUG_VM_PGFLAGS is not set
+# CONFIG_DEBUG_VM_PGTABLE is not set
+CONFIG_ARCH_HAS_DEBUG_VIRTUAL=y
+CONFIG_DEBUG_VIRTUAL=y
+# CONFIG_DEBUG_MEMORY_INIT is not set
+CONFIG_DEBUG_KMAP_LOCAL=y
+CONFIG_ARCH_SUPPORTS_KMAP_LOCAL_FORCE_MAP=y
+CONFIG_DEBUG_KMAP_LOCAL_FORCE_MAP=y
+CONFIG_DEBUG_HIGHMEM=y
+CONFIG_HAVE_DEBUG_STACKOVERFLOW=y
+CONFIG_DEBUG_STACKOVERFLOW=y
+CONFIG_CC_HAS_KASAN_GENERIC=y
+CONFIG_CC_HAS_WORKING_NOSANITIZE_ADDRESS=y
+CONFIG_HAVE_ARCH_KFENCE=y
+# CONFIG_KFENCE is not set
+# end of Memory Debugging
+
+CONFIG_DEBUG_SHIRQ=y
+
+#
+# Debug Oops, Lockups and Hangs
+#
+CONFIG_PANIC_ON_OOPS=y
+CONFIG_PANIC_ON_OOPS_VALUE=1
+CONFIG_PANIC_TIMEOUT=0
+CONFIG_LOCKUP_DETECTOR=y
+CONFIG_SOFTLOCKUP_DETECTOR=y
+CONFIG_BOOTPARAM_SOFTLOCKUP_PANIC=y
+CONFIG_HARDLOCKUP_DETECTOR_PERF=y
+CONFIG_HARDLOCKUP_DETECTOR=y
+CONFIG_BOOTPARAM_HARDLOCKUP_PANIC=y
+CONFIG_DETECT_HUNG_TASK=y
+CONFIG_DEFAULT_HUNG_TASK_TIMEOUT=480
+# CONFIG_BOOTPARAM_HUNG_TASK_PANIC is not set
+CONFIG_WQ_WATCHDOG=y
+# CONFIG_TEST_LOCKUP is not set
+# end of Debug Oops, Lockups and Hangs
+
+#
+# Scheduler Debugging
+#
+# CONFIG_SCHED_DEBUG is not set
+CONFIG_SCHED_INFO=y
+CONFIG_SCHEDSTATS=y
+# end of Scheduler Debugging
+
+CONFIG_DEBUG_TIMEKEEPING=y
+
+#
+# Lock Debugging (spinlocks, mutexes, etc...)
+#
+CONFIG_LOCK_DEBUGGING_SUPPORT=y
+CONFIG_PROVE_LOCKING=y
+# CONFIG_PROVE_RAW_LOCK_NESTING is not set
+# CONFIG_LOCK_STAT is not set
+CONFIG_DEBUG_RT_MUTEXES=y
+CONFIG_DEBUG_SPINLOCK=y
+CONFIG_DEBUG_MUTEXES=y
+CONFIG_DEBUG_WW_MUTEX_SLOWPATH=y
+CONFIG_DEBUG_RWSEMS=y
+CONFIG_DEBUG_LOCK_ALLOC=y
+CONFIG_LOCKDEP=y
+CONFIG_LOCKDEP_BITS=15
+CONFIG_LOCKDEP_CHAINS_BITS=16
+CONFIG_LOCKDEP_STACK_TRACE_BITS=19
+CONFIG_LOCKDEP_STACK_TRACE_HASH_BITS=14
+CONFIG_LOCKDEP_CIRCULAR_QUEUE_BITS=12
+# CONFIG_DEBUG_LOCKDEP is not set
+CONFIG_DEBUG_ATOMIC_SLEEP=y
+# CONFIG_DEBUG_LOCKING_API_SELFTESTS is not set
+CONFIG_LOCK_TORTURE_TEST=m
+# CONFIG_WW_MUTEX_SELFTEST is not set
+# CONFIG_SCF_TORTURE_TEST is not set
+# end of Lock Debugging (spinlocks, mutexes, etc...)
+
+CONFIG_TRACE_IRQFLAGS=y
+CONFIG_TRACE_IRQFLAGS_NMI=y
+# CONFIG_NMI_CHECK_CPU is not set
+# CONFIG_DEBUG_IRQFLAGS is not set
+CONFIG_STACKTRACE=y
+# CONFIG_WARN_ALL_UNSEEDED_RANDOM is not set
+# CONFIG_DEBUG_KOBJECT is not set
+
+#
+# Debug kernel data structures
+#
+# CONFIG_DEBUG_LIST is not set
+CONFIG_DEBUG_PLIST=y
+CONFIG_DEBUG_SG=y
+# CONFIG_DEBUG_NOTIFIERS is not set
+# CONFIG_BUG_ON_DATA_CORRUPTION is not set
+# CONFIG_DEBUG_MAPLE_TREE is not set
+# end of Debug kernel data structures
+
+CONFIG_DEBUG_CREDENTIALS=y
+
+#
+# RCU Debugging
+#
+CONFIG_PROVE_RCU=y
+# CONFIG_PROVE_RCU_LIST is not set
+CONFIG_TORTURE_TEST=m
+CONFIG_RCU_SCALE_TEST=m
+CONFIG_RCU_TORTURE_TEST=m
+CONFIG_RCU_REF_SCALE_TEST=m
+# CONFIG_RCU_TRACE is not set
+CONFIG_RCU_EQS_DEBUG=y
+# end of RCU Debugging
+
+# CONFIG_DEBUG_WQ_FORCE_RR_CPU is not set
+CONFIG_LATENCYTOP=y
+# CONFIG_DEBUG_CGROUP_REF is not set
+CONFIG_USER_STACKTRACE_SUPPORT=y
+CONFIG_NOP_TRACER=y
+CONFIG_HAVE_RETHOOK=y
+CONFIG_RETHOOK=y
+CONFIG_HAVE_FUNCTION_TRACER=y
+CONFIG_HAVE_FUNCTION_GRAPH_TRACER=y
+CONFIG_HAVE_DYNAMIC_FTRACE=y
+CONFIG_HAVE_DYNAMIC_FTRACE_WITH_REGS=y
+CONFIG_HAVE_DYNAMIC_FTRACE_WITH_DIRECT_CALLS=y
+CONFIG_HAVE_DYNAMIC_FTRACE_NO_PATCHABLE=y
+CONFIG_HAVE_FTRACE_MCOUNT_RECORD=y
+CONFIG_HAVE_SYSCALL_TRACEPOINTS=y
+CONFIG_HAVE_FENTRY=y
+CONFIG_HAVE_C_RECORDMCOUNT=y
+CONFIG_HAVE_BUILDTIME_MCOUNT_SORT=y
+CONFIG_BUILDTIME_MCOUNT_SORT=y
+CONFIG_TRACER_MAX_TRACE=y
+CONFIG_TRACE_CLOCK=y
+CONFIG_RING_BUFFER=y
+CONFIG_EVENT_TRACING=y
+CONFIG_CONTEXT_SWITCH_TRACER=y
+CONFIG_RING_BUFFER_ALLOW_SWAP=y
+CONFIG_PREEMPTIRQ_TRACEPOINTS=y
+CONFIG_TRACING=y
+CONFIG_GLOBAL_TRACE_BUF_SIZE=1441792
+CONFIG_GENERIC_TRACER=y
+CONFIG_TRACING_SUPPORT=y
+CONFIG_FTRACE=y
+# CONFIG_BOOTTIME_TRACING is not set
+CONFIG_FUNCTION_TRACER=y
+CONFIG_FUNCTION_GRAPH_TRACER=y
+CONFIG_DYNAMIC_FTRACE=y
+CONFIG_DYNAMIC_FTRACE_WITH_REGS=y
+CONFIG_DYNAMIC_FTRACE_WITH_DIRECT_CALLS=y
+# CONFIG_FPROBE is not set
+# CONFIG_FUNCTION_PROFILER is not set
+CONFIG_STACK_TRACER=y
+CONFIG_IRQSOFF_TRACER=y
+# CONFIG_SCHED_TRACER is not set
+CONFIG_HWLAT_TRACER=y
+# CONFIG_OSNOISE_TRACER is not set
+# CONFIG_TIMERLAT_TRACER is not set
+CONFIG_MMIOTRACE=y
+# CONFIG_FTRACE_SYSCALLS is not set
+CONFIG_TRACER_SNAPSHOT=y
+CONFIG_TRACER_SNAPSHOT_PER_CPU_SWAP=y
+CONFIG_TRACE_BRANCH_PROFILING=y
+# CONFIG_BRANCH_PROFILE_NONE is not set
+CONFIG_PROFILE_ANNOTATED_BRANCHES=y
+# CONFIG_BRANCH_TRACER is not set
+CONFIG_KPROBE_EVENTS=y
+# CONFIG_KPROBE_EVENTS_ON_NOTRACE is not set
+# CONFIG_UPROBE_EVENTS is not set
+CONFIG_DYNAMIC_EVENTS=y
+CONFIG_PROBE_EVENTS=y
+CONFIG_FTRACE_MCOUNT_RECORD=y
+CONFIG_FTRACE_MCOUNT_USE_CC=y
+CONFIG_TRACING_MAP=y
+CONFIG_SYNTH_EVENTS=y
+# CONFIG_USER_EVENTS is not set
+CONFIG_HIST_TRIGGERS=y
+CONFIG_TRACE_EVENT_INJECT=y
+# CONFIG_TRACEPOINT_BENCHMARK is not set
+# CONFIG_RING_BUFFER_BENCHMARK is not set
+CONFIG_TRACE_EVAL_MAP_FILE=y
+# CONFIG_FTRACE_RECORD_RECURSION is not set
+# CONFIG_FTRACE_STARTUP_TEST is not set
+# CONFIG_FTRACE_SORT_STARTUP_TEST is not set
+# CONFIG_RING_BUFFER_STARTUP_TEST is not set
+# CONFIG_RING_BUFFER_VALIDATE_TIME_DELTAS is not set
+# CONFIG_MMIOTRACE_TEST is not set
+# CONFIG_PREEMPTIRQ_DELAY_TEST is not set
+# CONFIG_SYNTH_EVENT_GEN_TEST is not set
+# CONFIG_KPROBE_EVENT_GEN_TEST is not set
+# CONFIG_HIST_TRIGGERS_DEBUG is not set
+# CONFIG_RV is not set
+# CONFIG_PROVIDE_OHCI1394_DMA_INIT is not set
+# CONFIG_SAMPLES is not set
+CONFIG_ARCH_HAS_DEVMEM_IS_ALLOWED=y
+# CONFIG_STRICT_DEVMEM is not set
+
+#
+# x86 Debugging
+#
+CONFIG_EARLY_PRINTK_USB=y
+CONFIG_X86_VERBOSE_BOOTUP=y
+CONFIG_EARLY_PRINTK=y
+CONFIG_EARLY_PRINTK_DBGP=y
+CONFIG_EARLY_PRINTK_USB_XDBC=y
+CONFIG_DEBUG_TLBFLUSH=y
+CONFIG_HAVE_MMIOTRACE_SUPPORT=y
+# CONFIG_X86_DECODER_SELFTEST is not set
+# CONFIG_IO_DELAY_0X80 is not set
+CONFIG_IO_DELAY_0XED=y
+# CONFIG_IO_DELAY_UDELAY is not set
+# CONFIG_IO_DELAY_NONE is not set
+CONFIG_DEBUG_BOOT_PARAMS=y
+# CONFIG_CPA_DEBUG is not set
+# CONFIG_DEBUG_ENTRY is not set
+# CONFIG_DEBUG_NMI_SELFTEST is not set
+CONFIG_X86_DEBUG_FPU=y
+CONFIG_PUNIT_ATOM_DEBUG=m
+CONFIG_UNWINDER_FRAME_POINTER=y
+# end of x86 Debugging
+
+#
+# Kernel Testing and Coverage
+#
+# CONFIG_KUNIT is not set
+CONFIG_NOTIFIER_ERROR_INJECTION=y
+# CONFIG_OF_RECONFIG_NOTIFIER_ERROR_INJECT is not set
+# CONFIG_NETDEV_NOTIFIER_ERROR_INJECT is not set
+CONFIG_FUNCTION_ERROR_INJECTION=y
+CONFIG_FAULT_INJECTION=y
+# CONFIG_FAILSLAB is not set
+CONFIG_FAIL_PAGE_ALLOC=y
+# CONFIG_FAULT_INJECTION_USERCOPY is not set
+CONFIG_FAIL_FUTEX=y
+# CONFIG_FAULT_INJECTION_DEBUG_FS is not set
+# CONFIG_FAULT_INJECTION_CONFIGFS is not set
+CONFIG_CC_HAS_SANCOV_TRACE_PC=y
+# CONFIG_RUNTIME_TESTING_MENU is not set
+CONFIG_ARCH_USE_MEMTEST=y
+CONFIG_MEMTEST=y
+# end of Kernel Testing and Coverage
+
+#
+# Rust hacking
+#
+# end of Rust hacking
+# end of Kernel hacking
+
+--/GGXerJyieNrfpB4--
