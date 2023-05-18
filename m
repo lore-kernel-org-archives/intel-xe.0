@@ -4,35 +4,37 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5EB93C7EE23
-	for <intel-xe@archiver.kernel.org>; Thu, 18 May 2023 17:11:30 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id E2C5BC7EE23
+	for <intel-xe@archiver.kernel.org>; Thu, 18 May 2023 17:21:07 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id EB8EE10E106;
-	Thu, 18 May 2023 17:11:29 +0000 (UTC)
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0054A10E106
- for <intel-xe@lists.freedesktop.org>; Thu, 18 May 2023 17:11:28 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9C3D110E106;
+	Thu, 18 May 2023 17:21:07 +0000 (UTC)
+Received: from dfw.source.kernel.org (dfw.source.kernel.org
+ [IPv6:2604:1380:4641:c500::1])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 07E4810E108
+ for <intel-xe@lists.freedesktop.org>; Thu, 18 May 2023 17:21:04 +0000 (UTC)
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
  (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
  (No client certificate requested)
- by dfw.source.kernel.org (Postfix) with ESMTPS id 128BF60EFA;
- Thu, 18 May 2023 17:11:28 +0000 (UTC)
+ by dfw.source.kernel.org (Postfix) with ESMTPS id E13766510A;
+ Thu, 18 May 2023 17:21:03 +0000 (UTC)
 Received: from rdvivi-mobl4 (unknown [192.55.55.57])
  (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
  (No client certificate requested)
- by smtp.kernel.org (Postfix) with ESMTPSA id 1F4A6C433EF;
- Thu, 18 May 2023 17:11:26 +0000 (UTC)
-Date: Thu, 18 May 2023 13:11:23 -0400
+ by smtp.kernel.org (Postfix) with ESMTPSA id EE449C433D2;
+ Thu, 18 May 2023 17:21:01 +0000 (UTC)
+Date: Thu, 18 May 2023 13:21:00 -0400
 From: Rodrigo Vivi <rodrigo.vivi@kernel.org>
-To: Anshuman Gupta <anshuman.gupta@intel.com>
-Message-ID: <ZGZcO/R7yYtIQjOj@rdvivi-mobl4>
-References: <20230518085259.4083944-1-anshuman.gupta@intel.com>
+To: =?iso-8859-1?Q?Jos=E9?= Roberto de Souza <jose.souza@intel.com>
+Message-ID: <ZGZefKnOnVm9rHfY@rdvivi-mobl4>
+References: <20230517162918.59058-1-jose.souza@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=iso-8859-1
 Content-Disposition: inline
-In-Reply-To: <20230518085259.4083944-1-anshuman.gupta@intel.com>
-Subject: Re: [Intel-xe] [PATCH v3] drm/xe/pm: Disable PM on unbounded pcie
- parent bridge
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20230517162918.59058-1-jose.souza@intel.com>
+Subject: Re: [Intel-xe] [PATCH] drm/xe: Allow scanout of bos that can be
+ migrated to lmem
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -44,78 +46,98 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Cc: jani.nikula@intel.com, intel-xe@lists.freedesktop.org,
- rodrigo.vivi@intel.com
+Cc: intel-xe@lists.freedesktop.org, Matthew Auld <matthew.auld@intel.com>
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Thu, May 18, 2023 at 02:22:59PM +0530, Anshuman Gupta wrote:
-> Intel Discrete GFX cards gfx may have multiple PCIe endpoints,
-> they connects to root port via pcie upstream switch port(USP)
-> and virtual pcie switch port(VSP), sometimes VSP pcie devices
-> doesn't bind to pcieport driver. Without pcieport driver, pcie PM
-> comes without any warranty and with unbounded VSP gfx card won't
-> transition to low power pcie device and link state therefore
-> assert dev_warn on unbounded VSP and disable xe driver
-> PM support.
+On Wed, May 17, 2023 at 09:29:18AM -0700, José Roberto de Souza wrote:
+
+The patch itself looks good, but I believe that I might be confused
+by the commit message. so a few questions here:
+
+> OpenGL stack makes scanout buffers exported as well because usually
+> it will be exported from client application to compositor.
 > 
-> v2:
-> - Disable Xe PCI PM support. [Rodrigo]
-> v3:
-> - Changed subject and Rebase.
+> Exported buffers needs to be placed in SMEM so it can be accessed
+> by different GPUs if needed,
+
+so, if it needs SMEM, why are you migrating to LMEM?
+
+> so in discrete GPUs it is placed in
+> SMEM+LMEM.
+
+I see the code migrating to LMEM, but not migrating LMEM to SMEM,
+what am I missing?
+
 > 
-> Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
-> Signed-off-by: Anshuman Gupta <anshuman.gupta@intel.com>
+> But this combination is causing aplications like kmscube to be able
+> to create framebuffers.
+
+to be able or to *not* be able? what's the real current issue?
+
+> 
+> So here doing the same handling as i915 and allowing bos that can
+> migrate to lmem0/vram0 to be promoted to framebuffer.
+
+okay, this phrase is why I believe the commit is doing what it should,
+but the above messages confused me a bit....
+
+> 
+> At least all current discrete GPUs with display only have one lmem
+> region, so we don't need to check for vram1 but we might need to
+> extend it in future.
+
+ack on this part.
+
+> 
+> Signed-off-by: José Roberto de Souza <jose.souza@intel.com>
+> Signed-off-by: Matthew Auld <matthew.auld@intel.com>
 > ---
->  drivers/gpu/drm/xe/xe_pci.c | 16 ++++++++++++++++
->  1 file changed, 16 insertions(+)
+>  drivers/gpu/drm/i915/display/intel_fb.c | 5 +++--
+>  drivers/gpu/drm/xe/display/xe_fb_pin.c  | 7 ++++++-
+>  2 files changed, 9 insertions(+), 3 deletions(-)
 > 
-> diff --git a/drivers/gpu/drm/xe/xe_pci.c b/drivers/gpu/drm/xe/xe_pci.c
-> index e789a50a1310..e09d76b7755a 100644
-> --- a/drivers/gpu/drm/xe/xe_pci.c
-> +++ b/drivers/gpu/drm/xe/xe_pci.c
-> @@ -603,6 +603,19 @@ static void xe_pci_remove(struct pci_dev *pdev)
->  	pci_set_drvdata(pdev, NULL);
->  }
+> diff --git a/drivers/gpu/drm/i915/display/intel_fb.c b/drivers/gpu/drm/i915/display/intel_fb.c
+> index 015aacbad1b11..feb8a0f5fbdf6 100644
+> --- a/drivers/gpu/drm/i915/display/intel_fb.c
+> +++ b/drivers/gpu/drm/i915/display/intel_fb.c
+> @@ -2121,8 +2121,9 @@ intel_user_framebuffer_create(struct drm_device *dev,
+>  		return ERR_PTR(-ENOENT);
 >  
-> +static void xe_pci_unbounded_bridge_disable_pm(struct pci_dev *pdev)
-> +{
-> +	struct pci_dev *bridge = pci_upstream_bridge(pdev);
-> +
-> +	if (!bridge)
-> +		return;
-> +
-> +	if (!bridge->driver) {
-> +		dev_warn(&pdev->dev, "unbounded parent pci bridge, device won't support any PM support.\n");
-> +		pdev->driver->driver.pm = NULL;
-> +	}
-> +}
-
-what about having this function as part of xe_pm.c and then
-call it xe_pm_assert_bounded_bridge() ?!
-
-> +
->  static int xe_pci_probe(struct pci_dev *pdev, const struct pci_device_id *ent)
+>  	obj = gem_to_xe_bo(gem);
+> -	/* Require vram exclusive objects, but allow dma-buf imports */
+> -	if (IS_DGFX(i915) && obj->flags & XE_BO_CREATE_SYSTEM_BIT &&
+> +	/* Require vram placement or dma-buf import */
+> +	if (IS_DGFX(i915) &&
+> +	    !xe_bo_can_migrate(gem_to_xe_bo(gem), XE_PL_VRAM0) &&
+>  	    obj->ttm.type != ttm_bo_type_sg) {
+>  		drm_gem_object_put(gem);
+>  		return ERR_PTR(-EREMOTE);
+> diff --git a/drivers/gpu/drm/xe/display/xe_fb_pin.c b/drivers/gpu/drm/xe/display/xe_fb_pin.c
+> index ed691d28b34d7..c7c4df18e439b 100644
+> --- a/drivers/gpu/drm/xe/display/xe_fb_pin.c
+> +++ b/drivers/gpu/drm/xe/display/xe_fb_pin.c
+> @@ -183,6 +183,8 @@ static int __xe_pin_fb_vma_ggtt(struct intel_framebuffer *fb,
+>  static struct i915_vma *__xe_pin_fb_vma(struct intel_framebuffer *fb,
+>  					const struct i915_gtt_view *view)
 >  {
->  	const struct xe_device_desc *desc = (const void *)ent->driver_data;
-> @@ -628,10 +641,13 @@ static int xe_pci_probe(struct pci_dev *pdev, const struct pci_device_id *ent)
->  		return -ENODEV;
->  	}
+> +	struct drm_device *dev = fb->base.dev;
+> +	struct xe_device *xe = to_xe_device(dev);
+>  	struct i915_vma *vma = kzalloc(sizeof(*vma), GFP_KERNEL);
+>  	struct xe_bo *bo = intel_fb_obj(&fb->base);
+>  	int ret;
+> @@ -204,7 +206,10 @@ static struct i915_vma *__xe_pin_fb_vma(struct intel_framebuffer *fb,
+>  	if (ret)
+>  		goto err;
 >  
-> +
->  	err = xe_display_driver_probe_defer(pdev);
->  	if (err)
->  		return err;
->  
-> +	xe_pci_unbounded_bridge_disable_pm(pdev);
-
-Probably the safest place to call this is at xe_register_pci_driver right before registering it, no?!
-possible?
-
-> +
->  	xe = xe_device_create(pdev, ent);
->  	if (IS_ERR(xe))
->  		return PTR_ERR(xe);
+> -	ret = xe_bo_validate(bo, NULL, true);
+> +	if (IS_DGFX(xe))
+> +		ret = xe_bo_migrate(bo, XE_PL_VRAM0);
+> +	else
+> +		ret = xe_bo_validate(bo, NULL, true);
+>  	if (!ret)
+>  		ttm_bo_pin(&bo->ttm);
+>  	ttm_bo_unreserve(&bo->ttm);
 > -- 
-> 2.38.0
+> 2.40.1
 > 
