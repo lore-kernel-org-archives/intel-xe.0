@@ -4,30 +4,31 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 10A48C77B7D
-	for <intel-xe@archiver.kernel.org>; Thu, 18 May 2023 09:34:22 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 528D9C7EE22
+	for <intel-xe@archiver.kernel.org>; Thu, 18 May 2023 09:51:06 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D03BE10E4F8;
-	Thu, 18 May 2023 09:34:21 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 107FD10E04A;
+	Thu, 18 May 2023 09:51:06 +0000 (UTC)
 Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id 583DB10E4F7;
- Thu, 18 May 2023 09:34:19 +0000 (UTC)
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 3E65910E04A;
+ Thu, 18 May 2023 09:51:04 +0000 (UTC)
 Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 4F711AA917;
- Thu, 18 May 2023 09:34:19 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============1208677916394564182=="
+ by emeril.freedesktop.org (Postfix) with ESMTP id 358CAAADE8;
+ Thu, 18 May 2023 09:51:04 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Anshuman Gupta" <anshuman.gupta@intel.com>
-Date: Thu, 18 May 2023 09:34:19 -0000
-Message-ID: <168440245932.2371.13109343169427284393@emeril.freedesktop.org>
+To: "Matthew Auld" <matthew.auld@intel.com>
+Date: Thu, 18 May 2023 09:51:04 -0000
+Message-ID: <168440346419.2372.15942018759292887219@emeril.freedesktop.org>
 X-Patchwork-Hint: ignore
-References: <20230518085259.4083944-1-anshuman.gupta@intel.com>
-In-Reply-To: <20230518085259.4083944-1-anshuman.gupta@intel.com>
-Subject: [Intel-xe] =?utf-8?q?=E2=97=8B_CI=2EBAT=3A_info_for_drm/xe/pm=3A?=
- =?utf-8?q?_Disable_PM_on_unbounded_pcie_parent_bridge?=
+References: <20230517152244.348171-1-matthew.auld@intel.com>
+In-Reply-To: <20230517152244.348171-1-matthew.auld@intel.com>
+Subject: [Intel-xe] =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_f?=
+ =?utf-8?q?or_series_starting_with_=5Bv5=2C1/7=5D_drm=3A_fix_drmm=5Fmutex?=
+ =?utf-8?b?X2luaXQoKSAocmV2Mik=?=
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -44,65 +45,23 @@ Cc: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============1208677916394564182==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
 == Series Details ==
 
-Series: drm/xe/pm: Disable PM on unbounded pcie parent bridge
-URL   : https://patchwork.freedesktop.org/series/117945/
-State : info
+Series: series starting with [v5,1/7] drm: fix drmm_mutex_init() (rev2)
+URL   : https://patchwork.freedesktop.org/series/117891/
+State : success
 
 == Summary ==
 
-Participating hosts:
-bat-atsm-2
-bat-dg2-oem2
-bat-adlp-7
-Missing hosts results[1]:
-bat-dg2-oem2
-Results: [xe-pw-117945v1](https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-117945v1/index.html)
+=== Applying kernel patches on branch 'drm-xe-next' with base: ===
+Base commit: c795cf636 drm/xe: Allow dma-fences as in-syncs for compute / faulting VM
+=== git am output follows ===
+Applying: drm: fix drmm_mutex_init()
+Applying: Revert "drm/xe: Use atomic instead of mutex for xe_device_mem_access_ongoing"
+Applying: drm/xe: don't allocate under ct->lock
+Applying: drm/xe: keep pulling mem_access_get further back
+Applying: drm/xe/ggtt: prime ggtt->lock against FS_RECLAIM
+Applying: drm/xe: fix xe_device_mem_access_get() races
+Applying: drm/xe: Use atomic for mem_access.ref
 
 
-
---===============1208677916394564182==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/xe/pm: Disable PM on unbounded pcie parent bridge</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/117945/">https://patchwork.freedesktop.org/series/117945/</a></td></tr>
-<tr><td><b>State:</b></td><td>info</td></tr>
-
-</table>
-
-
-    <p>Participating hosts:<br />
-bat-atsm-2<br />
-bat-dg2-oem2<br />
-bat-adlp-7<br />
-Missing hosts results[1]:<br />
-bat-dg2-oem2<br />
-Results: <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-117945v1/index.html">xe-pw-117945v1</a></p>
-
-</body>
-</html>
-
---===============1208677916394564182==--
