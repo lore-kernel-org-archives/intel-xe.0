@@ -4,30 +4,30 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id A6360C77B7D
-	for <intel-xe@archiver.kernel.org>; Thu, 18 May 2023 22:02:06 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3132DC7EE29
+	for <intel-xe@archiver.kernel.org>; Thu, 18 May 2023 22:03:48 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 68B0210E137;
-	Thu, 18 May 2023 22:02:06 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 11CBA10E137;
+	Thu, 18 May 2023 22:03:48 +0000 (UTC)
 Received: from emeril.freedesktop.org (emeril.freedesktop.org
  [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id 1CFA910E137;
- Thu, 18 May 2023 22:02:04 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTP id 9C78910E566;
+ Thu, 18 May 2023 22:03:45 +0000 (UTC)
 Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 1663CAADD7;
- Thu, 18 May 2023 22:02:04 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============6106792015155878634=="
+ by emeril.freedesktop.org (Postfix) with ESMTP id 93B73AADD7;
+ Thu, 18 May 2023 22:03:45 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Lucas De Marchi" <lucas.demarchi@intel.com>
-Date: Thu, 18 May 2023 22:02:04 -0000
-Message-ID: <168444732406.2372.16691709459077883960@emeril.freedesktop.org>
+To: "Gustavo Sousa" <gustavo.sousa@intel.com>
+Date: Thu, 18 May 2023 22:03:45 -0000
+Message-ID: <168444742560.2371.13289699529052679985@emeril.freedesktop.org>
 X-Patchwork-Hint: ignore
-References: <20230518212446.3570168-1-lucas.demarchi@intel.com>
-In-Reply-To: <20230518212446.3570168-1-lucas.demarchi@intel.com>
-Subject: [Intel-xe] =?utf-8?q?=E2=97=8B_CI=2EBAT=3A_info_for_kernel-doc_f?=
- =?utf-8?q?ixups?=
+References: <20230518215651.502159-1-gustavo.sousa@intel.com>
+In-Reply-To: <20230518215651.502159-1-gustavo.sousa@intel.com>
+Subject: [Intel-xe] =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_f?=
+ =?utf-8?q?or_drm/xe=3A_Proper_cleanup_in_xe=5Fdevice=5Fcreate=28=29?=
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -44,63 +44,18 @@ Cc: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============6106792015155878634==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
 == Series Details ==
 
-Series: kernel-doc fixups
-URL   : https://patchwork.freedesktop.org/series/117968/
-State : info
+Series: drm/xe: Proper cleanup in xe_device_create()
+URL   : https://patchwork.freedesktop.org/series/117971/
+State : success
 
 == Summary ==
 
-Participating hosts:
-bat-atsm-2
-bat-dg2-oem2
-bat-adlp-7
-Missing hosts results[0]:
-Results: [xe-pw-117968v1](https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-117968v1/index.html)
+=== Applying kernel patches on branch 'drm-xe-next' with base: ===
+Base commit: 1658a5be6 drm/xe: Allow scanout of bos that can be migrated to lmem
+=== git am output follows ===
+Applying: drm/xe: Call drmm_add_action_or_reset() early in xe_device_create()
+Applying: drm/xe: Fail xe_device_create() if wq allocation fails
 
 
-
---===============6106792015155878634==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>kernel-doc fixups</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/117968/">https://patchwork.freedesktop.org/series/117968/</a></td></tr>
-<tr><td><b>State:</b></td><td>info</td></tr>
-
-</table>
-
-
-    <p>Participating hosts:<br />
-bat-atsm-2<br />
-bat-dg2-oem2<br />
-bat-adlp-7<br />
-Missing hosts results[0]:<br />
-Results: <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-117968v1/index.html">xe-pw-117968v1</a></p>
-
-</body>
-</html>
-
---===============6106792015155878634==--
