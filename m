@@ -4,55 +4,59 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5E8B4C77B75
-	for <intel-xe@archiver.kernel.org>; Fri, 19 May 2023 13:19:01 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id BC1DCC77B7A
+	for <intel-xe@archiver.kernel.org>; Fri, 19 May 2023 13:19:11 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2E99610E021;
-	Fri, 19 May 2023 13:19:01 +0000 (UTC)
-Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C08E710E0C8
- for <intel-xe@lists.freedesktop.org>; Fri, 19 May 2023 13:18:58 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8E0F110E04F;
+	Fri, 19 May 2023 13:19:11 +0000 (UTC)
+Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id AEEDC10E04F
+ for <intel-xe@lists.freedesktop.org>; Fri, 19 May 2023 13:19:08 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1684502338; x=1716038338;
+ t=1684502348; x=1716038348;
  h=from:to:subject:date:message-id:in-reply-to:references:
  content-transfer-encoding:mime-version;
- bh=l+Z74YeIzQ3aFJxsomL+KoNFqVMrZjMTCLfAaO3zPlA=;
- b=fWZasnbbQ/P9gPLk7m8AZbHJXj5/qJ1YIwQjVmobrdlIZZhN3llvveZB
- iaflnMbQu2mUj+o5r6A5rYI3CF2sGzZu86cwKIBqLNKrodktTi8f2tYoX
- Bw/XphyXvxM/XAVAIxh4WBvao27ZF/chlCdpuo15BVdQ0WgCjJbZyU2gf
- VQoFTaCSbMNPnAre/LoBEJxwhznr1J4BgdZrfu+ym/SBI78T3GSA2fORS
- WC3YcfdHKyXvN9j7x+x7CG0dl7yEfNXXpxUm/d6+3ZvWDNN02q80/G4Zn
- HRv/lHA4pawcRGXcalA6z8/nsKoXjYQYgv99Q2QCDRmOeDqTifVGlasA1 g==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10715"; a="349881872"
-X-IronPort-AV: E=Sophos;i="6.00,176,1681196400"; d="scan'208";a="349881872"
-Received: from fmsmga008.fm.intel.com ([10.253.24.58])
- by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 19 May 2023 06:18:58 -0700
+ bh=IWznJDz3ubzji2J3CJYpyQMOzYYr9fEeFMtBsTTFeM8=;
+ b=OFjEIwLqSfHIgqTCduirz9k9WLqqceRxsCyznNSrQ35+lrRuycSlsIoi
+ fzWsmi29oUFcZvOs4a2TLB+QDCnaxoW+3M+78/8Fn+0ENOJWlvlCdSIU4
+ aUzQ7NBnVkusTrlsoNCiQ3zFrtQi9qZw51UyjeFOvVkCDeuwnAD218N1w
+ AVLdnzGxkzw9XX9k6+0jp03wfmaPo4bWg8hQSwBWEk1GO5gaoMQdyj+Jx
+ 1wHj0IkdxDfKEcfVFMm4wlE4W5cnT3ccxqvQXTdTFiyCtSDkSNsTY30JL
+ 3JOiPCBHXlK3TadbaRvLU5rVIhd8+nvKF495nCMZ05QW3iBDtoibrmE0n w==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10715"; a="380582213"
+X-IronPort-AV: E=Sophos;i="6.00,176,1681196400"; d="scan'208";a="380582213"
+Received: from orsmga006.jf.intel.com ([10.7.209.51])
+ by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 19 May 2023 06:19:08 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10715"; a="767612821"
-X-IronPort-AV: E=Sophos;i="6.00,176,1681196400"; d="scan'208";a="767612821"
-Received: from fmsmsx602.amr.corp.intel.com ([10.18.126.82])
- by fmsmga008.fm.intel.com with ESMTP; 19 May 2023 06:18:58 -0700
-Received: from fmsmsx610.amr.corp.intel.com (10.18.126.90) by
- fmsmsx602.amr.corp.intel.com (10.18.126.82) with Microsoft SMTP Server
+X-IronPort-AV: E=McAfee;i="6600,9927,10715"; a="680045712"
+X-IronPort-AV: E=Sophos;i="6.00,176,1681196400"; d="scan'208";a="680045712"
+Received: from orsmsx602.amr.corp.intel.com ([10.22.229.15])
+ by orsmga006.jf.intel.com with ESMTP; 19 May 2023 06:19:08 -0700
+Received: from orsmsx611.amr.corp.intel.com (10.22.229.24) by
+ ORSMSX602.amr.corp.intel.com (10.22.229.15) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.23; Fri, 19 May 2023 06:18:58 -0700
-Received: from fmsedg602.ED.cps.intel.com (10.1.192.136) by
- fmsmsx610.amr.corp.intel.com (10.18.126.90) with Microsoft SMTP Server
+ 15.1.2507.23; Fri, 19 May 2023 06:19:07 -0700
+Received: from orsmsx610.amr.corp.intel.com (10.22.229.23) by
+ ORSMSX611.amr.corp.intel.com (10.22.229.24) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.23 via Frontend Transport; Fri, 19 May 2023 06:18:58 -0700
-Received: from NAM02-DM3-obe.outbound.protection.outlook.com (104.47.56.41) by
- edgegateway.intel.com (192.55.55.71) with Microsoft SMTP Server
+ 15.1.2507.23; Fri, 19 May 2023 06:19:07 -0700
+Received: from ORSEDG602.ED.cps.intel.com (10.7.248.7) by
+ orsmsx610.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.23 via Frontend Transport; Fri, 19 May 2023 06:19:07 -0700
+Received: from NAM02-DM3-obe.outbound.protection.outlook.com (104.47.56.47) by
+ edgegateway.intel.com (134.134.137.103) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2507.23; Fri, 19 May 2023 06:18:57 -0700
+ 15.1.2507.23; Fri, 19 May 2023 06:19:07 -0700
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=hGjcKd8ZSXE93bKmeaQpwlOMLm7Bab7nRJiy2AKqQbLZPddLjnC0d4pZqHTVjS/2atTBPp3FeFRMEVj+vi6MbtuTBNzpQn08T429Qp4HwMhOARuX4t5l5G0d0jXHGUuhGWVexcy5prBnsAg6rvr6bIuL9+4GX6Fmbvy0nPqWbHI/8NtpSQ6ibteqrlQ0cekaxXekq7O5LOY7Uwjjl9Qtk4HMI0Qawki6dVQHfUPKKxeT16YAB1PnJcr2FQy/agdfrqRAFEuJ+zdwexQNDP/fgNU8wPfGKkPQFw+THzZUZeW+QYqsAWU7CjviPoEQ9AeQ6Du4lyZT7THpgigPPlECQQ==
+ b=jkrtXo5v4RUuLeAwK4eq9yWyjqd/S7PQOEoQG29VMXV78OKb1SexUksCO5UuvyfaZeIL3klUIZEkUW/UvMyCESgWKYpkAudIrRLqMfUr9uAIbpnqOLAPBAS/pxp9oUFyscONC5S0oJebhWG8ObmUTp1dnn9XJYJzIFS9ojkeRxSwBn0b/pu+SLKAeNHkloXkLuQYKyY3uOpdDUJr1bq1geGyXR92552CoHAqOcGQbdaRJaeDvmWfskKLnXvO5IQe6/TR537ALeHABEu9LWpGjMv0ZtFsDwSeq3C7fppn9GeFQZq0Xh2iLJ5ZNwqClCUW1JhFdyzgDkvDzqURKQm5cg==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=C4rROtbxq+Z/zpgg3+k+XBe4zI8Ldp5zJPDvOAZnlqA=;
- b=QHPApYERpYHJ32hOnrPrwBHu9iyynxrH5MfMyENyrpeFZT9zwCLR4lonU5WBDx0R94E7MCle0S0r1fswriokYOio0IFjRw4wj5opA/ckko6jTeO/0RiQ/1VqUZ+wuBQr/5eBAJscEmTE/uRhCfB7PwYjiqCBW1QqVvt0lxTsNQkZ9cFKnNX75fKGXiBENdVqCetNgEFu3jLZk03QRA/gBVDJdgoymrlDG4ZHGwvHcludLlbmDq5EJkwPEnMiB1IC0Gwk/ZWpsEXqofEwbHlShrB1rVDBRxQ2ohwD6Lk2yOAaXSm6vFwS9YA79Y4DsbEumi/b4UEUXrycLgynQeALtQ==
+ bh=VY8TIvAAe9q6ucn6dJKhlrvd+T5ksAhJLX1k7qQ8sGM=;
+ b=B+9I6b4MM9ecBClxfWo0g8ZloHU/5A+FOKPSBKvupDiY0yHgYtT+G5fq7r36pAVL9YH7yFVuriGDMA96/+9A32eOL+kYaooISpgxZ1Gw2Bg6BAC7EJTSvz9X0OkhdpTM6Y/w+XmOuenVG5EdbUiH/eEHOcTGWIG9+RYmrsM+E7CMJ4UjaupqGPiS2pLqnM+Db8BtWVbt/gX5gKEkubf4ohtSm1xhwjvCc36SMy5+qlm09Gm5rqKVLJvatR3ssLs2Lt95e+DzDMDMM4Y7ZlY04V/r3/Vd6Lx9+KM5a/32y2AXdlFIGA55PEF8gL3+VFZ1oF2rDUBmpK4KojaSLzoIpA==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
  dkim=pass header.d=intel.com; arc=none
@@ -62,76 +66,76 @@ Received: from MN0PR11MB6059.namprd11.prod.outlook.com (2603:10b6:208:377::9)
  by PH0PR11MB5644.namprd11.prod.outlook.com (2603:10b6:510:ef::5) with
  Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6411.19; Fri, 19 May
- 2023 13:18:55 +0000
+ 2023 13:19:00 +0000
 Received: from MN0PR11MB6059.namprd11.prod.outlook.com
  ([fe80::f7ec:aae9:1e7b:e004]) by MN0PR11MB6059.namprd11.prod.outlook.com
  ([fe80::f7ec:aae9:1e7b:e004%6]) with mapi id 15.20.6411.021; Fri, 19 May 2023
- 13:18:55 +0000
+ 13:19:00 +0000
 From: Rodrigo Vivi <rodrigo.vivi@intel.com>
 To: <intel-xe@lists.freedesktop.org>
-Date: Fri, 19 May 2023 09:18:18 -0400
-Message-ID: <20230519131820.2020660-9-rodrigo.vivi@intel.com>
+Date: Fri, 19 May 2023 09:18:19 -0400
+Message-ID: <20230519131820.2020660-10-rodrigo.vivi@intel.com>
 X-Mailer: git-send-email 2.39.2
 In-Reply-To: <20230519131820.2020660-1-rodrigo.vivi@intel.com>
 References: <20230519131820.2020660-1-rodrigo.vivi@intel.com>
 Content-Transfer-Encoding: 8bit
 Content-Type: text/plain
-X-ClientProxiedBy: BY5PR16CA0002.namprd16.prod.outlook.com
- (2603:10b6:a03:1a0::15) To MN0PR11MB6059.namprd11.prod.outlook.com
+X-ClientProxiedBy: BY3PR10CA0011.namprd10.prod.outlook.com
+ (2603:10b6:a03:255::16) To MN0PR11MB6059.namprd11.prod.outlook.com
  (2603:10b6:208:377::9)
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
 X-MS-TrafficTypeDiagnostic: MN0PR11MB6059:EE_|PH0PR11MB5644:EE_
-X-MS-Office365-Filtering-Correlation-Id: f18e695e-f4e6-4080-c8a2-08db586b98d1
+X-MS-Office365-Filtering-Correlation-Id: 58ae9601-d0d1-4c3f-4bf1-08db586b9b9f
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: FB8Ce3QuGO9ML6wCx5uQN7wYaYPRg4ryb/Y62zvHlc4w/6Z8a6A+8cyk7TvQV+iLBE5rJawWHdxrMUffl9i1QYy89uGgYhimtZ7pNc63KFsg+8xH72+vjbCV06le6D4hCOjgyds5dwqzuDLlYRw0RmKbtFYRasFR/vugf04Zs7hUv5yRvW893o6Ktn5ETPX8kdSz+d/EkWsKuC9TefwNuIQsWKbv2SmcbbHLEuvJQqpCi4++OWi3SOVP3U3YtQC//5uG0nWiaFSzFSaiYe96pUC/iiLoOWz7nWTFf0MJ7R0/no3/uX8/o11XEWsXXhlby1XtpY4oAT4D9kl0t5nQb8Wy2j+sDsSySIzwOmXt5JJ+2VOtwvi6POByHL8SL0P+e3Fy4crXx7iAqbgIi7kD5GjdYRbtzYG7+gI1XkEyoP0M/3YJJT46GtoUiq0/dFEOarG0PrCaxU6sL5mO/z36Nc+tWo6rMG6glITx7vY7Sgur5FIA8ouTScvVRjT01xASAp0dQQEIhmcI0nl5eZ4Pk9MNCMMnIL9/dRH53R/xq0mgd2paGDr4jzTyse2snL8+
+X-Microsoft-Antispam-Message-Info: fXw9F7MdG9UQPKPxrqGCckCHpKm/sGrngQxMObeKHLU+C/4xo7bz07R8Qhz7hsutzg3kb1jT93bLG8jFQ4GaBzu2vmXe4QeWWGC4wPmGpOS+zNs1ebne+pmOiqoKJ3pclWVqSXJojOE7USfT+26WDQCF5J7l/qA/H7Yu4QWGOPA/9b0ouwsvg6biBywqRyAEU7WoYrVWve5n9FSJT6qeh0y1jFvSJ+FXHhI+nWkK42oF1vidKlAfjN4oQdagXyAOsOwIh/+Km4IeEMm8Uml47dwBbUPXTUehXqrmspU3LqxHzwuO787ZPpYE7aR0NblA4Ny5bKeCFHYdw6Ocowu/o8TdHQQIW2+Ys+dJQaxStltiFI0F+/7HQOoRN8Dt2sWtNSM+3DtV+UWTJL16VunOot8wgw3BVIhWlI5KCZPb7jbI6gTy/PmotE3steOHwoCAaLxf7tZm4PgvZjon+6toOXXqhXgZ1oikxR/aOTb5sUptPnCz5fbzbaVKLUkSBGTOgndU/jkNwbNtM1rEC7HpB4ds0pE33tXS04a2VoGOc2c6dKayExKqStQtn/DZvoEP
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
  IPV:NLI; SFV:NSPM; H:MN0PR11MB6059.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230028)(366004)(346002)(39860400002)(136003)(396003)(376002)(451199021)(5660300002)(478600001)(66476007)(66946007)(66556008)(2906002)(8676002)(8936002)(30864003)(316002)(6486002)(6916009)(41300700001)(6666004)(44832011)(6512007)(6506007)(26005)(1076003)(186003)(82960400001)(2616005)(36756003)(83380400001)(86362001)(38100700002);
+ SFS:(13230028)(366004)(346002)(39860400002)(136003)(396003)(376002)(451199021)(5660300002)(478600001)(66476007)(66946007)(66556008)(2906002)(8676002)(8936002)(316002)(6486002)(6916009)(41300700001)(6666004)(44832011)(6512007)(6506007)(26005)(1076003)(186003)(82960400001)(2616005)(36756003)(86362001)(38100700002);
  DIR:OUT; SFP:1102; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?liBdzh1fXQaQops7QSjLeBLm33t/IWJpPflW/d+Yf1H+l5HYJINLbuOnK8f0?=
- =?us-ascii?Q?gjLRyjwjvlvXgNZjD9B93OO10T3KrcN8Rxmj9osiwmOzVjhmQT62P9IPheV+?=
- =?us-ascii?Q?A2SMbRKm32Rhm97s2gQYcCSJMOLioU4UtZt5fozdcAYHszCKLxqO8mZjZj00?=
- =?us-ascii?Q?2MZ/WmxtvcY8Q1WtzK1rpS0SeyvNNQH6MXea1uTbtkkAhcqsJQo9UMknff5k?=
- =?us-ascii?Q?mO9AujECpRDoudeZVRWaR/mGOzVFKRjxTFPfBjLHe5TUMt9DZtIEfH/eSmz8?=
- =?us-ascii?Q?kfgA3ysMasLWB1dPKEVz8mppWkbVtITM/NycllMY7rXl7uYXjhe17DaUa6TU?=
- =?us-ascii?Q?OFmopiTUDqcZQNq0Hog3CNzqtoHQnGVqzm7gzZmVHdzUhA0Upe+DrcFw3CPU?=
- =?us-ascii?Q?0gIEKsfq2RceCMHLLu+J0PuGsdJwGbLHkrBNXDp+0IDwvsjpMOLciHXxe15P?=
- =?us-ascii?Q?43mbO1980YE/qL0GevFZIzpZtJxqYnCmeuE67Za29VshxuysppWLmrZ4ku3L?=
- =?us-ascii?Q?zKcwm8eRzcYldn1JJswQ/8499pXtatMxD6BH5Q9GpAaYw2U80ncaK4gD2qeZ?=
- =?us-ascii?Q?XEthXbBWeuDx5auFE+USnS0BfrNKrGZPFSAlOZDVtBiWFBs3T4IcngjxHKK5?=
- =?us-ascii?Q?QnU2AXiJW6sQAry3C1u2NjTkOfY2dgZzxtf1vvcstTNnXetPVWUMOX8sEgrU?=
- =?us-ascii?Q?bDoNstUtaHI1dyCg4VfKE+7f7nUjs7iEjFRduHmhxq83qhXhvsoUTetywBJt?=
- =?us-ascii?Q?T1OAgFznB65omFG4dFgp+Hyn6j+1FCaoeMtVMg/xEr+QBXVm0zGlskhdPZld?=
- =?us-ascii?Q?yFNFkyAg/xU5QieIkQNR13GsPXxOKUpYuxb8aQrwnc0AD98/kESLwuceQVVk?=
- =?us-ascii?Q?vXd2avZhs6uUVq1pDIQDl/fo2Jxo4JP3psSdgsKWh1X0xdKobQ/ZRTtx4gJl?=
- =?us-ascii?Q?W0kDrH+eEJUDxJ+VrBrtdPD78Hq2hQxXAWj1rbrUuszGmEv2WwqGVG4TTQr4?=
- =?us-ascii?Q?goMV7S2FVwOhFaSZgTEk0bzHtBPuRMokrcF2o2gODdEE7KYoEI+evu+4D61T?=
- =?us-ascii?Q?d7dAUZgzYhlnbDCJtnbQHQ2g7/pvX4rT2pn/eh00FZundhQEiS/co44GLj5a?=
- =?us-ascii?Q?C+Tz5Ql7+uXP/I1+U2Cc7jNG1Qz3xOMcKSPOWA/GA7gUatticlB2k0foOhmd?=
- =?us-ascii?Q?MM6aU7qO6oYmmwXaOFmY7rAXcdaM5ZECLofECyL+jy8RFwdi4CiQB5olHvh3?=
- =?us-ascii?Q?0EASLFMDbmsCKSwqDAmIlIj05ogKpjROApCq4q8eQMoYkFrh4jjSdHpHle1H?=
- =?us-ascii?Q?3sFjv2qMAt4480HIn3kQozUGt4s4L65cyiru9WoqDS++QlGOmRKjXxk4JyO+?=
- =?us-ascii?Q?1S1TkTxsIS5Ls4nhPGAipbDYcUJsq0br5pXsnER92/Tc/XiE0hSy72Orr5Jw?=
- =?us-ascii?Q?CpL/3yzUPNekBEyvnbRPqOOw83iptnuvasoAVTAwvfBOKLhD5Sk22PzuRQdT?=
- =?us-ascii?Q?WWleJhEZS6UlI4OxcvUXzY+4vqr69z67UfiUrmxu8FDYGN/uTN8JMd1YQ2/G?=
- =?us-ascii?Q?8SvvqyaqcFnzwuyp0HD2BhWRn9ijAfzO5+k4DXghodlkINbl91WkXaYI2qvg?=
- =?us-ascii?Q?PQ=3D=3D?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: f18e695e-f4e6-4080-c8a2-08db586b98d1
+X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?U079JRBvH0Bjx7fjzWUu66xynldJ1UlNxcZp0w1ZQ22LcMzo1ydvUwG8h+FU?=
+ =?us-ascii?Q?RQ/aR7+6S4OpEh6CAoKbq0kYmdc9W31VW1nlzPMn9s0+6Y2KY8J17S2f9som?=
+ =?us-ascii?Q?6q0pUgWYI0esfAEf/iem1sO+ddFsLp9P3sRLeCW/B0ASfzCMH8tveFg71sR1?=
+ =?us-ascii?Q?I8nKe4J1bXgo/QPrkRaDQ4sufdmVmfylw8SuicUuAcXSJSmiqRim52NTtjw5?=
+ =?us-ascii?Q?prwC78n/8QsPxR4vOxpKVFM+BwzNYTSVeShO1Z/nSTgUL/ykkVxfe5753d9i?=
+ =?us-ascii?Q?790uNhC5QxUsb4hCtmaxloFT5yDuwhnGBOapwub2gjirf9UmiaU9/nt0AyUY?=
+ =?us-ascii?Q?VPL8hGDXmQblwCHsKt/Ks+dXCGYDL7HzYC+bYH5np4SjsjR6fkpnOcCVwKug?=
+ =?us-ascii?Q?7MyhWjlbVbVqTCyNiMSP+PLeKiPzFXDzWN4UvOG7uVbqmOs1m+XpATAAO3ao?=
+ =?us-ascii?Q?f9D+NCxiqfRxPfIM521YxS7LNBBQ9Fv2cz8q2qKOq/mpmqyJVl//dvaF3bh6?=
+ =?us-ascii?Q?QH+yjqd3/bqqEV3lC8+HakJ+vdbu9TmDtIYruM7OZombYpcRehWHoQJy+gVs?=
+ =?us-ascii?Q?K3P+O6eRKYcE0X5KSh9xorSewEDcgev7TuZpUOK6T3Ia55U+YDdPm1Ip89Bx?=
+ =?us-ascii?Q?ongJfIJNuiZ+hXXdLBOiQPGEVhkHB+VJ8sK9kqBYG1HaU2kGFwD6HcpVzzQp?=
+ =?us-ascii?Q?6BiCGHg5DDlBzEs+/p86KHZZTy4GvgvN63B2Ktw4itj1mw3XBeK9HFq5Os9n?=
+ =?us-ascii?Q?BpBhIMj3VmFs/sagUkq+hJc/7lweifleV7loFHVMqO5T5V+jI933Xpc+SaWo?=
+ =?us-ascii?Q?Cq5s/OwWl/QxPz97IKFRNDdkMzlGdTKVBOE6cILrtgYXcOqN94d3JKMp7GOZ?=
+ =?us-ascii?Q?ssOY1sCD376pQ5fEY79AfOtJYAU2WRNvaAhbbkUaPcQaf745saLs92UH+3o7?=
+ =?us-ascii?Q?F8zniS6/zSYzOX9y5nn1NSmjRmk+PeibwJ6UhcChqBDeGNDXyoVbdQUJo5ls?=
+ =?us-ascii?Q?dD/yCPw+cWwpWF1Ya89RyOGpe6LJKZSuNZEjqr4ZGHwOI7IBD0eYwaxeSqvi?=
+ =?us-ascii?Q?KLwEtz0FkoCvnOudCoPtde5fi6D85Ru8qVr/wl2/c4Qrw26g18p2OjtCbyAx?=
+ =?us-ascii?Q?dFZsC8qQHIgax+bS5w3FJHf1CuXIcNyZgYbbC0TrXSuHTNh+VvnuTwTpQP3J?=
+ =?us-ascii?Q?VMKNduX3Il3AQ247gb6m5aNz4HEXu/00tdHXVPB44s/MMzi2ufYufbD09ugs?=
+ =?us-ascii?Q?Q3+r6xfUibUmwSAFdg867X7sU/g0cU2rvcXwKtRyZWfq91T7Bpm3gdym0PYr?=
+ =?us-ascii?Q?+MkxABkvuY696IeuZc++1FR95HRbtZgvCx6H0gjl0AeeuQDFAypYoC7lbLHI?=
+ =?us-ascii?Q?8RxKqNKx26rCaEJql3v4AvOT/EWXC8IdGrGnzgcF0/xUsp05GoldG9bL+1Sg?=
+ =?us-ascii?Q?JbfyiwkTCaMc9Hl9TdfksCJvHZuNBO+slriKoBZPd9auURjh5vLicqA+NzNF?=
+ =?us-ascii?Q?3PNFOauAwJ+2sagxJ6GwQkPVzNCd85D7LR/9+cJG9hMfeU94ao11ayoMMEx8?=
+ =?us-ascii?Q?xOWe6Q7EuzAc4ji2tcoE42b1Rw2d+K9cUxp1J7ydYuOZabDYyAsd+skPdfb4?=
+ =?us-ascii?Q?hQ=3D=3D?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: 58ae9601-d0d1-4c3f-4bf1-08db586b9b9f
 X-MS-Exchange-CrossTenant-AuthSource: MN0PR11MB6059.namprd11.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 19 May 2023 13:18:55.5170 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 19 May 2023 13:19:00.1981 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: tNam9gdrx1dthWFjJ1lEPquaaowI53G8RakNBFbYVDUKt18+uzqG5yxvR8fpUv3wPsONOBKnf0KVqKkAeIm91g==
+X-MS-Exchange-CrossTenant-UserPrincipalName: cjkHWZ/9AAnMCGzL76C2k3hRfU3laihVOlpll4xbvvcv6dmIdYdP1NMhH6Br5DPLZL2+8d+rCEwLKhHeZL2Brw==
 X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH0PR11MB5644
 X-OriginatorOrg: intel.com
-Subject: [Intel-xe] [CI 09/11] drm/xe: Convert Xe HW Engine print to
- snapshot capture and print.
+Subject: [Intel-xe] [CI 10/11] drm/xe: Add HW Engine snapshot to
+ xe_devcoredump.
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -146,398 +150,144 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-The goal is to allow for a snapshot capture to be taken at the time
-of the crash, while the print out can happen at a later time through
-the exposed devcoredump virtual device.
+Let's continue to add our existent simple logs to devcoredump one
+by one. Any format change should come on follow-up work.
 
-v2: Addressing these Matthew comments:
-    - Handle memory allocation failures.
-    - Do not use GFP_ATOMIC on cases like debugfs prints.
-    - placement of @reg doc.
-    - identation issues.
-v3: checkpatch
-v4: Rebase and get back to GFP_ATOMIC only.
+v2: remove unnecessary, and now duplicated, dma_fence annotation. (Matthew)
+v3: avoid for_each with faulty_engine since that can be already freed at
+    the time of the read/free. Instead, iterate in the full array of
+    hw_engines. (Kasan)
 
-Signed-off-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
+Cc: Francois Dugast <francois.dugast@intel.com>
 Cc: Matthew Brost <matthew.brost@intel.com>
+Signed-off-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
 Reviewed-by: Matthew Brost <matthew.brost@intel.com>
+Reviewed-by: Francois Dugast <francois.dugast@intel.com>
 ---
- drivers/gpu/drm/xe/xe_gt_debugfs.c      |   2 +-
- drivers/gpu/drm/xe/xe_guc_submit.c      |   2 +-
- drivers/gpu/drm/xe/xe_hw_engine.c       | 209 +++++++++++++++++-------
- drivers/gpu/drm/xe/xe_hw_engine.h       |   8 +-
- drivers/gpu/drm/xe/xe_hw_engine_types.h |  78 +++++++++
- 5 files changed, 240 insertions(+), 59 deletions(-)
+ drivers/gpu/drm/xe/xe_devcoredump.c       | 41 +++++++++++++++++++++++
+ drivers/gpu/drm/xe/xe_devcoredump_types.h |  4 +++
+ 2 files changed, 45 insertions(+)
 
-diff --git a/drivers/gpu/drm/xe/xe_gt_debugfs.c b/drivers/gpu/drm/xe/xe_gt_debugfs.c
-index c45486c2015a..8bf441e850a0 100644
---- a/drivers/gpu/drm/xe/xe_gt_debugfs.c
-+++ b/drivers/gpu/drm/xe/xe_gt_debugfs.c
-@@ -42,7 +42,7 @@ static int hw_engines(struct seq_file *m, void *data)
- 	}
+diff --git a/drivers/gpu/drm/xe/xe_devcoredump.c b/drivers/gpu/drm/xe/xe_devcoredump.c
+index 7296c0137b47..f53f4b51233a 100644
+--- a/drivers/gpu/drm/xe/xe_devcoredump.c
++++ b/drivers/gpu/drm/xe/xe_devcoredump.c
+@@ -9,10 +9,13 @@
+ #include <linux/devcoredump.h>
+ #include <generated/utsrelease.h>
  
- 	for_each_hw_engine(hwe, gt, id)
--		xe_hw_engine_print_state(hwe, &p);
-+		xe_hw_engine_print(hwe, &p);
++#include "xe_device.h"
+ #include "xe_engine.h"
++#include "xe_force_wake.h"
+ #include "xe_gt.h"
+ #include "xe_guc_ct.h"
+ #include "xe_guc_submit.h"
++#include "xe_hw_engine.h"
  
- 	xe_device_mem_access_put(xe);
- 	err = xe_force_wake_put(gt_to_fw(gt), XE_FORCEWAKE_ALL);
-diff --git a/drivers/gpu/drm/xe/xe_guc_submit.c b/drivers/gpu/drm/xe/xe_guc_submit.c
-index cc8191dfdf89..b209e4c2a3a9 100644
---- a/drivers/gpu/drm/xe/xe_guc_submit.c
-+++ b/drivers/gpu/drm/xe/xe_guc_submit.c
-@@ -751,7 +751,7 @@ static void simple_error_capture(struct xe_engine *e)
- 			if (hwe->class != e->hwe->class ||
- 			    !(BIT(hwe->logical_instance) & adj_logical_mask))
- 				continue;
--			xe_hw_engine_print_state(hwe, &p);
-+			xe_hw_engine_print(hwe, &p);
- 		}
- 		xe_analyze_vm(&p, e->vm, e->gt->info.id);
- 		xe_force_wake_put(gt_to_fw(guc_to_gt(guc)), XE_FORCEWAKE_ALL);
-diff --git a/drivers/gpu/drm/xe/xe_hw_engine.c b/drivers/gpu/drm/xe/xe_hw_engine.c
-index 751f6c3bba17..71ac4defb947 100644
---- a/drivers/gpu/drm/xe/xe_hw_engine.c
-+++ b/drivers/gpu/drm/xe/xe_hw_engine.c
-@@ -574,77 +574,174 @@ void xe_hw_engine_handle_irq(struct xe_hw_engine *hwe, u16 intr_vec)
- 		xe_hw_fence_irq_run(hwe->fence_irq);
+ /**
+  * DOC: Xe device coredump
+@@ -63,6 +66,7 @@ static ssize_t xe_devcoredump_read(char *buffer, loff_t offset,
+ 	struct drm_printer p;
+ 	struct drm_print_iterator iter;
+ 	struct timespec64 ts;
++	int i;
+ 
+ 	/* Our device is gone already... */
+ 	if (!data || !coredump_to_xe(coredump))
+@@ -89,12 +93,19 @@ static ssize_t xe_devcoredump_read(char *buffer, loff_t offset,
+ 	xe_guc_ct_snapshot_print(coredump->snapshot.ct, &p);
+ 	xe_guc_engine_snapshot_print(coredump->snapshot.ge, &p);
+ 
++	drm_printf(&p, "\n**** HW Engines ****\n");
++	for (i = 0; i < XE_NUM_HW_ENGINES; i++)
++		if (coredump->snapshot.hwe[i])
++			xe_hw_engine_snapshot_print(coredump->snapshot.hwe[i],
++						    &p);
++
+ 	return count - iter.remain;
  }
  
--void xe_hw_engine_print_state(struct xe_hw_engine *hwe, struct drm_printer *p)
-+/**
-+ * xe_hw_engine_snapshot_capture - Take a quick snapshot of the HW Engine.
-+ * @hwe: Xe HW Engine.
-+ *
-+ * This can be printed out in a later stage like during dev_coredump
-+ * analysis.
-+ *
-+ * Returns: a Xe HW Engine snapshot object that must be freed by the
-+ * caller, using `xe_hw_engine_snapshot_free`.
-+ */
-+struct xe_hw_engine_snapshot *
-+xe_hw_engine_snapshot_capture(struct xe_hw_engine *hwe)
+ static void xe_devcoredump_free(void *data)
  {
-+	struct xe_hw_engine_snapshot *snapshot;
-+	int len;
-+
- 	if (!xe_hw_engine_is_valid(hwe))
-+		return NULL;
-+
-+	snapshot = kzalloc(sizeof(*snapshot), GFP_ATOMIC);
-+
-+	if (!snapshot)
-+		return NULL;
-+
-+	len = strlen(hwe->name) + 1;
-+	snapshot->name = kzalloc(len, GFP_ATOMIC);
-+	if (snapshot->name)
-+		strscpy(snapshot->name, hwe->name, len);
-+
-+	snapshot->class = hwe->class;
-+	snapshot->logical_instance = hwe->logical_instance;
-+	snapshot->forcewake.domain = hwe->domain;
-+	snapshot->forcewake.ref = xe_force_wake_ref(gt_to_fw(hwe->gt),
-+						    hwe->domain);
-+	snapshot->mmio_base = hwe->mmio_base;
-+
-+	snapshot->reg.ring_hwstam = hw_engine_mmio_read32(hwe, RING_HWSTAM(0));
-+	snapshot->reg.ring_hws_pga = hw_engine_mmio_read32(hwe,
-+							   RING_HWS_PGA(0));
-+	snapshot->reg.ring_execlist_status_lo =
-+		hw_engine_mmio_read32(hwe, RING_EXECLIST_STATUS_LO(0));
-+	snapshot->reg.ring_execlist_status_hi =
-+		hw_engine_mmio_read32(hwe, RING_EXECLIST_STATUS_HI(0));
-+	snapshot->reg.ring_execlist_sq_contents_lo =
-+		hw_engine_mmio_read32(hwe,
-+				      RING_EXECLIST_SQ_CONTENTS_LO(0));
-+	snapshot->reg.ring_execlist_sq_contents_hi =
-+		hw_engine_mmio_read32(hwe,
-+				      RING_EXECLIST_SQ_CONTENTS_HI(0));
-+	snapshot->reg.ring_execlist_control =
-+		hw_engine_mmio_read32(hwe, RING_EXECLIST_CONTROL(0));
-+	snapshot->reg.ring_start = hw_engine_mmio_read32(hwe, RING_START(0));
-+	snapshot->reg.ring_head =
-+		hw_engine_mmio_read32(hwe, RING_HEAD(0)) & HEAD_ADDR;
-+	snapshot->reg.ring_tail =
-+		hw_engine_mmio_read32(hwe, RING_TAIL(0)) & TAIL_ADDR;
-+	snapshot->reg.ring_ctl = hw_engine_mmio_read32(hwe, RING_CTL(0));
-+	snapshot->reg.ring_mi_mode =
-+		hw_engine_mmio_read32(hwe, RING_MI_MODE(0));
-+	snapshot->reg.ring_mode = hw_engine_mmio_read32(hwe, RING_MODE(0));
-+	snapshot->reg.ring_imr = hw_engine_mmio_read32(hwe, RING_IMR(0));
-+	snapshot->reg.ring_esr = hw_engine_mmio_read32(hwe, RING_ESR(0));
-+	snapshot->reg.ring_emr = hw_engine_mmio_read32(hwe, RING_EMR(0));
-+	snapshot->reg.ring_eir = hw_engine_mmio_read32(hwe, RING_EIR(0));
-+	snapshot->reg.ring_acthd_udw =
-+		hw_engine_mmio_read32(hwe, RING_ACTHD_UDW(0));
-+	snapshot->reg.ring_acthd = hw_engine_mmio_read32(hwe, RING_ACTHD(0));
-+	snapshot->reg.ring_bbaddr_udw =
-+		hw_engine_mmio_read32(hwe, RING_BBADDR_UDW(0));
-+	snapshot->reg.ring_bbaddr = hw_engine_mmio_read32(hwe, RING_BBADDR(0));
-+	snapshot->reg.ring_dma_fadd_udw =
-+		hw_engine_mmio_read32(hwe, RING_DMA_FADD_UDW(0));
-+	snapshot->reg.ring_dma_fadd =
-+		hw_engine_mmio_read32(hwe, RING_DMA_FADD(0));
-+	snapshot->reg.ipeir = hw_engine_mmio_read32(hwe, IPEIR(0));
-+	snapshot->reg.ipehr = hw_engine_mmio_read32(hwe, IPEHR(0));
-+
-+	if (snapshot->class == XE_ENGINE_CLASS_COMPUTE)
-+		snapshot->reg.rcu_mode = xe_mmio_read32(hwe->gt, RCU_MODE);
-+
-+	return snapshot;
-+}
-+
-+/**
-+ * xe_hw_engine_snapshot_print - Print out a given Xe HW Engine snapshot.
-+ * @snapshot: Xe HW Engine snapshot object.
-+ * @p: drm_printer where it will be printed out.
-+ *
-+ * This function prints out a given Xe HW Engine snapshot object.
-+ */
-+void xe_hw_engine_snapshot_print(struct xe_hw_engine_snapshot *snapshot,
-+				 struct drm_printer *p)
-+{
-+	if (!snapshot)
- 		return;
+ 	struct xe_devcoredump *coredump = data;
++	int i;
  
--	drm_printf(p, "%s (physical), logical instance=%d\n", hwe->name,
--		   hwe->logical_instance);
-+	drm_printf(p, "%s (physical), logical instance=%d\n",
-+		   snapshot->name ? snapshot->name : "",
-+		   snapshot->logical_instance);
- 	drm_printf(p, "\tForcewake: domain 0x%x, ref %d\n",
--		   hwe->domain,
--		   xe_force_wake_ref(gt_to_fw(hwe->gt), hwe->domain));
--	drm_printf(p, "\tMMIO base: 0x%08x\n", hwe->mmio_base);
--
--	drm_printf(p, "\tHWSTAM: 0x%08x\n",
--		   hw_engine_mmio_read32(hwe, RING_HWSTAM(0)));
--	drm_printf(p, "\tRING_HWS_PGA: 0x%08x\n",
--		   hw_engine_mmio_read32(hwe, RING_HWS_PGA(0)));
--
-+		   snapshot->forcewake.domain, snapshot->forcewake.ref);
-+	drm_printf(p, "\tHWSTAM: 0x%08x\n", snapshot->reg.ring_hwstam);
-+	drm_printf(p, "\tRING_HWS_PGA: 0x%08x\n", snapshot->reg.ring_hws_pga);
- 	drm_printf(p, "\tRING_EXECLIST_STATUS_LO: 0x%08x\n",
--		   hw_engine_mmio_read32(hwe, RING_EXECLIST_STATUS_LO(0)));
-+		   snapshot->reg.ring_execlist_status_lo);
- 	drm_printf(p, "\tRING_EXECLIST_STATUS_HI: 0x%08x\n",
--		   hw_engine_mmio_read32(hwe, RING_EXECLIST_STATUS_HI(0)));
-+		   snapshot->reg.ring_execlist_status_hi);
- 	drm_printf(p, "\tRING_EXECLIST_SQ_CONTENTS_LO: 0x%08x\n",
--		   hw_engine_mmio_read32(hwe,
--					 RING_EXECLIST_SQ_CONTENTS_LO(0)));
-+		   snapshot->reg.ring_execlist_sq_contents_lo);
- 	drm_printf(p, "\tRING_EXECLIST_SQ_CONTENTS_HI: 0x%08x\n",
--		   hw_engine_mmio_read32(hwe,
--					 RING_EXECLIST_SQ_CONTENTS_HI(0)));
-+		   snapshot->reg.ring_execlist_sq_contents_hi);
- 	drm_printf(p, "\tRING_EXECLIST_CONTROL: 0x%08x\n",
--		   hw_engine_mmio_read32(hwe, RING_EXECLIST_CONTROL(0)));
--
--	drm_printf(p, "\tRING_START: 0x%08x\n",
--		   hw_engine_mmio_read32(hwe, RING_START(0)));
--	drm_printf(p, "\tRING_HEAD:  0x%08x\n",
--		   hw_engine_mmio_read32(hwe, RING_HEAD(0)) & HEAD_ADDR);
--	drm_printf(p, "\tRING_TAIL:  0x%08x\n",
--		   hw_engine_mmio_read32(hwe, RING_TAIL(0)) & TAIL_ADDR);
--	drm_printf(p, "\tRING_CTL: 0x%08x\n",
--		   hw_engine_mmio_read32(hwe, RING_CTL(0)));
-+		   snapshot->reg.ring_execlist_control);
-+	drm_printf(p, "\tRING_START: 0x%08x\n", snapshot->reg.ring_start);
-+	drm_printf(p, "\tRING_HEAD:  0x%08x\n", snapshot->reg.ring_head);
-+	drm_printf(p, "\tRING_TAIL:  0x%08x\n", snapshot->reg.ring_tail);
-+	drm_printf(p, "\tRING_CTL: 0x%08x\n", snapshot->reg.ring_ctl);
-+	drm_printf(p, "\tRING_MODE: 0x%08x\n", snapshot->reg.ring_mi_mode);
- 	drm_printf(p, "\tRING_MODE: 0x%08x\n",
--		   hw_engine_mmio_read32(hwe, RING_MI_MODE(0)));
--	drm_printf(p, "\tRING_MODE_GEN7: 0x%08x\n",
--		   hw_engine_mmio_read32(hwe, RING_MODE(0)));
--
--	drm_printf(p, "\tRING_IMR:   0x%08x\n",
--		   hw_engine_mmio_read32(hwe, RING_IMR(0)));
--	drm_printf(p, "\tRING_ESR:   0x%08x\n",
--		   hw_engine_mmio_read32(hwe, RING_ESR(0)));
--	drm_printf(p, "\tRING_EMR:   0x%08x\n",
--		   hw_engine_mmio_read32(hwe, RING_EMR(0)));
--	drm_printf(p, "\tRING_EIR:   0x%08x\n",
--		   hw_engine_mmio_read32(hwe, RING_EIR(0)));
--
--	drm_printf(p, "\tACTHD:  0x%08x_%08x\n",
--		   hw_engine_mmio_read32(hwe, RING_ACTHD_UDW(0)),
--		   hw_engine_mmio_read32(hwe, RING_ACTHD(0)));
--	drm_printf(p, "\tBBADDR: 0x%08x_%08x\n",
--		   hw_engine_mmio_read32(hwe, RING_BBADDR_UDW(0)),
--		   hw_engine_mmio_read32(hwe, RING_BBADDR(0)));
-+		   snapshot->reg.ring_mode);
-+	drm_printf(p, "\tRING_IMR:   0x%08x\n", snapshot->reg.ring_imr);
-+	drm_printf(p, "\tRING_ESR:   0x%08x\n", snapshot->reg.ring_esr);
-+	drm_printf(p, "\tRING_EMR:   0x%08x\n", snapshot->reg.ring_emr);
-+	drm_printf(p, "\tRING_EIR:   0x%08x\n", snapshot->reg.ring_eir);
-+	drm_printf(p, "\tACTHD:  0x%08x_%08x\n", snapshot->reg.ring_acthd_udw,
-+		   snapshot->reg.ring_acthd);
-+	drm_printf(p, "\tBBADDR: 0x%08x_%08x\n", snapshot->reg.ring_bbaddr_udw,
-+		   snapshot->reg.ring_bbaddr);
- 	drm_printf(p, "\tDMA_FADDR: 0x%08x_%08x\n",
--		   hw_engine_mmio_read32(hwe, RING_DMA_FADD_UDW(0)),
--		   hw_engine_mmio_read32(hwe, RING_DMA_FADD(0)));
-+		   snapshot->reg.ring_dma_fadd_udw,
-+		   snapshot->reg.ring_dma_fadd);
-+	drm_printf(p, "\tIPEIR: 0x%08x\n", snapshot->reg.ipeir);
-+	drm_printf(p, "\tIPEHR: 0x%08x\n\n", snapshot->reg.ipehr);
-+	if (snapshot->class == XE_ENGINE_CLASS_COMPUTE)
-+		drm_printf(p, "\tRCU_MODE: 0x%08x\n",
-+			   snapshot->reg.rcu_mode);
-+}
+ 	/* Our device is gone. Nothing to do... */
+ 	if (!data || !coredump_to_xe(coredump))
+@@ -102,6 +113,9 @@ static void xe_devcoredump_free(void *data)
  
--	drm_printf(p, "\tIPEIR: 0x%08x\n",
--		   hw_engine_mmio_read32(hwe, IPEIR(0)));
--	drm_printf(p, "\tIPEHR: 0x%08x\n\n",
--		   hw_engine_mmio_read32(hwe, IPEHR(0)));
-+/**
-+ * xe_hw_engine_snapshot_free - Free all allocated objects for a given snapshot.
-+ * @snapshot: Xe HW Engine snapshot object.
-+ *
-+ * This function free all the memory that needed to be allocated at capture
-+ * time.
-+ */
-+void xe_hw_engine_snapshot_free(struct xe_hw_engine_snapshot *snapshot)
-+{
-+	if (!snapshot)
-+		return;
+ 	xe_guc_ct_snapshot_free(coredump->snapshot.ct);
+ 	xe_guc_engine_snapshot_free(coredump->snapshot.ge);
++	for (i = 0; i < XE_NUM_HW_ENGINES; i++)
++		if (coredump->snapshot.hwe[i])
++			xe_hw_engine_snapshot_free(coredump->snapshot.hwe[i]);
  
--	if (hwe->class == XE_ENGINE_CLASS_COMPUTE)
--		drm_printf(p, "\tRCU_MODE: 0x%08x\n",
--			   xe_mmio_read32(hwe->gt, RCU_MODE));
-+	kfree(snapshot->name);
-+	kfree(snapshot);
-+}
+ 	coredump->captured = false;
+ 	drm_info(&coredump_to_xe(coredump)->drm,
+@@ -113,14 +127,41 @@ static void devcoredump_snapshot(struct xe_devcoredump *coredump,
+ {
+ 	struct xe_devcoredump_snapshot *ss = &coredump->snapshot;
+ 	struct xe_guc *guc = engine_to_guc(e);
++	struct xe_hw_engine *hwe;
++	enum xe_hw_engine_id id;
++	u32 adj_logical_mask = e->logical_mask;
++	u32 width_mask = (0x1 << e->width) - 1;
++	int i;
+ 	bool cookie;
+ 
+ 	ss->snapshot_time = ktime_get_real();
+ 	ss->boot_time = ktime_get_boottime();
+ 
+ 	cookie = dma_fence_begin_signalling();
++	for (i = 0; e->width > 1 && i < XE_HW_ENGINE_MAX_INSTANCE;) {
++		if (adj_logical_mask & BIT(i)) {
++			adj_logical_mask |= width_mask << i;
++			i += e->width;
++		} else {
++			++i;
++		}
++	}
 +
-+/**
-+ * xe_hw_engine_print - Xe HW Engine Print.
-+ * @hwe: Hardware Engine.
-+ * @p: drm_printer.
-+ *
-+ * This function quickly capture a snapshot and immediately print it out.
-+ */
-+void xe_hw_engine_print(struct xe_hw_engine *hwe, struct drm_printer *p)
-+{
-+	struct xe_hw_engine_snapshot *snapshot;
- 
-+	snapshot = xe_hw_engine_snapshot_capture(hwe);
-+	xe_hw_engine_snapshot_print(snapshot, p);
-+	xe_hw_engine_snapshot_free(snapshot);
++	xe_force_wake_get(gt_to_fw(e->gt), XE_FORCEWAKE_ALL);
++
+ 	coredump->snapshot.ct = xe_guc_ct_snapshot_capture(&guc->ct, true);
+ 	coredump->snapshot.ge = xe_guc_engine_snapshot_capture(e);
++
++	for_each_hw_engine(hwe, e->gt, id) {
++		if (hwe->class != e->hwe->class ||
++		    !(BIT(hwe->logical_instance) & adj_logical_mask)) {
++			coredump->snapshot.hwe[id] = NULL;
++			continue;
++		}
++		coredump->snapshot.hwe[id] = xe_hw_engine_snapshot_capture(hwe);
++	}
++
++	xe_force_wake_put(gt_to_fw(e->gt), XE_FORCEWAKE_ALL);
+ 	dma_fence_end_signalling(cookie);
  }
  
- u32 xe_hw_engine_mask_per_class(struct xe_gt *gt,
-diff --git a/drivers/gpu/drm/xe/xe_hw_engine.h b/drivers/gpu/drm/xe/xe_hw_engine.h
-index 013efcd6d8c5..7eca9d53c7b1 100644
---- a/drivers/gpu/drm/xe/xe_hw_engine.h
-+++ b/drivers/gpu/drm/xe/xe_hw_engine.h
-@@ -14,9 +14,15 @@ int xe_hw_engines_init_early(struct xe_gt *gt);
- int xe_hw_engines_init(struct xe_gt *gt);
- void xe_hw_engine_handle_irq(struct xe_hw_engine *hwe, u16 intr_vec);
- void xe_hw_engine_enable_ring(struct xe_hw_engine *hwe);
--void xe_hw_engine_print_state(struct xe_hw_engine *hwe, struct drm_printer *p);
- u32 xe_hw_engine_mask_per_class(struct xe_gt *gt,
- 				enum xe_engine_class engine_class);
-+
-+struct xe_hw_engine_snapshot *
-+xe_hw_engine_snapshot_capture(struct xe_hw_engine *hwe);
-+void xe_hw_engine_snapshot_free(struct xe_hw_engine_snapshot *snapshot);
-+void xe_hw_engine_snapshot_print(struct xe_hw_engine_snapshot *snapshot,
-+				 struct drm_printer *p);
-+void xe_hw_engine_print(struct xe_hw_engine *hwe, struct drm_printer *p);
- void xe_hw_engine_setup_default_lrc_state(struct xe_hw_engine *hwe);
+diff --git a/drivers/gpu/drm/xe/xe_devcoredump_types.h b/drivers/gpu/drm/xe/xe_devcoredump_types.h
+index 7c6453224139..350b905d1797 100644
+--- a/drivers/gpu/drm/xe/xe_devcoredump_types.h
++++ b/drivers/gpu/drm/xe/xe_devcoredump_types.h
+@@ -9,6 +9,8 @@
+ #include <linux/ktime.h>
+ #include <linux/mutex.h>
  
- bool xe_hw_engine_is_reserved(struct xe_hw_engine *hwe);
-diff --git a/drivers/gpu/drm/xe/xe_hw_engine_types.h b/drivers/gpu/drm/xe/xe_hw_engine_types.h
-index 2c40384957da..d788e67312b9 100644
---- a/drivers/gpu/drm/xe/xe_hw_engine_types.h
-+++ b/drivers/gpu/drm/xe/xe_hw_engine_types.h
-@@ -109,4 +109,82 @@ struct xe_hw_engine {
- 	enum xe_hw_engine_id engine_id;
++#include "xe_hw_engine_types.h"
++
+ struct xe_device;
+ 
+ /**
+@@ -29,6 +31,8 @@ struct xe_devcoredump_snapshot {
+ 	struct xe_guc_ct_snapshot *ct;
+ 	/** @ge: Guc Engine snapshot */
+ 	struct xe_guc_submit_engine_snapshot *ge;
++	/** @hwe: HW Engine snapshot array */
++	struct xe_hw_engine_snapshot *hwe[XE_NUM_HW_ENGINES];
  };
  
-+/**
-+ * struct xe_hw_engine_snapshot - Hardware engine snapshot
-+ *
-+ * Contains the snapshot of useful hardware engine info and registers.
-+ */
-+struct xe_hw_engine_snapshot {
-+	/** @name: name of the hw engine */
-+	char *name;
-+	/** @class: class of this hw engine */
-+	enum xe_engine_class class;
-+	/** @logical_instance: logical instance of this hw engine */
-+	u16 logical_instance;
-+	/** @forcewake: Force Wake information snapshot */
-+	struct {
-+		/** @domain: force wake domain of this hw engine */
-+		enum xe_force_wake_domains domain;
-+		/** @ref: Forcewake ref for the above domain */
-+		int ref;
-+	} forcewake;
-+	/** @mmio_base: MMIO base address of this hw engine*/
-+	u32 mmio_base;
-+	/** @reg: Useful MMIO register snapshot */
-+	struct {
-+		/** @ring_hwstam: RING_HWSTAM */
-+		u32 ring_hwstam;
-+		/** @ring_hws_pga: RING_HWS_PGA */
-+		u32 ring_hws_pga;
-+		/** @ring_execlist_status_lo: RING_EXECLIST_STATUS_LO */
-+		u32 ring_execlist_status_lo;
-+		/** @ring_execlist_status_hi: RING_EXECLIST_STATUS_HI */
-+		u32 ring_execlist_status_hi;
-+		/** @ring_execlist_sq_contents_lo: RING_EXECLIST_SQ_CONTENTS */
-+		u32 ring_execlist_sq_contents_lo;
-+		/** @ring_execlist_sq_contents_hi: RING_EXECLIST_SQ_CONTENTS + 4 */
-+		u32 ring_execlist_sq_contents_hi;
-+		/** @ring_execlist_control: RING_EXECLIST_CONTROL */
-+		u32 ring_execlist_control;
-+		/** @ring_start: RING_START */
-+		u32 ring_start;
-+		/** @ring_head: RING_HEAD */
-+		u32 ring_head;
-+		/** @ring_tail: RING_TAIL */
-+		u32 ring_tail;
-+		/** @ring_ctl: RING_CTL */
-+		u32 ring_ctl;
-+		/** @ring_mi_mode: RING_MI_MODE */
-+		u32 ring_mi_mode;
-+		/** @ring_mode: RING_MODE */
-+		u32 ring_mode;
-+		/** @ring_imr: RING_IMR */
-+		u32 ring_imr;
-+		/** @ring_esr: RING_ESR */
-+		u32 ring_esr;
-+		/** @ring_emr: RING_EMR */
-+		u32 ring_emr;
-+		/** @ring_eir: RING_EIR */
-+		u32 ring_eir;
-+		/** @ring_acthd_udw: RING_ACTHD_UDW */
-+		u32 ring_acthd_udw;
-+		/** @ring_acthd: RING_ACTHD */
-+		u32 ring_acthd;
-+		/** @ring_bbaddr_udw: RING_BBADDR_UDW */
-+		u32 ring_bbaddr_udw;
-+		/** @ring_bbaddr: RING_BBADDR */
-+		u32 ring_bbaddr;
-+		/** @ring_dma_fadd_udw: RING_DMA_FADD_UDW */
-+		u32 ring_dma_fadd_udw;
-+		/** @ring_dma_fadd: RING_DMA_FADD */
-+		u32 ring_dma_fadd;
-+		/** @ipeir: IPEIR */
-+		u32 ipeir;
-+		/** @ipehr: IPEHR */
-+		u32 ipehr;
-+		/** @rcu_mode: RCU_MODE */
-+		u32 rcu_mode;
-+	} reg;
-+};
-+
- #endif
+ /**
 -- 
 2.39.2
 
