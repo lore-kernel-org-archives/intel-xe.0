@@ -4,48 +4,48 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id B3915C7EE2D
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id B386DC77B7F
 	for <intel-xe@archiver.kernel.org>; Fri, 19 May 2023 23:19:18 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 70E6210E625;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6242410E623;
 	Fri, 19 May 2023 23:19:18 +0000 (UTC)
 Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
- by gabe.freedesktop.org (Postfix) with ESMTPS id CBE9A10E4D4
- for <intel-xe@lists.freedesktop.org>; Fri, 19 May 2023 23:18:48 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 139DA10E62E
+ for <intel-xe@lists.freedesktop.org>; Fri, 19 May 2023 23:18:50 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1684538328; x=1716074328;
+ t=1684538330; x=1716074330;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=sC4AWUS/XSD91FCBTZreUekVLJMjWFdiSRG55srqjY4=;
- b=A0jkt021Cfu0upGbY6URoJC5GtJIO6dLvOnym2IZhN/CvR5GLjSsPPvO
- ih6822qbw4ZgjUtrr4FY5WpAePCj/Qc+7LLlGfeTtYRrsVT6j/g0g4jHx
- /U8JQeXVrNtsB5rslLMvwEIHlx74DZfdJjgcujhUsVjHDp+U4YqcNnW2/
- qEwDJmHOY/s3g/1D/LPZy1ltn9oFNrFDh9219NF53hGFhbB5go54lo4Nt
- luEuvczqG7iThfOL8JlrQfmYY2TDCK/6VP4/CHzNyTjKorNa64FiXSSAh
- ajUW/1dBjiX36rvd1RtRE9VSECeneHQuim3p5OAyUFrE4QGid2lIM8t2P A==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10715"; a="352526359"
-X-IronPort-AV: E=Sophos;i="6.00,178,1681196400"; d="scan'208";a="352526359"
+ bh=jY6HBPcgZyKSZcEHVcN4AoyvmDWdyzuk/SqgaUcXr+w=;
+ b=JcwU8x6t1EFz/nUSFgGDdBLncJAJIFxhjDevmvh6OBpkPbD8276+MP6z
+ Jd+7xunVCNyiTySabDJ26OLlmOTusKMlod98ZQOICZAZj/eP50177+A2t
+ rHU0rth0uD2JuOSEXYYsq54T+7IY0UtrwyrFbg5x1yj8d9NChAiH5hDpH
+ K1TzlfHjsW88L8GVeIXn5z4xOVd7OBnL0w/oB+NxwgJuzTVE6Wpk8/SsP
+ 3wSTeWAlUjOYzrrA+L2ctLutkHhdALunklxjgQSMupUAkjfbFD92oL5SV
+ 0EYivVksOqOV6aARU6CvP0AqpiG+TGJMgciOQJmNpbE2hTPxX9Ac3xMls w==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10715"; a="352526380"
+X-IronPort-AV: E=Sophos;i="6.00,178,1681196400"; d="scan'208";a="352526380"
 Received: from orsmga007.jf.intel.com ([10.7.209.58])
  by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 19 May 2023 16:18:41 -0700
+ 19 May 2023 16:18:44 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10715"; a="696888718"
-X-IronPort-AV: E=Sophos;i="6.00,178,1681196400"; d="scan'208";a="696888718"
+X-IronPort-AV: E=McAfee;i="6600,9927,10715"; a="696888752"
+X-IronPort-AV: E=Sophos;i="6.00,178,1681196400"; d="scan'208";a="696888752"
 Received: from mdroper-desk1.fm.intel.com ([10.1.27.134])
  by orsmga007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 19 May 2023 16:18:41 -0700
+ 19 May 2023 16:18:42 -0700
 From: Matt Roper <matthew.d.roper@intel.com>
 To: intel-xe@lists.freedesktop.org
-Date: Fri, 19 May 2023 16:18:09 -0700
-Message-Id: <20230519231827.3572452-13-matthew.d.roper@intel.com>
+Date: Fri, 19 May 2023 16:18:20 -0700
+Message-Id: <20230519231827.3572452-24-matthew.d.roper@intel.com>
 X-Mailer: git-send-email 2.40.0
 In-Reply-To: <20230519231827.3572452-1-matthew.d.roper@intel.com>
 References: <20230519231827.3572452-1-matthew.d.roper@intel.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-xe] [PATCH v2 12/30] fixup! drm/xe/display: Implement
- display support
+Subject: [Intel-xe] [PATCH v2 23/30] drm/xe/irq: Untangle postinstall
+ functions
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -57,121 +57,118 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Cc: matthew.d.roper@intel.com
+Cc: Lucas De Marchi <lucas.demarchi@intel.com>, matthew.d.roper@intel.com
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
----
- drivers/gpu/drm/i915/display/intel_dsb.c      | 5 +++--
- drivers/gpu/drm/i915/display/intel_fbc.c      | 3 ++-
- drivers/gpu/drm/i915/display/intel_fbdev.c    | 7 ++++---
- drivers/gpu/drm/xe/display/xe_fb_pin.c        | 7 ++++---
- drivers/gpu/drm/xe/display/xe_plane_initial.c | 2 +-
- 5 files changed, 14 insertions(+), 10 deletions(-)
+The xe_irq_postinstall() never actually gets called after installing the
+interrupt handler.  This oversight seems to get papered over due to the
+fact that the (misnamed) xe_gt_irq_postinstall does more than it really
+should and gets called in the middle of the GT initialization.  The
+callstack for postinstall is also a bit muddled with top-level device
+interrupt enablement happening within platform-specific functions called
+from the per-tile xe_gt_irq_postinstall() function.
 
-diff --git a/drivers/gpu/drm/i915/display/intel_dsb.c b/drivers/gpu/drm/i915/display/intel_dsb.c
-index 7c93580282b4..3830309aacf4 100644
---- a/drivers/gpu/drm/i915/display/intel_dsb.c
-+++ b/drivers/gpu/drm/i915/display/intel_dsb.c
-@@ -379,9 +379,10 @@ struct intel_dsb *intel_dsb_prepare(struct intel_crtc *crtc,
- #else
- 	/* ~1 qword per instruction, full cachelines */
- 	size = ALIGN(max_cmds * 8, 64);
--	obj = xe_bo_create_pin_map(i915, to_gt(i915), NULL, PAGE_ALIGN(size),
-+	obj = xe_bo_create_pin_map(i915, xe_device_get_root_tile(i915),
-+				   NULL, PAGE_ALIGN(size),
- 				   ttm_bo_type_kernel,
--				   XE_BO_CREATE_VRAM_IF_DGFX(to_gt(i915)) |
-+				   XE_BO_CREATE_VRAM_IF_DGFX(xe_device_get_root_tile(i915)) |
- 				   XE_BO_CREATE_GGTT_BIT);
- 	if (IS_ERR(obj)) {
- 		kfree(dsb);
-diff --git a/drivers/gpu/drm/i915/display/intel_fbc.c b/drivers/gpu/drm/i915/display/intel_fbc.c
-index 9dc7083fe974..0e8e899f596b 100644
---- a/drivers/gpu/drm/i915/display/intel_fbc.c
-+++ b/drivers/gpu/drm/i915/display/intel_fbc.c
-@@ -71,7 +71,8 @@ static int i915_gem_stolen_insert_node_in_range(struct xe_device *xe, struct xe_
- 	int err;
- 	u32 flags = XE_BO_CREATE_PINNED_BIT | XE_BO_CREATE_STOLEN_BIT;
+Clean this all up by adding the missing call to xe_irq_postinstall()
+after installing the interrupt handler and pull top-level irq enablement
+up to xe_irq_postinstall where we'd expect it to be.
+
+The xe_gt_irq_postinstall() function is still a bit misnamed here; an
+upcoming patch will refocus its purpose and rename it.
+
+v2:
+ - Squash in patch to actually call xe_irq_postinstall() after
+   installing the interrupt handler.
+
+Signed-off-by: Matt Roper <matthew.d.roper@intel.com>
+Reviewed-by: Lucas De Marchi <lucas.demarchi@intel.com>
+---
+ drivers/gpu/drm/xe/xe_irq.c | 37 +++++++++----------------------------
+ 1 file changed, 9 insertions(+), 28 deletions(-)
+
+diff --git a/drivers/gpu/drm/xe/xe_irq.c b/drivers/gpu/drm/xe/xe_irq.c
+index c069e374a947..85bb9bd6b6be 100644
+--- a/drivers/gpu/drm/xe/xe_irq.c
++++ b/drivers/gpu/drm/xe/xe_irq.c
+@@ -122,7 +122,7 @@ static inline void xelp_intr_enable(struct xe_device *xe, bool stall)
+ 		xe_mmio_read32(mmio, GFX_MSTR_IRQ);
+ }
  
--	*bo = xe_bo_create_locked_range(xe, to_gt(xe), NULL, size, start, end,
-+	*bo = xe_bo_create_locked_range(xe, xe_device_get_root_tile(xe),
-+					NULL, size, start, end,
- 					ttm_bo_type_kernel, flags);
- 	if (IS_ERR(*bo)) {
- 		err = PTR_ERR(*bo);
-diff --git a/drivers/gpu/drm/i915/display/intel_fbdev.c b/drivers/gpu/drm/i915/display/intel_fbdev.c
-index 95f4cbc2e675..ebb07d0ccff6 100644
---- a/drivers/gpu/drm/i915/display/intel_fbdev.c
-+++ b/drivers/gpu/drm/i915/display/intel_fbdev.c
-@@ -210,7 +210,8 @@ static int intelfb_alloc(struct drm_fb_helper *helper,
- 	}
- #else
- 	if (!IS_DGFX(dev_priv)) {
--		obj = xe_bo_create_pin_map(dev_priv, to_gt(dev_priv), NULL, size,
-+		obj = xe_bo_create_pin_map(dev_priv, xe_device_get_root_tile(dev_priv),
-+					   NULL, size,
- 					   ttm_bo_type_kernel, XE_BO_SCANOUT_BIT |
- 					   XE_BO_CREATE_STOLEN_BIT |
- 					   XE_BO_CREATE_PINNED_BIT);
-@@ -220,9 +221,9 @@ static int intelfb_alloc(struct drm_fb_helper *helper,
- 			drm_info(&dev_priv->drm, "Allocated fbdev into stolen failed: %li\n", PTR_ERR(obj));
- 	}
- 	if (IS_ERR(obj)) {
--		obj = xe_bo_create_pin_map(dev_priv, to_gt(dev_priv), NULL, size,
-+		obj = xe_bo_create_pin_map(dev_priv, xe_device_get_root_tile(dev_priv), NULL, size,
- 					  ttm_bo_type_kernel, XE_BO_SCANOUT_BIT |
--					  XE_BO_CREATE_VRAM_IF_DGFX(to_gt(dev_priv)) |
-+					  XE_BO_CREATE_VRAM_IF_DGFX(xe_device_get_root_tile(dev_priv)) |
- 					  XE_BO_CREATE_PINNED_BIT);
- 	}
- #endif
-diff --git a/drivers/gpu/drm/xe/display/xe_fb_pin.c b/drivers/gpu/drm/xe/display/xe_fb_pin.c
-index 27e4d29aa73d..97e9be79b154 100644
---- a/drivers/gpu/drm/xe/display/xe_fb_pin.c
-+++ b/drivers/gpu/drm/xe/display/xe_fb_pin.c
-@@ -45,6 +45,7 @@ static int __xe_pin_fb_vma_dpt(struct intel_framebuffer *fb,
- 			       struct i915_vma *vma)
+-static void gt_irq_postinstall(struct xe_tile *tile)
++void xe_gt_irq_postinstall(struct xe_tile *tile)
  {
- 	struct xe_device *xe = to_xe_device(fb->base.dev);
-+	struct xe_tile *tile0 = xe_device_get_root_tile(xe);
- 	struct xe_bo *bo = intel_fb_obj(&fb->base), *dpt;
- 	u32 dpt_size, size = bo->ttm.base.size;
+ 	struct xe_device *xe = tile_to_xe(tile);
+ 	struct xe_gt *mmio = tile->primary_gt;
+@@ -181,15 +181,6 @@ static void gt_irq_postinstall(struct xe_tile *tile)
+ 	xe_mmio_write32(mmio, GUC_SG_INTR_MASK,  ~0);
+ }
  
-@@ -55,17 +56,17 @@ static int __xe_pin_fb_vma_dpt(struct intel_framebuffer *fb,
- 		dpt_size = ALIGN(intel_rotation_info_size(&view->rotated) * 8,
- 				 XE_PAGE_SIZE);
+-static void xelp_irq_postinstall(struct xe_device *xe, struct xe_tile *tile)
+-{
+-	/* TODO: PCH */
+-
+-	gt_irq_postinstall(tile);
+-
+-	xelp_intr_enable(xe, true);
+-}
+-
+ static u32
+ gt_engine_identity(struct xe_device *xe,
+ 		   struct xe_gt *mmio,
+@@ -366,14 +357,6 @@ static void dg1_intr_enable(struct xe_device *xe, bool stall)
+ 		xe_mmio_read32(mmio, DG1_MSTR_TILE_INTR);
+ }
  
--	dpt = xe_bo_create_pin_map(xe, to_gt(xe), NULL, dpt_size,
-+	dpt = xe_bo_create_pin_map(xe, tile0, NULL, dpt_size,
- 				  ttm_bo_type_kernel,
- 				  XE_BO_CREATE_VRAM0_BIT |
- 				  XE_BO_CREATE_GGTT_BIT);
- 	if (IS_ERR(dpt))
--		dpt = xe_bo_create_pin_map(xe, to_gt(xe), NULL, dpt_size,
-+		dpt = xe_bo_create_pin_map(xe, tile0, NULL, dpt_size,
- 					   ttm_bo_type_kernel,
- 					   XE_BO_CREATE_STOLEN_BIT |
- 					   XE_BO_CREATE_GGTT_BIT);
- 	if (IS_ERR(dpt))
--		dpt = xe_bo_create_pin_map(xe, to_gt(xe), NULL, dpt_size,
-+		dpt = xe_bo_create_pin_map(xe, tile0, NULL, dpt_size,
- 					   ttm_bo_type_kernel,
- 					   XE_BO_CREATE_SYSTEM_BIT |
- 					   XE_BO_CREATE_GGTT_BIT);
-diff --git a/drivers/gpu/drm/xe/display/xe_plane_initial.c b/drivers/gpu/drm/xe/display/xe_plane_initial.c
-index 39dd97acae08..99c35a4ef673 100644
---- a/drivers/gpu/drm/xe/display/xe_plane_initial.c
-+++ b/drivers/gpu/drm/xe/display/xe_plane_initial.c
-@@ -115,7 +115,7 @@ initial_plane_bo(struct xe_device *xe,
- 			page_size);
- 	size -= base;
+-static void dg1_irq_postinstall(struct xe_device *xe, struct xe_tile *tile)
+-{
+-	gt_irq_postinstall(tile);
+-
+-	if (tile->id == 0)
+-		dg1_intr_enable(xe, true);
+-}
+-
+ /*
+  * Top-level interrupt handler for Xe_LP+ and beyond.  These platforms have
+  * a "master tile" interrupt register which must be consulted before the
+@@ -512,16 +495,6 @@ static void xe_irq_reset(struct xe_device *xe)
+ 	xe_display_irq_reset(xe);
+ }
  
--	bo = xe_bo_create_pin_map_at(xe, &tile0->primary_gt, NULL, size, phys_base,
-+	bo = xe_bo_create_pin_map_at(xe, tile0, NULL, size, phys_base,
- 				     ttm_bo_type_kernel, flags);
- 	if (IS_ERR(bo)) {
- 		drm_dbg(&xe->drm,
+-void xe_gt_irq_postinstall(struct xe_tile *tile)
+-{
+-	struct xe_device *xe = tile_to_xe(tile);
+-
+-	if (GRAPHICS_VERx100(xe) >= 1210)
+-		dg1_irq_postinstall(xe, tile);
+-	else
+-		xelp_irq_postinstall(xe, tile);
+-}
+-
+ static void xe_irq_postinstall(struct xe_device *xe)
+ {
+ 	struct xe_tile *tile;
+@@ -538,6 +511,12 @@ static void xe_irq_postinstall(struct xe_device *xe)
+ 	 */
+ 	unmask_and_enable(xe_device_get_root_tile(xe),
+ 			  GU_MISC_IRQ_OFFSET, GU_MISC_GSE);
++
++	/* Enable top-level interrupts */
++	if (GRAPHICS_VERx100(xe) >= 1210)
++		dg1_intr_enable(xe, true);
++	else
++		xelp_intr_enable(xe, true);
+ }
+ 
+ static irq_handler_t xe_irq_handler(struct xe_device *xe)
+@@ -588,6 +567,8 @@ int xe_irq_install(struct xe_device *xe)
+ 		return err;
+ 	}
+ 
++	xe_irq_postinstall(xe);
++
+ 	err = drmm_add_action_or_reset(&xe->drm, irq_uninstall, xe);
+ 	if (err)
+ 		return err;
 -- 
 2.40.0
 
