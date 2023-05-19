@@ -4,37 +4,30 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id E3F68C77B7A
-	for <intel-xe@archiver.kernel.org>; Fri, 19 May 2023 09:46:52 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2BA6CC77B7A
+	for <intel-xe@archiver.kernel.org>; Fri, 19 May 2023 09:47:52 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A705910E5EF;
-	Fri, 19 May 2023 09:46:52 +0000 (UTC)
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E7A7410E5F5
- for <intel-xe@lists.freedesktop.org>; Fri, 19 May 2023 09:46:49 +0000 (UTC)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
- (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
- (No client certificate requested)
- by dfw.source.kernel.org (Postfix) with ESMTPS id E985E60AE3;
- Fri, 19 May 2023 09:46:48 +0000 (UTC)
-Received: from rdvivi-mobl4 (unknown [192.55.55.52])
- (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
- (No client certificate requested)
- by smtp.kernel.org (Postfix) with ESMTPSA id 5CC82C433D2;
- Fri, 19 May 2023 09:46:46 +0000 (UTC)
-Date: Fri, 19 May 2023 05:46:44 -0400
-From: Rodrigo Vivi <rodrigo.vivi@kernel.org>
-To: Matt Roper <matthew.d.roper@intel.com>
-Message-ID: <ZGdFefkV9W/Nq9np@rdvivi-mobl4>
-References: <20230516145416.1851984-1-rodrigo.vivi@intel.com>
- <20230516145416.1851984-9-rodrigo.vivi@intel.com>
- <20230518223519.GV6250@mdroper-desk1.amr.corp.intel.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id F20CC10E14E;
+	Fri, 19 May 2023 09:47:51 +0000 (UTC)
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 7A57D10E14E;
+ Fri, 19 May 2023 09:47:49 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 70663AADF2;
+ Fri, 19 May 2023 09:47:49 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20230518223519.GV6250@mdroper-desk1.amr.corp.intel.com>
-Subject: Re: [Intel-xe] [PATCH v4 09/11] drm/xe: Convert Xe HW Engine print
- to snapshot capture and print.
+Content-Transfer-Encoding: 7bit
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Michal Wajdeczko" <michal.wajdeczko@intel.com>
+Date: Fri, 19 May 2023 09:47:49 -0000
+Message-ID: <168448966945.26991.246963672375352376@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20230519094539.1116-1-michal.wajdeczko@intel.com>
+In-Reply-To: <20230519094539.1116-1-michal.wajdeczko@intel.com>
+Subject: [Intel-xe] =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_f?=
+ =?utf-8?q?or_drm/xe=3A_Move_Media_GuC_register_definition_to_regs/?=
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -46,426 +39,22 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-xe@lists.freedesktop.org, Rodrigo Vivi <rodrigo.vivi@intel.com>
+Reply-To: intel-xe@lists.freedesktop.org
+Cc: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Thu, May 18, 2023 at 03:35:19PM -0700, Matt Roper wrote:
-> On Tue, May 16, 2023 at 10:54:14AM -0400, Rodrigo Vivi wrote:
-> > The goal is to allow for a snapshot capture to be taken at the time
-> > of the crash, while the print out can happen at a later time through
-> > the exposed devcoredump virtual device.
-> 
-> Since the first patch of the series specifically called out stuff like
-> INSTDONE should there be another patch somewhere that adds additional
-> useful registers for each engine type?  It looks like we're only dumping
-> the general engineclass-agnostic registers at the moment.
+== Series Details ==
 
-Yes, that's a planned follow up.
+Series: drm/xe: Move Media GuC register definition to regs/
+URL   : https://patchwork.freedesktop.org/series/118008/
+State : success
 
-The goal of this series here is to just introduce the concept of
-the devcoredump. Next we are going to make it into a more useful
-tool with all the registers info and buffer replay and all.
+== Summary ==
 
-> 
-> 
-> Matt
-> 
-> > 
-> > v2: Addressing these Matthew comments:
-> >     - Handle memory allocation failures.
-> >     - Do not use GFP_ATOMIC on cases like debugfs prints.
-> >     - placement of @reg doc.
-> >     - identation issues.
-> > v3: checkpatch
-> > v4: Rebase and get back to GFP_ATOMIC only.
-> > 
-> > Signed-off-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
-> > Cc: Matthew Brost <matthew.brost@intel.com>
-> > Reviewed-by: Matthew Brost <matthew.brost@intel.com>
-> > ---
-> >  drivers/gpu/drm/xe/xe_gt_debugfs.c      |   2 +-
-> >  drivers/gpu/drm/xe/xe_guc_submit.c      |   2 +-
-> >  drivers/gpu/drm/xe/xe_hw_engine.c       | 209 +++++++++++++++++-------
-> >  drivers/gpu/drm/xe/xe_hw_engine.h       |   8 +-
-> >  drivers/gpu/drm/xe/xe_hw_engine_types.h |  78 +++++++++
-> >  5 files changed, 240 insertions(+), 59 deletions(-)
-> > 
-> > diff --git a/drivers/gpu/drm/xe/xe_gt_debugfs.c b/drivers/gpu/drm/xe/xe_gt_debugfs.c
-> > index c45486c2015a..8bf441e850a0 100644
-> > --- a/drivers/gpu/drm/xe/xe_gt_debugfs.c
-> > +++ b/drivers/gpu/drm/xe/xe_gt_debugfs.c
-> > @@ -42,7 +42,7 @@ static int hw_engines(struct seq_file *m, void *data)
-> >  	}
-> >  
-> >  	for_each_hw_engine(hwe, gt, id)
-> > -		xe_hw_engine_print_state(hwe, &p);
-> > +		xe_hw_engine_print(hwe, &p);
-> >  
-> >  	xe_device_mem_access_put(xe);
-> >  	err = xe_force_wake_put(gt_to_fw(gt), XE_FORCEWAKE_ALL);
-> > diff --git a/drivers/gpu/drm/xe/xe_guc_submit.c b/drivers/gpu/drm/xe/xe_guc_submit.c
-> > index cc8191dfdf89..b209e4c2a3a9 100644
-> > --- a/drivers/gpu/drm/xe/xe_guc_submit.c
-> > +++ b/drivers/gpu/drm/xe/xe_guc_submit.c
-> > @@ -751,7 +751,7 @@ static void simple_error_capture(struct xe_engine *e)
-> >  			if (hwe->class != e->hwe->class ||
-> >  			    !(BIT(hwe->logical_instance) & adj_logical_mask))
-> >  				continue;
-> > -			xe_hw_engine_print_state(hwe, &p);
-> > +			xe_hw_engine_print(hwe, &p);
-> >  		}
-> >  		xe_analyze_vm(&p, e->vm, e->gt->info.id);
-> >  		xe_force_wake_put(gt_to_fw(guc_to_gt(guc)), XE_FORCEWAKE_ALL);
-> > diff --git a/drivers/gpu/drm/xe/xe_hw_engine.c b/drivers/gpu/drm/xe/xe_hw_engine.c
-> > index 751f6c3bba17..71ac4defb947 100644
-> > --- a/drivers/gpu/drm/xe/xe_hw_engine.c
-> > +++ b/drivers/gpu/drm/xe/xe_hw_engine.c
-> > @@ -574,77 +574,174 @@ void xe_hw_engine_handle_irq(struct xe_hw_engine *hwe, u16 intr_vec)
-> >  		xe_hw_fence_irq_run(hwe->fence_irq);
-> >  }
-> >  
-> > -void xe_hw_engine_print_state(struct xe_hw_engine *hwe, struct drm_printer *p)
-> > +/**
-> > + * xe_hw_engine_snapshot_capture - Take a quick snapshot of the HW Engine.
-> > + * @hwe: Xe HW Engine.
-> > + *
-> > + * This can be printed out in a later stage like during dev_coredump
-> > + * analysis.
-> > + *
-> > + * Returns: a Xe HW Engine snapshot object that must be freed by the
-> > + * caller, using `xe_hw_engine_snapshot_free`.
-> > + */
-> > +struct xe_hw_engine_snapshot *
-> > +xe_hw_engine_snapshot_capture(struct xe_hw_engine *hwe)
-> >  {
-> > +	struct xe_hw_engine_snapshot *snapshot;
-> > +	int len;
-> > +
-> >  	if (!xe_hw_engine_is_valid(hwe))
-> > +		return NULL;
-> > +
-> > +	snapshot = kzalloc(sizeof(*snapshot), GFP_ATOMIC);
-> > +
-> > +	if (!snapshot)
-> > +		return NULL;
-> > +
-> > +	len = strlen(hwe->name) + 1;
-> > +	snapshot->name = kzalloc(len, GFP_ATOMIC);
-> > +	if (snapshot->name)
-> > +		strscpy(snapshot->name, hwe->name, len);
-> > +
-> > +	snapshot->class = hwe->class;
-> > +	snapshot->logical_instance = hwe->logical_instance;
-> > +	snapshot->forcewake.domain = hwe->domain;
-> > +	snapshot->forcewake.ref = xe_force_wake_ref(gt_to_fw(hwe->gt),
-> > +						    hwe->domain);
-> > +	snapshot->mmio_base = hwe->mmio_base;
-> > +
-> > +	snapshot->reg.ring_hwstam = hw_engine_mmio_read32(hwe, RING_HWSTAM(0));
-> > +	snapshot->reg.ring_hws_pga = hw_engine_mmio_read32(hwe,
-> > +							   RING_HWS_PGA(0));
-> > +	snapshot->reg.ring_execlist_status_lo =
-> > +		hw_engine_mmio_read32(hwe, RING_EXECLIST_STATUS_LO(0));
-> > +	snapshot->reg.ring_execlist_status_hi =
-> > +		hw_engine_mmio_read32(hwe, RING_EXECLIST_STATUS_HI(0));
-> > +	snapshot->reg.ring_execlist_sq_contents_lo =
-> > +		hw_engine_mmio_read32(hwe,
-> > +				      RING_EXECLIST_SQ_CONTENTS_LO(0));
-> > +	snapshot->reg.ring_execlist_sq_contents_hi =
-> > +		hw_engine_mmio_read32(hwe,
-> > +				      RING_EXECLIST_SQ_CONTENTS_HI(0));
-> > +	snapshot->reg.ring_execlist_control =
-> > +		hw_engine_mmio_read32(hwe, RING_EXECLIST_CONTROL(0));
-> > +	snapshot->reg.ring_start = hw_engine_mmio_read32(hwe, RING_START(0));
-> > +	snapshot->reg.ring_head =
-> > +		hw_engine_mmio_read32(hwe, RING_HEAD(0)) & HEAD_ADDR;
-> > +	snapshot->reg.ring_tail =
-> > +		hw_engine_mmio_read32(hwe, RING_TAIL(0)) & TAIL_ADDR;
-> > +	snapshot->reg.ring_ctl = hw_engine_mmio_read32(hwe, RING_CTL(0));
-> > +	snapshot->reg.ring_mi_mode =
-> > +		hw_engine_mmio_read32(hwe, RING_MI_MODE(0));
-> > +	snapshot->reg.ring_mode = hw_engine_mmio_read32(hwe, RING_MODE(0));
-> > +	snapshot->reg.ring_imr = hw_engine_mmio_read32(hwe, RING_IMR(0));
-> > +	snapshot->reg.ring_esr = hw_engine_mmio_read32(hwe, RING_ESR(0));
-> > +	snapshot->reg.ring_emr = hw_engine_mmio_read32(hwe, RING_EMR(0));
-> > +	snapshot->reg.ring_eir = hw_engine_mmio_read32(hwe, RING_EIR(0));
-> > +	snapshot->reg.ring_acthd_udw =
-> > +		hw_engine_mmio_read32(hwe, RING_ACTHD_UDW(0));
-> > +	snapshot->reg.ring_acthd = hw_engine_mmio_read32(hwe, RING_ACTHD(0));
-> > +	snapshot->reg.ring_bbaddr_udw =
-> > +		hw_engine_mmio_read32(hwe, RING_BBADDR_UDW(0));
-> > +	snapshot->reg.ring_bbaddr = hw_engine_mmio_read32(hwe, RING_BBADDR(0));
-> > +	snapshot->reg.ring_dma_fadd_udw =
-> > +		hw_engine_mmio_read32(hwe, RING_DMA_FADD_UDW(0));
-> > +	snapshot->reg.ring_dma_fadd =
-> > +		hw_engine_mmio_read32(hwe, RING_DMA_FADD(0));
-> > +	snapshot->reg.ipeir = hw_engine_mmio_read32(hwe, IPEIR(0));
-> > +	snapshot->reg.ipehr = hw_engine_mmio_read32(hwe, IPEHR(0));
-> > +
-> > +	if (snapshot->class == XE_ENGINE_CLASS_COMPUTE)
-> > +		snapshot->reg.rcu_mode = xe_mmio_read32(hwe->gt, RCU_MODE);
-> > +
-> > +	return snapshot;
-> > +}
-> > +
-> > +/**
-> > + * xe_hw_engine_snapshot_print - Print out a given Xe HW Engine snapshot.
-> > + * @snapshot: Xe HW Engine snapshot object.
-> > + * @p: drm_printer where it will be printed out.
-> > + *
-> > + * This function prints out a given Xe HW Engine snapshot object.
-> > + */
-> > +void xe_hw_engine_snapshot_print(struct xe_hw_engine_snapshot *snapshot,
-> > +				 struct drm_printer *p)
-> > +{
-> > +	if (!snapshot)
-> >  		return;
-> >  
-> > -	drm_printf(p, "%s (physical), logical instance=%d\n", hwe->name,
-> > -		   hwe->logical_instance);
-> > +	drm_printf(p, "%s (physical), logical instance=%d\n",
-> > +		   snapshot->name ? snapshot->name : "",
-> > +		   snapshot->logical_instance);
-> >  	drm_printf(p, "\tForcewake: domain 0x%x, ref %d\n",
-> > -		   hwe->domain,
-> > -		   xe_force_wake_ref(gt_to_fw(hwe->gt), hwe->domain));
-> > -	drm_printf(p, "\tMMIO base: 0x%08x\n", hwe->mmio_base);
-> > -
-> > -	drm_printf(p, "\tHWSTAM: 0x%08x\n",
-> > -		   hw_engine_mmio_read32(hwe, RING_HWSTAM(0)));
-> > -	drm_printf(p, "\tRING_HWS_PGA: 0x%08x\n",
-> > -		   hw_engine_mmio_read32(hwe, RING_HWS_PGA(0)));
-> > -
-> > +		   snapshot->forcewake.domain, snapshot->forcewake.ref);
-> > +	drm_printf(p, "\tHWSTAM: 0x%08x\n", snapshot->reg.ring_hwstam);
-> > +	drm_printf(p, "\tRING_HWS_PGA: 0x%08x\n", snapshot->reg.ring_hws_pga);
-> >  	drm_printf(p, "\tRING_EXECLIST_STATUS_LO: 0x%08x\n",
-> > -		   hw_engine_mmio_read32(hwe, RING_EXECLIST_STATUS_LO(0)));
-> > +		   snapshot->reg.ring_execlist_status_lo);
-> >  	drm_printf(p, "\tRING_EXECLIST_STATUS_HI: 0x%08x\n",
-> > -		   hw_engine_mmio_read32(hwe, RING_EXECLIST_STATUS_HI(0)));
-> > +		   snapshot->reg.ring_execlist_status_hi);
-> >  	drm_printf(p, "\tRING_EXECLIST_SQ_CONTENTS_LO: 0x%08x\n",
-> > -		   hw_engine_mmio_read32(hwe,
-> > -					 RING_EXECLIST_SQ_CONTENTS_LO(0)));
-> > +		   snapshot->reg.ring_execlist_sq_contents_lo);
-> >  	drm_printf(p, "\tRING_EXECLIST_SQ_CONTENTS_HI: 0x%08x\n",
-> > -		   hw_engine_mmio_read32(hwe,
-> > -					 RING_EXECLIST_SQ_CONTENTS_HI(0)));
-> > +		   snapshot->reg.ring_execlist_sq_contents_hi);
-> >  	drm_printf(p, "\tRING_EXECLIST_CONTROL: 0x%08x\n",
-> > -		   hw_engine_mmio_read32(hwe, RING_EXECLIST_CONTROL(0)));
-> > -
-> > -	drm_printf(p, "\tRING_START: 0x%08x\n",
-> > -		   hw_engine_mmio_read32(hwe, RING_START(0)));
-> > -	drm_printf(p, "\tRING_HEAD:  0x%08x\n",
-> > -		   hw_engine_mmio_read32(hwe, RING_HEAD(0)) & HEAD_ADDR);
-> > -	drm_printf(p, "\tRING_TAIL:  0x%08x\n",
-> > -		   hw_engine_mmio_read32(hwe, RING_TAIL(0)) & TAIL_ADDR);
-> > -	drm_printf(p, "\tRING_CTL: 0x%08x\n",
-> > -		   hw_engine_mmio_read32(hwe, RING_CTL(0)));
-> > +		   snapshot->reg.ring_execlist_control);
-> > +	drm_printf(p, "\tRING_START: 0x%08x\n", snapshot->reg.ring_start);
-> > +	drm_printf(p, "\tRING_HEAD:  0x%08x\n", snapshot->reg.ring_head);
-> > +	drm_printf(p, "\tRING_TAIL:  0x%08x\n", snapshot->reg.ring_tail);
-> > +	drm_printf(p, "\tRING_CTL: 0x%08x\n", snapshot->reg.ring_ctl);
-> > +	drm_printf(p, "\tRING_MODE: 0x%08x\n", snapshot->reg.ring_mi_mode);
-> >  	drm_printf(p, "\tRING_MODE: 0x%08x\n",
-> > -		   hw_engine_mmio_read32(hwe, RING_MI_MODE(0)));
-> > -	drm_printf(p, "\tRING_MODE_GEN7: 0x%08x\n",
-> > -		   hw_engine_mmio_read32(hwe, RING_MODE(0)));
-> > -
-> > -	drm_printf(p, "\tRING_IMR:   0x%08x\n",
-> > -		   hw_engine_mmio_read32(hwe, RING_IMR(0)));
-> > -	drm_printf(p, "\tRING_ESR:   0x%08x\n",
-> > -		   hw_engine_mmio_read32(hwe, RING_ESR(0)));
-> > -	drm_printf(p, "\tRING_EMR:   0x%08x\n",
-> > -		   hw_engine_mmio_read32(hwe, RING_EMR(0)));
-> > -	drm_printf(p, "\tRING_EIR:   0x%08x\n",
-> > -		   hw_engine_mmio_read32(hwe, RING_EIR(0)));
-> > -
-> > -	drm_printf(p, "\tACTHD:  0x%08x_%08x\n",
-> > -		   hw_engine_mmio_read32(hwe, RING_ACTHD_UDW(0)),
-> > -		   hw_engine_mmio_read32(hwe, RING_ACTHD(0)));
-> > -	drm_printf(p, "\tBBADDR: 0x%08x_%08x\n",
-> > -		   hw_engine_mmio_read32(hwe, RING_BBADDR_UDW(0)),
-> > -		   hw_engine_mmio_read32(hwe, RING_BBADDR(0)));
-> > +		   snapshot->reg.ring_mode);
-> > +	drm_printf(p, "\tRING_IMR:   0x%08x\n", snapshot->reg.ring_imr);
-> > +	drm_printf(p, "\tRING_ESR:   0x%08x\n", snapshot->reg.ring_esr);
-> > +	drm_printf(p, "\tRING_EMR:   0x%08x\n", snapshot->reg.ring_emr);
-> > +	drm_printf(p, "\tRING_EIR:   0x%08x\n", snapshot->reg.ring_eir);
-> > +	drm_printf(p, "\tACTHD:  0x%08x_%08x\n", snapshot->reg.ring_acthd_udw,
-> > +		   snapshot->reg.ring_acthd);
-> > +	drm_printf(p, "\tBBADDR: 0x%08x_%08x\n", snapshot->reg.ring_bbaddr_udw,
-> > +		   snapshot->reg.ring_bbaddr);
-> >  	drm_printf(p, "\tDMA_FADDR: 0x%08x_%08x\n",
-> > -		   hw_engine_mmio_read32(hwe, RING_DMA_FADD_UDW(0)),
-> > -		   hw_engine_mmio_read32(hwe, RING_DMA_FADD(0)));
-> > +		   snapshot->reg.ring_dma_fadd_udw,
-> > +		   snapshot->reg.ring_dma_fadd);
-> > +	drm_printf(p, "\tIPEIR: 0x%08x\n", snapshot->reg.ipeir);
-> > +	drm_printf(p, "\tIPEHR: 0x%08x\n\n", snapshot->reg.ipehr);
-> > +	if (snapshot->class == XE_ENGINE_CLASS_COMPUTE)
-> > +		drm_printf(p, "\tRCU_MODE: 0x%08x\n",
-> > +			   snapshot->reg.rcu_mode);
-> > +}
-> >  
-> > -	drm_printf(p, "\tIPEIR: 0x%08x\n",
-> > -		   hw_engine_mmio_read32(hwe, IPEIR(0)));
-> > -	drm_printf(p, "\tIPEHR: 0x%08x\n\n",
-> > -		   hw_engine_mmio_read32(hwe, IPEHR(0)));
-> > +/**
-> > + * xe_hw_engine_snapshot_free - Free all allocated objects for a given snapshot.
-> > + * @snapshot: Xe HW Engine snapshot object.
-> > + *
-> > + * This function free all the memory that needed to be allocated at capture
-> > + * time.
-> > + */
-> > +void xe_hw_engine_snapshot_free(struct xe_hw_engine_snapshot *snapshot)
-> > +{
-> > +	if (!snapshot)
-> > +		return;
-> >  
-> > -	if (hwe->class == XE_ENGINE_CLASS_COMPUTE)
-> > -		drm_printf(p, "\tRCU_MODE: 0x%08x\n",
-> > -			   xe_mmio_read32(hwe->gt, RCU_MODE));
-> > +	kfree(snapshot->name);
-> > +	kfree(snapshot);
-> > +}
-> > +
-> > +/**
-> > + * xe_hw_engine_print - Xe HW Engine Print.
-> > + * @hwe: Hardware Engine.
-> > + * @p: drm_printer.
-> > + *
-> > + * This function quickly capture a snapshot and immediately print it out.
-> > + */
-> > +void xe_hw_engine_print(struct xe_hw_engine *hwe, struct drm_printer *p)
-> > +{
-> > +	struct xe_hw_engine_snapshot *snapshot;
-> >  
-> > +	snapshot = xe_hw_engine_snapshot_capture(hwe);
-> > +	xe_hw_engine_snapshot_print(snapshot, p);
-> > +	xe_hw_engine_snapshot_free(snapshot);
-> >  }
-> >  
-> >  u32 xe_hw_engine_mask_per_class(struct xe_gt *gt,
-> > diff --git a/drivers/gpu/drm/xe/xe_hw_engine.h b/drivers/gpu/drm/xe/xe_hw_engine.h
-> > index 013efcd6d8c5..7eca9d53c7b1 100644
-> > --- a/drivers/gpu/drm/xe/xe_hw_engine.h
-> > +++ b/drivers/gpu/drm/xe/xe_hw_engine.h
-> > @@ -14,9 +14,15 @@ int xe_hw_engines_init_early(struct xe_gt *gt);
-> >  int xe_hw_engines_init(struct xe_gt *gt);
-> >  void xe_hw_engine_handle_irq(struct xe_hw_engine *hwe, u16 intr_vec);
-> >  void xe_hw_engine_enable_ring(struct xe_hw_engine *hwe);
-> > -void xe_hw_engine_print_state(struct xe_hw_engine *hwe, struct drm_printer *p);
-> >  u32 xe_hw_engine_mask_per_class(struct xe_gt *gt,
-> >  				enum xe_engine_class engine_class);
-> > +
-> > +struct xe_hw_engine_snapshot *
-> > +xe_hw_engine_snapshot_capture(struct xe_hw_engine *hwe);
-> > +void xe_hw_engine_snapshot_free(struct xe_hw_engine_snapshot *snapshot);
-> > +void xe_hw_engine_snapshot_print(struct xe_hw_engine_snapshot *snapshot,
-> > +				 struct drm_printer *p);
-> > +void xe_hw_engine_print(struct xe_hw_engine *hwe, struct drm_printer *p);
-> >  void xe_hw_engine_setup_default_lrc_state(struct xe_hw_engine *hwe);
-> >  
-> >  bool xe_hw_engine_is_reserved(struct xe_hw_engine *hwe);
-> > diff --git a/drivers/gpu/drm/xe/xe_hw_engine_types.h b/drivers/gpu/drm/xe/xe_hw_engine_types.h
-> > index 2c40384957da..d788e67312b9 100644
-> > --- a/drivers/gpu/drm/xe/xe_hw_engine_types.h
-> > +++ b/drivers/gpu/drm/xe/xe_hw_engine_types.h
-> > @@ -109,4 +109,82 @@ struct xe_hw_engine {
-> >  	enum xe_hw_engine_id engine_id;
-> >  };
-> >  
-> > +/**
-> > + * struct xe_hw_engine_snapshot - Hardware engine snapshot
-> > + *
-> > + * Contains the snapshot of useful hardware engine info and registers.
-> > + */
-> > +struct xe_hw_engine_snapshot {
-> > +	/** @name: name of the hw engine */
-> > +	char *name;
-> > +	/** @class: class of this hw engine */
-> > +	enum xe_engine_class class;
-> > +	/** @logical_instance: logical instance of this hw engine */
-> > +	u16 logical_instance;
-> > +	/** @forcewake: Force Wake information snapshot */
-> > +	struct {
-> > +		/** @domain: force wake domain of this hw engine */
-> > +		enum xe_force_wake_domains domain;
-> > +		/** @ref: Forcewake ref for the above domain */
-> > +		int ref;
-> > +	} forcewake;
-> > +	/** @mmio_base: MMIO base address of this hw engine*/
-> > +	u32 mmio_base;
-> > +	/** @reg: Useful MMIO register snapshot */
-> > +	struct {
-> > +		/** @ring_hwstam: RING_HWSTAM */
-> > +		u32 ring_hwstam;
-> > +		/** @ring_hws_pga: RING_HWS_PGA */
-> > +		u32 ring_hws_pga;
-> > +		/** @ring_execlist_status_lo: RING_EXECLIST_STATUS_LO */
-> > +		u32 ring_execlist_status_lo;
-> > +		/** @ring_execlist_status_hi: RING_EXECLIST_STATUS_HI */
-> > +		u32 ring_execlist_status_hi;
-> > +		/** @ring_execlist_sq_contents_lo: RING_EXECLIST_SQ_CONTENTS */
-> > +		u32 ring_execlist_sq_contents_lo;
-> > +		/** @ring_execlist_sq_contents_hi: RING_EXECLIST_SQ_CONTENTS + 4 */
-> > +		u32 ring_execlist_sq_contents_hi;
-> > +		/** @ring_execlist_control: RING_EXECLIST_CONTROL */
-> > +		u32 ring_execlist_control;
-> > +		/** @ring_start: RING_START */
-> > +		u32 ring_start;
-> > +		/** @ring_head: RING_HEAD */
-> > +		u32 ring_head;
-> > +		/** @ring_tail: RING_TAIL */
-> > +		u32 ring_tail;
-> > +		/** @ring_ctl: RING_CTL */
-> > +		u32 ring_ctl;
-> > +		/** @ring_mi_mode: RING_MI_MODE */
-> > +		u32 ring_mi_mode;
-> > +		/** @ring_mode: RING_MODE */
-> > +		u32 ring_mode;
-> > +		/** @ring_imr: RING_IMR */
-> > +		u32 ring_imr;
-> > +		/** @ring_esr: RING_ESR */
-> > +		u32 ring_esr;
-> > +		/** @ring_emr: RING_EMR */
-> > +		u32 ring_emr;
-> > +		/** @ring_eir: RING_EIR */
-> > +		u32 ring_eir;
-> > +		/** @ring_acthd_udw: RING_ACTHD_UDW */
-> > +		u32 ring_acthd_udw;
-> > +		/** @ring_acthd: RING_ACTHD */
-> > +		u32 ring_acthd;
-> > +		/** @ring_bbaddr_udw: RING_BBADDR_UDW */
-> > +		u32 ring_bbaddr_udw;
-> > +		/** @ring_bbaddr: RING_BBADDR */
-> > +		u32 ring_bbaddr;
-> > +		/** @ring_dma_fadd_udw: RING_DMA_FADD_UDW */
-> > +		u32 ring_dma_fadd_udw;
-> > +		/** @ring_dma_fadd: RING_DMA_FADD */
-> > +		u32 ring_dma_fadd;
-> > +		/** @ipeir: IPEIR */
-> > +		u32 ipeir;
-> > +		/** @ipehr: IPEHR */
-> > +		u32 ipehr;
-> > +		/** @rcu_mode: RCU_MODE */
-> > +		u32 rcu_mode;
-> > +	} reg;
-> > +};
-> > +
-> >  #endif
-> > -- 
-> > 2.39.2
-> > 
-> 
-> -- 
-> Matt Roper
-> Graphics Software Engineer
-> Linux GPU Platform Enablement
-> Intel Corporation
+=== Applying kernel patches on branch 'drm-xe-next' with base: ===
+Base commit: 69989b35a drm/xe: Use GT oriented log messages in xe_gt.c
+=== git am output follows ===
+Applying: drm/xe: Move Media GuC register definition to regs/
+
+
