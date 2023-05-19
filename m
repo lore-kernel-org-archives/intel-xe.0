@@ -4,48 +4,47 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id F07CFC7EE2E
-	for <intel-xe@archiver.kernel.org>; Fri, 19 May 2023 23:19:05 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id C0554C7EE2A
+	for <intel-xe@archiver.kernel.org>; Fri, 19 May 2023 23:19:06 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 793FD10E63B;
-	Fri, 19 May 2023 23:19:05 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9A5F110E64C;
+	Fri, 19 May 2023 23:19:06 +0000 (UTC)
 Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D7C8B10E62B
- for <intel-xe@lists.freedesktop.org>; Fri, 19 May 2023 23:18:49 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2F73410E621
+ for <intel-xe@lists.freedesktop.org>; Fri, 19 May 2023 23:18:48 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1684538329; x=1716074329;
+ t=1684538328; x=1716074328;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=YE1P+5yCaSrien+3SEQ0kShi5fHyyXzeZhH8JupEtu0=;
- b=E2DwjQhpWpGIUKzlnc1SfQU6ZtuyMwsETbPjjixXPIZvvOmRzCgGuX8/
- 20TvnhSNIEtfYpJ6SQdFWZ8EzLapDsjJx1IVRS9kgU3JQm7tfXY8qIe9V
- uRCPpCI7HxDJERaPoHW1AqVn3EA0bysDTqDL6BujrPwLvI/uHQCLYYO6M
- WXHNg4274A1i8ouX+/ORxjP/SsZwzcKGpOUSESIp+nQGfk+D2eVRv9YiP
- VvIykYAnycEz9cIoJQnf/rkon1CyQHrQXAEK2fPBiXz7uE02VYRdHFmBr
- s2ZzBhLwHSA9KJFl0Llksxsw8rO3dDqXEjuepiAsYZFmTzzorNWFGLreE A==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10715"; a="352526375"
-X-IronPort-AV: E=Sophos;i="6.00,178,1681196400"; d="scan'208";a="352526375"
+ bh=4ax/RT7HubGaetG7vNbMCN5aOjNjBFPOpVvgVc1LwL8=;
+ b=glx87KKdsaHWgH2KJbHaxV2nlYEmZr3TZo4KAdHKFM7srdaU1pwymXjs
+ HcqYJUePZcu9bwe6DEL9IeZevYWsGgYfmzUBX62RvlWHhow7urwuLIMh1
+ Z7UiNmgiTWlF92YqjlNGlqH+ZsEEQrdxzyDk5cVWEixrObzuBEblxJ9RQ
+ Qz5Js+rGU47sBzOZuHc21dCQmADTMVD3MkNNLqJm/Dq+K57PadYmgWZQE
+ x2fBkSS4q5QlfXLhQQzWp5xt/Tm/Z8ufAptI/L6d5pAmkASBCX4+5vAVN
+ PpmWU5t4Xbj9hxxom47sTQULDzvSuU3Ziw42PMZ+ZYmfBuh9eDjme2+Ut A==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10715"; a="352526340"
+X-IronPort-AV: E=Sophos;i="6.00,178,1681196400"; d="scan'208";a="352526340"
 Received: from orsmga007.jf.intel.com ([10.7.209.58])
  by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 19 May 2023 16:18:42 -0700
+ 19 May 2023 16:18:40 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10715"; a="696888743"
-X-IronPort-AV: E=Sophos;i="6.00,178,1681196400"; d="scan'208";a="696888743"
+X-IronPort-AV: E=McAfee;i="6600,9927,10715"; a="696888688"
+X-IronPort-AV: E=Sophos;i="6.00,178,1681196400"; d="scan'208";a="696888688"
 Received: from mdroper-desk1.fm.intel.com ([10.1.27.134])
  by orsmga007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 19 May 2023 16:18:42 -0700
+ 19 May 2023 16:18:40 -0700
 From: Matt Roper <matthew.d.roper@intel.com>
 To: intel-xe@lists.freedesktop.org
-Date: Fri, 19 May 2023 16:18:17 -0700
-Message-Id: <20230519231827.3572452-21-matthew.d.roper@intel.com>
+Date: Fri, 19 May 2023 16:18:00 -0700
+Message-Id: <20230519231827.3572452-4-matthew.d.roper@intel.com>
 X-Mailer: git-send-email 2.40.0
 In-Reply-To: <20230519231827.3572452-1-matthew.d.roper@intel.com>
 References: <20230519231827.3572452-1-matthew.d.roper@intel.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-xe] [PATCH v2 20/30] drm/xe: Interrupts are delivered
- per-tile, not per-GT
+Subject: [Intel-xe] [PATCH v2 03/30] drm/xe: Add backpointer from gt to tile
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -57,704 +56,236 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Cc: matthew.d.roper@intel.com
+Cc: Lucas De Marchi <lucas.demarchi@intel.com>, matthew.d.roper@intel.com
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-IRQ delivery and handling needs to be handled on a per-tile basis.  Note
-that this is true even for the "GT interrupts" relating to engines and
-GuCs --- the interrupts relating to both GTs get raised through a single
-set of registers in the tile's sgunit range.
+Rather than a backpointer to the xe_device, a GT should have a
+backpointer to its tile (which can then be used to lookup the device if
+necessary).
 
-On true multi-tile platforms, interrupts on remote tiles are internally
-forwarded to the root tile; the first thing the top-level interrupt
-handler should do is consult the root tile's instance of
-DG1_MSTR_TILE_INTR to determine which tile(s) had interrupts.  This
-register is also responsible for enabling/disabling top-level reporting
-of any interrupts to the OS.  Although this register technically exists
-on all tiles, it should only be used on the root tile.
-
-The (mis)use of struct xe_gt as a target for MMIO operations in the
-driver makes the code somewhat confusing since we wind up needing a GT
-pointer to handle programming that's unrelated to the GT.  To mitigate
-this confusion, all of the xe_gt structures used solely as an MMIO
-target in interrupt code are renamed to 'mmio' so that it's clear that
-the structure being passed does not necessarily relate to any specific
-GT (primary or media) that we might be dealing with interrupts for.
-Reworking the driver's MMIO handling to not be dependent on xe_gt is
-planned as a future patch series.
-
-Note that GT initialization code currently calls xe_gt_irq_postinstall()
-in an attempt to enable the HWE interrupts for the GT being initialized.
-Unfortunately xe_gt_irq_postinstall() doesn't really match its name and
-does a bunch of other stuff unrelated to the GT interrupts (such as
-enabling the top-level device interrupts).  That will be addressed in
-future patches.
+The gt_to_xe() helper macro (which moves from xe_gt.h to xe_gt_types.h)
+can and should still be used to jump directly from an xe_gt to
+xe_device.
 
 v2:
- - Clarify commit message with explanation of why DG1_MSTR_TILE_INTR is
-   only used on the root tile, even though it's an sgunit register that
-   is technically present in each tile's MMIO space.  (Aravind)
- - Also clarify that the xe_gt used as a target for MMIO operations may
-   or may not relate to the GT we're dealing with for interrupts.
-   (Lucas)
+ - Fix kunit test build
+ - Move a couple changes to the previous patch. (Lucas)
 
-Cc: Aravind Iddamsetty <aravind.iddamsetty@intel.com>
+Reviewed-by: Matt Atwood <matthew.s.atwood@intel.com>
+Reviewed-by: Lucas De Marchi <lucas.demarchi@intel.com>
 Signed-off-by: Matt Roper <matthew.d.roper@intel.com>
 ---
- drivers/gpu/drm/xe/xe_gt.c  |   2 +-
- drivers/gpu/drm/xe/xe_irq.c | 334 ++++++++++++++++++++----------------
- drivers/gpu/drm/xe/xe_irq.h |   4 +-
- 3 files changed, 187 insertions(+), 153 deletions(-)
+ drivers/gpu/drm/xe/tests/xe_bo.c            |  2 +-
+ drivers/gpu/drm/xe/xe_bb.c                  |  2 +-
+ drivers/gpu/drm/xe/xe_gt.h                  |  5 -----
+ drivers/gpu/drm/xe/xe_gt_printk.h           |  6 +++---
+ drivers/gpu/drm/xe/xe_gt_tlb_invalidation.c |  4 ++--
+ drivers/gpu/drm/xe/xe_gt_types.h            | 14 ++++++++++++--
+ drivers/gpu/drm/xe/xe_mocs.c                | 14 +++++++-------
+ drivers/gpu/drm/xe/xe_pci.c                 |  2 +-
+ drivers/gpu/drm/xe/xe_pt.c                  |  2 +-
+ 9 files changed, 28 insertions(+), 23 deletions(-)
 
-diff --git a/drivers/gpu/drm/xe/xe_gt.c b/drivers/gpu/drm/xe/xe_gt.c
-index 0abd0d912610..290935e46059 100644
---- a/drivers/gpu/drm/xe/xe_gt.c
-+++ b/drivers/gpu/drm/xe/xe_gt.c
-@@ -304,7 +304,7 @@ static int gt_fw_domain_init(struct xe_gt *gt)
- 	gt->info.engine_mask = gt->info.__engine_mask;
+diff --git a/drivers/gpu/drm/xe/tests/xe_bo.c b/drivers/gpu/drm/xe/tests/xe_bo.c
+index 6075f12a1962..8f3afdc6cca6 100644
+--- a/drivers/gpu/drm/xe/tests/xe_bo.c
++++ b/drivers/gpu/drm/xe/tests/xe_bo.c
+@@ -90,7 +90,7 @@ static int ccs_test_migrate(struct xe_gt *gt, struct xe_bo *bo,
+ 	}
  
- 	/* Enables per hw engine IRQs */
--	xe_gt_irq_postinstall(gt);
-+	xe_gt_irq_postinstall(gt_to_tile(gt));
+ 	/* Check last CCS value, or at least last value in page. */
+-	offset = xe_device_ccs_bytes(gt->xe, bo->size);
++	offset = xe_device_ccs_bytes(gt_to_xe(gt), bo->size);
+ 	offset = min_t(u32, offset, PAGE_SIZE) / sizeof(u64) - 1;
+ 	if (cpu_map[offset] != get_val) {
+ 		KUNIT_FAIL(test,
+diff --git a/drivers/gpu/drm/xe/xe_bb.c b/drivers/gpu/drm/xe/xe_bb.c
+index 3deb2d55f421..bf7c94b769d7 100644
+--- a/drivers/gpu/drm/xe/xe_bb.c
++++ b/drivers/gpu/drm/xe/xe_bb.c
+@@ -16,7 +16,7 @@
  
- 	/* Rerun MCR init as we now have hw engine list */
- 	xe_gt_mcr_init(gt);
-diff --git a/drivers/gpu/drm/xe/xe_irq.c b/drivers/gpu/drm/xe/xe_irq.c
-index 654c34a5b99a..ad2f73b2a031 100644
---- a/drivers/gpu/drm/xe/xe_irq.c
-+++ b/drivers/gpu/drm/xe/xe_irq.c
-@@ -27,60 +27,66 @@
- #define IIR(offset)				XE_REG(offset + 0x8)
- #define IER(offset)				XE_REG(offset + 0xc)
- 
--static void assert_iir_is_zero(struct xe_gt *gt, struct xe_reg reg)
-+static void assert_iir_is_zero(struct xe_gt *mmio, struct xe_reg reg)
+ static int bb_prefetch(struct xe_gt *gt)
  {
--	u32 val = xe_mmio_read32(gt, reg);
-+	u32 val = xe_mmio_read32(mmio, reg);
+-	struct xe_device *xe = gt->xe;
++	struct xe_device *xe = gt_to_xe(gt);
  
- 	if (val == 0)
- 		return;
- 
--	drm_WARN(&gt_to_xe(gt)->drm, 1,
-+	drm_WARN(&gt_to_xe(mmio)->drm, 1,
- 		 "Interrupt register 0x%x is not zero: 0x%08x\n",
- 		 reg.addr, val);
--	xe_mmio_write32(gt, reg, 0xffffffff);
--	xe_mmio_read32(gt, reg);
--	xe_mmio_write32(gt, reg, 0xffffffff);
--	xe_mmio_read32(gt, reg);
-+	xe_mmio_write32(mmio, reg, 0xffffffff);
-+	xe_mmio_read32(mmio, reg);
-+	xe_mmio_write32(mmio, reg, 0xffffffff);
-+	xe_mmio_read32(mmio, reg);
+ 	if (GRAPHICS_VERx100(xe) >= 1250 && !xe_gt_is_media_type(gt))
+ 		/*
+diff --git a/drivers/gpu/drm/xe/xe_gt.h b/drivers/gpu/drm/xe/xe_gt.h
+index 086369f7ee6d..f4e98f499b36 100644
+--- a/drivers/gpu/drm/xe/xe_gt.h
++++ b/drivers/gpu/drm/xe/xe_gt.h
+@@ -49,11 +49,6 @@ static inline bool xe_gt_is_media_type(struct xe_gt *gt)
+ 	return gt->info.type == XE_GT_TYPE_MEDIA;
  }
  
- /*
-  * Unmask and enable the specified interrupts.  Does not check current state,
-  * so any bits not specified here will become masked and disabled.
+-#define gt_to_xe(gt__)								\
+-	_Generic(gt__,								\
+-		 const struct xe_gt *: (const struct xe_device *)((gt__)->xe),	\
+-		 struct xe_gt *: (gt__)->xe)
+-
+ static inline bool xe_gt_is_usm_hwe(struct xe_gt *gt, struct xe_hw_engine *hwe)
+ {
+ 	struct xe_device *xe = gt_to_xe(gt);
+diff --git a/drivers/gpu/drm/xe/xe_gt_printk.h b/drivers/gpu/drm/xe/xe_gt_printk.h
+index 0b801429cf1a..5991bcadd47e 100644
+--- a/drivers/gpu/drm/xe/xe_gt_printk.h
++++ b/drivers/gpu/drm/xe/xe_gt_printk.h
+@@ -11,7 +11,7 @@
+ #include "xe_device_types.h"
+ 
+ #define xe_gt_printk(_gt, _level, _fmt, ...) \
+-	drm_##_level(&(_gt)->xe->drm, "GT%u: " _fmt, (_gt)->info.id, ##__VA_ARGS__)
++	drm_##_level(&gt_to_xe(_gt)->drm, "GT%u: " _fmt, (_gt)->info.id, ##__VA_ARGS__)
+ 
+ #define xe_gt_err(_gt, _fmt, ...) \
+ 	xe_gt_printk((_gt), err, _fmt, ##__VA_ARGS__)
+@@ -32,10 +32,10 @@
+ 	xe_gt_printk((_gt), err_ratelimited, _fmt, ##__VA_ARGS__)
+ 
+ #define xe_gt_WARN(_gt, _condition, _fmt, ...) \
+-	drm_WARN(&(_gt)->xe->drm, _condition, "GT%u: " _fmt, (_gt)->info.id, ##__VA_ARGS__)
++	drm_WARN(&gt_to_xe(_gt)->drm, _condition, "GT%u: " _fmt, (_gt)->info.id, ##__VA_ARGS__)
+ 
+ #define xe_gt_WARN_ONCE(_gt, _condition, _fmt, ...) \
+-	drm_WARN_ONCE(&(_gt)->xe->drm, _condition, "GT%u: " _fmt, (_gt)->info.id, ##__VA_ARGS__)
++	drm_WARN_ONCE(&gt_to_xe(_gt)->drm, _condition, "GT%u: " _fmt, (_gt)->info.id, ##__VA_ARGS__)
+ 
+ #define xe_gt_WARN_ON(_gt, _condition) \
+ 	xe_gt_WARN((_gt), _condition, "%s(%s)", "gt_WARN_ON", __stringify(_condition))
+diff --git a/drivers/gpu/drm/xe/xe_gt_tlb_invalidation.c b/drivers/gpu/drm/xe/xe_gt_tlb_invalidation.c
+index c815a42e2cdb..c9e8825c02aa 100644
+--- a/drivers/gpu/drm/xe/xe_gt_tlb_invalidation.c
++++ b/drivers/gpu/drm/xe/xe_gt_tlb_invalidation.c
+@@ -322,8 +322,8 @@ int xe_guc_tlb_invalidation_done_handler(struct xe_guc *guc, u32 *msg, u32 len)
+ 		TLB_INVALIDATION_SEQNO_MAX;
+ 	if (!expected_seqno)
+ 		expected_seqno = 1;
+-	if (drm_WARN_ON(&gt->xe->drm, expected_seqno != msg[0])) {
+-		drm_err(&gt->xe->drm, "TLB expected_seqno(%d) != msg(%u)\n",
++	if (drm_WARN_ON(&gt_to_xe(gt)->drm, expected_seqno != msg[0])) {
++		drm_err(&gt_to_xe(gt)->drm, "TLB expected_seqno(%d) != msg(%u)\n",
+ 			expected_seqno, msg[0]);
+ 	}
+ 
+diff --git a/drivers/gpu/drm/xe/xe_gt_types.h b/drivers/gpu/drm/xe/xe_gt_types.h
+index cac676353ac6..2bc88696af77 100644
+--- a/drivers/gpu/drm/xe/xe_gt_types.h
++++ b/drivers/gpu/drm/xe/xe_gt_types.h
+@@ -76,6 +76,16 @@ enum xe_steering_type {
+ 	NUM_STEERING_TYPES
+ };
+ 
++#define gt_to_tile(gt__)							\
++	_Generic(gt__,								\
++		 const struct xe_gt *: (const struct xe_tile *)((gt__)->tile),	\
++		 struct xe_gt *: (gt__)->tile)
++
++#define gt_to_xe(gt__)										\
++	_Generic(gt__,										\
++		 const struct xe_gt *: (const struct xe_device *)(gt_to_tile(gt__)->xe),	\
++		 struct xe_gt *: gt_to_tile(gt__)->xe)
++
+ /**
+  * struct xe_gt - A "Graphics Technology" unit of the GPU
+  *
+@@ -90,8 +100,8 @@ enum xe_steering_type {
+  * separate GTs within a tile.
   */
--static void unmask_and_enable(struct xe_gt *gt, u32 irqregs, u32 bits)
-+static void unmask_and_enable(struct xe_tile *tile, u32 irqregs, u32 bits)
- {
-+	struct xe_gt *mmio = tile->primary_gt;
-+
- 	/*
- 	 * If we're just enabling an interrupt now, it shouldn't already
- 	 * be raised in the IIR.
- 	 */
--	assert_iir_is_zero(gt, IIR(irqregs));
-+	assert_iir_is_zero(mmio, IIR(irqregs));
- 
--	xe_mmio_write32(gt, IER(irqregs), bits);
--	xe_mmio_write32(gt, IMR(irqregs), ~bits);
-+	xe_mmio_write32(mmio, IER(irqregs), bits);
-+	xe_mmio_write32(mmio, IMR(irqregs), ~bits);
- 
- 	/* Posting read */
--	xe_mmio_read32(gt, IMR(irqregs));
-+	xe_mmio_read32(mmio, IMR(irqregs));
- }
- 
- /* Mask and disable all interrupts. */
--static void mask_and_disable(struct xe_gt *gt, u32 irqregs)
-+static void mask_and_disable(struct xe_tile *tile, u32 irqregs)
- {
--	xe_mmio_write32(gt, IMR(irqregs), ~0);
-+	struct xe_gt *mmio = tile->primary_gt;
-+
-+	xe_mmio_write32(mmio, IMR(irqregs), ~0);
- 	/* Posting read */
--	xe_mmio_read32(gt, IMR(irqregs));
-+	xe_mmio_read32(mmio, IMR(irqregs));
- 
--	xe_mmio_write32(gt, IER(irqregs), 0);
-+	xe_mmio_write32(mmio, IER(irqregs), 0);
- 
- 	/* IIR can theoretically queue up two events. Be paranoid. */
--	xe_mmio_write32(gt, IIR(irqregs), ~0);
--	xe_mmio_read32(gt, IIR(irqregs));
--	xe_mmio_write32(gt, IIR(irqregs), ~0);
--	xe_mmio_read32(gt, IIR(irqregs));
-+	xe_mmio_write32(mmio, IIR(irqregs), ~0);
-+	xe_mmio_read32(mmio, IIR(irqregs));
-+	xe_mmio_write32(mmio, IIR(irqregs), ~0);
-+	xe_mmio_read32(mmio, IIR(irqregs));
- }
- 
--static u32 xelp_intr_disable(struct xe_gt *gt)
-+static u32 xelp_intr_disable(struct xe_device *xe)
- {
--	xe_mmio_write32(gt, GFX_MSTR_IRQ, 0);
-+	struct xe_gt *mmio = xe_root_mmio_gt(xe);
-+
-+	xe_mmio_write32(mmio, GFX_MSTR_IRQ, 0);
- 
- 	/*
- 	 * Now with master disabled, get a sample of level indications
-@@ -88,36 +94,41 @@ static u32 xelp_intr_disable(struct xe_gt *gt)
- 	 * New indications can and will light up during processing,
- 	 * and will generate new interrupt after enabling master.
- 	 */
--	return xe_mmio_read32(gt, GFX_MSTR_IRQ);
-+	return xe_mmio_read32(mmio, GFX_MSTR_IRQ);
- }
- 
- static u32
--gu_misc_irq_ack(struct xe_gt *gt, const u32 master_ctl)
-+gu_misc_irq_ack(struct xe_device *xe, const u32 master_ctl)
- {
-+	struct xe_gt *mmio = xe_root_mmio_gt(xe);
- 	u32 iir;
- 
- 	if (!(master_ctl & GU_MISC_IRQ))
- 		return 0;
- 
--	iir = xe_mmio_read32(gt, IIR(GU_MISC_IRQ_OFFSET));
-+	iir = xe_mmio_read32(mmio, IIR(GU_MISC_IRQ_OFFSET));
- 	if (likely(iir))
--		xe_mmio_write32(gt, IIR(GU_MISC_IRQ_OFFSET), iir);
-+		xe_mmio_write32(mmio, IIR(GU_MISC_IRQ_OFFSET), iir);
- 
- 	return iir;
- }
- 
--static inline void xelp_intr_enable(struct xe_gt *gt, bool stall)
-+static inline void xelp_intr_enable(struct xe_device *xe, bool stall)
- {
--	xe_mmio_write32(gt, GFX_MSTR_IRQ, MASTER_IRQ);
-+	struct xe_gt *mmio = xe_root_mmio_gt(xe);
-+
-+	xe_mmio_write32(mmio, GFX_MSTR_IRQ, MASTER_IRQ);
- 	if (stall)
--		xe_mmio_read32(gt, GFX_MSTR_IRQ);
-+		xe_mmio_read32(mmio, GFX_MSTR_IRQ);
- }
- 
--static void gt_irq_postinstall(struct xe_device *xe, struct xe_gt *gt)
-+static void gt_irq_postinstall(struct xe_tile *tile)
- {
-+	struct xe_device *xe = tile_to_xe(tile);
-+	struct xe_gt *mmio = tile->primary_gt;
- 	u32 irqs, dmask, smask;
--	u32 ccs_mask = xe_hw_engine_mask_per_class(gt, XE_ENGINE_CLASS_COMPUTE);
--	u32 bcs_mask = xe_hw_engine_mask_per_class(gt, XE_ENGINE_CLASS_COPY);
-+	u32 ccs_mask = xe_hw_engine_mask_per_class(tile->primary_gt, XE_ENGINE_CLASS_COMPUTE);
-+	u32 bcs_mask = xe_hw_engine_mask_per_class(tile->primary_gt, XE_ENGINE_CLASS_COPY);
- 
- 	if (xe_device_guc_submission_enabled(xe)) {
- 		irqs = GT_RENDER_USER_INTERRUPT |
-@@ -133,57 +144,57 @@ static void gt_irq_postinstall(struct xe_device *xe, struct xe_gt *gt)
- 	smask = irqs << 16;
- 
- 	/* Enable RCS, BCS, VCS and VECS class interrupts. */
--	xe_mmio_write32(gt, RENDER_COPY_INTR_ENABLE, dmask);
--	xe_mmio_write32(gt, VCS_VECS_INTR_ENABLE, dmask);
-+	xe_mmio_write32(mmio, RENDER_COPY_INTR_ENABLE, dmask);
-+	xe_mmio_write32(mmio, VCS_VECS_INTR_ENABLE, dmask);
- 	if (ccs_mask)
--		xe_mmio_write32(gt, CCS_RSVD_INTR_ENABLE, smask);
-+		xe_mmio_write32(mmio, CCS_RSVD_INTR_ENABLE, smask);
- 
- 	/* Unmask irqs on RCS, BCS, VCS and VECS engines. */
--	xe_mmio_write32(gt, RCS0_RSVD_INTR_MASK, ~smask);
--	xe_mmio_write32(gt, BCS_RSVD_INTR_MASK, ~smask);
-+	xe_mmio_write32(mmio, RCS0_RSVD_INTR_MASK, ~smask);
-+	xe_mmio_write32(mmio, BCS_RSVD_INTR_MASK, ~smask);
- 	if (bcs_mask & (BIT(1)|BIT(2)))
--		xe_mmio_write32(gt, XEHPC_BCS1_BCS2_INTR_MASK, ~dmask);
-+		xe_mmio_write32(mmio, XEHPC_BCS1_BCS2_INTR_MASK, ~dmask);
- 	if (bcs_mask & (BIT(3)|BIT(4)))
--		xe_mmio_write32(gt, XEHPC_BCS3_BCS4_INTR_MASK, ~dmask);
-+		xe_mmio_write32(mmio, XEHPC_BCS3_BCS4_INTR_MASK, ~dmask);
- 	if (bcs_mask & (BIT(5)|BIT(6)))
--		xe_mmio_write32(gt, XEHPC_BCS5_BCS6_INTR_MASK, ~dmask);
-+		xe_mmio_write32(mmio, XEHPC_BCS5_BCS6_INTR_MASK, ~dmask);
- 	if (bcs_mask & (BIT(7)|BIT(8)))
--		xe_mmio_write32(gt, XEHPC_BCS7_BCS8_INTR_MASK, ~dmask);
--	xe_mmio_write32(gt, VCS0_VCS1_INTR_MASK, ~dmask);
--	xe_mmio_write32(gt, VCS2_VCS3_INTR_MASK, ~dmask);
--	xe_mmio_write32(gt, VECS0_VECS1_INTR_MASK, ~dmask);
-+		xe_mmio_write32(mmio, XEHPC_BCS7_BCS8_INTR_MASK, ~dmask);
-+	xe_mmio_write32(mmio, VCS0_VCS1_INTR_MASK, ~dmask);
-+	xe_mmio_write32(mmio, VCS2_VCS3_INTR_MASK, ~dmask);
-+	xe_mmio_write32(mmio, VECS0_VECS1_INTR_MASK, ~dmask);
- 	if (ccs_mask & (BIT(0)|BIT(1)))
--		xe_mmio_write32(gt, CCS0_CCS1_INTR_MASK, ~dmask);
-+		xe_mmio_write32(mmio, CCS0_CCS1_INTR_MASK, ~dmask);
- 	if (ccs_mask & (BIT(2)|BIT(3)))
--		xe_mmio_write32(gt,  CCS2_CCS3_INTR_MASK, ~dmask);
-+		xe_mmio_write32(mmio,  CCS2_CCS3_INTR_MASK, ~dmask);
- 
- 	/*
- 	 * RPS interrupts will get enabled/disabled on demand when RPS itself
- 	 * is enabled/disabled.
- 	 */
- 	/* TODO: gt->pm_ier, gt->pm_imr */
--	xe_mmio_write32(gt, GPM_WGBOXPERF_INTR_ENABLE, 0);
--	xe_mmio_write32(gt, GPM_WGBOXPERF_INTR_MASK,  ~0);
-+	xe_mmio_write32(mmio, GPM_WGBOXPERF_INTR_ENABLE, 0);
-+	xe_mmio_write32(mmio, GPM_WGBOXPERF_INTR_MASK,  ~0);
- 
- 	/* Same thing for GuC interrupts */
--	xe_mmio_write32(gt, GUC_SG_INTR_ENABLE, 0);
--	xe_mmio_write32(gt, GUC_SG_INTR_MASK,  ~0);
-+	xe_mmio_write32(mmio, GUC_SG_INTR_ENABLE, 0);
-+	xe_mmio_write32(mmio, GUC_SG_INTR_MASK,  ~0);
- }
- 
--static void xelp_irq_postinstall(struct xe_device *xe, struct xe_gt *gt)
-+static void xelp_irq_postinstall(struct xe_device *xe, struct xe_tile *tile)
- {
- 	/* TODO: PCH */
- 
--	gt_irq_postinstall(xe, gt);
-+	gt_irq_postinstall(tile);
- 
--	unmask_and_enable(gt, GU_MISC_IRQ_OFFSET, GU_MISC_GSE);
-+	unmask_and_enable(tile, GU_MISC_IRQ_OFFSET, GU_MISC_GSE);
- 
--	xelp_intr_enable(gt, true);
-+	xelp_intr_enable(xe, true);
- }
- 
- static u32
- gt_engine_identity(struct xe_device *xe,
--		   struct xe_gt *gt,
-+		   struct xe_gt *mmio,
- 		   const unsigned int bank,
- 		   const unsigned int bit)
- {
-@@ -192,7 +203,7 @@ gt_engine_identity(struct xe_device *xe,
- 
- 	lockdep_assert_held(&xe->irq.lock);
- 
--	xe_mmio_write32(gt, IIR_REG_SELECTOR(bank), BIT(bit));
-+	xe_mmio_write32(mmio, IIR_REG_SELECTOR(bank), BIT(bit));
- 
- 	/*
- 	 * NB: Specs do not specify how long to spin wait,
-@@ -200,7 +211,7 @@ gt_engine_identity(struct xe_device *xe,
- 	 */
- 	timeout_ts = (local_clock() >> 10) + 100;
- 	do {
--		ident = xe_mmio_read32(gt, INTR_IDENTITY_REG(bank));
-+		ident = xe_mmio_read32(mmio, INTR_IDENTITY_REG(bank));
- 	} while (!(ident & INTR_DATA_VALID) &&
- 		 !time_after32(local_clock() >> 10, timeout_ts));
- 
-@@ -210,7 +221,7 @@ gt_engine_identity(struct xe_device *xe,
- 		return 0;
- 	}
- 
--	xe_mmio_write32(gt, INTR_IDENTITY_REG(bank), INTR_DATA_VALID);
-+	xe_mmio_write32(mmio, INTR_IDENTITY_REG(bank), INTR_DATA_VALID);
- 
- 	return ident;
- }
-@@ -232,10 +243,32 @@ gt_other_irq_handler(struct xe_gt *gt, const u8 instance, const u16 iir)
- 	}
- }
- 
--static void gt_irq_handler(struct xe_device *xe, struct xe_gt *gt,
-+static struct xe_gt *pick_engine_gt(struct xe_tile *tile,
-+				    enum xe_engine_class class,
-+				    unsigned int instance)
-+{
-+	struct xe_device *xe = tile_to_xe(tile);
-+
-+	if (MEDIA_VER(xe) < 13)
-+		return tile->primary_gt;
-+
-+	if (class == XE_ENGINE_CLASS_VIDEO_DECODE ||
-+	    class == XE_ENGINE_CLASS_VIDEO_ENHANCE)
-+		return tile->media_gt;
-+
-+	if (class == XE_ENGINE_CLASS_OTHER &&
-+	    instance == OTHER_MEDIA_GUC_INSTANCE)
-+		return tile->media_gt;
-+
-+	return tile->primary_gt;
-+}
-+
-+static void gt_irq_handler(struct xe_tile *tile,
- 			   u32 master_ctl, long unsigned int *intr_dw,
- 			   u32 *identity)
- {
-+	struct xe_device *xe = tile_to_xe(tile);
-+	struct xe_gt *mmio = tile->primary_gt;
- 	unsigned int bank, bit;
- 	u16 instance, intr_vec;
- 	enum xe_engine_class class;
-@@ -247,27 +280,26 @@ static void gt_irq_handler(struct xe_device *xe, struct xe_gt *gt,
- 		if (!(master_ctl & GT_DW_IRQ(bank)))
- 			continue;
- 
--		if (!xe_gt_is_media_type(gt)) {
--			intr_dw[bank] =
--				xe_mmio_read32(gt, GT_INTR_DW(bank));
--			for_each_set_bit(bit, intr_dw + bank, 32)
--				identity[bit] = gt_engine_identity(xe, gt,
--								   bank, bit);
--			xe_mmio_write32(gt, GT_INTR_DW(bank),
--					intr_dw[bank]);
--		}
-+		intr_dw[bank] = xe_mmio_read32(mmio, GT_INTR_DW(bank));
-+		for_each_set_bit(bit, intr_dw + bank, 32)
-+			identity[bit] = gt_engine_identity(xe, mmio, bank, bit);
-+		xe_mmio_write32(mmio, GT_INTR_DW(bank), intr_dw[bank]);
- 
- 		for_each_set_bit(bit, intr_dw + bank, 32) {
-+			struct xe_gt *engine_gt;
-+
- 			class = INTR_ENGINE_CLASS(identity[bit]);
- 			instance = INTR_ENGINE_INSTANCE(identity[bit]);
- 			intr_vec = INTR_ENGINE_INTR(identity[bit]);
- 
-+			engine_gt = pick_engine_gt(tile, class, instance);
-+
- 			if (class == XE_ENGINE_CLASS_OTHER) {
--				gt_other_irq_handler(gt, instance, intr_vec);
-+				gt_other_irq_handler(engine_gt, instance, intr_vec);
- 				continue;
- 			}
- 
--			hwe = xe_gt_hw_engine(gt, class, instance, false);
-+			hwe = xe_gt_hw_engine(engine_gt, class, instance, false);
- 			if (!hwe)
- 				continue;
- 
-@@ -285,24 +317,24 @@ static void gt_irq_handler(struct xe_device *xe, struct xe_gt *gt,
- static irqreturn_t xelp_irq_handler(int irq, void *arg)
- {
- 	struct xe_device *xe = arg;
--	struct xe_gt *gt = xe_root_mmio_gt(xe);
-+	struct xe_tile *tile = xe_device_get_root_tile(xe);
- 	u32 master_ctl, gu_misc_iir;
- 	long unsigned int intr_dw[2];
- 	u32 identity[32];
- 
--	master_ctl = xelp_intr_disable(gt);
-+	master_ctl = xelp_intr_disable(xe);
- 	if (!master_ctl) {
--		xelp_intr_enable(gt, false);
-+		xelp_intr_enable(xe, false);
- 		return IRQ_NONE;
- 	}
- 
--	gt_irq_handler(xe, gt, master_ctl, intr_dw, identity);
-+	gt_irq_handler(tile, master_ctl, intr_dw, identity);
- 
- 	xe_display_irq_handler(xe, master_ctl);
- 
--	gu_misc_iir = gu_misc_irq_ack(gt, master_ctl);
-+	gu_misc_iir = gu_misc_irq_ack(xe, master_ctl);
- 
--	xelp_intr_enable(gt, false);
-+	xelp_intr_enable(xe, false);
- 
- 	xe_display_irq_enable(xe, gu_misc_iir);
- 
-@@ -311,38 +343,38 @@ static irqreturn_t xelp_irq_handler(int irq, void *arg)
- 
- static u32 dg1_intr_disable(struct xe_device *xe)
- {
--	struct xe_gt *gt = xe_root_mmio_gt(xe);
-+	struct xe_gt *mmio = xe_root_mmio_gt(xe);
- 	u32 val;
- 
- 	/* First disable interrupts */
--	xe_mmio_write32(gt, DG1_MSTR_TILE_INTR, 0);
-+	xe_mmio_write32(mmio, DG1_MSTR_TILE_INTR, 0);
- 
- 	/* Get the indication levels and ack the master unit */
--	val = xe_mmio_read32(gt, DG1_MSTR_TILE_INTR);
-+	val = xe_mmio_read32(mmio, DG1_MSTR_TILE_INTR);
- 	if (unlikely(!val))
- 		return 0;
- 
--	xe_mmio_write32(gt, DG1_MSTR_TILE_INTR, val);
-+	xe_mmio_write32(mmio, DG1_MSTR_TILE_INTR, val);
- 
- 	return val;
- }
- 
- static void dg1_intr_enable(struct xe_device *xe, bool stall)
- {
--	struct xe_gt *gt = xe_root_mmio_gt(xe);
-+	struct xe_gt *mmio = xe_root_mmio_gt(xe);
- 
--	xe_mmio_write32(gt, DG1_MSTR_TILE_INTR, DG1_MSTR_IRQ);
-+	xe_mmio_write32(mmio, DG1_MSTR_TILE_INTR, DG1_MSTR_IRQ);
- 	if (stall)
--		xe_mmio_read32(gt, DG1_MSTR_TILE_INTR);
-+		xe_mmio_read32(mmio, DG1_MSTR_TILE_INTR);
- }
- 
--static void dg1_irq_postinstall(struct xe_device *xe, struct xe_gt *gt)
-+static void dg1_irq_postinstall(struct xe_device *xe, struct xe_tile *tile)
- {
--	gt_irq_postinstall(xe, gt);
-+	gt_irq_postinstall(tile);
- 
--	unmask_and_enable(gt, GU_MISC_IRQ_OFFSET, GU_MISC_GSE);
-+	unmask_and_enable(tile, GU_MISC_IRQ_OFFSET, GU_MISC_GSE);
- 
--	if (gt->info.id == XE_GT0)
-+	if (tile->id == 0)
- 		dg1_intr_enable(xe, true);
- }
- 
-@@ -354,8 +386,8 @@ static void dg1_irq_postinstall(struct xe_device *xe, struct xe_gt *gt)
- static irqreturn_t dg1_irq_handler(int irq, void *arg)
- {
- 	struct xe_device *xe = arg;
--	struct xe_gt *gt;
--	u32 master_tile_ctl, master_ctl = 0, tile0_master_ctl = 0, gu_misc_iir;
+ struct xe_gt {
+-	/** @xe: backpointer to XE device */
+-	struct xe_device *xe;
++	/** @tile: Backpointer to GT's tile */
 +	struct xe_tile *tile;
-+	u32 master_tile_ctl, master_ctl = 0, gu_misc_iir = 0;
- 	long unsigned int intr_dw[2];
- 	u32 identity[32];
- 	u8 id;
-@@ -368,12 +400,13 @@ static irqreturn_t dg1_irq_handler(int irq, void *arg)
- 		return IRQ_NONE;
+ 
+ 	/** @info: GT info */
+ 	struct {
+diff --git a/drivers/gpu/drm/xe/xe_mocs.c b/drivers/gpu/drm/xe/xe_mocs.c
+index c7a9e733ef3b..86277ecb749b 100644
+--- a/drivers/gpu/drm/xe/xe_mocs.c
++++ b/drivers/gpu/drm/xe/xe_mocs.c
+@@ -472,7 +472,7 @@ static void __init_mocs_table(struct xe_gt *gt,
+ 	unsigned int i;
+ 	u32 mocs;
+ 
+-	mocs_dbg(&gt->xe->drm, "entries:%d\n", info->n_entries);
++	mocs_dbg(&gt_to_xe(gt)->drm, "entries:%d\n", info->n_entries);
+ 	drm_WARN_ONCE(&xe->drm, !info->unused_entries_index,
+ 		      "Unused entries index should have been defined\n");
+ 	for (i = 0;
+@@ -480,7 +480,7 @@ static void __init_mocs_table(struct xe_gt *gt,
+ 	     i++) {
+ 		struct xe_reg reg = XE_REG(addr + i * 4);
+ 
+-		mocs_dbg(&gt->xe->drm, "%d 0x%x 0x%x\n", i, reg.addr, mocs);
++		mocs_dbg(&gt_to_xe(gt)->drm, "%d 0x%x 0x%x\n", i, reg.addr, mocs);
+ 		xe_mmio_write32(gt, reg, mocs);
  	}
+ }
+@@ -509,13 +509,13 @@ static void init_l3cc_table(struct xe_gt *gt,
+ 	unsigned int i;
+ 	u32 l3cc;
  
--	for_each_gt(gt, xe, id) {
--		if ((master_tile_ctl & DG1_MSTR_TILE(gt_to_tile(gt)->id)) == 0)
-+	for_each_tile(tile, xe, id) {
-+		struct xe_gt *mmio = tile->primary_gt;
-+
-+		if ((master_tile_ctl & DG1_MSTR_TILE(tile->id)) == 0)
- 			continue;
+-	mocs_dbg(&gt->xe->drm, "entries:%d\n", info->n_entries);
++	mocs_dbg(&gt_to_xe(gt)->drm, "entries:%d\n", info->n_entries);
+ 	for (i = 0;
+ 	     i < (info->n_entries + 1) / 2 ?
+ 	     (l3cc = l3cc_combine(get_entry_l3cc(info, 2 * i),
+ 				  get_entry_l3cc(info, 2 * i + 1))), 1 : 0;
+ 	     i++) {
+-		mocs_dbg(&gt->xe->drm, "%d 0x%x 0x%x\n", i, LNCFCMOCS(i).addr,
++		mocs_dbg(&gt_to_xe(gt)->drm, "%d 0x%x 0x%x\n", i, LNCFCMOCS(i).addr,
+ 			 l3cc);
+ 		xe_mmio_write32(gt, LNCFCMOCS(i), l3cc);
+ 	}
+@@ -525,7 +525,7 @@ void xe_mocs_init_early(struct xe_gt *gt)
+ {
+ 	struct xe_mocs_info table;
  
--		if (!xe_gt_is_media_type(gt))
--			master_ctl = xe_mmio_read32(gt, GFX_MSTR_IRQ);
-+		master_ctl = xe_mmio_read32(mmio, GFX_MSTR_IRQ);
+-	get_mocs_settings(gt->xe, &table);
++	get_mocs_settings(gt_to_xe(gt), &table);
+ 	gt->mocs.uc_index = table.uc_index;
+ 	gt->mocs.wb_index = table.wb_index;
+ }
+@@ -538,8 +538,8 @@ void xe_mocs_init(struct xe_gt *gt)
+ 	/*
+ 	 * LLC and eDRAM control values are not applicable to dgfx
+ 	 */
+-	flags = get_mocs_settings(gt->xe, &table);
+-	mocs_dbg(&gt->xe->drm, "flag:0x%x\n", flags);
++	flags = get_mocs_settings(gt_to_xe(gt), &table);
++	mocs_dbg(&gt_to_xe(gt)->drm, "flag:0x%x\n", flags);
  
- 		/*
- 		 * We might be in irq handler just when PCIe DPC is initiated
-@@ -381,124 +414,125 @@ static irqreturn_t dg1_irq_handler(int irq, void *arg)
- 		 * irq as device is inaccessible.
+ 	if (flags & HAS_GLOBAL_MOCS)
+ 		__init_mocs_table(gt, &table, GLOBAL_MOCS(0).addr);
+diff --git a/drivers/gpu/drm/xe/xe_pci.c b/drivers/gpu/drm/xe/xe_pci.c
+index fc7984e4b40c..1e1e401b25ae 100644
+--- a/drivers/gpu/drm/xe/xe_pci.c
++++ b/drivers/gpu/drm/xe/xe_pci.c
+@@ -556,7 +556,7 @@ static int xe_info_init(struct xe_device *xe,
+ 
+ 		gt = &tile->primary_gt;
+ 		gt->info.id = id;
+-		gt->xe = xe;
++		gt->tile = tile;
+ 
+ 		if (id == 0) {
+ 			gt->info.type = XE_GT_TYPE_MAIN;
+diff --git a/drivers/gpu/drm/xe/xe_pt.c b/drivers/gpu/drm/xe/xe_pt.c
+index f15282996c3b..61126cefe0b5 100644
+--- a/drivers/gpu/drm/xe/xe_pt.c
++++ b/drivers/gpu/drm/xe/xe_pt.c
+@@ -695,7 +695,7 @@ xe_pt_stage_bind_entry(struct xe_ptw *parent, pgoff_t offset,
+ 		 * TODO: Suballocate the pt bo to avoid wasting a lot of
+ 		 * memory.
  		 */
- 		if (master_ctl == REG_GENMASK(31, 0)) {
--			dev_dbg(gt_to_xe(gt)->drm.dev,
-+			dev_dbg(tile_to_xe(tile)->drm.dev,
- 				"Ignore this IRQ as device might be in DPC containment.\n");
- 			return IRQ_HANDLED;
- 		}
- 
--		if (!xe_gt_is_media_type(gt))
--			xe_mmio_write32(gt, GFX_MSTR_IRQ, master_ctl);
--		gt_irq_handler(xe, gt, master_ctl, intr_dw, identity);
-+		xe_mmio_write32(mmio, GFX_MSTR_IRQ, master_ctl);
-+
-+		gt_irq_handler(tile, master_ctl, intr_dw, identity);
- 
- 		/*
--		 * Save primary tile's master interrupt register for display
--		 * processing below.
-+		 * Display interrupts (including display backlight operations
-+		 * that get reported as Gunit GSE) would only be hooked up to
-+		 * the primary tile.
- 		 */
--		if (id == 0)
--			tile0_master_ctl = master_ctl;
-+		if (id == 0) {
-+			xe_display_irq_handler(xe, master_ctl);
-+			gu_misc_iir = gu_misc_irq_ack(xe, master_ctl);
-+		}
- 	}
- 
--	xe_display_irq_handler(xe, tile0_master_ctl);
--
--	/* Gunit GSE interrupts can trigger display backlight operations */
--	gu_misc_iir = gu_misc_irq_ack(gt, tile0_master_ctl);
--
- 	dg1_intr_enable(xe, false);
--
- 	xe_display_irq_enable(xe, gu_misc_iir);
- 
- 	return IRQ_HANDLED;
- }
- 
--static void gt_irq_reset(struct xe_gt *gt)
-+static void gt_irq_reset(struct xe_tile *tile)
- {
--	u32 ccs_mask = xe_hw_engine_mask_per_class(gt, XE_ENGINE_CLASS_COMPUTE);
--	u32 bcs_mask = xe_hw_engine_mask_per_class(gt, XE_ENGINE_CLASS_COPY);
-+	struct xe_gt *mmio = tile->primary_gt;
-+
-+	u32 ccs_mask = xe_hw_engine_mask_per_class(tile->primary_gt,
-+						   XE_ENGINE_CLASS_COMPUTE);
-+	u32 bcs_mask = xe_hw_engine_mask_per_class(tile->primary_gt,
-+						   XE_ENGINE_CLASS_COPY);
- 
- 	/* Disable RCS, BCS, VCS and VECS class engines. */
--	xe_mmio_write32(gt, RENDER_COPY_INTR_ENABLE,	 0);
--	xe_mmio_write32(gt, VCS_VECS_INTR_ENABLE,	 0);
-+	xe_mmio_write32(mmio, RENDER_COPY_INTR_ENABLE, 0);
-+	xe_mmio_write32(mmio, VCS_VECS_INTR_ENABLE, 0);
- 	if (ccs_mask)
--		xe_mmio_write32(gt, CCS_RSVD_INTR_ENABLE, 0);
-+		xe_mmio_write32(mmio, CCS_RSVD_INTR_ENABLE, 0);
- 
- 	/* Restore masks irqs on RCS, BCS, VCS and VECS engines. */
--	xe_mmio_write32(gt, RCS0_RSVD_INTR_MASK,	~0);
--	xe_mmio_write32(gt, BCS_RSVD_INTR_MASK,	~0);
-+	xe_mmio_write32(mmio, RCS0_RSVD_INTR_MASK,	~0);
-+	xe_mmio_write32(mmio, BCS_RSVD_INTR_MASK,	~0);
- 	if (bcs_mask & (BIT(1)|BIT(2)))
--		xe_mmio_write32(gt, XEHPC_BCS1_BCS2_INTR_MASK, ~0);
-+		xe_mmio_write32(mmio, XEHPC_BCS1_BCS2_INTR_MASK, ~0);
- 	if (bcs_mask & (BIT(3)|BIT(4)))
--		xe_mmio_write32(gt, XEHPC_BCS3_BCS4_INTR_MASK, ~0);
-+		xe_mmio_write32(mmio, XEHPC_BCS3_BCS4_INTR_MASK, ~0);
- 	if (bcs_mask & (BIT(5)|BIT(6)))
--		xe_mmio_write32(gt, XEHPC_BCS5_BCS6_INTR_MASK, ~0);
-+		xe_mmio_write32(mmio, XEHPC_BCS5_BCS6_INTR_MASK, ~0);
- 	if (bcs_mask & (BIT(7)|BIT(8)))
--		xe_mmio_write32(gt, XEHPC_BCS7_BCS8_INTR_MASK, ~0);
--	xe_mmio_write32(gt, VCS0_VCS1_INTR_MASK,	~0);
--	xe_mmio_write32(gt, VCS2_VCS3_INTR_MASK,	~0);
--	xe_mmio_write32(gt, VECS0_VECS1_INTR_MASK,	~0);
-+		xe_mmio_write32(mmio, XEHPC_BCS7_BCS8_INTR_MASK, ~0);
-+	xe_mmio_write32(mmio, VCS0_VCS1_INTR_MASK,	~0);
-+	xe_mmio_write32(mmio, VCS2_VCS3_INTR_MASK,	~0);
-+	xe_mmio_write32(mmio, VECS0_VECS1_INTR_MASK,	~0);
- 	if (ccs_mask & (BIT(0)|BIT(1)))
--		xe_mmio_write32(gt, CCS0_CCS1_INTR_MASK, ~0);
-+		xe_mmio_write32(mmio, CCS0_CCS1_INTR_MASK, ~0);
- 	if (ccs_mask & (BIT(2)|BIT(3)))
--		xe_mmio_write32(gt,  CCS2_CCS3_INTR_MASK, ~0);
-+		xe_mmio_write32(mmio,  CCS2_CCS3_INTR_MASK, ~0);
- 
--	xe_mmio_write32(gt, GPM_WGBOXPERF_INTR_ENABLE, 0);
--	xe_mmio_write32(gt, GPM_WGBOXPERF_INTR_MASK,  ~0);
--	xe_mmio_write32(gt, GUC_SG_INTR_ENABLE,	 0);
--	xe_mmio_write32(gt, GUC_SG_INTR_MASK,		~0);
-+	xe_mmio_write32(mmio, GPM_WGBOXPERF_INTR_ENABLE, 0);
-+	xe_mmio_write32(mmio, GPM_WGBOXPERF_INTR_MASK,  ~0);
-+	xe_mmio_write32(mmio, GUC_SG_INTR_ENABLE,	 0);
-+	xe_mmio_write32(mmio, GUC_SG_INTR_MASK,		~0);
- }
- 
--static void xelp_irq_reset(struct xe_gt *gt)
-+static void xelp_irq_reset(struct xe_tile *tile)
- {
--	xelp_intr_disable(gt);
-+	xelp_intr_disable(tile_to_xe(tile));
- 
--	gt_irq_reset(gt);
-+	gt_irq_reset(tile);
- 
--	mask_and_disable(gt, GU_MISC_IRQ_OFFSET);
--	mask_and_disable(gt, PCU_IRQ_OFFSET);
-+	mask_and_disable(tile, GU_MISC_IRQ_OFFSET);
-+	mask_and_disable(tile, PCU_IRQ_OFFSET);
- }
- 
--static void dg1_irq_reset(struct xe_gt *gt)
-+static void dg1_irq_reset(struct xe_tile *tile)
- {
--	if (gt->info.id == 0)
--		dg1_intr_disable(gt_to_xe(gt));
-+	if (tile->id == 0)
-+		dg1_intr_disable(tile_to_xe(tile));
- 
--	gt_irq_reset(gt);
-+	gt_irq_reset(tile);
- 
--	mask_and_disable(gt, GU_MISC_IRQ_OFFSET);
--	mask_and_disable(gt, PCU_IRQ_OFFSET);
-+	mask_and_disable(tile, GU_MISC_IRQ_OFFSET);
-+	mask_and_disable(tile, PCU_IRQ_OFFSET);
- }
- 
- static void xe_irq_reset(struct xe_device *xe)
- {
--	struct xe_gt *gt;
-+	struct xe_tile *tile;
- 	u8 id;
- 
--	for_each_gt(gt, xe, id) {
-+	for_each_tile(tile, xe, id) {
- 		if (GRAPHICS_VERx100(xe) >= 1210)
--			dg1_irq_reset(gt);
-+			dg1_irq_reset(tile);
- 		else
--			xelp_irq_reset(gt);
-+			xelp_irq_reset(tile);
- 	}
- 
- 	xe_display_irq_reset(xe);
- }
- 
--void xe_gt_irq_postinstall(struct xe_gt *gt)
-+void xe_gt_irq_postinstall(struct xe_tile *tile)
- {
--	struct xe_device *xe = gt_to_xe(gt);
-+	struct xe_device *xe = tile_to_xe(tile);
- 
- 	if (GRAPHICS_VERx100(xe) >= 1210)
--		dg1_irq_postinstall(xe, gt);
-+		dg1_irq_postinstall(xe, tile);
- 	else
--		xelp_irq_postinstall(xe, gt);
-+		xelp_irq_postinstall(xe, tile);
- }
- 
- static void xe_irq_postinstall(struct xe_device *xe)
- {
--	struct xe_gt *gt;
-+	struct xe_tile *tile;
- 	u8 id;
- 
--	for_each_gt(gt, xe, id)
--		xe_gt_irq_postinstall(gt);
-+	for_each_tile(tile, xe, id)
-+		xe_gt_irq_postinstall(tile);
- 
- 	xe_display_irq_postinstall(xe, xe_root_mmio_gt(xe));
- }
-diff --git a/drivers/gpu/drm/xe/xe_irq.h b/drivers/gpu/drm/xe/xe_irq.h
-index 34ecf22b32d3..69113c21e1cd 100644
---- a/drivers/gpu/drm/xe/xe_irq.h
-+++ b/drivers/gpu/drm/xe/xe_irq.h
-@@ -7,10 +7,10 @@
- #define _XE_IRQ_H_
- 
- struct xe_device;
--struct xe_gt;
-+struct xe_tile;
- 
- int xe_irq_install(struct xe_device *xe);
--void xe_gt_irq_postinstall(struct xe_gt *gt);
-+void xe_gt_irq_postinstall(struct xe_tile *tile);
- void xe_irq_shutdown(struct xe_device *xe);
- void xe_irq_suspend(struct xe_device *xe);
- void xe_irq_resume(struct xe_device *xe);
+-		if (GRAPHICS_VERx100(xe_walk->gt->xe) >= 1250 && level == 1 &&
++		if (GRAPHICS_VERx100(gt_to_xe(xe_walk->gt)) >= 1250 && level == 1 &&
+ 		    covers && xe_pt_scan_64K(addr, next, xe_walk)) {
+ 			walk->shifts = xe_compact_pt_shifts;
+ 			flags |= XE_PDE_64K;
 -- 
 2.40.0
 
