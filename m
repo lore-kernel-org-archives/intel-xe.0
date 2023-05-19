@@ -4,48 +4,30 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7C718C77B75
-	for <intel-xe@archiver.kernel.org>; Fri, 19 May 2023 09:41:03 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 30F4AC77B7A
+	for <intel-xe@archiver.kernel.org>; Fri, 19 May 2023 09:42:37 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3534410E14E;
-	Fri, 19 May 2023 09:41:03 +0000 (UTC)
-Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4470910E14E;
- Fri, 19 May 2023 09:41:01 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1684489261; x=1716025261;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:content-transfer-encoding:in-reply-to;
- bh=jjSgRuyJkBnG/vrWLXUL4ivDFw/8Ieq66WjecBNhUAg=;
- b=I7w82F+jvU+j+71+xmVd8YTk6GwcgQneVzbOtkM8odpZqxt8ApyZa66b
- jWtdprv76R6Gh8Ja0tTfZ6AApxq9eEMI4iOfsOV4s2zl7W0pqa+DCgG6c
- rApGCbAvEfCmeHjat6+pW7Y03cxLZHaG1XqvVzmby63ouy4jS4v4/Mggo
- aPfQu53eMRMtr4W9Y3f8iSQU6z9I4netixqJ07AB+YzFhMNxu+wWMbY9p
- mqQJjc/wE+cJxdF8BgtuJilBq2JNzA8inu1q4VV35P1oJ0g/c/oyurlLu
- DNswLoHgPqSel2RdzoiyE12SF16fvQpoR60jo8tNOEkcWTpyRKo9ovHO0 Q==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10714"; a="354684349"
-X-IronPort-AV: E=Sophos;i="6.00,176,1681196400"; d="scan'208";a="354684349"
-Received: from fmsmga008.fm.intel.com ([10.253.24.58])
- by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 19 May 2023 02:41:00 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10714"; a="767556568"
-X-IronPort-AV: E=Sophos;i="6.00,176,1681196400"; d="scan'208";a="767556568"
-Received: from joe-255.igk.intel.com (HELO localhost) ([10.91.220.57])
- by fmsmga008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 19 May 2023 02:40:58 -0700
-Date: Fri, 19 May 2023 11:40:56 +0200
-From: Stanislaw Gruszka <stanislaw.gruszka@linux.intel.com>
-To: Matthew Auld <matthew.auld@intel.com>
-Message-ID: <20230519094056.GB650806@linux.intel.com>
-References: <20230519090733.489019-1-matthew.auld@intel.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0874310E350;
+	Fri, 19 May 2023 09:42:37 +0000 (UTC)
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id E49D210E350;
+ Fri, 19 May 2023 09:42:34 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id CD911A47DF;
+ Fri, 19 May 2023 09:42:33 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============6999751846588308857=="
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Matthew Auld" <matthew.auld@intel.com>
+Date: Fri, 19 May 2023 09:42:33 -0000
+Message-ID: <168448935383.26991.5500458455326220946@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20230519090733.489019-1-matthew.auld@intel.com>
 In-Reply-To: <20230519090733.489019-1-matthew.auld@intel.com>
-Subject: Re: [Intel-xe] [PATCH v2] drm: fix drmm_mutex_init()
+Subject: [Intel-xe] =?utf-8?q?=E2=97=8B_CI=2EBAT=3A_info_for_drm=3A_fix_d?=
+ =?utf-8?q?rmm=5Fmutex=5Finit=28=29?=
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -57,54 +39,68 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Cc: Jocelyn Falempe <jfalempe@redhat.com>,
- Sarah Walker <sarah.walker@imgtec.com>, Daniel Vetter <daniel.vetter@ffwll.ch>,
- dri-devel@lists.freedesktop.org,
- Boris Brezillon <boris.brezillon@collabora.com>,
- Thomas Zimmermann <tzimmermann@suse.de>, intel-xe@lists.freedesktop.org
+Reply-To: intel-xe@lists.freedesktop.org
+Cc: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Fri, May 19, 2023 at 10:07:33AM +0100, Matthew Auld wrote:
-> In mutex_init() lockdep identifies a lock by defining a special static
-> key for each lock class. However if we wrap the macro in a function,
-> like in drmm_mutex_init(), we end up generating:
-> 
-> int drmm_mutex_init(struct drm_device *dev, struct mutex *lock)
-> {
->       static struct lock_class_key __key;
-> 
->       __mutex_init((lock), "lock", &__key);
->       ....
-> }
-> 
-> The static __key here is what lockdep uses to identify the lock class,
-> however since this is just a normal function the key here will be
-> created once, where all callers then use the same key. In effect the
-> mutex->depmap.key will be the same pointer for different
-> drmm_mutex_init() callers. This then results in impossible lockdep
-> splats since lockdep thinks completely unrelated locks are the same lock
-> class.
-> 
-> To fix this turn drmm_mutex_init() into a macro such that it generates a
-> different "static struct lock_class_key __key" for each invocation,
-> which looks to be inline with what mutex_init() wants.
-> 
-> v2:
->   - Revamp the commit message with clearer explanation of the issue.
->   - Rather export __drmm_mutex_release() than static inline.
-> 
-> Reported-by: Thomas Hellström <thomas.hellstrom@linux.intel.com>
-> Reported-by: Sarah Walker <sarah.walker@imgtec.com>
-> Fixes: e13f13e039dc ("drm: Add DRM-managed mutex_init()")
-> Cc: Stanislaw Gruszka <stanislaw.gruszka@linux.intel.com>
-> Cc: Boris Brezillon <boris.brezillon@collabora.com>
-> Cc: Thomas Zimmermann <tzimmermann@suse.de>
-> Cc: Jocelyn Falempe <jfalempe@redhat.com>
-> Cc: Daniel Vetter <daniel.vetter@ffwll.ch>
-> Cc: dri-devel@lists.freedesktop.org
-> Signed-off-by: Matthew Auld <matthew.auld@intel.com>
-Reviewed-by: Stanislaw Gruszka <stanislaw.gruszka@linux.intel.com>
+--===============6999751846588308857==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-Regards
-Stanislaw
+== Series Details ==
+
+Series: drm: fix drmm_mutex_init()
+URL   : https://patchwork.freedesktop.org/series/118005/
+State : info
+
+== Summary ==
+
+Participating hosts:
+bat-atsm-2
+bat-dg2-oem2
+bat-adlp-7
+Missing hosts results[0]:
+Results: [xe-pw-118005v1](https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-118005v1/index.html)
+
+
+
+--===============6999751846588308857==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm: fix drmm_mutex_init()</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/118005/">https://patchwork.freedesktop.org/series/118005/</a></td></tr>
+<tr><td><b>State:</b></td><td>info</td></tr>
+
+</table>
+
+
+    <p>Participating hosts:<br />
+bat-atsm-2<br />
+bat-dg2-oem2<br />
+bat-adlp-7<br />
+Missing hosts results[0]:<br />
+Results: <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-118005v1/index.html">xe-pw-118005v1</a></p>
+
+</body>
+</html>
+
+--===============6999751846588308857==--
