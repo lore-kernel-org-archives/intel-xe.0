@@ -4,135 +4,54 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2D15DC77B7A
-	for <intel-xe@archiver.kernel.org>; Sat, 20 May 2023 05:52:35 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0481AC77B7D
+	for <intel-xe@archiver.kernel.org>; Sat, 20 May 2023 10:11:53 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id DD56D10E494;
-	Sat, 20 May 2023 05:52:34 +0000 (UTC)
-Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2C6DD10E494
- for <intel-xe@lists.freedesktop.org>; Sat, 20 May 2023 05:52:33 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id AD34210E154;
+	Sat, 20 May 2023 10:11:52 +0000 (UTC)
+Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D073D10E154
+ for <intel-xe@lists.freedesktop.org>; Sat, 20 May 2023 10:11:50 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1684561953; x=1716097953;
- h=date:from:to:cc:subject:message-id:references:
- in-reply-to:mime-version;
- bh=x56ZA8zFxTIGbiCd69EzvQaSYG4E9RPKh9jh+GhmOwA=;
- b=nQaU23z+Ub4WahfwLJZ25H6jx5+FU4xnCNJktN57FtYI77wVLEwNEbsT
- nVZXoflM7DH/UK0+70iBF41LELVz/VMPZHme7C14P367T+YP9EpYFQzvZ
- s5bLLfx0QZFj6WHqKkuXv065ccprpiQFl37Zkxd/wSOsq7k5iAm5PtwWB
- I2Jh3jMNM5Zwti8wyL2Yo0fNENj/W0HqerLUQhUzZicjLcVq4qpOpbF4C
- Cuhz3Wq424PYglP6G6MGjPisfzHU4URGTQO/NtRhm4od580dT1XhLdH0H
- ExX/WqROnh3P34zzsqfdQaLjkVdMnEPZW2dERl8/hzUQzOgKf7GYShXXf A==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10715"; a="350065309"
-X-IronPort-AV: E=Sophos;i="6.00,179,1681196400"; d="scan'208";a="350065309"
-Received: from orsmga001.jf.intel.com ([10.7.209.18])
- by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 19 May 2023 22:52:32 -0700
+ t=1684577510; x=1716113510;
+ h=message-id:date:mime-version:subject:to:cc:references:
+ from:in-reply-to:content-transfer-encoding;
+ bh=GPcoWXC3xb+oJSGCJGYOt3PbgNqbhg23ub4qHei0uDU=;
+ b=beZKSy5+Fyq7bFJRMDtSFmGcnyS/MEoHLjVeObCvyHjqMKHyQU7dkeDu
+ ZGF3yWZFgFw4sWoTqZ12UYqTv/gD3GpS724LPQ9eKYKumCGoSSy9/ecuN
+ FfkGPTwzhCu44DFuAVZrkfJxPZ5ojIMsz9D5enfyTLqA7sVIw4qNzkj7d
+ zABdR7ZyuDGWOkHEOXpnDJPCBe7jRC8Beese5kEsRzOf6sNjV/3meK3Es
+ DTuLbuSBW0KIGsoXMHDW8KalPISKgWG1Ac5m0RwYD8Wkdf52Y6Zl5+x0S
+ RhH+I5hwWz5oXNBIBLTmyOA6BnO7le+V6tajq7j4FTN2yYlfJTQFfnRPp g==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10715"; a="438923467"
+X-IronPort-AV: E=Sophos;i="6.00,179,1681196400"; d="scan'208";a="438923467"
+Received: from orsmga003.jf.intel.com ([10.7.209.27])
+ by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 20 May 2023 03:11:49 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10715"; a="735753782"
-X-IronPort-AV: E=Sophos;i="6.00,179,1681196400"; d="scan'208";a="735753782"
-Received: from fmsmsx601.amr.corp.intel.com ([10.18.126.81])
- by orsmga001.jf.intel.com with ESMTP; 19 May 2023 22:52:32 -0700
-Received: from fmsmsx611.amr.corp.intel.com (10.18.126.91) by
- fmsmsx601.amr.corp.intel.com (10.18.126.81) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.23; Fri, 19 May 2023 22:52:32 -0700
-Received: from FMSEDG603.ED.cps.intel.com (10.1.192.133) by
- fmsmsx611.amr.corp.intel.com (10.18.126.91) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.23 via Frontend Transport; Fri, 19 May 2023 22:52:32 -0700
-Received: from NAM11-CO1-obe.outbound.protection.outlook.com (104.47.56.169)
- by edgegateway.intel.com (192.55.55.68) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2507.23; Fri, 19 May 2023 22:52:31 -0700
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=MPeUwZpwvfmI5gEiYQZ3vJ9ydaj6jSUmb3Yl1gaaWi90JV9cFmU4M5Q+OxEV/jquBGTGyXFX635p5n5OUGMxTe7FNP9D/eAhYQUkRhUuRAMv4u5Yo7ixqHLOUM2U+JRWBYA5fBasUiPUShdPqx38Yqg9j62I80d7Aprb9i1qRoyx/gWAFUnNBgNv6Py5+zV9Wzok+yMvyGJE4gdu+iUKTZBEUFIOu7ivNlQ3ZifOSMKaoGzXI50la0aw7qZ8umBeZQ7NcjA/+XSpEfj07B3OB8vcDaUB6Mbj1LqUnER0p5SSdUi+hg230OzlpVD8rNMpJLRQWb3C+wvuYk/X/rUZuw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=b5ievYEE/hr+AN9kRN9bCjFRMNocba4fVVgzws7Ct9g=;
- b=gfop0+CEKo3GwatkQMSD/ujOu0ubryRluGm8a7OO3YrVMl2ccUzRbmHhDIsYD5QUSyxosNIrytY0I8zI7WjRbBSUe/JDTZOZ2fJN+PfbA/LjCdekfn/VqWpie/63olBLRZtZixRUzsN9wTl2TNVw+IDRAvdiNRbh2A2WiJwflNpQi+7wn3n60FA4N4nMLdU1+J0ZVaxRUyNbYKQqXuzTYIJQg91ICX1WVQ4NWw1J30xq1jA9IaCrNV4mw7A+rqgr2pwZgfRgQyNT2zkH8TJp/7+45NMSqlGUdNNXH8bgSw0J/NZItzUIJJ9n1zzIDA3zgGZo1AOeqCS51dIumPmnCg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
- dkim=pass header.d=intel.com; arc=none
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=intel.com;
-Received: from CY5PR11MB6139.namprd11.prod.outlook.com (2603:10b6:930:29::17)
- by IA1PR11MB7247.namprd11.prod.outlook.com (2603:10b6:208:42d::12)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6411.19; Sat, 20 May
- 2023 05:52:30 +0000
-Received: from CY5PR11MB6139.namprd11.prod.outlook.com
- ([fe80::44e7:c479:62f4:3eb4]) by CY5PR11MB6139.namprd11.prod.outlook.com
- ([fe80::44e7:c479:62f4:3eb4%3]) with mapi id 15.20.6411.021; Sat, 20 May 2023
- 05:52:30 +0000
-Date: Fri, 19 May 2023 22:52:28 -0700
-From: Lucas De Marchi <lucas.demarchi@intel.com>
-To: Matt Roper <matthew.d.roper@intel.com>
-Message-ID: <bj3znaidiyjruvb7rfq4wfamduha4payz7j6lkcoarpdklmy7q@w3p5xgatwifg>
-X-Patchwork-Hint: comment
-References: <20230519231827.3572452-1-matthew.d.roper@intel.com>
- <20230519231827.3572452-7-matthew.d.roper@intel.com>
-Content-Type: text/plain; charset="us-ascii"; format=flowed
-Content-Disposition: inline
-In-Reply-To: <20230519231827.3572452-7-matthew.d.roper@intel.com>
-X-ClientProxiedBy: BYAPR08CA0022.namprd08.prod.outlook.com
- (2603:10b6:a03:100::35) To CY5PR11MB6139.namprd11.prod.outlook.com
- (2603:10b6:930:29::17)
+X-IronPort-AV: E=McAfee;i="6600,9927,10715"; a="653337400"
+X-IronPort-AV: E=Sophos;i="6.00,179,1681196400"; d="scan'208";a="653337400"
+Received: from irvmail002.ir.intel.com ([10.43.11.120])
+ by orsmga003.jf.intel.com with ESMTP; 20 May 2023 03:11:46 -0700
+Received: from [10.249.153.12] (mwajdecz-MOBL.ger.corp.intel.com
+ [10.249.153.12])
+ by irvmail002.ir.intel.com (Postfix) with ESMTP id 06C9A34EF8;
+ Sat, 20 May 2023 11:11:44 +0100 (IST)
+Message-ID: <089629af-306d-93c4-08c6-b844cd1fdea4@intel.com>
+Date: Sat, 20 May 2023 12:11:44 +0200
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: CY5PR11MB6139:EE_|IA1PR11MB7247:EE_
-X-MS-Office365-Filtering-Correlation-Id: dcce583e-eebb-4664-a2b6-08db58f665e1
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: c8LxBjLxrh9zrWpbzjrpYxsgnHg/SkX9JkOmc6jMKKZTfiZYSGPYw3lP23Cw1U2qbhxpmOt7y/TxaIz/tUrtQJrZgrw/41+JULAXEpiFEEhC6yYvmFxK+4UPVbLD+/qv06OUDEKxMxuLIKgsQoEBAiavt5QWE/xglort/2d2lGlvdE25bsY0dEMeq/y4RsCYtPsvz8+ho18it4mz8Ofrv14lkGSRtxUdw3uWxMNhufYLa7nLe1+QZOXuneUyxrzCbbWJ6MimxzzU6x2yBLgdymUR9NQl9nxz1MBIrMcdR4eqDJJyIJOp5bIOwy75SLOkArClkT73UrCS0UOQ57fHqxmNaVuF5my0s+ASsUD+f38z3wbvMH0aYhNTP762huC/WR0XY713KfHniz4MRKtyKkdoWcZbCiWIgmw1qySDNdmauXuGHlqt9QQvPWp2sYDBDy02rnqIKsYeUXYI0mxqSfpRvk38dTEicYvQ/ug+m3G+xZzFbR9ic31t0V9dTmFNnjMNbxuPxzNIMXflNuFCftNXb9z8kciZKuS8DGNr4QegWu8KywQlocMsuaE9wte4
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:CY5PR11MB6139.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230028)(7916004)(376002)(396003)(136003)(346002)(366004)(39860400002)(451199021)(6486002)(26005)(9686003)(6506007)(6512007)(186003)(5660300002)(66556008)(66946007)(66476007)(82960400001)(6862004)(8936002)(4326008)(8676002)(86362001)(41300700001)(6636002)(38100700002)(316002)(33716001)(2906002)(4744005)(478600001)(83380400001);
- DIR:OUT; SFP:1102; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?VPsJj5dxSgJaX5eH2UWyjzKPPBA5/ZgJJs94a/4w+fpP5bnjLgcbsCZzmKiP?=
- =?us-ascii?Q?IG/61sBvGa/XDI315u6kviC6IdD6m7Dp3B9VRMw6UN775qZ4IzNpaELbjDtW?=
- =?us-ascii?Q?wbWXHgbwJvHci8mOyPU+KZRG9gioN6SlgwL6HEOS2dnsUarxGgak0YHFpHKd?=
- =?us-ascii?Q?iGdFVwTLUusD4UhCIPYFwhR0B6ppVM5sxdNssUNxBOVRhuRz89+X1RyoXUY0?=
- =?us-ascii?Q?FwzQ4079cJVMYsXLKLqyujvxZ7RSNiLef/pzR+oeJW5FWKRnQRV4flZiPdsM?=
- =?us-ascii?Q?SWwhkMJnhQ9ofNSbPiwHkaqXohgOyo3h9XK5B7q+1S36fc51ER8A6zHvwVIi?=
- =?us-ascii?Q?O7c9xF1Fc6RoBD62DxoJfAlu25bSdrESawStJaG0NqJzWb1QcyRSij9bRc4q?=
- =?us-ascii?Q?D3ZpllpEwab6ihTcX13UTb15uLep2et2BYtiDf+AdXk65ertgTXwiBUzfxYe?=
- =?us-ascii?Q?IIqrSwWcijrFt3A/if7Ns5joIFmLOFusi60xn3KCPlVTKB9Ba57N7Mv+sG70?=
- =?us-ascii?Q?w6JpfJH6YkQXvSW24f+BJ6gCd63Eoqm3eZHeGiTYdLXBnDndEOhes/zHlKZZ?=
- =?us-ascii?Q?1de4D/LfpV6rQY7MOly7BZS5XSuY22LXW4DCjz5oBbdlXTf7R7Yym+FbxiCL?=
- =?us-ascii?Q?XYNHbg0KAQaX6kOwk1dxNDh7xVwilYOfqhmfwiW7ZArAt4MrxjWSuu85nzV8?=
- =?us-ascii?Q?pG1/7ye+kfUfg49Hav13LyFT29gRw8vwVTJ7qSegvQBLnH31pp0GnWfgOQJa?=
- =?us-ascii?Q?1LVP4Mhr7/ZOxW12UrqTFg+00Nudi7d7cfm5j/iSwkcFU6UMycEM/tbNyJnX?=
- =?us-ascii?Q?sbreH7FAiPe5X22DJi3hxP/duhwl2Gvn2KzvkdAfhzkoJrbkQqePv2gJ4I2a?=
- =?us-ascii?Q?EN9wv38qGdxJMO0vQpb44fd73XZPtmTVGCQggv6bXScej0VkoF41ucp7cnCL?=
- =?us-ascii?Q?Ae8tG1HXkJ7pLubdLFkNobCqIU8g8ve5D5vOj8hkkDJxkjNd06JPCzArtAaA?=
- =?us-ascii?Q?l9m/C0clkevgNESvpvHTSK3zvEcM5SxmvuN+YSEMKHRDJb+4lTk5sFph8jra?=
- =?us-ascii?Q?Ovzm9Qj399SlL7ibwlHXR+XEY+bhQb5REbIbA438jvHeBi5W7ZcGvzKBM7K4?=
- =?us-ascii?Q?73bptZXcwE/RNkudeVNjKFYZezBBERdh7BjRL4cH0QJUBpnmaRzmMoy6lrZk?=
- =?us-ascii?Q?GtYzjkxi6ldximrVSjJRT/iJnXxCTeSZCTa61oKNlRVs+UZR/2F+d35bf8Uc?=
- =?us-ascii?Q?k2qq9KuKKzT7tD0FUb7yvruvW12e3j6nNy+yEqNCKF+iurXF2H/jIyk9pkD3?=
- =?us-ascii?Q?IdEqN6Xs6OhJMEeBs8zqS11/Lr7TchHpS/X4Syf3xJixbsXKQbomCI0bbGrR?=
- =?us-ascii?Q?JLHAEw9hRM1QeeatBuqkCBML0RRTaPN88X5l/VA7656zSONulww7kniWSL6d?=
- =?us-ascii?Q?eKsvs1BPfsUowhCyzlWRw23FRgrrp70m6CMUCjrPCvZ2dTHfr1ksS8p2kOB2?=
- =?us-ascii?Q?20gs0ynW7x0rE/WrJBHBBMr0mu61UVqfa33wC6m5N4HDy/P5uuPetgrR+e9v?=
- =?us-ascii?Q?JA1IveAsk7KopxHmWYPjAtVoXVElzYEJ60dHfCfC3A1NyBGY0bznQD03j7zV?=
- =?us-ascii?Q?dQ=3D=3D?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: dcce583e-eebb-4664-a2b6-08db58f665e1
-X-MS-Exchange-CrossTenant-AuthSource: CY5PR11MB6139.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 20 May 2023 05:52:30.0922 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: C6xDvUOHhebEGRnHJ+N+y6m+0H736Nw9RGbRx2vltvBskjzqI6XE5oO4heR90UirNgt5ngIT1UlVJAdUFf0RGhIkohRqqJ9FZRqDZJeNmvk=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: IA1PR11MB7247
-X-OriginatorOrg: intel.com
-Subject: Re: [Intel-xe] [PATCH v2 06/30] fixup! drm/xe/display: Implement
- display support
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+ Firefox/102.0 Thunderbird/102.11.0
+To: Riana Tauro <riana.tauro@intel.com>, intel-xe@lists.freedesktop.org
+References: <20230512052050.1308879-1-riana.tauro@intel.com>
+Content-Language: en-US
+From: Michal Wajdeczko <michal.wajdeczko@intel.com>
+In-Reply-To: <20230512052050.1308879-1-riana.tauro@intel.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+Subject: Re: [Intel-xe] [RFC PATCH] drm/xe: add a new sysfs directory for
+ gtidle properties
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -144,31 +63,510 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-xe@lists.freedesktop.org
+Cc: anshuman.gupta@intel.com, rodrigo.vivi@intel.com
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 
-Reviewed-by: Lucas De Marchi <lucas.demarchi@intel.com>
 
-On Fri, May 19, 2023 at 04:18:03PM -0700, Matt Roper wrote:
->---
-> drivers/gpu/drm/xe/display/ext/i915_irq.c | 2 +-
-> 1 file changed, 1 insertion(+), 1 deletion(-)
->
->diff --git a/drivers/gpu/drm/xe/display/ext/i915_irq.c b/drivers/gpu/drm/xe/display/ext/i915_irq.c
->index a0f22bd52549..6235ff9dec36 100644
->--- a/drivers/gpu/drm/xe/display/ext/i915_irq.c
->+++ b/drivers/gpu/drm/xe/display/ext/i915_irq.c
->@@ -670,7 +670,7 @@ gen8_de_irq_handler(struct drm_i915_private *dev_priv, u32 master_ctl)
->
-> void gen11_display_irq_handler(struct drm_i915_private *i915)
-> {
->-	void __iomem * const regs = to_gt(i915)->mmio.regs;
->+	void __iomem * const regs = xe_device_get_root_tile(i915)->mmio.regs;
-> 	const u32 disp_ctl = raw_reg_read(regs, GEN11_DISPLAY_INT_CTL);
->
-> 	/*
->-- 
->2.40.0
->
+On 12.05.2023 07:20, Riana Tauro wrote:
+> Add a new sysfs directory under devices/gt#/ called gtidle
+> to contain idle properties of GT such as name, idle_status,
+> idle_residency_ms
+> 
+> v2: abstract using function pointers (Anshuman)
+>     use device_attr (Badal)
+>     move rc functions to guc_pc
+>     change name to gt_idle (Rodrigo)
+> 
+> Signed-off-by: Riana Tauro <riana.tauro@intel.com>
+> ---
+>  drivers/gpu/drm/xe/Makefile           |   1 +
+>  drivers/gpu/drm/xe/xe_gt.c            |   5 +
+>  drivers/gpu/drm/xe/xe_gt_idle.c       | 134 ++++++++++++++++++++++++++
+>  drivers/gpu/drm/xe/xe_gt_idle.h       |  18 ++++
+>  drivers/gpu/drm/xe/xe_gt_idle_types.h |  39 ++++++++
+>  drivers/gpu/drm/xe/xe_gt_types.h      |   4 +
+>  drivers/gpu/drm/xe/xe_guc_pc.c        |  87 +++++++++++------
+>  drivers/gpu/drm/xe/xe_guc_pc.h        |   5 +
+>  8 files changed, 261 insertions(+), 32 deletions(-)
+>  create mode 100644 drivers/gpu/drm/xe/xe_gt_idle.c
+>  create mode 100644 drivers/gpu/drm/xe/xe_gt_idle.h
+>  create mode 100644 drivers/gpu/drm/xe/xe_gt_idle_types.h
+> 
+> diff --git a/drivers/gpu/drm/xe/Makefile b/drivers/gpu/drm/xe/Makefile
+> index 84ad0e949044..93bec17ee0de 100644
+> --- a/drivers/gpu/drm/xe/Makefile
+> +++ b/drivers/gpu/drm/xe/Makefile
+> @@ -44,6 +44,7 @@ xe-y += xe_bb.o \
+>  	xe_gt.o \
+>  	xe_gt_clock.o \
+>  	xe_gt_debugfs.o \
+> +	xe_gt_idle.o \
+>  	xe_gt_mcr.o \
+>  	xe_gt_pagefault.o \
+>  	xe_gt_sysfs.o \
+> diff --git a/drivers/gpu/drm/xe/xe_gt.c b/drivers/gpu/drm/xe/xe_gt.c
+> index 0d4664e344da..9e1f7343f256 100644
+> --- a/drivers/gpu/drm/xe/xe_gt.c
+> +++ b/drivers/gpu/drm/xe/xe_gt.c
+> @@ -18,6 +18,7 @@
+>  #include "xe_force_wake.h"
+>  #include "xe_ggtt.h"
+>  #include "xe_gt_clock.h"
+> +#include "xe_gt_idle.h"
+>  #include "xe_gt_mcr.h"
+>  #include "xe_gt_pagefault.h"
+>  #include "xe_gt_sysfs.h"
+> @@ -381,6 +382,10 @@ static int gt_fw_domain_init(struct xe_gt *gt)
+>  	if (err)
+>  		goto err_force_wake;
+>  
+> +	err = xe_gt_idle_init(&gt->gtidle);
+> +	if (err)
+> +		goto err_force_wake;
+> +
+>  	/* XXX: Fake that we pull the engine mask from hwconfig blob */
+>  	gt->info.engine_mask = gt->info.__engine_mask;
+>  
+> diff --git a/drivers/gpu/drm/xe/xe_gt_idle.c b/drivers/gpu/drm/xe/xe_gt_idle.c
+> new file mode 100644
+> index 000000000000..0060d8584485
+> --- /dev/null
+> +++ b/drivers/gpu/drm/xe/xe_gt_idle.c
+> @@ -0,0 +1,134 @@
+> +// SPDX-License-Identifier: MIT
+> +/*
+> + * Copyright © 2023 Intel Corporation
+> + */
+> +
+> +#include <drm/drm_managed.h>
+> +#include "regs/xe_gt_regs.h"
+> +
+> +#include "xe_device.h"
+> +#include "xe_gt.h"
+> +#include "xe_gt_idle.h"
+> +#include "xe_guc_pc.h"
+> +#include "xe_mmio.h"
+> +
+> +/**
+> + * GT Idle:
+> + * ================
+> + *
+> + * Provides sysfs entries for idle states of GT
+> + *
+> + * device/gt#/gtidle/name - name of the state
+> + * device/gt#/gtidle/idle_residency_ms - Provides residency of the idle state in ms
+> + * device/gt#/gtidle/idle_status - Provides current idle state
+> + */
+> +
+> +static struct xe_gt_idle *kobj_to_gtidle(struct kobject *kobj)
+> +{
+> +	return container_of(kobj, struct gtidle_kobj, base)->gtidle;
+> +}
+> +
+> +static ssize_t name_show(struct device *dev,
+> +			 struct device_attribute *attr, char *buff)
+> +{
+> +	struct kobject *kobj = &dev->kobj;
+> +	struct xe_gt_idle *gtidle = kobj_to_gtidle(kobj);
+> +	ssize_t ret;
+> +
+> +	ret = sysfs_emit(buff, gtidle->name);
+
+no need for 'ret' variable, just:
+
+	return sysfs_emit(buff, gtidle->name);
+
+> +
+> +	return ret;
+> +}
+> +static DEVICE_ATTR_RO(name);
+> +
+> +static ssize_t idle_status_show(struct device *dev,
+> +				struct device_attribute *attr, char *buff)
+> +{
+> +	struct kobject *kobj = &dev->kobj;
+> +	struct xe_gt_idle *gtidle = kobj_to_gtidle(kobj);
+> +	ssize_t ret;
+> +
+> +	gtidle->idle_status(gtidle);
+> +	ret = sysfs_emit(buff, gtidle->state);
+
+sysfs_emit takes "fmt" so this should be rather
+
+	return sysfs_emit(buf, "%s\n", idle->state);
+
+but I'm wondering whether it is good idea to keep state as a string,
+maybe it should be done simpler/direct as:
+
+
+state = xe_gt_idle_state(gt);
+return sysfs_emit(buf, "%s\n", gt_idle_state_to_string(state));
+
+
+> +
+> +	return ret;
+> +}
+> +static DEVICE_ATTR_RO(idle_status);
+> +
+> +static ssize_t idle_residency_ms_show(struct device *dev,
+> +				      struct device_attribute *attr, char *buff)
+> +{
+> +	struct kobject *kobj = &dev->kobj;
+> +	struct xe_gt_idle *gtidle = kobj_to_gtidle(kobj);
+> +	ssize_t ret;
+> +
+> +	ret = sysfs_emit(buff, "%llu\n", gtidle->residency_ms(gtidle));
+> +
+> +	return ret;
+> +}
+> +static DEVICE_ATTR_RO(idle_residency_ms);
+> +
+> +static const struct attribute *gt_idle_attrs[] = {
+> +	&dev_attr_name.attr,
+> +	&dev_attr_idle_status.attr,
+> +	&dev_attr_idle_residency_ms.attr,
+> +	NULL,
+> +};
+> +
+> +static void gt_idle_kobj_release(struct kobject *kobj)
+> +{
+> +	kfree(kobj);
+> +}
+> +
+> +static struct kobj_type gt_idle_kobj_type = {
+> +	.release = gt_idle_kobj_release,
+> +	.sysfs_ops = &kobj_sysfs_ops,
+> +};
+> +
+> +static void gt_idle_fini(struct drm_device *drm, void *arg)
+> +{
+> +	struct gtidle_kobj *gtidle_kobj = arg;
+> +
+> +	sysfs_remove_files(&gtidle_kobj->base, gt_idle_attrs);
+> +	kobject_put(&gtidle_kobj->base);
+> +}
+> +
+> +int xe_gt_idle_init(struct xe_gt_idle *gtidle)
+> +{
+> +	struct xe_gt *gt = gtidle_to_gt(gtidle);
+> +	struct xe_device *xe = gt_to_xe(gt);
+> +	struct gtidle_kobj *gtidle_kobj;
+> +	int err;
+> +
+> +	gtidle_kobj = kzalloc(sizeof(*gtidle_kobj), GFP_KERNEL);
+> +
+> +	if (!gtidle_kobj)
+> +		return -ENOMEM;
+> +
+> +	err = kobject_init_and_add(&gtidle_kobj->base, &gt_idle_kobj_type, gt->sysfs, "gtidle");
+> +	if (err)
+> +		goto exit_kobj;
+> +
+> +	gtidle_kobj->gtidle = gtidle;
+> +
+> +	gtidle->residency_ms = xe_rc6_residency_ms;
+> +	gtidle->idle_status = xe_rc_status;
+> +	sprintf(gtidle->name, "gt%d-rc\n", gt->info.id);
+> +
+> +	err = sysfs_create_files(&gtidle_kobj->base, gt_idle_attrs);
+> +	if (err)
+> +		goto exit_kobj;
+> +
+> +	err = drmm_add_action_or_reset(&xe->drm, gt_idle_fini, gtidle_kobj);
+> +	if (err)
+> +		goto exit;
+
+gt_idle_fini() will be called here on error, so below
+sysfs_remove_files() will be called twice
+
+> +
+> +	return 0;
+> +
+> +exit:
+> +	sysfs_remove_files(&gtidle_kobj->base, gt_idle_attrs);
+> +
+> +exit_kobj:
+> +	kobject_put(&gtidle_kobj->base);
+> +	return err;
+> +}
+> diff --git a/drivers/gpu/drm/xe/xe_gt_idle.h b/drivers/gpu/drm/xe/xe_gt_idle.h
+> new file mode 100644
+> index 000000000000..ac0ab970a3f7
+> --- /dev/null
+> +++ b/drivers/gpu/drm/xe/xe_gt_idle.h
+> @@ -0,0 +1,18 @@
+> +/* SPDX-License-Identifier: MIT */
+> +/*
+> + * Copyright © 2023 Intel Corporation
+> + */
+> +
+> +#ifndef _XE_GT_IDLE_H_
+> +#define _XE_GT_IDLE_H_
+> +
+> +#include "xe_gt.h"
+> +#include "xe_gt_idle_types.h"
+> +
+> +int xe_gt_idle_init(struct xe_gt_idle *gtidle);
+> +
+> +static inline struct xe_gt *gtidle_to_gt(struct xe_gt_idle *gtidle)
+> +{
+> +	return container_of(gtidle, struct xe_gt, gtidle);
+> +}
+> +#endif /* _XE_GT_IDLE_H_ */
+> diff --git a/drivers/gpu/drm/xe/xe_gt_idle_types.h b/drivers/gpu/drm/xe/xe_gt_idle_types.h
+> new file mode 100644
+> index 000000000000..bc9c59249b6c
+> --- /dev/null
+> +++ b/drivers/gpu/drm/xe/xe_gt_idle_types.h
+> @@ -0,0 +1,39 @@
+> +/* SPDX-License-Identifier: MIT */
+> +/*
+> + * Copyright © 2023 Intel Corporation
+> + */
+> +
+> +#ifndef _XE_GT_IDLE_TYPES_H_
+> +#define _XE_GT_IDLE_TYPES_H_
+> +
+> +#include <linux/kobject.h>
+> +#include <linux/types.h>
+> +
+> +/**
+> + * struct xe_gt_idle - A struct that contains idle properties based on gt
+> + */
+> +struct xe_gt_idle {
+> +	/** @name: name */
+> +	char name[16];
+> +	/** @state: current idle state */
+> +	const char *state;
+> +	/** @cur_residency: raw driver copy of idle residency */
+> +	u64 cur_residency;
+> +	/** @prev_residency: previous residency counter */
+> +	u64 prev_residency;
+> +	/** @idle_status: get the current idle state */
+> +	void (*idle_status)(struct xe_gt_idle *gtidle);
+> +	/** @residency_ms: get idle residency in ms */
+> +	u64 (*residency_ms)(struct xe_gt_idle *gtidle);
+> +};
+> +
+> +/**
+> + * struct gtidle_kobj - A kobject struct that connects the kobject and xe_gt_idle
+> + */
+> +struct gtidle_kobj {
+> +	/** @base: The actual kobject */
+> +	struct kobject base;
+> +	/** @gtidle: A pointer to the struct xe_gt_idle */
+> +	struct xe_gt_idle *gtidle;
+> +};
+
+maybe all you need is to reuse kobj_gt from xe_gt_sysfs_types.h ?
+
+> +#endif /* _XE_GT_IDLE_TYPES_H_ */
+> diff --git a/drivers/gpu/drm/xe/xe_gt_types.h b/drivers/gpu/drm/xe/xe_gt_types.h
+> index 7c47d67aa8be..90b2d34efe5b 100644
+> --- a/drivers/gpu/drm/xe/xe_gt_types.h
+> +++ b/drivers/gpu/drm/xe/xe_gt_types.h
+> @@ -7,6 +7,7 @@
+>  #define _XE_GT_TYPES_H_
+>  
+>  #include "xe_force_wake_types.h"
+> +#include "xe_gt_idle_types.h"
+>  #include "xe_hw_engine_types.h"
+>  #include "xe_hw_fence_types.h"
+>  #include "xe_reg_sr_types.h"
+> @@ -287,6 +288,9 @@ struct xe_gt {
+>  	/** @uc: micro controllers on the GT */
+>  	struct xe_uc uc;
+>  
+> +	/** @gtidle: idle properties of GT */
+> +	struct xe_gt_idle gtidle;
+> +
+>  	/** @engine_ops: submission backend engine operations */
+>  	const struct xe_engine_ops *engine_ops;
+>  
+> diff --git a/drivers/gpu/drm/xe/xe_guc_pc.c b/drivers/gpu/drm/xe/xe_guc_pc.c
+> index 72d460d5323b..e83283cbcb00 100644
+> --- a/drivers/gpu/drm/xe/xe_guc_pc.c
+> +++ b/drivers/gpu/drm/xe/xe_guc_pc.c
+> @@ -14,6 +14,7 @@
+>  #include "xe_bo.h"
+>  #include "xe_device.h"
+>  #include "xe_gt.h"
+> +#include "xe_gt_idle.h"
+>  #include "xe_gt_sysfs.h"
+>  #include "xe_gt_types.h"
+>  #include "xe_guc_ct.h"
+> @@ -40,6 +41,9 @@
+>  #define GT_FREQUENCY_MULTIPLIER	50
+>  #define GEN9_FREQ_SCALER	3
+>  
+> +/* Multiplier for  RC6 Residency counter in units of 1.28us */
+> +#define XE_RC6_MULTIPLIER	1280
+> +
+>  /**
+>   * DOC: GuC Power Conservation (PC)
+>   *
+> @@ -76,12 +80,7 @@
+>   *
+>   * Render-C states is also a GuC PC feature that is now enabled in Xe for
+>   * all platforms.
+> - * Xe's GuC PC provides a sysfs API for Render-C States:
+>   *
+> - * device/gt#/rc* *read-only* files:
+> - * - rc_status: Provide the actual immediate status of Render-C: (rc0 or rc6)
+> - * - rc6_residency: Provide the rc6_residency counter in units of 1.28 uSec.
+> - *                  Prone to overflows.
+>   */
+>  
+>  static struct xe_guc *
+> @@ -580,11 +579,41 @@ static ssize_t freq_max_store(struct device *dev, struct device_attribute *attr,
+>  }
+>  static DEVICE_ATTR_RW(freq_max);
+>  
+> -static ssize_t rc_status_show(struct device *dev,
+> -			      struct device_attribute *attr, char *buff)
+> +u64 get_residency_ms(struct xe_gt_idle *gtidle, u64 cur_residency,
+> +		     u32 residency_multiplier)
+
+as this function is not used elsewhere it should static
+but OTOH it operates on gtidle so not really belongs to guc_pc.c
+and should be properly exported from xe_gt_idle.[ch]
+
+>  {
+> -	struct xe_guc_pc *pc = dev_to_pc(dev);
+> -	struct xe_gt *gt = pc_to_gt(pc);
+> +	u64 delta, overflow_residency, prev_residency;
+> +
+> +	overflow_residency = BIT_ULL(32);
+> +	/*
+> +	 * Counter wrap handling
+> +	 * Store previous hw counter values for counter wrap-around handling
+> +	 * Relying on sufficient frequency of queries otherwise counters can still wrap.
+> +	 */
+> +	prev_residency = gtidle->prev_residency;
+> +	gtidle->prev_residency = cur_residency;
+> +
+> +	/* delta */
+> +	if (cur_residency >= prev_residency)
+> +		delta = cur_residency - prev_residency;
+> +	else
+> +		delta = cur_residency + (overflow_residency - prev_residency);
+> +
+> +	/* Add delta to extended raw driver copy of idle residency */
+> +	cur_residency = gtidle->cur_residency + delta;
+> +	gtidle->cur_residency = cur_residency;
+> +
+> +	/* residency multiplier in ns, convert to ms */
+> +	return mul_u64_u32_div(cur_residency, residency_multiplier, 1e6);
+> +}
+> +
+> +/**
+> + * xe_rc_status - get the current Render C state
+> + * @gtidle - xe_gt_idle instance
+> + */
+> +void xe_rc_status(struct xe_gt_idle *gtidle)
+
+hmm, this function seems to accessing GT registers only, why it is
+placed in guc_pc.c ? it really doesn't belong to GuC IMO
+
+> +{
+> +	struct xe_gt *gt = gtidle_to_gt(gtidle);
+>  	u32 reg;
+>  
+>  	xe_device_mem_access_get(gt_to_xe(gt));
+> @@ -593,37 +622,33 @@ static ssize_t rc_status_show(struct device *dev,
+>  
+>  	switch (REG_FIELD_GET(RCN_MASK, reg)) {
+>  	case GT_RC6:
+> -		return sysfs_emit(buff, "rc6\n");
+> +		gtidle->state = "rc6\n";
+> +		return;
+>  	case GT_RC0:
+> -		return sysfs_emit(buff, "rc0\n");
+> +		gtidle->state = "rc0\n";
+> +		return;
+>  	default:
+> -		return -ENOENT;
+> +		gtidle->state = "unknown\n";
+
+kind strange design pattern to pass status as string ...
+IMO we should rather define enum and convert to string as needed
+
+>  	}
+>  }
+> -static DEVICE_ATTR_RO(rc_status);
+>  
+> -static ssize_t rc6_residency_show(struct device *dev,
+> -				  struct device_attribute *attr, char *buff)
+> +/**
+> + * xe_rc6_residency_ms - rc6 residency in ms
+> + * @gtidle - xe_gt_idle instance
+> + */
+> +u64 xe_rc6_residency_ms(struct xe_gt_idle *gtidle)
+>  {
+> -	struct xe_guc_pc *pc = dev_to_pc(dev);
+> -	struct xe_gt *gt = pc_to_gt(pc);
+> -	u32 reg;
+> -	ssize_t ret;
+> -
+> -	xe_device_mem_access_get(pc_to_xe(pc));
+> -	ret = xe_force_wake_get(gt_to_fw(gt), XE_FORCEWAKE_ALL);
+> -	if (ret)
+> -		goto out;
+> +	struct xe_gt *gt = gtidle_to_gt(gtidle);
+> +	u64 reg, rc6_residency;
+>  
+> +	xe_device_mem_access_get(gt_to_xe(gt));
+>  	reg = xe_mmio_read32(gt, GT_GFX_RC6.reg);
+> -	ret = sysfs_emit(buff, "%u\n", reg);
+>  
+> -	XE_WARN_ON(xe_force_wake_put(gt_to_fw(gt), XE_FORCEWAKE_ALL));
+> -out:
+> -	xe_device_mem_access_put(pc_to_xe(pc));
+> -	return ret;
+> +	rc6_residency = get_residency_ms(gtidle, reg, XE_RC6_MULTIPLIER);
+> +
+> +	xe_device_mem_access_put(gt_to_xe(gt));
+> +	return rc6_residency;
+>  }
+> -static DEVICE_ATTR_RO(rc6_residency);
+>  
+>  static const struct attribute *pc_attrs[] = {
+>  	&dev_attr_freq_act.attr,
+> @@ -633,8 +658,6 @@ static const struct attribute *pc_attrs[] = {
+>  	&dev_attr_freq_rpn.attr,
+>  	&dev_attr_freq_min.attr,
+>  	&dev_attr_freq_max.attr,
+> -	&dev_attr_rc_status.attr,
+> -	&dev_attr_rc6_residency.attr,
+>  	NULL
+>  };
+>  
+> diff --git a/drivers/gpu/drm/xe/xe_guc_pc.h b/drivers/gpu/drm/xe/xe_guc_pc.h
+> index da29e4934868..a6abac189c8a 100644
+> --- a/drivers/gpu/drm/xe/xe_guc_pc.h
+> +++ b/drivers/gpu/drm/xe/xe_guc_pc.h
+> @@ -8,8 +8,13 @@
+>  
+>  #include "xe_guc_pc_types.h"
+>  
+> +struct xe_gt_idle;
+> +
+>  int xe_guc_pc_init(struct xe_guc_pc *pc);
+>  int xe_guc_pc_start(struct xe_guc_pc *pc);
+>  int xe_guc_pc_stop(struct xe_guc_pc *pc);
+>  
+> +void xe_rc_status(struct xe_gt_idle *gtidle);
+> +u64 xe_rc6_residency_ms(struct xe_gt_idle *gtidle);
+
+if you look around you should clearly see that such function prototypes
+do not fit here, all other functions have "xe_guc_pc" prefix and takes
+"xe_guc_pc" as param ...
+
+please reconsider function placement and the flow
+
+Michal
+
+> +
+>  #endif /* _XE_GUC_PC_H_ */
