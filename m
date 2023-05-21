@@ -4,54 +4,53 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0481AC77B7D
-	for <intel-xe@archiver.kernel.org>; Sat, 20 May 2023 10:11:53 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id EF929C7EE23
+	for <intel-xe@archiver.kernel.org>; Sun, 21 May 2023 12:32:41 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id AD34210E154;
-	Sat, 20 May 2023 10:11:52 +0000 (UTC)
-Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D073D10E154
- for <intel-xe@lists.freedesktop.org>; Sat, 20 May 2023 10:11:50 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1684577510; x=1716113510;
- h=message-id:date:mime-version:subject:to:cc:references:
- from:in-reply-to:content-transfer-encoding;
- bh=GPcoWXC3xb+oJSGCJGYOt3PbgNqbhg23ub4qHei0uDU=;
- b=beZKSy5+Fyq7bFJRMDtSFmGcnyS/MEoHLjVeObCvyHjqMKHyQU7dkeDu
- ZGF3yWZFgFw4sWoTqZ12UYqTv/gD3GpS724LPQ9eKYKumCGoSSy9/ecuN
- FfkGPTwzhCu44DFuAVZrkfJxPZ5ojIMsz9D5enfyTLqA7sVIw4qNzkj7d
- zABdR7ZyuDGWOkHEOXpnDJPCBe7jRC8Beese5kEsRzOf6sNjV/3meK3Es
- DTuLbuSBW0KIGsoXMHDW8KalPISKgWG1Ac5m0RwYD8Wkdf52Y6Zl5+x0S
- RhH+I5hwWz5oXNBIBLTmyOA6BnO7le+V6tajq7j4FTN2yYlfJTQFfnRPp g==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10715"; a="438923467"
-X-IronPort-AV: E=Sophos;i="6.00,179,1681196400"; d="scan'208";a="438923467"
-Received: from orsmga003.jf.intel.com ([10.7.209.27])
- by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 20 May 2023 03:11:49 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10715"; a="653337400"
-X-IronPort-AV: E=Sophos;i="6.00,179,1681196400"; d="scan'208";a="653337400"
-Received: from irvmail002.ir.intel.com ([10.43.11.120])
- by orsmga003.jf.intel.com with ESMTP; 20 May 2023 03:11:46 -0700
-Received: from [10.249.153.12] (mwajdecz-MOBL.ger.corp.intel.com
- [10.249.153.12])
- by irvmail002.ir.intel.com (Postfix) with ESMTP id 06C9A34EF8;
- Sat, 20 May 2023 11:11:44 +0100 (IST)
-Message-ID: <089629af-306d-93c4-08c6-b844cd1fdea4@intel.com>
-Date: Sat, 20 May 2023 12:11:44 +0200
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8703410E1CE;
+	Sun, 21 May 2023 12:32:41 +0000 (UTC)
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id BA43810E1CE
+ for <intel-xe@lists.freedesktop.org>; Sun, 21 May 2023 12:32:39 +0000 (UTC)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+ (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+ (No client certificate requested)
+ by dfw.source.kernel.org (Postfix) with ESMTPS id 965DA60CA3
+ for <intel-xe@lists.freedesktop.org>; Sun, 21 May 2023 12:32:38 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id F1B5EC4339C
+ for <intel-xe@lists.freedesktop.org>; Sun, 21 May 2023 12:32:37 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+ s=k20201202; t=1684672358;
+ bh=xR2+fpG3PJrbPVY5ligT/mNqndd6o/nWTowAipVz4j8=;
+ h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+ b=XMSHbKc67HeApedaEFKzweUO6mYIadctIJ5ZEHPujG7c8wqHI7lunwGgQQevU+u4n
+ q2UovUNa5tEboiYWQPLxPZZEqqNHJv3H6NpQ/kbozou+U6wU2waEatWG2tZ55I4tWB
+ oby8Q9ZK5sas52u20Q7XY+kHA1l/B5E1kdecwHkshaccgUiP0W5G+v1js1qo/wm+hG
+ nCij5989AC7YCvYyHup8LG/WKKnqDRu5xmvflpJWwmxRqMru6bdTVYq3SsffFQi5az
+ k1iJfz0VlT7k/pkACexL+CkXjfxOYF1/kvnD1GOyv9Xm4nr3oXE/19/chSed6vr8cd
+ ZAh3Gvv3WEPoQ==
+Received: by mail-yw1-f169.google.com with SMTP id
+ 00721157ae682-561da492bcbso62407707b3.3
+ for <intel-xe@lists.freedesktop.org>; Sun, 21 May 2023 05:32:37 -0700 (PDT)
+X-Gm-Message-State: AC+VfDwURgE/UXDviHnogzKVgXcnHglLmuuvo0BuvpkBaAPDW7F5yMgp
+ Xaij1euNMVYvwLJQuyOTnA8rnc7G1CTwZyX6f4s=
+X-Google-Smtp-Source: ACHHUZ4FADRTpiHlXm56cqyOLb7jRwkGxAGNl1NqrSPwyerqp6hR2+cgQPEe4d9iI3NImFR9TFvxS4TQs6IqaHE1YDs=
+X-Received: by 2002:a81:6d85:0:b0:561:b476:6c4f with SMTP id
+ i127-20020a816d85000000b00561b4766c4fmr8990899ywc.36.1684672356853; Sun, 21
+ May 2023 05:32:36 -0700 (PDT)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
- Firefox/102.0 Thunderbird/102.11.0
-To: Riana Tauro <riana.tauro@intel.com>, intel-xe@lists.freedesktop.org
-References: <20230512052050.1308879-1-riana.tauro@intel.com>
-Content-Language: en-US
-From: Michal Wajdeczko <michal.wajdeczko@intel.com>
-In-Reply-To: <20230512052050.1308879-1-riana.tauro@intel.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-Subject: Re: [Intel-xe] [RFC PATCH] drm/xe: add a new sysfs directory for
- gtidle properties
+References: <20230502001727.3211096-1-matthew.brost@intel.com>
+ <20230502001727.3211096-12-matthew.brost@intel.com>
+In-Reply-To: <20230502001727.3211096-12-matthew.brost@intel.com>
+From: Oded Gabbay <ogabbay@kernel.org>
+Date: Sun, 21 May 2023 15:32:10 +0300
+X-Gmail-Original-Message-ID: <CAFCwf13sC-O_5oEXBDW-i858_cH0+BU1sW67vyDqGr9V_5oOtw@mail.gmail.com>
+Message-ID: <CAFCwf13sC-O_5oEXBDW-i858_cH0+BU1sW67vyDqGr9V_5oOtw@mail.gmail.com>
+To: Matthew Brost <matthew.brost@intel.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+Subject: Re: [Intel-xe] [PATCH v2 11/31] drm/xe/guc: Use doorbells for
+ submission if possible
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -63,510 +62,606 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Cc: anshuman.gupta@intel.com, rodrigo.vivi@intel.com
+Cc: intel-xe@lists.freedesktop.org,
+ Faith Ekstrand <faith.ekstrand@collabora.com>
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-
-
-On 12.05.2023 07:20, Riana Tauro wrote:
-> Add a new sysfs directory under devices/gt#/ called gtidle
-> to contain idle properties of GT such as name, idle_status,
-> idle_residency_ms
-> 
-> v2: abstract using function pointers (Anshuman)
->     use device_attr (Badal)
->     move rc functions to guc_pc
->     change name to gt_idle (Rodrigo)
-> 
-> Signed-off-by: Riana Tauro <riana.tauro@intel.com>
+On Sun, May 21, 2023 at 3:18=E2=80=AFPM Matthew Brost <matthew.brost@intel.=
+com> wrote:
+>
+> We have 256 doorbells (on most platforms) that we can allocate to bypass
+> using the H2G channel for submission. This will avoid contention on the
+> CT mutex.
+>
+> Signed-off-by: Matthew Brost <matthew.brost@intel.com>
+> Suggested-by: Faith Ekstrand <faith.ekstrand@collabora.com>
 > ---
->  drivers/gpu/drm/xe/Makefile           |   1 +
->  drivers/gpu/drm/xe/xe_gt.c            |   5 +
->  drivers/gpu/drm/xe/xe_gt_idle.c       | 134 ++++++++++++++++++++++++++
->  drivers/gpu/drm/xe/xe_gt_idle.h       |  18 ++++
->  drivers/gpu/drm/xe/xe_gt_idle_types.h |  39 ++++++++
->  drivers/gpu/drm/xe/xe_gt_types.h      |   4 +
->  drivers/gpu/drm/xe/xe_guc_pc.c        |  87 +++++++++++------
->  drivers/gpu/drm/xe/xe_guc_pc.h        |   5 +
->  8 files changed, 261 insertions(+), 32 deletions(-)
->  create mode 100644 drivers/gpu/drm/xe/xe_gt_idle.c
->  create mode 100644 drivers/gpu/drm/xe/xe_gt_idle.h
->  create mode 100644 drivers/gpu/drm/xe/xe_gt_idle_types.h
-> 
-> diff --git a/drivers/gpu/drm/xe/Makefile b/drivers/gpu/drm/xe/Makefile
-> index 84ad0e949044..93bec17ee0de 100644
-> --- a/drivers/gpu/drm/xe/Makefile
-> +++ b/drivers/gpu/drm/xe/Makefile
-> @@ -44,6 +44,7 @@ xe-y += xe_bb.o \
->  	xe_gt.o \
->  	xe_gt_clock.o \
->  	xe_gt_debugfs.o \
-> +	xe_gt_idle.o \
->  	xe_gt_mcr.o \
->  	xe_gt_pagefault.o \
->  	xe_gt_sysfs.o \
-> diff --git a/drivers/gpu/drm/xe/xe_gt.c b/drivers/gpu/drm/xe/xe_gt.c
-> index 0d4664e344da..9e1f7343f256 100644
-> --- a/drivers/gpu/drm/xe/xe_gt.c
-> +++ b/drivers/gpu/drm/xe/xe_gt.c
-> @@ -18,6 +18,7 @@
->  #include "xe_force_wake.h"
->  #include "xe_ggtt.h"
->  #include "xe_gt_clock.h"
-> +#include "xe_gt_idle.h"
->  #include "xe_gt_mcr.h"
->  #include "xe_gt_pagefault.h"
->  #include "xe_gt_sysfs.h"
-> @@ -381,6 +382,10 @@ static int gt_fw_domain_init(struct xe_gt *gt)
->  	if (err)
->  		goto err_force_wake;
->  
-> +	err = xe_gt_idle_init(&gt->gtidle);
-> +	if (err)
-> +		goto err_force_wake;
-> +
->  	/* XXX: Fake that we pull the engine mask from hwconfig blob */
->  	gt->info.engine_mask = gt->info.__engine_mask;
->  
-> diff --git a/drivers/gpu/drm/xe/xe_gt_idle.c b/drivers/gpu/drm/xe/xe_gt_idle.c
-> new file mode 100644
-> index 000000000000..0060d8584485
-> --- /dev/null
-> +++ b/drivers/gpu/drm/xe/xe_gt_idle.c
-> @@ -0,0 +1,134 @@
-> +// SPDX-License-Identifier: MIT
-> +/*
-> + * Copyright © 2023 Intel Corporation
-> + */
-> +
-> +#include <drm/drm_managed.h>
-> +#include "regs/xe_gt_regs.h"
-> +
-> +#include "xe_device.h"
-> +#include "xe_gt.h"
-> +#include "xe_gt_idle.h"
-> +#include "xe_guc_pc.h"
-> +#include "xe_mmio.h"
-> +
-> +/**
-> + * GT Idle:
-> + * ================
-> + *
-> + * Provides sysfs entries for idle states of GT
-> + *
-> + * device/gt#/gtidle/name - name of the state
-> + * device/gt#/gtidle/idle_residency_ms - Provides residency of the idle state in ms
-> + * device/gt#/gtidle/idle_status - Provides current idle state
-> + */
-> +
-> +static struct xe_gt_idle *kobj_to_gtidle(struct kobject *kobj)
-> +{
-> +	return container_of(kobj, struct gtidle_kobj, base)->gtidle;
-> +}
-> +
-> +static ssize_t name_show(struct device *dev,
-> +			 struct device_attribute *attr, char *buff)
-> +{
-> +	struct kobject *kobj = &dev->kobj;
-> +	struct xe_gt_idle *gtidle = kobj_to_gtidle(kobj);
-> +	ssize_t ret;
-> +
-> +	ret = sysfs_emit(buff, gtidle->name);
-
-no need for 'ret' variable, just:
-
-	return sysfs_emit(buff, gtidle->name);
-
-> +
-> +	return ret;
-> +}
-> +static DEVICE_ATTR_RO(name);
-> +
-> +static ssize_t idle_status_show(struct device *dev,
-> +				struct device_attribute *attr, char *buff)
-> +{
-> +	struct kobject *kobj = &dev->kobj;
-> +	struct xe_gt_idle *gtidle = kobj_to_gtidle(kobj);
-> +	ssize_t ret;
-> +
-> +	gtidle->idle_status(gtidle);
-> +	ret = sysfs_emit(buff, gtidle->state);
-
-sysfs_emit takes "fmt" so this should be rather
-
-	return sysfs_emit(buf, "%s\n", idle->state);
-
-but I'm wondering whether it is good idea to keep state as a string,
-maybe it should be done simpler/direct as:
-
-
-state = xe_gt_idle_state(gt);
-return sysfs_emit(buf, "%s\n", gt_idle_state_to_string(state));
-
-
-> +
-> +	return ret;
-> +}
-> +static DEVICE_ATTR_RO(idle_status);
-> +
-> +static ssize_t idle_residency_ms_show(struct device *dev,
-> +				      struct device_attribute *attr, char *buff)
-> +{
-> +	struct kobject *kobj = &dev->kobj;
-> +	struct xe_gt_idle *gtidle = kobj_to_gtidle(kobj);
-> +	ssize_t ret;
-> +
-> +	ret = sysfs_emit(buff, "%llu\n", gtidle->residency_ms(gtidle));
-> +
-> +	return ret;
-> +}
-> +static DEVICE_ATTR_RO(idle_residency_ms);
-> +
-> +static const struct attribute *gt_idle_attrs[] = {
-> +	&dev_attr_name.attr,
-> +	&dev_attr_idle_status.attr,
-> +	&dev_attr_idle_residency_ms.attr,
-> +	NULL,
-> +};
-> +
-> +static void gt_idle_kobj_release(struct kobject *kobj)
-> +{
-> +	kfree(kobj);
-> +}
-> +
-> +static struct kobj_type gt_idle_kobj_type = {
-> +	.release = gt_idle_kobj_release,
-> +	.sysfs_ops = &kobj_sysfs_ops,
-> +};
-> +
-> +static void gt_idle_fini(struct drm_device *drm, void *arg)
-> +{
-> +	struct gtidle_kobj *gtidle_kobj = arg;
-> +
-> +	sysfs_remove_files(&gtidle_kobj->base, gt_idle_attrs);
-> +	kobject_put(&gtidle_kobj->base);
-> +}
-> +
-> +int xe_gt_idle_init(struct xe_gt_idle *gtidle)
-> +{
-> +	struct xe_gt *gt = gtidle_to_gt(gtidle);
-> +	struct xe_device *xe = gt_to_xe(gt);
-> +	struct gtidle_kobj *gtidle_kobj;
-> +	int err;
-> +
-> +	gtidle_kobj = kzalloc(sizeof(*gtidle_kobj), GFP_KERNEL);
-> +
-> +	if (!gtidle_kobj)
-> +		return -ENOMEM;
-> +
-> +	err = kobject_init_and_add(&gtidle_kobj->base, &gt_idle_kobj_type, gt->sysfs, "gtidle");
-> +	if (err)
-> +		goto exit_kobj;
-> +
-> +	gtidle_kobj->gtidle = gtidle;
-> +
-> +	gtidle->residency_ms = xe_rc6_residency_ms;
-> +	gtidle->idle_status = xe_rc_status;
-> +	sprintf(gtidle->name, "gt%d-rc\n", gt->info.id);
-> +
-> +	err = sysfs_create_files(&gtidle_kobj->base, gt_idle_attrs);
-> +	if (err)
-> +		goto exit_kobj;
-> +
-> +	err = drmm_add_action_or_reset(&xe->drm, gt_idle_fini, gtidle_kobj);
-> +	if (err)
-> +		goto exit;
-
-gt_idle_fini() will be called here on error, so below
-sysfs_remove_files() will be called twice
-
-> +
-> +	return 0;
-> +
-> +exit:
-> +	sysfs_remove_files(&gtidle_kobj->base, gt_idle_attrs);
-> +
-> +exit_kobj:
-> +	kobject_put(&gtidle_kobj->base);
-> +	return err;
-> +}
-> diff --git a/drivers/gpu/drm/xe/xe_gt_idle.h b/drivers/gpu/drm/xe/xe_gt_idle.h
-> new file mode 100644
-> index 000000000000..ac0ab970a3f7
-> --- /dev/null
-> +++ b/drivers/gpu/drm/xe/xe_gt_idle.h
-> @@ -0,0 +1,18 @@
-> +/* SPDX-License-Identifier: MIT */
-> +/*
-> + * Copyright © 2023 Intel Corporation
-> + */
-> +
-> +#ifndef _XE_GT_IDLE_H_
-> +#define _XE_GT_IDLE_H_
-> +
-> +#include "xe_gt.h"
-> +#include "xe_gt_idle_types.h"
-> +
-> +int xe_gt_idle_init(struct xe_gt_idle *gtidle);
-> +
-> +static inline struct xe_gt *gtidle_to_gt(struct xe_gt_idle *gtidle)
-> +{
-> +	return container_of(gtidle, struct xe_gt, gtidle);
-> +}
-> +#endif /* _XE_GT_IDLE_H_ */
-> diff --git a/drivers/gpu/drm/xe/xe_gt_idle_types.h b/drivers/gpu/drm/xe/xe_gt_idle_types.h
-> new file mode 100644
-> index 000000000000..bc9c59249b6c
-> --- /dev/null
-> +++ b/drivers/gpu/drm/xe/xe_gt_idle_types.h
-> @@ -0,0 +1,39 @@
-> +/* SPDX-License-Identifier: MIT */
-> +/*
-> + * Copyright © 2023 Intel Corporation
-> + */
-> +
-> +#ifndef _XE_GT_IDLE_TYPES_H_
-> +#define _XE_GT_IDLE_TYPES_H_
-> +
-> +#include <linux/kobject.h>
-> +#include <linux/types.h>
-> +
-> +/**
-> + * struct xe_gt_idle - A struct that contains idle properties based on gt
-> + */
-> +struct xe_gt_idle {
-> +	/** @name: name */
-> +	char name[16];
-> +	/** @state: current idle state */
-> +	const char *state;
-> +	/** @cur_residency: raw driver copy of idle residency */
-> +	u64 cur_residency;
-> +	/** @prev_residency: previous residency counter */
-> +	u64 prev_residency;
-> +	/** @idle_status: get the current idle state */
-> +	void (*idle_status)(struct xe_gt_idle *gtidle);
-> +	/** @residency_ms: get idle residency in ms */
-> +	u64 (*residency_ms)(struct xe_gt_idle *gtidle);
-> +};
-> +
-> +/**
-> + * struct gtidle_kobj - A kobject struct that connects the kobject and xe_gt_idle
-> + */
-> +struct gtidle_kobj {
-> +	/** @base: The actual kobject */
-> +	struct kobject base;
-> +	/** @gtidle: A pointer to the struct xe_gt_idle */
-> +	struct xe_gt_idle *gtidle;
-> +};
-
-maybe all you need is to reuse kobj_gt from xe_gt_sysfs_types.h ?
-
-> +#endif /* _XE_GT_IDLE_TYPES_H_ */
-> diff --git a/drivers/gpu/drm/xe/xe_gt_types.h b/drivers/gpu/drm/xe/xe_gt_types.h
-> index 7c47d67aa8be..90b2d34efe5b 100644
-> --- a/drivers/gpu/drm/xe/xe_gt_types.h
-> +++ b/drivers/gpu/drm/xe/xe_gt_types.h
-> @@ -7,6 +7,7 @@
->  #define _XE_GT_TYPES_H_
->  
->  #include "xe_force_wake_types.h"
-> +#include "xe_gt_idle_types.h"
->  #include "xe_hw_engine_types.h"
->  #include "xe_hw_fence_types.h"
->  #include "xe_reg_sr_types.h"
-> @@ -287,6 +288,9 @@ struct xe_gt {
->  	/** @uc: micro controllers on the GT */
->  	struct xe_uc uc;
->  
-> +	/** @gtidle: idle properties of GT */
-> +	struct xe_gt_idle gtidle;
-> +
->  	/** @engine_ops: submission backend engine operations */
->  	const struct xe_engine_ops *engine_ops;
->  
-> diff --git a/drivers/gpu/drm/xe/xe_guc_pc.c b/drivers/gpu/drm/xe/xe_guc_pc.c
-> index 72d460d5323b..e83283cbcb00 100644
-> --- a/drivers/gpu/drm/xe/xe_guc_pc.c
-> +++ b/drivers/gpu/drm/xe/xe_guc_pc.c
-> @@ -14,6 +14,7 @@
->  #include "xe_bo.h"
->  #include "xe_device.h"
->  #include "xe_gt.h"
-> +#include "xe_gt_idle.h"
->  #include "xe_gt_sysfs.h"
->  #include "xe_gt_types.h"
->  #include "xe_guc_ct.h"
-> @@ -40,6 +41,9 @@
->  #define GT_FREQUENCY_MULTIPLIER	50
->  #define GEN9_FREQ_SCALER	3
->  
-> +/* Multiplier for  RC6 Residency counter in units of 1.28us */
-> +#define XE_RC6_MULTIPLIER	1280
-> +
->  /**
->   * DOC: GuC Power Conservation (PC)
->   *
-> @@ -76,12 +80,7 @@
->   *
->   * Render-C states is also a GuC PC feature that is now enabled in Xe for
->   * all platforms.
-> - * Xe's GuC PC provides a sysfs API for Render-C States:
->   *
-> - * device/gt#/rc* *read-only* files:
-> - * - rc_status: Provide the actual immediate status of Render-C: (rc0 or rc6)
-> - * - rc6_residency: Provide the rc6_residency counter in units of 1.28 uSec.
-> - *                  Prone to overflows.
+>  drivers/gpu/drm/xe/regs/xe_guc_regs.h    |   1 +
+>  drivers/gpu/drm/xe/xe_guc.c              |   6 +
+>  drivers/gpu/drm/xe/xe_guc_engine_types.h |   7 +
+>  drivers/gpu/drm/xe/xe_guc_submit.c       | 295 ++++++++++++++++++++++-
+>  drivers/gpu/drm/xe/xe_guc_submit.h       |   1 +
+>  drivers/gpu/drm/xe/xe_guc_types.h        |   4 +
+>  drivers/gpu/drm/xe/xe_trace.h            |   5 +
+>  7 files changed, 315 insertions(+), 4 deletions(-)
+>
+> diff --git a/drivers/gpu/drm/xe/regs/xe_guc_regs.h b/drivers/gpu/drm/xe/r=
+egs/xe_guc_regs.h
+> index 37e0ac550931..11b117293a62 100644
+> --- a/drivers/gpu/drm/xe/regs/xe_guc_regs.h
+> +++ b/drivers/gpu/drm/xe/regs/xe_guc_regs.h
+> @@ -109,6 +109,7 @@ struct guc_doorbell_info {
+>
+>  #define DIST_DBS_POPULATED                     XE_REG(0xd08)
+>  #define   DOORBELLS_PER_SQIDI_MASK             REG_GENMASK(23, 16)
+> +#define          DOORBELLS_PER_SQIDI_SHIFT             16
+>  #define   SQIDIS_DOORBELL_EXIST_MASK           REG_GENMASK(15, 0)
+>
+>  #define GUC_BCS_RCS_IER                                XE_REG(0xC550)
+> diff --git a/drivers/gpu/drm/xe/xe_guc.c b/drivers/gpu/drm/xe/xe_guc.c
+> index 89d20faced19..0c87f78a868b 100644
+> --- a/drivers/gpu/drm/xe/xe_guc.c
+> +++ b/drivers/gpu/drm/xe/xe_guc.c
+> @@ -297,6 +297,12 @@ int xe_guc_init(struct xe_guc *guc)
 >   */
->  
->  static struct xe_guc *
-> @@ -580,11 +579,41 @@ static ssize_t freq_max_store(struct device *dev, struct device_attribute *attr,
->  }
->  static DEVICE_ATTR_RW(freq_max);
->  
-> -static ssize_t rc_status_show(struct device *dev,
-> -			      struct device_attribute *attr, char *buff)
-> +u64 get_residency_ms(struct xe_gt_idle *gtidle, u64 cur_residency,
-> +		     u32 residency_multiplier)
-
-as this function is not used elsewhere it should static
-but OTOH it operates on gtidle so not really belongs to guc_pc.c
-and should be properly exported from xe_gt_idle.[ch]
-
+>  int xe_guc_init_post_hwconfig(struct xe_guc *guc)
 >  {
-> -	struct xe_guc_pc *pc = dev_to_pc(dev);
-> -	struct xe_gt *gt = pc_to_gt(pc);
-> +	u64 delta, overflow_residency, prev_residency;
+> +       int ret;
 > +
-> +	overflow_residency = BIT_ULL(32);
-> +	/*
-> +	 * Counter wrap handling
-> +	 * Store previous hw counter values for counter wrap-around handling
-> +	 * Relying on sufficient frequency of queries otherwise counters can still wrap.
-> +	 */
-> +	prev_residency = gtidle->prev_residency;
-> +	gtidle->prev_residency = cur_residency;
+> +       ret =3D xe_guc_submit_init_post_hwconfig(guc);
+> +       if (ret)
+> +               return ret;
 > +
-> +	/* delta */
-> +	if (cur_residency >= prev_residency)
-> +		delta = cur_residency - prev_residency;
-> +	else
-> +		delta = cur_residency + (overflow_residency - prev_residency);
+>         return xe_guc_ads_init_post_hwconfig(&guc->ads);
+>  }
+>
+> diff --git a/drivers/gpu/drm/xe/xe_guc_engine_types.h b/drivers/gpu/drm/x=
+e/xe_guc_engine_types.h
+> index 5d83132034a6..420b7f53e649 100644
+> --- a/drivers/gpu/drm/xe/xe_guc_engine_types.h
+> +++ b/drivers/gpu/drm/xe/xe_guc_engine_types.h
+> @@ -12,6 +12,7 @@
+>  #include <drm/gpu_scheduler.h>
+>
+>  struct dma_fence;
+> +struct xe_bo;
+>  struct xe_engine;
+>
+>  /**
+> @@ -37,6 +38,10 @@ struct xe_guc_engine {
+>         struct work_struct fini_async;
+>         /** @resume_time: time of last resume */
+>         u64 resume_time;
+> +       /** @doorbell_bo: BO for memory doorbell */
+> +       struct xe_bo *doorbell_bo;
+> +       /** @doorbell_offset: MMIO doorbell offset */
+> +       u32 doorbell_offset;
+>         /** @state: GuC specific state for this xe_engine */
+>         atomic_t state;
+>         /** @wqi_head: work queue item tail */
+> @@ -45,6 +50,8 @@ struct xe_guc_engine {
+>         u32 wqi_tail;
+>         /** @id: GuC id for this xe_engine */
+>         u16 id;
+> +       /** @doorbell_id: doorbell id */
+> +       u16 doorbell_id;
+>         /** @suspend_wait: wait queue used to wait on pending suspends */
+>         wait_queue_head_t suspend_wait;
+>         /** @suspend_pending: a suspend of the engine is pending */
+> diff --git a/drivers/gpu/drm/xe/xe_guc_submit.c b/drivers/gpu/drm/xe/xe_g=
+uc_submit.c
+> index 0a41f5d04f6d..1b6f36b04cd1 100644
+> --- a/drivers/gpu/drm/xe/xe_guc_submit.c
+> +++ b/drivers/gpu/drm/xe/xe_guc_submit.c
+> @@ -13,7 +13,10 @@
+>
+>  #include <drm/drm_managed.h>
+>
+> +#include "regs/xe_guc_regs.h"
+>  #include "regs/xe_lrc_layout.h"
 > +
-> +	/* Add delta to extended raw driver copy of idle residency */
-> +	cur_residency = gtidle->cur_residency + delta;
-> +	gtidle->cur_residency = cur_residency;
+> +#include "xe_bo.h"
+>  #include "xe_device.h"
+>  #include "xe_engine.h"
+>  #include "xe_force_wake.h"
+> @@ -26,12 +29,22 @@
+>  #include "xe_lrc.h"
+>  #include "xe_macros.h"
+>  #include "xe_map.h"
+> +#include "xe_mmio.h"
+>  #include "xe_mocs.h"
+>  #include "xe_ring_ops_types.h"
+>  #include "xe_sched_job.h"
+>  #include "xe_trace.h"
+>  #include "xe_vm.h"
+>
+> +#define HAS_GUC_MMIO_DB(xe) (IS_DGFX(xe) || GRAPHICS_VERx100(xe) >=3D 12=
+50)
+> +#define HAS_GUC_DIST_DB(xe) \
+> +       (GRAPHICS_VERx100(xe) >=3D 1200 && !HAS_GUC_MMIO_DB(xe))
 > +
-> +	/* residency multiplier in ns, convert to ms */
-> +	return mul_u64_u32_div(cur_residency, residency_multiplier, 1e6);
+> +#define GUC_NUM_HW_DOORBELLS 256
+> +
+> +#define GUC_MMIO_DB_BAR_OFFSET SZ_4M
+> +#define GUC_MMIO_DB_BAR_SIZE SZ_4M
+> +
+>  static struct xe_gt *
+>  guc_to_gt(struct xe_guc *guc)
+>  {
+> @@ -63,6 +76,7 @@ engine_to_guc(struct xe_engine *e)
+>  #define ENGINE_STATE_SUSPENDED         (1 << 5)
+>  #define ENGINE_STATE_RESET             (1 << 6)
+>  #define ENGINE_STATE_KILLED            (1 << 7)
+> +#define ENGINE_STATE_DB_REGISTERED     (1 << 8)
+>
+>  static bool engine_registered(struct xe_engine *e)
+>  {
+> @@ -179,6 +193,16 @@ static void set_engine_killed(struct xe_engine *e)
+>         atomic_or(ENGINE_STATE_KILLED, &e->guc->state);
+>  }
+>
+> +static bool engine_doorbell_registered(struct xe_engine *e)
+> +{
+> +       return atomic_read(&e->guc->state) & ENGINE_STATE_DB_REGISTERED;
 > +}
 > +
-> +/**
-> + * xe_rc_status - get the current Render C state
-> + * @gtidle - xe_gt_idle instance
-> + */
-> +void xe_rc_status(struct xe_gt_idle *gtidle)
-
-hmm, this function seems to accessing GT registers only, why it is
-placed in guc_pc.c ? it really doesn't belong to GuC IMO
-
+> +static void set_engine_doorbell_registered(struct xe_engine *e)
 > +{
-> +	struct xe_gt *gt = gtidle_to_gt(gtidle);
->  	u32 reg;
->  
->  	xe_device_mem_access_get(gt_to_xe(gt));
-> @@ -593,37 +622,33 @@ static ssize_t rc_status_show(struct device *dev,
->  
->  	switch (REG_FIELD_GET(RCN_MASK, reg)) {
->  	case GT_RC6:
-> -		return sysfs_emit(buff, "rc6\n");
-> +		gtidle->state = "rc6\n";
-> +		return;
->  	case GT_RC0:
-> -		return sysfs_emit(buff, "rc0\n");
-> +		gtidle->state = "rc0\n";
-> +		return;
->  	default:
-> -		return -ENOENT;
-> +		gtidle->state = "unknown\n";
-
-kind strange design pattern to pass status as string ...
-IMO we should rather define enum and convert to string as needed
-
->  	}
->  }
-> -static DEVICE_ATTR_RO(rc_status);
->  
-> -static ssize_t rc6_residency_show(struct device *dev,
-> -				  struct device_attribute *attr, char *buff)
-> +/**
-> + * xe_rc6_residency_ms - rc6 residency in ms
-> + * @gtidle - xe_gt_idle instance
-> + */
-> +u64 xe_rc6_residency_ms(struct xe_gt_idle *gtidle)
+> +       atomic_or(ENGINE_STATE_DB_REGISTERED, &e->guc->state);
+> +}
+> +
+>  static bool engine_killed_or_banned(struct xe_engine *e)
 >  {
-> -	struct xe_guc_pc *pc = dev_to_pc(dev);
-> -	struct xe_gt *gt = pc_to_gt(pc);
-> -	u32 reg;
-> -	ssize_t ret;
-> -
-> -	xe_device_mem_access_get(pc_to_xe(pc));
-> -	ret = xe_force_wake_get(gt_to_fw(gt), XE_FORCEWAKE_ALL);
-> -	if (ret)
-> -		goto out;
-> +	struct xe_gt *gt = gtidle_to_gt(gtidle);
-> +	u64 reg, rc6_residency;
->  
-> +	xe_device_mem_access_get(gt_to_xe(gt));
->  	reg = xe_mmio_read32(gt, GT_GFX_RC6.reg);
-> -	ret = sysfs_emit(buff, "%u\n", reg);
->  
-> -	XE_WARN_ON(xe_force_wake_put(gt_to_fw(gt), XE_FORCEWAKE_ALL));
-> -out:
-> -	xe_device_mem_access_put(pc_to_xe(pc));
-> -	return ret;
-> +	rc6_residency = get_residency_ms(gtidle, reg, XE_RC6_MULTIPLIER);
-> +
-> +	xe_device_mem_access_put(gt_to_xe(gt));
-> +	return rc6_residency;
+>         return engine_killed(e) || engine_banned(e);
+> @@ -190,6 +214,7 @@ static void guc_submit_fini(struct drm_device *drm, v=
+oid *arg)
+>
+>         xa_destroy(&guc->submission_state.engine_lookup);
+>         ida_destroy(&guc->submission_state.guc_ids);
+> +       ida_destroy(&guc->submission_state.doorbell_ids);
+>         bitmap_free(guc->submission_state.guc_ids_bitmap);
 >  }
-> -static DEVICE_ATTR_RO(rc6_residency);
->  
->  static const struct attribute *pc_attrs[] = {
->  	&dev_attr_freq_act.attr,
-> @@ -633,8 +658,6 @@ static const struct attribute *pc_attrs[] = {
->  	&dev_attr_freq_rpn.attr,
->  	&dev_attr_freq_min.attr,
->  	&dev_attr_freq_max.attr,
-> -	&dev_attr_rc_status.attr,
-> -	&dev_attr_rc6_residency.attr,
->  	NULL
->  };
->  
-> diff --git a/drivers/gpu/drm/xe/xe_guc_pc.h b/drivers/gpu/drm/xe/xe_guc_pc.h
-> index da29e4934868..a6abac189c8a 100644
-> --- a/drivers/gpu/drm/xe/xe_guc_pc.h
-> +++ b/drivers/gpu/drm/xe/xe_guc_pc.h
-> @@ -8,8 +8,13 @@
->  
->  #include "xe_guc_pc_types.h"
->  
-> +struct xe_gt_idle;
+>
+> @@ -230,6 +255,7 @@ int xe_guc_submit_init(struct xe_guc *guc)
+>         mutex_init(&guc->submission_state.lock);
+>         xa_init(&guc->submission_state.engine_lookup);
+>         ida_init(&guc->submission_state.guc_ids);
+> +       ida_init(&guc->submission_state.doorbell_ids);
+>
+>         spin_lock_init(&guc->submission_state.suspend.lock);
+>         guc->submission_state.suspend.context =3D dma_fence_context_alloc=
+(1);
+> @@ -243,6 +269,237 @@ int xe_guc_submit_init(struct xe_guc *guc)
+>         return 0;
+>  }
+>
+> +int xe_guc_submit_init_post_hwconfig(struct xe_guc *guc)
+> +{
+> +       if (HAS_GUC_DIST_DB(guc_to_xe(guc))) {
+> +               u32 distdbreg =3D xe_mmio_read32(guc_to_gt(guc),
+> +                                              DIST_DBS_POPULATED.reg);
+> +               u32 num_sqidi =3D
+> +                       hweight32(distdbreg & SQIDIS_DOORBELL_EXIST_MASK)=
+;
+> +               u32 doorbells_per_sqidi =3D
+> +                       ((distdbreg >> DOORBELLS_PER_SQIDI_SHIFT) &
+> +                        DOORBELLS_PER_SQIDI_MASK) + 1;
 > +
->  int xe_guc_pc_init(struct xe_guc_pc *pc);
->  int xe_guc_pc_start(struct xe_guc_pc *pc);
->  int xe_guc_pc_stop(struct xe_guc_pc *pc);
->  
-> +void xe_rc_status(struct xe_gt_idle *gtidle);
-> +u64 xe_rc6_residency_ms(struct xe_gt_idle *gtidle);
-
-if you look around you should clearly see that such function prototypes
-do not fit here, all other functions have "xe_guc_pc" prefix and takes
-"xe_guc_pc" as param ...
-
-please reconsider function placement and the flow
-
-Michal
-
+> +               guc->submission_state.num_doorbells =3D
+> +                       num_sqidi * doorbells_per_sqidi;
+> +       } else {
+> +               guc->submission_state.num_doorbells =3D GUC_NUM_HW_DOORBE=
+LLS;
+> +       }
 > +
->  #endif /* _XE_GUC_PC_H_ */
+> +       return 0;
+> +}
+> +
+> +static bool alloc_doorbell_id(struct xe_guc *guc, struct xe_engine *e)
+> +{
+> +       int ret;
+> +
+> +       lockdep_assert_held(&guc->submission_state.lock);
+> +
+> +       e->guc->doorbell_id =3D GUC_NUM_HW_DOORBELLS;
+> +       ret =3D ida_simple_get(&guc->submission_state.doorbell_ids, 0,
+> +                            guc->submission_state.num_doorbells, GFP_NOW=
+AIT);
+> +       if (ret < 0)
+> +               return false;
+> +
+> +       e->guc->doorbell_id =3D ret;
+> +
+> +       return true;
+> +}
+> +
+> +static void release_doorbell_id(struct xe_guc *guc, struct xe_engine *e)
+> +{
+> +       mutex_lock(&guc->submission_state.lock);
+> +       ida_simple_remove(&guc->submission_state.doorbell_ids,
+> +                         e->guc->doorbell_id);
+> +       mutex_unlock(&guc->submission_state.lock);
+> +
+> +       e->guc->doorbell_id =3D GUC_NUM_HW_DOORBELLS;
+> +}
+> +
+> +static int allocate_doorbell(struct xe_guc *guc, u16 guc_id, u16 doorbel=
+l_id,
+> +                            u64 gpa, u32 gtt_addr)
+> +{
+> +       u32 action[] =3D {
+> +               XE_GUC_ACTION_ALLOCATE_DOORBELL,
+> +               guc_id,
+> +               doorbell_id,
+> +               lower_32_bits(gpa),
+> +               upper_32_bits(gpa),
+> +               gtt_addr
+> +       };
+> +
+> +       return xe_guc_ct_send_block(&guc->ct, action, ARRAY_SIZE(action))=
+;
+> +}
+> +
+> +static void deallocate_doorbell(struct xe_guc *guc, u16 guc_id)
+> +{
+> +       u32 action[] =3D {
+> +               XE_GUC_ACTION_DEALLOCATE_DOORBELL,
+> +               guc_id
+> +       };
+> +
+> +       xe_guc_ct_send(&guc->ct, action, ARRAY_SIZE(action), 0, 0);
+> +}
+> +
+> +static bool has_doorbell(struct xe_engine *e)
+> +{
+> +       return e->guc->doorbell_id !=3D GUC_NUM_HW_DOORBELLS;
+> +}
+> +
+> +#define doorbell_read(guc_, e_, field_) ({                     \
+> +       struct iosys_map _vmap =3D (e_)->guc->doorbell_bo->vmap;  \
+> +       iosys_map_incr(&_vmap, (e_)->guc->doorbell_offset);     \
+> +       xe_map_rd_field(guc_to_xe((guc_)), &_vmap, 0,           \
+> +                                 struct guc_doorbell_info, field_); \
+> +       })
+> +#define doorbell_write(guc_, e_, field_, val_) ({              \
+> +       struct iosys_map _vmap =3D (e_)->guc->doorbell_bo->vmap;  \
+> +       iosys_map_incr(&_vmap, (e_)->guc->doorbell_offset);     \
+> +       xe_map_wr_field(guc_to_xe((guc_)), &_vmap, 0,           \
+> +                                 struct guc_doorbell_info, field_, val_)=
+; \
+> +       })
+> +
+> +static void init_doorbell(struct xe_guc *guc, struct xe_engine *e)
+> +{
+> +       struct xe_device *xe =3D guc_to_xe(guc);
+> +
+> +       /* GuC does the initialization with distributed and MMIO doorbell=
+s */
+> +       if (!HAS_GUC_DIST_DB(xe) && !HAS_GUC_MMIO_DB(xe)) {
+> +               doorbell_write(guc, e, db_status, GUC_DOORBELL_ENABLED);
+> +               doorbell_write(guc, e, cookie, 0);
+> +       }
+> +}
+> +
+> +static void fini_doorbell(struct xe_guc *guc, struct xe_engine *e)
+> +{
+> +       if (!HAS_GUC_MMIO_DB(guc_to_xe(guc)) &&
+> +           xe_device_mem_access_ongoing(guc_to_xe(guc)))
+> +               doorbell_write(guc, e, db_status, GUC_DOORBELL_DISABLED);
+> +}
+> +
+> +static void destroy_doorbell(struct xe_guc *guc, struct xe_engine *e)
+> +{
+> +       if (has_doorbell(e)) {
+> +               release_doorbell_id(guc, e);
+> +               xe_bo_unpin_map_no_vm(e->guc->doorbell_bo);
+> +       }
+> +}
+> +
+> +static void ring_memory_doorbell(struct xe_guc *guc, struct xe_engine *e=
+)
+> +{
+> +       u32 cookie;
+> +
+> +       cookie =3D doorbell_read(guc, e, cookie);
+> +       doorbell_write(guc, e, cookie, cookie + 1 ?: cookie + 2);
+> +
+> +       XE_WARN_ON(doorbell_read(guc, e, db_status) !=3D GUC_DOORBELL_ENA=
+BLED);
+> +}
+> +
+> +#define GUC_MMIO_DOORBELL_RING_ACK     0xACEDBEEF
+> +#define GUC_MMIO_DOORBELL_RING_NACK    0xDEADBEEF
+> +static void ring_mmio_doorbell(struct xe_guc *guc, u32 doorbell_offset)
+> +{
+> +       u32 db_value;
+> +
+> +       db_value =3D xe_mmio_read32(guc_to_gt(guc), GUC_MMIO_DB_BAR_OFFSE=
+T +
+> +                                 doorbell_offset);
+> +
+> +       /*
+> +        * The read from the doorbell page will return ack/nack. We don't=
+ remove
+> +        * doorbells from active clients so we don't expect to ever get a=
+ nack.
+> +        * XXX: if doorbell is lost, re-acquire it?
+> +        */
+> +       XE_WARN_ON(db_value =3D=3D GUC_MMIO_DOORBELL_RING_NACK);
+> +       XE_WARN_ON(db_value !=3D GUC_MMIO_DOORBELL_RING_ACK);
+> +}
+> +
+> +static void ring_doorbell(struct xe_guc *guc, struct xe_engine *e)
+> +{
+> +       XE_BUG_ON(!has_doorbell(e));
+> +
+> +       if (HAS_GUC_MMIO_DB(guc_to_xe(guc)))
+> +               ring_mmio_doorbell(guc, e->guc->doorbell_offset);
+> +       else
+> +               ring_memory_doorbell(guc, e);
+> +
+> +       trace_xe_engine_ring_db(e);
+> +}
+> +
+> +static void register_engine(struct xe_engine *e);
+> +
+> +static int create_doorbell(struct xe_guc *guc, struct xe_engine *e, bool=
+ init)
+> +{
+> +       struct xe_gt *gt =3D guc_to_gt(guc);
+> +       struct xe_device *xe =3D gt_to_xe(gt);
+> +       u64 gpa;
+> +       u32 gtt_addr;
+> +       int ret;
+> +
+> +       XE_BUG_ON(!has_doorbell(e));
+> +
+> +       if (HAS_GUC_MMIO_DB(xe)) {
+> +               e->guc->doorbell_offset =3D PAGE_SIZE * e->guc->doorbell_=
+id;
+I think there is an implied assumption here (and in the code below)
+that PAGE_SIZE is always 4KB, which is problematic in non-x86
+architectures.
+If there is no limitation on xe being used solely on x86_64, then I
+think it would be better to change this to SZ_4K
+
+> +               gpa =3D GUC_MMIO_DB_BAR_OFFSET + e->guc->doorbell_offset;
+> +               gtt_addr =3D 0;
+> +       } else {
+> +               struct xe_bo *bo;
+> +
+> +               if (!e->guc->doorbell_bo) {
+> +                       bo =3D xe_bo_create_pin_map(xe, gt, NULL, PAGE_SI=
+ZE,
+> +                                                 ttm_bo_type_kernel,
+> +                                                 XE_BO_CREATE_VRAM_IF_DG=
+FX(gt) |
+> +                                                 XE_BO_CREATE_GGTT_BIT);
+> +                       if (IS_ERR(bo))
+> +                               return PTR_ERR(bo);
+> +
+> +                       e->guc->doorbell_bo =3D bo;
+> +               } else {
+> +                       bo =3D e->guc->doorbell_bo;
+> +               }
+> +
+> +               init_doorbell(guc, e);
+> +               gpa =3D xe_bo_main_addr(bo, PAGE_SIZE);
+> +               gtt_addr =3D xe_bo_ggtt_addr(bo);
+> +       }
+> +
+> +       if (init && e->flags & ENGINE_FLAG_KERNEL)
+> +               return 0;
+> +
+> +       register_engine(e);
+> +       ret =3D allocate_doorbell(guc, e->guc->id, e->guc->doorbell_id, g=
+pa,
+> +                               gtt_addr);
+> +       if (ret < 0) {
+> +               fini_doorbell(guc, e);
+> +               return ret;
+> +       }
+> +
+> +       /*
+> +        * In distributed doorbells, guc is returning the cacheline selec=
+ted
+> +        * by HW as part of the 7bit data from the allocate doorbell comm=
+and:
+> +        *  bit [22]   - Cacheline allocated
+> +        *  bit [21:16] - Cacheline offset address
+> +        * (bit 21 must be zero, or our assumption of only using half a p=
+age is
+> +        * no longer correct).
+> +        */
+> +       if (HAS_GUC_DIST_DB(xe)) {
+> +               u32 dd_cacheline_info;
+> +
+> +               XE_WARN_ON(!(ret & BIT(22)));
+> +               XE_WARN_ON(ret & BIT(21));
+> +
+> +               dd_cacheline_info =3D FIELD_GET(GENMASK(21, 16), ret);
+> +               e->guc->doorbell_offset =3D dd_cacheline_info * cache_lin=
+e_size();
+I don't understand something. We have 256 doorbells, but here you
+overrun the doorbell_offset, where dd_cacheline_info can be 0-31
+(because bit 21 is always 0).
+This has overlap... Some doorbells will get the same address.
+> +
+> +               /* and verify db status was updated correctly by the guc =
+fw */
+> +               XE_WARN_ON(doorbell_read(guc, e, db_status) !=3D
+> +                          GUC_DOORBELL_ENABLED);
+> +       }
+> +
+> +       set_engine_doorbell_registered(e);
+> +
+> +       return 0;
+> +}
+> +
+>  static int alloc_guc_id(struct xe_guc *guc, struct xe_engine *e)
+>  {
+>         int ret;
+> @@ -623,6 +880,7 @@ static void submit_engine(struct xe_engine *e)
+>         u32 num_g2h =3D 0;
+>         int len =3D 0;
+>         bool extra_submit =3D false;
+> +       bool enable =3D false;
+>
+>         XE_BUG_ON(!engine_registered(e));
+>
+> @@ -642,6 +900,7 @@ static void submit_engine(struct xe_engine *e)
+>                 num_g2h =3D 1;
+>                 if (xe_engine_is_parallel(e))
+>                         extra_submit =3D true;
+> +               enable =3D true;
+>
+>                 e->guc->resume_time =3D RESUME_PENDING;
+>                 set_engine_pending_enable(e);
+> @@ -653,7 +912,10 @@ static void submit_engine(struct xe_engine *e)
+>                 trace_xe_engine_submit(e);
+>         }
+>
+> -       xe_guc_ct_send(&guc->ct, action, len, g2h_len, num_g2h);
+> +       if (enable || !engine_doorbell_registered(e))
+> +               xe_guc_ct_send(&guc->ct, action, len, g2h_len, num_g2h);
+> +       else
+> +               ring_doorbell(guc, e);
+>
+>         if (extra_submit) {
+>                 len =3D 0;
+> @@ -678,8 +940,17 @@ guc_engine_run_job(struct drm_sched_job *drm_job)
+>         trace_xe_sched_job_run(job);
+>
+>         if (!engine_killed_or_banned(e) && !xe_sched_job_is_error(job)) {
+> -               if (!engine_registered(e))
+> -                       register_engine(e);
+> +               if (!engine_registered(e)) {
+> +                       if (has_doorbell(e)) {
+> +                               int err =3D create_doorbell(engine_to_guc=
+(e), e,
+> +                                                         false);
+> +
+> +                               /* Not fatal, but let's warn */
+> +                               XE_WARN_ON(err);
+> +                       } else {
+> +                               register_engine(e);
+> +                       }
+> +               }
+>                 if (!lr)        /* Written in IOCTL */
+>                         e->ring_ops->emit_job(job);
+>                 submit_engine(e);
+> @@ -722,6 +993,11 @@ static void disable_scheduling_deregister(struct xe_=
+guc *guc,
+>         MAKE_SCHED_CONTEXT_ACTION(e, DISABLE);
+>         int ret;
+>
+> +       if (has_doorbell(e)) {
+> +               fini_doorbell(guc, e);
+> +               deallocate_doorbell(guc, e->guc->id);
+> +       }
+> +
+>         set_min_preemption_timeout(guc, e);
+>         smp_rmb();
+>         ret =3D wait_event_timeout(guc->ct.wq, !engine_pending_enable(e) =
+||
+> @@ -958,6 +1234,7 @@ static void __guc_engine_fini_async(struct work_stru=
+ct *w)
+>                 cancel_work_sync(&ge->lr_tdr);
+>         if (e->flags & ENGINE_FLAG_PERSISTENT)
+>                 xe_device_remove_persistent_engines(gt_to_xe(e->gt), e);
+> +       destroy_doorbell(guc, e);
+>         release_guc_id(guc, e);
+>         drm_sched_entity_fini(&ge->entity);
+>         drm_sched_fini(&ge->sched);
+> @@ -1136,6 +1413,7 @@ static int guc_engine_init(struct xe_engine *e)
+>         struct xe_guc_engine *ge;
+>         long timeout;
+>         int err;
+> +       bool create_db =3D false;
+>
+>         XE_BUG_ON(!xe_device_guc_submission_enabled(guc_to_xe(guc)));
+>
+> @@ -1177,8 +1455,17 @@ static int guc_engine_init(struct xe_engine *e)
+>         if (guc_read_stopped(guc))
+>                 drm_sched_stop(sched, NULL);
+>
+> +       create_db =3D alloc_doorbell_id(guc, e);
+> +
+>         mutex_unlock(&guc->submission_state.lock);
+>
+> +       if (create_db) {
+> +               /* Error isn't fatal as we don't need a doorbell */
+> +               err =3D create_doorbell(guc, e, true);
+> +               if (err)
+> +                       release_doorbell_id(guc, e);
+> +       }
+> +
+>         switch (e->class) {
+>         case XE_ENGINE_CLASS_RENDER:
+>                 sprintf(e->name, "rcs%d", e->guc->id);
+> @@ -1302,7 +1589,7 @@ static int guc_engine_set_job_timeout(struct xe_eng=
+ine *e, u32 job_timeout_ms)
+>  {
+>         struct drm_gpu_scheduler *sched =3D &e->guc->sched;
+>
+> -       XE_BUG_ON(engine_registered(e));
+> +       XE_BUG_ON(engine_registered(e) && !has_doorbell(e));
+>         XE_BUG_ON(engine_banned(e));
+>         XE_BUG_ON(engine_killed(e));
+>
+> diff --git a/drivers/gpu/drm/xe/xe_guc_submit.h b/drivers/gpu/drm/xe/xe_g=
+uc_submit.h
+> index 8002734d6f24..bada6c02d6aa 100644
+> --- a/drivers/gpu/drm/xe/xe_guc_submit.h
+> +++ b/drivers/gpu/drm/xe/xe_guc_submit.h
+> @@ -13,6 +13,7 @@ struct xe_engine;
+>  struct xe_guc;
+>
+>  int xe_guc_submit_init(struct xe_guc *guc);
+> +int xe_guc_submit_init_post_hwconfig(struct xe_guc *guc);
+>  void xe_guc_submit_print(struct xe_guc *guc, struct drm_printer *p);
+>
+>  int xe_guc_submit_reset_prepare(struct xe_guc *guc);
+> diff --git a/drivers/gpu/drm/xe/xe_guc_types.h b/drivers/gpu/drm/xe/xe_gu=
+c_types.h
+> index ac7eec28934d..9ee4d572f4e0 100644
+> --- a/drivers/gpu/drm/xe/xe_guc_types.h
+> +++ b/drivers/gpu/drm/xe/xe_guc_types.h
+> @@ -36,10 +36,14 @@ struct xe_guc {
+>                 struct xarray engine_lookup;
+>                 /** @guc_ids: used to allocate new guc_ids, single-lrc */
+>                 struct ida guc_ids;
+> +               /** @doorbell_ids: use to allocate new doorbells */
+> +               struct ida doorbell_ids;
+>                 /** @guc_ids_bitmap: used to allocate new guc_ids, multi-=
+lrc */
+>                 unsigned long *guc_ids_bitmap;
+>                 /** @stopped: submissions are stopped */
+>                 atomic_t stopped;
+> +               /** @num_doorbells: number of doorbels */
+> +               int num_doorbells;
+>                 /** @lock: protects submission state */
+>                 struct mutex lock;
+>                 /** @suspend: suspend fence state */
+> diff --git a/drivers/gpu/drm/xe/xe_trace.h b/drivers/gpu/drm/xe/xe_trace.=
+h
+> index 02861c26e145..38e9d7c6197b 100644
+> --- a/drivers/gpu/drm/xe/xe_trace.h
+> +++ b/drivers/gpu/drm/xe/xe_trace.h
+> @@ -149,6 +149,11 @@ DEFINE_EVENT(xe_engine, xe_engine_submit,
+>              TP_ARGS(e)
+>  );
+>
+> +DEFINE_EVENT(xe_engine, xe_engine_ring_db,
+> +            TP_PROTO(struct xe_engine *e),
+> +            TP_ARGS(e)
+> +);
+> +
+>  DEFINE_EVENT(xe_engine, xe_engine_scheduling_enable,
+>              TP_PROTO(struct xe_engine *e),
+>              TP_ARGS(e)
+> --
+> 2.34.1
+>
+>
