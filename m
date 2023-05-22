@@ -4,49 +4,45 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id A7BCBC7EE26
-	for <intel-xe@archiver.kernel.org>; Mon, 22 May 2023 08:53:05 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id C78F5C7EE26
+	for <intel-xe@archiver.kernel.org>; Mon, 22 May 2023 08:54:31 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 557F010E1AF;
-	Mon, 22 May 2023 08:53:05 +0000 (UTC)
-Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
- by gabe.freedesktop.org (Postfix) with ESMTPS id AB36B10E1AF
- for <intel-xe@lists.freedesktop.org>; Mon, 22 May 2023 08:53:03 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9915910E27B;
+	Mon, 22 May 2023 08:54:31 +0000 (UTC)
+Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5284410E27B
+ for <intel-xe@lists.freedesktop.org>; Mon, 22 May 2023 08:54:30 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1684745583; x=1716281583;
- h=from:to:cc:subject:in-reply-to:references:date:
- message-id:mime-version;
- bh=FokgbLngcqOXfvDWshfWohbh5WUCI+ey3I76lJ70z9I=;
- b=jtg3Dpc91tH+DrmjrO3CnIIdL2yoliAezBYL/quTHTCc0t7xqyHz5hWI
- YkFX4eCdW7plKskanOU9sfmz1luVYU7AxpjH83+IAlSQm9aX2Z/drPyet
- f9ukaRuH/up4RsOJPAmwoxnryetV4LFunFvUZ1LtGRWfVResgEB+Av813
- uXWxQtL/kT116WG2nPaLKsMlil53eodIFMlqKF1AXz9nFE/Nkf8derGe5
- Sbiym4W0iTSwTmwclGyyMBb3LUc5CgWhua7Cq1BzWVn8KPFVYq2/3/mon
- 4P6Ko/zwN4xT5kR9wd9n/ZvNO/EvDHyB0weWa8HAVddk+S2I+lzlAbuGF A==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10717"; a="381089700"
-X-IronPort-AV: E=Sophos;i="6.00,183,1681196400"; d="scan'208";a="381089700"
-Received: from orsmga001.jf.intel.com ([10.7.209.18])
- by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 22 May 2023 01:53:02 -0700
+ t=1684745670; x=1716281670;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=I2WH0NYy0KLzWxGzkIhlfIAXHycKbNUWNOgo11lbKbI=;
+ b=eY3IRMD3w8o/UWHYbul5PdthTG0Ut98QZFLFhO9Bft13BmSl9lKN7X+K
+ WP9GIZ1fUPfTMXu9BbGldPgKOYz95SILUEkBIHLQHAJgAeRd9nNUUOii9
+ V/I/L5UYM0f6wSBamFnGC9RLzktLYpMbAEg2IHjzl0o7JeQ97KRS/tux5
+ Umoz1tWv3auPCU5cX+QiePSeGxTUcI65f6FAvpuoxcWqRAjYe1xwgayVf
+ aDAH7Jm0R0DgWd4kYfLXD+7lKZaO7au5bAnDkzzKeGhMU2r9R4lPqqcGZ
+ A3a5+h+vYcAmt1Ky2Jd3kw2ewJNtg5SNS19SMB8uMHuySN2c0D1sxrRME w==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10717"; a="439220099"
+X-IronPort-AV: E=Sophos;i="6.00,183,1681196400"; d="scan'208";a="439220099"
+Received: from orsmga007.jf.intel.com ([10.7.209.58])
+ by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 22 May 2023 01:54:29 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10717"; a="736339529"
-X-IronPort-AV: E=Sophos;i="6.00,183,1681196400"; d="scan'208";a="736339529"
-Received: from andreipo-mobl1.ger.corp.intel.com (HELO localhost)
- ([10.252.54.228])
- by orsmga001-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 22 May 2023 01:53:00 -0700
-From: Jani Nikula <jani.nikula@intel.com>
-To: Anshuman Gupta <anshuman.gupta@intel.com>, intel-xe@lists.freedesktop.org
-In-Reply-To: <20230518085259.4083944-1-anshuman.gupta@intel.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20230518085259.4083944-1-anshuman.gupta@intel.com>
-Date: Mon, 22 May 2023 11:52:58 +0300
-Message-ID: <87fs7ooihh.fsf@intel.com>
+X-IronPort-AV: E=McAfee;i="6600,9927,10717"; a="697574681"
+X-IronPort-AV: E=Sophos;i="6.00,183,1681196400"; d="scan'208";a="697574681"
+Received: from himal-super-server.iind.intel.com ([10.145.169.168])
+ by orsmga007.jf.intel.com with ESMTP; 22 May 2023 01:54:27 -0700
+From: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
+To: intel-xe@lists.freedesktop.org
+Date: Mon, 22 May 2023 14:28:17 +0530
+Message-Id: <20230522085817.1347213-1-himal.prasad.ghimiray@intel.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-Content-Type: text/plain
-Subject: Re: [Intel-xe] [PATCH v3] drm/xe/pm: Disable PM on unbounded pcie
- parent bridge
+Content-Transfer-Encoding: 8bit
+Subject: [Intel-xe] [RFC 1/1] drm/xe: Add a debugfs for faking gt reset
+ failure.
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -58,79 +54,118 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Cc: Anshuman Gupta <anshuman.gupta@intel.com>, rodrigo.vivi@intel.com
+Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Thu, 18 May 2023, Anshuman Gupta <anshuman.gupta@intel.com> wrote:
-> Intel Discrete GFX cards gfx may have multiple PCIe endpoints,
-> they connects to root port via pcie upstream switch port(USP)
-> and virtual pcie switch port(VSP), sometimes VSP pcie devices
-> doesn't bind to pcieport driver. Without pcieport driver, pcie PM
-> comes without any warranty and with unbounded VSP gfx card won't
-> transition to low power pcie device and link state therefore
-> assert dev_warn on unbounded VSP and disable xe driver
-> PM support.
->
-> v2:
-> - Disable Xe PCI PM support. [Rodrigo]
-> v3:
-> - Changed subject and Rebase.
->
-> Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
-> Signed-off-by: Anshuman Gupta <anshuman.gupta@intel.com>
-> ---
->  drivers/gpu/drm/xe/xe_pci.c | 16 ++++++++++++++++
->  1 file changed, 16 insertions(+)
->
-> diff --git a/drivers/gpu/drm/xe/xe_pci.c b/drivers/gpu/drm/xe/xe_pci.c
-> index e789a50a1310..e09d76b7755a 100644
-> --- a/drivers/gpu/drm/xe/xe_pci.c
-> +++ b/drivers/gpu/drm/xe/xe_pci.c
-> @@ -603,6 +603,19 @@ static void xe_pci_remove(struct pci_dev *pdev)
->  	pci_set_drvdata(pdev, NULL);
->  }
->  
-> +static void xe_pci_unbounded_bridge_disable_pm(struct pci_dev *pdev)
-> +{
-> +	struct pci_dev *bridge = pci_upstream_bridge(pdev);
-> +
-> +	if (!bridge)
-> +		return;
-> +
-> +	if (!bridge->driver) {
-> +		dev_warn(&pdev->dev, "unbounded parent pci bridge, device won't support any PM support.\n");
-> +		pdev->driver->driver.pm = NULL;
-> +	}
-> +}
-> +
->  static int xe_pci_probe(struct pci_dev *pdev, const struct pci_device_id *ent)
->  {
->  	const struct xe_device_desc *desc = (const void *)ent->driver_data;
-> @@ -628,10 +641,13 @@ static int xe_pci_probe(struct pci_dev *pdev, const struct pci_device_id *ent)
->  		return -ENODEV;
->  	}
->  
-> +
+In case of gt reset failure, KMD notifies userspace about failure
+via uevent. To validate this notification we need to ensure gt
+reset fails and there is no mechanism to cause failure from hardware.
+Hence added a debugfs which will cause fake reset failure.
 
-Please make a habit out of running checkpatch.pl --strict locally to
-save everyone's time.
+Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
+Signed-off-by: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
+---
+ drivers/gpu/drm/xe/xe_gt.c         | 26 +++++++++++++++++++++++++-
+ drivers/gpu/drm/xe/xe_gt_debugfs.c | 11 +++++++++++
+ drivers/gpu/drm/xe/xe_gt_types.h   |  3 +++
+ 3 files changed, 39 insertions(+), 1 deletion(-)
 
-CHECK: Please don't use multiple blank lines
-#91: FILE: drivers/gpu/drm/xe/xe_pci.c:644:
+diff --git a/drivers/gpu/drm/xe/xe_gt.c b/drivers/gpu/drm/xe/xe_gt.c
+index d98761d9eeba..e05615ca13e5 100644
+--- a/drivers/gpu/drm/xe/xe_gt.c
++++ b/drivers/gpu/drm/xe/xe_gt.c
+@@ -301,6 +301,9 @@ int xe_gt_init_early(struct xe_gt *gt)
+ {
+ 	int err;
  
++	/* Reset is supported by default */
++	gt->reset_enabled = true;
 +
-
-
->  	err = xe_display_driver_probe_defer(pdev);
->  	if (err)
->  		return err;
->  
-> +	xe_pci_unbounded_bridge_disable_pm(pdev);
-> +
->  	xe = xe_device_create(pdev, ent);
->  	if (IS_ERR(xe))
->  		return PTR_ERR(xe);
-
+ 	xe_force_wake_init_gt(gt, gt_to_fw(gt));
+ 
+ 	err = xe_force_wake_get(gt_to_fw(gt), XE_FW_GT);
+@@ -605,6 +608,16 @@ static void xe_uevent_gt_reset_failure(struct xe_device *xe, u8 id)
+ 	kfree(reset_event[3]);
+ }
+ 
++static int reset_disabled(struct xe_gt *gt)
++{
++	return !READ_ONCE(gt->reset_enabled);
++}
++
++static void enable_reset(struct xe_gt *gt)
++{
++	WRITE_ONCE(gt->reset_enabled, true);
++}
++
+ static int gt_reset(struct xe_gt *gt)
+ {
+ 	struct xe_device *xe = gt_to_xe(gt);
+@@ -617,8 +630,19 @@ static int gt_reset(struct xe_gt *gt)
+ 	drm_info(&xe->drm, "GT reset started\n");
+ 
+ 	xe_gt_sanitize(gt);
+-
+ 	xe_device_mem_access_get(gt_to_xe(gt));
++
++	err = reset_disabled(gt);
++	if (err) {
++		drm_info(&xe->drm, "GT reset is disabled\n");
++
++		/*Enable GT reset for next call if disabled
++		 * for fake reset failure.
++		 */
++		enable_reset(gt);
++		goto err_msg;
++	}
++
+ 	err = xe_force_wake_get(gt_to_fw(gt), XE_FORCEWAKE_ALL);
+ 	if (err)
+ 		goto err_msg;
+diff --git a/drivers/gpu/drm/xe/xe_gt_debugfs.c b/drivers/gpu/drm/xe/xe_gt_debugfs.c
+index c45486c2015a..1c3e673c8c60 100644
+--- a/drivers/gpu/drm/xe/xe_gt_debugfs.c
++++ b/drivers/gpu/drm/xe/xe_gt_debugfs.c
+@@ -127,6 +127,16 @@ static int register_save_restore(struct seq_file *m, void *data)
+ 	return 0;
+ }
+ 
++static int fake_reset_failure(struct seq_file *m, void *data)
++{
++	struct xe_gt *gt = node_to_gt(m->private);
++
++	WRITE_ONCE(gt->reset_enabled, false);
++	xe_gt_reset_async(gt);
++
++	return 0;
++}
++
+ static const struct drm_info_list debugfs_list[] = {
+ 	{"hw_engines", hw_engines, 0},
+ 	{"force_reset", force_reset, 0},
+@@ -135,6 +145,7 @@ static const struct drm_info_list debugfs_list[] = {
+ 	{"steering", steering, 0},
+ 	{"ggtt", ggtt, 0},
+ 	{"register-save-restore", register_save_restore, 0},
++	{"fake_reset_failure", fake_reset_failure, 0},
+ };
+ 
+ void xe_gt_debugfs_register(struct xe_gt *gt)
+diff --git a/drivers/gpu/drm/xe/xe_gt_types.h b/drivers/gpu/drm/xe/xe_gt_types.h
+index 7c47d67aa8be..7ec19ad0365d 100644
+--- a/drivers/gpu/drm/xe/xe_gt_types.h
++++ b/drivers/gpu/drm/xe/xe_gt_types.h
+@@ -175,6 +175,9 @@ struct xe_gt {
+ 		struct work_struct worker;
+ 	} reset;
+ 
++	/** @reset_enabled: GT supports reset */
++	bool reset_enabled;
++
+ 	/** @tlb_invalidation: TLB invalidation state */
+ 	struct {
+ 		/** @seqno: TLB invalidation seqno, protected by CT lock */
 -- 
-Jani Nikula, Intel Open Source Graphics Center
+2.25.1
+
