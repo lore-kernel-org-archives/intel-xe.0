@@ -4,30 +4,31 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id AB990C77B75
-	for <intel-xe@archiver.kernel.org>; Mon, 22 May 2023 14:08:07 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 19AE1C7EE23
+	for <intel-xe@archiver.kernel.org>; Mon, 22 May 2023 14:09:57 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 77F0C10E33A;
-	Mon, 22 May 2023 14:08:07 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id BDA7E10E08B;
+	Mon, 22 May 2023 14:09:56 +0000 (UTC)
 Received: from emeril.freedesktop.org (emeril.freedesktop.org
  [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id 9DB5610E33A;
- Mon, 22 May 2023 14:08:05 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTP id 9EC4A10E08B;
+ Mon, 22 May 2023 14:09:55 +0000 (UTC)
 Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 96963AADE1;
- Mon, 22 May 2023 14:08:05 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============4400865098468121222=="
+ by emeril.freedesktop.org (Postfix) with ESMTP id 95C9CAADE1;
+ Mon, 22 May 2023 14:09:55 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: "Gustavo Sousa" <gustavo.sousa@intel.com>
-Date: Mon, 22 May 2023 14:08:05 -0000
-Message-ID: <168476448561.28283.13309097452868639297@emeril.freedesktop.org>
+Date: Mon, 22 May 2023 14:09:55 -0000
+Message-ID: <168476459558.28283.3369403129900035086@emeril.freedesktop.org>
 X-Patchwork-Hint: ignore
-References: <20230518215651.502159-1-gustavo.sousa@intel.com>
-In-Reply-To: <20230518215651.502159-1-gustavo.sousa@intel.com>
-Subject: [Intel-xe] =?utf-8?q?=E2=97=8B_CI=2EBAT=3A_info_for_drm/xe=3A_Pr?=
- =?utf-8?q?oper_cleanup_in_xe=5Fdevice=5Fcreate=28=29_=28rev3=29?=
+References: <20230519194802.578182-1-gustavo.sousa@intel.com>
+In-Reply-To: <20230519194802.578182-1-gustavo.sousa@intel.com>
+Subject: [Intel-xe] =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_f?=
+ =?utf-8?q?or_drm/xe=3A_Do_not_forget_to_drm=5Fdev=5Fput=28=29_in_xe=5Fpci?=
+ =?utf-8?b?X3Byb2JlKCk6IChyZXYyKQ==?=
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -44,63 +45,17 @@ Cc: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============4400865098468121222==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
 == Series Details ==
 
-Series: drm/xe: Proper cleanup in xe_device_create() (rev3)
-URL   : https://patchwork.freedesktop.org/series/117971/
-State : info
+Series: drm/xe: Do not forget to drm_dev_put() in xe_pci_probe(): (rev2)
+URL   : https://patchwork.freedesktop.org/series/118050/
+State : success
 
 == Summary ==
 
-Participating hosts:
-bat-atsm-2
-bat-dg2-oem2
-bat-adlp-7
-Missing hosts results[0]:
-Results: [xe-pw-117971v3](https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-117971v3/index.html)
+=== Applying kernel patches on branch 'drm-xe-next' with base: ===
+Base commit: 44b2372d7 drm/xe: fix kernel-doc issues
+=== git am output follows ===
+Applying: drm/xe: Do not forget to drm_dev_put() in xe_pci_probe():
 
 
-
---===============4400865098468121222==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/xe: Proper cleanup in xe_device_create() (rev3)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/117971/">https://patchwork.freedesktop.org/series/117971/</a></td></tr>
-<tr><td><b>State:</b></td><td>info</td></tr>
-
-</table>
-
-
-    <p>Participating hosts:<br />
-bat-atsm-2<br />
-bat-dg2-oem2<br />
-bat-adlp-7<br />
-Missing hosts results[0]:<br />
-Results: <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-117971v3/index.html">xe-pw-117971v3</a></p>
-
-</body>
-</html>
-
---===============4400865098468121222==--
