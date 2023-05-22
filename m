@@ -4,55 +4,55 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 675CBC77B73
-	for <intel-xe@archiver.kernel.org>; Mon, 22 May 2023 05:49:06 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id CABC2C77B75
+	for <intel-xe@archiver.kernel.org>; Mon, 22 May 2023 06:52:48 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0269410E246;
-	Mon, 22 May 2023 05:49:06 +0000 (UTC)
-Received: from mail-oi1-x22e.google.com (mail-oi1-x22e.google.com
- [IPv6:2607:f8b0:4864:20::22e])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5287710E246
- for <intel-xe@lists.freedesktop.org>; Mon, 22 May 2023 05:49:03 +0000 (UTC)
-Received: by mail-oi1-x22e.google.com with SMTP id
- 5614622812f47-3909756b8b1so1872382b6e.1
- for <intel-xe@lists.freedesktop.org>; Sun, 21 May 2023 22:49:03 -0700 (PDT)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7429A10E24C;
+	Mon, 22 May 2023 06:52:48 +0000 (UTC)
+Received: from mail-oa1-x34.google.com (mail-oa1-x34.google.com
+ [IPv6:2001:4860:4864:20::34])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1602610E24C
+ for <intel-xe@lists.freedesktop.org>; Mon, 22 May 2023 06:52:45 +0000 (UTC)
+Received: by mail-oa1-x34.google.com with SMTP id
+ 586e51a60fabf-19a13476ffeso4096152fac.0
+ for <intel-xe@lists.freedesktop.org>; Sun, 21 May 2023 23:52:45 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20221208; t=1684734542; x=1687326542;
+ d=gmail.com; s=20221208; t=1684738364; x=1687330364;
  h=content-transfer-encoding:cc:to:subject:message-id:date:from
  :in-reply-to:references:mime-version:from:to:cc:subject:date
  :message-id:reply-to;
- bh=KAEQBFb/COiamyGmMOVXwAJqXla/AI7UTGYstEVHL38=;
- b=hjoHvOfEEciHU5z3BGRemevWXT8ji1yo4Pgz6VJ0yxk97uKbnfLqg/ev1q1hqPoYOQ
- EuA0bIOqYo9FSSPVbUf16M9EzBB5fXWX7qZk2+Gs1SeT/m22lzerJ9sEbGt55bsEeE2x
- bxT1iFn7WclLVMLSA43b6gqvyfAps5utGo9hTiPMhbIGU4sTkgW22DkVYxIfpouOl75j
- 94ZdFHAsbQxl7ycA74kwd4+LC9rSO3htt9rTbUxBwd2/rlucAtDWkw8H3ExOLfIB2i0w
- vPeyeK7K/Rj3Qcq5cf1JMBbHxdl6tKS+mepmUb9bqGDRmHJBvsjowDU+OTdVYmGYjlj7
- MITg==
+ bh=xl1N4zkT/+sx02gPH/GDnQX21xTeOHN7zxxrlkjztOQ=;
+ b=f34aNOE+f1c7xxWYR3RFJxzPt1goTcD4oFMRdWm220RiY3S5IGeKLwAVI2YJena0dG
+ eUVuXUM59WD8f81QlW2F7rBTh3FBfcEqcN3m4D/UHmGuDURWIGBDOeQTxTd/AELOQM8X
+ GPPIY3PfB+i/YtE/mIgyi62KHoBsWUJ85lMHDtycfeAFMl3xh+PRIAgNw+v7bsE6FlZO
+ p0ehYZVxlzZUrZY4eiN3w9y7x70FN8QaT3zuB+hpVIlE0lZHWGGev1EPVuvXLGlHuhJX
+ tvWKVKHa8oxN7q0L68eWWsy3zEug9nqPGEDydTgvbDL0WmeQkapk1vo705/C+CqyvT1U
+ Ysmg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20221208; t=1684734542; x=1687326542;
+ d=1e100.net; s=20221208; t=1684738364; x=1687330364;
  h=content-transfer-encoding:cc:to:subject:message-id:date:from
  :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
  :subject:date:message-id:reply-to;
- bh=KAEQBFb/COiamyGmMOVXwAJqXla/AI7UTGYstEVHL38=;
- b=LlE8eqUKXV+hI9fDkrQy87nfjZ/U7f9T4DrYMgFxuUCgqy9psDWHfwrPaUw06sM0py
- tJkwiccE5ry0Ym56SFsfQ/8yt0/Bh0fIzu5LvvkcBzOaoeBDqjvHEHKnpDOXvfpYBrGU
- 1prAU8sw6NOiZTOcAd/2fkbLZkociptmMBmRknlh3yy6mw8lYwRV60QK9O6QRW6wVRzD
- P3Zhjxn+mPW0RyZVB/2c+XErBMp16shZJWchd/18ZSO2CQBj9pRCDpWBE2y2pzWGJR3u
- NNyAkxOYkmpLb02oBbTdVOcCyIPFQYFFUe6JCjakAWUMy/L5kuR7s1TqwbnQtoX+6dJV
- bytQ==
-X-Gm-Message-State: AC+VfDxvL1W3Z6rWnXfUNTp5ZWToUIGLFOfM24Yvf1GOoqZ8dG2QF9Z+
- yRI7dx0OCtj5O7OyOqAo9plTJfDZapvJNY5snh4=
-X-Google-Smtp-Source: ACHHUZ66I7YPwTyxKWfi+zKhLp0lA2+61ZAErBaMLJDZR9MTEnl/knNdrABMZ46yoDnztB7Hv6sh4uFU3ru8VFx9sPk=
-X-Received: by 2002:a05:6808:a01:b0:38c:a20d:d376 with SMTP id
- n1-20020a0568080a0100b0038ca20dd376mr4617394oij.39.1684734541484; Sun, 21 May
- 2023 22:49:01 -0700 (PDT)
+ bh=xl1N4zkT/+sx02gPH/GDnQX21xTeOHN7zxxrlkjztOQ=;
+ b=e/uRI5PheUhxiqxNuz1MwxiFkPwWDNBpkFsrlyDUMiER0zsy2pJ51psJ1Mz+WE1q6g
+ ch0ReOLZHp2swg7ts5RSwZlttLAabQr5pI2DmfgSwzKHTYgDgfPSCxs/zwS7miliJyvC
+ Nm47D7rG3AQbLRX2fMpyLaKaoPvLqNRJpTtfif3Imo8oXCQJbDoA3xODL5oCAeXPWi/N
+ NdpOEd+qSe2bdltf+iB1hO4af+5UHN+oQyXfPJkF5Oe/XLlvodGPI0chuA4Iz2dyMtcV
+ FmTz63V9VQ1kQ7Pb/eKLrQsxOLR1BIJBn92h/Fim94RwVLObgWAY9iucHYYLAGS3+pff
+ p0IA==
+X-Gm-Message-State: AC+VfDyW68OlF6UlxXuzF+jBXuh3qInm4BUMMnGhkASfr3HsqKkaMjBP
+ VFAQLMdYw38Pk9HQ/Qq5oxO9IsNuYMDgj64lRT9E5CF4MGEZRg==
+X-Google-Smtp-Source: ACHHUZ43jAoyX7KuATqzALA3tkXCttN6eOxxoi5E82AzxT0zvH2/q53wwNunWJcHrGl/ilVBtS2aQlIZgOLn7vR5jGs=
+X-Received: by 2002:a05:6870:52c1:b0:19a:48bc:cc9d with SMTP id
+ p1-20020a05687052c100b0019a48bccc9dmr5070673oak.41.1684738364355; Sun, 21 May
+ 2023 23:52:44 -0700 (PDT)
 MIME-Version: 1.0
 References: <20230522015040.3849776-1-matthew.brost@intel.com>
  <20230522015040.3849776-4-matthew.brost@intel.com>
 In-Reply-To: <20230522015040.3849776-4-matthew.brost@intel.com>
 From: Christopher Snowhill <kode54@gmail.com>
-Date: Sun, 21 May 2023 22:48:50 -0700
-Message-ID: <CA+aRtuZHM=ncF_E5exeN2QayVv3gX+a-m2xOAgNiX5kP3GBTaA@mail.gmail.com>
+Date: Sun, 21 May 2023 23:52:33 -0700
+Message-ID: <CA+aRtuaBVYTcLu=oWsmOxMmMkmaZxA2Vq9wtkjEO=FBnhBpyZw@mail.gmail.com>
 To: Matthew Brost <matthew.brost@intel.com>
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -103,29 +103,6 @@ ty,
 >         entity->guilty =3D guilty;
 >         entity->num_sched_list =3D num_sched_list;
 >         entity->priority =3D priority;
-
-This very important patch segment was omitted here:
-
-@@ -91,7 +92,15 @@  int drm_sched_entity_init(struct drm_sched_entity *enti=
-ty,
-  RB_CLEAR_NODE(&entity->rb_tree_node);
-
-  if(num_sched_list) {
-- entity->rq =3D &sched_list[0]->sched_rq[entity->priority];
-+ if (sched_list[0]->sched_policy !=3D
-+    DRM_SCHED_POLICY_SINGLE_ENTITY) {
-+ entity->rq =3D &sched_list[0]->sched_rq[entity->priority];
-+ } else {
-+ if (num_sched_list !=3D 1 || sched_list[0]->single_entity)
-+ return -EINVAL;
-+ sched_list[0]->single_entity =3D entity;
-+ entity->single_sched =3D sched_list[0];
-+ }
-  }
-
-  init_completion(&entity->entity_idle);
-
-
 > @@ -124,7 +125,8 @@ void drm_sched_entity_modify_sched(struct drm_sched_e=
 ntity *entity,
 >                                     struct drm_gpu_scheduler **sched_list=
@@ -251,6 +228,52 @@ ty *entity)
 >         /* single possible engine and already selected */
 >         if (!entity->sched_list)
 >                 return;
+
+Another great swath removed here:
+
+@@ -522,16 +554,21 @@ void drm_sched_entity_select_rq(struct
+drm_sched_entity *entity)
+void drm_sched_entity_push_job(struct drm_sched_job *sched_job)
+{
+struct drm_sched_entity *entity =3D sched_job->entity;
++ bool single_entity =3D !!entity->single_sched;
+bool first;
+trace_drm_sched_job(sched_job, entity);
+- atomic_inc(entity->rq->sched->score);
++ if (!single_entity)
++ atomic_inc(entity->rq->sched->score);
+WRITE_ONCE(entity->last_user, current->group_leader);
+first =3D spsc_queue_push(&entity->job_queue, &sched_job->queue_node);
+sched_job->submit_ts =3D ktime_get();
+/* first job wakes up scheduler */
+if (first) {
++ struct drm_gpu_scheduler *sched =3D
++ drm_sched_entity_to_scheduler(entity);
++
+/* Add the entity to the run queue */
+spin_lock(&entity->rq_lock);
+if (entity->stopped) {
+@@ -541,13 +578,14 @@ void drm_sched_entity_push_job(struct
+drm_sched_job *sched_job)
+return;
+}
+- drm_sched_rq_add_entity(entity->rq, entity);
++ if (!single_entity)
++ drm_sched_rq_add_entity(entity->rq, entity);
+spin_unlock(&entity->rq_lock);
+- if (entity->rq->sched->sched_policy =3D=3D DRM_SCHED_POLICY_FIFO)
++ if (sched->sched_policy =3D=3D DRM_SCHED_POLICY_FIFO)
+drm_sched_rq_update_fifo(entity, sched_job->submit_ts);
+- drm_sched_wakeup(entity->rq->sched);
++ drm_sched_wakeup(sched);
+}
+}
+EXPORT_SYMBOL(drm_sched_entity_push_job);
+
+Sorry for the formatting, I'm replying in gmail because I don't have a
+local client set up. I really should have set the mailing list to use
+my Fastmail account instead.
+
 > diff --git a/drivers/gpu/drm/scheduler/sched_fence.c b/drivers/gpu/drm/sc=
 heduler/sched_fence.c
 > index ef120475e7c6..b3b0472dc202 100644
