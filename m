@@ -4,49 +4,47 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 01910C7EE26
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0194EC7EE2D
 	for <intel-xe@archiver.kernel.org>; Mon, 22 May 2023 16:18:44 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C085810E368;
+	by gabe.freedesktop.org (Postfix) with ESMTP id BA65810E367;
 	Mon, 22 May 2023 16:18:44 +0000 (UTC)
 Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6C0C410E366
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 971DF10E0C1
  for <intel-xe@lists.freedesktop.org>; Mon, 22 May 2023 16:18:40 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
  t=1684772320; x=1716308320;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=ZkTzrnk8/ZI+WGbEFqd2ubEnD6ZaJjBCVpM+bUDgYBI=;
- b=Omzyi5fRihaIAqloVhkmKTV/dYk1svk+RpwV+CagzEIYSqQL/97Lp5AN
- jK2wMQFPx+YTuM6MYFriI+R/S8kMjLH1j48wwlIU3XXSjq8vygFV0O8v2
- KCmkErFuAT7qtxAOJEmeTZtq+gkPFgxeHO1/dy12I9bnoGpxIKkyCqZa3
- XkUzEo8JN9YQORxWWArkjEIC+r1F060jX6I66C/Wro//N9qLBlu4lkNUZ
- JJjDc16bO8LD5AVS5PgF1SXi1xHZIQI+y9EnWSXB1ywHXpVR5gLkfe79h
- l9rMX3uOIDrMeJdJhM18snA+pMILOf6+4tUfN5FQPUIMow2ri5w7X7FQh w==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10718"; a="381199193"
-X-IronPort-AV: E=Sophos;i="6.00,184,1681196400"; d="scan'208";a="381199193"
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=qj/hRbRp3nwapuKreNgDCJZIR/U7fbTRBJzmHCkB1lA=;
+ b=kgnQY3l/aYBKrW1dAe/YhvBpxzY2CQ57VQ9DnvvK75Us4qQRYxNQKFeV
+ PruNPBAHvXzX3t3gjaNb9xKelV3dNSMZLIktj/1Bp1iX5dx7V7yY8iPy+
+ ddIPJfNlGUozfkcDC8WSuKD0QNRsu8igJZni0UDbvRBz7t36yN4zqaaeW
+ IAsTjiGs7JeOMz4VSW/z1sFpQ7XiWRQNnsf15gc4Nv8uqfAIjHbYxBAbR
+ 6MvIMiMQcDPhNh6JIoNUAK/1VyVACmst23ovdeWUbccbcAcF3OVkmVa4/
+ fJS7eVI6r+BYkNxJtT0ZdW8pgCwKKXXgtR1R2r54Hw0jkQDYqSnCqjfU+ g==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10718"; a="381199172"
+X-IronPort-AV: E=Sophos;i="6.00,184,1681196400"; d="scan'208";a="381199172"
 Received: from orsmga002.jf.intel.com ([10.7.209.21])
  by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 22 May 2023 09:15:51 -0700
+ 22 May 2023 09:15:47 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10718"; a="703586496"
-X-IronPort-AV: E=Sophos;i="6.00,184,1681196400"; d="scan'208";a="703586496"
+X-IronPort-AV: E=McAfee;i="6600,9927,10718"; a="703586456"
+X-IronPort-AV: E=Sophos;i="6.00,184,1681196400"; d="scan'208";a="703586456"
 Received: from amigon-mobl.ger.corp.intel.com (HELO mwauld-desk1.intel.com)
  ([10.249.128.230])
  by orsmga002-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 22 May 2023 09:15:49 -0700
+ 22 May 2023 09:15:45 -0700
 From: Matthew Auld <matthew.auld@intel.com>
 To: intel-xe@lists.freedesktop.org
-Date: Mon, 22 May 2023 17:14:00 +0100
-Message-Id: <20230522161403.79731-4-matthew.auld@intel.com>
+Date: Mon, 22 May 2023 17:13:57 +0100
+Message-Id: <20230522161403.79731-1-matthew.auld@intel.com>
 X-Mailer: git-send-email 2.40.1
-In-Reply-To: <20230522161403.79731-1-matthew.auld@intel.com>
-References: <20230522161403.79731-1-matthew.auld@intel.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-xe] [PATCH v7 4/7] drm/xe/ct: tweak lock ordering for
- freq_lock
+Subject: [Intel-xe] [PATCH v7 1/7] Revert "drm/xe: Use atomic instead of
+ mutex for xe_device_mem_access_ongoing"
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -62,44 +60,113 @@ Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Lockdep spits out:
+This reverts commit c3712d924f6b5022498f4357009943c326389f9c.
 
-Possible unsafe locking scenario:
-   CPU0				CPU1
-   ----				----
-   lock(&xe->mem_access.lock);
-				lock(&pc->freq_lock);
-				lock(&xe->mem_access.lock);
-   lock(&pc->freq_lock);
-
-It looks like we already mostly take care to ensure that the mem_access
-ref is taken outside of taking freq_lock, since that is also grabbed
-from the runtime_pm callbacks, except for one spot in guc_ct_send_recv()
-which was grabbing the mem_access ref, even though the caller is already
-holding freq_lock. It looks like all the callers are already holding the
-mem_access.ref, so just switch over to use guc_ct_send_locked().
+We add a similar version back, once we fix the locking inside
+xe_device_mem_access.
 
 Signed-off-by: Matthew Auld <matthew.auld@intel.com>
-Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
+Reviewed-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
 ---
- drivers/gpu/drm/xe/xe_guc_ct.c | 4 +++-
- 1 file changed, 3 insertions(+), 1 deletion(-)
+ drivers/gpu/drm/xe/xe_device.c       | 18 ++++++++++--------
+ drivers/gpu/drm/xe/xe_device.h       | 18 ++++++++++++------
+ drivers/gpu/drm/xe/xe_device_types.h |  4 +++-
+ 3 files changed, 25 insertions(+), 15 deletions(-)
 
-diff --git a/drivers/gpu/drm/xe/xe_guc_ct.c b/drivers/gpu/drm/xe/xe_guc_ct.c
-index 9dc906f2651a..7a8c9d6a03f3 100644
---- a/drivers/gpu/drm/xe/xe_guc_ct.c
-+++ b/drivers/gpu/drm/xe/xe_guc_ct.c
-@@ -689,7 +689,9 @@ static int guc_ct_send_recv(struct xe_guc_ct *ct, const u32 *action, u32 len,
- retry:
- 	g2h_fence_init(&g2h_fence, response_buffer);
- retry_same_fence:
--	ret = guc_ct_send(ct, action, len, 0, 0, &g2h_fence);
-+	mutex_lock(&ct->lock);
-+	ret = guc_ct_send_locked(ct, action, len, 0, 0, &g2h_fence);
-+	mutex_unlock(&ct->lock);
- 	if (unlikely(ret == -ENOMEM)) {
- 		void *ptr;
+diff --git a/drivers/gpu/drm/xe/xe_device.c b/drivers/gpu/drm/xe/xe_device.c
+index f7f6a6a97757..d0297ee432b2 100644
+--- a/drivers/gpu/drm/xe/xe_device.c
++++ b/drivers/gpu/drm/xe/xe_device.c
+@@ -216,6 +216,8 @@ struct xe_device *xe_device_create(struct pci_dev *pdev,
+ 	if (err)
+ 		goto err_put;
  
++	drmm_mutex_init(&xe->drm, &xe->mem_access.lock);
++
+ 	return xe;
+ 
+ err_put:
+@@ -404,25 +406,25 @@ u32 xe_device_ccs_bytes(struct xe_device *xe, u64 size)
+ void xe_device_mem_access_get(struct xe_device *xe)
+ {
+ 	bool resumed = xe_pm_runtime_resume_if_suspended(xe);
+-	int ref = atomic_inc_return(&xe->mem_access.ref);
+ 
+-	if (ref == 1)
++	mutex_lock(&xe->mem_access.lock);
++	if (xe->mem_access.ref++ == 0)
+ 		xe->mem_access.hold_rpm = xe_pm_runtime_get_if_active(xe);
++	mutex_unlock(&xe->mem_access.lock);
+ 
+ 	/* The usage counter increased if device was immediately resumed */
+ 	if (resumed)
+ 		xe_pm_runtime_put(xe);
+ 
+-	XE_WARN_ON(ref == S32_MAX);
++	XE_WARN_ON(xe->mem_access.ref == S32_MAX);
+ }
+ 
+ void xe_device_mem_access_put(struct xe_device *xe)
+ {
+-	bool hold = xe->mem_access.hold_rpm;
+-	int ref = atomic_dec_return(&xe->mem_access.ref);
+-
+-	if (!ref && hold)
++	mutex_lock(&xe->mem_access.lock);
++	if (--xe->mem_access.ref == 0 && xe->mem_access.hold_rpm)
+ 		xe_pm_runtime_put(xe);
++	mutex_unlock(&xe->mem_access.lock);
+ 
+-	XE_WARN_ON(ref < 0);
++	XE_WARN_ON(xe->mem_access.ref < 0);
+ }
+diff --git a/drivers/gpu/drm/xe/xe_device.h b/drivers/gpu/drm/xe/xe_device.h
+index cbae480a2092..9ab7e6134f89 100644
+--- a/drivers/gpu/drm/xe/xe_device.h
++++ b/drivers/gpu/drm/xe/xe_device.h
+@@ -90,14 +90,20 @@ static inline struct xe_force_wake * gt_to_fw(struct xe_gt *gt)
+ void xe_device_mem_access_get(struct xe_device *xe);
+ void xe_device_mem_access_put(struct xe_device *xe);
+ 
+-static inline bool xe_device_mem_access_ongoing(struct xe_device *xe)
+-{
+-	return atomic_read(&xe->mem_access.ref);
+-}
+-
+ static inline void xe_device_assert_mem_access(struct xe_device *xe)
+ {
+-	XE_WARN_ON(!xe_device_mem_access_ongoing(xe));
++	XE_WARN_ON(!xe->mem_access.ref);
++}
++
++static inline bool xe_device_mem_access_ongoing(struct xe_device *xe)
++{
++	bool ret;
++
++	mutex_lock(&xe->mem_access.lock);
++	ret = xe->mem_access.ref;
++	mutex_unlock(&xe->mem_access.lock);
++
++	return ret;
+ }
+ 
+ static inline bool xe_device_in_fault_mode(struct xe_device *xe)
+diff --git a/drivers/gpu/drm/xe/xe_device_types.h b/drivers/gpu/drm/xe/xe_device_types.h
+index 77d1cc6514c4..4d1af6663ab1 100644
+--- a/drivers/gpu/drm/xe/xe_device_types.h
++++ b/drivers/gpu/drm/xe/xe_device_types.h
+@@ -260,8 +260,10 @@ struct xe_device {
+ 	 * triggering additional actions when they occur.
+ 	 */
+ 	struct {
++		/** @lock: protect the ref count */
++		struct mutex lock;
+ 		/** @ref: ref count of memory accesses */
+-		atomic_t ref;
++		s32 ref;
+ 		/** @hold_rpm: need to put rpm ref back at the end */
+ 		bool hold_rpm;
+ 	} mem_access;
 -- 
 2.40.1
 
