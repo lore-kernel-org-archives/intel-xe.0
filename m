@@ -4,30 +4,31 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2E813C77B75
-	for <intel-xe@archiver.kernel.org>; Mon, 22 May 2023 13:32:03 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id DBADBC77B75
+	for <intel-xe@archiver.kernel.org>; Mon, 22 May 2023 13:33:55 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E056910E15B;
-	Mon, 22 May 2023 13:32:02 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id AC8BD10E15B;
+	Mon, 22 May 2023 13:33:55 +0000 (UTC)
 Received: from emeril.freedesktop.org (emeril.freedesktop.org
  [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id DCE7110E15B;
- Mon, 22 May 2023 13:32:01 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTP id 8E59F10E15B;
+ Mon, 22 May 2023 13:33:54 +0000 (UTC)
 Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id A98DBAADD5;
- Mon, 22 May 2023 13:32:01 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============3307611171322435022=="
+ by emeril.freedesktop.org (Postfix) with ESMTP id 87399AADD5;
+ Mon, 22 May 2023 13:33:54 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Nirmoy Das" <nirmoy.das@intel.com>
-Date: Mon, 22 May 2023 13:32:01 -0000
-Message-ID: <168476232166.28280.17905289435737985985@emeril.freedesktop.org>
+To: "Gustavo Sousa" <gustavo.sousa@intel.com>
+Date: Mon, 22 May 2023 13:33:54 -0000
+Message-ID: <168476243452.28280.11619119051350288510@emeril.freedesktop.org>
 X-Patchwork-Hint: ignore
-References: <20230522125529.52695-1-gustavo.sousa@intel.com>
-In-Reply-To: <20230522125529.52695-1-gustavo.sousa@intel.com>
-Subject: [Intel-xe] =?utf-8?q?=E2=97=8B_CI=2EBAT=3A_info_for_fixup!_drm/x?=
- =?utf-8?q?e/display=3A_Implement_display_support_=28rev2=29?=
+References: <20230518215651.502159-1-gustavo.sousa@intel.com>
+In-Reply-To: <20230518215651.502159-1-gustavo.sousa@intel.com>
+Subject: [Intel-xe] =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_f?=
+ =?utf-8?q?or_drm/xe=3A_Proper_cleanup_in_xe=5Fdevice=5Fcreate=28=29_=28re?=
+ =?utf-8?b?djMp?=
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -44,63 +45,18 @@ Cc: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============3307611171322435022==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
 == Series Details ==
 
-Series: fixup! drm/xe/display: Implement display support (rev2)
-URL   : https://patchwork.freedesktop.org/series/117592/
-State : info
+Series: drm/xe: Proper cleanup in xe_device_create() (rev3)
+URL   : https://patchwork.freedesktop.org/series/117971/
+State : success
 
 == Summary ==
 
-Participating hosts:
-bat-atsm-2
-bat-dg2-oem2
-bat-adlp-7
-Missing hosts results[0]:
-Results: [xe-pw-117592v2](https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-117592v2/index.html)
+=== Applying kernel patches on branch 'drm-xe-next' with base: ===
+Base commit: 44b2372d7 drm/xe: fix kernel-doc issues
+=== git am output follows ===
+Applying: drm/xe: Call drmm_add_action_or_reset() early in xe_device_create()
+Applying: drm/xe: Fail xe_device_create() if wq allocation fails
 
 
-
---===============3307611171322435022==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>fixup! drm/xe/display: Implement display support (rev2)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/117592/">https://patchwork.freedesktop.org/series/117592/</a></td></tr>
-<tr><td><b>State:</b></td><td>info</td></tr>
-
-</table>
-
-
-    <p>Participating hosts:<br />
-bat-atsm-2<br />
-bat-dg2-oem2<br />
-bat-adlp-7<br />
-Missing hosts results[0]:<br />
-Results: <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-117592v2/index.html">xe-pw-117592v2</a></p>
-
-</body>
-</html>
-
---===============3307611171322435022==--
