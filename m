@@ -4,53 +4,46 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 72A93C77B75
-	for <intel-xe@archiver.kernel.org>; Mon, 22 May 2023 11:47:41 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 15BACC7EE26
+	for <intel-xe@archiver.kernel.org>; Mon, 22 May 2023 12:55:49 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4665D10E2DC;
-	Mon, 22 May 2023 11:47:41 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id DBD5E10E30C;
+	Mon, 22 May 2023 12:55:48 +0000 (UTC)
 Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id F0EBA10E2DC
- for <intel-xe@lists.freedesktop.org>; Mon, 22 May 2023 11:47:38 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 60B5510E30C
+ for <intel-xe@lists.freedesktop.org>; Mon, 22 May 2023 12:55:48 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1684756058; x=1716292058;
- h=message-id:date:mime-version:subject:to:cc:references:
- from:in-reply-to:content-transfer-encoding;
- bh=Ms+LnFrdfLSr+nj5Cmqm4m88ZzH+VjaKYmTPJzM9Bmo=;
- b=Q/YAii6khJyft9Qwm6jV6Ax1FsWA9vhrEc+1H9sIf2ViQejtGcGe3dvD
- bmY7ES3/2yALKZTz18r49PShU9wfzBeret+FsVgHGU5nQmfteKcMOk3qI
- s+hN4t/x8GYQb4zIypTaIi87sG33+P+5Y+t06QwPwQYutcmAtU7aqECCc
- DAITegbuUMH9IoRsWr6e/xZl9wjSJf1rMgI2Rr0X85uhhqMEh1CeURR58
- /+c6W+IMeRBNAsYEkwwUe5AGnT+hryqf9CzMU4BLhNUixwTNJSaitvmYq
- Qvh0A9FQQ8+o4H9Iov+7J32iG4XQk+NEy9YB7xbAmh7wSR2yW0w+g22PT A==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10717"; a="342349147"
-X-IronPort-AV: E=Sophos;i="6.00,184,1681196400"; d="scan'208";a="342349147"
-Received: from fmsmga007.fm.intel.com ([10.253.24.52])
+ t=1684760148; x=1716296148;
+ h=from:to:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=164PzhFEqbRn8lsmk6b+7/eMZHiJ31ShJnagLz+Nnag=;
+ b=D90ckEu7gA/4GuKSkDRN9I+nwRki6Kr382p5fghB+ldUFz4gOYBbIJt0
+ RWXOdfLqPFziGPgzh01cVJq3CgNggwWqXwF8iAwJzVRFnC8cNXO8x9f/z
+ c4o0zzPohNWuzwgmv9+EK+kUqwyx3vEwuIsoqGMukZ9pl07wlZQXmlO1t
+ qASnt9zs9udUlyfjIgdr8z0YIAbQNxPVeXgHZHlFaiW9nz01L/1IqJerA
+ GtNClBXFhbyt38XCIcVYGXMwhdsLSMJyk6PFO1E4lRud/P1eebwICHwRE
+ 4RGWQsAaZl/KU4DwD+2ZENsrljr2bDWNQjbdiLqCUd2yRfVvgm8QwHUoz A==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10717"; a="342362412"
+X-IronPort-AV: E=Sophos;i="6.00,184,1681196400"; d="scan'208";a="342362412"
+Received: from fmsmga002.fm.intel.com ([10.253.24.26])
  by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 22 May 2023 04:47:38 -0700
+ 22 May 2023 05:55:47 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10717"; a="706509513"
-X-IronPort-AV: E=Sophos;i="6.00,184,1681196400"; d="scan'208";a="706509513"
-Received: from nirmoyda-mobl.ger.corp.intel.com (HELO [10.249.40.98])
- ([10.249.40.98])
- by fmsmga007-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 22 May 2023 04:47:37 -0700
-Message-ID: <566806c4-3f63-0282-e134-65568c2e624c@linux.intel.com>
-Date: Mon, 22 May 2023 13:47:35 +0200
+X-IronPort-AV: E=McAfee;i="6600,9927,10717"; a="815684888"
+X-IronPort-AV: E=Sophos;i="6.00,184,1681196400"; d="scan'208";a="815684888"
+Received: from rpeachey-mobl.amr.corp.intel.com (HELO gjsousa-mobl2.intel.com)
+ ([10.255.33.109])
+ by fmsmga002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 22 May 2023 05:55:46 -0700
+From: Gustavo Sousa <gustavo.sousa@intel.com>
+To: intel-xe@lists.freedesktop.org
+Date: Mon, 22 May 2023 09:55:29 -0300
+Message-Id: <20230522125529.52695-1-gustavo.sousa@intel.com>
+X-Mailer: git-send-email 2.40.1
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
- Thunderbird/102.10.1
-Content-Language: en-US
-To: Matt Roper <matthew.d.roper@intel.com>, intel-xe@lists.freedesktop.org
-References: <20230519231827.3572452-1-matthew.d.roper@intel.com>
- <20230519231827.3572452-27-matthew.d.roper@intel.com>
-From: "Das, Nirmoy" <nirmoy.das@linux.intel.com>
-In-Reply-To: <20230519231827.3572452-27-matthew.d.roper@intel.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-Subject: Re: [Intel-xe] [PATCH v2 26/30] drm/xe/tlb: Obtain forcewake when
- doing GGTT TLB invalidations
+Content-Transfer-Encoding: 8bit
+Subject: [Intel-xe] [PATCH] fixup! drm/xe/display: Implement display support
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -62,51 +55,41 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Cc: Lucas De Marchi <lucas.demarchi@intel.com>
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
+Remove the call to drm_aperture_remove_conflicting_pci_framebuffers(),
+which is already being done by xe_device_create().
 
-On 5/20/2023 1:18 AM, Matt Roper wrote:
-> Updates to the GGTT can happen when there are no in-flight jobs keeping
-> the hardware awake.  If the GT is powered down when invalidation is
-> requested, we will not be able to communicate with the GuC (or MMIO) and
-> the invalidation request will go missing.  Explicitly grab GT forcewake
-> to ensure the GT and GuC are powered up during the TLB invalidation.
->
-> Signed-off-by: Matt Roper <matthew.d.roper@intel.com>
-> Reviewed-by: Lucas De Marchi <lucas.demarchi@intel.com>
+Signed-off-by: Gustavo Sousa <gustavo.sousa@intel.com>
+---
+ drivers/gpu/drm/xe/xe_display.c | 6 ------
+ 1 file changed, 6 deletions(-)
 
-Reviewed-by: Nirmoy Das <nirmoy.das@intel.com>
+diff --git a/drivers/gpu/drm/xe/xe_display.c b/drivers/gpu/drm/xe/xe_display.c
+index c122cc4b27c9..1a9e9c78966d 100644
+--- a/drivers/gpu/drm/xe/xe_display.c
++++ b/drivers/gpu/drm/xe/xe_display.c
+@@ -10,7 +10,6 @@
+ 
+ #include <linux/fb.h>
+ 
+-#include <drm/drm_aperture.h>
+ #include <drm/drm_drv.h>
+ #include <drm/drm_managed.h>
+ #include <drm/xe_drm.h>
+@@ -199,11 +198,6 @@ int xe_display_init_noirq(struct xe_device *xe)
+ 
+ 	intel_device_info_runtime_init(xe);
+ 
+-	err = drm_aperture_remove_conflicting_pci_framebuffers(to_pci_dev(xe->drm.dev),
+-							       xe->drm.driver);
+-	if (err)
+-		return err;
+-
+ 	err = intel_display_driver_probe_noirq(xe);
+ 	if (err)
+ 		return err;
+-- 
+2.40.1
 
-> ---
->   drivers/gpu/drm/xe/xe_ggtt.c | 9 +++++++++
->   1 file changed, 9 insertions(+)
->
-> diff --git a/drivers/gpu/drm/xe/xe_ggtt.c b/drivers/gpu/drm/xe/xe_ggtt.c
-> index 31f958613c2f..8f8d0f6a82cd 100644
-> --- a/drivers/gpu/drm/xe/xe_ggtt.c
-> +++ b/drivers/gpu/drm/xe/xe_ggtt.c
-> @@ -193,6 +193,13 @@ static void ggtt_invalidate_gt_tlb(struct xe_gt *gt)
->   	if (!gt)
->   		return;
->   
-> +	/*
-> +	 * Invalidation can happen when there's no in-flight work keeping the
-> +	 * GT awake.  We need to explicitly grab forcewake to ensure the GT
-> +	 * and GuC are accessible.
-> +	 */
-> +	xe_force_wake_get(gt_to_fw(gt), XE_FW_GT);
-> +
->   	/* TODO: vfunc for GuC vs. non-GuC */
->   
->   	if (gt->uc.guc.submission_state.enabled) {
-> @@ -214,6 +221,8 @@ static void ggtt_invalidate_gt_tlb(struct xe_gt *gt)
->   			xe_mmio_write32(gt, GUC_TLB_INV_CR,
->   					GUC_TLB_INV_CR_INVALIDATE);
->   	}
-> +
-> +	xe_force_wake_put(gt_to_fw(gt), XE_FW_GT);
->   }
->   
->   void xe_ggtt_invalidate(struct xe_ggtt *ggtt)
