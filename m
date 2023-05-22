@@ -4,36 +4,50 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 97D1FC77B73
-	for <intel-xe@archiver.kernel.org>; Mon, 22 May 2023 15:51:08 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0666FC7EE23
+	for <intel-xe@archiver.kernel.org>; Mon, 22 May 2023 16:18:41 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 49D9510E35F;
-	Mon, 22 May 2023 15:51:08 +0000 (UTC)
-Received: from dfw.source.kernel.org (dfw.source.kernel.org
- [IPv6:2604:1380:4641:c500::1])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8D12810E35F
- for <intel-xe@lists.freedesktop.org>; Mon, 22 May 2023 15:51:05 +0000 (UTC)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
- (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
- (No client certificate requested)
- by dfw.source.kernel.org (Postfix) with ESMTPS id F3D4D61A4E;
- Mon, 22 May 2023 15:51:04 +0000 (UTC)
-Received: from rdvivi-mobl4 (unknown [192.55.54.48])
- (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
- (No client certificate requested)
- by smtp.kernel.org (Postfix) with ESMTPSA id 09728C433EF;
- Mon, 22 May 2023 15:51:02 +0000 (UTC)
-Date: Mon, 22 May 2023 11:51:00 -0400
-From: Rodrigo Vivi <rodrigo.vivi@kernel.org>
-To: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
-Message-ID: <ZGuPZP6Wxl52Trts@rdvivi-mobl4>
-References: <20230522085817.1347213-1-himal.prasad.ghimiray@intel.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id B733710E0C1;
+	Mon, 22 May 2023 16:18:41 +0000 (UTC)
+Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4FA3610E0C1
+ for <intel-xe@lists.freedesktop.org>; Mon, 22 May 2023 16:18:40 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1684772320; x=1716308320;
+ h=from:to:cc:subject:date:message-id:in-reply-to:
+ references:mime-version:content-transfer-encoding;
+ bh=1iYpYrCzHhHQtgQdipiQ7XpjKN4O2kruky9iAaNqsfY=;
+ b=afQq4f7OpnxQ3CeryGG2pzCglY7TX2nH58YHOt4xcRwyh1NqRFMqcvvy
+ bBBJ/ueomwOJOuVb1drXeD1XKN8ecaPReKl89ZmBlhmLy4O68O77KrejF
+ yqkcdDRzLl95S87jPD3Gm7o5QKI6fnozpbuS1aMTjTAyfIwlvT+4jgy36
+ dwss64R3VgkmCghek65JDAZpe2VRLmm7+MWaAusVPylqjbYtFVXSHYZWX
+ wDnMkutvkS7q+ItjSWBTiKs16CrM5hUymszY/ZFySXtKOwrMEVhnVaFkT
+ CUDTBrzaXQFWBMQa8B0LXXXOux21UJgKNQUZaCnNb+HORLodZIRhuSuAD A==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10718"; a="381199186"
+X-IronPort-AV: E=Sophos;i="6.00,184,1681196400"; d="scan'208";a="381199186"
+Received: from orsmga002.jf.intel.com ([10.7.209.21])
+ by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 22 May 2023 09:15:50 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6600,9927,10718"; a="703586488"
+X-IronPort-AV: E=Sophos;i="6.00,184,1681196400"; d="scan'208";a="703586488"
+Received: from amigon-mobl.ger.corp.intel.com (HELO mwauld-desk1.intel.com)
+ ([10.249.128.230])
+ by orsmga002-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 22 May 2023 09:15:47 -0700
+From: Matthew Auld <matthew.auld@intel.com>
+To: intel-xe@lists.freedesktop.org
+Date: Mon, 22 May 2023 17:13:59 +0100
+Message-Id: <20230522161403.79731-3-matthew.auld@intel.com>
+X-Mailer: git-send-email 2.40.1
+In-Reply-To: <20230522161403.79731-1-matthew.auld@intel.com>
+References: <20230522161403.79731-1-matthew.auld@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20230522085817.1347213-1-himal.prasad.ghimiray@intel.com>
-Subject: Re: [Intel-xe] [RFC 1/1] drm/xe: Add a debugfs for faking gt reset
- failure.
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+Subject: [Intel-xe] [PATCH v7 3/7] drm/xe: keep pulling mem_access_get
+ further back
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -45,132 +59,169 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-xe@lists.freedesktop.org, Rodrigo Vivi <rodrigo.vivi@intel.com>
+Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Mon, May 22, 2023 at 02:28:17PM +0530, Himal Prasad Ghimiray wrote:
-> In case of gt reset failure, KMD notifies userspace about failure
-> via uevent. To validate this notification we need to ensure gt
-> reset fails and there is no mechanism to cause failure from hardware.
-> Hence added a debugfs which will cause fake reset failure.
-> 
-> Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
-> Signed-off-by: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
-> ---
->  drivers/gpu/drm/xe/xe_gt.c         | 26 +++++++++++++++++++++++++-
->  drivers/gpu/drm/xe/xe_gt_debugfs.c | 11 +++++++++++
->  drivers/gpu/drm/xe/xe_gt_types.h   |  3 +++
->  3 files changed, 39 insertions(+), 1 deletion(-)
-> 
-> diff --git a/drivers/gpu/drm/xe/xe_gt.c b/drivers/gpu/drm/xe/xe_gt.c
-> index d98761d9eeba..e05615ca13e5 100644
-> --- a/drivers/gpu/drm/xe/xe_gt.c
-> +++ b/drivers/gpu/drm/xe/xe_gt.c
-> @@ -301,6 +301,9 @@ int xe_gt_init_early(struct xe_gt *gt)
->  {
->  	int err;
->  
-> +	/* Reset is supported by default */
-> +	gt->reset_enabled = true;
-> +
+Lockdep is unhappy about ggtt->lock -> mem_access.lock, where it seems
+to think this can somehow get inverted. The ggtt->lock looks like a
+potentially sensitive driver lock, so likely a sensible move to never
+call the runtime_pm routines while holding it. Actually it looks like
+d3cold wants to grab this, so perhaps this can indeed deadlock.
 
-I'd prefer to name this variable as something more specific
-fake_reset_failure_in_progress. In order to avoid future abuses
-or misusage of it.
+v2:
+ - Don't forget about xe_gt_tlb_invalidation_vma(), which now needs
+   explicit access_get.
 
->  	xe_force_wake_init_gt(gt, gt_to_fw(gt));
->  
->  	err = xe_force_wake_get(gt_to_fw(gt), XE_FW_GT);
-> @@ -605,6 +608,16 @@ static void xe_uevent_gt_reset_failure(struct xe_device *xe, u8 id)
->  	kfree(reset_event[3]);
->  }
->  
-> +static int reset_disabled(struct xe_gt *gt)
-> +{
-> +	return !READ_ONCE(gt->reset_enabled);
-> +}
-> +
-> +static void enable_reset(struct xe_gt *gt)
-> +{
-> +	WRITE_ONCE(gt->reset_enabled, true);
-> +}
+Signed-off-by: Matthew Auld <matthew.auld@intel.com>
+Cc: Thomas Hellström <thomas.hellstrom@linux.intel.com>
+Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
+Reviewed-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
+---
+ drivers/gpu/drm/xe/display/xe_fb_pin.c      | 12 +++++++-----
+ drivers/gpu/drm/xe/xe_ggtt.c                |  6 ++++++
+ drivers/gpu/drm/xe/xe_gt_tlb_invalidation.c | 10 ++++++----
+ 3 files changed, 19 insertions(+), 9 deletions(-)
 
-Why are you using these write/read _once variants?
-Do you need some mutex?
+diff --git a/drivers/gpu/drm/xe/display/xe_fb_pin.c b/drivers/gpu/drm/xe/display/xe_fb_pin.c
+index c7c4df18e439..d140eee6473d 100644
+--- a/drivers/gpu/drm/xe/display/xe_fb_pin.c
++++ b/drivers/gpu/drm/xe/display/xe_fb_pin.c
+@@ -130,9 +130,10 @@ static int __xe_pin_fb_vma_ggtt(struct intel_framebuffer *fb,
+ 	/* TODO: Consider sharing framebuffer mapping?
+ 	 * embed i915_vma inside intel_framebuffer
+ 	 */
++	xe_device_mem_access_get(ggtt->gt->xe);
+ 	ret = mutex_lock_interruptible(&ggtt->lock);
+ 	if (ret)
+-		return ret;
++		goto out;
+ 
+ 	align = XE_PAGE_SIZE;
+ 	if (xe_bo_is_vram(bo) && ggtt->flags & XE_GGTT_FLAGS_64K)
+@@ -146,7 +147,7 @@ static int __xe_pin_fb_vma_ggtt(struct intel_framebuffer *fb,
+ 		ret = xe_ggtt_insert_special_node_locked(ggtt, &vma->node, size,
+ 							 align, 0);
+ 		if (ret)
+-			goto out;
++			goto out_unlock;
+ 
+ 		for (x = 0; x < size; x += XE_PAGE_SIZE)
+ 			xe_ggtt_set_pte(ggtt, vma->node.start + x, xe_ggtt_pte_encode(bo, x));
+@@ -160,7 +161,7 @@ static int __xe_pin_fb_vma_ggtt(struct intel_framebuffer *fb,
+ 		ret = xe_ggtt_insert_special_node_locked(ggtt, &vma->node, size,
+ 							 align, 0);
+ 		if (ret)
+-			goto out;
++			goto out_unlock;
+ 
+ 		ggtt_ofs = vma->node.start;
+ 
+@@ -174,9 +175,10 @@ static int __xe_pin_fb_vma_ggtt(struct intel_framebuffer *fb,
+ 	}
+ 
+ 	xe_ggtt_invalidate(to_gt(xe));
+-
+-out:
++out_unlock:
+ 	mutex_unlock(&ggtt->lock);
++out:
++	xe_device_mem_access_put(ggtt->gt->xe);
+ 	return ret;
+ }
+ 
+diff --git a/drivers/gpu/drm/xe/xe_ggtt.c b/drivers/gpu/drm/xe/xe_ggtt.c
+index 546240261e0a..f986e8218820 100644
+--- a/drivers/gpu/drm/xe/xe_ggtt.c
++++ b/drivers/gpu/drm/xe/xe_ggtt.c
+@@ -142,12 +142,14 @@ static void xe_ggtt_initial_clear(struct xe_ggtt *ggtt)
+ 	u64 start, end;
+ 
+ 	/* Display may have allocated inside ggtt, so be careful with clearing here */
++	xe_device_mem_access_get(ggtt->gt->xe);
+ 	mutex_lock(&ggtt->lock);
+ 	drm_mm_for_each_hole(hole, &ggtt->mm, start, end)
+ 		xe_ggtt_clear(ggtt, start, end - start);
+ 
+ 	xe_ggtt_invalidate(ggtt->gt);
+ 	mutex_unlock(&ggtt->lock);
++	xe_device_mem_access_put(ggtt->gt->xe);
+ }
+ 
+ int xe_ggtt_init(struct xe_gt *gt, struct xe_ggtt *ggtt)
+@@ -288,12 +290,14 @@ static int __xe_ggtt_insert_bo_at(struct xe_ggtt *ggtt, struct xe_bo *bo,
+ 	if (err)
+ 		return err;
+ 
++	xe_device_mem_access_get(ggtt->gt->xe);
+ 	mutex_lock(&ggtt->lock);
+ 	err = drm_mm_insert_node_in_range(&ggtt->mm, &bo->ggtt_node, bo->size,
+ 					  alignment, 0, start, end, 0);
+ 	if (!err)
+ 		xe_ggtt_map_bo(ggtt, bo);
+ 	mutex_unlock(&ggtt->lock);
++	xe_device_mem_access_put(ggtt->gt->xe);
+ 
+ 	return err;
+ }
+@@ -311,6 +315,7 @@ int xe_ggtt_insert_bo(struct xe_ggtt *ggtt, struct xe_bo *bo)
+ 
+ void xe_ggtt_remove_node(struct xe_ggtt *ggtt, struct drm_mm_node *node)
+ {
++	xe_device_mem_access_get(ggtt->gt->xe);
+ 	mutex_lock(&ggtt->lock);
+ 
+ 	xe_ggtt_clear(ggtt, node->start, node->size);
+@@ -320,6 +325,7 @@ void xe_ggtt_remove_node(struct xe_ggtt *ggtt, struct drm_mm_node *node)
+ 	xe_ggtt_invalidate(ggtt->gt);
+ 
+ 	mutex_unlock(&ggtt->lock);
++	xe_device_mem_access_put(ggtt->gt->xe);
+ }
+ 
+ void xe_ggtt_remove_bo(struct xe_ggtt *ggtt, struct xe_bo *bo)
+diff --git a/drivers/gpu/drm/xe/xe_gt_tlb_invalidation.c b/drivers/gpu/drm/xe/xe_gt_tlb_invalidation.c
+index 20f8f0aae6b4..44e442bf306c 100644
+--- a/drivers/gpu/drm/xe/xe_gt_tlb_invalidation.c
++++ b/drivers/gpu/drm/xe/xe_gt_tlb_invalidation.c
+@@ -114,7 +114,6 @@ static int send_tlb_invalidation(struct xe_guc *guc,
+ 	 * need to be updated.
+ 	 */
+ 
+-	xe_device_mem_access_get(gt->xe);
+ 	mutex_lock(&guc->ct.lock);
+ 	seqno = gt->tlb_invalidation.seqno;
+ 	if (fence) {
+@@ -143,7 +142,6 @@ static int send_tlb_invalidation(struct xe_guc *guc,
+ 	if (ret < 0 && fence)
+ 		invalidation_fence_signal(fence);
+ 	mutex_unlock(&guc->ct.lock);
+-	xe_device_mem_access_put(gt->xe);
+ 
+ 	return ret;
+ }
+@@ -196,7 +194,7 @@ int xe_gt_tlb_invalidation_vma(struct xe_gt *gt,
+ 	struct xe_device *xe = gt_to_xe(gt);
+ #define MAX_TLB_INVALIDATION_LEN	7
+ 	u32 action[MAX_TLB_INVALIDATION_LEN];
+-	int len = 0;
++	int len = 0, ret;
+ 
+ 	XE_BUG_ON(!vma);
+ 
+@@ -250,7 +248,11 @@ int xe_gt_tlb_invalidation_vma(struct xe_gt *gt,
+ 
+ 	XE_BUG_ON(len > MAX_TLB_INVALIDATION_LEN);
+ 
+-	return send_tlb_invalidation(&gt->uc.guc, fence, action, len);
++	xe_device_mem_access_get(gt->xe);
++	ret = send_tlb_invalidation(&gt->uc.guc, fence, action, len);
++	xe_device_mem_access_put(gt->xe);
++
++	return ret;
+ }
+ 
+ static bool tlb_invalidation_seqno_past(struct xe_gt *gt, int seqno)
+-- 
+2.40.1
 
-> +
->  static int gt_reset(struct xe_gt *gt)
->  {
->  	struct xe_device *xe = gt_to_xe(gt);
-> @@ -617,8 +630,19 @@ static int gt_reset(struct xe_gt *gt)
->  	drm_info(&xe->drm, "GT reset started\n");
->  
->  	xe_gt_sanitize(gt);
-> -
->  	xe_device_mem_access_get(gt_to_xe(gt));
-> +
-> +	err = reset_disabled(gt);
-> +	if (err) {
-> +		drm_info(&xe->drm, "GT reset is disabled\n");
-> +
-> +		/*Enable GT reset for next call if disabled
-> +		 * for fake reset failure.
-> +		 */
-> +		enable_reset(gt);
-> +		goto err_msg;
-> +	}
-> +
->  	err = xe_force_wake_get(gt_to_fw(gt), XE_FORCEWAKE_ALL);
->  	if (err)
->  		goto err_msg;
-> diff --git a/drivers/gpu/drm/xe/xe_gt_debugfs.c b/drivers/gpu/drm/xe/xe_gt_debugfs.c
-> index c45486c2015a..1c3e673c8c60 100644
-> --- a/drivers/gpu/drm/xe/xe_gt_debugfs.c
-> +++ b/drivers/gpu/drm/xe/xe_gt_debugfs.c
-> @@ -127,6 +127,16 @@ static int register_save_restore(struct seq_file *m, void *data)
->  	return 0;
->  }
->  
-> +static int fake_reset_failure(struct seq_file *m, void *data)
-> +{
-> +	struct xe_gt *gt = node_to_gt(m->private);
-> +
-> +	WRITE_ONCE(gt->reset_enabled, false);
-
-or you create functions for everything or you don't create
-functions for any of them. But be consistent.
-
-> +	xe_gt_reset_async(gt);
-> +
-> +	return 0;
-> +}
-> +
->  static const struct drm_info_list debugfs_list[] = {
->  	{"hw_engines", hw_engines, 0},
->  	{"force_reset", force_reset, 0},
-> @@ -135,6 +145,7 @@ static const struct drm_info_list debugfs_list[] = {
->  	{"steering", steering, 0},
->  	{"ggtt", ggtt, 0},
->  	{"register-save-restore", register_save_restore, 0},
-> +	{"fake_reset_failure", fake_reset_failure, 0},
->  };
->  
->  void xe_gt_debugfs_register(struct xe_gt *gt)
-> diff --git a/drivers/gpu/drm/xe/xe_gt_types.h b/drivers/gpu/drm/xe/xe_gt_types.h
-> index 7c47d67aa8be..7ec19ad0365d 100644
-> --- a/drivers/gpu/drm/xe/xe_gt_types.h
-> +++ b/drivers/gpu/drm/xe/xe_gt_types.h
-> @@ -175,6 +175,9 @@ struct xe_gt {
->  		struct work_struct worker;
->  	} reset;
->  
-> +	/** @reset_enabled: GT supports reset */
-> +	bool reset_enabled;
-> +
->  	/** @tlb_invalidation: TLB invalidation state */
->  	struct {
->  		/** @seqno: TLB invalidation seqno, protected by CT lock */
-> -- 
-> 2.25.1
-> 
