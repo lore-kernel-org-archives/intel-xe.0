@@ -4,50 +4,50 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8B9A2C77B75
-	for <intel-xe@archiver.kernel.org>; Tue, 23 May 2023 12:47:54 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 78C44C77B75
+	for <intel-xe@archiver.kernel.org>; Tue, 23 May 2023 12:58:59 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 55E5410E092;
-	Tue, 23 May 2023 12:47:54 +0000 (UTC)
-Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
- by gabe.freedesktop.org (Postfix) with ESMTPS id AABD610E092;
- Tue, 23 May 2023 12:47:52 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 45AA610E438;
+	Tue, 23 May 2023 12:58:59 +0000 (UTC)
+Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 909D210E438;
+ Tue, 23 May 2023 12:58:57 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1684846072; x=1716382072;
+ t=1684846737; x=1716382737;
  h=from:to:cc:subject:in-reply-to:references:date:
  message-id:mime-version;
- bh=9dH2P6nCFQ8/gZLy0O5O1z/vgV1AQZu9VM2dGjlE3FE=;
- b=hzaBA9Pm+54jdAvp2i/clxfjWUHIOWCEDMK3+o9ngfnC2bMU30ltePsQ
- xJuOdWwFhWLu3r37zpNS3+11Ahh0sLyY2LYijzjTW+NubBwimcPscgR6I
- 6vW1up5sTJaw6FH4pwpMXHj3bcvpDR8auuGN815danzvBu+ci7QQyl2Rc
- rPu2RtIvC+9yB5f1/U5hCarbgP9w5OEC/+e7yKnu2sWcifVQHwBtulRbY
- SKG14mUtvpu9SthtwenuXMLW20yb8i81wpjHF5Xu8d6cSWevHGHZ1zRBP
- X415dvjy/XHSjVwdppW2w2bVCuJLhabZ58zSTyGmElSqraXggsLF5Ne/C A==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10719"; a="337810648"
-X-IronPort-AV: E=Sophos;i="6.00,186,1681196400"; d="scan'208";a="337810648"
-Received: from fmsmga007.fm.intel.com ([10.253.24.52])
- by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 23 May 2023 05:47:51 -0700
+ bh=fsG/c00umYRRuZCuDD9jwhMUFPCDc2lAZ2s3rws1Ksc=;
+ b=HMNxnmhwoo3cbr+8fPGz348WLAgKGa1xG8d8aQIJTUxguI/N4F0LbLCe
+ SR/d4s6ymDZjpH97CZ2yV8Y55p3MPDqL9apVYe5EUAt662ebGk783UEUd
+ yyKFEWsr/UUbYtwHeunp/zP4QrgjjXU+3vK8b/KpF60ohHLhT+DBCSifU
+ SoFhgf2Z7Csz+dEkwxrksht4rtWoNMs0Y3P+Kuthd+arGGP/bQGy1KXl3
+ 2B3Q3tgU5A1/KV0LvyG1oXstdotFLAghh9vm+4KKN7q0Hr5em1zv4CEi0
+ EZgjwkRycUZdpDuGU9ekNyPB8BoJEK1RvUm1UukmZMwFDi4pJj/CldsgP g==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10719"; a="332839659"
+X-IronPort-AV: E=Sophos;i="6.00,186,1681196400"; d="scan'208";a="332839659"
+Received: from fmsmga006.fm.intel.com ([10.253.24.20])
+ by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 23 May 2023 05:58:57 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10719"; a="706991909"
-X-IronPort-AV: E=Sophos;i="6.00,186,1681196400"; d="scan'208";a="706991909"
+X-IronPort-AV: E=McAfee;i="6600,9927,10719"; a="950530358"
+X-IronPort-AV: E=Sophos;i="6.00,186,1681196400"; d="scan'208";a="950530358"
 Received: from chauvina-mobl.ger.corp.intel.com (HELO localhost)
  ([10.252.53.70])
- by fmsmga007-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 23 May 2023 05:47:49 -0700
+ by fmsmga006-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 23 May 2023 05:58:54 -0700
 From: Jani Nikula <jani.nikula@linux.intel.com>
 To: Matt Roper <matthew.d.roper@intel.com>, intel-gfx@lists.freedesktop.org
-In-Reply-To: <20230522202314.3939499-3-matthew.d.roper@intel.com>
+In-Reply-To: <20230522202314.3939499-5-matthew.d.roper@intel.com>
 Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
 References: <20230522202314.3939499-1-matthew.d.roper@intel.com>
- <20230522202314.3939499-3-matthew.d.roper@intel.com>
-Date: Tue, 23 May 2023 15:47:46 +0300
-Message-ID: <87ilcjkydp.fsf@intel.com>
+ <20230522202314.3939499-5-matthew.d.roper@intel.com>
+Date: Tue, 23 May 2023 15:58:52 +0300
+Message-ID: <87fs7nkxv7.fsf@intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain
-Subject: Re: [Intel-xe] [PATCH v2 2/6] drm/i915: Convert
- INTEL_INFO()->display to a pointer
+Subject: Re: [Intel-xe] [PATCH v2 4/6] drm/i915/display: Make display
+ responsible for probing its own IP
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -59,50 +59,135 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Cc: Matt Roper <matthew.d.roper@intel.com>,
- Lucas De Marchi <lucas.demarchi@intel.com>, intel-xe@lists.freedesktop.org,
+Cc: Matt Roper <matthew.d.roper@intel.com>, intel-xe@lists.freedesktop.org,
  Andrzej Hajda <andrzej.hajda@intel.com>
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 On Mon, 22 May 2023, Matt Roper <matthew.d.roper@intel.com> wrote:
+> +static const struct intel_display_device_info xe_lpdp_display = {
+> +	XE_LPD_FEATURES,
+> +	.has_cdclk_crawl = 1,
+> +	.has_cdclk_squash = 1,
+> +
+> +	.__runtime_defaults.ip.ver = 14,
+> +	.__runtime_defaults.fbc_mask = BIT(INTEL_FBC_A) | BIT(INTEL_FBC_B),
+> +	.__runtime_defaults.cpu_transcoder_mask =
+> +		BIT(TRANSCODER_A) | BIT(TRANSCODER_B) |
+> +		BIT(TRANSCODER_C) | BIT(TRANSCODER_D),
+> +};
+> +
+> +static const struct pci_device_id intel_display_ids[] = {
+
+Since this is not used for MODULE_DEVICE_TABLE(), there's no requirement
+for the array to be struct pci_device_id.
+
+You can either have a struct with compatible members, or just undef and
+redefine INTEL_VGA_DEVICE() to initialize a struct with pci id and const
+struct intel_display_device_info *, so you can avoid the cast in
+intel_display_device_probe().
+
+See what's done with subplatform init arrays in intel_device_info.c.
+
+This too is nitpicking, and can be fixed later.
+
+> +	INTEL_I830_IDS(&i830_display),
+> +	INTEL_I845G_IDS(&i845_display),
+> +	INTEL_I85X_IDS(&i85x_display),
+> +	INTEL_I865G_IDS(&i865g_display),
+> +	INTEL_I915G_IDS(&i915g_display),
+> +	INTEL_I915GM_IDS(&i915gm_display),
+> +	INTEL_I945G_IDS(&i945g_display),
+> +	INTEL_I945GM_IDS(&i945gm_display),
+> +	INTEL_I965G_IDS(&i965g_display),
+> +	INTEL_G33_IDS(&g33_display),
+> +	INTEL_I965GM_IDS(&i965gm_display),
+> +	INTEL_GM45_IDS(&gm45_display),
+> +	INTEL_G45_IDS(&g45_display),
+> +	INTEL_PINEVIEW_G_IDS(&g33_display),
+> +	INTEL_PINEVIEW_M_IDS(&g33_display),
+> +	INTEL_IRONLAKE_D_IDS(&ilk_d_display),
+> +	INTEL_IRONLAKE_M_IDS(&ilk_m_display),
+> +	INTEL_SNB_D_IDS(&snb_display),
+> +	INTEL_SNB_M_IDS(&snb_display),
+> +	INTEL_IVB_Q_IDS(NULL),		/* must be first IVB in list */
+> +	INTEL_IVB_M_IDS(&ivb_display),
+> +	INTEL_IVB_D_IDS(&ivb_display),
+> +	INTEL_HSW_IDS(&hsw_display),
+> +	INTEL_VLV_IDS(&vlv_display),
+> +	INTEL_BDW_IDS(&bdw_display),
+> +	INTEL_CHV_IDS(&chv_display),
+> +	INTEL_SKL_IDS(&skl_display),
+> +	INTEL_BXT_IDS(&bxt_display),
+> +	INTEL_GLK_IDS(&glk_display),
+> +	INTEL_KBL_IDS(&skl_display),
+> +	INTEL_CFL_IDS(&skl_display),
+> +	INTEL_ICL_11_IDS(&gen11_display),
+> +	INTEL_EHL_IDS(&gen11_display),
+> +	INTEL_JSL_IDS(&gen11_display),
+> +	INTEL_TGL_12_IDS(&tgl_display),
+> +	INTEL_DG1_IDS(&tgl_display),
+> +	INTEL_RKL_IDS(&rkl_display),
+> +	INTEL_ADLS_IDS(&adl_s_display),
+> +	INTEL_RPLS_IDS(&adl_s_display),
+> +	INTEL_ADLP_IDS(&xe_lpd_display),
+> +	INTEL_ADLN_IDS(&xe_lpd_display),
+> +	INTEL_RPLP_IDS(&xe_lpd_display),
+> +	INTEL_DG2_IDS(&xe_hpd_display),
+> +
+> +	/* FIXME: Replace this with a GMD_ID lookup */
+> +	INTEL_MTL_IDS(&xe_lpdp_display),
+> +};
+> +
+> +const struct intel_display_device_info *
+> +intel_display_device_probe(u16 pci_devid)
+> +{
+> +	int i;
+> +
+> +	for (i = 0; i < ARRAY_SIZE(intel_display_ids); i++) {
+> +		if (intel_display_ids[i].device == pci_devid)
+> +			return (struct intel_display_device_info *)intel_display_ids[i].driver_data;
+> +	}
+> +
+
+I wonder if a debug message here would be helpful. *shrug*.
+
+> +	return &no_display;
+> +}
+
+
 > diff --git a/drivers/gpu/drm/i915/intel_device_info.c b/drivers/gpu/drm/i915/intel_device_info.c
-> index 4e23be2995bf..d0bf626d0360 100644
+> index 4d158927c78b..e1507ae59f2d 100644
 > --- a/drivers/gpu/drm/i915/intel_device_info.c
 > +++ b/drivers/gpu/drm/i915/intel_device_info.c
-> @@ -138,7 +138,7 @@ void intel_device_info_print(const struct intel_device_info *info,
+> @@ -574,7 +574,6 @@ void intel_device_info_driver_create(struct drm_i915_private *i915,
+>  {
+>  	struct intel_device_info *info;
+>  	struct intel_runtime_info *runtime;
+> -	struct intel_display_runtime_info *display_runtime;
 >  
->  	drm_printf(p, "has_pooled_eu: %s\n", str_yes_no(runtime->has_pooled_eu));
->  
-> -#define PRINT_FLAG(name) drm_printf(p, "%s: %s\n", #name, str_yes_no(info->display.name))
-> +#define PRINT_FLAG(name) drm_printf(p, "%s: %s\n", #name, str_yes_no(info->display->name))
->  	DEV_INFO_DISPLAY_FOR_EACH_FLAG(PRINT_FLAG);
->  #undef PRINT_FLAG
->  
-> @@ -388,6 +388,8 @@ mkwrite_device_info(struct drm_i915_private *i915)
->  	return (struct intel_device_info *)INTEL_INFO(i915);
->  }
->  
-> +static const struct intel_display_device_info no_display = { 0 };
-
-I think {} is preferred. Can be fixed afterwards if there's no other
-reason to do a respin.
-
+>  	/* Setup the write-once "constant" device info */
+>  	info = mkwrite_device_info(i915);
+> @@ -583,9 +582,10 @@ void intel_device_info_driver_create(struct drm_i915_private *i915,
+>  	/* Initialize initial runtime info from static const data and pdev. */
+>  	runtime = RUNTIME_INFO(i915);
+>  	memcpy(runtime, &INTEL_INFO(i915)->__runtime, sizeof(*runtime));
+> -	display_runtime = DISPLAY_RUNTIME_INFO(i915);
+> -	memcpy(display_runtime, &DISPLAY_INFO(i915)->__runtime_defaults,
+> -	       sizeof(*display_runtime));
 > +
->  /**
->   * intel_device_info_runtime_init - initialize runtime info
->   * @dev_priv: the i915 device
-> @@ -538,7 +540,7 @@ void intel_device_info_runtime_init(struct drm_i915_private *dev_priv)
->  	if (!HAS_DISPLAY(dev_priv)) {
->  		dev_priv->drm.driver_features &= ~(DRIVER_MODESET |
->  						   DRIVER_ATOMIC);
-> -		memset(&info->display, 0, sizeof(info->display));
-> +		info->display = &no_display;
+> +	/* Probe display support */
+> +	info->display = intel_display_device_probe(device_id);
+> +	*DISPLAY_RUNTIME_INFO(i915) = DISPLAY_INFO(i915)->__runtime_defaults;
 
-Nice!
+I think I'd keep the memcpy.
 
 Acked-by: Jani Nikula <jani.nikula@intel.com>
 
+
+>  
+>  	runtime->device_id = device_id;
+>  }
 
 -- 
 Jani Nikula, Intel Open Source Graphics Center
