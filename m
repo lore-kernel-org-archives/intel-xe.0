@@ -4,48 +4,30 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 64F31C77B75
-	for <intel-xe@archiver.kernel.org>; Tue, 23 May 2023 20:24:22 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 99E1AC7EE26
+	for <intel-xe@archiver.kernel.org>; Tue, 23 May 2023 20:27:00 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3720610E4C4;
-	Tue, 23 May 2023 20:24:22 +0000 (UTC)
-Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6BBCA10E4C4
- for <intel-xe@lists.freedesktop.org>; Tue, 23 May 2023 20:24:20 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1684873460; x=1716409460;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=ghhDGxVqX9vsXMuC04CmPB2RGwbEc1o3UScU1JOGRxo=;
- b=Ut6lxMhmt73ZgpxBoit4h2R++Y3ilAIpJezNq8Jg406iN3gpcMJ+lBX7
- tpXy90V5EnNMsqA0FxiKJBCNQ789wS+YP5M6qMQD304AkROSr3vawGh4d
- 6ZrZNmk1zMNQ4Fm6ZU4vtkFvE7LAvb/K3B6OG30U1JwhukcQIYwjRoeQP
- AE12KGLZD3o7sMlLNC2n+HqivnsZ8bub1vEO+jvFkQjiFBoqXBl4cwWZu
- t9MKLfzaeBCu7UMRQIwQWXvpVeR2LgUdx5e8KRInMy43MLr6csilAUdqf
- +4/+LFINE6sZMxEhaVmgW7xxsuc9yzKNn+iQCFJnfqyJsJf1OvdUlWSco w==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10719"; a="350861824"
-X-IronPort-AV: E=Sophos;i="6.00,187,1681196400"; d="scan'208";a="350861824"
-Received: from fmsmga006.fm.intel.com ([10.253.24.20])
- by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 23 May 2023 13:24:19 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10719"; a="950693992"
-X-IronPort-AV: E=Sophos;i="6.00,187,1681196400"; d="scan'208";a="950693992"
-Received: from nirmoyda-desk.igk.intel.com ([10.102.138.190])
- by fmsmga006-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 23 May 2023 13:24:18 -0700
-From: Nirmoy Das <nirmoy.das@intel.com>
-To: intel-xe@lists.freedesktop.org
-Date: Tue, 23 May 2023 22:24:12 +0200
-Message-Id: <20230523202412.14671-1-nirmoy.das@intel.com>
-X-Mailer: git-send-email 2.39.0
+	by gabe.freedesktop.org (Postfix) with ESMTP id 57B7610E4C4;
+	Tue, 23 May 2023 20:27:00 +0000 (UTC)
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id F38EE10E4C9;
+ Tue, 23 May 2023 20:26:57 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id A88FCAADE0;
+ Tue, 23 May 2023 20:26:57 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Organization: Intel Deutschland GmbH, Registered Address: Am Campeon 10,
- 85579 Neubiberg, Germany,
- Commercial Register: Amtsgericht Muenchen HRB 186928 
-Content-Transfer-Encoding: 8bit
-Subject: [Intel-xe] [PATCH] drm/xe: Do not unbind destroyed vmas
+Content-Transfer-Encoding: 7bit
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Nirmoy Das" <nirmoy.das@intel.com>
+Date: Tue, 23 May 2023 20:26:57 -0000
+Message-ID: <168487361765.14422.15158044444324985603@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20230523202412.14671-1-nirmoy.das@intel.com>
+In-Reply-To: <20230523202412.14671-1-nirmoy.das@intel.com>
+Subject: [Intel-xe] =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_f?=
+ =?utf-8?q?or_drm/xe=3A_Do_not_unbind_destroyed_vmas?=
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -57,31 +39,22 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Cc: Nirmoy Das <nirmoy.das@intel.com>
+Reply-To: intel-xe@lists.freedesktop.org
+Cc: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Fix a vma UAF when userspace calls unbind ioctl more
-than once.
+== Series Details ==
 
-Signed-off-by: Nirmoy Das <nirmoy.das@intel.com>
----
- drivers/gpu/drm/xe/xe_vm.c | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+Series: drm/xe: Do not unbind destroyed vmas
+URL   : https://patchwork.freedesktop.org/series/118242/
+State : success
 
-diff --git a/drivers/gpu/drm/xe/xe_vm.c b/drivers/gpu/drm/xe/xe_vm.c
-index a0306526b269..7a9f1ba432b8 100644
---- a/drivers/gpu/drm/xe/xe_vm.c
-+++ b/drivers/gpu/drm/xe/xe_vm.c
-@@ -2769,7 +2769,7 @@ static struct xe_vma *vm_unbind_all_lookup_vmas(struct xe_vm *vm,
- 	xe_bo_assert_held(bo);
- 
- 	list_for_each_entry(vma, &bo->vmas, bo_link) {
--		if (vma->vm != vm)
-+		if (vma->vm != vm || vma->destroyed)
- 			continue;
- 
- 		prep_vma_destroy(vm, vma);
--- 
-2.39.0
+== Summary ==
+
+=== Applying kernel patches on branch 'drm-xe-next' with base: ===
+Base commit: 48a7045a0 fixup! drm/xe/display: Implement display support
+=== git am output follows ===
+Applying: drm/xe: Do not unbind destroyed vmas
+
 
