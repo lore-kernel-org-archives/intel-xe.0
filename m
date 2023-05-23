@@ -4,66 +4,65 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9DACAC7EE26
-	for <intel-xe@archiver.kernel.org>; Tue, 23 May 2023 03:58:52 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id BB2FAC77B7A
+	for <intel-xe@archiver.kernel.org>; Tue, 23 May 2023 03:58:54 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 742CA10E3CE;
-	Tue, 23 May 2023 03:58:52 +0000 (UTC)
-Received: from mail-pf1-x430.google.com (mail-pf1-x430.google.com
- [IPv6:2607:f8b0:4864:20::430])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3FB7F10E3CD
- for <intel-xe@lists.freedesktop.org>; Tue, 23 May 2023 03:58:48 +0000 (UTC)
-Received: by mail-pf1-x430.google.com with SMTP id
- d2e1a72fcca58-64d247a023aso3701316b3a.2
- for <intel-xe@lists.freedesktop.org>; Mon, 22 May 2023 20:58:48 -0700 (PDT)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 82A1410E3CF;
+	Tue, 23 May 2023 03:58:54 +0000 (UTC)
+Received: from mail-pf1-x432.google.com (mail-pf1-x432.google.com
+ [IPv6:2607:f8b0:4864:20::432])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6EE4310E3CE
+ for <intel-xe@lists.freedesktop.org>; Tue, 23 May 2023 03:58:51 +0000 (UTC)
+Received: by mail-pf1-x432.google.com with SMTP id
+ d2e1a72fcca58-64d2c865e4eso3550271b3a.0
+ for <intel-xe@lists.freedesktop.org>; Mon, 22 May 2023 20:58:51 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20221208; t=1684814327; x=1687406327;
+ d=gmail.com; s=20221208; t=1684814331; x=1687406331;
  h=content-transfer-encoding:mime-version:references:in-reply-to
  :message-id:date:subject:cc:to:from:from:to:cc:subject:date
  :message-id:reply-to;
- bh=zgXsuCRRy0arg6ZZNXB1/jmzOWrfJyuy8wNpPX7/SmI=;
- b=nN22M/kgl2GGigyZd84J//xs1nkTlZt+z/96qVQPeur3LdcObNX2OZr0Fq/i7paq6G
- 5i+z0bzCCienRePkJaJRVS3bQtbKZObU2qui8+TAs+d9cFKVNCMQFui7z9cjCwhqWFFU
- GiBncIKnqB8iP5L4I4QZg0NWN2rOvF19lQaeG/9EarWmYuAaU34DZA4QIMrJXcqj+cwM
- s2LVFGX8/7F9mwzHgLNn4U0jf3Q328uekjxeKlQRjJZpGoXNe+SSEagms2Lb4+lf9vNY
- QViOVnlYik0mHRAy7oC2pA8tdqYdPe9itxJJyft4Dz5B6KvZwyMKRzkRKPNzjxsN0xk3
- qHjA==
+ bh=830GAnjJwMVcqSTqWKrSPKqJm1sWRGmJot9Ie120tm0=;
+ b=CeqormepTATNyTzRYw6Uyt82U3qgCLHRPXL5mOqGO8xBmPlqXKjmJL4NmfF0vNouUD
+ Hgpq3WLZs+ncJlH/ZB2NLgV4ukNwm3Y5+9bjKiNYhArcoIWPnE8TWMTipYAbSx0frLy6
+ kSmKXOpH09xlsAst/X+s4utd9R377ybtCs4UFl2eYadzmq4i3571m4K7FXC3GfTDHpD2
+ ZHEecFeFRYRmpK679tEeFdxvK/mbAwprvJcvYqn0CwERPEYa8m+q+P7drUC/cXKf5gC3
+ OdLR/1krF6YnKswAeAmT8/6eB8W9Ac5oMj7d7X2QNHOsuMlm2i3EEXQ6cRv9H2zZV95a
+ qFBg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20221208; t=1684814327; x=1687406327;
+ d=1e100.net; s=20221208; t=1684814331; x=1687406331;
  h=content-transfer-encoding:mime-version:references:in-reply-to
  :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
  :subject:date:message-id:reply-to;
- bh=zgXsuCRRy0arg6ZZNXB1/jmzOWrfJyuy8wNpPX7/SmI=;
- b=JlZl6YkojC15eWHkaVlOqgEv5UZexlQF0h1f1oiWMmnRLYGacgfkR+7xjqzfBHKx9Z
- y5MuQmEQhSXPREM7/M7/xinUK6kJt+wAoVIORsCGmxPyZxY4YEe+DKXXn8aV/n8b1bYD
- PU6i20BHkodaG9AtlmtJqXJlN/VSU0zu7nk1kbVCnwkWu8L00kezsCjfxZrUIjfcxpU7
- itBEz+wOm6qtbd0Xi7oVtcyaoFcoFBlEB3xQLPoD2iPRbJBYCbgPdk2PyqCZsFMQ50Aq
- 4lbf0GyIB7qv+NAAuWVJQpSgKttL65B1UfOR/NlTVFcjon7ZahbR7pYEbOwJwXXxWG36
- 8p9g==
-X-Gm-Message-State: AC+VfDx3lYfXXppLJZkAV/uppPTewEezx2zdLLx1hStfT4T3C/UzZRey
- 0fBgzVMkySaohc2N7qwDEeQab0wJ3TGSeQ==
-X-Google-Smtp-Source: ACHHUZ7EeSFrwebI0VUjo2MUoCDu0yO41XE07GayhY1ip81nBALrKDOxjQMm2J6JCUt3ALvMka4PHA==
-X-Received: by 2002:a05:6a20:7d83:b0:104:8045:c971 with SMTP id
- v3-20020a056a207d8300b001048045c971mr15956263pzj.58.1684814327036; 
- Mon, 22 May 2023 20:58:47 -0700 (PDT)
+ bh=830GAnjJwMVcqSTqWKrSPKqJm1sWRGmJot9Ie120tm0=;
+ b=DV1xB9T/kqBpGH5UnV7lm4EcZu34iPPx418sicq1s1AMHWkUj5vUt0Lefm2qRtgSUA
+ 6ONc1poELW27OW840OuoyqagZh4HYjr41R+fUZapvrjWSGtf0o8MHJmrUWPuM4Yej+h7
+ exA77lc5ESt6JFqSjENLJ8EfSU+92rNBm+YgUrWlfMnwxz7M8d9IIF3HKyXW7o73536S
+ 5WtbEcl7ZXasx3COws4yEuy1OTIzJE20iCZ/e04FziORQqIEkyZXCYSqtcwErmEW4G3w
+ lfn4CPjGLDNOfJkzchTKAvaOnA94gZJhIcrV8rH4ovVhqea46NfMwhjBdT6oMAmXyaPt
+ e+xQ==
+X-Gm-Message-State: AC+VfDyWNw18pMXj1mdIZuBEnQ9O/kCvJQeEK/7d8Ey1bEZ8Cu78+wCK
+ i29VIDpuQ6Cr9xc4AETEjBjUfS2gdmHCTrFR
+X-Google-Smtp-Source: ACHHUZ7urrQCyeIelwLlarsCcqOuYGgx24wn1bftYHmFklSUySYDto4XmNF+xhqVTTmI4ZIN92uvKg==
+X-Received: by 2002:a05:6a00:1783:b0:64a:5cde:3a8c with SMTP id
+ s3-20020a056a00178300b0064a5cde3a8cmr15449112pfg.28.1684814330800; 
+ Mon, 22 May 2023 20:58:50 -0700 (PDT)
 Received: from mrgency.tuatara-tone.ts.net
  ([2600:6c51:4c3f:9541:841e:5ff:fea9:3053])
  by smtp.gmail.com with ESMTPSA id
- i6-20020aa78d86000000b006414289ab69sm4828615pfr.52.2023.05.22.20.58.46
+ i6-20020aa78d86000000b006414289ab69sm4828615pfr.52.2023.05.22.20.58.50
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Mon, 22 May 2023 20:58:46 -0700 (PDT)
+ Mon, 22 May 2023 20:58:50 -0700 (PDT)
 From: Christopher Snowhill <kode54@gmail.com>
 To: intel-xe@lists.freedesktop.org
-Date: Mon, 22 May 2023 20:58:04 -0700
-Message-Id: <20230523035808.635175-5-kode54@gmail.com>
+Date: Mon, 22 May 2023 20:58:07 -0700
+Message-Id: <20230523035808.635175-8-kode54@gmail.com>
 X-Mailer: git-send-email 2.40.1
 In-Reply-To: <20230523035808.635175-1-kode54@gmail.com>
 References: <20230523035808.635175-1-kode54@gmail.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-xe] [PATCH v2 4/8] drm/xe: Use
- DRM_SCHED_POLICY_SINGLE_ENTITY mode
+Subject: [Intel-xe] [PATCH v2 7/8] drm/xe: Only try to lock external BOs in
+ VM bind
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -75,58 +74,45 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 From: Matthew Brost <matthew.brost@intel.com>
 Cc: Matthew Brost <matthew.brost@intel.com>
 
-We create 1 GPU scheduler per entity in Xe, use
-DRM_SCHED_POLICY_SINGLE_ENTITY scheduling which is designed for that
-paradigm.
+We only need to try to lock a BO if it's external as non-external BOs
+share the dma-resv with the already locked VM. Trying to lock
+non-external BOs caused an issue (list corruption) in an uncoming patch
+which adds bulk LRU move. Since this code isn't needed, remove it.
 
+v2: New commit message, s/mattthew/matthew/
+
+Reviewed-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
 Signed-off-by: Matthew Brost <matthew.brost@intel.com>
-Reviewed-by: Thomas Hellström <thomas.hellstrom@linux.intel.com>
 ---
- drivers/gpu/drm/xe/xe_execlist.c   | 3 ++-
- drivers/gpu/drm/xe/xe_guc_submit.c | 3 +--
- 2 files changed, 3 insertions(+), 3 deletions(-)
+ drivers/gpu/drm/xe/xe_vm.c | 8 +++++---
+ 1 file changed, 5 insertions(+), 3 deletions(-)
 
-diff --git a/drivers/gpu/drm/xe/xe_execlist.c b/drivers/gpu/drm/xe/xe_execlist.c
-index 944dad79a037..46293c9bb6a8 100644
---- a/drivers/gpu/drm/xe/xe_execlist.c
-+++ b/drivers/gpu/drm/xe/xe_execlist.c
-@@ -339,7 +339,8 @@ static int execlist_engine_init(struct xe_engine *e)
- 	err = drm_sched_init(&exl->sched, &drm_sched_ops, NULL,
- 			     e->lrc[0].ring.size / MAX_JOB_SIZE_BYTES,
- 			     XE_SCHED_HANG_LIMIT, XE_SCHED_JOB_TIMEOUT,
--			     NULL, NULL, e->hwe->name, DRM_SCHED_POLICY_DEFAULT,
-+			     NULL, NULL, e->hwe->name,
-+			     DRM_SCHED_POLICY_SINGLE_ENTITY,
- 			     gt_to_xe(e->gt)->drm.dev);
- 	if (err)
- 		goto err_free;
-diff --git a/drivers/gpu/drm/xe/xe_guc_submit.c b/drivers/gpu/drm/xe/xe_guc_submit.c
-index c147b17690dd..a7a0d9f806bd 100644
---- a/drivers/gpu/drm/xe/xe_guc_submit.c
-+++ b/drivers/gpu/drm/xe/xe_guc_submit.c
-@@ -1067,7 +1067,7 @@ static int guc_engine_init(struct xe_engine *e)
- 	err = drm_sched_init(&ge->sched, &drm_sched_ops, NULL,
- 			     e->lrc[0].ring.size / MAX_JOB_SIZE_BYTES,
- 			     64, timeout, guc_to_gt(guc)->ordered_wq, NULL,
--			     e->name, DRM_SCHED_POLICY_DEFAULT,
-+			     e->name, DRM_SCHED_POLICY_SINGLE_ENTITY,
- 			     gt_to_xe(e->gt)->drm.dev);
- 	if (err)
- 		goto err_free;
-@@ -1168,7 +1168,6 @@ static int guc_engine_set_priority(struct xe_engine *e,
- 	if (!msg)
- 		return -ENOMEM;
+diff --git a/drivers/gpu/drm/xe/xe_vm.c b/drivers/gpu/drm/xe/xe_vm.c
+index a0306526b269..0398da1ef1e2 100644
+--- a/drivers/gpu/drm/xe/xe_vm.c
++++ b/drivers/gpu/drm/xe/xe_vm.c
+@@ -2089,9 +2089,11 @@ static int vm_bind_ioctl(struct xe_vm *vm, struct xe_vma *vma,
+ 		 */
+ 		xe_bo_get(vbo);
  
--	drm_sched_entity_set_priority(e->entity, priority);
- 	guc_engine_add_msg(e, msg, SET_SCHED_PROPS);
+-		tv_bo.bo = &vbo->ttm;
+-		tv_bo.num_shared = 1;
+-		list_add(&tv_bo.head, &objs);
++		if (!vbo->vm) {
++			tv_bo.bo = &vbo->ttm;
++			tv_bo.num_shared = 1;
++			list_add(&tv_bo.head, &objs);
++		}
+ 	}
  
- 	return 0;
+ again:
 -- 
 2.40.1
 
