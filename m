@@ -4,132 +4,45 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2D2A5C77B75
-	for <intel-xe@archiver.kernel.org>; Tue, 23 May 2023 23:31:22 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9D144C7EE23
+	for <intel-xe@archiver.kernel.org>; Tue, 23 May 2023 23:40:36 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id EDD0B10E561;
-	Tue, 23 May 2023 23:31:21 +0000 (UTC)
-Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
- by gabe.freedesktop.org (Postfix) with ESMTPS id EEA7610E554
- for <intel-xe@lists.freedesktop.org>; Tue, 23 May 2023 23:31:19 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 69C3110E558;
+	Tue, 23 May 2023 23:40:36 +0000 (UTC)
+Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3102410E558
+ for <intel-xe@lists.freedesktop.org>; Tue, 23 May 2023 23:40:35 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1684884680; x=1716420680;
- h=date:from:to:cc:subject:message-id:references:
- in-reply-to:mime-version;
- bh=cwhWyQ7Zlczixr2WeHsGOUm8ixYQ6Gn9vmsi4vjj29k=;
- b=EPit52dXNB5WJiJhoFFLy75ZA5hob499c51Wl/TOUQ+lKkrm3CH3EZZE
- /pvfRIaOvNHoQsBN85KQ6tyiZwUCqYkE0TiXxFfLeqnwvW4q5Wi522m+Q
- u/U/o7tf7nb6qkF4yZdubUYbt0jWE3oav6E6kzg1CGiOLQlr5WZey/xvS
- saYLTl64LrLPLTvCnhnQruqVq6RZ4IIkdBsNLeCt6RYvyqZZmlNl2WvsG
- fJzWBQR5c+VYjRZ2OOPZt+AvCtaDPhf21xaWNvZHYplx03HPOGrHj52mo
- yIpS+rcAKgkNCymUwOYBqEi/W2w95p977OoxPc7pDMY3n21MR0vuIyC0o w==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10719"; a="333010983"
-X-IronPort-AV: E=Sophos;i="6.00,187,1681196400"; d="scan'208";a="333010983"
-Received: from orsmga002.jf.intel.com ([10.7.209.21])
- by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 23 May 2023 16:31:05 -0700
+ t=1684885235; x=1716421235;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=0INhcl/Xj2VazrzVK7P6RwMjHetrkm/+yjhErj6wEJo=;
+ b=glCJ0yNkr5JfGr4sFjDHbFtO4hH+6rbFjgwU4pa7lCc61gWdja59BoJW
+ 9XvQ5zybsX3QBgyy5mMldhG8tufgsiZuDaXDtdRz/IKX/wQmB8s91VYS2
+ w7OL5KQPWpeDKSqCMlekfkfZKONU8yBRgIlbpZUlnkb2RZz6ICHWUz1Hj
+ BVGE3namxykiWo8gtKLviu46Zgmz51yaswHLPXBcg/qTdMY8yq7ehtJWX
+ nFUCQB91ritJSnTkd3n0BVoa83t51/RKu6gPKJhDfSw14975v4x0cnI8C
+ 9C15Jexp7QDyFUlh3sVovpXAlLIEX5cBXK3lkXnDRxfkB7lB6yYC9NAMp w==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10719"; a="350904256"
+X-IronPort-AV: E=Sophos;i="6.00,187,1681196400"; d="scan'208";a="350904256"
+Received: from orsmga003.jf.intel.com ([10.7.209.27])
+ by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 23 May 2023 16:40:34 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10719"; a="704086030"
-X-IronPort-AV: E=Sophos;i="6.00,187,1681196400"; d="scan'208";a="704086030"
-Received: from fmsmsx601.amr.corp.intel.com ([10.18.126.81])
- by orsmga002.jf.intel.com with ESMTP; 23 May 2023 16:31:03 -0700
-Received: from fmsmsx610.amr.corp.intel.com (10.18.126.90) by
- fmsmsx601.amr.corp.intel.com (10.18.126.81) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.23; Tue, 23 May 2023 16:31:03 -0700
-Received: from fmsedg601.ED.cps.intel.com (10.1.192.135) by
- fmsmsx610.amr.corp.intel.com (10.18.126.90) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.23 via Frontend Transport; Tue, 23 May 2023 16:31:03 -0700
-Received: from NAM12-BN8-obe.outbound.protection.outlook.com (104.47.55.173)
- by edgegateway.intel.com (192.55.55.70) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2507.23; Tue, 23 May 2023 16:31:03 -0700
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=ACG3codYZLZmUk4Nrrfr+b631ZFgvVyp+Evkwz4dfey/EvKgfw4U9KAeT69v5c+GmcNzJd6RJT9J+eaxgZzIxq8Ns2HCfPwhjjcl2NnuBydcjQc/CsIDEq/e9OrPlCG35R1KAJmOl36DaJfgoQVxN5H6s3QoeE6Uf/Z8NbXVL2GIqWjqRho6L5om9MEeoHujfG0UjjMPuc86/Bja+MuKiZt+iydD2bZdLlGMV7dpUUlOB9jrf7rqi1t/W0xBSqkJgaGRTjejGQ6vIcrd3HVBOIqgVAJMJ7ds/47l8SR2xUmUmLodeb5aqo/0SvHr2PE33uwo3lm6p3e2JP6h3RsNEg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=Cjec/j3aG4ND10xbkH8uGGERIwtBseCpuPcNp/gRdhU=;
- b=khm6UgetPaMgDPmmg+EOeyCmc6YlF5xGLF9A3wjphFbgMnHs0fv32Lhs471rUmm1Z3Vyq/uvemIDxIu6MmQVbuzuUiIwsv5M1HWXZhYC2MgtXbhr+4VBsStit7JlTje0JS2tSbV+Y4UmPfTwFtweYYydJnZZ9gcsLtpu+JAYNJOo3JI36kNRBcyXLGjnMXK9nIdoUhpFr7rmPWGVy6EFx+Ms8QLHeDSiVFwRcLPVtvsZbh5bx2Kp7Hc53GyGNTrokSmTUQMAzwB7nXmzTSVIwCbJxVk/Ca3G60wLH/AMBbkqPNn+nsPzF2x3iLzIZO1iGnYTSPN1YuYV7UEG3/JqUw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
- dkim=pass header.d=intel.com; arc=none
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=intel.com;
-Received: from PH7PR11MB6522.namprd11.prod.outlook.com (2603:10b6:510:212::12)
- by IA1PR11MB6465.namprd11.prod.outlook.com (2603:10b6:208:3a7::5)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6411.28; Tue, 23 May
- 2023 23:31:01 +0000
-Received: from PH7PR11MB6522.namprd11.prod.outlook.com
- ([fe80::ff06:a115:e4eb:680e]) by PH7PR11MB6522.namprd11.prod.outlook.com
- ([fe80::ff06:a115:e4eb:680e%4]) with mapi id 15.20.6411.028; Tue, 23 May 2023
- 23:31:01 +0000
-Date: Tue, 23 May 2023 23:30:35 +0000
-From: Matthew Brost <matthew.brost@intel.com>
-To: Nirmoy Das <nirmoy.das@intel.com>
-Message-ID: <ZG1Mm91KwwDrf8e2@DUT025-TGLU.fm.intel.com>
-References: <20230523202412.14671-1-nirmoy.das@intel.com>
-Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
-In-Reply-To: <20230523202412.14671-1-nirmoy.das@intel.com>
-X-ClientProxiedBy: SJ0PR05CA0024.namprd05.prod.outlook.com
- (2603:10b6:a03:33b::29) To PH7PR11MB6522.namprd11.prod.outlook.com
- (2603:10b6:510:212::12)
+X-IronPort-AV: E=McAfee;i="6600,9927,10719"; a="654568335"
+X-IronPort-AV: E=Sophos;i="6.00,187,1681196400"; d="scan'208";a="654568335"
+Received: from mdroper-desk1.fm.intel.com ([10.1.27.134])
+ by orsmga003-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 23 May 2023 16:40:34 -0700
+From: Matt Roper <matthew.d.roper@intel.com>
+To: intel-xe@lists.freedesktop.org
+Date: Tue, 23 May 2023 16:40:26 -0700
+Message-Id: <20230523234026.195301-1-matthew.d.roper@intel.com>
+X-Mailer: git-send-email 2.40.1
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: PH7PR11MB6522:EE_|IA1PR11MB6465:EE_
-X-MS-Office365-Filtering-Correlation-Id: 2fe76da6-f3c8-44cd-68ff-08db5be5c49c
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: 9x3d1UKjx1A6pVJ9AtD13cXQ2aD84p8u5JBI0eivwxHhP7ykWWOPvChPIdDqJWK16JxRImkTqcGIL6lSKJJ31SFuj/RKg5n8mIUp8HBv8nT06WWjh+wMhwihs1uEjVkl2ghD2VxBkBXacDiOFBb8AmQ0x9PfFSUsC6WV1CyO+LHEUMEDUeycz7XXVYwqnROOsHiCBWOErMK2nFjR2DamOo5G59DREowBmdnHZYNqLDAYCbYoOPp2t03oWg3qDMN9XZLg5bugl1IrjAVMNKIKWD9hvXZPmVSRXLPnO+ES+z4RXWJyDfPlDRQdz/gDxl48LZ9YUKMlhgiu5iZq+uTJwQHW8b4Vun8LGSDfsLQF72xM/ha3V1SHxK5pJ5aaRWX+Wr6hhbq+fj2D3Wlf8gN/9JvCqLbMws3FAAakk1Ujx0JpkCAYStZmFNDkHxcNttd5oF1nWPxlMnCtRw0JUh22a9yVndGZ79YJrT5J/9Ftkh3BCE+k1o5fhFNZOwsMxmxBObwDQwYGsj4LuYTVbtreUdhQyLFth+v6bGWORgp5ZOnLd7iIr9sje4SUXWTqjFOn
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:PH7PR11MB6522.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230028)(366004)(376002)(136003)(346002)(39860400002)(396003)(451199021)(82960400001)(478600001)(86362001)(66946007)(66476007)(66556008)(38100700002)(83380400001)(6486002)(4744005)(2906002)(6666004)(316002)(4326008)(6636002)(8936002)(8676002)(26005)(186003)(6862004)(5660300002)(6512007)(41300700001)(6506007)(44832011);
- DIR:OUT; SFP:1102; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?gDW7Qg3C8dSk5r5Q7i8pjncUUMmjXm7sikwQ3u2MtGsuBy6QDAMRdZDPjtf+?=
- =?us-ascii?Q?W5tfl0K2/GNn26U0YdnolVOVlQI32zBmlfEOCX/5e9/qTOgv1qzdnRiD4up+?=
- =?us-ascii?Q?XxsXS7ZMLb562DH5fITJGz09Ln6m3UExSzVMwEUP5RyZUruS0byTxYYSWuS2?=
- =?us-ascii?Q?++GgzmkBEov6o0uNR3cfnd3Pwb3gTu2zF2ppJU+uEKeEoLMKQjx9vv49KcRY?=
- =?us-ascii?Q?9Gz7CCaGgh5wz0dY8SsgSoKOjf5W0Nu+WMJcBn/ffHs2x+KvR9POMaNwxzRu?=
- =?us-ascii?Q?0cXQov0m2iF0CIWGV+CN6FuqYV9bU3nZQRdmpgOVRs19iZftxDxjDQB0nq/d?=
- =?us-ascii?Q?qkC+dCd6DVmy0Q8epGuEeuXnRy7faQyEQ8ZSeiNwKuOo3ABumjIdeBGsXee2?=
- =?us-ascii?Q?fSMbOKJ0oT7FH4ldN/69FtRqEzizpQZGUxG/Ag4+XfqEd97TGtg32PqLLQV+?=
- =?us-ascii?Q?bTqwpKdfzmCza2Tm0rgKjBmVsaMK64C1F1EwS0ECsb1IA4+I2MmICCVt+gqm?=
- =?us-ascii?Q?ycnKHUyxh57x2hL8duLRfowmUEsEiVY+0MSCGN8IvIwCq8bzcUT0pgD+hys8?=
- =?us-ascii?Q?Ta9/sE2o1kTtO9H6yW0iitoCSP1UELmZPmjNaoWvAy3ZjTluAJgmK0LcA8/+?=
- =?us-ascii?Q?5uDRU+e9vH6W+0lOhAzY8AF2hpv2FFsuT3J5xjrx24iyASy3Kif8jl6wGZKb?=
- =?us-ascii?Q?zt5vB5lEHHOsDyobTj1B8zIP4VFmjx1RFgvTc1FL10TAiXVheDFtK3dE57dx?=
- =?us-ascii?Q?r07Ds7W56/hHmkCTQNzVkBmcDU4i2NvtdkUsp5EnIw1o9nT37kQELgTfspbj?=
- =?us-ascii?Q?DdK0hdjCyWKQXTAQrbCZsn0qKWpoNjQogw3km8YZxHooKjKzEjIHYTAkwD/o?=
- =?us-ascii?Q?cWRjBqjxPx0MsIH0s6eu1m6c+LrF65yfrgv6QwVEWBuwEBLikXFvEqe7S3kD?=
- =?us-ascii?Q?8g6yuEGJsRNMa5/4XaAHgh8Gq7T3JQbRqjrkpomMFs+Ke+tPAWdYoqb7Y9WW?=
- =?us-ascii?Q?V78NNIYHAA7z/XMHGbcLm7F9/pFSPdcWIYeS0KIZwyhiUkv82Wg35RgQAycN?=
- =?us-ascii?Q?r7n6yzuDMtNf53ikslDdpPkI1PPA0sD6ebV0WdVf0QOGonqJBzQRLLPCiaER?=
- =?us-ascii?Q?5f0SG8nkNsci4rw+zlUFDXyJh5z5OUTDIJBdw5d0yOghLL6E9wSnt5OBi3hc?=
- =?us-ascii?Q?80MmuQSw+5cZzgJo0VvG2t/P5pCqQUbtXJaW9VymldPGjXo+NrzXTZYDVw5z?=
- =?us-ascii?Q?aR7NRCwGlH53srhjKiZDZE5hGIgqDsEVL7YuwI4AWcXBniIbk9ViEsO9v2BI?=
- =?us-ascii?Q?AIFUnlQjhIVXZbn5oCraAv5gAfTBBcH8otz+r+cL6wJs8wFg545SMJoJfDwW?=
- =?us-ascii?Q?EuxwxggjvhaWkWpQhYa+FPpkzEeR22M4TrkwyamUGnX6pykjUGcjXQHWwEWk?=
- =?us-ascii?Q?YZ8oZ5BNPCpat/+OQw1CVTPIEEMwZBzT7pLDkmW+MRx3Nn+PqpHOwtXpiIKy?=
- =?us-ascii?Q?/JcQWgm5cGryGlVn4By+n7gz1t3c6hCqwnNzBRqomTYqIR3dv7YNe6/KlExD?=
- =?us-ascii?Q?3SOmQe0SKvvoC+8TGJEGlvN2XDmSs0MFFH/ORlPqCA4O9HBdegCiXjPMr6FA?=
- =?us-ascii?Q?YA=3D=3D?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: 2fe76da6-f3c8-44cd-68ff-08db5be5c49c
-X-MS-Exchange-CrossTenant-AuthSource: PH7PR11MB6522.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 23 May 2023 23:31:00.9065 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: agZGPlzGlYFsZi+YX5CoHEklC/kXE1uif/BLKHdqow03pN5Dy2yzYb18aamIdLtnG4EJ/u+jYDSWl8QE9DOXzQ==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: IA1PR11MB6465
-X-OriginatorOrg: intel.com
-Subject: Re: [Intel-xe] [PATCH] drm/xe: Do not unbind destroyed vmas
+Content-Transfer-Encoding: 8bit
+Subject: [Intel-xe] [PATCH] drm/xe: Add stepping support for GMD_ID platforms
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -141,41 +54,220 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-xe@lists.freedesktop.org
+Cc: matthew.d.roper@intel.com
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Tue, May 23, 2023 at 10:24:12PM +0200, Nirmoy Das wrote:
-> Fix a vma UAF when userspace calls unbind ioctl more
-> than once.
-> 
+For platforms with GMD_ID registers, the IP stepping should be
+determined from the 'revid' field of those registers rather than from
+the PCI revid.
 
-I see the problem, yea this is kinda an issue but will conflict with the
-GPUVA series where this is also fixed by removing the async worker.
+The hardware teams have indicated that they plan to keep the revid =>
+stepping mapping consistent across all GMD_ID platforms, with major
+steppings (A0, B0, C0, etc.) having revids that are multiples of 4, and
+minor steppings (A1, A2, A3, etc.) taking the intermediate values.  For
+now we'll trust that hardware follows through on this plan; if they have
+to change direction in the future (e.g., they wind up needing something
+like an "A4" that doesn't fit this scheme), we can add a GMD_ID-based
+lookup table when the time comes.
 
-Is this a problem from any UMDs? If it isn't I'd say defer this until
-the GPUVA series.
+Signed-off-by: Matt Roper <matthew.d.roper@intel.com>
+---
+ drivers/gpu/drm/xe/regs/xe_gt_regs.h |  2 +-
+ drivers/gpu/drm/xe/xe_pci.c          | 20 +++++++++----
+ drivers/gpu/drm/xe/xe_step.c         | 45 +++++++++++++++++++++++++++-
+ drivers/gpu/drm/xe/xe_step.h         |  5 +++-
+ drivers/gpu/drm/xe/xe_step_types.h   | 13 ++++----
+ 5 files changed, 70 insertions(+), 15 deletions(-)
 
-Matt
+diff --git a/drivers/gpu/drm/xe/regs/xe_gt_regs.h b/drivers/gpu/drm/xe/regs/xe_gt_regs.h
+index 4d87f1fe010d..e64e5c0733d6 100644
+--- a/drivers/gpu/drm/xe/regs/xe_gt_regs.h
++++ b/drivers/gpu/drm/xe/regs/xe_gt_regs.h
+@@ -24,7 +24,7 @@
+ #define GMD_ID					XE_REG(0xd8c)
+ #define   GMD_ID_ARCH_MASK			REG_GENMASK(31, 22)
+ #define   GMD_ID_RELEASE_MASK			REG_GENMASK(21, 14)
+-#define   GMD_ID_STEP				REG_GENMASK(5, 0)
++#define   GMD_ID_REVID				REG_GENMASK(5, 0)
+ 
+ #define FORCEWAKE_ACK_GT_MTL			XE_REG(0xdfc)
+ 
+diff --git a/drivers/gpu/drm/xe/xe_pci.c b/drivers/gpu/drm/xe/xe_pci.c
+index 2d0d50dcd396..0a8c4a707d05 100644
+--- a/drivers/gpu/drm/xe/xe_pci.c
++++ b/drivers/gpu/drm/xe/xe_pci.c
+@@ -459,11 +459,14 @@ static void handle_pre_gmdid(struct xe_device *xe,
+ static void handle_gmdid(struct xe_device *xe,
+ 			 const struct xe_device_desc *desc,
+ 			 const struct xe_graphics_desc **graphics,
+-			 const struct xe_media_desc **media)
++			 const struct xe_media_desc **media,
++			 u32 *graphics_revid,
++			 u32 *media_revid)
+ {
+ 	u32 ver;
+ 
+ 	ver = peek_gmdid(xe, GMD_ID.addr);
++	*graphics_revid = REG_FIELD_GET(GMD_ID_REVID, ver);
+ 	for (int i = 0; i < ARRAY_SIZE(graphics_ip_map); i++) {
+ 		if (ver == graphics_ip_map[i].ver) {
+ 			xe->info.graphics_verx100 = ver;
+@@ -479,6 +482,7 @@ static void handle_gmdid(struct xe_device *xe,
+ 	}
+ 
+ 	ver = peek_gmdid(xe, GMD_ID.addr + 0x380000);
++	*media_revid = REG_FIELD_GET(GMD_ID_REVID, ver);
+ 	for (int i = 0; i < ARRAY_SIZE(media_ip_map); i++) {
+ 		if (ver == media_ip_map[i].ver) {
+ 			xe->info.media_verx100 = ver;
+@@ -501,6 +505,7 @@ static int xe_info_init(struct xe_device *xe,
+ {
+ 	const struct xe_graphics_desc *graphics_desc = NULL;
+ 	const struct xe_media_desc *media_desc = NULL;
++	u32 graphics_gmdid_revid = 0, media_gmdid_revid = 0;
+ 	struct xe_gt *gt;
+ 	u8 id;
+ 
+@@ -510,10 +515,16 @@ static int xe_info_init(struct xe_device *xe,
+ 	 * ever be set at this point for platforms before GMD_ID. In that case
+ 	 * the IP descriptions and versions are simply derived from that.
+ 	 */
+-	if (desc->graphics)
++	if (desc->graphics) {
+ 		handle_pre_gmdid(xe, desc, &graphics_desc, &media_desc);
+-	else
+-		handle_gmdid(xe, desc, &graphics_desc, &media_desc);
++		xe->info.step = xe_step_pre_gmdid_get(xe);
++	} else {
++		handle_gmdid(xe, desc, &graphics_desc, &media_desc,
++			     &graphics_gmdid_revid, &media_gmdid_revid);
++		xe->info.step = xe_step_gmdid_get(xe,
++						  graphics_gmdid_revid,
++						  media_gmdid_revid);
++	}
+ 
+ 	/*
+ 	 * If we couldn't detect the graphics IP, that's considered a fatal
+@@ -557,7 +568,6 @@ static int xe_info_init(struct xe_device *xe,
+ 
+ 	xe->info.subplatform = subplatform_desc ?
+ 		subplatform_desc->subplatform : XE_SUBPLATFORM_NONE;
+-	xe->info.step = xe_step_get(xe);
+ 
+ 	for (id = 0; id < xe->info.tile_count; ++id) {
+ 		gt = xe->gt + id;
+diff --git a/drivers/gpu/drm/xe/xe_step.c b/drivers/gpu/drm/xe/xe_step.c
+index a443d9bd7bbb..1baf79ba02ad 100644
+--- a/drivers/gpu/drm/xe/xe_step.c
++++ b/drivers/gpu/drm/xe/xe_step.c
+@@ -107,7 +107,14 @@ static const int pvc_basedie_subids[] = {
+ 
+ __diag_pop();
+ 
+-struct xe_step_info xe_step_get(struct xe_device *xe)
++/**
++ * xe_step_pre_gmdid_get - Determine IP steppings from PCI revid
++ * @xe: Xe device
++ *
++ * Convert the PCI revid into proper IP steppings.  This should only be
++ * used on platforms that do not have GMD_ID support.
++ */
++struct xe_step_info xe_step_pre_gmdid_get(struct xe_device *xe)
+ {
+ 	const struct xe_step_info *revids = NULL;
+ 	struct xe_step_info step = {};
+@@ -198,6 +205,42 @@ struct xe_step_info xe_step_get(struct xe_device *xe)
+ 	return step;
+ }
+ 
++/**
++ * xe_step_gmdid_get - Determine IP steppings from GMD_ID revid fields
++ * @xe: Xe device
++ * @graphics_gmdid_revid: value of graphics GMD_ID register's revid field
++ * @media_gmdid_revid: value of media GMD_ID register's revid field
++ *
++ * Convert the revid fields of the GMD_ID registers into proper IP steppings.
++ *
++ * GMD_ID revid values are currently expected to have consistent meanings on
++ * all platforms:  major steppings (A0, B0, etc.) are 4 apart, with minor
++ * steppings (A1, A2, etc.) taking the values in between.
++ */
++struct xe_step_info xe_step_gmdid_get(struct xe_device *xe,
++				      u32 graphics_gmdid_revid,
++				      u32 media_gmdid_revid)
++{
++	struct xe_step_info step = {
++		.graphics = STEP_A0 + graphics_gmdid_revid,
++		.media = STEP_A0 + media_gmdid_revid,
++	};
++
++	if (step.graphics >= STEP_FUTURE) {
++		step.graphics = STEP_FUTURE;
++		drm_dbg(&xe->drm, "Graphics GMD_ID revid value %d treated as future stepping\n",
++			graphics_gmdid_revid);
++	}
++
++	if (step.media >= STEP_FUTURE) {
++		step.media = STEP_FUTURE;
++		drm_dbg(&xe->drm, "Media GMD_ID revid value %d treated as future stepping\n",
++			graphics_gmdid_revid);
++	}
++
++	return step;
++}
++
+ #define STEP_NAME_CASE(name)	\
+ 	case STEP_##name:	\
+ 		return #name;
+diff --git a/drivers/gpu/drm/xe/xe_step.h b/drivers/gpu/drm/xe/xe_step.h
+index 0c596c8579fb..a384b640f2af 100644
+--- a/drivers/gpu/drm/xe/xe_step.h
++++ b/drivers/gpu/drm/xe/xe_step.h
+@@ -12,7 +12,10 @@
+ 
+ struct xe_device;
+ 
+-struct xe_step_info xe_step_get(struct xe_device *xe);
++struct xe_step_info xe_step_pre_gmdid_get(struct xe_device *xe);
++struct xe_step_info xe_step_gmdid_get(struct xe_device *xe,
++				      u32 graphics_gmdid_revid,
++				      u32 media_gmdid_revid);
+ const char *xe_step_name(enum xe_step step);
+ 
+ #endif
+diff --git a/drivers/gpu/drm/xe/xe_step_types.h b/drivers/gpu/drm/xe/xe_step_types.h
+index b7859f9647ca..ccc9b4795e95 100644
+--- a/drivers/gpu/drm/xe/xe_step_types.h
++++ b/drivers/gpu/drm/xe/xe_step_types.h
+@@ -21,21 +21,20 @@ struct xe_step_info {
+ 	func(A0)			\
+ 	func(A1)			\
+ 	func(A2)			\
++	func(A3)			\
+ 	func(B0)			\
+ 	func(B1)			\
+ 	func(B2)			\
+ 	func(B3)			\
+ 	func(C0)			\
+ 	func(C1)			\
++	func(C2)			\
++	func(C3)			\
+ 	func(D0)			\
+ 	func(D1)			\
+-	func(E0)			\
+-	func(F0)			\
+-	func(G0)			\
+-	func(H0)			\
+-	func(I0)			\
+-	func(I1)			\
+-	func(J0)
++	func(D2)			\
++	func(D3)			\
++	func(E0)
+ 
+ /*
+  * Symbolic steppings that do not match the hardware. These are valid both as gt
+-- 
+2.40.1
 
-> Signed-off-by: Nirmoy Das <nirmoy.das@intel.com>
-> ---
->  drivers/gpu/drm/xe/xe_vm.c | 2 +-
->  1 file changed, 1 insertion(+), 1 deletion(-)
-> 
-> diff --git a/drivers/gpu/drm/xe/xe_vm.c b/drivers/gpu/drm/xe/xe_vm.c
-> index a0306526b269..7a9f1ba432b8 100644
-> --- a/drivers/gpu/drm/xe/xe_vm.c
-> +++ b/drivers/gpu/drm/xe/xe_vm.c
-> @@ -2769,7 +2769,7 @@ static struct xe_vma *vm_unbind_all_lookup_vmas(struct xe_vm *vm,
->  	xe_bo_assert_held(bo);
->  
->  	list_for_each_entry(vma, &bo->vmas, bo_link) {
-> -		if (vma->vm != vm)
-> +		if (vma->vm != vm || vma->destroyed)
->  			continue;
->  
->  		prep_vma_destroy(vm, vma);
-> -- 
-> 2.39.0
-> 
