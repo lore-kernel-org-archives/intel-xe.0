@@ -4,49 +4,49 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 52616C7EE2E
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 928D9C7EE2F
 	for <intel-xe@archiver.kernel.org>; Tue, 23 May 2023 05:44:00 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 26AD810E3D8;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5FD1010E3D9;
 	Tue, 23 May 2023 05:44:00 +0000 (UTC)
 Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A438210E3D9
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8C6A910E3D7
  for <intel-xe@lists.freedesktop.org>; Tue, 23 May 2023 05:43:57 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
  t=1684820637; x=1716356637;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=0VKH3djgMFE3qh+sL4V/ETMk68SyLkKt936ARErGSmU=;
- b=aw3FgmY0W6oF7s+zBzlqqbsrlHjd1oTpru46+4rwGsxh4DGZiXmz5QVf
- z3b+eOd7i4aIVxgVYjqx6oGzTUtTEmjuSoxT57onp6o63yppPXNRo9Tr3
- hoLGfzp8MTjgYGz5+dXAqlCYgbE22+U1Yovu3QXSFC64Bzc1GUtQRmM5R
- q9N6RGlspFX9FW+7DeIwcDHx34G1P1xk5rc2uRpzJKtfh9rHsTXAdnsp/
- R/DASgR9E2U0t5PjvyuRTMS+oPm63UJYM8uvgkeJ4q363I7qUYknkpRaQ
- 0rHZBUHgpz4I6mbsDkQI+1KCaVo3+9AQWuFMAPaenQtWU88VP/X5wJmkn w==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10718"; a="439489813"
-X-IronPort-AV: E=Sophos;i="6.00,185,1681196400"; d="scan'208";a="439489813"
+ bh=vZQ+t5xnc5PooVDY0k2tUP7a/tkNwjyNJEarq7BtmYE=;
+ b=l+ev0bcQcml+dpDZ4Lr19eyO6GgTRBDMS/q6CUclL9g/XQzdBC6uW9oA
+ ljDzLqO5bCr2a4+hPTQ3bdb0nS14XKKqbSWWCdR90C5EFWli1vQjha+aM
+ nOnVb5lAiyE6rvIj1wtbbDgnz9d6VEfQj3aXhEtKafM8t9Nu4skJ2SGux
+ kqaQd8ZwnNR8bj6dmkooP8MbKtcRNA52YMNYXm4bDsYn4rhBNj5DRa9i+
+ 1AJ+0ejyeB2USYnM8kABn2KUiDsoCbOvnZirr907cs+rj+m/lmbF5LmCr
+ l9Ge8cK+uIMDsBnjvFiDLZVzFtEGkLMJ9P35blkkChD/FJVn7V2xMZNHf w==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10718"; a="439489811"
+X-IronPort-AV: E=Sophos;i="6.00,185,1681196400"; d="scan'208";a="439489811"
 Received: from fmsmga005.fm.intel.com ([10.253.24.32])
  by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  22 May 2023 22:43:56 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10718"; a="1033910186"
-X-IronPort-AV: E=Sophos;i="6.00,185,1681196400"; d="scan'208";a="1033910186"
+X-IronPort-AV: E=McAfee;i="6600,9927,10718"; a="1033910180"
+X-IronPort-AV: E=Sophos;i="6.00,185,1681196400"; d="scan'208";a="1033910180"
 Received: from lstrano-desk.jf.intel.com ([10.24.89.184])
  by fmsmga005-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  22 May 2023 22:43:56 -0700
 From: Matthew Brost <matthew.brost@intel.com>
 To: <intel-xe@lists.freedesktop.org>
-Date: Mon, 22 May 2023 22:44:02 -0700
-Message-Id: <20230523054404.4011148-7-matthew.brost@intel.com>
+Date: Mon, 22 May 2023 22:44:00 -0700
+Message-Id: <20230523054404.4011148-5-matthew.brost@intel.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20230523054404.4011148-1-matthew.brost@intel.com>
 References: <20230523054404.4011148-1-matthew.brost@intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-xe] [PATCH v2 6/8] drm/xe: Ensure LR engines are not
- persistent
+Subject: [Intel-xe] [PATCH v2 4/8] drm/xe: Use
+ DRM_SCHED_POLICY_SINGLE_ENTITY mode
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -61,32 +61,52 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-With our ref counting scheme long running (LR) engines only close
-properly if not persistent, ensure that LR engines are non-persistent.
-
-v2: spell out LR
+We create 1 GPU scheduler per entity in Xe, use
+DRM_SCHED_POLICY_SINGLE_ENTITY scheduling which is designed for that
+paradigm.
 
 Signed-off-by: Matthew Brost <matthew.brost@intel.com>
 Reviewed-by: Thomas Hellström <thomas.hellstrom@linux.intel.com>
 ---
- drivers/gpu/drm/xe/xe_engine.c | 4 +++-
- 1 file changed, 3 insertions(+), 1 deletion(-)
+ drivers/gpu/drm/xe/xe_execlist.c   | 3 ++-
+ drivers/gpu/drm/xe/xe_guc_submit.c | 3 +--
+ 2 files changed, 3 insertions(+), 3 deletions(-)
 
-diff --git a/drivers/gpu/drm/xe/xe_engine.c b/drivers/gpu/drm/xe/xe_engine.c
-index d1e84d7adbd4..91600b1e8249 100644
---- a/drivers/gpu/drm/xe/xe_engine.c
-+++ b/drivers/gpu/drm/xe/xe_engine.c
-@@ -596,7 +596,9 @@ int xe_engine_create_ioctl(struct drm_device *dev, void *data,
- 			return -ENOENT;
+diff --git a/drivers/gpu/drm/xe/xe_execlist.c b/drivers/gpu/drm/xe/xe_execlist.c
+index 944dad79a037..46293c9bb6a8 100644
+--- a/drivers/gpu/drm/xe/xe_execlist.c
++++ b/drivers/gpu/drm/xe/xe_execlist.c
+@@ -339,7 +339,8 @@ static int execlist_engine_init(struct xe_engine *e)
+ 	err = drm_sched_init(&exl->sched, &drm_sched_ops, NULL,
+ 			     e->lrc[0].ring.size / MAX_JOB_SIZE_BYTES,
+ 			     XE_SCHED_HANG_LIMIT, XE_SCHED_JOB_TIMEOUT,
+-			     NULL, NULL, e->hwe->name, DRM_SCHED_POLICY_DEFAULT,
++			     NULL, NULL, e->hwe->name,
++			     DRM_SCHED_POLICY_SINGLE_ENTITY,
+ 			     gt_to_xe(e->gt)->drm.dev);
+ 	if (err)
+ 		goto err_free;
+diff --git a/drivers/gpu/drm/xe/xe_guc_submit.c b/drivers/gpu/drm/xe/xe_guc_submit.c
+index c147b17690dd..a7a0d9f806bd 100644
+--- a/drivers/gpu/drm/xe/xe_guc_submit.c
++++ b/drivers/gpu/drm/xe/xe_guc_submit.c
+@@ -1067,7 +1067,7 @@ static int guc_engine_init(struct xe_engine *e)
+ 	err = drm_sched_init(&ge->sched, &drm_sched_ops, NULL,
+ 			     e->lrc[0].ring.size / MAX_JOB_SIZE_BYTES,
+ 			     64, timeout, guc_to_gt(guc)->ordered_wq, NULL,
+-			     e->name, DRM_SCHED_POLICY_DEFAULT,
++			     e->name, DRM_SCHED_POLICY_SINGLE_ENTITY,
+ 			     gt_to_xe(e->gt)->drm.dev);
+ 	if (err)
+ 		goto err_free;
+@@ -1168,7 +1168,6 @@ static int guc_engine_set_priority(struct xe_engine *e,
+ 	if (!msg)
+ 		return -ENOMEM;
  
- 		e = xe_engine_create(xe, vm, logical_mask,
--				     args->width, hwe, ENGINE_FLAG_PERSISTENT);
-+				     args->width, hwe,
-+				     xe_vm_no_dma_fences(vm) ? 0 :
-+				     ENGINE_FLAG_PERSISTENT);
- 		xe_vm_put(vm);
- 		if (IS_ERR(e))
- 			return PTR_ERR(e);
+-	drm_sched_entity_set_priority(e->entity, priority);
+ 	guc_engine_add_msg(e, msg, SET_SCHED_PROPS);
+ 
+ 	return 0;
 -- 
 2.34.1
 
