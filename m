@@ -4,54 +4,54 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id D1682C77B75
-	for <intel-xe@archiver.kernel.org>; Tue, 23 May 2023 13:10:19 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3D8E5C7EE23
+	for <intel-xe@archiver.kernel.org>; Tue, 23 May 2023 13:13:42 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9CC9E10E09B;
-	Tue, 23 May 2023 13:10:19 +0000 (UTC)
-Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 78FE110E09B
- for <intel-xe@lists.freedesktop.org>; Tue, 23 May 2023 13:10:18 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1808910E030;
+	Tue, 23 May 2023 13:13:42 +0000 (UTC)
+Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id EF90310E030
+ for <intel-xe@lists.freedesktop.org>; Tue, 23 May 2023 13:13:39 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1684847418; x=1716383418;
+ t=1684847619; x=1716383619;
  h=message-id:date:mime-version:subject:to:cc:references:
  from:in-reply-to:content-transfer-encoding;
- bh=G/GWGspy4cv1+zzrbN5asb14CA2VQmB2AUJdhrQAkXs=;
- b=hILUol8Z3Ds39pwH/McH/r0ySm/HjURP1O4+9xO+/LwEHnGAicg6u9VC
- /TQwtkG+fnf/H7zCM7Tc6MTgvlA7ThbMbJdfLhsjvivItA1brdWE1PcKY
- c/3Q7l5lX62VOU062N3wF8WUAYgMWx+Xs2sw0gjFSVdRInWJIUVENQ6Q/
- s5YKEqnrPGhT3tIVFu3Hm9JPaGrvnWBmkC7p1v00PSA2cZS0317gtvXaB
- 8yZY62VvVmv0K9x/yx6NnGwxzRDMO7npLax0ePObthvmAMETQCCzHcYbD
- XTG7gw+GMeUSa+CSOj6T2svh8dao29qmADOAhCLrK01FJ3iF2u3zQiR3e Q==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10719"; a="352074390"
-X-IronPort-AV: E=Sophos;i="6.00,186,1681196400"; d="scan'208";a="352074390"
-Received: from fmsmga001.fm.intel.com ([10.253.24.23])
- by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 23 May 2023 06:10:17 -0700
+ bh=fXc1xeMYhEGyQcdSwrxgnx+MSu89o7PG5+BoPpSfFlE=;
+ b=ibuPm0CNjNjUwujdtBLD2RBQ/SsbW8rrOeq0DaIUQRjHS0sCYxVlbTDa
+ J2F2x4C5dZqYhVdjjMnTqpJeyXnqMXvtkkC9oDcFYuEDJKyGUy0KZtwov
+ s82DLtxoR4Njqk8FY8du+VvjlJXDC+9KisZWpW9GndnSVb9uKdCrPhxm7
+ RG1XrXBIIDdhn01xFBGV8zQ1xOc9wpjFAAUAAI85XacQPL+Ea4w690ojX
+ qylq5jBPRXjCdnOvpiH+9JPXx912euRJCVt0MfDB6VMLZGQRCLjcd0Bia
+ +mo8drufVNjYsxdeWAPpdtLOYC+B6wdxO/M4hTr41dSSG31T2JXv8ani2 A==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10719"; a="333594582"
+X-IronPort-AV: E=Sophos;i="6.00,186,1681196400"; d="scan'208";a="333594582"
+Received: from fmsmga006.fm.intel.com ([10.253.24.20])
+ by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 23 May 2023 06:13:32 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10719"; a="848265334"
-X-IronPort-AV: E=Sophos;i="6.00,186,1681196400"; d="scan'208";a="848265334"
+X-IronPort-AV: E=McAfee;i="6600,9927,10719"; a="950533765"
+X-IronPort-AV: E=Sophos;i="6.00,186,1681196400"; d="scan'208";a="950533765"
 Received: from eakeogh-mobl1.ger.corp.intel.com (HELO [10.252.0.142])
  ([10.252.0.142])
- by fmsmga001-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 23 May 2023 06:10:16 -0700
-Message-ID: <c3c82ead-bc3b-54e6-91b8-d8ace778506f@intel.com>
-Date: Tue, 23 May 2023 14:10:14 +0100
+ by fmsmga006-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 23 May 2023 06:13:31 -0700
+Message-ID: <12d07bb7-1f99-7d32-035a-c800afde8782@intel.com>
+Date: Tue, 23 May 2023 14:13:29 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Firefox/102.0 Thunderbird/102.11.0
 Content-Language: en-GB
 To: Rodrigo Vivi <rodrigo.vivi@kernel.org>
 References: <20230523094727.162266-1-matthew.auld@intel.com>
- <20230523094727.162266-6-matthew.auld@intel.com>
- <ZGy5yFMJdo511ljs@rdvivi-mobl4>
+ <20230523094727.162266-4-matthew.auld@intel.com>
+ <ZGy6hq9YtcOqsCga@rdvivi-mobl4>
 From: Matthew Auld <matthew.auld@intel.com>
-In-Reply-To: <ZGy5yFMJdo511ljs@rdvivi-mobl4>
+In-Reply-To: <ZGy6hq9YtcOqsCga@rdvivi-mobl4>
 Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-Subject: Re: [Intel-xe] [PATCH v9 6/8] drm/xe/ct: drop mem_access_get from
- g2h_worker_func()
+Content-Transfer-Encoding: 7bit
+Subject: Re: [Intel-xe] [PATCH v9 4/8] drm/xe: tweak lock ordering for
+ freq_lock
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -67,59 +67,89 @@ Cc: intel-xe@lists.freedesktop.org, Rodrigo Vivi <rodrigo.vivi@intel.com>
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On 23/05/2023 14:04, Rodrigo Vivi wrote:
-> On Tue, May 23, 2023 at 10:47:25AM +0100, Matthew Auld wrote:
->> In the next patch we track the current task executing the runtime_pm
->> callbacks, if any, in order to prevent the runtime_pm code waiting for
->> itself and deadlocking when called from the callbacks. However with
->> g2h_worker_func() we are processing g2h packets from a workqueue when
->> receiving an interrupt. The runtime callbacks needs to talk to the GuC
->> and so rely on this, however since these are processed from a workqueue
->> the current task will be different and when calling something like
->> mem_access_get() we deadlock. Callers should
+On 23/05/2023 14:07, Rodrigo Vivi wrote:
+> On Tue, May 23, 2023 at 10:47:23AM +0100, Matthew Auld wrote:
+>> Lockdep spits out:
+>>
+>> Possible unsafe locking scenario:
+>>     CPU0				CPU1
+>>     ----				----
+>>     lock(&xe->mem_access.lock);
+>> 				lock(&pc->freq_lock);
+>> 				lock(&xe->mem_access.lock);
+>>     lock(&pc->freq_lock);
+>>
+>> It looks like we already mostly take care to ensure that the mem_access
+>> ref is taken outside of taking freq_lock, since that is also grabbed
+>> from the runtime_pm callbacks, except for a couple of spots in
+>> xe_guc_pc and guc_ct_send_recv(). But tt looks like all the callers are
+>> already holding the mem_access.ref, so just switch over to use
+>> guc_ct_send_locked().
+>>
+>> v2:
+>>   - There are few more cases it seems.
 > 
->> in theory
+> should we do this to all the ct_send? and kill this function in favor
+> of the locked one?
+
+Yeah, my new thinking is that everything calling ct_send or similar 
+needs to already be holding the mem_access.ref i.e we drop the 
+mem_access_get() and just keep the assert. But need to check all the 
+callers...
+
+
 > 
-> should we at least add an assert?
-
-If we assert it will trigger in the resume callback, since "current" has 
-changed :(
-
-But it seems there are more issues. I need to rethink this patch...
-
+> or how we can be sure that we are done with all the cases?
 > 
->> already be
->> holding an access.ref when talking to the GuC (CT communication looks to
->> be disabled when suspending the GT).
 >>
 >> Signed-off-by: Matthew Auld <matthew.auld@intel.com>
 >> Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
->> Cc: Thomas Hellström <thomas.hellstrom@linux.intel.com>
->> Cc: Matthew Brost <matthew.brost@intel.com>
 >> ---
->>   drivers/gpu/drm/xe/xe_guc_ct.c | 2 --
->>   1 file changed, 2 deletions(-)
+>>   drivers/gpu/drm/xe/xe_guc_ct.c | 4 +++-
+>>   drivers/gpu/drm/xe/xe_guc_pc.c | 8 ++++++--
+>>   2 files changed, 9 insertions(+), 3 deletions(-)
 >>
 >> diff --git a/drivers/gpu/drm/xe/xe_guc_ct.c b/drivers/gpu/drm/xe/xe_guc_ct.c
->> index 7a8c9d6a03f3..6e0d2d06b7f5 100644
+>> index 9dc906f2651a..7a8c9d6a03f3 100644
 >> --- a/drivers/gpu/drm/xe/xe_guc_ct.c
 >> +++ b/drivers/gpu/drm/xe/xe_guc_ct.c
->> @@ -1081,7 +1081,6 @@ static void g2h_worker_func(struct work_struct *w)
->>   	struct xe_guc_ct *ct = container_of(w, struct xe_guc_ct, g2h_worker);
+>> @@ -689,7 +689,9 @@ static int guc_ct_send_recv(struct xe_guc_ct *ct, const u32 *action, u32 len,
+>>   retry:
+>>   	g2h_fence_init(&g2h_fence, response_buffer);
+>>   retry_same_fence:
+>> -	ret = guc_ct_send(ct, action, len, 0, 0, &g2h_fence);
+>> +	mutex_lock(&ct->lock);
+>> +	ret = guc_ct_send_locked(ct, action, len, 0, 0, &g2h_fence);
+>> +	mutex_unlock(&ct->lock);
+>>   	if (unlikely(ret == -ENOMEM)) {
+>>   		void *ptr;
+>>   
+>> diff --git a/drivers/gpu/drm/xe/xe_guc_pc.c b/drivers/gpu/drm/xe/xe_guc_pc.c
+>> index e799faa1c6b8..3b56e57d29af 100644
+>> --- a/drivers/gpu/drm/xe/xe_guc_pc.c
+>> +++ b/drivers/gpu/drm/xe/xe_guc_pc.c
+>> @@ -225,7 +225,9 @@ static int pc_action_set_param(struct xe_guc_pc *pc, u8 id, u32 value)
+>>   	if (wait_for_pc_state(pc, SLPC_GLOBAL_STATE_RUNNING))
+>>   		return -EAGAIN;
+>>   
+>> -	ret = xe_guc_ct_send(ct, action, ARRAY_SIZE(action), 0, 0);
+>> +	mutex_lock(&ct->lock);
+>> +	ret = xe_guc_ct_send_locked(ct, action, ARRAY_SIZE(action), 0, 0);
+>> +	mutex_unlock(&ct->lock);
+>>   	if (ret)
+>>   		drm_err(&pc_to_xe(pc)->drm, "GuC PC set param failed: %pe",
+>>   			ERR_PTR(ret));
+>> @@ -242,7 +244,9 @@ static int pc_action_setup_gucrc(struct xe_guc_pc *pc, u32 mode)
+>>   	};
 >>   	int ret;
 >>   
->> -	xe_device_mem_access_get(ct_to_xe(ct));
->>   	do {
->>   		mutex_lock(&ct->lock);
->>   		ret = dequeue_one_g2h(ct);
->> @@ -1095,7 +1094,6 @@ static void g2h_worker_func(struct work_struct *w)
->>   			kick_reset(ct);
->>   		}
->>   	} while (ret == 1);
->> -	xe_device_mem_access_put(ct_to_xe(ct));
->>   }
->>   
->>   static void guc_ctb_snapshot_capture(struct xe_device *xe, struct guc_ctb *ctb,
+>> -	ret = xe_guc_ct_send(ct, action, ARRAY_SIZE(action), 0, 0);
+>> +	mutex_lock(&ct->lock);
+>> +	ret = xe_guc_ct_send_locked(ct, action, ARRAY_SIZE(action), 0, 0);
+>> +	mutex_unlock(&ct->lock);
+>>   	if (ret)
+>>   		drm_err(&pc_to_xe(pc)->drm, "GuC RC enable failed: %pe",
+>>   			ERR_PTR(ret));
 >> -- 
 >> 2.40.1
 >>
