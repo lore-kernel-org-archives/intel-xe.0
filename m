@@ -4,30 +4,48 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8CE22C77B7A
-	for <intel-xe@archiver.kernel.org>; Tue, 23 May 2023 04:36:14 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id E0DBCC7EE26
+	for <intel-xe@archiver.kernel.org>; Tue, 23 May 2023 05:43:59 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 49FD810E3CF;
-	Tue, 23 May 2023 04:36:14 +0000 (UTC)
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id 60E6B10E3CF;
- Tue, 23 May 2023 04:36:12 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 5AD1CAADE8;
- Tue, 23 May 2023 04:36:12 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============7300476124503934307=="
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8E93F10E3D4;
+	Tue, 23 May 2023 05:43:59 +0000 (UTC)
+Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B43D810E3D4
+ for <intel-xe@lists.freedesktop.org>; Tue, 23 May 2023 05:43:57 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1684820637; x=1716356637;
+ h=from:to:cc:subject:date:message-id:in-reply-to:
+ references:mime-version:content-transfer-encoding;
+ bh=1U5HfQzaOmx3gyH/iIqCCxJukxmm3M0AtdwHYNddKFI=;
+ b=KiPjbBmcoBcFZ/icdb37D36VyykbpjcwbkW+bgZp3+O7uSYaxnvrYmNq
+ pty8a071UMfdK0uXcHMhvlrx3SjwrUmbZ7EVlT4tpPVjXaQeSUOjsGylw
+ VUpF/2D7ABS06L2bUYqGugiLq/HvSaIuLh0NFZzRJD4fFyVw55W0MpIBE
+ 5AeR1kfLAiSDt19Nuc62W2qUj21gydiq7+K/yi6n9IbjtbjVtJXuo8Zku
+ AUwaQ47uhArcDCpuZYyEXQEs5vJNF3c8Ydn4Npj26GptRLIP25xz5NsKg
+ fp0p3s7buoexrED/v/YBHPk2bHOc8gxhJgWd/7MenSxc7B/3f/ZeX5+rC Q==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10718"; a="439489814"
+X-IronPort-AV: E=Sophos;i="6.00,185,1681196400"; d="scan'208";a="439489814"
+Received: from fmsmga005.fm.intel.com ([10.253.24.32])
+ by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 22 May 2023 22:43:56 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6600,9927,10718"; a="1033910189"
+X-IronPort-AV: E=Sophos;i="6.00,185,1681196400"; d="scan'208";a="1033910189"
+Received: from lstrano-desk.jf.intel.com ([10.24.89.184])
+ by fmsmga005-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 22 May 2023 22:43:56 -0700
+From: Matthew Brost <matthew.brost@intel.com>
+To: <intel-xe@lists.freedesktop.org>
+Date: Mon, 22 May 2023 22:44:03 -0700
+Message-Id: <20230523054404.4011148-8-matthew.brost@intel.com>
+X-Mailer: git-send-email 2.34.1
+In-Reply-To: <20230523054404.4011148-1-matthew.brost@intel.com>
+References: <20230523054404.4011148-1-matthew.brost@intel.com>
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Matthew Brost" <matthew.brost@intel.com>
-Date: Tue, 23 May 2023 04:36:12 -0000
-Message-ID: <168481657234.14423.5868781677531407387@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20230523035808.635175-1-kode54@gmail.com>
-In-Reply-To: <20230523035808.635175-1-kode54@gmail.com>
-Subject: [Intel-xe] =?utf-8?q?=E2=97=8B_CI=2EBAT=3A_info_for_Scheduler_ch?=
- =?utf-8?q?anges_for_upstreaming_=28rev2=29?=
+Content-Transfer-Encoding: 8bit
+Subject: [Intel-xe] [PATCH v2 7/8] drm/xe: Only try to lock external BOs in
+ VM bind
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -39,68 +57,42 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
-Cc: intel-xe@lists.freedesktop.org
+Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============7300476124503934307==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+We only need to try to lock a BO if it's external as non-external BOs
+share the dma-resv with the already locked VM. Trying to lock
+non-external BOs caused an issue (list corruption) in an uncoming patch
+which adds bulk LRU move. Since this code isn't needed, remove it.
 
-== Series Details ==
+v2: New commit message, s/mattthew/matthew/
 
-Series: Scheduler changes for upstreaming (rev2)
-URL   : https://patchwork.freedesktop.org/series/118091/
-State : info
+Reviewed-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
+Signed-off-by: Matthew Brost <matthew.brost@intel.com>
+---
+ drivers/gpu/drm/xe/xe_vm.c | 8 +++++---
+ 1 file changed, 5 insertions(+), 3 deletions(-)
 
-== Summary ==
+diff --git a/drivers/gpu/drm/xe/xe_vm.c b/drivers/gpu/drm/xe/xe_vm.c
+index a0306526b269..0398da1ef1e2 100644
+--- a/drivers/gpu/drm/xe/xe_vm.c
++++ b/drivers/gpu/drm/xe/xe_vm.c
+@@ -2089,9 +2089,11 @@ static int vm_bind_ioctl(struct xe_vm *vm, struct xe_vma *vma,
+ 		 */
+ 		xe_bo_get(vbo);
+ 
+-		tv_bo.bo = &vbo->ttm;
+-		tv_bo.num_shared = 1;
+-		list_add(&tv_bo.head, &objs);
++		if (!vbo->vm) {
++			tv_bo.bo = &vbo->ttm;
++			tv_bo.num_shared = 1;
++			list_add(&tv_bo.head, &objs);
++		}
+ 	}
+ 
+ again:
+-- 
+2.34.1
 
-Participating hosts:
-bat-atsm-2
-bat-dg2-oem2
-bat-adlp-7
-Missing hosts results[0]:
-Results: [xe-pw-118091v2](https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-118091v2/index.html)
-
-
-
---===============7300476124503934307==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>Scheduler changes for upstreaming (rev2)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/118091/">https://patchwork.freedesktop.org/series/118091/</a></td></tr>
-<tr><td><b>State:</b></td><td>info</td></tr>
-
-</table>
-
-
-    <p>Participating hosts:<br />
-bat-atsm-2<br />
-bat-dg2-oem2<br />
-bat-adlp-7<br />
-Missing hosts results[0]:<br />
-Results: <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-118091v2/index.html">xe-pw-118091v2</a></p>
-
-</body>
-</html>
-
---===============7300476124503934307==--
