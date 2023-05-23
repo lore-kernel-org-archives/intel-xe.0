@@ -4,49 +4,48 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1F668C7EE29
-	for <intel-xe@archiver.kernel.org>; Tue, 23 May 2023 09:47:43 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8BA1DC7EE2E
+	for <intel-xe@archiver.kernel.org>; Tue, 23 May 2023 09:47:47 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D045B10E41F;
-	Tue, 23 May 2023 09:47:42 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 571EF10E420;
+	Tue, 23 May 2023 09:47:47 +0000 (UTC)
 Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4CAC610E41B
- for <intel-xe@lists.freedesktop.org>; Tue, 23 May 2023 09:47:39 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A1C5B10E420
+ for <intel-xe@lists.freedesktop.org>; Tue, 23 May 2023 09:47:45 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1684835259; x=1716371259;
+ t=1684835265; x=1716371265;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=GGqMu5/N6UEpCMuweb2QUGNMw4cqFDmaymcCYfzfLi8=;
- b=iCvFZOFuqMqUo6wjwgoonlXjO+wnBdr/JKD72mSaoa7Kmg9S6xebXfAk
- wG6ChccwG73OkkybsqBj8IFxguzCJkQjT2DgGTX3h42UxDeWuYzAFNTe4
- xw7qhtNDiGk9Le8F8jmbfQ94HNauls0YEsty06yaLOspE5zFBIPJu2bAo
- hsmjlJr3LaL2me0zuUSuMcr/RFAYuF02oIU0j30DPnU7rNG7XWdaX0WiK
- rf6navQHB+8ric/+3DLjTWxecTx6CAxTrU6NCuWCT0MwHq8iwTg3PSpUq
- EgOJZBd8tg3l7LZAdUThPYC06qDN6tV8xgfwdaVLXg235D6ofPPq1qud3 w==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10718"; a="337777445"
-X-IronPort-AV: E=Sophos;i="6.00,185,1681196400"; d="scan'208";a="337777445"
+ bh=64zM9c5xbeIc6cqYmk4fxnoKkKofzzNMlNgvQiWrhRQ=;
+ b=EkN9cSeR6I8tmeVez9ki8Cq9RcTNk6S7cmqOyYNHMWC+MMK8WftwbPxh
+ wnOFT3QU9roqKOCe7rERvdddqyMFq37Q8iv2xn4fIqLBKi98EkSL9TErU
+ IcO9/Mf+/Pkf+A3FL9MmafSebe2/M/ZxSvyy0erFvcHxNk0Y7nItfHIPb
+ YEV0kbfLJrzcr9xg9bOlrcShXhNYGGNLPNjKAhqTaa8CVixq7W4h0vtK4
+ j4QI/rSJO85Jz5RcerYLZefkADwfQedHaFQyDLvaXJ+T6s7ulHiEAFdJa
+ CTSs+0sWnoy/znO40tC+RNBYzp0qZOlESBoFJe0FmUMarWA3paUXjnRWD Q==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10718"; a="337777458"
+X-IronPort-AV: E=Sophos;i="6.00,185,1681196400"; d="scan'208";a="337777458"
 Received: from orsmga001.jf.intel.com ([10.7.209.18])
  by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 23 May 2023 02:47:39 -0700
+ 23 May 2023 02:47:44 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10718"; a="736797275"
-X-IronPort-AV: E=Sophos;i="6.00,185,1681196400"; d="scan'208";a="736797275"
+X-IronPort-AV: E=McAfee;i="6600,9927,10718"; a="736797288"
+X-IronPort-AV: E=Sophos;i="6.00,185,1681196400"; d="scan'208";a="736797288"
 Received: from eakeogh-mobl1.ger.corp.intel.com (HELO mwauld-desk1.intel.com)
  ([10.252.0.142])
  by orsmga001-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 23 May 2023 02:47:37 -0700
+ 23 May 2023 02:47:41 -0700
 From: Matthew Auld <matthew.auld@intel.com>
 To: intel-xe@lists.freedesktop.org
-Date: Tue, 23 May 2023 10:47:21 +0100
-Message-Id: <20230523094727.162266-2-matthew.auld@intel.com>
+Date: Tue, 23 May 2023 10:47:23 +0100
+Message-Id: <20230523094727.162266-4-matthew.auld@intel.com>
 X-Mailer: git-send-email 2.40.1
 In-Reply-To: <20230523094727.162266-1-matthew.auld@intel.com>
 References: <20230523094727.162266-1-matthew.auld@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-xe] [PATCH v9 2/8] drm/xe: don't allocate under ct->lock
+Subject: [Intel-xe] [PATCH v9 4/8] drm/xe: tweak lock ordering for freq_lock
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -62,107 +61,74 @@ Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Seems to be a sensitive lock, where ct->lock looks to be primed with
-fs_reclaim, so holding that and then allocating memory will cause
-lockdep to complain. We need to change the ordering wrt to grabbing the
-ct->lock and potentially grabbing the runtime_pm, since some of the
-runtime_pm routines can allocate memory (or at least that's what lockdep
-seems to suggest).
+Lockdep spits out:
+
+Possible unsafe locking scenario:
+   CPU0				CPU1
+   ----				----
+   lock(&xe->mem_access.lock);
+				lock(&pc->freq_lock);
+				lock(&xe->mem_access.lock);
+   lock(&pc->freq_lock);
+
+It looks like we already mostly take care to ensure that the mem_access
+ref is taken outside of taking freq_lock, since that is also grabbed
+from the runtime_pm callbacks, except for a couple of spots in
+xe_guc_pc and guc_ct_send_recv(). But tt looks like all the callers are
+already holding the mem_access.ref, so just switch over to use
+guc_ct_send_locked().
+
+v2:
+ - There are few more cases it seems.
 
 Signed-off-by: Matthew Auld <matthew.auld@intel.com>
-Cc: Thomas Hellström <thomas.hellstrom@linux.intel.com>
 Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
-Reviewed-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
 ---
- drivers/gpu/drm/xe/xe_gt_tlb_invalidation.c |  4 ++++
- drivers/gpu/drm/xe/xe_guc_ct.c              | 13 +++++++------
- 2 files changed, 11 insertions(+), 6 deletions(-)
+ drivers/gpu/drm/xe/xe_guc_ct.c | 4 +++-
+ drivers/gpu/drm/xe/xe_guc_pc.c | 8 ++++++--
+ 2 files changed, 9 insertions(+), 3 deletions(-)
 
-diff --git a/drivers/gpu/drm/xe/xe_gt_tlb_invalidation.c b/drivers/gpu/drm/xe/xe_gt_tlb_invalidation.c
-index c815a42e2cdb..20f8f0aae6b4 100644
---- a/drivers/gpu/drm/xe/xe_gt_tlb_invalidation.c
-+++ b/drivers/gpu/drm/xe/xe_gt_tlb_invalidation.c
-@@ -5,6 +5,7 @@
- 
- #include "xe_gt_tlb_invalidation.h"
- 
-+#include "xe_device.h"
- #include "xe_gt.h"
- #include "xe_guc.h"
- #include "xe_guc_ct.h"
-@@ -112,6 +113,8 @@ static int send_tlb_invalidation(struct xe_guc *guc,
- 	 * in order which they currently are, if that changes the algorithm will
- 	 * need to be updated.
- 	 */
-+
-+	xe_device_mem_access_get(gt->xe);
- 	mutex_lock(&guc->ct.lock);
- 	seqno = gt->tlb_invalidation.seqno;
- 	if (fence) {
-@@ -140,6 +143,7 @@ static int send_tlb_invalidation(struct xe_guc *guc,
- 	if (ret < 0 && fence)
- 		invalidation_fence_signal(fence);
- 	mutex_unlock(&guc->ct.lock);
-+	xe_device_mem_access_put(gt->xe);
- 
- 	return ret;
- }
 diff --git a/drivers/gpu/drm/xe/xe_guc_ct.c b/drivers/gpu/drm/xe/xe_guc_ct.c
-index e8c2edb1359d..9dc906f2651a 100644
+index 9dc906f2651a..7a8c9d6a03f3 100644
 --- a/drivers/gpu/drm/xe/xe_guc_ct.c
 +++ b/drivers/gpu/drm/xe/xe_guc_ct.c
-@@ -498,26 +498,22 @@ static int __guc_ct_send_locked(struct xe_guc_ct *ct, const u32 *action,
- 		}
- 	}
- 
--	xe_device_mem_access_get(ct_to_xe(ct));
+@@ -689,7 +689,9 @@ static int guc_ct_send_recv(struct xe_guc_ct *ct, const u32 *action, u32 len,
  retry:
- 	ret = has_room(ct, len + GUC_CTB_HDR_LEN, g2h_len);
- 	if (unlikely(ret))
--		goto put_wa;
-+		goto out;
+ 	g2h_fence_init(&g2h_fence, response_buffer);
+ retry_same_fence:
+-	ret = guc_ct_send(ct, action, len, 0, 0, &g2h_fence);
++	mutex_lock(&ct->lock);
++	ret = guc_ct_send_locked(ct, action, len, 0, 0, &g2h_fence);
++	mutex_unlock(&ct->lock);
+ 	if (unlikely(ret == -ENOMEM)) {
+ 		void *ptr;
  
- 	ret = h2g_write(ct, action, len, g2h_fence ? g2h_fence->seqno : 0,
- 			!!g2h_fence);
- 	if (unlikely(ret)) {
- 		if (ret == -EAGAIN)
- 			goto retry;
--		goto put_wa;
-+		goto out;
- 	}
+diff --git a/drivers/gpu/drm/xe/xe_guc_pc.c b/drivers/gpu/drm/xe/xe_guc_pc.c
+index e799faa1c6b8..3b56e57d29af 100644
+--- a/drivers/gpu/drm/xe/xe_guc_pc.c
++++ b/drivers/gpu/drm/xe/xe_guc_pc.c
+@@ -225,7 +225,9 @@ static int pc_action_set_param(struct xe_guc_pc *pc, u8 id, u32 value)
+ 	if (wait_for_pc_state(pc, SLPC_GLOBAL_STATE_RUNNING))
+ 		return -EAGAIN;
  
- 	g2h_reserve_space(ct, g2h_len, num_g2h);
- 	xe_guc_notify(ct_to_guc(ct));
--put_wa:
--	xe_device_mem_access_put(ct_to_xe(ct));
- out:
--
- 	return ret;
- }
+-	ret = xe_guc_ct_send(ct, action, ARRAY_SIZE(action), 0, 0);
++	mutex_lock(&ct->lock);
++	ret = xe_guc_ct_send_locked(ct, action, ARRAY_SIZE(action), 0, 0);
++	mutex_unlock(&ct->lock);
+ 	if (ret)
+ 		drm_err(&pc_to_xe(pc)->drm, "GuC PC set param failed: %pe",
+ 			ERR_PTR(ret));
+@@ -242,7 +244,9 @@ static int pc_action_setup_gucrc(struct xe_guc_pc *pc, u32 mode)
+ 	};
+ 	int ret;
  
-@@ -539,6 +535,7 @@ static int guc_ct_send_locked(struct xe_guc_ct *ct, const u32 *action, u32 len,
- 
- 	XE_BUG_ON(g2h_len && g2h_fence);
- 	lockdep_assert_held(&ct->lock);
-+	xe_device_assert_mem_access(ct_to_xe(ct));
- 
- try_again:
- 	ret = __guc_ct_send_locked(ct, action, len, g2h_len, num_g2h,
-@@ -608,10 +605,14 @@ static int guc_ct_send(struct xe_guc_ct *ct, const u32 *action, u32 len,
- 
- 	XE_BUG_ON(g2h_len && g2h_fence);
- 
-+	xe_device_mem_access_get(ct_to_xe(ct));
-+
- 	mutex_lock(&ct->lock);
- 	ret = guc_ct_send_locked(ct, action, len, g2h_len, num_g2h, g2h_fence);
- 	mutex_unlock(&ct->lock);
- 
-+	xe_device_mem_access_put(ct_to_xe(ct));
-+
- 	return ret;
- }
- 
+-	ret = xe_guc_ct_send(ct, action, ARRAY_SIZE(action), 0, 0);
++	mutex_lock(&ct->lock);
++	ret = xe_guc_ct_send_locked(ct, action, ARRAY_SIZE(action), 0, 0);
++	mutex_unlock(&ct->lock);
+ 	if (ret)
+ 		drm_err(&pc_to_xe(pc)->drm, "GuC RC enable failed: %pe",
+ 			ERR_PTR(ret));
 -- 
 2.40.1
 
