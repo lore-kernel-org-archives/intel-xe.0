@@ -4,38 +4,30 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id F26D9C77B73
-	for <intel-xe@archiver.kernel.org>; Wed, 24 May 2023 19:34:06 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id AB89AC77B73
+	for <intel-xe@archiver.kernel.org>; Wed, 24 May 2023 19:51:09 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id CA86210E095;
-	Wed, 24 May 2023 19:34:06 +0000 (UTC)
-Received: from dfw.source.kernel.org (dfw.source.kernel.org
- [IPv6:2604:1380:4641:c500::1])
- by gabe.freedesktop.org (Postfix) with ESMTPS id F23B710E095
- for <intel-xe@lists.freedesktop.org>; Wed, 24 May 2023 19:34:04 +0000 (UTC)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
- (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
- (No client certificate requested)
- by dfw.source.kernel.org (Postfix) with ESMTPS id 626ED6112C;
- Wed, 24 May 2023 19:34:04 +0000 (UTC)
-Received: from rdvivi-mobl4 (unknown [192.55.54.51])
- (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
- (No client certificate requested)
- by smtp.kernel.org (Postfix) with ESMTPSA id 85C0FC433EF;
- Wed, 24 May 2023 19:34:02 +0000 (UTC)
-Date: Wed, 24 May 2023 15:33:58 -0400
-From: Rodrigo Vivi <rodrigo.vivi@kernel.org>
-To: Matthew Auld <matthew.auld@intel.com>
-Message-ID: <ZG5mpkolgLVqRhci@rdvivi-mobl4>
-References: <20230524175701.320653-1-matthew.auld@intel.com>
- <20230524175701.320653-3-matthew.auld@intel.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6C0C410E605;
+	Wed, 24 May 2023 19:51:09 +0000 (UTC)
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id B217110E605;
+ Wed, 24 May 2023 19:51:07 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id ABFB3A00E6;
+ Wed, 24 May 2023 19:51:07 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============2668639843757465865=="
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20230524175701.320653-3-matthew.auld@intel.com>
-Subject: Re: [Intel-xe] [PATCH v10 3/9] drm/xe: drop
- xe_device_mem_access_get() from guc_ct_send
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Matt Roper" <matthew.d.roper@intel.com>
+Date: Wed, 24 May 2023 19:51:07 -0000
+Message-ID: <168495786769.11316.12827563593015014259@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20230524175529.662592-1-matthew.d.roper@intel.com>
+In-Reply-To: <20230524175529.662592-1-matthew.d.roper@intel.com>
+Subject: [Intel-xe] =?utf-8?q?=E2=97=8B_CI=2EBAT=3A_info_for_drm/xe=3A_Ad?=
+ =?utf-8?q?d_stepping_support_for_GMD=5FID_platforms_=28rev3=29?=
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -47,43 +39,68 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-xe@lists.freedesktop.org, Rodrigo Vivi <rodrigo.vivi@intel.com>
+Reply-To: intel-xe@lists.freedesktop.org
+Cc: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Wed, May 24, 2023 at 06:56:55PM +0100, Matthew Auld wrote:
-> The callers should already be holding the mem_access reference, before
-> calling into this.
-> 
-> Signed-off-by: Matthew Auld <matthew.auld@intel.com>
-> Cc: Thomas Hellström <thomas.hellstrom@linux.intel.com>
-> Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
+--===============2668639843757465865==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-Reviewed-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
+== Series Details ==
 
-> ---
->  drivers/gpu/drm/xe/xe_guc_ct.c | 4 ----
->  1 file changed, 4 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/xe/xe_guc_ct.c b/drivers/gpu/drm/xe/xe_guc_ct.c
-> index 9dc906f2651a..874323c382b3 100644
-> --- a/drivers/gpu/drm/xe/xe_guc_ct.c
-> +++ b/drivers/gpu/drm/xe/xe_guc_ct.c
-> @@ -605,14 +605,10 @@ static int guc_ct_send(struct xe_guc_ct *ct, const u32 *action, u32 len,
->  
->  	XE_BUG_ON(g2h_len && g2h_fence);
->  
-> -	xe_device_mem_access_get(ct_to_xe(ct));
-> -
->  	mutex_lock(&ct->lock);
->  	ret = guc_ct_send_locked(ct, action, len, g2h_len, num_g2h, g2h_fence);
->  	mutex_unlock(&ct->lock);
->  
-> -	xe_device_mem_access_put(ct_to_xe(ct));
-> -
->  	return ret;
->  }
->  
-> -- 
-> 2.40.1
-> 
+Series: drm/xe: Add stepping support for GMD_ID platforms (rev3)
+URL   : https://patchwork.freedesktop.org/series/118256/
+State : info
+
+== Summary ==
+
+Participating hosts:
+bat-atsm-2
+bat-dg2-oem2
+bat-adlp-7
+Missing hosts results[0]:
+Results: [xe-pw-118256v3](https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-118256v3/index.html)
+
+
+
+--===============2668639843757465865==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/xe: Add stepping support for GMD_ID platforms (rev3)</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/118256/">https://patchwork.freedesktop.org/series/118256/</a></td></tr>
+<tr><td><b>State:</b></td><td>info</td></tr>
+
+</table>
+
+
+    <p>Participating hosts:<br />
+bat-atsm-2<br />
+bat-dg2-oem2<br />
+bat-adlp-7<br />
+Missing hosts results[0]:<br />
+Results: <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-118256v3/index.html">xe-pw-118256v3</a></p>
+
+</body>
+</html>
+
+--===============2668639843757465865==--
