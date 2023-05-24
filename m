@@ -4,152 +4,50 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id DCDF4C7EE23
-	for <intel-xe@archiver.kernel.org>; Wed, 24 May 2023 14:14:29 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7251AC77B73
+	for <intel-xe@archiver.kernel.org>; Wed, 24 May 2023 14:54:06 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id AD9DC10E025;
-	Wed, 24 May 2023 14:14:29 +0000 (UTC)
-Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D889210E025
- for <intel-xe@lists.freedesktop.org>; Wed, 24 May 2023 14:14:27 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1684937667; x=1716473667;
- h=from:to:cc:subject:date:message-id:references:
- in-reply-to:content-id:content-transfer-encoding: mime-version;
- bh=a/KjiXBM4JDq806FaagsM/AbMIR+n9dztPnot1QeWYI=;
- b=KkohplTg0IiXss4+mHT4DAwtNyTmr9QUeU7abI5AzBuQY3YIFuqGHtQU
- x2i+KzLFnxJlTQAfmGqiRd1fpNOcPTVYtst3ySgdnNVE3arYaQtegls0A
- uZLWvO//4TmXSWmJzeRnY47YAKaEdjTS3xht/fXpMSjwzNSVBUxB46LGT
- h2KogfL5gY8+CgVSuIPFAPlQGdhM+KQJ92KKv8CsCRhLjIhhFcjd8yIXf
- zerzlMkgDUbqffLzqzTm5I3ofRLo6OuxZeCCR5B4379IvKkerZfrtPp5n
- SF4kOpwwPDw2zfju++JwYAOxMkrSWrYMeg1VJ1f4Y71gTs1kh52o/yvIf w==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10720"; a="343039406"
-X-IronPort-AV: E=Sophos;i="6.00,189,1681196400"; d="scan'208";a="343039406"
-Received: from orsmga004.jf.intel.com ([10.7.209.38])
- by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 24 May 2023 07:14:06 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10720"; a="828604207"
-X-IronPort-AV: E=Sophos;i="6.00,189,1681196400"; d="scan'208";a="828604207"
-Received: from orsmsx602.amr.corp.intel.com ([10.22.229.15])
- by orsmga004.jf.intel.com with ESMTP; 24 May 2023 07:14:06 -0700
-Received: from orsmsx612.amr.corp.intel.com (10.22.229.25) by
- ORSMSX602.amr.corp.intel.com (10.22.229.15) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.23; Wed, 24 May 2023 07:14:05 -0700
-Received: from orsmsx612.amr.corp.intel.com (10.22.229.25) by
- ORSMSX612.amr.corp.intel.com (10.22.229.25) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.23; Wed, 24 May 2023 07:14:05 -0700
-Received: from orsedg603.ED.cps.intel.com (10.7.248.4) by
- orsmsx612.amr.corp.intel.com (10.22.229.25) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.23 via Frontend Transport; Wed, 24 May 2023 07:14:05 -0700
-Received: from NAM12-BN8-obe.outbound.protection.outlook.com (104.47.55.170)
- by edgegateway.intel.com (134.134.137.100) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2507.23; Wed, 24 May 2023 07:14:05 -0700
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=X/RMY36TfTj4favwY0xSEBi/C8G0CYHwsnm/2zYe05xd4aKAYo9AUQ0WKePmRwRY8bdtBdNOcgZC7W5AsA7/0ehO+z5mIiQKLdcH9sphG/tXZcvjezfHukzNntfevr0FsGEXDJXzI7jhiJEgZA1hqXRFH6EQrnOfZ8lsNny04LvAWowgtMn21UGQVpUM3uARSIn9z6MK2DbPiM6ELlN9mzWEfQV0qO+UR083WGa8rjRY//9liT6YZvGejVtsaIuV+HJbpe2UnErJVJkcQu1DM0aRN1CozF8I2sxoNe+JZVNXRkSbzzoD91n2IhHVARXilhlyvomnxwZeTop+9M9/CA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=a/KjiXBM4JDq806FaagsM/AbMIR+n9dztPnot1QeWYI=;
- b=km1ylgsST2CqnWT9+DngvSCNFGKqex8gYZZNd3THbGyrqZBAVRN/X3NBfIATmRPkSmD0PGGJ5gWj9IGPVI3anUwc8XFuepMGqu26Evu6JBYu33+ziePEIli7HHl/7mk5hsYoYNtfXgEpeDmRd31w6HihipLNkVXLlyczDeukZY7t6YDwlX4OkP7zoCiBYMP/Hua9nmXTzeTOjPRBjw5ztURqGPgfW1u2qkvcZy5Li1WkRwtQ1YV+j9gHbzV+/+folbax8a/JnrLm7emuE+Du1bGld8PoipkF5Nvm/mjGqdkutHLS2vJcSHB4ieSeoq11llQZrV8zsS8b97jSijJ3xg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
- dkim=pass header.d=intel.com; arc=none
-Received: from DM4PR11MB8179.namprd11.prod.outlook.com (2603:10b6:8:18e::22)
- by SJ1PR11MB6228.namprd11.prod.outlook.com (2603:10b6:a03:459::18) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6411.28; Wed, 24 May
- 2023 14:14:02 +0000
-Received: from DM4PR11MB8179.namprd11.prod.outlook.com
- ([fe80::3fa1:b97c:a5bb:651]) by DM4PR11MB8179.namprd11.prod.outlook.com
- ([fe80::3fa1:b97c:a5bb:651%3]) with mapi id 15.20.6411.028; Wed, 24 May 2023
- 14:14:02 +0000
-From: "Souza, Jose" <jose.souza@intel.com>
-To: "Das, Nirmoy" <nirmoy.das@intel.com>, "Brost, Matthew"
- <matthew.brost@intel.com>, "nirmoy.das@linux.intel.com"
- <nirmoy.das@linux.intel.com>
-Thread-Topic: [Intel-xe] [PATCH] drm/xe: Do not unbind destroyed vmas
-Thread-Index: AQHZjbSaHE0AEW2PSEKFK7RR9cuYra9ogbyAgADckgCAABpAgA==
-Date: Wed, 24 May 2023 14:14:02 +0000
-Message-ID: <d3c214414d6d3ce39daca237fbce1a973ea9dac5.camel@intel.com>
-References: <20230523202412.14671-1-nirmoy.das@intel.com>
- <ZG1Mm91KwwDrf8e2@DUT025-TGLU.fm.intel.com>
- <b4370476-3b11-c419-2859-34437ea0701f@linux.intel.com>
-In-Reply-To: <b4370476-3b11-c419-2859-34437ea0701f@linux.intel.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=intel.com;
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: DM4PR11MB8179:EE_|SJ1PR11MB6228:EE_
-x-ms-office365-filtering-correlation-id: de07c149-eeef-42a7-931e-08db5c612042
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: VUd3tfSS9FYJf6+HVbzWFKKr+wPDmuEvJ8cAhGr6h6ubqjHLdhPal118c4PBmrDYHBi+V/Iwmj73jQ4i4aCIzq2dKemfBSES5WjQJ5cdaET+pO+b46dzQr7ujMNLyNJ1LUvwc0q0o1soOAtCuDD0rUT6E1MuaQD9uuh297JfNxWPetcML257y5teg/TvnCjCIpgrrIhr+TDb+91dlgZkDfwFt5s1Cm3D01DWASob2Fk18rAnkKNlne6qpCthYzAH/qgWzFhqexNRL+SB0ZosHhlNCB7Vvu+jm74vG2Cnvut/2mhT9enPsRkUPtpyT1aiMRX9s0RJdqV9XFj5svAiy6oqxKE+pjybRJFSgl35WJJ7F8pyRscc1ykuNd1LEILPwWBjZ0KSRqi8nUNHjWlqPMR8E1cTws/6Y/LB+wY8XZmFTqKMADG/LRNRb+dLTdBZi5gP4qibYbUlCcVBj+YVm+HaswlS0nf5sOojCRa2dDv5V59YM1nrRtc5wLhXoxKb1ldjUfc2tFOrX9+iM8zSDnskh+H5sYvljzMH5dtGjaNB1ZOZbO6dc/Caa4JcndxHH6qIZla1bGjDSfczrI7euAjNA2slJL1Y1bqZ0+S7DPtA2XXdUnRn6HTqOL0fPZGX
-x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:DM4PR11MB8179.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230028)(366004)(136003)(346002)(376002)(396003)(39860400002)(451199021)(82960400001)(4326008)(38070700005)(64756008)(66556008)(66446008)(66946007)(91956017)(76116006)(66476007)(38100700002)(316002)(71200400001)(122000001)(110136005)(478600001)(41300700001)(6486002)(26005)(86362001)(5660300002)(2906002)(36756003)(2616005)(53546011)(8676002)(6512007)(6506007)(186003)(83380400001)(8936002);
- DIR:OUT; SFP:1102; 
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?utf-8?B?OGVWb051dWtjV3AyVFhodExaVkw2OVdnNkgrQ3FNNi83WTJHWWMzcmExNmVI?=
- =?utf-8?B?VzlrekFkVHlMeHZVYThvV0pwcEdJNnVlZ2NRS0RNcm5oZk9lZFVHd1hQamJZ?=
- =?utf-8?B?Z011eUV1TTRHVjZ3akN3VXI0L0RNUEtXWm5jVnpvREt4bWV5MGRKb0t1QUVP?=
- =?utf-8?B?VXhYby9iU2IvOVFUZmZ3VzVWa3FKdnd2VkNyZ3dIN0E3TkpyL0oyYUFQZ2lp?=
- =?utf-8?B?aWNzQmhHbVVOYURUcktwSVFPaEE4SFMwU2VxMXgwTmxtMFZQVndKU1IxVXFh?=
- =?utf-8?B?UVNzWGdLZVFCVitLcG9OWHdUYytJbzI5V2RhQ0xqSFpMT2NQL3hiZHVESjBF?=
- =?utf-8?B?VmQ0WXlLUGNXckhoTmlYWVl5RVp4R2w3UTh4ckdrOFZMaEprSE5JaE1jeGpr?=
- =?utf-8?B?VEt4Zyt4eXF0aERzUkdlRCtjZWpaV1JHcFhDdnZLL0VQQ0RITjhSSVJUQWRu?=
- =?utf-8?B?aFNaaXlrSDNTR0I2OXZGYVBGdFBBbjJPUEJtaS9SOHdDdm9HUG9hdmVuY29X?=
- =?utf-8?B?SXBlUFhvYittTS9ZNzRhM21mbnVqWUd5Rm11djNzUk9rNUJ5NnV6NmI2RXBF?=
- =?utf-8?B?WldCOE93U3hHekdYSEo5MlFwNW1ZOVl5TCtmbnJsMlBnVzBuZnE0MlBpZ1Bt?=
- =?utf-8?B?R0xZWUtHOUFHMCswVWRPQnVsTWc4V1pGNnFrU1VCYVFtVVVnRThreUYzWG9Q?=
- =?utf-8?B?d1VsRjVPV2tzdDZFTnJuVW9Wcnprd0VjWGgxTGl4NHYzSTVXajRXMGRra3Yx?=
- =?utf-8?B?Rm5qQ2Q3eFhla2xGQW45WGlTeWFoNk9ReWk0Z2JZQUxYblk5MUlHa2JERkp3?=
- =?utf-8?B?ak5CNC9kOHk5TkFicmJJSzVKaEw1S1hBR3QwQ2Z4a3dmOTFTQmN6czJsT2ZR?=
- =?utf-8?B?V3g5QlJiN3RaWWVkWExaV2ZaWDJzcmRSWktZa0FlWWVlOEZPaXN6emo2eEJR?=
- =?utf-8?B?YSswN1FFUXhkUHJMc2VCdzAyalNiYkxvRFNRbWJJVXRPeXhxOGhMMCtOOGlv?=
- =?utf-8?B?RWlBQkhuWnFNNzJJbVRIdTRna3ZLQi94K0JYUHNMVXF5cnRuSFRwdGtyT2VZ?=
- =?utf-8?B?Vmt0d1dWRjA4V1FuUGhiTHhxREV2M3NRUzBxUy85aXJHZ3lTS09oTnd5a2RV?=
- =?utf-8?B?WkthS1U1QVdhQUhPVWZuQno0WmNwbnRsZVVsc3BVZnJRYmN6SlliN3lqWmNv?=
- =?utf-8?B?MlJaUjlHMTFVSkdEV0lGMllra0VyeWgvR25LYVUweThGU2JvL1BKL0hOVExX?=
- =?utf-8?B?S3NPY21XYWtiS1pNNFNvUlVzWnNMdndUckpsdG81MkRwZk1mUUg0V213enBm?=
- =?utf-8?B?TldzYzhEazRoUnhJODhYUUdDdE90NFAyYy9ScmR3V2Zzc1NEa3N5VjM4aGJ2?=
- =?utf-8?B?U29XRnlGTlUvM3BnSzNRYVhLQlNhaVBIa240RXlWMmlrNzNWOW52UFFMVlJP?=
- =?utf-8?B?VFRDZTBvRFNKczNYRm1uR0t1RFJoUStadStteGJHb3dxaTNLbENFMks0SzF5?=
- =?utf-8?B?T2NzbytDaTdKT05uNW1PRHVGR3Nmd0FSOHVOMlorQWF4VVhEc0h6RTNWUEwz?=
- =?utf-8?B?RVpsNXFsenJTazNCcks0ZTY1ZDV6UDRmWW1rN2V2YkRzQ1dSRERncGowRFFv?=
- =?utf-8?B?WEJaVkVYOGgrWUNla3JMcjYrSEhGM09iV1c5TjUxK0NSTHVKZFlDdjNzV1B2?=
- =?utf-8?B?a0czODZhZWxMdVZqcCtoSGttbnIwZXhSdjEwVTB5SDIzRHdHaGlWMXRISFBr?=
- =?utf-8?B?VVZFV25oT1pKNVNOYTYwZVJ1eDBxVndEMis1OVRrVG5iZExyQVlzMjRRcUow?=
- =?utf-8?B?UWtyTEJUU21EUFA5ek1pWit1eHV6SlN0VUE3dE9CS1BhdkhtdDJlNFdZQWtL?=
- =?utf-8?B?NytWdVNUNWR1MTZ3Z2IxVUVWYVNPOSt3MDZsb1pPMWl6cVVCMXdOa3laRGUz?=
- =?utf-8?B?ellEN3NaZXZPY2JJVXRmeGxtSTcxUUFSSUpvUWFzNncxaWd4ejNRSnBFTUVK?=
- =?utf-8?B?VCsrOEJrYmcrQlZobFJpdnBwbDdjajJxZlQrajFVVkNRQ2duUEJqck5mVHJw?=
- =?utf-8?B?STFORGhuS2NSWGNUWTBnb2pVVWJWUG1MWlFnVG16SU9DR1pXZmFBMEdaKy9j?=
- =?utf-8?Q?S34uVlt+DyATDTbm5s37AdseZ?=
-Content-Type: text/plain; charset="utf-8"
-Content-ID: <34527830545A5F4C9FCF4AB0A9F023B4@namprd11.prod.outlook.com>
-Content-Transfer-Encoding: base64
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4089E10E1BA;
+	Wed, 24 May 2023 14:54:06 +0000 (UTC)
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id F059310E1BA
+ for <intel-xe@lists.freedesktop.org>; Wed, 24 May 2023 14:54:04 +0000 (UTC)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+ (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+ (No client certificate requested)
+ by dfw.source.kernel.org (Postfix) with ESMTPS id 18FD16151F
+ for <intel-xe@lists.freedesktop.org>; Wed, 24 May 2023 14:54:04 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 80DDAC433D2
+ for <intel-xe@lists.freedesktop.org>; Wed, 24 May 2023 14:54:03 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+ s=k20201202; t=1684940043;
+ bh=nau1olSGuHQ+Gvd/U9bNog0aS9h1SjNoAy1HaUjqpks=;
+ h=From:Date:Subject:To:Cc:From;
+ b=XJWdapu0MBt0Xq77u77ouTkAzB3WrCKE549xjWioX6r3Ube5gdGQhXNHYhHfjrMXi
+ Rxy3nwMnpVha1LiugSfXs7yXEnPaK38N2dVFMCMBrWYPDpEr8+2W4TxdvCTBH/z+Y1
+ PY+rHKiSTdx+jDIQOHKoajFUvIwzJ01dujLx6VaEwOtWz74V7ZtwWUfFH8Rdw54Muj
+ MGpfLb51VGBTZ35xnu5PXB0a/DvV8KC8xPX577sVZjmJPmrIcjyRCHNlwhJ2KsTOd6
+ gw7PzbpRnMkJNoC1c2bmMb9tEpTsR6udQVID1jYzlQAzx+W5YlCi49XxAD4w1IDbps
+ DdTXn8/YmWwwA==
+Received: by mail-yb1-f175.google.com with SMTP id
+ 3f1490d57ef6-bacbc7a2998so271374276.3
+ for <intel-xe@lists.freedesktop.org>; Wed, 24 May 2023 07:54:03 -0700 (PDT)
+X-Gm-Message-State: AC+VfDxKZ7i8np6F464rFqv2DXg19CAHknDb2N4z9+mMlaqmJFggT6BM
+ bF48HLObRgnIfEY/UnjsULLUWRTrGOMjxf0XpKc=
+X-Google-Smtp-Source: ACHHUZ6WDoPKzfjikuIMU1qoM8A4gOFPk4zgVeKLqREYN+c5MLE0Weq4S9WD2mDscAxfPSp2NlLTynMynP4Xj+vuVZI=
+X-Received: by 2002:a81:4a08:0:b0:54f:b433:333a with SMTP id
+ x8-20020a814a08000000b0054fb433333amr18973521ywa.1.1684940042468; Wed, 24 May
+ 2023 07:54:02 -0700 (PDT)
 MIME-Version: 1.0
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: DM4PR11MB8179.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: de07c149-eeef-42a7-931e-08db5c612042
-X-MS-Exchange-CrossTenant-originalarrivaltime: 24 May 2023 14:14:02.5553 (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: 9bjU6UXgBFCWgMv4Hj6KRlVA2hzwMdf5rqZf83L/K16SJRXRSHMniQNkpNWNTo8iSs71sGM8h6/MJQE81T20hA==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SJ1PR11MB6228
-X-OriginatorOrg: intel.com
-Subject: Re: [Intel-xe] [PATCH] drm/xe: Do not unbind destroyed vmas
+From: Oded Gabbay <ogabbay@kernel.org>
+Date: Wed, 24 May 2023 17:53:36 +0300
+X-Gmail-Original-Message-ID: <CAFCwf131PfA=QoLWykFqTbfH7Bmgn+aOYSdhdEhhbYZcMjf4qw@mail.gmail.com>
+Message-ID: <CAFCwf131PfA=QoLWykFqTbfH7Bmgn+aOYSdhdEhhbYZcMjf4qw@mail.gmail.com>
+To: intel-xe@lists.freedesktop.org, "Vivi, Rodrigo" <rodrigo.vivi@intel.com>, 
+ Francois Dugast <francois.dugast@intel.com>
+Content-Type: text/plain; charset="UTF-8"
+Subject: [Intel-xe] Code review for Xe driver - First batch of comments
+ (24/5)
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -161,40 +59,154 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Cc: "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>
+Cc: Daniel Vetter <daniel@ffwll.ch>
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-T24gV2VkLCAyMDIzLTA1LTI0IGF0IDE0OjQwICswMjAwLCBEYXMsIE5pcm1veSB3cm90ZToNCj4g
-SGkgTWF0dCwNCj4gDQo+IE9uIDUvMjQvMjAyMyAxOjMwIEFNLCBNYXR0aGV3IEJyb3N0IHdyb3Rl
-Og0KPiA+IE9uIFR1ZSwgTWF5IDIzLCAyMDIzIGF0IDEwOjI0OjEyUE0gKzAyMDAsIE5pcm1veSBE
-YXMgd3JvdGU6DQo+ID4gPiBGaXggYSB2bWEgVUFGIHdoZW4gdXNlcnNwYWNlIGNhbGxzIHVuYmlu
-ZCBpb2N0bCBtb3JlDQo+ID4gPiB0aGFuIG9uY2UuDQo+ID4gPiANCj4gPiBJIHNlZSB0aGUgcHJv
-YmxlbSwgeWVhIHRoaXMgaXMga2luZGEgYW4gaXNzdWUgYnV0IHdpbGwgY29uZmxpY3Qgd2l0aCB0
-aGUNCj4gPiBHUFVWQSBzZXJpZXMgd2hlcmUgdGhpcyBpcyBhbHNvIGZpeGVkIGJ5IHJlbW92aW5n
-IHRoZSBhc3luYyB3b3JrZXIuDQo+IA0KPiBZZXMsIHRoZSBpc3N1ZSBpcyB0aGF0IHRoZSBhc3lu
-YyB3b3JrZXIgd2lsbCBhY2Nlc3MgdGhlIGZyZWVkIHZtYS4gSSBkaWQgDQo+IHRyeSB0byByZW1v
-dmUgdGhlDQo+IA0KPiBhc3luY19vcCBmb3IgdGhhdCB2bWEgZnJvbSB0aGUgcGVuZGluZyBsaXN0
-IGJ1dCBJIG1pc3NlZCBzb21lIGZlbmNlIA0KPiBzaWduYWxpbmcgc29tZXdoZXJlLg0KPiANCj4g
-DQo+ID4gDQo+ID4gSXMgdGhpcyBhIHByb2JsZW0gZnJvbSBhbnkgVU1Ecz8gSWYgaXQgaXNuJ3Qg
-SSdkIHNheSBkZWZlciB0aGlzIHVudGlsDQo+ID4gdGhlIEdQVVZBIHNlcmllcy4NCj4gDQo+IA0K
-PiBOb3Qgc3VyZSBhYm91dCBVTUQgYnV0IEkgaGl0IHRoaXMgd2hpbGUgdHJ5aW5nIHRvIGltcGxl
-bWVudCBtYWR2aXNlIGZvciANCj4gVk1BcyB3aGVyZSBJIHdvdWxkIHVuYmluZCBhIHZtYSBpZiBp
-dCBpcyBzZXQgdG8gRE9OVE5FRUQuDQo+IA0KPiAgRnJvbSBteSBzaWRlIHRoaXMgY2FuIHdhaXQu
-DQoNClRoaXMgY2hhbmdlIGlzIHNvIHNtYWxsLCB0aGUgY29uZmxpY3Qgd291bGQgYmUgbWlub3Iu
-DQorMiBmb3IgYW55dGhpbmcgdGhhdCBjYW4gaGVscCBzdGFiaWxpemVkIHRoZSBzdGFjay4NCg0K
-PiANCj4gDQo+IFJlZ2FyZHMsDQo+IA0KPiBOaXJtb3kNCj4gDQo+ID4gDQo+ID4gTWF0dA0KPiA+
-IA0KPiA+ID4gU2lnbmVkLW9mZi1ieTogTmlybW95IERhcyA8bmlybW95LmRhc0BpbnRlbC5jb20+
-DQo+ID4gPiAtLS0NCj4gPiA+ICAgZHJpdmVycy9ncHUvZHJtL3hlL3hlX3ZtLmMgfCAyICstDQo+
-ID4gPiAgIDEgZmlsZSBjaGFuZ2VkLCAxIGluc2VydGlvbigrKSwgMSBkZWxldGlvbigtKQ0KPiA+
-ID4gDQo+ID4gPiBkaWZmIC0tZ2l0IGEvZHJpdmVycy9ncHUvZHJtL3hlL3hlX3ZtLmMgYi9kcml2
-ZXJzL2dwdS9kcm0veGUveGVfdm0uYw0KPiA+ID4gaW5kZXggYTAzMDY1MjZiMjY5Li43YTlmMWJh
-NDMyYjggMTAwNjQ0DQo+ID4gPiAtLS0gYS9kcml2ZXJzL2dwdS9kcm0veGUveGVfdm0uYw0KPiA+
-ID4gKysrIGIvZHJpdmVycy9ncHUvZHJtL3hlL3hlX3ZtLmMNCj4gPiA+IEBAIC0yNzY5LDcgKzI3
-NjksNyBAQCBzdGF0aWMgc3RydWN0IHhlX3ZtYSAqdm1fdW5iaW5kX2FsbF9sb29rdXBfdm1hcyhz
-dHJ1Y3QgeGVfdm0gKnZtLA0KPiA+ID4gICAJeGVfYm9fYXNzZXJ0X2hlbGQoYm8pOw0KPiA+ID4g
-ICANCj4gPiA+ICAgCWxpc3RfZm9yX2VhY2hfZW50cnkodm1hLCAmYm8tPnZtYXMsIGJvX2xpbmsp
-IHsNCj4gPiA+IC0JCWlmICh2bWEtPnZtICE9IHZtKQ0KPiA+ID4gKwkJaWYgKHZtYS0+dm0gIT0g
-dm0gfHwgdm1hLT5kZXN0cm95ZWQpDQo+ID4gPiAgIAkJCWNvbnRpbnVlOw0KPiA+ID4gICANCj4g
-PiA+ICAgCQlwcmVwX3ZtYV9kZXN0cm95KHZtLCB2bWEpOw0KPiA+ID4gLS0gDQo+ID4gPiAyLjM5
-LjANCj4gPiA+IA0KDQo=
+Hi,
+I finally got to start the code review of the Xe driver and I want to
+send the first batch of CR comments, but before I paste them here, I'd
+like to do some alignment.
+
+First, I'm reviewing the code in gitlab, and I tagged the HEAD of the
+branch I reviewed so when you go over the comments, please do it vs.
+that tag. The tag name is xe-rev1-2023-05-02.
+
+Secondly, I'm putting all the comments in a text file (cr.txt) I added
+to my review branch (xe-rev1) on gitlab. What I'll do is every
+Thursday, I'll copy the new comments I've added and start a new mail
+thread here and then we can discuss it here. I'm sending the first
+batch today as tomorrow is a holiday here.
+
+Third, when you are doing fixes according to the code review, please
+take the above tag as the base. Don't fix it in your latest branch
+(drm-xe-next). Before doing rev2 we will probably rebase the commits
+on some more updated upstream HEAD, but I don't want to see any new
+code (except for a select few commits that got my approval).
+Otherwise, I will lose my hands and feet.
+
+That's it for alignment. Here is the first batch of comments, grouped
+by filename:
+
+General:
+- Multiple checkpatch issues for many files. Please make sure no
+warnings/errors appear.
+
+- Multiple BUG_ON (over 200), and I believe 99% of them have no
+justification to do it.
+  It's not justified to crash the host if you got a bad pointer from
+the calling function, or
+  if some other parameter is not between the valid values. Just do
+drm_* and return -EINVAL.
+
+- Same thing for WARN_ON. I would *strongly* request that you convert
+many of them to drm_* and
+  just return error because in the data center, WARN_ON is often
+defined to behave the same as BUG_ON.
+
+xe_macros.h:
+- XE_IOCTL_ERR is defined to call drm_info. This is not allowed as you
+enable a user to spam the
+  kernel log. Please change that macro to use drm_dbg.
+
+- Also, please remove the FILE+LINE print. The drm_dbg macro will
+print the function and that tends
+  to be enough. If you want to print FILE+LINE, use ftrace.
+
+xe_drv.h:
+- DRIVER_TIMESTAMP never used
+- DRIVER_DATE looks a bit old...
+
+xe_module.c:
+- Do we still need to keep the enable_guc param ? Isn't the exec list
+path broken ?
+
+xe_drm.h:
+- Use short format in license, no need to copy entire license text.
+
+- Engine ioctls - why is it called an engine ? You are not creating an
+engine, you are creating
+                  an LRC which is assigned to some engine class. Isn't
+a context a more
+                  appropriate name ? (I don't refer to the
+engine_class struct which is fine)
+
+- The file is organized in a way all structs appear at the order of
+the respective ioctls.
+  However, the first struct is out of place
+(drm_xe_engine_class_instance). Please move it
+  below to the engine part.
+
+- Some structures have full documentation, some lack it (e.g.
+drm_xe_query_mem_usage).
+  Please complete structure and field documentation. This is critical
+in the uapi file.
+
+- In drm_xe_device_query, the size field is used to pass the size to
+be copied from user to driver.
+  However if it is 0, the driver just returns the required size. This
+should be documented in that
+  that field as it is a uapi behavior (and in all other places in
+xe_drm.h this mechanism appears).
+
+- Line 272: In most places, defines appear after the relevant field,
+but in this case the defines
+            appear before which can be confusing. Please try to align
+all the places in this file
+            to one method.
+
+xe_device.c:
+- Line 114: Why keep this line ?
+
+xe_query.c:
+- Line 68: No need to print error/info on kmalloc failure. You will
+see a big kernel log dump.
+           And anyway, it is not a parameter check, so using
+XE_IOCTL_ERR is misleading.
+           Please apply this to everywhere you do kmalloc (and its variants).
+
+- Line 85: Here we return -EFAULT but on Line 156 we return -ENOSPC on
+the exact same error.
+           Please make sure this is aligned on all ioctls to -EFAULT.
+
+- Line 384: Isn't this redundant ? You already check the correctness
+of index to array.
+
+xe_mmio.h:
+- xe_mmio_wait32 reg & val arguments are not in the same order as
+intel_wait_for_register in i915.
+  We are setting ourselves up to fail when copying stuff from i915.
+(comment from Jani)
+
+xe_bo.h:
+- PPAT_CACHED_PDE is defined as 0. Is this correct or it should be BIT_ULL(0) ?
+  If it is 0, the code in gen8_pde_encode is confusing.
+
+xe_vm.c:
+- Line 3301: remove extra ;
+
+- xe_vm_lookup() - the locking pattern here looks wrong. Usually it should be:
+  1. lock
+  2. load/find object
+  3. if found -> get (increase refcnt of object)
+  4. unlock
+  When you do the get after the unlock, you are open to a race where
+that object was already
+  deleted by another thread and therefore, you are holding a garbage pointer
+
+- xe_vm_destroy_ioctl() - I think this is not protected against
+concurrency. Two threads that
+will call it to destroy the same vm object might result in a race.
+assuming we have thread A & B, both threads can reach up to the call to
+xe_vm_close_and_put (line 1935) having a valid vm pointer. Then, let's
+say Thread A
+executes that function, which will make that vm object invalid. Then
+Thread B will try
+to execute that function and that will cause a crash.
+
+- Line 1124: I can understand you are exiting D3 state, but WHY are
+you doing this here ?
+
+That's it for this week.
+Thanks,
+Oded
