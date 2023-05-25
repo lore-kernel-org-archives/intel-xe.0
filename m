@@ -4,47 +4,30 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5C876C77B7A
-	for <intel-xe@archiver.kernel.org>; Thu, 25 May 2023 07:42:08 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4DFA9C7EE2C
+	for <intel-xe@archiver.kernel.org>; Thu, 25 May 2023 07:43:57 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 057F710E7CD;
-	Thu, 25 May 2023 07:42:08 +0000 (UTC)
-Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 092B010E7CD
- for <intel-xe@lists.freedesktop.org>; Thu, 25 May 2023 07:42:05 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1685000526; x=1716536526;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=MY1hDMpXzKe2E7Rht/LYBMHpRGx21j5s0ioeESAWLIw=;
- b=ZF+eJxIBDsETawNkcl62TghAlRex0hwx3Pqm1FzNkZTC89P9WRdXJ2hi
- sj62eq9IqaZchgp1kjkxr232d9wFS3Z3q82eqqiovEYktQYtj8oF5luqd
- 1z0tXAW1V/OWudZq9FCR6TJTjqh8LIZk/jYTO7Y7q+dYTJbodR0I8Vgls
- CnoHB/Oxy9xOK1VfeE40JkK5DykGNwQqMTJbzul16WhRMIwWu6IgKzM84
- 5S/Y37rXUU9N/eQSDm+XH09Prp/6ZSQOw8+bVXKLxbF5tG/ySekvdElrm
- r8d5YN9Y2F2qNQh41Hx7Pu5UJHWqrOLp99ERHqKxQ6TcfC+Ih/AdzegmN Q==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10720"; a="440174052"
-X-IronPort-AV: E=Sophos;i="6.00,190,1681196400"; d="scan'208";a="440174052"
-Received: from orsmga007.jf.intel.com ([10.7.209.58])
- by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 25 May 2023 00:42:04 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10720"; a="698879960"
-X-IronPort-AV: E=Sophos;i="6.00,190,1681196400"; d="scan'208";a="698879960"
-Received: from lsilistr-mobl.ger.corp.intel.com (HELO
- thellstr-mobl1.intel.com) ([10.249.254.226])
- by orsmga007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 25 May 2023 00:42:03 -0700
-From: =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>
-To: intel-xe@lists.freedesktop.org
-Date: Thu, 25 May 2023 09:41:44 +0200
-Message-Id: <20230525074144.178961-1-thomas.hellstrom@linux.intel.com>
-X-Mailer: git-send-email 2.39.2
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0E19310E12A;
+	Thu, 25 May 2023 07:43:57 +0000 (UTC)
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 785B310E12A;
+ Thu, 25 May 2023 07:43:54 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 70642AADE6;
+ Thu, 25 May 2023 07:43:54 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-Subject: [Intel-xe] [PATCH] drm/xe: Fix vm refcount races
+Content-Transfer-Encoding: 7bit
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: =?utf-8?q?Thomas_Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>
+Date: Thu, 25 May 2023 07:43:54 -0000
+Message-ID: <168500063442.5915.3376694059254085419@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20230525074144.178961-1-thomas.hellstrom@linux.intel.com>
+In-Reply-To: <20230525074144.178961-1-thomas.hellstrom@linux.intel.com>
+Subject: [Intel-xe] =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_f?=
+ =?utf-8?q?or_drm/xe=3A_Fix_vm_refcount_races?=
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -56,77 +39,22 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
+Cc: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Fix a race in xe_vm_lookup() where the vm could disappear after
-the lookup mutex unlock but before the get. The xe_vm_get() call
-must be inside the lookup mutex.
+== Series Details ==
 
-Also fix a vm close race where multiple callers could potentially
-succeed in calling xe_vm_close_and_put().
+Series: drm/xe: Fix vm refcount races
+URL   : https://patchwork.freedesktop.org/series/118350/
+State : success
 
-Reported-by: Oded Gabbay <ogabbay@kernel.org>
-Link: https://lists.freedesktop.org/archives/intel-xe/2023-May/004704.html
-Signed-off-by: Thomas Hellström <thomas.hellstrom@linux.intel.com>
----
- drivers/gpu/drm/xe/xe_vm.c | 26 ++++++++++++--------------
- 1 file changed, 12 insertions(+), 14 deletions(-)
+== Summary ==
 
-diff --git a/drivers/gpu/drm/xe/xe_vm.c b/drivers/gpu/drm/xe/xe_vm.c
-index a0306526b269..ac25afac89fd 100644
---- a/drivers/gpu/drm/xe/xe_vm.c
-+++ b/drivers/gpu/drm/xe/xe_vm.c
-@@ -1463,10 +1463,9 @@ struct xe_vm *xe_vm_lookup(struct xe_file *xef, u32 id)
- 
- 	mutex_lock(&xef->vm.lock);
- 	vm = xa_load(&xef->vm.xa, id);
--	mutex_unlock(&xef->vm.lock);
--
- 	if (vm)
- 		xe_vm_get(vm);
-+	mutex_unlock(&xef->vm.lock);
- 
- 	return vm;
- }
-@@ -1940,26 +1939,25 @@ int xe_vm_destroy_ioctl(struct drm_device *dev, void *data,
- 	struct xe_file *xef = to_xe_file(file);
- 	struct drm_xe_vm_destroy *args = data;
- 	struct xe_vm *vm;
-+	int err = 0;
- 
- 	if (XE_IOCTL_ERR(xe, args->pad))
- 		return -EINVAL;
- 
--	vm = xe_vm_lookup(xef, args->vm_id);
--	if (XE_IOCTL_ERR(xe, !vm))
--		return -ENOENT;
--	xe_vm_put(vm);
--
--	/* FIXME: Extend this check to non-compute mode VMs */
--	if (XE_IOCTL_ERR(xe, vm->preempt.num_engines))
--		return -EBUSY;
--
- 	mutex_lock(&xef->vm.lock);
--	xa_erase(&xef->vm.xa, args->vm_id);
-+	vm = xa_load(&xef->vm.xa, args->vm_id);
-+	if (XE_IOCTL_ERR(xe, !vm))
-+		err = -ENOENT;
-+	else if (XE_IOCTL_ERR(xe, vm->preempt.num_engines))
-+		err = -EBUSY;
-+	else
-+		xa_erase(&xef->vm.xa, args->vm_id);
- 	mutex_unlock(&xef->vm.lock);
- 
--	xe_vm_close_and_put(vm);
-+	if (!err)
-+		xe_vm_close_and_put(vm);
- 
--	return 0;
-+	return err;
- }
- 
- static const u32 region_to_mem_type[] = {
--- 
-2.39.2
+=== Applying kernel patches on branch 'drm-xe-next' with base: ===
+Base commit: c6e45ef45 drm/xe: Add stepping support for GMD_ID platforms
+=== git am output follows ===
+Applying: drm/xe: Fix vm refcount races
+
 
