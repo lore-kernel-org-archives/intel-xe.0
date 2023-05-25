@@ -4,51 +4,48 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 60A21C7EE2D
-	for <intel-xe@archiver.kernel.org>; Thu, 25 May 2023 11:29:48 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id C4E5DC77B7A
+	for <intel-xe@archiver.kernel.org>; Thu, 25 May 2023 11:46:17 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2CB4010E147;
-	Thu, 25 May 2023 11:29:48 +0000 (UTC)
-Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
- by gabe.freedesktop.org (Postfix) with ESMTPS id F1F2910E054
- for <intel-xe@lists.freedesktop.org>; Thu, 25 May 2023 11:29:46 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 86C3010E0A3;
+	Thu, 25 May 2023 11:46:17 +0000 (UTC)
+Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D5DF310E0A3
+ for <intel-xe@lists.freedesktop.org>; Thu, 25 May 2023 11:46:15 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1685014186; x=1716550186;
- h=message-id:subject:from:to:cc:date:in-reply-to:
- references:content-transfer-encoding:mime-version;
- bh=5WZaXLdpk0xZonhFUp9BrYIqxKrxSxYtuvd9xccY56A=;
- b=iupEVzNQHjOe2R9KTQTEEBIt1NzH19zj9GBLwEI06zQxbqNyz4WGzkDL
- RlcMNyk1Tf+Wa5zYwx11ZDkgOdpAYgbZi5CrTdMhd3+MEAWMMU2C8Sdid
- /jLhD2Mt1HCEJWwPhdZpu40P7T2kBwvW1HAxH1Mfcr9Ps8cLqWc2W4RPe
- jaONCGIkwpmKAbC56xvwZxoJf4EA6Q+MdVT0ZSSqr7P9aHbMnK6zYrYq6
- GoZNBjrb1vbgh63phWzniR953Tr7tR/NMto5ehmd2Yaz+ljhnF8MqXpYy
- ZDbcV05OfsnyAYKeru4qqFZ/g17LM2Fx8/bmZsmOe5eMfQeq5Oc3JhXka g==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10720"; a="353881583"
-X-IronPort-AV: E=Sophos;i="6.00,191,1681196400"; d="scan'208";a="353881583"
-Received: from orsmga002.jf.intel.com ([10.7.209.21])
- by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 25 May 2023 04:29:45 -0700
+ t=1685015175; x=1716551175;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=f8Hf6umMMms3K31v9otgqJLjNnAdb5hAmGuAzTVCAp0=;
+ b=cECptJiq7/xxYRh7fVNJE5iy7eYiIrXevtEPdEUdIMtrhKYsXfq0+cnk
+ g3M9eTgSODQnbV5D7unUoxn3QxC8s9HQEsi62gMxrMHAVTB4mfKKy4DD2
+ IonPX62oPI4Vz+Qzi9dpYAy0YNYvHDh+JgRVZR24tj+MepwbcdTQ3okbU
+ mdZKfeGIOBe+DBx+MJVlJmCb9VgWFhMS0yVpiG0TFAlbRUda1Tu41Vp50
+ iSDBuiX7PDKIo7TBRa5ffWNvL40QrBV8cf2VOMFZOk/Z97HnRicmgb4B4
+ QdD2ruBluF0gLY3zjLb7/rA5odmtAyISmYJDj7zQXRAKK2ViMp9ZC7dmT w==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10720"; a="440219436"
+X-IronPort-AV: E=Sophos;i="6.00,191,1681196400"; d="scan'208";a="440219436"
+Received: from fmsmga004.fm.intel.com ([10.253.24.48])
+ by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 25 May 2023 04:46:13 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10720"; a="704759236"
-X-IronPort-AV: E=Sophos;i="6.00,191,1681196400"; d="scan'208";a="704759236"
-Received: from lsilistr-mobl.ger.corp.intel.com (HELO [10.249.254.226])
- ([10.249.254.226])
- by orsmga002-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 25 May 2023 04:29:44 -0700
-Message-ID: <8948d145041ab990a8826fcdcf4404714e53371a.camel@linux.intel.com>
-From: Thomas =?ISO-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>
-To: Matthew Auld <matthew.william.auld@gmail.com>
-Date: Thu, 25 May 2023 13:29:43 +0200
-In-Reply-To: <CAM0jSHPUrKtB3C=d7m3tUW2SNJ0hPwtQy9c9=NjxF6UXCc1sHQ@mail.gmail.com>
-References: <20230525081615.179819-1-thomas.hellstrom@linux.intel.com>
- <CAM0jSHPUrKtB3C=d7m3tUW2SNJ0hPwtQy9c9=NjxF6UXCc1sHQ@mail.gmail.com>
-Organization: Intel Sweden AB, Registration Number: 556189-6027
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.46.4 (3.46.4-1.fc37) 
+X-IronPort-AV: E=McAfee;i="6600,9927,10720"; a="774649489"
+X-IronPort-AV: E=Sophos;i="6.00,191,1681196400"; d="scan'208";a="774649489"
+Received: from jwosulli-mobl2.ger.corp.intel.com (HELO mwauld-desk1.intel.com)
+ ([10.252.1.81])
+ by fmsmga004-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 25 May 2023 04:46:12 -0700
+From: Matthew Auld <matthew.auld@intel.com>
+To: intel-xe@lists.freedesktop.org
+Date: Thu, 25 May 2023 12:45:42 +0100
+Message-Id: <20230525114543.400106-1-matthew.auld@intel.com>
+X-Mailer: git-send-email 2.40.1
 MIME-Version: 1.0
-Subject: Re: [Intel-xe] [PATCH] drm/xe: Fix engine lookup refcount race
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+Subject: [Intel-xe] [PATCH 1/2] drm/xe/bo: further limit where CCS pages are
+ needed
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -60,64 +57,49 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Thu, 2023-05-25 at 11:52 +0100, Matthew Auld wrote:
-> On Thu, 25 May 2023 at 09:16, Thomas Hellstr=C3=B6m
-> <thomas.hellstrom@linux.intel.com> wrote:
-> >=20
-> > Fix a race where the engine could disappear between lookup unlock
-> > and
-> > xe_engine_get().
-> >=20
-> > Signed-off-by: Thomas Hellstr=C3=B6m <thomas.hellstrom@linux.intel.com>
-> > ---
-> > =C2=A0drivers/gpu/drm/xe/xe_engine.c | 3 +--
-> > =C2=A01 file changed, 1 insertion(+), 2 deletions(-)
-> >=20
-> > diff --git a/drivers/gpu/drm/xe/xe_engine.c
-> > b/drivers/gpu/drm/xe/xe_engine.c
-> > index 094ec17d3004..3a400a546dfe 100644
-> > --- a/drivers/gpu/drm/xe/xe_engine.c
-> > +++ b/drivers/gpu/drm/xe/xe_engine.c
-> > @@ -161,10 +161,9 @@ struct xe_engine *xe_engine_lookup(struct
-> > xe_file *xef, u32 id)
-> >=20
-> > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 mutex_lock(&xef->engine.lock=
-);
-> > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 e =3D xa_load(&xef->engine.x=
-a, id);
-> > -=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 mutex_unlock(&xef->engine.lock);
-> > -
-> > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 if (e)
-> > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0 xe_engine_get(e);
-> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 mutex_unlock(&xef->engine.lock);
->=20
-> Makes sense to me.
->=20
-> Reviewed-by: Matthew Auld <matthew.auld@intel.com>
->=20
-> But looking around a bit, why does engine_get_property_ioctl() not
-> use
-> this? It also does a raw xa_load() and then touches the engine
-> without
-> holding the lock or keeping a ref?
+No need to allocate extra pages for this if we know flat-ccs AUX state
+is not even possible, like for normal system memory objects.
 
-Yeah, the lookups / xa_load()s probably needs an audit Also should
-probably check if we can reuse the xa_lock for some lookups.
+Signed-off-by: Matthew Auld <matthew.auld@intel.com>
+Cc: Thomas Hellström <thomas.hellstrom@linux.intel.com>
+---
+ drivers/gpu/drm/xe/xe_bo.c | 10 +++++++---
+ 1 file changed, 7 insertions(+), 3 deletions(-)
 
-/Thomas
-
-
->=20
-> >=20
-> > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 return e;
-> > =C2=A0}
->=20
-> > --
-> > 2.39.2
-> >=20
+diff --git a/drivers/gpu/drm/xe/xe_bo.c b/drivers/gpu/drm/xe/xe_bo.c
+index c82e995df779..f994dbed634b 100644
+--- a/drivers/gpu/drm/xe/xe_bo.c
++++ b/drivers/gpu/drm/xe/xe_bo.c
+@@ -283,6 +283,7 @@ static struct ttm_tt *xe_ttm_tt_create(struct ttm_buffer_object *ttm_bo,
+ 	struct xe_bo *bo = ttm_to_xe_bo(ttm_bo);
+ 	struct xe_device *xe = xe_bo_device(bo);
+ 	struct xe_ttm_tt *tt;
++	unsigned long extra_pages;
+ 	int err;
+ 
+ 	tt = kzalloc(sizeof(*tt), GFP_KERNEL);
+@@ -291,12 +292,15 @@ static struct ttm_tt *xe_ttm_tt_create(struct ttm_buffer_object *ttm_bo,
+ 
+ 	tt->dev = xe->drm.dev;
+ 
++	extra_pages = 0;
++	if (xe_bo_needs_ccs_pages(bo))
++		extra_pages = DIV_ROUND_UP(xe_device_ccs_bytes(xe, bo->size),
++					   PAGE_SIZE);
++
+ 	/* TODO: Select caching mode */
+ 	err = ttm_tt_init(&tt->ttm, &bo->ttm, page_flags,
+ 			  bo->flags & XE_BO_SCANOUT_BIT ? ttm_write_combined : ttm_cached,
+-			  DIV_ROUND_UP(xe_device_ccs_bytes(xe_bo_device(bo),
+-							   bo->ttm.base.size),
+-				       PAGE_SIZE));
++			  extra_pages);
+ 	if (err) {
+ 		kfree(tt);
+ 		return NULL;
+-- 
+2.40.1
 
