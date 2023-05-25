@@ -4,59 +4,59 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 80777C77B7A
-	for <intel-xe@archiver.kernel.org>; Thu, 25 May 2023 22:28:15 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id D19FDC77B7E
+	for <intel-xe@archiver.kernel.org>; Thu, 25 May 2023 22:30:05 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2D21C10E070;
-	Thu, 25 May 2023 22:28:15 +0000 (UTC)
-Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8CCE010E070
- for <intel-xe@lists.freedesktop.org>; Thu, 25 May 2023 22:28:12 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8A92C10E776;
+	Thu, 25 May 2023 22:30:05 +0000 (UTC)
+Received: from mga06.intel.com (mga06b.intel.com [134.134.136.31])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8F36310E776
+ for <intel-xe@lists.freedesktop.org>; Thu, 25 May 2023 22:30:03 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1685053692; x=1716589692;
+ t=1685053803; x=1716589803;
  h=date:from:to:cc:subject:message-id:references:
  in-reply-to:mime-version;
- bh=KeUka04VCSFlupmGsl4t3kfQp6UXeVwyxqQ9TCDACAQ=;
- b=bbcCamRe1vM9/qwAPpTOy+ak0z5BlWAztOeCMKSmrSBDYcuTbqSxa8OK
- 1y49BUPGPA//NgaSCmEdMUhTD9a6ep9CfS6/v6q7lQgXkx6GUWNhB+6ez
- uNM9hLHSUfMJkEIX2bSi1s9oJI5GzG2+lhFYU8TTjw7ZZCy/J4FkjoRgt
- TuRG3RsYnTJwhqYmTlG6ciFxfOvTwaix/uW5GBHKsZiZnCGueDCek7Gin
- nQPugvtWia29mTex8rQxnq87lQXiE8Alq83Qiv2c0BH07pooxHdbGJOg0
- 8CQQ5aVUwoFb/D5KKFKIfcwaRVNB771KiutU96jHCyREcBA8IOGTTJtOS g==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10721"; a="343538257"
-X-IronPort-AV: E=Sophos;i="6.00,192,1681196400"; d="scan'208";a="343538257"
-Received: from orsmga001.jf.intel.com ([10.7.209.18])
- by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 25 May 2023 15:28:10 -0700
+ bh=IHAWBtgelr1vrY3xO0rH4TWvYwCMYG1QOp7JpQ/Ya7o=;
+ b=ROuP7PNlZ12ZsVJ8+5q6m0hYUed7xVqwDdGOpZZmXL/7yWv2zRWvMQf0
+ qM9i8MPZpEiEZe511iXbjdVmYfclxlb9jhhE5ZF/XgyJYSzR6lesETshJ
+ ZhsLnlAs4Dg2CtZmWGrj1/2RdLMs0IsryUrTcMLvapDF7U0d8QLQnEpp0
+ efGR9KxrNT33+2dU4ugNsFEIQDhhDdC0qrk5QqivRTeyEXQudkpKDQXvg
+ 3ffJoideWDL8azVCuglEkvl7aKvV0Cefq//EN23jIcf+0K1C9wSRtTP5i
+ 1GdyDab2plVrlK6ESZwl2qp3B85CGwSsE3+sW2GXKd4iCU5aOuWXI2tpt g==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10721"; a="417528661"
+X-IronPort-AV: E=Sophos;i="6.00,192,1681196400"; d="scan'208";a="417528661"
+Received: from fmsmga008.fm.intel.com ([10.253.24.58])
+ by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 25 May 2023 15:30:02 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10721"; a="737981013"
-X-IronPort-AV: E=Sophos;i="6.00,192,1681196400"; d="scan'208";a="737981013"
-Received: from fmsmsx602.amr.corp.intel.com ([10.18.126.82])
- by orsmga001.jf.intel.com with ESMTP; 25 May 2023 15:28:08 -0700
+X-IronPort-AV: E=McAfee;i="6600,9927,10721"; a="770106730"
+X-IronPort-AV: E=Sophos;i="6.00,192,1681196400"; d="scan'208";a="770106730"
+Received: from fmsmsx603.amr.corp.intel.com ([10.18.126.83])
+ by fmsmga008.fm.intel.com with ESMTP; 25 May 2023 15:30:02 -0700
 Received: from fmsmsx611.amr.corp.intel.com (10.18.126.91) by
- fmsmsx602.amr.corp.intel.com (10.18.126.82) with Microsoft SMTP Server
+ fmsmsx603.amr.corp.intel.com (10.18.126.83) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.23; Thu, 25 May 2023 15:28:08 -0700
-Received: from fmsmsx601.amr.corp.intel.com (10.18.126.81) by
+ 15.1.2507.23; Thu, 25 May 2023 15:30:02 -0700
+Received: from fmsmsx610.amr.corp.intel.com (10.18.126.90) by
  fmsmsx611.amr.corp.intel.com (10.18.126.91) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.23; Thu, 25 May 2023 15:28:07 -0700
-Received: from fmsedg602.ED.cps.intel.com (10.1.192.136) by
- fmsmsx601.amr.corp.intel.com (10.18.126.81) with Microsoft SMTP Server
+ 15.1.2507.23; Thu, 25 May 2023 15:30:01 -0700
+Received: from fmsedg601.ED.cps.intel.com (10.1.192.135) by
+ fmsmsx610.amr.corp.intel.com (10.18.126.90) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.23 via Frontend Transport; Thu, 25 May 2023 15:28:07 -0700
-Received: from NAM10-BN7-obe.outbound.protection.outlook.com (104.47.70.100)
- by edgegateway.intel.com (192.55.55.71) with Microsoft SMTP Server
+ 15.1.2507.23 via Frontend Transport; Thu, 25 May 2023 15:30:01 -0700
+Received: from NAM10-BN7-obe.outbound.protection.outlook.com (104.47.70.108)
+ by edgegateway.intel.com (192.55.55.70) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2507.23; Thu, 25 May 2023 15:28:07 -0700
+ 15.1.2507.23; Thu, 25 May 2023 15:30:01 -0700
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=Enx5+7I3alVf+ugAJz6PO4ydzmEdwfdC+s8IqeAI1C+K+PzdnufAd/DF/9zhfSr47sHk63e+v6QD3bg31LHHY9Z6RBmd89rC94JE25VEty16zusn8crgPqAOCSMW3smDaoa7ag1/6m7vht7R2tNUwP/PKS15P7w7NzdajZUNnRPFuTqbV14zRMQkkK5RGj1QJOyY/AQXZWQi4be7pQDClQ6+6RrSoa0V9UKShr1VEiDQCVsRtoiURIkMZ/y/vp0xXSSj867PQtMWXI73D7kXRbrHaj9Mgnn83ldGtXIrmYNKWRS6AZWoLqT+shdPej4pXYQqqAglm/rPeq7wsl7lCw==
+ b=Jqf2KzM7v4YttsfCbjZXA/nh+A+5MAC6uavhR8sfSoKwCWY7zceLOcwwkl7QseATlp6mpzjZvsYB8kestx8ePeP/7i33oTBz9WRdPUVxL7JhxSqskODNydYzIvyhivUgkKAAFulwfJsxj7pOK4P8y0aavTwVxQQ3M2NRCpZPywEgaY49W5Z/syj6txzFMMAxneWAcNbuti6yCtcdrr2BhGQw2nGQjaPHvw24Llua8TdWH/fJx6UI7DhKMIK3a9MZrJy4rqriPpianxbm/CatpEw6P3p7JLjLth5H8eeS180z9x9M34pppfq90sE5T4nMR6CIpXhZxiHfrTPmP2ba5A==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=PPODEdVR3h8p/gIFnf36RVSwoI7ZFd6HQyOIDUpb95E=;
- b=TjAiydnOqtgsWxmk7w4XaUUB+oTtNVucBOxN92olQznOY9rr01YhgBZqrkOuy13oDbRinNmn+Gd4zPJ67y5o8rvw2Xwz7qxqQtQv8D5dcmNueorQW+pA51w5Y95+FPgJcBWdO+RCpHp6n3w9yfgfZ6A416cIg/+ZCQx7P8uqEGtcih8t3vmE/mcMcueIu5JJRNsraTymOHyhDMPrnlnpfYzXwQ9Hm5aUO8jH0NS16E32RyIdj+lsCP25V9bk9UPDDZT+Fso4yM9MCzycqKxtuyzCADF+BMHL0U4jIuZSr4whm1hP1s183f/NjJGqSssUPdBSN4O+MpDgB4V3FEadVQ==
+ bh=68utK4GRiQelghxyXSu9UQjNLTzNPSdAFvyghttEoO4=;
+ b=CQm0gEnilVV/4cT07eAOxpCCsvwH9T7MpxRwaopReslcqMEwJzBJjsTe8BP/49/JwqVmoXjWLkrSBqmmt4BuG2BKiefMnJK5oU2yYZhna60SM2vrXhcS7WySvc8TM9xPZ0lLFAZZ0GDExuqPyYUxoV39H1JKhmZaFOhEnpxaqdBiS8X3Qn3MmU0on+Mi/7eWCYIyObv/233Yz7U+2J8usY+vwy+FaZ0Gz0lU4Lnxis6qBtkHg1ErUwd8fwWiSignqWoSX4KAxOEv3JqTV/dCC4U85CtP98cELSgawS8tnkNyjR5lbBUXJlNx360puy4YW4uvtcYVuKiLxKhm9qL8jw==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
  dkim=pass header.d=intel.com; arc=none
@@ -66,76 +66,76 @@ Received: from DS7PR11MB7859.namprd11.prod.outlook.com (2603:10b6:8:da::22) by
  DS0PR11MB7829.namprd11.prod.outlook.com (2603:10b6:8:f1::20) with
  Microsoft
  SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.6433.16; Thu, 25 May 2023 22:28:05 +0000
+ 15.20.6433.16; Thu, 25 May 2023 22:29:54 +0000
 Received: from DS7PR11MB7859.namprd11.prod.outlook.com
  ([fe80::9f98:8f3c:a608:8396]) by DS7PR11MB7859.namprd11.prod.outlook.com
  ([fe80::9f98:8f3c:a608:8396%3]) with mapi id 15.20.6433.016; Thu, 25 May 2023
- 22:28:05 +0000
-Date: Thu, 25 May 2023 15:28:01 -0700
+ 22:29:54 +0000
+Date: Thu, 25 May 2023 15:29:51 -0700
 From: Matt Roper <matthew.d.roper@intel.com>
 To: Lucas De Marchi <lucas.demarchi@intel.com>
-Message-ID: <20230525222801.GU10045@mdroper-desk1.amr.corp.intel.com>
+Message-ID: <20230525222951.GV10045@mdroper-desk1.amr.corp.intel.com>
 References: <20230525213407.3907094-1-lucas.demarchi@intel.com>
- <20230525213407.3907094-7-lucas.demarchi@intel.com>
+ <20230525213407.3907094-8-lucas.demarchi@intel.com>
 Content-Type: text/plain; charset="us-ascii"
 Content-Disposition: inline
-In-Reply-To: <20230525213407.3907094-7-lucas.demarchi@intel.com>
-X-ClientProxiedBy: SJ0PR03CA0295.namprd03.prod.outlook.com
- (2603:10b6:a03:39e::30) To DS7PR11MB7859.namprd11.prod.outlook.com
+In-Reply-To: <20230525213407.3907094-8-lucas.demarchi@intel.com>
+X-ClientProxiedBy: BYAPR01CA0032.prod.exchangelabs.com (2603:10b6:a02:80::45)
+ To DS7PR11MB7859.namprd11.prod.outlook.com
  (2603:10b6:8:da::22)
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
 X-MS-TrafficTypeDiagnostic: DS7PR11MB7859:EE_|DS0PR11MB7829:EE_
-X-MS-Office365-Filtering-Correlation-Id: 4679c2e2-cae2-4761-53a1-08db5d6f4efa
+X-MS-Office365-Filtering-Correlation-Id: 6149d075-d4d1-4dbd-8a37-08db5d6f901c
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: ONpto0xBKuXkdNBqDuucKaJE2Yeric6EHeXyMhKbvgB5r8eSFEP6EOLuXWTMti7+5M2u2aR+8Ru/8GGDCa5bxzDR6CHfvXYTR9Y8FBrsPh0BqUGECs/pkbsN3O61H5r0eJUoJ3j1jVC3fhTHBb3QPskVlTqeOESyoLrmNKivLIxU13MQONiuuhOCwmJwHonRcVngOtiOqtq/5Szw9PcXiKDzjPBB8PGCXLStkTw/petZkDMk2fyu1chrXlZjBQZDDdUs0/ksKfRa0O/DLMttmUN9D68/l8DPSZ/exfVQI7Ovn55nEVputM8aDy/zAO3cLtfdU1Uv+mxf8XZTi+oa+2mHcrZqUMYIXf2XZDYlIRNfG6PrcL23iot/evQAxXfG3hssiP4u4lUtgYNqqEOAcUuHLY4osODsVN8MjPCYRXvYpXzgC67ITH7PZuUotU367cClbUv5RsctLmWoySV6S1tr/NpgHgALHWG3GKyMylQQOFBJc1hyhll2MX+IF4Y4aAc7KEV64vMXTS+3xJZDAJD2dp07ng8R5haZN7hhJmznwfYP5IGk2YIhM1q0gTW2
+X-Microsoft-Antispam-Message-Info: 8EUCd0xtuEnyopHlp61XqcQjz2WB4UCOxrL5EH/GpEmSplK9h2kPgCoQ5Sv6K8RDu1kmVbMtSQX12NGnMVA6pstCpi0yNo6OFkV5WaRohUjzuliJmzRpVB9QJiD034beP02oI9krgOkW8fe+BDx47ADGhKUGCqHIBZl1P1chVkVvw0+36emgd1agmrnE9Lmi27ZdPZk9izTl+BeYXL7ElgQSDdK+qRsxnFslzrEkT9Rxe4hnVo0bPuk1Y+kY8Vbfozuw+mMAFjH4btOzwshRmgBiMGOrlwa6Qdrf3bRny6twsTKOqJLaCykefzXDDQhkmrcWPzjBA2Rvlspm99KJk4UllGTaUAs0reMYVIOICaKEmT9j+Aup7+a5Nl441EnW7i+kqG+6VUhp9B3J9/sX6W93VnodSW+xEoUSqTwkv1r+aRqsmYOP40clvT3kTxpabFpUuqYeZJpLyuiw8EcMUCOd1du89GyCUGIHGhoPvRQfSlOG86JjQnSumwC7BMFLhd8H1z8rSPmUhW8k8B1AFmSvl81Oa7rr6V6KeEsjhFUPmiTfnpmwee+9jp3IuMix
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
  IPV:NLI; SFV:NSPM; H:DS7PR11MB7859.namprd11.prod.outlook.com; PTR:; CAT:NONE;
  SFS:(13230028)(396003)(346002)(376002)(136003)(39860400002)(366004)(451199021)(33656002)(86362001)(6636002)(4326008)(316002)(66946007)(66556008)(66476007)(478600001)(6666004)(6486002)(6862004)(8936002)(41300700001)(5660300002)(8676002)(2906002)(38100700002)(82960400001)(6512007)(186003)(6506007)(1076003)(83380400001)(26005);
  DIR:OUT; SFP:1102; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?vT7D6y3AY+NUcUrHVFRwV6IhUe5Kc4LKi4+CEW9HeoxGzL55kcVBJWHLZ8a4?=
- =?us-ascii?Q?s1iTTkgIao2c/fkwqm/yg4eddAFpvOtDxiM+zsO8sSalZyKirSwNFILbohh0?=
- =?us-ascii?Q?pi9ZqZJ0ImFgtDZCzkTe8nanDKYeuSnJJxdj6aXcohh5pUZ5GkdMKFKZtFb4?=
- =?us-ascii?Q?8eMaoQTvDQGuqto0iGKZLCGeRQqmJZ5lAGEGz6TSMTli5YIVtCaEMnhIHbuo?=
- =?us-ascii?Q?TCuFZbUZPsgR8s3FXeWcV87gQKY2wrE7QtvsMLmhjTRxwHRHdxmIdPjBzHPn?=
- =?us-ascii?Q?diXCydB1QhC31Cyz878LlOnW4XSK9lFcuJrUoZ7G7a/CRippEFPGCSuNz0N0?=
- =?us-ascii?Q?tIkK9wy4Jkgk2TXQm2wmGqAvN57hVZAKuAoPF4i12awdJ7rA0HG+0vxnC1Hj?=
- =?us-ascii?Q?tgE8FkNGl9kv3nKLVnmhVp+Mj+cT8FdKoOZm83eMKdho1Ts0C0hvLk+xetaO?=
- =?us-ascii?Q?9gm50khoBamcPUANEYq8uG/U2/5s/YFQ4PVX23DTtcKyeUB1ULtsRaNec/R8?=
- =?us-ascii?Q?O/5ilMbprE6g7zlqwjG93je7sTqc3VcJAxf3SVoso8upbwOW/6JDyxmrQPRT?=
- =?us-ascii?Q?/tvXhnZc6pbooR3RN95uXTaFu+FN5ac/goD2I9nEzVxmVZkvwmuPs8D2dIeY?=
- =?us-ascii?Q?z2ySHfdUk1K3T50FbmrI7uhDmsFYWy7rl/+HotQPMHy3gMoNCwn6WY5MnzIu?=
- =?us-ascii?Q?XhXnwJZ38c9gvIjG7aif/M9Tsn3g4jN+ljGAaCUYlArHJLoPxUXoo8Mu2pZK?=
- =?us-ascii?Q?sraFaYLmTF41jKF89Cp3nlc+r9rZaSfamepQ5IrygjUyLjWvJTT3Tue5EZxZ?=
- =?us-ascii?Q?nmcluyS8iT5gjcbX+QJRwaIK0WVXONgmusFRmxHlU/VNHszdm+br64zeZYNW?=
- =?us-ascii?Q?2kbaY2NkZue+872cceycqzqvxCi0loXPmfg5Sn6/9nA/F3H54wH4hGiBjPLP?=
- =?us-ascii?Q?410bkcYzobIuWkBU96fB6MUkYsBhgUOzl9i9D7uw5syh1XSgs++us4DzdqV2?=
- =?us-ascii?Q?m1x+pliQQLkDdYQTegUE4k5OEapl8Is/4rvl7uMMemAum+q1OBVikERfDII0?=
- =?us-ascii?Q?lG4r50hxutCQywhY1XVnMczYL9zTmQ7+7pkn1pBhPHOy/pMO+rT6aZ5P9xNQ?=
- =?us-ascii?Q?UT9bk/fUi5Rpouope2nmw3I6e27TZUrB7onNmoZRx7fwkf2a9VyAC5GbgC5D?=
- =?us-ascii?Q?4/Nwt+xeiqQQFhEuQS7VIAAzzXNwswChYoGFhdV92eSukHI7FgEWuHb0E3I5?=
- =?us-ascii?Q?8ZTF0w7poG5ahhJ5gNGqhgIVIKu1bkIH3Uqiy6dMKywD+vaQ4/GI1ILo9tw1?=
- =?us-ascii?Q?Ef+d09hV4uE9QeNAsaLQUAWlKMIzBx6Ebv3zFkSm9H4Q8Mlx4kwPZ58IdjIQ?=
- =?us-ascii?Q?QJp6df6FRrTEprBeXX9Ajcml8vN9PupudJ1jyCnmD5NjYzgQ8eNW7Otrn9jb?=
- =?us-ascii?Q?ikNEeTKYDbjldhY765NZfAQeIjWFGtfRpnqy6EPdTeJjOsKIkLyh0vZfuTNs?=
- =?us-ascii?Q?LZqifZXLKZYuzcdzWoRNtnIU3wLDxPnS+PDUCzue6T+Ujjzty86EWj5SWd3X?=
- =?us-ascii?Q?3qZnRSlWUvZq1tn6ZFsh2ITW+5Zs9u8I73qM4G+cEv31ULQ8jjQoyUc3MHD7?=
- =?us-ascii?Q?ZQ=3D=3D?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: 4679c2e2-cae2-4761-53a1-08db5d6f4efa
+X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?C/PlHRULWGj9WuBLzJTsUezi7C1ILfihchPCbTnyP1qAq0u5mTMr1+L7Gu7l?=
+ =?us-ascii?Q?UytSr3EJhUgZgnf3kuLG1GsC3JCGWl2Es9MQOHnV5jxc4uKfa4ne8deeIjiW?=
+ =?us-ascii?Q?IvoT8uP/GfawZxqtuV56qCILIqlvevw4LfErdGy/KZvvXq3IBS+Y9pUtg8AN?=
+ =?us-ascii?Q?ZhiPNu/ZKlJKek/AtuGXhkHjwf+yrrkUrXx7JYvEo2Zx6M82PH1gX4VslXSB?=
+ =?us-ascii?Q?HpwaPGUbFtuylXNUfSoOltsDJ7ob6qOwxPT5GdQyRLl4d+HU0tBygFui+Z2+?=
+ =?us-ascii?Q?6I4JCbr21K4Uxl2aMGxyE4BbvW3L+Hu8e3+4vBXDCQZbAdfctIkoG4UpLgDM?=
+ =?us-ascii?Q?Jzt5wPYG++BvHQfPyrQzp25t9Go1q1MG7YAi8MzTcP2XFbkAGaZxMlnJz57s?=
+ =?us-ascii?Q?sh9q6EuqaxC/GlXMoLhvYtNglZS0sgSM5cPe4S8khpoNF08TZ+V5ZB7yZIC/?=
+ =?us-ascii?Q?Dq6YLk7jGjE4be6/vCicg1cr6F88OAqkVth9/2nt1LZXbGSfm1RJ3eKJbQpp?=
+ =?us-ascii?Q?AveXgRKxfHQNdLn5zxGEeRILEtpT/xJRPFca9Qf5OTE7X8qglo/Gnwl9L6w9?=
+ =?us-ascii?Q?Xijq4QyDMRJAFvcT2d+ca5s1qYQjcjDEAkKkVZk0SmnDU+SFPrShNFwirxR7?=
+ =?us-ascii?Q?e6HM2Aae3o7OczGwtA1GReHdOE0XELgCjRr6m2ySIlCuZKl/k4uzX7sKvOXx?=
+ =?us-ascii?Q?tpWEDCFXua+Ok88ODw8JmE9UHsifVBf+KZLSbKxWijaevqcYJKrQpJ9d8OQk?=
+ =?us-ascii?Q?G0vgTL0ZhDpW3E7NymTQCFPHIK/Kjbi9sYkm2m61PYDz5+slbqHSS9JlAtxT?=
+ =?us-ascii?Q?MPkRw0QCdE4OPha5DUre5Tbf9iMZBhHFQdLODC42T1sdk1Aw0TmxlCdKwlln?=
+ =?us-ascii?Q?OODPIBRV6qEYPq/ig1FpPSvI0Nao8Wvu1FnvJBCzfpSxWow4TxFAmZROxUZ5?=
+ =?us-ascii?Q?FZgSsDWGQA+tciUBthoHZup6Rp83IwhN6xv74kdVa2YynPo8bCHfQ5hnGXnJ?=
+ =?us-ascii?Q?Nsa//wjHsn8WmGtiTnNr3m4TRwjKe0/lcLzIm6rM0JhWdqM8EaNtbAvg/q9G?=
+ =?us-ascii?Q?45mQN5yqYakpRLLKAYyifg1HBk9nl72YM/V4DPP2wNjfoMBrXxGY3cKiNwAP?=
+ =?us-ascii?Q?3p2n9/s4qeuBiHKQMg0+HSojdgtHc6qflO+g+SxYTWsCCx0kBU/nxNBnDl2K?=
+ =?us-ascii?Q?0eQMPBpC5rckiFIQlpYmkYAVpGCwYfeUBfmSpxxWgWT7KV60DaInaB8+PE/F?=
+ =?us-ascii?Q?Qpcqoczo16lMBH9O5ZCX+Y2vtAWoeE6xR8zKV2ZvHUkmJOJNrfTIcpqQxFwZ?=
+ =?us-ascii?Q?j4/tYXNiEkwqZzAM2oM2/SwvmdUQh6nLfN2bTxQjwx8fAtUGKipyEnTy5CfI?=
+ =?us-ascii?Q?uQEHhmP6A3jAuNQRNBvxmsUTtdY0YQH71IC4l9qEYa3qlJgcUU1TJxK7PUsl?=
+ =?us-ascii?Q?/RAaBSe/JGpf00lENFoADOTyH1mE/R6YXBHVrDTLXT0hdnyml3zDxj3T3T1D?=
+ =?us-ascii?Q?Txr3yztlg4VMjp58Z+ymVwkVWVz9jGC4Xf8IWNKGQUaYYIB/qjZYFa/Tnf2M?=
+ =?us-ascii?Q?24QnMXjh7pbST3z5F8RaoWM2VplbY2IOHS5IDqeU8+s1WIW0PHQpD0XkPGFs?=
+ =?us-ascii?Q?xw=3D=3D?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: 6149d075-d4d1-4dbd-8a37-08db5d6f901c
 X-MS-Exchange-CrossTenant-AuthSource: DS7PR11MB7859.namprd11.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 25 May 2023 22:28:05.3016 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 25 May 2023 22:29:54.5849 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: Dn8vmTNGcukkWTs0vIzf/Yj+O2j9O5bX/Id1yNVS4bjtllwHD8SzmISiVtALpl+NTIuL9+Z3ttCY1h/1jBcXoPY/vmBM/ZaW2731JgMKh9s=
+X-MS-Exchange-CrossTenant-UserPrincipalName: FqsWrJtn4YEuujBqAhmPqX8HOBBtyYhQ3MoMedmTCJYv9kTMintZUOOE46VpfXQm/gN2Rpec/il8xXRIcIAx97T/6td7QNVYNUgUEw4OM9E=
 X-MS-Exchange-Transport-CrossTenantHeadersStamped: DS0PR11MB7829
 X-OriginatorOrg: intel.com
-Subject: Re: [Intel-xe] [PATCH v4 06/21] drm/xe/wa: Track gt/engine/lrc
- active workarounds
+Subject: Re: [Intel-xe] [PATCH v4 07/21] drm/xe/debugfs: Dump active
+ workarounds
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -151,158 +151,104 @@ Cc: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Thu, May 25, 2023 at 02:33:52PM -0700, Lucas De Marchi wrote:
-> Allocate the data to track workarounds on each gt of the device,
-> and pass that to RTP so the active workarounds are tracked.
+On Thu, May 25, 2023 at 02:33:53PM -0700, Lucas De Marchi wrote:
+> Add a "workarounds" node in debugfs that can dump all the active
+> workarounds using the information recorded by rtp infra when those
+> workarounds were processed.
 > 
-> Even if the workarounds available until know are mostly device
-
-s/know/now/
-
-> or platform centric, with the different IP versions for media and
-> graphics starting with MTL, it's possible that some workarounds
-> need to be applied only on select GTs. Also, given the workaround
-> database is per IP block, for tracking purposes there is no need to
-> differentiate the workarounds per engine class. Hence the bitmask
-> tro track active workarounds can be tracked per GT.
-
-s/tro/to/
-
-> 
-> v2: Move the tracking from per-device to per-GT basis (Matt Roper)
+> v2: move workarounds to be reported per-GT
 > 
 > Signed-off-by: Lucas De Marchi <lucas.demarchi@intel.com>
+
+Reviewed-by: Matt Roper <matthew.d.roper@intel.com>
+
 > ---
->  drivers/gpu/drm/xe/xe_gt.c       |  5 +++++
->  drivers/gpu/drm/xe/xe_gt_types.h | 10 +++++++++
->  drivers/gpu/drm/xe/xe_wa.c       | 37 ++++++++++++++++++++++++++++++++
->  drivers/gpu/drm/xe/xe_wa.h       |  1 +
->  4 files changed, 53 insertions(+)
+>  drivers/gpu/drm/xe/xe_gt_debugfs.c | 12 ++++++++++++
+>  drivers/gpu/drm/xe/xe_wa.c         | 17 +++++++++++++++++
+>  drivers/gpu/drm/xe/xe_wa.h         |  2 ++
+>  3 files changed, 31 insertions(+)
 > 
-> diff --git a/drivers/gpu/drm/xe/xe_gt.c b/drivers/gpu/drm/xe/xe_gt.c
-> index 80d42c7c7cfa..d139554316d4 100644
-> --- a/drivers/gpu/drm/xe/xe_gt.c
-> +++ b/drivers/gpu/drm/xe/xe_gt.c
-> @@ -315,6 +315,11 @@ int xe_gt_init_early(struct xe_gt *gt)
->  		return err;
+> diff --git a/drivers/gpu/drm/xe/xe_gt_debugfs.c b/drivers/gpu/drm/xe/xe_gt_debugfs.c
+> index 8bf441e850a0..339ecd5fad9b 100644
+> --- a/drivers/gpu/drm/xe/xe_gt_debugfs.c
+> +++ b/drivers/gpu/drm/xe/xe_gt_debugfs.c
+> @@ -19,6 +19,7 @@
+>  #include "xe_reg_sr.h"
+>  #include "xe_reg_whitelist.h"
+>  #include "xe_uc_debugfs.h"
+> +#include "xe_wa.h"
 >  
->  	xe_reg_sr_init(&gt->reg_sr, "GT", gt_to_xe(gt));
-> +
-> +	err = xe_wa_init(gt);
-> +	if (err)
-> +		return err;
-> +
->  	xe_wa_process_gt(gt);
->  	xe_tuning_process_gt(gt);
->  
-> diff --git a/drivers/gpu/drm/xe/xe_gt_types.h b/drivers/gpu/drm/xe/xe_gt_types.h
-> index 7c47d67aa8be..017ab60f2498 100644
-> --- a/drivers/gpu/drm/xe/xe_gt_types.h
-> +++ b/drivers/gpu/drm/xe/xe_gt_types.h
-> @@ -359,6 +359,16 @@ struct xe_gt {
->  	 *    of a steered operation
->  	 */
->  	spinlock_t mcr_lock;
-> +
-> +	/** @wa_active: keep track of active workarounds */
-> +	struct {
-> +		/** @gt: bitmap with active GT workarounds */
-> +		unsigned long *gt;
-> +		/** @engine: bitmap with active engine workarounds */
-> +		unsigned long *engine;
-> +		/** @lrc: bitmap with active LRC workarounds */
-> +		unsigned long *lrc;
-> +	} wa_active;
->  };
->  
->  #endif
-> diff --git a/drivers/gpu/drm/xe/xe_wa.c b/drivers/gpu/drm/xe/xe_wa.c
-> index 557e90d79f0b..3e2a3f678f36 100644
-> --- a/drivers/gpu/drm/xe/xe_wa.c
-> +++ b/drivers/gpu/drm/xe/xe_wa.c
-> @@ -5,6 +5,7 @@
->  
->  #include "xe_wa.h"
->  
-> +#include <drm/drm_managed.h>
->  #include <kunit/visibility.h>
->  #include <linux/compiler_types.h>
->  
-> @@ -581,6 +582,8 @@ void xe_wa_process_gt(struct xe_gt *gt)
+>  static struct xe_gt *node_to_gt(struct drm_info_node *node)
 >  {
->  	struct xe_rtp_process_ctx ctx = XE_RTP_PROCESS_CTX_INITIALIZER(gt);
->  
-> +	xe_rtp_process_ctx_enable_active_tracking(&ctx, gt->wa_active.gt,
-> +						  ARRAY_SIZE(gt_was));
->  	xe_rtp_process_to_sr(&ctx, gt_was, &gt->reg_sr);
->  }
->  EXPORT_SYMBOL_IF_KUNIT(xe_wa_process_gt);
-> @@ -597,6 +600,8 @@ void xe_wa_process_engine(struct xe_hw_engine *hwe)
->  {
->  	struct xe_rtp_process_ctx ctx = XE_RTP_PROCESS_CTX_INITIALIZER(hwe);
->  
-> +	xe_rtp_process_ctx_enable_active_tracking(&ctx, hwe->gt->wa_active.engine,
-> +						  ARRAY_SIZE(engine_was));
->  	xe_rtp_process_to_sr(&ctx, engine_was, &hwe->reg_sr);
+> @@ -127,6 +128,16 @@ static int register_save_restore(struct seq_file *m, void *data)
+>  	return 0;
 >  }
 >  
-> @@ -612,5 +617,37 @@ void xe_wa_process_lrc(struct xe_hw_engine *hwe)
->  {
->  	struct xe_rtp_process_ctx ctx = XE_RTP_PROCESS_CTX_INITIALIZER(hwe);
->  
-> +	xe_rtp_process_ctx_enable_active_tracking(&ctx, hwe->gt->wa_active.lrc,
-> +						  ARRAY_SIZE(lrc_was));
->  	xe_rtp_process_to_sr(&ctx, lrc_was, &hwe->reg_lrc);
->  }
-> +
-> +/**
-> + * xe_wa_init - initialize xe with workaround bookkeeping
-
-s/xe/gt/
-
-Aside from the typos,
-
-        Reviewed-by: Matt Roper <matthew.d.roper@intel.com>
-
-> + * @gt: GT instance to initialize
-> + *
-> + * Returns 0 for success, negative error code otherwise.
-> + */
-> +int xe_wa_init(struct xe_gt *gt)
+> +static int workarounds(struct seq_file *m, void *data)
 > +{
-> +	struct xe_device *xe = gt_to_xe(gt);
-> +	size_t n_lrc, n_engine, n_gt, total;
-> +	unsigned long *p;
+> +	struct xe_gt *gt = node_to_gt(m->private);
+> +	struct drm_printer p = drm_seq_file_printer(m);
 > +
-> +	n_gt = BITS_TO_LONGS(ARRAY_SIZE(gt_was));
-> +	n_engine = BITS_TO_LONGS(ARRAY_SIZE(engine_was));
-> +	n_lrc = BITS_TO_LONGS(ARRAY_SIZE(lrc_was));
-> +	total = n_gt + n_engine + n_lrc;
-> +
-> +	p = drmm_kzalloc(&xe->drm, sizeof(*p) * total, GFP_KERNEL);
-> +	if (!p)
-> +		return -ENOMEM;
-> +
-> +	gt->wa_active.gt = p;
-> +	p += n_gt;
-> +	gt->wa_active.engine = p;
-> +	p += n_engine;
-> +	gt->wa_active.lrc = p;
+> +	xe_wa_dump(gt, &p);
 > +
 > +	return 0;
 > +}
+> +
+>  static const struct drm_info_list debugfs_list[] = {
+>  	{"hw_engines", hw_engines, 0},
+>  	{"force_reset", force_reset, 0},
+> @@ -135,6 +146,7 @@ static const struct drm_info_list debugfs_list[] = {
+>  	{"steering", steering, 0},
+>  	{"ggtt", ggtt, 0},
+>  	{"register-save-restore", register_save_restore, 0},
+> +	{"workarounds", workarounds, 0},
+>  };
+>  
+>  void xe_gt_debugfs_register(struct xe_gt *gt)
+> diff --git a/drivers/gpu/drm/xe/xe_wa.c b/drivers/gpu/drm/xe/xe_wa.c
+> index 3e2a3f678f36..f578544c7646 100644
+> --- a/drivers/gpu/drm/xe/xe_wa.c
+> +++ b/drivers/gpu/drm/xe/xe_wa.c
+> @@ -651,3 +651,20 @@ int xe_wa_init(struct xe_gt *gt)
+>  
+>  	return 0;
+>  }
+> +
+> +void xe_wa_dump(struct xe_gt *gt, struct drm_printer *p)
+> +{
+> +	size_t idx;
+> +
+> +	drm_printf(p, "GT Workarounds\n");
+> +	for_each_set_bit(idx, gt->wa_active.gt, ARRAY_SIZE(gt_was))
+> +		drm_printf_indent(p, 1, "%s\n", gt_was[idx].name);
+> +
+> +	drm_printf(p, "\nEngine Workarounds\n");
+> +	for_each_set_bit(idx, gt->wa_active.engine, ARRAY_SIZE(engine_was))
+> +		drm_printf_indent(p, 1, "%s\n", engine_was[idx].name);
+> +
+> +	drm_printf(p, "\nLRC Workarounds\n");
+> +	for_each_set_bit(idx, gt->wa_active.lrc, ARRAY_SIZE(lrc_was))
+> +		drm_printf_indent(p, 1, "%s\n", lrc_was[idx].name);
+> +}
 > diff --git a/drivers/gpu/drm/xe/xe_wa.h b/drivers/gpu/drm/xe/xe_wa.h
-> index cd2307d58795..eae05bcecc68 100644
+> index eae05bcecc68..defefa5d9611 100644
 > --- a/drivers/gpu/drm/xe/xe_wa.h
 > +++ b/drivers/gpu/drm/xe/xe_wa.h
-> @@ -9,6 +9,7 @@
+> @@ -6,6 +6,7 @@
+>  #ifndef _XE_WA_
+>  #define _XE_WA_
+>  
+> +struct drm_printer;
 >  struct xe_gt;
 >  struct xe_hw_engine;
 >  
-> +int xe_wa_init(struct xe_gt *gt);
->  void xe_wa_process_gt(struct xe_gt *gt);
->  void xe_wa_process_engine(struct xe_hw_engine *hwe);
+> @@ -15,5 +16,6 @@ void xe_wa_process_engine(struct xe_hw_engine *hwe);
 >  void xe_wa_process_lrc(struct xe_hw_engine *hwe);
+>  
+>  void xe_reg_whitelist_process_engine(struct xe_hw_engine *hwe);
+> +void xe_wa_dump(struct xe_gt *gt, struct drm_printer *p);
+>  
+>  #endif
 > -- 
 > 2.40.1
 > 
