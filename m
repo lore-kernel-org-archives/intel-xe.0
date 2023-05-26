@@ -4,49 +4,46 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 784CDC77B7A
-	for <intel-xe@archiver.kernel.org>; Fri, 26 May 2023 19:06:28 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 050CEC77B7C
+	for <intel-xe@archiver.kernel.org>; Fri, 26 May 2023 19:08:41 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2E6FB10E1EE;
-	Fri, 26 May 2023 19:06:28 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id CBB1C10E05F;
+	Fri, 26 May 2023 19:08:41 +0000 (UTC)
 Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 749CD10E1EB
- for <intel-xe@lists.freedesktop.org>; Fri, 26 May 2023 19:06:22 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 65A9E10E033
+ for <intel-xe@lists.freedesktop.org>; Fri, 26 May 2023 19:08:40 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1685127982; x=1716663982;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=Qx8On0/nZiB5yUD7ftS9VBeUEUvY6jSvPysjR3u1zgc=;
- b=FFK1FWetKquUEUyJ92cTR30QK+bkdQPNPsA1ag0bpVY4ARkQh/EomD5/
- FY/BeR2fDVS4p3KqAecMnVC0wl9YWJs9byj063HTf3Mmf9M2J99KCrxkV
- 0SBMLtaLCYwy5gdAoi0qr5aULz6M9nSn5l5PGarQVmljEk0S3qjdFxKS6
- lWpOIZjbSKpZN4Pet2tNrxMG+CHNykznew5nXTCDbw042A9dcn4ySt73B
- hRHpVfL5vH9CjG9gFC6UdJWJe9k1Mu3aW9eQ/5okdJVD8MSCQd3gE4cU+
- B3fqAhZDhC8nIz+GJhJKruTqCdAMons1ZOIiBaTzh8B/DmB8daWfzvQr2 g==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10722"; a="440636661"
-X-IronPort-AV: E=Sophos;i="6.00,195,1681196400"; d="scan'208";a="440636661"
+ t=1685128120; x=1716664120;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=8BHEwSKL5ghiZMdikYb5dBzRlgOju2fnG6Gm4cCyOcY=;
+ b=ElXkKOKbtSMvSIY8TM9B/YwNQrY+sDG65gsy/8jBwQfox1LmkA5/28c7
+ KG4cmIfX/Lj7MzleE9TJ8qNTE5lQXUzKJlUdZRQ4vd/Dzi6cS/a6gphYj
+ QNH9XjYgROdTcFiK7QMkhfSIwfcBXv/xXFiaordUCskpPc4nzeLHIMpDc
+ dU4XHZVxTHbkqz+6ZiVvXngu4DFbrGzsTgffZ8ehtdTlRPId32Xm9b7uc
+ mdb7vXCcHVrRjwwJ/qe0AgJAH/LvnGjfRFvpXX13kYIWxPk11cTKlHlnJ
+ BOUTDd2joflCSF/caPd3OgnN4qTFVSZY5ViIS754ZZGQ1A/I8J0bZo3xi A==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10722"; a="440637341"
+X-IronPort-AV: E=Sophos;i="6.00,195,1681196400"; d="scan'208";a="440637341"
 Received: from orsmga006.jf.intel.com ([10.7.209.51])
  by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 26 May 2023 12:06:22 -0700
+ 26 May 2023 12:08:39 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10722"; a="682817067"
-X-IronPort-AV: E=Sophos;i="6.00,195,1681196400"; d="scan'208";a="682817067"
-Received: from josouza-mobl2.bz.intel.com ([10.87.243.88])
+X-IronPort-AV: E=McAfee;i="6600,9927,10722"; a="682817868"
+X-IronPort-AV: E=Sophos;i="6.00,195,1681196400"; d="scan'208";a="682817868"
+Received: from omurra1x-mobl.ger.corp.intel.com (HELO 2082b82b753b.intel.com)
+ ([10.252.55.34])
  by orsmga006-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 26 May 2023 12:06:21 -0700
-From: =?UTF-8?q?Jos=C3=A9=20Roberto=20de=20Souza?= <jose.souza@intel.com>
+ 26 May 2023 12:08:38 -0700
+From: Francois Dugast <francois.dugast@intel.com>
 To: intel-xe@lists.freedesktop.org
-Date: Fri, 26 May 2023 12:06:09 -0700
-Message-Id: <20230526190609.61529-3-jose.souza@intel.com>
-X-Mailer: git-send-email 2.40.1
-In-Reply-To: <20230526190609.61529-1-jose.souza@intel.com>
-References: <20230526190609.61529-1-jose.souza@intel.com>
+Date: Fri, 26 May 2023 19:08:19 +0000
+Message-Id: <20230526190824.7-1-francois.dugast@intel.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-xe] [PATCH 3/3] drm/xe: Replace PVC check by engine type
- check
+Subject: [Intel-xe] [PATCH 0/5] drm/xe: uAPI cleanup
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -61,43 +58,22 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-__emit_job_gen12_render_compute() masks some PIPE_CONTROL bits that
-do not exist in platforms without render engine.
-So here replacing the PVC check by something more generic that will
-support any future platforms without render engine.
+This series addresses some feedback on xe_drm.h provided here:
+https://lists.freedesktop.org/archives/intel-xe/2023-May/004704.html
 
-Signed-off-by: José Roberto de Souza <jose.souza@intel.com>
----
- drivers/gpu/drm/xe/xe_ring_ops.c | 6 +++---
- 1 file changed, 3 insertions(+), 3 deletions(-)
+It is based on xe-rev1-2023-05-02, not on drm-xe-next, so it will
+likely break CI.
 
-diff --git a/drivers/gpu/drm/xe/xe_ring_ops.c b/drivers/gpu/drm/xe/xe_ring_ops.c
-index 4f3ef39109b9b..ecae5101cfad6 100644
---- a/drivers/gpu/drm/xe/xe_ring_ops.c
-+++ b/drivers/gpu/drm/xe/xe_ring_ops.c
-@@ -251,11 +251,11 @@ static void __emit_job_gen12_render_compute(struct xe_sched_job *job,
- 	u32 ppgtt_flag = get_ppgtt_flag(job);
- 	struct xe_gt *gt = job->engine->gt;
- 	struct xe_device *xe = gt_to_xe(gt);
--	bool pvc = xe->info.platform == XE_PVC;
-+	bool lacks_render = !(xe->gt[0].info.engine_mask & XE_HW_ENGINE_RCS_MASK);
- 	u32 mask_flags = 0;
- 
- 	dw[i++] = preparser_disable(true);
--	if (pvc)
-+	if (lacks_render)
- 		mask_flags = PIPE_CONTROL_3D_ARCH_FLAGS;
- 	else if (job->engine->class == XE_ENGINE_CLASS_COMPUTE)
- 		mask_flags = PIPE_CONTROL_3D_ENGINE_FLAGS;
-@@ -277,7 +277,7 @@ static void __emit_job_gen12_render_compute(struct xe_sched_job *job,
- 						job->user_fence.value,
- 						dw, i);
- 
--	i = emit_pipe_imm_ggtt(xe_lrc_seqno_ggtt_addr(lrc), seqno, pvc, dw, i);
-+	i = emit_pipe_imm_ggtt(xe_lrc_seqno_ggtt_addr(lrc), seqno, lacks_render, dw, i);
- 
- 	i = emit_user_interrupt(dw, i);
- 
+Francois Dugast (5):
+  drm/xe: Use SPDX-License-Identifier instead of license text
+  drm/xe: Group engine related structs
+  drm/xe: Move defines after relevant fields
+  drm/xe: Document usage of struct drm_xe_device_query
+  drm/xe: Fix some formatting issues in uAPI
+
+ include/uapi/drm/xe_drm.h | 152 ++++++++++++++++++++------------------
+ 1 file changed, 80 insertions(+), 72 deletions(-)
+
 -- 
-2.40.1
+2.34.1
 
