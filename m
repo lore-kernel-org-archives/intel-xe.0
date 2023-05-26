@@ -4,26 +4,24 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6FD2CC77B7A
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0AD46C77B7C
 	for <intel-xe@archiver.kernel.org>; Fri, 26 May 2023 12:11:13 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3D03B10E06F;
-	Fri, 26 May 2023 12:11:13 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id CDCCE10E7F7;
+	Fri, 26 May 2023 12:11:12 +0000 (UTC)
 Received: from mblankhorst.nl (lankhorst.se
  [IPv6:2a02:2308:0:7ec:e79c:4e97:b6c4:f0ae])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8AB8310E7F3
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7604110E06F
  for <intel-xe@lists.freedesktop.org>; Fri, 26 May 2023 12:11:10 +0000 (UTC)
 From: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
 To: intel-xe@lists.freedesktop.org
-Date: Fri, 26 May 2023 14:10:57 +0200
-Message-Id: <20230526121101.1619278-2-maarten.lankhorst@linux.intel.com>
+Date: Fri, 26 May 2023 14:10:56 +0200
+Message-Id: <20230526121101.1619278-1-maarten.lankhorst@linux.intel.com>
 X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20230526121101.1619278-1-maarten.lankhorst@linux.intel.com>
-References: <20230526121101.1619278-1-maarten.lankhorst@linux.intel.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-xe] [PATCH 1/5] drm/xe: Kill small race with userptr
- invalidation
+Subject: [Intel-xe] [PATCH 0/5] Robustness fixes with eviction and
+ invalidation.
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -38,35 +36,26 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Theoretically, we can hit a small race where we hit an invalidation
-after taking the lock in read-mode. In this case, take it in write
-mode instead.
+When looking at issue 239, I found quite a few bugs related to eviction and
+invalidation. Patch #2 allows me to create an IGT that tests for those bugs,
+specifically patch 3 and 5. Patch 4 would be possible to test, but requires
+a more considerate test.
 
-I don't think this is really an issue, but more of a robustness thing.
+Maarten Lankhorst (5):
+  drm/xe: Kill small race with userptr invalidation
+  drm/xe: Add debugfs files to evict everything.
+  drm/xe: Fix extobj dropping issue.
+  drm/xe: Prevent evicting for page tables
+  drm/xe: Return the correct error when dma_resv_wait_timeout fails
 
-Signed-off-by: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
----
- drivers/gpu/drm/xe/xe_exec.c | 7 +++++++
- 1 file changed, 7 insertions(+)
+ drivers/gpu/drm/xe/xe_bo.c      |  6 +--
+ drivers/gpu/drm/xe/xe_bo.h      |  7 +--
+ drivers/gpu/drm/xe/xe_debugfs.c | 17 +++++-
+ drivers/gpu/drm/xe/xe_exec.c    |  7 +++
+ drivers/gpu/drm/xe/xe_pt.c      |  3 +-
+ drivers/gpu/drm/xe/xe_vm.c      | 95 ++++++++++++++++++++-------------
+ 6 files changed, 90 insertions(+), 45 deletions(-)
 
-diff --git a/drivers/gpu/drm/xe/xe_exec.c b/drivers/gpu/drm/xe/xe_exec.c
-index e44076ee2e11..187108c4be6d 100644
---- a/drivers/gpu/drm/xe/xe_exec.c
-+++ b/drivers/gpu/drm/xe/xe_exec.c
-@@ -256,6 +256,13 @@ int xe_exec_ioctl(struct drm_device *dev, void *data, struct drm_file *file)
- 		/* We don't allow execs while the VM is in error state */
- 		err = down_read_interruptible(&vm->lock);
- 		write_locked = false;
-+
-+		/* Userptr invalidation while we were still acquiring lock? */
-+		if (!err && !xe_vm_no_dma_fences(vm) && xe_vm_userptr_check_repin(vm)) {
-+			up_read(&vm->lock);
-+			err = down_write_killable(&vm->lock);
-+			write_locked = true;
-+		}
- 	}
- 	if (err)
- 		goto err_syncs;
 -- 
 2.34.1
 
