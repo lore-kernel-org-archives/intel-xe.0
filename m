@@ -4,49 +4,47 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 91592C7EE2E
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7C4AAC77B7A
 	for <intel-xe@archiver.kernel.org>; Fri, 26 May 2023 19:06:23 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3FD7810E1ED;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0985110E1EB;
 	Fri, 26 May 2023 19:06:23 +0000 (UTC)
 Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3134C10E1ED
- for <intel-xe@lists.freedesktop.org>; Fri, 26 May 2023 19:06:21 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1857A10E1EB
+ for <intel-xe@lists.freedesktop.org>; Fri, 26 May 2023 19:06:20 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
  t=1685127981; x=1716663981;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=TTYpqaB0UVHd8N9i1rFCEGcvb9MKUBMZnwsMfPtiHgo=;
- b=WcjxY8iSNS4hGqEXq8ruxHO1UlsCbrxHFNG9CNqYolMxeR66LAz3fEwt
- roPKLZuvTtmsEqasgXZaDUgbPkludwKoGp8woVoNh8GCWmkGMHdr+SFk/
- hkG59mZy39Si0HGH7iooo41aJddHp/mHIDY+8bFFU92jzFHS/diwVgTbb
- ofPJ6IY/3frxSgkEJWgXTVIDBtCrmJ8AK0+vGNWUNWoMGXmsnNdAs0xqi
- F3JIuZ1pk/NjCZKK+LIR2jnTDe9UZUQ04VZv4Hp00UMOPWR/vAzNUJLE0
- CJJe84qUx6TojssPIvgm/KD+uuB9gJT0ZzgDqO6xQwi9dHqYZ9dJ1kStT w==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10722"; a="440636657"
-X-IronPort-AV: E=Sophos;i="6.00,195,1681196400"; d="scan'208";a="440636657"
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=bGOtQBeaurhwAfkdtYCxhlCbo8gWMmXbm9a6fZEF8YM=;
+ b=cgvN0FFryt/oPB8jN4b1ttgD812IyDh35pA9Qf6ZBkswDygpKCfMhIR8
+ N2JY89I7sViVejFRdeaRwJ/CzDk/YCcddXpQVNEBZGzefkCslFXhejNa/
+ Fws1bIp/KufrQwza1AKu3iTCQP2W/h+G68i/tgni+Vh2UMZVpOneEF1U6
+ 5rV4+GMWQ102TXxdClSPL9go3ipde0YrjokY8nA1+4MJMQmlPvIZfpfg6
+ C93KaeJ9jMq3GhHtWCFok6qQ1niDqeoFatYeJ4CM5jJi8Ekq5uO7KHwfm
+ paO5nNOG0EZrV1GWULrXRa/uKVmjsvuuvQJjM+6T16fJHSlXhUnYs6Uue A==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10722"; a="440636655"
+X-IronPort-AV: E=Sophos;i="6.00,195,1681196400"; d="scan'208";a="440636655"
 Received: from orsmga006.jf.intel.com ([10.7.209.51])
  by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  26 May 2023 12:06:20 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10722"; a="682817060"
-X-IronPort-AV: E=Sophos;i="6.00,195,1681196400"; d="scan'208";a="682817060"
+X-IronPort-AV: E=McAfee;i="6600,9927,10722"; a="682817047"
+X-IronPort-AV: E=Sophos;i="6.00,195,1681196400"; d="scan'208";a="682817047"
 Received: from josouza-mobl2.bz.intel.com ([10.87.243.88])
  by orsmga006-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 26 May 2023 12:06:19 -0700
+ 26 May 2023 12:06:18 -0700
 From: =?UTF-8?q?Jos=C3=A9=20Roberto=20de=20Souza?= <jose.souza@intel.com>
 To: intel-xe@lists.freedesktop.org
-Date: Fri, 26 May 2023 12:06:08 -0700
-Message-Id: <20230526190609.61529-2-jose.souza@intel.com>
+Date: Fri, 26 May 2023 12:06:07 -0700
+Message-Id: <20230526190609.61529-1-jose.souza@intel.com>
 X-Mailer: git-send-email 2.40.1
-In-Reply-To: <20230526190609.61529-1-jose.souza@intel.com>
-References: <20230526190609.61529-1-jose.souza@intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-xe] [PATCH 2/3] drm/xe: Add missing TLB invalidation to
- emit_pipe_invalidate()
+Subject: [Intel-xe] [PATCH 1/3] drm/xe: Disable interruptable wait on
+ xe_bo_move()
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -61,50 +59,32 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-i915 invalidates TLB before emit BB start, so doing the same in Xe.
+All the Xe users of dma_resv_wait_timeout() also disable the
+interruptable wait.
+And doing so this avoids DRM_IOCTL_XE_EXEC fails when under memory
+pressure.
 
+Link: https://gitlab.freedesktop.org/drm/xe/kernel/-/issues/239
+Cc: Thomas Hellström <thomas.hellstrom@linux.intel.com>
+Cc: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
 Signed-off-by: José Roberto de Souza <jose.souza@intel.com>
 ---
- drivers/gpu/drm/xe/regs/xe_gpu_commands.h | 1 +
- drivers/gpu/drm/xe/xe_ring_ops.c          | 6 ++++--
- 2 files changed, 5 insertions(+), 2 deletions(-)
+ drivers/gpu/drm/xe/xe_bo.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-diff --git a/drivers/gpu/drm/xe/regs/xe_gpu_commands.h b/drivers/gpu/drm/xe/regs/xe_gpu_commands.h
-index 0f9c5b0b8a3ba..7c7320efea739 100644
---- a/drivers/gpu/drm/xe/regs/xe_gpu_commands.h
-+++ b/drivers/gpu/drm/xe/regs/xe_gpu_commands.h
-@@ -73,6 +73,7 @@
- #define   PIPE_CONTROL_STORE_DATA_INDEX			(1<<21)
- #define   PIPE_CONTROL_CS_STALL				(1<<20)
- #define   PIPE_CONTROL_GLOBAL_SNAPSHOT_RESET		(1<<19)
-+#define   PIPE_CONTROL_TLB_INVALIDATE			(1<<18)
- #define   PIPE_CONTROL_PSD_SYNC				(1<<17)
- #define   PIPE_CONTROL_QW_WRITE				(1<<14)
- #define   PIPE_CONTROL_DEPTH_STALL			(1<<13)
-diff --git a/drivers/gpu/drm/xe/xe_ring_ops.c b/drivers/gpu/drm/xe/xe_ring_ops.c
-index d2fa0b4c8bcc0..4f3ef39109b9b 100644
---- a/drivers/gpu/drm/xe/xe_ring_ops.c
-+++ b/drivers/gpu/drm/xe/xe_ring_ops.c
-@@ -37,7 +37,8 @@
- 		PIPE_CONTROL_INDIRECT_STATE_DISABLE | \
- 		PIPE_CONTROL_FLUSH_ENABLE | \
- 		PIPE_CONTROL_TEXTURE_CACHE_INVALIDATE | \
--		PIPE_CONTROL_DC_FLUSH_ENABLE)
-+		PIPE_CONTROL_DC_FLUSH_ENABLE | \
-+		PIPE_CONTROL_TLB_INVALIDATE)
- 
- static u32 preparser_disable(bool state)
- {
-@@ -117,7 +118,8 @@ static int emit_pipe_invalidate(u32 mask_flags, u32 *dw, int i)
- 		PIPE_CONTROL_CONST_CACHE_INVALIDATE |
- 		PIPE_CONTROL_STATE_CACHE_INVALIDATE |
- 		PIPE_CONTROL_QW_WRITE |
--		PIPE_CONTROL_STORE_DATA_INDEX;
-+		PIPE_CONTROL_STORE_DATA_INDEX |
-+		PIPE_CONTROL_TLB_INVALIDATE;
- 
- 	flags &= ~mask_flags;
- 
+diff --git a/drivers/gpu/drm/xe/xe_bo.c b/drivers/gpu/drm/xe/xe_bo.c
+index 0db9c05097d07..6ed7e08269e82 100644
+--- a/drivers/gpu/drm/xe/xe_bo.c
++++ b/drivers/gpu/drm/xe/xe_bo.c
+@@ -609,7 +609,7 @@ static int xe_bo_move(struct ttm_buffer_object *ttm_bo, bool evict,
+ 	    new_mem->mem_type == XE_PL_SYSTEM) {
+ 		long timeout = dma_resv_wait_timeout(ttm_bo->base.resv,
+ 						     DMA_RESV_USAGE_BOOKKEEP,
+-						     true,
++						     false,
+ 						     MAX_SCHEDULE_TIMEOUT);
+ 		if (timeout <= 0) {
+ 			ret = -ETIME;
 -- 
 2.40.1
 
