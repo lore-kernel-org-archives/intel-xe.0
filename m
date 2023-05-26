@@ -4,48 +4,47 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id EF4EFC7EE31
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id E8B59C7EE2E
 	for <intel-xe@archiver.kernel.org>; Fri, 26 May 2023 16:44:40 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id CBDCF10E81A;
+	by gabe.freedesktop.org (Postfix) with ESMTP id C129710E818;
 	Fri, 26 May 2023 16:44:40 +0000 (UTC)
 Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3070910E823
- for <intel-xe@lists.freedesktop.org>; Fri, 26 May 2023 16:44:13 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1FF1410E817
+ for <intel-xe@lists.freedesktop.org>; Fri, 26 May 2023 16:44:14 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1685119453; x=1716655453;
+ t=1685119454; x=1716655454;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=kzF53PNN5gHe9BVxl3XvcMeOmc6wxCdDeG1yTXaCJ2A=;
- b=dBDeot6oZBrAQYm0QQ2+lRMZY/9WnQvj7J5Cv2usjORpdx1x4VRo0WOt
- IVIS10Y6vZ67pdbMIMtU2kYQgU1bLKpzUWuU7YoisNDbSSNtA3O+htQQa
- TJszKJm+PpmB6zpAKJaelGOYO1RFwnWOizBoQA5AMCZRMPzPvd2wAr33R
- RCXGp+AX7LWTKNDTPk43WS/kC7xP5Uxo03qkEw7ffG4dyjjnAEk/BI1st
- hPz0Hvh+68h7xBeBr/tn30u85Be78oOc7nz+NJHyq3nOE/tmRAOfmEC2u
- TImCUkYFz3M5ZuYhKmR+hnnXUxr7Dw9cyGyZ6DsS+k2N8kXLKgLqrIKKB w==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10722"; a="356628376"
-X-IronPort-AV: E=Sophos;i="6.00,194,1681196400"; d="scan'208";a="356628376"
+ bh=yPVf/BySO7MJ2qXKLjP+hkBR2XGrtISD8mQnSLFGR44=;
+ b=TZXg0wKwP+tJV5sfZVL8LeCJj31fazL3Z1cvKvTWA8Mm/JzsdBYpe/Uk
+ UziAklebivUXw/TRokOZ3cfq+GAtqWF+U1ihosZPKWXdCOfvYzq6CIOwf
+ 7uNip/RiAXqH3F0unFmvrx/fUfgHXOrWi0RcRoaW6DY8KRFTSLQ1JcNnZ
+ CE1WRoF/1knuDEZMhhZw4T+ptrCh+IOI3K71sPdjfk/lZT6VNeMopOJ6A
+ qjmxSy0vFOJuZTOh1SEE79q3MSWVVi4xxVQwPn8TijwKkX3ffVnuwaZDI
+ oUexxXF5kvAMjlSDv2wpVXeyaIiCpQaPi7U6j8vcxn+gHbgpUzVqYWXku w==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10722"; a="356628382"
+X-IronPort-AV: E=Sophos;i="6.00,194,1681196400"; d="scan'208";a="356628382"
 Received: from fmsmga003.fm.intel.com ([10.253.24.29])
  by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 26 May 2023 09:44:12 -0700
+ 26 May 2023 09:44:13 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10722"; a="795151457"
-X-IronPort-AV: E=Sophos;i="6.00,194,1681196400"; d="scan'208";a="795151457"
+X-IronPort-AV: E=McAfee;i="6600,9927,10722"; a="795151469"
+X-IronPort-AV: E=Sophos;i="6.00,194,1681196400"; d="scan'208";a="795151469"
 Received: from lucas-s2600cw.jf.intel.com ([10.165.21.196])
  by fmsmga003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 26 May 2023 09:44:12 -0700
+ 26 May 2023 09:44:13 -0700
 From: Lucas De Marchi <lucas.demarchi@intel.com>
 To: intel-xe@lists.freedesktop.org
-Date: Fri, 26 May 2023 09:43:41 -0700
-Message-Id: <20230526164358.86393-5-lucas.demarchi@intel.com>
+Date: Fri, 26 May 2023 09:43:45 -0700
+Message-Id: <20230526164358.86393-9-lucas.demarchi@intel.com>
 X-Mailer: git-send-email 2.40.1
 In-Reply-To: <20230526164358.86393-1-lucas.demarchi@intel.com>
 References: <20230526164358.86393-1-lucas.demarchi@intel.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-xe] [PATCH v5 04/21] drm/xe/rtp: Add "_sr" to entry/function
- names
+Subject: [Intel-xe] [PATCH v5 08/21] drm/xe/rtp: Rename STEP to GRAPHICS_STEP
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -62,450 +61,293 @@ Cc: Lucas De Marchi <lucas.demarchi@intel.com>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-The xe_rtp_process() function and xe_rtp_entry depend on the
-save-restore struct. In future it will be desired to process rtp rules,
-regardless of adding them to a save-restore. Rename the struct and
-function so the intent is clear and the name is freed for future uses.
+Rename the RTP match in order to prepare the code base to check for the
+media version. Up until MTL, the graphics vs media distinction wrt to
+stepping was not ver relevant as they were the same GT. However, with
+MTL this is no longer true.
 
 Reviewed-by: Matt Roper <matthew.d.roper@intel.com>
 Signed-off-by: Lucas De Marchi <lucas.demarchi@intel.com>
 ---
- drivers/gpu/drm/xe/tests/xe_rtp_test.c | 22 +++++++++++-----------
- drivers/gpu/drm/xe/xe_hw_engine.c      |  8 ++++----
- drivers/gpu/drm/xe/xe_reg_whitelist.c  |  4 ++--
- drivers/gpu/drm/xe/xe_rtp.c            | 26 ++++++++++++++------------
- drivers/gpu/drm/xe/xe_rtp.h            | 20 ++++++++++----------
- drivers/gpu/drm/xe/xe_rtp_types.h      |  4 ++--
- drivers/gpu/drm/xe/xe_tuning.c         |  8 ++++----
- drivers/gpu/drm/xe/xe_wa.c             | 12 ++++++------
- 8 files changed, 53 insertions(+), 51 deletions(-)
+ drivers/gpu/drm/xe/xe_rtp.c       |  2 +-
+ drivers/gpu/drm/xe/xe_rtp.h       | 16 ++++----
+ drivers/gpu/drm/xe/xe_rtp_types.h |  2 +-
+ drivers/gpu/drm/xe/xe_wa.c        | 64 ++++++++++++++++++-------------
+ 4 files changed, 47 insertions(+), 37 deletions(-)
 
-diff --git a/drivers/gpu/drm/xe/tests/xe_rtp_test.c b/drivers/gpu/drm/xe/tests/xe_rtp_test.c
-index f96ef1987719..ab6f7a47db50 100644
---- a/drivers/gpu/drm/xe/tests/xe_rtp_test.c
-+++ b/drivers/gpu/drm/xe/tests/xe_rtp_test.c
-@@ -36,7 +36,7 @@ struct rtp_test_case {
- 	u32 expected_clr_bits;
- 	unsigned long expected_count;
- 	unsigned int expected_sr_errors;
--	const struct xe_rtp_entry *entries;
-+	const struct xe_rtp_entry_sr *entries;
- };
- 
- static bool match_yes(const struct xe_gt *gt, const struct xe_hw_engine *hwe)
-@@ -57,7 +57,7 @@ static const struct rtp_test_case cases[] = {
- 		.expected_clr_bits = REG_BIT(0) | REG_BIT(1),
- 		.expected_count = 1,
- 		/* Different bits on the same register: create a single entry */
--		.entries = (const struct xe_rtp_entry[]) {
-+		.entries = (const struct xe_rtp_entry_sr[]) {
- 			{ XE_RTP_NAME("basic-1"),
- 			  XE_RTP_RULES(FUNC(match_yes)),
- 			  XE_RTP_ACTIONS(SET(REGULAR_REG1, REG_BIT(0)))
-@@ -76,7 +76,7 @@ static const struct rtp_test_case cases[] = {
- 		.expected_clr_bits = REG_BIT(0),
- 		.expected_count = 1,
- 		/* Don't coalesce second entry since rules don't match */
--		.entries = (const struct xe_rtp_entry[]) {
-+		.entries = (const struct xe_rtp_entry_sr[]) {
- 			{ XE_RTP_NAME("basic-1"),
- 			  XE_RTP_RULES(FUNC(match_yes)),
- 			  XE_RTP_ACTIONS(SET(REGULAR_REG1, REG_BIT(0)))
-@@ -95,7 +95,7 @@ static const struct rtp_test_case cases[] = {
- 		.expected_clr_bits = REG_BIT(0),
- 		.expected_count = 1,
- 		/* Don't coalesce second entry due to one of the rules */
--		.entries = (const struct xe_rtp_entry[]) {
-+		.entries = (const struct xe_rtp_entry_sr[]) {
- 			{ XE_RTP_NAME("basic-1"),
- 			  XE_RTP_RULES(FUNC(match_yes)),
- 			  XE_RTP_ACTIONS(SET(REGULAR_REG1, REG_BIT(0)))
-@@ -114,7 +114,7 @@ static const struct rtp_test_case cases[] = {
- 		.expected_clr_bits = REG_BIT(0),
- 		.expected_count = 2,
- 		/* Same bits on different registers are not coalesced */
--		.entries = (const struct xe_rtp_entry[]) {
-+		.entries = (const struct xe_rtp_entry_sr[]) {
- 			{ XE_RTP_NAME("basic-1"),
- 			  XE_RTP_RULES(FUNC(match_yes)),
- 			  XE_RTP_ACTIONS(SET(REGULAR_REG1, REG_BIT(0)))
-@@ -133,7 +133,7 @@ static const struct rtp_test_case cases[] = {
- 		.expected_clr_bits = REG_BIT(1) | REG_BIT(0),
- 		.expected_count = 1,
- 		/* Check clr vs set actions on different bits */
--		.entries = (const struct xe_rtp_entry[]) {
-+		.entries = (const struct xe_rtp_entry_sr[]) {
- 			{ XE_RTP_NAME("basic-1"),
- 			  XE_RTP_RULES(FUNC(match_yes)),
- 			  XE_RTP_ACTIONS(SET(REGULAR_REG1, REG_BIT(0)))
-@@ -154,7 +154,7 @@ static const struct rtp_test_case cases[] = {
- 		.expected_clr_bits = TEMP_MASK,
- 		.expected_count = 1,
- 		/* Check FIELD_SET works */
--		.entries = (const struct xe_rtp_entry[]) {
-+		.entries = (const struct xe_rtp_entry_sr[]) {
- 			{ XE_RTP_NAME("basic-1"),
- 			  XE_RTP_RULES(FUNC(match_yes)),
- 			  XE_RTP_ACTIONS(FIELD_SET(REGULAR_REG1,
-@@ -172,7 +172,7 @@ static const struct rtp_test_case cases[] = {
- 		.expected_clr_bits = REG_BIT(0),
- 		.expected_count = 1,
- 		.expected_sr_errors = 1,
--		.entries = (const struct xe_rtp_entry[]) {
-+		.entries = (const struct xe_rtp_entry_sr[]) {
- 			{ XE_RTP_NAME("basic-1"),
- 			  XE_RTP_RULES(FUNC(match_yes)),
- 			  XE_RTP_ACTIONS(SET(REGULAR_REG1, REG_BIT(0)))
-@@ -192,7 +192,7 @@ static const struct rtp_test_case cases[] = {
- 		.expected_clr_bits = REG_BIT(0),
- 		.expected_count = 1,
- 		.expected_sr_errors = 1,
--		.entries = (const struct xe_rtp_entry[]) {
-+		.entries = (const struct xe_rtp_entry_sr[]) {
- 			{ XE_RTP_NAME("basic-1"),
- 			  XE_RTP_RULES(FUNC(match_yes)),
- 			  XE_RTP_ACTIONS(SET(REGULAR_REG1, REG_BIT(0)))
-@@ -212,7 +212,7 @@ static const struct rtp_test_case cases[] = {
- 		.expected_clr_bits = REG_BIT(0),
- 		.expected_count = 1,
- 		.expected_sr_errors = 2,
--		.entries = (const struct xe_rtp_entry[]) {
-+		.entries = (const struct xe_rtp_entry_sr[]) {
- 			{ XE_RTP_NAME("basic-1"),
- 			  XE_RTP_RULES(FUNC(match_yes)),
- 			  XE_RTP_ACTIONS(SET(REGULAR_REG1, REG_BIT(0)))
-@@ -242,7 +242,7 @@ static void xe_rtp_process_tests(struct kunit *test)
- 	unsigned long idx, count = 0;
- 
- 	xe_reg_sr_init(reg_sr, "xe_rtp_tests", xe);
--	xe_rtp_process(&ctx, param->entries, reg_sr);
-+	xe_rtp_process_to_sr(&ctx, param->entries, reg_sr);
- 
- 	xa_for_each(&reg_sr->xa, idx, sre) {
- 		if (idx == param->expected_reg.addr)
-diff --git a/drivers/gpu/drm/xe/xe_hw_engine.c b/drivers/gpu/drm/xe/xe_hw_engine.c
-index 25b96f40d5a7..7e4b0b465244 100644
---- a/drivers/gpu/drm/xe/xe_hw_engine.c
-+++ b/drivers/gpu/drm/xe/xe_hw_engine.c
-@@ -282,7 +282,7 @@ xe_hw_engine_setup_default_lrc_state(struct xe_hw_engine *hwe)
- 	u32 blit_cctl_val = REG_FIELD_PREP(BLIT_CCTL_DST_MOCS_MASK, mocs_write_idx) |
- 			    REG_FIELD_PREP(BLIT_CCTL_SRC_MOCS_MASK, mocs_read_idx);
- 	struct xe_rtp_process_ctx ctx = XE_RTP_PROCESS_CTX_INITIALIZER(hwe);
--	const struct xe_rtp_entry lrc_was[] = {
-+	const struct xe_rtp_entry_sr lrc_was[] = {
- 		/*
- 		 * Some blitter commands do not have a field for MOCS, those
- 		 * commands will use MOCS index pointed by BLIT_CCTL.
-@@ -300,7 +300,7 @@ xe_hw_engine_setup_default_lrc_state(struct xe_hw_engine *hwe)
- 		{}
- 	};
- 
--	xe_rtp_process(&ctx, lrc_was, &hwe->reg_lrc);
-+	xe_rtp_process_to_sr(&ctx, lrc_was, &hwe->reg_lrc);
- }
- 
- static void
-@@ -313,7 +313,7 @@ hw_engine_setup_default_state(struct xe_hw_engine *hwe)
- 	u32 ring_cmd_cctl_val = REG_FIELD_PREP(CMD_CCTL_WRITE_OVERRIDE_MASK, mocs_write_idx) |
- 			        REG_FIELD_PREP(CMD_CCTL_READ_OVERRIDE_MASK, mocs_read_idx);
- 	struct xe_rtp_process_ctx ctx = XE_RTP_PROCESS_CTX_INITIALIZER(hwe);
--	const struct xe_rtp_entry engine_entries[] = {
-+	const struct xe_rtp_entry_sr engine_entries[] = {
- 		/*
- 		 * RING_CMD_CCTL specifies the default MOCS entry that will be
- 		 * used by the command streamer when executing commands that
-@@ -334,7 +334,7 @@ hw_engine_setup_default_state(struct xe_hw_engine *hwe)
- 		{}
- 	};
- 
--	xe_rtp_process(&ctx, engine_entries, &hwe->reg_sr);
-+	xe_rtp_process_to_sr(&ctx, engine_entries, &hwe->reg_sr);
- }
- 
- static void hw_engine_init_early(struct xe_gt *gt, struct xe_hw_engine *hwe,
-diff --git a/drivers/gpu/drm/xe/xe_reg_whitelist.c b/drivers/gpu/drm/xe/xe_reg_whitelist.c
-index 98f678d74445..70892f134718 100644
---- a/drivers/gpu/drm/xe/xe_reg_whitelist.c
-+++ b/drivers/gpu/drm/xe/xe_reg_whitelist.c
-@@ -20,7 +20,7 @@ static bool match_not_render(const struct xe_gt *gt,
- 	return hwe->class != XE_ENGINE_CLASS_RENDER;
- }
- 
--static const struct xe_rtp_entry register_whitelist[] = {
-+static const struct xe_rtp_entry_sr register_whitelist[] = {
- 	{ XE_RTP_NAME("WaAllowPMDepthAndInvocationCountAccessFromUMD, 1408556865"),
- 	  XE_RTP_RULES(GRAPHICS_VERSION_RANGE(1200, 1210), ENGINE_CLASS(RENDER)),
- 	  XE_RTP_ACTIONS(WHITELIST(PS_INVOCATION_COUNT,
-@@ -65,7 +65,7 @@ void xe_reg_whitelist_process_engine(struct xe_hw_engine *hwe)
- {
- 	struct xe_rtp_process_ctx ctx = XE_RTP_PROCESS_CTX_INITIALIZER(hwe);
- 
--	xe_rtp_process(&ctx, register_whitelist, &hwe->reg_whitelist);
-+	xe_rtp_process_to_sr(&ctx, register_whitelist, &hwe->reg_whitelist);
- }
- 
- /**
 diff --git a/drivers/gpu/drm/xe/xe_rtp.c b/drivers/gpu/drm/xe/xe_rtp.c
-index 5dcdfe45f0cb..0be1f4cfc4d5 100644
+index 29cf92f9b7b3..2ac7b47942fe 100644
 --- a/drivers/gpu/drm/xe/xe_rtp.c
 +++ b/drivers/gpu/drm/xe/xe_rtp.c
-@@ -26,7 +26,7 @@
- static bool rule_matches(const struct xe_device *xe,
- 			 struct xe_gt *gt,
- 			 struct xe_hw_engine *hwe,
--			 const struct xe_rtp_entry *entry)
-+			 const struct xe_rtp_entry_sr *entry)
- {
- 	const struct xe_rtp_rule *r;
- 	unsigned int i;
-@@ -112,9 +112,9 @@ static void rtp_add_sr_entry(const struct xe_rtp_action *action,
- 	xe_reg_sr_add(sr, &sr_entry);
- }
- 
--static void rtp_process_one(const struct xe_rtp_entry *entry,
--			    struct xe_device *xe, struct xe_gt *gt,
--			    struct xe_hw_engine *hwe, struct xe_reg_sr *sr)
-+static void rtp_process_one_sr(const struct xe_rtp_entry_sr *entry,
-+			       struct xe_device *xe, struct xe_gt *gt,
-+			       struct xe_hw_engine *hwe, struct xe_reg_sr *sr)
- {
- 	const struct xe_rtp_action *action;
- 	u32 mmio_base;
-@@ -154,10 +154,11 @@ static void rtp_get_context(struct xe_rtp_process_ctx *ctx,
- }
- 
- /**
-- * xe_rtp_process - Process all rtp @entries, adding the matching ones to @sr
-+ * xe_rtp_process_to_sr - Process all rtp @entries, adding the matching ones to
-+ *                        the save-restore argument.
-  * @ctx: The context for processing the table, with one of device, gt or hwe
-  * @entries: Table with RTP definitions
-- * @sr: Where to add an entry to with the values for matching. This can be
-+ * @sr: Save-restore struct where matching rules execute the action. This can be
-  *      viewed as the "coalesced view" of multiple the tables. The bits for each
-  *      register set are expected not to collide with previously added entries
-  *
-@@ -165,10 +166,11 @@ static void rtp_get_context(struct xe_rtp_process_ctx *ctx,
-  * entries with matching rules to @sr. If @hwe is not NULL, its mmio_base is
-  * used to calculate the right register offset
-  */
--void xe_rtp_process(struct xe_rtp_process_ctx *ctx,
--		    const struct xe_rtp_entry *entries, struct xe_reg_sr *sr)
-+void xe_rtp_process_to_sr(struct xe_rtp_process_ctx *ctx,
-+			  const struct xe_rtp_entry_sr *entries,
-+			  struct xe_reg_sr *sr)
- {
--	const struct xe_rtp_entry *entry;
-+	const struct xe_rtp_entry_sr *entry;
- 	struct xe_hw_engine *hwe = NULL;
- 	struct xe_gt *gt = NULL;
- 	struct xe_device *xe = NULL;
-@@ -181,13 +183,13 @@ void xe_rtp_process(struct xe_rtp_process_ctx *ctx,
- 			enum xe_hw_engine_id id;
- 
- 			for_each_hw_engine(each_hwe, gt, id)
--				rtp_process_one(entry, xe, gt, each_hwe, sr);
-+				rtp_process_one_sr(entry, xe, gt, each_hwe, sr);
- 		} else {
--			rtp_process_one(entry, xe, gt, hwe, sr);
-+			rtp_process_one_sr(entry, xe, gt, hwe, sr);
- 		}
- 	}
- }
--EXPORT_SYMBOL_IF_KUNIT(xe_rtp_process);
-+EXPORT_SYMBOL_IF_KUNIT(xe_rtp_process_to_sr);
- 
- bool xe_rtp_match_even_instance(const struct xe_gt *gt,
- 				const struct xe_hw_engine *hwe)
+@@ -57,7 +57,7 @@ static bool rule_matches(const struct xe_device *xe,
+ 			match = xe->info.media_verx100 >= r->ver_start &&
+ 				xe->info.media_verx100 <= r->ver_end;
+ 			break;
+-		case XE_RTP_MATCH_STEP:
++		case XE_RTP_MATCH_GRAPHICS_STEP:
+ 			/* TODO: match media/display */
+ 			match = xe->info.step.graphics >= r->step_start &&
+ 				xe->info.step.graphics < r->step_end;
 diff --git a/drivers/gpu/drm/xe/xe_rtp.h b/drivers/gpu/drm/xe/xe_rtp.h
-index c4b718b9632e..179b497186d2 100644
+index e69f514ee6c4..7ba9d2ecab92 100644
 --- a/drivers/gpu/drm/xe/xe_rtp.h
 +++ b/drivers/gpu/drm/xe/xe_rtp.h
-@@ -261,7 +261,7 @@ struct xe_reg_sr;
- #define XE_RTP_NAME(s_)	.name = (s_)
+@@ -35,8 +35,8 @@ struct xe_reg_sr;
+ 	{ .match_type = XE_RTP_MATCH_SUBPLATFORM,				\
+ 	  .platform = plat__, .subplatform = sub__ }
+ 
+-#define _XE_RTP_RULE_STEP(start__, end__)					\
+-	{ .match_type = XE_RTP_MATCH_STEP,					\
++#define _XE_RTP_RULE_GRAPHICS_STEP(start__, end__)				\
++	{ .match_type = XE_RTP_MATCH_GRAPHICS_STEP,				\
+ 	  .step_start = start__, .step_end = end__ }
+ 
+ #define _XE_RTP_RULE_ENGINE_CLASS(cls__)					\
+@@ -63,17 +63,17 @@ struct xe_reg_sr;
+ 	_XE_RTP_RULE_SUBPLATFORM(XE_##plat_, XE_SUBPLATFORM_##plat_##_##sub_)
  
  /**
-- * XE_RTP_ENTRY_FLAG - Helper to add multiple flags to a struct xe_rtp_entry
-+ * XE_RTP_ENTRY_FLAG - Helper to add multiple flags to a struct xe_rtp_entry_sr
-  * @...: Entry flags, without the ``XE_RTP_ENTRY_FLAG_`` prefix
+- * XE_RTP_RULE_STEP - Create rule matching platform stepping
++ * XE_RTP_RULE_GRAPHICS_STEP - Create rule matching graphics stepping
+  * @start_: First stepping matching the rule
+  * @end_: First stepping that does not match the rule
   *
-  * Helper to automatically add a ``XE_RTP_ENTRY_FLAG_`` prefix to the flags
-@@ -269,7 +269,7 @@ struct xe_reg_sr;
+- * Note that the range matching this rule [ @start_, @end_ ), i.e. inclusive on
+- * the left, exclusive on the right.
++ * Note that the range matching this rule is [ @start_, @end_ ), i.e. inclusive
++ * on the left, exclusive on the right.
   *
-  * .. code-block:: c
-  *
-- *	const struct xe_rtp_entry wa_entries[] = {
-+ *	const struct xe_rtp_entry_sr wa_entries[] = {
+  * Refer to XE_RTP_RULES() for expected usage.
+  */
+-#define XE_RTP_RULE_STEP(start_, end_)						\
+-	_XE_RTP_RULE_STEP(STEP_##start_, STEP_##end_)
++#define XE_RTP_RULE_GRAPHICS_STEP(start_, end_)					\
++	_XE_RTP_RULE_GRAPHICS_STEP(STEP_##start_, STEP_##end_)
+ 
+ /**
+  * XE_RTP_RULE_ENGINE_CLASS - Create rule matching an engine class
+@@ -317,7 +317,7 @@ struct xe_reg_sr;
+  *	const struct xe_rtp_entry_sr wa_entries[] = {
   *		...
   *		{ XE_RTP_NAME("test-entry"),
+- *		  XE_RTP_RULES(SUBPLATFORM(DG2, G10), STEP(A0, B0)),
++ *		  XE_RTP_RULES(SUBPLATFORM(DG2, G10), GRAPHICS_STEP(A0, B0)),
   *		  ...
-@@ -291,7 +291,7 @@ struct xe_reg_sr;
-  *
-  * .. code-block:: c
-  *
-- *	const struct xe_rtp_entry wa_entries[] = {
-+ *	const struct xe_rtp_entry_sr wa_entries[] = {
+  *		},
   *		...
-  *		{ XE_RTP_NAME("test-entry"),
-  *		  ...
-@@ -305,7 +305,7 @@ struct xe_reg_sr;
- 	.flags = (XE_RTP_PASTE_FOREACH(ACTION_FLAG_, BITWISE_OR, (__VA_ARGS__)))
- 
- /**
-- * XE_RTP_RULES - Helper to set multiple rules to a struct xe_rtp_entry entry
-+ * XE_RTP_RULES - Helper to set multiple rules to a struct xe_rtp_entry_sr entry
-  * @...: Rules
-  *
-  * At least one rule is needed and up to 4 are supported. Multiple rules are
-@@ -314,7 +314,7 @@ struct xe_reg_sr;
-  *
-  * .. code-block:: c
-  *
-- *	const struct xe_rtp_entry wa_entries[] = {
-+ *	const struct xe_rtp_entry_sr wa_entries[] = {
-  *		...
-  *		{ XE_RTP_NAME("test-entry"),
-  *		  XE_RTP_RULES(SUBPLATFORM(DG2, G10), STEP(A0, B0)),
-@@ -330,7 +330,7 @@ struct xe_reg_sr;
- 	}
- 
- /**
-- * XE_RTP_ACTIONS - Helper to set multiple actions to a struct xe_rtp_entry
-+ * XE_RTP_ACTIONS - Helper to set multiple actions to a struct xe_rtp_entry_sr
-  * @...: Actions to be taken
-  *
-  * At least one rule is needed and up to 4 are supported. Multiple rules are
-@@ -339,7 +339,7 @@ struct xe_reg_sr;
-  *
-  * .. code-block:: c
-  *
-- *	const struct xe_rtp_entry wa_entries[] = {
-+ *	const struct xe_rtp_entry_sr wa_entries[] = {
-  *		...
-  *		{ XE_RTP_NAME("test-entry"),
-  *		  XE_RTP_RULES(...),
-@@ -359,9 +359,9 @@ struct xe_reg_sr;
- 	struct xe_hw_engine *:	(struct xe_rtp_process_ctx){ { (void *)(arg__) }, XE_RTP_PROCESS_TYPE_ENGINE },	\
- 	struct xe_gt *:		(struct xe_rtp_process_ctx){ { (void *)(arg__) }, XE_RTP_PROCESS_TYPE_GT })
- 
--void xe_rtp_process(struct xe_rtp_process_ctx *ctx,
--		    const struct xe_rtp_entry *entries,
--		    struct xe_reg_sr *sr);
-+void xe_rtp_process_to_sr(struct xe_rtp_process_ctx *ctx,
-+			  const struct xe_rtp_entry_sr *entries,
-+			  struct xe_reg_sr *sr);
- 
- /* Match functions to be used with XE_RTP_MATCH_FUNC */
- 
 diff --git a/drivers/gpu/drm/xe/xe_rtp_types.h b/drivers/gpu/drm/xe/xe_rtp_types.h
-index 5afacbd9083d..66d1cb0aaa08 100644
+index 03d97b666c64..52adbf7de752 100644
 --- a/drivers/gpu/drm/xe/xe_rtp_types.h
 +++ b/drivers/gpu/drm/xe/xe_rtp_types.h
-@@ -84,8 +84,8 @@ struct xe_rtp_rule {
- 	};
- };
- 
--/** struct xe_rtp_entry - Entry in an rtp table */
--struct xe_rtp_entry {
-+/** struct xe_rtp_entry_sr - Entry in an rtp table */
-+struct xe_rtp_entry_sr {
- 	const char *name;
- 	const struct xe_rtp_action *actions;
- 	const struct xe_rtp_rule *rules;
-diff --git a/drivers/gpu/drm/xe/xe_tuning.c b/drivers/gpu/drm/xe/xe_tuning.c
-index c2810ede3a65..412e59de9842 100644
---- a/drivers/gpu/drm/xe/xe_tuning.c
-+++ b/drivers/gpu/drm/xe/xe_tuning.c
-@@ -15,7 +15,7 @@
- #undef XE_REG_MCR
- #define XE_REG_MCR(...)     XE_REG(__VA_ARGS__, .mcr = 1)
- 
--static const struct xe_rtp_entry gt_tunings[] = {
-+static const struct xe_rtp_entry_sr gt_tunings[] = {
- 	{ XE_RTP_NAME("Tuning: Blend Fill Caching Optimization Disable"),
- 	  XE_RTP_RULES(PLATFORM(DG2)),
- 	  XE_RTP_ACTIONS(SET(XEHP_L3SCQREG7, BLEND_FILL_CACHING_OPT_DIS))
-@@ -27,7 +27,7 @@ static const struct xe_rtp_entry gt_tunings[] = {
- 	{}
- };
- 
--static const struct xe_rtp_entry lrc_tunings[] = {
-+static const struct xe_rtp_entry_sr lrc_tunings[] = {
- 	{ XE_RTP_NAME("Tuning: ganged timer, also known as 16011163337"),
- 	  XE_RTP_RULES(GRAPHICS_VERSION_RANGE(1200, 1210)),
- 	  /* read verification is ignored due to 1608008084. */
-@@ -61,7 +61,7 @@ void xe_tuning_process_gt(struct xe_gt *gt)
- {
- 	struct xe_rtp_process_ctx ctx = XE_RTP_PROCESS_CTX_INITIALIZER(gt);
- 
--	xe_rtp_process(&ctx, gt_tunings, &gt->reg_sr);
-+	xe_rtp_process_to_sr(&ctx, gt_tunings, &gt->reg_sr);
- }
- EXPORT_SYMBOL_IF_KUNIT(xe_tuning_process_gt);
- 
-@@ -77,5 +77,5 @@ void xe_tuning_process_lrc(struct xe_hw_engine *hwe)
- {
- 	struct xe_rtp_process_ctx ctx = XE_RTP_PROCESS_CTX_INITIALIZER(hwe);
- 
--	xe_rtp_process(&ctx, lrc_tunings, &hwe->reg_lrc);
-+	xe_rtp_process_to_sr(&ctx, lrc_tunings, &hwe->reg_lrc);
- }
+@@ -39,11 +39,11 @@ enum {
+ 	XE_RTP_MATCH_SUBPLATFORM,
+ 	XE_RTP_MATCH_GRAPHICS_VERSION,
+ 	XE_RTP_MATCH_GRAPHICS_VERSION_RANGE,
++	XE_RTP_MATCH_GRAPHICS_STEP,
+ 	XE_RTP_MATCH_MEDIA_VERSION,
+ 	XE_RTP_MATCH_MEDIA_VERSION_RANGE,
+ 	XE_RTP_MATCH_INTEGRATED,
+ 	XE_RTP_MATCH_DISCRETE,
+-	XE_RTP_MATCH_STEP,
+ 	XE_RTP_MATCH_ENGINE_CLASS,
+ 	XE_RTP_MATCH_NOT_ENGINE_CLASS,
+ 	XE_RTP_MATCH_FUNC,
 diff --git a/drivers/gpu/drm/xe/xe_wa.c b/drivers/gpu/drm/xe/xe_wa.c
-index 4b236b6f4c8e..557e90d79f0b 100644
+index 910579453316..d703dc0f7b21 100644
 --- a/drivers/gpu/drm/xe/xe_wa.c
 +++ b/drivers/gpu/drm/xe/xe_wa.c
-@@ -93,7 +93,7 @@
- __diag_push();
- __diag_ignore_all("-Woverride-init", "Allow field overrides in table");
+@@ -122,7 +122,7 @@ static const struct xe_rtp_entry_sr gt_was[] = {
  
--static const struct xe_rtp_entry gt_was[] = {
-+static const struct xe_rtp_entry_sr gt_was[] = {
- 	{ XE_RTP_NAME("14011060649"),
- 	  XE_RTP_RULES(MEDIA_VERSION_RANGE(1200, 1255),
- 		       ENGINE_CLASS(VIDEO_DECODE),
-@@ -235,7 +235,7 @@ static const struct xe_rtp_entry gt_was[] = {
+ 	{ XE_RTP_NAME("16010515920"),
+ 	  XE_RTP_RULES(SUBPLATFORM(DG2, G10),
+-		       STEP(A0, B0),
++		       GRAPHICS_STEP(A0, B0),
+ 		       ENGINE_CLASS(VIDEO_DECODE)),
+ 	  XE_RTP_ACTIONS(SET(VDBOX_CGCTL3F18(0), ALNUNIT_CLKGATE_DIS)),
+ 	  XE_RTP_ENTRY_FLAG(FOREACH_ENGINE),
+@@ -136,27 +136,27 @@ static const struct xe_rtp_entry_sr gt_was[] = {
+ 	  XE_RTP_ACTIONS(SET(SUBSLICE_UNIT_LEVEL_CLKGATE, DSS_ROUTER_CLKGATE_DIS))
+ 	},
+ 	{ XE_RTP_NAME("14012362059"),
+-	  XE_RTP_RULES(SUBPLATFORM(DG2, G10), STEP(A0, B0)),
++	  XE_RTP_RULES(SUBPLATFORM(DG2, G10), GRAPHICS_STEP(A0, B0)),
+ 	  XE_RTP_ACTIONS(SET(XEHP_MERT_MOD_CTRL, FORCE_MISS_FTLB))
+ 	},
+ 	{ XE_RTP_NAME("14012362059"),
+-	  XE_RTP_RULES(SUBPLATFORM(DG2, G11), STEP(A0, B0)),
++	  XE_RTP_RULES(SUBPLATFORM(DG2, G11), GRAPHICS_STEP(A0, B0)),
+ 	  XE_RTP_ACTIONS(SET(XEHP_MERT_MOD_CTRL, FORCE_MISS_FTLB))
+ 	},
+ 	{ XE_RTP_NAME("14010948348"),
+-	  XE_RTP_RULES(SUBPLATFORM(DG2, G10), STEP(A0, B0)),
++	  XE_RTP_RULES(SUBPLATFORM(DG2, G10), GRAPHICS_STEP(A0, B0)),
+ 	  XE_RTP_ACTIONS(SET(UNSLCGCTL9430, MSQDUNIT_CLKGATE_DIS))
+ 	},
+ 	{ XE_RTP_NAME("14011037102"),
+-	  XE_RTP_RULES(SUBPLATFORM(DG2, G10), STEP(A0, B0)),
++	  XE_RTP_RULES(SUBPLATFORM(DG2, G10), GRAPHICS_STEP(A0, B0)),
+ 	  XE_RTP_ACTIONS(SET(UNSLCGCTL9444, LTCDD_CLKGATE_DIS))
+ 	},
+ 	{ XE_RTP_NAME("14011371254"),
+-	  XE_RTP_RULES(SUBPLATFORM(DG2, G10), STEP(A0, B0)),
++	  XE_RTP_RULES(SUBPLATFORM(DG2, G10), GRAPHICS_STEP(A0, B0)),
+ 	  XE_RTP_ACTIONS(SET(XEHP_SLICE_UNIT_LEVEL_CLKGATE, NODEDSS_CLKGATE_DIS))
+ 	},
+ 	{ XE_RTP_NAME("14011431319"),
+-	  XE_RTP_RULES(SUBPLATFORM(DG2, G10), STEP(A0, B0)),
++	  XE_RTP_RULES(SUBPLATFORM(DG2, G10), GRAPHICS_STEP(A0, B0)),
+ 	  XE_RTP_ACTIONS(SET(UNSLCGCTL9440,
+ 			     GAMTLBOACS_CLKGATE_DIS |
+ 			     GAMTLBVDBOX7_CLKGATE_DIS | GAMTLBVDBOX6_CLKGATE_DIS |
+@@ -176,15 +176,15 @@ static const struct xe_rtp_entry_sr gt_was[] = {
+ 			     GAMTLBVEBOX1_CLKGATE_DIS | GAMTLBVEBOX0_CLKGATE_DIS))
+ 	},
+ 	{ XE_RTP_NAME("14010569222"),
+-	  XE_RTP_RULES(SUBPLATFORM(DG2, G10), STEP(A0, B0)),
++	  XE_RTP_RULES(SUBPLATFORM(DG2, G10), GRAPHICS_STEP(A0, B0)),
+ 	  XE_RTP_ACTIONS(SET(UNSLICE_UNIT_LEVEL_CLKGATE, GAMEDIA_CLKGATE_DIS))
+ 	},
+ 	{ XE_RTP_NAME("14011028019"),
+-	  XE_RTP_RULES(SUBPLATFORM(DG2, G10), STEP(A0, B0)),
++	  XE_RTP_RULES(SUBPLATFORM(DG2, G10), GRAPHICS_STEP(A0, B0)),
+ 	  XE_RTP_ACTIONS(SET(SSMCGCTL9530, RTFUNIT_CLKGATE_DIS))
+ 	},
+ 	{ XE_RTP_NAME("14010680813"),
+-	  XE_RTP_RULES(SUBPLATFORM(DG2, G10), STEP(A0, B0)),
++	  XE_RTP_RULES(SUBPLATFORM(DG2, G10), GRAPHICS_STEP(A0, B0)),
+ 	  XE_RTP_ACTIONS(SET(XEHP_GAMSTLB_CTRL,
+ 			     CONTROL_BLOCK_CLKGATE_DIS |
+ 			     EGRESS_BLOCK_CLKGATE_DIS |
+@@ -316,7 +316,7 @@ static const struct xe_rtp_entry_sr engine_was[] = {
+ 			     POLYGON_TRIFAN_LINELOOP_DISABLE))
+ 	},
+ 	{ XE_RTP_NAME("22012826095, 22013059131"),
+-	  XE_RTP_RULES(SUBPLATFORM(DG2, G10), STEP(B0, C0),
++	  XE_RTP_RULES(SUBPLATFORM(DG2, G10), GRAPHICS_STEP(B0, C0),
+ 		       FUNC(xe_rtp_match_first_render_or_compute)),
+ 	  XE_RTP_ACTIONS(FIELD_SET(LSC_CHICKEN_BIT_0_UDW,
+ 				   MAXREQS_PER_BANK,
+@@ -330,7 +330,7 @@ static const struct xe_rtp_entry_sr engine_was[] = {
+ 				   REG_FIELD_PREP(MAXREQS_PER_BANK, 2)))
+ 	},
+ 	{ XE_RTP_NAME("22013059131"),
+-	  XE_RTP_RULES(SUBPLATFORM(DG2, G10), STEP(B0, C0),
++	  XE_RTP_RULES(SUBPLATFORM(DG2, G10), GRAPHICS_STEP(B0, C0),
+ 		       FUNC(xe_rtp_match_first_render_or_compute)),
+ 	  XE_RTP_ACTIONS(SET(LSC_CHICKEN_BIT_0, FORCE_1_SUB_MESSAGE_PER_FRAGMENT))
+ 	},
+@@ -368,7 +368,7 @@ static const struct xe_rtp_entry_sr engine_was[] = {
+ 	  XE_RTP_ACTIONS(SET(LSC_CHICKEN_BIT_0_UDW, DIS_CHAIN_2XSIMD8))
+ 	},
+ 	{ XE_RTP_NAME("22012654132"),
+-	  XE_RTP_RULES(SUBPLATFORM(DG2, G10), STEP(A0, C0),
++	  XE_RTP_RULES(SUBPLATFORM(DG2, G10), GRAPHICS_STEP(A0, C0),
+ 		       FUNC(xe_rtp_match_first_render_or_compute)),
+ 	  XE_RTP_ACTIONS(SET(CACHE_MODE_SS, ENABLE_PREFETCH_INTO_IC,
+ 			     /*
+@@ -396,21 +396,25 @@ static const struct xe_rtp_entry_sr engine_was[] = {
+ 	  XE_RTP_ACTIONS(SET(ROW_CHICKEN2, DISABLE_READ_SUPPRESSION))
+ 	},
+ 	{ XE_RTP_NAME("14013392000"),
+-	  XE_RTP_RULES(SUBPLATFORM(DG2, G11), STEP(A0, B0), ENGINE_CLASS(RENDER)),
++	  XE_RTP_RULES(SUBPLATFORM(DG2, G11), GRAPHICS_STEP(A0, B0),
++		       ENGINE_CLASS(RENDER)),
+ 	  XE_RTP_ACTIONS(SET(ROW_CHICKEN2, ENABLE_LARGE_GRF_MODE))
+ 	},
+ 	{ XE_RTP_NAME("14012419201"),
+-	  XE_RTP_RULES(SUBPLATFORM(DG2, G10), STEP(A0, B0), ENGINE_CLASS(RENDER)),
++	  XE_RTP_RULES(SUBPLATFORM(DG2, G10), GRAPHICS_STEP(A0, B0),
++		       ENGINE_CLASS(RENDER)),
+ 	  XE_RTP_ACTIONS(SET(ROW_CHICKEN4,
+ 			     DISABLE_HDR_PAST_PAYLOAD_HOLD_FIX))
+ 	},
+ 	{ XE_RTP_NAME("14012419201"),
+-	  XE_RTP_RULES(SUBPLATFORM(DG2, G11), STEP(A0, B0), ENGINE_CLASS(RENDER)),
++	  XE_RTP_RULES(SUBPLATFORM(DG2, G11), GRAPHICS_STEP(A0, B0),
++		       ENGINE_CLASS(RENDER)),
+ 	  XE_RTP_ACTIONS(SET(ROW_CHICKEN4,
+ 			     DISABLE_HDR_PAST_PAYLOAD_HOLD_FIX))
+ 	},
+ 	{ XE_RTP_NAME("1308578152"),
+-	  XE_RTP_RULES(SUBPLATFORM(DG2, G10), STEP(B0, C0), ENGINE_CLASS(RENDER),
++	  XE_RTP_RULES(SUBPLATFORM(DG2, G10), GRAPHICS_STEP(B0, C0),
++		       ENGINE_CLASS(RENDER),
+ 		       FUNC(xe_rtp_match_first_gslice_fused_off)),
+ 	  XE_RTP_ACTIONS(CLR(CS_DEBUG_MODE1,
+ 			     REPLAY_MODE_GRANULARITY))
+@@ -426,30 +430,35 @@ static const struct xe_rtp_entry_sr engine_was[] = {
+ 			     MDQ_ARBITRATION_MODE | UGM_BACKUP_MODE))
+ 	},
+ 	{ XE_RTP_NAME("22010430635"),
+-	  XE_RTP_RULES(SUBPLATFORM(DG2, G10), STEP(A0, B0), ENGINE_CLASS(RENDER)),
++	  XE_RTP_RULES(SUBPLATFORM(DG2, G10), GRAPHICS_STEP(A0, B0),
++		       ENGINE_CLASS(RENDER)),
+ 	  XE_RTP_ACTIONS(SET(ROW_CHICKEN4,
+ 			     DISABLE_GRF_CLEAR))
+ 	},
+ 	{ XE_RTP_NAME("14013202645"),
+-	  XE_RTP_RULES(SUBPLATFORM(DG2, G10), STEP(B0, C0), ENGINE_CLASS(RENDER)),
++	  XE_RTP_RULES(SUBPLATFORM(DG2, G10), GRAPHICS_STEP(B0, C0),
++		       ENGINE_CLASS(RENDER)),
+ 	  XE_RTP_ACTIONS(SET(RT_CTRL, DIS_NULL_QUERY))
+ 	},
+ 	{ XE_RTP_NAME("14013202645"),
+-	  XE_RTP_RULES(SUBPLATFORM(DG2, G11), STEP(A0, B0), ENGINE_CLASS(RENDER)),
++	  XE_RTP_RULES(SUBPLATFORM(DG2, G11), GRAPHICS_STEP(A0, B0),
++		       ENGINE_CLASS(RENDER)),
+ 	  XE_RTP_ACTIONS(SET(RT_CTRL, DIS_NULL_QUERY))
+ 	},
+ 	{ XE_RTP_NAME("22012532006"),
+-	  XE_RTP_RULES(SUBPLATFORM(DG2, G10), STEP(A0, C0), ENGINE_CLASS(RENDER)),
++	  XE_RTP_RULES(SUBPLATFORM(DG2, G10), GRAPHICS_STEP(A0, C0),
++		       ENGINE_CLASS(RENDER)),
+ 	  XE_RTP_ACTIONS(SET(HALF_SLICE_CHICKEN7,
+ 			     DG2_DISABLE_ROUND_ENABLE_ALLOW_FOR_SSLA))
+ 	},
+ 	{ XE_RTP_NAME("22012532006"),
+-	  XE_RTP_RULES(SUBPLATFORM(DG2, G11), STEP(A0, B0), ENGINE_CLASS(RENDER)),
++	  XE_RTP_RULES(SUBPLATFORM(DG2, G11), GRAPHICS_STEP(A0, B0),
++		       ENGINE_CLASS(RENDER)),
+ 	  XE_RTP_ACTIONS(SET(HALF_SLICE_CHICKEN7,
+ 			     DG2_DISABLE_ROUND_ENABLE_ALLOW_FOR_SSLA))
+ 	},
+ 	{ XE_RTP_NAME("22014600077"),
+-	  XE_RTP_RULES(SUBPLATFORM(DG2, G11), STEP(B0, FOREVER),
++	  XE_RTP_RULES(SUBPLATFORM(DG2, G11), GRAPHICS_STEP(B0, FOREVER),
+ 		       ENGINE_CLASS(RENDER)),
+ 	  XE_RTP_ACTIONS(SET(CACHE_MODE_SS,
+ 			     ENABLE_EU_COUNT_FOR_TDL_FLUSH,
+@@ -485,7 +494,8 @@ static const struct xe_rtp_entry_sr engine_was[] = {
+ 	  XE_RTP_ACTIONS(SET(FF_SLICE_CS_CHICKEN2, PERF_FIX_BALANCING_CFE_DISABLE))
+ 	},
+ 	{ XE_RTP_NAME("14014999345"),
+-	  XE_RTP_RULES(PLATFORM(PVC), ENGINE_CLASS(COMPUTE), STEP(B0, C0)),
++	  XE_RTP_RULES(PLATFORM(PVC), ENGINE_CLASS(COMPUTE),
++		       GRAPHICS_STEP(B0, C0)),
+ 	  XE_RTP_ACTIONS(SET(CACHE_MODE_SS, DISABLE_ECC))
+ 	},
  	{}
- };
+@@ -528,17 +538,17 @@ static const struct xe_rtp_entry_sr lrc_was[] = {
+ 	/* DG2 */
  
--static const struct xe_rtp_entry engine_was[] = {
-+static const struct xe_rtp_entry_sr engine_was[] = {
- 	{ XE_RTP_NAME("22010931296, 18011464164, 14010919138"),
- 	  XE_RTP_RULES(GRAPHICS_VERSION(1200), ENGINE_CLASS(RENDER)),
- 	  XE_RTP_ACTIONS(SET(FF_THREAD_MODE,
-@@ -490,7 +490,7 @@ static const struct xe_rtp_entry engine_was[] = {
- 	{}
- };
- 
--static const struct xe_rtp_entry lrc_was[] = {
-+static const struct xe_rtp_entry_sr lrc_was[] = {
- 	{ XE_RTP_NAME("1409342910, 14010698770, 14010443199, 1408979724, 1409178076, 1409207793, 1409217633, 1409252684, 1409347922, 1409142259"),
- 	  XE_RTP_RULES(GRAPHICS_VERSION_RANGE(1200, 1210)),
- 	  XE_RTP_ACTIONS(SET(COMMON_SLICE_CHICKEN3,
-@@ -581,7 +581,7 @@ void xe_wa_process_gt(struct xe_gt *gt)
- {
- 	struct xe_rtp_process_ctx ctx = XE_RTP_PROCESS_CTX_INITIALIZER(gt);
- 
--	xe_rtp_process(&ctx, gt_was, &gt->reg_sr);
-+	xe_rtp_process_to_sr(&ctx, gt_was, &gt->reg_sr);
- }
- EXPORT_SYMBOL_IF_KUNIT(xe_wa_process_gt);
- 
-@@ -597,7 +597,7 @@ void xe_wa_process_engine(struct xe_hw_engine *hwe)
- {
- 	struct xe_rtp_process_ctx ctx = XE_RTP_PROCESS_CTX_INITIALIZER(hwe);
- 
--	xe_rtp_process(&ctx, engine_was, &hwe->reg_sr);
-+	xe_rtp_process_to_sr(&ctx, engine_was, &hwe->reg_sr);
- }
- 
- /**
-@@ -612,5 +612,5 @@ void xe_wa_process_lrc(struct xe_hw_engine *hwe)
- {
- 	struct xe_rtp_process_ctx ctx = XE_RTP_PROCESS_CTX_INITIALIZER(hwe);
- 
--	xe_rtp_process(&ctx, lrc_was, &hwe->reg_lrc);
-+	xe_rtp_process_to_sr(&ctx, lrc_was, &hwe->reg_lrc);
- }
+ 	{ XE_RTP_NAME("16011186671"),
+-	  XE_RTP_RULES(SUBPLATFORM(DG2, G11), STEP(A0, B0)),
++	  XE_RTP_RULES(SUBPLATFORM(DG2, G11), GRAPHICS_STEP(A0, B0)),
+ 	  XE_RTP_ACTIONS(CLR(VFLSKPD, DIS_MULT_MISS_RD_SQUASH),
+ 			 SET(VFLSKPD, DIS_OVER_FETCH_CACHE))
+ 	},
+ 	{ XE_RTP_NAME("14010469329"),
+-	  XE_RTP_RULES(SUBPLATFORM(DG2, G10), STEP(A0, B0)),
++	  XE_RTP_RULES(SUBPLATFORM(DG2, G10), GRAPHICS_STEP(A0, B0)),
+ 	  XE_RTP_ACTIONS(SET(XEHP_COMMON_SLICE_CHICKEN3,
+ 			     XEHP_DUAL_SIMD8_SEQ_MERGE_DISABLE))
+ 	},
+ 	{ XE_RTP_NAME("14010698770, 22010613112, 22010465075"),
+-	  XE_RTP_RULES(SUBPLATFORM(DG2, G10), STEP(A0, B0)),
++	  XE_RTP_RULES(SUBPLATFORM(DG2, G10), GRAPHICS_STEP(A0, B0)),
+ 	  XE_RTP_ACTIONS(SET(XEHP_COMMON_SLICE_CHICKEN3,
+ 			     DISABLE_CPS_AWARE_COLOR_PIPE))
+ 	},
 -- 
 2.40.1
 
