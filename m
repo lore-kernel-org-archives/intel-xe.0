@@ -4,47 +4,48 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6859DC7EE2E
-	for <intel-xe@archiver.kernel.org>; Fri, 26 May 2023 16:44:15 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id BA748C7EE2C
+	for <intel-xe@archiver.kernel.org>; Fri, 26 May 2023 16:44:14 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 393BE10E829;
-	Fri, 26 May 2023 16:44:15 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 643DE10E826;
+	Fri, 26 May 2023 16:44:14 +0000 (UTC)
 Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8AC0D10E823
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C327210E823
  for <intel-xe@lists.freedesktop.org>; Fri, 26 May 2023 16:44:12 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
  t=1685119452; x=1716655452;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=xnOeBE9Jp1JX1c1NLH5BRcUzqoCiC2LkXmR8Wyxp19c=;
- b=KI9UwhAQz7gNiG/01JVgzNw4OPbrqVQSnwBfVIGzztB9CAx9gC4rK/zH
- LIC22eN7kb/ompXwvAfNQZe7pjcsTHphUfZxuIlXJuqwPRG4qZP3Db/d4
- isJ0+kOb+LM5C6XSKwZ79W6P+JCcha4YsXILRlNof7IN/p0xyPQF0+jDl
- NuNkBOq0X8T04JgKDu5iyjcCzATAI/HmpigURjZpfgdYwtDEV518P4VRJ
- Nau8EpJlD2BKQHbcqODtbVWwX58SaDiXEv+i8qmIzTiJ+qj2pQbG9KgQS
- VfYG+0kCmCx4kIbC82P3L6hlslBj7mFBgX8HDAQxKaWBTwhqU3sABSz4E w==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10722"; a="356628372"
-X-IronPort-AV: E=Sophos;i="6.00,194,1681196400"; d="scan'208";a="356628372"
+ bh=8ooNtjW7DIq0Cs7y3w5Zeg2HJWose1+EIbriL+ExCTs=;
+ b=bX8kVclwVWZwO2b0i1anQO30LMuXIh2clL4qVuRlutTffzrQr1+kPCaS
+ JhUD+XXdFAEAH5MbwteqSaQMd7zUgTk2n/UOtCO2nSoVl6uLcru3KkJEU
+ Y0hb01QyhWL0LveCaVbrqh/bR0J4N3wHoru5Qe702lkT9oO8k3kM7g6qk
+ EJBV3fJgoeetHMLuDtzWdfidTca7ncpfSQJV5cOJunPEjOh++uxG9cH10
+ v73N1LXoOQQwI8Xk9GwxleWKg9mZvw5Z3Qte1Zn9nnUbZnKRMmfPIy54N
+ L/FX/XzE9384FK0jOuDFGag2dUMdrE2B5SJfD2xLCGARnU+Ihd2AluCxr A==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10722"; a="356628373"
+X-IronPort-AV: E=Sophos;i="6.00,194,1681196400"; d="scan'208";a="356628373"
 Received: from fmsmga003.fm.intel.com ([10.253.24.29])
  by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  26 May 2023 09:44:12 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10722"; a="795151448"
-X-IronPort-AV: E=Sophos;i="6.00,194,1681196400"; d="scan'208";a="795151448"
+X-IronPort-AV: E=McAfee;i="6600,9927,10722"; a="795151451"
+X-IronPort-AV: E=Sophos;i="6.00,194,1681196400"; d="scan'208";a="795151451"
 Received: from lucas-s2600cw.jf.intel.com ([10.165.21.196])
  by fmsmga003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 26 May 2023 09:44:11 -0700
+ 26 May 2023 09:44:12 -0700
 From: Lucas De Marchi <lucas.demarchi@intel.com>
 To: intel-xe@lists.freedesktop.org
-Date: Fri, 26 May 2023 09:43:38 -0700
-Message-Id: <20230526164358.86393-2-lucas.demarchi@intel.com>
+Date: Fri, 26 May 2023 09:43:39 -0700
+Message-Id: <20230526164358.86393-3-lucas.demarchi@intel.com>
 X-Mailer: git-send-email 2.40.1
 In-Reply-To: <20230526164358.86393-1-lucas.demarchi@intel.com>
 References: <20230526164358.86393-1-lucas.demarchi@intel.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-xe] [PATCH v5 01/21] drm/xe: Fix Wa_22011802037 annotation
+Subject: [Intel-xe] [PATCH v5 02/21] drm/xe/rtp: Split rtp process
+ initialization
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -61,39 +62,340 @@ Cc: Lucas De Marchi <lucas.demarchi@intel.com>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-It was missing one digit, so not showing up as a proper WA number. Add
-the missing number and annotate it with a FIXME as there are more to be
-implemented to consider this WA done: ensure CS is stop before doing a
-reset, wait for pending.
+The selection between hwe and gt is exposed to the outside of rtp, by
+the xe_rtp_process() function. However it doesn't make seense from the
+caller point of view to pass a hwe and a gt as argument since the gt
+should always be the one containing the hwe.
 
-Also, this WA applies to platforms up to graphics version 1270 (with the
-exception of MTL A*, that are not supported in xe). Fix platform check.
+This clarifies the interface by separating the context creation into an
+initializer. The initializer then passes the correct value and there
+should never be a case with hwe and gt set: when hwe is passed, the gt
+is the one containing it. Internally the functions continue receiving
+the argument separately.
 
-Link: https://gitlab.freedesktop.org/drm/xe/kernel/-/issues/284
+v2: Leave the device-only context to a separate patch if they are indeed
+    needed later
+
 Reviewed-by: Matt Roper <matthew.d.roper@intel.com>
 Signed-off-by: Lucas De Marchi <lucas.demarchi@intel.com>
 ---
- drivers/gpu/drm/xe/xe_guc.c | 6 ++++--
- 1 file changed, 4 insertions(+), 2 deletions(-)
+ drivers/gpu/drm/xe/tests/xe_rtp_test.c |  3 +-
+ drivers/gpu/drm/xe/xe_hw_engine.c      |  8 ++--
+ drivers/gpu/drm/xe/xe_reg_whitelist.c  |  4 +-
+ drivers/gpu/drm/xe/xe_rtp.c            | 63 +++++++++++++++++++-------
+ drivers/gpu/drm/xe/xe_rtp.h            |  9 +++-
+ drivers/gpu/drm/xe/xe_rtp_types.h      | 13 ++++++
+ drivers/gpu/drm/xe/xe_tuning.c         |  8 +++-
+ drivers/gpu/drm/xe/xe_wa.c             | 12 +++--
+ 8 files changed, 91 insertions(+), 29 deletions(-)
 
-diff --git a/drivers/gpu/drm/xe/xe_guc.c b/drivers/gpu/drm/xe/xe_guc.c
-index 71f18b32d09b..a8e249205bff 100644
---- a/drivers/gpu/drm/xe/xe_guc.c
-+++ b/drivers/gpu/drm/xe/xe_guc.c
-@@ -160,9 +160,11 @@ static u32 guc_ctl_wa_flags(struct xe_guc *guc)
- 		flags |= GUC_WA_DUAL_QUEUE;
+diff --git a/drivers/gpu/drm/xe/tests/xe_rtp_test.c b/drivers/gpu/drm/xe/tests/xe_rtp_test.c
+index 4b2aac5ccf28..f96ef1987719 100644
+--- a/drivers/gpu/drm/xe/tests/xe_rtp_test.c
++++ b/drivers/gpu/drm/xe/tests/xe_rtp_test.c
+@@ -238,10 +238,11 @@ static void xe_rtp_process_tests(struct kunit *test)
+ 	struct xe_device *xe = test->priv;
+ 	struct xe_reg_sr *reg_sr = &xe->gt[0].reg_sr;
+ 	const struct xe_reg_sr_entry *sre, *sr_entry = NULL;
++	struct xe_rtp_process_ctx ctx = XE_RTP_PROCESS_CTX_INITIALIZER(&xe->gt[0]);
+ 	unsigned long idx, count = 0;
  
- 	/*
--	 * Wa_2201180203
-+	 * Wa_22011802037: FIXME - there's more to be done than simply setting
-+	 * this flag: make sure each CS is stopped when preparing for GT reset
-+	 * and wait for pending MI_FW.
- 	 */
--	if (GRAPHICS_VER(xe) <= 12)
-+	if (GRAPHICS_VERx100(xe) < 1270)
- 		flags |= GUC_WA_PRE_PARSER;
+ 	xe_reg_sr_init(reg_sr, "xe_rtp_tests", xe);
+-	xe_rtp_process(param->entries, reg_sr, &xe->gt[0], NULL);
++	xe_rtp_process(&ctx, param->entries, reg_sr);
  
- 	/* Wa_16011777198 */
+ 	xa_for_each(&reg_sr->xa, idx, sre) {
+ 		if (idx == param->expected_reg.addr)
+diff --git a/drivers/gpu/drm/xe/xe_hw_engine.c b/drivers/gpu/drm/xe/xe_hw_engine.c
+index 71ac4defb947..25b96f40d5a7 100644
+--- a/drivers/gpu/drm/xe/xe_hw_engine.c
++++ b/drivers/gpu/drm/xe/xe_hw_engine.c
+@@ -281,6 +281,7 @@ xe_hw_engine_setup_default_lrc_state(struct xe_hw_engine *hwe)
+ 	const u8 mocs_read_idx = gt->mocs.uc_index;
+ 	u32 blit_cctl_val = REG_FIELD_PREP(BLIT_CCTL_DST_MOCS_MASK, mocs_write_idx) |
+ 			    REG_FIELD_PREP(BLIT_CCTL_SRC_MOCS_MASK, mocs_read_idx);
++	struct xe_rtp_process_ctx ctx = XE_RTP_PROCESS_CTX_INITIALIZER(hwe);
+ 	const struct xe_rtp_entry lrc_was[] = {
+ 		/*
+ 		 * Some blitter commands do not have a field for MOCS, those
+@@ -299,7 +300,7 @@ xe_hw_engine_setup_default_lrc_state(struct xe_hw_engine *hwe)
+ 		{}
+ 	};
+ 
+-	xe_rtp_process(lrc_was, &hwe->reg_lrc, gt, hwe);
++	xe_rtp_process(&ctx, lrc_was, &hwe->reg_lrc);
+ }
+ 
+ static void
+@@ -311,7 +312,8 @@ hw_engine_setup_default_state(struct xe_hw_engine *hwe)
+ 	const u8 mocs_read_idx = gt->mocs.uc_index;
+ 	u32 ring_cmd_cctl_val = REG_FIELD_PREP(CMD_CCTL_WRITE_OVERRIDE_MASK, mocs_write_idx) |
+ 			        REG_FIELD_PREP(CMD_CCTL_READ_OVERRIDE_MASK, mocs_read_idx);
+-	const struct xe_rtp_entry engine_was[] = {
++	struct xe_rtp_process_ctx ctx = XE_RTP_PROCESS_CTX_INITIALIZER(hwe);
++	const struct xe_rtp_entry engine_entries[] = {
+ 		/*
+ 		 * RING_CMD_CCTL specifies the default MOCS entry that will be
+ 		 * used by the command streamer when executing commands that
+@@ -332,7 +334,7 @@ hw_engine_setup_default_state(struct xe_hw_engine *hwe)
+ 		{}
+ 	};
+ 
+-	xe_rtp_process(engine_was, &hwe->reg_sr, gt, hwe);
++	xe_rtp_process(&ctx, engine_entries, &hwe->reg_sr);
+ }
+ 
+ static void hw_engine_init_early(struct xe_gt *gt, struct xe_hw_engine *hwe,
+diff --git a/drivers/gpu/drm/xe/xe_reg_whitelist.c b/drivers/gpu/drm/xe/xe_reg_whitelist.c
+index 7a2bb60ebd85..98f678d74445 100644
+--- a/drivers/gpu/drm/xe/xe_reg_whitelist.c
++++ b/drivers/gpu/drm/xe/xe_reg_whitelist.c
+@@ -63,7 +63,9 @@ static const struct xe_rtp_entry register_whitelist[] = {
+  */
+ void xe_reg_whitelist_process_engine(struct xe_hw_engine *hwe)
+ {
+-	xe_rtp_process(register_whitelist, &hwe->reg_whitelist, hwe->gt, hwe);
++	struct xe_rtp_process_ctx ctx = XE_RTP_PROCESS_CTX_INITIALIZER(hwe);
++
++	xe_rtp_process(&ctx, register_whitelist, &hwe->reg_whitelist);
+ }
+ 
+ /**
+diff --git a/drivers/gpu/drm/xe/xe_rtp.c b/drivers/gpu/drm/xe/xe_rtp.c
+index 0c6a23e14a71..5be25fe0e8e4 100644
+--- a/drivers/gpu/drm/xe/xe_rtp.c
++++ b/drivers/gpu/drm/xe/xe_rtp.c
+@@ -23,11 +23,11 @@
+  * the values to the registers that have matching rules.
+  */
+ 
+-static bool rule_matches(struct xe_gt *gt,
++static bool rule_matches(const struct xe_device *xe,
++			 struct xe_gt *gt,
+ 			 struct xe_hw_engine *hwe,
+ 			 const struct xe_rtp_entry *entry)
+ {
+-	const struct xe_device *xe = gt_to_xe(gt);
+ 	const struct xe_rtp_rule *r;
+ 	unsigned int i;
+ 	bool match;
+@@ -62,22 +62,27 @@ static bool rule_matches(struct xe_gt *gt,
+ 			match = xe->info.step.graphics >= r->step_start &&
+ 				xe->info.step.graphics < r->step_end;
+ 			break;
++		case XE_RTP_MATCH_INTEGRATED:
++			match = !xe->info.is_dgfx;
++			break;
++		case XE_RTP_MATCH_DISCRETE:
++			match = xe->info.is_dgfx;
++			break;
+ 		case XE_RTP_MATCH_ENGINE_CLASS:
++			if (drm_WARN_ON(&xe->drm, !hwe))
++				return false;
++
+ 			match = hwe->class == r->engine_class;
+ 			break;
+ 		case XE_RTP_MATCH_NOT_ENGINE_CLASS:
++			if (drm_WARN_ON(&xe->drm, !hwe))
++				return false;
++
+ 			match = hwe->class != r->engine_class;
+ 			break;
+ 		case XE_RTP_MATCH_FUNC:
+ 			match = r->match_func(gt, hwe);
+ 			break;
+-		case XE_RTP_MATCH_INTEGRATED:
+-			match = !xe->info.is_dgfx;
+-			break;
+-		case XE_RTP_MATCH_DISCRETE:
+-			match = xe->info.is_dgfx;
+-			break;
+-
+ 		default:
+ 			XE_WARN_ON(r->match_type);
+ 		}
+@@ -105,14 +110,15 @@ static void rtp_add_sr_entry(const struct xe_rtp_action *action,
+ 	xe_reg_sr_add(sr, &sr_entry);
+ }
+ 
+-static void rtp_process_one(const struct xe_rtp_entry *entry, struct xe_gt *gt,
++static void rtp_process_one(const struct xe_rtp_entry *entry,
++			    struct xe_device *xe, struct xe_gt *gt,
+ 			    struct xe_hw_engine *hwe, struct xe_reg_sr *sr)
+ {
+ 	const struct xe_rtp_action *action;
+ 	u32 mmio_base;
+ 	unsigned int i;
+ 
+-	if (!rule_matches(gt, hwe, entry))
++	if (!rule_matches(xe, gt, hwe, entry))
+ 		return;
+ 
+ 	for (action = &entry->actions[0]; i < entry->n_actions; action++, i++) {
+@@ -126,23 +132,46 @@ static void rtp_process_one(const struct xe_rtp_entry *entry, struct xe_gt *gt,
+ 	}
+ }
+ 
++static void rtp_get_context(struct xe_rtp_process_ctx *ctx,
++			    struct xe_hw_engine **hwe,
++			    struct xe_gt **gt,
++			    struct xe_device **xe)
++{
++	switch (ctx->type) {
++	case XE_RTP_PROCESS_TYPE_GT:
++		*hwe = NULL;
++		*gt = ctx->gt;
++		*xe = gt_to_xe(*gt);
++		break;
++	case XE_RTP_PROCESS_TYPE_ENGINE:
++		*hwe = ctx->hwe;
++		*gt = (*hwe)->gt;
++		*xe = gt_to_xe(*gt);
++		break;
++	};
++}
++
+ /**
+  * xe_rtp_process - Process all rtp @entries, adding the matching ones to @sr
++ * @ctx: The context for processing the table, with one of device, gt or hwe
+  * @entries: Table with RTP definitions
+  * @sr: Where to add an entry to with the values for matching. This can be
+  *      viewed as the "coalesced view" of multiple the tables. The bits for each
+  *      register set are expected not to collide with previously added entries
+- * @gt: The GT to be used for matching rules
+- * @hwe: Engine instance to use for matching rules and as mmio base
+  *
+  * Walk the table pointed by @entries (with an empty sentinel) and add all
+  * entries with matching rules to @sr. If @hwe is not NULL, its mmio_base is
+  * used to calculate the right register offset
+  */
+-void xe_rtp_process(const struct xe_rtp_entry *entries, struct xe_reg_sr *sr,
+-		    struct xe_gt *gt, struct xe_hw_engine *hwe)
++void xe_rtp_process(struct xe_rtp_process_ctx *ctx,
++		    const struct xe_rtp_entry *entries, struct xe_reg_sr *sr)
+ {
+ 	const struct xe_rtp_entry *entry;
++	struct xe_hw_engine *hwe = NULL;
++	struct xe_gt *gt = NULL;
++	struct xe_device *xe = NULL;
++
++	rtp_get_context(ctx, &hwe, &gt, &xe);
+ 
+ 	for (entry = entries; entry && entry->name; entry++) {
+ 		if (entry->flags & XE_RTP_ENTRY_FLAG_FOREACH_ENGINE) {
+@@ -150,9 +179,9 @@ void xe_rtp_process(const struct xe_rtp_entry *entries, struct xe_reg_sr *sr,
+ 			enum xe_hw_engine_id id;
+ 
+ 			for_each_hw_engine(each_hwe, gt, id)
+-				rtp_process_one(entry, gt, each_hwe, sr);
++				rtp_process_one(entry, xe, gt, each_hwe, sr);
+ 		} else {
+-			rtp_process_one(entry, gt, hwe, sr);
++			rtp_process_one(entry, xe, gt, hwe, sr);
+ 		}
+ 	}
+ }
+diff --git a/drivers/gpu/drm/xe/xe_rtp.h b/drivers/gpu/drm/xe/xe_rtp.h
+index 8a89ad45589a..c4b718b9632e 100644
+--- a/drivers/gpu/drm/xe/xe_rtp.h
++++ b/drivers/gpu/drm/xe/xe_rtp.h
+@@ -355,8 +355,13 @@ struct xe_reg_sr;
+ 		XE_RTP_PASTE_FOREACH(ACTION_, COMMA, (__VA_ARGS__))	\
+ 	}
+ 
+-void xe_rtp_process(const struct xe_rtp_entry *entries, struct xe_reg_sr *sr,
+-		    struct xe_gt *gt, struct xe_hw_engine *hwe);
++#define XE_RTP_PROCESS_CTX_INITIALIZER(arg__) _Generic((arg__),							\
++	struct xe_hw_engine *:	(struct xe_rtp_process_ctx){ { (void *)(arg__) }, XE_RTP_PROCESS_TYPE_ENGINE },	\
++	struct xe_gt *:		(struct xe_rtp_process_ctx){ { (void *)(arg__) }, XE_RTP_PROCESS_TYPE_GT })
++
++void xe_rtp_process(struct xe_rtp_process_ctx *ctx,
++		    const struct xe_rtp_entry *entries,
++		    struct xe_reg_sr *sr);
+ 
+ /* Match functions to be used with XE_RTP_MATCH_FUNC */
+ 
+diff --git a/drivers/gpu/drm/xe/xe_rtp_types.h b/drivers/gpu/drm/xe/xe_rtp_types.h
+index 12df8a9e9c45..5afacbd9083d 100644
+--- a/drivers/gpu/drm/xe/xe_rtp_types.h
++++ b/drivers/gpu/drm/xe/xe_rtp_types.h
+@@ -95,4 +95,17 @@ struct xe_rtp_entry {
+ 	u8 flags;
+ };
+ 
++enum xe_rtp_process_type {
++	XE_RTP_PROCESS_TYPE_GT,
++	XE_RTP_PROCESS_TYPE_ENGINE,
++};
++
++struct xe_rtp_process_ctx {
++	union {
++		struct xe_gt *gt;
++		struct xe_hw_engine *hwe;
++	};
++	enum xe_rtp_process_type type;
++};
++
+ #endif
+diff --git a/drivers/gpu/drm/xe/xe_tuning.c b/drivers/gpu/drm/xe/xe_tuning.c
+index 5fc6a408429b..c2810ede3a65 100644
+--- a/drivers/gpu/drm/xe/xe_tuning.c
++++ b/drivers/gpu/drm/xe/xe_tuning.c
+@@ -59,7 +59,9 @@ static const struct xe_rtp_entry lrc_tunings[] = {
+ 
+ void xe_tuning_process_gt(struct xe_gt *gt)
+ {
+-	xe_rtp_process(gt_tunings, &gt->reg_sr, gt, NULL);
++	struct xe_rtp_process_ctx ctx = XE_RTP_PROCESS_CTX_INITIALIZER(gt);
++
++	xe_rtp_process(&ctx, gt_tunings, &gt->reg_sr);
+ }
+ EXPORT_SYMBOL_IF_KUNIT(xe_tuning_process_gt);
+ 
+@@ -73,5 +75,7 @@ EXPORT_SYMBOL_IF_KUNIT(xe_tuning_process_gt);
+  */
+ void xe_tuning_process_lrc(struct xe_hw_engine *hwe)
+ {
+-	xe_rtp_process(lrc_tunings, &hwe->reg_lrc, hwe->gt, hwe);
++	struct xe_rtp_process_ctx ctx = XE_RTP_PROCESS_CTX_INITIALIZER(hwe);
++
++	xe_rtp_process(&ctx, lrc_tunings, &hwe->reg_lrc);
+ }
+diff --git a/drivers/gpu/drm/xe/xe_wa.c b/drivers/gpu/drm/xe/xe_wa.c
+index b0bb2f4438f4..4b236b6f4c8e 100644
+--- a/drivers/gpu/drm/xe/xe_wa.c
++++ b/drivers/gpu/drm/xe/xe_wa.c
+@@ -579,7 +579,9 @@ __diag_pop();
+  */
+ void xe_wa_process_gt(struct xe_gt *gt)
+ {
+-	xe_rtp_process(gt_was, &gt->reg_sr, gt, NULL);
++	struct xe_rtp_process_ctx ctx = XE_RTP_PROCESS_CTX_INITIALIZER(gt);
++
++	xe_rtp_process(&ctx, gt_was, &gt->reg_sr);
+ }
+ EXPORT_SYMBOL_IF_KUNIT(xe_wa_process_gt);
+ 
+@@ -593,7 +595,9 @@ EXPORT_SYMBOL_IF_KUNIT(xe_wa_process_gt);
+  */
+ void xe_wa_process_engine(struct xe_hw_engine *hwe)
+ {
+-	xe_rtp_process(engine_was, &hwe->reg_sr, hwe->gt, hwe);
++	struct xe_rtp_process_ctx ctx = XE_RTP_PROCESS_CTX_INITIALIZER(hwe);
++
++	xe_rtp_process(&ctx, engine_was, &hwe->reg_sr);
+ }
+ 
+ /**
+@@ -606,5 +610,7 @@ void xe_wa_process_engine(struct xe_hw_engine *hwe)
+  */
+ void xe_wa_process_lrc(struct xe_hw_engine *hwe)
+ {
+-	xe_rtp_process(lrc_was, &hwe->reg_lrc, hwe->gt, hwe);
++	struct xe_rtp_process_ctx ctx = XE_RTP_PROCESS_CTX_INITIALIZER(hwe);
++
++	xe_rtp_process(&ctx, lrc_was, &hwe->reg_lrc);
+ }
 -- 
 2.40.1
 
