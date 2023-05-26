@@ -4,24 +4,25 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 37D3AC77B7C
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id AED68C7EE23
 	for <intel-xe@archiver.kernel.org>; Fri, 26 May 2023 12:11:17 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 137F010E7F3;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7D72110E7FA;
 	Fri, 26 May 2023 12:11:17 +0000 (UTC)
 Received: from mblankhorst.nl (lankhorst.se [141.105.120.124])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9CB5510E7F3
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8E4DD10E06F
  for <intel-xe@lists.freedesktop.org>; Fri, 26 May 2023 12:11:12 +0000 (UTC)
 From: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
 To: intel-xe@lists.freedesktop.org
-Date: Fri, 26 May 2023 14:10:59 +0200
-Message-Id: <20230526121101.1619278-4-maarten.lankhorst@linux.intel.com>
+Date: Fri, 26 May 2023 14:10:58 +0200
+Message-Id: <20230526121101.1619278-3-maarten.lankhorst@linux.intel.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20230526121101.1619278-1-maarten.lankhorst@linux.intel.com>
 References: <20230526121101.1619278-1-maarten.lankhorst@linux.intel.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-xe] [PATCH 3/5] drm/xe: Fix extobj dropping issue.
+Subject: [Intel-xe] [PATCH 2/5] drm/xe: Add debugfs files to evict
+ everything.
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,159 +37,56 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-I believe originally we did the right thing, but now we hit an issue.
-
-Presumably, this was changed when converting from an array to a list
-in a squashed commit:
-"drm/xe: Use a list for the vm's external objects"
-
-When deleting a vma with an extobj in the list, ensure if it's freed
-but still listed on the vm, we take a different vma and add that to
-the extobj list instead.
-
-I'll add an igt, and make sure it doesn't happen again.
+Easy for testing, when you just want your BO evicted.
 
 Signed-off-by: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
-Closes: https://gitlab.freedesktop.org/drm/xe/kernel/-/issues/194
 ---
- drivers/gpu/drm/xe/xe_vm.c | 95 +++++++++++++++++++++++---------------
- 1 file changed, 58 insertions(+), 37 deletions(-)
+ drivers/gpu/drm/xe/xe_debugfs.c | 17 ++++++++++++++++-
+ 1 file changed, 16 insertions(+), 1 deletion(-)
 
-diff --git a/drivers/gpu/drm/xe/xe_vm.c b/drivers/gpu/drm/xe/xe_vm.c
-index f73e08b60670..dd1335e12d4c 100644
---- a/drivers/gpu/drm/xe/xe_vm.c
-+++ b/drivers/gpu/drm/xe/xe_vm.c
-@@ -909,12 +909,14 @@ static struct xe_vma *xe_vma_create(struct xe_vm *vm,
- 	return vma;
- }
+diff --git a/drivers/gpu/drm/xe/xe_debugfs.c b/drivers/gpu/drm/xe/xe_debugfs.c
+index 7827a785b020..0a2f1becb5c6 100644
+--- a/drivers/gpu/drm/xe/xe_debugfs.c
++++ b/drivers/gpu/drm/xe/xe_debugfs.c
+@@ -94,6 +94,15 @@ static const struct file_operations forcewake_all_fops = {
+ 	.release = forcewake_release,
+ };
  
--static void vm_remove_extobj(struct xe_vma *vma)
-+static bool vm_remove_extobj(struct xe_vma *vma)
- {
- 	if (!list_empty(&vma->extobj.link)) {
- 		vma->vm->extobj.entries--;
- 		list_del_init(&vma->extobj.link);
-+		return true;
- 	}
-+	return false;
- }
- 
- static void xe_vma_destroy_late(struct xe_vma *vma)
-@@ -955,6 +957,51 @@ static void vma_destroy_work_func(struct work_struct *w)
- 	xe_vma_destroy_late(vma);
- }
- 
-+static struct xe_vma *
-+bo_has_vm_references_locked(struct xe_bo *bo, struct xe_vm *vm,
-+			    struct xe_vma *ignore)
++static int evict(void *data, u64 val)
 +{
-+	struct xe_vma *vma;
++	struct ttm_resource_manager *man = data;
 +
-+	list_for_each_entry(vma, &bo->vmas, bo_link) {
-+		if (vma != ignore && vma->vm == vm && !vma->destroyed)
-+			return vma;
++	return ttm_resource_manager_evict_all(man->bdev, man);
++}
++
++DEFINE_DEBUGFS_ATTRIBUTE(evict_all_fops, NULL, evict, "%lld\n");
++
+ void xe_debugfs_register(struct xe_device *xe)
+ {
+ 	struct ttm_device *bdev = &xe->ttm;
+@@ -119,15 +128,21 @@ void xe_debugfs_register(struct xe_device *xe)
+ 
+ 			sprintf(name, "vram%d_mm", mem_type - XE_PL_VRAM0);
+ 			ttm_resource_manager_create_debugfs(man, root, name);
++
++			sprintf(name, "vram%d_evict", mem_type - XE_PL_VRAM0);
++			debugfs_create_file(name, 0644, root, man, &evict_all_fops);
+ 		}
+ 	}
+ 
+ 	man = ttm_manager_type(bdev, XE_PL_TT);
+ 	ttm_resource_manager_create_debugfs(man, root, "gtt_mm");
++	debugfs_create_file("gtt_evict", 0644, root, man, &evict_all_fops);
+ 
+ 	man = ttm_manager_type(bdev, XE_PL_STOLEN);
+-	if (man)
++	if (man) {
+ 		ttm_resource_manager_create_debugfs(man, root, "stolen_mm");
++		debugfs_create_file("stolen_evict", 0644, root, man, &evict_all_fops);
 +	}
-+
-+	return NULL;
-+}
-+
-+static bool bo_has_vm_references(struct xe_bo *bo, struct xe_vm *vm,
-+				 struct xe_vma *ignore)
-+{
-+	struct ww_acquire_ctx ww;
-+	bool ret;
-+
-+	xe_bo_lock(bo, &ww, 0, false);
-+	ret = !!bo_has_vm_references_locked(bo, vm, ignore);
-+	xe_bo_unlock(bo, &ww);
-+
-+	return ret;
-+}
-+
-+static void __vm_insert_extobj(struct xe_vm *vm, struct xe_vma *vma)
-+{
-+	list_add(&vma->extobj.link, &vm->extobj.list);
-+	vm->extobj.entries++;
-+}
-+
-+static void vm_insert_extobj(struct xe_vm *vm, struct xe_vma *vma)
-+{
-+	struct xe_bo *bo = vma->bo;
-+
-+	lockdep_assert_held_write(&vm->lock);
-+
-+	if (bo_has_vm_references(bo, vm, vma))
-+		return;
-+
-+	__vm_insert_extobj(vm, vma);
-+}
-+
- static void vma_destroy_cb(struct dma_fence *fence,
- 			   struct dma_fence_cb *cb)
- {
-@@ -980,11 +1027,19 @@ static void xe_vma_destroy(struct xe_vma *vma, struct dma_fence *fence)
- 	} else {
- 		xe_bo_assert_held(vma->bo);
- 		list_del(&vma->bo_link);
-+
- 		spin_lock(&vm->notifier.list_lock);
- 		list_del(&vma->notifier.rebind_link);
- 		spin_unlock(&vm->notifier.list_lock);
--		if (!vma->bo->vm)
--			vm_remove_extobj(vma);
-+
-+		if (!vma->bo->vm && vm_remove_extobj(vma)) {
-+			struct xe_vma *other;
-+
-+			other = bo_has_vm_references_locked(vma->bo, vm, NULL);
-+
-+			if (other)
-+				__vm_insert_extobj(vm, other);
-+		}
- 	}
  
- 	xe_vm_assert_held(vm);
-@@ -2481,40 +2536,6 @@ static int vm_bind_ioctl_async(struct xe_vm *vm, struct xe_vma *vma,
- 	return err;
- }
- 
--static bool bo_has_vm_references(struct xe_bo *bo, struct xe_vm *vm,
--				 struct xe_vma *ignore)
--{
--	struct ww_acquire_ctx ww;
--	struct xe_vma *vma;
--	bool ret = false;
--
--	xe_bo_lock(bo, &ww, 0, false);
--	list_for_each_entry(vma, &bo->vmas, bo_link) {
--		if (vma != ignore && vma->vm == vm && !vma->destroyed) {
--			ret = true;
--			break;
--		}
--	}
--	xe_bo_unlock(bo, &ww);
--
--	return ret;
--}
--
--static int vm_insert_extobj(struct xe_vm *vm, struct xe_vma *vma)
--{
--	struct xe_bo *bo = vma->bo;
--
--	lockdep_assert_held_write(&vm->lock);
--
--	if (bo_has_vm_references(bo, vm, vma))
--		return 0;
--
--	list_add(&vma->extobj.link, &vm->extobj.list);
--	vm->extobj.entries++;
--
--	return 0;
--}
--
- static int __vm_bind_ioctl_lookup_vma(struct xe_vm *vm, struct xe_bo *bo,
- 				      u64 addr, u64 range, u32 op)
- {
+ 	for_each_gt(gt, xe, id)
+ 		xe_gt_debugfs_register(gt);
 -- 
 2.34.1
 
