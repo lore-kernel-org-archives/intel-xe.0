@@ -4,54 +4,30 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id CE8E5C77B7A
-	for <intel-xe@archiver.kernel.org>; Fri, 26 May 2023 12:40:11 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id A7009C77B73
+	for <intel-xe@archiver.kernel.org>; Fri, 26 May 2023 12:48:05 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A052C10E1CD;
-	Fri, 26 May 2023 12:40:11 +0000 (UTC)
-Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2265410E1CD
- for <intel-xe@lists.freedesktop.org>; Fri, 26 May 2023 12:40:08 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1685104809; x=1716640809;
- h=message-id:date:mime-version:subject:to:references:from:
- in-reply-to:content-transfer-encoding;
- bh=80HcS5nj/LT2YU9dP7t9Qqjjo/owFVY/qGPod1TOS2o=;
- b=ZBLnl5MG9qXw7FBgfJrtBlmNOXMArYsoyOI8wx0Te1P2FS7ZzG8RqU6n
- GCG3lxyeyuyl3ug49resepP0f5k8oBSvuI82nnPjGZrjXu/fLvLxu1LqE
- qoe3dSm0e1sFcfGsu41DLnOu1bLbj3upvst2ir4ibj9hZk3pjKVhLWC/z
- aFfTJpWoT1SHdxUzQYHrxWermM8hxi2HrBwhdrnqmxG1j2y+XCBPXqkMK
- WuOBFoBn2Z/iQMy0rxmZK2JVY9Vab/wjBLsSzH3qh1Nf3bu0P+IwPrlou
- 32ivU9rrswabmsx68IWG2DAElV+pA2WoY46e7rrTMb06C/E2y6CLaQXMp g==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10722"; a="334543823"
-X-IronPort-AV: E=Sophos;i="6.00,194,1681196400"; d="scan'208";a="334543823"
-Received: from orsmga006.jf.intel.com ([10.7.209.51])
- by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 26 May 2023 05:40:08 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10722"; a="682705038"
-X-IronPort-AV: E=Sophos;i="6.00,194,1681196400"; d="scan'208";a="682705038"
-Received: from binis42x-mobl.gar.corp.intel.com (HELO [10.249.254.65])
- ([10.249.254.65])
- by orsmga006-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 26 May 2023 05:40:07 -0700
-Message-ID: <5caeb2d5-bd11-fe76-25f9-71a5ecbff9db@linux.intel.com>
-Date: Fri, 26 May 2023 14:40:04 +0200
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7A80010E1A6;
+	Fri, 26 May 2023 12:48:05 +0000 (UTC)
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 8E50E10E1A6;
+ Fri, 26 May 2023 12:48:03 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 85650A00CC;
+ Fri, 26 May 2023 12:48:03 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============6100362733153600792=="
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.8.0
-Content-Language: en-US
-To: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- intel-xe@lists.freedesktop.org
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Maarten Lankhorst" <maarten.lankhorst@linux.intel.com>
+Date: Fri, 26 May 2023 12:48:03 -0000
+Message-ID: <168510528351.32383.1997066915364275041@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
 References: <20230526121101.1619278-1-maarten.lankhorst@linux.intel.com>
- <20230526121101.1619278-6-maarten.lankhorst@linux.intel.com>
-From: =?UTF-8?Q?Thomas_Hellstr=c3=b6m?= <thomas.hellstrom@linux.intel.com>
-In-Reply-To: <20230526121101.1619278-6-maarten.lankhorst@linux.intel.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-Subject: Re: [Intel-xe] [PATCH 5/5] drm/xe: Return the correct error when
- dma_resv_wait_timeout fails
+In-Reply-To: <20230526121101.1619278-1-maarten.lankhorst@linux.intel.com>
+Subject: [Intel-xe] =?utf-8?q?=E2=97=8B_CI=2EBAT=3A_info_for_Robustness_f?=
+ =?utf-8?q?ixes_with_eviction_and_invalidation=2E?=
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -63,37 +39,68 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
+Cc: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
+--===============6100362733153600792==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-On 5/26/23 14:11, Maarten Lankhorst wrote:
-> We call dma_resv_wait_timeout with MAX_SCHEDULE_TIMEOUT, so it can
-> never return -ETIME. It will however fail if interrupted, so in that
-> case return the error.
->
-> Signed-off-by: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
-> Closes: https://gitlab.freedesktop.org/drm/xe/kernel/-/issues/239
+== Series Details ==
 
-Reviewed-by: Thomas Hellström <thomas.hellstrom@linux.intel.com>
+Series: Robustness fixes with eviction and invalidation.
+URL   : https://patchwork.freedesktop.org/series/118428/
+State : info
+
+== Summary ==
+
+Participating hosts:
+bat-atsm-2
+bat-dg2-oem2
+bat-adlp-7
+Missing hosts results[0]:
+Results: [xe-pw-118428v1](https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-118428v1/index.html)
 
 
-> ---
->   drivers/gpu/drm/xe/xe_bo.c | 4 ++--
->   1 file changed, 2 insertions(+), 2 deletions(-)
->
-> diff --git a/drivers/gpu/drm/xe/xe_bo.c b/drivers/gpu/drm/xe/xe_bo.c
-> index 8735facb1cf9..77ba8492bd90 100644
-> --- a/drivers/gpu/drm/xe/xe_bo.c
-> +++ b/drivers/gpu/drm/xe/xe_bo.c
-> @@ -611,8 +611,8 @@ static int xe_bo_move(struct ttm_buffer_object *ttm_bo, bool evict,
->   						     DMA_RESV_USAGE_BOOKKEEP,
->   						     true,
->   						     MAX_SCHEDULE_TIMEOUT);
-> -		if (timeout <= 0) {
-> -			ret = -ETIME;
-> +		if (timeout < 0) {
-> +			ret = timeout;
->   			goto out;
->   		}
->   		ttm_bo_move_null(ttm_bo, new_mem);
+
+--===============6100362733153600792==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>Robustness fixes with eviction and invalidation.</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/118428/">https://patchwork.freedesktop.org/series/118428/</a></td></tr>
+<tr><td><b>State:</b></td><td>info</td></tr>
+
+</table>
+
+
+    <p>Participating hosts:<br />
+bat-atsm-2<br />
+bat-dg2-oem2<br />
+bat-adlp-7<br />
+Missing hosts results[0]:<br />
+Results: <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-118428v1/index.html">xe-pw-118428v1</a></p>
+
+</body>
+</html>
+
+--===============6100362733153600792==--
