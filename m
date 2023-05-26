@@ -4,30 +4,30 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 585A5C7EE29
-	for <intel-xe@archiver.kernel.org>; Fri, 26 May 2023 01:09:03 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6B2D5C7EE29
+	for <intel-xe@archiver.kernel.org>; Fri, 26 May 2023 01:10:56 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2CCAA10E083;
-	Fri, 26 May 2023 01:09:03 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3FDB010E083;
+	Fri, 26 May 2023 01:10:56 +0000 (UTC)
 Received: from emeril.freedesktop.org (emeril.freedesktop.org
  [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id 69ADA10E083;
- Fri, 26 May 2023 01:09:01 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTP id 2733310E083;
+ Fri, 26 May 2023 01:10:54 +0000 (UTC)
 Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 63127AADD5;
- Fri, 26 May 2023 01:09:01 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============5196708873542201821=="
+ by emeril.freedesktop.org (Postfix) with ESMTP id 1FC36AADE7;
+ Fri, 26 May 2023 01:10:54 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Christopher Snowhill" <kode54@gmail.com>
-Date: Fri, 26 May 2023 01:09:01 -0000
-Message-ID: <168506334137.32385.1920793385931806487@emeril.freedesktop.org>
+To: "Gustavo Sousa" <gustavo.sousa@intel.com>
+Date: Fri, 26 May 2023 01:10:54 -0000
+Message-ID: <168506345410.32385.17008554392600198087@emeril.freedesktop.org>
 X-Patchwork-Hint: ignore
-References: <20230526003221.3874899-1-kode54@gmail.com>
-In-Reply-To: <20230526003221.3874899-1-kode54@gmail.com>
-Subject: [Intel-xe] =?utf-8?q?=E2=97=8B_CI=2EBAT=3A_info_for_Draft=3A_Upd?=
- =?utf-8?q?ate_Xe_uAPI_for_32-bit_compat=2C_invasively?=
+References: <20230526004235.745730-1-gustavo.sousa@intel.com>
+In-Reply-To: <20230526004235.745730-1-gustavo.sousa@intel.com>
+Subject: [Intel-xe] =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_f?=
+ =?utf-8?q?or_Replace_DRM=5FERROR=28=29_with_pr=5Ferr=28=29?=
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -44,63 +44,18 @@ Cc: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============5196708873542201821==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
 == Series Details ==
 
-Series: Draft: Update Xe uAPI for 32-bit compat, invasively
-URL   : https://patchwork.freedesktop.org/series/118401/
-State : info
+Series: Replace DRM_ERROR() with pr_err()
+URL   : https://patchwork.freedesktop.org/series/118402/
+State : success
 
 == Summary ==
 
-Participating hosts:
-bat-atsm-2
-bat-dg2-oem2
-bat-adlp-7
-Missing hosts results[0]:
-Results: [xe-pw-118401v1](https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-118401v1/index.html)
+=== Applying kernel patches on branch 'drm-xe-next' with base: ===
+Base commit: 7d6153e12 drm/xe: Apply upper limit to sg element size
+=== git am output follows ===
+Applying: fixup! drm/xe/debugfs: Dump register save-restore tables
+Applying: drm/xe: Replace DRM_ERROR() with pr_err()
 
 
-
---===============5196708873542201821==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>Draft: Update Xe uAPI for 32-bit compat, invasively</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/118401/">https://patchwork.freedesktop.org/series/118401/</a></td></tr>
-<tr><td><b>State:</b></td><td>info</td></tr>
-
-</table>
-
-
-    <p>Participating hosts:<br />
-bat-atsm-2<br />
-bat-dg2-oem2<br />
-bat-adlp-7<br />
-Missing hosts results[0]:<br />
-Results: <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-118401v1/index.html">xe-pw-118401v1</a></p>
-
-</body>
-</html>
-
---===============5196708873542201821==--
