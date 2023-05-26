@@ -4,47 +4,49 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7C4AAC77B7A
-	for <intel-xe@archiver.kernel.org>; Fri, 26 May 2023 19:06:23 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 784CDC77B7A
+	for <intel-xe@archiver.kernel.org>; Fri, 26 May 2023 19:06:28 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0985110E1EB;
-	Fri, 26 May 2023 19:06:23 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2E6FB10E1EE;
+	Fri, 26 May 2023 19:06:28 +0000 (UTC)
 Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1857A10E1EB
- for <intel-xe@lists.freedesktop.org>; Fri, 26 May 2023 19:06:20 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 749CD10E1EB
+ for <intel-xe@lists.freedesktop.org>; Fri, 26 May 2023 19:06:22 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1685127981; x=1716663981;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=bGOtQBeaurhwAfkdtYCxhlCbo8gWMmXbm9a6fZEF8YM=;
- b=cgvN0FFryt/oPB8jN4b1ttgD812IyDh35pA9Qf6ZBkswDygpKCfMhIR8
- N2JY89I7sViVejFRdeaRwJ/CzDk/YCcddXpQVNEBZGzefkCslFXhejNa/
- Fws1bIp/KufrQwza1AKu3iTCQP2W/h+G68i/tgni+Vh2UMZVpOneEF1U6
- 5rV4+GMWQ102TXxdClSPL9go3ipde0YrjokY8nA1+4MJMQmlPvIZfpfg6
- C93KaeJ9jMq3GhHtWCFok6qQ1niDqeoFatYeJ4CM5jJi8Ekq5uO7KHwfm
- paO5nNOG0EZrV1GWULrXRa/uKVmjsvuuvQJjM+6T16fJHSlXhUnYs6Uue A==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10722"; a="440636655"
-X-IronPort-AV: E=Sophos;i="6.00,195,1681196400"; d="scan'208";a="440636655"
+ t=1685127982; x=1716663982;
+ h=from:to:cc:subject:date:message-id:in-reply-to:
+ references:mime-version:content-transfer-encoding;
+ bh=Qx8On0/nZiB5yUD7ftS9VBeUEUvY6jSvPysjR3u1zgc=;
+ b=FFK1FWetKquUEUyJ92cTR30QK+bkdQPNPsA1ag0bpVY4ARkQh/EomD5/
+ FY/BeR2fDVS4p3KqAecMnVC0wl9YWJs9byj063HTf3Mmf9M2J99KCrxkV
+ 0SBMLtaLCYwy5gdAoi0qr5aULz6M9nSn5l5PGarQVmljEk0S3qjdFxKS6
+ lWpOIZjbSKpZN4Pet2tNrxMG+CHNykznew5nXTCDbw042A9dcn4ySt73B
+ hRHpVfL5vH9CjG9gFC6UdJWJe9k1Mu3aW9eQ/5okdJVD8MSCQd3gE4cU+
+ B3fqAhZDhC8nIz+GJhJKruTqCdAMons1ZOIiBaTzh8B/DmB8daWfzvQr2 g==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10722"; a="440636661"
+X-IronPort-AV: E=Sophos;i="6.00,195,1681196400"; d="scan'208";a="440636661"
 Received: from orsmga006.jf.intel.com ([10.7.209.51])
  by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 26 May 2023 12:06:20 -0700
+ 26 May 2023 12:06:22 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10722"; a="682817047"
-X-IronPort-AV: E=Sophos;i="6.00,195,1681196400"; d="scan'208";a="682817047"
+X-IronPort-AV: E=McAfee;i="6600,9927,10722"; a="682817067"
+X-IronPort-AV: E=Sophos;i="6.00,195,1681196400"; d="scan'208";a="682817067"
 Received: from josouza-mobl2.bz.intel.com ([10.87.243.88])
  by orsmga006-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 26 May 2023 12:06:18 -0700
+ 26 May 2023 12:06:21 -0700
 From: =?UTF-8?q?Jos=C3=A9=20Roberto=20de=20Souza?= <jose.souza@intel.com>
 To: intel-xe@lists.freedesktop.org
-Date: Fri, 26 May 2023 12:06:07 -0700
-Message-Id: <20230526190609.61529-1-jose.souza@intel.com>
+Date: Fri, 26 May 2023 12:06:09 -0700
+Message-Id: <20230526190609.61529-3-jose.souza@intel.com>
 X-Mailer: git-send-email 2.40.1
+In-Reply-To: <20230526190609.61529-1-jose.souza@intel.com>
+References: <20230526190609.61529-1-jose.souza@intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-xe] [PATCH 1/3] drm/xe: Disable interruptable wait on
- xe_bo_move()
+Subject: [Intel-xe] [PATCH 3/3] drm/xe: Replace PVC check by engine type
+ check
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -59,32 +61,43 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-All the Xe users of dma_resv_wait_timeout() also disable the
-interruptable wait.
-And doing so this avoids DRM_IOCTL_XE_EXEC fails when under memory
-pressure.
+__emit_job_gen12_render_compute() masks some PIPE_CONTROL bits that
+do not exist in platforms without render engine.
+So here replacing the PVC check by something more generic that will
+support any future platforms without render engine.
 
-Link: https://gitlab.freedesktop.org/drm/xe/kernel/-/issues/239
-Cc: Thomas Hellström <thomas.hellstrom@linux.intel.com>
-Cc: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
 Signed-off-by: José Roberto de Souza <jose.souza@intel.com>
 ---
- drivers/gpu/drm/xe/xe_bo.c | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+ drivers/gpu/drm/xe/xe_ring_ops.c | 6 +++---
+ 1 file changed, 3 insertions(+), 3 deletions(-)
 
-diff --git a/drivers/gpu/drm/xe/xe_bo.c b/drivers/gpu/drm/xe/xe_bo.c
-index 0db9c05097d07..6ed7e08269e82 100644
---- a/drivers/gpu/drm/xe/xe_bo.c
-+++ b/drivers/gpu/drm/xe/xe_bo.c
-@@ -609,7 +609,7 @@ static int xe_bo_move(struct ttm_buffer_object *ttm_bo, bool evict,
- 	    new_mem->mem_type == XE_PL_SYSTEM) {
- 		long timeout = dma_resv_wait_timeout(ttm_bo->base.resv,
- 						     DMA_RESV_USAGE_BOOKKEEP,
--						     true,
-+						     false,
- 						     MAX_SCHEDULE_TIMEOUT);
- 		if (timeout <= 0) {
- 			ret = -ETIME;
+diff --git a/drivers/gpu/drm/xe/xe_ring_ops.c b/drivers/gpu/drm/xe/xe_ring_ops.c
+index 4f3ef39109b9b..ecae5101cfad6 100644
+--- a/drivers/gpu/drm/xe/xe_ring_ops.c
++++ b/drivers/gpu/drm/xe/xe_ring_ops.c
+@@ -251,11 +251,11 @@ static void __emit_job_gen12_render_compute(struct xe_sched_job *job,
+ 	u32 ppgtt_flag = get_ppgtt_flag(job);
+ 	struct xe_gt *gt = job->engine->gt;
+ 	struct xe_device *xe = gt_to_xe(gt);
+-	bool pvc = xe->info.platform == XE_PVC;
++	bool lacks_render = !(xe->gt[0].info.engine_mask & XE_HW_ENGINE_RCS_MASK);
+ 	u32 mask_flags = 0;
+ 
+ 	dw[i++] = preparser_disable(true);
+-	if (pvc)
++	if (lacks_render)
+ 		mask_flags = PIPE_CONTROL_3D_ARCH_FLAGS;
+ 	else if (job->engine->class == XE_ENGINE_CLASS_COMPUTE)
+ 		mask_flags = PIPE_CONTROL_3D_ENGINE_FLAGS;
+@@ -277,7 +277,7 @@ static void __emit_job_gen12_render_compute(struct xe_sched_job *job,
+ 						job->user_fence.value,
+ 						dw, i);
+ 
+-	i = emit_pipe_imm_ggtt(xe_lrc_seqno_ggtt_addr(lrc), seqno, pvc, dw, i);
++	i = emit_pipe_imm_ggtt(xe_lrc_seqno_ggtt_addr(lrc), seqno, lacks_render, dw, i);
+ 
+ 	i = emit_user_interrupt(dw, i);
+ 
 -- 
 2.40.1
 
