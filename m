@@ -4,46 +4,56 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5D5A3C77B7E
-	for <intel-xe@archiver.kernel.org>; Mon, 29 May 2023 15:08:49 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id D383FC77B7E
+	for <intel-xe@archiver.kernel.org>; Mon, 29 May 2023 15:11:15 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1096710E104;
-	Mon, 29 May 2023 15:08:49 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A5A1D10E2C8;
+	Mon, 29 May 2023 15:11:15 +0000 (UTC)
 Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 44E6F10E104
- for <intel-xe@lists.freedesktop.org>; Mon, 29 May 2023 15:08:46 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9768110E2CA
+ for <intel-xe@lists.freedesktop.org>; Mon, 29 May 2023 15:11:14 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1685372926; x=1716908926;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=T/VlDDHinTdYNdAzLdJ6UoeaWSjZBfI9s8Tgy3SrGCA=;
- b=GIw/KvtNq4HJerR8pxAplA2oBk+bZQcE1ZO4ED2cyK/XtrjyfdHJcJem
- VeFTZpw/h0ngUY5Vw1+AZFqbZGAs1v/D/UUtPjATMbXGelJuJ5VAlp6Fh
- bw5vcfVRtH/sdju2aoY4K0SVOA/N652yvwgU8GyWkY1FKiZCIOUXmDpSL
- LK06gECUKMzFank1U+KgTCbO3GD8Lpg3M7TyG60yiU3nxQuqJATYM5xIs
- X0kLvqbVJwY7KhHtVlwinjyLvz6BvkewX/rjYZlUPGi3JTk4nztusn13e
- LNy+nKxqkcc5q+Rr2rqDZeTdmOdtD7/4LOZ2+dr/aoS7nUiy57jF/NWO1 A==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10725"; a="441082988"
-X-IronPort-AV: E=Sophos;i="6.00,201,1681196400"; d="scan'208";a="441082988"
+ t=1685373074; x=1716909074;
+ h=message-id:date:mime-version:subject:to:references:from:
+ in-reply-to:content-transfer-encoding;
+ bh=h4BGDzbw4/9tCeVYgRIlzKqjgRJxfrlh+KVRUnqSXO8=;
+ b=jFos0eni6zZX417hFmfKRs7eKMmMxVvYhfdTSM01d/hFaE63WSi13RrD
+ ACemLHgeBtaovpN4CdUPkQ7r68mBZVK6HtqGOh8MwbNt7jArJfsk7o+Ak
+ XT2XNyKR1ItM/D7Lw24F9vHoPAqAG+iEJ8jR5W3bBuCurq5dTu+D/g24z
+ e09aEkYH+RfNc0t1hTDzDDh7ooVVdt/Yc2xXfZrmsxSDwS60vRv3oHRad
+ 8/rOUWz6yDgintI6da8RYq6QT0t3uAGz1J2cyANWkxJ+1vh8grneyr4rP
+ 5oZWvk5hugztbvVDFFWX+pZYqFSzG7mTMtcmkJEPJK9TGkrXbB82HQzZl Q==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10725"; a="441083413"
+X-IronPort-AV: E=Sophos;i="6.00,201,1681196400"; d="scan'208";a="441083413"
 Received: from fmsmga007.fm.intel.com ([10.253.24.52])
  by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 29 May 2023 08:08:45 -0700
+ 29 May 2023 08:11:14 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10725"; a="709322414"
-X-IronPort-AV: E=Sophos;i="6.00,201,1681196400"; d="scan'208";a="709322414"
-Received: from chavesbe-mobl2.amr.corp.intel.com (HELO
- gjsousa-mobl2.intel.com) ([10.255.39.86])
+X-IronPort-AV: E=McAfee;i="6600,9927,10725"; a="709323204"
+X-IronPort-AV: E=Sophos;i="6.00,201,1681196400"; d="scan'208";a="709323204"
+Received: from olhomerx-mobl.ger.corp.intel.com (HELO [10.252.46.198])
+ ([10.252.46.198])
  by fmsmga007-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 29 May 2023 08:08:43 -0700
-From: Gustavo Sousa <gustavo.sousa@intel.com>
-To: intel-xe@lists.freedesktop.org
-Date: Mon, 29 May 2023 12:08:31 -0300
-Message-Id: <20230529150831.259733-1-gustavo.sousa@intel.com>
-X-Mailer: git-send-email 2.40.1
+ 29 May 2023 08:11:13 -0700
+Message-ID: <30734f17-58d0-bf50-ac83-dc4e7d65550d@linux.intel.com>
+Date: Mon, 29 May 2023 17:11:10 +0200
 MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Firefox/102.0 Thunderbird/102.11.0
+Content-Language: en-US
+To: =?UTF-8?Q?Thomas_Hellstr=c3=b6m?= <thomas.hellstrom@linux.intel.com>,
+ intel-xe@lists.freedesktop.org
+References: <20230526121101.1619278-1-maarten.lankhorst@linux.intel.com>
+ <20230526121101.1619278-5-maarten.lankhorst@linux.intel.com>
+ <b6be6ecf-5737-0f2a-2e7b-7737ef52af50@linux.intel.com>
+ <10e2a992-dcc4-8316-8e8b-f674641bed87@linux.intel.com>
+ <5fece445-89eb-0e97-e934-1c896fb27bd7@linux.intel.com>
+From: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
+In-Reply-To: <5fece445-89eb-0e97-e934-1c896fb27bd7@linux.intel.com>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-xe] [PATCH] drm/xe: Replace DRM_ERROR() with drm_err()
+Subject: Re: [Intel-xe] [PATCH 4/5] drm/xe: Prevent evicting for page tables
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -55,116 +65,95 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Cc: Jani Nikula <jani.nikula@intel.com>,
- Lucas De Marchi <lucas.demarchi@intel.com>,
- Matt Roper <matthew.d.roper@intel.com>
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-DRM_ERROR() has been deprecated in favor of pr_err(). However, we should
-prefer to use drm_err() whenever possible so we get device-specific
-output with the error message.
+Hey,
 
-Adding an "xe" member to struct xe_reg_sr does not seem very
-justifiable, since the only as of now is to register a clean up function
-and, with this change, print error messages. So let's just add a
-parameter to xe_reg_sr_add().
+On 2023-05-29 17:02, Thomas Hellström wrote:
+>
+> On 5/29/23 15:44, Maarten Lankhorst wrote:
+>> On 2023-05-26 14:35, Thomas Hellström wrote:
+>>> On 5/26/23 14:11, Maarten Lankhorst wrote:
+>>>> When creating page tables from xe_exec_ioctl, we may end up freeing
+>>>> memory we just validated. To be certain this does not happen, do not
+>>>> allow the current reservation to be evicted from the ioctl.
+>>>>
+>>>> Callchain:
+>>>> [  109.008522]  xe_bo_move_notify+0x5c/0xf0 [xe]
+>>>> [  109.008548]  xe_bo_move+0x90/0x510 [xe]
+>>>> [  109.008573]  ttm_bo_handle_move_mem+0xb7/0x170 [ttm]
+>>>> [  109.008581]  ttm_bo_swapout+0x15e/0x360 [ttm]
+>>>> [  109.008586]  ttm_device_swapout+0xc2/0x110 [ttm]
+>>>> [  109.008592]  ttm_global_swapout+0x47/0xc0 [ttm]
+>>>> [  109.008598]  ttm_tt_populate+0x7a/0x130 [ttm]
+>>>> [  109.008603]  ttm_bo_handle_move_mem+0x160/0x170 [ttm]
+>>>> [  109.008609]  ttm_bo_validate+0xe5/0x1d0 [ttm]
+>>>> [  109.008614]  ttm_bo_init_reserved+0xac/0x190 [ttm]
+>>>> [  109.008620]  __xe_bo_create_locked+0x153/0x260 [xe]
+>>>> [  109.008645]  xe_bo_create_locked_range+0x77/0x360 [xe]
+>>>> [  109.008671]  xe_bo_create_pin_map_at+0x33/0x1f0 [xe]
+>>>> [  109.008695]  xe_bo_create_pin_map+0x11/0x20 [xe]
+>>>> [  109.008721]  xe_pt_create+0x69/0xf0 [xe]
+>>>> [  109.008749]  xe_pt_stage_bind_entry+0x208/0x430 [xe]
+>>>> [  109.008776]  xe_pt_walk_range+0xe9/0x2a0 [xe]
+>>>> [  109.008802]  xe_pt_walk_range+0x223/0x2a0 [xe]
+>>>> [  109.008828]  xe_pt_walk_range+0x223/0x2a0 [xe]
+>>>> [  109.008853]  __xe_pt_bind_vma+0x28d/0xbd0 [xe]
+>>>> [  109.008878]  xe_vm_bind_vma+0xc7/0x2f0 [xe]
+>>>> [  109.008904]  xe_vm_rebind+0x72/0x160 [xe]
+>>>> [  109.008930]  xe_exec_ioctl+0x22b/0xa70 [xe]
+>>>> [  109.008955]  drm_ioctl_kernel+0xb9/0x150 [drm]
+>>>> [  109.008972]  drm_ioctl+0x210/0x430 [drm]
+>>>> [  109.008988]  __x64_sys_ioctl+0x85/0xb0
+>>>> [  109.008990]  do_syscall_64+0x38/0x90
+>>>> [  109.008991]  entry_SYSCALL_64_after_hwframe+0x72/0xdc
+>>>>
+>>>> Original warning:
+>>>> [ 5613.149126] WARNING: CPU: 3 PID: 45883 at drivers/gpu/drm/xe/xe_vm.c:504 xe_vm_unlock_dma_resv+0x43/0x50 [xe]
+>>>> ...
+>>>> [ 5613.226398] RIP: 0010:xe_vm_unlock_dma_resv+0x43/0x50 [xe]
+>>>> [ 5613.316098] Call Trace:
+>>>> [ 5613.318595]  <TASK>
+>>>> [ 5613.320743]  xe_exec_ioctl+0x383/0x8a0 [xe]
+>>>> [ 5613.325278]  ? __is_insn_slot_addr+0x8e/0x110
+>>>> [ 5613.329719]  ? __is_insn_slot_addr+0x8e/0x110
+>>>> [ 5613.334116]  ? kernel_text_address+0x75/0xf0
+>>>> [ 5613.338429]  ? __pfx_stack_trace_consume_entry+0x10/0x10
+>>>> [ 5613.343778]  ? __kernel_text_address+0x9/0x40
+>>>> [ 5613.348181]  ? unwind_get_return_address+0x1a/0x30
+>>>> [ 5613.353013]  ? __pfx_stack_trace_consume_entry+0x10/0x10
+>>>> [ 5613.358362]  ? arch_stack_walk+0x99/0xf0
+>>>> [ 5613.362329]  ? rcu_read_lock_sched_held+0xb/0x70
+>>>> [ 5613.366996]  ? lock_acquire+0x287/0x2f0
+>>>> [ 5613.370873]  ? rcu_read_lock_sched_held+0xb/0x70
+>>>> [ 5613.375530]  ? rcu_read_lock_sched_held+0xb/0x70
+>>>> [ 5613.380181]  ? lock_release+0x225/0x2e0
+>>>> [ 5613.384059]  ? __pfx_xe_exec_ioctl+0x10/0x10 [xe]
+>>>> [ 5613.389092]  drm_ioctl_kernel+0xc0/0x170
+>>>> [ 5613.393068]  drm_ioctl+0x1b7/0x490
+>>>> [ 5613.396519]  ? __pfx_xe_exec_ioctl+0x10/0x10 [xe]
+>>>> [ 5613.401547]  ? lock_release+0x225/0x2e0
+>>>> [ 5613.405432]  __x64_sys_ioctl+0x8a/0xb0
+>>>> [ 5613.409232]  do_syscall_64+0x37/0x90
+>>>>
+>>>> Signed-off-by: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
+>>>> Closes: https://gitlab.freedesktop.org/drm/xe/kernel/-/issues/239
+>>> Did you look at passing around the ttm_operation_ctx, or a "allow_res_evict" bool?
+>>> In any case would be good to have this fixed asap, so
+>>>
+>>> Reviewed-by: Thomas Hellström <thomas.hellstrom@linux.intel.com>
+>>>
+>> I considered it, but the original callchain was too long. I don't think there is any usecase
+>> in which we want to evict from the current context to make room for new pagetables for VM_BIND.
+>> Anything locked is most likely used, making room by evicting from current VM (or its bound extobjs)
+>> will likely lead to ENOSPC anyway.
+>
+> Well, I think the use-case where this will cause problems is if we're doing a single VM_BIND on a brand new VRAM BO, and need to evict other VRAM bos from the same VM to make room.
+>
+> This will then ofc ENOSPC on the next exec, but if we were to introduce a two-pass validation scheme, where we explicitly move suitable BOs with multiple placement options to TT on the first ENOSPC, we could avoid that...
 
-v2:
-  - Prefer drm_err() over pr_err(). (Matt, Jani)
+Allowing same-reservation eviction will allow you to evict the BO its VM_BIND page table, leaving no entries to write. :-)
 
-Cc: Matt Roper <matthew.d.roper@intel.com>
-Cc: Jani Nikula <jani.nikula@intel.com>
-Cc: Lucas De Marchi <lucas.demarchi@intel.com>
-Cc: Haridhar Kalvala <haridhar.kalvala@intel.com>
-Signed-off-by: Gustavo Sousa <gustavo.sousa@intel.com>
----
- drivers/gpu/drm/xe/xe_reg_sr.c | 14 ++++++++------
- drivers/gpu/drm/xe/xe_reg_sr.h |  3 ++-
- drivers/gpu/drm/xe/xe_rtp.c    |  2 +-
- drivers/gpu/drm/xe/xe_vm.c     |  3 ++-
- 4 files changed, 13 insertions(+), 9 deletions(-)
-
-diff --git a/drivers/gpu/drm/xe/xe_reg_sr.c b/drivers/gpu/drm/xe/xe_reg_sr.c
-index 24d9c73ef279..02ba95223d7b 100644
---- a/drivers/gpu/drm/xe/xe_reg_sr.c
-+++ b/drivers/gpu/drm/xe/xe_reg_sr.c
-@@ -90,7 +90,8 @@ static void reg_sr_inc_error(struct xe_reg_sr *sr)
- }
- 
- int xe_reg_sr_add(struct xe_reg_sr *sr,
--		  const struct xe_reg_sr_entry *e)
-+		  const struct xe_reg_sr_entry *e,
-+		  struct xe_device *xe)
- {
- 	unsigned long idx = e->reg.addr;
- 	struct xe_reg_sr_entry *pentry = xa_load(&sr->xa, idx);
-@@ -123,11 +124,12 @@ int xe_reg_sr_add(struct xe_reg_sr *sr,
- 	return 0;
- 
- fail:
--	DRM_ERROR("Discarding save-restore reg %04lx (clear: %08x, set: %08x, masked: %s, mcr: %s): ret=%d\n",
--		  idx, e->clr_bits, e->set_bits,
--		  str_yes_no(e->reg.masked),
--		  str_yes_no(e->reg.mcr),
--		  ret);
-+	drm_err(&xe->drm,
-+		"Discarding save-restore reg %04lx (clear: %08x, set: %08x, masked: %s, mcr: %s): ret=%d\n",
-+		idx, e->clr_bits, e->set_bits,
-+		str_yes_no(e->reg.masked),
-+		str_yes_no(e->reg.mcr),
-+		ret);
- 	reg_sr_inc_error(sr);
- 
- 	return ret;
-diff --git a/drivers/gpu/drm/xe/xe_reg_sr.h b/drivers/gpu/drm/xe/xe_reg_sr.h
-index 0bfe66ea29bf..3e337f174ae3 100644
---- a/drivers/gpu/drm/xe/xe_reg_sr.h
-+++ b/drivers/gpu/drm/xe/xe_reg_sr.h
-@@ -19,7 +19,8 @@ struct drm_printer;
- int xe_reg_sr_init(struct xe_reg_sr *sr, const char *name, struct xe_device *xe);
- void xe_reg_sr_dump(struct xe_reg_sr *sr, struct drm_printer *p);
- 
--int xe_reg_sr_add(struct xe_reg_sr *sr, const struct xe_reg_sr_entry *e);
-+int xe_reg_sr_add(struct xe_reg_sr *sr, const struct xe_reg_sr_entry *e,
-+		  struct xe_device *xe);
- void xe_reg_sr_apply_mmio(struct xe_reg_sr *sr, struct xe_gt *gt);
- void xe_reg_sr_apply_whitelist(struct xe_reg_sr *sr, u32 mmio_base,
- 			       struct xe_gt *gt);
-diff --git a/drivers/gpu/drm/xe/xe_rtp.c b/drivers/gpu/drm/xe/xe_rtp.c
-index 43a86358efb6..93067f4fd480 100644
---- a/drivers/gpu/drm/xe/xe_rtp.c
-+++ b/drivers/gpu/drm/xe/xe_rtp.c
-@@ -122,7 +122,7 @@ static void rtp_add_sr_entry(const struct xe_rtp_action *action,
- 	};
- 
- 	sr_entry.reg.addr += mmio_base;
--	xe_reg_sr_add(sr, &sr_entry);
-+	xe_reg_sr_add(sr, &sr_entry, gt_to_xe(gt));
- }
- 
- static bool rtp_process_one_sr(const struct xe_rtp_entry_sr *entry,
-diff --git a/drivers/gpu/drm/xe/xe_vm.c b/drivers/gpu/drm/xe/xe_vm.c
-index f73e08b60670..bf4a2732447b 100644
---- a/drivers/gpu/drm/xe/xe_vm.c
-+++ b/drivers/gpu/drm/xe/xe_vm.c
-@@ -7,6 +7,7 @@
- 
- #include <linux/dma-fence-array.h>
- 
-+#include <drm/drm_print.h>
- #include <drm/ttm/ttm_execbuf_util.h>
- #include <drm/ttm/ttm_tt.h>
- #include <drm/xe_drm.h>
-@@ -3035,7 +3036,7 @@ int xe_vm_bind_ioctl(struct drm_device *dev, void *data, struct drm_file *file)
- 	}
- 
- 	if (XE_IOCTL_ERR(xe, xe_vm_is_closed(vm))) {
--		DRM_ERROR("VM closed while we began looking up?\n");
-+		drm_err(&xe->drm, "VM closed while we began looking up?\n");
- 		err = -ENOENT;
- 		goto put_vm;
- 	}
--- 
-2.40.1
+~Maarten
 
