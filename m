@@ -4,55 +4,57 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2801AC77B7A
-	for <intel-xe@archiver.kernel.org>; Mon, 29 May 2023 15:02:52 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 04096C7EE29
+	for <intel-xe@archiver.kernel.org>; Mon, 29 May 2023 15:07:56 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D708310E151;
-	Mon, 29 May 2023 15:02:51 +0000 (UTC)
-Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0BFCF10E151
- for <intel-xe@lists.freedesktop.org>; Mon, 29 May 2023 15:02:48 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C34CB10E2CA;
+	Mon, 29 May 2023 15:07:55 +0000 (UTC)
+Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7D51710E2CA
+ for <intel-xe@lists.freedesktop.org>; Mon, 29 May 2023 15:07:54 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1685372569; x=1716908569;
- h=message-id:date:mime-version:subject:to:references:from:
+ t=1685372874; x=1716908874;
+ h=message-id:date:mime-version:subject:from:to:references:
  in-reply-to:content-transfer-encoding;
- bh=ud52ufM0j4XDCB3dfQF+Ch/XzGnlwYNrxlNmgns3hQo=;
- b=RakzRAu33Xitogz02w+7Gk1K+hJhzg8xDtbV/PMz2ZPjkj7l2Uhf4SL7
- HZQ62MId3XEq3zxye0uTgrFds82L9p4F6CAC/YxmCp3XysbMRRFOOOdtU
- l4iibfrPDKrtYWAxSsbb7OUCfWyIi4OwkVXa+dQWpXMnOEnUdVcU+A28Q
- wiqxwX3WmqUWxDZanLCdFBV5tyQJ+avR1HAYdBJNTR3MS6C9fJR2P7EvI
- 2Vg6jnUsMR4FoXxJir646L4DL2ptyzJ22I8caKHoym/N7Zu7pjgZZ6xmn
- XWkE0YuzgAXanDSKyE65vlvqw1lY8C1H85C8GCVoZNwl3eRBdeO3QsPOA g==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10725"; a="441080586"
-X-IronPort-AV: E=Sophos;i="6.00,201,1681196400"; d="scan'208";a="441080586"
-Received: from fmsmga007.fm.intel.com ([10.253.24.52])
- by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 29 May 2023 08:02:48 -0700
+ bh=p9oB7q0VHeX3f/UikvvugAhNOVEzO8mjXSj6yEzuhBA=;
+ b=e5ZSmceCl7gLcma05sN8cYqm0zlH1JLy5zm+ltnTipWN27MRhAw34LjM
+ 1QIXUZrnTDgbUk+woPLuhUzb4Y4GHBT19cR2aZ4S0K+eApqTFuOYtsTyK
+ tzfB7xNWtN9HcwisD2IY+viZm5br/laFWpijCoxC6KfA1r9SSYptcgQyM
+ uB7uqFsigiI451mnMzkNDcKi35Me+gy5PMvuT1DhmvuAeUhca7DJmbGW2
+ kdInHsE6YkUQW/mEKYgFF+MHNlTI6FlkvUXhvU5sg7M8HcVGxcFSE62ll
+ qzsVREc7C7ElGuPMk/1hqwjCGNPetZsuzPxJE7kkGc3uZFzI2eTcyo20l w==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10725"; a="344222256"
+X-IronPort-AV: E=Sophos;i="6.00,201,1681196400"; d="scan'208";a="344222256"
+Received: from orsmga004.jf.intel.com ([10.7.209.38])
+ by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 29 May 2023 08:07:53 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10725"; a="709320214"
-X-IronPort-AV: E=Sophos;i="6.00,201,1681196400"; d="scan'208";a="709320214"
+X-IronPort-AV: E=McAfee;i="6600,9927,10725"; a="830421089"
+X-IronPort-AV: E=Sophos;i="6.00,201,1681196400"; d="scan'208";a="830421089"
 Received: from yuyingfa-mobl.ccr.corp.intel.com (HELO [10.249.254.136])
  ([10.249.254.136])
- by fmsmga007-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 29 May 2023 08:02:47 -0700
-Message-ID: <5fece445-89eb-0e97-e934-1c896fb27bd7@linux.intel.com>
-Date: Mon, 29 May 2023 17:02:45 +0200
+ by orsmga004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 29 May 2023 08:07:52 -0700
+Message-ID: <41f697fa-97dc-50dd-e438-c62bb1190afe@linux.intel.com>
+Date: Mon, 29 May 2023 17:07:50 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.8.0
 Content-Language: en-US
-To: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- intel-xe@lists.freedesktop.org
-References: <20230526121101.1619278-1-maarten.lankhorst@linux.intel.com>
- <20230526121101.1619278-5-maarten.lankhorst@linux.intel.com>
- <b6be6ecf-5737-0f2a-2e7b-7737ef52af50@linux.intel.com>
- <10e2a992-dcc4-8316-8e8b-f674641bed87@linux.intel.com>
 From: =?UTF-8?Q?Thomas_Hellstr=c3=b6m?= <thomas.hellstrom@linux.intel.com>
-In-Reply-To: <10e2a992-dcc4-8316-8e8b-f674641bed87@linux.intel.com>
+To: "Souza, Jose" <jose.souza@intel.com>,
+ "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>
+References: <20230526190609.61529-1-jose.souza@intel.com>
+ <20230526190609.61529-2-jose.souza@intel.com>
+ <d03fef471646a9e6141231ab38c264ea46ba291c.camel@linux.intel.com>
+ <5d211028d654a8d824e899a073fad9e530c13e95.camel@intel.com>
+ <495e7460-cb03-f049-9eb1-43512669acb7@linux.intel.com>
+In-Reply-To: <495e7460-cb03-f049-9eb1-43512669acb7@linux.intel.com>
 Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
-Subject: Re: [Intel-xe] [PATCH 4/5] drm/xe: Prevent evicting for page tables
+Subject: Re: [Intel-xe] [PATCH 2/3] drm/xe: Add missing TLB invalidation to
+ emit_pipe_invalidate()
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -68,96 +70,89 @@ Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 
-On 5/29/23 15:44, Maarten Lankhorst wrote:
-> On 2023-05-26 14:35, Thomas Hellström wrote:
->> On 5/26/23 14:11, Maarten Lankhorst wrote:
->>> When creating page tables from xe_exec_ioctl, we may end up freeing
->>> memory we just validated. To be certain this does not happen, do not
->>> allow the current reservation to be evicted from the ioctl.
+On 5/29/23 16:56, Thomas Hellström wrote:
+>
+> On 5/29/23 16:48, Souza, Jose wrote:
+>> On Mon, 2023-05-29 at 11:08 +0200, Thomas Hellström wrote:
+>>> On Fri, 2023-05-26 at 12:06 -0700, José Roberto de Souza wrote:
+>>>> i915 invalidates TLB before emit BB start, so doing the same in Xe.
+>>> Hi, José,
 >>>
->>> Callchain:
->>> [  109.008522]  xe_bo_move_notify+0x5c/0xf0 [xe]
->>> [  109.008548]  xe_bo_move+0x90/0x510 [xe]
->>> [  109.008573]  ttm_bo_handle_move_mem+0xb7/0x170 [ttm]
->>> [  109.008581]  ttm_bo_swapout+0x15e/0x360 [ttm]
->>> [  109.008586]  ttm_device_swapout+0xc2/0x110 [ttm]
->>> [  109.008592]  ttm_global_swapout+0x47/0xc0 [ttm]
->>> [  109.008598]  ttm_tt_populate+0x7a/0x130 [ttm]
->>> [  109.008603]  ttm_bo_handle_move_mem+0x160/0x170 [ttm]
->>> [  109.008609]  ttm_bo_validate+0xe5/0x1d0 [ttm]
->>> [  109.008614]  ttm_bo_init_reserved+0xac/0x190 [ttm]
->>> [  109.008620]  __xe_bo_create_locked+0x153/0x260 [xe]
->>> [  109.008645]  xe_bo_create_locked_range+0x77/0x360 [xe]
->>> [  109.008671]  xe_bo_create_pin_map_at+0x33/0x1f0 [xe]
->>> [  109.008695]  xe_bo_create_pin_map+0x11/0x20 [xe]
->>> [  109.008721]  xe_pt_create+0x69/0xf0 [xe]
->>> [  109.008749]  xe_pt_stage_bind_entry+0x208/0x430 [xe]
->>> [  109.008776]  xe_pt_walk_range+0xe9/0x2a0 [xe]
->>> [  109.008802]  xe_pt_walk_range+0x223/0x2a0 [xe]
->>> [  109.008828]  xe_pt_walk_range+0x223/0x2a0 [xe]
->>> [  109.008853]  __xe_pt_bind_vma+0x28d/0xbd0 [xe]
->>> [  109.008878]  xe_vm_bind_vma+0xc7/0x2f0 [xe]
->>> [  109.008904]  xe_vm_rebind+0x72/0x160 [xe]
->>> [  109.008930]  xe_exec_ioctl+0x22b/0xa70 [xe]
->>> [  109.008955]  drm_ioctl_kernel+0xb9/0x150 [drm]
->>> [  109.008972]  drm_ioctl+0x210/0x430 [drm]
->>> [  109.008988]  __x64_sys_ioctl+0x85/0xb0
->>> [  109.008990]  do_syscall_64+0x38/0x90
->>> [  109.008991]  entry_SYSCALL_64_after_hwframe+0x72/0xdc
->>>
->>> Original warning:
->>> [ 5613.149126] WARNING: CPU: 3 PID: 45883 at drivers/gpu/drm/xe/xe_vm.c:504 xe_vm_unlock_dma_resv+0x43/0x50 [xe]
->>> ...
->>> [ 5613.226398] RIP: 0010:xe_vm_unlock_dma_resv+0x43/0x50 [xe]
->>> [ 5613.316098] Call Trace:
->>> [ 5613.318595]  <TASK>
->>> [ 5613.320743]  xe_exec_ioctl+0x383/0x8a0 [xe]
->>> [ 5613.325278]  ? __is_insn_slot_addr+0x8e/0x110
->>> [ 5613.329719]  ? __is_insn_slot_addr+0x8e/0x110
->>> [ 5613.334116]  ? kernel_text_address+0x75/0xf0
->>> [ 5613.338429]  ? __pfx_stack_trace_consume_entry+0x10/0x10
->>> [ 5613.343778]  ? __kernel_text_address+0x9/0x40
->>> [ 5613.348181]  ? unwind_get_return_address+0x1a/0x30
->>> [ 5613.353013]  ? __pfx_stack_trace_consume_entry+0x10/0x10
->>> [ 5613.358362]  ? arch_stack_walk+0x99/0xf0
->>> [ 5613.362329]  ? rcu_read_lock_sched_held+0xb/0x70
->>> [ 5613.366996]  ? lock_acquire+0x287/0x2f0
->>> [ 5613.370873]  ? rcu_read_lock_sched_held+0xb/0x70
->>> [ 5613.375530]  ? rcu_read_lock_sched_held+0xb/0x70
->>> [ 5613.380181]  ? lock_release+0x225/0x2e0
->>> [ 5613.384059]  ? __pfx_xe_exec_ioctl+0x10/0x10 [xe]
->>> [ 5613.389092]  drm_ioctl_kernel+0xc0/0x170
->>> [ 5613.393068]  drm_ioctl+0x1b7/0x490
->>> [ 5613.396519]  ? __pfx_xe_exec_ioctl+0x10/0x10 [xe]
->>> [ 5613.401547]  ? lock_release+0x225/0x2e0
->>> [ 5613.405432]  __x64_sys_ioctl+0x8a/0xb0
->>> [ 5613.409232]  do_syscall_64+0x37/0x90
->>>
->>> Signed-off-by: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
->>> Closes: https://gitlab.freedesktop.org/drm/xe/kernel/-/issues/239
->> Did you look at passing around the ttm_operation_ctx, or a "allow_res_evict" bool?
->> In any case would be good to have this fixed asap, so
+>>> Do you see an issue because of missing TLB flushes? In that case that
+>>> needs to be added to the commit message. We do TLB flushes on unbind,
+>>> but not sure if we do them on rebind, so if that's the issue we need to
+>>> figure out whether we should do them also on rebind or, like in this
+>>> patch, on each exec.
+>> I have a group of tests that results flips randomly. It fails when 
+>> the rendered buffer is compared to expected result.
+>> Anything that add a bit of delay after the exec fixes those tests so 
+>> I was looking for any missing flush in Xe KMD and Mesa.
 >>
->> Reviewed-by: Thomas Hellström <thomas.hellstrom@linux.intel.com>
->>
-> I considered it, but the original callchain was too long. I don't think there is any usecase
-> in which we want to evict from the current context to make room for new pagetables for VM_BIND.
-> Anything locked is most likely used, making room by evicting from current VM (or its bound extobjs)
-> will likely lead to ENOSPC anyway.
+>> This one did not fixed it but as i915 was doing it I thought would be 
+>> good to do in Xe too.
+>
+> I think missing TLB invalidations are more likely to cause random 
+> overwrites of freed memory. Let me do a quick check on these. But the 
+> problem you're describing indeed sounds more like a missing render 
+> cache flush.
+>
+It indeed looks like we're doing proper TLB invalidation on both rebind 
+and unbind, so this patch shouldn't really be needed.
 
-Well, I think the use-case where this will cause problems is if we're 
-doing a single VM_BIND on a brand new VRAM BO, and need to evict other 
-VRAM bos from the same VM to make room.
-
-This will then ofc ENOSPC on the next exec, but if we were to introduce 
-a two-pass validation scheme, where we explicitly move suitable BOs with 
-multiple placement options to TT on the first ENOSPC, we could avoid that...
+(look for "invalidation_fence_init()")
 
 /Thomas
 
-
-
-
+> /Thomas
 >
-> ~Maarten
->
+>>
+>>> Thanks,
+>>> Thomas
+>>>
+>>>
+>>>> Signed-off-by: José Roberto de Souza <jose.souza@intel.com>
+>>>> ---
+>>>>   drivers/gpu/drm/xe/regs/xe_gpu_commands.h | 1 +
+>>>>   drivers/gpu/drm/xe/xe_ring_ops.c          | 6 ++++--
+>>>>   2 files changed, 5 insertions(+), 2 deletions(-)
+>>>>
+>>>> diff --git a/drivers/gpu/drm/xe/regs/xe_gpu_commands.h
+>>>> b/drivers/gpu/drm/xe/regs/xe_gpu_commands.h
+>>>> index 0f9c5b0b8a3ba..7c7320efea739 100644
+>>>> --- a/drivers/gpu/drm/xe/regs/xe_gpu_commands.h
+>>>> +++ b/drivers/gpu/drm/xe/regs/xe_gpu_commands.h
+>>>> @@ -73,6 +73,7 @@
+>>>>   #define
+>>>> PIPE_CONTROL_STORE_DATA_INDEX                        (1<<21)
+>>>>   #define
+>>>> PIPE_CONTROL_CS_STALL                                (1<<20)
+>>>>   #define PIPE_CONTROL_GLOBAL_SNAPSHOT_RESET           (1<<19)
+>>>> +#define PIPE_CONTROL_TLB_INVALIDATE                  (1<<18)
+>>>>   #define
+>>>> PIPE_CONTROL_PSD_SYNC                                (1<<17)
+>>>>   #define
+>>>> PIPE_CONTROL_QW_WRITE                                (1<<14)
+>>>>   #define PIPE_CONTROL_DEPTH_STALL                     (1<<13)
+>>>> diff --git a/drivers/gpu/drm/xe/xe_ring_ops.c
+>>>> b/drivers/gpu/drm/xe/xe_ring_ops.c
+>>>> index d2fa0b4c8bcc0..4f3ef39109b9b 100644
+>>>> --- a/drivers/gpu/drm/xe/xe_ring_ops.c
+>>>> +++ b/drivers/gpu/drm/xe/xe_ring_ops.c
+>>>> @@ -37,7 +37,8 @@
+>>>>                  PIPE_CONTROL_INDIRECT_STATE_DISABLE | \
+>>>>                  PIPE_CONTROL_FLUSH_ENABLE | \
+>>>>                  PIPE_CONTROL_TEXTURE_CACHE_INVALIDATE | \
+>>>> -               PIPE_CONTROL_DC_FLUSH_ENABLE)
+>>>> +               PIPE_CONTROL_DC_FLUSH_ENABLE | \
+>>>> +               PIPE_CONTROL_TLB_INVALIDATE)
+>>>>     static u32 preparser_disable(bool state)
+>>>>   {
+>>>> @@ -117,7 +118,8 @@ static int emit_pipe_invalidate(u32 mask_flags,
+>>>> u32 *dw, int i)
+>>>>                  PIPE_CONTROL_CONST_CACHE_INVALIDATE |
+>>>>                  PIPE_CONTROL_STATE_CACHE_INVALIDATE |
+>>>>                  PIPE_CONTROL_QW_WRITE |
+>>>> -               PIPE_CONTROL_STORE_DATA_INDEX;
+>>>> +               PIPE_CONTROL_STORE_DATA_INDEX |
+>>>> +               PIPE_CONTROL_TLB_INVALIDATE;
+>>>>            flags &= ~mask_flags;
