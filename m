@@ -4,51 +4,49 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 35900C77B7A
-	for <intel-xe@archiver.kernel.org>; Mon, 29 May 2023 07:58:28 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id A0A2FC77B7A
+	for <intel-xe@archiver.kernel.org>; Mon, 29 May 2023 08:00:31 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id CCCE710E061;
-	Mon, 29 May 2023 07:58:27 +0000 (UTC)
-Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D141210E222
- for <intel-xe@lists.freedesktop.org>; Mon, 29 May 2023 07:58:26 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7646810E215;
+	Mon, 29 May 2023 08:00:31 +0000 (UTC)
+Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id CF26810E215
+ for <intel-xe@lists.freedesktop.org>; Mon, 29 May 2023 08:00:28 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1685347106; x=1716883106;
+ t=1685347228; x=1716883228;
  h=from:to:cc:subject:in-reply-to:references:date:
  message-id:mime-version;
- bh=LRUQHxBVp3LEqUuVXbhUby3spnUK506dChdM/vQyIEE=;
- b=GId4ZPKttRq8YkQH/Whu6AbYaO1aQekrPoAUg8ChFzkXYfoVnV+T8x8E
- sW8i5AU67UlqdZyqTKS/uPN3Cp3+1j5IF+3HQcUhZkOtSp5NNGMPp1EBL
- rMQGn5zsSZw/ZGk2kekmJjFGnguSPoPtkI/76EfZuO7TdeOpRX+A2NF7L
- 8iKNslw8fR1pSGPSdQkyd/MUuur8efHz5NKQzz7Wc8Wg8KjATUzikmLof
- 1OD+WxdBPnxnnFiXMSaroYUFHPsOLPuvL76x+a39dje4liHR6IUzCw1A8
- C6EPnDF1A0dc2rzppWcqgRhlnYg/4RZUBrpbpthp9Cxc3D724hqsHXSDv g==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10724"; a="334272122"
-X-IronPort-AV: E=Sophos;i="6.00,200,1681196400"; d="scan'208";a="334272122"
-Received: from fmsmga003.fm.intel.com ([10.253.24.29])
- by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 29 May 2023 00:58:25 -0700
+ bh=4cTLBhDTG/jIClaODI1eA2W06Ef5WkO5edybTK4avCo=;
+ b=ibahXS9Kd35le4VdKhR6mHe9H0Ey6XMx98rbjJgA+c5dzm5S2RMZSt4n
+ DwRzWfH6bHMTZUH9PUtqIOPaqbqwRpXzkqSLReGtNcQitYJTtSFNfRGjf
+ Z9AJWEcew82wMZiW+bB964im/w/N2vwWIFTDxs95yLUjWvMvP1dNkBRvu
+ O8apGAsh5Rgu8NmIbb47PJWZskCEwEmvvjcuErgGGAQtcdy0kNVe2fjfe
+ rvKw3bXWV1sXYIUznOfUmzn0hwG9+wVyFgTSEjlvlN/4wzRgJNqFarxZc
+ 666z8I2sT0bXGOG3nvS0eyTYJQN3oTt0e2Pvh7sTLq5M4n1XUdpuqK0Hs A==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10724"; a="353491488"
+X-IronPort-AV: E=Sophos;i="6.00,200,1681196400"; d="scan'208";a="353491488"
+Received: from orsmga001.jf.intel.com ([10.7.209.18])
+ by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 29 May 2023 01:00:28 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10724"; a="795834456"
-X-IronPort-AV: E=Sophos;i="6.00,200,1681196400"; d="scan'208";a="795834456"
+X-IronPort-AV: E=McAfee;i="6600,9927,10724"; a="739058803"
+X-IronPort-AV: E=Sophos;i="6.00,200,1681196400"; d="scan'208";a="739058803"
 Received: from iswiersz-mobl.ger.corp.intel.com (HELO localhost)
  ([10.252.55.191])
- by fmsmga003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 29 May 2023 00:58:23 -0700
+ by orsmga001-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 29 May 2023 01:00:26 -0700
 From: Jani Nikula <jani.nikula@linux.intel.com>
-To: Matt Roper <matthew.d.roper@intel.com>, Gustavo Sousa
- <gustavo.sousa@intel.com>
-In-Reply-To: <20230526214817.GL10045@mdroper-desk1.amr.corp.intel.com>
+To: Anusha Srivatsa <anusha.srivatsa@intel.com>, intel-xe@lists.freedesktop.org
+In-Reply-To: <20230526211730.2774851-2-anusha.srivatsa@intel.com>
 Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20230526004235.745730-1-gustavo.sousa@intel.com>
- <20230526004235.745730-3-gustavo.sousa@intel.com>
- <20230526214817.GL10045@mdroper-desk1.amr.corp.intel.com>
-Date: Mon, 29 May 2023 10:58:21 +0300
-Message-ID: <87edmzin6q.fsf@intel.com>
+References: <20230526211730.2774851-1-anusha.srivatsa@intel.com>
+ <20230526211730.2774851-2-anusha.srivatsa@intel.com>
+Date: Mon, 29 May 2023 11:00:23 +0300
+Message-ID: <87a5xnin3c.fsf@intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain
-Subject: Re: [Intel-xe] [PATCH 2/2] drm/xe: Replace DRM_ERROR() with pr_err()
+Subject: Re: [Intel-xe] [PATCH 1/5] drm/xe/adlp: s/ADLP/ALDERLAKE_P
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -60,95 +58,81 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-xe@lists.freedesktop.org
+Cc: Anusha Srivatsa <anusha.srivatsa@intel.com>,
+ Lucas De Marchi <lucas.demarchi@intel.com>
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Fri, 26 May 2023, Matt Roper <matthew.d.roper@intel.com> wrote:
-> On Thu, May 25, 2023 at 09:42:35PM -0300, Gustavo Sousa wrote:
->> The former has been deprecated in favor of the latter.
+On Fri, 26 May 2023, Anusha Srivatsa <anusha.srivatsa@intel.com> wrote:
+> Inconsistent usage of platform names across the driver.
+> Changing to use the name convention throughout - ALDERLAKE_P.
+> This will make it easier for macro magic usages.
 >
-> It has?  I thought generally the goal has been to replace DRM_FOO() with
-> drm_foo() (i.e., drm_err() in this case) because then you get nicer
-> device-specific output.
+> Cc: Lucas De Marchi <lucas.demarchi@intel.com>
+> Signed-off-by: Anusha Srivatsa <anusha.srivatsa@intel.com>
+> ---
+>  drivers/gpu/drm/xe/compat-i915-headers/i915_drv.h | 2 +-
 
-Yes, drm_foo is preferred over pr_foo.
+Changes to this file needs to be split up as fixup to xe display
+enabling.
 
-BR,
-Jani.
-
-> Or when we're doing something GT-specific, we
-> move to xe_gt_err() so that the useful information about which GT is
-> automatically included.
+>  drivers/gpu/drm/xe/xe_pci.c                       | 2 +-
+>  drivers/gpu/drm/xe/xe_platform_types.h            | 2 +-
+>  drivers/gpu/drm/xe/xe_step.c                      | 2 +-
+>  4 files changed, 4 insertions(+), 4 deletions(-)
 >
-> It looks like xe_reg_sr_add() doesn't have a reference to a drm_device
-> to use drm_err (I didn't check how hard it would be to plumb down to
-> that point), but xe_vm_bind_ioctl() should be able to use drm_err() I
-> think?
->
->
-> Matt
->
->> 
->> Signed-off-by: Gustavo Sousa <gustavo.sousa@intel.com>
->> ---
->>  drivers/gpu/drm/xe/xe_reg_sr.c | 11 ++++++-----
->>  drivers/gpu/drm/xe/xe_vm.c     |  3 ++-
->>  2 files changed, 8 insertions(+), 6 deletions(-)
->> 
->> diff --git a/drivers/gpu/drm/xe/xe_reg_sr.c b/drivers/gpu/drm/xe/xe_reg_sr.c
->> index 24d9c73ef279..4266999cdeb6 100644
->> --- a/drivers/gpu/drm/xe/xe_reg_sr.c
->> +++ b/drivers/gpu/drm/xe/xe_reg_sr.c
->> @@ -7,6 +7,7 @@
->>  
->>  #include <kunit/visibility.h>
->>  #include <linux/align.h>
->> +#include <linux/printk.h>
->>  #include <linux/string_helpers.h>
->>  #include <linux/xarray.h>
->>  
->> @@ -123,11 +124,11 @@ int xe_reg_sr_add(struct xe_reg_sr *sr,
->>  	return 0;
->>  
->>  fail:
->> -	DRM_ERROR("Discarding save-restore reg %04lx (clear: %08x, set: %08x, masked: %s, mcr: %s): ret=%d\n",
->> -		  idx, e->clr_bits, e->set_bits,
->> -		  str_yes_no(e->reg.masked),
->> -		  str_yes_no(e->reg.mcr),
->> -		  ret);
->> +	pr_err("Discarding save-restore reg %04lx (clear: %08x, set: %08x, masked: %s, mcr: %s): ret=%d\n",
->> +	       idx, e->clr_bits, e->set_bits,
->> +	       str_yes_no(e->reg.masked),
->> +	       str_yes_no(e->reg.mcr),
->> +	       ret);
->>  	reg_sr_inc_error(sr);
->>  
->>  	return ret;
->> diff --git a/drivers/gpu/drm/xe/xe_vm.c b/drivers/gpu/drm/xe/xe_vm.c
->> index 4d9c8de8b348..89d8240ea6aa 100644
->> --- a/drivers/gpu/drm/xe/xe_vm.c
->> +++ b/drivers/gpu/drm/xe/xe_vm.c
->> @@ -13,6 +13,7 @@
->>  #include <linux/delay.h>
->>  #include <linux/kthread.h>
->>  #include <linux/mm.h>
->> +#include <linux/printk.h>
->>  #include <linux/swap.h>
->>  
->>  #include "xe_bo.h"
->> @@ -3019,7 +3020,7 @@ int xe_vm_bind_ioctl(struct drm_device *dev, void *data, struct drm_file *file)
->>  	}
->>  
->>  	if (XE_IOCTL_ERR(xe, xe_vm_is_closed(vm))) {
->> -		DRM_ERROR("VM closed while we began looking up?\n");
->> +		pr_err("VM closed while we began looking up?\n");
->>  		err = -ENOENT;
->>  		goto put_vm;
->>  	}
->> -- 
->> 2.40.1
->> 
+> diff --git a/drivers/gpu/drm/xe/compat-i915-headers/i915_drv.h b/drivers/gpu/drm/xe/compat-i915-headers/i915_drv.h
+> index 74e6f063f741..9d212fbbce26 100644
+> --- a/drivers/gpu/drm/xe/compat-i915-headers/i915_drv.h
+> +++ b/drivers/gpu/drm/xe/compat-i915-headers/i915_drv.h
+> @@ -160,7 +160,7 @@ static inline struct drm_i915_private *kdev_to_i915(struct device *kdev)
+>  #define IS_DG2_G10(xe) ((xe)->info.subplatform == XE_SUBPLATFORM_DG2_G10)
+>  #define IS_DG2_G11(xe) ((xe)->info.subplatform == XE_SUBPLATFORM_DG2_G11)
+>  #define IS_DG2_G12(xe) ((xe)->info.subplatform == XE_SUBPLATFORM_DG2_G12)
+> -#define IS_ADLP_RPLU(xe) ((xe)->info.subplatform == XE_SUBPLATFORM_ADLP_RPLU)
+> +#define IS_ALDERLAKE_P_RPLU(xe) ((xe)->info.subplatform == XE_SUBPLATFORM_ALDERLAKE_P_RPLU)
+>  #define IS_ICL_WITH_PORT_F(xe) (xe && 0)
+>  #define HAS_LSPCON(xe) (xe && 0)
+>  #define HAS_MSO(xe) (xe || 1)
+> diff --git a/drivers/gpu/drm/xe/xe_pci.c b/drivers/gpu/drm/xe/xe_pci.c
+> index d8f1213ae1d6..33027091cc30 100644
+> --- a/drivers/gpu/drm/xe/xe_pci.c
+> +++ b/drivers/gpu/drm/xe/xe_pci.c
+> @@ -213,7 +213,7 @@ static const struct xe_device_desc adl_p_desc = {
+>  	.has_llc = true,
+>  	.require_force_probe = true,
+>  	.subplatforms = (const struct xe_subplatform_desc[]) {
+> -		{ XE_SUBPLATFORM_ADLP_RPLU, "RPLU", adlp_rplu_ids },
+> +		{ XE_SUBPLATFORM_ALDERLAKE_P_RPLU, "RPLU", adlp_rplu_ids },
+>  		{},
+>  	},
+>  };
+> diff --git a/drivers/gpu/drm/xe/xe_platform_types.h b/drivers/gpu/drm/xe/xe_platform_types.h
+> index abbb8a1f29a8..cb50e9b77816 100644
+> --- a/drivers/gpu/drm/xe/xe_platform_types.h
+> +++ b/drivers/gpu/drm/xe/xe_platform_types.h
+> @@ -26,7 +26,7 @@ enum xe_platform {
+>  enum xe_subplatform {
+>  	XE_SUBPLATFORM_UNINITIALIZED = 0,
+>  	XE_SUBPLATFORM_NONE,
+> -	XE_SUBPLATFORM_ADLP_RPLU,
+> +	XE_SUBPLATFORM_ALDERLAKE_P_RPLU,
+>  	XE_SUBPLATFORM_DG2_G10,
+>  	XE_SUBPLATFORM_DG2_G11,
+>  	XE_SUBPLATFORM_DG2_G12,
+> diff --git a/drivers/gpu/drm/xe/xe_step.c b/drivers/gpu/drm/xe/xe_step.c
+> index 1baf79ba02ad..cb0811c8bf22 100644
+> --- a/drivers/gpu/drm/xe/xe_step.c
+> +++ b/drivers/gpu/drm/xe/xe_step.c
+> @@ -143,7 +143,7 @@ struct xe_step_info xe_step_pre_gmdid_get(struct xe_device *xe)
+>  	} else if (xe->info.platform == XE_ALDERLAKE_N) {
+>  		revids = adln_revids;
+>  		size = ARRAY_SIZE(adln_revids);
+> -	} else if (xe->info.subplatform == XE_SUBPLATFORM_ADLP_RPLU) {
+> +	} else if (xe->info.subplatform == XE_SUBPLATFORM_ALDERLAKE_P_RPLU) {
+>  		revids = adlp_rpl_revids;
+>  		size = ARRAY_SIZE(adlp_rpl_revids);
+>  	} else if (xe->info.platform == XE_ALDERLAKE_P) {
 
 -- 
 Jani Nikula, Intel Open Source Graphics Center
