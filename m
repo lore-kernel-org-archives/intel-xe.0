@@ -4,31 +4,55 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8B08BC77B7A
-	for <intel-xe@archiver.kernel.org>; Mon, 29 May 2023 13:29:41 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 82B2AC77B7E
+	for <intel-xe@archiver.kernel.org>; Mon, 29 May 2023 13:35:40 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5D53D10E0F5;
-	Mon, 29 May 2023 13:29:41 +0000 (UTC)
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id AC8F010E0F5;
- Mon, 29 May 2023 13:29:39 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 5EBB8A02F0;
- Mon, 29 May 2023 13:29:39 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============1357577060808931280=="
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4D16C10E28C;
+	Mon, 29 May 2023 13:35:40 +0000 (UTC)
+Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D9E0610E28C
+ for <intel-xe@lists.freedesktop.org>; Mon, 29 May 2023 13:35:38 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1685367338; x=1716903338;
+ h=message-id:date:mime-version:subject:to:references:from:
+ in-reply-to:content-transfer-encoding;
+ bh=hJswZRY+f3d3pAywdNHR0hYm3o5ZVN6iqbWGTE6u2Q4=;
+ b=dJ4GjdKaoIRAonM1BEwNQT9sZQhCQdCOo3VY5fvvFXYw+VfovjTjDjMX
+ 1jQSeBf04/sDZcUZp5G1MFDXbdIpJmBSUfIOewaEDlpuEYphKVp5z7It9
+ nQwr/jhmx+bPk/6PH/O3Fy8OCu7DILhN18qTmY/EOU9GbVUv3wJXWeCPp
+ W65bYxHRpTOsJmE3RVblxOka73bK80pAXX1HB7stRfGZAGkf/M+NXBBMJ
+ By0ditY28llHSmek0TVEeT57VYUKCbWpuhIv2AcoNdV9sOT41D9Wth2kO
+ bVa/jZuoYAOJjzlpeogPoBMbzwHhPhWKIj4sfQMmiCsfYOCp5wfgofuAs Q==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10725"; a="354720189"
+X-IronPort-AV: E=Sophos;i="6.00,201,1681196400"; d="scan'208";a="354720189"
+Received: from fmsmga006.fm.intel.com ([10.253.24.20])
+ by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 29 May 2023 06:35:26 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6600,9927,10725"; a="952762479"
+X-IronPort-AV: E=Sophos;i="6.00,201,1681196400"; d="scan'208";a="952762479"
+Received: from olhomerx-mobl.ger.corp.intel.com (HELO [10.252.46.198])
+ ([10.252.46.198])
+ by fmsmga006-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 29 May 2023 06:35:26 -0700
+Message-ID: <678c272b-97dc-f556-4403-96c2f895fa9b@linux.intel.com>
+Date: Mon, 29 May 2023 15:35:23 +0200
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Himal Prasad Ghimiray" <himal.prasad.ghimiray@intel.com>
-Date: Mon, 29 May 2023 13:29:39 -0000
-Message-ID: <168536697938.27509.10826897121055845302@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20230529123310.2677564-1-himal.prasad.ghimiray@intel.com>
-In-Reply-To: <20230529123310.2677564-1-himal.prasad.ghimiray@intel.com>
-Subject: [Intel-xe] =?utf-8?q?=E2=97=8B_CI=2EBAT=3A_info_for_series_start?=
- =?utf-8?q?ing_with_=5Bv2=2C1/1=5D_drm/xe=3A_Add_a_debugfs_for_faking_gt_r?=
- =?utf-8?q?eset_failure=2E?=
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Firefox/102.0 Thunderbird/102.11.0
+Content-Language: en-US
+To: =?UTF-8?Q?Thomas_Hellstr=c3=b6m?= <thomas.hellstrom@linux.intel.com>,
+ intel-xe@lists.freedesktop.org
+References: <20230526121101.1619278-1-maarten.lankhorst@linux.intel.com>
+ <20230526121101.1619278-3-maarten.lankhorst@linux.intel.com>
+ <0ff025da-9d8d-d7bb-80a1-f7623578e210@linux.intel.com>
+From: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
+In-Reply-To: <0ff025da-9d8d-d7bb-80a1-f7623578e210@linux.intel.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+Subject: Re: [Intel-xe] [PATCH 2/5] drm/xe: Add debugfs files to evict
+ everything.
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -40,68 +64,23 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
-Cc: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============1357577060808931280==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+Hey,
 
-== Series Details ==
+On 2023-05-26 15:02, Thomas Hellström wrote:
+>
+> On 5/26/23 14:10, Maarten Lankhorst wrote:
+>> Easy for testing, when you just want your BO evicted.
+>>
+>> Signed-off-by: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
+>
+> Do we have some documentation somewhere about what our debugfs entries are doing that needs updating?
+I've not seen any documentation for those specific debugfs entries.
+> Also can we evict stolen memory?
 
-Series: series starting with [v2,1/1] drm/xe: Add a debugfs for faking gt reset failure.
-URL   : https://patchwork.freedesktop.org/series/118502/
-State : info
+What is useful to evict? I think all of our users of stolen memory only use it pinned.
 
-== Summary ==
+~Maarten
 
-Participating hosts:
-bat-atsm-2
-bat-dg2-oem2
-bat-adlp-7
-Missing hosts results[0]:
-Results: [xe-pw-118502v1](https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-118502v1/index.html)
-
-
-
---===============1357577060808931280==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>series starting with [v2,1/1] drm/xe: Add a debugfs for faking gt reset failure.</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/118502/">https://patchwork.freedesktop.org/series/118502/</a></td></tr>
-<tr><td><b>State:</b></td><td>info</td></tr>
-
-</table>
-
-
-    <p>Participating hosts:<br />
-bat-atsm-2<br />
-bat-dg2-oem2<br />
-bat-adlp-7<br />
-Missing hosts results[0]:<br />
-Results: <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-118502v1/index.html">xe-pw-118502v1</a></p>
-
-</body>
-</html>
-
---===============1357577060808931280==--
