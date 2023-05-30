@@ -4,48 +4,48 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 49401C87FDD
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 43C49C83005
 	for <intel-xe@archiver.kernel.org>; Tue, 30 May 2023 21:16:21 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 29D4E10E441;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1D3F610E440;
 	Tue, 30 May 2023 21:16:21 +0000 (UTC)
 Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A31A110E43B
- for <intel-xe@lists.freedesktop.org>; Tue, 30 May 2023 21:16:09 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8C9F010E439
+ for <intel-xe@lists.freedesktop.org>; Tue, 30 May 2023 21:16:12 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1685481369; x=1717017369;
+ t=1685481372; x=1717017372;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=gceJ2C/NYxX+4ICO+zxsJCQmNWBRn6YOY9DHkvMBSAE=;
- b=dsmCghVP2qc1HbgAqE0e+ShDUYv+D9oxBp0QXBCox+k0Kw+2VN6OJkB6
- hIjW8JbknWEAVsB1Ax8RWzXvODww9rglH9MGD2+Z1KJ3Pl8cLyRM1M68J
- mnwzs/INouLDvsvb9cO7SLWsJfwkaQMFtXiNMHzKJDvBbKh0rvGq8VsWV
- t8ppiE1a1Cvt0XbwMLUROdMjRDyLMDlKnUYtCncpyjDLI0ktNGvy8igRm
- nqm2lNl+sNi4ezTmWwZdbTkw9YmFCsKQWDtvmfpZUiGAAhtiTy0CImH7M
- IL8jZr5vg+B90DzYQT8J6CP9k9OtlIjXzmF7t+K0Av3OlUCpPv1e22X7y Q==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10726"; a="383311955"
-X-IronPort-AV: E=Sophos;i="6.00,205,1681196400"; d="scan'208";a="383311955"
+ bh=qfU9Cp784psrgsdSY0hFBmPZDdVf2tmVy+0wf6rzpAU=;
+ b=F6TIsXoOyoqymxj7Ro8WB8F543Ix8N6tqw1AchPZ8EokqCUkcSW4KYo6
+ N0cM++1AQtOAfoUEd6YgbKuPu0PiXzrIvcidn75KC2tLDb7kZFQ+gHeXG
+ wGKKsdvkhZ8NtHncAqpQCPrwPoL+MsQSr82uO3hd+X1cslrtd6D/gZ/iq
+ KqRDfeSZZK0RIVZQolHLj7gv0fMEcfaWxR+lmxClehBAiYhs9ofHyxdVl
+ 3SQoPbXF4rbd3pVcCeK8rj5kZ/SZ/GGZiFZrZc5v2Z+N+ynAw0UVU4x23
+ tGyTCFMga6V/iR6N8ZRl9Qce/nIGWY3HG9ZPTzXx+d3FJk0e4XRgH5VTL Q==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10726"; a="383311967"
+X-IronPort-AV: E=Sophos;i="6.00,205,1681196400"; d="scan'208";a="383311967"
 Received: from orsmga006.jf.intel.com ([10.7.209.51])
  by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 30 May 2023 14:16:09 -0700
+ 30 May 2023 14:16:12 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10726"; a="684139440"
-X-IronPort-AV: E=Sophos;i="6.00,205,1681196400"; d="scan'208";a="684139440"
+X-IronPort-AV: E=McAfee;i="6600,9927,10726"; a="684139492"
+X-IronPort-AV: E=Sophos;i="6.00,205,1681196400"; d="scan'208";a="684139492"
 Received: from mdroper-desk1.fm.intel.com ([10.1.27.134])
  by orsmga006-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 30 May 2023 14:16:09 -0700
+ 30 May 2023 14:16:12 -0700
 From: Matt Roper <matthew.d.roper@intel.com>
 To: intel-xe@lists.freedesktop.org
-Date: Tue, 30 May 2023 14:15:35 -0700
-Message-Id: <20230530211549.2632538-18-matthew.d.roper@intel.com>
+Date: Tue, 30 May 2023 14:15:46 -0700
+Message-Id: <20230530211549.2632538-29-matthew.d.roper@intel.com>
 X-Mailer: git-send-email 2.40.1
 In-Reply-To: <20230530211549.2632538-1-matthew.d.roper@intel.com>
 References: <20230530211549.2632538-1-matthew.d.roper@intel.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-xe] [PATCH v3 17/31] drm/xe: Drop extra_gts[] declarations
- and XE_GT_TYPE_REMOTE
+Subject: [Intel-xe] [PATCH v3 28/31] drm/xe: Allow GT looping and lookup on
+ standalone media
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -61,105 +61,95 @@ Cc: Lucas De Marchi <lucas.demarchi@intel.com>, matthew.d.roper@intel.com
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Now that tiles and GTs are handled separately, extra_gts[] doesn't
-really provide any useful information that we can't just infer directly.
-The primary GT of the root tile and of the remote tiles behave the same
-way and don't need independent handling.
+Allow xe_device_get_gt() and for_each_gt() to operate as expected on
+platforms with standalone media.
 
-When we re-add support for media GTs in a future patch, the presence of
-media can be determined from MEDIA_VER() (i.e., >= 13) and media's GSI
-offset handling is expected to remain constant for all forseeable future
-platforms, so it won't need to be provided in a definition structure
-either.
+FIXME: We need to figure out a consistent ID scheme for GTs.  This patch
+keeps the pre-existing behavior of 0/1 being the GT IDs for both PVC
+(multi-tile) and MTL (multi-GT), but depending on the direction we
+decide to go with uapi, we may change this in the future (e.g., to
+return 0/1 on PVC and 0/2 on MTL).  Or if we decide we only need to
+expose tiles to userspace and not GTs, we may not even need ID numbers
+for the GTs anymore.
 
+v2:
+ - Restructure a bit to make the assertions more clear.
+ - Clarify in commit message that the goal here is to preserve existing
+   behavior; UAPI-visible changes may be introduced in the future once
+   we settle on what we really want.
+
+Cc: Lucas De Marchi <lucas.demarchi@intel.com>
 Signed-off-by: Matt Roper <matthew.d.roper@intel.com>
-Reviewed-by: Lucas De Marchi <lucas.demarchi@intel.com>
 ---
- drivers/gpu/drm/xe/xe_gt_types.h |  1 -
- drivers/gpu/drm/xe/xe_pci.c      | 36 ++++++--------------------------
- 2 files changed, 6 insertions(+), 31 deletions(-)
+ drivers/gpu/drm/xe/xe_device.h | 40 +++++++++++++++++++++++++++++-----
+ 1 file changed, 34 insertions(+), 6 deletions(-)
 
-diff --git a/drivers/gpu/drm/xe/xe_gt_types.h b/drivers/gpu/drm/xe/xe_gt_types.h
-index 34d5dd98885e..99ab7ec99ccd 100644
---- a/drivers/gpu/drm/xe/xe_gt_types.h
-+++ b/drivers/gpu/drm/xe/xe_gt_types.h
-@@ -20,7 +20,6 @@ struct xe_ring_ops;
- enum xe_gt_type {
- 	XE_GT_TYPE_UNINITIALIZED,
- 	XE_GT_TYPE_MAIN,
--	XE_GT_TYPE_REMOTE,
- 	XE_GT_TYPE_MEDIA,
- };
+diff --git a/drivers/gpu/drm/xe/xe_device.h b/drivers/gpu/drm/xe/xe_device.h
+index 0a3a9134dd18..ea3270ea0d46 100644
+--- a/drivers/gpu/drm/xe/xe_device.h
++++ b/drivers/gpu/drm/xe/xe_device.h
+@@ -53,18 +53,42 @@ static inline struct xe_tile *xe_device_get_root_tile(struct xe_device *xe)
+ 	return &xe->tiles[0];
+ }
  
-diff --git a/drivers/gpu/drm/xe/xe_pci.c b/drivers/gpu/drm/xe/xe_pci.c
-index 42e6fcb07c94..2565a6b6ff4e 100644
---- a/drivers/gpu/drm/xe/xe_pci.c
-+++ b/drivers/gpu/drm/xe/xe_pci.c
-@@ -46,7 +46,6 @@ struct xe_device_desc {
++#define XE_MAX_GT_PER_TILE 2
++
++static inline struct xe_gt *xe_tile_get_gt(struct xe_tile *tile, u8 gt_id)
++{
++	if (drm_WARN_ON(&tile_to_xe(tile)->drm, gt_id > XE_MAX_GT_PER_TILE))
++		gt_id = 0;
++
++	return gt_id ? tile->media_gt : tile->primary_gt;
++}
++
+ static inline struct xe_gt *xe_device_get_gt(struct xe_device *xe, u8 gt_id)
+ {
++	struct xe_tile *root_tile = xe_device_get_root_tile(xe);
+ 	struct xe_gt *gt;
  
- 	const char *platform_name;
- 	const struct xe_subplatform_desc *subplatforms;
--	const struct xe_gt_desc *extra_gts;
+-	XE_BUG_ON(gt_id > XE_MAX_TILES_PER_DEVICE);
++	/*
++	 * FIXME: This only works for now because multi-tile and standalone
++	 * media are mutually exclusive on the platforms we have today.
++	 *
++	 * id => GT mapping may change once we settle on how we want to handle
++	 * our UAPI.
++	 */
++	if (MEDIA_VER(xe) >= 13) {
++		gt = xe_tile_get_gt(root_tile, gt_id);
++	} else {
++		if (drm_WARN_ON(&xe->drm, gt_id > XE_MAX_TILES_PER_DEVICE))
++			gt_id = 0;
  
- 	enum xe_platform platform;
+-	gt = xe->tiles[gt_id].primary_gt;
+-	if (drm_WARN_ON(&xe->drm, !gt))
++		gt = xe->tiles[gt_id].primary_gt;
++	}
++
++	if (!gt)
+ 		return NULL;
  
-@@ -272,21 +271,12 @@ static const struct xe_device_desc dg2_desc = {
- 	.has_display = true,
- };
+-	XE_BUG_ON(gt->info.id != gt_id);
+-	XE_BUG_ON(gt->info.type == XE_GT_TYPE_UNINITIALIZED);
++	drm_WARN_ON(&xe->drm, gt->info.id != gt_id);
++	drm_WARN_ON(&xe->drm, gt->info.type == XE_GT_TYPE_UNINITIALIZED);
  
--static const struct xe_gt_desc pvc_gts[] = {
--	{
--		.type = XE_GT_TYPE_REMOTE,
--		.mmio_adj_limit = 0,
--		.mmio_adj_offset = 0,
--	},
--};
--
- static const struct xe_device_desc pvc_desc = {
- 	.graphics = &graphics_xehpc,
- 	DGFX_FEATURES,
- 	PLATFORM(XE_PVC),
- 	.has_display = false,
- 	.require_force_probe = true,
--	.extra_gts = pvc_gts,
- };
+ 	return gt;
+ }
+@@ -100,8 +124,12 @@ static inline void xe_device_guc_submission_disable(struct xe_device *xe)
+ 	for ((id__) = 0; (id__) < (xe__)->info.tile_count; (id__++)) \
+ 		for_each_if ((tile__) = &(xe__)->tiles[(id__)])
  
- static const struct xe_device_desc mtl_desc = {
-@@ -562,28 +552,14 @@ static int xe_info_init(struct xe_device *xe,
- 		tile->id = id;
++/*
++ * FIXME: This only works for now since multi-tile and standalone media
++ * happen to be mutually exclusive.  Future platforms may change this...
++ */
+ #define for_each_gt(gt__, xe__, id__) \
+-	for ((id__) = 0; (id__) < (xe__)->info.tile_count; (id__++)) \
++	for ((id__) = 0; (id__) < (xe__)->info.tile_count + (MEDIA_VER(xe__) >= 13 ? 1 : 0); (id__++)) \
+ 		for_each_if ((gt__) = xe_device_get_gt((xe__), (id__)))
  
- 		gt = &tile->primary_gt;
--		gt->info.id = id;
-+		gt->info.id = id;	/* FIXME: Determine sensible numbering */
- 		gt->tile = tile;
-+		gt->info.type = XE_GT_TYPE_MAIN;
-+		gt->info.__engine_mask = graphics_desc->hw_engine_mask;
-+		if (MEDIA_VER(xe) < 13 && media_desc)
-+			gt->info.__engine_mask |= media_desc->hw_engine_mask;
- 
--		if (id == 0) {
--			gt->info.type = XE_GT_TYPE_MAIN;
--
--			gt->info.__engine_mask = graphics_desc->hw_engine_mask;
--			if (MEDIA_VER(xe) < 13 && media_desc)
--				gt->info.__engine_mask |= media_desc->hw_engine_mask;
--
--			gt->mmio.adj_limit = 0;
--			gt->mmio.adj_offset = 0;
--		} else {
--			gt->info.type = desc->extra_gts[id - 1].type;
--			gt->info.__engine_mask = (gt->info.type == XE_GT_TYPE_MEDIA) ?
--				media_desc->hw_engine_mask :
--				graphics_desc->hw_engine_mask;
--			gt->mmio.adj_limit =
--				desc->extra_gts[id - 1].mmio_adj_limit;
--			gt->mmio.adj_offset =
--				desc->extra_gts[id - 1].mmio_adj_offset;
--		}
-+		/* TODO: Init media GT, if present */
- 	}
- 
- 	return 0;
+ static inline struct xe_force_wake * gt_to_fw(struct xe_gt *gt)
 -- 
 2.40.1
 
