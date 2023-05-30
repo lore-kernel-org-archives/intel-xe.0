@@ -4,47 +4,48 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 95AD3C8300C
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id B4588C87FE7
 	for <intel-xe@archiver.kernel.org>; Tue, 30 May 2023 21:16:21 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7559110E443;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 918D510E446;
 	Tue, 30 May 2023 21:16:21 +0000 (UTC)
 Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
- by gabe.freedesktop.org (Postfix) with ESMTPS id CA65510E430
- for <intel-xe@lists.freedesktop.org>; Tue, 30 May 2023 21:16:07 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1CFAE10E439
+ for <intel-xe@lists.freedesktop.org>; Tue, 30 May 2023 21:16:11 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1685481367; x=1717017367;
+ t=1685481371; x=1717017371;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=a53xQgqGYLjTjBEuPC9ML3ACXyuFgIcnoYu4qrMjtNQ=;
- b=keY3HiZ/22niwo+UstdV/XchGpzvYpyAprTVOn3KMUBJOaTWn8inD2gl
- ssG//BNjmzB2brXi6Ahj4G54UUrTdp1zUWZhd3uS0Gk8aWHn1FlC57jrF
- TbhqNOZ2J86+S7yRDLXBxAwVkCrRov6LAEfiIqkyCApDZ9FXVhtaOYx+M
- tBCakAFrm73paFo6FZJ55qPonBmwplaenix2aUBcN9IrqzKTqxcpP/O+f
- UiBYlujyKRYcsbClp0him3o4AsO/sc+dyWm7xCMvb9Jpsfr4z9kDNcOUa
- +zzSAgYph1WCSbo5G88CBPjdZGzbKD7ECE3JUfmiMLdq7t9mLKEPlnNzE A==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10726"; a="383311941"
-X-IronPort-AV: E=Sophos;i="6.00,205,1681196400"; d="scan'208";a="383311941"
+ bh=pI0nKmlKbh8pQraIBfNzYW6mCpGwViHqjl60yBw7Dpk=;
+ b=mrKzAhleTO1gPXwiOBc6KO4Ova6rnzihjhkD8YL9ytUGPMa8NDFwFQJp
+ qHHpecZFzRwydUxjbPqR6FYnxf/Er6YsuxBlizrHDAvjLLLzvgX/ryQ1O
+ DZ5k/iIB2MNoEJ1y1UVr/+gQPoIq4/myCvzvjkDVFiTja8wOzj/GB6SXk
+ 2px2cWO2zeEBjJNU/hop3aakDRY0NNBvmtx7VsVbYM/zTuojpFfpSgoot
+ UO00GkYUAHeI79+VsnzC37ozSEldW6uA9nE1GsIRsa9nfEsJf6xRApd04
+ Xh+4ZcluobFfQ44rDTIMdU0Kitgy12Rgn31/6Idzp3b/WzvN6/KWJFFfl Q==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10726"; a="383311960"
+X-IronPort-AV: E=Sophos;i="6.00,205,1681196400"; d="scan'208";a="383311960"
 Received: from orsmga006.jf.intel.com ([10.7.209.51])
  by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 30 May 2023 14:16:07 -0700
+ 30 May 2023 14:16:10 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10726"; a="684139406"
-X-IronPort-AV: E=Sophos;i="6.00,205,1681196400"; d="scan'208";a="684139406"
+X-IronPort-AV: E=McAfee;i="6600,9927,10726"; a="684139459"
+X-IronPort-AV: E=Sophos;i="6.00,205,1681196400"; d="scan'208";a="684139459"
 Received: from mdroper-desk1.fm.intel.com ([10.1.27.134])
  by orsmga006-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 30 May 2023 14:16:07 -0700
+ 30 May 2023 14:16:10 -0700
 From: Matt Roper <matthew.d.roper@intel.com>
 To: intel-xe@lists.freedesktop.org
-Date: Tue, 30 May 2023 14:15:28 -0700
-Message-Id: <20230530211549.2632538-11-matthew.d.roper@intel.com>
+Date: Tue, 30 May 2023 14:15:39 -0700
+Message-Id: <20230530211549.2632538-22-matthew.d.roper@intel.com>
 X-Mailer: git-send-email 2.40.1
 In-Reply-To: <20230530211549.2632538-1-matthew.d.roper@intel.com>
 References: <20230530211549.2632538-1-matthew.d.roper@intel.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-xe] [PATCH v3 10/31] drm/xe: Move VRAM from GT to tile
+Subject: [Intel-xe] [PATCH v3 21/31] drm/xe: Interrupts are delivered
+ per-tile, not per-GT
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -60,933 +61,701 @@ Cc: Lucas De Marchi <lucas.demarchi@intel.com>, matthew.d.roper@intel.com
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On platforms with VRAM, the VRAM is associated with the tile, not the
-GT.
+IRQ delivery and handling needs to be handled on a per-tile basis.  Note
+that this is true even for the "GT interrupts" relating to engines and
+GuCs --- the interrupts relating to both GTs get raised through a single
+set of registers in the tile's sgunit range.
+
+On true multi-tile platforms, interrupts on remote tiles are internally
+forwarded to the root tile; the first thing the top-level interrupt
+handler should do is consult the root tile's instance of
+DG1_MSTR_TILE_INTR to determine which tile(s) had interrupts.  This
+register is also responsible for enabling/disabling top-level reporting
+of any interrupts to the OS.  Although this register technically exists
+on all tiles, it should only be used on the root tile.
+
+The (mis)use of struct xe_gt as a target for MMIO operations in the
+driver makes the code somewhat confusing since we wind up needing a GT
+pointer to handle programming that's unrelated to the GT.  To mitigate
+this confusion, all of the xe_gt structures used solely as an MMIO
+target in interrupt code are renamed to 'mmio' so that it's clear that
+the structure being passed does not necessarily relate to any specific
+GT (primary or media) that we might be dealing with interrupts for.
+Reworking the driver's MMIO handling to not be dependent on xe_gt is
+planned as a future patch series.
+
+Note that GT initialization code currently calls xe_gt_irq_postinstall()
+in an attempt to enable the HWE interrupts for the GT being initialized.
+Unfortunately xe_gt_irq_postinstall() doesn't really match its name and
+does a bunch of other stuff unrelated to the GT interrupts (such as
+enabling the top-level device interrupts).  That will be addressed in
+future patches.
 
 v2:
- - Unsquash the GGTT handling back into its own patch.
- - Fix kunit test build
-v3:
- - Tweak the "FIXME" comment to clarify that this function will be
-   completely gone by the end of the series.  (Lucas)
+ - Clarify commit message with explanation of why DG1_MSTR_TILE_INTR is
+   only used on the root tile, even though it's an sgunit register that
+   is technically present in each tile's MMIO space.  (Aravind)
+ - Also clarify that the xe_gt used as a target for MMIO operations may
+   or may not relate to the GT we're dealing with for interrupts.
+   (Lucas)
 
+Cc: Aravind Iddamsetty <aravind.iddamsetty@intel.com>
 Signed-off-by: Matt Roper <matthew.d.roper@intel.com>
 Reviewed-by: Lucas De Marchi <lucas.demarchi@intel.com>
 ---
- drivers/gpu/drm/xe/Makefile                |  1 +
- drivers/gpu/drm/xe/tests/xe_bo.c           |  6 +-
- drivers/gpu/drm/xe/xe_bo.c                 | 44 ++++++------
- drivers/gpu/drm/xe/xe_bo.h                 |  4 +-
- drivers/gpu/drm/xe/xe_device.c             | 14 ++--
- drivers/gpu/drm/xe/xe_device_types.h       | 30 ++++++++
- drivers/gpu/drm/xe/xe_gt.c                 | 82 ++--------------------
- drivers/gpu/drm/xe/xe_gt_pagefault.c       |  6 +-
- drivers/gpu/drm/xe/xe_gt_types.h           | 37 ----------
- drivers/gpu/drm/xe/xe_irq.c                |  2 +-
- drivers/gpu/drm/xe/xe_mmio.c               | 51 +++++++-------
- drivers/gpu/drm/xe/xe_mmio.h               |  2 +-
- drivers/gpu/drm/xe/xe_pci.c                |  2 -
- drivers/gpu/drm/xe/xe_query.c              |  4 +-
- drivers/gpu/drm/xe/xe_res_cursor.h         |  2 +-
- drivers/gpu/drm/xe/xe_tile.c               | 33 ++++++++-
- drivers/gpu/drm/xe/xe_ttm_stolen_mgr.c     | 18 ++---
- drivers/gpu/drm/xe/xe_ttm_vram_mgr.c       | 16 ++---
- drivers/gpu/drm/xe/xe_ttm_vram_mgr.h       |  4 +-
- drivers/gpu/drm/xe/xe_ttm_vram_mgr_types.h |  6 +-
- 20 files changed, 161 insertions(+), 203 deletions(-)
+ drivers/gpu/drm/xe/xe_gt.c  |   2 +-
+ drivers/gpu/drm/xe/xe_irq.c | 334 ++++++++++++++++++++----------------
+ drivers/gpu/drm/xe/xe_irq.h |   4 +-
+ 3 files changed, 187 insertions(+), 153 deletions(-)
 
-diff --git a/drivers/gpu/drm/xe/Makefile b/drivers/gpu/drm/xe/Makefile
-index da1e447c08c7..f34d4bdd510b 100644
---- a/drivers/gpu/drm/xe/Makefile
-+++ b/drivers/gpu/drm/xe/Makefile
-@@ -97,6 +97,7 @@ xe-y += xe_bb.o \
- 	xe_sched_job.o \
- 	xe_step.o \
- 	xe_sync.o \
-+	xe_tile.o \
- 	xe_trace.o \
- 	xe_ttm_sys_mgr.o \
- 	xe_ttm_stolen_mgr.o \
-diff --git a/drivers/gpu/drm/xe/tests/xe_bo.c b/drivers/gpu/drm/xe/tests/xe_bo.c
-index 8f3afdc6cca6..6235a6c73a06 100644
---- a/drivers/gpu/drm/xe/tests/xe_bo.c
-+++ b/drivers/gpu/drm/xe/tests/xe_bo.c
-@@ -115,9 +115,9 @@ static void ccs_test_run_gt(struct xe_device *xe, struct xe_gt *gt,
- 	int ret;
- 
- 	/* TODO: Sanity check */
--	vram_bit = XE_BO_CREATE_VRAM0_BIT << gt->info.vram_id;
-+	vram_bit = XE_BO_CREATE_VRAM0_BIT << gt_to_tile(gt)->id;
- 	kunit_info(test, "Testing gt id %u vram id %u\n", gt->info.id,
--		   gt->info.vram_id);
-+		   gt_to_tile(gt)->id);
- 
- 	bo = xe_bo_create_locked(xe, NULL, NULL, SZ_1M, ttm_bo_type_device,
- 				 vram_bit);
-@@ -179,7 +179,7 @@ static int evict_test_run_gt(struct xe_device *xe, struct xe_gt *gt, struct kuni
- 	int err, i;
- 
- 	kunit_info(test, "Testing device %s gt id %u vram id %u\n",
--		   dev_name(xe->drm.dev), gt->info.id, gt->info.vram_id);
-+		   dev_name(xe->drm.dev), gt->info.id, gt_to_tile(gt)->id);
- 
- 	for (i = 0; i < 2; ++i) {
- 		xe_vm_lock(vm, &ww, 0, false);
-diff --git a/drivers/gpu/drm/xe/xe_bo.c b/drivers/gpu/drm/xe/xe_bo.c
-index 09a9c121a84d..17de7cc5fe36 100644
---- a/drivers/gpu/drm/xe/xe_bo.c
-+++ b/drivers/gpu/drm/xe/xe_bo.c
-@@ -71,25 +71,25 @@ static bool xe_bo_is_user(struct xe_bo *bo)
- 	return bo->flags & XE_BO_CREATE_USER_BIT;
- }
- 
--static struct xe_gt *
--mem_type_to_gt(struct xe_device *xe, u32 mem_type)
-+static struct xe_tile *
-+mem_type_to_tile(struct xe_device *xe, u32 mem_type)
- {
- 	XE_BUG_ON(mem_type != XE_PL_STOLEN && !mem_type_is_vram(mem_type));
- 
--	return xe_device_get_gt(xe, mem_type == XE_PL_STOLEN ? 0 : (mem_type - XE_PL_VRAM0));
-+	return &xe->tiles[mem_type == XE_PL_STOLEN ? 0 : (mem_type - XE_PL_VRAM0)];
- }
- 
- /**
-- * xe_bo_to_gt() - Get a GT from a BO's memory location
-+ * xe_bo_to_tile() - Get a tile from a BO's memory location
-  * @bo: The buffer object
-  *
-- * Get a GT from a BO's memory location, should be called on BOs in VRAM only.
-+ * Get a tile from a BO's memory location, should be called on BOs in VRAM only.
-  *
-- * Return: xe_gt object which is closest to the BO
-+ * Return: xe_tile object which is closest to the BO
-  */
--struct xe_gt *xe_bo_to_gt(struct xe_bo *bo)
-+struct xe_tile *xe_bo_to_tile(struct xe_bo *bo)
- {
--	return mem_type_to_gt(xe_bo_device(bo), bo->ttm.resource->mem_type);
-+	return mem_type_to_tile(xe_bo_device(bo), bo->ttm.resource->mem_type);
- }
- 
- static void try_add_system(struct xe_bo *bo, struct ttm_place *places,
-@@ -109,9 +109,9 @@ static void try_add_system(struct xe_bo *bo, struct ttm_place *places,
- static void add_vram(struct xe_device *xe, struct xe_bo *bo,
- 		     struct ttm_place *places, u32 bo_flags, u32 mem_type, u32 *c)
- {
--	struct xe_gt *gt = mem_type_to_gt(xe, mem_type);
-+	struct xe_tile *tile = mem_type_to_tile(xe, mem_type);
- 
--	XE_BUG_ON(!gt->mem.vram.size);
-+	XE_BUG_ON(!tile->mem.vram.size);
- 
- 	places[*c] = (struct ttm_place) {
- 		.mem_type = mem_type,
-@@ -362,7 +362,7 @@ static int xe_ttm_io_mem_reserve(struct ttm_device *bdev,
- 				 struct ttm_resource *mem)
- {
- 	struct xe_device *xe = ttm_to_xe_device(bdev);
--	struct xe_gt *gt;
-+	struct xe_tile *tile;
- 
- 	switch (mem->mem_type) {
- 	case XE_PL_SYSTEM:
-@@ -370,15 +370,15 @@ static int xe_ttm_io_mem_reserve(struct ttm_device *bdev,
- 		return 0;
- 	case XE_PL_VRAM0:
- 	case XE_PL_VRAM1:
--		gt = mem_type_to_gt(xe, mem->mem_type);
-+		tile = mem_type_to_tile(xe, mem->mem_type);
- 		mem->bus.offset = mem->start << PAGE_SHIFT;
- 
--		if (gt->mem.vram.mapping &&
-+		if (tile->mem.vram.mapping &&
- 		    mem->placement & TTM_PL_FLAG_CONTIGUOUS)
--			mem->bus.addr = (u8 *)gt->mem.vram.mapping +
-+			mem->bus.addr = (u8 *)tile->mem.vram.mapping +
- 				mem->bus.offset;
- 
--		mem->bus.offset += gt->mem.vram.io_start;
-+		mem->bus.offset += tile->mem.vram.io_start;
- 		mem->bus.is_iomem = true;
- 
- #if  !defined(CONFIG_X86)
-@@ -638,9 +638,9 @@ static int xe_bo_move(struct ttm_buffer_object *ttm_bo, bool evict,
- 	if (bo->gt)
- 		gt = bo->gt;
- 	else if (resource_is_vram(new_mem))
--		gt = mem_type_to_gt(xe, new_mem->mem_type);
-+		gt = &mem_type_to_tile(xe, new_mem->mem_type)->primary_gt;
- 	else if (resource_is_vram(old_mem))
--		gt = mem_type_to_gt(xe, old_mem->mem_type);
-+		gt = &mem_type_to_tile(xe, old_mem->mem_type)->primary_gt;
- 
- 	XE_BUG_ON(!gt);
- 	XE_BUG_ON(!gt->migrate);
-@@ -664,7 +664,7 @@ static int xe_bo_move(struct ttm_buffer_object *ttm_bo, bool evict,
- 
- 			/* Create a new VMAP once kernel BO back in VRAM */
- 			if (!ret && resource_is_vram(new_mem)) {
--				void *new_addr = gt->mem.vram.mapping +
-+				void *new_addr = gt_to_tile(gt)->mem.vram.mapping +
- 					(new_mem->start << PAGE_SHIFT);
- 
- 				if (XE_WARN_ON(new_mem->start == XE_BO_INVALID_OFFSET)) {
-@@ -836,14 +836,14 @@ static unsigned long xe_ttm_io_mem_pfn(struct ttm_buffer_object *ttm_bo,
- {
- 	struct xe_device *xe = ttm_to_xe_device(ttm_bo->bdev);
- 	struct xe_bo *bo = ttm_to_xe_bo(ttm_bo);
--	struct xe_gt *gt = mem_type_to_gt(xe, ttm_bo->resource->mem_type);
-+	struct xe_tile *tile = mem_type_to_tile(xe, ttm_bo->resource->mem_type);
- 	struct xe_res_cursor cursor;
- 
- 	if (ttm_bo->resource->mem_type == XE_PL_STOLEN)
- 		return xe_ttm_stolen_io_offset(bo, page_offset << PAGE_SHIFT) >> PAGE_SHIFT;
- 
- 	xe_res_first(ttm_bo->resource, (u64)page_offset << PAGE_SHIFT, 0, &cursor);
--	return (gt->mem.vram.io_start + cursor.start) >> PAGE_SHIFT;
-+	return (tile->mem.vram.io_start + cursor.start) >> PAGE_SHIFT;
- }
- 
- static void __xe_bo_vunmap(struct xe_bo *bo);
-@@ -1344,12 +1344,12 @@ struct xe_bo *xe_bo_create_from_data(struct xe_device *xe, struct xe_gt *gt,
- uint64_t vram_region_gpu_offset(struct ttm_resource *res)
- {
- 	struct xe_device *xe = ttm_to_xe_device(res->bo->bdev);
--	struct xe_gt *gt = mem_type_to_gt(xe, res->mem_type);
-+	struct xe_tile *tile = mem_type_to_tile(xe, res->mem_type);
- 
- 	if (res->mem_type == XE_PL_STOLEN)
- 		return xe_ttm_stolen_gpu_offset(xe);
- 
--	return xe->mem.vram.base + gt->mem.vram.base;
-+	return xe->mem.vram.base + tile->mem.vram.base;
- }
- 
- /**
-diff --git a/drivers/gpu/drm/xe/xe_bo.h b/drivers/gpu/drm/xe/xe_bo.h
-index d945675a259f..2cad82510201 100644
---- a/drivers/gpu/drm/xe/xe_bo.h
-+++ b/drivers/gpu/drm/xe/xe_bo.h
-@@ -22,7 +22,7 @@
- /* -- */
- #define XE_BO_CREATE_STOLEN_BIT		BIT(4)
- #define XE_BO_CREATE_VRAM_IF_DGFX(gt) \
--	(IS_DGFX(gt_to_xe(gt)) ? XE_BO_CREATE_VRAM0_BIT << gt->info.vram_id : \
-+	(IS_DGFX(gt_to_xe(gt)) ? XE_BO_CREATE_VRAM0_BIT << gt_to_tile(gt)->id : \
- 	 XE_BO_CREATE_SYSTEM_BIT)
- #define XE_BO_CREATE_GGTT_BIT		BIT(5)
- #define XE_BO_CREATE_IGNORE_MIN_PAGE_SIZE_BIT BIT(6)
-@@ -108,7 +108,7 @@ struct xe_bo *xe_bo_create_from_data(struct xe_device *xe, struct xe_gt *gt,
- int xe_bo_placement_for_flags(struct xe_device *xe, struct xe_bo *bo,
- 			      u32 bo_flags);
- 
--struct xe_gt *xe_bo_to_gt(struct xe_bo *bo);
-+struct xe_tile *xe_bo_to_tile(struct xe_bo *bo);
- 
- static inline struct xe_bo *ttm_to_xe_bo(const struct ttm_buffer_object *bo)
- {
-diff --git a/drivers/gpu/drm/xe/xe_device.c b/drivers/gpu/drm/xe/xe_device.c
-index dd4a4a6e0b94..cf28b0f150ed 100644
---- a/drivers/gpu/drm/xe/xe_device.c
-+++ b/drivers/gpu/drm/xe/xe_device.c
-@@ -28,6 +28,7 @@
- #include "xe_pcode.h"
- #include "xe_pm.h"
- #include "xe_query.h"
-+#include "xe_tile.h"
- #include "xe_ttm_stolen_mgr.h"
- #include "xe_ttm_sys_mgr.h"
- #include "xe_vm.h"
-@@ -244,6 +245,7 @@ static void xe_device_sanitize(struct drm_device *drm, void *arg)
- 
- int xe_device_probe(struct xe_device *xe)
- {
-+	struct xe_tile *tile;
- 	struct xe_gt *gt;
- 	int err;
- 	u8 id;
-@@ -253,8 +255,12 @@ int xe_device_probe(struct xe_device *xe)
- 	if (err)
- 		return err;
- 
--	for_each_gt(gt, xe, id) {
--		err = xe_gt_alloc(xe, gt);
-+	for_each_tile(tile, xe, id) {
-+		err = xe_tile_alloc(tile);
-+		if (err)
-+			return err;
-+
-+		err = xe_gt_alloc(xe, &tile->primary_gt);
- 		if (err)
- 			return err;
- 	}
-@@ -289,8 +295,8 @@ int xe_device_probe(struct xe_device *xe)
- 
- 	xe_ttm_sys_mgr_init(xe);
- 
--	for_each_gt(gt, xe, id) {
--		err = xe_gt_init_noalloc(gt);
-+	for_each_tile(tile, xe, id) {
-+		err = xe_tile_init_noalloc(tile);
- 		if (err)
- 			goto err_irq_shutdown;
- 	}
-diff --git a/drivers/gpu/drm/xe/xe_device_types.h b/drivers/gpu/drm/xe/xe_device_types.h
-index d7b809253eb9..ab8310525f7b 100644
---- a/drivers/gpu/drm/xe/xe_device_types.h
-+++ b/drivers/gpu/drm/xe/xe_device_types.h
-@@ -102,6 +102,36 @@ struct xe_tile {
- 
- 	/** @mem: memory management info for tile */
- 	struct {
-+		/**
-+		 * @vram: VRAM info for tile.
-+		 *
-+		 * Although VRAM is associated with a specific tile, it can
-+		 * still be accessed by all tiles' GTs.
-+		 */
-+		struct {
-+			/** @io_start: IO start address of this VRAM instance */
-+			resource_size_t io_start;
-+			/**
-+			 * @io_size: IO size of this VRAM instance
-+			 *
-+			 * This represents how much of this VRAM we can access
-+			 * via the CPU through the VRAM BAR. This can be smaller
-+			 * than @size, in which case only part of VRAM is CPU
-+			 * accessible (typically the first 256M). This
-+			 * configuration is known as small-bar.
-+			 */
-+			resource_size_t io_size;
-+			/** @base: offset of VRAM starting base */
-+			resource_size_t base;
-+			/** @size: size of VRAM. */
-+			resource_size_t size;
-+			/** @mapping: pointer to VRAM mappable space */
-+			void *__iomem mapping;
-+		} vram;
-+
-+		/** @vram_mgr: VRAM TTM manager */
-+		struct xe_ttm_vram_mgr *vram_mgr;
-+
- 		/** @ggtt: Global graphics translation table */
- 		struct xe_ggtt *ggtt;
- 	} mem;
 diff --git a/drivers/gpu/drm/xe/xe_gt.c b/drivers/gpu/drm/xe/xe_gt.c
-index 0f07f810bb1f..419fc471053c 100644
+index f00b82e90106..071d4fbd3efc 100644
 --- a/drivers/gpu/drm/xe/xe_gt.c
 +++ b/drivers/gpu/drm/xe/xe_gt.c
-@@ -37,7 +37,6 @@
- #include "xe_ring_ops.h"
- #include "xe_sa.h"
- #include "xe_sched_job.h"
--#include "xe_ttm_vram_mgr.h"
- #include "xe_tuning.h"
- #include "xe_uc.h"
- #include "xe_vm.h"
-@@ -46,58 +45,22 @@
+@@ -310,7 +310,7 @@ static int gt_fw_domain_init(struct xe_gt *gt)
+ 	gt->info.engine_mask = gt->info.__engine_mask;
  
- struct xe_gt *xe_find_full_gt(struct xe_gt *gt)
- {
--	struct xe_gt *search;
--	u8 id;
--
--	XE_BUG_ON(!xe_gt_is_media_type(gt));
--
--	for_each_gt(search, gt_to_xe(gt), id) {
--		if (search->info.vram_id == gt->info.vram_id)
--			return search;
--	}
--
--	XE_BUG_ON("NOT POSSIBLE");
--	return NULL;
-+	/*
-+	 * FIXME: Once the code is prepared for re-enabling, this function will
-+	 * be gone. Just return the only possible gt for now.
-+	 */
-+	return gt;
- }
+ 	/* Enables per hw engine IRQs */
+-	xe_gt_irq_postinstall(gt);
++	xe_gt_irq_postinstall(gt_to_tile(gt));
  
- int xe_gt_alloc(struct xe_device *xe, struct xe_gt *gt)
- {
--	struct drm_device *drm = &xe->drm;
--
- 	XE_BUG_ON(gt->info.type == XE_GT_TYPE_UNINITIALIZED);
- 
--	if (!xe_gt_is_media_type(gt)) {
--		gt->mem.vram_mgr = drmm_kzalloc(drm, sizeof(*gt->mem.vram_mgr),
--						GFP_KERNEL);
--		if (!gt->mem.vram_mgr)
--			return -ENOMEM;
--
--	} else {
--		struct xe_gt *full_gt = xe_find_full_gt(gt);
--
--		gt->mem.vram_mgr = full_gt->mem.vram_mgr;
--	}
--
- 	gt->ordered_wq = alloc_ordered_workqueue("gt-ordered-wq", 0);
- 
- 	return 0;
- }
- 
--static int gt_ttm_mgr_init(struct xe_gt *gt)
--{
--	struct xe_device *xe = gt_to_xe(gt);
--	int err;
--
--	if (gt->mem.vram.size) {
--		err = xe_ttm_vram_mgr_init(gt, gt->mem.vram_mgr);
--		if (err)
--			return err;
--		xe->info.mem_region_mask |= BIT(gt->info.vram_id) << 1;
--	}
--
--	return 0;
--}
--
- void xe_gt_sanitize(struct xe_gt *gt)
- {
- 	/*
-@@ -321,41 +284,6 @@ int xe_gt_init_early(struct xe_gt *gt)
- 	return 0;
- }
- 
--/**
-- * xe_gt_init_noalloc - Init GT up to the point where allocations can happen.
-- * @gt: The GT to initialize.
-- *
-- * This function prepares the GT to allow memory allocations to VRAM, but is not
-- * allowed to allocate memory itself. This state is useful for display readout,
-- * because the inherited display framebuffer will otherwise be overwritten as it
-- * is usually put at the start of VRAM.
-- *
-- * Returns: 0 on success, negative error code on error.
-- */
--int xe_gt_init_noalloc(struct xe_gt *gt)
--{
--	int err, err2;
--
--	if (xe_gt_is_media_type(gt))
--		return 0;
--
--	xe_device_mem_access_get(gt_to_xe(gt));
--	err = xe_force_wake_get(gt_to_fw(gt), XE_FW_GT);
--	if (err)
--		goto err;
--
--	err = gt_ttm_mgr_init(gt);
--	if (err)
--		goto err_force_wake;
--
--err_force_wake:
--	err2 = xe_force_wake_put(gt_to_fw(gt), XE_FW_GT);
--	XE_WARN_ON(err2);
--	xe_device_mem_access_put(gt_to_xe(gt));
--err:
--	return err;
--}
--
- static int gt_fw_domain_init(struct xe_gt *gt)
- {
- 	int err, i;
-diff --git a/drivers/gpu/drm/xe/xe_gt_pagefault.c b/drivers/gpu/drm/xe/xe_gt_pagefault.c
-index 1677640e1075..f4f3d95ae6b1 100644
---- a/drivers/gpu/drm/xe/xe_gt_pagefault.c
-+++ b/drivers/gpu/drm/xe/xe_gt_pagefault.c
-@@ -107,6 +107,7 @@ static struct xe_vma *lookup_vma(struct xe_vm *vm, u64 page_addr)
- static int handle_pagefault(struct xe_gt *gt, struct pagefault *pf)
- {
- 	struct xe_device *xe = gt_to_xe(gt);
-+	struct xe_tile *tile = gt_to_tile(gt);
- 	struct xe_vm *vm;
- 	struct xe_vma *vma = NULL;
- 	struct xe_bo *bo;
-@@ -195,7 +196,7 @@ static int handle_pagefault(struct xe_gt *gt, struct pagefault *pf)
- 		}
- 
- 		/* Migrate to VRAM, move should invalidate the VMA first */
--		ret = xe_bo_migrate(bo, XE_PL_VRAM0 + gt->info.vram_id);
-+		ret = xe_bo_migrate(bo, XE_PL_VRAM0 + tile->id);
- 		if (ret)
- 			goto unlock_dma_resv;
- 	} else if (bo) {
-@@ -498,6 +499,7 @@ static struct xe_vma *get_acc_vma(struct xe_vm *vm, struct acc *acc)
- static int handle_acc(struct xe_gt *gt, struct acc *acc)
- {
- 	struct xe_device *xe = gt_to_xe(gt);
-+	struct xe_tile *tile = gt_to_tile(gt);
- 	struct xe_vm *vm;
- 	struct xe_vma *vma;
- 	struct xe_bo *bo;
-@@ -553,7 +555,7 @@ static int handle_acc(struct xe_gt *gt, struct acc *acc)
- 		goto unlock_vm;
- 
- 	/* Migrate to VRAM, move should invalidate the VMA first */
--	ret = xe_bo_migrate(bo, XE_PL_VRAM0 + gt->info.vram_id);
-+	ret = xe_bo_migrate(bo, XE_PL_VRAM0 + tile->id);
- 
- 	if (only_needs_bo_lock(bo))
- 		xe_bo_unlock(bo, &ww);
-diff --git a/drivers/gpu/drm/xe/xe_gt_types.h b/drivers/gpu/drm/xe/xe_gt_types.h
-index c06a0b27d6fc..a040ec896e70 100644
---- a/drivers/gpu/drm/xe/xe_gt_types.h
-+++ b/drivers/gpu/drm/xe/xe_gt_types.h
-@@ -16,8 +16,6 @@
- struct xe_engine_ops;
- struct xe_migrate;
- struct xe_ring_ops;
--struct xe_ttm_gtt_mgr;
--struct xe_ttm_vram_mgr;
- 
- enum xe_gt_type {
- 	XE_GT_TYPE_UNINITIALIZED,
-@@ -108,8 +106,6 @@ struct xe_gt {
- 		enum xe_gt_type type;
- 		/** @id: id of GT */
- 		u8 id;
--		/** @vram: id of the VRAM for this GT */
--		u8 vram_id;
- 		/** @clock_freq: clock frequency */
- 		u32 clock_freq;
- 		/** @engine_mask: mask of engines present on GT */
-@@ -144,39 +140,6 @@ struct xe_gt {
- 	 */
- 	struct xe_reg_sr reg_sr;
- 
--	/**
--	 * @mem: memory management info for GT, multiple GTs can point to same
--	 * objects (virtual split)
--	 */
--	struct {
--		/**
--		 * @vram: VRAM info for GT, multiple GTs can point to same info
--		 * (virtual split), can be subset of global device VRAM
--		 */
--		struct {
--			/** @io_start: IO start address of this VRAM instance */
--			resource_size_t io_start;
--			/**
--			 * @io_size: IO size of this VRAM instance
--			 *
--			 * This represents how much of the VRAM the CPU can access
--			 * via the VRAM BAR.
--			 * This can be smaller than the actual @size, in which
--			 * case only part of VRAM is CPU accessible (typically
--			 * the first 256M). This configuration is known as small-bar.
--			 */
--			resource_size_t io_size;
--			/** @base: offset of VRAM starting base */
--			resource_size_t base;
--			/** @size: size of VRAM. */
--			resource_size_t size;
--			/** @mapping: pointer to VRAM mappable space */
--			void *__iomem mapping;
--		} vram;
--		/** @vram_mgr: VRAM TTM manager */
--		struct xe_ttm_vram_mgr *vram_mgr;
--	} mem;
--
- 	/** @reset: state for GT resets */
- 	struct {
- 		/**
+ 	/* Rerun MCR init as we now have hw engine list */
+ 	xe_gt_mcr_init(gt);
 diff --git a/drivers/gpu/drm/xe/xe_irq.c b/drivers/gpu/drm/xe/xe_irq.c
-index 5bf359c81cc5..5be31855d789 100644
+index 654c34a5b99a..ad2f73b2a031 100644
 --- a/drivers/gpu/drm/xe/xe_irq.c
 +++ b/drivers/gpu/drm/xe/xe_irq.c
-@@ -369,7 +369,7 @@ static irqreturn_t dg1_irq_handler(int irq, void *arg)
- 	}
+@@ -27,60 +27,66 @@
+ #define IIR(offset)				XE_REG(offset + 0x8)
+ #define IER(offset)				XE_REG(offset + 0xc)
  
- 	for_each_gt(gt, xe, id) {
--		if ((master_tile_ctl & DG1_MSTR_TILE(gt->info.vram_id)) == 0)
-+		if ((master_tile_ctl & DG1_MSTR_TILE(gt_to_tile(gt)->id)) == 0)
- 			continue;
+-static void assert_iir_is_zero(struct xe_gt *gt, struct xe_reg reg)
++static void assert_iir_is_zero(struct xe_gt *mmio, struct xe_reg reg)
+ {
+-	u32 val = xe_mmio_read32(gt, reg);
++	u32 val = xe_mmio_read32(mmio, reg);
  
- 		if (!xe_gt_is_media_type(gt))
-diff --git a/drivers/gpu/drm/xe/xe_mmio.c b/drivers/gpu/drm/xe/xe_mmio.c
-index b27103080ca9..0120b836dd1d 100644
---- a/drivers/gpu/drm/xe/xe_mmio.c
-+++ b/drivers/gpu/drm/xe/xe_mmio.c
-@@ -206,8 +206,10 @@ static int xe_determine_lmem_bar_size(struct xe_device *xe)
-  * NOTE: multi-tile bases will include the tile offset.
-  *
+ 	if (val == 0)
+ 		return;
+ 
+-	drm_WARN(&gt_to_xe(gt)->drm, 1,
++	drm_WARN(&gt_to_xe(mmio)->drm, 1,
+ 		 "Interrupt register 0x%x is not zero: 0x%08x\n",
+ 		 reg.addr, val);
+-	xe_mmio_write32(gt, reg, 0xffffffff);
+-	xe_mmio_read32(gt, reg);
+-	xe_mmio_write32(gt, reg, 0xffffffff);
+-	xe_mmio_read32(gt, reg);
++	xe_mmio_write32(mmio, reg, 0xffffffff);
++	xe_mmio_read32(mmio, reg);
++	xe_mmio_write32(mmio, reg, 0xffffffff);
++	xe_mmio_read32(mmio, reg);
+ }
+ 
+ /*
+  * Unmask and enable the specified interrupts.  Does not check current state,
+  * so any bits not specified here will become masked and disabled.
   */
--int xe_mmio_tile_vram_size(struct xe_gt *gt, u64 *vram_size, u64 *tile_size, u64 *tile_offset)
-+int xe_mmio_tile_vram_size(struct xe_tile *tile, u64 *vram_size, u64 *tile_size, u64 *tile_offset)
+-static void unmask_and_enable(struct xe_gt *gt, u32 irqregs, u32 bits)
++static void unmask_and_enable(struct xe_tile *tile, u32 irqregs, u32 bits)
  {
-+	struct xe_device *xe = tile_to_xe(tile);
-+	struct xe_gt *gt = &tile->primary_gt;
- 	u64 offset;
- 	int err;
- 	u32 reg;
-@@ -217,8 +219,8 @@ int xe_mmio_tile_vram_size(struct xe_gt *gt, u64 *vram_size, u64 *tile_size, u64
- 		return err;
++	struct xe_gt *mmio = tile->primary_gt;
++
+ 	/*
+ 	 * If we're just enabling an interrupt now, it shouldn't already
+ 	 * be raised in the IIR.
+ 	 */
+-	assert_iir_is_zero(gt, IIR(irqregs));
++	assert_iir_is_zero(mmio, IIR(irqregs));
  
- 	/* actual size */
--	if (unlikely(gt_to_xe(gt)->info.platform == XE_DG1)) {
--		*tile_size = pci_resource_len(to_pci_dev(gt_to_xe(gt)->drm.dev), GEN12_LMEM_BAR);
-+	if (unlikely(xe->info.platform == XE_DG1)) {
-+		*tile_size = pci_resource_len(to_pci_dev(xe->drm.dev), GEN12_LMEM_BAR);
- 		*tile_offset = 0;
- 	} else {
- 		reg = xe_gt_mcr_unicast_read_any(gt, XEHP_TILE_ADDR_RANGE(gt->info.id));
-@@ -227,7 +229,7 @@ int xe_mmio_tile_vram_size(struct xe_gt *gt, u64 *vram_size, u64 *tile_size, u64
- 	}
+-	xe_mmio_write32(gt, IER(irqregs), bits);
+-	xe_mmio_write32(gt, IMR(irqregs), ~bits);
++	xe_mmio_write32(mmio, IER(irqregs), bits);
++	xe_mmio_write32(mmio, IMR(irqregs), ~bits);
  
- 	/* minus device usage */
--	if (gt_to_xe(gt)->info.has_flat_ccs) {
-+	if (xe->info.has_flat_ccs) {
- 		reg = xe_gt_mcr_unicast_read_any(gt, XEHP_FLAT_CCS_BASE_ADDR);
- 		offset = (u64)REG_FIELD_GET(GENMASK(31, 8), reg) * SZ_64K;
- 	} else {
-@@ -242,10 +244,10 @@ int xe_mmio_tile_vram_size(struct xe_gt *gt, u64 *vram_size, u64 *tile_size, u64
- 
- int xe_mmio_probe_vram(struct xe_device *xe)
- {
-+	struct xe_tile *tile;
- 	resource_size_t io_size;
- 	u64 available_size = 0;
- 	u64 total_size = 0;
--	struct xe_gt *gt;
- 	u64 tile_offset;
- 	u64 tile_size;
- 	u64 vram_size;
-@@ -255,9 +257,9 @@ int xe_mmio_probe_vram(struct xe_device *xe)
- 	if (!IS_DGFX(xe))
- 		return 0;
- 
--	/* Get the size of the gt0 vram for later accessibility comparison */
--	gt = xe_device_get_gt(xe, 0);
--	err = xe_mmio_tile_vram_size(gt, &vram_size, &tile_size, &tile_offset);
-+	/* Get the size of the root tile's vram for later accessibility comparison */
-+	tile = xe_device_get_root_tile(xe);
-+	err = xe_mmio_tile_vram_size(tile, &vram_size, &tile_size, &tile_offset);
- 	if (err)
- 		return err;
- 
-@@ -265,7 +267,7 @@ int xe_mmio_probe_vram(struct xe_device *xe)
- 	if (err)
- 		return err;
- 
--	/* small bar issues will only cover gt0 sizes */
-+	/* small bar issues will only cover root tile sizes */
- 	if (xe->mem.vram.io_size < vram_size)
- 		drm_warn(&xe->drm, "Restricting VRAM size to PCI resource size (0x%llx->0x%llx)\n",
- 			 vram_size, (u64)xe->mem.vram.io_size);
-@@ -275,35 +277,32 @@ int xe_mmio_probe_vram(struct xe_device *xe)
- 
- 	io_size = xe->mem.vram.io_size;
- 
--	/* gt specific ranges */
--	for_each_gt(gt, xe, id) {
--		if (xe_gt_is_media_type(gt))
--			continue;
--
--		err = xe_mmio_tile_vram_size(gt, &vram_size, &tile_size, &tile_offset);
-+	/* tile specific ranges */
-+	for_each_tile(tile, xe, id) {
-+		err = xe_mmio_tile_vram_size(tile, &vram_size, &tile_size, &tile_offset);
- 		if (err)
- 			return err;
- 
--		gt->mem.vram.io_start = xe->mem.vram.io_start + tile_offset;
--		gt->mem.vram.io_size = min_t(u64, vram_size, io_size);
-+		tile->mem.vram.io_start = xe->mem.vram.io_start + tile_offset;
-+		tile->mem.vram.io_size = min_t(u64, vram_size, io_size);
- 
--		if (!gt->mem.vram.io_size) {
-+		if (!tile->mem.vram.io_size) {
- 			drm_err(&xe->drm, "Tile without any CPU visible VRAM. Aborting.\n");
- 			return -ENODEV;
- 		}
- 
--		gt->mem.vram.base = tile_offset;
-+		tile->mem.vram.base = tile_offset;
- 
- 		/* small bar can limit the visible size.  size accordingly */
--		gt->mem.vram.size = min_t(u64, vram_size, io_size);
--		gt->mem.vram.mapping = xe->mem.vram.mapping + tile_offset;
-+		tile->mem.vram.size = min_t(u64, vram_size, io_size);
-+		tile->mem.vram.mapping = xe->mem.vram.mapping + tile_offset;
- 
--		drm_info(&xe->drm, "VRAM[%u, %u]: %pa, %pa\n", id, gt->info.vram_id,
--			 &gt->mem.vram.io_start, &gt->mem.vram.size);
-+		drm_info(&xe->drm, "VRAM[%u, %u]: %pa, %pa\n", id, tile->id,
-+			 &tile->mem.vram.io_start, &tile->mem.vram.size);
- 
--		if (gt->mem.vram.io_size < gt->mem.vram.size)
-+		if (tile->mem.vram.io_size < tile->mem.vram.size)
- 			drm_info(&xe->drm, "VRAM[%u, %u]: CPU access limited to %pa\n", id,
--				 gt->info.vram_id, &gt->mem.vram.io_size);
-+				 tile->id, &tile->mem.vram.io_size);
- 
- 		/* calculate total size using tile size to get the correct HW sizing */
- 		total_size += tile_size;
-@@ -329,7 +328,7 @@ int xe_mmio_probe_vram(struct xe_device *xe)
- 
- static void xe_mmio_probe_tiles(struct xe_device *xe)
- {
--	struct xe_gt *gt = xe_device_get_gt(xe, 0);
-+	struct xe_gt *gt = &xe_device_get_root_tile(xe)->primary_gt;
- 	u32 mtcfg;
- 	u8 adj_tile_count;
- 	u8 id;
-diff --git a/drivers/gpu/drm/xe/xe_mmio.h b/drivers/gpu/drm/xe/xe_mmio.h
-index 0ba7aa790f0b..3c547d78afba 100644
---- a/drivers/gpu/drm/xe/xe_mmio.h
-+++ b/drivers/gpu/drm/xe/xe_mmio.h
-@@ -144,6 +144,6 @@ static inline bool xe_mmio_in_range(const struct xe_mmio_range *range,
+ 	/* Posting read */
+-	xe_mmio_read32(gt, IMR(irqregs));
++	xe_mmio_read32(mmio, IMR(irqregs));
  }
  
- int xe_mmio_probe_vram(struct xe_device *xe);
--int xe_mmio_tile_vram_size(struct xe_gt *gt, u64 *vram_size, u64 *tile_size, u64 *tile_base);
-+int xe_mmio_tile_vram_size(struct xe_tile *tile, u64 *vram_size, u64 *tile_size, u64 *tile_base);
- 
- #endif
-diff --git a/drivers/gpu/drm/xe/xe_pci.c b/drivers/gpu/drm/xe/xe_pci.c
-index 91d5dc59aa7e..ea3d69607d13 100644
---- a/drivers/gpu/drm/xe/xe_pci.c
-+++ b/drivers/gpu/drm/xe/xe_pci.c
-@@ -569,7 +569,6 @@ static int xe_info_init(struct xe_device *xe,
- 
- 		if (id == 0) {
- 			gt->info.type = XE_GT_TYPE_MAIN;
--			gt->info.vram_id = id;
- 
- 			gt->info.__engine_mask = graphics_desc->hw_engine_mask;
- 			if (MEDIA_VER(xe) < 13 && media_desc)
-@@ -579,7 +578,6 @@ static int xe_info_init(struct xe_device *xe,
- 			gt->mmio.adj_offset = 0;
- 		} else {
- 			gt->info.type = desc->extra_gts[id - 1].type;
--			gt->info.vram_id = desc->extra_gts[id - 1].vram_id;
- 			gt->info.__engine_mask = (gt->info.type == XE_GT_TYPE_MEDIA) ?
- 				media_desc->hw_engine_mask :
- 				graphics_desc->hw_engine_mask;
-diff --git a/drivers/gpu/drm/xe/xe_query.c b/drivers/gpu/drm/xe/xe_query.c
-index b10959fde43b..799bf68800e7 100644
---- a/drivers/gpu/drm/xe/xe_query.c
-+++ b/drivers/gpu/drm/xe/xe_query.c
-@@ -182,7 +182,7 @@ static int query_config(struct xe_device *xe, struct drm_xe_device_query *query)
- 	config->num_params = num_params;
- 	config->info[XE_QUERY_CONFIG_REV_AND_DEVICE_ID] =
- 		xe->info.devid | (xe->info.revid << 16);
--	if (to_gt(xe)->mem.vram.size)
-+	if (xe_device_get_root_tile(xe)->mem.vram.size)
- 		config->info[XE_QUERY_CONFIG_FLAGS] =
- 			XE_QUERY_CONFIG_FLAGS_HAS_VRAM;
- 	if (xe->info.enable_guc)
-@@ -242,7 +242,7 @@ static int query_gts(struct xe_device *xe, struct drm_xe_device_query *query)
- 			gts->gts[id].native_mem_regions = 0x1;
- 		else
- 			gts->gts[id].native_mem_regions =
--				BIT(gt->info.vram_id) << 1;
-+				BIT(gt_to_tile(gt)->id) << 1;
- 		gts->gts[id].slow_mem_regions = xe->info.mem_region_mask ^
- 			gts->gts[id].native_mem_regions;
- 	}
-diff --git a/drivers/gpu/drm/xe/xe_res_cursor.h b/drivers/gpu/drm/xe/xe_res_cursor.h
-index 4e99fae26b4c..f2ba609712d3 100644
---- a/drivers/gpu/drm/xe/xe_res_cursor.h
-+++ b/drivers/gpu/drm/xe/xe_res_cursor.h
-@@ -53,7 +53,7 @@ static struct drm_buddy *xe_res_get_buddy(struct ttm_resource *res)
- 	struct xe_device *xe = ttm_to_xe_device(res->bo->bdev);
- 
- 	if (res->mem_type != XE_PL_STOLEN) {
--		return &xe_device_get_gt(xe, res->mem_type - XE_PL_VRAM0)->mem.vram_mgr->mm;
-+		return &xe->tiles[res->mem_type - XE_PL_VRAM0].mem.vram_mgr->mm;
- 	} else {
- 		struct ttm_resource_manager *mgr =
- 			ttm_manager_type(&xe->ttm, XE_PL_STOLEN);
-diff --git a/drivers/gpu/drm/xe/xe_tile.c b/drivers/gpu/drm/xe/xe_tile.c
-index 7ef594f301ca..5530a6b6ef31 100644
---- a/drivers/gpu/drm/xe/xe_tile.c
-+++ b/drivers/gpu/drm/xe/xe_tile.c
-@@ -29,6 +29,25 @@ int xe_tile_alloc(struct xe_tile *tile)
- 		return -ENOMEM;
- 	tile->mem.ggtt->tile = tile;
- 
-+	tile->mem.vram_mgr = drmm_kzalloc(drm, sizeof(*tile->mem.vram_mgr), GFP_KERNEL);
-+	if (!tile->mem.vram_mgr)
-+		return -ENOMEM;
-+
-+	return 0;
-+}
-+
-+static int tile_ttm_mgr_init(struct xe_tile *tile)
-+{
-+	struct xe_device *xe = tile_to_xe(tile);
-+	int err;
-+
-+	if (tile->mem.vram.size) {
-+		err = xe_ttm_vram_mgr_init(tile, tile->mem.vram_mgr);
-+		if (err)
-+			return err;
-+		xe->info.mem_region_mask |= BIT(tile->id) << 1;
-+	}
-+
- 	return 0;
- }
- 
-@@ -48,5 +67,17 @@ int xe_tile_alloc(struct xe_tile *tile)
-  */
- int xe_tile_init_noalloc(struct xe_tile *tile)
+ /* Mask and disable all interrupts. */
+-static void mask_and_disable(struct xe_gt *gt, u32 irqregs)
++static void mask_and_disable(struct xe_tile *tile, u32 irqregs)
  {
--	return xe_ggtt_init_noalloc(tile->mem.ggtt);
-+	int err;
+-	xe_mmio_write32(gt, IMR(irqregs), ~0);
++	struct xe_gt *mmio = tile->primary_gt;
 +
-+	xe_device_mem_access_get(tile_to_xe(tile));
-+
-+	err = tile_ttm_mgr_init(tile);
-+	if (err)
-+		goto err_mem_access;
-+
-+	err = xe_ggtt_init_noalloc(tile->mem.ggtt);
-+
-+err_mem_access:
-+	xe_device_mem_access_put(tile_to_xe(tile));
-+	return err;
- }
-diff --git a/drivers/gpu/drm/xe/xe_ttm_stolen_mgr.c b/drivers/gpu/drm/xe/xe_ttm_stolen_mgr.c
-index 49470f0722bd..c68325161c19 100644
---- a/drivers/gpu/drm/xe/xe_ttm_stolen_mgr.c
-+++ b/drivers/gpu/drm/xe/xe_ttm_stolen_mgr.c
-@@ -51,29 +51,31 @@ bool xe_ttm_stolen_cpu_access_needs_ggtt(struct xe_device *xe)
- 	return GRAPHICS_VERx100(xe) < 1270 && !IS_DGFX(xe);
++	xe_mmio_write32(mmio, IMR(irqregs), ~0);
+ 	/* Posting read */
+-	xe_mmio_read32(gt, IMR(irqregs));
++	xe_mmio_read32(mmio, IMR(irqregs));
+ 
+-	xe_mmio_write32(gt, IER(irqregs), 0);
++	xe_mmio_write32(mmio, IER(irqregs), 0);
+ 
+ 	/* IIR can theoretically queue up two events. Be paranoid. */
+-	xe_mmio_write32(gt, IIR(irqregs), ~0);
+-	xe_mmio_read32(gt, IIR(irqregs));
+-	xe_mmio_write32(gt, IIR(irqregs), ~0);
+-	xe_mmio_read32(gt, IIR(irqregs));
++	xe_mmio_write32(mmio, IIR(irqregs), ~0);
++	xe_mmio_read32(mmio, IIR(irqregs));
++	xe_mmio_write32(mmio, IIR(irqregs), ~0);
++	xe_mmio_read32(mmio, IIR(irqregs));
  }
  
--static s64 detect_bar2_dgfx(struct xe_gt *gt, struct xe_ttm_stolen_mgr *mgr)
-+static s64 detect_bar2_dgfx(struct xe_device *xe, struct xe_ttm_stolen_mgr *mgr)
+-static u32 xelp_intr_disable(struct xe_gt *gt)
++static u32 xelp_intr_disable(struct xe_device *xe)
  {
--	struct pci_dev *pdev = to_pci_dev(gt_to_xe(gt)->drm.dev);
-+	struct xe_tile *tile = xe_device_get_root_tile(xe);
-+	struct xe_gt *mmio = &tile->primary_gt;
-+	struct pci_dev *pdev = to_pci_dev(xe->drm.dev);
- 	u64 stolen_size;
- 	u64 tile_offset;
- 	u64 tile_size;
- 	u64 vram_size;
- 
--	if (xe_mmio_tile_vram_size(gt, &vram_size, &tile_size, &tile_offset)) {
--		drm_err(&gt_to_xe(gt)->drm, "Querying total vram size failed\n");
-+	if (xe_mmio_tile_vram_size(tile, &vram_size, &tile_size, &tile_offset)) {
-+		drm_err(&xe->drm, "Querying total vram size failed\n");
- 		return 0;
- 	}
- 
- 	/* Use DSM base address instead for stolen memory */
--	mgr->stolen_base = (xe_mmio_read64(gt, DSMBASE) & BDSM_MASK) - tile_offset;
--	if (drm_WARN_ON(&gt_to_xe(gt)->drm, tile_size < mgr->stolen_base))
-+	mgr->stolen_base = (xe_mmio_read64(mmio, DSMBASE) & BDSM_MASK) - tile_offset;
-+	if (drm_WARN_ON(&xe->drm, tile_size < mgr->stolen_base))
- 		return 0;
- 
- 	stolen_size = tile_size - mgr->stolen_base;
- 
- 	/* Verify usage fits in the actual resource available */
- 	if (mgr->stolen_base + stolen_size <= pci_resource_len(pdev, GEN12_LMEM_BAR))
--		mgr->io_base = gt->mem.vram.io_start + mgr->stolen_base;
-+		mgr->io_base = tile->mem.vram.io_start + mgr->stolen_base;
+-	xe_mmio_write32(gt, GFX_MSTR_IRQ, 0);
++	struct xe_gt *mmio = xe_root_mmio_gt(xe);
++
++	xe_mmio_write32(mmio, GFX_MSTR_IRQ, 0);
  
  	/*
- 	 * There may be few KB of platform dependent reserved memory at the end
-@@ -141,7 +143,7 @@ void xe_ttm_stolen_mgr_init(struct xe_device *xe)
- 	int err;
- 
- 	if (IS_DGFX(xe))
--		stolen_size = detect_bar2_dgfx(to_gt(xe), mgr);
-+		stolen_size = detect_bar2_dgfx(xe, mgr);
- 	else if (GRAPHICS_VERx100(xe) >= 1270)
- 		stolen_size = detect_bar2_integrated(xe, mgr);
- 	else
-diff --git a/drivers/gpu/drm/xe/xe_ttm_vram_mgr.c b/drivers/gpu/drm/xe/xe_ttm_vram_mgr.c
-index 73836b9b7fed..1a84abd35fcf 100644
---- a/drivers/gpu/drm/xe/xe_ttm_vram_mgr.c
-+++ b/drivers/gpu/drm/xe/xe_ttm_vram_mgr.c
-@@ -353,16 +353,14 @@ int __xe_ttm_vram_mgr_init(struct xe_device *xe, struct xe_ttm_vram_mgr *mgr,
- 	return drmm_add_action_or_reset(&xe->drm, ttm_vram_mgr_fini, mgr);
+ 	 * Now with master disabled, get a sample of level indications
+@@ -88,36 +94,41 @@ static u32 xelp_intr_disable(struct xe_gt *gt)
+ 	 * New indications can and will light up during processing,
+ 	 * and will generate new interrupt after enabling master.
+ 	 */
+-	return xe_mmio_read32(gt, GFX_MSTR_IRQ);
++	return xe_mmio_read32(mmio, GFX_MSTR_IRQ);
  }
  
--int xe_ttm_vram_mgr_init(struct xe_gt *gt, struct xe_ttm_vram_mgr *mgr)
-+int xe_ttm_vram_mgr_init(struct xe_tile *tile, struct xe_ttm_vram_mgr *mgr)
+ static u32
+-gu_misc_irq_ack(struct xe_gt *gt, const u32 master_ctl)
++gu_misc_irq_ack(struct xe_device *xe, const u32 master_ctl)
+ {
++	struct xe_gt *mmio = xe_root_mmio_gt(xe);
+ 	u32 iir;
+ 
+ 	if (!(master_ctl & GU_MISC_IRQ))
+ 		return 0;
+ 
+-	iir = xe_mmio_read32(gt, IIR(GU_MISC_IRQ_OFFSET));
++	iir = xe_mmio_read32(mmio, IIR(GU_MISC_IRQ_OFFSET));
+ 	if (likely(iir))
+-		xe_mmio_write32(gt, IIR(GU_MISC_IRQ_OFFSET), iir);
++		xe_mmio_write32(mmio, IIR(GU_MISC_IRQ_OFFSET), iir);
+ 
+ 	return iir;
+ }
+ 
+-static inline void xelp_intr_enable(struct xe_gt *gt, bool stall)
++static inline void xelp_intr_enable(struct xe_device *xe, bool stall)
+ {
+-	xe_mmio_write32(gt, GFX_MSTR_IRQ, MASTER_IRQ);
++	struct xe_gt *mmio = xe_root_mmio_gt(xe);
++
++	xe_mmio_write32(mmio, GFX_MSTR_IRQ, MASTER_IRQ);
+ 	if (stall)
+-		xe_mmio_read32(gt, GFX_MSTR_IRQ);
++		xe_mmio_read32(mmio, GFX_MSTR_IRQ);
+ }
+ 
+-static void gt_irq_postinstall(struct xe_device *xe, struct xe_gt *gt)
++static void gt_irq_postinstall(struct xe_tile *tile)
+ {
++	struct xe_device *xe = tile_to_xe(tile);
++	struct xe_gt *mmio = tile->primary_gt;
+ 	u32 irqs, dmask, smask;
+-	u32 ccs_mask = xe_hw_engine_mask_per_class(gt, XE_ENGINE_CLASS_COMPUTE);
+-	u32 bcs_mask = xe_hw_engine_mask_per_class(gt, XE_ENGINE_CLASS_COPY);
++	u32 ccs_mask = xe_hw_engine_mask_per_class(tile->primary_gt, XE_ENGINE_CLASS_COMPUTE);
++	u32 bcs_mask = xe_hw_engine_mask_per_class(tile->primary_gt, XE_ENGINE_CLASS_COPY);
+ 
+ 	if (xe_device_guc_submission_enabled(xe)) {
+ 		irqs = GT_RENDER_USER_INTERRUPT |
+@@ -133,57 +144,57 @@ static void gt_irq_postinstall(struct xe_device *xe, struct xe_gt *gt)
+ 	smask = irqs << 16;
+ 
+ 	/* Enable RCS, BCS, VCS and VECS class interrupts. */
+-	xe_mmio_write32(gt, RENDER_COPY_INTR_ENABLE, dmask);
+-	xe_mmio_write32(gt, VCS_VECS_INTR_ENABLE, dmask);
++	xe_mmio_write32(mmio, RENDER_COPY_INTR_ENABLE, dmask);
++	xe_mmio_write32(mmio, VCS_VECS_INTR_ENABLE, dmask);
+ 	if (ccs_mask)
+-		xe_mmio_write32(gt, CCS_RSVD_INTR_ENABLE, smask);
++		xe_mmio_write32(mmio, CCS_RSVD_INTR_ENABLE, smask);
+ 
+ 	/* Unmask irqs on RCS, BCS, VCS and VECS engines. */
+-	xe_mmio_write32(gt, RCS0_RSVD_INTR_MASK, ~smask);
+-	xe_mmio_write32(gt, BCS_RSVD_INTR_MASK, ~smask);
++	xe_mmio_write32(mmio, RCS0_RSVD_INTR_MASK, ~smask);
++	xe_mmio_write32(mmio, BCS_RSVD_INTR_MASK, ~smask);
+ 	if (bcs_mask & (BIT(1)|BIT(2)))
+-		xe_mmio_write32(gt, XEHPC_BCS1_BCS2_INTR_MASK, ~dmask);
++		xe_mmio_write32(mmio, XEHPC_BCS1_BCS2_INTR_MASK, ~dmask);
+ 	if (bcs_mask & (BIT(3)|BIT(4)))
+-		xe_mmio_write32(gt, XEHPC_BCS3_BCS4_INTR_MASK, ~dmask);
++		xe_mmio_write32(mmio, XEHPC_BCS3_BCS4_INTR_MASK, ~dmask);
+ 	if (bcs_mask & (BIT(5)|BIT(6)))
+-		xe_mmio_write32(gt, XEHPC_BCS5_BCS6_INTR_MASK, ~dmask);
++		xe_mmio_write32(mmio, XEHPC_BCS5_BCS6_INTR_MASK, ~dmask);
+ 	if (bcs_mask & (BIT(7)|BIT(8)))
+-		xe_mmio_write32(gt, XEHPC_BCS7_BCS8_INTR_MASK, ~dmask);
+-	xe_mmio_write32(gt, VCS0_VCS1_INTR_MASK, ~dmask);
+-	xe_mmio_write32(gt, VCS2_VCS3_INTR_MASK, ~dmask);
+-	xe_mmio_write32(gt, VECS0_VECS1_INTR_MASK, ~dmask);
++		xe_mmio_write32(mmio, XEHPC_BCS7_BCS8_INTR_MASK, ~dmask);
++	xe_mmio_write32(mmio, VCS0_VCS1_INTR_MASK, ~dmask);
++	xe_mmio_write32(mmio, VCS2_VCS3_INTR_MASK, ~dmask);
++	xe_mmio_write32(mmio, VECS0_VECS1_INTR_MASK, ~dmask);
+ 	if (ccs_mask & (BIT(0)|BIT(1)))
+-		xe_mmio_write32(gt, CCS0_CCS1_INTR_MASK, ~dmask);
++		xe_mmio_write32(mmio, CCS0_CCS1_INTR_MASK, ~dmask);
+ 	if (ccs_mask & (BIT(2)|BIT(3)))
+-		xe_mmio_write32(gt,  CCS2_CCS3_INTR_MASK, ~dmask);
++		xe_mmio_write32(mmio,  CCS2_CCS3_INTR_MASK, ~dmask);
+ 
+ 	/*
+ 	 * RPS interrupts will get enabled/disabled on demand when RPS itself
+ 	 * is enabled/disabled.
+ 	 */
+ 	/* TODO: gt->pm_ier, gt->pm_imr */
+-	xe_mmio_write32(gt, GPM_WGBOXPERF_INTR_ENABLE, 0);
+-	xe_mmio_write32(gt, GPM_WGBOXPERF_INTR_MASK,  ~0);
++	xe_mmio_write32(mmio, GPM_WGBOXPERF_INTR_ENABLE, 0);
++	xe_mmio_write32(mmio, GPM_WGBOXPERF_INTR_MASK,  ~0);
+ 
+ 	/* Same thing for GuC interrupts */
+-	xe_mmio_write32(gt, GUC_SG_INTR_ENABLE, 0);
+-	xe_mmio_write32(gt, GUC_SG_INTR_MASK,  ~0);
++	xe_mmio_write32(mmio, GUC_SG_INTR_ENABLE, 0);
++	xe_mmio_write32(mmio, GUC_SG_INTR_MASK,  ~0);
+ }
+ 
+-static void xelp_irq_postinstall(struct xe_device *xe, struct xe_gt *gt)
++static void xelp_irq_postinstall(struct xe_device *xe, struct xe_tile *tile)
+ {
+ 	/* TODO: PCH */
+ 
+-	gt_irq_postinstall(xe, gt);
++	gt_irq_postinstall(tile);
+ 
+-	unmask_and_enable(gt, GU_MISC_IRQ_OFFSET, GU_MISC_GSE);
++	unmask_and_enable(tile, GU_MISC_IRQ_OFFSET, GU_MISC_GSE);
+ 
+-	xelp_intr_enable(gt, true);
++	xelp_intr_enable(xe, true);
+ }
+ 
+ static u32
+ gt_engine_identity(struct xe_device *xe,
+-		   struct xe_gt *gt,
++		   struct xe_gt *mmio,
+ 		   const unsigned int bank,
+ 		   const unsigned int bit)
+ {
+@@ -192,7 +203,7 @@ gt_engine_identity(struct xe_device *xe,
+ 
+ 	lockdep_assert_held(&xe->irq.lock);
+ 
+-	xe_mmio_write32(gt, IIR_REG_SELECTOR(bank), BIT(bit));
++	xe_mmio_write32(mmio, IIR_REG_SELECTOR(bank), BIT(bit));
+ 
+ 	/*
+ 	 * NB: Specs do not specify how long to spin wait,
+@@ -200,7 +211,7 @@ gt_engine_identity(struct xe_device *xe,
+ 	 */
+ 	timeout_ts = (local_clock() >> 10) + 100;
+ 	do {
+-		ident = xe_mmio_read32(gt, INTR_IDENTITY_REG(bank));
++		ident = xe_mmio_read32(mmio, INTR_IDENTITY_REG(bank));
+ 	} while (!(ident & INTR_DATA_VALID) &&
+ 		 !time_after32(local_clock() >> 10, timeout_ts));
+ 
+@@ -210,7 +221,7 @@ gt_engine_identity(struct xe_device *xe,
+ 		return 0;
+ 	}
+ 
+-	xe_mmio_write32(gt, INTR_IDENTITY_REG(bank), INTR_DATA_VALID);
++	xe_mmio_write32(mmio, INTR_IDENTITY_REG(bank), INTR_DATA_VALID);
+ 
+ 	return ident;
+ }
+@@ -232,10 +243,32 @@ gt_other_irq_handler(struct xe_gt *gt, const u8 instance, const u16 iir)
+ 	}
+ }
+ 
+-static void gt_irq_handler(struct xe_device *xe, struct xe_gt *gt,
++static struct xe_gt *pick_engine_gt(struct xe_tile *tile,
++				    enum xe_engine_class class,
++				    unsigned int instance)
++{
++	struct xe_device *xe = tile_to_xe(tile);
++
++	if (MEDIA_VER(xe) < 13)
++		return tile->primary_gt;
++
++	if (class == XE_ENGINE_CLASS_VIDEO_DECODE ||
++	    class == XE_ENGINE_CLASS_VIDEO_ENHANCE)
++		return tile->media_gt;
++
++	if (class == XE_ENGINE_CLASS_OTHER &&
++	    instance == OTHER_MEDIA_GUC_INSTANCE)
++		return tile->media_gt;
++
++	return tile->primary_gt;
++}
++
++static void gt_irq_handler(struct xe_tile *tile,
+ 			   u32 master_ctl, long unsigned int *intr_dw,
+ 			   u32 *identity)
+ {
++	struct xe_device *xe = tile_to_xe(tile);
++	struct xe_gt *mmio = tile->primary_gt;
+ 	unsigned int bank, bit;
+ 	u16 instance, intr_vec;
+ 	enum xe_engine_class class;
+@@ -247,27 +280,26 @@ static void gt_irq_handler(struct xe_device *xe, struct xe_gt *gt,
+ 		if (!(master_ctl & GT_DW_IRQ(bank)))
+ 			continue;
+ 
+-		if (!xe_gt_is_media_type(gt)) {
+-			intr_dw[bank] =
+-				xe_mmio_read32(gt, GT_INTR_DW(bank));
+-			for_each_set_bit(bit, intr_dw + bank, 32)
+-				identity[bit] = gt_engine_identity(xe, gt,
+-								   bank, bit);
+-			xe_mmio_write32(gt, GT_INTR_DW(bank),
+-					intr_dw[bank]);
+-		}
++		intr_dw[bank] = xe_mmio_read32(mmio, GT_INTR_DW(bank));
++		for_each_set_bit(bit, intr_dw + bank, 32)
++			identity[bit] = gt_engine_identity(xe, mmio, bank, bit);
++		xe_mmio_write32(mmio, GT_INTR_DW(bank), intr_dw[bank]);
+ 
+ 		for_each_set_bit(bit, intr_dw + bank, 32) {
++			struct xe_gt *engine_gt;
++
+ 			class = INTR_ENGINE_CLASS(identity[bit]);
+ 			instance = INTR_ENGINE_INSTANCE(identity[bit]);
+ 			intr_vec = INTR_ENGINE_INTR(identity[bit]);
+ 
++			engine_gt = pick_engine_gt(tile, class, instance);
++
+ 			if (class == XE_ENGINE_CLASS_OTHER) {
+-				gt_other_irq_handler(gt, instance, intr_vec);
++				gt_other_irq_handler(engine_gt, instance, intr_vec);
+ 				continue;
+ 			}
+ 
+-			hwe = xe_gt_hw_engine(gt, class, instance, false);
++			hwe = xe_gt_hw_engine(engine_gt, class, instance, false);
+ 			if (!hwe)
+ 				continue;
+ 
+@@ -285,24 +317,24 @@ static void gt_irq_handler(struct xe_device *xe, struct xe_gt *gt,
+ static irqreturn_t xelp_irq_handler(int irq, void *arg)
+ {
+ 	struct xe_device *xe = arg;
+-	struct xe_gt *gt = xe_root_mmio_gt(xe);
++	struct xe_tile *tile = xe_device_get_root_tile(xe);
+ 	u32 master_ctl, gu_misc_iir;
+ 	long unsigned int intr_dw[2];
+ 	u32 identity[32];
+ 
+-	master_ctl = xelp_intr_disable(gt);
++	master_ctl = xelp_intr_disable(xe);
+ 	if (!master_ctl) {
+-		xelp_intr_enable(gt, false);
++		xelp_intr_enable(xe, false);
+ 		return IRQ_NONE;
+ 	}
+ 
+-	gt_irq_handler(xe, gt, master_ctl, intr_dw, identity);
++	gt_irq_handler(tile, master_ctl, intr_dw, identity);
+ 
+ 	xe_display_irq_handler(xe, master_ctl);
+ 
+-	gu_misc_iir = gu_misc_irq_ack(gt, master_ctl);
++	gu_misc_iir = gu_misc_irq_ack(xe, master_ctl);
+ 
+-	xelp_intr_enable(gt, false);
++	xelp_intr_enable(xe, false);
+ 
+ 	xe_display_irq_enable(xe, gu_misc_iir);
+ 
+@@ -311,38 +343,38 @@ static irqreturn_t xelp_irq_handler(int irq, void *arg)
+ 
+ static u32 dg1_intr_disable(struct xe_device *xe)
+ {
+-	struct xe_gt *gt = xe_root_mmio_gt(xe);
++	struct xe_gt *mmio = xe_root_mmio_gt(xe);
+ 	u32 val;
+ 
+ 	/* First disable interrupts */
+-	xe_mmio_write32(gt, DG1_MSTR_TILE_INTR, 0);
++	xe_mmio_write32(mmio, DG1_MSTR_TILE_INTR, 0);
+ 
+ 	/* Get the indication levels and ack the master unit */
+-	val = xe_mmio_read32(gt, DG1_MSTR_TILE_INTR);
++	val = xe_mmio_read32(mmio, DG1_MSTR_TILE_INTR);
+ 	if (unlikely(!val))
+ 		return 0;
+ 
+-	xe_mmio_write32(gt, DG1_MSTR_TILE_INTR, val);
++	xe_mmio_write32(mmio, DG1_MSTR_TILE_INTR, val);
+ 
+ 	return val;
+ }
+ 
+ static void dg1_intr_enable(struct xe_device *xe, bool stall)
+ {
+-	struct xe_gt *gt = xe_root_mmio_gt(xe);
++	struct xe_gt *mmio = xe_root_mmio_gt(xe);
+ 
+-	xe_mmio_write32(gt, DG1_MSTR_TILE_INTR, DG1_MSTR_IRQ);
++	xe_mmio_write32(mmio, DG1_MSTR_TILE_INTR, DG1_MSTR_IRQ);
+ 	if (stall)
+-		xe_mmio_read32(gt, DG1_MSTR_TILE_INTR);
++		xe_mmio_read32(mmio, DG1_MSTR_TILE_INTR);
+ }
+ 
+-static void dg1_irq_postinstall(struct xe_device *xe, struct xe_gt *gt)
++static void dg1_irq_postinstall(struct xe_device *xe, struct xe_tile *tile)
+ {
+-	gt_irq_postinstall(xe, gt);
++	gt_irq_postinstall(tile);
+ 
+-	unmask_and_enable(gt, GU_MISC_IRQ_OFFSET, GU_MISC_GSE);
++	unmask_and_enable(tile, GU_MISC_IRQ_OFFSET, GU_MISC_GSE);
+ 
+-	if (gt->info.id == XE_GT0)
++	if (tile->id == 0)
+ 		dg1_intr_enable(xe, true);
+ }
+ 
+@@ -354,8 +386,8 @@ static void dg1_irq_postinstall(struct xe_device *xe, struct xe_gt *gt)
+ static irqreturn_t dg1_irq_handler(int irq, void *arg)
+ {
+ 	struct xe_device *xe = arg;
+-	struct xe_gt *gt;
+-	u32 master_tile_ctl, master_ctl = 0, tile0_master_ctl = 0, gu_misc_iir;
++	struct xe_tile *tile;
++	u32 master_tile_ctl, master_ctl = 0, gu_misc_iir = 0;
+ 	long unsigned int intr_dw[2];
+ 	u32 identity[32];
+ 	u8 id;
+@@ -368,12 +400,13 @@ static irqreturn_t dg1_irq_handler(int irq, void *arg)
+ 		return IRQ_NONE;
+ 	}
+ 
+-	for_each_gt(gt, xe, id) {
+-		if ((master_tile_ctl & DG1_MSTR_TILE(gt_to_tile(gt)->id)) == 0)
++	for_each_tile(tile, xe, id) {
++		struct xe_gt *mmio = tile->primary_gt;
++
++		if ((master_tile_ctl & DG1_MSTR_TILE(tile->id)) == 0)
+ 			continue;
+ 
+-		if (!xe_gt_is_media_type(gt))
+-			master_ctl = xe_mmio_read32(gt, GFX_MSTR_IRQ);
++		master_ctl = xe_mmio_read32(mmio, GFX_MSTR_IRQ);
+ 
+ 		/*
+ 		 * We might be in irq handler just when PCIe DPC is initiated
+@@ -381,124 +414,125 @@ static irqreturn_t dg1_irq_handler(int irq, void *arg)
+ 		 * irq as device is inaccessible.
+ 		 */
+ 		if (master_ctl == REG_GENMASK(31, 0)) {
+-			dev_dbg(gt_to_xe(gt)->drm.dev,
++			dev_dbg(tile_to_xe(tile)->drm.dev,
+ 				"Ignore this IRQ as device might be in DPC containment.\n");
+ 			return IRQ_HANDLED;
+ 		}
+ 
+-		if (!xe_gt_is_media_type(gt))
+-			xe_mmio_write32(gt, GFX_MSTR_IRQ, master_ctl);
+-		gt_irq_handler(xe, gt, master_ctl, intr_dw, identity);
++		xe_mmio_write32(mmio, GFX_MSTR_IRQ, master_ctl);
++
++		gt_irq_handler(tile, master_ctl, intr_dw, identity);
+ 
+ 		/*
+-		 * Save primary tile's master interrupt register for display
+-		 * processing below.
++		 * Display interrupts (including display backlight operations
++		 * that get reported as Gunit GSE) would only be hooked up to
++		 * the primary tile.
+ 		 */
+-		if (id == 0)
+-			tile0_master_ctl = master_ctl;
++		if (id == 0) {
++			xe_display_irq_handler(xe, master_ctl);
++			gu_misc_iir = gu_misc_irq_ack(xe, master_ctl);
++		}
+ 	}
+ 
+-	xe_display_irq_handler(xe, tile0_master_ctl);
+-
+-	/* Gunit GSE interrupts can trigger display backlight operations */
+-	gu_misc_iir = gu_misc_irq_ack(gt, tile0_master_ctl);
+-
+ 	dg1_intr_enable(xe, false);
+-
+ 	xe_display_irq_enable(xe, gu_misc_iir);
+ 
+ 	return IRQ_HANDLED;
+ }
+ 
+-static void gt_irq_reset(struct xe_gt *gt)
++static void gt_irq_reset(struct xe_tile *tile)
+ {
+-	u32 ccs_mask = xe_hw_engine_mask_per_class(gt, XE_ENGINE_CLASS_COMPUTE);
+-	u32 bcs_mask = xe_hw_engine_mask_per_class(gt, XE_ENGINE_CLASS_COPY);
++	struct xe_gt *mmio = tile->primary_gt;
++
++	u32 ccs_mask = xe_hw_engine_mask_per_class(tile->primary_gt,
++						   XE_ENGINE_CLASS_COMPUTE);
++	u32 bcs_mask = xe_hw_engine_mask_per_class(tile->primary_gt,
++						   XE_ENGINE_CLASS_COPY);
+ 
+ 	/* Disable RCS, BCS, VCS and VECS class engines. */
+-	xe_mmio_write32(gt, RENDER_COPY_INTR_ENABLE,	 0);
+-	xe_mmio_write32(gt, VCS_VECS_INTR_ENABLE,	 0);
++	xe_mmio_write32(mmio, RENDER_COPY_INTR_ENABLE, 0);
++	xe_mmio_write32(mmio, VCS_VECS_INTR_ENABLE, 0);
+ 	if (ccs_mask)
+-		xe_mmio_write32(gt, CCS_RSVD_INTR_ENABLE, 0);
++		xe_mmio_write32(mmio, CCS_RSVD_INTR_ENABLE, 0);
+ 
+ 	/* Restore masks irqs on RCS, BCS, VCS and VECS engines. */
+-	xe_mmio_write32(gt, RCS0_RSVD_INTR_MASK,	~0);
+-	xe_mmio_write32(gt, BCS_RSVD_INTR_MASK,	~0);
++	xe_mmio_write32(mmio, RCS0_RSVD_INTR_MASK,	~0);
++	xe_mmio_write32(mmio, BCS_RSVD_INTR_MASK,	~0);
+ 	if (bcs_mask & (BIT(1)|BIT(2)))
+-		xe_mmio_write32(gt, XEHPC_BCS1_BCS2_INTR_MASK, ~0);
++		xe_mmio_write32(mmio, XEHPC_BCS1_BCS2_INTR_MASK, ~0);
+ 	if (bcs_mask & (BIT(3)|BIT(4)))
+-		xe_mmio_write32(gt, XEHPC_BCS3_BCS4_INTR_MASK, ~0);
++		xe_mmio_write32(mmio, XEHPC_BCS3_BCS4_INTR_MASK, ~0);
+ 	if (bcs_mask & (BIT(5)|BIT(6)))
+-		xe_mmio_write32(gt, XEHPC_BCS5_BCS6_INTR_MASK, ~0);
++		xe_mmio_write32(mmio, XEHPC_BCS5_BCS6_INTR_MASK, ~0);
+ 	if (bcs_mask & (BIT(7)|BIT(8)))
+-		xe_mmio_write32(gt, XEHPC_BCS7_BCS8_INTR_MASK, ~0);
+-	xe_mmio_write32(gt, VCS0_VCS1_INTR_MASK,	~0);
+-	xe_mmio_write32(gt, VCS2_VCS3_INTR_MASK,	~0);
+-	xe_mmio_write32(gt, VECS0_VECS1_INTR_MASK,	~0);
++		xe_mmio_write32(mmio, XEHPC_BCS7_BCS8_INTR_MASK, ~0);
++	xe_mmio_write32(mmio, VCS0_VCS1_INTR_MASK,	~0);
++	xe_mmio_write32(mmio, VCS2_VCS3_INTR_MASK,	~0);
++	xe_mmio_write32(mmio, VECS0_VECS1_INTR_MASK,	~0);
+ 	if (ccs_mask & (BIT(0)|BIT(1)))
+-		xe_mmio_write32(gt, CCS0_CCS1_INTR_MASK, ~0);
++		xe_mmio_write32(mmio, CCS0_CCS1_INTR_MASK, ~0);
+ 	if (ccs_mask & (BIT(2)|BIT(3)))
+-		xe_mmio_write32(gt,  CCS2_CCS3_INTR_MASK, ~0);
++		xe_mmio_write32(mmio,  CCS2_CCS3_INTR_MASK, ~0);
+ 
+-	xe_mmio_write32(gt, GPM_WGBOXPERF_INTR_ENABLE, 0);
+-	xe_mmio_write32(gt, GPM_WGBOXPERF_INTR_MASK,  ~0);
+-	xe_mmio_write32(gt, GUC_SG_INTR_ENABLE,	 0);
+-	xe_mmio_write32(gt, GUC_SG_INTR_MASK,		~0);
++	xe_mmio_write32(mmio, GPM_WGBOXPERF_INTR_ENABLE, 0);
++	xe_mmio_write32(mmio, GPM_WGBOXPERF_INTR_MASK,  ~0);
++	xe_mmio_write32(mmio, GUC_SG_INTR_ENABLE,	 0);
++	xe_mmio_write32(mmio, GUC_SG_INTR_MASK,		~0);
+ }
+ 
+-static void xelp_irq_reset(struct xe_gt *gt)
++static void xelp_irq_reset(struct xe_tile *tile)
+ {
+-	xelp_intr_disable(gt);
++	xelp_intr_disable(tile_to_xe(tile));
+ 
+-	gt_irq_reset(gt);
++	gt_irq_reset(tile);
+ 
+-	mask_and_disable(gt, GU_MISC_IRQ_OFFSET);
+-	mask_and_disable(gt, PCU_IRQ_OFFSET);
++	mask_and_disable(tile, GU_MISC_IRQ_OFFSET);
++	mask_and_disable(tile, PCU_IRQ_OFFSET);
+ }
+ 
+-static void dg1_irq_reset(struct xe_gt *gt)
++static void dg1_irq_reset(struct xe_tile *tile)
+ {
+-	if (gt->info.id == 0)
+-		dg1_intr_disable(gt_to_xe(gt));
++	if (tile->id == 0)
++		dg1_intr_disable(tile_to_xe(tile));
+ 
+-	gt_irq_reset(gt);
++	gt_irq_reset(tile);
+ 
+-	mask_and_disable(gt, GU_MISC_IRQ_OFFSET);
+-	mask_and_disable(gt, PCU_IRQ_OFFSET);
++	mask_and_disable(tile, GU_MISC_IRQ_OFFSET);
++	mask_and_disable(tile, PCU_IRQ_OFFSET);
+ }
+ 
+ static void xe_irq_reset(struct xe_device *xe)
+ {
+-	struct xe_gt *gt;
++	struct xe_tile *tile;
+ 	u8 id;
+ 
+-	for_each_gt(gt, xe, id) {
++	for_each_tile(tile, xe, id) {
+ 		if (GRAPHICS_VERx100(xe) >= 1210)
+-			dg1_irq_reset(gt);
++			dg1_irq_reset(tile);
+ 		else
+-			xelp_irq_reset(gt);
++			xelp_irq_reset(tile);
+ 	}
+ 
+ 	xe_display_irq_reset(xe);
+ }
+ 
+-void xe_gt_irq_postinstall(struct xe_gt *gt)
++void xe_gt_irq_postinstall(struct xe_tile *tile)
  {
 -	struct xe_device *xe = gt_to_xe(gt);
 +	struct xe_device *xe = tile_to_xe(tile);
  
--	XE_BUG_ON(xe_gt_is_media_type(gt));
-+	mgr->tile = tile;
- 
--	mgr->gt = gt;
--
--	return __xe_ttm_vram_mgr_init(xe, mgr, XE_PL_VRAM0 + gt->info.vram_id,
--				      gt->mem.vram.size, gt->mem.vram.io_size,
-+	return __xe_ttm_vram_mgr_init(xe, mgr, XE_PL_VRAM0 + tile->id,
-+				      tile->mem.vram.size, tile->mem.vram.io_size,
- 				      PAGE_SIZE);
+ 	if (GRAPHICS_VERx100(xe) >= 1210)
+-		dg1_irq_postinstall(xe, gt);
++		dg1_irq_postinstall(xe, tile);
+ 	else
+-		xelp_irq_postinstall(xe, gt);
++		xelp_irq_postinstall(xe, tile);
  }
  
-@@ -373,7 +371,7 @@ int xe_ttm_vram_mgr_alloc_sgt(struct xe_device *xe,
- 			      enum dma_data_direction dir,
- 			      struct sg_table **sgt)
+ static void xe_irq_postinstall(struct xe_device *xe)
  {
--	struct xe_gt *gt = xe_device_get_gt(xe, res->mem_type - XE_PL_VRAM0);
-+	struct xe_tile *tile = &xe->tiles[res->mem_type - XE_PL_VRAM0];
- 	struct xe_res_cursor cursor;
- 	struct scatterlist *sg;
- 	int num_entries = 0;
-@@ -406,7 +404,7 @@ int xe_ttm_vram_mgr_alloc_sgt(struct xe_device *xe,
- 	 */
- 	xe_res_first(res, offset, length, &cursor);
- 	for_each_sgtable_sg((*sgt), sg, i) {
--		phys_addr_t phys = cursor.start + gt->mem.vram.io_start;
-+		phys_addr_t phys = cursor.start + tile->mem.vram.io_start;
- 		size_t size = cursor.size;
- 		dma_addr_t addr;
+-	struct xe_gt *gt;
++	struct xe_tile *tile;
+ 	u8 id;
  
-diff --git a/drivers/gpu/drm/xe/xe_ttm_vram_mgr.h b/drivers/gpu/drm/xe/xe_ttm_vram_mgr.h
-index 35e5367a79fb..6e1d6033d739 100644
---- a/drivers/gpu/drm/xe/xe_ttm_vram_mgr.h
-+++ b/drivers/gpu/drm/xe/xe_ttm_vram_mgr.h
-@@ -10,12 +10,12 @@
+-	for_each_gt(gt, xe, id)
+-		xe_gt_irq_postinstall(gt);
++	for_each_tile(tile, xe, id)
++		xe_gt_irq_postinstall(tile);
  
- enum dma_data_direction;
+ 	xe_display_irq_postinstall(xe, xe_root_mmio_gt(xe));
+ }
+diff --git a/drivers/gpu/drm/xe/xe_irq.h b/drivers/gpu/drm/xe/xe_irq.h
+index 34ecf22b32d3..69113c21e1cd 100644
+--- a/drivers/gpu/drm/xe/xe_irq.h
++++ b/drivers/gpu/drm/xe/xe_irq.h
+@@ -7,10 +7,10 @@
+ #define _XE_IRQ_H_
+ 
  struct xe_device;
 -struct xe_gt;
 +struct xe_tile;
  
- int __xe_ttm_vram_mgr_init(struct xe_device *xe, struct xe_ttm_vram_mgr *mgr,
- 			   u32 mem_type, u64 size, u64 io_size,
- 			   u64 default_page_size);
--int xe_ttm_vram_mgr_init(struct xe_gt *gt, struct xe_ttm_vram_mgr *mgr);
-+int xe_ttm_vram_mgr_init(struct xe_tile *tile, struct xe_ttm_vram_mgr *mgr);
- int xe_ttm_vram_mgr_alloc_sgt(struct xe_device *xe,
- 			      struct ttm_resource *res,
- 			      u64 offset, u64 length,
-diff --git a/drivers/gpu/drm/xe/xe_ttm_vram_mgr_types.h b/drivers/gpu/drm/xe/xe_ttm_vram_mgr_types.h
-index 3d9417ff7434..48bb991c14a5 100644
---- a/drivers/gpu/drm/xe/xe_ttm_vram_mgr_types.h
-+++ b/drivers/gpu/drm/xe/xe_ttm_vram_mgr_types.h
-@@ -9,7 +9,7 @@
- #include <drm/drm_buddy.h>
- #include <drm/ttm/ttm_device.h>
- 
--struct xe_gt;
-+struct xe_tile;
- 
- /**
-  * struct xe_ttm_vram_mgr - XE TTM VRAM manager
-@@ -17,8 +17,8 @@ struct xe_gt;
-  * Manages placement of TTM resource in VRAM.
-  */
- struct xe_ttm_vram_mgr {
--	/** @gt: Graphics tile which the VRAM belongs to */
--	struct xe_gt *gt;
-+	/** @tile: Tile which the VRAM belongs to */
-+	struct xe_tile *tile;
- 	/** @manager: Base TTM resource manager */
- 	struct ttm_resource_manager manager;
- 	/** @mm: DRM buddy allocator which manages the VRAM */
+ int xe_irq_install(struct xe_device *xe);
+-void xe_gt_irq_postinstall(struct xe_gt *gt);
++void xe_gt_irq_postinstall(struct xe_tile *tile);
+ void xe_irq_shutdown(struct xe_device *xe);
+ void xe_irq_suspend(struct xe_device *xe);
+ void xe_irq_resume(struct xe_device *xe);
 -- 
 2.40.1
 
