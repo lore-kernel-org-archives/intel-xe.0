@@ -4,145 +4,53 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id CBAD9C77B7A
-	for <intel-xe@archiver.kernel.org>; Tue, 30 May 2023 09:31:56 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id D2EE4C77B7A
+	for <intel-xe@archiver.kernel.org>; Tue, 30 May 2023 09:42:18 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 94AD110E379;
-	Tue, 30 May 2023 09:31:56 +0000 (UTC)
-Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id F299710E384
- for <intel-xe@lists.freedesktop.org>; Tue, 30 May 2023 09:31:54 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 929EB10E390;
+	Tue, 30 May 2023 09:42:18 +0000 (UTC)
+Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1314010E374;
+ Tue, 30 May 2023 09:42:16 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1685439115; x=1716975115;
- h=from:to:cc:subject:date:message-id:references:
- in-reply-to:content-transfer-encoding:mime-version;
- bh=3ZhSjwqLaG3lBpR9KtmFKyUcnx7Rlffg7M/OVuMwB4s=;
- b=FViWGQj4lrcJuddClqHImPoz/4L/6W1C7bJqRsdoTvxuej1u31pPIYMQ
- rdwKKz7CVKrhtb997LAJfgKxheXUec7Pa0Xgm0VdoeBuV2e5CIZ9+/fmP
- ogXb/AOrzSggccEFlit5iqYHg7kk+5fp2Fl+zsxrtJ4OXptfwQUYWqRod
- PgUVZTC+WXleZapmwTIQVBxwTV/kt42Yzy3zAj/KmqQtqeC/RHJ6D/7SR
- 0SOsoN1yFzqIRKgE1zneY0U1igW7OmLKImuFb1HC9FGgSfn+EKaB8KH0p
- 0X2Gwg6NJ/Vti6+SmxXNw1DyQ6s7GIRB1FzDoclBe5wVYszapTudkdamV A==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10725"; a="344366079"
-X-IronPort-AV: E=Sophos;i="6.00,203,1681196400"; d="scan'208";a="344366079"
-Received: from fmsmga002.fm.intel.com ([10.253.24.26])
- by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 30 May 2023 02:31:54 -0700
+ t=1685439737; x=1716975737;
+ h=message-id:date:mime-version:subject:to:cc:references:
+ from:in-reply-to:content-transfer-encoding;
+ bh=8wXnRGFjeOXbTSHBSIq++HyqnJeBCKAD9raFjnvbleg=;
+ b=FbwU8ojpcCcyiT5VCQgZZLTjq3vQsOZJMrkJ8VK25i3nTgm+4sfn8iEm
+ 7cY6nHmoXn62qzixr588d6NBBlr0vmrIMU0zKwXci3bE7q7TArLxwYQjc
+ PC51Lj4woHG4xN+d9zLPpMhSjxt0v8bb1D6nlfNHn+ao+lwLmiT6Vc2FV
+ YJkv1/uDD17txJDl3ZiWeDg9kTiaZ8Oo9YzwGls4HTAp4XcFGwlLaXVdn
+ U0AEZuLtlXT6eA37MmZ4hsHKcqUzwapBRRzRrMCl20YSmokTpCSLa/NWM
+ 8VmhMHuqQ7AoT+ueJTyHTKcP2nf9d1pAo9OzEqWTmMkKhBfnroYQlcdTg A==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10725"; a="335214591"
+X-IronPort-AV: E=Sophos;i="6.00,203,1681196400"; d="scan'208";a="335214591"
+Received: from orsmga005.jf.intel.com ([10.7.209.41])
+ by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 30 May 2023 02:42:15 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10725"; a="818721347"
-X-IronPort-AV: E=Sophos;i="6.00,203,1681196400"; d="scan'208";a="818721347"
-Received: from orsmsx602.amr.corp.intel.com ([10.22.229.15])
- by fmsmga002.fm.intel.com with ESMTP; 30 May 2023 02:31:53 -0700
-Received: from orsmsx611.amr.corp.intel.com (10.22.229.24) by
- ORSMSX602.amr.corp.intel.com (10.22.229.15) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.23; Tue, 30 May 2023 02:31:53 -0700
-Received: from orsmsx610.amr.corp.intel.com (10.22.229.23) by
- ORSMSX611.amr.corp.intel.com (10.22.229.24) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.23; Tue, 30 May 2023 02:31:52 -0700
-Received: from orsedg603.ED.cps.intel.com (10.7.248.4) by
- orsmsx610.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.23 via Frontend Transport; Tue, 30 May 2023 02:31:52 -0700
-Received: from NAM10-DM6-obe.outbound.protection.outlook.com (104.47.58.102)
- by edgegateway.intel.com (134.134.137.100) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2507.23; Tue, 30 May 2023 02:31:52 -0700
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=McTkm9DMgpVuwt+9KVH6YJdilBU+PmOLqk1u9CyOUMH2EgJgLylUVpR1cJ5Sn4WFFNKrDT4jrQUthocp2VXYTaspyoeQ+257ZjN+/ZFmz4PFIA3xfqKr9tzdtmPPOK763gL34YqU/zyF411MkaRMx8QbCboSMt2+/vYdOQtZVtbVoZG1LxrIF6HyRpp/yH1IeukO8AkVL1CXEhijB1vJsLGab9J83PNRAFGM+EFzm0xnBPTSVCrS6iTQb8wxFwCJUIvAW6+vjRl3HMsJG3TORrL67lO8EWfPiNrlhfBtVdr5eeMdLm+vMsS4iN93x57hBaE3gMnotVGh2MrWsSCfng==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=Xbi+aId6DHMexQgDeTGIyrTkkb3FY+SSBVgr/7SrHTM=;
- b=iYUVwCGXtYcCwEUnMUw6zhLFl9n/bsjMMByNjjZrw3OFKn/GMPPjDGu4fPTTw2jJZwHHrJws3+g7oMNLvbegp9ceQV6bLlDzAw4l33q1iEURhFeoLTeNw9xDLVfcqf2+ADj9FhhyQO4nxUXP8KTe85tfm6dKYNwpFoE16A87wI6g+B8GXsRK1YymEnGBFXPIuIoO6VnE7qtsGNVo7ySeoi+P6gkovSaeB2r2nW+UaiK5N7ck0fg3NNwFgCw35wndffecZOuhdnwbZ9o/3sBe4IDhfBmJMEV+z1GAtaTyrcwyiHqz95G7XsRT3xgtGo9HYuFp5aydiUzdz/fzj9NmYQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
- dkim=pass header.d=intel.com; arc=none
-Received: from SJ1PR11MB6204.namprd11.prod.outlook.com (2603:10b6:a03:459::19)
- by SJ1PR11MB6129.namprd11.prod.outlook.com (2603:10b6:a03:488::12)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6433.23; Tue, 30 May
- 2023 09:31:51 +0000
-Received: from SJ1PR11MB6204.namprd11.prod.outlook.com
- ([fe80::f6ff:ca66:f20b:bd43]) by SJ1PR11MB6204.namprd11.prod.outlook.com
- ([fe80::f6ff:ca66:f20b:bd43%7]) with mapi id 15.20.6433.022; Tue, 30 May 2023
- 09:31:50 +0000
-From: "Upadhyay, Tejas" <tejas.upadhyay@intel.com>
-To: "Iddamsetty, Aravind" <aravind.iddamsetty@intel.com>,
- "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>, "Roper,
- Matthew D" <matthew.d.roper@intel.com>
-Thread-Topic: [PATCH 0/3] drm/xe: Add sysfs entry to report per gt memory size
-Thread-Index: AQHZfnnAmtsopt9dbk62RKm6nfbCWq9xE4SAgAADPwCAAXKegIAALE0g
-Date: Tue, 30 May 2023 09:31:50 +0000
-Message-ID: <SJ1PR11MB6204C25C37FA992CEAA4C708814B9@SJ1PR11MB6204.namprd11.prod.outlook.com>
-References: <20230504112020.300498-1-tejas.upadhyay@intel.com>
- <SJ1PR11MB6204AD929734B440C251F235814A9@SJ1PR11MB6204.namprd11.prod.outlook.com>
- <CH0PR11MB54742C54B5F0E7872CE9DC718C4A9@CH0PR11MB5474.namprd11.prod.outlook.com>
- <BL1PR11MB5480D96FD947D16F4E140DA68C4B9@BL1PR11MB5480.namprd11.prod.outlook.com>
-In-Reply-To: <BL1PR11MB5480D96FD947D16F4E140DA68C4B9@BL1PR11MB5480.namprd11.prod.outlook.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=intel.com;
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: SJ1PR11MB6204:EE_|SJ1PR11MB6129:EE_
-x-ms-office365-filtering-correlation-id: f65634dd-1c56-4210-0f7d-08db60f0b24d
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: yz97w0qDr9/394WnV12yT15caia5mdG7pGTPY551EWVknRnpegoz8xHxuBIcPMfjUp5I8szMdv/hQbBhg3ZSJM9IX7JHi2Q6iWT6O2bY/89nEiyKo8Gkq5Tv/K9v6fkzLF6tuktPlb8I0tH8wvyJz5Cy0DOgfVt0uJ/aqREtK1Oj5bwS44hCdg9/G6DvJjyUNQ5NZa3soPGkMjYqxsknCq5sh94ToQq0fU/mDQn1ouHVanVzA8uHypvi0LyHMFmimHjSJfPGFG2usYXvUZe2fY3HTgGX4ht8AiUNOJaT+//gVwf0jlJ44PUEr2X83e4Ffu45Q6KK7g8C7gFGOOR4JB+6NBozzrd+JLs61Qr5UzEFUg616/1dL8fMv96g6tTbyy8b+3tJRHsTLOsgmbmugrvI8tCE/GQkDdn5Ms7fBTXC1wbQ7tYqAkiDjdPiSAuI95AEu+6+EKqRMf8QrgpnYzqXbbity5Hb5ovZ8YZiCPiU6u0kbM/0S5/SbRQl8dj/QBSIqhjDNLcRyOq6r/5SN+Ycq1rqHaT27T+rKQyWDjrHbhdFOvYGjfLMrrbsu5tD
-x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:SJ1PR11MB6204.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230028)(366004)(396003)(376002)(136003)(346002)(39860400002)(451199021)(6506007)(9686003)(186003)(53546011)(2906002)(54906003)(110136005)(478600001)(83380400001)(7696005)(8676002)(82960400001)(38100700002)(41300700001)(122000001)(8936002)(966005)(55016003)(66446008)(66946007)(5660300002)(66476007)(66556008)(76116006)(64756008)(316002)(86362001)(33656002)(71200400001)(38070700005)(107886003)(52536014)(6636002)(4326008);
- DIR:OUT; SFP:1102; 
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?us-ascii?Q?/Hdba5nK5H3hv0V0KrQrRG+rjNIQUHb47YkEo3Pjc7OjzB0bJXr9YL6x0eD1?=
- =?us-ascii?Q?esJjMAJ22McEmroQiemSQHfZ0Ns3nFcBg5yb7nmJDa51/ANTyYunedjfmN8b?=
- =?us-ascii?Q?0HhwNLDkQUHUnaeMLGDwcCwX4UGjyhFKkdkau+tzULz9Xd7UEUMdFzaWRDIS?=
- =?us-ascii?Q?vl8OFTYaRwAdVCUyyN5Dk7S6jzGpLyzHhO7Xu8FsVYtvgaM6KROqzCwfgz1O?=
- =?us-ascii?Q?fufOxbyqb0Cl9DltJE1vxhNgLTQthZ2yY6/RA3DuQoMqP7Pl8+v/IpdssUEf?=
- =?us-ascii?Q?MEYXJKzQOFZw+HdxYQT5Zd8ys9WIoKoKCCNgpDqK85LS+PXRzsTaW5fdYahP?=
- =?us-ascii?Q?UtUI4ZJMZv8Z19vT8+m/6Lc7/NF0ALNfh/unhp3fiZztppVq8mUaNkdvHA+p?=
- =?us-ascii?Q?t5PELG30Xc3UfSm0alqHpuHaB8EuUN9Z3IWDjjYanXK4ieMwoU4fOkpK1w6f?=
- =?us-ascii?Q?a5YDjuhPAq3VpaKzKN3z2/+/2jMgTQA8BaR3q/JQB1Qhs02qv1QNA5mrui4T?=
- =?us-ascii?Q?eQpRoiyIeoILR1REHrjRPLlAl4c49Cgzx85aeV3ppo4BhE+PogQhZsk7r6Gu?=
- =?us-ascii?Q?cBh/C748xYZ23NPkDQmo1Z2jNuzT1G7wVlXRteRWXhlYdMsD9VToMNNCZ8pd?=
- =?us-ascii?Q?HxK6/qIfRCsf56zNiiDVxahbZi+vRcSE72CBJbj9iUr09Xb8+Dhh3G4fuxZB?=
- =?us-ascii?Q?jEucEm9/5QulnDbMm5RAdaxXOr2zrzy3EieUpSmVvIuR3dB1bEc26nvb5DS4?=
- =?us-ascii?Q?A8ZxS/LVZYc2IaCMNdDaoScg1T6D8BtPSRHpSGuotbJJ4zOWB+3/VGOKw/O+?=
- =?us-ascii?Q?24XmbL12ISYXACypivt4eWfz4GpgLKdBZUr3DyQg/dSfH+esG2DZLASeeOTD?=
- =?us-ascii?Q?QJ7qB3aNY+2gL3u3VJT/iOwdNKU1ZV1nrkrxa5x+/8KMRkqhclHby13XgNgG?=
- =?us-ascii?Q?Mra7i7aES1f0MdP64Flu0Lw+M6GUPUmdvMPRZtDyj6fndchcwW9FAb4VdG1C?=
- =?us-ascii?Q?KAV9MSwh10FxG3fkZkIvgzBP5OX30Um3D7Gc71KIi+2bdtP3tGr0471NWxXj?=
- =?us-ascii?Q?GBYhTRU0pX7Pys34FXCRDah6RsXgHLjimEPAn+ac/qGfHXwHEZkQQpy9O3JP?=
- =?us-ascii?Q?rP/uZEpddpyksvX2RlHNQWrYe8SjbSc7F6JCGp3a7loR623gHw04yCbYdRqs?=
- =?us-ascii?Q?eFr4XmzM3GZtF8mQEc6iCuufK8PD9lgRTCbkXxy6fEs2MxkOP6wWCA9aJgQn?=
- =?us-ascii?Q?o9Qt1Oml/DBLNkUxpxpvolgEAQ5eeoRsRL8TyrNZpsl4Q95JEhxBw4CqJIKB?=
- =?us-ascii?Q?/ztk3JfwmT53FjZkvgYqNCzTh077gjw6eQxUFTAZlV8dSGxF1oVERKGcHHZy?=
- =?us-ascii?Q?Sf8prsbqpHCKaMUTsiIYCmNkzAhl2ncJux6YrBFUq0uZSyOKKAjfU9xUDv+F?=
- =?us-ascii?Q?fa+y9th0A0q+GJCLtHAt14XmcaOS6LeN0f/o6ZVVzsU+UwvZ0UsJfTIgvSHk?=
- =?us-ascii?Q?uuB2CCBxZz5AEP3mGPJxE7nNoYwOwHB9oLXSrOcBiXd+b1t58I4x8akDmwo/?=
- =?us-ascii?Q?Tfca4TmJXeRS5DHEk+qWD/HW2GI0kTgUJKIbIkdYfzp5hnisIG83f/gzXNE7?=
- =?us-ascii?Q?KrHCY7FG1cYITA10T6OH3fu9hYveOnb07oqvrKoLsRFj?=
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+X-IronPort-AV: E=McAfee;i="6600,9927,10725"; a="880695905"
+X-IronPort-AV: E=Sophos;i="6.00,203,1681196400"; d="scan'208";a="880695905"
+Received: from nirmoyda-mobl.ger.corp.intel.com (HELO [10.249.41.2])
+ ([10.249.41.2])
+ by orsmga005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 30 May 2023 02:42:14 -0700
+Message-ID: <69622bea-2925-cef4-c59e-bdd2ddb0e86e@linux.intel.com>
+Date: Tue, 30 May 2023 11:42:11 +0200
 MIME-Version: 1.0
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: SJ1PR11MB6204.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: f65634dd-1c56-4210-0f7d-08db60f0b24d
-X-MS-Exchange-CrossTenant-originalarrivaltime: 30 May 2023 09:31:50.2254 (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: dUFjobbNXHfiffjjaxc38vSgNlHzrWDmzFH53ca/laeTBJCH6C0eBNUXxRRznJN5ihX5rcsOSDftuQwKCTsZ4ZphXFasx4R8K38p4fSgrmQ=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SJ1PR11MB6129
-X-OriginatorOrg: intel.com
-Subject: Re: [Intel-xe] [PATCH 0/3] drm/xe: Add sysfs entry to report per gt
- memory size
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+ Thunderbird/102.11.2
+Content-Language: en-US
+To: =?UTF-8?Q?Thomas_Hellstr=c3=b6m?= <thomas.hellstrom@linux.intel.com>,
+ intel-xe@lists.freedesktop.org
+References: <20230530084235.279863-1-thomas.hellstrom@linux.intel.com>
+From: Nirmoy Das <nirmoy.das@linux.intel.com>
+In-Reply-To: <20230530084235.279863-1-thomas.hellstrom@linux.intel.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+Subject: Re: [Intel-xe] [RFC PATCH] Documentation/gpu: Add a VM_BIND async
+ draft document.
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -154,139 +62,181 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Cc: "Vivi, Rodrigo" <rodrigo.vivi@intel.com>
+Cc: Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+ Danilo Krummrich <dakr@redhat.com>, linux-kernel@vger.kernel.org,
+ dri-devel@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
+Hi Thomas,
 
 
-> -----Original Message-----
-> From: Iddamsetty, Aravind <aravind.iddamsetty@intel.com>
-> Sent: Tuesday, May 30, 2023 12:22 PM
-> To: Upadhyay, Tejas <tejas.upadhyay@intel.com>; intel-
-> xe@lists.freedesktop.org; Roper, Matthew D <matthew.d.roper@intel.com>
-> Cc: Vivi, Rodrigo <rodrigo.vivi@intel.com>; Dixit, Ashutosh
-> <ashutosh.dixit@intel.com>
-> Subject: RE: [PATCH 0/3] drm/xe: Add sysfs entry to report per gt memory
-> size
->=20
->=20
->=20
-> > -----Original Message-----
-> > From: Iddamsetty, Aravind
-> > Sent: Monday, May 29, 2023 2:15 PM
-> > To: Upadhyay, Tejas <tejas.upadhyay@intel.com>; intel-
-> > xe@lists.freedesktop.org
-> > Cc: Vivi, Rodrigo <rodrigo.vivi@intel.com>; Dixit, Ashutosh
-> > <ashutosh.dixit@intel.com>; Roper, Matthew D
-> > <matthew.d.roper@intel.com>
-> > Subject: RE: [PATCH 0/3] drm/xe: Add sysfs entry to report per gt
-> > memory size
-> >
-> >
-> >
-> > > -----Original Message-----
-> > > From: Upadhyay, Tejas <tejas.upadhyay@intel.com>
-> > > Sent: Monday, May 29, 2023 2:10 PM
-> > > To: intel-xe@lists.freedesktop.org
-> > > Cc: Iddamsetty, Aravind <aravind.iddamsetty@intel.com>; Vivi,
-> > > Rodrigo <rodrigo.vivi@intel.com>; Dixit, Ashutosh
-> > > <ashutosh.dixit@intel.com>; Roper, Matthew D
-> > > <matthew.d.roper@intel.com>
-> > > Subject: RE: [PATCH 0/3] drm/xe: Add sysfs entry to report per gt
-> > > memory size
-> > >
-> > > Initiating discussion on sysfs path for this inline below :
-> > >
-> > > > -----Original Message-----
-> > > > From: Upadhyay, Tejas <tejas.upadhyay@intel.com>
-> > > > Sent: Thursday, May 4, 2023 4:50 PM
-> > > > To: intel-xe@lists.freedesktop.org
-> > > > Cc: Upadhyay, Tejas <tejas.upadhyay@intel.com>; Iddamsetty,
-> > > > Aravind <aravind.iddamsetty@intel.com>
-> > > > Subject: [PATCH 0/3] drm/xe: Add sysfs entry to report per gt
-> > > > memory size
-> > > >
-> > > > Add sysfs entry to read per gt physical memory in total including
-> > > > stolen memory.
-> > > >
-> > > > The sysfs entry added can be read using:
-> > > > cat /sys/class/drm/card1/gt/gt0/addr_range
-> > > > cat /sys/class/drm/card1/gt/gt1/addr_range
-> > >
-> > > We already have gt#num directory created under device folder, should
-> > > we create addr_range under that only. I think that would be straight
-> > > forward to start with.  For example,
-> > >
-> > >
-> /devices/pci0000:a7/0000:a7:01.0/0000:a8:00.0/0000:a9:01.0/0000:aa:00.
-> > > 0/
-> > > drm/card1/gt0/addr_range
-> > >
-> > > Initiating discussion there to conclude on path on this sysfs entry
-> > > as well as scheduler interface entries as well as under "engine"
-> > > folder under
-> > card1.
->=20
-> Also, now with Matt's " Separate GT and tile" series addr_range is associ=
-ated
-> to a tile rather than gt.  We might have to introduce "tile" in sysfs
+On 5/30/2023 10:42 AM, Thomas Hellström wrote:
+> Add a motivation for and description of asynchronous VM_BIND operation
+>
+> Signed-off-by: Thomas Hellström <thomas.hellstrom@linux.intel.com>
+> ---
+>   Documentation/gpu/drm-vm-bind-async.rst | 138 ++++++++++++++++++++++++
+>   1 file changed, 138 insertions(+)
+>   create mode 100644 Documentation/gpu/drm-vm-bind-async.rst
+>
+> diff --git a/Documentation/gpu/drm-vm-bind-async.rst b/Documentation/gpu/drm-vm-bind-async.rst
+> new file mode 100644
+> index 000000000000..7f7f8f7ddfea
+> --- /dev/null
+> +++ b/Documentation/gpu/drm-vm-bind-async.rst
+> @@ -0,0 +1,138 @@
+> +====================
+> +Asynchronous VM_BIND
+> +====================
+> +
+> +Nomenclature:
+> +=============
+> +
+> +* VRAM: On-device memory. Sometimes referred to as device local memory.
+> +
+> +* vm: A GPU address space. Typically per process, but can be shared by
+> +  multiple processes.
+> +
+> +* VM_BIND: An operation or a list of operations to modify a vm using
+> +  an IOCTL. The operations include mapping and unmapping system- or
+> +  VRAM memory.
+> +
+> +* syncobj: A container that abstracts synchronization objects. The
+> +  synchronization objects can be either generic, like dma-fences or
+> +  driver specific. A syncobj typically indicates the type of the
+> +  underlying synchronization object.
+> +
+> +* in-syncobj: Argument to a VM_BIND IOCTL, the VM_BIND operation waits
+> +  for these before starting.
+> +
+> +* out-syncbj: Argument to a VM_BIND_IOCTL, the VM_BIND operation
+> +  signals these when the bind operation is complete.
+> +
+> +* memory fence: A synchronization object, different from a dma-fence
+> +  that uses the value of a specified memory location to determine
+> +  signaled status. A memory fence can be awaited and signaled by both
+> +  the GPU and CPU. Memory fences are sometimes referred to as
+> +  user-fences.
+> +
+> +* long-running workload: A workload that may take more than the
+> +  current stipulated dma-fence maximum signal delay to complete and
+> +  which therefore needs to set the VM or the GPU execution context in
+> +  a certain mode that disallows completion dma-fences.
+> +
+> +* UMD: User-mode driver.
+> +
+> +* KMD: Kernel-mode driver.
+> +
+> +
+> +Synchronous / Asynchronous VM_BIND operation
+> +============================================
+> +
+> +Synchronous VM_BIND
+> +___________________
+> +With Synchronous VM_BIND, the VM_BIND operations all complete before the
+> +ioctl returns. A synchronous VM_BIND takes neither in-fences nor
+> +out-fences. Synchronous VM_BIND may block and wait for GPU operations;
+> +for example swapin or clearing, or even previous binds.
+> +
+> +Asynchronous VM_BIND
+> +____________________
+> +Asynchronous VM_BIND accepts both in-syncobjs and out-syncobjs. While the
+> +IOCTL may return immediately, the VM_BIND operations wait for the in-syncobjs
+> +before modifying the GPU page-tables, and signal the out-syncobjs when
+> +the modification is done in the sense that the next execbuf that
+> +awaits for the out-syncobjs will see the change. Errors are reported
+> +synchronously assuming that the asynchronous part of the job never errors.
+> +In low-memory situations the implementation may block, performing the
+> +VM_BIND synchronously, because there might not be enough memory
+> +immediately available for preparing the asynchronous operation.
+> +
+> +If the VM_BIND IOCTL takes a list or an array of operations as an argument,
+> +the in-syncobjs needs to signal before the first operation starts to
+> +execute, and the out-syncobjs signal after the last operation
+> +completes. Operations in the operation list can be assumed, where it
+> +matters, to complete in order.
+> +
+> +To aid in supporting user-space queues, the VM_BIND may take a bind context
+> +AKA bind engine identifier argument. All VM_BIND operations using the same
+> +bind engine can then be assumed, where it matters, to complete in
+> +order. No such assumptions can be made between VM_BIND operations
+> +using separate bind contexts.
+> +
+> +The purpose of an Asynchronous VM_BIND operation is for user-mode
+> +drivers to be able to pipeline interleaved vm modifications and
+> +execbufs. For long-running workloads, such pipelining of a bind
+> +operation is not allowed and any in-fences need to be awaited
+> +synchronously.
+> +
+> +Also for VM_BINDS for long-running VMs the user-mode driver should typically
+> +select memory fences as out-fences since that gives greater flexibility for
+> +the kernel mode driver to inject other  operations into the bind /
+> +unbind operations. Like for example inserting breakpoints into batch
+> +buffers. The workload execution can then easily be pipelined behind
+> +the bind completion using the memory out-fence as the signal condition
+> +for a gpu semaphore embedded by UMD in the workload.
+> +
+> +Multi-operation VM_BIND IOCTL error handling and interrupts
+> +========================================
+> +
+> +The VM_BIND operations of the ioctl may error due to lack of resources
+> +to complete and also due to interrupted waits. In both situations UMD
+> +should preferrably
+s/preferrably/preferably
+>   restart the IOCTL after taking suitable action. If
+> +UMD has overcommited
 
-Thanks Aravind, Yes now PCI device --> Tile --> GTs is tree now with Matt's=
- change to show real hardware behaviour. I will change accordingly as our m=
-ain interest is Tile.
+s/overcommited/overcommitted
 
-Thanks,
-Tejas
->=20
-> Thanks,
-> Aravind.
->=20
-> >
-> > Scheduler/engine entries are not related to this feature let's discuss
-> > them separately.
-> >
-> > Thanks,
-> > Aravind.
-> >
-> > >
-> > > Please provide your inputs.
-> > >
-> > > Thanks,
-> > > Tejas
-> > > >
-> > > > As it involves drm_class, it required movement in xe_device init
-> > > > flow, patch for same is part of this series.
-> > > >
-> > > > Actual physical memory per GT was dependent on infra patch from
-> > > > Ruhl, Michael J, so I have added it as part of this series to pass
-> > > > through pre-
-> > > merge.
-> > > > Patchwork: https://patchwork.freedesktop.org/series/117126/#rev3
-> > > >
-> > > > Cc: Aravind Iddamsetty <aravind.iddamsetty@intel.com>
-> > > > Signed-off-by: Tejas Upadhyay <tejas.upadhyay@intel.com>
-> > > >
-> > > > Tejas Upadhyay (3):
-> > > >   drm/xe: Rework multi tile device memory initialization
-> > > >   drm/xe: Register drm device prior to gt init
-> > > >   drm/xe: Add sysfs entry to report per gt memory size
-> > > >
-> > > >  drivers/gpu/drm/xe/regs/xe_gt_regs.h   |   2 +-
-> > > >  drivers/gpu/drm/xe/xe_bo.c             |   8 +-
-> > > >  drivers/gpu/drm/xe/xe_bo.h             |   2 +-
-> > > >  drivers/gpu/drm/xe/xe_device.c         |   8 +-
-> > > >  drivers/gpu/drm/xe/xe_device_types.h   |  20 +-
-> > > >  drivers/gpu/drm/xe/xe_gt_sysfs.c       |  74 ++++++-
-> > > >  drivers/gpu/drm/xe/xe_gt_sysfs.h       |   1 -
-> > > >  drivers/gpu/drm/xe/xe_gt_types.h       |  21 +-
-> > > >  drivers/gpu/drm/xe/xe_migrate.c        |   6 +-
-> > > >  drivers/gpu/drm/xe/xe_mmio.c           | 279 ++++++++++++++-------=
-----
-> > > >  drivers/gpu/drm/xe/xe_mmio.h           |   4 +-
-> > > >  drivers/gpu/drm/xe/xe_ttm_stolen_mgr.c |  30 +--
-> > > >  12 files changed, 291 insertions(+), 164 deletions(-)
-> > > >
-> > > > --
-> > > > 2.25.1
 
+Thanks for documenting this complex topic.
+
+Acked-by: Nirmoy Das <nirmoy.das@intel.com>
+
+
+Regards,
+
+Nirmoy
+
+>   a memory resource, an -ENOSPC error will be
+> +returned, and UMD may then unbind resources that are not used at the
+> +moment and restart the IOCTL. On -EINTR, UMD should simply restart the
+> +IOCTL and on -ENOMEM user-space may either attempt to free known
+> +system memory resources or abort the operation. If aborting as a
+> +result of a failed operation in a list of operations, some operations
+> +may still have completed, and to get back to a known state, user-space
+> +should therefore attempt to unbind all virtual memory regions touched
+> +by the failing IOCTL.
+> +Unbind operations are guaranteed not to cause any errors due to
+> +resource constraints.
+> +In between a failed VM_BIND ioctl and a successful restart there may
+> +be implementation defined restrictions on the use of the VM. For a
+> +description why, please see KMD implementation details under [error
+> +state saving]_.
+> +
+> +
+> +KMD implementation details
+> +==========================
+> +
+> +.. [error state saving] Open: When the VM_BIND ioctl returns an error, some
+> +			or even parts of an operation may have been
+> +			completed. If the ioctl is restarted, in order
+> +			to know where to restart, the KMD can
+> +			either put the VM in an error state and save
+> +			one instance of the needed restart state
+> +			internally. In this case, KMD needs to block
+> +			further modifications of the VM state that may
+> +			cause additional failures requiring a restart
+> +			state save, until the error has been fully resolved.
+> +			If the uAPI instead defines a pointer to a
+> +			UMD allocated cookie in the IOCTL struct, it
+> +			could also choose to store the restart state
+> +			in that cookie.
+> +
+> +			The restart state may, for example, be the
+> +			number of successfully completed operations.
+> +
+> +			Easiest for UMD would of course be if KMD did
+> +			a full unwind on error so that no error state
+> +			needs to be saved.
