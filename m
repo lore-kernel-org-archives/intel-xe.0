@@ -4,48 +4,48 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id EEC33C7EE39
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0185BC7EE43
 	for <intel-xe@archiver.kernel.org>; Tue, 30 May 2023 21:16:20 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C5DD910E43A;
+	by gabe.freedesktop.org (Postfix) with ESMTP id D1B2210E43B;
 	Tue, 30 May 2023 21:16:20 +0000 (UTC)
 Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
- by gabe.freedesktop.org (Postfix) with ESMTPS id DE5D110E43A
- for <intel-xe@lists.freedesktop.org>; Tue, 30 May 2023 21:16:11 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D060810E438
+ for <intel-xe@lists.freedesktop.org>; Tue, 30 May 2023 21:16:08 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1685481371; x=1717017371;
+ t=1685481368; x=1717017368;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=qWzefRJY0IEiTngr/fEhiIPTni+hn5pNLXiSDfQA1cc=;
- b=CyELCYXy1J37cgtZDTB6Wt0K4gsWlaAcu1hMb07WroFx6uJPRHAICp3g
- e4Q6qTcxoL/VdY4UnIekRCKVeWXXbQv63esVkTTVoUzXdUCHAJ6EizlY1
- sAIOMNfPCWkDFpBAKOL1w8SWNmpnSO7ncGDc2VIXbiD9P2i+EiCye6Gu8
- NsqZBkr8mRB9FEfJKEcMO3My6kkPJdjuKKl6IdX8a+oJAAs0VXKz0aWVE
- hYKolzav/hx9eL78hA59GgkhCdJwpoiTuP/4s10YJHc84pvizQcePEcdi
- /LrY7hIpZnf4BrGH0D+0ZfK5lApqTKaZvg/sAdvCivYe3Uj2o4uhmB8Iz g==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10726"; a="383311964"
-X-IronPort-AV: E=Sophos;i="6.00,205,1681196400"; d="scan'208";a="383311964"
+ bh=p7h5GlTE/M0Rr374xZ0xxh0/XSNQdhQrkRV1JeNe3Uw=;
+ b=aNlerBRRbqjhOd1KZEGrqqhTEwLgRMQ3fmk4JWb/oBufAWfzDlaEia/f
+ /FVuk9T028raCx7GFeoLB6KX+p47r4GM36NaEvCzke+sEJPbyXt8VHCrh
+ mdhOaYN3eApvGPbWlVibkacXfGV39oRn7VkPy9dQ2+nrcrXNfkQf1MLXm
+ LKNRiUXgpX2qysRa1U9fs6fAhieKpcGXeiYrGRQLHjrtqWC1Eu5PNX+7C
+ 59dDeuqDUT8hPG3D0adyxddhvK6JCxKPDgNssJaPfpbqsejE/khquEwcu
+ 79EI6EbtFhKopLTheyv4ay/jikv2u575IVD0+IfOq0c4zrQ2KbJzadj4s Q==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10726"; a="383311945"
+X-IronPort-AV: E=Sophos;i="6.00,205,1681196400"; d="scan'208";a="383311945"
 Received: from orsmga006.jf.intel.com ([10.7.209.51])
  by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 30 May 2023 14:16:11 -0700
+ 30 May 2023 14:16:08 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10726"; a="684139478"
-X-IronPort-AV: E=Sophos;i="6.00,205,1681196400"; d="scan'208";a="684139478"
+X-IronPort-AV: E=McAfee;i="6600,9927,10726"; a="684139421"
+X-IronPort-AV: E=Sophos;i="6.00,205,1681196400"; d="scan'208";a="684139421"
 Received: from mdroper-desk1.fm.intel.com ([10.1.27.134])
  by orsmga006-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 30 May 2023 14:16:11 -0700
+ 30 May 2023 14:16:08 -0700
 From: Matt Roper <matthew.d.roper@intel.com>
 To: intel-xe@lists.freedesktop.org
-Date: Tue, 30 May 2023 14:15:43 -0700
-Message-Id: <20230530211549.2632538-26-matthew.d.roper@intel.com>
+Date: Tue, 30 May 2023 14:15:31 -0700
+Message-Id: <20230530211549.2632538-14-matthew.d.roper@intel.com>
 X-Mailer: git-send-email 2.40.1
 In-Reply-To: <20230530211549.2632538-1-matthew.d.roper@intel.com>
 References: <20230530211549.2632538-1-matthew.d.roper@intel.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-xe] [PATCH v3 25/31] drm/xe: Replace xe_gt_irq_postinstall
- with xe_irq_enable_hwe
+Subject: [Intel-xe] [PATCH v3 13/31] fixup! drm/xe/display: Implement
+ display support
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -61,209 +61,118 @@ Cc: Lucas De Marchi <lucas.demarchi@intel.com>, matthew.d.roper@intel.com
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-The majority of xe_gt_irq_postinstall() is really focused on the
-hardware engine interrupts; other GT-related interrupts such as the GuC
-are enabled/disabled independently.  Renaming the function and making it
-truly GT-specific will make it more clear what the intended focus is.
-
-Disabling/masking of other interrupts (such as GuC interrupts) is
-unnecessary since that has already happened during the irq_reset stage,
-and doing so will become harmful once the media GT is re-enabled since
-calls to xe_gt_irq_postinstall during media GT initialization would
-incorrectly disable the primary GT's GuC interrupts.
-
-Also, since this function is called from gt_fw_domain_init(), it's not
-necessary to also call it earlier during xe_irq_postinstall; just
-xe_irq_resume to handle runtime resume should be sufficient.
-
-v2:
- - Drop unnecessary !gt check.  (Lucas)
- - Reword some comments about enable/unmask for clarity.  (Lucas)
-
-Signed-off-by: Matt Roper <matthew.d.roper@intel.com>
 Reviewed-by: Lucas De Marchi <lucas.demarchi@intel.com>
 ---
- drivers/gpu/drm/xe/xe_gt.c        |  4 +-
- drivers/gpu/drm/xe/xe_hw_engine.c |  1 +
- drivers/gpu/drm/xe/xe_irq.c       | 87 +++++++++++++++----------------
- drivers/gpu/drm/xe/xe_irq.h       |  3 +-
- 4 files changed, 48 insertions(+), 47 deletions(-)
+ drivers/gpu/drm/i915/display/intel_dsb.c      | 5 +++--
+ drivers/gpu/drm/i915/display/intel_fbc.c      | 3 ++-
+ drivers/gpu/drm/i915/display/intel_fbdev.c    | 7 ++++---
+ drivers/gpu/drm/xe/display/xe_fb_pin.c        | 7 ++++---
+ drivers/gpu/drm/xe/display/xe_plane_initial.c | 2 +-
+ 5 files changed, 14 insertions(+), 10 deletions(-)
 
-diff --git a/drivers/gpu/drm/xe/xe_gt.c b/drivers/gpu/drm/xe/xe_gt.c
-index 071d4fbd3efc..335148f1cd39 100644
---- a/drivers/gpu/drm/xe/xe_gt.c
-+++ b/drivers/gpu/drm/xe/xe_gt.c
-@@ -309,8 +309,8 @@ static int gt_fw_domain_init(struct xe_gt *gt)
- 	/* XXX: Fake that we pull the engine mask from hwconfig blob */
- 	gt->info.engine_mask = gt->info.__engine_mask;
+diff --git a/drivers/gpu/drm/i915/display/intel_dsb.c b/drivers/gpu/drm/i915/display/intel_dsb.c
+index 7c93580282b4..3830309aacf4 100644
+--- a/drivers/gpu/drm/i915/display/intel_dsb.c
++++ b/drivers/gpu/drm/i915/display/intel_dsb.c
+@@ -379,9 +379,10 @@ struct intel_dsb *intel_dsb_prepare(struct intel_crtc *crtc,
+ #else
+ 	/* ~1 qword per instruction, full cachelines */
+ 	size = ALIGN(max_cmds * 8, 64);
+-	obj = xe_bo_create_pin_map(i915, to_gt(i915), NULL, PAGE_ALIGN(size),
++	obj = xe_bo_create_pin_map(i915, xe_device_get_root_tile(i915),
++				   NULL, PAGE_ALIGN(size),
+ 				   ttm_bo_type_kernel,
+-				   XE_BO_CREATE_VRAM_IF_DGFX(to_gt(i915)) |
++				   XE_BO_CREATE_VRAM_IF_DGFX(xe_device_get_root_tile(i915)) |
+ 				   XE_BO_CREATE_GGTT_BIT);
+ 	if (IS_ERR(obj)) {
+ 		kfree(dsb);
+diff --git a/drivers/gpu/drm/i915/display/intel_fbc.c b/drivers/gpu/drm/i915/display/intel_fbc.c
+index 9dc7083fe974..0e8e899f596b 100644
+--- a/drivers/gpu/drm/i915/display/intel_fbc.c
++++ b/drivers/gpu/drm/i915/display/intel_fbc.c
+@@ -71,7 +71,8 @@ static int i915_gem_stolen_insert_node_in_range(struct xe_device *xe, struct xe_
+ 	int err;
+ 	u32 flags = XE_BO_CREATE_PINNED_BIT | XE_BO_CREATE_STOLEN_BIT;
  
--	/* Enables per hw engine IRQs */
--	xe_gt_irq_postinstall(gt_to_tile(gt));
-+	/* Enable per hw engine IRQs */
-+	xe_irq_enable_hwe(gt);
- 
- 	/* Rerun MCR init as we now have hw engine list */
- 	xe_gt_mcr_init(gt);
-diff --git a/drivers/gpu/drm/xe/xe_hw_engine.c b/drivers/gpu/drm/xe/xe_hw_engine.c
-index b12f65a2bab3..b42a0cb50159 100644
---- a/drivers/gpu/drm/xe/xe_hw_engine.c
-+++ b/drivers/gpu/drm/xe/xe_hw_engine.c
-@@ -17,6 +17,7 @@
- #include "xe_gt.h"
- #include "xe_gt_topology.h"
- #include "xe_hw_fence.h"
-+#include "xe_irq.h"
- #include "xe_lrc.h"
- #include "xe_macros.h"
- #include "xe_mmio.h"
-diff --git a/drivers/gpu/drm/xe/xe_irq.c b/drivers/gpu/drm/xe/xe_irq.c
-index 85bb9bd6b6be..b4ed1e4a3388 100644
---- a/drivers/gpu/drm/xe/xe_irq.c
-+++ b/drivers/gpu/drm/xe/xe_irq.c
-@@ -122,13 +122,12 @@ static inline void xelp_intr_enable(struct xe_device *xe, bool stall)
- 		xe_mmio_read32(mmio, GFX_MSTR_IRQ);
- }
- 
--void xe_gt_irq_postinstall(struct xe_tile *tile)
-+/* Enable/unmask the HWE interrupts for a specific GT's engines. */
-+void xe_irq_enable_hwe(struct xe_gt *gt)
- {
--	struct xe_device *xe = tile_to_xe(tile);
--	struct xe_gt *mmio = tile->primary_gt;
-+	struct xe_device *xe = gt_to_xe(gt);
-+	u32 ccs_mask, bcs_mask;
- 	u32 irqs, dmask, smask;
--	u32 ccs_mask = xe_hw_engine_mask_per_class(tile->primary_gt, XE_ENGINE_CLASS_COMPUTE);
--	u32 bcs_mask = xe_hw_engine_mask_per_class(tile->primary_gt, XE_ENGINE_CLASS_COPY);
- 
- 	if (xe_device_guc_submission_enabled(xe)) {
- 		irqs = GT_RENDER_USER_INTERRUPT |
-@@ -140,45 +139,44 @@ void xe_gt_irq_postinstall(struct xe_tile *tile)
- 		       GT_WAIT_SEMAPHORE_INTERRUPT;
+-	*bo = xe_bo_create_locked_range(xe, to_gt(xe), NULL, size, start, end,
++	*bo = xe_bo_create_locked_range(xe, xe_device_get_root_tile(xe),
++					NULL, size, start, end,
+ 					ttm_bo_type_kernel, flags);
+ 	if (IS_ERR(*bo)) {
+ 		err = PTR_ERR(*bo);
+diff --git a/drivers/gpu/drm/i915/display/intel_fbdev.c b/drivers/gpu/drm/i915/display/intel_fbdev.c
+index 95f4cbc2e675..ebb07d0ccff6 100644
+--- a/drivers/gpu/drm/i915/display/intel_fbdev.c
++++ b/drivers/gpu/drm/i915/display/intel_fbdev.c
+@@ -210,7 +210,8 @@ static int intelfb_alloc(struct drm_fb_helper *helper,
  	}
- 
-+	ccs_mask = xe_hw_engine_mask_per_class(gt, XE_ENGINE_CLASS_COMPUTE);
-+	bcs_mask = xe_hw_engine_mask_per_class(gt, XE_ENGINE_CLASS_COPY);
-+
- 	dmask = irqs << 16 | irqs;
- 	smask = irqs << 16;
- 
--	/* Enable RCS, BCS, VCS and VECS class interrupts. */
--	xe_mmio_write32(mmio, RENDER_COPY_INTR_ENABLE, dmask);
--	xe_mmio_write32(mmio, VCS_VECS_INTR_ENABLE, dmask);
--	if (ccs_mask)
--		xe_mmio_write32(mmio, CCS_RSVD_INTR_ENABLE, smask);
-+	if (!xe_gt_is_media_type(gt)) {
-+		/* Enable interrupts for each engine class */
-+		xe_mmio_write32(gt, RENDER_COPY_INTR_ENABLE, dmask);
-+		if (ccs_mask)
-+			xe_mmio_write32(gt, CCS_RSVD_INTR_ENABLE, smask);
- 
--	/* Unmask irqs on RCS, BCS, VCS and VECS engines. */
--	xe_mmio_write32(mmio, RCS0_RSVD_INTR_MASK, ~smask);
--	xe_mmio_write32(mmio, BCS_RSVD_INTR_MASK, ~smask);
--	if (bcs_mask & (BIT(1)|BIT(2)))
--		xe_mmio_write32(mmio, XEHPC_BCS1_BCS2_INTR_MASK, ~dmask);
--	if (bcs_mask & (BIT(3)|BIT(4)))
--		xe_mmio_write32(mmio, XEHPC_BCS3_BCS4_INTR_MASK, ~dmask);
--	if (bcs_mask & (BIT(5)|BIT(6)))
--		xe_mmio_write32(mmio, XEHPC_BCS5_BCS6_INTR_MASK, ~dmask);
--	if (bcs_mask & (BIT(7)|BIT(8)))
--		xe_mmio_write32(mmio, XEHPC_BCS7_BCS8_INTR_MASK, ~dmask);
--	xe_mmio_write32(mmio, VCS0_VCS1_INTR_MASK, ~dmask);
--	xe_mmio_write32(mmio, VCS2_VCS3_INTR_MASK, ~dmask);
--	xe_mmio_write32(mmio, VECS0_VECS1_INTR_MASK, ~dmask);
--	if (ccs_mask & (BIT(0)|BIT(1)))
--		xe_mmio_write32(mmio, CCS0_CCS1_INTR_MASK, ~dmask);
--	if (ccs_mask & (BIT(2)|BIT(3)))
--		xe_mmio_write32(mmio,  CCS2_CCS3_INTR_MASK, ~dmask);
-+		/* Unmask interrupts for each engine instance */
-+		xe_mmio_write32(gt, RCS0_RSVD_INTR_MASK, ~smask);
-+		xe_mmio_write32(gt, BCS_RSVD_INTR_MASK, ~smask);
-+		if (bcs_mask & (BIT(1)|BIT(2)))
-+			xe_mmio_write32(gt, XEHPC_BCS1_BCS2_INTR_MASK, ~dmask);
-+		if (bcs_mask & (BIT(3)|BIT(4)))
-+			xe_mmio_write32(gt, XEHPC_BCS3_BCS4_INTR_MASK, ~dmask);
-+		if (bcs_mask & (BIT(5)|BIT(6)))
-+			xe_mmio_write32(gt, XEHPC_BCS5_BCS6_INTR_MASK, ~dmask);
-+		if (bcs_mask & (BIT(7)|BIT(8)))
-+			xe_mmio_write32(gt, XEHPC_BCS7_BCS8_INTR_MASK, ~dmask);
-+		if (ccs_mask & (BIT(0)|BIT(1)))
-+			xe_mmio_write32(gt, CCS0_CCS1_INTR_MASK, ~dmask);
-+		if (ccs_mask & (BIT(2)|BIT(3)))
-+			xe_mmio_write32(gt,  CCS2_CCS3_INTR_MASK, ~dmask);
-+	}
- 
--	/*
--	 * RPS interrupts will get enabled/disabled on demand when RPS itself
--	 * is enabled/disabled.
--	 */
--	/* TODO: gt->pm_ier, gt->pm_imr */
--	xe_mmio_write32(mmio, GPM_WGBOXPERF_INTR_ENABLE, 0);
--	xe_mmio_write32(mmio, GPM_WGBOXPERF_INTR_MASK,  ~0);
-+	if (xe_gt_is_media_type(gt) || MEDIA_VER(xe) < 13) {
-+		/* Enable interrupts for each engine class */
-+		xe_mmio_write32(gt, VCS_VECS_INTR_ENABLE, dmask);
- 
--	/* Same thing for GuC interrupts */
--	xe_mmio_write32(mmio, GUC_SG_INTR_ENABLE, 0);
--	xe_mmio_write32(mmio, GUC_SG_INTR_MASK,  ~0);
-+		/* Unmask interrupts for each engine instance */
-+		xe_mmio_write32(gt, VCS0_VCS1_INTR_MASK, ~dmask);
-+		xe_mmio_write32(gt, VCS2_VCS3_INTR_MASK, ~dmask);
-+		xe_mmio_write32(gt, VECS0_VECS1_INTR_MASK, ~dmask);
-+	}
- }
- 
- static u32
-@@ -497,12 +495,6 @@ static void xe_irq_reset(struct xe_device *xe)
- 
- static void xe_irq_postinstall(struct xe_device *xe)
- {
--	struct xe_tile *tile;
--	u8 id;
--
--	for_each_tile(tile, xe, id)
--		xe_gt_irq_postinstall(tile);
--
- 	xe_display_irq_postinstall(xe, xe_root_mmio_gt(xe));
- 
- 	/*
-@@ -591,9 +583,16 @@ void xe_irq_suspend(struct xe_device *xe)
- 
- void xe_irq_resume(struct xe_device *xe)
- {
-+	struct xe_gt *gt;
-+	int id;
-+
- 	spin_lock_irq(&xe->irq.lock);
- 	xe->irq.enabled = true;
- 	xe_irq_reset(xe);
- 	xe_irq_postinstall(xe);
-+
-+	for_each_gt(gt, xe, id)
-+		xe_irq_enable_hwe(gt);
-+
- 	spin_unlock_irq(&xe->irq.lock);
- }
-diff --git a/drivers/gpu/drm/xe/xe_irq.h b/drivers/gpu/drm/xe/xe_irq.h
-index 69113c21e1cd..bc42bc90d967 100644
---- a/drivers/gpu/drm/xe/xe_irq.h
-+++ b/drivers/gpu/drm/xe/xe_irq.h
-@@ -8,11 +8,12 @@
- 
- struct xe_device;
- struct xe_tile;
-+struct xe_gt;
- 
- int xe_irq_install(struct xe_device *xe);
--void xe_gt_irq_postinstall(struct xe_tile *tile);
- void xe_irq_shutdown(struct xe_device *xe);
- void xe_irq_suspend(struct xe_device *xe);
- void xe_irq_resume(struct xe_device *xe);
-+void xe_irq_enable_hwe(struct xe_gt *gt);
- 
+ #else
+ 	if (!IS_DGFX(dev_priv)) {
+-		obj = xe_bo_create_pin_map(dev_priv, to_gt(dev_priv), NULL, size,
++		obj = xe_bo_create_pin_map(dev_priv, xe_device_get_root_tile(dev_priv),
++					   NULL, size,
+ 					   ttm_bo_type_kernel, XE_BO_SCANOUT_BIT |
+ 					   XE_BO_CREATE_STOLEN_BIT |
+ 					   XE_BO_CREATE_PINNED_BIT);
+@@ -220,9 +221,9 @@ static int intelfb_alloc(struct drm_fb_helper *helper,
+ 			drm_info(&dev_priv->drm, "Allocated fbdev into stolen failed: %li\n", PTR_ERR(obj));
+ 	}
+ 	if (IS_ERR(obj)) {
+-		obj = xe_bo_create_pin_map(dev_priv, to_gt(dev_priv), NULL, size,
++		obj = xe_bo_create_pin_map(dev_priv, xe_device_get_root_tile(dev_priv), NULL, size,
+ 					  ttm_bo_type_kernel, XE_BO_SCANOUT_BIT |
+-					  XE_BO_CREATE_VRAM_IF_DGFX(to_gt(dev_priv)) |
++					  XE_BO_CREATE_VRAM_IF_DGFX(xe_device_get_root_tile(dev_priv)) |
+ 					  XE_BO_CREATE_PINNED_BIT);
+ 	}
  #endif
+diff --git a/drivers/gpu/drm/xe/display/xe_fb_pin.c b/drivers/gpu/drm/xe/display/xe_fb_pin.c
+index 3e863461fe79..83c9245dd362 100644
+--- a/drivers/gpu/drm/xe/display/xe_fb_pin.c
++++ b/drivers/gpu/drm/xe/display/xe_fb_pin.c
+@@ -45,6 +45,7 @@ static int __xe_pin_fb_vma_dpt(struct intel_framebuffer *fb,
+ 			       struct i915_vma *vma)
+ {
+ 	struct xe_device *xe = to_xe_device(fb->base.dev);
++	struct xe_tile *tile0 = xe_device_get_root_tile(xe);
+ 	struct xe_bo *bo = intel_fb_obj(&fb->base), *dpt;
+ 	u32 dpt_size, size = bo->ttm.base.size;
+ 
+@@ -55,17 +56,17 @@ static int __xe_pin_fb_vma_dpt(struct intel_framebuffer *fb,
+ 		dpt_size = ALIGN(intel_rotation_info_size(&view->rotated) * 8,
+ 				 XE_PAGE_SIZE);
+ 
+-	dpt = xe_bo_create_pin_map(xe, to_gt(xe), NULL, dpt_size,
++	dpt = xe_bo_create_pin_map(xe, tile0, NULL, dpt_size,
+ 				  ttm_bo_type_kernel,
+ 				  XE_BO_CREATE_VRAM0_BIT |
+ 				  XE_BO_CREATE_GGTT_BIT);
+ 	if (IS_ERR(dpt))
+-		dpt = xe_bo_create_pin_map(xe, to_gt(xe), NULL, dpt_size,
++		dpt = xe_bo_create_pin_map(xe, tile0, NULL, dpt_size,
+ 					   ttm_bo_type_kernel,
+ 					   XE_BO_CREATE_STOLEN_BIT |
+ 					   XE_BO_CREATE_GGTT_BIT);
+ 	if (IS_ERR(dpt))
+-		dpt = xe_bo_create_pin_map(xe, to_gt(xe), NULL, dpt_size,
++		dpt = xe_bo_create_pin_map(xe, tile0, NULL, dpt_size,
+ 					   ttm_bo_type_kernel,
+ 					   XE_BO_CREATE_SYSTEM_BIT |
+ 					   XE_BO_CREATE_GGTT_BIT);
+diff --git a/drivers/gpu/drm/xe/display/xe_plane_initial.c b/drivers/gpu/drm/xe/display/xe_plane_initial.c
+index 39dd97acae08..99c35a4ef673 100644
+--- a/drivers/gpu/drm/xe/display/xe_plane_initial.c
++++ b/drivers/gpu/drm/xe/display/xe_plane_initial.c
+@@ -115,7 +115,7 @@ initial_plane_bo(struct xe_device *xe,
+ 			page_size);
+ 	size -= base;
+ 
+-	bo = xe_bo_create_pin_map_at(xe, &tile0->primary_gt, NULL, size, phys_base,
++	bo = xe_bo_create_pin_map_at(xe, tile0, NULL, size, phys_base,
+ 				     ttm_bo_type_kernel, flags);
+ 	if (IS_ERR(bo)) {
+ 		drm_dbg(&xe->drm,
 -- 
 2.40.1
 
