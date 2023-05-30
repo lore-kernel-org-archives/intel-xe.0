@@ -4,30 +4,145 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7B39DC77B73
-	for <intel-xe@archiver.kernel.org>; Tue, 30 May 2023 10:29:25 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4A863C77B73
+	for <intel-xe@archiver.kernel.org>; Tue, 30 May 2023 10:30:58 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5296E10E141;
-	Tue, 30 May 2023 10:29:25 +0000 (UTC)
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id 8A2D110E141;
- Tue, 30 May 2023 10:29:23 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 86A0AA00E6;
- Tue, 30 May 2023 10:29:23 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1F5BF10E146;
+	Tue, 30 May 2023 10:30:58 +0000 (UTC)
+Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8E91910E146
+ for <intel-xe@lists.freedesktop.org>; Tue, 30 May 2023 10:30:56 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1685442656; x=1716978656;
+ h=from:to:cc:subject:date:message-id:references:
+ in-reply-to:content-transfer-encoding:mime-version;
+ bh=gd2545hHemXMB2S9bEGROvmjgP1JAqaCE+UvHHHW1ag=;
+ b=Eh+d5koS9AO6/EZNPZAE1dpuNAZW6NHh9kSYkZ+P41f3qv1OU1F2fT7z
+ LPAit+jR012fNG6g+uhGVcb0/cjG2N/xpoBj02p40dKtkX8/bHLIeX+EX
+ J3tI/7LKoOwb3WrtFbhDSS4Gg6CK70cl5+VU6k0Cs8sblsJi1sRpHaSh8
+ 7uiupYjPPBbnodjcxGHSrfRGFV+MsZjnc627xugMP9t3KAL+LigOEaafR
+ pOV82sXT+nTn2+AoZ+RAu/Pn+ickRTTCpRBFGI0cHNPKMMexgJdDg9bCe
+ lCjXnmb8u2VexSoHubczwdJdiGxvuJ+iHZBxRH0L7Ya8PuPhr5HbjlZnG w==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10725"; a="344379184"
+X-IronPort-AV: E=Sophos;i="6.00,204,1681196400"; d="scan'208";a="344379184"
+Received: from fmsmga001.fm.intel.com ([10.253.24.23])
+ by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 30 May 2023 03:30:55 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6600,9927,10725"; a="850713757"
+X-IronPort-AV: E=Sophos;i="6.00,204,1681196400"; d="scan'208";a="850713757"
+Received: from orsmsx603.amr.corp.intel.com ([10.22.229.16])
+ by fmsmga001.fm.intel.com with ESMTP; 30 May 2023 03:30:35 -0700
+Received: from orsmsx610.amr.corp.intel.com (10.22.229.23) by
+ ORSMSX603.amr.corp.intel.com (10.22.229.16) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.23; Tue, 30 May 2023 03:30:34 -0700
+Received: from ORSEDG601.ED.cps.intel.com (10.7.248.6) by
+ orsmsx610.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.23 via Frontend Transport; Tue, 30 May 2023 03:30:34 -0700
+Received: from NAM11-DM6-obe.outbound.protection.outlook.com (104.47.57.176)
+ by edgegateway.intel.com (134.134.137.102) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.1.2507.23; Tue, 30 May 2023 03:30:33 -0700
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=VZx/jgBiPKleFzSrcvFD2ELwp10iyNRMoVu6VuQaQlMCCzxD/j1eG/Y+spNH5DWk9NBN8kyVnUnd1w94+Ko3W2Z/8JSZdNJU1aMuY8ns7HMqaHsYeIiPbyS+aRWwfDjQwqvLeAma3nVNnIBMkY32SAMl0xF27uJy7BhDLJNErnt6+X0Q34zVPUlwzF2Lz9dlk67QX6/Luc+jZ7fmoddlHYeaRcQpGwtrRHnT8mswOltHCCsn8VP4IdmTS/ydAbwjyaC1ex/HwLhCoufJG4Q1UonjAffBHM9do3Zs2nIZjkKxaIU9QncFDSfMkJ4EYy0lF7SRSBVOsJgufhOjA67NpQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=gd2545hHemXMB2S9bEGROvmjgP1JAqaCE+UvHHHW1ag=;
+ b=PNgwrjgpuWGiNBvFoOu1zv1Tcn2WEUujkWE80AqrRdfeJTIAoEuGGclQ5S8x68W7GX1a6wpYdFmsRGxNFKpoootJ8rqGRASUwegV0s5sdLBOftWJG8EbchuVrPBs35STmvfugpTmGYtN+mqbcfDx5uhkF37O0xDj+Tj2P1GbKq5XRySpXuaUrbia2DE7Id8VPAX4JWqZDGh3Hu1DO2j7Ej+2oqoKYPw56yNJuevRltLc0dgNRZMBIr2nij+NS1ZA1/75jOnN/x4td/Qm4sT7KUWq/ZS25l2BwgEAzlrADrXtl9J09QIRT/rEK6qo0caO1NfNyhBstVB4GNULW+YD5A==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
+ dkim=pass header.d=intel.com; arc=none
+Received: from CY5PR11MB6211.namprd11.prod.outlook.com (2603:10b6:930:25::6)
+ by SA2PR11MB4908.namprd11.prod.outlook.com (2603:10b6:806:112::15) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6433.23; Tue, 30 May
+ 2023 10:30:31 +0000
+Received: from CY5PR11MB6211.namprd11.prod.outlook.com
+ ([fe80::3cc2:6622:cce5:cd02]) by CY5PR11MB6211.namprd11.prod.outlook.com
+ ([fe80::3cc2:6622:cce5:cd02%3]) with mapi id 15.20.6433.022; Tue, 30 May 2023
+ 10:30:31 +0000
+From: "Gupta, Anshuman" <anshuman.gupta@intel.com>
+To: "Tauro, Riana" <riana.tauro@intel.com>, "intel-xe@lists.freedesktop.org"
+ <intel-xe@lists.freedesktop.org>
+Thread-Topic: [PATCH] drm/xe: add a new sysfs directory for gtidle properties
+Thread-Index: AQHZjgSz3F1ASFqF+kenYcNGGJ9bHq9yfNbQ
+Date: Tue, 30 May 2023 10:30:30 +0000
+Message-ID: <CY5PR11MB6211DCB0D973C5FA6163F4E4954B9@CY5PR11MB6211.namprd11.prod.outlook.com>
+References: <20230524060020.2054682-1-riana.tauro@intel.com>
+In-Reply-To: <20230524060020.2054682-1-riana.tauro@intel.com>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+authentication-results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=intel.com;
+x-ms-publictraffictype: Email
+x-ms-traffictypediagnostic: CY5PR11MB6211:EE_|SA2PR11MB4908:EE_
+x-ms-office365-filtering-correlation-id: c20f8f1b-ab07-4a00-b5a8-08db60f8e4c6
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info: Hb43WKm4F10TwrHg2n91X4RZcgV7W0izRU3Nx1yDNzjTYczDU/cMqZ8DSr2LEy2UABM08qZ2HcdnxvKFeuPYuP1wr8G4G+W152yVFBazi3y4340YSkr5F/Z/n7SVgNBpfwYWKB660u4jHlPtLjUgU9cQul8PFOJjmSQDxOsiccuG4+uwrmnZwv2otMczdB6djKHwiPBvFeF1n5jCMMML65oEeVPnZ/ChV2AYo1uK7qF4kXgvauCzD9qynFihFIoronPfsKQQ/HjBlbOfHmf+ti+K/u+ZB3M+PLABycOSARi+6iVohVvgk/YdTQlw9uKcM9o+vPrmDT1kyvYSbnz4Vi86Z+u6q8XsU9xPqgbx7P3S7A96nYmDuQP4UgCVcuogLnFeztGwDRXtBaadX2hFhOp4BR094BXjnvYNDhecWUqlsW6SrgzAvQgMlaDNe5bHEkzuD98pLaoMMjMV1VApBdLHYQyn8PtXlbUo7CYh7vdAweTQopGVCLhKkDA7quqBbmsvKDy7GOJX+bY7V6yKDwLDbxaLUS//q/WeXSVZ+vaBdxgpV3+l0kPKrnL23l25zV7uZespp++3SPWE2gObvnMJpeCx66NAupFOxQKxoIBDEF7ngrMU8zy4KQBuarv4yEtm4uMuWKlzglLWLmvA5w==
+x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:CY5PR11MB6211.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230028)(39860400002)(396003)(376002)(346002)(366004)(136003)(451199021)(71200400001)(478600001)(54906003)(110136005)(8936002)(8676002)(52536014)(5660300002)(38070700005)(33656002)(2906002)(30864003)(86362001)(4326008)(64756008)(122000001)(76116006)(66556008)(66476007)(66946007)(66446008)(82960400001)(316002)(55016003)(38100700002)(41300700001)(186003)(107886003)(6506007)(53546011)(9686003)(26005)(7696005)(83380400001)(21314003);
+ DIR:OUT; SFP:1102; 
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0: =?utf-8?B?aUcrSkJiVDl4a0Q4c0FJWlFVNzk3QmtLSlVQUnNDZVpzbzRtck9oVDRBeUxO?=
+ =?utf-8?B?Z3lDeERqMnN3b0VhNEh5NTNIVkJkeDl4ZUtXK0UxVzVnVE9NRTdGeG50SHRk?=
+ =?utf-8?B?Rng3TTB3T3EwU092cStjalczNGt4a0QxZ1AvdVplaHduSG9TdHZ1R1d6TGNF?=
+ =?utf-8?B?U3dyZzFKNG5tWk03VG4vUlBSYlNwUjJ5cllXUVd3SlAwUmVqdmZ6TkxFVmZz?=
+ =?utf-8?B?M002azFZS1U3ZkttbjlnMEY3YUxENWY2UFIwdWRtMUNYbkM5enA1ZW9WbjJv?=
+ =?utf-8?B?ajcvQVRwY3lyWUhNakgyRlQyUVpBT29SZllDbUpVSlFWYnV2TlBFNlRhazNG?=
+ =?utf-8?B?b3F5aWp3TkF2WGo3YW1MQ3VCbjVIZE41ZzFrbHpXUVNXMlUrbDkxa0o0bGN5?=
+ =?utf-8?B?ZTZoZTlIVEFrN0JqZ0RLdDYvbFY4bkd0SU56NjlXWHVMdFRPRkI4dExaaTdz?=
+ =?utf-8?B?UTVDTm45OGg3VzJwc3RjRWFHWWVGT1U3VFNLQ1B4M0NLNjN0V2JQU21tdldw?=
+ =?utf-8?B?VDlZYnlVcVJQb1gxbXpPaEVpOE5Vd2pKaHV5bi9reGg4U2htVm93aEtNWmh6?=
+ =?utf-8?B?WUxqaXA4eGVnWmp0TjNsZlowZXBpK2FCWUhwaEx0UDB0UHIzMURjZXNra0Na?=
+ =?utf-8?B?VlZhZHZHYWRNRDNET3JGWXovaEdBc0tNSkhnc09MMVVsai9SL0RNakgyTzRn?=
+ =?utf-8?B?VDYrb1BkRGM0OXFSajVsTlRyRkROMVg0aWlGWTJmRHZIMWp4RDF3UTB2WkdF?=
+ =?utf-8?B?dUtFTHFFbVpTbzl4UDFCdDFSR2t5azBoU0xITXZYa1JoSzVCVG5yMFBXRm8w?=
+ =?utf-8?B?VXlHMXAyN2tsNE83ZzE2MzlTZVVSbjJCVDBMb1hWQnB6eFdkMDNjME1MSWZY?=
+ =?utf-8?B?MlBhaFlMWWhneTh6bDRhV3F6YWYra1BQNnJMRDJnTTFBVkJ3ZDFTVXE2TVdy?=
+ =?utf-8?B?WXlUcjk3NTZGK3JPWkpYMk12c3F1UGc2R3JoMXZCVy82Sjk3SDFQeDZNdWNs?=
+ =?utf-8?B?WUNWN0QrajVSb2hZQWpXSklnMmdZeWQ0Yms3SWlSWmt0TGY3bkZSSFZxZXNu?=
+ =?utf-8?B?bHdPc1BhbklvNjlRdW90M211dXg5UU0vSXZQb2Q5NkplRm9YT1lvK0RHUlh1?=
+ =?utf-8?B?RGZyZkdkeHdLUFhya0pQL3ZWTHpDNlJxZ2NubWttRW91SHVoWnU0RmxUWG1C?=
+ =?utf-8?B?OFl1Q3NqUUpWc1dvVjZ2MjFaT0J3V3dOM3FCaDJHT2NMSCs0SDk1aFRITmRh?=
+ =?utf-8?B?S05KN3ZRRTRpVU9FaFA2dWZzSGNmSk5OWTd1RGZ6RTJDeVlVcExweDA4c0RL?=
+ =?utf-8?B?ZTBsVi9HWlVoS2p4aWFIMmhBTkl1TS9WaVFYV2JlVi9mSTVQb3dac3NmTjc3?=
+ =?utf-8?B?cW9QYlc4OUpmSFVNNGFsSUlPanU0MWorVFlPemN4RDNmWlpuUXZ6SDVjMGJv?=
+ =?utf-8?B?Tk9WeUExUGR6M2pqdng4MlE4ekp6Z3BIQlU2bTRqVVJaVWhrRE8vcTJTZEFp?=
+ =?utf-8?B?aVVHZ0FobGJnOFNuekVaUDZldkxXY2dQdUM3V05BM1ljSDVWZ0NPU2dRZmlj?=
+ =?utf-8?B?MlphRk5QaGErV2lWa1NVdDJaWkRoWVBHNk1mZGh0RkFSYVBIRUpSOTN1a0xS?=
+ =?utf-8?B?SXl4cktuMkdFNW5hVlhRU2NtZ3VONGdsZ3BSNWlnR2NET3R4MXpFTFBBTWFI?=
+ =?utf-8?B?WldiSU5ObnhmT3c3VGFqM0VqL1RVSkhMV21VRXp0V0V0QXRhYlhuWU05dGo3?=
+ =?utf-8?B?SityZ2Q5UytsVmpwMzl3UnMvMUxSaUFodXdtUkFNdWFQazVJaFlQMzNEbUhv?=
+ =?utf-8?B?aktZQXZTRm9sUFdTVGtVeWNGSzVZSjRjSFlwVkw3dXZ2OFZnd2wzc3liVzZQ?=
+ =?utf-8?B?dnpVUkpHWG1wZDJzKy90bnZ0SmRUTy9NWTVja0owZTVhNWxCaFQ4WUU0SDVw?=
+ =?utf-8?B?Y3AxK3A4TTh4YjlZa01JRGxoS3EwQXM4Y29ZV0kyR0VwajVwTk9rc0IyM3Ay?=
+ =?utf-8?B?OUlobU1FSkllN1B4MWQ1SzBjVm5obldhY3hkN2doQlp1d2VLbXMvOGVrM3M4?=
+ =?utf-8?B?YXdYOXNpaVMzZ29ZZFBXU0hXU2RCR2kxMlhCRjdqTU1jMENmQ2wxR1h5QWFw?=
+ =?utf-8?Q?+N0wd5im4NXVoKRKd60yX9lvU?=
 Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Sujaritha Sundaresan" <sujaritha.sundaresan@intel.com>
-Date: Tue, 30 May 2023 10:29:23 -0000
-Message-ID: <168544256354.18933.12823793581661367359@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20230530103421.2824622-1-sujaritha.sundaresan@intel.com>
-In-Reply-To: <20230530103421.2824622-1-sujaritha.sundaresan@intel.com>
-Subject: [Intel-xe] =?utf-8?q?=E2=9C=97_CI=2EKUnit=3A_failure_for_Adding_?=
- =?utf-8?q?throttle_reasons_sysfs_attributes?=
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: CY5PR11MB6211.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: c20f8f1b-ab07-4a00-b5a8-08db60f8e4c6
+X-MS-Exchange-CrossTenant-originalarrivaltime: 30 May 2023 10:30:30.9085 (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: XWhUDQ8Xf67iM7TSpkR6/wNQ53fdvMaJ00O4wosLmM1RXIcFAgtcG3049k6nDC3SbAJgF+hOCiYln1gBgorGbup0fP6tKXrjDFJur8yqKJI=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SA2PR11MB4908
+X-OriginatorOrg: intel.com
+Subject: Re: [Intel-xe] [PATCH] drm/xe: add a new sysfs directory for gtidle
+ properties
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -39,609 +154,263 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
-Cc: intel-xe@lists.freedesktop.org
+Cc: "Vivi, Rodrigo" <rodrigo.vivi@intel.com>
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-== Series Details ==
-
-Series: Adding throttle reasons sysfs attributes
-URL   : https://patchwork.freedesktop.org/series/118559/
-State : failure
-
-== Summary ==
-
-+ trap cleanup EXIT
-+ /kernel/tools/testing/kunit/kunit.py run --kunitconfig /kernel/drivers/gpu/drm/xe/.kunitconfig
-ERROR:root:../drivers/gpu/drm/xe/xe_guc_pc.c:642:1: error: unknown type name ‘xe_reg_t’
-  642 | xe_reg_t xe_gt_perf_limit_reasons_reg(struct xe_gt *gt)
-      | ^~~~~~~~
-In file included from ../drivers/gpu/drm/xe/regs/xe_gt_regs.h:9,
-                 from ../drivers/gpu/drm/xe/xe_guc_pc.c:12:
-../drivers/gpu/drm/xe/xe_guc_pc.c: In function ‘xe_gt_perf_limit_reasons_reg’:
-../drivers/gpu/drm/xe/regs/xe_reg_defs.h:85:26: error: incompatible types when returning type ‘const struct xe_reg’ but ‘int’ was expected
-   85 | #define XE_REG(r_, ...)  ((const struct xe_reg)XE_REG_INITIALIZER(r_, ##__VA_ARGS__))
-      |                          ^
-../drivers/gpu/drm/xe/regs/xe_gt_regs.h:387:39: note: in expansion of macro ‘XE_REG’
-  387 | #define MTL_MEDIA_PERF_LIMIT_REASONS  XE_REG(0x138030)
-      |                                       ^~~~~~
-../drivers/gpu/drm/xe/xe_guc_pc.c:645:24: note: in expansion of macro ‘MTL_MEDIA_PERF_LIMIT_REASONS’
-  645 |                 return MTL_MEDIA_PERF_LIMIT_REASONS;
-      |                        ^~~~~~~~~~~~~~~~~~~~~~~~~~~~
-../drivers/gpu/drm/xe/regs/xe_reg_defs.h:85:26: error: incompatible types when returning type ‘const struct xe_reg’ but ‘int’ was expected
-   85 | #define XE_REG(r_, ...)  ((const struct xe_reg)XE_REG_INITIALIZER(r_, ##__VA_ARGS__))
-      |                          ^
-../drivers/gpu/drm/xe/regs/xe_gt_regs.h:377:34: note: in expansion of macro ‘XE_REG’
-  377 | #define GT0_PERF_LIMIT_REASONS   XE_REG(0x1381a8)
-      |                                  ^~~~~~
-../drivers/gpu/drm/xe/xe_guc_pc.c:647:16: note: in expansion of macro ‘GT0_PERF_LIMIT_REASONS’
-  647 |         return GT0_PERF_LIMIT_REASONS;
-      |                ^~~~~~~~~~~~~~~~~~~~~~
-../drivers/gpu/drm/xe/xe_guc_pc.c: At top level:
-../drivers/gpu/drm/xe/xe_guc_pc.c:654:2: error: expected specifier-qualifier-list before ‘xe_reg_t’
-  654 |  xe_reg_t (*reg32)(struct xe_gt *gt);
-      |  ^~~~~~~~
-../drivers/gpu/drm/xe/xe_guc_pc.c:659:4: error: unknown type name ‘xe_reg_t’
-  659 |    xe_reg_t reg32, u32 mask)
-      |    ^~~~~~~~
-../drivers/gpu/drm/xe/xe_guc_pc.c: In function ‘throttle_reason_bool_show’:
-../drivers/gpu/drm/xe/xe_guc_pc.c:672:13: error: implicit declaration of function ‘xe_mmio_mask_read’; did you mean ‘xe_mmio_read8’? [-Werror=implicit-function-declaration]
-  672 |  bool val = xe_mmio_mask_read(&gt->rps, t_attr->reg32(gt), t_attr->mask);
-      |             ^~~~~~~~~~~~~~~~~
-      |             xe_mmio_read8
-../drivers/gpu/drm/xe/xe_guc_pc.c:672:34: error: ‘struct xe_gt’ has no member named ‘rps’
-  672 |  bool val = xe_mmio_mask_read(&gt->rps, t_attr->reg32(gt), t_attr->mask);
-      |                                  ^~
-../drivers/gpu/drm/xe/xe_guc_pc.c:672:47: error: ‘struct xe_gt_bool_throttle_attr’ has no member named ‘reg32’
-  672 |  bool val = xe_mmio_mask_read(&gt->rps, t_attr->reg32(gt), t_attr->mask);
-      |                                               ^~
-../drivers/gpu/drm/xe/xe_guc_pc.c:672:66: error: ‘struct xe_gt_bool_throttle_attr’ has no member named ‘mask’
-  672 |  bool val = xe_mmio_mask_read(&gt->rps, t_attr->reg32(gt), t_attr->mask);
-      |                                                                  ^~
-../drivers/gpu/drm/xe/xe_guc_pc.c: At top level:
-../drivers/gpu/drm/xe/xe_guc_pc.c:681:3: error: ‘struct xe_gt_bool_throttle_attr’ has no member named ‘reg32’
-  681 |  .reg32 = xe_gt_perf_limit_reasons_reg, \
-      |   ^~~~~
-../drivers/gpu/drm/xe/xe_guc_pc.c:685:8: note: in expansion of macro ‘XE_GT_BOOL_ATTR_RO’
-  685 | static XE_GT_BOOL_ATTR_RO(throttle_reason_status, GT0_PERF_LIMIT_REASONS_MASK);
-      |        ^~~~~~~~~~~~~~~~~~
-../drivers/gpu/drm/xe/xe_guc_pc.c:681:11: warning: excess elements in struct initializer
-  681 |  .reg32 = xe_gt_perf_limit_reasons_reg, \
-      |           ^~~~~~~~~~~~~~~~~~~~~~~~~~~~
-../drivers/gpu/drm/xe/xe_guc_pc.c:685:8: note: in expansion of macro ‘XE_GT_BOOL_ATTR_RO’
-  685 | static XE_GT_BOOL_ATTR_RO(throttle_reason_status, GT0_PERF_LIMIT_REASONS_MASK);
-      |        ^~~~~~~~~~~~~~~~~~
-../drivers/gpu/drm/xe/xe_guc_pc.c:681:11: note: (near initialization for ‘attr_throttle_reason_status’)
-  681 |  .reg32 = xe_gt_perf_limit_reasons_reg, \
-      |           ^~~~~~~~~~~~~~~~~~~~~~~~~~~~
-../drivers/gpu/drm/xe/xe_guc_pc.c:685:8: note: in expansion of macro ‘XE_GT_BOOL_ATTR_RO’
-  685 | static XE_GT_BOOL_ATTR_RO(throttle_reason_status, GT0_PERF_LIMIT_REASONS_MASK);
-      |        ^~~~~~~~~~~~~~~~~~
-../drivers/gpu/drm/xe/xe_guc_pc.c:682:3: error: ‘struct xe_gt_bool_throttle_attr’ has no member named ‘mask’
-  682 |  .mask = mask__, \
-      |   ^~~~
-../drivers/gpu/drm/xe/xe_guc_pc.c:685:8: note: in expansion of macro ‘XE_GT_BOOL_ATTR_RO’
-  685 | static XE_GT_BOOL_ATTR_RO(throttle_reason_status, GT0_PERF_LIMIT_REASONS_MASK);
-      |        ^~~~~~~~~~~~~~~~~~
-../drivers/gpu/drm/xe/regs/xe_gt_regs.h:378:40: warning: excess elements in struct initializer
-  378 | #define   GT0_PERF_LIMIT_REASONS_MASK  0xde3
-      |                                        ^~~~~
-../drivers/gpu/drm/xe/xe_guc_pc.c:682:10: note: in definition of macro ‘XE_GT_BOOL_ATTR_RO’
-  682 |  .mask = mask__, \
-      |          ^~~~~~
-../drivers/gpu/drm/xe/xe_guc_pc.c:685:51: note: in expansion of macro ‘GT0_PERF_LIMIT_REASONS_MASK’
-  685 | static XE_GT_BOOL_ATTR_RO(throttle_reason_status, GT0_PERF_LIMIT_REASONS_MASK);
-      |                                                   ^~~~~~~~~~~~~~~~~~~~~~~~~~~
-../drivers/gpu/drm/xe/regs/xe_gt_regs.h:378:40: note: (near initialization for ‘attr_throttle_reason_status’)
-  378 | #define   GT0_PERF_LIMIT_REASONS_MASK  0xde3
-      |                                        ^~~~~
-../drivers/gpu/drm/xe/xe_guc_pc.c:682:10: note: in definition of macro ‘XE_GT_BOOL_ATTR_RO’
-  682 |  .mask = mask__, \
-      |          ^~~~~~
-../drivers/gpu/drm/xe/xe_guc_pc.c:685:51: note: in expansion of macro ‘GT0_PERF_LIMIT_REASONS_MASK’
-  685 | static XE_GT_BOOL_ATTR_RO(throttle_reason_status, GT0_PERF_LIMIT_REASONS_MASK);
-      |                                                   ^~~~~~~~~~~~~~~~~~~~~~~~~~~
-../drivers/gpu/drm/xe/xe_guc_pc.c:681:3: error: ‘struct xe_gt_bool_throttle_attr’ has no member named ‘reg32’
-  681 |  .reg32 = xe_gt_perf_limit_reasons_reg, \
-      |   ^~~~~
-../drivers/gpu/drm/xe/xe_guc_pc.c:686:8: note: in expansion of macro ‘XE_GT_BOOL_ATTR_RO’
-  686 | static XE_GT_BOOL_ATTR_RO(throttle_reason_pl1, POWER_LIMIT_1_MASK);
-      |        ^~~~~~~~~~~~~~~~~~
-../drivers/gpu/drm/xe/xe_guc_pc.c:681:11: warning: excess elements in struct initializer
-  681 |  .reg32 = xe_gt_perf_limit_reasons_reg, \
-      |           ^~~~~~~~~~~~~~~~~~~~~~~~~~~~
-../drivers/gpu/drm/xe/xe_guc_pc.c:686:8: note: in expansion of macro ‘XE_GT_BOOL_ATTR_RO’
-  686 | static XE_GT_BOOL_ATTR_RO(throttle_reason_pl1, POWER_LIMIT_1_MASK);
-      |        ^~~~~~~~~~~~~~~~~~
-../drivers/gpu/drm/xe/xe_guc_pc.c:681:11: note: (near initialization for ‘attr_throttle_reason_pl1’)
-  681 |  .reg32 = xe_gt_perf_limit_reasons_reg, \
-      |           ^~~~~~~~~~~~~~~~~~~~~~~~~~~~
-../drivers/gpu/drm/xe/xe_guc_pc.c:686:8: note: in expansion of macro ‘XE_GT_BOOL_ATTR_RO’
-  686 | static XE_GT_BOOL_ATTR_RO(throttle_reason_pl1, POWER_LIMIT_1_MASK);
-      |        ^~~~~~~~~~~~~~~~~~
-../drivers/gpu/drm/xe/xe_guc_pc.c:682:3: error: ‘struct xe_gt_bool_throttle_attr’ has no member named ‘mask’
-  682 |  .mask = mask__, \
-      |   ^~~~
-../drivers/gpu/drm/xe/xe_guc_pc.c:686:8: note: in expansion of macro ‘XE_GT_BOOL_ATTR_RO’
-  686 | static XE_GT_BOOL_ATTR_RO(throttle_reason_pl1, POWER_LIMIT_1_MASK);
-      |        ^~~~~~~~~~~~~~~~~~
-../drivers/gpu/drm/xe/compat-i915-headers/../../i915/i915_reg_defs.h:21:2: warning: excess elements in struct initializer
-   21 |  ((u32)(BIT(__n) +      \
-      |  ^
-../drivers/gpu/drm/xe/xe_guc_pc.c:682:10: note: in definition of macro ‘XE_GT_BOOL_ATTR_RO’
-  682 |  .mask = mask__, \
-      |          ^~~~~~
-../drivers/gpu/drm/xe/regs/xe_gt_regs.h:385:32: note: in expansion of macro ‘REG_BIT’
-  385 | #define   POWER_LIMIT_1_MASK   REG_BIT(10)
-      |                                ^~~~~~~
-../drivers/gpu/drm/xe/xe_guc_pc.c:686:48: note: in expansion of macro ‘POWER_LIMIT_1_MASK’
-  686 | static XE_GT_BOOL_ATTR_RO(throttle_reason_pl1, POWER_LIMIT_1_MASK);
-      |                                                ^~~~~~~~~~~~~~~~~~
-../drivers/gpu/drm/xe/compat-i915-headers/../../i915/i915_reg_defs.h:21:2: note: (near initialization for ‘attr_throttle_reason_pl1’)
-   21 |  ((u32)(BIT(__n) +      \
-      |  ^
-../drivers/gpu/drm/xe/xe_guc_pc.c:682:10: note: in definition of macro ‘XE_GT_BOOL_ATTR_RO’
-  682 |  .mask = mask__, \
-      |          ^~~~~~
-../drivers/gpu/drm/xe/regs/xe_gt_regs.h:385:32: note: in expansion of macro ‘REG_BIT’
-  385 | #define   POWER_LIMIT_1_MASK   REG_BIT(10)
-      |                                ^~~~~~~
-../drivers/gpu/drm/xe/xe_guc_pc.c:686:48: note: in expansion of macro ‘POWER_LIMIT_1_MASK’
-  686 | static XE_GT_BOOL_ATTR_RO(throttle_reason_pl1, POWER_LIMIT_1_MASK);
-      |                                                ^~~~~~~~~~~~~~~~~~
-../drivers/gpu/drm/xe/xe_guc_pc.c:681:3: error: ‘struct xe_gt_bool_throttle_attr’ has no member named ‘reg32’
-  681 |  .reg32 = xe_gt_perf_limit_reasons_reg, \
-      |   ^~~~~
-../drivers/gpu/drm/xe/xe_guc_pc.c:687:8: note: in expansion of macro ‘XE_GT_BOOL_ATTR_RO’
-  687 | static XE_GT_BOOL_ATTR_RO(throttle_reason_pl2, POWER_LIMIT_2_MASK);
-      |        ^~~~~~~~~~~~~~~~~~
-../drivers/gpu/drm/xe/xe_guc_pc.c:681:11: warning: excess elements in struct initializer
-  681 |  .reg32 = xe_gt_perf_limit_reasons_reg, \
-      |           ^~~~~~~~~~~~~~~~~~~~~~~~~~~~
-../drivers/gpu/drm/xe/xe_guc_pc.c:687:8: note: in expansion of macro ‘XE_GT_BOOL_ATTR_RO’
-  687 | static XE_GT_BOOL_ATTR_RO(throttle_reason_pl2, POWER_LIMIT_2_MASK);
-      |        ^~~~~~~~~~~~~~~~~~
-../drivers/gpu/drm/xe/xe_guc_pc.c:681:11: note: (near initialization for ‘attr_throttle_reason_pl2’)
-  681 |  .reg32 = xe_gt_perf_limit_reasons_reg, \
-      |           ^~~~~~~~~~~~~~~~~~~~~~~~~~~~
-../drivers/gpu/drm/xe/xe_guc_pc.c:687:8: note: in expansion of macro ‘XE_GT_BOOL_ATTR_RO’
-  687 | static XE_GT_BOOL_ATTR_RO(throttle_reason_pl2, POWER_LIMIT_2_MASK);
-      |        ^~~~~~~~~~~~~~~~~~
-../drivers/gpu/drm/xe/xe_guc_pc.c:682:3: error: ‘struct xe_gt_bool_throttle_attr’ has no member named ‘mask’
-  682 |  .mask = mask__, \
-      |   ^~~~
-../drivers/gpu/drm/xe/xe_guc_pc.c:687:8: note: in expansion of macro ‘XE_GT_BOOL_ATTR_RO’
-  687 | static XE_GT_BOOL_ATTR_RO(throttle_reason_pl2, POWER_LIMIT_2_MASK);
-      |        ^~~~~~~~~~~~~~~~~~
-../drivers/gpu/drm/xe/compat-i915-headers/../../i915/i915_reg_defs.h:21:2: warning: excess elements in struct initializer
-   21 |  ((u32)(BIT(__n) +      \
-      |  ^
-../drivers/gpu/drm/xe/xe_guc_pc.c:682:10: note: in definition of macro ‘XE_GT_BOOL_ATTR_RO’
-  682 |  .mask = mask__, \
-      |          ^~~~~~
-../drivers/gpu/drm/xe/regs/xe_gt_regs.h:386:32: note: in expansion of macro ‘REG_BIT’
-  386 | #define   POWER_LIMIT_2_MASK   REG_BIT(11)
-      |                                ^~~~~~~
-../drivers/gpu/drm/xe/xe_guc_pc.c:687:48: note: in expansion of macro ‘POWER_LIMIT_2_MASK’
-  687 | static XE_GT_BOOL_ATTR_RO(throttle_reason_pl2, POWER_LIMIT_2_MASK);
-      |                                                ^~~~~~~~~~~~~~~~~~
-../drivers/gpu/drm/xe/compat-i915-headers/../../i915/i915_reg_defs.h:21:2: note: (near initialization for ‘attr_throttle_reason_pl2’)
-   21 |  ((u32)(BIT(__n) +      \
-      |  ^
-../drivers/gpu/drm/xe/xe_guc_pc.c:682:10: note: in definition of macro ‘XE_GT_BOOL_ATTR_RO’
-  682 |  .mask = mask__, \
-      |          ^~~~~~
-../drivers/gpu/drm/xe/regs/xe_gt_regs.h:386:32: note: in expansion of macro ‘REG_BIT’
-  386 | #define   POWER_LIMIT_2_MASK   REG_BIT(11)
-      |                                ^~~~~~~
-../drivers/gpu/drm/xe/xe_guc_pc.c:687:48: note: in expansion of macro ‘POWER_LIMIT_2_MASK’
-  687 | static XE_GT_BOOL_ATTR_RO(throttle_reason_pl2, POWER_LIMIT_2_MASK);
-      |                                                ^~~~~~~~~~~~~~~~~~
-../drivers/gpu/drm/xe/xe_guc_pc.c:681:3: error: ‘struct xe_gt_bool_throttle_attr’ has no member named ‘reg32’
-  681 |  .reg32 = xe_gt_perf_limit_reasons_reg, \
-      |   ^~~~~
-../drivers/gpu/drm/xe/xe_guc_pc.c:688:8: note: in expansion of macro ‘XE_GT_BOOL_ATTR_RO’
-  688 | static XE_GT_BOOL_ATTR_RO(throttle_reason_pl4, POWER_LIMIT_4_MASK);
-      |        ^~~~~~~~~~~~~~~~~~
-../drivers/gpu/drm/xe/xe_guc_pc.c:681:11: warning: excess elements in struct initializer
-  681 |  .reg32 = xe_gt_perf_limit_reasons_reg, \
-      |           ^~~~~~~~~~~~~~~~~~~~~~~~~~~~
-../drivers/gpu/drm/xe/xe_guc_pc.c:688:8: note: in expansion of macro ‘XE_GT_BOOL_ATTR_RO’
-  688 | static XE_GT_BOOL_ATTR_RO(throttle_reason_pl4, POWER_LIMIT_4_MASK);
-      |        ^~~~~~~~~~~~~~~~~~
-../drivers/gpu/drm/xe/xe_guc_pc.c:681:11: note: (near initialization for ‘attr_throttle_reason_pl4’)
-  681 |  .reg32 = xe_gt_perf_limit_reasons_reg, \
-      |           ^~~~~~~~~~~~~~~~~~~~~~~~~~~~
-../drivers/gpu/drm/xe/xe_guc_pc.c:688:8: note: in expansion of macro ‘XE_GT_BOOL_ATTR_RO’
-  688 | static XE_GT_BOOL_ATTR_RO(throttle_reason_pl4, POWER_LIMIT_4_MASK);
-      |        ^~~~~~~~~~~~~~~~~~
-../drivers/gpu/drm/xe/xe_guc_pc.c:682:3: error: ‘struct xe_gt_bool_throttle_attr’ has no member named ‘mask’
-  682 |  .mask = mask__, \
-      |   ^~~~
-../drivers/gpu/drm/xe/xe_guc_pc.c:688:8: note: in expansion of macro ‘XE_GT_BOOL_ATTR_RO’
-  688 | static XE_GT_BOOL_ATTR_RO(throttle_reason_pl4, POWER_LIMIT_4_MASK);
-      |        ^~~~~~~~~~~~~~~~~~
-../drivers/gpu/drm/xe/compat-i915-headers/../../i915/i915_reg_defs.h:21:2: warning: excess elements in struct initializer
-   21 |  ((u32)(BIT(__n) +      \
-      |  ^
-../drivers/gpu/drm/xe/xe_guc_pc.c:682:10: note: in definition of macro ‘XE_GT_BOOL_ATTR_RO’
-  682 |  .mask = mask__, \
-      |          ^~~~~~
-../drivers/gpu/drm/xe/regs/xe_gt_regs.h:384:32: note: in expansion of macro ‘REG_BIT’
-  384 | #define   POWER_LIMIT_4_MASK   REG_BIT(8)
-      |                                ^~~~~~~
-../drivers/gpu/drm/xe/xe_guc_pc.c:688:48: note: in expansion of macro ‘POWER_LIMIT_4_MASK’
-  688 | static XE_GT_BOOL_ATTR_RO(throttle_reason_pl4, POWER_LIMIT_4_MASK);
-      |                                                ^~~~~~~~~~~~~~~~~~
-../drivers/gpu/drm/xe/compat-i915-headers/../../i915/i915_reg_defs.h:21:2: note: (near initialization for ‘attr_throttle_reason_pl4’)
-   21 |  ((u32)(BIT(__n) +      \
-      |  ^
-../drivers/gpu/drm/xe/xe_guc_pc.c:682:10: note: in definition of macro ‘XE_GT_BOOL_ATTR_RO’
-  682 |  .mask = mask__, \
-      |          ^~~~~~
-../drivers/gpu/drm/xe/regs/xe_gt_regs.h:384:32: note: in expansion of macro ‘REG_BIT’
-  384 | #define   POWER_LIMIT_4_MASK   REG_BIT(8)
-      |                                ^~~~~~~
-../drivers/gpu/drm/xe/xe_guc_pc.c:688:48: note: in expansion of macro ‘POWER_LIMIT_4_MASK’
-  688 | static XE_GT_BOOL_ATTR_RO(throttle_reason_pl4, POWER_LIMIT_4_MASK);
-      |                                                ^~~~~~~~~~~~~~~~~~
-../drivers/gpu/drm/xe/xe_guc_pc.c:681:3: error: ‘struct xe_gt_bool_throttle_attr’ has no member named ‘reg32’
-  681 |  .reg32 = xe_gt_perf_limit_reasons_reg, \
-      |   ^~~~~
-../drivers/gpu/drm/xe/xe_guc_pc.c:689:8: note: in expansion of macro ‘XE_GT_BOOL_ATTR_RO’
-  689 | static XE_GT_BOOL_ATTR_RO(throttle_reason_thermal, THERMAL_LIMIT_MASK);
-      |        ^~~~~~~~~~~~~~~~~~
-../drivers/gpu/drm/xe/xe_guc_pc.c:681:11: warning: excess elements in struct initializer
-  681 |  .reg32 = xe_gt_perf_limit_reasons_reg, \
-      |           ^~~~~~~~~~~~~~~~~~~~~~~~~~~~
-../drivers/gpu/drm/xe/xe_guc_pc.c:689:8: note: in expansion of macro ‘XE_GT_BOOL_ATTR_RO’
-  689 | static XE_GT_BOOL_ATTR_RO(throttle_reason_thermal, THERMAL_LIMIT_MASK);
-      |        ^~~~~~~~~~~~~~~~~~
-../drivers/gpu/drm/xe/xe_guc_pc.c:681:11: note: (near initialization for ‘attr_throttle_reason_thermal’)
-  681 |  .reg32 = xe_gt_perf_limit_reasons_reg, \
-      |           ^~~~~~~~~~~~~~~~~~~~~~~~~~~~
-../drivers/gpu/drm/xe/xe_guc_pc.c:689:8: note: in expansion of macro ‘XE_GT_BOOL_ATTR_RO’
-  689 | static XE_GT_BOOL_ATTR_RO(throttle_reason_thermal, THERMAL_LIMIT_MASK);
-      |        ^~~~~~~~~~~~~~~~~~
-../drivers/gpu/drm/xe/xe_guc_pc.c:682:3: error: ‘struct xe_gt_bool_throttle_attr’ has no member named ‘mask’
-  682 |  .mask = mask__, \
-      |   ^~~~
-../drivers/gpu/drm/xe/xe_guc_pc.c:689:8: note: in expansion of macro ‘XE_GT_BOOL_ATTR_RO’
-  689 | static XE_GT_BOOL_ATTR_RO(throttle_reason_thermal, THERMAL_LIMIT_MASK);
-      |        ^~~~~~~~~~~~~~~~~~
-../drivers/gpu/drm/xe/compat-i915-headers/../../i915/i915_reg_defs.h:21:2: warning: excess elements in struct initializer
-   21 |  ((u32)(BIT(__n) +      \
-      |  ^
-../drivers/gpu/drm/xe/xe_guc_pc.c:682:10: note: in definition of macro ‘XE_GT_BOOL_ATTR_RO’
-  682 |  .mask = mask__, \
-      |          ^~~~~~
-../drivers/gpu/drm/xe/regs/xe_gt_regs.h:380:32: note: in expansion of macro ‘REG_BIT’
-  380 | #define   THERMAL_LIMIT_MASK   REG_BIT(1)
-      |                                ^~~~~~~
-../drivers/gpu/drm/xe/xe_guc_pc.c:689:52: note: in expansion of macro ‘THERMAL_LIMIT_MASK’
-  689 | static XE_GT_BOOL_ATTR_RO(throttle_reason_thermal, THERMAL_LIMIT_MASK);
-      |                                                    ^~~~~~~~~~~~~~~~~~
-../drivers/gpu/drm/xe/compat-i915-headers/../../i915/i915_reg_defs.h:21:2: note: (near initialization for ‘attr_throttle_reason_thermal’)
-   21 |  ((u32)(BIT(__n) +      \
-      |  ^
-../drivers/gpu/drm/xe/xe_guc_pc.c:682:10: note: in definition of macro ‘XE_GT_BOOL_ATTR_RO’
-  682 |  .mask = mask__, \
-      |          ^~~~~~
-../drivers/gpu/drm/xe/regs/xe_gt_regs.h:380:32: note: in expansion of macro ‘REG_BIT’
-  380 | #define   THERMAL_LIMIT_MASK   REG_BIT(1)
-      |                                ^~~~~~~
-../drivers/gpu/drm/xe/xe_guc_pc.c:689:52: note: in expansion of macro ‘THERMAL_LIMIT_MASK’
-  689 | static XE_GT_BOOL_ATTR_RO(throttle_reason_thermal, THERMAL_LIMIT_MASK);
-      |                                                    ^~~~~~~~~~~~~~~~~~
-../drivers/gpu/drm/xe/xe_guc_pc.c:681:3: error: ‘struct xe_gt_bool_throttle_attr’ has no member named ‘reg32’
-  681 |  .reg32 = xe_gt_perf_limit_reasons_reg, \
-      |   ^~~~~
-../drivers/gpu/drm/xe/xe_guc_pc.c:690:8: note: in expansion of macro ‘XE_GT_BOOL_ATTR_RO’
-  690 | static XE_GT_BOOL_ATTR_RO(throttle_reason_prochot, PROCHOT_MASK);
-      |        ^~~~~~~~~~~~~~~~~~
-../drivers/gpu/drm/xe/xe_guc_pc.c:681:11: warning: excess elements in struct initializer
-  681 |  .reg32 = xe_gt_perf_limit_reasons_reg, \
-      |           ^~~~~~~~~~~~~~~~~~~~~~~~~~~~
-../drivers/gpu/drm/xe/xe_guc_pc.c:690:8: note: in expansion of macro ‘XE_GT_BOOL_ATTR_RO’
-  690 | static XE_GT_BOOL_ATTR_RO(throttle_reason_prochot, PROCHOT_MASK);
-      |        ^~~~~~~~~~~~~~~~~~
-../drivers/gpu/drm/xe/xe_guc_pc.c:681:11: note: (near initialization for ‘attr_throttle_reason_prochot’)
-  681 |  .reg32 = xe_gt_perf_limit_reasons_reg, \
-      |           ^~~~~~~~~~~~~~~~~~~~~~~~~~~~
-../drivers/gpu/drm/xe/xe_guc_pc.c:690:8: note: in expansion of macro ‘XE_GT_BOOL_ATTR_RO’
-  690 | static XE_GT_BOOL_ATTR_RO(throttle_reason_prochot, PROCHOT_MASK);
-      |        ^~~~~~~~~~~~~~~~~~
-../drivers/gpu/drm/xe/xe_guc_pc.c:682:3: error: ‘struct xe_gt_bool_throttle_attr’ has no member named ‘mask’
-  682 |  .mask = mask__, \
-      |   ^~~~
-../drivers/gpu/drm/xe/xe_guc_pc.c:690:8: note: in expansion of macro ‘XE_GT_BOOL_ATTR_RO’
-  690 | static XE_GT_BOOL_ATTR_RO(throttle_reason_prochot, PROCHOT_MASK);
-      |        ^~~~~~~~~~~~~~~~~~
-../drivers/gpu/drm/xe/compat-i915-headers/../../i915/i915_reg_defs.h:21:2: warning: excess elements in struct initializer
-   21 |  ((u32)(BIT(__n) +      \
-      |  ^
-../drivers/gpu/drm/xe/xe_guc_pc.c:682:10: note: in definition of macro ‘XE_GT_BOOL_ATTR_RO’
-  682 |  .mask = mask__, \
-      |          ^~~~~~
-../drivers/gpu/drm/xe/regs/xe_gt_regs.h:379:27: note: in expansion of macro ‘REG_BIT’
-  379 | #define   PROCHOT_MASK    REG_BIT(0)
-      |                           ^~~~~~~
-../drivers/gpu/drm/xe/xe_guc_pc.c:690:52: note: in expansion of macro ‘PROCHOT_MASK’
-  690 | static XE_GT_BOOL_ATTR_RO(throttle_reason_prochot, PROCHOT_MASK);
-      |                                                    ^~~~~~~~~~~~
-../drivers/gpu/drm/xe/compat-i915-headers/../../i915/i915_reg_defs.h:21:2: note: (near initialization for ‘attr_throttle_reason_prochot’)
-   21 |  ((u32)(BIT(__n) +      \
-      |  ^
-../drivers/gpu/drm/xe/xe_guc_pc.c:682:10: note: in definition of macro ‘XE_GT_BOOL_ATTR_RO’
-  682 |  .mask = mask__, \
-      |          ^~~~~~
-../drivers/gpu/drm/xe/regs/xe_gt_regs.h:379:27: note: in expansion of macro ‘REG_BIT’
-  379 | #define   PROCHOT_MASK    REG_BIT(0)
-      |                           ^~~~~~~
-../drivers/gpu/drm/xe/xe_guc_pc.c:690:52: note: in expansion of macro ‘PROCHOT_MASK’
-  690 | static XE_GT_BOOL_ATTR_RO(throttle_reason_prochot, PROCHOT_MASK);
-      |                                                    ^~~~~~~~~~~~
-../drivers/gpu/drm/xe/xe_guc_pc.c:681:3: error: ‘struct xe_gt_bool_throttle_attr’ has no member named ‘reg32’
-  681 |  .reg32 = xe_gt_perf_limit_reasons_reg, \
-      |   ^~~~~
-../drivers/gpu/drm/xe/xe_guc_pc.c:691:8: note: in expansion of macro ‘XE_GT_BOOL_ATTR_RO’
-  691 | static XE_GT_BOOL_ATTR_RO(throttle_reason_ratl, RATL_MASK);
-      |        ^~~~~~~~~~~~~~~~~~
-../drivers/gpu/drm/xe/xe_guc_pc.c:681:11: warning: excess elements in struct initializer
-  681 |  .reg32 = xe_gt_perf_limit_reasons_reg, \
-      |           ^~~~~~~~~~~~~~~~~~~~~~~~~~~~
-../drivers/gpu/drm/xe/xe_guc_pc.c:691:8: note: in expansion of macro ‘XE_GT_BOOL_ATTR_RO’
-  691 | static XE_GT_BOOL_ATTR_RO(throttle_reason_ratl, RATL_MASK);
-      |        ^~~~~~~~~~~~~~~~~~
-../drivers/gpu/drm/xe/xe_guc_pc.c:681:11: note: (near initialization for ‘attr_throttle_reason_ratl’)
-  681 |  .reg32 = xe_gt_perf_limit_reasons_reg, \
-      |           ^~~~~~~~~~~~~~~~~~~~~~~~~~~~
-../drivers/gpu/drm/xe/xe_guc_pc.c:691:8: note: in expansion of macro ‘XE_GT_BOOL_ATTR_RO’
-  691 | static XE_GT_BOOL_ATTR_RO(throttle_reason_ratl, RATL_MASK);
-      |        ^~~~~~~~~~~~~~~~~~
-../drivers/gpu/drm/xe/xe_guc_pc.c:682:3: error: ‘struct xe_gt_bool_throttle_attr’ has no member named ‘mask’
-  682 |  .mask = mask__, \
-      |   ^~~~
-../drivers/gpu/drm/xe/xe_guc_pc.c:691:8: note: in expansion of macro ‘XE_GT_BOOL_ATTR_RO’
-  691 | static XE_GT_BOOL_ATTR_RO(throttle_reason_ratl, RATL_MASK);
-      |        ^~~~~~~~~~~~~~~~~~
-../drivers/gpu/drm/xe/compat-i915-headers/../../i915/i915_reg_defs.h:21:2: warning: excess elements in struct initializer
-   21 |  ((u32)(BIT(__n) +      \
-      |  ^
-../drivers/gpu/drm/xe/xe_guc_pc.c:682:10: note: in definition of macro ‘XE_GT_BOOL_ATTR_RO’
-  682 |  .mask = mask__, \
-      |          ^~~~~~
-../drivers/gpu/drm/xe/regs/xe_gt_regs.h:381:24: note: in expansion of macro ‘REG_BIT’
-  381 | #define   RATL_MASK    REG_BIT(5)
-      |                        ^~~~~~~
-../drivers/gpu/drm/xe/xe_guc_pc.c:691:49: note: in expansion of macro ‘RATL_MASK’
-  691 | static XE_GT_BOOL_ATTR_RO(throttle_reason_ratl, RATL_MASK);
-      |                                                 ^~~~~~~~~
-../drivers/gpu/drm/xe/compat-i915-headers/../../i915/i915_reg_defs.h:21:2: note: (near initialization for ‘attr_throttle_reason_ratl’)
-   21 |  ((u32)(BIT(__n) +      \
-      |  ^
-../drivers/gpu/drm/xe/xe_guc_pc.c:682:10: note: in definition of macro ‘XE_GT_BOOL_ATTR_RO’
-  682 |  .mask = mask__, \
-      |          ^~~~~~
-../drivers/gpu/drm/xe/regs/xe_gt_regs.h:381:24: note: in expansion of macro ‘REG_BIT’
-  381 | #define   RATL_MASK    REG_BIT(5)
-      |                        ^~~~~~~
-../drivers/gpu/drm/xe/xe_guc_pc.c:691:49: note: in expansion of macro ‘RATL_MASK’
-  691 | static XE_GT_BOOL_ATTR_RO(throttle_reason_ratl, RATL_MASK);
-      |                                                 ^~~~~~~~~
-../drivers/gpu/drm/xe/xe_guc_pc.c:681:3: error: ‘struct xe_gt_bool_throttle_attr’ has no member named ‘reg32’
-  681 |  .reg32 = xe_gt_perf_limit_reasons_reg, \
-      |   ^~~~~
-../drivers/gpu/drm/xe/xe_guc_pc.c:692:8: note: in expansion of macro ‘XE_GT_BOOL_ATTR_RO’
-  692 | static XE_GT_BOOL_ATTR_RO(throttle_reason_vr_thermalert, VR_THERMALERT_MASK);
-      |        ^~~~~~~~~~~~~~~~~~
-../drivers/gpu/drm/xe/xe_guc_pc.c:681:11: warning: excess elements in struct initializer
-  681 |  .reg32 = xe_gt_perf_limit_reasons_reg, \
-      |           ^~~~~~~~~~~~~~~~~~~~~~~~~~~~
-../drivers/gpu/drm/xe/xe_guc_pc.c:692:8: note: in expansion of macro ‘XE_GT_BOOL_ATTR_RO’
-  692 | static XE_GT_BOOL_ATTR_RO(throttle_reason_vr_thermalert, VR_THERMALERT_MASK);
-      |        ^~~~~~~~~~~~~~~~~~
-../drivers/gpu/drm/xe/xe_guc_pc.c:681:11: note: (near initialization for ‘attr_throttle_reason_vr_thermalert’)
-  681 |  .reg32 = xe_gt_perf_limit_reasons_reg, \
-      |           ^~~~~~~~~~~~~~~~~~~~~~~~~~~~
-../drivers/gpu/drm/xe/xe_guc_pc.c:692:8: note: in expansion of macro ‘XE_GT_BOOL_ATTR_RO’
-  692 | static XE_GT_BOOL_ATTR_RO(throttle_reason_vr_thermalert, VR_THERMALERT_MASK);
-      |        ^~~~~~~~~~~~~~~~~~
-../drivers/gpu/drm/xe/xe_guc_pc.c:682:3: error: ‘struct xe_gt_bool_throttle_attr’ has no member named ‘mask’
-  682 |  .mask = mask__, \
-      |   ^~~~
-../drivers/gpu/drm/xe/xe_guc_pc.c:692:8: note: in expansion of macro ‘XE_GT_BOOL_ATTR_RO’
-  692 | static XE_GT_BOOL_ATTR_RO(throttle_reason_vr_thermalert, VR_THERMALERT_MASK);
-      |        ^~~~~~~~~~~~~~~~~~
-../drivers/gpu/drm/xe/compat-i915-headers/../../i915/i915_reg_defs.h:21:2: warning: excess elements in struct initializer
-   21 |  ((u32)(BIT(__n) +      \
-      |  ^
-../drivers/gpu/drm/xe/xe_guc_pc.c:682:10: note: in definition of macro ‘XE_GT_BOOL_ATTR_RO’
-  682 |  .mask = mask__, \
-      |          ^~~~~~
-../drivers/gpu/drm/xe/regs/xe_gt_regs.h:382:32: note: in expansion of macro ‘REG_BIT’
-  382 | #define   VR_THERMALERT_MASK   REG_BIT(6)
-      |                                ^~~~~~~
-../drivers/gpu/drm/xe/xe_guc_pc.c:692:58: note: in expansion of macro ‘VR_THERMALERT_MASK’
-  692 | static XE_GT_BOOL_ATTR_RO(throttle_reason_vr_thermalert, VR_THERMALERT_MASK);
-      |                                                          ^~~~~~~~~~~~~~~~~~
-../drivers/gpu/drm/xe/compat-i915-headers/../../i915/i915_reg_defs.h:21:2: note: (near initialization for ‘attr_throttle_reason_vr_thermalert’)
-   21 |  ((u32)(BIT(__n) +      \
-      |  ^
-../drivers/gpu/drm/xe/xe_guc_pc.c:682:10: note: in definition of macro ‘XE_GT_BOOL_ATTR_RO’
-  682 |  .mask = mask__, \
-      |          ^~~~~~
-../drivers/gpu/drm/xe/regs/xe_gt_regs.h:382:32: note: in expansion of macro ‘REG_BIT’
-  382 | #define   VR_THERMALERT_MASK   REG_BIT(6)
-      |                                ^~~~~~~
-../drivers/gpu/drm/xe/xe_guc_pc.c:692:58: note: in expansion of macro ‘VR_THERMALERT_MASK’
-  692 | static XE_GT_BOOL_ATTR_RO(throttle_reason_vr_thermalert, VR_THERMALERT_MASK);
-      |                                                          ^~~~~~~~~~~~~~~~~~
-../drivers/gpu/drm/xe/xe_guc_pc.c:681:3: error: ‘struct xe_gt_bool_throttle_attr’ has no member named ‘reg32’
-  681 |  .reg32 = xe_gt_perf_limit_reasons_reg, \
-      |   ^~~~~
-../drivers/gpu/drm/xe/xe_guc_pc.c:693:8: note: in expansion of macro ‘XE_GT_BOOL_ATTR_RO’
-  693 | static XE_GT_BOOL_ATTR_RO(throttle_reason_vr_tdc, VR_TDC_MASK);
-      |        ^~~~~~~~~~~~~~~~~~
-../drivers/gpu/drm/xe/xe_guc_pc.c:681:11: warning: excess elements in struct initializer
-  681 |  .reg32 = xe_gt_perf_limit_reasons_reg, \
-      |           ^~~~~~~~~~~~~~~~~~~~~~~~~~~~
-../drivers/gpu/drm/xe/xe_guc_pc.c:693:8: note: in expansion of macro ‘XE_GT_BOOL_ATTR_RO’
-  693 | static XE_GT_BOOL_ATTR_RO(throttle_reason_vr_tdc, VR_TDC_MASK);
-      |        ^~~~~~~~~~~~~~~~~~
-../drivers/gpu/drm/xe/xe_guc_pc.c:681:11: note: (near initialization for ‘attr_throttle_reason_vr_tdc’)
-  681 |  .reg32 = xe_gt_perf_limit_reasons_reg, \
-      |           ^~~~~~~~~~~~~~~~~~~~~~~~~~~~
-../drivers/gpu/drm/xe/xe_guc_pc.c:693:8: note: in expansion of macro ‘XE_GT_BOOL_ATTR_RO’
-  693 | static XE_GT_BOOL_ATTR_RO(throttle_reason_vr_tdc, VR_TDC_MASK);
-      |        ^~~~~~~~~~~~~~~~~~
-../drivers/gpu/drm/xe/xe_guc_pc.c:682:3: error: ‘struct xe_gt_bool_throttle_attr’ has no member named ‘mask’
-  682 |  .mask = mask__, \
-      |   ^~~~
-../drivers/gpu/drm/xe/xe_guc_pc.c:693:8: note: in expansion of macro ‘XE_GT_BOOL_ATTR_RO’
-  693 | static XE_GT_BOOL_ATTR_RO(throttle_reason_vr_tdc, VR_TDC_MASK);
-      |        ^~~~~~~~~~~~~~~~~~
-../drivers/gpu/drm/xe/compat-i915-headers/../../i915/i915_reg_defs.h:21:2: warning: excess elements in struct initializer
-   21 |  ((u32)(BIT(__n) +      \
-      |  ^
-../drivers/gpu/drm/xe/xe_guc_pc.c:682:10: note: in definition of macro ‘XE_GT_BOOL_ATTR_RO’
-  682 |  .mask = mask__, \
-      |          ^~~~~~
-../drivers/gpu/drm/xe/regs/xe_gt_regs.h:383:26: note: in expansion of macro ‘REG_BIT’
-  383 | #define   VR_TDC_MASK    REG_BIT(7)
-      |                          ^~~~~~~
-../drivers/gpu/drm/xe/xe_guc_pc.c:693:51: note: in expansion of macro ‘VR_TDC_MASK’
-  693 | static XE_GT_BOOL_ATTR_RO(throttle_reason_vr_tdc, VR_TDC_MASK);
-      |                                                   ^~~~~~~~~~~
-../drivers/gpu/drm/xe/compat-i915-headers/../../i915/i915_reg_defs.h:21:2: note: (near initialization for ‘attr_throttle_reason_vr_tdc’)
-   21 |  ((u32)(BIT(__n) +      \
-      |  ^
-../drivers/gpu/drm/xe/xe_guc_pc.c:682:10: note: in definition of macro ‘XE_GT_BOOL_ATTR_RO’
-  682 |  .mask = mask__, \
-      |          ^~~~~~
-../drivers/gpu/drm/xe/regs/xe_gt_regs.h:383:26: note: in expansion of macro ‘REG_BIT’
-  383 | #define   VR_TDC_MASK    REG_BIT(7)
-      |                          ^~~~~~~
-../drivers/gpu/drm/xe/xe_guc_pc.c:693:51: note: in expansion of macro ‘VR_TDC_MASK’
-  693 | static XE_GT_BOOL_ATTR_RO(throttle_reason_vr_tdc, VR_TDC_MASK);
-      |                                                   ^~~~~~~~~~~
-../drivers/gpu/drm/xe/xe_guc_pc.c:696:3: error: ‘dev_attr_throttle_reason_status’ undeclared here (not in a function); did you mean ‘attr_throttle_reason_status’?
-  696 |  &dev_attr_throttle_reason_status.attr,
-      |   ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-      |   attr_throttle_reason_status
-../drivers/gpu/drm/xe/xe_guc_pc.c:697:3: error: ‘dev_attr_throttle_reason_pl1’ undeclared here (not in a function); did you mean ‘attr_throttle_reason_pl1’?
-  697 |  &dev_attr_throttle_reason_pl1.attr,
-      |   ^~~~~~~~~~~~~~~~~~~~~~~~~~~~
-      |   attr_throttle_reason_pl1
-../drivers/gpu/drm/xe/xe_guc_pc.c:698:3: error: ‘dev_attr_throttle_reason_pl2’ undeclared here (not in a function); did you mean ‘attr_throttle_reason_pl2’?
-  698 |  &dev_attr_throttle_reason_pl2.attr,
-      |   ^~~~~~~~~~~~~~~~~~~~~~~~~~~~
-      |   attr_throttle_reason_pl2
-../drivers/gpu/drm/xe/xe_guc_pc.c:699:3: error: ‘dev_attr_throttle_reason_pl4’ undeclared here (not in a function); did you mean ‘attr_throttle_reason_pl4’?
-  699 |  &dev_attr_throttle_reason_pl4.attr,
-      |   ^~~~~~~~~~~~~~~~~~~~~~~~~~~~
-      |   attr_throttle_reason_pl4
-../drivers/gpu/drm/xe/xe_guc_pc.c:700:3: error: ‘dev_attr_throttle_reason_thermal’ undeclared here (not in a function); did you mean ‘attr_throttle_reason_thermal’?
-  700 |  &dev_attr_throttle_reason_thermal.attr,
-      |   ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-      |   attr_throttle_reason_thermal
-../drivers/gpu/drm/xe/xe_guc_pc.c:701:3: error: ‘dev_attr_throttle_reason_prochot’ undeclared here (not in a function); did you mean ‘attr_throttle_reason_prochot’?
-  701 |  &dev_attr_throttle_reason_prochot.attr,
-      |   ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-      |   attr_throttle_reason_prochot
-../drivers/gpu/drm/xe/xe_guc_pc.c:702:3: error: ‘dev_attr_throttle_reason_ratl’ undeclared here (not in a function); did you mean ‘attr_throttle_reason_ratl’?
-  702 |  &dev_attr_throttle_reason_ratl.attr,
-      |   ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-      |   attr_throttle_reason_ratl
-../drivers/gpu/drm/xe/xe_guc_pc.c:703:3: error: ‘dev_attr_throttle_reason_vr_thermalert’ undeclared here (not in a function); did you mean ‘attr_throttle_reason_vr_thermalert’?
-  703 |  &dev_attr_throttle_reason_vr_thermalert.attr,
-      |   ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-      |   attr_throttle_reason_vr_thermalert
-../drivers/gpu/drm/xe/xe_guc_pc.c:704:3: error: ‘dev_attr_throttle_reason_vr_tdc’ undeclared here (not in a function); did you mean ‘attr_throttle_reason_vr_tdc’?
-  704 |  &dev_attr_throttle_reason_vr_tdc.attr,
-      |   ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-      |   attr_throttle_reason_vr_tdc
-../drivers/gpu/drm/xe/xe_guc_pc.c:695:32: warning: ‘throttle_reason_attrs’ defined but not used [-Wunused-variable]
-  695 | static const struct attribute *throttle_reason_attrs[] = {
-      |                                ^~~~~~~~~~~~~~~~~~~~~
-../drivers/gpu/drm/xe/xe_guc_pc.c:678:33: warning: ‘attr_throttle_reason_vr_tdc’ defined but not used [-Wunused-variable]
-  678 | struct xe_gt_bool_throttle_attr attr_##sysfs_func__ = { \
-      |                                 ^~~~~
-../drivers/gpu/drm/xe/xe_guc_pc.c:693:8: note: in expansion of macro ‘XE_GT_BOOL_ATTR_RO’
-  693 | static XE_GT_BOOL_ATTR_RO(throttle_reason_vr_tdc, VR_TDC_MASK);
-      |        ^~~~~~~~~~~~~~~~~~
-../drivers/gpu/drm/xe/xe_guc_pc.c:678:33: warning: ‘attr_throttle_reason_vr_thermalert’ defined but not used [-Wunused-variable]
-  678 | struct xe_gt_bool_throttle_attr attr_##sysfs_func__ = { \
-      |                                 ^~~~~
-../drivers/gpu/drm/xe/xe_guc_pc.c:692:8: note: in expansion of macro ‘XE_GT_BOOL_ATTR_RO’
-  692 | static XE_GT_BOOL_ATTR_RO(throttle_reason_vr_thermalert, VR_THERMALERT_MASK);
-      |        ^~~~~~~~~~~~~~~~~~
-../drivers/gpu/drm/xe/xe_guc_pc.c:678:33: warning: ‘attr_throttle_reason_ratl’ defined but not used [-Wunused-variable]
-  678 | struct xe_gt_bool_throttle_attr attr_##sysfs_func__ = { \
-      |                                 ^~~~~
-../drivers/gpu/drm/xe/xe_guc_pc.c:691:8: note: in expansion of macro ‘XE_GT_BOOL_ATTR_RO’
-  691 | static XE_GT_BOOL_ATTR_RO(throttle_reason_ratl, RATL_MASK);
-      |        ^~~~~~~~~~~~~~~~~~
-../drivers/gpu/drm/xe/xe_guc_pc.c:678:33: warning: ‘attr_throttle_reason_prochot’ defined but not used [-Wunused-variable]
-  678 | struct xe_gt_bool_throttle_attr attr_##sysfs_func__ = { \
-      |                                 ^~~~~
-../drivers/gpu/drm/xe/xe_guc_pc.c:690:8: note: in expansion of macro ‘XE_GT_BOOL_ATTR_RO’
-  690 | static XE_GT_BOOL_ATTR_RO(throttle_reason_prochot, PROCHOT_MASK);
-      |        ^~~~~~~~~~~~~~~~~~
-../drivers/gpu/drm/xe/xe_guc_pc.c:678:33: warning: ‘attr_throttle_reason_thermal’ defined but not used [-Wunused-variable]
-  678 | struct xe_gt_bool_throttle_attr attr_##sysfs_func__ = { \
-      |                                 ^~~~~
-../drivers/gpu/drm/xe/xe_guc_pc.c:689:8: note: in expansion of macro ‘XE_GT_BOOL_ATTR_RO’
-  689 | static XE_GT_BOOL_ATTR_RO(throttle_reason_thermal, THERMAL_LIMIT_MASK);
-      |        ^~~~~~~~~~~~~~~~~~
-../drivers/gpu/drm/xe/xe_guc_pc.c:678:33: warning: ‘attr_throttle_reason_pl4’ defined but not used [-Wunused-variable]
-  678 | struct xe_gt_bool_throttle_attr attr_##sysfs_func__ = { \
-      |                                 ^~~~~
-../drivers/gpu/drm/xe/xe_guc_pc.c:688:8: note: in expansion of macro ‘XE_GT_BOOL_ATTR_RO’
-  688 | static XE_GT_BOOL_ATTR_RO(throttle_reason_pl4, POWER_LIMIT_4_MASK);
-      |        ^~~~~~~~~~~~~~~~~~
-../drivers/gpu/drm/xe/xe_guc_pc.c:678:33: warning: ‘attr_throttle_reason_pl2’ defined but not used [-Wunused-variable]
-  678 | struct xe_gt_bool_throttle_attr attr_##sysfs_func__ = { \
-      |                                 ^~~~~
-../drivers/gpu/drm/xe/xe_guc_pc.c:687:8: note: in expansion of macro ‘XE_GT_BOOL_ATTR_RO’
-  687 | static XE_GT_BOOL_ATTR_RO(throttle_reason_pl2, POWER_LIMIT_2_MASK);
-      |        ^~~~~~~~~~~~~~~~~~
-../drivers/gpu/drm/xe/xe_guc_pc.c:678:33: warning: ‘attr_throttle_reason_pl1’ defined but not used [-Wunused-variable]
-  678 | struct xe_gt_bool_throttle_attr attr_##sysfs_func__ = { \
-      |                                 ^~~~~
-../drivers/gpu/drm/xe/xe_guc_pc.c:686:8: note: in expansion of macro ‘XE_GT_BOOL_ATTR_RO’
-  686 | static XE_GT_BOOL_ATTR_RO(throttle_reason_pl1, POWER_LIMIT_1_MASK);
-      |        ^~~~~~~~~~~~~~~~~~
-../drivers/gpu/drm/xe/xe_guc_pc.c:678:33: warning: ‘attr_throttle_reason_status’ defined but not used [-Wunused-variable]
-  678 | struct xe_gt_bool_throttle_attr attr_##sysfs_func__ = { \
-      |                                 ^~~~~
-../drivers/gpu/drm/xe/xe_guc_pc.c:685:8: note: in expansion of macro ‘XE_GT_BOOL_ATTR_RO’
-  685 | static XE_GT_BOOL_ATTR_RO(throttle_reason_status, GT0_PERF_LIMIT_REASONS_MASK);
-      |        ^~~~~~~~~~~~~~~~~~
-cc1: some warnings being treated as errors
-make[6]: *** [../scripts/Makefile.build:252: drivers/gpu/drm/xe/xe_guc_pc.o] Error 1
-make[6]: *** Waiting for unfinished jobs....
-make[5]: *** [../scripts/Makefile.build:494: drivers/gpu/drm/xe] Error 2
-make[5]: *** Waiting for unfinished jobs....
-make[4]: *** [../scripts/Makefile.build:494: drivers/gpu/drm] Error 2
-make[3]: *** [../scripts/Makefile.build:494: drivers/gpu] Error 2
-make[2]: *** [../scripts/Makefile.build:494: drivers] Error 2
-make[2]: *** Waiting for unfinished jobs....
-make[1]: *** [/kernel/Makefile:2025: .] Error 2
-make: *** [Makefile:226: __sub-make] Error 2
-
-[10:29:00] Configuring KUnit Kernel ...
-Generating .config ...
-Populating config with:
-$ make ARCH=um O=.kunit olddefconfig
-[10:29:04] Building KUnit Kernel ...
-Populating config with:
-$ make ARCH=um O=.kunit olddefconfig
-Building with:
-$ make ARCH=um O=.kunit --jobs=48
-+ cleanup
-++ stat -c %u:%g /kernel
-+ chown -R 1003:1003 /kernel
-
-
+DQoNCj4gLS0tLS1PcmlnaW5hbCBNZXNzYWdlLS0tLS0NCj4gRnJvbTogVGF1cm8sIFJpYW5hIDxy
+aWFuYS50YXVyb0BpbnRlbC5jb20+DQo+IFNlbnQ6IFdlZG5lc2RheSwgTWF5IDI0LCAyMDIzIDEx
+OjMwIEFNDQo+IFRvOiBpbnRlbC14ZUBsaXN0cy5mcmVlZGVza3RvcC5vcmcNCj4gQ2M6IFRhdXJv
+LCBSaWFuYSA8cmlhbmEudGF1cm9AaW50ZWwuY29tPjsgR3VwdGEsIEFuc2h1bWFuDQo+IDxhbnNo
+dW1hbi5ndXB0YUBpbnRlbC5jb20+OyBWaXZpLCBSb2RyaWdvIDxyb2RyaWdvLnZpdmlAaW50ZWwu
+Y29tPjsgRGl4aXQsDQo+IEFzaHV0b3NoIDxhc2h1dG9zaC5kaXhpdEBpbnRlbC5jb20+OyBOaWxh
+d2FyLCBCYWRhbA0KPiA8YmFkYWwubmlsYXdhckBpbnRlbC5jb20+OyBXYWpkZWN6a28sIE1pY2hh
+bA0KPiA8TWljaGFsLldhamRlY3prb0BpbnRlbC5jb20+DQo+IFN1YmplY3Q6IFtQQVRDSF0gZHJt
+L3hlOiBhZGQgYSBuZXcgc3lzZnMgZGlyZWN0b3J5IGZvciBndGlkbGUgcHJvcGVydGllcw0KPiAN
+Cj4gQWRkIGEgbmV3IHN5c2ZzIGRpcmVjdG9yeSB1bmRlciBkZXZpY2VzL2d0Iy8gY2FsbGVkIGd0
+aWRsZSB0byBjb250YWluIGlkbGUNCj4gcHJvcGVydGllcyBvZiBHVCBzdWNoIGFzIG5hbWUsIGlk
+bGVfc3RhdHVzLCBpZGxlX3Jlc2lkZW5jeV9tcw0KPiANCj4gdjI6DQo+ICAgICAtIGFic3RyYWN0
+IHVzaW5nIGZ1bmN0aW9uIHBvaW50ZXJzIChBbnNodW1hbikNCj4gICAgIC0gdXNlIGRldmljZV9h
+dHRyIChCYWRhbCkNCj4gICAgIC0gbW92ZSByYyBmdW5jdGlvbnMgdG8gZ3VjX3BjDQo+ICAgICAt
+IGNoYW5nZSBuYW1lIHRvIGd0X2lkbGUgKFJvZHJpZ28pDQo+IA0KPiB2MzoNCj4gICAgIC0gcmV0
+dXJuIGVycm9yIGZvciBkcm1tX2FkZF9hY3Rpb25fb3JfcmVzZXQNCj4gICAgIC0gcmVwbGFjZSBm
+aWxlIGFuZCBmdW5jdGlvbnMgd2l0aCBndF9pZGxlIHByZWZpeA0KPiAgICAgICB0byBndF9pZGxl
+X3N5c2ZzIChIaW1hbCkNCj4gICAgIC0gdXNlIGVudW0gZm9yIGd0IGlkbGUgc3RhdGUNCj4gICAg
+IC0gbW92ZSBtdWx0aXBsaWVyIHRvIGd0IGlkbGUgYW5kIGluaXRpYWxpemUgKEFuc2h1bWFuKQ0K
+PiAgICAgLSBjb3JyZWN0IGRvYyBhbm5vdGF0aW9uIChSb2RyaWdvKQ0KPiAgICAgLSByZW1vdmUg
+cmV0dXJuIHZhcmlhYmxlDQo+ICAgICAtIHVzZSBrb2JqX2d0IGluc3RlYWQgb2YgbmV3IGd0aWRs
+ZSBrb2JqDQo+ICAgICAtIG1vdmUgcmVzaWRlbmN5X21zIHRvIGd0aWRsZSBmaWxlDQo+ICAgICAt
+IHJldGFpbiB4ZV9ndWNfcGMgcHJlZml4IGZvciBmdW5jdGlvbnMgaW4gZ3VjX3JjIGZpbGUgKE1p
+Y2hhbCkNCj4gDQo+IFNpZ25lZC1vZmYtYnk6IFJpYW5hIFRhdXJvIDxyaWFuYS50YXVyb0BpbnRl
+bC5jb20+DQo+IEFja2VkLWJ5OiBSb2RyaWdvIFZpdmkgPHJvZHJpZ28udml2aUBpbnRlbC5jb20+
+DQo+IC0tLQ0KPiAgZHJpdmVycy9ncHUvZHJtL3hlL01ha2VmaWxlICAgICAgICAgICAgICAgICB8
+ICAgMSArDQo+ICBkcml2ZXJzL2dwdS9kcm0veGUveGVfZ3QuYyAgICAgICAgICAgICAgICAgIHwg
+ICA1ICsNCj4gIGRyaXZlcnMvZ3B1L2RybS94ZS94ZV9ndF9pZGxlX3N5c2ZzLmMgICAgICAgfCAx
+NTcgKysrKysrKysrKysrKysrKysrKysNCj4gIGRyaXZlcnMvZ3B1L2RybS94ZS94ZV9ndF9pZGxl
+X3N5c2ZzLmggICAgICAgfCAgMTMgKysNCj4gIGRyaXZlcnMvZ3B1L2RybS94ZS94ZV9ndF9pZGxl
+X3N5c2ZzX3R5cGVzLmggfCAgMzggKysrKysNCj4gIGRyaXZlcnMvZ3B1L2RybS94ZS94ZV9ndF90
+eXBlcy5oICAgICAgICAgICAgfCAgIDQgKw0KPiAgZHJpdmVycy9ncHUvZHJtL3hlL3hlX2d1Y19w
+Yy5jICAgICAgICAgICAgICB8ICA0NiArKystLS0NCj4gIGRyaXZlcnMvZ3B1L2RybS94ZS94ZV9n
+dWNfcGMuaCAgICAgICAgICAgICAgfCAgIDIgKw0KPiAgOCBmaWxlcyBjaGFuZ2VkLCAyMzcgaW5z
+ZXJ0aW9ucygrKSwgMjkgZGVsZXRpb25zKC0pICBjcmVhdGUgbW9kZSAxMDA2NDQNCj4gZHJpdmVy
+cy9ncHUvZHJtL3hlL3hlX2d0X2lkbGVfc3lzZnMuYw0KPiAgY3JlYXRlIG1vZGUgMTAwNjQ0IGRy
+aXZlcnMvZ3B1L2RybS94ZS94ZV9ndF9pZGxlX3N5c2ZzLmgNCj4gIGNyZWF0ZSBtb2RlIDEwMDY0
+NCBkcml2ZXJzL2dwdS9kcm0veGUveGVfZ3RfaWRsZV9zeXNmc190eXBlcy5oDQo+IA0KPiBkaWZm
+IC0tZ2l0IGEvZHJpdmVycy9ncHUvZHJtL3hlL01ha2VmaWxlIGIvZHJpdmVycy9ncHUvZHJtL3hl
+L01ha2VmaWxlDQo+IGluZGV4IGNkMTYxNGI2ODczNC4uODRmMDk4NTA1NGZhIDEwMDY0NA0KPiAt
+LS0gYS9kcml2ZXJzL2dwdS9kcm0veGUvTWFrZWZpbGUNCj4gKysrIGIvZHJpdmVycy9ncHUvZHJt
+L3hlL01ha2VmaWxlDQo+IEBAIC00NSw2ICs0NSw3IEBAIHhlLXkgKz0geGVfYmIubyBcDQo+ICAJ
+eGVfZ3QubyBcDQo+ICAJeGVfZ3RfY2xvY2subyBcDQo+ICAJeGVfZ3RfZGVidWdmcy5vIFwNCj4g
+Kwl4ZV9ndF9pZGxlX3N5c2ZzLm8gXA0KPiAgCXhlX2d0X21jci5vIFwNCj4gIAl4ZV9ndF9wYWdl
+ZmF1bHQubyBcDQo+ICAJeGVfZ3Rfc3lzZnMubyBcDQo+IGRpZmYgLS1naXQgYS9kcml2ZXJzL2dw
+dS9kcm0veGUveGVfZ3QuYyBiL2RyaXZlcnMvZ3B1L2RybS94ZS94ZV9ndC5jIGluZGV4DQo+IDgw
+ZDQyYzdjN2NmYS4uZWIxZTFlM2QyZDcxIDEwMDY0NA0KPiAtLS0gYS9kcml2ZXJzL2dwdS9kcm0v
+eGUveGVfZ3QuYw0KPiArKysgYi9kcml2ZXJzL2dwdS9kcm0veGUveGVfZ3QuYw0KPiBAQCAtMTgs
+NiArMTgsNyBAQA0KPiAgI2luY2x1ZGUgInhlX2ZvcmNlX3dha2UuaCINCj4gICNpbmNsdWRlICJ4
+ZV9nZ3R0LmgiDQo+ICAjaW5jbHVkZSAieGVfZ3RfY2xvY2suaCINCj4gKyNpbmNsdWRlICJ4ZV9n
+dF9pZGxlX3N5c2ZzLmgiDQo+ICAjaW5jbHVkZSAieGVfZ3RfbWNyLmgiDQo+ICAjaW5jbHVkZSAi
+eGVfZ3RfcGFnZWZhdWx0LmgiDQo+ICAjaW5jbHVkZSAieGVfZ3RfcHJpbnRrLmgiDQo+IEBAIC0z
+ODMsNiArMzg0LDEwIEBAIHN0YXRpYyBpbnQgZ3RfZndfZG9tYWluX2luaXQoc3RydWN0IHhlX2d0
+ICpndCkNCj4gIAlpZiAoZXJyKQ0KPiAgCQlnb3RvIGVycl9mb3JjZV93YWtlOw0KPiANCj4gKwll
+cnIgPSB4ZV9ndF9pZGxlX3N5c2ZzX2luaXQoJmd0LT5ndGlkbGUpOw0KQ2FuJ3Qgd2Uga2VlcCB0
+aGlzIHNpbXBsZSB0byBwYXNzIGp1c3QgR1QgYW5kIGluc2lkZSBmdW5jdGlvbiwgaW5pdGlhbGl6
+ZSB0aGUgR1QgPw0KPiArCWlmIChlcnIpDQo+ICsJCWdvdG8gZXJyX2ZvcmNlX3dha2U7DQo+ICsN
+Cj4gIAkvKiBYWFg6IEZha2UgdGhhdCB3ZSBwdWxsIHRoZSBlbmdpbmUgbWFzayBmcm9tIGh3Y29u
+ZmlnIGJsb2IgKi8NCj4gIAlndC0+aW5mby5lbmdpbmVfbWFzayA9IGd0LT5pbmZvLl9fZW5naW5l
+X21hc2s7DQo+IA0KPiBkaWZmIC0tZ2l0IGEvZHJpdmVycy9ncHUvZHJtL3hlL3hlX2d0X2lkbGVf
+c3lzZnMuYw0KPiBiL2RyaXZlcnMvZ3B1L2RybS94ZS94ZV9ndF9pZGxlX3N5c2ZzLmMNCj4gbmV3
+IGZpbGUgbW9kZSAxMDA2NDQNCj4gaW5kZXggMDAwMDAwMDAwMDAwLi5iN2RlNTMyODdmNmINCj4g
+LS0tIC9kZXYvbnVsbA0KPiArKysgYi9kcml2ZXJzL2dwdS9kcm0veGUveGVfZ3RfaWRsZV9zeXNm
+cy5jDQo+IEBAIC0wLDAgKzEsMTU3IEBADQo+ICsvLyBTUERYLUxpY2Vuc2UtSWRlbnRpZmllcjog
+TUlUDQo+ICsvKg0KPiArICogQ29weXJpZ2h0IMKpIDIwMjMgSW50ZWwgQ29ycG9yYXRpb24NCj4g
+KyAqLw0KPiArDQo+ICsjaW5jbHVkZSA8ZHJtL2RybV9tYW5hZ2VkLmg+DQo+ICsNCj4gKyNpbmNs
+dWRlICJ4ZV9kZXZpY2UuaCINCj4gKyNpbmNsdWRlICJ4ZV9ndC5oIg0KPiArI2luY2x1ZGUgInhl
+X2d0X2lkbGVfc3lzZnMuaCINCj4gKyNpbmNsdWRlICJ4ZV9ndF9zeXNmcy5oIg0KPiArI2luY2x1
+ZGUgInhlX2d1Y19wYy5oIg0KPiArDQo+ICsvKioNCj4gKyAqIERPQzogWGUgR1QgSWRsZQ0KPiAr
+ICoNCj4gKyAqIFByb3ZpZGVzIHN5c2ZzIGVudHJpZXMgZm9yIGlkbGUgcHJvcGVydGllcyBvZiBH
+VA0KPiArICoNCj4gKyAqIGRldmljZS9ndCMvZ3RpZGxlL25hbWUgLSBuYW1lIG9mIHRoZSBzdGF0
+ZQ0KPiArICogZGV2aWNlL2d0Iy9ndGlkbGUvaWRsZV9yZXNpZGVuY3lfbXMgLSBQcm92aWRlcyBy
+ZXNpZGVuY3kgb2YgdGhlIGlkbGUNCj4gK3N0YXRlIGluIG1zDQo+ICsgKiBkZXZpY2UvZ3QjL2d0
+aWRsZS9pZGxlX3N0YXR1cyAtIFByb3ZpZGVzIGN1cnJlbnQgaWRsZSBzdGF0ZSAgKi8NCj4gKw0K
+PiArc3RhdGljIHN0cnVjdCB4ZV9ndF9pZGxlICpkZXZfdG9fZ3RpZGxlKHN0cnVjdCBkZXZpY2Ug
+KmRldikgew0KPiArCXN0cnVjdCBrb2JqZWN0ICprb2JqID0gJmRldi0+a29iajsNCj4gKw0KPiAr
+CXJldHVybiAma29ial90b19ndChrb2JqLT5wYXJlbnQpLT5ndGlkbGU7DQo+ICt9DQo+ICsNCj4g
+K3N0YXRpYyBzdHJ1Y3QgeGVfZ3QgKmd0aWRsZV90b19ndChzdHJ1Y3QgeGVfZ3RfaWRsZSAqZ3Rp
+ZGxlKSB7DQo+ICsJcmV0dXJuIGNvbnRhaW5lcl9vZihndGlkbGUsIHN0cnVjdCB4ZV9ndCwgZ3Rp
+ZGxlKTsgfQ0KPiArDQo+ICtzdGF0aWMgc3RydWN0IHhlX2d1Y19wYyAqZ3RpZGxlX3RvX3BjKHN0
+cnVjdCB4ZV9ndF9pZGxlICpndGlkbGUpIHsNCj4gKwlyZXR1cm4gJmd0aWRsZV90b19ndChndGlk
+bGUpLT51Yy5ndWMucGM7IH0NCj4gKw0KPiArc3RhdGljIGNvbnN0IGNoYXIgKmd0X2lkbGVfc3Rh
+dGVfdG9fc3RyaW5nKGVudW0geGVfZ3RfaWRsZV9zdGF0ZSBzdGF0ZSkNCj4gK3sNCj4gKwlzd2l0
+Y2ggKHN0YXRlKSB7DQo+ICsJY2FzZSBHVF9JRExFX1JDMDoNCj4gKwkJcmV0dXJuICJyYzAiOw0K
+PiArCWNhc2UgR1RfSURMRV9SQzY6DQo+ICsJCXJldHVybiAicmM2IjsNCj4gKwlkZWZhdWx0Og0K
+PiArCQlyZXR1cm4gInVua25vd24iOw0KPiArCX0NCj4gK30NCj4gKw0KPiArc3RhdGljIHU2NCBn
+ZXRfcmVzaWRlbmN5X21zKHN0cnVjdCB4ZV9ndF9pZGxlICpndGlkbGUsIHU2NA0KPiArY3VyX3Jl
+c2lkZW5jeSkgew0KPiArCXU2NCBkZWx0YSwgb3ZlcmZsb3dfcmVzaWRlbmN5LCBwcmV2X3Jlc2lk
+ZW5jeTsNCj4gKw0KPiArCW92ZXJmbG93X3Jlc2lkZW5jeSA9IEJJVF9VTEwoMzIpOw0KPiArCS8q
+DQo+ICsJICogQ291bnRlciB3cmFwIGhhbmRsaW5nDQo+ICsJICogU3RvcmUgcHJldmlvdXMgaHcg
+Y291bnRlciB2YWx1ZXMgZm9yIGNvdW50ZXIgd3JhcC1hcm91bmQNCj4gaGFuZGxpbmcNCj4gKwkg
+KiBSZWx5aW5nIG9uIHN1ZmZpY2llbnQgZnJlcXVlbmN5IG9mIHF1ZXJpZXMgb3RoZXJ3aXNlIGNv
+dW50ZXJzIGNhbg0KPiBzdGlsbCB3cmFwLg0KPiArCSAqLw0KPiArCXByZXZfcmVzaWRlbmN5ID0g
+Z3RpZGxlLT5wcmV2X3Jlc2lkZW5jeTsNCj4gKwlndGlkbGUtPnByZXZfcmVzaWRlbmN5ID0gY3Vy
+X3Jlc2lkZW5jeTsNCk11bHRpcGxlIHVzZXIgdGhyZWFkcyBjYW4gcmFjZSBhZ2FpbnN0IGVhY2gg
+b3RoZXIgd2hpbGUgcmVhZGluZyB0aGlzIGF0dHJpYnV0ZS4NClNvIHByb2JhYmx5IHdlIG5lZWQg
+c29tZSBzb3J0IG9mIGxvY2tpbmcgPw0KPiArDQo+ICsJLyogZGVsdGEgKi8NCj4gKwlpZiAoY3Vy
+X3Jlc2lkZW5jeSA+PSBwcmV2X3Jlc2lkZW5jeSkNCj4gKwkJZGVsdGEgPSBjdXJfcmVzaWRlbmN5
+IC0gcHJldl9yZXNpZGVuY3k7DQo+ICsJZWxzZQ0KPiArCQlkZWx0YSA9IGN1cl9yZXNpZGVuY3kg
+KyAob3ZlcmZsb3dfcmVzaWRlbmN5IC0NCj4gcHJldl9yZXNpZGVuY3kpOw0KPiArDQo+ICsJLyog
+QWRkIGRlbHRhIHRvIGV4dGVuZGVkIHJhdyBkcml2ZXIgY29weSBvZiBpZGxlIHJlc2lkZW5jeSAq
+Lw0KPiArCWN1cl9yZXNpZGVuY3kgPSBndGlkbGUtPmN1cl9yZXNpZGVuY3kgKyBkZWx0YTsNCj4g
+KwlndGlkbGUtPmN1cl9yZXNpZGVuY3kgPSBjdXJfcmVzaWRlbmN5Ow0KPiArDQo+ICsJLyogcmVz
+aWRlbmN5IG11bHRpcGxpZXIgaW4gbnMsIGNvbnZlcnQgdG8gbXMgKi8NCj4gKwlyZXR1cm4gbXVs
+X3U2NF91MzJfZGl2KGN1cl9yZXNpZGVuY3ksIGd0aWRsZS0NCj4gPnJlc2lkZW5jeV9tdWx0aXBs
+aWVyLA0KPiArMWU2KTsgfQ0KPiArDQo+ICtzdGF0aWMgc3NpemVfdCBuYW1lX3Nob3coc3RydWN0
+IGRldmljZSAqZGV2LA0KPiArCQkJIHN0cnVjdCBkZXZpY2VfYXR0cmlidXRlICphdHRyLCBjaGFy
+ICpidWZmKSB7DQo+ICsJc3RydWN0IHhlX2d0X2lkbGUgKmd0aWRsZSA9IGRldl90b19ndGlkbGUo
+ZGV2KTsNCj4gKw0KPiArCXJldHVybiBzeXNmc19lbWl0KGJ1ZmYsIGd0aWRsZS0+bmFtZSk7IH0g
+c3RhdGljDQo+IERFVklDRV9BVFRSX1JPKG5hbWUpOw0KPiArDQo+ICtzdGF0aWMgc3NpemVfdCBp
+ZGxlX3N0YXR1c19zaG93KHN0cnVjdCBkZXZpY2UgKmRldiwNCj4gKwkJCQlzdHJ1Y3QgZGV2aWNl
+X2F0dHJpYnV0ZSAqYXR0ciwgY2hhciAqYnVmZikgew0KPiArCXN0cnVjdCB4ZV9ndF9pZGxlICpn
+dGlkbGUgPSBkZXZfdG9fZ3RpZGxlKGRldik7DQo+ICsJc3RydWN0IHhlX2d1Y19wYyAqcGMgPSBn
+dGlkbGVfdG9fcGMoZ3RpZGxlKTsNCj4gKwllbnVtIHhlX2d0X2lkbGVfc3RhdGUgc3RhdGU7DQo+
+ICsNCj4gKwlzdGF0ZSA9IGd0aWRsZS0+aWRsZV9zdGF0dXMocGMpOw0KPiArDQo+ICsJcmV0dXJu
+IHN5c2ZzX2VtaXQoYnVmZiwgIiVzXG4iLCBndF9pZGxlX3N0YXRlX3RvX3N0cmluZyhzdGF0ZSkp
+OyB9DQo+ICtzdGF0aWMgREVWSUNFX0FUVFJfUk8oaWRsZV9zdGF0dXMpOw0KPiArDQo+ICtzdGF0
+aWMgc3NpemVfdCBpZGxlX3Jlc2lkZW5jeV9tc19zaG93KHN0cnVjdCBkZXZpY2UgKmRldiwNCj4g
+KwkJCQkgICAgICBzdHJ1Y3QgZGV2aWNlX2F0dHJpYnV0ZSAqYXR0ciwgY2hhciAqYnVmZikgew0K
+PiArCXN0cnVjdCB4ZV9ndF9pZGxlICpndGlkbGUgPSBkZXZfdG9fZ3RpZGxlKGRldik7DQo+ICsJ
+c3RydWN0IHhlX2d1Y19wYyAqcGMgPSBndGlkbGVfdG9fcGMoZ3RpZGxlKTsNCj4gKwl1NjQgcmVz
+aWRlbmN5Ow0KPiArDQo+ICsJcmVzaWRlbmN5ID0gZ3RpZGxlLT5pZGxlX3Jlc2lkZW5jeShwYyk7
+DQo+ICsJcmV0dXJuIHN5c2ZzX2VtaXQoYnVmZiwgIiVsbHVcbiIsIGdldF9yZXNpZGVuY3lfbXMo
+Z3RpZGxlLA0KPiArcmVzaWRlbmN5KSk7IH0gc3RhdGljIERFVklDRV9BVFRSX1JPKGlkbGVfcmVz
+aWRlbmN5X21zKTsNCj4gKw0KPiArc3RhdGljIGNvbnN0IHN0cnVjdCBhdHRyaWJ1dGUgKmd0X2lk
+bGVfYXR0cnNbXSA9IHsNCj4gKwkmZGV2X2F0dHJfbmFtZS5hdHRyLA0KPiArCSZkZXZfYXR0cl9p
+ZGxlX3N0YXR1cy5hdHRyLA0KPiArCSZkZXZfYXR0cl9pZGxlX3Jlc2lkZW5jeV9tcy5hdHRyLA0K
+PiArCU5VTEwsDQo+ICt9Ow0KPiArDQo+ICtzdGF0aWMgdm9pZCBndF9pZGxlX3N5c2ZzX2Zpbmko
+c3RydWN0IGRybV9kZXZpY2UgKmRybSwgdm9pZCAqYXJnKSB7DQo+ICsJc3RydWN0IGtvYmplY3Qg
+KmtvYmogPSBhcmc7DQo+ICsNCj4gKwlzeXNmc19yZW1vdmVfZmlsZXMoa29iaiwgZ3RfaWRsZV9h
+dHRycyk7DQo+ICsJa29iamVjdF9wdXQoa29iaik7DQo+ICt9DQo+ICsNCj4gK2ludCB4ZV9ndF9p
+ZGxlX3N5c2ZzX2luaXQoc3RydWN0IHhlX2d0X2lkbGUgKmd0aWRsZSkgew0KPiArCXN0cnVjdCB4
+ZV9ndCAqZ3QgPSBndGlkbGVfdG9fZ3QoZ3RpZGxlKTsNCj4gKwlzdHJ1Y3QgeGVfZGV2aWNlICp4
+ZSA9IGd0X3RvX3hlKGd0KTsNCj4gKwlzdHJ1Y3Qga29iamVjdCAqa29iajsNCj4gKwlpbnQgZXJy
+Ow0KPiArDQo+ICsJa29iaiA9IGtvYmplY3RfY3JlYXRlX2FuZF9hZGQoImd0aWRsZSIsIGd0LT5z
+eXNmcyk7DQo+ICsJaWYgKCFrb2JqKQ0KPiArCQlyZXR1cm4gLUVOT01FTTsNCklNTyBFTk9NRU0g
+ZG9lcyBub3Qgc3VpdHMgaGVyZSwgSG93ICBhYm91dCBFSU5WQUwgb3IgRU5PREVWID8NCj4gKw0K
+PiArCXNwcmludGYoZ3RpZGxlLT5uYW1lLCAiZ3QlZC1yY1xuIiwgZ3QtPmluZm8uaWQpOw0KPiAr
+CS8qIE11bHRpcGxpZXIgZm9yICBSQzYgUmVzaWRlbmN5IGNvdW50ZXIgaW4gdW5pdHMgb2YgMS4y
+OHVzICovDQo+ICsJZ3RpZGxlLT5yZXNpZGVuY3lfbXVsdGlwbGllciA9IDEyODA7DQo+ICsJZ3Rp
+ZGxlLT5pZGxlX3Jlc2lkZW5jeSA9IHhlX2d1Y19wY19yYzZfcmVzaWRlbmN5Ow0KPiArCWd0aWRs
+ZS0+aWRsZV9zdGF0dXMgPSB4ZV9ndWNfcGNfcmNfc3RhdHVzOyANCj4gKw0KPiArCWVyciA9IHN5
+c2ZzX2NyZWF0ZV9maWxlcyhrb2JqLCBndF9pZGxlX2F0dHJzKTsNCj4gKwlpZiAoZXJyKSB7DQo+
+ICsJCWtvYmplY3RfcHV0KGtvYmopOw0KPiArCQlyZXR1cm4gZXJyOw0KPiArCX0NCj4gKw0KPiAr
+CWVyciA9IGRybW1fYWRkX2FjdGlvbl9vcl9yZXNldCgmeGUtPmRybSwgZ3RfaWRsZV9zeXNmc19m
+aW5pLA0KPiBrb2JqKTsNCj4gKwlpZiAoZXJyKQ0KPiArCQlyZXR1cm4gZXJyOw0KPiArDQo+ICsJ
+cmV0dXJuIDA7DQo+ICt9DQo+IGRpZmYgLS1naXQgYS9kcml2ZXJzL2dwdS9kcm0veGUveGVfZ3Rf
+aWRsZV9zeXNmcy5oDQo+IGIvZHJpdmVycy9ncHUvZHJtL3hlL3hlX2d0X2lkbGVfc3lzZnMuaA0K
+PiBuZXcgZmlsZSBtb2RlIDEwMDY0NA0KPiBpbmRleCAwMDAwMDAwMDAwMDAuLmE2NTQ1NjFmZGEx
+OQ0KPiAtLS0gL2Rldi9udWxsDQo+ICsrKyBiL2RyaXZlcnMvZ3B1L2RybS94ZS94ZV9ndF9pZGxl
+X3N5c2ZzLmgNCj4gQEAgLTAsMCArMSwxMyBAQA0KPiArLyogU1BEWC1MaWNlbnNlLUlkZW50aWZp
+ZXI6IE1JVCAqLw0KPiArLyoNCj4gKyAqIENvcHlyaWdodCDCqSAyMDIzIEludGVsIENvcnBvcmF0
+aW9uDQo+ICsgKi8NCj4gKw0KPiArI2lmbmRlZiBfWEVfR1RfSURMRV9TWVNGU19IXw0KPiArI2Rl
+ZmluZSBfWEVfR1RfSURMRV9TWVNGU19IXw0KPiArDQo+ICsjaW5jbHVkZSAieGVfZ3RfaWRsZV9z
+eXNmc190eXBlcy5oIg0KPiArDQo+ICtpbnQgeGVfZ3RfaWRsZV9zeXNmc19pbml0KHN0cnVjdCB4
+ZV9ndF9pZGxlICpndGlkbGUpOw0KPiArDQo+ICsjZW5kaWYgLyogX1hFX0dUX0lETEVfU1lTRlNf
+SF8gKi8NCj4gZGlmZiAtLWdpdCBhL2RyaXZlcnMvZ3B1L2RybS94ZS94ZV9ndF9pZGxlX3N5c2Zz
+X3R5cGVzLmgNCj4gYi9kcml2ZXJzL2dwdS9kcm0veGUveGVfZ3RfaWRsZV9zeXNmc190eXBlcy5o
+DQo+IG5ldyBmaWxlIG1vZGUgMTAwNjQ0DQo+IGluZGV4IDAwMDAwMDAwMDAwMC4uYjljZmIzN2Fh
+ZTc1DQo+IC0tLSAvZGV2L251bGwNCj4gKysrIGIvZHJpdmVycy9ncHUvZHJtL3hlL3hlX2d0X2lk
+bGVfc3lzZnNfdHlwZXMuaA0KPiBAQCAtMCwwICsxLDM4IEBADQo+ICsvKiBTUERYLUxpY2Vuc2Ut
+SWRlbnRpZmllcjogTUlUICovDQo+ICsvKg0KPiArICogQ29weXJpZ2h0IMKpIDIwMjMgSW50ZWwg
+Q29ycG9yYXRpb24NCj4gKyAqLw0KPiArDQo+ICsjaWZuZGVmIF9YRV9HVF9JRExFX1NZU0ZTX1RZ
+UEVTX0hfDQo+ICsjZGVmaW5lIF9YRV9HVF9JRExFX1NZU0ZTX1RZUEVTX0hfDQo+ICsNCj4gKyNp
+bmNsdWRlIDxsaW51eC90eXBlcy5oPg0KPiArDQo+ICtzdHJ1Y3QgeGVfZ3VjX3BjOw0KPiArDQo+
+ICsvKiBTdGF0ZXMgb2YgR1QgSWRsZSAqLw0KPiArZW51bSB4ZV9ndF9pZGxlX3N0YXRlIHsNCj4g
+KwlHVF9JRExFX1JDMCwNCj4gKwlHVF9JRExFX1JDNiwNCj4gKwlHVF9JRExFX1VOS05PV04sDQo+
+ICt9Ow0KPiArDQo+ICsvKioNCj4gKyAqIHN0cnVjdCB4ZV9ndF9pZGxlIC0gQSBzdHJ1Y3QgdGhh
+dCBjb250YWlucyBpZGxlIHByb3BlcnRpZXMgYmFzZWQgb2YNCj4gK2d0ICAqLyBzdHJ1Y3QgeGVf
+Z3RfaWRsZSB7DQo+ICsJLyoqIEBuYW1lOiBuYW1lICovDQo+ICsJY2hhciBuYW1lWzE2XTsNCj4g
+KwkvKiogQHJlc2lkZW5jeV9tdWx0aXBsaWVyOiByZXNpZGVuY3kgbXVsdGlwbGllciBpbiBucyAq
+Lw0KPiArCXUzMiByZXNpZGVuY3lfbXVsdGlwbGllcjsNCj4gKwkvKiogQGN1cl9yZXNpZGVuY3k6
+IHJhdyBkcml2ZXIgY29weSBvZiBpZGxlIHJlc2lkZW5jeSAqLw0KPiArCXU2NCBjdXJfcmVzaWRl
+bmN5Ow0KPiArCS8qKiBAcHJldl9yZXNpZGVuY3k6IHByZXZpb3VzIHJlc2lkZW5jeSBjb3VudGVy
+ICovDQo+ICsJdTY0IHByZXZfcmVzaWRlbmN5Ow0KPiArCS8qKiBAaWRsZV9zdGF0dXM6IGdldCB0
+aGUgY3VycmVudCBpZGxlIHN0YXRlICovDQo+ICsJZW51bSB4ZV9ndF9pZGxlX3N0YXRlICgqaWRs
+ZV9zdGF0dXMpKHN0cnVjdCB4ZV9ndWNfcGMgKnBjKTsNCj4gKwkvKiogQGlkbGVfcmVzaWRlbmN5
+OiBnZXQgaWRsZSByZXNpZGVuY3kgY291bnRlciAqLw0KPiArCXU2NCAoKmlkbGVfcmVzaWRlbmN5
+KShzdHJ1Y3QgeGVfZ3VjX3BjICpwYyk7IH07DQo+ICsNCj4gKyNlbmRpZiAvKiBfWEVfR1RfSURM
+RV9TWVNGU19UWVBFU19IXyAqLw0KPiBkaWZmIC0tZ2l0IGEvZHJpdmVycy9ncHUvZHJtL3hlL3hl
+X2d0X3R5cGVzLmgNCj4gYi9kcml2ZXJzL2dwdS9kcm0veGUveGVfZ3RfdHlwZXMuaA0KPiBpbmRl
+eCA3YzQ3ZDY3YWE4YmUuLjhkZWM2NjBmNWZjNiAxMDA2NDQNCj4gLS0tIGEvZHJpdmVycy9ncHUv
+ZHJtL3hlL3hlX2d0X3R5cGVzLmgNCj4gKysrIGIvZHJpdmVycy9ncHUvZHJtL3hlL3hlX2d0X3R5
+cGVzLmgNCj4gQEAgLTcsNiArNyw3IEBADQo+ICAjZGVmaW5lIF9YRV9HVF9UWVBFU19IXw0KPiAN
+Cj4gICNpbmNsdWRlICJ4ZV9mb3JjZV93YWtlX3R5cGVzLmgiDQo+ICsjaW5jbHVkZSAieGVfZ3Rf
+aWRsZV9zeXNmc190eXBlcy5oIg0KPiAgI2luY2x1ZGUgInhlX2h3X2VuZ2luZV90eXBlcy5oIg0K
+PiAgI2luY2x1ZGUgInhlX2h3X2ZlbmNlX3R5cGVzLmgiDQo+ICAjaW5jbHVkZSAieGVfcmVnX3Ny
+X3R5cGVzLmgiDQo+IEBAIC0yODcsNiArMjg4LDkgQEAgc3RydWN0IHhlX2d0IHsNCj4gIAkvKiog
+QHVjOiBtaWNybyBjb250cm9sbGVycyBvbiB0aGUgR1QgKi8NCj4gIAlzdHJ1Y3QgeGVfdWMgdWM7
+DQo+IA0KPiArCS8qKiBAZ3RpZGxlOiBpZGxlIHByb3BlcnRpZXMgb2YgR1QgKi8NCj4gKwlzdHJ1
+Y3QgeGVfZ3RfaWRsZSBndGlkbGU7DQo+ICsNCj4gIAkvKiogQGVuZ2luZV9vcHM6IHN1Ym1pc3Np
+b24gYmFja2VuZCBlbmdpbmUgb3BlcmF0aW9ucyAqLw0KPiAgCWNvbnN0IHN0cnVjdCB4ZV9lbmdp
+bmVfb3BzICplbmdpbmVfb3BzOw0KPiANCj4gZGlmZiAtLWdpdCBhL2RyaXZlcnMvZ3B1L2RybS94
+ZS94ZV9ndWNfcGMuYw0KPiBiL2RyaXZlcnMvZ3B1L2RybS94ZS94ZV9ndWNfcGMuYyBpbmRleCBl
+Nzk5ZmFhMWM2YjguLjMxYzU2YTBkYzIxMA0KPiAxMDA2NDQNCj4gLS0tIGEvZHJpdmVycy9ncHUv
+ZHJtL3hlL3hlX2d1Y19wYy5jDQo+ICsrKyBiL2RyaXZlcnMvZ3B1L2RybS94ZS94ZV9ndWNfcGMu
+Yw0KPiBAQCAtNzYsMTIgKzc2LDcgQEANCj4gICAqDQo+ICAgKiBSZW5kZXItQyBzdGF0ZXMgaXMg
+YWxzbyBhIEd1QyBQQyBmZWF0dXJlIHRoYXQgaXMgbm93IGVuYWJsZWQgaW4gWGUgZm9yDQo+ICAg
+KiBhbGwgcGxhdGZvcm1zLg0KPiAtICogWGUncyBHdUMgUEMgcHJvdmlkZXMgYSBzeXNmcyBBUEkg
+Zm9yIFJlbmRlci1DIFN0YXRlczoNCj4gICAqDQo+IC0gKiBkZXZpY2UvZ3QjL3JjKiAqcmVhZC1v
+bmx5KiBmaWxlczoNCj4gLSAqIC0gcmNfc3RhdHVzOiBQcm92aWRlIHRoZSBhY3R1YWwgaW1tZWRp
+YXRlIHN0YXR1cyBvZiBSZW5kZXItQzogKHJjMCBvciByYzYpDQo+IC0gKiAtIHJjNl9yZXNpZGVu
+Y3k6IFByb3ZpZGUgdGhlIHJjNl9yZXNpZGVuY3kgY291bnRlciBpbiB1bml0cyBvZiAxLjI4IHVT
+ZWMuDQo+IC0gKiAgICAgICAgICAgICAgICAgIFByb25lIHRvIG92ZXJmbG93cy4NCj4gICAqLw0K
+PiANCj4gIHN0YXRpYyBzdHJ1Y3QgeGVfZ3VjICoNCj4gQEAgLTU4MCwxMCArNTc1LDEyIEBAIHN0
+YXRpYyBzc2l6ZV90IGZyZXFfbWF4X3N0b3JlKHN0cnVjdCBkZXZpY2UgKmRldiwNCj4gc3RydWN0
+IGRldmljZV9hdHRyaWJ1dGUgKmF0dHIsICB9ICBzdGF0aWMgREVWSUNFX0FUVFJfUlcoZnJlcV9t
+YXgpOw0KPiANCj4gLXN0YXRpYyBzc2l6ZV90IHJjX3N0YXR1c19zaG93KHN0cnVjdCBkZXZpY2Ug
+KmRldiwNCj4gLQkJCSAgICAgIHN0cnVjdCBkZXZpY2VfYXR0cmlidXRlICphdHRyLCBjaGFyICpi
+dWZmKQ0KPiArLyoqDQo+ICsgKiB4ZV9ndWNfcGNfcmNfc3RhdHVzIC0gZ2V0IHRoZSBjdXJyZW50
+IFJlbmRlciBDIHN0YXRlDQo+ICsgKiBAcGMgLSBYRV9HdUNfUEMgaW5zdGFuY2UNCj4gKyAqLw0K
+PiArZW51bSB4ZV9ndF9pZGxlX3N0YXRlIHhlX2d1Y19wY19yY19zdGF0dXMoc3RydWN0IHhlX2d1
+Y19wYyAqcGMpDQo+ICB7DQo+IC0Jc3RydWN0IHhlX2d1Y19wYyAqcGMgPSBkZXZfdG9fcGMoZGV2
+KTsNCj4gIAlzdHJ1Y3QgeGVfZ3QgKmd0ID0gcGNfdG9fZ3QocGMpOw0KPiAgCXUzMiByZWc7DQo+
+IA0KPiBAQCAtNTkzLDM3ICs1OTAsMzAgQEAgc3RhdGljIHNzaXplX3QgcmNfc3RhdHVzX3Nob3co
+c3RydWN0IGRldmljZSAqZGV2LA0KPiANCj4gIAlzd2l0Y2ggKFJFR19GSUVMRF9HRVQoUkNOX01B
+U0ssIHJlZykpIHsNCj4gIAljYXNlIEdUX1JDNjoNCj4gLQkJcmV0dXJuIHN5c2ZzX2VtaXQoYnVm
+ZiwgInJjNlxuIik7DQo+ICsJCXJldHVybiBHVF9JRExFX1JDNjsNCj4gIAljYXNlIEdUX1JDMDoN
+Cj4gLQkJcmV0dXJuIHN5c2ZzX2VtaXQoYnVmZiwgInJjMFxuIik7DQo+ICsJCXJldHVybiBHVF9J
+RExFX1JDMDsNCj4gIAlkZWZhdWx0Og0KPiAtCQlyZXR1cm4gLUVOT0VOVDsNCj4gKwkJcmV0dXJu
+IEdUX0lETEVfVU5LTk9XTjsNCj4gIAl9DQo+ICB9DQo+IC1zdGF0aWMgREVWSUNFX0FUVFJfUk8o
+cmNfc3RhdHVzKTsNCj4gDQo+IC1zdGF0aWMgc3NpemVfdCByYzZfcmVzaWRlbmN5X3Nob3coc3Ry
+dWN0IGRldmljZSAqZGV2LA0KPiAtCQkJCSAgc3RydWN0IGRldmljZV9hdHRyaWJ1dGUgKmF0dHIs
+IGNoYXIgKmJ1ZmYpDQo+ICsvKioNCj4gKyAqIHhlX2d1Y19wY19yYzZfcmVzaWRlbmN5IC0gcmM2
+IHJlc2lkZW5jeSBjb3VudGVyDQo+ICsgKiBAcGMgLSBYZV9HdUNfUEMgaW5zdGFuY2UNCj4gKyAq
+Lw0KPiArdTY0IHhlX2d1Y19wY19yYzZfcmVzaWRlbmN5KHN0cnVjdCB4ZV9ndWNfcGMgKnBjKQ0K
+PiAgew0KPiAtCXN0cnVjdCB4ZV9ndWNfcGMgKnBjID0gZGV2X3RvX3BjKGRldik7DQo+ICAJc3Ry
+dWN0IHhlX2d0ICpndCA9IHBjX3RvX2d0KHBjKTsNCj4gLQl1MzIgcmVnOw0KPiAtCXNzaXplX3Qg
+cmV0Ow0KPiArCXU2NCByZWc7DQpXaHkgZG8gd2UgbmVlZCB1NjQgaGVyZSBhcyB3ZSBhcmUgcmVh
+ZGluZyAzMiBiaXQgcmVnaXN0ZXIsIGNhbGxlciBjYW4gZG8gdGhlIGltcGxpY2l0IHR5cGUgY29u
+dmVyc2lvbi4NClRoYW5rcywNCkFuc2h1bWFuIEd1cHRhLg0KPiANCj4gLQl4ZV9kZXZpY2VfbWVt
+X2FjY2Vzc19nZXQocGNfdG9feGUocGMpKTsNCj4gLQlyZXQgPSB4ZV9mb3JjZV93YWtlX2dldChn
+dF90b19mdyhndCksIFhFX0ZPUkNFV0FLRV9BTEwpOw0KPiAtCWlmIChyZXQpDQo+IC0JCWdvdG8g
+b3V0Ow0KPiArCXhlX2RldmljZV9tZW1fYWNjZXNzX2dldChndF90b194ZShndCkpOw0KPiANCj4g
+IAlyZWcgPSB4ZV9tbWlvX3JlYWQzMihndCwgR1RfR0ZYX1JDNik7DQo+IC0JcmV0ID0gc3lzZnNf
+ZW1pdChidWZmLCAiJXVcbiIsIHJlZyk7DQo+IA0KPiAtCVhFX1dBUk5fT04oeGVfZm9yY2Vfd2Fr
+ZV9wdXQoZ3RfdG9fZncoZ3QpLA0KPiBYRV9GT1JDRVdBS0VfQUxMKSk7DQo+IC1vdXQ6DQo+IC0J
+eGVfZGV2aWNlX21lbV9hY2Nlc3NfcHV0KHBjX3RvX3hlKHBjKSk7DQo+IC0JcmV0dXJuIHJldDsN
+Cj4gKwl4ZV9kZXZpY2VfbWVtX2FjY2Vzc19wdXQoZ3RfdG9feGUoZ3QpKTsNCj4gKwlyZXR1cm4g
+cmVnOw0KPiAgfQ0KPiAtc3RhdGljIERFVklDRV9BVFRSX1JPKHJjNl9yZXNpZGVuY3kpOw0KPiAN
+Cj4gIHN0YXRpYyBjb25zdCBzdHJ1Y3QgYXR0cmlidXRlICpwY19hdHRyc1tdID0gew0KPiAgCSZk
+ZXZfYXR0cl9mcmVxX2FjdC5hdHRyLA0KPiBAQCAtNjMzLDggKzYyMyw2IEBAIHN0YXRpYyBjb25z
+dCBzdHJ1Y3QgYXR0cmlidXRlICpwY19hdHRyc1tdID0gew0KPiAgCSZkZXZfYXR0cl9mcmVxX3Jw
+bi5hdHRyLA0KPiAgCSZkZXZfYXR0cl9mcmVxX21pbi5hdHRyLA0KPiAgCSZkZXZfYXR0cl9mcmVx
+X21heC5hdHRyLA0KPiAtCSZkZXZfYXR0cl9yY19zdGF0dXMuYXR0ciwNCj4gLQkmZGV2X2F0dHJf
+cmM2X3Jlc2lkZW5jeS5hdHRyLA0KPiAgCU5VTEwNCj4gIH07DQo+IA0KPiBkaWZmIC0tZ2l0IGEv
+ZHJpdmVycy9ncHUvZHJtL3hlL3hlX2d1Y19wYy5oDQo+IGIvZHJpdmVycy9ncHUvZHJtL3hlL3hl
+X2d1Y19wYy5oIGluZGV4IGRhMjllNDkzNDg2OC4uOTc2MTc5ZGJjOWE4DQo+IDEwMDY0NA0KPiAt
+LS0gYS9kcml2ZXJzL2dwdS9kcm0veGUveGVfZ3VjX3BjLmgNCj4gKysrIGIvZHJpdmVycy9ncHUv
+ZHJtL3hlL3hlX2d1Y19wYy5oDQo+IEBAIC0xMiw0ICsxMiw2IEBAIGludCB4ZV9ndWNfcGNfaW5p
+dChzdHJ1Y3QgeGVfZ3VjX3BjICpwYyk7ICBpbnQNCj4geGVfZ3VjX3BjX3N0YXJ0KHN0cnVjdCB4
+ZV9ndWNfcGMgKnBjKTsgIGludCB4ZV9ndWNfcGNfc3RvcChzdHJ1Y3QNCj4geGVfZ3VjX3BjICpw
+Yyk7DQo+IA0KPiArZW51bSB4ZV9ndF9pZGxlX3N0YXRlIHhlX2d1Y19wY19yY19zdGF0dXMoc3Ry
+dWN0IHhlX2d1Y19wYyAqcGMpOw0KPiArdTY0IHhlX2d1Y19wY19yYzZfcmVzaWRlbmN5KHN0cnVj
+dCB4ZV9ndWNfcGMgKnBjKTsNCj4gICNlbmRpZiAvKiBfWEVfR1VDX1BDX0hfICovDQo+IC0tDQo+
+IDIuNDAuMA0KDQo=
