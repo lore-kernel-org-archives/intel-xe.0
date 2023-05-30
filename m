@@ -4,42 +4,42 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0D81EC7EE29
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1B2A8C7EE23
 	for <intel-xe@archiver.kernel.org>; Tue, 30 May 2023 10:35:24 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D841610E379;
+	by gabe.freedesktop.org (Postfix) with ESMTP id E7E5810E382;
 	Tue, 30 May 2023 10:35:23 +0000 (UTC)
 Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
- by gabe.freedesktop.org (Postfix) with ESMTPS id CD07210E379
- for <intel-xe@lists.freedesktop.org>; Tue, 30 May 2023 10:35:19 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C92C610E37E
+ for <intel-xe@lists.freedesktop.org>; Tue, 30 May 2023 10:35:21 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1685442919; x=1716978919;
+ t=1685442921; x=1716978921;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=P3LeW0XPq7YBYt5/6RR1JDHaUZduepAGiH47XVOp5uk=;
- b=hoIjFISj+Pc9+u30+xENsqCO/zyGASmruLykPGZOKuAyoKDnA3aqtzNc
- BTVQrld3gyT7X09nCicfVDhVoMz2RIVDbTzZ8J/cZdCRakR9V3zlYWtkE
- L0UI7sOZ6oTvAc8o67GuY0DmIcSTkP0iAta+BlukmXhajs01jsQYOjvp+
- xsDQo7ZoTFX3VO0eH1cHHG9UA0OvWEzRkGYlOipYGzYLrmQOHyHjYExmz
- ufhvB1o2znfFDAdrRe32uq5uec64EQ4EARTnGa65+8nGDJKDy5OHWBfYq
- 66oaaMrwcN+wIqfShN7WOglaFN4vM/oTfop5mWxY7wKgZu45ax2tqupek Q==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10725"; a="352378082"
-X-IronPort-AV: E=Sophos;i="6.00,204,1681196400"; d="scan'208";a="352378082"
+ bh=qIb40d4157jSl3ChFcTZlfBpKRcgh2WxQWdfiYrFduw=;
+ b=AKuP7Cd+g2BEB02gbTgjOVmndnTFrDi3aIYdO4mD8J8YkoYWAOx2lbyf
+ cgUaDkhB+fxhMuPoSBAKMXEhZHgytXjTS+/6GajIqSlcVVF8/wg/mnIpz
+ nYHSIChx3smzwPWNXZcKOMTkps8B53AiWr5KJQyQ6ijBQFEWQs4HnSlrF
+ PJsL3jDTXd3JYJ0AQYyigL82lZ2Zzge6J7J5Cmt2l+/Y2XHOmZ8xCT3uM
+ 9gV7trLLh/WIX55APWaLB4OAbOsoKHRgUnlcUNQYd70Vy12XmX0CbrlPg
+ 3lyje9hbxkqSufkrY5NbBwBCBb1Ix3aeTyKL0cXO8RFFQRZaqTVrdOLJ0 Q==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10725"; a="352378112"
+X-IronPort-AV: E=Sophos;i="6.00,204,1681196400"; d="scan'208";a="352378112"
 Received: from fmsmga003.fm.intel.com ([10.253.24.29])
  by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 30 May 2023 03:34:57 -0700
+ 30 May 2023 03:35:04 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10725"; a="796226104"
-X-IronPort-AV: E=Sophos;i="6.00,204,1681196400"; d="scan'208";a="796226104"
+X-IronPort-AV: E=McAfee;i="6600,9927,10725"; a="796226229"
+X-IronPort-AV: E=Sophos;i="6.00,204,1681196400"; d="scan'208";a="796226229"
 Received: from aravind2-mobl3.ger.corp.intel.com (HELO
  jhogande-mobl1.ger.corp.intel.com) ([10.252.46.36])
  by fmsmga003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 30 May 2023 03:34:55 -0700
+ 30 May 2023 03:35:03 -0700
 From: =?UTF-8?q?Jouni=20H=C3=B6gander?= <jouni.hogander@intel.com>
 To: intel-xe@lists.freedesktop.org
-Date: Tue, 30 May 2023 13:34:16 +0300
-Message-Id: <20230530103420.2561722-6-jouni.hogander@intel.com>
+Date: Tue, 30 May 2023 13:34:20 +0300
+Message-Id: <20230530103420.2561722-10-jouni.hogander@intel.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20230530103420.2561722-1-jouni.hogander@intel.com>
 References: <20230530103420.2561722-1-jouni.hogander@intel.com>
@@ -47,8 +47,7 @@ MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
 Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-xe] [PATCH 5/9] drivers/xe: Move Xe stolen memory handling
- away form fbc code
+Subject: [Intel-xe] [PATCH 9/9] Add new fence_id and fence count functions
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -64,198 +63,95 @@ Cc: =?UTF-8?q?Jouni=20H=C3=B6gander?= <jouni.hogander@intel.com>
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-More correct place for Xe stolen memory handling details is in
-xe_ttm_stolen_mgr. Move it there and add necessary defines into
-i915_gem_stolen.h to satisfy fbc code.
+Add new fence id and fence count functions and use them instead of directly
+accessing struct members
 
 Signed-off-by: Jouni Högander <jouni.hogander@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_fbc.c      | 62 -----------------
- .../xe/compat-i915-headers/i915_gem_stolen.h  | 66 +++++++++++++++++++
- drivers/gpu/drm/xe/xe_ttm_stolen_mgr.c        |  8 +++
- drivers/gpu/drm/xe/xe_ttm_stolen_mgr.h        |  1 +
- 4 files changed, 75 insertions(+), 62 deletions(-)
+ drivers/gpu/drm/i915/display/intel_fbc.c         | 16 +++++-----------
+ drivers/gpu/drm/i915/i915_vma.h                  |  5 +++++
+ .../gpu/drm/xe/compat-i915-headers/i915_vma.h    |  2 ++
+ 3 files changed, 12 insertions(+), 11 deletions(-)
 
 diff --git a/drivers/gpu/drm/i915/display/intel_fbc.c b/drivers/gpu/drm/i915/display/intel_fbc.c
-index 90c48ccce1a7..19698ab117a1 100644
+index 2cb537504c2f..7e4dcd747c02 100644
 --- a/drivers/gpu/drm/i915/display/intel_fbc.c
 +++ b/drivers/gpu/drm/i915/display/intel_fbc.c
-@@ -61,68 +61,6 @@
- #define i915_gem_stolen_node_offset(node) ((node)->start)
- #define i915_gem_stolen_node_size(node) ((node)->size)
+@@ -47,6 +47,7 @@
+ #include "i915_reg.h"
+ #include "i915_utils.h"
+ #include "i915_vgpu.h"
++#include "i915_vma.h"
+ #include "intel_cdclk.h"
+ #include "intel_de.h"
+ #include "intel_display_trace.h"
+@@ -988,17 +989,14 @@ static void intel_fbc_update_state(struct intel_atomic_state *state,
  
+ 	/* FBC1 compression interval: arbitrary choice of 1 second */
+ 	fbc_state->interval = drm_mode_vrefresh(&crtc_state->hw.adjusted_mode);
+-#ifdef I915
+ 	fbc_state->fence_y_offset = intel_plane_fence_y_offset(plane_state);
+ 
+ 	drm_WARN_ON(&i915->drm, plane_state->flags & PLANE_HAS_FENCE &&
+-		    !plane_state->ggtt_vma->fence);
++		    !intel_gt_fence_count(to_gt(i915)));
+ 
+-	if (plane_state->flags & PLANE_HAS_FENCE &&
+-	    plane_state->ggtt_vma->fence)
+-		fbc_state->fence_id = plane_state->ggtt_vma->fence->id;
++	if (plane_state->flags & PLANE_HAS_FENCE)
++		fbc_state->fence_id =  i915_vma_fence_id(plane_state->ggtt_vma);
+ 	else
+-#endif
+ 		fbc_state->fence_id = -1;
+ 
+ 	fbc_state->cfb_stride = intel_fbc_cfb_stride(plane_state);
+@@ -1008,7 +1006,6 @@ static void intel_fbc_update_state(struct intel_atomic_state *state,
+ 
+ static bool intel_fbc_is_fence_ok(const struct intel_plane_state *plane_state)
+ {
+-#ifdef I915
+ 	struct drm_i915_private *i915 = to_i915(plane_state->uapi.plane->dev);
+ 
+ 	/*
+@@ -1025,10 +1022,7 @@ static bool intel_fbc_is_fence_ok(const struct intel_plane_state *plane_state)
+ 	 */
+ 	return DISPLAY_VER(i915) >= 9 ||
+ 		(plane_state->flags & PLANE_HAS_FENCE &&
+-		 plane_state->ggtt_vma->fence);
 -#else
--
--#include "xe_ttm_stolen_mgr.h"
--#include "xe_res_cursor.h"
--
--static inline int i915_gem_stolen_insert_node_in_range(struct xe_device *xe,
--						       struct i915_stolen_fb *fb,
--						       u32 size, u32 align,
--						       u32 start, u32 end)
--{
--	struct xe_bo *bo;
--	int err;
--	u32 flags = XE_BO_CREATE_PINNED_BIT | XE_BO_CREATE_STOLEN_BIT;
--
--	bo = xe_bo_create_locked_range(xe, to_gt(xe), NULL, size, start, end,
--					ttm_bo_type_kernel, flags);
--	if (IS_ERR(bo)) {
--		err = PTR_ERR(bo);
--		bo = NULL;
--		return err;
--	}
--	err = xe_bo_pin(bo);
--	xe_bo_unlock_vm_held(bo);
--
--	if (err) {
--		xe_bo_put(bo);
--		bo = NULL;
--	}
--
--	fb->bo = bo;
--
--	return err;
--}
--
--static int i915_gem_stolen_insert_node(struct xe_device *xe,
--				       struct i915_stolen_fb *fb, u32 size,
--				       u32 align)
--{
--	/* Not used on xe */
--	BUG_ON(1);
--	return -ENODEV;
--}
--
--static void i915_gem_stolen_remove_node(struct xe_device *xe,
--					struct i915_stolen_fb *fb)
--{
--	xe_bo_unpin_map_no_vm(fb->bo);
--	fb->bo = NULL;
--}
--
--#define i915_gem_stolen_initialized(xe) (!!ttm_manager_type(&(xe)->ttm, XE_PL_STOLEN))
--#define i915_gem_stolen_node_allocated(fb) (!!(fb.bo))
--
--static inline u32 i915_gem_stolen_node_offset(struct i915_stolen_fb *fb)
--{
--	struct xe_res_cursor res;
--
--	xe_res_first(fb->bo->ttm.resource, 0, 4096, &res);
--	return res.start;
--}
--
--#define i915_gem_stolen_node_size(fb) ((u64)((fb)->bo->ttm.base.size))
- #endif
+-	return true;
+-#endif
++		 i915_vma_fence_id(plane_state->ggtt_vma) != -1);
+ }
  
- #define for_each_fbc_id(__dev_priv, __fbc_id) \
-diff --git a/drivers/gpu/drm/xe/compat-i915-headers/i915_gem_stolen.h b/drivers/gpu/drm/xe/compat-i915-headers/i915_gem_stolen.h
-index b6eeeba1087b..a9020d408407 100644
---- a/drivers/gpu/drm/xe/compat-i915-headers/i915_gem_stolen.h
-+++ b/drivers/gpu/drm/xe/compat-i915-headers/i915_gem_stolen.h
-@@ -1,10 +1,76 @@
- #ifndef _I915_GEM_OBJECT_H_
- #define _I915_GEM_OBJECT_H_
+ static bool intel_fbc_is_cfb_ok(const struct intel_plane_state *plane_state)
+diff --git a/drivers/gpu/drm/i915/i915_vma.h b/drivers/gpu/drm/i915/i915_vma.h
+index ed5c9d682a1b..06e613752c55 100644
+--- a/drivers/gpu/drm/i915/i915_vma.h
++++ b/drivers/gpu/drm/i915/i915_vma.h
+@@ -418,6 +418,11 @@ i915_vma_unpin_fence(struct i915_vma *vma)
+ 		__i915_vma_unpin_fence(vma);
+ }
  
-+#include "xe_ttm_stolen_mgr.h"
-+#include "xe_res_cursor.h"
++static inline int i915_vma_fence_id(const struct i915_vma *vma)
++{
++	return vma->fence ? vma->fence->id : -1;
++}
 +
- struct xe_bo;
+ void i915_vma_parked(struct intel_gt *gt);
  
- struct i915_stolen_fb {
- 	struct xe_bo *bo;
+ static inline bool i915_vma_is_scanout(const struct i915_vma *vma)
+diff --git a/drivers/gpu/drm/xe/compat-i915-headers/i915_vma.h b/drivers/gpu/drm/xe/compat-i915-headers/i915_vma.h
+index c40bb27ac72a..45ea0e44073d 100644
+--- a/drivers/gpu/drm/xe/compat-i915-headers/i915_vma.h
++++ b/drivers/gpu/drm/xe/compat-i915-headers/i915_vma.h
+@@ -11,4 +11,6 @@ struct i915_vma {
+ 	struct drm_mm_node node;
  };
  
-+static inline int i915_gem_stolen_insert_node_in_range(struct xe_device *xe,
-+						       struct i915_stolen_fb *fb,
-+						       u32 size, u32 align,
-+						       u32 start, u32 end)
-+{
-+	struct xe_bo *bo;
-+	int err;
-+	u32 flags = XE_BO_CREATE_PINNED_BIT | XE_BO_CREATE_STOLEN_BIT;
++#define i915_vma_fence_id(vma) -1
 +
-+	bo = xe_bo_create_locked_range(xe, to_gt(xe), NULL, size, start, end,
-+					ttm_bo_type_kernel, flags);
-+	if (IS_ERR(bo)) {
-+		err = PTR_ERR(bo);
-+		bo = NULL;
-+		return err;
-+	}
-+	err = xe_bo_pin(bo);
-+	xe_bo_unlock_vm_held(bo);
-+
-+	if (err) {
-+		xe_bo_put(fb->bo);
-+		bo = NULL;
-+	}
-+
-+	fb->bo = bo;
-+
-+	return err;
-+}
-+
-+static inline int i915_gem_stolen_insert_node(struct xe_device *xe,
-+					      struct i915_stolen_fb *fb,
-+					      u32 size, u32 align)
-+{
-+	/* Not used on xe */
-+	BUG_ON(1);
-+	return -ENODEV;
-+}
-+
-+static inline void i915_gem_stolen_remove_node(struct xe_device *xe,
-+					       struct i915_stolen_fb *fb)
-+{
-+	xe_bo_unpin_map_no_vm(fb->bo);
-+	fb->bo = NULL;
-+}
-+
-+#define i915_gem_stolen_initialized(xe) (!!ttm_manager_type(&(xe)->ttm, XE_PL_STOLEN))
-+#define i915_gem_stolen_node_allocated(fb) (!!(fb.bo))
-+
-+static inline u32 i915_gem_stolen_node_offset(struct i915_stolen_fb *fb)
-+{
-+	struct xe_res_cursor res;
-+
-+	xe_res_first(fb->bo->ttm.resource, 0, 4096, &res);
-+	return res.start;
-+}
-+
-+#define i915_gem_stolen_area_address(xe) (xe_ttm_stolen_gpu_offset(xe))
-+#define i915_gem_stolen_area_size(xe) (xe_ttm_stolen_size(xe))
-+
-+#define i915_gem_stolen_node_address(xe, fb) (xe_ttm_stolen_gpu_offset(xe) + \
-+					 i915_gem_stolen_node_offset(fb))
-+#define i915_gem_stolen_node_size(fb) ((u64)((fb)->bo->ttm.base.size))
-+
- #endif
-diff --git a/drivers/gpu/drm/xe/xe_ttm_stolen_mgr.c b/drivers/gpu/drm/xe/xe_ttm_stolen_mgr.c
-index a3855870321f..2df059dd803b 100644
---- a/drivers/gpu/drm/xe/xe_ttm_stolen_mgr.c
-+++ b/drivers/gpu/drm/xe/xe_ttm_stolen_mgr.c
-@@ -265,3 +265,11 @@ u64 xe_ttm_stolen_gpu_offset(struct xe_device *xe)
- 
- 	return mgr->stolen_base;
- }
-+
-+u64 xe_ttm_stolen_size(struct xe_device *xe)
-+{
-+	struct xe_ttm_stolen_mgr *mgr =
-+		to_stolen_mgr(ttm_manager_type(&xe->ttm, XE_PL_STOLEN));
-+
-+	return mgr->base.visible_size;
-+}
-diff --git a/drivers/gpu/drm/xe/xe_ttm_stolen_mgr.h b/drivers/gpu/drm/xe/xe_ttm_stolen_mgr.h
-index 1777245ff810..48fed9a1ef95 100644
---- a/drivers/gpu/drm/xe/xe_ttm_stolen_mgr.h
-+++ b/drivers/gpu/drm/xe/xe_ttm_stolen_mgr.h
-@@ -17,5 +17,6 @@ int xe_ttm_stolen_io_mem_reserve(struct xe_device *xe, struct ttm_resource *mem)
- bool xe_ttm_stolen_cpu_access_needs_ggtt(struct xe_device *xe);
- u64 xe_ttm_stolen_io_offset(struct xe_bo *bo, u32 offset);
- u64 xe_ttm_stolen_gpu_offset(struct xe_device *xe);
-+u64 xe_ttm_stolen_size(struct xe_device *xe);
- 
  #endif
 -- 
 2.34.1
