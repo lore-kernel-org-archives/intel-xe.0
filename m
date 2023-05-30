@@ -4,48 +4,59 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2A4DFC77B73
-	for <intel-xe@archiver.kernel.org>; Tue, 30 May 2023 08:42:58 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 11982C7EE2E
+	for <intel-xe@archiver.kernel.org>; Tue, 30 May 2023 08:45:40 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id EA74910E302;
-	Tue, 30 May 2023 08:42:57 +0000 (UTC)
-Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D4DD210E2FC;
- Tue, 30 May 2023 08:42:54 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D87A310E12A;
+	Tue, 30 May 2023 08:45:39 +0000 (UTC)
+Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 56C7D10E12A
+ for <intel-xe@lists.freedesktop.org>; Tue, 30 May 2023 08:45:37 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1685436174; x=1716972174;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=lyfmCvnG+qcYlefJ9jmg7kvAQnjNvwOH9lOOLTpYWKw=;
- b=X9FkODN/LwD6GvCBeL83ICjaF8ivGAiNlYUDzHbmp00YCVIkDlg7OIdf
- A6fszXD2aFJkQITmCz3ymA0jtYRZ3zisM79FEA5MkO7k/gKjErEOzlYqg
- jhXifL9JwUv779BAGsvVTXUE21ZiU7mynjiG0OwPMwDsckUeMuSQyy2BC
- M60vuqkCfdbXnFTt3g8cGWhJgNDytepw3H1S3q9HXXl6sTI6r7s90o22A
- auzDL1tIIQIxrJ2+Pfzcm0gPZEbxsbX9UxlJxu+rnz22rnG0LFR9NY9Zw
- rMMqH+XfXOFfBF9HsT0/JcxBalKyA+nyjAqZD4grib0/F2VZvhgpqaM3C w==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10725"; a="334477303"
-X-IronPort-AV: E=Sophos;i="6.00,203,1681196400"; d="scan'208";a="334477303"
-Received: from orsmga003.jf.intel.com ([10.7.209.27])
- by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 30 May 2023 01:42:53 -0700
+ t=1685436337; x=1716972337;
+ h=message-id:date:mime-version:subject:to:references:from:
+ in-reply-to:content-transfer-encoding;
+ bh=HJExIkWBOEBufS/J3QxoN6LltSUXC4ecgeBItEJY87s=;
+ b=hduN4qhRsepUVDA0aI8fTyaA9EfTjEA4bQOX9HOgG+WAiCxgv+8yY8DB
+ 2lAszkLh+k8ZPeXqAVsT3fBG9ER44IlubaSZGXTvBZgTs5boACBWOYu8F
+ Sin16S0F0T70ZKhWR8ARjSeKS5AUtDKTxyv+nRso41PsYiEqhWfx+j+vb
+ lz3PV1iqKyB9SyrVY33CqhkxjGiOeTJmMWTfw5YEk7+P0sUti78DUqgNF
+ sDlBuFFf7NYWiaAO/7Q2TvfATM8JtV932SqMwAjl6nJ2Z/yHAuKTcIj/0
+ m5xIVF1BPFLK6J1SPYotllqu3BRQ4wNEsRlQcLRAK+6v+3uqYIqptC1Sp Q==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10725"; a="344356774"
+X-IronPort-AV: E=Sophos;i="6.00,203,1681196400"; d="scan'208";a="344356774"
+Received: from fmsmga001.fm.intel.com ([10.253.24.23])
+ by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 30 May 2023 01:45:35 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10725"; a="656764137"
-X-IronPort-AV: E=Sophos;i="6.00,203,1681196400"; d="scan'208";a="656764137"
-Received: from jhogberg-mobl1.ger.corp.intel.com (HELO
- thellstr-mobl1.intel.com) ([10.249.254.79])
- by orsmga003-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 30 May 2023 01:42:51 -0700
-From: =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>
-To: intel-xe@lists.freedesktop.org
-Date: Tue, 30 May 2023 10:42:35 +0200
-Message-Id: <20230530084235.279863-1-thomas.hellstrom@linux.intel.com>
-X-Mailer: git-send-email 2.39.2
+X-IronPort-AV: E=McAfee;i="6600,9927,10725"; a="850676485"
+X-IronPort-AV: E=Sophos;i="6.00,203,1681196400"; d="scan'208";a="850676485"
+Received: from jhogberg-mobl1.ger.corp.intel.com (HELO [10.249.254.79])
+ ([10.249.254.79])
+ by fmsmga001-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 30 May 2023 01:45:34 -0700
+Message-ID: <8f96d217-d096-2629-fb4c-a4396853dc1b@linux.intel.com>
+Date: Tue, 30 May 2023 10:45:31 +0200
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.8.0
+To: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ intel-xe@lists.freedesktop.org
+References: <20230526121101.1619278-1-maarten.lankhorst@linux.intel.com>
+ <20230526121101.1619278-5-maarten.lankhorst@linux.intel.com>
+ <b6be6ecf-5737-0f2a-2e7b-7737ef52af50@linux.intel.com>
+ <10e2a992-dcc4-8316-8e8b-f674641bed87@linux.intel.com>
+ <5fece445-89eb-0e97-e934-1c896fb27bd7@linux.intel.com>
+ <30734f17-58d0-bf50-ac83-dc4e7d65550d@linux.intel.com>
+ <0d897527-d80b-5fd9-f338-2a5d83d6c682@linux.intel.com>
+ <a8e9c44a-84b3-36f6-ba89-d05962bc3491@linux.intel.com>
+Content-Language: en-US
+From: =?UTF-8?Q?Thomas_Hellstr=c3=b6m?= <thomas.hellstrom@linux.intel.com>
+In-Reply-To: <a8e9c44a-84b3-36f6-ba89-d05962bc3491@linux.intel.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-xe] [RFC PATCH] Documentation/gpu: Add a VM_BIND async draft
- document.
+Subject: Re: [Intel-xe] [PATCH 4/5] drm/xe: Prevent evicting for page tables
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -57,164 +68,107 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Cc: Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org,
- Danilo Krummrich <dakr@redhat.com>
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Add a motivation for and description of asynchronous VM_BIND operation
 
-Signed-off-by: Thomas Hellström <thomas.hellstrom@linux.intel.com>
----
- Documentation/gpu/drm-vm-bind-async.rst | 138 ++++++++++++++++++++++++
- 1 file changed, 138 insertions(+)
- create mode 100644 Documentation/gpu/drm-vm-bind-async.rst
+On 5/29/23 17:23, Maarten Lankhorst wrote:
+> On 2023-05-29 17:13, Thomas Hellström wrote:
+>> On 5/29/23 17:11, Maarten Lankhorst wrote:
+>>> Hey,
+>>>
+>>> On 2023-05-29 17:02, Thomas Hellström wrote:
+>>>> On 5/29/23 15:44, Maarten Lankhorst wrote:
+>>>>> On 2023-05-26 14:35, Thomas Hellström wrote:
+>>>>>> On 5/26/23 14:11, Maarten Lankhorst wrote:
+>>>>>>> When creating page tables from xe_exec_ioctl, we may end up freeing
+>>>>>>> memory we just validated. To be certain this does not happen, do not
+>>>>>>> allow the current reservation to be evicted from the ioctl.
+>>>>>>>
+>>>>>>> Callchain:
+>>>>>>> [  109.008522]  xe_bo_move_notify+0x5c/0xf0 [xe]
+>>>>>>> [  109.008548]  xe_bo_move+0x90/0x510 [xe]
+>>>>>>> [  109.008573]  ttm_bo_handle_move_mem+0xb7/0x170 [ttm]
+>>>>>>> [  109.008581]  ttm_bo_swapout+0x15e/0x360 [ttm]
+>>>>>>> [  109.008586]  ttm_device_swapout+0xc2/0x110 [ttm]
+>>>>>>> [  109.008592]  ttm_global_swapout+0x47/0xc0 [ttm]
+>>>>>>> [  109.008598]  ttm_tt_populate+0x7a/0x130 [ttm]
+>>>>>>> [  109.008603]  ttm_bo_handle_move_mem+0x160/0x170 [ttm]
+>>>>>>> [  109.008609]  ttm_bo_validate+0xe5/0x1d0 [ttm]
+>>>>>>> [  109.008614]  ttm_bo_init_reserved+0xac/0x190 [ttm]
+>>>>>>> [  109.008620]  __xe_bo_create_locked+0x153/0x260 [xe]
+>>>>>>> [  109.008645]  xe_bo_create_locked_range+0x77/0x360 [xe]
+>>>>>>> [  109.008671]  xe_bo_create_pin_map_at+0x33/0x1f0 [xe]
+>>>>>>> [  109.008695]  xe_bo_create_pin_map+0x11/0x20 [xe]
+>>>>>>> [  109.008721]  xe_pt_create+0x69/0xf0 [xe]
+>>>>>>> [  109.008749]  xe_pt_stage_bind_entry+0x208/0x430 [xe]
+>>>>>>> [  109.008776]  xe_pt_walk_range+0xe9/0x2a0 [xe]
+>>>>>>> [  109.008802]  xe_pt_walk_range+0x223/0x2a0 [xe]
+>>>>>>> [  109.008828]  xe_pt_walk_range+0x223/0x2a0 [xe]
+>>>>>>> [  109.008853]  __xe_pt_bind_vma+0x28d/0xbd0 [xe]
+>>>>>>> [  109.008878]  xe_vm_bind_vma+0xc7/0x2f0 [xe]
+>>>>>>> [  109.008904]  xe_vm_rebind+0x72/0x160 [xe]
+>>>>>>> [  109.008930]  xe_exec_ioctl+0x22b/0xa70 [xe]
+>>>>>>> [  109.008955]  drm_ioctl_kernel+0xb9/0x150 [drm]
+>>>>>>> [  109.008972]  drm_ioctl+0x210/0x430 [drm]
+>>>>>>> [  109.008988]  __x64_sys_ioctl+0x85/0xb0
+>>>>>>> [  109.008990]  do_syscall_64+0x38/0x90
+>>>>>>> [  109.008991]  entry_SYSCALL_64_after_hwframe+0x72/0xdc
+>>>>>>>
+>>>>>>> Original warning:
+>>>>>>> [ 5613.149126] WARNING: CPU: 3 PID: 45883 at drivers/gpu/drm/xe/xe_vm.c:504 xe_vm_unlock_dma_resv+0x43/0x50 [xe]
+>>>>>>> ...
+>>>>>>> [ 5613.226398] RIP: 0010:xe_vm_unlock_dma_resv+0x43/0x50 [xe]
+>>>>>>> [ 5613.316098] Call Trace:
+>>>>>>> [ 5613.318595]  <TASK>
+>>>>>>> [ 5613.320743]  xe_exec_ioctl+0x383/0x8a0 [xe]
+>>>>>>> [ 5613.325278]  ? __is_insn_slot_addr+0x8e/0x110
+>>>>>>> [ 5613.329719]  ? __is_insn_slot_addr+0x8e/0x110
+>>>>>>> [ 5613.334116]  ? kernel_text_address+0x75/0xf0
+>>>>>>> [ 5613.338429]  ? __pfx_stack_trace_consume_entry+0x10/0x10
+>>>>>>> [ 5613.343778]  ? __kernel_text_address+0x9/0x40
+>>>>>>> [ 5613.348181]  ? unwind_get_return_address+0x1a/0x30
+>>>>>>> [ 5613.353013]  ? __pfx_stack_trace_consume_entry+0x10/0x10
+>>>>>>> [ 5613.358362]  ? arch_stack_walk+0x99/0xf0
+>>>>>>> [ 5613.362329]  ? rcu_read_lock_sched_held+0xb/0x70
+>>>>>>> [ 5613.366996]  ? lock_acquire+0x287/0x2f0
+>>>>>>> [ 5613.370873]  ? rcu_read_lock_sched_held+0xb/0x70
+>>>>>>> [ 5613.375530]  ? rcu_read_lock_sched_held+0xb/0x70
+>>>>>>> [ 5613.380181]  ? lock_release+0x225/0x2e0
+>>>>>>> [ 5613.384059]  ? __pfx_xe_exec_ioctl+0x10/0x10 [xe]
+>>>>>>> [ 5613.389092]  drm_ioctl_kernel+0xc0/0x170
+>>>>>>> [ 5613.393068]  drm_ioctl+0x1b7/0x490
+>>>>>>> [ 5613.396519]  ? __pfx_xe_exec_ioctl+0x10/0x10 [xe]
+>>>>>>> [ 5613.401547]  ? lock_release+0x225/0x2e0
+>>>>>>> [ 5613.405432]  __x64_sys_ioctl+0x8a/0xb0
+>>>>>>> [ 5613.409232]  do_syscall_64+0x37/0x90
+>>>>>>>
+>>>>>>> Signed-off-by: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
+>>>>>>> Closes: https://gitlab.freedesktop.org/drm/xe/kernel/-/issues/239
+>>>>>> Did you look at passing around the ttm_operation_ctx, or a "allow_res_evict" bool?
+>>>>>> In any case would be good to have this fixed asap, so
+>>>>>>
+>>>>>> Reviewed-by: Thomas Hellström <thomas.hellstrom@linux.intel.com>
+>>>>>>
+>>>>> I considered it, but the original callchain was too long. I don't think there is any usecase
+>>>>> in which we want to evict from the current context to make room for new pagetables for VM_BIND.
+>>>>> Anything locked is most likely used, making room by evicting from current VM (or its bound extobjs)
+>>>>> will likely lead to ENOSPC anyway.
+>>>> Well, I think the use-case where this will cause problems is if we're doing a single VM_BIND on a brand new VRAM BO, and need to evict other VRAM bos from the same VM to make room.
+>>>>
+>>>> This will then ofc ENOSPC on the next exec, but if we were to introduce a two-pass validation scheme, where we explicitly move suitable BOs with multiple placement options to TT on the first ENOSPC, we could avoid that...
+>>> Allowing same-reservation eviction will allow you to evict the BO its VM_BIND page table, leaving no entries to write. :-)
+>> Aren't those pinned?
+>>
+>> /Thomas
+> Not the bo itself.
+>
+> ~Maarten
 
-diff --git a/Documentation/gpu/drm-vm-bind-async.rst b/Documentation/gpu/drm-vm-bind-async.rst
-new file mode 100644
-index 000000000000..7f7f8f7ddfea
---- /dev/null
-+++ b/Documentation/gpu/drm-vm-bind-async.rst
-@@ -0,0 +1,138 @@
-+====================
-+Asynchronous VM_BIND
-+====================
-+
-+Nomenclature:
-+=============
-+
-+* VRAM: On-device memory. Sometimes referred to as device local memory.
-+
-+* vm: A GPU address space. Typically per process, but can be shared by
-+  multiple processes.
-+
-+* VM_BIND: An operation or a list of operations to modify a vm using
-+  an IOCTL. The operations include mapping and unmapping system- or
-+  VRAM memory.
-+
-+* syncobj: A container that abstracts synchronization objects. The
-+  synchronization objects can be either generic, like dma-fences or
-+  driver specific. A syncobj typically indicates the type of the
-+  underlying synchronization object.
-+
-+* in-syncobj: Argument to a VM_BIND IOCTL, the VM_BIND operation waits
-+  for these before starting.
-+
-+* out-syncbj: Argument to a VM_BIND_IOCTL, the VM_BIND operation
-+  signals these when the bind operation is complete.
-+
-+* memory fence: A synchronization object, different from a dma-fence
-+  that uses the value of a specified memory location to determine
-+  signaled status. A memory fence can be awaited and signaled by both
-+  the GPU and CPU. Memory fences are sometimes referred to as
-+  user-fences.
-+
-+* long-running workload: A workload that may take more than the
-+  current stipulated dma-fence maximum signal delay to complete and
-+  which therefore needs to set the VM or the GPU execution context in
-+  a certain mode that disallows completion dma-fences.
-+
-+* UMD: User-mode driver.
-+
-+* KMD: Kernel-mode driver.
-+
-+
-+Synchronous / Asynchronous VM_BIND operation
-+============================================
-+
-+Synchronous VM_BIND
-+___________________
-+With Synchronous VM_BIND, the VM_BIND operations all complete before the
-+ioctl returns. A synchronous VM_BIND takes neither in-fences nor
-+out-fences. Synchronous VM_BIND may block and wait for GPU operations;
-+for example swapin or clearing, or even previous binds.
-+
-+Asynchronous VM_BIND
-+____________________
-+Asynchronous VM_BIND accepts both in-syncobjs and out-syncobjs. While the
-+IOCTL may return immediately, the VM_BIND operations wait for the in-syncobjs
-+before modifying the GPU page-tables, and signal the out-syncobjs when
-+the modification is done in the sense that the next execbuf that
-+awaits for the out-syncobjs will see the change. Errors are reported
-+synchronously assuming that the asynchronous part of the job never errors.
-+In low-memory situations the implementation may block, performing the
-+VM_BIND synchronously, because there might not be enough memory
-+immediately available for preparing the asynchronous operation.
-+
-+If the VM_BIND IOCTL takes a list or an array of operations as an argument,
-+the in-syncobjs needs to signal before the first operation starts to
-+execute, and the out-syncobjs signal after the last operation
-+completes. Operations in the operation list can be assumed, where it
-+matters, to complete in order.
-+
-+To aid in supporting user-space queues, the VM_BIND may take a bind context
-+AKA bind engine identifier argument. All VM_BIND operations using the same
-+bind engine can then be assumed, where it matters, to complete in
-+order. No such assumptions can be made between VM_BIND operations
-+using separate bind contexts.
-+
-+The purpose of an Asynchronous VM_BIND operation is for user-mode
-+drivers to be able to pipeline interleaved vm modifications and
-+execbufs. For long-running workloads, such pipelining of a bind
-+operation is not allowed and any in-fences need to be awaited
-+synchronously.
-+
-+Also for VM_BINDS for long-running VMs the user-mode driver should typically
-+select memory fences as out-fences since that gives greater flexibility for
-+the kernel mode driver to inject other  operations into the bind /
-+unbind operations. Like for example inserting breakpoints into batch
-+buffers. The workload execution can then easily be pipelined behind
-+the bind completion using the memory out-fence as the signal condition
-+for a gpu semaphore embedded by UMD in the workload.
-+
-+Multi-operation VM_BIND IOCTL error handling and interrupts
-+========================================
-+
-+The VM_BIND operations of the ioctl may error due to lack of resources
-+to complete and also due to interrupted waits. In both situations UMD
-+should preferrably restart the IOCTL after taking suitable action. If
-+UMD has overcommited a memory resource, an -ENOSPC error will be
-+returned, and UMD may then unbind resources that are not used at the
-+moment and restart the IOCTL. On -EINTR, UMD should simply restart the
-+IOCTL and on -ENOMEM user-space may either attempt to free known
-+system memory resources or abort the operation. If aborting as a
-+result of a failed operation in a list of operations, some operations
-+may still have completed, and to get back to a known state, user-space
-+should therefore attempt to unbind all virtual memory regions touched
-+by the failing IOCTL.
-+Unbind operations are guaranteed not to cause any errors due to
-+resource constraints.
-+In between a failed VM_BIND ioctl and a successful restart there may
-+be implementation defined restrictions on the use of the VM. For a
-+description why, please see KMD implementation details under [error
-+state saving]_.
-+
-+
-+KMD implementation details
-+==========================
-+
-+.. [error state saving] Open: When the VM_BIND ioctl returns an error, some
-+			or even parts of an operation may have been
-+			completed. If the ioctl is restarted, in order
-+			to know where to restart, the KMD can
-+			either put the VM in an error state and save
-+			one instance of the needed restart state
-+			internally. In this case, KMD needs to block
-+			further modifications of the VM state that may
-+			cause additional failures requiring a restart
-+			state save, until the error has been fully resolved.
-+			If the uAPI instead defines a pointer to a
-+			UMD allocated cookie in the IOCTL struct, it
-+			could also choose to store the restart state
-+			in that cookie.
-+
-+			The restart state may, for example, be the
-+			number of successfully completed operations.
-+
-+			Easiest for UMD would of course be if KMD did
-+			a full unwind on error so that no error state
-+			needs to be saved.
--- 
-2.39.2
+Hmm, yes, I get the point. Actually a pretty solid argument for never 
+allowing page-table validations to evict same-resv bos.
+
+/Thomas
+
+
 
