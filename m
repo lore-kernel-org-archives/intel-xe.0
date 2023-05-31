@@ -4,49 +4,48 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id CAA5FC7EE23
-	for <intel-xe@archiver.kernel.org>; Wed, 31 May 2023 22:48:31 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1B86CC7EE31
+	for <intel-xe@archiver.kernel.org>; Wed, 31 May 2023 22:48:33 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9C5DB10E09A;
-	Wed, 31 May 2023 22:48:31 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6A47210E1EB;
+	Wed, 31 May 2023 22:48:32 +0000 (UTC)
 Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5707610E0D3
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 941C010E0E7
  for <intel-xe@lists.freedesktop.org>; Wed, 31 May 2023 22:48:30 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
  t=1685573310; x=1717109310;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=yFEtGi2paz8NKcuT4ilzH+RwXnTsijOsN3ayd4Omh44=;
- b=Xsek/8CHZOc+PbO4o0V/PWBVrjqDY5crH4icekBZGalP/95/bBLPDRpX
- Ro/CdRPS1FbQN23cvR3tSiBmt4nodkq5k+WuU+5njTYxVUmgtBLVBNe0P
- poxKMc5u6K35hsD8s6PaSSjNHhVBwPaYUHaTN6OlJhVRtHHKzrZOfelsL
- /UVraX8WN7XM0ffVimcB41RTTNgGK5L7AfWJV3bNyKfC2L90UAs4RF/rM
- 4dXYXbmUYgaABwFwTEPq1222JZuQoVsmalpt2vx/FBokb3V1kKgkek2mU
- w1F/J9qmbba2V//+OSQZpgG3FC+pXv7tO2RF0GU8KvNwcgyDeXuh6pGRp Q==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10727"; a="354235475"
-X-IronPort-AV: E=Sophos;i="6.00,207,1681196400"; d="scan'208";a="354235475"
+ bh=CK5VT8Q97vVSwMD5OhLJLZYIrpt+VjhiVxKyN4sWjpM=;
+ b=FC8khe/TZ64gGOmjBOAcl23atdiNi7IMD/QS3nx8u9HxhmgcAoy1OMnP
+ pODI+dfaQxlvfX91PBx1lY80lSXJr7XhQCmWqEEjj+lM6NiV1ljw3JH4f
+ J70e10KlclsDAQ9ZFlOpwVQGhNVo3pinyF/mOkPSvGwdgXEMnef9Io5Fm
+ SwA5CX9VJqigaVTFgLN7ZoG3RJbvyAs5U5OkHtHRScLHlRRjFP0bXUlrh
+ WD0893kxiTxEpgZsHGolNrlZ96ObcucMi+hYynIM8x4XPkTTUbFuma9lU
+ FES/GBarN0gf/UaTtBf+8pos+mQ+JzCUXKp96NjL3s5W8WsOlPmlhsKj3 Q==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10727"; a="354235479"
+X-IronPort-AV: E=Sophos;i="6.00,207,1681196400"; d="scan'208";a="354235479"
 Received: from fmsmga005.fm.intel.com ([10.253.24.32])
  by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  31 May 2023 15:48:29 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10727"; a="1037229606"
-X-IronPort-AV: E=Sophos;i="6.00,207,1681196400"; d="scan'208";a="1037229606"
+X-IronPort-AV: E=McAfee;i="6600,9927,10727"; a="1037229627"
+X-IronPort-AV: E=Sophos;i="6.00,207,1681196400"; d="scan'208";a="1037229627"
 Received: from mdroper-desk1.fm.intel.com ([10.1.27.147])
  by fmsmga005-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 31 May 2023 15:48:28 -0700
+ 31 May 2023 15:48:29 -0700
 From: Matt Roper <matthew.d.roper@intel.com>
 To: intel-xe@lists.freedesktop.org
-Date: Wed, 31 May 2023 15:48:14 -0700
-Message-Id: <20230531224821.387722-2-matthew.d.roper@intel.com>
+Date: Wed, 31 May 2023 15:48:18 -0700
+Message-Id: <20230531224821.387722-6-matthew.d.roper@intel.com>
 X-Mailer: git-send-email 2.40.1
 In-Reply-To: <20230531224821.387722-1-matthew.d.roper@intel.com>
 References: <20230531224821.387722-1-matthew.d.roper@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-xe] [PATCH 1/8] drm/i915/display: Move display device info
- to header under display/
+Subject: [Intel-xe] [PATCH 5/8] drm/i915/display: Handle GMD_ID
+ identification in display code
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -58,166 +57,241 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Cc: Lucas De Marchi <lucas.demarchi@intel.com>, matthew.d.roper@intel.com,
- Andrzej Hajda <andrzej.hajda@intel.com>
+Cc: matthew.d.roper@intel.com, Andrzej Hajda <andrzej.hajda@intel.com>
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Moving display-specific substructure definitions will help keep display
-more self-contained and make it easier to re-use in other drivers (i.e.,
-Xe) in the future.
+For platforms with GMD_ID support (i.e., everything MTL and beyond),
+identification of the display IP present should be based on the contents
+of the GMD_ID register rather than a PCI devid match.
+
+Note that since GMD_ID readout requires access to the PCI BAR, a slight
+change to the driver init sequence is needed --- pci_enable_device() is
+now called before i915_driver_create().
+
+v2:
+ - Fix use of uninitialized i915 pointer in error path if
+   pci_enable_device() fails before the i915 device is created.  (lkp)
+ - Use drm_device parameter to intel_display_device_probe.  This goes
+   against i915 conventions, but since the primary goal here is to make
+   it easy to call this function from other drivers (like Xe) and since
+   we don't need anything from the i915 structure, this seems like an
+   exception where drm_device is a more natural fit.
+v3:
+ - Go back do drm_i915_private for intel_display_device_probe.  (Jani)
+ - Move forward decl to top of header.  (Jani)
 
 Signed-off-by: Matt Roper <matthew.d.roper@intel.com>
 Reviewed-by: Andrzej Hajda <andrzej.hajda@intel.com>
-Reviewed-by: Lucas De Marchi <lucas.demarchi@intel.com>
-Link: https://patchwork.freedesktop.org/patch/msgid/20230523195609.73627-2-matthew.d.roper@intel.com
-(cherry picked from commit 05aa8e0135094ae3d1e6837b5457a740266d7cfc)
+Link: https://patchwork.freedesktop.org/patch/msgid/20230523195609.73627-6-matthew.d.roper@intel.com
+(cherry picked from commit 12e6f6dc78e4f4a418648fb1a9c0cd2ae9b3430b)
 ---
- .../drm/i915/display/intel_display_device.h   | 60 +++++++++++++++++++
- drivers/gpu/drm/i915/intel_device_info.h      | 49 +--------------
- 2 files changed, 62 insertions(+), 47 deletions(-)
- create mode 100644 drivers/gpu/drm/i915/display/intel_display_device.h
+ .../drm/i915/display/intel_display_device.c   | 65 +++++++++++++++++--
+ .../drm/i915/display/intel_display_device.h   |  5 +-
+ drivers/gpu/drm/i915/i915_driver.c            | 17 +++--
+ drivers/gpu/drm/i915/intel_device_info.c      | 13 ++--
+ 4 files changed, 84 insertions(+), 16 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_display_device.h b/drivers/gpu/drm/i915/display/intel_display_device.h
-new file mode 100644
-index 000000000000..c689d582dbf1
---- /dev/null
-+++ b/drivers/gpu/drm/i915/display/intel_display_device.h
-@@ -0,0 +1,60 @@
-+/* SPDX-License-Identifier: MIT */
-+/*
-+ * Copyright © 2023 Intel Corporation
-+ */
-+
-+#ifndef __INTEL_DISPLAY_DEVICE_H__
-+#define __INTEL_DISPLAY_DEVICE_H__
-+
-+#include <linux/types.h>
-+
-+#include "display/intel_display_limits.h"
-+
-+#define DEV_INFO_DISPLAY_FOR_EACH_FLAG(func) \
-+	/* Keep in alphabetical order */ \
-+	func(cursor_needs_physical); \
-+	func(has_cdclk_crawl); \
-+	func(has_cdclk_squash); \
-+	func(has_ddi); \
-+	func(has_dp_mst); \
-+	func(has_dsb); \
-+	func(has_fpga_dbg); \
-+	func(has_gmch); \
-+	func(has_hotplug); \
-+	func(has_hti); \
-+	func(has_ipc); \
-+	func(has_overlay); \
-+	func(has_psr); \
-+	func(has_psr_hw_tracking); \
-+	func(overlay_needs_physical); \
-+	func(supports_tv);
-+
-+struct intel_display_device_info {
-+	u8 abox_mask;
-+
-+	struct {
-+		u16 size; /* in blocks */
-+		u8 slice_mask;
-+	} dbuf;
-+
-+#define DEFINE_FLAG(name) u8 name:1
-+	DEV_INFO_DISPLAY_FOR_EACH_FLAG(DEFINE_FLAG);
-+#undef DEFINE_FLAG
-+
-+	/* Global register offset for the display engine */
-+	u32 mmio_offset;
-+
-+	/* Register offsets for the various display pipes and transcoders */
-+	u32 pipe_offsets[I915_MAX_TRANSCODERS];
-+	u32 trans_offsets[I915_MAX_TRANSCODERS];
-+	u32 cursor_offsets[I915_MAX_PIPES];
-+
-+	struct {
-+		u32 degamma_lut_size;
-+		u32 gamma_lut_size;
-+		u32 degamma_lut_tests;
-+		u32 gamma_lut_tests;
-+	} color;
+diff --git a/drivers/gpu/drm/i915/display/intel_display_device.c b/drivers/gpu/drm/i915/display/intel_display_device.c
+index 3e2f4cd0b9f5..a513ac8f71a3 100644
+--- a/drivers/gpu/drm/i915/display/intel_display_device.c
++++ b/drivers/gpu/drm/i915/display/intel_display_device.c
+@@ -5,7 +5,10 @@
+ 
+ #include <drm/i915_pciids.h>
+ #include <drm/drm_color_mgmt.h>
++#include <linux/pci.h>
+ 
++#include "i915_drv.h"
++#include "i915_reg.h"
+ #include "intel_display_device.h"
+ #include "intel_display_power.h"
+ #include "intel_display_reg_defs.h"
+@@ -700,19 +703,73 @@ static const struct {
+ 	INTEL_RPLP_IDS(&xe_lpd_display),
+ 	INTEL_DG2_IDS(&xe_hpd_display),
+ 
+-	/* FIXME: Replace this with a GMD_ID lookup */
+-	INTEL_MTL_IDS(&xe_lpdp_display),
++	/*
++	 * Do not add any GMD_ID-based platforms to this list.  They will
++	 * be probed automatically based on the IP version reported by
++	 * the hardware.
++	 */
+ };
+ 
++static const struct {
++	u16 ver;
++	u16 rel;
++	const struct intel_display_device_info *display;
++} gmdid_display_map[] = {
++	{ 14,  0, &xe_lpdp_display },
 +};
 +
-+#endif
-diff --git a/drivers/gpu/drm/i915/intel_device_info.h b/drivers/gpu/drm/i915/intel_device_info.h
-index f032f2500f50..c14bc3f5d0fa 100644
---- a/drivers/gpu/drm/i915/intel_device_info.h
-+++ b/drivers/gpu/drm/i915/intel_device_info.h
-@@ -29,7 +29,7 @@
++static const struct intel_display_device_info *
++probe_gmdid_display(struct drm_i915_private *i915, u16 *ver, u16 *rel, u16 *step)
++{
++	struct pci_dev *pdev = to_pci_dev(i915->drm.dev);
++	void __iomem *addr;
++	u32 val;
++	int i;
++
++	addr = pci_iomap_range(pdev, 0, i915_mmio_reg_offset(GMD_ID_DISPLAY), sizeof(u32));
++	if (!addr) {
++		drm_err(&i915->drm, "Cannot map MMIO BAR to read display GMD_ID\n");
++		return &no_display;
++	}
++
++	val = ioread32(addr);
++	pci_iounmap(pdev, addr);
++
++	if (val == 0)
++		/* Platform doesn't have display */
++		return &no_display;
++
++	*ver = REG_FIELD_GET(GMD_ID_ARCH_MASK, val);
++	*rel = REG_FIELD_GET(GMD_ID_RELEASE_MASK, val);
++	*step = REG_FIELD_GET(GMD_ID_STEP, val);
++
++	for (i = 0; i < ARRAY_SIZE(gmdid_display_map); i++)
++		if (*ver == gmdid_display_map[i].ver &&
++		    *rel == gmdid_display_map[i].rel)
++			return gmdid_display_map[i].display;
++
++	drm_err(&i915->drm, "Unrecognized display IP version %d.%02d; disabling display.\n",
++		*ver, *rel);
++	return &no_display;
++}
++
+ const struct intel_display_device_info *
+-intel_display_device_probe(u16 pci_devid)
++intel_display_device_probe(struct drm_i915_private *i915, bool has_gmdid,
++			   u16 *gmdid_ver, u16 *gmdid_rel, u16 *gmdid_step)
+ {
++	struct pci_dev *pdev = to_pci_dev(i915->drm.dev);
+ 	int i;
  
- #include "intel_step.h"
++	if (has_gmdid)
++		return probe_gmdid_display(i915, gmdid_ver, gmdid_rel, gmdid_step);
++
+ 	for (i = 0; i < ARRAY_SIZE(intel_display_ids); i++) {
+-		if (intel_display_ids[i].devid == pci_devid)
++		if (intel_display_ids[i].devid == pdev->device)
+ 			return intel_display_ids[i].info;
+ 	}
  
--#include "display/intel_display_limits.h"
-+#include "display/intel_display_device.h"
++	drm_dbg(&i915->drm, "No display ID found for device ID %04x; disabling display.\n",
++		pdev->device);
++
+ 	return &no_display;
+ }
+diff --git a/drivers/gpu/drm/i915/display/intel_display_device.h b/drivers/gpu/drm/i915/display/intel_display_device.h
+index 1f7d08b3ad6b..d1d11581d85d 100644
+--- a/drivers/gpu/drm/i915/display/intel_display_device.h
++++ b/drivers/gpu/drm/i915/display/intel_display_device.h
+@@ -10,6 +10,8 @@
  
- #include "gt/intel_engine_types.h"
- #include "gt/intel_context_types.h"
-@@ -180,25 +180,6 @@ enum intel_ppgtt_type {
- 	func(unfenced_needs_alignment); \
- 	func(hws_needs_physical);
+ #include "display/intel_display_limits.h"
  
--#define DEV_INFO_DISPLAY_FOR_EACH_FLAG(func) \
--	/* Keep in alphabetical order */ \
--	func(cursor_needs_physical); \
--	func(has_cdclk_crawl); \
--	func(has_cdclk_squash); \
--	func(has_ddi); \
--	func(has_dp_mst); \
--	func(has_dsb); \
--	func(has_fpga_dbg); \
--	func(has_gmch); \
--	func(has_hotplug); \
--	func(has_hti); \
--	func(has_ipc); \
--	func(has_overlay); \
--	func(has_psr); \
--	func(has_psr_hw_tracking); \
--	func(overlay_needs_physical); \
--	func(supports_tv);
--
- struct intel_ip_version {
- 	u8 ver;
- 	u8 rel;
-@@ -276,33 +257,7 @@ struct intel_device_info {
- 	DEV_INFO_FOR_EACH_FLAG(DEFINE_FLAG);
- #undef DEFINE_FLAG
++struct drm_i915_private;
++
+ #define DEV_INFO_DISPLAY_FOR_EACH_FLAG(func) \
+ 	/* Keep in alphabetical order */ \
+ 	func(cursor_needs_physical); \
+@@ -81,6 +83,7 @@ struct intel_display_device_info {
+ };
  
--	struct {
--		u8 abox_mask;
--
--		struct {
--			u16 size; /* in blocks */
--			u8 slice_mask;
--		} dbuf;
--
--#define DEFINE_FLAG(name) u8 name:1
--		DEV_INFO_DISPLAY_FOR_EACH_FLAG(DEFINE_FLAG);
--#undef DEFINE_FLAG
--
--		/* Global register offset for the display engine */
--		u32 mmio_offset;
--
--		/* Register offsets for the various display pipes and transcoders */
--		u32 pipe_offsets[I915_MAX_TRANSCODERS];
--		u32 trans_offsets[I915_MAX_TRANSCODERS];
--		u32 cursor_offsets[I915_MAX_PIPES];
--
--		struct {
--			u32 degamma_lut_size;
--			u32 gamma_lut_size;
--			u32 degamma_lut_tests;
--			u32 gamma_lut_tests;
--		} color;
--	} display;
-+	struct intel_display_device_info display;
+ const struct intel_display_device_info *
+-intel_display_device_probe(u16 pci_devid);
++intel_display_device_probe(struct drm_i915_private *i915, bool has_gmdid,
++			   u16 *ver, u16 *rel, u16 *step);
  
- 	/*
- 	 * Initial runtime info. Do not access outside of i915_driver_create().
+ #endif
+diff --git a/drivers/gpu/drm/i915/i915_driver.c b/drivers/gpu/drm/i915/i915_driver.c
+index 903a0a2e3635..27e5de529b06 100644
+--- a/drivers/gpu/drm/i915/i915_driver.c
++++ b/drivers/gpu/drm/i915/i915_driver.c
+@@ -754,13 +754,17 @@ int i915_driver_probe(struct pci_dev *pdev, const struct pci_device_id *ent)
+ 	struct drm_i915_private *i915;
+ 	int ret;
+ 
+-	i915 = i915_driver_create(pdev, ent);
+-	if (IS_ERR(i915))
+-		return PTR_ERR(i915);
+-
+ 	ret = pci_enable_device(pdev);
+-	if (ret)
+-		goto out_fini;
++	if (ret) {
++		pr_err("Failed to enable graphics device: %pe\n", ERR_PTR(ret));
++		return ret;
++	}
++
++	i915 = i915_driver_create(pdev, ent);
++	if (IS_ERR(i915)) {
++		ret = PTR_ERR(i915);
++		goto out_pci_disable;
++	}
+ 
+ 	ret = i915_driver_early_probe(i915);
+ 	if (ret < 0)
+@@ -843,7 +847,6 @@ int i915_driver_probe(struct pci_dev *pdev, const struct pci_device_id *ent)
+ 	i915_driver_late_release(i915);
+ out_pci_disable:
+ 	pci_disable_device(pdev);
+-out_fini:
+ 	i915_probe_error(i915, "Device initialization failed (%d)\n", ret);
+ 	return ret;
+ }
+diff --git a/drivers/gpu/drm/i915/intel_device_info.c b/drivers/gpu/drm/i915/intel_device_info.c
+index 79523e55ca9c..2f79d232b04a 100644
+--- a/drivers/gpu/drm/i915/intel_device_info.c
++++ b/drivers/gpu/drm/i915/intel_device_info.c
+@@ -345,7 +345,6 @@ static void ip_ver_read(struct drm_i915_private *i915, u32 offset, struct intel_
+ static void intel_ipver_early_init(struct drm_i915_private *i915)
+ {
+ 	struct intel_runtime_info *runtime = RUNTIME_INFO(i915);
+-	struct intel_display_runtime_info *display_runtime = DISPLAY_RUNTIME_INFO(i915);
+ 
+ 	if (!HAS_GMD_ID(i915)) {
+ 		drm_WARN_ON(&i915->drm, RUNTIME_INFO(i915)->graphics.ip.ver > 12);
+@@ -366,8 +365,6 @@ static void intel_ipver_early_init(struct drm_i915_private *i915)
+ 		RUNTIME_INFO(i915)->graphics.ip.ver = 12;
+ 		RUNTIME_INFO(i915)->graphics.ip.rel = 70;
+ 	}
+-	ip_ver_read(i915, i915_mmio_reg_offset(GMD_ID_DISPLAY),
+-		    (struct intel_ip_version *)&display_runtime->ip);
+ 	ip_ver_read(i915, i915_mmio_reg_offset(GMD_ID_MEDIA),
+ 		    &runtime->media.ip);
+ }
+@@ -574,6 +571,7 @@ void intel_device_info_driver_create(struct drm_i915_private *i915,
+ {
+ 	struct intel_device_info *info;
+ 	struct intel_runtime_info *runtime;
++	u16 ver, rel, step;
+ 
+ 	/* Setup the write-once "constant" device info */
+ 	info = mkwrite_device_info(i915);
+@@ -584,11 +582,18 @@ void intel_device_info_driver_create(struct drm_i915_private *i915,
+ 	memcpy(runtime, &INTEL_INFO(i915)->__runtime, sizeof(*runtime));
+ 
+ 	/* Probe display support */
+-	info->display = intel_display_device_probe(device_id);
++	info->display = intel_display_device_probe(i915, info->has_gmd_id,
++						   &ver, &rel, &step);
+ 	memcpy(DISPLAY_RUNTIME_INFO(i915),
+ 	       &DISPLAY_INFO(i915)->__runtime_defaults,
+ 	       sizeof(*DISPLAY_RUNTIME_INFO(i915)));
+ 
++	if (info->has_gmd_id) {
++		DISPLAY_RUNTIME_INFO(i915)->ip.ver = ver;
++		DISPLAY_RUNTIME_INFO(i915)->ip.rel = rel;
++		DISPLAY_RUNTIME_INFO(i915)->ip.step = step;
++	}
++
+ 	runtime->device_id = device_id;
+ }
+ 
 -- 
 2.40.1
 
