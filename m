@@ -4,48 +4,49 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id E6B2BC77B7A
-	for <intel-xe@archiver.kernel.org>; Wed, 31 May 2023 15:24:10 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0E6BBC7EE2D
+	for <intel-xe@archiver.kernel.org>; Wed, 31 May 2023 15:24:11 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C11AA10E4F1;
+	by gabe.freedesktop.org (Postfix) with ESMTP id DD73D10E4F2;
 	Wed, 31 May 2023 15:24:10 +0000 (UTC)
 Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
- by gabe.freedesktop.org (Postfix) with ESMTPS id BAA1A10E4EE
- for <intel-xe@lists.freedesktop.org>; Wed, 31 May 2023 15:24:02 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 619C910E4EF
+ for <intel-xe@lists.freedesktop.org>; Wed, 31 May 2023 15:24:05 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1685546642; x=1717082642;
+ t=1685546645; x=1717082645;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=MnLnDOrF2jovaWn1zYPfXEi8P/HMpnTlYh2nSK7yM8I=;
- b=OvnjVVk7Tp+UdT7hwmHl+GPN4me+xSQg2w7e8Zcxk6IYFv4PvFXJfxH6
- JUbv/tkGQKDfLfqjPpPyxSzjA7fEpRXKKV/u2mbRM6/Tw6kWa/pZVul26
- ASef3jMN6Qfl+4idRiyf+RqXzXcv3ebGq8gvRBxHN2sNwwmEI8TqC/Ogl
- 7KoFwcsNWNBGJtCaOjvG/9xiieLJlWadwnu4ss5ZqULhQNo7Oly+bPIKX
- JutIejQqaBnqblZDH5P7HRAHw3/QrHCz6LJMwv6xpj480XSNh6Hpix4aF
- zY3CzXooQAKlqUQ/F3gv3AmXLsgUqOkK30jXxiK6XxhYyMl5nKzexxyei Q==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10727"; a="339865506"
-X-IronPort-AV: E=Sophos;i="6.00,207,1681196400"; d="scan'208";a="339865506"
+ bh=efOT5ctNSDOnFUR2MwaDSlzruPen2t80HYih7Z3QfVE=;
+ b=ehNbBC/Fw+2Rn4RXq9mtfnSa0epV7Ju0cGTjrueaDf0BUYrW9KanK/SM
+ EuXJUeYqVqGQMUBlNr6A2i0PFtmgoUC8wX7ZSNjPBMn/Sirr+CBwRm/eX
+ 5EqoHR6Jlpa+85czQXJo3/4Ga5zFBNi5WWNMQYSICp80wA0+U3rW9C5vl
+ uZozDMfBL0J5MGA/E6mdhDk11UccEj6YwbiY3dfa/UVWWZ2zx4qeYOXFr
+ T3eL3JS5qAu0qKAvCs3vYOuLqDaLsK9mKnRyCIhR2IMayIDwfZl+tVqSQ
+ x2Puy3A/GCXiUDDymMNkAoQILOyKPYES/4VON9MwvQWVpDJbe2W5VBPDn A==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10727"; a="339865519"
+X-IronPort-AV: E=Sophos;i="6.00,207,1681196400"; d="scan'208";a="339865519"
 Received: from fmsmga003.fm.intel.com ([10.253.24.29])
  by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 31 May 2023 08:24:02 -0700
+ 31 May 2023 08:24:05 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10727"; a="796747923"
-X-IronPort-AV: E=Sophos;i="6.00,207,1681196400"; d="scan'208";a="796747923"
+X-IronPort-AV: E=McAfee;i="6600,9927,10727"; a="796747944"
+X-IronPort-AV: E=Sophos;i="6.00,207,1681196400"; d="scan'208";a="796747944"
 Received: from amokrov-mobl1.ccr.corp.intel.com (HELO 9d3bf2d3f760.intel.com)
  ([10.251.208.253])
  by fmsmga003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 31 May 2023 08:24:01 -0700
+ 31 May 2023 08:24:03 -0700
 From: Francois Dugast <francois.dugast@intel.com>
 To: intel-xe@lists.freedesktop.org
-Date: Wed, 31 May 2023 15:23:35 +0000
-Message-Id: <20230531152338.6-3-francois.dugast@intel.com>
+Date: Wed, 31 May 2023 15:23:37 +0000
+Message-Id: <20230531152338.6-5-francois.dugast@intel.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20230531152338.6-1-francois.dugast@intel.com>
 References: <20230531152338.6-1-francois.dugast@intel.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-xe] [PATCH v2 2/5] drm/xe: Group engine related structs
+Subject: [Intel-xe] [PATCH v2 4/5] drm/xe: Document usage of struct
+ drm_xe_device_query
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -60,70 +61,82 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Move the definition of drm_xe_engine_class_instance to group it with
-other engine related structs and to follow the ioctls order.
+Explain how to use struct drm_xe_device_query, in particular the behavior
+for size.
 
 Reported-by: Oded Gabbay <ogabbay@kernel.org>
 Link: https://lists.freedesktop.org/archives/intel-xe/2023-May/004704.html
 Signed-off-by: Francois Dugast <francois.dugast@intel.com>
 ---
- include/uapi/drm/xe_drm.h | 36 ++++++++++++++++++------------------
- 1 file changed, 18 insertions(+), 18 deletions(-)
+ include/uapi/drm/xe_drm.h | 27 +++++++++++++++++++++++++++
+ 1 file changed, 27 insertions(+)
 
 diff --git a/include/uapi/drm/xe_drm.h b/include/uapi/drm/xe_drm.h
-index ac3cfc1fb4a5..5d34b570a305 100644
+index 2eea80bf0e06..e29399de148c 100644
 --- a/include/uapi/drm/xe_drm.h
 +++ b/include/uapi/drm/xe_drm.h
-@@ -116,24 +116,6 @@ struct xe_user_extension {
- #define DRM_IOCTL_XE_WAIT_USER_FENCE		DRM_IOWR(DRM_COMMAND_BASE + DRM_XE_WAIT_USER_FENCE, struct drm_xe_wait_user_fence)
- #define DRM_IOCTL_XE_VM_MADVISE			DRM_IOW( DRM_COMMAND_BASE + DRM_XE_VM_MADVISE, struct drm_xe_vm_madvise)
- 
--struct drm_xe_engine_class_instance {
--	__u16 engine_class;
--
--#define DRM_XE_ENGINE_CLASS_RENDER		0
--#define DRM_XE_ENGINE_CLASS_COPY		1
--#define DRM_XE_ENGINE_CLASS_VIDEO_DECODE	2
--#define DRM_XE_ENGINE_CLASS_VIDEO_ENHANCE	3
--#define DRM_XE_ENGINE_CLASS_COMPUTE		4
--	/*
--	 * Kernel only class (not actual hardware engine class). Used for
--	 * creating ordered queues of VM bind operations.
--	 */
--#define DRM_XE_ENGINE_CLASS_VM_BIND		5
--
--	__u16 engine_instance;
--	__u16 gt_id;
--};
--
- #define XE_MEM_REGION_CLASS_SYSMEM	0
+@@ -120,7 +120,10 @@ struct xe_user_extension {
  #define XE_MEM_REGION_CLASS_VRAM	1
  
-@@ -518,6 +500,24 @@ struct drm_xe_engine_set_property {
- 	__u64 reserved[2];
+ struct drm_xe_query_mem_usage {
++	/** @num_params: number of memory regions returned in regions */
+ 	__u32 num_regions;
++
++	/** @pad: MBZ */
+ 	__u32 pad;
+ 
+ 	struct drm_xe_query_mem_region {
+@@ -136,7 +139,10 @@ struct drm_xe_query_mem_usage {
  };
  
-+struct drm_xe_engine_class_instance {
-+	__u16 engine_class;
+ struct drm_xe_query_config {
++	/** @num_params: number of parameters returned in info */
+ 	__u32 num_params;
 +
-+#define DRM_XE_ENGINE_CLASS_RENDER		0
-+#define DRM_XE_ENGINE_CLASS_COPY		1
-+#define DRM_XE_ENGINE_CLASS_VIDEO_DECODE	2
-+#define DRM_XE_ENGINE_CLASS_VIDEO_ENHANCE	3
-+#define DRM_XE_ENGINE_CLASS_COMPUTE		4
-+	/*
-+	 * Kernel only class (not actual hardware engine class). Used for
-+	 * creating ordered queues of VM bind operations.
-+	 */
-+#define DRM_XE_ENGINE_CLASS_VM_BIND		5
++	/** @pad: MBZ */
+ 	__u32 pad;
+ 
+ #define XE_QUERY_CONFIG_REV_AND_DEVICE_ID	0
+@@ -149,11 +155,15 @@ struct drm_xe_query_config {
+ #define XE_QUERY_CONFIG_MEM_REGION_COUNT	5
+ #define XE_QUERY_CONFIG_MAX_ENGINE_PRIORITY	6
+ #define XE_QUERY_CONFIG_NUM_PARAM		XE_QUERY_CONFIG_MAX_ENGINE_PRIORITY + 1
++	/** @info: array containing the config info below  */
+ 	__u64 info[];
+ };
+ 
+ struct drm_xe_query_gts {
++	/** @num_gt: number of GTs returned in gts */
+ 	__u32 num_gt;
 +
-+	__u16 engine_instance;
-+	__u16 gt_id;
-+};
-+
- struct drm_xe_engine_create {
++	/** @pad: MBZ */
+ 	__u32 pad;
+ 
+ 	/*
+@@ -193,6 +203,23 @@ struct drm_xe_query_topology_mask {
+ 	__u8 mask[];
+ };
+ 
++/**
++ * struct drm_xe_device_query - main structure to query device information
++ *
++ * If size is set to 0, the driver fills it with the required size for the
++ * requested type of data to query. If size is equal to the required size,
++ * the queried information is copied into data.
++ *
++ * A typical usage from user space is:
++ * - create a struct drm_xe_device_query with size = 0 and query = one of
++ *   the types DRM_XE_DEVICE_QUERY_*, for example DRM_XE_DEVICE_QUERY_ENGINES
++ * - call DRM_IOCTL_XE_DEVICE_QUERY
++ * - create a pointer to a query struct matching the query type selected
++ *   previously, for example struct drm_xe_engine_class_instance *
++ * - allocate memory of the size returned in drm_xe_device_query
++ * - call DRM_IOCTL_XE_DEVICE_QUERY
++ * - read the queried information in data
++ */
+ struct drm_xe_device_query {
  	/** @extensions: Pointer to the first extension struct, if any */
- #define XE_ENGINE_EXTENSION_SET_PROPERTY               0
+ 	__u64 extensions;
 -- 
 2.34.1
 
