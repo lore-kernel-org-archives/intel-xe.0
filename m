@@ -4,48 +4,47 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id BD58DC7EE2F
-	for <intel-xe@archiver.kernel.org>; Thu,  1 Jun 2023 00:04:17 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4EA5BC7EE2D
+	for <intel-xe@archiver.kernel.org>; Thu,  1 Jun 2023 00:04:18 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 97AC610E521;
+	by gabe.freedesktop.org (Postfix) with ESMTP id D3EA510E525;
 	Thu,  1 Jun 2023 00:04:17 +0000 (UTC)
 Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 454A910E1F0
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1791F10E519
  for <intel-xe@lists.freedesktop.org>; Thu,  1 Jun 2023 00:04:15 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
  t=1685577855; x=1717113855;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=bP/LQuq9Qp43W69wP/r8kGFfXUewKSySY8aVGzcVyew=;
- b=gyczmhc9v5jsNQbCFmcB4q7+tz1NLex/7+9uAbfesgumtZiZGqGaWrH9
- 133+DojggdBTxJ1SQtRP57hWtGMF4ODjiQmjEEIzoippjESDivaYad52t
- PTzFkrp9/4lrFgzmPGsTLrBbSo9S1Nn/CorHiVEGRSzzui7Y8GDLGcIxf
- Yi2W1h1I31DMW1hvN/tvOe1AbFxe8SQ2PGVu0G//8lFka0jXkzoxeNeq4
- VHteME3ADj7/YZy2ZXUji9YxBw/GqlPDrTCFKnut308/A9qMRo66oMkL3
- V3/Bhi3sg21IMV8VRryPBn/+PvPx+k+KvEt96UG1XtBNSM/eN/7NkeQG7 A==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10727"; a="339996856"
-X-IronPort-AV: E=Sophos;i="6.00,207,1681196400"; d="scan'208";a="339996856"
+ bh=5fDhHPN6QXeorzqMtVk5Bb2Z8D1VCJLAifQSIzAF4H8=;
+ b=LkWojU1MwK6/HTX0Gn3cdkat1LwfRMkLTtNBcMKRPiBkd3T0MTdDogwV
+ 2pmX97UBPg3Bk+emCeV18ril61/QezgnK1U2AVRdUq9th5BPckOTUgpsR
+ NcvXhIBGmPxorxLoBey9E9NaQVpds5wxW9yJiE//JEAsyg6Q694x6Q2gI
+ zlrfSDQZ+c4eFvTNR3vdsR6AUExrG52KslBdmikphHqWjMAJC+xxKfZ0M
+ Su5vKI+ej5DGKlXqOVlL/tVc8SO7OHLVIF7dYNUz4fGM801lRgPu/AqZX
+ 6NFF/5q33DxIKeN15S1qMlun+9Rx+ECCQP2eaoe7VXFBjFTfxQcSZQCCM w==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10727"; a="339996851"
+X-IronPort-AV: E=Sophos;i="6.00,207,1681196400"; d="scan'208";a="339996851"
 Received: from orsmga003.jf.intel.com ([10.7.209.27])
  by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 31 May 2023 17:04:15 -0700
+ 31 May 2023 17:04:14 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10727"; a="657556218"
-X-IronPort-AV: E=Sophos;i="6.00,207,1681196400"; d="scan'208";a="657556218"
+X-IronPort-AV: E=McAfee;i="6600,9927,10727"; a="657556214"
+X-IronPort-AV: E=Sophos;i="6.00,207,1681196400"; d="scan'208";a="657556214"
 Received: from mdroper-desk1.fm.intel.com ([10.1.27.147])
  by orsmga003-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  31 May 2023 17:04:14 -0700
 From: Matt Roper <matthew.d.roper@intel.com>
 To: intel-xe@lists.freedesktop.org
-Date: Wed, 31 May 2023 17:03:52 -0700
-Message-Id: <20230601000403.432517-21-matthew.d.roper@intel.com>
+Date: Wed, 31 May 2023 17:03:51 -0700
+Message-Id: <20230601000403.432517-20-matthew.d.roper@intel.com>
 X-Mailer: git-send-email 2.40.1
 In-Reply-To: <20230601000403.432517-1-matthew.d.roper@intel.com>
 References: <20230601000403.432517-1-matthew.d.roper@intel.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-xe] [PATCH v4 20/31] drm/xe: Move display IRQ postinstall
- out of GT function
+Subject: [Intel-xe] [PATCH v4 19/31] drm/xe: Add media GT to tile
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -57,44 +56,39 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Cc: Lucas De Marchi <lucas.demarchi@intel.com>, matthew.d.roper@intel.com,
- Rodrigo Vivi <rodrigo.vivi@intel.com>
+Cc: matthew.d.roper@intel.com, Rodrigo Vivi <rodrigo.vivi@intel.com>
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Display interrupts are unrelated to the GT (and are also only relevant
-to the root tile).  Move the postinstall call up a level in the
-callstack.
+This media_gt pointer isn't actually allocated yet.  Future patches will
+start hooking it up at appropriate places in the code, and then creation
+of the media GT will be added once those infrastructure changes are in
+place.
 
 Signed-off-by: Matt Roper <matthew.d.roper@intel.com>
 Reviewed-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
-Reviewed-by: Lucas De Marchi <lucas.demarchi@intel.com>
 ---
- drivers/gpu/drm/xe/xe_irq.c | 4 ++--
- 1 file changed, 2 insertions(+), 2 deletions(-)
+ drivers/gpu/drm/xe/xe_device_types.h | 7 ++++++-
+ 1 file changed, 6 insertions(+), 1 deletion(-)
 
-diff --git a/drivers/gpu/drm/xe/xe_irq.c b/drivers/gpu/drm/xe/xe_irq.c
-index 628057497cd5..654c34a5b99a 100644
---- a/drivers/gpu/drm/xe/xe_irq.c
-+++ b/drivers/gpu/drm/xe/xe_irq.c
-@@ -490,8 +490,6 @@ void xe_gt_irq_postinstall(struct xe_gt *gt)
- 		dg1_irq_postinstall(xe, gt);
- 	else
- 		xelp_irq_postinstall(xe, gt);
--
--	xe_display_irq_postinstall(xe, gt);
- }
+diff --git a/drivers/gpu/drm/xe/xe_device_types.h b/drivers/gpu/drm/xe/xe_device_types.h
+index e6af89e940a1..da553878448d 100644
+--- a/drivers/gpu/drm/xe/xe_device_types.h
++++ b/drivers/gpu/drm/xe/xe_device_types.h
+@@ -82,7 +82,12 @@ struct xe_tile {
+ 	 */
+ 	struct xe_gt *primary_gt;
  
- static void xe_irq_postinstall(struct xe_device *xe)
-@@ -501,6 +499,8 @@ static void xe_irq_postinstall(struct xe_device *xe)
+-	/* TODO: Add media GT here */
++	/**
++	 * @media_gt: Media GT
++	 *
++	 * Only present on devices with media version >= 13.
++	 */
++	struct xe_gt *media_gt;
  
- 	for_each_gt(gt, xe, id)
- 		xe_gt_irq_postinstall(gt);
-+
-+	xe_display_irq_postinstall(xe, xe_root_mmio_gt(xe));
- }
- 
- static irq_handler_t xe_irq_handler(struct xe_device *xe)
+ 	/**
+ 	 * @mmio: MMIO info for a tile.
 -- 
 2.40.1
 
