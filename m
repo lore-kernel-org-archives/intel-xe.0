@@ -4,48 +4,47 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id C60BEC7EE23
-	for <intel-xe@archiver.kernel.org>; Thu,  1 Jun 2023 20:30:35 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1015BC7EE33
+	for <intel-xe@archiver.kernel.org>; Thu,  1 Jun 2023 20:30:36 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8563310E5CA;
+	by gabe.freedesktop.org (Postfix) with ESMTP id AB3F210E5CF;
 	Thu,  1 Jun 2023 20:30:35 +0000 (UTC)
 Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D441110E5C2
- for <intel-xe@lists.freedesktop.org>; Thu,  1 Jun 2023 20:30:31 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 02E5C10E5C0
+ for <intel-xe@lists.freedesktop.org>; Thu,  1 Jun 2023 20:30:33 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1685651431; x=1717187431;
+ t=1685651434; x=1717187434;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=2wlOd/1U0YpCzHILQVdXxyBbmPM1K01CZ5lLmegYrkc=;
- b=SQUoKi0cBT5FzEiEXu+JwWhIeOSCaMQnFlAU96l1f6NKyZ4d/+vNVY5v
- 3MLQ3XVPGgzKZwxDpgRV5cArdCv67Wx8HQt3TboLC7HarOJZuD/q/650r
- /UyuQgUk5ZoRv1YKKaA3uE4ZNXm8rnvSYrieg1HQk0zNJPYQMRqTeJhl+
- dm0M6tfbwczDlHmFEnX2MMB410HNNQJsnhSjHCmY2OOQODtr4QYVT0THD
- KD4bCRBbPtZv1wM28HSEe9PWHwbJQH0MWhuitQTHtCL3h6GJ2PjIbTanQ
- F3nwlcHfG9CCbQ3HFckdtHyW6HukF8dsYZdT7Erke5iFMTq8z2RTzlHDG w==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10728"; a="358102511"
-X-IronPort-AV: E=Sophos;i="6.00,210,1681196400"; d="scan'208";a="358102511"
+ bh=5fDhHPN6QXeorzqMtVk5Bb2Z8D1VCJLAifQSIzAF4H8=;
+ b=CQ4GKF8IzFIRj0aB53WzfG3b5mSh4fQuJHW6hpEA6i0dmhb4GdVTySYL
+ wx/kcQ0u2+zcl33BWt5pUs7BG3hWfSFv+LRzRdMDugMeaOSQSJ6ZajZ4W
+ YbqXoovyAU4tfgqmkKupc+tw1E6MOCr/Hg6/sm/ADqptlq9Fh7d8qtWyh
+ QzhVCUBmGNd1bsdFYTc32pjggzHJivbjd2zKjBhbX1dq7KiKd16nfm84d
+ fgW+IxWQ7P0qxQ0CS6w6zHsYYfqLi5sYUHwYosSw64aAAgQGpcWeM5h52
+ 3kRMIr7WTmnNxmGA4izUQ60j6gonaYb1hIoe4Az4qM/wzNuPOE/DjB0+2 Q==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10728"; a="358102530"
+X-IronPort-AV: E=Sophos;i="6.00,210,1681196400"; d="scan'208";a="358102530"
 Received: from orsmga001.jf.intel.com ([10.7.209.18])
  by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 01 Jun 2023 13:30:31 -0700
+ 01 Jun 2023 13:30:33 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10728"; a="740493234"
-X-IronPort-AV: E=Sophos;i="6.00,210,1681196400"; d="scan'208";a="740493234"
+X-IronPort-AV: E=McAfee;i="6600,9927,10728"; a="740493270"
+X-IronPort-AV: E=Sophos;i="6.00,210,1681196400"; d="scan'208";a="740493270"
 Received: from mdroper-desk1.fm.intel.com ([10.1.27.147])
  by orsmga001-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 01 Jun 2023 13:30:31 -0700
+ 01 Jun 2023 13:30:33 -0700
 From: Matt Roper <matthew.d.roper@intel.com>
 To: intel-xe@lists.freedesktop.org
-Date: Thu,  1 Jun 2023 13:30:03 -0700
-Message-Id: <20230601203025.615494-10-matthew.d.roper@intel.com>
+Date: Thu,  1 Jun 2023 13:30:13 -0700
+Message-Id: <20230601203025.615494-20-matthew.d.roper@intel.com>
 X-Mailer: git-send-email 2.40.1
 In-Reply-To: <20230601203025.615494-1-matthew.d.roper@intel.com>
 References: <20230601203025.615494-1-matthew.d.roper@intel.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-xe] [CI 09/31] fixup! drm/xe/display: Implement display
- support
+Subject: [Intel-xe] [CI 19/31] drm/xe: Add media GT to tile
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -61,86 +60,35 @@ Cc: matthew.d.roper@intel.com
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Reviewed-by: Lucas De Marchi <lucas.demarchi@intel.com>
----
- drivers/gpu/drm/xe/display/xe_fb_pin.c        | 10 +++++-----
- drivers/gpu/drm/xe/display/xe_plane_initial.c |  5 +++--
- 2 files changed, 8 insertions(+), 7 deletions(-)
+This media_gt pointer isn't actually allocated yet.  Future patches will
+start hooking it up at appropriate places in the code, and then creation
+of the media GT will be added once those infrastructure changes are in
+place.
 
-diff --git a/drivers/gpu/drm/xe/display/xe_fb_pin.c b/drivers/gpu/drm/xe/display/xe_fb_pin.c
-index 747fbb06cd83..3e863461fe79 100644
---- a/drivers/gpu/drm/xe/display/xe_fb_pin.c
-+++ b/drivers/gpu/drm/xe/display/xe_fb_pin.c
-@@ -123,14 +123,14 @@ static int __xe_pin_fb_vma_ggtt(struct intel_framebuffer *fb,
- {
- 	struct xe_bo *bo = intel_fb_obj(&fb->base);
- 	struct xe_device *xe = to_xe_device(fb->base.dev);
--	struct xe_ggtt *ggtt = to_gt(xe)->mem.ggtt;
-+	struct xe_ggtt *ggtt = xe_device_get_root_tile(xe)->mem.ggtt;
- 	u32 align;
- 	int ret;
- 
- 	/* TODO: Consider sharing framebuffer mapping?
- 	 * embed i915_vma inside intel_framebuffer
+Signed-off-by: Matt Roper <matthew.d.roper@intel.com>
+Reviewed-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
+---
+ drivers/gpu/drm/xe/xe_device_types.h | 7 ++++++-
+ 1 file changed, 6 insertions(+), 1 deletion(-)
+
+diff --git a/drivers/gpu/drm/xe/xe_device_types.h b/drivers/gpu/drm/xe/xe_device_types.h
+index e6af89e940a1..da553878448d 100644
+--- a/drivers/gpu/drm/xe/xe_device_types.h
++++ b/drivers/gpu/drm/xe/xe_device_types.h
+@@ -82,7 +82,12 @@ struct xe_tile {
  	 */
--	xe_device_mem_access_get(gt_to_xe(ggtt->gt));
-+	xe_device_mem_access_get(tile_to_xe(ggtt->tile));
- 	ret = mutex_lock_interruptible(&ggtt->lock);
- 	if (ret)
- 		goto out;
-@@ -174,11 +174,11 @@ static int __xe_pin_fb_vma_ggtt(struct intel_framebuffer *fb,
- 					   rot_info->plane[i].dst_stride);
- 	}
+ 	struct xe_gt *primary_gt;
  
--	xe_ggtt_invalidate(to_gt(xe));
-+	xe_ggtt_invalidate(ggtt);
- out_unlock:
- 	mutex_unlock(&ggtt->lock);
- out:
--	xe_device_mem_access_put(gt_to_xe(ggtt->gt));
-+	xe_device_mem_access_put(tile_to_xe(ggtt->tile));
- 	return ret;
- }
+-	/* TODO: Add media GT here */
++	/**
++	 * @media_gt: Media GT
++	 *
++	 * Only present on devices with media version >= 13.
++	 */
++	struct xe_gt *media_gt;
  
-@@ -240,7 +240,7 @@ static struct i915_vma *__xe_pin_fb_vma(struct intel_framebuffer *fb,
- static void __xe_unpin_fb_vma(struct i915_vma *vma)
- {
- 	struct xe_device *xe = to_xe_device(vma->bo->ttm.base.dev);
--	struct xe_ggtt *ggtt = to_gt(xe)->mem.ggtt;
-+	struct xe_ggtt *ggtt = xe_device_get_root_tile(xe)->mem.ggtt;
- 
- 	if (vma->dpt)
- 		xe_bo_unpin_map_no_vm(vma->dpt);
-diff --git a/drivers/gpu/drm/xe/display/xe_plane_initial.c b/drivers/gpu/drm/xe/display/xe_plane_initial.c
-index 34ae461865a7..41540b27775c 100644
---- a/drivers/gpu/drm/xe/display/xe_plane_initial.c
-+++ b/drivers/gpu/drm/xe/display/xe_plane_initial.c
-@@ -52,6 +52,7 @@ initial_plane_bo(struct xe_device *xe,
- 		 struct intel_initial_plane_config *plane_config)
- {
- 	struct xe_gt *gt0 = xe_device_get_gt(xe, 0);
-+	struct xe_tile *tile0 = xe_device_get_root_tile(xe);
- 	struct xe_bo *bo;
- 	resource_size_t phys_base;
- 	u32 base, size, flags;
-@@ -64,7 +65,7 @@ initial_plane_bo(struct xe_device *xe,
- 
- 	base = round_down(plane_config->base, page_size);
- 	if (IS_DGFX(xe)) {
--		u64 __iomem *gte = gt0->mem.ggtt->gsm;
-+		u64 __iomem *gte = tile0->mem.ggtt->gsm;
- 		u64 pte;
- 
- 		gte += base / XE_PAGE_SIZE;
-@@ -115,7 +116,7 @@ initial_plane_bo(struct xe_device *xe,
- 			page_size);
- 	size -= base;
- 
--	bo = xe_bo_create_pin_map_at(xe, gt0, NULL, size, phys_base,
-+	bo = xe_bo_create_pin_map_at(xe, &tile0->primary_gt, NULL, size, phys_base,
- 				     ttm_bo_type_kernel, flags);
- 	if (IS_ERR(bo)) {
- 		drm_dbg(&xe->drm,
+ 	/**
+ 	 * @mmio: MMIO info for a tile.
 -- 
 2.40.1
 
