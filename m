@@ -4,48 +4,30 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2EA3EC77B7E
-	for <intel-xe@archiver.kernel.org>; Thu,  1 Jun 2023 15:59:20 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0CB6BC7EE23
+	for <intel-xe@archiver.kernel.org>; Thu,  1 Jun 2023 16:01:53 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E226E10E57A;
-	Thu,  1 Jun 2023 15:59:19 +0000 (UTC)
-Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B44E310E579
- for <intel-xe@lists.freedesktop.org>; Thu,  1 Jun 2023 15:59:18 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1685635158; x=1717171158;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=lJxMeLLjjMSmcm1fDE697YJln03pxnKesiKZJY9sepQ=;
- b=LhH/frPid8FU7Ousn21neuwAM+7AxL2XaznCmGyoYqj+m6cycpEvWKsj
- n+wZv2EtY6kRnPGsL9GJg2gcMLYlwICUej9Mx+FTNWsjfgvCEuy4P6nrY
- vNgQVCZGxDgQGtsxFO7QURQRFW3bumXpsyqKX61TNKGO0gtjyzjt3fSQE
- Hiu98FwLWV/qGSquz1lwIq1g3O3ugWKBGCjlO4oqf31Mfi+wDHerm7Npc
- 1Td2pWGpB800ra5c3zNx4XCMYl0ev1VhLo+1kqWd1LkaRxsNJuOfoAia9
- sJO5LEbFTamh/DnfI4rAzhCqSxirhKLXr36IiqxJ8zpR7tWqKFZ4KZGVz A==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10728"; a="358895079"
-X-IronPort-AV: E=Sophos;i="6.00,210,1681196400"; d="scan'208";a="358895079"
-Received: from fmsmga004.fm.intel.com ([10.253.24.48])
- by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 01 Jun 2023 08:59:17 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10728"; a="777259390"
-X-IronPort-AV: E=Sophos;i="6.00,210,1681196400"; d="scan'208";a="777259390"
-Received: from mdroper-desk1.fm.intel.com ([10.1.27.147])
- by fmsmga004-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 01 Jun 2023 08:59:17 -0700
-From: Matt Roper <matthew.d.roper@intel.com>
-To: intel-xe@lists.freedesktop.org
-Date: Thu,  1 Jun 2023 08:59:00 -0700
-Message-Id: <20230601155900.498280-1-matthew.d.roper@intel.com>
-X-Mailer: git-send-email 2.40.1
-In-Reply-To: <1ddaea08-ed16-9cab-c8f3-b1222787722e@intel.com>
-References: <1ddaea08-ed16-9cab-c8f3-b1222787722e@intel.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id CF67610E57E;
+	Thu,  1 Jun 2023 16:01:52 +0000 (UTC)
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 970AA10E584;
+ Thu,  1 Jun 2023 16:01:50 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 8E890A03D2;
+ Thu,  1 Jun 2023 16:01:50 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Subject: [Intel-xe] [PATCH v4.1 29/31] drm/xe: Update query uapi to support
- standalone media
+Content-Transfer-Encoding: 7bit
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Matt Roper" <matthew.d.roper@intel.com>
+Date: Thu, 01 Jun 2023 16:01:50 -0000
+Message-ID: <168563531057.16227.5806888345739551759@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20230601000403.432517-1-matthew.d.roper@intel.com>
+In-Reply-To: <20230601000403.432517-1-matthew.d.roper@intel.com>
+Subject: [Intel-xe] =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_f?=
+ =?utf-8?q?or_Separate_GT_and_tile_=28rev6=29?=
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -57,81 +39,52 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Cc: matthew.d.roper@intel.com
+Reply-To: intel-xe@lists.freedesktop.org
+Cc: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Now that a higher GT count can result from either multiple tiles (with
-one GT each) or an extra media GT within the root tile, we need to
-update the query code slightly to stop looking at tile_count.
+== Series Details ==
 
-FIXME: As noted previously, we need to decide on a formal direction for
-exposing tiles and/or GTs to userspace.
+Series: Separate GT and tile (rev6)
+URL   : https://patchwork.freedesktop.org/series/117614/
+State : success
 
-v2:
- - Drop num_gt() function in favor of stored xe->info.gt_count.  (Brian)
-v3:
- - Keep XE_QUERY_GT_TYPE_REMOTE around for now.  Userspace probably
-   doesn't actually need this, and we may remove it in the future, but
-   for now let's avoid changing uapi.  (Brian)
+== Summary ==
 
-Cc: Brian Welty <brian.welty@intel.com>
-Signed-off-by: Matt Roper <matthew.d.roper@intel.com>
----
- drivers/gpu/drm/xe/xe_query.c | 16 ++++++++--------
- 1 file changed, 8 insertions(+), 8 deletions(-)
+=== Applying kernel patches on branch 'drm-xe-next' with base: ===
+Base commit: 88415886c drm/xe/vm: fix double list add
+=== git am output follows ===
+Applying: drm/xe/mtl: Disable media GT
+Applying: drm/xe: Introduce xe_tile
+Applying: drm/xe: Add backpointer from gt to tile
+Applying: fixup! drm/xe: keep pulling mem_access_get further back
+Applying: drm/xe: Add for_each_tile iterator
+Applying: drm/xe: Move register MMIO into xe_tile
+Applying: fixup! drm/xe/display: Implement display support
+Applying: drm/xe: Move GGTT from GT to tile
+Applying: fixup! drm/xe/display: Implement display support
+Applying: drm/xe: Move VRAM from GT to tile
+Applying: fixup! drm/xe/display: Implement display support
+Applying: drm/xe: Memory allocations are tile-based, not GT-based
+Applying: fixup! drm/xe/display: Implement display support
+Applying: drm/xe: Move migration from GT to tile
+Applying: drm/xe: Clarify 'gt' retrieval for primary tile
+Applying: drm/xe: Drop vram_id
+Applying: drm/xe: Drop extra_gts[] declarations and XE_GT_TYPE_REMOTE
+Applying: drm/xe: Allocate GT dynamically
+Applying: drm/xe: Add media GT to tile
+Applying: drm/xe: Move display IRQ postinstall out of GT function
+Applying: drm/xe: Interrupts are delivered per-tile, not per-GT
+Applying: drm/xe/irq: Handle ASLE backlight interrupts at same time as display
+Applying: drm/xe/irq: Ensure primary GuC won't clobber media GuC's interrupt mask
+Applying: drm/xe/irq: Untangle postinstall functions
+Applying: drm/xe: Replace xe_gt_irq_postinstall with xe_irq_enable_hwe
+Applying: drm/xe: Invalidate TLB on all affected GTs during GGTT updates
+Applying: drm/xe/tlb: Obtain forcewake when doing GGTT TLB invalidations
+Applying: drm/xe: Allow GT looping and lookup on standalone media
+Applying: drm/xe: Update query uapi to support standalone media
+Applying: drm/xe: Reinstate media GT support
+Applying: drm/xe: Add kerneldoc description of multi-tile devices
 
-diff --git a/drivers/gpu/drm/xe/xe_query.c b/drivers/gpu/drm/xe/xe_query.c
-index 8087c94dd782..c4165fa3428e 100644
---- a/drivers/gpu/drm/xe/xe_query.c
-+++ b/drivers/gpu/drm/xe/xe_query.c
-@@ -192,7 +192,7 @@ static int query_config(struct xe_device *xe, struct drm_xe_device_query *query)
- 		xe->info.vram_flags & XE_VRAM_FLAGS_NEED64K ? SZ_64K : SZ_4K;
- 	config->info[XE_QUERY_CONFIG_VA_BITS] = 12 +
- 		(9 * (xe->info.vm_max_level + 1));
--	config->info[XE_QUERY_CONFIG_GT_COUNT] = xe->info.tile_count;
-+	config->info[XE_QUERY_CONFIG_GT_COUNT] = xe->info.gt_count;
- 	config->info[XE_QUERY_CONFIG_MEM_REGION_COUNT] =
- 		hweight_long(xe->info.mem_region_mask);
- 	config->info[XE_QUERY_CONFIG_MAX_ENGINE_PRIORITY] =
-@@ -211,7 +211,7 @@ static int query_gts(struct xe_device *xe, struct drm_xe_device_query *query)
- {
- 	struct xe_gt *gt;
- 	size_t size = sizeof(struct drm_xe_query_gts) +
--		xe->info.tile_count * sizeof(struct drm_xe_query_gt);
-+		xe->info.gt_count * sizeof(struct drm_xe_query_gt);
- 	struct drm_xe_query_gts __user *query_ptr =
- 		u64_to_user_ptr(query->data);
- 	struct drm_xe_query_gts *gts;
-@@ -228,14 +228,14 @@ static int query_gts(struct xe_device *xe, struct drm_xe_device_query *query)
- 	if (XE_IOCTL_ERR(xe, !gts))
- 		return -ENOMEM;
- 
--	gts->num_gt = xe->info.tile_count;
-+	gts->num_gt = xe->info.gt_count;
- 	for_each_gt(gt, xe, id) {
--		if (id == 0)
--			gts->gts[id].type = XE_QUERY_GT_TYPE_MAIN;
--		else if (xe_gt_is_media_type(gt))
-+		if (xe_gt_is_media_type(gt))
- 			gts->gts[id].type = XE_QUERY_GT_TYPE_MEDIA;
--		else
-+		else if (gt_to_tile(gt)->id > 0)
- 			gts->gts[id].type = XE_QUERY_GT_TYPE_REMOTE;
-+		else
-+			gts->gts[id].type = XE_QUERY_GT_TYPE_MAIN;
- 		gts->gts[id].instance = id;
- 		gts->gts[id].clock_freq = gt->info.clock_freq;
- 		if (!IS_DGFX(xe))
-@@ -290,7 +290,7 @@ static int query_hwconfig(struct xe_device *xe,
- 
- static size_t calc_topo_query_size(struct xe_device *xe)
- {
--	return xe->info.tile_count *
-+	return xe->info.gt_count *
- 		(3 * sizeof(struct drm_xe_query_topology_mask) +
- 		 sizeof_field(struct xe_gt, fuse_topo.g_dss_mask) +
- 		 sizeof_field(struct xe_gt, fuse_topo.c_dss_mask) +
--- 
-2.40.1
 
