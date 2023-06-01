@@ -4,30 +4,30 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0CB6BC7EE23
-	for <intel-xe@archiver.kernel.org>; Thu,  1 Jun 2023 16:01:53 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 554B7C77B7E
+	for <intel-xe@archiver.kernel.org>; Thu,  1 Jun 2023 16:03:27 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id CF67610E57E;
-	Thu,  1 Jun 2023 16:01:52 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0B9FA10E579;
+	Thu,  1 Jun 2023 16:03:27 +0000 (UTC)
 Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id 970AA10E584;
- Thu,  1 Jun 2023 16:01:50 +0000 (UTC)
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id D0B6B10E57A;
+ Thu,  1 Jun 2023 16:03:24 +0000 (UTC)
 Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 8E890A03D2;
- Thu,  1 Jun 2023 16:01:50 +0000 (UTC)
+ by emeril.freedesktop.org (Postfix) with ESMTP id 4B5D8A03D2;
+ Thu,  1 Jun 2023 16:03:23 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: "Matt Roper" <matthew.d.roper@intel.com>
-Date: Thu, 01 Jun 2023 16:01:50 -0000
-Message-ID: <168563531057.16227.5806888345739551759@emeril.freedesktop.org>
+Date: Thu, 01 Jun 2023 16:03:23 -0000
+Message-ID: <168563540330.16228.1557740842308318893@emeril.freedesktop.org>
 X-Patchwork-Hint: ignore
 References: <20230601000403.432517-1-matthew.d.roper@intel.com>
 In-Reply-To: <20230601000403.432517-1-matthew.d.roper@intel.com>
-Subject: [Intel-xe] =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_f?=
- =?utf-8?q?or_Separate_GT_and_tile_=28rev6=29?=
+Subject: [Intel-xe] =?utf-8?q?=E2=9C=97_CI=2EKUnit=3A_failure_for_Separat?=
+ =?utf-8?q?e_GT_and_tile_=28rev6=29?=
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -48,43 +48,38 @@ Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 Series: Separate GT and tile (rev6)
 URL   : https://patchwork.freedesktop.org/series/117614/
-State : success
+State : failure
 
 == Summary ==
 
-=== Applying kernel patches on branch 'drm-xe-next' with base: ===
-Base commit: 88415886c drm/xe/vm: fix double list add
-=== git am output follows ===
-Applying: drm/xe/mtl: Disable media GT
-Applying: drm/xe: Introduce xe_tile
-Applying: drm/xe: Add backpointer from gt to tile
-Applying: fixup! drm/xe: keep pulling mem_access_get further back
-Applying: drm/xe: Add for_each_tile iterator
-Applying: drm/xe: Move register MMIO into xe_tile
-Applying: fixup! drm/xe/display: Implement display support
-Applying: drm/xe: Move GGTT from GT to tile
-Applying: fixup! drm/xe/display: Implement display support
-Applying: drm/xe: Move VRAM from GT to tile
-Applying: fixup! drm/xe/display: Implement display support
-Applying: drm/xe: Memory allocations are tile-based, not GT-based
-Applying: fixup! drm/xe/display: Implement display support
-Applying: drm/xe: Move migration from GT to tile
-Applying: drm/xe: Clarify 'gt' retrieval for primary tile
-Applying: drm/xe: Drop vram_id
-Applying: drm/xe: Drop extra_gts[] declarations and XE_GT_TYPE_REMOTE
-Applying: drm/xe: Allocate GT dynamically
-Applying: drm/xe: Add media GT to tile
-Applying: drm/xe: Move display IRQ postinstall out of GT function
-Applying: drm/xe: Interrupts are delivered per-tile, not per-GT
-Applying: drm/xe/irq: Handle ASLE backlight interrupts at same time as display
-Applying: drm/xe/irq: Ensure primary GuC won't clobber media GuC's interrupt mask
-Applying: drm/xe/irq: Untangle postinstall functions
-Applying: drm/xe: Replace xe_gt_irq_postinstall with xe_irq_enable_hwe
-Applying: drm/xe: Invalidate TLB on all affected GTs during GGTT updates
-Applying: drm/xe/tlb: Obtain forcewake when doing GGTT TLB invalidations
-Applying: drm/xe: Allow GT looping and lookup on standalone media
-Applying: drm/xe: Update query uapi to support standalone media
-Applying: drm/xe: Reinstate media GT support
-Applying: drm/xe: Add kerneldoc description of multi-tile devices
++ trap cleanup EXIT
++ /kernel/tools/testing/kunit/kunit.py run --kunitconfig /kernel/drivers/gpu/drm/xe/.kunitconfig
+ERROR:root:../drivers/gpu/drm/xe/xe_ring_ops.c: In function ‘__emit_job_gen12_render_compute’:
+../drivers/gpu/drm/xe/xe_ring_ops.c:252:26: error: ‘struct xe_device’ has no member named ‘gt’
+  252 |  bool lacks_render = !(xe->gt[0].info.engine_mask & XE_HW_ENGINE_RCS_MASK);
+      |                          ^~
+make[6]: *** [../scripts/Makefile.build:252: drivers/gpu/drm/xe/xe_ring_ops.o] Error 1
+make[6]: *** Waiting for unfinished jobs....
+make[5]: *** [../scripts/Makefile.build:494: drivers/gpu/drm/xe] Error 2
+make[5]: *** Waiting for unfinished jobs....
+make[4]: *** [../scripts/Makefile.build:494: drivers/gpu/drm] Error 2
+make[3]: *** [../scripts/Makefile.build:494: drivers/gpu] Error 2
+make[2]: *** [../scripts/Makefile.build:494: drivers] Error 2
+make[2]: *** Waiting for unfinished jobs....
+make[1]: *** [/kernel/Makefile:2025: .] Error 2
+make: *** [Makefile:226: __sub-make] Error 2
+
+[16:03:00] Configuring KUnit Kernel ...
+Generating .config ...
+Populating config with:
+$ make ARCH=um O=.kunit olddefconfig
+[16:03:04] Building KUnit Kernel ...
+Populating config with:
+$ make ARCH=um O=.kunit olddefconfig
+Building with:
+$ make ARCH=um O=.kunit --jobs=48
++ cleanup
+++ stat -c %u:%g /kernel
++ chown -R 1003:1003 /kernel
 
 
