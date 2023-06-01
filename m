@@ -4,47 +4,47 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4E051C7EE23
-	for <intel-xe@archiver.kernel.org>; Thu,  1 Jun 2023 21:38:08 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 83043C77B7A
+	for <intel-xe@archiver.kernel.org>; Thu,  1 Jun 2023 21:47:06 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id EE74810E5DA;
-	Thu,  1 Jun 2023 21:38:07 +0000 (UTC)
-Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9D59710E5DA
- for <intel-xe@lists.freedesktop.org>; Thu,  1 Jun 2023 21:38:05 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id F1DFC10E19B;
+	Thu,  1 Jun 2023 21:47:05 +0000 (UTC)
+Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5CBAF10E19B
+ for <intel-xe@lists.freedesktop.org>; Thu,  1 Jun 2023 21:47:04 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1685655485; x=1717191485;
+ t=1685656024; x=1717192024;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=xiQOMtluXU5dA90VpJUZ93r5ipaykeulSkFLn4Lhe44=;
- b=RWTcrY4CNQx9wkEKTfJBsXgxhrZosk6cTAyqRCONaXaA9EUW/wM1S9iK
- SWWhOX1YSjGwkwY16zDbNFXaTWLTkdP6LJKXXFZqUhaoNlvChu782B2Bp
- cAqg2J1eFKaUxxCGQKjcrLiIOM51afCjq7Y0u7S7NqIZarbubdFLjM0zZ
- uZPuQabkrBPARx4BD79QQZV7D+Mb9T1FIHnmcwH3unkYwyi5dydAgX0Wc
- d9tmvTqYs/zMSm567qqc3rN3qsHjCxmJdEqYMyLIbrQbftgTonCrWoZGA
- znlnJjwqEm2ySAB0pmurcQkl37pj3WsTSaNenO/RJ/PkKc1K1wJ2T89L9 Q==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10728"; a="340312638"
-X-IronPort-AV: E=Sophos;i="6.00,210,1681196400"; d="scan'208";a="340312638"
-Received: from orsmga001.jf.intel.com ([10.7.209.18])
- by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 01 Jun 2023 14:38:04 -0700
+ bh=cMTgT6DgFVnypWOsjj7ffrBwGL+pd+80CU4bY9fisc4=;
+ b=SgiAtJZtVehd2jHa4fgk+PlvWxE4yehxchG1PWd03IBq+GT/vrqzbHVr
+ iTThNsXF3JncexN/l02r7wcSW/BL/ovJsNTn9m0G6za291U51/Iajw5+q
+ RfmbfrJe8FbrRYkzIFdHv3if9lOrvxq5sCo+QeJW26DqGoPtzycFdZ8F+
+ gMXbeJUUWZ9rhC0qqq5kVqnpIyd9yzQp51UVHfSugk08RRc6DbpVRgMTj
+ 6SAvLW2GNJGTyJ2TdMHN4a0PkRgmqk5H5BkiUm7KMIl2eQvmbPSoxzoQs
+ mFPi+4fPbM8UIJ/QGlMYZuz4mxlnZGgmeAQfYsR9Y8ZBAJrAS5qj8OdVl w==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10728"; a="442063508"
+X-IronPort-AV: E=Sophos;i="6.00,210,1681196400"; d="scan'208";a="442063508"
+Received: from fmsmga008.fm.intel.com ([10.253.24.58])
+ by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 01 Jun 2023 14:47:03 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10728"; a="740511861"
-X-IronPort-AV: E=Sophos;i="6.00,210,1681196400"; d="scan'208";a="740511861"
+X-IronPort-AV: E=McAfee;i="6600,9927,10728"; a="772604861"
+X-IronPort-AV: E=Sophos;i="6.00,210,1681196400"; d="scan'208";a="772604861"
 Received: from mdroper-desk1.fm.intel.com ([10.1.27.147])
- by orsmga001-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 01 Jun 2023 14:38:04 -0700
+ by fmsmga008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 01 Jun 2023 14:47:02 -0700
 From: Matt Roper <matthew.d.roper@intel.com>
 To: intel-xe@lists.freedesktop.org
-Date: Thu,  1 Jun 2023 14:38:02 -0700
-Message-Id: <20230601213802.677774-1-matthew.d.roper@intel.com>
+Date: Thu,  1 Jun 2023 14:46:58 -0700
+Message-Id: <20230601214658.678245-1-matthew.d.roper@intel.com>
 X-Mailer: git-send-email 2.40.1
 In-Reply-To: <20230601203025.615494-11-matthew.d.roper@intel.com~>
 References: <20230601203025.615494-11-matthew.d.roper@intel.com~>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-xe] [CI 10/31] drm/xe: Move VRAM from GT to tile
+Subject: [Intel-xe] [CIv2 10/31] drm/xe: Move VRAM from GT to tile
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -72,6 +72,8 @@ v3:
 v4:
  - Move a few changes that were supposed to be part of the GGTT patch
    back to that commit.  (Gustavo)
+v5:
+ - Kerneldoc parameter name fix.
 
 Cc: Gustavo Sousa <gustavo.sousa@intel.com>
 Signed-off-by: Matt Roper <matthew.d.roper@intel.com>
