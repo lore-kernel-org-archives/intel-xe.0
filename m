@@ -4,30 +4,30 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 70E5BC77B7A
-	for <intel-xe@archiver.kernel.org>; Thu,  1 Jun 2023 20:03:53 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 73174C77B7A
+	for <intel-xe@archiver.kernel.org>; Thu,  1 Jun 2023 20:05:44 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2ED8D10E043;
-	Thu,  1 Jun 2023 20:03:53 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1C7C810E00D;
+	Thu,  1 Jun 2023 20:05:44 +0000 (UTC)
 Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id B5F1F10E00D;
- Thu,  1 Jun 2023 20:03:51 +0000 (UTC)
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 940AF10E00D;
+ Thu,  1 Jun 2023 20:05:42 +0000 (UTC)
 Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id ADD1AAADDD;
- Thu,  1 Jun 2023 20:03:51 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============8876893751891579843=="
+ by emeril.freedesktop.org (Postfix) with ESMTP id 8DD7DA0BA8;
+ Thu,  1 Jun 2023 20:05:42 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: "Gustavo Sousa" <gustavo.sousa@intel.com>
-Date: Thu, 01 Jun 2023 20:03:51 -0000
-Message-ID: <168564983169.16228.3954489691772582748@emeril.freedesktop.org>
+Date: Thu, 01 Jun 2023 20:05:42 -0000
+Message-ID: <168564994255.16230.12887888154074444053@emeril.freedesktop.org>
 X-Patchwork-Hint: ignore
-References: <20230601192555.1155097-1-gustavo.sousa@intel.com>
-In-Reply-To: <20230601192555.1155097-1-gustavo.sousa@intel.com>
-Subject: [Intel-xe] =?utf-8?q?=E2=97=8B_CI=2EBAT=3A_info_for_drm/xe=3A_Re?=
- =?utf-8?q?place_deprecated_DRM=5FERROR=28=29?=
+References: <20230601194419.1179609-1-gustavo.sousa@intel.com>
+In-Reply-To: <20230601194419.1179609-1-gustavo.sousa@intel.com>
+Subject: [Intel-xe] =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_f?=
+ =?utf-8?q?or_drm/xe=3A_Replace_deprecated_DRM=5FERROR=28=29_=28rev2=29?=
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -44,63 +44,17 @@ Cc: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============8876893751891579843==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
 == Series Details ==
 
-Series: drm/xe: Replace deprecated DRM_ERROR()
+Series: drm/xe: Replace deprecated DRM_ERROR() (rev2)
 URL   : https://patchwork.freedesktop.org/series/118725/
-State : info
+State : success
 
 == Summary ==
 
-Participating hosts:
-bat-atsm-2
-bat-dg2-oem2
-bat-adlp-7
-Missing hosts results[0]:
-Results: [xe-pw-118725v1](https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-118725v1/index.html)
+=== Applying kernel patches on branch 'drm-xe-next' with base: ===
+Base commit: 88415886c drm/xe/vm: fix double list add
+=== git am output follows ===
+Applying: drm/xe: Replace deprecated DRM_ERROR()
 
 
-
---===============8876893751891579843==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/xe: Replace deprecated DRM_ERROR()</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/118725/">https://patchwork.freedesktop.org/series/118725/</a></td></tr>
-<tr><td><b>State:</b></td><td>info</td></tr>
-
-</table>
-
-
-    <p>Participating hosts:<br />
-bat-atsm-2<br />
-bat-dg2-oem2<br />
-bat-adlp-7<br />
-Missing hosts results[0]:<br />
-Results: <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-118725v1/index.html">xe-pw-118725v1</a></p>
-
-</body>
-</html>
-
---===============8876893751891579843==--
