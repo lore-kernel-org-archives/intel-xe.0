@@ -4,48 +4,47 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id A2A98C7EE2F
-	for <intel-xe@archiver.kernel.org>; Thu,  1 Jun 2023 21:52:54 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1ACE9C7EE32
+	for <intel-xe@archiver.kernel.org>; Thu,  1 Jun 2023 21:52:55 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6DC2610E604;
+	by gabe.freedesktop.org (Postfix) with ESMTP id F170310E5F8;
 	Thu,  1 Jun 2023 21:52:53 +0000 (UTC)
 Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 22CD610E613
- for <intel-xe@lists.freedesktop.org>; Thu,  1 Jun 2023 21:52:51 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5B26310E5FB
+ for <intel-xe@lists.freedesktop.org>; Thu,  1 Jun 2023 21:52:50 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1685656371; x=1717192371;
+ t=1685656370; x=1717192370;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=LH4gz+UxYk8lArfwbpxMvKzqj2pwhD2E7iqTVItS/Xw=;
- b=E6InyiQRZEfmqgV9t5pgK6ZBB6QktPUjvVX6tvegIsFlAaDSEOjkAAdI
- lc9jlAmABXAjnbXR57hpliO48+Qn1yQNhwK5uiQnBHaPuoO8bjWm9/W2H
- kSU5aUCaRfl6v7kgY9Ci3N97pNKOT3aJZFcTzWtHvrp+2rt9WW24+xc3k
- m4O8yZPjcnunkrMoUqKFGGHuXs0C7NgzFPLSQoNnybYKSO/t+q/hB+7dS
- iO4CL9aNPlIBvWc/XQuyVGv8Tc8WVgfJ/UNfz4xrfIId1b8k66z+3wxc0
- AIL8SSNS5PYyQhKntbafyq3Kfk6MHyFSg0wIxce9chEiR9vQdCNM8U3BL A==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10728"; a="335313641"
-X-IronPort-AV: E=Sophos;i="6.00,210,1681196400"; d="scan'208";a="335313641"
+ bh=szMOtzJGl9OogaJyZLvK3DFYvfQy4k+TLtFoXQzcqas=;
+ b=FszUYTAzxQpiomNOGm/LxJpYYImhnPn/a08azpClwE1ZM+Bz6tTW7+aN
+ g3EQK07jjlksJ2uURu2lY+1tYSOdctdcO4kwDqV+44QblDfdqDQx9H7uw
+ JCZRXuNkl47J8NprMbXW7/ob7g5GOiTfXnPcPsW6K2drjaicbLubznozA
+ 6+l1w7hgUjzLnlo2nfLZsQKZ/9BATCQEkmmGYmJ/IEonvLA9wSkyuin0H
+ g4wv+63CNWP4919pH1/HsVZYfSelZBBU/upcPl5s1BKqyPgDUonMNtcD+
+ JrXU6g38G3XaaXbyEjCuLQTD1CgneheUFCFtsXKrHQEf2NPer14bVDEm6 A==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10728"; a="335313631"
+X-IronPort-AV: E=Sophos;i="6.00,210,1681196400"; d="scan'208";a="335313631"
 Received: from orsmga002.jf.intel.com ([10.7.209.21])
  by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  01 Jun 2023 14:52:50 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10728"; a="707563637"
-X-IronPort-AV: E=Sophos;i="6.00,210,1681196400"; d="scan'208";a="707563637"
+X-IronPort-AV: E=McAfee;i="6600,9927,10728"; a="707563623"
+X-IronPort-AV: E=Sophos;i="6.00,210,1681196400"; d="scan'208";a="707563623"
 Received: from mdroper-desk1.fm.intel.com ([10.1.27.147])
  by orsmga002-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 01 Jun 2023 14:52:49 -0700
+ 01 Jun 2023 14:52:48 -0700
 From: Matt Roper <matthew.d.roper@intel.com>
 To: intel-xe@lists.freedesktop.org
-Date: Thu,  1 Jun 2023 14:52:41 -0700
-Message-Id: <20230601215244.678611-29-matthew.d.roper@intel.com>
+Date: Thu,  1 Jun 2023 14:52:37 -0700
+Message-Id: <20230601215244.678611-25-matthew.d.roper@intel.com>
 X-Mailer: git-send-email 2.40.1
 In-Reply-To: <20230601215244.678611-1-matthew.d.roper@intel.com>
 References: <20230601215244.678611-1-matthew.d.roper@intel.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-xe] [CIv2 28/31] drm/xe: Allow GT looping and lookup on
- standalone media
+Subject: [Intel-xe] [CIv2 24/31] drm/xe/irq: Untangle postinstall functions
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -61,134 +60,114 @@ Cc: matthew.d.roper@intel.com
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Allow xe_device_get_gt() and for_each_gt() to operate as expected on
-platforms with standalone media.
+The xe_irq_postinstall() never actually gets called after installing the
+interrupt handler.  This oversight seems to get papered over due to the
+fact that the (misnamed) xe_gt_irq_postinstall does more than it really
+should and gets called in the middle of the GT initialization.  The
+callstack for postinstall is also a bit muddled with top-level device
+interrupt enablement happening within platform-specific functions called
+from the per-tile xe_gt_irq_postinstall() function.
 
-FIXME: We need to figure out a consistent ID scheme for GTs.  This patch
-keeps the pre-existing behavior of 0/1 being the GT IDs for both PVC
-(multi-tile) and MTL (multi-GT), but depending on the direction we
-decide to go with uapi, we may change this in the future (e.g., to
-return 0/1 on PVC and 0/2 on MTL).  Or if we decide we only need to
-expose tiles to userspace and not GTs, we may not even need ID numbers
-for the GTs anymore.
+Clean this all up by adding the missing call to xe_irq_postinstall()
+after installing the interrupt handler and pull top-level irq enablement
+up to xe_irq_postinstall where we'd expect it to be.
+
+The xe_gt_irq_postinstall() function is still a bit misnamed here; an
+upcoming patch will refocus its purpose and rename it.
 
 v2:
- - Restructure a bit to make the assertions more clear.
- - Clarify in commit message that the goal here is to preserve existing
-   behavior; UAPI-visible changes may be introduced in the future once
-   we settle on what we really want.
-v3:
- - Store total GT count in xe_device for ease of lookup.  (Brian)
- - s/(id__++)/(id__)++/  (Gustavo)
+ - Squash in patch to actually call xe_irq_postinstall() after
+   installing the interrupt handler.
 
-Cc: Lucas De Marchi <lucas.demarchi@intel.com>
-Cc: Gustavo Sousa <gustavo.sousa@intel.com>
-Cc: Brian Welty <brian.welty@intel.com>
-Acked-by: Gustavo Sousa <gustavo.sousa@intel.com>
-Reviewed-by: Lucas De Marchi <lucas.demarchi@intel.com>
 Signed-off-by: Matt Roper <matthew.d.roper@intel.com>
+Reviewed-by: Lucas De Marchi <lucas.demarchi@intel.com>
 ---
- drivers/gpu/drm/xe/xe_device.h       | 40 +++++++++++++++++++++++-----
- drivers/gpu/drm/xe/xe_device_types.h |  2 ++
- drivers/gpu/drm/xe/xe_pci.c          |  6 ++++-
- 3 files changed, 41 insertions(+), 7 deletions(-)
+ drivers/gpu/drm/xe/xe_irq.c | 37 +++++++++----------------------------
+ 1 file changed, 9 insertions(+), 28 deletions(-)
 
-diff --git a/drivers/gpu/drm/xe/xe_device.h b/drivers/gpu/drm/xe/xe_device.h
-index f2d8479f6ff6..779f71d066e6 100644
---- a/drivers/gpu/drm/xe/xe_device.h
-+++ b/drivers/gpu/drm/xe/xe_device.h
-@@ -53,18 +53,42 @@ static inline struct xe_tile *xe_device_get_root_tile(struct xe_device *xe)
- 	return &xe->tiles[0];
+diff --git a/drivers/gpu/drm/xe/xe_irq.c b/drivers/gpu/drm/xe/xe_irq.c
+index c069e374a947..85bb9bd6b6be 100644
+--- a/drivers/gpu/drm/xe/xe_irq.c
++++ b/drivers/gpu/drm/xe/xe_irq.c
+@@ -122,7 +122,7 @@ static inline void xelp_intr_enable(struct xe_device *xe, bool stall)
+ 		xe_mmio_read32(mmio, GFX_MSTR_IRQ);
  }
  
-+#define XE_MAX_GT_PER_TILE 2
-+
-+static inline struct xe_gt *xe_tile_get_gt(struct xe_tile *tile, u8 gt_id)
-+{
-+	if (drm_WARN_ON(&tile_to_xe(tile)->drm, gt_id > XE_MAX_GT_PER_TILE))
-+		gt_id = 0;
-+
-+	return gt_id ? tile->media_gt : tile->primary_gt;
-+}
-+
- static inline struct xe_gt *xe_device_get_gt(struct xe_device *xe, u8 gt_id)
+-static void gt_irq_postinstall(struct xe_tile *tile)
++void xe_gt_irq_postinstall(struct xe_tile *tile)
  {
-+	struct xe_tile *root_tile = xe_device_get_root_tile(xe);
- 	struct xe_gt *gt;
- 
--	XE_BUG_ON(gt_id > XE_MAX_TILES_PER_DEVICE);
-+	/*
-+	 * FIXME: This only works for now because multi-tile and standalone
-+	 * media are mutually exclusive on the platforms we have today.
-+	 *
-+	 * id => GT mapping may change once we settle on how we want to handle
-+	 * our UAPI.
-+	 */
-+	if (MEDIA_VER(xe) >= 13) {
-+		gt = xe_tile_get_gt(root_tile, gt_id);
-+	} else {
-+		if (drm_WARN_ON(&xe->drm, gt_id > XE_MAX_TILES_PER_DEVICE))
-+			gt_id = 0;
- 
--	gt = xe->tiles[gt_id].primary_gt;
--	if (drm_WARN_ON(&xe->drm, !gt))
-+		gt = xe->tiles[gt_id].primary_gt;
-+	}
-+
-+	if (!gt)
- 		return NULL;
- 
--	XE_BUG_ON(gt->info.id != gt_id);
--	XE_BUG_ON(gt->info.type == XE_GT_TYPE_UNINITIALIZED);
-+	drm_WARN_ON(&xe->drm, gt->info.id != gt_id);
-+	drm_WARN_ON(&xe->drm, gt->info.type == XE_GT_TYPE_UNINITIALIZED);
- 
- 	return gt;
+ 	struct xe_device *xe = tile_to_xe(tile);
+ 	struct xe_gt *mmio = tile->primary_gt;
+@@ -181,15 +181,6 @@ static void gt_irq_postinstall(struct xe_tile *tile)
+ 	xe_mmio_write32(mmio, GUC_SG_INTR_MASK,  ~0);
  }
-@@ -100,8 +124,12 @@ static inline void xe_device_guc_submission_disable(struct xe_device *xe)
- 	for ((id__) = 0; (id__) < (xe__)->info.tile_count; (id__)++) \
- 		for_each_if ((tile__) = &(xe__)->tiles[(id__)])
  
-+/*
-+ * FIXME: This only works for now since multi-tile and standalone media
-+ * happen to be mutually exclusive.  Future platforms may change this...
-+ */
- #define for_each_gt(gt__, xe__, id__) \
--	for ((id__) = 0; (id__) < (xe__)->info.tile_count; (id__++)) \
-+	for ((id__) = 0; (id__) < (xe__)->info.gt_count; (id__)++) \
- 		for_each_if ((gt__) = xe_device_get_gt((xe__), (id__)))
+-static void xelp_irq_postinstall(struct xe_device *xe, struct xe_tile *tile)
+-{
+-	/* TODO: PCH */
+-
+-	gt_irq_postinstall(tile);
+-
+-	xelp_intr_enable(xe, true);
+-}
+-
+ static u32
+ gt_engine_identity(struct xe_device *xe,
+ 		   struct xe_gt *mmio,
+@@ -366,14 +357,6 @@ static void dg1_intr_enable(struct xe_device *xe, bool stall)
+ 		xe_mmio_read32(mmio, DG1_MSTR_TILE_INTR);
+ }
  
- static inline struct xe_force_wake * gt_to_fw(struct xe_gt *gt)
-diff --git a/drivers/gpu/drm/xe/xe_device_types.h b/drivers/gpu/drm/xe/xe_device_types.h
-index da553878448d..17b6b1cc5adb 100644
---- a/drivers/gpu/drm/xe/xe_device_types.h
-+++ b/drivers/gpu/drm/xe/xe_device_types.h
-@@ -190,6 +190,8 @@ struct xe_device {
- 		u8 vram_flags;
- 		/** @tile_count: Number of tiles */
- 		u8 tile_count;
-+		/** @gt_count: Total number of GTs for entire device */
-+		u8 gt_count;
- 		/** @vm_max_level: Max VM level */
- 		u8 vm_max_level;
+-static void dg1_irq_postinstall(struct xe_device *xe, struct xe_tile *tile)
+-{
+-	gt_irq_postinstall(tile);
+-
+-	if (tile->id == 0)
+-		dg1_intr_enable(xe, true);
+-}
+-
+ /*
+  * Top-level interrupt handler for Xe_LP+ and beyond.  These platforms have
+  * a "master tile" interrupt register which must be consulted before the
+@@ -512,16 +495,6 @@ static void xe_irq_reset(struct xe_device *xe)
+ 	xe_display_irq_reset(xe);
+ }
  
-diff --git a/drivers/gpu/drm/xe/xe_pci.c b/drivers/gpu/drm/xe/xe_pci.c
-index ddb256a4e39c..51207e94b254 100644
---- a/drivers/gpu/drm/xe/xe_pci.c
-+++ b/drivers/gpu/drm/xe/xe_pci.c
-@@ -556,7 +556,11 @@ static int xe_info_init(struct xe_device *xe,
- 			return PTR_ERR(tile->primary_gt);
+-void xe_gt_irq_postinstall(struct xe_tile *tile)
+-{
+-	struct xe_device *xe = tile_to_xe(tile);
+-
+-	if (GRAPHICS_VERx100(xe) >= 1210)
+-		dg1_irq_postinstall(xe, tile);
+-	else
+-		xelp_irq_postinstall(xe, tile);
+-}
+-
+ static void xe_irq_postinstall(struct xe_device *xe)
+ {
+ 	struct xe_tile *tile;
+@@ -538,6 +511,12 @@ static void xe_irq_postinstall(struct xe_device *xe)
+ 	 */
+ 	unmask_and_enable(xe_device_get_root_tile(xe),
+ 			  GU_MISC_IRQ_OFFSET, GU_MISC_GSE);
++
++	/* Enable top-level interrupts */
++	if (GRAPHICS_VERx100(xe) >= 1210)
++		dg1_intr_enable(xe, true);
++	else
++		xelp_intr_enable(xe, true);
+ }
  
- 		gt = tile->primary_gt;
--		gt->info.id = id;	/* FIXME: Determine sensible numbering */
-+		/*
-+		 * FIXME: GT numbering scheme may change depending on UAPI
-+		 * decisions.
-+		 */
-+		gt->info.id = xe->info.gt_count++;
- 		gt->info.type = XE_GT_TYPE_MAIN;
- 		gt->info.__engine_mask = graphics_desc->hw_engine_mask;
- 		if (MEDIA_VER(xe) < 13 && media_desc)
+ static irq_handler_t xe_irq_handler(struct xe_device *xe)
+@@ -588,6 +567,8 @@ int xe_irq_install(struct xe_device *xe)
+ 		return err;
+ 	}
+ 
++	xe_irq_postinstall(xe);
++
+ 	err = drmm_add_action_or_reset(&xe->drm, irq_uninstall, xe);
+ 	if (err)
+ 		return err;
 -- 
 2.40.1
 
