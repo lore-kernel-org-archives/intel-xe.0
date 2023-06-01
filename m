@@ -4,48 +4,48 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 03D7EC88C83
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id B2A0AC87FF1
 	for <intel-xe@archiver.kernel.org>; Thu,  1 Jun 2023 00:04:19 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id CB1A510E52F;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 239F710E52D;
 	Thu,  1 Jun 2023 00:04:19 +0000 (UTC)
 Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1E29710E51E
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A4B8010E524
  for <intel-xe@lists.freedesktop.org>; Thu,  1 Jun 2023 00:04:17 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
  t=1685577857; x=1717113857;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=ZMrSgKPYfmqvP+KOuc4yxWYMVrpIgrEgSK9c0fVyY6M=;
- b=Kff59yxx6tGJq5a5eJ1JIsdngCpE8kBJ77woPk1tT/PVEnHkMBtHhYk9
- e6leeX+Rj0CZxORlw+t8GDkVCaCIbWxAXaKyW8zZJwlJwGeIyqPzAmH66
- OiaP7idM8OmvGvHFsfGhKiHCnDF03JEu9cUnJ+8CNProm0BTpLptiXASq
- 0HhfPNPQuMleDZH1wvQJkrnHgxMEdaUgJOaXWoAVUMYRgLbUD3eI6ltE9
- dOer3ARbltIwmpfyGzd8i0uB88h8EKlnRsH4QyQuvA9bTF1Nd8ozmXawp
- t0cF58AGuafYjlhO6FaCFNzEz/GwNvc1S6l2XqUoS+AMiOnusO0e+7fGE g==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10727"; a="339996871"
-X-IronPort-AV: E=Sophos;i="6.00,207,1681196400"; d="scan'208";a="339996871"
+ bh=omplOS3TnEGvvrTy7wP+rU7a695U8hZukhOVMqfIIIk=;
+ b=I9bVlgPf7yOEAGS40G2TGm0Txl95jsSpJgi1yXwUvc+7ZfxwoMio78IO
+ Vd6tIueH5LFISLODNqUAndqwgTICSUZyQLpeYAcmyCm02fVtg9Q4FLKM0
+ RQCX7scoXvhn/+XnWJQNKThmKfwcgU6y4Y5+S3TReNYk4aJxbgjyTaXAo
+ jav1Sn1XCrPEBu8JJKemZFZO5cDPRqkN+ielE1T4YQfOAbevy4gtKRj5t
+ 1aoogivtaOTlpdL9ToQeYQvHIPKuIl+MhofhcweSAnyhn/3a8HkLx9Kh/
+ Cf2E01ob/qy5sXUmAR5KFA0RSuQgTgWZAOLaWXM4s95GSwF8lbgoX7hLj A==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10727"; a="339996880"
+X-IronPort-AV: E=Sophos;i="6.00,207,1681196400"; d="scan'208";a="339996880"
 Received: from orsmga003.jf.intel.com ([10.7.209.27])
  by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 31 May 2023 17:04:16 -0700
+ 31 May 2023 17:04:17 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10727"; a="657556243"
-X-IronPort-AV: E=Sophos;i="6.00,207,1681196400"; d="scan'208";a="657556243"
+X-IronPort-AV: E=McAfee;i="6600,9927,10727"; a="657556253"
+X-IronPort-AV: E=Sophos;i="6.00,207,1681196400"; d="scan'208";a="657556253"
 Received: from mdroper-desk1.fm.intel.com ([10.1.27.147])
  by orsmga003-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 31 May 2023 17:04:16 -0700
+ 31 May 2023 17:04:17 -0700
 From: Matt Roper <matthew.d.roper@intel.com>
 To: intel-xe@lists.freedesktop.org
-Date: Wed, 31 May 2023 17:04:00 -0700
-Message-Id: <20230601000403.432517-29-matthew.d.roper@intel.com>
+Date: Wed, 31 May 2023 17:04:03 -0700
+Message-Id: <20230601000403.432517-32-matthew.d.roper@intel.com>
 X-Mailer: git-send-email 2.40.1
 In-Reply-To: <20230601000403.432517-1-matthew.d.roper@intel.com>
 References: <20230601000403.432517-1-matthew.d.roper@intel.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-xe] [PATCH v4 28/31] drm/xe: Allow GT looping and lookup on
- standalone media
+Subject: [Intel-xe] [PATCH v4 31/31] drm/xe: Add kerneldoc description of
+ multi-tile devices
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -61,132 +61,115 @@ Cc: Lucas De Marchi <lucas.demarchi@intel.com>, matthew.d.roper@intel.com
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Allow xe_device_get_gt() and for_each_gt() to operate as expected on
-platforms with standalone media.
-
-FIXME: We need to figure out a consistent ID scheme for GTs.  This patch
-keeps the pre-existing behavior of 0/1 being the GT IDs for both PVC
-(multi-tile) and MTL (multi-GT), but depending on the direction we
-decide to go with uapi, we may change this in the future (e.g., to
-return 0/1 on PVC and 0/2 on MTL).  Or if we decide we only need to
-expose tiles to userspace and not GTs, we may not even need ID numbers
-for the GTs anymore.
-
 v2:
- - Restructure a bit to make the assertions more clear.
- - Clarify in commit message that the goal here is to preserve existing
-   behavior; UAPI-visible changes may be introduced in the future once
-   we settle on what we really want.
-v3:
- - Store total GT count in xe_device for ease of lookup.  (Brian)
- - s/(id__++)/(id__)++/  (Gustavo)
+ - Fix doubled word.  (Lucas)
 
-Cc: Lucas De Marchi <lucas.demarchi@intel.com>
-Cc: Gustavo Sousa <gustavo.sousa@intel.com>
-Cc: Brian Welty <brian.welty@intel.com>
 Signed-off-by: Matt Roper <matthew.d.roper@intel.com>
+Reviewed-by: Lucas De Marchi <lucas.demarchi@intel.com>
 ---
- drivers/gpu/drm/xe/xe_device.h       | 40 +++++++++++++++++++++++-----
- drivers/gpu/drm/xe/xe_device_types.h |  2 ++
- drivers/gpu/drm/xe/xe_pci.c          |  6 ++++-
- 3 files changed, 41 insertions(+), 7 deletions(-)
+ Documentation/gpu/xe/index.rst   |  1 +
+ Documentation/gpu/xe/xe_tile.rst | 14 ++++++++
+ drivers/gpu/drm/xe/xe_tile.c     | 57 ++++++++++++++++++++++++++++++++
+ 3 files changed, 72 insertions(+)
+ create mode 100644 Documentation/gpu/xe/xe_tile.rst
 
-diff --git a/drivers/gpu/drm/xe/xe_device.h b/drivers/gpu/drm/xe/xe_device.h
-index f2d8479f6ff6..779f71d066e6 100644
---- a/drivers/gpu/drm/xe/xe_device.h
-+++ b/drivers/gpu/drm/xe/xe_device.h
-@@ -53,18 +53,42 @@ static inline struct xe_tile *xe_device_get_root_tile(struct xe_device *xe)
- 	return &xe->tiles[0];
- }
- 
-+#define XE_MAX_GT_PER_TILE 2
+diff --git a/Documentation/gpu/xe/index.rst b/Documentation/gpu/xe/index.rst
+index 2fddf9ed251e..5c4d6bb370f3 100644
+--- a/Documentation/gpu/xe/index.rst
++++ b/Documentation/gpu/xe/index.rst
+@@ -21,3 +21,4 @@ DG2, etc is provided to prototype the driver.
+    xe_wa
+    xe_rtp
+    xe_firmware
++   xe_tile
+diff --git a/Documentation/gpu/xe/xe_tile.rst b/Documentation/gpu/xe/xe_tile.rst
+new file mode 100644
+index 000000000000..c33f68dd95b6
+--- /dev/null
++++ b/Documentation/gpu/xe/xe_tile.rst
+@@ -0,0 +1,14 @@
++.. SPDX-License-Identifier: (GPL-2.0+ OR MIT)
 +
-+static inline struct xe_gt *xe_tile_get_gt(struct xe_tile *tile, u8 gt_id)
-+{
-+	if (drm_WARN_ON(&tile_to_xe(tile)->drm, gt_id > XE_MAX_GT_PER_TILE))
-+		gt_id = 0;
++==================
++Multi-tile Devices
++==================
 +
-+	return gt_id ? tile->media_gt : tile->primary_gt;
-+}
++.. kernel-doc:: drivers/gpu/drm/xe/xe_tile.c
++   :doc: Multi-tile Design
 +
- static inline struct xe_gt *xe_device_get_gt(struct xe_device *xe, u8 gt_id)
- {
-+	struct xe_tile *root_tile = xe_device_get_root_tile(xe);
- 	struct xe_gt *gt;
- 
--	XE_BUG_ON(gt_id > XE_MAX_TILES_PER_DEVICE);
-+	/*
-+	 * FIXME: This only works for now because multi-tile and standalone
-+	 * media are mutually exclusive on the platforms we have today.
-+	 *
-+	 * id => GT mapping may change once we settle on how we want to handle
-+	 * our UAPI.
-+	 */
-+	if (MEDIA_VER(xe) >= 13) {
-+		gt = xe_tile_get_gt(root_tile, gt_id);
-+	} else {
-+		if (drm_WARN_ON(&xe->drm, gt_id > XE_MAX_TILES_PER_DEVICE))
-+			gt_id = 0;
- 
--	gt = xe->tiles[gt_id].primary_gt;
--	if (drm_WARN_ON(&xe->drm, !gt))
-+		gt = xe->tiles[gt_id].primary_gt;
-+	}
++Internal API
++============
 +
-+	if (!gt)
- 		return NULL;
++.. kernel-doc:: drivers/gpu/drm/xe/xe_tile.c
++   :internal:
+diff --git a/drivers/gpu/drm/xe/xe_tile.c b/drivers/gpu/drm/xe/xe_tile.c
+index fa56323aa988..6414aa810355 100644
+--- a/drivers/gpu/drm/xe/xe_tile.c
++++ b/drivers/gpu/drm/xe/xe_tile.c
+@@ -12,6 +12,63 @@
+ #include "xe_tile.h"
+ #include "xe_ttm_vram_mgr.h"
  
--	XE_BUG_ON(gt->info.id != gt_id);
--	XE_BUG_ON(gt->info.type == XE_GT_TYPE_UNINITIALIZED);
-+	drm_WARN_ON(&xe->drm, gt->info.id != gt_id);
-+	drm_WARN_ON(&xe->drm, gt->info.type == XE_GT_TYPE_UNINITIALIZED);
- 
- 	return gt;
- }
-@@ -100,8 +124,12 @@ static inline void xe_device_guc_submission_disable(struct xe_device *xe)
- 	for ((id__) = 0; (id__) < (xe__)->info.tile_count; (id__)++) \
- 		for_each_if ((tile__) = &(xe__)->tiles[(id__)])
- 
-+/*
-+ * FIXME: This only works for now since multi-tile and standalone media
-+ * happen to be mutually exclusive.  Future platforms may change this...
++/**
++ * DOC: Multi-tile Design
++ *
++ * Different vendors use the term "tile" a bit differently, but in the Intel
++ * world, a 'tile' is pretty close to what most people would think of as being
++ * a complete GPU.  When multiple GPUs are placed behind a single PCI device,
++ * that's what is referred to as a "multi-tile device."  In such cases, pretty
++ * much all hardware is replicated per-tile, although certain responsibilities
++ * like PCI communication, reporting of interrupts to the OS, etc. are handled
++ * solely by the "root tile."  A multi-tile platform takes care of tying the
++ * tiles together in a way such that interrupt notifications from remote tiles
++ * are forwarded to the root tile, the per-tile vram is combined into a single
++ * address space, etc.
++ *
++ * In contrast, a "GT" (which officially stands for "Graphics Technology") is
++ * the subset of a GPU/tile that is responsible for implementing graphics
++ * and/or media operations.  The GT is where a lot of the driver implementation
++ * happens since it's where the hardware engines, the execution units, and the
++ * GuC all reside.
++ *
++ * Historically most Intel devices were single-tile devices that contained a
++ * single GT.  PVC is an example of an Intel platform built on a multi-tile
++ * design (i.e., multiple GPUs behind a single PCI device); each PVC tile only
++ * has a single GT.  In contrast, platforms like MTL that have separate chips
++ * for render and media IP are still only a single logical GPU, but the
++ * graphics and media IP blocks are each exposed as a separate GT within that
++ * single GPU.  This is important from a software perspective because multi-GT
++ * platforms like MTL only replicate a subset of the GPU hardware and behave
++ * differently than multi-tile platforms like PVC where nearly everything is
++ * replicated.
++ *
++ * Per-tile functionality (shared by all GTs within the tile):
++ *  - Complete 4MB MMIO space (containing SGunit/SoC registers, GT
++ *    registers, display registers, etc.)
++ *  - Global GTT
++ *  - VRAM (if discrete)
++ *  - Interrupt flows
++ *  - Migration context
++ *  - kernel batchbuffer pool
++ *  - Primary GT
++ *  - Media GT (if media version >= 13)
++ *
++ * Per-GT functionality:
++ *  - GuC
++ *  - Hardware engines
++ *  - Programmable hardware units (subslices, EUs)
++ *  - GSI subset of registers (multiple copies of these registers reside
++ *    within the complete MMIO space provided by the tile, but at different
++ *    offsets --- 0 for render, 0x380000 for media)
++ *  - Multicast register steering
++ *  - TLBs to cache page table translations
++ *  - Reset capability
++ *  - Low-level power management (e.g., C6)
++ *  - Clock frequency
++ *  - MOCS and PAT programming
 + */
- #define for_each_gt(gt__, xe__, id__) \
--	for ((id__) = 0; (id__) < (xe__)->info.tile_count; (id__++)) \
-+	for ((id__) = 0; (id__) < (xe__)->info.gt_count; (id__)++) \
- 		for_each_if ((gt__) = xe_device_get_gt((xe__), (id__)))
- 
- static inline struct xe_force_wake * gt_to_fw(struct xe_gt *gt)
-diff --git a/drivers/gpu/drm/xe/xe_device_types.h b/drivers/gpu/drm/xe/xe_device_types.h
-index da553878448d..17b6b1cc5adb 100644
---- a/drivers/gpu/drm/xe/xe_device_types.h
-+++ b/drivers/gpu/drm/xe/xe_device_types.h
-@@ -190,6 +190,8 @@ struct xe_device {
- 		u8 vram_flags;
- 		/** @tile_count: Number of tiles */
- 		u8 tile_count;
-+		/** @gt_count: Total number of GTs for entire device */
-+		u8 gt_count;
- 		/** @vm_max_level: Max VM level */
- 		u8 vm_max_level;
- 
-diff --git a/drivers/gpu/drm/xe/xe_pci.c b/drivers/gpu/drm/xe/xe_pci.c
-index ddb256a4e39c..51207e94b254 100644
---- a/drivers/gpu/drm/xe/xe_pci.c
-+++ b/drivers/gpu/drm/xe/xe_pci.c
-@@ -556,7 +556,11 @@ static int xe_info_init(struct xe_device *xe,
- 			return PTR_ERR(tile->primary_gt);
- 
- 		gt = tile->primary_gt;
--		gt->info.id = id;	/* FIXME: Determine sensible numbering */
-+		/*
-+		 * FIXME: GT numbering scheme may change depending on UAPI
-+		 * decisions.
-+		 */
-+		gt->info.id = xe->info.gt_count++;
- 		gt->info.type = XE_GT_TYPE_MAIN;
- 		gt->info.__engine_mask = graphics_desc->hw_engine_mask;
- 		if (MEDIA_VER(xe) < 13 && media_desc)
++
+ /**
+  * xe_tile_alloc - Perform per-tile memory allocation
+  * @tile: Tile to perform allocations for
 -- 
 2.40.1
 
