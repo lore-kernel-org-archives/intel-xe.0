@@ -4,47 +4,48 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6EC73C77B7A
-	for <intel-xe@archiver.kernel.org>; Thu,  1 Jun 2023 00:04:15 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4C11DC7EE23
+	for <intel-xe@archiver.kernel.org>; Thu,  1 Jun 2023 00:04:16 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 13BE010E518;
-	Thu,  1 Jun 2023 00:04:15 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1BB4510E519;
+	Thu,  1 Jun 2023 00:04:16 +0000 (UTC)
 Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B25A710E0E5
- for <intel-xe@lists.freedesktop.org>; Thu,  1 Jun 2023 00:04:11 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id EDD3910E1F0
+ for <intel-xe@lists.freedesktop.org>; Thu,  1 Jun 2023 00:04:13 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1685577851; x=1717113851;
+ t=1685577853; x=1717113853;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=Q+r6aMSuN3IdqZeysCPDqLIm/4/ORhz5GLH45MllbQk=;
- b=gXmQy33UcfL2Yu7iQryK1kaaGtRoDnp1V3ixbjRrRYlxXKNp+D3jkDqF
- d3ekzYz0qepRVy3lNm43p46rGdGdxRvf0TYbSWjzDG3NwTkluvDynm/qg
- DtCCKSiOK6S7nryRYNdLzDQRGeCtAEaqQ8gAd3uJmKsSZAEp0QRNyJ698
- HnuoIQqn5VZRLQyxHX7h9pg/NxEzL21QIP/g5uUxKtlNkLXj/m6My+/2w
- V8WFziRi2+iUt/6NmcW8/Hx141Ng7zD5lqRP3aU7PwKpL/BObn9sR6zP6
- 9Avba9ncvWu9DY+N0PGoSX7yMtvV3CR+WZdqqJs/n+HiGTPBx9kT2rFA2 w==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10727"; a="339996820"
-X-IronPort-AV: E=Sophos;i="6.00,207,1681196400"; d="scan'208";a="339996820"
+ bh=ga7ssFBmADzMlmFBhQ2Wgi9o/xrY6r1gZcLUCF3P+Ec=;
+ b=fQDazzxJ2OD/wHII74DHKz9E+uv9sca1kAikuFkeSprd/gTTM3eylmPJ
+ UDnQObHl5eS2U5LrCdDggI/yKZnqopCRKK/krMTvTFVzom9dBKA6bPIrv
+ wEacG/JXSyxbcq6LDGG0Qz/fdsk1w3tMH6S+OHZ8xd9+YEFkuhX2eYKdE
+ EditYPsEDBkg0x+WsPF2bC9zzwcABZZ2mLDJEHzgbYenWzuGDfNZGFzdM
+ 93s9tpfwbLfgc0Z0RBov0aMZ0zOXPe3Oq/2jvH7PnV+0HaIa3Qe/Fg9zG
+ 6OEw2mlTmqmCVpwswnmqa1axhuoNJzJida/AsP1jL49gSPOwDIVjAc+AE g==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10727"; a="339996833"
+X-IronPort-AV: E=Sophos;i="6.00,207,1681196400"; d="scan'208";a="339996833"
 Received: from orsmga003.jf.intel.com ([10.7.209.27])
  by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 31 May 2023 17:04:11 -0700
+ 31 May 2023 17:04:12 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10727"; a="657556159"
-X-IronPort-AV: E=Sophos;i="6.00,207,1681196400"; d="scan'208";a="657556159"
+X-IronPort-AV: E=McAfee;i="6600,9927,10727"; a="657556184"
+X-IronPort-AV: E=Sophos;i="6.00,207,1681196400"; d="scan'208";a="657556184"
 Received: from mdroper-desk1.fm.intel.com ([10.1.27.147])
  by orsmga003-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 31 May 2023 17:04:11 -0700
+ 31 May 2023 17:04:12 -0700
 From: Matt Roper <matthew.d.roper@intel.com>
 To: intel-xe@lists.freedesktop.org
-Date: Wed, 31 May 2023 17:03:37 -0700
-Message-Id: <20230601000403.432517-6-matthew.d.roper@intel.com>
+Date: Wed, 31 May 2023 17:03:43 -0700
+Message-Id: <20230601000403.432517-12-matthew.d.roper@intel.com>
 X-Mailer: git-send-email 2.40.1
 In-Reply-To: <20230601000403.432517-1-matthew.d.roper@intel.com>
 References: <20230601000403.432517-1-matthew.d.roper@intel.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-xe] [PATCH v4 05/31] drm/xe: Add for_each_tile iterator
+Subject: [Intel-xe] [PATCH v4 11/31] fixup! drm/xe/display: Implement
+ display support
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -60,50 +61,32 @@ Cc: Lucas De Marchi <lucas.demarchi@intel.com>, matthew.d.roper@intel.com
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-As we start splitting tile handling out from GT handling, we'll need to
-be able to iterate over tiles separately from GTs.  This iterator will
-be used in upcoming patches.
-
-v2:
- - s/(id__++)/(id__)++/  (Gustavo)
-
-Cc: Gustavo Sousa <gustavo.sousa@intel.com>
 Reviewed-by: Lucas De Marchi <lucas.demarchi@intel.com>
-Signed-off-by: Matt Roper <matthew.d.roper@intel.com>
 ---
- drivers/gpu/drm/xe/xe_device.h | 4 ++++
- drivers/gpu/drm/xe/xe_pci.c    | 3 +--
- 2 files changed, 5 insertions(+), 2 deletions(-)
+ drivers/gpu/drm/xe/display/xe_plane_initial.c | 3 +--
+ 1 file changed, 1 insertion(+), 2 deletions(-)
 
-diff --git a/drivers/gpu/drm/xe/xe_device.h b/drivers/gpu/drm/xe/xe_device.h
-index f7acaf51a1fc..3516ac1dcbc4 100644
---- a/drivers/gpu/drm/xe/xe_device.h
-+++ b/drivers/gpu/drm/xe/xe_device.h
-@@ -83,6 +83,10 @@ static inline void xe_device_guc_submission_disable(struct xe_device *xe)
- 	xe->info.enable_guc = false;
- }
- 
-+#define for_each_tile(tile__, xe__, id__) \
-+	for ((id__) = 0; (id__) < (xe__)->info.tile_count; (id__)++) \
-+		for_each_if ((tile__) = &(xe__)->tiles[(id__)])
-+
- #define for_each_gt(gt__, xe__, id__) \
- 	for ((id__) = 0; (id__) < (xe__)->info.tile_count; (id__++)) \
- 		for_each_if ((gt__) = xe_device_get_gt((xe__), (id__)))
-diff --git a/drivers/gpu/drm/xe/xe_pci.c b/drivers/gpu/drm/xe/xe_pci.c
-index 2e5a15219964..9e0d26329dd7 100644
---- a/drivers/gpu/drm/xe/xe_pci.c
-+++ b/drivers/gpu/drm/xe/xe_pci.c
-@@ -558,8 +558,7 @@ static int xe_info_init(struct xe_device *xe,
- 	 */
- 	xe->info.tile_count = 1 + graphics_desc->max_remote_tiles;
- 
--	for (id = 0; id < xe->info.tile_count; ++id) {
--		tile = &xe->tiles[id];
-+	for_each_tile(tile, xe, id) {
- 		tile->xe = xe;
- 		tile->id = id;
- 
+diff --git a/drivers/gpu/drm/xe/display/xe_plane_initial.c b/drivers/gpu/drm/xe/display/xe_plane_initial.c
+index 41540b27775c..39dd97acae08 100644
+--- a/drivers/gpu/drm/xe/display/xe_plane_initial.c
++++ b/drivers/gpu/drm/xe/display/xe_plane_initial.c
+@@ -51,7 +51,6 @@ static struct xe_bo *
+ initial_plane_bo(struct xe_device *xe,
+ 		 struct intel_initial_plane_config *plane_config)
+ {
+-	struct xe_gt *gt0 = xe_device_get_gt(xe, 0);
+ 	struct xe_tile *tile0 = xe_device_get_root_tile(xe);
+ 	struct xe_bo *bo;
+ 	resource_size_t phys_base;
+@@ -84,7 +83,7 @@ initial_plane_bo(struct xe_device *xe,
+ 		 * We don't currently expect this to ever be placed in the
+ 		 * stolen portion.
+ 		 */
+-		if (phys_base >= gt0->mem.vram.size) {
++		if (phys_base >= tile0->mem.vram.size) {
+ 			drm_err(&xe->drm,
+ 				"Initial plane programming using invalid range, phys_base=%pa\n",
+ 				&phys_base);
 -- 
 2.40.1
 
