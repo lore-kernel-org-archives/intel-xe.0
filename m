@@ -4,55 +4,119 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 37000C77B7A
-	for <intel-xe@archiver.kernel.org>; Thu,  1 Jun 2023 10:21:37 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1D34EC77B7A
+	for <intel-xe@archiver.kernel.org>; Thu,  1 Jun 2023 10:38:13 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E4AF510E22F;
-	Thu,  1 Jun 2023 10:21:36 +0000 (UTC)
-Received: from dfw.source.kernel.org (dfw.source.kernel.org
- [IPv6:2604:1380:4641:c500::1])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3033710E22F
- for <intel-xe@lists.freedesktop.org>; Thu,  1 Jun 2023 10:21:35 +0000 (UTC)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
- (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
- (No client certificate requested)
- by dfw.source.kernel.org (Postfix) with ESMTPS id 8F44763990
- for <intel-xe@lists.freedesktop.org>; Thu,  1 Jun 2023 10:21:34 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 03B99C433D2
- for <intel-xe@lists.freedesktop.org>; Thu,  1 Jun 2023 10:21:33 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=k20201202; t=1685614894;
- bh=y+7w2Q578ndLOedaMgLHGcto048XdWRASlmYnCVFIk4=;
- h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
- b=fd+cJxfW3JVDyOxG4HBvejpS0jF38DeYDo6MBB5YAgZhX4YcsG7uUBsxUV7u6Mec9
- 6xnOv9X25K5lcZ+nxDBNhNT0kRZsPghsbyowDR05cCkFM5f3cLxNcMFcKjhlwv4vDi
- dO7rUM3Kk8xZdhlY+l4OAbBYTn2HgfxNwZwcOHNGcSffo7jmrQ6mtLPAnpTno/o6+r
- Zq+wNsKqfB4w8Ct4ErXl14uvI7cj6HyID00uzstfqnFLO7I8tnNcKgYJLhgXWTmT2r
- i/AXgJ0zcdrS7dZkKSzSd5/3ovf7h9cfx3CyMxjuLwdQZH9/HMrmuHTAUKnb8ISW6T
- vwIR+1DoHKRjQ==
-Received: by mail-yw1-f172.google.com with SMTP id
- 00721157ae682-5689335d2b6so5879487b3.3
- for <intel-xe@lists.freedesktop.org>; Thu, 01 Jun 2023 03:21:33 -0700 (PDT)
-X-Gm-Message-State: AC+VfDzPgh17dAhCnZ+pZZ9MKqtUhGz8Fm3NLMVxodxhN4C5IVm3ZDwF
- 889npCVlaf+5EWB/8KvMxkde7+RP+q/NGcNPmyA=
-X-Google-Smtp-Source: ACHHUZ5Oe87aONc7MzixujuuFOx73Efub+Q82OeuLg781gScGowyvu5B34imr1TMYgu0pSJsZ64W/eSz5LwByq6fAXU=
-X-Received: by 2002:a81:4f0e:0:b0:565:caaf:dca4 with SMTP id
- d14-20020a814f0e000000b00565caafdca4mr8674397ywb.0.1685614892949; Thu, 01 Jun
- 2023 03:21:32 -0700 (PDT)
+	by gabe.freedesktop.org (Postfix) with ESMTP id DEC8B10E224;
+	Thu,  1 Jun 2023 10:38:12 +0000 (UTC)
+Received: from NAM11-CO1-obe.outbound.protection.outlook.com
+ (mail-co1nam11on20614.outbound.protection.outlook.com
+ [IPv6:2a01:111:f400:7eab::614])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A8ECD10E21E;
+ Thu,  1 Jun 2023 10:38:10 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=ezm6NNVc+9cH6RmLeQ3Ivf9tdplOGdvTTgv70hFmJVQx/PRBHnDjsMyujqqidkztoMSi8UkgUkSHoTdx4XXG1MsNe3BjJePdkqxDVkzcgaFWYvIeP5h6g5xrDIsn4nmk75ObIHwXWTLGQIpxMPVxtZSmIvd8HF9TDeFfrepQEwKks5xhNPmCEWjsqd9QqhKFPrRtFa7ldVj8xCusrfsuOYP6YPRD1/+RPpHGtkItg12TngGDXfJ0FaIDbArpKAT3eXJTs0/fhZbYpZWAG35/1bbBQ2kGFLCjGYMbJzhcDgW9TslVJDYQwaQoBFV8cVIhNDvbyr6Pv6sYQufBqY/Bvw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=VsAD4scQmpmSkulptJdm6YPxqRDvfgsUxWznScHwBJs=;
+ b=Ff1qJfKH28+yKmMISh+VL2vhneG0TDZNvDqJAu/gbhcIm2PDevrHoiyXPksfuSEP4a17e1q3p7OrtS664qZ3g0Go7L/0e4Wa3Oz5STR6sLOPKrKMNvVN6UXKgvAxi+1LnYS8Ub0O8AF7UOcCvgFSgzTQDKKGFy8+3rJtiI8AHBUtGaIeclC1JmI08kpfEB4sUZZBpRfiS+37TNiz2KO5UwqAVJI9CQe9Ii9fDNXNoj6VVpOxeNFSyC9kBSKKZa4gjJeT35KxIlTpAYjajuxgE2AS5OQeb7K1vXfcqcHVXSNNDkSRHerPJPip8HO/PlD6HlUvyvX0hYequWrDv6Fiog==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
+ header.d=amd.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=VsAD4scQmpmSkulptJdm6YPxqRDvfgsUxWznScHwBJs=;
+ b=UzI3ZAnm/MwZCNyVQEvqmvNE99o+HTID2KwFSGSYzAa5pJZlrG4rxJkzmlKQYAp1N4/zeEEvlkxeb78528iRSUiUGARNtr3XQMx8N6eOOvZVhbXYiH3OxK7l+OTVtd54Cq1wfYhymJq5VTeXvdieKa/60r0l6JTdVHltsZRWIv8=
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=amd.com;
+Received: from BN8PR12MB3587.namprd12.prod.outlook.com (2603:10b6:408:43::13)
+ by SJ0PR12MB5470.namprd12.prod.outlook.com (2603:10b6:a03:3bd::5)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6433.24; Thu, 1 Jun
+ 2023 10:38:05 +0000
+Received: from BN8PR12MB3587.namprd12.prod.outlook.com
+ ([fe80::907f:26e2:673a:2ad2]) by BN8PR12MB3587.namprd12.prod.outlook.com
+ ([fe80::907f:26e2:673a:2ad2%6]) with mapi id 15.20.6455.020; Thu, 1 Jun 2023
+ 10:38:05 +0000
+Message-ID: <6f57ab78-b760-d756-a68c-16029a3afcea@amd.com>
+Date: Thu, 1 Jun 2023 12:38:00 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.11.0
+Content-Language: en-US
+To: =?UTF-8?Q?Thomas_Hellstr=c3=b6m?= <thomas.hellstrom@linux.intel.com>,
+ intel-xe@lists.freedesktop.org
+References: <20230525150205.194098-1-thomas.hellstrom@linux.intel.com>
+ <20230525150205.194098-2-thomas.hellstrom@linux.intel.com>
+From: =?UTF-8?Q?Christian_K=c3=b6nig?= <christian.koenig@amd.com>
+In-Reply-To: <20230525150205.194098-2-thomas.hellstrom@linux.intel.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+X-ClientProxiedBy: FR0P281CA0100.DEUP281.PROD.OUTLOOK.COM
+ (2603:10a6:d10:a9::6) To BN8PR12MB3587.namprd12.prod.outlook.com
+ (2603:10b6:408:43::13)
 MIME-Version: 1.0
-References: <20230531152338.6-1-francois.dugast@intel.com>
- <uieo7p5pwbj252uxdtmyyozj3crbbrkcm4uevookml3vxqj2ik@c3ilb7d7okcl>
- <ZHd9u1AdemcPGPn3@fdugast-desk.home>
- <jjkmqjebxtljdu4chzjuj7a56xbpttd7wf3wqh6o7ciigb55ur@pgci7bqedka6>
-In-Reply-To: <jjkmqjebxtljdu4chzjuj7a56xbpttd7wf3wqh6o7ciigb55ur@pgci7bqedka6>
-From: Oded Gabbay <ogabbay@kernel.org>
-Date: Thu, 1 Jun 2023 13:21:06 +0300
-X-Gmail-Original-Message-ID: <CAFCwf11Cz8=3=nnhCTGKN9Coz_dsZL7XcAc9HFyayHRcUCioCg@mail.gmail.com>
-Message-ID: <CAFCwf11Cz8=3=nnhCTGKN9Coz_dsZL7XcAc9HFyayHRcUCioCg@mail.gmail.com>
-To: Lucas De Marchi <lucas.demarchi@intel.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-Subject: Re: [Intel-xe] [PATCH v2 0/5] drm/xe: uAPI cleanup
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: BN8PR12MB3587:EE_|SJ0PR12MB5470:EE_
+X-MS-Office365-Filtering-Correlation-Id: acf9512f-956b-4f49-8db3-08db628c47c6
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: n5HzaginDnyCXe/cuHqoIk3U/vA578oWKVN3o+uPHnKQKv9ZvPp47+3MULMAXF0lzkG2a/ze6VGpolYgWRO/CUXp3PbQjBpC3uZl3MI6TH1VhyLQyd4g02u7vJAZ2ZRzU+iMChzfThod6n1tqVlReJB83mYs9XKB+6jAntUTo+vfNIBjdB6B9g2zFUPiUFm7kJcJRZbqLeM4cMIlc/g5SuKX3i8LqiZetNlFVL2g/s2xu7LUrXdKP51QrwNNiSszjiIFIkwVkWwPtrG7QY80bAIPaj/SxXH0qF2kuUVhH3ezNW2/pv9aAnvsqsYJFzP6otzVsb73L/y5qqQq2Sul18DW+MJ4nKe/IE+jWtIAcODFS7vScyjI0T9+Bml0CfynrT8/DzQTsHg8fNoFT1y8RTOUXPFKdwhvj5tcLITGQFTqIjr97VpTJhAM/WLQVaLu1kW1D9drH2I1nZxHtqipDZoIxI4WM0zkBc6kRnehOcyXBH9wKORssQ0wBXFlTX+Ydf51IsmUT0HczgkJAyI9LvhWSZRWd0NxHrCl03Z1JW5/yDzu/neiKAPWXBCV8JXP9Qv0SN/H5dYlfBZVu48shHv8bhVFtA/YZ4JjbIYhAD/EEHEW40VblgqjfkGa0GZwEyEfO7iUgEz+XpT0ZaxyzA==
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:BN8PR12MB3587.namprd12.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230028)(4636009)(346002)(136003)(396003)(39860400002)(366004)(376002)(451199021)(31696002)(4326008)(66946007)(66476007)(66556008)(8936002)(8676002)(41300700001)(86362001)(316002)(31686004)(2906002)(5660300002)(478600001)(6666004)(6486002)(38100700002)(83380400001)(2616005)(66574015)(6506007)(6512007)(186003)(36756003)(43740500002)(45980500001);
+ DIR:OUT; SFP:1101; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?YjdmQndSNlgyRlM4c2RqaG9yRGVLbXk3N205VlZYRmV0V1o2VWcycitxV1ds?=
+ =?utf-8?B?eTNJK2NWWkMvOFVWUzY4VXlTalVlS2hQRTlWRVdiUzB6MVhsRnNyQ016dWkz?=
+ =?utf-8?B?Um5URWx4a3N2Y0FRTitiREJZYkdsWVN2QzcxQk5UK1Nia2x4R1ZKdjlYdjJp?=
+ =?utf-8?B?Z2REbllBU1cvaW9tbjBQS0lWUW5vbmdnekJHWjVqc0Zla3NTcDQvd0U1dXdH?=
+ =?utf-8?B?WEFVMFF4dElxUG5XV25pdEFwZWk2M2R0OWplTGhZL1hxY1h0aEs0VVByelJt?=
+ =?utf-8?B?UVd5QlhkTFNBMWRrQkNpV2R3bzBtQ09YekM1NUNxeFFkU0c2ZlZQMVZoYmdD?=
+ =?utf-8?B?SWcvS1ZXZ0NnbDAyWXNmSmxQWElLK05uUzhYeTI4VHZycnVmay9weVFySjBx?=
+ =?utf-8?B?NXN3cVdyTjJWYks3Zmt4SEN4WmUzbFV0V1pmK2FldGtJTTEyUWZhMlZ5ZldQ?=
+ =?utf-8?B?ZnE4RnhJR0F4R21ON3dGRnExcXgxakEvN1kvV2FlRUgyUnBXYVFFeVNSTGFZ?=
+ =?utf-8?B?a3NNd0tqR2gyRVBIdjRmc1BQbnBPWE1YeTkrM0QveWpHcnM1c21TaC8wRHN3?=
+ =?utf-8?B?cnlNa2cvUDBwQW1DRUFtSTlTdnd4cDF3VTBXbjIrMC8yTi9FcmF2VVI1MUZJ?=
+ =?utf-8?B?ejNHN1hiNzJwYzFOTlNNbWZ4NmJCNDJtdlZJSXk1ZEhRcG5iSS9aVTBpeWly?=
+ =?utf-8?B?ODEyOUxvUEx3UklwWkN6LzdiTE1IYmhlSVJSQXIyVzJsRktNL282M3cyZDIv?=
+ =?utf-8?B?WENOUTl6UDlqQUpHcjFpWlhVSzZyenlJVE5wWUlCc1dtNHVsMFUwdFl4dWM0?=
+ =?utf-8?B?RHdLZStqcEZadVdqV2lDYSszVlpwUEJIaVU0NWRwYlhxRk9BUFRXS0hQV2Zm?=
+ =?utf-8?B?NDNrVFE4RUJGNEEvTEpsS1djK1dFUVNjemlnWTVzQ1BtNnh0M3BqWUNKTlBN?=
+ =?utf-8?B?VlptaWxsRVdNeDZJTDFwa3hnV1NPTjlqd2h5RnlMNWhVc3Q0clg0d3F4SlhY?=
+ =?utf-8?B?alNWcktVUktYQlJFSklUNUJWSXZ2QnphSkJlUGZTUVhuZUxJUitxeUVVbDFk?=
+ =?utf-8?B?OEtEcmttVjlyV3RRL1laRjl2Mi9wK0VTQ2RKaTJSTGpqclZDK0pUVThYREVo?=
+ =?utf-8?B?RE44R0tUZ21iT1FZVVNFcGlYZG03WklYcDlwWktNSnQ5UzJBWXJPMFJONHI4?=
+ =?utf-8?B?TGozV1pBbHV6U3lmeVJ1ajVjVzhjaG9tNVlYbm85VmdqZHRzaVNoYXdyTWk5?=
+ =?utf-8?B?Mk5rWVdSYXdkRWc4emdiT0YrNG9lcFFoUjJGZ3BFalNDRXE3K0hIZTRVeXFp?=
+ =?utf-8?B?Mnd4c2xRdkZaUmtyNDBIRnAxUnBZZUFZdEtYZGpwNE9ldytjUEpmSC9GSUYx?=
+ =?utf-8?B?eW5KU2d1WmdKTWVjMmZxaHBOeTNML1ZDeGhYYko0ZmkvbVNNcFgvQno1dkpt?=
+ =?utf-8?B?NVg0WG56RktmOHFxenZlL3FOL1NNeWlrL0tMWXdrMVZVZTFmOVBDUE1lNDNH?=
+ =?utf-8?B?Qzd4bHFLMVRMNGhLNFpkK0J2NXFSbStWNkZYV2psb0tmUk9xemQ5bG1IOW8w?=
+ =?utf-8?B?NWtWOGhuamhhYnREUWZlU0U4VktnekF2d2FJb3FFdE9xci9RZXRzcXVSRktY?=
+ =?utf-8?B?R29laEdweEVoNDJ5a3dmTDU5dkFaaWJaczdBYkpjRVdjTitFRlNzaWZtRkxE?=
+ =?utf-8?B?dkU1dHBvekRXRFZBZk5sL08wa09Fa204Sk9rUy9pVWtJMkExRkUwQ3VOd1hP?=
+ =?utf-8?B?eFpBVlJ6NHgwYVgwOUdHS25XdW90ZENNRUdiZmZBcTNsNWdQbGphb2NNV1VG?=
+ =?utf-8?B?U3BrWTFLRWRxMk5HMytPWFVvQnJHYkN6T0JTdWxYYU9ram9tTkRDeXBMUXB6?=
+ =?utf-8?B?RUV1TkdaTWR1eWc2b1ZOU3dnU1dSQVpGSkJ1R1poWFp1d1JhK1F2WTBEZUVj?=
+ =?utf-8?B?bDhoV21yS2VOeXRHTU1INGt0QitCQnBmYTlMUlpnTXBld1BmWGtTbDFHT2Q0?=
+ =?utf-8?B?QmttMUw4b0JJNmVOdHhaZ3lrVHpsZDAraUxKYkY5STRvWm41TkhkdWxMeGMw?=
+ =?utf-8?B?L2RPMlVRRmR3VXJBQ21pYTZLa3praVd2UGZqMm9ZR3pSb3RhVnFLUWtwa1FX?=
+ =?utf-8?B?L3JFRGk3UnF1aTM3OG5uZTI3dTNSdFd6U0Y2azJCU2ZudmdSSTJhemV4Ymgx?=
+ =?utf-8?Q?uN6JbA2p0F8duz0ZcQQtWfTDvO+41cXnu9GfyxXaUTod?=
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: acf9512f-956b-4f49-8db3-08db628c47c6
+X-MS-Exchange-CrossTenant-AuthSource: BN8PR12MB3587.namprd12.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 01 Jun 2023 10:38:04.5382 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: +uM7keojZVdDK2Rm8RCaiEDfnenMZZZwNbQ5W6mH8AhgLycWhtzHpILitEIHUMAD
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SJ0PR12MB5470
+Subject: Re: [Intel-xe] [PATCH 1/3] drm/ttm: Clear the buffer object bulk
+ move at individualize time
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -64,180 +128,103 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-xe@lists.freedesktop.org
+Cc: dri-devel@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Wed, May 31, 2023 at 11:29=E2=80=AFPM Lucas De Marchi
-<lucas.demarchi@intel.com> wrote:
+Am 25.05.23 um 17:02 schrieb Thomas Hellström:
+> Clearing the buffer object bulk move is closely tied to individualizing
+> the resv, since that is when we effectively detach the bo from a vm.
 >
-> On Wed, May 31, 2023 at 07:02:51PM +0200, Francois Dugast wrote:
-> >On Wed, May 31, 2023 at 09:23:45AM -0700, Lucas De Marchi wrote:
-> >> +Oded
-> >>
-> >> On Wed, May 31, 2023 at 03:23:33PM +0000, Francois Dugast wrote:
-> >> > This series addresses some feedback on xe_drm.h provided here:
-> >> > https://lists.freedesktop.org/archives/intel-xe/2023-May/004704.html
-> >> >
-> >> > It is based on xe-rev1-2023-05-02, not on drm-xe-next, so it will
-> >> > likely break CI.
-> >>
-> >> As I said on the previous reply, this is not going to fly. Now we have=
- a
-> >> patch series against xe-rev1-2023-05-02, pushed as xe-rev2 branch with
-> >> *no recorded reviews*, doing things that already conflict with other
-> >> fixes that landed in drm-xe-next. Examples: the 32b compat for uapi,
-> >> the mmio refactor, the oob WAs, the probe refactor, etc etc.
-> >>
-> >> Also, there are other fixes queued as fixups, which is still the proce=
-ss
-> >> being used in drm-xe-next. It's also where CI is running. Due to displ=
-ay
-> >> being moved up in the branch it's basically the only sane thing to do.
-> >>
-> >> I think we need we are shooting ourselves on the foot and this review
-> >> process needs to be fixed / agreed upon before we create a mess out of
-> >> it.
-> >>
-> >> Lucas De Marchi
-> >
-> >Yes I understand the concern. The intention is to address Oded's feedbac=
-k on the
-> >revision that was reviewed, so that the next review iteration is managea=
-ble and
-> >not based on a moving target, which could lead to and endless effort.
+> Clearing the bulk move also requires the bo resv, which we have readily
+> locked at individualizing time without clobbering the much wider vm
+> lock.
 >
-> and then what are we going to do next? rebase the rest of drm-xe-next on =
-top?
-> How do we guarantee the fixes on top of xe-rev is not breaking stuff?
-> What about the changes that are already there changing the commits that
-> are on xe-rev?
->
-> >
-> >Maybe I created confusion by sharing on the mailing list but at this sta=
-ge the
->
-> no, that was the right part of it. Reviews on the patches happen on this
-> mailing list. The wrong part IMO was to push it as a branch before it
-> got the necessary review and before we know how we are going to
-> reconciliate things. Rebasing drm-xe-next on xe-rev doesn't
-> really work for the reasons mentioned above.
->
-> >idea is not to get this series merged, only to get Oded's validation tha=
-t it
-> >fixes the issues that he reported. Yes this means more work will be requ=
-ired to
-> >rebase and create fixups later for drm-xe-next but it seems acceptable f=
-or the
-> >work that has been done so far.
-> >
-> >Do you see a better way that would still satisfy the "not moving target"=
- goal?
->
-> 0) Ignore the "not moving target" goal
+> So Clear the buffer object bulk_move at individualizing time, and update
+> the code comments.
 
-Hi Lucas,
-I would like to say a few things.
+WOW, there are some big misunderstandings here. First of all the 
+assumption that the reservation lock is taken at individualization time 
+is completely incorrect.
 
-The first point is that the current xe-rev1 branch was something that
-Rodrigo and I set-up. If you feel this is not a good starting point
-for the review, let's talk and decide on a new starting point. Even
-though I have already invested multiple hours in reviewing it, I can
-understand the point you are making and I'm willing to re-start the
-review with a new starting point.
+Instead this is called during release with an unknown state of the 
+reservation lock, this can be locked or not depending who is dropping 
+the last reference.
 
-The second point is once we make a decision regarding the code
-baseline (keep using the old or moving to the new), I want *all* of us
-to agree that newer patches that are sent to the mailing list will not
-be part of the initial Xe upstreamed code. There are mainly two
-reasons for that:
+Then when you use bulk move, the area covered by the bulk is protected 
+by the common reservation lock. So when a BO is to be removed from the 
+bulk it's a must have to remove it from the bulk *before* dropping the 
+last reference.
 
-1. There is a long-standing process of upstreaming a new driver to the
-Linux kernel and that process assumes a code baseline that doesn't
-change between revisions, except for addressing code review comments.
-As a person who has undergone this a couple of times from the side
-being reviewed I would like to follow this same process here as well
-:)
-
-2. The Xe driver is one big driver, with a large team behind it that
-continuously sends patches. The code keeps getting re-factored and
-acquires new features at a high rate. If every revision of the review
-the baseline code will change, the changes from the previous revision
-will be too large to review independently. I will have to review the
-entire driver again... Not to mention how will I be able to easily
-verify that my comments were addressed properly (btw, I also wrote it
-here https://lore.kernel.org/intel-xe/CAFCwf124UMR3VQ=3DTr6mT_eTRQi9ssqZqEH=
-4jys1bGggHJjboLw@mail.gmail.com/).
-
-Therefore, I think we need to agree on some method that won't burn me
-out and cause me to tell Dave & Daniel I'm giving up on what they
-asked me to do. One way is to follow the rule above, but if you still
-disagree with this, I'm open to hearing other suggestions on how to
-enable a proper review in a timely manner that won't cause me to pull
-my hair out.
-
-In that context, I feel your "Ignore the not moving target goal"
-statement to Francois was inappropriate. We need to have an agreement,
-you can't decide that on your own.
-
-Thanks,
-Oded
-
-
-
+Regards,
+Christian.
 
 >
-> 1) The review should be on very a recent rev, not something old with a
->     lot of commits on top. That doesn't scale and there will be another 1=
-00
->     patches before the next review round.
+> Signed-off-by: Thomas Hellström <thomas.hellstrom@linux.intel.com>
+> ---
+>   drivers/gpu/drm/ttm/ttm_bo.c | 30 ++++++++++++++++++++++--------
+>   1 file changed, 22 insertions(+), 8 deletions(-)
 >
->         $ tag=3Dxe-rev1-2023-05-02
->         $ s=3D$(git log -1 --format=3D%s $tag)
->         $ commit=3D$(git log --grep "$s" -n1 --format=3D%H)
->         $ git rev-list $commit..HEAD | wc -l
->         208
->
->     Then as outcome of the review we have more patches to land, rebase
->     the rest, etc, etc.  This is a much worse "moving target" and IMO
->     it's worse for both reviewers and committers.
->
-> 2) The xe-revX should have the same baseline. That makes for a really
->     simple way to check "what changed since I last looked". This can be
->     checked on the overall diff with `git diff` or on the amended fixes
->     with git range-diff.
->
->     Currently drm-xe-next is on drm-tip due to the display integration.
->     Being on drm-next is important for merging the branch upstream, but
->     not so much for these kind of reviews
->
-> 3) Not merge things in the xe-revX branch that is not already
->     in drm-xe-next.  Ideally if there are things that really need to
->     be changed back in the xe-rev branch, it should be a fixup on
->     drm-xe-next that is then brought back to the xe-rev branch.
->
->
-> Lucas De Marchi
->
-> >
-> >Thanks,
-> >Francois
-> >
-> >>
-> >> >
-> >> > v2: fix ordering of defines and fields in uAPI (Lucas De Marchi)
-> >> >
-> >> > Francois Dugast (5):
-> >> >  drm/xe: Use SPDX-License-Identifier instead of license text
-> >> >  drm/xe: Group engine related structs
-> >> >  drm/xe: Move defines before relevant fields
-> >> >  drm/xe: Document usage of struct drm_xe_device_query
-> >> >  drm/xe: Fix some formatting issues in uAPI
-> >> >
-> >> > include/uapi/drm/xe_drm.h | 171 ++++++++++++++++++++----------------=
---
-> >> > 1 file changed, 90 insertions(+), 81 deletions(-)
-> >> >
-> >> > --
-> >> > 2.34.1
-> >> >
+> diff --git a/drivers/gpu/drm/ttm/ttm_bo.c b/drivers/gpu/drm/ttm/ttm_bo.c
+> index bd5dae4d1624..57cc9f845adc 100644
+> --- a/drivers/gpu/drm/ttm/ttm_bo.c
+> +++ b/drivers/gpu/drm/ttm/ttm_bo.c
+> @@ -193,20 +193,33 @@ static int ttm_bo_individualize_resv(struct ttm_buffer_object *bo)
+>   	BUG_ON(!dma_resv_trylock(&bo->base._resv));
+>   
+>   	r = dma_resv_copy_fences(&bo->base._resv, bo->base.resv);
+> -	dma_resv_unlock(&bo->base._resv);
+> -	if (r)
+> -		return r;
+>   
+> -	if (bo->type != ttm_bo_type_sg) {
+> -		/* This works because the BO is about to be destroyed and nobody
+> -		 * reference it any more. The only tricky case is the trylock on
+> -		 * the resv object while holding the lru_lock.
+> +	if (!r && bo->type != ttm_bo_type_sg) {
+> +		/*
+> +		 * The TTM bo refcount is now zero and hence nobody will
+> +		 * therefore try to lock the bo at this point: the LRU
+> +		 * list lookups will trylock even if the refcount is zero,
+> +		 * but will only do that under the LRU lock and will
+> +		 * then immediately back off under the same LRU lock when it
+> +		 * sees the zero refcount.
+>   		 */
+>   		spin_lock(&bo->bdev->lru_lock);
+>   		bo->base.resv = &bo->base._resv;
+> +
+> +		/* Since bulk move is closely tied with the shared resv,
+> +		 * clear it when we have now individualized, if that was not
+> +		 * done by the driver already.
+> +		 */
+> +		if (bo->bulk_move) {
+> +			if (bo->resource)
+> +				ttm_resource_del_bulk_move(bo->resource, bo);
+> +			bo->bulk_move = NULL;
+> +		}
+>   		spin_unlock(&bo->bdev->lru_lock);
+>   	}
+>   
+> +	dma_resv_unlock(&bo->base._resv);
+> +
+>   	return r;
+>   }
+>   
+> @@ -324,7 +337,6 @@ static void ttm_bo_release(struct kref *kref)
+>   	int ret;
+>   
+>   	WARN_ON_ONCE(bo->pin_count);
+> -	WARN_ON_ONCE(bo->bulk_move);
+>   
+>   	if (!bo->deleted) {
+>   		ret = ttm_bo_individualize_resv(bo);
+> @@ -337,6 +349,8 @@ static void ttm_bo_release(struct kref *kref)
+>   					      30 * HZ);
+>   		}
+>   
+> +		WARN_ON_ONCE(bo->bulk_move);
+> +
+>   		if (bo->bdev->funcs->release_notify)
+>   			bo->bdev->funcs->release_notify(bo);
+>   
+
