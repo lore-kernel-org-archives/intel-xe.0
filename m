@@ -4,48 +4,47 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 29E3CC7EE33
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6EC73C77B7A
 	for <intel-xe@archiver.kernel.org>; Thu,  1 Jun 2023 00:04:15 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6D51F10E1F1;
-	Thu,  1 Jun 2023 00:04:14 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 13BE010E518;
+	Thu,  1 Jun 2023 00:04:15 +0000 (UTC)
 Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7797410E0EB
- for <intel-xe@lists.freedesktop.org>; Thu,  1 Jun 2023 00:04:12 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B25A710E0E5
+ for <intel-xe@lists.freedesktop.org>; Thu,  1 Jun 2023 00:04:11 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1685577852; x=1717113852;
+ t=1685577851; x=1717113851;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=2wlOd/1U0YpCzHILQVdXxyBbmPM1K01CZ5lLmegYrkc=;
- b=A1awqEgF01GF3koETul7FOGOtWpdZopp0naSrLR6joaAlPuBoHCb1COE
- ZMEJQ67SeWVU6/jEPGiVadQuvor+nfHT+G2VZgigv0h4c/ICXe6JqzfFj
- KGFXUqZp4h8u5SeCvv6ZD7PIUnOooDjpwFMfCvhkklK69uG48pjuA2+z5
- MO/pAEu1Anms0e+iKmpL9pZYK9jAMoqLgNhObHxaQ3d27+cOztAYKDTrx
- LDZuH6Kax6c/vAvhbE6H9FSANMACl9O/4a4LMzeOaCsGrfUqxYprOEzsO
- Iq30kYYwR48tHT5z1QmwsxEEKYftE6rXt65Ffm3J0l3O/91Udx5ivfP0y A==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10727"; a="339996827"
-X-IronPort-AV: E=Sophos;i="6.00,207,1681196400"; d="scan'208";a="339996827"
+ bh=Q+r6aMSuN3IdqZeysCPDqLIm/4/ORhz5GLH45MllbQk=;
+ b=gXmQy33UcfL2Yu7iQryK1kaaGtRoDnp1V3ixbjRrRYlxXKNp+D3jkDqF
+ d3ekzYz0qepRVy3lNm43p46rGdGdxRvf0TYbSWjzDG3NwTkluvDynm/qg
+ DtCCKSiOK6S7nryRYNdLzDQRGeCtAEaqQ8gAd3uJmKsSZAEp0QRNyJ698
+ HnuoIQqn5VZRLQyxHX7h9pg/NxEzL21QIP/g5uUxKtlNkLXj/m6My+/2w
+ V8WFziRi2+iUt/6NmcW8/Hx141Ng7zD5lqRP3aU7PwKpL/BObn9sR6zP6
+ 9Avba9ncvWu9DY+N0PGoSX7yMtvV3CR+WZdqqJs/n+HiGTPBx9kT2rFA2 w==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10727"; a="339996820"
+X-IronPort-AV: E=Sophos;i="6.00,207,1681196400"; d="scan'208";a="339996820"
 Received: from orsmga003.jf.intel.com ([10.7.209.27])
  by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 31 May 2023 17:04:12 -0700
+ 31 May 2023 17:04:11 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10727"; a="657556172"
-X-IronPort-AV: E=Sophos;i="6.00,207,1681196400"; d="scan'208";a="657556172"
+X-IronPort-AV: E=McAfee;i="6600,9927,10727"; a="657556159"
+X-IronPort-AV: E=Sophos;i="6.00,207,1681196400"; d="scan'208";a="657556159"
 Received: from mdroper-desk1.fm.intel.com ([10.1.27.147])
  by orsmga003-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 31 May 2023 17:04:12 -0700
+ 31 May 2023 17:04:11 -0700
 From: Matt Roper <matthew.d.roper@intel.com>
 To: intel-xe@lists.freedesktop.org
-Date: Wed, 31 May 2023 17:03:41 -0700
-Message-Id: <20230601000403.432517-10-matthew.d.roper@intel.com>
+Date: Wed, 31 May 2023 17:03:37 -0700
+Message-Id: <20230601000403.432517-6-matthew.d.roper@intel.com>
 X-Mailer: git-send-email 2.40.1
 In-Reply-To: <20230601000403.432517-1-matthew.d.roper@intel.com>
 References: <20230601000403.432517-1-matthew.d.roper@intel.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-xe] [PATCH v4 09/31] fixup! drm/xe/display: Implement
- display support
+Subject: [Intel-xe] [PATCH v4 05/31] drm/xe: Add for_each_tile iterator
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -61,86 +60,50 @@ Cc: Lucas De Marchi <lucas.demarchi@intel.com>, matthew.d.roper@intel.com
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Reviewed-by: Lucas De Marchi <lucas.demarchi@intel.com>
----
- drivers/gpu/drm/xe/display/xe_fb_pin.c        | 10 +++++-----
- drivers/gpu/drm/xe/display/xe_plane_initial.c |  5 +++--
- 2 files changed, 8 insertions(+), 7 deletions(-)
+As we start splitting tile handling out from GT handling, we'll need to
+be able to iterate over tiles separately from GTs.  This iterator will
+be used in upcoming patches.
 
-diff --git a/drivers/gpu/drm/xe/display/xe_fb_pin.c b/drivers/gpu/drm/xe/display/xe_fb_pin.c
-index 747fbb06cd83..3e863461fe79 100644
---- a/drivers/gpu/drm/xe/display/xe_fb_pin.c
-+++ b/drivers/gpu/drm/xe/display/xe_fb_pin.c
-@@ -123,14 +123,14 @@ static int __xe_pin_fb_vma_ggtt(struct intel_framebuffer *fb,
- {
- 	struct xe_bo *bo = intel_fb_obj(&fb->base);
- 	struct xe_device *xe = to_xe_device(fb->base.dev);
--	struct xe_ggtt *ggtt = to_gt(xe)->mem.ggtt;
-+	struct xe_ggtt *ggtt = xe_device_get_root_tile(xe)->mem.ggtt;
- 	u32 align;
- 	int ret;
- 
- 	/* TODO: Consider sharing framebuffer mapping?
- 	 * embed i915_vma inside intel_framebuffer
- 	 */
--	xe_device_mem_access_get(gt_to_xe(ggtt->gt));
-+	xe_device_mem_access_get(tile_to_xe(ggtt->tile));
- 	ret = mutex_lock_interruptible(&ggtt->lock);
- 	if (ret)
- 		goto out;
-@@ -174,11 +174,11 @@ static int __xe_pin_fb_vma_ggtt(struct intel_framebuffer *fb,
- 					   rot_info->plane[i].dst_stride);
- 	}
- 
--	xe_ggtt_invalidate(to_gt(xe));
-+	xe_ggtt_invalidate(ggtt);
- out_unlock:
- 	mutex_unlock(&ggtt->lock);
- out:
--	xe_device_mem_access_put(gt_to_xe(ggtt->gt));
-+	xe_device_mem_access_put(tile_to_xe(ggtt->tile));
- 	return ret;
+v2:
+ - s/(id__++)/(id__)++/  (Gustavo)
+
+Cc: Gustavo Sousa <gustavo.sousa@intel.com>
+Reviewed-by: Lucas De Marchi <lucas.demarchi@intel.com>
+Signed-off-by: Matt Roper <matthew.d.roper@intel.com>
+---
+ drivers/gpu/drm/xe/xe_device.h | 4 ++++
+ drivers/gpu/drm/xe/xe_pci.c    | 3 +--
+ 2 files changed, 5 insertions(+), 2 deletions(-)
+
+diff --git a/drivers/gpu/drm/xe/xe_device.h b/drivers/gpu/drm/xe/xe_device.h
+index f7acaf51a1fc..3516ac1dcbc4 100644
+--- a/drivers/gpu/drm/xe/xe_device.h
++++ b/drivers/gpu/drm/xe/xe_device.h
+@@ -83,6 +83,10 @@ static inline void xe_device_guc_submission_disable(struct xe_device *xe)
+ 	xe->info.enable_guc = false;
  }
  
-@@ -240,7 +240,7 @@ static struct i915_vma *__xe_pin_fb_vma(struct intel_framebuffer *fb,
- static void __xe_unpin_fb_vma(struct i915_vma *vma)
- {
- 	struct xe_device *xe = to_xe_device(vma->bo->ttm.base.dev);
--	struct xe_ggtt *ggtt = to_gt(xe)->mem.ggtt;
-+	struct xe_ggtt *ggtt = xe_device_get_root_tile(xe)->mem.ggtt;
++#define for_each_tile(tile__, xe__, id__) \
++	for ((id__) = 0; (id__) < (xe__)->info.tile_count; (id__)++) \
++		for_each_if ((tile__) = &(xe__)->tiles[(id__)])
++
+ #define for_each_gt(gt__, xe__, id__) \
+ 	for ((id__) = 0; (id__) < (xe__)->info.tile_count; (id__++)) \
+ 		for_each_if ((gt__) = xe_device_get_gt((xe__), (id__)))
+diff --git a/drivers/gpu/drm/xe/xe_pci.c b/drivers/gpu/drm/xe/xe_pci.c
+index 2e5a15219964..9e0d26329dd7 100644
+--- a/drivers/gpu/drm/xe/xe_pci.c
++++ b/drivers/gpu/drm/xe/xe_pci.c
+@@ -558,8 +558,7 @@ static int xe_info_init(struct xe_device *xe,
+ 	 */
+ 	xe->info.tile_count = 1 + graphics_desc->max_remote_tiles;
  
- 	if (vma->dpt)
- 		xe_bo_unpin_map_no_vm(vma->dpt);
-diff --git a/drivers/gpu/drm/xe/display/xe_plane_initial.c b/drivers/gpu/drm/xe/display/xe_plane_initial.c
-index 34ae461865a7..41540b27775c 100644
---- a/drivers/gpu/drm/xe/display/xe_plane_initial.c
-+++ b/drivers/gpu/drm/xe/display/xe_plane_initial.c
-@@ -52,6 +52,7 @@ initial_plane_bo(struct xe_device *xe,
- 		 struct intel_initial_plane_config *plane_config)
- {
- 	struct xe_gt *gt0 = xe_device_get_gt(xe, 0);
-+	struct xe_tile *tile0 = xe_device_get_root_tile(xe);
- 	struct xe_bo *bo;
- 	resource_size_t phys_base;
- 	u32 base, size, flags;
-@@ -64,7 +65,7 @@ initial_plane_bo(struct xe_device *xe,
+-	for (id = 0; id < xe->info.tile_count; ++id) {
+-		tile = &xe->tiles[id];
++	for_each_tile(tile, xe, id) {
+ 		tile->xe = xe;
+ 		tile->id = id;
  
- 	base = round_down(plane_config->base, page_size);
- 	if (IS_DGFX(xe)) {
--		u64 __iomem *gte = gt0->mem.ggtt->gsm;
-+		u64 __iomem *gte = tile0->mem.ggtt->gsm;
- 		u64 pte;
- 
- 		gte += base / XE_PAGE_SIZE;
-@@ -115,7 +116,7 @@ initial_plane_bo(struct xe_device *xe,
- 			page_size);
- 	size -= base;
- 
--	bo = xe_bo_create_pin_map_at(xe, gt0, NULL, size, phys_base,
-+	bo = xe_bo_create_pin_map_at(xe, &tile0->primary_gt, NULL, size, phys_base,
- 				     ttm_bo_type_kernel, flags);
- 	if (IS_ERR(bo)) {
- 		drm_dbg(&xe->drm,
 -- 
 2.40.1
 
