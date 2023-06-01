@@ -4,48 +4,48 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5440AC83003
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id DA212C8300C
 	for <intel-xe@archiver.kernel.org>; Thu,  1 Jun 2023 00:04:17 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 29DBE10E51F;
+	by gabe.freedesktop.org (Postfix) with ESMTP id A3C1A10E523;
 	Thu,  1 Jun 2023 00:04:17 +0000 (UTC)
 Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C4F3B10E519
+ by gabe.freedesktop.org (Postfix) with ESMTPS id F376F10E1F0
  for <intel-xe@lists.freedesktop.org>; Thu,  1 Jun 2023 00:04:15 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1685577855; x=1717113855;
+ t=1685577856; x=1717113856;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=X9Sfd43ItkMD6QzOgAEa8a1NHYwDvkKjAf2CqesoqPk=;
- b=k3mpZ8eeoyIptx+ycrACy9Nk73IjRugkvL8xwxG+gJjc6wtx8M20pqoF
- IxHS7mMwvYLB/LLq9IriZwBDxUyGgWjUD0Gg6Z23xwz+mA33/xupw620K
- s35BjslC3aErTOG5P11breCn9+ferTpIeXxPmqdgsvL14/7mAE/kbvSeZ
- T5YiwOXJCjFKp3FyhfAwONV76rfl+b2pbwoaAQRt60/FJ/ez89lD8dYi/
- OJX/sm2xiU76jYJnjKk7fpmtI3dqxtdveqPNRb/4Z+Yau1rg1CRxtGh3u
- ZkGvNkhp6I3JMCLGx+dolMmWRcOm6nV8ZscaGwkxQ6+mSDV6KB+qkI+Ma w==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10727"; a="339996859"
-X-IronPort-AV: E=Sophos;i="6.00,207,1681196400"; d="scan'208";a="339996859"
+ bh=NBlOTvEdqeNQS1bCbCDzstnVpeZ/EUpbxuMHMN5CMhM=;
+ b=l7nfSHJG37ezr3SsqaIRkClYv/h0aOV7SZRgpXCIl7IU+xhMMu+PDyn7
+ 9wyBZTGOCU+Ke8cW8DwCBsxA9YBzmM29MS7JPaBbTSuoMG51nMAeD35Ux
+ A1TFSpyPoU1pSBYdWCvmn0hGFN+FnAPLOqb1JbObenTKXP/kiz4OoQOgq
+ XoJe3S9mrpO2RcGzyckij7wj1oqqA2PmpX7PRVnk/LoKh0+6yF4Z7N0sI
+ UCuRlrXN7iAdQS6kMBtf3M6/+CrbJp4a8MGNGueR9HDTxtI9n1pLfQ3t4
+ BC0jHpTw2Fr0Ez7id+eGapcOCZjQP23aBTkp+GheCnEZ7++xAk9WtZQJP Q==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10727"; a="339996862"
+X-IronPort-AV: E=Sophos;i="6.00,207,1681196400"; d="scan'208";a="339996862"
 Received: from orsmga003.jf.intel.com ([10.7.209.27])
  by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  31 May 2023 17:04:15 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10727"; a="657556224"
-X-IronPort-AV: E=Sophos;i="6.00,207,1681196400"; d="scan'208";a="657556224"
+X-IronPort-AV: E=McAfee;i="6600,9927,10727"; a="657556228"
+X-IronPort-AV: E=Sophos;i="6.00,207,1681196400"; d="scan'208";a="657556228"
 Received: from mdroper-desk1.fm.intel.com ([10.1.27.147])
  by orsmga003-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  31 May 2023 17:04:15 -0700
 From: Matt Roper <matthew.d.roper@intel.com>
 To: intel-xe@lists.freedesktop.org
-Date: Wed, 31 May 2023 17:03:54 -0700
-Message-Id: <20230601000403.432517-23-matthew.d.roper@intel.com>
+Date: Wed, 31 May 2023 17:03:55 -0700
+Message-Id: <20230601000403.432517-24-matthew.d.roper@intel.com>
 X-Mailer: git-send-email 2.40.1
 In-Reply-To: <20230601000403.432517-1-matthew.d.roper@intel.com>
 References: <20230601000403.432517-1-matthew.d.roper@intel.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-xe] [PATCH v4 22/31] drm/xe/irq: Handle ASLE backlight
- interrupts at same time as display
+Subject: [Intel-xe] [PATCH v4 23/31] drm/xe/irq: Ensure primary GuC won't
+ clobber media GuC's interrupt mask
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -61,82 +61,43 @@ Cc: Lucas De Marchi <lucas.demarchi@intel.com>, matthew.d.roper@intel.com
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Our only use of GUnit interrupts is to handle ASLE backlight operations
-that are reported as GUnit GSE interrupts.  Move the enable/disable of
-these interrupts adjacent to display interrupts.
-
-In the future we may want to even move these inside the
-xe_display_irq_*() functions.  But since these rely on xe_irq static
-functions like mask_and_disable() it's easier to keep them separate for
-now.
+Although primary and media GuC share a single interrupt enable bit, they
+each have distinct bits in the mask register.  Although we always enable
+interrupts for the primary GuC before the media GuC today (and never
+disable either of them), this might not always be the case in the
+future, so use a RMW when updating the mask register to ensure the other
+GuC's mask doesn't get clobbered.
 
 Signed-off-by: Matt Roper <matthew.d.roper@intel.com>
 Reviewed-by: Lucas De Marchi <lucas.demarchi@intel.com>
 ---
- drivers/gpu/drm/xe/xe_irq.c | 15 +++++++++------
- 1 file changed, 9 insertions(+), 6 deletions(-)
+ drivers/gpu/drm/xe/xe_guc.c | 11 +++++++----
+ 1 file changed, 7 insertions(+), 4 deletions(-)
 
-diff --git a/drivers/gpu/drm/xe/xe_irq.c b/drivers/gpu/drm/xe/xe_irq.c
-index ad2f73b2a031..c069e374a947 100644
---- a/drivers/gpu/drm/xe/xe_irq.c
-+++ b/drivers/gpu/drm/xe/xe_irq.c
-@@ -187,8 +187,6 @@ static void xelp_irq_postinstall(struct xe_device *xe, struct xe_tile *tile)
+diff --git a/drivers/gpu/drm/xe/xe_guc.c b/drivers/gpu/drm/xe/xe_guc.c
+index ecc843d91f62..04a57af85d9e 100644
+--- a/drivers/gpu/drm/xe/xe_guc.c
++++ b/drivers/gpu/drm/xe/xe_guc.c
+@@ -532,12 +532,15 @@ static void guc_enable_irq(struct xe_guc *guc)
+ 		REG_FIELD_PREP(ENGINE0_MASK, GUC_INTR_GUC2HOST)  :
+ 		REG_FIELD_PREP(ENGINE1_MASK, GUC_INTR_GUC2HOST);
  
- 	gt_irq_postinstall(tile);
- 
--	unmask_and_enable(tile, GU_MISC_IRQ_OFFSET, GU_MISC_GSE);
--
- 	xelp_intr_enable(xe, true);
- }
- 
-@@ -372,8 +370,6 @@ static void dg1_irq_postinstall(struct xe_device *xe, struct xe_tile *tile)
- {
- 	gt_irq_postinstall(tile);
- 
--	unmask_and_enable(tile, GU_MISC_IRQ_OFFSET, GU_MISC_GSE);
--
- 	if (tile->id == 0)
- 		dg1_intr_enable(xe, true);
- }
-@@ -486,7 +482,6 @@ static void xelp_irq_reset(struct xe_tile *tile)
- 
- 	gt_irq_reset(tile);
- 
--	mask_and_disable(tile, GU_MISC_IRQ_OFFSET);
- 	mask_and_disable(tile, PCU_IRQ_OFFSET);
- }
- 
-@@ -497,7 +492,6 @@ static void dg1_irq_reset(struct xe_tile *tile)
- 
- 	gt_irq_reset(tile);
- 
--	mask_and_disable(tile, GU_MISC_IRQ_OFFSET);
- 	mask_and_disable(tile, PCU_IRQ_OFFSET);
- }
- 
-@@ -513,6 +507,8 @@ static void xe_irq_reset(struct xe_device *xe)
- 			xelp_irq_reset(tile);
- 	}
- 
-+	tile = xe_device_get_root_tile(xe);
-+	mask_and_disable(tile, GU_MISC_IRQ_OFFSET);
- 	xe_display_irq_reset(xe);
- }
- 
-@@ -535,6 +531,13 @@ static void xe_irq_postinstall(struct xe_device *xe)
- 		xe_gt_irq_postinstall(tile);
- 
- 	xe_display_irq_postinstall(xe, xe_root_mmio_gt(xe));
++	/* Primary GuC and media GuC share a single enable bit */
+ 	xe_mmio_write32(gt, GUC_SG_INTR_ENABLE,
+ 			REG_FIELD_PREP(ENGINE1_MASK, GUC_INTR_GUC2HOST));
+-	if (xe_gt_is_media_type(gt))
+-		xe_mmio_rmw32(gt, GUC_SG_INTR_MASK, events, 0);
+-	else
+-		xe_mmio_write32(gt, GUC_SG_INTR_MASK, ~events);
 +
 +	/*
-+	 * ASLE backlight operations are reported via GUnit GSE interrupts
-+	 * on the root tile.
++	 * There are separate mask bits for primary and media GuCs, so use
++	 * a RMW operation to avoid clobbering the other GuC's setting.
 +	 */
-+	unmask_and_enable(xe_device_get_root_tile(xe),
-+			  GU_MISC_IRQ_OFFSET, GU_MISC_GSE);
++	xe_mmio_rmw32(gt, GUC_SG_INTR_MASK, events, 0);
  }
  
- static irq_handler_t xe_irq_handler(struct xe_device *xe)
+ int xe_guc_enable_communication(struct xe_guc *guc)
 -- 
 2.40.1
 
