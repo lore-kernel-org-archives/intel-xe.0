@@ -4,48 +4,48 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id E1477C87FDE
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id AC0D8C7EE2E
 	for <intel-xe@archiver.kernel.org>; Thu,  1 Jun 2023 00:04:18 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 44C9510E527;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 397FF10E526;
 	Thu,  1 Jun 2023 00:04:18 +0000 (UTC)
 Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2191210E1F1
- for <intel-xe@lists.freedesktop.org>; Thu,  1 Jun 2023 00:04:14 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0096A10E51F
+ for <intel-xe@lists.freedesktop.org>; Thu,  1 Jun 2023 00:04:16 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1685577854; x=1717113854;
+ t=1685577857; x=1717113857;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=p7h5GlTE/M0Rr374xZ0xxh0/XSNQdhQrkRV1JeNe3Uw=;
- b=W0WabzJaGttbxgPS6dL93w0ep5VJEu6ATk9wu2fQRPDLZo6Ib4DGtUU0
- v8dCf1POeAfovq0Lymymm+iCPOiytH7OOhUT/h70yu+z8N0my/ANFT21Q
- D11L3W48RwkgQ9E9dyyXXqCZEJuM3eUxP8lBaZKFubopS2uLeUvtesXtU
- J4BWtj+jQkpDObUutwsMvHIOxjN/D/BHBNdnPykU8z6lzVrKQYbB2vzxD
- miuWGHOGZKeKfJ+qUjmKuxIc6etlGNAbc6fasJ7J68V5oZnRYEwPE9wCq
- ibBGp/gwJV9HQEMbqCQA15nflAB+Yj529uyHA2zTPMt0Fak3AY7sH7Y1b Q==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10727"; a="339996835"
-X-IronPort-AV: E=Sophos;i="6.00,207,1681196400"; d="scan'208";a="339996835"
+ bh=EBISDRX8XYI3XgoYNkc5OaTnOSGV3hQLMOlVlqmuXLE=;
+ b=QPw+C66fm0oC6IZkOABzXwKkmP5NlZ5wNwPyoy3GnjALWWz5JdcpaO80
+ hXZM0Z/vdinSvY7EC3+erbixjdKir1TXXnovNWVrYctQpfY1FuXU08fJx
+ NI93kHjD+fo7nnLJuondY87NvphTBrD4UyuHSzzAVEN270Q6neCgYsK5w
+ tKBDnwq/Lf7nyecxiV9fgpd7+C0HvVB96N8xJQjB4n1u19lcc7KR+Wr26
+ DHqiF11+BpVUj1vh0nzxCWLjykC4M96KhD3GAtWxm0xOpP/2SaiZnASZM
+ +tx9Drr86OYUrBlAwycnWiW0M64NYAljbdjLHywMc3TPW10o0MMVkKWYU g==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10727"; a="339996869"
+X-IronPort-AV: E=Sophos;i="6.00,207,1681196400"; d="scan'208";a="339996869"
 Received: from orsmga003.jf.intel.com ([10.7.209.27])
  by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 31 May 2023 17:04:13 -0700
+ 31 May 2023 17:04:16 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10727"; a="657556191"
-X-IronPort-AV: E=Sophos;i="6.00,207,1681196400"; d="scan'208";a="657556191"
+X-IronPort-AV: E=McAfee;i="6600,9927,10727"; a="657556240"
+X-IronPort-AV: E=Sophos;i="6.00,207,1681196400"; d="scan'208";a="657556240"
 Received: from mdroper-desk1.fm.intel.com ([10.1.27.147])
  by orsmga003-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 31 May 2023 17:04:13 -0700
+ 31 May 2023 17:04:16 -0700
 From: Matt Roper <matthew.d.roper@intel.com>
 To: intel-xe@lists.freedesktop.org
-Date: Wed, 31 May 2023 17:03:45 -0700
-Message-Id: <20230601000403.432517-14-matthew.d.roper@intel.com>
+Date: Wed, 31 May 2023 17:03:59 -0700
+Message-Id: <20230601000403.432517-28-matthew.d.roper@intel.com>
 X-Mailer: git-send-email 2.40.1
 In-Reply-To: <20230601000403.432517-1-matthew.d.roper@intel.com>
 References: <20230601000403.432517-1-matthew.d.roper@intel.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-xe] [PATCH v4 13/31] fixup! drm/xe/display: Implement
- display support
+Subject: [Intel-xe] [PATCH v4 27/31] drm/xe/tlb: Obtain forcewake when doing
+ GGTT TLB invalidations
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -57,122 +57,51 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Cc: Lucas De Marchi <lucas.demarchi@intel.com>, matthew.d.roper@intel.com
+Cc: Lucas De Marchi <lucas.demarchi@intel.com>, matthew.d.roper@intel.com,
+ Nirmoy Das <nirmoy.das@intel.com>
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Reviewed-by: Lucas De Marchi <lucas.demarchi@intel.com>
----
- drivers/gpu/drm/i915/display/intel_dsb.c      | 5 +++--
- drivers/gpu/drm/i915/display/intel_fbc.c      | 3 ++-
- drivers/gpu/drm/i915/display/intel_fbdev.c    | 7 ++++---
- drivers/gpu/drm/xe/display/xe_fb_pin.c        | 7 ++++---
- drivers/gpu/drm/xe/display/xe_plane_initial.c | 2 +-
- 5 files changed, 14 insertions(+), 10 deletions(-)
+Updates to the GGTT can happen when there are no in-flight jobs keeping
+the hardware awake.  If the GT is powered down when invalidation is
+requested, we will not be able to communicate with the GuC (or MMIO) and
+the invalidation request will go missing.  Explicitly grab GT forcewake
+to ensure the GT and GuC are powered up during the TLB invalidation.
 
-diff --git a/drivers/gpu/drm/i915/display/intel_dsb.c b/drivers/gpu/drm/i915/display/intel_dsb.c
-index 7c93580282b4..3830309aacf4 100644
---- a/drivers/gpu/drm/i915/display/intel_dsb.c
-+++ b/drivers/gpu/drm/i915/display/intel_dsb.c
-@@ -379,9 +379,10 @@ struct intel_dsb *intel_dsb_prepare(struct intel_crtc *crtc,
- #else
- 	/* ~1 qword per instruction, full cachelines */
- 	size = ALIGN(max_cmds * 8, 64);
--	obj = xe_bo_create_pin_map(i915, to_gt(i915), NULL, PAGE_ALIGN(size),
-+	obj = xe_bo_create_pin_map(i915, xe_device_get_root_tile(i915),
-+				   NULL, PAGE_ALIGN(size),
- 				   ttm_bo_type_kernel,
--				   XE_BO_CREATE_VRAM_IF_DGFX(to_gt(i915)) |
-+				   XE_BO_CREATE_VRAM_IF_DGFX(xe_device_get_root_tile(i915)) |
- 				   XE_BO_CREATE_GGTT_BIT);
- 	if (IS_ERR(obj)) {
- 		kfree(dsb);
-diff --git a/drivers/gpu/drm/i915/display/intel_fbc.c b/drivers/gpu/drm/i915/display/intel_fbc.c
-index 9dc7083fe974..0e8e899f596b 100644
---- a/drivers/gpu/drm/i915/display/intel_fbc.c
-+++ b/drivers/gpu/drm/i915/display/intel_fbc.c
-@@ -71,7 +71,8 @@ static int i915_gem_stolen_insert_node_in_range(struct xe_device *xe, struct xe_
- 	int err;
- 	u32 flags = XE_BO_CREATE_PINNED_BIT | XE_BO_CREATE_STOLEN_BIT;
+Signed-off-by: Matt Roper <matthew.d.roper@intel.com>
+Reviewed-by: Lucas De Marchi <lucas.demarchi@intel.com>
+Reviewed-by: Nirmoy Das <nirmoy.das@intel.com>
+---
+ drivers/gpu/drm/xe/xe_ggtt.c | 9 +++++++++
+ 1 file changed, 9 insertions(+)
+
+diff --git a/drivers/gpu/drm/xe/xe_ggtt.c b/drivers/gpu/drm/xe/xe_ggtt.c
+index 9a3edead3948..bae9f66a33cb 100644
+--- a/drivers/gpu/drm/xe/xe_ggtt.c
++++ b/drivers/gpu/drm/xe/xe_ggtt.c
+@@ -195,6 +195,13 @@ static void ggtt_invalidate_gt_tlb(struct xe_gt *gt)
+ 	if (!gt)
+ 		return;
  
--	*bo = xe_bo_create_locked_range(xe, to_gt(xe), NULL, size, start, end,
-+	*bo = xe_bo_create_locked_range(xe, xe_device_get_root_tile(xe),
-+					NULL, size, start, end,
- 					ttm_bo_type_kernel, flags);
- 	if (IS_ERR(*bo)) {
- 		err = PTR_ERR(*bo);
-diff --git a/drivers/gpu/drm/i915/display/intel_fbdev.c b/drivers/gpu/drm/i915/display/intel_fbdev.c
-index 95f4cbc2e675..ebb07d0ccff6 100644
---- a/drivers/gpu/drm/i915/display/intel_fbdev.c
-+++ b/drivers/gpu/drm/i915/display/intel_fbdev.c
-@@ -210,7 +210,8 @@ static int intelfb_alloc(struct drm_fb_helper *helper,
++	/*
++	 * Invalidation can happen when there's no in-flight work keeping the
++	 * GT awake.  We need to explicitly grab forcewake to ensure the GT
++	 * and GuC are accessible.
++	 */
++	xe_force_wake_get(gt_to_fw(gt), XE_FW_GT);
++
+ 	/* TODO: vfunc for GuC vs. non-GuC */
+ 
+ 	if (gt->uc.guc.submission_state.enabled) {
+@@ -216,6 +223,8 @@ static void ggtt_invalidate_gt_tlb(struct xe_gt *gt)
+ 			xe_mmio_write32(gt, GUC_TLB_INV_CR,
+ 					GUC_TLB_INV_CR_INVALIDATE);
  	}
- #else
- 	if (!IS_DGFX(dev_priv)) {
--		obj = xe_bo_create_pin_map(dev_priv, to_gt(dev_priv), NULL, size,
-+		obj = xe_bo_create_pin_map(dev_priv, xe_device_get_root_tile(dev_priv),
-+					   NULL, size,
- 					   ttm_bo_type_kernel, XE_BO_SCANOUT_BIT |
- 					   XE_BO_CREATE_STOLEN_BIT |
- 					   XE_BO_CREATE_PINNED_BIT);
-@@ -220,9 +221,9 @@ static int intelfb_alloc(struct drm_fb_helper *helper,
- 			drm_info(&dev_priv->drm, "Allocated fbdev into stolen failed: %li\n", PTR_ERR(obj));
- 	}
- 	if (IS_ERR(obj)) {
--		obj = xe_bo_create_pin_map(dev_priv, to_gt(dev_priv), NULL, size,
-+		obj = xe_bo_create_pin_map(dev_priv, xe_device_get_root_tile(dev_priv), NULL, size,
- 					  ttm_bo_type_kernel, XE_BO_SCANOUT_BIT |
--					  XE_BO_CREATE_VRAM_IF_DGFX(to_gt(dev_priv)) |
-+					  XE_BO_CREATE_VRAM_IF_DGFX(xe_device_get_root_tile(dev_priv)) |
- 					  XE_BO_CREATE_PINNED_BIT);
- 	}
- #endif
-diff --git a/drivers/gpu/drm/xe/display/xe_fb_pin.c b/drivers/gpu/drm/xe/display/xe_fb_pin.c
-index 3e863461fe79..83c9245dd362 100644
---- a/drivers/gpu/drm/xe/display/xe_fb_pin.c
-+++ b/drivers/gpu/drm/xe/display/xe_fb_pin.c
-@@ -45,6 +45,7 @@ static int __xe_pin_fb_vma_dpt(struct intel_framebuffer *fb,
- 			       struct i915_vma *vma)
- {
- 	struct xe_device *xe = to_xe_device(fb->base.dev);
-+	struct xe_tile *tile0 = xe_device_get_root_tile(xe);
- 	struct xe_bo *bo = intel_fb_obj(&fb->base), *dpt;
- 	u32 dpt_size, size = bo->ttm.base.size;
++
++	xe_force_wake_put(gt_to_fw(gt), XE_FW_GT);
+ }
  
-@@ -55,17 +56,17 @@ static int __xe_pin_fb_vma_dpt(struct intel_framebuffer *fb,
- 		dpt_size = ALIGN(intel_rotation_info_size(&view->rotated) * 8,
- 				 XE_PAGE_SIZE);
- 
--	dpt = xe_bo_create_pin_map(xe, to_gt(xe), NULL, dpt_size,
-+	dpt = xe_bo_create_pin_map(xe, tile0, NULL, dpt_size,
- 				  ttm_bo_type_kernel,
- 				  XE_BO_CREATE_VRAM0_BIT |
- 				  XE_BO_CREATE_GGTT_BIT);
- 	if (IS_ERR(dpt))
--		dpt = xe_bo_create_pin_map(xe, to_gt(xe), NULL, dpt_size,
-+		dpt = xe_bo_create_pin_map(xe, tile0, NULL, dpt_size,
- 					   ttm_bo_type_kernel,
- 					   XE_BO_CREATE_STOLEN_BIT |
- 					   XE_BO_CREATE_GGTT_BIT);
- 	if (IS_ERR(dpt))
--		dpt = xe_bo_create_pin_map(xe, to_gt(xe), NULL, dpt_size,
-+		dpt = xe_bo_create_pin_map(xe, tile0, NULL, dpt_size,
- 					   ttm_bo_type_kernel,
- 					   XE_BO_CREATE_SYSTEM_BIT |
- 					   XE_BO_CREATE_GGTT_BIT);
-diff --git a/drivers/gpu/drm/xe/display/xe_plane_initial.c b/drivers/gpu/drm/xe/display/xe_plane_initial.c
-index 39dd97acae08..99c35a4ef673 100644
---- a/drivers/gpu/drm/xe/display/xe_plane_initial.c
-+++ b/drivers/gpu/drm/xe/display/xe_plane_initial.c
-@@ -115,7 +115,7 @@ initial_plane_bo(struct xe_device *xe,
- 			page_size);
- 	size -= base;
- 
--	bo = xe_bo_create_pin_map_at(xe, &tile0->primary_gt, NULL, size, phys_base,
-+	bo = xe_bo_create_pin_map_at(xe, tile0, NULL, size, phys_base,
- 				     ttm_bo_type_kernel, flags);
- 	if (IS_ERR(bo)) {
- 		drm_dbg(&xe->drm,
+ void xe_ggtt_invalidate(struct xe_ggtt *ggtt)
 -- 
 2.40.1
 
