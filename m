@@ -4,47 +4,47 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 61D67C7EE29
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8C349C7EE39
 	for <intel-xe@archiver.kernel.org>; Thu,  1 Jun 2023 21:52:52 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 03C6C10E610;
-	Thu,  1 Jun 2023 21:52:51 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0017410E5E2;
+	Thu,  1 Jun 2023 21:52:50 +0000 (UTC)
 Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3091210E5DC
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4CCB410E5DD
  for <intel-xe@lists.freedesktop.org>; Thu,  1 Jun 2023 21:52:47 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
  t=1685656367; x=1717192367;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=VVo3N3fsEOXufQSaktAV6ebhOaWuQX33VTZNUI9mUik=;
- b=UPgXLbfujhlKruEXSPDwnpb9JiWIrWBQvpnBPxzgvk3rU56yP4l/Axc2
- xRLFHTV3C52u6yl0iCQBsUs8t59iJckbmWoA47yQVwsmQpTC6JnEDNOlj
- 5adI53k2yT7DzviWjiN2t62V1GdyxwYht1+qJd5j6l69VF1njOaYtbTOP
- mGQUGJLowtOq20fUEfdXMYWiThQez8+hvGgPPut180K/DclJKOpK3uBlg
- TN8FxOcBlCkQ/j12gowF0iXPj9l4n60pzmxIjafPSmNtjWKFpD7ziU2IC
- JcCQ7w+hKB1YlfzbC4KQv1X0rDzT22lg0/UtdN5dh6cipTypWyqBi0eE5 w==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10728"; a="335313584"
-X-IronPort-AV: E=Sophos;i="6.00,210,1681196400"; d="scan'208";a="335313584"
+ bh=3QloX9OIFmaCmT/0vD9gI/9ytT9RxzRimT9KzFGDs3o=;
+ b=XrLcm10ynyQiSzkJ73a0ZRHUModn+N4481Z60PtWOOxiyJ2MR0Ygznu4
+ PuNNUl3+LrecrtmkFSVXghuNv8CCu3+pl34ippg2sl7KkXQ0saJejDHXf
+ wBRx0NDWZpBmFCWq7yy503KMIj3puQrreDCMpSzdOr1WAzPfSRwWEDoYk
+ pX3SAj7GpqRbFFYh5+mY00pK+PEyhwYjQX8n+RK4HXoRqkrRC1WM70zT6
+ u5hoq3RyHboPjWVc8THjT2TvIpKjNbX0zxPtyr8xGXhFwcW3r9wnV6vrz
+ n4o1hH+cK8j7pXW/AUVT5k48l6TwlK2WSizDCjw0ivyJ4doVhm3R4N3F1 A==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10728"; a="335313587"
+X-IronPort-AV: E=Sophos;i="6.00,210,1681196400"; d="scan'208";a="335313587"
 Received: from orsmga002.jf.intel.com ([10.7.209.21])
  by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 01 Jun 2023 14:52:45 -0700
+ 01 Jun 2023 14:52:46 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10728"; a="707563550"
-X-IronPort-AV: E=Sophos;i="6.00,210,1681196400"; d="scan'208";a="707563550"
+X-IronPort-AV: E=McAfee;i="6600,9927,10728"; a="707563556"
+X-IronPort-AV: E=Sophos;i="6.00,210,1681196400"; d="scan'208";a="707563556"
 Received: from mdroper-desk1.fm.intel.com ([10.1.27.147])
  by orsmga002-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 01 Jun 2023 14:52:44 -0700
+ 01 Jun 2023 14:52:45 -0700
 From: Matt Roper <matthew.d.roper@intel.com>
 To: intel-xe@lists.freedesktop.org
-Date: Thu,  1 Jun 2023 14:52:14 -0700
-Message-Id: <20230601215244.678611-2-matthew.d.roper@intel.com>
+Date: Thu,  1 Jun 2023 14:52:16 -0700
+Message-Id: <20230601215244.678611-4-matthew.d.roper@intel.com>
 X-Mailer: git-send-email 2.40.1
 In-Reply-To: <20230601215244.678611-1-matthew.d.roper@intel.com>
 References: <20230601215244.678611-1-matthew.d.roper@intel.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-xe] [CIv2 01/31] drm/xe/mtl: Disable media GT
+Subject: [Intel-xe] [CIv2 03/31] drm/xe: Add backpointer from gt to tile
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -60,76 +60,355 @@ Cc: matthew.d.roper@intel.com
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Xe incorrectly conflates the concept of 'tile' and 'GT.'  Since MTL's
-media support is not yet functioning properly, let's just disable it
-completely for now while we fix the fundamental driver design.  Support
-for media GTs on platforms like MTL will be re-added later.
+Rather than a backpointer to the xe_device, a GT should have a
+backpointer to its tile (which can then be used to lookup the device if
+necessary).
+
+The gt_to_xe() helper macro (which moves from xe_gt.h to xe_gt_types.h)
+can and should still be used to jump directly from an xe_gt to
+xe_device.
 
 v2:
- - Drop some unrelated code cleanup that didn't belong in this patch.
-   (Lucas)
-v3:
- - Drop unnecessary xe_gt.h include.  (Gustavo)
+ - Fix kunit test build
+ - Move a couple changes to the previous patch. (Lucas)
 
-Cc: Lucas De Marchi <lucas.demarchi@intel.com>
-Cc: Gustavo Sousa <gustavo.sousa@intel.com>
 Reviewed-by: Matt Atwood <matthew.s.atwood@intel.com>
 Reviewed-by: Lucas De Marchi <lucas.demarchi@intel.com>
-Acked-by: Gustavo Sousa <gustavo.sousa@intel.com>
 Signed-off-by: Matt Roper <matthew.d.roper@intel.com>
 ---
- drivers/gpu/drm/xe/xe_mmio.c |  2 --
- drivers/gpu/drm/xe/xe_pci.c  | 12 ------------
- 2 files changed, 14 deletions(-)
+ drivers/gpu/drm/xe/tests/xe_bo.c            |  2 +-
+ drivers/gpu/drm/xe/xe_bb.c                  |  2 +-
+ drivers/gpu/drm/xe/xe_ggtt.c                | 12 ++++++------
+ drivers/gpu/drm/xe/xe_gt.h                  |  5 -----
+ drivers/gpu/drm/xe/xe_gt_printk.h           |  6 +++---
+ drivers/gpu/drm/xe/xe_gt_tlb_invalidation.c |  8 ++++----
+ drivers/gpu/drm/xe/xe_gt_types.h            | 14 ++++++++++++--
+ drivers/gpu/drm/xe/xe_mmio.c                |  6 +++---
+ drivers/gpu/drm/xe/xe_mocs.c                | 14 +++++++-------
+ drivers/gpu/drm/xe/xe_pci.c                 |  2 +-
+ drivers/gpu/drm/xe/xe_pt.c                  |  2 +-
+ drivers/gpu/drm/xe/xe_ttm_stolen_mgr.c      |  6 +++---
+ 12 files changed, 42 insertions(+), 37 deletions(-)
 
+diff --git a/drivers/gpu/drm/xe/tests/xe_bo.c b/drivers/gpu/drm/xe/tests/xe_bo.c
+index 6075f12a1962..8f3afdc6cca6 100644
+--- a/drivers/gpu/drm/xe/tests/xe_bo.c
++++ b/drivers/gpu/drm/xe/tests/xe_bo.c
+@@ -90,7 +90,7 @@ static int ccs_test_migrate(struct xe_gt *gt, struct xe_bo *bo,
+ 	}
+ 
+ 	/* Check last CCS value, or at least last value in page. */
+-	offset = xe_device_ccs_bytes(gt->xe, bo->size);
++	offset = xe_device_ccs_bytes(gt_to_xe(gt), bo->size);
+ 	offset = min_t(u32, offset, PAGE_SIZE) / sizeof(u64) - 1;
+ 	if (cpu_map[offset] != get_val) {
+ 		KUNIT_FAIL(test,
+diff --git a/drivers/gpu/drm/xe/xe_bb.c b/drivers/gpu/drm/xe/xe_bb.c
+index 3deb2d55f421..bf7c94b769d7 100644
+--- a/drivers/gpu/drm/xe/xe_bb.c
++++ b/drivers/gpu/drm/xe/xe_bb.c
+@@ -16,7 +16,7 @@
+ 
+ static int bb_prefetch(struct xe_gt *gt)
+ {
+-	struct xe_device *xe = gt->xe;
++	struct xe_device *xe = gt_to_xe(gt);
+ 
+ 	if (GRAPHICS_VERx100(xe) >= 1250 && !xe_gt_is_media_type(gt))
+ 		/*
+diff --git a/drivers/gpu/drm/xe/xe_ggtt.c b/drivers/gpu/drm/xe/xe_ggtt.c
+index f986e8218820..189d377f8690 100644
+--- a/drivers/gpu/drm/xe/xe_ggtt.c
++++ b/drivers/gpu/drm/xe/xe_ggtt.c
+@@ -142,14 +142,14 @@ static void xe_ggtt_initial_clear(struct xe_ggtt *ggtt)
+ 	u64 start, end;
+ 
+ 	/* Display may have allocated inside ggtt, so be careful with clearing here */
+-	xe_device_mem_access_get(ggtt->gt->xe);
++	xe_device_mem_access_get(gt_to_xe(ggtt->gt));
+ 	mutex_lock(&ggtt->lock);
+ 	drm_mm_for_each_hole(hole, &ggtt->mm, start, end)
+ 		xe_ggtt_clear(ggtt, start, end - start);
+ 
+ 	xe_ggtt_invalidate(ggtt->gt);
+ 	mutex_unlock(&ggtt->lock);
+-	xe_device_mem_access_put(ggtt->gt->xe);
++	xe_device_mem_access_put(gt_to_xe(ggtt->gt));
+ }
+ 
+ int xe_ggtt_init(struct xe_gt *gt, struct xe_ggtt *ggtt)
+@@ -290,14 +290,14 @@ static int __xe_ggtt_insert_bo_at(struct xe_ggtt *ggtt, struct xe_bo *bo,
+ 	if (err)
+ 		return err;
+ 
+-	xe_device_mem_access_get(ggtt->gt->xe);
++	xe_device_mem_access_get(gt_to_xe(ggtt->gt));
+ 	mutex_lock(&ggtt->lock);
+ 	err = drm_mm_insert_node_in_range(&ggtt->mm, &bo->ggtt_node, bo->size,
+ 					  alignment, 0, start, end, 0);
+ 	if (!err)
+ 		xe_ggtt_map_bo(ggtt, bo);
+ 	mutex_unlock(&ggtt->lock);
+-	xe_device_mem_access_put(ggtt->gt->xe);
++	xe_device_mem_access_put(gt_to_xe(ggtt->gt));
+ 
+ 	return err;
+ }
+@@ -315,7 +315,7 @@ int xe_ggtt_insert_bo(struct xe_ggtt *ggtt, struct xe_bo *bo)
+ 
+ void xe_ggtt_remove_node(struct xe_ggtt *ggtt, struct drm_mm_node *node)
+ {
+-	xe_device_mem_access_get(ggtt->gt->xe);
++	xe_device_mem_access_get(gt_to_xe(ggtt->gt));
+ 	mutex_lock(&ggtt->lock);
+ 
+ 	xe_ggtt_clear(ggtt, node->start, node->size);
+@@ -325,7 +325,7 @@ void xe_ggtt_remove_node(struct xe_ggtt *ggtt, struct drm_mm_node *node)
+ 	xe_ggtt_invalidate(ggtt->gt);
+ 
+ 	mutex_unlock(&ggtt->lock);
+-	xe_device_mem_access_put(ggtt->gt->xe);
++	xe_device_mem_access_put(gt_to_xe(ggtt->gt));
+ }
+ 
+ void xe_ggtt_remove_bo(struct xe_ggtt *ggtt, struct xe_bo *bo)
+diff --git a/drivers/gpu/drm/xe/xe_gt.h b/drivers/gpu/drm/xe/xe_gt.h
+index 086369f7ee6d..f4e98f499b36 100644
+--- a/drivers/gpu/drm/xe/xe_gt.h
++++ b/drivers/gpu/drm/xe/xe_gt.h
+@@ -49,11 +49,6 @@ static inline bool xe_gt_is_media_type(struct xe_gt *gt)
+ 	return gt->info.type == XE_GT_TYPE_MEDIA;
+ }
+ 
+-#define gt_to_xe(gt__)								\
+-	_Generic(gt__,								\
+-		 const struct xe_gt *: (const struct xe_device *)((gt__)->xe),	\
+-		 struct xe_gt *: (gt__)->xe)
+-
+ static inline bool xe_gt_is_usm_hwe(struct xe_gt *gt, struct xe_hw_engine *hwe)
+ {
+ 	struct xe_device *xe = gt_to_xe(gt);
+diff --git a/drivers/gpu/drm/xe/xe_gt_printk.h b/drivers/gpu/drm/xe/xe_gt_printk.h
+index 0b801429cf1a..5991bcadd47e 100644
+--- a/drivers/gpu/drm/xe/xe_gt_printk.h
++++ b/drivers/gpu/drm/xe/xe_gt_printk.h
+@@ -11,7 +11,7 @@
+ #include "xe_device_types.h"
+ 
+ #define xe_gt_printk(_gt, _level, _fmt, ...) \
+-	drm_##_level(&(_gt)->xe->drm, "GT%u: " _fmt, (_gt)->info.id, ##__VA_ARGS__)
++	drm_##_level(&gt_to_xe(_gt)->drm, "GT%u: " _fmt, (_gt)->info.id, ##__VA_ARGS__)
+ 
+ #define xe_gt_err(_gt, _fmt, ...) \
+ 	xe_gt_printk((_gt), err, _fmt, ##__VA_ARGS__)
+@@ -32,10 +32,10 @@
+ 	xe_gt_printk((_gt), err_ratelimited, _fmt, ##__VA_ARGS__)
+ 
+ #define xe_gt_WARN(_gt, _condition, _fmt, ...) \
+-	drm_WARN(&(_gt)->xe->drm, _condition, "GT%u: " _fmt, (_gt)->info.id, ##__VA_ARGS__)
++	drm_WARN(&gt_to_xe(_gt)->drm, _condition, "GT%u: " _fmt, (_gt)->info.id, ##__VA_ARGS__)
+ 
+ #define xe_gt_WARN_ONCE(_gt, _condition, _fmt, ...) \
+-	drm_WARN_ONCE(&(_gt)->xe->drm, _condition, "GT%u: " _fmt, (_gt)->info.id, ##__VA_ARGS__)
++	drm_WARN_ONCE(&gt_to_xe(_gt)->drm, _condition, "GT%u: " _fmt, (_gt)->info.id, ##__VA_ARGS__)
+ 
+ #define xe_gt_WARN_ON(_gt, _condition) \
+ 	xe_gt_WARN((_gt), _condition, "%s(%s)", "gt_WARN_ON", __stringify(_condition))
+diff --git a/drivers/gpu/drm/xe/xe_gt_tlb_invalidation.c b/drivers/gpu/drm/xe/xe_gt_tlb_invalidation.c
+index 44e442bf306c..2fcb477604e2 100644
+--- a/drivers/gpu/drm/xe/xe_gt_tlb_invalidation.c
++++ b/drivers/gpu/drm/xe/xe_gt_tlb_invalidation.c
+@@ -248,9 +248,9 @@ int xe_gt_tlb_invalidation_vma(struct xe_gt *gt,
+ 
+ 	XE_BUG_ON(len > MAX_TLB_INVALIDATION_LEN);
+ 
+-	xe_device_mem_access_get(gt->xe);
++	xe_device_mem_access_get(xe);
+ 	ret = send_tlb_invalidation(&gt->uc.guc, fence, action, len);
+-	xe_device_mem_access_put(gt->xe);
++	xe_device_mem_access_put(xe);
+ 
+ 	return ret;
+ }
+@@ -328,8 +328,8 @@ int xe_guc_tlb_invalidation_done_handler(struct xe_guc *guc, u32 *msg, u32 len)
+ 		TLB_INVALIDATION_SEQNO_MAX;
+ 	if (!expected_seqno)
+ 		expected_seqno = 1;
+-	if (drm_WARN_ON(&gt->xe->drm, expected_seqno != msg[0])) {
+-		drm_err(&gt->xe->drm, "TLB expected_seqno(%d) != msg(%u)\n",
++	if (drm_WARN_ON(&gt_to_xe(gt)->drm, expected_seqno != msg[0])) {
++		drm_err(&gt_to_xe(gt)->drm, "TLB expected_seqno(%d) != msg(%u)\n",
+ 			expected_seqno, msg[0]);
+ 	}
+ 
+diff --git a/drivers/gpu/drm/xe/xe_gt_types.h b/drivers/gpu/drm/xe/xe_gt_types.h
+index 456e3e447a2e..11605a99ad66 100644
+--- a/drivers/gpu/drm/xe/xe_gt_types.h
++++ b/drivers/gpu/drm/xe/xe_gt_types.h
+@@ -76,6 +76,16 @@ enum xe_steering_type {
+ 	NUM_STEERING_TYPES
+ };
+ 
++#define gt_to_tile(gt__)							\
++	_Generic(gt__,								\
++		 const struct xe_gt *: (const struct xe_tile *)((gt__)->tile),	\
++		 struct xe_gt *: (gt__)->tile)
++
++#define gt_to_xe(gt__)										\
++	_Generic(gt__,										\
++		 const struct xe_gt *: (const struct xe_device *)(gt_to_tile(gt__)->xe),	\
++		 struct xe_gt *: gt_to_tile(gt__)->xe)
++
+ /**
+  * struct xe_gt - A "Graphics Technology" unit of the GPU
+  *
+@@ -90,8 +100,8 @@ enum xe_steering_type {
+  * separate GTs within a tile.
+  */
+ struct xe_gt {
+-	/** @xe: backpointer to XE device */
+-	struct xe_device *xe;
++	/** @tile: Backpointer to GT's tile */
++	struct xe_tile *tile;
+ 
+ 	/** @info: GT info */
+ 	struct {
 diff --git a/drivers/gpu/drm/xe/xe_mmio.c b/drivers/gpu/drm/xe/xe_mmio.c
-index d3b57669c9a7..ef2353eef6fe 100644
+index 9bc5715e9ebe..79f902d2faea 100644
 --- a/drivers/gpu/drm/xe/xe_mmio.c
 +++ b/drivers/gpu/drm/xe/xe_mmio.c
-@@ -340,8 +340,6 @@ static void xe_mmio_probe_tiles(struct xe_device *xe)
- 	mtcfg = xe_mmio_read64(gt, XEHP_MTCFG_ADDR);
- 	adj_tile_count = xe->info.tile_count =
- 		REG_FIELD_GET(TILE_COUNT, mtcfg) + 1;
--	if (xe->info.media_verx100 >= 1300)
--		xe->info.tile_count *= 2;
+@@ -217,8 +217,8 @@ int xe_mmio_tile_vram_size(struct xe_gt *gt, u64 *vram_size, u64 *tile_size, u64
+ 		return err;
  
- 	drm_info(&xe->drm, "tile_count: %d, adj_tile_count %d\n",
- 		 xe->info.tile_count, adj_tile_count);
+ 	/* actual size */
+-	if (unlikely(gt->xe->info.platform == XE_DG1)) {
+-		*tile_size = pci_resource_len(to_pci_dev(gt->xe->drm.dev), GEN12_LMEM_BAR);
++	if (unlikely(gt_to_xe(gt)->info.platform == XE_DG1)) {
++		*tile_size = pci_resource_len(to_pci_dev(gt_to_xe(gt)->drm.dev), GEN12_LMEM_BAR);
+ 		*tile_offset = 0;
+ 	} else {
+ 		reg = xe_gt_mcr_unicast_read_any(gt, XEHP_TILE_ADDR_RANGE(gt->info.id));
+@@ -227,7 +227,7 @@ int xe_mmio_tile_vram_size(struct xe_gt *gt, u64 *vram_size, u64 *tile_size, u64
+ 	}
+ 
+ 	/* minus device usage */
+-	if (gt->xe->info.has_flat_ccs) {
++	if (gt_to_xe(gt)->info.has_flat_ccs) {
+ 		reg = xe_gt_mcr_unicast_read_any(gt, XEHP_FLAT_CCS_BASE_ADDR);
+ 		offset = (u64)REG_FIELD_GET(GENMASK(31, 8), reg) * SZ_64K;
+ 	} else {
+diff --git a/drivers/gpu/drm/xe/xe_mocs.c b/drivers/gpu/drm/xe/xe_mocs.c
+index c7a9e733ef3b..86277ecb749b 100644
+--- a/drivers/gpu/drm/xe/xe_mocs.c
++++ b/drivers/gpu/drm/xe/xe_mocs.c
+@@ -472,7 +472,7 @@ static void __init_mocs_table(struct xe_gt *gt,
+ 	unsigned int i;
+ 	u32 mocs;
+ 
+-	mocs_dbg(&gt->xe->drm, "entries:%d\n", info->n_entries);
++	mocs_dbg(&gt_to_xe(gt)->drm, "entries:%d\n", info->n_entries);
+ 	drm_WARN_ONCE(&xe->drm, !info->unused_entries_index,
+ 		      "Unused entries index should have been defined\n");
+ 	for (i = 0;
+@@ -480,7 +480,7 @@ static void __init_mocs_table(struct xe_gt *gt,
+ 	     i++) {
+ 		struct xe_reg reg = XE_REG(addr + i * 4);
+ 
+-		mocs_dbg(&gt->xe->drm, "%d 0x%x 0x%x\n", i, reg.addr, mocs);
++		mocs_dbg(&gt_to_xe(gt)->drm, "%d 0x%x 0x%x\n", i, reg.addr, mocs);
+ 		xe_mmio_write32(gt, reg, mocs);
+ 	}
+ }
+@@ -509,13 +509,13 @@ static void init_l3cc_table(struct xe_gt *gt,
+ 	unsigned int i;
+ 	u32 l3cc;
+ 
+-	mocs_dbg(&gt->xe->drm, "entries:%d\n", info->n_entries);
++	mocs_dbg(&gt_to_xe(gt)->drm, "entries:%d\n", info->n_entries);
+ 	for (i = 0;
+ 	     i < (info->n_entries + 1) / 2 ?
+ 	     (l3cc = l3cc_combine(get_entry_l3cc(info, 2 * i),
+ 				  get_entry_l3cc(info, 2 * i + 1))), 1 : 0;
+ 	     i++) {
+-		mocs_dbg(&gt->xe->drm, "%d 0x%x 0x%x\n", i, LNCFCMOCS(i).addr,
++		mocs_dbg(&gt_to_xe(gt)->drm, "%d 0x%x 0x%x\n", i, LNCFCMOCS(i).addr,
+ 			 l3cc);
+ 		xe_mmio_write32(gt, LNCFCMOCS(i), l3cc);
+ 	}
+@@ -525,7 +525,7 @@ void xe_mocs_init_early(struct xe_gt *gt)
+ {
+ 	struct xe_mocs_info table;
+ 
+-	get_mocs_settings(gt->xe, &table);
++	get_mocs_settings(gt_to_xe(gt), &table);
+ 	gt->mocs.uc_index = table.uc_index;
+ 	gt->mocs.wb_index = table.wb_index;
+ }
+@@ -538,8 +538,8 @@ void xe_mocs_init(struct xe_gt *gt)
+ 	/*
+ 	 * LLC and eDRAM control values are not applicable to dgfx
+ 	 */
+-	flags = get_mocs_settings(gt->xe, &table);
+-	mocs_dbg(&gt->xe->drm, "flag:0x%x\n", flags);
++	flags = get_mocs_settings(gt_to_xe(gt), &table);
++	mocs_dbg(&gt_to_xe(gt)->drm, "flag:0x%x\n", flags);
+ 
+ 	if (flags & HAS_GLOBAL_MOCS)
+ 		__init_mocs_table(gt, &table, GLOBAL_MOCS(0).addr);
 diff --git a/drivers/gpu/drm/xe/xe_pci.c b/drivers/gpu/drm/xe/xe_pci.c
-index d8f1213ae1d6..6f0c4203fca3 100644
+index 0ecf875e4fb4..2e5a15219964 100644
 --- a/drivers/gpu/drm/xe/xe_pci.c
 +++ b/drivers/gpu/drm/xe/xe_pci.c
-@@ -290,21 +290,11 @@ static const struct xe_device_desc pvc_desc = {
- 	.extra_gts = pvc_gts,
- };
+@@ -565,7 +565,7 @@ static int xe_info_init(struct xe_device *xe,
  
--static const struct xe_gt_desc xelpmp_gts[] = {
--	{
--		.type = XE_GT_TYPE_MEDIA,
--		.vram_id = 0,
--		.mmio_adj_limit = 0x40000,
--		.mmio_adj_offset = 0x380000,
--	},
--};
--
- static const struct xe_device_desc mtl_desc = {
- 	/* .graphics and .media determined via GMD_ID */
- 	.require_force_probe = true,
- 	PLATFORM(XE_METEORLAKE),
- 	.has_display = true,
--	.extra_gts = xelpmp_gts,
- };
+ 		gt = &tile->primary_gt;
+ 		gt->info.id = id;
+-		gt->xe = xe;
++		gt->tile = tile;
  
- #undef PLATFORM
-@@ -566,8 +556,6 @@ static int xe_info_init(struct xe_device *xe,
- 	 * treats it as the number of GTs rather than just the number of tiles.
- 	 */
- 	xe->info.tile_count = 1 + graphics_desc->max_remote_tiles;
--	if (MEDIA_VER(xe) >= 13)
--		xe->info.tile_count++;
+ 		if (id == 0) {
+ 			gt->info.type = XE_GT_TYPE_MAIN;
+diff --git a/drivers/gpu/drm/xe/xe_pt.c b/drivers/gpu/drm/xe/xe_pt.c
+index 2a5481111a5f..e2cd1946af5a 100644
+--- a/drivers/gpu/drm/xe/xe_pt.c
++++ b/drivers/gpu/drm/xe/xe_pt.c
+@@ -696,7 +696,7 @@ xe_pt_stage_bind_entry(struct xe_ptw *parent, pgoff_t offset,
+ 		 * TODO: Suballocate the pt bo to avoid wasting a lot of
+ 		 * memory.
+ 		 */
+-		if (GRAPHICS_VERx100(xe_walk->gt->xe) >= 1250 && level == 1 &&
++		if (GRAPHICS_VERx100(gt_to_xe(xe_walk->gt)) >= 1250 && level == 1 &&
+ 		    covers && xe_pt_scan_64K(addr, next, xe_walk)) {
+ 			walk->shifts = xe_compact_pt_shifts;
+ 			flags |= XE_PDE_64K;
+diff --git a/drivers/gpu/drm/xe/xe_ttm_stolen_mgr.c b/drivers/gpu/drm/xe/xe_ttm_stolen_mgr.c
+index d49b2cfeba92..49470f0722bd 100644
+--- a/drivers/gpu/drm/xe/xe_ttm_stolen_mgr.c
++++ b/drivers/gpu/drm/xe/xe_ttm_stolen_mgr.c
+@@ -53,20 +53,20 @@ bool xe_ttm_stolen_cpu_access_needs_ggtt(struct xe_device *xe)
  
- 	for (id = 0; id < xe->info.tile_count; ++id) {
- 		gt = xe->gt + id;
+ static s64 detect_bar2_dgfx(struct xe_gt *gt, struct xe_ttm_stolen_mgr *mgr)
+ {
+-	struct pci_dev *pdev = to_pci_dev(gt->xe->drm.dev);
++	struct pci_dev *pdev = to_pci_dev(gt_to_xe(gt)->drm.dev);
+ 	u64 stolen_size;
+ 	u64 tile_offset;
+ 	u64 tile_size;
+ 	u64 vram_size;
+ 
+ 	if (xe_mmio_tile_vram_size(gt, &vram_size, &tile_size, &tile_offset)) {
+-		drm_err(&gt->xe->drm, "Querying total vram size failed\n");
++		drm_err(&gt_to_xe(gt)->drm, "Querying total vram size failed\n");
+ 		return 0;
+ 	}
+ 
+ 	/* Use DSM base address instead for stolen memory */
+ 	mgr->stolen_base = (xe_mmio_read64(gt, DSMBASE) & BDSM_MASK) - tile_offset;
+-	if (drm_WARN_ON(&gt->xe->drm, tile_size < mgr->stolen_base))
++	if (drm_WARN_ON(&gt_to_xe(gt)->drm, tile_size < mgr->stolen_base))
+ 		return 0;
+ 
+ 	stolen_size = tile_size - mgr->stolen_base;
 -- 
 2.40.1
 
