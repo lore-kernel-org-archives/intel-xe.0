@@ -4,48 +4,48 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5404CC7EE32
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2325EC7EE43
 	for <intel-xe@archiver.kernel.org>; Thu,  1 Jun 2023 20:30:37 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 26F4810E5CE;
-	Thu,  1 Jun 2023 20:30:37 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E5ED210E5D1;
+	Thu,  1 Jun 2023 20:30:36 +0000 (UTC)
 Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5904C10E5C0
- for <intel-xe@lists.freedesktop.org>; Thu,  1 Jun 2023 20:30:31 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9C6C510E5C0
+ for <intel-xe@lists.freedesktop.org>; Thu,  1 Jun 2023 20:30:33 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1685651431; x=1717187431;
+ t=1685651433; x=1717187433;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=20Wv6MLlcIJQChkrIubReRo5KvBuR5CQbAnKZZx52nM=;
- b=mnc5iOZm9d/AwS67Cihddz/XT2qQzNMznKOZ8iebR/DxNa/2UfT7693V
- 4iZOAZFNO39bTKUjYdD4u99teqI4Q2XMG9DEdIKIhKnzeaH5uZ4H33JIM
- Ea4nHUT9vh/8pS2l4ZRp0SyWf+cnbZy/quWRehx35RXwqhfmpp2XhmToy
- 1recYl64tz9X7Gzj/EjU/LbxEBqEpTdkSk65B/2szp/ggBpWTYiD7RSTo
- s7FSTXdCP6iW47au34cbML1BUohD8MrQ6eVPKSHZoxs4UmVfgW8iqWwET
- 1fogrBa9RratHXLpyyYKeQF+2LBd8pfTlB3XUgzBklidfeWi24+RFZjdL A==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10728"; a="358102503"
-X-IronPort-AV: E=Sophos;i="6.00,210,1681196400"; d="scan'208";a="358102503"
+ bh=5wg6pv0lMK1OO6sQdnJQuN4jLvjCNqjEvsztE57MYt0=;
+ b=ghfVfp67uBiD6Por9hxzF/IJ7ZXIP6mljD7MJhbXOof1loCpnnhkchLC
+ EN4Ic6oVnh0nvqyaj+wqZhNSCK8h1BOo0kiGqQS5GAP/XjiXEako6140k
+ dIT7kiAHdCRwfbeanmPbSJkoP8vE5faVITBUMJ7hSy/qFVVrK3brLDHNW
+ qXtW2tW89Tm29gTNd3/sD13MPAdpoT3fPI/9FSnf2nx10AsE/ugppGApm
+ o8mNP9aLDb5ma2hyBHA8xTxolvEiC0dZJlyprtVp+rHE5vp2Y+Q09Fed+
+ Db01r4Tc0hW7ol3L/+LL0GxEFxGJEcNcrMxB9A+vmLh3ep5L4vor/V5Ug g==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10728"; a="358102526"
+X-IronPort-AV: E=Sophos;i="6.00,210,1681196400"; d="scan'208";a="358102526"
 Received: from orsmga001.jf.intel.com ([10.7.209.18])
  by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 01 Jun 2023 13:30:30 -0700
+ 01 Jun 2023 13:30:33 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10728"; a="740493218"
-X-IronPort-AV: E=Sophos;i="6.00,210,1681196400"; d="scan'208";a="740493218"
+X-IronPort-AV: E=McAfee;i="6600,9927,10728"; a="740493263"
+X-IronPort-AV: E=Sophos;i="6.00,210,1681196400"; d="scan'208";a="740493263"
 Received: from mdroper-desk1.fm.intel.com ([10.1.27.147])
  by orsmga001-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 01 Jun 2023 13:30:30 -0700
+ 01 Jun 2023 13:30:33 -0700
 From: Matt Roper <matthew.d.roper@intel.com>
 To: intel-xe@lists.freedesktop.org
-Date: Thu,  1 Jun 2023 13:29:58 -0700
-Message-Id: <20230601203025.615494-5-matthew.d.roper@intel.com>
+Date: Thu,  1 Jun 2023 13:30:11 -0700
+Message-Id: <20230601203025.615494-18-matthew.d.roper@intel.com>
 X-Mailer: git-send-email 2.40.1
 In-Reply-To: <20230601203025.615494-1-matthew.d.roper@intel.com>
 References: <20230601203025.615494-1-matthew.d.roper@intel.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-xe] [CI 04/31] fixup! drm/xe/display: Implement display
- support
+Subject: [Intel-xe] [CI 17/31] drm/xe: Drop extra_gts[] declarations and
+ XE_GT_TYPE_REMOTE
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -61,38 +61,105 @@ Cc: matthew.d.roper@intel.com
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Due to some mis-squashing, the changes we're fixing here actually live
-inside "drm/xe: keep pulling mem_access_get further back" at the moment.
-But using a fixup! against the display commit since that's where the
-changes actually need to land.
+Now that tiles and GTs are handled separately, extra_gts[] doesn't
+really provide any useful information that we can't just infer directly.
+The primary GT of the root tile and of the remote tiles behave the same
+way and don't need independent handling.
 
+When we re-add support for media GTs in a future patch, the presence of
+media can be determined from MEDIA_VER() (i.e., >= 13) and media's GSI
+offset handling is expected to remain constant for all forseeable future
+platforms, so it won't need to be provided in a definition structure
+either.
+
+Signed-off-by: Matt Roper <matthew.d.roper@intel.com>
 Reviewed-by: Lucas De Marchi <lucas.demarchi@intel.com>
 ---
- drivers/gpu/drm/xe/display/xe_fb_pin.c | 4 ++--
- 1 file changed, 2 insertions(+), 2 deletions(-)
+ drivers/gpu/drm/xe/xe_gt_types.h |  1 -
+ drivers/gpu/drm/xe/xe_pci.c      | 36 ++++++--------------------------
+ 2 files changed, 6 insertions(+), 31 deletions(-)
 
-diff --git a/drivers/gpu/drm/xe/display/xe_fb_pin.c b/drivers/gpu/drm/xe/display/xe_fb_pin.c
-index d140eee6473d..747fbb06cd83 100644
---- a/drivers/gpu/drm/xe/display/xe_fb_pin.c
-+++ b/drivers/gpu/drm/xe/display/xe_fb_pin.c
-@@ -130,7 +130,7 @@ static int __xe_pin_fb_vma_ggtt(struct intel_framebuffer *fb,
- 	/* TODO: Consider sharing framebuffer mapping?
- 	 * embed i915_vma inside intel_framebuffer
- 	 */
--	xe_device_mem_access_get(ggtt->gt->xe);
-+	xe_device_mem_access_get(gt_to_xe(ggtt->gt));
- 	ret = mutex_lock_interruptible(&ggtt->lock);
- 	if (ret)
- 		goto out;
-@@ -178,7 +178,7 @@ static int __xe_pin_fb_vma_ggtt(struct intel_framebuffer *fb,
- out_unlock:
- 	mutex_unlock(&ggtt->lock);
- out:
--	xe_device_mem_access_put(ggtt->gt->xe);
-+	xe_device_mem_access_put(gt_to_xe(ggtt->gt));
- 	return ret;
- }
+diff --git a/drivers/gpu/drm/xe/xe_gt_types.h b/drivers/gpu/drm/xe/xe_gt_types.h
+index 34d5dd98885e..99ab7ec99ccd 100644
+--- a/drivers/gpu/drm/xe/xe_gt_types.h
++++ b/drivers/gpu/drm/xe/xe_gt_types.h
+@@ -20,7 +20,6 @@ struct xe_ring_ops;
+ enum xe_gt_type {
+ 	XE_GT_TYPE_UNINITIALIZED,
+ 	XE_GT_TYPE_MAIN,
+-	XE_GT_TYPE_REMOTE,
+ 	XE_GT_TYPE_MEDIA,
+ };
  
+diff --git a/drivers/gpu/drm/xe/xe_pci.c b/drivers/gpu/drm/xe/xe_pci.c
+index 4cb4b5810f40..723d69b88a52 100644
+--- a/drivers/gpu/drm/xe/xe_pci.c
++++ b/drivers/gpu/drm/xe/xe_pci.c
+@@ -45,7 +45,6 @@ struct xe_device_desc {
+ 
+ 	const char *platform_name;
+ 	const struct xe_subplatform_desc *subplatforms;
+-	const struct xe_gt_desc *extra_gts;
+ 
+ 	enum xe_platform platform;
+ 
+@@ -271,21 +270,12 @@ static const struct xe_device_desc dg2_desc = {
+ 	.has_display = true,
+ };
+ 
+-static const struct xe_gt_desc pvc_gts[] = {
+-	{
+-		.type = XE_GT_TYPE_REMOTE,
+-		.mmio_adj_limit = 0,
+-		.mmio_adj_offset = 0,
+-	},
+-};
+-
+ static const struct xe_device_desc pvc_desc = {
+ 	.graphics = &graphics_xehpc,
+ 	DGFX_FEATURES,
+ 	PLATFORM(XE_PVC),
+ 	.has_display = false,
+ 	.require_force_probe = true,
+-	.extra_gts = pvc_gts,
+ };
+ 
+ static const struct xe_device_desc mtl_desc = {
+@@ -561,28 +551,14 @@ static int xe_info_init(struct xe_device *xe,
+ 		tile->id = id;
+ 
+ 		gt = &tile->primary_gt;
+-		gt->info.id = id;
++		gt->info.id = id;	/* FIXME: Determine sensible numbering */
+ 		gt->tile = tile;
++		gt->info.type = XE_GT_TYPE_MAIN;
++		gt->info.__engine_mask = graphics_desc->hw_engine_mask;
++		if (MEDIA_VER(xe) < 13 && media_desc)
++			gt->info.__engine_mask |= media_desc->hw_engine_mask;
+ 
+-		if (id == 0) {
+-			gt->info.type = XE_GT_TYPE_MAIN;
+-
+-			gt->info.__engine_mask = graphics_desc->hw_engine_mask;
+-			if (MEDIA_VER(xe) < 13 && media_desc)
+-				gt->info.__engine_mask |= media_desc->hw_engine_mask;
+-
+-			gt->mmio.adj_limit = 0;
+-			gt->mmio.adj_offset = 0;
+-		} else {
+-			gt->info.type = desc->extra_gts[id - 1].type;
+-			gt->info.__engine_mask = (gt->info.type == XE_GT_TYPE_MEDIA) ?
+-				media_desc->hw_engine_mask :
+-				graphics_desc->hw_engine_mask;
+-			gt->mmio.adj_limit =
+-				desc->extra_gts[id - 1].mmio_adj_limit;
+-			gt->mmio.adj_offset =
+-				desc->extra_gts[id - 1].mmio_adj_offset;
+-		}
++		/* TODO: Init media GT, if present */
+ 	}
+ 
+ 	return 0;
 -- 
 2.40.1
 
