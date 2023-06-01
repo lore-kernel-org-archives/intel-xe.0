@@ -4,139 +4,135 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id B178CC7EE2E
-	for <intel-xe@archiver.kernel.org>; Thu,  1 Jun 2023 16:28:08 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1CA38C7EE23
+	for <intel-xe@archiver.kernel.org>; Thu,  1 Jun 2023 16:36:47 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6ED9010E580;
-	Thu,  1 Jun 2023 16:28:08 +0000 (UTC)
-Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 934C310E580
- for <intel-xe@lists.freedesktop.org>; Thu,  1 Jun 2023 16:28:05 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C375B10E585;
+	Thu,  1 Jun 2023 16:36:46 +0000 (UTC)
+Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C22DB10E23E
+ for <intel-xe@lists.freedesktop.org>; Thu,  1 Jun 2023 16:36:45 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1685636885; x=1717172885;
+ t=1685637405; x=1717173405;
  h=date:from:to:cc:subject:message-id:references:
  in-reply-to:mime-version;
- bh=73x9leY561PnqliLwRhr3SmNnDu5H3iWQlH+fNsHmAg=;
- b=CQPsaINWasmPeFh9T5Bi4lY43W4Ny4kGVSmrYyCkTQDkqLfZGJ8/9vMR
- y86IytfGOTj8Q5FKWVmOxOq/guNdcfmV1EhQUJmVUTmRRYfSF5mwrO8i7
- 4Fhg4ni9HVA5PhwXw2LQdVzqaoEHc+dZedZbqAv161ggs/QRfrR+RG+R0
- 6VVZiITWIuRuh2GxXFupM2wx5XtKD6Oz4Xbr4X8QpD1XGmPO/d6qU/czB
- akoJw9672opz48Dp3fvBECVstT8neb5QkK862vcFLDcX5tafEWe+x0gIZ
- jHlxQc7YtlMdyDUXVu07aXMZizok3dfzlrNJiaMWxRv01MpC8yZ9oWAns g==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10728"; a="354464868"
-X-IronPort-AV: E=Sophos;i="6.00,210,1681196400"; d="scan'208";a="354464868"
-Received: from fmsmga008.fm.intel.com ([10.253.24.58])
- by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 01 Jun 2023 09:28:04 -0700
+ bh=6jmjnzDOuXnS+AkauRkk1wk1IP8fiwk3cMIM8nJc+vI=;
+ b=lpckjGnq5fpY6cWnDtItolc/gfw6ZEH2hN77LezCIP/5kSBBZU6u4YAM
+ QGzCsVbDcnjL5XmfXrrWlXPNrO4oZp4qNysn4Wch3pGybcuxBQGjg8Br1
+ JQGg2mc/HJJ9x2zhnRVUxrO8s6b8cE5A3WzDBvuTP0A53uhEm6sI68GAw
+ 09fZqSbJiZGr62uaALY3Y2jJHWok4tlBlIeijkYMS9Sx0l0CTiY9tlIe7
+ r0gVPGoKQFw4CYpgBRktAn2sGYUcMdjhIM3+FdGbNszQtACwLUvUuKT7A
+ tZds4A2O/KW3OBXdqTYtENYRpaTPDHtyaOGZtRQeoiEskACX0YFW9pK/R w==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10728"; a="355628444"
+X-IronPort-AV: E=Sophos;i="6.00,210,1681196400"; d="scan'208";a="355628444"
+Received: from orsmga008.jf.intel.com ([10.7.209.65])
+ by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 01 Jun 2023 09:35:30 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10728"; a="772490525"
-X-IronPort-AV: E=Sophos;i="6.00,210,1681196400"; d="scan'208";a="772490525"
-Received: from fmsmsx603.amr.corp.intel.com ([10.18.126.83])
- by fmsmga008.fm.intel.com with ESMTP; 01 Jun 2023 09:28:03 -0700
-Received: from fmsmsx612.amr.corp.intel.com (10.18.126.92) by
- fmsmsx603.amr.corp.intel.com (10.18.126.83) with Microsoft SMTP Server
+X-IronPort-AV: E=McAfee;i="6600,9927,10728"; a="737170676"
+X-IronPort-AV: E=Sophos;i="6.00,210,1681196400"; d="scan'208";a="737170676"
+Received: from orsmsx603.amr.corp.intel.com ([10.22.229.16])
+ by orsmga008.jf.intel.com with ESMTP; 01 Jun 2023 09:35:29 -0700
+Received: from orsmsx610.amr.corp.intel.com (10.22.229.23) by
+ ORSMSX603.amr.corp.intel.com (10.22.229.16) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.23; Thu, 1 Jun 2023 09:28:03 -0700
-Received: from fmsmsx610.amr.corp.intel.com (10.18.126.90) by
- fmsmsx612.amr.corp.intel.com (10.18.126.92) with Microsoft SMTP Server
+ 15.1.2507.23; Thu, 1 Jun 2023 09:35:29 -0700
+Received: from ORSEDG602.ED.cps.intel.com (10.7.248.7) by
+ orsmsx610.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.23; Thu, 1 Jun 2023 09:28:03 -0700
-Received: from fmsedg601.ED.cps.intel.com (10.1.192.135) by
- fmsmsx610.amr.corp.intel.com (10.18.126.90) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.23 via Frontend Transport; Thu, 1 Jun 2023 09:28:03 -0700
-Received: from NAM10-BN7-obe.outbound.protection.outlook.com (104.47.70.105)
- by edgegateway.intel.com (192.55.55.70) with Microsoft SMTP Server
+ 15.1.2507.23 via Frontend Transport; Thu, 1 Jun 2023 09:35:29 -0700
+Received: from NAM12-MW2-obe.outbound.protection.outlook.com (104.47.66.48) by
+ edgegateway.intel.com (134.134.137.103) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2507.23; Thu, 1 Jun 2023 09:28:01 -0700
+ 15.1.2507.23; Thu, 1 Jun 2023 09:35:29 -0700
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=hNiCRPYDie8Mgm5mavzYBQslFDFgMvv3aOJUrE8d355sbAOsetKnsRpWs8y6/nXiuP0i5GBErrh7ogsyCEoeQlihIUI3neDd3pq02hIR2ijUCVaEFgcd1HtH/AG0kLDTe81z5/tRwet+YBbq3keMDao08UTmQoHW8zK72X91U4dtH7Ox71n5k2/+xcfhN8ZGNMxfI9p2u8vffinejCeKAJJBzXT0e1sMtJnidHuHvaqZVajgDj2N0KABMi+11gOd3cDGUb+/VWRflLj0M8uLM+xaAIB493uSj4JJTYsTuqIjWB6bTsn5LAPslhEXN0Wnd5+OUh8PvhjdSKHO44551w==
+ b=CcM+6NZ8nD3wGBLX05fA/C289AqzueLrBsWpEys04WX+/NaN/12BnioxqHIa9jRVMQ9yhZhV3foJc/Vd9Nly1eWMPwGbkOfz1pSxLrx35v1FbBaqD7pOommWb9n2iOQeCFsxvDTc6uwb7lTE57CBHNUjasb+rJPdlfEneCv+4Bu9ONMzo4SWLJg+YM3sSsh8jWjvHdLCXAqwlQhfT0wvNqdvOr3VAhDOlHFVEWISvjvngj3E+tEhHTXEPgb3y8a6/YBQOblQB0EkcQs2QngksXNmcQLyBkC7pxzorSw6m1bRHyPWBSCPTMTxUQokcPIVwulhWlTUinmz8ImcR1naWQ==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=SdVUDPhwIKbgR3+/Q0dPTNARhug1jT2e65ZIJauGa2o=;
- b=jVnjJdMFFY9dNFJreKmhzYAwJJREfFgwugV1FmAPRtosbSXLJOaEODwrxgGH3OL+ySMWmORmmCwERAX1gUJPKKWyKzqr8GhwviN/V0supA4Fc0i0F5ynJRE0M/e9rXYpS5sTDXjjQTfh++rO325/kvrrbhnXn0o88ni2/Q2hh1wvG8qOiWPnc9byQ+Kd6QFM/RegOnUgBB83KcQVT6iYLM06KLStRv1pAqaHcfihCRezaz0ircVOZMc7kLPZVKnwJ2JSNLMpsMlHXskKiMHbBKLaet2qJII9im4o/nHTcc6HrgwfBbmY47ehzR4sVCTRp72c5/eUMhH17YfHyOJGng==
+ bh=Puyw0+Wn+wk1lt6O9bx0st6XqSQ5YrHbQwlVFEOURI8=;
+ b=Oll/1ZLxe+uHV1CW2FYzHkznJghO/n+MuYmSio5WrClHOgw6k58fPD9/YI/sTFzqP32RnZb3SxkUeeMC4hXwnmgIDA+Zcrz/VUZuRuAZ2U17u+gbGf+MUF0OC/E7RSwzl/XteTF/QdebSPIDAs7ceyXB7/Kijt+zKeXWKGh43Pvq2Lv6XbMZebmKzjIoo88BclWODVlkBItOydo+Gv1H5AZ6Snm5SiBwe7mEbFssuLTgjdq/QrLYHTa5oMso1YTy6Sd/qxE8s4f5Z4Px3JHV34GvXtI/J6De+xJDY3Tvo+QjMnziW4s0PV44nCBMM7YujUgpHR20HIUeUPQo7Jtedw==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
  dkim=pass header.d=intel.com; arc=none
 Authentication-Results: dkim=none (message not signed)
  header.d=none;dmarc=none action=none header.from=intel.com;
 Received: from DS7PR11MB7859.namprd11.prod.outlook.com (2603:10b6:8:da::22) by
- PH0PR11MB5144.namprd11.prod.outlook.com (2603:10b6:510:3e::20) with
+ CO1PR11MB5058.namprd11.prod.outlook.com (2603:10b6:303:99::17) with
  Microsoft
  SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.6433.23; Thu, 1 Jun 2023 16:27:56 +0000
+ 15.20.6433.23; Thu, 1 Jun 2023 16:35:27 +0000
 Received: from DS7PR11MB7859.namprd11.prod.outlook.com
  ([fe80::9f98:8f3c:a608:8396]) by DS7PR11MB7859.namprd11.prod.outlook.com
  ([fe80::9f98:8f3c:a608:8396%3]) with mapi id 15.20.6455.020; Thu, 1 Jun 2023
- 16:27:55 +0000
-Date: Thu, 1 Jun 2023 09:27:52 -0700
+ 16:35:27 +0000
+Date: Thu, 1 Jun 2023 09:35:23 -0700
 From: Matt Roper <matthew.d.roper@intel.com>
-To: Gustavo Sousa <gustavo.sousa@intel.com>
-Message-ID: <20230601162752.GH6953@mdroper-desk1.amr.corp.intel.com>
-References: <20230529150831.259733-1-gustavo.sousa@intel.com>
- <20230530170432.GS10045@mdroper-desk1.amr.corp.intel.com>
- <168547141788.51912.6080115137980636760@gjsousa-mobl2>
+To: Jani Nikula <jani.nikula@linux.intel.com>
+Message-ID: <20230601163523.GI6953@mdroper-desk1.amr.corp.intel.com>
+References: <20230531224821.387722-1-matthew.d.roper@intel.com>
+ <20230531224821.387722-9-matthew.d.roper@intel.com>
+ <87o7lzfscm.fsf@intel.com>
 Content-Type: text/plain; charset="us-ascii"
 Content-Disposition: inline
-In-Reply-To: <168547141788.51912.6080115137980636760@gjsousa-mobl2>
-X-ClientProxiedBy: BYAPR08CA0021.namprd08.prod.outlook.com
- (2603:10b6:a03:100::34) To DS7PR11MB7859.namprd11.prod.outlook.com
+In-Reply-To: <87o7lzfscm.fsf@intel.com>
+X-ClientProxiedBy: BYAPR07CA0028.namprd07.prod.outlook.com
+ (2603:10b6:a02:bc::41) To DS7PR11MB7859.namprd11.prod.outlook.com
  (2603:10b6:8:da::22)
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: DS7PR11MB7859:EE_|PH0PR11MB5144:EE_
-X-MS-Office365-Filtering-Correlation-Id: 320ce978-e2c0-4ea9-6c6a-08db62bd2703
-X-LD-Processed: 46c98d88-e344-4ed4-8496-4ed7712e255d,ExtAddr
+X-MS-TrafficTypeDiagnostic: DS7PR11MB7859:EE_|CO1PR11MB5058:EE_
+X-MS-Office365-Filtering-Correlation-Id: dde8ffd7-fa94-4e0e-c107-08db62be3459
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: y2JYOXUF7/H5DuFNYGIHGvIYGX/TDpKyVFsKh6aKOcR9lPUj3Rpi8hB6AtuPDD4Ch7dxLzrA90J9dyWufrbTrrqC6CBEbSfzysubLL3196QhGbZKwYEdmbqZgP0dWswlTlSt+B+HfzplyXfWordDFzDxlBWVWPjbKGIi3qidvror9o02Dbn0PNNczX1lyeQk8KNF5QCxlx5TahrsoQ33QfggyW5U1WR1lpk88DzCo8+flxIwPwKK7VptydwuJ68UH5uidP+cSMA00W8+VE1C4c8ywyF3YrwO3QxyrV/SzMpYOYHV9mhpfOAtG+h3O8WgzQPXcGC+13k/LfHjFEau8PIHfLafmjElaeaOvC2k+3ava/k9e7OW339CLpOi3Rz4zGz6jAcUlqwSNLCgEhObuokjnMdLGKL253xkPNBMQq0OfjklpUMWUTQo0sINAz4EjBj8uGqN4LroNKfJLCRAL7CFXYSBlpjP4s19pbI23fEj6H+ROAIu85C8uMfIZy0fwMitDfOPCyrJDZl3jWaToDR3poZ0fct6wVIObFbZzg/xOOccuK2SfXPR0E5dtG9UbcZ0jhDt4oSTgi6EvD6+ha3JzwGMR2DITdzvQ50yC90=
+X-Microsoft-Antispam-Message-Info: V+1JdGEEEfg2qVTKrXrf+eM14RSOVEFgoXNkZeIP7fQLJPiEVvKclfDoxRJcViyW3UDksbg7nUTlvOsaD8kmjhWmwJWhBcmYMkYAOyBJz0FprMr6wktijF+8+OsdWNjD0m4YIbMWf3BWife23Fv2sFCQHK75Ci5JQ4LSBIl6q06lo38viRFaVOCG2zJhZXJKsfv8IDQ5E7S2b2a6pVLm1gx9ysh243b4WB0Qx+Moz9U48/997AI/AkHqdqPhpm1EGO03RDCv1trKN+CYLX6ilSRNIwv0rTkqISG4pzLD/j1yLTqbFAJ3GBJw/1djroLZd4uMomodLA2WRI0xBkiITbLeFFO4u0f7bQoiyKKIkkMrrfw3k6jn3Tb/yHYRXd3zcH8QEhZCHf/del7qbW5sR3mnzu7tM7QonHUiAvyCVQHmhBZR5eTORuRsDdCdOWHHG+qW0l86cgqrBC9cky9FUcp01Rg/Xveqs107udqLWMnsIjdY+zogB53OYlYj3VPPnep8r7ld2NgCDEpWT2BKnoBFbLwES62Wy7HTUlyWOfb7t9DJ+uua5dGcuezA797a
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
  IPV:NLI; SFV:NSPM; H:DS7PR11MB7859.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230028)(346002)(136003)(366004)(39860400002)(396003)(376002)(451199021)(33656002)(86362001)(66946007)(6636002)(54906003)(316002)(66556008)(4326008)(66476007)(478600001)(6666004)(5660300002)(2906002)(6486002)(41300700001)(6862004)(83380400001)(8676002)(8936002)(38100700002)(82960400001)(6512007)(6506007)(1076003)(26005)(186003);
+ SFS:(13230028)(376002)(396003)(39860400002)(366004)(136003)(346002)(451199021)(478600001)(8936002)(54906003)(8676002)(5660300002)(30864003)(2906002)(33656002)(86362001)(66556008)(82960400001)(4326008)(66946007)(66476007)(316002)(6916009)(38100700002)(41300700001)(1076003)(26005)(6506007)(83380400001)(186003)(6512007)(6486002)(6666004);
  DIR:OUT; SFP:1102; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?+vTSh1CAp/550gYQyan10DfIk/JiU9zrw5tgDBDXwI7ebgXErj3bBxTT7tJ9?=
- =?us-ascii?Q?uQUZCKarSRO/Tfmyjo38w/eDXWeA5o9ZSEGDMfT1b4HMyWCl4I69kfuCdxXX?=
- =?us-ascii?Q?ypc875kkIInvEH9LcXjv2+Y8PgFGewJlP+drWbk3ALWXnN8sZu8Qmz8RmU3L?=
- =?us-ascii?Q?+FIwdERXCp1bMriNLbkgawldKnp1bjmL0Mj/MeYXvPyJQw87KuxLoEwhZBlx?=
- =?us-ascii?Q?sU/Nb5QI55krdc1vNWWQIZI/E8/Q7Daxd21kxstPhLMO2Qe/LWxyvW7L4YE9?=
- =?us-ascii?Q?kdsjLRlr9O9aJSvXdTqJW0ne/2y/XAr89MNyZ2zp8aheCMEKTO5FUsHgTTZK?=
- =?us-ascii?Q?AYsTRFeZfQgYSWuMpz9b84RwiIRPUyhcWx3SqGGR3MOF3MO1bbpPa6Rl48OS?=
- =?us-ascii?Q?c0Q//QBK3SWKXtYicWUFgq31KhT5lSK8a9Zg8Giqj2RnBZ9U1Dt3nHEZfRj+?=
- =?us-ascii?Q?JqmurTvAFHwcyUCyYZ6n86Mnybtdfllc3wGvO4Di4wdbLCnQiwg4v1YXtCXj?=
- =?us-ascii?Q?wvvhoXiTsIuay4oDHh95G5VNINyiUhikbc/ECVHeQ1o5Ho5dGXKOs11MdeXs?=
- =?us-ascii?Q?Ty57hRDU5/AKjawHwW9xa4320C9AMQ9Q2fv1BSrCy44XhT2+69Spl1DPBlH/?=
- =?us-ascii?Q?FFFZuJW5b73cCZZEv/a20xA0MkwARu+X/AXmlK2D0pQOpXmJHuntDwxeLAbl?=
- =?us-ascii?Q?K+ankiPyJXM86lskvkqhIzHy7Sx4KTM4kOo1uy8G/2tfrAyTH8pU6c3zSnWM?=
- =?us-ascii?Q?D+z12bajkHfWQxUaI0htLQM2WVujsdGoEOydQUQr9Ctk5z6vWYWIdP4eG9YI?=
- =?us-ascii?Q?0fOdxnRsR1cy52k5LKpfgsRi2y08FFIhAPq0k89d3oEVde+GrPNGxVMg41Jn?=
- =?us-ascii?Q?lOUd16Bo5F3LIPMQIfkZ4d3YIGI5jsTwgvH1Xb/uE2Av8JHWu+rpuVxVZNDu?=
- =?us-ascii?Q?3fWzXwXtmannRQ7IIRqj6M9vb7qoapegyZ/nk/ghJ+H8Cxf1hDyrxykRGthP?=
- =?us-ascii?Q?sTuKMaKMO7GDninGJYKf5dkMkfiFdtG5eNEze1uBQpKnbZtBIUnaMwGfIKsp?=
- =?us-ascii?Q?BpvCpBd4/KmSJvzEiIzv+a9raDqwfwy4ckJiIK7NNjHi9QvuXEqY9gQU1a+G?=
- =?us-ascii?Q?fP8tixc8se3YExafYAmrz6zxotGRYU941eKixfjekunZEeBM30jasP6gwbP8?=
- =?us-ascii?Q?Hm3z4WF+q2c8rm5MgqCi2E44DijDOcN6TpK3RkzoHoKpDs3nl5NxCqnye+y+?=
- =?us-ascii?Q?I/h2jLmN6/A8nR4DIQ1PUQZXlkjUSWAk2s3mhq2hxB69aCfqxUlL1wXrgIxz?=
- =?us-ascii?Q?ETCQCnKiLIWpmCwuY1/aj35H4qvvo+Q+qv9zqFhbY21/UKG7Z5TeQul0iDeI?=
- =?us-ascii?Q?uFcfhHMGlFGMPr4xFHpmcpyR98pJ++9LZ8NhEH4495YKopI+XcxXUWO0Q/uB?=
- =?us-ascii?Q?fwB428O3jIz5ISRWoLJomnEduNfZB/9o81I4VY4I7pVFVhm+xvuVoqnhsPep?=
- =?us-ascii?Q?hm21eoARpX1WHlSCEEYDAJyVuL+ej54uXANvcmKRzm5TcjzZQhsh78+wuj2J?=
- =?us-ascii?Q?ImliBOWL1eHi88E8d4A8n/rl617Lt/CXlMPP8v+c9lXID6Kx/FQvDaeWgvII?=
- =?us-ascii?Q?Ow=3D=3D?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: 320ce978-e2c0-4ea9-6c6a-08db62bd2703
+X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?vhHzXqMC1PPydbdi4baQPv7KOncHnBjSkHVheUYjVViFCb+xhabpVrvSJW+I?=
+ =?us-ascii?Q?3l/lUxQuxRClmhZxopZO6ycizd519t8h94WCtgIztALqpHfBX9lFAcQaboIm?=
+ =?us-ascii?Q?F5tbkcaUu670VFqplhJVETf+RNEvopSlS81oNgqx2JSBnVnsWjAMxsqTZp6M?=
+ =?us-ascii?Q?T4ydnF3J0X/0EZnDPbROi/HfQyBG3/dExakXyR2tBPcPNnl8FrVxoPtvnHXe?=
+ =?us-ascii?Q?IEsBTlysPU69C7URlXvQ06+hrvuOdjV/AgIuQtuTiT4NvAGHaa9uMrP/OaTN?=
+ =?us-ascii?Q?dXdaaUGlPZ/I4n6FejrLwhPO+Olzyg8dFhd+A/EokvT8h2UmdJSoWO6gpcfI?=
+ =?us-ascii?Q?r3IyMoitKq/GWOsFMJBxoVaqavt2gdK16bRnasHSU0s0AjOzn3Ytg+t34yvs?=
+ =?us-ascii?Q?i/LSuwD2qrKuQWXjdeK/eQZqw5oyou1dodU1c8mzjmQU9rxBz4aTx/mHEO3H?=
+ =?us-ascii?Q?IWtQtn7XuvQ+0B/6s8rwhMclrPIKcJ8ry43uyhHqPGwG0VLN/GBaYJQehy3m?=
+ =?us-ascii?Q?MVxoogxRGYiiSnoUncPu0TC1KMRKYbWOrvzznPHenbq6AipZaGjIIrZSq2Ry?=
+ =?us-ascii?Q?3QWOU4PpMt6QIKHbgAWuUi8iII9FaLYnEFtQpMN0k1B6nRZw4YF59CHyAns0?=
+ =?us-ascii?Q?wZfh+cR3ViGFmrF//p195VJjT5J5QsCSjl0+d2u6qUCef7xAnuFOdeczLsmZ?=
+ =?us-ascii?Q?0+tfKgrnRi4Eh3BWof/tDBz12ZTWfOHOXoGxkoUdpwUXoOfe4ky9qtCibW+t?=
+ =?us-ascii?Q?AQ2DoCIHbJq43DjC1bCl0BjZxeCMz27bOK2uxMlW+lKow5l6jpZyH+gJ2fTe?=
+ =?us-ascii?Q?D+dTRUmJCaAs6XJeJVClF+gW3Tr6+a81ws5gzwGbzr/mLXnck7FBEz9HOYT3?=
+ =?us-ascii?Q?qQHZf3eqe86QrP+AJcHMlyRIX4jFTLAeV6PHVCTrKhv2UUyVsRc6/cC8vCF2?=
+ =?us-ascii?Q?+eLwxpUI1/mbDUuBnbnEt2mmXn+N/pbAYofc83+hSfE8sP0HzBMaLg4+R3Y8?=
+ =?us-ascii?Q?q/QBEPOPDfwv+qeklh3LvnwUDpoG+peZh0yRLAsnflNAK1GXrujaXG6RNJHe?=
+ =?us-ascii?Q?Dzew9p/ZjL9EBxBo6goLGWsVQKkaq6UfGqHPAHedCucudPyllHkgKwvcpmAH?=
+ =?us-ascii?Q?67ipZLtwDi5gw5ysxEhw/ylvO2/wR3YGROaRUDlQpjh3LwaFlGWL/ryXsjvF?=
+ =?us-ascii?Q?UA3uiluQ10aDhII+uKv147WclrvZFRl2OiF2jwwiY5X8GCtDST4FFv3fNPBo?=
+ =?us-ascii?Q?hES1aU6FGxlo4dDoPD4pPThswZ0LSFB7JRFFZoG8Uj5m1OlaJOxFIFn5dxKq?=
+ =?us-ascii?Q?TMAj+zxOpxSKrCFGJInTGpY4Ccqbkoe6uL5U1j/m0ysh7uCfxGXWqmrP8czu?=
+ =?us-ascii?Q?b1OS2iTmiVl9l1qfkJ40JN8fJTfDor9f0JdORPQz79yWySWsdOv1XvJIP6+y?=
+ =?us-ascii?Q?OQ1QSVgAoqKrKEYDSWQ4cNuGrqN8sLF4zIhRAZA2G6Nu6fMs/azK4BUZwdLR?=
+ =?us-ascii?Q?Fq4CsBnq/IGEcPMMVsirNDzF8wQYp8v9bcNaUSew9+bpU7bwEpAlCB3sQQVn?=
+ =?us-ascii?Q?/XQqPl9cY6PG4S1y5NYtuzCPQtZJG3QgxWr86shLxTJS3GYi4hoMMuLDYDYn?=
+ =?us-ascii?Q?ng=3D=3D?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: dde8ffd7-fa94-4e0e-c107-08db62be3459
 X-MS-Exchange-CrossTenant-AuthSource: DS7PR11MB7859.namprd11.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 01 Jun 2023 16:27:55.0933 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 01 Jun 2023 16:35:26.7914 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: oa/EPXtRNfDornpjdGkt6AVRz5nFHqpvYAOhKo3lBc2E+bTA2yQ/pPbFlmgQhJH3JeTxnittY1qP86IL6+rvi+/cm2sHoVRrhQw+YrgipO4=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH0PR11MB5144
+X-MS-Exchange-CrossTenant-UserPrincipalName: xvgnPxFlsr7Vb6AmJ7JkGrycr5aSkC8wuO2zrNv2qtpVVcm1qVVrlbcD09ZYSqgcHga/d51LGq1XhQZKWsfPD9/DpKrbl+iAw5+7lrSzgk0=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: CO1PR11MB5058
 X-OriginatorOrg: intel.com
-Subject: Re: [Intel-xe] [PATCH] drm/xe: Replace DRM_ERROR() with drm_err()
+Subject: Re: [Intel-xe] [PATCH 8/8] drm/xe/display: Call display probe from
+ i915 code
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -148,129 +144,538 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Cc: Jani Nikula <jani.nikula@intel.com>,
- Lucas De Marchi <lucas.demarchi@intel.com>, intel-xe@lists.freedesktop.org
+Cc: Lucas De Marchi <lucas.demarchi@intel.com>, intel-xe@lists.freedesktop.org,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Tue, May 30, 2023 at 03:30:17PM -0300, Gustavo Sousa wrote:
-> Quoting Matt Roper (2023-05-30 14:04:32-03:00)
-> >On Mon, May 29, 2023 at 12:08:31PM -0300, Gustavo Sousa wrote:
-> >> DRM_ERROR() has been deprecated in favor of pr_err(). However, we should
-> >> prefer to use drm_err() whenever possible so we get device-specific
-> >> output with the error message.
-> >> 
-> >> Adding an "xe" member to struct xe_reg_sr does not seem very
-> >> justifiable, since the only as of now is to register a clean up function
-> >> and, with this change, print error messages. So let's just add a
-> >> parameter to xe_reg_sr_add().
-> >> 
-> >> v2:
-> >>   - Prefer drm_err() over pr_err(). (Matt, Jani)
-> >> 
-> >> Cc: Matt Roper <matthew.d.roper@intel.com>
-> >> Cc: Jani Nikula <jani.nikula@intel.com>
-> >> Cc: Lucas De Marchi <lucas.demarchi@intel.com>
-> >> Cc: Haridhar Kalvala <haridhar.kalvala@intel.com>
-> >> Signed-off-by: Gustavo Sousa <gustavo.sousa@intel.com>
-> >> ---
-> >>  drivers/gpu/drm/xe/xe_reg_sr.c | 14 ++++++++------
-> >>  drivers/gpu/drm/xe/xe_reg_sr.h |  3 ++-
-> >>  drivers/gpu/drm/xe/xe_rtp.c    |  2 +-
-> >>  drivers/gpu/drm/xe/xe_vm.c     |  3 ++-
-> >>  4 files changed, 13 insertions(+), 9 deletions(-)
-> >> 
-> >> diff --git a/drivers/gpu/drm/xe/xe_reg_sr.c b/drivers/gpu/drm/xe/xe_reg_sr.c
-> >> index 24d9c73ef279..02ba95223d7b 100644
-> >> --- a/drivers/gpu/drm/xe/xe_reg_sr.c
-> >> +++ b/drivers/gpu/drm/xe/xe_reg_sr.c
-> >> @@ -90,7 +90,8 @@ static void reg_sr_inc_error(struct xe_reg_sr *sr)
-> >>  }
-> >>  
-> >>  int xe_reg_sr_add(struct xe_reg_sr *sr,
-> >> -                  const struct xe_reg_sr_entry *e)
-> >> +                  const struct xe_reg_sr_entry *e,
-> >> +                  struct xe_device *xe)
-> >
-> >I think we traditionally try to keep the device pointer as the first
-> >parameter in the list.  It looks a bit strange to have it here at the
-> >end.
+On Thu, Jun 01, 2023 at 12:24:09PM +0300, Jani Nikula wrote:
+> On Wed, 31 May 2023, Matt Roper <matthew.d.roper@intel.com> wrote:
+> > FIXME:  These changes should have been a fixup patch against
+> > "drm/xe/display: Implement display support" but that commit has itself
+> > been mis-squashed somewhere and no longer exists.
 > 
-> Hm... But xe is only used as an auxiliary thing so we get richer error message,
-> right?
-> 
-> By the way, I tried to follow what is already being done in this file:
-> xe_reg_sr_init() kinda does the same.
-> 
-> Let me know if xe as the first argument is still the preferred style here. Then
-> I can fix this one and send a patch for xe_reg_sr_init().
+> It's been mis-squashed into "drm/i915/irq: split out hotplug irq
+> handling" which should only be a cherry-pick from upstream.
 
-Okay, that's fair.  Having xe at the end looks a bit odd to me, but if
-we're doing the same elsewhere then it's fine to keep this as-is.
+Since Rodrigo is out at the moment, who's handling the periodic rebase
+of drm-xe-next until he gets back?  We should make sure unsquashing this
+is on their radar for whenever the next rebase happens.
 
 
 Matt
 
 > 
+> BR,
+> Jani.
+> 
+> 
 > >
-> >>  {
-> >>          unsigned long idx = e->reg.addr;
-> >>          struct xe_reg_sr_entry *pentry = xa_load(&sr->xa, idx);
-> >> @@ -123,11 +124,12 @@ int xe_reg_sr_add(struct xe_reg_sr *sr,
-> >>          return 0;
-> >>  
-> >>  fail:
-> >> -        DRM_ERROR("Discarding save-restore reg %04lx (clear: %08x, set: %08x, masked: %s, mcr: %s): ret=%d\n",
-> >> -                  idx, e->clr_bits, e->set_bits,
-> >> -                  str_yes_no(e->reg.masked),
-> >> -                  str_yes_no(e->reg.mcr),
-> >> -                  ret);
-> >> +        drm_err(&xe->drm,
-> >> +                "Discarding save-restore reg %04lx (clear: %08x, set: %08x, masked: %s, mcr: %s): ret=%d\n",
-> >> +                idx, e->clr_bits, e->set_bits,
-> >> +                str_yes_no(e->reg.masked),
-> >> +                str_yes_no(e->reg.mcr),
-> >> +                ret);
-> >>          reg_sr_inc_error(sr);
-> >>  
-> >>          return ret;
-> >> diff --git a/drivers/gpu/drm/xe/xe_reg_sr.h b/drivers/gpu/drm/xe/xe_reg_sr.h
-> >> index 0bfe66ea29bf..3e337f174ae3 100644
-> >> --- a/drivers/gpu/drm/xe/xe_reg_sr.h
-> >> +++ b/drivers/gpu/drm/xe/xe_reg_sr.h
-> >> @@ -19,7 +19,8 @@ struct drm_printer;
-> >>  int xe_reg_sr_init(struct xe_reg_sr *sr, const char *name, struct xe_device *xe);
-> >>  void xe_reg_sr_dump(struct xe_reg_sr *sr, struct drm_printer *p);
-> >>  
-> >> -int xe_reg_sr_add(struct xe_reg_sr *sr, const struct xe_reg_sr_entry *e);
-> >> +int xe_reg_sr_add(struct xe_reg_sr *sr, const struct xe_reg_sr_entry *e,
-> >> +                  struct xe_device *xe);
-> >>  void xe_reg_sr_apply_mmio(struct xe_reg_sr *sr, struct xe_gt *gt);
-> >>  void xe_reg_sr_apply_whitelist(struct xe_reg_sr *sr, u32 mmio_base,
-> >>                                 struct xe_gt *gt);
-> >> diff --git a/drivers/gpu/drm/xe/xe_rtp.c b/drivers/gpu/drm/xe/xe_rtp.c
-> >> index 43a86358efb6..93067f4fd480 100644
-> >> --- a/drivers/gpu/drm/xe/xe_rtp.c
-> >> +++ b/drivers/gpu/drm/xe/xe_rtp.c
-> >> @@ -122,7 +122,7 @@ static void rtp_add_sr_entry(const struct xe_rtp_action *action,
-> >>          };
-> >>  
-> >>          sr_entry.reg.addr += mmio_base;
-> >> -        xe_reg_sr_add(sr, &sr_entry);
-> >> +        xe_reg_sr_add(sr, &sr_entry, gt_to_xe(gt));
+> > Signed-off-by: Matt Roper <matthew.d.roper@intel.com>
+> > ---
+> >  drivers/gpu/drm/xe/Makefile                   |   2 +
+> >  .../gpu/drm/xe/compat-i915-headers/i915_drv.h |  40 +----
+> >  .../drm/xe/display/ext/intel_device_info.c    |  60 ++++---
+> >  drivers/gpu/drm/xe/xe_device_types.h          |  56 +-----
+> >  drivers/gpu/drm/xe/xe_display.c               | 164 +++---------------
+> >  5 files changed, 75 insertions(+), 247 deletions(-)
 > >
-> >If we have a GT here, then it may be best to pass that down and use
-> >xe_gt_err() above instead.  That will include extra GT identification
-> >output that makes debugging easier when running on a platform that has
-> >more than one GT.
+> > diff --git a/drivers/gpu/drm/xe/Makefile b/drivers/gpu/drm/xe/Makefile
+> > index da1e447c08c7..ebab5385f636 100644
+> > --- a/drivers/gpu/drm/xe/Makefile
+> > +++ b/drivers/gpu/drm/xe/Makefile
+> > @@ -121,6 +121,7 @@ subdir-ccflags-$(CONFIG_DRM_XE_DISPLAY) += \
+> >  	-Ddrm_i915_private=xe_device
+> >  
+> >  CFLAGS_i915-display/intel_fbdev.o = $(call cc-disable-warning, override-init)
+> > +CFLAGS_i915-display/intel_display_device.o = $(call cc-disable-warning, override-init)
+> >  
+> >  # Rule to build display code shared with i915
+> >  $(obj)/i915-display/%.o: $(srctree)/drivers/gpu/drm/i915/display/%.c FORCE
+> > @@ -160,6 +161,7 @@ xe-$(CONFIG_DRM_XE_DISPLAY) += \
+> >  	i915-display/intel_ddi.o \
+> >  	i915-display/intel_ddi_buf_trans.o \
+> >  	i915-display/intel_display.o \
+> > +	i915-display/intel_display_device.o \
+> >  	i915-display/intel_display_driver.o \
+> >  	i915-display/intel_display_debugfs.o \
+> >  	i915-display/intel_display_power.o \
+> > diff --git a/drivers/gpu/drm/xe/compat-i915-headers/i915_drv.h b/drivers/gpu/drm/xe/compat-i915-headers/i915_drv.h
+> > index 74e6f063f741..949b40afbd57 100644
+> > --- a/drivers/gpu/drm/xe/compat-i915-headers/i915_drv.h
+> > +++ b/drivers/gpu/drm/xe/compat-i915-headers/i915_drv.h
+> > @@ -84,44 +84,14 @@ static inline struct drm_i915_private *kdev_to_i915(struct device *kdev)
+> >  #define IS_BDW_ULT(dev_priv) (dev_priv && 0)
+> >  #define IS_BDW_ULX(dev_priv) (dev_priv && 0)
+> >  
+> > -#define INTEL_NUM_PIPES(xe) (hweight8((xe)->info.display.pipe_mask))
+> > -#define HAS_DISPLAY(xe) ((xe)->info.display.pipe_mask != 0)
+> >  #define INTEL_DISPLAY_ENABLED(xe) (HAS_DISPLAY((xe)) && !intel_opregion_headless_sku((xe)))
+> > -#define HAS_CDCLK_CRAWL(xe) ((xe)->info.display.has_cdclk_crawl)
+> > -#define HAS_CDCLK_SQUASH(xe) ((xe)->info.display.has_cdclk_squash)
+> > -#define HAS_PSR(xe) ((xe)->info.display.has_psr)
+> > -#define HAS_PSR2_SEL_FETCH(xe) (xe || 1)
+> > -#define HAS_PSR_HW_TRACKING(xe) ((xe)->info.display.has_psr_hw_tracking)
+> > -#define HAS_IPC(xe) ((xe)->info.display.has_ipc)
+> > -#define HAS_IPS(xe) (xe && false)
+> > -#define HAS_SAGV(xe) (xe || 1)
+> > -#define HAS_DP_MST(xe) ((xe)->info.display.has_dp_mst)
+> > -#define HAS_DMC(xe) ((xe)->info.display.has_dmc)
+> > -#define HAS_DSB(xe) ((xe)->info.display.has_dsb)
+> > -#define HAS_DSC(xe) ((xe)->info.display.has_dsc)
+> > -#define HAS_CUR_FBC(xe) (xe || 1)
+> > -#define HAS_DOUBLE_BUFFERED_M_N(xe) ((xe) || 1)
+> > -#define I915_HAS_HOTPLUG(xe) (true)
+> > -#define HAS_D12_PLANE_MINIMIZATION(dev_priv) (IS_ROCKETLAKE(dev_priv) || \
+> > -					      IS_ALDERLAKE_S(dev_priv))
+> > -#define DISPLAY_VER(xe) ((xe)->info.display.ver)
+> > +#define DISPLAY_VER(xe) ((xe)->info.display_runtime.ip.ver)
+> >  #define IS_DISPLAY_VER(xe, first, last) ((DISPLAY_VER(xe) >= first && DISPLAY_VER(xe) <= last))
+> >  #define IS_GRAPHICS_VER(xe, first, last) \
+> >  	((xe)->info.graphics_verx100 >= first * 100 && \
+> >  	 (xe)->info.graphics_verx100 <= (last*100 + 99))
+> >  #define IS_MOBILE(xe) (xe && 0)
+> > -#define HAS_GMCH(xe) (xe && 0)
+> > -#define HAS_DDI(xe) (xe || 1)
+> >  #define HAS_LLC(xe) (!IS_DGFX((xe)))
+> > -#define HAS_GMBUS_IRQ(xe) (xe || 1)
+> > -#define HAS_GMBUS_BURST_READ(xe) (xe || 1)
+> > -#define HAS_VRR(xe) (xe || 1)
+> > -#define HAS_ASYNC_FLIPS(xe) (xe || 1)
+> > -#define HAS_FBC(xe) ((xe)->info.display.fbc_mask)
+> > -#define SUPPORTS_TV(xe) (xe && 0)
+> > -#define HAS_MBUS_JOINING(xe) (xe && 0)
+> > -#define HAS_HW_SAGV_WM(xe) (DISPLAY_VER(xe) >= 13 && !IS_DGFX(xe))
+> > -#define HAS_DPT(xe) (DISPLAY_VER(xe) >= 13)
+> >  
+> >  /* Workarounds not handled yet */
+> >  #define IS_DISPLAY_STEP(xe, first, last) ({u8 __step = (xe)->info.step.display; first <= __step && __step <= last;})
+> > @@ -162,15 +132,11 @@ static inline struct drm_i915_private *kdev_to_i915(struct device *kdev)
+> >  #define IS_DG2_G12(xe) ((xe)->info.subplatform == XE_SUBPLATFORM_DG2_G12)
+> >  #define IS_ADLP_RPLU(xe) ((xe)->info.subplatform == XE_SUBPLATFORM_ADLP_RPLU)
+> >  #define IS_ICL_WITH_PORT_F(xe) (xe && 0)
+> > -#define HAS_LSPCON(xe) (xe && 0)
+> > -#define HAS_MSO(xe) (xe || 1)
+> > -#define HAS_DP20(xe) (IS_DG2(xe))
+> >  #define HAS_FLAT_CCS(xe) (xe_device_has_flat_ccs(xe))
+> >  #define HAS_4TILE(xe) ((xe)->info.has_4tile)
+> >  #define to_intel_bo(x) gem_to_xe_bo((x))
+> >  #define mkwrite_device_info(xe) (INTEL_INFO(xe))
+> >  
+> > -#define HAS_TRANSCODER(dev_priv, trans)  ((INTEL_INFO(dev_priv)->display.cpu_transcoder_mask & BIT(trans)) != 0)
+> >  #define HAS_128_BYTE_Y_TILING(xe) (xe || 1)
+> >  
+> >  #define intel_has_gpu_reset(a) (a && 0)
+> > @@ -225,7 +191,9 @@ static inline void intel_runtime_pm_put(struct xe_runtime_pm *pm, bool wakeref)
+> >  
+> >  #define intel_step_name xe_step_name
+> >  #define pdev_to_i915 pdev_to_xe_device
+> > -#define RUNTIME_INFO(xe) (&(xe)->info.display)
+> > +#define DISPLAY_INFO(xe)		((xe)->info.display)
+> > +#define RUNTIME_INFO(xe)		(&(xe)->info.i915_runtime)
+> > +#define DISPLAY_RUNTIME_INFO(xe)	(&(xe)->info.display_runtime)
+> >  
+> >  #define FORCEWAKE_ALL XE_FORCEWAKE_ALL
+> >  #define HPD_STORM_DEFAULT_THRESHOLD 50
+> > diff --git a/drivers/gpu/drm/xe/display/ext/intel_device_info.c b/drivers/gpu/drm/xe/display/ext/intel_device_info.c
+> > index 9a54611037b5..4e304961d45f 100644
+> > --- a/drivers/gpu/drm/xe/display/ext/intel_device_info.c
+> > +++ b/drivers/gpu/drm/xe/display/ext/intel_device_info.c
+> > @@ -48,69 +48,70 @@
+> >   */
+> >  void intel_device_info_runtime_init(struct drm_i915_private *dev_priv)
+> >  {
+> > -	struct intel_runtime_info *runtime = RUNTIME_INFO(dev_priv);
+> > +	struct intel_display_runtime_info *display_runtime =
+> > +		DISPLAY_RUNTIME_INFO(dev_priv);
+> >  	enum pipe pipe;
+> >  
+> >  	/* Wa_14011765242: adl-s A0,A1 */
+> >  	if (IS_ADLS_DISPLAY_STEP(dev_priv, STEP_A0, STEP_A2)) {
+> >  		for_each_pipe(dev_priv, pipe)
+> > -			runtime->num_scalers[pipe] = 0;
+> > +			display_runtime->num_scalers[pipe] = 0;
+> >  	} else if (DISPLAY_VER(dev_priv) >= 11) {
+> >  		for_each_pipe(dev_priv, pipe)
+> > -			runtime->num_scalers[pipe] = 2;
+> > +			display_runtime->num_scalers[pipe] = 2;
+> >  	} else if (DISPLAY_VER(dev_priv) >= 9) {
+> > -		runtime->num_scalers[PIPE_A] = 2;
+> > -		runtime->num_scalers[PIPE_B] = 2;
+> > -		runtime->num_scalers[PIPE_C] = 1;
+> > +		display_runtime->num_scalers[PIPE_A] = 2;
+> > +		display_runtime->num_scalers[PIPE_B] = 2;
+> > +		display_runtime->num_scalers[PIPE_C] = 1;
+> >  	}
+> >  
+> >  	if (DISPLAY_VER(dev_priv) >= 13 || HAS_D12_PLANE_MINIMIZATION(dev_priv)) {
+> >  		for_each_pipe(dev_priv, pipe)
+> > -			runtime->num_sprites[pipe] = 4;
+> > +			display_runtime->num_sprites[pipe] = 4;
+> >  	} else if (DISPLAY_VER(dev_priv) >= 11) {
+> >  		for_each_pipe(dev_priv, pipe)
+> > -			runtime->num_sprites[pipe] = 6;
+> > +			display_runtime->num_sprites[pipe] = 6;
+> >  	}
+> >  
+> >  	if (HAS_DISPLAY(dev_priv) && DISPLAY_VER(dev_priv) >= 9) {
+> >  		u32 dfsm = intel_de_read(dev_priv, SKL_DFSM);
+> >  
+> >  		if (dfsm & SKL_DFSM_PIPE_A_DISABLE) {
+> > -			runtime->pipe_mask &= ~BIT(PIPE_A);
+> > -			runtime->cpu_transcoder_mask &= ~BIT(TRANSCODER_A);
+> > -			runtime->fbc_mask &= ~BIT(INTEL_FBC_A);
+> > +			display_runtime->pipe_mask &= ~BIT(PIPE_A);
+> > +			display_runtime->cpu_transcoder_mask &= ~BIT(TRANSCODER_A);
+> > +			display_runtime->fbc_mask &= ~BIT(INTEL_FBC_A);
+> >  		}
+> >  		if (dfsm & SKL_DFSM_PIPE_B_DISABLE) {
+> > -			runtime->pipe_mask &= ~BIT(PIPE_B);
+> > -			runtime->cpu_transcoder_mask &= ~BIT(TRANSCODER_B);
+> > +			display_runtime->pipe_mask &= ~BIT(PIPE_B);
+> > +			display_runtime->cpu_transcoder_mask &= ~BIT(TRANSCODER_B);
+> >  		}
+> >  		if (dfsm & SKL_DFSM_PIPE_C_DISABLE) {
+> > -			runtime->pipe_mask &= ~BIT(PIPE_C);
+> > -			runtime->cpu_transcoder_mask &= ~BIT(TRANSCODER_C);
+> > +			display_runtime->pipe_mask &= ~BIT(PIPE_C);
+> > +			display_runtime->cpu_transcoder_mask &= ~BIT(TRANSCODER_C);
+> >  		}
+> >  
+> >  		if (DISPLAY_VER(dev_priv) >= 12 &&
+> >  		    (dfsm & TGL_DFSM_PIPE_D_DISABLE)) {
+> > -			runtime->pipe_mask &= ~BIT(PIPE_D);
+> > -			runtime->cpu_transcoder_mask &= ~BIT(TRANSCODER_D);
+> > +			display_runtime->pipe_mask &= ~BIT(PIPE_D);
+> > +			display_runtime->cpu_transcoder_mask &= ~BIT(TRANSCODER_D);
+> >  		}
+> >  
+> >  		if (dfsm & SKL_DFSM_DISPLAY_HDCP_DISABLE)
+> > -			runtime->has_hdcp = 0;
+> > +			display_runtime->has_hdcp = 0;
+> >  
+> >  		if (dfsm & SKL_DFSM_DISPLAY_PM_DISABLE)
+> > -			runtime->fbc_mask = 0;
+> > +			display_runtime->fbc_mask = 0;
+> >  
+> >  		if (DISPLAY_VER(dev_priv) >= 11 && (dfsm & ICL_DFSM_DMC_DISABLE))
+> > -			runtime->has_dmc = 0;
+> > +			display_runtime->has_dmc = 0;
+> >  
+> > -		if (DISPLAY_VER(dev_priv) >= 10 &&
+> > +		if (IS_DISPLAY_VER(dev_priv, 10, 12) &&
+> >  		    (dfsm & GLK_DFSM_DISPLAY_DSC_DISABLE))
+> > -			runtime->has_dsc = 0;
+> > +			display_runtime->has_dsc = 0;
+> >  	}
+> >  
+> > -	runtime->rawclk_freq = intel_read_rawclk(dev_priv);
+> > -	drm_dbg(&dev_priv->drm, "rawclk rate: %d kHz\n", runtime->rawclk_freq);
+> > +	RUNTIME_INFO(dev_priv)->rawclk_freq = intel_read_rawclk(dev_priv);
+> > +	drm_dbg(&dev_priv->drm, "rawclk rate: %d kHz\n", RUNTIME_INFO(dev_priv)->rawclk_freq);
+> >  }
+> >  
+> >  bool i915_vtd_active(struct drm_i915_private *i915)
+> > @@ -128,3 +129,14 @@ int __i915_inject_probe_error(struct drm_i915_private *i915, int err,
+> >  {
+> >  	return 0;
+> >  }
+> > +int i8xx_enable_vblank(struct drm_crtc *crtc) { return 0; }
+> > +void intel_dvo_init(struct drm_i915_private *i915) {}
+> > +int i965_enable_vblank(struct drm_crtc *crtc) { return 0; }
+> > +int intel_tv_init(struct drm_i915_private *i915) { return 0; }
+> > +int assert_dsi_pll_enabled(struct drm_i915_private *i915) { return 0; }
+> > +bool intel_sdvo_init(struct drm_i915_private *dev_priv,
+> > +		     i915_reg_t sdvo_reg, enum port port) { return false; }
+> > +void i965_disable_vblank(struct drm_crtc *crtc) {}
+> > +void i8xx_disable_vblank(struct drm_crtc *crtc) {}
+> > +void g4x_hdmi_init(struct drm_i915_private *dev_priv,
+> > +		   i915_reg_t hdmi_reg, enum port port) {}
+> > diff --git a/drivers/gpu/drm/xe/xe_device_types.h b/drivers/gpu/drm/xe/xe_device_types.h
+> > index 51c16d207780..27a312bb7a63 100644
+> > --- a/drivers/gpu/drm/xe/xe_device_types.h
+> > +++ b/drivers/gpu/drm/xe/xe_device_types.h
+> > @@ -21,6 +21,7 @@
+> >  #include "ext/intel_device_info.h"
+> >  #include "ext/intel_pch.h"
+> >  #include "intel_display_core.h"
+> > +#include "intel_display_device.h"
+> >  #endif
+> >  
+> >  #define XE_BO_INVALID_OFFSET	LONG_MAX
+> > @@ -112,58 +113,11 @@ struct xe_device {
+> >  		u8 enable_display:1;
+> >  
+> >  #if IS_ENABLED(CONFIG_DRM_XE_DISPLAY)
+> > -		struct xe_device_display_info {
+> > -			u8 ver;
+> > -
+> > -			u8 pipe_mask;
+> > -			u8 cpu_transcoder_mask;
+> > -			u8 fbc_mask;
+> > -			u8 abox_mask;
+> > -
+> > -			struct {
+> > -				u16 size; /* in blocks */
+> > -				u8 slice_mask;
+> > -			} dbuf;
+> > -
+> > -#define DEV_INFO_DISPLAY_FOR_EACH_FLAG(func) \
+> > -			/* Keep in alphabetical order */ \
+> > -			func(has_cdclk_crawl); \
+> > -			func(has_cdclk_squash); \
+> > -			func(has_dmc); \
+> > -			func(has_dp_mst); \
+> > -			func(has_dsb); \
+> > -			func(has_dsc); \
+> > -			func(has_fpga_dbg); \
+> > -			func(has_hdcp); \
+> > -			func(has_hti); \
+> > -			func(has_ipc); \
+> > -			func(has_psr); \
+> > -			func(has_psr_hw_tracking);
+> > -
+> > -#define DEFINE_FLAG(name) u8 name:1
+> > -			DEV_INFO_DISPLAY_FOR_EACH_FLAG(DEFINE_FLAG);
+> > -#undef DEFINE_FLAG
+> > -
+> > -			/* Register offsets for the various display pipes and transcoders */
+> > -			u32 pipe_offsets[I915_MAX_TRANSCODERS];
+> > -			u32 trans_offsets[I915_MAX_TRANSCODERS];
+> > -			u32 cursor_offsets[I915_MAX_PIPES];
+> > -
+> > -			struct {
+> > -				u32 degamma_lut_size;
+> > -				u32 gamma_lut_size;
+> > -				u32 degamma_lut_tests;
+> > -				u32 gamma_lut_tests;
+> > -			} color;
+> > -
+> > -			/* Populated by intel_device_runtime_init() */
+> > -			u8 num_sprites[I915_MAX_PIPES];
+> > -			u8 num_scalers[I915_MAX_PIPES];
+> > +		const struct intel_display_device_info *display;
+> > +		struct intel_display_runtime_info display_runtime;
+> > +		struct {
+> >  			u32 rawclk_freq;
+> > -
+> > -			/* Unused by xe, but for compat */
+> > -			u32 mmio_offset;
+> > -		} display;
+> > +		} i915_runtime;
+> >  #endif
+> >  	} info;
+> >  
+> > diff --git a/drivers/gpu/drm/xe/xe_display.c b/drivers/gpu/drm/xe/xe_display.c
+> > index 1a9e9c78966d..17dacd06954d 100644
+> > --- a/drivers/gpu/drm/xe/xe_display.c
+> > +++ b/drivers/gpu/drm/xe/xe_display.c
+> > @@ -320,7 +320,7 @@ static void intel_suspend_encoders(struct xe_device *xe)
+> >  	struct drm_device *dev = &xe->drm;
+> >  	struct intel_encoder *encoder;
+> >  
+> > -	if (!xe->info.display.pipe_mask)
+> > +	if (xe->info.display_runtime.pipe_mask)
+> >  		return;
+> >  
+> >  	drm_modeset_lock_all(dev);
+> > @@ -340,7 +340,7 @@ void xe_display_pm_suspend(struct xe_device *xe)
+> >  	 * properly.
+> >  	 */
+> >  	intel_power_domains_disable(xe);
+> > -	if (xe->info.display.pipe_mask)
+> > +	if (xe->info.display_runtime.pipe_mask)
+> >  		drm_kms_helper_poll_disable(&xe->drm);
+> >  
+> >  	intel_display_driver_suspend(xe);
+> > @@ -385,7 +385,7 @@ void xe_display_pm_resume(struct xe_device *xe)
+> >  
+> >  	intel_dmc_resume(xe);
+> >  
+> > -	if (xe->info.display.pipe_mask)
+> > +	if (xe->info.display_runtime.pipe_mask)
+> >  		drm_mode_config_reset(&xe->drm);
+> >  
+> >  	intel_display_driver_init_hw(xe);
+> > @@ -397,7 +397,7 @@ void xe_display_pm_resume(struct xe_device *xe)
+> >  	intel_display_driver_resume(xe);
+> >  
+> >  	intel_hpd_poll_disable(xe);
+> > -	if (xe->info.display.pipe_mask)
+> > +	if (xe->info.display_runtime.pipe_mask)
+> >  		drm_kms_helper_poll_enable(&xe->drm);
+> >  
+> >  	intel_opregion_resume(xe);
+> > @@ -411,142 +411,34 @@ void xe_display_pm_resume(struct xe_device *xe)
+> >  __diag_push();
+> >  __diag_ignore_all("-Woverride-init", "Allow field overrides in table");
+> >  
+> > -#define __DISPLAY_DEFAULTS \
+> > -	.pipe_mask = BIT(PIPE_A) | BIT(PIPE_B) |			\
+> > -		     BIT(PIPE_C) | BIT(PIPE_D),				\
+> > -	.cpu_transcoder_mask =						\
+> > -	BIT(TRANSCODER_A) | BIT(TRANSCODER_B) |				\
+> > -	BIT(TRANSCODER_C) | BIT(TRANSCODER_D) |				\
+> > -	BIT(TRANSCODER_DSI_0) | BIT(TRANSCODER_DSI_1),			\
+> > -	.pipe_offsets = {						\
+> > -		[TRANSCODER_A] = PIPE_A_OFFSET,				\
+> > -		[TRANSCODER_B] = PIPE_B_OFFSET,				\
+> > -		[TRANSCODER_C] = PIPE_C_OFFSET,				\
+> > -		[TRANSCODER_D] = PIPE_D_OFFSET,				\
+> > -		[TRANSCODER_DSI_0] = PIPE_DSI0_OFFSET,			\
+> > -		[TRANSCODER_DSI_1] = PIPE_DSI1_OFFSET,			\
+> > -	},								\
+> > -	.cursor_offsets = { \
+> > -		[PIPE_A] = CURSOR_A_OFFSET, \
+> > -		[PIPE_B] = CURSOR_B_OFFSET, \
+> > -		[PIPE_C] = CURSOR_C_OFFSET, \
+> > -		[PIPE_D] = CURSOR_D_OFFSET, \
+> > -	}, \
+> > -	.trans_offsets = {						\
+> > -		[TRANSCODER_A] = TRANSCODER_A_OFFSET,			\
+> > -		[TRANSCODER_B] = TRANSCODER_B_OFFSET,			\
+> > -		[TRANSCODER_C] = TRANSCODER_C_OFFSET,			\
+> > -		[TRANSCODER_D] = TRANSCODER_D_OFFSET,			\
+> > -		[TRANSCODER_DSI_0] = TRANSCODER_DSI0_OFFSET,		\
+> > -		[TRANSCODER_DSI_1] = TRANSCODER_DSI1_OFFSET,		\
+> > -	}
+> > -
+> > -#define GEN12_DISPLAY \
+> > -	__DISPLAY_DEFAULTS,						\
+> > -	.ver = 12,							\
+> > -	.abox_mask = GENMASK(2, 1),					\
+> > -	.has_dmc = 1,							\
+> > -	.has_dp_mst = 1,						\
+> > -	.has_dsb = 0, /* FIXME: LUT load is broken with huge DSB */	\
+> > -	.dbuf.size = 2048,						\
+> > -	.dbuf.slice_mask = BIT(DBUF_S1) | BIT(DBUF_S2),			\
+> > -	.has_dsc = 1,							\
+> > -	.fbc_mask = BIT(INTEL_FBC_A),					\
+> > -	.has_fpga_dbg = 1,						\
+> > -	.has_hdcp = 1,							\
+> > -	.has_ipc = 1,							\
+> > -	.has_psr = 1,							\
+> > -	.has_psr_hw_tracking = 0,					\
+> > -	.color = { .degamma_lut_size = 33, .gamma_lut_size = 262145 }
+> > -
+> > -#define XE_LPD								\
+> > -	__DISPLAY_DEFAULTS,						\
+> > -	.ver = 13,							\
+> > -	.abox_mask = GENMASK(1, 0),					\
+> > -	.color = {							\
+> > -		.degamma_lut_size = 128, .gamma_lut_size = 1024,	\
+> > -		.degamma_lut_tests = DRM_COLOR_LUT_NON_DECREASING |	\
+> > -		DRM_COLOR_LUT_EQUAL_CHANNELS,				\
+> > -	},								\
+> > -	.dbuf.size = 4096,						\
+> > -	.dbuf.slice_mask = BIT(DBUF_S1) | BIT(DBUF_S2) | BIT(DBUF_S3) |	\
+> > -	BIT(DBUF_S4),							\
+> > -	.has_dmc = 1,							\
+> > -	.has_dp_mst = 1,						\
+> > -	.has_dsb = 1,							\
+> > -	.has_dsc = 1,							\
+> > -	.fbc_mask = BIT(INTEL_FBC_A),					\
+> > -	.has_fpga_dbg = 1,						\
+> > -	.has_hdcp = 1,							\
+> > -	.has_ipc = 1,							\
+> > -	.has_psr = 1,							\
+> > -	.has_psr_hw_tracking = 0
+> > -
+> > -#define XE_LPDP								\
+> > -	XE_LPD,								\
+> > -	.ver = 14,							\
+> > -	.has_cdclk_crawl = 1,						\
+> > -	.has_cdclk_squash = 1
+> > -
+> > -
+> >  void xe_display_info_init(struct xe_device *xe)
+> >  {
+> > -	if (!xe->info.enable_display) {
+> > -		unset_display_features(xe);
+> > -		return;
+> > -	}
+> > +	u16 gmdid_ver, gmdid_rel, gmdid_step;
+> > +	bool has_gmdid = GRAPHICS_VERx100(xe) >= 1270;
+> > +
+> > +	if (!xe->info.enable_display)
+> > +		goto no_display;
+> > +
+> > +	xe->info.display = intel_display_device_probe(xe, has_gmdid, &gmdid_ver,
+> > +						      &gmdid_rel, &gmdid_step);
+> > +	memcpy(&xe->info.display_runtime,
+> > +	       &xe->info.display->__runtime_defaults,
+> > +	       sizeof(xe->info.display->__runtime_defaults));
+> >  
+> > -	switch (xe->info.platform) {
+> > -	case XE_TIGERLAKE:
+> > -	case XE_DG1:
+> > -		xe->info.display = (struct xe_device_display_info) {
+> > -			GEN12_DISPLAY,
+> > -			.has_psr_hw_tracking = 1,
+> > -		};
+> > -		break;
+> > -	case XE_ROCKETLAKE:
+> > -		xe->info.display = (struct xe_device_display_info) {
+> > -			GEN12_DISPLAY,
+> > -			.abox_mask = BIT(0),
+> > -			.has_hti = 1,
+> > -			.cpu_transcoder_mask =
+> > -				BIT(TRANSCODER_A) | BIT(TRANSCODER_B) |
+> > -				BIT(TRANSCODER_C),
+> > -			.pipe_mask =
+> > -				BIT(PIPE_A) | BIT(PIPE_B) | BIT(PIPE_C),
+> > -		};
+> > -		break;
+> > -	case XE_ALDERLAKE_S:
+> > -		xe->info.display = (struct xe_device_display_info) {
+> > -			GEN12_DISPLAY,
+> > -			.has_hti = 1,
+> > -		};
+> > -		break;
+> > -	case XE_ALDERLAKE_P:
+> > -	case XE_ALDERLAKE_N:
+> > -		xe->info.display = (struct xe_device_display_info) {
+> > -			XE_LPD,
+> > -			.has_cdclk_crawl = 1,
+> > -		};
+> > -		break;
+> > -	case XE_DG2:
+> > -		xe->info.display = (struct xe_device_display_info) {
+> > -			XE_LPD,
+> > -			.cpu_transcoder_mask =
+> > -				BIT(TRANSCODER_A) | BIT(TRANSCODER_B) |
+> > -				BIT(TRANSCODER_C) | BIT(TRANSCODER_D),
+> > -			.has_cdclk_squash = 1,
+> > -		};
+> > -		break;
+> > -	case XE_METEORLAKE:
+> > -		xe->info.display = (struct xe_device_display_info) { XE_LPDP };
+> > -		break;
+> > -	default:
+> > -		drm_warn(&xe->drm, "Unknown display IP\n");
+> > -		xe->info.enable_display = false;
+> > -		unset_display_features(xe);
+> > -		return;
+> > +	if (!xe->info.display_runtime.pipe_mask)
+> > +		goto no_display;
+> > +
+> > +	if (has_gmdid) {
+> > +		xe->info.display_runtime.ip.ver = gmdid_ver;
+> > +		xe->info.display_runtime.ip.rel = gmdid_rel;
+> > +		xe->info.display_runtime.ip.step = gmdid_step;
+> >  	}
+> > +
+> > +	return;
+> > +
+> > +no_display:
+> > +	xe->info.enable_display = false;
+> > +	unset_display_features(xe);
+> >  }
+> >  
+> >  __diag_pop();
 > 
-> Yeah... I realized that a little too late. I'll send a new version once I get an
-> actionable reply for my comment above.
-> 
-> Thanks!
-> 
-> --
-> Gustavo Sousa
+> -- 
+> Jani Nikula, Intel Open Source Graphics Center
 
 -- 
 Matt Roper
