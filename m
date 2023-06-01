@@ -4,45 +4,47 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id CD25FC7EE29
-	for <intel-xe@archiver.kernel.org>; Thu,  1 Jun 2023 20:30:32 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2D4AAC7EE2F
+	for <intel-xe@archiver.kernel.org>; Thu,  1 Jun 2023 20:30:34 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 68E5D10E5C2;
-	Thu,  1 Jun 2023 20:30:32 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 07E5610E5C7;
+	Thu,  1 Jun 2023 20:30:34 +0000 (UTC)
 Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
- by gabe.freedesktop.org (Postfix) with ESMTPS id AE20A10E5C0
- for <intel-xe@lists.freedesktop.org>; Thu,  1 Jun 2023 20:30:30 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 830DA10E5C3
+ for <intel-xe@lists.freedesktop.org>; Thu,  1 Jun 2023 20:30:31 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1685651430; x=1717187430;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=hxv9Or6lHiQ9x5RiAdYrIIECfG7rgjEIA+27TAjQGMA=;
- b=dcBWbbp6jvISTrq/U7Qw+3IC/LXk5XQ19swHiQdIg87VKH2FJ+fTwfuR
- usf1O3Vq/XlHIKs0txjQ9kLEfLPMeOAlg133O1yfBIZ1K4ZXw9GbH/dyW
- xD/BMGwT3cgUiN1gWQYfna+tqfwJMEWRXV1TyFlQKtzjaqmtbMpYYDEvs
- w0Gqs/4x5tjALquqglScwZkCXHy6aTlacc+OqaA1fYnfGjCcaTvPNi8N5
- DvyUQKD2KcQCJ/x7AD7de7BXSSV1EpLHUYnAttJ60B4xbQ7Do1T/5ne72
- siIjtifyeGkaaoCb2HPkEUFpJqwDPI8ZfQvcU2M0L/ypr4Y7oSytRPjt3 Q==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10728"; a="358102495"
-X-IronPort-AV: E=Sophos;i="6.00,210,1681196400"; d="scan'208";a="358102495"
+ t=1685651431; x=1717187431;
+ h=from:to:cc:subject:date:message-id:in-reply-to:
+ references:mime-version:content-transfer-encoding;
+ bh=An15Wj9gk7hex2WldofMMkFsIA05zgNdClRVyQnsn+U=;
+ b=VzYe95dBLkORVftFgBXzHjc8XNGdUaFoaA0NSdr90Xfn48F1QBP1XOOa
+ ZtXh9xxCqwsdqYbahkoTPYIYynl89s4DTgPJHvVpsQ2ClcLmRFpLU8gOW
+ PD2huiSErXcjqioatFIhorKp/Htp74UdEUKUubd7LGhUNVwIThIE1sIuZ
+ uZUzeCxduolzAmn4TmMaIvrEGAHX9ntfsVfUMk0CkkZRrSYbhGKiQ1Sz4
+ Ub7sT7VtnT7OqKggcML9+HAXLRkThUh5i6QAnS6D9/NnTm5rLbDUae3C6
+ XtWaVMUrSrA/5yQUIYaw14BkTAQ5WHHZHrZwBOKNLLVV8QJ+RP18FDR4d w==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10728"; a="358102505"
+X-IronPort-AV: E=Sophos;i="6.00,210,1681196400"; d="scan'208";a="358102505"
 Received: from orsmga001.jf.intel.com ([10.7.209.18])
  by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 01 Jun 2023 13:30:29 -0700
+ 01 Jun 2023 13:30:31 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10728"; a="740493205"
-X-IronPort-AV: E=Sophos;i="6.00,210,1681196400"; d="scan'208";a="740493205"
+X-IronPort-AV: E=McAfee;i="6600,9927,10728"; a="740493224"
+X-IronPort-AV: E=Sophos;i="6.00,210,1681196400"; d="scan'208";a="740493224"
 Received: from mdroper-desk1.fm.intel.com ([10.1.27.147])
  by orsmga001-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 01 Jun 2023 13:30:29 -0700
+ 01 Jun 2023 13:30:30 -0700
 From: Matt Roper <matthew.d.roper@intel.com>
 To: intel-xe@lists.freedesktop.org
-Date: Thu,  1 Jun 2023 13:29:54 -0700
-Message-Id: <20230601203025.615494-1-matthew.d.roper@intel.com>
+Date: Thu,  1 Jun 2023 13:30:00 -0700
+Message-Id: <20230601203025.615494-7-matthew.d.roper@intel.com>
 X-Mailer: git-send-email 2.40.1
+In-Reply-To: <20230601203025.615494-1-matthew.d.roper@intel.com>
+References: <20230601203025.615494-1-matthew.d.roper@intel.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-xe] [CI 00/31] Separate GT and tile
+Subject: [Intel-xe] [CI 06/31] drm/xe: Move register MMIO into xe_tile
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -58,257 +60,231 @@ Cc: matthew.d.roper@intel.com
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-A 'tile' is not the same thing as a 'GT.'  For historical reasons, i915
-attempted to use a single 'struct intel_gt' to represent both concepts,
-although this design hasn't worked out terribly well.  For Xe we have
-the opportunity to design the driver in a way that more accurately
-reflects the real hardware behavior.
+Each tile has its own register region in the BAR, containing instances
+of all registers for the platform.  In contrast, the multiple GTs within
+a tile share the same MMIO space; there's just a small subset of
+registers (the GSI registers) which have multiple copies at different
+offsets (0x0 for primary GT, 0x380000 for media GT).  Move the register
+MMIO region size/pointers to the tile structure, leaving just the GSI
+offset information in the GT structure.
 
-Different vendors use the term "tile" a bit differently, but in the
-Intel world, a 'tile' is pretty close to what most people would think of
-as being a complete GPU.  When multiple GPUs are placed behind a single
-PCI device, that's what we refer to as a "multi-tile device."  In such
-cases, pretty much all hardware is replicated per-tile, although certain
-responsibilities like PCI communication, reporting of interrupts to the
-OS, etc. are handled solely by the "root tile."  A multi-tile platform
-takes care of tying the tiles together in a way such that interrupt
-notifications from remote tiles are forwarded to the root tile, the
-per-tile vram is combined into a single address space, etc.
+Signed-off-by: Matt Roper <matthew.d.roper@intel.com>
+Reviewed-by: Lucas De Marchi <lucas.demarchi@intel.com>
+---
+ drivers/gpu/drm/xe/xe_device_types.h | 16 ++++++++++++++++
+ drivers/gpu/drm/xe/xe_ggtt.c         |  3 ++-
+ drivers/gpu/drm/xe/xe_gt_types.h     |  9 +++------
+ drivers/gpu/drm/xe/xe_mmio.c         | 26 ++++++++++++++------------
+ drivers/gpu/drm/xe/xe_mmio.h         | 21 ++++++++++++++++-----
+ 5 files changed, 51 insertions(+), 24 deletions(-)
 
-In contrast, a "GT" (which officially stands for "Graphics Technology")
-is the subset of a GPU/tile that is responsible for implementing
-graphics and/or media operations.  The GT is where a lot of the driver
-implementation happens since it's where the hardware engines, the
-execution units, and the GuC all reside.
-
-Historically most Intel devices were single-tile devices that contained
-a single GT.  PVC is currently the only released Intel platform built on
-a multi-tile design (i.e., multiple GPUs behind a single PCI device);
-each PVC tile only has a single GT.  In contrast, platforms like MTL
-that have separate chips for render and media IP are still only a single
-logical GPU, but the graphics and media IP blocks are each exposed as a
-separate GT within that single GPU.  This is important from a software
-perspective because multi-GT platforms like MTL only replicate a subset
-of the GPU hardware and behave differently than multi-tile platforms
-like PVC where nearly everything is replicated.
-
-This series separates tiles from GTs in a manner that more closely
-matches the hardware behavior.  We now consider a PCI device (xe_device)
-to contain one or more tiles (struct xe_tile).  Each tile will contain
-one or two GTs (struct xe_gt).  Although we don't have any platforms yet
-that are multi-tile *and* contain more than one GT per tile, that may
-change in the future.  This driver redesign splits functionality as
-follows:
-
-Per-tile functionality (shared by all GTs within the tile):
- - Complete 4MB MMIO space (containing SGunit/SoC registers, GT
-   registers, display registers, etc.)
- - Global GTT
- - VRAM (if discrete)
- - Interrupt flows
- - Migration context
- - kernel batchbuffer pool
- - Primary GT
- - Media GT (if media version >= 13)
-
-Per-GT functionality:
- - GuC
- - Hardware engines
- - Programmable hardware units (subslices, EUs)
- - GSI subset of registers (multiple copies of these registers reside
-   within the complete MMIO space provided by the tile, but at different
-   offsets --- 0 for render, 0x380000 for media)
- - Multicast register steering
- - TLBs to cache page table translations
- - Reset capability
- - Low-level power management (e.g., C6)
- - Clock frequency
- - MOCS and PAT programming
-
-At the moment I've left USM / pagefault handling at the GT level,
-although I'm not familiar enough with that specific feature to know
-whether it's truly correct or not.
-
-The first patch in this series temporarily drops MTL media GT support.
-The driver doesn't load properly on MTL today, largely due to the
-mishandling of GT vs tile; dropping support completely allows us to more
-easily make the necessary driver redesign required.  The media GT is
-re-enabled (properly this time) near the end of the series and this
-allows the driver to load successfully without error on MTL for the
-first time.  There are still issues when submitting workloads to MTL
-after driver load (i.e., CAT errors), but those seem to be a separate
-platform-specific issues unrelated to the GT/tile work in this series
-that will need to be debugged and fixed separately.
-
-
-This series leaves a few open questions and FIXME's:
- - Unlike i915, the Xe driver has chosen to expose GTs to userspace
-   rather than keeping them a hidden implementation detail.  With the
-   separation of xe_tile and xe_gt, we need to decide whether we also
-   want to expose tiles (in addition to GTs), whether we want to _only_
-   expose tiles (and keep the primary vs media GT separation a hidden
-   internal detail), or something else.
- - How should GTs be numbered?  Today it's straightforward --- PVC
-   assigns GT IDs 0 and 1 to the primary GT of each tile.  MTL assigns
-   GT IDs 0 and 1 to the primary and media GTs of its sole tile.  But if
-   we have a platform in the future that has multiple tiles _and_
-   multiple GTs per tile, how should we handle the numbering in that
-   case?
- - Xe (mis)design used xe_gt as the target of all MMIO operations (i.e.,
-   xe_mmio_*()).  This really doesn't make sense, especially since
-   there's a lot of MMIO accesses that are completely unrelated to GT
-   (i.e., sgunit registers, display registers, etc.).  i915 used
-   'intel_uncore' as the MMIO target, although that wasn't really an
-   accurate reflection of the hardware either.  What we really want is
-   something that combines the MMIO register space (stored in the tile)
-   with the GSI offset (stored in the GT).  My current plan is to
-   introduce an "xe_mmio_view" (name may change) in a future series that
-   will serve as a target for register operations.  There will be
-   sensible APIs to obtain an xe_mmio_view appropriate to the type of
-   register access being performed (and that will also be able to do
-   some range sanity checking in debug drivers to help catch misuse).
-   That's a somewhat large/invasive change, so I'm saving that for a
-   follow-up series after this one is completed.
-
-v2:
- - Fix kunit test build
- - Add kerneldoc narrative about multi-tile design
- - Undo accidental squashing of GGTT and VRAM patches
- - Improved comments and commit message explanations in a few places.
- - Move display changes to fixup! patches
- - Rebase onto latest drm-xe-next codebase
-
-v3:
- - Rebase onto latest drm-xe-next (including a new fixup! patch for
-   some display-related changes).
- - Various cosmetic style issues and typo fixes
-
-v4:
- - Move some changes from VRAM patch to GGTT patch which were
-   mis-squashed previously.  (Gustavo)
- - Remove leftover function prototypes for removed functions.  (Gustavo)
- - Store total GT count in xe_device to simplify lookup in loop iterator
-   and query uapi.  (Brian)
- - Drop an unrelated/unwanted change to error handling path of tile
-   init.  (Gustavo)
-
-<final CI run for latest rebase>
-
-Cc: Matthew Brost <matthew.brost@intel.com>
-Cc: Lucas De Marchi <lucas.demarchi@intel.com>
-Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
-Cc: Michael J. Ruhl <michael.j.ruhl@intel.com>
-Cc: Nirmoy Das <nirmoy.das@intel.com>
-Cc: Gustavo Sousa <gustavo.sousa@intel.com>
-Cc: Brian Welty <brian.welty@intel.com>
-
-Matt Roper (31):
-  drm/xe/mtl: Disable media GT
-  drm/xe: Introduce xe_tile
-  drm/xe: Add backpointer from gt to tile
-  fixup! drm/xe/display: Implement display support
-  drm/xe: Add for_each_tile iterator
-  drm/xe: Move register MMIO into xe_tile
-  fixup! drm/xe/display: Implement display support
-  drm/xe: Move GGTT from GT to tile
-  fixup! drm/xe/display: Implement display support
-  drm/xe: Move VRAM from GT to tile
-  fixup! drm/xe/display: Implement display support
-  drm/xe: Memory allocations are tile-based, not GT-based
-  fixup! drm/xe/display: Implement display support
-  drm/xe: Move migration from GT to tile
-  drm/xe: Clarify 'gt' retrieval for primary tile
-  drm/xe: Drop vram_id
-  drm/xe: Drop extra_gts[] declarations and XE_GT_TYPE_REMOTE
-  drm/xe: Allocate GT dynamically
-  drm/xe: Add media GT to tile
-  drm/xe: Move display IRQ postinstall out of GT function
-  drm/xe: Interrupts are delivered per-tile, not per-GT
-  drm/xe/irq: Handle ASLE backlight interrupts at same time as display
-  drm/xe/irq: Ensure primary GuC won't clobber media GuC's interrupt
-    mask
-  drm/xe/irq: Untangle postinstall functions
-  drm/xe: Replace xe_gt_irq_postinstall with xe_irq_enable_hwe
-  drm/xe: Invalidate TLB on all affected GTs during GGTT updates
-  drm/xe/tlb: Obtain forcewake when doing GGTT TLB invalidations
-  drm/xe: Allow GT looping and lookup on standalone media
-  drm/xe: Update query uapi to support standalone media
-  drm/xe: Reinstate media GT support
-  drm/xe: Add kerneldoc description of multi-tile devices
-
- Documentation/gpu/xe/index.rst                |   1 +
- Documentation/gpu/xe/xe_tile.rst              |  14 +
- drivers/gpu/drm/i915/display/intel_dsb.c      |   5 +-
- drivers/gpu/drm/i915/display/intel_fbc.c      |   3 +-
- drivers/gpu/drm/i915/display/intel_fbdev.c    |   7 +-
- drivers/gpu/drm/xe/Makefile                   |   1 +
- .../drm/xe/compat-i915-headers/intel_uncore.h |   2 +-
- drivers/gpu/drm/xe/display/ext/i915_irq.c     |   2 +-
- drivers/gpu/drm/xe/display/xe_fb_pin.c        |  17 +-
- drivers/gpu/drm/xe/display/xe_plane_initial.c |   8 +-
- drivers/gpu/drm/xe/regs/xe_gt_regs.h          |   8 +
- drivers/gpu/drm/xe/tests/xe_bo.c              |  14 +-
- drivers/gpu/drm/xe/tests/xe_migrate.c         |  40 +-
- drivers/gpu/drm/xe/tests/xe_rtp_test.c        |   6 +-
- drivers/gpu/drm/xe/xe_bb.c                    |   5 +-
- drivers/gpu/drm/xe/xe_bo.c                    | 105 ++---
- drivers/gpu/drm/xe/xe_bo.h                    |  20 +-
- drivers/gpu/drm/xe/xe_bo_evict.c              |  22 +-
- drivers/gpu/drm/xe/xe_bo_types.h              |   4 +-
- drivers/gpu/drm/xe/xe_device.c                |  12 +-
- drivers/gpu/drm/xe/xe_device.h                |  66 ++-
- drivers/gpu/drm/xe/xe_device_types.h          | 111 ++++-
- drivers/gpu/drm/xe/xe_engine.c                |   2 +-
- drivers/gpu/drm/xe/xe_ggtt.c                  |  57 ++-
- drivers/gpu/drm/xe/xe_ggtt.h                  |   6 +-
- drivers/gpu/drm/xe/xe_ggtt_types.h            |   2 +-
- drivers/gpu/drm/xe/xe_gt.c                    | 143 +------
- drivers/gpu/drm/xe/xe_gt.h                    |  11 +-
- drivers/gpu/drm/xe/xe_gt_debugfs.c            |   8 +-
- drivers/gpu/drm/xe/xe_gt_pagefault.c          |  16 +-
- drivers/gpu/drm/xe/xe_gt_printk.h             |   6 +-
- drivers/gpu/drm/xe/xe_gt_tlb_invalidation.c   |   8 +-
- drivers/gpu/drm/xe/xe_gt_types.h              |  89 ++--
- drivers/gpu/drm/xe/xe_guc.c                   |  11 +-
- drivers/gpu/drm/xe/xe_guc_ads.c               |   5 +-
- drivers/gpu/drm/xe/xe_guc_ct.c                |   5 +-
- drivers/gpu/drm/xe/xe_guc_hwconfig.c          |   5 +-
- drivers/gpu/drm/xe/xe_guc_log.c               |   6 +-
- drivers/gpu/drm/xe/xe_guc_pc.c                |   5 +-
- drivers/gpu/drm/xe/xe_hw_engine.c             |   6 +-
- drivers/gpu/drm/xe/xe_irq.c                   | 389 +++++++++---------
- drivers/gpu/drm/xe/xe_irq.h                   |   3 +-
- drivers/gpu/drm/xe/xe_lrc.c                   |  13 +-
- drivers/gpu/drm/xe/xe_lrc_types.h             |   4 +-
- drivers/gpu/drm/xe/xe_migrate.c               |  76 ++--
- drivers/gpu/drm/xe/xe_migrate.h               |   9 +-
- drivers/gpu/drm/xe/xe_mmio.c                  |  94 ++---
- drivers/gpu/drm/xe/xe_mmio.h                  |  23 +-
- drivers/gpu/drm/xe/xe_mocs.c                  |  14 +-
- drivers/gpu/drm/xe/xe_pci.c                   |  90 ++--
- drivers/gpu/drm/xe/xe_pt.c                    | 144 +++----
- drivers/gpu/drm/xe/xe_pt.h                    |  14 +-
- drivers/gpu/drm/xe/xe_query.c                 |  22 +-
- drivers/gpu/drm/xe/xe_res_cursor.h            |   2 +-
- drivers/gpu/drm/xe/xe_ring_ops.c              |   2 +-
- drivers/gpu/drm/xe/xe_sa.c                    |  13 +-
- drivers/gpu/drm/xe/xe_sa.h                    |   4 +-
- drivers/gpu/drm/xe/xe_tile.c                  | 153 +++++++
- drivers/gpu/drm/xe/xe_tile.h                  |  16 +
- drivers/gpu/drm/xe/xe_ttm_stolen_mgr.c        |  20 +-
- drivers/gpu/drm/xe/xe_ttm_vram_mgr.c          |  16 +-
- drivers/gpu/drm/xe/xe_ttm_vram_mgr.h          |   4 +-
- drivers/gpu/drm/xe/xe_ttm_vram_mgr_types.h    |   6 +-
- drivers/gpu/drm/xe/xe_uc_fw.c                 |   5 +-
- drivers/gpu/drm/xe/xe_vm.c                    | 156 ++++---
- drivers/gpu/drm/xe/xe_vm.h                    |   2 +-
- drivers/gpu/drm/xe/xe_vm_types.h              |  22 +-
- include/uapi/drm/xe_drm.h                     |   4 +-
- 68 files changed, 1214 insertions(+), 970 deletions(-)
- create mode 100644 Documentation/gpu/xe/xe_tile.rst
- create mode 100644 drivers/gpu/drm/xe/xe_tile.c
- create mode 100644 drivers/gpu/drm/xe/xe_tile.h
-
+diff --git a/drivers/gpu/drm/xe/xe_device_types.h b/drivers/gpu/drm/xe/xe_device_types.h
+index 396ee281e499..619f40a7e275 100644
+--- a/drivers/gpu/drm/xe/xe_device_types.h
++++ b/drivers/gpu/drm/xe/xe_device_types.h
+@@ -81,6 +81,22 @@ struct xe_tile {
+ 	struct xe_gt primary_gt;
+ 
+ 	/* TODO: Add media GT here */
++
++	/**
++	 * @mmio: MMIO info for a tile.
++	 *
++	 * Each tile has its own 16MB space in BAR0, laid out as:
++	 * * 0-4MB: registers
++	 * * 4MB-8MB: reserved
++	 * * 8MB-16MB: global GTT
++	 */
++	struct {
++		/** @size: size of tile's MMIO space */
++		size_t size;
++
++		/** @regs: pointer to tile's MMIO space (starting with registers) */
++		void *regs;
++	} mmio;
+ };
+ 
+ /**
+diff --git a/drivers/gpu/drm/xe/xe_ggtt.c b/drivers/gpu/drm/xe/xe_ggtt.c
+index 189d377f8690..3333b2545740 100644
+--- a/drivers/gpu/drm/xe/xe_ggtt.c
++++ b/drivers/gpu/drm/xe/xe_ggtt.c
+@@ -93,6 +93,7 @@ static void ggtt_fini_noalloc(struct drm_device *drm, void *arg)
+ int xe_ggtt_init_noalloc(struct xe_gt *gt, struct xe_ggtt *ggtt)
+ {
+ 	struct xe_device *xe = gt_to_xe(gt);
++	struct xe_tile *tile = gt_to_tile(gt);
+ 	struct pci_dev *pdev = to_pci_dev(xe->drm.dev);
+ 	unsigned int gsm_size;
+ 
+@@ -106,7 +107,7 @@ int xe_ggtt_init_noalloc(struct xe_gt *gt, struct xe_ggtt *ggtt)
+ 		return -ENOMEM;
+ 	}
+ 
+-	ggtt->gsm = gt->mmio.regs + SZ_8M;
++	ggtt->gsm = tile->mmio.regs + SZ_8M;
+ 	ggtt->size = (gsm_size / 8) * (u64) XE_PAGE_SIZE;
+ 
+ 	if (IS_DGFX(xe) && xe->info.vram_flags & XE_VRAM_FLAGS_NEED64K)
+diff --git a/drivers/gpu/drm/xe/xe_gt_types.h b/drivers/gpu/drm/xe/xe_gt_types.h
+index 11605a99ad66..81e6ab0c77e0 100644
+--- a/drivers/gpu/drm/xe/xe_gt_types.h
++++ b/drivers/gpu/drm/xe/xe_gt_types.h
+@@ -124,14 +124,11 @@ struct xe_gt {
+ 	} info;
+ 
+ 	/**
+-	 * @mmio: mmio info for GT, can be subset of the global device mmio
+-	 * space
++	 * @mmio: mmio info for GT.  All GTs within a tile share the same
++	 * register space, but have their own copy of GSI registers at a
++	 * specific offset, as well as their own forcewake handling.
+ 	 */
+ 	struct {
+-		/** @size: size of MMIO space on GT */
+-		size_t size;
+-		/** @regs: pointer to MMIO space on GT */
+-		void *regs;
+ 		/** @fw: force wake for GT */
+ 		struct xe_force_wake fw;
+ 		/**
+diff --git a/drivers/gpu/drm/xe/xe_mmio.c b/drivers/gpu/drm/xe/xe_mmio.c
+index 79f902d2faea..b27103080ca9 100644
+--- a/drivers/gpu/drm/xe/xe_mmio.c
++++ b/drivers/gpu/drm/xe/xe_mmio.c
+@@ -346,6 +346,7 @@ static void xe_mmio_probe_tiles(struct xe_device *xe)
+ 
+ 	if (xe->info.tile_count > 1) {
+ 		const int mmio_bar = 0;
++		struct xe_tile *tile;
+ 		size_t size;
+ 		void *regs;
+ 
+@@ -359,11 +360,11 @@ static void xe_mmio_probe_tiles(struct xe_device *xe)
+ 		size = xe->mmio.size / adj_tile_count;
+ 		regs = xe->mmio.regs;
+ 
+-		for_each_gt(gt, xe, id) {
+-			if (id && !xe_gt_is_media_type(gt))
+-				regs += size;
+-			gt->mmio.size = size;
+-			gt->mmio.regs = regs;
++		for_each_tile(tile, xe, id) {
++			tile->mmio.size = size;
++			tile->mmio.regs = regs;
++
++			regs += size;
+ 		}
+ 	}
+ }
+@@ -379,15 +380,16 @@ static void mmio_fini(struct drm_device *drm, void *arg)
+ 
+ int xe_mmio_init(struct xe_device *xe)
+ {
++	struct xe_tile *root_tile = xe_device_get_root_tile(xe);
+ 	struct xe_gt *gt = xe_device_get_gt(xe, 0);
+ 	const int mmio_bar = 0;
+ 	int err;
+ 
+ 	/*
+-	 * Map the entire BAR, which includes registers (0-4MB), reserved space
+-	 * (4MB-8MB), and GGTT (8MB-16MB). Other parts of the driver (GTs,
+-	 * GGTTs) will derive the pointers they need from the mapping in the
+-	 * device structure.
++	 * Map the first 16MB of th BAR, which includes the registers (0-4MB),
++	 * reserved space (4MB-8MB), and GGTT (8MB-16MB) for a single tile.
++	 * This will get remapped later if we determine that we're running
++	 * on a multi-tile system.
+ 	 */
+ 	xe->mmio.size = SZ_16M;
+ 	xe->mmio.regs = pci_iomap(to_pci_dev(xe->drm.dev), mmio_bar,
+@@ -401,9 +403,9 @@ int xe_mmio_init(struct xe_device *xe)
+ 	if (err)
+ 		return err;
+ 
+-	/* 1 GT for now, 1 to 1 mapping, may change on multi-GT devices */
+-	gt->mmio.size = xe->mmio.size;
+-	gt->mmio.regs = xe->mmio.regs;
++	/* Setup first tile; other tiles (if present) will be setup later. */
++	root_tile->mmio.size = xe->mmio.size;
++	root_tile->mmio.regs = xe->mmio.regs;
+ 
+ 	/*
+ 	 * The boot firmware initializes local memory and assesses its health.
+diff --git a/drivers/gpu/drm/xe/xe_mmio.h b/drivers/gpu/drm/xe/xe_mmio.h
+index da91729a3854..0ba7aa790f0b 100644
+--- a/drivers/gpu/drm/xe/xe_mmio.h
++++ b/drivers/gpu/drm/xe/xe_mmio.h
+@@ -10,6 +10,7 @@
+ #include <linux/io-64-nonatomic-lo-hi.h>
+ 
+ #include "regs/xe_reg_defs.h"
++#include "xe_device_types.h"
+ #include "xe_gt_types.h"
+ 
+ struct drm_device;
+@@ -22,27 +23,33 @@ int xe_mmio_init(struct xe_device *xe);
+ 
+ static inline u8 xe_mmio_read8(struct xe_gt *gt, struct xe_reg reg)
+ {
++	struct xe_tile *tile = gt_to_tile(gt);
++
+ 	if (reg.addr < gt->mmio.adj_limit)
+ 		reg.addr += gt->mmio.adj_offset;
+ 
+-	return readb(gt->mmio.regs + reg.addr);
++	return readb(tile->mmio.regs + reg.addr);
+ }
+ 
+ static inline void xe_mmio_write32(struct xe_gt *gt,
+ 				   struct xe_reg reg, u32 val)
+ {
++	struct xe_tile *tile = gt_to_tile(gt);
++
+ 	if (reg.addr < gt->mmio.adj_limit)
+ 		reg.addr += gt->mmio.adj_offset;
+ 
+-	writel(val, gt->mmio.regs + reg.addr);
++	writel(val, tile->mmio.regs + reg.addr);
+ }
+ 
+ static inline u32 xe_mmio_read32(struct xe_gt *gt, struct xe_reg reg)
+ {
++	struct xe_tile *tile = gt_to_tile(gt);
++
+ 	if (reg.addr < gt->mmio.adj_limit)
+ 		reg.addr += gt->mmio.adj_offset;
+ 
+-	return readl(gt->mmio.regs + reg.addr);
++	return readl(tile->mmio.regs + reg.addr);
+ }
+ 
+ static inline u32 xe_mmio_rmw32(struct xe_gt *gt, struct xe_reg reg, u32 clr,
+@@ -60,18 +67,22 @@ static inline u32 xe_mmio_rmw32(struct xe_gt *gt, struct xe_reg reg, u32 clr,
+ static inline void xe_mmio_write64(struct xe_gt *gt,
+ 				   struct xe_reg reg, u64 val)
+ {
++	struct xe_tile *tile = gt_to_tile(gt);
++
+ 	if (reg.addr < gt->mmio.adj_limit)
+ 		reg.addr += gt->mmio.adj_offset;
+ 
+-	writeq(val, gt->mmio.regs + reg.addr);
++	writeq(val, tile->mmio.regs + reg.addr);
+ }
+ 
+ static inline u64 xe_mmio_read64(struct xe_gt *gt, struct xe_reg reg)
+ {
++	struct xe_tile *tile = gt_to_tile(gt);
++
+ 	if (reg.addr < gt->mmio.adj_limit)
+ 		reg.addr += gt->mmio.adj_offset;
+ 
+-	return readq(gt->mmio.regs + reg.addr);
++	return readq(tile->mmio.regs + reg.addr);
+ }
+ 
+ static inline int xe_mmio_write32_and_verify(struct xe_gt *gt,
 -- 
 2.40.1
 
