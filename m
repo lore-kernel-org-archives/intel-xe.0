@@ -4,48 +4,47 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 82B1CC7EE2E
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id D5D8CC7EE31
 	for <intel-xe@archiver.kernel.org>; Thu,  1 Jun 2023 20:30:38 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4FE5910E5CC;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8D92810E5D3;
 	Thu,  1 Jun 2023 20:30:38 +0000 (UTC)
 Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8582F10E5CC
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6136E10E5C0
  for <intel-xe@lists.freedesktop.org>; Thu,  1 Jun 2023 20:30:35 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
  t=1685651435; x=1717187435;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=qWzefRJY0IEiTngr/fEhiIPTni+hn5pNLXiSDfQA1cc=;
- b=X1RCtUxf0zNPz8B5wSKS7iu6717+JIld4eJBG5nJPmcteNNH0d4uIyFu
- vhGROSJRFJg0mGjHGxXx3oH7t1h4bYfMft42cKt3Rh6iNai1nzU6PxvUa
- B/m/VtVVla2ooKGRPdIplgI2PEo7ONAXDmplo4kZsVBowOVFsEPdbdiAY
- xzrUeYL3DWEISnIXCnm0EkGOTBUQwpR86f9XDkHANDGAs5owZFAIBhp1U
- +ZCzfoX4bEHZGRQGrg0Tu8fzV9hOLsgAqtGnZoVd/sspTb7GhiPanP8IH
- Gi72QYbbfPo6JlLM3DczcjwP4S0q2NY9JcPuyVV80/PwmNQ2MFb2v86A0 A==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10728"; a="358102545"
-X-IronPort-AV: E=Sophos;i="6.00,210,1681196400"; d="scan'208";a="358102545"
+ bh=szMOtzJGl9OogaJyZLvK3DFYvfQy4k+TLtFoXQzcqas=;
+ b=JxS5A3l2t36SOl879PGuCnS/KyDSrhAiBgJkmBtLLjoCKJkDyEr2Aonu
+ dgkLBpjUTN+Vsu9Aj4tiKWN1N6HCWPYeFHo0/pfYsUOPHNNRoHYaS1DLU
+ r8m/K6GQdfRrFEhEYHkZsi6IV6PxD5RbcQkJnIEMMmod2tM0z/LMv481q
+ d3YU6Vb1RyNqbPhoXIg7eOUQ7CyFbbxjA8th0N9UGqcycOj8PZvGWdUet
+ d+LFHYvhPoMqiMgPdZ7nkL5RGgtzW7m0HCEJhLoFT8kogqiqSta/nIAVX
+ F4681yadnSGQ8Arx1kBnGZKycxbxy8KL2ospVk21cQdbjTuvckLaysquN Q==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10728"; a="358102543"
+X-IronPort-AV: E=Sophos;i="6.00,210,1681196400"; d="scan'208";a="358102543"
 Received: from orsmga001.jf.intel.com ([10.7.209.18])
  by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  01 Jun 2023 13:30:35 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10728"; a="740493293"
-X-IronPort-AV: E=Sophos;i="6.00,210,1681196400"; d="scan'208";a="740493293"
+X-IronPort-AV: E=McAfee;i="6600,9927,10728"; a="740493288"
+X-IronPort-AV: E=Sophos;i="6.00,210,1681196400"; d="scan'208";a="740493288"
 Received: from mdroper-desk1.fm.intel.com ([10.1.27.147])
  by orsmga001-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  01 Jun 2023 13:30:34 -0700
 From: Matt Roper <matthew.d.roper@intel.com>
 To: intel-xe@lists.freedesktop.org
-Date: Thu,  1 Jun 2023 13:30:19 -0700
-Message-Id: <20230601203025.615494-26-matthew.d.roper@intel.com>
+Date: Thu,  1 Jun 2023 13:30:18 -0700
+Message-Id: <20230601203025.615494-25-matthew.d.roper@intel.com>
 X-Mailer: git-send-email 2.40.1
 In-Reply-To: <20230601203025.615494-1-matthew.d.roper@intel.com>
 References: <20230601203025.615494-1-matthew.d.roper@intel.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-xe] [CI 25/31] drm/xe: Replace xe_gt_irq_postinstall with
- xe_irq_enable_hwe
+Subject: [Intel-xe] [CI 24/31] drm/xe/irq: Untangle postinstall functions
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -61,209 +60,114 @@ Cc: matthew.d.roper@intel.com
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-The majority of xe_gt_irq_postinstall() is really focused on the
-hardware engine interrupts; other GT-related interrupts such as the GuC
-are enabled/disabled independently.  Renaming the function and making it
-truly GT-specific will make it more clear what the intended focus is.
+The xe_irq_postinstall() never actually gets called after installing the
+interrupt handler.  This oversight seems to get papered over due to the
+fact that the (misnamed) xe_gt_irq_postinstall does more than it really
+should and gets called in the middle of the GT initialization.  The
+callstack for postinstall is also a bit muddled with top-level device
+interrupt enablement happening within platform-specific functions called
+from the per-tile xe_gt_irq_postinstall() function.
 
-Disabling/masking of other interrupts (such as GuC interrupts) is
-unnecessary since that has already happened during the irq_reset stage,
-and doing so will become harmful once the media GT is re-enabled since
-calls to xe_gt_irq_postinstall during media GT initialization would
-incorrectly disable the primary GT's GuC interrupts.
+Clean this all up by adding the missing call to xe_irq_postinstall()
+after installing the interrupt handler and pull top-level irq enablement
+up to xe_irq_postinstall where we'd expect it to be.
 
-Also, since this function is called from gt_fw_domain_init(), it's not
-necessary to also call it earlier during xe_irq_postinstall; just
-xe_irq_resume to handle runtime resume should be sufficient.
+The xe_gt_irq_postinstall() function is still a bit misnamed here; an
+upcoming patch will refocus its purpose and rename it.
 
 v2:
- - Drop unnecessary !gt check.  (Lucas)
- - Reword some comments about enable/unmask for clarity.  (Lucas)
+ - Squash in patch to actually call xe_irq_postinstall() after
+   installing the interrupt handler.
 
 Signed-off-by: Matt Roper <matthew.d.roper@intel.com>
 Reviewed-by: Lucas De Marchi <lucas.demarchi@intel.com>
 ---
- drivers/gpu/drm/xe/xe_gt.c        |  4 +-
- drivers/gpu/drm/xe/xe_hw_engine.c |  1 +
- drivers/gpu/drm/xe/xe_irq.c       | 87 +++++++++++++++----------------
- drivers/gpu/drm/xe/xe_irq.h       |  3 +-
- 4 files changed, 48 insertions(+), 47 deletions(-)
+ drivers/gpu/drm/xe/xe_irq.c | 37 +++++++++----------------------------
+ 1 file changed, 9 insertions(+), 28 deletions(-)
 
-diff --git a/drivers/gpu/drm/xe/xe_gt.c b/drivers/gpu/drm/xe/xe_gt.c
-index 071d4fbd3efc..335148f1cd39 100644
---- a/drivers/gpu/drm/xe/xe_gt.c
-+++ b/drivers/gpu/drm/xe/xe_gt.c
-@@ -309,8 +309,8 @@ static int gt_fw_domain_init(struct xe_gt *gt)
- 	/* XXX: Fake that we pull the engine mask from hwconfig blob */
- 	gt->info.engine_mask = gt->info.__engine_mask;
- 
--	/* Enables per hw engine IRQs */
--	xe_gt_irq_postinstall(gt_to_tile(gt));
-+	/* Enable per hw engine IRQs */
-+	xe_irq_enable_hwe(gt);
- 
- 	/* Rerun MCR init as we now have hw engine list */
- 	xe_gt_mcr_init(gt);
-diff --git a/drivers/gpu/drm/xe/xe_hw_engine.c b/drivers/gpu/drm/xe/xe_hw_engine.c
-index b12f65a2bab3..b42a0cb50159 100644
---- a/drivers/gpu/drm/xe/xe_hw_engine.c
-+++ b/drivers/gpu/drm/xe/xe_hw_engine.c
-@@ -17,6 +17,7 @@
- #include "xe_gt.h"
- #include "xe_gt_topology.h"
- #include "xe_hw_fence.h"
-+#include "xe_irq.h"
- #include "xe_lrc.h"
- #include "xe_macros.h"
- #include "xe_mmio.h"
 diff --git a/drivers/gpu/drm/xe/xe_irq.c b/drivers/gpu/drm/xe/xe_irq.c
-index 85bb9bd6b6be..b4ed1e4a3388 100644
+index c069e374a947..85bb9bd6b6be 100644
 --- a/drivers/gpu/drm/xe/xe_irq.c
 +++ b/drivers/gpu/drm/xe/xe_irq.c
-@@ -122,13 +122,12 @@ static inline void xelp_intr_enable(struct xe_device *xe, bool stall)
+@@ -122,7 +122,7 @@ static inline void xelp_intr_enable(struct xe_device *xe, bool stall)
  		xe_mmio_read32(mmio, GFX_MSTR_IRQ);
  }
  
--void xe_gt_irq_postinstall(struct xe_tile *tile)
-+/* Enable/unmask the HWE interrupts for a specific GT's engines. */
-+void xe_irq_enable_hwe(struct xe_gt *gt)
+-static void gt_irq_postinstall(struct xe_tile *tile)
++void xe_gt_irq_postinstall(struct xe_tile *tile)
  {
--	struct xe_device *xe = tile_to_xe(tile);
--	struct xe_gt *mmio = tile->primary_gt;
-+	struct xe_device *xe = gt_to_xe(gt);
-+	u32 ccs_mask, bcs_mask;
- 	u32 irqs, dmask, smask;
--	u32 ccs_mask = xe_hw_engine_mask_per_class(tile->primary_gt, XE_ENGINE_CLASS_COMPUTE);
--	u32 bcs_mask = xe_hw_engine_mask_per_class(tile->primary_gt, XE_ENGINE_CLASS_COPY);
- 
- 	if (xe_device_guc_submission_enabled(xe)) {
- 		irqs = GT_RENDER_USER_INTERRUPT |
-@@ -140,45 +139,44 @@ void xe_gt_irq_postinstall(struct xe_tile *tile)
- 		       GT_WAIT_SEMAPHORE_INTERRUPT;
- 	}
- 
-+	ccs_mask = xe_hw_engine_mask_per_class(gt, XE_ENGINE_CLASS_COMPUTE);
-+	bcs_mask = xe_hw_engine_mask_per_class(gt, XE_ENGINE_CLASS_COPY);
-+
- 	dmask = irqs << 16 | irqs;
- 	smask = irqs << 16;
- 
--	/* Enable RCS, BCS, VCS and VECS class interrupts. */
--	xe_mmio_write32(mmio, RENDER_COPY_INTR_ENABLE, dmask);
--	xe_mmio_write32(mmio, VCS_VECS_INTR_ENABLE, dmask);
--	if (ccs_mask)
--		xe_mmio_write32(mmio, CCS_RSVD_INTR_ENABLE, smask);
-+	if (!xe_gt_is_media_type(gt)) {
-+		/* Enable interrupts for each engine class */
-+		xe_mmio_write32(gt, RENDER_COPY_INTR_ENABLE, dmask);
-+		if (ccs_mask)
-+			xe_mmio_write32(gt, CCS_RSVD_INTR_ENABLE, smask);
- 
--	/* Unmask irqs on RCS, BCS, VCS and VECS engines. */
--	xe_mmio_write32(mmio, RCS0_RSVD_INTR_MASK, ~smask);
--	xe_mmio_write32(mmio, BCS_RSVD_INTR_MASK, ~smask);
--	if (bcs_mask & (BIT(1)|BIT(2)))
--		xe_mmio_write32(mmio, XEHPC_BCS1_BCS2_INTR_MASK, ~dmask);
--	if (bcs_mask & (BIT(3)|BIT(4)))
--		xe_mmio_write32(mmio, XEHPC_BCS3_BCS4_INTR_MASK, ~dmask);
--	if (bcs_mask & (BIT(5)|BIT(6)))
--		xe_mmio_write32(mmio, XEHPC_BCS5_BCS6_INTR_MASK, ~dmask);
--	if (bcs_mask & (BIT(7)|BIT(8)))
--		xe_mmio_write32(mmio, XEHPC_BCS7_BCS8_INTR_MASK, ~dmask);
--	xe_mmio_write32(mmio, VCS0_VCS1_INTR_MASK, ~dmask);
--	xe_mmio_write32(mmio, VCS2_VCS3_INTR_MASK, ~dmask);
--	xe_mmio_write32(mmio, VECS0_VECS1_INTR_MASK, ~dmask);
--	if (ccs_mask & (BIT(0)|BIT(1)))
--		xe_mmio_write32(mmio, CCS0_CCS1_INTR_MASK, ~dmask);
--	if (ccs_mask & (BIT(2)|BIT(3)))
--		xe_mmio_write32(mmio,  CCS2_CCS3_INTR_MASK, ~dmask);
-+		/* Unmask interrupts for each engine instance */
-+		xe_mmio_write32(gt, RCS0_RSVD_INTR_MASK, ~smask);
-+		xe_mmio_write32(gt, BCS_RSVD_INTR_MASK, ~smask);
-+		if (bcs_mask & (BIT(1)|BIT(2)))
-+			xe_mmio_write32(gt, XEHPC_BCS1_BCS2_INTR_MASK, ~dmask);
-+		if (bcs_mask & (BIT(3)|BIT(4)))
-+			xe_mmio_write32(gt, XEHPC_BCS3_BCS4_INTR_MASK, ~dmask);
-+		if (bcs_mask & (BIT(5)|BIT(6)))
-+			xe_mmio_write32(gt, XEHPC_BCS5_BCS6_INTR_MASK, ~dmask);
-+		if (bcs_mask & (BIT(7)|BIT(8)))
-+			xe_mmio_write32(gt, XEHPC_BCS7_BCS8_INTR_MASK, ~dmask);
-+		if (ccs_mask & (BIT(0)|BIT(1)))
-+			xe_mmio_write32(gt, CCS0_CCS1_INTR_MASK, ~dmask);
-+		if (ccs_mask & (BIT(2)|BIT(3)))
-+			xe_mmio_write32(gt,  CCS2_CCS3_INTR_MASK, ~dmask);
-+	}
- 
--	/*
--	 * RPS interrupts will get enabled/disabled on demand when RPS itself
--	 * is enabled/disabled.
--	 */
--	/* TODO: gt->pm_ier, gt->pm_imr */
--	xe_mmio_write32(mmio, GPM_WGBOXPERF_INTR_ENABLE, 0);
--	xe_mmio_write32(mmio, GPM_WGBOXPERF_INTR_MASK,  ~0);
-+	if (xe_gt_is_media_type(gt) || MEDIA_VER(xe) < 13) {
-+		/* Enable interrupts for each engine class */
-+		xe_mmio_write32(gt, VCS_VECS_INTR_ENABLE, dmask);
- 
--	/* Same thing for GuC interrupts */
--	xe_mmio_write32(mmio, GUC_SG_INTR_ENABLE, 0);
--	xe_mmio_write32(mmio, GUC_SG_INTR_MASK,  ~0);
-+		/* Unmask interrupts for each engine instance */
-+		xe_mmio_write32(gt, VCS0_VCS1_INTR_MASK, ~dmask);
-+		xe_mmio_write32(gt, VCS2_VCS3_INTR_MASK, ~dmask);
-+		xe_mmio_write32(gt, VECS0_VECS1_INTR_MASK, ~dmask);
-+	}
+ 	struct xe_device *xe = tile_to_xe(tile);
+ 	struct xe_gt *mmio = tile->primary_gt;
+@@ -181,15 +181,6 @@ static void gt_irq_postinstall(struct xe_tile *tile)
+ 	xe_mmio_write32(mmio, GUC_SG_INTR_MASK,  ~0);
  }
  
+-static void xelp_irq_postinstall(struct xe_device *xe, struct xe_tile *tile)
+-{
+-	/* TODO: PCH */
+-
+-	gt_irq_postinstall(tile);
+-
+-	xelp_intr_enable(xe, true);
+-}
+-
  static u32
-@@ -497,12 +495,6 @@ static void xe_irq_reset(struct xe_device *xe)
+ gt_engine_identity(struct xe_device *xe,
+ 		   struct xe_gt *mmio,
+@@ -366,14 +357,6 @@ static void dg1_intr_enable(struct xe_device *xe, bool stall)
+ 		xe_mmio_read32(mmio, DG1_MSTR_TILE_INTR);
+ }
  
+-static void dg1_irq_postinstall(struct xe_device *xe, struct xe_tile *tile)
+-{
+-	gt_irq_postinstall(tile);
+-
+-	if (tile->id == 0)
+-		dg1_intr_enable(xe, true);
+-}
+-
+ /*
+  * Top-level interrupt handler for Xe_LP+ and beyond.  These platforms have
+  * a "master tile" interrupt register which must be consulted before the
+@@ -512,16 +495,6 @@ static void xe_irq_reset(struct xe_device *xe)
+ 	xe_display_irq_reset(xe);
+ }
+ 
+-void xe_gt_irq_postinstall(struct xe_tile *tile)
+-{
+-	struct xe_device *xe = tile_to_xe(tile);
+-
+-	if (GRAPHICS_VERx100(xe) >= 1210)
+-		dg1_irq_postinstall(xe, tile);
+-	else
+-		xelp_irq_postinstall(xe, tile);
+-}
+-
  static void xe_irq_postinstall(struct xe_device *xe)
  {
--	struct xe_tile *tile;
--	u8 id;
--
--	for_each_tile(tile, xe, id)
--		xe_gt_irq_postinstall(tile);
--
- 	xe_display_irq_postinstall(xe, xe_root_mmio_gt(xe));
- 
- 	/*
-@@ -591,9 +583,16 @@ void xe_irq_suspend(struct xe_device *xe)
- 
- void xe_irq_resume(struct xe_device *xe)
- {
-+	struct xe_gt *gt;
-+	int id;
+ 	struct xe_tile *tile;
+@@ -538,6 +511,12 @@ static void xe_irq_postinstall(struct xe_device *xe)
+ 	 */
+ 	unmask_and_enable(xe_device_get_root_tile(xe),
+ 			  GU_MISC_IRQ_OFFSET, GU_MISC_GSE);
 +
- 	spin_lock_irq(&xe->irq.lock);
- 	xe->irq.enabled = true;
- 	xe_irq_reset(xe);
- 	xe_irq_postinstall(xe);
-+
-+	for_each_gt(gt, xe, id)
-+		xe_irq_enable_hwe(gt);
-+
- 	spin_unlock_irq(&xe->irq.lock);
++	/* Enable top-level interrupts */
++	if (GRAPHICS_VERx100(xe) >= 1210)
++		dg1_intr_enable(xe, true);
++	else
++		xelp_intr_enable(xe, true);
  }
-diff --git a/drivers/gpu/drm/xe/xe_irq.h b/drivers/gpu/drm/xe/xe_irq.h
-index 69113c21e1cd..bc42bc90d967 100644
---- a/drivers/gpu/drm/xe/xe_irq.h
-+++ b/drivers/gpu/drm/xe/xe_irq.h
-@@ -8,11 +8,12 @@
  
- struct xe_device;
- struct xe_tile;
-+struct xe_gt;
+ static irq_handler_t xe_irq_handler(struct xe_device *xe)
+@@ -588,6 +567,8 @@ int xe_irq_install(struct xe_device *xe)
+ 		return err;
+ 	}
  
- int xe_irq_install(struct xe_device *xe);
--void xe_gt_irq_postinstall(struct xe_tile *tile);
- void xe_irq_shutdown(struct xe_device *xe);
- void xe_irq_suspend(struct xe_device *xe);
- void xe_irq_resume(struct xe_device *xe);
-+void xe_irq_enable_hwe(struct xe_gt *gt);
- 
- #endif
++	xe_irq_postinstall(xe);
++
+ 	err = drmm_add_action_or_reset(&xe->drm, irq_uninstall, xe);
+ 	if (err)
+ 		return err;
 -- 
 2.40.1
 
