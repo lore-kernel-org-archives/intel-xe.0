@@ -4,31 +4,45 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1F1A0C7EE29
-	for <intel-xe@archiver.kernel.org>; Fri,  2 Jun 2023 18:46:37 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 47A4AC77B7A
+	for <intel-xe@archiver.kernel.org>; Fri,  2 Jun 2023 18:52:18 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id EC3DE10E602;
-	Fri,  2 Jun 2023 18:46:36 +0000 (UTC)
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id 1F1BE10E602;
- Fri,  2 Jun 2023 18:46:35 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 1B631A0BA8;
- Fri,  2 Jun 2023 18:46:35 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+	by gabe.freedesktop.org (Postfix) with ESMTP id 171D610E61C;
+	Fri,  2 Jun 2023 18:52:18 +0000 (UTC)
+Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E0EF610E61C;
+ Fri,  2 Jun 2023 18:52:16 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1685731936; x=1717267936;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=0YJQbFFN1TXRkH2uyffi/68HSsMzSFimf0mb6Va2RYY=;
+ b=J+YdBzFYt8Vgxn4/IQ3+kPBtd1N8GbQrAo/tdqqRmt+XZVkCyiE3Y5yi
+ 2Yehh9VG7BbiUtNi1WbAzulbfjJrUxC1PpV6oqJw1vkCysLeHpg1De42Z
+ Xdp/M2RQ+k+2H6+KDwtn2VVHbQ13JIMDEQ7COkPiqCVVje3iDErBiu+26
+ dmzwuCxNNOtuWDYFmgaEosKuGtzY2n2D8wU8AHdGuRbZxhSVPxY+hIG7a
+ vHxa7hbNLj+U8mAjgQHHTGe1gkoRrb2KilfRZhD7GBCMhEvW8mUy1Vr2H
+ JTgfciUK4wzbWazrTKtkJK0aX9Vih+DIzEY6FJZSPmsSmeKRgEKP2xwdE w==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10729"; a="442316801"
+X-IronPort-AV: E=Sophos;i="6.00,213,1681196400"; d="scan'208";a="442316801"
+Received: from orsmga002.jf.intel.com ([10.7.209.21])
+ by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 02 Jun 2023 11:52:16 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6600,9927,10729"; a="707953995"
+X-IronPort-AV: E=Sophos;i="6.00,213,1681196400"; d="scan'208";a="707953995"
+Received: from aalteres-desk.fm.intel.com ([10.80.57.53])
+ by orsmga002.jf.intel.com with ESMTP; 02 Jun 2023 11:52:14 -0700
+From: Alan Previn <alan.previn.teres.alexis@intel.com>
+To: intel-xe@lists.freedesktop.org
+Date: Fri,  2 Jun 2023 11:52:13 -0700
+Message-Id: <20230602185213.2635921-1-alan.previn.teres.alexis@intel.com>
+X-Mailer: git-send-email 2.39.0
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Jani Nikula" <jani.nikula@intel.com>
-Date: Fri, 02 Jun 2023 18:46:35 -0000
-Message-ID: <168573159510.15700.17453411163800728733@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20230602175444.3511273-1-jani.nikula@intel.com>
-In-Reply-To: <20230602175444.3511273-1-jani.nikula@intel.com>
-Subject: [Intel-xe] =?utf-8?q?=E2=9C=97_CI=2Echecksparse=3A_warning_for_s?=
- =?utf-8?q?eries_starting_with_=5B1/4=5D_Revert_=22drm/i915/display=3A_Fix?=
- =?utf-8?q?_a_use-after-free_when_intel=5Fedp=5Finit=5Fconnector_fails=22?=
+Content-Transfer-Encoding: 8bit
+Subject: [Intel-xe] [PATCH v1] drm/xe/guc: Fix h2g_write usage of
+ GUC_CTB_MSG_MAX_LEN
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -40,36 +54,47 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
-Cc: intel-xe@lists.freedesktop.org
+Cc: dri-devel@lists.freedesktop.org,
+ Alan Previn <alan.previn.teres.alexis@intel.com>
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-== Series Details ==
+In the ABI header, GUC_CTB_MSG_MIN_LEN is '1' because
+GUC_CTB_HDR_LEN is 1. This aligns with H2G/G2H CTB specification
+where all command formats are defined in units of dwords so that '1'
+is a dword. Accordingly, GUC_CTB_MSG_MAX_LEN is 256-1 (i.e. 255
+dwords). However, h2g_write was incorrectly assuming that
+GUC_CTB_MSG_MAX_LEN was in bytes. Fix this.
 
-Series: series starting with [1/4] Revert "drm/i915/display: Fix a use-after-free when intel_edp_init_connector fails"
-URL   : https://patchwork.freedesktop.org/series/118794/
-State : warning
+Signed-off-by: Alan Previn <alan.previn.teres.alexis@intel.com>
+---
+ drivers/gpu/drm/xe/xe_guc_ct.c | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
 
-== Summary ==
+diff --git a/drivers/gpu/drm/xe/xe_guc_ct.c b/drivers/gpu/drm/xe/xe_guc_ct.c
+index 137c184df487..8e9df6052b02 100644
+--- a/drivers/gpu/drm/xe/xe_guc_ct.c
++++ b/drivers/gpu/drm/xe/xe_guc_ct.c
+@@ -401,7 +401,7 @@ static int h2g_write(struct xe_guc_ct *ct, const u32 *action, u32 len,
+ {
+ 	struct xe_device *xe = ct_to_xe(ct);
+ 	struct guc_ctb *h2g = &ct->ctbs.h2g;
+-	u32 cmd[GUC_CTB_MSG_MAX_LEN / sizeof(u32)];
++	u32 cmd[GUC_CTB_MSG_MAX_LEN];
+ 	u32 cmd_len = len + GUC_CTB_HDR_LEN;
+ 	u32 cmd_idx = 0, i;
+ 	u32 tail = h2g->info.tail;
+@@ -409,7 +409,7 @@ static int h2g_write(struct xe_guc_ct *ct, const u32 *action, u32 len,
+ 							 tail * sizeof(u32));
+ 
+ 	lockdep_assert_held(&ct->lock);
+-	XE_BUG_ON(len * sizeof(u32) > GUC_CTB_MSG_MAX_LEN);
++	XE_BUG_ON(len > GUC_CTB_MSG_MAX_LEN - 1);
+ 	XE_BUG_ON(tail > h2g->info.size);
+ 
+ 	/* Command will wrap, zero fill (NOPs), return and check credits again */
 
-+ trap cleanup EXIT
-+ KERNEL=/kernel
-+ MT=/root/linux/maintainer-tools
-+ git clone https://gitlab.freedesktop.org/drm/maintainer-tools /root/linux/maintainer-tools
-Cloning into '/root/linux/maintainer-tools'...
-warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
-+ make -C /root/linux/maintainer-tools
-make: Entering directory '/root/linux/maintainer-tools'
-cc -O2 -g -Wextra -o remap-log remap-log.c
-make: Leaving directory '/root/linux/maintainer-tools'
-+ cd /kernel
-+ git config --global --add safe.directory /kernel
-+ /root/linux/maintainer-tools/dim sparse --fast ef153c77d25ffd86b074190b77f9f561b9a5a909
-Sparse version: 0.6.1 (Ubuntu: 0.6.1-2build1)
-Fast mode used, each commit won't be checked separately.
-+ cleanup
-++ stat -c %u:%g /kernel
-+ chown -R 1003:1003 /kernel
-
+base-commit: 9f49c413b187c00f223eaf1e8dbe2c1a97c9954b
+-- 
+2.39.0
 
