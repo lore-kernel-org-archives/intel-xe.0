@@ -4,30 +4,46 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id CD4F2C77B7A
-	for <intel-xe@archiver.kernel.org>; Thu,  1 Jun 2023 22:35:15 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 140CBC7EE23
+	for <intel-xe@archiver.kernel.org>; Fri,  2 Jun 2023 03:12:49 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6FC2110E5F7;
-	Thu,  1 Jun 2023 22:35:15 +0000 (UTC)
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id A813E10E5F7;
- Thu,  1 Jun 2023 22:35:13 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id A06FBAADF4;
- Thu,  1 Jun 2023 22:35:13 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============9075773125293079798=="
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9004810E60C;
+	Fri,  2 Jun 2023 03:12:49 +0000 (UTC)
+Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id AB66210E60C
+ for <intel-xe@lists.freedesktop.org>; Fri,  2 Jun 2023 03:12:47 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1685675567; x=1717211567;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=ML4UrFIvQwt1JC0SkD35YCA2foPPeAHqi7mx3eVwN0s=;
+ b=WWnqO5868q9AlKd78ez6ugtVskgmqETG6q8S7/Y6jP6+d2z28/SaHAQS
+ EsQXTznek+0gl7p/zDJoyOWEescEQrdUgd5pmYl1KAAlgAwSfCqnWAhz5
+ jyP0M8xxNF/NpHR6nC3i+MiDRtI+PFfQEzfP+pAYHJCPV0sVID2tCE0ME
+ zjYukYrOKZAI4ti2t2Gh7c6aTpreOytsJXigDUZzr73PEtCEyU5hMCm1m
+ J/WrYggo0h4SZkGUYPT2AbFMfV7Dk2SD3WvagZittIf1o2qK4P8BGph1l
+ QObOtzPijWKV2EnCT3MZyAFK56/cPJV+9Szv90nKJuRF0NEo2F5sSxM5P g==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10728"; a="359051711"
+X-IronPort-AV: E=Sophos;i="6.00,211,1681196400"; d="scan'208";a="359051711"
+Received: from fmsmga004.fm.intel.com ([10.253.24.48])
+ by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 01 Jun 2023 20:12:45 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6600,9927,10728"; a="777473802"
+X-IronPort-AV: E=Sophos;i="6.00,211,1681196400"; d="scan'208";a="777473802"
+Received: from nvishwa1-desk.sc.intel.com ([172.25.29.76])
+ by fmsmga004-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 01 Jun 2023 20:12:44 -0700
+From: Niranjana Vishwanathapura <niranjana.vishwanathapura@intel.com>
+To: intel-xe@lists.freedesktop.org
+Date: Thu,  1 Jun 2023 20:12:41 -0700
+Message-Id: <20230602031241.9160-1-niranjana.vishwanathapura@intel.com>
+X-Mailer: git-send-email 2.21.0.rc0.32.g243a4c7e27
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Matt Roper" <matthew.d.roper@intel.com>
-Date: Thu, 01 Jun 2023 22:35:13 -0000
-Message-ID: <168565891363.16229.12139601215192952170@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20230601215244.678611-1-matthew.d.roper@intel.com>
-In-Reply-To: <20230601215244.678611-1-matthew.d.roper@intel.com>
-Subject: [Intel-xe] =?utf-8?q?=E2=97=8B_CI=2EBAT=3A_info_for_Separate_GT_?=
- =?utf-8?q?and_tile_=28rev8=29?=
+Content-Transfer-Encoding: 8bit
+Subject: [Intel-xe] [PATCH] fixup! drm/xe: Apply upper limit to sg element
+ size
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -39,70 +55,33 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
-Cc: intel-xe@lists.freedesktop.org
+Cc: thomas.hellstrom@intel.com
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============9075773125293079798==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+Replace UINT_MAX with maximum value supported by sg->length.
 
-== Series Details ==
+Signed-off-by: Niranjana Vishwanathapura <niranjana.vishwanathapura@intel.com>
+---
+ drivers/gpu/drm/xe/xe_bo.h | 5 ++++-
+ 1 file changed, 4 insertions(+), 1 deletion(-)
 
-Series: Separate GT and tile (rev8)
-URL   : https://patchwork.freedesktop.org/series/117614/
-State : info
+diff --git a/drivers/gpu/drm/xe/xe_bo.h b/drivers/gpu/drm/xe/xe_bo.h
+index d945675a259f..e6d08fa9c992 100644
+--- a/drivers/gpu/drm/xe/xe_bo.h
++++ b/drivers/gpu/drm/xe/xe_bo.h
+@@ -306,7 +306,10 @@ struct sg_table *xe_bo_get_sg(struct xe_bo *bo);
+  */
+ static inline unsigned int xe_sg_segment_size(struct device *dev)
+ {
+-	size_t max = min_t(size_t, UINT_MAX, dma_max_mapping_size(dev));
++	struct scatterlist __maybe_unused sg;
++	size_t max = BIT_ULL(sizeof(sg.length) * 8) - 1;
++
++	max = min_t(size_t, max, dma_max_mapping_size(dev));
+ 
+ 	/*
+ 	 * The iommu_dma_map_sg() function ensures iova allocation doesn't
+-- 
+2.21.0.rc0.32.g243a4c7e27
 
-== Summary ==
-
-Participating hosts:
-bat-atsm-2
-bat-dg2-oem2
-bat-adlp-7
-Missing hosts results[1]:
-bat-dg2-oem2
-Results: [xe-pw-117614v8](https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-117614v8/index.html)
-
-
-
---===============9075773125293079798==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>Separate GT and tile (rev8)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/117614/">https://patchwork.freedesktop.org/series/117614/</a></td></tr>
-<tr><td><b>State:</b></td><td>info</td></tr>
-
-</table>
-
-
-    <p>Participating hosts:<br />
-bat-atsm-2<br />
-bat-dg2-oem2<br />
-bat-adlp-7<br />
-Missing hosts results[1]:<br />
-bat-dg2-oem2<br />
-Results: <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-117614v8/index.html">xe-pw-117614v8</a></p>
-
-</body>
-</html>
-
---===============9075773125293079798==--
