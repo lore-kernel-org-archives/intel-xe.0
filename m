@@ -4,30 +4,30 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id E6CA3C7EE29
-	for <intel-xe@archiver.kernel.org>; Fri,  2 Jun 2023 17:29:43 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id AFC43C7EE29
+	for <intel-xe@archiver.kernel.org>; Fri,  2 Jun 2023 17:29:53 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id BAEA510E5DC;
-	Fri,  2 Jun 2023 17:29:43 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 83C5D10E5F0;
+	Fri,  2 Jun 2023 17:29:53 +0000 (UTC)
 Received: from emeril.freedesktop.org (emeril.freedesktop.org
  [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id 7FAA510E602;
- Fri,  2 Jun 2023 17:29:41 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTP id 5A21110E5F0;
+ Fri,  2 Jun 2023 17:29:52 +0000 (UTC)
 Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 775E6AADE1;
- Fri,  2 Jun 2023 17:29:41 +0000 (UTC)
+ by emeril.freedesktop.org (Postfix) with ESMTP id 55C16AADE1;
+ Fri,  2 Jun 2023 17:29:52 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: "Mika Kuoppala" <mika.kuoppala@linux.intel.com>
-Date: Fri, 02 Jun 2023 17:29:41 -0000
-Message-ID: <168572698148.15698.15962737828115013628@emeril.freedesktop.org>
+Date: Fri, 02 Jun 2023 17:29:52 -0000
+Message-ID: <168572699234.15699.9401278538589349566@emeril.freedesktop.org>
 X-Patchwork-Hint: ignore
 References: <20230602172732.1001057-1-mika.kuoppala@linux.intel.com>
 In-Reply-To: <20230602172732.1001057-1-mika.kuoppala@linux.intel.com>
-Subject: [Intel-xe] =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_f?=
- =?utf-8?q?or_drm/xe=3A_Fix_unreffed_ptr_leak_on_engine_lookup?=
+Subject: [Intel-xe] =?utf-8?q?=E2=9C=93_CI=2Echeckpatch=3A_success_for_dr?=
+ =?utf-8?q?m/xe=3A_Fix_unreffed_ptr_leak_on_engine_lookup?=
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -52,9 +52,31 @@ State : success
 
 == Summary ==
 
-=== Applying kernel patches on branch 'drm-xe-next' with base: ===
-Base commit: 241c03cc4 fixup! drm/xe/display: Implement display support
-=== git am output follows ===
-Applying: drm/xe: Fix unreffed ptr leak on engine lookup
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+c7d32770e3cd31d9fc134ce41f329b10aa33ee15
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit 71f2ba074b69124ead53f8ee22c02c5caa75ad12
+Author: Mika Kuoppala <mika.kuoppala@linux.intel.com>
+Date:   Fri Jun 2 20:27:32 2023 +0300
+
+    drm/xe: Fix unreffed ptr leak on engine lookup
+    
+    The engine xarray holds a ref to engine, guarded by the lock.
+    While we do lookup for engine, we need to take the ref inside
+    the lock to prevent unreffed pointer escaping and
+    causing potential use-after-free after.
+    
+    v2: remove branch prediction hint (Thomas)
+    
+    Cc: Thomas Hellström <thomas.hellstrom@linux.intel.com>
+    Signed-off-by: Mika Kuoppala <mika.kuoppala@linux.intel.com>
++ /mt/dim checkpatch 241c03cc415b25000bdf0031349ea79f9b556297 drm-intel
+71f2ba074 drm/xe: Fix unreffed ptr leak on engine lookup
 
 
