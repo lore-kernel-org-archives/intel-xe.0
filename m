@@ -4,42 +4,42 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 44E07C77B7A
-	for <intel-xe@archiver.kernel.org>; Fri,  2 Jun 2023 10:43:16 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 69D38C77B7A
+	for <intel-xe@archiver.kernel.org>; Fri,  2 Jun 2023 10:43:18 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1E6B510E65C;
-	Fri,  2 Jun 2023 10:43:16 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4288D10E65B;
+	Fri,  2 Jun 2023 10:43:18 +0000 (UTC)
 Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7D45C10E65A
- for <intel-xe@lists.freedesktop.org>; Fri,  2 Jun 2023 10:43:14 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id CB87510E65E
+ for <intel-xe@lists.freedesktop.org>; Fri,  2 Jun 2023 10:43:16 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1685702594; x=1717238594;
+ t=1685702596; x=1717238596;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=tVYWIgNdcmYAfkM1nzvOOkF6/RNJqz1hpFU42TfZ6no=;
- b=eRxxtoqbuACFgJtDhoHqiXkA7wVmz5snByAM2fyKMnG3voINVTXx8I2f
- AM4Am82C2s4pqXMVlMdEaBphf9q+e5cdPQbyNZB2rwO1gyHjuS9SfrTyg
- a7xyrlTl5fhJzY/mnCld9MSuFOcE1jxkxdXXImt//H0a/6f63+fCRoX6K
- G+fvBlojoEc8rF7DKTHrl6TDNPK3l3GJvmZrPinT1V7k5R1iIclY6JkJU
- QKNYTT263Sly8I+89UkF/2ffPqQtBPUX5qkoHZCBnHWc/1JYy2RmMC+Gy
- xT5qsVuBIq+ZvPqHneF2gGIYXoWpHkEL9Zb2KDsV0WGu0JLAfy3E61xay Q==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10728"; a="442215572"
-X-IronPort-AV: E=Sophos;i="6.00,212,1681196400"; d="scan'208";a="442215572"
+ bh=SDtHUwcLNns/LI5aS91QnVxulx78uZl7YPAzUFsgP44=;
+ b=Vu54AVDISaQC6u1jV3rlRn5HkOoU8EVU0vRlAcvKn26/PBk/1d9E7Hk1
+ 2ILKft4tcdguukG9kI1ox8WTNPX/iA0gKRIEwF2YE/lgFnxLu89OT9ivF
+ iIGxQilife5Ie3qIdrEb5FlvZ20qnsKzupMxBKOlzCjdwBDxBVjOjhIF0
+ EQSpq1ldh9/ue7P1zZhqVf30SbtgmHwTvQz9vCX0RHFzdQTH0eztLK9vG
+ IPsBjWBN3PmayqiI17WeDECS1G4KxDuK4A1uylKsyeRkbHe4PLcd1ngdE
+ aazn/YfUIlOtALDfwrbk7798y+sQCw0hgzGX7kgEeEhK33az82gV/BXPV A==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10728"; a="442215575"
+X-IronPort-AV: E=Sophos;i="6.00,212,1681196400"; d="scan'208";a="442215575"
 Received: from orsmga003.jf.intel.com ([10.7.209.27])
  by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 02 Jun 2023 03:43:14 -0700
+ 02 Jun 2023 03:43:16 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10728"; a="658237922"
-X-IronPort-AV: E=Sophos;i="6.00,212,1681196400"; d="scan'208";a="658237922"
+X-IronPort-AV: E=McAfee;i="6600,9927,10728"; a="658237926"
+X-IronPort-AV: E=Sophos;i="6.00,212,1681196400"; d="scan'208";a="658237926"
 Received: from amelillo-mobl.ger.corp.intel.com (HELO
  jhogande-mobl1.ger.corp.intel.com) ([10.251.209.93])
  by orsmga003-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 02 Jun 2023 03:43:12 -0700
+ 02 Jun 2023 03:43:14 -0700
 From: =?UTF-8?q?Jouni=20H=C3=B6gander?= <jouni.hogander@intel.com>
 To: intel-xe@lists.freedesktop.org
-Date: Fri,  2 Jun 2023 13:42:36 +0300
-Message-Id: <20230602104237.1014684-10-jouni.hogander@intel.com>
+Date: Fri,  2 Jun 2023 13:42:37 +0300
+Message-Id: <20230602104237.1014684-11-jouni.hogander@intel.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20230602104237.1014684-1-jouni.hogander@intel.com>
 References: <20230602104237.1014684-1-jouni.hogander@intel.com>
@@ -47,8 +47,8 @@ MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
 Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-xe] [PATCH v3 09/10] drm/i915/fbc: Moved fence related code
- away from intel_fbc
+Subject: [Intel-xe] [PATCH v3 10/10] drm/xe: Add Xe implementation for fence
+ checks used by fbc code
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -64,90 +64,57 @@ Cc: =?UTF-8?q?Jouni=20H=C3=B6gander?= <jouni.hogander@intel.com>
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Add new functions to check support for legacy fencing and fence id and use
-these in fbc code
-
-v2: intel_gt_fence_count renamed as intel_gt_support_legacy_fencing
+Xe doesn't support legacy fences. Implement legacy fence and fence
+id checks accordingly.
 
 Signed-off-by: Jouni Högander <jouni.hogander@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_fbc.c | 12 ++++++------
- drivers/gpu/drm/i915/gt/intel_gt_types.h |  2 ++
- drivers/gpu/drm/i915/i915_vma.h          |  5 +++++
- 3 files changed, 13 insertions(+), 6 deletions(-)
+ drivers/gpu/drm/xe/compat-i915-headers/i915_drv.h     |  1 +
+ drivers/gpu/drm/xe/compat-i915-headers/i915_vma.h     |  2 ++
+ .../gpu/drm/xe/compat-i915-headers/intel_gt_types.h   | 11 +++++++++++
+ 3 files changed, 14 insertions(+)
+ create mode 100644 drivers/gpu/drm/xe/compat-i915-headers/intel_gt_types.h
 
-diff --git a/drivers/gpu/drm/i915/display/intel_fbc.c b/drivers/gpu/drm/i915/display/intel_fbc.c
-index 0edfc897e94d..8bf88cc39833 100644
---- a/drivers/gpu/drm/i915/display/intel_fbc.c
-+++ b/drivers/gpu/drm/i915/display/intel_fbc.c
-@@ -47,6 +47,7 @@
- #include "i915_reg.h"
+diff --git a/drivers/gpu/drm/xe/compat-i915-headers/i915_drv.h b/drivers/gpu/drm/xe/compat-i915-headers/i915_drv.h
+index 513b570d4895..88cbffaeadee 100644
+--- a/drivers/gpu/drm/xe/compat-i915-headers/i915_drv.h
++++ b/drivers/gpu/drm/xe/compat-i915-headers/i915_drv.h
+@@ -19,6 +19,7 @@
+ #include "i915_reg_defs.h"
+ #include "intel_pch.h"
  #include "i915_utils.h"
- #include "i915_vgpu.h"
-+#include "i915_vma.h"
- #include "intel_cdclk.h"
- #include "intel_de.h"
- #include "intel_display_trace.h"
-@@ -607,7 +608,7 @@ static void ivb_fbc_activate(struct intel_fbc *fbc)
- 	else if (DISPLAY_VER(i915) == 9)
- 		skl_fbc_program_cfb_stride(fbc);
++#include "intel_gt_types.h"
+ #include "intel_uncore.h"
+ #include <linux/pm_runtime.h>
  
--	if (to_gt(i915)->ggtt->num_fences)
-+	if (intel_gt_support_legacy_fencing(to_gt(i915)))
- 		snb_fbc_program_fence(fbc);
- 
- 	intel_de_write(i915, ILK_DPFC_CONTROL(fbc->id),
-@@ -991,11 +992,10 @@ static void intel_fbc_update_state(struct intel_atomic_state *state,
- 	fbc_state->fence_y_offset = intel_plane_fence_y_offset(plane_state);
- 
- 	drm_WARN_ON(&i915->drm, plane_state->flags & PLANE_HAS_FENCE &&
--		    !plane_state->ggtt_vma->fence);
-+		    !intel_gt_support_legacy_fencing(to_gt(i915)));
- 
--	if (plane_state->flags & PLANE_HAS_FENCE &&
--	    plane_state->ggtt_vma->fence)
--		fbc_state->fence_id = plane_state->ggtt_vma->fence->id;
-+	if (plane_state->flags & PLANE_HAS_FENCE)
-+		fbc_state->fence_id =  i915_vma_fence_id(plane_state->ggtt_vma);
- 	else
- 		fbc_state->fence_id = -1;
- 
-@@ -1022,7 +1022,7 @@ static bool intel_fbc_is_fence_ok(const struct intel_plane_state *plane_state)
- 	 */
- 	return DISPLAY_VER(i915) >= 9 ||
- 		(plane_state->flags & PLANE_HAS_FENCE &&
--		 plane_state->ggtt_vma->fence);
-+		 i915_vma_fence_id(plane_state->ggtt_vma) != -1);
- }
- 
- static bool intel_fbc_is_cfb_ok(const struct intel_plane_state *plane_state)
-diff --git a/drivers/gpu/drm/i915/gt/intel_gt_types.h b/drivers/gpu/drm/i915/gt/intel_gt_types.h
-index f08c2556aa25..f879dad6b913 100644
---- a/drivers/gpu/drm/i915/gt/intel_gt_types.h
-+++ b/drivers/gpu/drm/i915/gt/intel_gt_types.h
-@@ -306,4 +306,6 @@ enum intel_gt_scratch_field {
- 	INTEL_GT_SCRATCH_FIELD_COHERENTL3_WA = 256,
+diff --git a/drivers/gpu/drm/xe/compat-i915-headers/i915_vma.h b/drivers/gpu/drm/xe/compat-i915-headers/i915_vma.h
+index c40bb27ac72a..45ea0e44073d 100644
+--- a/drivers/gpu/drm/xe/compat-i915-headers/i915_vma.h
++++ b/drivers/gpu/drm/xe/compat-i915-headers/i915_vma.h
+@@ -11,4 +11,6 @@ struct i915_vma {
+ 	struct drm_mm_node node;
  };
  
-+#define intel_gt_support_legacy_fencing(gt) (gt->ggtt->num_fences <= 0)
++#define i915_vma_fence_id(vma) -1
 +
- #endif /* __INTEL_GT_TYPES_H__ */
-diff --git a/drivers/gpu/drm/i915/i915_vma.h b/drivers/gpu/drm/i915/i915_vma.h
-index ed5c9d682a1b..06e613752c55 100644
---- a/drivers/gpu/drm/i915/i915_vma.h
-+++ b/drivers/gpu/drm/i915/i915_vma.h
-@@ -418,6 +418,11 @@ i915_vma_unpin_fence(struct i915_vma *vma)
- 		__i915_vma_unpin_fence(vma);
- }
- 
-+static inline int i915_vma_fence_id(const struct i915_vma *vma)
-+{
-+	return vma->fence ? vma->fence->id : -1;
-+}
+ #endif
+diff --git a/drivers/gpu/drm/xe/compat-i915-headers/intel_gt_types.h b/drivers/gpu/drm/xe/compat-i915-headers/intel_gt_types.h
+new file mode 100644
+index 000000000000..c15806d6c4f7
+--- /dev/null
++++ b/drivers/gpu/drm/xe/compat-i915-headers/intel_gt_types.h
+@@ -0,0 +1,11 @@
++/* SPDX-License-Identifier: MIT */
++/*
++ * Copyright © 2023 Intel Corporation
++ */
 +
- void i915_vma_parked(struct intel_gt *gt);
- 
- static inline bool i915_vma_is_scanout(const struct i915_vma *vma)
++#ifndef __INTEL_GT_TYPES__
++#define __INTEL_GT_TYPES__
++
++#define intel_gt_support_legacy_fencing(gt) 0
++
++#endif
 -- 
 2.34.1
 
