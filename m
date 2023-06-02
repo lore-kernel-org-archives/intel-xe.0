@@ -4,42 +4,42 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id E5038C7EE2C
-	for <intel-xe@archiver.kernel.org>; Fri,  2 Jun 2023 10:43:11 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id EA944C7EE24
+	for <intel-xe@archiver.kernel.org>; Fri,  2 Jun 2023 10:43:14 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id BCB4E10E659;
-	Fri,  2 Jun 2023 10:43:11 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C634510E65A;
+	Fri,  2 Jun 2023 10:43:14 +0000 (UTC)
 Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4982710E656
- for <intel-xe@lists.freedesktop.org>; Fri,  2 Jun 2023 10:43:10 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B63C410E662
+ for <intel-xe@lists.freedesktop.org>; Fri,  2 Jun 2023 10:43:12 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1685702590; x=1717238590;
+ t=1685702592; x=1717238592;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=CU3PPBZ/V2pStKaDRnKvoty+GiVaBvNFYmP3qdMabHI=;
- b=fYS+j4ua6epoGXDjvw5swxlIzmb7VUtF4nv46V2vyR/G7d48yvrfKuW+
- PEtiAYWr5mDR4m1Jfvrt2HjPryQ5UaGZa4Zv6NWoOu4W3qbeZ6btgfhlq
- UsM537i0VPz6uWhuzV+hfpAIbYHNtK1xIY/crMMD9/XnmkPziYtv4t5na
- +EalcC9KdHTaAFHqWBpleeios//jxLDLQ0sxXNumJLqDEakuZGS90ZHOf
- 2ckbZ7fNVzZysz6QSKBoIZecoNJiNhi8h88BDOqA+9X1Uu07iLqc4iCNg
- wacHZgZz2hHAXHCyh6mMcUyewyblu8XeRHxkhNfhI9H4zYwJgwj3HFYX1 w==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10728"; a="442215566"
-X-IronPort-AV: E=Sophos;i="6.00,212,1681196400"; d="scan'208";a="442215566"
+ bh=gNGB38aT68mbBKr1CLfkjKpgtMTTiWGIL6Yrlnw6jWE=;
+ b=Me28u8lrvpBpq68nCl44zxLD4h7IoKcwH5BjWQ+dEHiiLwZ75d1TOaa2
+ Y0JEk/A1oMwuXn4737UxOdWG4NJaJNiqrNiiwlAhLimApZ2ElYZ6BVbnF
+ Tt2XCQkRTzIh8w1QA+wAjFFzITBzQR+jwNhDN2X+bmJVMBSnfYpsqvbDF
+ B/rw1Ex4ZLPtQow9s7ZKU0PmXbuINGNHejEWBnPnIIMHk6IQyct9X/I1c
+ xb7IcMe2UOMnoufZsda6McuXoZoLoZALjOKy2onw0yRjB69l5OnuFBpro
+ gX7mM3hRHM9eIVu7ppRXSlaFQnpK43PtTmdUy3BS2cVG6vDAtWsX4aRay A==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10728"; a="442215570"
+X-IronPort-AV: E=Sophos;i="6.00,212,1681196400"; d="scan'208";a="442215570"
 Received: from orsmga003.jf.intel.com ([10.7.209.27])
  by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 02 Jun 2023 03:43:10 -0700
+ 02 Jun 2023 03:43:12 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10728"; a="658237914"
-X-IronPort-AV: E=Sophos;i="6.00,212,1681196400"; d="scan'208";a="658237914"
+X-IronPort-AV: E=McAfee;i="6600,9927,10728"; a="658237919"
+X-IronPort-AV: E=Sophos;i="6.00,212,1681196400"; d="scan'208";a="658237919"
 Received: from amelillo-mobl.ger.corp.intel.com (HELO
  jhogande-mobl1.ger.corp.intel.com) ([10.251.209.93])
  by orsmga003-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 02 Jun 2023 03:43:08 -0700
+ 02 Jun 2023 03:43:10 -0700
 From: =?UTF-8?q?Jouni=20H=C3=B6gander?= <jouni.hogander@intel.com>
 To: intel-xe@lists.freedesktop.org
-Date: Fri,  2 Jun 2023 13:42:34 +0300
-Message-Id: <20230602104237.1014684-8-jouni.hogander@intel.com>
+Date: Fri,  2 Jun 2023 13:42:35 +0300
+Message-Id: <20230602104237.1014684-9-jouni.hogander@intel.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20230602104237.1014684-1-jouni.hogander@intel.com>
 References: <20230602104237.1014684-1-jouni.hogander@intel.com>
@@ -47,8 +47,8 @@ MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
 Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-xe] [PATCH v3 07/10] drm/xe: Add i915_gem.h compatibility
- header
+Subject: [Intel-xe] [PATCH v3 08/10] drm/i915/fbc: Make FBC check stolen at
+ use time
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -64,43 +64,42 @@ Cc: =?UTF-8?q?Jouni=20H=C3=B6gander?= <jouni.hogander@intel.com>
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Add i915_gem.h compatibility header and include it in i915_drv.h. Add
-GEM_BUG_ON definition for fbc code.
+In case of xe, stolen is not initialised until much later, so just
+assume it works, and check at runtime if required. There is no specific
+reason to differentiate behavior for i915 -> do runtime check for both.
 
 Signed-off-by: Jouni Högander <jouni.hogander@intel.com>
+Signed-off-by: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
 ---
- drivers/gpu/drm/xe/compat-i915-headers/i915_drv.h | 1 +
- drivers/gpu/drm/xe/compat-i915-headers/i915_gem.h | 9 +++++++++
- 2 files changed, 10 insertions(+)
- create mode 100644 drivers/gpu/drm/xe/compat-i915-headers/i915_gem.h
+ drivers/gpu/drm/i915/display/intel_fbc.c | 8 +++++---
+ 1 file changed, 5 insertions(+), 3 deletions(-)
 
-diff --git a/drivers/gpu/drm/xe/compat-i915-headers/i915_drv.h b/drivers/gpu/drm/xe/compat-i915-headers/i915_drv.h
-index 02d43c36f285..513b570d4895 100644
---- a/drivers/gpu/drm/xe/compat-i915-headers/i915_drv.h
-+++ b/drivers/gpu/drm/xe/compat-i915-headers/i915_drv.h
-@@ -14,6 +14,7 @@
- #include "xe_bo.h"
- #include "xe_pm.h"
- #include "xe_step.h"
-+#include "i915_gem.h"
- #include "i915_gem_stolen.h"
- #include "i915_reg_defs.h"
- #include "intel_pch.h"
-diff --git a/drivers/gpu/drm/xe/compat-i915-headers/i915_gem.h b/drivers/gpu/drm/xe/compat-i915-headers/i915_gem.h
-new file mode 100644
-index 000000000000..4f1f5e175625
---- /dev/null
-+++ b/drivers/gpu/drm/xe/compat-i915-headers/i915_gem.h
-@@ -0,0 +1,9 @@
-+/* SPDX-License-Identifier: MIT */
-+/*
-+ * Copyright © 2023 Intel Corporation
-+ */
+diff --git a/drivers/gpu/drm/i915/display/intel_fbc.c b/drivers/gpu/drm/i915/display/intel_fbc.c
+index e154f0bb1e01..0edfc897e94d 100644
+--- a/drivers/gpu/drm/i915/display/intel_fbc.c
++++ b/drivers/gpu/drm/i915/display/intel_fbc.c
+@@ -1056,6 +1056,11 @@ static int intel_fbc_check_plane(struct intel_atomic_state *state,
+ 	if (!fbc)
+ 		return 0;
+ 
++	if (!i915_gem_stolen_initialized(i915)) {
++		plane_state->no_fbc_reason = "stolen memory not initialised";
++		return 0;
++	}
 +
-+#ifndef __I915_GEM_H__
-+#define __I915_GEM_H__
-+#define GEM_BUG_ON XE_BUG_ON
-+#endif
+ 	if (intel_vgpu_active(i915)) {
+ 		plane_state->no_fbc_reason = "VGPU active";
+ 		return 0;
+@@ -1709,9 +1714,6 @@ void intel_fbc_init(struct drm_i915_private *i915)
+ {
+ 	enum intel_fbc_id fbc_id;
+ 
+-	if (!drm_mm_initialized(&i915->mm.stolen))
+-		RUNTIME_INFO(i915)->fbc_mask = 0;
+-
+ 	if (need_fbc_vtd_wa(i915))
+ 		RUNTIME_INFO(i915)->fbc_mask = 0;
+ 
 -- 
 2.34.1
 
