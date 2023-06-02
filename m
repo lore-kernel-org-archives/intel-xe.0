@@ -4,30 +4,31 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 26D9CC77B7A
-	for <intel-xe@archiver.kernel.org>; Fri,  2 Jun 2023 23:55:44 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9F0A8C7EE29
+	for <intel-xe@archiver.kernel.org>; Fri,  2 Jun 2023 23:57:21 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C850510E0DA;
-	Fri,  2 Jun 2023 23:55:43 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 64ED610E0DA;
+	Fri,  2 Jun 2023 23:57:21 +0000 (UTC)
 Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id BBB4110E0DA;
- Fri,  2 Jun 2023 23:55:41 +0000 (UTC)
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 5B3EC10E0DA;
+ Fri,  2 Jun 2023 23:57:20 +0000 (UTC)
 Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id A410BAADF8;
- Fri,  2 Jun 2023 23:55:41 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============4184477859467577735=="
+ by emeril.freedesktop.org (Postfix) with ESMTP id 5891AAADF8;
+ Fri,  2 Jun 2023 23:57:20 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: "Matt Roper" <matthew.d.roper@intel.com>
-Date: Fri, 02 Jun 2023 23:55:41 -0000
-Message-ID: <168575014164.15700.5165983099331523872@emeril.freedesktop.org>
+Date: Fri, 02 Jun 2023 23:57:20 -0000
+Message-ID: <168575024036.15700.2824598559106530161@emeril.freedesktop.org>
 X-Patchwork-Hint: ignore
-References: <20230602231054.1306865-1-matthew.d.roper@intel.com>
-In-Reply-To: <20230602231054.1306865-1-matthew.d.roper@intel.com>
-Subject: [Intel-xe] =?utf-8?q?=E2=9C=97_CI=2EBAT=3A_failure_for_drm/xe/wa?=
- =?utf-8?q?=3A_Extend_scope_of_Wa=5F14015795083?=
+References: <20230602235210.1314028-1-matthew.d.roper@intel.com>
+In-Reply-To: <20230602235210.1314028-1-matthew.d.roper@intel.com>
+Subject: [Intel-xe] =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_f?=
+ =?utf-8?q?or_series_starting_with_=5B1/3=5D_drm/xe=3A_Reformat_xe=5Fguc?=
+ =?utf-8?q?=5Fregs=2Eh?=
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -44,63 +45,19 @@ Cc: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============4184477859467577735==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
 == Series Details ==
 
-Series: drm/xe/wa: Extend scope of Wa_14015795083
-URL   : https://patchwork.freedesktop.org/series/118806/
-State : failure
+Series: series starting with [1/3] drm/xe: Reformat xe_guc_regs.h
+URL   : https://patchwork.freedesktop.org/series/118808/
+State : success
 
 == Summary ==
 
-Participating hosts:
-bat-atsm-2
-bat-dg2-oem2
-bat-adlp-7
-Missing hosts results[1]:
-bat-dg2-oem2
+=== Applying kernel patches on branch 'drm-xe-next' with base: ===
+Base commit: ef153c77d fixup! drm/xe: Apply upper limit to sg element size
+=== git am output follows ===
+Applying: drm/xe: Reformat xe_guc_regs.h
+Applying: drm/xe: Initialize MOCS earlier
+Applying: drm/xe: Don't hardcode GuC's MOCS index in register header
 
 
-
---===============4184477859467577735==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/xe/wa: Extend scope of Wa_14015795083</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/118806/">https://patchwork.freedesktop.org/series/118806/</a></td></tr>
-<tr><td><b>State:</b></td><td>failure</td></tr>
-
-</table>
-
-
-    <p>Participating hosts:<br />
-bat-atsm-2<br />
-bat-dg2-oem2<br />
-bat-adlp-7<br />
-Missing hosts results[1]:<br />
-bat-dg2-oem2</p>
-
-</body>
-</html>
-
---===============4184477859467577735==--
