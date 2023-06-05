@@ -4,135 +4,62 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id C260AC7EE23
-	for <intel-xe@archiver.kernel.org>; Mon,  5 Jun 2023 16:40:37 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 78E14C7EE23
+	for <intel-xe@archiver.kernel.org>; Mon,  5 Jun 2023 16:48:03 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 92D4310E1CB;
-	Mon,  5 Jun 2023 16:40:37 +0000 (UTC)
-Received: from mga06.intel.com (mga06b.intel.com [134.134.136.31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 10ED210E1CB
- for <intel-xe@lists.freedesktop.org>; Mon,  5 Jun 2023 16:40:34 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1685983235; x=1717519235;
- h=date:from:to:cc:subject:message-id:references:
- in-reply-to:mime-version;
- bh=pkPVBzFCvSV+jwGFwNCix3ZZ6JepG7tAucyBb2/9ykw=;
- b=nfrdFbncDJZa4hdtgIW+FN4fZOpHcNw5lxIZk/xWzMisqC6JlW5QD0X/
- uavakIhIUBo0FJoGzYrtmzkmMGaDsLap7gbUVhhUW1Kzta7glsg7SP8Im
- VbtAMawytu9HNRD1zC0shPKFS3dNVwYTWv4J6bYgsrCQGzsQfzlxGivFB
- hASmhxoy7jyw9+iAZfswRPBVUsVUSD9REfzkAILkIpOr5QJLpQ3VJ6DnV
- gkOgAWgUuPTCn9e0HfnpVfw08QkjdeRcJB4+d0DLCsRD+B6Uua0xxxDzy
- Mic2w3aLHwMAO4AZfwsofuNla1NygrNorWZllk9LWMohH0AGtcDD1k5Ma A==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10732"; a="419961516"
-X-IronPort-AV: E=Sophos;i="6.00,218,1681196400"; d="scan'208";a="419961516"
-Received: from orsmga004.jf.intel.com ([10.7.209.38])
- by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 05 Jun 2023 09:40:34 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10732"; a="832871434"
-X-IronPort-AV: E=Sophos;i="6.00,218,1681196400"; d="scan'208";a="832871434"
-Received: from fmsmsx603.amr.corp.intel.com ([10.18.126.83])
- by orsmga004.jf.intel.com with ESMTP; 05 Jun 2023 09:40:33 -0700
-Received: from fmsmsx610.amr.corp.intel.com (10.18.126.90) by
- fmsmsx603.amr.corp.intel.com (10.18.126.83) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.23; Mon, 5 Jun 2023 09:40:33 -0700
-Received: from fmsedg602.ED.cps.intel.com (10.1.192.136) by
- fmsmsx610.amr.corp.intel.com (10.18.126.90) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.23 via Frontend Transport; Mon, 5 Jun 2023 09:40:33 -0700
-Received: from NAM12-DM6-obe.outbound.protection.outlook.com (104.47.59.177)
- by edgegateway.intel.com (192.55.55.71) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2507.23; Mon, 5 Jun 2023 09:40:33 -0700
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=SEHSCJ9ZbhW40jVp18zblpm3neM6OgrjvvFZd3b8z4i2TGcNGjeFYRZqxXSM3HT5z95KnhTJrYZUd4K4w++rvPz7jyVsBXsSxp+MLDbBjyAFRNv5HIuVCiDXKMclUYZFtssfWb63lcWtPKXF1l8ZN/JzpNhU5U+35tN2x9wzLqUSDXz7VHy5Az3a+1PW0Zca8YCuvCreV/c1N7kVnplS3DLiYRo8veKmuQYfDgtn5q6VIlHP7Z3OLsTM8Gan0eivHesumZ3+iYwNyFmOw7AOd2U4M9adugXqVDYCkzgWqZ67T07dnY97hPyWhBE1XouV1X9bwTFoSmfyfy/TJc/RtA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=dX1Tg2/at4/UD1dBdn4bG2Ll+MIlYdQ7RF5hYXJ9Xnc=;
- b=A+27gzD7IpTFpyerk4dzRy5IzJukMa5sha1zMNvqqL1SQMKmby92XyeizfEsPIJ9sJJ2LL+CRcivTPNFWdWaGiDUXQuu9VXb601fL7+ov25mMDofT0Im8HsmBd/Apeo30iDO/V/4X0TsV77HTNK98smFZI4OaWKFS+x/3emAluyqqXR9Vie4awmPUKWYaPT8QyTQ77axZUcO+tgCh5hbifuwItSItRaFBr2YOEJStCWjBgmuBuqoNL6nwft+ZGIcQgyJqN1NX4q8heuvCcdn/D5prmU14NaKY0FOXt8ECWReocAriNskAk5BYG/5Qeqs7aCc18zcJzKtsawWVulg4A==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
- dkim=pass header.d=intel.com; arc=none
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=intel.com;
-Received: from CY5PR11MB6139.namprd11.prod.outlook.com (2603:10b6:930:29::17)
- by LV2PR11MB6069.namprd11.prod.outlook.com (2603:10b6:408:17a::9)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6455.32; Mon, 5 Jun
- 2023 16:40:31 +0000
-Received: from CY5PR11MB6139.namprd11.prod.outlook.com
- ([fe80::44e7:c479:62f4:3eb4]) by CY5PR11MB6139.namprd11.prod.outlook.com
- ([fe80::44e7:c479:62f4:3eb4%5]) with mapi id 15.20.6455.030; Mon, 5 Jun 2023
- 16:40:31 +0000
-Date: Mon, 5 Jun 2023 09:40:29 -0700
-From: Lucas De Marchi <lucas.demarchi@intel.com>
-To: "Michael J. Ruhl" <michael.j.ruhl@intel.com>
-Message-ID: <jfljng2ueacz4z3ppupaiwoyyvad3klaqpigxsrjoswbzwfqfi@e2zur54udxtz>
-X-Patchwork-Hint: comment
-References: <20230605161705.3680031-1-michael.j.ruhl@intel.com>
- <20230605161705.3680031-2-michael.j.ruhl@intel.com>
-Content-Type: text/plain; charset="us-ascii"; format=flowed
-Content-Disposition: inline
-In-Reply-To: <20230605161705.3680031-2-michael.j.ruhl@intel.com>
-X-ClientProxiedBy: SJ0PR05CA0081.namprd05.prod.outlook.com
- (2603:10b6:a03:332::26) To CY5PR11MB6139.namprd11.prod.outlook.com
- (2603:10b6:930:29::17)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 39A0A10E2F8;
+	Mon,  5 Jun 2023 16:48:03 +0000 (UTC)
+Received: from mail-oo1-xc36.google.com (mail-oo1-xc36.google.com
+ [IPv6:2607:f8b0:4864:20::c36])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6E72410E2F8;
+ Mon,  5 Jun 2023 16:48:01 +0000 (UTC)
+Received: by mail-oo1-xc36.google.com with SMTP id
+ 006d021491bc7-558565cc58fso3886012eaf.0; 
+ Mon, 05 Jun 2023 09:48:01 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=gmail.com; s=20221208; t=1685983680; x=1688575680;
+ h=content-transfer-encoding:cc:to:subject:message-id:date:from
+ :in-reply-to:references:mime-version:from:to:cc:subject:date
+ :message-id:reply-to;
+ bh=GPsggZ/eo7AzDHSWSnWHt5eqY/BrFW89BbN0DCCmi98=;
+ b=lP6GRIPIiIXI5zR1ZvdLtBXdHTx9YhkdMwVTx3wnyr+lmlzxEXVzzij+u/vXu7IQDo
+ CHPXi7Yt/9D5lYvc9huWieoNR502OY47MKoMOEhFGieYmTGj22FbVEqb7QZBE55R0597
+ glZbNyMzVPlIbDuwCgSFlRa1cLqDVgFlROraZzT9SU1nX3MzigAn2Wf7YRdWoU0wSaoL
+ KI8At+z+sdYAHsUKfIbnYxk0iQdUZSE8IqSC6gRn+sXXb3HauE/xdywxuk98ycFp/+oC
+ jcixGmfEYMCBtLPxsd6xlhfEJ2YmGVUNMHOC+wOCU2ipvEObaUnVox2eInjCyIZRw4/X
+ gTuQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20221208; t=1685983680; x=1688575680;
+ h=content-transfer-encoding:cc:to:subject:message-id:date:from
+ :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+ :subject:date:message-id:reply-to;
+ bh=GPsggZ/eo7AzDHSWSnWHt5eqY/BrFW89BbN0DCCmi98=;
+ b=Aw+ABOTiJbYij0Jxt6KANVl5eRxN4bIzG9QyjeKWb3VwC+rGGy6YaDeBIp0I6q3IuP
+ /P/8i8W52Zz/zVilM+Cviy1jFWZNKqJ82ZQtkenTGXSdI2EyYi5KvuandbSsVxAN8NVd
+ TVJiY6R0X3DQeY3o0zTTE+G9687YkIWcx6rZKMti5Mw7kfgBeL1CRGzs3eub03oBsFzb
+ hJ4h5DwRN136ndyq6YyQyAXIvsQ7augHdWpk/Bi2JVdKMQzUmEBJU3wwjfnhePx7fdBl
+ D3/owVvgRaYub03A4jI3A+Yv8vEc16ewJxN5CY73rvMPp7G5+P0bwHUQYv9Kkpqls0mk
+ cxCQ==
+X-Gm-Message-State: AC+VfDxFjywHf1Ywm79Xqt/0SoN8hP17NrXZ63ACmeedCQ/U7IAgjUzD
+ l010ZICJ0Yfb0z/XZ7FjMp0fWm7buSDnl2/WPWY=
+X-Google-Smtp-Source: ACHHUZ6fJ4a9Gq7WQncN6580mrHRppZHVxfBFHKRZY0Hp7ZUMufIvhe1X/LF3cCU352Wul2iHbXF7B/vKU9cyrwbs2M=
+X-Received: by 2002:a4a:b1cb:0:b0:558:ae68:e92a with SMTP id
+ j11-20020a4ab1cb000000b00558ae68e92amr336556ooo.0.1685983680112; Mon, 05 Jun
+ 2023 09:48:00 -0700 (PDT)
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: CY5PR11MB6139:EE_|LV2PR11MB6069:EE_
-X-MS-Office365-Filtering-Correlation-Id: dfffae5a-57ce-42e3-4759-08db65e393c5
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: Js7pFHR/6zyPkOaTrYvaldJcwMPMYqB6q6MFT3+qWZoI1tt1JDUX8xcHKahvL9oAQ+rIbIsoMwXD/jtAB6mf7rWP+RXi+KiceHhcqZAVgYyQ0AIpjI72eDqZ1VkhRYlslEJgJZpUjPRYRGQvs9EKApybrMrW6scV4alj2sNUXWXYrYwF0fNcg6+QbY9qFFcyfAt0WaU8RxB9UPEBLuux09LggVk08IFqwQnY9JaOqkpTyFWpWJCfbAJtLqDlpmtPHd3iHSZye7CsdLODh3aG/ZmRdP6qEHnXHR77NB8wEd1bk7DFPtm/0fstCFHVvX8xThrfzd3fU+Sb7fV21Uu8+j4ZrVjE9NXYt3Rtx0/6Dj3MWwnm8FQfDpkpsZZxh4pe9NoK0s6huOLk8gaddvSpkjPYmbKAW3VIvTH48N/B2PhX07UrvUv7spXNZ3mFFvCDbN1e9tWXjpjON9fWdMsnMG4yf0K0tJKAZQoe6fFhuxC63AfevxlPDFW78dpAFiXNO6rSuL7R+C981wTP3Kz8uJzI+Xh0OJazV91bUhjh8lPbH+d909ZngBkkcALQIuYc
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:CY5PR11MB6139.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230028)(7916004)(39860400002)(136003)(366004)(376002)(396003)(346002)(451199021)(66476007)(66946007)(2906002)(478600001)(316002)(6636002)(8936002)(8676002)(4326008)(6862004)(41300700001)(66556008)(5660300002)(6486002)(6512007)(6506007)(26005)(9686003)(107886003)(38100700002)(82960400001)(33716001)(186003)(83380400001)(86362001);
- DIR:OUT; SFP:1102; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?cB/IUY/ZD0w8Z9gubDxhnYCWeF7+l8XA7yyuvYwoLvIN+sZuEX+3CQtfkqo9?=
- =?us-ascii?Q?CNLmJK1BgEj0B+twPnNBhwSKXiBf2xxfCrTGdwTzZBUUx4/bOHk+uk8Hvidm?=
- =?us-ascii?Q?LhIBpXYC1sIT9HFORusqS3sURUxSvtWawUEOqX4wEXkOXOO037GwcdWcrrqu?=
- =?us-ascii?Q?zOIiwWdmgzr/CEFilBsa3F8fQ23bE8iAai4BDNTGWT0reJdyqC7hCaEHrGZk?=
- =?us-ascii?Q?EfDPPX9+NdmbfkuedNaUCgo/6kM6IJvjxYbGsZGmBnydkd8uWUxZQIa3WfR/?=
- =?us-ascii?Q?SYVQ3SFMKE6oEoRnVmgegOabmmqtod7RAxgzGijFmeYZU83s1mafjC1xrkYW?=
- =?us-ascii?Q?3nZvfdaAHi/0UBp57Ju12UII2dN2yt2IMDpZ9qSCHTJoVYMudLUm/0JE7Wjt?=
- =?us-ascii?Q?YJlxm6iADOe8wmxaEpB54EvdhAFmRhgeWavCgj91tGyffSMV0swVVCjQvufN?=
- =?us-ascii?Q?t4NOpc3AvynpvkXpp9Odj8Ycjb/3/N1Srz3VDxrFxFiTDBKTfMqcyKuiPojp?=
- =?us-ascii?Q?EzNGASoLQzO6vuujeYUi/1T/gvuCljckf3IErzavUHOv5GGcd9t1VlU/vbbj?=
- =?us-ascii?Q?RchrwXazBXe9i0/8Wm2CFTY8bA+XwRkVMU3M6F6YtpbGj3AVWb9ZUhOIDY0m?=
- =?us-ascii?Q?vJusHjP7v3702LGx5NnfxyhNB6yUnU37Kd7De6AxcycfIOKTKWoPyPcIdFrg?=
- =?us-ascii?Q?yrNN2HfxvwVfBpnO/9/1Xa7gDmCevJQQqlxg7IYb6PrUJLX1og0MXprCImhm?=
- =?us-ascii?Q?+vaPiyt1xXpwc/lQU6fpT7QTbBqKyws5euPlUKpRfF3PGEDbEzkGoPz5WYV5?=
- =?us-ascii?Q?CIeH6tp7lkPSgaNRdz7z2di7+uk6ooFMExgtQnbrNwT84FxIPnt/5O6W3TeG?=
- =?us-ascii?Q?/J9Ih6aVKqCnLjc6BHyEOXyDPysibc/i4/En8R+JYeY73nFPcotol53avPNm?=
- =?us-ascii?Q?pwqWIQS/WDZ8yowOsoJ1mnyicEvxvFLz9sK6aCsoMbV28AxyMJk31v5itKvT?=
- =?us-ascii?Q?P0RNShnmZZgW5cLvaJcT6xQbpUV04Q7BGMkK/ZMKBcr6forZ4LZeRNEQAvL6?=
- =?us-ascii?Q?Mx6XODsQYMindOOFT3rgz9pi/je9YSGpVyirfTLoYKKiGsE5Jx9JxHI2jn73?=
- =?us-ascii?Q?M8I/pNW9JdwbCyx3NTnAVLxBZFIhuMAGNYyx6obVtyJRDkwXY7e/SkyF58Fb?=
- =?us-ascii?Q?AiF8RqCB+kmvtj1sg+gBBd1veId633tG+MsirT5wW9KD72L6JLBaIC/L1sj4?=
- =?us-ascii?Q?1qhhwH2qkuLPmZ9tPuZ3qSUMlj6gZqRymcdYcpkTScLyQDWdgj4LbexBi+/2?=
- =?us-ascii?Q?rfvWbkcwwXb+ftBFDiBbWRSPg8lBwHQqSK5/f+tZpt2SFy5EpYL+HRZ2DB7m?=
- =?us-ascii?Q?o2Jmnojtnu6pEPYIq6ilszjJlRQ07/jjchLBpfjuIS+DHffXI7G7fNsjXpJa?=
- =?us-ascii?Q?E3unsXry2uRBCoPoZ4NHTkcPATBbK5gl4uxwYnxwfoHRxQyd99fxDrwof4HH?=
- =?us-ascii?Q?3cCMCr8rR5cP5jvUqnWzj2nxTH6nU9E3K86HQf4axl7JWqRJCXpJQRzMx52r?=
- =?us-ascii?Q?i2DfkSSPmDy7hwYUWk/QyfHYurylxOpfW2GyjDnPvpVyfNotsmj0yYezkbTr?=
- =?us-ascii?Q?Fg=3D=3D?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: dfffae5a-57ce-42e3-4759-08db65e393c5
-X-MS-Exchange-CrossTenant-AuthSource: CY5PR11MB6139.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 05 Jun 2023 16:40:31.5891 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: tBBJt3+2/yc878lgtp6ksT0lYFoEkZ2EYAG8WOIrUDs879RmtnBHNrVxCezP6z/Jl46dB4s36MnoHaYnzQC0UavxLnwiPnU+4OSzO+Vna38=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: LV2PR11MB6069
-X-OriginatorOrg: intel.com
-Subject: Re: [Intel-xe] [PATCH 1/1] drm/xe: REBAR resize should be best
- effort
+References: <20230526162016.428357-1-aravind.iddamsetty@intel.com>
+In-Reply-To: <20230526162016.428357-1-aravind.iddamsetty@intel.com>
+From: Alex Deucher <alexdeucher@gmail.com>
+Date: Mon, 5 Jun 2023 12:47:48 -0400
+Message-ID: <CADnq5_ME+iXQjx1nqY2ZKHDr_SYRv4jDMVq0MdNXHTHD_pFo3A@mail.gmail.com>
+To: Aravind Iddamsetty <aravind.iddamsetty@intel.com>,
+ Hawking Zhang <Hawking.Zhang@amd.com>, 
+ Harish Kasiviswanathan <Harish.Kasiviswanathan@amd.com>, "Kuehling,
+ Felix" <Felix.Kuehling@amd.com>, "Tuikov, Luben" <Luben.Tuikov@amd.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+Subject: Re: [Intel-xe] [RFC 0/5] Proposal to use netlink for RAS and
+ Telemetry across drm subsystem
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -144,150 +71,637 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-xe@lists.freedesktop.org, matthew.auld@intel.com
+Cc: alexander.deucher@amd.com, intel-xe@lists.freedesktop.org,
+ dri-devel@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Mon, Jun 05, 2023 at 12:17:05PM -0400, Michael J. Ruhl wrote:
->The resizing of the PCI BAR is a best effort feature.  If it is
->not available, it should not fail the driver probe.
->
->Rework the resize to not exit on failure.
->
+Adding the relevant AMD folks for RAS.  We currently expose RAS via
+sysfs, but also have an event interface in KFD which may be somewhat
+similar to this.
 
-I think this deserves a
+If we were to converge on a common RAS interface, would we want to
+look at any commonality in bad page storage/reporting for device
+memory?
 
-Fixes: <commit that regressed this>
->Signed-off-by: Michael J. Ruhl <michael.j.ruhl@intel.com>
+Alex
 
-
-with this patch, xe module load works again for me on one of my test
-systems, thanks.
-
-
-Acked-by: Lucas De Marchi <lucas.demarchi@intel.com>
-
-Lucas De Marchi
-
->---
-> drivers/gpu/drm/xe/xe_mmio.c | 28 +++++++++++-----------------
-> 1 file changed, 11 insertions(+), 17 deletions(-)
+On Fri, May 26, 2023 at 12:21=E2=80=AFPM Aravind Iddamsetty
+<aravind.iddamsetty@intel.com> wrote:
 >
->diff --git a/drivers/gpu/drm/xe/xe_mmio.c b/drivers/gpu/drm/xe/xe_mmio.c
->index 475b14fe4356..f7a7f996b37f 100644
->--- a/drivers/gpu/drm/xe/xe_mmio.c
->+++ b/drivers/gpu/drm/xe/xe_mmio.c
->@@ -47,7 +47,7 @@ static int xe_set_dma_info(struct xe_device *xe)
-> 	return err;
-> }
+> Our hardware supports RAS(Reliability, Availability, Serviceability) by
+> exposing a set of error counters which can be used by observability
+> tools to take corrective actions or repairs. Traditionally there were
+> being exposed via PMU (for relative counters) and sysfs interface (for
+> absolute value) in our internal branch. But, due to the limitations in
+> this approach to use two interfaces and also not able to have an event
+> based reporting or configurability, an alternative approach to try
+> netlink was suggested by community for drm subsystem wide UAPI for RAS
+> and telemetry as discussed in [1].
 >
->-static int
->+static void
-> _resize_bar(struct xe_device *xe, int resno, resource_size_t size)
-> {
-> 	struct pci_dev *pdev = to_pci_dev(xe->drm.dev);
->@@ -61,18 +61,17 @@ _resize_bar(struct xe_device *xe, int resno, resource_size_t size)
-> 	if (ret) {
-> 		drm_info(&xe->drm, "Failed to resize BAR%d to %dM (%pe). Consider enabling 'Resizable BAR' support in your BIOS\n",
-> 			 resno, 1 << bar_size, ERR_PTR(ret));
->-		return ret;
->+		return;
-> 	}
+> This [1] is the inspiration to this series. It uses the generic
+> netlink(genl) family subsystem and exposes a set of commands that can
+> be used by every drm driver, the framework provides a means to have
+> custom commands too. Each drm driver instance in this example xe driver
+> instance registers a family and operations to the genl subsystem through
+> which it enumerates and reports the error counters. An event based
+> notification is also supported to which userpace can subscribe to and
+> be notified when any error occurs and read the error counter this avoids
+> continuous polling on error counter. This can also be extended to
+> threshold based notification.
 >
-> 	drm_info(&xe->drm, "BAR%d resized to %dM\n", resno, 1 << bar_size);
->-	return ret;
-> }
+> [1]: https://airlied.blogspot.com/2022/09/accelerators-bof-outcomes-summa=
+ry.html
 >
-> /*
->  * if force_vram_bar_size is set, attempt to set to the requested size
->  * else set to maximum possible size
->  */
->-static int xe_resize_vram_bar(struct xe_device *xe)
->+static void xe_resize_vram_bar(struct xe_device *xe)
-> {
-> 	u64 force_vram_bar_size = xe_force_vram_bar_size;
-> 	struct pci_dev *pdev = to_pci_dev(xe->drm.dev);
->@@ -83,14 +82,13 @@ static int xe_resize_vram_bar(struct xe_device *xe)
-> 	u32 bar_size_mask;
-> 	u32 pci_cmd;
-> 	int i;
->-	int ret;
+> this series is on top of https://patchwork.freedesktop.org/series/116181/
 >
-> 	/* gather some relevant info */
-> 	current_size = pci_resource_len(pdev, GEN12_LMEM_BAR);
-> 	bar_size_mask = pci_rebar_get_possible_sizes(pdev, GEN12_LMEM_BAR);
+> Below is an example tool drm_ras which demonstrates the use of the
+> supported commands. The tool will be sent to ML with the subject
+> "[RFC i-g-t 0/1] A tool to demonstrate use of netlink sockets to read RAS=
+ error counters"
 >
-> 	if (!bar_size_mask)
->-		return 0;
->+		return;
+> read single error counter:
 >
-> 	/* set to a specific size? */
-> 	if (force_vram_bar_size) {
->@@ -104,22 +102,22 @@ static int xe_resize_vram_bar(struct xe_device *xe)
-> 			drm_info(&xe->drm,
-> 				 "Requested size: %lluMiB is not supported by rebar sizes: 0x%x. Leaving default: %lluMiB\n",
-> 				 (u64)rebar_size >> 20, bar_size_mask, (u64)current_size >> 20);
->-			return 0;
->+			return;
-> 		}
+> $ ./drm_ras READ_ONE --device=3Ddrm:/dev/dri/card1 --error_id=3D0x0000000=
+000000005
+> counter value 0
 >
-> 		rebar_size = 1ULL << (__fls(bar_size_bit) + BAR_SIZE_SHIFT);
+> read all error counters:
 >
-> 		if (rebar_size == current_size)
->-			return 0;
->+			return;
-> 	} else {
-> 		rebar_size = 1ULL << (__fls(bar_size_mask) + BAR_SIZE_SHIFT);
+> $ ./drm_ras READ_ALL --device=3Ddrm:/dev/dri/card1
+> name                                                    config-id        =
+       counter
 >
-> 		/* only resize if larger than current */
-> 		if (rebar_size <= current_size)
->-			return 0;
->+			return;
-> 	}
+> error-gt0-correctable-guc                               0x000000000000000=
+1      0
+> error-gt0-correctable-slm                               0x000000000000000=
+3      0
+> error-gt0-correctable-eu-ic                             0x000000000000000=
+4      0
+> error-gt0-correctable-eu-grf                            0x000000000000000=
+5      0
+> error-gt0-fatal-guc                                     0x000000000000000=
+9      0
+> error-gt0-fatal-slm                                     0x000000000000000=
+d      0
+> error-gt0-fatal-eu-grf                                  0x000000000000000=
+f      0
+> error-gt0-fatal-fpu                                     0x000000000000001=
+0      0
+> error-gt0-fatal-tlb                                     0x000000000000001=
+1      0
+> error-gt0-fatal-l3-fabric                               0x000000000000001=
+2      0
+> error-gt0-correctable-subslice                          0x000000000000001=
+3      0
+> error-gt0-correctable-l3bank                            0x000000000000001=
+4      0
+> error-gt0-fatal-subslice                                0x000000000000001=
+5      0
+> error-gt0-fatal-l3bank                                  0x000000000000001=
+6      0
+> error-gt0-sgunit-correctable                            0x000000000000001=
+7      0
+> error-gt0-sgunit-nonfatal                               0x000000000000001=
+8      0
+> error-gt0-sgunit-fatal                                  0x000000000000001=
+9      0
+> error-gt0-soc-fatal-psf-csc-0                           0x000000000000001=
+a      0
+> error-gt0-soc-fatal-psf-csc-1                           0x000000000000001=
+b      0
+> error-gt0-soc-fatal-psf-csc-2                           0x000000000000001=
+c      0
+> error-gt0-soc-fatal-punit                               0x000000000000001=
+d      0
+> error-gt0-soc-fatal-psf-0                               0x000000000000001=
+e      0
+> error-gt0-soc-fatal-psf-1                               0x000000000000001=
+f      0
+> error-gt0-soc-fatal-psf-2                               0x000000000000002=
+0      0
+> error-gt0-soc-fatal-cd0                                 0x000000000000002=
+1      0
+> error-gt0-soc-fatal-cd0-mdfi                            0x000000000000002=
+2      0
+> error-gt0-soc-fatal-mdfi-east                           0x000000000000002=
+3      0
+> error-gt0-soc-fatal-mdfi-south                          0x000000000000002=
+4      0
+> error-gt0-soc-fatal-hbm-ss0-0                           0x000000000000002=
+5      0
+> error-gt0-soc-fatal-hbm-ss0-1                           0x000000000000002=
+6      0
+> error-gt0-soc-fatal-hbm-ss0-2                           0x000000000000002=
+7      0
+> error-gt0-soc-fatal-hbm-ss0-3                           0x000000000000002=
+8      0
+> error-gt0-soc-fatal-hbm-ss0-4                           0x000000000000002=
+9      0
+> error-gt0-soc-fatal-hbm-ss0-5                           0x000000000000002=
+a      0
+> error-gt0-soc-fatal-hbm-ss0-6                           0x000000000000002=
+b      0
+> error-gt0-soc-fatal-hbm-ss0-7                           0x000000000000002=
+c      0
+> error-gt0-soc-fatal-hbm-ss1-0                           0x000000000000002=
+d      0
+> error-gt0-soc-fatal-hbm-ss1-1                           0x000000000000002=
+e      0
+> error-gt0-soc-fatal-hbm-ss1-2                           0x000000000000002=
+f      0
+> error-gt0-soc-fatal-hbm-ss1-3                           0x000000000000003=
+0      0
+> error-gt0-soc-fatal-hbm-ss1-4                           0x000000000000003=
+1      0
+> error-gt0-soc-fatal-hbm-ss1-5                           0x000000000000003=
+2      0
+> error-gt0-soc-fatal-hbm-ss1-6                           0x000000000000003=
+3      0
+> error-gt0-soc-fatal-hbm-ss1-7                           0x000000000000003=
+4      0
+> error-gt0-soc-fatal-hbm-ss2-0                           0x000000000000003=
+5      0
+> error-gt0-soc-fatal-hbm-ss2-1                           0x000000000000003=
+6      0
+> error-gt0-soc-fatal-hbm-ss2-2                           0x000000000000003=
+7      0
+> error-gt0-soc-fatal-hbm-ss2-3                           0x000000000000003=
+8      0
+> error-gt0-soc-fatal-hbm-ss2-4                           0x000000000000003=
+9      0
+> error-gt0-soc-fatal-hbm-ss2-5                           0x000000000000003=
+a      0
+> error-gt0-soc-fatal-hbm-ss2-6                           0x000000000000003=
+b      0
+> error-gt0-soc-fatal-hbm-ss2-7                           0x000000000000003=
+c      0
+> error-gt0-soc-fatal-hbm-ss3-0                           0x000000000000003=
+d      0
+> error-gt0-soc-fatal-hbm-ss3-1                           0x000000000000003=
+e      0
+> error-gt0-soc-fatal-hbm-ss3-2                           0x000000000000003=
+f      0
+> error-gt0-soc-fatal-hbm-ss3-3                           0x000000000000004=
+0      0
+> error-gt0-soc-fatal-hbm-ss3-4                           0x000000000000004=
+1      0
+> error-gt0-soc-fatal-hbm-ss3-5                           0x000000000000004=
+2      0
+> error-gt0-soc-fatal-hbm-ss3-6                           0x000000000000004=
+3      0
+> error-gt0-soc-fatal-hbm-ss3-7                           0x000000000000004=
+4      0
+> error-gt0-gsc-correctable-sram-ecc                      0x000000000000004=
+5      0
+> error-gt0-gsc-nonfatal-mia-shutdown                     0x000000000000004=
+6      0
+> error-gt0-gsc-nonfatal-mia-int                          0x000000000000004=
+7      0
+> error-gt0-gsc-nonfatal-sram-ecc                         0x000000000000004=
+8      0
+> error-gt0-gsc-nonfatal-wdg-timeout                      0x000000000000004=
+9      0
+> error-gt0-gsc-nonfatal-rom-parity                       0x000000000000004=
+a      0
+> error-gt0-gsc-nonfatal-ucode-parity                     0x000000000000004=
+b      0
+> error-gt0-gsc-nonfatal-glitch-det                       0x000000000000004=
+c      0
+> error-gt0-gsc-nonfatal-fuse-pull                        0x000000000000004=
+d      0
+> error-gt0-gsc-nonfatal-fuse-crc-check                   0x000000000000004=
+e      0
+> error-gt0-gsc-nonfatal-selfmbist                        0x000000000000004=
+f      0
+> error-gt0-gsc-nonfatal-aon-parity                       0x000000000000005=
+0      0
+> error-gt1-correctable-guc                               0x100000000000000=
+1      0
+> error-gt1-correctable-slm                               0x100000000000000=
+3      0
+> error-gt1-correctable-eu-ic                             0x100000000000000=
+4      0
+> error-gt1-correctable-eu-grf                            0x100000000000000=
+5      0
+> error-gt1-fatal-guc                                     0x100000000000000=
+9      0
+> error-gt1-fatal-slm                                     0x100000000000000=
+d      0
+> error-gt1-fatal-eu-grf                                  0x100000000000000=
+f      0
+> error-gt1-fatal-fpu                                     0x100000000000001=
+0      0
+> error-gt1-fatal-tlb                                     0x100000000000001=
+1      0
+> error-gt1-fatal-l3-fabric                               0x100000000000001=
+2      0
+> error-gt1-correctable-subslice                          0x100000000000001=
+3      0
+> error-gt1-correctable-l3bank                            0x100000000000001=
+4      0
+> error-gt1-fatal-subslice                                0x100000000000001=
+5      0
+> error-gt1-fatal-l3bank                                  0x100000000000001=
+6      0
+> error-gt1-sgunit-correctable                            0x100000000000001=
+7      0
+> error-gt1-sgunit-nonfatal                               0x100000000000001=
+8      0
+> error-gt1-sgunit-fatal                                  0x100000000000001=
+9      0
+> error-gt1-soc-fatal-psf-csc-0                           0x100000000000001=
+a      0
+> error-gt1-soc-fatal-psf-csc-1                           0x100000000000001=
+b      0
+> error-gt1-soc-fatal-psf-csc-2                           0x100000000000001=
+c      0
+> error-gt1-soc-fatal-punit                               0x100000000000001=
+d      0
+> error-gt1-soc-fatal-psf-0                               0x100000000000001=
+e      0
+> error-gt1-soc-fatal-psf-1                               0x100000000000001=
+f      0
+> error-gt1-soc-fatal-psf-2                               0x100000000000002=
+0      0
+> error-gt1-soc-fatal-cd0                                 0x100000000000002=
+1      0
+> error-gt1-soc-fatal-cd0-mdfi                            0x100000000000002=
+2      0
+> error-gt1-soc-fatal-mdfi-east                           0x100000000000002=
+3      0
+> error-gt1-soc-fatal-mdfi-south                          0x100000000000002=
+4      0
+> error-gt1-soc-fatal-hbm-ss0-0                           0x100000000000002=
+5      0
+> error-gt1-soc-fatal-hbm-ss0-1                           0x100000000000002=
+6      0
+> error-gt1-soc-fatal-hbm-ss0-2                           0x100000000000002=
+7      0
+> error-gt1-soc-fatal-hbm-ss0-3                           0x100000000000002=
+8      0
+> error-gt1-soc-fatal-hbm-ss0-4                           0x100000000000002=
+9      0
+> error-gt1-soc-fatal-hbm-ss0-5                           0x100000000000002=
+a      0
+> error-gt1-soc-fatal-hbm-ss0-6                           0x100000000000002=
+b      0
+> error-gt1-soc-fatal-hbm-ss0-7                           0x100000000000002=
+c      0
+> error-gt1-soc-fatal-hbm-ss1-0                           0x100000000000002=
+d      0
+> error-gt1-soc-fatal-hbm-ss1-1                           0x100000000000002=
+e      0
+> error-gt1-soc-fatal-hbm-ss1-2                           0x100000000000002=
+f      0
+> error-gt1-soc-fatal-hbm-ss1-3                           0x100000000000003=
+0      0
+> error-gt1-soc-fatal-hbm-ss1-4                           0x100000000000003=
+1      0
+> error-gt1-soc-fatal-hbm-ss1-5                           0x100000000000003=
+2      0
+> error-gt1-soc-fatal-hbm-ss1-6                           0x100000000000003=
+3      0
+> error-gt1-soc-fatal-hbm-ss1-7                           0x100000000000003=
+4      0
+> error-gt1-soc-fatal-hbm-ss2-0                           0x100000000000003=
+5      0
+> error-gt1-soc-fatal-hbm-ss2-1                           0x100000000000003=
+6      0
+> error-gt1-soc-fatal-hbm-ss2-2                           0x100000000000003=
+7      0
+> error-gt1-soc-fatal-hbm-ss2-3                           0x100000000000003=
+8      0
+> error-gt1-soc-fatal-hbm-ss2-4                           0x100000000000003=
+9      0
+> error-gt1-soc-fatal-hbm-ss2-5                           0x100000000000003=
+a      0
+> error-gt1-soc-fatal-hbm-ss2-6                           0x100000000000003=
+b      0
+> error-gt1-soc-fatal-hbm-ss2-7                           0x100000000000003=
+c      0
+> error-gt1-soc-fatal-hbm-ss3-0                           0x100000000000003=
+d      0
+> error-gt1-soc-fatal-hbm-ss3-1                           0x100000000000003=
+e      0
+> error-gt1-soc-fatal-hbm-ss3-2                           0x100000000000003=
+f      0
+> error-gt1-soc-fatal-hbm-ss3-3                           0x100000000000004=
+0      0
+> error-gt1-soc-fatal-hbm-ss3-4                           0x100000000000004=
+1      0
+> error-gt1-soc-fatal-hbm-ss3-5                           0x100000000000004=
+2      0
+> error-gt1-soc-fatal-hbm-ss3-6                           0x100000000000004=
+3      0
+> error-gt1-soc-fatal-hbm-ss3-7                           0x100000000000004=
+4      0
 >
->-	drm_info(&xe->drm, "Resizing bar from %lluMiB -> %lluMiB\n",
->+	drm_info(&xe->drm, "Attempting to resize bar from %lluMiB -> %lluMiB\n",
-> 		 (u64)current_size >> 20, (u64)rebar_size >> 20);
+> wait on a error event:
 >
-> 	while (root->parent)
->@@ -133,17 +131,16 @@ static int xe_resize_vram_bar(struct xe_device *xe)
+> $ ./drm_ras WAIT_ON_EVENT --device=3Ddrm:/dev/dri/card1
+> waiting for error event
+> error event received
+> counter value 0
 >
-> 	if (!root_res) {
-> 		drm_info(&xe->drm, "Can't resize VRAM BAR - platform support is missing. Consider enabling 'Resizable BAR' support in your BIOS\n");
->-		return -1;
->+		return;
-> 	}
+> list all errors:
 >
-> 	pci_read_config_dword(pdev, PCI_COMMAND, &pci_cmd);
-> 	pci_write_config_dword(pdev, PCI_COMMAND, pci_cmd & ~PCI_COMMAND_MEMORY);
+> $ ./drm_ras LIST_ERRORS --device=3Ddrm:/dev/dri/card1
+> name                                                    config-id
 >
->-	ret = _resize_bar(xe, GEN12_LMEM_BAR, rebar_size);
->+	_resize_bar(xe, GEN12_LMEM_BAR, rebar_size);
+> error-gt0-correctable-guc                               0x000000000000000=
+1
+> error-gt0-correctable-slm                               0x000000000000000=
+3
+> error-gt0-correctable-eu-ic                             0x000000000000000=
+4
+> error-gt0-correctable-eu-grf                            0x000000000000000=
+5
+> error-gt0-fatal-guc                                     0x000000000000000=
+9
+> error-gt0-fatal-slm                                     0x000000000000000=
+d
+> error-gt0-fatal-eu-grf                                  0x000000000000000=
+f
+> error-gt0-fatal-fpu                                     0x000000000000001=
+0
+> error-gt0-fatal-tlb                                     0x000000000000001=
+1
+> error-gt0-fatal-l3-fabric                               0x000000000000001=
+2
+> error-gt0-correctable-subslice                          0x000000000000001=
+3
+> error-gt0-correctable-l3bank                            0x000000000000001=
+4
+> error-gt0-fatal-subslice                                0x000000000000001=
+5
+> error-gt0-fatal-l3bank                                  0x000000000000001=
+6
+> error-gt0-sgunit-correctable                            0x000000000000001=
+7
+> error-gt0-sgunit-nonfatal                               0x000000000000001=
+8
+> error-gt0-sgunit-fatal                                  0x000000000000001=
+9
+> error-gt0-soc-fatal-psf-csc-0                           0x000000000000001=
+a
+> error-gt0-soc-fatal-psf-csc-1                           0x000000000000001=
+b
+> error-gt0-soc-fatal-psf-csc-2                           0x000000000000001=
+c
+> error-gt0-soc-fatal-punit                               0x000000000000001=
+d
+> error-gt0-soc-fatal-psf-0                               0x000000000000001=
+e
+> error-gt0-soc-fatal-psf-1                               0x000000000000001=
+f
+> error-gt0-soc-fatal-psf-2                               0x000000000000002=
+0
+> error-gt0-soc-fatal-cd0                                 0x000000000000002=
+1
+> error-gt0-soc-fatal-cd0-mdfi                            0x000000000000002=
+2
+> error-gt0-soc-fatal-mdfi-east                           0x000000000000002=
+3
+> error-gt0-soc-fatal-mdfi-south                          0x000000000000002=
+4
+> error-gt0-soc-fatal-hbm-ss0-0                           0x000000000000002=
+5
+> error-gt0-soc-fatal-hbm-ss0-1                           0x000000000000002=
+6
+> error-gt0-soc-fatal-hbm-ss0-2                           0x000000000000002=
+7
+> error-gt0-soc-fatal-hbm-ss0-3                           0x000000000000002=
+8
+> error-gt0-soc-fatal-hbm-ss0-4                           0x000000000000002=
+9
+> error-gt0-soc-fatal-hbm-ss0-5                           0x000000000000002=
+a
+> error-gt0-soc-fatal-hbm-ss0-6                           0x000000000000002=
+b
+> error-gt0-soc-fatal-hbm-ss0-7                           0x000000000000002=
+c
+> error-gt0-soc-fatal-hbm-ss1-0                           0x000000000000002=
+d
+> error-gt0-soc-fatal-hbm-ss1-1                           0x000000000000002=
+e
+> error-gt0-soc-fatal-hbm-ss1-2                           0x000000000000002=
+f
+> error-gt0-soc-fatal-hbm-ss1-3                           0x000000000000003=
+0
+> error-gt0-soc-fatal-hbm-ss1-4                           0x000000000000003=
+1
+> error-gt0-soc-fatal-hbm-ss1-5                           0x000000000000003=
+2
+> error-gt0-soc-fatal-hbm-ss1-6                           0x000000000000003=
+3
+> error-gt0-soc-fatal-hbm-ss1-7                           0x000000000000003=
+4
+> error-gt0-soc-fatal-hbm-ss2-0                           0x000000000000003=
+5
+> error-gt0-soc-fatal-hbm-ss2-1                           0x000000000000003=
+6
+> error-gt0-soc-fatal-hbm-ss2-2                           0x000000000000003=
+7
+> error-gt0-soc-fatal-hbm-ss2-3                           0x000000000000003=
+8
+> error-gt0-soc-fatal-hbm-ss2-4                           0x000000000000003=
+9
+> error-gt0-soc-fatal-hbm-ss2-5                           0x000000000000003=
+a
+> error-gt0-soc-fatal-hbm-ss2-6                           0x000000000000003=
+b
+> error-gt0-soc-fatal-hbm-ss2-7                           0x000000000000003=
+c
+> error-gt0-soc-fatal-hbm-ss3-0                           0x000000000000003=
+d
+> error-gt0-soc-fatal-hbm-ss3-1                           0x000000000000003=
+e
+> error-gt0-soc-fatal-hbm-ss3-2                           0x000000000000003=
+f
+> error-gt0-soc-fatal-hbm-ss3-3                           0x000000000000004=
+0
+> error-gt0-soc-fatal-hbm-ss3-4                           0x000000000000004=
+1
+> error-gt0-soc-fatal-hbm-ss3-5                           0x000000000000004=
+2
+> error-gt0-soc-fatal-hbm-ss3-6                           0x000000000000004=
+3
+> error-gt0-soc-fatal-hbm-ss3-7                           0x000000000000004=
+4
+> error-gt0-gsc-correctable-sram-ecc                      0x000000000000004=
+5
+> error-gt0-gsc-nonfatal-mia-shutdown                     0x000000000000004=
+6
+> error-gt0-gsc-nonfatal-mia-int                          0x000000000000004=
+7
+> error-gt0-gsc-nonfatal-sram-ecc                         0x000000000000004=
+8
+> error-gt0-gsc-nonfatal-wdg-timeout                      0x000000000000004=
+9
+> error-gt0-gsc-nonfatal-rom-parity                       0x000000000000004=
+a
+> error-gt0-gsc-nonfatal-ucode-parity                     0x000000000000004=
+b
+> error-gt0-gsc-nonfatal-glitch-det                       0x000000000000004=
+c
+> error-gt0-gsc-nonfatal-fuse-pull                        0x000000000000004=
+d
+> error-gt0-gsc-nonfatal-fuse-crc-check                   0x000000000000004=
+e
+> error-gt0-gsc-nonfatal-selfmbist                        0x000000000000004=
+f
+> error-gt0-gsc-nonfatal-aon-parity                       0x000000000000005=
+0
+> error-gt1-correctable-guc                               0x100000000000000=
+1
+> error-gt1-correctable-slm                               0x100000000000000=
+3
+> error-gt1-correctable-eu-ic                             0x100000000000000=
+4
+> error-gt1-correctable-eu-grf                            0x100000000000000=
+5
+> error-gt1-fatal-guc                                     0x100000000000000=
+9
+> error-gt1-fatal-slm                                     0x100000000000000=
+d
+> error-gt1-fatal-eu-grf                                  0x100000000000000=
+f
+> error-gt1-fatal-fpu                                     0x100000000000001=
+0
+> error-gt1-fatal-tlb                                     0x100000000000001=
+1
+> error-gt1-fatal-l3-fabric                               0x100000000000001=
+2
+> error-gt1-correctable-subslice                          0x100000000000001=
+3
+> error-gt1-correctable-l3bank                            0x100000000000001=
+4
+> error-gt1-fatal-subslice                                0x100000000000001=
+5
+> error-gt1-fatal-l3bank                                  0x100000000000001=
+6
+> error-gt1-sgunit-correctable                            0x100000000000001=
+7
+> error-gt1-sgunit-nonfatal                               0x100000000000001=
+8
+> error-gt1-sgunit-fatal                                  0x100000000000001=
+9
+> error-gt1-soc-fatal-psf-csc-0                           0x100000000000001=
+a
+> error-gt1-soc-fatal-psf-csc-1                           0x100000000000001=
+b
+> error-gt1-soc-fatal-psf-csc-2                           0x100000000000001=
+c
+> error-gt1-soc-fatal-punit                               0x100000000000001=
+d
+> error-gt1-soc-fatal-psf-0                               0x100000000000001=
+e
+> error-gt1-soc-fatal-psf-1                               0x100000000000001=
+f
+> error-gt1-soc-fatal-psf-2                               0x100000000000002=
+0
+> error-gt1-soc-fatal-cd0                                 0x100000000000002=
+1
+> error-gt1-soc-fatal-cd0-mdfi                            0x100000000000002=
+2
+> error-gt1-soc-fatal-mdfi-east                           0x100000000000002=
+3
+> error-gt1-soc-fatal-mdfi-south                          0x100000000000002=
+4
+> error-gt1-soc-fatal-hbm-ss0-0                           0x100000000000002=
+5
+> error-gt1-soc-fatal-hbm-ss0-1                           0x100000000000002=
+6
+> error-gt1-soc-fatal-hbm-ss0-2                           0x100000000000002=
+7
+> error-gt1-soc-fatal-hbm-ss0-3                           0x100000000000002=
+8
+> error-gt1-soc-fatal-hbm-ss0-4                           0x100000000000002=
+9
+> error-gt1-soc-fatal-hbm-ss0-5                           0x100000000000002=
+a
+> error-gt1-soc-fatal-hbm-ss0-6                           0x100000000000002=
+b
+> error-gt1-soc-fatal-hbm-ss0-7                           0x100000000000002=
+c
+> error-gt1-soc-fatal-hbm-ss1-0                           0x100000000000002=
+d
+> error-gt1-soc-fatal-hbm-ss1-1                           0x100000000000002=
+e
+> error-gt1-soc-fatal-hbm-ss1-2                           0x100000000000002=
+f
+> error-gt1-soc-fatal-hbm-ss1-3                           0x100000000000003=
+0
+> error-gt1-soc-fatal-hbm-ss1-4                           0x100000000000003=
+1
+> error-gt1-soc-fatal-hbm-ss1-5                           0x100000000000003=
+2
+> error-gt1-soc-fatal-hbm-ss1-6                           0x100000000000003=
+3
+> error-gt1-soc-fatal-hbm-ss1-7                           0x100000000000003=
+4
+> error-gt1-soc-fatal-hbm-ss2-0                           0x100000000000003=
+5
+> error-gt1-soc-fatal-hbm-ss2-1                           0x100000000000003=
+6
+> error-gt1-soc-fatal-hbm-ss2-2                           0x100000000000003=
+7
+> error-gt1-soc-fatal-hbm-ss2-3                           0x100000000000003=
+8
+> error-gt1-soc-fatal-hbm-ss2-4                           0x100000000000003=
+9
+> error-gt1-soc-fatal-hbm-ss2-5                           0x100000000000003=
+a
+> error-gt1-soc-fatal-hbm-ss2-6                           0x100000000000003=
+b
+> error-gt1-soc-fatal-hbm-ss2-7                           0x100000000000003=
+c
+> error-gt1-soc-fatal-hbm-ss3-0                           0x100000000000003=
+d
+> error-gt1-soc-fatal-hbm-ss3-1                           0x100000000000003=
+e
+> error-gt1-soc-fatal-hbm-ss3-2                           0x100000000000003=
+f
+> error-gt1-soc-fatal-hbm-ss3-3                           0x100000000000004=
+0
+> error-gt1-soc-fatal-hbm-ss3-4                           0x100000000000004=
+1
+> error-gt1-soc-fatal-hbm-ss3-5                           0x100000000000004=
+2
+> error-gt1-soc-fatal-hbm-ss3-6                           0x100000000000004=
+3
+> error-gt1-soc-fatal-hbm-ss3-7                           0x100000000000004=
+4
 >
-> 	pci_assign_unassigned_bus_resources(pdev->bus);
-> 	pci_write_config_dword(pdev, PCI_COMMAND, pci_cmd);
->-	return ret;
-> }
+> Cc: Alex Deucher <alexander.deucher@amd.com>
+> Cc: David Airlie <airlied@gmail.com>
+> Cc: Daniel Vetter <daniel@ffwll.ch>
+> Cc: Joonas Lahtinen <joonas.lahtinen@linux.intel.com>
+> Cc: Oded Gabbay <ogabbay@kernel.org>
 >
-> static bool xe_pci_resource_valid(struct pci_dev *pdev, int bar)
->@@ -163,16 +160,13 @@ static bool xe_pci_resource_valid(struct pci_dev *pdev, int bar)
-> static int xe_determine_lmem_bar_size(struct xe_device *xe)
-> {
-> 	struct pci_dev *pdev = to_pci_dev(xe->drm.dev);
->-	int err;
 >
-> 	if (!xe_pci_resource_valid(pdev, GEN12_LMEM_BAR)) {
-> 		drm_err(&xe->drm, "pci resource is not valid\n");
-> 		return -ENXIO;
-> 	}
+> Aravind Iddamsetty (5):
+>   drm/netlink: Add netlink infrastructure
+>   drm/xe/RAS: Register a genl netlink family
+>   drm/xe/RAS: Expose the error counters
+>   drm/netlink: define multicast groups
+>   drm/xe/RAS: send multicast event on occurrence of an error
 >
->-	err = xe_resize_vram_bar(xe);
->-	if (err)
->-		return err;
->+	xe_resize_vram_bar(xe);
+>  drivers/gpu/drm/xe/Makefile          |   1 +
+>  drivers/gpu/drm/xe/xe_device.c       |   3 +
+>  drivers/gpu/drm/xe/xe_device_types.h |   2 +
+>  drivers/gpu/drm/xe/xe_irq.c          |  32 ++
+>  drivers/gpu/drm/xe/xe_module.c       |   2 +
+>  drivers/gpu/drm/xe/xe_netlink.c      | 526 +++++++++++++++++++++++++++
+>  drivers/gpu/drm/xe/xe_netlink.h      |  14 +
+>  include/uapi/drm/drm_netlink.h       |  81 +++++
+>  include/uapi/drm/xe_drm.h            |  64 ++++
+>  9 files changed, 725 insertions(+)
+>  create mode 100644 drivers/gpu/drm/xe/xe_netlink.c
+>  create mode 100644 drivers/gpu/drm/xe/xe_netlink.h
+>  create mode 100644 include/uapi/drm/drm_netlink.h
 >
-> 	xe->mem.vram.io_start = pci_resource_start(pdev, GEN12_LMEM_BAR);
-> 	xe->mem.vram.io_size = pci_resource_len(pdev, GEN12_LMEM_BAR);
->-- 
->2.39.2
+> --
+> 2.25.1
 >
