@@ -4,145 +4,56 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7FBFEC7EE2A
-	for <intel-xe@archiver.kernel.org>; Mon,  5 Jun 2023 06:08:11 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id EDCF7C77B73
+	for <intel-xe@archiver.kernel.org>; Mon,  5 Jun 2023 07:34:28 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 320B110E083;
-	Mon,  5 Jun 2023 06:08:11 +0000 (UTC)
-Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4406110E083
- for <intel-xe@lists.freedesktop.org>; Mon,  5 Jun 2023 06:08:09 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1685945289; x=1717481289;
- h=from:to:cc:subject:date:message-id:references:
- in-reply-to:content-transfer-encoding:mime-version;
- bh=yQ+I+uVpoaGtSulxOu70YYlyu+q5YiZK6tv+ha6EjoI=;
- b=CJIwIzHYMoBr1WwaMRQ3DbQE2rgoFCHiIAd9bdRlMoWVf7XzJ/A+OjvR
- Ii7gAArbVg6r8qWOPYu8CHYBfvT9xTFRyghuvAIFxuTJo0FX3JF8UsIrt
- TzwhvEezYGyGxM2x/WqVIqfLmBUrz5ip3AAbwMQR8gF9ZdYPfEPffU6VI
- E/veJee4v7ohism0mTI7rgaD+D06jMcBZUmpHsSJW8DoPHLFXQMp0185y
- nIxuZt9cZCQaHQbXEqf70MTsRdCJPO0SUUQYcZuuyHWvyT2D/Iq8GOwqw
- 6nKb9KLlbq4xnfWW7o0/FVJLp7eq8xzL6u2YRrh5Vt6QOXGL2RDVLGNU/ Q==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10731"; a="355146041"
-X-IronPort-AV: E=Sophos;i="6.00,217,1681196400"; d="scan'208";a="355146041"
-Received: from orsmga001.jf.intel.com ([10.7.209.18])
- by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 04 Jun 2023 23:08:08 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10731"; a="741585746"
-X-IronPort-AV: E=Sophos;i="6.00,217,1681196400"; d="scan'208";a="741585746"
-Received: from orsmsx602.amr.corp.intel.com ([10.22.229.15])
- by orsmga001.jf.intel.com with ESMTP; 04 Jun 2023 23:08:07 -0700
-Received: from orsmsx610.amr.corp.intel.com (10.22.229.23) by
- ORSMSX602.amr.corp.intel.com (10.22.229.15) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.23; Sun, 4 Jun 2023 23:08:07 -0700
-Received: from orsmsx610.amr.corp.intel.com (10.22.229.23) by
- ORSMSX610.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.23; Sun, 4 Jun 2023 23:08:06 -0700
-Received: from ORSEDG601.ED.cps.intel.com (10.7.248.6) by
- orsmsx610.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.23 via Frontend Transport; Sun, 4 Jun 2023 23:08:06 -0700
-Received: from NAM12-DM6-obe.outbound.protection.outlook.com (104.47.59.174)
- by edgegateway.intel.com (134.134.137.102) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2507.23; Sun, 4 Jun 2023 23:08:06 -0700
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=kheK1SVx7Zut3B5FwE3NfCFFfRjH2OMFMYuTBxtESFtbnaA9VH2vlkBC9aE/Q13UyA/04kax7Dqhk3qsFoSaLWxcw4SZWx2rLUlmoJBHT+V9fbD0zEaQ29R1dPakadh1giMapPZkK7sWlpiNCZ2NrVMP+uQwzkpXqAlA+/1ywr69eLN6Tucg0CUx2FZDWneTo6Giu2LcQDutctEvUdO8ia0Al/JefqA3KRO98+UftZFXm6uMLhT/SXdFx2zViI82P3dgXvvrMbshLkhdJz0C3F1ntAHaFhELGjfqf+iuT2TsU3Tw8PMLNMZKIphBr3EKnNv8T/fU0+M458iU+OKlPQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=wfW6pEXY2IDX1hO56cftpAE7jykNEQz05Z+eoMaQ6M0=;
- b=ABheBWcaYPYLIDRD6BN1c3d9KRcpnX4pZ147MKIIA3l+xmbY2KvqSzQiyOfAyrJQQSR6okc5kriUI/TBW6U1IKz68jplRgMV/rvcNT53GtYC1FJsF7Lt1PKdS+xxnYawNPaDkTLTdMxrkWIgLnzmaQTKKsooE9rL3DY34j7JJ6ZHfyJrTM/+kCrryAL6vJgePg4LN/EP0a/WAhOEeTamVHTzGM94Drq88hP9dnZEBg2ZRUUoIFPkTMREMkb9fscAv1uka/dhTeJ75No2g5jiokQ0bOHvUav+bptTNCbJhkpWPBL3Ct1U5UxLlwCCRFlpg1MwqDJmEA6e/qhZXyh0pQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
- dkim=pass header.d=intel.com; arc=none
-Received: from SJ1PR11MB6204.namprd11.prod.outlook.com (2603:10b6:a03:459::19)
- by DM6PR11MB4724.namprd11.prod.outlook.com (2603:10b6:5:2ad::9) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6455.33; Mon, 5 Jun
- 2023 06:08:04 +0000
-Received: from SJ1PR11MB6204.namprd11.prod.outlook.com
- ([fe80::3204:9161:6e53:13f8]) by SJ1PR11MB6204.namprd11.prod.outlook.com
- ([fe80::3204:9161:6e53:13f8%6]) with mapi id 15.20.6455.030; Mon, 5 Jun 2023
- 06:08:04 +0000
-From: "Upadhyay, Tejas" <tejas.upadhyay@intel.com>
-To: "Roper, Matthew D" <matthew.d.roper@intel.com>
-Thread-Topic: [PATCH 0/3] drm/xe: Add sysfs entry to report per gt memory size
-Thread-Index: AQHZfnnAmtsopt9dbk62RKm6nfbCWq9xE4SAgAADPwCAAXKegIAEtk2wgACOJQCABByR8A==
-Date: Mon, 5 Jun 2023 06:08:03 +0000
-Message-ID: <SJ1PR11MB620464748F175B30568EA3F7814DA@SJ1PR11MB6204.namprd11.prod.outlook.com>
-References: <20230504112020.300498-1-tejas.upadhyay@intel.com>
- <SJ1PR11MB6204AD929734B440C251F235814A9@SJ1PR11MB6204.namprd11.prod.outlook.com>
- <CH0PR11MB54742C54B5F0E7872CE9DC718C4A9@CH0PR11MB5474.namprd11.prod.outlook.com>
- <BL1PR11MB5480D96FD947D16F4E140DA68C4B9@BL1PR11MB5480.namprd11.prod.outlook.com>
- <SJ1PR11MB620439B1C575F0177E747142814EA@SJ1PR11MB6204.namprd11.prod.outlook.com>
- <20230602151748.GD5433@mdroper-desk1.amr.corp.intel.com>
-In-Reply-To: <20230602151748.GD5433@mdroper-desk1.amr.corp.intel.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=intel.com;
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: SJ1PR11MB6204:EE_|DM6PR11MB4724:EE_
-x-ms-office365-filtering-correlation-id: fbadfad2-b1d9-4a2a-4788-08db658b391e
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: 2pulSTWZv0gy4W9Cdu+p02K5VOh37iCV/ltAwP+rn5t/ByqagXQsb9vefVk1Ldd5cfn8Z3q3RrzyObatbf4QKEEhd4LcuzDHH8Q3QBgtudpKSZ2LoWBD6CiYQ8FTNR0CiPPwp9EoNm3/orNNF2Staw7e33VXCnhnYmm0NvJlJB2lEPm/2vF1KhK/xTfqC84niciNLQhHproondob+8hsZ2dDqxzoTPsdfGXjSP8g6PoIbLK8FJW8GwKh32f3UpskIBp2tVQvAstoEkXBc905ysN5a7kF7kEofgDbujGXeOXIj8VqYxa1rBdccRNAZafCFcAuJFcT/UCmIijhOrecJt2OlKwGiV8Gl/0d63eruaSo02mPnQQq7jDntdwCywI1JPHuM7itREfUr2rCa1aJORh85Ns1xmgdsPu/3N6nYY4cBi1poDU/o8o29DNpznmiJU6C3GK39P/xZPlCfWOwWLhPrQFqIFVEFKCVVutDhX6YNiSMKWyJbF08vUOFVCDhknSh+z9g3aB86CfPUCUEwFnFmArc5rVtLIhnav4TJHDeD3F5MyOI7IJuSLX3n0hh
-x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:SJ1PR11MB6204.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230028)(376002)(346002)(136003)(39860400002)(366004)(396003)(451199021)(478600001)(71200400001)(122000001)(82960400001)(38100700002)(6636002)(4326008)(76116006)(66946007)(66556008)(66476007)(66446008)(64756008)(54906003)(55016003)(8936002)(8676002)(6862004)(38070700005)(33656002)(86362001)(5660300002)(52536014)(2906002)(41300700001)(316002)(83380400001)(966005)(6506007)(53546011)(9686003)(107886003)(186003)(7696005);
- DIR:OUT; SFP:1102; 
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?us-ascii?Q?kmpK9luVYu+I3vDGvKeFu5+4AGW6V7IOpKyE5Imtf+VpHPi889JUxa9ugxyW?=
- =?us-ascii?Q?+rWEpIP0xAkgpP/YstCCtvHy7rZ3hlyF6B6U8ayUtqFuYO2gu1Yce74BH4Sl?=
- =?us-ascii?Q?n0Kow/qYNkOM9QI0XZ1gjrmCMVQg50FVzgVbg2nbev4sPx8jugEfP2L1Gzfd?=
- =?us-ascii?Q?baUskGeXV/xJKwx+wBQGB2odYr8dUmLHiZcwUF23lBHns8V3m+oV32vR9GRb?=
- =?us-ascii?Q?QYwuwh7r4DE8PL0JKeJkQ0DKzGT0tenWaTg+tbnCeM/PRA6JAdKWwS+0coeG?=
- =?us-ascii?Q?/a5HE8FPqzfmF+qaoITTHEjQn/4nA/5ahmbOxkEgcMewTpNjAUu/c1WwbumM?=
- =?us-ascii?Q?p6oY7aiSd6GEU/MmHGF19pa2wg/MO0xe9u8OrvPe2kexHgfAjjvCw9YOVeZz?=
- =?us-ascii?Q?50IBzY/bXBM/EFdlR5AzVsOHo5LHvnD7K5P5BaWL4yib7cCgwb36J2YzNUwD?=
- =?us-ascii?Q?DZ5bheb9fTNUB+xL2GsbVehAODZQC+FvzFczK3gttB9JhghUID+lzRm3P18t?=
- =?us-ascii?Q?bM7bG52ksO5wpmvbcy5STwhxaMuY9cQ3X34E1B70Mjb7l4hOR7IJoEjrwIFx?=
- =?us-ascii?Q?AQJ1xqEochGBnsFeWR4NWbrF/IR+zDqciKh8o+XTx0Nupjf+/UcWuTPUNgNH?=
- =?us-ascii?Q?M2RdkSwyRHzrsf66+pAMrC4X+ksNy4vHjEJdHqDOHIW6IrBGAusRr76rGESY?=
- =?us-ascii?Q?dATHcy8rlJyYwE4o3ST6PKh7eeFthqi/TJrrHHEtdiBUGodW1ohEbNc/QlF3?=
- =?us-ascii?Q?nT2XmPa4WEB4emogRw+Bhs2NItsnNJKdi6Fh9h9jH6cBeUpDaJWWM8yIsa8x?=
- =?us-ascii?Q?1GZo5NNTKCmdWiSAmb3H/qQzIUl2UskO+QqYhfuKubLHW4+Lg2TgjudJExNp?=
- =?us-ascii?Q?C8fqQ7UGWwMkdKyxWvjYYesZDUB8sZJmvJn/Giopu7AjPJlKfFmi2vhXnsx0?=
- =?us-ascii?Q?d83o7bZEreYy4bYApdmOnekxwTO4LsQDcJkm62W/FWpDPhGY5X6s0WVQVKJ5?=
- =?us-ascii?Q?t4yGdvGt6tb58cZb0OkYd4588GF9nCRDPG8GmQMSYxNdW1uuBZC+SpMZ3RZg?=
- =?us-ascii?Q?WbkAvRWPdh79jj+9SOqKPSXauIPCaWpQuWvzWaHzi1c3swcyPsJ57a/rTpit?=
- =?us-ascii?Q?aVsT4bu+2QC3UwvDeKkauLoy1BEHOVj85CYnlUfKoLKTEMo1WhhrB7niXLNe?=
- =?us-ascii?Q?vD+EyF2ehP1flifXIQJOxVccr9+ObDd/9JbQxGoQkDXXn23yC86wNpnsGt0x?=
- =?us-ascii?Q?STcrXz+Ow7lFGeARUcjyxaTUOeL+chMou96hVoJIO1BfcHWEjZkCpygnb0WU?=
- =?us-ascii?Q?9usXCbEJxGxhEwjLhcGWrmeJR68ZRgHtgt+mwp9KmEpsMH4mCOJjnP7LDUNi?=
- =?us-ascii?Q?mnxmb3qFNHps2cUw3S9ComC94n7Awxza7/G6NbJLO7913kLr22+ZCq0RV/S9?=
- =?us-ascii?Q?SoiJbsNMfqGNnwR4BviB6PZxrIsPIKElBq2zN+3V9jiDHA28YglXJwqNLr4p?=
- =?us-ascii?Q?KAiZJCo4kwWJOJnyauwcra+N7FUCEyn9N83I1B0/Q/ixaYEdOwNWVxYJocoK?=
- =?us-ascii?Q?H0GxloqvAMUB0rF8IA48GMW0DdZ/TLYNlA2n0AYMpXqgkasKLVmiH8UgNJTj?=
- =?us-ascii?Q?VeHpF4OlQnwSJTQSURYclSSp58HXt+reiI3iCEVUiZVx?=
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+	by gabe.freedesktop.org (Postfix) with ESMTP id 95E2110E18A;
+	Mon,  5 Jun 2023 07:34:28 +0000 (UTC)
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8EE6410E185
+ for <intel-xe@lists.freedesktop.org>; Mon,  5 Jun 2023 07:34:26 +0000 (UTC)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+ (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+ (No client certificate requested)
+ by dfw.source.kernel.org (Postfix) with ESMTPS id 8175860DF2
+ for <intel-xe@lists.freedesktop.org>; Mon,  5 Jun 2023 07:34:25 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id DCA8AC433D2
+ for <intel-xe@lists.freedesktop.org>; Mon,  5 Jun 2023 07:34:24 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+ s=k20201202; t=1685950464;
+ bh=c4Va8uAa5WE7/+YvZJJTKp3WvLSJkpgDithN5TzSR4k=;
+ h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+ b=jTYkRsr6SVJc+4EGuuLE8fI+oX+wsj5vOnfgu2ksGB1paLWSCQtTP/ELLllHxVLbs
+ uUsmtqwJWdaoR902SRlkFj/5/CbMNhMecLFiRvW7Z+FfFzxHOkrbctA4FIpCj9qjO5
+ tOTiZO4f6JZWDn3s7IExpjrJiI9MkL+KvFdjLOkoSTvW/OKPUfc+1XuyAupTkZZHST
+ jU4/KzwkWXo1Y+LAZ5uecSU5POO0Q3jS7ora95qJnfpE/XgcQrTMtGbWyFbaBZHP4A
+ c33LZjnNCH0a7CupUPq00a2qRUBbywUzw7jOLRhcWLFZtE6sXivfaTFajydGVPbV8P
+ VQnqlph7xSL8Q==
+Received: by mail-qt1-f172.google.com with SMTP id
+ d75a77b69052e-3f6bb5e8ed2so41987031cf.0
+ for <intel-xe@lists.freedesktop.org>; Mon, 05 Jun 2023 00:34:24 -0700 (PDT)
+X-Gm-Message-State: AC+VfDz4MumNzaJr4dyVhnAb9THYnThgvAFSP/xms4stU23rtXjo9b88
+ 3sDndElXLZe3hI8/dKC3KdLie5748mkIt52LIrg=
+X-Google-Smtp-Source: ACHHUZ56CS8r6ismIuf98TLVurnifzDO99KurHOR7/+m3w/HOGnTWQzVvbd70XYokkgqIeJ1mlv198r6QVJhBcVn7T4=
+X-Received: by 2002:ac8:5996:0:b0:3f8:f546:fb63 with SMTP id
+ e22-20020ac85996000000b003f8f546fb63mr3286228qte.49.1685950463683; Mon, 05
+ Jun 2023 00:34:23 -0700 (PDT)
 MIME-Version: 1.0
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: SJ1PR11MB6204.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: fbadfad2-b1d9-4a2a-4788-08db658b391e
-X-MS-Exchange-CrossTenant-originalarrivaltime: 05 Jun 2023 06:08:03.5584 (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: 2sFTLGdGAS75i6+JNTrGxDanK6s9ENaOPrMfb6nVNTmgtPdRtwuelHrt3JRqfxnOV6ICVr3l8bff5DRSfrlpoDadSwa0djryQhc3ofQzV4I=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM6PR11MB4724
-X-OriginatorOrg: intel.com
-Subject: Re: [Intel-xe] [PATCH 0/3] drm/xe: Add sysfs entry to report per gt
- memory size
+References: <20230531152338.6-1-francois.dugast@intel.com>
+ <uieo7p5pwbj252uxdtmyyozj3crbbrkcm4uevookml3vxqj2ik@c3ilb7d7okcl>
+ <ZHd9u1AdemcPGPn3@fdugast-desk.home>
+ <jjkmqjebxtljdu4chzjuj7a56xbpttd7wf3wqh6o7ciigb55ur@pgci7bqedka6>
+ <CAFCwf11Cz8=3=nnhCTGKN9Coz_dsZL7XcAc9HFyayHRcUCioCg@mail.gmail.com>
+ <sptofjhqdc5kjs6fm64ueghqluyi3p7g6x2d63nxruxxp6zzlq@fktu4g44adrs>
+In-Reply-To: <sptofjhqdc5kjs6fm64ueghqluyi3p7g6x2d63nxruxxp6zzlq@fktu4g44adrs>
+From: Oded Gabbay <ogabbay@kernel.org>
+Date: Mon, 5 Jun 2023 10:33:57 +0300
+X-Gmail-Original-Message-ID: <CAFCwf10F=AT4apgR++C+usW4MOefM=CHi58Oni0vT-B+QBtVjA@mail.gmail.com>
+Message-ID: <CAFCwf10F=AT4apgR++C+usW4MOefM=CHi58Oni0vT-B+QBtVjA@mail.gmail.com>
+To: Lucas De Marchi <lucas.demarchi@intel.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+Subject: Re: [Intel-xe] [PATCH v2 0/5] drm/xe: uAPI cleanup
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -154,202 +65,319 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Cc: "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>, "Vivi, 
- Rodrigo" <rodrigo.vivi@intel.com>
+Cc: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-
-
-> -----Original Message-----
-> From: Roper, Matthew D <matthew.d.roper@intel.com>
-> Sent: Friday, June 2, 2023 8:48 PM
-> To: Upadhyay, Tejas <tejas.upadhyay@intel.com>
-> Cc: Iddamsetty, Aravind <aravind.iddamsetty@intel.com>; intel-
-> xe@lists.freedesktop.org; Vivi, Rodrigo <rodrigo.vivi@intel.com>; Dixit,
-> Ashutosh <ashutosh.dixit@intel.com>
-> Subject: Re: [PATCH 0/3] drm/xe: Add sysfs entry to report per gt memory
-> size
->=20
-> On Thu, Jun 01, 2023 at 11:51:51PM -0700, Upadhyay, Tejas wrote:
+On Thu, Jun 1, 2023 at 7:48=E2=80=AFPM Lucas De Marchi <lucas.demarchi@inte=
+l.com> wrote:
+>
+> On Thu, Jun 01, 2023 at 01:21:06PM +0300, Oded Gabbay wrote:
+> >On Wed, May 31, 2023 at 11:29=E2=80=AFPM Lucas De Marchi
+> ><lucas.demarchi@intel.com> wrote:
+> >>
+> >> On Wed, May 31, 2023 at 07:02:51PM +0200, Francois Dugast wrote:
+> >> >On Wed, May 31, 2023 at 09:23:45AM -0700, Lucas De Marchi wrote:
+> >> >> +Oded
+> >> >>
+> >> >> On Wed, May 31, 2023 at 03:23:33PM +0000, Francois Dugast wrote:
+> >> >> > This series addresses some feedback on xe_drm.h provided here:
+> >> >> > https://lists.freedesktop.org/archives/intel-xe/2023-May/004704.h=
+tml
+> >> >> >
+> >> >> > It is based on xe-rev1-2023-05-02, not on drm-xe-next, so it will
+> >> >> > likely break CI.
+> >> >>
+> >> >> As I said on the previous reply, this is not going to fly. Now we h=
+ave a
+> >> >> patch series against xe-rev1-2023-05-02, pushed as xe-rev2 branch w=
+ith
+> >> >> *no recorded reviews*, doing things that already conflict with othe=
+r
+> >> >> fixes that landed in drm-xe-next. Examples: the 32b compat for uapi=
+,
+> >> >> the mmio refactor, the oob WAs, the probe refactor, etc etc.
+> >> >>
+> >> >> Also, there are other fixes queued as fixups, which is still the pr=
+ocess
+> >> >> being used in drm-xe-next. It's also where CI is running. Due to di=
+splay
+> >> >> being moved up in the branch it's basically the only sane thing to =
+do.
+> >> >>
+> >> >> I think we need we are shooting ourselves on the foot and this revi=
+ew
+> >> >> process needs to be fixed / agreed upon before we create a mess out=
+ of
+> >> >> it.
+> >> >>
+> >> >> Lucas De Marchi
+> >> >
+> >> >Yes I understand the concern. The intention is to address Oded's feed=
+back on the
+> >> >revision that was reviewed, so that the next review iteration is mana=
+geable and
+> >> >not based on a moving target, which could lead to and endless effort.
+> >>
+> >> and then what are we going to do next? rebase the rest of drm-xe-next =
+on top?
+> >> How do we guarantee the fixes on top of xe-rev is not breaking stuff?
+> >> What about the changes that are already there changing the commits tha=
+t
+> >> are on xe-rev?
+> >>
+> >> >
+> >> >Maybe I created confusion by sharing on the mailing list but at this =
+stage the
+> >>
+> >> no, that was the right part of it. Reviews on the patches happen on th=
+is
+> >> mailing list. The wrong part IMO was to push it as a branch before it
+> >> got the necessary review and before we know how we are going to
+> >> reconciliate things. Rebasing drm-xe-next on xe-rev doesn't
+> >> really work for the reasons mentioned above.
+> >>
+> >> >idea is not to get this series merged, only to get Oded's validation =
+that it
+> >> >fixes the issues that he reported. Yes this means more work will be r=
+equired to
+> >> >rebase and create fixups later for drm-xe-next but it seems acceptabl=
+e for the
+> >> >work that has been done so far.
+> >> >
+> >> >Do you see a better way that would still satisfy the "not moving targ=
+et" goal?
+> >>
+> >> 0) Ignore the "not moving target" goal
 > >
+> >Hi Lucas,
+> >I would like to say a few things.
 > >
-> > > -----Original Message-----
-> > > From: Iddamsetty, Aravind <aravind.iddamsetty@intel.com>
-> > > Sent: Tuesday, May 30, 2023 12:22 PM
-> > > To: Upadhyay, Tejas <tejas.upadhyay@intel.com>; intel-
-> > > xe@lists.freedesktop.org; Roper, Matthew D
-> > > <matthew.d.roper@intel.com>
-> > > Cc: Vivi, Rodrigo <rodrigo.vivi@intel.com>; Dixit, Ashutosh
-> > > <ashutosh.dixit@intel.com>
-> > > Subject: RE: [PATCH 0/3] drm/xe: Add sysfs entry to report per gt
-> > > memory size
-> > >
-> > >
-> > >
-> > > > -----Original Message-----
-> > > > From: Iddamsetty, Aravind
-> > > > Sent: Monday, May 29, 2023 2:15 PM
-> > > > To: Upadhyay, Tejas <tejas.upadhyay@intel.com>; intel-
-> > > > xe@lists.freedesktop.org
-> > > > Cc: Vivi, Rodrigo <rodrigo.vivi@intel.com>; Dixit, Ashutosh
-> > > > <ashutosh.dixit@intel.com>; Roper, Matthew D
-> > > > <matthew.d.roper@intel.com>
-> > > > Subject: RE: [PATCH 0/3] drm/xe: Add sysfs entry to report per gt
-> > > > memory size
-> > > >
-> > > >
-> > > >
-> > > > > -----Original Message-----
-> > > > > From: Upadhyay, Tejas <tejas.upadhyay@intel.com>
-> > > > > Sent: Monday, May 29, 2023 2:10 PM
-> > > > > To: intel-xe@lists.freedesktop.org
-> > > > > Cc: Iddamsetty, Aravind <aravind.iddamsetty@intel.com>; Vivi,
-> > > > > Rodrigo <rodrigo.vivi@intel.com>; Dixit, Ashutosh
-> > > > > <ashutosh.dixit@intel.com>; Roper, Matthew D
-> > > > > <matthew.d.roper@intel.com>
-> > > > > Subject: RE: [PATCH 0/3] drm/xe: Add sysfs entry to report per
-> > > > > gt memory size
-> > > > >
-> > > > > Initiating discussion on sysfs path for this inline below :
-> > > > >
-> > > > > > -----Original Message-----
-> > > > > > From: Upadhyay, Tejas <tejas.upadhyay@intel.com>
-> > > > > > Sent: Thursday, May 4, 2023 4:50 PM
-> > > > > > To: intel-xe@lists.freedesktop.org
-> > > > > > Cc: Upadhyay, Tejas <tejas.upadhyay@intel.com>; Iddamsetty,
-> > > > > > Aravind <aravind.iddamsetty@intel.com>
-> > > > > > Subject: [PATCH 0/3] drm/xe: Add sysfs entry to report per gt
-> > > > > > memory size
-> > > > > >
-> > > > > > Add sysfs entry to read per gt physical memory in total
-> > > > > > including stolen memory.
-> > > > > >
-> > > > > > The sysfs entry added can be read using:
-> > > > > > cat /sys/class/drm/card1/gt/gt0/addr_range
-> > > > > > cat /sys/class/drm/card1/gt/gt1/addr_range
-> > > > >
-> > > > > We already have gt#num directory created under device folder,
-> > > > > should we create addr_range under that only. I think that would
-> > > > > be straight forward to start with.  For example,
-> > > > >
-> > > > >
-> > >
-> /devices/pci0000:a7/0000:a7:01.0/0000:a8:00.0/0000:a9:01.0/0000:aa:00.
-> > > > > 0/
-> > > > > drm/card1/gt0/addr_range
-> > > > >
-> > > > > Initiating discussion there to conclude on path on this sysfs
-> > > > > entry as well as scheduler interface entries as well as under "en=
-gine"
-> > > > > folder under
-> > > > card1.
-> > >
-> > > Also, now with Matt's " Separate GT and tile" series addr_range is
-> > > associated to a tile rather than gt.  We might have to introduce
-> > > "tile" in sysfs
+> >The first point is that the current xe-rev1 branch was something that
+> >Rodrigo and I set-up. If you feel this is not a good starting point
+> >for the review, let's talk and decide on a new starting point. Even
+> >though I have already invested multiple hours in reviewing it, I can
+> >understand the point you are making and I'm willing to re-start the
+> >review with a new starting point.
 > >
-> > Hi @Roper, Matthew D, @Vivi, Rodrigo,
+> >The second point is once we make a decision regarding the code
+> >baseline (keep using the old or moving to the new), I want *all* of us
+> >to agree that newer patches that are sent to the mailing list will not
+> >be part of the initial Xe upstreamed code. There are mainly two
+> >reasons for that:
 > >
-> > Should we expose tile0/1->addr_range to user, with sysfs like
-> device/tile0/gt0, device/tile1/gt1? Looking for inputs here to move forwa=
-rd
-> with second version of this patch.
->=20
-> Since memory is a tile-specific concept and isn't related to GTs, I'd ima=
-gine
-> you probably want something like
->=20
->         /sys/class/drm/cardX/tileY/addr_range
->=20
-> Since this is sysfs rather than debugfs, that means we have to follow all=
- the
-> strict uapi requirements, including having an opensource userspace
-> consumer and preserving backward compatibility forever.  Which userspace
-> component plans to use this?  It's unclear to me how this is going to get=
- used,
-> but you should make sure a single general addr_range is actually what the=
-y
-> want, rather than a more general interface that can report details about
-> multiple ranges of memory per tile (e.g., stolen memory, generally availa=
-ble
-> vram, etc.).
+> >1. There is a long-standing process of upstreaming a new driver to the
+> >Linux kernel and that process assumes a code baseline that doesn't
+> >change between revisions, except for addressing code review comments.
+> >As a person who has undergone this a couple of times from the side
+> >being reviewed I would like to follow this same process here as well
+> >:)
+> >
+> >2. The Xe driver is one big driver, with a large team behind it that
+> >continuously sends patches. The code keeps getting re-factored and
+> >acquires new features at a high rate. If every revision of the review
+> >the baseline code will change, the changes from the previous revision
+> >will be too large to review independently. I will have to review the
+> >entire driver again... Not to mention how will I be able to easily
+> >verify that my comments were addressed properly (btw, I also wrote it
+> >here https://lore.kernel.org/intel-xe/CAFCwf124UMR3VQ=3DTr6mT_eTRQi9ssqZ=
+qEH4jys1bGggHJjboLw@mail.gmail.com/).
+>
+> Let me use a few examples:
+>
+>         22ad50d184c0 ("fixup! drm/xe: Introduce a new DRM driver for Inte=
+l GPUs")
+>
+> Do we want to leave the commit "drm/xe: Introduce a new DRM driver for
+> Intel GPUs" as part of the original and then have a Fix commit leaving a
+> few hundreds of broken commits?  On other "first driver submissions"
+> I've seen that would be frowned upon and it would be expected that this
+> is fixed inplace instead of leaving broken commits behind.
+>
+>         a00a92181ab1 ("fixup! drm/xe: Introduce a new DRM driver for Inte=
+l GPUs")
+>
+> Same thing: a nasty memory corruption lurking there. Do we leave it
+> broken?  With the previous (current(?)) process we were actually adding
+> these fixups that are later moved back in the git history so things like
+> this are never part of the upstream code. Looking at xe-rev2 branch
+> being pushed without any code review, why is 83ac6e02bf5e ("drm/xe:
+> Remove unused define") more important that deserves being brought back
+> to the original submission?
+I'm sure there are multiple additional bugs/broken code paths that we
+don't know about right now, will be part of the original submission
+and will be fixed only in a couple of months or further than that.
+Therefore, I don't think this is a critical issue.
+But in any case, no one said we need to have the original submission
+sent upstream, without additional patches after it in the same merge
+cycle.
 
-Thanks Matt, I also agree to use /sys/class/drm/cardX/tileY/addr_range, whi=
-ch should be independent of /device/gt0 and /device/gt1 we currently have c=
-reated on xe.
+What is critical imo, is to have confidence that this driver is not
+doing something horrendously wrong, like abstracting entire kernel
+layers, or putting up a broken uapi, or incorrectly using kernel API,
+or whatever.
 
-Also current addr_range covers whole memory including stolen memory for tha=
-t tile and is consumed by userspace that way only.
+>
+> Another one that comes to mind: the engine vs context name that you
+> raised on the other review and I pointed out to the history: would it be
+> something to be changed on xe-rev branch and invalidate the other things
+> on top?  Or would we better change this in drm-xe-next?
 
-I will go ahead with this approach.
+I agree the changes between rev1 and rev2 are often quite significant.
+And with all your other input, I think we can consider the following:
+1. Halting the review for now.
+2. You will prepare a rev2 branch with all the changes we agreed upon
++ updated code to make it more aligned with drm-xe-next.
+3. I'll restart the review on rev2, while we agree to keep the
+drm-xe-next mostly aligned with the review branch until the review is
+over.
 
+>
+>  From what I talked with Rodrigo before, we'd actually discuss and agree
+> about things that needed to be changed/fixed, particularly on the design
+> and interface of the driver (with drm subsystem and with userspace).
+> Line by line review with non-critical things would then become gitlab
+> issues, like when Matt Roper went through a similar line by line
+> review and Rodrigo created a bunch of gitlab issues that are being
+> solved in drm-xe-next.
+>
+> >Therefore, I think we need to agree on some method that won't burn me
+> >out and cause me to tell Dave & Daniel I'm giving up on what they
+> >asked me to do. One way is to follow the rule above, but if you still
+> >disagree with this, I'm open to hearing other suggestions on how to
+> >enable a proper review in a timely manner that won't cause me to pull
+> >my hair out.
+> >
+> >In that context, I feel your "Ignore the not moving target goal"
+> >statement to Francois was inappropriate. We need to have an agreement,
+> >you can't decide that on your own.
+>
+> What am I deciding on my own and why was that inappropriate?  I went
+> back to read again what I wrote to check if it was badly phrased, but I
+> don't see it that way. He asked my opinion on a different method, which
+> you are also asking when you say "I'm open to hearing other suggestions
+> on how to enable a proper review in a timely manner that won't cause me
+> to pull my hair out". If you hear and disagree, I'm totally fine with
+> it, but asking for it and then saying it's inappropriate to disagree
+> with the premise seems odd.
+I read it as something else but if you meant it only as a suggestion,
+then I take my words back.
+>
+> I went on and explained *why*, saying that the moving base is already
+> there and IMO a better method would be to accept the moving base, with a
+> different review method. And if you look at the proposal below, I'm
+> actually removing the "moving base" factor between what's being reviewed
+> and where the rest of development is happening, CI is running, other
+> review comments are being handled, etc.
+>
+> What I'm currently seeing and I don't agree with:
+>
+> - Commits are being pushed to a xe-revN branch bypassing code review
+Correct, this should not happen. That's why Francois sent them to the
+ml and I thought it was sufficient.
+>
+> - Since CI is running on drm-xe-next, it's also bypassing CI. I was
+>    part of enough upstream submissions to know our ability to break
+>    things when handling code review comments, which is only noticed later
+>    when the rest is rebased on top and CI is running again
+I agree, but unless you can trigger CI on specific branch, I think
+your only option is to run CI on drm-xe-next after it is rebased over
+the final xe-rev branch (after the review is over).
+>
+> - drm-xe-next and xe-revN are not on the same baseline. If they were,
+>    then comparing both would be trivial and we'd probably not have
+>    this discussion. Question here on your process: currently xe-rev
+>    is on top of drm-next-2023-04-27, which is on top of v6.3-rc4.
+>    Is your intention that fixes (to only your review commens) are
+>    accumulated  on xe-rev* and then propose this to be merged to drm-next
+>    when that is finished, without any rebase?
+I thought you would rebase drm-next-xe over the final xe-rev branch.
+Then just make sure all those commits on top are passing CI after the rebas=
+e.
+>
+> - changes to "the original submission" that from my pov some are good,
+>    some would better be discussed and some that are not critical
+>    taking precedence over others that should really be there. And that
+>    is happening because there is this disconnect between drm-xe-next and
+>    xe-rev as per above.
+That's why I don't mind if for xe-rev2, we make it aligned with a
+newer baseline that matches drm-xe-next.
+I'll continue the review on that branch when it's done.
+Then, after the review is over, rebase drm-xe-next over xe-revLast,
+which shouldn't be too hard hopefully.
+
+wdyt ?
 Thanks,
-Tejas
->=20
->=20
-> Matt
->=20
+Oded
+>
+> - the disconnect will only get worse as we are on 1/6 batch of review
+>    comments so I don't see the process scaling well.
+>
+> Lucas De Marchi
+>
 > >
-> > Thanks,
-> > Tejas
-> > >
-> > > Thanks,
-> > > Aravind.
-> > >
-> > > >
-> > > > Scheduler/engine entries are not related to this feature let's
-> > > > discuss them separately.
-> > > >
-> > > > Thanks,
-> > > > Aravind.
-> > > >
-> > > > >
-> > > > > Please provide your inputs.
-> > > > >
-> > > > > Thanks,
-> > > > > Tejas
-> > > > > >
-> > > > > > As it involves drm_class, it required movement in xe_device
-> > > > > > init flow, patch for same is part of this series.
-> > > > > >
-> > > > > > Actual physical memory per GT was dependent on infra patch
-> > > > > > from Ruhl, Michael J, so I have added it as part of this
-> > > > > > series to pass through pre-
-> > > > > merge.
-> > > > > > Patchwork:
-> > > > > > https://patchwork.freedesktop.org/series/117126/#rev3
-> > > > > >
-> > > > > > Cc: Aravind Iddamsetty <aravind.iddamsetty@intel.com>
-> > > > > > Signed-off-by: Tejas Upadhyay <tejas.upadhyay@intel.com>
-> > > > > >
-> > > > > > Tejas Upadhyay (3):
-> > > > > >   drm/xe: Rework multi tile device memory initialization
-> > > > > >   drm/xe: Register drm device prior to gt init
-> > > > > >   drm/xe: Add sysfs entry to report per gt memory size
-> > > > > >
-> > > > > >  drivers/gpu/drm/xe/regs/xe_gt_regs.h   |   2 +-
-> > > > > >  drivers/gpu/drm/xe/xe_bo.c             |   8 +-
-> > > > > >  drivers/gpu/drm/xe/xe_bo.h             |   2 +-
-> > > > > >  drivers/gpu/drm/xe/xe_device.c         |   8 +-
-> > > > > >  drivers/gpu/drm/xe/xe_device_types.h   |  20 +-
-> > > > > >  drivers/gpu/drm/xe/xe_gt_sysfs.c       |  74 ++++++-
-> > > > > >  drivers/gpu/drm/xe/xe_gt_sysfs.h       |   1 -
-> > > > > >  drivers/gpu/drm/xe/xe_gt_types.h       |  21 +-
-> > > > > >  drivers/gpu/drm/xe/xe_migrate.c        |   6 +-
-> > > > > >  drivers/gpu/drm/xe/xe_mmio.c           | 279 ++++++++++++++---=
-------
-> --
-> > > > > >  drivers/gpu/drm/xe/xe_mmio.h           |   4 +-
-> > > > > >  drivers/gpu/drm/xe/xe_ttm_stolen_mgr.c |  30 +--
-> > > > > >  12 files changed, 291 insertions(+), 164 deletions(-)
-> > > > > >
-> > > > > > --
-> > > > > > 2.25.1
+> >Thanks,
+> >Oded
 > >
->=20
-> --
-> Matt Roper
-> Graphics Software Engineer
-> Linux GPU Platform Enablement
-> Intel Corporation
+> >
+> >
+> >
+> >>
+> >> 1) The review should be on very a recent rev, not something old with a
+> >>     lot of commits on top. That doesn't scale and there will be anothe=
+r 100
+> >>     patches before the next review round.
+> >>
+> >>         $ tag=3Dxe-rev1-2023-05-02
+> >>         $ s=3D$(git log -1 --format=3D%s $tag)
+> >>         $ commit=3D$(git log --grep "$s" -n1 --format=3D%H)
+> >>         $ git rev-list $commit..HEAD | wc -l
+> >>         208
+> >>
+> >>     Then as outcome of the review we have more patches to land, rebase
+> >>     the rest, etc, etc.  This is a much worse "moving target" and IMO
+> >>     it's worse for both reviewers and committers.
+> >>
+> >> 2) The xe-revX should have the same baseline. That makes for a really
+> >>     simple way to check "what changed since I last looked". This can b=
+e
+> >>     checked on the overall diff with `git diff` or on the amended fixe=
+s
+> >>     with git range-diff.
+> >>
+> >>     Currently drm-xe-next is on drm-tip due to the display integration=
+.
+> >>     Being on drm-next is important for merging the branch upstream, bu=
+t
+> >>     not so much for these kind of reviews
+> >>
+> >> 3) Not merge things in the xe-revX branch that is not already
+> >>     in drm-xe-next.  Ideally if there are things that really need to
+> >>     be changed back in the xe-rev branch, it should be a fixup on
+> >>     drm-xe-next that is then brought back to the xe-rev branch.
+> >>
+> >>
+> >> Lucas De Marchi
+> >>
+> >> >
+> >> >Thanks,
+> >> >Francois
+> >> >
+> >> >>
+> >> >> >
+> >> >> > v2: fix ordering of defines and fields in uAPI (Lucas De Marchi)
+> >> >> >
+> >> >> > Francois Dugast (5):
+> >> >> >  drm/xe: Use SPDX-License-Identifier instead of license text
+> >> >> >  drm/xe: Group engine related structs
+> >> >> >  drm/xe: Move defines before relevant fields
+> >> >> >  drm/xe: Document usage of struct drm_xe_device_query
+> >> >> >  drm/xe: Fix some formatting issues in uAPI
+> >> >> >
+> >> >> > include/uapi/drm/xe_drm.h | 171 ++++++++++++++++++++-------------=
+-----
+> >> >> > 1 file changed, 90 insertions(+), 81 deletions(-)
+> >> >> >
+> >> >> > --
+> >> >> > 2.34.1
+> >> >> >
