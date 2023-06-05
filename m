@@ -4,144 +4,151 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 27E46C7EE2D
-	for <intel-xe@archiver.kernel.org>; Mon,  5 Jun 2023 13:44:24 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 086DEC7EE24
+	for <intel-xe@archiver.kernel.org>; Mon,  5 Jun 2023 15:01:05 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id CD53A10E29E;
-	Mon,  5 Jun 2023 13:44:23 +0000 (UTC)
-Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0EBD710E29E
- for <intel-xe@lists.freedesktop.org>; Mon,  5 Jun 2023 13:44:21 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C471D10E2B6;
+	Mon,  5 Jun 2023 15:01:04 +0000 (UTC)
+Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 562BE10E2B6
+ for <intel-xe@lists.freedesktop.org>; Mon,  5 Jun 2023 15:01:02 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1685972662; x=1717508662;
- h=from:to:cc:subject:date:message-id:references:
+ t=1685977262; x=1717513262;
+ h=message-id:date:subject:from:to:cc:references:
  in-reply-to:content-transfer-encoding:mime-version;
- bh=tXAaRjAqqSh6H4cFqmwlOx27ENfDVXxslJu8gMexnaU=;
- b=cqkcqOAXkFY+vLq5dF2Tegdp9Z+kbHC1G08ZW9G0pkYLBIOLK3bR4sll
- FX4Xm/aDEbowZLlRCUKOydLi1weFWGuMQZtth8c+5+QZQvY4+aJXW58W6
- n5900i1HzzpcGzxI1ejVpLiD6goMjWxBI5NPXOkqzv4PaOBozFuWG4D+b
- qkPgLGehEkRttqmMKsj8f4BRijAJFUlWX6egHbYZbB/EIhuM896iewNQC
- pysblpa/Gq/XizjL/ajl6j2u44ulvAvsNnIJUlpgwPBZ1RACihNEWxpCf
- DvMwLqCpOZl8GhaqBOPZ75ByOTc7Q1Dh5vZSaPloNR77YLKyv3n4YU58C Q==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10732"; a="353860306"
-X-IronPort-AV: E=Sophos;i="6.00,217,1681196400"; d="scan'208";a="353860306"
-Received: from fmsmga004.fm.intel.com ([10.253.24.48])
- by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 05 Jun 2023 06:38:27 -0700
+ bh=VdXOQ98xgGKJBXnbfJGbpoOejrqO4R4chNKD+JEsDPA=;
+ b=h1TPQJ6Xw1GEv1jhAXLv6/dtZ38ZevN64lTIXyvgicbQW9kRt4noX9/l
+ fpeqfiB4Cysr3wQcdXEBEWZCvJUT72F8Qy+vhHq94rcfNBOJqxcry9BMz
+ JeluOpao5YTd7EAsCJBb4UgKYHl4Zp3r93LQM41grh0q2KnQ+AJvJIT88
+ 8NID/CyJPOqcSHA+WzmzxSTMFJnDJtvJLqVliSc2ZexUHpVVhi5PY0yq9
+ +f77bpJv19HagxoxdBP2HBiOT5ZJ5I/H1k87ZeF2nR2TPAWa6I0kSftpr
+ zc4e4foexAC9cO0ROZQLQ1MDaVky3nst5cnHhVmPiE6nVFMyo8tVl2OHv w==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10732"; a="336741879"
+X-IronPort-AV: E=Sophos;i="6.00,217,1681196400"; d="scan'208";a="336741879"
+Received: from fmsmga006.fm.intel.com ([10.253.24.20])
+ by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 05 Jun 2023 08:00:52 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10732"; a="778559114"
-X-IronPort-AV: E=Sophos;i="6.00,217,1681196400"; d="scan'208";a="778559114"
-Received: from orsmsx602.amr.corp.intel.com ([10.22.229.15])
- by fmsmga004.fm.intel.com with ESMTP; 05 Jun 2023 06:38:25 -0700
-Received: from orsmsx612.amr.corp.intel.com (10.22.229.25) by
- ORSMSX602.amr.corp.intel.com (10.22.229.15) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.23; Mon, 5 Jun 2023 06:38:25 -0700
+X-IronPort-AV: E=McAfee;i="6600,9927,10732"; a="955356736"
+X-IronPort-AV: E=Sophos;i="6.00,217,1681196400"; d="scan'208";a="955356736"
+Received: from orsmsx601.amr.corp.intel.com ([10.22.229.14])
+ by fmsmga006.fm.intel.com with ESMTP; 05 Jun 2023 08:00:51 -0700
 Received: from orsmsx610.amr.corp.intel.com (10.22.229.23) by
- ORSMSX612.amr.corp.intel.com (10.22.229.25) with Microsoft SMTP Server
+ ORSMSX601.amr.corp.intel.com (10.22.229.14) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.23; Mon, 5 Jun 2023 06:38:24 -0700
-Received: from orsedg603.ED.cps.intel.com (10.7.248.4) by
+ 15.1.2507.23; Mon, 5 Jun 2023 08:00:51 -0700
+Received: from orsmsx610.amr.corp.intel.com (10.22.229.23) by
+ ORSMSX610.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.23; Mon, 5 Jun 2023 08:00:51 -0700
+Received: from ORSEDG602.ED.cps.intel.com (10.7.248.7) by
  orsmsx610.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.23 via Frontend Transport; Mon, 5 Jun 2023 06:38:24 -0700
-Received: from NAM12-DM6-obe.outbound.protection.outlook.com (104.47.59.174)
- by edgegateway.intel.com (134.134.137.100) with Microsoft SMTP Server
+ 15.1.2507.23 via Frontend Transport; Mon, 5 Jun 2023 08:00:51 -0700
+Received: from NAM10-MW2-obe.outbound.protection.outlook.com (104.47.55.108)
+ by edgegateway.intel.com (134.134.137.103) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2507.23; Mon, 5 Jun 2023 06:38:24 -0700
+ 15.1.2507.23; Mon, 5 Jun 2023 08:00:49 -0700
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=bT7Ege+MxU8VfY/14Vsibj93ooL8A4dUqw4X8e4OARIx8DbSdTn1TL7YL21ZdtdvkHbJAb5cLNgmJQ/EPdKZ6EBgbOca/BCvuY1C2L4Olagpzn3+treyfcbokdZR9zuBA8stf2aGUMfxCbW43OE+DPWAhNDhOCR/UWDWft5/5rrXGDWD6H5BO90jsXrhMrSP0vgUmBN72L3UtgnbsrCyuVbDRuv0GIrVtyDA9iLbMW7Ok9I9mK1M4uvY9BqQ4U6diytbqytyl9rk8Fb/a3NIdRLYJPppnv+eG9OlE4QEMzGNEMox5nlm1cwFqUSKQdXMaX7jkbL7h5FmnfzRSHr/DA==
+ b=OfO2wHsizw/bhQandknIhQte/QKXeK625paRu5R1qXdJtAHpR3bPVnySo0Q7nlnlD/1rDKjuXNoqd3gX5Z/0ZkMpnbI3LazazLxi7LZ5JTWG1KlgItLnr1pbRcslDL32NIpmrrgGKFh2TLuEdZIpFWCWD+E/B9trYmlaSjOe10IPqrYzlTyP2IEPhDvawn7m/cJTdryc0fW+1tF7o/uEWs7YaXwsOkyJa++rdgzrjoiqw5Cd9anwt+QKIQNRQXLM4sRePBXM0KOgGPnSMGXkJ+UOLjSbZWzErlR8aPIdpGhLCGrIJ3Izq9MIRwMdHiWqkjsHpzhS7KmU6xRnxlIQzA==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=aZNapVC/5SeKOkyskKuArY0H86ti3eLoh5HtSl3UtTU=;
- b=EQnDUmDSkxlQ9GWVQlPbo4bmNSeF19GYgcOvEccXO/gAUaJYAj/j/2hWQpVGZwl5FNDbbr/W2PYM2UsGLB9CQvWpa95rto4z+jiOMdWJS0XMVpUI3y2LEfCmu7Y1P22RjvTT3F1zU3srrjiZuskcVU6vggae3stx5JRG2wH/CtTzDctLnl+bOoirAvuVoarAat5wvT5UKlMf10fW+JJMeDJ2FttuoJ+8446FSjq3j3uqBFCKKNN3VlNYGoSvrpT+2Y5piq81H4m6Xb60tMjffUKhDVEefZo+vGsy+YjAnMab0Zgwd5gPhbTYLBBLqCL0SOf79868g3uZbdQx2XCATg==
+ bh=QCzapaYmUOR8kiodQWsvfeiDHEDJc2qTZZs8C0sd3gY=;
+ b=NxrOfqrqSAT566OEGQR/UJSP+iN5CsZvs/6YU69EhlYYSINoaG+galwfd4T8nrs9viJiQmEU/q0pHfQmqheQyOpDIQk3Qxcv3FW7cKoyxiqfrrJcT3uQniVDWKEGQUiP0k5mY4v+0ikrMLLWriRvOTBAED4wNT/BMRP75MkbLVuhBFRDx0+8kjbne/j7aQlnuol0BYWdYFZqiGVOqwLcu3J2BsqSugRW5npTipttincG3t8lkHftDevQy1UQYfv6DQ1nuab+irQfCUcNVWOZE2MOoyo1dZDUjv48ODKvZzHLqkbtzkt0vFXGx5ImGVTixxvRxz2JIaV2uhSNNHDqmg==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
  dkim=pass header.d=intel.com; arc=none
-Received: from SJ1PR11MB6204.namprd11.prod.outlook.com (2603:10b6:a03:459::19)
- by DS7PR11MB6037.namprd11.prod.outlook.com (2603:10b6:8:74::5) with
- Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.6455.32; Mon, 5 Jun 2023 13:38:22 +0000
-Received: from SJ1PR11MB6204.namprd11.prod.outlook.com
- ([fe80::3204:9161:6e53:13f8]) by SJ1PR11MB6204.namprd11.prod.outlook.com
- ([fe80::3204:9161:6e53:13f8%6]) with mapi id 15.20.6455.030; Mon, 5 Jun 2023
- 13:38:22 +0000
-From: "Upadhyay, Tejas" <tejas.upadhyay@intel.com>
-To: "Roper, Matthew D" <matthew.d.roper@intel.com>
-Thread-Topic: [PATCH 0/3] drm/xe: Add sysfs entry to report per gt memory size
-Thread-Index: AQHZfnnAmtsopt9dbk62RKm6nfbCWq9xE4SAgAADPwCAAXKegIAEtk2wgACOJQCABJqtUA==
-Date: Mon, 5 Jun 2023 13:38:22 +0000
-Message-ID: <SJ1PR11MB620415A7B4F4FD2CFA9BC742814DA@SJ1PR11MB6204.namprd11.prod.outlook.com>
-References: <20230504112020.300498-1-tejas.upadhyay@intel.com>
- <SJ1PR11MB6204AD929734B440C251F235814A9@SJ1PR11MB6204.namprd11.prod.outlook.com>
- <CH0PR11MB54742C54B5F0E7872CE9DC718C4A9@CH0PR11MB5474.namprd11.prod.outlook.com>
- <BL1PR11MB5480D96FD947D16F4E140DA68C4B9@BL1PR11MB5480.namprd11.prod.outlook.com>
- <SJ1PR11MB620439B1C575F0177E747142814EA@SJ1PR11MB6204.namprd11.prod.outlook.com>
- <20230602151748.GD5433@mdroper-desk1.amr.corp.intel.com>
-In-Reply-To: <20230602151748.GD5433@mdroper-desk1.amr.corp.intel.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-authentication-results: dkim=none (message not signed)
+Authentication-Results: dkim=none (message not signed)
  header.d=none;dmarc=none action=none header.from=intel.com;
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: SJ1PR11MB6204:EE_|DS7PR11MB6037:EE_
-x-ms-office365-filtering-correlation-id: b228451c-f082-4371-568b-08db65ca218e
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: pvCaX8hbIu17dEUPbJBCkVwtJOrfVKfQdDsZxpvPr/K7UkaH0IVS7+T3+LoH8mOG/J47vFvlx3r2xDSbn59OKtduSn+68NhMCEfuGOvfGZxe+0a+r3lDuvUFuHqNLTZfJHXLYim4DxZTQWWGFVmbj6UD/6H9K418JKntBVymd4X/MG2VeH4TW0CrYyfYhU7dBaS7eBwstKNXxFyDhoghKLcAxKKRZMawuXXbEC92AXLa/i+MVJlnZdWrkhVE3S7MqwrPpzOIMOMtNVD+hKZoHxUq0NFHBtq0N14SleKQinEsOzWSoA8eM21ePKGZ3348J+dgokj7Y2wsoZPP2kLsqJ4kgsPoUKmeC02H/dIY/EdqTaVjVYQQyE6kC9LjufNWFzfuX2iaB5jLYFTX6atkHfrsjPOgq2j6KoX/Mf+qnc5OoMx8wrSYLUexmQoZ6IOhiMCscQriPHR/un8SQxKYvRVsvz/9ufpw7EQufZlIa9GlUsCK5XmuKpaW8Z/s69Tb+4RY8gDQH9gfXMelEpGk4fGeUIqmbI6DqtHacDYOOYwoli4pj0octMakl9nfHm7C
-x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:SJ1PR11MB6204.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230028)(346002)(39860400002)(366004)(396003)(376002)(136003)(451199021)(55016003)(54906003)(478600001)(82960400001)(8936002)(6862004)(8676002)(66446008)(6636002)(4326008)(76116006)(66556008)(316002)(38100700002)(66476007)(64756008)(66946007)(122000001)(41300700001)(186003)(83380400001)(966005)(7696005)(71200400001)(107886003)(53546011)(9686003)(6506007)(26005)(33656002)(86362001)(5660300002)(52536014)(2906002)(38070700005);
- DIR:OUT; SFP:1102; 
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?us-ascii?Q?FQ7fmvCO5MR6e3/543Nw+UpqDiOq2Uh1k+R38y2r/xbntvYNzM1yq+VdC/p1?=
- =?us-ascii?Q?CHog0a1vUKr4iHdy4+HRTL8oCotSdMLNVaHgh7YB/ulouoXO8LbcX58fp5qa?=
- =?us-ascii?Q?8Iin4pNpKJ8JrdAaWVwdpnDDSt/j9r94SlPQ0rTzGVTzsOCiM2L2YFycZuMw?=
- =?us-ascii?Q?etQEWyz/DFp2z/LQDtZMeEbYEWttjK+PVF3GMZe3jri9/uFV9M7kIFn3l1gI?=
- =?us-ascii?Q?0JFchcoWzjgfteZnYSuv5+Flo8X4EBGAH0v00wz29uznrDA0B4I7xFHdtveM?=
- =?us-ascii?Q?jAVevcDfCzZUeuTXRMUCHEe+aXKTKLqOkWDHDNUQ/d2r0qW8vWSsxUfyDpq0?=
- =?us-ascii?Q?ISLUGvcBmm5IfzXiaIIzazkddtgfBlBSExbI2s9bqxdI+braiJWL/v3I61wI?=
- =?us-ascii?Q?8NclasECOwncqrVp647/RpVVjvKyH+xMQYSvKQ/XY4x5m68v3JH39KCFMcDz?=
- =?us-ascii?Q?tlppNayYGRDaGDolXbpMx6QkGkPEoAj58qHrDt2THyFQPaPFk8ooiQJzFO+r?=
- =?us-ascii?Q?PtwdBLOb4cSkEQbSXVwflg08LpkVxoMJMAt+M/pURlZr3m5afApN3l2XF+Yj?=
- =?us-ascii?Q?A9TPU1yo30L0yzd0CF/Bs5jfQDRiiI6gP9pu5wyxuBApfdnKDTrqgcCGKTKS?=
- =?us-ascii?Q?F7Jk1U9z9sUpnycTOD77M7T9XYEfzDHPiMc9e8HNr2R9j0RowdV1MNff3C/H?=
- =?us-ascii?Q?+DP4Ljv+4B0G7N8RzZjT9Hdfzbi9DQpAW9SJX/OMuYDxfH2aN128yODzsV7a?=
- =?us-ascii?Q?WyvpuC0Epe6eyoFeAHm3/+0g/Q70FsQNYE3vIhqsxJ03ASBJ8Lo1go0XcGH5?=
- =?us-ascii?Q?4R24N+wS7KGxLmFTz7WRwvKMmFV8jLgCzbLtcAnryRUFxmCOflnfh1vF0FMh?=
- =?us-ascii?Q?OF1QNVij2wfMXmKujZWCQF32ZQD2aA7Yp1ZEYRiTMT4mdkOtvZuXToKXW3DJ?=
- =?us-ascii?Q?hfJXkRGBTpSrBF9sMhrwDZ24dkpfGzplyadyP9NbpfpkTT8IG/BY7110AM/c?=
- =?us-ascii?Q?4JHHhMH6lni5ddgdqe8tgY4LwKK7YSvjKzcmlW9w+wVPMRGvqB1S6rF+3Uuo?=
- =?us-ascii?Q?RACQceVn4Z1eqELkpt59FSqzUkFreMeAseL3QYyi4z+PwZFVzkJGLAYMlc2M?=
- =?us-ascii?Q?cyM+pC8ocfOzVht55cDBnopy0jFPQcGl6rE1TaApmiKnjWIXiG6TN5EZTJUr?=
- =?us-ascii?Q?puVV8y5hnUHMDPcRCoSrplg6pMByqq5k3CuRunUH7R+m6MKWdu5EcwG3YZHV?=
- =?us-ascii?Q?zjp4KVOrtMU+K9Drd/btuFqtf8lHn4224McxVSVQBDk5C3AnlKweIbae76vm?=
- =?us-ascii?Q?ZJqRH9t56J9f5vwaW8/Mz1MKXxj02OYLXz3Tfc7b5qLf0MZO4wiXDol4ta3H?=
- =?us-ascii?Q?LAby3sn82vRslk6RYVP72OjHZHPfSZd/rc4QycjR5dnwuXuUKk6CwVq2TY4d?=
- =?us-ascii?Q?v4uDM/EQ1cnEX5llQ6HVkMTlrIf27sX02lGo7sRgnKZiYjyVOP10nIrhYqD0?=
- =?us-ascii?Q?WtZkAzHCIJC3hR0wEpKuV0bffIJiD3OMCyk6xvns7sEJa63g5f1jpdTg3OhV?=
- =?us-ascii?Q?8onO7aLVmCex5exYII/ifX4akw5ALErX2Y2OCgVH?=
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+Received: from SJ0PR11MB4845.namprd11.prod.outlook.com (2603:10b6:a03:2d1::10)
+ by IA1PR11MB6075.namprd11.prod.outlook.com (2603:10b6:208:3d5::6)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6433.24; Mon, 5 Jun
+ 2023 15:00:47 +0000
+Received: from SJ0PR11MB4845.namprd11.prod.outlook.com
+ ([fe80::86c9:9683:a842:7d07]) by SJ0PR11MB4845.namprd11.prod.outlook.com
+ ([fe80::86c9:9683:a842:7d07%6]) with mapi id 15.20.6455.030; Mon, 5 Jun 2023
+ 15:00:46 +0000
+Message-ID: <f9f14ee3-32a0-22bc-038f-eabdd47dd605@intel.com>
+Date: Mon, 5 Jun 2023 20:30:38 +0530
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+ Firefox/102.0 Thunderbird/102.11.0
+From: Riana Tauro <riana.tauro@intel.com>
+To: "Gupta, Anshuman" <anshuman.gupta@intel.com>,
+ "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>
+References: <20230524060020.2054682-1-riana.tauro@intel.com>
+ <CY5PR11MB6211DCB0D973C5FA6163F4E4954B9@CY5PR11MB6211.namprd11.prod.outlook.com>
+ <5e1b25fa-b636-4431-ad5d-a8828c826578@intel.com>
+Content-Language: en-US
+In-Reply-To: <5e1b25fa-b636-4431-ad5d-a8828c826578@intel.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 8bit
+X-ClientProxiedBy: PN3PR01CA0062.INDPRD01.PROD.OUTLOOK.COM
+ (2603:1096:c01:99::11) To SJ0PR11MB4845.namprd11.prod.outlook.com
+ (2603:10b6:a03:2d1::10)
 MIME-Version: 1.0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: SJ0PR11MB4845:EE_|IA1PR11MB6075:EE_
+X-MS-Office365-Filtering-Correlation-Id: 64f677e7-3107-4d9e-b681-08db65d5a496
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: wMunLlmHUb22gL6kDwVJkZ7ajlFOtl0lBuh453McDOoefGolc99d/ckzIC6cwIi/Qdie/V87FJ5lj8ramOvUCD15YfnGZDLYB0KF4Sg4mPz4GGVIP/HHf85qJUFaUgZYpF98eYq4gD5mN/eyncf7Olm2dJNHPCuHneYq9Np+ts3AdZRkZSVuzdzQcc8zM1RjBhLU6MfuMtH7enpHJok8UVrPtYpNK1zkNLlDMrANgck0F8vWmjzCnw/CkFlTGifWQw7ijNOb/brUDrvJsXx+oz7Dj6L19GPicb95FTRJV8uj2ydB3JkJr2yPtWGoFdjkYFPL7lVKC6QdLh0KAy1pZflQVzSgntjUpwUcxX54H/uKEDdECnD/4pftrwPbipkP2Y6sI7hyAKdq7L4fMrOVDbMdahaf+CDU3JZdLJB08o8s15w7ylUsepuSuhpeUwP0KynQ1viAO4sOgnuQ6qwZTE1Oy9j74nS7bm7SW2Bx6r+n6PxEZbHz4z/jDlabcFydM1h0HvNJFxExrkU7u7eqyYmUPoCzpVoWNx5idHwZ01vtUTaMxMC9pikLZ8XN/hnmSeUXsH6sykIH4vvVUcc2oMQH7qIq5LtyJcunKqz/oXtRO6gRJE4Pzo5X9LyjtT2O0VMiF+HyBVZrXvaGe9bMyVPzd/DVzwMHGpkzVL0A3kM=
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:SJ0PR11MB4845.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230028)(396003)(346002)(376002)(366004)(39860400002)(136003)(451199021)(66476007)(2906002)(66946007)(8676002)(66556008)(5660300002)(31686004)(44832011)(4326008)(316002)(30864003)(41300700001)(54906003)(110136005)(8936002)(6666004)(6486002)(966005)(82960400001)(478600001)(107886003)(26005)(36756003)(83380400001)(6512007)(2616005)(53546011)(186003)(86362001)(6506007)(38100700002)(31696002)(21314003)(45980500001)(43740500002);
+ DIR:OUT; SFP:1102; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?eUI1cHNrSmg4S2pCcitRQVJmczVSbzllN0s1ZEVrRnp4bDNVR1VCamZvU1FC?=
+ =?utf-8?B?VkxnYzIvcXJsenRSV3BSSVE5SGlPVjFBdTFkTkYwcnQrd3gwM0ZaaW5NMWNH?=
+ =?utf-8?B?ZmVtZjI5WWtzcEtUVVVYQ1pSdEExZ1RBTFhhMzFrNnB3YTgzczg4TGNKK09P?=
+ =?utf-8?B?NEVWdXZZOWxtZjRHdDQ4bVVsdTczZ2h6UDI0QTZ5aEI2a3U1cTRVM0hDQk1R?=
+ =?utf-8?B?YTk0ViszenM1b2hpRGJ1SEtDMFNHUUhCcTZrVmdwL1JuVUhqbzJYY2tLOEJL?=
+ =?utf-8?B?cnNwSk96ZUlHN1llYjNTaC9Mb3U3dGpuU1AzMWk3UDBGdmNDQlBDb2gycElx?=
+ =?utf-8?B?QzJuTkNMR3NCa21WZDJ1VnNrTzRCcktqdmhTaDgxMHIxWVhnS2lSMDlrUGlD?=
+ =?utf-8?B?OS9NcjRqVm95R2hBVmlJUmQxamlMTTNNcWJNL1ltWXNkK2RpS1JJZktuelQ4?=
+ =?utf-8?B?MUtsS25wNjlDQXFnWDNsbDhmbE1UTzdNUmZIam4xMm9UMGtyNUhyL2ZsRGh3?=
+ =?utf-8?B?d2thVUZHbEhOckdXNnNFa05CV3hTQTNiem9pbzV5QUx1akNzdzdtTStDcmtB?=
+ =?utf-8?B?RW5Pck1ialZ5YjBjRXBWdklUZ3B5Q2ZqdTdwZTV4c1NWbFJEZERLLzZleEN6?=
+ =?utf-8?B?K0ltTldmZHpQYVZSN2hEeUJ1TE9rMUE0ekhKaldtMzA5M0pDYlZjK3hwTkZU?=
+ =?utf-8?B?ZDZDK01HTTYwMmhIcWVjaU12UGh2U0c2MmpETTBzMC9aeEVmTW94elZhanoy?=
+ =?utf-8?B?akpLOE5hTnBLS1R6aUFIZS8waTRnM1QyaTFNVEQyZmY2LzNxd1BMS2pESG95?=
+ =?utf-8?B?YlNvMCtnMWkzU3R6S05keXNONWFNdzhDdlNJK3hWVU9neDRvRnJhTEV5cFNN?=
+ =?utf-8?B?NzJleUo2aTM2VXduTDFmY2xqeitDQks3d1lYMVdGYndZQnkvZm02cFdpZXli?=
+ =?utf-8?B?cVdCSW92ZW5scVdFejhZS2thZWhMUiszZlN6SmM2VExUL3c5TzhGbW5jMzZw?=
+ =?utf-8?B?em41OVA2N0F2SVdEMnp4UGhLZlhjZHlUUzZubW5QYm1IaVBKY0F0enlBQUJh?=
+ =?utf-8?B?cWFKekI2elp0TWxLeUxMcEh6TEg2UmEyM3pmeS8ycDhlYlJxdnFyUWk4cUNh?=
+ =?utf-8?B?ZkRGR3Q4WDFaQmpRWnNMMHdJQUZlOUFFaXJHb1FaUk9YRFg5TDJIYkhkS0tu?=
+ =?utf-8?B?cnFLUjhLRmJuQkxNd1B2WCtYcFZiNGRDWjhyclJQN3IxaWJWR0RCd2IwTXNT?=
+ =?utf-8?B?SkcwZEFSanp2S1c2NE5LUi9aOTVnWXY5V2EydGNySmExRWZmVlFzaFIva2Ft?=
+ =?utf-8?B?dFRqTUdHODBNL0hNMkJscjVvajV2ckxRbDc0aG5STzd2L2kyaUpHY0szWUxP?=
+ =?utf-8?B?eUpWbks0ZEprbythNVVQR1ZaOFNZQ2FhQkdYSHpLNXdabEhnYUZVbWtocFlY?=
+ =?utf-8?B?MWg3NFcwRlkvQ0t1Ry8vcEVoQW0zYUZndTYzNjFja1dNM3pGVndrbXFtaGNS?=
+ =?utf-8?B?M3J0YlhMSGhFUFlpaG5IMEE3QnNRQnd5WjVzL2kwdExFaHVSYi9NSk8yUndG?=
+ =?utf-8?B?M2VDLzlYOWQvZ240ZWk4dk0xeTdGd1F0aDV0MW9ocmRSMW5sQXU4cHRmV0w5?=
+ =?utf-8?B?cG42cXdyTHNjRUphT3hqdDhjOWN5SVEySlhFR0hCUVpWcTBrNHM4dHVHRXhW?=
+ =?utf-8?B?SDNrd0drdEhaZ0tCWEdKcDlvSnptYms0RjUyVUtoMExBUjBvTnY5dlZ4UEpr?=
+ =?utf-8?B?QWlNVmt1MzBBM1FvcVRUSHZ5Ynp5cWRNOGd2UkI3TFlEWjgxemwvbEJINERP?=
+ =?utf-8?B?Um9ENWg1VDdjakVvTWxUcE9zRGhzTjFWQ2RoSWhvRk4xZ21nSE95Yk5BSXJt?=
+ =?utf-8?B?UlRkaVlrZVlxUWtuNUNwb1Z4QnFlckRxdWZPVExpYzhIZlZzUS9GRlh5ZmdE?=
+ =?utf-8?B?N1Vqa0RucnpFaUxSRTlCQmg2NDFZeTdoQUNZd3hieEROM0Q3ZEczbFN6YVRG?=
+ =?utf-8?B?TjZqOFI4anlUNSt5M09hQS81dlVZNDdYd2IxelJreGc3eFFvMmxqdVRPWGJq?=
+ =?utf-8?B?WGp3ZlBQTDhYU25LL2VUVGI5akczckxKTmVMQjc3Ry9rQmxCLzNLTVgzbUlY?=
+ =?utf-8?Q?QTnN7USUzH5ne0XiHN6A7lCSw?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: 64f677e7-3107-4d9e-b681-08db65d5a496
+X-MS-Exchange-CrossTenant-AuthSource: SJ0PR11MB4845.namprd11.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: SJ1PR11MB6204.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: b228451c-f082-4371-568b-08db65ca218e
-X-MS-Exchange-CrossTenant-originalarrivaltime: 05 Jun 2023 13:38:22.3221 (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: itOcBAbPRRkn4il2f5inLCortMIj3scGopbMlRzwxYaIRltnthjLGdyl2sqzKFV8DjX7eFKHU/VbFykFOn4WnAIHbhO55TQ3POdbF/s5C/g=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DS7PR11MB6037
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 05 Jun 2023 15:00:46.8526 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: wrawP8w3G2+0GeZs95p5ZP+ehgVdFMAOZVKVvqnUtTgStqUNuIrsNaWfTco2kVvqcQ1mQVaeFiXleIyebCWprg==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: IA1PR11MB6075
 X-OriginatorOrg: intel.com
-Subject: Re: [Intel-xe] [PATCH 0/3] drm/xe: Add sysfs entry to report per gt
- memory size
+Subject: Re: [Intel-xe] [PATCH] drm/xe: add a new sysfs directory for gtidle
+ properties
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -153,198 +160,497 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Cc: "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>, "Vivi, 
- Rodrigo" <rodrigo.vivi@intel.com>
+Cc: "Vivi, Rodrigo" <rodrigo.vivi@intel.com>
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 
 
-> -----Original Message-----
-> From: Roper, Matthew D <matthew.d.roper@intel.com>
-> Sent: Friday, June 2, 2023 8:48 PM
-> To: Upadhyay, Tejas <tejas.upadhyay@intel.com>
-> Cc: Iddamsetty, Aravind <aravind.iddamsetty@intel.com>; intel-
-> xe@lists.freedesktop.org; Vivi, Rodrigo <rodrigo.vivi@intel.com>; Dixit,
-> Ashutosh <ashutosh.dixit@intel.com>
-> Subject: Re: [PATCH 0/3] drm/xe: Add sysfs entry to report per gt memory
-> size
->=20
-> On Thu, Jun 01, 2023 at 11:51:51PM -0700, Upadhyay, Tejas wrote:
-> >
-> >
-> > > -----Original Message-----
-> > > From: Iddamsetty, Aravind <aravind.iddamsetty@intel.com>
-> > > Sent: Tuesday, May 30, 2023 12:22 PM
-> > > To: Upadhyay, Tejas <tejas.upadhyay@intel.com>; intel-
-> > > xe@lists.freedesktop.org; Roper, Matthew D
-> > > <matthew.d.roper@intel.com>
-> > > Cc: Vivi, Rodrigo <rodrigo.vivi@intel.com>; Dixit, Ashutosh
-> > > <ashutosh.dixit@intel.com>
-> > > Subject: RE: [PATCH 0/3] drm/xe: Add sysfs entry to report per gt
-> > > memory size
-> > >
-> > >
-> > >
-> > > > -----Original Message-----
-> > > > From: Iddamsetty, Aravind
-> > > > Sent: Monday, May 29, 2023 2:15 PM
-> > > > To: Upadhyay, Tejas <tejas.upadhyay@intel.com>; intel-
-> > > > xe@lists.freedesktop.org
-> > > > Cc: Vivi, Rodrigo <rodrigo.vivi@intel.com>; Dixit, Ashutosh
-> > > > <ashutosh.dixit@intel.com>; Roper, Matthew D
-> > > > <matthew.d.roper@intel.com>
-> > > > Subject: RE: [PATCH 0/3] drm/xe: Add sysfs entry to report per gt
-> > > > memory size
-> > > >
-> > > >
-> > > >
-> > > > > -----Original Message-----
-> > > > > From: Upadhyay, Tejas <tejas.upadhyay@intel.com>
-> > > > > Sent: Monday, May 29, 2023 2:10 PM
-> > > > > To: intel-xe@lists.freedesktop.org
-> > > > > Cc: Iddamsetty, Aravind <aravind.iddamsetty@intel.com>; Vivi,
-> > > > > Rodrigo <rodrigo.vivi@intel.com>; Dixit, Ashutosh
-> > > > > <ashutosh.dixit@intel.com>; Roper, Matthew D
-> > > > > <matthew.d.roper@intel.com>
-> > > > > Subject: RE: [PATCH 0/3] drm/xe: Add sysfs entry to report per
-> > > > > gt memory size
-> > > > >
-> > > > > Initiating discussion on sysfs path for this inline below :
-> > > > >
-> > > > > > -----Original Message-----
-> > > > > > From: Upadhyay, Tejas <tejas.upadhyay@intel.com>
-> > > > > > Sent: Thursday, May 4, 2023 4:50 PM
-> > > > > > To: intel-xe@lists.freedesktop.org
-> > > > > > Cc: Upadhyay, Tejas <tejas.upadhyay@intel.com>; Iddamsetty,
-> > > > > > Aravind <aravind.iddamsetty@intel.com>
-> > > > > > Subject: [PATCH 0/3] drm/xe: Add sysfs entry to report per gt
-> > > > > > memory size
-> > > > > >
-> > > > > > Add sysfs entry to read per gt physical memory in total
-> > > > > > including stolen memory.
-> > > > > >
-> > > > > > The sysfs entry added can be read using:
-> > > > > > cat /sys/class/drm/card1/gt/gt0/addr_range
-> > > > > > cat /sys/class/drm/card1/gt/gt1/addr_range
-> > > > >
-> > > > > We already have gt#num directory created under device folder,
-> > > > > should we create addr_range under that only. I think that would
-> > > > > be straight forward to start with.  For example,
-> > > > >
-> > > > >
-> > >
-> /devices/pci0000:a7/0000:a7:01.0/0000:a8:00.0/0000:a9:01.0/0000:aa:00.
-> > > > > 0/
-> > > > > drm/card1/gt0/addr_range
-> > > > >
-> > > > > Initiating discussion there to conclude on path on this sysfs
-> > > > > entry as well as scheduler interface entries as well as under "en=
-gine"
-> > > > > folder under
-> > > > card1.
-> > >
-> > > Also, now with Matt's " Separate GT and tile" series addr_range is
-> > > associated to a tile rather than gt.  We might have to introduce
-> > > "tile" in sysfs
-> >
-> > Hi @Roper, Matthew D, @Vivi, Rodrigo,
-> >
-> > Should we expose tile0/1->addr_range to user, with sysfs like
-> device/tile0/gt0, device/tile1/gt1? Looking for inputs here to move forwa=
-rd
-> with second version of this patch.
->=20
-> Since memory is a tile-specific concept and isn't related to GTs, I'd ima=
-gine
-> you probably want something like
->=20
->         /sys/class/drm/cardX/tileY/addr_range
->=20
-> Since this is sysfs rather than debugfs, that means we have to follow all=
- the
-> strict uapi requirements, including having an opensource userspace
-> consumer and preserving backward compatibility forever.  Which userspace
-> component plans to use this?  It's unclear to me how this is going to get=
- used,
-> but you should make sure a single general addr_range is actually what the=
-y
-> want, rather than a more general interface that can report details about
-> multiple ranges of memory per tile (e.g., stolen memory, generally availa=
-ble
-> vram, etc.).
->=20
+On 5/31/2023 10:28 AM, Riana Tauro wrote:
+> Hi Anshuman
+> 
+> On 5/30/2023 4:00 PM, Gupta, Anshuman wrote:
+>>
+>>
+>>> -----Original Message-----
+>>> From: Tauro, Riana <riana.tauro@intel.com>
+>>> Sent: Wednesday, May 24, 2023 11:30 AM
+>>> To: intel-xe@lists.freedesktop.org
+>>> Cc: Tauro, Riana <riana.tauro@intel.com>; Gupta, Anshuman
+>>> <anshuman.gupta@intel.com>; Vivi, Rodrigo <rodrigo.vivi@intel.com>; 
+>>> Dixit,
+>>> Ashutosh <ashutosh.dixit@intel.com>; Nilawar, Badal
+>>> <badal.nilawar@intel.com>; Wajdeczko, Michal
+>>> <Michal.Wajdeczko@intel.com>
+>>> Subject: [PATCH] drm/xe: add a new sysfs directory for gtidle properties
+>>>
+>>> Add a new sysfs directory under devices/gt#/ called gtidle to contain 
+>>> idle
+>>> properties of GT such as name, idle_status, idle_residency_ms
+>>>
+>>> v2:
+>>>      - abstract using function pointers (Anshuman)
+>>>      - use device_attr (Badal)
+>>>      - move rc functions to guc_pc
+>>>      - change name to gt_idle (Rodrigo)
+>>>
+>>> v3:
+>>>      - return error for drmm_add_action_or_reset
+>>>      - replace file and functions with gt_idle prefix
+>>>        to gt_idle_sysfs (Himal)
+>>>      - use enum for gt idle state
+>>>      - move multiplier to gt idle and initialize (Anshuman)
+>>>      - correct doc annotation (Rodrigo)
+>>>      - remove return variable
+>>>      - use kobj_gt instead of new gtidle kobj
+>>>      - move residency_ms to gtidle file
+>>>      - retain xe_guc_pc prefix for functions in guc_rc file (Michal)
+>>>
+>>> Signed-off-by: Riana Tauro <riana.tauro@intel.com>
+>>> Acked-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
+>>> ---
+>>>   drivers/gpu/drm/xe/Makefile                 |   1 +
+>>>   drivers/gpu/drm/xe/xe_gt.c                  |   5 +
+>>>   drivers/gpu/drm/xe/xe_gt_idle_sysfs.c       | 157 ++++++++++++++++++++
+>>>   drivers/gpu/drm/xe/xe_gt_idle_sysfs.h       |  13 ++
+>>>   drivers/gpu/drm/xe/xe_gt_idle_sysfs_types.h |  38 +++++
+>>>   drivers/gpu/drm/xe/xe_gt_types.h            |   4 +
+>>>   drivers/gpu/drm/xe/xe_guc_pc.c              |  46 +++---
+>>>   drivers/gpu/drm/xe/xe_guc_pc.h              |   2 +
+>>>   8 files changed, 237 insertions(+), 29 deletions(-)  create mode 
+>>> 100644
+>>> drivers/gpu/drm/xe/xe_gt_idle_sysfs.c
+>>>   create mode 100644 drivers/gpu/drm/xe/xe_gt_idle_sysfs.h
+>>>   create mode 100644 drivers/gpu/drm/xe/xe_gt_idle_sysfs_types.h
+>>>
+>>> diff --git a/drivers/gpu/drm/xe/Makefile b/drivers/gpu/drm/xe/Makefile
+>>> index cd1614b68734..84f0985054fa 100644
+>>> --- a/drivers/gpu/drm/xe/Makefile
+>>> +++ b/drivers/gpu/drm/xe/Makefile
+>>> @@ -45,6 +45,7 @@ xe-y += xe_bb.o \
+>>>       xe_gt.o \
+>>>       xe_gt_clock.o \
+>>>       xe_gt_debugfs.o \
+>>> +    xe_gt_idle_sysfs.o \
+>>>       xe_gt_mcr.o \
+>>>       xe_gt_pagefault.o \
+>>>       xe_gt_sysfs.o \
+>>> diff --git a/drivers/gpu/drm/xe/xe_gt.c b/drivers/gpu/drm/xe/xe_gt.c 
+>>> index
+>>> 80d42c7c7cfa..eb1e1e3d2d71 100644
+>>> --- a/drivers/gpu/drm/xe/xe_gt.c
+>>> +++ b/drivers/gpu/drm/xe/xe_gt.c
+>>> @@ -18,6 +18,7 @@
+>>>   #include "xe_force_wake.h"
+>>>   #include "xe_ggtt.h"
+>>>   #include "xe_gt_clock.h"
+>>> +#include "xe_gt_idle_sysfs.h"
+>>>   #include "xe_gt_mcr.h"
+>>>   #include "xe_gt_pagefault.h"
+>>>   #include "xe_gt_printk.h"
+>>> @@ -383,6 +384,10 @@ static int gt_fw_domain_init(struct xe_gt *gt)
+>>>       if (err)
+>>>           goto err_force_wake;
+>>>
+>>> +    err = xe_gt_idle_sysfs_init(&gt->gtidle);
+>> Can't we keep this simple to pass just GT and inside function, 
+>> initialize the GT ?
+> This was to keep consistency with other files having struct specific to 
+> the files as parameters. IMO gtidle as a parameter is appropriate as all 
+> the functions in the file use xe_gt_idle
+>>> +    if (err)
+>>> +        goto err_force_wake;
+>>> +
+>>>       /* XXX: Fake that we pull the engine mask from hwconfig blob */
+>>>       gt->info.engine_mask = gt->info.__engine_mask;
+>>>
+>>> diff --git a/drivers/gpu/drm/xe/xe_gt_idle_sysfs.c
+>>> b/drivers/gpu/drm/xe/xe_gt_idle_sysfs.c
+>>> new file mode 100644
+>>> index 000000000000..b7de53287f6b
+>>> --- /dev/null
+>>> +++ b/drivers/gpu/drm/xe/xe_gt_idle_sysfs.c
+>>> @@ -0,0 +1,157 @@
+>>> +// SPDX-License-Identifier: MIT
+>>> +/*
+>>> + * Copyright © 2023 Intel Corporation
+>>> + */
+>>> +
+>>> +#include <drm/drm_managed.h>
+>>> +
+>>> +#include "xe_device.h"
+>>> +#include "xe_gt.h"
+>>> +#include "xe_gt_idle_sysfs.h"
+>>> +#include "xe_gt_sysfs.h"
+>>> +#include "xe_guc_pc.h"
+>>> +
+>>> +/**
+>>> + * DOC: Xe GT Idle
+>>> + *
+>>> + * Provides sysfs entries for idle properties of GT
+>>> + *
+>>> + * device/gt#/gtidle/name - name of the state
+>>> + * device/gt#/gtidle/idle_residency_ms - Provides residency of the idle
+>>> +state in ms
+>>> + * device/gt#/gtidle/idle_status - Provides current idle state  */
+>>> +
+>>> +static struct xe_gt_idle *dev_to_gtidle(struct device *dev) {
+>>> +    struct kobject *kobj = &dev->kobj;
+>>> +
+>>> +    return &kobj_to_gt(kobj->parent)->gtidle;
+>>> +}
+>>> +
+>>> +static struct xe_gt *gtidle_to_gt(struct xe_gt_idle *gtidle) {
+>>> +    return container_of(gtidle, struct xe_gt, gtidle); }
+>>> +
+>>> +static struct xe_guc_pc *gtidle_to_pc(struct xe_gt_idle *gtidle) {
+>>> +    return &gtidle_to_gt(gtidle)->uc.guc.pc; }
+>>> +
+>>> +static const char *gt_idle_state_to_string(enum xe_gt_idle_state state)
+>>> +{
+>>> +    switch (state) {
+>>> +    case GT_IDLE_RC0:
+>>> +        return "rc0";
+>>> +    case GT_IDLE_RC6:
+>>> +        return "rc6";
+>>> +    default:
+>>> +        return "unknown";
+>>> +    }
+>>> +}
+>>> +
+>>> +static u64 get_residency_ms(struct xe_gt_idle *gtidle, u64
+>>> +cur_residency) {
+>>> +    u64 delta, overflow_residency, prev_residency;
+>>> +
+>>> +    overflow_residency = BIT_ULL(32);
+>>> +    /*
+>>> +     * Counter wrap handling
+>>> +     * Store previous hw counter values for counter wrap-around
+>>> handling
+>>> +     * Relying on sufficient frequency of queries otherwise counters 
+>>> can
+>>> still wrap.
+>>> +     */
+>>> +    prev_residency = gtidle->prev_residency;
+>>> +    gtidle->prev_residency = cur_residency;
+>> Multiple user threads can race against each other while reading this 
+>> attribute.
+>> So probably we need some sort of locking ?
+Hi Anshuman
 
-Also, we have gt0 and gt1 sysfs dirs created under device folder as device/=
-gt0 and device/gt1 right, do we need to establish relation between new tile=
- dir (/sys/class/drm/cardX/tileY/addr_range)  and gt0/gt1 dir which we alre=
-ady have in xe? Or we should keep them independent!
+seq_read_iter takes a lock while calling sysfs_show
+https://elixir.bootlin.com/linux/latest/source/fs/seq_file.c#L171
 
-Thanks,
-Tejas
->=20
-> Matt
->=20
-> >
-> > Thanks,
-> > Tejas
-> > >
-> > > Thanks,
-> > > Aravind.
-> > >
-> > > >
-> > > > Scheduler/engine entries are not related to this feature let's
-> > > > discuss them separately.
-> > > >
-> > > > Thanks,
-> > > > Aravind.
-> > > >
-> > > > >
-> > > > > Please provide your inputs.
-> > > > >
-> > > > > Thanks,
-> > > > > Tejas
-> > > > > >
-> > > > > > As it involves drm_class, it required movement in xe_device
-> > > > > > init flow, patch for same is part of this series.
-> > > > > >
-> > > > > > Actual physical memory per GT was dependent on infra patch
-> > > > > > from Ruhl, Michael J, so I have added it as part of this
-> > > > > > series to pass through pre-
-> > > > > merge.
-> > > > > > Patchwork:
-> > > > > > https://patchwork.freedesktop.org/series/117126/#rev3
-> > > > > >
-> > > > > > Cc: Aravind Iddamsetty <aravind.iddamsetty@intel.com>
-> > > > > > Signed-off-by: Tejas Upadhyay <tejas.upadhyay@intel.com>
-> > > > > >
-> > > > > > Tejas Upadhyay (3):
-> > > > > >   drm/xe: Rework multi tile device memory initialization
-> > > > > >   drm/xe: Register drm device prior to gt init
-> > > > > >   drm/xe: Add sysfs entry to report per gt memory size
-> > > > > >
-> > > > > >  drivers/gpu/drm/xe/regs/xe_gt_regs.h   |   2 +-
-> > > > > >  drivers/gpu/drm/xe/xe_bo.c             |   8 +-
-> > > > > >  drivers/gpu/drm/xe/xe_bo.h             |   2 +-
-> > > > > >  drivers/gpu/drm/xe/xe_device.c         |   8 +-
-> > > > > >  drivers/gpu/drm/xe/xe_device_types.h   |  20 +-
-> > > > > >  drivers/gpu/drm/xe/xe_gt_sysfs.c       |  74 ++++++-
-> > > > > >  drivers/gpu/drm/xe/xe_gt_sysfs.h       |   1 -
-> > > > > >  drivers/gpu/drm/xe/xe_gt_types.h       |  21 +-
-> > > > > >  drivers/gpu/drm/xe/xe_migrate.c        |   6 +-
-> > > > > >  drivers/gpu/drm/xe/xe_mmio.c           | 279 ++++++++++++++---=
-------
-> --
-> > > > > >  drivers/gpu/drm/xe/xe_mmio.h           |   4 +-
-> > > > > >  drivers/gpu/drm/xe/xe_ttm_stolen_mgr.c |  30 +--
-> > > > > >  12 files changed, 291 insertions(+), 164 deletions(-)
-> > > > > >
-> > > > > > --
-> > > > > > 2.25.1
-> >
->=20
-> --
-> Matt Roper
-> Graphics Software Engineer
-> Linux GPU Platform Enablement
-> Intel Corporation
+
+Call Trace:
+[ 1079.006358]  <TASK>
+[ 1079.006363]  dump_stack_lvl+0x92/0xb0
+[ 1079.006373]  idle_residency_ms_show+0x34/0x110 [xe]
+[ 1079.006563]  sysfs_kf_seq_show+0x14f/0x1e0
+[ 1079.006571]  ? __pfx_kobj_attr_show+0x10/0x10
+[ 1079.006582]  seq_read_iter+0x3b6/0x880
+
+
+So locking will not be needed
+
+Thanks
+Riana
+
+> Thanks for pointing this.
+> Will add this in next rev
+>>> +
+>>> +    /* delta */
+>>> +    if (cur_residency >= prev_residency)
+>>> +        delta = cur_residency - prev_residency;
+>>> +    else
+>>> +        delta = cur_residency + (overflow_residency -
+>>> prev_residency);
+>>> +
+>>> +    /* Add delta to extended raw driver copy of idle residency */
+>>> +    cur_residency = gtidle->cur_residency + delta;
+>>> +    gtidle->cur_residency = cur_residency;
+>>> +
+>>> +    /* residency multiplier in ns, convert to ms */
+>>> +    return mul_u64_u32_div(cur_residency, gtidle-
+>>>> residency_multiplier,
+>>> +1e6); }
+>>> +
+>>> +static ssize_t name_show(struct device *dev,
+>>> +             struct device_attribute *attr, char *buff) {
+>>> +    struct xe_gt_idle *gtidle = dev_to_gtidle(dev);
+>>> +
+>>> +    return sysfs_emit(buff, gtidle->name); } static
+>>> DEVICE_ATTR_RO(name);
+>>> +
+>>> +static ssize_t idle_status_show(struct device *dev,
+>>> +                struct device_attribute *attr, char *buff) {
+>>> +    struct xe_gt_idle *gtidle = dev_to_gtidle(dev);
+>>> +    struct xe_guc_pc *pc = gtidle_to_pc(gtidle);
+>>> +    enum xe_gt_idle_state state;
+>>> +
+>>> +    state = gtidle->idle_status(pc);
+>>> +
+>>> +    return sysfs_emit(buff, "%s\n", gt_idle_state_to_string(state)); }
+>>> +static DEVICE_ATTR_RO(idle_status);
+>>> +
+>>> +static ssize_t idle_residency_ms_show(struct device *dev,
+>>> +                      struct device_attribute *attr, char *buff) {
+>>> +    struct xe_gt_idle *gtidle = dev_to_gtidle(dev);
+>>> +    struct xe_guc_pc *pc = gtidle_to_pc(gtidle);
+>>> +    u64 residency;
+>>> +
+>>> +    residency = gtidle->idle_residency(pc);
+>>> +    return sysfs_emit(buff, "%llu\n", get_residency_ms(gtidle,
+>>> +residency)); } static DEVICE_ATTR_RO(idle_residency_ms);
+>>> +
+>>> +static const struct attribute *gt_idle_attrs[] = {
+>>> +    &dev_attr_name.attr,
+>>> +    &dev_attr_idle_status.attr,
+>>> +    &dev_attr_idle_residency_ms.attr,
+>>> +    NULL,
+>>> +};
+>>> +
+>>> +static void gt_idle_sysfs_fini(struct drm_device *drm, void *arg) {
+>>> +    struct kobject *kobj = arg;
+>>> +
+>>> +    sysfs_remove_files(kobj, gt_idle_attrs);
+>>> +    kobject_put(kobj);
+>>> +}
+>>> +
+>>> +int xe_gt_idle_sysfs_init(struct xe_gt_idle *gtidle) {
+>>> +    struct xe_gt *gt = gtidle_to_gt(gtidle);
+>>> +    struct xe_device *xe = gt_to_xe(gt);
+>>> +    struct kobject *kobj;
+>>> +    int err;
+>>> +
+>>> +    kobj = kobject_create_and_add("gtidle", gt->sysfs);
+>>> +    if (!kobj)
+>>> +        return -ENOMEM;
+>> IMO ENOMEM does not suits here, How  about EINVAL or ENODEV ?
+> kobject_create_and_add returns NULL if kzalloc fails or when the add fails.
+> Most of the files  return -ENOMEM when the function fails
+>>> +
+>>> +    sprintf(gtidle->name, "gt%d-rc\n", gt->info.id);
+>>> +    /* Multiplier for  RC6 Residency counter in units of 1.28us */
+>>> +    gtidle->residency_multiplier = 1280;
+>>> +    gtidle->idle_residency = xe_guc_pc_rc6_residency;
+>>> +    gtidle->idle_status = xe_guc_pc_rc_status;
+>>> +
+>>> +    err = sysfs_create_files(kobj, gt_idle_attrs);
+>>> +    if (err) {
+>>> +        kobject_put(kobj);
+>>> +        return err;
+>>> +    }
+>>> +
+>>> +    err = drmm_add_action_or_reset(&xe->drm, gt_idle_sysfs_fini,
+>>> kobj);
+>>> +    if (err)
+>>> +        return err;
+>>> +
+>>> +    return 0;
+>>> +}
+>>> diff --git a/drivers/gpu/drm/xe/xe_gt_idle_sysfs.h
+>>> b/drivers/gpu/drm/xe/xe_gt_idle_sysfs.h
+>>> new file mode 100644
+>>> index 000000000000..a654561fda19
+>>> --- /dev/null
+>>> +++ b/drivers/gpu/drm/xe/xe_gt_idle_sysfs.h
+>>> @@ -0,0 +1,13 @@
+>>> +/* SPDX-License-Identifier: MIT */
+>>> +/*
+>>> + * Copyright © 2023 Intel Corporation
+>>> + */
+>>> +
+>>> +#ifndef _XE_GT_IDLE_SYSFS_H_
+>>> +#define _XE_GT_IDLE_SYSFS_H_
+>>> +
+>>> +#include "xe_gt_idle_sysfs_types.h"
+>>> +
+>>> +int xe_gt_idle_sysfs_init(struct xe_gt_idle *gtidle);
+>>> +
+>>> +#endif /* _XE_GT_IDLE_SYSFS_H_ */
+>>> diff --git a/drivers/gpu/drm/xe/xe_gt_idle_sysfs_types.h
+>>> b/drivers/gpu/drm/xe/xe_gt_idle_sysfs_types.h
+>>> new file mode 100644
+>>> index 000000000000..b9cfb37aae75
+>>> --- /dev/null
+>>> +++ b/drivers/gpu/drm/xe/xe_gt_idle_sysfs_types.h
+>>> @@ -0,0 +1,38 @@
+>>> +/* SPDX-License-Identifier: MIT */
+>>> +/*
+>>> + * Copyright © 2023 Intel Corporation
+>>> + */
+>>> +
+>>> +#ifndef _XE_GT_IDLE_SYSFS_TYPES_H_
+>>> +#define _XE_GT_IDLE_SYSFS_TYPES_H_
+>>> +
+>>> +#include <linux/types.h>
+>>> +
+>>> +struct xe_guc_pc;
+>>> +
+>>> +/* States of GT Idle */
+>>> +enum xe_gt_idle_state {
+>>> +    GT_IDLE_RC0,
+>>> +    GT_IDLE_RC6,
+>>> +    GT_IDLE_UNKNOWN,
+>>> +};
+>>> +
+>>> +/**
+>>> + * struct xe_gt_idle - A struct that contains idle properties based of
+>>> +gt  */ struct xe_gt_idle {
+>>> +    /** @name: name */
+>>> +    char name[16];
+>>> +    /** @residency_multiplier: residency multiplier in ns */
+>>> +    u32 residency_multiplier;
+>>> +    /** @cur_residency: raw driver copy of idle residency */
+>>> +    u64 cur_residency;
+>>> +    /** @prev_residency: previous residency counter */
+>>> +    u64 prev_residency;
+>>> +    /** @idle_status: get the current idle state */
+>>> +    enum xe_gt_idle_state (*idle_status)(struct xe_guc_pc *pc);
+>>> +    /** @idle_residency: get idle residency counter */
+>>> +    u64 (*idle_residency)(struct xe_guc_pc *pc); };
+>>> +
+>>> +#endif /* _XE_GT_IDLE_SYSFS_TYPES_H_ */
+>>> diff --git a/drivers/gpu/drm/xe/xe_gt_types.h
+>>> b/drivers/gpu/drm/xe/xe_gt_types.h
+>>> index 7c47d67aa8be..8dec660f5fc6 100644
+>>> --- a/drivers/gpu/drm/xe/xe_gt_types.h
+>>> +++ b/drivers/gpu/drm/xe/xe_gt_types.h
+>>> @@ -7,6 +7,7 @@
+>>>   #define _XE_GT_TYPES_H_
+>>>
+>>>   #include "xe_force_wake_types.h"
+>>> +#include "xe_gt_idle_sysfs_types.h"
+>>>   #include "xe_hw_engine_types.h"
+>>>   #include "xe_hw_fence_types.h"
+>>>   #include "xe_reg_sr_types.h"
+>>> @@ -287,6 +288,9 @@ struct xe_gt {
+>>>       /** @uc: micro controllers on the GT */
+>>>       struct xe_uc uc;
+>>>
+>>> +    /** @gtidle: idle properties of GT */
+>>> +    struct xe_gt_idle gtidle;
+>>> +
+>>>       /** @engine_ops: submission backend engine operations */
+>>>       const struct xe_engine_ops *engine_ops;
+>>>
+>>> diff --git a/drivers/gpu/drm/xe/xe_guc_pc.c
+>>> b/drivers/gpu/drm/xe/xe_guc_pc.c index e799faa1c6b8..31c56a0dc210
+>>> 100644
+>>> --- a/drivers/gpu/drm/xe/xe_guc_pc.c
+>>> +++ b/drivers/gpu/drm/xe/xe_guc_pc.c
+>>> @@ -76,12 +76,7 @@
+>>>    *
+>>>    * Render-C states is also a GuC PC feature that is now enabled in 
+>>> Xe for
+>>>    * all platforms.
+>>> - * Xe's GuC PC provides a sysfs API for Render-C States:
+>>>    *
+>>> - * device/gt#/rc* *read-only* files:
+>>> - * - rc_status: Provide the actual immediate status of Render-C: 
+>>> (rc0 or rc6)
+>>> - * - rc6_residency: Provide the rc6_residency counter in units of 
+>>> 1.28 uSec.
+>>> - *                  Prone to overflows.
+>>>    */
+>>>
+>>>   static struct xe_guc *
+>>> @@ -580,10 +575,12 @@ static ssize_t freq_max_store(struct device *dev,
+>>> struct device_attribute *attr,  }  static DEVICE_ATTR_RW(freq_max);
+>>>
+>>> -static ssize_t rc_status_show(struct device *dev,
+>>> -                  struct device_attribute *attr, char *buff)
+>>> +/**
+>>> + * xe_guc_pc_rc_status - get the current Render C state
+>>> + * @pc - XE_GuC_PC instance
+>>> + */
+>>> +enum xe_gt_idle_state xe_guc_pc_rc_status(struct xe_guc_pc *pc)
+>>>   {
+>>> -    struct xe_guc_pc *pc = dev_to_pc(dev);
+>>>       struct xe_gt *gt = pc_to_gt(pc);
+>>>       u32 reg;
+>>>
+>>> @@ -593,37 +590,30 @@ static ssize_t rc_status_show(struct device *dev,
+>>>
+>>>       switch (REG_FIELD_GET(RCN_MASK, reg)) {
+>>>       case GT_RC6:
+>>> -        return sysfs_emit(buff, "rc6\n");
+>>> +        return GT_IDLE_RC6;
+>>>       case GT_RC0:
+>>> -        return sysfs_emit(buff, "rc0\n");
+>>> +        return GT_IDLE_RC0;
+>>>       default:
+>>> -        return -ENOENT;
+>>> +        return GT_IDLE_UNKNOWN;
+>>>       }
+>>>   }
+>>> -static DEVICE_ATTR_RO(rc_status);
+>>>
+>>> -static ssize_t rc6_residency_show(struct device *dev,
+>>> -                  struct device_attribute *attr, char *buff)
+>>> +/**
+>>> + * xe_guc_pc_rc6_residency - rc6 residency counter
+>>> + * @pc - Xe_GuC_PC instance
+>>> + */
+>>> +u64 xe_guc_pc_rc6_residency(struct xe_guc_pc *pc)
+>>>   {
+>>> -    struct xe_guc_pc *pc = dev_to_pc(dev);
+>>>       struct xe_gt *gt = pc_to_gt(pc);
+>>> -    u32 reg;
+>>> -    ssize_t ret;
+>>> +    u64 reg;
+>> Why do we need u64 here as we are reading 32 bit register, caller can 
+>> do the implicit type conversion.
+> Will change this to u32
+> 
+> Thanks
+> Riana
+>> Thanks,
+>> Anshuman Gupta.
+>>>
+>>> -    xe_device_mem_access_get(pc_to_xe(pc));
+>>> -    ret = xe_force_wake_get(gt_to_fw(gt), XE_FORCEWAKE_ALL);
+>>> -    if (ret)
+>>> -        goto out;
+>>> +    xe_device_mem_access_get(gt_to_xe(gt));
+>>>
+>>>       reg = xe_mmio_read32(gt, GT_GFX_RC6);
+>>> -    ret = sysfs_emit(buff, "%u\n", reg);
+>>>
+>>> -    XE_WARN_ON(xe_force_wake_put(gt_to_fw(gt),
+>>> XE_FORCEWAKE_ALL));
+>>> -out:
+>>> -    xe_device_mem_access_put(pc_to_xe(pc));
+>>> -    return ret;
+>>> +    xe_device_mem_access_put(gt_to_xe(gt));
+>>> +    return reg;
+>>>   }
+>>> -static DEVICE_ATTR_RO(rc6_residency);
+>>>
+>>>   static const struct attribute *pc_attrs[] = {
+>>>       &dev_attr_freq_act.attr,
+>>> @@ -633,8 +623,6 @@ static const struct attribute *pc_attrs[] = {
+>>>       &dev_attr_freq_rpn.attr,
+>>>       &dev_attr_freq_min.attr,
+>>>       &dev_attr_freq_max.attr,
+>>> -    &dev_attr_rc_status.attr,
+>>> -    &dev_attr_rc6_residency.attr,
+>>>       NULL
+>>>   };
+>>>
+>>> diff --git a/drivers/gpu/drm/xe/xe_guc_pc.h
+>>> b/drivers/gpu/drm/xe/xe_guc_pc.h index da29e4934868..976179dbc9a8
+>>> 100644
+>>> --- a/drivers/gpu/drm/xe/xe_guc_pc.h
+>>> +++ b/drivers/gpu/drm/xe/xe_guc_pc.h
+>>> @@ -12,4 +12,6 @@ int xe_guc_pc_init(struct xe_guc_pc *pc);  int
+>>> xe_guc_pc_start(struct xe_guc_pc *pc);  int xe_guc_pc_stop(struct
+>>> xe_guc_pc *pc);
+>>>
+>>> +enum xe_gt_idle_state xe_guc_pc_rc_status(struct xe_guc_pc *pc);
+>>> +u64 xe_guc_pc_rc6_residency(struct xe_guc_pc *pc);
+>>>   #endif /* _XE_GUC_PC_H_ */
+>>> -- 
+>>> 2.40.0
+>>
