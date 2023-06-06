@@ -4,30 +4,30 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 146BCC7EE2C
-	for <intel-xe@archiver.kernel.org>; Tue,  6 Jun 2023 09:37:34 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0A74BC7EE2C
+	for <intel-xe@archiver.kernel.org>; Tue,  6 Jun 2023 09:39:35 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id DF55A10E21B;
-	Tue,  6 Jun 2023 09:37:33 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id ABF4D10E242;
+	Tue,  6 Jun 2023 09:39:35 +0000 (UTC)
 Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id 402A210E21B;
- Tue,  6 Jun 2023 09:37:32 +0000 (UTC)
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 15C1310E242;
+ Tue,  6 Jun 2023 09:39:33 +0000 (UTC)
 Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 369D7A00E6;
- Tue,  6 Jun 2023 09:37:32 +0000 (UTC)
+ by emeril.freedesktop.org (Postfix) with ESMTP id 0E24BA00E6;
+ Tue,  6 Jun 2023 09:39:33 +0000 (UTC)
 Content-Type: multipart/alternative;
- boundary="===============3935521193941961645=="
+ boundary="===============6549379137603604204=="
 MIME-Version: 1.0
 From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Matt Roper" <matthew.d.roper@intel.com>
-Date: Tue, 06 Jun 2023 09:37:32 -0000
-Message-ID: <168604425221.22676.11739487023849885033@emeril.freedesktop.org>
+To: "Teres Alexis, Alan Previn" <alan.previn.teres.alexis@intel.com>
+Date: Tue, 06 Jun 2023 09:39:33 -0000
+Message-ID: <168604437302.22675.1463517772620695037@emeril.freedesktop.org>
 X-Patchwork-Hint: ignore
-References: <20230602231054.1306865-1-matthew.d.roper@intel.com>
-In-Reply-To: <20230602231054.1306865-1-matthew.d.roper@intel.com>
-Subject: [Intel-xe] =?utf-8?q?=E2=97=8B_CI=2EBAT=3A_info_for_drm/xe/wa=3A?=
- =?utf-8?q?_Extend_scope_of_Wa=5F14015795083?=
+References: <20230602185213.2635921-1-alan.previn.teres.alexis@intel.com>
+In-Reply-To: <20230602185213.2635921-1-alan.previn.teres.alexis@intel.com>
+Subject: [Intel-xe] =?utf-8?q?=E2=97=8B_CI=2EBAT=3A_info_for_drm/xe/guc?=
+ =?utf-8?q?=3A_Fix_h2g=5Fwrite_usage_of_GUC=5FCTB=5FMSG=5FMAX=5FLEN?=
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -44,15 +44,15 @@ Cc: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============3935521193941961645==
+--===============6549379137603604204==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
 
 == Series Details ==
 
-Series: drm/xe/wa: Extend scope of Wa_14015795083
-URL   : https://patchwork.freedesktop.org/series/118806/
+Series: drm/xe/guc: Fix h2g_write usage of GUC_CTB_MSG_MAX_LEN
+URL   : https://patchwork.freedesktop.org/series/118799/
 State : info
 
 == Summary ==
@@ -60,13 +60,12 @@ State : info
 Participating hosts:
 bat-atsm-2
 bat-dg2-oem2
-Missing hosts results[1]:
-bat-dg2-oem2
-Results: [xe-pw-118806v1](https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-118806v1/index.html)
+Missing hosts results[0]:
+Results: [xe-pw-118799v1](https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-118799v1/index.html)
 
 
 
---===============3935521193941961645==
+--===============6549379137603604204==
 Content-Type: text/html; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -86,8 +85,8 @@ Content-Transfer-Encoding: 7bit
 
 <b>Patch Details</b>
 <table>
-<tr><td><b>Series:</b></td><td>drm/xe/wa: Extend scope of Wa_14015795083</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/118806/">https://patchwork.freedesktop.org/series/118806/</a></td></tr>
+<tr><td><b>Series:</b></td><td>drm/xe/guc: Fix h2g_write usage of GUC_CTB_MSG_MAX_LEN</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/118799/">https://patchwork.freedesktop.org/series/118799/</a></td></tr>
 <tr><td><b>State:</b></td><td>info</td></tr>
 
 </table>
@@ -96,11 +95,10 @@ Content-Transfer-Encoding: 7bit
     <p>Participating hosts:<br />
 bat-atsm-2<br />
 bat-dg2-oem2<br />
-Missing hosts results[1]:<br />
-bat-dg2-oem2<br />
-Results: <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-118806v1/index.html">xe-pw-118806v1</a></p>
+Missing hosts results[0]:<br />
+Results: <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-118799v1/index.html">xe-pw-118799v1</a></p>
 
 </body>
 </html>
 
---===============3935521193941961645==--
+--===============6549379137603604204==--
