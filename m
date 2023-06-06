@@ -4,31 +4,30 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 42BB4C7EE24
-	for <intel-xe@archiver.kernel.org>; Tue,  6 Jun 2023 09:49:56 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1E7F3C77B73
+	for <intel-xe@archiver.kernel.org>; Tue,  6 Jun 2023 09:51:37 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0C97F10E21B;
-	Tue,  6 Jun 2023 09:49:56 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id DEEB810E21B;
+	Tue,  6 Jun 2023 09:51:36 +0000 (UTC)
 Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id 3D03510E21B;
- Tue,  6 Jun 2023 09:49:55 +0000 (UTC)
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id E973710E21B;
+ Tue,  6 Jun 2023 09:51:35 +0000 (UTC)
 Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 39EC1AADD6;
- Tue,  6 Jun 2023 09:49:55 +0000 (UTC)
+ by emeril.freedesktop.org (Postfix) with ESMTP id E36ECA73C7;
+ Tue,  6 Jun 2023 09:51:35 +0000 (UTC)
 Content-Type: multipart/alternative;
- boundary="===============5230022010468337122=="
+ boundary="===============6777284290006599106=="
 MIME-Version: 1.0
 From: Patchwork <patchwork@emeril.freedesktop.org>
-To: =?utf-8?q?Zbigniew_Kempczy=C5=84ski?= <zbigniew.kempczynski@intel.com>
-Date: Tue, 06 Jun 2023 09:49:55 -0000
-Message-ID: <168604499523.22671.6355108678940632836@emeril.freedesktop.org>
+To: "Hogander, Jouni" <jouni.hogander@intel.com>
+Date: Tue, 06 Jun 2023 09:51:35 -0000
+Message-ID: <168604509592.22674.16185796097763476886@emeril.freedesktop.org>
 X-Patchwork-Hint: ignore
-References: <20230602104747.72015-1-zbigniew.kempczynski@intel.com>
-In-Reply-To: <20230602104747.72015-1-zbigniew.kempczynski@intel.com>
-Subject: [Intel-xe] =?utf-8?q?=E2=97=8B_CI=2EBAT=3A_info_for_drm/xe=3A_Us?=
- =?utf-8?q?e_nanoseconds_instead_of_jiffies_in_uapi_for_user_fence_=28rev2?=
- =?utf-8?q?=29?=
+References: <20230602104237.1014684-1-jouni.hogander@intel.com>
+In-Reply-To: <20230602104237.1014684-1-jouni.hogander@intel.com>
+Subject: [Intel-xe] =?utf-8?q?=E2=97=8B_CI=2EBAT=3A_info_for_Clean-up_Xe_?=
+ =?utf-8?q?FBC_additions_=28rev3=29?=
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -45,15 +44,15 @@ Cc: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============5230022010468337122==
+--===============6777284290006599106==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
 
 == Series Details ==
 
-Series: drm/xe: Use nanoseconds instead of jiffies in uapi for user fence (rev2)
-URL   : https://patchwork.freedesktop.org/series/118670/
+Series: Clean-up Xe FBC additions (rev3)
+URL   : https://patchwork.freedesktop.org/series/118560/
 State : info
 
 == Summary ==
@@ -62,11 +61,11 @@ Participating hosts:
 bat-atsm-2
 bat-dg2-oem2
 Missing hosts results[0]:
-Results: [xe-pw-118670v2](https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-118670v2/index.html)
+Results: [xe-pw-118560v3](https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-118560v3/index.html)
 
 
 
---===============5230022010468337122==
+--===============6777284290006599106==
 Content-Type: text/html; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -86,8 +85,8 @@ Content-Transfer-Encoding: 7bit
 
 <b>Patch Details</b>
 <table>
-<tr><td><b>Series:</b></td><td>drm/xe: Use nanoseconds instead of jiffies in uapi for user fence (rev2)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/118670/">https://patchwork.freedesktop.org/series/118670/</a></td></tr>
+<tr><td><b>Series:</b></td><td>Clean-up Xe FBC additions (rev3)</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/118560/">https://patchwork.freedesktop.org/series/118560/</a></td></tr>
 <tr><td><b>State:</b></td><td>info</td></tr>
 
 </table>
@@ -97,9 +96,9 @@ Content-Transfer-Encoding: 7bit
 bat-atsm-2<br />
 bat-dg2-oem2<br />
 Missing hosts results[0]:<br />
-Results: <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-118670v2/index.html">xe-pw-118670v2</a></p>
+Results: <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-118560v3/index.html">xe-pw-118560v3</a></p>
 
 </body>
 </html>
 
---===============5230022010468337122==--
+--===============6777284290006599106==--
