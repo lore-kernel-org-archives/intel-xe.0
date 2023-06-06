@@ -4,30 +4,30 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8FF44C77B7A
-	for <intel-xe@archiver.kernel.org>; Tue,  6 Jun 2023 12:48:47 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4D677C77B73
+	for <intel-xe@archiver.kernel.org>; Tue,  6 Jun 2023 12:49:05 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6ABB310E331;
-	Tue,  6 Jun 2023 12:48:47 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 25B7D10E331;
+	Tue,  6 Jun 2023 12:49:05 +0000 (UTC)
 Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id F0DDC10E331;
- Tue,  6 Jun 2023 12:48:44 +0000 (UTC)
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id A1CE610E331;
+ Tue,  6 Jun 2023 12:49:03 +0000 (UTC)
 Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id EAB2AAA01E;
- Tue,  6 Jun 2023 12:48:44 +0000 (UTC)
+ by emeril.freedesktop.org (Postfix) with ESMTP id 9EFCDAA01E;
+ Tue,  6 Jun 2023 12:49:03 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: "Badal Nilawar" <badal.nilawar@intel.com>
-Date: Tue, 06 Jun 2023 12:48:44 -0000
-Message-ID: <168605572493.22675.3602794284171206252@emeril.freedesktop.org>
+Date: Tue, 06 Jun 2023 12:49:03 -0000
+Message-ID: <168605574364.22674.9068778443226955283@emeril.freedesktop.org>
 X-Patchwork-Hint: ignore
 References: <20230606125057.838618-1-badal.nilawar@intel.com>
 In-Reply-To: <20230606125057.838618-1-badal.nilawar@intel.com>
-Subject: [Intel-xe] =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_f?=
- =?utf-8?q?or_Add_HWMON_support_for_DGFX?=
+Subject: [Intel-xe] =?utf-8?q?=E2=9C=97_CI=2Echeckpatch=3A_warning_for_Ad?=
+ =?utf-8?q?d_HWMON_support_for_DGFX?=
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -48,29 +48,96 @@ Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 Series: Add HWMON support for DGFX
 URL   : https://patchwork.freedesktop.org/series/118934/
-State : success
+State : warning
 
 == Summary ==
 
-=== Applying kernel patches on branch 'drm-xe-next' with base: ===
-Base commit: ee454cf40 drm/xe: Don't hardcode GuC's MOCS index in register header
-=== git am output follows ===
-.git/rebase-apply/patch:39: new blank line at EOF.
-+
-.git/rebase-apply/patch:92: new blank line at EOF.
-+
-warning: 2 lines add whitespace errors.
-.git/rebase-apply/patch:40: new blank line at EOF.
-+
-warning: 1 line adds whitespace errors.
-.git/rebase-apply/patch:24: new blank line at EOF.
-+
-warning: 1 line adds whitespace errors.
-Applying: drm/xe/hwmon: Add HWMON infrastructure
-Applying: drm/xe/hwmon: Expose power attributes
-Applying: drm/xe/hwmon: Expose card reactive critical power
-Applying: drm/xe/hwmon: Expose input voltage attribute
-Applying: drm/xe/hwmon: Expose hwmon energy attribute
-Applying: drm/xe/hwmon: Expose power1_max_interval
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+c7d32770e3cd31d9fc134ce41f329b10aa33ee15
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit fb7dcf451e513cf4449eb89bb92b1062f292b9de
+Author: Badal Nilawar <badal.nilawar@intel.com>
+Date:   Tue Jun 6 18:20:57 2023 +0530
+
+    drm/xe/hwmon: Expose power1_max_interval
+    
+    Expose power1_max_interval, that is the tau corresponding to PL1, as a
+    custom hwmon attribute. Some bit manipulation is needed because of the
+    format of PKG_PWR_LIM_1_TIME in
+    PACKAGE_RAPL_LIMIT register (1.x * power(2,y))
+    
+    Co-developed-by: Ashutosh Dixit <ashutosh.dixit@intel.com>
+    Signed-off-by: Badal Nilawar <badal.nilawar@intel.com>
++ /mt/dim checkpatch ee454cf4046170833f005c9591fb80a67df81f07 drm-intel
+db02f947a drm/xe/hwmon: Add HWMON infrastructure
+Traceback (most recent call last):
+  File "scripts/spdxcheck.py", line 6, in <module>
+    from ply import lex, yacc
+ModuleNotFoundError: No module named 'ply'
+Traceback (most recent call last):
+  File "scripts/spdxcheck.py", line 6, in <module>
+    from ply import lex, yacc
+ModuleNotFoundError: No module named 'ply'
+-:70: WARNING:FILE_PATH_CHANGES: added, moved or deleted file(s), does MAINTAINERS need updating?
+#70: 
+new file mode 100644
+
+total: 0 errors, 1 warnings, 0 checks, 181 lines checked
+c38d6b366 drm/xe/hwmon: Expose power attributes
+Traceback (most recent call last):
+  File "scripts/spdxcheck.py", line 6, in <module>
+    from ply import lex, yacc
+ModuleNotFoundError: No module named 'ply'
+-:8: WARNING:BAD_SIGN_OFF: Co-developed-by and Signed-off-by: name/email do not match
+#8: 
+Co-developed-by: Ashutosh Dixit <ashutosh.dixit@intel.com>
+Signed-off-by: Badal Nilawar <badal.nilawar@intel.com>
+
+-:12: WARNING:FILE_PATH_CHANGES: added, moved or deleted file(s), does MAINTAINERS need updating?
+#12: 
+new file mode 100644
+
+total: 0 errors, 2 warnings, 0 checks, 516 lines checked
+07d18355b drm/xe/hwmon: Expose card reactive critical power
+-:10: WARNING:BAD_SIGN_OFF: Co-developed-by and Signed-off-by: name/email do not match
+#10: 
+Co-developed-by: Ashutosh Dixit <ashutosh.dixit@intel.com>
+Signed-off-by: Badal Nilawar <badal.nilawar@intel.com>
+
+-:58: ERROR:COMPLEX_MACRO: Macros with complex values should be enclosed in parentheses
+#58: FILE: drivers/gpu/drm/xe/xe_hwmon.c:20:
++#define PCODE_MBOX(mbcmd, param1, param2)\
++	FIELD_PREP(PCODE_MB_COMMAND, mbcmd)\
++	| FIELD_PREP(PCODE_MB_PARAM1, param1)\
++	| FIELD_PREP(PCODE_MB_PARAM2, param2)
+
+total: 1 errors, 1 warnings, 0 checks, 226 lines checked
+9946cedfb drm/xe/hwmon: Expose input voltage attribute
+-:8: WARNING:BAD_SIGN_OFF: Co-developed-by and Signed-off-by: name/email do not match
+#8: 
+Co-developed-by: Riana Tauro <riana.tauro@intel.com>
+Signed-off-by: Badal Nilawar <badal.nilawar@intel.com>
+
+total: 0 errors, 1 warnings, 0 checks, 158 lines checked
+15472b85d drm/xe/hwmon: Expose hwmon energy attribute
+-:9: WARNING:BAD_SIGN_OFF: Co-developed-by and Signed-off-by: name/email do not match
+#9: 
+Co-developed-by: Ashutosh Dixit <ashutosh.dixit@intel.com>
+Signed-off-by: Badal Nilawar <badal.nilawar@intel.com>
+
+total: 0 errors, 1 warnings, 0 checks, 344 lines checked
+fb7dcf451 drm/xe/hwmon: Expose power1_max_interval
+-:11: WARNING:BAD_SIGN_OFF: Co-developed-by and Signed-off-by: name/email do not match
+#11: 
+Co-developed-by: Ashutosh Dixit <ashutosh.dixit@intel.com>
+Signed-off-by: Badal Nilawar <badal.nilawar@intel.com>
+
+total: 0 errors, 1 warnings, 0 checks, 196 lines checked
 
 
