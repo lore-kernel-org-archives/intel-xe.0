@@ -4,45 +4,30 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 10542C77B73
-	for <intel-xe@archiver.kernel.org>; Tue,  6 Jun 2023 09:45:25 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id C0AEEC77B73
+	for <intel-xe@archiver.kernel.org>; Tue,  6 Jun 2023 09:46:19 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id DB73B10E324;
-	Tue,  6 Jun 2023 09:45:24 +0000 (UTC)
-Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C963610E330
- for <intel-xe@lists.freedesktop.org>; Tue,  6 Jun 2023 09:45:22 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1686044722; x=1717580722;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=2mMRhMgAfO4ylkW8HjNv+RwDfm/y+mKLCrnMHQA65pI=;
- b=RxMk2vlv8IhanYTr84q21aN/z57yL1GsrtpLa+NiRsQwvNC8yqJ/OACE
- v02tFF3YhgMMvFaF9j5EwrN6K5gNBX8S5ZXKM0x0BpG1ltts6npDU2uLs
- KXjx/6Hh88CCA+nQnuB8rn6Recqe6DRBzGnC+IVK5dFkTACeTsvqDDaSA
- WIj9LwZmurHExly0XHkMhFk8wRnS85xSAhk51n3mrPuvGKNV4gXN+mu2g
- q6annWIv/D9ZCceqNth6AkZVhMwsBxOOETwq65L+SvtFss6vslWYM6Qca
- zG5A40pMwHK83BwU+YCXQrOHzld/0M11wNan09EZY6/6Ml1nx+AbguO7K A==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10732"; a="359937030"
-X-IronPort-AV: E=Sophos;i="6.00,219,1681196400"; d="scan'208";a="359937030"
-Received: from fmsmga003.fm.intel.com ([10.253.24.29])
- by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 06 Jun 2023 02:45:21 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10732"; a="798768982"
-X-IronPort-AV: E=Sophos;i="6.00,219,1681196400"; d="scan'208";a="798768982"
-Received: from himal-super-server.iind.intel.com ([10.145.169.168])
- by FMSMGA003.fm.intel.com with ESMTP; 06 Jun 2023 02:45:19 -0700
-From: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
-To: intel-xe@lists.freedesktop.org
-Date: Tue,  6 Jun 2023 15:19:29 +0530
-Message-Id: <20230606094929.2989914-1-himal.prasad.ghimiray@intel.com>
-X-Mailer: git-send-email 2.25.1
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9101910E242;
+	Tue,  6 Jun 2023 09:46:19 +0000 (UTC)
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 41AC410E242;
+ Tue,  6 Jun 2023 09:46:17 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 39382AADD6;
+ Tue,  6 Jun 2023 09:46:17 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============4000340597172140427=="
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Subject: [Intel-xe] [PATCH 1/1] drm/xe: Report tile count from device query
- api.
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Mika Kuoppala" <mika.kuoppala@linux.intel.com>
+Date: Tue, 06 Jun 2023 09:46:17 -0000
+Message-ID: <168604477722.22676.18097276112090746306@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20230602152149.998293-1-mika.kuoppala@linux.intel.com>
+In-Reply-To: <20230602152149.998293-1-mika.kuoppala@linux.intel.com>
+Subject: [Intel-xe] =?utf-8?q?=E2=97=8B_CI=2EBAT=3A_info_for_drm/xe=3A_Ge?=
+ =?utf-8?q?t_the_engine_ref_while_holding_a_lock?=
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -54,45 +39,66 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Cc: Matt Roper <matthew.d.roper@intel.com>
+Reply-To: intel-xe@lists.freedesktop.org
+Cc: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Cc: Matt Roper <matthew.d.roper@intel.com>
-Cc: Francois Dugast <francois.dugast@intel.com>
+--===============4000340597172140427==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-Signed-off-by: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
----
- drivers/gpu/drm/xe/xe_query.c | 1 +
- include/uapi/drm/xe_drm.h     | 3 ++-
- 2 files changed, 3 insertions(+), 1 deletion(-)
+== Series Details ==
 
-diff --git a/drivers/gpu/drm/xe/xe_query.c b/drivers/gpu/drm/xe/xe_query.c
-index c4165fa3428e..54efbefd663f 100644
---- a/drivers/gpu/drm/xe/xe_query.c
-+++ b/drivers/gpu/drm/xe/xe_query.c
-@@ -197,6 +197,7 @@ static int query_config(struct xe_device *xe, struct drm_xe_device_query *query)
- 		hweight_long(xe->info.mem_region_mask);
- 	config->info[XE_QUERY_CONFIG_MAX_ENGINE_PRIORITY] =
- 		xe_engine_device_get_max_priority(xe);
-+	config->info[XE_QUERY_CONFIG_TILE_COUNT] = xe->info.tile_count;
- 
- 	if (copy_to_user(query_ptr, config, size)) {
- 		kfree(config);
-diff --git a/include/uapi/drm/xe_drm.h b/include/uapi/drm/xe_drm.h
-index 0ebc50beb5e5..8e552aa55037 100644
---- a/include/uapi/drm/xe_drm.h
-+++ b/include/uapi/drm/xe_drm.h
-@@ -185,7 +185,8 @@ struct drm_xe_query_config {
- #define XE_QUERY_CONFIG_GT_COUNT		4
- #define XE_QUERY_CONFIG_MEM_REGION_COUNT	5
- #define XE_QUERY_CONFIG_MAX_ENGINE_PRIORITY	6
--#define XE_QUERY_CONFIG_NUM_PARAM		XE_QUERY_CONFIG_MAX_ENGINE_PRIORITY + 1
-+#define XE_QUERY_CONFIG_TILE_COUNT		7
-+#define XE_QUERY_CONFIG_NUM_PARAM		XE_QUERY_CONFIG_TILE_COUNT + 1
- 	__u64 info[];
- };
- 
--- 
-2.25.1
+Series: drm/xe: Get the engine ref while holding a lock
+URL   : https://patchwork.freedesktop.org/series/118786/
+State : info
 
+== Summary ==
+
+Participating hosts:
+bat-atsm-2
+bat-dg2-oem2
+Missing hosts results[0]:
+Results: [xe-pw-118786v1](https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-118786v1/index.html)
+
+
+
+--===============4000340597172140427==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/xe: Get the engine ref while holding a lock</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/118786/">https://patchwork.freedesktop.org/series/118786/</a></td></tr>
+<tr><td><b>State:</b></td><td>info</td></tr>
+
+</table>
+
+
+    <p>Participating hosts:<br />
+bat-atsm-2<br />
+bat-dg2-oem2<br />
+Missing hosts results[0]:<br />
+Results: <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-118786v1/index.html">xe-pw-118786v1</a></p>
+
+</body>
+</html>
+
+--===============4000340597172140427==--
