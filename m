@@ -4,48 +4,48 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 66B12C83003
-	for <intel-xe@archiver.kernel.org>; Tue,  6 Jun 2023 23:53:13 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1E8F3C7EE43
+	for <intel-xe@archiver.kernel.org>; Tue,  6 Jun 2023 23:53:12 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 03FD010E3FD;
-	Tue,  6 Jun 2023 23:53:13 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 991F610E3EC;
+	Tue,  6 Jun 2023 23:53:11 +0000 (UTC)
 Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5A30810E3F2
- for <intel-xe@lists.freedesktop.org>; Tue,  6 Jun 2023 23:53:10 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8D71210E3EC
+ for <intel-xe@lists.freedesktop.org>; Tue,  6 Jun 2023 23:53:09 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1686095590; x=1717631590;
+ t=1686095589; x=1717631589;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=nXH7SESu825RgSnzDE2M6hD/EtesbNNhSwwKRLYMpyY=;
- b=k82bp9UilFBAEQPqP5oMxt4amd6n1zNHvvA74G4TP0KGEjbUuj24hKez
- I3yP3EgOXF2iAWhfvKazis/1y4g9boVeIvGD6tBrswI39pEayZVys/+qe
- iYi0wfh5zQPz3EErQpxlzmxtNT2m0q7mAL2JQrZOwEgbkHR8byJMSzwp7
- bcwdgHI6tpYB2LDEkGUR7O8BzKYjpovW74ET5l8i1AFWSrJ+SHcQ52fXH
- 1kqVSOrmLoCaAJwngJA6McX9waGwpNrlUJk2skEkmHgP0OizutYsMJ6wn
- WpF3TE4nsJexDKXGaVTR+TTYAMPOPgsFfBJrJVEYFZxCbHG6jXOWHimdH A==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10733"; a="341481334"
-X-IronPort-AV: E=Sophos;i="6.00,222,1681196400"; d="scan'208";a="341481334"
+ bh=KYtgnrVZuwUftdfTQKmZ2wlKCL7XHODFg4s4vGHOOrs=;
+ b=QE+5p6Hme16N9VsUM1DlFPNPMPZqWfIyYNxBhY4ggkMV23fmGvjVXoFv
+ JZwvcAl89KDXWAnGVzCkqnuSSc6eclf5cAj+kRGAQKPd3RFxhwmbZZ2yU
+ M33KAjG+ev/iy77oHaf/wzaxtsLcOy93IYnhDZm/sSZSghTVJKoP6mBf5
+ /8yZGk6K7zbNIoDM+ovQcrm7VOH7gSpbjrOAvj+SFdD3qDjGyyjSV3lMg
+ NhujGi7IboGhND3XzM2zOJiYqHfJWtZmKfMMECb8NMzwX+jn4oP7TfxWS
+ bHJRujo5o/VqWOKBZO9MNGWJJgi4e85V3LVGC5IlJWCr5Kt1M1eyVg89a A==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10733"; a="341481321"
+X-IronPort-AV: E=Sophos;i="6.00,222,1681196400"; d="scan'208";a="341481321"
 Received: from orsmga007.jf.intel.com ([10.7.209.58])
  by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 06 Jun 2023 16:52:51 -0700
+ 06 Jun 2023 16:52:49 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10733"; a="703385611"
-X-IronPort-AV: E=Sophos;i="6.00,222,1681196400"; d="scan'208";a="703385611"
+X-IronPort-AV: E=McAfee;i="6600,9927,10733"; a="703385566"
+X-IronPort-AV: E=Sophos;i="6.00,222,1681196400"; d="scan'208";a="703385566"
 Received: from mdroper-desk1.fm.intel.com ([10.1.27.147])
  by orsmga007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 06 Jun 2023 16:52:50 -0700
+ 06 Jun 2023 16:52:48 -0700
 From: Matt Roper <matthew.d.roper@intel.com>
 To: intel-xe@lists.freedesktop.org
-Date: Tue,  6 Jun 2023 16:52:42 -0700
-Message-Id: <20230606235242.1895643-11-matthew.d.roper@intel.com>
+Date: Tue,  6 Jun 2023 16:52:35 -0700
+Message-Id: <20230606235242.1895643-4-matthew.d.roper@intel.com>
 X-Mailer: git-send-email 2.40.1
 In-Reply-To: <20230606235242.1895643-1-matthew.d.roper@intel.com>
 References: <20230606235242.1895643-1-matthew.d.roper@intel.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-xe] [PATCH v2 10/10] fixup! drm/xe/display: Implement
- display support
+Subject: [Intel-xe] [PATCH v2 03/10] drm/i915/display: Move display runtime
+ info to display structure
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -57,515 +57,1246 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Cc: matthew.d.roper@intel.com
+Cc: Jani Nikula <jani.nikula@intel.com>, matthew.d.roper@intel.com,
+ Andrzej Hajda <andrzej.hajda@intel.com>
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
----
- drivers/gpu/drm/xe/Makefile                   |   2 +
- .../gpu/drm/xe/compat-i915-headers/i915_drv.h |  40 +----
- .../drm/xe/display/ext/intel_device_info.c    |  94 ++--------
- drivers/gpu/drm/xe/xe_device_types.h          |  56 +-----
- drivers/gpu/drm/xe/xe_display.c               | 166 +++---------------
- 5 files changed, 51 insertions(+), 307 deletions(-)
+Move the runtime info specific to display into display-specific
+structures as has already been done with the constant display info.
 
-diff --git a/drivers/gpu/drm/xe/Makefile b/drivers/gpu/drm/xe/Makefile
-index f34d4bdd510b..0fbbbc6e247c 100644
---- a/drivers/gpu/drm/xe/Makefile
-+++ b/drivers/gpu/drm/xe/Makefile
-@@ -122,6 +122,7 @@ subdir-ccflags-$(CONFIG_DRM_XE_DISPLAY) += \
- 	-Ddrm_i915_private=xe_device
+v2:
+ - Rename __runtime to __runtime_defaults for more clarity on the
+   purpose.  (Andrzej)
+ - Move introduction of DISPLAY_INFO() to previous patch.  (Andrzej)
+ - Drop NO_DISPLAY macro.  (Andrzej)
+v3:
+ - Use "{}" instead of "{ 0 }" for empty struct init.  (Jani)
+
+Cc: Andrzej Hajda <andrzej.hajda@intel.com>
+Signed-off-by: Matt Roper <matthew.d.roper@intel.com>
+Reviewed-by: Andrzej Hajda <andrzej.hajda@intel.com>
+Acked-by: Jani Nikula <jani.nikula@intel.com>
+Link: https://patchwork.freedesktop.org/patch/msgid/20230523195609.73627-4-matthew.d.roper@intel.com
+(cherry picked from commit 18e0deeed8c80d8ec0adfff3312252028739ce52)
+---
+ drivers/gpu/drm/i915/display/intel_crtc.c     |   2 +-
+ drivers/gpu/drm/i915/display/intel_cursor.c   |   2 +-
+ drivers/gpu/drm/i915/display/intel_display.c  |   2 +-
+ drivers/gpu/drm/i915/display/intel_display.h  |   8 +-
+ .../drm/i915/display/intel_display_device.h   |  23 ++
+ drivers/gpu/drm/i915/display/intel_fbc.c      |   6 +-
+ drivers/gpu/drm/i915/display/intel_hdcp.c     |   2 +-
+ .../drm/i915/display/skl_universal_plane.c    |   2 +-
+ drivers/gpu/drm/i915/i915_drv.h               |  18 +-
+ drivers/gpu/drm/i915/i915_pci.c               | 252 +++++++++++-------
+ drivers/gpu/drm/i915/intel_device_info.c      | 101 +++----
+ drivers/gpu/drm/i915/intel_device_info.h      |  18 --
+ drivers/gpu/drm/i915/intel_step.c             |   8 +-
+ 13 files changed, 268 insertions(+), 176 deletions(-)
+
+diff --git a/drivers/gpu/drm/i915/display/intel_crtc.c b/drivers/gpu/drm/i915/display/intel_crtc.c
+index 988924c86bea..5ddcba909dff 100644
+--- a/drivers/gpu/drm/i915/display/intel_crtc.c
++++ b/drivers/gpu/drm/i915/display/intel_crtc.c
+@@ -302,7 +302,7 @@ int intel_crtc_init(struct drm_i915_private *dev_priv, enum pipe pipe)
+ 		return PTR_ERR(crtc);
  
- CFLAGS_i915-display/intel_fbdev.o = $(call cc-disable-warning, override-init)
-+CFLAGS_i915-display/intel_display_device.o = $(call cc-disable-warning, override-init)
+ 	crtc->pipe = pipe;
+-	crtc->num_scalers = RUNTIME_INFO(dev_priv)->num_scalers[pipe];
++	crtc->num_scalers = DISPLAY_RUNTIME_INFO(dev_priv)->num_scalers[pipe];
  
- # Rule to build display code shared with i915
- $(obj)/i915-display/%.o: $(srctree)/drivers/gpu/drm/i915/display/%.c FORCE
-@@ -161,6 +162,7 @@ xe-$(CONFIG_DRM_XE_DISPLAY) += \
- 	i915-display/intel_ddi.o \
- 	i915-display/intel_ddi_buf_trans.o \
- 	i915-display/intel_display.o \
-+	i915-display/intel_display_device.o \
- 	i915-display/intel_display_driver.o \
- 	i915-display/intel_display_debugfs.o \
- 	i915-display/intel_display_power.o \
-diff --git a/drivers/gpu/drm/xe/compat-i915-headers/i915_drv.h b/drivers/gpu/drm/xe/compat-i915-headers/i915_drv.h
-index 8a4ce3420c55..59bf1d4a61d6 100644
---- a/drivers/gpu/drm/xe/compat-i915-headers/i915_drv.h
-+++ b/drivers/gpu/drm/xe/compat-i915-headers/i915_drv.h
-@@ -84,44 +84,14 @@ static inline struct drm_i915_private *kdev_to_i915(struct device *kdev)
- #define IS_BDW_ULT(dev_priv) (dev_priv && 0)
- #define IS_BDW_ULX(dev_priv) (dev_priv && 0)
+ 	if (DISPLAY_VER(dev_priv) >= 9)
+ 		primary = skl_universal_plane_create(dev_priv, pipe,
+diff --git a/drivers/gpu/drm/i915/display/intel_cursor.c b/drivers/gpu/drm/i915/display/intel_cursor.c
+index e3941ea4cb24..4962247911d4 100644
+--- a/drivers/gpu/drm/i915/display/intel_cursor.c
++++ b/drivers/gpu/drm/i915/display/intel_cursor.c
+@@ -814,7 +814,7 @@ intel_cursor_plane_create(struct drm_i915_private *dev_priv,
+ 						   DRM_MODE_ROTATE_0 |
+ 						   DRM_MODE_ROTATE_180);
  
--#define INTEL_NUM_PIPES(xe) (hweight8((xe)->info.display.pipe_mask))
--#define HAS_DISPLAY(xe) ((xe)->info.display.pipe_mask != 0)
- #define INTEL_DISPLAY_ENABLED(xe) (HAS_DISPLAY((xe)) && !intel_opregion_headless_sku((xe)))
--#define HAS_CDCLK_CRAWL(xe) ((xe)->info.display.has_cdclk_crawl)
--#define HAS_CDCLK_SQUASH(xe) ((xe)->info.display.has_cdclk_squash)
--#define HAS_PSR(xe) ((xe)->info.display.has_psr)
--#define HAS_PSR2_SEL_FETCH(xe) (xe || 1)
--#define HAS_PSR_HW_TRACKING(xe) ((xe)->info.display.has_psr_hw_tracking)
--#define HAS_IPC(xe) ((xe)->info.display.has_ipc)
--#define HAS_IPS(xe) (xe && false)
--#define HAS_SAGV(xe) (xe || 1)
--#define HAS_DP_MST(xe) ((xe)->info.display.has_dp_mst)
--#define HAS_DMC(xe) ((xe)->info.display.has_dmc)
--#define HAS_DSB(xe) ((xe)->info.display.has_dsb)
--#define HAS_DSC(xe) ((xe)->info.display.has_dsc)
--#define HAS_CUR_FBC(xe) (xe || 1)
--#define HAS_DOUBLE_BUFFERED_M_N(xe) ((xe) || 1)
--#define I915_HAS_HOTPLUG(xe) (true)
--#define HAS_D12_PLANE_MINIMIZATION(dev_priv) (IS_ROCKETLAKE(dev_priv) || \
--					      IS_ALDERLAKE_S(dev_priv))
--#define DISPLAY_VER(xe) ((xe)->info.display.ver)
-+#define DISPLAY_VER(xe) ((xe)->info.display_runtime.ip.ver)
- #define IS_DISPLAY_VER(xe, first, last) ((DISPLAY_VER(xe) >= first && DISPLAY_VER(xe) <= last))
- #define IS_GRAPHICS_VER(xe, first, last) \
- 	((xe)->info.graphics_verx100 >= first * 100 && \
- 	 (xe)->info.graphics_verx100 <= (last*100 + 99))
- #define IS_MOBILE(xe) (xe && 0)
--#define HAS_GMCH(xe) (xe && 0)
--#define HAS_DDI(xe) (xe || 1)
- #define HAS_LLC(xe) (!IS_DGFX((xe)))
--#define HAS_GMBUS_IRQ(xe) (xe || 1)
--#define HAS_GMBUS_BURST_READ(xe) (xe || 1)
--#define HAS_VRR(xe) (xe || 1)
--#define HAS_ASYNC_FLIPS(xe) (xe || 1)
--#define HAS_FBC(xe) ((xe)->info.display.fbc_mask)
--#define SUPPORTS_TV(xe) (xe && 0)
--#define HAS_MBUS_JOINING(xe) (xe && 0)
--#define HAS_HW_SAGV_WM(xe) (DISPLAY_VER(xe) >= 13 && !IS_DGFX(xe))
--#define HAS_DPT(xe) (DISPLAY_VER(xe) >= 13)
+-	zpos = RUNTIME_INFO(dev_priv)->num_sprites[pipe] + 1;
++	zpos = DISPLAY_RUNTIME_INFO(dev_priv)->num_sprites[pipe] + 1;
+ 	drm_plane_create_zpos_immutable_property(&cursor->base, zpos);
  
- /* Workarounds not handled yet */
- #define IS_DISPLAY_STEP(xe, first, last) ({u8 __step = (xe)->info.step.display; first <= __step && __step <= last;})
-@@ -162,15 +132,11 @@ static inline struct drm_i915_private *kdev_to_i915(struct device *kdev)
- #define IS_DG2_G12(xe) ((xe)->info.subplatform == XE_SUBPLATFORM_DG2_G12)
- #define IS_ADLP_RPLU(xe) ((xe)->info.subplatform == XE_SUBPLATFORM_ADLP_RPLU)
- #define IS_ICL_WITH_PORT_F(xe) (xe && 0)
--#define HAS_LSPCON(xe) (xe && 0)
--#define HAS_MSO(xe) (xe || 1)
--#define HAS_DP20(xe) (IS_DG2(xe))
- #define HAS_FLAT_CCS(xe) (xe_device_has_flat_ccs(xe))
- #define HAS_4TILE(xe) ((xe)->info.has_4tile)
- #define to_intel_bo(x) gem_to_xe_bo((x))
- #define mkwrite_device_info(xe) (INTEL_INFO(xe))
+ 	if (DISPLAY_VER(dev_priv) >= 12)
+diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
+index 9187d37ffdf4..43bcd3d011bf 100644
+--- a/drivers/gpu/drm/i915/display/intel_display.c
++++ b/drivers/gpu/drm/i915/display/intel_display.c
+@@ -3352,7 +3352,7 @@ static u8 bigjoiner_pipes(struct drm_i915_private *i915)
+ 	else
+ 		pipes = 0;
  
--#define HAS_TRANSCODER(dev_priv, trans)  ((INTEL_INFO(dev_priv)->display.cpu_transcoder_mask & BIT(trans)) != 0)
- #define HAS_128_BYTE_Y_TILING(xe) (xe || 1)
+-	return pipes & RUNTIME_INFO(i915)->pipe_mask;
++	return pipes & DISPLAY_RUNTIME_INFO(i915)->pipe_mask;
+ }
  
- #define intel_has_gpu_reset(a) (a && 0)
-@@ -225,7 +191,9 @@ static inline void intel_runtime_pm_put(struct xe_runtime_pm *pm, bool wakeref)
+ static bool transcoder_ddi_func_is_enabled(struct drm_i915_private *dev_priv,
+diff --git a/drivers/gpu/drm/i915/display/intel_display.h b/drivers/gpu/drm/i915/display/intel_display.h
+index ce90e6377c13..ccc43d02568a 100644
+--- a/drivers/gpu/drm/i915/display/intel_display.h
++++ b/drivers/gpu/drm/i915/display/intel_display.h
+@@ -105,7 +105,7 @@ enum i9xx_plane_id {
+ };
  
- #define intel_step_name xe_step_name
- #define pdev_to_i915 pdev_to_xe_device
--#define RUNTIME_INFO(xe) (&(xe)->info.display)
-+#define DISPLAY_INFO(xe)		((xe)->info.display)
-+#define RUNTIME_INFO(xe)		(&(xe)->info.i915_runtime)
-+#define DISPLAY_RUNTIME_INFO(xe)	(&(xe)->info.display_runtime)
+ #define plane_name(p) ((p) + 'A')
+-#define sprite_name(p, s) ((p) * RUNTIME_INFO(dev_priv)->num_sprites[(p)] + (s) + 'A')
++#define sprite_name(p, s) ((p) * DISPLAY_RUNTIME_INFO(dev_priv)->num_sprites[(p)] + (s) + 'A')
  
- #define FORCEWAKE_ALL XE_FORCEWAKE_ALL
- #define HPD_STORM_DEFAULT_THRESHOLD 50
-diff --git a/drivers/gpu/drm/xe/display/ext/intel_device_info.c b/drivers/gpu/drm/xe/display/ext/intel_device_info.c
-index 9a54611037b5..d1bb1e12013f 100644
---- a/drivers/gpu/drm/xe/display/ext/intel_device_info.c
-+++ b/drivers/gpu/drm/xe/display/ext/intel_device_info.c
-@@ -30,89 +30,6 @@
- #include "i915_reg.h"
- #include <drm/drm_drv.h>
+ #define for_each_plane_id_on_crtc(__crtc, __p) \
+ 	for ((__p) = PLANE_PRIMARY; (__p) < I915_MAX_PLANES; (__p)++) \
+@@ -221,7 +221,7 @@ enum phy_fia {
  
--/**
-- * intel_device_info_runtime_init - initialize runtime info
-- * @dev_priv: the i915 device
-- *
-- * Determine various intel_device_info fields at runtime.
-- *
-- * Use it when either:
-- *   - it's judged too laborious to fill n static structures with the limit
-- *     when a simple if statement does the job,
-- *   - run-time checks (eg read fuse/strap registers) are needed.
-- *
-- * This function needs to be called:
-- *   - after the MMIO has been setup as we are reading registers,
-- *   - after the PCH has been detected,
-- *   - before the first usage of the fields it can tweak.
-- */
--void intel_device_info_runtime_init(struct drm_i915_private *dev_priv)
--{
--	struct intel_runtime_info *runtime = RUNTIME_INFO(dev_priv);
--	enum pipe pipe;
+ #define for_each_pipe(__dev_priv, __p) \
+ 	for ((__p) = 0; (__p) < I915_MAX_PIPES; (__p)++) \
+-		for_each_if(RUNTIME_INFO(__dev_priv)->pipe_mask & BIT(__p))
++		for_each_if(DISPLAY_RUNTIME_INFO(__dev_priv)->pipe_mask & BIT(__p))
+ 
+ #define for_each_pipe_masked(__dev_priv, __p, __mask) \
+ 	for_each_pipe(__dev_priv, __p) \
+@@ -229,7 +229,7 @@ enum phy_fia {
+ 
+ #define for_each_cpu_transcoder(__dev_priv, __t) \
+ 	for ((__t) = 0; (__t) < I915_MAX_TRANSCODERS; (__t)++)	\
+-		for_each_if (RUNTIME_INFO(__dev_priv)->cpu_transcoder_mask & BIT(__t))
++		for_each_if (DISPLAY_RUNTIME_INFO(__dev_priv)->cpu_transcoder_mask & BIT(__t))
+ 
+ #define for_each_cpu_transcoder_masked(__dev_priv, __t, __mask) \
+ 	for_each_cpu_transcoder(__dev_priv, __t) \
+@@ -237,7 +237,7 @@ enum phy_fia {
+ 
+ #define for_each_sprite(__dev_priv, __p, __s)				\
+ 	for ((__s) = 0;							\
+-	     (__s) < RUNTIME_INFO(__dev_priv)->num_sprites[(__p)];	\
++	     (__s) < DISPLAY_RUNTIME_INFO(__dev_priv)->num_sprites[(__p)];	\
+ 	     (__s)++)
+ 
+ #define for_each_port(__port) \
+diff --git a/drivers/gpu/drm/i915/display/intel_display_device.h b/drivers/gpu/drm/i915/display/intel_display_device.h
+index c689d582dbf1..613607fad5af 100644
+--- a/drivers/gpu/drm/i915/display/intel_display_device.h
++++ b/drivers/gpu/drm/i915/display/intel_display_device.h
+@@ -29,7 +29,30 @@
+ 	func(overlay_needs_physical); \
+ 	func(supports_tv);
+ 
++struct intel_display_runtime_info {
++	struct {
++		u16 ver;
++		u16 rel;
++		u16 step;
++	} ip;
++
++	u8 pipe_mask;
++	u8 cpu_transcoder_mask;
++
++	u8 num_sprites[I915_MAX_PIPES];
++	u8 num_scalers[I915_MAX_PIPES];
++
++	u8 fbc_mask;
++
++	bool has_hdcp;
++	bool has_dmc;
++	bool has_dsc;
++};
++
+ struct intel_display_device_info {
++	/* Initial runtime info. */
++	const struct intel_display_runtime_info __runtime_defaults;
++
+ 	u8 abox_mask;
+ 
+ 	struct {
+diff --git a/drivers/gpu/drm/i915/display/intel_fbc.c b/drivers/gpu/drm/i915/display/intel_fbc.c
+index 0e8e899f596b..9492b5158ae6 100644
+--- a/drivers/gpu/drm/i915/display/intel_fbc.c
++++ b/drivers/gpu/drm/i915/display/intel_fbc.c
+@@ -119,7 +119,7 @@ static u32 i915_gem_stolen_compressed_offset(struct xe_bo *bo)
+ 
+ #define for_each_fbc_id(__dev_priv, __fbc_id) \
+ 	for ((__fbc_id) = INTEL_FBC_A; (__fbc_id) < I915_MAX_FBCS; (__fbc_id)++) \
+-		for_each_if(RUNTIME_INFO(__dev_priv)->fbc_mask & BIT(__fbc_id))
++		for_each_if(DISPLAY_RUNTIME_INFO(__dev_priv)->fbc_mask & BIT(__fbc_id))
+ 
+ #define for_each_intel_fbc(__dev_priv, __fbc, __fbc_id) \
+ 	for_each_fbc_id((__dev_priv), (__fbc_id)) \
+@@ -1796,11 +1796,11 @@ void intel_fbc_init(struct drm_i915_private *i915)
+ 
+ #ifdef I915
+ 	if (!i915_gem_stolen_initialized(i915))
+-		RUNTIME_INFO(i915)->fbc_mask = 0;
++		DISPLAY_RUNTIME_INFO(i915)->fbc_mask = 0;
+ #endif
+ 
+ 	if (need_fbc_vtd_wa(i915))
+-		RUNTIME_INFO(i915)->fbc_mask = 0;
++		DISPLAY_RUNTIME_INFO(i915)->fbc_mask = 0;
+ 
+ 	i915->params.enable_fbc = intel_sanitize_fbc_option(i915);
+ 	drm_dbg_kms(&i915->drm, "Sanitized enable_fbc value: %d\n",
+diff --git a/drivers/gpu/drm/i915/display/intel_hdcp.c b/drivers/gpu/drm/i915/display/intel_hdcp.c
+index 0c2ddbef5cfe..f3c48dc2cad5 100644
+--- a/drivers/gpu/drm/i915/display/intel_hdcp.c
++++ b/drivers/gpu/drm/i915/display/intel_hdcp.c
+@@ -1146,7 +1146,7 @@ static void intel_hdcp_prop_work(struct work_struct *work)
+ 
+ bool is_hdcp_supported(struct drm_i915_private *dev_priv, enum port port)
+ {
+-	return RUNTIME_INFO(dev_priv)->has_hdcp &&
++	return DISPLAY_RUNTIME_INFO(dev_priv)->has_hdcp &&
+ 		(DISPLAY_VER(dev_priv) >= 12 || port < PORT_E);
+ }
+ 
+diff --git a/drivers/gpu/drm/i915/display/skl_universal_plane.c b/drivers/gpu/drm/i915/display/skl_universal_plane.c
+index 0f1e4e61d32e..1a0fe5aeaf04 100644
+--- a/drivers/gpu/drm/i915/display/skl_universal_plane.c
++++ b/drivers/gpu/drm/i915/display/skl_universal_plane.c
+@@ -1950,7 +1950,7 @@ static enum intel_fbc_id skl_fbc_id_for_pipe(enum pipe pipe)
+ static bool skl_plane_has_fbc(struct drm_i915_private *dev_priv,
+ 			      enum intel_fbc_id fbc_id, enum plane_id plane_id)
+ {
+-	if ((RUNTIME_INFO(dev_priv)->fbc_mask & BIT(fbc_id)) == 0)
++	if ((DISPLAY_RUNTIME_INFO(dev_priv)->fbc_mask & BIT(fbc_id)) == 0)
+ 		return false;
+ 
+ 	return plane_id == PLANE_PRIMARY;
+diff --git a/drivers/gpu/drm/i915/i915_drv.h b/drivers/gpu/drm/i915/i915_drv.h
+index 9612c2ac4b00..4d982fa4d6b5 100644
+--- a/drivers/gpu/drm/i915/i915_drv.h
++++ b/drivers/gpu/drm/i915/i915_drv.h
+@@ -205,6 +205,7 @@ struct drm_i915_private {
+ 
+ 	const struct intel_device_info __info; /* Use INTEL_INFO() to access. */
+ 	struct intel_runtime_info __runtime; /* Use RUNTIME_INFO() to access. */
++	struct intel_display_runtime_info __display_runtime; /* Access with DISPLAY_RUNTIME_INFO() */
+ 	struct intel_driver_caps caps;
+ 
+ 	struct i915_dsm dsm;
+@@ -410,6 +411,7 @@ static inline struct intel_gt *to_gt(struct drm_i915_private *i915)
+ #define INTEL_INFO(i915)	(&(i915)->__info)
+ #define DISPLAY_INFO(i915)	(INTEL_INFO(i915)->display)
+ #define RUNTIME_INFO(i915)	(&(i915)->__runtime)
++#define DISPLAY_RUNTIME_INFO(i915)	(&(i915)->__display_runtime)
+ #define DRIVER_CAPS(i915)	(&(i915)->caps)
+ 
+ #define INTEL_DEVID(i915)	(RUNTIME_INFO(i915)->device_id)
+@@ -428,7 +430,7 @@ static inline struct intel_gt *to_gt(struct drm_i915_private *i915)
+ #define IS_MEDIA_VER(i915, from, until) \
+ 	(MEDIA_VER(i915) >= (from) && MEDIA_VER(i915) <= (until))
+ 
+-#define DISPLAY_VER(i915)	(RUNTIME_INFO(i915)->display.ip.ver)
++#define DISPLAY_VER(i915)	(DISPLAY_RUNTIME_INFO(i915)->ip.ver)
+ #define IS_DISPLAY_VER(i915, from, until) \
+ 	(DISPLAY_VER(i915) >= (from) && DISPLAY_VER(i915) <= (until))
+ 
+@@ -811,7 +813,7 @@ IS_SUBPLATFORM(const struct drm_i915_private *i915,
+ #define I915_HAS_HOTPLUG(i915)	(DISPLAY_INFO(i915)->has_hotplug)
+ 
+ #define HAS_FW_BLC(i915)	(DISPLAY_VER(i915) > 2)
+-#define HAS_FBC(i915)	(RUNTIME_INFO(i915)->fbc_mask != 0)
++#define HAS_FBC(i915)		(DISPLAY_RUNTIME_INFO(i915)->fbc_mask != 0)
+ #define HAS_CUR_FBC(i915)	(!HAS_GMCH(i915) && DISPLAY_VER(i915) >= 7)
+ 
+ #define HAS_DPT(i915)	(DISPLAY_VER(i915) >= 13)
+@@ -831,7 +833,7 @@ IS_SUBPLATFORM(const struct drm_i915_private *i915,
+ #define HAS_PSR_HW_TRACKING(i915) \
+ 	(DISPLAY_INFO(i915)->has_psr_hw_tracking)
+ #define HAS_PSR2_SEL_FETCH(i915)	 (DISPLAY_VER(i915) >= 12)
+-#define HAS_TRANSCODER(i915, trans)	 ((RUNTIME_INFO(i915)->cpu_transcoder_mask & BIT(trans)) != 0)
++#define HAS_TRANSCODER(i915, trans)	 ((DISPLAY_RUNTIME_INFO(i915)->cpu_transcoder_mask & BIT(trans)) != 0)
+ 
+ #define HAS_RC6(i915)		 (INTEL_INFO(i915)->has_rc6)
+ #define HAS_RC6p(i915)		 (INTEL_INFO(i915)->has_rc6p)
+@@ -839,9 +841,9 @@ IS_SUBPLATFORM(const struct drm_i915_private *i915,
+ 
+ #define HAS_RPS(i915)	(INTEL_INFO(i915)->has_rps)
+ 
+-#define HAS_DMC(i915)	(RUNTIME_INFO(i915)->has_dmc)
+-#define HAS_DSB(i915)	(DISPLAY_INFO(i915)->has_dsb)
+-#define HAS_DSC(__i915)		(RUNTIME_INFO(__i915)->has_dsc)
++#define HAS_DMC(i915)		(DISPLAY_RUNTIME_INFO(i915)->has_dmc)
++#define HAS_DSB(i915)		(DISPLAY_INFO(i915)->has_dsb)
++#define HAS_DSC(__i915)		(DISPLAY_RUNTIME_INFO(__i915)->has_dsc)
+ #define HAS_HW_SAGV_WM(i915) (DISPLAY_VER(i915) >= 13 && !IS_DGFX(i915))
+ 
+ #define HAS_HECI_PXP(i915) \
+@@ -903,9 +905,9 @@ IS_SUBPLATFORM(const struct drm_i915_private *i915,
+ #define NUM_L3_SLICES(i915) (IS_HSW_GT3(i915) ? \
+ 				 2 : HAS_L3_DPF(i915))
+ 
+-#define INTEL_NUM_PIPES(i915) (hweight8(RUNTIME_INFO(i915)->pipe_mask))
++#define INTEL_NUM_PIPES(i915) (hweight8(DISPLAY_RUNTIME_INFO(i915)->pipe_mask))
+ 
+-#define HAS_DISPLAY(i915) (RUNTIME_INFO(i915)->pipe_mask != 0)
++#define HAS_DISPLAY(i915) (DISPLAY_RUNTIME_INFO(i915)->pipe_mask != 0)
+ 
+ #define HAS_VRR(i915)	(DISPLAY_VER(i915) >= 11)
+ 
+diff --git a/drivers/gpu/drm/i915/i915_pci.c b/drivers/gpu/drm/i915/i915_pci.c
+index 467327a490b9..76734c725be5 100644
+--- a/drivers/gpu/drm/i915/i915_pci.c
++++ b/drivers/gpu/drm/i915/i915_pci.c
+@@ -40,10 +40,9 @@
+ #define PLATFORM(x) .platform = (x)
+ #define GEN(x) \
+ 	.__runtime.graphics.ip.ver = (x), \
+-	.__runtime.media.ip.ver = (x), \
+-	.__runtime.display.ip.ver = (x)
++	.__runtime.media.ip.ver = (x)
+ 
+-#define NO_DISPLAY .__runtime.pipe_mask = 0
++static const struct intel_display_device_info no_display = {};
+ 
+ #define I845_PIPE_OFFSETS \
+ 	.pipe_offsets = { \
+@@ -179,7 +178,12 @@
+ 	.has_gmch = 1, \
+ 	I9XX_PIPE_OFFSETS, \
+ 	I9XX_CURSOR_OFFSETS, \
+-	I9XX_COLORS
++	I9XX_COLORS, \
++	\
++	.__runtime_defaults.ip.ver = 2, \
++	.__runtime_defaults.pipe_mask = BIT(PIPE_A) | BIT(PIPE_B), \
++	.__runtime_defaults.cpu_transcoder_mask = \
++		BIT(TRANSCODER_A) | BIT(TRANSCODER_B)
+ 
+ static const struct intel_display_device_info i830_display = {
+ 	I830_DISPLAY,
+@@ -188,8 +192,6 @@ static const struct intel_display_device_info i830_display = {
+ #define I830_FEATURES \
+ 	GEN(2), \
+ 	.is_mobile = 1, \
+-	.__runtime.pipe_mask = BIT(PIPE_A) | BIT(PIPE_B), \
+-	.__runtime.cpu_transcoder_mask = BIT(TRANSCODER_A) | BIT(TRANSCODER_B), \
+ 	.gpu_reset_clobbers_display = true, \
+ 	.has_3d_pipeline = 1, \
+ 	.hws_needs_physical = 1, \
+@@ -207,7 +209,11 @@ static const struct intel_display_device_info i830_display = {
+ 	.has_gmch = 1, \
+ 	I845_PIPE_OFFSETS, \
+ 	I845_CURSOR_OFFSETS, \
+-	I845_COLORS
++	I845_COLORS, \
++	\
++	.__runtime_defaults.ip.ver = 2, \
++	.__runtime_defaults.pipe_mask = BIT(PIPE_A), \
++	.__runtime_defaults.cpu_transcoder_mask = BIT(TRANSCODER_A)
+ 
+ static const struct intel_display_device_info i845_display = {
+ 	I845_DISPLAY,
+@@ -215,8 +221,6 @@ static const struct intel_display_device_info i845_display = {
+ 
+ #define I845_FEATURES \
+ 	GEN(2), \
+-	.__runtime.pipe_mask = BIT(PIPE_A), \
+-	.__runtime.cpu_transcoder_mask = BIT(TRANSCODER_A), \
+ 	.has_3d_pipeline = 1, \
+ 	.gpu_reset_clobbers_display = true, \
+ 	.hws_needs_physical = 1, \
+@@ -242,24 +246,26 @@ static const struct intel_device_info i845g_info = {
+ 
+ static const struct intel_display_device_info i85x_display = {
+ 	I830_DISPLAY,
++
++	.__runtime_defaults.fbc_mask = BIT(INTEL_FBC_A),
+ };
+ 
+ static const struct intel_device_info i85x_info = {
+ 	I830_FEATURES,
+ 	PLATFORM(INTEL_I85X),
+ 	.display = &i85x_display,
+-	.__runtime.fbc_mask = BIT(INTEL_FBC_A),
+ };
+ 
+ static const struct intel_display_device_info i865g_display = {
+ 	I845_DISPLAY,
++
++	.__runtime_defaults.fbc_mask = BIT(INTEL_FBC_A),
+ };
+ 
+ static const struct intel_device_info i865g_info = {
+ 	I845_FEATURES,
+ 	PLATFORM(INTEL_I865G),
+ 	.display = &i865g_display,
+-	.__runtime.fbc_mask = BIT(INTEL_FBC_A),
+ };
+ 
+ #define GEN3_DISPLAY \
+@@ -267,7 +273,12 @@ static const struct intel_device_info i865g_info = {
+ 	.has_overlay = 1, \
+ 	I9XX_PIPE_OFFSETS, \
+ 	I9XX_CURSOR_OFFSETS, \
+-	I9XX_COLORS
++	I9XX_COLORS, \
++	\
++	.__runtime_defaults.ip.ver = 3, \
++	.__runtime_defaults.pipe_mask = BIT(PIPE_A) | BIT(PIPE_B), \
++	.__runtime_defaults.cpu_transcoder_mask = \
++		BIT(TRANSCODER_A) | BIT(TRANSCODER_B)
+ 
+ static const struct intel_display_device_info i915g_display = {
+ 	GEN3_DISPLAY,
+@@ -280,6 +291,8 @@ static const struct intel_display_device_info i915gm_display = {
+ 	.cursor_needs_physical = 1,
+ 	.overlay_needs_physical = 1,
+ 	.supports_tv = 1,
++
++	.__runtime_defaults.fbc_mask = BIT(INTEL_FBC_A),
+ };
+ 
+ static const struct intel_display_device_info i945g_display = {
+@@ -295,6 +308,8 @@ static const struct intel_display_device_info i945gm_display = {
+ 	.cursor_needs_physical = 1,
+ 	.overlay_needs_physical = 1,
+ 	.supports_tv = 1,
++
++	.__runtime_defaults.fbc_mask = BIT(INTEL_FBC_A),
+ };
+ 
+ static const struct intel_display_device_info g33_display = {
+@@ -304,8 +319,6 @@ static const struct intel_display_device_info g33_display = {
+ 
+ #define GEN3_FEATURES \
+ 	GEN(3), \
+-	.__runtime.pipe_mask = BIT(PIPE_A) | BIT(PIPE_B), \
+-	.__runtime.cpu_transcoder_mask = BIT(TRANSCODER_A) | BIT(TRANSCODER_B), \
+ 	.gpu_reset_clobbers_display = true, \
+ 	.__runtime.platform_engine_mask = BIT(RCS0), \
+ 	.has_3d_pipeline = 1, \
+@@ -329,7 +342,6 @@ static const struct intel_device_info i915gm_info = {
+ 	PLATFORM(INTEL_I915GM),
+ 	.display = &i915gm_display,
+ 	.is_mobile = 1,
+-	.__runtime.fbc_mask = BIT(INTEL_FBC_A),
+ 	.hws_needs_physical = 1,
+ 	.unfenced_needs_alignment = 1,
+ };
+@@ -347,7 +359,6 @@ static const struct intel_device_info i945gm_info = {
+ 	PLATFORM(INTEL_I945GM),
+ 	.display = &i945gm_display,
+ 	.is_mobile = 1,
+-	.__runtime.fbc_mask = BIT(INTEL_FBC_A),
+ 	.hws_needs_physical = 1,
+ 	.unfenced_needs_alignment = 1,
+ };
+@@ -379,7 +390,12 @@ static const struct intel_device_info pnv_m_info = {
+ 	.has_gmch = 1, \
+ 	I9XX_PIPE_OFFSETS, \
+ 	I9XX_CURSOR_OFFSETS, \
+-	I9XX_COLORS
++	I9XX_COLORS, \
++	\
++	.__runtime_defaults.ip.ver = 4, \
++	.__runtime_defaults.pipe_mask = BIT(PIPE_A) | BIT(PIPE_B), \
++	.__runtime_defaults.cpu_transcoder_mask = \
++		BIT(TRANSCODER_A) | BIT(TRANSCODER_B)
+ 
+ static const struct intel_display_device_info i965g_display = {
+ 	GEN4_DISPLAY,
+@@ -390,6 +406,8 @@ static const struct intel_display_device_info i965gm_display = {
+ 	GEN4_DISPLAY,
+ 	.has_overlay = 1,
+ 	.supports_tv = 1,
++
++	.__runtime_defaults.fbc_mask = BIT(INTEL_FBC_A),
+ };
+ 
+ static const struct intel_display_device_info g45_display = {
+@@ -399,12 +417,12 @@ static const struct intel_display_device_info g45_display = {
+ static const struct intel_display_device_info gm45_display = {
+ 	GEN4_DISPLAY,
+ 	.supports_tv = 1,
++
++	.__runtime_defaults.fbc_mask = BIT(INTEL_FBC_A),
+ };
+ 
+ #define GEN4_FEATURES \
+ 	GEN(4), \
+-	.__runtime.pipe_mask = BIT(PIPE_A) | BIT(PIPE_B), \
+-	.__runtime.cpu_transcoder_mask = BIT(TRANSCODER_A) | BIT(TRANSCODER_B), \
+ 	.gpu_reset_clobbers_display = true, \
+ 	.__runtime.platform_engine_mask = BIT(RCS0), \
+ 	.has_3d_pipeline = 1, \
+@@ -427,7 +445,6 @@ static const struct intel_device_info i965gm_info = {
+ 	PLATFORM(INTEL_I965GM),
+ 	.display = &i965gm_display,
+ 	.is_mobile = 1,
+-	.__runtime.fbc_mask = BIT(INTEL_FBC_A),
+ 	.hws_needs_physical = 1,
+ 	.has_snoop = false,
+ };
+@@ -444,7 +461,6 @@ static const struct intel_device_info gm45_info = {
+ 	GEN4_FEATURES,
+ 	PLATFORM(INTEL_GM45),
+ 	.is_mobile = 1,
+-	.__runtime.fbc_mask = BIT(INTEL_FBC_A),
+ 	.__runtime.platform_engine_mask = BIT(RCS0) | BIT(VCS0),
+ 	.display = &gm45_display,
+ 	.gpu_reset_clobbers_display = false,
+@@ -452,8 +468,6 @@ static const struct intel_device_info gm45_info = {
+ 
+ #define GEN5_FEATURES \
+ 	GEN(5), \
+-	.__runtime.pipe_mask = BIT(PIPE_A) | BIT(PIPE_B), \
+-	.__runtime.cpu_transcoder_mask = BIT(TRANSCODER_A) | BIT(TRANSCODER_B), \
+ 	.__runtime.platform_engine_mask = BIT(RCS0) | BIT(VCS0), \
+ 	.has_3d_pipeline = 1, \
+ 	.has_snoop = true, \
+@@ -468,7 +482,12 @@ static const struct intel_device_info gm45_info = {
+ 	.has_hotplug = 1, \
+ 	I9XX_PIPE_OFFSETS, \
+ 	I9XX_CURSOR_OFFSETS, \
+-	ILK_COLORS
++	ILK_COLORS, \
++	\
++	.__runtime_defaults.ip.ver = 5, \
++	.__runtime_defaults.pipe_mask = BIT(PIPE_A) | BIT(PIPE_B), \
++	.__runtime_defaults.cpu_transcoder_mask = \
++		BIT(TRANSCODER_A) | BIT(TRANSCODER_B)
+ 
+ static const struct intel_display_device_info ilk_d_display = {
+ 	ILK_DISPLAY,
+@@ -482,6 +501,8 @@ static const struct intel_device_info ilk_d_info = {
+ 
+ static const struct intel_display_device_info ilk_m_display = {
+ 	ILK_DISPLAY,
++
++	.__runtime_defaults.fbc_mask = BIT(INTEL_FBC_A),
+  };
+ 
+ static const struct intel_device_info ilk_m_info = {
+@@ -490,14 +511,10 @@ static const struct intel_device_info ilk_m_info = {
+ 	.display = &ilk_m_display,
+ 	.is_mobile = 1,
+ 	.has_rps = true,
+-	.__runtime.fbc_mask = BIT(INTEL_FBC_A),
+ };
+ 
+ #define GEN6_FEATURES \
+ 	GEN(6), \
+-	.__runtime.pipe_mask = BIT(PIPE_A) | BIT(PIPE_B), \
+-	.__runtime.cpu_transcoder_mask = BIT(TRANSCODER_A) | BIT(TRANSCODER_B), \
+-	.__runtime.fbc_mask = BIT(INTEL_FBC_A), \
+ 	.__runtime.platform_engine_mask = BIT(RCS0) | BIT(VCS0) | BIT(BCS0), \
+ 	.has_3d_pipeline = 1, \
+ 	.has_coherent_ggtt = true, \
+@@ -517,6 +534,12 @@ static const struct intel_display_device_info snb_display = {
+ 	I9XX_PIPE_OFFSETS,
+ 	I9XX_CURSOR_OFFSETS,
+ 	ILK_COLORS,
++
++	.__runtime_defaults.ip.ver = 6,
++	.__runtime_defaults.pipe_mask = BIT(PIPE_A) | BIT(PIPE_B),
++	.__runtime_defaults.cpu_transcoder_mask =
++		BIT(TRANSCODER_A) | BIT(TRANSCODER_B),
++	.__runtime_defaults.fbc_mask = BIT(INTEL_FBC_A),
+ };
+ 
+ #define SNB_D_PLATFORM \
+@@ -555,9 +578,6 @@ static const struct intel_device_info snb_m_gt2_info = {
+ 
+ #define GEN7_FEATURES  \
+ 	GEN(7), \
+-	.__runtime.pipe_mask = BIT(PIPE_A) | BIT(PIPE_B) | BIT(PIPE_C), \
+-	.__runtime.cpu_transcoder_mask = BIT(TRANSCODER_A) | BIT(TRANSCODER_B) | BIT(TRANSCODER_C), \
+-	.__runtime.fbc_mask = BIT(INTEL_FBC_A), \
+ 	.__runtime.platform_engine_mask = BIT(RCS0) | BIT(VCS0) | BIT(BCS0), \
+ 	.has_3d_pipeline = 1, \
+ 	.has_coherent_ggtt = true, \
+@@ -582,6 +602,12 @@ static const struct intel_display_device_info ivb_display = {
+ 	IVB_PIPE_OFFSETS,
+ 	IVB_CURSOR_OFFSETS,
+ 	IVB_COLORS,
++
++	.__runtime_defaults.ip.ver = 7,
++	.__runtime_defaults.pipe_mask = BIT(PIPE_A) | BIT(PIPE_B) | BIT(PIPE_C),
++	.__runtime_defaults.cpu_transcoder_mask =
++		BIT(TRANSCODER_A) | BIT(TRANSCODER_B) | BIT(TRANSCODER_C),
++	.__runtime_defaults.fbc_mask = BIT(INTEL_FBC_A),
+ };
+ 
+ static const struct intel_device_info ivb_d_gt1_info = {
+@@ -617,7 +643,7 @@ static const struct intel_device_info ivb_m_gt2_info = {
+ static const struct intel_device_info ivb_q_info = {
+ 	GEN7_FEATURES,
+ 	PLATFORM(INTEL_IVYBRIDGE),
+-	NO_DISPLAY,
++	.display = &no_display,
+ 	.gt = 2,
+ 	.has_l3_dpf = 1,
+ };
+@@ -629,14 +655,17 @@ static const struct intel_display_device_info vlv_display = {
+ 	I9XX_PIPE_OFFSETS,
+ 	I9XX_CURSOR_OFFSETS,
+ 	I9XX_COLORS,
++
++	.__runtime_defaults.ip.ver = 7,
++	.__runtime_defaults.pipe_mask = BIT(PIPE_A) | BIT(PIPE_B),
++	.__runtime_defaults.cpu_transcoder_mask =
++		BIT(TRANSCODER_A) | BIT(TRANSCODER_B),
+ };
+ 
+ static const struct intel_device_info vlv_info = {
+ 	PLATFORM(INTEL_VALLEYVIEW),
+ 	GEN(7),
+ 	.is_lp = 1,
+-	.__runtime.pipe_mask = BIT(PIPE_A) | BIT(PIPE_B),
+-	.__runtime.cpu_transcoder_mask = BIT(TRANSCODER_A) | BIT(TRANSCODER_B),
+ 	.display = &vlv_display,
+ 	.has_runtime_pm = 1,
+ 	.has_rc6 = 1,
+@@ -655,8 +684,6 @@ static const struct intel_device_info vlv_info = {
+ #define G75_FEATURES  \
+ 	GEN7_FEATURES, \
+ 	.__runtime.platform_engine_mask = BIT(RCS0) | BIT(VCS0) | BIT(BCS0) | BIT(VECS0), \
+-	.__runtime.cpu_transcoder_mask = BIT(TRANSCODER_A) | BIT(TRANSCODER_B) | \
+-		BIT(TRANSCODER_C) | BIT(TRANSCODER_EDP), \
+ 	.has_rc6p = 0 /* RC6p removed-by HSW */, \
+ 	.has_runtime_pm = 1
+ 
+@@ -673,6 +700,13 @@ static const struct intel_display_device_info hsw_display = {
+ 	HSW_PIPE_OFFSETS,
+ 	IVB_CURSOR_OFFSETS,
+ 	IVB_COLORS,
++
++	.__runtime_defaults.ip.ver = 7,
++	.__runtime_defaults.pipe_mask = BIT(PIPE_A) | BIT(PIPE_B) | BIT(PIPE_C),
++	.__runtime_defaults.cpu_transcoder_mask =
++		BIT(TRANSCODER_A) | BIT(TRANSCODER_B) |
++		BIT(TRANSCODER_C) | BIT(TRANSCODER_EDP),
++	.__runtime_defaults.fbc_mask = BIT(INTEL_FBC_A),
+ };
+ 
+ static const struct intel_device_info hsw_gt1_info = {
+@@ -710,6 +744,13 @@ static const struct intel_display_device_info bdw_display = {
+ 	HSW_PIPE_OFFSETS,
+ 	IVB_CURSOR_OFFSETS,
+ 	IVB_COLORS,
++
++	.__runtime_defaults.ip.ver = 8,
++	.__runtime_defaults.pipe_mask = BIT(PIPE_A) | BIT(PIPE_B) | BIT(PIPE_C),
++	.__runtime_defaults.cpu_transcoder_mask =
++		BIT(TRANSCODER_A) | BIT(TRANSCODER_B) |
++		BIT(TRANSCODER_C) | BIT(TRANSCODER_EDP),
++	.__runtime_defaults.fbc_mask = BIT(INTEL_FBC_A),
+ };
+ 
+ #define BDW_PLATFORM \
+@@ -752,13 +793,16 @@ static const struct intel_display_device_info chv_display = {
+ 	CHV_PIPE_OFFSETS,
+ 	CHV_CURSOR_OFFSETS,
+ 	CHV_COLORS,
++
++	.__runtime_defaults.ip.ver = 8,
++	.__runtime_defaults.pipe_mask = BIT(PIPE_A) | BIT(PIPE_B) | BIT(PIPE_C),
++	.__runtime_defaults.cpu_transcoder_mask =
++		BIT(TRANSCODER_A) | BIT(TRANSCODER_B) | BIT(TRANSCODER_C),
+ };
+ 
+ static const struct intel_device_info chv_info = {
+ 	PLATFORM(INTEL_CHERRYVIEW),
+ 	GEN(8),
+-	.__runtime.pipe_mask = BIT(PIPE_A) | BIT(PIPE_B) | BIT(PIPE_C),
+-	.__runtime.cpu_transcoder_mask = BIT(TRANSCODER_A) | BIT(TRANSCODER_B) | BIT(TRANSCODER_C),
+ 	.display = &chv_display,
+ 	.is_lp = 1,
+ 	.__runtime.platform_engine_mask = BIT(RCS0) | BIT(VCS0) | BIT(BCS0) | BIT(VECS0),
+@@ -785,9 +829,7 @@ static const struct intel_device_info chv_info = {
+ 	GEN8_FEATURES, \
+ 	GEN(9), \
+ 	GEN9_DEFAULT_PAGE_SIZES, \
+-	.__runtime.has_dmc = 1, \
+-	.has_gt_uc = 1, \
+-	.__runtime.has_hdcp = 1
++	.has_gt_uc = 1
+ 
+ static const struct intel_display_device_info skl_display = {
+ 	.dbuf.size = 896 - 4, /* 4 blocks for bypass path allocation */
+@@ -802,6 +844,15 @@ static const struct intel_display_device_info skl_display = {
+ 	HSW_PIPE_OFFSETS,
+ 	IVB_CURSOR_OFFSETS,
+ 	IVB_COLORS,
++
++	.__runtime_defaults.ip.ver = 9,
++	.__runtime_defaults.has_dmc = 1,
++	.__runtime_defaults.has_hdcp = 1,
++	.__runtime_defaults.pipe_mask = BIT(PIPE_A) | BIT(PIPE_B) | BIT(PIPE_C),
++	.__runtime_defaults.cpu_transcoder_mask =
++		BIT(TRANSCODER_A) | BIT(TRANSCODER_B) |
++		BIT(TRANSCODER_C) | BIT(TRANSCODER_EDP),
++	.__runtime_defaults.fbc_mask = BIT(INTEL_FBC_A),
+ };
+ 
+ #define SKL_PLATFORM \
+@@ -842,16 +893,9 @@ static const struct intel_device_info skl_gt4_info = {
+ 	GEN(9), \
+ 	.is_lp = 1, \
+ 	.__runtime.platform_engine_mask = BIT(RCS0) | BIT(VCS0) | BIT(BCS0) | BIT(VECS0), \
+-	.__runtime.pipe_mask = BIT(PIPE_A) | BIT(PIPE_B) | BIT(PIPE_C), \
+-	.__runtime.cpu_transcoder_mask = BIT(TRANSCODER_A) | BIT(TRANSCODER_B) | \
+-		BIT(TRANSCODER_C) | BIT(TRANSCODER_EDP) | \
+-		BIT(TRANSCODER_DSI_A) | BIT(TRANSCODER_DSI_C), \
+ 	.has_3d_pipeline = 1, \
+ 	.has_64bit_reloc = 1, \
+-	.__runtime.fbc_mask = BIT(INTEL_FBC_A), \
+-	.__runtime.has_hdcp = 1, \
+ 	.has_runtime_pm = 1, \
+-	.__runtime.has_dmc = 1, \
+ 	.has_rc6 = 1, \
+ 	.has_rps = true, \
+ 	.has_logical_ring_contexts = 1, \
+@@ -876,11 +920,22 @@ static const struct intel_device_info skl_gt4_info = {
+ 	.has_psr_hw_tracking = 1, \
+ 	HSW_PIPE_OFFSETS, \
+ 	IVB_CURSOR_OFFSETS, \
+-	IVB_COLORS
++	IVB_COLORS, \
++	\
++	.__runtime_defaults.has_dmc = 1, \
++	.__runtime_defaults.has_hdcp = 1, \
++	.__runtime_defaults.fbc_mask = BIT(INTEL_FBC_A), \
++	.__runtime_defaults.pipe_mask = BIT(PIPE_A) | BIT(PIPE_B) | BIT(PIPE_C), \
++	.__runtime_defaults.cpu_transcoder_mask = \
++		BIT(TRANSCODER_A) | BIT(TRANSCODER_B) | \
++		BIT(TRANSCODER_C) | BIT(TRANSCODER_EDP) | \
++		BIT(TRANSCODER_DSI_A) | BIT(TRANSCODER_DSI_C)
+ 
+ static const struct intel_display_device_info bxt_display = {
+ 	GEN9_LP_DISPLAY,
+ 	.dbuf.size = 512 - 4, /* 4 blocks for bypass path allocation */
++
++	.__runtime_defaults.ip.ver = 9,
+ };
+ 
+ static const struct intel_device_info bxt_info = {
+@@ -893,12 +948,13 @@ static const struct intel_display_device_info glk_display = {
+ 	GEN9_LP_DISPLAY,
+ 	.dbuf.size = 1024 - 4, /* 4 blocks for bypass path allocation */
+ 	GLK_COLORS,
++
++	.__runtime_defaults.ip.ver = 10,
+ };
+ 
+ static const struct intel_device_info glk_info = {
+ 	GEN9_LP_FEATURES,
+ 	PLATFORM(INTEL_GEMINILAKE),
+-	.__runtime.display.ip.ver = 10,
+ 	.display = &glk_display,
+ };
+ 
+@@ -974,11 +1030,7 @@ static const struct intel_device_info cml_gt2_info = {
+ #define GEN11_FEATURES \
+ 	GEN9_FEATURES, \
+ 	GEN11_DEFAULT_PAGE_SIZES, \
+-	.__runtime.cpu_transcoder_mask = BIT(TRANSCODER_A) | BIT(TRANSCODER_B) | \
+-		BIT(TRANSCODER_C) | BIT(TRANSCODER_EDP) | \
+-		BIT(TRANSCODER_DSI_0) | BIT(TRANSCODER_DSI_1), \
+ 	GEN(11), \
+-	.__runtime.has_dsc = 1, \
+ 	.has_coherent_ggtt = false, \
+ 	.has_logical_ring_elsq = 1
+ 
+@@ -1011,6 +1063,17 @@ static const struct intel_display_device_info gen11_display = {
+ 	},
+ 	IVB_CURSOR_OFFSETS,
+ 	ICL_COLORS,
++
++	.__runtime_defaults.ip.ver = 11,
++	.__runtime_defaults.has_dmc = 1,
++	.__runtime_defaults.has_dsc = 1,
++	.__runtime_defaults.has_hdcp = 1,
++	.__runtime_defaults.pipe_mask = BIT(PIPE_A) | BIT(PIPE_B) | BIT(PIPE_C),
++	.__runtime_defaults.cpu_transcoder_mask =
++		BIT(TRANSCODER_A) | BIT(TRANSCODER_B) |
++		BIT(TRANSCODER_C) | BIT(TRANSCODER_EDP) |
++		BIT(TRANSCODER_DSI_0) | BIT(TRANSCODER_DSI_1),
++	.__runtime_defaults.fbc_mask = BIT(INTEL_FBC_A),
+ };
+ 
+ static const struct intel_device_info icl_info = {
+@@ -1040,10 +1103,6 @@ static const struct intel_device_info jsl_info = {
+ #define GEN12_FEATURES \
+ 	GEN11_FEATURES, \
+ 	GEN(12), \
+-	.__runtime.pipe_mask = BIT(PIPE_A) | BIT(PIPE_B) | BIT(PIPE_C) | BIT(PIPE_D), \
+-	.__runtime.cpu_transcoder_mask = BIT(TRANSCODER_A) | BIT(TRANSCODER_B) | \
+-		BIT(TRANSCODER_C) | BIT(TRANSCODER_D) | \
+-		BIT(TRANSCODER_DSI_0) | BIT(TRANSCODER_DSI_1), \
+ 	.has_global_mocs = 1, \
+ 	.has_pxp = 1
+ 
+@@ -1076,7 +1135,19 @@ static const struct intel_device_info jsl_info = {
+ 		[TRANSCODER_DSI_1] = TRANSCODER_DSI1_OFFSET, \
+ 	}, \
+ 	TGL_CURSOR_OFFSETS, \
+-	ICL_COLORS
++	ICL_COLORS, \
++	\
++	.__runtime_defaults.ip.ver = 12, \
++	.__runtime_defaults.has_dmc = 1, \
++	.__runtime_defaults.has_dsc = 1, \
++	.__runtime_defaults.has_hdcp = 1, \
++	.__runtime_defaults.pipe_mask = \
++		BIT(PIPE_A) | BIT(PIPE_B) | BIT(PIPE_C) | BIT(PIPE_D), \
++	.__runtime_defaults.cpu_transcoder_mask = \
++		BIT(TRANSCODER_A) | BIT(TRANSCODER_B) | \
++		BIT(TRANSCODER_C) | BIT(TRANSCODER_D) | \
++		BIT(TRANSCODER_DSI_0) | BIT(TRANSCODER_DSI_1), \
++	.__runtime_defaults.fbc_mask = BIT(INTEL_FBC_A)
+ 
+ static const struct intel_display_device_info tgl_display = {
+ 	XE_D_DISPLAY,
+@@ -1095,14 +1166,15 @@ static const struct intel_display_device_info rkl_display = {
+ 	.abox_mask = BIT(0),
+ 	.has_hti = 1,
+ 	.has_psr_hw_tracking = 0,
++
++	.__runtime_defaults.pipe_mask = BIT(PIPE_A) | BIT(PIPE_B) | BIT(PIPE_C),
++	.__runtime_defaults.cpu_transcoder_mask =
++		BIT(TRANSCODER_A) | BIT(TRANSCODER_B) | BIT(TRANSCODER_C),
+ };
+ 
+ static const struct intel_device_info rkl_info = {
+ 	GEN12_FEATURES,
+ 	PLATFORM(INTEL_ROCKETLAKE),
+-	.__runtime.pipe_mask = BIT(PIPE_A) | BIT(PIPE_B) | BIT(PIPE_C),
+-	.__runtime.cpu_transcoder_mask = BIT(TRANSCODER_A) | BIT(TRANSCODER_B) |
+-		BIT(TRANSCODER_C),
+ 	.__runtime.platform_engine_mask =
+ 		BIT(RCS0) | BIT(BCS0) | BIT(VECS0) | BIT(VCS0),
+ 	.display = &rkl_display,
+@@ -1121,7 +1193,6 @@ static const struct intel_device_info dg1_info = {
+ 	DGFX_FEATURES,
+ 	.__runtime.graphics.ip.rel = 10,
+ 	PLATFORM(INTEL_DG1),
+-	.__runtime.pipe_mask = BIT(PIPE_A) | BIT(PIPE_B) | BIT(PIPE_C) | BIT(PIPE_D),
+ 	.require_force_probe = 1,
+ 	.__runtime.platform_engine_mask =
+ 		BIT(RCS0) | BIT(BCS0) | BIT(VECS0) |
+@@ -1140,7 +1211,6 @@ static const struct intel_display_device_info adl_s_display = {
+ static const struct intel_device_info adl_s_info = {
+ 	GEN12_FEATURES,
+ 	PLATFORM(INTEL_ALDERLAKE_S),
+-	.__runtime.pipe_mask = BIT(PIPE_A) | BIT(PIPE_B) | BIT(PIPE_C) | BIT(PIPE_D),
+ 	.__runtime.platform_engine_mask =
+ 		BIT(RCS0) | BIT(BCS0) | BIT(VECS0) | BIT(VCS0) | BIT(VCS2),
+ 	.dma_mask_size = 39,
+@@ -1180,29 +1250,30 @@ static const struct intel_device_info adl_s_info = {
+ 		[TRANSCODER_DSI_0] = TRANSCODER_DSI0_OFFSET,			\
+ 		[TRANSCODER_DSI_1] = TRANSCODER_DSI1_OFFSET,			\
+ 	},									\
+-	TGL_CURSOR_OFFSETS
 -
--	/* Wa_14011765242: adl-s A0,A1 */
--	if (IS_ADLS_DISPLAY_STEP(dev_priv, STEP_A0, STEP_A2)) {
--		for_each_pipe(dev_priv, pipe)
+-#define XE_LPD_RUNTIME \
+-	.__runtime.has_dmc = 1,							\
+-	.__runtime.has_dsc = 1,							\
+-	.__runtime.fbc_mask = BIT(INTEL_FBC_A),					\
+-	.__runtime.has_hdcp = 1,						\
+-	.__runtime.display.ip.ver = 13,							\
+-	.__runtime.pipe_mask = BIT(PIPE_A) | BIT(PIPE_B) | BIT(PIPE_C) | BIT(PIPE_D)
++	TGL_CURSOR_OFFSETS,							\
++										\
++	.__runtime_defaults.ip.ver = 13,					\
++	.__runtime_defaults.has_dmc = 1,					\
++	.__runtime_defaults.has_dsc = 1,					\
++	.__runtime_defaults.fbc_mask = BIT(INTEL_FBC_A),			\
++	.__runtime_defaults.has_hdcp = 1,					\
++	.__runtime_defaults.pipe_mask =						\
++		BIT(PIPE_A) | BIT(PIPE_B) | BIT(PIPE_C) | BIT(PIPE_D)
+ 
+ static const struct intel_display_device_info xe_lpd_display = {
+ 	XE_LPD_FEATURES,
+ 	.has_cdclk_crawl = 1,
+ 	.has_psr_hw_tracking = 0,
++
++	.__runtime_defaults.cpu_transcoder_mask =
++		BIT(TRANSCODER_A) | BIT(TRANSCODER_B) |
++		BIT(TRANSCODER_C) | BIT(TRANSCODER_D) |
++		BIT(TRANSCODER_DSI_0) | BIT(TRANSCODER_DSI_1),
+ };
+ 
+ static const struct intel_device_info adl_p_info = {
+ 	GEN12_FEATURES,
+-	XE_LPD_RUNTIME,
+ 	PLATFORM(INTEL_ALDERLAKE_P),
+-	.__runtime.cpu_transcoder_mask = BIT(TRANSCODER_A) | BIT(TRANSCODER_B) |
+-			       BIT(TRANSCODER_C) | BIT(TRANSCODER_D) |
+-			       BIT(TRANSCODER_DSI_0) | BIT(TRANSCODER_DSI_1),
+ 	.__runtime.platform_engine_mask =
+ 		BIT(RCS0) | BIT(BCS0) | BIT(VECS0) | BIT(VCS0) | BIT(VCS2),
+ 	.__runtime.ppgtt_size = 48,
+@@ -1252,7 +1323,7 @@ static const struct intel_device_info xehpsdv_info = {
+ 	XE_HPM_FEATURES,
+ 	DGFX_FEATURES,
+ 	PLATFORM(INTEL_XEHPSDV),
+-	NO_DISPLAY,
++	.display = &no_display,
+ 	.has_64k_pages = 1,
+ 	.has_media_ratio_mode = 1,
+ 	.__runtime.platform_engine_mask =
+@@ -1284,19 +1355,20 @@ static const struct intel_device_info xehpsdv_info = {
+ static const struct intel_display_device_info xe_hpd_display = {
+ 	XE_LPD_FEATURES,
+ 	.has_cdclk_squash = 1,
++
++	.__runtime_defaults.cpu_transcoder_mask =
++		BIT(TRANSCODER_A) | BIT(TRANSCODER_B) |
++		BIT(TRANSCODER_C) | BIT(TRANSCODER_D),
+ };
+ 
+ static const struct intel_device_info dg2_info = {
+ 	DG2_FEATURES,
+-	XE_LPD_RUNTIME,
+-	.__runtime.cpu_transcoder_mask = BIT(TRANSCODER_A) | BIT(TRANSCODER_B) |
+-			       BIT(TRANSCODER_C) | BIT(TRANSCODER_D),
+ 	.display = &xe_hpd_display,
+ };
+ 
+ static const struct intel_device_info ats_m_info = {
+ 	DG2_FEATURES,
+-	NO_DISPLAY,
++	.display = &no_display,
+ 	.require_force_probe = 1,
+ 	.tuning_thread_rr_after_dep = 1,
+ };
+@@ -1318,7 +1390,7 @@ static const struct intel_device_info pvc_info = {
+ 	.__runtime.graphics.ip.rel = 60,
+ 	.__runtime.media.ip.rel = 60,
+ 	PLATFORM(INTEL_PONTEVECCHIO),
+-	NO_DISPLAY,
++	.display = &no_display,
+ 	.has_flat_ccs = 0,
+ 	.__runtime.platform_engine_mask =
+ 		BIT(BCS0) |
+@@ -1327,11 +1399,6 @@ static const struct intel_device_info pvc_info = {
+ 	.require_force_probe = 1,
+ };
+ 
+-#define XE_LPDP_RUNTIME	\
+-	XE_LPD_RUNTIME,	\
+-	.__runtime.display.ip.ver = 14,	\
+-	.__runtime.fbc_mask = BIT(INTEL_FBC_A) | BIT(INTEL_FBC_B)
+-
+ static const struct intel_gt_definition xelpmp_extra_gt[] = {
+ 	{
+ 		.type = GT_MEDIA,
+@@ -1346,13 +1413,16 @@ static const struct intel_display_device_info xe_lpdp_display = {
+ 	XE_LPD_FEATURES,
+ 	.has_cdclk_crawl = 1,
+ 	.has_cdclk_squash = 1,
++
++	.__runtime_defaults.ip.ver = 14,
++	.__runtime_defaults.fbc_mask = BIT(INTEL_FBC_A) | BIT(INTEL_FBC_B),
++	.__runtime_defaults.cpu_transcoder_mask =
++		BIT(TRANSCODER_A) | BIT(TRANSCODER_B) |
++		BIT(TRANSCODER_C) | BIT(TRANSCODER_D),
+ };
+ 
+ static const struct intel_device_info mtl_info = {
+ 	XE_HP_FEATURES,
+-	XE_LPDP_RUNTIME,
+-	.__runtime.cpu_transcoder_mask = BIT(TRANSCODER_A) | BIT(TRANSCODER_B) |
+-			       BIT(TRANSCODER_C) | BIT(TRANSCODER_D),
+ 	/*
+ 	 * Real graphics IP version will be obtained from hardware GMD_ID
+ 	 * register.  Value provided here is just for sanity checking.
+diff --git a/drivers/gpu/drm/i915/intel_device_info.c b/drivers/gpu/drm/i915/intel_device_info.c
+index e8836b990058..3a0d1cb2eaa9 100644
+--- a/drivers/gpu/drm/i915/intel_device_info.c
++++ b/drivers/gpu/drm/i915/intel_device_info.c
+@@ -95,6 +95,9 @@ void intel_device_info_print(const struct intel_device_info *info,
+ 			     const struct intel_runtime_info *runtime,
+ 			     struct drm_printer *p)
+ {
++	const struct intel_display_runtime_info *display_runtime =
++		&info->display->__runtime_defaults;
++
+ 	if (runtime->graphics.ip.rel)
+ 		drm_printf(p, "graphics version: %u.%02u\n",
+ 			   runtime->graphics.ip.ver,
+@@ -111,13 +114,13 @@ void intel_device_info_print(const struct intel_device_info *info,
+ 		drm_printf(p, "media version: %u\n",
+ 			   runtime->media.ip.ver);
+ 
+-	if (runtime->display.ip.rel)
++	if (display_runtime->ip.rel)
+ 		drm_printf(p, "display version: %u.%02u\n",
+-			   runtime->display.ip.ver,
+-			   runtime->display.ip.rel);
++			   display_runtime->ip.ver,
++			   display_runtime->ip.rel);
+ 	else
+ 		drm_printf(p, "display version: %u\n",
+-			   runtime->display.ip.ver);
++			   display_runtime->ip.ver);
+ 
+ 	drm_printf(p, "graphics stepping: %s\n", intel_step_name(runtime->step.graphics_step));
+ 	drm_printf(p, "media stepping: %s\n", intel_step_name(runtime->step.media_step));
+@@ -142,9 +145,9 @@ void intel_device_info_print(const struct intel_device_info *info,
+ 	DEV_INFO_DISPLAY_FOR_EACH_FLAG(PRINT_FLAG);
+ #undef PRINT_FLAG
+ 
+-	drm_printf(p, "has_hdcp: %s\n", str_yes_no(runtime->has_hdcp));
+-	drm_printf(p, "has_dmc: %s\n", str_yes_no(runtime->has_dmc));
+-	drm_printf(p, "has_dsc: %s\n", str_yes_no(runtime->has_dsc));
++	drm_printf(p, "has_hdcp: %s\n", str_yes_no(display_runtime->has_hdcp));
++	drm_printf(p, "has_dmc: %s\n", str_yes_no(display_runtime->has_dmc));
++	drm_printf(p, "has_dsc: %s\n", str_yes_no(display_runtime->has_dsc));
+ 
+ 	drm_printf(p, "rawclk rate: %u kHz\n", runtime->rawclk_freq);
+ }
+@@ -342,6 +345,7 @@ static void ip_ver_read(struct drm_i915_private *i915, u32 offset, struct intel_
+ static void intel_ipver_early_init(struct drm_i915_private *i915)
+ {
+ 	struct intel_runtime_info *runtime = RUNTIME_INFO(i915);
++	struct intel_display_runtime_info *display_runtime = DISPLAY_RUNTIME_INFO(i915);
+ 
+ 	if (!HAS_GMD_ID(i915)) {
+ 		drm_WARN_ON(&i915->drm, RUNTIME_INFO(i915)->graphics.ip.ver > 12);
+@@ -363,7 +367,7 @@ static void intel_ipver_early_init(struct drm_i915_private *i915)
+ 		RUNTIME_INFO(i915)->graphics.ip.rel = 70;
+ 	}
+ 	ip_ver_read(i915, i915_mmio_reg_offset(GMD_ID_DISPLAY),
+-		    &runtime->display.ip);
++		    (struct intel_ip_version *)&display_runtime->ip);
+ 	ip_ver_read(i915, i915_mmio_reg_offset(GMD_ID_MEDIA),
+ 		    &runtime->media.ip);
+ }
+@@ -410,32 +414,34 @@ void intel_device_info_runtime_init(struct drm_i915_private *dev_priv)
+ {
+ 	struct intel_device_info *info = mkwrite_device_info(dev_priv);
+ 	struct intel_runtime_info *runtime = RUNTIME_INFO(dev_priv);
++	struct intel_display_runtime_info *display_runtime =
++		DISPLAY_RUNTIME_INFO(dev_priv);
+ 	enum pipe pipe;
+ 
+ 	/* Wa_14011765242: adl-s A0,A1 */
+ 	if (IS_ADLS_DISPLAY_STEP(dev_priv, STEP_A0, STEP_A2))
+ 		for_each_pipe(dev_priv, pipe)
 -			runtime->num_scalers[pipe] = 0;
--	} else if (DISPLAY_VER(dev_priv) >= 11) {
--		for_each_pipe(dev_priv, pipe)
++			display_runtime->num_scalers[pipe] = 0;
+ 	else if (DISPLAY_VER(dev_priv) >= 11) {
+ 		for_each_pipe(dev_priv, pipe)
 -			runtime->num_scalers[pipe] = 2;
--	} else if (DISPLAY_VER(dev_priv) >= 9) {
++			display_runtime->num_scalers[pipe] = 2;
+ 	} else if (DISPLAY_VER(dev_priv) >= 9) {
 -		runtime->num_scalers[PIPE_A] = 2;
 -		runtime->num_scalers[PIPE_B] = 2;
 -		runtime->num_scalers[PIPE_C] = 1;
--	}
--
--	if (DISPLAY_VER(dev_priv) >= 13 || HAS_D12_PLANE_MINIMIZATION(dev_priv)) {
--		for_each_pipe(dev_priv, pipe)
++		display_runtime->num_scalers[PIPE_A] = 2;
++		display_runtime->num_scalers[PIPE_B] = 2;
++		display_runtime->num_scalers[PIPE_C] = 1;
+ 	}
+ 
+ 	BUILD_BUG_ON(BITS_PER_TYPE(intel_engine_mask_t) < I915_NUM_ENGINES);
+ 
+ 	if (DISPLAY_VER(dev_priv) >= 13 || HAS_D12_PLANE_MINIMIZATION(dev_priv))
+ 		for_each_pipe(dev_priv, pipe)
 -			runtime->num_sprites[pipe] = 4;
--	} else if (DISPLAY_VER(dev_priv) >= 11) {
--		for_each_pipe(dev_priv, pipe)
++			display_runtime->num_sprites[pipe] = 4;
+ 	else if (DISPLAY_VER(dev_priv) >= 11)
+ 		for_each_pipe(dev_priv, pipe)
 -			runtime->num_sprites[pipe] = 6;
--	}
--
--	if (HAS_DISPLAY(dev_priv) && DISPLAY_VER(dev_priv) >= 9) {
--		u32 dfsm = intel_de_read(dev_priv, SKL_DFSM);
--
--		if (dfsm & SKL_DFSM_PIPE_A_DISABLE) {
++			display_runtime->num_sprites[pipe] = 6;
+ 	else if (DISPLAY_VER(dev_priv) == 10)
+ 		for_each_pipe(dev_priv, pipe)
+-			runtime->num_sprites[pipe] = 3;
++			display_runtime->num_sprites[pipe] = 3;
+ 	else if (IS_BROXTON(dev_priv)) {
+ 		/*
+ 		 * Skylake and Broxton currently don't expose the topmost plane as its
+@@ -446,15 +452,15 @@ void intel_device_info_runtime_init(struct drm_i915_private *dev_priv)
+ 		 * down the line.
+ 		 */
+ 
+-		runtime->num_sprites[PIPE_A] = 2;
+-		runtime->num_sprites[PIPE_B] = 2;
+-		runtime->num_sprites[PIPE_C] = 1;
++		display_runtime->num_sprites[PIPE_A] = 2;
++		display_runtime->num_sprites[PIPE_B] = 2;
++		display_runtime->num_sprites[PIPE_C] = 1;
+ 	} else if (IS_VALLEYVIEW(dev_priv) || IS_CHERRYVIEW(dev_priv)) {
+ 		for_each_pipe(dev_priv, pipe)
+-			runtime->num_sprites[pipe] = 2;
++			display_runtime->num_sprites[pipe] = 2;
+ 	} else if (DISPLAY_VER(dev_priv) >= 5 || IS_G4X(dev_priv)) {
+ 		for_each_pipe(dev_priv, pipe)
+-			runtime->num_sprites[pipe] = 1;
++			display_runtime->num_sprites[pipe] = 1;
+ 	}
+ 
+ 	if (HAS_DISPLAY(dev_priv) &&
+@@ -462,7 +468,7 @@ void intel_device_info_runtime_init(struct drm_i915_private *dev_priv)
+ 	    !(intel_de_read(dev_priv, GU_CNTL_PROTECTED) & DEPRESENT)) {
+ 		drm_info(&dev_priv->drm, "Display not present, disabling\n");
+ 
+-		runtime->pipe_mask = 0;
++		display_runtime->pipe_mask = 0;
+ 	}
+ 
+ 	if (HAS_DISPLAY(dev_priv) && IS_GRAPHICS_VER(dev_priv, 7, 8) &&
+@@ -485,47 +491,47 @@ void intel_device_info_runtime_init(struct drm_i915_private *dev_priv)
+ 		     !(sfuse_strap & SFUSE_STRAP_FUSE_LOCK))) {
+ 			drm_info(&dev_priv->drm,
+ 				 "Display fused off, disabling\n");
+-			runtime->pipe_mask = 0;
++			display_runtime->pipe_mask = 0;
+ 		} else if (fuse_strap & IVB_PIPE_C_DISABLE) {
+ 			drm_info(&dev_priv->drm, "PipeC fused off\n");
+-			runtime->pipe_mask &= ~BIT(PIPE_C);
+-			runtime->cpu_transcoder_mask &= ~BIT(TRANSCODER_C);
++			display_runtime->pipe_mask &= ~BIT(PIPE_C);
++			display_runtime->cpu_transcoder_mask &= ~BIT(TRANSCODER_C);
+ 		}
+ 	} else if (HAS_DISPLAY(dev_priv) && DISPLAY_VER(dev_priv) >= 9) {
+ 		u32 dfsm = intel_de_read(dev_priv, SKL_DFSM);
+ 
+ 		if (dfsm & SKL_DFSM_PIPE_A_DISABLE) {
 -			runtime->pipe_mask &= ~BIT(PIPE_A);
 -			runtime->cpu_transcoder_mask &= ~BIT(TRANSCODER_A);
 -			runtime->fbc_mask &= ~BIT(INTEL_FBC_A);
--		}
--		if (dfsm & SKL_DFSM_PIPE_B_DISABLE) {
++			display_runtime->pipe_mask &= ~BIT(PIPE_A);
++			display_runtime->cpu_transcoder_mask &= ~BIT(TRANSCODER_A);
++			display_runtime->fbc_mask &= ~BIT(INTEL_FBC_A);
+ 		}
+ 		if (dfsm & SKL_DFSM_PIPE_B_DISABLE) {
 -			runtime->pipe_mask &= ~BIT(PIPE_B);
 -			runtime->cpu_transcoder_mask &= ~BIT(TRANSCODER_B);
--		}
--		if (dfsm & SKL_DFSM_PIPE_C_DISABLE) {
++			display_runtime->pipe_mask &= ~BIT(PIPE_B);
++			display_runtime->cpu_transcoder_mask &= ~BIT(TRANSCODER_B);
+ 		}
+ 		if (dfsm & SKL_DFSM_PIPE_C_DISABLE) {
 -			runtime->pipe_mask &= ~BIT(PIPE_C);
 -			runtime->cpu_transcoder_mask &= ~BIT(TRANSCODER_C);
--		}
--
--		if (DISPLAY_VER(dev_priv) >= 12 &&
--		    (dfsm & TGL_DFSM_PIPE_D_DISABLE)) {
++			display_runtime->pipe_mask &= ~BIT(PIPE_C);
++			display_runtime->cpu_transcoder_mask &= ~BIT(TRANSCODER_C);
+ 		}
+ 
+ 		if (DISPLAY_VER(dev_priv) >= 12 &&
+ 		    (dfsm & TGL_DFSM_PIPE_D_DISABLE)) {
 -			runtime->pipe_mask &= ~BIT(PIPE_D);
 -			runtime->cpu_transcoder_mask &= ~BIT(TRANSCODER_D);
--		}
--
--		if (dfsm & SKL_DFSM_DISPLAY_HDCP_DISABLE)
++			display_runtime->pipe_mask &= ~BIT(PIPE_D);
++			display_runtime->cpu_transcoder_mask &= ~BIT(TRANSCODER_D);
+ 		}
+ 
+ 		if (dfsm & SKL_DFSM_DISPLAY_HDCP_DISABLE)
 -			runtime->has_hdcp = 0;
--
--		if (dfsm & SKL_DFSM_DISPLAY_PM_DISABLE)
++			display_runtime->has_hdcp = 0;
+ 
+ 		if (dfsm & SKL_DFSM_DISPLAY_PM_DISABLE)
 -			runtime->fbc_mask = 0;
--
--		if (DISPLAY_VER(dev_priv) >= 11 && (dfsm & ICL_DFSM_DMC_DISABLE))
++			display_runtime->fbc_mask = 0;
+ 
+ 		if (DISPLAY_VER(dev_priv) >= 11 && (dfsm & ICL_DFSM_DMC_DISABLE))
 -			runtime->has_dmc = 0;
--
--		if (DISPLAY_VER(dev_priv) >= 10 &&
--		    (dfsm & GLK_DFSM_DISPLAY_DSC_DISABLE))
++			display_runtime->has_dmc = 0;
+ 
+ 		if (IS_DISPLAY_VER(dev_priv, 10, 12) &&
+ 		    (dfsm & GLK_DFSM_DISPLAY_DSC_DISABLE))
 -			runtime->has_dsc = 0;
--	}
--
--	runtime->rawclk_freq = intel_read_rawclk(dev_priv);
--	drm_dbg(&dev_priv->drm, "rawclk rate: %d kHz\n", runtime->rawclk_freq);
--}
--
- bool i915_vtd_active(struct drm_i915_private *i915)
- {
- 	if (device_iommu_mapped(i915->drm.dev))
-@@ -128,3 +45,14 @@ int __i915_inject_probe_error(struct drm_i915_private *i915, int err,
- {
- 	return 0;
- }
-+int i8xx_enable_vblank(struct drm_crtc *crtc) { return 0; }
-+void intel_dvo_init(struct drm_i915_private *i915) {}
-+int i965_enable_vblank(struct drm_crtc *crtc) { return 0; }
-+int intel_tv_init(struct drm_i915_private *i915) { return 0; }
-+int assert_dsi_pll_enabled(struct drm_i915_private *i915) { return 0; }
-+bool intel_sdvo_init(struct drm_i915_private *dev_priv,
-+		     i915_reg_t sdvo_reg, enum port port) { return false; }
-+void i965_disable_vblank(struct drm_crtc *crtc) {}
-+void i8xx_disable_vblank(struct drm_crtc *crtc) {}
-+void g4x_hdmi_init(struct drm_i915_private *dev_priv,
-+		   i915_reg_t hdmi_reg, enum port port) {}
-diff --git a/drivers/gpu/drm/xe/xe_device_types.h b/drivers/gpu/drm/xe/xe_device_types.h
-index 17b6b1cc5adb..0226d44a6af2 100644
---- a/drivers/gpu/drm/xe/xe_device_types.h
-+++ b/drivers/gpu/drm/xe/xe_device_types.h
-@@ -21,6 +21,7 @@
- #include "ext/intel_device_info.h"
- #include "ext/intel_pch.h"
- #include "intel_display_core.h"
-+#include "intel_display_device.h"
- #endif
- 
- struct xe_ggtt;
-@@ -217,58 +218,11 @@ struct xe_device {
- 		u8 enable_display:1;
- 
- #if IS_ENABLED(CONFIG_DRM_XE_DISPLAY)
--		struct xe_device_display_info {
--			u8 ver;
--
--			u8 pipe_mask;
--			u8 cpu_transcoder_mask;
--			u8 fbc_mask;
--			u8 abox_mask;
--
--			struct {
--				u16 size; /* in blocks */
--				u8 slice_mask;
--			} dbuf;
--
--#define DEV_INFO_DISPLAY_FOR_EACH_FLAG(func) \
--			/* Keep in alphabetical order */ \
--			func(has_cdclk_crawl); \
--			func(has_cdclk_squash); \
--			func(has_dmc); \
--			func(has_dp_mst); \
--			func(has_dsb); \
--			func(has_dsc); \
--			func(has_fpga_dbg); \
--			func(has_hdcp); \
--			func(has_hti); \
--			func(has_ipc); \
--			func(has_psr); \
--			func(has_psr_hw_tracking);
--
--#define DEFINE_FLAG(name) u8 name:1
--			DEV_INFO_DISPLAY_FOR_EACH_FLAG(DEFINE_FLAG);
--#undef DEFINE_FLAG
--
--			/* Register offsets for the various display pipes and transcoders */
--			u32 pipe_offsets[I915_MAX_TRANSCODERS];
--			u32 trans_offsets[I915_MAX_TRANSCODERS];
--			u32 cursor_offsets[I915_MAX_PIPES];
--
--			struct {
--				u32 degamma_lut_size;
--				u32 gamma_lut_size;
--				u32 degamma_lut_tests;
--				u32 gamma_lut_tests;
--			} color;
--
--			/* Populated by intel_device_runtime_init() */
--			u8 num_sprites[I915_MAX_PIPES];
--			u8 num_scalers[I915_MAX_PIPES];
-+		const struct intel_display_device_info *display;
-+		struct intel_display_runtime_info display_runtime;
-+		struct {
- 			u32 rawclk_freq;
--
--			/* Unused by xe, but for compat */
--			u32 mmio_offset;
--		} display;
-+		} i915_runtime;
- #endif
- 	} info;
- 
-diff --git a/drivers/gpu/drm/xe/xe_display.c b/drivers/gpu/drm/xe/xe_display.c
-index 1a9e9c78966d..5745065b70de 100644
---- a/drivers/gpu/drm/xe/xe_display.c
-+++ b/drivers/gpu/drm/xe/xe_display.c
-@@ -196,7 +196,7 @@ int xe_display_init_noirq(struct xe_device *xe)
- 
- 	intel_bw_init_hw(xe);
- 
--	intel_device_info_runtime_init(xe);
-+	intel_display_device_info_runtime_init(xe);
- 
- 	err = intel_display_driver_probe_noirq(xe);
- 	if (err)
-@@ -320,7 +320,7 @@ static void intel_suspend_encoders(struct xe_device *xe)
- 	struct drm_device *dev = &xe->drm;
- 	struct intel_encoder *encoder;
- 
--	if (!xe->info.display.pipe_mask)
-+	if (xe->info.display_runtime.pipe_mask)
- 		return;
- 
- 	drm_modeset_lock_all(dev);
-@@ -340,7 +340,7 @@ void xe_display_pm_suspend(struct xe_device *xe)
- 	 * properly.
- 	 */
- 	intel_power_domains_disable(xe);
--	if (xe->info.display.pipe_mask)
-+	if (xe->info.display_runtime.pipe_mask)
- 		drm_kms_helper_poll_disable(&xe->drm);
- 
- 	intel_display_driver_suspend(xe);
-@@ -385,7 +385,7 @@ void xe_display_pm_resume(struct xe_device *xe)
- 
- 	intel_dmc_resume(xe);
- 
--	if (xe->info.display.pipe_mask)
-+	if (xe->info.display_runtime.pipe_mask)
- 		drm_mode_config_reset(&xe->drm);
- 
- 	intel_display_driver_init_hw(xe);
-@@ -397,7 +397,7 @@ void xe_display_pm_resume(struct xe_device *xe)
- 	intel_display_driver_resume(xe);
- 
- 	intel_hpd_poll_disable(xe);
--	if (xe->info.display.pipe_mask)
-+	if (xe->info.display_runtime.pipe_mask)
- 		drm_kms_helper_poll_enable(&xe->drm);
- 
- 	intel_opregion_resume(xe);
-@@ -411,142 +411,34 @@ void xe_display_pm_resume(struct xe_device *xe)
- __diag_push();
- __diag_ignore_all("-Woverride-init", "Allow field overrides in table");
- 
--#define __DISPLAY_DEFAULTS \
--	.pipe_mask = BIT(PIPE_A) | BIT(PIPE_B) |			\
--		     BIT(PIPE_C) | BIT(PIPE_D),				\
--	.cpu_transcoder_mask =						\
--	BIT(TRANSCODER_A) | BIT(TRANSCODER_B) |				\
--	BIT(TRANSCODER_C) | BIT(TRANSCODER_D) |				\
--	BIT(TRANSCODER_DSI_0) | BIT(TRANSCODER_DSI_1),			\
--	.pipe_offsets = {						\
--		[TRANSCODER_A] = PIPE_A_OFFSET,				\
--		[TRANSCODER_B] = PIPE_B_OFFSET,				\
--		[TRANSCODER_C] = PIPE_C_OFFSET,				\
--		[TRANSCODER_D] = PIPE_D_OFFSET,				\
--		[TRANSCODER_DSI_0] = PIPE_DSI0_OFFSET,			\
--		[TRANSCODER_DSI_1] = PIPE_DSI1_OFFSET,			\
--	},								\
--	.cursor_offsets = { \
--		[PIPE_A] = CURSOR_A_OFFSET, \
--		[PIPE_B] = CURSOR_B_OFFSET, \
--		[PIPE_C] = CURSOR_C_OFFSET, \
--		[PIPE_D] = CURSOR_D_OFFSET, \
--	}, \
--	.trans_offsets = {						\
--		[TRANSCODER_A] = TRANSCODER_A_OFFSET,			\
--		[TRANSCODER_B] = TRANSCODER_B_OFFSET,			\
--		[TRANSCODER_C] = TRANSCODER_C_OFFSET,			\
--		[TRANSCODER_D] = TRANSCODER_D_OFFSET,			\
--		[TRANSCODER_DSI_0] = TRANSCODER_DSI0_OFFSET,		\
--		[TRANSCODER_DSI_1] = TRANSCODER_DSI1_OFFSET,		\
--	}
--
--#define GEN12_DISPLAY \
--	__DISPLAY_DEFAULTS,						\
--	.ver = 12,							\
--	.abox_mask = GENMASK(2, 1),					\
--	.has_dmc = 1,							\
--	.has_dp_mst = 1,						\
--	.has_dsb = 0, /* FIXME: LUT load is broken with huge DSB */	\
--	.dbuf.size = 2048,						\
--	.dbuf.slice_mask = BIT(DBUF_S1) | BIT(DBUF_S2),			\
--	.has_dsc = 1,							\
--	.fbc_mask = BIT(INTEL_FBC_A),					\
--	.has_fpga_dbg = 1,						\
--	.has_hdcp = 1,							\
--	.has_ipc = 1,							\
--	.has_psr = 1,							\
--	.has_psr_hw_tracking = 0,					\
--	.color = { .degamma_lut_size = 33, .gamma_lut_size = 262145 }
--
--#define XE_LPD								\
--	__DISPLAY_DEFAULTS,						\
--	.ver = 13,							\
--	.abox_mask = GENMASK(1, 0),					\
--	.color = {							\
--		.degamma_lut_size = 128, .gamma_lut_size = 1024,	\
--		.degamma_lut_tests = DRM_COLOR_LUT_NON_DECREASING |	\
--		DRM_COLOR_LUT_EQUAL_CHANNELS,				\
--	},								\
--	.dbuf.size = 4096,						\
--	.dbuf.slice_mask = BIT(DBUF_S1) | BIT(DBUF_S2) | BIT(DBUF_S3) |	\
--	BIT(DBUF_S4),							\
--	.has_dmc = 1,							\
--	.has_dp_mst = 1,						\
--	.has_dsb = 1,							\
--	.has_dsc = 1,							\
--	.fbc_mask = BIT(INTEL_FBC_A),					\
--	.has_fpga_dbg = 1,						\
--	.has_hdcp = 1,							\
--	.has_ipc = 1,							\
--	.has_psr = 1,							\
--	.has_psr_hw_tracking = 0
--
--#define XE_LPDP								\
--	XE_LPD,								\
--	.ver = 14,							\
--	.has_cdclk_crawl = 1,						\
--	.has_cdclk_squash = 1
--
--
- void xe_display_info_init(struct xe_device *xe)
- {
--	if (!xe->info.enable_display) {
--		unset_display_features(xe);
--		return;
--	}
-+	u16 gmdid_ver, gmdid_rel, gmdid_step;
-+	bool has_gmdid = GRAPHICS_VERx100(xe) >= 1270;
-+
-+	if (!xe->info.enable_display)
-+		goto no_display;
-+
-+	xe->info.display = intel_display_device_probe(xe, has_gmdid, &gmdid_ver,
-+						      &gmdid_rel, &gmdid_step);
-+	memcpy(&xe->info.display_runtime,
-+	       &xe->info.display->__runtime_defaults,
-+	       sizeof(xe->info.display->__runtime_defaults));
- 
--	switch (xe->info.platform) {
--	case XE_TIGERLAKE:
--	case XE_DG1:
--		xe->info.display = (struct xe_device_display_info) {
--			GEN12_DISPLAY,
--			.has_psr_hw_tracking = 1,
--		};
--		break;
--	case XE_ROCKETLAKE:
--		xe->info.display = (struct xe_device_display_info) {
--			GEN12_DISPLAY,
--			.abox_mask = BIT(0),
--			.has_hti = 1,
--			.cpu_transcoder_mask =
--				BIT(TRANSCODER_A) | BIT(TRANSCODER_B) |
--				BIT(TRANSCODER_C),
--			.pipe_mask =
--				BIT(PIPE_A) | BIT(PIPE_B) | BIT(PIPE_C),
--		};
--		break;
--	case XE_ALDERLAKE_S:
--		xe->info.display = (struct xe_device_display_info) {
--			GEN12_DISPLAY,
--			.has_hti = 1,
--		};
--		break;
--	case XE_ALDERLAKE_P:
--	case XE_ALDERLAKE_N:
--		xe->info.display = (struct xe_device_display_info) {
--			XE_LPD,
--			.has_cdclk_crawl = 1,
--		};
--		break;
--	case XE_DG2:
--		xe->info.display = (struct xe_device_display_info) {
--			XE_LPD,
--			.cpu_transcoder_mask =
--				BIT(TRANSCODER_A) | BIT(TRANSCODER_B) |
--				BIT(TRANSCODER_C) | BIT(TRANSCODER_D),
--			.has_cdclk_squash = 1,
--		};
--		break;
--	case XE_METEORLAKE:
--		xe->info.display = (struct xe_device_display_info) { XE_LPDP };
--		break;
--	default:
--		drm_warn(&xe->drm, "Unknown display IP\n");
--		xe->info.enable_display = false;
--		unset_display_features(xe);
--		return;
-+	if (!xe->info.display_runtime.pipe_mask)
-+		goto no_display;
-+
-+	if (has_gmdid) {
-+		xe->info.display_runtime.ip.ver = gmdid_ver;
-+		xe->info.display_runtime.ip.rel = gmdid_rel;
-+		xe->info.display_runtime.ip.step = gmdid_step;
++			display_runtime->has_dsc = 0;
  	}
+ 
+ 	if (GRAPHICS_VER(dev_priv) == 6 && i915_vtd_active(dev_priv)) {
+@@ -542,13 +548,13 @@ void intel_device_info_runtime_init(struct drm_i915_private *dev_priv)
+ 						   DRIVER_ATOMIC);
+ 		info->display = &no_display;
+ 
+-		runtime->cpu_transcoder_mask = 0;
+-		memset(runtime->num_sprites, 0, sizeof(runtime->num_sprites));
+-		memset(runtime->num_scalers, 0, sizeof(runtime->num_scalers));
+-		runtime->fbc_mask = 0;
+-		runtime->has_hdcp = false;
+-		runtime->has_dmc = false;
+-		runtime->has_dsc = false;
++		display_runtime->cpu_transcoder_mask = 0;
++		memset(display_runtime->num_sprites, 0, sizeof(display_runtime->num_sprites));
++		memset(display_runtime->num_scalers, 0, sizeof(display_runtime->num_scalers));
++		display_runtime->fbc_mask = 0;
++		display_runtime->has_hdcp = false;
++		display_runtime->has_dmc = false;
++		display_runtime->has_dsc = false;
+ 	}
+ 
+ 	/* Disable nuclear pageflip by default on pre-g4x */
+@@ -568,6 +574,7 @@ void intel_device_info_driver_create(struct drm_i915_private *i915,
+ {
+ 	struct intel_device_info *info;
+ 	struct intel_runtime_info *runtime;
++	struct intel_display_runtime_info *display_runtime;
+ 
+ 	/* Setup the write-once "constant" device info */
+ 	info = mkwrite_device_info(i915);
+@@ -576,6 +583,10 @@ void intel_device_info_driver_create(struct drm_i915_private *i915,
+ 	/* Initialize initial runtime info from static const data and pdev. */
+ 	runtime = RUNTIME_INFO(i915);
+ 	memcpy(runtime, &INTEL_INFO(i915)->__runtime, sizeof(*runtime));
++	display_runtime = DISPLAY_RUNTIME_INFO(i915);
++	memcpy(display_runtime, &DISPLAY_INFO(i915)->__runtime_defaults,
++	       sizeof(*display_runtime));
 +
-+	return;
-+
-+no_display:
-+	xe->info.enable_display = false;
-+	unset_display_features(xe);
+ 	runtime->device_id = device_id;
  }
  
- __diag_pop();
+diff --git a/drivers/gpu/drm/i915/intel_device_info.h b/drivers/gpu/drm/i915/intel_device_info.h
+index f838ae719164..faf6cccdb343 100644
+--- a/drivers/gpu/drm/i915/intel_device_info.h
++++ b/drivers/gpu/drm/i915/intel_device_info.h
+@@ -197,9 +197,6 @@ struct intel_runtime_info {
+ 	struct {
+ 		struct intel_ip_version ip;
+ 	} media;
+-	struct {
+-		struct intel_ip_version ip;
+-	} display;
+ 
+ 	/*
+ 	 * Platform mask is used for optimizing or-ed IS_PLATFORM calls into
+@@ -227,21 +224,6 @@ struct intel_runtime_info {
+ 	u32 memory_regions; /* regions supported by the HW */
+ 
+ 	bool has_pooled_eu;
+-
+-	/* display */
+-	struct {
+-		u8 pipe_mask;
+-		u8 cpu_transcoder_mask;
+-
+-		u8 num_sprites[I915_MAX_PIPES];
+-		u8 num_scalers[I915_MAX_PIPES];
+-
+-		u8 fbc_mask;
+-
+-		bool has_hdcp;
+-		bool has_dmc;
+-		bool has_dsc;
+-	};
+ };
+ 
+ struct intel_device_info {
+diff --git a/drivers/gpu/drm/i915/intel_step.c b/drivers/gpu/drm/i915/intel_step.c
+index 84a6fe736a3b..8a9ff6227e53 100644
+--- a/drivers/gpu/drm/i915/intel_step.c
++++ b/drivers/gpu/drm/i915/intel_step.c
+@@ -166,8 +166,12 @@ void intel_step_init(struct drm_i915_private *i915)
+ 						       &RUNTIME_INFO(i915)->graphics.ip);
+ 		step.media_step = gmd_to_intel_step(i915,
+ 						    &RUNTIME_INFO(i915)->media.ip);
+-		step.display_step = gmd_to_intel_step(i915,
+-						      &RUNTIME_INFO(i915)->display.ip);
++		step.display_step = STEP_A0 + DISPLAY_RUNTIME_INFO(i915)->ip.step;
++		if (step.display_step >= STEP_FUTURE) {
++			drm_dbg(&i915->drm, "Using future display steppings\n");
++			step.display_step = STEP_FUTURE;
++		}
++
+ 		RUNTIME_INFO(i915)->step = step;
+ 
+ 		return;
 -- 
 2.40.1
 
