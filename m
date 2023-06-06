@@ -4,121 +4,57 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 42A91C7EE24
-	for <intel-xe@archiver.kernel.org>; Tue,  6 Jun 2023 08:03:13 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6F892C7EE24
+	for <intel-xe@archiver.kernel.org>; Tue,  6 Jun 2023 08:23:41 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1567310E219;
-	Tue,  6 Jun 2023 08:03:13 +0000 (UTC)
-Received: from EUR02-AM0-obe.outbound.protection.outlook.com
- (mail-am0eur02on2071e.outbound.protection.outlook.com
- [IPv6:2a01:111:f400:fe13::71e])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 18A6210E219
- for <intel-xe@lists.freedesktop.org>; Tue,  6 Jun 2023 08:03:11 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=ixtR4RjYtIxbzr4i8yg2pAebn7PeHzUQ7nsnX8rIfNPrltxaYSYqxeYwR7zsfqysgeF2v8SJpVZk6ACwXQzwxDEG78RmLylAdfKbQAO1aELHY1Zd6p9AWbA5rntton+7l4Rg5ljwAksVM34bsDjAfy0N8ec8zTwxrk3Pj26AC5D3S2dYIeWPGXi/8M5cQYamkDn4fav7b+8o2zU6rcEKQu4qATJ+EjGMOUs/3sVP2UUrAVTDeahPLQK0Rbs7IOZG6FhMDnodR7Mj1eFewhRr2d5XBXb3ngUPx7R1os2vNlxImBAeU5bPLiOwqCje3i3B5WRycR5cfxmT/nLgws6GXQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=fMlXLrL82leeMYzcpWqmEEK7IKQCEortasOTx4rZA3k=;
- b=NYFtoJ1c2iJMXcELdfjb7QWdyvJYdAdPCqagyetFQX+h6E627faj16yE9x4MrdB3/1kACduONpQOtsCQLEvAnE/NoH3tPEz2GBYuGIZ36SVDalI34n7o9u282B57j0TfR14aw4ht671vYxG11gfoaTVvqDcxZqNDTP96ZkVfJKx+wsXWnLJY8ivcLepYaU6m8L636kWPySqOc2l9rZjLMEtxosbNFC8XhtEK/lWkOq5A3JmQUaJ8KimnFmVUpCzYzYo6PfoUSA71jiodXcp/rcIJ+nCm6wwLh5tB66rPz0bZwiNCN0VtbKK0To3Az7aT530FK7Llm9d8LLLKJVWHPg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=habana.ai; dmarc=pass action=none header.from=habana.ai;
- dkim=pass header.d=habana.ai; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=habana.ai; s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=fMlXLrL82leeMYzcpWqmEEK7IKQCEortasOTx4rZA3k=;
- b=Z5BdGRtmyq5eDi/GOwlL60LBO8S7ki+6xn+zHhHoBSPI1G8kkKYJ/9wZUfCL9BrxRNTkK3e4AH2MjRAas5VKbkkKV3Ojx+/8lWr8w5H/LVaVwGmZbJdD61wTEvAtj/wDx30iyz5LC6OSxzXijYpjyWyDUeeVbYpifviwqWRGhYohRUA9kjRmzhosR41QL6h+MKYeaOH0ZuYNZ2DOVN8McE7gxyTx0hnRxNGtBfNAg2PvMaDDRsLWCE/3XvivEltRa0rvHRz5LqXFOlxr/hb4bbtwO+T7pgBE60CJ6XbLgT1wZLApmTnzy3Nuu/cchMF6LhlgadJY/N+N6pVfq/TVIA==
-Received: from DB4PR02MB9311.eurprd02.prod.outlook.com (2603:10a6:10:3fd::9)
- by AM0PR02MB5956.eurprd02.prod.outlook.com (2603:10a6:208:18a::9) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6455.32; Tue, 6 Jun
- 2023 08:03:06 +0000
-Received: from DB4PR02MB9311.eurprd02.prod.outlook.com
- ([fe80::bf33:602a:6553:fb72]) by DB4PR02MB9311.eurprd02.prod.outlook.com
- ([fe80::bf33:602a:6553:fb72%5]) with mapi id 15.20.6455.030; Tue, 6 Jun 2023
- 08:03:06 +0000
-From: Ohad Sharabi <osharabi@habana.ai>
-To: Francois Dugast <francois.dugast@intel.com>,
- "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>
-Thread-Topic: [RFC, 1/1] drm/xe: Introduce function pointers for MMIO functions
-Thread-Index: AQHZmDtE3JVtMvlusESRbmMPUY4gTq99aVyA
-Date: Tue, 6 Jun 2023 08:03:06 +0000
-Message-ID: <1252eade-3132-1863-ded0-2a5cd9dd69c7@habana.ai>
-References: <20230602142501.6-2-francois.dugast@intel.com>
-In-Reply-To: <20230602142501.6-2-francois.dugast@intel.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-user-agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
- Thunderbird/102.11.0
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=habana.ai;
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: DB4PR02MB9311:EE_|AM0PR02MB5956:EE_
-x-ms-office365-filtering-correlation-id: 665f0170-5a66-4249-9f4f-08db666475dd
-x-ld-processed: 0d4d4539-213c-4ed8-a251-dc9766ba127a,ExtAddr
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: Vv8XnbRzN6ra+KOmsm1QiR0g1nl1hEoLvxyebR1GRm19fo5difLbrJ2Zh0qkYN4dP4gXeVxki0lYtoOT58+osZ2qH3M89ZdkU1VghEuVPCxz3bPNBei4mRKZyMdaneDq60SRLlBbutHVKVzS7FDPOYWqVrR8/jsDMIMcKoMBmgqGp0PUXHNJMrbyahkF4mJCJHuAXwdEi5QPg5DS2n55oj+LkvjdOID1b6bAcTZHIoJ24AnXEcSDN2ch0OwI+GEgL+XHDu4+YbsHoboeOGbR1HakPR7MOz6cvJoHnC4nj7SSv0sXP1p6o7PBxh85MVMa8WCPvggbLOrwvzIkuci2m3r4J6orjV4qGcY4wv8XwPNwWS9B1ZETNMCYnyGGGCNq/g3/EV0arS+0isQ8GIdyztB6H5vGKKeuDuo5dahcLakskp1+XKhiKdtW1WA8L6t78bIu94rxkN+kGrzFCWko+3csqq0Io2cK+IUNkWwqZtZGHv80kZwnQcb5ZVFUE1efGKQ8h3tJNzx3PTE77qapWOd4FqlUKpIc3ApiXK/US1eHplkBbb/k2S3XzcccidFjdNLuMEQe7KSBhB1DlHxqkKCJSw7mAFeTqXlgBJ8fc4JZOuZ6J5C2jPoxaXfOZkEffHHNAGnTAFxm/UtzuYuX5Dr9pUi3th0wsYEV9n1LpX9m0CRWjfpz0na2eWxds0uh
-x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:DB4PR02MB9311.eurprd02.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230028)(4636009)(346002)(136003)(376002)(39850400004)(396003)(366004)(451199021)(6506007)(186003)(26005)(6512007)(53546011)(2616005)(31686004)(82960400001)(83380400001)(6486002)(36756003)(54906003)(2906002)(71200400001)(8676002)(8936002)(110136005)(478600001)(66446008)(122000001)(31696002)(5660300002)(38070700005)(86362001)(4326008)(38100700002)(66476007)(41300700001)(316002)(66556008)(76116006)(91956017)(66946007)(64756008)(45980500001)(43740500002);
- DIR:OUT; SFP:1102; 
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?utf-8?B?Y0wwYjhOUVMyMXFzc09GS2s2TytjVlJUNm10TkxmTjNDNmJvaWk1QWVHTml6?=
- =?utf-8?B?SXI4eG9DQ1ZBWlpGQ3BwZ3Ewbm5wNzlUTVJpRDF1ckJUU3lhZFdiQ2hvREly?=
- =?utf-8?B?UGxEb3JoVU9HbENMN3pwVGJ5SHBTNkNsNlhjTGxrVUFiZm1OOVNEbGFNLzN6?=
- =?utf-8?B?dCs5ZTlROXJVSlNRcHE2SXhqWnBZL295M1BtM3hMMCs0M0lJUWVwSnp3R3Jh?=
- =?utf-8?B?a0xuOThyNkVVVDVXV2UzWWtubDNMZ3I3Nk8vRXVMUHlDc3l0dUs4eHRoWWo4?=
- =?utf-8?B?eFN2RFVNYXNic09DM1JvK3VDQkdkejhodUhLTGw3dVRwQW4rUmk0b1lvZDBO?=
- =?utf-8?B?aS9WRXBQRHZHUnNlUzRWUEoxQVBKT3lFUURBWmtlTmpIQWM5MWpxQVhJOHBJ?=
- =?utf-8?B?eU9pNzJhL2pYZ0lrTmxYWHBIMDJpQThrVllVMHFwWS9LdE5XdDJNVHlDK2JG?=
- =?utf-8?B?cFdHU3Z2SUsxV0J4bUZEb2JtcGlFNk1FT0VhaGNSM2g4T2V2WHJESjRHZVVm?=
- =?utf-8?B?NyszU3F4VUxnTWhrakJiZG9OaHZCMWhzbFZrbzBtS1Q0RHZyaDlrREZvS2ZF?=
- =?utf-8?B?bks1eEx3bERzb1NRWm01TjQ3R3JUVHNOcmxZNnhYMlpRSzIyTktVYmJyWUxv?=
- =?utf-8?B?ZHlwN3NiMklESzE2QkhEM1A5YThDTlQweDZnSUtaVlJRV0NqSEFWbHJxcFlS?=
- =?utf-8?B?ZGFVY0M1V3NXdmdLOFIvMlBhc1c3Ri96V2lhTGdqRTNqK1hzeGM1Z3I3d1ZN?=
- =?utf-8?B?MnkyL2dFNGcxZDJFaVpVNFgrc3pXdzVQaVVSYzFhc1NFVU1tUWs5RzFkNG9Z?=
- =?utf-8?B?M1lUdmdJUitRU3NOQXFML1VIR0JpU1JKSlRBQlV6ZytuY2tqWE1DRVBsaTcz?=
- =?utf-8?B?VE9SaTQwaEZVbEx5MkpQMU5qWWVwWFJiQWtaK2ZZaDgrOXBSYlF0WHh2NVgy?=
- =?utf-8?B?TVB1ZXZFWkNqb2ovaG1DdmZoSzFXMkdJWmRiNHVleThZUkdqM21MSnJpZFh2?=
- =?utf-8?B?M2JOaEV2eVZCQTZsTHpGMXlBQ2xqZS8rY0E3YUw3YUtQYU9ZUnJ1Lzd1SlZ6?=
- =?utf-8?B?TjFWcXVLRXhsZFhZcUVBOTZFRXQzVkU5TVNNd1Q5UlFFZDRKU3Y3cFRRc0cr?=
- =?utf-8?B?aW1zd3VxY3I2S3ByQ3hDWXVNRmZPdWNMdzZqN0JmOUZCZWZBV1BjUy9FUDRv?=
- =?utf-8?B?UTFVS2lUU2sxdDN1aFN6a1M3MExvWEJTNENsR0pzRDMzNDcxVHExbGRxOVQ3?=
- =?utf-8?B?bXoyWTFJMENEbnVoRW5QUVVNMmVEaWU0NnoyNzF0SUNPUWhOVDlVYkRSQitU?=
- =?utf-8?B?dzkxRWJUakhyTnJwZ2NPdm41SnpqMXVjYXdGakZVU1NnKzJEU2tsdkVacGVN?=
- =?utf-8?B?bk5TOFlwbmlFZTlCOFFFckxZM3ZvOGEyV1IzZWlTTlZEa21lR3cxR29BTEE2?=
- =?utf-8?B?YkdxVDhvbHJWMEFicjNTSC9NcjZvQkhZYWxHUXZyN0pOVGVxSTZrYlVBbW8z?=
- =?utf-8?B?bDRuVENMWi9MeklRWVpmZlBjWUtqMFlqbUhvTkVaT1dPaWdnVjZqZzEvOThD?=
- =?utf-8?B?b0hOOGhFbzdDRUdONGYrV1dtMGptSUhVVUt4WWZiTkJVcGtiVEllNk90MStk?=
- =?utf-8?B?WFpnODMyVk5TTmthL0I2VGxmc3pzU1ZTQVd5SU5vb2NKQ2xLWHlUNHdWcDdx?=
- =?utf-8?B?ZWRVUVVpbExuMHJkUXBsT0hjSGhQbVhtWWMyVWJoL3k3dktxcW5NSHpnbWlm?=
- =?utf-8?B?SitzYi9JYi8rb2FqZGxaQXRzQ09rdUUyUzgvTzNvcEZzdXE1QzhXbTJSK3Rk?=
- =?utf-8?B?a3NIdjNVM0tMVFo0RHdLMDJxWjBHQ3NZMjBPTlJsQ241Tk5aMlNVa0NxUkxL?=
- =?utf-8?B?aG5BYll4UWVIazIwUjZBWmFrR2RBQWJSbDNaTktvYlRaQ3dOMTRiNmZ6N2J4?=
- =?utf-8?B?MWpLWmlSazAzeHJxaldHVytrVjl6MjZNaXRpZjZvWks1ZzFRenI3SmhscENj?=
- =?utf-8?B?N2FKR0VUNjN0T2tYbDliN0l3ZnhsNGVaMDVOenkrT28xWmxpQ3dkQzA0MjVI?=
- =?utf-8?B?dDdLdkRLRDRQaEhTOUd4ZHROSDQrbEJpOWFXR3M5QVhpREpUWHY5OTJiVC9v?=
- =?utf-8?Q?vf8Y=3D?=
-Content-Type: text/plain; charset="utf-8"
-Content-ID: <4314FC40FBBC2349B6A387F7E1F49DDF@eurprd02.prod.outlook.com>
-Content-Transfer-Encoding: base64
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3179110E2F0;
+	Tue,  6 Jun 2023 08:23:41 +0000 (UTC)
+Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2D89A10E2CE
+ for <intel-xe@lists.freedesktop.org>; Tue,  6 Jun 2023 08:23:39 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1686039819; x=1717575819;
+ h=date:from:to:cc:subject:message-id:in-reply-to:
+ references:mime-version:content-transfer-encoding;
+ bh=feaTbHnzjChWsk6XuS+aVPFBJJUgeyc0iVOXajPFzgE=;
+ b=UUgAxZrRitFSncQ94WnC3R3vbiSx0QK7FQNscJUyTN6hm+RmcNi3uvD2
+ LGmpESAklKuJmYjW+NMC1oXkbb+Cf2Sb2kjoPbv4nHYa4BXmneRJK6KqD
+ G0try3gEWGmKAYTm8DMp9/zDZitJ0wpVEF4QyY0KHYLjGSQTfZvf6hC9s
+ AlaHerShaRBsOH9Hh6DbVb4L/05Beb8q/I3tQcPjfe4+ZeHvSKd4rFZvN
+ OPccxwQwtpxmGCyjdQpbW8vTY8/z7HPhBOIOxa+GQ9Ny8svMNj3ML7Ghx
+ GeIoUnA9w0SIuzSDy5eDy/12MB0rLWF1bszY/1mgzDLn08at32SZhVvIV w==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10732"; a="354095326"
+X-IronPort-AV: E=Sophos;i="6.00,219,1681196400"; d="scan'208";a="354095326"
+Received: from fmsmga008.fm.intel.com ([10.253.24.58])
+ by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 06 Jun 2023 01:23:32 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6600,9927,10732"; a="774036436"
+X-IronPort-AV: E=Sophos;i="6.00,219,1681196400"; d="scan'208";a="774036436"
+Received: from linux.intel.com ([10.54.29.200])
+ by fmsmga008.fm.intel.com with ESMTP; 06 Jun 2023 01:23:32 -0700
+Received: from maurocar-mobl2 (maurocar-mobl2.ger.corp.intel.com
+ [10.252.20.130])
+ (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+ (No client certificate requested)
+ by linux.intel.com (Postfix) with ESMTPS id 3C1E35804D9;
+ Tue,  6 Jun 2023 01:23:30 -0700 (PDT)
+Date: Tue, 6 Jun 2023 10:23:27 +0200
+From: Mauro Carvalho Chehab <mauro.chehab@linux.intel.com>
+To: "Ghimiray, Himal Prasad" <himal.prasad.ghimiray@intel.com>
+Message-ID: <20230606102327.4cd5c0af@maurocar-mobl2>
+In-Reply-To: <MW4PR11MB7056B78BBD72CADF823802EEB352A@MW4PR11MB7056.namprd11.prod.outlook.com>
+References: <20230524070641.1601255-1-himal.prasad.ghimiray@intel.com>
+ <ZG461NbVPLb7utFZ@bvivekan-mobl> <ZG4+rQfYHFvwiR5f@rdvivi-mobl4>
+ <077e443da6439d4ae30428cf86a2e478e821c045.camel@intel.com>
+ <20230525080621.196a76cd@maurocar-mobl2>
+ <MW4PR11MB7056B78BBD72CADF823802EEB352A@MW4PR11MB7056.namprd11.prod.outlook.com>
 MIME-Version: 1.0
-X-OriginatorOrg: habana.ai
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: DB4PR02MB9311.eurprd02.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 665f0170-5a66-4249-9f4f-08db666475dd
-X-MS-Exchange-CrossTenant-originalarrivaltime: 06 Jun 2023 08:03:06.2941 (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 0d4d4539-213c-4ed8-a251-dc9766ba127a
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: X5kfntde6ibk2v/PUb2hYUXpjk0s30JrSnlIYjB0PJCjSlItoTyteWUOyrJCaIV826lSncRdVtLWi+ItC1mIIw==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: AM0PR02MB5956
-Subject: Re: [Intel-xe] [RFC,
- 1/1] drm/xe: Introduce function pointers for MMIO functions
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
+Subject: Re: [Intel-xe] [PATCH v2 1/1] drm/xe: Add a debugfs for faking gt
+ reset failure.
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -130,143 +66,213 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Cc: "Bitton, Ofir1" <ofir1.bitton@intel.com>,
- "ohadshar@intel.com" <ohadshar@intel.com>
+Cc: "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>,
+ "mauro.chehab@kernel.org" <mauro.chehab@kernel.org>, "Vivi,
+ Rodrigo" <rodrigo.vivi@intel.com>
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-T24gMDIvMDYvMjAyMyAxNzoyNSwgRnJhbmNvaXMgRHVnYXN0IHdyb3RlOg0KPiBBIGxvY2FsIHN0
-cnVjdHVyZSBvZiBmdW5jdGlvbiBwb2ludGVycyBpcyB1c2VkIGFzIGEgbWluaW1hbCBoYXJkd2Fy
-ZQ0KPiBhYnN0cmFjdGlvbiBsYXllciB0byBwcmVwYXJlIGZvciBwbGF0Zm9ybSBpbmRlcGVuZGVu
-dCBNTUlPIGNhbGxzLg0KPg0KPiBDYzogT2RlZCBHYWJiYXkgPG9nYWJiYXlAa2VybmVsLm9yZz4N
-Cj4gQ2M6IE9maXIgQml0dG9uIDxvZmlyMS5iaXR0b25AaW50ZWwuY29tPg0KPiBDYzogT2hhZCBT
-aGFyYWJpIDxvaGFkc2hhckBpbnRlbC5jb20+DQo+IFNpZ25lZC1vZmYtYnk6IEZyYW5jb2lzIER1
-Z2FzdCA8ZnJhbmNvaXMuZHVnYXN0QGludGVsLmNvbT4NCj4gLS0tDQo+ICAgZHJpdmVycy9ncHUv
-ZHJtL3hlL3hlX2RldmljZV90eXBlcy5oIHwgIDMgKysNCj4gICBkcml2ZXJzL2dwdS9kcm0veGUv
-eGVfbW1pby5jICAgICAgICAgfCA4MSArKysrKysrKysrKysrKysrKysrKysrKysrKysrDQo+ICAg
-ZHJpdmVycy9ncHUvZHJtL3hlL3hlX21taW8uaCAgICAgICAgIHwgMzUgKysrKysrLS0tLS0tDQo+
-ICAgMyBmaWxlcyBjaGFuZ2VkLCA5OSBpbnNlcnRpb25zKCspLCAyMCBkZWxldGlvbnMoLSkNCj4N
-Cj4gZGlmZiAtLWdpdCBhL2RyaXZlcnMvZ3B1L2RybS94ZS94ZV9kZXZpY2VfdHlwZXMuaCBiL2Ry
-aXZlcnMvZ3B1L2RybS94ZS94ZV9kZXZpY2VfdHlwZXMuaA0KPiBpbmRleCAxN2I2YjFjYzVhZGIu
-LjNmOGZkMGQ4MTI5YiAxMDA2NDQNCj4gLS0tIGEvZHJpdmVycy9ncHUvZHJtL3hlL3hlX2Rldmlj
-ZV90eXBlcy5oDQo+ICsrKyBiL2RyaXZlcnMvZ3B1L2RybS94ZS94ZV9kZXZpY2VfdHlwZXMuaA0K
-PiBAQCAtMzc4LDYgKzM3OCw5IEBAIHN0cnVjdCB4ZV9kZXZpY2Ugew0KPiAgIAkvKiogQGQzY29s
-ZF9hbGxvd2VkOiBJbmRpY2F0ZXMgaWYgZDNjb2xkIGlzIGEgdmFsaWQgZGV2aWNlIHN0YXRlICov
-DQo+ICAgCWJvb2wgZDNjb2xkX2FsbG93ZWQ7DQo+ICAgDQo+ICsJLyoqIEBtbWlvX2Z1bmNzOiBm
-dW5jdGlvbiBwb2ludGVycyBmb3IgTU1JTyByZWxhdGVkIGZ1bmN0aW9ucyAqLw0KPiArCWNvbnN0
-IHN0cnVjdCB4ZV9tbWlvX2Z1bmNzICptbWlvX2Z1bmNzOw0KRG8gd2UgcmVhbGx5IHdhbnQgdG8g
-ZGl2aWRlIHRoZSBGUCBzdHJ1Y3RzIHRvIHN1Y2ggZmluZS1ncmFpbmVkIHJlc29sdXRpb24/DQoN
-CkNhbid0IHRoZSBNTUlPIGJlIGdyb3VwZWQgYXMgcGFydCBvZiBHVCBmdW5jdGlvbnMgd2hpY2gg
-Y2FuIGxhdGVyIGhvc3QgDQpvdGhlciBGUHMgYXMgd2VsbD8NCg0KT3IgZG8gd2UgdGhpbmsgdGhh
-dCBhbGwgb3RoZXIgR1QgZnVuY3Mgd2lsbCwgcHJvYmFibHksIGJlICJjb21tb24gdG8gDQptb3Jl
-IGNvbXBvbmVudHMiIGFuZCBzbyBkZWZpbmUgYSBzcGVjaWFsIHN0cnVjdCBmb3IgaXQ/DQoNCj4g
-Kw0KPiAgIAkvKiBwcml2YXRlOiAqLw0KPiAgIA0KPiAgICNpZiBJU19FTkFCTEVEKENPTkZJR19E
-Uk1fWEVfRElTUExBWSkNCj4gZGlmZiAtLWdpdCBhL2RyaXZlcnMvZ3B1L2RybS94ZS94ZV9tbWlv
-LmMgYi9kcml2ZXJzL2dwdS9kcm0veGUveGVfbW1pby5jDQo+IGluZGV4IDQ3NWIxNGZlNDM1Ni4u
-ZjNkMDg2NzZhNzdhIDEwMDY0NA0KPiAtLS0gYS9kcml2ZXJzL2dwdS9kcm0veGUveGVfbW1pby5j
-DQo+ICsrKyBiL2RyaXZlcnMvZ3B1L2RybS94ZS94ZV9tbWlvLmMNCj4gQEAgLTI1LDYgKzI1LDYy
-IEBADQo+ICAgDQo+ICAgI2RlZmluZSBCQVJfU0laRV9TSElGVCAyMA0KPiAgIA0KPiArc3RhdGlj
-IHZvaWQgeGVfbW1pb193cml0ZTMyX2RldmljZShzdHJ1Y3QgeGVfZ3QgKmd0LA0KPiArCQkJCSAg
-IHN0cnVjdCB4ZV9yZWcgcmVnLCB1MzIgdmFsKTsNCj4gK3N0YXRpYyB1MzIgeGVfbW1pb19yZWFk
-MzJfZGV2aWNlKHN0cnVjdCB4ZV9ndCAqZ3QsIHN0cnVjdCB4ZV9yZWcgcmVnKTsNCj4gK3N0YXRp
-YyB2b2lkIHhlX21taW9fd3JpdGU2NF9kZXZpY2Uoc3RydWN0IHhlX2d0ICpndCwNCj4gKwkJCQkg
-ICBzdHJ1Y3QgeGVfcmVnIHJlZywgdTY0IHZhbCk7DQo+ICtzdGF0aWMgdTY0IHhlX21taW9fcmVh
-ZDY0X2RldmljZShzdHJ1Y3QgeGVfZ3QgKmd0LCBzdHJ1Y3QgeGVfcmVnIHJlZyk7DQo+ICsNCj4g
-K3N0YXRpYyBjb25zdCBzdHJ1Y3QgeGVfbW1pb19mdW5jcyB4ZV9tbWlvX2Z1bmNzX2RldmljZSA9
-IHsNCj4gKwkud3JpdGUzMiA9IHhlX21taW9fd3JpdGUzMl9kZXZpY2UsDQo+ICsJLnJlYWQzMiA9
-IHhlX21taW9fcmVhZDMyX2RldmljZSwNCj4gKwkud3JpdGU2NCA9IHhlX21taW9fd3JpdGU2NF9k
-ZXZpY2UsDQo+ICsJLnJlYWQ2NCA9IHhlX21taW9fcmVhZDY0X2RldmljZSwNCj4gK307DQo+ICsN
-Cj4gK3N0YXRpYyBpbmxpbmUgdm9pZCB4ZV9tbWlvX3dyaXRlMzJfZGV2aWNlKHN0cnVjdCB4ZV9n
-dCAqZ3QsDQo+ICsJCQkJICAgc3RydWN0IHhlX3JlZyByZWcsIHUzMiB2YWwpDQo+ICt7DQo+ICsJ
-c3RydWN0IHhlX3RpbGUgKnRpbGUgPSBndF90b190aWxlKGd0KTsNCj4gKw0KPiArCWlmIChyZWcu
-YWRkciA8IGd0LT5tbWlvLmFkal9saW1pdCkNCj4gKwkJcmVnLmFkZHIgKz0gZ3QtPm1taW8uYWRq
-X29mZnNldDsNCj4gKw0KPiArCXdyaXRlbCh2YWwsIHRpbGUtPm1taW8ucmVncyArIHJlZy5hZGRy
-KTsNCj4gK30NCj4gKw0KPiArc3RhdGljIGlubGluZSB1MzIgeGVfbW1pb19yZWFkMzJfZGV2aWNl
-KHN0cnVjdCB4ZV9ndCAqZ3QsIHN0cnVjdCB4ZV9yZWcgcmVnKQ0KPiArew0KPiArCXN0cnVjdCB4
-ZV90aWxlICp0aWxlID0gZ3RfdG9fdGlsZShndCk7DQo+ICsNCj4gKwlpZiAocmVnLmFkZHIgPCBn
-dC0+bW1pby5hZGpfbGltaXQpDQo+ICsJCXJlZy5hZGRyICs9IGd0LT5tbWlvLmFkal9vZmZzZXQ7
-DQo+ICsNCj4gKwlyZXR1cm4gcmVhZGwodGlsZS0+bW1pby5yZWdzICsgcmVnLmFkZHIpOw0KPiAr
-fQ0KPiArDQo+ICtzdGF0aWMgaW5saW5lIHZvaWQgeGVfbW1pb193cml0ZTY0X2RldmljZShzdHJ1
-Y3QgeGVfZ3QgKmd0LA0KPiArCQkJCSAgIHN0cnVjdCB4ZV9yZWcgcmVnLCB1NjQgdmFsKQ0KPiAr
-ew0KPiArCXN0cnVjdCB4ZV90aWxlICp0aWxlID0gZ3RfdG9fdGlsZShndCk7DQo+ICsNCj4gKwlp
-ZiAocmVnLmFkZHIgPCBndC0+bW1pby5hZGpfbGltaXQpDQo+ICsJCXJlZy5hZGRyICs9IGd0LT5t
-bWlvLmFkal9vZmZzZXQ7DQo+ICsNCj4gKwl3cml0ZXEodmFsLCB0aWxlLT5tbWlvLnJlZ3MgKyBy
-ZWcuYWRkcik7DQo+ICt9DQo+ICsNCj4gK3N0YXRpYyBpbmxpbmUgdTY0IHhlX21taW9fcmVhZDY0
-X2RldmljZShzdHJ1Y3QgeGVfZ3QgKmd0LCBzdHJ1Y3QgeGVfcmVnIHJlZykNCj4gK3sNCj4gKwlz
-dHJ1Y3QgeGVfdGlsZSAqdGlsZSA9IGd0X3RvX3RpbGUoZ3QpOw0KPiArDQo+ICsJaWYgKHJlZy5h
-ZGRyIDwgZ3QtPm1taW8uYWRqX2xpbWl0KQ0KPiArCQlyZWcuYWRkciArPSBndC0+bW1pby5hZGpf
-b2Zmc2V0Ow0KPiArDQo+ICsJcmV0dXJuIHJlYWRxKHRpbGUtPm1taW8ucmVncyArIHJlZy5hZGRy
-KTsNCj4gK30NCj4gKw0KPiAgIHN0YXRpYyBpbnQgeGVfc2V0X2RtYV9pbmZvKHN0cnVjdCB4ZV9k
-ZXZpY2UgKnhlKQ0KPiAgIHsNCj4gICAJdW5zaWduZWQgaW50IG1hc2tfc2l6ZSA9IHhlLT5pbmZv
-LmRtYV9tYXNrX3NpemU7DQo+IEBAIC0zNzcsNiArNDMzLDI5IEBAIHN0YXRpYyB2b2lkIG1taW9f
-ZmluaShzdHJ1Y3QgZHJtX2RldmljZSAqZHJtLCB2b2lkICphcmcpDQo+ICAgCQlpb3VubWFwKHhl
-LT5tZW0udnJhbS5tYXBwaW5nKTsNCj4gICB9DQo+ICAgDQo+ICtzdGF0aWMgdm9pZCB4ZV9tbWlv
-X3NldF9mdW5jcyhzdHJ1Y3QgeGVfZGV2aWNlICp4ZSkNCldvdWxkbid0IHdlIGxpa2UgdG8gZmFp
-bCB0aGUgTU1JTyBpbml0IG9uIGFuIHVuc3VwcG9ydGVkIHBsYXRmb3JtPw0KPiArew0KPiArCS8q
-IEZvciBub3cgYWxsIHBsYXRmb3JtcyB1c2UgdGhlIHNldCBvZiBNTUlPIGZ1bmN0aW9ucyBmb3Ig
-YQ0KPiArCSAqIHBoeXNpY2FsIGRldmljZS4NCj4gKwkgKi8NCj4gKwlzd2l0Y2ggKHhlLT5pbmZv
-LnBsYXRmb3JtKSB7DQo+ICsJY2FzZSBYRV9USUdFUkxBS0U6DQo+ICsJY2FzZSBYRV9ST0NLRVRM
-QUtFOg0KPiArCWNhc2UgWEVfQUxERVJMQUtFX1M6DQo+ICsJY2FzZSBYRV9BTERFUkxBS0VfUDoN
-Cj4gKwljYXNlIFhFX0FMREVSTEFLRV9OOg0KPiArCWNhc2UgWEVfREcxOg0KPiArCWNhc2UgWEVf
-REcyOg0KPiArCWNhc2UgWEVfUFZDOg0KPiArCWNhc2UgWEVfTUVURU9STEFLRToNCj4gKwkJeGUt
-Pm1taW9fZnVuY3MgPSAmeGVfbW1pb19mdW5jc19kZXZpY2U7DQo+ICsJCWJyZWFrOw0KPiArCWRl
-ZmF1bHQ6DQo+ICsJCURSTV9FUlJPUigiVW5zdXBwb3J0ZWQgcGxhdGZvcm1cbiIpOw0KPiArCQli
-cmVhazsNCj4gKwl9DQo+ICt9DQo+ICsNCj4gICBpbnQgeGVfbW1pb19pbml0KHN0cnVjdCB4ZV9k
-ZXZpY2UgKnhlKQ0KPiAgIHsNCj4gICAJc3RydWN0IHhlX3RpbGUgKnJvb3RfdGlsZSA9IHhlX2Rl
-dmljZV9nZXRfcm9vdF90aWxlKHhlKTsNCj4gQEAgLTM4NCw2ICs0NjMsOCBAQCBpbnQgeGVfbW1p
-b19pbml0KHN0cnVjdCB4ZV9kZXZpY2UgKnhlKQ0KPiAgIAljb25zdCBpbnQgbW1pb19iYXIgPSAw
-Ow0KPiAgIAlpbnQgZXJyOw0KPiAgIA0KPiArCXhlX21taW9fc2V0X2Z1bmNzKHhlKTsNCj4gKw0K
-PiAgIAkvKg0KPiAgIAkgKiBNYXAgdGhlIGZpcnN0IDE2TUIgb2YgdGggQkFSLCB3aGljaCBpbmNs
-dWRlcyB0aGUgcmVnaXN0ZXJzICgwLTRNQiksDQo+ICAgCSAqIHJlc2VydmVkIHNwYWNlICg0TUIt
-OE1CKSwgYW5kIEdHVFQgKDhNQi0xNk1CKSBmb3IgYSBzaW5nbGUgdGlsZS4NCj4gZGlmZiAtLWdp
-dCBhL2RyaXZlcnMvZ3B1L2RybS94ZS94ZV9tbWlvLmggYi9kcml2ZXJzL2dwdS9kcm0veGUveGVf
-bW1pby5oDQo+IGluZGV4IDNjNTQ3ZDc4YWZiYS4uODBjZTlkZTdhYWM0IDEwMDY0NA0KPiAtLS0g
-YS9kcml2ZXJzL2dwdS9kcm0veGUveGVfbW1pby5oDQo+ICsrKyBiL2RyaXZlcnMvZ3B1L2RybS94
-ZS94ZV9tbWlvLmgNCj4gQEAgLTE5LDYgKzE5LDEzIEBAIHN0cnVjdCB4ZV9kZXZpY2U7DQo+ICAg
-DQo+ICAgI2RlZmluZSBHRU4xMl9MTUVNX0JBUgkJMg0KPiAgIA0KPiArc3RydWN0IHhlX21taW9f
-ZnVuY3Mgew0KPiArCXUzMiAoKnJlYWQzMikoc3RydWN0IHhlX2d0ICpndCwgc3RydWN0IHhlX3Jl
-ZyByZWcpOw0KPiArCXU2NCAoKnJlYWQ2NCkoc3RydWN0IHhlX2d0ICpndCwgc3RydWN0IHhlX3Jl
-ZyByZWcpOw0KPiArCXZvaWQgKCp3cml0ZTMyKShzdHJ1Y3QgeGVfZ3QgKmd0LCBzdHJ1Y3QgeGVf
-cmVnIHJlZywgdTMyIHZhbCk7DQo+ICsJdm9pZCAoKndyaXRlNjQpKHN0cnVjdCB4ZV9ndCAqZ3Qs
-IHN0cnVjdCB4ZV9yZWcgcmVnLCB1NjQgdmFsKTsNCj4gK307DQo+ICsNCj4gICBpbnQgeGVfbW1p
-b19pbml0KHN0cnVjdCB4ZV9kZXZpY2UgKnhlKTsNCj4gICANCj4gICBzdGF0aWMgaW5saW5lIHU4
-IHhlX21taW9fcmVhZDgoc3RydWN0IHhlX2d0ICpndCwgc3RydWN0IHhlX3JlZyByZWcpDQo+IEBA
-IC0zNCwyMiArNDEsMTYgQEAgc3RhdGljIGlubGluZSB1OCB4ZV9tbWlvX3JlYWQ4KHN0cnVjdCB4
-ZV9ndCAqZ3QsIHN0cnVjdCB4ZV9yZWcgcmVnKQ0KPiAgIHN0YXRpYyBpbmxpbmUgdm9pZCB4ZV9t
-bWlvX3dyaXRlMzIoc3RydWN0IHhlX2d0ICpndCwNCj4gICAJCQkJICAgc3RydWN0IHhlX3JlZyBy
-ZWcsIHUzMiB2YWwpDQo+ICAgew0KPiAtCXN0cnVjdCB4ZV90aWxlICp0aWxlID0gZ3RfdG9fdGls
-ZShndCk7DQo+IC0NCj4gLQlpZiAocmVnLmFkZHIgPCBndC0+bW1pby5hZGpfbGltaXQpDQo+IC0J
-CXJlZy5hZGRyICs9IGd0LT5tbWlvLmFkal9vZmZzZXQ7DQo+ICsJc3RydWN0IHhlX2RldmljZSAq
-eGUgPSBndF90b194ZShndCk7DQo+ICAgDQo+IC0Jd3JpdGVsKHZhbCwgdGlsZS0+bW1pby5yZWdz
-ICsgcmVnLmFkZHIpOw0KPiArCXhlLT5tbWlvX2Z1bmNzLT53cml0ZTMyKGd0LCByZWcsIHZhbCk7
-DQo+ICAgfQ0KPiAgIA0KPiAgIHN0YXRpYyBpbmxpbmUgdTMyIHhlX21taW9fcmVhZDMyKHN0cnVj
-dCB4ZV9ndCAqZ3QsIHN0cnVjdCB4ZV9yZWcgcmVnKQ0KPiAgIHsNCj4gLQlzdHJ1Y3QgeGVfdGls
-ZSAqdGlsZSA9IGd0X3RvX3RpbGUoZ3QpOw0KPiAtDQo+IC0JaWYgKHJlZy5hZGRyIDwgZ3QtPm1t
-aW8uYWRqX2xpbWl0KQ0KPiAtCQlyZWcuYWRkciArPSBndC0+bW1pby5hZGpfb2Zmc2V0Ow0KPiAr
-CXN0cnVjdCB4ZV9kZXZpY2UgKnhlID0gZ3RfdG9feGUoZ3QpOw0KPiAgIA0KPiAtCXJldHVybiBy
-ZWFkbCh0aWxlLT5tbWlvLnJlZ3MgKyByZWcuYWRkcik7DQo+ICsJcmV0dXJuIHhlLT5tbWlvX2Z1
-bmNzLT5yZWFkMzIoZ3QsIHJlZyk7DQo+ICAgfQ0KPiAgIA0KPiAgIHN0YXRpYyBpbmxpbmUgdTMy
-IHhlX21taW9fcm13MzIoc3RydWN0IHhlX2d0ICpndCwgc3RydWN0IHhlX3JlZyByZWcsIHUzMiBj
-bHIsDQo+IEBAIC02NywyMiArNjgsMTYgQEAgc3RhdGljIGlubGluZSB1MzIgeGVfbW1pb19ybXcz
-MihzdHJ1Y3QgeGVfZ3QgKmd0LCBzdHJ1Y3QgeGVfcmVnIHJlZywgdTMyIGNsciwNCj4gICBzdGF0
-aWMgaW5saW5lIHZvaWQgeGVfbW1pb193cml0ZTY0KHN0cnVjdCB4ZV9ndCAqZ3QsDQo+ICAgCQkJ
-CSAgIHN0cnVjdCB4ZV9yZWcgcmVnLCB1NjQgdmFsKQ0KPiAgIHsNCj4gLQlzdHJ1Y3QgeGVfdGls
-ZSAqdGlsZSA9IGd0X3RvX3RpbGUoZ3QpOw0KPiAtDQo+IC0JaWYgKHJlZy5hZGRyIDwgZ3QtPm1t
-aW8uYWRqX2xpbWl0KQ0KPiAtCQlyZWcuYWRkciArPSBndC0+bW1pby5hZGpfb2Zmc2V0Ow0KPiAr
-CXN0cnVjdCB4ZV9kZXZpY2UgKnhlID0gZ3RfdG9feGUoZ3QpOw0KPiAgIA0KPiAtCXdyaXRlcSh2
-YWwsIHRpbGUtPm1taW8ucmVncyArIHJlZy5hZGRyKTsNCj4gKwl4ZS0+bW1pb19mdW5jcy0+d3Jp
-dGU2NChndCwgcmVnLCB2YWwpOw0KPiAgIH0NCj4gICANCj4gICBzdGF0aWMgaW5saW5lIHU2NCB4
-ZV9tbWlvX3JlYWQ2NChzdHJ1Y3QgeGVfZ3QgKmd0LCBzdHJ1Y3QgeGVfcmVnIHJlZykNCj4gICB7
-DQo+IC0Jc3RydWN0IHhlX3RpbGUgKnRpbGUgPSBndF90b190aWxlKGd0KTsNCj4gLQ0KPiAtCWlm
-IChyZWcuYWRkciA8IGd0LT5tbWlvLmFkal9saW1pdCkNCj4gLQkJcmVnLmFkZHIgKz0gZ3QtPm1t
-aW8uYWRqX29mZnNldDsNCj4gKwlzdHJ1Y3QgeGVfZGV2aWNlICp4ZSA9IGd0X3RvX3hlKGd0KTsN
-Cj4gICANCj4gLQlyZXR1cm4gcmVhZHEodGlsZS0+bW1pby5yZWdzICsgcmVnLmFkZHIpOw0KPiAr
-CXJldHVybiB4ZS0+bW1pb19mdW5jcy0+cmVhZDY0KGd0LCByZWcpOw0KPiAgIH0NCj4gICANCj4g
-ICBzdGF0aWMgaW5saW5lIGludCB4ZV9tbWlvX3dyaXRlMzJfYW5kX3ZlcmlmeShzdHJ1Y3QgeGVf
-Z3QgKmd0LA0KPg0KPg0KVGhpcyBhcHByb2FjaCBzaG91bGQgd29yayBmb3IgdXMtIHRoYW5rcyBm
-b3IgdGhlIGVmZm9ydC4NCg0KSSBkbyB0aGluayB0aGF0IGlmIGxvYWRpbmcgdGhpcyBkYXRhIGZy
-b20gdGhlIGRlc2NyaXB0b3IgaXMgYWNjZXB0YWJsZSANCmxldCdzIGRvIGl0IHNvb24gdG8gYXZv
-aWQgY29sbGVjdGlvbiBvZiBhbGwgInN3aXRjaC1jYXNlcyIgZnJvbSB0aGUgY29kZSANCndoaWxl
-IG90aGVyIEZQcyBhcmUgYmVpbmcgYWRkZWQgKHJlYWxseSBub3QgbmVjZXNzYXJ5IGF0IHRoaXMg
-cGhhc2UtIHdlIA0Kd2FudCB0aGlzIHBhdGNoIG1lcmdlZCBzb29uKS4NCg0KVGhhbmtzLA0KDQpP
-aGFkDQoNCg==
+On Tue, 6 Jun 2023 04:03:20 +0000
+"Ghimiray, Himal Prasad" <himal.prasad.ghimiray@intel.com> wrote:
+
+> > -----Original Message-----
+> > From: Intel-xe <intel-xe-bounces@lists.freedesktop.org> On Behalf Of
+> > Mauro Carvalho Chehab
+> > Sent: 25 May 2023 11:36
+> > To: Vivi, Rodrigo <rodrigo.vivi@intel.com>
+> > Cc: mauro.chehab@kernel.org; intel-xe@lists.freedesktop.org
+> > Subject: Re: [Intel-xe] [PATCH v2 1/1] drm/xe: Add a debugfs for faking gt
+> > reset failure.
+> > 
+> > On Wed, 24 May 2023 16:50:04 +0000
+> > "Vivi, Rodrigo" <rodrigo.vivi@intel.com> wrote:
+> >   
+> > > On Wed, 2023-05-24 at 12:43 -0400, Rodrigo Vivi wrote:
+> > > On Wed, May 24, 2023 at 09:57:00PM +0530, Balasubramani Vivekanandan  
+> > wrote:  
+> > > On 24.05.2023 12:36, Himal Prasad Ghimiray wrote:
+> > > In case of gt reset failure, KMD notifies userspace about failure via
+> > > uevent. To validate this notification we need to ensure gt reset fails
+> > > and there is no mechanism to cause failure from hardware.
+> > > Hence added a debugfs which will cause fake reset failure.
+> > >
+> > > v1(Rodrigo)
+> > > - Change the variable to fake_reset_failure_in_progress.
+> > > - Drop usage of READ_ONCE and WRITE_ONCE.
+> > > - Follow consistency for variable assignment. Either use
+> > >   functions for all the assignments or don't use for any.
+> > >
+> > > Cc: Rodrigo Vivi
+> > > <rodrigo.vivi@intel.com<mailto:rodrigo.vivi@intel.com>>
+> > > Signed-off-by: Himal Prasad Ghimiray
+> > > <himal.prasad.ghimiray@intel.com<mailto:himal.prasad.ghimiray@intel.co  
+> > > m>>  
+> > > ---
+> > >  drivers/gpu/drm/xe/xe_gt.c         | 15 ++++++++++++++-
+> > >  drivers/gpu/drm/xe/xe_gt_debugfs.c | 11 +++++++++++
+> > >  drivers/gpu/drm/xe/xe_gt_types.h   |  1 +
+> > >  3 files changed, 26 insertions(+), 1 deletion(-)
+> > >
+> > > diff --git a/drivers/gpu/drm/xe/xe_gt.c b/drivers/gpu/drm/xe/xe_gt.c
+> > > index 80d42c7c7cfa..b3ac8b3ab455 100644
+> > > --- a/drivers/gpu/drm/xe/xe_gt.c
+> > > +++ b/drivers/gpu/drm/xe/xe_gt.c
+> > > @@ -506,6 +506,9 @@ int xe_gt_init(struct xe_gt *gt)
+> > >         int err;
+> > >         int i;
+> > >
+> > > +       /*Fake reset failure should be disabled by default*/
+> > > +       gt->reset.fake_reset_failure_in_progress = false;
+> > > +
+> > >         INIT_WORK(&gt->reset.worker, gt_reset_worker);
+> > >
+> > >         for (i = 0; i < XE_ENGINE_CLASS_MAX; ++i) { @@ -601,8 +604,18
+> > > @@ static int gt_reset(struct xe_gt *gt)
+> > >         xe_gt_info(gt, "reset started\n");
+> > >
+> > >         xe_gt_sanitize(gt);
+> > > -
+> > >         xe_device_mem_access_get(gt_to_xe(gt));
+> > > +
+> > > +       err = gt->reset.fake_reset_failure_in_progress;
+> > > +       if (err) {
+> > >
+> > > This doesn't look the right way. It should be something like
+> > >
+> > > ```
+> > > if (gt->reset.fake_reset_failure_in_progress) {
+> > >
+> > >         err = -ECANCELED; or whatever appropriate
+> > >         ...
+> > > ```
+> > >
+> > > +               xe_gt_info(gt, "Fake GT reset failure is in
+> > > + progress\n");
+> > > +
+> > > +               /* Disable fake reset failure for next call */
+> > > +               gt->reset.fake_reset_failure_in_progress = false;
+> > > +
+> > > +               goto err_msg;
+> > > +       }
+> > > +
+> > >         err = xe_force_wake_get(gt_to_fw(gt), XE_FORCEWAKE_ALL);
+> > >         if (err)
+> > >                 goto err_msg;
+> > > diff --git a/drivers/gpu/drm/xe/xe_gt_debugfs.c
+> > > b/drivers/gpu/drm/xe/xe_gt_debugfs.c
+> > > index 8bf441e850a0..13d2a974bc00 100644
+> > > --- a/drivers/gpu/drm/xe/xe_gt_debugfs.c
+> > > +++ b/drivers/gpu/drm/xe/xe_gt_debugfs.c
+> > > @@ -127,6 +127,16 @@ static int register_save_restore(struct seq_file *m,  
+> > void *data)  
+> > >         return 0;
+> > >  }
+> > >
+> > > +static int fake_reset_failure(struct seq_file *m, void *data) {
+> > > +       struct xe_gt *gt = node_to_gt(m->private);
+> > > +
+> > > +       gt->reset.fake_reset_failure_in_progress = true;
+> > > +       xe_gt_reset_async(gt);
+> > > +
+> > > +       return 0;
+> > > +}
+> > > +
+> > >  static const struct drm_info_list debugfs_list[] = {
+> > >         {"hw_engines", hw_engines, 0},
+> > >         {"force_reset", force_reset, 0}, @@ -135,6 +145,7 @@ static
+> > > const struct drm_info_list debugfs_list[] = {
+> > >         {"steering", steering, 0},
+> > >         {"ggtt", ggtt, 0},
+> > >         {"register-save-restore", register_save_restore, 0},
+> > > +       {"fake_reset_failure", fake_reset_failure, 0},
+> > >  };
+> > >
+> > >  void xe_gt_debugfs_register(struct xe_gt *gt) diff --git
+> > > a/drivers/gpu/drm/xe/xe_gt_types.h  
+> > b/drivers/gpu/drm/xe/xe_gt_types.h  
+> > > index 7c47d67aa8be..746d65c4aacc 100644
+> > > --- a/drivers/gpu/drm/xe/xe_gt_types.h
+> > > +++ b/drivers/gpu/drm/xe/xe_gt_types.h
+> > > @@ -168,6 +168,7 @@ struct xe_gt {
+> > >
+> > >         /** @reset: state for GT resets */
+> > >         struct {
+> > > +               bool fake_reset_failure_in_progress;
+> > >                 /**
+> > >                  * @worker: work so GT resets can done async allowing to reset
+> > >                  * code to safely flush all code paths
+> > >
+> > > @Rodrigo
+> > > This feature is purely to support test the driver and not something
+> > > which helps debugging. I am concerned whether such code should be part
+> > > of production build. I am thinking if this feature or any such patches
+> > > in future could be made part of a kernel config, which can be enabled
+> > > in CI when the driver is subjected to testing.
+> > >
+> > > I like this idea of having things like this behind a kernel config,
+> > > but we need to be careful to not simply break IGT or force IGT to
+> > > always depend on this flag.  
+> > 
+> > Well, debugfs is actually something that shouldn't be used in production ;-)
+> > 
+> > Granted, read-only debugfs nodes that would be just printing the engine
+> > states without affecting the driver functionality can be present on production
+> > environments, as those could be used by sysadmins to report issues to
+> > distribution vendors.
+> > 
+> > On other words, we may have two separate groups of debugfs entries:
+> > 
+> > - entries that won't be changing the driver or GPU state machine;
+> > - entries that will be affecting the driver, like forcing resets
+> >   forcing reset to fail, etc. are more dangerous and may deserve an
+> >   special Kconfig entry.
+> > 
+> > On such case, I would be placing a scary message at the Kconfig.debug file,
+> > like:
+> > 
+> > 	config DRM_XE_DANGEROUS_DEBUGFS
+> > 		bool "Enable driver development debugfs entries
+> > (DANGEROUS)"
+> > 		depends on DRM_XE_DEBUG && DEBUGFS
+> > 		default n
+> > 
+> > 		help
+> > 
+> > 		  Add special debugfs entries meant to test Xe driver.
+> > 
+> > 		  Never enable those in production as those may cause
+> > 		  malfunctioning at the Xe driver.
+> > 
+> > 		  Set it to "N", except if you're debugging Xe driver.
+> > 
+> > I would also place those options on a separate debugfs list, e. g.:  
+> Hi Mauro,
+> Thanks for proposing on this. For the time being can we go ahead and introduce this debugfs in existing list ?
+> Once the changes are in for separating debugfs list  it into danger_debugfs_list  and debugfs_list 
+> we will move fake_reset_failure debugfs  to that list along with other applicable entries. 
+
+Works for me.
+
+Regards,
+Mauro
+
+> 
+> BR
+> Himal 
+> > 
+> > 	static const struct drm_info_list danger_debugfs_list[] = {
+> > 		{"force_reset", force_reset, 0},
+> > 		/*
+> > 		 * Whatever other node that writing to it would cause
+> > 		 * side effects at the driver
+> > 		 */
+> > 		{"fake_reset_failure", fake_reset_failure, 0},
+> > 	};
+> > 
+> > In time, DRM_XE_USERPTR_INVAL_INJECT is also a dangerous option. Btw,
+> > shouldn't it be enabled only via a debugfs entry too? If not, then perhaps we
+> > should use a menuconfig where we'll be placing all those error-inject
+> > features altogether.
+> > 
+> > Regards,
+> > Mauro  
