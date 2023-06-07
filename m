@@ -4,151 +4,150 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id DCC3AC7EE23
-	for <intel-xe@archiver.kernel.org>; Wed,  7 Jun 2023 19:27:19 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id C4F23C77B7A
+	for <intel-xe@archiver.kernel.org>; Wed,  7 Jun 2023 19:42:16 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B0D3610E0ED;
-	Wed,  7 Jun 2023 19:27:19 +0000 (UTC)
-Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
- by gabe.freedesktop.org (Postfix) with ESMTPS id F297810E0ED
- for <intel-xe@lists.freedesktop.org>; Wed,  7 Jun 2023 19:27:17 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 99BFC10E53D;
+	Wed,  7 Jun 2023 19:42:16 +0000 (UTC)
+Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B98FD10E53D
+ for <intel-xe@lists.freedesktop.org>; Wed,  7 Jun 2023 19:42:14 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1686166038; x=1717702038;
- h=from:to:cc:subject:date:message-id:references:
- in-reply-to:content-id:content-transfer-encoding: mime-version;
- bh=8TpP4ftBirB9oeUkZkrM10+LkViVlyg/ihtMNzs7yNU=;
- b=WnR3nK46m3OFrFaWhGiVgFfOLaOui9aBxVPJBM5CsgMegNdjPgA1Aqzf
- XnODSS/oNI8IMdA5AgPXXsz4T8RSJMrg6li9ZOpN/tHJeWzJd6U5iTnHn
- bw8LlXUNnMc41URmDg7RQ4sPDd4DsR1D1kgTgGRujtqwZ5Ew3MfaI973A
- WQeslBn2EVQ2i5/RbJs7BhNVU4wMcue97CNutZm4rwLXWowhyFCOeF8tP
- 8rHCUs7l8uJUPP/Cp9bOpLNj/w+NPi6pPvCXSJ2Edc2o2qj1cl7J4T/bD
- 4jM6YrDKR0hGbOGOZZfie4Rkzd5kSqg8PUAch9EIfTfLbFA+fqvg2E7vC g==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10734"; a="360417988"
-X-IronPort-AV: E=Sophos;i="6.00,225,1681196400"; d="scan'208";a="360417988"
+ t=1686166934; x=1717702934;
+ h=date:from:to:cc:subject:message-id:references:
+ content-transfer-encoding:in-reply-to:mime-version;
+ bh=BXyJ1q4laK35ANFPzedhMqO7gwUpnbSH1FXltDeAhFE=;
+ b=jSa4TdiXN2IO4ccneJ64QrfjL9ZGaLA7c5KBwugchuTNCkHJy9DcuCB6
+ PveU1ZRjVdnrQR+Dny9qnO2/AMLWOUduzpPY82f2STZYbMgYKCI6JbvxE
+ /6YYOIU+Yv6EUhjV2l8aiqUaDBaAoboJfvtXSsCREaeqpsN01x75zAhg/
+ INIMm7Fa8Nfkxb08SiXtyXlFV/iziKsy5nExTjdZxofbNPgV0Ja2TQG2q
+ NsMXeK2KavYoyWEnqJo3GTHqRXBd1k8msT3v2C8BSw5x3jAOnXNdVJVzP
+ HAS7GNPSkqirwQNO6yeAaU4WoEbArTFEW5kQ34gbLQrvpewTXncgj1SAI w==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10734"; a="443457628"
+X-IronPort-AV: E=Sophos;i="6.00,225,1681196400"; d="scan'208";a="443457628"
 Received: from fmsmga006.fm.intel.com ([10.253.24.20])
- by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 07 Jun 2023 12:27:17 -0700
+ by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 07 Jun 2023 12:42:12 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10734"; a="956412709"
-X-IronPort-AV: E=Sophos;i="6.00,225,1681196400"; d="scan'208";a="956412709"
-Received: from fmsmsx602.amr.corp.intel.com ([10.18.126.82])
- by fmsmga006.fm.intel.com with ESMTP; 07 Jun 2023 12:27:16 -0700
-Received: from fmsmsx610.amr.corp.intel.com (10.18.126.90) by
- fmsmsx602.amr.corp.intel.com (10.18.126.82) with Microsoft SMTP Server
+X-IronPort-AV: E=McAfee;i="6600,9927,10734"; a="956417620"
+X-IronPort-AV: E=Sophos;i="6.00,225,1681196400"; d="scan'208";a="956417620"
+Received: from orsmsx602.amr.corp.intel.com ([10.22.229.15])
+ by fmsmga006.fm.intel.com with ESMTP; 07 Jun 2023 12:42:12 -0700
+Received: from orsmsx603.amr.corp.intel.com (10.22.229.16) by
+ ORSMSX602.amr.corp.intel.com (10.22.229.15) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.23; Wed, 7 Jun 2023 12:27:16 -0700
-Received: from fmsedg602.ED.cps.intel.com (10.1.192.136) by
- fmsmsx610.amr.corp.intel.com (10.18.126.90) with Microsoft SMTP Server
+ 15.1.2507.23; Wed, 7 Jun 2023 12:42:07 -0700
+Received: from ORSEDG601.ED.cps.intel.com (10.7.248.6) by
+ orsmsx603.amr.corp.intel.com (10.22.229.16) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.23 via Frontend Transport; Wed, 7 Jun 2023 12:27:16 -0700
-Received: from NAM02-DM3-obe.outbound.protection.outlook.com (104.47.56.41) by
- edgegateway.intel.com (192.55.55.71) with Microsoft SMTP Server
+ 15.1.2507.23 via Frontend Transport; Wed, 7 Jun 2023 12:42:07 -0700
+Received: from NAM12-DM6-obe.outbound.protection.outlook.com (104.47.59.170)
+ by edgegateway.intel.com (134.134.137.102) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2507.23; Wed, 7 Jun 2023 12:27:16 -0700
+ 15.1.2507.23; Wed, 7 Jun 2023 12:42:07 -0700
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=mOZl9+NIsNaIV3pKKGbMSvoBdRm9rZUA3dRgSjd+TZy39rR6MVqRPfcwyVuETIP9dVBf4KPugnTMllBplHofxDW82pIUtvkrA2+UGwTQGorf2gE5h803vFpDiE3CLpzi+H6nLdLyA23zXvErUua+BHZK9h/KSgKEZg5XoZZhM/4xQY6gm2C9rzxJ2As1mQXXgpbMhHdXeE0NuuYrjhRZYeitib33gm4VHeD2AU7lGEcggNS0uq6WhgnkGnebXSi66ImuU+AXcThjjPAIcp4997RIPQfYJYQEI0lyiSvi/hOUqDRbGqIdApIIc5PmmqzT0SDT7Fye2FZpppC033DTMg==
+ b=idvG+IAFo9O5+pTHsRKTB39SJI0MosbI3wHE88gWDGLPCTaCLfbOK7oBm63EimXH/rYPfjzo6k9g5OOx3aQXwLj/CHkKITF1QXZOlsSgG9wY1vd25PB8Uw1GhnrTwjm0i9+pLBf//34q2n29jOA6e0ggIkvRWWd2KIgX9gDqIb7hn3ae7MwmwNYJegKa5Mk4UZ9Pav88NHJQgyfXb0ekvOoK3M60NXlsxArZS2M0j/sr+YTqk3kxyiK/tjYa0kjEfA9IZBY+PZyEgMLmmURuPM9kreJp8pk8a8rC1xb8QtuPDpIyv0o7OpnCZAOyxDHwoMrgyvrrOFL2NJuLlsrcuQ==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=8TpP4ftBirB9oeUkZkrM10+LkViVlyg/ihtMNzs7yNU=;
- b=E/BqSXlF+J6eg1ehAi0kMzoKSQiaPzEHaMhvcY4Nm8dVC1gGO1Swj+1qCJ0gtMPR+ij1f/J+41w6HcNGOh4zvUXpNomTySy8VWx0zFFJCwP3+trliDy8XiE1GFdTI8ZAGx/yxmqTNE1XBbzYJbnTsl/CGXuZ2idNw3+3pAF9HyHGJldixS41k1nQwUj1sJB78RqLXolQy65/QghQ3+zAzGQhAAM7+iuOt2G/s/qvql3TFMqOpoI42YV47fG99wQGp8rZZrF1IIymrbbILnI5/pR/QJ4Fc/WHl6MRY/VunkS9yAsAiKkf9f2c+mfyv6auW3EmLbAEuQwA2GLnVRLQ9Q==
+ bh=QRA/5VdOFGJblo7I0c3Chhs7+TONUWdXLJh6JcGGNyY=;
+ b=dXcLHmeYMoOdBIrDCe6UL2i4ftjq7gsmfOp+2W/vMMBYR1oLF5wSJfl3XH4nlp88NUjhj4+RSt0wDCoT3Re6CkEyyDMVOCEqhrDR6YznPLtweO2irOQ1awrogL7MYU4M2AofXOY+Vpp3YtimiBdINeTCy36LYZ6qsKuX6IqWY4wGpc/WdGWcGGfR+p9CeFKfa9tCU9lZMOKx7ydXL6cDpPEcdMkXUZmyJ4QJJbtipTwFd29lN1p/tnZr+ojC3DehieFbxWmzaBEnZ1j37VrpeEraEVSi8GwikazbAEm1gjhBhIXdtDT3CQcLhvjy7Q1y/WmNtClXQMpDupd6j/IMbg==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
  dkim=pass header.d=intel.com; arc=none
-Received: from DM4PR11MB8179.namprd11.prod.outlook.com (2603:10b6:8:18e::22)
- by CH3PR11MB7389.namprd11.prod.outlook.com (2603:10b6:610:14d::9) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6455.33; Wed, 7 Jun
- 2023 19:27:14 +0000
-Received: from DM4PR11MB8179.namprd11.prod.outlook.com
- ([fe80::5cab:9ad8:a5ad:6e0]) by DM4PR11MB8179.namprd11.prod.outlook.com
- ([fe80::5cab:9ad8:a5ad:6e0%7]) with mapi id 15.20.6455.034; Wed, 7 Jun 2023
- 19:27:13 +0000
-From: "Souza, Jose" <jose.souza@intel.com>
-To: "Dixit, Ashutosh" <ashutosh.dixit@intel.com>, "Ghimiray, Himal Prasad"
- <himal.prasad.ghimiray@intel.com>
-Thread-Topic: [Intel-xe] [PATCH 1/1] drm/xe: Report tile count from device
- query api.
-Thread-Index: AQHZmPtysiyQKW0ULEegHazUJjuE569/qoWAgAAMzoCAAALQgA==
-Date: Wed, 7 Jun 2023 19:27:13 +0000
-Message-ID: <1fa8b4c7d2569b34296b9d2ade72b744e1be1459.camel@intel.com>
-References: <20230606094929.2989914-1-himal.prasad.ghimiray@intel.com>
- <20230606195555.GH5433@mdroper-desk1.amr.corp.intel.com>
- <MW4PR11MB705690A2A21050E31CBF545CB353A@MW4PR11MB7056.namprd11.prod.outlook.com>
- <20230607183115.GN5433@mdroper-desk1.amr.corp.intel.com>
- <87edmnm6a6.wl-ashutosh.dixit@intel.com>
-In-Reply-To: <87edmnm6a6.wl-ashutosh.dixit@intel.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-authentication-results: dkim=none (message not signed)
+Authentication-Results: dkim=none (message not signed)
  header.d=none;dmarc=none action=none header.from=intel.com;
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: DM4PR11MB8179:EE_|CH3PR11MB7389:EE_
-x-ms-office365-filtering-correlation-id: fcdd5612-2d9a-49dc-860b-08db678d3243
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: DORXiYrYXVJN+n6X5Rdchkcx0sv260L9ynVYrGnmSH7+33R+V+rW/bqZ74yLLPRoyMDMyE2hWDwLQltzgQtw9VYQcZtcbJb8uVJ9+j+fPyrJFkVetzFbPAoiaF70760LIZNVZBFFL0HDSIg4Bm5pRC8YJsqbpuceiz52hCH2j/x/r912daoW+V7bw8Fv+B6d42lMAESUgDUuXwzjToIBQymYMZsFmg48+nalPjnSYai8PnJFUJ9VzimqGySoqsIg/OqTnil7VSEVGnhcb7/2LHoF8YZp3ocK9YcnJl04+kjONbS1T/p0yfCtsrTGwKGi8hLKmi//oxgDtX8+H/Ypo9fTouY30c1GKm5Botkh958+zeg5tkBLPVgQAT1fXMo8jvRAlKY322zkLfWEWsf80lznYkVcQiTYfSWemuraGCsZd7AFa/LeQKJgioXyyIO7hccWlPR6/koX7agOswSDCdT1jaJFjYmbAyYb3Axj4q3nGkhqAP08G0H6I4PI2GaUU53u3FIAR0uyHIoKXhswZCcA+7jGt/dGTWVYebAsCf4zbNeWQz0Ts3hjZW/H4i2N
-x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:DM4PR11MB8179.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230028)(376002)(366004)(396003)(39860400002)(136003)(346002)(451199021)(6512007)(53546011)(38100700002)(6506007)(2616005)(41300700001)(6486002)(26005)(83380400001)(966005)(186003)(66899021)(71200400001)(478600001)(110136005)(64756008)(66476007)(91956017)(122000001)(66446008)(4326008)(82960400001)(316002)(76116006)(66946007)(8676002)(66556008)(6636002)(8936002)(5660300002)(38070700005)(86362001)(36756003)(2906002);
- DIR:OUT; SFP:1102; 
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?utf-8?B?S29ZTE9uL3ZpaWU2cUViS2xPWXZCa1RXb3pycStHR25FckRhTHdtTHcxVWJY?=
- =?utf-8?B?ZUxucTVueEkvOWx5WVFneGZVMmZWc1pqdHdDeGJld3ZBOFFTbFRkbVdodHJm?=
- =?utf-8?B?SGtaSXN0ajI1NFZNQ3FKWGxkZUl3VGtiTldMczRyY0gwK0VMOTczVVFDQ0kz?=
- =?utf-8?B?OG5zYUhudzRQQUs4QzNDYlFES3NSMFlGZ1NxZ3Z4QzJURkh3NXB5RWlTMkZp?=
- =?utf-8?B?YU5rbUlIY0g1UW1PVGdadmJuRFUxRXlBV09GbmRLQkJxWkRNdkhGWEZIbVRw?=
- =?utf-8?B?OFBaQXkyM0pFTEV6N2VaZXNJbzZVZnprM0o5cTRJdW9YWThSNW9yYUxpSFJv?=
- =?utf-8?B?MXk5bitSWXBPdFM3RFpPRkFEamtlbGJUVjRoQUwxRFA5bFZ5Zk1WZ0JoRTJa?=
- =?utf-8?B?REVsbzF5cHJrSmU3VHVTanBubE8zK0hpK2lsT1RMWDBvYVc1NTNQNFRtWmIv?=
- =?utf-8?B?ekhudE1yS1hYLy82ZFhBVEF6M0VPMjM4Sm1kbldOYU5DWWtEbkpFQ1Z3dzhz?=
- =?utf-8?B?THRyYWV2aitMb053dVNiT3ZVd1F3ay9RY2ZWT1ltWUJTMVgyNnVsYUkzM3FF?=
- =?utf-8?B?cTJxbGtzcWMxQWg1YnB5WDRQY2NtZXY4MFdMMW9SeDd6bzQvZjJDRnc1cWIy?=
- =?utf-8?B?b1pSVk5MaGI2RDhYZ1piZW8zdzFzaERVR0x5WWoya3dPTmJaS2dQZnFodmVT?=
- =?utf-8?B?M2ZxODB4WHEwK1lSZjFSdWZySFpNSmcyeURYYXp6VFN4WVp2WENGUkdoRXZu?=
- =?utf-8?B?ZDFZY1BVeGhMUURIcHlKb3hCRFdZaU1FaXE3NHFsUUdCZzdndXJqeERlN3lB?=
- =?utf-8?B?azV2bHY2Qkc1Z3ZEK0hRV3dKRklDODZYSzY3Q3lsVDdGRTRXaHpQVmlVNVM5?=
- =?utf-8?B?UFNVVnhKbXZjQmlXT1drcVVrQytFREQ3TFg3Y3NxejE1cGJmTjI0LzR3SDl0?=
- =?utf-8?B?MmFzb1ZXYzJGR1hlZG5RUTlrazZDcmVKRHk0Y2VYY0xYL29DSzB0S3l0V1Fo?=
- =?utf-8?B?djR5R3JSNS9pdHZscUxMMHlpZEZhM3lydWR5YnlBNFYvK1MwZGJtZEZtNnRM?=
- =?utf-8?B?TVM2b0ltdkhSc1RvdlFaV1Rvc1hMeXB0dVE0RWlGWVFrWXQrdSs2NlI4OW5w?=
- =?utf-8?B?NzVEWGNvOVN3T0R4dzZ4SFBLZWJPZHZZSWFieTJndmdnaGpKZEFyNnlENm8r?=
- =?utf-8?B?Q2lqYU9DbjdjSkFSUEJzUXVONnhhUmYwU3IwVlpZMUpsSkIxekJWS2VWY09i?=
- =?utf-8?B?YkFxcVpHc0NRWUJnZVBXN3pxVVRpY0g3YmdMRUJzUnB3VHV1MjBXRW9lOElZ?=
- =?utf-8?B?M0FSa3lpeGtzS3dKOHhlYU1mVFQ2a2Y5M2dTb2JuRmtzRUhCTitrcm1uVkMv?=
- =?utf-8?B?WWRrNHNWZ2UvQ0w1Q1BUVWJhMjdzZ3YwbjJ2TjNiNy8yZGpqWHAydC96TVl3?=
- =?utf-8?B?MXZEN05Dd1F2VjhtSFpRYWtwTHJEMWEySXh0RndSVmEwN0lOYUlGR21QeDJs?=
- =?utf-8?B?cXFRZEU1SXJrUW5tRFRpZmQ4d2hhNzF4ZnpHVUEzRUkvcWlrTTJoK1ZtZ1Q1?=
- =?utf-8?B?UytrT1E5bjJnQk0zMDUrNjRtNEswL2tJOFFUNUVrc1RUbnNpeG9Cc1huTmsr?=
- =?utf-8?B?TW4vVDJRZUx2bmJoTXYzQzY1NFJrcHJweSs3Wmt3eVRMdUtoc0Y2VnYrb1VT?=
- =?utf-8?B?TkFpNjRCOHJVOFBSOU5ZZGhNaUoyRm1FZXl3QVdMeU53cGlJQWRzSjN4dWJM?=
- =?utf-8?B?N3dqaE9xSnRRSk13b1VzZzBjdnltcjRJby9rWkxWNGZqTGJxcmtJTHhlT1J3?=
- =?utf-8?B?VmZLWEtGSUpRdlkwV0Z6K0Zwb3drS3RpVDNuU2lkelJwVkFibTd6d2JhMHJy?=
- =?utf-8?B?K0pVcHVFeGJEYy95NXBBZGVnd1AxZTJDUHVTSzh1ZkQ0cUR6blhyNTdTdGVX?=
- =?utf-8?B?bnNaMlBSN1M0MUE3NDhKeENWRjBKVFExZm9TRjRHMkErRXJpOW5HWjNuUCt6?=
- =?utf-8?B?ZXZsRDZNY1dObUZJOG5Wa2RRdFA5Wm1jaW1TLzM0NmpFb2QvWUhMMUl5Z3FY?=
- =?utf-8?B?ekdZcmlSSUM0U0xyV3E4WEZFK1JzNHNuUng5ekJJZHBycy9kNjhUbUdBUm8z?=
- =?utf-8?Q?3c8Cp1lq6mhOnPnMONeiH40tm?=
-Content-Type: text/plain; charset="utf-8"
-Content-ID: <E101800D9B9E8E4BA159F23B5FE37C0C@namprd11.prod.outlook.com>
-Content-Transfer-Encoding: base64
+Received: from CY5PR11MB6139.namprd11.prod.outlook.com (2603:10b6:930:29::17)
+ by SN7PR11MB7091.namprd11.prod.outlook.com (2603:10b6:806:29a::18)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6433.24; Wed, 7 Jun
+ 2023 19:42:00 +0000
+Received: from CY5PR11MB6139.namprd11.prod.outlook.com
+ ([fe80::44e7:c479:62f4:3eb4]) by CY5PR11MB6139.namprd11.prod.outlook.com
+ ([fe80::44e7:c479:62f4:3eb4%5]) with mapi id 15.20.6455.030; Wed, 7 Jun 2023
+ 19:41:59 +0000
+Date: Wed, 7 Jun 2023 12:41:47 -0700
+From: Lucas De Marchi <lucas.demarchi@intel.com>
+To: Oded Gabbay <ogabbay@kernel.org>
+Message-ID: <z3h35yqsti5koywkzbrsdsxtgti62m4i3vbsdsi2br5gurbinx@fprbtlmy5km4>
+References: <20230531152338.6-1-francois.dugast@intel.com>
+ <uieo7p5pwbj252uxdtmyyozj3crbbrkcm4uevookml3vxqj2ik@c3ilb7d7okcl>
+ <ZHd9u1AdemcPGPn3@fdugast-desk.home>
+ <jjkmqjebxtljdu4chzjuj7a56xbpttd7wf3wqh6o7ciigb55ur@pgci7bqedka6>
+ <CAFCwf11Cz8=3=nnhCTGKN9Coz_dsZL7XcAc9HFyayHRcUCioCg@mail.gmail.com>
+ <sptofjhqdc5kjs6fm64ueghqluyi3p7g6x2d63nxruxxp6zzlq@fktu4g44adrs>
+ <CAFCwf10F=AT4apgR++C+usW4MOefM=CHi58Oni0vT-B+QBtVjA@mail.gmail.com>
+ <jifbozq2jzctt2a226hectd5izr757haxl4jrqduxhhhshfcox@i54q36fox4at>
+ <CAFCwf10kqEdmv0n+wzcZ5Wad6SheWB7cvStWq2+23fwGVWAu6g@mail.gmail.com>
+Content-Type: text/plain; charset="utf-8"; format=flowed
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <CAFCwf10kqEdmv0n+wzcZ5Wad6SheWB7cvStWq2+23fwGVWAu6g@mail.gmail.com>
+X-ClientProxiedBy: BYAPR01CA0004.prod.exchangelabs.com (2603:10b6:a02:80::17)
+ To CY5PR11MB6139.namprd11.prod.outlook.com
+ (2603:10b6:930:29::17)
 MIME-Version: 1.0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: CY5PR11MB6139:EE_|SN7PR11MB7091:EE_
+X-MS-Office365-Filtering-Correlation-Id: 759cf10d-dbd9-471f-e878-08db678f4210
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: VdciVdPside0cI9z/2eeAgvVlGFqtJYiIXKy/rjyq4A08s3DA4HooG5SFZp1xpKGY06/be6scm47lSCOZdiaAeXShzsiPy5cuYtREHi05WQv4wsiSZkIw4jz899AhOyEV1GsK+MPeEnOEnZBQAEwG+uQcvDHbdYXCHsvkBzVz+DVunfGNDZmb5+aiYdHrcsEyRky73iDyofJqszxSnB2g1HWyBVJo48CDm+FI4recn5hBaew37s6U2PW6W7VR4yvScljOk5H8gdullaajayISKI5o1wPbN7oFbkbqMSLeKLQ2t5Bj9BlyR6rVMCBJKXy3oOHbv6wxgcy1Djse4BdKOoy7evjEktUfruDhDkCZNtXqA1Gdvk8PF5PSgajeF1q50zR9PikMLoxOmQHFz3AaWngCeRDxxJsLYTFeifDl5y3xjonHc7bLV+MjGwvIsBR36Z8oC+bgZRN7g+W4+Lqv8p8oNBrZ3jrSWGjtK8E7RAWu0d5iAuV7MToPlFEZgXBB/0xGPTz7hh8i8ZMzUeVVw+z3IueruhsaGir79A6QKhsvSvM4iht36AHl431FOgTKBurd3/+wsybcG31Br8Ghlqma5g6jHyhfVrq9uWGbi0=
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:CY5PR11MB6139.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230028)(7916004)(136003)(376002)(39860400002)(346002)(366004)(396003)(451199021)(6666004)(83380400001)(33716001)(6486002)(316002)(41300700001)(9686003)(26005)(6512007)(186003)(8936002)(86362001)(5660300002)(8676002)(66946007)(82960400001)(6506007)(38100700002)(966005)(6916009)(4326008)(30864003)(2906002)(478600001)(66476007)(66556008)(60764002);
+ DIR:OUT; SFP:1102; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?L2hyNVY0OTY1Q3puUzJla2lBT0V0Nm5xNkxzTVZZZzhjR2kyaXVCbjlVWUdz?=
+ =?utf-8?B?UDJMdWhJL0RlSEZHdWZBQ0VMb0RXclVMWlgzTmlUQnBYSVNUQjExM2ZoZXk5?=
+ =?utf-8?B?cWpkcWJNTGl0bzB6ZG1KcVZaREJyeDVaQVB3OFRhUWx5Z0U5U0crVnFUYk1m?=
+ =?utf-8?B?anNib1NOU28zS1V1OFJ0RlNJeTFxb3pUN3FsVURFVlh1dmZrZ1pqU3VLRlhE?=
+ =?utf-8?B?am92cXloWjNySjZick84SFdtOFlHUHNUcTh5TGRqYjhsOTcyWHJmb2dVamZ2?=
+ =?utf-8?B?cG50WXlTK1JwQkQwTTJYd0N1UWd3UnJWUnRVYjRqS05ac0R1U2U3NVBZbnVn?=
+ =?utf-8?B?bHM4aG5WTGtPZ2laQWd1S3NXMDhTMEJhcC9SSUdKQ1ZBSmpSY3gxQVYzdFNC?=
+ =?utf-8?B?T25EdzBLb2xGZVFGcFVIMnFpKzRTbU1sSHR5Nm9FNzZySmJLOEV5NFlpUm1N?=
+ =?utf-8?B?YjlINDFLRXZmdmJ5Y21ORkttbUM1QXBmajczRnpCZnhHOGdsZHRiajNLdFNr?=
+ =?utf-8?B?cVZuNEVzclVWT3VzdVN2Q0dweExZbVNYY2h3dW8xbUV6a0NwTlpqdWpOb2d4?=
+ =?utf-8?B?SnJ5NDh4Mlp4NG5lM3dQTlBjRDl5VTJTbTdWK1JOZ1FNQVdSaEF3bDFIcGN3?=
+ =?utf-8?B?L0NYandIdk1LUVd0RXlKaFp1dEszcXdaSWhTWlNOVEtEU2wzd1R6MGhaeTRM?=
+ =?utf-8?B?NC9hUkx4aEM5VDRiN21FVUxJR2RuejFrVHNKdVA5OFFFY05USm4zYlJLZ0Ur?=
+ =?utf-8?B?T2lNTVkrcjI3TU5qVEY2di9QT1NvMHRFL0RRekdBTEhLdFE5ZTBkamI0WGta?=
+ =?utf-8?B?Y0ZMd2EyY3B6TjIxeGZzTXJMdTFIMWJVYXJpZWJON0ovTkFISXpUSzNncUsr?=
+ =?utf-8?B?ZXRjNDhVcHE2bG1ub09EcStNRktwd29BWERuNHpnZ3Jtbk80T1VVWVNreE9y?=
+ =?utf-8?B?d251eTZXcEZ5OUhNT25GZ2p3cmQ1ckVSQUNBc3p3UExkUEViN2l5bDlTSkEv?=
+ =?utf-8?B?MVV2OVB6R1o0NVpQSVE0OVRlN1NnYkpvSk10M3FZdS9UY2Q5ZE4xbVR5RHgv?=
+ =?utf-8?B?c2hkOEd4YWdQamNOYmtPdGJ5NDhwQzFLSHpRV1BJOGp0ZEJGTmFWeGZ0cXNo?=
+ =?utf-8?B?M2FIRkg0ZGgvT2liUTkwb2EwZVJpRFJpeEVNcUs1TExUakRXWVVEdTZUNmpv?=
+ =?utf-8?B?Tk52YWRoQWRzaUdheWg5Z1VZWjVtbnpuaWtPYndWTlJ4ZG9BUTZISldyaGtx?=
+ =?utf-8?B?N0VXVVpVMXJWL0ZqWTZoVGVJZUFjbUpteWVQV1k5NTZvRENLdEZCMjdSaEhO?=
+ =?utf-8?B?TDVuSFhDVWJpdjVpdTBnY2NIcGltQXN6M2MwS1lScjIwV295Q0lsVDZEZVJX?=
+ =?utf-8?B?SHlSUWpORXZFZmRPY2t3QURGV0N1b1FyeGZSdkhXcjFQaDFMZERRSkN3bHFn?=
+ =?utf-8?B?MzV0WE0xUlpGSGk0VUlhZ0NSOWJWVFJ6dC9HRUhLTmxSSm9DTCtGK3A1YS8v?=
+ =?utf-8?B?YmFKbk1LWmk0cVBHQzU5S2Z0d1F5VFZ5SVZseDF4ZmJOb1lNSVUyWVp5Q2JS?=
+ =?utf-8?B?TklNZTNDaWtPaSttODJ3SEppY2UydTU3TWlUS2ZVcEF6Z2RodXo5ZVR2czE3?=
+ =?utf-8?B?ZEh1WGVYb0k1dktjSFcrTGtGVzFFczljTzdEbGNMOTZNeXA3bC9kdWsyWmlQ?=
+ =?utf-8?B?YVNhbGphamZTOUpBdlVINFExOVczeHZzalBrVVN2VmEyKzBIdm14YnFzUWxk?=
+ =?utf-8?B?d0tpZlFxRkpsSHpEK3hIaEwxT2NKOVFqM0x2YkwrMEVPSS9VeU85bnJnQlAr?=
+ =?utf-8?B?bVo2VFFjMy9ocVozaW9ra29FRmxxeW9uWjRKMzVaV2Vlb1FQclExcDl3L1hP?=
+ =?utf-8?B?VXpKMkZhajhXYmhCVjBlbEgwZ3dndy9seFZONEdmM1FnTHNqZ3hIOWVaM3BY?=
+ =?utf-8?B?VU9iMG54T01kbzlhdFFWVHFDTUs0bnhDNU1KQU5nMlY3V1BJM0N5MHJDZmVO?=
+ =?utf-8?B?MHhsVk11dHZVT2ppT0xjK1NmVkp3SnBkZVFrTmlsVlU0eEdZdFFBWmYyYkpn?=
+ =?utf-8?B?d0dNY2JZMHdlbUVJR01PNTBxQW9QSUZ0VlF3OGlUSVIrVFZYbm51Y3Y4UHha?=
+ =?utf-8?B?M2I1NVF0MmZqaDNvRFZGM0d2bnVpTU5GbXVLdTBPTjBsR2lwMlNGRnYybS8y?=
+ =?utf-8?B?Z0E9PQ==?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: 759cf10d-dbd9-471f-e878-08db678f4210
+X-MS-Exchange-CrossTenant-AuthSource: CY5PR11MB6139.namprd11.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: DM4PR11MB8179.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: fcdd5612-2d9a-49dc-860b-08db678d3243
-X-MS-Exchange-CrossTenant-originalarrivaltime: 07 Jun 2023 19:27:13.4245 (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: NehfdsnNJkhG/a/ocPFZLJjx1LMioyaJbI/5wwUdg17GVlIW8NT/amRYlEaT7U/ejBiMCyf0QuSJ35cMyagoiw==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: CH3PR11MB7389
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 07 Jun 2023 19:41:59.4317 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: AASyiu1GvjTDLzn83NT4dKhVnwrJdyil42tEHwRou5gq0FF+bIaUzzVysOI7vRLWMrweTL2+IkGMQrnXc9mi2qugwf1tYotwlEjiJfP5BhU=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SN7PR11MB7091
 X-OriginatorOrg: intel.com
-Subject: Re: [Intel-xe] [PATCH 1/1] drm/xe: Report tile count from device
- query api.
+Subject: Re: [Intel-xe] [PATCH v2 0/5] drm/xe: uAPI cleanup
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -160,110 +159,321 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Cc: "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>
+Cc: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-T24gV2VkLCAyMDIzLTA2LTA3IGF0IDEyOjE3IC0wNzAwLCBEaXhpdCwgQXNodXRvc2ggd3JvdGU6
-DQo+IE9uIFdlZCwgMDcgSnVuIDIwMjMgMTE6MzE6MTUgLTA3MDAsIE1hdHQgUm9wZXIgd3JvdGU6
-DQo+ID4gDQo+ID4gT24gV2VkLCBKdW4gMDcsIDIwMjMgYXQgMDQ6NDk6MDlBTSArMDAwMCwgR2hp
-bWlyYXksIEhpbWFsIFByYXNhZCB3cm90ZToNCj4gPiA+IA0KPiA+ID4gDQo+ID4gPiA+IC0tLS0t
-T3JpZ2luYWwgTWVzc2FnZS0tLS0tDQo+ID4gPiA+IEZyb206IFJvcGVyLCBNYXR0aGV3IEQgPG1h
-dHRoZXcuZC5yb3BlckBpbnRlbC5jb20+DQo+ID4gPiA+IFNlbnQ6IDA3IEp1bmUgMjAyMyAwMToy
-Ng0KPiA+ID4gPiBUbzogR2hpbWlyYXksIEhpbWFsIFByYXNhZCA8aGltYWwucHJhc2FkLmdoaW1p
-cmF5QGludGVsLmNvbT4NCj4gPiA+ID4gQ2M6IGludGVsLXhlQGxpc3RzLmZyZWVkZXNrdG9wLm9y
-ZzsgRHVnYXN0LCBGcmFuY29pcw0KPiA+ID4gPiA8ZnJhbmNvaXMuZHVnYXN0QGludGVsLmNvbT4N
-Cj4gPiA+ID4gU3ViamVjdDogUmU6IFtQQVRDSCAxLzFdIGRybS94ZTogUmVwb3J0IHRpbGUgY291
-bnQgZnJvbSBkZXZpY2UgcXVlcnkgYXBpLg0KPiA+ID4gPiANCj4gPiA+ID4gT24gVHVlLCBKdW4g
-MDYsIDIwMjMgYXQgMDM6MTk6MjlQTSArMDUzMCwgSGltYWwgUHJhc2FkIEdoaW1pcmF5IHdyb3Rl
-Og0KPiA+ID4gPiA+IENjOiBNYXR0IFJvcGVyIDxtYXR0aGV3LmQucm9wZXJAaW50ZWwuY29tPg0K
-PiA+ID4gPiA+IENjOiBGcmFuY29pcyBEdWdhc3QgPGZyYW5jb2lzLmR1Z2FzdEBpbnRlbC5jb20+
-DQo+ID4gPiA+ID4gDQo+ID4gPiA+ID4gU2lnbmVkLW9mZi1ieTogSGltYWwgUHJhc2FkIEdoaW1p
-cmF5IDxoaW1hbC5wcmFzYWQuZ2hpbWlyYXlAaW50ZWwuY29tPg0KPiA+ID4gPiANCj4gPiA+ID4g
-RG9lcyB1c2Vyc3BhY2UgYWN0dWFsbHkgbmVlZCB0aGlzIHJlcG9ydGVkIGluIHRoZSBkZXZpY2Ug
-cXVlcnk/ICBJdCBzZWVtcyBtb3JlDQo+ID4gPiA+IGxpa2VseSB0aGF0IHRoZXkncmUgZ29pbmcg
-dG8gbmVlZCBhIHRpbGUtYmFzZWQgZXF1aXZhbGVudCBvZiAnZHJtX3hlX3F1ZXJ5X2d0Jw0KPiA+
-ID4gPiB0aGF0IHJldHVybnMgbm90IG9ubHkgdGhlIHRpbGUgY291bnQsIGJ1dCBhbHNvIGZ1cnRo
-ZXIgZGV0YWlscyBhYm91dCBlYWNoIHRpbGUuICBJZg0KPiA+ID4gPiB0aGF0J3MgdGhlIGNhc2Us
-IHRoZW4gYWxzbyBhZGRpbmcgdGhpcyBjb3VudCBhcyBhbiBleHRyYSBmaWVsZCB0byB0aGUgZGV2
-aWNlLWxldmVsDQo+ID4gPiA+IHF1ZXJ5IHNlZW1zIHJlZHVuZGFudCAoYW5kIHRoZSBleGlzdGlu
-ZyBHVCBjb3VudCBzZWVtcyBsaWtlIGl0J3MgcHJvYmFibHkNCj4gPiA+ID4gcmVkdW5kYW50IGFz
-IHdlbGwpLg0KPiA+ID4gSGkgTWF0dCwNCj4gPiA+IA0KPiA+ID4gRnJvbSB1c2Vyc3BhY2UgIHBl
-cnNwZWN0aXZlIHRoZSByZXF1aXJlbWVudCBpcyB0byBrbm93IG51bWJlciBvZiB0aWxlcyBzdXBw
-b3J0ZWQgYnkgZGV2aWNlDQo+ID4gPiBhbmQgYWdyZWVkICdkcm1feGVfcXVlcnlfdGlsZScgc2hv
-dWxkIHByb3ZpZGUgdGhpcyBpbmZvIGFsb25nIHdpdGggb3RoZXIgZGV0YWlscy4NCj4gPiA+IENh
-biB5b3UgcGxlYXNlIHByb3ZpZGUgeW91ciBpbnB1dHMgb24gd2hhdCBvdGhlciBkZXRhaWxzIGNh
-biBiZSBwYXJ0IG9mIHRpbGUgcXVlcnkgPw0KPiA+IA0KPiA+IEl0J3MgcmVhbGx5IHNvbWV0aGlu
-ZyB0aGF0IHdvdWxkIG5lZWQgdG8gYmUgZGlzY3Vzc2VkIGFuZCBhZ3JlZWQgdXBvbg0KPiA+IHdp
-dGggdGhlIHVzZXJzcGFjZSB0ZWFtcywgYnV0IEkgaW1hZ2luZSBkZXRhaWxzIGFib3V0IFZSQU0g
-bWlnaHQgYmUNCj4gPiBzb21ldGhpbmcgdGhleSdkIHdhbnQgdG8gcmVjZWl2ZSB2aWEgc3VjaCBh
-IHF1ZXJ5Lg0KPiA+IA0KPiA+ID4gPiANCj4gPiA+ID4gQXJlIHRoZXJlIHBhdGNoZXMgZm9yIGFu
-eSBvZiB0aGUgdXNlcnNwYWNlIGNvbXBvbmVudHMgeWV0IHRoYXQgc2hvdw0KPiA+ID4gPiBob3cv
-d2hlbiB0aGV5J2QgdXNlIHRoaXM/DQo+ID4gPiBodHRwczovL3BhdGNod29yay5mcmVlZGVza3Rv
-cC5vcmcvc2VyaWVzLzExODkyNy8gZXhwb3NlcyBwZXIgdGlsZSB2cmFtIGFkZHJfcmFuZ2Ugdmlh
-IHN5c2ZzLg0KPiA+ID4gV2hpbGUgd3JpdGluZyBJR1QgdG8gdGVzdCB0aGlzIHN5c2ZzIGVudHJ5
-LCBJIGNhbWUgYWNyb3NzIHRoZSByZXF1aXJlbWVudC4gSUdUIHBhdGNoZXMgYXJlIFdJUC4NCj4g
-PiA+IA0KPiA+ID4gSnVzdCBhIHRob3VnaHQsIHdpbGwgaXQgbWFrZXMgc2Vuc2UgdG8gZXhwb3Nl
-IG51bWJlciBvZiB0aWxlcyBkZXZpY2Ugc3VwcG9ydHMgYnkgc3lzZnMgPw0KPiA+ID4gU29tZXRo
-aW5nIGxpa2U6IDxkZXZpY2UtcHJvcGVydGllcz4vbnVtYmVyX3RpbGVzDQo+IA0KPiBJbiBpOTE1
-IGUuZy4gdGhlIG51bWJlciBvZiBndCdzIHdhcyBuZXZlciBleHBvc2VkLCB1c2VybGFuZCB3b3Vs
-ZCBqdXN0DQo+IGNvdW50IHRoZSBudW1iZXIgb2YgZ3QvZ3ROIGRpcmVjdG9yaWVzIGluIHN5c2Zz
-IHRvIGdldCBudW1iZXIgb2YgZ3QncyAoc2VlDQo+IGhvdyB0aGlzIGlzIGRvbmUgaW4gSUdUKS4g
-U28gc29tZXRoaW5nIGxpa2UgdGhhdCBpcyBwb3NzaWJsZSBmb3IgdGlsZXMgdG9vDQo+IChzZWUg
-ZW1haWwgdGhyZWFkICJSZTogW1BBVENIIDAvM10gZHJtL3hlOiBBZGQgc3lzZnMgZW50cnkgdG8g
-cmVwb3J0IHBlciBndA0KPiBtZW1vcnkgc2l6ZSIpLCB0aG91Z2ggbGlrZSBNYXR0IHNheXMgbmVl
-ZHMgZGlzY3Vzc2lvbiB3aXRoIFVNRCB0ZWFtcyB0byBzZWUNCj4gd2hpY2ggcGFydGljdWxhciBv
-cHRpb24gdG8gZ28gd2l0aC4NCj4gDQo+IFNvbWV0aW1lcyBJIHRoaW5rIHdlIHNob3VsZCBwdXQg
-d2hhdGV2ZXIgd2UgY2FuIGluIHN5c2ZzIGFuZCBtaW5pbWl6ZQ0KPiB0aGluZ3MgZXhwb3NlZCB2
-aWEgdGhlIHF1ZXJ5IGlvY3RsLiBUaG91Z2ggYWdhaW4gbm90IHN1cmUgYWJvdXQgdGhlDQo+IHRy
-YWRlb2ZmJ3Mgb2Ygb25lIHdheSB2cyBhbm90aGVyLg0KDQpNeSA1Y2VudHMgaGVyZTogTWVzYSBk
-b24ndCByZWFkIGFueSBzeXNmcy4NCg0KPiANCj4gQXNodXRvc2gNCj4gDQo+ID4gPiBJTU8gdGhp
-cyBpbmZvIHNob3VsZCBiZSBhdmFpbGFibGUgdG8gdXNlcnNwYWNlIGV2ZW4gd2l0aG91dCBtYWtp
-bmcgYW55IGNvZGUgY2hhbmdlcyAuDQo+ID4gPiBUaGVyZSBtYXkgYmUgb3RoZXIgc3VjaCBwb3Rl
-bnRpYWwgY2FuZGlkYXRlcyB3aGljaCBjYW4gZmFsbCB1bmRlciBkZXZpY2UtcHJvcGVydGllcy4N
-Cj4gPiANCj4gPiBUaGF0J3MgcmVhbGx5IHNvbWV0aGluZyB0aGF0IHdlIG5lZWQgZ3VpZGFuY2Ug
-b24gZnJvbSB0aGUgdXNlcnNwYWNlDQo+ID4gdGVhbXMgKG1lc2EsIG1lZGlhLCBjb21wdXRlLCBl
-dGMuKS4gIEl0J3MgaGFyZCBmb3IgdXMga2VybmVsIGRldmVsb3BlcnMNCj4gPiB0byByZWFsbHkg
-a25vdyBleGFjdGx5IHdoYXQgdGhlIGJlc3QgdWFwaSB3b3VsZCBiZSBmb3IgdXNlcnNwYWNlLg0K
-PiA+IFRoYXQncyBwYXJ0IG9mIHdoeSB0aGUgRFJNIHN1YnN5c3RlbSByZXF1aXJlcyB0aGF0IGFu
-eSB1YXBpIGNoYW5nZQ0KPiA+IHByb3Bvc2VkIGZvciBpOTE1IG9yIFhlIGNhbid0IGJlIGFkZGVk
-IHRvIHRoZSBkcml2ZXIgdW50aWwgdGhlDQo+ID4gY29ycmVzcG9uZGluZyB1c2Vyc3BhY2UgcGF0
-Y2hlcyBoYXZlIGFsc28gYmVlbiBkZXZlbG9wZWQgYW5kIGZ1bGx5DQo+ID4gcmV2aWV3ZWQuICBX
-ZSBkb24ndCB3YW50IHRvIHdyaXRlIFVBUEkgdGhhdCB3aW5kcyB1cCBub3QgcmVhbGx5IG1lZXRp
-bmcNCj4gPiB1c2Vyc3BhY2UncyBuZWVkcyBhbmQgdGhlbiBiZSBzdHVjayBzdXBwb3J0aW5nIHRo
-YXQgYnJva2VuIHVhcGkgZm9yZXZlci4NCj4gPiANCj4gPiANCj4gPiBNYXR0DQo+ID4gDQo+ID4g
-PiANCj4gPiA+IEhpbWFsDQo+ID4gPiA+IA0KPiA+ID4gPiANCj4gPiA+ID4gTWF0dA0KPiA+ID4g
-PiANCj4gPiA+ID4gPiAtLS0NCj4gPiA+ID4gPiAgZHJpdmVycy9ncHUvZHJtL3hlL3hlX3F1ZXJ5
-LmMgfCAxICsNCj4gPiA+ID4gPiAgaW5jbHVkZS91YXBpL2RybS94ZV9kcm0uaCAgICAgfCAzICsr
-LQ0KPiA+ID4gPiA+ICAyIGZpbGVzIGNoYW5nZWQsIDMgaW5zZXJ0aW9ucygrKSwgMSBkZWxldGlv
-bigtKQ0KPiA+ID4gPiA+IA0KPiA+ID4gPiA+IGRpZmYgLS1naXQgYS9kcml2ZXJzL2dwdS9kcm0v
-eGUveGVfcXVlcnkuYw0KPiA+ID4gPiA+IGIvZHJpdmVycy9ncHUvZHJtL3hlL3hlX3F1ZXJ5LmMg
-aW5kZXggYzQxNjVmYTM0MjhlLi41NGVmYmVmZDY2M2YNCj4gPiA+ID4gPiAxMDA2NDQNCj4gPiA+
-ID4gPiAtLS0gYS9kcml2ZXJzL2dwdS9kcm0veGUveGVfcXVlcnkuYw0KPiA+ID4gPiA+ICsrKyBi
-L2RyaXZlcnMvZ3B1L2RybS94ZS94ZV9xdWVyeS5jDQo+ID4gPiA+ID4gQEAgLTE5Nyw2ICsxOTcs
-NyBAQCBzdGF0aWMgaW50IHF1ZXJ5X2NvbmZpZyhzdHJ1Y3QgeGVfZGV2aWNlICp4ZSwgc3RydWN0
-DQo+ID4gPiA+IGRybV94ZV9kZXZpY2VfcXVlcnkgKnF1ZXJ5KQ0KPiA+ID4gPiA+IAkJCWh3ZWln
-aHRfbG9uZyh4ZS0+aW5mby5tZW1fcmVnaW9uX21hc2spOw0KPiA+ID4gPiA+IAkJY29uZmlnLT5p
-bmZvW1hFX1FVRVJZX0NPTkZJR19NQVhfRU5HSU5FX1BSSU9SSVRZXSA9DQo+ID4gPiA+ID4gCQkJ
-eGVfZW5naW5lX2RldmljZV9nZXRfbWF4X3ByaW9yaXR5KHhlKTsNCj4gPiA+ID4gPiArCWNvbmZp
-Zy0+aW5mb1tYRV9RVUVSWV9DT05GSUdfVElMRV9DT1VOVF0gPSB4ZS0+aW5mby50aWxlX2NvdW50
-Ow0KPiA+ID4gPiA+IA0KPiA+ID4gPiA+IAkJaWYgKGNvcHlfdG9fdXNlcihxdWVyeV9wdHIsIGNv
-bmZpZywgc2l6ZSkpIHsNCj4gPiA+ID4gPiAJCQlrZnJlZShjb25maWcpOw0KPiA+ID4gPiA+IGRp
-ZmYgLS1naXQgYS9pbmNsdWRlL3VhcGkvZHJtL3hlX2RybS5oIGIvaW5jbHVkZS91YXBpL2RybS94
-ZV9kcm0uaA0KPiA+ID4gPiA+IGluZGV4IDBlYmM1MGJlYjVlNS4uOGU1NTJhYTU1MDM3IDEwMDY0
-NA0KPiA+ID4gPiA+IC0tLSBhL2luY2x1ZGUvdWFwaS9kcm0veGVfZHJtLmgNCj4gPiA+ID4gPiAr
-KysgYi9pbmNsdWRlL3VhcGkvZHJtL3hlX2RybS5oDQo+ID4gPiA+ID4gQEAgLTE4NSw3ICsxODUs
-OCBAQCBzdHJ1Y3QgZHJtX3hlX3F1ZXJ5X2NvbmZpZyB7DQo+ID4gPiA+ID4gICNkZWZpbmUgWEVf
-UVVFUllfQ09ORklHX0dUX0NPVU5UCQk0DQo+ID4gPiA+ID4gICNkZWZpbmUgWEVfUVVFUllfQ09O
-RklHX01FTV9SRUdJT05fQ09VTlQJNQ0KPiA+ID4gPiA+ICAjZGVmaW5lIFhFX1FVRVJZX0NPTkZJ
-R19NQVhfRU5HSU5FX1BSSU9SSVRZCTYNCj4gPiA+ID4gPiAtI2RlZmluZSBYRV9RVUVSWV9DT05G
-SUdfTlVNX1BBUkFNDQo+ID4gPiA+IAlYRV9RVUVSWV9DT05GSUdfTUFYX0VOR0lORV9QUklPUklU
-WSArIDENCj4gPiA+ID4gPiArI2RlZmluZSBYRV9RVUVSWV9DT05GSUdfVElMRV9DT1VOVAkJNw0K
-PiA+ID4gPiA+ICsjZGVmaW5lIFhFX1FVRVJZX0NPTkZJR19OVU1fUEFSQU0NCj4gPiA+ID4gCVhF
-X1FVRVJZX0NPTkZJR19USUxFX0NPVU5UICsgMQ0KPiA+ID4gPiA+IAkJX191NjQgaW5mb1tdOw0K
-PiA+ID4gPiA+ICB9Ow0KPiA+ID4gPiA+IA0KPiA+ID4gPiA+IC0tDQo+ID4gPiA+ID4gMi4yNS4x
-DQo+ID4gPiA+ID4gDQo+ID4gPiA+IA0KPiA+ID4gPiAtLQ0KPiA+ID4gPiBNYXR0IFJvcGVyDQo+
-ID4gPiA+IEdyYXBoaWNzIFNvZnR3YXJlIEVuZ2luZWVyDQo+ID4gPiA+IExpbnV4IEdQVSBQbGF0
-Zm9ybSBFbmFibGVtZW50DQo+ID4gPiA+IEludGVsIENvcnBvcmF0aW9uDQo+ID4gDQo+ID4gLS0N
-Cj4gPiBNYXR0IFJvcGVyDQo+ID4gR3JhcGhpY3MgU29mdHdhcmUgRW5naW5lZXINCj4gPiBMaW51
-eCBHUFUgUGxhdGZvcm0gRW5hYmxlbWVudA0KPiA+IEludGVsIENvcnBvcmF0aW9uDQoNCg==
+On Tue, Jun 06, 2023 at 01:58:43PM +0300, Oded Gabbay wrote:
+>On Mon, Jun 5, 2023 at 11:09 PM Lucas De Marchi
+><lucas.demarchi@intel.com> wrote:
+>>
+>> On Mon, Jun 05, 2023 at 10:33:57AM +0300, Oded Gabbay wrote:
+>> >On Thu, Jun 1, 2023 at 7:48 PM Lucas De Marchi <lucas.demarchi@intel.com> wrote:
+>> >>
+>> >> On Thu, Jun 01, 2023 at 01:21:06PM +0300, Oded Gabbay wrote:
+>> >> >On Wed, May 31, 2023 at 11:29 PM Lucas De Marchi
+>> >> ><lucas.demarchi@intel.com> wrote:
+>> >> >>
+>> >> >> On Wed, May 31, 2023 at 07:02:51PM +0200, Francois Dugast wrote:
+>> >> >> >On Wed, May 31, 2023 at 09:23:45AM -0700, Lucas De Marchi wrote:
+>> >> >> >> +Oded
+>> >> >> >>
+>> >> >> >> On Wed, May 31, 2023 at 03:23:33PM +0000, Francois Dugast wrote:
+>> >> >> >> > This series addresses some feedback on xe_drm.h provided here:
+>> >> >> >> > https://lists.freedesktop.org/archives/intel-xe/2023-May/004704.html
+>> >> >> >> >
+>> >> >> >> > It is based on xe-rev1-2023-05-02, not on drm-xe-next, so it will
+>> >> >> >> > likely break CI.
+>> >> >> >>
+>> >> >> >> As I said on the previous reply, this is not going to fly. Now we have a
+>> >> >> >> patch series against xe-rev1-2023-05-02, pushed as xe-rev2 branch with
+>> >> >> >> *no recorded reviews*, doing things that already conflict with other
+>> >> >> >> fixes that landed in drm-xe-next. Examples: the 32b compat for uapi,
+>> >> >> >> the mmio refactor, the oob WAs, the probe refactor, etc etc.
+>> >> >> >>
+>> >> >> >> Also, there are other fixes queued as fixups, which is still the process
+>> >> >> >> being used in drm-xe-next. It's also where CI is running. Due to display
+>> >> >> >> being moved up in the branch it's basically the only sane thing to do.
+>> >> >> >>
+>> >> >> >> I think we need we are shooting ourselves on the foot and this review
+>> >> >> >> process needs to be fixed / agreed upon before we create a mess out of
+>> >> >> >> it.
+>> >> >> >>
+>> >> >> >> Lucas De Marchi
+>> >> >> >
+>> >> >> >Yes I understand the concern. The intention is to address Oded's feedback on the
+>> >> >> >revision that was reviewed, so that the next review iteration is manageable and
+>> >> >> >not based on a moving target, which could lead to and endless effort.
+>> >> >>
+>> >> >> and then what are we going to do next? rebase the rest of drm-xe-next on top?
+>> >> >> How do we guarantee the fixes on top of xe-rev is not breaking stuff?
+>> >> >> What about the changes that are already there changing the commits that
+>> >> >> are on xe-rev?
+>> >> >>
+>> >> >> >
+>> >> >> >Maybe I created confusion by sharing on the mailing list but at this stage the
+>> >> >>
+>> >> >> no, that was the right part of it. Reviews on the patches happen on this
+>> >> >> mailing list. The wrong part IMO was to push it as a branch before it
+>> >> >> got the necessary review and before we know how we are going to
+>> >> >> reconciliate things. Rebasing drm-xe-next on xe-rev doesn't
+>> >> >> really work for the reasons mentioned above.
+>> >> >>
+>> >> >> >idea is not to get this series merged, only to get Oded's validation that it
+>> >> >> >fixes the issues that he reported. Yes this means more work will be required to
+>> >> >> >rebase and create fixups later for drm-xe-next but it seems acceptable for the
+>> >> >> >work that has been done so far.
+>> >> >> >
+>> >> >> >Do you see a better way that would still satisfy the "not moving target" goal?
+>> >> >>
+>> >> >> 0) Ignore the "not moving target" goal
+>> >> >
+>> >> >Hi Lucas,
+>> >> >I would like to say a few things.
+>> >> >
+>> >> >The first point is that the current xe-rev1 branch was something that
+>> >> >Rodrigo and I set-up. If you feel this is not a good starting point
+>> >> >for the review, let's talk and decide on a new starting point. Even
+>> >> >though I have already invested multiple hours in reviewing it, I can
+>> >> >understand the point you are making and I'm willing to re-start the
+>> >> >review with a new starting point.
+>> >> >
+>> >> >The second point is once we make a decision regarding the code
+>> >> >baseline (keep using the old or moving to the new), I want *all* of us
+>> >> >to agree that newer patches that are sent to the mailing list will not
+>> >> >be part of the initial Xe upstreamed code. There are mainly two
+>> >> >reasons for that:
+>> >> >
+>> >> >1. There is a long-standing process of upstreaming a new driver to the
+>> >> >Linux kernel and that process assumes a code baseline that doesn't
+>> >> >change between revisions, except for addressing code review comments.
+>> >> >As a person who has undergone this a couple of times from the side
+>> >> >being reviewed I would like to follow this same process here as well
+>> >> >:)
+>> >> >
+>> >> >2. The Xe driver is one big driver, with a large team behind it that
+>> >> >continuously sends patches. The code keeps getting re-factored and
+>> >> >acquires new features at a high rate. If every revision of the review
+>> >> >the baseline code will change, the changes from the previous revision
+>> >> >will be too large to review independently. I will have to review the
+>> >> >entire driver again... Not to mention how will I be able to easily
+>> >> >verify that my comments were addressed properly (btw, I also wrote it
+>> >> >here https://lore.kernel.org/intel-xe/CAFCwf124UMR3VQ=Tr6mT_eTRQi9ssqZqEH4jys1bGggHJjboLw@mail.gmail.com/).
+>> >>
+>> >> Let me use a few examples:
+>> >>
+>> >>         22ad50d184c0 ("fixup! drm/xe: Introduce a new DRM driver for Intel GPUs")
+>> >>
+>> >> Do we want to leave the commit "drm/xe: Introduce a new DRM driver for
+>> >> Intel GPUs" as part of the original and then have a Fix commit leaving a
+>> >> few hundreds of broken commits?  On other "first driver submissions"
+>> >> I've seen that would be frowned upon and it would be expected that this
+>> >> is fixed inplace instead of leaving broken commits behind.
+>> >>
+>> >>         a00a92181ab1 ("fixup! drm/xe: Introduce a new DRM driver for Intel GPUs")
+>> >>
+>> >> Same thing: a nasty memory corruption lurking there. Do we leave it
+>> >> broken?  With the previous (current(?)) process we were actually adding
+>> >> these fixups that are later moved back in the git history so things like
+>> >> this are never part of the upstream code. Looking at xe-rev2 branch
+>> >> being pushed without any code review, why is 83ac6e02bf5e ("drm/xe:
+>> >> Remove unused define") more important that deserves being brought back
+>> >> to the original submission?
+>> >I'm sure there are multiple additional bugs/broken code paths that we
+>> >don't know about right now, will be part of the original submission
+>> >and will be fixed only in a couple of months or further than that.
+>> >Therefore, I don't think this is a critical issue.
+>> >But in any case, no one said we need to have the original submission
+>> >sent upstream, without additional patches after it in the same merge
+>> >cycle.
+>> >
+>> >What is critical imo, is to have confidence that this driver is not
+>> >doing something horrendously wrong, like abstracting entire kernel
+>> >layers, or putting up a broken uapi, or incorrectly using kernel API,
+>> >or whatever.
+>> >
+>> >>
+>> >> Another one that comes to mind: the engine vs context name that you
+>> >> raised on the other review and I pointed out to the history: would it be
+>> >> something to be changed on xe-rev branch and invalidate the other things
+>> >> on top?  Or would we better change this in drm-xe-next?
+>> >
+>> >I agree the changes between rev1 and rev2 are often quite significant.
+>> >And with all your other input, I think we can consider the following:
+>> >1. Halting the review for now.
+>> >2. You will prepare a rev2 branch with all the changes we agreed upon
+>> >+ updated code to make it more aligned with drm-xe-next.
+>> >3. I'll restart the review on rev2, while we agree to keep the
+>> >drm-xe-next mostly aligned with the review branch until the review is
+>> >over.
+>>
+>> mostly agree, but need some clarifications below.
+>>
+>> >
+>> >>
+>> >>  From what I talked with Rodrigo before, we'd actually discuss and agree
+>> >> about things that needed to be changed/fixed, particularly on the design
+>> >> and interface of the driver (with drm subsystem and with userspace).
+>> >> Line by line review with non-critical things would then become gitlab
+>> >> issues, like when Matt Roper went through a similar line by line
+>> >> review and Rodrigo created a bunch of gitlab issues that are being
+>> >> solved in drm-xe-next.
+>> >>
+>> >> >Therefore, I think we need to agree on some method that won't burn me
+>> >> >out and cause me to tell Dave & Daniel I'm giving up on what they
+>> >> >asked me to do. One way is to follow the rule above, but if you still
+>> >> >disagree with this, I'm open to hearing other suggestions on how to
+>> >> >enable a proper review in a timely manner that won't cause me to pull
+>> >> >my hair out.
+>> >> >
+>> >> >In that context, I feel your "Ignore the not moving target goal"
+>> >> >statement to Francois was inappropriate. We need to have an agreement,
+>> >> >you can't decide that on your own.
+>> >>
+>> >> What am I deciding on my own and why was that inappropriate?  I went
+>> >> back to read again what I wrote to check if it was badly phrased, but I
+>> >> don't see it that way. He asked my opinion on a different method, which
+>> >> you are also asking when you say "I'm open to hearing other suggestions
+>> >> on how to enable a proper review in a timely manner that won't cause me
+>> >> to pull my hair out". If you hear and disagree, I'm totally fine with
+>> >> it, but asking for it and then saying it's inappropriate to disagree
+>> >> with the premise seems odd.
+>> >I read it as something else but if you meant it only as a suggestion,
+>> >then I take my words back.
+>> >>
+>> >> I went on and explained *why*, saying that the moving base is already
+>> >> there and IMO a better method would be to accept the moving base, with a
+>> >> different review method. And if you look at the proposal below, I'm
+>> >> actually removing the "moving base" factor between what's being reviewed
+>> >> and where the rest of development is happening, CI is running, other
+>> >> review comments are being handled, etc.
+>> >>
+>> >> What I'm currently seeing and I don't agree with:
+>> >>
+>> >> - Commits are being pushed to a xe-revN branch bypassing code review
+>> >Correct, this should not happen. That's why Francois sent them to the
+>> >ml and I thought it was sufficient.
+>> >>
+>> >> - Since CI is running on drm-xe-next, it's also bypassing CI. I was
+>> >>    part of enough upstream submissions to know our ability to break
+>> >>    things when handling code review comments, which is only noticed later
+>> >>    when the rest is rebased on top and CI is running again
+>> >I agree, but unless you can trigger CI on specific branch, I think
+>> >your only option is to run CI on drm-xe-next after it is rebased over
+>> >the final xe-rev branch (after the review is over).
+>> >>
+>> >> - drm-xe-next and xe-revN are not on the same baseline. If they were,
+>> >>    then comparing both would be trivial and we'd probably not have
+>> >>    this discussion. Question here on your process: currently xe-rev
+>> >>    is on top of drm-next-2023-04-27, which is on top of v6.3-rc4.
+>> >>    Is your intention that fixes (to only your review commens) are
+>> >>    accumulated  on xe-rev* and then propose this to be merged to drm-next
+>> >>    when that is finished, without any rebase?
+>> >I thought you would rebase drm-next-xe over the final xe-rev branch.
+>> >Then just make sure all those commits on top are passing CI after the rebase.
+>> >>
+>> >> - changes to "the original submission" that from my pov some are good,
+>> >>    some would better be discussed and some that are not critical
+>> >>    taking precedence over others that should really be there. And that
+>> >>    is happening because there is this disconnect between drm-xe-next and
+>> >>    xe-rev as per above.
+>> >That's why I don't mind if for xe-rev2, we make it aligned with a
+>> >newer baseline that matches drm-xe-next.
+>> >I'll continue the review on that branch when it's done.
+>> >Then, after the review is over, rebase drm-xe-next over xe-revLast,
+>> >which shouldn't be too hard hopefully.
+>> >
+>> >wdyt ?
+>>
+>> Let me first start saying that when I saw your 1/6 in your second batch
+>> I thought it was 1 out of 6 and you would send each of them on
+>> Thursdays, leading to 6 weeks from a state that is already 250 behind
+>> drm-xe-next. I was pointed out today that that was actually the date.
+>> My bad.
+>>
+>> To move forward I think we need to clarify and agree on a few things:
+>>
+>> 1. How are you splitting the code review? I know you are reviewing "the
+>> final state" rather than patch by patch. But what I'm looking for is to
+>> know if you split the driver in 2, 3, 10 parts/files and we should
+>> expect 2, 3, 10 batches of reviews or what? Depending on if we are
+>> looking at 2 weeks, 2 month or a year, we may need to adapt the workflow
+>> differently. If it's 1 week we could simply halt any change at all.
+>> If it's 2 months, then we may have some problems to figure out the
+>> workflow
+>I think we can finish this in 3-4 weeks (3-4 sets of additional comments).
+>>
+>> 2. I will quote what you said:
+>>
+>> >What is critical imo, is to have confidence that this driver is not
+>> >doing something horrendously wrong, like abstracting entire kernel
+>> >layers, or putting up a broken uapi, or incorrectly using kernel API,
+>> >or whatever.
+>>
+>> I completely agree with that. Isn't this the original ask from drm
+>> maintainers? However reading the review comments, the critical ones
+>> related to the above paragraph seem to be swamped with other
+>> cleanup-related. Some of those cleanups already happened or we moved in
+>> another direction  with drm-xe-next.
+>Yes, but I thought that if I'm already passing over the code, why
+>ignore these issues...
+>I was already documenting errors so I preferred to mention everything.
+>>
+>> Considering that as the critical part, what about the changes that come
+>> due to others' feedback that also fall into that category?  Examples:
+>> the uapi break we needed to do so we are not completely imcompatible
+>> with 32b applications?  Or for example other patches changing jiffies
+>> to nsec in the uapi. Wouldn't it be sensible to include those in the
+>> next xe-revN?
+>Yes, but again, I'm pretty sure you will continue to figure out stuff
+>as we go along, and we don't want to re-start the review each time.
+>Let's set a new baseline, do a concentrated 3-4 weeks review on it. We
+>will fix all the issues in that review and that will be good enough.
+>Then, any patches above it will go through the regular upstream flow.
+>>
+>> With that in mind, what about this?
+>>
+>> 1. Halting the review for now.
+>>
+>> 2. I will tag the current drm-xe-next, just before the point
+>>     in which we add display. This would give the same baseline between
+>>     drm-xe-next and xe-rev2 tag.
+>>
+>> 3. We don't modify anymore the code below that point. If there are some
+>>     critical changes that we'd rather have squashed below that point,
+>>     then we just accumulate on top of that tag. So from your point of
+>>     view, the next xe-rev3 tag won't have those changes together with
+>>     others
+>>
+>> 4. No patch is merged/pushed directly to a xe-revX branch - xe-revX
+>>     would be actually tags. Instead, the patch is based on drm-xe-next
+>>     to get CI passing and having a solution that is agreed upon.
+>>     When you're done with xe-rev2 and we send a xe-rev3, those patches can
+>>     be moved so you actually get those changes first/only. Again, depending
+>>     on the timeline we are talking about, it may be simply done by
+>>     halting any other change. If it's a long time, then we may need to
+>>     rebase and move commits around before giving you a xe-rev3 tag.
+>>
+>Sounds like a good plan.
+>
+>> 5. For the questions you made in the review comments, do you want devs
+>>     to answer inline like I've been doing? Or to create gitlab issues like
+>>     Rodrigo suggested when this process started?
+>I think inline is fine. I think we should open gitlab issues for
+>points raising from this review only for extreme cases where they
+>can't be fixed now for some reason.
+>>
+>> 6. (only if we are talking a long timeline, to be agreed on a case by
+>>     case basis):  for intrusive changes that don't fall into the
+>>     critical classification you gave above, may we agree on handling
+>>     those on top of drm-xe-next, without moving them before other
+>>     things?
+>I think 3-4 weeks is not a long time, so I hope this point can be
+>disregarded right now.
+
+Ok, let's do that then. A new tag is pushed which should contain
+everything we have until now except display. Please take a look at
+https://gitlab.freedesktop.org/drm/xe/kernel.git xe-rev2
+
+thanks
+Lucas De Marchi
