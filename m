@@ -4,133 +4,149 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 09CB0C7EE23
-	for <intel-xe@archiver.kernel.org>; Wed,  7 Jun 2023 05:05:40 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id BDD65C77B7A
+	for <intel-xe@archiver.kernel.org>; Wed,  7 Jun 2023 05:10:07 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C800A10E420;
-	Wed,  7 Jun 2023 05:05:39 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5E59610E421;
+	Wed,  7 Jun 2023 05:10:07 +0000 (UTC)
 Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A5AB410E420
- for <intel-xe@lists.freedesktop.org>; Wed,  7 Jun 2023 05:05:37 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 61D0310E421
+ for <intel-xe@lists.freedesktop.org>; Wed,  7 Jun 2023 05:10:04 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1686114337; x=1717650337;
- h=date:from:to:cc:subject:message-id:references:
- in-reply-to:mime-version;
- bh=+obw25f8GL/NtlX6aO7Bd4dZ04ahUPEFIM1eY+CEj08=;
- b=JUo94FwCJTK0UGQKoMpdQUYRmgGroKAwGBYJzQsCVL3xnUTulsCkwz8q
- fVoCLD/nIz/rPz6U+hon7/ZrWTXyejOnYZ0CXDH1T/fmDaClMgVJ85nB6
- gkuKY7HCo4zHLvQQu48Lx4FaA0K6dHAO4Zwn7HLi4nRuerpdbFvnGQJLw
- 6mORiqrxM/aaeexALhqQdBujvL6k30xMx82NiQS4Tu9j8KjwmSvIkwFdV
- sMnY5yg1H6AeNn6tS+ZAxZ0C7nMY2WSd4ZNcs8gnqSTi4mmcO8r4P9cBu
- YBJI/q/sN80jGXJti6C3wYupn/tdMn2YRDQtM4vS3y42Ke35LqrvtLwic A==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10733"; a="337242915"
-X-IronPort-AV: E=Sophos;i="6.00,223,1681196400"; d="scan'208";a="337242915"
-Received: from orsmga004.jf.intel.com ([10.7.209.38])
+ t=1686114604; x=1717650604;
+ h=message-id:date:subject:to:cc:references:from:
+ in-reply-to:content-transfer-encoding:mime-version;
+ bh=XNx9uS6cgn6UafOacrjr6Q1JVzUcvZIjYF9ImqLe+cI=;
+ b=YLYTWdPPqQDzeKiecaL7y9ZBHM0C+fW6x5FL+DQJy7kj1CHDY0pyVkmX
+ awtdtKEzyhqR5cFHk1Q8emhhOfMGE4CgvNDWGSryZIjVOxjhq8tvROIAH
+ utrNcO9G/jAuJu5gS5ao7FfR8Wj3GlK563W3dGyeBlsUUj+QHTaIsobUW
+ X0TCX8wMPRM4wmp11FmA/B5jVBVD2hD75VUrqBkN2HdL9DfZPSw8NqlnK
+ WYDwWW+6mtflAFv6Ea89tNFCk2hkrJdjbgHhJjl/wLQmBRUxho6QdmXhH
+ 9Ap0cIITYzYCJSk8kinm4X6IlRK8qJwc6htRq0GVT9da8vw39jxL3nUdV g==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10733"; a="337243945"
+X-IronPort-AV: E=Sophos;i="6.00,223,1681196400"; d="scan'208";a="337243945"
+Received: from orsmga005.jf.intel.com ([10.7.209.41])
  by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 06 Jun 2023 22:05:37 -0700
+ 06 Jun 2023 22:10:03 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10733"; a="833505585"
-X-IronPort-AV: E=Sophos;i="6.00,223,1681196400"; d="scan'208";a="833505585"
-Received: from fmsmsx602.amr.corp.intel.com ([10.18.126.82])
- by orsmga004.jf.intel.com with ESMTP; 06 Jun 2023 22:05:35 -0700
-Received: from fmsmsx611.amr.corp.intel.com (10.18.126.91) by
- fmsmsx602.amr.corp.intel.com (10.18.126.82) with Microsoft SMTP Server
+X-IronPort-AV: E=McAfee;i="6600,9927,10733"; a="883605305"
+X-IronPort-AV: E=Sophos;i="6.00,223,1681196400"; d="scan'208";a="883605305"
+Received: from orsmsx603.amr.corp.intel.com ([10.22.229.16])
+ by orsmga005.jf.intel.com with ESMTP; 06 Jun 2023 22:10:03 -0700
+Received: from orsmsx611.amr.corp.intel.com (10.22.229.24) by
+ ORSMSX603.amr.corp.intel.com (10.22.229.16) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.23; Tue, 6 Jun 2023 22:05:35 -0700
-Received: from fmsedg602.ED.cps.intel.com (10.1.192.136) by
- fmsmsx611.amr.corp.intel.com (10.18.126.91) with Microsoft SMTP Server
+ 15.1.2507.23; Tue, 6 Jun 2023 22:10:03 -0700
+Received: from orsmsx610.amr.corp.intel.com (10.22.229.23) by
+ ORSMSX611.amr.corp.intel.com (10.22.229.24) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.23 via Frontend Transport; Tue, 6 Jun 2023 22:05:35 -0700
-Received: from NAM12-BN8-obe.outbound.protection.outlook.com (104.47.55.173)
- by edgegateway.intel.com (192.55.55.71) with Microsoft SMTP Server
+ 15.1.2507.23; Tue, 6 Jun 2023 22:10:02 -0700
+Received: from ORSEDG601.ED.cps.intel.com (10.7.248.6) by
+ orsmsx610.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.23 via Frontend Transport; Tue, 6 Jun 2023 22:10:02 -0700
+Received: from NAM11-CO1-obe.outbound.protection.outlook.com (104.47.56.172)
+ by edgegateway.intel.com (134.134.137.102) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2507.23; Tue, 6 Jun 2023 22:05:35 -0700
+ 15.1.2507.23; Tue, 6 Jun 2023 22:10:02 -0700
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=EJGBmwIvDfndFWRM5N4iVyXSbCURpzkvst0GtconkMMBP6c5ZGMlXTQvE+J0eWlAg4bQVS0+3f6H0Rcmpp3aH+ulhhNyKlBz0st/muwc1j934R48d42240ytQBD0wWgrnXfg6IiNy4D9DZ5XND4xttop6PRcfT6oTHbgUMxzCSElziQ34wHoxzAGDoWsNetcuisvp1AU8+W0NEbyGsfZJ7aAP+lKRv5AosI+dpJmOab4TXeTlU9RtT1MxpxPM0x4DPiyc3LJyZ+Qt6wBnR2DztXC1qHnhfAAIRo5/OJ+EttiGLRSLE1xHCZSAktPzdN5sgGtsMrRVqAmQUe5udAuPg==
+ b=jcFpM4etDRZaMc+HKBUiGY+J5MXH7QRSih/32X8mX/XNZotolbyVS9sPCoElZ0hZxCzC+c0Pa2Lo/XCSBQSwU8vB312tkUEAbJ2RxhwH8xCJeJGFAHuF5JarxONsglJgR6eu1z5+6E3vD6Y3j0RMboyxJP2FIQJ61zDKJySUlcNsuHpXAyx10q1TjIPRr4x91BtJa9UBi1qGHvoUstY6utUtOLTdwaPmPico6ekF0pGdX+Vk9dqo5FUXpEqNvEpiW7ZxxjheIfBSDvaUSDxzHYols0YrCI7CXhWCkQiYsCv4QW7bMIavnsKiAoy98aZ0P/JJW0GJIMSpTEVycDRktA==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=nMNWr+FZn+Hyq03+jAJ8RLf2gkj1u/QOjyjeZZV+qa0=;
- b=YG9ei2Kln2E7TkHHHQOd+Glw5y5tNLouxeH5aEk7dMwIGnJlRq5zopoQvmPWEmoSWD0bqQo3OhqaHEpa2QIlnW3OOekvw8F3N6HvQEqlENcntwDMTPmuiz2t1F7y1iysBU2qg/t2wBGUVfxdAHc4VYXztU3G5TEQ/0Vo4PiLObG/QirRE9y1nQ5FoL2WLHNaHK12ExVmHZV/hYtF3o2bURys7/uRhJFugep0nZhrk612/+qjBK1KLcb3v2Gu8jeEH05dtofQef7xGuwGB/5SQ9NhlmotWZEllUzgmoIf/jHCuBJh35qrQoERYErcaRBhv00RrS67VspK+FqnmqExkg==
+ bh=aaZgFbkXWadISa0UKiFHcHwaYe6wfO8q0LpNdv+qp5I=;
+ b=FpkiNkdJqT8VBz8yvqSQR6FwvhdmVtZ2vTm2TvZyb/aKXgbqQimwEg7eXoLEbu1QVWkPHONkMACWl2poMvOS2l1A6w+Hy5Ap/nnZseg0QplR338+ihV8b7urVbPCU+1/jOYyZ/LZdl39VoRv1P2pX4/lRp5FPe8DhOD2pdIZhpQmb/iGQ+nfGA76HvkBk5zWRYO7l/BrcX2YU8aMaM+eAdf2F0Vg4NEad3W871si1GDq6BsL2UkdeGtnA1fEfHoEX7mJ3nBrbKLGkhRlTXKE/v+3m6KIR6xSgLcKRpTkTYtMluzNZExN85eECwqZ8a6fB4DTST4dU9zQT5cJ+4gEEw==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
  dkim=pass header.d=intel.com; arc=none
 Authentication-Results: dkim=none (message not signed)
  header.d=none;dmarc=none action=none header.from=intel.com;
-Received: from CY5PR11MB6139.namprd11.prod.outlook.com (2603:10b6:930:29::17)
- by DS7PR11MB7932.namprd11.prod.outlook.com (2603:10b6:8:e5::6) with
- Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.6455.33; Wed, 7 Jun 2023 05:05:33 +0000
-Received: from CY5PR11MB6139.namprd11.prod.outlook.com
- ([fe80::44e7:c479:62f4:3eb4]) by CY5PR11MB6139.namprd11.prod.outlook.com
- ([fe80::44e7:c479:62f4:3eb4%5]) with mapi id 15.20.6455.030; Wed, 7 Jun 2023
- 05:05:33 +0000
-Date: Tue, 6 Jun 2023 22:05:29 -0700
-From: Lucas De Marchi <lucas.demarchi@intel.com>
-To: Francois Dugast <francois.dugast@intel.com>
-Message-ID: <w2j5bb6kngaaqox6vj7qzqpwj2w6ldovubpgadvg2vt2du7y64@hqhhmpjrz26z>
-References: <20230531152338.6-1-francois.dugast@intel.com>
- <20230531152338.6-3-francois.dugast@intel.com>
-Content-Type: text/plain; charset="us-ascii"; format=flowed
-Content-Disposition: inline
-In-Reply-To: <20230531152338.6-3-francois.dugast@intel.com>
-X-ClientProxiedBy: BY5PR13CA0029.namprd13.prod.outlook.com
- (2603:10b6:a03:180::42) To CY5PR11MB6139.namprd11.prod.outlook.com
- (2603:10b6:930:29::17)
+Received: from BN9PR11MB5530.namprd11.prod.outlook.com (2603:10b6:408:103::8)
+ by CY5PR11MB6161.namprd11.prod.outlook.com (2603:10b6:930:2a::10)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6455.32; Wed, 7 Jun
+ 2023 05:10:00 +0000
+Received: from BN9PR11MB5530.namprd11.prod.outlook.com
+ ([fe80::bb92:d504:7607:ed33]) by BN9PR11MB5530.namprd11.prod.outlook.com
+ ([fe80::bb92:d504:7607:ed33%6]) with mapi id 15.20.6455.030; Wed, 7 Jun 2023
+ 05:10:00 +0000
+Message-ID: <bba56f1e-e255-b716-13de-33c7340ff88d@intel.com>
+Date: Wed, 7 Jun 2023 10:39:50 +0530
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+ Thunderbird/102.11.2
+Content-Language: en-US
+To: Riana Tauro <riana.tauro@intel.com>, <intel-xe@lists.freedesktop.org>
+References: <20230524060020.2054682-1-riana.tauro@intel.com>
+From: "Nilawar, Badal" <badal.nilawar@intel.com>
+In-Reply-To: <20230524060020.2054682-1-riana.tauro@intel.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 8bit
+X-ClientProxiedBy: PN2PR01CA0223.INDPRD01.PROD.OUTLOOK.COM
+ (2603:1096:c01:ea::16) To BN9PR11MB5530.namprd11.prod.outlook.com
+ (2603:10b6:408:103::8)
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: CY5PR11MB6139:EE_|DS7PR11MB7932:EE_
-X-MS-Office365-Filtering-Correlation-Id: 035e42cc-3e8f-4028-5e90-08db6714d27e
+X-MS-TrafficTypeDiagnostic: BN9PR11MB5530:EE_|CY5PR11MB6161:EE_
+X-MS-Office365-Filtering-Correlation-Id: d5453499-497b-42c2-ba29-08db67157194
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: rDclWp3vCZzYsfTI06RWsJ0nn1+/OewWXkX5FGs833S8RXISYQUQd2Uo7EZMauO+645V0Ix7jw93XUjfjlj3YNukUvUCHW3NjjGt8MG2Jtv4oEC37uAmE4Mv0OCrYULTfQ/bvSkQCTfIiCFUfuXFI3PwiuZZqZJwGmZp11sXDKydXeMa8d5+xWCptPdGYXyaTzDC8z5uuHNpX6GfU0yMTMzDV+fT+1Pl1MffbeKTMpeS+oenxyOjnbAXrIYpNu5AIbv2jW4eimiE5rPZJoHW7E/5Lf+k6TIafxYTbvUVwfKp3UNOICb+IxJNO5Atlq7JwLGkqFFUrsHLthbsRBnYCWkaKvFOqmly9Pb5Drd7kMxGjDBZ+q78+kpL8H6/LvMysZ+0BjLjQEgsLvE+4gvJPVmOiZBfb8bDSdBw4Z1TqguSEWpYXsnqn8abbKMpEpyZTzwEymvkrsj85/NX2fw0hQhZx/MJvHJmZXjf7Uow62PIZkVCcbSpb/249CPHdmo6OLVallO2D8fVa3sWwcNIyQ==
+X-Microsoft-Antispam-Message-Info: Kc7aU29SsEEGm4Fq9Bcs8i6QSBjVk5g2qE3RVgCCT7ZJqrY257h8ucMBV+OeOChNfEP8fEUA+0Bt8AbTbhrX6wnn1QaMRLU3ZHkmLlNyFETK3X0ijyHoRIjefKRAovUqEIe1SSSpDmqyofftWVG3pk6noHAqrkIwrnIezLvcl14fP34+1cKlzsm2jFVgx2VPDmfBoifCaxLK/fPWSJx8eqIPNePJFCSkbhLoaxa08DnQNdQLR6w3XeeQqcegyJsRzHrpBIeSats1WV1lel2sVx7y5/igIRyl3szvEyeNtf9s+kKUFtWuLI2VYz+6kUvoAwbzkYllDW1Dbgca/WAyPkxQvpATx7qLqVP3SntW7D7x1ARXvpeyYZ4fclzLRN0Fr1Fo5JVTWEsxdmIH14aXaclSkDP1pRXZmG+OOU98DP727D7F2wPHBKiCTtt/nU5rJjXXi8qCRUnnSMZTaO6QAXYrQmkVwfDmEvS6fis0/4t83dpYPsy3UzxWQTD/0uDAxSlgvx3YoiPdWHu4fGhtdlWzek0xtebc18Kogdoc1Svk/88QnalmlgqINQJpy0vJ7OgSPHE+bTulHNcZn1OuLLaFFVgS2j/iICzxA639FSs/PjZ9yEnhUzY9ps9gSXpufcvGawTtZhTxEzjNcjvlrnPJQ91EV18DHogxhE5UaDw=
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:CY5PR11MB6139.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230028)(7916004)(376002)(346002)(396003)(39860400002)(136003)(366004)(451199021)(6666004)(966005)(6486002)(83380400001)(86362001)(38100700002)(6506007)(6512007)(9686003)(82960400001)(26005)(186003)(33716001)(8936002)(5660300002)(8676002)(6862004)(41300700001)(316002)(2906002)(478600001)(66946007)(4326008)(66476007)(6636002)(66556008);
+ IPV:NLI; SFV:NSPM; H:BN9PR11MB5530.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230028)(39860400002)(346002)(366004)(376002)(396003)(136003)(451199021)(31696002)(30864003)(2906002)(83380400001)(2616005)(36756003)(86362001)(82960400001)(38100700002)(6486002)(41300700001)(6666004)(5660300002)(316002)(107886003)(8676002)(8936002)(478600001)(66556008)(66946007)(31686004)(66476007)(4326008)(6512007)(53546011)(6506007)(26005)(186003)(21314003)(45980500001)(43740500002);
  DIR:OUT; SFP:1102; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?xO+Cw515bJrrq32V00AdeCwhZrlrO/INLtLXqh0XTx2Ggz+A1Gc/n8tbCtgk?=
- =?us-ascii?Q?fBt3qzbb14O2LpOpC4bZTCWy0JWQRjdgtLds4PWEuq3qJBjqY9Tffw/HQAFp?=
- =?us-ascii?Q?81uALEwGg9Io8GDM4TmYZEM/W2eh7dUwqWTBw4ZbXkXUWeOIomEooYI77TcQ?=
- =?us-ascii?Q?o5/vlSfAfFhERdcx3T+2VXMPpn+3HsqmIe5dkqUC2Js9sfa0Sq/cqlfJgY4p?=
- =?us-ascii?Q?1xkpH2ulIOJpPO6APvQVTBRABYR5N9zrxf8o1oW5IKhSZMfDBT2+NiJNoPag?=
- =?us-ascii?Q?+UqXoMYXn/X1QbtqDk5VR08eFdsqKIz9JFt6TJt6YnHVO0eAlBpnHZdqK+3l?=
- =?us-ascii?Q?tNbl1e/n4xOd2yEE607ym8ow2Gnr7uvt70TRRqEWFqn7RJNnRzzm5c+PrK5E?=
- =?us-ascii?Q?EihPpwc5q0JHiCxw5k0FFfw3IXbgsJUrP2YOV62Fu4hAouxCVEgCfzz9tHFe?=
- =?us-ascii?Q?oHSUV/EVB2yC1u/0QcAvhrCt/DGvvL60z92GbglLt7BcITF6CcBZ+1HScb/x?=
- =?us-ascii?Q?zOyXZq2jlvVrvV7budLa8KjbCEcQeGRsBhWVUkDvAMhrqt16dj6m/3OO1sxm?=
- =?us-ascii?Q?ndSjjWPBljEEXl+H/KUH1jBwAyUPjIwPhjHUUVBdsEpd613FfsKlHHc966Zw?=
- =?us-ascii?Q?tYVjijaSj+qnYSlXq49pwS40BM98llJyBikM0gPlCZzGQP96cHeL5Nuwa32n?=
- =?us-ascii?Q?sjO+KCGhmQGQAYh2IrWGXgt3zrHnCgutvaAxXpdnppC54kSsaP8IzuXmJJ9G?=
- =?us-ascii?Q?81Zb1jhV/eBgiFIVUyr3sFFkX5wusN09ar5hA1+aPV446UmnBqVR2H+YXOPt?=
- =?us-ascii?Q?zUSiiysS4rDs4yQFu70pTmt7S151IeTOcDydEiw1aSuUCv5fiU7XSGRRaTRd?=
- =?us-ascii?Q?W/qJl68iEBP8CAiays0MeFqDPFHpbaNFhOM5c7ZgBCWAH9zf1s6HgbuPvt3n?=
- =?us-ascii?Q?Dcew1KuU9cvu0jmDHR9U9w2nSVc/Mf2562Nk85FW8u83EnrdLxJ3GdmoRdJs?=
- =?us-ascii?Q?aqhJb8UaqofZW8Je1UgqGscD06afSMrpP+YOaRESmUSADn0W74Hr2nEaqoA/?=
- =?us-ascii?Q?RBDJ7fwLGOEXpzaB38LbheHZUpzI7S73iP5MUnVTdsSAeShXcLqwq3kouCDf?=
- =?us-ascii?Q?V2aTb2B4dM1eV97mXCNfkhPq8g6WJKX0WGQMbccQ0iB/9JD/xJBNFQS5FtV5?=
- =?us-ascii?Q?2gI03pkU2Xw7Noc3wn2EG5YMUn9AP3nNxt5fc+s+EfzzJxElG7aFvvz5pHuS?=
- =?us-ascii?Q?XB6zyDWlux0jJWSGeH8jvHuP2J63xZlZ0Ya9vgoW3CFsby+A0etjTMux+zkM?=
- =?us-ascii?Q?KuS3roRPYSe0frYNUMKI6Zq+LwBqA3HlXEWIUdmt4Y3fVV7bTo9GD27+seWc?=
- =?us-ascii?Q?WSjs7fyIF4/zFGp4N/bdZYu7i8MArq4EA9UPBiy3Eyprt+a99/N9xiqqtZvx?=
- =?us-ascii?Q?phaMMLlpK0e361AVgSm2IvKwe66aGNNAT3kNpGJaRWt+4WcTwGCbPH3bgifN?=
- =?us-ascii?Q?cD1XVlO55hohRaLUFTdvYUlpLxSaigRo3hwGmq5jIyOQHPpjcV5boPvBEp2U?=
- =?us-ascii?Q?IOgGF3C5yD0NuUxrQPU0hl6hLPV9G9HL/PazYvtoutNy5iwDl3/eer1k+xWJ?=
- =?us-ascii?Q?+w=3D=3D?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: 035e42cc-3e8f-4028-5e90-08db6714d27e
-X-MS-Exchange-CrossTenant-AuthSource: CY5PR11MB6139.namprd11.prod.outlook.com
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?RDB2VWpQeGJsdjJrQ1BFN2VlbmV5T0ZudnZkU01kZzBORyt5QTMxWXBObEVW?=
+ =?utf-8?B?ZjEzZzBBamc3bVhYb1AwSHRxYk9QV0pLczVMbmg1L0JOL0hyOFFiVTNQcXRY?=
+ =?utf-8?B?TEtKWnpXOCtuOXd4bXUxM2MxdTdMcEpJMUNNYkZDM1hMd1RSUkZMdDVscUxP?=
+ =?utf-8?B?NWk0czRGNjVSRUsrRzMwWWxHVVZvR0RJVXhtcWZQM1daMTduVHNmK0VnM0RH?=
+ =?utf-8?B?Ni9yMyt4cHJHNU5LWEoyeU5xQlE2SGJKYzBkeXNoOCtvYUsxT1hHQm5hVWR6?=
+ =?utf-8?B?ZGY3em1JZ0tlU2Ewd29sMXVlZWxEVk9wNWhVOGN3THNhR28ydHJ2NmtwTWV1?=
+ =?utf-8?B?SFlrYWJXd0lYeE1WQ3lueFlkUFN4VUl6MWliZTAyYmJmOWJUS1NybW9NOFph?=
+ =?utf-8?B?eDEzSjlRaCtiTXp4dkdwQ3o1Uk9hcUU2UUpDSWtlUlAxRCsvU3hKQ0RjdkJ6?=
+ =?utf-8?B?NGFWU0ZzRFJqK1NLQjZWenNhWmtiaURVNktyODBaQnA2d0FNVXpTaHliTkJX?=
+ =?utf-8?B?aDFrbjh2SzdGWk1vTlZUWXBpYk5QWm9PdEkwd3QvUWJ2aExpdjRUd1NqcG1w?=
+ =?utf-8?B?Y3BJaWRHQVhZSmZZYWErZlAyeXcwcGphdjBZbmJjVURCcDhuSnc5V0ozdDk5?=
+ =?utf-8?B?YXdETDJzWWhpNDVxd3ZyNGs1ckR4Q3VSQk9pRlB0QTZPYWIxZ1NaNkFnQk1k?=
+ =?utf-8?B?Q2xLNCtsR0JzWEpwVkMxWU8vWWJ5TExKL2hqSWRhd3kyVk9jY2ppVnYxWkFD?=
+ =?utf-8?B?ZkFEY01BbGhPb09SOURUbWtXd3ZySnpVaENza2JsYkZlWk42ZFN2SzVTRlhu?=
+ =?utf-8?B?RlR3YXFXb1JBajhmU0hURmhOemdWampIVWltc242VU1oZmVLcEwwQkFaSkJz?=
+ =?utf-8?B?S29jb3FwL3ZrSFBQOEt4dExaQThGMjh6aU9NbmhYenhqNGpmc3RVRVZvT3hv?=
+ =?utf-8?B?dzhuNmorRThoNTFsM2VsMlhLTWRnNWVidVk2Z0RtZzl4RkN6WGVUd3paUHRX?=
+ =?utf-8?B?VENKNktIZ0lWaks4bE1VMGlqY1BvaXhtbEgreVNwWld1cFR6YnJWS29ycm1k?=
+ =?utf-8?B?M3BFVmJ0WHdqaUtHQWJuMVo2VUtHcHQrV3poSHNYY3B0R001TnpRNjRZeWM0?=
+ =?utf-8?B?SlR1MTRacnVRaWVTU29hbGd3d2tZQmdka1JxV3NIa3ZSd01ZUHA3WEpUa3J4?=
+ =?utf-8?B?QzFBREhLblVEK1BHUi9GdDhIUXJWcHEveVc5Y1QzOW9QSk0wUHhwdWhweVM4?=
+ =?utf-8?B?MURYVGpuOUxIUnBCY2pSN0JXWUg0cnN0bDl3LzRSV2JGTXBucHhJamhidzRR?=
+ =?utf-8?B?QVFjL0pkajZQdG41MGVDZ2JHbVlJcjFWclZkalBXQ04xb3RFbjZ1TG1KVFVR?=
+ =?utf-8?B?TExidDJqU2habVR3aFRNbnpiaVMza25HVldPdFMyUXg5U0xaUGpQOUlJRldy?=
+ =?utf-8?B?aHZzejRhYWh1S0V2K25oakR0LzEwQ29TRWgvM1AweS8rRnYwNEh0aGxHMk5U?=
+ =?utf-8?B?aUhTN29QelJyMkIvMFdaQXdZU295cWZKOTlKeXZxU21IUDd2RndxOHpUbGJq?=
+ =?utf-8?B?eEEzaW1taFBlWGd6ckppUlA2UHVZTDl1UzY1V2pjYnpXWVYwb1VHelRlblZm?=
+ =?utf-8?B?TmNveHJHcTJWR2diUno2TzUrMEVLc2pQMGdiRnphTHNQbDlSbW00c1pZUTAv?=
+ =?utf-8?B?SFlPcEtHMDZmVEhzL0Y2MjhwcVJqOVBqTkN2aTJJZS9YNHFOOUFNYlRMeDVD?=
+ =?utf-8?B?anN0aVROc0NYTWIzQlE4ZkJrSENYUnFpaWZTZ1NpL21GQWpwM0JiRHlnZTZ4?=
+ =?utf-8?B?eU8vK0EyRGIzdy9ValppczdRYWdEKzJ1a08zZlBBQ3h6WE14aC8rMVcrb1VN?=
+ =?utf-8?B?MXZNc1VObHFDOThkWWQ1RWVsbGE2S1ZmWHB6VU1mS0JpNVVmci85RHBaWDcw?=
+ =?utf-8?B?TS90UkNtd2w2ZytlQ2N4NzRXclJVUnppNU1zQzNPQ2I3QmJ1a3dkaVA3d1pN?=
+ =?utf-8?B?azZQbXBOSklpcGhTWFh2MUtrT0h0Q013VnByVnp6eFBVaU9pbE1LNTVyYjVS?=
+ =?utf-8?B?TzVvWmQxRlY3MWF2Z2hwYXZObUt2eExQQXVVcVltVXlQd1NhMXNMeFE2a1E2?=
+ =?utf-8?B?TWRYeVJtMjIwbTE2dkNzYjFXQkcyb3QwYVpUSGFLeHhzb1NMc1Nzck1Ibk1q?=
+ =?utf-8?B?Vnc9PQ==?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: d5453499-497b-42c2-ba29-08db67157194
+X-MS-Exchange-CrossTenant-AuthSource: BN9PR11MB5530.namprd11.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 07 Jun 2023 05:05:33.3583 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 07 Jun 2023 05:10:00.1658 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: AP3uV9Vt8DQphGwLDdbfJaZi+JIRWjvByEzFgKr8uqP8Z8x4XHKYYjjNoODIqTs/YBSRoItFclAdzmJoXmrPnw5WGDoktEnWFBi2bCdYB0o=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DS7PR11MB7932
+X-MS-Exchange-CrossTenant-UserPrincipalName: mY4Dp1n1OPlh1LxJfcHTU+Lgl/qF2jR6M4RZDO6Jxt4pQqFBBzzRAt0wS8PAq4L9vMT5/xa8S0H/qHVVHXAhqQ==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: CY5PR11MB6161
 X-OriginatorOrg: intel.com
-Subject: Re: [Intel-xe] [PATCH v2 2/5] drm/xe: Group engine related structs
+Subject: Re: [Intel-xe] [PATCH] drm/xe: add a new sysfs directory for gtidle
+ properties
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -142,81 +158,441 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-xe@lists.freedesktop.org
+Cc: rodrigo.vivi@intel.com
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Wed, May 31, 2023 at 03:23:35PM +0000, Francois Dugast wrote:
->Move the definition of drm_xe_engine_class_instance to group it with
->other engine related structs and to follow the ioctls order.
->
->Reported-by: Oded Gabbay <ogabbay@kernel.org>
->Link: https://lists.freedesktop.org/archives/intel-xe/2023-May/004704.html
->Signed-off-by: Francois Dugast <francois.dugast@intel.com>
+Hi Riana,
 
+On 24-05-2023 11:30, Riana Tauro wrote:
+> Add a new sysfs directory under devices/gt#/ called gtidle
+> to contain idle properties of GT such as name, idle_status,
+> idle_residency_ms
+> 
+> v2:
+>      - abstract using function pointers (Anshuman)
+>      - use device_attr (Badal)
+>      - move rc functions to guc_pc
+>      - change name to gt_idle (Rodrigo)
+> 
+> v3:
+>      - return error for drmm_add_action_or_reset
+>      - replace file and functions with gt_idle prefix
+>        to gt_idle_sysfs (Himal)
+>      - use enum for gt idle state
+>      - move multiplier to gt idle and initialize (Anshuman)
+>      - correct doc annotation (Rodrigo)
+>      - remove return variable
+>      - use kobj_gt instead of new gtidle kobj
+>      - move residency_ms to gtidle file
+>      - retain xe_guc_pc prefix for functions in guc_rc file (Michal)
+> 
+> Signed-off-by: Riana Tauro <riana.tauro@intel.com>
+> Acked-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
+> ---
+>   drivers/gpu/drm/xe/Makefile                 |   1 +
+>   drivers/gpu/drm/xe/xe_gt.c                  |   5 +
+>   drivers/gpu/drm/xe/xe_gt_idle_sysfs.c       | 157 ++++++++++++++++++++
+>   drivers/gpu/drm/xe/xe_gt_idle_sysfs.h       |  13 ++
+>   drivers/gpu/drm/xe/xe_gt_idle_sysfs_types.h |  38 +++++
+>   drivers/gpu/drm/xe/xe_gt_types.h            |   4 +
+>   drivers/gpu/drm/xe/xe_guc_pc.c              |  46 +++---
+>   drivers/gpu/drm/xe/xe_guc_pc.h              |   2 +
+>   8 files changed, 237 insertions(+), 29 deletions(-)
+>   create mode 100644 drivers/gpu/drm/xe/xe_gt_idle_sysfs.c
+>   create mode 100644 drivers/gpu/drm/xe/xe_gt_idle_sysfs.h
+>   create mode 100644 drivers/gpu/drm/xe/xe_gt_idle_sysfs_types.h
+> 
+> diff --git a/drivers/gpu/drm/xe/Makefile b/drivers/gpu/drm/xe/Makefile
+> index cd1614b68734..84f0985054fa 100644
+> --- a/drivers/gpu/drm/xe/Makefile
+> +++ b/drivers/gpu/drm/xe/Makefile
+> @@ -45,6 +45,7 @@ xe-y += xe_bb.o \
+>   	xe_gt.o \
+>   	xe_gt_clock.o \
+>   	xe_gt_debugfs.o \
+> +	xe_gt_idle_sysfs.o \
+>   	xe_gt_mcr.o \
+>   	xe_gt_pagefault.o \
+>   	xe_gt_sysfs.o \
+> diff --git a/drivers/gpu/drm/xe/xe_gt.c b/drivers/gpu/drm/xe/xe_gt.c
+> index 80d42c7c7cfa..eb1e1e3d2d71 100644
+> --- a/drivers/gpu/drm/xe/xe_gt.c
+> +++ b/drivers/gpu/drm/xe/xe_gt.c
+> @@ -18,6 +18,7 @@
+>   #include "xe_force_wake.h"
+>   #include "xe_ggtt.h"
+>   #include "xe_gt_clock.h"
+> +#include "xe_gt_idle_sysfs.h"
+>   #include "xe_gt_mcr.h"
+>   #include "xe_gt_pagefault.h"
+>   #include "xe_gt_printk.h"
+> @@ -383,6 +384,10 @@ static int gt_fw_domain_init(struct xe_gt *gt)
+>   	if (err)
+>   		goto err_force_wake;
+>   
+> +	err = xe_gt_idle_sysfs_init(&gt->gtidle);
+> +	if (err)
+> +		goto err_force_wake;
+> +
+>   	/* XXX: Fake that we pull the engine mask from hwconfig blob */
+>   	gt->info.engine_mask = gt->info.__engine_mask;
+>   
+> diff --git a/drivers/gpu/drm/xe/xe_gt_idle_sysfs.c b/drivers/gpu/drm/xe/xe_gt_idle_sysfs.c
+> new file mode 100644
+> index 000000000000..b7de53287f6b
+> --- /dev/null
+> +++ b/drivers/gpu/drm/xe/xe_gt_idle_sysfs.c
+> @@ -0,0 +1,157 @@
+> +// SPDX-License-Identifier: MIT
+> +/*
+> + * Copyright © 2023 Intel Corporation
+> + */
+> +
+> +#include <drm/drm_managed.h>
+> +
+> +#include "xe_device.h"
+> +#include "xe_gt.h"
+> +#include "xe_gt_idle_sysfs.h"
+> +#include "xe_gt_sysfs.h"
+> +#include "xe_guc_pc.h"
+> +
+> +/**
+> + * DOC: Xe GT Idle
+> + *
+> + * Provides sysfs entries for idle properties of GT
+> + *
+> + * device/gt#/gtidle/name - name of the state
+> + * device/gt#/gtidle/idle_residency_ms - Provides residency of the idle state in ms
+> + * device/gt#/gtidle/idle_status - Provides current idle state
+> + */
+> +
+> +static struct xe_gt_idle *dev_to_gtidle(struct device *dev)
+> +{
+> +	struct kobject *kobj = &dev->kobj;
+> +
+> +	return &kobj_to_gt(kobj->parent)->gtidle;
+> +}
+> +
+> +static struct xe_gt *gtidle_to_gt(struct xe_gt_idle *gtidle)
+> +{
+> +	return container_of(gtidle, struct xe_gt, gtidle);
+> +}
+> +
+> +static struct xe_guc_pc *gtidle_to_pc(struct xe_gt_idle *gtidle)
+> +{
+> +	return &gtidle_to_gt(gtidle)->uc.guc.pc;
+> +}
+> +
+> +static const char *gt_idle_state_to_string(enum xe_gt_idle_state state)
+> +{
+> +	switch (state) {
+> +	case GT_IDLE_RC0:
+> +		return "rc0";
+> +	case GT_IDLE_RC6:
+> +		return "rc6";
+> +	default:
+> +		return "unknown";
+> +	}
+> +}
+> +
+> +static u64 get_residency_ms(struct xe_gt_idle *gtidle, u64 cur_residency)
+> +{
+> +	u64 delta, overflow_residency, prev_residency;
+> +
+> +	overflow_residency = BIT_ULL(32);
+> +	/*
+> +	 * Counter wrap handling
+> +	 * Store previous hw counter values for counter wrap-around handling
+> +	 * Relying on sufficient frequency of queries otherwise counters can still wrap.
+> +	 */
+> +	prev_residency = gtidle->prev_residency;
+> +	gtidle->prev_residency = cur_residency;
+> +
+> +	/* delta */
+> +	if (cur_residency >= prev_residency)
+> +		delta = cur_residency - prev_residency;
+> +	else
+> +		delta = cur_residency + (overflow_residency - prev_residency);
+> +
+> +	/* Add delta to extended raw driver copy of idle residency */
+> +	cur_residency = gtidle->cur_residency + delta;
+> +	gtidle->cur_residency = cur_residency;
+> +
+> +	/* residency multiplier in ns, convert to ms */
+> +	return mul_u64_u32_div(cur_residency, gtidle->residency_multiplier, 1e6);
+> +}
+> +
+> +static ssize_t name_show(struct device *dev,
+> +			 struct device_attribute *attr, char *buff)
+> +{
+> +	struct xe_gt_idle *gtidle = dev_to_gtidle(dev);
+> +
+> +	return sysfs_emit(buff, gtidle->name);
+> +}
+> +static DEVICE_ATTR_RO(name);
+> +
+> +static ssize_t idle_status_show(struct device *dev,
+> +				struct device_attribute *attr, char *buff)
+> +{
+> +	struct xe_gt_idle *gtidle = dev_to_gtidle(dev);
+> +	struct xe_guc_pc *pc = gtidle_to_pc(gtidle);
+> +	enum xe_gt_idle_state state;
+> +
+> +	state = gtidle->idle_status(pc);
+> +
+> +	return sysfs_emit(buff, "%s\n", gt_idle_state_to_string(state));
+> +}
+> +static DEVICE_ATTR_RO(idle_status);
+> +
+> +static ssize_t idle_residency_ms_show(struct device *dev,
+> +				      struct device_attribute *attr, char *buff)
+> +{
+> +	struct xe_gt_idle *gtidle = dev_to_gtidle(dev);
+> +	struct xe_guc_pc *pc = gtidle_to_pc(gtidle);
+> +	u64 residency;
+> +
+> +	residency = gtidle->idle_residency(pc);
+> +	return sysfs_emit(buff, "%llu\n", get_residency_ms(gtidle, residency));
+> +}
+> +static DEVICE_ATTR_RO(idle_residency_ms);
+> +
+> +static const struct attribute *gt_idle_attrs[] = {
+> +	&dev_attr_name.attr,
+> +	&dev_attr_idle_status.attr,
+> +	&dev_attr_idle_residency_ms.attr,
+> +	NULL,
+> +};
+> +
+> +static void gt_idle_sysfs_fini(struct drm_device *drm, void *arg)
+> +{
+> +	struct kobject *kobj = arg;
+> +
+> +	sysfs_remove_files(kobj, gt_idle_attrs);
+> +	kobject_put(kobj);
+> +}
+> +
+> +int xe_gt_idle_sysfs_init(struct xe_gt_idle *gtidle)
+> +{
+> +	struct xe_gt *gt = gtidle_to_gt(gtidle);
+> +	struct xe_device *xe = gt_to_xe(gt);
+> +	struct kobject *kobj;
+> +	int err;
+> +
+> +	kobj = kobject_create_and_add("gtidle", gt->sysfs);
+> +	if (!kobj)
+> +		return -ENOMEM;
+> +
+> +	sprintf(gtidle->name, "gt%d-rc\n", gt->info.id);
+> +	/* Multiplier for  RC6 Residency counter in units of 1.28us */
+> +	gtidle->residency_multiplier = 1280;
+> +	gtidle->idle_residency = xe_guc_pc_rc6_residency;
+> +	gtidle->idle_status = xe_guc_pc_rc_status;
+> +
+> +	err = sysfs_create_files(kobj, gt_idle_attrs);
+> +	if (err) {
+> +		kobject_put(kobj);
+> +		return err;
+> +	}
+> +
+> +	err = drmm_add_action_or_reset(&xe->drm, gt_idle_sysfs_fini, kobj);
+> +	if (err)
+> +		return err;
+> +
+> +	return 0;
+> +}
+> diff --git a/drivers/gpu/drm/xe/xe_gt_idle_sysfs.h b/drivers/gpu/drm/xe/xe_gt_idle_sysfs.h
+> new file mode 100644
+> index 000000000000..a654561fda19
+> --- /dev/null
+> +++ b/drivers/gpu/drm/xe/xe_gt_idle_sysfs.h
+> @@ -0,0 +1,13 @@
+> +/* SPDX-License-Identifier: MIT */
+> +/*
+> + * Copyright © 2023 Intel Corporation
+> + */
+> +
+> +#ifndef _XE_GT_IDLE_SYSFS_H_
+> +#define _XE_GT_IDLE_SYSFS_H_
+> +
+> +#include "xe_gt_idle_sysfs_types.h"
+> +
+> +int xe_gt_idle_sysfs_init(struct xe_gt_idle *gtidle);
+> +
+> +#endif /* _XE_GT_IDLE_SYSFS_H_ */
+> diff --git a/drivers/gpu/drm/xe/xe_gt_idle_sysfs_types.h b/drivers/gpu/drm/xe/xe_gt_idle_sysfs_types.h
+> new file mode 100644
+> index 000000000000..b9cfb37aae75
+> --- /dev/null
+> +++ b/drivers/gpu/drm/xe/xe_gt_idle_sysfs_types.h
+> @@ -0,0 +1,38 @@
+> +/* SPDX-License-Identifier: MIT */
+> +/*
+> + * Copyright © 2023 Intel Corporation
+> + */
+> +
+> +#ifndef _XE_GT_IDLE_SYSFS_TYPES_H_
+> +#define _XE_GT_IDLE_SYSFS_TYPES_H_
+> +
+> +#include <linux/types.h>
+> +
+> +struct xe_guc_pc;
+> +
+> +/* States of GT Idle */
+> +enum xe_gt_idle_state {
+> +	GT_IDLE_RC0,
+> +	GT_IDLE_RC6,
+> +	GT_IDLE_UNKNOWN,
+> +};
+> +
+> +/**
+> + * struct xe_gt_idle - A struct that contains idle properties based of gt
+> + */
+> +struct xe_gt_idle {
+> +	/** @name: name */
+> +	char name[16];
+> +	/** @residency_multiplier: residency multiplier in ns */
+> +	u32 residency_multiplier;
+> +	/** @cur_residency: raw driver copy of idle residency */
+> +	u64 cur_residency;
+> +	/** @prev_residency: previous residency counter */
+> +	u64 prev_residency;
+> +	/** @idle_status: get the current idle state */
+> +	enum xe_gt_idle_state (*idle_status)(struct xe_guc_pc *pc);
+> +	/** @idle_residency: get idle residency counter */
+> +	u64 (*idle_residency)(struct xe_guc_pc *pc);
+> +};
+> +
+> +#endif /* _XE_GT_IDLE_SYSFS_TYPES_H_ */
+> diff --git a/drivers/gpu/drm/xe/xe_gt_types.h b/drivers/gpu/drm/xe/xe_gt_types.h
+> index 7c47d67aa8be..8dec660f5fc6 100644
+> --- a/drivers/gpu/drm/xe/xe_gt_types.h
+> +++ b/drivers/gpu/drm/xe/xe_gt_types.h
+> @@ -7,6 +7,7 @@
+>   #define _XE_GT_TYPES_H_
+>   
+>   #include "xe_force_wake_types.h"
+> +#include "xe_gt_idle_sysfs_types.h"
+>   #include "xe_hw_engine_types.h"
+>   #include "xe_hw_fence_types.h"
+>   #include "xe_reg_sr_types.h"
+> @@ -287,6 +288,9 @@ struct xe_gt {
+>   	/** @uc: micro controllers on the GT */
+>   	struct xe_uc uc;
+>   
+> +	/** @gtidle: idle properties of GT */
+> +	struct xe_gt_idle gtidle;
+> +
+>   	/** @engine_ops: submission backend engine operations */
+>   	const struct xe_engine_ops *engine_ops;
+>   
+> diff --git a/drivers/gpu/drm/xe/xe_guc_pc.c b/drivers/gpu/drm/xe/xe_guc_pc.c
+> index e799faa1c6b8..31c56a0dc210 100644
+> --- a/drivers/gpu/drm/xe/xe_guc_pc.c
+> +++ b/drivers/gpu/drm/xe/xe_guc_pc.c
+> @@ -76,12 +76,7 @@
+>    *
+>    * Render-C states is also a GuC PC feature that is now enabled in Xe for
+>    * all platforms.
+> - * Xe's GuC PC provides a sysfs API for Render-C States:
+>    *
+> - * device/gt#/rc* *read-only* files:
+> - * - rc_status: Provide the actual immediate status of Render-C: (rc0 or rc6)
+> - * - rc6_residency: Provide the rc6_residency counter in units of 1.28 uSec.
+> - *                  Prone to overflows.
+>    */
+>   
+>   static struct xe_guc *
+> @@ -580,10 +575,12 @@ static ssize_t freq_max_store(struct device *dev, struct device_attribute *attr,
+>   }
+>   static DEVICE_ATTR_RW(freq_max);
+>   
+> -static ssize_t rc_status_show(struct device *dev,
+> -			      struct device_attribute *attr, char *buff)
+> +/**
+> + * xe_guc_pc_rc_status - get the current Render C state
+> + * @pc - XE_GuC_PC instance
+> + */
+> +enum xe_gt_idle_state xe_guc_pc_rc_status(struct xe_guc_pc *pc)
+>   {
+> -	struct xe_guc_pc *pc = dev_to_pc(dev);
+>   	struct xe_gt *gt = pc_to_gt(pc);
+>   	u32 reg;
+>   
+> @@ -593,37 +590,30 @@ static ssize_t rc_status_show(struct device *dev,
+>   
+>   	switch (REG_FIELD_GET(RCN_MASK, reg)) {
+>   	case GT_RC6:
+> -		return sysfs_emit(buff, "rc6\n");
+> +		return GT_IDLE_RC6;
+>   	case GT_RC0:
+> -		return sysfs_emit(buff, "rc0\n");
+> +		return GT_IDLE_RC0;
+>   	default:
+> -		return -ENOENT;
+> +		return GT_IDLE_UNKNOWN;
+>   	}
+>   }
+> -static DEVICE_ATTR_RO(rc_status);
+>   
+> -static ssize_t rc6_residency_show(struct device *dev,
+> -				  struct device_attribute *attr, char *buff)
+> +/**
+> + * xe_guc_pc_rc6_residency - rc6 residency counter
+> + * @pc - Xe_GuC_PC instance
+> + */
+> +u64 xe_guc_pc_rc6_residency(struct xe_guc_pc *pc)
+>   {
+> -	struct xe_guc_pc *pc = dev_to_pc(dev);
+>   	struct xe_gt *gt = pc_to_gt(pc);
+> -	u32 reg;
+> -	ssize_t ret;
+> +	u64 reg;
+>   
+> -	xe_device_mem_access_get(pc_to_xe(pc));
+> -	ret = xe_force_wake_get(gt_to_fw(gt), XE_FORCEWAKE_ALL);
+> -	if (ret)
+> -		goto out;
+It would be good to mention in commit message about removal of Forcewake 
+calls.
+> +	xe_device_mem_access_get(gt_to_xe(gt));
+>   
+>   	reg = xe_mmio_read32(gt, GT_GFX_RC6);
+> -	ret = sysfs_emit(buff, "%u\n", reg);
+>   
+> -	XE_WARN_ON(xe_force_wake_put(gt_to_fw(gt), XE_FORCEWAKE_ALL));
+> -out:
+> -	xe_device_mem_access_put(pc_to_xe(pc));
+> -	return ret;
+> +	xe_device_mem_access_put(gt_to_xe(gt));
+> +	return reg;
+>   }
+> -static DEVICE_ATTR_RO(rc6_residency);
+>   
+>   static const struct attribute *pc_attrs[] = {
+>   	&dev_attr_freq_act.attr,
+> @@ -633,8 +623,6 @@ static const struct attribute *pc_attrs[] = {
+>   	&dev_attr_freq_rpn.attr,
+>   	&dev_attr_freq_min.attr,
+>   	&dev_attr_freq_max.attr,
+> -	&dev_attr_rc_status.attr,
+> -	&dev_attr_rc6_residency.attr,
+>   	NULL
+>   };
+>   
+> diff --git a/drivers/gpu/drm/xe/xe_guc_pc.h b/drivers/gpu/drm/xe/xe_guc_pc.h
+> index da29e4934868..976179dbc9a8 100644
+> --- a/drivers/gpu/drm/xe/xe_guc_pc.h
+> +++ b/drivers/gpu/drm/xe/xe_guc_pc.h
+> @@ -12,4 +12,6 @@ int xe_guc_pc_init(struct xe_guc_pc *pc);
+>   int xe_guc_pc_start(struct xe_guc_pc *pc);
+>   int xe_guc_pc_stop(struct xe_guc_pc *pc);
+>   
+> +enum xe_gt_idle_state xe_guc_pc_rc_status(struct xe_guc_pc *pc);
+> +u64 xe_guc_pc_rc6_residency(struct xe_guc_pc *pc);
+As xe_gt_idle_sysfs.c is the only consumer of above funtions, how about 
+moving these functions under xe_gt_idle_sysfs.c as static functions?
 
-Reviewed-by: Lucas De Marchi <lucas.demarchi@intel.com>
-
-Lucas De Marchi
-
->---
-> include/uapi/drm/xe_drm.h | 36 ++++++++++++++++++------------------
-> 1 file changed, 18 insertions(+), 18 deletions(-)
->
->diff --git a/include/uapi/drm/xe_drm.h b/include/uapi/drm/xe_drm.h
->index ac3cfc1fb4a5..5d34b570a305 100644
->--- a/include/uapi/drm/xe_drm.h
->+++ b/include/uapi/drm/xe_drm.h
->@@ -116,24 +116,6 @@ struct xe_user_extension {
-> #define DRM_IOCTL_XE_WAIT_USER_FENCE		DRM_IOWR(DRM_COMMAND_BASE + DRM_XE_WAIT_USER_FENCE, struct drm_xe_wait_user_fence)
-> #define DRM_IOCTL_XE_VM_MADVISE			DRM_IOW( DRM_COMMAND_BASE + DRM_XE_VM_MADVISE, struct drm_xe_vm_madvise)
->
->-struct drm_xe_engine_class_instance {
->-	__u16 engine_class;
->-
->-#define DRM_XE_ENGINE_CLASS_RENDER		0
->-#define DRM_XE_ENGINE_CLASS_COPY		1
->-#define DRM_XE_ENGINE_CLASS_VIDEO_DECODE	2
->-#define DRM_XE_ENGINE_CLASS_VIDEO_ENHANCE	3
->-#define DRM_XE_ENGINE_CLASS_COMPUTE		4
->-	/*
->-	 * Kernel only class (not actual hardware engine class). Used for
->-	 * creating ordered queues of VM bind operations.
->-	 */
->-#define DRM_XE_ENGINE_CLASS_VM_BIND		5
->-
->-	__u16 engine_instance;
->-	__u16 gt_id;
->-};
->-
-> #define XE_MEM_REGION_CLASS_SYSMEM	0
-> #define XE_MEM_REGION_CLASS_VRAM	1
->
->@@ -518,6 +500,24 @@ struct drm_xe_engine_set_property {
-> 	__u64 reserved[2];
-> };
->
->+struct drm_xe_engine_class_instance {
->+	__u16 engine_class;
->+
->+#define DRM_XE_ENGINE_CLASS_RENDER		0
->+#define DRM_XE_ENGINE_CLASS_COPY		1
->+#define DRM_XE_ENGINE_CLASS_VIDEO_DECODE	2
->+#define DRM_XE_ENGINE_CLASS_VIDEO_ENHANCE	3
->+#define DRM_XE_ENGINE_CLASS_COMPUTE		4
->+	/*
->+	 * Kernel only class (not actual hardware engine class). Used for
->+	 * creating ordered queues of VM bind operations.
->+	 */
->+#define DRM_XE_ENGINE_CLASS_VM_BIND		5
->+
->+	__u16 engine_instance;
->+	__u16 gt_id;
->+};
->+
-> struct drm_xe_engine_create {
-> 	/** @extensions: Pointer to the first extension struct, if any */
-> #define XE_ENGINE_EXTENSION_SET_PROPERTY               0
->-- 
->2.34.1
->
+Regards,
+Badal
+>   #endif /* _XE_GUC_PC_H_ */
