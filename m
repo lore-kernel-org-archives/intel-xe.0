@@ -4,48 +4,52 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id BE4B9C7EE23
-	for <intel-xe@archiver.kernel.org>; Wed,  7 Jun 2023 11:05:46 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 755B2C77B7A
+	for <intel-xe@archiver.kernel.org>; Wed,  7 Jun 2023 11:09:36 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8CE9110E4B8;
-	Wed,  7 Jun 2023 11:05:46 +0000 (UTC)
-Received: from mga06.intel.com (mga06b.intel.com [134.134.136.31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5773C10E4B8
- for <intel-xe@lists.freedesktop.org>; Wed,  7 Jun 2023 11:05:44 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 457D810E4B9;
+	Wed,  7 Jun 2023 11:09:36 +0000 (UTC)
+Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6D80910E010;
+ Wed,  7 Jun 2023 11:09:34 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1686135944; x=1717671944;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=SSCusmjt8T3WbROIFLyhZd/mc9yYrWznQ04DCeFb3tk=;
- b=BrO7kl1hOyovuAHV3WN5klitxUgftcPNu08IBqj/onUKXUsxiNcLQkX1
- ZU3lUmLtFcA1La5Clkb+zQHErj591P8Mlzbsk0REO9+/KJczivZuSDorC
- VkQcg6YvbhT6b6W+75pWX1kYd4fors1bZvpzeuSH+pDFk8ZR6YVbJ2ZGK
- BJ//Kw0w6JdcPrXplxQ3qMMNRFfFWIUd9BhPVEvrOm64x+DE4CeWptMsq
- WDlLFyo4eBBRn06rzoyf5Ja5wH3QSlUjsMJrrLgeZJxaIMAtdAMqe1QnS
- 6nSRtiaLhNBDph3Zhn9j9WhNP9tgTJySFEE0mJjPSYe9H1bY9KKu5cBA/ A==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10733"; a="420512535"
-X-IronPort-AV: E=Sophos;i="6.00,223,1681196400"; d="scan'208";a="420512535"
-Received: from orsmga007.jf.intel.com ([10.7.209.58])
- by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 07 Jun 2023 04:05:44 -0700
+ t=1686136174; x=1717672174;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:content-transfer-encoding:in-reply-to;
+ bh=9Nj+x4HeGNfsL1guY+rXfVfGkct2sypkVhT5M9ZGco4=;
+ b=bSKpfsXPEX4bhMjNcz7MvpYw4H06RmN+tq91dZde3folfGtle7nLFDM4
+ CJQUs5bgSTQs4dcT5W45Ih1EbqamyZNgNqfksm3silzhuanHhcnFccZ0v
+ XXPvreXB21lyFZvap9m/64SHr3JxznVTaoZ+0RVPKjMv/06foghyE5yHs
+ /n6o1X1r5W13whdkZDa9PvGzX1lNyX9KksmZFu9662hne0AEZgjXcNSzj
+ MF94YFxN8WvQdhEQZzE6XwhSbZ2PZOzWm8Ax8n1tBGA2gY1wq7VyQUeLj
+ MO7O4fpCG5+htCUyNAaNoPISa7JOxdt+LtP80snPYvfrDpfO2PyNgIi6G A==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10733"; a="355810790"
+X-IronPort-AV: E=Sophos;i="6.00,223,1681196400"; d="scan'208";a="355810790"
+Received: from orsmga002.jf.intel.com ([10.7.209.21])
+ by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 07 Jun 2023 04:09:33 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10733"; a="703593492"
-X-IronPort-AV: E=Sophos;i="6.00,223,1681196400"; d="scan'208";a="703593492"
-Received: from srr4-3-linux-105-anshuma1.iind.intel.com ([10.223.74.179])
- by orsmga007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 07 Jun 2023 04:05:41 -0700
-From: Anshuman Gupta <anshuman.gupta@intel.com>
-To: intel-xe@lists.freedesktop.org
-Date: Wed,  7 Jun 2023 16:33:28 +0530
-Message-Id: <20230607110328.3739706-6-anshuman.gupta@intel.com>
-X-Mailer: git-send-email 2.38.0
-In-Reply-To: <20230607110328.3739706-1-anshuman.gupta@intel.com>
-References: <20230607110328.3739706-1-anshuman.gupta@intel.com>
+X-IronPort-AV: E=McAfee;i="6600,9927,10733"; a="709464179"
+X-IronPort-AV: E=Sophos;i="6.00,223,1681196400"; d="scan'208";a="709464179"
+Received: from wkalisz-mobl.ger.corp.intel.com (HELO localhost)
+ ([10.213.20.202])
+ by orsmga002-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 07 Jun 2023 04:09:32 -0700
+Date: Wed, 7 Jun 2023 13:09:29 +0200
+From: Zbigniew =?utf-8?Q?Kempczy=C5=84ski?= <zbigniew.kempczynski@intel.com>
+To: Matthew Auld <matthew.auld@intel.com>
+Message-ID: <20230607110929.ujptuuvsptdyo5d5@zkempczy-mobl2>
+References: <20230602114817.849486-1-matthew.auld@intel.com>
+ <20230607095508.xhpireixyx5jxzpj@zkempczy-mobl2>
+ <cd537b6b-6d2b-4d9d-4bc1-444e1a1d6d40@intel.com>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-xe] [PATCH v2 5/5] drm/xe/pm: Init pcode and restore vram on
- power lost
+In-Reply-To: <cd537b6b-6d2b-4d9d-4bc1-444e1a1d6d40@intel.com>
+Subject: Re: [Intel-xe] [PATCH i-g-t] tests/xe/xe_intel_bb: ensure valid
+ next page
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -57,134 +61,162 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Cc: rodrigo.vivi@intel.com
+Cc: igt-dev@lists.freedesktop.org, intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Don't init pcode and restore VRAM objects in vain.
-We can rely on primary GT GUC_STATUS to detect whether
-card has really lost power even when d3cold is allowed by xe.
-Adding d3cold.lost_power flag to avoid pcode init and vram
-restoration.
-Also cleaning up the TODO code comment.
+On Wed, Jun 07, 2023 at 11:27:41AM +0100, Matthew Auld wrote:
+> On 07/06/2023 10:55, Zbigniew Kempczyński wrote:
+> > On Fri, Jun 02, 2023 at 12:48:17PM +0100, Matthew Auld wrote:
+> > > Due to over-fetch, recommendation is to ensure we have a single valid
+> > > extra page beyond the batch. We currently lack this which seems to
+> > > explain why xe_intel_bb@full-batch generates CAT errors.
+> > > 
+> > > Currently we allow using the last GTT page, but this looks to be no-go,
+> > > since the next page will be beyond the actual GTT, in the case of
+> > > full-batch. The i915 path looks to already account for this. However
+> > > even with that fixed, Xe doesn't use scratch pages by default so the
+> > > next page will still not be valid.
+> > > 
+> > > With Xe rather expect that callers know about HW over-fetch, ensuring
+> > > that the batch has an extra page, if needed. Alternatively we could
+> > > apply the DRM_XE_VM_CREATE_SCRATCH_PAGE when creating the vm, but really
+> > > we want to get away from such things.
+> > > 
+> > > Bspec: 60223
+> > > Closes: https://gitlab.freedesktop.org/drm/xe/kernel/-/issues/262
+> > > Signed-off-by: Matthew Auld <matthew.auld@intel.com>
+> > > Cc: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
+> > > Cc: Thomas Hellström <thomas.hellstrom@linux.intel.com>
+> > 
+> > I observe this not only on the last page. I've introduced
+> > 
+> > index 3cd680072e..ef3f782df7 100644
+> > --- a/lib/intel_batchbuffer.c
+> > +++ b/lib/intel_batchbuffer.c
+> > @@ -947,7 +947,7 @@ __intel_bb_create(int fd, uint32_t ctx, uint32_t vm, const intel_ctx_cfg_t *cfg,
+> >                  /* Limit to 48-bit due to MI_* address limitation */
+> >                  ibb->gtt_size = 1ull << min_t(uint32_t, xe_va_bits(fd), 48);
+> > -               end = ibb->gtt_size;
+> > +               end = ibb->gtt_size - xe_get_default_alignment(fd)*2;
+> > 
+> > or even:
+> > 
+> > +               end = ibb->gtt_size/2;
+> > 
+> > Having:
+> > 
+> > ADLP:~/igt-upstream/build/tests# ./xe_intel_bb --run full-batch --debug
+> > IGT-Version: 1.27.1-NO-GIT (x86_64) (Linux: 6.3.0-xe+ x86_64)
+> > Opened device: /dev/dri/card0
+> > (xe_intel_bb:11420) drmtest-DEBUG: Test requirement passed: !(fd<0)
+> > (xe_intel_bb:11420) intel_bufops-DEBUG: generation: 12, supported tiles: 0x3f, driver: xe
+> > Starting subtest: full-batch
+> > (xe_intel_bb:11420) intel_allocator_simple-DEBUG: Using simple allocator
+> > (xe_intel_bb:11420) intel_batchbuffer-DEBUG: Run on DRM_XE_ENGINE_CLASS_COPY
+> > (xe_intel_bb:11420) intel_batchbuffer-DEBUG: bind: MAP
+> > (xe_intel_bb:11420) intel_batchbuffer-DEBUG:   handle: 1, offset: ffffffffd000, size: 1000
+> > (xe_intel_bb:11420) intel_batchbuffer-DEBUG: bind: UNMAP
+> > (xe_intel_bb:11420) intel_batchbuffer-DEBUG:   offset: ffffffffd000, size: 1000
+> > 
+> > And I still observe failure, what means problem is with prefetching from
+> > next page, regardless location.
+> 
+> Yeah, AFAICT the CAT error will trigger for any overfetch that hits an bogus
+> GTT address. Either because it goes beyond the GTT boundary or because the
+> PTE is marked as invalid and we aren't able to fault it in it.
+> 
+> > 
+> > That means imo umd and any consumer have to overallocate to avoid
+> > hitting:
+> > 
+> > [ 1406.062731] xe 0000:00:02.0: [drm] Engine memory cat error: guc_id=2
+> > [ 1406.070519] xe 0000:00:02.0: [drm] Timedout job: seqno=4294967169, guc_id=2, flags=0x4
+> > [ 1406.070535] xe 0000:00:02.0: [drm:xe_devcoredump [xe]] Multiple hangs are occurring, but only the first snapshot was taken
+> > [ 1406.071182] xe 0000:00:02.0: [drm] Engine reset: guc_id=2
+> > 
+> > So from my perspective you've avoided failure but that wasn't my intention
+> > when I've written this test. Do you maybe know does umd has mitigation
+> > code which prevents of entering area which starts prefetching from next
+> > page?
+> 
+> Userspace should be aware of such HW behaviour I think. In Mesa + Xe I think
+> it still currently forces scratch pages, but AFAIK they want to get rid of
+> that once they are sure that all potential overfetch can't trigger CAT
+> errors or similar. If the vm doesn't have scratch pages, then I think it's
+> up to userspace to deal with overfetch, and I think that must involve
+> inflating the batch size or somehow ensuring the next page always has
+> something valid bound.
+> 
+> Do you know if this test is specifically trying to poke at the overfetch
+> behaviour, or does this test just want a PAGE_SIZE worth of NOOPS + BB_END?
+> I wasn't sure given that currently on DG2/ATS-M the batch is always going to
+> be 64K underneath, and so the overfetch is never going to find issues on
+> such platforms.
 
-Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
-Signed-off-by: Anshuman Gupta <anshuman.gupta@intel.com>
----
- drivers/gpu/drm/xe/xe_device_types.h |  3 +++
- drivers/gpu/drm/xe/xe_guc.c          | 17 +++++++++++++++++
- drivers/gpu/drm/xe/xe_guc.h          |  1 +
- drivers/gpu/drm/xe/xe_pci.c          |  2 --
- drivers/gpu/drm/xe/xe_pm.c           | 15 ++++++++++++---
- 5 files changed, 33 insertions(+), 5 deletions(-)
+You're right, for discrete instead of PAGE_SIZE I should pick 64K
+(xe_get_default_alignment()).
 
-diff --git a/drivers/gpu/drm/xe/xe_device_types.h b/drivers/gpu/drm/xe/xe_device_types.h
-index bdd093d30788..34bf2ea3b3f9 100644
---- a/drivers/gpu/drm/xe/xe_device_types.h
-+++ b/drivers/gpu/drm/xe/xe_device_types.h
-@@ -382,6 +382,9 @@ struct xe_device {
- 		/** @allowed: Indicates if d3cold is a valid device state */
- 		bool allowed;
- 
-+		/** @power_lost Indicates if card has really lost power. */
-+		bool power_lost;
-+
- 		/**
- 		 * @vram_threshold is the permissible threshold(in megabytes)
- 		 * for vram save/restore. d3cold will be disallowed,
-diff --git a/drivers/gpu/drm/xe/xe_guc.c b/drivers/gpu/drm/xe/xe_guc.c
-index e51d8fb4a354..706b3bc0452e 100644
---- a/drivers/gpu/drm/xe/xe_guc.c
-+++ b/drivers/gpu/drm/xe/xe_guc.c
-@@ -848,3 +848,20 @@ void xe_guc_print_info(struct xe_guc *guc, struct drm_printer *p)
- 	xe_guc_ct_print(&guc->ct, p, false);
- 	xe_guc_submit_print(guc, p);
- }
-+
-+/* Srtictly to called from RPM resume handler */
-+bool xe_guc_has_lost_power(struct xe_guc *guc)
-+{
-+	struct xe_gt *gt = guc_to_gt(guc);
-+	u32 status;
-+	int err;
-+
-+	err = xe_force_wake_get(gt_to_fw(gt), XE_FW_GT);
-+	if (err)
-+		return false;
-+
-+	status = xe_mmio_read32(gt, GUC_STATUS);
-+	xe_force_wake_put(gt_to_fw(gt), XE_FW_GT);
-+
-+	return  status & GS_MIA_IN_RESET;
-+}
-diff --git a/drivers/gpu/drm/xe/xe_guc.h b/drivers/gpu/drm/xe/xe_guc.h
-index 74a74051f354..3e628bbbe69e 100644
---- a/drivers/gpu/drm/xe/xe_guc.h
-+++ b/drivers/gpu/drm/xe/xe_guc.h
-@@ -35,6 +35,7 @@ void xe_guc_reset_wait(struct xe_guc *guc);
- void xe_guc_stop_prepare(struct xe_guc *guc);
- int xe_guc_stop(struct xe_guc *guc);
- int xe_guc_start(struct xe_guc *guc);
-+bool xe_guc_has_lost_power(struct xe_guc *guc);
- 
- static inline u16 xe_engine_class_to_guc_class(enum xe_engine_class class)
- {
-diff --git a/drivers/gpu/drm/xe/xe_pci.c b/drivers/gpu/drm/xe/xe_pci.c
-index 6cf66ce25039..b5cd3b69c98e 100644
---- a/drivers/gpu/drm/xe/xe_pci.c
-+++ b/drivers/gpu/drm/xe/xe_pci.c
-@@ -829,8 +829,6 @@ static int xe_pci_runtime_idle(struct device *dev)
- 		 * but maybe include some other conditions. So, before
- 		 * we can re-enable the D3cold, we need to:
- 		 * 1. rewrite the VRAM save / restore to avoid buffer object locks
--		 * 2. at resume, detect if we really lost power and avoid memory
--		 *    restoration if we were only up to d3cold
- 		 */
- 		xe->d3cold.allowed = false;
- 	}
-diff --git a/drivers/gpu/drm/xe/xe_pm.c b/drivers/gpu/drm/xe/xe_pm.c
-index 9872a800b0b3..e37ec8aca609 100644
---- a/drivers/gpu/drm/xe/xe_pm.c
-+++ b/drivers/gpu/drm/xe/xe_pm.c
-@@ -16,6 +16,7 @@
- #include "xe_display.h"
- #include "xe_ggtt.h"
- #include "xe_gt.h"
-+#include "xe_guc.h"
- #include "xe_irq.h"
- #include "xe_pcode.h"
- 
-@@ -192,11 +193,19 @@ int xe_pm_runtime_suspend(struct xe_device *xe)
- 
- int xe_pm_runtime_resume(struct xe_device *xe)
- {
--	struct xe_gt *gt;
-+	struct xe_gt *gt, *gt0;
- 	u8 id;
- 	int err;
- 
--	if (xe->d3cold.allowed) {
-+	/*
-+	 * It can be possible that xe has allowed d3cold but other pcie devices
-+	 * in gfx card soc would have blocked d3cold, therefore card has not
-+	 * really lost power. Detecting primary Gt power is sufficient.
-+	 */
-+	gt0 = xe_device_get_gt(xe, 0);
-+	xe->d3cold.power_lost = xe_guc_has_lost_power(&gt0->uc.guc);
-+
-+	if (xe->d3cold.allowed && xe->d3cold.power_lost) {
- 		for_each_gt(gt, xe, id) {
- 			err = xe_pcode_init(gt);
- 			if (err)
-@@ -217,7 +226,7 @@ int xe_pm_runtime_resume(struct xe_device *xe)
- 	for_each_gt(gt, xe, id)
- 		xe_gt_resume(gt);
- 
--	if (xe->d3cold.allowed) {
-+	if (xe->d3cold.allowed && xe->d3cold.power_lost) {
- 		err = xe_bo_restore_user(xe);
- 		if (err)
- 			return err;
--- 
-2.38.0
+> 
+> If the test cares specifically about triggering overfetch we could maybe
+> enable scratch pages for the vm in full-batch, and on DG2/ATS-M also do
+> s/PAGE_SIZE/64K/ or use system memory for the batch. And then ofc ensure the
+> last GTT page is never given out. If we later decide to remove scratch pages
+> completely in Xe then I guess we just remove the test. What do you think?
 
+Test was written to exercise last page on i915. Looks we got no influence
+on prefetching we always get the error when we enter last 512B if I'm not
+wrong. Scratch pages are not default option for intel-bb vm and I think it
+never will be so I would just remove the test.
+ 
+--
+Zbigniew
+
+> 
+> > 
+> > --
+> > Zbigniew
+> > 
+> > 
+> > > ---
+> > >   lib/intel_batchbuffer.c | 6 ++++++
+> > >   tests/xe/xe_intel_bb.c  | 8 +++++++-
+> > >   2 files changed, 13 insertions(+), 1 deletion(-)
+> > > 
+> > > diff --git a/lib/intel_batchbuffer.c b/lib/intel_batchbuffer.c
+> > > index 3cd680072..035facfc4 100644
+> > > --- a/lib/intel_batchbuffer.c
+> > > +++ b/lib/intel_batchbuffer.c
+> > > @@ -881,6 +881,12 @@ static inline uint64_t __intel_bb_get_offset(struct intel_bb *ibb,
+> > >    * passed in. If this is the case, it copies the information over to the
+> > >    * newly created batch buffer.
+> > >    *
+> > > + * NOTE: On Xe scratch pages are not used by default. Due to over-fetch (~512
+> > > + * bytes) there might need to be a valid next page to avoid hangs or CAT errors
+> > > + * if the batch is quite large and approaches the end boundary of the batch
+> > > + * itself.  Inflate the @size to ensure there is a valid next page in such
+> > > + * cases.
+> > > + *
+> > >    * Returns:
+> > >    *
+> > >    * Pointer the intel_bb, asserts on failure.
+> > > diff --git a/tests/xe/xe_intel_bb.c b/tests/xe/xe_intel_bb.c
+> > > index 755cc530e..af8462af5 100644
+> > > --- a/tests/xe/xe_intel_bb.c
+> > > +++ b/tests/xe/xe_intel_bb.c
+> > > @@ -952,7 +952,13 @@ static void full_batch(struct buf_ops *bops)
+> > >   	struct intel_bb *ibb;
+> > >   	int i;
+> > > -	ibb = intel_bb_create(xe, PAGE_SIZE);
+> > > +	/*
+> > > +	 * Add an extra page to ensure over-fetch always sees a valid next page,
+> > > +	 * which includes not going beyond the actual GTT, and ensuring we have
+> > > +	 * a valid GTT entry, given that on xe we don't use scratch pages by
+> > > +	 * default.
+> > > +	 */
+> > > +	ibb = intel_bb_create(xe, 2 * PAGE_SIZE);
+> > >   	if (debug_bb)
+> > >   		intel_bb_set_debug(ibb, true);
+> > > -- 
+> > > 2.40.1
+> > > 
