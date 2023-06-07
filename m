@@ -4,133 +4,135 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 17D62C7EE25
-	for <intel-xe@archiver.kernel.org>; Wed,  7 Jun 2023 18:21:16 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2A0FAC7EE25
+	for <intel-xe@archiver.kernel.org>; Wed,  7 Jun 2023 18:31:26 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id AE85F10E53B;
-	Wed,  7 Jun 2023 18:21:15 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id CD46710E53F;
+	Wed,  7 Jun 2023 18:31:25 +0000 (UTC)
 Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 656AF10E53B
- for <intel-xe@lists.freedesktop.org>; Wed,  7 Jun 2023 18:21:14 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id EFDAD10E53F
+ for <intel-xe@lists.freedesktop.org>; Wed,  7 Jun 2023 18:31:22 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1686162074; x=1717698074;
+ t=1686162682; x=1717698682;
  h=date:from:to:cc:subject:message-id:references:
  in-reply-to:mime-version;
- bh=xGPI+eJpBwvqLCVSRh8QLAOB6zHI0uOVmW3eYBrZrAM=;
- b=EUj5JeOKR7AYAU5VuPl/jQit0W5s8kIVRYS1OtdPfzWmqC/C5S2Rhv9f
- WH/CZwXT97oUQQ7y8JAnihH06EovHTWPapkXRegosjdmWJfgH3Oot+qJr
- fUYXUfCQ4+3tAqiA8RKeu+RiQSH2p7WKC7xW0DHmLxhK5x9vF6MCWBxde
- bhgtgj6DqaLgQC+h6xqRVT1rA1aUoyC8Fub5SSM1zXG2Z/7Pxj9XPwYEa
- OgTTdUAx1CtlT1oAzCjcNxCSrLj+9BUPbyvBoB16Mw4BRNvgsaeiZiryb
- Lx9fnK552bsQ1sZIY2hv+uh2GiutaDSYmy8gDxzi7lc1bWSvunfLvOBMh A==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10734"; a="337433237"
-X-IronPort-AV: E=Sophos;i="6.00,224,1681196400"; d="scan'208";a="337433237"
-Received: from orsmga003.jf.intel.com ([10.7.209.27])
+ bh=+2TPmK8FAjjE5G8KAAUG3eDOMecQmpvJJBQbdnDTHyU=;
+ b=b1Avtmf/ZOcea8gm2zqTACiXD1BZ6AJ/qbr0nlaDLv1AG8f3MhUqA2du
+ WWG9XMNgvZAduSkTZOS3h1flNugu8K12UkUnHzxZqszr6XTyR1525lboV
+ 7f7pJwO6Q2HpoVm2DwFnOh3TOClnvO9hiEyIl6P1LQCyFHApxddQdnFdD
+ szmdmWmMFYY9VZIqPZ68NaEPDnYc1o7p8YYuzmyaUbqW1P0TXzQA4xP48
+ Ag1niqkBaiiMBQwRY2iqcjIu/iCYHtmnRKTzOpVIVbzmKt/sHyz2DD5Lg
+ A35FRSKWHfnZCett7NJ2zSMYVSrY80c0LVy7JFvvkGf/YrCYEzG0sZekn g==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10734"; a="337436349"
+X-IronPort-AV: E=Sophos;i="6.00,224,1681196400"; d="scan'208";a="337436349"
+Received: from orsmga007.jf.intel.com ([10.7.209.58])
  by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 07 Jun 2023 11:21:13 -0700
+ 07 Jun 2023 11:31:21 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10734"; a="660062470"
-X-IronPort-AV: E=Sophos;i="6.00,224,1681196400"; d="scan'208";a="660062470"
-Received: from orsmsx603.amr.corp.intel.com ([10.22.229.16])
- by orsmga003.jf.intel.com with ESMTP; 07 Jun 2023 11:21:12 -0700
-Received: from orsmsx610.amr.corp.intel.com (10.22.229.23) by
- ORSMSX603.amr.corp.intel.com (10.22.229.16) with Microsoft SMTP Server
+X-IronPort-AV: E=McAfee;i="6600,9927,10734"; a="703766779"
+X-IronPort-AV: E=Sophos;i="6.00,224,1681196400"; d="scan'208";a="703766779"
+Received: from fmsmsx601.amr.corp.intel.com ([10.18.126.81])
+ by orsmga007.jf.intel.com with ESMTP; 07 Jun 2023 11:31:21 -0700
+Received: from fmsmsx610.amr.corp.intel.com (10.18.126.90) by
+ fmsmsx601.amr.corp.intel.com (10.18.126.81) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.23; Wed, 7 Jun 2023 11:21:12 -0700
-Received: from ORSEDG602.ED.cps.intel.com (10.7.248.7) by
- orsmsx610.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
+ 15.1.2507.23; Wed, 7 Jun 2023 11:31:20 -0700
+Received: from fmsedg601.ED.cps.intel.com (10.1.192.135) by
+ fmsmsx610.amr.corp.intel.com (10.18.126.90) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.23 via Frontend Transport; Wed, 7 Jun 2023 11:21:12 -0700
-Received: from NAM12-BN8-obe.outbound.protection.outlook.com (104.47.55.172)
- by edgegateway.intel.com (134.134.137.103) with Microsoft SMTP Server
+ 15.1.2507.23 via Frontend Transport; Wed, 7 Jun 2023 11:31:20 -0700
+Received: from NAM11-BN8-obe.outbound.protection.outlook.com (104.47.58.169)
+ by edgegateway.intel.com (192.55.55.70) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2507.23; Wed, 7 Jun 2023 11:21:11 -0700
+ 15.1.2507.23; Wed, 7 Jun 2023 11:31:20 -0700
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=ThCkallhsf9jCHvKgMP0NMWpVB46+HUmT85OVSytuNAhZooYCaG4tZPlioVPZRnfCVfevwCvcjcfrb90+zQjAhnvi3/Cg+BCsB7ij8g8B2aAfVgA+80DlF9G5orjw6Yq/jKCGAo/g5e0nXj79dyWL4ZvEwdCZoxAYdOr76WgetJ0vQHUTdJWhkP/0Dio4swpQO0nUxOuv/zuOoeoA8o3bVvLgZN55PlpS9xpgKDChlezhDmDcu0/7M9evlPJe31MdGLcYBXnkN70R/TwBF+KaBof6g+py9yXK4dDe0uTTDBMovCTQj/U5pay+unand8ejZPHlXIFfnk24p1oZssEkg==
+ b=ad1uHFvVbQKBYJuznbVxGBsXUCdG9MWGI/fX1s1jBe7QJQ2HKzHR5K0UlT2bL3DJZ12NP/pYZw7JcQMqZUooF66NhcIYXeJ+sguaZ3ZP3xCxYZknlIO+jZrY7jM84pTnbE2SDRyqWq03AwaG5ysPhwWhrCHEwfQoTJgo1kMv0dwwYYVfruwZ0b/z3EnQF6wkdOoIFyspeNvDoZDHKATZFzSnbaYztZW4BazcB0aremRCpL/rvfIufFAdvhUVwgJnwfCKuOkuti074HqVnRIbNugQ15mDMAp0BPkhxTaIEE2lUqXyGR+q5WAfckbefZNOm8gccvkwzk7bJpEDFehMFA==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=cxl/e34vjwC8AqyVE2BV20u8jku8anq6czVu0UkL3hE=;
- b=LT4x9b9HUu9SjNf1VeH2I+Xsowr0UpbSaaKRrar6xU+65OyJLXKeQjCWYMaNp7OqN41gvzk4NvlwxM2Hk4j+ZlZGZCcK6RkwmFlsUgSF/5Cof6NeXFujlUq9psKlyzqUaYY1VuvYJQLKwLPDU4rWnR+Iu5IZIbQX/mj/X4sdCobVVPgvQJeYVidZzVcrIBttBwOURjO/CAstXItMB/IkitpFpm5tJ0XsrK2g6HAAkyOz9l2oiypvKZGoTBkKMVDQbgEXQUqJMBDXKFZ34oLk8nVCToo/J1J+xIowRD3xMbMse9gRwcw0E3+UQeq7jnk17U4rHY/kC1jbb8mIL1j2GA==
+ bh=1rqXznyMyr1B1X0DkV3HvSM0fk0EjhIA64XxpAUJoqQ=;
+ b=QBWbB+WP0Brg0z4+n6pnZ47PI3W9ve5xs6cPRjEuOhm7URxSjK2FxCvwh007pfSqomclhLBRF8Ao4gt5XAASVrRrIGJblE8fA8bkuQfHt1Iif0ZNsN9vfnAJq5avmI6ELpa4nhpGHun9osGM8okCGgSdrt0ZEG/8cKyJi71/uNTfiswHQKFqdvuwcR3HWLRlL63AVGPKQK49c34N70hf0++6GOlKJDEPPSji4Kd4klW+B/X5bfTDbtkZK9zpZgRE+gMvQGc875zGtspkR7HWwEMsulSqDvBr1GRzO+04pUphA94/dmifVdkb8ekelfkzOueLYaTSW1gOr0bCzLFypg==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
  dkim=pass header.d=intel.com; arc=none
 Authentication-Results: dkim=none (message not signed)
  header.d=none;dmarc=none action=none header.from=intel.com;
 Received: from DS7PR11MB7859.namprd11.prod.outlook.com (2603:10b6:8:da::22) by
- IA1PR11MB7871.namprd11.prod.outlook.com (2603:10b6:208:3f5::13) with
+ CH3PR11MB8313.namprd11.prod.outlook.com (2603:10b6:610:17c::15) with
  Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6455.32; Wed, 7 Jun
- 2023 18:21:08 +0000
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6455.33; Wed, 7 Jun
+ 2023 18:31:18 +0000
 Received: from DS7PR11MB7859.namprd11.prod.outlook.com
  ([fe80::9f98:8f3c:a608:8396]) by DS7PR11MB7859.namprd11.prod.outlook.com
  ([fe80::9f98:8f3c:a608:8396%6]) with mapi id 15.20.6455.030; Wed, 7 Jun 2023
- 18:21:08 +0000
-Date: Wed, 7 Jun 2023 11:21:04 -0700
+ 18:31:18 +0000
+Date: Wed, 7 Jun 2023 11:31:15 -0700
 From: Matt Roper <matthew.d.roper@intel.com>
-To: Sujaritha Sundaresan <sujaritha.sundaresan@intel.com>
-Message-ID: <20230607182104.GM5433@mdroper-desk1.amr.corp.intel.com>
-References: <20230606082142.7846-1-sujaritha.sundaresan@intel.com>
+To: "Ghimiray, Himal Prasad" <himal.prasad.ghimiray@intel.com>
+Message-ID: <20230607183115.GN5433@mdroper-desk1.amr.corp.intel.com>
+References: <20230606094929.2989914-1-himal.prasad.ghimiray@intel.com>
+ <20230606195555.GH5433@mdroper-desk1.amr.corp.intel.com>
+ <MW4PR11MB705690A2A21050E31CBF545CB353A@MW4PR11MB7056.namprd11.prod.outlook.com>
 Content-Type: text/plain; charset="us-ascii"
 Content-Disposition: inline
-In-Reply-To: <20230606082142.7846-1-sujaritha.sundaresan@intel.com>
-X-ClientProxiedBy: SJ0PR13CA0181.namprd13.prod.outlook.com
- (2603:10b6:a03:2c3::6) To DS7PR11MB7859.namprd11.prod.outlook.com
+In-Reply-To: <MW4PR11MB705690A2A21050E31CBF545CB353A@MW4PR11MB7056.namprd11.prod.outlook.com>
+X-ClientProxiedBy: BY3PR05CA0031.namprd05.prod.outlook.com
+ (2603:10b6:a03:39b::6) To DS7PR11MB7859.namprd11.prod.outlook.com
  (2603:10b6:8:da::22)
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: DS7PR11MB7859:EE_|IA1PR11MB7871:EE_
-X-MS-Office365-Filtering-Correlation-Id: 819a88b3-7d6b-41cb-364a-08db6783f6b6
+X-MS-TrafficTypeDiagnostic: DS7PR11MB7859:EE_|CH3PR11MB8313:EE_
+X-MS-Office365-Filtering-Correlation-Id: e87e4e0c-6516-4c96-d5e2-08db6785622f
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: Ile8jQ7fA2jwOPfhTnewJ22moLNhZDVchFAEzSDqNFJIP+Fdr484ch7cZ9/EqxRoXzDFY/9AfUjlOVaSX8vhvmMlCsmCk5MPz2Mk+EKLuFidU6r44zYO/7855AAVB+smFVt73znPwvv7FmBEKhbZ2Pyx7sbKE/NG7K+YUG1fRkHSHgEEK1GyMVC2vJr+Pu+/mN12mQp+iaKTtlmFHqPjLFKBnQxiAM6ohc8Z7Nw9VgbRYSAMkpzpEgeuTo1wBF9JjGf9NV6cUagP/PEH6tOBkb+bm9gxvjcX/9VgI0JILTaq8T8AoFabtTzDFy9vYLXePifDk0n90UkH3SOZVcTcb6I8N8w2i7BlXfoC4ZVLXDmf1xYpcl1/Y9GZSPMG4Mks7hJBeR41llnV5Gbur8Q6alxSgrEMZd54IsLHUhCDNDZs2bh3DHExKuP8mRTAackI5ZCAjyKKiXISMqeWLit7nP/WSfdOl8gVWfNKVT7JTGUinXsPS39MIapEeK693GLFQS04+Pr04pcwuawFzCqDxLLyJdaZ15z59ztBZnx+ZjXq4Xkg44sAIB3RhTx//gG5
+X-Microsoft-Antispam-Message-Info: 713PFmgYjdtcF9wNQnlyes4iYQpnLBDro1h+b8EtYulTXiRD7IHL6U0AzCh62qDwfA6GzcaFGv/Iw+NLnWNiQ/D0FmPY5MJ7wIastKaALZUmvGuhSTX8vOp63TYstJ+iPY214QlmSTRQbKWkCZ9DAx1LJUsZl3EpqU4YzlZ7aj24oiBHn4vbD6tVIdnjRHcldby2w4tVKYemDcCR80ipePgHDW5TPBNfGEiVJQzyLls1thyGKoJvGuPhHhlAxYETWjHoXqyX2OFUwfMKKX0wFcbO+SxPeaDotAl0o6G51cwi1exRdEOYzSL4uU66lGJjuh1KpTHZsAP7Hz9S/EDKXd78Xu4atlm8ab5bUrrPOb3kcOCp58RAGu9rudGNYhUeNmaUUDk/osRf2VK+Gvlc3yAiwsc9O7KVLX8reHn8tSJPEgjVuRiB39TPdd2857LbRLxqgsLsTOe+rBqxJ33eByLbye5H8wQK2eEoKJ3Xc6icWcObxY5EMEiznb7Nm4MsvTbfrHHTC8h2fwXJBrLwNg==
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
  IPV:NLI; SFV:NSPM; H:DS7PR11MB7859.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230028)(366004)(376002)(39860400002)(136003)(396003)(346002)(451199021)(66946007)(2906002)(478600001)(6862004)(6636002)(8676002)(316002)(4326008)(41300700001)(8936002)(66556008)(6666004)(5660300002)(66476007)(6486002)(1076003)(6506007)(26005)(6512007)(186003)(38100700002)(82960400001)(83380400001)(33656002)(86362001);
+ SFS:(13230028)(376002)(396003)(39860400002)(346002)(366004)(136003)(451199021)(6636002)(66556008)(66476007)(4326008)(66946007)(8676002)(8936002)(6862004)(316002)(41300700001)(2906002)(478600001)(5660300002)(66899021)(6486002)(966005)(6512007)(1076003)(6506007)(26005)(53546011)(186003)(33656002)(83380400001)(6666004)(82960400001)(86362001)(38100700002);
  DIR:OUT; SFP:1102; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?Fx7qR80auMY8W6FiP3FBue4Eoy0WQ/6+qd2R5BURAztuzAk22j9pW2GZjJVa?=
- =?us-ascii?Q?D5TU8lwsFsVAlc10MGZtJzljUzU3Z8zG8slJ4czO+cFBkGIxpPKua3aptijd?=
- =?us-ascii?Q?Sj7RRTCFXCypeXLIw0kLS/Y1h4frkKnv/QR+ify93FTU88WtBT9hyDOGVcoi?=
- =?us-ascii?Q?6bGl6TnIAgRSwArt5/IutbzQWmXl/+h0lQpDDjKpqYjEZRjWOODY2ygmvQsc?=
- =?us-ascii?Q?EutXii+ojyFTC473G/kd25wOcHuNjII67SR8T5Zoa5RIpXGZfLmseJO0utsN?=
- =?us-ascii?Q?Av1w2+4wI4TMAU5TsaBX9Wv83gYRELvwatYfTKlfoFy3ILmAlvH4yu1FmO9I?=
- =?us-ascii?Q?bdhH9SNDMvkT5lUhHwWjnDc4fbceLQz2p4Gr5zHYLnAT7qB+X1LFXK+NAQet?=
- =?us-ascii?Q?HEPlIOnOREULCzshrUmFh4KYX/1rBh2BWY52Iv35NsDOVoNDW1Mfi1WBuyFk?=
- =?us-ascii?Q?e1ZgTY+ZcrR8VwaQLJ1CTEa6kj1fnclvUk7zWFl9tfyqR1Wd/5GD0DnDHE5D?=
- =?us-ascii?Q?xGM8a87t03y17vswwDStZ7mJ9nw3oXMpIPCNdJK95drySJsLhIsO/YREnv9t?=
- =?us-ascii?Q?uYitPCBhovews++z454vg1atU0zUbB25hSj67Q0lpvTlZ8D6/Rp3tAFVWeK5?=
- =?us-ascii?Q?lQ01yqPoHAu2xsMXTd1wTcEbglYuNUHwf64OX94H3UpD+/UsYs/9wRrWsABU?=
- =?us-ascii?Q?fmybC4xu7zlDZiaPi2NUtx5VILkZI0entxK6araBQcVRh2eE473RtbFmJ1KL?=
- =?us-ascii?Q?NlhckIxlRSjqR4uYtIjipnLwFocok/qwnNHWEdXc49ZPmECeHYjncSEgEJzT?=
- =?us-ascii?Q?4FtkLEP8P4pxFVlEy9nKiwz8QIejV3L5oIoWQKIbQwFvfsuLA/EN9yQwF/I1?=
- =?us-ascii?Q?iT6P6MbUMo8dEtOU+jzqk6sKojUSIUKm1MOEnaMdYbnvGrlMcymGbQfZMlZ2?=
- =?us-ascii?Q?7zex2N9Veu9RU/iwrULtbiBtf/K1SMZmxUm2KZ5A5Vp7nv+oVydb0+5YDIeZ?=
- =?us-ascii?Q?7gkoiIWmJhMeaZ9kHnpZAPbBUb/QRURZH+JBGocBE3rd+DhtuVLPy/QOcX7d?=
- =?us-ascii?Q?Gj5t1+vaQxAswUsKji38xC8y/7Z9umOc9SpYyzn3T3T061Zu5jCY2D6SpgUn?=
- =?us-ascii?Q?NdS6hojGBPkhhjkA4Qdk9TSNKFIgBYrBEBjfjtgpM+rHb4OQoogg5K0+kD4Y?=
- =?us-ascii?Q?x7+R+bkUtMThFL2S+3fC9RT9PN5Z4GF1480bHDUVOTytnsL48MIlJbxOyg7i?=
- =?us-ascii?Q?HkA9MMIVRUdL/U2xYBU1H3++AtrWSCBNEcVla5Qhzxzys+xZ8Zm77+J6+z5c?=
- =?us-ascii?Q?X6xcWNemQcuXwdM97k8UAOWo732mQREaFY4ghyczY9hROE+/EN2m99anUfk+?=
- =?us-ascii?Q?Eslc4oibSm/NAc8qGWrBkc98gRVGIohcOl0NOvEa/jFR7lfAFIXEyRRzI9z7?=
- =?us-ascii?Q?Isu8nL++obaVglt1zs2t4xWO9XiorkDy0OZ7X4CvLnhUsPhdpQqkVv8/gVwR?=
- =?us-ascii?Q?2seHct2YXJlf7jWqtIS4MmfIuJUWmeH/fVVCVTzFu7Fs1eedE95OTjqe2KVH?=
- =?us-ascii?Q?7DNlocA3jBvh/LdF5oKnczlc8zuclJgoU2u/hbmZrPyrcm0lscMOSqqza6Ay?=
- =?us-ascii?Q?UQ=3D=3D?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: 819a88b3-7d6b-41cb-364a-08db6783f6b6
+X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?ow+OJ9OGYbDAupAYykVlPgq1cs5cIA3UyVPLmiTsy5K5PTRwYhjgDAjg5Zoy?=
+ =?us-ascii?Q?2kiRYoyEAmQoDY7/hmEAqBFbmLcuUAcFa6myab1J2f49YGVptXmjVkrcHVOU?=
+ =?us-ascii?Q?HdHp/PGccKKcBTpuQ5dWyMzTjMBT1bwhbWoo2X+xCktdYbXgboA8LRQnq0OD?=
+ =?us-ascii?Q?59jydPkKiYc5M4aiME8T+tpVUWu/dsNZZ/C32EFL9FvUwD8uOfXuKgeHcpjW?=
+ =?us-ascii?Q?9RWaOxamqRtXtGasybMVWS3FM36vd+8exVwWCWcVOBwR6E9FQDuJ13h6zFY7?=
+ =?us-ascii?Q?znTDFggy68gIBxkfd4fM+672RZSSb8+F/tHSrQ6w80atuBc/8kOPRsqrirKB?=
+ =?us-ascii?Q?fRBw957+JsobQMF/yBNOpnymAaYgb4RXqKNR2KlzM/jGPdByaCI/njgLZaEv?=
+ =?us-ascii?Q?3AxJPVVZu1TK7E8zdiSHYURCu5Va62KX35d3j89pndLyeLMn7b2iM25Z7q+K?=
+ =?us-ascii?Q?6m0VLY1tkeTc2s/74/+Lm1UkMDjOyH88M5fbBokQ0ffVxyln/BmJ03WaA5HQ?=
+ =?us-ascii?Q?3Ov7yaue4dOdi33cOVG+SoD1ZhrQ07mokeGxW2JBYAeR+jJC0EPN5obBxfP6?=
+ =?us-ascii?Q?YzXxmX9DqxkryCUP/e4TW2IPrV6YU2fn0qRe2mx/Iik9jf5KE4L39V3IJUzh?=
+ =?us-ascii?Q?Rqqy21lus5RFSTL5XjQ8XRdC5rDPKxhV99fz608rSWBOlrpD4dH/XdFwquwy?=
+ =?us-ascii?Q?tEJZ0byq28phGEsQxHwrrHineFdGxYBiYBmEwOzIS+PASI8mt4aAwFi17Anp?=
+ =?us-ascii?Q?yPBh5XIhHiBqBpe3i8hwVRQb1dpGsHPFjfmO0zXRyAesrJ3i+YM9U5W700O1?=
+ =?us-ascii?Q?pYeXUyfmD0mpdxytz/kwgqiB0M9OR/YECXrXirsnGQRGl03ZD873DeoDOs3O?=
+ =?us-ascii?Q?XZMDFm7WSj+/cugGeKZmr94x0DpqOqT1LhBBN03ApZnRiO6JKdwQjg8oJWsV?=
+ =?us-ascii?Q?C2b4iy+7VXYFsg26nRkkehFkNn7d+ltHrJI+y3iHc/XCLgaL1xIBwhqrfzGS?=
+ =?us-ascii?Q?L39hnd87TwEOMqigQJSyEt2LgqLSz0gbBEf9qeX+e1HbhizfvnlMu0vApXbu?=
+ =?us-ascii?Q?UPauMHNHOvsSuSs/eT5Le9kVoM/at6Gy2xut82a+58ikCT4Gs9LWD9+ZZkTb?=
+ =?us-ascii?Q?5VhmNGdKTPaLYzRWar+YZsZzAN7mY6+y/K4pCRd0XJyIImMy1jl1b2C7xVNw?=
+ =?us-ascii?Q?77Ck75u6jPtWWuYB73dMToFbGve4IbwtF/tUmMOHW5JBOhC57Ppu7+rqUfdR?=
+ =?us-ascii?Q?A0suHZOweZvfLb0Oe9QpJXTQzkBXGebmobaesDI3FRdZJATDgVWjr+5GxEld?=
+ =?us-ascii?Q?hsiIAIj1Rkk6roOXT+bDZF4+wzGhoX6UwQCFESoF0PjKlACjKxYta6Ne+pnI?=
+ =?us-ascii?Q?maYYAKklUtnoP3Et1Wp2SwfsoitlFGTA4hPb/GdRJRcZt9gnHz4oDEvyXOhP?=
+ =?us-ascii?Q?4JFOq75Vm6zISZmb9wRlw0MV5fAwBbsPnoE0iQGvSkebMNF1VMTBzoVxEULm?=
+ =?us-ascii?Q?mZk250kK8MRX2Uc7yJi1QHSdsMJdCGUof5xp1Rtuk+jQXAEen0hJ8v2rzDnQ?=
+ =?us-ascii?Q?MH8mRXClaTJzzGBP9NokZh7uGV7g4HL6fWoaKhgTTVrMB01bVBjo9uzPI6Pq?=
+ =?us-ascii?Q?jA=3D=3D?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: e87e4e0c-6516-4c96-d5e2-08db6785622f
 X-MS-Exchange-CrossTenant-AuthSource: DS7PR11MB7859.namprd11.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 07 Jun 2023 18:21:08.3625 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 07 Jun 2023 18:31:18.0514 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: gpvCN+Sged7+WPXd1FGf5gd5rPA1YcwG8j6qT04+eBml+zifW3TxITwsJtP/dfkTOI3xihahVmwhLOQvrVHBxi+6NESJyvNSshRVjA/3UIo=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: IA1PR11MB7871
+X-MS-Exchange-CrossTenant-UserPrincipalName: OgCdEQzrkVa6/gKJ2gnZ/QApMmZlq6hihocjcw/mtvSQRxEchGNXxUd+aqhNXitKdPkn5sa4eaVMnd/g0XATz1PDSkeOrf7cD1NYfqot24c=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: CH3PR11MB8313
 X-OriginatorOrg: intel.com
-Subject: Re: [Intel-xe] [PATCH] [RFC]drm/xe: Sysfs entries to query fused
- min, max frequency of lmem
+Subject: Re: [Intel-xe] [PATCH 1/1] drm/xe: Report tile count from device
+ query api.
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -142,112 +144,116 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-xe@lists.freedesktop.org
+Cc: "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Tue, Jun 06, 2023 at 01:21:42AM -0700, Sujaritha Sundaresan wrote:
-> Signed-off-by: Sujaritha Sundaresan <sujaritha.sundaresan@intel.com>
-> ---
->  drivers/gpu/drm/xe/regs/xe_regs.h |  7 +++++
->  drivers/gpu/drm/xe/xe_guc_pc.c    | 44 +++++++++++++++++++++++++++++++
->  2 files changed, 51 insertions(+)
+On Wed, Jun 07, 2023 at 04:49:09AM +0000, Ghimiray, Himal Prasad wrote:
 > 
-> diff --git a/drivers/gpu/drm/xe/regs/xe_regs.h b/drivers/gpu/drm/xe/regs/xe_regs.h
-> index 8be616a1bd51..bd7b26296402 100644
-> --- a/drivers/gpu/drm/xe/regs/xe_regs.h
-> +++ b/drivers/gpu/drm/xe/regs/xe_regs.h
-> @@ -101,4 +101,11 @@
->  #define DSMBASE					XE_REG(0x1080C0)
->  #define   BDSM_MASK				REG_GENMASK64(63, 20)
->  
-> +#define   XEHP_PCODE_FREQUENCY_CONFIG           0x6e
-> +/* XEHP_PCODE_FREQUENCY_CONFIG sub-commands (param1) */
-> +#define     PCODE_MBOX_FC_SC_READ_FUSED_P0      0x0
-> +#define     PCODE_MBOX_FC_SC_READ_FUSED_PN      0x1
-> +/* PCODE_MBOX_DOMAIN_* - mailbox domain IDs */
-> +#define     PCODE_MBOX_DOMAIN_HBM               0x2
-> +
->  #endif
-> diff --git a/drivers/gpu/drm/xe/xe_guc_pc.c b/drivers/gpu/drm/xe/xe_guc_pc.c
-> index 67faa9ee0006..1b349ce74c3d 100644
-> --- a/drivers/gpu/drm/xe/xe_guc_pc.c
-> +++ b/drivers/gpu/drm/xe/xe_guc_pc.c
-> @@ -453,6 +453,48 @@ static ssize_t freq_rpn_show(struct device *dev,
->  }
->  static DEVICE_ATTR_RO(freq_rpn);
->  
-> +static ssize_t freq_mem_rp0_show(struct device *dev,
-> +				 struct device_attribute *attr, char *buff)
-> +{
-> +	struct kobject *kobj = &dev->kobj;
-> +	struct xe_gt *gt = kobj_to_gt(kobj);
-> +	u32 val;
-> +	int err;
-> +
-> +	err = xe_pcode_read(dev, XEHPSDV_PCODE_FREQUENCY_CONFIG,
+> 
+> > -----Original Message-----
+> > From: Roper, Matthew D <matthew.d.roper@intel.com>
+> > Sent: 07 June 2023 01:26
+> > To: Ghimiray, Himal Prasad <himal.prasad.ghimiray@intel.com>
+> > Cc: intel-xe@lists.freedesktop.org; Dugast, Francois
+> > <francois.dugast@intel.com>
+> > Subject: Re: [PATCH 1/1] drm/xe: Report tile count from device query api.
+> > 
+> > On Tue, Jun 06, 2023 at 03:19:29PM +0530, Himal Prasad Ghimiray wrote:
+> > > Cc: Matt Roper <matthew.d.roper@intel.com>
+> > > Cc: Francois Dugast <francois.dugast@intel.com>
+> > >
+> > > Signed-off-by: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
+> > 
+> > Does userspace actually need this reported in the device query?  It seems more
+> > likely that they're going to need a tile-based equivalent of 'drm_xe_query_gt'
+> > that returns not only the tile count, but also further details about each tile.  If
+> > that's the case, then also adding this count as an extra field to the device-level
+> > query seems redundant (and the existing GT count seems like it's probably
+> > redundant as well).
+> Hi Matt,
+> 
+> From userspace  perspective the requirement is to know number of tiles supported by device 
+> and agreed 'drm_xe_query_tile' should provide this info along with other details.
+> Can you please provide your inputs on what other details can be part of tile query ? 
 
-This doesn't match the #define above (XEHPSDV vs XEHP).
+It's really something that would need to be discussed and agreed upon
+with the userspace teams, but I imagine details about VRAM might be
+something they'd want to receive via such a query.
 
-> +			    PCODE_MBOX_FC_SC_READ_FUSED_P0,
-> +			    PCODE_MBOX_DOMAIN_HBM, &val);
-> +	if (err)
-> +		return err;
-> +
-> +	/* data_out - Fused P0 for domain ID in units of 50 MHz */
-> +	val *= GT_FREQUENCY_MULTIPLIER;
-> +
-> +	return sysfs_emit(buff, "%u\n", val);
-> +}
-> +static DEVICE_ATTR_RO(freq_mem_rp0);
-> +
-> +static ssize_t freq_mem_rpn_show(struct device *dev,
-> +				 struct device_attribute *attr, char *buff)
-> +{
-> +	struct kobject *kobj = &dev->kobj;
-> +	struct xe_gt *gt = kobj_to_gt(kobj);
-> +	u32 val;
-> +	int err;
-> +
-> +	err = xe_pcode_read(dev, XEHPSDV_PCODE_FREQUENCY_CONFIG,
-> +			    PCODE_MBOX_FC_SC_READ_FUSED_PN,
-> +			    PCODE_MBOX_DOMAIN_HBM, &val);
-> +	if (err)
-> +		return err;
-> +
-> +	/* data_out - Fused P0 for domain ID in units of 50 MHz */
-> +	val *= GT_FREQUENCY_MULTIPLIER;
-> +
-> +	return sysfs_emit(buff, "%u\n", val);
-> +}
-> +static DEVICE_ATTR_RO(freq_mem_rpn);
-> +
->  static ssize_t freq_min_show(struct device *dev,
->  			     struct device_attribute *attr, char *buf)
->  {
-> @@ -631,6 +673,8 @@ static const struct attribute *pc_attrs[] = {
->  	&dev_attr_freq_rp0.attr,
->  	&dev_attr_freq_rpe.attr,
->  	&dev_attr_freq_rpn.attr,
-> +	&dev_attr_freq_mem_rp0.attr,
-> +	&dev_attr_freq_mem_rpn.attr,
+> > 
+> > Are there patches for any of the userspace components yet that show
+> > how/when they'd use this?
+> https://patchwork.freedesktop.org/series/118927/ exposes per tile vram addr_range via sysfs. 
+> While writing IGT to test this sysfs entry, I came across the requirement. IGT patches are WIP.
+> 
+> Just a thought, will it makes sense to expose number of tiles device supports by sysfs ? 
+> Something like: <device-properties>/number_tiles
+> IMO this info should be available to userspace even without making any code changes .
+> There may be other such potential candidates which can fall under device-properties.
 
-If these are related to LMEM frequency should they be in some other list
-that only gets created if we're running on a platform that has LMEM?
-
-For that matter, does it make sense to have LMEM items (which are a
-tile-based concept) under a per-GT sysfs?  Or would it make more sense
-to have these under a separate per-tile sysfs?
+That's really something that we need guidance on from the userspace
+teams (mesa, media, compute, etc.).  It's hard for us kernel developers
+to really know exactly what the best uapi would be for userspace.
+That's part of why the DRM subsystem requires that any uapi change
+proposed for i915 or Xe can't be added to the driver until the
+corresponding userspace patches have also been developed and fully
+reviewed.  We don't want to write UAPI that winds up not really meeting
+userspace's needs and then be stuck supporting that broken uapi forever.
 
 
 Matt
 
->  	&dev_attr_freq_min.attr,
->  	&dev_attr_freq_max.attr,
->  	&dev_attr_rc_status.attr,
-> -- 
-> 2.39.1
 > 
+> Himal 
+> > 
+> > 
+> > Matt
+> > 
+> > > ---
+> > >  drivers/gpu/drm/xe/xe_query.c | 1 +
+> > >  include/uapi/drm/xe_drm.h     | 3 ++-
+> > >  2 files changed, 3 insertions(+), 1 deletion(-)
+> > >
+> > > diff --git a/drivers/gpu/drm/xe/xe_query.c
+> > > b/drivers/gpu/drm/xe/xe_query.c index c4165fa3428e..54efbefd663f
+> > > 100644
+> > > --- a/drivers/gpu/drm/xe/xe_query.c
+> > > +++ b/drivers/gpu/drm/xe/xe_query.c
+> > > @@ -197,6 +197,7 @@ static int query_config(struct xe_device *xe, struct
+> > drm_xe_device_query *query)
+> > >  		hweight_long(xe->info.mem_region_mask);
+> > >  	config->info[XE_QUERY_CONFIG_MAX_ENGINE_PRIORITY] =
+> > >  		xe_engine_device_get_max_priority(xe);
+> > > +	config->info[XE_QUERY_CONFIG_TILE_COUNT] = xe->info.tile_count;
+> > >
+> > >  	if (copy_to_user(query_ptr, config, size)) {
+> > >  		kfree(config);
+> > > diff --git a/include/uapi/drm/xe_drm.h b/include/uapi/drm/xe_drm.h
+> > > index 0ebc50beb5e5..8e552aa55037 100644
+> > > --- a/include/uapi/drm/xe_drm.h
+> > > +++ b/include/uapi/drm/xe_drm.h
+> > > @@ -185,7 +185,8 @@ struct drm_xe_query_config {
+> > >  #define XE_QUERY_CONFIG_GT_COUNT		4
+> > >  #define XE_QUERY_CONFIG_MEM_REGION_COUNT	5
+> > >  #define XE_QUERY_CONFIG_MAX_ENGINE_PRIORITY	6
+> > > -#define XE_QUERY_CONFIG_NUM_PARAM
+> > 	XE_QUERY_CONFIG_MAX_ENGINE_PRIORITY + 1
+> > > +#define XE_QUERY_CONFIG_TILE_COUNT		7
+> > > +#define XE_QUERY_CONFIG_NUM_PARAM
+> > 	XE_QUERY_CONFIG_TILE_COUNT + 1
+> > >  	__u64 info[];
+> > >  };
+> > >
+> > > --
+> > > 2.25.1
+> > >
+> > 
+> > --
+> > Matt Roper
+> > Graphics Software Engineer
+> > Linux GPU Platform Enablement
+> > Intel Corporation
 
 -- 
 Matt Roper
