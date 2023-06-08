@@ -4,30 +4,48 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9A7DEC7EE29
-	for <intel-xe@archiver.kernel.org>; Thu,  8 Jun 2023 19:37:45 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id D4D62C7EE25
+	for <intel-xe@archiver.kernel.org>; Thu,  8 Jun 2023 20:09:02 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3298210E148;
-	Thu,  8 Jun 2023 19:37:45 +0000 (UTC)
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id 5122D10E148;
- Thu,  8 Jun 2023 19:37:42 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id B3AB1AADDA;
- Thu,  8 Jun 2023 19:37:41 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============0915418979488030979=="
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7340B10E610;
+	Thu,  8 Jun 2023 20:09:02 +0000 (UTC)
+Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5DB7C10E612
+ for <intel-xe@lists.freedesktop.org>; Thu,  8 Jun 2023 20:09:01 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1686254941; x=1717790941;
+ h=from:to:cc:subject:date:message-id:in-reply-to:
+ references:mime-version:content-transfer-encoding;
+ bh=6Mrv/n6LsEZANEClDVrlXpu1l5hg6caEXVA5Clv4OUU=;
+ b=VxkYPf2g+EIV7Q4tBEzRkmqAemosqtHgc6k4pzobA4uAp2/33iWTO4uP
+ hNVFBrYfb0RmM6TvhKPIEC/F9Vtm0KOvbsGbn+01WRI2+qQcXGsaS9N0X
+ LW2YoQfZkvanrKQZGtDly3pppokr/ShHT5SwMDHcfeZfwjlFcFXNVuATV
+ OGtf+hTOVpvXUsR3Vbh7H6B79GEhXXQ2Z/QmxsPq7X9jK5UASDeTE/SFa
+ yJlrTEc91hFtwCM5e2haAXLobU9yp+WP8t21oOGSG5uxgSPybSCRQjIOJ
+ VNB4eO0Bj2c/jvyF8BBVo/Y2xZS3bt0sOR15fF/ZdsFj6q7+2q7aLK1Ka A==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10735"; a="357427594"
+X-IronPort-AV: E=Sophos;i="6.00,227,1681196400"; d="scan'208";a="357427594"
+Received: from orsmga008.jf.intel.com ([10.7.209.65])
+ by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 08 Jun 2023 13:09:00 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6600,9927,10735"; a="739888055"
+X-IronPort-AV: E=Sophos;i="6.00,227,1681196400"; d="scan'208";a="739888055"
+Received: from lstrano-desk.jf.intel.com ([10.24.89.184])
+ by orsmga008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 08 Jun 2023 13:08:44 -0700
+From: Matthew Brost <matthew.brost@intel.com>
+To: <intel-xe@lists.freedesktop.org>
+Date: Thu,  8 Jun 2023 13:08:57 -0700
+Message-Id: <20230608200857.124884-5-matthew.brost@intel.com>
+X-Mailer: git-send-email 2.34.1
+In-Reply-To: <20230608200857.124884-1-matthew.brost@intel.com>
+References: <20230608200857.124884-1-matthew.brost@intel.com>
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Matthew Brost" <matthew.brost@intel.com>
-Date: Thu, 08 Jun 2023 19:37:41 -0000
-Message-ID: <168625306173.18384.13977063423035209583@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20230608182838.46857-1-matthew.brost@intel.com>
-In-Reply-To: <20230608182838.46857-1-matthew.brost@intel.com>
-Subject: [Intel-xe] =?utf-8?q?=E2=97=8B_CI=2EBAT=3A_info_for_drm/xe/guc?=
- =?utf-8?q?=3A_Read_HXG_fields_from_DW1_of_G2H_response?=
+Content-Transfer-Encoding: 8bit
+Subject: [Intel-xe] [PATCH 4/4] drm/xe/guc: Print doorbell ID in GuC engine
+ debugfs / error capture
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -39,68 +57,50 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
-Cc: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============0915418979488030979==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+This information is helpful so print it.
 
-== Series Details ==
+Signed-off-by: Matthew Brost <matthew.brost@intel.com>
+---
+ drivers/gpu/drm/xe/xe_guc_submit.c       | 2 ++
+ drivers/gpu/drm/xe/xe_guc_submit_types.h | 2 ++
+ 2 files changed, 4 insertions(+)
 
-Series: drm/xe/guc: Read HXG fields from DW1 of G2H response
-URL   : https://patchwork.freedesktop.org/series/119095/
-State : info
+diff --git a/drivers/gpu/drm/xe/xe_guc_submit.c b/drivers/gpu/drm/xe/xe_guc_submit.c
+index 5d503ca50b27..a3961974f01c 100644
+--- a/drivers/gpu/drm/xe/xe_guc_submit.c
++++ b/drivers/gpu/drm/xe/xe_guc_submit.c
+@@ -1966,6 +1966,7 @@ xe_guc_engine_snapshot_capture(struct xe_engine *e)
+ 	snapshot->sched_props.timeslice_us = e->sched_props.timeslice_us;
+ 	snapshot->sched_props.preempt_timeout_us =
+ 		e->sched_props.preempt_timeout_us;
++	snapshot->doorbell_id = e->guc->doorbell_id;
+ 
+ 	snapshot->lrc = kmalloc_array(e->width, sizeof(struct lrc_snapshot),
+ 				      GFP_ATOMIC);
+@@ -2048,6 +2049,7 @@ xe_guc_engine_snapshot_print(struct xe_guc_submit_engine_snapshot *snapshot,
+ 		   snapshot->sched_props.timeslice_us);
+ 	drm_printf(p, "\tPreempt timeout: %u (us)\n",
+ 		   snapshot->sched_props.preempt_timeout_us);
++	drm_printf(p, "\tDoorbell ID: %u\n", snapshot->doorbell_id);
+ 
+ 	for (i = 0; snapshot->lrc && i < snapshot->width; ++i) {
+ 		drm_printf(p, "\tHW Context Desc: 0x%08x\n",
+diff --git a/drivers/gpu/drm/xe/xe_guc_submit_types.h b/drivers/gpu/drm/xe/xe_guc_submit_types.h
+index 6765b2c6eab1..b44210bfb794 100644
+--- a/drivers/gpu/drm/xe/xe_guc_submit_types.h
++++ b/drivers/gpu/drm/xe/xe_guc_submit_types.h
+@@ -92,6 +92,8 @@ struct xe_guc_submit_engine_snapshot {
+ 	u32 logical_mask;
+ 	/** @width: width (number BB submitted per exec) of this engine */
+ 	u16 width;
++	/** @doorbell_id: doorbell id */
++	u16 doorbell_id;
+ 	/** @refcount: ref count of this engine */
+ 	u32 refcount;
+ 	/**
+-- 
+2.34.1
 
-== Summary ==
-
-Participating hosts:
-bat-atsm-2
-bat-dg2-oem2
-bat-adlp-7
-Missing hosts results[0]:
-Results: [xe-pw-119095v1](https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-119095v1/index.html)
-
-
-
---===============0915418979488030979==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/xe/guc: Read HXG fields from DW1 of G2H response</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/119095/">https://patchwork.freedesktop.org/series/119095/</a></td></tr>
-<tr><td><b>State:</b></td><td>info</td></tr>
-
-</table>
-
-
-    <p>Participating hosts:<br />
-bat-atsm-2<br />
-bat-dg2-oem2<br />
-bat-adlp-7<br />
-Missing hosts results[0]:<br />
-Results: <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-119095v1/index.html">xe-pw-119095v1</a></p>
-
-</body>
-</html>
-
---===============0915418979488030979==--
