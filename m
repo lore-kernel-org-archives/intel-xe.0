@@ -4,30 +4,30 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id C2039C7EE25
-	for <intel-xe@archiver.kernel.org>; Thu,  8 Jun 2023 18:56:20 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 88404C7EE23
+	for <intel-xe@archiver.kernel.org>; Thu,  8 Jun 2023 18:58:08 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 64C1C10E606;
-	Thu,  8 Jun 2023 18:56:20 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5B4B810E0C8;
+	Thu,  8 Jun 2023 18:58:08 +0000 (UTC)
 Received: from emeril.freedesktop.org (emeril.freedesktop.org
  [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id 28A7810E60B;
- Thu,  8 Jun 2023 18:56:18 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTP id B53CB10E0C8;
+ Thu,  8 Jun 2023 18:58:06 +0000 (UTC)
 Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 2249FAADEA;
- Thu,  8 Jun 2023 18:56:18 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============7366384501526679847=="
+ by emeril.freedesktop.org (Postfix) with ESMTP id ADE3DAADEA;
+ Thu,  8 Jun 2023 18:58:06 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Matt Roper" <matthew.d.roper@intel.com>
-Date: Thu, 08 Jun 2023 18:56:18 -0000
-Message-ID: <168625057811.18385.9521616350652759670@emeril.freedesktop.org>
+To: "Matthew Brost" <matthew.brost@intel.com>
+Date: Thu, 08 Jun 2023 18:58:06 -0000
+Message-ID: <168625068668.18384.11941361030564686388@emeril.freedesktop.org>
 X-Patchwork-Hint: ignore
-References: <20230608181217.2385932-1-matthew.d.roper@intel.com>
-In-Reply-To: <20230608181217.2385932-1-matthew.d.roper@intel.com>
-Subject: [Intel-xe] =?utf-8?q?=E2=97=8B_CI=2EBAT=3A_info_for_drm/xe/mtl?=
- =?utf-8?q?=3A_Add_some_initial_MTL_workarounds?=
+References: <20230608182838.46857-1-matthew.brost@intel.com>
+In-Reply-To: <20230608182838.46857-1-matthew.brost@intel.com>
+Subject: [Intel-xe] =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_f?=
+ =?utf-8?q?or_drm/xe/guc=3A_Read_HXG_fields_from_DW1_of_G2H_response?=
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -44,63 +44,17 @@ Cc: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============7366384501526679847==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
 == Series Details ==
 
-Series: drm/xe/mtl: Add some initial MTL workarounds
-URL   : https://patchwork.freedesktop.org/series/119094/
-State : info
+Series: drm/xe/guc: Read HXG fields from DW1 of G2H response
+URL   : https://patchwork.freedesktop.org/series/119095/
+State : success
 
 == Summary ==
 
-Participating hosts:
-bat-atsm-2
-bat-dg2-oem2
-bat-adlp-7
-Missing hosts results[0]:
-Results: [xe-pw-119094v1](https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-119094v1/index.html)
+=== Applying kernel patches on branch 'drm-xe-next' with base: ===
+Base commit: c075cadc4 drm/xe: Fix some formatting issues in uAPI
+=== git am output follows ===
+Applying: drm/xe/guc: Read HXG fields from DW1 of G2H response
 
 
-
---===============7366384501526679847==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/xe/mtl: Add some initial MTL workarounds</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/119094/">https://patchwork.freedesktop.org/series/119094/</a></td></tr>
-<tr><td><b>State:</b></td><td>info</td></tr>
-
-</table>
-
-
-    <p>Participating hosts:<br />
-bat-atsm-2<br />
-bat-dg2-oem2<br />
-bat-adlp-7<br />
-Missing hosts results[0]:<br />
-Results: <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-119094v1/index.html">xe-pw-119094v1</a></p>
-
-</body>
-</html>
-
---===============7366384501526679847==--
