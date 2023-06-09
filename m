@@ -4,47 +4,30 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id D049BC7EE2E
-	for <intel-xe@archiver.kernel.org>; Fri,  9 Jun 2023 18:49:25 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0057AC7EE29
+	for <intel-xe@archiver.kernel.org>; Fri,  9 Jun 2023 19:10:31 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8AF3810E6D6;
-	Fri,  9 Jun 2023 18:49:25 +0000 (UTC)
-Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7EB0C10E6D6
- for <intel-xe@lists.freedesktop.org>; Fri,  9 Jun 2023 18:49:23 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1686336563; x=1717872563;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=r1mGC1UAEJ9msWoTJvdZNNJ28Wj94mtwJM9S/L3Zz3o=;
- b=ZAKWvmRU1ebrIHA5dGyXotXPz415/fA2Kj9EgKhL40A1kQwyPY3s60qE
- mZ9S4z6hAuIefz0qbg2ScsD/38bCNuWIPV7+rz/OaN+ADxpDWc4uV2xZF
- FvdVukdhQqJ/qIhGjkVsZe6fHxXPom0JofZzIXFYym/qN9hbrMu8AYpld
- 5aD6kkDcaxYTa3iKTc4mZhYCuL4P2V2ARcDdyZPMMzQYoi7YeSVKkWAKz
- o7HA2fJVhNpRdIUTB2ZfxEzvikE0rAnrS7TjUBRDgSt0ba0d/988KE8Em
- 9UtKS9kKzuVMM/lB6RmRa8gY2igJKnrBI3kzWDgzvztb5U7klyxuDkJfR A==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10736"; a="360148663"
-X-IronPort-AV: E=Sophos;i="6.00,230,1681196400"; d="scan'208";a="360148663"
-Received: from fmsmga005.fm.intel.com ([10.253.24.32])
- by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 09 Jun 2023 11:49:23 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10736"; a="1040581386"
-X-IronPort-AV: E=Sophos;i="6.00,230,1681196400"; d="scan'208";a="1040581386"
-Received: from aravind-dev.iind.intel.com ([10.145.162.80])
- by fmsmga005-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 09 Jun 2023 11:49:21 -0700
-From: Aravind Iddamsetty <aravind.iddamsetty@intel.com>
-To: intel-xe@lists.freedesktop.org
-Date: Sat, 10 Jun 2023 00:22:49 +0530
-Message-Id: <20230609185249.2032370-2-aravind.iddamsetty@intel.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20230609185249.2032370-1-aravind.iddamsetty@intel.com>
-References: <20230609185249.2032370-1-aravind.iddamsetty@intel.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id CBEF910E6D8;
+	Fri,  9 Jun 2023 19:10:31 +0000 (UTC)
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 9873B10E6D8;
+ Fri,  9 Jun 2023 19:10:30 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 925E3AADE3;
+ Fri,  9 Jun 2023 19:10:30 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============5137342919969151770=="
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Subject: [Intel-xe] [PATCH 1/1] drm/xe: Fix stolen memory size calculation
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Matthew Brost" <matthew.brost@intel.com>
+Date: Fri, 09 Jun 2023 19:10:30 -0000
+Message-ID: <168633783059.15973.15802167229474824899@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20230609182627.143150-1-matthew.brost@intel.com>
+In-Reply-To: <20230609182627.143150-1-matthew.brost@intel.com>
+Subject: [Intel-xe] =?utf-8?q?=E2=97=8B_CI=2EBAT=3A_info_for_A_rebind_fix?=
+ =?utf-8?q?es?=
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -56,48 +39,68 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Cc: matthew.d.roper@intel.com
+Reply-To: intel-xe@lists.freedesktop.org
+Cc: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-The stolen memory base should be derived from GSMBASE or
-FLAT_CCS_BASE_ADDR when flat ccs is applicable.
+--===============5137342919969151770==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-Fixes: acf067c2f5a5 ("drm/xe: Implement stolen memory.")
+== Series Details ==
 
-Signed-off-by: Aravind Iddamsetty <aravind.iddamsetty@intel.com>
----
- drivers/gpu/drm/xe/xe_ttm_stolen_mgr.c | 7 +++----
- 1 file changed, 3 insertions(+), 4 deletions(-)
+Series: A rebind fixes
+URL   : https://patchwork.freedesktop.org/series/119159/
+State : info
 
-diff --git a/drivers/gpu/drm/xe/xe_ttm_stolen_mgr.c b/drivers/gpu/drm/xe/xe_ttm_stolen_mgr.c
-index 21ecc734f10a..29ce69bf8200 100644
---- a/drivers/gpu/drm/xe/xe_ttm_stolen_mgr.c
-+++ b/drivers/gpu/drm/xe/xe_ttm_stolen_mgr.c
-@@ -54,7 +54,6 @@ bool xe_ttm_stolen_cpu_access_needs_ggtt(struct xe_device *xe)
- static s64 detect_bar2_dgfx(struct xe_device *xe, struct xe_ttm_stolen_mgr *mgr)
- {
- 	struct xe_tile *tile = xe_device_get_root_tile(xe);
--	struct xe_gt *mmio = xe_root_mmio_gt(xe);
- 	struct pci_dev *pdev = to_pci_dev(xe->drm.dev);
- 	u64 stolen_size;
- 	u64 tile_offset;
-@@ -66,12 +65,12 @@ static s64 detect_bar2_dgfx(struct xe_device *xe, struct xe_ttm_stolen_mgr *mgr)
- 		return 0;
- 	}
- 
--	/* Use DSM base address instead for stolen memory */
--	mgr->stolen_base = (xe_mmio_read64(mmio, DSMBASE) & BDSM_MASK) - tile_offset;
-+	/* stolen base should be at end of usable vram */
-+	mgr->stolen_base = vram_size;
- 	if (drm_WARN_ON(&xe->drm, tile_size < mgr->stolen_base))
- 		return 0;
- 
--	stolen_size = tile_size - mgr->stolen_base;
-+	stolen_size = tile_size - vram_size;
- 
- 	/* Verify usage fits in the actual resource available */
- 	if (mgr->stolen_base + stolen_size <= pci_resource_len(pdev, GEN12_LMEM_BAR))
--- 
-2.25.1
+== Summary ==
 
+Participating hosts:
+bat-atsm-2
+bat-dg2-oem2
+bat-adlp-7
+Missing hosts results[0]:
+Results: [xe-pw-119159v1](https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-119159v1/index.html)
+
+
+
+--===============5137342919969151770==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>A rebind fixes</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/119159/">https://patchwork.freedesktop.org/series/119159/</a></td></tr>
+<tr><td><b>State:</b></td><td>info</td></tr>
+
+</table>
+
+
+    <p>Participating hosts:<br />
+bat-atsm-2<br />
+bat-dg2-oem2<br />
+bat-adlp-7<br />
+Missing hosts results[0]:<br />
+Results: <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-119159v1/index.html">xe-pw-119159v1</a></p>
+
+</body>
+</html>
+
+--===============5137342919969151770==--
