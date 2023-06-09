@@ -4,30 +4,30 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id BB23AC7EE29
-	for <intel-xe@archiver.kernel.org>; Fri,  9 Jun 2023 18:28:44 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id C14A2C7EE37
+	for <intel-xe@archiver.kernel.org>; Fri,  9 Jun 2023 18:28:58 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 93A7789343;
-	Fri,  9 Jun 2023 18:28:44 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8C02810E0AE;
+	Fri,  9 Jun 2023 18:28:58 +0000 (UTC)
 Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id 4C92889343;
- Fri,  9 Jun 2023 18:28:43 +0000 (UTC)
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id ECADE10E0AE;
+ Fri,  9 Jun 2023 18:28:56 +0000 (UTC)
 Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 44B9DAADF2;
- Fri,  9 Jun 2023 18:28:43 +0000 (UTC)
+ by emeril.freedesktop.org (Postfix) with ESMTP id E935CAADF2;
+ Fri,  9 Jun 2023 18:28:56 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: "Matthew Brost" <matthew.brost@intel.com>
-Date: Fri, 09 Jun 2023 18:28:43 -0000
-Message-ID: <168633532325.15972.15817250847358582420@emeril.freedesktop.org>
+Date: Fri, 09 Jun 2023 18:28:56 -0000
+Message-ID: <168633533695.15970.16823495643927320789@emeril.freedesktop.org>
 X-Patchwork-Hint: ignore
 References: <20230609182627.143150-1-matthew.brost@intel.com>
 In-Reply-To: <20230609182627.143150-1-matthew.brost@intel.com>
-Subject: [Intel-xe] =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_f?=
- =?utf-8?q?or_A_rebind_fixes?=
+Subject: [Intel-xe] =?utf-8?q?=E2=9C=97_CI=2Echeckpatch=3A_warning_for_A_?=
+ =?utf-8?q?rebind_fixes?=
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -48,15 +48,44 @@ Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 Series: A rebind fixes
 URL   : https://patchwork.freedesktop.org/series/119159/
-State : success
+State : warning
 
 == Summary ==
 
-=== Applying kernel patches on branch 'drm-xe-next' with base: ===
-Base commit: e24e730ad drm/xe/guc: Read HXG fields from DW1 of G2H response
-=== git am output follows ===
-Applying: drm/xe: Handle unmapped userptr in analyze VM
-Applying: drm/xe: Ban a VM if rebind worker hits an error
-Applying: drm/xe: Use Xe ordered workqueue for rebind worker
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+c7d32770e3cd31d9fc134ce41f329b10aa33ee15
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit 7e8642bb832f127fa589773c3df17c35c6cf5909
+Author: Matthew Brost <matthew.brost@intel.com>
+Date:   Fri Jun 9 11:26:27 2023 -0700
+
+    drm/xe: Use Xe ordered workqueue for rebind worker
+    
+    A mix of the system unbound wq and Xe ordered wq was used for the
+    rebind, only use the Xe ordered wq. This will ensure only 1 rebind is
+    occuring at a time providing a somewhat clunky work around for short
+    comings in TTM wrt to memory contention. Once the TTM memory contention
+    is resolved we should be able to use a dedicated non-ordered workqueue.
+    
+    Also add helper to queue rebind worker to avoid using wrong workqueue
+    going forward.
+    
+    Signed-off-by: Matthew Brost <matthew.brost@intel.com>
++ /mt/dim checkpatch e24e730ad5d4c3af599fa4e1e05527120adca322 drm-intel
+0ea023594 drm/xe: Handle unmapped userptr in analyze VM
+aa3d746e3 drm/xe: Ban a VM if rebind worker hits an error
+7e8642bb8 drm/xe: Use Xe ordered workqueue for rebind worker
+-:8: WARNING:TYPO_SPELLING: 'occuring' may be misspelled - perhaps 'occurring'?
+#8: 
+occuring at a time providing a somewhat clunky work around for short
+^^^^^^^^
+
+total: 0 errors, 1 warnings, 0 checks, 29 lines checked
 
 
