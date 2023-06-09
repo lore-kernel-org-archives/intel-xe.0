@@ -4,45 +4,46 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6E62DC7EE29
-	for <intel-xe@archiver.kernel.org>; Fri,  9 Jun 2023 06:58:47 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id BC870C7EE2E
+	for <intel-xe@archiver.kernel.org>; Fri,  9 Jun 2023 07:37:25 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 129D610E635;
-	Fri,  9 Jun 2023 06:58:47 +0000 (UTC)
-Received: from madras.collabora.co.uk (madras.collabora.co.uk
- [IPv6:2a00:1098:0:82:1000:25:2eeb:e5ab])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 04CBC10E633;
- Fri,  9 Jun 2023 06:58:44 +0000 (UTC)
-Received: from localhost (unknown [IPv6:2a01:e0a:2c:6930:5cf4:84a1:2763:fe0d])
- (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
- key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
- (No client certificate requested) (Authenticated sender: bbrezillon)
- by madras.collabora.co.uk (Postfix) with ESMTPSA id A68B36606F22;
- Fri,  9 Jun 2023 07:58:42 +0100 (BST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
- s=mail; t=1686293923;
- bh=pA/SzzFVMBRbMcHr5oZaDixSjybEV+kk5rXcdghgZ2Q=;
- h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
- b=aimsC9Qg4bjx7M1k1RQReTxIhySrRFDwBJ0mSAjzQ8aEeJ3Mk57rvIBoLd1KCDmv9
- r9idcEfEx+b3wNZ6kIKxPphN7arEeb3vuBxCzCrBmZP43Q0XNW+dQ/EK1E9giJqM0y
- nUoPq8bpnlBe0ss7gCYnCDNXBmvxj5qyfSdg2aIPHk4GZEf42VgZ1nIEtiHoHlcmnX
- vx94ZWpZ80yv1+gzhrFuEECbORRdteef7L6SXsWLb10DZHqy4FnjjKnwOYUi3Fqnfo
- QE98j2gKTRRLDinJR24ImB+WZKiNfOAoCPUVCX4cXYZ7yXobS+bIQ6+WrXQTMyoJ4m
- FPSxjjOIK1IvA==
-Date: Fri, 9 Jun 2023 08:58:39 +0200
-From: Boris Brezillon <boris.brezillon@collabora.com>
-To: Matthew Brost <matthew.brost@intel.com>
-Message-ID: <20230609085839.3fc9e237@collabora.com>
-In-Reply-To: <20230404002211.3611376-2-matthew.brost@intel.com>
-References: <20230404002211.3611376-1-matthew.brost@intel.com>
- <20230404002211.3611376-2-matthew.brost@intel.com>
-Organization: Collabora
-X-Mailer: Claws Mail 4.1.1 (GTK 3.24.37; x86_64-redhat-linux-gnu)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9018B10E640;
+	Fri,  9 Jun 2023 07:37:25 +0000 (UTC)
+Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 23FB510E640
+ for <intel-xe@lists.freedesktop.org>; Fri,  9 Jun 2023 07:37:23 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1686296244; x=1717832244;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=DQjlkqS2++t+hSpa/itHU0Ff5CIs+VyLQTM3mJgtoTg=;
+ b=CV17MiyjDOSAJHCwheYTlJGb88REkqB3RsQ9QDEgHiBD8nTTozdqJagz
+ +7Xk0uKWvGzYxKLeNVqC0bEkM6c8B2JMqG2x6j5WGMWQG51YYb9JM8okH
+ em/PY/bvVgX2AV3de+dq352zkdacSgxlWet0a0sNYwXEzvZgfWXAa/5rk
+ REMJHu619lFJeIRGzav/MAUTLPq3vxaJaI+fX9a2NeWtQMu3294zFiyPm
+ zNsh+IH3yjGDKVg+ygyfr5xFL2ktZYDsEUVTnZM53SIayWL+Yo8v2AUDq
+ k2Q5lzcGo3SNjChIRrlAEglv3gMvZambPI6XVoNUvEMyE2BL0RdhQUXkV w==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10735"; a="337174996"
+X-IronPort-AV: E=Sophos;i="6.00,228,1681196400"; d="scan'208";a="337174996"
+Received: from fmsmga002.fm.intel.com ([10.253.24.26])
+ by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 09 Jun 2023 00:37:23 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6600,9927,10735"; a="822962312"
+X-IronPort-AV: E=Sophos;i="6.00,228,1681196400"; d="scan'208";a="822962312"
+Received: from rotariux-mobl1.ger.corp.intel.com (HELO localhost.localdomain)
+ ([10.251.211.8])
+ by fmsmga002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 09 Jun 2023 00:37:22 -0700
+From: Francois Dugast <francois.dugast@intel.com>
+To: intel-xe@lists.freedesktop.org
+Date: Fri,  9 Jun 2023 07:37:11 +0000
+Message-Id: <20230609073713.7-1-francois.dugast@intel.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
-Subject: Re: [Intel-xe] [RFC PATCH 01/10] drm/sched: Convert drm scheduler
- to use a work queue rather than kthread
+Content-Transfer-Encoding: 8bit
+Subject: [Intel-xe] [PATCH v4 0/2] drm/xe: uAPI cleanup
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -54,107 +55,29 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Cc: robdclark@chromium.org, Sarah Walker <sarah.walker@imgtec.com>,
- airlied@linux.ie, lina@asahilina.net, Frank Binns <frank.binns@imgtec.com>,
- dri-devel@lists.freedesktop.org, christian.koenig@amd.com,
- Donald Robson <donald.robson@imgtec.com>, daniel@ffwll.ch,
- intel-xe@lists.freedesktop.org, faith.ekstrand@collabora.com
+Cc: lucas.demarchi@intel.com
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Hi Matthew,
+This series addresses some feedback on xe_drm.h provided here:
+https://lists.freedesktop.org/archives/intel-xe/2023-May/004704.html
 
-On Mon,  3 Apr 2023 17:22:02 -0700
-Matthew Brost <matthew.brost@intel.com> wrote:
+v2: Fix ordering of defines and fields in uAPI (Lucas De Marchi)
+v3:
+  - Rebase on drm-xe-next
+  - Remove some empty lines, add documentation to structures related to
+    drm_xe_device_query, changed pseudo code to snippet (Lucas De Marchi)
+v4:
+  - Move changelog to commit
+  - Fix warnings showed only using dim checkpath
 
-> -static int drm_sched_main(void *param)
-> +static void drm_sched_main(struct work_struct *w)
->  {
-> -	struct drm_gpu_scheduler *sched = (struct drm_gpu_scheduler *)param;
-> +	struct drm_gpu_scheduler *sched =
-> +		container_of(w, struct drm_gpu_scheduler, work_run);
->  	int r;
->  
-> -	sched_set_fifo_low(current);
-> -
-> -	while (!kthread_should_stop()) {
-> -		struct drm_sched_entity *entity = NULL;
-> +	while (!READ_ONCE(sched->pause_run_wq)) {
+Francois Dugast (2):
+  drm/xe: Document structures for device query
+  drm/xe: Move defines before relevant fields
 
-During an informal discussion on IRC I mentioned that this loop might
-become problematic if all the 1:1 entities share the same wq
-(especially if it's an ordered wq), and one of them is getting passed a
-lot of requests. Just wanted to tell you that we've hit that case in
-PowerVR:
+ include/uapi/drm/xe_drm.h | 148 ++++++++++++++++++++++++++++++--------
+ 1 file changed, 117 insertions(+), 31 deletions(-)
 
-Geometry and fragment queues get passed X requests respectively, each
-pair of request corresponding to a rendering operation. Because we're
-using an ordered wq (which I know we shouldn't do, and I intend to
-fix that, but I think it shows the problem exists by making it more
-visible), all geometry requests get submitted first, then come the
-fragment requests. It turns out the submission time is non-negligible
-compared to the geometry job execution time, and geometry jobs end up
-generating data for the fragment jobs that are not consumed fast enough
-by the fragment job to allow the following geom jobs to re-use the same
-portion of memory, leading to on-demand allocation of extra memory
-chunks which wouldn't happen if submissions were interleaved.
+-- 
+2.34.1
 
-I know you were not fundamentally opposed to killing this loop and doing
-one iteration at a time (you even provided a patch doing that), just
-wanted to share my findings to prove this is not just a theoretical
-issue, and the lack of fairness in the submission path can cause trouble
-in practice.
-
-Best Regards,
-
-Boris
-
-> +		struct drm_sched_entity *entity;
->  		struct drm_sched_fence *s_fence;
->  		struct drm_sched_job *sched_job;
->  		struct dma_fence *fence;
-> -		struct drm_sched_job *cleanup_job = NULL;
-> +		struct drm_sched_job *cleanup_job;
->  
-> -		wait_event_interruptible(sched->wake_up_worker,
-> -					 (cleanup_job = drm_sched_get_cleanup_job(sched)) ||
-> -					 (!drm_sched_blocked(sched) &&
-> -					  (entity = drm_sched_select_entity(sched))) ||
-> -					 kthread_should_stop());
-> +		cleanup_job = drm_sched_get_cleanup_job(sched);
-> +		entity = drm_sched_select_entity(sched);
->  
->  		if (cleanup_job)
->  			sched->ops->free_job(cleanup_job);
->  
-> -		if (!entity)
-> +		if (!entity) {
-> +			if (!cleanup_job)
-> +				break;
->  			continue;
-> +		}
->  
->  		sched_job = drm_sched_entity_pop_job(entity);
->  
->  		if (!sched_job) {
->  			complete_all(&entity->entity_idle);
-> +			if (!cleanup_job)
-> +				break;
->  			continue;
->  		}
->  
-> @@ -1055,14 +1083,14 @@ static int drm_sched_main(void *param)
->  					  r);
->  		} else {
->  			if (IS_ERR(fence))
-> -				dma_fence_set_error(&s_fence->finished, PTR_ERR(fence));
-> +				dma_fence_set_error(&s_fence->finished,
-> +						    PTR_ERR(fence));
->  
->  			drm_sched_job_done(sched_job);
->  		}
->  
->  		wake_up(&sched->job_scheduled);
->  	}
-> -	return 0;
->  }
