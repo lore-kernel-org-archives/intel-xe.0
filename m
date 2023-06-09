@@ -4,30 +4,48 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id F0F92C7EE25
-	for <intel-xe@archiver.kernel.org>; Fri,  9 Jun 2023 08:21:07 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 48B82C7EE2E
+	for <intel-xe@archiver.kernel.org>; Fri,  9 Jun 2023 08:58:54 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C16DF10E11F;
-	Fri,  9 Jun 2023 08:21:07 +0000 (UTC)
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id 9E29010E11F;
- Fri,  9 Jun 2023 08:21:05 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 8258BAADDA;
- Fri,  9 Jun 2023 08:21:05 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============8382549989776711226=="
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1359910E289;
+	Fri,  9 Jun 2023 08:58:54 +0000 (UTC)
+Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1B79910E289
+ for <intel-xe@lists.freedesktop.org>; Fri,  9 Jun 2023 08:58:52 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1686301132; x=1717837132;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=F5UFpPs6dI9PP776tanRUEjzqJpmkPQRBh6h1+bgn7k=;
+ b=fghngVdeMYpjtO9CEZd2iRsQqaUVN4Nxy43T0EuvaY/15AR6TV7PulYZ
+ SjD5Ui/LUtbJ6vOrxEVs9MzdZMGbIbuI423BSxprEttLh/HM/ZXgLqDi8
+ liVbXp3P+ZN5c2RCyVZSoK/kVxMIBGTGKIlYkF31Ajr6S4zdbJsE5bAaX
+ znvTunb1hJuQjfHdmqSR0WpZ8B8zeRXSvdltwNqJJlvn1NWwlsS8kZ6wh
+ 8mJyUpHfY5xZolQNDA6xEUWPXcJ2mcjCMXXxtxIGlgDI/I7PI0UxTTf/n
+ nJZgs0kt0bqIfX9166ZrQTG1FPjQbW2F11hIBFNizysoCJmttf2SCEJOP g==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10735"; a="337913040"
+X-IronPort-AV: E=Sophos;i="6.00,228,1681196400"; d="scan'208";a="337913040"
+Received: from orsmga008.jf.intel.com ([10.7.209.65])
+ by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 09 Jun 2023 01:58:51 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6600,9927,10735"; a="740103244"
+X-IronPort-AV: E=Sophos;i="6.00,228,1681196400"; d="scan'208";a="740103244"
+Received: from uniemimu-mobl1.ger.corp.intel.com (HELO
+ thellstr-mobl1.intel.com) ([10.249.254.208])
+ by orsmga008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 09 Jun 2023 01:58:49 -0700
+From: =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>
+To: intel-xe@lists.freedesktop.org
+Date: Fri,  9 Jun 2023 10:58:38 +0200
+Message-Id: <20230609085840.114729-1-thomas.hellstrom@linux.intel.com>
+X-Mailer: git-send-email 2.39.2
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Francois Dugast" <francois.dugast@intel.com>
-Date: Fri, 09 Jun 2023 08:21:05 -0000
-Message-ID: <168629886550.15970.6489241308004575960@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20230609073713.7-1-francois.dugast@intel.com>
-In-Reply-To: <20230609073713.7-1-francois.dugast@intel.com>
-Subject: [Intel-xe] =?utf-8?q?=E2=97=8B_CI=2EBAT=3A_info_for_drm/xe=3A_uA?=
- =?utf-8?q?PI_cleanup_=28rev4=29?=
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+Subject: [Intel-xe] [PATCH v2 0/2] Implement missing invalidations and
+ flushes
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -39,68 +57,40 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
-Cc: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============8382549989776711226==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+Mesa is seeing unexpected content in some tests.
+Fixing those require a TLB invalidation at batch start and a
+render cache flush at batch end.
 
-== Series Details ==
+KMD also requires the latter to make sure any GPU side caches are
+flushed before handing memory over for reuse. This is implemented
+in patch 2.
 
-Series: drm/xe: uAPI cleanup (rev4)
-URL   : https://patchwork.freedesktop.org/series/118447/
-State : info
+The former is likely due to scratch PTEs remaining in the TLB after a
+prefetch or similar. We could discuss whether user-space should be
+responsible for a TLB invalidation after a VM_BIND operation, but
+patch 1 implements a TLB flush at batch start for non-LR vms with scratch
+pages. For LR vms with scratch pages the TLB flush is incoporated
+in the bind fence.
 
-== Summary ==
-
-Participating hosts:
-bat-atsm-2
-bat-dg2-oem2
-bat-adlp-7
-Missing hosts results[0]:
-Results: [xe-pw-118447v4](https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-118447v4/index.html)
+The TLB invalidation can be optimized / coalesced later.
 
 
+Thomas Hellström (2):
+  drm/xe: Invalidate TLB also on bind if in scratch page mode
+  drm/xe: Emit a render cache flush after each rcs/ccs batch
 
---===============8382549989776711226==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+ drivers/gpu/drm/xe/Makefile               |  2 +-
+ drivers/gpu/drm/xe/regs/xe_gpu_commands.h |  4 ++
+ drivers/gpu/drm/xe/xe_pt.c                | 17 ++++-
+ drivers/gpu/drm/xe/xe_ring_ops.c          | 82 ++++++++++++++++++++---
+ drivers/gpu/drm/xe/xe_vm.c                |  2 +
+ drivers/gpu/drm/xe/xe_vm_types.h          |  3 +
+ drivers/gpu/drm/xe/xe_wa_oob.rules        |  1 +
+ 7 files changed, 97 insertions(+), 14 deletions(-)
 
+-- 
+2.39.2
 
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/xe: uAPI cleanup (rev4)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/118447/">https://patchwork.freedesktop.org/series/118447/</a></td></tr>
-<tr><td><b>State:</b></td><td>info</td></tr>
-
-</table>
-
-
-    <p>Participating hosts:<br />
-bat-atsm-2<br />
-bat-dg2-oem2<br />
-bat-adlp-7<br />
-Missing hosts results[0]:<br />
-Results: <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-118447v4/index.html">xe-pw-118447v4</a></p>
-
-</body>
-</html>
-
---===============8382549989776711226==--
