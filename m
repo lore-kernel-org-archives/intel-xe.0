@@ -4,47 +4,47 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id BDC71C8300C
-	for <intel-xe@archiver.kernel.org>; Sun, 11 Jun 2023 22:25:03 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id F1E71C77B7A
+	for <intel-xe@archiver.kernel.org>; Sun, 11 Jun 2023 22:25:02 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8B89510E14F;
-	Sun, 11 Jun 2023 22:25:03 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A154F10E14B;
+	Sun, 11 Jun 2023 22:25:02 +0000 (UTC)
 Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7510C10E13B
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 27A9F10E13C
  for <intel-xe@lists.freedesktop.org>; Sun, 11 Jun 2023 22:25:00 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
  t=1686522300; x=1718058300;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=f92WvFMxqKhtsdRrmbebo1TmdRj7CfT+vYgSYut4O+s=;
- b=XOMuTRz5oxRF5syL0iDvkas/u5kWwU5Xcn0KzHSxQixEU0e5BIzXz/7n
- Xyrkss+lxa1t25U2h480pwfSyfhFMLNoos2yrUi56tb27jfPb5deKDgla
- spDP/704eWh6K9dLXNXKSNx9E6lhrLsy55JITjlCKapEoOxScy9scRtA2
- nyshL9EXAkkhm18Nlll/wA1FQcecxk0zTF8dWYh7N8ElAJkm8SO6LCSEU
- Ye8YVrm4YFusabvoc7wmdl0SlU+9M7NT1qrW3GOGP54uzODP+H9448iyH
- WNSDjGlpb0f2RuT4YVDDMwbcQZUAKDUIAwebqN/7sjQ9dgrJrR/ppRYv2 Q==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10738"; a="347552650"
-X-IronPort-AV: E=Sophos;i="6.00,235,1681196400"; d="scan'208";a="347552650"
+ bh=O8e2Jm+zGBLkBsblPG4murkAiDoQbwf4mviW8dajoJA=;
+ b=KE8R3kMeQp/Rlai7i2i/bQrj05XyIMyP5nfOCnRSIEGHieIAUa5yNXLA
+ 76E+RtxPoxGW4smUefPmb3FWRAqJ3xPSlCYo922jhnc2oowisGs6JTN+E
+ ild94wWHL0dfYU7x+9O/4n2YF63ekuOlN9vf5CZpd/UILLiDVpAvwPNvV
+ nVKJ0AdBJGj75oFa6V/SFJc1IzGe6s69NoglRc5q/IatgnkaRLfwclDsU
+ oHcSglD89+Aeuig+z0JLREG3RWa7TGIeQUPeIXZIBnXE9+hV+k3LTEUbG
+ BL0xlDkH6CfGeAZsX37wuLp+p4/hINp4OxWYxl5WAR01sTJDNEx8gbnms g==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10738"; a="347552648"
+X-IronPort-AV: E=Sophos;i="6.00,235,1681196400"; d="scan'208";a="347552648"
 Received: from fmsmga006.fm.intel.com ([10.253.24.20])
  by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 11 Jun 2023 15:24:59 -0700
+ 11 Jun 2023 15:24:58 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10738"; a="957778755"
-X-IronPort-AV: E=Sophos;i="6.00,235,1681196400"; d="scan'208";a="957778755"
+X-IronPort-AV: E=McAfee;i="6600,9927,10738"; a="957778749"
+X-IronPort-AV: E=Sophos;i="6.00,235,1681196400"; d="scan'208";a="957778749"
 Received: from lucas-s2600cw.jf.intel.com ([10.165.21.196])
  by fmsmga006-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  11 Jun 2023 15:24:58 -0700
 From: Lucas De Marchi <lucas.demarchi@intel.com>
 To: intel-xe@lists.freedesktop.org
-Date: Sun, 11 Jun 2023 15:24:46 -0700
-Message-Id: <20230611222447.2837573-4-lucas.demarchi@intel.com>
+Date: Sun, 11 Jun 2023 15:24:44 -0700
+Message-Id: <20230611222447.2837573-2-lucas.demarchi@intel.com>
 X-Mailer: git-send-email 2.40.1
 In-Reply-To: <20230611222447.2837573-1-lucas.demarchi@intel.com>
 References: <20230611222447.2837573-1-lucas.demarchi@intel.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-xe] [PATCH 4/5] drm/xe: Skip applying copy engine fuses
+Subject: [Intel-xe] [PATCH 2/5] drm/xe/guc: Fix typo s/enabled/enable/
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -60,29 +60,26 @@ Cc: Lucas De Marchi <lucas.demarchi@intel.com>
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Like commit 69a3738ba57f ("drm/i915: Skip applying copy engine fuses"),
-do not apply copy engine fuses for platforms where MEML3_EN is not
-relevant for determining the presence of the copy engines.
+Fix the log message when it fails to enable CT.
 
 Signed-off-by: Lucas De Marchi <lucas.demarchi@intel.com>
 ---
- drivers/gpu/drm/xe/xe_hw_engine.c | 3 +++
- 1 file changed, 3 insertions(+)
+ drivers/gpu/drm/xe/xe_guc_ct.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-diff --git a/drivers/gpu/drm/xe/xe_hw_engine.c b/drivers/gpu/drm/xe/xe_hw_engine.c
-index b42a0cb50159..d3a8dfa1d2cc 100644
---- a/drivers/gpu/drm/xe/xe_hw_engine.c
-+++ b/drivers/gpu/drm/xe/xe_hw_engine.c
-@@ -492,6 +492,9 @@ static void read_copy_fuses(struct xe_gt *gt)
- 	struct xe_device *xe = gt_to_xe(gt);
- 	u32 bcs_mask;
+diff --git a/drivers/gpu/drm/xe/xe_guc_ct.c b/drivers/gpu/drm/xe/xe_guc_ct.c
+index 615cc4d4ad69..22bc9ce846db 100644
+--- a/drivers/gpu/drm/xe/xe_guc_ct.c
++++ b/drivers/gpu/drm/xe/xe_guc_ct.c
+@@ -312,7 +312,7 @@ int xe_guc_ct_enable(struct xe_guc_ct *ct)
+ 	return 0;
  
-+	if (GRAPHICS_VERx100(xe) < 1260 || GRAPHICS_VERx100(xe) >= 1270)
-+		return;
-+
- 	xe_force_wake_assert_held(gt_to_fw(gt), XE_FW_GT);
+ err_out:
+-	drm_err(&xe->drm, "Failed to enabled CT (%d)\n", err);
++	drm_err(&xe->drm, "Failed to enable CT (%d)\n", err);
  
- 	bcs_mask = xe_mmio_read32(gt, MIRROR_FUSE3);
+ 	return err;
+ }
 -- 
 2.40.1
 
