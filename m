@@ -4,30 +4,30 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 38B0AC77B7A
-	for <intel-xe@archiver.kernel.org>; Tue, 13 Jun 2023 10:33:11 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id F2833C88CB7
+	for <intel-xe@archiver.kernel.org>; Tue, 13 Jun 2023 10:33:20 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0253F10E359;
-	Tue, 13 Jun 2023 10:33:11 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A9B9210E35A;
+	Tue, 13 Jun 2023 10:33:20 +0000 (UTC)
 Received: from emeril.freedesktop.org (emeril.freedesktop.org
  [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id 41ADC10E35F;
- Tue, 13 Jun 2023 10:33:08 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTP id 0B88A10E35A;
+ Tue, 13 Jun 2023 10:33:19 +0000 (UTC)
 Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 2440BA73C7;
- Tue, 13 Jun 2023 10:33:08 +0000 (UTC)
+ by emeril.freedesktop.org (Postfix) with ESMTP id 08433A73C7;
+ Tue, 13 Jun 2023 10:33:19 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: "Riana Tauro" <riana.tauro@intel.com>
-Date: Tue, 13 Jun 2023 10:33:08 -0000
-Message-ID: <168665238811.21697.15226794144336538178@emeril.freedesktop.org>
+Date: Tue, 13 Jun 2023 10:33:19 -0000
+Message-ID: <168665239903.21696.5709122427665513171@emeril.freedesktop.org>
 X-Patchwork-Hint: ignore
 References: <20230613094232.3703549-1-riana.tauro@intel.com>
 In-Reply-To: <20230613094232.3703549-1-riana.tauro@intel.com>
-Subject: [Intel-xe] =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_f?=
- =?utf-8?q?or_drm/xe_=3A_Fix_GT_looping_for_standalone_media?=
+Subject: [Intel-xe] =?utf-8?q?=E2=9C=93_CI=2Echeckpatch=3A_success_for_dr?=
+ =?utf-8?q?m/xe_=3A_Fix_GT_looping_for_standalone_media?=
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -52,9 +52,28 @@ State : success
 
 == Summary ==
 
-=== Applying kernel patches on branch 'drm-xe-next' with base: ===
-Base commit: e2343058f drm/xe: Emit a render cache flush after each rcs/ccs batch
-=== git am output follows ===
-Applying: drm/xe : Fix GT looping for standalone media
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+c7d32770e3cd31d9fc134ce41f329b10aa33ee15
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit 8bcde01940d001622fd95e540e558531279cafea
+Author: Riana Tauro <riana.tauro@intel.com>
+Date:   Tue Jun 13 15:12:32 2023 +0530
+
+    drm/xe : Fix GT looping for standalone media
+    
+    Currently the id of primary gt is set using gt_count and not
+    the media gt.
+    
+    set gt->info.id of media gt using gt_count
+    
+    Signed-off-by: Riana Tauro <riana.tauro@intel.com>
++ /mt/dim checkpatch e2343058f0b1a56fbbc7f91a4ff584095e255e66 drm-intel
+8bcde0194 drm/xe : Fix GT looping for standalone media
 
 
