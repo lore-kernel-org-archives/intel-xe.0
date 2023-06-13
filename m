@@ -4,30 +4,30 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9F045C7EE2E
-	for <intel-xe@archiver.kernel.org>; Tue, 13 Jun 2023 11:08:06 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 63BBDC77B7A
+	for <intel-xe@archiver.kernel.org>; Tue, 13 Jun 2023 11:09:55 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 71ECF10E215;
-	Tue, 13 Jun 2023 11:08:06 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 27BB810E36B;
+	Tue, 13 Jun 2023 11:09:55 +0000 (UTC)
 Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id 56E7C10E215;
- Tue, 13 Jun 2023 11:08:05 +0000 (UTC)
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 8ECD110E36B;
+ Tue, 13 Jun 2023 11:09:53 +0000 (UTC)
 Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 5006AAADDD;
- Tue, 13 Jun 2023 11:08:05 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============1379477339643898822=="
+ by emeril.freedesktop.org (Postfix) with ESMTP id 86682AADDD;
+ Tue, 13 Jun 2023 11:09:53 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Riana Tauro" <riana.tauro@intel.com>
-Date: Tue, 13 Jun 2023 11:08:05 -0000
-Message-ID: <168665448529.21694.9402900774001928073@emeril.freedesktop.org>
+To: =?utf-8?q?Thomas_Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>
+Date: Tue, 13 Jun 2023 11:09:53 -0000
+Message-ID: <168665459351.21693.7548102752612297639@emeril.freedesktop.org>
 X-Patchwork-Hint: ignore
-References: <20230613094232.3703549-1-riana.tauro@intel.com>
-In-Reply-To: <20230613094232.3703549-1-riana.tauro@intel.com>
-Subject: [Intel-xe] =?utf-8?q?=E2=97=8B_CI=2EBAT=3A_info_for_drm/xe_=3A_F?=
- =?utf-8?q?ix_GT_looping_for_standalone_media?=
+References: <20230613101909.10193-1-thomas.hellstrom@linux.intel.com>
+In-Reply-To: <20230613101909.10193-1-thomas.hellstrom@linux.intel.com>
+Subject: [Intel-xe] =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_f?=
+ =?utf-8?q?or_drm/xe=3A_Always_flush_TLB_on_rebind=2E?=
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -44,63 +44,17 @@ Cc: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============1379477339643898822==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
 == Series Details ==
 
-Series: drm/xe : Fix GT looping for standalone media
-URL   : https://patchwork.freedesktop.org/series/119265/
-State : info
+Series: drm/xe: Always flush TLB on rebind.
+URL   : https://patchwork.freedesktop.org/series/119268/
+State : success
 
 == Summary ==
 
-Participating hosts:
-bat-atsm-2
-bat-dg2-oem2
-bat-adlp-7
-Missing hosts results[0]:
-Results: [xe-pw-119265v1](https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-119265v1/index.html)
+=== Applying kernel patches on branch 'drm-xe-next' with base: ===
+Base commit: e2343058f drm/xe: Emit a render cache flush after each rcs/ccs batch
+=== git am output follows ===
+Applying: drm/xe: Always flush TLB on rebind.
 
 
-
---===============1379477339643898822==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/xe : Fix GT looping for standalone media</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/119265/">https://patchwork.freedesktop.org/series/119265/</a></td></tr>
-<tr><td><b>State:</b></td><td>info</td></tr>
-
-</table>
-
-
-    <p>Participating hosts:<br />
-bat-atsm-2<br />
-bat-dg2-oem2<br />
-bat-adlp-7<br />
-Missing hosts results[0]:<br />
-Results: <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-119265v1/index.html">xe-pw-119265v1</a></p>
-
-</body>
-</html>
-
---===============1379477339643898822==--
