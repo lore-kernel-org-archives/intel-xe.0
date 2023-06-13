@@ -4,31 +4,31 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 52D3CEB64D7
-	for <intel-xe@archiver.kernel.org>; Tue, 13 Jun 2023 19:12:34 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 78794EB64D0
+	for <intel-xe@archiver.kernel.org>; Tue, 13 Jun 2023 19:12:46 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 007DC10E3E0;
-	Tue, 13 Jun 2023 19:12:34 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5079610E108;
+	Tue, 13 Jun 2023 19:12:46 +0000 (UTC)
 Received: from emeril.freedesktop.org (emeril.freedesktop.org
  [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id 5ADBA10E3E2;
- Tue, 13 Jun 2023 19:12:32 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTP id 78EED10E108;
+ Tue, 13 Jun 2023 19:12:44 +0000 (UTC)
 Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 52E12AADEC;
- Tue, 13 Jun 2023 19:12:32 +0000 (UTC)
+ by emeril.freedesktop.org (Postfix) with ESMTP id 76732AADEC;
+ Tue, 13 Jun 2023 19:12:44 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: "Lucas De Marchi" <lucas.demarchi@intel.com>
-Date: Tue, 13 Jun 2023 19:12:32 -0000
-Message-ID: <168668355230.21694.16781869050518469792@emeril.freedesktop.org>
+Date: Tue, 13 Jun 2023 19:12:44 -0000
+Message-ID: <168668356448.21696.1149792556150085186@emeril.freedesktop.org>
 X-Patchwork-Hint: ignore
 References: <20230613180356.2906441-1-lucas.demarchi@intel.com>
 In-Reply-To: <20230613180356.2906441-1-lucas.demarchi@intel.com>
-Subject: [Intel-xe] =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_f?=
- =?utf-8?q?or_series_starting_with_=5Bv2=2C1/2=5D_drm/xe=3A_Skip_applying_?=
- =?utf-8?q?copy_engine_fuses?=
+Subject: [Intel-xe] =?utf-8?q?=E2=9C=97_CI=2Echeckpatch=3A_warning_for_se?=
+ =?utf-8?q?ries_starting_with_=5Bv2=2C1/2=5D_drm/xe=3A_Skip_applying_copy_?=
+ =?utf-8?q?engine_fuses?=
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -49,14 +49,43 @@ Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 Series: series starting with [v2,1/2] drm/xe: Skip applying copy engine fuses
 URL   : https://patchwork.freedesktop.org/series/119292/
-State : success
+State : warning
 
 == Summary ==
 
-=== Applying kernel patches on branch 'drm-xe-next' with base: ===
-Base commit: 508faf54a drm/xe/guc: Normalize error messages with %#x
-=== git am output follows ===
-Applying: drm/xe: Skip applying copy engine fuses
-Applying: drm/xe: Fix GMD_ID to revid
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+c7d32770e3cd31d9fc134ce41f329b10aa33ee15
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit 9ea1ab9306f4d5d7367617eec10e1f2cdec6cec4
+Author: Lucas De Marchi <lucas.demarchi@intel.com>
+Date:   Tue Jun 13 11:03:56 2023 -0700
+
+    drm/xe: Fix GMD_ID to revid
+    
+    In order to calculate revid, let peek_gmdid() return the raw value of
+    the register, then calculate arch, release and rev. Also rename the
+    variables to make clear what are the as signed values.
+    
+    While at it, add _MASK suffix to GMD_ID_REVID for consistency with the
+    other fields.
+    
+    v2: Add _MASK suffix to GMD_ID_REVID (Gustavo)
+    
+    Reviewed-by: Gustavo Sousa <gustavo.sousa@intel.com>
+    Signed-off-by: Lucas De Marchi <lucas.demarchi@intel.com>
++ /mt/dim checkpatch 508faf54affb47e827066ad7d79412de08a166b4 drm-intel
+bd995b0d9 drm/xe: Skip applying copy engine fuses
+-:6: WARNING:UNKNOWN_COMMIT_ID: Unknown commit id '69a3738ba57f', maybe rebased or not pulled?
+#6: 
+Like commit 69a3738ba57f ("drm/i915: Skip applying copy engine fuses"),
+
+total: 0 errors, 1 warnings, 0 checks, 9 lines checked
+9ea1ab930 drm/xe: Fix GMD_ID to revid
 
 
