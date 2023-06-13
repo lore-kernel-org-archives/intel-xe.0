@@ -4,30 +4,30 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 36408C7EE29
-	for <intel-xe@archiver.kernel.org>; Tue, 13 Jun 2023 11:16:40 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id CAC88C7EE2E
+	for <intel-xe@archiver.kernel.org>; Tue, 13 Jun 2023 12:01:35 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id DBF2E10E384;
-	Tue, 13 Jun 2023 11:16:39 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9BB9F10E3A4;
+	Tue, 13 Jun 2023 12:01:35 +0000 (UTC)
 Received: from emeril.freedesktop.org (emeril.freedesktop.org
  [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id 9548410E373;
- Tue, 13 Jun 2023 11:16:38 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTP id 1F76210E39C;
+ Tue, 13 Jun 2023 12:01:34 +0000 (UTC)
 Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 9205BAADEB;
- Tue, 13 Jun 2023 11:16:38 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+ by emeril.freedesktop.org (Postfix) with ESMTP id 17C79AADD2;
+ Tue, 13 Jun 2023 12:01:34 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============7422265430333336760=="
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: =?utf-8?q?Thomas_Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>
-Date: Tue, 13 Jun 2023 11:16:38 -0000
-Message-ID: <168665499859.21693.8440725466610680644@emeril.freedesktop.org>
+Date: Tue, 13 Jun 2023 12:01:34 -0000
+Message-ID: <168665769406.21697.13817101756473116376@emeril.freedesktop.org>
 X-Patchwork-Hint: ignore
 References: <20230613101909.10193-1-thomas.hellstrom@linux.intel.com>
 In-Reply-To: <20230613101909.10193-1-thomas.hellstrom@linux.intel.com>
-Subject: [Intel-xe] =?utf-8?q?=E2=9C=93_CI=2Echecksparse=3A_success_for_d?=
- =?utf-8?q?rm/xe=3A_Always_flush_TLB_on_rebind=2E?=
+Subject: [Intel-xe] =?utf-8?q?=E2=97=8B_CI=2EBAT=3A_info_for_drm/xe=3A_Al?=
+ =?utf-8?q?ways_flush_TLB_on_rebind=2E?=
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -44,33 +44,65 @@ Cc: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
+--===============7422265430333336760==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
 == Series Details ==
 
 Series: drm/xe: Always flush TLB on rebind.
 URL   : https://patchwork.freedesktop.org/series/119268/
-State : success
+State : info
 
 == Summary ==
 
-+ trap cleanup EXIT
-+ KERNEL=/kernel
-+ MT=/root/linux/maintainer-tools
-+ git clone https://gitlab.freedesktop.org/drm/maintainer-tools /root/linux/maintainer-tools
-Cloning into '/root/linux/maintainer-tools'...
-warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
-+ make -C /root/linux/maintainer-tools
-make: Entering directory '/root/linux/maintainer-tools'
-cc -O2 -g -Wextra -o remap-log remap-log.c
-make: Leaving directory '/root/linux/maintainer-tools'
-+ cd /kernel
-+ git config --global --add safe.directory /kernel
-+ /root/linux/maintainer-tools/dim sparse --fast e2343058f0b1a56fbbc7f91a4ff584095e255e66
-Sparse version: 0.6.1 (Ubuntu: 0.6.1-2build1)
-Fast mode used, each commit won't be checked separately.
-Okay!
-
-+ cleanup
-++ stat -c %u:%g /kernel
-+ chown -R 1003:1003 /kernel
+Participating hosts:
+bat-atsm-2
+bat-dg2-oem2
+bat-adlp-7
+Missing hosts results[1]:
+bat-dg2-oem2
+Results: [xe-pw-119268v1](https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-119268v1/index.html)
 
 
+
+--===============7422265430333336760==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/xe: Always flush TLB on rebind.</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/119268/">https://patchwork.freedesktop.org/series/119268/</a></td></tr>
+<tr><td><b>State:</b></td><td>info</td></tr>
+
+</table>
+
+
+    <p>Participating hosts:<br />
+bat-atsm-2<br />
+bat-dg2-oem2<br />
+bat-adlp-7<br />
+Missing hosts results[1]:<br />
+bat-dg2-oem2<br />
+Results: <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-119268v1/index.html">xe-pw-119268v1</a></p>
+
+</body>
+</html>
+
+--===============7422265430333336760==--
