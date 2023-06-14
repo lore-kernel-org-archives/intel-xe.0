@@ -4,149 +4,52 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9DE55EB64DA
-	for <intel-xe@archiver.kernel.org>; Wed, 14 Jun 2023 10:57:05 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id E1EB2EB64DB
+	for <intel-xe@archiver.kernel.org>; Wed, 14 Jun 2023 11:40:50 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5B50B10E444;
-	Wed, 14 Jun 2023 10:57:05 +0000 (UTC)
-Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 23C0310E437
- for <intel-xe@lists.freedesktop.org>; Wed, 14 Jun 2023 10:57:04 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A3AF810E445;
+	Wed, 14 Jun 2023 11:40:50 +0000 (UTC)
+Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6528810E445
+ for <intel-xe@lists.freedesktop.org>; Wed, 14 Jun 2023 11:40:36 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1686740224; x=1718276224;
- h=message-id:date:subject:to:cc:references:from:
- in-reply-to:content-transfer-encoding:mime-version;
- bh=Au76JVfmpSMgT3wY6lgqlStTms54uDLiU0a6Ay2P1cA=;
- b=YLcMl46MxFrehZnbwwmXAhHkR0uCzgOJWtBsjq+XmFJEEzDzgQfizByQ
- AGOZ545hS5IheCHJdzI07wNozcaqOQFRCM2Qbkf7YKn+d+ba0fhCDZ2OI
- WvgIiB0FEL49tv7sHMjeNAIuS8ApM9LTK9js1Wc9YEU059uXodoRA9Y0m
- kNyK1XA9s8f4sLqRkaNNPdGqnYNTDa250oQsQuHnKvGfTNHZ3y7IVbihm
- BzQvooXceWN+E5x12l4ykMYT9C2o2o6qTMkRb1K0x73bOwSp3nHcH0+tm
- /1R+Sly29CoVRdJivZvm9cPK65RT/6hpsO0HmdHNb4cqo0XAAXz/qhgvJ A==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10740"; a="357461665"
-X-IronPort-AV: E=Sophos;i="6.00,242,1681196400"; d="scan'208";a="357461665"
-Received: from orsmga003.jf.intel.com ([10.7.209.27])
- by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 14 Jun 2023 03:57:02 -0700
+ t=1686742836; x=1718278836;
+ h=message-id:date:mime-version:subject:to:references:from:
+ in-reply-to:content-transfer-encoding;
+ bh=7vs6M5MSa/3JSgJUgzP65LF2KTnkAn6ucbVQA/S6fs4=;
+ b=YBkUyWp0A+Kr/KUIglaHohiLboN+PWtP1ROey+cC8f2Vd5JfawX28pm/
+ 8iHqBk0C8CQkpJbm/MzgCWVfy3uQ/g0FgbWbuzD/VHofdK5KEQThm0SdA
+ kFID66kvar4GcEOIz7KOY8XVIJyLabw1uB89P9sLGH1i/aVZuTycVxeAH
+ uMvno52kdXQqpSszYegPMlxjtPYI2vv5sMlbfLxOr8bVpgcDA62jB8HQS
+ ecGji3j9SvfkEgZ7MvEg7DOZLqBf1iewWR3xIsSu72GgL1bazN1wf2PL9
+ 3+lwWdiafX9O7sLXCKXi8IZN92qaFjyc6cmVdqZG6v8VVw0UALOay0WWg A==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10740"; a="358591793"
+X-IronPort-AV: E=Sophos;i="6.00,242,1681196400"; d="scan'208";a="358591793"
+Received: from fmsmga004.fm.intel.com ([10.253.24.48])
+ by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 14 Jun 2023 04:40:34 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10740"; a="662359054"
-X-IronPort-AV: E=Sophos;i="6.00,242,1681196400"; d="scan'208";a="662359054"
-Received: from fmsmsx602.amr.corp.intel.com ([10.18.126.82])
- by orsmga003.jf.intel.com with ESMTP; 14 Jun 2023 03:57:01 -0700
-Received: from fmsmsx610.amr.corp.intel.com (10.18.126.90) by
- fmsmsx602.amr.corp.intel.com (10.18.126.82) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.23; Wed, 14 Jun 2023 03:57:01 -0700
-Received: from fmsedg602.ED.cps.intel.com (10.1.192.136) by
- fmsmsx610.amr.corp.intel.com (10.18.126.90) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.23 via Frontend Transport; Wed, 14 Jun 2023 03:57:01 -0700
-Received: from NAM11-CO1-obe.outbound.protection.outlook.com (104.47.56.177)
- by edgegateway.intel.com (192.55.55.71) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2507.23; Wed, 14 Jun 2023 03:57:00 -0700
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=RJ+7LxVDEr8IST/eMU0fqaqbSD3tLgBkOB4egXiEpb9tdqrlKGwJiFxcvm7gJZgvj8ixZQ4WkGnIGl+1JGJq3+pD4zw5uVJCXAeyfC5v3kdvoyCFonddhAEa+w1pIa6SPXZ7MEqp16ckfcG9ww2WUiI9+1I2C3vzG12CPBso6QQ/A2JMxuaPic7JL1wh6C3SrFrfm5qNitIr5Uj/z4TmBqiPD79YrKi6VySAv08NMrswu8vGoBLA5ZO6uHgZMzhxWOFhP6yjRBAije/2MpYh6/f6Mvebo/q9EZ4QvWtgHDfdcOLMqsUQQ+b5mtkqAx40BUt2y6YdfNuDbA1P1IpeYQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=26c+0Uv9HIJAOdh40OLxJkOpDSQXNY36EzCoUkojJDQ=;
- b=V/FLmJJOo+6sPUsKlKGYNzOAEiQR/5HKbC8H1rYRiVeNRJvv9Pobsb8NGvOVMWE7Usx5M/8KnzcTbPeeBcRKzwBpqlyHZ8v2BqMh/ykJFXlI1NGuU5e4yJZPV20bHOug2Z63cK1V/3EehouAIJfDsJ8x8w0xjo6fN6iyMkYKvkM+1vJC2Oklzpdxi9tvhRsguIn8exv32JnnUMRC5wD67jWcq8aU6J79jeZYxhSxal2sI2LZHSfZKRctMFxTf7EwZZmGzIUlS+PBKg4yuLlCV2aHz3F8h1jmy8r7mUgkoNMpC4U1mDqB5Dbjik6+szo/FBiGBi36IOs8FGnSGhzdqg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
- dkim=pass header.d=intel.com; arc=none
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=intel.com;
-Received: from BN9PR11MB5530.namprd11.prod.outlook.com (2603:10b6:408:103::8)
- by SA1PR11MB6847.namprd11.prod.outlook.com (2603:10b6:806:29e::9)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6477.37; Wed, 14 Jun
- 2023 10:56:58 +0000
-Received: from BN9PR11MB5530.namprd11.prod.outlook.com
- ([fe80::bb92:d504:7607:ed33]) by BN9PR11MB5530.namprd11.prod.outlook.com
- ([fe80::bb92:d504:7607:ed33%7]) with mapi id 15.20.6477.037; Wed, 14 Jun 2023
- 10:56:58 +0000
-Message-ID: <58d40866-5da8-9bb9-0914-12acc3935f8b@intel.com>
-Date: Wed, 14 Jun 2023 16:26:48 +0530
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
- Thunderbird/102.11.2
-Content-Language: en-US
-To: "Gupta, Anshuman" <anshuman.gupta@intel.com>, "Tauro, Riana"
- <riana.tauro@intel.com>, "intel-xe@lists.freedesktop.org"
- <intel-xe@lists.freedesktop.org>
-References: <20230613084721.3698818-1-riana.tauro@intel.com>
- <20230613084721.3698818-2-riana.tauro@intel.com>
- <CY5PR11MB6211217F3864D36587641A3A955AA@CY5PR11MB6211.namprd11.prod.outlook.com>
-From: "Nilawar, Badal" <badal.nilawar@intel.com>
-In-Reply-To: <CY5PR11MB6211217F3864D36587641A3A955AA@CY5PR11MB6211.namprd11.prod.outlook.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 8bit
-X-ClientProxiedBy: PN0PR01CA0019.INDPRD01.PROD.OUTLOOK.COM
- (2603:1096:c01:4e::17) To BN9PR11MB5530.namprd11.prod.outlook.com
- (2603:10b6:408:103::8)
+X-IronPort-AV: E=McAfee;i="6600,9927,10740"; a="782056211"
+X-IronPort-AV: E=Sophos;i="6.00,242,1681196400"; d="scan'208";a="782056211"
+Received: from aryba-mobl.ger.corp.intel.com (HELO [10.249.254.20])
+ ([10.249.254.20])
+ by fmsmga004-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 14 Jun 2023 04:40:33 -0700
+Message-ID: <af97d044-c21e-3a04-8ef7-ef2a79dfef15@linux.intel.com>
+Date: Wed, 14 Jun 2023 13:40:31 +0200
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: BN9PR11MB5530:EE_|SA1PR11MB6847:EE_
-X-MS-Office365-Filtering-Correlation-Id: 3216ae93-a10d-4c17-7b6d-08db6cc612f5
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: a+Kbj/nkVhmgljGcyYXJ8X4++REToNfEuyD6YIlz6ZTH6duVcVSAcdWpha+qH6Vu52i/9gxjXiKjN2H9nZdJqmdF6i05GUKpIqTJQPhIw2Jtch/y0XFd10BvGXrGwV1Z4UKBmBhTXGQRTvKE5UWZ6Sfq6YtRtdtLZTPUTk+D0DmBJgpQB35RlqOB3E/H+hd4gMVP2BATm1UWHPfbTOhJtNObxnU/xsGvWip1aN1ViwmkuTB45pYb/Mv4mmWei5dI9MhOpTV/W3ySNrSvHCVjIkR/JfNdVoI7pc4Iu0hMaKo7Npm+k67RctBSOs0mdwfiRil2xBdanI4/jycBM75VWo3kxpm5dytap2HbXGbxTWvBxctZqOuRHeFcAtEjuIt+9Jh/z3wGhvZTL2Uww0odZqzizIBUg+fjuUriR0Id4P4OIKqOnpc6guH7s8M8X9xp8CQZwuRwXXeFQEaF/Z53s1nCkE4EKKAEXknKJfVdzAL3mRrZD96nfj0i5zsv659zzRDlz55vP+PyOFuwjR5Jk6VqW4GHmK5Jk3crgtMQMita7x4FSB8eJMuqa3dEULk/JnIS6SeXrllcJ4EMmmDjG3FG9QA8KYVSsqVbQXkGWfB5SAjzELtygPPnEk1LWhppQHhRj0Kw+jZ+wZNsA1J8OAWXe7un7S38pVdAdFLHtQ4=
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:BN9PR11MB5530.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230028)(376002)(136003)(396003)(346002)(366004)(39860400002)(451199021)(8936002)(6486002)(26005)(8676002)(6512007)(41300700001)(38100700002)(478600001)(82960400001)(36756003)(66946007)(66476007)(4326008)(86362001)(66556008)(31696002)(316002)(110136005)(54906003)(6666004)(53546011)(6506007)(30864003)(5660300002)(83380400001)(186003)(2616005)(2906002)(31686004)(21314003)(43740500002)(45980500001);
- DIR:OUT; SFP:1102; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?SkF5OXlmL2RpdDVNOElZUXU0SUpsRXk0R2tkKy85Y2Nac2xwM1pkZUJWN1E5?=
- =?utf-8?B?R3VSZEt0a2dUWTlaYkJCMmtwYTF5WVlmUExzKzA2azhCRVBkYjlJcWNSVzFu?=
- =?utf-8?B?eURtcElSMWtOU3ZTZHFuV05ZRWZBcDlZdG1USk1BTzlSejNWbXU0WVB5cWZT?=
- =?utf-8?B?dVo2cEZhZkV3NExnVGpHZVh1SnVrLyt3T3RGUDZuclRBZUZITDJ4S1NNZkE0?=
- =?utf-8?B?bHRvaVBkbkxhcGFHRTdmTkduL2NrYXlReEQ4VVVqSC9ma3kwdTJ1bDdyTy9L?=
- =?utf-8?B?Vjlic1BEQXFxQVZUNDlHYWpNek93b0Q0Y1ZVVkszSjZrK2hNUW1RbHVQNXIx?=
- =?utf-8?B?dHJTeHFjcmhDL3A1ell5bllGTmh4eWU2ck9zWUUzdUJhNDZUR3BmYzg1aFZy?=
- =?utf-8?B?MjVUWFFzck9kS2lRY1ZaK2cwWk1iaHBXNGk5UmRQY3dMVFVDZHNQazBTaXR6?=
- =?utf-8?B?QWVsQnZEQ1V6QmNEa1A4bjJFOHpEZk1YMnRPcmRsYTRtVVJlaEFDQXN4SkhX?=
- =?utf-8?B?SisrN2l5QzkxK3dPa1VNVHZJbzcvU2FxSmt0VHBUY09HYURTdEdubFdOdCtL?=
- =?utf-8?B?QngxbEtqZU04QXlFSW95WjgyWVRid25taGNTWGk3dzFWa05icjlOVWQvS1F4?=
- =?utf-8?B?ZUhWaW5nWVRNTHJadWY5MGt5bk41VERWMXFzWjZnUXBtTG5iSkViZFlwRWR6?=
- =?utf-8?B?ZWw0ZmUwOVViSk93NjFuYlZiK05naGNhK0c0T1AyL1VPcDg2eDB4ZkVQL1J3?=
- =?utf-8?B?WUdiT0k1NFBURzdrY01JemdFQThsdWt6OEs0NGl4ZnFwdHFYa1VEUnQvc0Rm?=
- =?utf-8?B?SG91Y1pTRTdZZFZSQWdOQUU5dmVNZ0kzS2pvdnBlZ3RCdXlCZFQ0T2tUazZD?=
- =?utf-8?B?V0d5Tm9Qek1uallVZjZWcHdrcHk1YmVNNVJrNnkxdUh0d1c4Mjc4Y0hCeWRB?=
- =?utf-8?B?U25vWUZsVUlJYlVoTDRUUEJvSnBTcG8rcjdzT01pa1lONlZTMWFzdFJGb3Br?=
- =?utf-8?B?UnpFMEN6bmpZbG9zUXNjV2liMm54NVVFUklmaytiVjFDQ1g0cnBxSGlSMmRV?=
- =?utf-8?B?VDEvb1Q2aVpTalhzS1dvNGlvL2ZSOGJNMjJFUDNZcEszZnFUNzNKKytjaWxt?=
- =?utf-8?B?K2tTWi9nRU42WHhabDFBSUZwNGQ4VFRXdm5xQ01MUDlxQnE0c3NLWENucDcz?=
- =?utf-8?B?MEc0bzNsNGNoRno0b2Q5eEM2WllFT29SOHFVWFIwQm1xajcxZCtodWtiajNu?=
- =?utf-8?B?ZXd1ZW1BVmNmRzBFcjQ2SVpMTVlna3VXYnpBVEgrUFpLYktaR0VqQWJWa1ls?=
- =?utf-8?B?UTRDZ0s3VXp0dU9WUVVXVjJ4NFRHOUVCQk1ua3lmYWdOVXYxMkNpZWg3VTll?=
- =?utf-8?B?TzB4SlM2UExpZkMzRlBkWFIvN1hQRU1ETjBpdlBJeUdYTEtXWHAxWjlGdDJP?=
- =?utf-8?B?aUxqMVVocWZ6UERuR2MvT1JnRk9zMldNTFpHTXVxaVlvTE9PS012amJhZ1Zm?=
- =?utf-8?B?aExPbUczZDAzYXE5cFllaEVOM0YvWis0dHA5c3Y2VE1DQkpuWC9DeUh1LzlP?=
- =?utf-8?B?WGVPaVQ3bk9rOU9tcjQ2WFJGRThLV1JNSmRpZm95cHJFU2JLSGdzRUdLaisw?=
- =?utf-8?B?cTRzRmhVTm5hZkVydjFwaG8wdURoYjN4cEJRZ05NMFNIU29uV2RRUUQ5a1Zh?=
- =?utf-8?B?b2s3TmhiMzl5T1plNHZQTnJJRWt5cUZGNVpCRU5NalNYOU8wd3VPUjR1UnJv?=
- =?utf-8?B?eGtHNDFESSt1VHJvT2xZa0hRSDJHVzJoOHl3RStGZzAvbkI4MktMb0V1Uk1p?=
- =?utf-8?B?aVgwbmxFZFdyNWRZcG5WSkVtQlk2QTZ0MWRDSU9KSDNPUks0Qm1WZ1ZOL1o2?=
- =?utf-8?B?VkcwMlkzOC96aWVWQkp1c1l3Ti82L2pzdEw5T3pqYUw5OGloY1AwSkREeFBN?=
- =?utf-8?B?TFRqbEhRTFJYNFZCOVJRYjVIRHpGSmgyK3JZYmorV3FrNGVYdXdlL3NuZENJ?=
- =?utf-8?B?UEV0L2w3aDl4cDhtQkM3NjhMZW84MXNaZXg3cFJwdjlIWkR2UzR0UFpzOTh5?=
- =?utf-8?B?dE1zeFkyamVvOGRaWTAwK1ErVGJaK2lJNm9jRThQQ0RQa1ZHUUJFQ0JnRWJ1?=
- =?utf-8?B?eWlCeE11c09zNlFpRmYxL096VnRVWUk3bi9aZXJTR1dMWnBQOHBJMlJyQlV1?=
- =?utf-8?B?UWc9PQ==?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: 3216ae93-a10d-4c17-7b6d-08db6cc612f5
-X-MS-Exchange-CrossTenant-AuthSource: BN9PR11MB5530.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 14 Jun 2023 10:56:58.3519 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: bbaYoAtgD1BZIDFhL8+7jaNtKhu3y3W/hG0wfKgyW/1qMQcCeqHQsiFcwEwDtPW16HHcnKhNXSuNAtsRL6NPdg==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SA1PR11MB6847
-X-OriginatorOrg: intel.com
-Subject: Re: [Intel-xe] [PATCH 1/2] drm/xe: add a new sysfs directory for
- gtidle properties
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.8.0
+Content-Language: en-US
+To: intel-xe@lists.freedesktop.org
+References: <20230607160334.4111289-1-matthew.brost@intel.com>
+ <20230607160334.4111289-6-matthew.brost@intel.com>
+From: =?UTF-8?Q?Thomas_Hellstr=c3=b6m?= <thomas.hellstrom@linux.intel.com>
+In-Reply-To: <20230607160334.4111289-6-matthew.brost@intel.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+Subject: Re: [Intel-xe] [PATCH v3 5/8] drm/xe: Long running job update
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -158,461 +61,372 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Cc: "joonas.lahtinen@linux.intel.com" <joonas.lahtinen@linux.intel.com>, "Vivi,
- Rodrigo" <rodrigo.vivi@intel.com>, "Belgaumkar,
- Vinay" <vinay.belgaumkar@intel.com>
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 
+On 6/7/23 18:03, Matthew Brost wrote:
+Some commit message nits:
+> For long running (LR) jobs with the DRM scheduler we must return NULL in
+> run_job which results in signaling the job's finished fence immediately.
+> This prevents LR jobs from creating infinite dma-fences.
+>
+> Signaling job's finished fence immediately breaks flow controling ring
+s/controling/controlling/
+> with the DRM scheduler, to work around this the ring is flow controlled
+> and written in the exec IOCTL.
+Imperative: To work around this, flow control...
+>   Signaling job's finished fence
+> immediately also breaks the TDR which is used in reset / cleanup entity
+> paths so we write a new path for LR entities.
+so write
+>
+> v2: Better commit, white space, remove rmb(), better comment next to
+> emit_job()
+>
+> Signed-off-by: Matthew Brost <matthew.brost@intel.com>
+> ---
+>   drivers/gpu/drm/xe/xe_engine.c           | 32 ++++++++
+>   drivers/gpu/drm/xe/xe_engine.h           |  4 +
+>   drivers/gpu/drm/xe/xe_exec.c             |  8 ++
+>   drivers/gpu/drm/xe/xe_guc_engine_types.h |  2 +
+>   drivers/gpu/drm/xe/xe_guc_submit.c       | 93 +++++++++++++++++++++---
+>   drivers/gpu/drm/xe/xe_trace.h            |  5 ++
+>   6 files changed, 135 insertions(+), 9 deletions(-)
+>
+> diff --git a/drivers/gpu/drm/xe/xe_engine.c b/drivers/gpu/drm/xe/xe_engine.c
+> index b3036c4a8ec3..eb5f66f07da8 100644
+> --- a/drivers/gpu/drm/xe/xe_engine.c
+> +++ b/drivers/gpu/drm/xe/xe_engine.c
+> @@ -18,6 +18,7 @@
+>   #include "xe_macros.h"
+>   #include "xe_migrate.h"
+>   #include "xe_pm.h"
+> +#include "xe_ring_ops_types.h"
+>   #include "xe_trace.h"
+>   #include "xe_vm.h"
+>   
+> @@ -679,6 +680,37 @@ static void engine_kill_compute(struct xe_engine *e)
+>   	up_write(&e->vm->lock);
+>   }
+>   
+> +/**
+> + * xe_engine_is_lr() - Whether an engine is long-running
+> + * @e: The engine
+> + *
+> + * Return: True if the engine is long-running, false otherwise.
+> + */
+> +bool xe_engine_is_lr(struct xe_engine *e)
+> +{
+> +	return e->vm && xe_vm_no_dma_fences(e->vm) &&
+> +		!(e->flags & ENGINE_FLAG_VM);
+> +}
+> +
+> +static s32 xe_engine_num_job_inflight(struct xe_engine *e)
+> +{
+> +	return e->lrc->fence_ctx.next_seqno - xe_lrc_seqno(e->lrc) - 1;
+> +}
+> +
+> +/**
+> + * xe_engine_ring_full() - Whether an engine's ring is full
+> + * @e: The engine
+> + *
+> + * Return: True if the engine's ring is full, false otherwise.
+> + */
+> +bool xe_engine_ring_full(struct xe_engine *e)
+> +{
+> +	struct xe_lrc *lrc = e->lrc;
+> +	s32 max_job = lrc->ring.size / MAX_JOB_SIZE_BYTES;
+> +
+> +	return xe_engine_num_job_inflight(e) >= max_job;
+> +}
+> +
+>   /**
+>    * xe_engine_is_idle() - Whether an engine is idle.
+>    * @engine: The engine
+> diff --git a/drivers/gpu/drm/xe/xe_engine.h b/drivers/gpu/drm/xe/xe_engine.h
+> index a49cf2ab405e..2e60f6d90226 100644
+> --- a/drivers/gpu/drm/xe/xe_engine.h
+> +++ b/drivers/gpu/drm/xe/xe_engine.h
+> @@ -42,6 +42,10 @@ static inline bool xe_engine_is_parallel(struct xe_engine *engine)
+>   	return engine->width > 1;
+>   }
+>   
+> +bool xe_engine_is_lr(struct xe_engine *e);
+> +
+> +bool xe_engine_ring_full(struct xe_engine *e);
+> +
+>   bool xe_engine_is_idle(struct xe_engine *engine);
+>   
+>   void xe_engine_kill(struct xe_engine *e);
+> diff --git a/drivers/gpu/drm/xe/xe_exec.c b/drivers/gpu/drm/xe/xe_exec.c
+> index e44076ee2e11..9e9523939de8 100644
+> --- a/drivers/gpu/drm/xe/xe_exec.c
+> +++ b/drivers/gpu/drm/xe/xe_exec.c
+> @@ -14,6 +14,7 @@
+>   #include "xe_device.h"
+>   #include "xe_engine.h"
+>   #include "xe_macros.h"
+> +#include "xe_ring_ops_types.h"
+>   #include "xe_sched_job.h"
+>   #include "xe_sync.h"
+>   #include "xe_vm.h"
+> @@ -300,6 +301,11 @@ int xe_exec_ioctl(struct drm_device *dev, void *data, struct drm_file *file)
+>   		goto err_engine_end;
+>   	}
+>   
+> +	if (xe_engine_is_lr(engine) && xe_engine_ring_full(engine)) {
+> +		err = -EWOULDBLOCK;
+> +		goto err_engine_end;
+> +	}
+> +
+>   	job = xe_sched_job_create(engine, xe_engine_is_parallel(engine) ?
+>   				  addresses : &args->address);
+>   	if (IS_ERR(job)) {
+> @@ -386,6 +392,8 @@ int xe_exec_ioctl(struct drm_device *dev, void *data, struct drm_file *file)
+>   		xe_sync_entry_signal(&syncs[i], job,
+>   				     &job->drm.s_fence->finished);
+>   
+> +	if (xe_engine_is_lr(engine))
+> +		engine->ring_ops->emit_job(job);
+>   	xe_sched_job_push(job);
+>   	xe_vm_reactivate_rebind(vm);
+>   
+> diff --git a/drivers/gpu/drm/xe/xe_guc_engine_types.h b/drivers/gpu/drm/xe/xe_guc_engine_types.h
+> index cbfb13026ec1..5d83132034a6 100644
+> --- a/drivers/gpu/drm/xe/xe_guc_engine_types.h
+> +++ b/drivers/gpu/drm/xe/xe_guc_engine_types.h
+> @@ -31,6 +31,8 @@ struct xe_guc_engine {
+>   	 */
+>   #define MAX_STATIC_MSG_TYPE	3
+>   	struct drm_sched_msg static_msgs[MAX_STATIC_MSG_TYPE];
+> +	/** @lr_tdr: long running TDR worker */
+> +	struct work_struct lr_tdr;
+>   	/** @fini_async: do final fini async from this worker */
+>   	struct work_struct fini_async;
+>   	/** @resume_time: time of last resume */
+> diff --git a/drivers/gpu/drm/xe/xe_guc_submit.c b/drivers/gpu/drm/xe/xe_guc_submit.c
+> index a7a0d9f806bd..7bde687fd188 100644
+> --- a/drivers/gpu/drm/xe/xe_guc_submit.c
+> +++ b/drivers/gpu/drm/xe/xe_guc_submit.c
+> @@ -482,6 +482,14 @@ static void register_engine(struct xe_engine *e)
+>   		parallel_write(xe, map, wq_desc.wq_status, WQ_STATUS_ACTIVE);
+>   	}
+>   
+> +	/*
+> +	 * We must keep a reference for LR engines if engine is registered with
+> +	 * the GuC as jobs signal immediately and can't destroy an engine if the
+> +	 * GuC has a reference to it.
+> +	 */
+> +	if (xe_engine_is_lr(e))
+> +		xe_engine_get(e);
+> +
+>   	set_engine_registered(e);
+>   	trace_xe_engine_register(e);
+>   	if (xe_engine_is_parallel(e))
+> @@ -644,6 +652,7 @@ guc_engine_run_job(struct drm_sched_job *drm_job)
+>   {
+>   	struct xe_sched_job *job = to_xe_sched_job(drm_job);
+>   	struct xe_engine *e = job->engine;
+> +	bool lr = xe_engine_is_lr(e);
+>   
+>   	XE_BUG_ON((engine_destroyed(e) || engine_pending_disable(e)) &&
+>   		  !engine_banned(e) && !engine_suspended(e));
+> @@ -653,14 +662,19 @@ guc_engine_run_job(struct drm_sched_job *drm_job)
+>   	if (!engine_killed_or_banned(e) && !xe_sched_job_is_error(job)) {
+>   		if (!engine_registered(e))
+>   			register_engine(e);
+> -		e->ring_ops->emit_job(job);
+> +		if (!lr)	/* LR jobs are emitted in the exec IOCTL */
+> +			e->ring_ops->emit_job(job);
+>   		submit_engine(e);
+>   	}
+>   
+> -	if (test_and_set_bit(JOB_FLAG_SUBMIT, &job->fence->flags))
+> +	if (lr) {
+> +		xe_sched_job_set_error(job, -EOPNOTSUPP);
+> +		return NULL;
+> +	} else if (test_and_set_bit(JOB_FLAG_SUBMIT, &job->fence->flags)) {
+>   		return job->fence;
+> -	else
+> +	} else {
+>   		return dma_fence_get(job->fence);
+> +	}
+>   }
+>   
+>   static void guc_engine_free_job(struct drm_sched_job *drm_job)
+> @@ -764,6 +778,56 @@ static void simple_error_capture(struct xe_engine *e)
+>   }
+>   #endif
+>   
+> +static void xe_guc_engine_trigger_cleanup(struct xe_engine *e)
+> +{
+> +	struct xe_guc *guc = engine_to_guc(e);
+> +
+> +	if (xe_engine_is_lr(e))
+> +		queue_work(guc_to_gt(guc)->ordered_wq, &e->guc->lr_tdr);
+> +	else
+> +		drm_sched_set_timeout(&e->guc->sched, MIN_SCHED_TIMEOUT);
+> +}
+> +
+> +static void xe_guc_engine_lr_cleanup(struct work_struct *w)
+> +{
+> +	struct xe_guc_engine *ge =
+> +		container_of(w, struct xe_guc_engine, lr_tdr);
+> +	struct xe_engine *e = ge->engine;
+> +	struct drm_gpu_scheduler *sched = &ge->sched;
+> +
+> +	XE_WARN_ON(!xe_engine_is_lr(e));
+> +	trace_xe_engine_lr_cleanup(e);
+> +
+> +	/* Kill the run_job / process_msg entry points */
+> +	drm_sched_run_wq_stop(sched);
+> +
+> +	/* Engine state now stable, disable scheduling / deregister if needed */
+> +	if (engine_registered(e)) {
+> +		struct xe_guc *guc = engine_to_guc(e);
+> +		int ret;
+> +
+> +		set_engine_banned(e);
+> +		xe_engine_get(e);
+> +		disable_scheduling_deregister(guc, e);
+> +
+> +		/*
+> +		 * Must wait for scheduling to be disabled before signalling
+> +		 * any fences, if GT broken the GT reset code should signal us.
+> +		 */
+> +		ret = wait_event_timeout(guc->ct.wq,
+> +					 !engine_pending_disable(e) ||
+> +					 guc_read_stopped(guc), HZ * 5);
+> +		if (!ret) {
+> +			XE_WARN_ON("Schedule disable failed to respond");
+> +			drm_sched_run_wq_start(sched);
+> +			xe_gt_reset_async(e->gt);
+> +			return;
+> +		}
+> +	}
+> +
+> +	drm_sched_run_wq_start(sched);
+> +}
+> +
+>   static enum drm_gpu_sched_stat
+>   guc_engine_timedout_job(struct drm_sched_job *drm_job)
+>   {
+> @@ -815,7 +879,7 @@ guc_engine_timedout_job(struct drm_sched_job *drm_job)
+>   			err = -EIO;
+>   		set_engine_banned(e);
+>   		xe_engine_get(e);
+> -		disable_scheduling_deregister(engine_to_guc(e), e);
+> +		disable_scheduling_deregister(guc, e);
+>   
+>   		/*
+>   		 * Must wait for scheduling to be disabled before signalling
+> @@ -848,7 +912,7 @@ guc_engine_timedout_job(struct drm_sched_job *drm_job)
+>   	 */
+>   	list_add(&drm_job->list, &sched->pending_list);
+>   	drm_sched_run_wq_start(sched);
+> -	drm_sched_set_timeout(&e->guc->sched, MIN_SCHED_TIMEOUT);
+> +	xe_guc_engine_trigger_cleanup(e);
+>   
+>   	/* Mark all outstanding jobs as bad, thus completing them */
+>   	spin_lock(&sched->job_list_lock);
+> @@ -872,6 +936,8 @@ static void __guc_engine_fini_async(struct work_struct *w)
+>   
+>   	trace_xe_engine_destroy(e);
+>   
+> +	if (xe_engine_is_lr(e))
+> +		cancel_work_sync(&ge->lr_tdr);
+>   	if (e->flags & ENGINE_FLAG_PERSISTENT)
+>   		xe_device_remove_persistent_engines(gt_to_xe(e->gt), e);
+>   	release_guc_id(guc, e);
+> @@ -889,7 +955,7 @@ static void guc_engine_fini_async(struct xe_engine *e)
+>   	bool kernel = e->flags & ENGINE_FLAG_KERNEL;
+>   
+>   	INIT_WORK(&e->guc->fini_async, __guc_engine_fini_async);
+> -	queue_work(system_unbound_wq, &e->guc->fini_async);
+> +	queue_work(system_wq, &e->guc->fini_async);
+>   
+>   	/* We must block on kernel engines so slabs are empty on driver unload */
+>   	if (kernel) {
+> @@ -1078,6 +1144,9 @@ static int guc_engine_init(struct xe_engine *e)
+>   	if (err)
+>   		goto err_sched;
+>   
+> +	if (xe_engine_is_lr(e))
+> +		INIT_WORK(&e->guc->lr_tdr, xe_guc_engine_lr_cleanup);
+> +
+>   	mutex_lock(&guc->submission_state.lock);
+>   
+>   	err = alloc_guc_id(guc, e);
+> @@ -1129,7 +1198,7 @@ static void guc_engine_kill(struct xe_engine *e)
+>   {
+>   	trace_xe_engine_kill(e);
+>   	set_engine_killed(e);
+> -	drm_sched_set_timeout(&e->guc->sched, MIN_SCHED_TIMEOUT);
+> +	xe_guc_engine_trigger_cleanup(e);
+>   }
+>   
+>   static void guc_engine_add_msg(struct xe_engine *e, struct drm_sched_msg *msg,
+> @@ -1279,6 +1348,9 @@ static void guc_engine_stop(struct xe_guc *guc, struct xe_engine *e)
+>   	/* Stop scheduling + flush any DRM scheduler operations */
+>   	drm_sched_run_wq_stop(sched);
+>   
+> +	if (engine_registered(e) && xe_engine_is_lr(e))
+> +		xe_engine_put(e);
+> +
+>   	/* Clean up lost G2H + reset engine state */
+>   	if (engine_destroyed(e) && engine_registered(e)) {
+>   		if (engine_banned(e))
+> @@ -1503,6 +1575,9 @@ int xe_guc_deregister_done_handler(struct xe_guc *guc, u32 *msg, u32 len)
+>   	trace_xe_engine_deregister_done(e);
+>   
+>   	clear_engine_registered(e);
+> +	if (xe_engine_is_lr(e))
+> +		xe_engine_put(e);
+> +
 
-On 14-06-2023 14:41, Gupta, Anshuman wrote:
-> 
-> 
->> -----Original Message-----
->> From: Tauro, Riana <riana.tauro@intel.com>
->> Sent: Tuesday, June 13, 2023 2:17 PM
->> To: intel-xe@lists.freedesktop.org
->> Cc: Tauro, Riana <riana.tauro@intel.com>; Gupta, Anshuman
->> <anshuman.gupta@intel.com>; Vivi, Rodrigo <rodrigo.vivi@intel.com>;
->> Belgaumkar, Vinay <vinay.belgaumkar@intel.com>; Dixit, Ashutosh
->> <ashutosh.dixit@intel.com>; Nilawar, Badal <badal.nilawar@intel.com>;
->> Brost, Matthew <matthew.brost@intel.com>; andi.shyti@linux.intel.com;
->> joonas.lahtinen@linux.intel.com
->> Subject: [PATCH 1/2] drm/xe: add a new sysfs directory for gtidle properties
->>
->> Add a new sysfs directory under devices/gt#/ called gtidle to contain idle
->> properties of GT such as name, idle_status, idle_residency_ms
-> Please mention about the removal of forcewake as comment provided by badal.
->> v2:
->>      - abstract using function pointers (Anshuman)
->>      - remove forcewake calls for residency counter
->>      - use device_attr (Badal)
->>      - move rc functions to guc_pc
->>      - change name to gt_idle (Rodrigo)
->>
->> v3:
->>      - return error for drmm_add_action_or_reset
->>      - replace file and functions with gt_idle prefix
->>        to gt_idle_sysfs (Himal)
->>      - use enum for gt idle state
->>      - move multiplier to gt idle and initialize (Anshuman)
->>      - correct doc annotation (Rodrigo)
->>      - remove return variable
->>      - use kobj_gt instead of new gtidle kobj
->>      - move residency_ms to gtidle file
->>      - retain xe_guc_pc prefix for functions in guc_rc file (Michal)
->>
->> v4:
->>      - fix doc errors in xe_guc_pc file
->>      - change u64 to u32 for reading residency counter
->>      - keep gtidle states generic GT_IDLE_C[0/6] (Anshuman)
->>
->> Signed-off-by: Riana Tauro <riana.tauro@intel.com>
->> Acked-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
->> ---
->>   drivers/gpu/drm/xe/Makefile                 |   1 +
->>   drivers/gpu/drm/xe/xe_gt.c                  |   5 +
->>   drivers/gpu/drm/xe/xe_gt_idle_sysfs.c       | 160 ++++++++++++++++++++
->>   drivers/gpu/drm/xe/xe_gt_idle_sysfs.h       |  13 ++
->>   drivers/gpu/drm/xe/xe_gt_idle_sysfs_types.h |  38 +++++
->>   drivers/gpu/drm/xe/xe_gt_types.h            |   4 +
->>   drivers/gpu/drm/xe/xe_guc_pc.c              |  44 ++----
->>   drivers/gpu/drm/xe/xe_guc_pc.h              |   2 +
->>   8 files changed, 239 insertions(+), 28 deletions(-)  create mode 100644
->> drivers/gpu/drm/xe/xe_gt_idle_sysfs.c
->>   create mode 100644 drivers/gpu/drm/xe/xe_gt_idle_sysfs.h
->>   create mode 100644 drivers/gpu/drm/xe/xe_gt_idle_sysfs_types.h
->>
->> diff --git a/drivers/gpu/drm/xe/Makefile b/drivers/gpu/drm/xe/Makefile
->> index 0fbbbc6e247c..4a7a8d50a5d4 100644
->> --- a/drivers/gpu/drm/xe/Makefile
->> +++ b/drivers/gpu/drm/xe/Makefile
->> @@ -58,6 +58,7 @@ xe-y += xe_bb.o \
->>   	xe_gt.o \
->>   	xe_gt_clock.o \
->>   	xe_gt_debugfs.o \
->> +	xe_gt_idle_sysfs.o \
->>   	xe_gt_mcr.o \
->>   	xe_gt_pagefault.o \
->>   	xe_gt_sysfs.o \
->> diff --git a/drivers/gpu/drm/xe/xe_gt.c b/drivers/gpu/drm/xe/xe_gt.c index
->> 3799e663bad3..1c094f5bc40a 100644
->> --- a/drivers/gpu/drm/xe/xe_gt.c
->> +++ b/drivers/gpu/drm/xe/xe_gt.c
->> @@ -18,6 +18,7 @@
->>   #include "xe_force_wake.h"
->>   #include "xe_ggtt.h"
->>   #include "xe_gt_clock.h"
->> +#include "xe_gt_idle_sysfs.h"
->>   #include "xe_gt_mcr.h"
->>   #include "xe_gt_pagefault.h"
->>   #include "xe_gt_printk.h"
->> @@ -306,6 +307,10 @@ static int gt_fw_domain_init(struct xe_gt *gt)
->>   	if (err)
->>   		goto err_force_wake;
->>
->> +	err = xe_gt_idle_sysfs_init(&gt->gtidle);
->> +	if (err)
->> +		goto err_force_wake;
->> +
->>   	/* XXX: Fake that we pull the engine mask from hwconfig blob */
->>   	gt->info.engine_mask = gt->info.__engine_mask;
->>
->> diff --git a/drivers/gpu/drm/xe/xe_gt_idle_sysfs.c
->> b/drivers/gpu/drm/xe/xe_gt_idle_sysfs.c
->> new file mode 100644
->> index 000000000000..1b2dcac46479
->> --- /dev/null
->> +++ b/drivers/gpu/drm/xe/xe_gt_idle_sysfs.c
->> @@ -0,0 +1,160 @@
->> +// SPDX-License-Identifier: MIT
->> +/*
->> + * Copyright © 2023 Intel Corporation
->> + */
->> +
->> +#include <drm/drm_managed.h>
->> +
->> +#include "xe_device.h"
->> +#include "xe_gt.h"
->> +#include "xe_gt_idle_sysfs.h"
->> +#include "xe_gt_sysfs.h"
->> +#include "xe_guc_pc.h"
->> +
->> +/**
->> + * DOC: Xe GT Idle
->> + *
->> + * Provides sysfs entries for idle properties of GT
->> + *
->> + * device/gt#/gtidle/name - name of the state
->> + * device/gt#/gtidle/idle_residency_ms - Provides residency of the idle
->> +state in ms
->> + * device/gt#/gtidle/idle_status - Provides current idle state  */
->> +
->> +static struct xe_gt_idle *dev_to_gtidle(struct device *dev) {
->> +	struct kobject *kobj = &dev->kobj;
->> +
->> +	return &kobj_to_gt(kobj->parent)->gtidle;
->> +}
->> +
->> +static struct xe_gt *gtidle_to_gt(struct xe_gt_idle *gtidle) {
->> +	return container_of(gtidle, struct xe_gt, gtidle); }
->> +
->> +static struct xe_guc_pc *gtidle_to_pc(struct xe_gt_idle *gtidle) {
->> +	return &gtidle_to_gt(gtidle)->uc.guc.pc; }
->> +
->> +static const char *gt_idle_state_to_string(enum xe_gt_idle_state state)
->> +{
->> +	switch (state) {
->> +	case GT_IDLE_C0:
->> +		return "gt-c0";
->> +	case GT_IDLE_C6:
->> +		return "gt-c6";
->> +	default:
->> +		return "unknown";
->> +	}
->> +}
->> +
->> +static u64 get_residency_ms(struct xe_gt_idle *gtidle, u64
->> +cur_residency) {
->> +	u64 delta, overflow_residency, prev_residency;
->> +
->> +	overflow_residency = BIT_ULL(32);
->> +
->> +	/*
->> +	 * Counter wrap handling
->> +	 * Store previous hw counter values for counter wrap-around
->> handling
->> +	 * Relying on sufficient frequency of queries otherwise counters can
->> still wrap.
->> +	 */
->> +	prev_residency = gtidle->prev_residency;
->> +	gtidle->prev_residency = cur_residency;
->> +
->> +	/* delta */
->> +	if (cur_residency >= prev_residency)
->> +		delta = cur_residency - prev_residency;
->> +	else
->> +		delta = cur_residency + (overflow_residency -
->> prev_residency);
->> +
->> +	/* Add delta to extended raw driver copy of idle residency */
->> +	cur_residency = gtidle->cur_residency + delta;
->> +	gtidle->cur_residency = cur_residency;
->> +
->> +	/* residency multiplier in ns, convert to ms */
->> +	cur_residency = mul_u64_u32_div(cur_residency,
->> +gtidle->residency_multiplier, 1e6);
->> +
->> +	return cur_residency;
->> +}
->> +
->> +static ssize_t name_show(struct device *dev,
->> +			 struct device_attribute *attr, char *buff) {
->> +	struct xe_gt_idle *gtidle = dev_to_gtidle(dev);
->> +
->> +	return sysfs_emit(buff, gtidle->name); } static
->> DEVICE_ATTR_RO(name);
->> +
->> +static ssize_t idle_status_show(struct device *dev,
->> +				struct device_attribute *attr, char *buff) {
->> +	struct xe_gt_idle *gtidle = dev_to_gtidle(dev);
->> +	struct xe_guc_pc *pc = gtidle_to_pc(gtidle);
->> +	enum xe_gt_idle_state state;
->> +
->> +	state = gtidle->idle_status(pc);
->> +
->> +	return sysfs_emit(buff, "%s\n", gt_idle_state_to_string(state)); }
->> +static DEVICE_ATTR_RO(idle_status);
->> +
->> +static ssize_t idle_residency_ms_show(struct device *dev,
->> +				      struct device_attribute *attr, char *buff) {
->> +	struct xe_gt_idle *gtidle = dev_to_gtidle(dev);
->> +	struct xe_guc_pc *pc = gtidle_to_pc(gtidle);
->> +	u64 residency;
->> +
->> +	residency = gtidle->idle_residency(pc);
->> +	return sysfs_emit(buff, "%llu\n", get_residency_ms(gtidle,
->> +residency)); } static DEVICE_ATTR_RO(idle_residency_ms);
->> +
->> +static const struct attribute *gt_idle_attrs[] = {
->> +	&dev_attr_name.attr,
->> +	&dev_attr_idle_status.attr,
->> +	&dev_attr_idle_residency_ms.attr,
->> +	NULL,
->> +};
->> +
->> +static void gt_idle_sysfs_fini(struct drm_device *drm, void *arg) {
->> +	struct kobject *kobj = arg;
->> +
->> +	sysfs_remove_files(kobj, gt_idle_attrs);
->> +	kobject_put(kobj);
->> +}
->> +
->> +int xe_gt_idle_sysfs_init(struct xe_gt_idle *gtidle) {
->> +	struct xe_gt *gt = gtidle_to_gt(gtidle);
->> +	struct xe_device *xe = gt_to_xe(gt);
->> +	struct kobject *kobj;
->> +	int err;
->> +
->> +	kobj = kobject_create_and_add("gtidle", gt->sysfs);
->> +	if (!kobj)
->> +		return -ENOMEM;
->> +
->> +	sprintf(gtidle->name, "gt%d-rc\n", gt->info.id);
->> +	/* Multiplier for  RC6 Residency counter in units of 1.28us */
->> +	gtidle->residency_multiplier = 1280;
->> +	gtidle->idle_residency = xe_guc_pc_rc6_residency;
->> +	gtidle->idle_status = xe_guc_pc_rc_status;
->> +
->> +	err = sysfs_create_files(kobj, gt_idle_attrs);
->> +	if (err) {
->> +		kobject_put(kobj);
->> +		return err;
->> +	}
->> +
->> +	err = drmm_add_action_or_reset(&xe->drm, gt_idle_sysfs_fini,
->> kobj);
->> +	if (err)
->> +		return err;
->> +
->> +	return 0;
->> +}
->> diff --git a/drivers/gpu/drm/xe/xe_gt_idle_sysfs.h
->> b/drivers/gpu/drm/xe/xe_gt_idle_sysfs.h
->> new file mode 100644
->> index 000000000000..a654561fda19
->> --- /dev/null
->> +++ b/drivers/gpu/drm/xe/xe_gt_idle_sysfs.h
->> @@ -0,0 +1,13 @@
->> +/* SPDX-License-Identifier: MIT */
->> +/*
->> + * Copyright © 2023 Intel Corporation
->> + */
->> +
->> +#ifndef _XE_GT_IDLE_SYSFS_H_
->> +#define _XE_GT_IDLE_SYSFS_H_
->> +
->> +#include "xe_gt_idle_sysfs_types.h"
->> +
->> +int xe_gt_idle_sysfs_init(struct xe_gt_idle *gtidle);
->> +
->> +#endif /* _XE_GT_IDLE_SYSFS_H_ */
->> diff --git a/drivers/gpu/drm/xe/xe_gt_idle_sysfs_types.h
->> b/drivers/gpu/drm/xe/xe_gt_idle_sysfs_types.h
->> new file mode 100644
->> index 000000000000..f99b447534f3
->> --- /dev/null
->> +++ b/drivers/gpu/drm/xe/xe_gt_idle_sysfs_types.h
->> @@ -0,0 +1,38 @@
->> +/* SPDX-License-Identifier: MIT */
->> +/*
->> + * Copyright © 2023 Intel Corporation
->> + */
->> +
->> +#ifndef _XE_GT_IDLE_SYSFS_TYPES_H_
->> +#define _XE_GT_IDLE_SYSFS_TYPES_H_
->> +
->> +#include <linux/types.h>
->> +
->> +struct xe_guc_pc;
->> +
->> +/* States of GT Idle */
->> +enum xe_gt_idle_state {
->> +	GT_IDLE_C0,
->> +	GT_IDLE_C6,
->> +	GT_IDLE_UNKNOWN,
->> +};
->> +
->> +/**
->> + * struct xe_gt_idle - A struct that contains idle properties based of
->> +gt  */ struct xe_gt_idle {
->> +	/** @name: name */
->> +	char name[16];
->> +	/** @residency_multiplier: residency multiplier in ns */
->> +	u32 residency_multiplier;
->> +	/** @cur_residency: raw driver copy of idle residency */
->> +	u64 cur_residency;
->> +	/** @prev_residency: previous residency counter */
->> +	u64 prev_residency;
->> +	/** @idle_status: get the current idle state */
->> +	enum xe_gt_idle_state (*idle_status)(struct xe_guc_pc *pc);
->> +	/** @idle_residency: get idle residency counter */
->> +	u64 (*idle_residency)(struct xe_guc_pc *pc); };
->> +
->> +#endif /* _XE_GT_IDLE_SYSFS_TYPES_H_ */
->> diff --git a/drivers/gpu/drm/xe/xe_gt_types.h
->> b/drivers/gpu/drm/xe/xe_gt_types.h
->> index 99ab7ec99ccd..7d4de019f9a5 100644
->> --- a/drivers/gpu/drm/xe/xe_gt_types.h
->> +++ b/drivers/gpu/drm/xe/xe_gt_types.h
->> @@ -7,6 +7,7 @@
->>   #define _XE_GT_TYPES_H_
->>
->>   #include "xe_force_wake_types.h"
->> +#include "xe_gt_idle_sysfs_types.h"
->>   #include "xe_hw_engine_types.h"
->>   #include "xe_hw_fence_types.h"
->>   #include "xe_reg_sr_types.h"
->> @@ -260,6 +261,9 @@ struct xe_gt {
->>   	/** @uc: micro controllers on the GT */
->>   	struct xe_uc uc;
->>
->> +	/** @gtidle: idle properties of GT */
->> +	struct xe_gt_idle gtidle;
->> +
->>   	/** @engine_ops: submission backend engine operations */
->>   	const struct xe_engine_ops *engine_ops;
->>
->> diff --git a/drivers/gpu/drm/xe/xe_guc_pc.c
->> b/drivers/gpu/drm/xe/xe_guc_pc.c index 67faa9ee0006..72f49808918a
->> 100644
->> --- a/drivers/gpu/drm/xe/xe_guc_pc.c
->> +++ b/drivers/gpu/drm/xe/xe_guc_pc.c
->> @@ -76,12 +76,7 @@
->>    *
->>    * Render-C states is also a GuC PC feature that is now enabled in Xe for
->>    * all platforms.
->> - * Xe's GuC PC provides a sysfs API for Render-C States:
->>    *
->> - * device/gt#/rc* *read-only* files:
->> - * - rc_status: Provide the actual immediate status of Render-C: (rc0 or rc6)
->> - * - rc6_residency: Provide the rc6_residency counter in units of 1.28 uSec.
->> - *                  Prone to overflows.
->>    */
->>
->>   static struct xe_guc *
->> @@ -580,10 +575,12 @@ static ssize_t freq_max_store(struct device *dev,
->> struct device_attribute *attr,  }  static DEVICE_ATTR_RW(freq_max);
->>
->> -static ssize_t rc_status_show(struct device *dev,
->> -			      struct device_attribute *attr, char *buff)
->> +/**
->> + * xe_guc_pc_rc_status - get the current Render C state
->> + * @pc: XE_GuC_PC instance
->> + */
->> +enum xe_gt_idle_state xe_guc_pc_rc_status(struct xe_guc_pc *pc)
->>   {
->> -	struct xe_guc_pc *pc = dev_to_pc(dev);
->>   	struct xe_gt *gt = pc_to_gt(pc);
->>   	u32 reg;
->>
->> @@ -593,37 +590,30 @@ static ssize_t rc_status_show(struct device *dev,
->>
->>   	switch (REG_FIELD_GET(RCN_MASK, reg)) {
->>   	case GT_RC6:
->> -		return sysfs_emit(buff, "rc6\n");
->> +		return GT_IDLE_C6;
->>   	case GT_RC0:
->> -		return sysfs_emit(buff, "rc0\n");
->> +		return GT_IDLE_C0;
->>   	default:
->> -		return -ENOENT;
->> +		return GT_IDLE_UNKNOWN;
->>   	}
->>   }
->> -static DEVICE_ATTR_RO(rc_status);
->>
->> -static ssize_t rc6_residency_show(struct device *dev,
->> -				  struct device_attribute *attr, char *buff)
->> +/**
->> + * xe_guc_pc_rc6_residency - rc6 residency counter
->> + * @pc: Xe_GuC_PC instance
->> + */
->> +u64 xe_guc_pc_rc6_residency(struct xe_guc_pc *pc)
-> Keep return type also u64 for function signature, let assignment do the implicit type conversion.
-Do you mean return type should be u32?
-> With all of comment as above.
-> Reviewed-by: Anshuman Gupta <anshuman.gupta@intel.com>
-> 
->>   {
->> -	struct xe_guc_pc *pc = dev_to_pc(dev);
->>   	struct xe_gt *gt = pc_to_gt(pc);
->>   	u32 reg;
->> -	ssize_t ret;
->>
->> -	xe_device_mem_access_get(pc_to_xe(pc));
->> -	ret = xe_force_wake_get(gt_to_fw(gt), XE_FORCEWAKE_ALL);
->> -	if (ret)
->> -		goto out;
->> +	xe_device_mem_access_get(gt_to_xe(gt));
->>
->>   	reg = xe_mmio_read32(gt, GT_GFX_RC6);
->> -	ret = sysfs_emit(buff, "%u\n", reg);
->>
->> -	XE_WARN_ON(xe_force_wake_put(gt_to_fw(gt),
->> XE_FORCEWAKE_ALL));
->> -out:
->> -	xe_device_mem_access_put(pc_to_xe(pc));
->> -	return ret;
->> +	xe_device_mem_access_put(gt_to_xe(gt));
->> +	return reg;
->>   }
->> -static DEVICE_ATTR_RO(rc6_residency);
->>
->>   static const struct attribute *pc_attrs[] = {
->>   	&dev_attr_freq_act.attr,
->> @@ -633,8 +623,6 @@ static const struct attribute *pc_attrs[] = {
->>   	&dev_attr_freq_rpn.attr,
->>   	&dev_attr_freq_min.attr,
->>   	&dev_attr_freq_max.attr,
->> -	&dev_attr_rc_status.attr,
->> -	&dev_attr_rc6_residency.attr,
->>   	NULL
->>   };
->>
->> diff --git a/drivers/gpu/drm/xe/xe_guc_pc.h
->> b/drivers/gpu/drm/xe/xe_guc_pc.h index da29e4934868..976179dbc9a8
->> 100644
->> --- a/drivers/gpu/drm/xe/xe_guc_pc.h
->> +++ b/drivers/gpu/drm/xe/xe_guc_pc.h
->> @@ -12,4 +12,6 @@ int xe_guc_pc_init(struct xe_guc_pc *pc);  int
->> xe_guc_pc_start(struct xe_guc_pc *pc);  int xe_guc_pc_stop(struct
->> xe_guc_pc *pc);
->>
->> +enum xe_gt_idle_state xe_guc_pc_rc_status(struct xe_guc_pc *pc);
->> +u64 xe_guc_pc_rc6_residency(struct xe_guc_pc *pc);
->>   #endif /* _XE_GUC_PC_H_ */
->> --
->> 2.40.0
-> 
+This looks suspicious. We're putting the reference of "e", but continue 
+to dereference "e" afterwards. If this is intentional, could you add a 
+comment as to which pointer's reference we put? Typically wen you put 
+the reference of a pointer you don't use it afterwards unless it is 
+obvious that you're only caching the value from the pointer that carries 
+the reference?
+
+
+>   	if (engine_banned(e))
+>   		xe_engine_put(e);
+>   	else
+> @@ -1540,7 +1615,7 @@ int xe_guc_engine_reset_handler(struct xe_guc *guc, u32 *msg, u32 len)
+>   	 */
+>   	set_engine_reset(e);
+>   	if (!engine_banned(e))
+> -		drm_sched_set_timeout(&e->guc->sched, MIN_SCHED_TIMEOUT);
+> +		xe_guc_engine_trigger_cleanup(e);
+>   
+>   	return 0;
+>   }
+> @@ -1567,7 +1642,7 @@ int xe_guc_engine_memory_cat_error_handler(struct xe_guc *guc, u32 *msg,
+>   	/* Treat the same as engine reset */
+>   	set_engine_reset(e);
+>   	if (!engine_banned(e))
+> -		drm_sched_set_timeout(&e->guc->sched, MIN_SCHED_TIMEOUT);
+> +		xe_guc_engine_trigger_cleanup(e);
+>   
+>   	return 0;
+>   }
+> diff --git a/drivers/gpu/drm/xe/xe_trace.h b/drivers/gpu/drm/xe/xe_trace.h
+> index 2f8eb7ebe9a7..02861c26e145 100644
+> --- a/drivers/gpu/drm/xe/xe_trace.h
+> +++ b/drivers/gpu/drm/xe/xe_trace.h
+> @@ -219,6 +219,11 @@ DEFINE_EVENT(xe_engine, xe_engine_resubmit,
+>   	     TP_ARGS(e)
+>   );
+>   
+> +DEFINE_EVENT(xe_engine, xe_engine_lr_cleanup,
+> +	     TP_PROTO(struct xe_engine *e),
+> +	     TP_ARGS(e)
+> +);
+> +
+>   DECLARE_EVENT_CLASS(xe_sched_job,
+>   		    TP_PROTO(struct xe_sched_job *job),
+>   		    TP_ARGS(job),
