@@ -4,51 +4,137 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0F4F5EB64DB
-	for <intel-xe@archiver.kernel.org>; Wed, 14 Jun 2023 14:17:40 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 31DDAEB64D8
+	for <intel-xe@archiver.kernel.org>; Wed, 14 Jun 2023 17:08:27 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8835310E06B;
-	Wed, 14 Jun 2023 14:17:40 +0000 (UTC)
-Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6BA2310E06B
- for <intel-xe@lists.freedesktop.org>; Wed, 14 Jun 2023 14:17:37 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id BF21F10E077;
+	Wed, 14 Jun 2023 17:08:26 +0000 (UTC)
+Received: from mga06.intel.com (mga06b.intel.com [134.134.136.31])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1AB5F10E077
+ for <intel-xe@lists.freedesktop.org>; Wed, 14 Jun 2023 17:08:24 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1686752257; x=1718288257;
+ t=1686762505; x=1718298505;
  h=date:from:to:cc:subject:message-id:references:
- mime-version:content-transfer-encoding:in-reply-to;
- bh=wcmAj5JPOwS39jux3Ym2lCv95En6X0CKqMlktIVFFI4=;
- b=BeyL5tBL0CXweMbGhqSdcHN4eb5tR3NQkGjBIgPnDPD8g7xSFjdtTvea
- PCB8PJOqbF2q4Pfo6sLFXHAGMKALzHnqd+ccoOrbrND/pQGUEvpD6ATsn
- uUSw/CvEZr/GV62QuOK9kEoXQlOFoqAK6u497zUslydHDdmaBQKH4mMdF
- N0pIyyjuByktr+M/3Oy2v2j9ZMZt++jCpTbzOK0wBfFAJgxnEU2YZcw/X
- NPvIRk+fL0u0yW76gW8G0ag15FtJt2oPB3nk5woaW7sCHuy/thTZZeEu+
- 5atx3PsBIqxLQjuk2Vaq1FtvhBs9r6cnhx6oirCSGFl2EdHOTq8HEnvh4 A==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10741"; a="444991861"
-X-IronPort-AV: E=Sophos;i="6.00,242,1681196400"; d="scan'208";a="444991861"
-Received: from fmsmga003.fm.intel.com ([10.253.24.29])
- by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 14 Jun 2023 07:17:36 -0700
+ in-reply-to:mime-version;
+ bh=9lDwuFT+lqdOEYSjXH0En7cy2IXVxpsuWj3BvIaUOCc=;
+ b=HdYqEMkc90+kB/s146wiPO/MBdhAECqIZWWswGN58bzbbVVgO7XwvkM/
+ lktiuj2mSkzpGNJPqdX+GxWgsa4y45YmzCnyzuRe/0d9tGydKsvqwhsSc
+ Ll2YmQLo/qLKOH1915TAgSh0uVI5CVquQHEYTdiPpUVshsRP1s3ozuGi0
+ hUFnqbhErLYvsmYL5vZs/HldTZfOH2mrK51pBztJzMdZrmOgG67Ev40N+
+ aUTev2NvQHVErU5+kHvbWaz0ok8PmRL+fUd0xcGlLVrQFmZJ9nV3vE/n5
+ 8v/Dre/v555X3sPl3J5z4quJSAholKDaRtOWYMhYcvUaTIS8HQVwu1Xa0 A==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10741"; a="422276131"
+X-IronPort-AV: E=Sophos;i="6.00,243,1681196400"; d="scan'208";a="422276131"
+Received: from orsmga004.jf.intel.com ([10.7.209.38])
+ by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 14 Jun 2023 10:07:56 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10741"; a="801924370"
-X-IronPort-AV: E=Sophos;i="6.00,242,1681196400"; d="scan'208";a="801924370"
-Received: from jrowe2-mobl1.ger.corp.intel.com (HELO intel.com)
- ([10.249.44.185])
- by fmsmga003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 14 Jun 2023 07:17:34 -0700
-Date: Wed, 14 Jun 2023 16:17:32 +0200
-From: Andi Shyti <andi.shyti@linux.intel.com>
-To: Zbigniew =?utf-8?Q?Kempczy=C5=84ski?= <zbigniew.kempczynski@intel.com>,
- Filip Hazubski <filip.hazubski@intel.com>
-Message-ID: <ZInL/ORxw8U3sG0i@ashyti-mobl2.lan>
-References: <20230602104747.72015-1-zbigniew.kempczynski@intel.com>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+X-IronPort-AV: E=McAfee;i="6600,9927,10741"; a="836333465"
+X-IronPort-AV: E=Sophos;i="6.00,243,1681196400"; d="scan'208";a="836333465"
+Received: from fmsmsx603.amr.corp.intel.com ([10.18.126.83])
+ by orsmga004.jf.intel.com with ESMTP; 14 Jun 2023 10:07:42 -0700
+Received: from fmsmsx610.amr.corp.intel.com (10.18.126.90) by
+ fmsmsx603.amr.corp.intel.com (10.18.126.83) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.23; Wed, 14 Jun 2023 10:07:30 -0700
+Received: from fmsmsx611.amr.corp.intel.com (10.18.126.91) by
+ fmsmsx610.amr.corp.intel.com (10.18.126.90) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.23; Wed, 14 Jun 2023 10:07:29 -0700
+Received: from fmsedg601.ED.cps.intel.com (10.1.192.135) by
+ fmsmsx611.amr.corp.intel.com (10.18.126.91) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.23 via Frontend Transport; Wed, 14 Jun 2023 10:07:29 -0700
+Received: from NAM11-DM6-obe.outbound.protection.outlook.com (104.47.57.171)
+ by edgegateway.intel.com (192.55.55.70) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.1.2507.23; Wed, 14 Jun 2023 10:07:29 -0700
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=Il7Vlo+ULBCOiFQ8oNUclPZT31KMwZsxO7GtajrsPHAj/eUVoY1LXWihO11Y4MtogTDSSjNw3rs+GlR3GXhE+Sb7LC0ipGAiOyL3lxhlzxEQWeZp6YCcqc6sieiugCIe5Z5whtN3tW/JOGSnBE+CL7/izARgCB0zoO3PIWfzF6omErUVSjTu2gVQEYmvTrsM16b132Pfa7dDJczL73xBuRxV73Cog3VyTrRTBIYtkoxBKDznm41QQhlo/5/YaaYiJaZ4g2YlSk1MKQmtW8sjuCLXPgkqGe2Di3qsE69PSpPiyuRq/N1lK/+aw/0y3vtZCRFW8eiW/WRdJIagOuxzmQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=9lDwuFT+lqdOEYSjXH0En7cy2IXVxpsuWj3BvIaUOCc=;
+ b=ZoRhpmp6x/f3hOGSqC187fELg/F9KegEAMZYpXbTQUROdn+vsBkazKQfPEg6uwgjsJCmA0N2KL+hBglwMNZYa3gYirwfgW+Ahc8k+RvrDjX+ODTyA9TtTBTaNE+XcAqVG1/zLupCbRTQ7YZ7n0x4ywu7Zl7iFznpL6x7lyUSHCe6p9fh6VQ0DQe3pzOKohhvAFIsePJX88W06urhBgJpddrB7DOT9A1LaQtxAZ+gvospcWXzb3yYPAuGb+5SxDXQY0XANUewR4Ngn8j5SuguL8Jp4MDBAY+JHTqRls22c3lMJWjNiN7YohJJdDKC++0LFhMuUODJtIIxgwubVSnRQg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
+ dkim=pass header.d=intel.com; arc=none
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=intel.com;
+Received: from PH8PR11MB6952.namprd11.prod.outlook.com (2603:10b6:510:224::13)
+ by LV8PR11MB8462.namprd11.prod.outlook.com (2603:10b6:408:1e8::12)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6455.33; Wed, 14 Jun
+ 2023 17:07:27 +0000
+Received: from PH8PR11MB6952.namprd11.prod.outlook.com
+ ([fe80::84a5:8625:a20c:4086]) by PH8PR11MB6952.namprd11.prod.outlook.com
+ ([fe80::84a5:8625:a20c:4086%4]) with mapi id 15.20.6455.045; Wed, 14 Jun 2023
+ 17:07:27 +0000
+Date: Wed, 14 Jun 2023 10:07:24 -0700
+From: Niranjana Vishwanathapura <niranjana.vishwanathapura@intel.com>
+To: Matthew Brost <matthew.brost@intel.com>
+Message-ID: <ZInzzIxdAQHJ9KGQ@nvishwa1-DESK>
+References: <20230608050333.37581-1-matthew.brost@intel.com>
+ <20230608050333.37581-4-matthew.brost@intel.com>
+Content-Type: text/plain; charset="us-ascii"; format=flowed
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20230602104747.72015-1-zbigniew.kempczynski@intel.com>
-Subject: Re: [Intel-xe] [PATCH] drm/xe: Use nanoseconds instead of jiffies
- in uapi for user fence
+In-Reply-To: <20230608050333.37581-4-matthew.brost@intel.com>
+X-ClientProxiedBy: BY3PR05CA0044.namprd05.prod.outlook.com
+ (2603:10b6:a03:39b::19) To PH8PR11MB6952.namprd11.prod.outlook.com
+ (2603:10b6:510:224::13)
+MIME-Version: 1.0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: PH8PR11MB6952:EE_|LV8PR11MB8462:EE_
+X-MS-Office365-Filtering-Correlation-Id: 5831ff79-ab30-42fe-3551-08db6cf9d484
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: GvmgC5z1tc098elGD10GYPXNo8oARbQTyIMNQc0kfYVMZSBWJsgY+6bUEJuTS1ZKnFuOch6YOZQXx+D+JRjoRGhHckwBoeVxO4qDj5BpPMxFd8xFJOxVSN5Ow8RRpcqI3Rcl2Fa71IuMCmv3UAPQdR/sMFQ/8LhexycylAfFg0YneaZfq4J4GGFNyIJI2oQYSgBYlCJiDjuLy8PE14kWWcSnZzjR7NF7oU0Oyrt8csUYrNRS3xR6eCHl22Atdp/2vEK1Nu2p1xEpdJ7s4LlqtczvyoZ7ANWm4V0UejcJkJNHKVswIiwE8/bM8dUo+sIpDxjYpMo2WSOUOnILiLBY+22mANRHIvm6Tp1fi1wz0FsZb0BMM6w9Pzo+yIKzdEHWoYd0boAicnrCpP/Gj3LWDK/bxZcS6GpwEzkfrNVNSMe9LdccA5tbPJczfWbM1R74SZ5P4huq14014pi0rfAPe1GCvYK5HT0Dgk+4uEP8lKOSn0Qi84mGG1RssFecSYxlRln6e0dHotMzloltxHRTL6ySHwMb2eItRzeI/mQ5hnFT8Ehz0T1xbLcn+mBAsIn8
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:PH8PR11MB6952.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230028)(7916004)(346002)(366004)(39860400002)(376002)(396003)(136003)(451199021)(41300700001)(38100700002)(6666004)(6486002)(186003)(86362001)(9686003)(82960400001)(26005)(6506007)(107886003)(33716001)(6512007)(5660300002)(316002)(8676002)(6862004)(44832011)(4744005)(2906002)(478600001)(8936002)(66946007)(66476007)(6636002)(66556008)(4326008);
+ DIR:OUT; SFP:1102; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?+yg8PKLd44YbqVTXG5zkVuAU1Su7o0ibURxn0Kc8CDhQGQrlTB41SArD6gCf?=
+ =?us-ascii?Q?P1mwPIeaf9gsK+eEAJpUUK2icP02I/P/cfYtR1zl4vYNKKsnqEZJ0hJFjHOj?=
+ =?us-ascii?Q?zwVMisZfbSp14FgrG1ybetjqdFo8T31923efQK2yB42tSoVTeC798nmBbCPC?=
+ =?us-ascii?Q?ZUM3eQAhqFf9fUyIWAUT/QPsjSlmjZgcktSH03Omem5uV4MERoWyEXSRmaY6?=
+ =?us-ascii?Q?N5+BK8fxGzmps6pqXPlDLFjXOc1P+P1TypPGYoYDFHCA6dQafqo6Mj7esvyd?=
+ =?us-ascii?Q?JbqW8VscXIlN4/8zT/eiFb/lJC7N1N3RFj+QFrgLSIhwfZ2m65CsFZKav8zu?=
+ =?us-ascii?Q?vOxemlZvfS1sioqPMFZJv+zmSCUUd3hIKU1meVp/fS8Pudz6sZ/rFkMzdKBO?=
+ =?us-ascii?Q?1aNJDDQMnX/W5gmfyK9WuQtnwTfPSFr+i7lOvRyNQf/KkhrAaOgJw39I2eyR?=
+ =?us-ascii?Q?lyItEgIlVy0rnqi0L0S3lp4uu01A2Sw3c8AAO8u47M+Jz2DtUUCixQUs3pju?=
+ =?us-ascii?Q?fSa/rfDrS1vCnjkCbXzxrByQktpDZObSARzoyElW5xCEed/VqFv2me/PeYnI?=
+ =?us-ascii?Q?qnlAqv6DQUlFbIngp5ddqafjLi4W7z2ANk4/83CsOLKqhPyOPpXsUnQyZTji?=
+ =?us-ascii?Q?MC/yUr56VKevbpAtCrRFbRqXFX39Kdy4eaJSYevKf7dPLikmoadCZU+GwpPY?=
+ =?us-ascii?Q?VbhECwsiYSR9iee1zveM8B1eZo050F12GqSweMDXzSP20wLuKmhA23QLqIkW?=
+ =?us-ascii?Q?04WVsRWwRIBi+uwZemGJq5tA45Ea9EoUD0d/QcbPa9Q9nPTrqrgvpdiajDTc?=
+ =?us-ascii?Q?zjbAfRDKkZ9B5FegIoUX07tgWtKKaeJRzZf/+ZBNs+sgHwej0KfGWc1jaych?=
+ =?us-ascii?Q?N54ngTzP+4Nte1a+mI7pRKCjcUxyiPn1GaexjLmzpP33RAu+2+7NpFK+GaEv?=
+ =?us-ascii?Q?oRRzX899MopdGPonS2rFm5XKiczXwrK5F9QxfVY5afUNTQOnktNVIQ4OcxQv?=
+ =?us-ascii?Q?9TBrwUb2QMGl1UpbA8XJYBBekL+maoBOSUcd07TtYe6PZV2QI1iKihbeia9G?=
+ =?us-ascii?Q?yb5GaFuSjIsxhJnRSy4NzgHZA5V6pgKMnnwAmdYcij4Wn9U7jlo0UaUOluM8?=
+ =?us-ascii?Q?+nr9halhaxsS1FIx3dOSeypZJmKa+f4LiWq+Bbdc6M/Tz4eE4NHae5roZ1GX?=
+ =?us-ascii?Q?QR6TfmuWRp7nFaya+ON2zKYDd7qm+whDX1cAi9apuCEgj5c9ninrTqbczbOu?=
+ =?us-ascii?Q?gi7SrlglqvdaLYhIZjPQIUNa47uUhoiEIryVT4tFV4Cbu/eM7mEp9Z5aHCqm?=
+ =?us-ascii?Q?v6cNKH4e7CzDZ9FXX+lGhQF4m5TE2jzTbNzZ7wQpvlw+L47O7F/jfq84iJ12?=
+ =?us-ascii?Q?QBGucmfAQ4aXu8OnqNLmj4T2p9C8p4/VF7KSXkse5KsquvIhTMdpNVOCJU6X?=
+ =?us-ascii?Q?ulNVS0F3sc9qCqX1xSb1VdmEPuJCjKUBYHPGUO6K2rnVqSfHznYNVFtxYirC?=
+ =?us-ascii?Q?5BsPvGF0fvpTzLrTBh9fxGJyebCSKoq/je2Jc1V3NZY505A2ktfBshmUo3je?=
+ =?us-ascii?Q?vI3wiPtcnU3Am69XvQtK0nC/OgfDHAEv7YF9U5M7VzNo1arUTSIUGQhpCWFn?=
+ =?us-ascii?Q?+EyI80DMW2CjWQ7xVf6c+h4=3D?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: 5831ff79-ab30-42fe-3551-08db6cf9d484
+X-MS-Exchange-CrossTenant-AuthSource: PH8PR11MB6952.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 14 Jun 2023 17:07:27.3270 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: up2GdCCR1Uzj9JhRPZ3renU93evnpxK6WDXxQhqrA9Db6g1C/wJPLB/4nQ4bWaNYReDk2M9uEm4jzZ4DYRteGcBIpUpG27z2REmQGqAXNeBvD+GD8Qjp8dFQ5pXdGPi1
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: LV8PR11MB8462
+X-OriginatorOrg: intel.com
+Subject: Re: [Intel-xe] [PATCH 3/3] drm/xe: NULL binding implementation
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -60,132 +146,23 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-xe@lists.freedesktop.org, Luis Strano <luis.strano@intel.com>
+Cc: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Hi Filip,
+On Wed, Jun 07, 2023 at 10:03:33PM -0700, Matthew Brost wrote:
+>Add uAPI and implementation for NULL bindings. A NULL binding is defined
+>as writes dropped and read zero. A single bit in the uAPI has been added
+>which results in a single bit in the PTEs being set.
+>
+>NULL bindings are indended to be used to implement VK sparse bindings,
+>in particular residencyNonResidentStrict property.
+>
+>Suggested-by: Paulo Zanoni <paulo.r.zanoni@intel.com>
+>Signed-off-by: Matthew Brost <matthew.brost@intel.com>
 
-On Fri, Jun 02, 2023 at 12:47:47PM +0200, Zbigniew Kempczyński wrote:
-> Using jiffies as a timeout from userspace is weird even it theoretically
-> exists possiblity of acquiring jiffies via getconf. Unfortunately this
-> method is unreliable and returned value may vary from configured in the
-> kernel config.
-> 
-> Change alters timeout to be expected in nanoseconds returning remaining
-> timeout for relative and keeping absolute timeout intact.
-> 
-> Signed-off-by: Zbigniew Kempczyński <zbigniew.kempczynski@intel.com>
-> Cc: Andi Shyti <andi.shyti@linux.intel.com>
+Also, do we have IGT tests for this?
 
-this is the patch, if you are OK with it, please, feel free to
-ack it.
+Niranjana
 
-Andi
 
-> ---
->  drivers/gpu/drm/xe/xe_wait_user_fence.c | 40 ++++++++++++++++++-------
->  include/uapi/drm/xe_drm.h               |  5 +++-
->  2 files changed, 34 insertions(+), 11 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/xe/xe_wait_user_fence.c b/drivers/gpu/drm/xe/xe_wait_user_fence.c
-> index 6c8a60c60087..4405e694fe21 100644
-> --- a/drivers/gpu/drm/xe/xe_wait_user_fence.c
-> +++ b/drivers/gpu/drm/xe/xe_wait_user_fence.c
-> @@ -7,6 +7,7 @@
->  
->  #include <drm/drm_device.h>
->  #include <drm/drm_file.h>
-> +#include <drm/drm_utils.h>
->  #include <drm/xe_drm.h>
->  
->  #include "xe_device.h"
-> @@ -84,6 +85,24 @@ static int check_hw_engines(struct xe_device *xe,
->  			 DRM_XE_UFENCE_WAIT_VM_ERROR)
->  #define MAX_OP		DRM_XE_UFENCE_WAIT_LTE
->  
-> +static unsigned long to_jiffies_timeout(struct drm_xe_wait_user_fence *args)
-> +{
-> +	unsigned long timeout;
-> +
-> +	if (args->flags & DRM_XE_UFENCE_WAIT_ABSTIME)
-> +		return drm_timeout_abs_to_jiffies(args->timeout);
-> +
-> +	if (args->timeout < 0)
-> +		return MAX_SCHEDULE_TIMEOUT;
-> +
-> +	if (args->timeout == 0)
-> +		return 0;
-> +
-> +	timeout = nsecs_to_jiffies(args->timeout);
-> +
-> +	return timeout ?: 1;
-> +}
-> +
->  int xe_wait_user_fence_ioctl(struct drm_device *dev, void *data,
->  			     struct drm_file *file)
->  {
-> @@ -98,7 +117,8 @@ int xe_wait_user_fence_ioctl(struct drm_device *dev, void *data,
->  	int err;
->  	bool no_engines = args->flags & DRM_XE_UFENCE_WAIT_SOFT_OP ||
->  		args->flags & DRM_XE_UFENCE_WAIT_VM_ERROR;
-> -	unsigned long timeout = args->timeout;
-> +	unsigned long timeout;
-> +	ktime_t start;
->  
->  	if (XE_IOCTL_ERR(xe, args->extensions) || XE_IOCTL_ERR(xe, args->pad) ||
->  	    XE_IOCTL_ERR(xe, args->reserved[0] || args->reserved[1]))
-> @@ -149,8 +169,8 @@ int xe_wait_user_fence_ioctl(struct drm_device *dev, void *data,
->  		addr = vm->async_ops.error_capture.addr;
->  	}
->  
-> -	if (XE_IOCTL_ERR(xe, timeout > MAX_SCHEDULE_TIMEOUT))
-> -		return -EINVAL;
-> +	timeout = to_jiffies_timeout(args);
-> +	start = ktime_get();
->  
->  	/*
->  	 * FIXME: Very simple implementation at the moment, single wait queue
-> @@ -189,17 +209,17 @@ int xe_wait_user_fence_ioctl(struct drm_device *dev, void *data,
->  	} else {
->  		remove_wait_queue(&xe->ufence_wq, &w_wait);
->  	}
-> +
-> +	if (!(args->flags & DRM_XE_UFENCE_WAIT_ABSTIME)) {
-> +		args->timeout -= ktime_to_ns(ktime_sub(ktime_get(), start));
-> +		if (args->timeout < 0)
-> +			args->timeout = 0;
-> +	}
-> +
->  	if (XE_IOCTL_ERR(xe, err < 0))
->  		return err;
->  	else if (XE_IOCTL_ERR(xe, !timeout))
->  		return -ETIME;
->  
-> -	/*
-> -	 * Again very simple, return the time in jiffies that has past, may need
-> -	 * a more precision
-> -	 */
-> -	if (args->flags & DRM_XE_UFENCE_WAIT_ABSTIME)
-> -		args->timeout = args->timeout - timeout;
-> -
->  	return 0;
->  }
-> diff --git a/include/uapi/drm/xe_drm.h b/include/uapi/drm/xe_drm.h
-> index d5fc54b5be74..15077f479136 100644
-> --- a/include/uapi/drm/xe_drm.h
-> +++ b/include/uapi/drm/xe_drm.h
-> @@ -752,7 +752,10 @@ struct drm_xe_wait_user_fence {
->  #define DRM_XE_UFENCE_WAIT_U32		0xffffffffu
->  #define DRM_XE_UFENCE_WAIT_U64		0xffffffffffffffffu
->  	__u64 mask;
-> -	/** @timeout: how long to wait before bailing, value in jiffies */
-> +	/**
-> +	 * @timeout: how long to wait before bailing, value in nanoseconds.
-> +	 * For relative contains timeout left. For abstime keeps its intact.
-> +	 */
->  	__s64 timeout;
->  	/**
->  	 * @num_engines: number of engine instances to wait on, must be zero
-> -- 
-> 2.34.1
