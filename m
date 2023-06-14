@@ -4,52 +4,51 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 52505EB64DA
-	for <intel-xe@archiver.kernel.org>; Wed, 14 Jun 2023 11:50:46 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0F4F5EB64DB
+	for <intel-xe@archiver.kernel.org>; Wed, 14 Jun 2023 14:17:40 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id BBC1510E0E7;
-	Wed, 14 Jun 2023 11:50:38 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8835310E06B;
+	Wed, 14 Jun 2023 14:17:40 +0000 (UTC)
 Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8D68310E0E7
- for <intel-xe@lists.freedesktop.org>; Wed, 14 Jun 2023 11:50:15 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6BA2310E06B
+ for <intel-xe@lists.freedesktop.org>; Wed, 14 Jun 2023 14:17:37 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1686743415; x=1718279415;
- h=message-id:date:mime-version:subject:to:references:from:
- in-reply-to:content-transfer-encoding;
- bh=RUdR0SVTMCHebGUFGG6zygyOnoAw4JqNL5kBu8C3wp0=;
- b=gzs3XHY2WuqhbalzJHff1KJuP0xpuIrBkFOUkFqcqSUsG8YkPX6xuP18
- uJCWpSHmMnokeLALyz4mXEmaIgNuJ8mdZIsL/hy3F9jKAvhMfXqzBpc6Q
- AtypXEvXIg5hhi752U5N0TKmx9V0byGEUtN7mBVuHiKRO0JufgGNIF6ZD
- 6hBYwndXH7HhiOatcXjVucypoPyjKYryQp10Gv+gdIxKOzdoJnnS3wrjK
- 8suz1q5RHo8XjNw34ra2OVH6CwzcV63A8i+f2/mCHQl7vD6yUgqo/iUtM
- sTMJe2wrEVPQ3/yQU+qOkYTJ8gtDyIH/0aBZeN9m7GqIk6XB6tAwjijbQ Q==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10740"; a="444961353"
-X-IronPort-AV: E=Sophos;i="6.00,242,1681196400"; d="scan'208";a="444961353"
-Received: from fmsmga002.fm.intel.com ([10.253.24.26])
+ t=1686752257; x=1718288257;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:content-transfer-encoding:in-reply-to;
+ bh=wcmAj5JPOwS39jux3Ym2lCv95En6X0CKqMlktIVFFI4=;
+ b=BeyL5tBL0CXweMbGhqSdcHN4eb5tR3NQkGjBIgPnDPD8g7xSFjdtTvea
+ PCB8PJOqbF2q4Pfo6sLFXHAGMKALzHnqd+ccoOrbrND/pQGUEvpD6ATsn
+ uUSw/CvEZr/GV62QuOK9kEoXQlOFoqAK6u497zUslydHDdmaBQKH4mMdF
+ N0pIyyjuByktr+M/3Oy2v2j9ZMZt++jCpTbzOK0wBfFAJgxnEU2YZcw/X
+ NPvIRk+fL0u0yW76gW8G0ag15FtJt2oPB3nk5woaW7sCHuy/thTZZeEu+
+ 5atx3PsBIqxLQjuk2Vaq1FtvhBs9r6cnhx6oirCSGFl2EdHOTq8HEnvh4 A==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10741"; a="444991861"
+X-IronPort-AV: E=Sophos;i="6.00,242,1681196400"; d="scan'208";a="444991861"
+Received: from fmsmga003.fm.intel.com ([10.253.24.29])
  by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 14 Jun 2023 04:50:15 -0700
+ 14 Jun 2023 07:17:36 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10740"; a="824787260"
-X-IronPort-AV: E=Sophos;i="6.00,242,1681196400"; d="scan'208";a="824787260"
-Received: from aryba-mobl.ger.corp.intel.com (HELO [10.249.254.20])
- ([10.249.254.20])
- by fmsmga002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 14 Jun 2023 04:50:13 -0700
-Message-ID: <b4615a33-6150-dccb-ecfb-0b5ab36a39d9@linux.intel.com>
-Date: Wed, 14 Jun 2023 13:50:11 +0200
+X-IronPort-AV: E=McAfee;i="6600,9927,10741"; a="801924370"
+X-IronPort-AV: E=Sophos;i="6.00,242,1681196400"; d="scan'208";a="801924370"
+Received: from jrowe2-mobl1.ger.corp.intel.com (HELO intel.com)
+ ([10.249.44.185])
+ by fmsmga003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 14 Jun 2023 07:17:34 -0700
+Date: Wed, 14 Jun 2023 16:17:32 +0200
+From: Andi Shyti <andi.shyti@linux.intel.com>
+To: Zbigniew =?utf-8?Q?Kempczy=C5=84ski?= <zbigniew.kempczynski@intel.com>,
+ Filip Hazubski <filip.hazubski@intel.com>
+Message-ID: <ZInL/ORxw8U3sG0i@ashyti-mobl2.lan>
+References: <20230602104747.72015-1-zbigniew.kempczynski@intel.com>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.8.0
-Content-Language: en-US
-To: Matthew Brost <matthew.brost@intel.com>, intel-xe@lists.freedesktop.org
-References: <20230607160334.4111289-1-matthew.brost@intel.com>
- <20230607160334.4111289-9-matthew.brost@intel.com>
-From: =?UTF-8?Q?Thomas_Hellstr=c3=b6m?= <thomas.hellstrom@linux.intel.com>
-In-Reply-To: <20230607160334.4111289-9-matthew.brost@intel.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-Subject: Re: [Intel-xe] [PATCH v3 8/8] drm/xe: VM LRU bulk move
+In-Reply-To: <20230602104747.72015-1-zbigniew.kempczynski@intel.com>
+Subject: Re: [Intel-xe] [PATCH] drm/xe: Use nanoseconds instead of jiffies
+ in uapi for user fence
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -61,168 +60,132 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Cc: intel-xe@lists.freedesktop.org, Luis Strano <luis.strano@intel.com>
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
+Hi Filip,
 
-On 6/7/23 18:03, Matthew Brost wrote:
-> Use the TTM LRU bulk move for BOs tied to a VM. Update the bulk moves
-> LRU position on every exec.
->
-> v2: Bulk move for compute VMs, use WARN rather than BUG
-> Signed-off-by: Matthew Brost <matthew.brost@intel.com>
-Reviewed-by: Thomas Hellström <thomas.hellstrom@linux.intel.com>
+On Fri, Jun 02, 2023 at 12:47:47PM +0200, Zbigniew Kempczyński wrote:
+> Using jiffies as a timeout from userspace is weird even it theoretically
+> exists possiblity of acquiring jiffies via getconf. Unfortunately this
+> method is unreliable and returned value may vary from configured in the
+> kernel config.
+> 
+> Change alters timeout to be expected in nanoseconds returning remaining
+> timeout for relative and keeping absolute timeout intact.
+> 
+> Signed-off-by: Zbigniew Kempczyński <zbigniew.kempczynski@intel.com>
+> Cc: Andi Shyti <andi.shyti@linux.intel.com>
+
+this is the patch, if you are OK with it, please, feel free to
+ack it.
+
+Andi
+
 > ---
->   drivers/gpu/drm/xe/xe_bo.c       | 32 ++++++++++++++++++++++++++++----
->   drivers/gpu/drm/xe/xe_bo.h       |  4 ++--
->   drivers/gpu/drm/xe/xe_dma_buf.c  |  2 +-
->   drivers/gpu/drm/xe/xe_exec.c     |  6 ++++++
->   drivers/gpu/drm/xe/xe_vm.c       |  4 ++++
->   drivers/gpu/drm/xe/xe_vm_types.h |  3 +++
->   6 files changed, 44 insertions(+), 7 deletions(-)
->
-> diff --git a/drivers/gpu/drm/xe/xe_bo.c b/drivers/gpu/drm/xe/xe_bo.c
-> index b94a80a32d86..c996a36e11e9 100644
-> --- a/drivers/gpu/drm/xe/xe_bo.c
-> +++ b/drivers/gpu/drm/xe/xe_bo.c
-> @@ -992,6 +992,23 @@ static void xe_gem_object_free(struct drm_gem_object *obj)
->   	ttm_bo_put(container_of(obj, struct ttm_buffer_object, base));
->   }
->   
-> +static void xe_gem_object_close(struct drm_gem_object *obj,
-> +				struct drm_file *file_priv)
+>  drivers/gpu/drm/xe/xe_wait_user_fence.c | 40 ++++++++++++++++++-------
+>  include/uapi/drm/xe_drm.h               |  5 +++-
+>  2 files changed, 34 insertions(+), 11 deletions(-)
+> 
+> diff --git a/drivers/gpu/drm/xe/xe_wait_user_fence.c b/drivers/gpu/drm/xe/xe_wait_user_fence.c
+> index 6c8a60c60087..4405e694fe21 100644
+> --- a/drivers/gpu/drm/xe/xe_wait_user_fence.c
+> +++ b/drivers/gpu/drm/xe/xe_wait_user_fence.c
+> @@ -7,6 +7,7 @@
+>  
+>  #include <drm/drm_device.h>
+>  #include <drm/drm_file.h>
+> +#include <drm/drm_utils.h>
+>  #include <drm/xe_drm.h>
+>  
+>  #include "xe_device.h"
+> @@ -84,6 +85,24 @@ static int check_hw_engines(struct xe_device *xe,
+>  			 DRM_XE_UFENCE_WAIT_VM_ERROR)
+>  #define MAX_OP		DRM_XE_UFENCE_WAIT_LTE
+>  
+> +static unsigned long to_jiffies_timeout(struct drm_xe_wait_user_fence *args)
 > +{
-> +	struct xe_bo *bo = gem_to_xe_bo(obj);
+> +	unsigned long timeout;
 > +
-> +	if (bo->vm && !xe_vm_in_fault_mode(bo->vm)) {
-> +		struct ww_acquire_ctx ww;
+> +	if (args->flags & DRM_XE_UFENCE_WAIT_ABSTIME)
+> +		return drm_timeout_abs_to_jiffies(args->timeout);
 > +
-> +		XE_WARN_ON(!xe_bo_is_user(bo));
+> +	if (args->timeout < 0)
+> +		return MAX_SCHEDULE_TIMEOUT;
 > +
-> +		xe_bo_lock(bo, &ww, 0, false);
-> +		ttm_bo_set_bulk_move(&bo->ttm, NULL);
-> +		xe_bo_unlock(bo, &ww);
-> +	}
+> +	if (args->timeout == 0)
+> +		return 0;
+> +
+> +	timeout = nsecs_to_jiffies(args->timeout);
+> +
+> +	return timeout ?: 1;
 > +}
 > +
+>  int xe_wait_user_fence_ioctl(struct drm_device *dev, void *data,
+>  			     struct drm_file *file)
+>  {
+> @@ -98,7 +117,8 @@ int xe_wait_user_fence_ioctl(struct drm_device *dev, void *data,
+>  	int err;
+>  	bool no_engines = args->flags & DRM_XE_UFENCE_WAIT_SOFT_OP ||
+>  		args->flags & DRM_XE_UFENCE_WAIT_VM_ERROR;
+> -	unsigned long timeout = args->timeout;
+> +	unsigned long timeout;
+> +	ktime_t start;
+>  
+>  	if (XE_IOCTL_ERR(xe, args->extensions) || XE_IOCTL_ERR(xe, args->pad) ||
+>  	    XE_IOCTL_ERR(xe, args->reserved[0] || args->reserved[1]))
+> @@ -149,8 +169,8 @@ int xe_wait_user_fence_ioctl(struct drm_device *dev, void *data,
+>  		addr = vm->async_ops.error_capture.addr;
+>  	}
+>  
+> -	if (XE_IOCTL_ERR(xe, timeout > MAX_SCHEDULE_TIMEOUT))
+> -		return -EINVAL;
+> +	timeout = to_jiffies_timeout(args);
+> +	start = ktime_get();
+>  
+>  	/*
+>  	 * FIXME: Very simple implementation at the moment, single wait queue
+> @@ -189,17 +209,17 @@ int xe_wait_user_fence_ioctl(struct drm_device *dev, void *data,
+>  	} else {
+>  		remove_wait_queue(&xe->ufence_wq, &w_wait);
+>  	}
 > +
->   static bool should_migrate_to_system(struct xe_bo *bo)
->   {
->   	struct xe_device *xe = xe_bo_device(bo);
-> @@ -1047,6 +1064,7 @@ static const struct vm_operations_struct xe_gem_vm_ops = {
->   
->   static const struct drm_gem_object_funcs xe_gem_object_funcs = {
->   	.free = xe_gem_object_free,
-> +	.close = xe_gem_object_close,
->   	.mmap = drm_gem_ttm_mmap,
->   	.export = xe_gem_prime_export,
->   	.vm_ops = &xe_gem_vm_ops,
-> @@ -1088,8 +1106,8 @@ void xe_bo_free(struct xe_bo *bo)
->   
->   struct xe_bo *__xe_bo_create_locked(struct xe_device *xe, struct xe_bo *bo,
->   				    struct xe_tile *tile, struct dma_resv *resv,
-> -				    size_t size, enum ttm_bo_type type,
-> -				    u32 flags)
-> +				    struct ttm_lru_bulk_move *bulk, size_t size,
-> +				    enum ttm_bo_type type, u32 flags)
->   {
->   	struct ttm_operation_ctx ctx = {
->   		.interruptible = true,
-> @@ -1156,7 +1174,10 @@ struct xe_bo *__xe_bo_create_locked(struct xe_device *xe, struct xe_bo *bo,
->   		return ERR_PTR(err);
->   
->   	bo->created = true;
-> -	ttm_bo_move_to_lru_tail_unlocked(&bo->ttm);
-> +	if (bulk)
-> +		ttm_bo_set_bulk_move(&bo->ttm, bulk);
-> +	else
-> +		ttm_bo_move_to_lru_tail_unlocked(&bo->ttm);
->   
->   	return bo;
->   }
-> @@ -1226,7 +1247,10 @@ xe_bo_create_locked_range(struct xe_device *xe,
->   		}
->   	}
->   
-> -	bo = __xe_bo_create_locked(xe, bo, tile, vm ? &vm->resv : NULL, size,
-> +	bo = __xe_bo_create_locked(xe, bo, tile, vm ? &vm->resv : NULL,
-> +				   vm && !xe_vm_in_fault_mode(vm) &&
-> +				   flags & XE_BO_CREATE_USER_BIT ?
-> +				   &vm->lru_bulk_move : NULL, size,
->   				   type, flags);
->   	if (IS_ERR(bo))
->   		return bo;
-> diff --git a/drivers/gpu/drm/xe/xe_bo.h b/drivers/gpu/drm/xe/xe_bo.h
-> index 29eb7474f018..98bea6a26347 100644
-> --- a/drivers/gpu/drm/xe/xe_bo.h
-> +++ b/drivers/gpu/drm/xe/xe_bo.h
-> @@ -82,8 +82,8 @@ void xe_bo_free(struct xe_bo *bo);
->   
->   struct xe_bo *__xe_bo_create_locked(struct xe_device *xe, struct xe_bo *bo,
->   				    struct xe_tile *tile, struct dma_resv *resv,
-> -				    size_t size, enum ttm_bo_type type,
-> -				    u32 flags);
-> +				    struct ttm_lru_bulk_move *bulk, size_t size,
-> +				    enum ttm_bo_type type, u32 flags);
->   struct xe_bo *
->   xe_bo_create_locked_range(struct xe_device *xe,
->   			  struct xe_tile *tile, struct xe_vm *vm,
-> diff --git a/drivers/gpu/drm/xe/xe_dma_buf.c b/drivers/gpu/drm/xe/xe_dma_buf.c
-> index 9b252cc782b7..975dee1f770f 100644
-> --- a/drivers/gpu/drm/xe/xe_dma_buf.c
-> +++ b/drivers/gpu/drm/xe/xe_dma_buf.c
-> @@ -199,7 +199,7 @@ xe_dma_buf_init_obj(struct drm_device *dev, struct xe_bo *storage,
->   	int ret;
->   
->   	dma_resv_lock(resv, NULL);
-> -	bo = __xe_bo_create_locked(xe, storage, NULL, resv, dma_buf->size,
-> +	bo = __xe_bo_create_locked(xe, storage, NULL, resv, NULL, dma_buf->size,
->   				   ttm_bo_type_sg, XE_BO_CREATE_SYSTEM_BIT);
->   	if (IS_ERR(bo)) {
->   		ret = PTR_ERR(bo);
-> diff --git a/drivers/gpu/drm/xe/xe_exec.c b/drivers/gpu/drm/xe/xe_exec.c
-> index 9e9523939de8..88d2ceaa7316 100644
-> --- a/drivers/gpu/drm/xe/xe_exec.c
-> +++ b/drivers/gpu/drm/xe/xe_exec.c
-> @@ -397,6 +397,12 @@ int xe_exec_ioctl(struct drm_device *dev, void *data, struct drm_file *file)
->   	xe_sched_job_push(job);
->   	xe_vm_reactivate_rebind(vm);
->   
-> +	if (!err && !xe_vm_no_dma_fences(vm)) {
-> +		spin_lock(&xe->ttm.lru_lock);
-> +		ttm_lru_bulk_move_tail(&vm->lru_bulk_move);
-> +		spin_unlock(&xe->ttm.lru_lock);
+> +	if (!(args->flags & DRM_XE_UFENCE_WAIT_ABSTIME)) {
+> +		args->timeout -= ktime_to_ns(ktime_sub(ktime_get(), start));
+> +		if (args->timeout < 0)
+> +			args->timeout = 0;
 > +	}
 > +
->   err_repin:
->   	if (!xe_vm_no_dma_fences(vm))
->   		up_read(&vm->userptr.notifier_lock);
-> diff --git a/drivers/gpu/drm/xe/xe_vm.c b/drivers/gpu/drm/xe/xe_vm.c
-> index 2780f350ed33..d03c628d04b5 100644
-> --- a/drivers/gpu/drm/xe/xe_vm.c
-> +++ b/drivers/gpu/drm/xe/xe_vm.c
-> @@ -632,6 +632,10 @@ static void preempt_rebind_work_func(struct work_struct *w)
->   
->   #undef retry_required
->   
-> +	spin_lock(&vm->xe->ttm.lru_lock);
-> +	ttm_lru_bulk_move_tail(&vm->lru_bulk_move);
-> +	spin_unlock(&vm->xe->ttm.lru_lock);
-> +
->   	/* Point of no return. */
->   	arm_preempt_fences(vm, &preempt_fences);
->   	resume_and_reinstall_preempt_fences(vm);
-> diff --git a/drivers/gpu/drm/xe/xe_vm_types.h b/drivers/gpu/drm/xe/xe_vm_types.h
-> index 76af6ac0fa84..fe715bd1a20d 100644
-> --- a/drivers/gpu/drm/xe/xe_vm_types.h
-> +++ b/drivers/gpu/drm/xe/xe_vm_types.h
-> @@ -164,6 +164,9 @@ struct xe_vm {
->   	/** Protects @rebind_list and the page-table structures */
->   	struct dma_resv resv;
->   
-> +	/** @lru_bulk_move: Bulk LRU move list for this VM's BOs */
-> +	struct ttm_lru_bulk_move lru_bulk_move;
-> +
->   	u64 size;
->   	struct rb_root vmas;
->   
+>  	if (XE_IOCTL_ERR(xe, err < 0))
+>  		return err;
+>  	else if (XE_IOCTL_ERR(xe, !timeout))
+>  		return -ETIME;
+>  
+> -	/*
+> -	 * Again very simple, return the time in jiffies that has past, may need
+> -	 * a more precision
+> -	 */
+> -	if (args->flags & DRM_XE_UFENCE_WAIT_ABSTIME)
+> -		args->timeout = args->timeout - timeout;
+> -
+>  	return 0;
+>  }
+> diff --git a/include/uapi/drm/xe_drm.h b/include/uapi/drm/xe_drm.h
+> index d5fc54b5be74..15077f479136 100644
+> --- a/include/uapi/drm/xe_drm.h
+> +++ b/include/uapi/drm/xe_drm.h
+> @@ -752,7 +752,10 @@ struct drm_xe_wait_user_fence {
+>  #define DRM_XE_UFENCE_WAIT_U32		0xffffffffu
+>  #define DRM_XE_UFENCE_WAIT_U64		0xffffffffffffffffu
+>  	__u64 mask;
+> -	/** @timeout: how long to wait before bailing, value in jiffies */
+> +	/**
+> +	 * @timeout: how long to wait before bailing, value in nanoseconds.
+> +	 * For relative contains timeout left. For abstime keeps its intact.
+> +	 */
+>  	__s64 timeout;
+>  	/**
+>  	 * @num_engines: number of engine instances to wait on, must be zero
+> -- 
+> 2.34.1
