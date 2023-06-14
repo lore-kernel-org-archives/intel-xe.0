@@ -4,149 +4,52 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id A7474EB64D9
-	for <intel-xe@archiver.kernel.org>; Wed, 14 Jun 2023 08:08:48 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4848DEB64D9
+	for <intel-xe@archiver.kernel.org>; Wed, 14 Jun 2023 08:17:21 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5FB3110E416;
-	Wed, 14 Jun 2023 08:08:48 +0000 (UTC)
-Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B794F10E416
- for <intel-xe@lists.freedesktop.org>; Wed, 14 Jun 2023 08:08:46 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C9F3B10E113;
+	Wed, 14 Jun 2023 08:17:20 +0000 (UTC)
+Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 233A710E113
+ for <intel-xe@lists.freedesktop.org>; Wed, 14 Jun 2023 08:17:18 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1686730126; x=1718266126;
- h=message-id:date:subject:to:cc:references:from:
- in-reply-to:content-transfer-encoding:mime-version;
- bh=MIeZg8lzF2qBl9m9pJuHyqcFAEr+Geta1NSfMHr/tlI=;
- b=YqI7GgFlYTiEiS834Ra2qCFOAHyMRhpIZpEtfMdtD3Wc9PWzojPyaxV/
- /O2YZQGTVxNwwsF1YiXhZC+VwrHWH4eaJdH23iWNB3ViOwSf2xYDe9lxk
- q9FwYHP/mJ0xZMWeA0VSKL2SyKKQ82KSyV3aleBHCDT7ZDOVnVxFbIIz1
- oiIbXLkpCv9du9MbsBuLMA0DYt++WmcjyL0dFkPf37qb0impDl+ohRiKY
- wxU7aL+r2gIY6tmRiHkpEnnVbcFhx4Lt0xKl9GaPD7Y8rBrlQN8bSqryH
- W8WbrSMZcb42XH5j7Rn/ViQP6ZAT8N1DS8hQnMvTs2w2UxdKTR52A0pSH w==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10740"; a="424437919"
-X-IronPort-AV: E=Sophos;i="6.00,242,1681196400"; d="scan'208";a="424437919"
-Received: from orsmga001.jf.intel.com ([10.7.209.18])
- by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 14 Jun 2023 01:08:45 -0700
+ t=1686730639; x=1718266639;
+ h=message-id:date:mime-version:subject:to:cc:references:
+ from:in-reply-to:content-transfer-encoding;
+ bh=1z4efo3Lv8F/rhv1ibu3RNaLfwxqTkWi7rM3RWq6MWY=;
+ b=klwFQdVVCRxV8iR608l98LbgJOBaiCd5DuHUuP55yRRTIqUQGpi+YKzT
+ c3OcePnZVkoyMTo5sd6u/P7TyLS8PKkhaH8aug9CIC7BXompQr4kUOdki
+ HxmsqxMCYz2UyHdIsdRC/9z0jTZ9d9x6O9Iz8TZFo++p/YMKfSxMMZKbH
+ m7A8W825DTxduM2RNamXxulNrXCmw6wPIIT+iSwyuN1IfnqDQL2IGPgLQ
+ LpCOkcb1bKzo0xHndrXRAl6VZytdCehHRfmG4SIpM9s7w+zW6J8COX+N8
+ 9S4b43lYC7BnMElPGcVzNr8Z7z2voPsJ+POa++WPAHoaeut09eI8ketVC Q==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10740"; a="348215296"
+X-IronPort-AV: E=Sophos;i="6.00,242,1681196400"; d="scan'208";a="348215296"
+Received: from fmsmga008.fm.intel.com ([10.253.24.58])
+ by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 14 Jun 2023 01:17:17 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10740"; a="744990605"
-X-IronPort-AV: E=Sophos;i="6.00,242,1681196400"; d="scan'208";a="744990605"
-Received: from orsmsx602.amr.corp.intel.com ([10.22.229.15])
- by orsmga001.jf.intel.com with ESMTP; 14 Jun 2023 01:08:45 -0700
-Received: from orsmsx612.amr.corp.intel.com (10.22.229.25) by
- ORSMSX602.amr.corp.intel.com (10.22.229.15) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.23; Wed, 14 Jun 2023 01:08:45 -0700
-Received: from orsmsx610.amr.corp.intel.com (10.22.229.23) by
- ORSMSX612.amr.corp.intel.com (10.22.229.25) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.23; Wed, 14 Jun 2023 01:08:44 -0700
-Received: from ORSEDG601.ED.cps.intel.com (10.7.248.6) by
- orsmsx610.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.23 via Frontend Transport; Wed, 14 Jun 2023 01:08:44 -0700
-Received: from NAM12-DM6-obe.outbound.protection.outlook.com (104.47.59.176)
- by edgegateway.intel.com (134.134.137.102) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2507.23; Wed, 14 Jun 2023 01:08:44 -0700
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=B9SlkXRnaKBrNsSA9hZUas4gvk/sd8dcgsQ6rN4WZ+YIc5WaPQSeNlQsVJGq/R3CT6U+IWOoEQAgEUcnkdqZI2AZxcXLljYfwF7n+10Cd7yXJ8Or0ellzVxHCeWwWsSD1Qe/n2D5V+u/qxg9e3v/8PysX/GEpjxtWvSycRDvVJ9BjKcXacCYKpWndwm/ifM7gvs3MB/mnoor6F3Bm681ehh7oijrlJq+U+xsOKGO0ncVEJ3/dXOqTt8bYOYG19JpNHpp0ckWyNJ5HQmw6Qec0Fz7Ejao85gKMjAfz/sl4J8dsSRfaxdaIk4Yv43+fQLeTdMSUiReuc1n0JBRr2RtPA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=jRRLHu7JwoHUvjt9EfyA3oxt1O7eF9XzmWb6tKcb1Qk=;
- b=jpLr/6aS3fAdn760t+G3QJj87RoOyR5jr7OmIeHFe2Ml3jOHrgrD9f8iKvTcxpTMiSL/aO+0d6dCnVf6sQ6pMO070Ye3+UJAMuowzO/sqwr2CB8gBehQ6g3WrTIYMYu2Dl1Q07fBaIJJwdSDHlkEn1nBTrZVmn26tE2ZWRPKJ8jmZr5+l/bP9yn47QcCGlyQehW6YJFWL5zWeu3e+Yn+VD6bY7uJKjEGlIQMAGEYIawMXCrrTjUYV6H5jp0WZvsRY1zkeh//xiaFZGL+bA8mlz3sG6QJpl294kOyHJc0eGOooyMpkFmcTRibx51VnvP1AUY12dFisffMMa588anYhQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
- dkim=pass header.d=intel.com; arc=none
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=intel.com;
-Received: from SJ0PR11MB4845.namprd11.prod.outlook.com (2603:10b6:a03:2d1::10)
- by CY8PR11MB6865.namprd11.prod.outlook.com (2603:10b6:930:5f::15)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6477.29; Wed, 14 Jun
- 2023 08:08:37 +0000
-Received: from SJ0PR11MB4845.namprd11.prod.outlook.com
- ([fe80::3fa8:dede:a9ab:fc5]) by SJ0PR11MB4845.namprd11.prod.outlook.com
- ([fe80::3fa8:dede:a9ab:fc5%6]) with mapi id 15.20.6477.028; Wed, 14 Jun 2023
- 08:08:37 +0000
-Message-ID: <f604b6ea-7197-35f3-a91d-29dc1c56ac59@intel.com>
-Date: Wed, 14 Jun 2023 13:38:27 +0530
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
- Firefox/102.0 Thunderbird/102.11.0
-Content-Language: en-US
-To: Badal Nilawar <badal.nilawar@intel.com>, <intel-xe@lists.freedesktop.org>
-References: <20230606125057.838618-1-badal.nilawar@intel.com>
- <20230606125057.838618-5-badal.nilawar@intel.com>
-From: Riana Tauro <riana.tauro@intel.com>
-In-Reply-To: <20230606125057.838618-5-badal.nilawar@intel.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 8bit
-X-ClientProxiedBy: PN0PR01CA0014.INDPRD01.PROD.OUTLOOK.COM
- (2603:1096:c01:4f::19) To SJ0PR11MB4845.namprd11.prod.outlook.com
- (2603:10b6:a03:2d1::10)
+X-IronPort-AV: E=McAfee;i="6600,9927,10740"; a="777145454"
+X-IronPort-AV: E=Sophos;i="6.00,242,1681196400"; d="scan'208";a="777145454"
+Received: from aryba-mobl.ger.corp.intel.com (HELO [10.249.254.20])
+ ([10.249.254.20])
+ by fmsmga008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 14 Jun 2023 01:17:15 -0700
+Message-ID: <383a45fa-9eee-a292-d9df-21b519a0e05b@linux.intel.com>
+Date: Wed, 14 Jun 2023 10:17:13 +0200
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: SJ0PR11MB4845:EE_|CY8PR11MB6865:EE_
-X-MS-Office365-Filtering-Correlation-Id: 7136824d-5144-4154-29ac-08db6cae8e58
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: n7KaDLeQ15c0yajcKXz2h1EaTkTkR/xNWKi3CHA93AF7vOx4jHVrV5JyErzwZtRZ6cs/lrsxTF0V4FqUvdXV54LcPOn5Mr7OyACbZJMTQdxe60fklpcyirD26EwQtUVjWWEHDsBfjTD1HgWlqAsIm59tiWHFcBX+8bNcQqF8RtrxwGCOD57dAMWanpHelccbKyea52vbowM6U7svUrw+aMbKFqY4Li1V6ZeBXGZ7nL+qQeKWqCweTNzuJ32DwGor/mq9qvhwHNbuCTH7kVcbLAu1HAcD9SpstA7QDfu3TAWZTDLsQFPOw9SIYR0i4Hihf/NC/2eHfVIu6oiu1/222H8/0e3W0/U0Z+vDifrZUJ/P5uwI5EFd5ncZRq6kS2fWSTpJaxNOoMZEfrFGmRhmCzgYQFovWYT9b1GVx56rqQ4/gqOdszmvgIuidtdmThr/DwVKwCqFJNgGiKTn+ZiRcWJuudbFp/5lOFMCKHdSXS+hlYbSiwxig4gRYUj2QuoeJQC24VvHfjbIwFNWm9knId9GobBO+pUnDJdnhaoUmjrMAw6/9WB77pb4DT0Q8PKD7dH0DQa+B0zih6TGRS1zATrSRm5CtH3QpnE2FnwdE89F8C7Jr1okHK1g6M2HQ4VQW8/CO/S883S1BXsSCwIOUA==
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:SJ0PR11MB4845.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230028)(346002)(39860400002)(376002)(136003)(396003)(366004)(451199021)(5660300002)(66946007)(31686004)(66556008)(4326008)(316002)(8676002)(8936002)(44832011)(41300700001)(186003)(2906002)(478600001)(66476007)(6666004)(107886003)(6486002)(6512007)(26005)(53546011)(36756003)(83380400001)(6506007)(86362001)(82960400001)(2616005)(38100700002)(31696002)(45980500001)(43740500002);
- DIR:OUT; SFP:1102; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?cVZuSnpYcmhWZlhhTUFBOW14Y1pQS3Evd0ZjZWxHc3QrRkR0RklVUFVEUG5Y?=
- =?utf-8?B?b1BRWTE0RVdaaWxOM1MvUTh3aDRtOUNvazVTaU1HdlFJTE9hbnUwR0ZLTzc5?=
- =?utf-8?B?cGs2QVZqMWZlckxIYUpSNS8vQXZjbUEyVWltMUZPU3QxNHAzTUFIVG84WEw5?=
- =?utf-8?B?WWpOZ2xlSGEwZllrWmJaUHI1YWRKa0FxTkdKMG5nMXdGS3p4bGhDK0puSFdC?=
- =?utf-8?B?dmg5WWlrZDNxSVRIcVJBSFlGS3lHS3hZSyt2Rk5HbkNqeExReUlaUWxhQ1Ez?=
- =?utf-8?B?eHppNWpXT3gzaEFMTVp6MzRqdEx6NFhMSnNNaSs2QUFVTGRKd2VpL3JGcDR4?=
- =?utf-8?B?UjFkZTg5UWFwaHBOTWNwMm1UcjBEc1pwb1BMOExLc2lPS3ZOelpGQzZCVXRh?=
- =?utf-8?B?aWg2a0lIdEt0blIxNVhGMzk2anJWMjhUaldyNlVRRXFFR3ZvdXdLWFUyd1k4?=
- =?utf-8?B?cWE4Z1JEOTlFVlQrcTF2d29pZjVBVUNZNTdpck1sclpoWFJqTksrM3Rvd1lQ?=
- =?utf-8?B?NzVyNlpNT2tIQUxyWEEzbmtQRzNoZ1p1SjR3blh0cDJpUTQzWU4zeHpOVEFP?=
- =?utf-8?B?dllBNDNaeERwd3ludktRWWhmaGN4L3d4d0xNZ1IrOEhZdTlwVnJkZUo5em5T?=
- =?utf-8?B?a0M3a0ZEVm9kL25TeVMwa0R4UW80ZmZvWjJXc2cvVlk5ZE1kaGF5YTNuV25r?=
- =?utf-8?B?eU11cG8xc0xwTTJXTkExU2MvUE54d0l0MC9iL3kvaVVvTnc2Y3hxclJlZi90?=
- =?utf-8?B?U2l2WThvMndFT0NVTVMrNWw1SVVzcnQ0QUpTVmxpeURFRWhVQ2hSZmRVMnZ3?=
- =?utf-8?B?bmZWNk15WmVNRUxMajdKMjVIMTdSc1l5TDdsTTNxZjI0QnJGQWV2NDJWWVBI?=
- =?utf-8?B?TU5wOU5xalZRRWJkMllyd2xEU1oxTFBKSnhxMG1Tb3h5aHFJVlhaRGhPV0ha?=
- =?utf-8?B?R3ZuMTgvYzlUbzIzS1RyaHMrTWlMRjJ6NHhqNy85ZEgwL2NNTFJrY1N0dUYr?=
- =?utf-8?B?OXowQk9yck9KOFlIZ1dBWjBxOG40VERiTWVmMDF5M0VxTFpOSmJQbFJQN0RL?=
- =?utf-8?B?cmc1M1pWOStEcCt5M2hkS0VmVDBBY3lpaTlTZ0Z3Z3l1KzRZMXQ5UWtxSDFX?=
- =?utf-8?B?cjVJU3lFZ2ZZZDBEY2VZU2E3Uzh4SW51UFpVME5SbVMwMS9sdENEMlY2QUpu?=
- =?utf-8?B?ckhhNlUydmFVbkhGazdzODl0U2RpOEZUNEQ2UWZsd3lCWmpRSG1ZZnI0WFlj?=
- =?utf-8?B?VHpJR2IwMnloemgvV1dkMXU2NC82OTg1NkVnQ0llLzRwVHNjY0w5MDNOdEdK?=
- =?utf-8?B?U1V6ZFExdWU2UWRwbWZ0ODM2dnlURUc4NFNzMUV6cEU3NXFFSVYrMEN3ZWNH?=
- =?utf-8?B?c3hvYTlHajY1STV2Q3Y0Y0VTZEI3aGd4RHdEOW5xWDNUb1ZTSXNESnZIOG9j?=
- =?utf-8?B?dStCYlkwSGNaZG1aM204TFVtakZaWC9Mckhsckk0bEZnMGVuM0QzWDdyei81?=
- =?utf-8?B?S3djcENTVUlHN2VWdTZoMTNuWDBEdS9uNEsrOHF6Q3hHeDlTcWpwNXFsV3NM?=
- =?utf-8?B?U01xdmZmSnpPYVBCUlEvY09MRHg1QVRVQS9RYkptVUdCd2VFZjFGM21kbkcr?=
- =?utf-8?B?Ymc0QXllQkVFWkF4NVNqZWtpUzNKMVFIa1BYZ0JuRHFQR3FEakswbkVWT1Fq?=
- =?utf-8?B?Z2NtejBKUkx0M2FLTXgxdWpOY3RENk1IcEtTWklmMUpBUWszYmx6WTdHTklH?=
- =?utf-8?B?SmhkamJObnVueTJoanI4bXFKUkNOSGk4bW1GMkpJT0x3NzkydFRBRE83b3VR?=
- =?utf-8?B?RVJYMzhidE9VUGxOeWwzbXBEV0w5QkYrdTJPRU44L011MDJXTkZLMWhWYTZp?=
- =?utf-8?B?Sm40T0pRRlBtaWFKMW5LaGI5Z1h6eERZMGNsdG9nWmpYM25SUGZtVlF6Y1Ix?=
- =?utf-8?B?Z0ZuRVAyeXJSZHdHK1VNRjIrcXdrRUZmRnBzMDFIQjZQR1p3QWdSS2dEckNZ?=
- =?utf-8?B?K0FyK09ZNW4wTEdHbm9KeXp2L2xjV254b01sZDlEcWI4dnJubVNkRG85aTlT?=
- =?utf-8?B?WjRxRjhjZGdzUHFMNFFCYUcxaE9hL25NcURLOGo3ODRlaTJINXRnTlM2U25B?=
- =?utf-8?Q?MrvudX7TQxO99qhZlJWtO1Dm7?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: 7136824d-5144-4154-29ac-08db6cae8e58
-X-MS-Exchange-CrossTenant-AuthSource: SJ0PR11MB4845.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 14 Jun 2023 08:08:37.4656 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: guSdrsAHWBn37JrCsHaf2teacq9HxXOoUu0nILBBX2hYiJB7blIrcRtJVOfSwN+k37RThpOFNJDOLfuse4JRZA==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: CY8PR11MB6865
-X-OriginatorOrg: intel.com
-Subject: Re: [Intel-xe] [RFC PATCH 4/6] drm/xe/hwmon: Expose input voltage
- attribute
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.8.0
+Content-Language: en-US
+To: Matthew Brost <matthew.brost@intel.com>, intel-xe@lists.freedesktop.org
+References: <20230608050333.37581-1-matthew.brost@intel.com>
+ <20230608050333.37581-4-matthew.brost@intel.com>
+From: =?UTF-8?Q?Thomas_Hellstr=c3=b6m?= <thomas.hellstrom@linux.intel.com>
+In-Reply-To: <20230608050333.37581-4-matthew.brost@intel.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+Subject: Re: [Intel-xe] [PATCH 3/3] drm/xe: NULL binding implementation
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -162,206 +65,544 @@ Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 
-Hi Badal
-
-On 6/6/2023 6:20 PM, Badal Nilawar wrote:
-> Use Xe HWMON subsystem to display the input voltage.
-> 
-> Co-developed-by: Riana Tauro <riana.tauro@intel.com>
-> Signed-off-by: Badal Nilawar <badal.nilawar@intel.com>
+On 6/8/23 07:03, Matthew Brost wrote:
+> Add uAPI and implementation for NULL bindings. A NULL binding is defined
+> as writes dropped and read zero. A single bit in the uAPI has been added
+> which results in a single bit in the PTEs being set.
+>
+> NULL bindings are indended to be used to implement VK sparse bindings,
+> in particular residencyNonResidentStrict property.
+>
+> Suggested-by: Paulo Zanoni <paulo.r.zanoni@intel.com>
+> Signed-off-by: Matthew Brost <matthew.brost@intel.com>
 > ---
->   .../ABI/testing/sysfs-driver-intel-xe-hwmon   |  6 ++
->   drivers/gpu/drm/xe/regs/xe_gt_regs.h          |  3 +
->   drivers/gpu/drm/xe/xe_hwmon.c                 | 70 +++++++++++++++++--
->   3 files changed, 75 insertions(+), 4 deletions(-)
-> 
-> diff --git a/Documentation/ABI/testing/sysfs-driver-intel-xe-hwmon b/Documentation/ABI/testing/sysfs-driver-intel-xe-hwmon
-> index fcc2aedb2aac..aa064e0c5751 100644
-> --- a/Documentation/ABI/testing/sysfs-driver-intel-xe-hwmon
-> +++ b/Documentation/ABI/testing/sysfs-driver-intel-xe-hwmon
-> @@ -44,5 +44,11 @@ Description:	RW. Card reactive critical (I1) power limit in milliamperes.
->   		the operating frequency if the power averaged over a window
->   		exceeds this limit.
+>   drivers/gpu/drm/xe/xe_bo.h           |  1 +
+>   drivers/gpu/drm/xe/xe_exec.c         |  2 +
+>   drivers/gpu/drm/xe/xe_gt_pagefault.c |  4 +-
+>   drivers/gpu/drm/xe/xe_pt.c           | 71 +++++++++++++++------
+>   drivers/gpu/drm/xe/xe_vm.c           | 95 ++++++++++++++++++----------
+>   drivers/gpu/drm/xe/xe_vm.h           | 12 +++-
+>   drivers/gpu/drm/xe/xe_vm_types.h     |  1 +
+>   include/uapi/drm/xe_drm.h            |  8 +++
+>   8 files changed, 138 insertions(+), 56 deletions(-)
+>
+> diff --git a/drivers/gpu/drm/xe/xe_bo.h b/drivers/gpu/drm/xe/xe_bo.h
+> index dd3d448fee0b..3a148cc6e811 100644
+> --- a/drivers/gpu/drm/xe/xe_bo.h
+> +++ b/drivers/gpu/drm/xe/xe_bo.h
+> @@ -61,6 +61,7 @@
+>   #define XE_PPGTT_PTE_LM			BIT_ULL(11)
+>   #define XE_PDE_64K			BIT_ULL(6)
+>   #define XE_PTE_PS64			BIT_ULL(8)
+> +#define XE_PTE_NULL			BIT_ULL(9)
 >   
-> +What:		/sys/devices/.../hwmon/hwmon<i>/in0_input
-> +Date:		June 2023
-> +KernelVersion:	6.3
-> +Contact:	intel-gfx@lists.freedesktop.org
-> +Description:	RO. Current Voltage in millivolt.
+>   #define XE_PAGE_PRESENT			BIT_ULL(0)
+>   #define XE_PAGE_RW			BIT_ULL(1)
+> diff --git a/drivers/gpu/drm/xe/xe_exec.c b/drivers/gpu/drm/xe/xe_exec.c
+> index e44076ee2e11..4f7694a29348 100644
+> --- a/drivers/gpu/drm/xe/xe_exec.c
+> +++ b/drivers/gpu/drm/xe/xe_exec.c
+> @@ -120,6 +120,8 @@ static int xe_exec_begin(struct xe_engine *e, struct ww_acquire_ctx *ww,
+>   	 * to a location where the GPU can access it).
+>   	 */
+>   	list_for_each_entry(vma, &vm->rebind_list, rebind_link) {
+> +		XE_WARN_ON(xe_vma_is_null(vma));
 > +
->   		Only supported for particular Intel xe graphics platforms.
+>   		if (xe_vma_is_userptr(vma))
+>   			continue;
 >   
-> diff --git a/drivers/gpu/drm/xe/regs/xe_gt_regs.h b/drivers/gpu/drm/xe/regs/xe_gt_regs.h
-> index 9d888aae907e..fe00c42ff29d 100644
-> --- a/drivers/gpu/drm/xe/regs/xe_gt_regs.h
-> +++ b/drivers/gpu/drm/xe/regs/xe_gt_regs.h
-> @@ -349,6 +349,9 @@
->   #define GT_GFX_RC6_LOCKED			XE_REG(0x138104)
->   #define GT_GFX_RC6				XE_REG(0x138108)
+> diff --git a/drivers/gpu/drm/xe/xe_gt_pagefault.c b/drivers/gpu/drm/xe/xe_gt_pagefault.c
+> index 73db7f7c0381..6faebd02f3fb 100644
+> --- a/drivers/gpu/drm/xe/xe_gt_pagefault.c
+> +++ b/drivers/gpu/drm/xe/xe_gt_pagefault.c
+> @@ -533,8 +533,8 @@ static int handle_acc(struct xe_gt *gt, struct acc *acc)
 >   
-> +#define GT_PERF_STATUS				XE_REG(0x1381b4)
-> +#define   VOLTAGE_MASK				REG_GENMASK(10, 0)
-> +
->   #define GT_INTR_DW(x)				XE_REG(0x190018 + ((x) * 4))
+>   	trace_xe_vma_acc(vma);
 >   
->   #define GUC_SG_INTR_ENABLE			XE_REG(0x190038)
-> diff --git a/drivers/gpu/drm/xe/xe_hwmon.c b/drivers/gpu/drm/xe/xe_hwmon.c
-> index b07ea53fdbc6..a86d2d8218d5 100644
-> --- a/drivers/gpu/drm/xe/xe_hwmon.c
-> +++ b/drivers/gpu/drm/xe/xe_hwmon.c
-> @@ -3,8 +3,8 @@
->    * Copyright © 2023 Intel Corporation
->    */
+> -	/* Userptr can't be migrated, nothing to do */
+> -	if (xe_vma_is_userptr(vma))
+> +	/* Userptr or null can't be migrated, nothing to do */
+> +	if (xe_vma_has_no_bo(vma))
+>   		goto unlock_vm;
 >   
-> -#include <linux/hwmon.h>
->   #include <linux/hwmon-sysfs.h>
-> +#include <linux/hwmon.h>
->   #include <linux/types.h>
->   
->   #include "regs/xe_mchbar_regs.h"
-> @@ -26,6 +26,7 @@ enum hwm_reg_name {
->   	pkg_rapl_limit,
->   	pkg_power_sku,
->   	pkg_power_sku_unit,
-> +	gt_perf_status,
->   };
->   
->   enum hwm_reg_operation {
-> @@ -36,13 +37,13 @@ enum hwm_reg_operation {
->   
->   /*
->    * SF_* - scale factors for particular quantities according to hwmon spec.
-> - * - voltage  - millivolts
->    * - power  - microwatts
->    * - curr   - milliamperes
-> + * - voltage  - millivolts
->    */
-> -#define SF_VOLTAGE	1000
->   #define SF_POWER	1000000
->   #define SF_CURR		1000
-> +#define SF_VOLTAGE	1000
->   
->   struct hwm_drvdata {
->   	struct xe_hwmon *hwmon;
-> @@ -86,6 +87,11 @@ struct xe_reg hwm_get_reg(struct hwm_drvdata *ddat, enum hwm_reg_name reg_name)
->   		else
->   			return XE_REG(0);
->   		break;
-> +	case gt_perf_status:
-> +		if (IS_DG2(gt_to_xe(ddat->gt)))
-> +			return GT_PERF_STATUS;
-> +		else
-> +			return XE_REG(0);
->   	default:
->   		break;
->   	}
-> @@ -254,9 +260,9 @@ static int hwm_power_rated_max_read(struct hwm_drvdata *ddat, long *value)
->   }
->   
->   static const struct hwmon_channel_info *hwm_info[] = {
-> -	HWMON_CHANNEL_INFO(power, HWMON_P_MAX | HWMON_P_RATED_MAX),
->   	HWMON_CHANNEL_INFO(power, HWMON_P_MAX | HWMON_P_RATED_MAX | HWMON_P_CRIT),
->   	HWMON_CHANNEL_INFO(curr, HWMON_C_CRIT),
-> +	HWMON_CHANNEL_INFO(in, HWMON_I_INPUT),
->   	NULL
->   };
->   
-> @@ -279,6 +285,22 @@ static int hwm_pcode_write_i1(struct xe_gt *gt, u32 uval)
->   			      uval);
->   }
->   
-> +static int hwm_get_vltg(struct hwm_drvdata *ddat, long *value)
-hwm_get_voltage?
-> +{
-> +	u32 reg_val;
-> +
-> +	if (IS_DG2(gt_to_xe(ddat->gt))) {
-This check is not required here if is_visible  checks if reg  raw is valid
-> +		process_hwmon_reg(ddat, gt_perf_status,
-> +				  reg_read, &reg_val, 0, 0);
-> +		/* HW register value in units of 2.5 millivolt */
-> +		*value = DIV_ROUND_CLOSEST(REG_FIELD_GET(VOLTAGE_MASK, reg_val) * 25, 10);
-Since we are adding a scale factor to this patch. We need to use it here
-
-> +
-> +		return 0;
-> +	}
-> +
-> +	return -EOPNOTSUPP;
-> +}
-> +
->   static umode_t
->   hwm_power_is_visible(struct hwm_drvdata *ddat, u32 attr, int chan)
+>   	/* Lock VM and BOs dma-resv */
+> diff --git a/drivers/gpu/drm/xe/xe_pt.c b/drivers/gpu/drm/xe/xe_pt.c
+> index 39ec94549439..265ee45bee5c 100644
+> --- a/drivers/gpu/drm/xe/xe_pt.c
+> +++ b/drivers/gpu/drm/xe/xe_pt.c
+> @@ -81,7 +81,9 @@ u64 gen8_pde_encode(struct xe_bo *bo, u64 bo_offset,
+>   static dma_addr_t vma_addr(struct xe_vma *vma, u64 offset,
+>   			   size_t page_size, bool *is_vram)
 >   {
-> @@ -432,6 +454,39 @@ hwm_curr_write(struct hwm_drvdata *ddat, u32 attr, long val)
+> -	if (xe_vma_is_userptr(vma)) {
+> +	if (xe_vma_is_null(vma)) {
+> +		return 0;
+> +	} else if (xe_vma_is_userptr(vma)) {
+>   		struct xe_res_cursor cur;
+>   		u64 page;
+>   
+> @@ -559,6 +561,10 @@ static bool xe_pt_hugepte_possible(u64 addr, u64 next, unsigned int level,
+>   	if (next - xe_walk->va_curs_start > xe_walk->curs->size)
+>   		return false;
+>   
+> +	/* null VMA's do not have dma adresses */
+> +	if (xe_walk->pte_flags & XE_PTE_FLAG_NULL)
+> +		return true;
+> +
+>   	/* Is the DMA address huge PTE size aligned? */
+>   	size = next - addr;
+>   	dma = addr - xe_walk->va_curs_start + xe_res_dma(xe_walk->curs);
+> @@ -575,6 +581,10 @@ xe_pt_scan_64K(u64 addr, u64 next, struct xe_pt_stage_bind_walk *xe_walk)
+>   {
+>   	struct xe_res_cursor curs = *xe_walk->curs;
+>   
+> +	/* null VMA's do not have dma adresses */
+> +	if (xe_walk->pte_flags & XE_PTE_FLAG_NULL)
+> +		return true;
+> +
+>   	if (!IS_ALIGNED(addr, SZ_64K))
+>   		return false;
+>   
+> @@ -631,12 +641,29 @@ xe_pt_stage_bind_entry(struct xe_ptw *parent, pgoff_t offset,
+>   	/* Is this a leaf entry ?*/
+>   	if (level == 0 || xe_pt_hugepte_possible(addr, next, level, xe_walk)) {
+>   		struct xe_res_cursor *curs = xe_walk->curs;
+> +		u64 pte = 0;
+> +		bool is_null = xe_walk->pte_flags & XE_PTE_FLAG_NULL;
+>   
+>   		XE_WARN_ON(xe_walk->va_curs_start != addr);
+>   
+> -		pte = __gen8_pte_encode(xe_res_dma(curs) + xe_walk->dma_offset,
+> -					xe_walk->cache, xe_walk->pte_flags,
+> -					level);
+> +		if (is_null) {
+> +			pte |= XE_PAGE_PRESENT | XE_PAGE_RW;
+> +			if (xe_walk->pte_flags & XE_PTE_FLAG_READ_ONLY)
+> +				pte &= ~XE_PAGE_RW;
+> +
+> +			if (level == 1)
+> +				pte |= XE_PDE_PS_2M;
+> +			else if (level == 2)
+> +				pte |= XE_PDPE_PS_1G;
+> +
+> +			pte |= XE_PTE_NULL;
+Why can't this block be incorporated into __gen8_pte_encode() and the 
+test for null binding done in that function?
+> +		} else {
+> +			pte = __gen8_pte_encode(xe_res_dma(curs) +
+> +						xe_walk->dma_offset,
+> +						xe_walk->cache,
+> +						xe_walk->pte_flags,
+> +						level);
+> +		}
+>   		pte |= xe_walk->default_pte;
+>   
+>   		/*
+> @@ -654,7 +681,8 @@ xe_pt_stage_bind_entry(struct xe_ptw *parent, pgoff_t offset,
+>   		if (unlikely(ret))
+>   			return ret;
+>   
+> -		xe_res_next(curs, next - addr);
+> +		if (!is_null)
+> +			xe_res_next(curs, next - addr);
+>   		xe_walk->va_curs_start = next;
+>   		*action = ACTION_CONTINUE;
+>   
+> @@ -761,24 +789,29 @@ xe_pt_stage_bind(struct xe_tile *tile, struct xe_vma *vma,
+>   		xe_walk.dma_offset = vram_region_gpu_offset(bo->ttm.resource);
+>   		xe_walk.cache = XE_CACHE_WB;
+>   	} else {
+> -		if (!xe_vma_is_userptr(vma) && bo->flags & XE_BO_SCANOUT_BIT)
+> +		if (!xe_vma_has_no_bo(vma) && bo->flags & XE_BO_SCANOUT_BIT)
+>   			xe_walk.cache = XE_CACHE_WT;
+>   		else
+>   			xe_walk.cache = XE_CACHE_WB;
+>   	}
+> -	if (!xe_vma_is_userptr(vma) && xe_bo_is_stolen(bo))
+> +	if (!xe_vma_has_no_bo(vma) && xe_bo_is_stolen(bo))
+>   		xe_walk.dma_offset = xe_ttm_stolen_gpu_offset(xe_bo_device(bo));
+>   
+>   	xe_bo_assert_held(bo);
+> -	if (xe_vma_is_userptr(vma))
+> -		xe_res_first_sg(vma->userptr.sg, 0, vma->end - vma->start + 1,
+> -				&curs);
+> -	else if (xe_bo_is_vram(bo) || xe_bo_is_stolen(bo))
+> -		xe_res_first(bo->ttm.resource, vma->bo_offset,
+> -			     vma->end - vma->start + 1, &curs);
+> -	else
+> -		xe_res_first_sg(xe_bo_get_sg(bo), vma->bo_offset,
+> -				vma->end - vma->start + 1, &curs);
+> +
+> +	if (!xe_vma_is_null(vma)) {
+> +		if (xe_vma_is_userptr(vma))
+> +			xe_res_first_sg(vma->userptr.sg, 0,
+> +					vma->end - vma->start + 1, &curs);
+> +		else if (xe_bo_is_vram(bo) || xe_bo_is_stolen(bo))
+> +			xe_res_first(bo->ttm.resource, vma->bo_offset,
+> +				     vma->end - vma->start + 1, &curs);
+> +		else
+> +			xe_res_first_sg(xe_bo_get_sg(bo), vma->bo_offset,
+> +					vma->end - vma->start + 1, &curs);
+> +	} else {
+> +		curs.size = vma->end - vma->start + 1;
+> +	}
+>   
+>   	ret = xe_pt_walk_range(&pt->base, pt->level, vma->start, vma->end + 1,
+>   				&xe_walk.base);
+> @@ -967,7 +1000,7 @@ static void xe_pt_commit_locks_assert(struct xe_vma *vma)
+>   
+>   	if (xe_vma_is_userptr(vma))
+>   		lockdep_assert_held_read(&vm->userptr.notifier_lock);
+> -	else
+> +	else if (!xe_vma_is_null(vma))
+>   		dma_resv_assert_held(vma->bo->ttm.base.resv);
+>   
+>   	dma_resv_assert_held(&vm->resv);
+> @@ -1330,7 +1363,7 @@ __xe_pt_bind_vma(struct xe_tile *tile, struct xe_vma *vma, struct xe_engine *e,
+>   				   DMA_RESV_USAGE_KERNEL :
+>   				   DMA_RESV_USAGE_BOOKKEEP);
+>   
+> -		if (!xe_vma_is_userptr(vma) && !vma->bo->vm)
+> +		if (!xe_vma_has_no_bo(vma) && !vma->bo->vm)
+>   			dma_resv_add_fence(vma->bo->ttm.base.resv, fence,
+>   					   DMA_RESV_USAGE_BOOKKEEP);
+>   		xe_pt_commit_bind(vma, entries, num_entries, rebind,
+> @@ -1647,7 +1680,7 @@ __xe_pt_unbind_vma(struct xe_tile *tile, struct xe_vma *vma, struct xe_engine *e
+>   				   DMA_RESV_USAGE_BOOKKEEP);
+>   
+>   		/* This fence will be installed by caller when doing eviction */
+> -		if (!xe_vma_is_userptr(vma) && !vma->bo->vm)
+> +		if (!xe_vma_has_no_bo(vma) && !vma->bo->vm)
+>   			dma_resv_add_fence(vma->bo->ttm.base.resv, fence,
+>   					   DMA_RESV_USAGE_BOOKKEEP);
+>   		xe_pt_commit_unbind(vma, entries, num_entries,
+> diff --git a/drivers/gpu/drm/xe/xe_vm.c b/drivers/gpu/drm/xe/xe_vm.c
+> index 94fc9c330235..f7629db275f9 100644
+> --- a/drivers/gpu/drm/xe/xe_vm.c
+> +++ b/drivers/gpu/drm/xe/xe_vm.c
+> @@ -590,7 +590,7 @@ static void preempt_rebind_work_func(struct work_struct *w)
+>   		goto out_unlock;
+>   
+>   	list_for_each_entry(vma, &vm->rebind_list, rebind_link) {
+> -		if (xe_vma_is_userptr(vma) || vma->destroyed)
+> +		if (xe_vma_has_no_bo(vma) || vma->destroyed)
+>   			continue;
+>   
+>   		err = xe_bo_validate(vma->bo, vm, false);
+> @@ -843,6 +843,7 @@ static struct xe_vma *xe_vma_create(struct xe_vm *vm,
+>   				    u64 bo_offset_or_userptr,
+>   				    u64 start, u64 end,
+>   				    bool read_only,
+> +				    bool is_null,
+>   				    u64 tile_mask)
+>   {
+>   	struct xe_vma *vma;
+> @@ -868,8 +869,11 @@ static struct xe_vma *xe_vma_create(struct xe_vm *vm,
+>   	vma->vm = vm;
+>   	vma->start = start;
+>   	vma->end = end;
+> +	vma->pte_flags = 0;
+>   	if (read_only)
+> -		vma->pte_flags = XE_PTE_FLAG_READ_ONLY;
+> +		vma->pte_flags |= XE_PTE_FLAG_READ_ONLY;
+> +	if (is_null)
+> +		vma->pte_flags |= XE_PTE_FLAG_NULL;
+>   
+>   	if (tile_mask) {
+>   		vma->tile_mask = tile_mask;
+> @@ -886,23 +890,26 @@ static struct xe_vma *xe_vma_create(struct xe_vm *vm,
+>   		vma->bo_offset = bo_offset_or_userptr;
+>   		vma->bo = xe_bo_get(bo);
+>   		list_add_tail(&vma->bo_link, &bo->vmas);
+> -	} else /* userptr */ {
+> -		u64 size = end - start + 1;
+> -		int err;
+> +	} else /* userptr or null */ {
+> +		if (!is_null) {
+> +			u64 size = end - start + 1;
+> +			int err;
+>   
+> -		vma->userptr.ptr = bo_offset_or_userptr;
+> +			vma->userptr.ptr = bo_offset_or_userptr;
+>   
+> -		err = mmu_interval_notifier_insert(&vma->userptr.notifier,
+> -						   current->mm,
+> -						   vma->userptr.ptr, size,
+> -						   &vma_userptr_notifier_ops);
+> -		if (err) {
+> -			kfree(vma);
+> -			vma = ERR_PTR(err);
+> -			return vma;
+> +			err = mmu_interval_notifier_insert(&vma->userptr.notifier,
+> +							   current->mm,
+> +							   vma->userptr.ptr, size,
+> +							   &vma_userptr_notifier_ops);
+> +			if (err) {
+> +				kfree(vma);
+> +				vma = ERR_PTR(err);
+> +				return vma;
+> +			}
+> +
+> +			vma->userptr.notifier_seq = LONG_MAX;
+>   		}
+>   
+> -		vma->userptr.notifier_seq = LONG_MAX;
+>   		xe_vm_get(vm);
+>   	}
+>   
+> @@ -942,6 +949,8 @@ static void xe_vma_destroy_late(struct xe_vma *vma)
+>   		 */
+>   		mmu_interval_notifier_remove(&vma->userptr.notifier);
+>   		xe_vm_put(vm);
+> +	} else if (xe_vma_is_null(vma)) {
+> +		xe_vm_put(vm);
+>   	} else {
+>   		xe_bo_put(vma->bo);
+>   	}
+> @@ -1024,7 +1033,7 @@ static void xe_vma_destroy(struct xe_vma *vma, struct dma_fence *fence)
+>   		list_del_init(&vma->userptr.invalidate_link);
+>   		spin_unlock(&vm->userptr.invalidated_lock);
+>   		list_del(&vma->userptr_link);
+> -	} else {
+> +	} else if (!xe_vma_is_null(vma)) {
+>   		xe_bo_assert_held(vma->bo);
+>   		list_del(&vma->bo_link);
+>   
+> @@ -1391,7 +1400,7 @@ void xe_vm_close_and_put(struct xe_vm *vm)
+>   	while (vm->vmas.rb_node) {
+>   		struct xe_vma *vma = to_xe_vma(vm->vmas.rb_node);
+>   
+> -		if (xe_vma_is_userptr(vma)) {
+> +		if (xe_vma_has_no_bo(vma)) {
+>   			down_read(&vm->userptr.notifier_lock);
+>   			vma->destroyed = true;
+>   			up_read(&vm->userptr.notifier_lock);
+> @@ -1400,7 +1409,7 @@ void xe_vm_close_and_put(struct xe_vm *vm)
+>   		rb_erase(&vma->vm_node, &vm->vmas);
+>   
+>   		/* easy case, remove from VMA? */
+> -		if (xe_vma_is_userptr(vma) || vma->bo->vm) {
+> +		if (xe_vma_has_no_bo(vma) || vma->bo->vm) {
+>   			xe_vma_destroy(vma, NULL);
+>   			continue;
+>   		}
+> @@ -2034,7 +2043,7 @@ static int xe_vm_prefetch(struct xe_vm *vm, struct xe_vma *vma,
+>   
+>   	XE_BUG_ON(region > ARRAY_SIZE(region_to_mem_type));
+>   
+> -	if (!xe_vma_is_userptr(vma)) {
+> +	if (!xe_vma_has_no_bo(vma)) {
+>   		err = xe_bo_migrate(vma->bo, region_to_mem_type[region]);
+>   		if (err)
+>   			return err;
+> @@ -2643,6 +2652,8 @@ static struct xe_vma *vm_unbind_lookup_vmas(struct xe_vm *vm,
+>   					  lookup->start - 1,
+>   					  (first->pte_flags &
+>   					   XE_PTE_FLAG_READ_ONLY),
+> +					  (first->pte_flags &
+> +					   XE_PTE_FLAG_NULL),
+>   					  first->tile_mask);
+>   		if (first->bo)
+>   			xe_bo_unlock(first->bo, &ww);
+> @@ -2675,6 +2686,7 @@ static struct xe_vma *vm_unbind_lookup_vmas(struct xe_vm *vm,
+>   					 last->end,
+>   					 (last->pte_flags &
+>   					  XE_PTE_FLAG_READ_ONLY),
+> +					 (last->pte_flags & XE_PTE_FLAG_NULL),
+>   					 last->tile_mask);
+>   		if (last->bo)
+>   			xe_bo_unlock(last->bo, &ww);
+> @@ -2742,7 +2754,7 @@ static struct xe_vma *vm_prefetch_lookup_vmas(struct xe_vm *vm,
+>   		      *next;
+>   	struct rb_node *node;
+>   
+> -	if (!xe_vma_is_userptr(vma)) {
+> +	if (!xe_vma_has_no_bo(vma)) {
+>   		if (!xe_bo_can_migrate(vma->bo, region_to_mem_type[region]))
+>   			return ERR_PTR(-EINVAL);
+>   	}
+> @@ -2751,7 +2763,7 @@ static struct xe_vma *vm_prefetch_lookup_vmas(struct xe_vm *vm,
+>   	while ((node = rb_next(node))) {
+>   		if (!xe_vma_cmp_vma_cb(lookup, node)) {
+>   			__vma = to_xe_vma(node);
+> -			if (!xe_vma_is_userptr(__vma)) {
+> +			if (!xe_vma_has_no_bo(__vma)) {
+>   				if (!xe_bo_can_migrate(__vma->bo, region_to_mem_type[region]))
+>   					goto flush_list;
+>   			}
+> @@ -2765,7 +2777,7 @@ static struct xe_vma *vm_prefetch_lookup_vmas(struct xe_vm *vm,
+>   	while ((node = rb_prev(node))) {
+>   		if (!xe_vma_cmp_vma_cb(lookup, node)) {
+>   			__vma = to_xe_vma(node);
+> -			if (!xe_vma_is_userptr(__vma)) {
+> +			if (!xe_vma_has_no_bo(__vma)) {
+>   				if (!xe_bo_can_migrate(__vma->bo, region_to_mem_type[region]))
+>   					goto flush_list;
+>   			}
+> @@ -2824,21 +2836,23 @@ static struct xe_vma *vm_bind_ioctl_lookup_vma(struct xe_vm *vm,
+>   
+>   	switch (VM_BIND_OP(op)) {
+>   	case XE_VM_BIND_OP_MAP:
+> -		XE_BUG_ON(!bo);
+> -
+> -		err = xe_bo_lock(bo, &ww, 0, true);
+> -		if (err)
+> -			return ERR_PTR(err);
+> +		if (bo) {
+> +			err = xe_bo_lock(bo, &ww, 0, true);
+> +			if (err)
+> +				return ERR_PTR(err);
+> +		}
+>   		vma = xe_vma_create(vm, bo, bo_offset_or_userptr, addr,
+>   				    addr + range - 1,
+>   				    op & XE_VM_BIND_FLAG_READONLY,
+> +				    op & XE_VM_BIND_FLAG_NULL,
+>   				    tile_mask);
+> -		xe_bo_unlock(bo, &ww);
+> +		if (bo)
+> +			xe_bo_unlock(bo, &ww);
+>   		if (!vma)
+>   			return ERR_PTR(-ENOMEM);
+>   
+>   		xe_vm_insert_vma(vm, vma);
+> -		if (!bo->vm) {
+> +		if (bo && !bo->vm) {
+Suspicious-looking indent.
+>   			vm_insert_extobj(vm, vma);
+>   			err = add_preempt_fences(vm, bo);
+>   			if (err) {
+> @@ -2872,6 +2886,7 @@ static struct xe_vma *vm_bind_ioctl_lookup_vma(struct xe_vm *vm,
+>   		vma = xe_vma_create(vm, NULL, bo_offset_or_userptr, addr,
+>   				    addr + range - 1,
+>   				    op & XE_VM_BIND_FLAG_READONLY,
+> +				    op & XE_VM_BIND_FLAG_NULL,
+>   				    tile_mask);
+>   		if (!vma)
+>   			return ERR_PTR(-ENOMEM);
+> @@ -2897,11 +2912,12 @@ static struct xe_vma *vm_bind_ioctl_lookup_vma(struct xe_vm *vm,
+>   #ifdef TEST_VM_ASYNC_OPS_ERROR
+>   #define SUPPORTED_FLAGS	\
+>   	(FORCE_ASYNC_OP_ERROR | XE_VM_BIND_FLAG_ASYNC | \
+> -	 XE_VM_BIND_FLAG_READONLY | XE_VM_BIND_FLAG_IMMEDIATE | 0xffff)
+> +	 XE_VM_BIND_FLAG_READONLY | XE_VM_BIND_FLAG_IMMEDIATE | \
+> +	 XE_VM_BIND_FLAG_NULL | 0xffff)
+>   #else
+>   #define SUPPORTED_FLAGS	\
+>   	(XE_VM_BIND_FLAG_ASYNC | XE_VM_BIND_FLAG_READONLY | \
+> -	 XE_VM_BIND_FLAG_IMMEDIATE | 0xffff)
+> +	 XE_VM_BIND_FLAG_IMMEDIATE | XE_VM_BIND_FLAG_NULL | 0xffff)
+>   #endif
+>   #define XE_64K_PAGE_MASK 0xffffull
+>   
+> @@ -2949,6 +2965,7 @@ static int vm_bind_ioctl_check_args(struct xe_device *xe,
+>   		u32 obj = (*bind_ops)[i].obj;
+>   		u64 obj_offset = (*bind_ops)[i].obj_offset;
+>   		u32 region = (*bind_ops)[i].region;
+> +		bool is_null = op &  XE_VM_BIND_FLAG_NULL;
+>   
+>   		if (XE_IOCTL_ERR(xe, (*bind_ops)[i].pad) ||
+>   		    XE_IOCTL_ERR(xe, (*bind_ops)[i].reserved[0] ||
+> @@ -2982,8 +2999,13 @@ static int vm_bind_ioctl_check_args(struct xe_device *xe,
+>   		if (XE_IOCTL_ERR(xe, VM_BIND_OP(op) >
+>   				 XE_VM_BIND_OP_PREFETCH) ||
+>   		    XE_IOCTL_ERR(xe, op & ~SUPPORTED_FLAGS) ||
+> +		    XE_IOCTL_ERR(xe, obj && is_null) ||
+> +		    XE_IOCTL_ERR(xe, obj_offset && is_null) ||
+> +		    XE_IOCTL_ERR(xe, VM_BIND_OP(op) != XE_VM_BIND_OP_MAP &&
+> +				 is_null) ||
+>   		    XE_IOCTL_ERR(xe, !obj &&
+> -				 VM_BIND_OP(op) == XE_VM_BIND_OP_MAP) ||
+> +				 VM_BIND_OP(op) == XE_VM_BIND_OP_MAP &&
+> +				 !is_null) ||
+>   		    XE_IOCTL_ERR(xe, !obj &&
+>   				 VM_BIND_OP(op) == XE_VM_BIND_OP_UNMAP_ALL) ||
+>   		    XE_IOCTL_ERR(xe, addr &&
+> @@ -3389,6 +3411,7 @@ int xe_vm_invalidate_vma(struct xe_vma *vma)
+>   	int ret;
+>   
+>   	XE_BUG_ON(!xe_vm_in_fault_mode(vma->vm));
+> +	XE_WARN_ON(xe_vma_is_null(vma));
+>   	trace_xe_vma_usm_invalidate(vma);
+>   
+>   	/* Check that we don't race with page-table updates */
+> @@ -3451,8 +3474,11 @@ int xe_analyze_vm(struct drm_printer *p, struct xe_vm *vm, int gt_id)
+>   	for (node = rb_first(&vm->vmas); node; node = rb_next(node)) {
+>   		struct xe_vma *vma = to_xe_vma(node);
+>   		bool is_userptr = xe_vma_is_userptr(vma);
+> +		bool is_null = xe_vma_is_null(vma);
+>   
+> -		if (is_userptr) {
+> +		if (is_null) {
+> +			addr = 0;
+> +		} else if (is_userptr) {
+>   			struct xe_res_cursor cur;
+>   
+>   			xe_res_first_sg(vma->userptr.sg, 0, XE_PAGE_SIZE,
+> @@ -3463,7 +3489,8 @@ int xe_analyze_vm(struct drm_printer *p, struct xe_vm *vm, int gt_id)
+>   		}
+>   		drm_printf(p, " [%016llx-%016llx] S:0x%016llx A:%016llx %s\n",
+>   			   vma->start, vma->end, vma->end - vma->start + 1ull,
+> -			   addr, is_userptr ? "USR" : is_vram ? "VRAM" : "SYS");
+> +			   addr, is_null ? "NULL" : is_userptr ? "USR" :
+> +			   is_vram ? "VRAM" : "SYS");
+>   	}
+>   	up_read(&vm->lock);
+>   
+> diff --git a/drivers/gpu/drm/xe/xe_vm.h b/drivers/gpu/drm/xe/xe_vm.h
+> index 372f26153209..38731e200813 100644
+> --- a/drivers/gpu/drm/xe/xe_vm.h
+> +++ b/drivers/gpu/drm/xe/xe_vm.h
+> @@ -115,11 +115,21 @@ static inline void xe_vm_reactivate_rebind(struct xe_vm *vm)
 >   	}
 >   }
 >   
-> +static umode_t
-> +hwm_in_is_visible(struct hwm_drvdata *ddat, u32 attr)
+> -static inline bool xe_vma_is_userptr(struct xe_vma *vma)
+> +static inline bool xe_vma_is_null(struct xe_vma *vma)
 > +{
-> +	long val;
-> +
-> +	switch (attr) {
-> +	case hwmon_in_input:
-> +		return hwm_get_vltg(ddat, &val) ? 0 : 0444;
-> +	default:
-> +		return 0;
-> +	}
+> +	return vma->pte_flags & XE_PTE_FLAG_NULL;
 > +}
 > +
-> +static int
-> +hwm_in_read(struct hwm_drvdata *ddat, u32 attr, long *val)
+> +static inline bool xe_vma_has_no_bo(struct xe_vma *vma)
+>   {
+>   	return !vma->bo;
+>   }
+>   
+> +static inline bool xe_vma_is_userptr(struct xe_vma *vma)
 > +{
-> +	int ret;
-> +
-> +	xe_device_mem_access_get(gt_to_xe(ddat->gt));
-> +
-> +	switch (attr) {
-> +	case hwmon_in_input:
-> +		ret = hwm_get_vltg(ddat, val);
-> +		break;
-> +	default:
-> +		ret = -EOPNOTSUPP;
-> +	}
-> +
-> +	xe_device_mem_access_put(gt_to_xe(ddat->gt));
-> +
-> +	return ret;
+> +	return xe_vma_has_no_bo(vma) && !xe_vma_is_null(vma);
 > +}
 > +
->   static umode_t
->   hwm_is_visible(const void *drvdata, enum hwmon_sensor_types type,
->   	       u32 attr, int channel)
-> @@ -445,6 +500,8 @@ hwm_is_visible(const void *drvdata, enum hwmon_sensor_types type,
->   		break;
->   	case hwmon_curr:
->   		return hwm_curr_is_visible(ddat, attr);
-> +	case hwmon_in:
-> +		return hwm_in_is_visible(ddat, attr);
->   	default:
->   		ret = 0;
->   	}
-> @@ -463,6 +520,8 @@ hwm_read(struct device *dev, enum hwmon_sensor_types type, u32 attr,
->   		return hwm_power_read(ddat, attr, channel, val);
->   	case hwmon_curr:
->   		return hwm_curr_read(ddat, attr, val);
-> +	case hwmon_in:
-> +		return hwm_in_read(ddat, attr, val);
->   	default:
->   		return -EOPNOTSUPP;
->   	}
-> @@ -530,6 +589,9 @@ void xe_hwmon_register(struct xe_device *xe)
->   	mutex_init(&hwmon->hwmon_lock);
->   	ddat = &hwmon->ddat;
+>   int xe_vma_userptr_pin_pages(struct xe_vma *vma);
 >   
-> +	/* primary GT to access device level properties */
-> +	ddat->gt = xe->tiles[0].primary_gt;
-This had to be added in second patch
-
-Thanks
-Riana
-> +
->   	ddat->hwmon = hwmon;
->   	snprintf(ddat->name, sizeof(ddat->name), "xe");
+>   int xe_vma_userptr_check_repin(struct xe_vma *vma);
+> diff --git a/drivers/gpu/drm/xe/xe_vm_types.h b/drivers/gpu/drm/xe/xe_vm_types.h
+> index 6daddd29d416..f775bafe4619 100644
+> --- a/drivers/gpu/drm/xe/xe_vm_types.h
+> +++ b/drivers/gpu/drm/xe/xe_vm_types.h
+> @@ -31,6 +31,7 @@ struct xe_vma {
+>   	u64 end;
+>   	/** @pte_flags: pte flags for this VMA */
+>   #define XE_PTE_FLAG_READ_ONLY		BIT(0)
+> +#define XE_PTE_FLAG_NULL		BIT(1)
+>   	u32 pte_flags;
 >   
+>   	/** @bo: BO if not a userptr, must be NULL is userptr */
+> diff --git a/include/uapi/drm/xe_drm.h b/include/uapi/drm/xe_drm.h
+> index 0ebc50beb5e5..39a1ce89732f 100644
+> --- a/include/uapi/drm/xe_drm.h
+> +++ b/include/uapi/drm/xe_drm.h
+> @@ -456,6 +456,14 @@ struct drm_xe_vm_bind_op {
+>   	 * than differing the MAP to the page fault handler.
+>   	 */
+>   #define XE_VM_BIND_FLAG_IMMEDIATE	(0x1 << 18)
+> +	/*
+> +	 * When the NULL flag is set, the page tables are setup with a special
+> +	 * bit which indicates writes are dropped and all reads return zero.  In
+> +	 * the future, the NULL flags will only be valid for XE_VM_BIND_OP_MAP
+> +	 * operations, the BO handle MBZ, and the BO offset MBZ. This flag is
+> +	 * intended to implement VK sparse bindings.
+> +	 */
+> +#define XE_VM_BIND_FLAG_NULL		(0x1 << 19)
+>   
+>   	/** @reserved: Reserved */
+>   	__u64 reserved[2];
