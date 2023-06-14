@@ -4,48 +4,47 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 32ABBEB64D9
-	for <intel-xe@archiver.kernel.org>; Wed, 14 Jun 2023 20:52:15 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id A4548EB64D8
+	for <intel-xe@archiver.kernel.org>; Wed, 14 Jun 2023 20:52:17 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0183310E469;
-	Wed, 14 Jun 2023 20:52:15 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7CE2310E46B;
+	Wed, 14 Jun 2023 20:52:17 +0000 (UTC)
 Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 868D210E462
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5E84210E469
  for <intel-xe@lists.freedesktop.org>; Wed, 14 Jun 2023 20:52:12 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
  t=1686775932; x=1718311932;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=3AQLqsAIfascPApYFRJkItH/Lac6UT+op6X+y7g+TGs=;
- b=h0bjMInnc8nnR3JRNRpz9crzyIJPBsItByXI9Pb+FpgMekShLJ6WteMY
- uj/Mabls8CvO18LcqbR8oM/2R0VsShfj/7ew+SwvQs6j3SBePoo+LiBUy
- Ln/blJNzt9Ac7Rk3MVVw/TnENJH7zTWpg02W90eSggzs6jfloWRn9kgcE
- /1BAW84OeEERXksjO+xKvy4uazedwcBK+dXACuHkpyp4M6X39CT/9xzek
- Psmu4cNavv5cHGWLwoGY3Irb5LzfnhnoiQU7PsiS86zkDJcMoGBXuD0c/
- 9usUu4TlTTot4Lpgzpre3kqPB+MAiYRtSJZ2XVEnaBwmrzKPgmY53pohh w==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10741"; a="343431998"
-X-IronPort-AV: E=Sophos;i="6.00,243,1681196400"; d="scan'208";a="343431998"
+ bh=rlps2124NGYmLU4VsJw5emaYEO7nFA8jaOY1S3Mbx78=;
+ b=ik9WqTw3ZBvwO7KYTeuBv3TAK/Ai0nnrF+wn4zizW/BKoT0Ix8e3307r
+ Gra+Ij3LEGj/xx5NL91jhlNVgn1IXMn68sDy5HYxbGmKDtAJy7IOs/n0V
+ TD7Zuia4UAb9w0IraLkWGH/ulm4azKFqIBoJiA4JJqKPjkyvB6X4vNDpz
+ W9gc/qd03PKTgPyO3vJCCf/zktlbaUNxMahY3thuXJjIKgGSk89D+5fGQ
+ Z5XjQJS24zWiSPVC3TxAsrK/fYeAxpqcY/nnUFs3GhMpjJyA6320X5TSS
+ HzFvpMSLIJyJknyKUZ80kuV2cPg1g/vXiMk5giVYb3USI3A0n7OhDy/1Q A==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10741"; a="343431997"
+X-IronPort-AV: E=Sophos;i="6.00,243,1681196400"; d="scan'208";a="343431997"
 Received: from orsmga002.jf.intel.com ([10.7.209.21])
  by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  14 Jun 2023 13:52:11 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10741"; a="712206070"
-X-IronPort-AV: E=Sophos;i="6.00,243,1681196400"; d="scan'208";a="712206070"
+X-IronPort-AV: E=McAfee;i="6600,9927,10741"; a="712206068"
+X-IronPort-AV: E=Sophos;i="6.00,243,1681196400"; d="scan'208";a="712206068"
 Received: from mdroper-desk1.fm.intel.com ([10.1.27.147])
  by orsmga002-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 14 Jun 2023 13:52:09 -0700
+ 14 Jun 2023 13:52:08 -0700
 From: Matt Roper <matthew.d.roper@intel.com>
 To: intel-xe@lists.freedesktop.org
-Date: Wed, 14 Jun 2023 13:52:01 -0700
-Message-Id: <20230614205202.3376752-4-matthew.d.roper@intel.com>
+Date: Wed, 14 Jun 2023 13:52:00 -0700
+Message-Id: <20230614205202.3376752-3-matthew.d.roper@intel.com>
 X-Mailer: git-send-email 2.40.1
 In-Reply-To: <20230614205202.3376752-1-matthew.d.roper@intel.com>
 References: <20230614205202.3376752-1-matthew.d.roper@intel.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-xe] [PATCH 3/4] drm/xe: Print proper revid value for unknown
- media revision
+Subject: [Intel-xe] [PATCH 2/4] drm/xe: Don't raise error on fused-off media
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -61,28 +60,31 @@ Cc: matthew.d.roper@intel.com
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-If the GMD_ID register reports a higher media revision ID than we're
-expecting, print the media revid, not the graphics revid, in the
-debug message.
+It's legitimate for the media GMD_ID register to read back as 0x0 if
+media functionality is fused off or otherwise not present on the
+platform.  Avoid printing an "unknown media version" error message for
+this case.
 
 Signed-off-by: Matt Roper <matthew.d.roper@intel.com>
 ---
- drivers/gpu/drm/xe/xe_step.c | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+ drivers/gpu/drm/xe/xe_pci.c | 4 ++++
+ 1 file changed, 4 insertions(+)
 
-diff --git a/drivers/gpu/drm/xe/xe_step.c b/drivers/gpu/drm/xe/xe_step.c
-index 1baf79ba02ad..371cac951e0f 100644
---- a/drivers/gpu/drm/xe/xe_step.c
-+++ b/drivers/gpu/drm/xe/xe_step.c
-@@ -235,7 +235,7 @@ struct xe_step_info xe_step_gmdid_get(struct xe_device *xe,
- 	if (step.media >= STEP_FUTURE) {
- 		step.media = STEP_FUTURE;
- 		drm_dbg(&xe->drm, "Media GMD_ID revid value %d treated as future stepping\n",
--			graphics_gmdid_revid);
-+			media_gmdid_revid);
- 	}
+diff --git a/drivers/gpu/drm/xe/xe_pci.c b/drivers/gpu/drm/xe/xe_pci.c
+index 7926c2fa1433..b5bea42a458d 100644
+--- a/drivers/gpu/drm/xe/xe_pci.c
++++ b/drivers/gpu/drm/xe/xe_pci.c
+@@ -465,6 +465,10 @@ static void handle_gmdid(struct xe_device *xe,
  
- 	return step;
+ 	peek_gmdid(xe, GMD_ID.addr + 0x380000, &ver, media_revid);
+ 
++	/* Media may legitimately be fused off / not present */
++	if (ver == 0)
++		return;
++
+ 	for (int i = 0; i < ARRAY_SIZE(media_ip_map); i++) {
+ 		if (ver == media_ip_map[i].ver) {
+ 			xe->info.media_verx100 = ver;
 -- 
 2.40.1
 
