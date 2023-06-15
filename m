@@ -4,133 +4,45 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id C89CCEB64D9
-	for <intel-xe@archiver.kernel.org>; Thu, 15 Jun 2023 20:20:42 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id B2959EB64DA
+	for <intel-xe@archiver.kernel.org>; Thu, 15 Jun 2023 22:43:59 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A1AF010E53E;
-	Thu, 15 Jun 2023 20:20:42 +0000 (UTC)
-Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 422A910E53E
- for <intel-xe@lists.freedesktop.org>; Thu, 15 Jun 2023 20:20:41 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 82F8B10E566;
+	Thu, 15 Jun 2023 22:43:59 +0000 (UTC)
+Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 13C1510E566
+ for <intel-xe@lists.freedesktop.org>; Thu, 15 Jun 2023 22:43:57 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1686860441; x=1718396441;
- h=date:from:to:cc:subject:message-id:references:
- in-reply-to:mime-version;
- bh=5XWpCB8AjeaJAsHc7lnjKNnffbZI7y6vZgiMpmDCxRU=;
- b=S9FJ6LcyjuMmG8n9LqW2hrmNHTD/HHLSViU1DedD8t4d0mDE54c9zz34
- nYcvLw8TFoUWDbKv5IsST9pbGuOkBxN95zIhLg8jh4droX6FWI+7Vph4J
- zlm3KUVKmfhyoFGzHxtCtLxZR5dFazq+KWYqvsFCUiyZHVlHbYOrf01z9
- 6Q6QQjDIb46xHviYKegqoh7tPd0bGCDS8ddE2vWbLKmf2fdSVkbAB8BZo
- GiXmkl66IBwSplcndqZAPFgd3egls0lEgfyGPJYocf3qvT92vQFR524fu
- XURBnB/5BK8Cu9mM9kvKoqc7W3h69rRd/kJtJz3P3d9IKA6v3CCXdTG3V Q==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10742"; a="343771057"
-X-IronPort-AV: E=Sophos;i="6.00,245,1681196400"; d="scan'208";a="343771057"
-Received: from orsmga004.jf.intel.com ([10.7.209.38])
- by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 15 Jun 2023 13:20:40 -0700
+ t=1686869038; x=1718405038;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=6Thdp+RokkI1ivNFi3eQTT9F+Zv4cH/txO45HX7rdx0=;
+ b=R0jMTJHE3adMWSys6C3b7GfR0UOGidjct5pEi8agKkxqJ+ZBRLD8jI+V
+ gNUP0UPmnoe0Bb6PaRwgXUCgAW3Jm6d9wFqqZFWGeWb49RlQInN3/Bvxe
+ qcDl/fhQ109Lsy/A3S7FlrTsZ82lzg636FwwaHPhcA0YlUIhYO6s5xqvF
+ HHT8QLtGq50aM5c4CUWVpK7TnlODKR1emCw+W1KwOnek5lj/C5R2sDXyf
+ 1ZH42XWXifMjZgvg01pLgujktQh0qSViTsSRhLgSSVRQCFQC+dDqET51S
+ 9pPhBy2WkNjyfgdpH+hANvojwGC93y9wFA43h3IAmrbmID6n3tJGTdn6Z A==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10742"; a="387661387"
+X-IronPort-AV: E=Sophos;i="6.00,245,1681196400"; d="scan'208";a="387661387"
+Received: from fmsmga007.fm.intel.com ([10.253.24.52])
+ by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 15 Jun 2023 15:43:56 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10742"; a="836762159"
-X-IronPort-AV: E=Sophos;i="6.00,245,1681196400"; d="scan'208";a="836762159"
-Received: from fmsmsx603.amr.corp.intel.com ([10.18.126.83])
- by orsmga004.jf.intel.com with ESMTP; 15 Jun 2023 13:20:40 -0700
-Received: from fmsmsx610.amr.corp.intel.com (10.18.126.90) by
- fmsmsx603.amr.corp.intel.com (10.18.126.83) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.23; Thu, 15 Jun 2023 13:20:39 -0700
-Received: from fmsedg601.ED.cps.intel.com (10.1.192.135) by
- fmsmsx610.amr.corp.intel.com (10.18.126.90) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.23 via Frontend Transport; Thu, 15 Jun 2023 13:20:39 -0700
-Received: from NAM10-BN7-obe.outbound.protection.outlook.com (104.47.70.108)
- by edgegateway.intel.com (192.55.55.70) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2507.23; Thu, 15 Jun 2023 13:20:39 -0700
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=S6TxkY/Fogy1B6EbQQzAVvHZY/VKWO3vTk7+QcEYyp6X02EmXsjShh/0E++t0j/u+n1ydeTcaLJFQ14CKDeD+DWXFx1ckluAex+t2APg5zggAUYccAkmzrpiZ/9Ndj1xVz0Bm/i5T6UIOf6d3LgzWQivq0VLxpHd79pc81IrAVaF4rIqPHTWHM4g1Geh4NwBjzB5Ph5RaEXEk8sQlkk7YtW83hQyK3JPvagt4jG5CX40pNkEj6vSNkkK8hR1qx1Nmnw9/+rWVLUmErnwEltEmmLQkH66c/LbQNBQb21e8iO70eXgybIDsCCoW4F7URd4ZJdc8qjJxvnSNFUkCZKKAw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=CdlTy8CO5NcMFlZ4zTh+bs4AlDjD9dM9k5GzbdVOqrY=;
- b=KL3oXbBeI/KgD4s4tGHo9vocN6ODNCkijX2AdjxP+uchxbEvJXEuJ2rCtLsjxm8we1EKlrNPDwNcCcntgUlyLKh+AtwFLatYbOgZ1yiKRzT8+v5JfEPzji3KKHoKzul2BzWBT9UlSSOOc2X5HCB2lP0L5IZFXI3mA7XhP/A1PKnDV03EX9/n0bYqPGLC9BhGuxcbKyq2SO+CgyHlT7VNEijEGfUISYJH2KlF3phXX6D/C7OTy+tBqIXcqorr9Eet1jhSGm1+j9liBKs0nP9JQWbsYgctTw9TW5DSl4a+WiFt97Kd5iodPRIm0PRVIoSZYiGNXMiFYjKuUf5Xd8u7Sw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
- dkim=pass header.d=intel.com; arc=none
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=intel.com;
-Received: from DS7PR11MB7859.namprd11.prod.outlook.com (2603:10b6:8:da::22) by
- SA2PR11MB5099.namprd11.prod.outlook.com (2603:10b6:806:f9::21) with
- Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.6477.37; Thu, 15 Jun 2023 20:20:37 +0000
-Received: from DS7PR11MB7859.namprd11.prod.outlook.com
- ([fe80::9f98:8f3c:a608:8396]) by DS7PR11MB7859.namprd11.prod.outlook.com
- ([fe80::9f98:8f3c:a608:8396%6]) with mapi id 15.20.6455.043; Thu, 15 Jun 2023
- 20:20:37 +0000
-Date: Thu, 15 Jun 2023 13:20:33 -0700
-From: Matt Roper <matthew.d.roper@intel.com>
-To: Matthew Auld <matthew.william.auld@gmail.com>
-Message-ID: <20230615202033.GX5433@mdroper-desk1.amr.corp.intel.com>
-References: <20230614200445.3363527-1-matthew.d.roper@intel.com>
- <CAM0jSHNkKHgyuSUAAHEurhGi2ufhgnyDod0fhaXjTgUFEh6arw@mail.gmail.com>
-Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
-In-Reply-To: <CAM0jSHNkKHgyuSUAAHEurhGi2ufhgnyDod0fhaXjTgUFEh6arw@mail.gmail.com>
-X-ClientProxiedBy: SJ0PR05CA0026.namprd05.prod.outlook.com
- (2603:10b6:a03:33b::31) To DS7PR11MB7859.namprd11.prod.outlook.com
- (2603:10b6:8:da::22)
+X-IronPort-AV: E=McAfee;i="6600,9927,10742"; a="715782440"
+X-IronPort-AV: E=Sophos;i="6.00,245,1681196400"; d="scan'208";a="715782440"
+Received: from lstrano-desk.jf.intel.com ([10.24.89.184])
+ by fmsmga007-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 15 Jun 2023 15:43:56 -0700
+From: Matthew Brost <matthew.brost@intel.com>
+To: <intel-xe@lists.freedesktop.org>
+Date: Thu, 15 Jun 2023 15:44:09 -0700
+Message-Id: <20230615224409.320122-1-matthew.brost@intel.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: DS7PR11MB7859:EE_|SA2PR11MB5099:EE_
-X-MS-Office365-Filtering-Correlation-Id: c3180d77-9835-4435-8ce6-08db6dddfabb
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: 4qxjlHkpAY0chq+fn7rgjFZ3/WI+W0fe8RxB6Qku12RAtTvNQgTOor5ipnG5Jbea7ewCFGiyj10XqaXmjQB0jwP2bciZcR7bmFNMIfbwTnJM945TpI8B6PQnJDmYNHK2nfwO6iSFdcO64tbzSwCB8tMj9yq4UD1oWbcPS4fUqLC+cHQZPh16N8mqehEf84zZAZozh2fSWdtDr4LRpI+O4+qzHwt0e/WlVZgxy0YLkJk5Uz77VsVIFxPYAV0xo1CEnIvH9z5IonOnf0ByYj9VloBqSGQxgGwYR31j/yFDQ8fSY1mqZ68v8Zhqe6gQbMGuuCMAOcAMOqR4y4ZXAE/Ipli9svMz3Sn3MaS+t1jraZ3VPpiAxzP6s0qpMgoydGUiaGH1BNXnV0e31ldwYP43jqv5l6YU5B8geLJ5zypaxpPeL7faQQLrnLBkgfxqp5TPdUMKWA9wKRWgXgRu7uYzWK5DAT7Q2HEOfs0TWpgZ2Lv4rKMOciRgEUeD8cMP0KmqXGxFEUIJajK83oCl5KT8Tg==
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:DS7PR11MB7859.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230028)(376002)(39860400002)(346002)(366004)(396003)(136003)(451199021)(26005)(6506007)(6512007)(186003)(966005)(6486002)(5660300002)(1076003)(8936002)(83380400001)(41300700001)(4326008)(316002)(2906002)(8676002)(6916009)(6666004)(66476007)(66556008)(66946007)(478600001)(86362001)(33656002)(38100700002)(82960400001);
- DIR:OUT; SFP:1102; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?uwS+DswB/HMI3ZWIPd85rYHK1G90Jg8QiwBUdb0w5X5rHEzRt44HlnurV/Xh?=
- =?us-ascii?Q?eM9DXfwoOg4CGMUo129ot9FcY+4TZh6IoQtfSxLKH4PNOKhjxz1KqYYroAe6?=
- =?us-ascii?Q?t/RBE978qWrfbPf5PXwlqz1UIrLMEfCIM//GPRgpwVv+RQyQp2X+PeCamJoQ?=
- =?us-ascii?Q?9mlT097kLfExZefZpVWtNG1H6IjQyIqBC1c/DHAWzdi8twVc5/lltujpIvsy?=
- =?us-ascii?Q?OttCbtuysbk5OTr82xMlQ6SstTNRpO2Ft+URqtWJWdeJEYSqUuSFqn7C1G9I?=
- =?us-ascii?Q?cSRVN3GnNq0LXei2UF/Mr2MicrnyqdGchzFTWomFYcsiC6tg4/i9UM+0Hgaw?=
- =?us-ascii?Q?6nObUzFBEykfEGVe1IeIf/GSB0PZ2mHfAYwbCN6t4FpMbwZCCiZL2I5FYEuJ?=
- =?us-ascii?Q?hlW2THQRJenvc0jdSD/B2XmApVeoDyeXsO6hWnE+9N0ExJFAAKlw02hQ927/?=
- =?us-ascii?Q?S2A5WIPnRD0JSIBWgFNRQZWgsoylXggpyu8rR93WAwuWJcrJm6IwEPmw1/85?=
- =?us-ascii?Q?UZkgI81/juHYtwJi6xBJePQoqrfgF96TCp1Tk7RTXqg0KpM9gyfAIY78CJmU?=
- =?us-ascii?Q?jG8WVPyFDXSkMP/zj/o5hXv9Q9kSE7mtstvcweYNaeuA3hfpmrku/mEdRjvH?=
- =?us-ascii?Q?QpmhO016jKiSodGg+7dMXNbqS+bUS6AMyOAKhgQYM6YCl32A1vTxScXqh4+a?=
- =?us-ascii?Q?TQNHV22p9LvkhkrDu81IARFW5TldfHPyuSN3wKxu057KqxlKYOUSK9uOJluI?=
- =?us-ascii?Q?rUQ4LXsEOHxcKMIzcRpuSRjBuXu8ttwsx+0clvhxIPk5qbakjuFshGVkTMAT?=
- =?us-ascii?Q?anQPIB4zXsyYG80PNNTiqlZdlwd4csRNf6JmWeaH3u6PNtI05x2Klz+QEzvI?=
- =?us-ascii?Q?P045aGghRDst2iHObVrg/YKRplyox/8UFhy1pI69Drkjar9gi2VUUhPcyOcM?=
- =?us-ascii?Q?BnOu4xfAVmJCyLLl85RX2alOUNAybYhROPum7g7Mmh4zPAuBFz5u8hFINASE?=
- =?us-ascii?Q?rAVQcCeVyhqYz7x4rGYDK1fPYExomKYFzJsM0mwUVG9wzaTQwx09QnSDNN6j?=
- =?us-ascii?Q?5E6Vjmn2XFxdCIJtW9MpXKAmJQ6c5JsjYPbYPlIA77xzArInI2aADCT1jacB?=
- =?us-ascii?Q?iley5O8sCh65UCx1aq1gTocXlXwoh3ewYlOzaT7OyxLPAi57Eh/yVw+O0wLL?=
- =?us-ascii?Q?WnfG2AyhOPeJEAFMBDu/Kk5lWxit00N+oUPXvOzpdVcnVw6z8PnEr3yhIYNI?=
- =?us-ascii?Q?yiTKMui+qRxIQzXD/a4QbTw3HzFASRwvMRfpQBJBbA784Kh1gehbHgBRwG9n?=
- =?us-ascii?Q?KjEu5jl/FSwRgFBLkI2svv3+s1ywAbD8UJhmyvhbCAr0t00WXMoOI483xM3S?=
- =?us-ascii?Q?jjLIlSczmW6zaoF9HaP0oAWU3Fg+/5Tn8kYJK8jFS07QZvWIJdmj6PuvelOo?=
- =?us-ascii?Q?+GBItDcYJp/QvybaetK6iHRoMKmWJFFMaflGuQkxektVFKHyWtRMm0n29Z4V?=
- =?us-ascii?Q?Lherdhxd1ebG3EJHQpBw8EVc91rWHRjfwbQ28N5kyEquuM5/52PhMvNYaabc?=
- =?us-ascii?Q?U6zEHrWPOfjXm4BgXUsSakQGcV7Y8ViyviV7loRNaTc0GuvdhGZWyBBvn5vc?=
- =?us-ascii?Q?gw=3D=3D?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: c3180d77-9835-4435-8ce6-08db6dddfabb
-X-MS-Exchange-CrossTenant-AuthSource: DS7PR11MB7859.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 15 Jun 2023 20:20:36.7172 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: t9og+4k5/0sC0DLxzIKk6OUX9wLG16yoo+mCv8NrUm9UpuQiVktu/VJh3OU5k0mOMoLIZiQkOHhvnFxGqZkzKhKVmxD75ONfs60MX9FJQ0Y=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SA2PR11MB5099
-X-OriginatorOrg: intel.com
-Subject: Re: [Intel-xe] [PATCH] drm/xe: Grab runtime PM over MMIO ioctl
+Content-Transfer-Encoding: 8bit
+Subject: [Intel-xe] [PATCH] drm/xe: Ban a VM if rebind worker hits an error
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -142,85 +54,289 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Thu, Jun 15, 2023 at 09:42:03AM +0100, Matthew Auld wrote:
-> On Wed, 14 Jun 2023 at 21:04, Matt Roper <matthew.d.roper@intel.com> wrote:
-> >
-> > The MMIO ioctl (which is generally used from IGT's xe_reg tool) may be
-> > called while the device is in D3, resulting in invalid results (i.e.,
-> > all registers read back as 0xFFFFFFFF, writes are dropped).  Make sure
-> > we grab runtime PM wakeref before performing register reads/writes.
-> >
-> > Signed-off-by: Matt Roper <matthew.d.roper@intel.com>
-> 
-> AFAIK we should use mem_access_get() for MMIO:
+We cannot recover a VM if a rebind worker hits an error, ban the VM if
+happens to ensure we do not attempt to place this VM on the hardware
+again.
 
-I thought mem_access_get() was specifically for memory access (like we
-needed for a special workaround on some early steppings of PVC); is it
-intended to be used for all devices accesses, not just memory now?  If
-so we might want to rename it to something more accurate like
-'mmio_access_get' (and also add some kerneldoc explaining when/why it
-would be used instead of the standard runtime PM).
+A follow up will inform the user if this happens.
 
-Actually, I'm having trouble understanding what mem_access_get is trying
-to do.  It seems like it's trying to avoid using the runtime PM's
-refcounting and is turning it into a boolean on/off instead, which makes
-things a bit racy.  It's not obvious to me why we're trying to work
-around the refcount design?
+v2: Return -ECANCELED in exec VM closed or banned, check for closed or
+banned within VM lock.
 
+Signed-off-by: Matthew Brost <matthew.brost@intel.com>
+---
+ drivers/gpu/drm/xe/xe_engine.c     | 13 +++++++
+ drivers/gpu/drm/xe/xe_exec.c       |  6 ++--
+ drivers/gpu/drm/xe/xe_trace.h      |  5 +++
+ drivers/gpu/drm/xe/xe_vm.c         | 55 ++++++++++++++++++++----------
+ drivers/gpu/drm/xe/xe_vm.h         | 11 ++++++
+ drivers/gpu/drm/xe/xe_vm_madvise.c |  2 +-
+ drivers/gpu/drm/xe/xe_vm_types.h   |  5 +--
+ 7 files changed, 73 insertions(+), 24 deletions(-)
 
-Matt
-
-> https://patchwork.freedesktop.org/patch/542124/?series=119213&rev=1
-> 
-> But that requires first fixing the races with mem_access which is
-> quite involved, so perhaps using runtime_get() directly here is fine
-> for now. We can just replace the instance here with mem_access once
-> that's ready.
-> 
-> Reviewed-by: Matthew Auld <matthew.auld@intel.com>
-> 
-> > ---
-> >  drivers/gpu/drm/xe/xe_mmio.c | 3 +++
-> >  1 file changed, 3 insertions(+)
-> >
-> > diff --git a/drivers/gpu/drm/xe/xe_mmio.c b/drivers/gpu/drm/xe/xe_mmio.c
-> > index f7a7f996b37f..5f4c8ae23771 100644
-> > --- a/drivers/gpu/drm/xe/xe_mmio.c
-> > +++ b/drivers/gpu/drm/xe/xe_mmio.c
-> > @@ -19,6 +19,7 @@
-> >  #include "xe_gt_mcr.h"
-> >  #include "xe_macros.h"
-> >  #include "xe_module.h"
-> > +#include "xe_pm.h"
-> >
-> >  #define XEHP_MTCFG_ADDR                XE_REG(0x101800)
-> >  #define TILE_COUNT             REG_GENMASK(15, 8)
-> > @@ -476,6 +477,7 @@ int xe_mmio_ioctl(struct drm_device *dev, void *data,
-> >          */
-> >         reg = XE_REG(args->addr);
-> >
-> > +       xe_pm_runtime_get(xe);
-> >         xe_force_wake_get(gt_to_fw(gt), XE_FORCEWAKE_ALL);
-> >
-> >         if (args->flags & DRM_XE_MMIO_WRITE) {
-> > @@ -519,6 +521,7 @@ int xe_mmio_ioctl(struct drm_device *dev, void *data,
-> >
-> >  exit:
-> >         xe_force_wake_put(gt_to_fw(gt), XE_FORCEWAKE_ALL);
-> > +       xe_pm_runtime_put(xe);
-> >
-> >         return ret;
-> >  }
-> > --
-> > 2.40.1
-> >
-
+diff --git a/drivers/gpu/drm/xe/xe_engine.c b/drivers/gpu/drm/xe/xe_engine.c
+index b3036c4a8ec3..52eb1c4bad0c 100644
+--- a/drivers/gpu/drm/xe/xe_engine.c
++++ b/drivers/gpu/drm/xe/xe_engine.c
+@@ -597,8 +597,21 @@ int xe_engine_create_ioctl(struct drm_device *dev, void *data,
+ 		if (XE_IOCTL_ERR(xe, !vm))
+ 			return -ENOENT;
+ 
++		err = down_read_interruptible(&vm->lock);
++		if (err) {
++			xe_vm_put(vm);
++			return err;
++		}
++
++		if (XE_IOCTL_ERR(xe, xe_vm_is_closed_or_banned(vm))) {
++			up_read(&vm->lock);
++			xe_vm_put(vm);
++			return -ENOENT;
++		}
++
+ 		e = xe_engine_create(xe, vm, logical_mask,
+ 				     args->width, hwe, ENGINE_FLAG_PERSISTENT);
++		up_read(&vm->lock);
+ 		xe_vm_put(vm);
+ 		if (IS_ERR(e))
+ 			return PTR_ERR(e);
+diff --git a/drivers/gpu/drm/xe/xe_exec.c b/drivers/gpu/drm/xe/xe_exec.c
+index e44076ee2e11..7e263fb77a8c 100644
+--- a/drivers/gpu/drm/xe/xe_exec.c
++++ b/drivers/gpu/drm/xe/xe_exec.c
+@@ -294,9 +294,9 @@ int xe_exec_ioctl(struct drm_device *dev, void *data, struct drm_file *file)
+ 	if (err)
+ 		goto err_unlock_list;
+ 
+-	if (xe_vm_is_closed(engine->vm)) {
+-		drm_warn(&xe->drm, "Trying to schedule after vm is closed\n");
+-		err = -EIO;
++	if (xe_vm_is_closed_or_banned(engine->vm)) {
++		drm_warn(&xe->drm, "Trying to schedule after vm is closed or banned\n");
++		err = -ECANCELED;
+ 		goto err_engine_end;
+ 	}
+ 
+diff --git a/drivers/gpu/drm/xe/xe_trace.h b/drivers/gpu/drm/xe/xe_trace.h
+index 2f8eb7ebe9a7..eb89ac934394 100644
+--- a/drivers/gpu/drm/xe/xe_trace.h
++++ b/drivers/gpu/drm/xe/xe_trace.h
+@@ -472,6 +472,11 @@ DECLARE_EVENT_CLASS(xe_vm,
+ 			      __entry->asid)
+ );
+ 
++DEFINE_EVENT(xe_vm, xe_vm_kill,
++	     TP_PROTO(struct xe_vm *vm),
++	     TP_ARGS(vm)
++);
++
+ DEFINE_EVENT(xe_vm, xe_vm_create,
+ 	     TP_PROTO(struct xe_vm *vm),
+ 	     TP_ARGS(vm)
+diff --git a/drivers/gpu/drm/xe/xe_vm.c b/drivers/gpu/drm/xe/xe_vm.c
+index 56ed2cb75c8e..1a0fc6660f37 100644
+--- a/drivers/gpu/drm/xe/xe_vm.c
++++ b/drivers/gpu/drm/xe/xe_vm.c
+@@ -514,6 +514,24 @@ void xe_vm_unlock_dma_resv(struct xe_vm *vm,
+ 
+ #define XE_VM_REBIND_RETRY_TIMEOUT_MS 1000
+ 
++static void xe_vm_kill(struct xe_vm *vm)
++{
++	struct ww_acquire_ctx ww;
++	struct xe_engine *e;
++
++	lockdep_assert_held(&vm->lock);
++
++	xe_vm_lock(vm, &ww, 0, false);
++	vm->flags |= XE_VM_FLAG_BANNED;
++	trace_xe_vm_kill(vm);
++
++	list_for_each_entry(e, &vm->preempt.engines, compute.link)
++		e->ops->kill(e);
++	xe_vm_unlock(vm, &ww);
++
++	/* TODO: Inform user the VM is banned */
++}
++
+ static void preempt_rebind_work_func(struct work_struct *w)
+ {
+ 	struct xe_vm *vm = container_of(w, struct xe_vm, preempt.rebind_work);
+@@ -533,13 +551,14 @@ static void preempt_rebind_work_func(struct work_struct *w)
+ 	XE_BUG_ON(!xe_vm_in_compute_mode(vm));
+ 	trace_xe_vm_rebind_worker_enter(vm);
+ 
+-	if (xe_vm_is_closed(vm)) {
++	down_write(&vm->lock);
++
++	if (xe_vm_is_closed_or_banned(vm)) {
++		up_write(&vm->lock);
+ 		trace_xe_vm_rebind_worker_exit(vm);
+ 		return;
+ 	}
+ 
+-	down_write(&vm->lock);
+-
+ retry:
+ 	if (vm->async_ops.error)
+ 		goto out_unlock_outer;
+@@ -662,11 +681,12 @@ static void preempt_rebind_work_func(struct work_struct *w)
+ 			goto retry;
+ 		}
+ 	}
++	if (err)
++		xe_vm_kill(vm);
+ 	up_write(&vm->lock);
+ 
+ 	free_preempt_fences(&preempt_fences);
+ 
+-	XE_WARN_ON(err < 0);	/* TODO: Kill VM or put in error state */
+ 	trace_xe_vm_rebind_worker_exit(vm);
+ }
+ 
+@@ -1127,11 +1147,12 @@ xe_vm_find_overlapping_vma(struct xe_vm *vm, const struct xe_vma *vma)
+ {
+ 	struct rb_node *node;
+ 
+-	if (xe_vm_is_closed(vm))
++	lockdep_assert_held(&vm->lock);
++
++	if (xe_vm_is_closed_or_banned(vm))
+ 		return NULL;
+ 
+ 	XE_BUG_ON(vma->end >= vm->size);
+-	lockdep_assert_held(&vm->lock);
+ 
+ 	node = rb_find(vma, &vm->vmas, xe_vma_cmp_vma_cb);
+ 
+@@ -3052,17 +3073,21 @@ int xe_vm_bind_ioctl(struct drm_device *dev, void *data, struct drm_file *file)
+ 		goto free_objs;
+ 	}
+ 
+-	if (XE_IOCTL_ERR(xe, xe_vm_is_closed(vm))) {
++	err = down_write_killable(&vm->lock);
++	if (err)
++		goto put_vm;
++
++	if (XE_IOCTL_ERR(xe, xe_vm_is_closed_or_banned(vm))) {
+ 		drm_err(dev, "VM closed while we began looking up?\n");
+ 		err = -ENOENT;
+-		goto put_vm;
++		goto release_vm_lock;
+ 	}
+ 
+ 	if (args->engine_id) {
+ 		e = xe_engine_lookup(xef, args->engine_id);
+ 		if (XE_IOCTL_ERR(xe, !e)) {
+ 			err = -ENOENT;
+-			goto put_vm;
++			goto release_vm_lock;
+ 		}
+ 		if (XE_IOCTL_ERR(xe, !(e->flags & ENGINE_FLAG_VM))) {
+ 			err = -EINVAL;
+@@ -3079,10 +3104,8 @@ int xe_vm_bind_ioctl(struct drm_device *dev, void *data, struct drm_file *file)
+ 			err = -EPROTO;
+ 
+ 		if (!err) {
+-			down_write(&vm->lock);
+ 			trace_xe_vm_restart(vm);
+ 			vm_set_async_error(vm, 0);
+-			up_write(&vm->lock);
+ 
+ 			queue_work(system_unbound_wq, &vm->async_ops.work);
+ 
+@@ -3185,10 +3208,6 @@ int xe_vm_bind_ioctl(struct drm_device *dev, void *data, struct drm_file *file)
+ 			goto free_syncs;
+ 	}
+ 
+-	err = down_write_killable(&vm->lock);
+-	if (err)
+-		goto free_syncs;
+-
+ 	/* Do some error checking first to make the unwind easier */
+ 	for (i = 0; i < args->num_binds; ++i) {
+ 		u64 range = bind_ops[i].range;
+@@ -3197,7 +3216,7 @@ int xe_vm_bind_ioctl(struct drm_device *dev, void *data, struct drm_file *file)
+ 
+ 		err = __vm_bind_ioctl_lookup_vma(vm, bos[i], addr, range, op);
+ 		if (err)
+-			goto release_vm_lock;
++			goto free_syncs;
+ 	}
+ 
+ 	for (i = 0; i < args->num_binds; ++i) {
+@@ -3317,8 +3336,6 @@ int xe_vm_bind_ioctl(struct drm_device *dev, void *data, struct drm_file *file)
+ 			break;
+ 		}
+ 	}
+-release_vm_lock:
+-	up_write(&vm->lock);
+ free_syncs:
+ 	while (num_syncs--) {
+ 		if (async && j &&
+@@ -3334,6 +3351,8 @@ int xe_vm_bind_ioctl(struct drm_device *dev, void *data, struct drm_file *file)
+ put_engine:
+ 	if (e)
+ 		xe_engine_put(e);
++release_vm_lock:
++	up_write(&vm->lock);
+ put_vm:
+ 	xe_vm_put(vm);
+ free_objs:
+diff --git a/drivers/gpu/drm/xe/xe_vm.h b/drivers/gpu/drm/xe/xe_vm.h
+index bb2996856841..9533c6fed49a 100644
+--- a/drivers/gpu/drm/xe/xe_vm.h
++++ b/drivers/gpu/drm/xe/xe_vm.h
+@@ -49,6 +49,17 @@ static inline bool xe_vm_is_closed(struct xe_vm *vm)
+ 	return !vm->size;
+ }
+ 
++static inline bool xe_vm_is_banned(struct xe_vm *vm)
++{
++	return vm->flags & XE_VM_FLAG_BANNED;
++}
++
++static inline bool xe_vm_is_closed_or_banned(struct xe_vm *vm)
++{
++	lockdep_assert_held(&vm->lock);
++	return xe_vm_is_closed(vm) || xe_vm_is_banned(vm);
++}
++
+ struct xe_vma *
+ xe_vm_find_overlapping_vma(struct xe_vm *vm, const struct xe_vma *vma);
+ 
+diff --git a/drivers/gpu/drm/xe/xe_vm_madvise.c b/drivers/gpu/drm/xe/xe_vm_madvise.c
+index 0f5eef337037..76458f8d57f3 100644
+--- a/drivers/gpu/drm/xe/xe_vm_madvise.c
++++ b/drivers/gpu/drm/xe/xe_vm_madvise.c
+@@ -313,7 +313,7 @@ int xe_vm_madvise_ioctl(struct drm_device *dev, void *data,
+ 	if (XE_IOCTL_ERR(xe, !vm))
+ 		return -EINVAL;
+ 
+-	if (XE_IOCTL_ERR(xe, xe_vm_is_closed(vm))) {
++	if (XE_IOCTL_ERR(xe, xe_vm_is_closed_or_banned(vm))) {
+ 		err = -ENOENT;
+ 		goto put_vm;
+ 	}
+diff --git a/drivers/gpu/drm/xe/xe_vm_types.h b/drivers/gpu/drm/xe/xe_vm_types.h
+index a51e84e584b4..f828426a6564 100644
+--- a/drivers/gpu/drm/xe/xe_vm_types.h
++++ b/drivers/gpu/drm/xe/xe_vm_types.h
+@@ -179,8 +179,9 @@ struct xe_vm {
+ #define XE_VM_FLAG_MIGRATION		BIT(3)
+ #define XE_VM_FLAG_SCRATCH_PAGE		BIT(4)
+ #define XE_VM_FLAG_FAULT_MODE		BIT(5)
+-#define XE_VM_FLAG_GT_ID(flags)		(((flags) >> 6) & 0x3)
+-#define XE_VM_FLAG_SET_TILE_ID(tile)	((tile)->id << 6)
++#define XE_VM_FLAG_BANNED		BIT(6)
++#define XE_VM_FLAG_GT_ID(flags)		(((flags) >> 7) & 0x3)
++#define XE_VM_FLAG_SET_TILE_ID(tile)	((tile)->id << 7)
+ 	unsigned long flags;
+ 
+ 	/** @composite_fence_ctx: context composite fence */
 -- 
-Matt Roper
-Graphics Software Engineer
-Linux GPU Platform Enablement
-Intel Corporation
+2.34.1
+
