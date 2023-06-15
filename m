@@ -4,45 +4,30 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2D3D8EB64D9
-	for <intel-xe@archiver.kernel.org>; Thu, 15 Jun 2023 18:34:52 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3800DEB64DA
+	for <intel-xe@archiver.kernel.org>; Thu, 15 Jun 2023 18:35:15 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0269D10E0A0;
-	Thu, 15 Jun 2023 18:34:52 +0000 (UTC)
-Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7E5C210E0A0
- for <intel-xe@lists.freedesktop.org>; Thu, 15 Jun 2023 18:34:50 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1686854090; x=1718390090;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=lGqj8/xv7KQgXVo+ncqM2/ltesb+LP/LSlUBgr1QveY=;
- b=FVj4XEQIzfe8YX5NxDcmqUpj8etc3rtDxHJ/pQBFQsrqIrvGVS5Ef58/
- t+nCrBFdPcyBoWK1ei0A5gVGLyfPufaBouW30IbRLa+TOF34HG3Cjtyln
- Yp5UptCL37OeD19/pN+DHdbmsAaY3FgF2ioxhIJvvv6FkqVcRi13P8RO+
- Ukg4aGeuPrimeLbglz3pGW0AckDEhRpdUG5MkMzOltypdY/iJbOIBU/gh
- pvZtWC0FrTsRaU7Bo26FK9mJYadV1+27y5Km/MV6xxwKpYp4cf0c6i62n
- 9EaV7WDjrwmt4XgC4njpOB1wWuOKq+Zoq03ydPHR+CPyxqMbxlaSNt3HI Q==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10742"; a="362420762"
-X-IronPort-AV: E=Sophos;i="6.00,245,1681196400"; d="scan'208";a="362420762"
-Received: from fmsmga004.fm.intel.com ([10.253.24.48])
- by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 15 Jun 2023 11:34:46 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10742"; a="782602383"
-X-IronPort-AV: E=Sophos;i="6.00,245,1681196400"; d="scan'208";a="782602383"
-Received: from lstrano-desk.jf.intel.com ([10.24.89.184])
- by fmsmga004-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 15 Jun 2023 11:34:45 -0700
-From: Matthew Brost <matthew.brost@intel.com>
-To: <intel-xe@lists.freedesktop.org>
-Date: Thu, 15 Jun 2023 11:34:55 -0700
-Message-Id: <20230615183455.290494-1-matthew.brost@intel.com>
-X-Mailer: git-send-email 2.34.1
+	by gabe.freedesktop.org (Postfix) with ESMTP id 104EF10E0A0;
+	Thu, 15 Jun 2023 18:35:15 +0000 (UTC)
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 07DE710E0A0;
+ Thu, 15 Jun 2023 18:35:14 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id EFE76AADD5;
+ Thu, 15 Jun 2023 18:35:13 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Subject: [Intel-xe] [PATCH] drm/xe: NULL binding implementation
+Content-Transfer-Encoding: 7bit
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Matthew Auld" <matthew.auld@intel.com>
+Date: Thu, 15 Jun 2023 18:35:13 -0000
+Message-ID: <168685411398.10725.2456256316060582894@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20230615181840.76075-1-matthew.auld@intel.com>
+In-Reply-To: <20230615181840.76075-1-matthew.auld@intel.com>
+Subject: [Intel-xe] =?utf-8?q?=E2=9C=93_CI=2Echecksparse=3A_success_for_d?=
+ =?utf-8?q?rm/xe/bo=3A_handle_PL=5FTT_-=3E_PL=5FTT?=
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -54,558 +39,38 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
+Cc: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Add uAPI and implementation for NULL bindings. A NULL binding is defined
-as writes dropped and read zero. A single bit in the uAPI has been added
-which results in a single bit in the PTEs being set.
+== Series Details ==
 
-NULL bindings are intendedd to be used to implement VK sparse bindings,
-in particular residencyNonResidentStrict property.
+Series: drm/xe/bo: handle PL_TT -> PL_TT
+URL   : https://patchwork.freedesktop.org/series/119400/
+State : success
 
-v2: Fix BUG_ON shown in VK testing, fix check patch warning, fix
-xe_pt_scan_64K, update __gen8_pte_encode to understand NULL bindings,
-remove else if vma_addr
+== Summary ==
 
-Suggested-by: Paulo Zanoni <paulo.r.zanoni@intel.com>
-Signed-off-by: Matthew Brost <matthew.brost@intel.com>
----
- drivers/gpu/drm/xe/xe_bo.h           |  1 +
- drivers/gpu/drm/xe/xe_exec.c         |  2 +
- drivers/gpu/drm/xe/xe_gt_pagefault.c |  4 +-
- drivers/gpu/drm/xe/xe_pt.c           | 54 ++++++++++-----
- drivers/gpu/drm/xe/xe_vm.c           | 99 ++++++++++++++++++----------
- drivers/gpu/drm/xe/xe_vm.h           | 12 +++-
- drivers/gpu/drm/xe/xe_vm_types.h     |  1 +
- include/uapi/drm/xe_drm.h            |  8 +++
- 8 files changed, 126 insertions(+), 55 deletions(-)
++ trap cleanup EXIT
++ KERNEL=/kernel
++ MT=/root/linux/maintainer-tools
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools /root/linux/maintainer-tools
+Cloning into '/root/linux/maintainer-tools'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ make -C /root/linux/maintainer-tools
+make: Entering directory '/root/linux/maintainer-tools'
+cc -O2 -g -Wextra -o remap-log remap-log.c
+make: Leaving directory '/root/linux/maintainer-tools'
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ /root/linux/maintainer-tools/dim sparse --fast 6d2981d42cd891965094ec7d173203520cfa36f7
+Sparse version: 0.6.1 (Ubuntu: 0.6.1-2build1)
+Fast mode used, each commit won't be checked separately.
+Okay!
 
-diff --git a/drivers/gpu/drm/xe/xe_bo.h b/drivers/gpu/drm/xe/xe_bo.h
-index dd3d448fee0b..3a148cc6e811 100644
---- a/drivers/gpu/drm/xe/xe_bo.h
-+++ b/drivers/gpu/drm/xe/xe_bo.h
-@@ -61,6 +61,7 @@
- #define XE_PPGTT_PTE_LM			BIT_ULL(11)
- #define XE_PDE_64K			BIT_ULL(6)
- #define XE_PTE_PS64			BIT_ULL(8)
-+#define XE_PTE_NULL			BIT_ULL(9)
- 
- #define XE_PAGE_PRESENT			BIT_ULL(0)
- #define XE_PAGE_RW			BIT_ULL(1)
-diff --git a/drivers/gpu/drm/xe/xe_exec.c b/drivers/gpu/drm/xe/xe_exec.c
-index e44076ee2e11..4f7694a29348 100644
---- a/drivers/gpu/drm/xe/xe_exec.c
-+++ b/drivers/gpu/drm/xe/xe_exec.c
-@@ -120,6 +120,8 @@ static int xe_exec_begin(struct xe_engine *e, struct ww_acquire_ctx *ww,
- 	 * to a location where the GPU can access it).
- 	 */
- 	list_for_each_entry(vma, &vm->rebind_list, rebind_link) {
-+		XE_WARN_ON(xe_vma_is_null(vma));
-+
- 		if (xe_vma_is_userptr(vma))
- 			continue;
- 
-diff --git a/drivers/gpu/drm/xe/xe_gt_pagefault.c b/drivers/gpu/drm/xe/xe_gt_pagefault.c
-index 73db7f7c0381..6faebd02f3fb 100644
---- a/drivers/gpu/drm/xe/xe_gt_pagefault.c
-+++ b/drivers/gpu/drm/xe/xe_gt_pagefault.c
-@@ -533,8 +533,8 @@ static int handle_acc(struct xe_gt *gt, struct acc *acc)
- 
- 	trace_xe_vma_acc(vma);
- 
--	/* Userptr can't be migrated, nothing to do */
--	if (xe_vma_is_userptr(vma))
-+	/* Userptr or null can't be migrated, nothing to do */
-+	if (xe_vma_has_no_bo(vma))
- 		goto unlock_vm;
- 
- 	/* Lock VM and BOs dma-resv */
-diff --git a/drivers/gpu/drm/xe/xe_pt.c b/drivers/gpu/drm/xe/xe_pt.c
-index 29c1b1f0bd7c..fe1c77b139e4 100644
---- a/drivers/gpu/drm/xe/xe_pt.c
-+++ b/drivers/gpu/drm/xe/xe_pt.c
-@@ -81,6 +81,9 @@ u64 xe_pde_encode(struct xe_bo *bo, u64 bo_offset,
- static dma_addr_t vma_addr(struct xe_vma *vma, u64 offset,
- 			   size_t page_size, bool *is_vram)
- {
-+	if (xe_vma_is_null(vma))
-+		return 0;
-+
- 	if (xe_vma_is_userptr(vma)) {
- 		struct xe_res_cursor cur;
- 		u64 page;
-@@ -105,6 +108,9 @@ static u64 __pte_encode(u64 pte, enum xe_cache_level cache, u32 flags,
- 	if (unlikely(flags & XE_PTE_FLAG_READ_ONLY))
- 		pte &= ~XE_PAGE_RW;
- 
-+	if (unlikely(flags & XE_PTE_FLAG_NULL))
-+		pte |= XE_PTE_NULL;
-+
- 	/* FIXME: I don't think the PPAT handling is correct for MTL */
- 
- 	switch (cache) {
-@@ -557,6 +563,10 @@ static bool xe_pt_hugepte_possible(u64 addr, u64 next, unsigned int level,
- 	if (next - xe_walk->va_curs_start > xe_walk->curs->size)
- 		return false;
- 
-+	/* null VMA's do not have dma addresses */
-+	if (xe_walk->pte_flags & XE_PTE_FLAG_NULL)
-+		return true;
-+
- 	/* Is the DMA address huge PTE size aligned? */
- 	size = next - addr;
- 	dma = addr - xe_walk->va_curs_start + xe_res_dma(xe_walk->curs);
-@@ -579,6 +589,10 @@ xe_pt_scan_64K(u64 addr, u64 next, struct xe_pt_stage_bind_walk *xe_walk)
- 	if (next > xe_walk->l0_end_addr)
- 		return false;
- 
-+	/* null VMA's do not have dma addresses */
-+	if (xe_walk->pte_flags & XE_PTE_FLAG_NULL)
-+		return true;
-+
- 	xe_res_next(&curs, addr - xe_walk->va_curs_start);
- 	for (; addr < next; addr += SZ_64K) {
- 		if (!IS_ALIGNED(xe_res_dma(&curs), SZ_64K) || curs.size < SZ_64K)
-@@ -629,10 +643,12 @@ xe_pt_stage_bind_entry(struct xe_ptw *parent, pgoff_t offset,
- 	/* Is this a leaf entry ?*/
- 	if (level == 0 || xe_pt_hugepte_possible(addr, next, level, xe_walk)) {
- 		struct xe_res_cursor *curs = xe_walk->curs;
-+		bool is_null = xe_walk->pte_flags & XE_PTE_FLAG_NULL;
- 
- 		XE_WARN_ON(xe_walk->va_curs_start != addr);
- 
--		pte = __pte_encode(xe_res_dma(curs) + xe_walk->dma_offset,
-+		pte = __pte_encode(is_null ? 0 :
-+				   xe_res_dma(curs) + xe_walk->dma_offset,
- 				   xe_walk->cache, xe_walk->pte_flags,
- 				   level);
- 		pte |= xe_walk->default_pte;
-@@ -652,7 +668,8 @@ xe_pt_stage_bind_entry(struct xe_ptw *parent, pgoff_t offset,
- 		if (unlikely(ret))
- 			return ret;
- 
--		xe_res_next(curs, next - addr);
-+		if (!is_null)
-+			xe_res_next(curs, next - addr);
- 		xe_walk->va_curs_start = next;
- 		*action = ACTION_CONTINUE;
- 
-@@ -759,24 +776,29 @@ xe_pt_stage_bind(struct xe_tile *tile, struct xe_vma *vma,
- 		xe_walk.dma_offset = vram_region_gpu_offset(bo->ttm.resource);
- 		xe_walk.cache = XE_CACHE_WB;
- 	} else {
--		if (!xe_vma_is_userptr(vma) && bo->flags & XE_BO_SCANOUT_BIT)
-+		if (!xe_vma_has_no_bo(vma) && bo->flags & XE_BO_SCANOUT_BIT)
- 			xe_walk.cache = XE_CACHE_WT;
- 		else
- 			xe_walk.cache = XE_CACHE_WB;
- 	}
--	if (!xe_vma_is_userptr(vma) && xe_bo_is_stolen(bo))
-+	if (!xe_vma_has_no_bo(vma) && xe_bo_is_stolen(bo))
- 		xe_walk.dma_offset = xe_ttm_stolen_gpu_offset(xe_bo_device(bo));
- 
- 	xe_bo_assert_held(bo);
--	if (xe_vma_is_userptr(vma))
--		xe_res_first_sg(vma->userptr.sg, 0, vma->end - vma->start + 1,
--				&curs);
--	else if (xe_bo_is_vram(bo) || xe_bo_is_stolen(bo))
--		xe_res_first(bo->ttm.resource, vma->bo_offset,
--			     vma->end - vma->start + 1, &curs);
--	else
--		xe_res_first_sg(xe_bo_get_sg(bo), vma->bo_offset,
--				vma->end - vma->start + 1, &curs);
-+
-+	if (!xe_vma_is_null(vma)) {
-+		if (xe_vma_is_userptr(vma))
-+			xe_res_first_sg(vma->userptr.sg, 0,
-+					vma->end - vma->start + 1, &curs);
-+		else if (xe_bo_is_vram(bo) || xe_bo_is_stolen(bo))
-+			xe_res_first(bo->ttm.resource, vma->bo_offset,
-+				     vma->end - vma->start + 1, &curs);
-+		else
-+			xe_res_first_sg(xe_bo_get_sg(bo), vma->bo_offset,
-+					vma->end - vma->start + 1, &curs);
-+	} else {
-+		curs.size = vma->end - vma->start + 1;
-+	}
- 
- 	ret = xe_pt_walk_range(&pt->base, pt->level, vma->start, vma->end + 1,
- 				&xe_walk.base);
-@@ -965,7 +987,7 @@ static void xe_pt_commit_locks_assert(struct xe_vma *vma)
- 
- 	if (xe_vma_is_userptr(vma))
- 		lockdep_assert_held_read(&vm->userptr.notifier_lock);
--	else
-+	else if (!xe_vma_is_null(vma))
- 		dma_resv_assert_held(vma->bo->ttm.base.resv);
- 
- 	dma_resv_assert_held(&vm->resv);
-@@ -1341,7 +1363,7 @@ __xe_pt_bind_vma(struct xe_tile *tile, struct xe_vma *vma, struct xe_engine *e,
- 				   DMA_RESV_USAGE_KERNEL :
- 				   DMA_RESV_USAGE_BOOKKEEP);
- 
--		if (!xe_vma_is_userptr(vma) && !vma->bo->vm)
-+		if (!xe_vma_has_no_bo(vma) && !vma->bo->vm)
- 			dma_resv_add_fence(vma->bo->ttm.base.resv, fence,
- 					   DMA_RESV_USAGE_BOOKKEEP);
- 		xe_pt_commit_bind(vma, entries, num_entries, rebind,
-@@ -1658,7 +1680,7 @@ __xe_pt_unbind_vma(struct xe_tile *tile, struct xe_vma *vma, struct xe_engine *e
- 				   DMA_RESV_USAGE_BOOKKEEP);
- 
- 		/* This fence will be installed by caller when doing eviction */
--		if (!xe_vma_is_userptr(vma) && !vma->bo->vm)
-+		if (!xe_vma_has_no_bo(vma) && !vma->bo->vm)
- 			dma_resv_add_fence(vma->bo->ttm.base.resv, fence,
- 					   DMA_RESV_USAGE_BOOKKEEP);
- 		xe_pt_commit_unbind(vma, entries, num_entries,
-diff --git a/drivers/gpu/drm/xe/xe_vm.c b/drivers/gpu/drm/xe/xe_vm.c
-index 56ed2cb75c8e..113853d496c7 100644
---- a/drivers/gpu/drm/xe/xe_vm.c
-+++ b/drivers/gpu/drm/xe/xe_vm.c
-@@ -590,7 +590,7 @@ static void preempt_rebind_work_func(struct work_struct *w)
- 		goto out_unlock;
- 
- 	list_for_each_entry(vma, &vm->rebind_list, rebind_link) {
--		if (xe_vma_is_userptr(vma) || vma->destroyed)
-+		if (xe_vma_has_no_bo(vma) || vma->destroyed)
- 			continue;
- 
- 		err = xe_bo_validate(vma->bo, vm, false);
-@@ -843,6 +843,7 @@ static struct xe_vma *xe_vma_create(struct xe_vm *vm,
- 				    u64 bo_offset_or_userptr,
- 				    u64 start, u64 end,
- 				    bool read_only,
-+				    bool is_null,
- 				    u64 tile_mask)
- {
- 	struct xe_vma *vma;
-@@ -868,8 +869,11 @@ static struct xe_vma *xe_vma_create(struct xe_vm *vm,
- 	vma->vm = vm;
- 	vma->start = start;
- 	vma->end = end;
-+	vma->pte_flags = 0;
- 	if (read_only)
--		vma->pte_flags = XE_PTE_FLAG_READ_ONLY;
-+		vma->pte_flags |= XE_PTE_FLAG_READ_ONLY;
-+	if (is_null)
-+		vma->pte_flags |= XE_PTE_FLAG_NULL;
- 
- 	if (tile_mask) {
- 		vma->tile_mask = tile_mask;
-@@ -886,23 +890,26 @@ static struct xe_vma *xe_vma_create(struct xe_vm *vm,
- 		vma->bo_offset = bo_offset_or_userptr;
- 		vma->bo = xe_bo_get(bo);
- 		list_add_tail(&vma->bo_link, &bo->vmas);
--	} else /* userptr */ {
--		u64 size = end - start + 1;
--		int err;
-+	} else /* userptr or null */ {
-+		if (!is_null) {
-+			u64 size = end - start + 1;
-+			int err;
- 
--		vma->userptr.ptr = bo_offset_or_userptr;
-+			vma->userptr.ptr = bo_offset_or_userptr;
- 
--		err = mmu_interval_notifier_insert(&vma->userptr.notifier,
--						   current->mm,
--						   vma->userptr.ptr, size,
--						   &vma_userptr_notifier_ops);
--		if (err) {
--			kfree(vma);
--			vma = ERR_PTR(err);
--			return vma;
-+			err = mmu_interval_notifier_insert(&vma->userptr.notifier,
-+							   current->mm,
-+							   vma->userptr.ptr, size,
-+							   &vma_userptr_notifier_ops);
-+			if (err) {
-+				kfree(vma);
-+				vma = ERR_PTR(err);
-+				return vma;
-+			}
-+
-+			vma->userptr.notifier_seq = LONG_MAX;
- 		}
- 
--		vma->userptr.notifier_seq = LONG_MAX;
- 		xe_vm_get(vm);
- 	}
- 
-@@ -942,6 +949,8 @@ static void xe_vma_destroy_late(struct xe_vma *vma)
- 		 */
- 		mmu_interval_notifier_remove(&vma->userptr.notifier);
- 		xe_vm_put(vm);
-+	} else if (xe_vma_is_null(vma)) {
-+		xe_vm_put(vm);
- 	} else {
- 		xe_bo_put(vma->bo);
- 	}
-@@ -1024,7 +1033,7 @@ static void xe_vma_destroy(struct xe_vma *vma, struct dma_fence *fence)
- 		list_del_init(&vma->userptr.invalidate_link);
- 		spin_unlock(&vm->userptr.invalidated_lock);
- 		list_del(&vma->userptr_link);
--	} else {
-+	} else if (!xe_vma_is_null(vma)) {
- 		xe_bo_assert_held(vma->bo);
- 		list_del(&vma->bo_link);
- 
-@@ -1393,7 +1402,7 @@ void xe_vm_close_and_put(struct xe_vm *vm)
- 	while (vm->vmas.rb_node) {
- 		struct xe_vma *vma = to_xe_vma(vm->vmas.rb_node);
- 
--		if (xe_vma_is_userptr(vma)) {
-+		if (xe_vma_has_no_bo(vma)) {
- 			down_read(&vm->userptr.notifier_lock);
- 			vma->destroyed = true;
- 			up_read(&vm->userptr.notifier_lock);
-@@ -1402,7 +1411,7 @@ void xe_vm_close_and_put(struct xe_vm *vm)
- 		rb_erase(&vma->vm_node, &vm->vmas);
- 
- 		/* easy case, remove from VMA? */
--		if (xe_vma_is_userptr(vma) || vma->bo->vm) {
-+		if (xe_vma_has_no_bo(vma) || vma->bo->vm) {
- 			xe_vma_destroy(vma, NULL);
- 			continue;
- 		}
-@@ -2036,7 +2045,7 @@ static int xe_vm_prefetch(struct xe_vm *vm, struct xe_vma *vma,
- 
- 	XE_BUG_ON(region > ARRAY_SIZE(region_to_mem_type));
- 
--	if (!xe_vma_is_userptr(vma)) {
-+	if (!xe_vma_has_no_bo(vma)) {
- 		err = xe_bo_migrate(vma->bo, region_to_mem_type[region]);
- 		if (err)
- 			return err;
-@@ -2645,6 +2654,8 @@ static struct xe_vma *vm_unbind_lookup_vmas(struct xe_vm *vm,
- 					  lookup->start - 1,
- 					  (first->pte_flags &
- 					   XE_PTE_FLAG_READ_ONLY),
-+					  (first->pte_flags &
-+					   XE_PTE_FLAG_NULL),
- 					  first->tile_mask);
- 		if (first->bo)
- 			xe_bo_unlock(first->bo, &ww);
-@@ -2652,7 +2663,7 @@ static struct xe_vma *vm_unbind_lookup_vmas(struct xe_vm *vm,
- 			err = -ENOMEM;
- 			goto unwind;
- 		}
--		if (!first->bo) {
-+		if (xe_vma_is_userptr(first)) {
- 			err = xe_vma_userptr_pin_pages(new_first);
- 			if (err)
- 				goto unwind;
-@@ -2677,6 +2688,7 @@ static struct xe_vma *vm_unbind_lookup_vmas(struct xe_vm *vm,
- 					 last->end,
- 					 (last->pte_flags &
- 					  XE_PTE_FLAG_READ_ONLY),
-+					 (last->pte_flags & XE_PTE_FLAG_NULL),
- 					 last->tile_mask);
- 		if (last->bo)
- 			xe_bo_unlock(last->bo, &ww);
-@@ -2684,7 +2696,7 @@ static struct xe_vma *vm_unbind_lookup_vmas(struct xe_vm *vm,
- 			err = -ENOMEM;
- 			goto unwind;
- 		}
--		if (!last->bo) {
-+		if (xe_vma_is_userptr(last)) {
- 			err = xe_vma_userptr_pin_pages(new_last);
- 			if (err)
- 				goto unwind;
-@@ -2744,7 +2756,7 @@ static struct xe_vma *vm_prefetch_lookup_vmas(struct xe_vm *vm,
- 		      *next;
- 	struct rb_node *node;
- 
--	if (!xe_vma_is_userptr(vma)) {
-+	if (!xe_vma_has_no_bo(vma)) {
- 		if (!xe_bo_can_migrate(vma->bo, region_to_mem_type[region]))
- 			return ERR_PTR(-EINVAL);
- 	}
-@@ -2753,7 +2765,7 @@ static struct xe_vma *vm_prefetch_lookup_vmas(struct xe_vm *vm,
- 	while ((node = rb_next(node))) {
- 		if (!xe_vma_cmp_vma_cb(lookup, node)) {
- 			__vma = to_xe_vma(node);
--			if (!xe_vma_is_userptr(__vma)) {
-+			if (!xe_vma_has_no_bo(__vma)) {
- 				if (!xe_bo_can_migrate(__vma->bo, region_to_mem_type[region]))
- 					goto flush_list;
- 			}
-@@ -2767,7 +2779,7 @@ static struct xe_vma *vm_prefetch_lookup_vmas(struct xe_vm *vm,
- 	while ((node = rb_prev(node))) {
- 		if (!xe_vma_cmp_vma_cb(lookup, node)) {
- 			__vma = to_xe_vma(node);
--			if (!xe_vma_is_userptr(__vma)) {
-+			if (!xe_vma_has_no_bo(__vma)) {
- 				if (!xe_bo_can_migrate(__vma->bo, region_to_mem_type[region]))
- 					goto flush_list;
- 			}
-@@ -2826,21 +2838,23 @@ static struct xe_vma *vm_bind_ioctl_lookup_vma(struct xe_vm *vm,
- 
- 	switch (VM_BIND_OP(op)) {
- 	case XE_VM_BIND_OP_MAP:
--		XE_BUG_ON(!bo);
--
--		err = xe_bo_lock(bo, &ww, 0, true);
--		if (err)
--			return ERR_PTR(err);
-+		if (bo) {
-+			err = xe_bo_lock(bo, &ww, 0, true);
-+			if (err)
-+				return ERR_PTR(err);
-+		}
- 		vma = xe_vma_create(vm, bo, bo_offset_or_userptr, addr,
- 				    addr + range - 1,
- 				    op & XE_VM_BIND_FLAG_READONLY,
-+				    op & XE_VM_BIND_FLAG_NULL,
- 				    tile_mask);
--		xe_bo_unlock(bo, &ww);
-+		if (bo)
-+			xe_bo_unlock(bo, &ww);
- 		if (!vma)
- 			return ERR_PTR(-ENOMEM);
- 
- 		xe_vm_insert_vma(vm, vma);
--		if (!bo->vm) {
-+		if (bo && !bo->vm) {
- 			vm_insert_extobj(vm, vma);
- 			err = add_preempt_fences(vm, bo);
- 			if (err) {
-@@ -2874,6 +2888,7 @@ static struct xe_vma *vm_bind_ioctl_lookup_vma(struct xe_vm *vm,
- 		vma = xe_vma_create(vm, NULL, bo_offset_or_userptr, addr,
- 				    addr + range - 1,
- 				    op & XE_VM_BIND_FLAG_READONLY,
-+				    op & XE_VM_BIND_FLAG_NULL,
- 				    tile_mask);
- 		if (!vma)
- 			return ERR_PTR(-ENOMEM);
-@@ -2899,11 +2914,12 @@ static struct xe_vma *vm_bind_ioctl_lookup_vma(struct xe_vm *vm,
- #ifdef TEST_VM_ASYNC_OPS_ERROR
- #define SUPPORTED_FLAGS	\
- 	(FORCE_ASYNC_OP_ERROR | XE_VM_BIND_FLAG_ASYNC | \
--	 XE_VM_BIND_FLAG_READONLY | XE_VM_BIND_FLAG_IMMEDIATE | 0xffff)
-+	 XE_VM_BIND_FLAG_READONLY | XE_VM_BIND_FLAG_IMMEDIATE | \
-+	 XE_VM_BIND_FLAG_NULL | 0xffff)
- #else
- #define SUPPORTED_FLAGS	\
- 	(XE_VM_BIND_FLAG_ASYNC | XE_VM_BIND_FLAG_READONLY | \
--	 XE_VM_BIND_FLAG_IMMEDIATE | 0xffff)
-+	 XE_VM_BIND_FLAG_IMMEDIATE | XE_VM_BIND_FLAG_NULL | 0xffff)
- #endif
- #define XE_64K_PAGE_MASK 0xffffull
- 
-@@ -2951,6 +2967,7 @@ static int vm_bind_ioctl_check_args(struct xe_device *xe,
- 		u32 obj = (*bind_ops)[i].obj;
- 		u64 obj_offset = (*bind_ops)[i].obj_offset;
- 		u32 region = (*bind_ops)[i].region;
-+		bool is_null = op &  XE_VM_BIND_FLAG_NULL;
- 
- 		if (XE_IOCTL_ERR(xe, (*bind_ops)[i].pad) ||
- 		    XE_IOCTL_ERR(xe, (*bind_ops)[i].reserved[0] ||
-@@ -2984,8 +3001,13 @@ static int vm_bind_ioctl_check_args(struct xe_device *xe,
- 		if (XE_IOCTL_ERR(xe, VM_BIND_OP(op) >
- 				 XE_VM_BIND_OP_PREFETCH) ||
- 		    XE_IOCTL_ERR(xe, op & ~SUPPORTED_FLAGS) ||
-+		    XE_IOCTL_ERR(xe, obj && is_null) ||
-+		    XE_IOCTL_ERR(xe, obj_offset && is_null) ||
-+		    XE_IOCTL_ERR(xe, VM_BIND_OP(op) != XE_VM_BIND_OP_MAP &&
-+				 is_null) ||
- 		    XE_IOCTL_ERR(xe, !obj &&
--				 VM_BIND_OP(op) == XE_VM_BIND_OP_MAP) ||
-+				 VM_BIND_OP(op) == XE_VM_BIND_OP_MAP &&
-+				 !is_null) ||
- 		    XE_IOCTL_ERR(xe, !obj &&
- 				 VM_BIND_OP(op) == XE_VM_BIND_OP_UNMAP_ALL) ||
- 		    XE_IOCTL_ERR(xe, addr &&
-@@ -3390,6 +3412,7 @@ int xe_vm_invalidate_vma(struct xe_vma *vma)
- 	int ret;
- 
- 	XE_BUG_ON(!xe_vm_in_fault_mode(vma->vm));
-+	XE_WARN_ON(xe_vma_is_null(vma));
- 	trace_xe_vma_usm_invalidate(vma);
- 
- 	/* Check that we don't race with page-table updates */
-@@ -3452,8 +3475,11 @@ int xe_analyze_vm(struct drm_printer *p, struct xe_vm *vm, int gt_id)
- 	for (node = rb_first(&vm->vmas); node; node = rb_next(node)) {
- 		struct xe_vma *vma = to_xe_vma(node);
- 		bool is_userptr = xe_vma_is_userptr(vma);
-+		bool is_null = xe_vma_is_null(vma);
- 
--		if (is_userptr) {
-+		if (is_null) {
-+			addr = 0;
-+		} else if (is_userptr) {
- 			struct xe_res_cursor cur;
- 
- 			if (vma->userptr.sg) {
-@@ -3468,7 +3494,8 @@ int xe_analyze_vm(struct drm_printer *p, struct xe_vm *vm, int gt_id)
- 		}
- 		drm_printf(p, " [%016llx-%016llx] S:0x%016llx A:%016llx %s\n",
- 			   vma->start, vma->end, vma->end - vma->start + 1ull,
--			   addr, is_userptr ? "USR" : is_vram ? "VRAM" : "SYS");
-+			   addr, is_null ? "NULL" : is_userptr ? "USR" :
-+			   is_vram ? "VRAM" : "SYS");
- 	}
- 	up_read(&vm->lock);
- 
-diff --git a/drivers/gpu/drm/xe/xe_vm.h b/drivers/gpu/drm/xe/xe_vm.h
-index bb2996856841..5edb7771629c 100644
---- a/drivers/gpu/drm/xe/xe_vm.h
-+++ b/drivers/gpu/drm/xe/xe_vm.h
-@@ -115,11 +115,21 @@ static inline void xe_vm_reactivate_rebind(struct xe_vm *vm)
- 	}
- }
- 
--static inline bool xe_vma_is_userptr(struct xe_vma *vma)
-+static inline bool xe_vma_is_null(struct xe_vma *vma)
-+{
-+	return vma->pte_flags & XE_PTE_FLAG_NULL;
-+}
-+
-+static inline bool xe_vma_has_no_bo(struct xe_vma *vma)
- {
- 	return !vma->bo;
- }
- 
-+static inline bool xe_vma_is_userptr(struct xe_vma *vma)
-+{
-+	return xe_vma_has_no_bo(vma) && !xe_vma_is_null(vma);
-+}
-+
- int xe_vma_userptr_pin_pages(struct xe_vma *vma);
- 
- int xe_vma_userptr_check_repin(struct xe_vma *vma);
-diff --git a/drivers/gpu/drm/xe/xe_vm_types.h b/drivers/gpu/drm/xe/xe_vm_types.h
-index a51e84e584b4..9b39c5f64afa 100644
---- a/drivers/gpu/drm/xe/xe_vm_types.h
-+++ b/drivers/gpu/drm/xe/xe_vm_types.h
-@@ -31,6 +31,7 @@ struct xe_vma {
- 	u64 end;
- 	/** @pte_flags: pte flags for this VMA */
- #define XE_PTE_FLAG_READ_ONLY		BIT(0)
-+#define XE_PTE_FLAG_NULL		BIT(1)
- 	u32 pte_flags;
- 
- 	/** @bo: BO if not a userptr, must be NULL is userptr */
-diff --git a/include/uapi/drm/xe_drm.h b/include/uapi/drm/xe_drm.h
-index 7f9a5849e88b..9bdea8b81435 100644
---- a/include/uapi/drm/xe_drm.h
-+++ b/include/uapi/drm/xe_drm.h
-@@ -418,6 +418,14 @@ struct drm_xe_vm_bind_op {
- 	 * than differing the MAP to the page fault handler.
- 	 */
- #define XE_VM_BIND_FLAG_IMMEDIATE	(0x1 << 18)
-+	/*
-+	 * When the NULL flag is set, the page tables are setup with a special
-+	 * bit which indicates writes are dropped and all reads return zero.  In
-+	 * the future, the NULL flags will only be valid for XE_VM_BIND_OP_MAP
-+	 * operations, the BO handle MBZ, and the BO offset MBZ. This flag is
-+	 * intended to implement VK sparse bindings.
-+	 */
-+#define XE_VM_BIND_FLAG_NULL		(0x1 << 19)
- 
- 	/** @reserved: Reserved */
- 	__u64 reserved[2];
--- 
-2.34.1
++ cleanup
+++ stat -c %u:%g /kernel
++ chown -R 1003:1003 /kernel
+
 
