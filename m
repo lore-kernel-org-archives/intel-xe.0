@@ -4,30 +4,30 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id DF8BCEB64D8
-	for <intel-xe@archiver.kernel.org>; Thu, 15 Jun 2023 01:18:07 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 62F2CEB64D8
+	for <intel-xe@archiver.kernel.org>; Thu, 15 Jun 2023 01:19:56 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 698FA10E0FC;
-	Thu, 15 Jun 2023 01:18:07 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 31C6310E0FC;
+	Thu, 15 Jun 2023 01:19:56 +0000 (UTC)
 Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id 13DDE10E0FC;
- Thu, 15 Jun 2023 01:18:06 +0000 (UTC)
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 96DA210E0FC;
+ Thu, 15 Jun 2023 01:19:53 +0000 (UTC)
 Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 0D4F9AADE3;
- Thu, 15 Jun 2023 01:18:06 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============4319487159720723729=="
+ by emeril.freedesktop.org (Postfix) with ESMTP id 9014AAADE3;
+ Thu, 15 Jun 2023 01:19:53 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Daniele Ceraolo Spurio" <daniele.ceraolospurio@intel.com>
-Date: Thu, 15 Jun 2023 01:18:06 -0000
-Message-ID: <168679188602.10727.5361796643171222467@emeril.freedesktop.org>
+To: "Zanoni, Paulo R" <paulo.r.zanoni@intel.com>
+Date: Thu, 15 Jun 2023 01:19:53 -0000
+Message-ID: <168679199355.10724.8196966301516013233@emeril.freedesktop.org>
 X-Patchwork-Hint: ignore
-References: <20230615002521.2587250-1-daniele.ceraolospurio@intel.com>
-In-Reply-To: <20230615002521.2587250-1-daniele.ceraolospurio@intel.com>
-Subject: [Intel-xe] =?utf-8?q?=E2=97=8B_CI=2EBAT=3A_info_for_drm/xe=3A_li?=
- =?utf-8?q?mit_GGTT_size_to_GUC=5FGGTT=5FTOP?=
+References: <20230608050333.37581-1-matthew.brost@intel.com>
+In-Reply-To: <20230608050333.37581-1-matthew.brost@intel.com>
+Subject: [Intel-xe] =?utf-8?q?=E2=9C=97_CI=2EPatch=5Fapplied=3A_failure_f?=
+ =?utf-8?q?or_NULL_bindings_aka_sparse_bindings_=28rev3=29?=
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -44,65 +44,28 @@ Cc: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============4319487159720723729==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
 == Series Details ==
 
-Series: drm/xe: limit GGTT size to GUC_GGTT_TOP
-URL   : https://patchwork.freedesktop.org/series/119355/
-State : info
+Series: NULL bindings aka sparse bindings (rev3)
+URL   : https://patchwork.freedesktop.org/series/119048/
+State : failure
 
 == Summary ==
 
-Participating hosts:
-bat-pvc-2
-bat-atsm-2
-bat-dg2-oem2
-bat-adlp-7
-Missing hosts results[0]:
-Results: [xe-pw-119355v1](https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-119355v1/index.html)
+=== Applying kernel patches on branch 'drm-xe-next' with base: ===
+Base commit: 6d2981d42 drm/xe/mtl: Add some initial MTL workarounds
+=== git am output follows ===
+error: patch failed: drivers/gpu/drm/xe/xe_bo.h:65
+error: drivers/gpu/drm/xe/xe_bo.h: patch does not apply
+error: patch failed: drivers/gpu/drm/xe/xe_pt.c:102
+error: drivers/gpu/drm/xe/xe_pt.c: patch does not apply
+error: patch failed: drivers/gpu/drm/xe/xe_vm.c:61
+error: drivers/gpu/drm/xe/xe_vm.c: patch does not apply
+hint: Use 'git am --show-current-patch' to see the failed patch
+Applying: drm/xe: s/XE_PTE_READ_ONLY/XE_PTE_FLAG_READ_ONLY
+Patch failed at 0001 drm/xe: s/XE_PTE_READ_ONLY/XE_PTE_FLAG_READ_ONLY
+When you have resolved this problem, run "git am --continue".
+If you prefer to skip this patch, run "git am --skip" instead.
+To restore the original branch and stop patching, run "git am --abort".
 
 
-
---===============4319487159720723729==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/xe: limit GGTT size to GUC_GGTT_TOP</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/119355/">https://patchwork.freedesktop.org/series/119355/</a></td></tr>
-<tr><td><b>State:</b></td><td>info</td></tr>
-
-</table>
-
-
-    <p>Participating hosts:<br />
-bat-pvc-2<br />
-bat-atsm-2<br />
-bat-dg2-oem2<br />
-bat-adlp-7<br />
-Missing hosts results[0]:<br />
-Results: <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-119355v1/index.html">xe-pw-119355v1</a></p>
-
-</body>
-</html>
-
---===============4319487159720723729==--
