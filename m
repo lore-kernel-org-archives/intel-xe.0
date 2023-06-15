@@ -4,145 +4,146 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5ACD2EB64D9
-	for <intel-xe@archiver.kernel.org>; Thu, 15 Jun 2023 04:42:21 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id A3AD0EB64D9
+	for <intel-xe@archiver.kernel.org>; Thu, 15 Jun 2023 05:02:48 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id F349610E00F;
-	Thu, 15 Jun 2023 04:42:20 +0000 (UTC)
-Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2247510E00F
- for <intel-xe@lists.freedesktop.org>; Thu, 15 Jun 2023 04:42:19 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 66C5710E00F;
+	Thu, 15 Jun 2023 05:02:48 +0000 (UTC)
+Received: from mga06.intel.com (mga06b.intel.com [134.134.136.31])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2988E10E00F
+ for <intel-xe@lists.freedesktop.org>; Thu, 15 Jun 2023 05:02:46 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1686804139; x=1718340139;
+ t=1686805367; x=1718341367;
  h=message-id:date:subject:to:cc:references:from:
  in-reply-to:content-transfer-encoding:mime-version;
- bh=66eBQ//rAxLwYn1JIMZAudpJ34Pgczd1nfEjBVGhhTc=;
- b=YGuIgoCqkFw9NuWVW1jICv+zC7jrVU+mDyHSVjluBmgdvq+6PxjUrq8d
- ci1ie3CixCVMAHaCTzP00OaYSSkaH/u4nEkdNk9wCHTZiENtQWHGEVGKJ
- Tj0oEKp9jgzRiyqCL7qaE16F+jIDZ7SqWXYd/LQ3SXV+bxhxPX5H/qCL6
- GgvcJNdj7cmCJEN+8orCfXwkiwLYEHooZM7M0wDlCyJzMyDRAAYtXcz+x
- dnwt2ZiRpn5hbkJ9Om/zfHXlfMo598jxC1JeO61uMjWoXtBttcnnFBGjQ
- u7FeTfLWn41q6fvewdP1D/wF1gXTxl3hDOYpnqvQ3M5xTyGSqEHVHgwA+ A==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10741"; a="339156712"
-X-IronPort-AV: E=Sophos;i="6.00,243,1681196400"; d="scan'208";a="339156712"
-Received: from orsmga007.jf.intel.com ([10.7.209.58])
- by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 14 Jun 2023 21:42:18 -0700
+ bh=abNDbwkmZlkQjYVvdtTxblrwnP8A7mCYDcPQZqDCYfc=;
+ b=NuzVNpMCEA9Neo/UQJzkXkRgwN6Ymc+AFfAZOQ0LdR4HGGKPWLY6KCtA
+ YqOpVzr9MMdUIXrG0ur5y4Oj+DlwhQDpRlVnuTO81uAUHaUj8jDvNUAoW
+ /bn8pNFDRiV5bEDw27BgMUk8p/NhfKm/pn5hpLjiwCmQKNhdln0kuhbyM
+ PuBSAMAV8znZ6yKzxLLCzq7eHeW3c/1mPU//khStvJHreWySrckTHl2pP
+ RwW/f8lIEJpuVSBrwaGuf6hsnqqt5GiQFPspaFdzmEZlbPIKClNW9AkE4
+ VbVLRyEZWs8Yt7+ixJObPk1SmXrcvn6301doNydDs+IVQvTyT4TH+W/iK g==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10741"; a="422419583"
+X-IronPort-AV: E=Sophos;i="6.00,243,1681196400"; d="scan'208";a="422419583"
+Received: from fmsmga008.fm.intel.com ([10.253.24.58])
+ by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 14 Jun 2023 22:02:46 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10741"; a="706489377"
-X-IronPort-AV: E=Sophos;i="6.00,243,1681196400"; d="scan'208";a="706489377"
-Received: from fmsmsx601.amr.corp.intel.com ([10.18.126.81])
- by orsmga007.jf.intel.com with ESMTP; 14 Jun 2023 21:42:17 -0700
+X-IronPort-AV: E=McAfee;i="6600,9927,10741"; a="777520117"
+X-IronPort-AV: E=Sophos;i="6.00,243,1681196400"; d="scan'208";a="777520117"
+Received: from fmsmsx602.amr.corp.intel.com ([10.18.126.82])
+ by fmsmga008.fm.intel.com with ESMTP; 14 Jun 2023 22:02:45 -0700
 Received: from fmsmsx610.amr.corp.intel.com (10.18.126.90) by
- fmsmsx601.amr.corp.intel.com (10.18.126.81) with Microsoft SMTP Server
+ fmsmsx602.amr.corp.intel.com (10.18.126.82) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.23; Wed, 14 Jun 2023 21:42:17 -0700
-Received: from fmsedg602.ED.cps.intel.com (10.1.192.136) by
+ 15.1.2507.23; Wed, 14 Jun 2023 22:02:45 -0700
+Received: from FMSEDG603.ED.cps.intel.com (10.1.192.133) by
  fmsmsx610.amr.corp.intel.com (10.18.126.90) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.23 via Frontend Transport; Wed, 14 Jun 2023 21:42:17 -0700
-Received: from NAM12-MW2-obe.outbound.protection.outlook.com (104.47.66.43) by
- edgegateway.intel.com (192.55.55.71) with Microsoft SMTP Server
+ 15.1.2507.23 via Frontend Transport; Wed, 14 Jun 2023 22:02:45 -0700
+Received: from NAM02-BN1-obe.outbound.protection.outlook.com (104.47.51.42) by
+ edgegateway.intel.com (192.55.55.68) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2507.23; Wed, 14 Jun 2023 21:42:16 -0700
+ 15.1.2507.23; Wed, 14 Jun 2023 22:02:45 -0700
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=hIxk2Kf8VYnW/FmVoDbqwOhpNhe+Ry53eBXl2l99dAIeoULsuZEPqpUpQC/iWvtRLagi7wvkI2+Z/JwdxLnlwuxKIm2XeLGYFB4oDY4iAqPhYtygRwFAU8ucQ5C8BXPW/2fIXZhTdZaQaSuXxfVUxMxUTA57Ec+VMZ4NMLIoH0n4vfTjqL52nHvC/4GSinaB3bRNjzhj97Gh8sZGQGkk5oelrLnNvnKBk2TBHnH2lLSJALrdc7IgU/RIPmHxJyG/0rNjvJ3wRZiULAinu36Y3G9pTDoiT/qlbz6cBMQNWHI8DyIHVrKK051fdVWbSXpRI8d+E1Ar2LdNZ5PCfZINpA==
+ b=VnD96b1fOTYDDEjE+Fb++EjDB5Gc8KzxeO/KVePr3O5WDyfQ9kRtOqBum+S2+ChTOdlW3GUHQKEVuj7Lq5ynQahY3DcBkVkAnstC417CxWSgltc2hpupTLypSl+IGHcOEwYIMf7TOusmaDvLA+tCaNLaMffu9MI3b1GxmVTzWXMU+5VM86VRH4PQxmnaHb8MxGeWynzr23e7r/LN8IlrOaLDyUiiGzOAMSyeejLCbTQ2gMCapPkSxGM+hDDsthFZK2Ch55IkUu69lLMvieRWp8xKo8Ur4McuDkB7JMPn7PM0YohCITloSQqtSH2r15qklSkqhoDlrwlCprNjxLwcNg==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=yWjJcA8CPOFFBfxoIP2UXZzGw6qGxjeaIheK5LJxSng=;
- b=dEQbfTM4bX4IzMwclJxCkq1LqE/mrnhg1x8F9sJTxKSy9PHcxvqlNNEkOj2irvEK7BplEZ7pnHmiblOG+fIY6kego0NyPc82Y6AqjcDAbQb2jIAiuJwEmq8YyJQ/riitZNgZ7wNwY5Bo0/csYg2HxHVwnSz9BSkMlWpl/QewQoI5A1dD0d2QJlC3iGURicWf1Xe1Qp+YdWC7NIbgx0e2qugHWHBnDn6/fn9HtseAjqeje2sW/YaxjO5q8IWDoMF4caxCIK0x23+n7PNsiy5cHdNTwwJe4ySt2XOhYKV7dEQripOP/NIJke/Dd4+dBCWM1K/XBGNO1JfhR8WeIoBjBg==
+ bh=TvYY2Pgq67hopVolGJcGn+aSP7anRP51PJWqO5BjWIc=;
+ b=lj+2B8gjbDkFKb3ywT5TD9c0cBSRsk+x4vghFTwMxG1J8EklzXlrEd0ZAGGPlweB/DPpinSE+tfLYw/5BLAAanmshw976Yg6EVEq3uIdwole8TKbdV6BEai+Y5w7pOxDT4G3+i91iGTjIPgnUuVNZVsiABZvosC95hnBX66oX6zmfAS+mwUccmwR4kWzqxWR2Lt0lqb81YJVgynRdqmsln6FUlZwUhSqUD/5qPyDAiHArazQg4Bat+mNyP9exVeyUl+8rysbdErA6z98T6mSpMeTV9OynLIq6f5PvTbr6aT2xxIpvGV2LiIQ8JZ+uAeZU8Tcd0XdKtbSKfwXjbhvtA==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
  dkim=pass header.d=intel.com; arc=none
 Authentication-Results: dkim=none (message not signed)
  header.d=none;dmarc=none action=none header.from=intel.com;
 Received: from SJ0PR11MB4845.namprd11.prod.outlook.com (2603:10b6:a03:2d1::10)
- by BL1PR11MB6025.namprd11.prod.outlook.com (2603:10b6:208:390::16)
+ by SA2PR11MB5081.namprd11.prod.outlook.com (2603:10b6:806:118::16)
  with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6477.29; Thu, 15 Jun
- 2023 04:42:14 +0000
+ 2023 05:02:42 +0000
 Received: from SJ0PR11MB4845.namprd11.prod.outlook.com
  ([fe80::3fa8:dede:a9ab:fc5]) by SJ0PR11MB4845.namprd11.prod.outlook.com
  ([fe80::3fa8:dede:a9ab:fc5%7]) with mapi id 15.20.6500.025; Thu, 15 Jun 2023
- 04:42:13 +0000
-Message-ID: <80105db9-e10e-aec7-73b3-aa780f9d0fb5@intel.com>
-Date: Thu, 15 Jun 2023 10:12:04 +0530
+ 05:02:42 +0000
+Message-ID: <9d8057a5-09a9-1a04-bae6-4465b9186917@intel.com>
+Date: Thu, 15 Jun 2023 10:32:32 +0530
 User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
  Firefox/102.0 Thunderbird/102.11.0
-To: Matt Roper <matthew.d.roper@intel.com>
-References: <20230613094232.3703549-1-riana.tauro@intel.com>
- <20230613213941.GH6953@mdroper-desk1.amr.corp.intel.com>
- <20230614175403.GI6953@mdroper-desk1.amr.corp.intel.com>
 Content-Language: en-US
+To: Andi Shyti <andi.shyti@linux.intel.com>
+References: <20230613084721.3698818-1-riana.tauro@intel.com>
+ <20230613084721.3698818-2-riana.tauro@intel.com>
+ <ZImQSlvLphPOU5RW@ashyti-mobl2.lan>
 From: Riana Tauro <riana.tauro@intel.com>
-In-Reply-To: <20230614175403.GI6953@mdroper-desk1.amr.corp.intel.com>
+In-Reply-To: <ZImQSlvLphPOU5RW@ashyti-mobl2.lan>
 Content-Type: text/plain; charset="UTF-8"; format=flowed
 Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: PN0PR01CA0015.INDPRD01.PROD.OUTLOOK.COM
- (2603:1096:c01:4f::20) To SJ0PR11MB4845.namprd11.prod.outlook.com
+X-ClientProxiedBy: PN0PR01CA0018.INDPRD01.PROD.OUTLOOK.COM
+ (2603:1096:c01:4f::23) To SJ0PR11MB4845.namprd11.prod.outlook.com
  (2603:10b6:a03:2d1::10)
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: SJ0PR11MB4845:EE_|BL1PR11MB6025:EE_
-X-MS-Office365-Filtering-Correlation-Id: 87dc7324-0a0e-4ae1-9a71-08db6d5ae319
+X-MS-TrafficTypeDiagnostic: SJ0PR11MB4845:EE_|SA2PR11MB5081:EE_
+X-MS-Office365-Filtering-Correlation-Id: bf0d435e-02dc-4aae-6c9f-08db6d5dbfd7
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: +NV3s8GxHNi12qMlWZgS4Ty3INr6PrEOpxR+ev8vS0F7ZIKAg0UTx5H+hUKxYpV7Mk66pjf9Ax1Ia1lwWcqHnVNkOU/F+aApkORNtj3hkSSc3OX3pM29NtnU8Fp2jskGBb7D8rqcNx3ZlYKEG5QBSrNrD20uR7/uQ5HBYCYwjDnMO0O5Ek10KEVtqRVID2oT7Nt9jMauN8C2UAKnNO/brqc1AI2DTVvwqIEEw4tEBSdLvIbiRWvHUoGTBLEY4xpqEI9RPM/7WPl+vY2/tQmd+xZx/0/MRS3MePkf33B4D4Z4oCLBYSUNa121DykjdD8KkRnmEQfZF68mWemzzqBsmxP52ys8n/8L6TGHGb+Zm51aDcPMTfB4BL4vd8lCHKAf2froKslggULJJcbB2yLoe9QUGZH6jczAtZwGqCD4IyiMIpIcBipRLjge/fJPQ1ACn2ZyKyE+6WRqOpCS6R432jEVSvdKloD4zussy4syCaAvxpExTGzPZ3kP0hlSdZK/U/MET78UzdLDqQWO9eMomWteFy0/YORFnc9SSWEHmtxDRABpIepU7tZfNxhPCffPF2pieQv+9T76Co0FFScJF1ljZfK4Dvs/TDKNV6Js9SgnIFTNd8wmcXd4lhItydFCjsToBSpU5Vmvozauahz3lA==
+X-Microsoft-Antispam-Message-Info: a6iBJrm7D0ZsTd2/p18CmfGW6Q57/RfuKmAUUFNqJ6nQf/hTQ7vyrXKYGGRguL3qkee8CQVJnv1Yjq+G9fqMWVEvBIiNdbAXaYFgaowg9kpc+gKFngnJ5Jn1B+MlDBCzxfvl4hAxitLI8N3J7Rx56HhLcKvBOVST0Fyg13omeaRMDyTXJimOrQl4kfSwSm8V6NMCbmFPIo0yvCL0vniui6ujeTllwKdF/U1TCJk+f7F+X3brs6svtM0m2zWD8BXYmi2hhzeXgX0hChY1DkEcunjUNrx899RI8/u7/SQlE7P3AzK8hUP9n15UtwN50wi9mbvOVrQoZ2GnhpX+deC/QdYYTFeBfYbPcX2QZtMuKyiZnPJP1+ZM09lnVvZpscKqurVel8LPdgk8YCIE4cazEAciuvliQwgrcAqKJx0Sl7oBdTI1Qpc+cT015daYfyuCr+rCi8QPY09eNQlPY0JjyTJhetKAnHFipCAwbEV+qn4H04TYxftaaemriwv56RSE05B7l27P8D8sOS4IKcrtkDB6pLxInyjpCUKa+3jvrEenBla+2Sj7DIpdggVUdnVd/jIM8SFtIwrc6LiuBuScNdBFiElIAvHd1BiO8UUPrTsEkO74BlXlWQdNtXPXRVQgK17LDtlXXNK6MOXGhN6OUtPeKvzivdApZkqKeGJ63/Y=
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
  IPV:NLI; SFV:NSPM; H:SJ0PR11MB4845.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230028)(376002)(396003)(39860400002)(366004)(346002)(136003)(451199021)(5660300002)(2906002)(6862004)(8676002)(8936002)(31686004)(66476007)(66556008)(44832011)(37006003)(6666004)(6486002)(66946007)(4326008)(6636002)(26005)(6506007)(6512007)(53546011)(41300700001)(316002)(186003)(82960400001)(478600001)(36756003)(83380400001)(2616005)(31696002)(38100700002)(86362001)(43740500002)(45980500001);
+ SFS:(13230028)(39860400002)(136003)(366004)(346002)(396003)(376002)(451199021)(2616005)(83380400001)(82960400001)(36756003)(86362001)(38100700002)(478600001)(31696002)(44832011)(8936002)(6486002)(6666004)(966005)(8676002)(2906002)(4326008)(5660300002)(66476007)(66946007)(66556008)(31686004)(316002)(186003)(53546011)(41300700001)(6916009)(6512007)(26005)(6506007)(21314003)(43740500002)(45980500001);
  DIR:OUT; SFP:1102; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?T3dMQ0xXeWYyYndJVnlHU2dTcEVUeUQ3cXE4VGc5Z24vRU5udFJsU1JvbS9q?=
- =?utf-8?B?ejlmYk9hYklNbU1hUytGVWdVNGpCRWxRVktQdE84M2R2bEg1SG1Sd2ppdFVi?=
- =?utf-8?B?OUtjL3ozSW9TNndFbGNReitoSUVlNy9OUmRpbEpKL1NBRGdYeDB3dTNIZlU2?=
- =?utf-8?B?dXM0S0R2SWNuQ1JUTHFqR3dZSEVXREtUUDlOUmJCN1JycjJUcjUveTQwdm9q?=
- =?utf-8?B?NHZqcjVISjNRblEzTndWQ1FLbzhJeFR1OVU0RzJya1hwSkFMQ3VZUktsa01D?=
- =?utf-8?B?NFFmTEtOdjhDYW9kcXBPNmc4WVVVdjU3TWwvK1JtRE5GNlRYZVpQM3IwTHlo?=
- =?utf-8?B?UW9Lb2kweWprVjYvSkxuY0hWbmxES3lyYTNDOElUNTZNTU4xWmxrMXp3NHY2?=
- =?utf-8?B?WGxjbGYyZE1JMXZSbitmZnhhZ1ZMaEtFcGYrQnBtR2JnVVJld1I1TUhMWS9Q?=
- =?utf-8?B?N1lWbVBGU3NzZ05kTkpMdXVqMkNZTEM1ZkZDbEc4RW9BcUExbW5KUXJsUklv?=
- =?utf-8?B?NUpyZDROeVhGc1hqV3NTSGhwYWFUV0tEWlVDMWdtcnZhZWZKVHVnaW1nSW9k?=
- =?utf-8?B?VlZ1YmpjZkpoa3ZMMlV0NDZXbDVaN0xBNUNjc0tPZm9uMDJzNFlvNDVIcTFL?=
- =?utf-8?B?TmhkNitwRHpwTEhWQ29nK0tHRUQ3WGV6WVFkVWt1cHIrSnB1eksxb3JESkhy?=
- =?utf-8?B?WEg0RzNNS1F2b3JDbzhkQTYyOXJ6ME95UTdKcEE5d0lRcklrclZ3Wmw4NGlr?=
- =?utf-8?B?NWh3c1NLdzlWRG5UUmlyb0F2c09QY2Y1RjV3bkxERUQ0b28xYWdXdk5JRGp1?=
- =?utf-8?B?MmpVWGJjbmFyQVgxOGNLOThWMVE5YzI2NjgrQkxFLzZpSXQxam45R1ZrNmdh?=
- =?utf-8?B?bmFEallqbWozTjV5eDBwM0pTYkJFTVlxM3pmbnJHRFUxcy96NlV5NGwydXpK?=
- =?utf-8?B?eVQ0WGJjNUJ1RnBoVytqMDhLUjZyMDdoRkZMQTJsMkJIZndFSE1XVHZUMm4x?=
- =?utf-8?B?SjE1WU1oNGFQMVJ3dzIxUDdJUGF6T3RBUjdLUnpST1ZMUXlKWFBLS29kVnhX?=
- =?utf-8?B?OFF2bFdiL0tXN0phRlJyQnlXQi84eS9NNU81UDRTRmxSYkR6aVkydmZ4eEw5?=
- =?utf-8?B?bjhhN3I1bzlKL3pzanZudm9sazhCSXdBaXBIYlhZVzd3NGRHNHp4NXF1Q2NM?=
- =?utf-8?B?SGZ3dlYwbndRbUN1OFVKcjhxSWdkd1JDTjlZbVl1cndwdTlGM2g5M2g0c1hy?=
- =?utf-8?B?UjVKRUhsTndjMjNzcSs4UVlEZXNYY0pTTzd0VEllMngxSTF4bGo5NlRKdmtx?=
- =?utf-8?B?UGpYZDR3V1RQUDVRRDUrOTBlbjJ2U0tYbXFSUFJKODV2NVNMSmV2MEh6NE84?=
- =?utf-8?B?cEs1Q2xLSmVTcElRc3dCYVdVR0pDaytzeGxpeGdlL3lNOFVYS2tFZUlTakNX?=
- =?utf-8?B?TFhtMVZBUXJMMGdLNzd6VEF3UXhSb2lKbnZOYURhM2FQdSsvUFY1NGt5Qjh1?=
- =?utf-8?B?ajFTaWRnM2tsYklRY2orOFpRKytiSlB0VDZJTjFHTVZkL3FZYmZsRWJWT3Zx?=
- =?utf-8?B?MmgwZERaZ2RZdDVoMnU5SjdIZXpBa1JoM2ovc2NTZWFTQjE3ZzU4eGhtK2ho?=
- =?utf-8?B?UU0vRlNhbFBXd3JFU2ZyN1NBdlZIMHVEMTNjUXNWYXQ1KzhjNC9NRDN4R0hi?=
- =?utf-8?B?bkJIcWZxWmZ6U3VONFp2Y1dxdVFHdFJvWDRPV1hOL2JSV21wendkdmtmYXo0?=
- =?utf-8?B?cTJVNVV5TWY2OUw0aURic2pObnNKTWJzdWVwL2ZTbVg1K3dBM3p3YWxhVCt1?=
- =?utf-8?B?bFhzVzNHNEM0Q2ZTNlhzeGE0ZStDcWhMYmx0dTUyZWJKV2tIUzMvL2VHMnFh?=
- =?utf-8?B?Um94L2ZpQkFRdW5zQjRRNkp5QUZYR2lxNU9pMTNmOW9XTmE0NHAvSzBCOTdM?=
- =?utf-8?B?NC92amI0ODNQa1lUTmJtbmZCN3B6K0toTmdQVGJPME5GUGNzaHlzQWxrZUhw?=
- =?utf-8?B?bGRPYnV0MHFoOGpnWXVuUTZWNXZyUzVSZzdQQ0ZuSzJVb1FKUUE5UlovUHNT?=
- =?utf-8?B?MFg3dmxJdXIvVmVmZTg4ak5VS1N5VXRxeFJRTjFTVm5tU1d6MSsyWGhuWU83?=
- =?utf-8?Q?f/dwX16S1hFsXf8P/nA179xDL?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: 87dc7324-0a0e-4ae1-9a71-08db6d5ae319
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?bVYxRE5MSERBSFRDYzFkV0RKSURpM1RaWUhjVk44eEhsNFR5dGJDN3hUbzVp?=
+ =?utf-8?B?ZDl2RnNXU21zVnVDTlBlV05ybDJxOWVJdzJYNlFVa3ozNTlzLzhaeHVUWHNS?=
+ =?utf-8?B?TDhVTXlTeHcyZHlTQlpNNEI4aDJYQjRlZ29VdEp0UG10UHkwOFdaMWlrcGE1?=
+ =?utf-8?B?aW9BTnZqc2lrd3VCVHJPTlVvNFBja21TNzd4WGhaSHVxc2dlQnY5b0tab0lD?=
+ =?utf-8?B?dS92WmZPTFUvQ0E5emQxVUhSc0lvQndaNVNWYUhqN3RUanFLeDZmNWx2dUxB?=
+ =?utf-8?B?VC8zTHRDK09qd280Qk9aU2pzNlBvT2Z3bWIvVWFpd0JGdHA3ZGxoWDRicEE1?=
+ =?utf-8?B?ZXpZTkVSam4zYkNzL2hrTXZZZmt1VEdOenZWcG12TVd5RStYTU1CdEM0N2NY?=
+ =?utf-8?B?NmFWTUZvbGlvUDRpRitQTXFuRVpiNGFkZ2YxbmpYSFBLYlNmTCs4MTR6dnV6?=
+ =?utf-8?B?N0lzSGFNMVpnMXlwTXBqWEdlTUlydDNNYXcwN1Z5YnJNRHNiYTUxWHRWZTVp?=
+ =?utf-8?B?RFIrTytNQnNrNjdJdTNKalR2MU42QWwvaHVobFRWL1JHT00wN0ZmRGZ6eUNH?=
+ =?utf-8?B?WFM1Nk0rZjd4aXpyNHY1YlpZMlprbG8rdExaL3J3Y283cE95Vk1jTXlSckhq?=
+ =?utf-8?B?ZFgrSDJwVFFmNmhMaU1lSWlDdTNiMUtWNHY0TnJaejFwcUVoQ2dRYy9LWmVQ?=
+ =?utf-8?B?N0NMNms1ZkN4RXpPSjZ2Qm84bS9sUWlobnQxUGFwQ0xlYWZrVUNobERUczBJ?=
+ =?utf-8?B?eDZKRjJRTGszRXBuVUFsdlJHQzlrWlcvVnd3aHFtVE1nL3lIdVVKZW1jYjM5?=
+ =?utf-8?B?YnNCakRUREpJSXI2TGpia2FRQktiNDN4R24vQ25Ud1BmSC9MNTY1MFA5MUxi?=
+ =?utf-8?B?bHcxSDJTR0U5aEM2WEZibFFmZ0FiQ0VUTEcyUzdPWEVoVG53ZkVFcklwYjZK?=
+ =?utf-8?B?RUNmaTBaRElmNUNxeXFlOVNUU3RvUCtnR0d0UXRqRGZsNUNvaHZUYTB2eTRq?=
+ =?utf-8?B?emhjWExRdTRQNzNhKzlLTjF1dEtUSVo4T3ZhZWl1a1EyZlQ4SVBSMVhKeCt0?=
+ =?utf-8?B?S3FMU2JYUHE2V21FN0toRFlxcUJuZUFnekxiYzJMZ1dBd3JxVmx0YnI1NXdD?=
+ =?utf-8?B?SjBhcW1FekJXd2F6N3diSUtMTlJlOWVvWjAxQ29haGVQS21BM09PRTR1b1Bx?=
+ =?utf-8?B?d0ljSnFiQXZKeWk3enA2QUh4eXQ3YTlLVlVCRTZUamg4WVlkZURnbTN6Mldq?=
+ =?utf-8?B?QXBMMmhTWXlrTitOakloNG1tc2k2cFh4WTNzZzhMLzZ4cVJxdkNKbDVhVkQz?=
+ =?utf-8?B?MzdLbHpDNFkzc3hueit2K29USGhlQ0R0dncyV21YSktVdFpBc2F1ZG1aK2Zo?=
+ =?utf-8?B?bUEvOUxHVFRRbW1OQ2J1QzhaaW5JbHdKR3RlMVNYNnNwR2RMNjRjN1Q5QnJ3?=
+ =?utf-8?B?Q254TC9LZDAzK2J0WWUwQU1iRlRuaHJ1cmtnaEU3eDJLZW90N3JrWXlTWnBU?=
+ =?utf-8?B?bUZIb3lSRDR6b1k3bWora1lsYVIxRVlLT0lxbTJKck9yOFIzYlFvdklnSHFQ?=
+ =?utf-8?B?Mmpzek9MSVNUclFseFd1MW5Pd1Vla2wrNFdSSkJtSy85M0xJcE1XcmpwUEo1?=
+ =?utf-8?B?SE9IbllXUVQ5cXFnNUlRcU5YYVIvM0FadEZ2ZEJWUkh0U1FVMjFvblZHVXRY?=
+ =?utf-8?B?eVM0T3VrTG5vczdyL2lvRC8yQkMza3JEeUkyeVMyMnp4dmtiZ1BxVnhnYi9V?=
+ =?utf-8?B?a3dEZFkrV3JuZW9KSUJUQm9UQy92SHBlWm9nbkRIbTRKeHJLSTRueSt3dW9H?=
+ =?utf-8?B?S2E1QnpmcjRLZlFTM2pXNzRLMmNMQ2d0WXN0eFlQVUtkSTUyVThrTEtxQ2o2?=
+ =?utf-8?B?ci83OHpHYWMwdWExTkhPL0grOVRyOGJlUGI5TFlNZUlHcmNnTVl3WVBUWEV0?=
+ =?utf-8?B?U3ozUXV2Q0tNdUVxdnhtQzg4dzhKeWFRSktvR0w5TGhaNGpMMHBqY3E1ZXpx?=
+ =?utf-8?B?bVVDSVQ1S3JkQzNVelBvYXdscGhZQnMwblQrRHNRc1YxdTVlVUpNYzdiN2k5?=
+ =?utf-8?B?aVN5amlZaG90S1RBVW5NRGQ2Y2RrNzdWMENWaUh0eFpQV0trWnB3cDd6US9B?=
+ =?utf-8?Q?e+4mQO/LWzNZBwyE1War2B4h1?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: bf0d435e-02dc-4aae-6c9f-08db6d5dbfd7
 X-MS-Exchange-CrossTenant-AuthSource: SJ0PR11MB4845.namprd11.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 15 Jun 2023 04:42:13.0893 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 15 Jun 2023 05:02:42.4451 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: QF+t6U/slwvHgqw1HyJWoES5QYEdwVJSLR5PX4nYNenPKypInyarxfSGG2PPTQeRUBRA5hknO6oucjPrGvgB2A==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: BL1PR11MB6025
+X-MS-Exchange-CrossTenant-UserPrincipalName: H5D/G9kQ//mURJ55pJ6xDmLpvleJ70bMDhjLy85BpOUAG/rKosK9EYZWQv3vCL35aKaEDlMQM2Jmy5jEdcId8A==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SA2PR11MB5081
 X-OriginatorOrg: intel.com
-Subject: Re: [Intel-xe] [PATCH] drm/xe : Fix GT looping for standalone media
+Subject: Re: [Intel-xe] [PATCH 1/2] drm/xe: add a new sysfs directory for
+ gtidle properties
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -154,98 +155,144 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-xe@lists.freedesktop.org
+Cc: joonas.lahtinen@linux.intel.com, rodrigo.vivi@intel.com,
+ vinay.belgaumkar@intel.com, intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
+Hi Andi
 
+Thanks for the review
 
-On 6/14/2023 11:24 PM, Matt Roper wrote:
-> On Tue, Jun 13, 2023 at 02:39:45PM -0700, Matt Roper wrote:
->> On Tue, Jun 13, 2023 at 03:12:32PM +0530, Riana Tauro wrote:
->>> Currently the id of primary gt is set using gt_count and not
->>> the media gt.
->>>
->>> set gt->info.id of media gt using gt_count
->>>
->>> Signed-off-by: Riana Tauro <riana.tauro@intel.com>
->>> ---
->>>   drivers/gpu/drm/xe/xe_pci.c | 2 +-
->>>   1 file changed, 1 insertion(+), 1 deletion(-)
->>>
->>> diff --git a/drivers/gpu/drm/xe/xe_pci.c b/drivers/gpu/drm/xe/xe_pci.c
->>> index bd1f59b49928..2991cf5365d5 100644
->>> --- a/drivers/gpu/drm/xe/xe_pci.c
->>> +++ b/drivers/gpu/drm/xe/xe_pci.c
->>> @@ -590,7 +590,7 @@ static int xe_info_init(struct xe_device *xe,
->>>   		 * up with platforms that support both together.
->>>   		 */
->>>   		drm_WARN_ON(&xe->drm, id != 0);
->>> -		gt->info.id = 1;
->>> +		gt->info.id = xe->info.gt_count++;
->>
->> 1 is always correct today since MTL is the only platform with a
->> standalone media GT, and it's a single-tile platform (so the GTs are
->> 0/1).  This will also be true for any future single-tile platforms with
->> standalone media.
->>
->> If/when we eventually have a platform that's both multi-tile _and_
->> multi-gt, we need to decide how we're going to identify GTs.  Since no
->> such platform exists today, we also don't know for sure whether every
->> tile will have both GTs, or whether only some of the tiles will have
->> multiple GTs.  It's not clear that using gt_count++ will necessarily be
->> the right thing to do; maybe we want to make primary GTs 2*tile and
->> media GTs 2*tile+1 (i.e., intentionally skip IDs if some of the tiles
->> have both and others do not).  We may also want to adjust how we
->> approach GT identification in the uapi in general --- maybe we don't
->> even want to give GTs a global ID anymore and instead want to move
->> toward identifying GT with a (tile_id, gt_id) tuple where gt_id is an
->> intra-tile number (i.e., 0=primary, 1=media).
->>
->> The current GT and tile series aimed to just preserve the existing uapi
->> without changes, and using an ID of 1 for media (with all the FIXME
->> comments in the code) does that for now.  But sometime soon we do need
->> to make a formal decision on exactly how we want to work with tiles and
->> GTs in the uapi, going forward and that needs to be something that we
->> loop in our userspace partners on; we can't just make the decision
->> ourselves on the kernel side.
+On 6/14/2023 3:32 PM, Andi Shyti wrote:
+> Hi Riana,
 > 
-> So looking at this patch again, the important part isn't actually the ID
-> of the GT (that's already being set correctly); what's important is that
-> we need to bump the GT count again when initializing the media GT,
-> otherwise gt_count will stay "1" forever, even when it should be 2.  So
-> with an updated commit message that focuses on the gt_count rather than
-> the ID,
+> Thanks for Cc'ing me to this patch, I have a few questions.
 > 
-> Reviewed-by: Matt Roper <matthew.d.roper@intel.com>
+> [...]
 > 
-Thanks for the review Matt
+>> @@ -306,6 +307,10 @@ static int gt_fw_domain_init(struct xe_gt *gt)
+>>   	if (err)
+>>   		goto err_force_wake;
+>>   
+>> +	err = xe_gt_idle_sysfs_init(&gt->gtidle);
+>> +	if (err)
+>> +		goto err_force_wake;
+> 
+> do we really want to fail here? The driver would still work
+> without sysfs.
+> 
+> In my opinion this should be a warning.
+Will make the function void and add warnings in the function
+> 
+>> +
+>>   	/* XXX: Fake that we pull the engine mask from hwconfig blob */
+>>   	gt->info.engine_mask = gt->info.__engine_mask;
+> 
+> [...]
+> 
+>> +static u64 get_residency_ms(struct xe_gt_idle *gtidle, u64 cur_residency)
+>> +{
+>> +	u64 delta, overflow_residency, prev_residency;
+>> +
+>> +	overflow_residency = BIT_ULL(32);
+>> +
+>> +	/*
+>> +	 * Counter wrap handling
+>> +	 * Store previous hw counter values for counter wrap-around handling
+>> +	 * Relying on sufficient frequency of queries otherwise counters can still wrap.
+>> +	 */
+>> +	prev_residency = gtidle->prev_residency;
+>> +	gtidle->prev_residency = cur_residency;
+>> +
+>> +	/* delta */
+>> +	if (cur_residency >= prev_residency)
+>> +		delta = cur_residency - prev_residency;
+>> +	else
+>> +		delta = cur_residency + (overflow_residency - prev_residency);
+>> +
+>> +	/* Add delta to extended raw driver copy of idle residency */
+>> +	cur_residency = gtidle->cur_residency + delta;
+>> +	gtidle->cur_residency = cur_residency;
+>> +
+>> +	/* residency multiplier in ns, convert to ms */
+>> +	cur_residency = mul_u64_u32_div(cur_residency, gtidle->residency_multiplier, 1e6);
+> 
+> do we need to lock something here? Looks a bit racy to me.
+seq_read_iter takes a lock while calling sysfs_show
+https://elixir.bootlin.com/linux/latest/source/fs/seq_file.c#L171
 
-Sorry for not being clear in the commit message. for_each_gt remains 
-stuck at 1 and the media gt was not getting initialized causing an error.
+This function is used only by idle_residency_show. So didn't add the lock
+> 
+>> +	return cur_residency;
+>> +}
+> 
+> [...]
+> 
+>> +static void gt_idle_sysfs_fini(struct drm_device *drm, void *arg)
+>> +{
+>> +	struct kobject *kobj = arg;
+>> +
+>> +	sysfs_remove_files(kobj, gt_idle_attrs);
+>> +	kobject_put(kobj);
+>> +}
+>> +
+>> +int xe_gt_idle_sysfs_init(struct xe_gt_idle *gtidle)
+>> +{
+>> +	struct xe_gt *gt = gtidle_to_gt(gtidle);
+>> +	struct xe_device *xe = gt_to_xe(gt);
+>> +	struct kobject *kobj;
+>> +	int err;
+>> +
+>> +	kobj = kobject_create_and_add("gtidle", gt->sysfs);
+>> +	if (!kobj)
+>> +		return -ENOMEM;
+> 
+> I think we shouldn't fail here... although enomem is quite a
+> severe error, but still I think i915 can still work without
+> sysfs.
+> 
+>> +	sprintf(gtidle->name, "gt%d-rc\n", gt->info.id);
+>> +	/* Multiplier for  RC6 Residency counter in units of 1.28us */
+>> +	gtidle->residency_multiplier = 1280;
+>> +	gtidle->idle_residency = xe_guc_pc_rc6_residency;
+>> +	gtidle->idle_status = xe_guc_pc_rc_status;
+> 
+> why are we saving "xe_guc_pc_rc_status" and
+> "xe_guc_pc_rc6_residency" inside gtidle? What are the
+> alternatives? Why can't we call them directly?
+
+ From previous review comments, function pointers were suggested to 
+abstract low level guc_pc calls and make the gtidle a control and report
+infra
+
+https://patchwork.freedesktop.org/series/117222/#rev1
+> 
+>> +	err = sysfs_create_files(kobj, gt_idle_attrs);
+>> +	if (err) {
+>> +		kobject_put(kobj);
+>> +		return err;
+>> +	}
+>> +
+>> +	err = drmm_add_action_or_reset(&xe->drm, gt_idle_sysfs_fini, kobj);
+> 
+> Just
+> 
+> 	return drmm_add_action_or_reset(&xe->drm, gt_idle_sysfs_fini, kobj);
+> 
+> In any case I would make this function "void" and print warnings
+> in case of failures.
+
+Will fix all the above review comments.
 
 Thanks
 Riana
-> I can make that tweak to the commit message while applying; no need to
-> re-send.
 > 
+> Thanks,
+> Andi
 > 
-> Matt
-> 
->>
->>
->> Matt
->>
->>>   	}
->>>   
->>>   	return 0;
->>> -- 
->>> 2.40.0
->>>
->>
->> -- 
->> Matt Roper
->> Graphics Software Engineer
->> Linux GPU Platform Enablement
->> Intel Corporation
-> 
+>> +	if (err)
+>> +		return err;
+>> +
+>> +	return 0;
+>> +}
