@@ -4,59 +4,59 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9F640EB64D9
-	for <intel-xe@archiver.kernel.org>; Thu, 15 Jun 2023 03:23:55 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id E9D7AEB64DC
+	for <intel-xe@archiver.kernel.org>; Thu, 15 Jun 2023 03:27:15 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 40DE710E178;
-	Thu, 15 Jun 2023 03:23:55 +0000 (UTC)
-Received: from mga06.intel.com (mga06b.intel.com [134.134.136.31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C782810E178
- for <intel-xe@lists.freedesktop.org>; Thu, 15 Jun 2023 03:23:53 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A3A0C10E178;
+	Thu, 15 Jun 2023 03:27:15 +0000 (UTC)
+Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 18CD010E178
+ for <intel-xe@lists.freedesktop.org>; Thu, 15 Jun 2023 03:27:13 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1686799433; x=1718335433;
+ t=1686799634; x=1718335634;
  h=date:from:to:cc:subject:message-id:references:
  content-transfer-encoding:in-reply-to:mime-version;
- bh=MS+Fw2/jpXnKqg91UyJDTGQqyhdDExsRebzY6Jb8FuE=;
- b=i24pXV6ht1iCe4yiXCJnbyGNn1GcSizD8hRUqthG3ZxJk3NkhjbzUfi+
- VqrB67O2Ou2ZFb3c6HbBOT4puhrKFKOfLSQET2US3wv3nfNDY+XPNsmKD
- j5VtwU6zjLiKYPuDl7BGuEb+yezS2xKBnSmsdDEyALimL5ZgAgCq92tza
- Eh9tB3JvirBvUSjLocA3p6voOcXRIyZ6VTGh2JY5K268+4maXvI6iOw8s
- KfanAqXns4MhpnFV/dCYiFdVrAKomapBKpALVR8RK/fErtszEsessy5U5
- EwwJ9hxOpkzYQJsMWQYYKyEihlsqYYkSTETv67oytcS2kGH0uTjOitFW6 w==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10741"; a="422406840"
-X-IronPort-AV: E=Sophos;i="6.00,243,1681196400"; d="scan'208";a="422406840"
-Received: from orsmga004.jf.intel.com ([10.7.209.38])
- by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 14 Jun 2023 20:23:52 -0700
+ bh=WHFRByauZPJilfPbr+jLHTEluo89IeRpgItjNoaB8K8=;
+ b=hbmO5ZRlPGhi6YORT2/tV628SG+FeCMEuTsvlNFIEMx6uvxNvo8QdWd/
+ N10LcYVvOcfC4n0deknGWZhB9Vs9l9gVP8wSzbnmZFLfe9mCrKCllrD7P
+ Defyvx6cXVtsnQiQuH41FYspYKKmqyWzk2kSbsqPCXQyIjFc+ESRPn6FM
+ BEqxJcnYC7f6KlNV0Ndy8z9W1/YcaLVXcBRH9XgEz1eUuYHNnDYJmBOTK
+ eJ23Pwf3EbLMhFFioqkLX9BnDihmiyqsSbCmUNadCcrjnXbyP0cSmPHf7
+ gMoH2CfTfZzcDsmdzKAJ3TXxAIkT9YPg7Rgch0QHoUn9HXPdQnPtiVphu w==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10741"; a="348468654"
+X-IronPort-AV: E=Sophos;i="6.00,243,1681196400"; d="scan'208";a="348468654"
+Received: from orsmga007.jf.intel.com ([10.7.209.58])
+ by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 14 Jun 2023 20:27:12 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10741"; a="836471745"
-X-IronPort-AV: E=Sophos;i="6.00,243,1681196400"; d="scan'208";a="836471745"
-Received: from fmsmsx602.amr.corp.intel.com ([10.18.126.82])
- by orsmga004.jf.intel.com with ESMTP; 14 Jun 2023 20:23:52 -0700
-Received: from fmsmsx610.amr.corp.intel.com (10.18.126.90) by
- fmsmsx602.amr.corp.intel.com (10.18.126.82) with Microsoft SMTP Server
+X-IronPort-AV: E=McAfee;i="6600,9927,10741"; a="706471643"
+X-IronPort-AV: E=Sophos;i="6.00,243,1681196400"; d="scan'208";a="706471643"
+Received: from orsmsx601.amr.corp.intel.com ([10.22.229.14])
+ by orsmga007.jf.intel.com with ESMTP; 14 Jun 2023 20:27:12 -0700
+Received: from orsmsx612.amr.corp.intel.com (10.22.229.25) by
+ ORSMSX601.amr.corp.intel.com (10.22.229.14) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.23; Wed, 14 Jun 2023 20:23:51 -0700
-Received: from fmsmsx610.amr.corp.intel.com (10.18.126.90) by
- fmsmsx610.amr.corp.intel.com (10.18.126.90) with Microsoft SMTP Server
+ 15.1.2507.23; Wed, 14 Jun 2023 20:27:12 -0700
+Received: from orsmsx610.amr.corp.intel.com (10.22.229.23) by
+ ORSMSX612.amr.corp.intel.com (10.22.229.25) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.23; Wed, 14 Jun 2023 20:23:51 -0700
-Received: from FMSEDG603.ED.cps.intel.com (10.1.192.133) by
- fmsmsx610.amr.corp.intel.com (10.18.126.90) with Microsoft SMTP Server
+ 15.1.2507.23; Wed, 14 Jun 2023 20:27:11 -0700
+Received: from ORSEDG602.ED.cps.intel.com (10.7.248.7) by
+ orsmsx610.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.23 via Frontend Transport; Wed, 14 Jun 2023 20:23:51 -0700
-Received: from NAM02-SN1-obe.outbound.protection.outlook.com (104.47.57.43) by
- edgegateway.intel.com (192.55.55.68) with Microsoft SMTP Server
+ 15.1.2507.23 via Frontend Transport; Wed, 14 Jun 2023 20:27:11 -0700
+Received: from NAM10-DM6-obe.outbound.protection.outlook.com (104.47.58.109)
+ by edgegateway.intel.com (134.134.137.103) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2507.23; Wed, 14 Jun 2023 20:23:49 -0700
+ 15.1.2507.23; Wed, 14 Jun 2023 20:27:09 -0700
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=WT9PMt/7gqlIEzBc1Va21C1bjSsTMEvkDPjM0JpAwzppnm8EZ4FFhoWTRKYc5tO/egF0meKGO0QjKN8d/grRwZ3j2CQE+xyxvahJZMrOA+XcUTKx55KAOWYxd/WvxrEnaO3+H0FXXtuwDjpH0Cn8mQZUV2MB8LPkb1Hd+Ytq1KC/xOMzvofT73hFwh9/8oXHKmDz9mR0THL9LvnAWE+xUiXs+hNYkUzb4zFpSESx6NSC40XxZ3d95dzitBEJ3MZIrQw9f09Bt38jLQ0CrZnMd0qiqxgwh9gMVEfoeE/GlMi4D/gY4RQl+HmcYcqMJm90LzEoJPniTyUq74eRswuJIQ==
+ b=cJCedlIcOuGdBey6fnBR/R58UQJt2NWRBrzigGVe9cgg41VzhIuhFH0esqrrtwPRGhDljSG8WmNEuqi1OO2ijZ2jfdcatGMcD33+i7BBa4s4n4vmhDudAGcY0E0/II7StQvIL1Riz8QIS3HKf9XOAV5c3NcYP8KkYm4xq9DEEE71CedMsa8tQZQNnzOutFd26xS/B0BB60YB7UL0C71PxRrIIrCIVRyt5yNhsJQV480bxGxskeNf9m3KAk3N0NiFyr12+nqmXQpFGah1Ogbfe0i7JfoT7tVDv8VzOh1HkQENaipYChg5eCSHRA+KCxIDY8tKXMb6Qs0QOtE+++UZAQ==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=IyQ+BLZnBYSviuJfLPYHVMJZ9ZQFuuu5OmGbjeKSkg4=;
- b=KrtuLIYYMNPKWzcLMEl74LXvZGMkNRbbfg4GfjtUTqBpln/NCaitoYeFqqt9aw1KFWojCrfaW19ZiNouPg6GsSwxPsuGim5dij/rBK5kqaK1I5bnDUReXrYpDgq80ICM1QjPW/iczDuaxsMXOt18mRUhXVpZ5Pa8v5dn3btMe762Z1U+Oy4cU4mQzWU8+cMF5rddqtcOOSvra5SXrv6uNjTwvachyamjOVM5pgdeNvt3v6rrmWKi19Xwtkc28BjVG+LK2/wjuAZFElHy02dfdwjD9qQvO6Kc4qCcHJSnKiRgaEHp0IkRXOhLqTysUhTSTAC4YOW4WpXDbR2/4nSQEg==
+ bh=ApAHGyLgmu8RA9FDy3WMcYJa7cuGhIF7zSyX7/DQ7+k=;
+ b=A0bjGBO5hPch5lQL9gPwKKICFVMFxbhKYjWkMEEnnukYq2YQxoyJ9dXexb1ERpus0iSVK4cbhkUp92YSgJyIyPqYDqraeMoUKpber9ahOlLux8q8zmnEhEM/nNQtbehdFwqlHcqhbG2UF0zg8cSgUU9gKsRbKTxR/RzRiUj2IF+S+Oy8Nv2Y7bpyHY9UinFeRKrdC+bjSS9onbEzRky8Wub3DHokDyok49cD4gBTPTzmL/rJiyqj3jSuD4EJtgvK0cbZn+MtjWP7XekG1nnOfStLUlvC1CAsnvjrVrroF25MjIisskGc/mfpJaQYGLkYr5dOsGUh03PtPyECRxUI4Q==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
  dkim=pass header.d=intel.com; arc=none
@@ -66,78 +66,79 @@ Received: from PH7PR11MB6522.namprd11.prod.outlook.com (2603:10b6:510:212::12)
  by DM4PR11MB5309.namprd11.prod.outlook.com (2603:10b6:5:390::5) with
  Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6477.37; Thu, 15 Jun
- 2023 03:23:42 +0000
+ 2023 03:27:03 +0000
 Received: from PH7PR11MB6522.namprd11.prod.outlook.com
  ([fe80::ff06:a115:e4eb:680e]) by PH7PR11MB6522.namprd11.prod.outlook.com
  ([fe80::ff06:a115:e4eb:680e%5]) with mapi id 15.20.6477.037; Thu, 15 Jun 2023
- 03:23:42 +0000
-Date: Thu, 15 Jun 2023 03:22:48 +0000
+ 03:27:03 +0000
+Date: Thu, 15 Jun 2023 03:26:09 +0000
 From: Matthew Brost <matthew.brost@intel.com>
 To: Thomas =?iso-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>
-Message-ID: <ZIqECJNEhQImmzf3@DUT025-TGLU.fm.intel.com>
+Message-ID: <ZIqE0U6JyaS34Ujk@DUT025-TGLU.fm.intel.com>
 References: <20230607160334.4111289-1-matthew.brost@intel.com>
- <20230607160334.4111289-6-matthew.brost@intel.com>
- <af97d044-c21e-3a04-8ef7-ef2a79dfef15@linux.intel.com>
+ <20230607160334.4111289-2-matthew.brost@intel.com>
+ <55c6ca62-ae94-10a4-5916-e60b8f2a53e1@linux.intel.com>
 Content-Type: text/plain; charset="iso-8859-1"
 Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <af97d044-c21e-3a04-8ef7-ef2a79dfef15@linux.intel.com>
-X-ClientProxiedBy: BYAPR01CA0002.prod.exchangelabs.com (2603:10b6:a02:80::15)
- To PH7PR11MB6522.namprd11.prod.outlook.com
+In-Reply-To: <55c6ca62-ae94-10a4-5916-e60b8f2a53e1@linux.intel.com>
+X-ClientProxiedBy: SJ0PR03CA0213.namprd03.prod.outlook.com
+ (2603:10b6:a03:39f::8) To PH7PR11MB6522.namprd11.prod.outlook.com
  (2603:10b6:510:212::12)
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
 X-MS-TrafficTypeDiagnostic: PH7PR11MB6522:EE_|DM4PR11MB5309:EE_
-X-MS-Office365-Filtering-Correlation-Id: 2ce841d0-3eab-430d-dea6-08db6d4feb12
+X-MS-Office365-Filtering-Correlation-Id: c8fc0df5-dac8-4cc7-9fde-08db6d5062f0
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: /qyusYvFtYUcjHWUhiKucLHsBREkqoeR9o239hoLhOVUupf12oo8ut4kxoSPzF3e+TtwXuc9gUM11oDn6J7E7yP8jKWKZTINsEq+8IOwETZCiNhhz7TpN4nAtbDNcO6iyuPiW0q3aVgCckwxXvqcn0SVnQ8fe8LaHz3G9Re4K5XI/Yzx980FuyUd92L/9eSGWGRkAd9umQKCVDaymvflzW76ZNzdF/mZ5Ao3DwdcEcRA2mhoT4NMb71NbLfbevqKinZgbLwlhpS5wzn0T6dIVedn43S/SjjiWel/LmQ0Ba0HmMv271xtkgF7JP5E6urgPf0ZgaVyJ4T2Q+kMUu3fC4F+ia+3zYm+ZWYLYFBJbVSBw8Bo8l+d/02IjSofXsGGDxj8NSuMJZ11p/veiUxLIPyRrCc6/cPVU3jQnD/ZUE8lyVgYt4jF59PkkENBRr7ZilJRYIF/KlT8yWim4IY/cVf0e5I4q/I1mhprX4eZQv1xMKV/r4pM+IMk5s+AJlPd92LOU7eQtk91CkRBbSZAHTW8MPJK8z9TxiCy7Rhq5RD5+HzYBJOCXAlHsMsx1zOm
+X-Microsoft-Antispam-Message-Info: n4GE6YBr7DOzOMXRj4yDD6RE9+J1jU/K31iyO/ZETAvPe4mwxP8nORY1xZ1TbtrVEH01CkL9S69RsnQe089GzQS1iChSf0VIGZn0+rQnQPEkxMBhcl547sgvhUrcY0h2flegDjZJGT2hXqW+xhBTjr7mRIDhtmR8r//SUrS4uZ5LPNXEe3EOVlC0824x3kmQFhcImz5z/qaDgK/Je1s9rygEcRjN7Cg3RMalxaRgBSNSygE/mQXEbqoxPggtkUCVTPFFYObqNQ3Ek9MA+mxC5pi1dx5Fh9z+wBlkFZajX6WhtgTY3jrLPMj/dG7Q+Ihc4E7nlYTfy0ts0cnXoXagOI+u/S05NIh/sB6HvcUNLK6SX7/sysh8WigUuF3xKHlFy90G0Ff9eC+tfkOjiFp0UGKScUJpqWRddTB163PqnLu+1ubk87XGl5KZu28cPSF4JU8rai20x9g1dQoLl/0jRk+b4+4uC3HxpxAWodVNlTDBuZxOB7PWJq174xpmolWnIhuDAoD+aFlftF/27fjyib4KXwHSO2t8QQUOZbPI1ulxsBdOghOPMQxeLwSMljJa
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
  IPV:NLI; SFV:NSPM; H:PH7PR11MB6522.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230028)(396003)(136003)(366004)(39860400002)(376002)(346002)(451199021)(2906002)(30864003)(86362001)(15650500001)(44832011)(66574015)(6486002)(83380400001)(186003)(26005)(53546011)(6506007)(5660300002)(6512007)(82960400001)(478600001)(66946007)(66476007)(6916009)(4326008)(316002)(38100700002)(66556008)(8676002)(41300700001)(8936002);
+ SFS:(13230028)(396003)(136003)(366004)(39860400002)(376002)(346002)(451199021)(2906002)(86362001)(44832011)(66574015)(6486002)(83380400001)(186003)(26005)(53546011)(6506007)(5660300002)(6512007)(82960400001)(478600001)(66946007)(66476007)(6916009)(4326008)(316002)(38100700002)(66556008)(8676002)(41300700001)(8936002);
  DIR:OUT; SFP:1102; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?iso-8859-1?Q?z7cO2KEizi9kDBfyGE/ztZbm114C8/7I2QE8xEgiFmoIxqP+a8w8AAkIzS?=
- =?iso-8859-1?Q?93He//xMK+ecnCMbKuAPWB/IZt99m+08dQq4iOj2C9lAGQvE/FxAhfz+nk?=
- =?iso-8859-1?Q?Jt6uWNJSV24rcmc69m5T1n8ekC5TJiSg9XSTuh1YCyI+0haf+XlVZCa537?=
- =?iso-8859-1?Q?JT//K6Y2zkXIaCmNlYMffQji2Ga0PBY+gBym5FT8p4Kt28aYvzCICEA2AY?=
- =?iso-8859-1?Q?v/B6JuK2x/xcWExpN2CZsTLfH9dsIDyMz0qSuMK6x5/H2wRAilVieY8HT7?=
- =?iso-8859-1?Q?RVzi626cjjJdKdJy77dLZccQxSVDg/BuCQtHm8eWJq/FRk9HfZQKXYwZjn?=
- =?iso-8859-1?Q?zBh2yWA9am69aTwUrG7vfr75igou9vx3TSUg6MMzmF53GyhlXKpT8HM3FZ?=
- =?iso-8859-1?Q?mh0kaZswyLb05nl2Y5sN7EXyxlTF5xParpESycp8qQRJTRIQuxrysum+G9?=
- =?iso-8859-1?Q?cPr2URnG+uLMMhmnYrUsbCzZoLaEWcHby7v/TRLnjRvKm2VzOntymPtV74?=
- =?iso-8859-1?Q?e6x1wY6mhQWkEtXrsuXjl9EOZ+/kFm1Wm9aqD7zSOlb2M5onRZyeqeBKMz?=
- =?iso-8859-1?Q?l+f0mT9CL45t+Ef+QHfEAiSbQ0edCQG6ppICSJNuLCb2luEMpiLuM+A/m6?=
- =?iso-8859-1?Q?5Si9BAoNotKEeEDIeoKIAwsFbojz9Pub6ZPJjLDB2u1L5lt3wbOXPa0gkf?=
- =?iso-8859-1?Q?vHCE5zo5gl1c2Z+nDuU7Q0gUimosdCe7Wmw7Y1ijmXm1Oo98fycGBT1V7i?=
- =?iso-8859-1?Q?wNW907y8HVkJYDE/uGZe2rS6Mp2s/j0otdXPo7CNPzoKbToJAHYgM87qyF?=
- =?iso-8859-1?Q?/5dw4i/aZwHcC7TkCNjANkRcVsHR7AMGezn2IO3lXjDP/xM6xoQGzlxN1c?=
- =?iso-8859-1?Q?RdPheCKY/veghviktXbYx8RS9mmgrmQdPzj+mjrN4ksyH+KjcbWFfO7S+u?=
- =?iso-8859-1?Q?h4xiB7KnM+hv85C+fAz9ptPAqySl6fT6puttx+uSOU17Dt6NYG2mDsa10k?=
- =?iso-8859-1?Q?G+Sxbz4ITghp0t2GEEWA2aTMK1C6kyIJKJsNMr9aWziIUNcWFNFkEev+tb?=
- =?iso-8859-1?Q?AbTslab6tVCbHx1K25MK4y/l+cEP74Iu5N/DIs9f8G2qRkJFwG7T3vJpLR?=
- =?iso-8859-1?Q?sEhcNAeadkjg6zVC1XcIusjEAO/CONUZMn6e2yPGsAcrd3+224F96/CNUm?=
- =?iso-8859-1?Q?Jxee3TTUVB1QWQaaU262jts9nfyFLNCtvgyUbTbQJTOr9RVEfY4U9/OqUz?=
- =?iso-8859-1?Q?MLlUdMJx/LqzU+s4Es/xBTn4ohiIgSQVr/Hi8cT1dHZlPGM4YNsNnNgZU2?=
- =?iso-8859-1?Q?FXSd/fwiTSHX0LAhTrlzZNaEnZEXDEG1v3jV5hALCPQ40iN3/S5GJUh7Ec?=
- =?iso-8859-1?Q?5F9ZT90pZplH5+dY0/chQwO7rN+IQN1L4V8p4aYVQ6J9CqIJavLNYADQhp?=
- =?iso-8859-1?Q?DhvW6eBjhn4d0xJ+fVt1BwR7hlWi0SpQXCAsYGB1yxLu5E3yRrKX38f54E?=
- =?iso-8859-1?Q?wK9XxxCSdEiHl1k9ItsCseNcQ2rpm/QnyIqiFaNS4ISZvVYfJiPOEumTAQ?=
- =?iso-8859-1?Q?Xi9Vk8mOQvAgjIv/eb2W/ipBKl40hhCtaIElOl2XFv+EYPEQHYDC6Dv2uV?=
- =?iso-8859-1?Q?HsODVxgUe7KJCWLiYJnrLyuZQ9pqpwzq7d1uoCdltmQaHuVJZ+SI0vNA?=
+X-MS-Exchange-AntiSpam-MessageData-0: =?iso-8859-1?Q?JK2fxmqt1lNigjTp6T3/ZGa3qRjMPf7ERdVCN2jesBf4Y0GJFlrl9VcNJW?=
+ =?iso-8859-1?Q?iy+rPSnGpGVDoN3vLcGMmfkRU7iI6vRz2LGcrhWgZKTjXQ+ChZN4w+/YnV?=
+ =?iso-8859-1?Q?lVP8S3RgeYD7dlF+ybxCi7CZG+5CAN7BxPWn9sDcQjDrGS7HGuz9wQrQg+?=
+ =?iso-8859-1?Q?YHDtG79bP8m0x272OnFsAerUnYT/BU3EhXUQAOraWgcC8m7E9j7xCqRcIr?=
+ =?iso-8859-1?Q?cp1cOD4aU6HvN8mKwMOooRnmJsqh+xvgC4aiYRtWVSMkzCQF0xussoE7wO?=
+ =?iso-8859-1?Q?zVP/18OswtG64113GAl0f3vYwyb6MOxEy4Feoscx4kJNoQERE8hgkfNL+V?=
+ =?iso-8859-1?Q?avXK263plzWINBQEPVwJmi09yqL2ILLXxgmTmejeNtkxJrubmDHqMHGGyF?=
+ =?iso-8859-1?Q?YO7NUeuviHcraxpB6poFknAo7sj77pKKWVM5FczLOu9Q67Hgi2gEtO+gn+?=
+ =?iso-8859-1?Q?dQwvSU4mr2yrXCYSxtSCKaNFj15UjjyCMz+O9A36uJqEqM1AhBwEzyWTP3?=
+ =?iso-8859-1?Q?a0ZiG076CQ/H5sNMsbFb3hqsyvJc/xUP/Y1udPBJXgwHruCeBYEED+1V72?=
+ =?iso-8859-1?Q?ntOl0EiimHAHAr/bqkgFoxAyoDFLFuv9RMsIZrGAnLeNMqn11qRfl1Snlv?=
+ =?iso-8859-1?Q?8KpYLYxJRr3jlFsz2VAe87gbHpS+ztGTm77mwOQovpacdHnv/WfInj2QnZ?=
+ =?iso-8859-1?Q?Pe2oJdRpgrnSxq/cdVfmMShTdtEEDhdgxInC90tZL2LI0KH+UDdLJrM32S?=
+ =?iso-8859-1?Q?rQ1BiUWmPG3Rxde9y4bVIFLhnWoDR4YLlDh1mMgI7FgyynjScl5Pd+mrGm?=
+ =?iso-8859-1?Q?DP8LCqM0Zo4eam32UdOb9ZcZbzG39rrf3jHzQ58Nn1vu7xkvmCHIGiS5Jw?=
+ =?iso-8859-1?Q?xE3M5TBnA0L4zizhW7qcKiq7ZXXovH/9MPUOdoGaupQTvkXKsK96p0MTs8?=
+ =?iso-8859-1?Q?YOj/+8FdKk5amz4ZX7rTw7KhZpORRM6pxHUID0VC8dTjXnE3BSSmHE51UO?=
+ =?iso-8859-1?Q?yeqk1aEQV99RT7yxc309Gi9WPRvLv80I/PaWvzWe+lUFtC04aLjTWBhbmJ?=
+ =?iso-8859-1?Q?3mwV8pfk0v/Yrsa4OcXRgEOig1lL558HyBekkbuNnRI2PhWHXg7LyULYnG?=
+ =?iso-8859-1?Q?+fqsfPtWhEBIK1hE4QeN2NqzOPUDh4H/8Ocxh3y8FhCp87grJ/IDvdeEj9?=
+ =?iso-8859-1?Q?OSYuib9wtorYDWYLQYkB4DDG1WffZJwq7dIH/+1q8cyLSJJcmmQ3yoUfEo?=
+ =?iso-8859-1?Q?MFBN+XZwutQzDJ6Fr9wUQFC5/lRBkQNVY+IBgZ2v4ZyPRXwGESOenzdZ7i?=
+ =?iso-8859-1?Q?wDEOYouZLYZJTGAcrImxRX0mNkw9OhoXh1JzUTINcnZnkkQQODriqKvZ+C?=
+ =?iso-8859-1?Q?BPSoH2ivQHFRcJdnsGErkRxqgo2cKVdPnK+YFKC138C+XOmeWrYMMOuHok?=
+ =?iso-8859-1?Q?Xv7Y/mNCfsv7ZygnhQKJBifFtWpAxm6g6eX9dXzZ1FCKrUw0jcKtbZYV7P?=
+ =?iso-8859-1?Q?ILQOkJ4T0K+CpG+I1DAezHIu6dvsES515Ub7micmS6Qe3/quI3P92eJH8s?=
+ =?iso-8859-1?Q?SJizs1lLyshxup6x8JWFC9OxTt00KBQv2CDpav/SdVQxDumSCf6rWv22mB?=
+ =?iso-8859-1?Q?IZNmVW8REQjm6895mFmvEJKZXxTlEoAdcisql+NfAiBD80r/5q/U1ETQ?=
  =?iso-8859-1?Q?=3D=3D?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: 2ce841d0-3eab-430d-dea6-08db6d4feb12
+X-MS-Exchange-CrossTenant-Network-Message-Id: c8fc0df5-dac8-4cc7-9fde-08db6d5062f0
 X-MS-Exchange-CrossTenant-AuthSource: PH7PR11MB6522.namprd11.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 15 Jun 2023 03:23:42.0151 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 15 Jun 2023 03:27:03.0362 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: TM6dgI5/Wqmwg3iigdR2OpMj2zfAtqZSxs7C5VyRx2yzqDKjktWpA3v8biVSXny+o+6WzTuuUudBuB6XF7N7vg==
+X-MS-Exchange-CrossTenant-UserPrincipalName: BL5Z96b1ytCoctQzIu7lL8pnO61wLgfCrLRtphIaRzhpbcJCicsExveYZoQgY2lJTJDslRJUfTgv/1igAJw4SA==
 X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM4PR11MB5309
 X-OriginatorOrg: intel.com
-Subject: Re: [Intel-xe] [PATCH v3 5/8] drm/xe: Long running job update
+Subject: Re: [Intel-xe] [PATCH v3 1/8] fixup! drm/sched: Convert drm
+ scheduler to use a work queue rather than kthread
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -149,364 +150,220 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-xe@lists.freedesktop.org
+Cc: intel-xe@lists.freedesktop.org, Rodrigo Vivi <rodrigo.vivi@intel.com>
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Wed, Jun 14, 2023 at 01:40:31PM +0200, Thomas Hellström wrote:
-> 
+On Wed, Jun 14, 2023 at 10:29:19AM +0200, Thomas Hellström wrote:
 > On 6/7/23 18:03, Matthew Brost wrote:
-> Some commit message nits:
-> > For long running (LR) jobs with the DRM scheduler we must return NULL in
-> > run_job which results in signaling the job's finished fence immediately.
-> > This prevents LR jobs from creating infinite dma-fences.
-> > 
-> > Signaling job's finished fence immediately breaks flow controling ring
-> s/controling/controlling/
-> > with the DRM scheduler, to work around this the ring is flow controlled
-> > and written in the exec IOCTL.
-> Imperative: To work around this, flow control...
-> >   Signaling job's finished fence
-> > immediately also breaks the TDR which is used in reset / cleanup entity
-> > paths so we write a new path for LR entities.
-> so write
-
-Will fix all of this.
-
-> > 
-> > v2: Better commit, white space, remove rmb(), better comment next to
-> > emit_job()
-> > 
+> > Acked-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
 > > Signed-off-by: Matthew Brost <matthew.brost@intel.com>
-> > ---
-> >   drivers/gpu/drm/xe/xe_engine.c           | 32 ++++++++
-> >   drivers/gpu/drm/xe/xe_engine.h           |  4 +
-> >   drivers/gpu/drm/xe/xe_exec.c             |  8 ++
-> >   drivers/gpu/drm/xe/xe_guc_engine_types.h |  2 +
-> >   drivers/gpu/drm/xe/xe_guc_submit.c       | 93 +++++++++++++++++++++---
-> >   drivers/gpu/drm/xe/xe_trace.h            |  5 ++
-> >   6 files changed, 135 insertions(+), 9 deletions(-)
-> > 
-> > diff --git a/drivers/gpu/drm/xe/xe_engine.c b/drivers/gpu/drm/xe/xe_engine.c
-> > index b3036c4a8ec3..eb5f66f07da8 100644
-> > --- a/drivers/gpu/drm/xe/xe_engine.c
-> > +++ b/drivers/gpu/drm/xe/xe_engine.c
-> > @@ -18,6 +18,7 @@
-> >   #include "xe_macros.h"
-> >   #include "xe_migrate.h"
-> >   #include "xe_pm.h"
-> > +#include "xe_ring_ops_types.h"
-> >   #include "xe_trace.h"
-> >   #include "xe_vm.h"
-> > @@ -679,6 +680,37 @@ static void engine_kill_compute(struct xe_engine *e)
-> >   	up_write(&e->vm->lock);
-> >   }
-> > +/**
-> > + * xe_engine_is_lr() - Whether an engine is long-running
-> > + * @e: The engine
-> > + *
-> > + * Return: True if the engine is long-running, false otherwise.
-> > + */
-> > +bool xe_engine_is_lr(struct xe_engine *e)
-> > +{
-> > +	return e->vm && xe_vm_no_dma_fences(e->vm) &&
-> > +		!(e->flags & ENGINE_FLAG_VM);
-> > +}
-> > +
-> > +static s32 xe_engine_num_job_inflight(struct xe_engine *e)
-> > +{
-> > +	return e->lrc->fence_ctx.next_seqno - xe_lrc_seqno(e->lrc) - 1;
-> > +}
-> > +
-> > +/**
-> > + * xe_engine_ring_full() - Whether an engine's ring is full
-> > + * @e: The engine
-> > + *
-> > + * Return: True if the engine's ring is full, false otherwise.
-> > + */
-> > +bool xe_engine_ring_full(struct xe_engine *e)
-> > +{
-> > +	struct xe_lrc *lrc = e->lrc;
-> > +	s32 max_job = lrc->ring.size / MAX_JOB_SIZE_BYTES;
-> > +
-> > +	return xe_engine_num_job_inflight(e) >= max_job;
-> > +}
-> > +
-> >   /**
-> >    * xe_engine_is_idle() - Whether an engine is idle.
-> >    * @engine: The engine
-> > diff --git a/drivers/gpu/drm/xe/xe_engine.h b/drivers/gpu/drm/xe/xe_engine.h
-> > index a49cf2ab405e..2e60f6d90226 100644
-> > --- a/drivers/gpu/drm/xe/xe_engine.h
-> > +++ b/drivers/gpu/drm/xe/xe_engine.h
-> > @@ -42,6 +42,10 @@ static inline bool xe_engine_is_parallel(struct xe_engine *engine)
-> >   	return engine->width > 1;
-> >   }
-> > +bool xe_engine_is_lr(struct xe_engine *e);
-> > +
-> > +bool xe_engine_ring_full(struct xe_engine *e);
-> > +
-> >   bool xe_engine_is_idle(struct xe_engine *engine);
-> >   void xe_engine_kill(struct xe_engine *e);
-> > diff --git a/drivers/gpu/drm/xe/xe_exec.c b/drivers/gpu/drm/xe/xe_exec.c
-> > index e44076ee2e11..9e9523939de8 100644
-> > --- a/drivers/gpu/drm/xe/xe_exec.c
-> > +++ b/drivers/gpu/drm/xe/xe_exec.c
-> > @@ -14,6 +14,7 @@
-> >   #include "xe_device.h"
-> >   #include "xe_engine.h"
-> >   #include "xe_macros.h"
-> > +#include "xe_ring_ops_types.h"
-> >   #include "xe_sched_job.h"
-> >   #include "xe_sync.h"
-> >   #include "xe_vm.h"
-> > @@ -300,6 +301,11 @@ int xe_exec_ioctl(struct drm_device *dev, void *data, struct drm_file *file)
-> >   		goto err_engine_end;
-> >   	}
-> > +	if (xe_engine_is_lr(engine) && xe_engine_ring_full(engine)) {
-> > +		err = -EWOULDBLOCK;
-> > +		goto err_engine_end;
-> > +	}
-> > +
-> >   	job = xe_sched_job_create(engine, xe_engine_is_parallel(engine) ?
-> >   				  addresses : &args->address);
-> >   	if (IS_ERR(job)) {
-> > @@ -386,6 +392,8 @@ int xe_exec_ioctl(struct drm_device *dev, void *data, struct drm_file *file)
-> >   		xe_sync_entry_signal(&syncs[i], job,
-> >   				     &job->drm.s_fence->finished);
-> > +	if (xe_engine_is_lr(engine))
-> > +		engine->ring_ops->emit_job(job);
-> >   	xe_sched_job_push(job);
-> >   	xe_vm_reactivate_rebind(vm);
-> > diff --git a/drivers/gpu/drm/xe/xe_guc_engine_types.h b/drivers/gpu/drm/xe/xe_guc_engine_types.h
-> > index cbfb13026ec1..5d83132034a6 100644
-> > --- a/drivers/gpu/drm/xe/xe_guc_engine_types.h
-> > +++ b/drivers/gpu/drm/xe/xe_guc_engine_types.h
-> > @@ -31,6 +31,8 @@ struct xe_guc_engine {
-> >   	 */
-> >   #define MAX_STATIC_MSG_TYPE	3
-> >   	struct drm_sched_msg static_msgs[MAX_STATIC_MSG_TYPE];
-> > +	/** @lr_tdr: long running TDR worker */
-> > +	struct work_struct lr_tdr;
-> >   	/** @fini_async: do final fini async from this worker */
-> >   	struct work_struct fini_async;
-> >   	/** @resume_time: time of last resume */
-> > diff --git a/drivers/gpu/drm/xe/xe_guc_submit.c b/drivers/gpu/drm/xe/xe_guc_submit.c
-> > index a7a0d9f806bd..7bde687fd188 100644
-> > --- a/drivers/gpu/drm/xe/xe_guc_submit.c
-> > +++ b/drivers/gpu/drm/xe/xe_guc_submit.c
-> > @@ -482,6 +482,14 @@ static void register_engine(struct xe_engine *e)
-> >   		parallel_write(xe, map, wq_desc.wq_status, WQ_STATUS_ACTIVE);
-> >   	}
-> > +	/*
-> > +	 * We must keep a reference for LR engines if engine is registered with
-> > +	 * the GuC as jobs signal immediately and can't destroy an engine if the
-> > +	 * GuC has a reference to it.
-> > +	 */
-> > +	if (xe_engine_is_lr(e))
-> > +		xe_engine_get(e);
-> > +
-> >   	set_engine_registered(e);
-> >   	trace_xe_engine_register(e);
-> >   	if (xe_engine_is_parallel(e))
-> > @@ -644,6 +652,7 @@ guc_engine_run_job(struct drm_sched_job *drm_job)
-> >   {
-> >   	struct xe_sched_job *job = to_xe_sched_job(drm_job);
-> >   	struct xe_engine *e = job->engine;
-> > +	bool lr = xe_engine_is_lr(e);
-> >   	XE_BUG_ON((engine_destroyed(e) || engine_pending_disable(e)) &&
-> >   		  !engine_banned(e) && !engine_suspended(e));
-> > @@ -653,14 +662,19 @@ guc_engine_run_job(struct drm_sched_job *drm_job)
-> >   	if (!engine_killed_or_banned(e) && !xe_sched_job_is_error(job)) {
-> >   		if (!engine_registered(e))
-> >   			register_engine(e);
-> > -		e->ring_ops->emit_job(job);
-> > +		if (!lr)	/* LR jobs are emitted in the exec IOCTL */
-> > +			e->ring_ops->emit_job(job);
-> >   		submit_engine(e);
-> >   	}
-> > -	if (test_and_set_bit(JOB_FLAG_SUBMIT, &job->fence->flags))
-> > +	if (lr) {
-> > +		xe_sched_job_set_error(job, -EOPNOTSUPP);
-> > +		return NULL;
-> > +	} else if (test_and_set_bit(JOB_FLAG_SUBMIT, &job->fence->flags)) {
-> >   		return job->fence;
-> > -	else
-> > +	} else {
-> >   		return dma_fence_get(job->fence);
-> > +	}
-> >   }
-> >   static void guc_engine_free_job(struct drm_sched_job *drm_job)
-> > @@ -764,6 +778,56 @@ static void simple_error_capture(struct xe_engine *e)
-> >   }
-> >   #endif
-> > +static void xe_guc_engine_trigger_cleanup(struct xe_engine *e)
-> > +{
-> > +	struct xe_guc *guc = engine_to_guc(e);
-> > +
-> > +	if (xe_engine_is_lr(e))
-> > +		queue_work(guc_to_gt(guc)->ordered_wq, &e->guc->lr_tdr);
-> > +	else
-> > +		drm_sched_set_timeout(&e->guc->sched, MIN_SCHED_TIMEOUT);
-> > +}
-> > +
-> > +static void xe_guc_engine_lr_cleanup(struct work_struct *w)
-> > +{
-> > +	struct xe_guc_engine *ge =
-> > +		container_of(w, struct xe_guc_engine, lr_tdr);
-> > +	struct xe_engine *e = ge->engine;
-> > +	struct drm_gpu_scheduler *sched = &ge->sched;
-> > +
-> > +	XE_WARN_ON(!xe_engine_is_lr(e));
-> > +	trace_xe_engine_lr_cleanup(e);
-> > +
-> > +	/* Kill the run_job / process_msg entry points */
-> > +	drm_sched_run_wq_stop(sched);
-> > +
-> > +	/* Engine state now stable, disable scheduling / deregister if needed */
-> > +	if (engine_registered(e)) {
-> > +		struct xe_guc *guc = engine_to_guc(e);
-> > +		int ret;
-> > +
-> > +		set_engine_banned(e);
-> > +		xe_engine_get(e);
-> > +		disable_scheduling_deregister(guc, e);
-> > +
-> > +		/*
-> > +		 * Must wait for scheduling to be disabled before signalling
-> > +		 * any fences, if GT broken the GT reset code should signal us.
-> > +		 */
-> > +		ret = wait_event_timeout(guc->ct.wq,
-> > +					 !engine_pending_disable(e) ||
-> > +					 guc_read_stopped(guc), HZ * 5);
-> > +		if (!ret) {
-> > +			XE_WARN_ON("Schedule disable failed to respond");
-> > +			drm_sched_run_wq_start(sched);
-> > +			xe_gt_reset_async(e->gt);
-> > +			return;
-> > +		}
-> > +	}
-> > +
-> > +	drm_sched_run_wq_start(sched);
-> > +}
-> > +
-> >   static enum drm_gpu_sched_stat
-> >   guc_engine_timedout_job(struct drm_sched_job *drm_job)
-> >   {
-> > @@ -815,7 +879,7 @@ guc_engine_timedout_job(struct drm_sched_job *drm_job)
-> >   			err = -EIO;
-> >   		set_engine_banned(e);
-> >   		xe_engine_get(e);
-> > -		disable_scheduling_deregister(engine_to_guc(e), e);
-> > +		disable_scheduling_deregister(guc, e);
-> >   		/*
-> >   		 * Must wait for scheduling to be disabled before signalling
-> > @@ -848,7 +912,7 @@ guc_engine_timedout_job(struct drm_sched_job *drm_job)
-> >   	 */
-> >   	list_add(&drm_job->list, &sched->pending_list);
-> >   	drm_sched_run_wq_start(sched);
-> > -	drm_sched_set_timeout(&e->guc->sched, MIN_SCHED_TIMEOUT);
-> > +	xe_guc_engine_trigger_cleanup(e);
-> >   	/* Mark all outstanding jobs as bad, thus completing them */
-> >   	spin_lock(&sched->job_list_lock);
-> > @@ -872,6 +936,8 @@ static void __guc_engine_fini_async(struct work_struct *w)
-> >   	trace_xe_engine_destroy(e);
-> > +	if (xe_engine_is_lr(e))
-> > +		cancel_work_sync(&ge->lr_tdr);
-> >   	if (e->flags & ENGINE_FLAG_PERSISTENT)
-> >   		xe_device_remove_persistent_engines(gt_to_xe(e->gt), e);
-> >   	release_guc_id(guc, e);
-> > @@ -889,7 +955,7 @@ static void guc_engine_fini_async(struct xe_engine *e)
-> >   	bool kernel = e->flags & ENGINE_FLAG_KERNEL;
-> >   	INIT_WORK(&e->guc->fini_async, __guc_engine_fini_async);
-> > -	queue_work(system_unbound_wq, &e->guc->fini_async);
-> > +	queue_work(system_wq, &e->guc->fini_async);
-> >   	/* We must block on kernel engines so slabs are empty on driver unload */
-> >   	if (kernel) {
-> > @@ -1078,6 +1144,9 @@ static int guc_engine_init(struct xe_engine *e)
-> >   	if (err)
-> >   		goto err_sched;
-> > +	if (xe_engine_is_lr(e))
-> > +		INIT_WORK(&e->guc->lr_tdr, xe_guc_engine_lr_cleanup);
-> > +
-> >   	mutex_lock(&guc->submission_state.lock);
-> >   	err = alloc_guc_id(guc, e);
-> > @@ -1129,7 +1198,7 @@ static void guc_engine_kill(struct xe_engine *e)
-> >   {
-> >   	trace_xe_engine_kill(e);
-> >   	set_engine_killed(e);
-> > -	drm_sched_set_timeout(&e->guc->sched, MIN_SCHED_TIMEOUT);
-> > +	xe_guc_engine_trigger_cleanup(e);
-> >   }
-> >   static void guc_engine_add_msg(struct xe_engine *e, struct drm_sched_msg *msg,
-> > @@ -1279,6 +1348,9 @@ static void guc_engine_stop(struct xe_guc *guc, struct xe_engine *e)
-> >   	/* Stop scheduling + flush any DRM scheduler operations */
-> >   	drm_sched_run_wq_stop(sched);
-> > +	if (engine_registered(e) && xe_engine_is_lr(e))
-> > +		xe_engine_put(e);
-> > +
-> >   	/* Clean up lost G2H + reset engine state */
-> >   	if (engine_destroyed(e) && engine_registered(e)) {
-> >   		if (engine_banned(e))
-> > @@ -1503,6 +1575,9 @@ int xe_guc_deregister_done_handler(struct xe_guc *guc, u32 *msg, u32 len)
-> >   	trace_xe_engine_deregister_done(e);
-> >   	clear_engine_registered(e);
-> > +	if (xe_engine_is_lr(e))
-> > +		xe_engine_put(e);
-> > +
 > 
-> This looks suspicious. We're putting the reference of "e", but continue to
-> dereference "e" afterwards. If this is intentional, could you add a comment
-> as to which pointer's reference we put? Typically wen you put the reference
-> of a pointer you don't use it afterwards unless it is obvious that you're
-> only caching the value from the pointer that carries the reference?
+> Could we have a description what this fixup is doing and why?
+> 
+> /Thomas
 > 
 
-This is goofy and does indeed work as if a engine is LR here is will
-also always be banned. Let me change the reference counting here so the
-code can change to:
-
-if (xe_engine_is_lr(e) || engine_banned(e))
-	xe_engine_put(e);
-else
-	...
-
-This will affect a few other code paths too.
+Idk if that affects the auto-squash, it just created this patch when I
+ran the command Rodrigo gave me but yea can add a comment.
 
 Matt
 
 > 
-> >   	if (engine_banned(e))
-> >   		xe_engine_put(e);
-> >   	else
-> > @@ -1540,7 +1615,7 @@ int xe_guc_engine_reset_handler(struct xe_guc *guc, u32 *msg, u32 len)
-> >   	 */
-> >   	set_engine_reset(e);
-> >   	if (!engine_banned(e))
-> > -		drm_sched_set_timeout(&e->guc->sched, MIN_SCHED_TIMEOUT);
-> > +		xe_guc_engine_trigger_cleanup(e);
-> >   	return 0;
-> >   }
-> > @@ -1567,7 +1642,7 @@ int xe_guc_engine_memory_cat_error_handler(struct xe_guc *guc, u32 *msg,
-> >   	/* Treat the same as engine reset */
-> >   	set_engine_reset(e);
-> >   	if (!engine_banned(e))
-> > -		drm_sched_set_timeout(&e->guc->sched, MIN_SCHED_TIMEOUT);
-> > +		xe_guc_engine_trigger_cleanup(e);
-> >   	return 0;
-> >   }
-> > diff --git a/drivers/gpu/drm/xe/xe_trace.h b/drivers/gpu/drm/xe/xe_trace.h
-> > index 2f8eb7ebe9a7..02861c26e145 100644
-> > --- a/drivers/gpu/drm/xe/xe_trace.h
-> > +++ b/drivers/gpu/drm/xe/xe_trace.h
-> > @@ -219,6 +219,11 @@ DEFINE_EVENT(xe_engine, xe_engine_resubmit,
-> >   	     TP_ARGS(e)
-> >   );
-> > +DEFINE_EVENT(xe_engine, xe_engine_lr_cleanup,
-> > +	     TP_PROTO(struct xe_engine *e),
-> > +	     TP_ARGS(e)
-> > +);
-> > +
-> >   DECLARE_EVENT_CLASS(xe_sched_job,
-> >   		    TP_PROTO(struct xe_sched_job *job),
-> >   		    TP_ARGS(job),
+> 
+> > ---
+> >   drivers/gpu/drm/amd/amdgpu/amdgpu_device.c |  2 +-
+> >   drivers/gpu/drm/etnaviv/etnaviv_sched.c    |  2 +-
+> >   drivers/gpu/drm/lima/lima_sched.c          |  2 +-
+> >   drivers/gpu/drm/msm/msm_ringbuffer.c       |  7 ++++---
+> >   drivers/gpu/drm/panfrost/panfrost_job.c    |  2 +-
+> >   drivers/gpu/drm/scheduler/sched_main.c     |  4 +++-
+> >   drivers/gpu/drm/v3d/v3d_sched.c            | 10 +++++-----
+> >   drivers/gpu/drm/xe/xe_devcoredump_types.h  |  1 +
+> >   drivers/gpu/drm/xe/xe_execlist.c           |  2 +-
+> >   drivers/gpu/drm/xe/xe_guc_submit.c         |  2 +-
+> >   include/drm/gpu_scheduler.h                |  1 +
+> >   11 files changed, 20 insertions(+), 15 deletions(-)
+> > 
+> > diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
+> > index 64e7584c5dd2..2e776ece4251 100644
+> > --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
+> > +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
+> > @@ -2364,7 +2364,7 @@ static int amdgpu_device_init_schedulers(struct amdgpu_device *adev)
+> >   			break;
+> >   		}
+> > -		r = drm_sched_init(&ring->sched, &amdgpu_sched_ops,
+> > +		r = drm_sched_init(&ring->sched, &amdgpu_sched_ops, NULL,
+> >   				   ring->num_hw_submission, 0,
+> >   				   timeout, adev->reset_domain->wq,
+> >   				   ring->sched_score, ring->name,
+> > diff --git a/drivers/gpu/drm/etnaviv/etnaviv_sched.c b/drivers/gpu/drm/etnaviv/etnaviv_sched.c
+> > index 1ae87dfd19c4..8486a2923f1b 100644
+> > --- a/drivers/gpu/drm/etnaviv/etnaviv_sched.c
+> > +++ b/drivers/gpu/drm/etnaviv/etnaviv_sched.c
+> > @@ -133,7 +133,7 @@ int etnaviv_sched_init(struct etnaviv_gpu *gpu)
+> >   {
+> >   	int ret;
+> > -	ret = drm_sched_init(&gpu->sched, &etnaviv_sched_ops,
+> > +	ret = drm_sched_init(&gpu->sched, &etnaviv_sched_ops, NULL,
+> >   			     etnaviv_hw_jobs_limit, etnaviv_job_hang_limit,
+> >   			     msecs_to_jiffies(500), NULL, NULL,
+> >   			     dev_name(gpu->dev), gpu->dev);
+> > diff --git a/drivers/gpu/drm/lima/lima_sched.c b/drivers/gpu/drm/lima/lima_sched.c
+> > index ff003403fbbc..54f53bece27c 100644
+> > --- a/drivers/gpu/drm/lima/lima_sched.c
+> > +++ b/drivers/gpu/drm/lima/lima_sched.c
+> > @@ -488,7 +488,7 @@ int lima_sched_pipe_init(struct lima_sched_pipe *pipe, const char *name)
+> >   	INIT_WORK(&pipe->recover_work, lima_sched_recover_work);
+> > -	return drm_sched_init(&pipe->base, &lima_sched_ops, 1,
+> > +	return drm_sched_init(&pipe->base, &lima_sched_ops, NULL, 1,
+> >   			      lima_job_hang_limit,
+> >   			      msecs_to_jiffies(timeout), NULL,
+> >   			      NULL, name, pipe->ldev->dev);
+> > diff --git a/drivers/gpu/drm/msm/msm_ringbuffer.c b/drivers/gpu/drm/msm/msm_ringbuffer.c
+> > index b60199184409..e1cff31f147a 100644
+> > --- a/drivers/gpu/drm/msm/msm_ringbuffer.c
+> > +++ b/drivers/gpu/drm/msm/msm_ringbuffer.c
+> > @@ -93,9 +93,10 @@ struct msm_ringbuffer *msm_ringbuffer_new(struct msm_gpu *gpu, int id,
+> >   	 /* currently managing hangcheck ourselves: */
+> >   	sched_timeout = MAX_SCHEDULE_TIMEOUT;
+> > -	ret = drm_sched_init(&ring->sched, &msm_sched_ops,
+> > -			num_hw_submissions, 0, sched_timeout,
+> > -			NULL, NULL, to_msm_bo(ring->bo)->name, gpu->dev->dev);
+> > +	ret = drm_sched_init(&ring->sched, &msm_sched_ops, NULL,
+> > +			     num_hw_submissions, 0, sched_timeout,
+> > +			     NULL, NULL, to_msm_bo(ring->bo)->name,
+> > +			     gpu->dev->dev);
+> >   	if (ret) {
+> >   		goto fail;
+> >   	}
+> > diff --git a/drivers/gpu/drm/panfrost/panfrost_job.c b/drivers/gpu/drm/panfrost/panfrost_job.c
+> > index dbc597ab46fb..f48b07056a16 100644
+> > --- a/drivers/gpu/drm/panfrost/panfrost_job.c
+> > +++ b/drivers/gpu/drm/panfrost/panfrost_job.c
+> > @@ -815,7 +815,7 @@ int panfrost_job_init(struct panfrost_device *pfdev)
+> >   		js->queue[j].fence_context = dma_fence_context_alloc(1);
+> >   		ret = drm_sched_init(&js->queue[j].sched,
+> > -				     &panfrost_sched_ops,
+> > +				     &panfrost_sched_ops, NULL,
+> >   				     nentries, 0,
+> >   				     msecs_to_jiffies(JOB_TIMEOUT_MS),
+> >   				     pfdev->reset.wq,
+> > diff --git a/drivers/gpu/drm/scheduler/sched_main.c b/drivers/gpu/drm/scheduler/sched_main.c
+> > index db70a57a3a1a..6bc29d509161 100644
+> > --- a/drivers/gpu/drm/scheduler/sched_main.c
+> > +++ b/drivers/gpu/drm/scheduler/sched_main.c
+> > @@ -1178,6 +1178,7 @@ static void drm_sched_main(struct work_struct *w)
+> >    *
+> >    * @sched: scheduler instance
+> >    * @ops: backend operations for this scheduler
+> > + * @run_wq: workqueue to use for run work. If NULL, the system_wq is used
+> >    * @hw_submission: number of hw submissions that can be in flight
+> >    * @hang_limit: number of times to allow a job to hang before dropping it
+> >    * @timeout: timeout value in jiffies for the scheduler
+> > @@ -1191,6 +1192,7 @@ static void drm_sched_main(struct work_struct *w)
+> >    */
+> >   int drm_sched_init(struct drm_gpu_scheduler *sched,
+> >   		   const struct drm_sched_backend_ops *ops,
+> > +		   struct workqueue_struct *run_wq,
+> >   		   unsigned hw_submission, unsigned hang_limit,
+> >   		   long timeout, struct workqueue_struct *timeout_wq,
+> >   		   atomic_t *score, const char *name, struct device *dev)
+> > @@ -1199,9 +1201,9 @@ int drm_sched_init(struct drm_gpu_scheduler *sched,
+> >   	sched->ops = ops;
+> >   	sched->hw_submission_limit = hw_submission;
+> >   	sched->name = name;
+> > +	sched->run_wq = run_wq ? : system_wq;
+> >   	sched->timeout = timeout;
+> >   	sched->timeout_wq = timeout_wq ? : system_wq;
+> > -	sched->run_wq = system_wq;	/* FIXME: Let user pass this in */
+> >   	sched->hang_limit = hang_limit;
+> >   	sched->score = score ? score : &sched->_score;
+> >   	sched->dev = dev;
+> > diff --git a/drivers/gpu/drm/v3d/v3d_sched.c b/drivers/gpu/drm/v3d/v3d_sched.c
+> > index 06238e6d7f5c..38e092ea41e6 100644
+> > --- a/drivers/gpu/drm/v3d/v3d_sched.c
+> > +++ b/drivers/gpu/drm/v3d/v3d_sched.c
+> > @@ -388,7 +388,7 @@ v3d_sched_init(struct v3d_dev *v3d)
+> >   	int ret;
+> >   	ret = drm_sched_init(&v3d->queue[V3D_BIN].sched,
+> > -			     &v3d_bin_sched_ops,
+> > +			     &v3d_bin_sched_ops, NULL,
+> >   			     hw_jobs_limit, job_hang_limit,
+> >   			     msecs_to_jiffies(hang_limit_ms), NULL,
+> >   			     NULL, "v3d_bin", v3d->drm.dev);
+> > @@ -396,7 +396,7 @@ v3d_sched_init(struct v3d_dev *v3d)
+> >   		return ret;
+> >   	ret = drm_sched_init(&v3d->queue[V3D_RENDER].sched,
+> > -			     &v3d_render_sched_ops,
+> > +			     &v3d_render_sched_ops, NULL,
+> >   			     hw_jobs_limit, job_hang_limit,
+> >   			     msecs_to_jiffies(hang_limit_ms), NULL,
+> >   			     NULL, "v3d_render", v3d->drm.dev);
+> > @@ -404,7 +404,7 @@ v3d_sched_init(struct v3d_dev *v3d)
+> >   		goto fail;
+> >   	ret = drm_sched_init(&v3d->queue[V3D_TFU].sched,
+> > -			     &v3d_tfu_sched_ops,
+> > +			     &v3d_tfu_sched_ops, NULL,
+> >   			     hw_jobs_limit, job_hang_limit,
+> >   			     msecs_to_jiffies(hang_limit_ms), NULL,
+> >   			     NULL, "v3d_tfu", v3d->drm.dev);
+> > @@ -413,7 +413,7 @@ v3d_sched_init(struct v3d_dev *v3d)
+> >   	if (v3d_has_csd(v3d)) {
+> >   		ret = drm_sched_init(&v3d->queue[V3D_CSD].sched,
+> > -				     &v3d_csd_sched_ops,
+> > +				     &v3d_csd_sched_ops, NULL,
+> >   				     hw_jobs_limit, job_hang_limit,
+> >   				     msecs_to_jiffies(hang_limit_ms), NULL,
+> >   				     NULL, "v3d_csd", v3d->drm.dev);
+> > @@ -421,7 +421,7 @@ v3d_sched_init(struct v3d_dev *v3d)
+> >   			goto fail;
+> >   		ret = drm_sched_init(&v3d->queue[V3D_CACHE_CLEAN].sched,
+> > -				     &v3d_cache_clean_sched_ops,
+> > +				     &v3d_cache_clean_sched_ops, NULL,
+> >   				     hw_jobs_limit, job_hang_limit,
+> >   				     msecs_to_jiffies(hang_limit_ms), NULL,
+> >   				     NULL, "v3d_cache_clean", v3d->drm.dev);
+> > diff --git a/drivers/gpu/drm/xe/xe_devcoredump_types.h b/drivers/gpu/drm/xe/xe_devcoredump_types.h
+> > index c0d711eb6ab3..cc3ff3ac47ff 100644
+> > --- a/drivers/gpu/drm/xe/xe_devcoredump_types.h
+> > +++ b/drivers/gpu/drm/xe/xe_devcoredump_types.h
+> > @@ -11,6 +11,7 @@
+> >   #include "xe_hw_engine_types.h"
+> > +struct xe_ct;
+> >   struct xe_device;
+> >   /**
+> > diff --git a/drivers/gpu/drm/xe/xe_execlist.c b/drivers/gpu/drm/xe/xe_execlist.c
+> > index 5d2d26e361b9..f0eb8bb277ce 100644
+> > --- a/drivers/gpu/drm/xe/xe_execlist.c
+> > +++ b/drivers/gpu/drm/xe/xe_execlist.c
+> > @@ -336,7 +336,7 @@ static int execlist_engine_init(struct xe_engine *e)
+> >   	exl->engine = e;
+> > -	err = drm_sched_init(&exl->sched, &drm_sched_ops,
+> > +	err = drm_sched_init(&exl->sched, &drm_sched_ops, NULL,
+> >   			     e->lrc[0].ring.size / MAX_JOB_SIZE_BYTES,
+> >   			     XE_SCHED_HANG_LIMIT, XE_SCHED_JOB_TIMEOUT,
+> >   			     NULL, NULL, e->hwe->name,
+> > diff --git a/drivers/gpu/drm/xe/xe_guc_submit.c b/drivers/gpu/drm/xe/xe_guc_submit.c
+> > index b209e4c2a3a9..5c9a6866bd3d 100644
+> > --- a/drivers/gpu/drm/xe/xe_guc_submit.c
+> > +++ b/drivers/gpu/drm/xe/xe_guc_submit.c
+> > @@ -1064,7 +1064,7 @@ static int guc_engine_init(struct xe_engine *e)
+> >   	init_waitqueue_head(&ge->suspend_wait);
+> >   	timeout = xe_vm_no_dma_fences(e->vm) ? MAX_SCHEDULE_TIMEOUT : HZ * 5;
+> > -	err = drm_sched_init(&ge->sched, &drm_sched_ops,
+> > +	err = drm_sched_init(&ge->sched, &drm_sched_ops, NULL,
+> >   			     e->lrc[0].ring.size / MAX_JOB_SIZE_BYTES,
+> >   			     64, timeout, guc_to_gt(guc)->ordered_wq, NULL,
+> >   			     e->name, gt_to_xe(e->gt)->drm.dev);
+> > diff --git a/include/drm/gpu_scheduler.h b/include/drm/gpu_scheduler.h
+> > index 79311df9dd09..419c0446edd7 100644
+> > --- a/include/drm/gpu_scheduler.h
+> > +++ b/include/drm/gpu_scheduler.h
+> > @@ -547,6 +547,7 @@ struct drm_gpu_scheduler {
+> >   int drm_sched_init(struct drm_gpu_scheduler *sched,
+> >   		   const struct drm_sched_backend_ops *ops,
+> > +		   struct workqueue_struct *run_wq,
+> >   		   uint32_t hw_submission, unsigned hang_limit,
+> >   		   long timeout, struct workqueue_struct *timeout_wq,
+> >   		   atomic_t *score, const char *name, struct device *dev);
