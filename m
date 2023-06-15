@@ -4,150 +4,58 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6CA11EB64D9
-	for <intel-xe@archiver.kernel.org>; Thu, 15 Jun 2023 11:48:05 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9662CEB64D9
+	for <intel-xe@archiver.kernel.org>; Thu, 15 Jun 2023 13:04:50 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8B02110E4CE;
-	Thu, 15 Jun 2023 11:48:04 +0000 (UTC)
-Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B692510E4CE
- for <intel-xe@lists.freedesktop.org>; Thu, 15 Jun 2023 11:48:02 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1686829682; x=1718365682;
- h=message-id:date:subject:to:cc:references:from:
- in-reply-to:content-transfer-encoding:mime-version;
- bh=rrUJS1v/xQj1Zk9ilfG8kks5AN9FCjeByy0GaL/fyE8=;
- b=TmCBgqekNHyJ4cGT/LsTKXIaLhJFP/3qZKqUltW5XsnVFs6C1itswt5I
- lEZ9HmgS8tbdi+gMGkanjgz7B9oWO9gyW7CXK+oDaQQEm+iT078JJaWHo
- 2LyBsIbuP1rVFooodU22tMi3kxYWpdRCmgthGMqbSryiQAmLj2DKCJcdn
- f18Pn3YjahNhbuw204PBNKsWPTrVo5XymcGG6waKUWUpOe9RUyk7NVLow
- 5yfKED+LG8GZWpHMNwoNlmgS2MPm2PxRTyS7d3hquUWLOgCUhkISorBYW
- 5Gp3hETfe3z3e8qHU53sB2JFFB9DZ8pnSv49RxWc0tM+xkJoeQsNQmjVS A==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10741"; a="357767792"
-X-IronPort-AV: E=Sophos;i="6.00,244,1681196400"; d="scan'208";a="357767792"
-Received: from orsmga002.jf.intel.com ([10.7.209.21])
- by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 15 Jun 2023 04:48:01 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10741"; a="712427081"
-X-IronPort-AV: E=Sophos;i="6.00,244,1681196400"; d="scan'208";a="712427081"
-Received: from orsmsx602.amr.corp.intel.com ([10.22.229.15])
- by orsmga002.jf.intel.com with ESMTP; 15 Jun 2023 04:48:01 -0700
-Received: from orsmsx612.amr.corp.intel.com (10.22.229.25) by
- ORSMSX602.amr.corp.intel.com (10.22.229.15) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.23; Thu, 15 Jun 2023 04:48:01 -0700
-Received: from orsmsx610.amr.corp.intel.com (10.22.229.23) by
- ORSMSX612.amr.corp.intel.com (10.22.229.25) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.23; Thu, 15 Jun 2023 04:48:00 -0700
-Received: from orsedg603.ED.cps.intel.com (10.7.248.4) by
- orsmsx610.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.23 via Frontend Transport; Thu, 15 Jun 2023 04:48:00 -0700
-Received: from NAM11-BN8-obe.outbound.protection.outlook.com (104.47.58.169)
- by edgegateway.intel.com (134.134.137.100) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2507.23; Thu, 15 Jun 2023 04:47:59 -0700
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=ICSHILHyMX7dnZEkOHpSemFzMwZPN1UBpQS7EDmu7pUfKN7vnQhwQpqNkzRtlvwZco5DkgMrFaKNIsr07lMbA3R0uzhUaj2nymsJb/vhkuBsx95Eh6jQF+mSn9gPFP3eFouuRAmfXo6iP9BLlk4pA9WvuXQKHp6dpELW77boTQcyd3ghT78grwAEBruo2aEELKXeMbllYxSr1ijacjrVhAHMFUN07tiKTIWdKA/BS2CA7Wp4aTlzwOmPR3ZA/dRmWsXxHBjtAGlzYzmtkTlpfUMKH7UduZ/q0bCWzavcpMHhexjvAMQcCmfL2i9EaLnYmFf35c2FcZQ9nCXl7JWAqw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=wR5qWxmfL0Qss/dUG1JeC0esPe4z0rH6561S7GqbJKw=;
- b=YP8yiE4ll4v0JxPe5Va98PFPzr32+oqe7+xbiabjhIitm+mOocSkgQTUAw6hSyZLVKMLIJtCppoUX1rs80nSB7yB/wPbkp77udR3LGzreHtRIcJyedDORbe7vx/UHh2Me6LRfD1909ts+1YGs2PSzVO7Rtp3Wkb478DYohPfChsGM/2MGSHg96mAL/NbTvrMEkli9W6KY1IhRW/M+S99l/8Z80fRvBe7pZneoqed1MIXcjxxgdv2ehQoM7/m+nbpT1SHgY3e3WmS8cBnVdBP5Mo+qTJH3dcqE/FJrXKECaOI+0aUab+E43tnoGpemQuRNDHEu/cU8EUhQeIC5jr9ug==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
- dkim=pass header.d=intel.com; arc=none
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=intel.com;
-Received: from BN9PR11MB5530.namprd11.prod.outlook.com (2603:10b6:408:103::8)
- by SN7PR11MB6677.namprd11.prod.outlook.com (2603:10b6:806:26b::6)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6500.27; Thu, 15 Jun
- 2023 11:47:58 +0000
-Received: from BN9PR11MB5530.namprd11.prod.outlook.com
- ([fe80::bb92:d504:7607:ed33]) by BN9PR11MB5530.namprd11.prod.outlook.com
- ([fe80::bb92:d504:7607:ed33%7]) with mapi id 15.20.6500.026; Thu, 15 Jun 2023
- 11:47:57 +0000
-Message-ID: <99fac071-4926-10d5-ef97-3a4164071671@intel.com>
-Date: Thu, 15 Jun 2023 17:17:46 +0530
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
- Thunderbird/102.11.2
-Content-Language: en-US
-To: Anshuman Gupta <anshuman.gupta@intel.com>, <intel-xe@lists.freedesktop.org>
-References: <20230607110328.3739706-1-anshuman.gupta@intel.com>
- <20230607110328.3739706-6-anshuman.gupta@intel.com>
-From: "Nilawar, Badal" <badal.nilawar@intel.com>
-In-Reply-To: <20230607110328.3739706-6-anshuman.gupta@intel.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: PN2PR01CA0238.INDPRD01.PROD.OUTLOOK.COM
- (2603:1096:c01:eb::8) To BN9PR11MB5530.namprd11.prod.outlook.com
- (2603:10b6:408:103::8)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 49D9210E4DF;
+	Thu, 15 Jun 2023 13:04:50 +0000 (UTC)
+Received: from dfw.source.kernel.org (dfw.source.kernel.org
+ [IPv6:2604:1380:4641:c500::1])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id CCEE810E4DF
+ for <intel-xe@lists.freedesktop.org>; Thu, 15 Jun 2023 13:04:48 +0000 (UTC)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+ (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+ key-exchange X25519 server-signature RSA-PSS (2048 bits))
+ (No client certificate requested)
+ by dfw.source.kernel.org (Postfix) with ESMTPS id B05CE60C8F
+ for <intel-xe@lists.freedesktop.org>; Thu, 15 Jun 2023 13:04:46 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2076EC433C0
+ for <intel-xe@lists.freedesktop.org>; Thu, 15 Jun 2023 13:04:46 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+ s=k20201202; t=1686834286;
+ bh=qA3HxDXjQtNgEc/60avs6p6wqT1s5eNNJAgqQrUSPUg=;
+ h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+ b=DNHZ0NnPGei+eLCnVNc9ErarLj0F8bq1oKV/qT3MDDceJ95Ttzx+lqUrnfvQKYi2B
+ L6/piWpJqn+CIKEI4SdqlNi2MocnDgcJlL6/cM6bRwSIyvcmkd54TLz9B3G/SH4vIW
+ EFgBtlJfo3u429aTe0fMfKGaMZkc+l7Z5C5Ohp5DAGjckeDA03zd7FttBobLsbTJH8
+ MNnIC+nGU0dfrzgrGmKZVLVWumhA9B0nyt4JvD/iZAEEnxNfkVwenWoM1Y8r2yPenT
+ GiDPhsVeWlHtxHzJL6KjZNDJYr7/fhzUkiGu4Jzfz24xQRpXAiTdiPw/vI6MjYhId1
+ xvevgzlmtwwTw==
+Received: by mail-yb1-f171.google.com with SMTP id
+ 3f1490d57ef6-bb2ffa1e235so1640036276.0
+ for <intel-xe@lists.freedesktop.org>; Thu, 15 Jun 2023 06:04:46 -0700 (PDT)
+X-Gm-Message-State: AC+VfDy9x6bZbvecVz6zEcXZ+sv0OraN1XsEAlqXcrg6UqUz3AjG2mp0
+ 6S5HvP6WsqgwV4eN4o2xQCcqUZxJVTYPZ5hdado=
+X-Google-Smtp-Source: ACHHUZ6noVtBXLDF65wbJ5VGBIj5vDFJNTu8L1sioYzzrqFExPeJzeNyKp4If+lMTCuR5+soaSVRL1VCKqhs6FGQdz8=
+X-Received: by 2002:a25:d0d2:0:b0:bc6:c22f:581a with SMTP id
+ h201-20020a25d0d2000000b00bc6c22f581amr4592618ybg.38.1686834285150; Thu, 15
+ Jun 2023 06:04:45 -0700 (PDT)
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: BN9PR11MB5530:EE_|SN7PR11MB6677:EE_
-X-MS-Office365-Filtering-Correlation-Id: f89078e6-6478-4f4f-63c5-08db6d965ce9
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: UpmQqKMZQyHY4ozQzis9GrwRZrTL8tG6NwOXQQSDLjybvg0oe5N4c0sQU35RRPmXPfoY0PlGG12MQBuWusT+xkm1ei8PmJlfap4+wQsWElcsTXJHdWQ9o5EvR8jCSreaRN53Ej7/f/2VqkpsLKh9ePp//SMNHYvgNCtLJV137yeKNpTOW7O/FGdOpqWbaTPHv760/Qak7WrGT69RDRnOEgL5+blX4SupRNTQwwFM3qggZuCCxHfNkhoOCQ+rUmy7gC36Ge9KdGUwoFGkBFybUcBtMEXbG5JzatqaKJAF4rBT5oTeAlUtR8tVEqRtvS6o9JClU7C9RPrZeKjrTYZZPIyol6x2UeSvhJKb39Vb9bkZa13KOoOigvB9oezu5nBrzWyhomhjSn3ZAKAn/WxfCxHtleU7VPhbRFpCO3Ge7ezLSfbvLg854+/f9+Xni6HwGOCYJkwvOHbnTjFDjaior0Q8SKbRAejpqGeP2thqWV+eyEiF4MEUQluzFldHD/8yhqdgx/5qNtUECCjlEHzuribpcUsDX+BD3uba0u91JwR7XvAjW+AZ7F2cqutBUzoFn5U8JmXMd5cwMGZYpw+FlsuBPGI+y6zY7PD0gq68PwDC5tod7SgJ8WACK7jTsorxeEjV8JKV1k1R9nVG3J7wPQ==
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:BN9PR11MB5530.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230028)(346002)(136003)(39860400002)(376002)(396003)(366004)(451199021)(5660300002)(82960400001)(38100700002)(2616005)(53546011)(6506007)(83380400001)(186003)(2906002)(6512007)(26005)(107886003)(478600001)(6666004)(66556008)(66946007)(66476007)(316002)(8936002)(6486002)(8676002)(41300700001)(86362001)(31696002)(36756003)(4326008)(31686004)(45980500001)(43740500002);
- DIR:OUT; SFP:1102; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?SkZuanJQMklZekRERmEwbGZVVloxcnZGZmhrdG5qdFh3K3J3c2NkKysyRG1O?=
- =?utf-8?B?R0Z4VDVsYWxWbGlUMjdXd1BiWFl0U2RQZEdFSndPMWkxVmR2RFRkVklwc2V5?=
- =?utf-8?B?WlVBdUxVUW5EQ1pMYXRyak5TNXVEcWZxZng1c0N6WGFldjk2N3duMUlxYWlu?=
- =?utf-8?B?TWZpVFRRUnl3YytVbGgwdXlkRCtseXhRekQ1RnIwNVJHNURianhZelJWMmJM?=
- =?utf-8?B?ajFoMlNzY2s5OGwwbHUyUHh1WDY3RWlqaDU3OEJ2V25Wb1BTN05rV3VzcWl0?=
- =?utf-8?B?MmFUcHZqOTdDcnB1d0ZQU2xlbnZQTzdteEkzWlFDSGlsWE5pMWhIK3RQeUdU?=
- =?utf-8?B?bXlaZDk0MFRoZTZTVGhkaGF1K2NMa1BtcGZaZG5qc0VWWXk3TFBkcFVReGRy?=
- =?utf-8?B?ZG4yNVJCa2E0Q0lvMXVGTHJUcVhtVEhPMEtEbm0xdjRvUUI2RjZaQUtlek12?=
- =?utf-8?B?VFRYdERlNnBBdnZsOG8xd01iVXdSOVZwZzdJQ1cyWnZ2RkxQRTdDemxTRTBh?=
- =?utf-8?B?TmlzeUtWZGdNaWZZb2hpdXU3VEcrTW5vejQzczltTEhudSs3Tnk1NC9aYkVq?=
- =?utf-8?B?WExaZzVoRUM2a000ZHRwZitqMzlkQlhXOW5udFRvRkcyQnliSWIrRWs0alN6?=
- =?utf-8?B?R2p6UlJTSXZNZFVST3FBMTJsTEdtbDh4V2ZmUWp4MkEwbXNBZUJBT2ZIVXdt?=
- =?utf-8?B?UHlDK1FRQ0g1NWxXS25CK0JYSEFTS29hRnVZeDkrTytDR215WjRhQ1Y4WHR6?=
- =?utf-8?B?OGRjK0lWcWJJU0FabjFqcXhKR2NCUlhMQmdQeGlXcHBUZ3J4bDJYZzFWMzhl?=
- =?utf-8?B?TVRHWHptdndHWGlWVTFiWmJZM0QraHloRkxkWFV0bGpOWUtxUW1tN1JZc2Jl?=
- =?utf-8?B?amZ3OFZQWk8rRkY5RXRhc0Jrb01SVm9uVWpaSkx5OU5lVU94Ti9XRXhqYVVj?=
- =?utf-8?B?dkl1M2Ztek5Sek9BZ2ZDM3B0S3JZWG9xK0xBU2lTeTU2M0Y0M2xHMkR5OGE2?=
- =?utf-8?B?VW4rMDIwUklNeG5qaFAvSUozQUg5R0tEY1FKMmxwSFJ6cHl1dDdrVlUyMDlE?=
- =?utf-8?B?WlNGMW9QUkQ0SjNBZHdzVnZaaW43bitJOVE2Y1RYMytScVlUUjcrM1I2R04v?=
- =?utf-8?B?V2F2VlpDYVdvYnJTeTRRblZCb281Tk9VeWRrODVWeGF3Zmp3ZWNjbSsxT3hw?=
- =?utf-8?B?VExWNlFGaEYxdU1LRWxHYzk3dFNEUy9meVNJV0NOYTVoY0JnUDZEVVpPM1c0?=
- =?utf-8?B?UC9nN0Jzc2JTMXQydWpNdDJuZXFGNHMrT3ZRUTFPTS9MMEZGM3doa3YwdGJX?=
- =?utf-8?B?Tkt4RW1Qemt0di84TldwekxCVFIzME45akhxa2JHR1hOdHdSeFZSNC9yakdB?=
- =?utf-8?B?ODVCd2p3bTJrbHJqVXZLTlJHdXpnekxaMnUxRDNrYVVCN2pSTmFhdUJNaFd5?=
- =?utf-8?B?dUNxQW9lcFdibituY0t3LzVTMUVMUUhLOWttM093OE9rQ0R3TFAyWmNqa0V0?=
- =?utf-8?B?Vnp4am9NWGNpZERyTWw0dG53Nm5vTWN2dVY0c3phUnFuNTRrMFVHM3J6OVE1?=
- =?utf-8?B?YUxmWGJSZEJGWlV6bE01RHI2TmVlTFNWNm1QN1g1a3c1dHBUbWJja0dNRkha?=
- =?utf-8?B?LzhSUFM0T3JMWGFHeEQ5ZnBoL3VraG50TkJuMkQ2WlJGUW51YkhmVEs3enV0?=
- =?utf-8?B?ZDFIL0gwVFliR0t4RDd4c0tkK3RtdWtTQW9wbUd1N3lQMEYyZlJLdmhSNDZT?=
- =?utf-8?B?L3diOE56YTBUbVBYRXhqVi9HSDh0Qmw3RS9pc3M5NzdzQlduWHYrWXNNRE5R?=
- =?utf-8?B?bFFUMUp2QXdaMFVseUdOZDUxWkhTTzJGQVA3dG16NDlBN0thc0Jjbm1rK3pF?=
- =?utf-8?B?a2pqUjJnMk8xUUNLUEJuRDMvQmwydm1CVjJBQWd0bTV5TDBqVFZSOEF6Qk8v?=
- =?utf-8?B?Mjh5Tnc0YmowVk82cGJvTEZQOE95dEh6RDB6WGdSWEtoRlNDWEExZ3FqdFhk?=
- =?utf-8?B?NkVjOWg0OWlMdndXTDdCYlF6MFBuY003SlFMSU9tVTJMMFJSQTZUMUJiV3lw?=
- =?utf-8?B?RnVzOG9RcktZMm0rTVhJZDRWK3hORmVVdmhOcVhuY0k4aVczRXlwNlVuclhK?=
- =?utf-8?B?NXVua1d5RnB1SnZublh3cExYK0tQc2cwYm1Rb2lFZzlhT3JQOU15S3pmRHRu?=
- =?utf-8?B?Z2c9PQ==?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: f89078e6-6478-4f4f-63c5-08db6d965ce9
-X-MS-Exchange-CrossTenant-AuthSource: BN9PR11MB5530.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 15 Jun 2023 11:47:57.5224 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: UF8m1KssPhU/5VHWSYHKjiI/RbE1CXdXYE76gEEFPmRVYPXCkSfzhd0t8VxhR2ExTCHLmsG2+otEqGyqGi2wiA==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SN7PR11MB6677
-X-OriginatorOrg: intel.com
-Subject: Re: [Intel-xe] [PATCH v2 5/5] drm/xe/pm: Init pcode and restore
- vram on power lost
+References: <20230602142501.6-1-francois.dugast@intel.com>
+ <20230602142501.6-2-francois.dugast@intel.com>
+ <qcsuilqdccvku4qoa36a5m3mhdr75akwpba77oisjk6e4kvkrm@6u5tr3dfmf5v>
+ <ZIdIfdiClQ60fZSI@fdugast-desk.home>
+ <20230615000105.GU5433@mdroper-desk1.amr.corp.intel.com>
+In-Reply-To: <20230615000105.GU5433@mdroper-desk1.amr.corp.intel.com>
+From: Oded Gabbay <ogabbay@kernel.org>
+Date: Thu, 15 Jun 2023 16:04:18 +0300
+X-Gmail-Original-Message-ID: <CAFCwf10Td52xyKN9U903-GzS8V_T6sJ8t9ppLiXCNLzHGHzLEQ@mail.gmail.com>
+Message-ID: <CAFCwf10Td52xyKN9U903-GzS8V_T6sJ8t9ppLiXCNLzHGHzLEQ@mail.gmail.com>
+To: Matt Roper <matthew.d.roper@intel.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+Subject: Re: [Intel-xe] [RFC PATCH 1/1] drm/xe: Introduce function pointers
+ for MMIO functions
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -159,137 +67,318 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Cc: rodrigo.vivi@intel.com
+Cc: ofir1.bitton@intel.com, Lucas De Marchi <lucas.demarchi@intel.com>,
+ Daniel Vetter <daniel@ffwll.ch>, ohadshar@intel.com,
+ intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
+On Thu, Jun 15, 2023 at 3:01=E2=80=AFAM Matt Roper <matthew.d.roper@intel.c=
+om> wrote:
+>
+> On Mon, Jun 12, 2023 at 06:31:57PM +0200, Francois Dugast wrote:
+> > On Thu, Jun 08, 2023 at 10:35:29AM -0700, Lucas De Marchi wrote:
+> > > On Fri, Jun 02, 2023 at 02:25:01PM +0000, Francois Dugast wrote:
+> > > > A local structure of function pointers is used as a minimal hardwar=
+e
+> > > > abstraction layer to prepare for platform independent MMIO calls.
+> > > >
+> > > > Cc: Oded Gabbay <ogabbay@kernel.org>
+> > > > Cc: Ofir Bitton <ofir1.bitton@intel.com>
+> > > > Cc: Ohad Sharabi <ohadshar@intel.com>
+> > > > Signed-off-by: Francois Dugast <francois.dugast@intel.com>
+> > > > ---
+> > > > drivers/gpu/drm/xe/xe_device_types.h |  3 ++
+> > > > drivers/gpu/drm/xe/xe_mmio.c         | 81 +++++++++++++++++++++++++=
++++
+> > > > drivers/gpu/drm/xe/xe_mmio.h         | 35 ++++++------
+> > > > 3 files changed, 99 insertions(+), 20 deletions(-)
+> > > >
+> > > > diff --git a/drivers/gpu/drm/xe/xe_device_types.h b/drivers/gpu/drm=
+/xe/xe_device_types.h
+> > > > index 17b6b1cc5adb..3f8fd0d8129b 100644
+> > > > --- a/drivers/gpu/drm/xe/xe_device_types.h
+> > > > +++ b/drivers/gpu/drm/xe/xe_device_types.h
+> > > > @@ -378,6 +378,9 @@ struct xe_device {
+> > > >   /** @d3cold_allowed: Indicates if d3cold is a valid device state =
+*/
+> > > >   bool d3cold_allowed;
+> > > >
+> > > > + /** @mmio_funcs: function pointers for MMIO related functions */
+> > > > + const struct xe_mmio_funcs *mmio_funcs;
+> > > > +
+> > > >   /* private: */
+> > > >
+> > > > #if IS_ENABLED(CONFIG_DRM_XE_DISPLAY)
+> > > > diff --git a/drivers/gpu/drm/xe/xe_mmio.c b/drivers/gpu/drm/xe/xe_m=
+mio.c
+> > > > index 475b14fe4356..f3d08676a77a 100644
+> > > > --- a/drivers/gpu/drm/xe/xe_mmio.c
+> > > > +++ b/drivers/gpu/drm/xe/xe_mmio.c
+> > > > @@ -25,6 +25,62 @@
+> > > >
+> > > > #define BAR_SIZE_SHIFT 20
+> > > >
+> > > > +static void xe_mmio_write32_device(struct xe_gt *gt,
+> > > > +                            struct xe_reg reg, u32 val);
+> > > > +static u32 xe_mmio_read32_device(struct xe_gt *gt, struct xe_reg r=
+eg);
+> > > > +static void xe_mmio_write64_device(struct xe_gt *gt,
+> > > > +                            struct xe_reg reg, u64 val);
+> > > > +static u64 xe_mmio_read64_device(struct xe_gt *gt, struct xe_reg r=
+eg);
+> > > > +
+> > > > +static const struct xe_mmio_funcs xe_mmio_funcs_device =3D {
+> > > > + .write32 =3D xe_mmio_write32_device,
+> > > > + .read32 =3D xe_mmio_read32_device,
+> > > > + .write64 =3D xe_mmio_write64_device,
+> > > > + .read64 =3D xe_mmio_read64_device,
+> > > > +};
+> > > > +
+> > > > +static inline void xe_mmio_write32_device(struct xe_gt *gt,
+> > > > +                            struct xe_reg reg, u32 val)
+> > > > +{
+> > > > + struct xe_tile *tile =3D gt_to_tile(gt);
+> > > > +
+> > > > + if (reg.addr < gt->mmio.adj_limit)
+> > > > +         reg.addr +=3D gt->mmio.adj_offset;
+> > > > +
+> > > > + writel(val, tile->mmio.regs + reg.addr);
+> > > > +}
+> > > > +
+> > > > +static inline u32 xe_mmio_read32_device(struct xe_gt *gt, struct x=
+e_reg reg)
+> > > > +{
+> > > > + struct xe_tile *tile =3D gt_to_tile(gt);
+> > > > +
+> > > > + if (reg.addr < gt->mmio.adj_limit)
+> > > > +         reg.addr +=3D gt->mmio.adj_offset;
+> > > > +
+> > > > + return readl(tile->mmio.regs + reg.addr);
+> > > > +}
+> > > > +
+> > > > +static inline void xe_mmio_write64_device(struct xe_gt *gt,
+> > > > +                            struct xe_reg reg, u64 val)
+> > > > +{
+> > > > + struct xe_tile *tile =3D gt_to_tile(gt);
+> > > > +
+> > > > + if (reg.addr < gt->mmio.adj_limit)
+> > > > +         reg.addr +=3D gt->mmio.adj_offset;
+> > > > +
+> > > > + writeq(val, tile->mmio.regs + reg.addr);
+> > > > +}
+> > > > +
+> > > > +static inline u64 xe_mmio_read64_device(struct xe_gt *gt, struct x=
+e_reg reg)
+> > > > +{
+> > > > + struct xe_tile *tile =3D gt_to_tile(gt);
+> > > > +
+> > > > + if (reg.addr < gt->mmio.adj_limit)
+> > > > +         reg.addr +=3D gt->mmio.adj_offset;
+> > > > +
+> > > > + return readq(tile->mmio.regs + reg.addr);
+> > > > +}
+> > > > +
+> > > > static int xe_set_dma_info(struct xe_device *xe)
+> > > > {
+> > > >   unsigned int mask_size =3D xe->info.dma_mask_size;
+> > > > @@ -377,6 +433,29 @@ static void mmio_fini(struct drm_device *drm, =
+void *arg)
+> > > >           iounmap(xe->mem.vram.mapping);
+> > > > }
+> > > >
+> > > > +static void xe_mmio_set_funcs(struct xe_device *xe)
+> > > > +{
+> > > > + /* For now all platforms use the set of MMIO functions for a
+> > > > +  * physical device.
+> > > > +  */
+> > >
+> > >
+> > > what is "device" in this context? that seems confusing as we always e=
+ver
+> > > just support reading/writing to a real device (physical here may also
+> > > add to the confusion when thinking about SR-IOV and VFs).
+> > > We shouldn't add abstractions that are then never used and all platfo=
+rms
+> > > end up using the same. Unless it's a preparation for a follow up seri=
+es
+> > > adding the different handling.
+> >
+> > For now "device" is meant as "in opposition to simulator" but I agree
+> > we can find a better name. Existing platforms all use the same
+> > implementation but this is preparation for platforms that require a
+> > different implementation.
+>
+> I agree with Lucas that this doesn't really seem to be a good candidate
+> for a vtable; every platform uses exactly the same logic and I can't
+> really envision how/why this would need to change for future platforms
+> either, so this seems to just be adding unnecessary complexity.
+> Registers being accessed at some offset into a PCI BAR isn't likely to
+> change going forward.  On future platforms it's more likely that we'd
+> need changes to the part of the code that maps the MMIO BAR rather than
+> the code that reads/writes an offset into a mapping that's already been
+> setup.
+I agree with that for every *real hardware* platform the
+implementation will probably be the same.
+But for simulator/emulation, there is a different implementation.
+And even if we don't upstream that different implementation, doing
+this abstraction will help us upstream the rest of the driver as we
+minimize the differences between upstream and downstream.
+And helping us upstream the driver is a good enough reason imo to add
+this abstraction.
 
 
-On 07-06-2023 16:33, Anshuman Gupta wrote:
-> Don't init pcode and restore VRAM objects in vain.
-> We can rely on primary GT GUC_STATUS to detect whether
-> card has really lost power even when d3cold is allowed by xe.
-> Adding d3cold.lost_power flag to avoid pcode init and vram
-> restoration.
-> Also cleaning up the TODO code comment.
-> 
-> Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
-> Signed-off-by: Anshuman Gupta <anshuman.gupta@intel.com>
-> ---
->   drivers/gpu/drm/xe/xe_device_types.h |  3 +++
->   drivers/gpu/drm/xe/xe_guc.c          | 17 +++++++++++++++++
->   drivers/gpu/drm/xe/xe_guc.h          |  1 +
->   drivers/gpu/drm/xe/xe_pci.c          |  2 --
->   drivers/gpu/drm/xe/xe_pm.c           | 15 ++++++++++++---
->   5 files changed, 33 insertions(+), 5 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/xe/xe_device_types.h b/drivers/gpu/drm/xe/xe_device_types.h
-> index bdd093d30788..34bf2ea3b3f9 100644
-> --- a/drivers/gpu/drm/xe/xe_device_types.h
-> +++ b/drivers/gpu/drm/xe/xe_device_types.h
-> @@ -382,6 +382,9 @@ struct xe_device {
->   		/** @allowed: Indicates if d3cold is a valid device state */
->   		bool allowed;
->   
-> +		/** @power_lost Indicates if card has really lost power. */
-> +		bool power_lost;
-> +
->   		/**
->   		 * @vram_threshold is the permissible threshold(in megabytes)
->   		 * for vram save/restore. d3cold will be disallowed,
-> diff --git a/drivers/gpu/drm/xe/xe_guc.c b/drivers/gpu/drm/xe/xe_guc.c
-> index e51d8fb4a354..706b3bc0452e 100644
-> --- a/drivers/gpu/drm/xe/xe_guc.c
-> +++ b/drivers/gpu/drm/xe/xe_guc.c
-> @@ -848,3 +848,20 @@ void xe_guc_print_info(struct xe_guc *guc, struct drm_printer *p)
->   	xe_guc_ct_print(&guc->ct, p, false);
->   	xe_guc_submit_print(guc, p);
->   }
-> +
-> +/* Srtictly to called from RPM resume handler */
-> +bool xe_guc_has_lost_power(struct xe_guc *guc)
-> +{
-> +	struct xe_gt *gt = guc_to_gt(guc);
-> +	u32 status;
-> +	int err;
-> +
-> +	err = xe_force_wake_get(gt_to_fw(gt), XE_FW_GT);
-> +	if (err)
-> +		return false;
-> +
-> +	status = xe_mmio_read32(gt, GUC_STATUS);
-> +	xe_force_wake_put(gt_to_fw(gt), XE_FW_GT);
-Should error check be added here as well?
-Regards,
-Badal
-> +
-> +	return  status & GS_MIA_IN_RESET;
-> +}
-> diff --git a/drivers/gpu/drm/xe/xe_guc.h b/drivers/gpu/drm/xe/xe_guc.h
-> index 74a74051f354..3e628bbbe69e 100644
-> --- a/drivers/gpu/drm/xe/xe_guc.h
-> +++ b/drivers/gpu/drm/xe/xe_guc.h
-> @@ -35,6 +35,7 @@ void xe_guc_reset_wait(struct xe_guc *guc);
->   void xe_guc_stop_prepare(struct xe_guc *guc);
->   int xe_guc_stop(struct xe_guc *guc);
->   int xe_guc_start(struct xe_guc *guc);
-> +bool xe_guc_has_lost_power(struct xe_guc *guc);
->   
->   static inline u16 xe_engine_class_to_guc_class(enum xe_engine_class class)
->   {
-> diff --git a/drivers/gpu/drm/xe/xe_pci.c b/drivers/gpu/drm/xe/xe_pci.c
-> index 6cf66ce25039..b5cd3b69c98e 100644
-> --- a/drivers/gpu/drm/xe/xe_pci.c
-> +++ b/drivers/gpu/drm/xe/xe_pci.c
-> @@ -829,8 +829,6 @@ static int xe_pci_runtime_idle(struct device *dev)
->   		 * but maybe include some other conditions. So, before
->   		 * we can re-enable the D3cold, we need to:
->   		 * 1. rewrite the VRAM save / restore to avoid buffer object locks
-> -		 * 2. at resume, detect if we really lost power and avoid memory
-> -		 *    restoration if we were only up to d3cold
->   		 */
->   		xe->d3cold.allowed = false;
->   	}
-> diff --git a/drivers/gpu/drm/xe/xe_pm.c b/drivers/gpu/drm/xe/xe_pm.c
-> index 9872a800b0b3..e37ec8aca609 100644
-> --- a/drivers/gpu/drm/xe/xe_pm.c
-> +++ b/drivers/gpu/drm/xe/xe_pm.c
-> @@ -16,6 +16,7 @@
->   #include "xe_display.h"
->   #include "xe_ggtt.h"
->   #include "xe_gt.h"
-> +#include "xe_guc.h"
->   #include "xe_irq.h"
->   #include "xe_pcode.h"
->   
-> @@ -192,11 +193,19 @@ int xe_pm_runtime_suspend(struct xe_device *xe)
->   
->   int xe_pm_runtime_resume(struct xe_device *xe)
->   {
-> -	struct xe_gt *gt;
-> +	struct xe_gt *gt, *gt0;
->   	u8 id;
->   	int err;
->   
-> -	if (xe->d3cold.allowed) {
-> +	/*
-> +	 * It can be possible that xe has allowed d3cold but other pcie devices
-> +	 * in gfx card soc would have blocked d3cold, therefore card has not
-> +	 * really lost power. Detecting primary Gt power is sufficient.
-> +	 */
-> +	gt0 = xe_device_get_gt(xe, 0);
-> +	xe->d3cold.power_lost = xe_guc_has_lost_power(&gt0->uc.guc);
-> +
-> +	if (xe->d3cold.allowed && xe->d3cold.power_lost) {
->   		for_each_gt(gt, xe, id) {
->   			err = xe_pcode_init(gt);
->   			if (err)
-> @@ -217,7 +226,7 @@ int xe_pm_runtime_resume(struct xe_device *xe)
->   	for_each_gt(gt, xe, id)
->   		xe_gt_resume(gt);
->   
-> -	if (xe->d3cold.allowed) {
-> +	if (xe->d3cold.allowed && xe->d3cold.power_lost) {
->   		err = xe_bo_restore_user(xe);
->   		if (err)
->   			return err;
+Oded
+>
+> >
+> > >
+> > > +Matt as there is still (at least) one refactor planned in this area,
+> > > since gt is not always the proper target for the MMIOs. He was saying=
+ in
+> > > his earlier series about having a mmio_view or such to abstract the
+> > > offset and other differences between each IO range. Not sure if this
+> > > series would go the rigth direction, maybe we need to think in both
+> > > cases together.
+> >
+> > Matt, would this series block the refactor mentioned by Lucas?
+> >
+> > In general, are there objections to introducing functions pointers for
+> > MMIO functions (extended to all of them, as suggested by Ohad)?
+>
+> It probably makes more sense to do vtable conversion on other parts of
+> the driver where we already have different implementations per platform
+> and where we already know that design makes sense.  We can always come
+> back and do this to the MMIO functions later once there are actually
+> multiple implementations, but it doesn't seem to serve any purpose right
+> now.
+>
+>
+> Matt
+>
+> >
+> > Thanks,
+> > Francois
+> >
+> > >
+> > >
+> > > Lucas De Marchi
+> > >
+> > > > + switch (xe->info.platform) {
+> > > > + case XE_TIGERLAKE:
+> > > > + case XE_ROCKETLAKE:
+> > > > + case XE_ALDERLAKE_S:
+> > > > + case XE_ALDERLAKE_P:
+> > > > + case XE_ALDERLAKE_N:
+> > > > + case XE_DG1:
+> > > > + case XE_DG2:
+> > > > + case XE_PVC:
+> > > > + case XE_METEORLAKE:
+> > > > +         xe->mmio_funcs =3D &xe_mmio_funcs_device;
+> > > > +         break;
+> > > > + default:
+> > > > +         DRM_ERROR("Unsupported platform\n");
+> > > > +         break;
+> > > > + }
+> > > > +}
+> > > > +
+> > > > int xe_mmio_init(struct xe_device *xe)
+> > > > {
+> > > >   struct xe_tile *root_tile =3D xe_device_get_root_tile(xe);
+> > > > @@ -384,6 +463,8 @@ int xe_mmio_init(struct xe_device *xe)
+> > > >   const int mmio_bar =3D 0;
+> > > >   int err;
+> > > >
+> > > > + xe_mmio_set_funcs(xe);
+> > > > +
+> > > >   /*
+> > > >    * Map the first 16MB of th BAR, which includes the registers (0-=
+4MB),
+> > > >    * reserved space (4MB-8MB), and GGTT (8MB-16MB) for a single til=
+e.
+> > > > diff --git a/drivers/gpu/drm/xe/xe_mmio.h b/drivers/gpu/drm/xe/xe_m=
+mio.h
+> > > > index 3c547d78afba..80ce9de7aac4 100644
+> > > > --- a/drivers/gpu/drm/xe/xe_mmio.h
+> > > > +++ b/drivers/gpu/drm/xe/xe_mmio.h
+> > > > @@ -19,6 +19,13 @@ struct xe_device;
+> > > >
+> > > > #define GEN12_LMEM_BAR            2
+> > > >
+> > > > +struct xe_mmio_funcs {
+> > > > + u32 (*read32)(struct xe_gt *gt, struct xe_reg reg);
+> > > > + u64 (*read64)(struct xe_gt *gt, struct xe_reg reg);
+> > > > + void (*write32)(struct xe_gt *gt, struct xe_reg reg, u32 val);
+> > > > + void (*write64)(struct xe_gt *gt, struct xe_reg reg, u64 val);
+> > > > +};
+> > > > +
+> > > > int xe_mmio_init(struct xe_device *xe);
+> > > >
+> > > > static inline u8 xe_mmio_read8(struct xe_gt *gt, struct xe_reg reg)
+> > > > @@ -34,22 +41,16 @@ static inline u8 xe_mmio_read8(struct xe_gt *gt=
+, struct xe_reg reg)
+> > > > static inline void xe_mmio_write32(struct xe_gt *gt,
+> > > >                              struct xe_reg reg, u32 val)
+> > > > {
+> > > > - struct xe_tile *tile =3D gt_to_tile(gt);
+> > > > -
+> > > > - if (reg.addr < gt->mmio.adj_limit)
+> > > > -         reg.addr +=3D gt->mmio.adj_offset;
+> > > > + struct xe_device *xe =3D gt_to_xe(gt);
+> > > >
+> > > > - writel(val, tile->mmio.regs + reg.addr);
+> > > > + xe->mmio_funcs->write32(gt, reg, val);
+> > > > }
+> > > >
+> > > > static inline u32 xe_mmio_read32(struct xe_gt *gt, struct xe_reg re=
+g)
+> > > > {
+> > > > - struct xe_tile *tile =3D gt_to_tile(gt);
+> > > > -
+> > > > - if (reg.addr < gt->mmio.adj_limit)
+> > > > -         reg.addr +=3D gt->mmio.adj_offset;
+> > > > + struct xe_device *xe =3D gt_to_xe(gt);
+> > > >
+> > > > - return readl(tile->mmio.regs + reg.addr);
+> > > > + return xe->mmio_funcs->read32(gt, reg);
+> > > > }
+> > > >
+> > > > static inline u32 xe_mmio_rmw32(struct xe_gt *gt, struct xe_reg reg=
+, u32 clr,
+> > > > @@ -67,22 +68,16 @@ static inline u32 xe_mmio_rmw32(struct xe_gt *g=
+t, struct xe_reg reg, u32 clr,
+> > > > static inline void xe_mmio_write64(struct xe_gt *gt,
+> > > >                              struct xe_reg reg, u64 val)
+> > > > {
+> > > > - struct xe_tile *tile =3D gt_to_tile(gt);
+> > > > -
+> > > > - if (reg.addr < gt->mmio.adj_limit)
+> > > > -         reg.addr +=3D gt->mmio.adj_offset;
+> > > > + struct xe_device *xe =3D gt_to_xe(gt);
+> > > >
+> > > > - writeq(val, tile->mmio.regs + reg.addr);
+> > > > + xe->mmio_funcs->write64(gt, reg, val);
+> > > > }
+> > > >
+> > > > static inline u64 xe_mmio_read64(struct xe_gt *gt, struct xe_reg re=
+g)
+> > > > {
+> > > > - struct xe_tile *tile =3D gt_to_tile(gt);
+> > > > -
+> > > > - if (reg.addr < gt->mmio.adj_limit)
+> > > > -         reg.addr +=3D gt->mmio.adj_offset;
+> > > > + struct xe_device *xe =3D gt_to_xe(gt);
+> > > >
+> > > > - return readq(tile->mmio.regs + reg.addr);
+> > > > + return xe->mmio_funcs->read64(gt, reg);
+> > > > }
+> > > >
+> > > > static inline int xe_mmio_write32_and_verify(struct xe_gt *gt,
+> > > > --
+> > > > 2.34.1
+> > > >
+>
+> --
+> Matt Roper
+> Graphics Software Engineer
+> Linux GPU Platform Enablement
+> Intel Corporation
