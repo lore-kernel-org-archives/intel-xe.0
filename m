@@ -4,45 +4,56 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 03215EB64D9
-	for <intel-xe@archiver.kernel.org>; Thu, 15 Jun 2023 08:54:35 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id DB415EB64D9
+	for <intel-xe@archiver.kernel.org>; Thu, 15 Jun 2023 08:56:09 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id BB10B10E499;
-	Thu, 15 Jun 2023 08:54:35 +0000 (UTC)
-Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E2EF310E499
- for <intel-xe@lists.freedesktop.org>; Thu, 15 Jun 2023 08:54:33 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1686819273; x=1718355273;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=9UFs1idPW8QIPE8UM9mH0RGC/g/CShVNhAt2+BpKv2k=;
- b=DvE1FLCQRmUM1EVHg0qeRHg+BGhPlNQza2ixR63MS4i3cd0l9a+TfVjc
- qw6+q8Rb7OKHjF1+10JTJn2rm2YB3yYZh9Oow04bOSHt14kJ2A5bf2Nr8
- LU+9YRp/764Hi4/DeaRS3pnE0aCSRfIlQl+FVwrBkguB5dZygvFAkn6T9
- qqFvEbTrv73wLW3dLXgNiHmVsdZwuGMWDgjuTVOV00VDbMk5/XACEwvut
- OK0+QEbHlDKwis5WcqUgkNrZFdazXzaX7+v29cWo4vodzQjn4sCAThH5K
- YvrwMZB4WL0olV5yN6vUlQqe3PPOamn2qiui4ihV0U/7U7wkIxa9nHMFm Q==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10741"; a="357735438"
-X-IronPort-AV: E=Sophos;i="6.00,244,1681196400"; d="scan'208";a="357735438"
-Received: from orsmga008.jf.intel.com ([10.7.209.65])
- by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 15 Jun 2023 01:54:30 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10741"; a="742159543"
-X-IronPort-AV: E=Sophos;i="6.00,244,1681196400"; d="scan'208";a="742159543"
-Received: from himal-super-server.iind.intel.com ([10.145.169.168])
- by orsmga008.jf.intel.com with ESMTP; 15 Jun 2023 01:54:27 -0700
-From: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
-To: intel-xe@lists.freedesktop.org
-Date: Thu, 15 Jun 2023 14:28:48 +0530
-Message-Id: <20230615085848.3398419-1-himal.prasad.ghimiray@intel.com>
-X-Mailer: git-send-email 2.25.1
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8D0A610E49D;
+	Thu, 15 Jun 2023 08:56:09 +0000 (UTC)
+Received: from mail-lj1-x236.google.com (mail-lj1-x236.google.com
+ [IPv6:2a00:1450:4864:20::236])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id AC2D510E49F
+ for <intel-xe@lists.freedesktop.org>; Thu, 15 Jun 2023 08:56:07 +0000 (UTC)
+Received: by mail-lj1-x236.google.com with SMTP id
+ 38308e7fff4ca-2b44200367bso9569481fa.2
+ for <intel-xe@lists.freedesktop.org>; Thu, 15 Jun 2023 01:56:07 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=gmail.com; s=20221208; t=1686819365; x=1689411365;
+ h=cc:to:subject:message-id:date:from:in-reply-to:references
+ :mime-version:from:to:cc:subject:date:message-id:reply-to;
+ bh=+TRM+JMuRe3/yAoDSuw7M5PvxW4XnOKKLaMQUiaZhRo=;
+ b=lHhkrD+LuxRROH9VMSvlRPRTlP5aVTTmLjTpIaDiLfS90C9cpWN3mnYQt7rPPcI8k/
+ Tt/i7zvYJHNC9buqxoHu5e2vIv1NNveJJ7e28YXygiq31LVBZxrdylOuGVIkwRXrY7cd
+ Vrt/kgcZky/Za1L31h4CvvnecpmKVABbQQqeQavDJxjC5fsXecD4Jf2P4HYIWnphDCEA
+ i6IFK/8gOKc4285xgI4/89/rGctR5wJJ11+itxIalq2zmajlYGEQ3rmPCAK2SHgLVEQw
+ FuCBDo1mBj5YFELbDysH5rYzQ9YIx6hIUG3P/q0KFpyLwnJ/DHtGlbML4o9Ye9zdQ68x
+ Jykw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20221208; t=1686819365; x=1689411365;
+ h=cc:to:subject:message-id:date:from:in-reply-to:references
+ :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+ :reply-to;
+ bh=+TRM+JMuRe3/yAoDSuw7M5PvxW4XnOKKLaMQUiaZhRo=;
+ b=fZKUWnBdE/aCcSlJwv9YMQNgzSrhI+c+EdYpDpoq94e+zez7InCn9gSUuac8HpfuN6
+ HUPMh8VK+qnAwlC/dJ6VMkBH7zU38bmnSZjzv14HU/69eT13QQYLK+cEH2I7K0q4rHkF
+ z/uKqjzwxcFPNltvmBNWKZxB1y413jJ7E4l85MOYk9BpI8FeIgLYkey/i8a1XYBLefWt
+ VHCsxwfWePI3BIbwTXka3EeZ76wE0DKDbzEBKNdQlrLlwL/Qw34fIztA9G70Mx5D1eFV
+ pXPV/vbWwoH9ei5MiFPEoucGHpE6XCuAgzYov3fa+y9WjCTLF9DsKqE7r/9YstbnzqEW
+ nq1w==
+X-Gm-Message-State: AC+VfDwnhJFtWcQGeQC2k+ySgm/eAlz17vP5l5EwXNb7oAiTxdE54+yU
+ GKXJcmYpdbB7uHe1rc3Ru73YegMlGKz3hS8sMTM=
+X-Google-Smtp-Source: ACHHUZ40BHYZ9bkMow0+y/e/IIJvPM5pWf3mQ7yivkh/HEP10CMveIYVDCiSGKwkvj00d12PTVeymaGBkI97L4hnk3E=
+X-Received: by 2002:a05:651c:d6:b0:2ac:8992:272d with SMTP id
+ 22-20020a05651c00d600b002ac8992272dmr7565426ljr.11.1686819365228; Thu, 15 Jun
+ 2023 01:56:05 -0700 (PDT)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Subject: [Intel-xe] [PATCH v2 1/1] drm/xe: Add a debugfs for faking gt reset
- failure.
+References: <20230615002521.2587250-1-daniele.ceraolospurio@intel.com>
+In-Reply-To: <20230615002521.2587250-1-daniele.ceraolospurio@intel.com>
+From: Matthew Auld <matthew.william.auld@gmail.com>
+Date: Thu, 15 Jun 2023 09:55:38 +0100
+Message-ID: <CAM0jSHMO+2qWYJMyt7D-vS740NmFcPH+MzcW=Qg+vz+st2kK0A@mail.gmail.com>
+To: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
+Content-Type: text/plain; charset="UTF-8"
+Subject: Re: [Intel-xe] [PATCH] drm/xe: limit GGTT size to GUC_GGTT_TOP
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -54,149 +65,80 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
+Cc: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-In case of gt reset failure, KMD notifies userspace about failure
-via uevent. To validate this notification we need to ensure gt
-reset fails and there is no mechanism to cause failure from hardware.
-Hence added a debugfs which will cause fake reset failure.
+On Thu, 15 Jun 2023 at 01:25, Daniele Ceraolo Spurio
+<daniele.ceraolospurio@intel.com> wrote:
+>
+> The GuC can't access addresses above GUC_GGTT_TOP, so any GuC-accessible
+> objects can't be mapped above that offset. Instead of checking each
+> object to see if GuC may access it or not before mapping it, we just
+> limit the GGTT size to GUC_GGTT_TOP. This wastes a bit of address space
+> (about ~18 MBs, which is in addition to what already removed at the bottom
+> of the GGTT), but it is a good tradeoff to keep the code simple.
+>
+> The in-code comment has also been updated to explain the limitation.
+>
+> Signed-off-by: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
+> ---
+>  drivers/gpu/drm/xe/xe_ggtt.c | 24 ++++++++++++++++++------
+>  1 file changed, 18 insertions(+), 6 deletions(-)
+>
+> diff --git a/drivers/gpu/drm/xe/xe_ggtt.c b/drivers/gpu/drm/xe/xe_ggtt.c
+> index bae9f66a33cb..7588fbc2f278 100644
+> --- a/drivers/gpu/drm/xe/xe_ggtt.c
+> +++ b/drivers/gpu/drm/xe/xe_ggtt.c
+> @@ -24,6 +24,9 @@
+>  #define MTL_GGTT_PTE_PAT0      BIT_ULL(52)
+>  #define MTL_GGTT_PTE_PAT1      BIT_ULL(53)
+>
+> +/* GuC addresses above GUC_GGTT_TOP also don't map through the GTT */
+> +#define GUC_GGTT_TOP   0xFEE00000
+> +
+>  u64 xe_ggtt_pte_encode(struct xe_bo *bo, u64 bo_offset)
+>  {
+>         struct xe_device *xe = xe_bo_device(bo);
+> @@ -111,12 +114,18 @@ int xe_ggtt_init_noalloc(struct xe_ggtt *ggtt)
+>         /*
+>          * 8B per entry, each points to a 4KB page.
+>          *
+> -        * The GuC owns the WOPCM space, thus we can't allocate GGTT address in
+> -        * this area. Even though we likely configure the WOPCM to less than the
+> -        * maximum value, to simplify the driver load (no need to fetch HuC +
+> -        * GuC firmwares and determine there sizes before initializing the GGTT)
+> -        * just start the GGTT allocation above the max WOPCM size. This might
+> -        * waste space in the GGTT (WOPCM is 2MB on modern platforms) but we can
+> +        * The GuC address space is limited on both ends of the GGTT, because
+> +        * the GuC shim HW redirects accesses to those addresses to other HW
+> +        * areas instead of going through the GGTT. On the bottom end, the GuC
+> +        * can't access offsets below the WOPCM size, while on the top side the
+> +        * limit is fixed at GUC_GGTT_TOP. To keep things simple, instead of
+> +        * checking each object to see if they are accessed by GuC or not, we
+> +        * just exclude those areas from the allocator. Additionally, to
+> +        * simplify the driver load, we use the maximum WOPCM size in this logic
+> +        * instead of the programmed one, so we don't need to wait until the
+> +        * actual size to be programmed is determined (which requires FW fetch)
+> +        * before initializing the GGTT. These simplifications might waste space
+> +        * in the GGTT (about 20-25 MBs depending on the platform) but we can
+>          * live with this.
+>          *
+>          * Another benifit of this is the GuC bootrom can't access anything
+> @@ -125,6 +134,9 @@ int xe_ggtt_init_noalloc(struct xe_ggtt *ggtt)
+>          * Starting the GGTT allocations above the WOPCM max give us the correct
+>          * placement for free.
+>          */
+> +       if (ggtt->size > GUC_GGTT_TOP)
+> +               ggtt->size = GUC_GGTT_TOP;
+> +
+>         drm_mm_init(&ggtt->mm, xe_wopcm_size(xe),
+>                     ggtt->size - xe_wopcm_size(xe));
 
-v1(Rodrigo)
-- Change the variable to fake_reset_failure_in_progress.
-- Drop usage of READ_ONCE and WRITE_ONCE.
-- Follow consistency for variable assignment. Either use
-  functions for all the assignments or don't use for any.
+We also subtract the xe_wopcm_size(). Do you know if that is still
+needed with GUC_GGTT_TOP?
 
-v2
-- Add description for variable.
-- Define xe_fake_reset(gt) function in xe_gt.c to set the
-  fake_reset_failure_in_progress.
-- No need to explicitly initialize the fake_reset_failure_in_progress
-  as false. (Rodrigo)
-- Return proper error code in case of fake reset. (Bala)
-
-v3
-- Move gt reset worker call to xe_fake_reset(gt) which ensures
-fake reset goes through even in GT suspend state.
-
-Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
-cc: Francois Dugast <francois.dugast@intel.com>
-Cc: Mauro Carvalho Chehab <mchehab@kernel.org>
-Cc: Balasubramani Vivekanandan <balasubramani.vivekanandan@intel.com>
-Signed-off-by: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
----
- drivers/gpu/drm/xe/xe_gt.c         | 19 +++++++++++++++++++
- drivers/gpu/drm/xe/xe_gt.h         |  2 ++
- drivers/gpu/drm/xe/xe_gt_debugfs.c |  9 +++++++++
- drivers/gpu/drm/xe/xe_gt_types.h   |  5 +++++
- 4 files changed, 35 insertions(+)
-
-diff --git a/drivers/gpu/drm/xe/xe_gt.c b/drivers/gpu/drm/xe/xe_gt.c
-index 2458397ce8af..e70af81f2db5 100644
---- a/drivers/gpu/drm/xe/xe_gt.c
-+++ b/drivers/gpu/drm/xe/xe_gt.c
-@@ -497,10 +497,27 @@ static int do_gt_restart(struct xe_gt *gt)
- 	return 0;
- }
- 
-+void xe_gt_fake_reset(struct xe_gt *gt)
-+{
-+	gt->reset.fake_reset_failure_in_progress = true;
-+
-+	xe_gt_info(gt, "Fake reset queued\n");
-+	queue_work(gt->ordered_wq, &gt->reset.worker);
-+	n
-+
-+}
-+
- static int gt_reset(struct xe_gt *gt)
- {
- 	int err;
- 
-+	if (gt->reset.fake_reset_failure_in_progress) {
-+		err = -ECANCELED;
-+		xe_gt_info(gt, "Fake GT reset failure is in progress\n");
-+		gt->reset.fake_reset_failure_in_progress = false;
-+		goto err_cancelled;
-+	}
-+
- 	/* We only support GT resets with GuC submission */
- 	if (!xe_device_guc_submission_enabled(gt_to_xe(gt)))
- 		return -ENODEV;
-@@ -510,6 +527,7 @@ static int gt_reset(struct xe_gt *gt)
- 	xe_gt_sanitize(gt);
- 
- 	xe_device_mem_access_get(gt_to_xe(gt));
-+
- 	err = xe_force_wake_get(gt_to_fw(gt), XE_FORCEWAKE_ALL);
- 	if (err)
- 		goto err_msg;
-@@ -543,6 +561,7 @@ static int gt_reset(struct xe_gt *gt)
- err_msg:
- 	XE_WARN_ON(xe_uc_start(&gt->uc));
- 	xe_device_mem_access_put(gt_to_xe(gt));
-+err_cancelled:
- 	xe_gt_err(gt, "reset failed (%pe)\n", ERR_PTR(err));
- 
- 	return err;
-diff --git a/drivers/gpu/drm/xe/xe_gt.h b/drivers/gpu/drm/xe/xe_gt.h
-index 21d9044088de..22afae04fa3c 100644
---- a/drivers/gpu/drm/xe/xe_gt.h
-+++ b/drivers/gpu/drm/xe/xe_gt.h
-@@ -24,6 +24,8 @@ void xe_gt_suspend_prepare(struct xe_gt *gt);
- int xe_gt_suspend(struct xe_gt *gt);
- int xe_gt_resume(struct xe_gt *gt);
- void xe_gt_reset_async(struct xe_gt *gt);
-+void xe_gt_fake_reset(struct xe_gt *gt);
-+void xe_gt_migrate_wait(struct xe_gt *gt);
- void xe_gt_sanitize(struct xe_gt *gt);
- 
- /**
-diff --git a/drivers/gpu/drm/xe/xe_gt_debugfs.c b/drivers/gpu/drm/xe/xe_gt_debugfs.c
-index b5a5538ae630..8d888153c477 100644
---- a/drivers/gpu/drm/xe/xe_gt_debugfs.c
-+++ b/drivers/gpu/drm/xe/xe_gt_debugfs.c
-@@ -138,6 +138,14 @@ static int workarounds(struct seq_file *m, void *data)
- 	return 0;
- }
- 
-+static int fake_reset_failure(struct seq_file *m, void *data)
-+{
-+	struct xe_gt *gt = node_to_gt(m->private);
-+
-+	xe_gt_fake_reset(gt);
-+	return 0;
-+}
-+
- static const struct drm_info_list debugfs_list[] = {
- 	{"hw_engines", hw_engines, 0},
- 	{"force_reset", force_reset, 0},
-@@ -147,6 +155,7 @@ static const struct drm_info_list debugfs_list[] = {
- 	{"ggtt", ggtt, 0},
- 	{"register-save-restore", register_save_restore, 0},
- 	{"workarounds", workarounds, 0},
-+	{"fake_reset_failure", fake_reset_failure, 0},
- };
- 
- void xe_gt_debugfs_register(struct xe_gt *gt)
-diff --git a/drivers/gpu/drm/xe/xe_gt_types.h b/drivers/gpu/drm/xe/xe_gt_types.h
-index 99ab7ec99ccd..0b6e1df3ca36 100644
---- a/drivers/gpu/drm/xe/xe_gt_types.h
-+++ b/drivers/gpu/drm/xe/xe_gt_types.h
-@@ -141,6 +141,11 @@ struct xe_gt {
- 
- 	/** @reset: state for GT resets */
- 	struct {
-+		/**
-+		 * @fake_reset_failure_in_progress: A bool to indicate a fake reset
-+		 * failure has been triggered
-+		 */
-+		bool fake_reset_failure_in_progress;
- 		/**
- 		 * @worker: work so GT resets can done async allowing to reset
- 		 * code to safely flush all code paths
--- 
-2.25.1
-
+>         mutex_init(&ggtt->lock);
+> --
+> 2.40.0
+>
