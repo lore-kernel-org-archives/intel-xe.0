@@ -4,30 +4,30 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id D8EDEEB64D9
-	for <intel-xe@archiver.kernel.org>; Thu, 15 Jun 2023 22:53:46 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id CF35FEB64D9
+	for <intel-xe@archiver.kernel.org>; Thu, 15 Jun 2023 23:15:00 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B0A5F10E562;
-	Thu, 15 Jun 2023 22:53:46 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 81D0E10E568;
+	Thu, 15 Jun 2023 23:15:00 +0000 (UTC)
 Received: from emeril.freedesktop.org (emeril.freedesktop.org
  [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id CF63610E562;
- Thu, 15 Jun 2023 22:53:45 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTP id D64BF10E568;
+ Thu, 15 Jun 2023 23:14:58 +0000 (UTC)
 Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id CC64FAADD5;
- Thu, 15 Jun 2023 22:53:45 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+ by emeril.freedesktop.org (Postfix) with ESMTP id D28BEAADED;
+ Thu, 15 Jun 2023 23:14:58 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============1061256263686798363=="
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: "Matthew Brost" <matthew.brost@intel.com>
-Date: Thu, 15 Jun 2023 22:53:45 -0000
-Message-ID: <168686962583.10726.17380192566265240482@emeril.freedesktop.org>
+Date: Thu, 15 Jun 2023 23:14:58 -0000
+Message-ID: <168687089885.10726.15573611216356161104@emeril.freedesktop.org>
 X-Patchwork-Hint: ignore
 References: <20230615224409.320122-1-matthew.brost@intel.com>
 In-Reply-To: <20230615224409.320122-1-matthew.brost@intel.com>
-Subject: [Intel-xe] =?utf-8?q?=E2=9C=93_CI=2Echecksparse=3A_success_for_d?=
- =?utf-8?q?rm/xe=3A_Ban_a_VM_if_rebind_worker_hits_an_error_=28rev2=29?=
+Subject: [Intel-xe] =?utf-8?q?=E2=97=8B_CI=2EBAT=3A_info_for_drm/xe=3A_Ba?=
+ =?utf-8?q?n_a_VM_if_rebind_worker_hits_an_error_=28rev2=29?=
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -44,33 +44,63 @@ Cc: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
+--===============1061256263686798363==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
 == Series Details ==
 
 Series: drm/xe: Ban a VM if rebind worker hits an error (rev2)
 URL   : https://patchwork.freedesktop.org/series/118080/
-State : success
+State : info
 
 == Summary ==
 
-+ trap cleanup EXIT
-+ KERNEL=/kernel
-+ MT=/root/linux/maintainer-tools
-+ git clone https://gitlab.freedesktop.org/drm/maintainer-tools /root/linux/maintainer-tools
-Cloning into '/root/linux/maintainer-tools'...
-warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
-+ make -C /root/linux/maintainer-tools
-make: Entering directory '/root/linux/maintainer-tools'
-cc -O2 -g -Wextra -o remap-log remap-log.c
-make: Leaving directory '/root/linux/maintainer-tools'
-+ cd /kernel
-+ git config --global --add safe.directory /kernel
-+ /root/linux/maintainer-tools/dim sparse --fast 293e40ed72cf5a9cf97438455bb8172fa260c7eb
-Sparse version: 0.6.1 (Ubuntu: 0.6.1-2build1)
-Fast mode used, each commit won't be checked separately.
-Okay!
-
-+ cleanup
-++ stat -c %u:%g /kernel
-+ chown -R 1003:1003 /kernel
+Participating hosts:
+bat-atsm-2
+bat-dg2-oem2
+bat-adlp-7
+Missing hosts results[0]:
+Results: [xe-pw-118080v2](https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-118080v2/index.html)
 
 
+
+--===============1061256263686798363==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/xe: Ban a VM if rebind worker hits an error (rev2)</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/118080/">https://patchwork.freedesktop.org/series/118080/</a></td></tr>
+<tr><td><b>State:</b></td><td>info</td></tr>
+
+</table>
+
+
+    <p>Participating hosts:<br />
+bat-atsm-2<br />
+bat-dg2-oem2<br />
+bat-adlp-7<br />
+Missing hosts results[0]:<br />
+Results: <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-118080v2/index.html">xe-pw-118080v2</a></p>
+
+</body>
+</html>
+
+--===============1061256263686798363==--
