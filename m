@@ -4,56 +4,45 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4BBB1EB64DB
-	for <intel-xe@archiver.kernel.org>; Thu, 15 Jun 2023 08:42:35 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 03215EB64D9
+	for <intel-xe@archiver.kernel.org>; Thu, 15 Jun 2023 08:54:35 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id EDD1110E499;
-	Thu, 15 Jun 2023 08:42:34 +0000 (UTC)
-Received: from mail-lj1-x22b.google.com (mail-lj1-x22b.google.com
- [IPv6:2a00:1450:4864:20::22b])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8188110E189
- for <intel-xe@lists.freedesktop.org>; Thu, 15 Jun 2023 08:42:32 +0000 (UTC)
-Received: by mail-lj1-x22b.google.com with SMTP id
- 38308e7fff4ca-2b1afe57bdfso24152921fa.0
- for <intel-xe@lists.freedesktop.org>; Thu, 15 Jun 2023 01:42:32 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20221208; t=1686818550; x=1689410550;
- h=cc:to:subject:message-id:date:from:in-reply-to:references
- :mime-version:from:to:cc:subject:date:message-id:reply-to;
- bh=xPK93GLoCMn2jJKUmFadfSiD0KJiOEGQWG6otnkLVPM=;
- b=PsmrI/D7AXccWu3zfxaefAKvStI6XdvFKJInoPNVkP7Xb7XZxoeovq1DGTXw9IGbhE
- icLycaJGWyjnvCX2u717VsqcUx9A4fIpjnzwEH29LuQ6rWijNc2SuWXAcdKFq6KNUZUL
- O8LJqogRTbN9EoH852r9qvpcVcgMnSbA09wF22l6ta0pCxUu9J6xAM5ep+RbNaZyAhhK
- JfkL4tiMMUwMMseO8o/welFQik3pUEk50RV3oLZxyqhu7WpjpjQhXIU96UqihABxoBF+
- d5RDvHSzNmBrSYK0iAdCC8pD7cYaSjN8ToXlnATlbK8zUfz83duS0Jh/HDKHLX179Bz9
- mrhA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20221208; t=1686818550; x=1689410550;
- h=cc:to:subject:message-id:date:from:in-reply-to:references
- :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
- :reply-to;
- bh=xPK93GLoCMn2jJKUmFadfSiD0KJiOEGQWG6otnkLVPM=;
- b=aV5Ji91xnH60tjWmSuqHRKmLNGZxCZUhIOlp3FaitqhwaWFRhComa1INCDN36cmcR6
- 5o+OsDOSArqo9kF9A8BuCiU8rZQDC4DIRZi6MpkoMhAiZi5Qc7FoCq9nWneJLKZjV7tu
- cXTdpu4uOPzV84LQ3aJ8mv6Uphl4lZ9QrXMKHcNVmsY9lsbiOl4BO3We/v3xMYC6S3Ti
- sVfDVq37FPFhY4FmxoXVp3wcScx6Utb5TTT1YoDsv7LhjzbWLY4sRH99DRdmbwWwgZ87
- B+KUR9LGq1phGYTz4O4QRNAFN/fOv443uDP/CPD5AtVUvl8YMBdY8s5vCNWAv2b1D6+7
- K+qw==
-X-Gm-Message-State: AC+VfDySJd8nE+I8t31mFgwBQyrP5DxnTipYJCO4mn+xfqpso5EUyk3L
- obUUbsET+eJFQQShQ3yWHhdl6ojg0ajcTnuCJ9YsJqzoHsrhfw==
-X-Google-Smtp-Source: ACHHUZ6BVv79OE7+xfUPx3NuGpuy9eWyWfqCOXgN3lJW4q57sl1TFGBCwxRx2HhaGC734fRDWuEOS/GsSYKj4HKkN3g=
-X-Received: by 2002:a2e:8783:0:b0:2b1:a89a:5f2b with SMTP id
- n3-20020a2e8783000000b002b1a89a5f2bmr8016104lji.2.1686818550263; Thu, 15 Jun
- 2023 01:42:30 -0700 (PDT)
+	by gabe.freedesktop.org (Postfix) with ESMTP id BB10B10E499;
+	Thu, 15 Jun 2023 08:54:35 +0000 (UTC)
+Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E2EF310E499
+ for <intel-xe@lists.freedesktop.org>; Thu, 15 Jun 2023 08:54:33 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1686819273; x=1718355273;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=9UFs1idPW8QIPE8UM9mH0RGC/g/CShVNhAt2+BpKv2k=;
+ b=DvE1FLCQRmUM1EVHg0qeRHg+BGhPlNQza2ixR63MS4i3cd0l9a+TfVjc
+ qw6+q8Rb7OKHjF1+10JTJn2rm2YB3yYZh9Oow04bOSHt14kJ2A5bf2Nr8
+ LU+9YRp/764Hi4/DeaRS3pnE0aCSRfIlQl+FVwrBkguB5dZygvFAkn6T9
+ qqFvEbTrv73wLW3dLXgNiHmVsdZwuGMWDgjuTVOV00VDbMk5/XACEwvut
+ OK0+QEbHlDKwis5WcqUgkNrZFdazXzaX7+v29cWo4vodzQjn4sCAThH5K
+ YvrwMZB4WL0olV5yN6vUlQqe3PPOamn2qiui4ihV0U/7U7wkIxa9nHMFm Q==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10741"; a="357735438"
+X-IronPort-AV: E=Sophos;i="6.00,244,1681196400"; d="scan'208";a="357735438"
+Received: from orsmga008.jf.intel.com ([10.7.209.65])
+ by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 15 Jun 2023 01:54:30 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6600,9927,10741"; a="742159543"
+X-IronPort-AV: E=Sophos;i="6.00,244,1681196400"; d="scan'208";a="742159543"
+Received: from himal-super-server.iind.intel.com ([10.145.169.168])
+ by orsmga008.jf.intel.com with ESMTP; 15 Jun 2023 01:54:27 -0700
+From: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
+To: intel-xe@lists.freedesktop.org
+Date: Thu, 15 Jun 2023 14:28:48 +0530
+Message-Id: <20230615085848.3398419-1-himal.prasad.ghimiray@intel.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-References: <20230614200445.3363527-1-matthew.d.roper@intel.com>
-In-Reply-To: <20230614200445.3363527-1-matthew.d.roper@intel.com>
-From: Matthew Auld <matthew.william.auld@gmail.com>
-Date: Thu, 15 Jun 2023 09:42:03 +0100
-Message-ID: <CAM0jSHNkKHgyuSUAAHEurhGi2ufhgnyDod0fhaXjTgUFEh6arw@mail.gmail.com>
-To: Matt Roper <matthew.d.roper@intel.com>
-Content-Type: text/plain; charset="UTF-8"
-Subject: Re: [Intel-xe] [PATCH] drm/xe: Grab runtime PM over MMIO ioctl
+Content-Transfer-Encoding: 8bit
+Subject: [Intel-xe] [PATCH v2 1/1] drm/xe: Add a debugfs for faking gt reset
+ failure.
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -65,61 +54,149 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-xe@lists.freedesktop.org
+Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Wed, 14 Jun 2023 at 21:04, Matt Roper <matthew.d.roper@intel.com> wrote:
->
-> The MMIO ioctl (which is generally used from IGT's xe_reg tool) may be
-> called while the device is in D3, resulting in invalid results (i.e.,
-> all registers read back as 0xFFFFFFFF, writes are dropped).  Make sure
-> we grab runtime PM wakeref before performing register reads/writes.
->
-> Signed-off-by: Matt Roper <matthew.d.roper@intel.com>
+In case of gt reset failure, KMD notifies userspace about failure
+via uevent. To validate this notification we need to ensure gt
+reset fails and there is no mechanism to cause failure from hardware.
+Hence added a debugfs which will cause fake reset failure.
 
-AFAIK we should use mem_access_get() for MMIO:
-https://patchwork.freedesktop.org/patch/542124/?series=119213&rev=1
+v1(Rodrigo)
+- Change the variable to fake_reset_failure_in_progress.
+- Drop usage of READ_ONCE and WRITE_ONCE.
+- Follow consistency for variable assignment. Either use
+  functions for all the assignments or don't use for any.
 
-But that requires first fixing the races with mem_access which is
-quite involved, so perhaps using runtime_get() directly here is fine
-for now. We can just replace the instance here with mem_access once
-that's ready.
+v2
+- Add description for variable.
+- Define xe_fake_reset(gt) function in xe_gt.c to set the
+  fake_reset_failure_in_progress.
+- No need to explicitly initialize the fake_reset_failure_in_progress
+  as false. (Rodrigo)
+- Return proper error code in case of fake reset. (Bala)
 
-Reviewed-by: Matthew Auld <matthew.auld@intel.com>
+v3
+- Move gt reset worker call to xe_fake_reset(gt) which ensures
+fake reset goes through even in GT suspend state.
 
-> ---
->  drivers/gpu/drm/xe/xe_mmio.c | 3 +++
->  1 file changed, 3 insertions(+)
->
-> diff --git a/drivers/gpu/drm/xe/xe_mmio.c b/drivers/gpu/drm/xe/xe_mmio.c
-> index f7a7f996b37f..5f4c8ae23771 100644
-> --- a/drivers/gpu/drm/xe/xe_mmio.c
-> +++ b/drivers/gpu/drm/xe/xe_mmio.c
-> @@ -19,6 +19,7 @@
->  #include "xe_gt_mcr.h"
->  #include "xe_macros.h"
->  #include "xe_module.h"
-> +#include "xe_pm.h"
->
->  #define XEHP_MTCFG_ADDR                XE_REG(0x101800)
->  #define TILE_COUNT             REG_GENMASK(15, 8)
-> @@ -476,6 +477,7 @@ int xe_mmio_ioctl(struct drm_device *dev, void *data,
->          */
->         reg = XE_REG(args->addr);
->
-> +       xe_pm_runtime_get(xe);
->         xe_force_wake_get(gt_to_fw(gt), XE_FORCEWAKE_ALL);
->
->         if (args->flags & DRM_XE_MMIO_WRITE) {
-> @@ -519,6 +521,7 @@ int xe_mmio_ioctl(struct drm_device *dev, void *data,
->
->  exit:
->         xe_force_wake_put(gt_to_fw(gt), XE_FORCEWAKE_ALL);
-> +       xe_pm_runtime_put(xe);
->
->         return ret;
->  }
-> --
-> 2.40.1
->
+Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
+cc: Francois Dugast <francois.dugast@intel.com>
+Cc: Mauro Carvalho Chehab <mchehab@kernel.org>
+Cc: Balasubramani Vivekanandan <balasubramani.vivekanandan@intel.com>
+Signed-off-by: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
+---
+ drivers/gpu/drm/xe/xe_gt.c         | 19 +++++++++++++++++++
+ drivers/gpu/drm/xe/xe_gt.h         |  2 ++
+ drivers/gpu/drm/xe/xe_gt_debugfs.c |  9 +++++++++
+ drivers/gpu/drm/xe/xe_gt_types.h   |  5 +++++
+ 4 files changed, 35 insertions(+)
+
+diff --git a/drivers/gpu/drm/xe/xe_gt.c b/drivers/gpu/drm/xe/xe_gt.c
+index 2458397ce8af..e70af81f2db5 100644
+--- a/drivers/gpu/drm/xe/xe_gt.c
++++ b/drivers/gpu/drm/xe/xe_gt.c
+@@ -497,10 +497,27 @@ static int do_gt_restart(struct xe_gt *gt)
+ 	return 0;
+ }
+ 
++void xe_gt_fake_reset(struct xe_gt *gt)
++{
++	gt->reset.fake_reset_failure_in_progress = true;
++
++	xe_gt_info(gt, "Fake reset queued\n");
++	queue_work(gt->ordered_wq, &gt->reset.worker);
++	n
++
++}
++
+ static int gt_reset(struct xe_gt *gt)
+ {
+ 	int err;
+ 
++	if (gt->reset.fake_reset_failure_in_progress) {
++		err = -ECANCELED;
++		xe_gt_info(gt, "Fake GT reset failure is in progress\n");
++		gt->reset.fake_reset_failure_in_progress = false;
++		goto err_cancelled;
++	}
++
+ 	/* We only support GT resets with GuC submission */
+ 	if (!xe_device_guc_submission_enabled(gt_to_xe(gt)))
+ 		return -ENODEV;
+@@ -510,6 +527,7 @@ static int gt_reset(struct xe_gt *gt)
+ 	xe_gt_sanitize(gt);
+ 
+ 	xe_device_mem_access_get(gt_to_xe(gt));
++
+ 	err = xe_force_wake_get(gt_to_fw(gt), XE_FORCEWAKE_ALL);
+ 	if (err)
+ 		goto err_msg;
+@@ -543,6 +561,7 @@ static int gt_reset(struct xe_gt *gt)
+ err_msg:
+ 	XE_WARN_ON(xe_uc_start(&gt->uc));
+ 	xe_device_mem_access_put(gt_to_xe(gt));
++err_cancelled:
+ 	xe_gt_err(gt, "reset failed (%pe)\n", ERR_PTR(err));
+ 
+ 	return err;
+diff --git a/drivers/gpu/drm/xe/xe_gt.h b/drivers/gpu/drm/xe/xe_gt.h
+index 21d9044088de..22afae04fa3c 100644
+--- a/drivers/gpu/drm/xe/xe_gt.h
++++ b/drivers/gpu/drm/xe/xe_gt.h
+@@ -24,6 +24,8 @@ void xe_gt_suspend_prepare(struct xe_gt *gt);
+ int xe_gt_suspend(struct xe_gt *gt);
+ int xe_gt_resume(struct xe_gt *gt);
+ void xe_gt_reset_async(struct xe_gt *gt);
++void xe_gt_fake_reset(struct xe_gt *gt);
++void xe_gt_migrate_wait(struct xe_gt *gt);
+ void xe_gt_sanitize(struct xe_gt *gt);
+ 
+ /**
+diff --git a/drivers/gpu/drm/xe/xe_gt_debugfs.c b/drivers/gpu/drm/xe/xe_gt_debugfs.c
+index b5a5538ae630..8d888153c477 100644
+--- a/drivers/gpu/drm/xe/xe_gt_debugfs.c
++++ b/drivers/gpu/drm/xe/xe_gt_debugfs.c
+@@ -138,6 +138,14 @@ static int workarounds(struct seq_file *m, void *data)
+ 	return 0;
+ }
+ 
++static int fake_reset_failure(struct seq_file *m, void *data)
++{
++	struct xe_gt *gt = node_to_gt(m->private);
++
++	xe_gt_fake_reset(gt);
++	return 0;
++}
++
+ static const struct drm_info_list debugfs_list[] = {
+ 	{"hw_engines", hw_engines, 0},
+ 	{"force_reset", force_reset, 0},
+@@ -147,6 +155,7 @@ static const struct drm_info_list debugfs_list[] = {
+ 	{"ggtt", ggtt, 0},
+ 	{"register-save-restore", register_save_restore, 0},
+ 	{"workarounds", workarounds, 0},
++	{"fake_reset_failure", fake_reset_failure, 0},
+ };
+ 
+ void xe_gt_debugfs_register(struct xe_gt *gt)
+diff --git a/drivers/gpu/drm/xe/xe_gt_types.h b/drivers/gpu/drm/xe/xe_gt_types.h
+index 99ab7ec99ccd..0b6e1df3ca36 100644
+--- a/drivers/gpu/drm/xe/xe_gt_types.h
++++ b/drivers/gpu/drm/xe/xe_gt_types.h
+@@ -141,6 +141,11 @@ struct xe_gt {
+ 
+ 	/** @reset: state for GT resets */
+ 	struct {
++		/**
++		 * @fake_reset_failure_in_progress: A bool to indicate a fake reset
++		 * failure has been triggered
++		 */
++		bool fake_reset_failure_in_progress;
+ 		/**
+ 		 * @worker: work so GT resets can done async allowing to reset
+ 		 * code to safely flush all code paths
+-- 
+2.25.1
+
