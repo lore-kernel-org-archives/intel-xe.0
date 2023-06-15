@@ -4,134 +4,137 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 32ED4EB64D8
-	for <intel-xe@archiver.kernel.org>; Wed, 14 Jun 2023 23:36:15 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id F09E8EB64DB
+	for <intel-xe@archiver.kernel.org>; Thu, 15 Jun 2023 00:01:15 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D540B10E0E6;
-	Wed, 14 Jun 2023 23:36:14 +0000 (UTC)
-Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1231710E0CA
- for <intel-xe@lists.freedesktop.org>; Wed, 14 Jun 2023 23:36:11 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id BF2F410E0F1;
+	Thu, 15 Jun 2023 00:01:15 +0000 (UTC)
+Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5897910E0EC
+ for <intel-xe@lists.freedesktop.org>; Thu, 15 Jun 2023 00:01:13 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1686785772; x=1718321772;
+ t=1686787273; x=1718323273;
  h=date:from:to:cc:subject:message-id:references:
  in-reply-to:mime-version;
- bh=6wHh6aQU+MUhjDsTUsLLgowmq8+srmrZ3xEfSNJTu4k=;
- b=U8JiUdcsChTc9i2MGayetyqwCuN7S+2z43g4xN2Zi55XDQy17q9U2fhW
- L7RbMITa4SYr49AqfnFxLGLEvUkHjRWh0ovzS8gqvdNI4ZpGCicRTt/lL
- kWYjdAvmgI2jqdtlyTdhGNxd+Jxgyh+LYeUnfVgFnJrN40if/3h7eDZkp
- Gufi+PP0b/tEYFBtgq+E4BJRhNsS5xZ0W2ryDrI1e/+iRtbTpv9A4Ss6T
- 32uinJmrkw9eMsD/6D2doGqr5EZrcZImRDXaumCETntxr/3cFyjGjWuQu
- 1MF9xw6N6+XaK152HYrsv8zEwI1gFxO/HY2s/xei8NX/5sWdmNMg7GPrL g==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10741"; a="343460815"
-X-IronPort-AV: E=Sophos;i="6.00,243,1681196400"; d="scan'208";a="343460815"
-Received: from orsmga003.jf.intel.com ([10.7.209.27])
- by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 14 Jun 2023 16:36:10 -0700
+ bh=pI4Z7skDfCW8HdYDeFOqDbytYHfAs9NzVa4o3dmsejs=;
+ b=b3N7DdJNNyxVHGG6fCeIHR7N8f0Kp8+EwfgD8jXDNuGDlhqU2lv7eauV
+ cv95tdtb8ky9WmqZOGQKV/sAcdhbNH15vfNXYz82GlHGZpVa21Ig5ckbl
+ 5t1MWioRbWfDNrnhdYFB4Y8MBEs08q5rUZV1rbeIAmkG8cCbSAKEN0UZe
+ 7tilwCJN0Uf4CCHXZx1IvkSvTUxaRrBbvpUgwwV4C6G0n2NxUUjBI97Js
+ YA57RbZF7pCxNyoTL5XD1jU5KkKN8OuQvtfm3YDVb/1DNXetSPza4se+E
+ IUOBFaZXU5cFhJE15eIzA+ctvuaqge//g6nD3lttKx6k0nOdUbX0hTFk5 w==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10741"; a="424657497"
+X-IronPort-AV: E=Sophos;i="6.00,243,1681196400"; d="scan'208";a="424657497"
+Received: from orsmga006.jf.intel.com ([10.7.209.51])
+ by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 14 Jun 2023 17:01:11 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10741"; a="662573615"
-X-IronPort-AV: E=Sophos;i="6.00,243,1681196400"; d="scan'208";a="662573615"
+X-IronPort-AV: E=McAfee;i="6600,9927,10741"; a="689577088"
+X-IronPort-AV: E=Sophos;i="6.00,243,1681196400"; d="scan'208";a="689577088"
 Received: from fmsmsx602.amr.corp.intel.com ([10.18.126.82])
- by orsmga003.jf.intel.com with ESMTP; 14 Jun 2023 16:36:08 -0700
+ by orsmga006.jf.intel.com with ESMTP; 14 Jun 2023 17:01:11 -0700
 Received: from fmsmsx610.amr.corp.intel.com (10.18.126.90) by
  fmsmsx602.amr.corp.intel.com (10.18.126.82) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.23; Wed, 14 Jun 2023 16:36:07 -0700
-Received: from fmsedg601.ED.cps.intel.com (10.1.192.135) by
+ 15.1.2507.23; Wed, 14 Jun 2023 17:01:11 -0700
+Received: from fmsedg602.ED.cps.intel.com (10.1.192.136) by
  fmsmsx610.amr.corp.intel.com (10.18.126.90) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.23 via Frontend Transport; Wed, 14 Jun 2023 16:36:07 -0700
-Received: from NAM10-DM6-obe.outbound.protection.outlook.com (104.47.58.109)
- by edgegateway.intel.com (192.55.55.70) with Microsoft SMTP Server
+ 15.1.2507.23 via Frontend Transport; Wed, 14 Jun 2023 17:01:11 -0700
+Received: from NAM11-CO1-obe.outbound.protection.outlook.com (104.47.56.174)
+ by edgegateway.intel.com (192.55.55.71) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2507.23; Wed, 14 Jun 2023 16:36:07 -0700
+ 15.1.2507.23; Wed, 14 Jun 2023 17:01:11 -0700
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=EmQZ2O9kFTtrp6FWqqTIw/tZZOrFXVxaVFCuzwVIze0igcljXjP4h9adpt9ELGYQojK70ZcPqeK3Tjeb8pygwNcljZo7uTcQqQikDFc+tTSzaX4+8e+Nxb8DQRdMRn4wn9Zcv1+bWICF1qDkAT67KMm3V3Avf1pKx+tSBhmGzJFoy2qVXOLKx6yYhlSUyu3Tpxjlxa7UH6x8Ns6hlY7oQwh8a7tLzKlpDklV6ZZceFZgapd1Lw9+bmkOX5ARTUo40Vzq1BQvTTZ9atslhWg9x+bAkb63FAx8LYwb3u+2xm53qDAs+3gpmhPlZCbzENF8H672uQK+tJY0IJEn14nN0g==
+ b=bRchZlNg7e2jQ5OJtuz8GX6tv4YdiXyT/E1rZFINtqog7uUcgEMhu2+s+QyEJQRjZPTHYitQHfAaZ3g09a/5d5ThGyzBZNXoPooOidkeVHqGhLpkO03Cy5iEFm82rZjbWFuExL9dg9JZ1SR6FeTBQ+EeFt0DOmSNM+bLqB6MQo9eMofrhpN8f9nGpgdCUSApEQMW7azRu+t2y3xuJi1AS0rTAE+DhJNhbSBO+OkrubV02yGFVfbMxGA7a993WLaZ7YEP9dUaI0WgCvFrqZb0Ch4MSCsZHmPThAN9TN9xuBSOqt4yu9BNI4zXzZc3ghkHVIAO4bff5D3SHybF7fX7rA==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=iNqvJbqeJ/rrBGLjyQDpAxG+hD5mZ+P548rAUIn06Lo=;
- b=U0r3c7sLMMcih0gxe4eBtIWBclc1vjiDvDVElXDAz9Qx4YSKUBvqv65HIBveF5SpNtSo75r6P7/WTtyh259uaBYup1A4QXO5azj9JLhdqG4kQDRoe/ivTKVJCLIe3VniQ5luD8bovb+U6BTcsAnm8x1WKclMzYNva6UbxmUOLTQ8NM55/76zajZACGGTNQdMjG0o84X0JdJRP1wWyIEwIwixRED3dgIZl6lECjMsMkvLYcsHk9873yC4L0V2mguRVtj0ZbtT+LyC3ScWogEjvl4HA1fDO++5jTAP4QSPIru2sGGqoBLNDVXWcSCjFcVZshr+0i58FWz5ubr9rM4x4Q==
+ bh=23+wM9oM6MVS9EMs4+P7c5dqYyk7aI28TPAqSzfwudM=;
+ b=P4NQ0fvSZ3zfYnH1lfPUctQLinLnFKB4CrIQ//DW80aZpveZk4kfSuPLyQXsJz3awaAn4uZgH/y7aBTMQ6bGB15m4A239PqYvgC4wPdmDFe8V+51w6whgO8aQJ+VDasQLx4Vl1M7ch20Ec63vZ9DVG6gsoLv0U8QQFSy8rLPJUhZ/SkvrPMLlxmEbGOXgm0CnC/5xzhhtgKXeukBEibEfKn4tYZQ4GapEuqB+1Y74cL5qN7Bu3NLz5Djnrwl1gC7YX0hXH0KFIAqxaL3ExHKrK5fY6QiDEzVaAKQI3gdjIe3O8RkfZaCep1SzgA3bm/L5i1+NjSJUBC9AwUH0yBEhA==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
  dkim=pass header.d=intel.com; arc=none
 Authentication-Results: dkim=none (message not signed)
  header.d=none;dmarc=none action=none header.from=intel.com;
 Received: from DS7PR11MB7859.namprd11.prod.outlook.com (2603:10b6:8:da::22) by
- SN7PR11MB7539.namprd11.prod.outlook.com (2603:10b6:806:343::6) with
- Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.6477.37; Wed, 14 Jun 2023 23:36:05 +0000
+ PH8PR11MB8287.namprd11.prod.outlook.com (2603:10b6:510:1c7::14) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6477.29; Thu, 15 Jun
+ 2023 00:01:09 +0000
 Received: from DS7PR11MB7859.namprd11.prod.outlook.com
  ([fe80::9f98:8f3c:a608:8396]) by DS7PR11MB7859.namprd11.prod.outlook.com
- ([fe80::9f98:8f3c:a608:8396%6]) with mapi id 15.20.6455.043; Wed, 14 Jun 2023
- 23:36:04 +0000
-Date: Wed, 14 Jun 2023 16:36:01 -0700
+ ([fe80::9f98:8f3c:a608:8396%6]) with mapi id 15.20.6455.043; Thu, 15 Jun 2023
+ 00:01:08 +0000
+Date: Wed, 14 Jun 2023 17:01:05 -0700
 From: Matt Roper <matthew.d.roper@intel.com>
-To: Ofir Bitton <obitton@habana.ai>
-Message-ID: <20230614233601.GT5433@mdroper-desk1.amr.corp.intel.com>
-References: <20230601000403.432517-1-matthew.d.roper@intel.com>
- <20230601000403.432517-3-matthew.d.roper@intel.com>
- <64f52aee-6d7e-1ed2-62de-53e8d028dd04@habana.ai>
+To: Francois Dugast <francois.dugast@intel.com>
+Message-ID: <20230615000105.GU5433@mdroper-desk1.amr.corp.intel.com>
+References: <20230602142501.6-1-francois.dugast@intel.com>
+ <20230602142501.6-2-francois.dugast@intel.com>
+ <qcsuilqdccvku4qoa36a5m3mhdr75akwpba77oisjk6e4kvkrm@6u5tr3dfmf5v>
+ <ZIdIfdiClQ60fZSI@fdugast-desk.home>
 Content-Type: text/plain; charset="us-ascii"
 Content-Disposition: inline
-In-Reply-To: <64f52aee-6d7e-1ed2-62de-53e8d028dd04@habana.ai>
-X-ClientProxiedBy: BYAPR07CA0029.namprd07.prod.outlook.com
- (2603:10b6:a02:bc::42) To DS7PR11MB7859.namprd11.prod.outlook.com
+In-Reply-To: <ZIdIfdiClQ60fZSI@fdugast-desk.home>
+X-ClientProxiedBy: BY5PR17CA0020.namprd17.prod.outlook.com
+ (2603:10b6:a03:1b8::33) To DS7PR11MB7859.namprd11.prod.outlook.com
  (2603:10b6:8:da::22)
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: DS7PR11MB7859:EE_|SN7PR11MB7539:EE_
-X-MS-Office365-Filtering-Correlation-Id: f328036c-9e81-4622-2bb7-08db6d301e5f
+X-MS-TrafficTypeDiagnostic: DS7PR11MB7859:EE_|PH8PR11MB8287:EE_
+X-MS-Office365-Filtering-Correlation-Id: 97aea737-9f9c-4e74-5cdd-08db6d339ef1
+X-LD-Processed: 46c98d88-e344-4ed4-8496-4ed7712e255d,ExtAddr
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: 46h2A1y+Kp4MVeWTwlBPssJA94rugrdy2guamoF8hQb0aqBuAiZPnviQbTNZUpQ6w81nIPqYkcgQlQV4lYJiMopoq94pnawsOm3eON+52Z704WJZXppsTUl2hE2WfrodNRZFV6rxtN9zTKYIMv0LOU31ttLg/q4d7hop8Y3atc1gUSoSMPJjSOBSP5bXsTLK7YyeiAWamOLYK2pZ2KdYOurq9SMJS14/rewoMTQDHGUzMCEbpjnhoLsgfviK1AzFkM4rTRbA0/TN16vYj6ZlrFQcOh5Mp/DDexJ5HPOvKSmH9WaPm7soXFP7bXdDtZVWLUnN7182Odstnbr06byoTkt1+FrHz/uEWwPOu1VGT9i9vLas4YsQ+wP7KXnlJOagnXn74G5a2mI5VYcTM/Qa5hAS+HugF8F211KD6vliK6TyQ7d60FE3ixkyHa5aThWpvzR8CWiNNrj9fVDYv5SkQGcovOkNb7hOvpLLoDcDrgnTNEl8vfHzUibPmEV986DnnOPDMb22wC4kH3mqDnUmKVUtow3Ad3BXz71UIFDaNXTqxw4UHdXIQzHDHVLBh7bt
+X-Microsoft-Antispam-Message-Info: PIDGeZgqwtkj61JqEU5rhbLcD2GTMVdqnKmLR4+2VW587xBcvb3eVvp0wFRxqmOuIpre316MxqxmReIX/Kb5qikZ7HF+gFcg1AVL7Pk38tzbCXPpRkLd7H1oEbk++9cOcq1W1ursaDi1/6YoUQBUjnAO8hjHawpwYXtkGHuXSWKWHdIpJhmau6SL7Z8gM2M2nm6LLuSYjUjycNRwFQIjBNCCA/G4vLqeoGozB8abCqYaaXHLKU+onE/ARkof80/D4y280PRolahudFZZuzI2Gw547aswvjbJHCwQDKIqbh1onDURB9fvYW8MjYXKSKqJu3YUCxvo6mmCoJESnA1ktjJtl76mTGiVGsOpcZjbD12aBKcdJqRHWRckDfsCqvZOgkZOPnI6UTHip2THFT90385+U/B9Y/mTHuc8J5hwSMkNEsTNpxZpL1snOrmLcNDzDJ0LhUZGejqmF7Jx8XT4gcK9lvuORPi1dDxKJ4nwbv55ZbSY5w6PDKhGpVaz5Hx+TLygWkj65gk4TnWO5Xw7cKPI4lTHgbpapas5A6mgI3jbBoGjfE0p8qhuFIXLwO5w
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
  IPV:NLI; SFV:NSPM; H:DS7PR11MB7859.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230028)(396003)(346002)(376002)(39860400002)(366004)(136003)(451199021)(8936002)(6486002)(26005)(8676002)(6512007)(41300700001)(38100700002)(478600001)(82960400001)(66946007)(6916009)(4326008)(66556008)(66476007)(86362001)(1076003)(316002)(54906003)(33656002)(6666004)(53546011)(6506007)(30864003)(5660300002)(83380400001)(186003)(107886003)(2906002);
+ SFS:(13230028)(376002)(346002)(396003)(366004)(136003)(39860400002)(451199021)(6666004)(66556008)(66946007)(316002)(6636002)(66476007)(4326008)(478600001)(33656002)(86362001)(6506007)(186003)(6512007)(1076003)(26005)(83380400001)(8676002)(41300700001)(5660300002)(8936002)(6862004)(2906002)(6486002)(82960400001)(38100700002);
  DIR:OUT; SFP:1102; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?bsMuhmi/5Omz9A5A1zEnuWJ1Jo6tW1zQv486tH4nKryWIr9shWbzhshKPM46?=
- =?us-ascii?Q?oKY2Dk5SymeUG5LQR64mtpVGqnbxKAbWtxsPLHfrLRR8xErnnrnAp4pCKo7g?=
- =?us-ascii?Q?RfQ5vYqpXPJJcDZnY0HS/hKjIt2K1lDYzUdCyDqrvh2jnWpEBR3UP1ur3e8c?=
- =?us-ascii?Q?GfSKmkVqG58R1JlaP4hIR88mAWBxOPlA65qa6Ej1KNS0lrZtyyR96SNYPaSG?=
- =?us-ascii?Q?rv+rlKRWcniuSnb2kvyPE3eKapJnG2TEjYCoYMUvjAlLCUaotWbzBS/sN7Dy?=
- =?us-ascii?Q?c6GNEXEfktwL6Vc7iu8Uu4T2QTb0utj4iH51m3Dd1frmMpN5XbQ5aTr74rDo?=
- =?us-ascii?Q?bbJY50GsXtdRknGdXhyYzw7MN+UgSgL82+7nlDoLDRstJfjWANUpMcqEO23E?=
- =?us-ascii?Q?iTByOja1UfBojkXYHnlMeLLz/XhoKhce9DZpFlPOzGRh/9LHbmNYcayXe1hL?=
- =?us-ascii?Q?e/U4oi8omo8NSTkA+YjCjqN/I70ftLmRXRdCOZAXyo0yf8XMvVAGGVEZLFR3?=
- =?us-ascii?Q?oF0HsGsFTyT8Qc8XmYfZ2mOxJ3m+1M70Hrylr+orKsgpyUKFAj2KKRd13eUb?=
- =?us-ascii?Q?1iGnbzMs1Qy/AzOLfyIwSThsSdgYcuUVEJmi19osgof8y01F68WyAZfl3i6S?=
- =?us-ascii?Q?uIpoOx7bX2txHHQjjlhweuWtOoHKKrUIZgWr+JG9ee8sjBZE+gO4wEG5aGxO?=
- =?us-ascii?Q?t+kVIXdc8XtnBBxymyvuHaOniGCeg/yyaB5pcmhAxPACPoFwSbKqSlXUPLMV?=
- =?us-ascii?Q?GHzRZaco5ClOX4ZLS11BS4e6exv1Ib4pxyKmMYigaKciFOOL4OW4eIYqLCyc?=
- =?us-ascii?Q?5fOCUd08Yjmprg9q/J3TBu/64FFmcDBJbaUED/M7RVsAZvfSNZ4ihzzE2Trp?=
- =?us-ascii?Q?oCxjEgmEu2st3ULj27HGCyazqxn16Bijj4C6YUh9t6GgNCRChpDXwZtSCIYl?=
- =?us-ascii?Q?EC0zkxcmlOTGtViUv1zK71ZkAbkCaO668tb0j3S767kmghxM7tGvlySNSCWT?=
- =?us-ascii?Q?X8i5Ym9FR7qxpZy3JKFq/A2adZDEjfaHYuuWN1XjcpJE5gDAgnd7inNMIBXN?=
- =?us-ascii?Q?qewdMYf3U96nDWA3MiITVRF+C85gSe3Frue6wNdl8MxiG3MCblXRc+xRcmDd?=
- =?us-ascii?Q?BrqIFXicjZ5ueqR9z7XTGVjEqeqbdT+iBW6Jez9Mmc2UwS30AkOwzMgarNS7?=
- =?us-ascii?Q?imcaexkDtFIH3cwlXnA6Gysh8AxLgpehOKrTgMnFJtASL6nlaaKZ9qJB5W50?=
- =?us-ascii?Q?olJBcThVEEWO0FBi2rFKoZRW7WYOd50Qc/42gVVdgyqscsTdeFOYxnD0oCc9?=
- =?us-ascii?Q?SJFLK5LD1cf5qA/Loo8oXorEgdSG90pBsadC6GCZqmVuGD8ATrBMdP1lPqxu?=
- =?us-ascii?Q?AIZI5oHAufQD83IP4FszmQUlPp9cLXA9GJcLEJTBczszRX8dfumGJ7AO0z4p?=
- =?us-ascii?Q?GOaZfbJbS9ivM61gGTR/3VdSdR8kvy4Zy7+63+7asl3IrcDQtx7SeKxFXk7j?=
- =?us-ascii?Q?uE3iegnyhPUL//yfAlp4DXqwr6vaV+Im4dNos5SAnEofZ4t1wEtZCp4svH6q?=
- =?us-ascii?Q?VBpG8ocPoLvioM2ViOFI6BV7joH49MkwT6cQVnCCUCp03cd1qwU4aP0p4FaM?=
- =?us-ascii?Q?Lg=3D=3D?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: f328036c-9e81-4622-2bb7-08db6d301e5f
+X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?ffRJ/wvkgMXwjZvyx2Gg2vi5O9kNwbjJvJmp5nNri5ejQJCO0ZN4MExlNTwo?=
+ =?us-ascii?Q?EzAtknagL21Uj+KLA6S7xQctdXs7Kj7dJAxw1u9LnbGRkmflpgFYlgHGkiQC?=
+ =?us-ascii?Q?fyf6s5EOaBlHuO2Atq7+V6Sfuxroniyzsu1lrn4VDJGMv4Ar8e5tkRvi0RCl?=
+ =?us-ascii?Q?s3clpzXJddYHK3C9H85JoGwYy5pj8+p41c/EUdt/BJO38u/G/cbdZ9EtbH7o?=
+ =?us-ascii?Q?Kw5r6seiQM/ZYA7tYp7UTrXL0yksmj2OSP7J9jOgmrOXTpHzOmpcd48AUGy7?=
+ =?us-ascii?Q?EKWVPJ0xP130mG6eC6ELi3CUB6qdlzrgR+1J3L0oZfCsH/TLAK7CnZV+RBwZ?=
+ =?us-ascii?Q?ExXFJlpEcpdX8IWqeuvEHtr8i33vJuDH4aCXMihfcdI2t7Q0/XBhsc3Ve+aY?=
+ =?us-ascii?Q?4O3/LdUxraRJ4iyqk1ZGLlKhfouLiVWv1pBGvFebLipxCVe2q7Pl5nnUbIqC?=
+ =?us-ascii?Q?Ej7aVyER63dN5/hwQwdeLNiRv8WNZ4lfGEGvFeVqQgMx5CBuyTKRx/I3/YGJ?=
+ =?us-ascii?Q?sOyZsEJAVtLRtEPHZm63r3Taws7MDE6MtnaW28nGJkC8vCL0k+Oft/F5On5f?=
+ =?us-ascii?Q?opxHhHT4rfwmMiP6gIkfLsivhVGqesxDM8k4NcLeuvFTPoqlt9qHUbEzTaHc?=
+ =?us-ascii?Q?Y14IHqGimyeX9BzqJ83n1cxapy5qSwXMhjk6wQWqKKNkpBXlxZzzu2BjUgU8?=
+ =?us-ascii?Q?8oEhKvAI91dq2lxY+pfGhGKZS+qXSsKg9+W8CShv2l0SewIHX2mkE7XUWVOl?=
+ =?us-ascii?Q?badRuSVL6C9Ffp41YMWG9Wx39kD6S0obv/aOXNOEHfV6fOgPyRix6WM5c7Yy?=
+ =?us-ascii?Q?DQZpL8IO68tFO2Xw6C6ZC3up0ec+pZuQs1qHFIejUms7OqPFvfHnx8+a8QTa?=
+ =?us-ascii?Q?TBaQ4/52CgXwUFMHLkYIyAJ4soNTnQu2uHF3TVrWz68Te3br7qmlbLjzm5r3?=
+ =?us-ascii?Q?Xc9Iey94IzSWq5JiIQir4PRxC1RjUtNDkdL+syYyAjX0rY4T/DLVO5inqNkk?=
+ =?us-ascii?Q?S9UOA2EU0BJklqMAlapyuLKzRQvYjlwz7ddGxSUPvNkvUsS+BM6r/acTnri4?=
+ =?us-ascii?Q?w33c337TCJP9gdVKvoO/MRAOFlOEWKDPHBC4QeLbVLw5XU6mT3D5L3kYh2fB?=
+ =?us-ascii?Q?8nxjw5TV7o4AFs1qN/67I61+m9CUAS0xJu5FiFIV0+Ofk1jHusUrT8emXUr9?=
+ =?us-ascii?Q?Dh5m2oKiNtcnxC8HoKfYlxYUTmMIthNLRbPrzf44QtWBTK3sYfNXTn6fxH0H?=
+ =?us-ascii?Q?17UrfWNAEwjpd04HUmZjGP9xZ5iruzHjRxs3VTR6tc9w2adse7GDo1dBxVYV?=
+ =?us-ascii?Q?tA32Haox8ukkZ7xnm0A7KOtx5ojM+HqUFKuzcSM/R8jo7a3KlNTctl70iz0m?=
+ =?us-ascii?Q?uTd1xIn820o1qQNTzxHcCcX2gGaR4zg7YdSF8I8a5gKjMtSJndYGhZFlyqsE?=
+ =?us-ascii?Q?z4UkflfliQe/UpDl+7yj4OPP9uAMConzYBDn6S+P9qaCTwUOgTpjWAAyL9Qq?=
+ =?us-ascii?Q?R6UzOALSowxSVcKwYN2L1VHS0qMNHAZU1ZYnK0uEja8W/gf19AunXNNkhrwE?=
+ =?us-ascii?Q?gR9QTetYAZ2UBxd7V3zaokHlpd4/G0rcUmXDoqXztLLAOPqMmWW+psm7PeaM?=
+ =?us-ascii?Q?Dg=3D=3D?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: 97aea737-9f9c-4e74-5cdd-08db6d339ef1
 X-MS-Exchange-CrossTenant-AuthSource: DS7PR11MB7859.namprd11.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 14 Jun 2023 23:36:04.0873 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 15 Jun 2023 00:01:08.2766 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: HbziD7eWEc709iy8H/NxoDIyg+PfiClHfBExlxyc9qj8NvhtQcMcTQCfHCkms5vOlGz27bxZR2MCVF4j3qK35n8cFAUo/191HWfepHTMx1c=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SN7PR11MB7539
+X-MS-Exchange-CrossTenant-UserPrincipalName: DHA44WOlj8i0054TJY8X5+wXdXL8JCfSmTuu7bY9+Go05rQwmzhGovf9sqFOdgj2waZXFPdUsmx6IYGkhFRLioEgXI5L4LCbygpzFw3i4ok=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH8PR11MB8287
 X-OriginatorOrg: intel.com
-Subject: Re: [Intel-xe] [PATCH v4 02/31] drm/xe: Introduce xe_tile
+Subject: Re: [Intel-xe] [RFC PATCH 1/1] drm/xe: Introduce function pointers
+ for MMIO functions
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -143,385 +146,278 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Cc: "De Marchi, Lucas" <lucas.demarchi@intel.com>,
- "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>
+Cc: ofir1.bitton@intel.com, ohadshar@intel.com,
+ Lucas De Marchi <lucas.demarchi@intel.com>, intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Tue, Jun 13, 2023 at 10:41:04AM -0700, Ofir Bitton wrote:
-> Hey, sorry for jumping in so late, few comments, not a must, we can
-> refactor this later.
+On Mon, Jun 12, 2023 at 06:31:57PM +0200, Francois Dugast wrote:
+> On Thu, Jun 08, 2023 at 10:35:29AM -0700, Lucas De Marchi wrote:
+> > On Fri, Jun 02, 2023 at 02:25:01PM +0000, Francois Dugast wrote:
+> > > A local structure of function pointers is used as a minimal hardware
+> > > abstraction layer to prepare for platform independent MMIO calls.
+> > > 
+> > > Cc: Oded Gabbay <ogabbay@kernel.org>
+> > > Cc: Ofir Bitton <ofir1.bitton@intel.com>
+> > > Cc: Ohad Sharabi <ohadshar@intel.com>
+> > > Signed-off-by: Francois Dugast <francois.dugast@intel.com>
+> > > ---
+> > > drivers/gpu/drm/xe/xe_device_types.h |  3 ++
+> > > drivers/gpu/drm/xe/xe_mmio.c         | 81 ++++++++++++++++++++++++++++
+> > > drivers/gpu/drm/xe/xe_mmio.h         | 35 ++++++------
+> > > 3 files changed, 99 insertions(+), 20 deletions(-)
+> > > 
+> > > diff --git a/drivers/gpu/drm/xe/xe_device_types.h b/drivers/gpu/drm/xe/xe_device_types.h
+> > > index 17b6b1cc5adb..3f8fd0d8129b 100644
+> > > --- a/drivers/gpu/drm/xe/xe_device_types.h
+> > > +++ b/drivers/gpu/drm/xe/xe_device_types.h
+> > > @@ -378,6 +378,9 @@ struct xe_device {
+> > > 	/** @d3cold_allowed: Indicates if d3cold is a valid device state */
+> > > 	bool d3cold_allowed;
+> > > 
+> > > +	/** @mmio_funcs: function pointers for MMIO related functions */
+> > > +	const struct xe_mmio_funcs *mmio_funcs;
+> > > +
+> > > 	/* private: */
+> > > 
+> > > #if IS_ENABLED(CONFIG_DRM_XE_DISPLAY)
+> > > diff --git a/drivers/gpu/drm/xe/xe_mmio.c b/drivers/gpu/drm/xe/xe_mmio.c
+> > > index 475b14fe4356..f3d08676a77a 100644
+> > > --- a/drivers/gpu/drm/xe/xe_mmio.c
+> > > +++ b/drivers/gpu/drm/xe/xe_mmio.c
+> > > @@ -25,6 +25,62 @@
+> > > 
+> > > #define BAR_SIZE_SHIFT 20
+> > > 
+> > > +static void xe_mmio_write32_device(struct xe_gt *gt,
+> > > +				   struct xe_reg reg, u32 val);
+> > > +static u32 xe_mmio_read32_device(struct xe_gt *gt, struct xe_reg reg);
+> > > +static void xe_mmio_write64_device(struct xe_gt *gt,
+> > > +				   struct xe_reg reg, u64 val);
+> > > +static u64 xe_mmio_read64_device(struct xe_gt *gt, struct xe_reg reg);
+> > > +
+> > > +static const struct xe_mmio_funcs xe_mmio_funcs_device = {
+> > > +	.write32 = xe_mmio_write32_device,
+> > > +	.read32 = xe_mmio_read32_device,
+> > > +	.write64 = xe_mmio_write64_device,
+> > > +	.read64 = xe_mmio_read64_device,
+> > > +};
+> > > +
+> > > +static inline void xe_mmio_write32_device(struct xe_gt *gt,
+> > > +				   struct xe_reg reg, u32 val)
+> > > +{
+> > > +	struct xe_tile *tile = gt_to_tile(gt);
+> > > +
+> > > +	if (reg.addr < gt->mmio.adj_limit)
+> > > +		reg.addr += gt->mmio.adj_offset;
+> > > +
+> > > +	writel(val, tile->mmio.regs + reg.addr);
+> > > +}
+> > > +
+> > > +static inline u32 xe_mmio_read32_device(struct xe_gt *gt, struct xe_reg reg)
+> > > +{
+> > > +	struct xe_tile *tile = gt_to_tile(gt);
+> > > +
+> > > +	if (reg.addr < gt->mmio.adj_limit)
+> > > +		reg.addr += gt->mmio.adj_offset;
+> > > +
+> > > +	return readl(tile->mmio.regs + reg.addr);
+> > > +}
+> > > +
+> > > +static inline void xe_mmio_write64_device(struct xe_gt *gt,
+> > > +				   struct xe_reg reg, u64 val)
+> > > +{
+> > > +	struct xe_tile *tile = gt_to_tile(gt);
+> > > +
+> > > +	if (reg.addr < gt->mmio.adj_limit)
+> > > +		reg.addr += gt->mmio.adj_offset;
+> > > +
+> > > +	writeq(val, tile->mmio.regs + reg.addr);
+> > > +}
+> > > +
+> > > +static inline u64 xe_mmio_read64_device(struct xe_gt *gt, struct xe_reg reg)
+> > > +{
+> > > +	struct xe_tile *tile = gt_to_tile(gt);
+> > > +
+> > > +	if (reg.addr < gt->mmio.adj_limit)
+> > > +		reg.addr += gt->mmio.adj_offset;
+> > > +
+> > > +	return readq(tile->mmio.regs + reg.addr);
+> > > +}
+> > > +
+> > > static int xe_set_dma_info(struct xe_device *xe)
+> > > {
+> > > 	unsigned int mask_size = xe->info.dma_mask_size;
+> > > @@ -377,6 +433,29 @@ static void mmio_fini(struct drm_device *drm, void *arg)
+> > > 		iounmap(xe->mem.vram.mapping);
+> > > }
+> > > 
+> > > +static void xe_mmio_set_funcs(struct xe_device *xe)
+> > > +{
+> > > +	/* For now all platforms use the set of MMIO functions for a
+> > > +	 * physical device.
+> > > +	 */
+> > 
+> > 
+> > what is "device" in this context? that seems confusing as we always ever
+> > just support reading/writing to a real device (physical here may also
+> > add to the confusion when thinking about SR-IOV and VFs).
+> > We shouldn't add abstractions that are then never used and all platforms
+> > end up using the same. Unless it's a preparation for a follow up series
+> > adding the different handling.
 > 
-> On 01/06/2023 3:03, Matt Roper wrote:
-> > Create a new xe_tile structure to begin separating the concept of "tile"
-> > from "GT."  A tile is effectively a complete GPU, and a GT is just one
-> > part of that.  On platforms like MTL, there's only a single full GPU
-> > (tile) which has its IP blocks provided by two GTs.  In contrast, a
-> > "multi-tile" platform like PVC is basically multiple complete GPUs
-> > packed behind a single PCI device.
-> >
-> > For now, just create xe_tile as a simple wrapper around xe_gt.  The
-> > items in xe_gt that are truly tied to the tile rather than the GT will
-> > be moved in future patches.  Support for multiple GTs per tile (i.e.,
-> > the MTL standalone media case) will also be re-introduced in a future
-> > patch.
-> >
-> > v2:
-> >   - Fix kunit test build
-> >   - Move hunk from next patch to use local tile variable rather than
-> >     direct xe->tiles[id] accesses.  (Lucas)
-> >   - Mention compute in kerneldoc.  (Rodrigo)
-> >
-> > Reviewed-by: Lucas De Marchi <lucas.demarchi@intel.com>
-> > Signed-off-by: Matt Roper <matthew.d.roper@intel.com>
-> > ---
-> >   drivers/gpu/drm/xe/tests/xe_bo.c       |  2 +-
-> >   drivers/gpu/drm/xe/tests/xe_rtp_test.c |  6 ++--
-> >   drivers/gpu/drm/xe/xe_device.h         | 11 +++++--
-> >   drivers/gpu/drm/xe/xe_device_types.h   | 40 ++++++++++++++++++++++++--
-> >   drivers/gpu/drm/xe/xe_gt_types.h       | 15 ++++++----
-> >   drivers/gpu/drm/xe/xe_mmio.c           | 13 +++++----
-> >   drivers/gpu/drm/xe/xe_pci.c            |  7 ++++-
-> >   drivers/gpu/drm/xe/xe_vm.c             |  2 +-
-> >   drivers/gpu/drm/xe/xe_vm_types.h       |  8 +++---
-> >   9 files changed, 78 insertions(+), 26 deletions(-)
-> >
-> > diff --git a/drivers/gpu/drm/xe/tests/xe_bo.c b/drivers/gpu/drm/xe/tests/xe_bo.c
-> > index 9bd381e5b7a6..6075f12a1962 100644
-> > --- a/drivers/gpu/drm/xe/tests/xe_bo.c
-> > +++ b/drivers/gpu/drm/xe/tests/xe_bo.c
-> > @@ -174,7 +174,7 @@ static int evict_test_run_gt(struct xe_device *xe, struct xe_gt *gt, struct kuni
-> >       struct xe_bo *bo, *external;
-> >       unsigned int bo_flags = XE_BO_CREATE_USER_BIT |
-> >               XE_BO_CREATE_VRAM_IF_DGFX(gt);
-> > -     struct xe_vm *vm = xe_migrate_get_vm(xe->gt[0].migrate);
-> > +     struct xe_vm *vm = xe_migrate_get_vm(xe_device_get_root_tile(xe)->primary_gt.migrate);
-> >       struct ww_acquire_ctx ww;
-> >       int err, i;
-> >
-> > diff --git a/drivers/gpu/drm/xe/tests/xe_rtp_test.c b/drivers/gpu/drm/xe/tests/xe_rtp_test.c
-> > index ab6f7a47db50..45f2614f91ec 100644
-> > --- a/drivers/gpu/drm/xe/tests/xe_rtp_test.c
-> > +++ b/drivers/gpu/drm/xe/tests/xe_rtp_test.c
-> > @@ -13,6 +13,7 @@
-> >
-> >   #include "regs/xe_gt_regs.h"
-> >   #include "regs/xe_reg_defs.h"
-> > +#include "xe_device.h"
-> >   #include "xe_device_types.h"
-> >   #include "xe_pci_test.h"
-> >   #include "xe_reg_sr.h"
-> > @@ -236,9 +237,10 @@ static void xe_rtp_process_tests(struct kunit *test)
-> >   {
-> >       const struct rtp_test_case *param = test->param_value;
-> >       struct xe_device *xe = test->priv;
-> > -     struct xe_reg_sr *reg_sr = &xe->gt[0].reg_sr;
-> > +     struct xe_gt *gt = &xe_device_get_root_tile(xe)->primary_gt;
-> > +     struct xe_reg_sr *reg_sr = &gt->reg_sr;
-> >       const struct xe_reg_sr_entry *sre, *sr_entry = NULL;
-> > -     struct xe_rtp_process_ctx ctx = XE_RTP_PROCESS_CTX_INITIALIZER(&xe->gt[0]);
-> > +     struct xe_rtp_process_ctx ctx = XE_RTP_PROCESS_CTX_INITIALIZER(gt);
-> >       unsigned long idx, count = 0;
-> >
-> >       xe_reg_sr_init(reg_sr, "xe_rtp_tests", xe);
-> > diff --git a/drivers/gpu/drm/xe/xe_device.h b/drivers/gpu/drm/xe/xe_device.h
-> > index cbae480a2092..f7acaf51a1fc 100644
-> > --- a/drivers/gpu/drm/xe/xe_device.h
-> > +++ b/drivers/gpu/drm/xe/xe_device.h
-> > @@ -48,12 +48,17 @@ static inline struct xe_file *to_xe_file(const struct drm_file *file)
-> >       return file->driver_priv;
-> >   }
-> >
-> > +static inline struct xe_tile *xe_device_get_root_tile(struct xe_device *xe)
-> > +{
-> > +     return &xe->tiles[0];
-> > +}
-> > +
-> >   static inline struct xe_gt *xe_device_get_gt(struct xe_device *xe, u8 gt_id)
-> >   {
-> >       struct xe_gt *gt;
-> >
-> > -     XE_BUG_ON(gt_id > XE_MAX_GT);
-> > -     gt = xe->gt + gt_id;
-> > +     XE_BUG_ON(gt_id > XE_MAX_TILES_PER_DEVICE);
-> 
-> Wouldn't it be robust to check (gt_id > xe->info.tile_count) ?
+> For now "device" is meant as "in opposition to simulator" but I agree
+> we can find a better name. Existing platforms all use the same
+> implementation but this is preparation for platforms that require a
+> different implementation.
 
-This code changes a bit later on in the series, although it's still
-using build-time constants at the end.  Your suggestion of using runtime
-counts (tile_count and/or gt_count) is valid as a follow-up, although
-the handling of those counts, as well as how IDs get assigned is an area
-where we're still expecting further changes once we settle on exactly
-how we want to expose tiles and GTs through the uapi.  There's a good
-chance that we won't even be looking up GTs with device-wide IDs anymore
-once the uapi changes are in place.
-
-> 
-> > +     gt = &xe->tiles[gt_id].primary_gt;
-> >       XE_BUG_ON(gt->info.id != gt_id);
-> >       XE_BUG_ON(gt->info.type == XE_GT_TYPE_UNINITIALIZED);
-> >
-> > @@ -65,7 +70,7 @@ static inline struct xe_gt *xe_device_get_gt(struct xe_device *xe, u8 gt_id)
-> >    */
-> >   static inline struct xe_gt *to_gt(struct xe_device *xe)
-> >   {
-> > -     return xe->gt;
-> > +     return &xe_device_get_root_tile(xe)->primary_gt;
-> >   }
-> >
-> >   static inline bool xe_device_guc_submission_enabled(struct xe_device *xe)
-> > diff --git a/drivers/gpu/drm/xe/xe_device_types.h b/drivers/gpu/drm/xe/xe_device_types.h
-> > index 51c16d207780..396ee281e499 100644
-> > --- a/drivers/gpu/drm/xe/xe_device_types.h
-> > +++ b/drivers/gpu/drm/xe/xe_device_types.h
-> > @@ -35,7 +35,7 @@
-> >
-> >   #define XE_GT0              0
-> >   #define XE_GT1              1
-> > -#define XE_MAX_GT    (XE_GT1 + 1)
-> > +#define XE_MAX_TILES_PER_DEVICE      (XE_GT1 + 1)
-> 
-> This define will change each time we increase tile count.
-> I suggest removing this define and use dynamic allocations everywhere
-> according to 'tile_count.
-> Another (worst) option is to use some higher maximum (32?) and
-> initialize only the relevant elements in each array that uses this define.
-
-These defines are driver internal defines; they aren't used anywhere in
-the uapi, so having them change occasionally when a new platform shows
-up that breaks the old limits is normal and expected; there's no problem
-with that.  We could change various internal arrays of constant size to
-be dynamically allocated at runtime, but that's a sizeable design and
-behavior change to the driver that's orthogonal to the GT vs tile
-refactor, so this series wouldn't have been the place to make a change
-like that.
-
-However we do need to make XE_MAX_TILES_PER_DEVICE just a direct define
-as '2' since that's exactly what we want for now; it shouldn't be based
-on those "GT" defines anymore (which themselves should either be changed
-to something like XE_GT_PRIMARY / XE_GT_MEDIA or removed entirely).
-I'll send a patch or two to clean those up when I get some free time.
+I agree with Lucas that this doesn't really seem to be a good candidate
+for a vtable; every platform uses exactly the same logic and I can't
+really envision how/why this would need to change for future platforms
+either, so this seems to just be adding unnecessary complexity.
+Registers being accessed at some offset into a PCI BAR isn't likely to
+change going forward.  On future platforms it's more likely that we'd
+need changes to the part of the code that maps the MMIO BAR rather than
+the code that reads/writes an offset into a mapping that's already been
+setup.
 
 > 
-> >
-> >   #define XE_MAX_ASID (BIT(20))
-> >
-> > @@ -49,6 +49,40 @@
-> >        (_xe)->info.step.graphics >= (min_step) &&                     \
-> >        (_xe)->info.step.graphics < (max_step))
-> >
-> > +#define tile_to_xe(tile__)                                                           \
-> > +     _Generic(tile__,                                                                \
-> > +              const struct xe_tile *: (const struct xe_device *)((tile__)->xe),      \
-> > +              struct xe_tile *: (tile__)->xe)
-> > +
-> > +/**
-> > + * struct xe_tile - hardware tile structure
-> > + *
-> > + * From a driver perspective, a "tile" is effectively a complete GPU, containing
-> > + * an SGunit, 1-2 GTs, and (for discrete platforms) VRAM.
-> > + *
-> > + * Multi-tile platforms effectively bundle multiple GPUs behind a single PCI
-> > + * device and designate one "root" tile as being responsible for external PCI
-> > + * communication.  PCI BAR0 exposes the GGTT and MMIO register space for each
-> > + * tile in a stacked layout, and PCI BAR2 exposes the local memory associated
-> > + * with each tile similarly.  Device-wide interrupts can be enabled/disabled
-> > + * at the root tile, and the MSTR_TILE_INTR register will report which tiles
-> > + * have interrupts that need servicing.
-> > + */
-> > +struct xe_tile {
-> > +     /** @xe: Backpointer to tile's PCI device */
-> > +     struct xe_device *xe;
-> > +
-> > +     /** @id: ID of the tile */
-> > +     u8 id;
-> > +
-> > +     /**
-> > +      * @primary_gt: Primary GT
-> > +      */
-> > +     struct xe_gt primary_gt;
-> > +
-> > +     /* TODO: Add media GT here */
-> > +};
-> > +
-> >   /**
-> >    * struct xe_device - Top level struct of XE device
-> >    */
-> > @@ -256,8 +290,8 @@ struct xe_device {
-> >       /** @ordered_wq: used to serialize compute mode resume */
-> >       struct workqueue_struct *ordered_wq;
-> >
-> > -     /** @gt: graphics tile */
-> > -     struct xe_gt gt[XE_MAX_GT];
-> > +     /** @tiles: device tiles */
-> > +     struct xe_tile tiles[XE_MAX_TILES_PER_DEVICE];
-> >
-> >       /**
-> >        * @mem_access: keep track of memory access in the device, possibly
-> > diff --git a/drivers/gpu/drm/xe/xe_gt_types.h b/drivers/gpu/drm/xe/xe_gt_types.h
-> > index 093d650c35f4..456e3e447a2e 100644
-> > --- a/drivers/gpu/drm/xe/xe_gt_types.h
-> > +++ b/drivers/gpu/drm/xe/xe_gt_types.h
-> > @@ -77,12 +77,17 @@ enum xe_steering_type {
-> >   };
-> >
-> >   /**
-> > - * struct xe_gt - Top level struct of a graphics tile
-> > + * struct xe_gt - A "Graphics Technology" unit of the GPU
-> >    *
-> > - * A graphics tile may be a physical split (duplicate pieces of silicon,
-> > - * different GGTT + VRAM) or a virtual split (shared GGTT + VRAM). Either way
-> > - * this structure encapsulates of everything a GT is (MMIO, VRAM, memory
-> > - * management, microcontrols, and a hardware set of engines).
-> > + * A GT ("Graphics Technology") is the subset of a GPU primarily responsible
-> > + * for implementing the graphics, compute, and/or media IP.  It encapsulates
-> > + * the hardware engines, programmable execution units, and GuC.   Each GT has
-> > + * its own handling of power management (RC6+forcewake) and multicast register
-> > + * steering.
-> > + *
-> > + * A GPU/tile may have a single GT that supplies all graphics, compute, and
-> > + * media functionality, or the graphics/compute and media may be split into
-> > + * separate GTs within a tile.
-> >    */
-> >   struct xe_gt {
-> >       /** @xe: backpointer to XE device */
-> > diff --git a/drivers/gpu/drm/xe/xe_mmio.c b/drivers/gpu/drm/xe/xe_mmio.c
-> > index ef2353eef6fe..9bc5715e9ebe 100644
-> > --- a/drivers/gpu/drm/xe/xe_mmio.c
-> > +++ b/drivers/gpu/drm/xe/xe_mmio.c
-> > @@ -438,6 +438,7 @@ int xe_mmio_ioctl(struct drm_device *dev, void *data,
-> >                 struct drm_file *file)
-> >   {
-> >       struct xe_device *xe = to_xe_device(dev);
-> > +     struct xe_gt *gt = xe_device_get_gt(xe, 0);
+> > 
+> > +Matt as there is still (at least) one refactor planned in this area,
+> > since gt is not always the proper target for the MMIOs. He was saying in
+> > his earlier series about having a mmio_view or such to abstract the
+> > offset and other differences between each IO range. Not sure if this
+> > series would go the rigth direction, maybe we need to think in both
+> > cases together.
 > 
-> Better to have some define for '0' for example 'XE_ROOT_GT_ID'.
+> Matt, would this series block the refactor mentioned by Lucas?
+> 
+> In general, are there objections to introducing functions pointers for
+> MMIO functions (extended to all of them, as suggested by Ohad)?
 
-This is just patch #2 of a series of 31 patches; this line gets replaced
-with
-
-        struct xe_gt *gt = xe_root_mmio_gt(xe);
-
-later in the patch series.
+It probably makes more sense to do vtable conversion on other parts of
+the driver where we already have different implementations per platform
+and where we already know that design makes sense.  We can always come
+back and do this to the MMIO functions later once there are actually
+multiple implementations, but it doesn't seem to serve any purpose right
+now.
 
 
 Matt
 
 > 
-> Ofir
+> Thanks,
+> Francois
 > 
-> >       struct drm_xe_mmio *args = data;
-> >       unsigned int bits_flag, bytes;
-> >       struct xe_reg reg;
-> > @@ -480,7 +481,7 @@ int xe_mmio_ioctl(struct drm_device *dev, void *data,
-> >        */
-> >       reg = XE_REG(args->addr);
-> >
-> > -     xe_force_wake_get(gt_to_fw(&xe->gt[0]), XE_FORCEWAKE_ALL);
-> > +     xe_force_wake_get(gt_to_fw(gt), XE_FORCEWAKE_ALL);
-> >
-> >       if (args->flags & DRM_XE_MMIO_WRITE) {
-> >               switch (bits_flag) {
-> > @@ -489,10 +490,10 @@ int xe_mmio_ioctl(struct drm_device *dev, void *data,
-> >                               ret = -EINVAL;
-> >                               goto exit;
-> >                       }
-> > -                     xe_mmio_write32(to_gt(xe), reg, args->value);
-> > +                     xe_mmio_write32(gt, reg, args->value);
-> >                       break;
-> >               case DRM_XE_MMIO_64BIT:
-> > -                     xe_mmio_write64(to_gt(xe), reg, args->value);
-> > +                     xe_mmio_write64(gt, reg, args->value);
-> >                       break;
-> >               default:
-> >                       drm_dbg(&xe->drm, "Invalid MMIO bit size");
-> > @@ -507,10 +508,10 @@ int xe_mmio_ioctl(struct drm_device *dev, void *data,
-> >       if (args->flags & DRM_XE_MMIO_READ) {
-> >               switch (bits_flag) {
-> >               case DRM_XE_MMIO_32BIT:
-> > -                     args->value = xe_mmio_read32(to_gt(xe), reg);
-> > +                     args->value = xe_mmio_read32(gt, reg);
-> >                       break;
-> >               case DRM_XE_MMIO_64BIT:
-> > -                     args->value = xe_mmio_read64(to_gt(xe), reg);
-> > +                     args->value = xe_mmio_read64(gt, reg);
-> >                       break;
-> >               default:
-> >                       drm_dbg(&xe->drm, "Invalid MMIO bit size");
-> > @@ -522,7 +523,7 @@ int xe_mmio_ioctl(struct drm_device *dev, void *data,
-> >       }
-> >
-> >   exit:
-> > -     xe_force_wake_put(gt_to_fw(&xe->gt[0]), XE_FORCEWAKE_ALL);
-> > +     xe_force_wake_put(gt_to_fw(gt), XE_FORCEWAKE_ALL);
-> >
-> >       return ret;
-> >   }
-> > diff --git a/drivers/gpu/drm/xe/xe_pci.c b/drivers/gpu/drm/xe/xe_pci.c
-> > index 6f0c4203fca3..0ecf875e4fb4 100644
-> > --- a/drivers/gpu/drm/xe/xe_pci.c
-> > +++ b/drivers/gpu/drm/xe/xe_pci.c
-> > @@ -496,6 +496,7 @@ static int xe_info_init(struct xe_device *xe,
-> >       const struct xe_graphics_desc *graphics_desc = NULL;
-> >       const struct xe_media_desc *media_desc = NULL;
-> >       u32 graphics_gmdid_revid = 0, media_gmdid_revid = 0;
-> > +     struct xe_tile *tile;
-> >       struct xe_gt *gt;
-> >       u8 id;
-> >
-> > @@ -558,7 +559,11 @@ static int xe_info_init(struct xe_device *xe,
-> >       xe->info.tile_count = 1 + graphics_desc->max_remote_tiles;
-> >
-> >       for (id = 0; id < xe->info.tile_count; ++id) {
-> > -             gt = xe->gt + id;
-> > +             tile = &xe->tiles[id];
-> > +             tile->xe = xe;
-> > +             tile->id = id;
-> > +
-> > +             gt = &tile->primary_gt;
-> >               gt->info.id = id;
-> >               gt->xe = xe;
-> >
-> > diff --git a/drivers/gpu/drm/xe/xe_vm.c b/drivers/gpu/drm/xe/xe_vm.c
-> > index dd1335e12d4c..87416b8bb878 100644
-> > --- a/drivers/gpu/drm/xe/xe_vm.c
-> > +++ b/drivers/gpu/drm/xe/xe_vm.c
-> > @@ -3389,7 +3389,7 @@ int xe_vm_invalidate_vma(struct xe_vma *vma)
-> >       struct xe_device *xe = vma->vm->xe;
-> >       struct xe_gt *gt;
-> >       u32 gt_needs_invalidate = 0;
-> > -     int seqno[XE_MAX_GT];
-> > +     int seqno[XE_MAX_TILES_PER_DEVICE];
-> >       u8 id;
-> >       int ret;
-> >
-> > diff --git a/drivers/gpu/drm/xe/xe_vm_types.h b/drivers/gpu/drm/xe/xe_vm_types.h
-> > index fada7896867f..203ba9d946b8 100644
-> > --- a/drivers/gpu/drm/xe/xe_vm_types.h
-> > +++ b/drivers/gpu/drm/xe/xe_vm_types.h
-> > @@ -159,7 +159,7 @@ struct xe_vm {
-> >       struct kref refcount;
-> >
-> >       /* engine used for (un)binding vma's */
-> > -     struct xe_engine *eng[XE_MAX_GT];
-> > +     struct xe_engine *eng[XE_MAX_TILES_PER_DEVICE];
-> >
-> >       /** Protects @rebind_list and the page-table structures */
-> >       struct dma_resv resv;
-> > @@ -167,9 +167,9 @@ struct xe_vm {
-> >       u64 size;
-> >       struct rb_root vmas;
-> >
-> > -     struct xe_pt *pt_root[XE_MAX_GT];
-> > -     struct xe_bo *scratch_bo[XE_MAX_GT];
-> > -     struct xe_pt *scratch_pt[XE_MAX_GT][XE_VM_MAX_LEVEL];
-> > +     struct xe_pt *pt_root[XE_MAX_TILES_PER_DEVICE];
-> > +     struct xe_bo *scratch_bo[XE_MAX_TILES_PER_DEVICE];
-> > +     struct xe_pt *scratch_pt[XE_MAX_TILES_PER_DEVICE][XE_VM_MAX_LEVEL];
-> >
-> >       /** @flags: flags for this VM, statically setup a creation time */
-> >   #define XE_VM_FLAGS_64K                     BIT(0)
-> 
+> > 
+> > 
+> > Lucas De Marchi
+> > 
+> > > +	switch (xe->info.platform) {
+> > > +	case XE_TIGERLAKE:
+> > > +	case XE_ROCKETLAKE:
+> > > +	case XE_ALDERLAKE_S:
+> > > +	case XE_ALDERLAKE_P:
+> > > +	case XE_ALDERLAKE_N:
+> > > +	case XE_DG1:
+> > > +	case XE_DG2:
+> > > +	case XE_PVC:
+> > > +	case XE_METEORLAKE:
+> > > +		xe->mmio_funcs = &xe_mmio_funcs_device;
+> > > +		break;
+> > > +	default:
+> > > +		DRM_ERROR("Unsupported platform\n");
+> > > +		break;
+> > > +	}
+> > > +}
+> > > +
+> > > int xe_mmio_init(struct xe_device *xe)
+> > > {
+> > > 	struct xe_tile *root_tile = xe_device_get_root_tile(xe);
+> > > @@ -384,6 +463,8 @@ int xe_mmio_init(struct xe_device *xe)
+> > > 	const int mmio_bar = 0;
+> > > 	int err;
+> > > 
+> > > +	xe_mmio_set_funcs(xe);
+> > > +
+> > > 	/*
+> > > 	 * Map the first 16MB of th BAR, which includes the registers (0-4MB),
+> > > 	 * reserved space (4MB-8MB), and GGTT (8MB-16MB) for a single tile.
+> > > diff --git a/drivers/gpu/drm/xe/xe_mmio.h b/drivers/gpu/drm/xe/xe_mmio.h
+> > > index 3c547d78afba..80ce9de7aac4 100644
+> > > --- a/drivers/gpu/drm/xe/xe_mmio.h
+> > > +++ b/drivers/gpu/drm/xe/xe_mmio.h
+> > > @@ -19,6 +19,13 @@ struct xe_device;
+> > > 
+> > > #define GEN12_LMEM_BAR		2
+> > > 
+> > > +struct xe_mmio_funcs {
+> > > +	u32 (*read32)(struct xe_gt *gt, struct xe_reg reg);
+> > > +	u64 (*read64)(struct xe_gt *gt, struct xe_reg reg);
+> > > +	void (*write32)(struct xe_gt *gt, struct xe_reg reg, u32 val);
+> > > +	void (*write64)(struct xe_gt *gt, struct xe_reg reg, u64 val);
+> > > +};
+> > > +
+> > > int xe_mmio_init(struct xe_device *xe);
+> > > 
+> > > static inline u8 xe_mmio_read8(struct xe_gt *gt, struct xe_reg reg)
+> > > @@ -34,22 +41,16 @@ static inline u8 xe_mmio_read8(struct xe_gt *gt, struct xe_reg reg)
+> > > static inline void xe_mmio_write32(struct xe_gt *gt,
+> > > 				   struct xe_reg reg, u32 val)
+> > > {
+> > > -	struct xe_tile *tile = gt_to_tile(gt);
+> > > -
+> > > -	if (reg.addr < gt->mmio.adj_limit)
+> > > -		reg.addr += gt->mmio.adj_offset;
+> > > +	struct xe_device *xe = gt_to_xe(gt);
+> > > 
+> > > -	writel(val, tile->mmio.regs + reg.addr);
+> > > +	xe->mmio_funcs->write32(gt, reg, val);
+> > > }
+> > > 
+> > > static inline u32 xe_mmio_read32(struct xe_gt *gt, struct xe_reg reg)
+> > > {
+> > > -	struct xe_tile *tile = gt_to_tile(gt);
+> > > -
+> > > -	if (reg.addr < gt->mmio.adj_limit)
+> > > -		reg.addr += gt->mmio.adj_offset;
+> > > +	struct xe_device *xe = gt_to_xe(gt);
+> > > 
+> > > -	return readl(tile->mmio.regs + reg.addr);
+> > > +	return xe->mmio_funcs->read32(gt, reg);
+> > > }
+> > > 
+> > > static inline u32 xe_mmio_rmw32(struct xe_gt *gt, struct xe_reg reg, u32 clr,
+> > > @@ -67,22 +68,16 @@ static inline u32 xe_mmio_rmw32(struct xe_gt *gt, struct xe_reg reg, u32 clr,
+> > > static inline void xe_mmio_write64(struct xe_gt *gt,
+> > > 				   struct xe_reg reg, u64 val)
+> > > {
+> > > -	struct xe_tile *tile = gt_to_tile(gt);
+> > > -
+> > > -	if (reg.addr < gt->mmio.adj_limit)
+> > > -		reg.addr += gt->mmio.adj_offset;
+> > > +	struct xe_device *xe = gt_to_xe(gt);
+> > > 
+> > > -	writeq(val, tile->mmio.regs + reg.addr);
+> > > +	xe->mmio_funcs->write64(gt, reg, val);
+> > > }
+> > > 
+> > > static inline u64 xe_mmio_read64(struct xe_gt *gt, struct xe_reg reg)
+> > > {
+> > > -	struct xe_tile *tile = gt_to_tile(gt);
+> > > -
+> > > -	if (reg.addr < gt->mmio.adj_limit)
+> > > -		reg.addr += gt->mmio.adj_offset;
+> > > +	struct xe_device *xe = gt_to_xe(gt);
+> > > 
+> > > -	return readq(tile->mmio.regs + reg.addr);
+> > > +	return xe->mmio_funcs->read64(gt, reg);
+> > > }
+> > > 
+> > > static inline int xe_mmio_write32_and_verify(struct xe_gt *gt,
+> > > -- 
+> > > 2.34.1
+> > > 
 
 -- 
 Matt Roper
