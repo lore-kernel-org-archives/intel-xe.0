@@ -4,30 +4,45 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id CA0D9EB64D9
-	for <intel-xe@archiver.kernel.org>; Thu, 15 Jun 2023 18:34:03 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2D3D8EB64D9
+	for <intel-xe@archiver.kernel.org>; Thu, 15 Jun 2023 18:34:52 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A115010E0C6;
-	Thu, 15 Jun 2023 18:34:03 +0000 (UTC)
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id 3F0AA10E0A0;
- Thu, 15 Jun 2023 18:34:02 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 3C0D9AA3D8;
- Thu, 15 Jun 2023 18:34:02 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0269D10E0A0;
+	Thu, 15 Jun 2023 18:34:52 +0000 (UTC)
+Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7E5C210E0A0
+ for <intel-xe@lists.freedesktop.org>; Thu, 15 Jun 2023 18:34:50 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1686854090; x=1718390090;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=lGqj8/xv7KQgXVo+ncqM2/ltesb+LP/LSlUBgr1QveY=;
+ b=FVj4XEQIzfe8YX5NxDcmqUpj8etc3rtDxHJ/pQBFQsrqIrvGVS5Ef58/
+ t+nCrBFdPcyBoWK1ei0A5gVGLyfPufaBouW30IbRLa+TOF34HG3Cjtyln
+ Yp5UptCL37OeD19/pN+DHdbmsAaY3FgF2ioxhIJvvv6FkqVcRi13P8RO+
+ Ukg4aGeuPrimeLbglz3pGW0AckDEhRpdUG5MkMzOltypdY/iJbOIBU/gh
+ pvZtWC0FrTsRaU7Bo26FK9mJYadV1+27y5Km/MV6xxwKpYp4cf0c6i62n
+ 9EaV7WDjrwmt4XgC4njpOB1wWuOKq+Zoq03ydPHR+CPyxqMbxlaSNt3HI Q==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10742"; a="362420762"
+X-IronPort-AV: E=Sophos;i="6.00,245,1681196400"; d="scan'208";a="362420762"
+Received: from fmsmga004.fm.intel.com ([10.253.24.48])
+ by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 15 Jun 2023 11:34:46 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6600,9927,10742"; a="782602383"
+X-IronPort-AV: E=Sophos;i="6.00,245,1681196400"; d="scan'208";a="782602383"
+Received: from lstrano-desk.jf.intel.com ([10.24.89.184])
+ by fmsmga004-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 15 Jun 2023 11:34:45 -0700
+From: Matthew Brost <matthew.brost@intel.com>
+To: <intel-xe@lists.freedesktop.org>
+Date: Thu, 15 Jun 2023 11:34:55 -0700
+Message-Id: <20230615183455.290494-1-matthew.brost@intel.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Matthew Auld" <matthew.auld@intel.com>
-Date: Thu, 15 Jun 2023 18:34:02 -0000
-Message-ID: <168685404224.10725.13882632797013499309@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20230615181840.76075-1-matthew.auld@intel.com>
-In-Reply-To: <20230615181840.76075-1-matthew.auld@intel.com>
-Subject: [Intel-xe] =?utf-8?q?=E2=9C=93_CI=2EHooks=3A_success_for_drm/xe/?=
- =?utf-8?q?bo=3A_handle_PL=5FTT_-=3E_PL=5FTT?=
+Content-Transfer-Encoding: 8bit
+Subject: [Intel-xe] [PATCH] drm/xe: NULL binding implementation
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -39,352 +54,558 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
-Cc: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-== Series Details ==
+Add uAPI and implementation for NULL bindings. A NULL binding is defined
+as writes dropped and read zero. A single bit in the uAPI has been added
+which results in a single bit in the PTEs being set.
 
-Series: drm/xe/bo: handle PL_TT -> PL_TT
-URL   : https://patchwork.freedesktop.org/series/119400/
-State : success
+NULL bindings are intendedd to be used to implement VK sparse bindings,
+in particular residencyNonResidentStrict property.
 
-== Summary ==
+v2: Fix BUG_ON shown in VK testing, fix check patch warning, fix
+xe_pt_scan_64K, update __gen8_pte_encode to understand NULL bindings,
+remove else if vma_addr
 
-run-parts: executing /workspace/ci/hooks/00-showenv
-+ pwd
-+ ls -la
-/workspace
-total 480
-drwxrwxr-x 10 1003 1003   4096 Jun 15 18:33 .
-drwxr-xr-x  1 root root   4096 Jun 15 18:33 ..
--rw-rw-r--  1 1003 1003 397078 Jun 15 18:33 build.log
--rw-rw-r--  1 1003 1003   2113 Jun 15 18:28 checkpatch.log
-drwxrwxr-x  5 1003 1003   4096 Jun 15 18:26 ci
-drwxrwxr-x 10 1003 1003   4096 Jun 15 18:26 docker
-drwxrwxr-x  8 1003 1003   4096 Jun 15 18:26 .git
--rw-rw-r--  1 1003 1003    208 Jun 15 18:28 git_apply.log
-drwxrwxr-x  3 1003 1003   4096 Jun 15 18:26 .github
--rw-rw-r--  1 1003 1003    233 Jun 15 18:26 .groovylintrc.json
--rw-rw-r--  1 1003 1003     78 Jun 15 18:33 hooks.log
-drwxrwxr-x 31 1003 1003   4096 Jun 15 18:33 kernel
--rw-rw-r--  1 1003 1003   2213 Jun 15 18:28 kernel.mbox
--rw-rw-r--  1 1003 1003  25980 Jun 15 18:29 kunit.log
-drwxrwxr-x 40 1003 1003   4096 Jun 15 18:26 pipelines
--rw-rw-r--  1 1003 1003    793 Jun 15 18:26 README.adoc
-drwxrwxr-x  3 1003 1003   4096 Jun 15 18:26 scripts
-drwxrwxr-x  2 1003 1003   4096 Jun 15 18:26 .vscode
-+ uname -a
-Linux 46f9c7facaa9 5.4.0-149-generic #166-Ubuntu SMP Tue Apr 18 16:51:45 UTC 2023 x86_64 x86_64 x86_64 GNU/Linux
-+ export
-+ grep -Ei '(^|\W)CI_'
-declare -x CI_KERNEL_BUILD_DIR="/workspace/kernel/build64"
-declare -x CI_KERNEL_IMAGES_DIR="/workspace/kernel/archive/boot"
-declare -x CI_KERNEL_MODULES_DIR="/workspace/kernel/archive"
-declare -x CI_KERNEL_SRC_DIR="/workspace/kernel"
-declare -x CI_SRC_DIR="/workspace/kernel"
-declare -x CI_TOOLS_SRC_DIR="/workspace/ci"
-declare -x CI_WORKSPACE_DIR="/workspace"
-+ '[' -n /workspace ']'
-+ git_args='-C /workspace/kernel'
-+ git_log_args=
-+ git --no-pager -C /workspace/kernel log --format=oneline --abbrev-commit
-ec9a9303b drm/xe/bo: handle PL_TT -> PL_TT
-6d2981d42 drm/xe/mtl: Add some initial MTL workarounds
-run-parts: executing /workspace/ci/hooks/10-build-W1
-+ SRC_DIR=/workspace/kernel
-+ RESTORE_DISPLAY_CONFIG=0
-+ '[' -n /workspace/kernel/build64 ']'
-+ BUILD_DIR=/workspace/kernel/build64
-+ cd /workspace/kernel
-+ grep -q -e '^CONFIG_DRM_XE_DISPLAY=[yY]' /workspace/kernel/build64/.config
-+ RESTORE_DISPLAY_CONFIG=1
-+ trap cleanup EXIT
-+ ./scripts/config --file /workspace/kernel/build64/.config --disable CONFIG_DRM_XE_DISPLAY
-++ nproc
-+ make -j48 O=/workspace/kernel/build64 modules_prepare
-make[1]: Entering directory '/workspace/kernel/build64'
-  SYNC    include/config/auto.conf.cmd
-  GEN     Makefile
-  GEN     Makefile
-  UPD     include/generated/compile.h
-  UPD     include/config/kernel.release
-  UPD     include/generated/utsrelease.h
-  DESCEND objtool
-  CALL    ../scripts/checksyscalls.sh
-  HOSTCC  /workspace/kernel/build64/tools/objtool/fixdep.o
-  HOSTLD  /workspace/kernel/build64/tools/objtool/fixdep-in.o
-  LINK    /workspace/kernel/build64/tools/objtool/fixdep
-  INSTALL libsubcmd_headers
-  CC      /workspace/kernel/build64/tools/objtool/libsubcmd/exec-cmd.o
-  CC      /workspace/kernel/build64/tools/objtool/libsubcmd/help.o
-  CC      /workspace/kernel/build64/tools/objtool/libsubcmd/pager.o
-  CC      /workspace/kernel/build64/tools/objtool/libsubcmd/parse-options.o
-  CC      /workspace/kernel/build64/tools/objtool/libsubcmd/run-command.o
-  CC      /workspace/kernel/build64/tools/objtool/libsubcmd/sigchain.o
-  CC      /workspace/kernel/build64/tools/objtool/libsubcmd/subcmd-config.o
-  LD      /workspace/kernel/build64/tools/objtool/libsubcmd/libsubcmd-in.o
-  AR      /workspace/kernel/build64/tools/objtool/libsubcmd/libsubcmd.a
-  CC      /workspace/kernel/build64/tools/objtool/check.o
-  CC      /workspace/kernel/build64/tools/objtool/weak.o
-  CC      /workspace/kernel/build64/tools/objtool/special.o
-  CC      /workspace/kernel/build64/tools/objtool/builtin-check.o
-  CC      /workspace/kernel/build64/tools/objtool/elf.o
-  CC      /workspace/kernel/build64/tools/objtool/objtool.o
-  CC      /workspace/kernel/build64/tools/objtool/orc_gen.o
-  CC      /workspace/kernel/build64/tools/objtool/orc_dump.o
-  CC      /workspace/kernel/build64/tools/objtool/libstring.o
-  CC      /workspace/kernel/build64/tools/objtool/libctype.o
-  CC      /workspace/kernel/build64/tools/objtool/str_error_r.o
-  CC      /workspace/kernel/build64/tools/objtool/librbtree.o
-  CC      /workspace/kernel/build64/tools/objtool/arch/x86/special.o
-  CC      /workspace/kernel/build64/tools/objtool/arch/x86/decode.o
-  LD      /workspace/kernel/build64/tools/objtool/arch/x86/objtool-in.o
-  LD      /workspace/kernel/build64/tools/objtool/objtool-in.o
-  LINK    /workspace/kernel/build64/tools/objtool/objtool
-make[1]: Leaving directory '/workspace/kernel/build64'
-++ nproc
-+ make -j48 O=/workspace/kernel/build64 M=drivers/gpu/drm/xe W=1
-make[1]: Entering directory '/workspace/kernel/build64'
-  CC [M]  drivers/gpu/drm/xe/xe_bb.o
-  CC [M]  drivers/gpu/drm/xe/xe_bo.o
-  CC [M]  drivers/gpu/drm/xe/xe_bo_evict.o
-  CC [M]  drivers/gpu/drm/xe/xe_debugfs.o
-  CC [M]  drivers/gpu/drm/xe/xe_devcoredump.o
-  CC [M]  drivers/gpu/drm/xe/xe_device.o
-  CC [M]  drivers/gpu/drm/xe/xe_dma_buf.o
-  CC [M]  drivers/gpu/drm/xe/xe_engine.o
-  CC [M]  drivers/gpu/drm/xe/xe_exec.o
-  CC [M]  drivers/gpu/drm/xe/xe_execlist.o
-  CC [M]  drivers/gpu/drm/xe/xe_force_wake.o
-  CC [M]  drivers/gpu/drm/xe/xe_ggtt.o
-  CC [M]  drivers/gpu/drm/xe/xe_gt.o
-  CC [M]  drivers/gpu/drm/xe/xe_gt_clock.o
-  CC [M]  drivers/gpu/drm/xe/xe_gt_debugfs.o
-  CC [M]  drivers/gpu/drm/xe/xe_gt_mcr.o
-  CC [M]  drivers/gpu/drm/xe/xe_gt_pagefault.o
-  CC [M]  drivers/gpu/drm/xe/xe_gt_sysfs.o
-  CC [M]  drivers/gpu/drm/xe/xe_gt_tlb_invalidation.o
-  CC [M]  drivers/gpu/drm/xe/xe_gt_topology.o
-  HOSTCC  drivers/gpu/drm/xe/xe_gen_wa_oob
-  CC [M]  drivers/gpu/drm/xe/xe_guc_ads.o
-  CC [M]  drivers/gpu/drm/xe/xe_guc_ct.o
-  CC [M]  drivers/gpu/drm/xe/xe_guc_debugfs.o
-  CC [M]  drivers/gpu/drm/xe/xe_guc_hwconfig.o
-  CC [M]  drivers/gpu/drm/xe/xe_guc_log.o
-  CC [M]  drivers/gpu/drm/xe/xe_guc_pc.o
-  CC [M]  drivers/gpu/drm/xe/xe_guc_submit.o
-  CC [M]  drivers/gpu/drm/xe/xe_hw_engine.o
-  CC [M]  drivers/gpu/drm/xe/xe_hw_fence.o
-  CC [M]  drivers/gpu/drm/xe/xe_huc.o
-  CC [M]  drivers/gpu/drm/xe/xe_huc_debugfs.o
-  CC [M]  drivers/gpu/drm/xe/xe_irq.o
-  CC [M]  drivers/gpu/drm/xe/xe_lrc.o
-  CC [M]  drivers/gpu/drm/xe/xe_migrate.o
-  CC [M]  drivers/gpu/drm/xe/xe_mmio.o
-  CC [M]  drivers/gpu/drm/xe/xe_mocs.o
-  CC [M]  drivers/gpu/drm/xe/xe_module.o
-  CC [M]  drivers/gpu/drm/xe/xe_pat.o
-  CC [M]  drivers/gpu/drm/xe/xe_pci.o
-  CC [M]  drivers/gpu/drm/xe/xe_pcode.o
-  CC [M]  drivers/gpu/drm/xe/xe_pm.o
-  CC [M]  drivers/gpu/drm/xe/xe_preempt_fence.o
-  CC [M]  drivers/gpu/drm/xe/xe_pt.o
-  CC [M]  drivers/gpu/drm/xe/xe_pt_walk.o
-  CC [M]  drivers/gpu/drm/xe/xe_query.o
-  CC [M]  drivers/gpu/drm/xe/xe_reg_sr.o
-  CC [M]  drivers/gpu/drm/xe/xe_reg_whitelist.o
-  CC [M]  drivers/gpu/drm/xe/xe_rtp.o
-  CC [M]  drivers/gpu/drm/xe/xe_sa.o
-  CC [M]  drivers/gpu/drm/xe/xe_sched_job.o
-  CC [M]  drivers/gpu/drm/xe/xe_step.o
-  CC [M]  drivers/gpu/drm/xe/xe_sync.o
-  CC [M]  drivers/gpu/drm/xe/xe_tile.o
-  CC [M]  drivers/gpu/drm/xe/xe_trace.o
-  CC [M]  drivers/gpu/drm/xe/xe_ttm_sys_mgr.o
-  CC [M]  drivers/gpu/drm/xe/xe_ttm_stolen_mgr.o
-  CC [M]  drivers/gpu/drm/xe/xe_ttm_vram_mgr.o
-  CC [M]  drivers/gpu/drm/xe/xe_tuning.o
-  CC [M]  drivers/gpu/drm/xe/xe_uc.o
-  CC [M]  drivers/gpu/drm/xe/xe_uc_debugfs.o
-  CC [M]  drivers/gpu/drm/xe/xe_uc_fw.o
-  CC [M]  drivers/gpu/drm/xe/xe_vm.o
-  CC [M]  drivers/gpu/drm/xe/xe_vm_madvise.o
-  CC [M]  drivers/gpu/drm/xe/xe_wait_user_fence.o
-  CC [M]  drivers/gpu/drm/xe/xe_wopcm.o
-  HDRTEST drivers/gpu/drm/xe/abi/guc_klvs_abi.h
-  HDRTEST drivers/gpu/drm/xe/abi/guc_errors_abi.h
-  HDRTEST drivers/gpu/drm/xe/abi/guc_actions_slpc_abi.h
-  HDRTEST drivers/gpu/drm/xe/abi/guc_communication_mmio_abi.h
-  HDRTEST drivers/gpu/drm/xe/abi/guc_actions_abi.h
-  HDRTEST drivers/gpu/drm/xe/abi/guc_communication_ctb_abi.h
-  CC [M]  drivers/gpu/drm/xe/tests/xe_bo_test.o
-  HDRTEST drivers/gpu/drm/xe/abi/guc_messages_abi.h
-  HDRTEST drivers/gpu/drm/xe/regs/xe_reg_defs.h
-  CC [M]  drivers/gpu/drm/xe/tests/xe_dma_buf_test.o
-  HDRTEST drivers/gpu/drm/xe/regs/xe_guc_regs.h
-  HDRTEST drivers/gpu/drm/xe/regs/xe_gt_regs.h
-  CC [M]  drivers/gpu/drm/xe/tests/xe_migrate_test.o
-  HDRTEST drivers/gpu/drm/xe/regs/xe_regs.h
-  HDRTEST drivers/gpu/drm/xe/regs/xe_gpu_commands.h
-  CC [M]  drivers/gpu/drm/xe/tests/xe_pci_test.o
-  CC [M]  drivers/gpu/drm/xe/tests/xe_rtp_test.o
-  HDRTEST drivers/gpu/drm/xe/regs/xe_lrc_layout.h
-  HDRTEST drivers/gpu/drm/xe/regs/xe_engine_regs.h
-  HDRTEST drivers/gpu/drm/xe/tests/xe_test.h
-  HDRTEST drivers/gpu/drm/xe/tests/xe_pci_test.h
-  CC [M]  drivers/gpu/drm/xe/tests/xe_wa_test.o
-  HDRTEST drivers/gpu/drm/xe/tests/xe_migrate_test.h
-  HDRTEST drivers/gpu/drm/xe/tests/xe_dma_buf_test.h
-  HDRTEST drivers/gpu/drm/xe/tests/xe_bo_test.h
-  HDRTEST drivers/gpu/drm/xe/xe_bb.h
-  HDRTEST drivers/gpu/drm/xe/xe_bb_types.h
-  HDRTEST drivers/gpu/drm/xe/xe_bo.h
-  HDRTEST drivers/gpu/drm/xe/xe_bo_doc.h
-  HDRTEST drivers/gpu/drm/xe/xe_bo_evict.h
-  HDRTEST drivers/gpu/drm/xe/xe_bo_types.h
-  HDRTEST drivers/gpu/drm/xe/xe_debugfs.h
-  HDRTEST drivers/gpu/drm/xe/xe_devcoredump.h
-  HDRTEST drivers/gpu/drm/xe/xe_devcoredump_types.h
-  HDRTEST drivers/gpu/drm/xe/xe_device.h
-  HDRTEST drivers/gpu/drm/xe/xe_device_types.h
-  HDRTEST drivers/gpu/drm/xe/xe_dma_buf.h
-  HDRTEST drivers/gpu/drm/xe/xe_drv.h
-  HDRTEST drivers/gpu/drm/xe/xe_engine.h
-  HDRTEST drivers/gpu/drm/xe/xe_engine_types.h
-  HDRTEST drivers/gpu/drm/xe/xe_exec.h
-  HDRTEST drivers/gpu/drm/xe/xe_execlist.h
-  HDRTEST drivers/gpu/drm/xe/xe_execlist_types.h
-  HDRTEST drivers/gpu/drm/xe/xe_force_wake.h
-  HDRTEST drivers/gpu/drm/xe/xe_force_wake_types.h
-  HDRTEST drivers/gpu/drm/xe/xe_ggtt.h
-  HDRTEST drivers/gpu/drm/xe/xe_ggtt_types.h
-  HDRTEST drivers/gpu/drm/xe/xe_gt.h
-  HDRTEST drivers/gpu/drm/xe/xe_gt_clock.h
-  HDRTEST drivers/gpu/drm/xe/xe_gt_debugfs.h
-  HDRTEST drivers/gpu/drm/xe/xe_gt_mcr.h
-  HDRTEST drivers/gpu/drm/xe/xe_gt_pagefault.h
-  HDRTEST drivers/gpu/drm/xe/xe_gt_printk.h
-  HDRTEST drivers/gpu/drm/xe/xe_gt_sysfs.h
-  HDRTEST drivers/gpu/drm/xe/xe_gt_sysfs_types.h
-  HDRTEST drivers/gpu/drm/xe/xe_gt_tlb_invalidation.h
-  HDRTEST drivers/gpu/drm/xe/xe_gt_tlb_invalidation_types.h
-  HDRTEST drivers/gpu/drm/xe/xe_gt_topology.h
-  HDRTEST drivers/gpu/drm/xe/xe_gt_types.h
-  HDRTEST drivers/gpu/drm/xe/xe_guc.h
-  HDRTEST drivers/gpu/drm/xe/xe_guc_ads.h
-  HDRTEST drivers/gpu/drm/xe/xe_guc_ads_types.h
-  HDRTEST drivers/gpu/drm/xe/xe_guc_ct.h
-  HDRTEST drivers/gpu/drm/xe/xe_guc_ct_types.h
-  HDRTEST drivers/gpu/drm/xe/xe_guc_debugfs.h
-  HDRTEST drivers/gpu/drm/xe/xe_guc_engine_types.h
-  HDRTEST drivers/gpu/drm/xe/xe_guc_fwif.h
-  HDRTEST drivers/gpu/drm/xe/xe_guc_hwconfig.h
-  HDRTEST drivers/gpu/drm/xe/xe_guc_log.h
-  HDRTEST drivers/gpu/drm/xe/xe_guc_log_types.h
-  HDRTEST drivers/gpu/drm/xe/xe_guc_pc.h
-  HDRTEST drivers/gpu/drm/xe/xe_guc_pc_types.h
-  HDRTEST drivers/gpu/drm/xe/xe_guc_submit.h
-  HDRTEST drivers/gpu/drm/xe/xe_guc_submit_types.h
-  HDRTEST drivers/gpu/drm/xe/xe_guc_types.h
-  HDRTEST drivers/gpu/drm/xe/xe_huc.h
-  HDRTEST drivers/gpu/drm/xe/xe_huc_debugfs.h
-  HDRTEST drivers/gpu/drm/xe/xe_huc_types.h
-  HDRTEST drivers/gpu/drm/xe/xe_hw_engine.h
-  HDRTEST drivers/gpu/drm/xe/xe_hw_engine_types.h
-  HDRTEST drivers/gpu/drm/xe/xe_hw_fence.h
-  HDRTEST drivers/gpu/drm/xe/xe_hw_fence_types.h
-  HDRTEST drivers/gpu/drm/xe/xe_irq.h
-  HDRTEST drivers/gpu/drm/xe/xe_lrc.h
-  HDRTEST drivers/gpu/drm/xe/xe_lrc_types.h
-  HDRTEST drivers/gpu/drm/xe/xe_macros.h
-  HDRTEST drivers/gpu/drm/xe/xe_map.h
-  HDRTEST drivers/gpu/drm/xe/xe_migrate.h
-  HDRTEST drivers/gpu/drm/xe/xe_migrate_doc.h
-  HDRTEST drivers/gpu/drm/xe/xe_mmio.h
-  HDRTEST drivers/gpu/drm/xe/xe_mocs.h
-  HDRTEST drivers/gpu/drm/xe/xe_module.h
-  HDRTEST drivers/gpu/drm/xe/xe_pat.h
-  HDRTEST drivers/gpu/drm/xe/xe_pci.h
-  HDRTEST drivers/gpu/drm/xe/xe_pci_types.h
-  HDRTEST drivers/gpu/drm/xe/xe_pcode.h
-  HDRTEST drivers/gpu/drm/xe/xe_pcode_api.h
-  HDRTEST drivers/gpu/drm/xe/xe_platform_types.h
-  HDRTEST drivers/gpu/drm/xe/xe_pm.h
-  HDRTEST drivers/gpu/drm/xe/xe_preempt_fence.h
-  HDRTEST drivers/gpu/drm/xe/xe_preempt_fence_types.h
-  HDRTEST drivers/gpu/drm/xe/xe_pt.h
-  HDRTEST drivers/gpu/drm/xe/xe_pt_types.h
-  HDRTEST drivers/gpu/drm/xe/xe_pt_walk.h
-  HDRTEST drivers/gpu/drm/xe/xe_query.h
-  HDRTEST drivers/gpu/drm/xe/xe_reg_sr.h
-  HDRTEST drivers/gpu/drm/xe/xe_reg_sr_types.h
-  HDRTEST drivers/gpu/drm/xe/xe_reg_whitelist.h
-  HDRTEST drivers/gpu/drm/xe/xe_res_cursor.h
-  HDRTEST drivers/gpu/drm/xe/xe_ring_ops.h
-  HDRTEST drivers/gpu/drm/xe/xe_ring_ops_types.h
-  HDRTEST drivers/gpu/drm/xe/xe_rtp.h
-  HDRTEST drivers/gpu/drm/xe/xe_rtp_types.h
-  HDRTEST drivers/gpu/drm/xe/xe_sa.h
-  HDRTEST drivers/gpu/drm/xe/xe_sa_types.h
-  HDRTEST drivers/gpu/drm/xe/xe_sched_job.h
-  HDRTEST drivers/gpu/drm/xe/xe_sched_job_types.h
-  HDRTEST drivers/gpu/drm/xe/xe_step.h
-  HDRTEST drivers/gpu/drm/xe/xe_step_types.h
-  HDRTEST drivers/gpu/drm/xe/xe_sync.h
-  HDRTEST drivers/gpu/drm/xe/xe_sync_types.h
-  HDRTEST drivers/gpu/drm/xe/xe_tile.h
-  HDRTEST drivers/gpu/drm/xe/xe_trace.h
-  HDRTEST drivers/gpu/drm/xe/xe_ttm_stolen_mgr.h
-  HDRTEST drivers/gpu/drm/xe/xe_ttm_sys_mgr.h
-  HDRTEST drivers/gpu/drm/xe/xe_ttm_vram_mgr.h
-  HDRTEST drivers/gpu/drm/xe/xe_ttm_vram_mgr_types.h
-  HDRTEST drivers/gpu/drm/xe/xe_tuning.h
-  HDRTEST drivers/gpu/drm/xe/xe_uc.h
-  HDRTEST drivers/gpu/drm/xe/xe_uc_debugfs.h
-  HDRTEST drivers/gpu/drm/xe/xe_uc_fw.h
-  HDRTEST drivers/gpu/drm/xe/xe_uc_fw_abi.h
-  HDRTEST drivers/gpu/drm/xe/xe_uc_fw_types.h
-  HDRTEST drivers/gpu/drm/xe/xe_uc_types.h
-  HDRTEST drivers/gpu/drm/xe/xe_vm.h
-  HDRTEST drivers/gpu/drm/xe/xe_vm_doc.h
-  HDRTEST drivers/gpu/drm/xe/xe_vm_madvise.h
-  HDRTEST drivers/gpu/drm/xe/xe_vm_types.h
-  HDRTEST drivers/gpu/drm/xe/xe_wa.h
-  HDRTEST drivers/gpu/drm/xe/xe_wait_user_fence.h
-  HDRTEST drivers/gpu/drm/xe/xe_wopcm.h
-  HDRTEST drivers/gpu/drm/xe/xe_wopcm_types.h
-  GEN     xe_wa_oob.c xe_wa_oob.h
-  GEN     xe_wa_oob.c xe_wa_oob.h
-  CC [M]  drivers/gpu/drm/xe/xe_guc.o
-  CC [M]  drivers/gpu/drm/xe/xe_ring_ops.o
-  CC [M]  drivers/gpu/drm/xe/xe_wa.o
-  LD [M]  drivers/gpu/drm/xe/xe.o
-  MODPOST drivers/gpu/drm/xe/Module.symvers
-  CC [M]  drivers/gpu/drm/xe/xe.mod.o
-  CC [M]  drivers/gpu/drm/xe/tests/xe_bo_test.mod.o
-  CC [M]  drivers/gpu/drm/xe/tests/xe_dma_buf_test.mod.o
-  CC [M]  drivers/gpu/drm/xe/tests/xe_migrate_test.mod.o
-  CC [M]  drivers/gpu/drm/xe/tests/xe_pci_test.mod.o
-  CC [M]  drivers/gpu/drm/xe/tests/xe_rtp_test.mod.o
-  CC [M]  drivers/gpu/drm/xe/tests/xe_wa_test.mod.o
-  LD [M]  drivers/gpu/drm/xe/tests/xe_rtp_test.ko
-  LD [M]  drivers/gpu/drm/xe/tests/xe_bo_test.ko
-  LD [M]  drivers/gpu/drm/xe/tests/xe_wa_test.ko
-  LD [M]  drivers/gpu/drm/xe/tests/xe_dma_buf_test.ko
-  LD [M]  drivers/gpu/drm/xe/xe.ko
-  LD [M]  drivers/gpu/drm/xe/tests/xe_pci_test.ko
-  LD [M]  drivers/gpu/drm/xe/tests/xe_migrate_test.ko
-make[1]: Leaving directory '/workspace/kernel/build64'
-+ cleanup
-+ '[' 1 -eq 1 ']'
-+ ./scripts/config --file /workspace/kernel/build64/.config --enable CONFIG_DRM_XE_DISPLAY
-run-parts: executing /workspace/ci/hooks/20-kernel-doc
-+ SRC_DIR=/workspace/kernel
-+ cd /workspace/kernel
-+ find drivers/gpu/drm/xe/ -name '*.[ch]' -not -path 'drivers/gpu/drm/xe/display/*'
-+ xargs ./scripts/kernel-doc -Werror -none
-All hooks done
+Suggested-by: Paulo Zanoni <paulo.r.zanoni@intel.com>
+Signed-off-by: Matthew Brost <matthew.brost@intel.com>
+---
+ drivers/gpu/drm/xe/xe_bo.h           |  1 +
+ drivers/gpu/drm/xe/xe_exec.c         |  2 +
+ drivers/gpu/drm/xe/xe_gt_pagefault.c |  4 +-
+ drivers/gpu/drm/xe/xe_pt.c           | 54 ++++++++++-----
+ drivers/gpu/drm/xe/xe_vm.c           | 99 ++++++++++++++++++----------
+ drivers/gpu/drm/xe/xe_vm.h           | 12 +++-
+ drivers/gpu/drm/xe/xe_vm_types.h     |  1 +
+ include/uapi/drm/xe_drm.h            |  8 +++
+ 8 files changed, 126 insertions(+), 55 deletions(-)
 
+diff --git a/drivers/gpu/drm/xe/xe_bo.h b/drivers/gpu/drm/xe/xe_bo.h
+index dd3d448fee0b..3a148cc6e811 100644
+--- a/drivers/gpu/drm/xe/xe_bo.h
++++ b/drivers/gpu/drm/xe/xe_bo.h
+@@ -61,6 +61,7 @@
+ #define XE_PPGTT_PTE_LM			BIT_ULL(11)
+ #define XE_PDE_64K			BIT_ULL(6)
+ #define XE_PTE_PS64			BIT_ULL(8)
++#define XE_PTE_NULL			BIT_ULL(9)
+ 
+ #define XE_PAGE_PRESENT			BIT_ULL(0)
+ #define XE_PAGE_RW			BIT_ULL(1)
+diff --git a/drivers/gpu/drm/xe/xe_exec.c b/drivers/gpu/drm/xe/xe_exec.c
+index e44076ee2e11..4f7694a29348 100644
+--- a/drivers/gpu/drm/xe/xe_exec.c
++++ b/drivers/gpu/drm/xe/xe_exec.c
+@@ -120,6 +120,8 @@ static int xe_exec_begin(struct xe_engine *e, struct ww_acquire_ctx *ww,
+ 	 * to a location where the GPU can access it).
+ 	 */
+ 	list_for_each_entry(vma, &vm->rebind_list, rebind_link) {
++		XE_WARN_ON(xe_vma_is_null(vma));
++
+ 		if (xe_vma_is_userptr(vma))
+ 			continue;
+ 
+diff --git a/drivers/gpu/drm/xe/xe_gt_pagefault.c b/drivers/gpu/drm/xe/xe_gt_pagefault.c
+index 73db7f7c0381..6faebd02f3fb 100644
+--- a/drivers/gpu/drm/xe/xe_gt_pagefault.c
++++ b/drivers/gpu/drm/xe/xe_gt_pagefault.c
+@@ -533,8 +533,8 @@ static int handle_acc(struct xe_gt *gt, struct acc *acc)
+ 
+ 	trace_xe_vma_acc(vma);
+ 
+-	/* Userptr can't be migrated, nothing to do */
+-	if (xe_vma_is_userptr(vma))
++	/* Userptr or null can't be migrated, nothing to do */
++	if (xe_vma_has_no_bo(vma))
+ 		goto unlock_vm;
+ 
+ 	/* Lock VM and BOs dma-resv */
+diff --git a/drivers/gpu/drm/xe/xe_pt.c b/drivers/gpu/drm/xe/xe_pt.c
+index 29c1b1f0bd7c..fe1c77b139e4 100644
+--- a/drivers/gpu/drm/xe/xe_pt.c
++++ b/drivers/gpu/drm/xe/xe_pt.c
+@@ -81,6 +81,9 @@ u64 xe_pde_encode(struct xe_bo *bo, u64 bo_offset,
+ static dma_addr_t vma_addr(struct xe_vma *vma, u64 offset,
+ 			   size_t page_size, bool *is_vram)
+ {
++	if (xe_vma_is_null(vma))
++		return 0;
++
+ 	if (xe_vma_is_userptr(vma)) {
+ 		struct xe_res_cursor cur;
+ 		u64 page;
+@@ -105,6 +108,9 @@ static u64 __pte_encode(u64 pte, enum xe_cache_level cache, u32 flags,
+ 	if (unlikely(flags & XE_PTE_FLAG_READ_ONLY))
+ 		pte &= ~XE_PAGE_RW;
+ 
++	if (unlikely(flags & XE_PTE_FLAG_NULL))
++		pte |= XE_PTE_NULL;
++
+ 	/* FIXME: I don't think the PPAT handling is correct for MTL */
+ 
+ 	switch (cache) {
+@@ -557,6 +563,10 @@ static bool xe_pt_hugepte_possible(u64 addr, u64 next, unsigned int level,
+ 	if (next - xe_walk->va_curs_start > xe_walk->curs->size)
+ 		return false;
+ 
++	/* null VMA's do not have dma addresses */
++	if (xe_walk->pte_flags & XE_PTE_FLAG_NULL)
++		return true;
++
+ 	/* Is the DMA address huge PTE size aligned? */
+ 	size = next - addr;
+ 	dma = addr - xe_walk->va_curs_start + xe_res_dma(xe_walk->curs);
+@@ -579,6 +589,10 @@ xe_pt_scan_64K(u64 addr, u64 next, struct xe_pt_stage_bind_walk *xe_walk)
+ 	if (next > xe_walk->l0_end_addr)
+ 		return false;
+ 
++	/* null VMA's do not have dma addresses */
++	if (xe_walk->pte_flags & XE_PTE_FLAG_NULL)
++		return true;
++
+ 	xe_res_next(&curs, addr - xe_walk->va_curs_start);
+ 	for (; addr < next; addr += SZ_64K) {
+ 		if (!IS_ALIGNED(xe_res_dma(&curs), SZ_64K) || curs.size < SZ_64K)
+@@ -629,10 +643,12 @@ xe_pt_stage_bind_entry(struct xe_ptw *parent, pgoff_t offset,
+ 	/* Is this a leaf entry ?*/
+ 	if (level == 0 || xe_pt_hugepte_possible(addr, next, level, xe_walk)) {
+ 		struct xe_res_cursor *curs = xe_walk->curs;
++		bool is_null = xe_walk->pte_flags & XE_PTE_FLAG_NULL;
+ 
+ 		XE_WARN_ON(xe_walk->va_curs_start != addr);
+ 
+-		pte = __pte_encode(xe_res_dma(curs) + xe_walk->dma_offset,
++		pte = __pte_encode(is_null ? 0 :
++				   xe_res_dma(curs) + xe_walk->dma_offset,
+ 				   xe_walk->cache, xe_walk->pte_flags,
+ 				   level);
+ 		pte |= xe_walk->default_pte;
+@@ -652,7 +668,8 @@ xe_pt_stage_bind_entry(struct xe_ptw *parent, pgoff_t offset,
+ 		if (unlikely(ret))
+ 			return ret;
+ 
+-		xe_res_next(curs, next - addr);
++		if (!is_null)
++			xe_res_next(curs, next - addr);
+ 		xe_walk->va_curs_start = next;
+ 		*action = ACTION_CONTINUE;
+ 
+@@ -759,24 +776,29 @@ xe_pt_stage_bind(struct xe_tile *tile, struct xe_vma *vma,
+ 		xe_walk.dma_offset = vram_region_gpu_offset(bo->ttm.resource);
+ 		xe_walk.cache = XE_CACHE_WB;
+ 	} else {
+-		if (!xe_vma_is_userptr(vma) && bo->flags & XE_BO_SCANOUT_BIT)
++		if (!xe_vma_has_no_bo(vma) && bo->flags & XE_BO_SCANOUT_BIT)
+ 			xe_walk.cache = XE_CACHE_WT;
+ 		else
+ 			xe_walk.cache = XE_CACHE_WB;
+ 	}
+-	if (!xe_vma_is_userptr(vma) && xe_bo_is_stolen(bo))
++	if (!xe_vma_has_no_bo(vma) && xe_bo_is_stolen(bo))
+ 		xe_walk.dma_offset = xe_ttm_stolen_gpu_offset(xe_bo_device(bo));
+ 
+ 	xe_bo_assert_held(bo);
+-	if (xe_vma_is_userptr(vma))
+-		xe_res_first_sg(vma->userptr.sg, 0, vma->end - vma->start + 1,
+-				&curs);
+-	else if (xe_bo_is_vram(bo) || xe_bo_is_stolen(bo))
+-		xe_res_first(bo->ttm.resource, vma->bo_offset,
+-			     vma->end - vma->start + 1, &curs);
+-	else
+-		xe_res_first_sg(xe_bo_get_sg(bo), vma->bo_offset,
+-				vma->end - vma->start + 1, &curs);
++
++	if (!xe_vma_is_null(vma)) {
++		if (xe_vma_is_userptr(vma))
++			xe_res_first_sg(vma->userptr.sg, 0,
++					vma->end - vma->start + 1, &curs);
++		else if (xe_bo_is_vram(bo) || xe_bo_is_stolen(bo))
++			xe_res_first(bo->ttm.resource, vma->bo_offset,
++				     vma->end - vma->start + 1, &curs);
++		else
++			xe_res_first_sg(xe_bo_get_sg(bo), vma->bo_offset,
++					vma->end - vma->start + 1, &curs);
++	} else {
++		curs.size = vma->end - vma->start + 1;
++	}
+ 
+ 	ret = xe_pt_walk_range(&pt->base, pt->level, vma->start, vma->end + 1,
+ 				&xe_walk.base);
+@@ -965,7 +987,7 @@ static void xe_pt_commit_locks_assert(struct xe_vma *vma)
+ 
+ 	if (xe_vma_is_userptr(vma))
+ 		lockdep_assert_held_read(&vm->userptr.notifier_lock);
+-	else
++	else if (!xe_vma_is_null(vma))
+ 		dma_resv_assert_held(vma->bo->ttm.base.resv);
+ 
+ 	dma_resv_assert_held(&vm->resv);
+@@ -1341,7 +1363,7 @@ __xe_pt_bind_vma(struct xe_tile *tile, struct xe_vma *vma, struct xe_engine *e,
+ 				   DMA_RESV_USAGE_KERNEL :
+ 				   DMA_RESV_USAGE_BOOKKEEP);
+ 
+-		if (!xe_vma_is_userptr(vma) && !vma->bo->vm)
++		if (!xe_vma_has_no_bo(vma) && !vma->bo->vm)
+ 			dma_resv_add_fence(vma->bo->ttm.base.resv, fence,
+ 					   DMA_RESV_USAGE_BOOKKEEP);
+ 		xe_pt_commit_bind(vma, entries, num_entries, rebind,
+@@ -1658,7 +1680,7 @@ __xe_pt_unbind_vma(struct xe_tile *tile, struct xe_vma *vma, struct xe_engine *e
+ 				   DMA_RESV_USAGE_BOOKKEEP);
+ 
+ 		/* This fence will be installed by caller when doing eviction */
+-		if (!xe_vma_is_userptr(vma) && !vma->bo->vm)
++		if (!xe_vma_has_no_bo(vma) && !vma->bo->vm)
+ 			dma_resv_add_fence(vma->bo->ttm.base.resv, fence,
+ 					   DMA_RESV_USAGE_BOOKKEEP);
+ 		xe_pt_commit_unbind(vma, entries, num_entries,
+diff --git a/drivers/gpu/drm/xe/xe_vm.c b/drivers/gpu/drm/xe/xe_vm.c
+index 56ed2cb75c8e..113853d496c7 100644
+--- a/drivers/gpu/drm/xe/xe_vm.c
++++ b/drivers/gpu/drm/xe/xe_vm.c
+@@ -590,7 +590,7 @@ static void preempt_rebind_work_func(struct work_struct *w)
+ 		goto out_unlock;
+ 
+ 	list_for_each_entry(vma, &vm->rebind_list, rebind_link) {
+-		if (xe_vma_is_userptr(vma) || vma->destroyed)
++		if (xe_vma_has_no_bo(vma) || vma->destroyed)
+ 			continue;
+ 
+ 		err = xe_bo_validate(vma->bo, vm, false);
+@@ -843,6 +843,7 @@ static struct xe_vma *xe_vma_create(struct xe_vm *vm,
+ 				    u64 bo_offset_or_userptr,
+ 				    u64 start, u64 end,
+ 				    bool read_only,
++				    bool is_null,
+ 				    u64 tile_mask)
+ {
+ 	struct xe_vma *vma;
+@@ -868,8 +869,11 @@ static struct xe_vma *xe_vma_create(struct xe_vm *vm,
+ 	vma->vm = vm;
+ 	vma->start = start;
+ 	vma->end = end;
++	vma->pte_flags = 0;
+ 	if (read_only)
+-		vma->pte_flags = XE_PTE_FLAG_READ_ONLY;
++		vma->pte_flags |= XE_PTE_FLAG_READ_ONLY;
++	if (is_null)
++		vma->pte_flags |= XE_PTE_FLAG_NULL;
+ 
+ 	if (tile_mask) {
+ 		vma->tile_mask = tile_mask;
+@@ -886,23 +890,26 @@ static struct xe_vma *xe_vma_create(struct xe_vm *vm,
+ 		vma->bo_offset = bo_offset_or_userptr;
+ 		vma->bo = xe_bo_get(bo);
+ 		list_add_tail(&vma->bo_link, &bo->vmas);
+-	} else /* userptr */ {
+-		u64 size = end - start + 1;
+-		int err;
++	} else /* userptr or null */ {
++		if (!is_null) {
++			u64 size = end - start + 1;
++			int err;
+ 
+-		vma->userptr.ptr = bo_offset_or_userptr;
++			vma->userptr.ptr = bo_offset_or_userptr;
+ 
+-		err = mmu_interval_notifier_insert(&vma->userptr.notifier,
+-						   current->mm,
+-						   vma->userptr.ptr, size,
+-						   &vma_userptr_notifier_ops);
+-		if (err) {
+-			kfree(vma);
+-			vma = ERR_PTR(err);
+-			return vma;
++			err = mmu_interval_notifier_insert(&vma->userptr.notifier,
++							   current->mm,
++							   vma->userptr.ptr, size,
++							   &vma_userptr_notifier_ops);
++			if (err) {
++				kfree(vma);
++				vma = ERR_PTR(err);
++				return vma;
++			}
++
++			vma->userptr.notifier_seq = LONG_MAX;
+ 		}
+ 
+-		vma->userptr.notifier_seq = LONG_MAX;
+ 		xe_vm_get(vm);
+ 	}
+ 
+@@ -942,6 +949,8 @@ static void xe_vma_destroy_late(struct xe_vma *vma)
+ 		 */
+ 		mmu_interval_notifier_remove(&vma->userptr.notifier);
+ 		xe_vm_put(vm);
++	} else if (xe_vma_is_null(vma)) {
++		xe_vm_put(vm);
+ 	} else {
+ 		xe_bo_put(vma->bo);
+ 	}
+@@ -1024,7 +1033,7 @@ static void xe_vma_destroy(struct xe_vma *vma, struct dma_fence *fence)
+ 		list_del_init(&vma->userptr.invalidate_link);
+ 		spin_unlock(&vm->userptr.invalidated_lock);
+ 		list_del(&vma->userptr_link);
+-	} else {
++	} else if (!xe_vma_is_null(vma)) {
+ 		xe_bo_assert_held(vma->bo);
+ 		list_del(&vma->bo_link);
+ 
+@@ -1393,7 +1402,7 @@ void xe_vm_close_and_put(struct xe_vm *vm)
+ 	while (vm->vmas.rb_node) {
+ 		struct xe_vma *vma = to_xe_vma(vm->vmas.rb_node);
+ 
+-		if (xe_vma_is_userptr(vma)) {
++		if (xe_vma_has_no_bo(vma)) {
+ 			down_read(&vm->userptr.notifier_lock);
+ 			vma->destroyed = true;
+ 			up_read(&vm->userptr.notifier_lock);
+@@ -1402,7 +1411,7 @@ void xe_vm_close_and_put(struct xe_vm *vm)
+ 		rb_erase(&vma->vm_node, &vm->vmas);
+ 
+ 		/* easy case, remove from VMA? */
+-		if (xe_vma_is_userptr(vma) || vma->bo->vm) {
++		if (xe_vma_has_no_bo(vma) || vma->bo->vm) {
+ 			xe_vma_destroy(vma, NULL);
+ 			continue;
+ 		}
+@@ -2036,7 +2045,7 @@ static int xe_vm_prefetch(struct xe_vm *vm, struct xe_vma *vma,
+ 
+ 	XE_BUG_ON(region > ARRAY_SIZE(region_to_mem_type));
+ 
+-	if (!xe_vma_is_userptr(vma)) {
++	if (!xe_vma_has_no_bo(vma)) {
+ 		err = xe_bo_migrate(vma->bo, region_to_mem_type[region]);
+ 		if (err)
+ 			return err;
+@@ -2645,6 +2654,8 @@ static struct xe_vma *vm_unbind_lookup_vmas(struct xe_vm *vm,
+ 					  lookup->start - 1,
+ 					  (first->pte_flags &
+ 					   XE_PTE_FLAG_READ_ONLY),
++					  (first->pte_flags &
++					   XE_PTE_FLAG_NULL),
+ 					  first->tile_mask);
+ 		if (first->bo)
+ 			xe_bo_unlock(first->bo, &ww);
+@@ -2652,7 +2663,7 @@ static struct xe_vma *vm_unbind_lookup_vmas(struct xe_vm *vm,
+ 			err = -ENOMEM;
+ 			goto unwind;
+ 		}
+-		if (!first->bo) {
++		if (xe_vma_is_userptr(first)) {
+ 			err = xe_vma_userptr_pin_pages(new_first);
+ 			if (err)
+ 				goto unwind;
+@@ -2677,6 +2688,7 @@ static struct xe_vma *vm_unbind_lookup_vmas(struct xe_vm *vm,
+ 					 last->end,
+ 					 (last->pte_flags &
+ 					  XE_PTE_FLAG_READ_ONLY),
++					 (last->pte_flags & XE_PTE_FLAG_NULL),
+ 					 last->tile_mask);
+ 		if (last->bo)
+ 			xe_bo_unlock(last->bo, &ww);
+@@ -2684,7 +2696,7 @@ static struct xe_vma *vm_unbind_lookup_vmas(struct xe_vm *vm,
+ 			err = -ENOMEM;
+ 			goto unwind;
+ 		}
+-		if (!last->bo) {
++		if (xe_vma_is_userptr(last)) {
+ 			err = xe_vma_userptr_pin_pages(new_last);
+ 			if (err)
+ 				goto unwind;
+@@ -2744,7 +2756,7 @@ static struct xe_vma *vm_prefetch_lookup_vmas(struct xe_vm *vm,
+ 		      *next;
+ 	struct rb_node *node;
+ 
+-	if (!xe_vma_is_userptr(vma)) {
++	if (!xe_vma_has_no_bo(vma)) {
+ 		if (!xe_bo_can_migrate(vma->bo, region_to_mem_type[region]))
+ 			return ERR_PTR(-EINVAL);
+ 	}
+@@ -2753,7 +2765,7 @@ static struct xe_vma *vm_prefetch_lookup_vmas(struct xe_vm *vm,
+ 	while ((node = rb_next(node))) {
+ 		if (!xe_vma_cmp_vma_cb(lookup, node)) {
+ 			__vma = to_xe_vma(node);
+-			if (!xe_vma_is_userptr(__vma)) {
++			if (!xe_vma_has_no_bo(__vma)) {
+ 				if (!xe_bo_can_migrate(__vma->bo, region_to_mem_type[region]))
+ 					goto flush_list;
+ 			}
+@@ -2767,7 +2779,7 @@ static struct xe_vma *vm_prefetch_lookup_vmas(struct xe_vm *vm,
+ 	while ((node = rb_prev(node))) {
+ 		if (!xe_vma_cmp_vma_cb(lookup, node)) {
+ 			__vma = to_xe_vma(node);
+-			if (!xe_vma_is_userptr(__vma)) {
++			if (!xe_vma_has_no_bo(__vma)) {
+ 				if (!xe_bo_can_migrate(__vma->bo, region_to_mem_type[region]))
+ 					goto flush_list;
+ 			}
+@@ -2826,21 +2838,23 @@ static struct xe_vma *vm_bind_ioctl_lookup_vma(struct xe_vm *vm,
+ 
+ 	switch (VM_BIND_OP(op)) {
+ 	case XE_VM_BIND_OP_MAP:
+-		XE_BUG_ON(!bo);
+-
+-		err = xe_bo_lock(bo, &ww, 0, true);
+-		if (err)
+-			return ERR_PTR(err);
++		if (bo) {
++			err = xe_bo_lock(bo, &ww, 0, true);
++			if (err)
++				return ERR_PTR(err);
++		}
+ 		vma = xe_vma_create(vm, bo, bo_offset_or_userptr, addr,
+ 				    addr + range - 1,
+ 				    op & XE_VM_BIND_FLAG_READONLY,
++				    op & XE_VM_BIND_FLAG_NULL,
+ 				    tile_mask);
+-		xe_bo_unlock(bo, &ww);
++		if (bo)
++			xe_bo_unlock(bo, &ww);
+ 		if (!vma)
+ 			return ERR_PTR(-ENOMEM);
+ 
+ 		xe_vm_insert_vma(vm, vma);
+-		if (!bo->vm) {
++		if (bo && !bo->vm) {
+ 			vm_insert_extobj(vm, vma);
+ 			err = add_preempt_fences(vm, bo);
+ 			if (err) {
+@@ -2874,6 +2888,7 @@ static struct xe_vma *vm_bind_ioctl_lookup_vma(struct xe_vm *vm,
+ 		vma = xe_vma_create(vm, NULL, bo_offset_or_userptr, addr,
+ 				    addr + range - 1,
+ 				    op & XE_VM_BIND_FLAG_READONLY,
++				    op & XE_VM_BIND_FLAG_NULL,
+ 				    tile_mask);
+ 		if (!vma)
+ 			return ERR_PTR(-ENOMEM);
+@@ -2899,11 +2914,12 @@ static struct xe_vma *vm_bind_ioctl_lookup_vma(struct xe_vm *vm,
+ #ifdef TEST_VM_ASYNC_OPS_ERROR
+ #define SUPPORTED_FLAGS	\
+ 	(FORCE_ASYNC_OP_ERROR | XE_VM_BIND_FLAG_ASYNC | \
+-	 XE_VM_BIND_FLAG_READONLY | XE_VM_BIND_FLAG_IMMEDIATE | 0xffff)
++	 XE_VM_BIND_FLAG_READONLY | XE_VM_BIND_FLAG_IMMEDIATE | \
++	 XE_VM_BIND_FLAG_NULL | 0xffff)
+ #else
+ #define SUPPORTED_FLAGS	\
+ 	(XE_VM_BIND_FLAG_ASYNC | XE_VM_BIND_FLAG_READONLY | \
+-	 XE_VM_BIND_FLAG_IMMEDIATE | 0xffff)
++	 XE_VM_BIND_FLAG_IMMEDIATE | XE_VM_BIND_FLAG_NULL | 0xffff)
+ #endif
+ #define XE_64K_PAGE_MASK 0xffffull
+ 
+@@ -2951,6 +2967,7 @@ static int vm_bind_ioctl_check_args(struct xe_device *xe,
+ 		u32 obj = (*bind_ops)[i].obj;
+ 		u64 obj_offset = (*bind_ops)[i].obj_offset;
+ 		u32 region = (*bind_ops)[i].region;
++		bool is_null = op &  XE_VM_BIND_FLAG_NULL;
+ 
+ 		if (XE_IOCTL_ERR(xe, (*bind_ops)[i].pad) ||
+ 		    XE_IOCTL_ERR(xe, (*bind_ops)[i].reserved[0] ||
+@@ -2984,8 +3001,13 @@ static int vm_bind_ioctl_check_args(struct xe_device *xe,
+ 		if (XE_IOCTL_ERR(xe, VM_BIND_OP(op) >
+ 				 XE_VM_BIND_OP_PREFETCH) ||
+ 		    XE_IOCTL_ERR(xe, op & ~SUPPORTED_FLAGS) ||
++		    XE_IOCTL_ERR(xe, obj && is_null) ||
++		    XE_IOCTL_ERR(xe, obj_offset && is_null) ||
++		    XE_IOCTL_ERR(xe, VM_BIND_OP(op) != XE_VM_BIND_OP_MAP &&
++				 is_null) ||
+ 		    XE_IOCTL_ERR(xe, !obj &&
+-				 VM_BIND_OP(op) == XE_VM_BIND_OP_MAP) ||
++				 VM_BIND_OP(op) == XE_VM_BIND_OP_MAP &&
++				 !is_null) ||
+ 		    XE_IOCTL_ERR(xe, !obj &&
+ 				 VM_BIND_OP(op) == XE_VM_BIND_OP_UNMAP_ALL) ||
+ 		    XE_IOCTL_ERR(xe, addr &&
+@@ -3390,6 +3412,7 @@ int xe_vm_invalidate_vma(struct xe_vma *vma)
+ 	int ret;
+ 
+ 	XE_BUG_ON(!xe_vm_in_fault_mode(vma->vm));
++	XE_WARN_ON(xe_vma_is_null(vma));
+ 	trace_xe_vma_usm_invalidate(vma);
+ 
+ 	/* Check that we don't race with page-table updates */
+@@ -3452,8 +3475,11 @@ int xe_analyze_vm(struct drm_printer *p, struct xe_vm *vm, int gt_id)
+ 	for (node = rb_first(&vm->vmas); node; node = rb_next(node)) {
+ 		struct xe_vma *vma = to_xe_vma(node);
+ 		bool is_userptr = xe_vma_is_userptr(vma);
++		bool is_null = xe_vma_is_null(vma);
+ 
+-		if (is_userptr) {
++		if (is_null) {
++			addr = 0;
++		} else if (is_userptr) {
+ 			struct xe_res_cursor cur;
+ 
+ 			if (vma->userptr.sg) {
+@@ -3468,7 +3494,8 @@ int xe_analyze_vm(struct drm_printer *p, struct xe_vm *vm, int gt_id)
+ 		}
+ 		drm_printf(p, " [%016llx-%016llx] S:0x%016llx A:%016llx %s\n",
+ 			   vma->start, vma->end, vma->end - vma->start + 1ull,
+-			   addr, is_userptr ? "USR" : is_vram ? "VRAM" : "SYS");
++			   addr, is_null ? "NULL" : is_userptr ? "USR" :
++			   is_vram ? "VRAM" : "SYS");
+ 	}
+ 	up_read(&vm->lock);
+ 
+diff --git a/drivers/gpu/drm/xe/xe_vm.h b/drivers/gpu/drm/xe/xe_vm.h
+index bb2996856841..5edb7771629c 100644
+--- a/drivers/gpu/drm/xe/xe_vm.h
++++ b/drivers/gpu/drm/xe/xe_vm.h
+@@ -115,11 +115,21 @@ static inline void xe_vm_reactivate_rebind(struct xe_vm *vm)
+ 	}
+ }
+ 
+-static inline bool xe_vma_is_userptr(struct xe_vma *vma)
++static inline bool xe_vma_is_null(struct xe_vma *vma)
++{
++	return vma->pte_flags & XE_PTE_FLAG_NULL;
++}
++
++static inline bool xe_vma_has_no_bo(struct xe_vma *vma)
+ {
+ 	return !vma->bo;
+ }
+ 
++static inline bool xe_vma_is_userptr(struct xe_vma *vma)
++{
++	return xe_vma_has_no_bo(vma) && !xe_vma_is_null(vma);
++}
++
+ int xe_vma_userptr_pin_pages(struct xe_vma *vma);
+ 
+ int xe_vma_userptr_check_repin(struct xe_vma *vma);
+diff --git a/drivers/gpu/drm/xe/xe_vm_types.h b/drivers/gpu/drm/xe/xe_vm_types.h
+index a51e84e584b4..9b39c5f64afa 100644
+--- a/drivers/gpu/drm/xe/xe_vm_types.h
++++ b/drivers/gpu/drm/xe/xe_vm_types.h
+@@ -31,6 +31,7 @@ struct xe_vma {
+ 	u64 end;
+ 	/** @pte_flags: pte flags for this VMA */
+ #define XE_PTE_FLAG_READ_ONLY		BIT(0)
++#define XE_PTE_FLAG_NULL		BIT(1)
+ 	u32 pte_flags;
+ 
+ 	/** @bo: BO if not a userptr, must be NULL is userptr */
+diff --git a/include/uapi/drm/xe_drm.h b/include/uapi/drm/xe_drm.h
+index 7f9a5849e88b..9bdea8b81435 100644
+--- a/include/uapi/drm/xe_drm.h
++++ b/include/uapi/drm/xe_drm.h
+@@ -418,6 +418,14 @@ struct drm_xe_vm_bind_op {
+ 	 * than differing the MAP to the page fault handler.
+ 	 */
+ #define XE_VM_BIND_FLAG_IMMEDIATE	(0x1 << 18)
++	/*
++	 * When the NULL flag is set, the page tables are setup with a special
++	 * bit which indicates writes are dropped and all reads return zero.  In
++	 * the future, the NULL flags will only be valid for XE_VM_BIND_OP_MAP
++	 * operations, the BO handle MBZ, and the BO offset MBZ. This flag is
++	 * intended to implement VK sparse bindings.
++	 */
++#define XE_VM_BIND_FLAG_NULL		(0x1 << 19)
+ 
+ 	/** @reserved: Reserved */
+ 	__u64 reserved[2];
+-- 
+2.34.1
 
