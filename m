@@ -4,53 +4,136 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 66015EB64D7
-	for <intel-xe@archiver.kernel.org>; Fri, 16 Jun 2023 15:10:09 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id EBFC8EB64D7
+	for <intel-xe@archiver.kernel.org>; Fri, 16 Jun 2023 15:10:14 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3081B10E648;
-	Fri, 16 Jun 2023 15:10:09 +0000 (UTC)
-Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9CA0910E648
- for <intel-xe@lists.freedesktop.org>; Fri, 16 Jun 2023 15:10:06 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A3B3810E64B;
+	Fri, 16 Jun 2023 15:10:14 +0000 (UTC)
+Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 880FD10E64B
+ for <intel-xe@lists.freedesktop.org>; Fri, 16 Jun 2023 15:10:12 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1686928206; x=1718464206;
- h=message-id:date:mime-version:subject:to:cc:references:
- from:in-reply-to:content-transfer-encoding;
- bh=djD92Gi1HPnodZIup9cMl+xLCzfGOkm+n9xTyKjHjY0=;
- b=VhEdjGpr3tXBED/ci9BLPyBkkWN9jVDUv0xWOyno6ifBIzHsS9ijjK/9
- G5kN3IOfPHfxkIJcyFHKIFHBtQ9ysT2FZRejVN29dXT2KjhPlx2J+VSKw
- 6wvryblB8b14lh8FKmwb/3qvejBfVMBNDsfexgY/RA0gXuHpIzcwV0mN1
- FbFlE0tzSv/sJlBqE/eB5AY7M9xsX8UFKCnETJ/eUSnGhEZl5T0bC64Qn
- 5YJYDoqSSVaCvlJL2suRX7NTPs5rHK/DSkgFsYPviqbpxLeKS5B45TERv
- dxlrw0PV0/OFNrEoT47cjW+cxbZX3VwsNgaLldRpkl+LyQgh8jTZRC/lh A==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10742"; a="361764333"
-X-IronPort-AV: E=Sophos;i="6.00,247,1681196400"; d="scan'208";a="361764333"
-Received: from fmsmga003.fm.intel.com ([10.253.24.29])
- by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 16 Jun 2023 08:10:05 -0700
+ t=1686928212; x=1718464212;
+ h=date:from:to:cc:subject:message-id:references:
+ content-transfer-encoding:in-reply-to:mime-version;
+ bh=nbaUsvWUujoi/lAw86xVgMReslOBCmUu/vyGoQdk8yo=;
+ b=dygxTch9ce1uX4wh+T4SYcEPN7GwPUYZhQvSw/O2u5wywFpxjzGOquWw
+ 7YAGzGdXRxeMSx3YBZI9cr91rrTogNchzCTlaj5+o7jiOMAs8RPCFr979
+ Z+jl+Z2lJi3I1aYQmTKLWNs3cSEwrUVYuDOZUiYKNBJB9z81jvgRGih0o
+ 2A5Qzv5QUqnGJrnYALzlJFvCzbNmknIwniYZa5qsHblZfob74SR+dr/3R
+ VvqJ5FbiMgw96z9Tt4+jjOi9n6IOzX4+KQQxYlhPoQxFahmCvFK0dFqtD
+ IUH/Sg56w8YghE/fEvb4mPe/8/qiwCi7RtrmqBp9bahZdGA6lfWmPrwsI A==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10742"; a="348942492"
+X-IronPort-AV: E=Sophos;i="6.00,247,1681196400"; d="scan'208";a="348942492"
+Received: from orsmga007.jf.intel.com ([10.7.209.58])
+ by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 16 Jun 2023 08:10:10 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10742"; a="802872081"
-X-IronPort-AV: E=Sophos;i="6.00,247,1681196400"; d="scan'208";a="802872081"
-Received: from nurha65x-mobl2.gar.corp.intel.com (HELO [10.249.254.148])
- ([10.249.254.148])
- by fmsmga003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 16 Jun 2023 08:10:03 -0700
-Message-ID: <1c3e262a-d506-21d1-64b8-8504a5c251f6@linux.intel.com>
-Date: Fri, 16 Jun 2023 17:10:01 +0200
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.11.1
-To: Matthew Brost <matthew.brost@intel.com>, intel-xe@lists.freedesktop.org
-References: <20230615173014.258703-1-matthew.brost@intel.com>
- <20230615173014.258703-2-matthew.brost@intel.com>
-Content-Language: en-US
-From: =?UTF-8?Q?Thomas_Hellstr=c3=b6m?= <thomas.hellstrom@linux.intel.com>
-In-Reply-To: <20230615173014.258703-2-matthew.brost@intel.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+X-IronPort-AV: E=McAfee;i="6600,9927,10742"; a="707132363"
+X-IronPort-AV: E=Sophos;i="6.00,247,1681196400"; d="scan'208";a="707132363"
+Received: from fmsmsx603.amr.corp.intel.com ([10.18.126.83])
+ by orsmga007.jf.intel.com with ESMTP; 16 Jun 2023 08:10:09 -0700
+Received: from fmsmsx602.amr.corp.intel.com (10.18.126.82) by
+ fmsmsx603.amr.corp.intel.com (10.18.126.83) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.23; Fri, 16 Jun 2023 08:10:09 -0700
+Received: from fmsedg601.ED.cps.intel.com (10.1.192.135) by
+ fmsmsx602.amr.corp.intel.com (10.18.126.82) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.23 via Frontend Transport; Fri, 16 Jun 2023 08:10:09 -0700
+Received: from NAM10-MW2-obe.outbound.protection.outlook.com (104.47.55.105)
+ by edgegateway.intel.com (192.55.55.70) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.1.2507.23; Fri, 16 Jun 2023 08:10:09 -0700
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=R4vKseXbKzD0l38FMznES/pDRGFNhh4KYMJvf/wTHlyk88TGp/o6AcJ3q/0OVRq1aiMtm4GjaqO2sEPQtnTNTDctphdsYP3q48af+EIkiyEJSNwXbV31ezo5y4t0Oekc+oyZ4hEzA4rw512GTADBlIGbhT5M/V4tb3tkMlToMCfKZcGYAabgn8iY48oXpxwV81yNnd0gUMTWpUdg3atR1pzIBaGN8XOPvU2rjxZwzOTK/IVJ81GhXuek69cWWJvjPvu5ChMjXqoFUI+rqNA8LZ1pUrYRhCt1YhbLdGme96c9+c1SpgNoI8bxmbcSTeDibShQ0JsWEtPZQhHAt3Bu8A==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=q26TmU5O80O2VJcfLJ7q4rb81r99UWmmbdYV/cQ365A=;
+ b=hh3JXpXOkCRP3BoHNH6xfh4BAdGKK4nJ29OisBlLMoMTZfivQwAkQ4fdi1wysxvmdj8EiHlYGydQCbVQ8eOMEK+B4Si/hMjtKoSBRkEBahJipaXqtKFkmJ+i86Mg9qBY6m9yHmMgIFWfL7P5zcyEQQfg1HjVJtU7P454YtXNrDWHDuEqPNgE3Rdvd/EE2VfGj0mg+sLCtUtskuFsrxFhXwDVhEZYSSWF0djPd2Wshs6Xiqh+D99s4gxF4bNKrTFwce5BrIRK0WBDQ5+REBZXD/kGdsDqpMrIYuMwMf8dHR3lzwRUli22WTDdRunQ0cdhdao66cIaiR75C3+rvpOTqw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
+ dkim=pass header.d=intel.com; arc=none
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=intel.com;
+Received: from PH7PR11MB6522.namprd11.prod.outlook.com (2603:10b6:510:212::12)
+ by SJ0PR11MB4911.namprd11.prod.outlook.com (2603:10b6:a03:2ad::14)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6500.29; Fri, 16 Jun
+ 2023 15:10:08 +0000
+Received: from PH7PR11MB6522.namprd11.prod.outlook.com
+ ([fe80::ff06:a115:e4eb:680e]) by PH7PR11MB6522.namprd11.prod.outlook.com
+ ([fe80::ff06:a115:e4eb:680e%5]) with mapi id 15.20.6477.037; Fri, 16 Jun 2023
+ 15:10:07 +0000
+Date: Fri, 16 Jun 2023 15:09:33 +0000
+From: Matthew Brost <matthew.brost@intel.com>
+To: Thomas =?iso-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>
+Message-ID: <ZIx7LTnLvPm83uR1@DUT025-TGLU.fm.intel.com>
+References: <20230616095504.17084-1-thomas.hellstrom@linux.intel.com>
+ <20230616095504.17084-2-thomas.hellstrom@linux.intel.com>
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-Subject: Re: [Intel-xe] [PATCH v4 1/8] fixup! drm/sched: Convert drm
- scheduler to use a work queue rather than kthread
+In-Reply-To: <20230616095504.17084-2-thomas.hellstrom@linux.intel.com>
+X-ClientProxiedBy: SJ0PR03CA0081.namprd03.prod.outlook.com
+ (2603:10b6:a03:331::26) To PH7PR11MB6522.namprd11.prod.outlook.com
+ (2603:10b6:510:212::12)
+MIME-Version: 1.0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: PH7PR11MB6522:EE_|SJ0PR11MB4911:EE_
+X-MS-Office365-Filtering-Correlation-Id: 7680276a-92ef-4ce4-bcc3-08db6e7bc563
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: OmhUQb3QjbrUh3ik+6vg2N9nXYXW7Jrcvge5loVHzLsB2dq/TZz15LTPFdJNb1MBndKlgYvNZTgIQUVh8S4YOCvq0mo/t1HHuJcw59Tjd239XzSjCDe3TCELdcn08rLYFaJUi+WmQVARl2H4haUjYFbD9mZ6SodwsEDi+jLlmVlYYcmMfZAwJmqgRXrpmB6Xtm8xA33Kaq6IwT3zcmAlp/fYFd+4YENg64al7f7YB2GxDjGNr9VEU0dx3WMDkiXvNDAb1DESBBd6VxEwd0S9vflAi8nCzVcX1y5XRb1L+QNIdwn8mDMXoUdVcB3WtFr5BPpjH6jRNNCatt1EtVYcTd/S3IVJMEN5HDW4i4EYuTbX3RA0CGBbHn6S5ECTecz+bIu5EO3zspRbiWHpSz7gJhfCook1niMX9bH7ou9SJiOgek7RHC9vCECxMJWYqRx2HdJfnFce5NNUKtNVJr0oy9t6bT2Tn9sAbNOroutY4yDAuvvrUH9RI2rnNBh3LHAkMmGAeMB2H7oQTYgH320nWpzudL0D5b+E3qGM4Pj1wSn0ACa/qAHTJ5NRcXjmJqG3
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:PH7PR11MB6522.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230028)(39860400002)(136003)(346002)(376002)(396003)(366004)(451199021)(5660300002)(8936002)(41300700001)(6486002)(8676002)(316002)(6666004)(6506007)(4744005)(6512007)(26005)(186003)(86362001)(478600001)(4326008)(66556008)(6916009)(66476007)(66946007)(44832011)(83380400001)(2906002)(66574015)(82960400001)(38100700002);
+ DIR:OUT; SFP:1102; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?iso-8859-1?Q?V6NGSwC+YLvkBCbKniX+oWq8sJBkWxot4BztrdY9YxshqfkEFmaVLjVJUK?=
+ =?iso-8859-1?Q?opmPO9kzstuznisF4a13GUihMV9q5zXJDjuSg0mtCjylpa/lu8xAqvo2vY?=
+ =?iso-8859-1?Q?5Kc5WOG5bXgQRTXFfZhEmQFDBwkKqnBR2M5V1T97CDlHpDu9CZROKkSC5m?=
+ =?iso-8859-1?Q?1nLgNEeojrUDwZ/YYz8fSQBwFd92bjxSin12UoGSkdWCJ/iDfygpFjQEJt?=
+ =?iso-8859-1?Q?jgXM3iv/5Mqq+dXVbrUlCDB+p5b9k0gxU/cXp9tFmodnObpBinP6g4jAZS?=
+ =?iso-8859-1?Q?7CjADX42I/QssTq6MbSp0Gthsik57H5dDS+kG7D5+UKpAFd1y2ouhgMHV0?=
+ =?iso-8859-1?Q?g8Ch6Rg+qvUJXgNlMvy/n6R4krxpQcNYZax5++3c0sl0CK4WJuoIiI4BM+?=
+ =?iso-8859-1?Q?QqlYN6NB/KmMZkG+4n1BVk/SkkTsifcs1xx0x3mJ62c8TI5cEdIS2QyhrU?=
+ =?iso-8859-1?Q?+Sj8VU3EwW7BfcDBVu6l222bfNU1DgRXF1x/BEY5qbiZG5T7CGQJQi6nDA?=
+ =?iso-8859-1?Q?uDxwGku3CaPrdAZeprY3rrtyYw2GJWsWjD9GC3b/ZhWNIaeqZ975FuY7Ky?=
+ =?iso-8859-1?Q?4MGBTAcFxror632jQWc/y7moIoCHQcoSNSgBo239BQTsJ219B0KZ90WNnn?=
+ =?iso-8859-1?Q?OyRvX+kBwCCWi3AjRA15yCB9gtm+lpkkPMwVxbkPUi8PXPha4RgmUOn62J?=
+ =?iso-8859-1?Q?jL8qs6A5POW1v7/UX6VZusKQ9gIfZsRcfXgo4xd9x/zWWqdIEnl/qg9aJQ?=
+ =?iso-8859-1?Q?Ta6Z67U6nuZQu0IDSQ5PFScQLIAj/WcWtywBO6zOpplGsUDsyUVSl3n5Oy?=
+ =?iso-8859-1?Q?RlSV+B2mgn0L3cRdth93kseBaATIYYUobFLkcm219ywi7aUZKXjIXlUZgS?=
+ =?iso-8859-1?Q?2+4GHqYSmQip5pqNTZHKSEAo+iHnWQ/eI2ipvktDNhBkuAVWo442+O944X?=
+ =?iso-8859-1?Q?KvD0wwikHTtJZNJn45CN1dxl9m/rCGAr2qq4yKcbiXj4mF5IXkkPu4CAU/?=
+ =?iso-8859-1?Q?O36YtfY8NSjEw8qC8KR4U2gz/CRYih4u/PiVXLLlRmhbK0iVlcpJ9YvzCD?=
+ =?iso-8859-1?Q?H/cX6LC3NgsH2GOOOCkb9OvHs5DGDje7OCTeN55YtEkEGk2pHlWsZ8Ru//?=
+ =?iso-8859-1?Q?60/tKwdYy+7QoVn6CAUHsozNSc6it2HsgzGPenxj1do0EokzHdk1ujnOYD?=
+ =?iso-8859-1?Q?8j5ZdxFlM9kZ7UPr1300YyTqbhccyUTRKnZ02H7JO5osak2O+9T0XRmvYi?=
+ =?iso-8859-1?Q?w83Z72/mqEqTIGR4mLxzGkkshGNytwI3NH4/OKaki02rhWWR4H+ux/fYvu?=
+ =?iso-8859-1?Q?INgm6c6QME+xVAdYm/U3wf0GzjOnSWmNQ8w5+MEAoTfSoBDhdtXMbUbTr4?=
+ =?iso-8859-1?Q?i0Iw8gC2XiIb8UjdwwvYF1nQpgLBusiVCrwfEcvvRMAbdE1HpYvhkvjPXx?=
+ =?iso-8859-1?Q?ptZDpvdUIZ2vq3J1k87m6HQhsgPvGS8VoqYSGL0cSJxe4MeCBkYwoRZGCa?=
+ =?iso-8859-1?Q?IQgLSns7BcNVHdArRrJFMFcDsCNs2k/XgSrZAsrP/WNxTrm/NncrrDVRwJ?=
+ =?iso-8859-1?Q?4eS3W47k0TzqEFFOlNLKnigbH9P+Mp0NuRhe3SHs7E9S2Nxn0ChY0mue0j?=
+ =?iso-8859-1?Q?7iOO18uCrSQpGnxWQMTzkvnEVq0jJumHhCp8XTbMcnvGti0dI6XqY97w?=
+ =?iso-8859-1?Q?=3D=3D?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: 7680276a-92ef-4ce4-bcc3-08db6e7bc563
+X-MS-Exchange-CrossTenant-AuthSource: PH7PR11MB6522.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 16 Jun 2023 15:10:07.7774 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: 2w4N7Jt8Nzbv2seJLqTX8AWK2cxCI8VHocwJ0KHg+MknnsyWAWRFjLEZFAKe8Sfmdxm86jCBwh/SjbFdY6pHOg==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SJ0PR11MB4911
+X-OriginatorOrg: intel.com
+Subject: Re: [Intel-xe] [PATCH 1/6] drm/xe/bo: Don't limit the TT manager to
+ half of system memory
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -62,230 +145,39 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
+Cc: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-
-On 6/15/23 19:30, Matthew Brost wrote:
-> Add run WQ argument to drm_sched_init so user can control run WQ.
->
-> Acked-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
-> Signed-off-by: Matthew Brost <matthew.brost@intel.com>
-
-Reviewed-by: Thomas HellstrÃ¶m <thomas.hellstrom@linux.intel.com>
-
+On Fri, Jun 16, 2023 at 11:54:59AM +0200, Thomas Hellström wrote:
+> TTM enforces this limit a page-allocation time, swapping out TT memory
+> if needed.
+> 
+> Signed-off-by: Thomas Hellström <thomas.hellstrom@linux.intel.com>
 > ---
->   drivers/gpu/drm/amd/amdgpu/amdgpu_device.c |  2 +-
->   drivers/gpu/drm/etnaviv/etnaviv_sched.c    |  2 +-
->   drivers/gpu/drm/lima/lima_sched.c          |  2 +-
->   drivers/gpu/drm/msm/msm_ringbuffer.c       |  7 ++++---
->   drivers/gpu/drm/panfrost/panfrost_job.c    |  2 +-
->   drivers/gpu/drm/scheduler/sched_main.c     |  4 +++-
->   drivers/gpu/drm/v3d/v3d_sched.c            | 10 +++++-----
->   drivers/gpu/drm/xe/xe_devcoredump_types.h  |  1 +
->   drivers/gpu/drm/xe/xe_execlist.c           |  2 +-
->   drivers/gpu/drm/xe/xe_guc_submit.c         |  2 +-
->   include/drm/gpu_scheduler.h                |  1 +
->   11 files changed, 20 insertions(+), 15 deletions(-)
->
-> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
-> index 64e7584c5dd2..2e776ece4251 100644
-> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
-> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
-> @@ -2364,7 +2364,7 @@ static int amdgpu_device_init_schedulers(struct amdgpu_device *adev)
->   			break;
->   		}
->   
-> -		r = drm_sched_init(&ring->sched, &amdgpu_sched_ops,
-> +		r = drm_sched_init(&ring->sched, &amdgpu_sched_ops, NULL,
->   				   ring->num_hw_submission, 0,
->   				   timeout, adev->reset_domain->wq,
->   				   ring->sched_score, ring->name,
-> diff --git a/drivers/gpu/drm/etnaviv/etnaviv_sched.c b/drivers/gpu/drm/etnaviv/etnaviv_sched.c
-> index 1ae87dfd19c4..8486a2923f1b 100644
-> --- a/drivers/gpu/drm/etnaviv/etnaviv_sched.c
-> +++ b/drivers/gpu/drm/etnaviv/etnaviv_sched.c
-> @@ -133,7 +133,7 @@ int etnaviv_sched_init(struct etnaviv_gpu *gpu)
->   {
->   	int ret;
->   
-> -	ret = drm_sched_init(&gpu->sched, &etnaviv_sched_ops,
-> +	ret = drm_sched_init(&gpu->sched, &etnaviv_sched_ops, NULL,
->   			     etnaviv_hw_jobs_limit, etnaviv_job_hang_limit,
->   			     msecs_to_jiffies(500), NULL, NULL,
->   			     dev_name(gpu->dev), gpu->dev);
-> diff --git a/drivers/gpu/drm/lima/lima_sched.c b/drivers/gpu/drm/lima/lima_sched.c
-> index ff003403fbbc..54f53bece27c 100644
-> --- a/drivers/gpu/drm/lima/lima_sched.c
-> +++ b/drivers/gpu/drm/lima/lima_sched.c
-> @@ -488,7 +488,7 @@ int lima_sched_pipe_init(struct lima_sched_pipe *pipe, const char *name)
->   
->   	INIT_WORK(&pipe->recover_work, lima_sched_recover_work);
->   
-> -	return drm_sched_init(&pipe->base, &lima_sched_ops, 1,
-> +	return drm_sched_init(&pipe->base, &lima_sched_ops, NULL, 1,
->   			      lima_job_hang_limit,
->   			      msecs_to_jiffies(timeout), NULL,
->   			      NULL, name, pipe->ldev->dev);
-> diff --git a/drivers/gpu/drm/msm/msm_ringbuffer.c b/drivers/gpu/drm/msm/msm_ringbuffer.c
-> index b60199184409..e1cff31f147a 100644
-> --- a/drivers/gpu/drm/msm/msm_ringbuffer.c
-> +++ b/drivers/gpu/drm/msm/msm_ringbuffer.c
-> @@ -93,9 +93,10 @@ struct msm_ringbuffer *msm_ringbuffer_new(struct msm_gpu *gpu, int id,
->   	 /* currently managing hangcheck ourselves: */
->   	sched_timeout = MAX_SCHEDULE_TIMEOUT;
->   
-> -	ret = drm_sched_init(&ring->sched, &msm_sched_ops,
-> -			num_hw_submissions, 0, sched_timeout,
-> -			NULL, NULL, to_msm_bo(ring->bo)->name, gpu->dev->dev);
-> +	ret = drm_sched_init(&ring->sched, &msm_sched_ops, NULL,
-> +			     num_hw_submissions, 0, sched_timeout,
-> +			     NULL, NULL, to_msm_bo(ring->bo)->name,
-> +			     gpu->dev->dev);
->   	if (ret) {
->   		goto fail;
->   	}
-> diff --git a/drivers/gpu/drm/panfrost/panfrost_job.c b/drivers/gpu/drm/panfrost/panfrost_job.c
-> index dbc597ab46fb..f48b07056a16 100644
-> --- a/drivers/gpu/drm/panfrost/panfrost_job.c
-> +++ b/drivers/gpu/drm/panfrost/panfrost_job.c
-> @@ -815,7 +815,7 @@ int panfrost_job_init(struct panfrost_device *pfdev)
->   		js->queue[j].fence_context = dma_fence_context_alloc(1);
->   
->   		ret = drm_sched_init(&js->queue[j].sched,
-> -				     &panfrost_sched_ops,
-> +				     &panfrost_sched_ops, NULL,
->   				     nentries, 0,
->   				     msecs_to_jiffies(JOB_TIMEOUT_MS),
->   				     pfdev->reset.wq,
-> diff --git a/drivers/gpu/drm/scheduler/sched_main.c b/drivers/gpu/drm/scheduler/sched_main.c
-> index db70a57a3a1a..6bc29d509161 100644
-> --- a/drivers/gpu/drm/scheduler/sched_main.c
-> +++ b/drivers/gpu/drm/scheduler/sched_main.c
-> @@ -1178,6 +1178,7 @@ static void drm_sched_main(struct work_struct *w)
->    *
->    * @sched: scheduler instance
->    * @ops: backend operations for this scheduler
-> + * @run_wq: workqueue to use for run work. If NULL, the system_wq is used
->    * @hw_submission: number of hw submissions that can be in flight
->    * @hang_limit: number of times to allow a job to hang before dropping it
->    * @timeout: timeout value in jiffies for the scheduler
-> @@ -1191,6 +1192,7 @@ static void drm_sched_main(struct work_struct *w)
->    */
->   int drm_sched_init(struct drm_gpu_scheduler *sched,
->   		   const struct drm_sched_backend_ops *ops,
-> +		   struct workqueue_struct *run_wq,
->   		   unsigned hw_submission, unsigned hang_limit,
->   		   long timeout, struct workqueue_struct *timeout_wq,
->   		   atomic_t *score, const char *name, struct device *dev)
-> @@ -1199,9 +1201,9 @@ int drm_sched_init(struct drm_gpu_scheduler *sched,
->   	sched->ops = ops;
->   	sched->hw_submission_limit = hw_submission;
->   	sched->name = name;
-> +	sched->run_wq = run_wq ? : system_wq;
->   	sched->timeout = timeout;
->   	sched->timeout_wq = timeout_wq ? : system_wq;
-> -	sched->run_wq = system_wq;	/* FIXME: Let user pass this in */
->   	sched->hang_limit = hang_limit;
->   	sched->score = score ? score : &sched->_score;
->   	sched->dev = dev;
-> diff --git a/drivers/gpu/drm/v3d/v3d_sched.c b/drivers/gpu/drm/v3d/v3d_sched.c
-> index 06238e6d7f5c..38e092ea41e6 100644
-> --- a/drivers/gpu/drm/v3d/v3d_sched.c
-> +++ b/drivers/gpu/drm/v3d/v3d_sched.c
-> @@ -388,7 +388,7 @@ v3d_sched_init(struct v3d_dev *v3d)
->   	int ret;
->   
->   	ret = drm_sched_init(&v3d->queue[V3D_BIN].sched,
-> -			     &v3d_bin_sched_ops,
-> +			     &v3d_bin_sched_ops, NULL,
->   			     hw_jobs_limit, job_hang_limit,
->   			     msecs_to_jiffies(hang_limit_ms), NULL,
->   			     NULL, "v3d_bin", v3d->drm.dev);
-> @@ -396,7 +396,7 @@ v3d_sched_init(struct v3d_dev *v3d)
->   		return ret;
->   
->   	ret = drm_sched_init(&v3d->queue[V3D_RENDER].sched,
-> -			     &v3d_render_sched_ops,
-> +			     &v3d_render_sched_ops, NULL,
->   			     hw_jobs_limit, job_hang_limit,
->   			     msecs_to_jiffies(hang_limit_ms), NULL,
->   			     NULL, "v3d_render", v3d->drm.dev);
-> @@ -404,7 +404,7 @@ v3d_sched_init(struct v3d_dev *v3d)
->   		goto fail;
->   
->   	ret = drm_sched_init(&v3d->queue[V3D_TFU].sched,
-> -			     &v3d_tfu_sched_ops,
-> +			     &v3d_tfu_sched_ops, NULL,
->   			     hw_jobs_limit, job_hang_limit,
->   			     msecs_to_jiffies(hang_limit_ms), NULL,
->   			     NULL, "v3d_tfu", v3d->drm.dev);
-> @@ -413,7 +413,7 @@ v3d_sched_init(struct v3d_dev *v3d)
->   
->   	if (v3d_has_csd(v3d)) {
->   		ret = drm_sched_init(&v3d->queue[V3D_CSD].sched,
-> -				     &v3d_csd_sched_ops,
-> +				     &v3d_csd_sched_ops, NULL,
->   				     hw_jobs_limit, job_hang_limit,
->   				     msecs_to_jiffies(hang_limit_ms), NULL,
->   				     NULL, "v3d_csd", v3d->drm.dev);
-> @@ -421,7 +421,7 @@ v3d_sched_init(struct v3d_dev *v3d)
->   			goto fail;
->   
->   		ret = drm_sched_init(&v3d->queue[V3D_CACHE_CLEAN].sched,
-> -				     &v3d_cache_clean_sched_ops,
-> +				     &v3d_cache_clean_sched_ops, NULL,
->   				     hw_jobs_limit, job_hang_limit,
->   				     msecs_to_jiffies(hang_limit_ms), NULL,
->   				     NULL, "v3d_cache_clean", v3d->drm.dev);
-> diff --git a/drivers/gpu/drm/xe/xe_devcoredump_types.h b/drivers/gpu/drm/xe/xe_devcoredump_types.h
-> index c0d711eb6ab3..cc3ff3ac47ff 100644
-> --- a/drivers/gpu/drm/xe/xe_devcoredump_types.h
-> +++ b/drivers/gpu/drm/xe/xe_devcoredump_types.h
-> @@ -11,6 +11,7 @@
->   
->   #include "xe_hw_engine_types.h"
->   
-> +struct xe_ct;
->   struct xe_device;
->   
->   /**
-> diff --git a/drivers/gpu/drm/xe/xe_execlist.c b/drivers/gpu/drm/xe/xe_execlist.c
-> index 5d2d26e361b9..f0eb8bb277ce 100644
-> --- a/drivers/gpu/drm/xe/xe_execlist.c
-> +++ b/drivers/gpu/drm/xe/xe_execlist.c
-> @@ -336,7 +336,7 @@ static int execlist_engine_init(struct xe_engine *e)
->   
->   	exl->engine = e;
->   
-> -	err = drm_sched_init(&exl->sched, &drm_sched_ops,
-> +	err = drm_sched_init(&exl->sched, &drm_sched_ops, NULL,
->   			     e->lrc[0].ring.size / MAX_JOB_SIZE_BYTES,
->   			     XE_SCHED_HANG_LIMIT, XE_SCHED_JOB_TIMEOUT,
->   			     NULL, NULL, e->hwe->name,
-> diff --git a/drivers/gpu/drm/xe/xe_guc_submit.c b/drivers/gpu/drm/xe/xe_guc_submit.c
-> index b209e4c2a3a9..5c9a6866bd3d 100644
-> --- a/drivers/gpu/drm/xe/xe_guc_submit.c
-> +++ b/drivers/gpu/drm/xe/xe_guc_submit.c
-> @@ -1064,7 +1064,7 @@ static int guc_engine_init(struct xe_engine *e)
->   	init_waitqueue_head(&ge->suspend_wait);
->   
->   	timeout = xe_vm_no_dma_fences(e->vm) ? MAX_SCHEDULE_TIMEOUT : HZ * 5;
-> -	err = drm_sched_init(&ge->sched, &drm_sched_ops,
-> +	err = drm_sched_init(&ge->sched, &drm_sched_ops, NULL,
->   			     e->lrc[0].ring.size / MAX_JOB_SIZE_BYTES,
->   			     64, timeout, guc_to_gt(guc)->ordered_wq, NULL,
->   			     e->name, gt_to_xe(e->gt)->drm.dev);
-> diff --git a/include/drm/gpu_scheduler.h b/include/drm/gpu_scheduler.h
-> index 79311df9dd09..419c0446edd7 100644
-> --- a/include/drm/gpu_scheduler.h
-> +++ b/include/drm/gpu_scheduler.h
-> @@ -547,6 +547,7 @@ struct drm_gpu_scheduler {
->   
->   int drm_sched_init(struct drm_gpu_scheduler *sched,
->   		   const struct drm_sched_backend_ops *ops,
-> +		   struct workqueue_struct *run_wq,
->   		   uint32_t hw_submission, unsigned hang_limit,
->   		   long timeout, struct workqueue_struct *timeout_wq,
->   		   atomic_t *score, const char *name, struct device *dev);
+>  drivers/gpu/drm/xe/xe_ttm_sys_mgr.c | 2 --
+>  1 file changed, 2 deletions(-)
+> 
+> diff --git a/drivers/gpu/drm/xe/xe_ttm_sys_mgr.c b/drivers/gpu/drm/xe/xe_ttm_sys_mgr.c
+> index 3e1fa0c832ca..961bbc29dcdf 100644
+> --- a/drivers/gpu/drm/xe/xe_ttm_sys_mgr.c
+> +++ b/drivers/gpu/drm/xe/xe_ttm_sys_mgr.c
+> @@ -106,8 +106,6 @@ int xe_ttm_sys_mgr_init(struct xe_device *xe)
+>  
+>  	si_meminfo(&si);
+>  	gtt_size = (u64)si.totalram * si.mem_unit;
+> -	/* TTM limits allocation of all TTM devices by 50% of system memory */
+> -	gtt_size /= 2;
+
+While we are here, s/gtt_size/sys_size? Can be done in follow up /
+different patch.
+
+This patch LGTM. With that:
+Reviewed-by: Matthew Brost <matthew.brost@intel.com>
+
+>  
+>  	man->use_tt = true;
+>  	man->func = &xe_ttm_sys_mgr_func;
+> -- 
+> 2.40.1
+> 
