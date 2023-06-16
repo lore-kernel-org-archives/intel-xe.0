@@ -4,50 +4,30 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 02A8FEB64DA
-	for <intel-xe@archiver.kernel.org>; Fri, 16 Jun 2023 10:06:10 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id EB02BEB64D7
+	for <intel-xe@archiver.kernel.org>; Fri, 16 Jun 2023 10:07:38 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4366510E5D9;
-	Fri, 16 Jun 2023 10:06:06 +0000 (UTC)
-Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 391A610E5C7
- for <intel-xe@lists.freedesktop.org>; Fri, 16 Jun 2023 10:04:21 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1686909861; x=1718445861;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:in-reply-to;
- bh=KbSSDSrvFh+mbUXuD7130U1W3KIse5HIWrxIsRFrXRw=;
- b=YeqZ6UNi+DEiFEYACtfZBmsGsVedx3eRlE5FWLOyEqTvyWHU+oLhOnrl
- QJKVZ+Czgfg8zZ9w0aA8zTHDGXwtKQUl4uZKx963ES+hpz0ZCAjsSN+Kn
- /OVC8lUsWrn3ZHWRW1qS9S0gPNb13CaIbnwJpahhooEXc5rNe6WRX1mHr
- 8O6pnWv2wBefFvon8gD2xdcqbEme4C8gYhzJ98Rw8zVmiMmCf6QonjUpY
- TcpJrNMOaW1UM/VXtxpBNKDlZmJhhs+ymQr8lcwqjsAr8DIrs0uS3neW9
- fTtPc1HIjXDjPWF532JiIXwVa2wtldQ250LJECvouCD/xkG4JEPODPrF7 w==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10742"; a="339506417"
-X-IronPort-AV: E=Sophos;i="6.00,247,1681196400"; d="scan'208";a="339506417"
-Received: from orsmga002.jf.intel.com ([10.7.209.21])
- by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 16 Jun 2023 03:04:20 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10742"; a="712801990"
-X-IronPort-AV: E=Sophos;i="6.00,247,1681196400"; d="scan'208";a="712801990"
-Received: from vyashin-mobl1.ger.corp.intel.com (HELO intel.com)
- ([10.252.36.124])
- by orsmga002-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 16 Jun 2023 03:04:16 -0700
-Date: Fri, 16 Jun 2023 12:04:13 +0200
-From: Andi Shyti <andi.shyti@linux.intel.com>
-To: Riana Tauro <riana.tauro@intel.com>
-Message-ID: <ZIwznalBqpRRUaGb@ashyti-mobl2.lan>
-References: <20230616092521.3862926-1-riana.tauro@intel.com>
- <20230616092521.3862926-3-riana.tauro@intel.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id B92CF10E59C;
+	Fri, 16 Jun 2023 10:07:38 +0000 (UTC)
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id F3CA010E59C;
+ Fri, 16 Jun 2023 10:07:35 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id EBAD0AA3D8;
+ Fri, 16 Jun 2023 10:07:35 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============8098346758496027089=="
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20230616092521.3862926-3-riana.tauro@intel.com>
-Subject: Re: [Intel-xe] [PATCH v2 2/2] drm/xe/mtl: Add support to get C6
- residency/status of MTL
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Riana Tauro" <riana.tauro@intel.com>
+Date: Fri, 16 Jun 2023 10:07:35 -0000
+Message-ID: <168691005596.9826.3827609134029850532@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20230616092521.3862926-1-riana.tauro@intel.com>
+In-Reply-To: <20230616092521.3862926-1-riana.tauro@intel.com>
+Subject: [Intel-xe] =?utf-8?q?=E2=97=8B_CI=2EBAT=3A_info_for_Add_gtidle_p?=
+ =?utf-8?q?roperties_=28rev2=29?=
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -59,31 +39,72 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Cc: joonas.lahtinen@linux.intel.com, vinay.belgaumkar@intel.com,
- intel-xe@lists.freedesktop.org
+Reply-To: intel-xe@lists.freedesktop.org
+Cc: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Hi Riana,
+--===============8098346758496027089==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-On Fri, Jun 16, 2023 at 02:55:21PM +0530, Riana Tauro wrote:
-> From: Badal Nilawar <badal.nilawar@intel.com>
-> 
-> Add the registers to get C6 residency of MTL SAMedia and
-> C6 status of MTL gts
-> 
-> v2:
->    - move register definitions to regs header (Anshuman)
->    - correct reg definition for mtl rc status
->    - make idle_status function common (Badal)
-> 
-> Bspec: 66300
-> 
-> Signed-off-by: Badal Nilawar <badal.nilawar@intel.com>
-> Signed-off-by: Riana Tauro <riana.tauro@intel.com>
+== Series Details ==
 
-Looks good!
+Series: Add gtidle properties (rev2)
+URL   : https://patchwork.freedesktop.org/series/119262/
+State : info
 
-Reviewed-by: Andi Shyti <andi.shyti@linux.intel.com> 
+== Summary ==
 
-Andi
+Participating hosts:
+bat-pvc-2
+bat-atsm-2
+bat-dg2-oem2
+bat-adlp-7
+Missing hosts results[1]:
+bat-pvc-2
+Results: [xe-pw-119262v2](https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-119262v2/index.html)
+
+
+
+--===============8098346758496027089==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>Add gtidle properties (rev2)</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/119262/">https://patchwork.freedesktop.org/series/119262/</a></td></tr>
+<tr><td><b>State:</b></td><td>info</td></tr>
+
+</table>
+
+
+    <p>Participating hosts:<br />
+bat-pvc-2<br />
+bat-atsm-2<br />
+bat-dg2-oem2<br />
+bat-adlp-7<br />
+Missing hosts results[1]:<br />
+bat-pvc-2<br />
+Results: <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-119262v2/index.html">xe-pw-119262v2</a></p>
+
+</body>
+</html>
+
+--===============8098346758496027089==--
