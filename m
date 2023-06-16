@@ -4,50 +4,46 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 727C0EB64D7
-	for <intel-xe@archiver.kernel.org>; Fri, 16 Jun 2023 08:15:30 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 63295EB64D8
+	for <intel-xe@archiver.kernel.org>; Fri, 16 Jun 2023 09:22:34 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 332A610E09A;
-	Fri, 16 Jun 2023 08:15:30 +0000 (UTC)
-Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D710310E09A
- for <intel-xe@lists.freedesktop.org>; Fri, 16 Jun 2023 08:15:28 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 14EB110E0B7;
+	Fri, 16 Jun 2023 09:22:34 +0000 (UTC)
+Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8BA5B10E0B7
+ for <intel-xe@lists.freedesktop.org>; Fri, 16 Jun 2023 09:22:32 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1686903328; x=1718439328;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:content-transfer-encoding:in-reply-to;
- bh=N3tvPg+BUcH8Pul3w9Pk2Ce7EGh/Ek6Emx1rvX6lT40=;
- b=QbpxBABh1cdaSPSapU2W/U568BZSdVnPE8C1pJSYtXvZFNHFmHh0TBF2
- VcszeVE5QUdrkgi4/BXZULTZNd3BF5BqSv/lNazrCz+So8OMsD8J3ZmIU
- JnEDer68PJIXB3/G+aUkkBbrL/7wRzeuexcYitRmXbk0PCxdcobTmdzrL
- sD27c3buLr+giBDCXMWedIDoP5jy3QBIw7jRuuJCn0E6tnNbPzVnRp3L4
- aeZ0Qzwiu2E1gYfdtnF9YUDcfPanerXE4izysx96DKMcqbNHdDT1MFob2
- FBv7yNOQ0eC0B7P6pTJhJU3KaujTO+vHWJ8XlJznUBa/1NWJ5nefvWyPE w==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10742"; a="445537836"
-X-IronPort-AV: E=Sophos;i="6.00,247,1681196400"; d="scan'208";a="445537836"
-Received: from fmsmga007.fm.intel.com ([10.253.24.52])
- by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 16 Jun 2023 01:15:27 -0700
+ t=1686907352; x=1718443352;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=0yYQMFfdW9PrQYHgrfUrVlel7ZVdrySTViWpdAWwcKQ=;
+ b=GdfQI0xfdzJpN5cMy8XpOEItIoALdNFkySVH09LGY8PheBl93p8NYRHv
+ IBBeNU5nE3ypKQuIGXxg3X+UjoStF6hFCiu/YJ9xeQiZJEltFTbDUQ+rh
+ v27UVhGT1LLas5gsxRPFBvmJ4FQwqin1082yT+FTo0WrBvIK85CjHTZPS
+ 0+Z8avYJhi7fYS5wtgNej76B7RUwqcLO+hrnUgOshISizT2GEOYNyF2/J
+ ThayNglNau5kZWsmwkEqVvhRbXlTXYNMihK/+z7TA7qX/LEIaGOaU00u+
+ 8m2bc9NZzugkmWMYg/BRDAnBUykOEz71psV5WK7oi49IpsqA3/uhFvVJM g==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10742"; a="338786982"
+X-IronPort-AV: E=Sophos;i="6.00,247,1681196400"; d="scan'208";a="338786982"
+Received: from fmsmga006.fm.intel.com ([10.253.24.20])
+ by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 16 Jun 2023 02:22:15 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10742"; a="715919240"
-X-IronPort-AV: E=Sophos;i="6.00,247,1681196400"; d="scan'208";a="715919240"
-Received: from vyashin-mobl1.ger.corp.intel.com (HELO intel.com)
- ([10.252.36.124])
- by fmsmga007-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 16 Jun 2023 01:15:26 -0700
-Date: Fri, 16 Jun 2023 10:15:23 +0200
-From: Andi Shyti <andi.shyti@linux.intel.com>
-To: Zbigniew =?utf-8?Q?Kempczy=C5=84ski?= <zbigniew.kempczynski@intel.com>
-Message-ID: <ZIwaG2tlLQIpposb@ashyti-mobl2.lan>
-References: <20230616053727.134130-1-zbigniew.kempczynski@intel.com>
+X-IronPort-AV: E=McAfee;i="6600,9927,10742"; a="959552236"
+X-IronPort-AV: E=Sophos;i="6.00,247,1681196400"; d="scan'208";a="959552236"
+Received: from rtauro-desk.iind.intel.com ([10.190.238.50])
+ by fmsmga006-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 16 Jun 2023 02:22:10 -0700
+From: Riana Tauro <riana.tauro@intel.com>
+To: intel-xe@lists.freedesktop.org
+Date: Fri, 16 Jun 2023 14:55:19 +0530
+Message-Id: <20230616092521.3862926-1-riana.tauro@intel.com>
+X-Mailer: git-send-email 2.40.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <20230616053727.134130-1-zbigniew.kempczynski@intel.com>
-Subject: Re: [Intel-xe] [PATCH v3] drm/xe: Use nanoseconds instead of
- jiffies in uapi for user fence
+Subject: [Intel-xe] [PATCH v2 0/2] Add gtidle properties
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -59,21 +55,55 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-xe@lists.freedesktop.org
+Cc: joonas.lahtinen@linux.intel.com, vinay.belgaumkar@intel.com
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Hi Zbyszek,
+Add gtidle sysfs interface under device/../gt#/
+Currently there are three properties name, idle_status and
+idle_residency
 
-On Fri, Jun 16, 2023 at 07:37:27AM +0200, Zbigniew Kempczyński wrote:
-> Using jiffies as a timeout from userspace is weird even it theoretically
-> exists possiblity of acquiring jiffies via getconf. Unfortunately this
-> method is unreliable and returned value may vary from configured in the
-> kernel config.
-> 
-> >From now on timeout is expressed in nanoseconds and its interpretation
- ^^^
+These display both media and render c state properties according
+to gt
 
-you have a trailing '>' here, maybe a copy/paste error.
+The new sysfs structure will have the below layout
 
-Andi
+/sys/bus/.../bdf
+             ├── gt0
+             │   └── gtidle
+             │       ├── idle_residency_ms
+             │       ├── idle_status [gt-c6, gt-c0]
+             │       └── name [gt#-rc, gt#-mc]
+             ├── gtN
+             │   └── gtidle
+             │       ├── idle_residency_ms
+             │       ├── idle_status
+             │       └── name
+
+Test-with: 20230609094457.3355182-1-riana.tauro@intel.com
+
+Rev2:  address review comments
+
+Badal Nilawar (1):
+  drm/xe/mtl: Add support to get C6 residency/status of MTL
+
+Riana Tauro (1):
+  drm/xe: add a new sysfs directory for gtidle properties
+
+ drivers/gpu/drm/xe/Makefile                 |   1 +
+ drivers/gpu/drm/xe/regs/xe_gt_regs.h        |  11 +-
+ drivers/gpu/drm/xe/xe_gt.c                  |   3 +
+ drivers/gpu/drm/xe/xe_gt_idle_sysfs.c       | 169 ++++++++++++++++++++
+ drivers/gpu/drm/xe/xe_gt_idle_sysfs.h       |  13 ++
+ drivers/gpu/drm/xe/xe_gt_idle_sysfs_types.h |  38 +++++
+ drivers/gpu/drm/xe/xe_gt_types.h            |   4 +
+ drivers/gpu/drm/xe/xe_guc_pc.c              |  82 +++++-----
+ drivers/gpu/drm/xe/xe_guc_pc.h              |   3 +
+ 9 files changed, 286 insertions(+), 38 deletions(-)
+ create mode 100644 drivers/gpu/drm/xe/xe_gt_idle_sysfs.c
+ create mode 100644 drivers/gpu/drm/xe/xe_gt_idle_sysfs.h
+ create mode 100644 drivers/gpu/drm/xe/xe_gt_idle_sysfs_types.h
+
+-- 
+2.40.0
+
