@@ -4,30 +4,30 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1903FEB64D7
-	for <intel-xe@archiver.kernel.org>; Fri, 16 Jun 2023 09:24:43 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id DCF34EB64D7
+	for <intel-xe@archiver.kernel.org>; Fri, 16 Jun 2023 09:24:59 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D7AD410E12C;
-	Fri, 16 Jun 2023 09:24:42 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A34D510E12C;
+	Fri, 16 Jun 2023 09:24:59 +0000 (UTC)
 Received: from emeril.freedesktop.org (emeril.freedesktop.org
  [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id 3D34A10E12C;
- Fri, 16 Jun 2023 09:24:42 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTP id F1F5D10E12C;
+ Fri, 16 Jun 2023 09:24:56 +0000 (UTC)
 Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 39C34AADD2;
- Fri, 16 Jun 2023 09:24:42 +0000 (UTC)
+ by emeril.freedesktop.org (Postfix) with ESMTP id EE172AADD2;
+ Fri, 16 Jun 2023 09:24:56 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: "Riana Tauro" <riana.tauro@intel.com>
-Date: Fri, 16 Jun 2023 09:24:42 -0000
-Message-ID: <168690748223.9829.9990859852959526091@emeril.freedesktop.org>
+Date: Fri, 16 Jun 2023 09:24:56 -0000
+Message-ID: <168690749697.9828.6630392262512778894@emeril.freedesktop.org>
 X-Patchwork-Hint: ignore
 References: <20230616092521.3862926-1-riana.tauro@intel.com>
 In-Reply-To: <20230616092521.3862926-1-riana.tauro@intel.com>
-Subject: [Intel-xe] =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_f?=
- =?utf-8?q?or_Add_gtidle_properties_=28rev2=29?=
+Subject: [Intel-xe] =?utf-8?q?=E2=9C=97_CI=2Echeckpatch=3A_warning_for_Ad?=
+ =?utf-8?q?d_gtidle_properties_=28rev2=29?=
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -48,14 +48,56 @@ Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 Series: Add gtidle properties (rev2)
 URL   : https://patchwork.freedesktop.org/series/119262/
-State : success
+State : warning
 
 == Summary ==
 
-=== Applying kernel patches on branch 'drm-xe-next' with base: ===
-Base commit: 293e40ed7 drm/xe: limit GGTT size to GUC_GGTT_TOP
-=== git am output follows ===
-Applying: drm/xe: add a new sysfs directory for gtidle properties
-Applying: drm/xe/mtl: Add support to get C6 residency/status of MTL
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+c7d32770e3cd31d9fc134ce41f329b10aa33ee15
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit b2507dac8192c4c083aa137693a030bc453e7821
+Author: Badal Nilawar <badal.nilawar@intel.com>
+Date:   Fri Jun 16 14:55:21 2023 +0530
+
+    drm/xe/mtl: Add support to get C6 residency/status of MTL
+    
+    Add the registers to get C6 residency of MTL SAMedia and
+    C6 status of MTL gts
+    
+    v2:
+       - move register definitions to regs header (Anshuman)
+       - correct reg definition for mtl rc status
+       - make idle_status function common (Badal)
+    
+    Bspec: 66300
+    
+    Signed-off-by: Badal Nilawar <badal.nilawar@intel.com>
+    Signed-off-by: Riana Tauro <riana.tauro@intel.com>
++ /mt/dim checkpatch 293e40ed72cf5a9cf97438455bb8172fa260c7eb drm-intel
+c1c474aba drm/xe: add a new sysfs directory for gtidle properties
+Traceback (most recent call last):
+  File "scripts/spdxcheck.py", line 6, in <module>
+    from ply import lex, yacc
+ModuleNotFoundError: No module named 'ply'
+Traceback (most recent call last):
+  File "scripts/spdxcheck.py", line 6, in <module>
+    from ply import lex, yacc
+ModuleNotFoundError: No module named 'ply'
+Traceback (most recent call last):
+  File "scripts/spdxcheck.py", line 6, in <module>
+    from ply import lex, yacc
+ModuleNotFoundError: No module named 'ply'
+-:80: WARNING:FILE_PATH_CHANGES: added, moved or deleted file(s), does MAINTAINERS need updating?
+#80: 
+new file mode 100644
+
+total: 0 errors, 1 warnings, 0 checks, 340 lines checked
+b2507dac8 drm/xe/mtl: Add support to get C6 residency/status of MTL
 
 
