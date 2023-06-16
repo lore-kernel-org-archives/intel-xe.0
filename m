@@ -4,57 +4,48 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id BA1DFEB64DB
-	for <intel-xe@archiver.kernel.org>; Tue, 20 Jun 2023 18:19:31 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2960EEB64D7
+	for <intel-xe@archiver.kernel.org>; Tue, 20 Jun 2023 19:14:18 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7D2A310E313;
-	Tue, 20 Jun 2023 18:19:31 +0000 (UTC)
-Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5C9F010E0CC;
- Tue, 20 Jun 2023 18:19:29 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1687285169; x=1718821169;
- h=from:to:cc:subject:in-reply-to:references:date:
- message-id:mime-version;
- bh=fxp7O1IFxzgSra3+U3m4CdtMmU0xIakqiwOKj7ZMuzc=;
- b=drQ4exi1zC82dS29KaQ8wCmwHmtvs8XpEiEcJG4Zk46iXkzPEYRG9p22
- d+gfWswQDcdDcIEMJWgeJSrMedQafmwKe3zvNkFfLYn+nW2XODLXAbBUk
- SP8qtLmh+zN+NeI/RnFB3zTVrfla7qJ7nnrGAjo4LheouNsPkbgZIUFIV
- DzU5Vy9cVOEbxS7FibR9ge/UXNXK5v3qfisI3w5mw1IiWMtllFdnchEwK
- SC9foQMcZeoeexjsjORyxe01kqbPbhRaURdgqPqyypJWm1LTWAJdu/gI4
- jZVoS6p8I0DU7Bq1VazxgCOE7UCaeR9hg9axDC9bY7SaQK+IJDIrgknPE w==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10747"; a="363368703"
-X-IronPort-AV: E=Sophos;i="6.00,257,1681196400"; d="scan'208";a="363368703"
-Received: from orsmga004.jf.intel.com ([10.7.209.38])
- by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 20 Jun 2023 11:19:28 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10747"; a="838309700"
-X-IronPort-AV: E=Sophos;i="6.00,257,1681196400"; d="scan'208";a="838309700"
-Received: from dshvarts-mobl1.ger.corp.intel.com (HELO localhost)
- ([10.252.62.204])
- by orsmga004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 20 Jun 2023 11:19:23 -0700
-From: Jani Nikula <jani.nikula@linux.intel.com>
-To: Andy Shevchenko <andriy.shevchenko@linux.intel.com>, Lucas De Marchi
- <lucas.demarchi@intel.com>
-In-Reply-To: <ZJHkthMktY83pwvy@smile.fi.intel.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20230509051403.2748545-1-lucas.demarchi@intel.com>
- <20230509051403.2748545-3-lucas.demarchi@intel.com>
- <ZF4fi5B7PPlgZBOI@smile.fi.intel.com> <87pm75kd0h.fsf@intel.com>
- <ZF4j0NPoBGMBT8CO@smile.fi.intel.com> <87mt29kc34.fsf@intel.com>
- <ZIs0CC2J7nu0LHEK@smile.fi.intel.com> <875y7igph5.fsf@intel.com>
- <ZJG91zMQW3Rnvdbe@smile.fi.intel.com>
- <amgwl5mthhqgvgkqnor6tjfcr3x3pgwvpqin5efwwjfpdhvvpa@vhzhiq5mzsdg>
- <ZJHkthMktY83pwvy@smile.fi.intel.com>
-Date: Tue, 20 Jun 2023 21:19:20 +0300
-Message-ID: <87ttv2f13r.fsf@intel.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id E167D10E0CF;
+	Tue, 20 Jun 2023 19:14:17 +0000 (UTC)
+Received: from dfw.source.kernel.org (dfw.source.kernel.org
+ [IPv6:2604:1380:4641:c500::1])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A543310E5D9
+ for <intel-xe@lists.freedesktop.org>; Fri, 16 Jun 2023 10:45:49 +0000 (UTC)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+ (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+ key-exchange X25519 server-signature RSA-PSS (2048 bits))
+ (No client certificate requested)
+ by dfw.source.kernel.org (Postfix) with ESMTPS id 79D6661569;
+ Fri, 16 Jun 2023 10:45:48 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 313F3C433C8;
+ Fri, 16 Jun 2023 10:45:47 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+ s=k20201202; t=1686912347;
+ bh=/NH92olQrrHDSXMB/AgQnH02IsLg/W8rXsI2Fg+oyVA=;
+ h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+ b=aZeB5qveZjfZH3hgzFNw4ewD/E4xe69u6V4EdlA3tYjo9wsAUSJdsewxNZL6d2D9T
+ vGo1v/wsCPET7J+vG/SirQWxPahjilFncK6Lri7OWWP0wDbIfqSAEAn9Oc39UN1Q/l
+ SpH5Rd5mz7ocvai36f4L+WIoDeh65zZAPSUD+Lovepo8mCxXR8UNVjQAHliEFMo+2N
+ E94v10NX900s/kKfoD/ASuCBt3SQHIhl43yzufDMYZAIPOJuV77Oq3dg9DK4nTUQy7
+ NVNovj5CPgonBvocDIZfLUi3bSef2EKVR4SAwr7/AfkvL3v0be+c33NTA+L/ijmRNP
+ UpTWwrzgl2qdw==
+Date: Fri, 16 Jun 2023 12:45:44 +0200
+From: Andi Shyti <andi.shyti@kernel.org>
+To: Zbigniew =?utf-8?Q?Kempczy=C5=84ski?= <zbigniew.kempczynski@intel.com>
+Message-ID: <20230616104544.4f7ia7otr5t2oa3d@intel.intel>
+References: <20230616053727.134130-1-zbigniew.kempczynski@intel.com>
+ <ZIwaG2tlLQIpposb@ashyti-mobl2.lan>
+ <20230616102406.klskmif6thctfgxd@zkempczy-mobl2>
 MIME-Version: 1.0
-Content-Type: text/plain
-Subject: Re: [Intel-xe] [PATCH 2/3] linux/bits.h: Add fixed-width GENMASK
- and BIT macros
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20230616102406.klskmif6thctfgxd@zkempczy-mobl2>
+X-Mailman-Approved-At: Tue, 20 Jun 2023 19:14:16 +0000
+Subject: Re: [Intel-xe] [PATCH v3] drm/xe: Use nanoseconds instead of
+ jiffies in uapi for user fence
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -66,36 +57,36 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org, Kevin Brodsky <kevin.brodsky@arm.com>,
- linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org,
- intel-xe@lists.freedesktop.org, Thomas Gleixner <tglx@linutronix.de>,
- Alex Deucher <alexander.deucher@amd.com>,
- Andrew Morton <akpm@linux-foundation.org>,
- Masahiro Yamada <masahiroy@kernel.org>,
- Christian =?utf-8?Q?K=C3=B6nig?= <christian.koenig@amd.com>
+Cc: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Tue, 20 Jun 2023, Andy Shevchenko <andriy.shevchenko@linux.intel.com> wrote:
-> So, what does prevent you from using GENMASK_ULL()?
->
-> Another point, you may teach GENMASK() to issue a warning if hi and/or lo
-> bigger than BITS_PER_LONG.
+Hi Zbyszek,
 
-What good does that do if you want the warning for a fixed size
-different from unsigned long or long long? Worse, sizeof(long) depends
-on arch, while the GENMASK you want depends on the use case.
+On Fri, Jun 16, 2023 at 12:24:06PM +0200, Zbigniew Kempczyński wrote:
+> On Fri, Jun 16, 2023 at 10:15:23AM +0200, Andi Shyti wrote:
+> > Hi Zbyszek,
+> > 
+> > On Fri, Jun 16, 2023 at 07:37:27AM +0200, Zbigniew Kempczyński wrote:
+> > > Using jiffies as a timeout from userspace is weird even it theoretically
+> > > exists possiblity of acquiring jiffies via getconf. Unfortunately this
+> > > method is unreliable and returned value may vary from configured in the
+> > > kernel config.
+> > > 
+> > > >From now on timeout is expressed in nanoseconds and its interpretation
+> >  ^^^
+> > 
+> > you have a trailing '>' here, maybe a copy/paste error.
+> 
+> I've checked in the patch and I don't see this character there. Are you
+> sure you haven't inserted it unintentionally during review?
 
-> I still don't see the usefulness of that churn.
+It's not added from my reply as I see it right away.
 
-This thread is turning into a prime example of why drivers and
-subsystems reinvent their own wheels instead of trying to get generally
-useful stuff merged in kernel headers. :p
+there must be either a bug in mutt or git-send-email. In my
+private mail I don't see the trailing '>', indeed and it's not in
+lore either.
 
+Then... nevermind.
 
-BR,
-Jani.
-
-
--- 
-Jani Nikula, Intel Open Source Graphics Center
+Andi
