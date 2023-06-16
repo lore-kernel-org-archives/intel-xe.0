@@ -4,49 +4,50 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9FC81EB64D8
-	for <intel-xe@archiver.kernel.org>; Fri, 16 Jun 2023 09:56:29 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 44A5FEB64DA
+	for <intel-xe@archiver.kernel.org>; Fri, 16 Jun 2023 10:03:21 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 684AD10E05A;
-	Fri, 16 Jun 2023 09:56:29 +0000 (UTC)
-Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
- by gabe.freedesktop.org (Postfix) with ESMTPS id CB8C010E05A
- for <intel-xe@lists.freedesktop.org>; Fri, 16 Jun 2023 09:56:27 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1D60910E59C;
+	Fri, 16 Jun 2023 10:03:21 +0000 (UTC)
+Received: from mga06.intel.com (mga06b.intel.com [134.134.136.31])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2F6C710E59C
+ for <intel-xe@lists.freedesktop.org>; Fri, 16 Jun 2023 10:03:19 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1686909387; x=1718445387;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=sIxZEHQKqM2iin+eJwt/ymz/BQMybVKLvb0uOC+qJwE=;
- b=TjH5sinZ7g30ROwOTyrNNiigTlRC7OJ7B6mX8fG8/+1O0cghNydZrPWN
- C+FghCkYx6kS9NVquk8Jl4YnLTb8Zg/jH2bTzqNzX9gBwNtPPb9zVmSoK
- 442i5xn9ldQFE+RC3pwFESYzT+qz3cpaZdDu+IU88TQCAlUUjGjW0QsE7
- 4sL5OB6DIfcYeSB2DUO85T68L1FVmGizojYwVgvRUMm0HKmPZq1+HxtKH
- 4C4qpR7ZV+VIRnXYvyA35nXV5pAam1rJA/jpjPtfYKo74hYSwEMAlH8GZ
- 7pe2cZfgNr66lM483g7vqhCYoNLfGAuR2NmfhS/sh/MtUqeKIUbNInhDI Q==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10742"; a="343916709"
-X-IronPort-AV: E=Sophos;i="6.00,247,1681196400"; d="scan'208";a="343916709"
-Received: from fmsmga006.fm.intel.com ([10.253.24.20])
- by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 16 Jun 2023 02:56:27 -0700
+ t=1686909799; x=1718445799;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:in-reply-to;
+ bh=WgZ30HWJYFDIulztHxfjfLGYrIooH3ZySU+JdKvoVts=;
+ b=VH9F53xX71uKXHtms7aEF8jCs7ExUv/txUH8c4gv6CDLjU9I1sBCMXIM
+ PQ1CXv6XCxzuhsdRUZZOo4p0FmW2weCBP720vIXxio21uLPe/MztHxCUY
+ LvPVoiVpYFEV/pzom9v0qa1OsbMMnU2qH0/uv6t0Sv6omXt6V0nXZTNYI
+ z9f+R0V5qzLeXdXexggd+lzPYJ6Qsi5BTsNDraHJqLqepcA/HQg0IvCz4
+ c0HOAq1vMrZD3zihmhteyMKotzyewPmbguGkH9JiDNpeaAXnV6ye41hjU
+ t9yO+869LMk26z45rw4aaH/c0s/mHwTxjydX46pu0taS4FC02WvVv+MEL g==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10742"; a="422827939"
+X-IronPort-AV: E=Sophos;i="6.00,247,1681196400"; d="scan'208";a="422827939"
+Received: from fmsmga005.fm.intel.com ([10.253.24.32])
+ by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 16 Jun 2023 03:03:18 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10742"; a="959558013"
-X-IronPort-AV: E=Sophos;i="6.00,247,1681196400"; d="scan'208";a="959558013"
-Received: from nurha65x-mobl2.gar.corp.intel.com (HELO
- thellstr-mobl1.intel.com) ([10.249.254.148])
- by fmsmga006-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 16 Jun 2023 02:56:25 -0700
-From: =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>
-To: intel-xe@lists.freedesktop.org
-Date: Fri, 16 Jun 2023 11:55:04 +0200
-Message-Id: <20230616095504.17084-7-thomas.hellstrom@linux.intel.com>
-X-Mailer: git-send-email 2.40.1
-In-Reply-To: <20230616095504.17084-1-thomas.hellstrom@linux.intel.com>
-References: <20230616095504.17084-1-thomas.hellstrom@linux.intel.com>
+X-IronPort-AV: E=McAfee;i="6600,9927,10742"; a="1043041917"
+X-IronPort-AV: E=Sophos;i="6.00,247,1681196400"; d="scan'208";a="1043041917"
+Received: from vyashin-mobl1.ger.corp.intel.com (HELO intel.com)
+ ([10.252.36.124])
+ by fmsmga005-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 16 Jun 2023 03:03:15 -0700
+Date: Fri, 16 Jun 2023 12:03:12 +0200
+From: Andi Shyti <andi.shyti@linux.intel.com>
+To: Riana Tauro <riana.tauro@intel.com>
+Message-ID: <ZIwzYJd+1Q6rnslF@ashyti-mobl2.lan>
+References: <20230616092521.3862926-1-riana.tauro@intel.com>
+ <20230616092521.3862926-2-riana.tauro@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-Subject: [Intel-xe] [PATCH 6/6] drm/ttm: Don't shadow the operation context
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20230616092521.3862926-2-riana.tauro@intel.com>
+Subject: Re: [Intel-xe] [PATCH v2 1/2] drm/xe: add a new sysfs directory for
+ gtidle properties
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -58,40 +59,56 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Cc: joonas.lahtinen@linux.intel.com, vinay.belgaumkar@intel.com,
+ intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-ttm_bo_swapout() shadows the ttm operation context which may cause
-major confusion in driver callbacks when swapping out !TTM_PL_SYSTEM
-memory. Fix this by reusing the operation context argument to
-ttm_bo_swapout().
+Hi Riana,
 
-Signed-off-by: Thomas Hellström <thomas.hellstrom@linux.intel.com>
----
- drivers/gpu/drm/ttm/ttm_bo.c | 3 +--
- 1 file changed, 1 insertion(+), 2 deletions(-)
+On Fri, Jun 16, 2023 at 02:55:20PM +0530, Riana Tauro wrote:
+> 1) Add a new sysfs directory under devices/gt#/ called gtidle
+>    to contain idle properties of GT such as name, idle_status,
+>    idle_residency_ms
+> 
+> 2) Remove forcewake calls for residency counter
+> 
+> v2:
+>     - abstract using function pointers (Anshuman)
+>     - remove forcewake calls for residency counter
+>     - use device_attr (Badal)
+>     - move rc functions to guc_pc
+>     - change name to gt_idle (Rodrigo)
+> 
+> v3:
+>     - return error for drmm_add_action_or_reset
+>     - replace file and functions with gt_idle prefix
+>       to gt_idle_sysfs (Himal)
+>     - use enum for gt idle state
+>     - move multiplier to gt idle and initialize (Anshuman)
+>     - correct doc annotation (Rodrigo)
+>     - remove return variable
+>     - use kobj_gt instead of new gtidle kobj
+>     - move residency_ms to gtidle file
+>     - retain xe_guc_pc prefix for functions in guc_rc file (Michal)
+> 
+> v4:
+>     - fix doc errors in xe_guc_pc file
+>     - change u64 to u32 for reading residency counter
+>     - keep gtidle states generic GT_IDLE_C[0/6] (Anshuman)
+> 
+> v5:
+>     - update commit message to include removal of
+>       forcewake calls (Anshuman)
+>     - return void from sysfs initialization function and add warnings
+>       (Andi)
+> 
+> Signed-off-by: Riana Tauro <riana.tauro@intel.com>
+> Acked-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
+> Reviewed-by: Anshuman Gupta <anshuman.gupta@intel.com>
 
-diff --git a/drivers/gpu/drm/ttm/ttm_bo.c b/drivers/gpu/drm/ttm/ttm_bo.c
-index bd5dae4d1624..615d30c4262d 100644
---- a/drivers/gpu/drm/ttm/ttm_bo.c
-+++ b/drivers/gpu/drm/ttm/ttm_bo.c
-@@ -1154,7 +1154,6 @@ int ttm_bo_swapout(struct ttm_buffer_object *bo, struct ttm_operation_ctx *ctx,
- 	 * Move to system cached
- 	 */
- 	if (bo->resource->mem_type != TTM_PL_SYSTEM) {
--		struct ttm_operation_ctx ctx = { false, false };
- 		struct ttm_resource *evict_mem;
- 		struct ttm_place hop;
- 
-@@ -1164,7 +1163,7 @@ int ttm_bo_swapout(struct ttm_buffer_object *bo, struct ttm_operation_ctx *ctx,
- 		if (unlikely(ret))
- 			goto out;
- 
--		ret = ttm_bo_handle_move_mem(bo, evict_mem, true, &ctx, &hop);
-+		ret = ttm_bo_handle_move_mem(bo, evict_mem, true, ctx, &hop);
- 		if (unlikely(ret != 0)) {
- 			WARN(ret == -EMULTIHOP, "Unexpected multihop in swaput - likely driver bug.\n");
- 			goto out;
--- 
-2.40.1
+looks good!
 
+Reviewed-by: Andi Shyti <andi.shyti@linux.intel.com> 
+
+Andi
