@@ -4,53 +4,52 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id BD6A1EB64D7
-	for <intel-xe@archiver.kernel.org>; Fri, 16 Jun 2023 15:11:11 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7161EEB64D8
+	for <intel-xe@archiver.kernel.org>; Fri, 16 Jun 2023 15:26:13 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8E33D10E648;
-	Fri, 16 Jun 2023 15:11:11 +0000 (UTC)
-Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3EC5E10E648
- for <intel-xe@lists.freedesktop.org>; Fri, 16 Jun 2023 15:11:09 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3101B10E089;
+	Fri, 16 Jun 2023 15:26:13 +0000 (UTC)
+Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 699A210E089
+ for <intel-xe@lists.freedesktop.org>; Fri, 16 Jun 2023 15:26:11 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1686928269; x=1718464269;
+ t=1686929171; x=1718465171;
  h=message-id:date:mime-version:subject:to:references:from:
  in-reply-to:content-transfer-encoding;
- bh=0QfwiuEKHPaq/VccK/2CNaDsojDbstkwyDUzN1jmG6M=;
- b=ZEpLwSM+upKjaxlzymjoHKCGSnjFkmt7F2W4eimdY2sMXCADZTm539Dp
- RZu9pB37JWmF6kiM7a0d4GaDvcqqQhCFnwIIIZVlJKl01NdRiJphTPnGk
- NZSGT5jDD6rVeG3jSn/IFSgIC+xbY7gMhOVX2R/0mN+NALiEcNbP45MTz
- 3oa4KIZAOIbOmTDXRacf03Co5bXoFOIL76Flg6sqMjqgxHiqYr0nl/h9+
- uzWKtzgYFU+U+EVYyewm8rPjJZA+o+u6lAXMIA5MjxZPSEbUcn7m7aHSc
- DbCs3V0t61+LOZdqP1yvaNrboe9LdYgLDjfV+fFQu3KgsqeurDoEsM4MI A==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10742"; a="361764524"
-X-IronPort-AV: E=Sophos;i="6.00,247,1681196400"; d="scan'208";a="361764524"
-Received: from fmsmga003.fm.intel.com ([10.253.24.29])
- by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 16 Jun 2023 08:11:08 -0700
+ bh=ikK8CYz6n26tB1tsob0IjhiUxZZoz7sVr2upsC26Pak=;
+ b=eU6pSA/+xXqW6jepfXM7AV8ifaRMX/+4wRUYxFRGq5YLboQSOrTvcKMQ
+ eAixfusjVSimC9djDX6hCMvSiF+BhDrOUC2O0RECgX6Q5x6MObaXVvSPk
+ S43QwKZ+am3rDUtRXLVNw/Su+1wILZwTS8aSZBfgqZ5Sla2fUXqos2xho
+ eHKUpPAB7VcKlktSGKHFpiV3r3+T4QzXRYaSQR9a9BMX0drKHYAT7nWoE
+ kldz12P+Kpj90q0DXAIw/3YZTIMEfqSMypWkEnyJ97JlqTb1+gcT7jHOU
+ aCh+L4yIzFxunSmBMvVWasO++Pc2cxKL6zIDiIMM0uPKptJP4uZq/3uM6 g==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10742"; a="358110002"
+X-IronPort-AV: E=Sophos;i="6.00,247,1681196400"; d="scan'208";a="358110002"
+Received: from orsmga002.jf.intel.com ([10.7.209.21])
+ by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 16 Jun 2023 08:26:10 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10742"; a="802872400"
-X-IronPort-AV: E=Sophos;i="6.00,247,1681196400"; d="scan'208";a="802872400"
+X-IronPort-AV: E=McAfee;i="6600,9927,10742"; a="712916234"
+X-IronPort-AV: E=Sophos;i="6.00,247,1681196400"; d="scan'208";a="712916234"
 Received: from nurha65x-mobl2.gar.corp.intel.com (HELO [10.249.254.148])
  ([10.249.254.148])
- by fmsmga003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 16 Jun 2023 08:11:07 -0700
-Message-ID: <5fbc263c-edfb-694c-0342-63dd65f71875@linux.intel.com>
-Date: Fri, 16 Jun 2023 17:11:05 +0200
+ by orsmga002-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 16 Jun 2023 08:26:08 -0700
+Message-ID: <394c84ff-0035-732a-268d-5c7577e2e1db@linux.intel.com>
+Date: Fri, 16 Jun 2023 17:26:06 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.11.1
 Content-Language: en-US
 To: Matthew Brost <matthew.brost@intel.com>, intel-xe@lists.freedesktop.org
 References: <20230615173014.258703-1-matthew.brost@intel.com>
- <20230615173014.258703-3-matthew.brost@intel.com>
+ <20230615173014.258703-6-matthew.brost@intel.com>
 From: =?UTF-8?Q?Thomas_Hellstr=c3=b6m?= <thomas.hellstrom@linux.intel.com>
-In-Reply-To: <20230615173014.258703-3-matthew.brost@intel.com>
+In-Reply-To: <20230615173014.258703-6-matthew.brost@intel.com>
 Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
-Subject: Re: [Intel-xe] [PATCH v4 2/8] drm/sched: Move schedule policy to
- scheduler
+Subject: Re: [Intel-xe] [PATCH v4 5/8] drm/xe: Long running job update
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -67,368 +66,369 @@ Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 
 On 6/15/23 19:30, Matthew Brost wrote:
-> Rather than a global modparam for scheduling policy, move the scheduling
-> policy to scheduler so driver can control each scheduler policy. This is
-> required as it is possible in certain drivers certain scheduling polices
-> are not allowed, thus the driver must set the policy rather than the
-> modparam.
+> For long running (LR) jobs with the DRM scheduler we must return NULL in
+> run_job which results in signaling the job's finished fence immediately.
+> This prevents LR jobs from creating infinite dma-fences.
 >
-> v2 (Thomas): Better commit message, s/scdedule/schedule/, remove extra
-> brackets
-> v3 (Thomas): Fix commit message (s/allow/allowed), update modparam DOC
+> Signaling job's finished fence immediately breaks flow controlling ring
+> with the DRM scheduler. To work around this, the ring is flow controlled
+> and written in the exec IOCTL. Signaling job's finished fence
+> immediately also breaks the TDR which is used in reset / cleanup entity
+> paths so write a new path for LR entities.
 >
-> Signed-off-by: Matthew Brost <matthew.brost@intel.com>
+> v2: Better commit, white space, remove rmb(), better comment next to
+> emit_job()
+> v3 (Thomas): Change LR reference counting, fix working in commit
+
+Ideally someone with more familiarity with the GuC code should take a 
+second look on this,
+small nit below, but regardless
+
 Reviewed-by: Thomas Hellström <thomas.hellstrom@linux.intel.com>
+
+> Signed-off-by: Matthew Brost <matthew.brost@intel.com>
 > ---
->   drivers/gpu/drm/amd/amdgpu/amdgpu_device.c |  1 +
->   drivers/gpu/drm/etnaviv/etnaviv_sched.c    |  3 ++-
->   drivers/gpu/drm/lima/lima_sched.c          |  3 ++-
->   drivers/gpu/drm/msm/msm_ringbuffer.c       |  2 +-
->   drivers/gpu/drm/panfrost/panfrost_job.c    |  3 ++-
->   drivers/gpu/drm/scheduler/sched_entity.c   | 24 ++++++++++++++++++----
->   drivers/gpu/drm/scheduler/sched_main.c     | 23 +++++++++++++++------
->   drivers/gpu/drm/v3d/v3d_sched.c            | 15 +++++++++-----
->   drivers/gpu/drm/xe/xe_execlist.c           |  2 +-
->   drivers/gpu/drm/xe/xe_guc_submit.c         |  3 ++-
->   include/drm/gpu_scheduler.h                | 20 ++++++++++++------
->   11 files changed, 72 insertions(+), 27 deletions(-)
+>   drivers/gpu/drm/xe/xe_engine.c           | 32 ++++++++
+>   drivers/gpu/drm/xe/xe_engine.h           |  4 +
+>   drivers/gpu/drm/xe/xe_exec.c             |  8 ++
+>   drivers/gpu/drm/xe/xe_guc_engine_types.h |  2 +
+>   drivers/gpu/drm/xe/xe_guc_submit.c       | 96 ++++++++++++++++++++----
+>   drivers/gpu/drm/xe/xe_trace.h            |  5 ++
+>   6 files changed, 134 insertions(+), 13 deletions(-)
 >
-> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
-> index 2e776ece4251..75ab8b9c7b25 100644
-> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
-> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
-> @@ -2368,6 +2368,7 @@ static int amdgpu_device_init_schedulers(struct amdgpu_device *adev)
->   				   ring->num_hw_submission, 0,
->   				   timeout, adev->reset_domain->wq,
->   				   ring->sched_score, ring->name,
-> +				   DRM_SCHED_POLICY_DEFAULT,
->   				   adev->dev);
->   		if (r) {
->   			DRM_ERROR("Failed to create scheduler on ring %s.\n",
-> diff --git a/drivers/gpu/drm/etnaviv/etnaviv_sched.c b/drivers/gpu/drm/etnaviv/etnaviv_sched.c
-> index 8486a2923f1b..61204a3f8b0b 100644
-> --- a/drivers/gpu/drm/etnaviv/etnaviv_sched.c
-> +++ b/drivers/gpu/drm/etnaviv/etnaviv_sched.c
-> @@ -136,7 +136,8 @@ int etnaviv_sched_init(struct etnaviv_gpu *gpu)
->   	ret = drm_sched_init(&gpu->sched, &etnaviv_sched_ops, NULL,
->   			     etnaviv_hw_jobs_limit, etnaviv_job_hang_limit,
->   			     msecs_to_jiffies(500), NULL, NULL,
-> -			     dev_name(gpu->dev), gpu->dev);
-> +			     dev_name(gpu->dev), DRM_SCHED_POLICY_DEFAULT,
-> +			     gpu->dev);
->   	if (ret)
->   		return ret;
+> diff --git a/drivers/gpu/drm/xe/xe_engine.c b/drivers/gpu/drm/xe/xe_engine.c
+> index b3036c4a8ec3..eb5f66f07da8 100644
+> --- a/drivers/gpu/drm/xe/xe_engine.c
+> +++ b/drivers/gpu/drm/xe/xe_engine.c
+> @@ -18,6 +18,7 @@
+>   #include "xe_macros.h"
+>   #include "xe_migrate.h"
+>   #include "xe_pm.h"
+> +#include "xe_ring_ops_types.h"
+>   #include "xe_trace.h"
+>   #include "xe_vm.h"
 >   
-> diff --git a/drivers/gpu/drm/lima/lima_sched.c b/drivers/gpu/drm/lima/lima_sched.c
-> index 54f53bece27c..33042ba6ae93 100644
-> --- a/drivers/gpu/drm/lima/lima_sched.c
-> +++ b/drivers/gpu/drm/lima/lima_sched.c
-> @@ -491,7 +491,8 @@ int lima_sched_pipe_init(struct lima_sched_pipe *pipe, const char *name)
->   	return drm_sched_init(&pipe->base, &lima_sched_ops, NULL, 1,
->   			      lima_job_hang_limit,
->   			      msecs_to_jiffies(timeout), NULL,
-> -			      NULL, name, pipe->ldev->dev);
-> +			      NULL, name, DRM_SCHED_POLICY_DEFAULT,
-> +			      pipe->ldev->dev);
+> @@ -679,6 +680,37 @@ static void engine_kill_compute(struct xe_engine *e)
+>   	up_write(&e->vm->lock);
 >   }
 >   
->   void lima_sched_pipe_fini(struct lima_sched_pipe *pipe)
-> diff --git a/drivers/gpu/drm/msm/msm_ringbuffer.c b/drivers/gpu/drm/msm/msm_ringbuffer.c
-> index e1cff31f147a..0d1e7a4414e8 100644
-> --- a/drivers/gpu/drm/msm/msm_ringbuffer.c
-> +++ b/drivers/gpu/drm/msm/msm_ringbuffer.c
-> @@ -96,7 +96,7 @@ struct msm_ringbuffer *msm_ringbuffer_new(struct msm_gpu *gpu, int id,
->   	ret = drm_sched_init(&ring->sched, &msm_sched_ops, NULL,
->   			     num_hw_submissions, 0, sched_timeout,
->   			     NULL, NULL, to_msm_bo(ring->bo)->name,
-> -			     gpu->dev->dev);
-> +			     DRM_SCHED_POLICY_DEFAULT, gpu->dev->dev);
->   	if (ret) {
->   		goto fail;
->   	}
-> diff --git a/drivers/gpu/drm/panfrost/panfrost_job.c b/drivers/gpu/drm/panfrost/panfrost_job.c
-> index f48b07056a16..effa48b33dce 100644
-> --- a/drivers/gpu/drm/panfrost/panfrost_job.c
-> +++ b/drivers/gpu/drm/panfrost/panfrost_job.c
-> @@ -819,7 +819,8 @@ int panfrost_job_init(struct panfrost_device *pfdev)
->   				     nentries, 0,
->   				     msecs_to_jiffies(JOB_TIMEOUT_MS),
->   				     pfdev->reset.wq,
-> -				     NULL, "pan_js", pfdev->dev);
-> +				     NULL, "pan_js", DRM_SCHED_POLICY_DEFAULT,
-> +				     pfdev->dev);
->   		if (ret) {
->   			dev_err(pfdev->dev, "Failed to create scheduler: %d.", ret);
->   			goto err_sched;
-> diff --git a/drivers/gpu/drm/scheduler/sched_entity.c b/drivers/gpu/drm/scheduler/sched_entity.c
-> index cfb433e92005..e1838e328de8 100644
-> --- a/drivers/gpu/drm/scheduler/sched_entity.c
-> +++ b/drivers/gpu/drm/scheduler/sched_entity.c
-> @@ -33,6 +33,20 @@
->   #define to_drm_sched_job(sched_job)		\
->   		container_of((sched_job), struct drm_sched_job, queue_node)
->   
-> +static bool bad_policies(struct drm_gpu_scheduler **sched_list,
-> +			 unsigned int num_sched_list)
+> +/**
+> + * xe_engine_is_lr() - Whether an engine is long-running
+> + * @e: The engine
+> + *
+> + * Return: True if the engine is long-running, false otherwise.
+> + */
+> +bool xe_engine_is_lr(struct xe_engine *e)
 > +{
-> +	enum drm_sched_policy sched_policy = sched_list[0]->sched_policy;
-> +	unsigned int i;
+> +	return e->vm && xe_vm_no_dma_fences(e->vm) &&
+> +		!(e->flags & ENGINE_FLAG_VM);
+> +}
 > +
-> +	/* All schedule policies must match */
-> +	for (i = 1; i < num_sched_list; ++i)
-> +		if (sched_policy != sched_list[i]->sched_policy)
-> +			return true;
+> +static s32 xe_engine_num_job_inflight(struct xe_engine *e)
+> +{
+> +	return e->lrc->fence_ctx.next_seqno - xe_lrc_seqno(e->lrc) - 1;
+> +}
 > +
-> +	return false;
+> +/**
+> + * xe_engine_ring_full() - Whether an engine's ring is full
+> + * @e: The engine
+> + *
+> + * Return: True if the engine's ring is full, false otherwise.
+> + */
+> +bool xe_engine_ring_full(struct xe_engine *e)
+> +{
+> +	struct xe_lrc *lrc = e->lrc;
+> +	s32 max_job = lrc->ring.size / MAX_JOB_SIZE_BYTES;
+> +
+> +	return xe_engine_num_job_inflight(e) >= max_job;
 > +}
 > +
 >   /**
->    * drm_sched_entity_init - Init a context entity used by scheduler when
->    * submit to HW ring.
-> @@ -62,7 +76,8 @@ int drm_sched_entity_init(struct drm_sched_entity *entity,
->   			  unsigned int num_sched_list,
->   			  atomic_t *guilty)
->   {
-> -	if (!(entity && sched_list && (num_sched_list == 0 || sched_list[0])))
-> +	if (!(entity && sched_list && (num_sched_list == 0 || sched_list[0])) ||
-> +	    bad_policies(sched_list, num_sched_list))
->   		return -EINVAL;
+>    * xe_engine_is_idle() - Whether an engine is idle.
+>    * @engine: The engine
+> diff --git a/drivers/gpu/drm/xe/xe_engine.h b/drivers/gpu/drm/xe/xe_engine.h
+> index a49cf2ab405e..2e60f6d90226 100644
+> --- a/drivers/gpu/drm/xe/xe_engine.h
+> +++ b/drivers/gpu/drm/xe/xe_engine.h
+> @@ -42,6 +42,10 @@ static inline bool xe_engine_is_parallel(struct xe_engine *engine)
+>   	return engine->width > 1;
+>   }
 >   
->   	memset(entity, 0, sizeof(struct drm_sched_entity));
-> @@ -461,7 +476,7 @@ struct drm_sched_job *drm_sched_entity_pop_job(struct drm_sched_entity *entity)
->   	 * Update the entity's location in the min heap according to
->   	 * the timestamp of the next job, if any.
->   	 */
-> -	if (drm_sched_policy == DRM_SCHED_POLICY_FIFO) {
-> +	if (entity->rq->sched->sched_policy == DRM_SCHED_POLICY_FIFO) {
->   		struct drm_sched_job *next;
->   
->   		next = to_drm_sched_job(spsc_queue_peek(&entity->job_queue));
-> @@ -533,7 +548,8 @@ void drm_sched_entity_select_rq(struct drm_sched_entity *entity)
->   void drm_sched_entity_push_job(struct drm_sched_job *sched_job)
->   {
->   	struct drm_sched_entity *entity = sched_job->entity;
-> -	bool first;
-> +	bool first, fifo = entity->rq->sched->sched_policy ==
-> +		DRM_SCHED_POLICY_FIFO;
->   	ktime_t submit_ts;
->   
->   	trace_drm_sched_job(sched_job, entity);
-> @@ -562,7 +578,7 @@ void drm_sched_entity_push_job(struct drm_sched_job *sched_job)
->   		drm_sched_rq_add_entity(entity->rq, entity);
->   		spin_unlock(&entity->rq_lock);
->   
-> -		if (drm_sched_policy == DRM_SCHED_POLICY_FIFO)
-> +		if (fifo)
->   			drm_sched_rq_update_fifo(entity, submit_ts);
->   
->   		drm_sched_wakeup(entity->rq->sched);
-> diff --git a/drivers/gpu/drm/scheduler/sched_main.c b/drivers/gpu/drm/scheduler/sched_main.c
-> index 6bc29d509161..3c8d6b186f2e 100644
-> --- a/drivers/gpu/drm/scheduler/sched_main.c
-> +++ b/drivers/gpu/drm/scheduler/sched_main.c
-> @@ -66,14 +66,14 @@
->   #define to_drm_sched_job(sched_job)		\
->   		container_of((sched_job), struct drm_sched_job, queue_node)
->   
-> -int drm_sched_policy = DRM_SCHED_POLICY_FIFO;
-> +int default_drm_sched_policy = DRM_SCHED_POLICY_FIFO;
->   
->   /**
->    * DOC: sched_policy (int)
->    * Used to override default entities scheduling policy in a run queue.
->    */
-> -MODULE_PARM_DESC(sched_policy, "Specify the scheduling policy for entities on a run-queue, " __stringify(DRM_SCHED_POLICY_RR) " = Round Robin, " __stringify(DRM_SCHED_POLICY_FIFO) " = FIFO (default).");
-> -module_param_named(sched_policy, drm_sched_policy, int, 0444);
-> +MODULE_PARM_DESC(sched_policy, "Specify the default scheduling policy for entities on a run-queue, " __stringify(DRM_SCHED_POLICY_RR) " = Round Robin, " __stringify(DRM_SCHED_POLICY_FIFO) " = FIFO (default).");
-> +module_param_named(sched_policy, default_drm_sched_policy, int, 0444);
->   
->   static __always_inline bool drm_sched_entity_compare_before(struct rb_node *a,
->   							    const struct rb_node *b)
-> @@ -177,7 +177,7 @@ void drm_sched_rq_remove_entity(struct drm_sched_rq *rq,
->   	if (rq->current_entity == entity)
->   		rq->current_entity = NULL;
->   
-> -	if (drm_sched_policy == DRM_SCHED_POLICY_FIFO)
-> +	if (rq->sched->sched_policy == DRM_SCHED_POLICY_FIFO)
->   		drm_sched_rq_remove_fifo_locked(entity);
->   
->   	spin_unlock(&rq->lock);
-> @@ -961,7 +961,7 @@ drm_sched_select_entity(struct drm_gpu_scheduler *sched)
->   
->   	/* Kernel run queue has higher priority than normal run queue*/
->   	for (i = DRM_SCHED_PRIORITY_COUNT - 1; i >= DRM_SCHED_PRIORITY_MIN; i--) {
-> -		entity = drm_sched_policy == DRM_SCHED_POLICY_FIFO ?
-> +		entity = sched->sched_policy == DRM_SCHED_POLICY_FIFO ?
->   			drm_sched_rq_select_entity_fifo(&sched->sched_rq[i]) :
->   			drm_sched_rq_select_entity_rr(&sched->sched_rq[i]);
->   		if (entity)
-> @@ -1186,6 +1186,7 @@ static void drm_sched_main(struct work_struct *w)
->    *		used
->    * @score: optional score atomic shared with other schedulers
->    * @name: name used for debugging
-> + * @sched_policy: schedule policy
->    * @dev: target &struct device
->    *
->    * Return 0 on success, otherwise error code.
-> @@ -1195,9 +1196,15 @@ int drm_sched_init(struct drm_gpu_scheduler *sched,
->   		   struct workqueue_struct *run_wq,
->   		   unsigned hw_submission, unsigned hang_limit,
->   		   long timeout, struct workqueue_struct *timeout_wq,
-> -		   atomic_t *score, const char *name, struct device *dev)
-> +		   atomic_t *score, const char *name,
-> +		   enum drm_sched_policy sched_policy,
-> +		   struct device *dev)
->   {
->   	int i;
+> +bool xe_engine_is_lr(struct xe_engine *e);
 > +
-> +	if (sched_policy >= DRM_SCHED_POLICY_COUNT)
-> +		return -EINVAL;
+> +bool xe_engine_ring_full(struct xe_engine *e);
 > +
->   	sched->ops = ops;
->   	sched->hw_submission_limit = hw_submission;
->   	sched->name = name;
-> @@ -1207,6 +1214,10 @@ int drm_sched_init(struct drm_gpu_scheduler *sched,
->   	sched->hang_limit = hang_limit;
->   	sched->score = score ? score : &sched->_score;
->   	sched->dev = dev;
-> +	if (sched_policy == DRM_SCHED_POLICY_DEFAULT)
-> +		sched->sched_policy = default_drm_sched_policy;
-> +	else
-> +		sched->sched_policy = sched_policy;
->   	for (i = DRM_SCHED_PRIORITY_MIN; i < DRM_SCHED_PRIORITY_COUNT; i++)
->   		drm_sched_rq_init(sched, &sched->sched_rq[i]);
+>   bool xe_engine_is_idle(struct xe_engine *engine);
 >   
-> diff --git a/drivers/gpu/drm/v3d/v3d_sched.c b/drivers/gpu/drm/v3d/v3d_sched.c
-> index 38e092ea41e6..5e3fe77fa991 100644
-> --- a/drivers/gpu/drm/v3d/v3d_sched.c
-> +++ b/drivers/gpu/drm/v3d/v3d_sched.c
-> @@ -391,7 +391,8 @@ v3d_sched_init(struct v3d_dev *v3d)
->   			     &v3d_bin_sched_ops, NULL,
->   			     hw_jobs_limit, job_hang_limit,
->   			     msecs_to_jiffies(hang_limit_ms), NULL,
-> -			     NULL, "v3d_bin", v3d->drm.dev);
-> +			     NULL, "v3d_bin", DRM_SCHED_POLICY_DEFAULT,
-> +			     v3d->drm.dev);
->   	if (ret)
->   		return ret;
->   
-> @@ -399,7 +400,8 @@ v3d_sched_init(struct v3d_dev *v3d)
->   			     &v3d_render_sched_ops, NULL,
->   			     hw_jobs_limit, job_hang_limit,
->   			     msecs_to_jiffies(hang_limit_ms), NULL,
-> -			     NULL, "v3d_render", v3d->drm.dev);
-> +			     ULL, "v3d_render", DRM_SCHED_POLICY_DEFAULT,
-> +			     v3d->drm.dev);
->   	if (ret)
->   		goto fail;
->   
-> @@ -407,7 +409,8 @@ v3d_sched_init(struct v3d_dev *v3d)
->   			     &v3d_tfu_sched_ops, NULL,
->   			     hw_jobs_limit, job_hang_limit,
->   			     msecs_to_jiffies(hang_limit_ms), NULL,
-> -			     NULL, "v3d_tfu", v3d->drm.dev);
-> +			     NULL, "v3d_tfu", DRM_SCHED_POLICY_DEFAULT,
-> +			     v3d->drm.dev);
->   	if (ret)
->   		goto fail;
->   
-> @@ -416,7 +419,8 @@ v3d_sched_init(struct v3d_dev *v3d)
->   				     &v3d_csd_sched_ops, NULL,
->   				     hw_jobs_limit, job_hang_limit,
->   				     msecs_to_jiffies(hang_limit_ms), NULL,
-> -				     NULL, "v3d_csd", v3d->drm.dev);
-> +				     NULL, "v3d_csd", DRM_SCHED_POLICY_DEFAULT,
-> +				     v3d->drm.dev);
->   		if (ret)
->   			goto fail;
->   
-> @@ -424,7 +428,8 @@ v3d_sched_init(struct v3d_dev *v3d)
->   				     &v3d_cache_clean_sched_ops, NULL,
->   				     hw_jobs_limit, job_hang_limit,
->   				     msecs_to_jiffies(hang_limit_ms), NULL,
-> -				     NULL, "v3d_cache_clean", v3d->drm.dev);
-> +				     NULL, "v3d_cache_clean",
-> +				     DRM_SCHED_POLICY_DEFAULT, v3d->drm.dev);
->   		if (ret)
->   			goto fail;
+>   void xe_engine_kill(struct xe_engine *e);
+> diff --git a/drivers/gpu/drm/xe/xe_exec.c b/drivers/gpu/drm/xe/xe_exec.c
+> index e44076ee2e11..9e9523939de8 100644
+> --- a/drivers/gpu/drm/xe/xe_exec.c
+> +++ b/drivers/gpu/drm/xe/xe_exec.c
+> @@ -14,6 +14,7 @@
+>   #include "xe_device.h"
+>   #include "xe_engine.h"
+>   #include "xe_macros.h"
+> +#include "xe_ring_ops_types.h"
+>   #include "xe_sched_job.h"
+>   #include "xe_sync.h"
+>   #include "xe_vm.h"
+> @@ -300,6 +301,11 @@ int xe_exec_ioctl(struct drm_device *dev, void *data, struct drm_file *file)
+>   		goto err_engine_end;
 >   	}
-> diff --git a/drivers/gpu/drm/xe/xe_execlist.c b/drivers/gpu/drm/xe/xe_execlist.c
-> index f0eb8bb277ce..944dad79a037 100644
-> --- a/drivers/gpu/drm/xe/xe_execlist.c
-> +++ b/drivers/gpu/drm/xe/xe_execlist.c
-> @@ -339,7 +339,7 @@ static int execlist_engine_init(struct xe_engine *e)
->   	err = drm_sched_init(&exl->sched, &drm_sched_ops, NULL,
->   			     e->lrc[0].ring.size / MAX_JOB_SIZE_BYTES,
->   			     XE_SCHED_HANG_LIMIT, XE_SCHED_JOB_TIMEOUT,
-> -			     NULL, NULL, e->hwe->name,
-> +			     NULL, NULL, e->hwe->name, DRM_SCHED_POLICY_DEFAULT,
->   			     gt_to_xe(e->gt)->drm.dev);
->   	if (err)
->   		goto err_free;
+>   
+> +	if (xe_engine_is_lr(engine) && xe_engine_ring_full(engine)) {
+> +		err = -EWOULDBLOCK;
+> +		goto err_engine_end;
+> +	}
+> +
+>   	job = xe_sched_job_create(engine, xe_engine_is_parallel(engine) ?
+>   				  addresses : &args->address);
+>   	if (IS_ERR(job)) {
+> @@ -386,6 +392,8 @@ int xe_exec_ioctl(struct drm_device *dev, void *data, struct drm_file *file)
+>   		xe_sync_entry_signal(&syncs[i], job,
+>   				     &job->drm.s_fence->finished);
+>   
+> +	if (xe_engine_is_lr(engine))
+> +		engine->ring_ops->emit_job(job);
+
+Would it make sense to teach xe_sched_job_xxx() about the LR jobs, so 
+that the above is done in
+xe_sched_job_push()?
+
+>   	xe_sched_job_push(job);
+>   	xe_vm_reactivate_rebind(vm);
+>   
+> diff --git a/drivers/gpu/drm/xe/xe_guc_engine_types.h b/drivers/gpu/drm/xe/xe_guc_engine_types.h
+> index cbfb13026ec1..5d83132034a6 100644
+> --- a/drivers/gpu/drm/xe/xe_guc_engine_types.h
+> +++ b/drivers/gpu/drm/xe/xe_guc_engine_types.h
+> @@ -31,6 +31,8 @@ struct xe_guc_engine {
+>   	 */
+>   #define MAX_STATIC_MSG_TYPE	3
+>   	struct drm_sched_msg static_msgs[MAX_STATIC_MSG_TYPE];
+> +	/** @lr_tdr: long running TDR worker */
+> +	struct work_struct lr_tdr;
+>   	/** @fini_async: do final fini async from this worker */
+>   	struct work_struct fini_async;
+>   	/** @resume_time: time of last resume */
 > diff --git a/drivers/gpu/drm/xe/xe_guc_submit.c b/drivers/gpu/drm/xe/xe_guc_submit.c
-> index 5c9a6866bd3d..c147b17690dd 100644
+> index a7a0d9f806bd..86c445903560 100644
 > --- a/drivers/gpu/drm/xe/xe_guc_submit.c
 > +++ b/drivers/gpu/drm/xe/xe_guc_submit.c
-> @@ -1067,7 +1067,8 @@ static int guc_engine_init(struct xe_engine *e)
->   	err = drm_sched_init(&ge->sched, &drm_sched_ops, NULL,
->   			     e->lrc[0].ring.size / MAX_JOB_SIZE_BYTES,
->   			     64, timeout, guc_to_gt(guc)->ordered_wq, NULL,
-> -			     e->name, gt_to_xe(e->gt)->drm.dev);
-> +			     e->name, DRM_SCHED_POLICY_DEFAULT,
-> +			     gt_to_xe(e->gt)->drm.dev);
->   	if (err)
->   		goto err_free;
+> @@ -482,6 +482,14 @@ static void register_engine(struct xe_engine *e)
+>   		parallel_write(xe, map, wq_desc.wq_status, WQ_STATUS_ACTIVE);
+>   	}
 >   
-> diff --git a/include/drm/gpu_scheduler.h b/include/drm/gpu_scheduler.h
-> index 419c0446edd7..929d0d567a0b 100644
-> --- a/include/drm/gpu_scheduler.h
-> +++ b/include/drm/gpu_scheduler.h
-> @@ -72,11 +72,15 @@ enum drm_sched_priority {
->   	DRM_SCHED_PRIORITY_UNSET = -2
->   };
->   
-> -/* Used to chose between FIFO and RR jobs scheduling */
-> -extern int drm_sched_policy;
-> -
-> -#define DRM_SCHED_POLICY_RR    0
-> -#define DRM_SCHED_POLICY_FIFO  1
-> +/* Used to chose default scheduling policy*/
-> +extern int default_drm_sched_policy;
+> +	/*
+> +	 * We must keep a reference for LR engines if engine is registered with
+> +	 * the GuC as jobs signal immediately and can't destroy an engine if the
+> +	 * GuC has a reference to it.
+> +	 */
+> +	if (xe_engine_is_lr(e))
+> +		xe_engine_get(e);
 > +
-> +enum drm_sched_policy {
-> +	DRM_SCHED_POLICY_DEFAULT,
-> +	DRM_SCHED_POLICY_RR,
-> +	DRM_SCHED_POLICY_FIFO,
-> +	DRM_SCHED_POLICY_COUNT,
-> +};
+>   	set_engine_registered(e);
+>   	trace_xe_engine_register(e);
+>   	if (xe_engine_is_parallel(e))
+> @@ -644,6 +652,7 @@ guc_engine_run_job(struct drm_sched_job *drm_job)
+>   {
+>   	struct xe_sched_job *job = to_xe_sched_job(drm_job);
+>   	struct xe_engine *e = job->engine;
+> +	bool lr = xe_engine_is_lr(e);
 >   
->   /**
->    * struct drm_sched_entity - A wrapper around a job queue (typically
-> @@ -513,6 +517,7 @@ struct drm_sched_backend_ops {
->    *              guilty and it will no longer be considered for scheduling.
->    * @score: score to help loadbalancer pick a idle sched
->    * @_score: score used when the driver doesn't provide one
-> + * @sched_policy: Schedule policy for scheduler
->    * @ready: marks if the underlying HW is ready to work
->    * @free_guilty: A hit to time out handler to free the guilty job.
->    * @pause_run_wq: pause queuing of @work_run on @run_wq
-> @@ -539,6 +544,7 @@ struct drm_gpu_scheduler {
->   	int				hang_limit;
->   	atomic_t                        *score;
->   	atomic_t                        _score;
-> +	enum drm_sched_policy		sched_policy;
->   	bool				ready;
->   	bool				free_guilty;
->   	bool				pause_run_wq;
-> @@ -550,7 +556,9 @@ int drm_sched_init(struct drm_gpu_scheduler *sched,
->   		   struct workqueue_struct *run_wq,
->   		   uint32_t hw_submission, unsigned hang_limit,
->   		   long timeout, struct workqueue_struct *timeout_wq,
-> -		   atomic_t *score, const char *name, struct device *dev);
-> +		   atomic_t *score, const char *name,
-> +		   enum drm_sched_policy sched_policy,
-> +		   struct device *dev);
+>   	XE_BUG_ON((engine_destroyed(e) || engine_pending_disable(e)) &&
+>   		  !engine_banned(e) && !engine_suspended(e));
+> @@ -653,14 +662,19 @@ guc_engine_run_job(struct drm_sched_job *drm_job)
+>   	if (!engine_killed_or_banned(e) && !xe_sched_job_is_error(job)) {
+>   		if (!engine_registered(e))
+>   			register_engine(e);
+> -		e->ring_ops->emit_job(job);
+> +		if (!lr)	/* LR jobs are emitted in the exec IOCTL */
+> +			e->ring_ops->emit_job(job);
+>   		submit_engine(e);
+>   	}
 >   
->   void drm_sched_fini(struct drm_gpu_scheduler *sched);
->   int drm_sched_job_init(struct drm_sched_job *job,
+> -	if (test_and_set_bit(JOB_FLAG_SUBMIT, &job->fence->flags))
+> +	if (lr) {
+> +		xe_sched_job_set_error(job, -EOPNOTSUPP);
+> +		return NULL;
+> +	} else if (test_and_set_bit(JOB_FLAG_SUBMIT, &job->fence->flags)) {
+>   		return job->fence;
+> -	else
+> +	} else {
+>   		return dma_fence_get(job->fence);
+> +	}
+>   }
+>   
+>   static void guc_engine_free_job(struct drm_sched_job *drm_job)
+> @@ -764,6 +778,55 @@ static void simple_error_capture(struct xe_engine *e)
+>   }
+>   #endif
+>   
+> +static void xe_guc_engine_trigger_cleanup(struct xe_engine *e)
+> +{
+> +	struct xe_guc *guc = engine_to_guc(e);
+> +
+> +	if (xe_engine_is_lr(e))
+> +		queue_work(guc_to_gt(guc)->ordered_wq, &e->guc->lr_tdr);
+> +	else
+> +		drm_sched_set_timeout(&e->guc->sched, MIN_SCHED_TIMEOUT);
+> +}
+> +
+> +static void xe_guc_engine_lr_cleanup(struct work_struct *w)
+> +{
+> +	struct xe_guc_engine *ge =
+> +		container_of(w, struct xe_guc_engine, lr_tdr);
+> +	struct xe_engine *e = ge->engine;
+> +	struct drm_gpu_scheduler *sched = &ge->sched;
+> +
+> +	XE_WARN_ON(!xe_engine_is_lr(e));
+> +	trace_xe_engine_lr_cleanup(e);
+> +
+> +	/* Kill the run_job / process_msg entry points */
+> +	drm_sched_run_wq_stop(sched);
+> +
+> +	/* Engine state now stable, disable scheduling / deregister if needed */
+> +	if (engine_registered(e)) {
+> +		struct xe_guc *guc = engine_to_guc(e);
+> +		int ret;
+> +
+> +		set_engine_banned(e);
+> +		disable_scheduling_deregister(guc, e);
+> +
+> +		/*
+> +		 * Must wait for scheduling to be disabled before signalling
+> +		 * any fences, if GT broken the GT reset code should signal us.
+> +		 */
+> +		ret = wait_event_timeout(guc->ct.wq,
+> +					 !engine_pending_disable(e) ||
+> +					 guc_read_stopped(guc), HZ * 5);
+> +		if (!ret) {
+> +			XE_WARN_ON("Schedule disable failed to respond");
+> +			drm_sched_run_wq_start(sched);
+> +			xe_gt_reset_async(e->gt);
+> +			return;
+> +		}
+> +	}
+> +
+> +	drm_sched_run_wq_start(sched);
+> +}
+> +
+>   static enum drm_gpu_sched_stat
+>   guc_engine_timedout_job(struct drm_sched_job *drm_job)
+>   {
+> @@ -815,7 +878,7 @@ guc_engine_timedout_job(struct drm_sched_job *drm_job)
+>   			err = -EIO;
+>   		set_engine_banned(e);
+>   		xe_engine_get(e);
+> -		disable_scheduling_deregister(engine_to_guc(e), e);
+> +		disable_scheduling_deregister(guc, e);
+>   
+>   		/*
+>   		 * Must wait for scheduling to be disabled before signalling
+> @@ -848,7 +911,7 @@ guc_engine_timedout_job(struct drm_sched_job *drm_job)
+>   	 */
+>   	list_add(&drm_job->list, &sched->pending_list);
+>   	drm_sched_run_wq_start(sched);
+> -	drm_sched_set_timeout(&e->guc->sched, MIN_SCHED_TIMEOUT);
+> +	xe_guc_engine_trigger_cleanup(e);
+>   
+>   	/* Mark all outstanding jobs as bad, thus completing them */
+>   	spin_lock(&sched->job_list_lock);
+> @@ -872,6 +935,8 @@ static void __guc_engine_fini_async(struct work_struct *w)
+>   
+>   	trace_xe_engine_destroy(e);
+>   
+> +	if (xe_engine_is_lr(e))
+> +		cancel_work_sync(&ge->lr_tdr);
+>   	if (e->flags & ENGINE_FLAG_PERSISTENT)
+>   		xe_device_remove_persistent_engines(gt_to_xe(e->gt), e);
+>   	release_guc_id(guc, e);
+> @@ -889,7 +954,7 @@ static void guc_engine_fini_async(struct xe_engine *e)
+>   	bool kernel = e->flags & ENGINE_FLAG_KERNEL;
+>   
+>   	INIT_WORK(&e->guc->fini_async, __guc_engine_fini_async);
+> -	queue_work(system_unbound_wq, &e->guc->fini_async);
+> +	queue_work(system_wq, &e->guc->fini_async);
+>   
+>   	/* We must block on kernel engines so slabs are empty on driver unload */
+>   	if (kernel) {
+> @@ -1078,6 +1143,9 @@ static int guc_engine_init(struct xe_engine *e)
+>   	if (err)
+>   		goto err_sched;
+>   
+> +	if (xe_engine_is_lr(e))
+> +		INIT_WORK(&e->guc->lr_tdr, xe_guc_engine_lr_cleanup);
+> +
+>   	mutex_lock(&guc->submission_state.lock);
+>   
+>   	err = alloc_guc_id(guc, e);
+> @@ -1129,7 +1197,7 @@ static void guc_engine_kill(struct xe_engine *e)
+>   {
+>   	trace_xe_engine_kill(e);
+>   	set_engine_killed(e);
+> -	drm_sched_set_timeout(&e->guc->sched, MIN_SCHED_TIMEOUT);
+> +	xe_guc_engine_trigger_cleanup(e);
+>   }
+>   
+>   static void guc_engine_add_msg(struct xe_engine *e, struct drm_sched_msg *msg,
+> @@ -1280,10 +1348,11 @@ static void guc_engine_stop(struct xe_guc *guc, struct xe_engine *e)
+>   	drm_sched_run_wq_stop(sched);
+>   
+>   	/* Clean up lost G2H + reset engine state */
+> -	if (engine_destroyed(e) && engine_registered(e)) {
+> -		if (engine_banned(e))
+> +	if (engine_registered(e)) {
+> +		if ((engine_banned(e) && engine_destroyed(e)) ||
+> +		    xe_engine_is_lr(e))
+>   			xe_engine_put(e);
+> -		else
+> +		else if (engine_destroyed(e))
+>   			__guc_engine_fini(guc, e);
+>   	}
+>   	if (e->guc->suspend_pending) {
+> @@ -1503,7 +1572,8 @@ int xe_guc_deregister_done_handler(struct xe_guc *guc, u32 *msg, u32 len)
+>   	trace_xe_engine_deregister_done(e);
+>   
+>   	clear_engine_registered(e);
+> -	if (engine_banned(e))
+> +
+> +	if (engine_banned(e) || xe_engine_is_lr(e))
+>   		xe_engine_put(e);
+>   	else
+>   		__guc_engine_fini(guc, e);
+> @@ -1540,7 +1610,7 @@ int xe_guc_engine_reset_handler(struct xe_guc *guc, u32 *msg, u32 len)
+>   	 */
+>   	set_engine_reset(e);
+>   	if (!engine_banned(e))
+> -		drm_sched_set_timeout(&e->guc->sched, MIN_SCHED_TIMEOUT);
+> +		xe_guc_engine_trigger_cleanup(e);
+>   
+>   	return 0;
+>   }
+> @@ -1567,7 +1637,7 @@ int xe_guc_engine_memory_cat_error_handler(struct xe_guc *guc, u32 *msg,
+>   	/* Treat the same as engine reset */
+>   	set_engine_reset(e);
+>   	if (!engine_banned(e))
+> -		drm_sched_set_timeout(&e->guc->sched, MIN_SCHED_TIMEOUT);
+> +		xe_guc_engine_trigger_cleanup(e);
+>   
+>   	return 0;
+>   }
+> diff --git a/drivers/gpu/drm/xe/xe_trace.h b/drivers/gpu/drm/xe/xe_trace.h
+> index 2f8eb7ebe9a7..02861c26e145 100644
+> --- a/drivers/gpu/drm/xe/xe_trace.h
+> +++ b/drivers/gpu/drm/xe/xe_trace.h
+> @@ -219,6 +219,11 @@ DEFINE_EVENT(xe_engine, xe_engine_resubmit,
+>   	     TP_ARGS(e)
+>   );
+>   
+> +DEFINE_EVENT(xe_engine, xe_engine_lr_cleanup,
+> +	     TP_PROTO(struct xe_engine *e),
+> +	     TP_ARGS(e)
+> +);
+> +
+>   DECLARE_EVENT_CLASS(xe_sched_job,
+>   		    TP_PROTO(struct xe_sched_job *job),
+>   		    TP_ARGS(job),
