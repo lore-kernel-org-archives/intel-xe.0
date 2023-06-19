@@ -4,30 +4,54 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id EEE2AEB64D9
-	for <intel-xe@archiver.kernel.org>; Mon, 19 Jun 2023 11:38:00 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0D5C1EB64D9
+	for <intel-xe@archiver.kernel.org>; Mon, 19 Jun 2023 11:59:11 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C2E6410E1E8;
-	Mon, 19 Jun 2023 11:38:00 +0000 (UTC)
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id 2D7F410E1E8;
- Mon, 19 Jun 2023 11:37:59 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 2AA8CAADEB;
- Mon, 19 Jun 2023 11:37:59 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+	by gabe.freedesktop.org (Postfix) with ESMTP id C383210E126;
+	Mon, 19 Jun 2023 11:59:10 +0000 (UTC)
+Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0BD5B10E126
+ for <intel-xe@lists.freedesktop.org>; Mon, 19 Jun 2023 11:59:07 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1687175948; x=1718711948;
+ h=message-id:date:mime-version:subject:to:cc:references:
+ from:in-reply-to:content-transfer-encoding;
+ bh=6ATqEyp89ggW4aTRln5gAcyXoO613SPCXVGvfiFP9Xw=;
+ b=PMV4vsOh/q82WMMTz1nBoUL5STYRaxE1jpgA7RCfU++oEEW9sBYqXbQH
+ ZhPF8TJ7mKAoaybv+NuZfQgUowc4adRuNc3p13ZX6x47dAgaFvnKLW5Tv
+ muGfFJmMv9CrXskCOw3ZuQXNzjmkDvhIchsVVIdmzrjQDWpHr5XU17has
+ +WONioj5mQ7dcUqslWt1vwnvvL5T/WWWK5oOi/cz7on0ffwg9AOxUupv8
+ 1AmII2VbtoC4AWXrHVG9Q9PlmNdvbahH58wolV6rhEhfQcfm+0Dyrk4TS
+ fuse4CgI3fM6ylzF9fgoVx70ngNbzsEjceetqZLD7uniBCo17+4sqpq7J A==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10745"; a="349334398"
+X-IronPort-AV: E=Sophos;i="6.00,254,1681196400"; d="scan'208";a="349334398"
+Received: from orsmga004.jf.intel.com ([10.7.209.38])
+ by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 19 Jun 2023 04:59:07 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6600,9927,10745"; a="837851278"
+X-IronPort-AV: E=Sophos;i="6.00,254,1681196400"; d="scan'208";a="837851278"
+Received: from yeidelbe-mobl.ger.corp.intel.com (HELO [10.249.254.162])
+ ([10.249.254.162])
+ by orsmga004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 19 Jun 2023 04:59:06 -0700
+Message-ID: <192ba6c2-694d-2615-4f2a-57cc64ea6c1d@linux.intel.com>
+Date: Mon, 19 Jun 2023 13:59:03 +0200
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Matthew Auld" <matthew.auld@intel.com>
-Date: Mon, 19 Jun 2023 11:37:59 -0000
-Message-ID: <168717467917.16531.15711832329897773927@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20230619110018.53538-8-matthew.auld@intel.com>
-In-Reply-To: <20230619110018.53538-8-matthew.auld@intel.com>
-Subject: [Intel-xe] =?utf-8?q?=E2=9C=93_CI=2Echecksparse=3A_success_for_u?=
- =?utf-8?q?API_bits_for_small-bar_=28rev7=29?=
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.11.1
+Content-Language: en-US
+To: Matthew Brost <matthew.brost@intel.com>
+References: <20230616095504.17084-1-thomas.hellstrom@linux.intel.com>
+ <20230616095504.17084-5-thomas.hellstrom@linux.intel.com>
+ <ZIzH1PtdZ+O5+TTN@DUT025-TGLU.fm.intel.com>
+From: =?UTF-8?Q?Thomas_Hellstr=c3=b6m?= <thomas.hellstrom@linux.intel.com>
+In-Reply-To: <ZIzH1PtdZ+O5+TTN@DUT025-TGLU.fm.intel.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+Subject: Re: [Intel-xe] [PATCH 4/6] drm/xe/bo: Gracefully handle errors from
+ ttm_bo_move_accel_cleanup().
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -39,38 +63,74 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Cc: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-== Series Details ==
 
-Series: uAPI bits for small-bar (rev7)
-URL   : https://patchwork.freedesktop.org/series/115515/
-State : success
+On 6/16/23 22:36, Matthew Brost wrote:
+> On Fri, Jun 16, 2023 at 11:55:02AM +0200, Thomas Hellström wrote:
+>> The function ttm_bo_move_accel_cleanup() attempts to help pipeline a
+>> move, and in doing so, needs memory allocations which may fail.
+>>
+>> Rather than failing in a state where the new resource may freed while
+>> accessed by the copy engine, sync uninterruptible and do a failsafe
+>> cleanup.
+>>
+>> Signed-off-by: Thomas Hellström <thomas.hellstrom@linux.intel.com>
+>> ---
+>>   drivers/gpu/drm/xe/xe_bo.c | 7 ++++++-
+>>   1 file changed, 6 insertions(+), 1 deletion(-)
+>>
+>> diff --git a/drivers/gpu/drm/xe/xe_bo.c b/drivers/gpu/drm/xe/xe_bo.c
+>> index 94dd11066f51..77d5c5710688 100644
+>> --- a/drivers/gpu/drm/xe/xe_bo.c
+>> +++ b/drivers/gpu/drm/xe/xe_bo.c
+>> @@ -689,10 +689,15 @@ static int xe_bo_move(struct ttm_buffer_object *ttm_bo, bool evict,
+>>   		if (!move_lacks_source) {
+>>   			ret = ttm_bo_move_accel_cleanup(ttm_bo, fence, evict,
+>>   							true, new_mem);
+>> -		} else {
+>> +			if (ret)
+>> +				dma_fence_wait(fence, false);
+> Should it be:
+> 	if (ret == -ENOMEM)
+> 		dma_fence_wait(fence, false);
 
-== Summary ==
-
-+ trap cleanup EXIT
-+ KERNEL=/kernel
-+ MT=/root/linux/maintainer-tools
-+ git clone https://gitlab.freedesktop.org/drm/maintainer-tools /root/linux/maintainer-tools
-Cloning into '/root/linux/maintainer-tools'...
-warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
-+ make -C /root/linux/maintainer-tools
-make: Entering directory '/root/linux/maintainer-tools'
-cc -O2 -g -Wextra -o remap-log remap-log.c
-make: Leaving directory '/root/linux/maintainer-tools'
-+ cd /kernel
-+ git config --global --add safe.directory /kernel
-+ /root/linux/maintainer-tools/dim sparse --fast e117c7bac089bb30cebf1eb8e5031627e42555a7
-Sparse version: 0.6.1 (Ubuntu: 0.6.1-2build1)
-Fast mode used, each commit won't be checked separately.
-Okay!
-
-+ cleanup
-++ stat -c %u:%g /kernel
-+ chown -R 1003:1003 /kernel
+I think any error code should cause us to sync and reassign the new 
+resource, but
+also see below.
 
 
+>
+>> +		}
+>> +
+>> +		if (move_lacks_source || ret) {
+> Should it be:
+> 		if (move_lacks_source || ret == -ENOMEM) {
+
+Same as above, but indeed we should take care of the error code above 
+just after
+dma_fence_wait() since dma_resv_add_fence() doesn't bail out early if 
+the same fence was already added or if it is signaled.
+
+Will respin,
+
+Thanks,
+
+Thomas
+
+
+>
+> Matt
+>
+>>   			dma_resv_add_fence(ttm_bo->base.resv, fence,
+>>   					   DMA_RESV_USAGE_KERNEL);
+>>   			ttm_bo_move_null(ttm_bo, new_mem);
+>> +			ret = 0;
+>>   		}
+>>   
+>>   		dma_fence_put(fence);
+>> -- 
+>> 2.40.1
+>>
