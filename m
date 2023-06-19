@@ -4,58 +4,52 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 64E46EB64D9
-	for <intel-xe@archiver.kernel.org>; Mon, 19 Jun 2023 16:46:55 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3FF39EB64D9
+	for <intel-xe@archiver.kernel.org>; Mon, 19 Jun 2023 17:14:12 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3F4DC10E221;
-	Mon, 19 Jun 2023 16:46:55 +0000 (UTC)
-Received: from mail-lf1-x132.google.com (mail-lf1-x132.google.com
- [IPv6:2a00:1450:4864:20::132])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7F0CB10E221
- for <intel-xe@lists.freedesktop.org>; Mon, 19 Jun 2023 16:46:53 +0000 (UTC)
-Received: by mail-lf1-x132.google.com with SMTP id
- 2adb3069b0e04-4f849a0e371so4679922e87.1
- for <intel-xe@lists.freedesktop.org>; Mon, 19 Jun 2023 09:46:53 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20221208; t=1687193211; x=1689785211;
- h=content-transfer-encoding:cc:to:subject:message-id:date:from
- :in-reply-to:references:mime-version:from:to:cc:subject:date
- :message-id:reply-to;
- bh=IWbXQrXdCXXPv8yYADVXozKSC74+8mzCsnDMoWqrA2c=;
- b=IqxlmRuLGDmXdo7DfBXegbaKZmfg7WEWWzUtrh/H6VAr7cPU3wDVDjeo8M+XOw/UqY
- /7G0v5Kn3s0dEpLy8CZAjIJHKG6cihSyid+iI1jxPgGRv/WoOObi8YT3QuKWFSdmQ867
- NEhYHc0s3vjcU6CMSormXNJ4+qpqkDLzaCbpI6L7AsbPFBAb0s6WENiinr0VEnQHpyUw
- ess/SL4hwOPCUm+Gq3ICRvDo362gI9HjF6eMGkj9tJvqD1+Zk62k+IO+kF4eHMGaNHku
- 5fWr3SXzYvLc5sRupuWk8w9owxZTDgwKrrHLzD2cI7hVShdrI5/5oVmyoV0yiwdfyg6X
- kVQA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20221208; t=1687193211; x=1689785211;
- h=content-transfer-encoding:cc:to:subject:message-id:date:from
- :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
- :subject:date:message-id:reply-to;
- bh=IWbXQrXdCXXPv8yYADVXozKSC74+8mzCsnDMoWqrA2c=;
- b=MwtF5kF8NgvwcfuP58RBC8/3G6PjICbjBTlcIzeLFmZyGCn449YdTKY4tQ2lUpcA0n
- gxjOcSgWOR3IZ1O7cNgsAjIrZO5wr2qvcBhTzJoyc0HervskldrWkFdENhIcTgziyp/0
- P5QXadRT4udbDgO/Kv3CN8G8nONzGRs2Q1geTgljpXyt2YyuzVxru9JfWgF4w0wagxCC
- mGft5V+df/FOKfFrdANh0DV+4VaOdV8DMPcPr/B10aO9NduTpyaUpRT9GHXkpvC6OJS3
- qlVczafNknfQtg0LqbCLMAUfC0K7x+lfVGTD8Ak+8kWWaXu+1/r67Lf/MBlxGRVVkoRy
- 1ojQ==
-X-Gm-Message-State: AC+VfDxJidO9tL/6nyUjerI5jxtPhmuh5eyAUJ6RKckSY60fQ7qwOXOl
- heHiL0qr777fBP5dd2U5ThZMJOh9ggbTvili5ohg/25ixkE=
-X-Google-Smtp-Source: ACHHUZ7rONy43m93M4HOryKgxwtBiRqBE5cqoUqHTF1Y6ewWVuhh58jZnS7aCRd9Dzyf7Kr+qAdz9VisZOO0YTQmToI=
-X-Received: by 2002:a05:6512:32ab:b0:4f8:7796:623b with SMTP id
- q11-20020a05651232ab00b004f87796623bmr402236lfe.39.1687193211138; Mon, 19 Jun
- 2023 09:46:51 -0700 (PDT)
+	by gabe.freedesktop.org (Postfix) with ESMTP id CA3BF10E0B4;
+	Mon, 19 Jun 2023 17:14:11 +0000 (UTC)
+Received: from mga06.intel.com (mga06b.intel.com [134.134.136.31])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2F41010E0B4
+ for <intel-xe@lists.freedesktop.org>; Mon, 19 Jun 2023 17:14:08 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1687194849; x=1718730849;
+ h=message-id:date:mime-version:subject:to:cc:references:
+ from:in-reply-to:content-transfer-encoding;
+ bh=mKM92UW51DYhFkyIojH9fifeeHmlIxNAeXH2x6ELQME=;
+ b=ZmGYHMG51CBfRLu71DYxb/2tUJ4FrvAl+9by5ozIsHtioiUs5LseyP2n
+ +Bgp0F/RjgjTP6CzxdCJF/VlS1ifw8ppRyTPRO9uR8IXgfOQ29tmrhxc+
+ yVdnFgoKX/96nYkrCQO9ys1uOLusCSRpllcMbVix6vnaJZT6vqC6TtOhh
+ ZH7PoXlWnOxcRtCC/M5b44wnAMDZpL6sCwvDEAb7jB/9KaaXM/J2CECkd
+ CRw+KTtWKSnQYrAcnJD3MKyN16EdclsJii0WtwLSETnIWEBTuP3l+0gor
+ 3phhKeoydySIQlxq77SvaoahwDxV1NwMYdrZAg5/9W9vXL9xQ9eentREB w==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10746"; a="423340944"
+X-IronPort-AV: E=Sophos;i="6.00,255,1681196400"; d="scan'208";a="423340944"
+Received: from orsmga008.jf.intel.com ([10.7.209.65])
+ by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 19 Jun 2023 10:14:07 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6600,9927,10746"; a="743525930"
+X-IronPort-AV: E=Sophos;i="6.00,255,1681196400"; d="scan'208";a="743525930"
+Received: from yeidelbe-mobl.ger.corp.intel.com (HELO [10.249.254.162])
+ ([10.249.254.162])
+ by orsmga008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 19 Jun 2023 10:14:06 -0700
+Message-ID: <3dd6e667-4ea4-f1b4-d24e-41e1b9f7af92@linux.intel.com>
+Date: Mon, 19 Jun 2023 19:14:03 +0200
 MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.11.1
+Content-Language: en-US
+To: Matthew Auld <matthew.william.auld@gmail.com>
 References: <20230619152222.11733-1-thomas.hellstrom@linux.intel.com>
  <20230619152222.11733-2-thomas.hellstrom@linux.intel.com>
-In-Reply-To: <20230619152222.11733-2-thomas.hellstrom@linux.intel.com>
-From: Matthew Auld <matthew.william.auld@gmail.com>
-Date: Mon, 19 Jun 2023 17:46:24 +0100
-Message-ID: <CAM0jSHM2E2jb9s1T+38zsQBHnvULFSGRFhZ_hThOaUfxC2905w@mail.gmail.com>
-To: =?UTF-8?Q?Thomas_Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+ <CAM0jSHM2E2jb9s1T+38zsQBHnvULFSGRFhZ_hThOaUfxC2905w@mail.gmail.com>
+From: =?UTF-8?Q?Thomas_Hellstr=c3=b6m?= <thomas.hellstrom@linux.intel.com>
+In-Reply-To: <CAM0jSHM2E2jb9s1T+38zsQBHnvULFSGRFhZ_hThOaUfxC2905w@mail.gmail.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
 Subject: Re: [Intel-xe] [PATCH v2 1/6] drm/xe/bo: Don't limit the TT manager
  to half of system memory
 X-BeenThere: intel-xe@lists.freedesktop.org
@@ -73,41 +67,49 @@ Cc: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Mon, 19 Jun 2023 at 16:22, Thomas Hellstr=C3=B6m
-<thomas.hellstrom@linux.intel.com> wrote:
->
-> TTM enforces this limit a page-allocation time, swapping out TT memory
-> if needed.
+Hi,
 
-It seems that limit can be exceeded by just creating one crazy big
-object, or having a few as part of the same exec() call. If unable to
-lock an object it seems to just skip it (-EBUSY), and if there are no
-objects left to iterate over it just carries on with the allocation.
-The hard limit in sys_mgr seemed to prevent that. Do we know if this
-new behaviour is now expected?
+On 6/19/23 18:46, Matthew Auld wrote:
+> On Mon, 19 Jun 2023 at 16:22, Thomas Hellström
+> <thomas.hellstrom@linux.intel.com> wrote:
+>> TTM enforces this limit a page-allocation time, swapping out TT memory
+>> if needed.
+> It seems that limit can be exceeded by just creating one crazy big
+> object, or having a few as part of the same exec() call. If unable to
+> lock an object it seems to just skip it (-EBUSY), and if there are no
+> objects left to iterate over it just carries on with the allocation.
+> The hard limit in sys_mgr seemed to prevent that. Do we know if this
+> new behaviour is now expected?
 
->
-> Signed-off-by: Thomas Hellstr=C3=B6m <thomas.hellstrom@linux.intel.com>
-> Reviewed-by: Matthew Brost <matthew.brost@intel.com>
-> ---
->  drivers/gpu/drm/xe/xe_ttm_sys_mgr.c | 2 --
->  1 file changed, 2 deletions(-)
->
-> diff --git a/drivers/gpu/drm/xe/xe_ttm_sys_mgr.c b/drivers/gpu/drm/xe/xe_=
-ttm_sys_mgr.c
-> index 3e1fa0c832ca..961bbc29dcdf 100644
-> --- a/drivers/gpu/drm/xe/xe_ttm_sys_mgr.c
-> +++ b/drivers/gpu/drm/xe/xe_ttm_sys_mgr.c
-> @@ -106,8 +106,6 @@ int xe_ttm_sys_mgr_init(struct xe_device *xe)
->
->         si_meminfo(&si);
->         gtt_size =3D (u64)si.totalram * si.mem_unit;
-> -       /* TTM limits allocation of all TTM devices by 50% of system memo=
-ry */
-> -       gtt_size /=3D 2;
->
->         man->use_tt =3D true;
->         man->func =3D &xe_ttm_sys_mgr_func;
-> --
-> 2.40.1
->
+Hm. You're right. Once there was a quite elaborate accounting mechanism 
+in TTM, and IIRC bypassing it in that way wasn't possible. Now it looks 
+more like an opportunistic swapout.
+
+Sigh, Yes I guess then we have to leave this where it is and adjust the 
+IGT accordingly. I figure I need to resurrect that TTM shrinker series.
+
+/Thomas
+
+
+>> Signed-off-by: Thomas Hellström <thomas.hellstrom@linux.intel.com>
+>> Reviewed-by: Matthew Brost <matthew.brost@intel.com>
+>> ---
+>>   drivers/gpu/drm/xe/xe_ttm_sys_mgr.c | 2 --
+>>   1 file changed, 2 deletions(-)
+>>
+>> diff --git a/drivers/gpu/drm/xe/xe_ttm_sys_mgr.c b/drivers/gpu/drm/xe/xe_ttm_sys_mgr.c
+>> index 3e1fa0c832ca..961bbc29dcdf 100644
+>> --- a/drivers/gpu/drm/xe/xe_ttm_sys_mgr.c
+>> +++ b/drivers/gpu/drm/xe/xe_ttm_sys_mgr.c
+>> @@ -106,8 +106,6 @@ int xe_ttm_sys_mgr_init(struct xe_device *xe)
+>>
+>>          si_meminfo(&si);
+>>          gtt_size = (u64)si.totalram * si.mem_unit;
+>> -       /* TTM limits allocation of all TTM devices by 50% of system memory */
+>> -       gtt_size /= 2;
+>>
+>>          man->use_tt = true;
+>>          man->func = &xe_ttm_sys_mgr_func;
+>> --
+>> 2.40.1
+>>
