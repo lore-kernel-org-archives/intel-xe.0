@@ -4,50 +4,50 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 59DD9EB64DB
-	for <intel-xe@archiver.kernel.org>; Mon, 19 Jun 2023 11:00:49 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7A95EEB64DA
+	for <intel-xe@archiver.kernel.org>; Mon, 19 Jun 2023 11:01:00 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2B95C10E1F8;
-	Mon, 19 Jun 2023 11:00:49 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 46B6410E1EA;
+	Mon, 19 Jun 2023 11:01:00 +0000 (UTC)
 Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8B54910E1EF
- for <intel-xe@lists.freedesktop.org>; Mon, 19 Jun 2023 11:00:46 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6F13610E1EA
+ for <intel-xe@lists.freedesktop.org>; Mon, 19 Jun 2023 11:00:58 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1687172447; x=1718708447;
+ t=1687172458; x=1718708458;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=b/Ey/2+iC2TIzGnpIvurvDQ/M5QFZscSWVRVCS3XZ4s=;
- b=mPbtDzliIOJiudiOPaWiioP6nSXfByu9enYKabpjczJQ2vMld+FeWWed
- SZjlKrV2YrF1MW/vn61o4AKUt2DCeTAC2l3Lrs+0IvkgPsdpIi7lF/d4Z
- mIuMw8LtIdmzhJz7bM2SPpl0+Tm7i3F4h7MVO3xrzixSgVISX4BmtIPTQ
- wft/iQZDD5fbFVemuUTvk1kF5mmoI9s9nFXw3ukdEYZuFeaom41kHJFyv
- ucn8s5uoqs/qAp89Oklxhdas+zNPD5mrCy6TiIARuR7b3pqq7n7UmTLiJ
- aMfF2xNtuG58ItCWvnnDvIez5ntvObkJQiYEAXKDKJl5ag8AosUY+nXj1 Q==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10745"; a="339941728"
-X-IronPort-AV: E=Sophos;i="6.00,254,1681196400"; d="scan'208";a="339941728"
+ bh=89wyiXanhuPVFBC5Xq86u6msdJxP3HPt85r5RM8XdLk=;
+ b=ZLWF0IctUHolbqk89mAjxI90Wo0Hlwaw0vZOmPYkHKySov2akgVRSWx/
+ h4j9BVAFNsWnnvMCRlGPOUU7Z+zfZ2r1aiBky/eL6gfT9i6pMIXheIuXA
+ JrfLWcU3av0J+fCYaIAyAsiqzZFVcSJ+wIV25dVcos1syGDS501j+DCo4
+ lZEVMVPQJycHKxHwhL411wgvZOP38qsCwToCGI9bocM/i+BZId/DHSP0G
+ Q3il356TPzlG+GZhE13FYgQUIL65cdSzTLloVGXhVLpXhu76uiuIzEdLA
+ 4royGvJFLLblFaotTEeXQJxdijadYX0OJfHF746sktWEANWzxVst7CvRN Q==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10745"; a="339941730"
+X-IronPort-AV: E=Sophos;i="6.00,254,1681196400"; d="scan'208";a="339941730"
 Received: from fmsmga003.fm.intel.com ([10.253.24.29])
  by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 19 Jun 2023 04:00:46 -0700
+ 19 Jun 2023 04:00:47 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10745"; a="803579313"
-X-IronPort-AV: E=Sophos;i="6.00,254,1681196400"; d="scan'208";a="803579313"
+X-IronPort-AV: E=McAfee;i="6600,9927,10745"; a="803579327"
+X-IronPort-AV: E=Sophos;i="6.00,254,1681196400"; d="scan'208";a="803579327"
 Received: from lsuareza-mobl.ger.corp.intel.com (HELO mwauld-desk1.intel.com)
  ([10.252.23.111])
  by fmsmga003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 19 Jun 2023 04:00:43 -0700
+ 19 Jun 2023 04:00:45 -0700
 From: Matthew Auld <matthew.auld@intel.com>
 To: intel-xe@lists.freedesktop.org
-Date: Mon, 19 Jun 2023 12:00:22 +0100
-Message-ID: <20230619110018.53538-11-matthew.auld@intel.com>
+Date: Mon, 19 Jun 2023 12:00:23 +0100
+Message-ID: <20230619110018.53538-12-matthew.auld@intel.com>
 X-Mailer: git-send-email 2.41.0
 In-Reply-To: <20230619110018.53538-8-matthew.auld@intel.com>
 References: <20230619110018.53538-8-matthew.auld@intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-xe] [PATCH v6 3/6] drm/xe/uapi: add some kernel-doc for
- region query
+Subject: [Intel-xe] [PATCH v6 4/6] drm/xe/bo: support tiered vram allocation
+ for small-bar
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -59,136 +59,180 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Cc: Filip Hazubski <filip.hazubski@intel.com>,
- Lucas De Marchi <lucas.demarchi@intel.com>, Effie Yu <effie.yu@intel.com>,
- Carl Zhang <carl.zhang@intel.com>
+Cc: Lucas De Marchi <lucas.demarchi@intel.com>
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Since we need to extend this, we should also take the time to add some
-basic kernel-doc here for the existing bits. Note that this is all still
-subject to change when upstreaming.
+Add the new flag XE_BO_NEEDS_CPU_ACCESS, to force allocating in the
+mappable part of vram. If no flag is specified we do a topdown
+allocation, to limit the chances of stealing the precious mappable part,
+if we don't need it. If this is a full-bar system, then this all gets
+nooped.
 
-Also convert XE_MEM_REGION_CLASS_* into an enum, so we can more easily
-create links to it from other parts of the uapi.
+For kernel users, it looks like xe_bo_create_pin_map() is the central
+place which users should call if they want CPU access to the object, so
+add the flag there.
 
-Suggested-by: Gwan-gyeong Mun <gwan-gyeong.mun@intel.com>
+We still need to plumb this through for userspace allocations. Also it
+looks like page-tables are using pin_map(), which is less than ideal. If
+we can already use the GPU to do page-table management, then maybe we
+should just force that for small-bar.
+
 Signed-off-by: Matthew Auld <matthew.auld@intel.com>
-Cc: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
+Cc: Gwan-gyeong Mun <gwan-gyeong.mun@intel.com>
 Cc: Thomas Hellström <thomas.hellstrom@linux.intel.com>
 Cc: Lucas De Marchi <lucas.demarchi@intel.com>
-Cc: José Roberto de Souza <jose.souza@intel.com>
-Cc: Filip Hazubski <filip.hazubski@intel.com>
-Cc: Carl Zhang <carl.zhang@intel.com>
-Cc: Effie Yu <effie.yu@intel.com>
+Reviewed-by: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
 Reviewed-by: Gwan-gyeong Mun <gwan-gyeong.mun@intel.com>
 ---
- include/uapi/drm/xe_drm.h | 74 ++++++++++++++++++++++++++++++++++++---
- 1 file changed, 70 insertions(+), 4 deletions(-)
+ drivers/gpu/drm/xe/tests/xe_migrate.c |  3 +-
+ drivers/gpu/drm/xe/xe_bo.c            | 48 ++++++++++++++++++---------
+ drivers/gpu/drm/xe/xe_bo.h            |  1 +
+ drivers/gpu/drm/xe/xe_ttm_vram_mgr.c  |  4 +++
+ 4 files changed, 40 insertions(+), 16 deletions(-)
 
-diff --git a/include/uapi/drm/xe_drm.h b/include/uapi/drm/xe_drm.h
-index 9bdea8b81435..239cedaac0ca 100644
---- a/include/uapi/drm/xe_drm.h
-+++ b/include/uapi/drm/xe_drm.h
-@@ -116,21 +116,84 @@ struct xe_user_extension {
- #define DRM_IOCTL_XE_WAIT_USER_FENCE		DRM_IOWR(DRM_COMMAND_BASE + DRM_XE_WAIT_USER_FENCE, struct drm_xe_wait_user_fence)
- #define DRM_IOCTL_XE_VM_MADVISE			 DRM_IOW(DRM_COMMAND_BASE + DRM_XE_VM_MADVISE, struct drm_xe_vm_madvise)
+diff --git a/drivers/gpu/drm/xe/tests/xe_migrate.c b/drivers/gpu/drm/xe/tests/xe_migrate.c
+index 4c79c1dfa772..1b7396f98f1a 100644
+--- a/drivers/gpu/drm/xe/tests/xe_migrate.c
++++ b/drivers/gpu/drm/xe/tests/xe_migrate.c
+@@ -111,7 +111,8 @@ static void test_copy(struct xe_migrate *m, struct xe_bo *bo,
+ 	struct xe_bo *sysmem = xe_bo_create_locked(xe, m->tile, NULL,
+ 						   bo->size,
+ 						   ttm_bo_type_kernel,
+-						   XE_BO_CREATE_SYSTEM_BIT);
++						   XE_BO_CREATE_SYSTEM_BIT |
++						   XE_BO_NEEDS_CPU_ACCESS);
+ 	if (IS_ERR(sysmem)) {
+ 		KUNIT_FAIL(test, "Failed to allocate sysmem bo for %s: %li\n",
+ 			   str, PTR_ERR(sysmem));
+diff --git a/drivers/gpu/drm/xe/xe_bo.c b/drivers/gpu/drm/xe/xe_bo.c
+index 71a14e1f25be..881208bceb70 100644
+--- a/drivers/gpu/drm/xe/xe_bo.c
++++ b/drivers/gpu/drm/xe/xe_bo.c
+@@ -110,19 +110,28 @@ static void add_vram(struct xe_device *xe, struct xe_bo *bo,
+ 		     struct ttm_place *places, u32 bo_flags, u32 mem_type, u32 *c)
+ {
+ 	struct xe_tile *tile = mem_type_to_tile(xe, mem_type);
++	struct ttm_place place = { .mem_type = mem_type };
++	u64 io_size = tile->mem.vram.io_size;
  
--#define XE_MEM_REGION_CLASS_SYSMEM	0
--#define XE_MEM_REGION_CLASS_VRAM	1
+ 	XE_BUG_ON(!tile->mem.vram.size);
  
-+/**
-+ * enum drm_xe_memory_class - Supported memory classes.
-+ */
-+enum drm_xe_memory_class {
-+	/** @XE_MEM_REGION_CLASS_SYSMEM: Represents system memory. */
-+	XE_MEM_REGION_CLASS_SYSMEM = 0,
-+	/**
-+	 * @XE_MEM_REGION_CLASS_VRAM: On discrete platforms, this
-+	 * represents the memory that is local to the device, which we
-+	 * call VRAM. Not valid on integrated platforms.
+-	places[*c] = (struct ttm_place) {
+-		.mem_type = mem_type,
+-		/*
+-		 * For eviction / restore on suspend / resume objects
+-		 * pinned in VRAM must be contiguous
+-		 */
+-		.flags = bo_flags & (XE_BO_CREATE_PINNED_BIT |
+-				     XE_BO_CREATE_GGTT_BIT) ?
+-			TTM_PL_FLAG_CONTIGUOUS : 0,
+-	};
++	/*
++	 * For eviction / restore on suspend / resume objects
++	 * pinned in VRAM must be contiguous
 +	 */
-+	XE_MEM_REGION_CLASS_VRAM
-+};
++	if (bo_flags & (XE_BO_CREATE_PINNED_BIT |
++			XE_BO_CREATE_GGTT_BIT))
++		place.flags |= TTM_PL_FLAG_CONTIGUOUS;
 +
-+/**
-+ * struct drm_xe_query_mem_usage - The region info query enumerates all regions
-+ * known to the driver by filling in an array of struct drm_xe_query_mem_region
-+ * structures.
-+ */
- struct drm_xe_query_mem_usage {
-+	/**
-+	 * @num_regions: Number of supported memory regions for this device.
-+	 *
-+	 * The @regions will contain @num_regions entries.
-+	 */
- 	__u32 num_regions;
-+	/** @pad: MBZ */
- 	__u32 pad;
--
-+	/**
-+	 * struct drm_xe_query_mem_region - Describes some region as known to
-+	 * the driver.
-+	 */
- 	struct drm_xe_query_mem_region {
-+		/**
-+		 * @mem_class: The memory class describing this region.
-+		 *
-+		 * See enum drm_xe_memory_class for supported values.
-+		 */
- 		__u16 mem_class;
--		__u16 instance;	/* unique ID even among different classes */
-+		/**
-+		 * @instance: The instance for this region.
-+		 *
-+		 * The @mem_class and @instance taken together will always give
-+		 * a unique pair.
-+		 */
-+		__u16 instance;
-+		/** @pad: MBZ */
- 		__u32 pad;
-+		/**
-+		 * @min_page_size: Min page-size in bytes for this region.
-+		 *
-+		 * When the kernel allocates memory for this region, the
-+		 * underlying pages will be at least @min_page_size in size.
-+		 *
-+		 * Important note: When userspace allocates a GTT address which
-+		 * can point to memory allocated from this region, it must also
-+		 * respect this minimum alignment. This is enforced by the
-+		 * kernel.
-+		 */
- 		__u32 min_page_size;
-+		/**
-+		 * @max_page_size: Max page-size in bytes for this region.
-+		 */
- 		__u32 max_page_size;
-+		/**
-+		 * @total_size: The usable size in bytes for this region.
-+		 */
- 		__u64 total_size;
-+		/**
-+		 * @used: Estimate of the memory used in bytes for this region.
-+		 *
-+		 * Requires CAP_PERFMON or CAP_SYS_ADMIN to get reliable
-+		 * accounting.  Without this the value here will always equal
-+		 * zero.
-+		 */
- 		__u64 used;
-+		/** @reserved: MBZ */
- 		__u64 reserved[8];
- 	} regions[];
- };
-@@ -777,6 +840,9 @@ struct drm_xe_vm_madvise {
- 	 * Setting the preferred location will trigger a migrate of the VMA
- 	 * backing store to new location if the backing store is already
- 	 * allocated.
-+	 *
-+	 * For DRM_XE_VM_MADVISE_PREFERRED_MEM_CLASS usage, see enum
-+	 * drm_xe_memory_class.
- 	 */
- #define DRM_XE_VM_MADVISE_PREFERRED_MEM_CLASS	0
- #define DRM_XE_VM_MADVISE_PREFERRED_GT		1
++	if (io_size < tile->mem.vram.size) {
++		if (bo_flags & XE_BO_NEEDS_CPU_ACCESS) {
++			place.fpfn = 0;
++			place.lpfn = io_size >> PAGE_SHIFT;
++		} else {
++			place.flags |= TTM_PL_FLAG_TOPDOWN;
++		}
++	}
++	places[*c] = place;
+ 	*c += 1;
+ 
+ 	if (bo->props.preferred_mem_type == XE_BO_PROPS_INVALID)
+@@ -362,15 +371,20 @@ static int xe_ttm_io_mem_reserve(struct ttm_device *bdev,
+ 				 struct ttm_resource *mem)
+ {
+ 	struct xe_device *xe = ttm_to_xe_device(bdev);
+-	struct xe_tile *tile;
+ 
+ 	switch (mem->mem_type) {
+ 	case XE_PL_SYSTEM:
+ 	case XE_PL_TT:
+ 		return 0;
+ 	case XE_PL_VRAM0:
+-	case XE_PL_VRAM1:
+-		tile = mem_type_to_tile(xe, mem->mem_type);
++	case XE_PL_VRAM1: {
++		struct xe_tile *tile = mem_type_to_tile(xe, mem->mem_type);
++		struct xe_ttm_vram_mgr_resource *vres =
++			to_xe_ttm_vram_mgr_resource(mem);
++
++		if (vres->used_visible_size < mem->size)
++			return -EINVAL;
++
+ 		mem->bus.offset = mem->start << PAGE_SHIFT;
+ 
+ 		if (tile->mem.vram.mapping &&
+@@ -385,7 +399,7 @@ static int xe_ttm_io_mem_reserve(struct ttm_device *bdev,
+ 		mem->bus.caching = ttm_write_combined;
+ #endif
+ 		return 0;
+-	case XE_PL_STOLEN:
++	} case XE_PL_STOLEN:
+ 		return xe_ttm_stolen_io_mem_reserve(xe, mem);
+ 	default:
+ 		return -EINVAL;
+@@ -1325,7 +1339,8 @@ struct xe_bo *xe_bo_create_pin_map_at(struct xe_device *xe, struct xe_tile *tile
+ 	    xe_ttm_stolen_cpu_access_needs_ggtt(xe))
+ 		flags |= XE_BO_CREATE_GGTT_BIT;
+ 
+-	bo = xe_bo_create_locked_range(xe, tile, vm, size, start, end, type, flags);
++	bo = xe_bo_create_locked_range(xe, tile, vm, size, start, end, type,
++				       flags | XE_BO_NEEDS_CPU_ACCESS);
+ 	if (IS_ERR(bo))
+ 		return bo;
+ 
+@@ -1634,6 +1649,9 @@ int xe_bo_vmap(struct xe_bo *bo)
+ 
+ 	xe_bo_assert_held(bo);
+ 
++	if (!(bo->flags & XE_BO_NEEDS_CPU_ACCESS))
++		return -EINVAL;
++
+ 	if (!iosys_map_is_null(&bo->vmap))
+ 		return 0;
+ 
+diff --git a/drivers/gpu/drm/xe/xe_bo.h b/drivers/gpu/drm/xe/xe_bo.h
+index 08ca1d06bf77..f9c155443de6 100644
+--- a/drivers/gpu/drm/xe/xe_bo.h
++++ b/drivers/gpu/drm/xe/xe_bo.h
+@@ -31,6 +31,7 @@
+ #define XE_BO_DEFER_BACKING		BIT(9)
+ #define XE_BO_SCANOUT_BIT		BIT(10)
+ #define XE_BO_FIXED_PLACEMENT_BIT	BIT(11)
++#define XE_BO_NEEDS_CPU_ACCESS		BIT(12)
+ /* this one is trigger internally only */
+ #define XE_BO_INTERNAL_TEST		BIT(30)
+ #define XE_BO_INTERNAL_64K		BIT(31)
+diff --git a/drivers/gpu/drm/xe/xe_ttm_vram_mgr.c b/drivers/gpu/drm/xe/xe_ttm_vram_mgr.c
+index 1a84abd35fcf..7cd8c42cc0ff 100644
+--- a/drivers/gpu/drm/xe/xe_ttm_vram_mgr.c
++++ b/drivers/gpu/drm/xe/xe_ttm_vram_mgr.c
+@@ -372,11 +372,15 @@ int xe_ttm_vram_mgr_alloc_sgt(struct xe_device *xe,
+ 			      struct sg_table **sgt)
+ {
+ 	struct xe_tile *tile = &xe->tiles[res->mem_type - XE_PL_VRAM0];
++	struct xe_ttm_vram_mgr_resource *vres = to_xe_ttm_vram_mgr_resource(res);
+ 	struct xe_res_cursor cursor;
+ 	struct scatterlist *sg;
+ 	int num_entries = 0;
+ 	int i, r;
+ 
++	if (vres->used_visible_size < res->size)
++		return -EOPNOTSUPP;
++
+ 	*sgt = kmalloc(sizeof(**sgt), GFP_KERNEL);
+ 	if (!*sgt)
+ 		return -ENOMEM;
 -- 
 2.41.0
 
