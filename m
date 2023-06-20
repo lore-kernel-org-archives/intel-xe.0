@@ -4,54 +4,53 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3FF39EB64D9
-	for <intel-xe@archiver.kernel.org>; Mon, 19 Jun 2023 17:14:12 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7C9AEEB64D7
+	for <intel-xe@archiver.kernel.org>; Tue, 20 Jun 2023 14:47:45 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id CA3BF10E0B4;
-	Mon, 19 Jun 2023 17:14:11 +0000 (UTC)
-Received: from mga06.intel.com (mga06b.intel.com [134.134.136.31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2F41010E0B4
- for <intel-xe@lists.freedesktop.org>; Mon, 19 Jun 2023 17:14:08 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 258B410E2F7;
+	Tue, 20 Jun 2023 14:47:45 +0000 (UTC)
+Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A804110E2F6;
+ Tue, 20 Jun 2023 14:47:42 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1687194849; x=1718730849;
- h=message-id:date:mime-version:subject:to:cc:references:
- from:in-reply-to:content-transfer-encoding;
- bh=mKM92UW51DYhFkyIojH9fifeeHmlIxNAeXH2x6ELQME=;
- b=ZmGYHMG51CBfRLu71DYxb/2tUJ4FrvAl+9by5ozIsHtioiUs5LseyP2n
- +Bgp0F/RjgjTP6CzxdCJF/VlS1ifw8ppRyTPRO9uR8IXgfOQ29tmrhxc+
- yVdnFgoKX/96nYkrCQO9ys1uOLusCSRpllcMbVix6vnaJZT6vqC6TtOhh
- ZH7PoXlWnOxcRtCC/M5b44wnAMDZpL6sCwvDEAb7jB/9KaaXM/J2CECkd
- CRw+KTtWKSnQYrAcnJD3MKyN16EdclsJii0WtwLSETnIWEBTuP3l+0gor
- 3phhKeoydySIQlxq77SvaoahwDxV1NwMYdrZAg5/9W9vXL9xQ9eentREB w==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10746"; a="423340944"
-X-IronPort-AV: E=Sophos;i="6.00,255,1681196400"; d="scan'208";a="423340944"
-Received: from orsmga008.jf.intel.com ([10.7.209.65])
- by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 19 Jun 2023 10:14:07 -0700
+ t=1687272462; x=1718808462;
+ h=from:to:cc:subject:in-reply-to:references:date:
+ message-id:mime-version;
+ bh=LG0edqrvyHsDW/l6sS9e6UCd7Let6v/Fg5o7MAHvm2I=;
+ b=RzS3sbE9m/1kV185sTjYGauGTk+/OtLeHBSGs5cDUMi4ZEA4EwIwCk5T
+ RNSlZSqAIo6fpbOhR2xOqijlexa8CmkA+1dNN8hBHIkXDcCY2S8Y48lBv
+ WvOAVd3JIC2pBKHgv/xrdKjI3CXLd4P3FrwvLXxCAOISEjGY/mkicctoj
+ s9hzC/stu2bDbVPzpzb9kcFzC3t/PvMjCMWSQ9KyEng42XzH2hGHkh2oX
+ emyAXGY4FNPYqAZzW3VubcOq2E8cmvgCC+E/DQ/Vx4IRC/I9LHE513Ydi
+ nwAmet43s3+sThrwWJ7uZWeDeXwwuvufyb8AJuTeG3i67ATY+JaQ/NzDY w==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10747"; a="446251944"
+X-IronPort-AV: E=Sophos;i="6.00,257,1681196400"; d="scan'208";a="446251944"
+Received: from fmsmga002.fm.intel.com ([10.253.24.26])
+ by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 20 Jun 2023 07:47:41 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10746"; a="743525930"
-X-IronPort-AV: E=Sophos;i="6.00,255,1681196400"; d="scan'208";a="743525930"
-Received: from yeidelbe-mobl.ger.corp.intel.com (HELO [10.249.254.162])
- ([10.249.254.162])
- by orsmga008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 19 Jun 2023 10:14:06 -0700
-Message-ID: <3dd6e667-4ea4-f1b4-d24e-41e1b9f7af92@linux.intel.com>
-Date: Mon, 19 Jun 2023 19:14:03 +0200
+X-IronPort-AV: E=McAfee;i="6600,9927,10747"; a="827023019"
+X-IronPort-AV: E=Sophos;i="6.00,257,1681196400"; d="scan'208";a="827023019"
+Received: from dshvarts-mobl1.ger.corp.intel.com (HELO localhost)
+ ([10.252.62.204])
+ by fmsmga002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 20 Jun 2023 07:47:37 -0700
+From: Jani Nikula <jani.nikula@linux.intel.com>
+To: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+In-Reply-To: <ZIs0CC2J7nu0LHEK@smile.fi.intel.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+References: <20230509051403.2748545-1-lucas.demarchi@intel.com>
+ <20230509051403.2748545-3-lucas.demarchi@intel.com>
+ <ZF4fi5B7PPlgZBOI@smile.fi.intel.com> <87pm75kd0h.fsf@intel.com>
+ <ZF4j0NPoBGMBT8CO@smile.fi.intel.com> <87mt29kc34.fsf@intel.com>
+ <ZIs0CC2J7nu0LHEK@smile.fi.intel.com>
+Date: Tue, 20 Jun 2023 17:47:34 +0300
+Message-ID: <875y7igph5.fsf@intel.com>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.11.1
-Content-Language: en-US
-To: Matthew Auld <matthew.william.auld@gmail.com>
-References: <20230619152222.11733-1-thomas.hellstrom@linux.intel.com>
- <20230619152222.11733-2-thomas.hellstrom@linux.intel.com>
- <CAM0jSHM2E2jb9s1T+38zsQBHnvULFSGRFhZ_hThOaUfxC2905w@mail.gmail.com>
-From: =?UTF-8?Q?Thomas_Hellstr=c3=b6m?= <thomas.hellstrom@linux.intel.com>
-In-Reply-To: <CAM0jSHM2E2jb9s1T+38zsQBHnvULFSGRFhZ_hThOaUfxC2905w@mail.gmail.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-Subject: Re: [Intel-xe] [PATCH v2 1/6] drm/xe/bo: Don't limit the TT manager
- to half of system memory
+Content-Type: text/plain
+Subject: Re: [Intel-xe] [PATCH 2/3] linux/bits.h: Add fixed-width GENMASK
+ and BIT macros
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -63,53 +62,53 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-xe@lists.freedesktop.org
+Cc: Andrew Morton <akpm@linux-foundation.org>, intel-gfx@lists.freedesktop.org,
+ Kevin Brodsky <kevin.brodsky@arm.com>,
+ Lucas De Marchi <lucas.demarchi@intel.com>, linux-kernel@vger.kernel.org,
+ dri-devel@lists.freedesktop.org,
+ Christian =?utf-8?Q?K=C3=B6nig?= <christian.koenig@amd.com>,
+ Alex Deucher <alexander.deucher@amd.com>, Thomas Gleixner <tglx@linutronix.de>,
+ Masahiro Yamada <masahiroy@kernel.org>, intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Hi,
+On Thu, 15 Jun 2023, Andy Shevchenko <andriy.shevchenko@linux.intel.com> wrote:
+> On Fri, May 12, 2023 at 02:45:19PM +0300, Jani Nikula wrote:
+>> On Fri, 12 May 2023, Andy Shevchenko <andriy.shevchenko@linux.intel.com> wrote:
+>> > On Fri, May 12, 2023 at 02:25:18PM +0300, Jani Nikula wrote:
+>> >> On Fri, 12 May 2023, Andy Shevchenko <andriy.shevchenko@linux.intel.com> wrote:
+>> >> > On Mon, May 08, 2023 at 10:14:02PM -0700, Lucas De Marchi wrote:
+>> >> >> Add GENMASK_U32(), GENMASK_U16() and GENMASK_U8()  macros to create
+>> >> >> masks for fixed-width types and also the corresponding BIT_U32(),
+>> >> >> BIT_U16() and BIT_U8().
+>> >> >
+>> >> > Why?
+>> >> 
+>> >> The main reason is that GENMASK() and BIT() size varies for 32/64 bit
+>> >> builds.
+>> >
+>> > When needed GENMASK_ULL() can be used (with respective castings perhaps)
+>> > and BIT_ULL(), no?
+>> 
+>> How does that help with making them the same 32-bit size on both 32 and
+>> 64 bit builds?
+>
+> 	u32 x = GENMASK();
+> 	u64 y = GENMASK_ULL();
+>
+> No? Then use in your code either x or y. Note that I assume that the parameters
+> to GENMASK*() are built-time constants. Is it the case for you?
 
-On 6/19/23 18:46, Matthew Auld wrote:
-> On Mon, 19 Jun 2023 at 16:22, Thomas Hellström
-> <thomas.hellstrom@linux.intel.com> wrote:
->> TTM enforces this limit a page-allocation time, swapping out TT memory
->> if needed.
-> It seems that limit can be exceeded by just creating one crazy big
-> object, or having a few as part of the same exec() call. If unable to
-> lock an object it seems to just skip it (-EBUSY), and if there are no
-> objects left to iterate over it just carries on with the allocation.
-> The hard limit in sys_mgr seemed to prevent that. Do we know if this
-> new behaviour is now expected?
+What's wrong with wanting to define macros with specific size, depending
+on e.g. hardware registers instead of build size?
 
-Hm. You're right. Once there was a quite elaborate accounting mechanism 
-in TTM, and IIRC bypassing it in that way wasn't possible. Now it looks 
-more like an opportunistic swapout.
-
-Sigh, Yes I guess then we have to leave this where it is and adjust the 
-IGT accordingly. I figure I need to resurrect that TTM shrinker series.
-
-/Thomas
+What would you use for printk format if you wanted to to print
+GENMASK()?
 
 
->> Signed-off-by: Thomas Hellström <thomas.hellstrom@linux.intel.com>
->> Reviewed-by: Matthew Brost <matthew.brost@intel.com>
->> ---
->>   drivers/gpu/drm/xe/xe_ttm_sys_mgr.c | 2 --
->>   1 file changed, 2 deletions(-)
->>
->> diff --git a/drivers/gpu/drm/xe/xe_ttm_sys_mgr.c b/drivers/gpu/drm/xe/xe_ttm_sys_mgr.c
->> index 3e1fa0c832ca..961bbc29dcdf 100644
->> --- a/drivers/gpu/drm/xe/xe_ttm_sys_mgr.c
->> +++ b/drivers/gpu/drm/xe/xe_ttm_sys_mgr.c
->> @@ -106,8 +106,6 @@ int xe_ttm_sys_mgr_init(struct xe_device *xe)
->>
->>          si_meminfo(&si);
->>          gtt_size = (u64)si.totalram * si.mem_unit;
->> -       /* TTM limits allocation of all TTM devices by 50% of system memory */
->> -       gtt_size /= 2;
->>
->>          man->use_tt = true;
->>          man->func = &xe_ttm_sys_mgr_func;
->> --
->> 2.40.1
->>
+BR,
+Jani.
+
+
+-- 
+Jani Nikula, Intel Open Source Graphics Center
