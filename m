@@ -4,30 +4,136 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id A3530EB64D7
-	for <intel-xe@archiver.kernel.org>; Wed, 21 Jun 2023 19:50:23 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id D2BACEB64D8
+	for <intel-xe@archiver.kernel.org>; Wed, 21 Jun 2023 22:23:56 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 73A3110E353;
-	Wed, 21 Jun 2023 19:50:23 +0000 (UTC)
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id 30A6D10E353;
- Wed, 21 Jun 2023 19:50:22 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 1E398A73C7;
- Wed, 21 Jun 2023 19:50:22 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
+	by gabe.freedesktop.org (Postfix) with ESMTP id A4D2C10E063;
+	Wed, 21 Jun 2023 22:23:56 +0000 (UTC)
+Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C9CD710E063
+ for <intel-xe@lists.freedesktop.org>; Wed, 21 Jun 2023 22:23:54 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1687386234; x=1718922234;
+ h=date:from:to:cc:subject:message-id:references:
+ content-transfer-encoding:in-reply-to:mime-version;
+ bh=TlM1XNwsx1N2EX6HDiIgPwOlIiOih3I6/K6h79EtkGc=;
+ b=Syd2PkAgbr/wObuOOiED9jxMT/xI4p88fg+cwajQuFM+QDyvt5fsguuQ
+ mtDedp3s1eZVeJowI6d8FvCvnKDVKCDSK/vl55bdHB+DZ1BLdmhRZtzop
+ STr2WNelNFi2YCOeCT0vXV91cH7wqcxbVYo30KMkzj3JK05PeKZLfGX1W
+ bCDVUmECtYA8QCSSpHWWqhE2gzuXMQCVxcevoHZRcEW0BFbe8WXVFoAlQ
+ 60i1sc4LtV9PMFvTT3QIrXxeWNXCk4Tl7cqxlqJwypB0i3iilNBf1mrHf
+ 3s+vFkCc0dkeWL3G7UwKadCtnMPKtvBTaXCAXDbkaXTwh9Ru5GHNsc7He g==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10748"; a="360339404"
+X-IronPort-AV: E=Sophos;i="6.00,261,1681196400"; d="scan'208";a="360339404"
+Received: from fmsmga005.fm.intel.com ([10.253.24.32])
+ by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 21 Jun 2023 15:23:53 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6600,9927,10748"; a="1044903946"
+X-IronPort-AV: E=Sophos;i="6.00,261,1681196400"; d="scan'208";a="1044903946"
+Received: from fmsmsx602.amr.corp.intel.com ([10.18.126.82])
+ by fmsmga005.fm.intel.com with ESMTP; 21 Jun 2023 15:23:53 -0700
+Received: from fmsmsx601.amr.corp.intel.com (10.18.126.81) by
+ fmsmsx602.amr.corp.intel.com (10.18.126.82) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.23; Wed, 21 Jun 2023 15:23:52 -0700
+Received: from FMSEDG603.ED.cps.intel.com (10.1.192.133) by
+ fmsmsx601.amr.corp.intel.com (10.18.126.81) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.23 via Frontend Transport; Wed, 21 Jun 2023 15:23:52 -0700
+Received: from NAM12-BN8-obe.outbound.protection.outlook.com (104.47.55.169)
+ by edgegateway.intel.com (192.55.55.68) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.1.2507.23; Wed, 21 Jun 2023 15:23:52 -0700
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=cvveRlNqAZcWcu/s15tPhe2Ddk3wveZt76alvYXKa4kp9h32TpbXPa6evbZPXZWenn9/WNrZeFVJgFy7jL0KOh/z+9Oy3hMvn+WUMkjjZqxj9sujqkiOzLBz8ItY6ibzrwXwnaWqaBfLGf7k9DaRmxFLgQz5bUjbLyL4LFU4jcC/7g42y8u8I6MWg5BWdwp3p21EDejIvMQLgzVnj91n9k5bNNuhrGXpcGwfZqRxGQ/DdVe1MhBx+s72c0OVY+FyBlNYvGQ+2EJaJvmS4f3vg81CLrKSY4i3tT2NDC1mYjUeJrxrAT6jkX87I+tKQ7w0Be5Oxr1/gbF2CA27B6kXRA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=iaFK49aDiiKAOW8zjjE59Eha7g9YzrjN5qnTBQq8KUw=;
+ b=CpieetNiTiQJKnfairmHe8hLC3FjBIu1drMkDoaUDUygoxExTqNpFsMHwsffJEnew6ATOvWdEzAGBx/SHAN2gsXlpxqOB+oH8FLPih9aIfn3pux02X8PT2eEKFepim0H9lqRnA1TVZVjr9Wx6SXkd5RlKTElZrhU+paHTg11tE7NMmWxpTKg3kCXED0meQd36HGMJXEq3Hpk24whWkCmJe8hblBV5nXKHNAaQf0nLZ+usBOAPEVOoiZMAZ9HXyiP8Uf4bmtVTCaRvIEaAqltCTR/3ckuD9aoBIaDYuQ22pDNvHSQEvDLQOa4hpay3r+v++rbSlSZBTVspLlmGo+7mQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
+ dkim=pass header.d=intel.com; arc=none
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=intel.com;
+Received: from PH7PR11MB6522.namprd11.prod.outlook.com (2603:10b6:510:212::12)
+ by DS0PR11MB8207.namprd11.prod.outlook.com (2603:10b6:8:164::16) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6521.23; Wed, 21 Jun
+ 2023 22:23:51 +0000
+Received: from PH7PR11MB6522.namprd11.prod.outlook.com
+ ([fe80::ff06:a115:e4eb:680e]) by PH7PR11MB6522.namprd11.prod.outlook.com
+ ([fe80::ff06:a115:e4eb:680e%5]) with mapi id 15.20.6521.023; Wed, 21 Jun 2023
+ 22:23:51 +0000
+Date: Wed, 21 Jun 2023 22:22:56 +0000
+From: Matthew Brost <matthew.brost@intel.com>
+To: Thomas =?iso-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>
+Message-ID: <ZJN4QDSiWTsl9h+7@DUT025-TGLU.fm.intel.com>
+References: <20230619152222.11733-1-thomas.hellstrom@linux.intel.com>
+ <20230619152222.11733-5-thomas.hellstrom@linux.intel.com>
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "David Kershner" <david.kershner@intel.com>
-Date: Wed, 21 Jun 2023 19:50:22 -0000
-Message-ID: <168737702212.7801.15355900472521203755@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20230621194125.2052211-1-david.kershner@intel.com>
-In-Reply-To: <20230621194125.2052211-1-david.kershner@intel.com>
-Subject: [Intel-xe] =?utf-8?q?=E2=9C=97_CI=2EHooks=3A_failure_for_Add_Int?=
- =?utf-8?q?el_Accelerated_Fabric_to_Xe?=
+In-Reply-To: <20230619152222.11733-5-thomas.hellstrom@linux.intel.com>
+X-ClientProxiedBy: BY5PR17CA0059.namprd17.prod.outlook.com
+ (2603:10b6:a03:167::36) To PH7PR11MB6522.namprd11.prod.outlook.com
+ (2603:10b6:510:212::12)
+MIME-Version: 1.0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: PH7PR11MB6522:EE_|DS0PR11MB8207:EE_
+X-MS-Office365-Filtering-Correlation-Id: 77ae9080-b7d4-46bb-ca72-08db72a63065
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: y7SYv+nMvMv78mMFYu2jmGSuf8pp/3cGz/C7SZV+5DwxnYIkpuAlvv8zt+7MQ7+UqZApoMhiab1Y88LkXPSuMSB4JfV+yNR53oYvvUXDZ1I5aPA7lo6NvoPYTQ9Tfpd5eGTX2Rv9XGjlGUUdTiZNYNLjnNFbfyYwYGb53qE6h0Ubo3Vo8oWEs2UTVdAVGEQrPcufDRaeWPZyq2zWOZ7ABS5Ih5sIwuP4SUBqbo5OaNd0dHcxr6AUKVlDuH6aHJGcWREcHktY6o4oujyrQqsoBNPd8Og+BHN2u0MuQYFa1UABjjCr9K/qutB0WMMDpSo4tsWZCUAEk5oYmvYXubB+8aIsLthfLdGu4hrrpW7FTJE93keSfCiBUt/k9G0dsKFisBVG2nPsxzv9x4/hHMoNnYvBl5HpSiyBAcF7zzDqoTMUDJRlthvgc5d9KeAN2NZrpW7jOYqTDXxQW+R6CGuzt6Cy5Rq6MBRbhbFOJLvD71SYEsCAvF4+aJFF2VmUhvi4pEfHCMLnWNzsMHLwgLeGOQhpgvot8/RpkqNqqlmm0OKn8jblDEKWU+io8XHbgD3WKmvqiBnS1UtaRr4/tyR7OjaldE1TZ2rY5rIxPdhtPwU=
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:PH7PR11MB6522.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230028)(346002)(376002)(39860400002)(136003)(366004)(396003)(451199021)(83380400001)(2906002)(316002)(186003)(66556008)(66476007)(6512007)(6916009)(66946007)(4326008)(26005)(478600001)(6506007)(8936002)(44832011)(5660300002)(6486002)(41300700001)(8676002)(38100700002)(82960400001)(86362001)(67856001);
+ DIR:OUT; SFP:1102; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?iso-8859-1?Q?Uct35P7j2wZ0KXmfVNU60C29bcMDzhcbKP7nlTPE1lyTn/n9E47jsSsFeo?=
+ =?iso-8859-1?Q?FgWuttjXO0sVWw/FqPYtypeuT38L8i1yfUtNd7XFB+UtlWYWBoJh9IT2Aj?=
+ =?iso-8859-1?Q?R8s9S5u4Nw/IvHLuQcMn50cWOfsd68UmichhJ/pMVS9jU9y2v2P13ELp2M?=
+ =?iso-8859-1?Q?2e+PO7dwTl7YXrF9RmYoxM9tkBJzn4JMSBodsHx5XJLwSfJ2RVRBtlPE8B?=
+ =?iso-8859-1?Q?wdGPaEc55J43/ypHrAzqJoI6sCkRJsWA9sbxgIdEM0mHDQbkIFbJL1Ywso?=
+ =?iso-8859-1?Q?PuRY9F47+TrYidwWpcT46FiP7ZAfb7a0b9R1j3oSN3taOOI8gLYnyL9s9I?=
+ =?iso-8859-1?Q?l8vZ4KcJc1xX4sGe3MJCqj41jL4DFxpBQn8mSSMi8EzXjEcBxa9ZqyTpoL?=
+ =?iso-8859-1?Q?ZUmu7ssNIj2YtFn/ZCyby9zQ8la9qFvpOzlpIF71ZV2dheJ3BewqjNUTA2?=
+ =?iso-8859-1?Q?S02zICo2P0hb5U0kt5p9AF9ZIfT50V2B3ur0GICUsa4sEFGANP1Mj2mM+a?=
+ =?iso-8859-1?Q?TTR24A4qKqrXoFcr4pMGi8YMq7Isb2SsheCi0bry6EpV873zdV7FEtIYAZ?=
+ =?iso-8859-1?Q?XTxvEHlWZ7M4yZzrfxbed6oxeL/KaGJcGIDdwN6WPxJraPUAh56h74UZxO?=
+ =?iso-8859-1?Q?huft+BAn+II+DvDuZxacW09yEAoCgdTrT0UgT5IeeALYMpMVVj2xOdheDL?=
+ =?iso-8859-1?Q?PNj0jWVtatrs30SF68vTH2a+94zhtF6uuRO9XoGijd12pKkZcjUJYSbhpF?=
+ =?iso-8859-1?Q?Up5JUTyHK46UzIldoH6sm5ev5UtcaqWCJfJU2cvCLv3TtWu2PRAhLJJ87t?=
+ =?iso-8859-1?Q?jcPsuedRtJ3yp7mHcr2pxACfaSbGevU0lNfth2lcrx5ez39sPrfiJEN2S3?=
+ =?iso-8859-1?Q?cpW811xm2qUySMxvDY56MQWArlCCOboUHMNUTsAP0SR0ARooYVHXZdou7J?=
+ =?iso-8859-1?Q?eBMZa8r6AUxOP2RccTVwgXIRsFFHSJhRsRgVG+cFrLJlBQweNQK0dyGt31?=
+ =?iso-8859-1?Q?1rCh/r+nT7fW5CXAAqoyXf+odPqgjC5CfGmmCcEa/0Dtbszd4+8EngFdrD?=
+ =?iso-8859-1?Q?G0By5fTxL4sxnxuLgeUC9GxBOKgY0ULg5UPKBsdUtYA5G9ZnHkrvMQ5QHl?=
+ =?iso-8859-1?Q?KyOei0DbZtiNhTZ3gjzvNCW1+MnsoJrlroXIRyrScqQI1oUwJqs9hj8cCC?=
+ =?iso-8859-1?Q?fGE7kNfSRzw7LjMeCd01EDI7iHlUcVUPZiGv+PuFS3ysVy6PIVS6oRJLZo?=
+ =?iso-8859-1?Q?i3dLQcwEDxblL6RDoh7dbh/5W08rq/gsWfOlYqMiATpBHksr+0ajRcnNrl?=
+ =?iso-8859-1?Q?18Hw3TKfaiKe6a8brSF2AdvXW+xrZQDgUrNpUMeX0uRKglFWgCT9xVQrAC?=
+ =?iso-8859-1?Q?xIdMJdMdc2P/pcaeOBIAYzaYgnKn1V2IgOItLWXn0cLSQHJUAFuxDuY6g1?=
+ =?iso-8859-1?Q?93Q8Epah1uuqvNtf9tR49R9m2bSMvzpLVEKrpfMWqyWdAOjcdhipOqLyO6?=
+ =?iso-8859-1?Q?/pGosFhpfX6wfSiWWZGflSUDZ/WcNGgNOXzdK2EGh8gw13JJL2aqhT6/W9?=
+ =?iso-8859-1?Q?oaOocZV14a8ACNeEt4zRFutc6ma5Jue0t4CpjNm5qs+4YDMQObeJed1WqC?=
+ =?iso-8859-1?Q?0xkWd1bfRI10JDvxe3ZpogP2swjdOJ4WH1zTcPyvBWgx1zgTOIwvzDRA?=
+ =?iso-8859-1?Q?=3D=3D?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: 77ae9080-b7d4-46bb-ca72-08db72a63065
+X-MS-Exchange-CrossTenant-AuthSource: PH7PR11MB6522.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 21 Jun 2023 22:23:50.9367 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: wE3qFK8Yrmne2TuwBHSUmEPqFaV1SFXHJkx67RNuYIQZv6cexrohd836l69d+z5zyW8Ktxiq27OP55KbLd7c+w==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DS0PR11MB8207
+X-OriginatorOrg: intel.com
+Subject: Re: [Intel-xe] [PATCH v2 4/6] drm/xe/bo: Gracefully handle errors
+ from ttm_bo_move_accel_cleanup().
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -39,240 +145,46 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Cc: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-== Series Details ==
+On Mon, Jun 19, 2023 at 05:22:20PM +0200, Thomas Hellstr�m wrote:
+> The function ttm_bo_move_accel_cleanup() attempts to help pipeline a
+> move, and in doing so, needs memory allocations which may fail.
+> 
+> Rather than failing in a state where the new resource may freed while
+> accessed by the copy engine, sync uninterruptible and do a failsafe
+> cleanup.
+> 
+> v2:
+> - Don't try to attach the signaled fence on ttm_bo_move_accel_cleanup()
+>   error.
+> 
+> Signed-off-by: Thomas Hellstr�m <thomas.hellstrom@linux.intel.com>
 
-Series: Add Intel Accelerated Fabric to Xe
-URL   : https://patchwork.freedesktop.org/series/119706/
-State : failure
+Reviewed-by: Matthew Brost <matthew.brost@intel.com>
 
-== Summary ==
-
-run-parts: executing /workspace/ci/hooks/00-showenv
-/workspace
-+ pwd
-+ ls -la
-total 568
-drwxrwxr-x 10 1003 1003   4096 Jun 21 19:50 .
-drwxr-xr-x  1 root root   4096 Jun 21 19:50 ..
--rw-rw-r--  1 1003 1003 397702 Jun 21 19:49 build.log
--rw-rw-r--  1 1003 1003   4251 Jun 21 19:44 checkpatch.log
-drwxrwxr-x  5 1003 1003   4096 Jun 21 19:43 ci
-drwxrwxr-x 10 1003 1003   4096 Jun 21 19:43 docker
-drwxrwxr-x  8 1003 1003   4096 Jun 21 19:43 .git
--rw-rw-r--  1 1003 1003    495 Jun 21 19:44 git_apply.log
-drwxrwxr-x  3 1003 1003   4096 Jun 21 19:43 .github
--rw-rw-r--  1 1003 1003    233 Jun 21 19:43 .groovylintrc.json
--rw-rw-r--  1 1003 1003     78 Jun 21 19:50 hooks.log
-drwxrwxr-x 31 1003 1003   4096 Jun 21 19:49 kernel
--rw-rw-r--  1 1003 1003  83995 Jun 21 19:44 kernel.mbox
--rw-rw-r--  1 1003 1003  25980 Jun 21 19:46 kunit.log
-drwxrwxr-x 42 1003 1003   4096 Jun 21 19:43 pipelines
--rw-rw-r--  1 1003 1003    793 Jun 21 19:43 README.adoc
-drwxrwxr-x  3 1003 1003   4096 Jun 21 19:43 scripts
-drwxrwxr-x  2 1003 1003   4096 Jun 21 19:43 .vscode
-+ uname -a
-Linux d2b4d7c674c5 5.4.0-149-generic #166-Ubuntu SMP Tue Apr 18 16:51:45 UTC 2023 x86_64 x86_64 x86_64 GNU/Linux
-+ export
-+ grep -Ei '(^|\W)CI_'
-declare -x CI_KERNEL_BUILD_DIR="/workspace/kernel/build64"
-declare -x CI_KERNEL_IMAGES_DIR="/workspace/kernel/archive/boot"
-declare -x CI_KERNEL_MODULES_DIR="/workspace/kernel/archive"
-declare -x CI_KERNEL_SRC_DIR="/workspace/kernel"
-declare -x CI_SRC_DIR="/workspace/kernel"
-declare -x CI_TOOLS_SRC_DIR="/workspace/ci"
-declare -x CI_WORKSPACE_DIR="/workspace"
-+ '[' -n /workspace ']'
-+ git_args='-C /workspace/kernel'
-+ git_log_args=
-+ git --no-pager -C /workspace/kernel log --format=oneline --abbrev-commit
-fe35eb1d7 drm/xe: Introduce Intel Accelerator fabric driver
-9a7dceb01 drm/xe: Introduce Intel Accelerated Fabric device
-990900cad drm/xe: Introduce a module parameter to control IAF
-f0727faae drm/xe: Fix unreffed ptr leak on engine lookup
-run-parts: executing /workspace/ci/hooks/10-build-W1
-+ SRC_DIR=/workspace/kernel
-+ RESTORE_DISPLAY_CONFIG=0
-+ '[' -n /workspace/kernel/build64 ']'
-+ BUILD_DIR=/workspace/kernel/build64
-+ cd /workspace/kernel
-+ grep -q -e '^CONFIG_DRM_XE_DISPLAY=[yY]' /workspace/kernel/build64/.config
-+ RESTORE_DISPLAY_CONFIG=1
-+ trap cleanup EXIT
-+ ./scripts/config --file /workspace/kernel/build64/.config --disable CONFIG_DRM_XE_DISPLAY
-++ nproc
-+ make -j48 O=/workspace/kernel/build64 modules_prepare
-make[1]: Entering directory '/workspace/kernel/build64'
-  SYNC    include/config/auto.conf.cmd
-  GEN     Makefile
-  GEN     Makefile
-  UPD     include/generated/compile.h
-  UPD     include/config/kernel.release
-  UPD     include/generated/utsrelease.h
-  DESCEND objtool
-  CALL    ../scripts/checksyscalls.sh
-  HOSTCC  /workspace/kernel/build64/tools/objtool/fixdep.o
-  HOSTLD  /workspace/kernel/build64/tools/objtool/fixdep-in.o
-  LINK    /workspace/kernel/build64/tools/objtool/fixdep
-  INSTALL libsubcmd_headers
-  CC      /workspace/kernel/build64/tools/objtool/libsubcmd/exec-cmd.o
-  CC      /workspace/kernel/build64/tools/objtool/libsubcmd/help.o
-  CC      /workspace/kernel/build64/tools/objtool/libsubcmd/pager.o
-  CC      /workspace/kernel/build64/tools/objtool/libsubcmd/parse-options.o
-  CC      /workspace/kernel/build64/tools/objtool/libsubcmd/run-command.o
-  CC      /workspace/kernel/build64/tools/objtool/libsubcmd/sigchain.o
-  CC      /workspace/kernel/build64/tools/objtool/libsubcmd/subcmd-config.o
-  LD      /workspace/kernel/build64/tools/objtool/libsubcmd/libsubcmd-in.o
-  AR      /workspace/kernel/build64/tools/objtool/libsubcmd/libsubcmd.a
-  CC      /workspace/kernel/build64/tools/objtool/weak.o
-  CC      /workspace/kernel/build64/tools/objtool/check.o
-  CC      /workspace/kernel/build64/tools/objtool/special.o
-  CC      /workspace/kernel/build64/tools/objtool/builtin-check.o
-  CC      /workspace/kernel/build64/tools/objtool/elf.o
-  CC      /workspace/kernel/build64/tools/objtool/objtool.o
-  CC      /workspace/kernel/build64/tools/objtool/orc_gen.o
-  CC      /workspace/kernel/build64/tools/objtool/orc_dump.o
-  CC      /workspace/kernel/build64/tools/objtool/libstring.o
-  CC      /workspace/kernel/build64/tools/objtool/libctype.o
-  CC      /workspace/kernel/build64/tools/objtool/str_error_r.o
-  CC      /workspace/kernel/build64/tools/objtool/librbtree.o
-  CC      /workspace/kernel/build64/tools/objtool/arch/x86/special.o
-  CC      /workspace/kernel/build64/tools/objtool/arch/x86/decode.o
-  LD      /workspace/kernel/build64/tools/objtool/arch/x86/objtool-in.o
-  LD      /workspace/kernel/build64/tools/objtool/objtool-in.o
-  LINK    /workspace/kernel/build64/tools/objtool/objtool
-make[1]: Leaving directory '/workspace/kernel/build64'
-++ nproc
-+ make -j48 O=/workspace/kernel/build64 M=drivers/gpu/drm/xe W=1
-make[1]: Entering directory '/workspace/kernel/build64'
-  CC [M]  drivers/gpu/drm/xe/xe_bb.o
-  CC [M]  drivers/gpu/drm/xe/xe_bo.o
-  CC [M]  drivers/gpu/drm/xe/xe_bo_evict.o
-  CC [M]  drivers/gpu/drm/xe/xe_debugfs.o
-  CC [M]  drivers/gpu/drm/xe/xe_devcoredump.o
-  CC [M]  drivers/gpu/drm/xe/xe_device.o
-  CC [M]  drivers/gpu/drm/xe/xe_dma_buf.o
-  CC [M]  drivers/gpu/drm/xe/xe_engine.o
-  CC [M]  drivers/gpu/drm/xe/xe_exec.o
-  CC [M]  drivers/gpu/drm/xe/xe_execlist.o
-  CC [M]  drivers/gpu/drm/xe/xe_force_wake.o
-  CC [M]  drivers/gpu/drm/xe/xe_ggtt.o
-  CC [M]  drivers/gpu/drm/xe/xe_gt.o
-  CC [M]  drivers/gpu/drm/xe/xe_gt_clock.o
-  CC [M]  drivers/gpu/drm/xe/xe_gt_debugfs.o
-  CC [M]  drivers/gpu/drm/xe/xe_gt_mcr.o
-  CC [M]  drivers/gpu/drm/xe/xe_gt_pagefault.o
-  CC [M]  drivers/gpu/drm/xe/xe_gt_sysfs.o
-  CC [M]  drivers/gpu/drm/xe/xe_gt_tlb_invalidation.o
-  CC [M]  drivers/gpu/drm/xe/xe_gt_topology.o
-  HOSTCC  drivers/gpu/drm/xe/xe_gen_wa_oob
-  CC [M]  drivers/gpu/drm/xe/xe_guc_ads.o
-  CC [M]  drivers/gpu/drm/xe/xe_guc_ct.o
-  CC [M]  drivers/gpu/drm/xe/xe_guc_debugfs.o
-  CC [M]  drivers/gpu/drm/xe/xe_guc_hwconfig.o
-  CC [M]  drivers/gpu/drm/xe/xe_guc_log.o
-  CC [M]  drivers/gpu/drm/xe/xe_guc_pc.o
-  CC [M]  drivers/gpu/drm/xe/xe_guc_submit.o
-  CC [M]  drivers/gpu/drm/xe/xe_hw_engine.o
-  CC [M]  drivers/gpu/drm/xe/xe_hw_fence.o
-  CC [M]  drivers/gpu/drm/xe/xe_huc.o
-  CC [M]  drivers/gpu/drm/xe/xe_huc_debugfs.o
-  CC [M]  drivers/gpu/drm/xe/xe_iaf.o
-  CC [M]  drivers/gpu/drm/xe/xe_irq.o
-  CC [M]  drivers/gpu/drm/xe/xe_lrc.o
-  CC [M]  drivers/gpu/drm/xe/xe_migrate.o
-  CC [M]  drivers/gpu/drm/xe/xe_mmio.o
-  CC [M]  drivers/gpu/drm/xe/xe_mocs.o
-  CC [M]  drivers/gpu/drm/xe/xe_module.o
-  CC [M]  drivers/gpu/drm/xe/xe_pat.o
-  CC [M]  drivers/gpu/drm/xe/xe_pci.o
-  CC [M]  drivers/gpu/drm/xe/xe_pcode.o
-  CC [M]  drivers/gpu/drm/xe/xe_pm.o
-  CC [M]  drivers/gpu/drm/xe/xe_preempt_fence.o
-  CC [M]  drivers/gpu/drm/xe/xe_pt.o
-  CC [M]  drivers/gpu/drm/xe/xe_pt_walk.o
-  CC [M]  drivers/gpu/drm/xe/xe_query.o
-  CC [M]  drivers/gpu/drm/xe/xe_reg_sr.o
-  CC [M]  drivers/gpu/drm/xe/xe_reg_whitelist.o
-  CC [M]  drivers/gpu/drm/xe/xe_rtp.o
-../drivers/gpu/drm/xe/xe_irq.c:134:6: error: no previous prototype for ‘xe_irq_enable_hwe’ [-Werror=missing-prototypes]
-  134 | void xe_irq_enable_hwe(struct xe_gt *gt)
-      |      ^~~~~~~~~~~~~~~~~
-../drivers/gpu/drm/xe/xe_irq.c:563:5: error: no previous prototype for ‘xe_irq_install’ [-Werror=missing-prototypes]
-  563 | int xe_irq_install(struct xe_device *xe)
-      |     ^~~~~~~~~~~~~~
-../drivers/gpu/drm/xe/xe_irq.c:595:6: error: no previous prototype for ‘xe_irq_shutdown’ [-Werror=missing-prototypes]
-  595 | void xe_irq_shutdown(struct xe_device *xe)
-      |      ^~~~~~~~~~~~~~~
-../drivers/gpu/drm/xe/xe_irq.c:600:6: error: no previous prototype for ‘xe_irq_suspend’ [-Werror=missing-prototypes]
-  600 | void xe_irq_suspend(struct xe_device *xe)
-      |      ^~~~~~~~~~~~~~
-../drivers/gpu/drm/xe/xe_irq.c:608:6: error: no previous prototype for ‘xe_irq_resume’ [-Werror=missing-prototypes]
-  608 | void xe_irq_resume(struct xe_device *xe)
-      |      ^~~~~~~~~~~~~
-  CC [M]  drivers/gpu/drm/xe/xe_sa.o
-  CC [M]  drivers/gpu/drm/xe/xe_sched_job.o
-  CC [M]  drivers/gpu/drm/xe/xe_step.o
-  CC [M]  drivers/gpu/drm/xe/xe_sync.o
-  CC [M]  drivers/gpu/drm/xe/xe_tile.o
-  CC [M]  drivers/gpu/drm/xe/xe_trace.o
-  CC [M]  drivers/gpu/drm/xe/xe_ttm_sys_mgr.o
-  CC [M]  drivers/gpu/drm/xe/xe_ttm_stolen_mgr.o
-  CC [M]  drivers/gpu/drm/xe/xe_ttm_vram_mgr.o
-  CC [M]  drivers/gpu/drm/xe/xe_tuning.o
-  CC [M]  drivers/gpu/drm/xe/xe_uc.o
-  CC [M]  drivers/gpu/drm/xe/xe_uc_debugfs.o
-  CC [M]  drivers/gpu/drm/xe/xe_uc_fw.o
-  CC [M]  drivers/gpu/drm/xe/xe_vm.o
-  CC [M]  drivers/gpu/drm/xe/xe_vm_madvise.o
-  CC [M]  drivers/gpu/drm/xe/xe_wait_user_fence.o
-  CC [M]  drivers/gpu/drm/xe/xe_wopcm.o
-  CC [M]  drivers/gpu/drm/xe/fabric/main.o
-  HDRTEST drivers/gpu/drm/xe/abi/guc_klvs_abi.h
-  CC [M]  drivers/gpu/drm/xe/tests/xe_bo_test.o
-  CC [M]  drivers/gpu/drm/xe/fabric/sysfs.o
-  HDRTEST drivers/gpu/drm/xe/abi/guc_actions_slpc_abi.h
-  HDRTEST drivers/gpu/drm/xe/abi/guc_errors_abi.h
-  HDRTEST drivers/gpu/drm/xe/abi/guc_communication_mmio_abi.h
-  CC [M]  drivers/gpu/drm/xe/tests/xe_dma_buf_test.o
-  CC [M]  drivers/gpu/drm/xe/tests/xe_migrate_test.o
-  HDRTEST drivers/gpu/drm/xe/abi/guc_actions_abi.h
-  HDRTEST drivers/gpu/drm/xe/abi/guc_communication_ctb_abi.h
-  HDRTEST drivers/gpu/drm/xe/abi/guc_messages_abi.h
-  HDRTEST drivers/gpu/drm/xe/fabric/sysfs.h
-  CC [M]  drivers/gpu/drm/xe/tests/xe_pci_test.o
-  HDRTEST drivers/gpu/drm/xe/fabric/iaf_drv.h
-  CC [M]  drivers/gpu/drm/xe/tests/xe_rtp_test.o
-  CC [M]  drivers/gpu/drm/xe/tests/xe_wa_test.o
-  HDRTEST drivers/gpu/drm/xe/fabric/csr.h
-  HDRTEST drivers/gpu/drm/xe/regs/xe_reg_defs.h
-  HDRTEST drivers/gpu/drm/xe/regs/xe_guc_regs.h
-  HDRTEST drivers/gpu/drm/xe/regs/xe_gt_regs.h
-cc1: all warnings being treated as errors
-  HDRTEST drivers/gpu/drm/xe/regs/xe_regs.h
-  HDRTEST drivers/gpu/drm/xe/regs/xe_gpu_commands.h
-make[2]: *** [../scripts/Makefile.build:252: drivers/gpu/drm/xe/xe_irq.o] Error 1
-make[2]: *** Waiting for unfinished jobs....
-  HDRTEST drivers/gpu/drm/xe/regs/xe_lrc_layout.h
-../drivers/gpu/drm/xe/fabric/main.c:334:6: error: no previous prototype for ‘mappings_ref_check’ [-Werror=missing-prototypes]
-  334 | bool mappings_ref_check(struct fdev *dev)
-      |      ^~~~~~~~~~~~~~~~~~
-../drivers/gpu/drm/xe/fabric/main.c:480:6: error: no previous prototype for ‘indicate_subdevice_error’ [-Werror=missing-prototypes]
-  480 | void indicate_subdevice_error(struct fsubdev *sd, enum sd_error err)
-      |      ^~~~~~~~~~~~~~~~~~~~~~~~
-cc1: all warnings being treated as errors
-make[3]: *** [../scripts/Makefile.build:252: drivers/gpu/drm/xe/fabric/main.o] Error 1
-make[2]: *** [../scripts/Makefile.build:494: drivers/gpu/drm/xe/fabric] Error 2
-make[1]: *** [/workspace/kernel/Makefile:2025: drivers/gpu/drm/xe] Error 2
-make[1]: Leaving directory '/workspace/kernel/build64'
-make: *** [Makefile:226: __sub-make] Error 2
-+ cleanup
-+ '[' 1 -eq 1 ']'
-+ ./scripts/config --file /workspace/kernel/build64/.config --enable CONFIG_DRM_XE_DISPLAY
-run-parts: /workspace/ci/hooks/10-build-W1 exited with return code 2
-
-
+> ---
+>  drivers/gpu/drm/xe/xe_bo.c | 5 +++++
+>  1 file changed, 5 insertions(+)
+> 
+> diff --git a/drivers/gpu/drm/xe/xe_bo.c b/drivers/gpu/drm/xe/xe_bo.c
+> index cfbcc071f2ef..c95fedc22fdf 100644
+> --- a/drivers/gpu/drm/xe/xe_bo.c
+> +++ b/drivers/gpu/drm/xe/xe_bo.c
+> @@ -700,6 +700,11 @@ static int xe_bo_move(struct ttm_buffer_object *ttm_bo, bool evict,
+>  		if (!move_lacks_source) {
+>  			ret = ttm_bo_move_accel_cleanup(ttm_bo, fence, evict,
+>  							true, new_mem);
+> +			if (ret) {
+> +				dma_fence_wait(fence, false);
+> +				ttm_bo_move_null(ttm_bo, new_mem);
+> +				ret = 0;
+> +			}
+>  		} else {
+>  			/*
+>  			 * ttm_bo_move_accel_cleanup() may blow up if
+> -- 
+> 2.40.1
+> 
