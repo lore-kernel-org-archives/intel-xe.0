@@ -4,51 +4,50 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4CF87EB64D8
-	for <intel-xe@archiver.kernel.org>; Wed, 21 Jun 2023 19:42:01 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 47E1AEB64D7
+	for <intel-xe@archiver.kernel.org>; Wed, 21 Jun 2023 19:42:03 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 18B4210E354;
-	Wed, 21 Jun 2023 19:41:57 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3145F10E357;
+	Wed, 21 Jun 2023 19:41:58 +0000 (UTC)
 Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 68B9310E138
- for <intel-xe@lists.freedesktop.org>; Wed, 21 Jun 2023 19:41:55 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3206C10E353
+ for <intel-xe@lists.freedesktop.org>; Wed, 21 Jun 2023 19:41:56 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1687376515; x=1718912515;
+ t=1687376516; x=1718912516;
  h=from:to:subject:date:message-id:in-reply-to:references:
  mime-version:content-transfer-encoding;
- bh=ryhZgyLZTrlfmCdh6HOd14urx5E8CuySB51shNYVhWc=;
- b=futpdr1VUlD7aCBLpN/pFmfygmCHyqg4j4XBfKcrkYdhkAKVOO/3TL70
- R3PKGwYxDWFueYN+Zpbxrf9gCtoCJt3nwiyZY0SiRksWQK/XqqS96REGT
- m7eMrezS0AyAxu0Y3AWBBUlzW6N15VhhEhKE9AFDX/fMfyOVrkTcpMbmH
- z8bXlOQy0Au3aprFy+HZYutcQjqa0awJuNK8/vqR/CdibhVnSTLOSOFiY
- 2uYOoalaj/rA6eu3FVqls/fy8TA7L2xABXaLEBycX9ApildiF1Xa/uHGx
- DWLlj2Y3beRgAMo/coaf/6Uj0QKv7gJi63owyeEmqS5v/ArqAP4c6bPP9 Q==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10748"; a="426230931"
-X-IronPort-AV: E=Sophos;i="6.00,261,1681196400"; d="scan'208";a="426230931"
+ bh=dFTLEhzkS38wITrEbF0JEXJOTrBH52lmpBu6Jf4Eq1o=;
+ b=VtByi6m9TCvrtk9T6IekX0U32Ryp1Ux0Efif8sv5/O9KjOhaTkuo2T/W
+ NWYdcMrk2XllZq/mufsE2Go9wB14cAujJ6Z0jBdw2UgxWbSmYtF68IV33
+ O6VJPvSQUPX9BkbXGrVXaa/peRsgxcnVN4lNZ7egmL7tTNpDiBykcor4A
+ YY/9CYsgQjfuvIS0ecAsinOMJTeKf4Srb/l7+50/FF2JPGx0x66L3I8x4
+ ppoCJ1hP68xjYuz5Pkht/CgVqz6/ygqcGJJX3PDk3l6XDrHXbp3s9Orii
+ QjcjbH9Bg4io45agAxRYxp8XkfCBsm548ipU2P9WlZLgR6lsOhCNebkSy g==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10748"; a="426230933"
+X-IronPort-AV: E=Sophos;i="6.00,261,1681196400"; d="scan'208";a="426230933"
 Received: from fmsmga003.fm.intel.com ([10.253.24.29])
  by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  21 Jun 2023 12:41:55 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10748"; a="804504229"
-X-IronPort-AV: E=Sophos;i="6.00,261,1681196400"; d="scan'208";a="804504229"
+X-IronPort-AV: E=McAfee;i="6600,9927,10748"; a="804504232"
+X-IronPort-AV: E=Sophos;i="6.00,261,1681196400"; d="scan'208";a="804504232"
 Received: from awvttsim-04.aw.intel.com (HELO awvttsim-04.ph.intel.com)
  ([10.228.212.165])
  by fmsmga003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 21 Jun 2023 12:41:54 -0700
+ 21 Jun 2023 12:41:55 -0700
 From: David Kershner <david.kershner@intel.com>
 To: david.kershner@intel.com, intel-xe@lists.freedesktop.org,
  michael.j.ruhl@intel.com, john.fleck@intel.com
-Date: Wed, 21 Jun 2023 15:41:24 -0400
-Message-Id: <20230621194125.2052211-3-david.kershner@intel.com>
+Date: Wed, 21 Jun 2023 15:41:25 -0400
+Message-Id: <20230621194125.2052211-4-david.kershner@intel.com>
 X-Mailer: git-send-email 2.35.1
 In-Reply-To: <20230621194125.2052211-1-david.kershner@intel.com>
 References: <20230621194125.2052211-1-david.kershner@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-xe] [PATCH 2/3] drm/xe: Introduce Intel Accelerated Fabric
- device
+Subject: [Intel-xe] [PATCH 3/3] drm/xe: Introduce Intel Accelerator fabric
+ driver
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -63,1028 +62,1716 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Add accelerator fabric driver support for PVC devices.
-
-Introduce the initial platform data structure that will be shared
-between the Xe driver and the IAF driver.
-
-If the device is PVC, and there is an accelerator fabric present,
-add and initialize an Auxbus device with the appropriate resources.
-
-Add the accelerator fabric information register.
-
-Add package address register for defining the Device Physical Address
-space (DPA).
-
-Add initial interrupt support.
-
-The package address register defines the device physical
-address (DPA) space for the given device.
-
-Using the "unique" xa_array index, generate a DPA address
-for the device and program the package register appropriately.
-
-Update the LMEM offset to use the DPA address.
+Add the Intel accelerated fabric driver infrastructure and driver
+framework.
 
 Signed-off-by: David Kershner <david.kershner@intel.com>
 ---
- drivers/gpu/drm/xe/Kconfig           |   1 +
- drivers/gpu/drm/xe/regs/xe_gt_regs.h |  20 ++
- drivers/gpu/drm/xe/xe_device.c       |  13 +-
- drivers/gpu/drm/xe/xe_device_types.h |  29 ++
- drivers/gpu/drm/xe/xe_gt_types.h     |   1 +
- drivers/gpu/drm/xe/xe_iaf.c          | 461 ++++++++++++++++++++++++++-
- drivers/gpu/drm/xe/xe_iaf.h          |  39 +++
- drivers/gpu/drm/xe/xe_irq.c          |  30 +-
- drivers/gpu/drm/xe/xe_mmio.c         |   2 +-
- drivers/gpu/drm/xe/xe_pci.c          |   2 +
- drivers/gpu/drm/xe/xe_pci_types.h    |   1 +
- include/drm/intel_iaf_platform.h     | 143 +++++++++
- 12 files changed, 736 insertions(+), 6 deletions(-)
- create mode 100644 drivers/gpu/drm/xe/xe_iaf.h
- create mode 100644 include/drm/intel_iaf_platform.h
+ drivers/gpu/drm/xe/Kconfig          |   6 +
+ drivers/gpu/drm/xe/Makefile         |   2 +
+ drivers/gpu/drm/xe/fabric/Kconfig   |  18 +
+ drivers/gpu/drm/xe/fabric/Makefile  |  12 +
+ drivers/gpu/drm/xe/fabric/csr.h     | 493 ++++++++++++++++++++
+ drivers/gpu/drm/xe/fabric/iaf_drv.h | 278 +++++++++++
+ drivers/gpu/drm/xe/fabric/main.c    | 683 ++++++++++++++++++++++++++++
+ drivers/gpu/drm/xe/fabric/sysfs.c   | 114 +++++
+ drivers/gpu/drm/xe/fabric/sysfs.h   |  16 +
+ 9 files changed, 1622 insertions(+)
+ create mode 100644 drivers/gpu/drm/xe/fabric/Kconfig
+ create mode 100644 drivers/gpu/drm/xe/fabric/Makefile
+ create mode 100644 drivers/gpu/drm/xe/fabric/csr.h
+ create mode 100644 drivers/gpu/drm/xe/fabric/iaf_drv.h
+ create mode 100644 drivers/gpu/drm/xe/fabric/main.c
+ create mode 100644 drivers/gpu/drm/xe/fabric/sysfs.c
+ create mode 100644 drivers/gpu/drm/xe/fabric/sysfs.h
 
 diff --git a/drivers/gpu/drm/xe/Kconfig b/drivers/gpu/drm/xe/Kconfig
-index d44794f99338..e4be3749778a 100644
+index e4be3749778a..617bb3574587 100644
 --- a/drivers/gpu/drm/xe/Kconfig
 +++ b/drivers/gpu/drm/xe/Kconfig
-@@ -36,6 +36,7 @@ config DRM_XE
- 	select DRM_SCHED
- 	select MMU_NOTIFIER
- 	select WANT_DEV_COREDUMP
-+	select AUXILIARY_BUS
- 	help
- 	  Experimental driver for Intel Xe series GPUs
+@@ -84,3 +84,9 @@ depends on DRM_XE
+ depends on EXPERT
+ source "drivers/gpu/drm/xe/Kconfig.debug"
+ endmenu
++
++menu "drm/xe/fabric Intel Fabric Connectivity driver support"
++       depends on DRM_XE
++       source "drivers/gpu/drm/xe/fabric/Kconfig"
++endmenu
++
+diff --git a/drivers/gpu/drm/xe/Makefile b/drivers/gpu/drm/xe/Makefile
+index b2a992884c0f..092ff42a5071 100644
+--- a/drivers/gpu/drm/xe/Makefile
++++ b/drivers/gpu/drm/xe/Makefile
+@@ -230,6 +230,7 @@ endif
  
-diff --git a/drivers/gpu/drm/xe/regs/xe_gt_regs.h b/drivers/gpu/drm/xe/regs/xe_gt_regs.h
-index 3f664011eaea..d9f68065ca70 100644
---- a/drivers/gpu/drm/xe/regs/xe_gt_regs.h
-+++ b/drivers/gpu/drm/xe/regs/xe_gt_regs.h
-@@ -76,6 +76,11 @@
- #define GLOBAL_MOCS(i)				XE_REG(0x4000 + (i) * 4) /* Global MOCS regs */
- #define GFX_CCS_AUX_NV				XE_REG(0x4208)
+ obj-$(CONFIG_DRM_XE) += xe.o
+ obj-$(CONFIG_DRM_XE_KUNIT_TEST) += tests/
++obj-$(CONFIG_DRM_XE_INTEL_FABRIC) += fabric/
  
-+#define PKG_ADDR_RANGE				XE_REG(0x41B0)
-+#define   PKG_ADDR_RANGE_RANGE_SHIFT		20
-+#define   PKG_ADDR_RANGE_BASE_SHIFT		1
-+#define   PKG_ADDR_RANGE_ENABLE			1
-+
- #define VD0_AUX_NV				XE_REG(0x4218)
- #define VE0_AUX_NV				XE_REG(0x4238)
+ # header test
+ hdrtest_find_args := -not -path xe_rtp_helpers.h
+@@ -245,3 +246,4 @@ quiet_cmd_hdrtest = HDRTEST $(patsubst %.hdrtest,%.h,$@)
  
-@@ -83,6 +88,11 @@
- #define   AUX_INV				REG_BIT(0)
- 
- #define XEHP_TILE_ADDR_RANGE(_idx)		XE_REG_MCR(0x4900 + (_idx) * 4)
-+#define   XEHP_TILE_LMEM_RANGE_SHIFT            8
-+#define   XEHP_TILE_LMEM_BASE_SHIFT             1
-+#define   XEHP_TILE_LMEM_BASE_MASK              REG_GENMASK(7, 1)
-+#define   XEHP_TILE_LMEM_RANGE_MASK             REG_GENMASK(14, 8)
+ $(obj)/%.hdrtest: $(src)/%.h FORCE
+ 	$(call if_changed_dep,hdrtest)
 +
- #define XEHP_FLAT_CCS_BASE_ADDR			XE_REG_MCR(0x4910)
- 
- #define CHICKEN_RASTER_1			XE_REG_MCR(0x6204, XE_REG_OPTION_MASKED)
-@@ -344,6 +354,11 @@
- #define RCU_MODE				XE_REG(0x14800, XE_REG_OPTION_MASKED)
- #define   RCU_MODE_CCS_ENABLE			REG_BIT(0)
- 
-+#define PKG_ADDR_BASE				XE_REG(0x108390)
-+#define   PKG_ADDR_BASE_RANGE_SHIFT		20
-+#define   PKG_ADDR_BASE_BASE_SHIFT		1
-+#define   PKG_ADDR_BASE_ENABLE			1
-+
- #define FORCEWAKE_ACK_GT			XE_REG(0x130044)
- #define   FORCEWAKE_KERNEL			BIT(0)
- #define   FORCEWAKE_USER			BIT(1)
-@@ -390,4 +405,9 @@
- #define XEHPC_BCS5_BCS6_INTR_MASK		XE_REG(0x190118)
- #define XEHPC_BCS7_BCS8_INTR_MASK		XE_REG(0x19011c)
- 
-+#define PUNIT_MMIO_CR_POC_STRAPS		XE_REG(0x281078)
-+#define NUM_TILES_MASK				REG_GENMASK(1, 0)
-+#define CD_ALIVE				REG_BIT(2)
-+#define SOCKET_ID_MASK				REG_GENMASK(7, 3)
-+
- #endif
-diff --git a/drivers/gpu/drm/xe/xe_device.c b/drivers/gpu/drm/xe/xe_device.c
-index c7985af85a53..bf2e370a12fc 100644
---- a/drivers/gpu/drm/xe/xe_device.c
-+++ b/drivers/gpu/drm/xe/xe_device.c
-@@ -1,6 +1,6 @@
- // SPDX-License-Identifier: MIT
- /*
-- * Copyright © 2021 Intel Corporation
-+ * Copyright © 2021 - 2023 Intel Corporation
-  */
- 
- #include "xe_device.h"
-@@ -22,6 +22,7 @@
- #include "xe_engine.h"
- #include "xe_exec.h"
- #include "xe_gt.h"
-+#include "xe_iaf.h"
- #include "xe_irq.h"
- #include "xe_mmio.h"
- #include "xe_module.h"
-@@ -255,6 +256,8 @@ int xe_device_probe(struct xe_device *xe)
- 	if (err)
- 		return err;
- 
-+	xe_iaf_init_early(xe);
-+
- 	for_each_tile(tile, xe, id) {
- 		err = xe_tile_alloc(tile);
- 		if (err)
-@@ -265,6 +268,8 @@ int xe_device_probe(struct xe_device *xe)
- 	if (err)
- 		return err;
- 
-+	xe_iaf_init_mmio(xe);
-+
- 	for_each_gt(gt, xe, id) {
- 		err = xe_pcode_probe(gt);
- 		if (err)
-@@ -285,6 +290,8 @@ int xe_device_probe(struct xe_device *xe)
- 			goto err_irq_shutdown;
- 	}
- 
-+	xe_iaf_init(xe);
-+
- 	err = xe_mmio_probe_vram(xe);
- 	if (err)
- 		goto err_irq_shutdown;
-@@ -326,6 +333,8 @@ int xe_device_probe(struct xe_device *xe)
- 
- 	xe_display_register(xe);
- 
-+	xe_iaf_init_aux(xe);
-+
- 	xe_debugfs_register(xe);
- 
- 	err = drmm_add_action_or_reset(&xe->drm, xe_device_sanitize, xe);
-@@ -358,6 +367,8 @@ void xe_device_remove(struct xe_device *xe)
- 
- 	xe_display_unlink(xe);
- 
-+	xe_iaf_remove(xe);
-+
- 	xe_irq_shutdown(xe);
- }
- 
-diff --git a/drivers/gpu/drm/xe/xe_device_types.h b/drivers/gpu/drm/xe/xe_device_types.h
-index 0226d44a6af2..6ca579523a00 100644
---- a/drivers/gpu/drm/xe/xe_device_types.h
-+++ b/drivers/gpu/drm/xe/xe_device_types.h
-@@ -14,6 +14,7 @@
- 
- #include "xe_devcoredump_types.h"
- #include "xe_gt_types.h"
-+#include "xe_iaf.h"
- #include "xe_platform_types.h"
- #include "xe_step_types.h"
- 
-@@ -202,6 +203,8 @@ struct xe_device {
- 		u8 supports_usm:1;
- 		/** @has_asid: Has address space ID */
- 		u8 has_asid:1;
-+		/** @has_iaf: Has Intel Accelerated Fabric */
-+		u8 has_iaf:1;
- 		/** @enable_guc: GuC submission enabled */
- 		u8 enable_guc:1;
- 		/** @has_flat_ccs: Whether flat CCS metadata is used */
-@@ -329,6 +332,32 @@ struct xe_device {
- 		bool hold_rpm;
- 	} mem_access;
- 
-+	/**
-+	 * struct intel_iaf - fabric information (if available)
-+	 * @ops: shared interface operations
-+	 * @handle: fabric device handle
-+	 * @pd: platform data needed for auxiliary bus
-+	 * @dpa: base device physical address
-+	 * @irq_base: base IRQ for multi tile devices
-+	 * @index: internal index for xe devices
-+	 * @fabric_id: fabric id generated by the fabric device
-+	 * @socket_id: socket from certain platforms
-+	 * @present: Reflect PUNIT presence information
-+	 *
-+	 * For those gpus with fabric connectivity
-+	 */
-+	struct {
-+		const struct iaf_ops *ops;
-+		void *handle;
-+		struct iaf_pdata *pd;
-+		u64 dpa;
-+		int irq_base;
-+		int index;
-+		u32 fabric_id;
-+		u8 socket_id;
-+		bool present;
-+	} intel_iaf;
-+
- 	/** @d3cold_allowed: Indicates if d3cold is a valid device state */
- 	bool d3cold_allowed;
- 
-diff --git a/drivers/gpu/drm/xe/xe_gt_types.h b/drivers/gpu/drm/xe/xe_gt_types.h
-index 99ab7ec99ccd..455d8748c71c 100644
---- a/drivers/gpu/drm/xe/xe_gt_types.h
-+++ b/drivers/gpu/drm/xe/xe_gt_types.h
-@@ -334,6 +334,7 @@ struct xe_gt {
- 		/** @oob: bitmap with active OOB workaroudns */
- 		unsigned long *oob;
- 	} wa_active;
-+	int iaf_irq;
- };
- 
- #endif
-diff --git a/drivers/gpu/drm/xe/xe_iaf.c b/drivers/gpu/drm/xe/xe_iaf.c
-index 0049e6854f80..094ff8fffa43 100644
---- a/drivers/gpu/drm/xe/xe_iaf.c
-+++ b/drivers/gpu/drm/xe/xe_iaf.c
-@@ -3,7 +3,20 @@
-  * Copyright © 2023 Intel Corporation
-  */
- 
-+#include <linux/auxiliary_bus.h>
-+#include <linux/firmware.h>
-+#include <linux/irq.h>
- #include <linux/moduleparam.h>
-+#include <linux/xarray.h>
-+
-+#include <drm/intel_iaf_platform.h>
-+
-+#include "xe_device.h"
-+#include "xe_iaf.h"
-+#include "xe_mmio.h"
-+#include "xe_gt_mcr.h"
-+#include "regs/xe_reg_defs.h"
-+#include "regs/xe_gt_regs.h"
- 
- /*
-  * This module parameter is needed because SRIOV PF and IAF are mutually
-@@ -13,6 +26,452 @@
-  * SRIOV PF path, this parameter is needed to explicitly disable IAF when
-  * SRIOV PF is required.
-  */
--static bool xe_enable_iaf;
-+static bool xe_enable_iaf = true;
- module_param_named(enable_iaf, xe_enable_iaf, bool, 0400);
- MODULE_PARM_DESC(enable_iaf, "Enable IAF feature (default: true)");
-+
-+#define HAS_IAF(xe) ((xe)->info.has_iaf)
-+/* Define the BAR and offset for the accelerator fabric CSRs */
-+#define GTTMMADR_BAR 0
-+#define CD_BASE_OFFSET 0x291000
-+#define CD_BAR_SIZE (256 * 1024)
-+
-+/* Xarray of fabric devices */
-+static DEFINE_XARRAY_ALLOC(intel_fdevs);
-+
-+static struct query_info *default_query(void *handle, u32 fabric_id)
-+{
-+	return ERR_PTR(-EOPNOTSUPP);
-+}
-+
-+static int default_handle_event(void *handle, enum iaf_parent_event event)
-+{
-+	return -EOPNOTSUPP;
-+}
-+
-+static const struct iaf_ops default_ops = {
-+	.connectivity_query = default_query,
-+	.parent_event = default_handle_event,
-+};
-+
-+static int register_dev(void *parent, void *handle, u32 fabric_id,
-+			const struct iaf_ops *ops)
-+{
-+	struct xe_device *xe = parent;
-+
-+	WARN(xe->intel_iaf.ops != &default_ops, "IAF: already registered");
-+
-+	xe->intel_iaf.handle = handle;
-+	xe->intel_iaf.fabric_id = fabric_id;
-+	xe->intel_iaf.ops = ops;
-+
-+	drm_info(&xe->drm, "IAF: registered fabric: 0x%x\n", fabric_id);
-+
-+	return 0;
-+}
-+
-+static void unregister_dev(void *parent, const void *handle)
-+{
-+	struct xe_device *xe = parent;
-+
-+	WARN(xe->intel_iaf.handle != handle, "IAF: invalid handle");
-+
-+	drm_info(&xe->drm, "IAF: unregistered fabric: 0x%x\n",
-+		 xe->intel_iaf.fabric_id);
-+	xe->intel_iaf.handle = NULL;
-+	xe->intel_iaf.ops = &default_ops;
-+}
-+
-+static int dev_event(void *parent, void *handle, enum iaf_dev_event event,
-+		     void *event_data)
-+{
-+	return 0;
-+}
-+
-+/**
-+ * init_pd - Allocate and initialize platform specific data
-+ * @xe: Valid xe instance
-+ *
-+ * Return:
-+ * * pd - initialized iaf_pdata,
-+ * * NULL - Allocation failure
-+ */
-+static struct iaf_pdata *init_pd(struct xe_device *xe)
-+{
-+	struct iaf_pdata *pd;
-+	u32 reg;
-+
-+	pd = kzalloc(sizeof(*pd), GFP_KERNEL);
-+	if (!pd)
-+		return NULL;
-+
-+	pd->version = IAF_VERSION;
-+	pd->parent = xe;
-+	pd->product = IAF_PONTEVECCHIO;
-+	pd->index = xe->intel_iaf.index & 0xFFFF;
-+	pd->sd_cnt = xe->info.tile_count;
-+	pd->socket_id = xe->intel_iaf.socket_id;
-+	pd->slot = PCI_SLOT(to_pci_dev(xe->drm.dev)->devfn);
-+
-+	pd->resources = NULL;
-+	pd->num_resources = 0;
-+	pd->register_dev = register_dev;
-+	pd->unregister_dev = unregister_dev;
-+	pd->dev_event = dev_event;
-+
-+	/*
-+	 * Calculate the actual DPA offset and size (in GB) for the device.
-+	 * Each tile will have the same amount of memory, so we only need to
-+	 * read the first one.
-+	 */
-+	reg = xe_gt_mcr_unicast_read_any(xe_device_get_root_tile(xe)->primary_gt,
-+					 XEHP_TILE_ADDR_RANGE(0)) & XEHP_TILE_LMEM_RANGE_MASK;
-+
-+	// FIXME: On some systems, TILE0 is < 8Gb, PVC needs 8GB, so fake it.
-+	if (reg >> XEHP_TILE_LMEM_RANGE_SHIFT < 8) {
-+		drm_err(&xe->drm, "XEHP_TILE0_ADDR_RANGE: %x\n", reg);
-+		reg = 8 << XEHP_TILE_LMEM_RANGE_SHIFT;
-+	}
-+	pd->dpa.pkg_offset = (u32)xe->intel_iaf.index * MAX_DPA_SIZE;
-+	pd->dpa.pkg_size = (reg >> XEHP_TILE_LMEM_RANGE_SHIFT) * pd->sd_cnt;
-+
-+	return pd;
-+}
-+
-+/**
-+ * init_resource - Create the resource array, and apply the appropriate data
-+ * @xe: valid xe instance
-+ * @res_cnt: pointer to return number of allocated resources
-+ *
-+ * First resource [0] is for the IRQ(s).  Each device gets 1 IRQ. Subsequent
-+ * resources describe the IO memory space for the device(s).
-+ *
-+ * Make sure to set the gt->iaf_irq value.
-+ *
-+ * Return:
-+ * * res - Initialized resource array
-+ * * NULL - Allocaction failure
-+ */
-+static struct resource *init_resource(struct xe_device *xe,
-+				      u32 *res_cnt)
-+{
-+	struct pci_dev *pdev = to_pci_dev(xe->drm.dev);
-+	struct xe_gt *gt;
-+	struct resource *res_base, *res;
-+	u32 cnt = xe->info.tile_count * 2;
-+	unsigned int i;
-+
-+	/* Each sd gets one resource for IRQ and one for MEM */
-+	res_base = kcalloc(cnt, sizeof(*res_base), GFP_KERNEL);
-+	if (!res_base)
-+		return NULL;
-+
-+	res = res_base;
-+	for_each_gt(gt, xe, i) {
-+		res->start = xe->intel_iaf.irq_base + i;
-+		res->end = xe->intel_iaf.irq_base + i;
-+		res->flags = IORESOURCE_IRQ;
-+		res++;
-+
-+		res->start = pci_resource_start(pdev, GTTMMADR_BAR) + CD_BASE_OFFSET +
-+			     i * gt_to_tile(gt)->mmio.size;
-+		res->end = res->start + CD_BAR_SIZE - 1;
-+		res->flags = IORESOURCE_MEM;
-+		drm_info(&xe->drm, "IAF: mem_resource = %pR\n", res);
-+		res++;
-+		gt->iaf_irq = xe->intel_iaf.irq_base + i;
-+	}
-+
-+	*res_cnt = cnt;
-+	return res_base;
-+}
-+
-+/**
-+ * iaf_irq_mask - Null callback.  Masking/unmasking happens in the parent
-+ * driver
-+ * @d: Valid irq_data information
-+ */
-+static void iaf_irq_mask(struct irq_data *d)
-+{
-+}
-+
-+static void iaf_irq_unmask(struct irq_data *d)
-+{
-+}
-+
-+static struct irq_chip iaf_irq_chip = {
-+	.name = "iaf_irq_chip",
-+	.irq_mask = iaf_irq_mask,
-+	.irq_unmask = iaf_irq_unmask,
-+};
-+
-+/**
-+ * init_irq_desc - Allocate IRQ descriptors to use for the iaf
-+ * @xe: Valid xe instance
-+ *
-+ * Allocate the required IRQ descriptor(s) and initialize the
-+ * appropriate state.
-+ *
-+ * Return:
-+ * * 0 - Success
-+ * * errno - Error that occurred
-+ */
-+static int init_irq_desc(struct xe_device *xe)
-+{
-+	unsigned int num_subdevs = xe->info.tile_count;
-+	int err;
-+	int irq;
-+	int irq_base;
-+
-+	irq_base = irq_alloc_descs(-1, 0, num_subdevs, 0);
-+	if (irq_base < 0) {
-+		err = irq_base;
-+		goto cleanup;
-+	}
-+
-+	err = 0;
-+	for (irq = irq_base; !err && irq < irq_base + num_subdevs; irq++) {
-+		irq_set_chip_and_handler_name(irq, &iaf_irq_chip,
-+					      handle_simple_irq,
-+					      "iaf_irq_handler");
-+		err = irq_set_chip_data(irq, xe);
-+	}
-+
-+	if (err) {
-+		irq_free_descs(irq_base, num_subdevs);
-+		goto cleanup;
-+	}
-+
-+	drm_info(&xe->drm, "IAF: IRQ base: %d  cnt: %d\n", irq_base,
-+		 num_subdevs);
-+
-+	xe->intel_iaf.irq_base = irq_base;
-+
-+	return 0;
-+
-+cleanup:
-+	xe->intel_iaf.index = err;
-+	drm_err(&xe->drm, "IAF: Failed to allocate IRQ data: %d\n", err);
-+	return err;
-+}
-+
-+/**
-+ * xe_iaf_init_early - Set the iaf info to the defaults
-+ * @xe: valid xe instance
-+ *
-+ * index is set to ENODEV to show that, by default, there is no device.
-+ * If any of the initialization steps fail, it will be set to the appropriate
-+ * errno value.
-+ */
-+void xe_iaf_init_early(struct xe_device *xe)
-+{
-+	xe->intel_iaf.ops = &default_ops;
-+	xe->intel_iaf.index = -ENODEV;
-+}
-+
-+/**
-+ * xe_iaf_init_mmio - check if iaf is available via MMIO
-+ * @xe: valid xe instance
-+ *
-+ * Read the relevant regs to check for IAF availability and get the socket id
-+ */
-+void xe_iaf_init_mmio(struct xe_device *xe)
-+{
-+	u32 iaf_info;
-+
-+	if (!HAS_IAF(xe) || !xe_enable_iaf)
-+		return;
-+
-+	iaf_info = xe_mmio_read32(xe_device_get_root_tile(xe)->primary_gt,
-+				  PUNIT_MMIO_CR_POC_STRAPS);
-+
-+	xe->intel_iaf.socket_id = REG_FIELD_GET(SOCKET_ID_MASK, iaf_info);
-+
-+	if (REG_FIELD_GET(CD_ALIVE, iaf_info)) {
-+		drm_info(&xe->drm, "IAF available\n");
-+		xe->intel_iaf.present = true;
-+	}
-+}
-+
-+/**
-+ * xe_iaf_init - Allocate device index and complete initial HW setup
-+ * @xe: valid device instance
-+ *
-+ * NOTE: index is zero inited.  If the IAF is not present, or an error occurs
-+ * during setup, this must be 0 for the range registers.
-+ *
-+ */
-+void xe_iaf_init(struct xe_device *xe)
-+{
-+	struct xe_gt *gt;
-+	static u32 last_id;
-+	unsigned int i;
-+	u32 index = 0;
-+	u32 range;
-+	u32 base;
-+	int err;
-+
-+	if (!HAS_IAF(xe))
-+		return;
-+
-+	if (!xe->intel_iaf.present)
-+		goto set_range;
-+
-+	err = init_irq_desc(xe);
-+	if (err) {
-+		xe->intel_iaf.index = err;
-+		goto set_range;
-+	}
-+
-+	/*
-+	 * Try the socket id first.  Systems with this feature, will
-+	 * get a deterministic value.  If not, try with the cyclic.
-+	 */
-+	err = xa_insert(&intel_fdevs, xe->intel_iaf.socket_id, xe,
-+			GFP_KERNEL);
-+	if (!err)
-+		index = xe->intel_iaf.socket_id;
-+
-+	/* socket_id is not available */
-+	if (err == -EBUSY) {
-+		/*
-+		 * NOTE: index is only updated on success i.e. >= 0
-+		 * < 0 err, 0 ok, > 0 wrapped
-+		 */
-+		err = xa_alloc_cyclic(&intel_fdevs, &index, xe,
-+				      XA_LIMIT(0, MAX_DEVICE_COUNT - 1),
-+				      &last_id, GFP_KERNEL);
-+	}
-+	if (err < 0) {
-+		index = 0;
-+		xe->intel_iaf.index = err;
-+		drm_err(&xe->drm,
-+			"IAF: Failed to allocate fabric index: %d\n",
-+			err);
-+		irq_free_descs(xe->intel_iaf.irq_base,
-+			       xe->info.tile_count);
-+		goto set_range;
-+	}
-+	xe->intel_iaf.index = index;
-+	xe->intel_iaf.dpa = (u64)index * MAX_DPA_SIZE * SZ_1G;
-+	drm_info(&xe->drm, "IAF: [dpa 0x%llx-0x%llx\n", xe->intel_iaf.dpa,
-+		 ((u64)index + 1) * MAX_DPA_SIZE * SZ_1G - 1);
-+
-+	/*
-+	 * Set range has to be done for all devices that support device
-+	 * address space, regardless of presence or error.
-+	 */
-+set_range:
-+	/* Set GAM address range registers */
-+	range = index * MAX_DPA_SIZE << PKG_ADDR_RANGE_BASE_SHIFT;
-+	range |= MAX_DPA_SIZE << PKG_ADDR_RANGE_RANGE_SHIFT;
-+	range |= PKG_ADDR_RANGE_ENABLE;
-+
-+	/* set SGunit address range register */
-+	base = index * MAX_DPA_SIZE << PKG_ADDR_BASE_BASE_SHIFT;
-+	base |= MAX_DPA_SIZE << PKG_ADDR_BASE_RANGE_SHIFT;
-+	base |= PKG_ADDR_BASE_ENABLE;
-+
-+	/* Needs to be set for each gt */
-+	for_each_gt(gt, xe, i) {
-+		xe_mmio_write32(gt, PKG_ADDR_RANGE, range);
-+		xe_mmio_write32(gt, PKG_ADDR_BASE, base);
-+	}
-+}
-+
-+static void xe_iaf_release_dev(struct device *dev)
-+{
-+	struct auxiliary_device *aux = to_auxiliary_dev(dev);
-+	struct iaf_pdata *pd = container_of(aux, struct iaf_pdata, aux_dev);
-+
-+	kfree(pd->resources);
-+	pd->resources = NULL;
-+
-+	kfree(pd);
-+}
-+
-+/**
-+ * xe_iaf_init_aux - Initialize resources and add auxiliary bus interface
-+ * @xe: valid xe instance
-+ *
-+ */
-+void xe_iaf_init_aux(struct xe_device *xe)
-+{
-+	struct device *dev = &to_pci_dev(xe->drm.dev)->dev;
-+	struct resource *res = NULL;
-+	struct iaf_pdata *pd;
-+	int err = -ENOMEM;
-+	u32 res_cnt;
-+
-+	if (!xe->intel_iaf.present)
-+		return;
-+
-+	if (xe->intel_iaf.index < 0) {
-+		err = xe->intel_iaf.index;
-+		goto fail;
-+	}
-+
-+	pd = init_pd(xe);
-+	if (!pd)
-+		goto cleanup;
-+
-+	res = init_resource(xe, &res_cnt);
-+	if (!res)
-+		goto cleanup;
-+
-+	pd->resources = res;
-+	pd->num_resources = res_cnt;
-+
-+	pd->aux_dev.name = "iaf";
-+	pd->aux_dev.id = pd->index;
-+	pd->aux_dev.dev.parent = dev;
-+	pd->aux_dev.dev.release = xe_iaf_release_dev;
-+
-+	err = auxiliary_device_init(&pd->aux_dev);
-+	if (err)
-+		goto cleanup;
-+
-+	err = auxiliary_device_add(&pd->aux_dev);
-+	if (err) {
-+		auxiliary_device_uninit(&pd->aux_dev);
-+		goto cleanup;
-+	}
-+
-+	xe->intel_iaf.pd = pd;
-+
-+	return;
-+
-+cleanup:
-+	xa_erase(&intel_fdevs, xe->intel_iaf.index);
-+	irq_free_descs(xe->intel_iaf.irq_base, xe->info.tile_count);
-+	kfree(res);
-+	kfree(pd);
-+	xe->intel_iaf.index = err;
-+fail:
-+	drm_err(&xe->drm, "IAF: Failed to initialize fabric: %d\n", err);
-+}
-+
-+void xe_iaf_remove(struct xe_device *xe)
-+{
-+	if (xe->intel_iaf.index < 0)
-+		return;
-+
-+	auxiliary_device_delete(&xe->intel_iaf.pd->aux_dev);
-+	auxiliary_device_uninit(&xe->intel_iaf.pd->aux_dev);
-+	xa_erase(&intel_fdevs, xe->intel_iaf.index);
-+	irq_free_descs(xe->intel_iaf.irq_base, xe->info.tile_count);
-+
-+	xe->intel_iaf.ops = &default_ops;
-+}
-+
-+int xe_iaf_mapping_get(struct xe_device *xe)
-+{
-+	return xe->intel_iaf.ops->parent_event(xe->intel_iaf.handle,
-+					       IAF_PARENT_MAPPING_GET);
-+}
-+
-+int xe_iaf_mapping_put(struct xe_device *xe)
-+{
-+	return xe->intel_iaf.ops->parent_event(xe->intel_iaf.handle,
-+					       IAF_PARENT_MAPPING_PUT);
-+}
-diff --git a/drivers/gpu/drm/xe/xe_iaf.h b/drivers/gpu/drm/xe/xe_iaf.h
+diff --git a/drivers/gpu/drm/xe/fabric/Kconfig b/drivers/gpu/drm/xe/fabric/Kconfig
 new file mode 100644
-index 000000000000..7a383406ec4d
+index 000000000000..082df4771545
 --- /dev/null
-+++ b/drivers/gpu/drm/xe/xe_iaf.h
-@@ -0,0 +1,39 @@
-+/* SPDX-License-Identifier: MIT */
-+/*
-+ * Copyright © 2019 - 2023 Intel Corporation
-+ */
++++ b/drivers/gpu/drm/xe/fabric/Kconfig
+@@ -0,0 +1,18 @@
++# SPDX-License-Identifier: GPL-2.0-only
++config DRM_XE_INTEL_FABRIC
++	tristate "Intel Fabric Connectivity driver support"
++	depends on 64BIT
++	depends on NET
++	select LIBCRC32C
++	default m
++	help
++	  This kernel driver provides support for the Intel glueless
++	  fabric adapter. The Intel fabric adapter allows GPUs to share
++	  device memory space in a device specific address space.
 +
-+#ifndef _XE_IAF_H_
-+#define _XE_IAF_H_
-+
-+/*
-+ * Define the maximum number of devices instances based on the amount of
-+ * FID space.
-+ *
-+ * XARRAY limits are "inclusive", but using this value as a range check
-+ * outside of xarray, makes the exclusive upper bound a little easier to
-+ * deal with.
-+ *
-+ * I.e.:
-+ * [0 - 256)
-+ *
-+ * Less than HW supports, but more than will be currently possible.
-+ *
-+ */
-+#define MAX_DEVICE_COUNT 256
-+
-+/* Fixed Device Physical Address (DPA) size for a device/package (in GB) */
-+#define MAX_DPA_SIZE 128
-+
-+struct xe_device;
-+
-+void xe_iaf_init_early(struct xe_device *xe);
-+void xe_iaf_init_mmio(struct xe_device *xe);
-+void xe_iaf_init(struct xe_device *xe);
-+void xe_iaf_init_aux(struct xe_device *xe);
-+void xe_iaf_remove(struct xe_device *xe);
-+int xe_iaf_pcie_error_notify(struct xe_device *xe);
-+int xe_iaf_mapping_get(struct xe_device *xe);
-+int xe_iaf_mapping_put(struct xe_device *xe);
-+
-+#endif
-diff --git a/drivers/gpu/drm/xe/xe_irq.c b/drivers/gpu/drm/xe/xe_irq.c
-index b4ed1e4a3388..ac7a70e0eec4 100644
---- a/drivers/gpu/drm/xe/xe_irq.c
-+++ b/drivers/gpu/drm/xe/xe_irq.c
-@@ -1,10 +1,9 @@
- // SPDX-License-Identifier: MIT
- /*
-- * Copyright © 2021 Intel Corporation
-+ * Copyright © 2021 - 2023 Intel Corporation
-  */
- 
--#include "xe_irq.h"
--
-+#include <linux/irq.h>
- #include <linux/sched/clock.h>
- 
- #include <drm/drm_managed.h>
-@@ -27,6 +26,15 @@
- #define IIR(offset)				XE_REG(offset + 0x8)
- #define IER(offset)				XE_REG(offset + 0xc)
- 
-+/* Define the BAR and offset for the accelerator fabric CSRs */
-+#define XE_IAF_IRQ BIT(8)
-+#define CD_BASE_OFFSET 0x291000
-+#define CD_BAR_SIZE (256 * 1024)
-+
-+#define CPORT_MBDB_CSRS				XE_REG(CD_BASE_OFFSET + 0x6000)
-+#define CPORT_MBDB_CSRS_END			XE_REG(CD_BASE_OFFSET + 0x1000)
-+#define CPORT_MBDB_INT_ENABLE_MASK		XE_REG(CD_BASE_OFFSET + 0x8)
-+
- static void assert_iir_is_zero(struct xe_gt *mmio, struct xe_reg reg)
- {
- 	u32 val = xe_mmio_read32(mmio, reg);
-@@ -355,6 +363,18 @@ static void dg1_intr_enable(struct xe_device *xe, bool stall)
- 		xe_mmio_read32(mmio, DG1_MSTR_TILE_INTR);
- }
- 
-+/**
-+ * iaf_irq_handler - handle accelerator fabric IRQs
-+ *
-+ * PVC can have an accelerator fabric attached.  Handle the IRQs that are
-+ * sourced by the device supporting the fabric.
-+ */
-+static void iaf_irq_handler(struct xe_gt *gt, const u32 master_ctl)
-+{
-+	if (master_ctl & XE_IAF_IRQ)
-+		generic_handle_irq(gt->iaf_irq);
-+}
-+
- /*
-  * Top-level interrupt handler for Xe_LP+ and beyond.  These platforms have
-  * a "master tile" interrupt register which must be consulted before the
-@@ -409,6 +429,7 @@ static irqreturn_t dg1_irq_handler(int irq, void *arg)
- 			xe_display_irq_handler(xe, master_ctl);
- 			gu_misc_iir = gu_misc_irq_ack(xe, master_ctl);
- 		}
-+		iaf_irq_handler(mmio, master_ctl);
- 	}
- 
- 	dg1_intr_enable(xe, false);
-@@ -455,6 +476,9 @@ static void gt_irq_reset(struct xe_tile *tile)
- 	xe_mmio_write32(mmio, GPM_WGBOXPERF_INTR_MASK,  ~0);
- 	xe_mmio_write32(mmio, GUC_SG_INTR_ENABLE,	 0);
- 	xe_mmio_write32(mmio, GUC_SG_INTR_MASK,		~0);
-+
-+	if (tile->xe->intel_iaf.present)
-+		xe_mmio_write64(mmio, CPORT_MBDB_INT_ENABLE_MASK, 0);
- }
- 
- static void xelp_irq_reset(struct xe_tile *tile)
-diff --git a/drivers/gpu/drm/xe/xe_mmio.c b/drivers/gpu/drm/xe/xe_mmio.c
-index f1336803b915..c962a697e86b 100644
---- a/drivers/gpu/drm/xe/xe_mmio.c
-+++ b/drivers/gpu/drm/xe/xe_mmio.c
-@@ -173,7 +173,7 @@ static int xe_determine_lmem_bar_size(struct xe_device *xe)
- 	if (!xe->mem.vram.io_size)
- 		return -EIO;
- 
--	xe->mem.vram.base = 0; /* DPA offset */
-+	xe->mem.vram.base = xe->intel_iaf.dpa;
- 
- 	/* set up a map to the total memory area. */
- 	xe->mem.vram.mapping = ioremap_wc(xe->mem.vram.io_start, xe->mem.vram.io_size);
-diff --git a/drivers/gpu/drm/xe/xe_pci.c b/drivers/gpu/drm/xe/xe_pci.c
-index 2991cf5365d5..e38c62ed9a6c 100644
---- a/drivers/gpu/drm/xe/xe_pci.c
-+++ b/drivers/gpu/drm/xe/xe_pci.c
-@@ -135,6 +135,7 @@ static const struct xe_graphics_desc graphics_xehpc = {
- 
- 	.has_asid = 1,
- 	.has_flat_ccs = 0,
-+	.has_iaf = 1,
- 	.has_link_copy_engine = 1,
- 	.supports_usm = 1,
- };
-@@ -529,6 +530,7 @@ static int xe_info_init(struct xe_device *xe,
- 	xe->info.vm_max_level = graphics_desc->vm_max_level;
- 	xe->info.supports_usm = graphics_desc->supports_usm;
- 	xe->info.has_asid = graphics_desc->has_asid;
-+	xe->info.has_iaf = graphics_desc->has_iaf;
- 	xe->info.has_flat_ccs = graphics_desc->has_flat_ccs;
- 	xe->info.has_range_tlb_invalidation = graphics_desc->has_range_tlb_invalidation;
- 	xe->info.has_link_copy_engine = graphics_desc->has_link_copy_engine;
-diff --git a/drivers/gpu/drm/xe/xe_pci_types.h b/drivers/gpu/drm/xe/xe_pci_types.h
-index ba31b933eb8e..54d78cbbc70e 100644
---- a/drivers/gpu/drm/xe/xe_pci_types.h
-+++ b/drivers/gpu/drm/xe/xe_pci_types.h
-@@ -22,6 +22,7 @@ struct xe_graphics_desc {
- 	u8 max_remote_tiles:2;
- 
- 	u8 has_asid:1;
-+	u8 has_iaf:1;
- 	u8 has_flat_ccs:1;
- 	u8 has_link_copy_engine:1;
- 	u8 has_range_tlb_invalidation:1;
-diff --git a/include/drm/intel_iaf_platform.h b/include/drm/intel_iaf_platform.h
++config IAF_DEBUG_ENABLE
++	bool "Enable Intel Accelerator Fabric debug configurations"
++	depends on DRM_XE_INTEL_FABRIC
++	default n
++	help
++	  Support Intel Accelerator Fabric debug Kconfig options
+diff --git a/drivers/gpu/drm/xe/fabric/Makefile b/drivers/gpu/drm/xe/fabric/Makefile
 new file mode 100644
-index 000000000000..b2a1e75b1f75
+index 000000000000..2f753efffc5d
 --- /dev/null
-+++ b/include/drm/intel_iaf_platform.h
-@@ -0,0 +1,143 @@
++++ b/drivers/gpu/drm/xe/fabric/Makefile
+@@ -0,0 +1,12 @@
++# SPDX-License-Identifier: MIT
++#
++# Copyright(c) 2020 - 2023 Intel Corporation.
++#
++# Intel Connectivity fabric driver
++#
++#
++
++obj-$(CONFIG_DRM_XE_INTEL_FABRIC) += iaf.o
++
++iaf-y := main.o \
++	 sysfs.o \
+diff --git a/drivers/gpu/drm/xe/fabric/csr.h b/drivers/gpu/drm/xe/fabric/csr.h
+new file mode 100644
+index 000000000000..6c5a831a92bd
+--- /dev/null
++++ b/drivers/gpu/drm/xe/fabric/csr.h
+@@ -0,0 +1,493 @@
 +/* SPDX-License-Identifier: MIT */
 +/*
 + * Copyright(c) 2019 - 2023 Intel Corporation.
++ *
 + */
 +
-+#ifndef __INTEL_IAF_PLATFORM_H
-+#define __INTEL_IAF_PLATFORM_H
++#ifndef IAF_CSR_H_INCLUDED
++#define IAF_CSR_H_INCLUDED
 +
-+#define IAF_VERSION 1
-+
-+#include <linux/auxiliary_bus.h>
 +#include <linux/types.h>
 +
-+/**
-+ * enum product_type - Product type identifying the parent
-+ * @IAF_UNDEFINED: no product type hints
-+ * @IAF_PONTEVECCHIO: parent is a PVC
-+ * @IAF_PRODUCTS: end of the list
-+ *
-+ * i.e. Pontevecchio is the first product.  Other products would
-+ * be next generation GPU, NIC, etc.
-+ */
-+enum product_type {
-+	IAF_UNDEFINED,
-+	IAF_PONTEVECCHIO,
-+	IAF_PRODUCTS
-+};
++#define CSR_SIZE sizeof(u64)
 +
-+/**
-+ * enum iaf_dev_event - events generated to the parent device
-+ * @IAF_DEV_CONNECTIVITY: Connectivity event occurred
-+ * @IAF_DEV_ERROR: An error occurred
-+ * @IAF_DEV_EVENTS: end of list
-+ *
-+ * Connectivity events, possible errors, etc.
++/*
++ * TOP CSRs
 + */
-+enum iaf_dev_event {
-+	IAF_DEV_CONNECTIVITY,
-+	IAF_DEV_ERROR,
-+	IAF_DEV_EVENTS
-+};
 +
-+/**
-+ * enum iaf_parent_event - Events generated by the parent device
-+ * @IAF_PARENT_PCIE_ERR: Parent had a PCI error
-+ * @IAF_PARENT_MAPPING_GET: Notify IAF of buffer mapping
-+ * @IAF_PARENT_MAPPING_PUT: Notify IAF of buffer unmapping
-+ *
-+ * These are examples.
++#define CP_ADDR_TOP_BASE		(0)
++#define CPORT_INIT_CTRL_ADDR		(CP_ADDR_TOP_BASE + 0)
++#define RISC_RESET_BIT			BIT_ULL(0)
++#define RISC_NMI_BIT			BIT_ULL(2)
++#define RISC_PAUSED_BIT			BIT_ULL(3)
++#define BOOTROM_PARITY_ERROR_BIT	BIT_ULL(4)
++#define WATCHDOG_STATUS_BIT		BIT_ULL(5)
++#define RISC_RESET_CAUSE_BIT		BIT_ULL(7)
++#define DINIT_FSM_STATE_MASK		GENMASK_ULL(31, 8)
++#define CSR_GPIO_CTRL			(CP_ADDR_TOP_BASE + 0x18)
++#define GPIO_CTRL_PIN_LINK_CONFIG	GENMASK_ULL(7, 3)
++#define GPIO_CTRL_OE_LINK_CONFIG	GENMASK_ULL(15, 11)
++#define CSR_ASIC_REV_INFO		(CP_ADDR_TOP_BASE + 0x40)
++#define MASK_ARI_PLATFORM		GENMASK_ULL(55, 40)
++#define MASK_ARI_STEP			GENMASK_ULL(39, 32)
++#define ARB_REG_BASE			(CP_ADDR_TOP_BASE + 0x100)
++#define FW_MIN_SVN_ADDR			(ARB_REG_BASE + 0x0)
++#define FW_UPDATED_SVN_ADDR		(ARB_REG_BASE + 0x8)
++#define FW_SVN_MASK			GENMASK_ULL(15, 0)
++
++#define CSR_ROPTION				0x80000008
++#define ROPTION_FORCE_FEC_HEAVY_ON		BIT(0)
++#define ROPTION_CBUF_MGR_TRACE_XBAR		BIT(1)
++#define ROPTION_CBUF_MGR_TRACE_PCI		BIT(2)
++#define ROPTION_CBUF_MGR_TRACE_ATTRIBUTES	BIT(3)
++#define ROPTION_PD_PHASE			GENMASK(5, 4)
++#define ROPTION_STOP_IN_CONFIGLT_WITH_BCC	BIT(6)
++#define ROPTION_TRACE_ERROR_RECOVERY		BIT(7)
++#define ROPTION_EV_MODE				BIT(8)
++#define ROPTION_TRACE_LNI_DEBUG			BIT(9)
++#define ROPTION_TRACE_SBUS_OPS			BIT(10)
++#define ROPTION_TRACE_STOP_ON_FULL		BIT(11)
++#define ROPTION_12G_ALLOWED			BIT(12)
++#define ROPTION_NO_DLA				BIT(13)
++#define ROPTION_DYNAMIC_SCREEN			BIT(14)
++#define ROPTION_UNUSED15			BIT(15)
++#define ROPTION_LOOP_BANDWIDTH			GENMASK(20, 16)
++#define ROPTION_1D_CODING			BIT(21)
++#define ROPTION_LCB_LOOPBACK			GENMASK(23, 22)
++#define ROPTION_TX_PRBS_GEN			BIT(24)
++#define ROPTION_STOP_IN_DEBOUNCE		BIT(25)
++#define ROPTION_NO_TUNING_IN_DEBOUNCE		BIT(26)
++#define ROPTION_CONFIGLT_NO_HAMMERS		BIT(27)
++#define ROPTION_FORCE_LNI			BIT(28)
++#define ROPTION_ALLOW_MARGINAL_LINKS		BIT(29)
++#define ROPTION_FORCE_FEC_LIGHT_ON		BIT(30)
++#define ROPTION_SERDES_ILB			BIT(31)
++
++/*
++ * PORT CSRs
 + */
-+enum iaf_parent_event {
-+	IAF_PARENT_PCIE_ERR,
-+	IAF_PARENT_MAPPING_GET,
-+	IAF_PARENT_MAPPING_PUT,
-+};
 +
-+/**
-+ * struct sd2sd_info - Subdevice to subdevice connectivity info
-+ * @bandwidth: in Gbps units not factoring in width or quality degredation
-+ * @latency: in 1/10 hops units
++#define CSR_PORTS_BASE 0x10000000
++
++/*
++ * Each port is at a 4MB offset from CSR_PORTS_BASE, index by physical port
++ * number.
 + */
-+struct sd2sd_info {
-+	u16 bandwidth;
-+	u16 latency;
-+};
++#define CSR_PORT_OFFSET 0x400000
 +
-+/**
-+ * struct query_info - connectivity query response information
-+ * @src_cnt: Requester subdevice count
-+ * @dst_cnt: Destination path count
-+ * @sd2sd: array of src/dst bandwidth/latency information
++/*
++ * Fabric ports are in memory region 0, while bridge ports are in region 1.
 + *
-+ * Query info will be a variably sized data structure allocated by the
-+ * IAF driver.  The access will be indexed by
-+ *    (src_index * dst_cnt) + dst_index
-+ *
-+ * The caller will need to free the buffer when done.
++ * When referencing bridge port addresses, both when using the raw CSR ops
++ * as well as the LINK_MGR_PORT_CSR ops, you must add this offset to
++ * addresses.
 + */
-+struct query_info {
-+	u8 src_cnt;
-+	u8 dst_cnt;
-+	struct sd2sd_info sd2sd[];
-+};
-+
-+/**
-+ * struct iaf_ops - Communication path from parent to IAF instance
-+ * @connectivity_query: Query a device for fabric_id connectivity
-+ * @parent_event: Any events needed by the IAF device
-+ *
-+ * connectivity_query() returns:
-+ *   a populated query_info on success,
-+ *   an ERR_PTR() on failure
-+ *
-+ */
-+struct iaf_ops {
-+	struct query_info *(*connectivity_query)(void *handle, u32 fabric_id);
-+	int (*parent_event)(void *handle, enum iaf_parent_event event);
-+};
-+
-+struct dpa_space {
-+	u32 pkg_offset;
-+	u16 pkg_size;
-+};
++#define CSR_REGION1_OFFSET 0x20000000
 +
 +/**
-+ * struct iaf_pdata - Platform specific data that needs to be shared
-+ * @version: PSD version information
-+ * @parent: Handle to use when calling the parent device
-+ * @product: a product hint for any necessary special case requirements
-+ * @index: unique device index. This will be part of the device name
-+ * @dpa: Device physical address offset and size
-+ * @sd_cnt: parent subdevice count
-+ * @socket_id: device socket information
-+ * @slot: PCI/CXL slot number
-+ * @aux_dev: Auxiliary bus device
-+ * @resources: Array of resources (Assigned by Xe, the IRQ/MEM for the device)
-+ * @num_resources: number of resources in resources array
-+ * @register_dev: Register an IAF instance and ops with the parent device
-+ * @unregister_dev: Unregister an IAF instance from the parent device
-+ * @dev_event: Notify parent that an event has occurred
++ * get_raw_port_base - Calculates the base address of the given port for
++ * use with the CSR_RAW ops.
++ * @ppn: physical port number
++ *
++ * Return: The base address required for the CSR_RAW ops.
 + */
-+struct iaf_pdata {
-+	u16 version;
-+	void *parent;
-+	enum product_type product;
-+	u16 index;
-+	struct dpa_space dpa;
-+	u8 sd_cnt;
-+	u8 socket_id;
-+	u8 slot;
++static inline u32 get_raw_port_base(u8 ppn)
++{
++	return CSR_PORTS_BASE + ((ppn) - 1) * CSR_PORT_OFFSET;
++}
 +
-+	struct auxiliary_device aux_dev;
-+	struct resource *resources;
-+	u32 num_resources;
++#define CSR_FIDGEN_BASE 0
 +
-+	int (*register_dev)(void *parent, void *handle, u32 fabric_id,
-+			    const struct iaf_ops *ops);
-+	void (*unregister_dev)(void *parent, const void *handle);
-+	int (*dev_event)(void *parent, void *handle,
-+			 enum iaf_dev_event event, void *event_data);
++#define CSR_FIDGEN_MASK_A     (CSR_FIDGEN_BASE + 0x00)
++#define CSR_FIDGEN_SHIFT_A    (CSR_FIDGEN_BASE + 0x08)
++#define CSR_FIDGEN_MASK_B     (CSR_FIDGEN_BASE + 0x10)
++#define CSR_FIDGEN_SHIFT_B    (CSR_FIDGEN_BASE + 0x18)
++#define CSR_FIDGEN_RSVD0      (CSR_FIDGEN_BASE + 0x20)
++#define CSR_FIDGEN_RSVD1      (CSR_FIDGEN_BASE + 0x28)
++#define CSR_FIDGEN_MASK_H     (CSR_FIDGEN_BASE + 0x30)
++#define CSR_FIDGEN_SHIFT_H    (CSR_FIDGEN_BASE + 0x38)
++#define CSR_FIDGEN_MODULO     (CSR_FIDGEN_BASE + 0x40)
++#define CSR_FIDGEN_WHOAMI     (CSR_FIDGEN_BASE + 0x48)
++#define CSR_FIDGEN_MASK_D     (CSR_FIDGEN_BASE + 0x50)
++#define CSR_FIDGEN_STATIC_RND (CSR_FIDGEN_BASE + 0x58)
++
++/*
++ * These apply to all of the shift registers.  Bit 6 is the direction of
++ * shift, while bits 5 through 0 are the amount to shift by.
++ */
++#define MASK_FIDGEN_SHIFT_BY    GENMASK(5, 0)
++#define MASK_FIDGEN_SHIFT_RIGHT GENMASK(6, 6)
++
++/*
++ * The LUT contains 8192 64-bit registers, each mapping a lookup index
++ * to a 20-bit DFID.
++ */
++#define CSR_FIDGEN_LUT_BASE (CSR_FIDGEN_BASE + 0x10000)
++
++#define CSR_FIDGEN_LUT_INDEX_WIDTH 13
++
++#define CSR_BRIDGE_TOP_BASE 0x30000
++
++#define CSR_BT_CTX_TRACKER_CFG CSR_BRIDGE_TOP_BASE
++#define MASK_BT_CTC_ENABLE_SRC          GENMASK(0, 0)
++#define MASK_BT_CTC_ENABLE_DST          GENMASK(1, 1)
++#define MASK_BT_CTC_DISABLE_TIMEOUT_SRC GENMASK(2, 2)
++#define MASK_BT_CTC_DISABLE_TIMEOUT_DST GENMASK(3, 3)
++
++#define CSR_BT_PORT_CTRL (CSR_BRIDGE_TOP_BASE + 0x08)
++#define MASK_BT_POC_DROP_FBRC_REQ     GENMASK(0, 0)
++#define MASK_BT_POC_DROP_FBRC_REQ_ERR GENMASK(1, 1)
++#define MASK_BT_POC_DROP_MDFI_REQ     GENMASK(2, 2)
++#define MASK_BT_POC_DROP_MDFI_REQ_ERR GENMASK(3, 3)
++#define MASK_BT_POC_DROP_FBRC_RSP     GENMASK(4, 4)
++#define MASK_BT_POC_DROP_MDFI_RSP     GENMASK(5, 5)
++
++#define CSR_BT_OUTSTANDING_TX (CSR_BRIDGE_TOP_BASE + 0x10)
++#define MASK_BT_OT_FBRC GENMASK(15,  0)
++#define MASK_BT_OT_MDFI GENMASK(31, 16)
++
++#define CSR_BT_FLUSH_CONTEXT (CSR_BRIDGE_TOP_BASE + 0x18)
++#define MASK_BT_FC_INITIATE    GENMASK(0, 0)
++#define MASK_BT_FC_IN_PROGRESS GENMASK(1, 1)
++
++#define CSR_BT_PAUSE_CTRL (CSR_BRIDGE_TOP_BASE + 0x20)
++#define MASK_BT_PAC_FBRC_REQ GENMASK(0, 0)
++#define MASK_BT_PAC_MDFI_REQ GENMASK(1, 1)
++#define MASK_BT_PAC_FBRC_RSP GENMASK(2, 2)
++#define MASK_BT_PAC_MDFI_RSP GENMASK(3, 3)
++
++#define CSR_BT_PKG_ADDR_RANGE (CSR_BRIDGE_TOP_BASE + 0x28)
++#define MASK_BT_PAR_BASE  GENMASK(18, 1)
++#define MASK_BT_PAR_RANGE GENMASK(29, 20)
++
++/* csr encodes address bits [45:32] in register bits [13:0] */
++#define BT_ADDR_RANGE_SHIFT 32
++
++#define CSR_BT_VC2SC_MAP (CSR_BRIDGE_TOP_BASE + 0x50)
++
++#define CSR_BT_TILE0_RANGE (CSR_BRIDGE_TOP_BASE + 0x58)
++#define MASK_BT_T0_VALID GENMASK(0, 0)
++#define MASK_BT_T0_BASE  GENMASK(7, 1)
++#define MASK_BT_T0_RANGE GENMASK(14, 8)
++
++#define CSR_BT_TILE1_RANGE (CSR_BRIDGE_TOP_BASE + 0x60)
++#define MASK_BT_T1_VALID GENMASK(0, 0)
++#define MASK_BT_T1_BASE  GENMASK(7, 1)
++#define MASK_BT_T1_RANGE GENMASK(14, 8)
++
++/* xmit/recv flit/packet counter register offsets */
++#define O_FPC_PORTRCV_DATA_CNT 0x100490
++#define O_FPC_PORTRCV_PKT_CNT 0x100438
++#define TP_PRF_XMIT_DATA_OFFSET 0x200458
++#define TP_PRF_XMIT_PKTS_OFFSET 0x200400
++
++/* LCB counter offsets */
++#define O_LCB_ERR_INFO_OFFSET 0x308500
++#define O_LCB_STS_RX_CRC_FEC_MODE 0x3087A8
++#define O_LCB_STS_RX_LOGICAL_ID 0x3087B0
++#define O_LCB_PRF_OFFSET 0x308700
++
++#define BRG_PERF_OFFSET 0x34000
++#define BRG_PERF_END (BRG_PERF_OFFSET + 0xB8)
++#define BRG_ERR_OFFSET 0x36000
++#define BRG_ERR_END (BRG_ERR_OFFSET + 0x198)
++#define BRG_1_ERR_OFFSET (BRG_ERR_OFFSET + 0x200)
++#define BRG_1_ERR_END (BRG_ERR_OFFSET + 0x228)
++#define BRG_2_ERR_OFFSET (BRG_ERR_OFFSET + 0x300)
++#define BRG_2_ERR_END (BRG_ERR_OFFSET + 0x328)
++#define BRG_3_ERR_OFFSET (BRG_ERR_OFFSET + 0x400)
++#define BRG_3_ERR_END (BRG_ERR_OFFSET + 0x428)
++#define BRG_RTP_ERR_OFFSET (0x200000 + 0x1000)
++#define BRG_RTP_ERR_END (BRG_RTP_ERR_OFFSET + 0x28)
++#define BRG_RTP_STS_OFFSET (0x200000 + 0x2000)
++#define BRG_RTP_STS_START_1 (BRG_RTP_STS_OFFSET + 0x10)
++#define BRG_RTP_STS_END_1 (BRG_RTP_STS_OFFSET + 0x40)
++#define BRG_RTP_STS_START_2 (BRG_RTP_STS_OFFSET + 0x80)
++#define BRG_RTP_STS_END_2 (BRG_RTP_STS_OFFSET + 0xA0)
++#define TPM_ERR_START (0x100000 + 0x300)
++#define TPM_ERR_END (TPM_ERR_START + 0x108)
++#define TPM_ERR_MBE_START (0x100000 + 0x4A0)
++#define TPM_ERR_MBE_END (TPM_ERR_MBE_START + 0x88)
++#define TPM_PRF_START (0x100000 + 0x840)
++#define TPM_PRF_END (TPM_PRF_START + 0x108)
++
++#define RPM_OFFSET 0x180000
++#define RPM_INQ_ERR_OFFSET (RPM_OFFSET + 0x2000)
++#define RPM_INQ_STS_OFFSET (RPM_OFFSET + 0x2900)
++#define RPM_INQ_PRF_OFFSET (RPM_OFFSET + 0x2D00)
++
++#define RPM_PORT_ERR_COUNTERS_START (RPM_INQ_PRF_OFFSET + 0x100)
++#define RPM_PORT_ERR_COUNTERS_END (RPM_INQ_PRF_OFFSET + 0x7F8)
++
++#define RPM_INQ_PORT0_ERR_START (RPM_INQ_ERR_OFFSET)
++#define RPM_INQ_PORT0_ERR_END (RPM_INQ_ERR_OFFSET + 0x20)
++
++#define RPM_INQ_PORT1_ERR_START (RPM_INQ_ERR_OFFSET + 0x80)
++#define RPM_INQ_PORT1_ERR_END (RPM_INQ_ERR_OFFSET + 0xA0)
++
++#define RPM_INQ_PORT2_ERR_START (RPM_INQ_ERR_OFFSET + 0x100)
++#define RPM_INQ_PORT2_ERR_END (RPM_INQ_ERR_OFFSET + 0x120)
++
++#define RPM_INQ_PORT3_ERR_START (RPM_INQ_ERR_OFFSET + 0x180)
++#define RPM_INQ_PORT3_ERR_END (RPM_INQ_ERR_OFFSET + 0x1A0)
++
++#define RPM_INQ_PORT4_ERR_START (RPM_INQ_ERR_OFFSET + 0x200)
++#define RPM_INQ_PORT4_ERR_END (RPM_INQ_ERR_OFFSET + 0x220)
++
++#define RPM_INQ_PORT5_ERR_START (RPM_INQ_ERR_OFFSET + 0x280)
++#define RPM_INQ_PORT5_ERR_END (RPM_INQ_ERR_OFFSET + 0x2A0)
++
++#define RPM_INQ_PORT6_ERR_START (RPM_INQ_ERR_OFFSET + 0x300)
++#define RPM_INQ_PORT6_ERR_END (RPM_INQ_ERR_OFFSET + 0x320)
++
++#define RPM_INQ_PORT7_ERR_START (RPM_INQ_ERR_OFFSET + 0x380)
++#define RPM_INQ_PORT7_ERR_END (RPM_INQ_ERR_OFFSET + 0x3A0)
++
++#define RPM_INQ_FLSTOR_ERR_START (RPM_INQ_ERR_OFFSET + 0x400)
++#define RPM_INQ_FLSTOR_ERR_END (RPM_INQ_ERR_OFFSET + 0x420)
++
++#define RPM_PORT_STS_START (RPM_INQ_STS_OFFSET + 0x200)
++#define RPM_PORT_STS_END (RPM_INQ_STS_OFFSET + 0x2F8)
++
++#define RPM_SBE_ERR_COUNTERS_START (RPM_INQ_PRF_OFFSET)
++#define RPM_SBE_ERR_COUNTERS_END (RPM_INQ_PRF_OFFSET + 0x78)
++
++#define RPM_MBE_ERR_COUNTERS_START (RPM_INQ_PRF_OFFSET + 0x80)
++#define RPM_MBE_ERR_COUNTERS_END (RPM_INQ_PRF_OFFSET + 0xF8)
++
++#define RPM_ARB_PERF_COUNTERS_START (RPM_INQ_PRF_OFFSET + 0x8C0)
++#define RPM_ARB_PERF_COUNTERS_END (RPM_INQ_PRF_OFFSET + 0x938)
++
++#define RPM_PERF_COUNTERS_START (RPM_INQ_PRF_OFFSET + 0x800)
++#define RPM_PERF_COUNTERS_END (RPM_INQ_PRF_OFFSET + 0x8B8)
++
++#define CRC_MODE GENMASK(1, 0)
++#define FEC_MODE GENMASK(5, 4)
++
++#define PEER_TX_ID_LN0 GENMASK(2, 0)
++#define PEER_TX_ID_LN1 GENMASK(6, 4)
++#define PEER_TX_ID_LN2 GENMASK(10, 8)
++#define PEER_TX_ID_LN3 GENMASK(14, 12)
++
++/* error csrs for sticky error reporting */
++#define O_FPC_ERR_STS                         0x100000
++#define O_FPC_ERR_CLR                         0x100008
++#define O_FPC_ERR_FIRST_HOST                  0x100020
++#define O_FPC_ERR_INFO_PORTRCV                0x100028
++#define O_FPC_ERR_INFO_PORTRCV_HDR0_A         0x100030
++#define O_FPC_ERR_INFO_PORTRCV_HDR0_B         0x100038
++#define O_FPC_ERR_INFO_PORTRCV_HDR1_A         0x100040
++#define O_FPC_ERR_INFO_PORTRCV_HDR1_B         0x100048
++#define O_FPC_ERR_INFO_FMCONFIG               0x100050
++#define O_FPC_ERR_INFO_FLOW_CTRL              0x100058
++#define O_FPC_ERR_INFO_UNCORRECTABLE          0x100060
++#define O_FPC_ERR_INFO_PORTRCVCONSTRAINT      0x100068
++#define O_RTP_ERR_STS                         0x141000
++#define O_RTP_ERR_CLR                         0x141008
++#define O_RTP_ERR_FIRST_HOST                  0x141020
++#define O_RTP_ERR_FIRST_INFO                  0x141028
++#define O_INQ_ERR_STS                         0x182000
++#define O_INQ_ERR_CLR                         0x182008
++#define O_INQ_ERR_EN_HOST                     0x182018
++#define O_INQ_ERR_FIRST_HOST                  0x182020
++#define O_TP_ERR_STS_0                        0x200180
++#define O_TP_ERR_CLR_0                        0x200188
++#define O_TP_ERR_EN_HOST_0                    0x200198
++#define O_TP_ERR_FIRST_HOST_0                 0x2001a0
++#define O_TP_ERR_STS_1                        0x200200
++#define O_TP_ERR_CLR_1                        0x200208
++#define O_TP_ERR_EN_HOST_1                    0x200218
++#define O_TP_ERR_FIRST_HOST_1                 0x200220
++#define O_TP_ERR_ERROR_INFO                   0x200230
++#define O_TP_ERR_PKEY_ERROR_INFO              0x200248
++#define O_TP_ERR_SBE_ERROR_CNT                0x200250
++#define O_TP_ERR_MBE_ERROR_CNT                0x200258
++#define O_TP_PE_ERROR_CNT                     0x200260
++#define O_8051_ERR_STS                        0x300100
++#define O_8051_ERR_CLR                        0x300108
++#define O_8051_FIRST_HOST                     0x300120
++#define O_LCB_ERR_STS                         0x308480
++#define O_LCB_ERR_CLR                         0x308488
++#define O_LCB_ERR_FIRST_HOST                  0x3084a0
++#define O_LCB_ERR_INFO_TOTAL_CRC_ERR          0x308500
++#define O_LCB_ERR_INFO_CRC_ERR_LN0            0x308508
++#define O_LCB_ERR_INFO_CRC_ERR_LN1            0x308510
++#define O_LCB_ERR_INFO_CRC_ERR_LN2            0x308518
++#define O_LCB_ERR_INFO_CRC_ERR_LN3            0x308520
++#define O_LCB_ERR_INFO_CRC_ERR_MULTI_LN       0x308528
++#define O_LCB_ERR_INFO_TX_REPLAY_CNT          0x308530
++#define O_LCB_ERR_INFO_RX_REPLAY_CNT          0x308538
++#define O_LCB_ERR_INFO_SEQ_CRC_CNT            0x308540
++#define O_LCB_ERR_INFO_ESCAPE_0_ONLY_CNT      0x308548
++#define O_LCB_ERR_INFO_ESCAPE_0_PLUS1_CNT     0x308550
++#define O_LCB_ERR_INFO_ESCAPE_0_PLUS2_CNT     0x308558
++#define O_LCB_ERR_INFO_REINIT_FROM_PEER_CNT   0x308560
++#define O_LCB_ERR_INFO_SBE_CNT                0x308568
++#define O_LCB_ERR_INFO_MISC_FLG_CNT           0x308570
++#define O_LCB_ERR_INFO_ECC_INPUT_BUF          0x308578
++#define O_LCB_ERR_INFO_ECC_INPUT_BUF_HGH      0x308580
++#define O_LCB_ERR_INFO_ECC_INPUT_BUF_LOW      0x308588
++#define O_LCB_ERR_INFO_ECC_REPLAY_BUF         0x308590
++#define O_LCB_ERR_INFO_ECC_REPLAY_BUF_HGH     0x308598
++#define O_LCB_ERR_INFO_ECC_REPLAY_BUF_LOW     0x3085A0
++#define O_LCB_ERR_INFO_ECC_PM_TIME            0x3085A8
++#define O_LCB_ERR_INFO_ECC_PM_TIME_HGH        0x3085B0
++#define O_LCB_ERR_INFO_ECC_PM_TIME_LOW        0x3085B8
++#define O_LCB_ERR_INFO_FEC_CERR_CNT_1         0x3085C0
++#define O_LCB_ERR_INFO_FEC_CERR_CNT_2         0x3085C8
++#define O_LCB_ERR_INFO_FEC_CERR_CNT_3         0x3085D0
++#define O_LCB_ERR_INFO_FEC_CERR_CNT_4         0x3085D8
++#define O_LCB_ERR_INFO_FEC_CERR_CNT_5         0x3085E0
++#define O_LCB_ERR_INFO_FEC_CERR_CNT_6         0x3085E8
++#define O_LCB_ERR_INFO_FEC_CERR_CNT_7         0x3085F0
++#define O_LCB_ERR_INFO_FEC_CERR_CNT_8         0x3085F8
++#define O_LCB_ERR_INFO_FEC_UERR_CNT           0x308600
++#define O_LCB_ERR_INFO_FEC_CERR_MASK_0        0x308608
++#define O_LCB_ERR_INFO_FEC_CERR_MASK_1        0x308610
++#define O_LCB_ERR_INFO_FEC_CERR_MASK_2        0x308618
++#define O_LCB_ERR_INFO_FEC_CERR_MASK_3        0x308620
++#define O_LCB_ERR_INFO_FEC_CERR_MASK_4        0x308628
++#define O_LCB_ERR_INFO_FEC_CERR_MASK_VLD      0x308630
++#define O_LCB_ERR_INFO_FEC_CERR_MASK_MISS_CNT 0x308638
++#define O_LCB_ERR_INFO_FEC_ERR_LN0            0x308640
++#define O_LCB_ERR_INFO_FEC_ERR_LN1            0x308648
++#define O_LCB_ERR_INFO_FEC_ERR_LN2            0x308650
++#define O_LCB_ERR_INFO_FEC_ERR_LN3            0x308658
++#define O_LCB_ERR_INFO_FX_RESYNC_CNT          0x308660
++#define O_BRG_CTX_ERR_STS                     0x036000
++#define O_BRG_CTX_ERR_CLR                     0x036008
++#define O_BRG_CTX_ERR_FIRST_HOST              0x036020
++#define O_BRG_CTX_ERR_FIRST_INFO              0x036028
++#define O_SRC_CTXT_SBE_CNT                    0x036040
++#define O_DST_CTXT_SBE_CNT                    0x036048
++#define O_SRC_CTXT_MBE_CNT                    0x036050
++#define O_DST_CTXT_MBE_CNT                    0x036058
++#define O_BRG_INCMD_PKTPAR_ERR                0x036060
++#define O_BRG_INPKT_POISON_SET                0x036068
++#define O_BRG_INRSP_PKTPAR_ERR                0x036070
++#define O_BRG_INDATA_PKTPAR_ERR               0x036078
++#define O_BRG_OUTPKT_POISON_SET               0x036080
++#define O_BRG_RPM_POISON_SET                  0x036088
++#define O_TPM_BRG_POISON_SET                  0x036090
++#define O_BRG_DROP_FABRIC_REQ                 0x036098
++#define O_BRG_DROP_MDFI_REQ                   0x0360a0
++#define O_BRG_DROP_FABRIC_RSP                 0x0360a8
++#define O_BRG_DROP_MDFI_RSP                   0x0360b0
++#define O_BRG_SRCCTXT_TO                      0x0360b8
++#define O_BRG_DSTCTXT_TO                      0x0360c0
++#define O_BRG_FIDMISS                         0x0360c8
++#define O_BRG_FIDMISS_INFO                    0x0360d0
++#define O_BRG_SRCCTXT_DUP_RSP                 0x0360d8
++#define O_BRG_SRCCTXT_DUP_RSPINFO             0x0360e0
++#define O_BRG_DSTCTXT_DUP_RSP                 0x0360e8
++#define O_BRG_DSTCTXT_DUP_RSPINFO             0x0360f0
++#define O_BRG_SFID_FILTER_DROP                0x0360f8
++#define O_BRG_0_ERR_STS                       0x036100
++#define O_BRG_0_ERR_CLR                       0x036108
++#define O_BRG_0_ERR_FIRST_HOST                0x036120
++#define O_BRG_0_ERR_FIRST_INFO                0x036128
++#define O_BRG_SBE_ADDR2FID_ERR                0x036130
++#define O_BRG_SBE_RSPARB_ERR                  0x036138
++#define O_BRG_SBE_EGRQ_ERR                    0x036140
++#define O_BRG_SBE_INGRQ_ERR                   0x036148
++#define O_BRG_SBE_TPMEGRQ_ERR                 0x036150
++#define O_BRG_SBE_TPMINGRQ_ERR                0x036158
++#define O_BRG_MBE_ADDR2FID_ERR                0x036160
++#define O_BRG_MBE_RSPARB_ERR                  0x036168
++#define O_BRG_MBE_EGRQ_ERR                    0x036170
++#define O_BRG_MBE_INGRQ_ERR                   0x036178
++#define O_BRG_MBE_TPMEGRQ_ERR                 0x036180
++#define O_BRG_MBE_TPMINGRQ_ERR                0x036188
++#define O_BRG_SBE_TPMDECAP_ERR                0x036190
++#define O_BRG_MBE_TPMDECAP_ERR                0x036198
++#define O_BRG_1_ERR_STS                       0x036200
++#define O_BRG_1_ERR_CLR                       0x036208
++#define O_BRG_1_ERR_FIRST_HOST                0x036220
++#define O_BRG_1_ERR_FIRST_INFO                0x036228
++#define O_BRG_2_ERR_STS                       0x036300
++#define O_BRG_2_ERR_CLR                       0x036308
++#define O_BRG_2_ERR_FIRST_HOST                0x036320
++#define O_BRG_2_ERR_FIRST_INFO                0x036328
++#define O_TPM_ERR_STS                         0x100300
++#define O_TPM_ERR_CLR                         0x100308
++#define O_TPM_ERR_FIRST_HOST                  0x100320
++#define O_TPM_ERR_RINFO_SBE_COUNT             0x100328
++#define O_TPM_ERR_RINFO_SBE_INFO              0x100330
++#define O_TPM_ERR_RINFO_MBE_COUNT             0x100338
++#define O_TPM_ERR_RINFO_MBE_INFO              0x100340
++#define O_TPM_ERR_QFLITDATA_SBE_COUNT         0x100348
++#define O_TPM_ERR_QFLITDATA_SBE_INFO          0x100350
++#define O_TPM_ERR_QFLITDATA_MBE_COUNT         0x100358
++#define O_TPM_ERR_QFLITDATA_MBE_INFO          0x100360
++#define O_TPM_ERR_RINFO_PE_COUNT              0x100368
++#define O_TPM_ERR_RINFO_PE_INFO               0x100370
++#define O_TPM_ERR_TAILLESS_PKT_CNT            0x100378
++#define O_TPM_ERR_RSVD_VL_CNT                 0x100380
++#define O_TPM_ERR_RSVD_VL_INFO                0x100388
++#define O_TPM_ERR_STORG_SBE_ERR_CNT_0         0x100390
++#define O_TPM_ERR_STORG_SBE_ERR_CNT_1         0x100398
++#define O_TPM_ERR_STORG_SBE_ERR_CNT_2         0x1003a0
++#define O_TPM_ERR_STORG_SBE_ERR_CNT_3         0x1003a8
++#define O_TPM_ERR_STORG_SBE_ERR_CNT_4         0x1003b0
++#define O_TPM_ERR_STORG_SBE_ERR_CNT_5         0x1003b8
++#define O_TPM_ERR_STORG_SBE_ERR_CNT_6         0x1003c0
++#define O_TPM_ERR_STORG_SBE_ERR_CNT_7         0x1003c8
++#define O_TPM_ERR_STORG_SBE_ERR_CNT_8         0x1003d0
++#define O_TPM_ERR_STORG_SBE_ERR_CNT_9         0x1003d8
++#define O_TPM_ERR_STORG_SBE_ERR_CNT_10        0x1003e0
++#define O_TPM_ERR_STORG_SBE_ERR_CNT_11        0x1003e8
++#define O_TPM_ERR_STORG_SBE_ERR_CNT_12        0x1003f0
++#define O_TPM_ERR_STORG_SBE_ERR_CNT_13        0x1003f8
++#define O_TPM_ERR_STORG_SBE_ERR_CNT_14        0x100400
++#define O_TPM_ERR_STORG_SBE_ERR_CNT_15        0x100408
++#define O_TPM_ERR_STORG_MBE_ERR_CNT_0         0x1004a0
++#define O_TPM_ERR_STORG_MBE_ERR_CNT_1         0x1004a8
++#define O_TPM_ERR_STORG_MBE_ERR_CNT_2         0x1004b0
++#define O_TPM_ERR_STORG_MBE_ERR_CNT_3         0x1004b8
++#define O_TPM_ERR_STORG_MBE_ERR_CNT_4         0x1004c0
++#define O_TPM_ERR_STORG_MBE_ERR_CNT_5         0x1004c8
++#define O_TPM_ERR_STORG_MBE_ERR_CNT_6         0x1004d0
++#define O_TPM_ERR_STORG_MBE_ERR_CNT_7         0x1004d8
++#define O_TPM_ERR_STORG_MBE_ERR_CNT_8         0x1004e0
++#define O_TPM_ERR_STORG_MBE_ERR_CNT_9         0x1004e8
++#define O_TPM_ERR_STORG_MBE_ERR_CNT_10        0x1004f0
++#define O_TPM_ERR_STORG_MBE_ERR_CNT_11        0x1004f8
++#define O_TPM_ERR_STORG_MBE_ERR_CNT_12        0x100500
++#define O_TPM_ERR_STORG_MBE_ERR_CNT_13        0x100508
++#define O_TPM_ERR_STORG_MBE_ERR_CNT_14        0x100510
++#define O_TPM_ERR_STORG_MBE_ERR_CNT_15        0x100518
++#define O_TPM_ERR_INQ_SBE_ERR_INFO            0x100520
++#define O_TPM_ERR_INQ_MBE_ERR_INFO            0x100528
++#define O_RPM_INQ_PORT0_ERR_STS               0x182000
++#define O_RPM_INQ_PORT0_ERR_CLR               0x182008
++#define O_RPM_INQ_PORT0_ERR_FIRST_HOST        0x182020
++#define O_RPM_INQ_PORT1_ERR_STS               0x182080
++#define O_RPM_INQ_PORT1_ERR_CLR               0x182088
++#define O_RPM_INQ_PORT1_ERR_FIRST_HOST        0x1820A0
++#define O_RPM_INQ_PORT2_ERR_STS               0x182100
++#define O_RPM_INQ_PORT2_ERR_CLR               0x182108
++#define O_RPM_INQ_PORT2_ERR_FIRST_HOST        0x182120
++#define O_RPM_INQ_PORT3_ERR_STS               0x182180
++#define O_RPM_INQ_PORT3_ERR_CLR               0x182188
++#define O_RPM_INQ_PORT3_ERR_FIRST_HOST        0x1821A0
++#define O_RPM_INQ_PORT4_ERR_STS               0x182200
++#define O_RPM_INQ_PORT4_ERR_CLR               0x182208
++#define O_RPM_INQ_PORT4_ERR_FIRST_HOST        0x182220
++#define O_RPM_INQ_PORT5_ERR_STS               0x182280
++#define O_RPM_INQ_PORT5_ERR_CLR               0x182288
++#define O_RPM_INQ_PORT5_ERR_FIRST_HOST        0x1822A0
++#define O_RPM_INQ_PORT6_ERR_STS               0x182300
++#define O_RPM_INQ_PORT6_ERR_CLR               0x182308
++#define O_RPM_INQ_PORT6_ERR_FIRST_HOST        0x182320
++#define O_RPM_INQ_PORT7_ERR_STS               0x182380
++#define O_RPM_INQ_PORT7_ERR_CLR               0x182388
++#define O_RPM_INQ_PORT7_ERR_FIRST_HOST        0x1823A0
++#define O_RPM_INQ_FLSTOR_ERR_STS              0x182400
++#define O_RPM_INQ_FLSTOR_ERR_CLR              0x182408
++#define O_RPM_INQ_FLSTOR_ERR_FIRST_HOST       0x182420
++#define O_BRG_RTP_ERR_STS                     0x201000
++#define O_BRG_RTP_ERR_CLR                     0x201008
++#define O_BRG_RTP_ERR_FIRST_HOST              0x201020
++#define O_BRG_RTP_ERR_FIRST_INFO              0x201028
++
++#endif /* IAF_CSR_H_INCLUDED */
+diff --git a/drivers/gpu/drm/xe/fabric/iaf_drv.h b/drivers/gpu/drm/xe/fabric/iaf_drv.h
+new file mode 100644
+index 000000000000..0486d4b86b6f
+--- /dev/null
++++ b/drivers/gpu/drm/xe/fabric/iaf_drv.h
+@@ -0,0 +1,278 @@
++/* SPDX-License-Identifier: MIT */
++/*
++ * Copyright(c) 2020 - 2023 Intel Corporation.
++ */
++
++#ifndef IAF_DRV_H_INCLUDED
++#define IAF_DRV_H_INCLUDED
++
++#include <linux/auxiliary_bus.h>
++#include <linux/irqreturn.h>
++#include <linux/slab.h>
++#include <linux/timer.h>
++#include <linux/kref.h>
++
++#include <drm/intel_iaf_platform.h>
++
++#define DRIVER_NAME "iaf"
++
++#undef pr_fmt
++#define pr_fmt(fmt) DRIVER_NAME ": " fmt
++
++/*
++ * The maximum number of tiles for the PVC product type.
++ *
++ * Revisit if future product types or variations are developed that require
++ * a product type table.
++ */
++#define IAF_MAX_SUB_DEVS 2
++
++/*
++ * Recognized discrete socket IDs
++ */
++#define MAX_SOCKET_IDS (32)
++
++/*
++ * Platforms and revisions.
++ *
++ * Note that these conform to the ANR ASIC_REV_INFO (ARI) register values,
++ * not the PCI revision IDs reported by the packaged product.
++ */
++
++#define ANR_ARI_PLATFORM	0x0101
++
++#define ANR_ARI_STEP_A0		0x00
++#define ANR_ARI_STEP_A1		0x01
++#define ANR_ARI_STEP_A_LAST	ANR_ARI_STEP_A1
++#define ANR_ARI_STEP_B0		0x10
++#define ANR_ARI_STEP_B_LAST	ANR_ARI_STEP_B0
++
++#define IS_ANR(sd) \
++	(FIELD_GET(MASK_ARI_PLATFORM, (sd)->asic_rev_info) == ANR_ARI_PLATFORM)
++
++#define IS_ANR_STEP(sd, since, until) (IS_ANR(sd) && \
++	FIELD_GET(MASK_ARI_STEP, (sd)->asic_rev_info) >= (since) && \
++	FIELD_GET(MASK_ARI_STEP, (sd)->asic_rev_info) <= (until))
++
++/*
++ * Device and subdevice message formats
++ *
++ * Device expands dev->name, sd expand relevant indices
++ * ": " separates info. *_FMT ends in ": ", *_ID_FMT does not
++ */
++
++#define DEV_ID_FMT "iaf.%d"
++#define SD_ID_FMT "sd.%d"
++
++#define DEV_FMT DEV_ID_FMT ": "
++#define SD_FMT SD_ID_FMT ": "
++
++#define DEV_SD_FMT DEV_FMT "" SD_FMT
++
++/*
++ * Subdevice-specific messaging
++ */
++
++#define sd_emerg(__sd, _fmt, ...) \
++		do { \
++			struct fsubdev *_sd = (__sd); \
++			dev_emerg(sd_dev(_sd), SD_FMT _fmt, \
++				  sd_index(_sd), ##__VA_ARGS__); \
++		} while (0)
++
++#define sd_alert(__sd, _fmt, ...) \
++		do { \
++			struct fsubdev *_sd = (__sd); \
++			dev_alert(sd_dev(_sd), SD_FMT _fmt, \
++				  sd_index(_sd), ##__VA_ARGS__); \
++		} while (0)
++
++#define sd_crit(__sd, _fmt, ...) \
++		do { \
++			struct fsubdev *_sd = (__sd); \
++			dev_crit(sd_dev(_sd), SD_FMT _fmt, \
++				 sd_index(_sd), ##__VA_ARGS__); \
++		} while (0)
++
++#define sd_err(__sd, _fmt, ...) \
++		do { \
++			struct fsubdev *_sd = (__sd); \
++			dev_err(sd_dev(_sd), SD_FMT _fmt, \
++				sd_index(_sd), ##__VA_ARGS__); \
++		} while (0)
++
++#define sd_warn(__sd, _fmt, ...) \
++		do { \
++			struct fsubdev *_sd = (__sd); \
++			dev_warn(sd_dev(_sd), SD_FMT _fmt, \
++				 sd_index(_sd), ##__VA_ARGS__); \
++		} while (0)
++
++#define sd_notice(__sd, _fmt, ...) \
++		do { \
++			struct fsubdev *_sd = (__sd); \
++			dev_notice(sd_dev(_sd), SD_FMT _fmt, \
++				   sd_index(_sd), ##__VA_ARGS__); \
++		} while (0)
++
++#define sd_info(__sd, _fmt, ...) \
++		do { \
++			struct fsubdev *_sd = (__sd); \
++			dev_info(sd_dev(_sd), SD_FMT _fmt, \
++				 sd_index(_sd), ##__VA_ARGS__); \
++		} while (0)
++
++#define sd_dbg(__sd, _fmt, ...) \
++		do { \
++			struct fsubdev *_sd = (__sd); \
++			dev_dbg(sd_dev(_sd), SD_FMT _fmt, \
++				sd_index(_sd), ##__VA_ARGS__); \
++		} while (0)
++
++enum iaf_startup_mode {
++	STARTUP_MODE_DEFAULT = 0,
++	STARTUP_MODE_PRELOAD = 1,
 +};
 +
-+#endif /* __INTEL_IAF_PLATFORM_H */
++struct fsubdev; /* from this file */
++
++struct fdev; /* from this file */
++
++/**
++ * enum sd_error - Subdevice error conditions
++ * @SD_ERROR_FAILED: Subdevice has been marked as FAILED
++ * @SD_ERROR_FW: Firmware error
++ * @NUM_SD_ERRORS: Number of error conditions (always last)
++ */
++enum sd_error {
++	SD_ERROR_FAILED,
++	SD_ERROR_FW,
++	NUM_SD_ERRORS
++};
++
++/**
++ * struct fsubdev - Per-subdevice state
++ * @fdev: link to containing device
++ * @csr_base: base address of this subdevice's memory
++ * @irq: assigned interrupt
++ * @name: small string to describe SD
++ * @asic_rev_info: raw contents of the asic rev info register
++ * @kobj: kobject for this sd in the sysfs tree
++ * @sd_failure: attribute for sd_failure sysfs file
++ * @guid: GUID retrieved from firmware
++ * @port_cnt: count of all fabric ports
++ * @errors: bitmap of active error states
++ *
++ * Used throughout the driver to maintain information about a given subdevice.
++ *
++ * Protection mechanisms used outside of init/destroy are documented inline. Sync probe is the
++ * context of the initial probe function. Async probe includes the initialization threads used to
++ * load the firmware and platform configuration before enabling general processing.
++ */
++struct fsubdev {
++	/* pointers const after sync probe, content protection is by object type */
++	struct fdev *fdev;
++	char __iomem *csr_base;
++
++	/* values const after sync probe */
++	int irq;
++	char name[8];
++	u64 asic_rev_info;
++
++	/* values const after async probe */
++	struct kobject *kobj;
++	struct device_attribute sd_failure;
++
++	u64 guid;
++	u8 port_cnt;
++
++	/* atomic, never cleared after sync probe */
++	DECLARE_BITMAP(errors, NUM_SD_ERRORS);
++};
++
++/**
++ * struct fdev - Device structure for IAF/fabric device component
++ * @sd: subdevice structures
++ * @dev_disabled: On a PCIe error, disable access to the PCI bus
++ * @pdev: bus device passed in probe
++ * @pd: platform specific data
++ * @fabric_id: xarray index based on parent index and product type
++ * @mappings_ref.lock: protect the mappings_ref data
++ * @mappings_ref.count: current mapped buffer count
++ * @mappings_ref.remove_in_progress: indicate unmap should show completion
++ * @mappings_ref.complete: completion after all buffers are unmapped
++ * @mappings_ref: Reference count of parent mapped buffers
++ * @refs: references on this instance
++ * @fdev_released: signals fdev has been erased from the xarray
++ * @startup_mode: startup mode
++ *
++ * Used throughout the driver to maintain information about a given device.
++ */
++struct fdev {
++	struct fsubdev sd[IAF_MAX_SUB_DEVS];
++	bool dev_disabled;
++	struct auxiliary_device *pdev;
++	const struct iaf_pdata *pd;
++	u32 fabric_id;
++
++	struct {
++		/* protect the mapping count and remove_in_progress flag */
++		struct mutex lock;
++		int count;
++		bool remove_in_progress;
++		struct completion complete;
++	} mappings_ref;
++
++	struct kref refs;
++	struct completion fdev_released;
++	enum iaf_startup_mode startup_mode;
++};
++
++void fdev_put(struct fdev *dev);
++int fdev_insert(struct fdev *dev);
++
++/*
++ * This is the fdev_process_each callback function signature
++ * Returning 0 indicates continue
++ * Any other return value indicates terminate
++ */
++typedef int (*fdev_process_each_cb_t)(struct fdev *dev, void *args);
++
++int fdev_process_each(fdev_process_each_cb_t cb, void *args);
++
++struct fdev *fdev_find(u32 fabric_id);
++
++/*
++ * Returns the sd index/offset relative to its device.
++ */
++static inline u8 sd_index(struct fsubdev *sd)
++{
++	return sd - sd->fdev->sd;
++}
++
++/*
++ * dev_is_preload - Test for preload startup mode.
++ * @dev: device
++ *
++ * Return: True if the device is in preload startup mode.
++ */
++static inline bool dev_is_preload(struct fdev *dev)
++{
++	return dev && dev->startup_mode == STARTUP_MODE_PRELOAD;
++}
++
++static inline struct device *sd_dev(const struct fsubdev *sd)
++{
++	return &sd->fdev->pdev->dev;
++}
++
++static inline struct device *fdev_dev(const struct fdev *dev)
++{
++	return &dev->pdev->dev;
++}
++
++/* The following two functions increase device reference count: */
++struct fdev *fdev_find_by_sd_guid(u64 guid);
++struct fsubdev *find_sd_id(u32 fabric_id, u8 sd_index);
++
++#endif
+diff --git a/drivers/gpu/drm/xe/fabric/main.c b/drivers/gpu/drm/xe/fabric/main.c
+new file mode 100644
+index 000000000000..138b0f774f0d
+--- /dev/null
++++ b/drivers/gpu/drm/xe/fabric/main.c
+@@ -0,0 +1,683 @@
++// SPDX-License-Identifier: MIT
++/*
++ * Copyright(c) 2020 - 2023 Intel Corporation.
++ */
++
++#include <linux/auxiliary_bus.h>
++#include <linux/bitfield.h>
++#include <linux/interrupt.h>
++#include <linux/io.h>
++#include <linux/list.h>
++#include <linux/module.h>
++#include <linux/mutex.h>
++#include <linux/pm_runtime.h>
++#include <linux/rwsem.h>
++#include <linux/xarray.h>
++#include <generated/utsrelease.h>
++
++#include <drm/intel_iaf_platform.h>
++
++#include "csr.h"
++#include "iaf_drv.h"
++#include "sysfs.h"
++
++#define MODULEDETAILS "Intel Corp. Intel fabric Driver"
++
++/* xarray of IAF devices */
++static DEFINE_XARRAY_ALLOC(intel_fdevs);
++
++/*
++ * Used for creating unique xarray hash.  Products need to be defined
++ * in the intel_iaf_platform.h file.
++ */
++#define PRODUCT_SHIFT 16
++
++static enum iaf_startup_mode param_startup_mode = STARTUP_MODE_DEFAULT;
++
++static const char *startup_mode_name(enum iaf_startup_mode m)
++{
++	switch (m) {
++	case STARTUP_MODE_DEFAULT: return "default";
++	case STARTUP_MODE_PRELOAD: return "preload";
++	}
++
++	return "(unknown)";
++}
++
++static int mode_set(const char *val, const struct kernel_param *kp)
++{
++	enum iaf_startup_mode new_mode;
++
++	if (sysfs_streq(val, "default"))
++		new_mode = STARTUP_MODE_DEFAULT;
++	else if (sysfs_streq(val, "preload"))
++		new_mode = STARTUP_MODE_PRELOAD;
++	else
++		return -EINVAL;
++
++	param_startup_mode = new_mode;
++
++	return 0;
++}
++
++static int mode_get(char *val, const struct kernel_param *kp)
++{
++	return snprintf(val, PAGE_SIZE, startup_mode_name(param_startup_mode));
++}
++
++static const struct kernel_param_ops startup_mode_ops = {
++	.set = mode_set,
++	.get = mode_get,
++};
++
++module_param_cb(startup_mode, &startup_mode_ops, &param_startup_mode, 0600);
++MODULE_PARM_DESC(startup_mode,
++		 "Operational mode for newly probed devices:\n"
++		 "\t\t - default: Operate normally\n"
++		 "\t\t - preload: Assume firmware/ini has already been loaded"
++		 );
++
++#define RELEASE_TIMEOUT (HZ * 60)
++
++static void fdev_release(struct kref *kref)
++{
++	struct fdev *dev = container_of(kref, typeof(*dev), refs);
++
++	xa_erase(&intel_fdevs, dev->fabric_id);
++	complete(&dev->fdev_released);
++}
++
++void fdev_put(struct fdev *dev)
++{
++	kref_put(&dev->refs, fdev_release);
++}
++
++static struct fdev *fdev_get(struct fdev *dev)
++{
++	if (dev && kref_get_unless_zero(&dev->refs))
++		return dev;
++
++	return NULL;
++}
++
++int fdev_insert(struct fdev *dev)
++{
++	int err;
++
++	kref_init(&dev->refs);
++	init_completion(&dev->fdev_released);
++
++	err = xa_insert(&intel_fdevs, dev->fabric_id, dev, GFP_KERNEL);
++	if (err)
++		dev_warn(fdev_dev(dev), "fabric_id 0x%08x already in use\n",
++			 dev->fabric_id);
++
++	return err;
++}
++
++int fdev_process_each(fdev_process_each_cb_t cb, void *args)
++{
++	struct fdev *dev;
++	unsigned long i;
++
++	xa_lock(&intel_fdevs);
++	xa_for_each(&intel_fdevs, i, dev) {
++		int ret;
++
++		if (!fdev_get(dev))
++			continue;
++
++		xa_unlock(&intel_fdevs);
++		ret = cb(dev, args);
++		fdev_put(dev);
++		if (ret)
++			return ret;
++
++		xa_lock(&intel_fdevs);
++	}
++	xa_unlock(&intel_fdevs);
++
++	return 0;
++}
++
++static void fdev_wait_on_release(struct fdev *dev)
++{
++	fdev_put(dev);
++
++	wait_for_completion_killable_timeout(&dev->fdev_released,
++					     RELEASE_TIMEOUT);
++}
++
++/*
++ * Returns with reference count for the fdev incremented when found.
++ * It is the callers responsibility to decrement the reference count.
++ */
++struct fdev *fdev_find(u32 fabric_id)
++{
++	struct fdev *dev;
++
++	xa_lock(&intel_fdevs);
++	dev = fdev_get(xa_load(&intel_fdevs, fabric_id));
++	xa_unlock(&intel_fdevs);
++
++	return dev;
++}
++
++struct fdev *fdev_find_by_sd_guid(u64 guid)
++{
++	struct fdev *dev, *referenced_dev;
++	unsigned long d;
++	u8 s;
++
++	xa_lock(&intel_fdevs);
++
++	/* dev becomes NULL if xa_for_each() completes */
++	xa_for_each(&intel_fdevs, d, dev)
++		for (s = 0; s < dev->pd->sd_cnt; ++s)
++			if (dev->sd[s].guid == guid)
++				goto end_iteration;
++
++end_iteration:
++
++	referenced_dev = fdev_get(dev);
++
++	xa_unlock(&intel_fdevs);
++
++	return referenced_dev;
++}
++
++struct fsubdev *find_sd_id(u32 fabric_id, u8 sd_index)
++{
++	struct fdev *dev = fdev_find(fabric_id);
++
++	if (!dev)
++		return ERR_PTR(-ENODEV);
++
++	if (sd_index < dev->pd->sd_cnt)
++		return &dev->sd[sd_index];
++
++	fdev_put(dev);
++
++	return ERR_PTR(-EINVAL);
++}
++
++/* configured by request_irq() to refer to corresponding struct fsubdev */
++static irqreturn_t handle_iaf_irq(int irq, void *arg)
++{
++	return IRQ_HANDLED;
++}
++
++static struct query_info *handle_query(void *handle, u32 fabric_id)
++{
++	struct fdev *src, *dst;
++	struct query_info *qi;
++
++	/*
++	 * src fdev is guaranteed to never be removed during this invocation by
++	 * the caller
++	 */
++	src = handle;
++
++	dst = fdev_find(fabric_id);
++	if (!dst)
++		return ERR_PTR(-ENODEV);
++
++	qi = kmalloc(struct_size(qi, sd2sd, src->pd->sd_cnt * dst->pd->sd_cnt),
++		     GFP_KERNEL);
++	if (qi) {
++		qi->src_cnt = src->pd->sd_cnt;
++		qi->dst_cnt = dst->pd->sd_cnt;
++	} else {
++		qi = ERR_PTR(-ENOMEM);
++	}
++
++	fdev_put(dst);
++
++	return qi;
++}
++
++/**
++ * mappings_ref_get - Increment mapping reference count
++ * @dev: pointer to a valid fdev
++ *
++ * Allow the parent to indicate that a buffer has been mapped
++ *
++ * return: -1 reference count failed, do not allow mapping
++ */
++static int mappings_ref_get(struct fdev *dev)
++{
++	mutex_lock(&dev->mappings_ref.lock);
++
++	dev_dbg(fdev_dev(dev), "count: %d\n", dev->mappings_ref.count);
++
++	if (dev->mappings_ref.remove_in_progress) {
++		mutex_unlock(&dev->mappings_ref.lock);
++		return -1;
++	}
++
++	dev->mappings_ref.count++;
++
++	mutex_unlock(&dev->mappings_ref.lock);
++
++	return 0;
++}
++
++/**
++ * mappings_ref_put - Decrement mapping reference count
++ * @dev: pointer to a valid fdev
++ *
++ * Allow the parent to indicate that a buffer has been unmapped
++ *
++ * A negative value allows remove to proceed.
++ *
++ * return: -1 indicate an unbalanced put call
++ */
++static int mappings_ref_put(struct fdev *dev)
++{
++	int ret = 0;
++
++	mutex_lock(&dev->mappings_ref.lock);
++
++	dev_dbg(fdev_dev(dev), "count: %d\n", dev->mappings_ref.count);
++
++	/*
++	 * in the case of device removal, permit an extra decrement, which is
++	 * used to signal completion to the remove context.
++	 */
++	if (dev->mappings_ref.count > 1 ||
++	    dev->mappings_ref.remove_in_progress) {
++		dev->mappings_ref.count--;
++
++		if (dev->mappings_ref.count == 0)
++			complete(&dev->mappings_ref.complete);
++
++	} else {
++		ret = -1;
++	}
++
++	mutex_unlock(&dev->mappings_ref.lock);
++
++	return ret;
++}
++
++/**
++ * mappings_ref_wait - Driver decrement (inited to 1), and wait for zero count
++ * @dev: valid device
++ *
++ */
++static void mappings_ref_wait(struct fdev *dev)
++{
++	mutex_lock(&dev->mappings_ref.lock);
++
++	dev->mappings_ref.remove_in_progress = true;
++	dev->mappings_ref.count--;
++
++	if (dev->mappings_ref.count == 0) {
++		mutex_unlock(&dev->mappings_ref.lock);
++		return;
++	}
++
++	dev_warn(fdev_dev(dev), "mappings_ref_map != 0 (%d) will wait\n",
++		 dev->mappings_ref.count);
++
++	mutex_unlock(&dev->mappings_ref.lock);
++
++	wait_for_completion_killable(&dev->mappings_ref.complete);
++}
++
++/**
++ * mappings_ref_check - Determine if there are any pending mappings
++ * @dev: valid device
++ *
++ * Return: true: mappings reference is in use
++ */
++bool mappings_ref_check(struct fdev *dev)
++{
++	int count;
++
++	mutex_lock(&dev->mappings_ref.lock);
++	count = dev->mappings_ref.count;
++	mutex_unlock(&dev->mappings_ref.lock);
++
++	return count > 1;
++}
++
++static int handle_parent_event(void *handle, enum iaf_parent_event event)
++{
++	struct fdev *dev = handle;
++
++	switch (event) {
++	case IAF_PARENT_PCIE_ERR:
++		dev_err(fdev_dev(dev), "PCIE error received\n");
++		WRITE_ONCE(dev->dev_disabled, true);
++		return 0;
++
++	case IAF_PARENT_MAPPING_GET:
++		return mappings_ref_get(dev);
++
++	case IAF_PARENT_MAPPING_PUT:
++		return mappings_ref_put(dev);
++	}
++
++	return -EOPNOTSUPP;
++}
++
++static const struct iaf_ops iaf_ops = {
++	.connectivity_query = handle_query,
++	.parent_event = handle_parent_event,
++};
++
++static int validate_product(struct fsubdev *sd)
++{
++	if (unlikely(READ_ONCE(sd->fdev->dev_disabled)))
++		return -EIO;
++
++	switch (sd->fdev->pd->product) {
++	case IAF_PONTEVECCHIO:
++		sd->asic_rev_info = readq(sd->csr_base + CSR_ASIC_REV_INFO);
++		if (!IS_ANR(sd)) {
++			sd_err(sd, "Unsupported subdevice revision 0x%016llx\n",
++			       sd->asic_rev_info);
++			return -EINVAL;
++		}
++		sd_dbg(sd, "asic rev info 0x%016llx\n", sd->asic_rev_info);
++		break;
++	default:
++		sd_err(sd, "Unrecognized product type %d for subdevice\n",
++		       sd->fdev->pd->product);
++		return -EINVAL;
++	}
++
++	return 0;
++}
++
++static struct resource *iaf_find_res(struct fdev *dev, unsigned int type,
++				     int index)
++{
++	int i;
++	int offset;
++
++	for (i = 0; i < dev->pd->num_resources; i++) {
++		offset = index * dev->pd->sd_cnt + i;
++		if (resource_type(&dev->pd->resources[offset]) == type)
++			return &dev->pd->resources[offset];
++	}
++
++	return NULL;
++}
++
++static int add_subdevice(struct fsubdev *sd, struct fdev *dev, int index)
++{
++	struct resource *res;
++	int err;
++
++	sd->fdev = dev;
++
++	snprintf(sd->name, sizeof(sd->name), SD_ID_FMT, index);
++
++	res = iaf_find_res(dev, IORESOURCE_MEM, index);
++	if (!res) {
++		sd_err(sd, "No MEM resource available\n");
++		return -ENOMEM;
++	}
++	sd->csr_base = ioremap(res->start, resource_size(res));
++	if (!sd->csr_base) {
++		sd_err(sd, "Unable to map resource %pR to kvirt\n", res);
++		return -ENOMEM;
++	}
++	sd_dbg(sd, "mapped resource %pR to mb_base %p\n", res, sd->csr_base);
++
++	err = validate_product(sd);
++	if (err) {
++		iounmap(sd->csr_base);
++		return err;
++	}
++
++	res = iaf_find_res(dev, IORESOURCE_IRQ, index);
++	if (!res) {
++		sd_err(sd, "No IRQ resource available\n");
++		iounmap(sd->csr_base);
++		return -EINVAL;
++	}
++	sd_dbg(sd, "IRQ resource %pR\n", res);
++
++	sd->irq = res->start;
++	err = request_irq(sd->irq, handle_iaf_irq, 0, "intel_sd_irq", sd);
++	if (err) {
++		sd_err(sd, "failed to request_irq %d  err: %d\n", sd->irq, err);
++		iounmap(sd->csr_base);
++		return err;
++	}
++
++	sd_dbg(sd, "Adding IAF subdevice: %d\n", index);
++
++	return 0;
++}
++
++static void remove_subdevice(struct fsubdev *sd)
++{
++	free_irq(sd->irq, sd);
++	iounmap(sd->csr_base);
++	sd_dbg(sd, "Removed IAF resource: %p\n", sd->csr_base);
++	sd->csr_base = NULL;
++}
++
++/*
++ * Cause a subdevice to (eventually) fail, synchronizing with routing. The full
++ * effect may not be immediate.
++ */
++static void fail_subdevice(struct fsubdev *sd)
++{
++	if (test_and_set_bit(SD_ERROR_FAILED, sd->errors))
++		return;
++
++	sd_err(sd, "subdevice failed, shutting down\n");
++}
++
++/*
++ * Indicate that there has been a subdevice error
++ */
++void indicate_subdevice_error(struct fsubdev *sd, enum sd_error err)
++{
++	if (test_and_set_bit(err, sd->errors))
++		return;
++
++	switch (err) {
++	case SD_ERROR_FW:
++		sd_err(sd, "FW error detected\n");
++		break;
++
++	case SD_ERROR_FAILED:
++	default:
++		sd_err(sd, "unknown error detected\n");
++		break;
++	}
++
++	fail_subdevice(sd);
++}
++
++static void iaf_remove(struct auxiliary_device *pdev)
++{
++	struct iaf_pdata *pd = container_of(pdev, struct iaf_pdata, aux_dev);
++	struct fdev *dev = dev_get_drvdata(&pdev->dev);
++	u8 i;
++
++	dev_dbg(&pdev->dev, "Removing %s\n", dev_name(&pdev->dev));
++
++	mappings_ref_wait(dev);
++
++	iaf_sysfs_remove(dev);
++
++	pd->unregister_dev(pd->parent, dev);
++
++	fdev_wait_on_release(dev);
++
++	for (i = 0; i < pd->sd_cnt; i++)
++		remove_subdevice(&dev->sd[i]);
++
++	pm_runtime_put(fdev_dev(dev));
++	pm_runtime_allow(fdev_dev(dev));
++	pm_runtime_disable(fdev_dev(dev));
++
++	WARN(kref_read(&dev->refs), "fabric_id 0x%08x has %u references",
++	     dev->fabric_id, kref_read(&dev->refs));
++
++	kfree(dev);
++}
++
++static u32 dev_fabric_id(struct iaf_pdata *pd)
++{
++	return pd->product << PRODUCT_SHIFT | pd->index;
++}
++
++static int iaf_probe(struct auxiliary_device *pdev, const struct auxiliary_device_id *id)
++{
++	struct iaf_pdata *pd = container_of(pdev, struct iaf_pdata, aux_dev);
++	struct device *dev_parent = pdev->dev.parent;
++	struct fdev *dev;
++	u8 sds_added = 0;
++	int err;
++	u8 i;
++
++	dev_info(&pdev->dev,
++		 "Probing %s, connection point for %s, fabric_id 0x%08x socket_id 0x%02x, sd_cnt %u\n",
++		 dev_name(&pdev->dev),
++		 dev_parent ? dev_name(dev_parent) : "UNKNOWN SOURCE",
++		 dev_fabric_id(pd), pd->socket_id, pd->sd_cnt);
++
++	if (pd->version != IAF_VERSION)
++		return -EPERM;
++
++	if (!pd->register_dev || !pd->unregister_dev)
++		return -EINVAL;
++
++	if (pd->socket_id >= MAX_SOCKET_IDS)
++		return -EINVAL;
++
++	if (!pd->sd_cnt || pd->sd_cnt > IAF_MAX_SUB_DEVS)
++		return -EINVAL;
++
++	if (!pd->dpa.pkg_size)
++		return -EINVAL;
++
++	dev_dbg(&pdev->dev, "DPA offset: %dGB  size: %dGB\n",
++		pd->dpa.pkg_offset, pd->dpa.pkg_size);
++
++	dev = kzalloc(sizeof(*dev), GFP_KERNEL);
++	if (!dev)
++		return -ENOMEM;
++
++	kernel_param_lock(THIS_MODULE);
++	dev->startup_mode = param_startup_mode;
++	kernel_param_unlock(THIS_MODULE);
++
++	if (dev->startup_mode != STARTUP_MODE_DEFAULT)
++		dev_info(&pdev->dev, "startup_mode: %s",
++			 startup_mode_name(dev->startup_mode));
++
++	dev->fabric_id = dev_fabric_id(pd);
++	dev->pd = pd;
++	dev->pdev = pdev;
++
++	dev_set_drvdata(&pdev->dev, dev);
++
++	err = fdev_insert(dev);
++	if (err) {
++		kfree(dev);
++		return err;
++	}
++
++	err = iaf_sysfs_probe(dev);
++	if (err)
++		goto sysfs_error;
++
++	dev->mappings_ref.count = 1;
++	mutex_init(&dev->mappings_ref.lock);
++	init_completion(&dev->mappings_ref.complete);
++
++	/*
++	 * The IAF cannot be suspended via runtime, but the parent could have
++	 * the capability.  Set runtime to forbid to be explicit about what
++	 * the requirement is.  Do a get to make sure that suspend cannot be
++	 * started externally (i.e. sysfs), to keep the parent from going to
++	 * sleep.
++	 * If the parent is asleep at this time, pm_runtime_forbid will cause
++	 * it to resume.
++	 */
++	pm_runtime_enable(&pdev->dev);
++	pm_runtime_forbid(&pdev->dev);
++	pm_runtime_get(&pdev->dev);
++
++	err = pd->register_dev(pd->parent, dev, dev->fabric_id, &iaf_ops);
++	if (err) {
++		iaf_sysfs_remove(dev);
++		goto sysfs_error;
++	}
++
++	for (sds_added = 0; sds_added < pd->sd_cnt; ++sds_added) {
++		err = add_subdevice(&dev->sd[sds_added], dev, sds_added);
++		if (err)
++			goto add_error;
++	}
++
++	return 0;
++
++add_error:
++	iaf_sysfs_remove(dev);
++	for (i = 0; i < sds_added; ++i)
++		remove_subdevice(&dev->sd[i]);
++
++	pd->unregister_dev(pd->parent, dev);
++
++sysfs_error:
++	fdev_wait_on_release(dev);
++	pm_runtime_put(&pdev->dev);
++	pm_runtime_allow(&pdev->dev);
++	pm_runtime_disable(&pdev->dev);
++	kfree(dev);
++	return err;
++}
++
++static const struct auxiliary_device_id iaf_id_table[] = {
++	{ .name = "xe.iaf", },
++	{},
++};
++
++static struct auxiliary_driver iaf_driver = {
++	.probe = iaf_probe,
++	.remove = iaf_remove,
++	.id_table = iaf_id_table,
++};
++
++static void __exit iaf_unload_module(void)
++{
++	pr_notice("Unloading %s\n", MODULEDETAILS);
++
++	auxiliary_driver_unregister(&iaf_driver);
++	pr_notice("%s Unloaded\n", MODULEDETAILS);
++}
++module_exit(iaf_unload_module);
++
++/*
++ * \brief Loads the module into kernel space and does global initializations.
++ * Called by insmod or modprobe.
++ */
++static int __init iaf_load_module(void)
++{
++	int err;
++
++	pr_notice("Initializing %s\n", MODULEDETAILS);
++	pr_debug("Built for Linux Kernel %s\n", UTS_RELEASE);
++
++	err = auxiliary_driver_register(&iaf_driver);
++	if (err)
++		pr_err("Cannot register with auxiliary bus\n");
++
++	return err;
++}
++module_init(iaf_load_module);
++
++MODULE_AUTHOR("Intel Corporation");
++MODULE_DESCRIPTION(MODULEDETAILS);
++MODULE_LICENSE("GPL and additional rights");
++MODULE_ALIAS("auxiliary:xe.iaf");
+diff --git a/drivers/gpu/drm/xe/fabric/sysfs.c b/drivers/gpu/drm/xe/fabric/sysfs.c
+new file mode 100644
+index 000000000000..b7af3fdace1a
+--- /dev/null
++++ b/drivers/gpu/drm/xe/fabric/sysfs.c
+@@ -0,0 +1,114 @@
++// SPDX-License-Identifier: MIT
++/*
++ * Copyright(c) 2020 - 2023 Intel Corporation.
++ *
++ */
++
++#include <linux/device.h>
++#include "csr.h"
++#include "iaf_drv.h"
++#include "sysfs.h"
++
++static ssize_t sd_failure_show(struct device *dev, struct device_attribute *attr, char *buf)
++{
++	struct fsubdev *sd;
++
++	sd = container_of(attr, struct fsubdev, sd_failure);
++
++	return sysfs_emit(buf, "%u\n", test_bit(SD_ERROR_FAILED, sd->errors));
++}
++
++static ssize_t iaf_fabric_id_show(struct device *dev,
++				  struct device_attribute *attr, char *buf)
++{
++	struct fdev *fdev = dev_get_drvdata(dev);
++
++	return sysfs_emit(buf, "0x%x\n", fdev->fabric_id);
++}
++
++static DEVICE_ATTR_RO(iaf_fabric_id);
++
++static const struct attribute *iaf_attrs[] = {
++	&dev_attr_iaf_fabric_id.attr,
++	NULL,
++};
++
++static void iaf_sysfs_cleanup(struct fsubdev *sd)
++{
++	kobject_put(sd->kobj);
++	sd->kobj = NULL;
++}
++
++typedef ssize_t (*show_fn)(struct device *dev, struct device_attribute *attr, char *buf);
++
++static int iaf_sysfs_add_node(const char *name, umode_t mode, show_fn show,
++			      struct device_attribute *attr, struct kobject *parent)
++{
++	sysfs_attr_init(&attr->attr);
++	attr->attr.name = name;
++	attr->attr.mode = mode;
++	attr->show = show;
++
++	return sysfs_create_file(parent, &attr->attr);
++}
++
++static int iaf_sysfs_add_sd_nodes(struct fsubdev *sd)
++{
++	int err;
++
++	err = iaf_sysfs_add_node("sd_failure", 0400, sd_failure_show, &sd->sd_failure, sd->kobj);
++	if (err)
++		sd_warn(sd, "Failed to add sysfs node %s for %s\n", "sd_failure", sd->name);
++
++	return err;
++}
++
++static void iaf_sysfs_sd_init(struct fsubdev *sd)
++{
++	int err;
++
++	sd->kobj = kobject_create_and_add(sd->name, &sd->fdev->pdev->dev.kobj);
++	if (!sd->kobj) {
++		sd_warn(sd, "Failed to add sysfs directory %s\n", sd->name);
++		return;
++	}
++
++	err = iaf_sysfs_add_sd_nodes(sd);
++	if (err)
++		goto error_return;
++
++	return;
++
++error_return:
++	iaf_sysfs_cleanup(sd);
++}
++
++void iaf_sysfs_init(struct fdev *fdev)
++{
++	u8 i;
++
++	for (i = 0; i < fdev->pd->sd_cnt; i++)
++		iaf_sysfs_sd_init(&fdev->sd[i]);
++}
++
++void iaf_sysfs_remove(struct fdev *fdev)
++{
++	u8 i;
++
++	for (i = 0; i < fdev->pd->sd_cnt; i++)
++		iaf_sysfs_cleanup(&fdev->sd[i]);
++
++	sysfs_remove_files(&fdev->pdev->dev.kobj, iaf_attrs);
++}
++
++int iaf_sysfs_probe(struct fdev *fdev)
++{
++	int err;
++
++	err = sysfs_create_files(&fdev->pdev->dev.kobj, iaf_attrs);
++	if (err) {
++		dev_err(&fdev->pdev->dev, "Failed to add sysfs\n");
++		return err;
++	}
++	return 0;
++}
+diff --git a/drivers/gpu/drm/xe/fabric/sysfs.h b/drivers/gpu/drm/xe/fabric/sysfs.h
+new file mode 100644
+index 000000000000..e42ccdd5b0fd
+--- /dev/null
++++ b/drivers/gpu/drm/xe/fabric/sysfs.h
+@@ -0,0 +1,16 @@
++/* SPDX-License-Identifier: MIT */
++/*
++ * Copyright(c) 2020 - 2023 Intel Corporation.
++ *
++ */
++
++#ifndef SYSFS_H_INCLUDED
++#define SYSFS_H_INCLUDED
++
++#include "iaf_drv.h"
++
++void iaf_sysfs_init(struct fdev *fdev);
++void iaf_sysfs_remove(struct fdev *fdev);
++int iaf_sysfs_probe(struct fdev *fdev);
++
++#endif
 -- 
 2.35.1
 
