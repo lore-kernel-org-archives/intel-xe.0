@@ -4,136 +4,136 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 72803EB64D7
-	for <intel-xe@archiver.kernel.org>; Wed, 21 Jun 2023 02:10:54 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 715A0EB64D7
+	for <intel-xe@archiver.kernel.org>; Wed, 21 Jun 2023 03:55:45 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3E1CA10E39F;
-	Wed, 21 Jun 2023 02:10:54 +0000 (UTC)
-Received: from mga06.intel.com (mga06b.intel.com [134.134.136.31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7700410E39F
- for <intel-xe@lists.freedesktop.org>; Wed, 21 Jun 2023 02:10:52 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 34DB510E3A9;
+	Wed, 21 Jun 2023 03:55:45 +0000 (UTC)
+Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A042910E3A9
+ for <intel-xe@lists.freedesktop.org>; Wed, 21 Jun 2023 03:55:42 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1687313452; x=1718849452;
+ t=1687319742; x=1718855742;
  h=date:from:to:cc:subject:message-id:references:
  in-reply-to:mime-version;
- bh=BSCcc/tkJdRJY18bOBwlBGixisTH/SJ3icGLMN1u35I=;
- b=cgwecPLTO7Sc5oIFQfSdQBZOEoOOCHoIwhYa9PeaOBqieWMt0NfalsfM
- /fBo7OPj87MPPFgroAV8y2mh9tjS4XGIpA/KEfO7MjlWt6jyTQpsh84fg
- K20XNfaZomL4myXPIEKprbH4ILmeqFzowJowTyYy+VTqhH9B5SM1d51m6
- JY3XurFXcd3fOB9hcePrCeqWxRr0UYsfkGAu4530D7josNQdwcriKjOc8
- vrqvGVl2+QC/2tCHYK3/+fI2xAdNx+GKpJ2dQfpjKbls/booT6xrkNVYO
- HzMD3nr6Nt8zk4k/RMId7tCgWf+lvWLYs7pg1qWV/saZbSRBxTx32rGvL w==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10747"; a="423704906"
-X-IronPort-AV: E=Sophos;i="6.00,259,1681196400"; d="scan'208";a="423704906"
-Received: from fmsmga003.fm.intel.com ([10.253.24.29])
- by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 20 Jun 2023 19:10:50 -0700
+ bh=OZEhbl+3QBMAXH+R98yQSNoZ0B3rSve6UKGuGzlrUTM=;
+ b=FIe7mMAcaUMdPLudBj2Ee98mXsBvz5nP3Zy+VjYVB+oY1YEt4vdgfpNF
+ R5k7g3vQUFooel6tSJTM5jK2mtp2tP3dvZZ51NyNQKKCdlxdo6CQ9p7AZ
+ 3xoMtDoUPcY4Y24UK7mzr+Ci9mKGvvA/hZRVzzZn/7mIAXftITg6MC/or
+ dsMvc4YqENmHeS+Y3WIKf4hgfOEJtiVQg8CMDA88xuiUP4CJNhbPsveeu
+ gQnhvCpzG33niPnMcJ1tkNIaW2IytTbBnRhFggry2yQ3tjpKn46kpUWW0
+ 6pl5ZeW7QQDqcXO0X9DNgFh64XJiP7/MhxtlQ1PcgmBnfSecaFaJmfi3a w==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10747"; a="340398519"
+X-IronPort-AV: E=Sophos;i="6.00,259,1681196400"; d="scan'208";a="340398519"
+Received: from fmsmga001.fm.intel.com ([10.253.24.23])
+ by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 20 Jun 2023 20:55:33 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10747"; a="804174782"
-X-IronPort-AV: E=Sophos;i="6.00,259,1681196400"; d="scan'208";a="804174782"
+X-IronPort-AV: E=McAfee;i="6600,9927,10747"; a="858820550"
+X-IronPort-AV: E=Sophos;i="6.00,259,1681196400"; d="scan'208";a="858820550"
 Received: from orsmsx603.amr.corp.intel.com ([10.22.229.16])
- by FMSMGA003.fm.intel.com with ESMTP; 20 Jun 2023 19:10:50 -0700
+ by fmsmga001.fm.intel.com with ESMTP; 20 Jun 2023 20:55:32 -0700
 Received: from orsmsx610.amr.corp.intel.com (10.22.229.23) by
  ORSMSX603.amr.corp.intel.com (10.22.229.16) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.23; Tue, 20 Jun 2023 19:10:49 -0700
-Received: from ORSEDG602.ED.cps.intel.com (10.7.248.7) by
+ 15.1.2507.23; Tue, 20 Jun 2023 20:55:32 -0700
+Received: from orsedg603.ED.cps.intel.com (10.7.248.4) by
  orsmsx610.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.23 via Frontend Transport; Tue, 20 Jun 2023 19:10:49 -0700
-Received: from NAM12-DM6-obe.outbound.protection.outlook.com (104.47.59.173)
- by edgegateway.intel.com (134.134.137.103) with Microsoft SMTP Server
+ 15.1.2507.23 via Frontend Transport; Tue, 20 Jun 2023 20:55:32 -0700
+Received: from NAM11-DM6-obe.outbound.protection.outlook.com (104.47.57.174)
+ by edgegateway.intel.com (134.134.137.100) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2507.23; Tue, 20 Jun 2023 19:10:48 -0700
+ 15.1.2507.23; Tue, 20 Jun 2023 20:55:30 -0700
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=I0nlE0rbJG5r0twz1YBgvkxXQJYO3QkWYhO+utw4r0kGqLk141lA4nV5GSEayo+HldA9LRW/9POOqkUHUIy9SA6ZdoXY77SQAsD/Wu+TIGa7asRRf2mOK9P1shXE/LYtqbYlGtTBGJ4d76tY0pvliZ7k0CSc6/P8bVhlX61RsAiNxthwhVzoYvJuR1Y2wT1qULaacSrni+s32rrhGx8cRiw6+6x4nstK0ZZ6A/9M6HgaGxC0P91HANXgR/TX+bBlXFjAiXWuGYmHXb/doD5JT9XEtGWMHRXPzmtGuo9Um5tZVj2hmZwPDH9NuhFG1uySxaRK3pCnp6/XH7kSNECYnQ==
+ b=a0E5fvcVT2GKUHiEE1M/qKuJGy2G4RxHDfRgof7tYrEGrRFLl+4T/9jkLpzzfm53Yln2sSXnTxnqFzWrzM0FltZw1gnHiRmkPUiLnUXTlD9FCYTLPPg/uvFMhYzPByF4276280D9P5tzq6O2lh+lUocduwBw6C/hz7kHuPE2scM4Xa4CPcZnbc2xUpACj8uWzl5C5QP8cnrx8DzQyrQFMO8V3zeMLGn+NbFOgnSW4c6VSrQJpMFAo2lWbDQkkgyujnb0MclzRc/oPy1edcINoudMow4noVBYZE6JVDVVZ54H25Q4Tto+SgQVrTIsYk2wA/TnRFO2lHqEZhgWzTGY3g==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=0qLIwAsm4lsUpLiyEwlrq05yCX7I9dlwtqE7neWj2iw=;
- b=iTq7c0wtvijWumGhPnLSzKeLesAsvXS+hq6mZzvqO0EK5YMI2imOzGTsEGSs4vYUBycxprL5p4ppl2IwEOVlKokqKRhM/VforkY+iCv0xCCiex01VDkKbFfT6040ezbaK3I8m3yZM2XC1KTJmi2XFjt71mPlduwWm5vAKA3dwtNM3LyL5SEH976SY+QP6y95fZvbSM92NgD1kJRVrMEspGv4Szuq9XrCcJJsm/R49/w4FOpprg9gqjEki3jt6M4QNGcP3WYbMFmNSQbqZv5LvdkpKYs/MVuc7ZH+EDDN5d+A6KpAcL91P1s0nTYkb6XFmqY6YO35FTegwBifAMkYvQ==
+ bh=2sXocgYnBidlEecsNai06epBrTDFNsEG1nZ/CRpsVJY=;
+ b=NoeQ++AJpInXt8o2QDvm/3iwtkdKSDj+CCVmPuiMfN5zjNLS84O5Q3NgWWP3R93m/SKkiHn1/gAOZRSfda7Usb4ceevUQpZshK/5ogsSe82/Biz7Ah1RU24Vzc5gfla17mxE00ojv4ClIYqcQ57u1UEFcLMvd+MAz+E/qqboHnnZBnD1WT2xSyOwxVsQF84o6KvACtOLYnMgEM5GA3aYlwAILpXep1OP7mHqkNPe/VeaogqVbI1Brl5v/qcllon8wpiD77IaSDLZEZJji/Ur6ZL12La8iYj9coRE1qRxkOWnvvhrxcjqtFwXCdU4fyhPrenKvMnfh0IN7McKAA+0/A==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
  dkim=pass header.d=intel.com; arc=none
 Authentication-Results: dkim=none (message not signed)
  header.d=none;dmarc=none action=none header.from=intel.com;
-Received: from DS7PR11MB7859.namprd11.prod.outlook.com (2603:10b6:8:da::22) by
- CY8PR11MB6914.namprd11.prod.outlook.com (2603:10b6:930:5a::13) with
- Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.6500.37; Wed, 21 Jun 2023 02:10:47 +0000
-Received: from DS7PR11MB7859.namprd11.prod.outlook.com
- ([fe80::9f98:8f3c:a608:8396]) by DS7PR11MB7859.namprd11.prod.outlook.com
- ([fe80::9f98:8f3c:a608:8396%7]) with mapi id 15.20.6500.036; Wed, 21 Jun 2023
- 02:10:45 +0000
-Date: Tue, 20 Jun 2023 19:10:43 -0700
-From: Matt Roper <matthew.d.roper@intel.com>
-To: Lucas De Marchi <lucas.demarchi@intel.com>
-Message-ID: <20230621021043.GC5433@mdroper-desk1.amr.corp.intel.com>
-References: <20230620193229.1698372-1-radhakrishna.sripada@intel.com>
- <20230620193229.1698372-3-radhakrishna.sripada@intel.com>
- <p7zjd7pktccivhdosyrteoixzrkqqiawzcjluhfujwo35qpisl@zol4cc6pxhjp>
- <DM4PR11MB5971ED74CBC0D05B16B0CD41875CA@DM4PR11MB5971.namprd11.prod.outlook.com>
- <oekkd7ikdekbxmqaumvffxxxmgimawic232muweq4c2vgjpd7q@4fkzr5dpx55o>
-Content-Type: text/plain; charset="us-ascii"
+Received: from PH8PR11MB6952.namprd11.prod.outlook.com (2603:10b6:510:224::13)
+ by CO1PR11MB4881.namprd11.prod.outlook.com (2603:10b6:303:91::20)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6521.23; Wed, 21 Jun
+ 2023 03:55:28 +0000
+Received: from PH8PR11MB6952.namprd11.prod.outlook.com
+ ([fe80::84a5:8625:a20c:4086]) by PH8PR11MB6952.namprd11.prod.outlook.com
+ ([fe80::84a5:8625:a20c:4086%4]) with mapi id 15.20.6500.036; Wed, 21 Jun 2023
+ 03:55:28 +0000
+Date: Tue, 20 Jun 2023 20:55:21 -0700
+From: Niranjana Vishwanathapura <niranjana.vishwanathapura@intel.com>
+To: "Upadhyay, Tejas" <tejas.upadhyay@intel.com>
+Message-ID: <ZJJ0qfR/5JMDA2Sk@nvishwa1-DESK>
+References: <20230615141933.2865583-1-tejas.upadhyay@intel.com>
+ <20230615141933.2865583-7-tejas.upadhyay@intel.com>
+ <ZIzMbz7Jk0F0tpf6@nvishwa1-DESK>
+ <DS7PR11MB6197189274A9EBB171F589B5815FA@DS7PR11MB6197.namprd11.prod.outlook.com>
+Content-Type: text/plain; charset="us-ascii"; format=flowed
 Content-Disposition: inline
-In-Reply-To: <oekkd7ikdekbxmqaumvffxxxmgimawic232muweq4c2vgjpd7q@4fkzr5dpx55o>
-X-ClientProxiedBy: BYAPR06CA0067.namprd06.prod.outlook.com
- (2603:10b6:a03:14b::44) To DS7PR11MB7859.namprd11.prod.outlook.com
- (2603:10b6:8:da::22)
+In-Reply-To: <DS7PR11MB6197189274A9EBB171F589B5815FA@DS7PR11MB6197.namprd11.prod.outlook.com>
+X-ClientProxiedBy: BYAPR05CA0061.namprd05.prod.outlook.com
+ (2603:10b6:a03:74::38) To PH8PR11MB6952.namprd11.prod.outlook.com
+ (2603:10b6:510:224::13)
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: DS7PR11MB7859:EE_|CY8PR11MB6914:EE_
-X-MS-Office365-Filtering-Correlation-Id: 8c5b2e2d-9bde-493d-f629-08db71fcb90d
+X-MS-TrafficTypeDiagnostic: PH8PR11MB6952:EE_|CO1PR11MB4881:EE_
+X-MS-Office365-Filtering-Correlation-Id: 1cdf3888-4f72-4ebc-0191-08db720b59e1
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: MtiymGDR83cca3PP9WX9M/Mujk0zPerwCaWiFS35JHcsntx3q92AhIDZ5GvkIIsuUwApaiyXYjcWRqSi9WJAv+w7SDviORI0p+LL61PmUn1z+4ZGlJld8QXhedyAvNQd6bPp9Mky0DwlmFULP1OiZp45bvU1QRBJgLMISeNKM4GLETXrQktXm78otLRR6noMRHaoN6HwyepK9DGKAah7f2qxWk+fK5ccqC31aZRlGxs4r91TK5rVnjp+yAA/oOGshGsQFcWqEbm0qQeQYNxCF168QMfm7P+K5aYO3Vi/E9nlKdNnzIj/yHbAkvvsGckkMxLN0L9Ml3Mzu9FApzUBJgzdAeEtUhuv74G6AcdkGoyQ/RW3S2TxxEYFN2NHc2webI4R0NignUTiLpcITQfsbym9p1P5FqUKenUT82zQ6qVE/5D3EfaWPUjgqHwkE9Q6UFBAq6RbAZp+ZQXHqCCwsKyFd1yRm/kVBpa5PJl26qflOFFXOTHVigzEcL22SnhQeekPCMHhGREflbrNiSuW5CZQmVXOEIlxHoJiFvqHA8KXzbxvdec7/EvJigDeGHFp
+X-Microsoft-Antispam-Message-Info: H735lgiCer72/koj+yMW2xmsjG386akc70iN9w+igpmapXWECp6Nrl8wJWYoWxCjYubtzb/cCw+zMAI+84QZwXUox5yXhQCB2oB9yDtpa+DDoUd4qU0x/6mlRkBW7amu4xz4J4KcE6Z8soUheGA9TA8wivsWIG7BiNT3pckgkfgfHNd5Bxlc1THw3DEH/yB3cl21ulvq3k4IuIermYjdrZkwjIGTdvFMyjL/kAksbkbrEXXq4DFFMTLbh78m8o4iExZ6rqOcWiuyqq/emqk3gl7YbqWRSVy13ZUoD8kqMUwXuyLR/o7UmuVfzJiPG05tzD7/5EGCLv31ye+EnTzHIFn3fsbeUcDoVgAGa1ZOKhPnoa82oZaWrpAiiOXhNDCla9lE/TDcBWjOOh+/gYtUjpZo6i0ZMprjNWkNwB1wuLyzxvThkTWhFJGy/sKIoegwWZ9xVuay4Bj2QJc4v/3ydmNyxzIArR+n8+ZI9q3uCwtRkdfwrXkmxXJZ2qZwsHEoiH7LN384ML5WwUV+JQw/R6qcB7Aki90UE9CdzgEoqJSBIBxLcG68FMvqE+96kdH5
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:DS7PR11MB7859.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230028)(346002)(366004)(396003)(39860400002)(136003)(376002)(451199021)(66946007)(53546011)(8936002)(66556008)(66476007)(8676002)(1076003)(186003)(26005)(6506007)(6512007)(82960400001)(83380400001)(41300700001)(38100700002)(6862004)(5660300002)(6636002)(4326008)(316002)(54906003)(30864003)(6486002)(478600001)(2906002)(33656002)(86362001);
+ IPV:NLI; SFV:NSPM; H:PH8PR11MB6952.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230028)(7916004)(366004)(396003)(39860400002)(376002)(346002)(136003)(451199021)(54906003)(6666004)(478600001)(66556008)(66946007)(66476007)(9686003)(26005)(186003)(6512007)(107886003)(6506007)(53546011)(6486002)(4326008)(5660300002)(6862004)(41300700001)(6636002)(316002)(8936002)(8676002)(33716001)(44832011)(2906002)(38100700002)(82960400001)(86362001)(83380400001);
  DIR:OUT; SFP:1102; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?/kdguUO6DMUbhchvGu1D6Pw8AsVbHom0q6OL5jJnHTN8/NoXJ4e4q4fzJEvl?=
- =?us-ascii?Q?eEaVpB4jp7Ltl6FZhFhmRkXqeBWoUmSgva0CqDGdPgTuQkRfH9TXlhTm3voC?=
- =?us-ascii?Q?rCS35+6Pg7F9QX8E1Ler7Tcgtn3yAD1QFVzspBlmtxOomKG6VH6QVK3rPYSW?=
- =?us-ascii?Q?gPYVv9XT39t4Ugjvtk6C6R4duI1q78zwFAV5EeOndl8u+rX2kXpjNEyABEap?=
- =?us-ascii?Q?cnSjitSaMII1piV/ABOCc0EZYscLbIwGn/wNOnSogRJ5MmH9cxuAxP7gp+j1?=
- =?us-ascii?Q?AgteglDJEkxr8NIu951N0W1/YQJTHssO33J95HSBLFuFmERL1ZsB2hgrw087?=
- =?us-ascii?Q?cFiTx46WO/jAXXN7JyoDR1pr5lUF3AaDQb4Z7Wtz9HvpXtWIL5PTuhDeH9Ns?=
- =?us-ascii?Q?Uy2feE1MZkY7d0zGOoi+Ru4Sj6nmuqEzfYoBCIeJqou6XV+hbFW5gqCIO39l?=
- =?us-ascii?Q?/oXqoAGN9zvTODlq+BahG2m0I660XqqraWN/iWoHHvPXjyvH2bnMxDtt06e+?=
- =?us-ascii?Q?jwggCVE+UXGvXxGYzL7QmQlyjVv3xK28QXdricvJhomEr4C58g5QouKxni2l?=
- =?us-ascii?Q?HL5lbqUJ7AirTWU4B7Kypq07RPMPoZaTUD5jfLGIbEBQ5mPllWVKlZeFdaXR?=
- =?us-ascii?Q?oR7IAbvxaGi0pkdSQqIg//XyqudgGW8zjqpMrS7hCEf3beNLtvpieE7v66Ss?=
- =?us-ascii?Q?+a4v4lCkkVO5YNdU6jiVPlDBW7jCvFfYx4RyoZTgL+WLQ0xqQnTWRWwsSoow?=
- =?us-ascii?Q?QWq+CdMXWZJ1JY663Q2r7jmsf8eugY6CzxYnXP6NWhR9JUWqeesw0sbiI8MF?=
- =?us-ascii?Q?WBjGlYyXuc/0XPTKtp7bUyHh/ghDnCwOsrluwsZ0oZ2w33jg+AAW8lTDi6va?=
- =?us-ascii?Q?YEcpUF9/K773ytUaVd/gD1WblSR9WJ/m8ttVmjfhBXSPYvOL848eqom99wrx?=
- =?us-ascii?Q?O7aPxnrIl73X7GvaGCqUjzn1866swQ2jTxkp+Su4cAkdPmvK5wAUtNms2wDZ?=
- =?us-ascii?Q?pXXv436jq4cr24zavcCoKcCwB5Q8v8giV8xb5XJofyJ1VCwVS0otIPBSylFm?=
- =?us-ascii?Q?hsy4FpsygpTGGSQJS+/ZHYYl5R0ngqVwATnvSuMpz2fW8zueLNRSCJmV+730?=
- =?us-ascii?Q?gRuJpJjj90wE46VaYXqfeDfjQ2wfBu9jfApIw1zsOIDxGoD63vGAgh1fwe+A?=
- =?us-ascii?Q?p3x8rF5tnL5q3aDmkxKBwLutdZtL4YW8oG0VQZ5kUQdUoZNIZb+pwtGRV5Ed?=
- =?us-ascii?Q?nrGDu0xgElgfEjCdZPBDizFq+9JJgCNCWFzhcZ+pZ3F4D+CWUFVMLWTsZfc5?=
- =?us-ascii?Q?gy7D8OMJ5BvjL9FfysPNAKpAcvhQNZupKpr82eoLZ6opwP0fJh/FgmwDjF/H?=
- =?us-ascii?Q?W0FJHE7XS5pfP0j0966x/2IhgKP16Jbu1hz2XmeU6N3ESfYVjUmsSSv15+Ti?=
- =?us-ascii?Q?U9alT6CMUpSPSzV7Z7g1ea7aGI5+AdtnV2RwZVaavjzUQ1MnWO2OG4zHmeVB?=
- =?us-ascii?Q?r/VxrvFEK8c+pWTiqrYva8B3Bxf/TldYqAoiKGy14Gs+K6CX0ltnp8vKVESL?=
- =?us-ascii?Q?I8CCrptk6fgDG/XScGHovvEUqcCUx6C0a+iqqeHNYOxgPKjaaMo5rzzrzcxV?=
- =?us-ascii?Q?hg=3D=3D?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: 8c5b2e2d-9bde-493d-f629-08db71fcb90d
-X-MS-Exchange-CrossTenant-AuthSource: DS7PR11MB7859.namprd11.prod.outlook.com
+X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?TsMyqpA6SD9MwFnePyZRyVYt0DjKsrO9xcoB8qYMGzPh7nIw3sWzmPOh5Xb8?=
+ =?us-ascii?Q?9UHnRH0+g2Wx+V/9CXDwII6e0UscwiqGL+vV/Q+bkz/SGjSbfl+nEURgIOWq?=
+ =?us-ascii?Q?j5SlulMot4eUtFI8/SYoYCV2h1skIgX4bjGr52xEXdciwU83nSrh9xDDj9aQ?=
+ =?us-ascii?Q?OLj3wacIPbErxOXLWDrP1sQalXLMtvUg+15VPa5Nz+b0vZnrGNiwpoZvcSP6?=
+ =?us-ascii?Q?jeZkwiqH7QSMDT1GxR10df/Rvv3FunGRQM2aRQJBx2/fJEPtjCi2yveGaAzu?=
+ =?us-ascii?Q?cmK4ggTEzmdJ/+b2mg9uTv6lKSm7jMCnJrln3GQx1k6IkSj4yaf7LBf+5C9O?=
+ =?us-ascii?Q?WBFIPp2dVhuK/2pYzOWITj3v9qTFwPDoQmBjVrKVPZkjXC18WnPkmpZBCXsf?=
+ =?us-ascii?Q?d7A1gHUysNwj0KmOT//vutCFQ18XPr6agQmAfHXU4n3r5VT1PzSLgtgdi4qM?=
+ =?us-ascii?Q?teg/6IVRcqmpVkN6sy9c5sZM5RqPu/JUVuDzSCImvGpGS0aUa77IbV4BPxc9?=
+ =?us-ascii?Q?5uRyX562C9OAyJtIU3GDRoJc3mCFa2FQWckiBziWIwGdEnko+XN31MVKudu4?=
+ =?us-ascii?Q?Q+a0Z8kiHu4Nr0MFOijLk+mJCDp9iEGkI79xGwCydHGBF9kKGlGB95IUZJTM?=
+ =?us-ascii?Q?64BtpxgEgI4zr+Vs8h2icaMT+xigNZxEv322MLLkqKGPQ3V9FWE1744dgPH3?=
+ =?us-ascii?Q?627vFmoJMtVtgzjKozwmNYvrmo32uBd6b2QxmmKglchRDLWG6lsnwTDTcJZT?=
+ =?us-ascii?Q?gIWX/UUYJ8BLyRJywsEY+1vuYkcz4ugYV3tlj1eHJ+0+faDWrLYjt0pW9/Qe?=
+ =?us-ascii?Q?LYyvNQgAciBoF1rWgpxSZnIRflBw7hQs0TCOPJQD20RjOGp/j7iOWE2aR9TG?=
+ =?us-ascii?Q?+Vmb0I0QyKtNwlrKgUwCOfIitx2aaWoirJFr3a9TfwdPXz4S1QGvZeC04pfm?=
+ =?us-ascii?Q?j+NGI1cEzmEXBKm3UnaGqkMwSUC7DqWREuUh+Vr4uK6CvLMHrAOyFPgtwCrX?=
+ =?us-ascii?Q?HmTcwajPKHNXRNK5jXbmorgRgJN8OOEBxOkesiQkHJqvkfk1ztHnSft9swhC?=
+ =?us-ascii?Q?C88u+snO0XtUeg7SPIbfto6S7eqvq+n1t6SdsYMwzgyE9gV2uXuAMlpCvMfI?=
+ =?us-ascii?Q?AokDWKiAUcu+h75+M3d9BzLu0Z5xfjt71GFTVyYgGumsP69jrBjwdkBmF4S9?=
+ =?us-ascii?Q?Enzxo7P00JgYtu0GsdoQQLt06bhlJfc/QdfLIR1dOr5tI/62CDXYQnThTw7y?=
+ =?us-ascii?Q?32x7v1klr6ln5W2EwG6LSLDT1uhEy9rAsSu/UeHcc29Ix2xM2C8MM0FMlWRQ?=
+ =?us-ascii?Q?CZxk3R1htt7LCBk0oucsnukYeazCwQGDE+tOQRmUd2oyh7y4elIj+mCbNzEG?=
+ =?us-ascii?Q?oeu50wJhIk/NGhzpXBZ3Po5aYrKJhDd4fzLHdr4yS3xYeGE9n0XH72bUc5ta?=
+ =?us-ascii?Q?wR8EBhM+k2M4Zqf9AC967OA8Vu/390FUD7Z/fSsN+u7sqzPYFOx0OATtXjMc?=
+ =?us-ascii?Q?jLfBy4QlNyxZJIHTCOUvDPETm1S8GKab13uYepuJuDlObzteNu48KXsGE2La?=
+ =?us-ascii?Q?eUGr7VDGsXihT133ik7YeGKwx6OzOQ9W0LJ4OgmYjzrvyXHUaYi7B7P1ngMS?=
+ =?us-ascii?Q?O+gP/L7A0B18nouLhngxja0=3D?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: 1cdf3888-4f72-4ebc-0191-08db720b59e1
+X-MS-Exchange-CrossTenant-AuthSource: PH8PR11MB6952.namprd11.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 21 Jun 2023 02:10:45.5486 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 21 Jun 2023 03:55:28.4124 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: z/eLJ/L8q8Dvs7NAg5ygkC82ZGkbRQG3iAOxQekccuvfB4Dy/PPPcTv60D+WZIBUNdPqqPAmHi5kmiLm4/Al/a6gem9E6j4A4dI8vaoU2pY=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: CY8PR11MB6914
+X-MS-Exchange-CrossTenant-UserPrincipalName: i8DmEGqQfOEL9kWW8wFwVywagCNjnNPdpcGZN3sCRjUvTTEcKE2fUgwgnuUyvHnIn8/K/p1n2awBruBBewEmG9w4XAXG04kAhDkj16mY0MmIRuYK1tZ8UMuJy01QFsPw
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: CO1PR11MB4881
 X-OriginatorOrg: intel.com
-Subject: Re: [Intel-xe] [PATCH v2 2/2] drm/xe: Add reg read/write trace
+Subject: Re: [Intel-xe] [PATCH 6/6] drm/xe: Add min/max cap for engine
+ scheduler properties
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -149,384 +149,100 @@ Cc: "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Tue, Jun 20, 2023 at 05:25:49PM -0700, Lucas De Marchi wrote:
-> On Tue, Jun 20, 2023 at 10:38:50PM +0000, Radhakrishna Sripada wrote:
-> > 
-> > 
-> > > -----Original Message-----
-> > > From: De Marchi, Lucas <lucas.demarchi@intel.com>
-> > > Sent: Tuesday, June 20, 2023 2:28 PM
-> > > To: Sripada, Radhakrishna <radhakrishna.sripada@intel.com>
-> > > Cc: intel-xe@lists.freedesktop.org; Roper, Matthew D
-> > > <matthew.d.roper@intel.com>
-> > > Subject: Re: [Intel-xe] [PATCH v2 2/2] drm/xe: Add reg read/write trace
-> > > 
-> > > On Tue, Jun 20, 2023 at 12:32:29PM -0700, Radhakrishna Sripada wrote:
-> > > >This will help debug register read/writes and provide
-> > > >a way to trace all the mmio transactions.
-> > > >
-> > > >In order to avoid spam from xe_mmio_wait32,
-> > > >xe_mmio_read32_notrace is introduced and used.
-> > > 
-> > > feedback given before was to avoid the exported _notrace stuff. If there
-> > > was a justification for it somewhere I probably lost it. Could you
-> > > clarify? If I understand the above paragraph correctly, it's due to
-> > > the fact the xe_mmio_wait32() reads the register multiple times...
-> > > why would we want to avoid the "spam"? If we are reading it multiple
-> > > times, the trace should show it instead of hiding.  If we demonstrate
-> > > there is an actual impact, then xe_mmio_wait32() should be adjusted, not
-> > > the rest of the shim layer in intel_uncore.h
-> > Unless I missed some whaere earlier feedback I received was on the usage of inline in function definitions.
-> > Xe_mmio_wait32 I believe is loosely based out of __intel_wait_for_register(atleast based on compat-headers)
-> > Where during the actual check, no trace version of register read is used and just the final value is traced before
-> > Returning from the function. A similar kind of approach is adapted here.
-> > 
-> > If it does not make much value like that then I believe we can use a traceable version
-> > But in case if developers want to have a stack trace for each tracee out put then the spam becomes even more
-> > messy.
-> 
-> there was a chat last week about that... maybe I misremembered and you
-> were not part of it.  The trace part should be pretty cheap to be kept
-> everywhere, particularly because it's not enabled by default it's
-> nothing more than a few nop instructions.
-> 
-> If we don't trace everything and hide some of them behind functions like
-> xe_mmio_wait32() or intel_uncore_read_fw(), with no indication in their
-> name that they won't trace, then when we are reading the trace we spend
-> a long time tracking back what exactly was happening.
-> When we have the complete trace, filtering should be pretty
-> easy. Eliminating random traces means we lose information that is not
-> possible to recover after the fact.
+On Sun, Jun 18, 2023 at 09:43:51PM -0700, Upadhyay, Tejas wrote:
+>
+>
+>> -----Original Message-----
+>> From: Vishwanathapura, Niranjana <niranjana.vishwanathapura@intel.com>
+>> Sent: Saturday, June 17, 2023 2:26 AM
+>> To: Upadhyay, Tejas <tejas.upadhyay@intel.com>
+>> Cc: intel-xe@lists.freedesktop.org; Iddamsetty, Aravind
+>> <aravind.iddamsetty@intel.com>; Ghimiray, Himal Prasad
+>> <himal.prasad.ghimiray@intel.com>; Brost, Matthew
+>> <matthew.brost@intel.com>
+>> Subject: Re: [PATCH 6/6] drm/xe: Add min/max cap for engine scheduler
+>> properties
+>>
+>> On Thu, Jun 15, 2023 at 07:49:33PM +0530, Tejas Upadhyay wrote:
+>> >Add sysfs entries for the min, max, and defaults for each of engine
+>> >scheduler controls for every hardware engine class.
+>> >
+>> >Non-elevated user IOCTLs to set these controls must be within the
+>> >min-max ranges of the sysfs entries, elevated user can set these
+>> >controls to any value.
+>> >
+>> >Introducing compile time CONFIG min-max values which restricts elevated
+>> >user to be in compile time min-max range if at all sysfs min/max are
+>> >violated.
+>> >
+>> >Sysfs entries examples are,
+>> >DUT# cat /sys/class/drm/cardX/device/gtN/engines/ccs/.defaults/
+>> >job_timeout_max         job_timeout_ms          preempt_timeout_min
+>> timeslice_duration_max  timeslice_duration_us
+>> >job_timeout_min         preempt_timeout_max     preempt_timeout_us
+>> timeslice_duration_min
+>> >
+>> >DUT# cat /sys/class/drm/card1/device/gt1/engines/ccs/
+>> >.defaults/              job_timeout_min         preempt_timeout_max
+>> preempt_timeout_us      timeslice_duration_min
+>> >job_timeout_max         job_timeout_ms          preempt_timeout_min
+>> timeslice_duration_max  timeslice_duration_us
+>> >
+>> >Signed-off-by: Tejas Upadhyay <tejas.upadhyay@intel.com>
 
-I could see an argument for avoiding tracepoint i915:i915_reg_rw within
-xe_mmio_wait32() if that function utilized separate tracepoints like
-i915:i915_reg_wait_start and i915:i915_reg_wait_end instead.  That could
-potentially consolidate the repeated trace output down to just two lines
-without losing any information.  We don't have tracepoints like those
-today though.
+<snip>
 
+>> >diff --git a/drivers/gpu/drm/xe/xe_engine.c
+>> >b/drivers/gpu/drm/xe/xe_engine.c index e72423bc398a..c368ffd5e461
+>> >100644
+>> >--- a/drivers/gpu/drm/xe/xe_engine.c
+>> >+++ b/drivers/gpu/drm/xe/xe_engine.c
+>> >@@ -13,6 +13,7 @@
+>> >
+>> > #include "xe_device.h"
+>> > #include "xe_gt.h"
+>> >+#include "xe_gt_sysfs.h"
+>> > #include "xe_hw_fence.h"
+>> > #include "xe_lrc.h"
+>> > #include "xe_macros.h"
+>> >@@ -191,9 +192,20 @@ static int engine_set_priority(struct xe_device
+>> >*xe, struct xe_engine *e,  static int engine_set_timeslice(struct xe_device
+>> *xe, struct xe_engine *e,
+>> > 				u64 value, bool create)
+>> > {
+>> >-	if (!capable(CAP_SYS_NICE))
+>> >+	if (!capable(CAP_SYS_NICE) &&
+>> >+	    !engine_timeout_in_range(value,
+>> >+				     e->hwe->sched_props.timeslice_min,
+>> >+				     e->hwe->sched_props.timeslice_max))
+>> > 		return -EPERM;
+>> >
+>> >+#if defined(CONFIG_DRM_XE_TIMESLICE_MIN) &&
+>> defined(CONFIG_DRM_XE_TIMESLICE_MAX)
+>> >+	if (capable(CAP_SYS_NICE) &&
+>> >+	    !engine_timeout_in_range(value,
+>> >+				     CONFIG_DRM_XE_TIMESLICE_MIN,
+>> >+				     CONFIG_DRM_XE_TIMESLICE_MAX))
+>> >+		return -EPERM;
+>> >+#endif
+>>
+>> Do we really need this second boundary check given the in the first check
+>> above, the e->hwe->sched_props.timeslice_min/max values are already
+>> subjected to these boundaries?
+>> Applies for other below parameters also.
+>
+>Yes we need because,
+>If elevated user exceeds configured sysfs min/max (he is allowed to do so), which number could be below or above compile config min max.
+>As user can try any value through IOCTL/sysfs being elevated user, we need to check with second check.
+>
 
-Matt
+I thought CONFIG_DRM_XE_TIMESLICE_MIN/MAX are the default values of hwe->sched_props.timeslice_min/max
+which user can override. But looking at timeslice_duration_min/max_store(), looks like these configs
+are not default min/max values but a boundary for min/max values. I am confused.
 
-> 
-> > 
-> > > 
-> > > >
-> > > >v2: Do not use inline for the function declarations.(MattR)
-> > > >
-> > > >Cc: Lucas De Marchi <lucas.demarchi@intel.com>
-> > > >Cc: Matt Roper <matthew.d.roper@intel.com>
-> > > >Signed-off-by: Radhakrishna Sripada <radhakrishna.sripada@intel.com>
-> > > >---
-> > > > .../drm/xe/compat-i915-headers/intel_uncore.h |  8 +-
-> > > > drivers/gpu/drm/xe/xe_mmio.c                  | 80 ++++++++++++++++++-
-> > > > drivers/gpu/drm/xe/xe_mmio.h                  |  5 ++
-> > > > drivers/gpu/drm/xe/xe_trace.h                 | 26 ++++++
-> > > > 4 files changed, 111 insertions(+), 8 deletions(-)
-> > > >
-> > > >diff --git a/drivers/gpu/drm/xe/compat-i915-headers/intel_uncore.h
-> > > b/drivers/gpu/drm/xe/compat-i915-headers/intel_uncore.h
-> > > >index fae6213d26f1..036f3b963a84 100644
-> > > >--- a/drivers/gpu/drm/xe/compat-i915-headers/intel_uncore.h
-> > > >+++ b/drivers/gpu/drm/xe/compat-i915-headers/intel_uncore.h
-> > > >@@ -113,7 +113,7 @@ static inline u32 intel_uncore_read_fw(struct
-> > > fake_uncore *uncore,
-> > > > {
-> > > > 	struct xe_reg reg = XE_REG(i915_mmio_reg_offset(i915_reg));
-> > > >
-> > > >-	return xe_mmio_read32(__fake_uncore_to_gt(uncore), reg);
-> > > >+	return xe_mmio_read32_notrace(__fake_uncore_to_gt(uncore), reg);
-> > > 
-> > > how would you even know that intel_uncore_read_fw() is non-traceable?
-> > > ditto for all the other functions in this header.
-> > In i915 intel_uncore_read_fw and other _fw functions translate to raw_uncore_read
-> > And its variants which do not include the GEN6 Header/footer which have the traces
-> > included and hence are the non-trace variants. Unless I am missing something.
-> 
-> I meant "as a user of the API". There's no clue whatsoever in
-> intel_uncore_read_fw() that it will not trace. I think the selective
-> trace/no-trace in random places in i915 was a mistake.
-> 
-> Lucas De Marchi
-> 
-> > 
-> > --Radhakrishna(RK) Sripada
-> > > 
-> > > 
-> > > Lucas De Marchi
-> > > 
-> > > > }
-> > > >
-> > > > static inline void intel_uncore_write_fw(struct fake_uncore *uncore,
-> > > >@@ -121,7 +121,7 @@ static inline void intel_uncore_write_fw(struct
-> > > fake_uncore *uncore,
-> > > > {
-> > > > 	struct xe_reg reg = XE_REG(i915_mmio_reg_offset(i915_reg));
-> > > >
-> > > >-	xe_mmio_write32(__fake_uncore_to_gt(uncore), reg, val);
-> > > >+	xe_mmio_write32_notrace(__fake_uncore_to_gt(uncore), reg, val);
-> > > > }
-> > > >
-> > > > static inline u32 intel_uncore_read_notrace(struct fake_uncore *uncore,
-> > > >@@ -129,7 +129,7 @@ static inline u32 intel_uncore_read_notrace(struct
-> > > fake_uncore *uncore,
-> > > > {
-> > > > 	struct xe_reg reg = XE_REG(i915_mmio_reg_offset(i915_reg));
-> > > >
-> > > >-	return xe_mmio_read32(__fake_uncore_to_gt(uncore), reg);
-> > > >+	return xe_mmio_read32_notrace(__fake_uncore_to_gt(uncore), reg);
-> > > > }
-> > > >
-> > > > static inline void intel_uncore_write_notrace(struct fake_uncore *uncore,
-> > > >@@ -137,7 +137,7 @@ static inline void intel_uncore_write_notrace(struct
-> > > fake_uncore *uncore,
-> > > > {
-> > > > 	struct xe_reg reg = XE_REG(i915_mmio_reg_offset(i915_reg));
-> > > >
-> > > >-	xe_mmio_write32(__fake_uncore_to_gt(uncore), reg, val);
-> > > >+	xe_mmio_write32_notrace(__fake_uncore_to_gt(uncore), reg, val);
-> > > > }
-> > > >
-> > > > #endif /* __INTEL_UNCORE_H__ */
-> > > >diff --git a/drivers/gpu/drm/xe/xe_mmio.c b/drivers/gpu/drm/xe/xe_mmio.c
-> > > >index 78c7f839f783..ef2192a2d060 100644
-> > > >--- a/drivers/gpu/drm/xe/xe_mmio.c
-> > > >+++ b/drivers/gpu/drm/xe/xe_mmio.c
-> > > >@@ -19,6 +19,7 @@
-> > > > #include "xe_gt_mcr.h"
-> > > > #include "xe_macros.h"
-> > > > #include "xe_module.h"
-> > > >+#include "xe_trace.h"
-> > > >
-> > > > #define XEHP_MTCFG_ADDR		XE_REG(0x101800)
-> > > > #define TILE_COUNT		REG_GENMASK(15, 8)
-> > > >@@ -429,7 +430,7 @@ static const struct xe_reg mmio_read_whitelist[] = {
-> > > > 	RING_TIMESTAMP(RENDER_RING_BASE),
-> > > > };
-> > > >
-> > > >-u8 xe_mmio_read8(struct xe_gt *gt, struct xe_reg reg)
-> > > >+u8 xe_mmio_read8_notrace(struct xe_gt *gt, struct xe_reg reg)
-> > > > {
-> > > > 	struct xe_tile *tile = gt_to_tile(gt);
-> > > >
-> > > >@@ -439,6 +440,31 @@ u8 xe_mmio_read8(struct xe_gt *gt, struct xe_reg
-> > > reg)
-> > > > 	return readb(tile->mmio.regs + reg.addr);
-> > > > }
-> > > >
-> > > >+u8 xe_mmio_read8(struct xe_gt *gt, struct xe_reg reg)
-> > > >+{
-> > > >+	struct xe_tile *tile = gt_to_tile(gt);
-> > > >+	u8 val;
-> > > >+
-> > > >+	if (reg.addr < gt->mmio.adj_limit)
-> > > >+		reg.addr += gt->mmio.adj_offset;
-> > > >+
-> > > >+	val = readb(tile->mmio.regs + reg.addr);
-> > > >+
-> > > >+	trace_xe_reg_rw(false, &reg, val, sizeof(val));
-> > > >+
-> > > >+	return val;
-> > > >+}
-> > > >+
-> > > >+void xe_mmio_write32_notrace(struct xe_gt *gt, struct xe_reg reg, u32 val)
-> > > >+{
-> > > >+	struct xe_tile *tile = gt_to_tile(gt);
-> > > >+
-> > > >+	if (reg.addr < gt->mmio.adj_limit)
-> > > >+		reg.addr += gt->mmio.adj_offset;
-> > > >+
-> > > >+	writel(val, tile->mmio.regs + reg.addr);
-> > > >+}
-> > > >+
-> > > > void xe_mmio_write32(struct xe_gt *gt, struct xe_reg reg, u32 val)
-> > > > {
-> > > > 	struct xe_tile *tile = gt_to_tile(gt);
-> > > >@@ -446,10 +472,12 @@ void xe_mmio_write32(struct xe_gt *gt, struct
-> > > xe_reg reg, u32 val)
-> > > > 	if (reg.addr < gt->mmio.adj_limit)
-> > > > 		reg.addr += gt->mmio.adj_offset;
-> > > >
-> > > >+	trace_xe_reg_rw(true, &reg, val, sizeof(val));
-> > > >+
-> > > > 	writel(val, tile->mmio.regs + reg.addr);
-> > > > }
-> > > >
-> > > >-u32 xe_mmio_read32(struct xe_gt *gt, struct xe_reg reg)
-> > > >+u32 xe_mmio_read32_notrace(struct xe_gt *gt, struct xe_reg reg)
-> > > > {
-> > > > 	struct xe_tile *tile = gt_to_tile(gt);
-> > > >
-> > > >@@ -459,6 +487,21 @@ u32 xe_mmio_read32(struct xe_gt *gt, struct xe_reg
-> > > reg)
-> > > > 	return readl(tile->mmio.regs + reg.addr);
-> > > > }
-> > > >
-> > > >+u32 xe_mmio_read32(struct xe_gt *gt, struct xe_reg reg)
-> > > >+{
-> > > >+	struct xe_tile *tile = gt_to_tile(gt);
-> > > >+	u32 val;
-> > > >+
-> > > >+	if (reg.addr < gt->mmio.adj_limit)
-> > > >+		reg.addr += gt->mmio.adj_offset;
-> > > >+
-> > > >+	val = readl(tile->mmio.regs + reg.addr);
-> > > >+
-> > > >+	trace_xe_reg_rw(false, &reg, val, sizeof(val));
-> > > >+
-> > > >+	return val;
-> > > >+}
-> > > >+
-> > > > u32 xe_mmio_rmw32(struct xe_gt *gt, struct xe_reg reg, u32 clr, u32 set)
-> > > > {
-> > > > 	u32 old, reg_val;
-> > > >@@ -470,6 +513,16 @@ u32 xe_mmio_rmw32(struct xe_gt *gt, struct xe_reg
-> > > reg, u32 clr, u32 set)
-> > > > 	return old;
-> > > > }
-> > > >
-> > > >+void xe_mmio_write64_notrace(struct xe_gt *gt, struct xe_reg reg, u64 val)
-> > > >+{
-> > > >+	struct xe_tile *tile = gt_to_tile(gt);
-> > > >+
-> > > >+	if (reg.addr < gt->mmio.adj_limit)
-> > > >+		reg.addr += gt->mmio.adj_offset;
-> > > >+
-> > > >+	writeq(val, tile->mmio.regs + reg.addr);
-> > > >+}
-> > > >+
-> > > > void xe_mmio_write64(struct xe_gt *gt, struct xe_reg reg, u64 val)
-> > > > {
-> > > > 	struct xe_tile *tile = gt_to_tile(gt);
-> > > >@@ -477,10 +530,12 @@ void xe_mmio_write64(struct xe_gt *gt, struct
-> > > xe_reg reg, u64 val)
-> > > > 	if (reg.addr < gt->mmio.adj_limit)
-> > > > 		reg.addr += gt->mmio.adj_offset;
-> > > >
-> > > >+	trace_xe_reg_rw(true, &reg, val, sizeof(val));
-> > > >+
-> > > > 	writeq(val, tile->mmio.regs + reg.addr);
-> > > > }
-> > > >
-> > > >-u64 xe_mmio_read64(struct xe_gt *gt, struct xe_reg reg)
-> > > >+u64 xe_mmio_read64_notrace(struct xe_gt *gt, struct xe_reg reg)
-> > > > {
-> > > > 	struct xe_tile *tile = gt_to_tile(gt);
-> > > >
-> > > >@@ -490,6 +545,21 @@ u64 xe_mmio_read64(struct xe_gt *gt, struct xe_reg
-> > > reg)
-> > > > 	return readq(tile->mmio.regs + reg.addr);
-> > > > }
-> > > >
-> > > >+u64 xe_mmio_read64(struct xe_gt *gt, struct xe_reg reg)
-> > > >+{
-> > > >+	struct xe_tile *tile = gt_to_tile(gt);
-> > > >+	u64 val;
-> > > >+
-> > > >+	if (reg.addr < gt->mmio.adj_limit)
-> > > >+		reg.addr += gt->mmio.adj_offset;
-> > > >+
-> > > >+	val = readq(tile->mmio.regs + reg.addr);
-> > > >+
-> > > >+	trace_xe_reg_rw(false, &reg, val, sizeof(val));
-> > > >+
-> > > >+	return val;
-> > > >+}
-> > > >+
-> > > > int xe_mmio_write32_and_verify(struct xe_gt *gt, struct xe_reg reg, u32 val,
-> > > > 			       u32 mask, u32 eval)
-> > > > {
-> > > >@@ -511,7 +581,7 @@ int xe_mmio_wait32(struct xe_gt *gt, struct xe_reg
-> > > reg, u32 val, u32 mask,
-> > > > 	u32 read;
-> > > >
-> > > > 	for (;;) {
-> > > >-		read = xe_mmio_read32(gt, reg);
-> > > >+		read = xe_mmio_read32_notrace(gt, reg);
-> > > > 		if ((read & mask) == val) {
-> > > > 			ret = 0;
-> > > > 			break;
-> > > >@@ -531,6 +601,8 @@ int xe_mmio_wait32(struct xe_gt *gt, struct xe_reg
-> > > reg, u32 val, u32 mask,
-> > > > 		wait <<= 1;
-> > > > 	}
-> > > >
-> > > >+	trace_xe_reg_rw(false, &reg, read, sizeof(read));
-> > > >+
-> > > > 	if (out_val)
-> > > > 		*out_val = read;
-> > > >
-> > > >diff --git a/drivers/gpu/drm/xe/xe_mmio.h b/drivers/gpu/drm/xe/xe_mmio.h
-> > > >index c06fcac2cc5b..02364ba9dda2 100644
-> > > >--- a/drivers/gpu/drm/xe/xe_mmio.h
-> > > >+++ b/drivers/gpu/drm/xe/xe_mmio.h
-> > > >@@ -20,11 +20,16 @@ struct xe_device;
-> > > > #define GEN12_LMEM_BAR		2
-> > > >
-> > > > int xe_mmio_init(struct xe_device *xe);
-> > > >+u8 xe_mmio_read8_notrace(struct xe_gt *gt, struct xe_reg reg);
-> > > > u8 xe_mmio_read8(struct xe_gt *gt, struct xe_reg reg);
-> > > >+void xe_mmio_write32_notrace(struct xe_gt *gt, struct xe_reg reg, u32 val);
-> > > > void xe_mmio_write32(struct xe_gt *gt, struct xe_reg reg, u32 val);
-> > > >+u32 xe_mmio_read32_notrace(struct xe_gt *gt, struct xe_reg reg);
-> > > > u32 xe_mmio_read32(struct xe_gt *gt, struct xe_reg reg);
-> > > > u32 xe_mmio_rmw32(struct xe_gt *gt, struct xe_reg reg, u32 clr, u32 set);
-> > > >+void xe_mmio_write64_notrace(struct xe_gt *gt, struct xe_reg reg, u64 val);
-> > > > void xe_mmio_write64(struct xe_gt *gt, struct xe_reg reg, u64 val);
-> > > >+u64 xe_mmio_read64_notrace(struct xe_gt *gt, struct xe_reg reg);
-> > > > u64 xe_mmio_read64(struct xe_gt *gt, struct xe_reg reg);
-> > > > int xe_mmio_write32_and_verify(struct xe_gt *gt, struct xe_reg reg, u32 val,
-> > > > 			       u32 mask, u32 eval);
-> > > >diff --git a/drivers/gpu/drm/xe/xe_trace.h b/drivers/gpu/drm/xe/xe_trace.h
-> > > >index 2f8eb7ebe9a7..a5d514c190a2 100644
-> > > >--- a/drivers/gpu/drm/xe/xe_trace.h
-> > > >+++ b/drivers/gpu/drm/xe/xe_trace.h
-> > > >@@ -12,6 +12,7 @@
-> > > > #include <linux/tracepoint.h>
-> > > > #include <linux/types.h>
-> > > >
-> > > >+#include "regs/xe_reg_defs.h"
-> > > > #include "xe_bo_types.h"
-> > > > #include "xe_engine_types.h"
-> > > > #include "xe_gt_tlb_invalidation_types.h"
-> > > >@@ -507,6 +508,31 @@ DEFINE_EVENT(xe_vm, xe_vm_rebind_worker_exit,
-> > > > 	     TP_ARGS(vm)
-> > > > );
-> > > >
-> > > >+TRACE_EVENT(xe_reg_rw,
-> > > >+	    TP_PROTO(bool write, struct xe_reg *reg, u64 val, int len),
-> > > >+	    TP_ARGS(write, reg, val, len),
-> > > >+
-> > > >+	    TP_STRUCT__entry(
-> > > >+		    __field(u64, val)
-> > > >+		    __field(struct xe_reg *, reg)
-> > > >+		    __field(u16, write)
-> > > >+		    __field(u16, len)
-> > > >+		    ),
-> > > >+
-> > > >+	    TP_fast_assign(
-> > > >+		   __entry->val = (u64)val;
-> > > >+		   __entry->reg = reg;
-> > > >+		   __entry->write = write;
-> > > >+		   __entry->len = len;
-> > > >+		),
-> > > >+
-> > > >+	    TP_printk("%s reg=0x%x, len=%d, val=(0x%x, 0x%x)",
-> > > >+		      __entry->write ? "write" : "read",
-> > > >+		      __entry->reg->addr, __entry->len,
-> > > >+		      (u32)(__entry->val & 0xffffffff),
-> > > >+		      (u32)(__entry->val >> 32))
-> > > >+);
-> > > >+
-> > > > TRACE_EVENT(xe_guc_ct_h2g_flow_control,
-> > > > 	    TP_PROTO(u32 _head, u32 _tail, u32 size, u32 space, u32 len),
-> > > > 	    TP_ARGS(_head, _tail, size, space, len),
-> > > >--
-> > > >2.34.1
-> > > >
+Niranjana
 
--- 
-Matt Roper
-Graphics Software Engineer
-Linux GPU Platform Enablement
-Intel Corporation
+>>
+>> >+
+>> > 	return e->ops->set_timeslice(e, value); }
+>> >
