@@ -4,139 +4,139 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4FE17EB64D7
-	for <intel-xe@archiver.kernel.org>; Wed, 21 Jun 2023 04:29:57 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id CFB66EB64D7
+	for <intel-xe@archiver.kernel.org>; Wed, 21 Jun 2023 05:19:47 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 024E410E3AB;
-	Wed, 21 Jun 2023 04:29:57 +0000 (UTC)
-Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1BBE210E3AB
- for <intel-xe@lists.freedesktop.org>; Wed, 21 Jun 2023 04:29:55 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 16BE810E3AB;
+	Wed, 21 Jun 2023 05:19:47 +0000 (UTC)
+Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1B70A10E3AB
+ for <intel-xe@lists.freedesktop.org>; Wed, 21 Jun 2023 05:19:44 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1687321796; x=1718857796;
- h=date:from:to:cc:subject:message-id:references:
- in-reply-to:mime-version;
- bh=VSkINxLT1Ve1tx+Z+qWsMcCPXBLCPxXXi9WO6MpRaEw=;
- b=iI3eSF1vfN48tNnsyK1p+/XZe4U+dEHD6wZjsjVj0lf+wysSCudTyvGT
- 8fBd3qm/jPiYJjVCckbtDatxDVuCFfFtYy4/RS0ZicPADLNmdSLI/LlcR
- QgluF7El5/wJFjA/lxWQVsHSRrplDWxqa6ovoRWOfyzn9cVFJND//ALog
- Z+kvXP7sJF8dBxt/HNeLnretiUYOrY++pUevA7lxQxBDOAtkbJ1IT8TEE
- L2wDKmlblmcLHfKBlX+GNDoTXn6rGlkJdTLJ1rFWP+230f0CVYsfJpGh3
- Ao2beZ+hBz4GWE8LlKyXSzJAsrmdz0IoGOZ0j+wwcxRm8TKZPFzg0paTO g==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10747"; a="358933409"
-X-IronPort-AV: E=Sophos;i="6.00,259,1681196400"; d="scan'208";a="358933409"
-Received: from fmsmga001.fm.intel.com ([10.253.24.23])
- by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 20 Jun 2023 21:29:55 -0700
+ t=1687324785; x=1718860785;
+ h=from:to:cc:subject:date:message-id:references:
+ in-reply-to:content-transfer-encoding:mime-version;
+ bh=hacW7vt6HF+vYCrGD4a8LYsTiIN4uR+itF/qiRRQ0MI=;
+ b=QGpM/7fDIo97n7RimhVNO4ubysi+XKkNm5R2jeP/PFZM3sHqsqFXTPnV
+ SAL4cJYTrfUfmB0mIozFPrfItZd5BjoTuh6ayeGYbtM2HkHUTZssdgGSM
+ bgHFeK71jNLK0tmWFfdr+k7JtK7urAfgOuuA8Uozon4KXj/17tVVNDpr0
+ YW9236zaTEGvsr6YGnWx86ZvHy2QYF4Ww02kMyrAaWSMpkDpIfRN3Q/P2
+ nmvu8eX13RevS6l05VDBLGEI9f+C0KjO+LWxOnQv3jBf+Jcy8MVzIHBju
+ dsAgLTtmbO18PX0shCuRIlbAWJUhbj4sKWF60CgewGd3bEn7+MOPAavvo Q==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10747"; a="360082288"
+X-IronPort-AV: E=Sophos;i="6.00,259,1681196400"; d="scan'208";a="360082288"
+Received: from fmsmga005.fm.intel.com ([10.253.24.32])
+ by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 20 Jun 2023 22:19:43 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10747"; a="858829192"
-X-IronPort-AV: E=Sophos;i="6.00,259,1681196400"; d="scan'208";a="858829192"
-Received: from orsmsx602.amr.corp.intel.com ([10.22.229.15])
- by fmsmga001.fm.intel.com with ESMTP; 20 Jun 2023 21:29:54 -0700
-Received: from orsmsx611.amr.corp.intel.com (10.22.229.24) by
- ORSMSX602.amr.corp.intel.com (10.22.229.15) with Microsoft SMTP Server
+X-IronPort-AV: E=McAfee;i="6600,9927,10747"; a="1044561460"
+X-IronPort-AV: E=Sophos;i="6.00,259,1681196400"; d="scan'208";a="1044561460"
+Received: from fmsmsx602.amr.corp.intel.com ([10.18.126.82])
+ by fmsmga005.fm.intel.com with ESMTP; 20 Jun 2023 22:19:43 -0700
+Received: from fmsmsx610.amr.corp.intel.com (10.18.126.90) by
+ fmsmsx602.amr.corp.intel.com (10.18.126.82) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.23; Tue, 20 Jun 2023 21:29:54 -0700
-Received: from orsmsx610.amr.corp.intel.com (10.22.229.23) by
- ORSMSX611.amr.corp.intel.com (10.22.229.24) with Microsoft SMTP Server
+ 15.1.2507.23; Tue, 20 Jun 2023 22:19:42 -0700
+Received: from FMSEDG603.ED.cps.intel.com (10.1.192.133) by
+ fmsmsx610.amr.corp.intel.com (10.18.126.90) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.23; Tue, 20 Jun 2023 21:29:53 -0700
-Received: from ORSEDG602.ED.cps.intel.com (10.7.248.7) by
- orsmsx610.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.23 via Frontend Transport; Tue, 20 Jun 2023 21:29:53 -0700
-Received: from NAM12-MW2-obe.outbound.protection.outlook.com (104.47.66.42) by
- edgegateway.intel.com (134.134.137.103) with Microsoft SMTP Server
+ 15.1.2507.23 via Frontend Transport; Tue, 20 Jun 2023 22:19:42 -0700
+Received: from NAM10-BN7-obe.outbound.protection.outlook.com (104.47.70.106)
+ by edgegateway.intel.com (192.55.55.68) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2507.23; Tue, 20 Jun 2023 21:29:52 -0700
+ 15.1.2507.23; Tue, 20 Jun 2023 22:19:41 -0700
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=jl1CdCLNUlAnJuRJ3ejQ9YpSMwseU1OrerOQwU9aeBSTYcv7fIEca2hYnXB8hzvN7iZMyqfgo1tDsuPBU0g4H8rl0GfV15E0XKm3Qf8usHrXII28rdw/szFHtcyp3iywY9oc0LqoUJLFfFo1L8Yr9b2Zs68sCAFQ02fxMQUgBAmHLIUdwOH/rPMPnhSFHsFXicq4VXBIg/IxMbUpVuR02oJcPKqEI5Tm771YoerG2ZackERgfX+AR2UJxtHPUwukruHkcT3J0xy74m6FUYjWLJyJ54ca7E0QBkEKCC9ybcI3kmebf90sKBuiE7T0ySm8VfLoM9JxujIg2nVY7D3k0A==
+ b=OcMvD3q9TxUZJML4DNVNMxL8GDu4Ok8P793Xgk0b7RUEyVg49Ov04cY8/D0qKJiL7Atb8NwLlsMznEcxFGWha0szl5BA6kJt0kJ1+Ni/9SgtFCq7yPDlZtB/qbVLpIzjuOnaSTqPvFBZNaQjRQ93PEmliMzlPgaB4+O6YmhJWRsU7ft/KQGlknucLYtprjVWm6Sy8at4+WdWgseK6bE3C2pM97LekSRBnW9smQcRVoFjKU7o7m7/6KA7Ie8YbbkX+wSlpCNC+S0ZQE2I96B70Ev57bBAta/lC5WTcuGqu+rXAjjLXEBF6TngfJGV/cCeFuQQ+mHsR15HQ3JdrdiKJg==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=GCLFhRrXINbCF15IdT9qCzU9bICsZQfEYYetWzL0n6w=;
- b=XIcfKTAd9Ev3sDPeuPW9XCL1QeZK0MZ7+ioN9vtfwwvaj5IbbLFuCBOuJPamZpACkLjGqCGoHstVK16zz1B29lLiYASP6l1naEo3/w48LhlQhbS60w1Gm92Uwr27hupuBtyaZvWlD6IKU0ZCKUnd3gmZ5K612JsUR32TqsFjxXuceJm+Q4WVl0ATn6y/ttn3vyRMUXtp3jukFnAIjaCamhxksPEAhcAL2l5U6EF739SbYKiAb3HT7DBa7ZqIiMl7Q7xPDEEZQXchwtu56dlKaMM9QOqJ0B6Ie4Hl2KswI/e2n9rYpH9ViJQW77Pk0ibJabE3PLbSIj3jydomOjtLhg==
+ bh=hC43bDn6UQf3Ta2trLm0RquWKgT8ED8wcpDwnQPM4vg=;
+ b=IBLbKScpqqH5nL1AdOLsVhBG33vNVrVa1OZi+es2BCGytWbWCLKSllyuDH8HguDXiovCqEvtlxiQhHBbtEvKwkky+oIUj+2LQ5q+ajqS01cuRied1FKekV8ZUWlJWgVRI8wdB0+9EohqdLKkArJzI5BMj0wausKZCSflmRxkktKzYMcOJaohaJVdgRJKkSwhLOM/SEV9G8qDSs4hSg6SjNgnbME2OBqfqHqI2yd+aBLMiP0z9QV9aEXF00wGgZpmvxtcSXXkdwBtbr6fcjjXBvaUy8Rm7sOT8wSpE2EZq1LEqVqlX3vaZE+Lcw1yTXg3Qt2yP9+7CqbTLvMew3tz1A==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
  dkim=pass header.d=intel.com; arc=none
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=intel.com;
-Received: from PH8PR11MB6952.namprd11.prod.outlook.com (2603:10b6:510:224::13)
- by SJ0PR11MB5661.namprd11.prod.outlook.com (2603:10b6:a03:3b9::5)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6500.37; Wed, 21 Jun
- 2023 04:29:50 +0000
-Received: from PH8PR11MB6952.namprd11.prod.outlook.com
- ([fe80::84a5:8625:a20c:4086]) by PH8PR11MB6952.namprd11.prod.outlook.com
- ([fe80::84a5:8625:a20c:4086%4]) with mapi id 15.20.6500.036; Wed, 21 Jun 2023
- 04:29:50 +0000
-Date: Tue, 20 Jun 2023 21:29:41 -0700
-From: Niranjana Vishwanathapura <niranjana.vishwanathapura@intel.com>
-To: "Upadhyay, Tejas" <tejas.upadhyay@intel.com>
-Message-ID: <ZJJ8tRDKimj0Jrrz@nvishwa1-DESK>
+Received: from SJ1PR11MB6204.namprd11.prod.outlook.com (2603:10b6:a03:459::19)
+ by DS0PR11MB7879.namprd11.prod.outlook.com (2603:10b6:8:f7::14) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6521.23; Wed, 21 Jun
+ 2023 05:19:31 +0000
+Received: from SJ1PR11MB6204.namprd11.prod.outlook.com
+ ([fe80::2bfb:7d63:f348:1a4]) by SJ1PR11MB6204.namprd11.prod.outlook.com
+ ([fe80::2bfb:7d63:f348:1a4%5]) with mapi id 15.20.6500.036; Wed, 21 Jun 2023
+ 05:19:32 +0000
+From: "Upadhyay, Tejas" <tejas.upadhyay@intel.com>
+To: "Vishwanathapura, Niranjana" <niranjana.vishwanathapura@intel.com>
+Thread-Topic: [PATCH 6/6] drm/xe: Add min/max cap for engine scheduler
+ properties
+Thread-Index: AQHZn5Opt7weKax8N0aPHY1M0eyYQq+N6tOAgAOkh2CAAxnlgIAAFtQQ
+Date: Wed, 21 Jun 2023 05:19:32 +0000
+Message-ID: <SJ1PR11MB6204FDDB84CCF235A241830F815DA@SJ1PR11MB6204.namprd11.prod.outlook.com>
 References: <20230615141933.2865583-1-tejas.upadhyay@intel.com>
- <20230615141933.2865583-3-tejas.upadhyay@intel.com>
- <ZIzInHB8NmkuwWd8@nvishwa1-DESK>
- <DS7PR11MB6197AC215DD38AD284EF93CE815FA@DS7PR11MB6197.namprd11.prod.outlook.com>
-Content-Type: text/plain; charset="us-ascii"; format=flowed
-Content-Disposition: inline
-In-Reply-To: <DS7PR11MB6197AC215DD38AD284EF93CE815FA@DS7PR11MB6197.namprd11.prod.outlook.com>
-X-ClientProxiedBy: SJ0PR03CA0343.namprd03.prod.outlook.com
- (2603:10b6:a03:39c::18) To PH8PR11MB6952.namprd11.prod.outlook.com
- (2603:10b6:510:224::13)
-MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: PH8PR11MB6952:EE_|SJ0PR11MB5661:EE_
-X-MS-Office365-Filtering-Correlation-Id: 696696f0-b2b6-4458-7b49-08db721026b0
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: c6YR0iXCWmFlVXaNIrRuMrCAZBKu/mn112Ckz+zxGhqZGXM7bOB+H9ikw3WEKRenB4IJ69dcDHc2fGQnRLOXCc+gqyL9Km/+/6hcqunxzG/64uQroNe9oXNjGluejaEfaMHZyD3Du32Ir0RxVDcL5w9PhhZ5N7DHcZEzzIzZA6XLKQXU4ERONdEW8XUOWhLDhjElxgz0D/74+ThF9BncmCeg/CGpu+zllxQzrj/6b0QbREQtJZaX5tadmREmkJBoeJ+PJy3+TLU7hv3uQfAvCb4SZ0T6Yaj+HufR0OJnlZtOblSaRzeodZM70lCyr7yQDBcirrwUEODP6iuus5/0Az1MAnAhBLnMY9bOnL2U9ncRo5chTVWhT9/+MeXlR0HAXkbhSDZ02KykR9hLZvUrmPtV/2bN/s0iyXHo6so1+3Uw+0mOILTkVn+6RNgkfyXyy/ne6EsBrHUwe7FBLkwQc8exSy6aNNFa+KT0ieEpFaEozfa2bcGQCZhrmDwLBV6cw3qJ6H3RV/G08QK0QGThhYJXFHp3UWd1Zfjwwh86gwuqlZS5fLXQEcD4bB/zrXqf
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:PH8PR11MB6952.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230028)(7916004)(366004)(396003)(346002)(376002)(136003)(39860400002)(451199021)(30864003)(44832011)(66556008)(4326008)(66476007)(66946007)(6636002)(316002)(5660300002)(66899021)(2906002)(6862004)(8676002)(8936002)(41300700001)(6486002)(54906003)(86362001)(478600001)(38100700002)(33716001)(6506007)(107886003)(6512007)(186003)(9686003)(26005)(53546011)(82960400001)(83380400001)(6666004);
+ <20230615141933.2865583-7-tejas.upadhyay@intel.com>
+ <ZIzMbz7Jk0F0tpf6@nvishwa1-DESK>
+ <DS7PR11MB6197189274A9EBB171F589B5815FA@DS7PR11MB6197.namprd11.prod.outlook.com>
+ <ZJJ0qfR/5JMDA2Sk@nvishwa1-DESK>
+In-Reply-To: <ZJJ0qfR/5JMDA2Sk@nvishwa1-DESK>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+authentication-results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=intel.com;
+x-ms-publictraffictype: Email
+x-ms-traffictypediagnostic: SJ1PR11MB6204:EE_|DS0PR11MB7879:EE_
+x-ms-office365-filtering-correlation-id: af6802e6-0428-455f-c475-08db72171877
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info: E7qEgRCAJf+z6i7czXoAXYamHJHfDB4IxYhpKLLxCBksLH5YH5qHLqETXLCNwtK5kvPu1uzeDV0Clr02o2IY6v9j1Q81E5Q6Lp3AF965mFbv/qzJJxMKKGrtSJ7jy12CujFkydqDua9etvlzTFn5zOybPowlQ1c6Ho9f67jhroum026VX2CQeyn9JXTZE8I/MjnqtXA5BSEl3LZvhz87d0piWrbZIQy+17r8+9Jcuar5M5ztmfOQBSgXI4Zwm3AudNp18+2LuRPM3u2G9FNjmBV7/dt8miCm3znjzmPYNg5Cu4nO3Lc5J/TBDAAn6i42wc6o6Z72ATW+ErBb1W+BSsb3385u06uoyblRBd1v2vON7Uu4TuqjHMb+SVWCIzbolME4kyuTB15t7O8pyvforlZ48+61AVydBYnHqiSLA2JvUszdV5H4aOEVPguJAjAKQuyhn5EBAEz/12NDkQO7Z89nocms0WWYjo72A7nUgzRS6eyX9cbaulwS3rs+rsDyLAvvy+z8MQ8Xg84oXbFmtdbi8hZAEPrlLo2UGNFLWQLeE0VAXytCQhB6aGjCTdWscE+1fiy5367Fyx93UBVfki2EWn4O+iHvIjik6eWXkSN2PFcFd6Nbb5nVXnhZz442
+x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:SJ1PR11MB6204.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230028)(396003)(39860400002)(136003)(376002)(346002)(366004)(451199021)(478600001)(7696005)(71200400001)(76116006)(54906003)(53546011)(9686003)(6506007)(26005)(107886003)(186003)(66946007)(2906002)(41300700001)(66556008)(66476007)(66446008)(64756008)(6636002)(4326008)(316002)(52536014)(5660300002)(8936002)(8676002)(6862004)(122000001)(82960400001)(38100700002)(86362001)(33656002)(38070700005)(83380400001)(55016003);
  DIR:OUT; SFP:1102; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?XTDAfgaRHKfZR/iOH44mmhCOyc81UamZRamlcrD65U/14lZRM5tS1F9RQWbr?=
- =?us-ascii?Q?k1kx9U9L25kOwJpfI6el4OyznlbHSKH13q16SmB5IUvjo8OOnmWI9+p8UlBd?=
- =?us-ascii?Q?HiD02MDxaD4qRcwZgiyPm0zfRorCcVX6QT2NUVBETlR+2yNcw6DZIT9aMiW8?=
- =?us-ascii?Q?ysO+UuLb+wMgGOmwFrrufbtHtNs7ytHK7fHUU4G8pZeagfncea9Oqg6qEY/F?=
- =?us-ascii?Q?YZBDOz5JMAcJfXFoOLOIyHjZn9FAnwwZgMFG27yLGn8g24XQ1JaEZO/a2mck?=
- =?us-ascii?Q?R9vIQCWk9hSxbX4lJPqKk1gERAd9zDmlIoiII4FNRwB0f3mecW6UD8IO2oLl?=
- =?us-ascii?Q?E6TULPReL/2R9dCj3SjYdvzoChGxy70XozDQlxDBjz+fOrCx1CWhChHuIgOT?=
- =?us-ascii?Q?49/c9+gYzJQsRefcXxejh3SqcWtjsz19NmGe7bWeo7YeXkGZLhTrKb80msd0?=
- =?us-ascii?Q?RNJaqPY0B6iElWj6L8s1cpZla/lkndpmAiv6+xJaQccBMFszFJJRG/WfaE2+?=
- =?us-ascii?Q?ta+TMGiuzZ0jeiSD9vN5ZpKNBmy3nTmipRznOqn3X7hHkMY9QTGw9VOIP0YK?=
- =?us-ascii?Q?Lp2AU0OXeJw9lfgEkSSePEgF1u3ej4EMbcBmyw3rm0GpBNf2EvSWN68P4EpZ?=
- =?us-ascii?Q?RSVyuNXslel/xj9vYiKzYMF9ujpG+0ZGV7t2pO3oiMr/dOR2P/0uhceXpGee?=
- =?us-ascii?Q?FvHdZ+OplddhVoNVZoZkbpCtVWyw9AIyCfS1bOQd+y8AQiuy5o8T2pxxs6A7?=
- =?us-ascii?Q?z7mtRN9QASoOJ01A7aLCj4N6rGnnM+1ItLcRhS88SJGW7CQscnNDfySk2KV5?=
- =?us-ascii?Q?jrAB+P2WMN3y5jrY9YBHbdF21x12gn9jsSIu2UkDd1fhL9s8lgaqaN/V6Qxn?=
- =?us-ascii?Q?vlJuHdwQc1cYay/TXuARysY9TvNFL6T1TMQSuEHu5L4us7o+JUDnWdeicQmE?=
- =?us-ascii?Q?LIvozru79LycFIUoRyve//w3plM7NCMwcfKEQeaNW1kJgqnsdYpMnjrd6KV2?=
- =?us-ascii?Q?5sz4uTMp09FXNl2ECgeSBhDITR+MsIg7QvX8o2Kw1fnPlB/51mwXAhyhJp2L?=
- =?us-ascii?Q?0ESu5ihHnE1EUmlRCaxrzs2zERTuHI1XY388eH/btu+cdZtSr1WxQrWO105c?=
- =?us-ascii?Q?su7PHqZwcCq7QhC9xKm41xZ3Bh9X+l87tSEpEpg00UQUcFslzZkbSQRRNu8t?=
- =?us-ascii?Q?4IAHUxFBS4vqaJKeFV6obWReheiZ69wmM95Bv7trKKI+dTNETf6bAH7c2LhG?=
- =?us-ascii?Q?HufPJsylFkg78ATIsNRSY60rT/rnEHDvhI0KEzOVcNorjkzl7QgvsrxA6L8F?=
- =?us-ascii?Q?qO9aTLOrsvXeltAb0X5v7ZX+uopKsjyNilRt7+mKpD9abIUZrU8vRKP08pz4?=
- =?us-ascii?Q?WNThrTZgsm/zxJ6i1WHAPOiHO/Qeg6qI6tyLap6lUmt8PlamZBOph0T4doyH?=
- =?us-ascii?Q?5gGbvcboSAb5z2Vjg3/GQbTD4nkFh/hgBoRtuk/V0nWNelvvI/j0Uc7RmMjw?=
- =?us-ascii?Q?0EqDkzYV53GSdWA76aZujOTAAxwWBLCryeMGo6azWz0L7IryNix5NLkpiQyA?=
- =?us-ascii?Q?d+zOfeg2Gfq4k0ipno33rXOtntNrP3wGYk2ZkhwQj8RxbMdJ2MI7AYnr1LCq?=
- =?us-ascii?Q?8lrKkLfPIiCe3o6Ut7IbssY=3D?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: 696696f0-b2b6-4458-7b49-08db721026b0
-X-MS-Exchange-CrossTenant-AuthSource: PH8PR11MB6952.namprd11.prod.outlook.com
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0: =?us-ascii?Q?Z0a61IDArP69Fm+MZjLREtwVGCbuXz94WndANJzGNw/70ZI+X0tzGulXhN0W?=
+ =?us-ascii?Q?wiPeR0cAJjfhBOjUQb4EBsI+ApLxknl1zFD0B81glwkNh8+8YP11ace0pHDt?=
+ =?us-ascii?Q?t/3je3T7Lun3jt71V5NpzlAJemzxmp8+O7fdvmzMXxNTC2sfhNgV2BneFa3g?=
+ =?us-ascii?Q?+gBcL8m6enPbT/KHhLjx/WG7kQyxEyB+IRW9kL6T/tEKR2k6zqlMOBwWhm/a?=
+ =?us-ascii?Q?cH7nAJbKsIdtrp/vdhPc0C146CkBTlD4K7g8V+GgFuZj2ifrCk7Y9asbxMYa?=
+ =?us-ascii?Q?rEvK+I4kCbzMTq8jiJ5RkJaP55y+5me3I+Yel/dnyd2EXsFrmCrv1boslocJ?=
+ =?us-ascii?Q?8wItAw2VWSfkVyYywH82uAJrfWlZ/WxH7VKRpMBHnQFFIcmT8bLE23cA2PE5?=
+ =?us-ascii?Q?78zGllMnNHY6tfMCjMmHdFNsgXwDl27I4yXQdff3SW3JR3hoYBKqHje8fAE1?=
+ =?us-ascii?Q?WnLDvol/XuOGm1oR+tQjhUgaoaSpHlhQgPXZM+eLypFTIfUQJ4tnLa/UGNLI?=
+ =?us-ascii?Q?UJVXbQa/8nULegDXJzjfLDuampDrqht45tgQnGYfgqVezvroyiTwIgXjVtXh?=
+ =?us-ascii?Q?E8SHeQ86ercGsLc4222uwkUPBZI2rez1tov427L1dBteS9Q3YN5FhsoctFbD?=
+ =?us-ascii?Q?Um99lo9/dt2n1Zx1uW51VDDtSQkh8IMTWHLLLQpUITFP7NnyeHsmFY6KdI/q?=
+ =?us-ascii?Q?jsYX9deocIvC98HIxjVsO1LocfidIMsLX2HvdLBX4Oavv1iwiIWhpdoa+3Nw?=
+ =?us-ascii?Q?SUg8z/4l+/OGOaN0GHbTkIamtePyRiqyHjrhiuKVZFTPS21mAyJSC3tz7kOO?=
+ =?us-ascii?Q?W5poBcIUAz5XwHTqYOzZh+sx9gPyOeEq+4nyadwHc/E1T3lAwxGDca5ftbam?=
+ =?us-ascii?Q?u7Bt040Viu3T7a9HJ/7M3BZVRU8bye5OXvbtoUkJyGvGH90QqtjZxegFA49L?=
+ =?us-ascii?Q?nWR3Ou+2MJlMUGRXpkqCLddrdCgWj7VbQed1sSoA74Nfl8xLtDK1Fz0tRjaz?=
+ =?us-ascii?Q?2sX0laboz1rZUI0/ISAlmBuOLZW9/kTJcMB/fx3X8H0AkMeEPXbk+Z0ZB/Jr?=
+ =?us-ascii?Q?9+h2EQ5j8nonk2IjW1Yz+/9peKSrqw5NuFY3FYviEHrs+oEH2Yf+DgGCdzuu?=
+ =?us-ascii?Q?PcTq4gCGrQrpn7mmEhz2Bh3OjAsaUePxgYm6f/kapdI7kLlJONgplHEZCWge?=
+ =?us-ascii?Q?fQphK7VUhUB8Zrt/z4yhJFdkBYu3HZa+nLivdJWis7kHlP3PSS9NWJEbIW9h?=
+ =?us-ascii?Q?NH8I/73XoH3870Qp4+lwrRoFFar5y4LHXmpXvNX2HGge9jZBbFv+FZErE87K?=
+ =?us-ascii?Q?WycZ+w2/WeF9au6npsQhQqUBMKNcH0TWcjqimZOEks9UVR9OVWeL4Awr2f8J?=
+ =?us-ascii?Q?eLEcEXmn3ke2eM0zcpYi/9f88Ne6ah3bPDnM813q55LKIaezHDAJCB6ctdiG?=
+ =?us-ascii?Q?vvWDEL8PuenQY51ZsRpuItPoH2Hp023foSyN9IGOQiWPt0dYqt/CZ42HW5/+?=
+ =?us-ascii?Q?z4Un++CS2aDEy8wW8J9FZTFaPPHIy4Q0dJCCm4jnHvmGNlV/QcS2FGJtsRJj?=
+ =?us-ascii?Q?FbdJm1qE267qT5uK7193ivq0iOu1Y12GT6KXwBDo?=
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
+MIME-Version: 1.0
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 21 Jun 2023 04:29:50.2087 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: Ow9++qvZYyZ87Ix/zgWKcaqZB65VRNcmrI+TeYtodGYzDUZyMZztyhr2DoFWsNWt1n+CuGlpy0ALxOJHc5pQDg0ko8puO3gh+Sjb8WNoYQ4I0UKhLbsGuSCTXD3bBg64
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SJ0PR11MB5661
+X-MS-Exchange-CrossTenant-AuthSource: SJ1PR11MB6204.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: af6802e6-0428-455f-c475-08db72171877
+X-MS-Exchange-CrossTenant-originalarrivaltime: 21 Jun 2023 05:19:32.2860 (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: JIVlEv/sOKRqkkmtexk+3FBdPTRMpe1JrZ2J/l8EjJVENhJXS9a9+W7AW66kLcIBU/zh3En1du2wFnBxE30QPvsq5yHnwljQstFocsiB0E0=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DS0PR11MB7879
 X-OriginatorOrg: intel.com
-Subject: Re: [Intel-xe] [PATCH 2/6] drm/xe: Add sysfs for default engine
+Subject: Re: [Intel-xe] [PATCH 6/6] drm/xe: Add min/max cap for engine
  scheduler properties
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -153,331 +153,128 @@ Cc: "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Sun, Jun 18, 2023 at 10:01:45PM -0700, Upadhyay, Tejas wrote:
->
->
->> -----Original Message-----
->> From: Vishwanathapura, Niranjana <niranjana.vishwanathapura@intel.com>
->> Sent: Saturday, June 17, 2023 2:10 AM
->> To: Upadhyay, Tejas <tejas.upadhyay@intel.com>
->> Cc: intel-xe@lists.freedesktop.org; Iddamsetty, Aravind
->> <aravind.iddamsetty@intel.com>; Ghimiray, Himal Prasad
->> <himal.prasad.ghimiray@intel.com>; Brost, Matthew
->> <matthew.brost@intel.com>
->> Subject: Re: [PATCH 2/6] drm/xe: Add sysfs for default engine scheduler
->> properties
->>
->> On Thu, Jun 15, 2023 at 07:49:29PM +0530, Tejas Upadhyay wrote:
->> >For each HW engine under GT we are adding defaults sysfs entry to list
->> >all engine scheduler properties and its default values. So that it will
->> >be easier for user to fetch default values of these properties anytime
->> >to go back to default.
->> >
->> >For example,
->> >DUT# cat /sys/class/drm/card1/device/gt0/engines/bcs/.defaults/
->> >job_timeout_ms         preempt_timeout_us     timeslice_duration_us
->> >
->> >where,
->> >@job_timeout_ms: The time after which a job is removed from the
->> scheduler.
->> >@preempt_timeout_us: How long to wait (in microseconds) for a
->> preemption
->> >                     event to occur when submitting a new context.
->> >@timeslice_duration_us: Each context is scheduled for execution for the
->> >                        timeslice duration, before switching to the next
->> >                        context.
->> >
->> >Signed-off-by: Tejas Upadhyay <tejas.upadhyay@intel.com>
->> >---
->> > drivers/gpu/drm/xe/xe_engine.c          |  4 +-
->> > drivers/gpu/drm/xe/xe_gt_sysfs.c        | 94 +++++++++++++++++++++++--
->> > drivers/gpu/drm/xe/xe_gt_sysfs.h        |  5 ++
->> > drivers/gpu/drm/xe/xe_gt_sysfs_types.h  | 13 ++++
->> > drivers/gpu/drm/xe/xe_guc_submit.c      |  5 +-
->> > drivers/gpu/drm/xe/xe_hw_engine.c       |  5 ++
->> > drivers/gpu/drm/xe/xe_hw_engine_types.h | 11 +++
->> > 7 files changed, 128 insertions(+), 9 deletions(-)
->> >
->> >diff --git a/drivers/gpu/drm/xe/xe_engine.c
->> >b/drivers/gpu/drm/xe/xe_engine.c index b3036c4a8ec3..e72423bc398a
->> >100644
->> >--- a/drivers/gpu/drm/xe/xe_engine.c
->> >+++ b/drivers/gpu/drm/xe/xe_engine.c
->> >@@ -53,8 +53,8 @@ static struct xe_engine *__xe_engine_create(struct
->> xe_device *xe,
->> > 	INIT_LIST_HEAD(&e->multi_gt_link);
->> >
->> > 	/* FIXME: Wire up to configurable default value */
->> >-	e->sched_props.timeslice_us = 1 * 1000;
->> >-	e->sched_props.preempt_timeout_us = 640 * 1000;
->> >+	e->sched_props.timeslice_us = hwe->sched_props.timeslice_us;
->> >+	e->sched_props.preempt_timeout_us =
->> >+hwe->sched_props.preempt_timeout_us;
->> >
->> > 	if (xe_engine_is_parallel(e)) {
->> > 		e->parallel.composite_fence_ctx =
->> dma_fence_context_alloc(1); diff
->> >--git a/drivers/gpu/drm/xe/xe_gt_sysfs.c
->> >b/drivers/gpu/drm/xe/xe_gt_sysfs.c
->> >index 7528cc723699..72809078bd83 100644
->> >--- a/drivers/gpu/drm/xe/xe_gt_sysfs.c
->> >+++ b/drivers/gpu/drm/xe/xe_gt_sysfs.c
->> >@@ -32,22 +32,92 @@ static struct kobj_type kobj_xe_engine_type = {
->> > 	.sysfs_ops = &kobj_sysfs_ops
->> > };
->> >
->> >-static struct kobject *
->> >-kobj_xe_engine(struct kobject *parent, char *name)
->> >+static ssize_t job_timeout_default(struct kobject *kobj,
->> >+				 struct kobj_attribute *attr, char *buf) {
->> >+	struct xe_hw_engine *hwe = kobj_to_hwe(kobj->parent);
->> >+
->> >+	return sprintf(buf, "%u\n", hwe->defaults.job_timeout_ms); }
->> >+
->> >+static struct kobj_attribute job_timeout_def = __ATTR(job_timeout_ms,
->> >+0444, job_timeout_default, NULL);
->> >+
->> >+static ssize_t timeslice_default(struct kobject *kobj,
->> >+				 struct kobj_attribute *attr, char *buf) {
->> >+	struct xe_hw_engine *hwe = kobj_to_hwe(kobj->parent);
->> >+
->> >+	return sprintf(buf, "%u\n", hwe->defaults.timeslice_us); }
->> >+
->> >+static struct kobj_attribute timeslice_duration_def =
->> >+__ATTR(timeslice_duration_us, 0444, timeslice_default, NULL);
->> >+
->> >+static ssize_t preempt_timeout_default(struct kobject *kobj,
->> >+				       struct kobj_attribute *attr,
->> >+				       char *buf)
->> >+{
->> >+	struct xe_hw_engine *hwe = kobj_to_hwe(kobj->parent);
->> >+
->> >+	return sprintf(buf, "%u\n", hwe->defaults.preempt_timeout_us);
->> >+}
->> >+
->> >+static struct kobj_attribute preempt_timeout_def =
->> >+__ATTR(preempt_timeout_us, 0444, preempt_timeout_default, NULL);
->> >+
->> >+int xe_add_engine_defaults(struct kobject *parent)
->> > {
->> > 	struct kobject *kobj;
->> >+	int err = 0;
->> >
->> > 	kobj = kzalloc(sizeof(*kobj), GFP_KERNEL);
->> > 	if (!kobj)
->> >-		return NULL;
->> >+		return -ENOMEM;
->> >
->> > 	kobject_init(kobj, &kobj_xe_engine_type);
->> >-	if (kobject_add(kobj, parent, "%s", name)) {
->> >+
->> >+	err = kobject_add(kobj, parent, "%s", ".defaults");
->> >+	if (err)
->> >+		goto err_object;
->> >+
->> >+	err = sysfs_create_file(kobj, &job_timeout_def.attr);
->> >+	if (err)
->> >+		goto err_object;
->> >+
->> >+	err = sysfs_create_file(kobj, &timeslice_duration_def.attr);
->> >+	if (err)
->> >+		goto err_object;
->> >+
->> >+	err = sysfs_create_file(kobj, &preempt_timeout_def.attr);
->> >+	if (err)
->> >+		goto err_object;
->> >+
->> >+	if (0) {
->> >+err_object:
->> > 		kobject_put(kobj);
->> >+		return err;
->> >+	}
->> >+
->> >+	return err;
->> >+}
->> >+
->> >+static struct kobj_hwe *
->> >+kobj_xe_engine(struct kobject *parent, char *name) {
->> >+	struct kobj_hwe *khwe;
->> >+
->> >+	khwe = kzalloc(sizeof(*khwe), GFP_KERNEL);
->> >+	if (!khwe)
->> >+		return NULL;
->> >+
->> >+	kobject_init(&khwe->base, &kobj_xe_engine_type);
->> >+	if (kobject_add(&khwe->base, parent, "%s", name)) {
->> >+		kobject_put(&khwe->base);
->> > 		return NULL;
->> > 	}
->> >
->> >-	return kobj;
->> >+	return khwe;
->> > }
->> >
->> > int xe_gt_sysfs_engines(struct xe_gt *gt) @@ -72,7 +142,7 @@ int
->> >xe_gt_sysfs_engines(struct xe_gt *gt)
->> >
->> > 	for_each_hw_engine(hwe, gt, id) {
->> > 		char name[MAX_ENGINE_NAME_LEN];
->> >-		struct kobject *khwe;
->> >+		struct kobj_hwe *khwe;
->> >
->> > 		if ((hwe->class == XE_ENGINE_CLASS_OTHER) ||
->> > 		    (hwe->class == XE_ENGINE_CLASS_MAX)) @@ -109,6
->> +179,18 @@ int
->> >xe_gt_sysfs_engines(struct xe_gt *gt)
->> > 			kobject_put(kobj);
->> > 			return -EINVAL;
->> > 		}
->> >+
->> >+		khwe->hwe = hwe;
->> >+		hwe->sysfs_hwe = &khwe->base;
->> >+
->> >+		err = xe_add_engine_defaults(&khwe->base);
->> >+		if (err) {
->> >+			kobject_put(kobj);
->> >+			drm_warn(&gt_to_xe(gt)->drm,
->> >+				 "Warning: adding .defaults to engines
->> failed!, err: %d\n",
->> >+				 err);
->> >+			return err;
->> >+		}
->> > 	}
->> >
->> > 	return err;
->> >diff --git a/drivers/gpu/drm/xe/xe_gt_sysfs.h
->> >b/drivers/gpu/drm/xe/xe_gt_sysfs.h
->> >index a531aebd10d6..a539cf031c7d 100644
->> >--- a/drivers/gpu/drm/xe/xe_gt_sysfs.h
->> >+++ b/drivers/gpu/drm/xe/xe_gt_sysfs.h
->> >@@ -19,4 +19,9 @@ kobj_to_gt(struct kobject *kobj)
->> > 	return container_of(kobj, struct kobj_gt, base)->gt;  }
->> >
->> >+static inline struct xe_hw_engine *kobj_to_hwe(struct kobject *kobj) {
->> >+	return container_of(kobj, struct kobj_hwe, base)->hwe; }
->> >+
->> > #endif /* _XE_GT_SYSFS_H_ */
->> >diff --git a/drivers/gpu/drm/xe/xe_gt_sysfs_types.h
->> >b/drivers/gpu/drm/xe/xe_gt_sysfs_types.h
->> >index d3bc6b83360f..d0a5eae1bbb4 100644
->> >--- a/drivers/gpu/drm/xe/xe_gt_sysfs_types.h
->> >+++ b/drivers/gpu/drm/xe/xe_gt_sysfs_types.h
->> >@@ -23,4 +23,17 @@ struct kobj_gt {
->> > 	struct xe_gt *gt;
->> > };
->> >
->> >+/**
->> >+ * struct kobj_hwe - A hwe's kobject struct that connects the kobject
->> >+and the
->> >+ * hwe.
->> >+ *
->> >+ * When dealing with multiple hwe, this struct helps to understand
->> >+which hwe
->> >+ * needs to be addressed on a given sysfs call.
->> >+ */
->> >+struct kobj_hwe {
->> >+	/** @base: The actual kobject */
->> >+	struct kobject base;
->> >+	/** @hwe: A pointer to the hwe itself */
->> >+	struct xe_hw_engine *hwe;
->> >+};
->>
->> More on this below.
->>
->> > #endif	/* _XE_GT_SYSFS_TYPES_H_ */
->> >diff --git a/drivers/gpu/drm/xe/xe_guc_submit.c
->> >b/drivers/gpu/drm/xe/xe_guc_submit.c
->> >index b209e4c2a3a9..bc0ffcf9fb1c 100644
->> >--- a/drivers/gpu/drm/xe/xe_guc_submit.c
->> >+++ b/drivers/gpu/drm/xe/xe_guc_submit.c
->> >@@ -1063,13 +1063,16 @@ static int guc_engine_init(struct xe_engine *e)
->> > 	ge->engine = e;
->> > 	init_waitqueue_head(&ge->suspend_wait);
->> >
->> >-	timeout = xe_vm_no_dma_fences(e->vm) ?
->> MAX_SCHEDULE_TIMEOUT : HZ * 5;
->> >+	timeout = xe_vm_no_dma_fences(e->vm) ?
->> MAX_SCHEDULE_TIMEOUT :
->> >+		  e->hwe->sched_props.job_timeout_ms;
->> > 	err = drm_sched_init(&ge->sched, &drm_sched_ops,
->> > 			     e->lrc[0].ring.size / MAX_JOB_SIZE_BYTES,
->> > 			     64, timeout, guc_to_gt(guc)->ordered_wq, NULL,
->> > 			     e->name, gt_to_xe(e->gt)->drm.dev);
->> > 	if (err)
->> > 		goto err_free;
->> >+	/* Record timeout value, in order to show current set timeout */
->> >+	e->hwe->sched_props.job_timeout_ms = timeout;
->>
->> But, timeout can be MAX_SCHEDULE_TIMEOUT which can be more than the
->> max defined in the patch#6 right?
->
->Yes, how should we handle this, any thoughts? Thanks for pointing this out. I think we need to change default max timeout in that case to match our config?
->
 
-Yes, I think so, but will let others comment.
 
->>
->> >
->> > 	sched = &ge->sched;
->> > 	err = drm_sched_entity_init(&ge->entity,
->> DRM_SCHED_PRIORITY_NORMAL,
->> >diff --git a/drivers/gpu/drm/xe/xe_hw_engine.c
->> >b/drivers/gpu/drm/xe/xe_hw_engine.c
->> >index 68cd793cdfb5..8314429cfa90 100644
->> >--- a/drivers/gpu/drm/xe/xe_hw_engine.c
->> >+++ b/drivers/gpu/drm/xe/xe_hw_engine.c
->> >@@ -361,6 +361,11 @@ static void hw_engine_init_early(struct xe_gt *gt,
->> struct xe_hw_engine *hwe,
->> > 	hwe->name = info->name;
->> > 	hwe->fence_irq = &gt->fence_irq[info->class];
->> > 	hwe->engine_id = id;
->> >+	/* FIXME: Wire up to configurable default value */
->> >+	hwe->sched_props.job_timeout_ms = HZ * 5;
->> >+	hwe->sched_props.timeslice_us = 1 * 1000;
->> >+	hwe->sched_props.preempt_timeout_us = 640 * 1000;
->> >+	hwe->defaults = hwe->sched_props; /* Record default props */
->> >
->> > 	xe_reg_sr_init(&hwe->reg_sr, hwe->name, gt_to_xe(gt));
->> > 	xe_wa_process_engine(hwe);
->> >diff --git a/drivers/gpu/drm/xe/xe_hw_engine_types.h
->> >b/drivers/gpu/drm/xe/xe_hw_engine_types.h
->> >index d788e67312b9..406a1e33a05e 100644
->> >--- a/drivers/gpu/drm/xe/xe_hw_engine_types.h
->> >+++ b/drivers/gpu/drm/xe/xe_hw_engine_types.h
->> >@@ -107,6 +107,17 @@ struct xe_hw_engine {
->> > 	void (*irq_handler)(struct xe_hw_engine *, u16);
->> > 	/** @engine_id: id  for this hw engine */
->> > 	enum xe_hw_engine_id engine_id;
->> >+	/** @sched_props: scheduling properties */
->> >+	struct {
->> >+		/** @set_job_timeout: Set job timeout in ms for engine */
->> >+		u32 job_timeout_ms;
->> >+		/** @timeslice_us: timeslice period in micro-seconds */
->> >+		u32 timeslice_us;
->> >+		/** @preempt_timeout_us: preemption timeout in micro-
->> seconds */
->> >+		u32 preempt_timeout_us;
->> >+	} sched_props, defaults;
->> >+	/** @sysfs: sysfs kobject pointing to this hwe */
->> >+	struct kobject *sysfs_hwe;
->>
->> Whwere is this sysfs_hwe used?
->> I wonder whether we really need 'struct kobj_hwe'.
->> Why can't we just have kobject defined here in the xe_hw_engine sturcture
->> instead of having a pointer to one. That way we don't need to kzalloc it.
->
->You are right, its miss. I initially thought same and added sysfs_hwe and ended up not using it. As container of does not work on pointers.
->
->If we add it as part of xe_hw_engine then also allocation will happen right! And other reason to keep this way was to maintain uniformity the same way GT sysfs is doing and same way its done in tile sysfs patch(which is on patchwork) as well.
->
->Thanks,
->Tejas
->>
->> Niranjana
->>
->> > };
->> >
->> > /**
->> >--
->> >2.25.1
->> >
+> -----Original Message-----
+> From: Vishwanathapura, Niranjana <niranjana.vishwanathapura@intel.com>
+> Sent: Wednesday, June 21, 2023 9:25 AM
+> To: Upadhyay, Tejas <tejas.upadhyay@intel.com>
+> Cc: Brost, Matthew <matthew.brost@intel.com>; intel-
+> xe@lists.freedesktop.org; Iddamsetty, Aravind
+> <aravind.iddamsetty@intel.com>; Ghimiray, Himal Prasad
+> <himal.prasad.ghimiray@intel.com>
+> Subject: Re: [PATCH 6/6] drm/xe: Add min/max cap for engine scheduler
+> properties
+>=20
+> On Sun, Jun 18, 2023 at 09:43:51PM -0700, Upadhyay, Tejas wrote:
+> >
+> >
+> >> -----Original Message-----
+> >> From: Vishwanathapura, Niranjana
+> >> <niranjana.vishwanathapura@intel.com>
+> >> Sent: Saturday, June 17, 2023 2:26 AM
+> >> To: Upadhyay, Tejas <tejas.upadhyay@intel.com>
+> >> Cc: intel-xe@lists.freedesktop.org; Iddamsetty, Aravind
+> >> <aravind.iddamsetty@intel.com>; Ghimiray, Himal Prasad
+> >> <himal.prasad.ghimiray@intel.com>; Brost, Matthew
+> >> <matthew.brost@intel.com>
+> >> Subject: Re: [PATCH 6/6] drm/xe: Add min/max cap for engine scheduler
+> >> properties
+> >>
+> >> On Thu, Jun 15, 2023 at 07:49:33PM +0530, Tejas Upadhyay wrote:
+> >> >Add sysfs entries for the min, max, and defaults for each of engine
+> >> >scheduler controls for every hardware engine class.
+> >> >
+> >> >Non-elevated user IOCTLs to set these controls must be within the
+> >> >min-max ranges of the sysfs entries, elevated user can set these
+> >> >controls to any value.
+> >> >
+> >> >Introducing compile time CONFIG min-max values which restricts
+> >> >elevated user to be in compile time min-max range if at all sysfs
+> >> >min/max are violated.
+> >> >
+> >> >Sysfs entries examples are,
+> >> >DUT# cat /sys/class/drm/cardX/device/gtN/engines/ccs/.defaults/
+> >> >job_timeout_max         job_timeout_ms          preempt_timeout_min
+> >> timeslice_duration_max  timeslice_duration_us
+> >> >job_timeout_min         preempt_timeout_max     preempt_timeout_us
+> >> timeslice_duration_min
+> >> >
+> >> >DUT# cat /sys/class/drm/card1/device/gt1/engines/ccs/
+> >> >.defaults/              job_timeout_min         preempt_timeout_max
+> >> preempt_timeout_us      timeslice_duration_min
+> >> >job_timeout_max         job_timeout_ms          preempt_timeout_min
+> >> timeslice_duration_max  timeslice_duration_us
+> >> >
+> >> >Signed-off-by: Tejas Upadhyay <tejas.upadhyay@intel.com>
+>=20
+> <snip>
+>=20
+> >> >diff --git a/drivers/gpu/drm/xe/xe_engine.c
+> >> >b/drivers/gpu/drm/xe/xe_engine.c index e72423bc398a..c368ffd5e461
+> >> >100644
+> >> >--- a/drivers/gpu/drm/xe/xe_engine.c
+> >> >+++ b/drivers/gpu/drm/xe/xe_engine.c
+> >> >@@ -13,6 +13,7 @@
+> >> >
+> >> > #include "xe_device.h"
+> >> > #include "xe_gt.h"
+> >> >+#include "xe_gt_sysfs.h"
+> >> > #include "xe_hw_fence.h"
+> >> > #include "xe_lrc.h"
+> >> > #include "xe_macros.h"
+> >> >@@ -191,9 +192,20 @@ static int engine_set_priority(struct xe_device
+> >> >*xe, struct xe_engine *e,  static int engine_set_timeslice(struct
+> >> >xe_device
+> >> *xe, struct xe_engine *e,
+> >> > 				u64 value, bool create)
+> >> > {
+> >> >-	if (!capable(CAP_SYS_NICE))
+> >> >+	if (!capable(CAP_SYS_NICE) &&
+> >> >+	    !engine_timeout_in_range(value,
+> >> >+				     e->hwe->sched_props.timeslice_min,
+> >> >+				     e->hwe->sched_props.timeslice_max))
+> >> > 		return -EPERM;
+> >> >
+> >> >+#if defined(CONFIG_DRM_XE_TIMESLICE_MIN) &&
+> >> defined(CONFIG_DRM_XE_TIMESLICE_MAX)
+> >> >+	if (capable(CAP_SYS_NICE) &&
+> >> >+	    !engine_timeout_in_range(value,
+> >> >+				     CONFIG_DRM_XE_TIMESLICE_MIN,
+> >> >+				     CONFIG_DRM_XE_TIMESLICE_MAX))
+> >> >+		return -EPERM;
+> >> >+#endif
+> >>
+> >> Do we really need this second boundary check given the in the first
+> >> check above, the e->hwe->sched_props.timeslice_min/max values are
+> >> already subjected to these boundaries?
+> >> Applies for other below parameters also.
+> >
+> >Yes we need because,
+> >If elevated user exceeds configured sysfs min/max (he is allowed to do s=
+o),
+> which number could be below or above compile config min max.
+> >As user can try any value through IOCTL/sysfs being elevated user, we ne=
+ed
+> to check with second check.
+> >
+>=20
+> I thought CONFIG_DRM_XE_TIMESLICE_MIN/MAX are the default values of
+> hwe->sched_props.timeslice_min/max
+> which user can override. But looking at timeslice_duration_min/max_store(=
+),
+> looks like these configs are not default min/max values but a boundary fo=
+r
+> min/max values. I am confused.
+
+Yes it is boundary for elevated user to config min/max as well as default v=
+alue if not configured by user.
+
+Tejas
+>=20
+> Niranjana
+>=20
+> >>
+> >> >+
+> >> > 	return e->ops->set_timeslice(e, value); }
+> >> >
