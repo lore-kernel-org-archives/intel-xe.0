@@ -4,45 +4,47 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id DE0A4EB64D8
-	for <intel-xe@archiver.kernel.org>; Thu, 22 Jun 2023 07:22:37 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 211B0EB64DA
+	for <intel-xe@archiver.kernel.org>; Thu, 22 Jun 2023 07:22:38 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id AA31110E4D8;
+	by gabe.freedesktop.org (Postfix) with ESMTP id E89B810E4DA;
 	Thu, 22 Jun 2023 07:22:37 +0000 (UTC)
 Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id EA6D010E4D9
- for <intel-xe@lists.freedesktop.org>; Thu, 22 Jun 2023 07:22:34 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 38C8F10E4DA
+ for <intel-xe@lists.freedesktop.org>; Thu, 22 Jun 2023 07:22:35 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
  t=1687418555; x=1718954555;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=OF6XzaTj3NZoo30HVzau+APckQPJbK4ZXR/G3b584Vg=;
- b=bCUCGaNeyHUn78R9kDYjorsW9azdtz/RdlMOOYv86NF+SbBPMT7Rl4tP
- QIrffpT4RTAPgW2FqmDgpVcMeX/g3grtLx8MvmZRDPxzYvLrYy6onfhnd
- RtR9ZoEKaz2+M/cDCKAPD7XsLAs4sQEFZNJFtdCi2NvHj6UVSgw0MKGaD
- h05+ml2IGnofcE0JBn1gK0couvtuPlpboBpJDf2x5zay0JWtjON7jf6NM
- XpFjC1opA+uXr/jOY7CI3N014nf0ildoptCMxwZ8vQNIUZj7f/dAndDoM
- 7eVUrtth75vG69fZga/UoIcMKh8rfVW38ZqwAMZ42gEWAWffM+F/DdyId w==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10748"; a="350150261"
-X-IronPort-AV: E=Sophos;i="6.00,262,1681196400"; d="scan'208";a="350150261"
+ h=from:to:cc:subject:date:message-id:in-reply-to:
+ references:mime-version:content-transfer-encoding;
+ bh=1dL5KdrD5IEq4kvTLtCyrX7v/o3e/OR5iQSBUrrLuIU=;
+ b=cd8RKwY4Obd+YcgYpDbWWyQNg/AJP63NQUPZCeGUPvjndYXx8A9hlF74
+ cl3IbDpnGdnMSKUgU0D9kho4XTeO7SPM+q7FNqNQ3Pz2hfQ8TOcCWdTNC
+ W+Ik3BQnDSDdgQYB24eCfSFIhqoRRmcbdZewWbBNdZ5GXnx2SWk5eWFjS
+ K6jOwNQ0j0fSSQUJyTsUcUS1YDTE4dQvV6I7IRNQxrVGW16Mvh84vFeVE
+ 0TQe4BVsL3haNZNWGHvxK7/PyKVmNUagwEiBkjOAcUbBMqljwvTnpaaEa
+ 6r8KABc5rVitw1IVqqtcHnJ+vfCDWl/SCkDadcFCf/Tuo3amSTJ1H4PBK g==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10748"; a="350150266"
+X-IronPort-AV: E=Sophos;i="6.00,262,1681196400"; d="scan'208";a="350150266"
 Received: from orsmga003.jf.intel.com ([10.7.209.27])
  by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 22 Jun 2023 00:22:18 -0700
+ 22 Jun 2023 00:22:20 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10748"; a="664939997"
-X-IronPort-AV: E=Sophos;i="6.00,262,1681196400"; d="scan'208";a="664939997"
+X-IronPort-AV: E=McAfee;i="6600,9927,10748"; a="664940017"
+X-IronPort-AV: E=Sophos;i="6.00,262,1681196400"; d="scan'208";a="664940017"
 Received: from tejas-super-server.iind.intel.com ([10.145.169.166])
- by orsmga003.jf.intel.com with ESMTP; 22 Jun 2023 00:22:17 -0700
+ by orsmga003.jf.intel.com with ESMTP; 22 Jun 2023 00:22:18 -0700
 From: Tejas Upadhyay <tejas.upadhyay@intel.com>
 To: intel-xe@lists.freedesktop.org
-Date: Thu, 22 Jun 2023 12:58:15 +0530
-Message-Id: <20230622072818.3182423-1-tejas.upadhyay@intel.com>
+Date: Thu, 22 Jun 2023 12:58:16 +0530
+Message-Id: <20230622072818.3182423-2-tejas.upadhyay@intel.com>
 X-Mailer: git-send-email 2.25.1
+In-Reply-To: <20230622072818.3182423-1-tejas.upadhyay@intel.com>
+References: <20230622072818.3182423-1-tejas.upadhyay@intel.com>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-xe] [PATCH V4 0/3] drm/xe: Add sysfs entry for tile and
- relate it to GTs
+Subject: [Intel-xe] [PATCH V4 1/3] drm/xe: Add sysfs entry for tile
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -57,54 +59,215 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-With the separation of xe_tile and xe_gt, We now consider
-a PCI device (xe_device) to contain one or more tiles (struct xe_tile).
-Each tile will contain one or more GTs (struct xe_gt).
+We have recently introduced tile for each gpu,
+so lets add sysfs entry per tile for userspace
+to provide required information specific to tile.
 
-Sysfs entries also needs to be aligned as follows:
+V4:
+  - Reorder headers - Aravind
+V3:
+  - Make API to return void and add drm_warn - Aravind
+V2:
+  - Add logs in failure path
 
-drm/xe: Add sysfs entry per tile - Adds tile sysfs infrastructure
-drm/xe: Add GTs under respective tile sysfs - Relates GTs to each tile
-sysfs
-drm/xe: Add sysfs entry to report per tile memory size - Reports actual
-physical memory per respective tile
-
-Sysfs entries will be as follows:
-cat /sys/class/drm/card1/device/tileN/physical_vram_size_bytes
-
-V4 :
-   - %s/addr_range/physical_vram_size_byes, make it
-     user readable name - Joonas/Aravind
-   - Display in bytes - Joonas/Aravind
-   - Reorder headers and modify s/LMEM/VRAM - Matt/Aravind
-V3 :
-   - Make tile_sysfs_init return void and warn for errors
-   - Exclude DG1 as it does not have TILE_ADDR_RANGE reg
-   - Use sysfs_create_files -> sysfs_create_file
-V2 :
-   - Address review comments
-
+Reviewed-by: Aravind Iddamsetty <aravind.iddamsetty@intel.com>
 Signed-off-by: Tejas Upadhyay <tejas.upadhyay@intel.com>
-
-Tejas Upadhyay (3):
-  drm/xe: Add sysfs entry for tile
-  drm/xe: Add GTs under respective tile sysfs
-  drm/xe: Add sysfs entry to report per tile memory size
-
+---
  drivers/gpu/drm/xe/Makefile              |  1 +
- drivers/gpu/drm/xe/xe_device_types.h     |  9 +++
- drivers/gpu/drm/xe/xe_gt_sysfs.c         |  4 +-
- drivers/gpu/drm/xe/xe_mmio.c             |  1 +
- drivers/gpu/drm/xe/xe_tile.c             |  3 +
+ drivers/gpu/drm/xe/xe_device_types.h     |  3 ++
+ drivers/gpu/drm/xe/xe_tile.c             |  3 ++
  drivers/gpu/drm/xe/xe_tile.h             |  2 +
- drivers/gpu/drm/xe/xe_tile_sysfs.c       | 78 ++++++++++++++++++++++++
- drivers/gpu/drm/xe/xe_tile_sysfs.h       | 19 ++++++
- drivers/gpu/drm/xe/xe_tile_sysfs_types.h | 27 ++++++++
- 9 files changed, 142 insertions(+), 2 deletions(-)
+ drivers/gpu/drm/xe/xe_tile_sysfs.c       | 59 ++++++++++++++++++++++++
+ drivers/gpu/drm/xe/xe_tile_sysfs.h       | 19 ++++++++
+ drivers/gpu/drm/xe/xe_tile_sysfs_types.h | 27 +++++++++++
+ 7 files changed, 114 insertions(+)
  create mode 100644 drivers/gpu/drm/xe/xe_tile_sysfs.c
  create mode 100644 drivers/gpu/drm/xe/xe_tile_sysfs.h
  create mode 100644 drivers/gpu/drm/xe/xe_tile_sysfs_types.h
 
+diff --git a/drivers/gpu/drm/xe/Makefile b/drivers/gpu/drm/xe/Makefile
+index 081c57fd8632..e3632baaefce 100644
+--- a/drivers/gpu/drm/xe/Makefile
++++ b/drivers/gpu/drm/xe/Makefile
+@@ -98,6 +98,7 @@ xe-y += xe_bb.o \
+ 	xe_step.o \
+ 	xe_sync.o \
+ 	xe_tile.o \
++	xe_tile_sysfs.o \
+ 	xe_trace.o \
+ 	xe_ttm_sys_mgr.o \
+ 	xe_ttm_stolen_mgr.o \
+diff --git a/drivers/gpu/drm/xe/xe_device_types.h b/drivers/gpu/drm/xe/xe_device_types.h
+index 0226d44a6af2..f2d4298fb0a1 100644
+--- a/drivers/gpu/drm/xe/xe_device_types.h
++++ b/drivers/gpu/drm/xe/xe_device_types.h
+@@ -151,6 +151,9 @@ struct xe_tile {
+ 
+ 	/** @migrate: Migration helper for vram blits and clearing */
+ 	struct xe_migrate *migrate;
++
++	/** @sysfs: sysfs' kobj used by xe_tile_sysfs */
++	struct kobject *sysfs;
+ };
+ 
+ /**
+diff --git a/drivers/gpu/drm/xe/xe_tile.c b/drivers/gpu/drm/xe/xe_tile.c
+index 6414aa810355..ac70486d09c3 100644
+--- a/drivers/gpu/drm/xe/xe_tile.c
++++ b/drivers/gpu/drm/xe/xe_tile.c
+@@ -10,6 +10,7 @@
+ #include "xe_migrate.h"
+ #include "xe_sa.h"
+ #include "xe_tile.h"
++#include "xe_tile_sysfs.h"
+ #include "xe_ttm_vram_mgr.h"
+ 
+ /**
+@@ -142,6 +143,8 @@ int xe_tile_init_noalloc(struct xe_tile *tile)
+ 	if (IS_ERR(tile->mem.kernel_bb_pool))
+ 		err = PTR_ERR(tile->mem.kernel_bb_pool);
+ 
++	xe_tile_sysfs_init(tile);
++
+ err_mem_access:
+ 	xe_device_mem_access_put(tile_to_xe(tile));
+ 	return err;
+diff --git a/drivers/gpu/drm/xe/xe_tile.h b/drivers/gpu/drm/xe/xe_tile.h
+index 33bf41292195..782c47f8bd45 100644
+--- a/drivers/gpu/drm/xe/xe_tile.h
++++ b/drivers/gpu/drm/xe/xe_tile.h
+@@ -6,6 +6,8 @@
+ #ifndef _XE_TILE_H_
+ #define _XE_TILE_H_
+ 
++#include "xe_device_types.h"
++
+ struct xe_tile;
+ 
+ int xe_tile_alloc(struct xe_tile *tile);
+diff --git a/drivers/gpu/drm/xe/xe_tile_sysfs.c b/drivers/gpu/drm/xe/xe_tile_sysfs.c
+new file mode 100644
+index 000000000000..386c6accd4dd
+--- /dev/null
++++ b/drivers/gpu/drm/xe/xe_tile_sysfs.c
+@@ -0,0 +1,59 @@
++// SPDX-License-Identifier: MIT
++/*
++ * Copyright © 2023 Intel Corporation
++ */
++
++#include <linux/kobject.h>
++#include <linux/sysfs.h>
++#include <drm/drm_managed.h>
++
++#include "xe_tile.h"
++#include "xe_tile_sysfs.h"
++
++static void xe_tile_sysfs_kobj_release(struct kobject *kobj)
++{
++	kfree(kobj);
++}
++
++static struct kobj_type xe_tile_sysfs_kobj_type = {
++	.release = xe_tile_sysfs_kobj_release,
++	.sysfs_ops = &kobj_sysfs_ops,
++};
++
++static void tile_sysfs_fini(struct drm_device *drm, void *arg)
++{
++	struct xe_tile *tile = arg;
++
++	kobject_put(tile->sysfs);
++}
++
++void xe_tile_sysfs_init(struct xe_tile *tile)
++{
++	struct xe_device *xe = tile_to_xe(tile);
++	struct device *dev = xe->drm.dev;
++	struct kobj_tile *kt;
++	int err;
++
++	kt = kzalloc(sizeof(*kt), GFP_KERNEL);
++	if (!kt)
++		return;
++
++	kobject_init(&kt->base, &xe_tile_sysfs_kobj_type);
++	kt->tile = tile;
++
++	err = kobject_add(&kt->base, &dev->kobj, "tile%d", tile->id);
++	if (err) {
++		kobject_put(&kt->base);
++		drm_warn(&xe->drm, "failed to register TILE sysfs directory, err: %d\n", err);
++		return;
++	}
++
++	tile->sysfs = &kt->base;
++
++	err = drmm_add_action_or_reset(&xe->drm, tile_sysfs_fini, tile);
++	if (err) {
++		drm_warn(&xe->drm, "%s: drmm_add_action_or_reset failed, err: %d\n",
++			 __func__, err);
++		return;
++	}
++}
+diff --git a/drivers/gpu/drm/xe/xe_tile_sysfs.h b/drivers/gpu/drm/xe/xe_tile_sysfs.h
+new file mode 100644
+index 000000000000..e4f065039eba
+--- /dev/null
++++ b/drivers/gpu/drm/xe/xe_tile_sysfs.h
+@@ -0,0 +1,19 @@
++/* SPDX-License-Identifier: MIT */
++/*
++ * Copyright © 2023 Intel Corporation
++ */
++
++#ifndef _XE_TILE_SYSFS_H_
++#define _XE_TILE_SYSFS_H_
++
++#include "xe_tile_sysfs_types.h"
++
++void xe_tile_sysfs_init(struct xe_tile *tile);
++
++static inline struct xe_tile *
++kobj_to_tile(struct kobject *kobj)
++{
++	return container_of(kobj, struct kobj_tile, base)->tile;
++}
++
++#endif /* _XE_TILE_SYSFS_H_ */
+diff --git a/drivers/gpu/drm/xe/xe_tile_sysfs_types.h b/drivers/gpu/drm/xe/xe_tile_sysfs_types.h
+new file mode 100644
+index 000000000000..75906ba11a9e
+--- /dev/null
++++ b/drivers/gpu/drm/xe/xe_tile_sysfs_types.h
+@@ -0,0 +1,27 @@
++/* SPDX-License-Identifier: MIT */
++/*
++ * Copyright © 2023 Intel Corporation
++ */
++
++#ifndef _XE_TILE_SYSFS_TYPES_H_
++#define _XE_TILE_SYSFS_TYPES_H_
++
++#include <linux/kobject.h>
++
++struct xe_tile;
++
++/**
++ * struct kobj_tile - A tile's kobject struct that connects the kobject
++ * and the TILE
++ *
++ * When dealing with multiple TILEs, this struct helps to understand which
++ * TILE needs to be addressed on a given sysfs call.
++ */
++struct kobj_tile {
++	/** @base: The actual kobject */
++	struct kobject base;
++	/** @tile: A pointer to the tile itself */
++	struct xe_tile *tile;
++};
++
++#endif	/* _XE_TILE_SYSFS_TYPES_H_ */
 -- 
 2.25.1
 
