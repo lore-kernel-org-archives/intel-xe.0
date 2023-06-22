@@ -4,120 +4,138 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id B124CEB64DA
-	for <intel-xe@archiver.kernel.org>; Thu, 22 Jun 2023 14:49:05 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4014DEB64DB
+	for <intel-xe@archiver.kernel.org>; Thu, 22 Jun 2023 14:59:05 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7929D10E57A;
-	Thu, 22 Jun 2023 14:49:05 +0000 (UTC)
-Received: from NAM12-DM6-obe.outbound.protection.outlook.com
- (mail-dm6nam12on2082.outbound.protection.outlook.com [40.107.243.82])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 517E310E574;
- Thu, 22 Jun 2023 14:49:03 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0923C10E010;
+	Thu, 22 Jun 2023 14:59:05 +0000 (UTC)
+Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id CA08E10E010
+ for <intel-xe@lists.freedesktop.org>; Thu, 22 Jun 2023 14:59:02 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1687445942; x=1718981942;
+ h=date:from:to:cc:subject:message-id:references:
+ in-reply-to:mime-version;
+ bh=UCoOPq3ZGTtw2qrtTASww4tqx6MLC7d2NmTzX4E2zrA=;
+ b=PameH/QJtr6gbNdvQywhEkntJNx63WobNG7yYguuDL8cBYJ3edW8JSgy
+ 1Swr2Ws4Fme3bJtHPb4a1dg8OLKw0G+dz1OPfoOZq0kwua0zVF8lJOPT/
+ k/PObpIEiwbLA38ghpU0hYXRLj3wqVIRusnWXPLTK5TrqX5HU/3puvDx+
+ IQtcjGbOwgAmWtJoG4+zbn0u5fbqUDCbZ9d4EhOuCTtx1aZhJP/a4svYs
+ 2cePvAmKaSshAf0jgC6XRIdswBJKgqVh+Niqg83P3XrerYvuhXw2OMTH2
+ iPFrSQlqCjFakKtJdJiraF7ZTUsTd+kN9kr+QWOrQE73oU3EHACf8od55 g==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10749"; a="345262726"
+X-IronPort-AV: E=Sophos;i="6.01,149,1684825200"; d="scan'208";a="345262726"
+Received: from orsmga005.jf.intel.com ([10.7.209.41])
+ by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 22 Jun 2023 07:59:02 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6600,9927,10749"; a="889081373"
+X-IronPort-AV: E=Sophos;i="6.01,149,1684825200"; d="scan'208";a="889081373"
+Received: from orsmsx602.amr.corp.intel.com ([10.22.229.15])
+ by orsmga005.jf.intel.com with ESMTP; 22 Jun 2023 07:59:02 -0700
+Received: from orsmsx612.amr.corp.intel.com (10.22.229.25) by
+ ORSMSX602.amr.corp.intel.com (10.22.229.15) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.23; Thu, 22 Jun 2023 07:59:01 -0700
+Received: from orsmsx612.amr.corp.intel.com (10.22.229.25) by
+ ORSMSX612.amr.corp.intel.com (10.22.229.25) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.23; Thu, 22 Jun 2023 07:59:01 -0700
+Received: from orsedg603.ED.cps.intel.com (10.7.248.4) by
+ orsmsx612.amr.corp.intel.com (10.22.229.25) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.23 via Frontend Transport; Thu, 22 Jun 2023 07:59:01 -0700
+Received: from NAM11-BN8-obe.outbound.protection.outlook.com (104.47.58.169)
+ by edgegateway.intel.com (134.134.137.100) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.1.2507.23; Thu, 22 Jun 2023 07:59:00 -0700
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=nc9x2+ax4qYdqsNmCfW7L5c3MlHmwJ161fIwfpQOdCKm2HiATkOWlEMQKK+998zdgtWBbjbgStP8F4k4JTzkMxs0rpnuAccJmhk90TTk89lw3p8TByyZCrWpluyjBC65QAGt85V5BT3qbjOMstooS3FhgaQC3q1pKvGDUDM6l9/8KJSydMediWx6qvqm2fjbhrVbEGyvkas4S+zcF4qCPdCczRn6Lp7iMO9XqfmFqEE6YWQiNc7QidnbtW2+G2ZciSJ9r1b1hhzFoZHe/5NdiK4Bym33wPv98+vWl8tTjrfEYpYgj4FVUgoKM53EF9/BokdzMkZBageFPfHVfS+X6A==
+ b=XDTAjdaWGo8Fd6atv6wKaS36hoJDPEPZ7NUQK6Jb80PEjpSKoncBuYM/tLUKXmHxiRmBFOieOpqScA9cT0K3mOSNEQQrfNMoRQ+bhl0FTzgTSeUl0bZ/vVtEfvd2H5GMg48pX7MYVLn9WDrJjKpsG+99Ihi6Bv9KUlrKNGpXz+HKXmYjrEryJrpf63RLQ67qUhqT9bh0xmnMuSqRcz8m66vuYjF3L5zU5DFgaSEwZUmiNoCfB5w5KwGT2F7782hcb/Gs4vc+/RYrBzU+0crctvKoZxWNGW0B63edk3RAzhBStMX62O4CYoZhY93Qy+XR7vZCY47LdtGDyQSTPx2JIQ==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=D+M52ZCzCi82PiZaDtskr8pH1tAOerOvXTWM9PWR2rY=;
- b=HZXlNUnpsUrjnDNPi42UT06Ty9gIkDlT+HM/+LKeBFIO/AwAZsKYght0rumFnwHv112Mur6gIi5t4ejd61XdkfvGtEAuH3q0whVYTP4iK6dxw+2V7VG9wpQO0rAd8wH9jMCZJQT25rU2Ir0Nk1slyJG912w8Wa4TARO0oI/hPz+r4GDcWedhL2t+c8jQx+5KElyI5VQY4ZDJDYIhcWgpakyAzf3BlP+90QDRHfi06JuLgLYJptennAX6JbOw81sMTef9YgZgGbBtaDZDFSYD6otQNLYc/EoY6mK78ZcC0IoMb37xVVdrH2Z1OZVX4fuVO1RfjRrTJnf3VsrCZL9I/A==
+ bh=bbGyprSIuHzMAyELjpBWL63aTbMXK7nboJIfCciSLVM=;
+ b=if9cpGxAy7jnALxNo1lPBnJFdtkWXSpy4syYfeNv5aFzlvuyzTokjglxNukojiyXUpNdzo5uDsL75phC8Gok47wzigEx1cF2Mp+yM26mfyiKw83ROja4wCAVnCcuYTiEwtsz2+I7PuqKrUFF7+0FoPIpbUkM41/PeIrqB5lqKApb7m5KRGBS7k4n26Apc0FbfgPDxIgCAv2OUey3F/PoLKrXi5mMgn1qR+FdFLfCWAl90vWIjQ1T5+tfHV136VGKZxxOdZhxOzuC01KVmrDgaN+CNFrv9krjZOis/QD4wswD78xz4knmDvzb4lzLGicFbkxOl6Kb5ekAfrcXuQv7HQ==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
- header.d=amd.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=D+M52ZCzCi82PiZaDtskr8pH1tAOerOvXTWM9PWR2rY=;
- b=YH0RRK1zP3nm4fkGdZRK+rBmA/SAXljB1yBF8ZEH/XgshTRAOYKkGSANqKSf8BMfoqnC06P69rq8jcfpAXDfj+foIway6mSNiosOc6pAMzQoiK4wr916j3HnBWkmgGD3g8YHDWypmLZ/Fq7HJfIel/I5TN443iYYilcDTBZs81w=
+ smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
+ dkim=pass header.d=intel.com; arc=none
 Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=amd.com;
-Received: from BN8PR12MB3587.namprd12.prod.outlook.com (2603:10b6:408:43::13)
- by MN0PR12MB6223.namprd12.prod.outlook.com (2603:10b6:208:3c1::12)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6521.23; Thu, 22 Jun
- 2023 14:49:00 +0000
-Received: from BN8PR12MB3587.namprd12.prod.outlook.com
- ([fe80::384a:95a4:8819:ee84]) by BN8PR12MB3587.namprd12.prod.outlook.com
- ([fe80::384a:95a4:8819:ee84%7]) with mapi id 15.20.6521.024; Thu, 22 Jun 2023
- 14:49:00 +0000
-Message-ID: <196a7f74-66ac-1eae-4795-a42691f4793e@amd.com>
-Date: Thu, 22 Jun 2023 16:48:55 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.11.0
-Content-Language: en-US
-To: =?UTF-8?Q?Thomas_Hellstr=c3=b6m?= <thomas.hellstrom@linux.intel.com>,
- Andi Shyti <andi.shyti@linux.intel.com>
-References: <20230622101412.78426-1-thomas.hellstrom@linux.intel.com>
- <20230622101412.78426-4-thomas.hellstrom@linux.intel.com>
- <ZJRSyp7fT6VXpow7@ashyti-mobl2.lan>
- <3a089ebb-7389-3d3e-beb0-13a8d64eb04d@linux.intel.com>
-From: =?UTF-8?Q?Christian_K=c3=b6nig?= <christian.koenig@amd.com>
-In-Reply-To: <3a089ebb-7389-3d3e-beb0-13a8d64eb04d@linux.intel.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-X-ClientProxiedBy: FR3P281CA0100.DEUP281.PROD.OUTLOOK.COM
- (2603:10a6:d10:a1::18) To BN8PR12MB3587.namprd12.prod.outlook.com
- (2603:10b6:408:43::13)
+ header.d=none;dmarc=none action=none header.from=intel.com;
+Received: from CY8PR11MB7828.namprd11.prod.outlook.com (2603:10b6:930:78::8)
+ by BL1PR11MB5349.namprd11.prod.outlook.com (2603:10b6:208:308::16) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6521.24; Thu, 22 Jun
+ 2023 14:58:58 +0000
+Received: from CY8PR11MB7828.namprd11.prod.outlook.com
+ ([fe80::1e4e:c49d:445e:cb2d]) by CY8PR11MB7828.namprd11.prod.outlook.com
+ ([fe80::1e4e:c49d:445e:cb2d%5]) with mapi id 15.20.6521.023; Thu, 22 Jun 2023
+ 14:58:58 +0000
+Date: Thu, 22 Jun 2023 16:58:50 +0200
+From: Francois Dugast <francois.dugast@intel.com>
+To: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
+Message-ID: <ZJRhqoXCUm9IJkuE@fdugast-desk.home>
+References: <20230615092643.3399572-1-himal.prasad.ghimiray@intel.com>
+Content-Type: text/plain; charset="us-ascii"
+Content-Disposition: inline
+In-Reply-To: <20230615092643.3399572-1-himal.prasad.ghimiray@intel.com>
+Organization: Intel Corporation
+X-ClientProxiedBy: FR2P281CA0054.DEUP281.PROD.OUTLOOK.COM
+ (2603:10a6:d10:93::8) To CY8PR11MB7828.namprd11.prod.outlook.com
+ (2603:10b6:930:78::8)
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: BN8PR12MB3587:EE_|MN0PR12MB6223:EE_
-X-MS-Office365-Filtering-Correlation-Id: b60f48cd-3f4e-4b60-d1fa-08db732fd0c3
+X-MS-TrafficTypeDiagnostic: CY8PR11MB7828:EE_|BL1PR11MB5349:EE_
+X-MS-Office365-Filtering-Correlation-Id: c1c28d14-d562-4d70-1dd7-08db733134d4
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: 0kxN/W84Jb6pd4Q7ZMJ763qvuliqPkVmV280nwSL3/dN8OgZyIqDcWu4bI+AC7wPsyuGn5vbvDq8jZOVQYYYL5os2zn4mHnnHKTsSJs6V/7zi6mQRWVvuCT/pbyJ9LiXdvqDzASfAX8XE9iqTgtRBJP+GTELZ02BP9+m+pxm0q9o0Pmzr9ZlWqQjQXW4a9pJ/8o75FYOIJBrSTjpxJOz2venYiA7rQbzFvoTI6p8Zkb/6MGGp9mARLAPATw2R4XMfWy9PI7XFnbxj2p1nExM8VqNpO0rPm9/x9BFeznW4BWNwLC/O7wacu/1nqLB/M6GE6T83hUY58BqH6mtDWCCgF6ODwo4hc1IFERNkm1On7w0IiQlQEqq60vd6fHy8+LIeHjVstLYSHf7JNj8uz6ifKzxSz+QnrvJIU2N7X/e8TWC8eAoqwdHA08cKlRHhhd3w4h3dK1sw+CJ5H2fi3qcnuaQKpCbCVquXu0ZHAz5RKgtueU+s82EIWBi9CL+Nc014P43Y3UXPEq0uwplY1trut3s0CSzIu4kDF+CL56kVHlRUY03PWAG0mCXJSbrHrlCzHhSBmjf6hd5wwpa0U6jwGr8hnCoRLY474I/DkZU3ND1VBobzLQetQsChR6+48pOcDw0HLIK9JX61prkgWKmGA==
+X-Microsoft-Antispam-Message-Info: iODHPUZlvt3VXyrQaDaD5ZcBazuNBCpCfZLLY4YhvrZprHySwR5ds2wN+j1OkQJlx4QvFuozsqO88q0yKIEUBC9UCF8ShMu0exV0kSrH09TmdC4z2RK5QFVXHZMJhUvn4v1+40vFspQI+Cr0IMjmvYv0sgneF97zV4XJsBD5RIleX+X23cKoT/caUe7AjKZzuwFgF5fN/36qvrTYj+0krOXim0fDUTujj+tt0ia3s1ZajyFgKb3sEzi1nB/xeHjh0i0XWWf0Y1jokrn+Fw51E0fW/4dBQUtbAX1cCYyVjQwY3Wts6Kdrmja65sca7zcSWcAejk4OSxtYcewxPjO1rfrDIhWuy0nXI3H/g8Wvmslq0WynYky05R7YGZfn5MOc6oRXMjv7YxUdzn0XpBKxZeLNP4M1/1cwgR8YACD4RIKRvVACBrFOgZyCyzNHYGM8vDcX4jzEHPKnsWN/bgn2yc2p/nWmKyKb4DDyDm5IzYc6H0Loka/Xp9AZGEDNFRrVpf6hMtRaVoy2ytqtOmLhuxyPYBwg5nMfXIQDtcQYfbPg92ujPpM5aOpiUNG/BhP+Mylw/p7I0GbcBpEnf4YGQHABtIPmtRUjxRC66Hs5urs=
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:BN8PR12MB3587.namprd12.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230028)(4636009)(366004)(346002)(136003)(376002)(39860400002)(396003)(451199021)(66946007)(66556008)(4326008)(316002)(66476007)(8676002)(8936002)(6506007)(6512007)(41300700001)(186003)(53546011)(2616005)(54906003)(110136005)(6666004)(6486002)(2906002)(5660300002)(478600001)(38100700002)(31696002)(31686004)(83380400001)(36756003)(86362001)(45980500001)(43740500002);
- DIR:OUT; SFP:1101; 
+ IPV:NLI; SFV:NSPM; H:CY8PR11MB7828.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230028)(136003)(366004)(376002)(39860400002)(346002)(396003)(451199021)(44832011)(9686003)(6666004)(26005)(6512007)(5660300002)(186003)(82960400001)(36916002)(6506007)(478600001)(6862004)(38100700002)(107886003)(2906002)(8936002)(8676002)(41300700001)(66556008)(66946007)(66476007)(54906003)(36756003)(6486002)(316002)(83380400001)(6636002)(86362001)(4326008);
+ DIR:OUT; SFP:1102; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?UzFNSEwyY3FSSkcwOTdUY0t3R1FDZTVEQTJKTVVlaVp1NGFza29vOU9Ja0NZ?=
- =?utf-8?B?R0VZb3FvaGJ2MGk4WC9EWVpNWE5uZVhXUTBmT2lWdy9Fc3BpRTFlLzU5YUpv?=
- =?utf-8?B?bzdlTldXdmIraE8vWGJUQkhLSXd1SGY3R2lEU01qWDh6QlZHV1hpbytESUh5?=
- =?utf-8?B?bWdsdVRBM2dmbUhMbEVvajl5MCtFWlk4MGlzSmVrK3FEaG5vb2NGTjA5cFp5?=
- =?utf-8?B?VDNWZHNDL2tIMHZxRk5sQ0FiQkVFTTRrTjhZaGU4K2JOSEdzakkvcWZTWEJx?=
- =?utf-8?B?cVlacWhvQjNkdG1xQ1ZsUnNodUdtMlprVzhKN2pMSi9MKzdGd2I4aXBSency?=
- =?utf-8?B?a1oyM0JqTXdNVmZ5Yk40dTlJei9BekZZS3lKeEJYb2pFbXZTUGlicXByNkdv?=
- =?utf-8?B?cDRneW5jUXBiV0hhY1hobUlMVDA2Y1VXNWVGcGZOMytSMHIzRzdtU21MNDFj?=
- =?utf-8?B?cHBZYzAvV1pZbXF6ckZqMk1lUFJDclNGa01jZ2ZNMXdVK0VGS0xMRVY0SzZ0?=
- =?utf-8?B?UVhUYUV5bXNPZEV2SlBwNitmNVErYzNWWVFvbzFvYlB6Qy9URmhWeGFuejBi?=
- =?utf-8?B?REdIYXBlbWZ4c3FSODlUZmRsa0hVOFBUemJFM2VtT2lBMzV5c2QvMGwwVGg5?=
- =?utf-8?B?Ym5kOTRqN2FnVUQ5ajZOUG14L2lvVjJZNEdIM01NMGd4a3JyR2xOTEMzZURl?=
- =?utf-8?B?SERsK1JuYU8vZkVpQldvV3o0QktkT3k5R3hlN1V1WHpkVnNNRHF3WVljZXBK?=
- =?utf-8?B?SVlNamYzSkRHOWpuMWVQUlZRTEVCZWIxOEdZbjdYRXI0VHJmbVJIMU8rRWlI?=
- =?utf-8?B?NVUvaUwrNk1ZSWluNnpLUElGSjN4Uyt5VVhMNkZ2T0hJNG9LQ0Fja2ZOWnQr?=
- =?utf-8?B?VC93WjZFYnBLOUFRODVzaWIySjNFRVlYZE93RUR5dkVxZE04VVBITDFKV0FR?=
- =?utf-8?B?aTZobjNXekNMSUVIbzFkZ3FuQ0RDV1NqS3dpS2p6YWtaczJuWW9pN3FXWnNR?=
- =?utf-8?B?blNLMGpHWlJ0bVAyYUhiZWcrQXRPR3hqM01RSkxqbkR2NFUzSGlUbFgweXBv?=
- =?utf-8?B?K3pBRWp0djk4VWhKS3FhK1lYd0pZa3RKc3RjdWNaOHNuVERlT1RmTU9NNmZo?=
- =?utf-8?B?a2dLTXBodG9VSmUvRWVmamllNmNTbGE2MjJERllLcjJmR1VtZEQybm1zMkZh?=
- =?utf-8?B?K1pUdS9sUFErZmdRdk5KRjBpSURPNkNXelY4WlZqN1NnTVlYUUxGaDVQdTU1?=
- =?utf-8?B?VzdFcmFPTjYvZzRGd0N6cDNVZkIrUWErNjFTTFM4dDZycFg5bk15b2VGVHRl?=
- =?utf-8?B?V1J2OG9HZmxOV2hmT1N6a0x6bzB1SG9pMW5RakQ4a0JkWSsya1ZHaW04OGVk?=
- =?utf-8?B?enNRWVRyVHE3ZTFJd2FpcUR5UU5ISUJFN05rYXJGL281eFZBNGh4aktTZVpL?=
- =?utf-8?B?YlYvcURUeFpFTkt5UDlBM3lXWUlxQyt0Zksva1hqSk56b3lqcUZkdHU4dDk1?=
- =?utf-8?B?WWlmeU5ZdHNoWFJUZFhyQVdheWI1a2hyTWM2K2xxakxvTXdoMTgzblhrUjNZ?=
- =?utf-8?B?NU9WZDVFUWYrTHp5c0hSS1JQZnV5MktIK3ZHbGNOU3EvU3NzcitGektsQkJt?=
- =?utf-8?B?c1hlZG9PZFB3enpuV1dTWFk1Q0VsSmpXWlZaWjV0UjdoKzZ2NnAyTFM4U3FL?=
- =?utf-8?B?Q1NyamQzYTR0N3czbkpxSU40eGI3elJCMUJKczF3dmhNeXhYWkZFOEUwZ2Ur?=
- =?utf-8?B?a21rcnE1cER1UkF1VnJKNjB3M2VISHFSZHo3Q0RJUFplcWFoL3E3dVBXcFpj?=
- =?utf-8?B?Q0FpUEZKVWh0WWtBbitXMmM2YUU3Mm8vZHhnRmg2bWU3MXg0dmhNMzNlYmow?=
- =?utf-8?B?T2d3QXdub0QwRU8zZWxWUk9aN3F3VnkyQjBhRW9tbVQybkpuYkJ1bVFxZ3p4?=
- =?utf-8?B?SEROK3dVWUY3eG53ZS9xeTNscnN4NHJabHRKUytTWE91aEtNVHNrOURmcDA4?=
- =?utf-8?B?MnlNNmg5WVdobGJqMExHeTFOWDNuOEpIUUEvQmlLV1d0ckVITCtzM1E1NEw0?=
- =?utf-8?B?UzF3K0NZU0hZTmF2bEpsSjVnVmxidUdBbHFFalRUTThDOXBkdUNFNzk3M2JQ?=
- =?utf-8?B?OU52WG9ESFBiMnFuZUhCRnh4a3ZHOVUwRG1odkF2QjRWL2RZeHJTZ2x1cHo0?=
- =?utf-8?Q?BW/59/wPKq4GKP7I81DtLHwPEl+GlTb4y36LhcMo66Bd?=
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: b60f48cd-3f4e-4b60-d1fa-08db732fd0c3
-X-MS-Exchange-CrossTenant-AuthSource: BN8PR12MB3587.namprd12.prod.outlook.com
+X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?WoQae//5GBPhFMNpPKzcycWKaVnV/ddoxah6wruiy3647aWvgVGfslY1pl6m?=
+ =?us-ascii?Q?CVrXaG6fKMZiS+uAF/cu5OVj81yqW1ecGyBetxfwUXEUXeVh2wPgc+EKY1As?=
+ =?us-ascii?Q?N7v0dzsq18iluSGpOUZF9i9wF8V8hYm+12TCcZKVuBjV8X53hQZ0EPH+3BqQ?=
+ =?us-ascii?Q?WSVBnOpYkl5Qh96SD5IjogH+a79fctXlc6JzLYQCUEzDaWsSR8bOY8w2mE9b?=
+ =?us-ascii?Q?0Yms4KzVnQqmY7+5jzK47D3T3x1Ma7iqRBvxmqZHHNY2BulEsGJ6vosztggV?=
+ =?us-ascii?Q?g6FWE/oiz67baXntNTUtYN6GW0Z5kLGe++qH5+lIw7ZZdZn6/G5LmECJ4s6z?=
+ =?us-ascii?Q?o5gX4Z3sJ3cc/IOqtvvw8WtoNXb9lFb523xwI5hWYffbp2e2684k1CnIqflI?=
+ =?us-ascii?Q?ccUSitAiPicZIC+xMmdQqfX2npCHZg9o5ezSgCTUvraaN/fnVp9QsWs3W3Te?=
+ =?us-ascii?Q?PqfE4jdltiLeweRB6WOmOQh56bgk96uB4fPuZyyCuhwXZ013CqqCpz8rHs4q?=
+ =?us-ascii?Q?H191Y62dYCuskZ4Po/iP5vge+RrftXsyS8470Hp/RwvF0VISeC9ANZ92w/ws?=
+ =?us-ascii?Q?5XhDZHpwasljgORUc9p6AHM//lepCnw14CUOwAjyIHqkglylMoUZtHHpauod?=
+ =?us-ascii?Q?NP0tpu+TA/IiikrUOgOckdotisygj9+2BN1wqQdqMFHt9p2NnSUgKkwiw12W?=
+ =?us-ascii?Q?HRsGRnikh1/f6JZ850jGfAEAYDzp5qmQXsfOCYs/TOcImQ0+vKSE6bqq7qCn?=
+ =?us-ascii?Q?FdAnnN7tmRV/YrpIt4v8pTCE7vtCA46wdRyZG8fAwidbEEWODB+A9Y65HsN6?=
+ =?us-ascii?Q?+CdlOPY6ksxiEzYnTEEuOjRAGuCI6j5g+l+KtsxxIv7Tx1bg7p7ztixGf/kc?=
+ =?us-ascii?Q?KEkGZkEDhycSN3AybSFDrF6oi3iFxNA5rOkhVe5BMBvrGHJ+4bYtWFLiVjJA?=
+ =?us-ascii?Q?jwHFQ/yOCjfjAxKmDsfOLNWbKs/8YyAFP65AaZ6EsRdPmJ+FPbRF01UWF0yR?=
+ =?us-ascii?Q?3sKzTm7TWQjlkbyCnziV0IdYWuwbfGqJrohKOKdffi9GUr3o/GJc1uRMPdxP?=
+ =?us-ascii?Q?qw5e0JFjxymBS2iqwc58FM7AM2pn0GjlZwSBLHlGwX+DFIZ29Qo2z3uC34zw?=
+ =?us-ascii?Q?mGY0EgOPeu/583shBqJemB6JxPKSBt9wLg3W4N0B/rq4iwJ+ooguZqLP4TS0?=
+ =?us-ascii?Q?qc9X9GYyI1xCr6ReltHtmgCgPAosdKmIZWOyFTVgr1e6P4s6Rk9Nr2sNWw1O?=
+ =?us-ascii?Q?Yl1A4JTI6dswbY2zhQMOqUePXeVlXaJavIaQWh5rs1KNPkB/vUYcsRObyALi?=
+ =?us-ascii?Q?L7gUT2xAuMx+gUg/hDFSaYDGzeCWYqaIL9lzK1NRoQRk82NoUBLH0kxjRnLQ?=
+ =?us-ascii?Q?lX7qYNzwnwSngVibg89jIpuWfd1P+5i1/iYDo1wpSTkJSbL9BDEIOtx9tTFd?=
+ =?us-ascii?Q?3SAVRd+Rk7crd5DzcqEaMBtPLgUGPIGMeiGrJDx9ZQewKdn38YJeN3cIRi5o?=
+ =?us-ascii?Q?CcJlx0asABGCE5WIcvb52Ef+rjgTGj2T5REQR9pqWxwJitgQGxSQ63nwz/78?=
+ =?us-ascii?Q?y9/sbKYVb9hQa/jlcpPmDo9OvN9rfTH67kLdFT48/ByaQ57EBK2uEMxDFKLM?=
+ =?us-ascii?Q?Vg=3D=3D?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: c1c28d14-d562-4d70-1dd7-08db733134d4
+X-MS-Exchange-CrossTenant-AuthSource: CY8PR11MB7828.namprd11.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 22 Jun 2023 14:49:00.8706 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 22 Jun 2023 14:58:58.2707 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: DaY//ReOh4DfqX0D5/WHziYrA0d/mi/0KicyYQwubV6zXErX78Ctn4vrBhGpd0X4
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: MN0PR12MB6223
-Subject: Re: [Intel-xe] [Intel-gfx] [PATCH 3/4] drm/ttm: Don't leak a
- resource on eviction error
+X-MS-Exchange-CrossTenant-UserPrincipalName: odwpRbi2h/LfV1W6mx7Z8Vbcaef727B7CX8XqsAh8WJojl6YF1DFtSexpdA/mOe6771Vv+VPiCkCwr4iXRUmIUbF6/dy8xdrshkzC/HzW/Q=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: BL1PR11MB5349
+X-OriginatorOrg: intel.com
+Subject: Re: [Intel-xe] [PATCH v4 1/1] drm/xe: Add a debugfs for faking gt
+ reset failure.
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -129,112 +147,151 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Cc: Andrey Grodzovsky <andrey.grodzovsky@amd.com>,
- =?UTF-8?Q?Christian_K=c3=b6nig?= <ckoenig.leichtzumerken@gmail.com>,
- intel-gfx@lists.freedesktop.org, linux-kernel@vger.kernel.org,
- stable@vger.kernel.org, Huang Rui <ray.huang@amd.com>,
- dri-devel@lists.freedesktop.org, intel-xe@lists.freedesktop.org
+Cc: intel-xe@lists.freedesktop.org, Rodrigo Vivi <rodrigo.vivi@intel.com>
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
+On Thu, Jun 15, 2023 at 02:56:43PM +0530, Himal Prasad Ghimiray wrote:
+> In case of gt reset failure, KMD notifies userspace about failure
+> via uevent. To validate this notification we need to ensure gt
+> reset fails and there is no mechanism to cause failure from hardware.
+> Hence added a debugfs which will cause fake reset failure.
+> 
+> v1(Rodrigo)
+> - Change the variable to fake_reset_failure_in_progress.
+> - Drop usage of READ_ONCE and WRITE_ONCE.
+> - Follow consistency for variable assignment. Either use
+>   functions for all the assignments or don't use for any.
+> 
+> v2
+> - Add description for variable.
+> - Define xe_fake_reset(gt) function in xe_gt.c to set the
+>   fake_reset_failure_in_progress.
+> - No need to explicitly initialize the fake_reset_failure_in_progress
+>   as false. (Rodrigo)
+> - Return proper error code in case of fake reset. (Bala)
+> 
+> v3
+> - Move gt reset worker call to xe_fake_reset(gt) which ensures
+> fake reset goes through even in GT suspend state. (Aravind)
+> 
+> v4
+> -Clear whitespaces.
+> 
+> Cc: Aravind Iddamsetty <aravind.iddamsetty@intel.com>
+> Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
+> cc: Francois Dugast <francois.dugast@intel.com>
+> Cc: Mauro Carvalho Chehab <mchehab@kernel.org>
+> Cc: Balasubramani Vivekanandan <balasubramani.vivekanandan@intel.com>
+> Signed-off-by: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
+> ---
+>  drivers/gpu/drm/xe/xe_gt.c         | 15 +++++++++++++++
+>  drivers/gpu/drm/xe/xe_gt.h         |  2 ++
+>  drivers/gpu/drm/xe/xe_gt_debugfs.c |  9 +++++++++
+>  drivers/gpu/drm/xe/xe_gt_types.h   |  5 +++++
+>  4 files changed, 31 insertions(+)
+> 
+> diff --git a/drivers/gpu/drm/xe/xe_gt.c b/drivers/gpu/drm/xe/xe_gt.c
+> index 2458397ce8af..086317a4d91a 100644
+> --- a/drivers/gpu/drm/xe/xe_gt.c
+> +++ b/drivers/gpu/drm/xe/xe_gt.c
+> @@ -497,10 +497,24 @@ static int do_gt_restart(struct xe_gt *gt)
+>  	return 0;
+>  }
+>  
+> +void xe_gt_fake_reset(struct xe_gt *gt)
+> +{
+> +	gt->reset.fake_reset_failure_in_progress = true;
+> +	xe_gt_info(gt, "Fake reset queued\n");
+> +	queue_work(gt->ordered_wq, &gt->reset.worker);
+> +}
+> +
+>  static int gt_reset(struct xe_gt *gt)
+>  {
+>  	int err;
+>  
+> +	if (gt->reset.fake_reset_failure_in_progress) {
+> +		err = -ECANCELED;
+> +		xe_gt_info(gt, "Fake GT reset failure is in progress\n");
+> +		gt->reset.fake_reset_failure_in_progress = false;
+> +		goto err_cancelled;
+> +	}
+> +
+>  	/* We only support GT resets with GuC submission */
+>  	if (!xe_device_guc_submission_enabled(gt_to_xe(gt)))
+>  		return -ENODEV;
+> @@ -543,6 +557,7 @@ static int gt_reset(struct xe_gt *gt)
+>  err_msg:
+>  	XE_WARN_ON(xe_uc_start(&gt->uc));
+>  	xe_device_mem_access_put(gt_to_xe(gt));
+> +err_cancelled:
+>  	xe_gt_err(gt, "reset failed (%pe)\n", ERR_PTR(err));
 
+Not a big issue but the goto label is misleading as cancellation != failure.
 
-Am 22.06.23 um 16:08 schrieb Thomas Hellström:
->
-> On 6/22/23 15:55, Andi Shyti wrote:
->> Hi Thomas,
->>
->> On Thu, Jun 22, 2023 at 12:14:11PM +0200, Thomas Hellström wrote:
->>> On eviction errors other than -EMULTIHOP we were leaking a resource.
->>> Fix.
->>>
->>> Fixes: 403797925768 ("drm/ttm: Fix multihop assert on eviction.")
->>> Cc: Andrey Grodzovsky <andrey.grodzovsky@amd.com>
->>> Cc: Christian König <christian.koenig@amd.com>
->>> Cc: Christian Koenig <christian.koenig@amd.com>
->>> Cc: Huang Rui <ray.huang@amd.com>
->>> Cc: dri-devel@lists.freedesktop.org
->>> Cc: <stable@vger.kernel.org> # v5.15+
->>> Signed-off-by: Thomas Hellström <thomas.hellstrom@linux.intel.com>
->>> ---
->>>   drivers/gpu/drm/ttm/ttm_bo.c | 16 ++++++++--------
->>>   1 file changed, 8 insertions(+), 8 deletions(-)
->>>
->>> diff --git a/drivers/gpu/drm/ttm/ttm_bo.c 
->>> b/drivers/gpu/drm/ttm/ttm_bo.c
->>> index 615d30c4262d..89530f2a027f 100644
->>> --- a/drivers/gpu/drm/ttm/ttm_bo.c
->>> +++ b/drivers/gpu/drm/ttm/ttm_bo.c
->>> @@ -462,14 +462,14 @@ static int ttm_bo_evict(struct 
->>> ttm_buffer_object *bo,
->>>       ret = ttm_bo_handle_move_mem(bo, evict_mem, true, ctx, &hop);
->>>       if (ret == -EMULTIHOP) {
->>>           ret = ttm_bo_bounce_temp_buffer(bo, &evict_mem, ctx, &hop);
->>> -        if (ret) {
->>> -            if (ret != -ERESTARTSYS && ret != -EINTR)
->>> -                pr_err("Buffer eviction failed\n");
->>> -            ttm_resource_free(bo, &evict_mem);
->>> -            goto out;
->>> -        }
->>> -        /* try and move to final place now. */
->>> -        goto bounce;
->>> +        if (!ret)
->>> +            /* try and move to final place now. */
->>> +            goto bounce;
->> As we are at this, can't we replace this with a while()? Goto's
->> used instead of a while loop are a fist in the eye...
->
-> I'm completely OK with that. this patch already did away with one of 
-> them. Let's hear Christian's opinion first, though.
+>  
+>  	return err;
+> diff --git a/drivers/gpu/drm/xe/xe_gt.h b/drivers/gpu/drm/xe/xe_gt.h
+> index 21d9044088de..22afae04fa3c 100644
+> --- a/drivers/gpu/drm/xe/xe_gt.h
+> +++ b/drivers/gpu/drm/xe/xe_gt.h
+> @@ -24,6 +24,8 @@ void xe_gt_suspend_prepare(struct xe_gt *gt);
+>  int xe_gt_suspend(struct xe_gt *gt);
+>  int xe_gt_resume(struct xe_gt *gt);
+>  void xe_gt_reset_async(struct xe_gt *gt);
+> +void xe_gt_fake_reset(struct xe_gt *gt);
+> +void xe_gt_migrate_wait(struct xe_gt *gt);
 
-I'm not a fan of that goto either, but could we somehow avoid the 
-while(1) ? E.g. something like do { } while (!ret) after handling the 
-multihop?
+This one is not needed, please remove it.
 
-Christian.
+Francois
 
->
-> Thanks,
->
-> Thomas
->
->
->
->
->
->>
->> It looks even better:
->>
->>     while (1) {
->>         ret = ttm_bo_handle_move_mem(bo, evict_mem, true, ctx, &hop);
->>         if (!ret)
->>             break;
->>
->>         if (ret == -EMULTIHOP)
->>             ret = ttm_bo_bounce_temp_buffer(bo, &evict_mem,
->>                             ctx, &hop);
->>
->>         /* try again */
->>         if (!ret)
->>             continue;
->>
->>         ttm_resource_free(bo, &evict_mem);
->>         if (ret != -ERESTARTSYS && ret != -EINTR)
->>             pr_err("Buffer eviction failed\n");
->>
->>         break;
->>     }
->>
->> Andi
->>
->>> +    }
->>> +    if (ret) {
->>> +        ttm_resource_free(bo, &evict_mem);
->>> +        if (ret != -ERESTARTSYS && ret != -EINTR)
->>> +            pr_err("Buffer eviction failed\n");
->>>       }
->>>   out:
->>>       return ret;
->>> -- 
->>> 2.40.1
-
+>  void xe_gt_sanitize(struct xe_gt *gt);
+>  
+>  /**
+> diff --git a/drivers/gpu/drm/xe/xe_gt_debugfs.c b/drivers/gpu/drm/xe/xe_gt_debugfs.c
+> index b5a5538ae630..8d888153c477 100644
+> --- a/drivers/gpu/drm/xe/xe_gt_debugfs.c
+> +++ b/drivers/gpu/drm/xe/xe_gt_debugfs.c
+> @@ -138,6 +138,14 @@ static int workarounds(struct seq_file *m, void *data)
+>  	return 0;
+>  }
+>  
+> +static int fake_reset_failure(struct seq_file *m, void *data)
+> +{
+> +	struct xe_gt *gt = node_to_gt(m->private);
+> +
+> +	xe_gt_fake_reset(gt);
+> +	return 0;
+> +}
+> +
+>  static const struct drm_info_list debugfs_list[] = {
+>  	{"hw_engines", hw_engines, 0},
+>  	{"force_reset", force_reset, 0},
+> @@ -147,6 +155,7 @@ static const struct drm_info_list debugfs_list[] = {
+>  	{"ggtt", ggtt, 0},
+>  	{"register-save-restore", register_save_restore, 0},
+>  	{"workarounds", workarounds, 0},
+> +	{"fake_reset_failure", fake_reset_failure, 0},
+>  };
+>  
+>  void xe_gt_debugfs_register(struct xe_gt *gt)
+> diff --git a/drivers/gpu/drm/xe/xe_gt_types.h b/drivers/gpu/drm/xe/xe_gt_types.h
+> index 99ab7ec99ccd..0b6e1df3ca36 100644
+> --- a/drivers/gpu/drm/xe/xe_gt_types.h
+> +++ b/drivers/gpu/drm/xe/xe_gt_types.h
+> @@ -141,6 +141,11 @@ struct xe_gt {
+>  
+>  	/** @reset: state for GT resets */
+>  	struct {
+> +		/**
+> +		 * @fake_reset_failure_in_progress: A bool to indicate a fake reset
+> +		 * failure has been triggered
+> +		 */
+> +		bool fake_reset_failure_in_progress;
+>  		/**
+>  		 * @worker: work so GT resets can done async allowing to reset
+>  		 * code to safely flush all code paths
+> -- 
+> 2.25.1
+> 
