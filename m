@@ -4,30 +4,51 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 966E8EB64D8
-	for <intel-xe@archiver.kernel.org>; Thu, 22 Jun 2023 13:34:37 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6397DEB64DC
+	for <intel-xe@archiver.kernel.org>; Thu, 22 Jun 2023 13:55:34 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3914F10E563;
-	Thu, 22 Jun 2023 13:34:37 +0000 (UTC)
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id 1F0D010E563;
- Thu, 22 Jun 2023 13:34:35 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 14F2AAA3D8;
- Thu, 22 Jun 2023 13:34:35 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============2352409981817902596=="
+	by gabe.freedesktop.org (Postfix) with ESMTP id 25A5410E56B;
+	Thu, 22 Jun 2023 13:55:34 +0000 (UTC)
+Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id BD04810E568;
+ Thu, 22 Jun 2023 13:55:31 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1687442131; x=1718978131;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:content-transfer-encoding:in-reply-to;
+ bh=RpQccSlwUHCOmo04t2dBa0xz+CX4hYUabFawymK3Ink=;
+ b=DKHR9OMnauQcf0e1De+RXhMDyiYTz07xNarJm3LZvC57QlvMfCgvGPEs
+ NnuIhPveiT6mFqf+BzvBlnv6WjYsHz+rVBhBhenpP6xDZ0DfKf/mNiVwD
+ lIu3zg5u72cbOU8P1tK4SIuCn6dmT2U+T4N1ho361yZGyp+Gr3AzbOgAT
+ zwisqPYm6wGkOxdD/JoOf9lRLOQgvE+5ZylrNQvTS4meSYJBevr3cHARl
+ nFKXDRX4yIauWITL2inbECNJ6uZ+nRSbSfDtk32NXzpdIVfWANZCC13tQ
+ 4HZ6NcItAj3XB7XRyl+1qzzrMytExL0Am4i4S1kVQpH1U491OoYr44qzb w==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10748"; a="360510745"
+X-IronPort-AV: E=Sophos;i="6.01,263,1684825200"; d="scan'208";a="360510745"
+Received: from orsmga002.jf.intel.com ([10.7.209.21])
+ by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 22 Jun 2023 06:55:30 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6600,9927,10748"; a="714921765"
+X-IronPort-AV: E=Sophos;i="6.01,263,1684825200"; d="scan'208";a="714921765"
+Received: from akivisil-mobl.ger.corp.intel.com (HELO intel.com)
+ ([10.251.215.96])
+ by orsmga002-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 22 Jun 2023 06:55:26 -0700
+Date: Thu, 22 Jun 2023 15:55:22 +0200
+From: Andi Shyti <andi.shyti@linux.intel.com>
+To: Thomas =?iso-8859-15?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>
+Message-ID: <ZJRSyp7fT6VXpow7@ashyti-mobl2.lan>
+References: <20230622101412.78426-1-thomas.hellstrom@linux.intel.com>
+ <20230622101412.78426-4-thomas.hellstrom@linux.intel.com>
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Francois Dugast" <francois.dugast@intel.com>
-Date: Thu, 22 Jun 2023 13:34:35 -0000
-Message-ID: <168744087506.4871.8412011491495985561@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20230622123946.7-1-francois.dugast@intel.com>
-In-Reply-To: <20230622123946.7-1-francois.dugast@intel.com>
-Subject: [Intel-xe] =?utf-8?q?=E2=97=8B_CI=2EBAT=3A_info_for_drm/xe=3A_uA?=
- =?utf-8?q?PI_cleanup_=28rev5=29?=
+Content-Type: text/plain; charset=iso-8859-15
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20230622101412.78426-4-thomas.hellstrom@linux.intel.com>
+Subject: Re: [Intel-xe] [Intel-gfx] [PATCH 3/4] drm/ttm: Don't leak a
+ resource on eviction error
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -39,70 +60,88 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
-Cc: intel-xe@lists.freedesktop.org
+Cc: Andrey Grodzovsky <andrey.grodzovsky@amd.com>,
+ Christian =?iso-8859-15?Q?K=F6nig?= <ckoenig.leichtzumerken@gmail.com>,
+ intel-gfx@lists.freedesktop.org, linux-kernel@vger.kernel.org,
+ stable@vger.kernel.org,
+ Christian =?iso-8859-15?Q?K=F6nig?= <christian.koenig@amd.com>,
+ Huang Rui <ray.huang@amd.com>, dri-devel@lists.freedesktop.org,
+ intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============2352409981817902596==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+Hi Thomas,
 
-== Series Details ==
+On Thu, Jun 22, 2023 at 12:14:11PM +0200, Thomas Hellström wrote:
+> On eviction errors other than -EMULTIHOP we were leaking a resource.
+> Fix.
+> 
+> Fixes: 403797925768 ("drm/ttm: Fix multihop assert on eviction.")
+> Cc: Andrey Grodzovsky <andrey.grodzovsky@amd.com>
+> Cc: Christian König <christian.koenig@amd.com>
+> Cc: Christian Koenig <christian.koenig@amd.com>
+> Cc: Huang Rui <ray.huang@amd.com>
+> Cc: dri-devel@lists.freedesktop.org
+> Cc: <stable@vger.kernel.org> # v5.15+
+> Signed-off-by: Thomas Hellström <thomas.hellstrom@linux.intel.com>
+> ---
+>  drivers/gpu/drm/ttm/ttm_bo.c | 16 ++++++++--------
+>  1 file changed, 8 insertions(+), 8 deletions(-)
+> 
+> diff --git a/drivers/gpu/drm/ttm/ttm_bo.c b/drivers/gpu/drm/ttm/ttm_bo.c
+> index 615d30c4262d..89530f2a027f 100644
+> --- a/drivers/gpu/drm/ttm/ttm_bo.c
+> +++ b/drivers/gpu/drm/ttm/ttm_bo.c
+> @@ -462,14 +462,14 @@ static int ttm_bo_evict(struct ttm_buffer_object *bo,
+>  	ret = ttm_bo_handle_move_mem(bo, evict_mem, true, ctx, &hop);
+>  	if (ret == -EMULTIHOP) {
+>  		ret = ttm_bo_bounce_temp_buffer(bo, &evict_mem, ctx, &hop);
+> -		if (ret) {
+> -			if (ret != -ERESTARTSYS && ret != -EINTR)
+> -				pr_err("Buffer eviction failed\n");
+> -			ttm_resource_free(bo, &evict_mem);
+> -			goto out;
+> -		}
+> -		/* try and move to final place now. */
+> -		goto bounce;
+> +		if (!ret)
+> +			/* try and move to final place now. */
+> +			goto bounce;
 
-Series: drm/xe: uAPI cleanup (rev5)
-URL   : https://patchwork.freedesktop.org/series/118447/
-State : info
+As we are at this, can't we replace this with a while()? Goto's
+used instead of a while loop are a fist in the eye...
 
-== Summary ==
+It looks even better:
 
-Participating hosts:
-bat-pvc-2
-bat-atsm-2
-bat-dg2-oem2
-bat-adlp-7
-Missing hosts results[0]:
-Results: [xe-pw-118447v5](https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-118447v5/index.html)
+	while (1) {
+		ret = ttm_bo_handle_move_mem(bo, evict_mem, true, ctx, &hop);
+		if (!ret)
+			break;
 
+		if (ret == -EMULTIHOP)
+			ret = ttm_bo_bounce_temp_buffer(bo, &evict_mem,
+							ctx, &hop);
 
+		/* try again */
+		if (!ret)
+			continue;
 
---===============2352409981817902596==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+		ttm_resource_free(bo, &evict_mem);
+		if (ret != -ERESTARTSYS && ret != -EINTR)
+			pr_err("Buffer eviction failed\n");
 
+		break;
+	}
 
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
+Andi
 
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/xe: uAPI cleanup (rev5)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/118447/">https://patchwork.freedesktop.org/series/118447/</a></td></tr>
-<tr><td><b>State:</b></td><td>info</td></tr>
-
-</table>
-
-
-    <p>Participating hosts:<br />
-bat-pvc-2<br />
-bat-atsm-2<br />
-bat-dg2-oem2<br />
-bat-adlp-7<br />
-Missing hosts results[0]:<br />
-Results: <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-118447v5/index.html">xe-pw-118447v5</a></p>
-
-</body>
-</html>
-
---===============2352409981817902596==--
+> +	}
+> +	if (ret) {
+> +		ttm_resource_free(bo, &evict_mem);
+> +		if (ret != -ERESTARTSYS && ret != -EINTR)
+> +			pr_err("Buffer eviction failed\n");
+>  	}
+>  out:
+>  	return ret;
+> -- 
+> 2.40.1
