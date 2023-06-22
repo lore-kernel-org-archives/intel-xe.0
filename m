@@ -4,30 +4,54 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id BDA33EB64D8
-	for <intel-xe@archiver.kernel.org>; Thu, 22 Jun 2023 11:15:40 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 78C6FEB64DB
+	for <intel-xe@archiver.kernel.org>; Thu, 22 Jun 2023 12:25:15 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 76B6A10E546;
-	Thu, 22 Jun 2023 11:15:40 +0000 (UTC)
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id 4630510E546;
- Thu, 22 Jun 2023 11:15:38 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 3F0E3AADD8;
- Thu, 22 Jun 2023 11:15:38 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============3074312275482118321=="
+	by gabe.freedesktop.org (Postfix) with ESMTP id 38FAE10E550;
+	Thu, 22 Jun 2023 12:25:15 +0000 (UTC)
+Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 495D510E54F;
+ Thu, 22 Jun 2023 12:25:13 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1687436713; x=1718972713;
+ h=message-id:date:mime-version:subject:to:cc:references:
+ from:in-reply-to:content-transfer-encoding;
+ bh=VFIhXIMBVxone3gWtsN0Ctk34JSxSUHhD8XO85Zqc1I=;
+ b=GXshRkI4uhp6AzWebiug5rLk6WzRjwsEqe1+p0b03Stg2Tk6C885zFAa
+ jnT2pknAyGGGAsEKiO/OVLNCcOPKGdGKSR0m1jMP1G6TvTblkcBPsURxS
+ GqbpoGVqozxClTEBpOTe/MgDjMo85WvAwiHllXbszFUuid8FgY6Hh4KOF
+ E6VN/QglqnDyZ0MpGfdt0kCU5COaRSI2R9sAXYQYGaytdoXdGJwvDQNFj
+ crw7yS3Hg2vddyXRPFpQXhXenxZP5LHpsYtMXCS7O+5aoqh1npjmcwmQg
+ t237xOekYXObGNYDk2mlLNBGehByTnVO8f85Rnl+ocYUyMu3WKLKNMcCx A==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10748"; a="360489512"
+X-IronPort-AV: E=Sophos;i="6.00,263,1681196400"; d="scan'208";a="360489512"
+Received: from orsmga004.jf.intel.com ([10.7.209.38])
+ by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 22 Jun 2023 05:25:12 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6600,9927,10748"; a="839028264"
+X-IronPort-AV: E=Sophos;i="6.00,263,1681196400"; d="scan'208";a="839028264"
+Received: from nirmoyda-mobl.ger.corp.intel.com (HELO [10.249.46.93])
+ ([10.249.46.93])
+ by orsmga004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 22 Jun 2023 05:25:09 -0700
+Message-ID: <206f92ee-ed18-a503-6119-bc03779cd516@linux.intel.com>
+Date: Thu, 22 Jun 2023 14:25:06 +0200
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: =?utf-8?q?Thomas_Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>
-Date: Thu, 22 Jun 2023 11:15:38 -0000
-Message-ID: <168743253822.4872.13189030075810101430@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+ Thunderbird/102.12.0
+Content-Language: en-US
+To: =?UTF-8?Q?Thomas_Hellstr=c3=b6m?= <thomas.hellstrom@linux.intel.com>,
+ intel-xe@lists.freedesktop.org
 References: <20230622101412.78426-1-thomas.hellstrom@linux.intel.com>
-In-Reply-To: <20230622101412.78426-1-thomas.hellstrom@linux.intel.com>
-Subject: [Intel-xe] =?utf-8?q?=E2=97=8B_CI=2EBAT=3A_info_for_drm/ttm=3A_F?=
- =?utf-8?q?ixes_around_resources_and_bulk_moves?=
+ <20230622101412.78426-4-thomas.hellstrom@linux.intel.com>
+From: Nirmoy Das <nirmoy.das@linux.intel.com>
+In-Reply-To: <20230622101412.78426-4-thomas.hellstrom@linux.intel.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+Subject: Re: [Intel-xe] [PATCH 3/4] drm/ttm: Don't leak a resource on
+ eviction error
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -39,70 +63,59 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
-Cc: intel-xe@lists.freedesktop.org
+Cc: Andrey Grodzovsky <andrey.grodzovsky@amd.com>,
+ =?UTF-8?Q?Christian_K=c3=b6nig?= <ckoenig.leichtzumerken@gmail.com>,
+ intel-gfx@lists.freedesktop.org, linux-kernel@vger.kernel.org,
+ stable@vger.kernel.org, Huang Rui <ray.huang@amd.com>,
+ dri-devel@lists.freedesktop.org,
+ =?UTF-8?Q?Christian_K=c3=b6nig?= <christian.koenig@amd.com>
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============3074312275482118321==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
 
-== Series Details ==
+On 6/22/2023 12:14 PM, Thomas Hellström wrote:
+> On eviction errors other than -EMULTIHOP we were leaking a resource.
+> Fix.
+>
+> Fixes: 403797925768 ("drm/ttm: Fix multihop assert on eviction.")
+> Cc: Andrey Grodzovsky <andrey.grodzovsky@amd.com>
+> Cc: Christian König <christian.koenig@amd.com>
+> Cc: Christian Koenig <christian.koenig@amd.com>
+> Cc: Huang Rui <ray.huang@amd.com>
+> Cc: dri-devel@lists.freedesktop.org
+> Cc: <stable@vger.kernel.org> # v5.15+
+> Signed-off-by: Thomas Hellström <thomas.hellstrom@linux.intel.com>
 
-Series: drm/ttm: Fixes around resources and bulk moves
-URL   : https://patchwork.freedesktop.org/series/119741/
-State : info
+Reviewed-by: Nirmoy Das <nirmoy.das@intel.com>
 
-== Summary ==
-
-Participating hosts:
-bat-pvc-2
-bat-atsm-2
-bat-dg2-oem2
-bat-adlp-7
-Missing hosts results[0]:
-Results: [xe-pw-119741v1](https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-119741v1/index.html)
-
-
-
---===============3074312275482118321==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/ttm: Fixes around resources and bulk moves</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/119741/">https://patchwork.freedesktop.org/series/119741/</a></td></tr>
-<tr><td><b>State:</b></td><td>info</td></tr>
-
-</table>
-
-
-    <p>Participating hosts:<br />
-bat-pvc-2<br />
-bat-atsm-2<br />
-bat-dg2-oem2<br />
-bat-adlp-7<br />
-Missing hosts results[0]:<br />
-Results: <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-119741v1/index.html">xe-pw-119741v1</a></p>
-
-</body>
-</html>
-
---===============3074312275482118321==--
+> ---
+>   drivers/gpu/drm/ttm/ttm_bo.c | 16 ++++++++--------
+>   1 file changed, 8 insertions(+), 8 deletions(-)
+>
+> diff --git a/drivers/gpu/drm/ttm/ttm_bo.c b/drivers/gpu/drm/ttm/ttm_bo.c
+> index 615d30c4262d..89530f2a027f 100644
+> --- a/drivers/gpu/drm/ttm/ttm_bo.c
+> +++ b/drivers/gpu/drm/ttm/ttm_bo.c
+> @@ -462,14 +462,14 @@ static int ttm_bo_evict(struct ttm_buffer_object *bo,
+>   	ret = ttm_bo_handle_move_mem(bo, evict_mem, true, ctx, &hop);
+>   	if (ret == -EMULTIHOP) {
+>   		ret = ttm_bo_bounce_temp_buffer(bo, &evict_mem, ctx, &hop);
+> -		if (ret) {
+> -			if (ret != -ERESTARTSYS && ret != -EINTR)
+> -				pr_err("Buffer eviction failed\n");
+> -			ttm_resource_free(bo, &evict_mem);
+> -			goto out;
+> -		}
+> -		/* try and move to final place now. */
+> -		goto bounce;
+> +		if (!ret)
+> +			/* try and move to final place now. */
+> +			goto bounce;
+> +	}
+> +	if (ret) {
+> +		ttm_resource_free(bo, &evict_mem);
+> +		if (ret != -ERESTARTSYS && ret != -EINTR)
+> +			pr_err("Buffer eviction failed\n");
+>   	}
+>   out:
+>   	return ret;
