@@ -4,30 +4,55 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7007AEB64D7
-	for <intel-xe@archiver.kernel.org>; Fri, 23 Jun 2023 06:55:34 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 49B2EEB64D7
+	for <intel-xe@archiver.kernel.org>; Fri, 23 Jun 2023 07:48:41 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 10DB110E5DA;
-	Fri, 23 Jun 2023 06:55:34 +0000 (UTC)
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id 4EF2710E5DA;
- Fri, 23 Jun 2023 06:55:32 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 47573AA01E;
- Fri, 23 Jun 2023 06:55:32 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============6603783532030165397=="
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0B57510E02D;
+	Fri, 23 Jun 2023 07:48:41 +0000 (UTC)
+Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4065210E02D;
+ Fri, 23 Jun 2023 07:48:40 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1687506520; x=1719042520;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:content-transfer-encoding:in-reply-to;
+ bh=iX6DkmUl4cz2IjtF1PHE1fVSnIeq15AXAzNyDDfvQOQ=;
+ b=R+LYFZoP8Oq1BuPvNplEmFPAVWbrPKq4MvjesYj7zyx7jzekkFR77UVA
+ /IDHZAlNmHr6ulD1MSe0qaqLi81wm7YcmjtsduTXlHwM3hTuqgzA9YMNm
+ kL64lEEAL70qXGhqOcTvpnc7qBAxgdZiCnNvlEreWGxcqHKWxa9saCJNm
+ 7/TD4sIn4UTPRm+dd7X6RufR+cE/Alo0/iS68nYotbvumhl/C16GTMVUQ
+ dLrbz+bQr0Mh+xxh4sHS+BLibfJ9BpcNXbQ4+obj4lS4sl2Gbzm+PY5Yi
+ 2IoWKk2hpkmAlXlhnHxlwThW+lir9qHN6MDZwGWIOLHWSEzsriuT7l0YV w==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10749"; a="341046744"
+X-IronPort-AV: E=Sophos;i="6.01,151,1684825200"; d="scan'208";a="341046744"
+Received: from orsmga006.jf.intel.com ([10.7.209.51])
+ by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 23 Jun 2023 00:48:39 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6600,9927,10749"; a="692588026"
+X-IronPort-AV: E=Sophos;i="6.01,151,1684825200"; d="scan'208";a="692588026"
+Received: from wtedesch-mobl1.ger.corp.intel.com (HELO intel.com)
+ ([10.251.215.233])
+ by orsmga006-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 23 Jun 2023 00:48:35 -0700
+Date: Fri, 23 Jun 2023 09:48:31 +0200
+From: Andi Shyti <andi.shyti@linux.intel.com>
+To: Thomas =?iso-8859-15?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>
+Message-ID: <ZJVOTzorVVTvvF2z@ashyti-mobl2.lan>
+References: <20230622101412.78426-1-thomas.hellstrom@linux.intel.com>
+ <20230622101412.78426-4-thomas.hellstrom@linux.intel.com>
+ <ZJRSyp7fT6VXpow7@ashyti-mobl2.lan>
+ <3a089ebb-7389-3d3e-beb0-13a8d64eb04d@linux.intel.com>
+ <196a7f74-66ac-1eae-4795-a42691f4793e@amd.com>
+ <ef5d91b8-c68b-5edc-d611-6a4dbf55c945@linux.intel.com>
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Riana Tauro" <riana.tauro@intel.com>
-Date: Fri, 23 Jun 2023 06:55:32 -0000
-Message-ID: <168750333228.31832.14678364241675405851@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20230623052431.75578-1-riana.tauro@intel.com>
-In-Reply-To: <20230623052431.75578-1-riana.tauro@intel.com>
-Subject: [Intel-xe] =?utf-8?q?=E2=97=8B_CI=2EBAT=3A_info_for_Add_gtidle_p?=
- =?utf-8?q?roperties_=28rev5=29?=
+Content-Type: text/plain; charset=iso-8859-15
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <ef5d91b8-c68b-5edc-d611-6a4dbf55c945@linux.intel.com>
+Subject: Re: [Intel-xe] [Intel-gfx] [PATCH 3/4] drm/ttm: Don't leak a
+ resource on eviction error
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -39,70 +64,59 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
-Cc: intel-xe@lists.freedesktop.org
+Cc: Andrey Grodzovsky <andrey.grodzovsky@amd.com>,
+ Christian =?iso-8859-15?Q?K=F6nig?= <ckoenig.leichtzumerken@gmail.com>,
+ intel-gfx@lists.freedesktop.org, linux-kernel@vger.kernel.org,
+ stable@vger.kernel.org, intel-xe@lists.freedesktop.org,
+ Huang Rui <ray.huang@amd.com>, dri-devel@lists.freedesktop.org,
+ Christian =?iso-8859-15?Q?K=F6nig?= <christian.koenig@amd.com>
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============6603783532030165397==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+Hi Christian and Thomas,
 
-== Series Details ==
+> > > > > diff --git a/drivers/gpu/drm/ttm/ttm_bo.c
+> > > > > b/drivers/gpu/drm/ttm/ttm_bo.c
+> > > > > index 615d30c4262d..89530f2a027f 100644
+> > > > > --- a/drivers/gpu/drm/ttm/ttm_bo.c
+> > > > > +++ b/drivers/gpu/drm/ttm/ttm_bo.c
+> > > > > @@ -462,14 +462,14 @@ static int ttm_bo_evict(struct
+> > > > > ttm_buffer_object *bo,
+> > > > >       ret = ttm_bo_handle_move_mem(bo, evict_mem, true, ctx, &hop);
+> > > > >       if (ret == -EMULTIHOP) {
+> > > > >           ret = ttm_bo_bounce_temp_buffer(bo, &evict_mem, ctx, &hop);
+> > > > > -        if (ret) {
+> > > > > -            if (ret != -ERESTARTSYS && ret != -EINTR)
+> > > > > -                pr_err("Buffer eviction failed\n");
+> > > > > -            ttm_resource_free(bo, &evict_mem);
+> > > > > -            goto out;
+> > > > > -        }
+> > > > > -        /* try and move to final place now. */
+> > > > > -        goto bounce;
+> > > > > +        if (!ret)
+> > > > > +            /* try and move to final place now. */
+> > > > > +            goto bounce;
+> > > > As we are at this, can't we replace this with a while()? Goto's
+> > > > used instead of a while loop are a fist in the eye...
+> > > 
+> > > I'm completely OK with that. this patch already did away with one of
+> > > them. Let's hear Christian's opinion first, though.
+> > 
+> > I'm not a fan of that goto either, but could we somehow avoid the
+> > while(1) ? E.g. something like do { } while (!ret) after handling the
+> > multihop?
+> 
+> I think the construct that makes it most obvious what's happening, although
+> it needs two tests for -EMULTIHOP is something like
+> 
+> do {
+> ....
+>    if (ret != -EMULTIHOP)
+>       break;
+>    ....
+> } while (ret ==-EMULTIHOP);
 
-Series: Add gtidle properties (rev5)
-URL   : https://patchwork.freedesktop.org/series/119262/
-State : info
+even better :)
 
-== Summary ==
-
-Participating hosts:
-bat-pvc-2
-bat-atsm-2
-bat-dg2-oem2
-bat-adlp-7
-Missing hosts results[0]:
-Results: [xe-pw-119262v5](https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-119262v5/index.html)
-
-
-
---===============6603783532030165397==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>Add gtidle properties (rev5)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/119262/">https://patchwork.freedesktop.org/series/119262/</a></td></tr>
-<tr><td><b>State:</b></td><td>info</td></tr>
-
-</table>
-
-
-    <p>Participating hosts:<br />
-bat-pvc-2<br />
-bat-atsm-2<br />
-bat-dg2-oem2<br />
-bat-adlp-7<br />
-Missing hosts results[0]:<br />
-Results: <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-119262v5/index.html">xe-pw-119262v5</a></p>
-
-</body>
-</html>
-
---===============6603783532030165397==--
+Thank you!
+Andi
