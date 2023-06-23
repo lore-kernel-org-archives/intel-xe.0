@@ -4,30 +4,31 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id C7183EB64D7
-	for <intel-xe@archiver.kernel.org>; Fri, 23 Jun 2023 05:08:21 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id B40DCEB64D7
+	for <intel-xe@archiver.kernel.org>; Fri, 23 Jun 2023 05:10:27 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7259710E5D2;
-	Fri, 23 Jun 2023 05:08:21 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7E27710E004;
+	Fri, 23 Jun 2023 05:10:27 +0000 (UTC)
 Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id DDE3E10E5D2;
- Fri, 23 Jun 2023 05:08:19 +0000 (UTC)
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id DCC5310E004;
+ Fri, 23 Jun 2023 05:10:25 +0000 (UTC)
 Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id D45F8AA3D8;
- Fri, 23 Jun 2023 05:08:19 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============6865291560356033409=="
+ by emeril.freedesktop.org (Postfix) with ESMTP id D5529A7DFF;
+ Fri, 23 Jun 2023 05:10:25 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "David Kershner" <david.kershner@intel.com>
-Date: Fri, 23 Jun 2023 05:08:19 -0000
-Message-ID: <168749689983.31832.6399068289720035395@emeril.freedesktop.org>
+To: "Himal Prasad Ghimiray" <himal.prasad.ghimiray@intel.com>
+Date: Fri, 23 Jun 2023 05:10:25 -0000
+Message-ID: <168749702584.31830.17596245419381168387@emeril.freedesktop.org>
 X-Patchwork-Hint: ignore
-References: <20230623041257.3550266-1-david.kershner@intel.com>
-In-Reply-To: <20230623041257.3550266-1-david.kershner@intel.com>
-Subject: [Intel-xe] =?utf-8?q?=E2=97=8B_CI=2EBAT=3A_info_for_Add_Intel_Ac?=
- =?utf-8?q?celerated_Fabric_to_Xe_=28rev3=29?=
+References: <20230623043911.3783416-1-himal.prasad.ghimiray@intel.com>
+In-Reply-To: <20230623043911.3783416-1-himal.prasad.ghimiray@intel.com>
+Subject: [Intel-xe] =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_f?=
+ =?utf-8?q?or_series_starting_with_=5Bv5=2C1/1=5D_drm/xe=3A_Add_a_debugfs_?=
+ =?utf-8?q?for_faking_gt_reset_failure=2E?=
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -44,65 +45,17 @@ Cc: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============6865291560356033409==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
 == Series Details ==
 
-Series: Add Intel Accelerated Fabric to Xe (rev3)
-URL   : https://patchwork.freedesktop.org/series/119706/
-State : info
+Series: series starting with [v5,1/1] drm/xe: Add a debugfs for faking gt reset failure.
+URL   : https://patchwork.freedesktop.org/series/119784/
+State : success
 
 == Summary ==
 
-Participating hosts:
-bat-pvc-2
-bat-atsm-2
-bat-dg2-oem2
-bat-adlp-7
-Missing hosts results[0]:
-Results: [xe-pw-119706v3](https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-119706v3/index.html)
+=== Applying kernel patches on branch 'drm-xe-next' with base: ===
+Base commit: 4287d7a61 drm/xe: Document topology mask query
+=== git am output follows ===
+Applying: drm/xe: Add a debugfs for faking gt reset failure.
 
 
-
---===============6865291560356033409==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>Add Intel Accelerated Fabric to Xe (rev3)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/119706/">https://patchwork.freedesktop.org/series/119706/</a></td></tr>
-<tr><td><b>State:</b></td><td>info</td></tr>
-
-</table>
-
-
-    <p>Participating hosts:<br />
-bat-pvc-2<br />
-bat-atsm-2<br />
-bat-dg2-oem2<br />
-bat-adlp-7<br />
-Missing hosts results[0]:<br />
-Results: <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-119706v3/index.html">xe-pw-119706v3</a></p>
-
-</body>
-</html>
-
---===============6865291560356033409==--
