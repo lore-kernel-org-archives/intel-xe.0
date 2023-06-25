@@ -4,30 +4,51 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9BF30EB64D7
-	for <intel-xe@archiver.kernel.org>; Sat, 24 Jun 2023 02:20:55 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id C523DC0015E
+	for <intel-xe@archiver.kernel.org>; Sun, 25 Jun 2023 10:00:47 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 514C210E00E;
-	Sat, 24 Jun 2023 02:20:55 +0000 (UTC)
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id 07FDF10E00E;
- Sat, 24 Jun 2023 02:20:53 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 00E71AA3D8;
- Sat, 24 Jun 2023 02:20:52 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============1196700541518267851=="
+	by gabe.freedesktop.org (Postfix) with ESMTP id 50C4610E15A;
+	Sun, 25 Jun 2023 10:00:47 +0000 (UTC)
+Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3DFC310E159;
+ Sun, 25 Jun 2023 10:00:44 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1687687244; x=1719223244;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:in-reply-to;
+ bh=3SWr32SgqAC6BAivfFTdN/GsjHOvUKGZ76gBYfe8bmo=;
+ b=G8PgJYxV7t8ED+kWLmgp3W6qu6aFiMRifLnJZZHqN0iJD4dVbw89gmNy
+ gPgmEg5/KOysMgSXEeVuFhriMh6ex96vswrlkSYrwR5eUVyV15WJraTek
+ lCxKbeKLMbpQlacKwvdtzTJ+RGwGwbxA2fJ9i1WE9DZuOhHD4rU+4rFf0
+ xEfIMwhLpeOyXGHvBwPZyhDU9+M+kuwzVgUfhNBZjgCFK1SJNbgDAOcjK
+ SVumdNsMVmM6bZI8vUyShRwlW8rlTVz70MbPhu9PqlQUbYZeon9EwppXq
+ fgpf6q2eemMvHehyzJHvNgpujtjxdLb4ynnzu22i46CxOjQ1h4WOQ2WaS g==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10751"; a="364495577"
+X-IronPort-AV: E=Sophos;i="6.01,157,1684825200"; d="scan'208";a="364495577"
+Received: from orsmga005.jf.intel.com ([10.7.209.41])
+ by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 25 Jun 2023 03:00:42 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6600,9927,10751"; a="889962156"
+X-IronPort-AV: E=Sophos;i="6.01,157,1684825200"; d="scan'208";a="889962156"
+Received: from lkp-server01.sh.intel.com (HELO 783282924a45) ([10.239.97.150])
+ by orsmga005.jf.intel.com with ESMTP; 25 Jun 2023 03:00:38 -0700
+Received: from kbuild by 783282924a45 with local (Exim 4.96)
+ (envelope-from <lkp@intel.com>) id 1qDMXt-0009wb-15;
+ Sun, 25 Jun 2023 10:00:37 +0000
+Date: Sun, 25 Jun 2023 18:00:08 +0800
+From: kernel test robot <lkp@intel.com>
+To: Thomas =?iso-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>,
+ intel-xe@lists.freedesktop.org
+Message-ID: <202306251715.VhtKaEVg-lkp@intel.com>
+References: <20230621100435.54425-1-thomas.hellstrom@linux.intel.com>
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Niranjana Vishwanathapura" <niranjana.vishwanathapura@intel.com>
-Date: Sat, 24 Jun 2023 02:20:52 -0000
-Message-ID: <168757325297.28492.16032443027685135985@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20230624014137.11358-1-niranjana.vishwanathapura@intel.com>
-In-Reply-To: <20230624014137.11358-1-niranjana.vishwanathapura@intel.com>
-Subject: [Intel-xe] =?utf-8?q?=E2=97=8B_CI=2EBAT=3A_info_for_drm/xe/pvc?=
- =?utf-8?q?=3A_Force_even_num_engines_to_use_64B?=
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20230621100435.54425-1-thomas.hellstrom@linux.intel.com>
+Subject: Re: [Intel-xe] [PATCH v2] Documentation/gpu: Add a VM_BIND async
+ draft document
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -39,68 +60,46 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
-Cc: intel-xe@lists.freedesktop.org
+Cc: linux-kernel@vger.kernel.org, Oak Zeng <oak.zeng@intel.com>,
+ Danilo Krummrich <dakr@redhat.com>, dri-devel@lists.freedesktop.org,
+ oe-kbuild-all@lists.linux.dev, Nirmoy Das <nirmoy.das@intel.com>
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============1196700541518267851==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+Hi Thomas,
 
-== Series Details ==
+kernel test robot noticed the following build warnings:
 
-Series: drm/xe/pvc: Force even num engines to use 64B
-URL   : https://patchwork.freedesktop.org/series/119817/
-State : info
+[auto build test WARNING on drm-misc/drm-misc-next]
+[also build test WARNING on drm/drm-next drm-tip/drm-tip next-20230623]
+[cannot apply to linus/master v6.4-rc7]
+[If your patch is applied to the wrong git tree, kindly drop us a note.
+And when submitting patch, we suggest to use '--base' as documented in
+https://git-scm.com/docs/git-format-patch#_base_tree_information]
 
-== Summary ==
+url:    https://github.com/intel-lab-lkp/linux/commits/Thomas-Hellstr-m/Documentation-gpu-Add-a-VM_BIND-async-draft-document/20230621-180712
+base:   git://anongit.freedesktop.org/drm/drm-misc drm-misc-next
+patch link:    https://lore.kernel.org/r/20230621100435.54425-1-thomas.hellstrom%40linux.intel.com
+patch subject: [PATCH v2] Documentation/gpu: Add a VM_BIND async draft document
+reproduce: (https://download.01.org/0day-ci/archive/20230625/202306251715.VhtKaEVg-lkp@intel.com/reproduce)
 
-Participating hosts:
-bat-atsm-2
-bat-dg2-oem2
-bat-adlp-7
-Missing hosts results[0]:
-Results: [xe-pw-119817v1](https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-119817v1/index.html)
+If you fix the issue in a separate patch/commit (i.e. not just a new version of
+the same patch/commit), kindly add following tags
+| Reported-by: kernel test robot <lkp@intel.com>
+| Closes: https://lore.kernel.org/oe-kbuild-all/202306251715.VhtKaEVg-lkp@intel.com/
 
+All warnings (new ones prefixed by >>):
 
+>> Documentation/gpu/drm-vm-bind-async.rst:95: WARNING: Title underline too short.
+>> Documentation/gpu/drm-vm-bind-async.rst: WARNING: document isn't included in any toctree
 
---===============1196700541518267851==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+vim +95 Documentation/gpu/drm-vm-bind-async.rst
 
+    93	
+    94	Multi-operation VM_BIND IOCTL error handling and interrupts
+  > 95	========================================
+    96	
 
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/xe/pvc: Force even num engines to use 64B</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/119817/">https://patchwork.freedesktop.org/series/119817/</a></td></tr>
-<tr><td><b>State:</b></td><td>info</td></tr>
-
-</table>
-
-
-    <p>Participating hosts:<br />
-bat-atsm-2<br />
-bat-dg2-oem2<br />
-bat-adlp-7<br />
-Missing hosts results[0]:<br />
-Results: <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-119817v1/index.html">xe-pw-119817v1</a></p>
-
-</body>
-</html>
-
---===============1196700541518267851==--
+-- 
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
