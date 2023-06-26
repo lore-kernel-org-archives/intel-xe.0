@@ -4,50 +4,31 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8AC5AEB64D7
-	for <intel-xe@archiver.kernel.org>; Mon, 26 Jun 2023 13:58:47 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 93997EB64DD
+	for <intel-xe@archiver.kernel.org>; Mon, 26 Jun 2023 14:00:40 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 63FBB10E20C;
-	Mon, 26 Jun 2023 13:58:47 +0000 (UTC)
-Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6641010E20A
- for <intel-xe@lists.freedesktop.org>; Mon, 26 Jun 2023 13:58:43 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1687787923; x=1719323923;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=CDWOsk9DAen6MyAHpCxu17GqOVE+Yk3FNiKM9MoGJgM=;
- b=N03HpP/czce4FJf3+5JiOjD48RzIcv5bnYg4/n6z26G8U00ISGfyhq/Z
- UXZs7GLw2G0JuHfFrCv8Iwaw+HVy/1d3hVACLQ/t1i+v+4AmefGyKeJuy
- Vv9IQevQ+XZI62qdTRvMHO0plp6SWPoltDCGQRFJswQvUjo+q73XuSQn8
- 42im85lybIN3hpEYFUfPCduTGz74SSY4LK9XHK5pIvVXeMxDWEsEjB505
- u4fxT8aiqhTqs4mscchGtm+D+/STdYBQCKvgfoaM7Cdq3zIiSTUMLEJYS
- FZEv3k0hReITtnHP453kO8Fa61CJ6YEIhI42GOIRrCMeaq6FFMlosP0oj g==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10753"; a="364723169"
-X-IronPort-AV: E=Sophos;i="6.01,159,1684825200"; d="scan'208";a="364723169"
-Received: from orsmga002.jf.intel.com ([10.7.209.21])
- by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 26 Jun 2023 06:58:43 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10753"; a="716149406"
-X-IronPort-AV: E=Sophos;i="6.01,159,1684825200"; d="scan'208";a="716149406"
-Received: from ettammin-mobl1.ger.corp.intel.com (HELO
- thellstr-mobl1.intel.com) ([10.249.254.105])
- by orsmga002-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 26 Jun 2023 06:58:41 -0700
-From: =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>
-To: intel-xe@lists.freedesktop.org
-Date: Mon, 26 Jun 2023 15:58:24 +0200
-Message-Id: <20230626135824.21984-4-thomas.hellstrom@linux.intel.com>
-X-Mailer: git-send-email 2.40.1
-In-Reply-To: <20230626135824.21984-1-thomas.hellstrom@linux.intel.com>
-References: <20230626135824.21984-1-thomas.hellstrom@linux.intel.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id 67DFC10E207;
+	Mon, 26 Jun 2023 14:00:40 +0000 (UTC)
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 9529010E207;
+ Mon, 26 Jun 2023 14:00:38 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 8CF55AADED;
+ Mon, 26 Jun 2023 14:00:38 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-Subject: [Intel-xe] [CI 4/4] drm/xe/bo: Evict VRAM to TT rather than to
- system
+Content-Transfer-Encoding: 7bit
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: =?utf-8?q?Thomas_Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>
+Date: Mon, 26 Jun 2023 14:00:38 -0000
+Message-ID: <168778803854.5704.12821671865085822349@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20230626135824.21984-1-thomas.hellstrom@linux.intel.com>
+In-Reply-To: <20230626135824.21984-1-thomas.hellstrom@linux.intel.com>
+Subject: [Intel-xe] =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_f?=
+ =?utf-8?q?or_series_starting_with_=5BCI=2C1/4=5D_drm/xe/bo=3A_Fix_swapin_?=
+ =?utf-8?q?when_moving_to_VRAM?=
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -59,60 +40,25 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
+Cc: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-The main difference is that we don't bounce and sync on eviction, allowing
-for pipelined eviction. Moving forward we also need to be careful with
-dma mappings which can be released in SYSTEM but may remain in TT.
+== Series Details ==
 
-v2:
-- Remove a stale comment (Matthew Brost)
+Series: series starting with [CI,1/4] drm/xe/bo: Fix swapin when moving to VRAM
+URL   : https://patchwork.freedesktop.org/series/119865/
+State : success
 
-Signed-off-by: Thomas Hellström <thomas.hellstrom@linux.intel.com>
-Reviewed-by: Matthew Brost <matthew.brost@intel.com>
-Link: https://patchwork.freedesktop.org/patch/msgid/20230619152222.11733-6-thomas.hellstrom@linux.intel.com
----
- drivers/gpu/drm/xe/xe_bo.c | 17 ++++++++++++++++-
- 1 file changed, 16 insertions(+), 1 deletion(-)
+== Summary ==
 
-diff --git a/drivers/gpu/drm/xe/xe_bo.c b/drivers/gpu/drm/xe/xe_bo.c
-index 9444130c11e3..dfa0232b2e58 100644
---- a/drivers/gpu/drm/xe/xe_bo.c
-+++ b/drivers/gpu/drm/xe/xe_bo.c
-@@ -40,6 +40,20 @@ static struct ttm_placement sys_placement = {
- 	.busy_placement = &sys_placement_flags,
- };
- 
-+static const struct ttm_place tt_placement_flags = {
-+	.fpfn = 0,
-+	.lpfn = 0,
-+	.mem_type = XE_PL_TT,
-+	.flags = 0,
-+};
-+
-+static struct ttm_placement tt_placement = {
-+	.num_placement = 1,
-+	.placement = &tt_placement_flags,
-+	.num_busy_placement = 1,
-+	.busy_placement = &sys_placement_flags,
-+};
-+
- bool mem_type_is_vram(u32 mem_type)
- {
- 	return mem_type >= XE_PL_VRAM0 && mem_type != XE_PL_STOLEN;
-@@ -225,9 +239,10 @@ static void xe_evict_flags(struct ttm_buffer_object *tbo,
- 	case XE_PL_VRAM0:
- 	case XE_PL_VRAM1:
- 	case XE_PL_STOLEN:
-+		*placement = tt_placement;
-+		break;
- 	case XE_PL_TT:
- 	default:
--		/* for now kick out to system */
- 		*placement = sys_placement;
- 		break;
- 	}
--- 
-2.40.1
+=== Applying kernel patches on branch 'drm-xe-next' with base: ===
+Base commit: d3fc5af59 drm/xe/bo: consider bo->flags in xe_bo_migrate()
+=== git am output follows ===
+Applying: drm/xe/bo: Fix swapin when moving to VRAM
+Applying: drm/xe/bo: Avoid creating a system resource when allocating a fresh VRAM bo
+Applying: drm/xe/bo: Gracefully handle errors from ttm_bo_move_accel_cleanup().
+Applying: drm/xe/bo: Evict VRAM to TT rather than to system
+
 
