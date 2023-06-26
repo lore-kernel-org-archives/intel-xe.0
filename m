@@ -4,30 +4,48 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2C99CEB64D7
-	for <intel-xe@archiver.kernel.org>; Mon, 26 Jun 2023 19:11:07 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 644C5EB64D7
+	for <intel-xe@archiver.kernel.org>; Mon, 26 Jun 2023 21:22:37 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id CEB1010E247;
-	Mon, 26 Jun 2023 19:11:06 +0000 (UTC)
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id 16BEB10E247;
- Mon, 26 Jun 2023 19:11:04 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 0B48BAADEB;
- Mon, 26 Jun 2023 19:11:04 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============4371597805633737053=="
+	by gabe.freedesktop.org (Postfix) with ESMTP id 17E1010E255;
+	Mon, 26 Jun 2023 21:22:37 +0000 (UTC)
+Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id BBA7310E255
+ for <intel-xe@lists.freedesktop.org>; Mon, 26 Jun 2023 21:22:34 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1687814554; x=1719350554;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=HqzD+Wc6QJdIAPsH8Xu/R4rqpgw+f3PHbp5LrAxi0BY=;
+ b=EdA3GRa87QKfwRW2+2jMdNlssclA0qmy7ixfmme5JRBE/ig522Zghh2h
+ PZm0zpW0Uw0AXljhvc+bbl2GAjOwh7k2h9ZjlgphLvlRQMLGDNa8z8K72
+ 0VwL0nJCSikFWhyiSqJHqyKowAtk7H0Il+Y4O8/065V5VaoLdvx8i0ZpW
+ 8/R7qES4WihDEjzOGAbIbaeezAXZowkNZNVLKawizUConFRuqGonyjsPe
+ Vi7Co1r4r0GMMncCYFHetEBpAtDHzaUiSc2DCI4pqKvaP+BSwhAfvn9ej
+ aA1mVWI0wY9QtHrhZdbSrqPk4ILkYe1TNCV1RC+JoDpxlnw0sZogyiESE Q==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10753"; a="351175953"
+X-IronPort-AV: E=Sophos;i="6.01,160,1684825200"; d="scan'208";a="351175953"
+Received: from orsmga002.jf.intel.com ([10.7.209.21])
+ by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 26 Jun 2023 14:22:33 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6600,9927,10753"; a="716300828"
+X-IronPort-AV: E=Sophos;i="6.01,160,1684825200"; d="scan'208";a="716300828"
+Received: from swalke-mobl2.amr.corp.intel.com (HELO
+ przanoni-mobl.amr.corp.intel.com) ([10.209.112.16])
+ by orsmga002-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 26 Jun 2023 14:22:32 -0700
+From: Paulo Zanoni <paulo.r.zanoni@intel.com>
+To: intel-xe@lists.freedesktop.org
+Date: Mon, 26 Jun 2023 14:22:20 -0700
+Message-Id: <20230626212221.136640-1-paulo.r.zanoni@intel.com>
+X-Mailer: git-send-email 2.39.2
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: =?utf-8?q?Thomas_Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>
-Date: Mon, 26 Jun 2023 19:11:04 -0000
-Message-ID: <168780666401.5706.16027284445518962632@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20230626181741.32820-1-thomas.hellstrom@linux.intel.com>
-In-Reply-To: <20230626181741.32820-1-thomas.hellstrom@linux.intel.com>
-Subject: [Intel-xe] =?utf-8?q?=E2=97=8B_CI=2EBAT=3A_info_for_drm/xe=3A_Ev?=
- =?utf-8?q?iction_fixes_and_optimizations_=28rev3=29?=
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+Subject: [Intel-xe] [PATCH 1/2 v2] drm/xe: fix bounds checking for 'len' in
+ xe_engine_create_ioctl
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -39,70 +57,50 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
-Cc: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============4371597805633737053==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+There's this shared machine running xe.ko and I often log in to see my
+tmux corrupted by messages such as:
 
-== Series Details ==
+    usercopy: Kernel memory overwrite attempt detected to wrapped address (offset 0, size 18446660151965198754)!
 
-Series: drm/xe: Eviction fixes and optimizations (rev3)
-URL   : https://patchwork.freedesktop.org/series/119447/
-State : info
+I also sometimes see:
 
-== Summary ==
+    kernel BUG at mm/usercopy.c:102!
 
-Participating hosts:
-bat-pvc-2
-bat-atsm-2
-bat-dg2-oem2
-bat-adlp-7
-Missing hosts results[0]:
-Results: [xe-pw-119447v3](https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-119447v3/index.html)
+Someone is running a program that's definitely submitting random
+numbers to this ioctl. If you pass width=65535 and
+num_placements=32769 then you get a negative 'len', which avoids the
+EINVAL check, leading to the bug.
 
+Switch 'len' to u32. It is the result of the multiplication of two u16
+numbers, so it won't be able to overflow back into smaller numbers as
+an u32.
 
+Very simple reproducer:
+    https://people.freedesktop.org/~pzanoni/engine-create-bug/
 
---===============4371597805633737053==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+v2: Make len u32 instead of checking for <=0 (José).
 
+Signed-off-by: Paulo Zanoni <paulo.r.zanoni@intel.com>
+---
+ drivers/gpu/drm/xe/xe_engine.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
+diff --git a/drivers/gpu/drm/xe/xe_engine.c b/drivers/gpu/drm/xe/xe_engine.c
+index 6e6b2913f766..530f55a33b03 100644
+--- a/drivers/gpu/drm/xe/xe_engine.c
++++ b/drivers/gpu/drm/xe/xe_engine.c
+@@ -522,7 +522,7 @@ int xe_engine_create_ioctl(struct drm_device *dev, void *data,
+ 	struct xe_engine *e = NULL;
+ 	u32 logical_mask;
+ 	u32 id;
+-	int len;
++	u32 len;
+ 	int err;
+ 
+ 	if (XE_IOCTL_ERR(xe, args->flags) ||
+-- 
+2.39.2
 
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/xe: Eviction fixes and optimizations (rev3)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/119447/">https://patchwork.freedesktop.org/series/119447/</a></td></tr>
-<tr><td><b>State:</b></td><td>info</td></tr>
-
-</table>
-
-
-    <p>Participating hosts:<br />
-bat-pvc-2<br />
-bat-atsm-2<br />
-bat-dg2-oem2<br />
-bat-adlp-7<br />
-Missing hosts results[0]:<br />
-Results: <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-119447v3/index.html">xe-pw-119447v3</a></p>
-
-</body>
-</html>
-
---===============4371597805633737053==--
