@@ -4,47 +4,50 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8A1F6EB64D7
-	for <intel-xe@archiver.kernel.org>; Mon, 26 Jun 2023 13:58:41 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 94324EB64D7
+	for <intel-xe@archiver.kernel.org>; Mon, 26 Jun 2023 13:58:44 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 599E910E207;
-	Mon, 26 Jun 2023 13:58:41 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6E99B10E20D;
+	Mon, 26 Jun 2023 13:58:44 +0000 (UTC)
 Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8530B10E207
- for <intel-xe@lists.freedesktop.org>; Mon, 26 Jun 2023 13:58:39 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7F66410E20A
+ for <intel-xe@lists.freedesktop.org>; Mon, 26 Jun 2023 13:58:42 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1687787919; x=1719323919;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=HWx4jkGlR3YkM7cHJEqrZJMy/4yU2e1NH0t1SCcdASg=;
- b=MtIPpvFxoUIKsLRnlCRywPz7dlHn/m2jMgfRPEptTKSQ+mIktFfTJo1x
- oVxCO28xAd3WYDSMhJAdVTtmo0G8XN0AhW/XbTd0FNGRx9s/9mDMudGSt
- 1o2FWNYb9rWW+Ssofk3MZKAt+v3udduYGr2FyWwMqnn6NSlMsUboK6EsB
- mq9ShTus4fM38QWUsMctLE4uRwHl1SsjJMs9h9OltH/gFyxQkqCsL/2mk
- vYc6YeXm0wnClmGGNNjP9XYgki0sRqThw3m84FcdFUfuNtC46b+A2ms6z
- kW+VMRu+RVStTGBlqh8kZTTO0GHz993Awd9HxuXQ/v+4vWEEKwtGPifae w==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10753"; a="364723162"
-X-IronPort-AV: E=Sophos;i="6.01,159,1684825200"; d="scan'208";a="364723162"
+ t=1687787922; x=1719323922;
+ h=from:to:cc:subject:date:message-id:in-reply-to:
+ references:mime-version:content-transfer-encoding;
+ bh=szZMNu+gQzAH7QFPyjTA7mGRfoNnYkNu/KISfIWwmS0=;
+ b=AO3Qq2pw85yQLzGbYokqqTofF0ZnvZE0RtBj4ys6dKOugALPOPwQ6lCt
+ TEjIpFGAg4bXcKNJ5E2R8bb1FUErjnl7KnLs5h78izbEvAuZDl+QTnf1q
+ +mscpjM96T1NFyTJesXgUPYjbtuFkmptqlkur7ow8nVyubMU2riP+QwFW
+ srnZOt/JAA19jC9EdiRUgQcH0eDuIZTWWrT41+fMrLZRdPCFqw3OBfJPt
+ 1+hyAqE65LFZauMt41rkKPoP8Dyn6H668e382a1C9INLmMQv4/IXwFIGg
+ yCaRVe5deS2PGCnSsdTmUeOIr7UsjJw/nC6zcYh79fdHHXANnFBtjnc/0 g==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10753"; a="364723166"
+X-IronPort-AV: E=Sophos;i="6.01,159,1684825200"; d="scan'208";a="364723166"
 Received: from orsmga002.jf.intel.com ([10.7.209.21])
  by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 26 Jun 2023 06:58:38 -0700
+ 26 Jun 2023 06:58:42 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10753"; a="716149381"
-X-IronPort-AV: E=Sophos;i="6.01,159,1684825200"; d="scan'208";a="716149381"
+X-IronPort-AV: E=McAfee;i="6600,9927,10753"; a="716149397"
+X-IronPort-AV: E=Sophos;i="6.01,159,1684825200"; d="scan'208";a="716149397"
 Received: from ettammin-mobl1.ger.corp.intel.com (HELO
  thellstr-mobl1.intel.com) ([10.249.254.105])
  by orsmga002-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 26 Jun 2023 06:58:37 -0700
+ 26 Jun 2023 06:58:40 -0700
 From: =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>
 To: intel-xe@lists.freedesktop.org
-Date: Mon, 26 Jun 2023 15:58:21 +0200
-Message-Id: <20230626135824.21984-1-thomas.hellstrom@linux.intel.com>
+Date: Mon, 26 Jun 2023 15:58:23 +0200
+Message-Id: <20230626135824.21984-3-thomas.hellstrom@linux.intel.com>
 X-Mailer: git-send-email 2.40.1
+In-Reply-To: <20230626135824.21984-1-thomas.hellstrom@linux.intel.com>
+References: <20230626135824.21984-1-thomas.hellstrom@linux.intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-xe] [CI 1/4] drm/xe/bo: Fix swapin when moving to VRAM
+Subject: [Intel-xe] [CI 3/4] drm/xe/bo: Gracefully handle errors from
+ ttm_bo_move_accel_cleanup().
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -59,43 +62,40 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-When a source system resource had been swapped out, we incorrectly
-assumed that we were lacking source data for a move and therefore
-cleared the destination instead of swapping in and copying the
-swapped-out data. Fix this.
+The function ttm_bo_move_accel_cleanup() attempts to help pipeline a
+move, and in doing so, needs memory allocations which may fail.
+
+Rather than failing in a state where the new resource may freed while
+accessed by the copy engine, sync uninterruptible and do a failsafe
+cleanup.
+
+v2:
+- Don't try to attach the signaled fence on ttm_bo_move_accel_cleanup()
+  error.
 
 Signed-off-by: Thomas Hellström <thomas.hellstrom@linux.intel.com>
 Reviewed-by: Matthew Brost <matthew.brost@intel.com>
-Link: https://patchwork.freedesktop.org/patch/msgid/20230619152222.11733-3-thomas.hellstrom@linux.intel.com
+Link: https://patchwork.freedesktop.org/patch/msgid/20230619152222.11733-5-thomas.hellstrom@linux.intel.com
 ---
- drivers/gpu/drm/xe/xe_bo.c | 7 +++++--
- 1 file changed, 5 insertions(+), 2 deletions(-)
+ drivers/gpu/drm/xe/xe_bo.c | 5 +++++
+ 1 file changed, 5 insertions(+)
 
 diff --git a/drivers/gpu/drm/xe/xe_bo.c b/drivers/gpu/drm/xe/xe_bo.c
-index 71a14e1f25be..d2f4575d8548 100644
+index 2c19c051562d..9444130c11e3 100644
 --- a/drivers/gpu/drm/xe/xe_bo.c
 +++ b/drivers/gpu/drm/xe/xe_bo.c
-@@ -568,6 +568,7 @@ static int xe_bo_move(struct ttm_buffer_object *ttm_bo, bool evict,
- 	struct xe_tile *tile = NULL;
- 	struct dma_fence *fence;
- 	bool move_lacks_source;
-+	bool tt_has_data;
- 	bool needs_clear;
- 	int ret = 0;
- 
-@@ -590,8 +591,10 @@ static int xe_bo_move(struct ttm_buffer_object *ttm_bo, bool evict,
- 		goto out;
- 	}
- 
--	move_lacks_source = !resource_is_vram(old_mem) &&
--		(!ttm || !ttm_tt_is_populated(ttm));
-+	tt_has_data = ttm && (ttm_tt_is_populated(ttm) ||
-+			      (ttm->page_flags & TTM_TT_FLAG_SWAPPED));
-+
-+	move_lacks_source = !resource_is_vram(old_mem) && !tt_has_data;
- 
- 	needs_clear = (ttm && ttm->page_flags & TTM_TT_FLAG_ZERO_ALLOC) ||
- 		(!ttm && ttm_bo->type == ttm_bo_type_device);
+@@ -700,6 +700,11 @@ static int xe_bo_move(struct ttm_buffer_object *ttm_bo, bool evict,
+ 		if (!move_lacks_source) {
+ 			ret = ttm_bo_move_accel_cleanup(ttm_bo, fence, evict,
+ 							true, new_mem);
++			if (ret) {
++				dma_fence_wait(fence, false);
++				ttm_bo_move_null(ttm_bo, new_mem);
++				ret = 0;
++			}
+ 		} else {
+ 			/*
+ 			 * ttm_bo_move_accel_cleanup() may blow up if
 -- 
 2.40.1
 
