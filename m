@@ -4,71 +4,50 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4FAAEEB64DA
-	for <intel-xe@archiver.kernel.org>; Mon, 26 Jun 2023 15:22:33 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1B50EEB64D7
+	for <intel-xe@archiver.kernel.org>; Mon, 26 Jun 2023 15:23:11 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 20C6710E229;
-	Mon, 26 Jun 2023 15:22:33 +0000 (UTC)
-Received: from mail-wm1-x329.google.com (mail-wm1-x329.google.com
- [IPv6:2a00:1450:4864:20::329])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D4B2110E229;
- Mon, 26 Jun 2023 15:15:33 +0000 (UTC)
-Received: by mail-wm1-x329.google.com with SMTP id
- 5b1f17b1804b1-3f9c2913133so44422555e9.1; 
- Mon, 26 Jun 2023 08:15:33 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20221208; t=1687792531; x=1690384531;
- h=content-transfer-encoding:in-reply-to:from:references:cc:to
- :content-language:subject:user-agent:mime-version:date:message-id
- :from:to:cc:subject:date:message-id:reply-to;
- bh=PmRfirqXfSvkyoAOVtCyAnitstVlhaC7q73gfVyb+4M=;
- b=Tz3rIQUnMqhrKtipZlRQ8sTMEJdS6wklxEeNVoGqe3XAeOD0UTPdSzU2qgGrltKqFi
- RIMyxRSqw+dgR8vnDhIFK91ubOr+jvEBmk+UgYvi38nW8hCsqQApZjBKDtxsh9rfMJhF
- zTs/D2G4m+/nqDyI7UhxwD7M4YF3TZmdTnbyV/5ylE0wXb7b+CIsyMCMxzgCTO/Um/ws
- cMHmSGN5MKInTke/cSFNpdLqUjypIM9SFlyXlSCntJBBaMH3LzrSIk7ZWCOLplFESPDc
- 0LupZyhvQnlbOhX5EbY6+j/d/Z3Z/Kz+FjROZ5ES26qnp7UoyVjjh9/HnXgeFRHLLRtT
- tPGg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20221208; t=1687792531; x=1690384531;
- h=content-transfer-encoding:in-reply-to:from:references:cc:to
- :content-language:subject:user-agent:mime-version:date:message-id
- :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
- bh=PmRfirqXfSvkyoAOVtCyAnitstVlhaC7q73gfVyb+4M=;
- b=krbLv7k8ALyP/jepq3IzTJ1xMnndAbcoVB1jD6Diyw6bIEuFiXmOH72CJwBo33oGx8
- Xe+1D78JiFCRJ8IPCtWjSdyiEK7tfJCMQLzI+/mgCrs/CG+P81L/xeYE7xYO6sIQ2QIj
- hkFaSYH0ImvkNM1+jKj/jT+ey2CyZMa/qi97OFgN1Y1/7XDtkAmK3OfY/GxAdhFdQuq+
- Xkys4MosozppB7F6+UFZEeIWK9AL+EwLioLhnHJrUKScx57VE74BIb13rdYMWbaP2IFS
- OO1x/KpjRxjAD1Yl6hZGOqC811lbkAXA8NmQ1dTKA/N4TgRRYHpyDHWaTkciTVY6+7vs
- Utbw==
-X-Gm-Message-State: AC+VfDxmsh3rZRVh0boMFrLpVOl/AYdgWL8HM1EN1ESZPeL4rlvVKnMB
- ClDmkFIgZqlHiA2D56b9Mb0=
-X-Google-Smtp-Source: ACHHUZ5GC9RZ5QCTpLhMVxwupOthRTX84J9A9FhGSg/kiJCyizTE4+re4OC1YLSKt8hn616Hrc4NJA==
-X-Received: by 2002:a7b:ce09:0:b0:3f6:536:a4b2 with SMTP id
- m9-20020a7bce09000000b003f60536a4b2mr24178300wmc.27.1687792531467; 
- Mon, 26 Jun 2023 08:15:31 -0700 (PDT)
-Received: from ?IPV6:2a00:e180:158d:7600:862:d9d5:c1f7:84a1?
- ([2a00:e180:158d:7600:862:d9d5:c1f7:84a1])
- by smtp.gmail.com with ESMTPSA id
- 21-20020a05600c22d500b003f96d10eafbsm8012451wmg.12.2023.06.26.08.15.30
- (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Mon, 26 Jun 2023 08:15:30 -0700 (PDT)
-Message-ID: <8b22c855-c84d-4b56-c94b-a3a079ab3037@gmail.com>
-Date: Mon, 26 Jun 2023 17:15:29 +0200
+	by gabe.freedesktop.org (Postfix) with ESMTP id CE5AC10E229;
+	Mon, 26 Jun 2023 15:23:10 +0000 (UTC)
+Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7B2CE10E229
+ for <intel-xe@lists.freedesktop.org>; Mon, 26 Jun 2023 15:23:08 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1687792988; x=1719328988;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:content-transfer-encoding:in-reply-to;
+ bh=qPYywQ9wPY3W+YFiU/PLqbwejXmPzwzN/cxUkQgWzqU=;
+ b=Xi4QmfZR/bNhSgQ0c2wBEu+9/4uPw7AJvzcjCZWJ5MWyawqOxNtQv8zb
+ LqcN39I/ntyejpJ7ScuKK8TkLF3WqF81oGfmY+CIA0RFIJan/2kGNRUic
+ xWcCf4vvb25ZOgDG641/xxMXHF+guzRINUUS6/xwjN8L2vwVf2JbJZ9Pu
+ 8wZMPjQSSZ1r5ae6V73jic0knpUszD7GHRziKbZ22Ug52qrSVpVEzlx7+
+ LNjba7WxXZseoXl0eX5a5iWVtK+xklLvrHugejiFA9JqZbPIiuzLKI5D9
+ gONz/1RHNBGZc2GG4YJ/kirvmOeGDdrHz2OIrBedA9hwAaBuRAmmRSYtG g==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10753"; a="346054323"
+X-IronPort-AV: E=Sophos;i="6.01,159,1684825200"; d="scan'208";a="346054323"
+Received: from orsmga005.jf.intel.com ([10.7.209.41])
+ by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 26 Jun 2023 08:22:37 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6600,9927,10753"; a="890311771"
+X-IronPort-AV: E=Sophos;i="6.01,159,1684825200"; d="scan'208";a="890311771"
+Received: from ashlykov-mobl1.ger.corp.intel.com (HELO localhost)
+ ([10.213.0.92])
+ by orsmga005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 26 Jun 2023 08:22:37 -0700
+Date: Mon, 26 Jun 2023 17:22:34 +0200
+From: Zbigniew =?utf-8?Q?Kempczy=C5=84ski?= <zbigniew.kempczynski@intel.com>
+To: Thomas =?utf-8?Q?Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>
+Message-ID: <20230626152234.f5ud4klmqqm5lb72@zkempczy-mobl2>
+References: <20230626144239.158345-1-zbigniew.kempczynski@intel.com>
+ <06d040ea-c25b-9fdc-aa22-6e0f543a734f@linux.intel.com>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.11.0
-Content-Language: en-US
-To: =?UTF-8?Q?Thomas_Hellstr=c3=b6m?= <thomas.hellstrom@linux.intel.com>,
- intel-xe@lists.freedesktop.org
-References: <20230626091450.14757-1-thomas.hellstrom@linux.intel.com>
- <20230626091450.14757-3-thomas.hellstrom@linux.intel.com>
-From: =?UTF-8?Q?Christian_K=c3=b6nig?= <ckoenig.leichtzumerken@gmail.com>
-In-Reply-To: <20230626091450.14757-3-thomas.hellstrom@linux.intel.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-X-Mailman-Approved-At: Mon, 26 Jun 2023 15:22:31 +0000
-Subject: Re: [Intel-xe] [PATCH v2 2/4] drm/ttm: Don't shadow the operation
- context
+In-Reply-To: <06d040ea-c25b-9fdc-aa22-6e0f543a734f@linux.intel.com>
+Subject: Re: [Intel-xe] [PATCH v3] drm/xe/bo: Return object bo size on create
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -80,60 +59,54 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org, linux-kernel@vger.kernel.org,
- stable@vger.kernel.org, Roger He <Hongbo.He@amd.com>,
- dri-devel@lists.freedesktop.org,
- =?UTF-8?Q?Christian_K=c3=b6nig?= <christian.koenig@amd.com>
+Cc: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Am 26.06.23 um 11:14 schrieb Thomas Hellström:
-> ttm_bo_swapout() shadows the ttm operation context which may cause
-> major confusion in driver callbacks when swapping out !TTM_PL_SYSTEM
-> memory. Fix this by reusing the operation context argument to
-> ttm_bo_swapout().
->
-> Cc: "Christian König" <christian.koenig@amd.com>
-> Cc: Roger He <Hongbo.He@amd.com>
-> Cc: <dri-devel@lists.freedesktop.org>
-> Cc: <intel-gfx@lists.freedesktop.org>
-> Cc: <stable@vger.kernel.org> # v4.16+
-> Fixes: dc947770cf34 ("drm/ttm: enable swapout for reserved BOs during allocation")
-> Signed-off-by: Thomas Hellström <thomas.hellstrom@linux.intel.com>
-> Acked-by: Matthew Brost <matthew.brost@intel.com>
+On Mon, Jun 26, 2023 at 04:55:29PM +0200, Thomas Hellström wrote:
+> Hi, Zbigniew,
+> 
+> On 6/26/23 16:42, Zbigniew Kempczyński wrote:
+> > Driver may alter bo size requested by the user. Return real object
+> > size to make userspace aware how to arrange vm bindings.
+> 
+> I think for Xe VM_BIND, the space needed for a bo with given size must be
+> 
+> ALIGN_TO(bo->size, xe_get_default_alignment())
+> 
+> (xe_get_default_alignment() being an igt xe lib function).
 
-We intentionally didn't used the parameter here, but I absolutely can't 
-figure out why.
+You mean I can't glue 4K system object with 64K one after another,
+for example:
 
-Feel free to add my rb, but let's give it some time upstream before you 
-base anything on top of this. Just in case we missed something.
+* bo on system: offset = 0x1000, size 0x1000
+* bo on vram:   offset = 0x2000, size 0x10000
 
-Regards,
-Christian.
+This won't work as vram object should be aligned on vm to 0x10000?
 
-> ---
->   drivers/gpu/drm/ttm/ttm_bo.c | 3 +--
->   1 file changed, 1 insertion(+), 2 deletions(-)
->
-> diff --git a/drivers/gpu/drm/ttm/ttm_bo.c b/drivers/gpu/drm/ttm/ttm_bo.c
-> index bd5dae4d1624..615d30c4262d 100644
-> --- a/drivers/gpu/drm/ttm/ttm_bo.c
-> +++ b/drivers/gpu/drm/ttm/ttm_bo.c
-> @@ -1154,7 +1154,6 @@ int ttm_bo_swapout(struct ttm_buffer_object *bo, struct ttm_operation_ctx *ctx,
->   	 * Move to system cached
->   	 */
->   	if (bo->resource->mem_type != TTM_PL_SYSTEM) {
-> -		struct ttm_operation_ctx ctx = { false, false };
->   		struct ttm_resource *evict_mem;
->   		struct ttm_place hop;
->   
-> @@ -1164,7 +1163,7 @@ int ttm_bo_swapout(struct ttm_buffer_object *bo, struct ttm_operation_ctx *ctx,
->   		if (unlikely(ret))
->   			goto out;
->   
-> -		ret = ttm_bo_handle_move_mem(bo, evict_mem, true, &ctx, &hop);
-> +		ret = ttm_bo_handle_move_mem(bo, evict_mem, true, ctx, &hop);
->   		if (unlikely(ret != 0)) {
->   			WARN(ret == -EMULTIHOP, "Unexpected multihop in swaput - likely driver bug.\n");
->   			goto out;
+--
+Zbigniew
 
+> 
+> Even the padded bo->size returned with this patch is lower than the value
+> above. If you use that value, will the value assigned below still be needed.
+> 
+> /Thomas
+> 
+> > Signed-off-by: Zbigniew Kempczyński <zbigniew.kempczynski@intel.com>
+> > Reviewed-by: Niranjana Vishwanathapura <niranjana.vishwanathapura@intel.com>
+> > Reviewed-by: Matthew Brost <matthew.brost@intel.com>
+> > ---
+> >   drivers/gpu/drm/xe/xe_bo.c | 1 +
+> >   1 file changed, 1 insertion(+)
+> > 
+> > diff --git a/drivers/gpu/drm/xe/xe_bo.c b/drivers/gpu/drm/xe/xe_bo.c
+> > index 71a14e1f25be..55dbb374a787 100644
+> > --- a/drivers/gpu/drm/xe/xe_bo.c
+> > +++ b/drivers/gpu/drm/xe/xe_bo.c
+> > @@ -1744,6 +1744,7 @@ int xe_gem_create_ioctl(struct drm_device *dev, void *data,
+> >   		return err;
+> >   	args->handle = handle;
+> > +	args->size = bo->size;
+> >   	return 0;
+> >   }
