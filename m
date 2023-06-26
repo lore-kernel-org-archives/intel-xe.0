@@ -4,30 +4,47 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 49292EB64D7
-	for <intel-xe@archiver.kernel.org>; Mon, 26 Jun 2023 13:46:48 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8A1F6EB64D7
+	for <intel-xe@archiver.kernel.org>; Mon, 26 Jun 2023 13:58:41 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1F35010E207;
-	Mon, 26 Jun 2023 13:46:48 +0000 (UTC)
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id 6BB5F10E21C;
- Mon, 26 Jun 2023 13:46:46 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 63CABAADD5;
- Mon, 26 Jun 2023 13:46:46 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============0128183700991175803=="
+	by gabe.freedesktop.org (Postfix) with ESMTP id 599E910E207;
+	Mon, 26 Jun 2023 13:58:41 +0000 (UTC)
+Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8530B10E207
+ for <intel-xe@lists.freedesktop.org>; Mon, 26 Jun 2023 13:58:39 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1687787919; x=1719323919;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=HWx4jkGlR3YkM7cHJEqrZJMy/4yU2e1NH0t1SCcdASg=;
+ b=MtIPpvFxoUIKsLRnlCRywPz7dlHn/m2jMgfRPEptTKSQ+mIktFfTJo1x
+ oVxCO28xAd3WYDSMhJAdVTtmo0G8XN0AhW/XbTd0FNGRx9s/9mDMudGSt
+ 1o2FWNYb9rWW+Ssofk3MZKAt+v3udduYGr2FyWwMqnn6NSlMsUboK6EsB
+ mq9ShTus4fM38QWUsMctLE4uRwHl1SsjJMs9h9OltH/gFyxQkqCsL/2mk
+ vYc6YeXm0wnClmGGNNjP9XYgki0sRqThw3m84FcdFUfuNtC46b+A2ms6z
+ kW+VMRu+RVStTGBlqh8kZTTO0GHz993Awd9HxuXQ/v+4vWEEKwtGPifae w==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10753"; a="364723162"
+X-IronPort-AV: E=Sophos;i="6.01,159,1684825200"; d="scan'208";a="364723162"
+Received: from orsmga002.jf.intel.com ([10.7.209.21])
+ by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 26 Jun 2023 06:58:38 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6600,9927,10753"; a="716149381"
+X-IronPort-AV: E=Sophos;i="6.01,159,1684825200"; d="scan'208";a="716149381"
+Received: from ettammin-mobl1.ger.corp.intel.com (HELO
+ thellstr-mobl1.intel.com) ([10.249.254.105])
+ by orsmga002-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 26 Jun 2023 06:58:37 -0700
+From: =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>
+To: intel-xe@lists.freedesktop.org
+Date: Mon, 26 Jun 2023 15:58:21 +0200
+Message-Id: <20230626135824.21984-1-thomas.hellstrom@linux.intel.com>
+X-Mailer: git-send-email 2.40.1
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Matthew Auld" <matthew.auld@intel.com>
-Date: Mon, 26 Jun 2023 13:46:46 -0000
-Message-ID: <168778720640.5706.11713413463550549626@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20230626105037.43780-15-matthew.auld@intel.com>
-In-Reply-To: <20230626105037.43780-15-matthew.auld@intel.com>
-Subject: [Intel-xe] =?utf-8?b?4peLIENJLkJBVDogaW5mbyBmb3IgeGVfZGV2aWNl?=
- =?utf-8?q?=5Fmem=5Faccess_fixes_and_related_bits_=28rev2=29?=
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+Subject: [Intel-xe] [CI 1/4] drm/xe/bo: Fix swapin when moving to VRAM
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -39,70 +56,46 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
-Cc: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============0128183700991175803==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+When a source system resource had been swapped out, we incorrectly
+assumed that we were lacking source data for a move and therefore
+cleared the destination instead of swapping in and copying the
+swapped-out data. Fix this.
 
-== Series Details ==
+Signed-off-by: Thomas Hellström <thomas.hellstrom@linux.intel.com>
+Reviewed-by: Matthew Brost <matthew.brost@intel.com>
+Link: https://patchwork.freedesktop.org/patch/msgid/20230619152222.11733-3-thomas.hellstrom@linux.intel.com
+---
+ drivers/gpu/drm/xe/xe_bo.c | 7 +++++--
+ 1 file changed, 5 insertions(+), 2 deletions(-)
 
-Series: xe_device_mem_access fixes and related bits (rev2)
-URL   : https://patchwork.freedesktop.org/series/119213/
-State : info
+diff --git a/drivers/gpu/drm/xe/xe_bo.c b/drivers/gpu/drm/xe/xe_bo.c
+index 71a14e1f25be..d2f4575d8548 100644
+--- a/drivers/gpu/drm/xe/xe_bo.c
++++ b/drivers/gpu/drm/xe/xe_bo.c
+@@ -568,6 +568,7 @@ static int xe_bo_move(struct ttm_buffer_object *ttm_bo, bool evict,
+ 	struct xe_tile *tile = NULL;
+ 	struct dma_fence *fence;
+ 	bool move_lacks_source;
++	bool tt_has_data;
+ 	bool needs_clear;
+ 	int ret = 0;
+ 
+@@ -590,8 +591,10 @@ static int xe_bo_move(struct ttm_buffer_object *ttm_bo, bool evict,
+ 		goto out;
+ 	}
+ 
+-	move_lacks_source = !resource_is_vram(old_mem) &&
+-		(!ttm || !ttm_tt_is_populated(ttm));
++	tt_has_data = ttm && (ttm_tt_is_populated(ttm) ||
++			      (ttm->page_flags & TTM_TT_FLAG_SWAPPED));
++
++	move_lacks_source = !resource_is_vram(old_mem) && !tt_has_data;
+ 
+ 	needs_clear = (ttm && ttm->page_flags & TTM_TT_FLAG_ZERO_ALLOC) ||
+ 		(!ttm && ttm_bo->type == ttm_bo_type_device);
+-- 
+2.40.1
 
-== Summary ==
-
-Participating hosts:
-bat-pvc-2
-bat-atsm-2
-bat-dg2-oem2
-bat-adlp-7
-Missing hosts results[0]:
-Results: [xe-pw-119213v2](https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-119213v2/index.html)
-
-
-
---===============0128183700991175803==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>xe_device_mem_access fixes and related bits (rev2)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/119213/">https://patchwork.freedesktop.org/series/119213/</a></td></tr>
-<tr><td><b>State:</b></td><td>info</td></tr>
-
-</table>
-
-
-    <p>Participating hosts:<br />
-bat-pvc-2<br />
-bat-atsm-2<br />
-bat-dg2-oem2<br />
-bat-adlp-7<br />
-Missing hosts results[0]:<br />
-Results: <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-119213v2/index.html">xe-pw-119213v2</a></p>
-
-</body>
-</html>
-
---===============0128183700991175803==--
