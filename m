@@ -4,30 +4,48 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id AB548EB64D7
-	for <intel-xe@archiver.kernel.org>; Mon, 26 Jun 2023 10:14:08 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id B3BDEEB64D7
+	for <intel-xe@archiver.kernel.org>; Mon, 26 Jun 2023 10:51:06 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 82E9D10E12C;
-	Mon, 26 Jun 2023 10:14:08 +0000 (UTC)
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id B17FA10E12C;
- Mon, 26 Jun 2023 10:14:07 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id AB42AAADD8;
- Mon, 26 Jun 2023 10:14:07 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============1937151082537761382=="
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6CA0B10E1E3;
+	Mon, 26 Jun 2023 10:51:06 +0000 (UTC)
+Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 23C5C10E1E3
+ for <intel-xe@lists.freedesktop.org>; Mon, 26 Jun 2023 10:51:04 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1687776664; x=1719312664;
+ h=from:to:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=EFjkQhagm+c6+X7QsLA7ddY1wx8f8I5mA1knKtVv1fY=;
+ b=c6wfmLmCF4K7wuTXNxsT/8GT1zf5I3kX5m1Xpr1DhDmOxz2mlR7IxDOi
+ H0SRMfeNbTMWQKnpa1dIb40M2scJZp/Biv5GOz70YK8yLrApwiEDs+/zz
+ rhvf6jFws8uVKYxzIX9iMfKkbjWsdZxmnqyojzMW7QEEvdxRjMhuhEoHI
+ PEDw+4LTip6srWLM29XIrB25taqbUJH36N37X5R0V6kta9vIvqZDAi5bR
+ Ztmw3fo74wYr+ibkU5/FZ0o1Ykca6jRm2xl+EQ1xnpvDm5sq1hcIV2nFd
+ gqi2x41sUFNOHXZPwC35Vd1FALbqhczD13eScs/8MLHPKG0ypL03eNMlD A==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10752"; a="361279970"
+X-IronPort-AV: E=Sophos;i="6.01,159,1684825200"; d="scan'208";a="361279970"
+Received: from fmsmga002.fm.intel.com ([10.253.24.26])
+ by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 26 Jun 2023 03:51:03 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6600,9927,10752"; a="829182744"
+X-IronPort-AV: E=Sophos;i="6.01,159,1684825200"; d="scan'208";a="829182744"
+Received: from cbrady5x-mobl2.ger.corp.intel.com (HELO mwauld-desk1.intel.com)
+ ([10.252.8.226])
+ by fmsmga002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 26 Jun 2023 03:51:02 -0700
+From: Matthew Auld <matthew.auld@intel.com>
+To: intel-xe@lists.freedesktop.org
+Date: Mon, 26 Jun 2023 11:50:38 +0100
+Message-ID: <20230626105037.43780-15-matthew.auld@intel.com>
+X-Mailer: git-send-email 2.41.0
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: =?utf-8?q?Zbigniew_Kempczy=C5=84ski?= <zbigniew.kempczynski@intel.com>
-Date: Mon, 26 Jun 2023 10:14:07 -0000
-Message-ID: <168777444769.5706.13973853614931351779@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20230626091317.83226-1-zbigniew.kempczynski@intel.com>
-In-Reply-To: <20230626091317.83226-1-zbigniew.kempczynski@intel.com>
-Subject: [Intel-xe] =?utf-8?q?=E2=97=8B_CI=2EBAT=3A_info_for_User_fence_w?=
- =?utf-8?q?ait_uAPI_change_to_nanoseconds_=28rev2=29?=
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+Subject: [Intel-xe] [PATCH v12 00/13] xe_device_mem_access fixes and related
+ bits
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -39,70 +57,19 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
-Cc: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============1937151082537761382==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+Main goal is to fix the races in xe_device_mem_access_get(). With that fixed we
+can clean up some hacks and also start rolling it out to more places that need
+it, including now asserting it around every mmio access. We also add lockdep
+annotations for xe_device_mem_access_get() and fix the remaining lockdep
+fallout.
 
-== Series Details ==
+v11 -> v12:
+  - freq_rpe_show also needs the device to be awake
+  - Improvements to the lockdep annotation patch
 
-Series: User fence wait uAPI change to nanoseconds (rev2)
-URL   : https://patchwork.freedesktop.org/series/119661/
-State : info
+-- 
+2.41.0
 
-== Summary ==
-
-Participating hosts:
-bat-pvc-2
-bat-atsm-2
-bat-dg2-oem2
-bat-adlp-7
-Missing hosts results[0]:
-Results: [xe-pw-119661v2](https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-119661v2/index.html)
-
-
-
---===============1937151082537761382==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>User fence wait uAPI change to nanoseconds (rev2)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/119661/">https://patchwork.freedesktop.org/series/119661/</a></td></tr>
-<tr><td><b>State:</b></td><td>info</td></tr>
-
-</table>
-
-
-    <p>Participating hosts:<br />
-bat-pvc-2<br />
-bat-atsm-2<br />
-bat-dg2-oem2<br />
-bat-adlp-7<br />
-Missing hosts results[0]:<br />
-Results: <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-119661v2/index.html">xe-pw-119661v2</a></p>
-
-</body>
-</html>
-
---===============1937151082537761382==--
