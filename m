@@ -4,50 +4,31 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5E603EB64DD
-	for <intel-xe@archiver.kernel.org>; Mon, 26 Jun 2023 09:15:16 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7ED30EB64D7
+	for <intel-xe@archiver.kernel.org>; Mon, 26 Jun 2023 09:20:00 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2A37B10E1D7;
-	Mon, 26 Jun 2023 09:15:16 +0000 (UTC)
-Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 49B7610E1D9;
- Mon, 26 Jun 2023 09:15:14 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1687770914; x=1719306914;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=63Y0TPem7frMMGW3N/FgR3d/cjkXyqdp+LijdVM6QYA=;
- b=mFX3pFT+hTbMAKp3apbGTMrvH3o3srV3sgN5/QrYTkCzMBfg8xKxg5Ik
- Rv7rMuoKMXtf+htvZIQ1/Ym6S0URq7Ed3Za58ZWVZRvfO5yNJl2bLqLLd
- xwM3D/H8dKyshc8S6sfME5BBR8lbgpRNOpKNaIU2GfVVOxVySq+WIrdl6
- eShDow537BAqj9KMMD6QiCad3VGFodjV2VQPGlna4ECqjoqfxT/7kxSNz
- VAGvmnn92N5r0B29r2ISggW0dOBiSzgKSHJQg3UZQsJJaZIrCLA70Sh/X
- K5W8/8IpbSMbJLGgrfvrHq+vmjjj2mwkDE/S41qAAhEL/lmVl4d15OUZF Q==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10752"; a="345974134"
-X-IronPort-AV: E=Sophos;i="6.01,159,1684825200"; d="scan'208";a="345974134"
-Received: from fmsmga008.fm.intel.com ([10.253.24.58])
- by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 26 Jun 2023 02:15:13 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10752"; a="781357838"
-X-IronPort-AV: E=Sophos;i="6.01,159,1684825200"; d="scan'208";a="781357838"
-Received: from ettammin-mobl1.ger.corp.intel.com (HELO
- thellstr-mobl1.intel.com) ([10.249.254.105])
- by fmsmga008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 26 Jun 2023 02:15:11 -0700
-From: =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>
-To: intel-xe@lists.freedesktop.org
-Date: Mon, 26 Jun 2023 11:14:50 +0200
-Message-Id: <20230626091450.14757-5-thomas.hellstrom@linux.intel.com>
-X-Mailer: git-send-email 2.40.1
-In-Reply-To: <20230626091450.14757-1-thomas.hellstrom@linux.intel.com>
-References: <20230626091450.14757-1-thomas.hellstrom@linux.intel.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4FF6810E052;
+	Mon, 26 Jun 2023 09:20:00 +0000 (UTC)
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id C3B1C10E052;
+ Mon, 26 Jun 2023 09:19:58 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id BA889AADE8;
+ Mon, 26 Jun 2023 09:19:58 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============2518089945875500923=="
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-Subject: [Intel-xe] [PATCH v2 4/4] drm/ttm: Don't leak a resource on swapout
- move error
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Matthew Auld" <matthew.auld@intel.com>
+Date: Mon, 26 Jun 2023 09:19:58 -0000
+Message-ID: <168777119873.5705.6393240862348683340@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20230626082506.12638-3-matthew.auld@intel.com>
+In-Reply-To: <20230626082506.12638-3-matthew.auld@intel.com>
+Subject: [Intel-xe] =?utf-8?q?=E2=97=8B_CI=2EBAT=3A_info_for_series_start?=
+ =?utf-8?q?ing_with_=5Bv2=2C1/2=5D_drm/xe/uapi=3A_silence_kernel-doc_error?=
+ =?utf-8?q?s?=
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -59,41 +40,70 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Cc: =?UTF-8?q?Christian=20K=C3=B6nig?= <ckoenig.leichtzumerken@gmail.com>,
- intel-gfx@lists.freedesktop.org, linux-kernel@vger.kernel.org,
- stable@vger.kernel.org, dri-devel@lists.freedesktop.org,
- =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>,
- Nirmoy Das <nirmoy.das@intel.com>
+Reply-To: intel-xe@lists.freedesktop.org
+Cc: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-If moving the bo to system for swapout failed, we were leaking
-a resource. Fix.
+--===============2518089945875500923==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-Fixes: bfa3357ef9ab ("drm/ttm: allocate resource object instead of embedding it v2")
-Cc: Christian König <christian.koenig@amd.com>
-Cc: "Christian König" <ckoenig.leichtzumerken@gmail.com>
-Cc: dri-devel@lists.freedesktop.org
-Cc: <stable@vger.kernel.org> # v5.14+
-Signed-off-by: Thomas Hellström <thomas.hellstrom@linux.intel.com>
-Reviewed-by: Nirmoy Das <nirmoy.das@intel.com>
-Reviewed-by: Andi Shyti <andi.shyti@linux.intel.com>
----
- drivers/gpu/drm/ttm/ttm_bo.c | 1 +
- 1 file changed, 1 insertion(+)
+== Series Details ==
 
-diff --git a/drivers/gpu/drm/ttm/ttm_bo.c b/drivers/gpu/drm/ttm/ttm_bo.c
-index c0e3bbd21d3d..d9a8f227f310 100644
---- a/drivers/gpu/drm/ttm/ttm_bo.c
-+++ b/drivers/gpu/drm/ttm/ttm_bo.c
-@@ -1166,6 +1166,7 @@ int ttm_bo_swapout(struct ttm_buffer_object *bo, struct ttm_operation_ctx *ctx,
- 		ret = ttm_bo_handle_move_mem(bo, evict_mem, true, ctx, &hop);
- 		if (unlikely(ret != 0)) {
- 			WARN(ret == -EMULTIHOP, "Unexpected multihop in swaput - likely driver bug.\n");
-+			ttm_resource_free(bo, &evict_mem);
- 			goto out;
- 		}
- 	}
--- 
-2.40.1
+Series: series starting with [v2,1/2] drm/xe/uapi: silence kernel-doc errors
+URL   : https://patchwork.freedesktop.org/series/119847/
+State : info
 
+== Summary ==
+
+Participating hosts:
+bat-pvc-2
+bat-atsm-2
+bat-dg2-oem2
+bat-adlp-7
+Missing hosts results[0]:
+Results: [xe-pw-119847v1](https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-119847v1/index.html)
+
+
+
+--===============2518089945875500923==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>series starting with [v2,1/2] drm/xe/uapi: silence kernel-doc errors</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/119847/">https://patchwork.freedesktop.org/series/119847/</a></td></tr>
+<tr><td><b>State:</b></td><td>info</td></tr>
+
+</table>
+
+
+    <p>Participating hosts:<br />
+bat-pvc-2<br />
+bat-atsm-2<br />
+bat-dg2-oem2<br />
+bat-adlp-7<br />
+Missing hosts results[0]:<br />
+Results: <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-119847v1/index.html">xe-pw-119847v1</a></p>
+
+</body>
+</html>
+
+--===============2518089945875500923==--
