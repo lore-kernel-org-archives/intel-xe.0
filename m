@@ -4,55 +4,30 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id B82ADEB64D7
-	for <intel-xe@archiver.kernel.org>; Mon, 26 Jun 2023 12:23:15 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5891AEB64D7
+	for <intel-xe@archiver.kernel.org>; Mon, 26 Jun 2023 12:48:22 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8B2E110E04B;
-	Mon, 26 Jun 2023 12:23:15 +0000 (UTC)
-Received: from mga06.intel.com (mga06b.intel.com [134.134.136.31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id EB33310E04B;
- Mon, 26 Jun 2023 12:23:12 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1687782193; x=1719318193;
- h=message-id:date:mime-version:subject:to:cc:references:
- from:in-reply-to:content-transfer-encoding;
- bh=QAtvPIkccnlu6Ank7qJ23cw0df5MPmI943wyhruOK7I=;
- b=iffn1ogjyP2EIv9pBoMUAeJwJFfw0z2VhdKqnvD8mpKSSwbDlrbtayoV
- IBrUdzuvGGwfxzG2woBWaMou0KRcDyEAesmvSIVxo2Fv3gIp02IizLL3A
- WbkHM1xCU2FnGGt/NsnK4RM1fCj3X1TapyZDvsuJWVlrRa2aU5Kk8nP6/
- EpoxS4oyLFopXTGTS+XG8MEtwxENuXwIpvMMPwYQfMqKjkFWmLmqlNVsq
- d8h4SK/V5ygfBb6L/jB+Y2rz6TPu4Q+xBxNuT2ZmzfZV107soKwfP6kBm
- 9WDpuULkxZTGhoshWKbcre+2naMKS4PdWWVeqPjrxeV4La1FSN24yfK+J Q==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10752"; a="424921618"
-X-IronPort-AV: E=Sophos;i="6.01,159,1684825200"; d="scan'208";a="424921618"
-Received: from fmsmga005.fm.intel.com ([10.253.24.32])
- by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 26 Jun 2023 05:23:11 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10752"; a="1046490771"
-X-IronPort-AV: E=Sophos;i="6.01,159,1684825200"; d="scan'208";a="1046490771"
-Received: from ettammin-mobl1.ger.corp.intel.com (HELO [10.249.254.105])
- ([10.249.254.105])
- by fmsmga005-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 26 Jun 2023 05:23:09 -0700
-Message-ID: <e7098908-811b-3d26-5b72-b57afd8a1fdd@linux.intel.com>
-Date: Mon, 26 Jun 2023 14:23:06 +0200
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2FC1610E1F4;
+	Mon, 26 Jun 2023 12:48:22 +0000 (UTC)
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 4D57010E1F7;
+ Mon, 26 Jun 2023 12:48:21 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 065C9A0BA8;
+ Mon, 26 Jun 2023 12:48:21 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.11.1
-Content-Language: en-US
-To: =?UTF-8?Q?Christian_K=c3=b6nig?= <ckoenig.leichtzumerken@gmail.com>,
- intel-xe@lists.freedesktop.org
-References: <20230626091450.14757-1-thomas.hellstrom@linux.intel.com>
- <20230626091450.14757-5-thomas.hellstrom@linux.intel.com>
- <f63137cd-2032-1598-a1d7-484248ef1d02@gmail.com>
-From: =?UTF-8?Q?Thomas_Hellstr=c3=b6m?= <thomas.hellstrom@linux.intel.com>
-In-Reply-To: <f63137cd-2032-1598-a1d7-484248ef1d02@gmail.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-Subject: Re: [Intel-xe] [PATCH v2 4/4] drm/ttm: Don't leak a resource on
- swapout move error
+Content-Transfer-Encoding: 7bit
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Upadhyay, Tejas" <tejas.upadhyay@intel.com>
+Date: Mon, 26 Jun 2023 12:48:20 -0000
+Message-ID: <168778370099.5704.2787020129581835404@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20230626101648.3480340-1-tejas.upadhyay@intel.com>
+In-Reply-To: <20230626101648.3480340-1-tejas.upadhyay@intel.com>
+Subject: [Intel-xe] =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_f?=
+ =?utf-8?q?or_drm/xe=3A_Add_engine_scheduler_control_interface_=28rev2=29?=
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -64,55 +39,30 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org, linux-kernel@vger.kernel.org,
- stable@vger.kernel.org, dri-devel@lists.freedesktop.org,
- =?UTF-8?Q?Christian_K=c3=b6nig?= <christian.koenig@amd.com>,
- Nirmoy Das <nirmoy.das@intel.com>
+Reply-To: intel-xe@lists.freedesktop.org
+Cc: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Hi, Christian,
+== Series Details ==
 
-Will you take a look at 2/4 as well? Will you merge these?
+Series: drm/xe: Add engine scheduler control interface (rev2)
+URL   : https://patchwork.freedesktop.org/series/119392/
+State : success
 
-Thanks,
+== Summary ==
 
-Thomas
+=== Applying kernel patches on branch 'drm-xe-next' with base: ===
+Base commit: d3fc5af59 drm/xe/bo: consider bo->flags in xe_bo_migrate()
+=== git am output follows ===
+.git/rebase-apply/patch:27: new blank line at EOF.
++
+warning: 1 line adds whitespace errors.
+Applying: drm/xe: Add sysfs entries for engines under its GT
+Applying: drm/xe: Add sysfs for default engine scheduler properties
+Applying: drm/xe: Add job timeout engine property to sysfs
+Applying: drm/xe: Add timeslice duration engine property to sysfs
+Applying: drm/xe: Add sysfs for preempt reset timeout
+Applying: drm/xe: Add min/max cap for engine scheduler properties
 
 
-On 6/26/23 13:33, Christian König wrote:
-> Am 26.06.23 um 11:14 schrieb Thomas Hellström:
->> If moving the bo to system for swapout failed, we were leaking
->> a resource. Fix.
->>
->> Fixes: bfa3357ef9ab ("drm/ttm: allocate resource object instead of 
->> embedding it v2")
->> Cc: Christian König <christian.koenig@amd.com>
->> Cc: "Christian König" <ckoenig.leichtzumerken@gmail.com>
->> Cc: dri-devel@lists.freedesktop.org
->> Cc: <stable@vger.kernel.org> # v5.14+
->> Signed-off-by: Thomas Hellström <thomas.hellstrom@linux.intel.com>
->> Reviewed-by: Nirmoy Das <nirmoy.das@intel.com>
->> Reviewed-by: Andi Shyti <andi.shyti@linux.intel.com>
->
-> Reviewed-by: Christian König <christian.koenig@amd.com>
->
->> ---
->>   drivers/gpu/drm/ttm/ttm_bo.c | 1 +
->>   1 file changed, 1 insertion(+)
->>
->> diff --git a/drivers/gpu/drm/ttm/ttm_bo.c b/drivers/gpu/drm/ttm/ttm_bo.c
->> index c0e3bbd21d3d..d9a8f227f310 100644
->> --- a/drivers/gpu/drm/ttm/ttm_bo.c
->> +++ b/drivers/gpu/drm/ttm/ttm_bo.c
->> @@ -1166,6 +1166,7 @@ int ttm_bo_swapout(struct ttm_buffer_object 
->> *bo, struct ttm_operation_ctx *ctx,
->>           ret = ttm_bo_handle_move_mem(bo, evict_mem, true, ctx, &hop);
->>           if (unlikely(ret != 0)) {
->>               WARN(ret == -EMULTIHOP, "Unexpected multihop in swaput 
->> - likely driver bug.\n");
->> +            ttm_resource_free(bo, &evict_mem);
->>               goto out;
->>           }
->>       }
->
