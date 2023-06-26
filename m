@@ -4,50 +4,47 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 00686EB64D9
-	for <intel-xe@archiver.kernel.org>; Mon, 26 Jun 2023 18:18:00 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 23B0DEB64D7
+	for <intel-xe@archiver.kernel.org>; Mon, 26 Jun 2023 18:18:02 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5E1B910E23E;
+	by gabe.freedesktop.org (Postfix) with ESMTP id C3BAC10E240;
 	Mon, 26 Jun 2023 18:18:00 +0000 (UTC)
 Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9A99210E23E
- for <intel-xe@lists.freedesktop.org>; Mon, 26 Jun 2023 18:17:58 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7E86110E23D
+ for <intel-xe@lists.freedesktop.org>; Mon, 26 Jun 2023 18:17:57 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
  t=1687803478; x=1719339478;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=iB/4Edv0k5ywkLeAdFGnoBCltfReIksfVZ8gy6zMK1Y=;
- b=R0Me/NtupD+TJ9ZMyBzn9kxS/saDfj5mNWhQ03fvAf1+ivpOvwLrTu/O
- q9pFchZ3NVzZo33Oo+2bzLoqJ4LgdQ+AfoVCsD3m/JkzaooSWCrHprwGS
- ZDBrAT7+/WW2HkyCqfvUXsOx3ED+s6RJSNo9FgzMAosA9zLgnUggJQBYs
- c6Cvy4m6gu+G9Hje+aiXQAUCCMt+NEnjVMUd+Dbg5l75dfZ0viZOKAwQ5
- I+IVjEfgBEFXQjm9JiZMbdm4iMwAAXob6EdAqUqAtF6qweFK8SFyj2kWN
- ElOsrs8c+Lj3Mw7iHe9vJ27jT9lnJ4Vgl2WhzOjQ6qH3Pp9cGAFHkJyyT Q==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10753"; a="341689130"
-X-IronPort-AV: E=Sophos;i="6.01,160,1684825200"; d="scan'208";a="341689130"
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=mh79NaVPGfF/eqQG1W8juwrw6X2mIii2wA0lf6n5bus=;
+ b=nHSjB/BfEJ6OdBirNu3HIO8/K2PmDfk1/cCblVjVPRdHpybd8G/CmSpt
+ tzqifgqesHhcGx+KwkHlx3ByBsFqCP3karamzKQUonIj6qYzR2qdzGsUd
+ Og1eBDeZmISWZLTNYIvaIdcX4DKngxStCFMSJKHuV2TTag3nsR1WLxc/v
+ roIBIfUaV+qygYCcIsNzuOe1+aF6rxxomdNiIuwZIWUkLyuctgkvYSk9c
+ areqqDCTBeIzkaEnweH7IJ6vJzf23qFKGSjpZEjdW5UCecCeAF5NtUSEI
+ PKpnMQXpBL4yTA2BzesrLGEtS9Mpg7usvztqllYbC1kNk9CqE/SJ93AKZ Q==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10753"; a="341689101"
+X-IronPort-AV: E=Sophos;i="6.01,160,1684825200"; d="scan'208";a="341689101"
 Received: from orsmga005.jf.intel.com ([10.7.209.41])
  by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 26 Jun 2023 11:17:56 -0700
+ 26 Jun 2023 11:17:52 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10753"; a="890369752"
-X-IronPort-AV: E=Sophos;i="6.01,160,1684825200"; d="scan'208";a="890369752"
+X-IronPort-AV: E=McAfee;i="6600,9927,10753"; a="890369727"
+X-IronPort-AV: E=Sophos;i="6.01,160,1684825200"; d="scan'208";a="890369727"
 Received: from ettammin-mobl1.ger.corp.intel.com (HELO
  thellstr-mobl1.intel.com) ([10.249.254.105])
  by orsmga005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 26 Jun 2023 11:17:55 -0700
+ 26 Jun 2023 11:17:51 -0700
 From: =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>
 To: intel-xe@lists.freedesktop.org
-Date: Mon, 26 Jun 2023 20:17:40 +0200
-Message-Id: <20230626181741.32820-4-thomas.hellstrom@linux.intel.com>
+Date: Mon, 26 Jun 2023 20:17:37 +0200
+Message-Id: <20230626181741.32820-1-thomas.hellstrom@linux.intel.com>
 X-Mailer: git-send-email 2.40.1
-In-Reply-To: <20230626181741.32820-1-thomas.hellstrom@linux.intel.com>
-References: <20230626181741.32820-1-thomas.hellstrom@linux.intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-xe] [PATCH v3 3/4] drm/xe/bo: Gracefully handle errors from
- ttm_bo_move_accel_cleanup().
+Subject: [Intel-xe] [PATCH v3 0/4] drm/xe: Eviction fixes and optimizations
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -62,38 +59,35 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-The function ttm_bo_move_accel_cleanup() attempts to help pipeline a
-move, and in doing so, needs memory allocations which may fail.
+MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 
-Rather than failing in a state where the new resource may freed while
-accessed by the copy engine, sync uninterruptible and do a failsafe
-cleanup.
+Attempt to fix some xe_evict igt tests, and allow for pipelined eviction.
+Some tests, like evict-large-multi-vm-cm still fail due to memory
+allocation errors, and those may require some deeper TTM surgery.
+
+Moving forward we should also look at moving out same-vm bos to TT that
+has XE_PL_TT as a compatible placement when VRAM is full.
 
 v2:
-- Don't try to attach the signaled fence on ttm_bo_move_accel_cleanup()
-  error.
+- Minor fixes to address review comments from Matthew Brost
+- Proper Cc for the TTM patch 6.
 
-Signed-off-by: Thomas Hellström <thomas.hellstrom@linux.intel.com>
----
- drivers/gpu/drm/xe/xe_bo.c | 5 +++++
- 1 file changed, 5 insertions(+)
+v3:
+- Remove patch 1 and 6
+- Fix a NULL pointer dereference
 
-diff --git a/drivers/gpu/drm/xe/xe_bo.c b/drivers/gpu/drm/xe/xe_bo.c
-index 73e06597c84d..03b83150e8cd 100644
---- a/drivers/gpu/drm/xe/xe_bo.c
-+++ b/drivers/gpu/drm/xe/xe_bo.c
-@@ -700,6 +700,11 @@ static int xe_bo_move(struct ttm_buffer_object *ttm_bo, bool evict,
- 		if (!move_lacks_source) {
- 			ret = ttm_bo_move_accel_cleanup(ttm_bo, fence, evict,
- 							true, new_mem);
-+			if (ret) {
-+				dma_fence_wait(fence, false);
-+				ttm_bo_move_null(ttm_bo, new_mem);
-+				ret = 0;
-+			}
- 		} else {
- 			/*
- 			 * ttm_bo_move_accel_cleanup() may blow up if
+Thomas Hellström (4):
+  drm/xe/bo: Fix swapin when moving to VRAM
+  drm/xe/bo: Avoid creating a system resource when allocating a fresh
+    VRAM bo
+  drm/xe/bo: Gracefully handle errors from ttm_bo_move_accel_cleanup().
+  drm/xe/bo: Evict VRAM to TT rather than to system
+
+ drivers/gpu/drm/xe/xe_bo.c | 75 ++++++++++++++++++++++++++------------
+ 1 file changed, 52 insertions(+), 23 deletions(-)
+
 -- 
 2.40.1
 
