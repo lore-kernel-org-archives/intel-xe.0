@@ -4,51 +4,46 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id C523DC0015E
-	for <intel-xe@archiver.kernel.org>; Sun, 25 Jun 2023 10:00:47 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id D554AEB64D7
+	for <intel-xe@archiver.kernel.org>; Mon, 26 Jun 2023 08:25:29 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 50C4610E15A;
-	Sun, 25 Jun 2023 10:00:47 +0000 (UTC)
-Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3DFC310E159;
- Sun, 25 Jun 2023 10:00:44 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 80D9A10E0A2;
+	Mon, 26 Jun 2023 08:25:29 +0000 (UTC)
+Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2928210E0A2
+ for <intel-xe@lists.freedesktop.org>; Mon, 26 Jun 2023 08:25:27 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1687687244; x=1719223244;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:in-reply-to;
- bh=3SWr32SgqAC6BAivfFTdN/GsjHOvUKGZ76gBYfe8bmo=;
- b=G8PgJYxV7t8ED+kWLmgp3W6qu6aFiMRifLnJZZHqN0iJD4dVbw89gmNy
- gPgmEg5/KOysMgSXEeVuFhriMh6ex96vswrlkSYrwR5eUVyV15WJraTek
- lCxKbeKLMbpQlacKwvdtzTJ+RGwGwbxA2fJ9i1WE9DZuOhHD4rU+4rFf0
- xEfIMwhLpeOyXGHvBwPZyhDU9+M+kuwzVgUfhNBZjgCFK1SJNbgDAOcjK
- SVumdNsMVmM6bZI8vUyShRwlW8rlTVz70MbPhu9PqlQUbYZeon9EwppXq
- fgpf6q2eemMvHehyzJHvNgpujtjxdLb4ynnzu22i46CxOjQ1h4WOQ2WaS g==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10751"; a="364495577"
-X-IronPort-AV: E=Sophos;i="6.01,157,1684825200"; d="scan'208";a="364495577"
-Received: from orsmga005.jf.intel.com ([10.7.209.41])
- by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 25 Jun 2023 03:00:42 -0700
+ t=1687767927; x=1719303927;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=hbWBPCO66xqB225YFBzET+VsthGs7317XsruyBhv4bA=;
+ b=P92/qGqbi4nBw8bxeAhHrRyk/OxKdyuKapaJmhTxBBVihRDpViYzY15r
+ 3iyqfqoOnZb4hX6bYuRkWkXzNJXc2PCpb2dYEouQcwuDP7ebMRZTBi3nf
+ doe7P85Z9I2fWLZi46jFgXuhEenLawST70bRWSa33LwRacrhLKihZUxq/
+ SJMIB/TZrpqhS0NmQCdsDYB22JKHwp6dHzju4i6JdM3bExrQGp0EL7ltF
+ vAqFaLc1+GcKaKkgQ5fZYFE8Hr+ruyWaHfhvAAwUMzITOh1GHQHkLe23G
+ TpLEu9EHDdHIfgpZZABIIaxbPw63hmqTWISGteLJv1u4BTTE1KDskd5lK g==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10752"; a="340800968"
+X-IronPort-AV: E=Sophos;i="6.01,159,1684825200"; d="scan'208";a="340800968"
+Received: from orsmga006.jf.intel.com ([10.7.209.51])
+ by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 26 Jun 2023 01:25:25 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10751"; a="889962156"
-X-IronPort-AV: E=Sophos;i="6.01,157,1684825200"; d="scan'208";a="889962156"
-Received: from lkp-server01.sh.intel.com (HELO 783282924a45) ([10.239.97.150])
- by orsmga005.jf.intel.com with ESMTP; 25 Jun 2023 03:00:38 -0700
-Received: from kbuild by 783282924a45 with local (Exim 4.96)
- (envelope-from <lkp@intel.com>) id 1qDMXt-0009wb-15;
- Sun, 25 Jun 2023 10:00:37 +0000
-Date: Sun, 25 Jun 2023 18:00:08 +0800
-From: kernel test robot <lkp@intel.com>
-To: Thomas =?iso-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>,
- intel-xe@lists.freedesktop.org
-Message-ID: <202306251715.VhtKaEVg-lkp@intel.com>
-References: <20230621100435.54425-1-thomas.hellstrom@linux.intel.com>
+X-IronPort-AV: E=McAfee;i="6600,9927,10752"; a="693405176"
+X-IronPort-AV: E=Sophos;i="6.01,159,1684825200"; d="scan'208";a="693405176"
+Received: from cbrady5x-mobl2.ger.corp.intel.com (HELO mwauld-desk1.intel.com)
+ ([10.252.8.226])
+ by orsmga006-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 26 Jun 2023 01:25:22 -0700
+From: Matthew Auld <matthew.auld@intel.com>
+To: intel-xe@lists.freedesktop.org
+Date: Mon, 26 Jun 2023 09:25:07 +0100
+Message-ID: <20230626082506.12638-3-matthew.auld@intel.com>
+X-Mailer: git-send-email 2.41.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20230621100435.54425-1-thomas.hellstrom@linux.intel.com>
-Subject: Re: [Intel-xe] [PATCH v2] Documentation/gpu: Add a VM_BIND async
- draft document
+Content-Transfer-Encoding: 8bit
+Subject: [Intel-xe] [PATCH v2 1/2] drm/xe/uapi: silence kernel-doc errors
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -60,46 +55,64 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Cc: linux-kernel@vger.kernel.org, Oak Zeng <oak.zeng@intel.com>,
- Danilo Krummrich <dakr@redhat.com>, dri-devel@lists.freedesktop.org,
- oe-kbuild-all@lists.linux.dev, Nirmoy Das <nirmoy.das@intel.com>
+Cc: Francois Dugast <francois.dugast@intel.com>,
+ Lucas De Marchi <lucas.demarchi@intel.com>
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Hi Thomas,
+./include/uapi/drm/xe_drm.h:263: warning: Function parameter or member
+'gts' not described in 'drm_xe_query_gts'
 
-kernel test robot noticed the following build warnings:
+./include/uapi/drm/xe_drm.h:854: WARNING: Inline emphasis start-string
+without end-string.
 
-[auto build test WARNING on drm-misc/drm-misc-next]
-[also build test WARNING on drm/drm-next drm-tip/drm-tip next-20230623]
-[cannot apply to linus/master v6.4-rc7]
-[If your patch is applied to the wrong git tree, kindly drop us a note.
-And when submitting patch, we suggest to use '--base' as documented in
-https://git-scm.com/docs/git-format-patch#_base_tree_information]
+With the idea to also include the uapi file in the pre-merge CI hooks
+when building the kernel-doc, so first make sure it's clean:
 
-url:    https://github.com/intel-lab-lkp/linux/commits/Thomas-Hellstr-m/Documentation-gpu-Add-a-VM_BIND-async-draft-document/20230621-180712
-base:   git://anongit.freedesktop.org/drm/drm-misc drm-misc-next
-patch link:    https://lore.kernel.org/r/20230621100435.54425-1-thomas.hellstrom%40linux.intel.com
-patch subject: [PATCH v2] Documentation/gpu: Add a VM_BIND async draft document
-reproduce: (https://download.01.org/0day-ci/archive/20230625/202306251715.VhtKaEVg-lkp@intel.com/reproduce)
+https://gitlab.freedesktop.org/drm/xe/ci/-/merge_requests/16
 
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202306251715.VhtKaEVg-lkp@intel.com/
+v2: (Francois)
+  - It makes more sense to just fix the kernel-doc for 'gts'
 
-All warnings (new ones prefixed by >>):
+Signed-off-by: Matthew Auld <matthew.auld@intel.com>
+Cc: Francois Dugast <francois.dugast@intel.com>
+Cc: Lucas De Marchi <lucas.demarchi@intel.com>
+---
+ include/uapi/drm/xe_drm.h | 11 +++++++----
+ 1 file changed, 7 insertions(+), 4 deletions(-)
 
->> Documentation/gpu/drm-vm-bind-async.rst:95: WARNING: Title underline too short.
->> Documentation/gpu/drm-vm-bind-async.rst: WARNING: document isn't included in any toctree
-
-vim +95 Documentation/gpu/drm-vm-bind-async.rst
-
-    93	
-    94	Multi-operation VM_BIND IOCTL error handling and interrupts
-  > 95	========================================
-    96	
-
+diff --git a/include/uapi/drm/xe_drm.h b/include/uapi/drm/xe_drm.h
+index 432bd87ca401..965cd9527ff1 100644
+--- a/include/uapi/drm/xe_drm.h
++++ b/include/uapi/drm/xe_drm.h
+@@ -242,11 +242,13 @@ struct drm_xe_query_gts {
+ 	/** @pad: MBZ */
+ 	__u32 pad;
+ 
+-	/*
++	/**
++	 * @gts: The GTs returned for this device
++	 *
++	 * TODO: convert drm_xe_query_gt to proper kernel-doc.
+ 	 * TODO: Perhaps info about every mem region relative to this GT? e.g.
+ 	 * bandwidth between this GT and remote region?
+ 	 */
+-
+ 	struct drm_xe_query_gt {
+ #define XE_QUERY_GT_TYPE_MAIN		0
+ #define XE_QUERY_GT_TYPE_REMOTE		1
+@@ -852,8 +854,9 @@ struct drm_xe_mmio {
+  * struct drm_xe_wait_user_fence - wait user fence
+  *
+  * Wait on user fence, XE will wakeup on every HW engine interrupt in the
+- * instances list and check if user fence is complete:
+- * (*addr & MASK) OP (VALUE & MASK)
++ * instances list and check if user fence is complete::
++ *
++ *	(*addr & MASK) OP (VALUE & MASK)
+  *
+  * Returns to user on user fence completion or timeout.
+  */
 -- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
+2.41.0
+
