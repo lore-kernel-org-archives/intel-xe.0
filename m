@@ -4,30 +4,51 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 832AFC0015E
-	for <intel-xe@archiver.kernel.org>; Mon, 26 Jun 2023 11:14:13 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7B3AAEB64DC
+	for <intel-xe@archiver.kernel.org>; Mon, 26 Jun 2023 11:24:51 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2ED9C10E1CC;
-	Mon, 26 Jun 2023 11:14:13 +0000 (UTC)
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id B94A210E1CC;
- Mon, 26 Jun 2023 11:14:10 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id B5CB6AADED;
- Mon, 26 Jun 2023 11:14:10 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: =?utf-8?q?Thomas_Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>
-Date: Mon, 26 Jun 2023 11:14:10 -0000
-Message-ID: <168777805073.5706.2377029840979882970@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
+	by gabe.freedesktop.org (Postfix) with ESMTP id 26BEF10E1E5;
+	Mon, 26 Jun 2023 11:24:51 +0000 (UTC)
+Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C4DE510E1E1;
+ Mon, 26 Jun 2023 11:24:47 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1687778687; x=1719314687;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:content-transfer-encoding:in-reply-to;
+ bh=Hbsx9lDG0ObqAYBCH/anLudkyMjn7A+iSFPOx7MPsBM=;
+ b=W4srQOuk8xXvEbRDrJOuRMuYPhg/cD6qFcVJYpdiGzY5/Ti0DoRuvUX7
+ 18Ln+f/MFLuNilLCUBX6i632DLVSR2A+yLS0oVUpobQfmn0f3EfthAB0z
+ KvaHLufRcYmkeBZ5uZHINY21wZwp9rrFrAV8Ilv/1MNitf0VNHUSZCrjA
+ cJZxxl/PBSGovCjSzg93rIY1KnLMGDOxcOgqej4l5iceMli797VvRyemO
+ 1Xp/NmxO1d0dZgJEjQQPhT4vfWBPKfW38KxUQ3muCbX2ozYm1zFvXWwfn
+ mMnqrramPsEVrwCGgPq93uo+u+6Vk9+B4ABIbkwXuyP8qzP+HM/eMEC9/ w==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10752"; a="363790143"
+X-IronPort-AV: E=Sophos;i="6.01,159,1684825200"; d="scan'208";a="363790143"
+Received: from fmsmga005.fm.intel.com ([10.253.24.32])
+ by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 26 Jun 2023 04:24:46 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6600,9927,10752"; a="1046477310"
+X-IronPort-AV: E=Sophos;i="6.01,159,1684825200"; d="scan'208";a="1046477310"
+Received: from csteeb-mobl2.ger.corp.intel.com (HELO intel.com)
+ ([10.251.217.4])
+ by fmsmga005-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 26 Jun 2023 04:24:41 -0700
+Date: Mon, 26 Jun 2023 13:24:38 +0200
+From: Andi Shyti <andi.shyti@linux.intel.com>
+To: Thomas =?iso-8859-15?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>
+Message-ID: <ZJl1dvx311ixwQ3I@ashyti-mobl2.lan>
 References: <20230626091450.14757-1-thomas.hellstrom@linux.intel.com>
-In-Reply-To: <20230626091450.14757-1-thomas.hellstrom@linux.intel.com>
-Subject: [Intel-xe] =?utf-8?q?=E2=9C=97_CI=2Echecksparse=3A_warning_for_d?=
- =?utf-8?q?rm/ttm=3A_Fixes_around_resources_and_bulk_moves_=28rev2=29?=
+ <20230626091450.14757-4-thomas.hellstrom@linux.intel.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=iso-8859-15
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20230626091450.14757-4-thomas.hellstrom@linux.intel.com>
+Subject: Re: [Intel-xe] [PATCH v2 3/4] drm/ttm: Don't leak a resource on
+ eviction error
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -39,36 +60,35 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
-Cc: intel-xe@lists.freedesktop.org
+Cc: Andrey Grodzovsky <andrey.grodzovsky@amd.com>,
+ Christian =?iso-8859-15?Q?K=F6nig?= <ckoenig.leichtzumerken@gmail.com>,
+ intel-gfx@lists.freedesktop.org, linux-kernel@vger.kernel.org,
+ stable@vger.kernel.org,
+ Christian =?iso-8859-15?Q?K=F6nig?= <christian.koenig@amd.com>,
+ Huang Rui <ray.huang@amd.com>, dri-devel@lists.freedesktop.org,
+ intel-xe@lists.freedesktop.org, Nirmoy Das <nirmoy.das@intel.com>
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-== Series Details ==
+Hi Thomas,
 
-Series: drm/ttm: Fixes around resources and bulk moves (rev2)
-URL   : https://patchwork.freedesktop.org/series/119741/
-State : warning
+On Mon, Jun 26, 2023 at 11:14:49AM +0200, Thomas Hellström wrote:
+> On eviction errors other than -EMULTIHOP we were leaking a resource.
+> Fix.
+> 
+> v2:
+> - Avoid yet another goto (Andi Shyti)
+> 
+> Fixes: 403797925768 ("drm/ttm: Fix multihop assert on eviction.")
+> Cc: Andrey Grodzovsky <andrey.grodzovsky@amd.com>
+> Cc: Christian König <christian.koenig@amd.com>
+> Cc: Christian Koenig <christian.koenig@amd.com>
+> Cc: Huang Rui <ray.huang@amd.com>
+> Cc: dri-devel@lists.freedesktop.org
+> Cc: <stable@vger.kernel.org> # v5.15+
+> Signed-off-by: Thomas Hellström <thomas.hellstrom@linux.intel.com>
+> Reviewed-by: Nirmoy Das <nirmoy.das@intel.com> #v1
 
-== Summary ==
+Reviewed-by: Andi Shyti <andi.shyti@linux.intel.com> 
 
-+ trap cleanup EXIT
-+ KERNEL=/kernel
-+ MT=/root/linux/maintainer-tools
-+ git clone https://gitlab.freedesktop.org/drm/maintainer-tools /root/linux/maintainer-tools
-Cloning into '/root/linux/maintainer-tools'...
-warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
-+ make -C /root/linux/maintainer-tools
-make: Entering directory '/root/linux/maintainer-tools'
-cc -O2 -g -Wextra -o remap-log remap-log.c
-make: Leaving directory '/root/linux/maintainer-tools'
-+ cd /kernel
-+ git config --global --add safe.directory /kernel
-+ /root/linux/maintainer-tools/dim sparse --fast d3fc5af59c7c17ad1a0272c49dbff84534d9d606
-Sparse version: 0.6.1 (Ubuntu: 0.6.1-2build1)
-Fast mode used, each commit won't be checked separately.
-+ cleanup
-++ stat -c %u:%g /kernel
-+ chown -R 1003:1003 /kernel
-
-
+Andi
