@@ -4,46 +4,48 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id D554AEB64D7
-	for <intel-xe@archiver.kernel.org>; Mon, 26 Jun 2023 08:25:29 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 953A2EB64DC
+	for <intel-xe@archiver.kernel.org>; Mon, 26 Jun 2023 08:25:30 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 80D9A10E0A2;
-	Mon, 26 Jun 2023 08:25:29 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5D06A10E0BB;
+	Mon, 26 Jun 2023 08:25:30 +0000 (UTC)
 Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2928210E0A2
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4015210E0BB
  for <intel-xe@lists.freedesktop.org>; Mon, 26 Jun 2023 08:25:27 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
  t=1687767927; x=1719303927;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=hbWBPCO66xqB225YFBzET+VsthGs7317XsruyBhv4bA=;
- b=P92/qGqbi4nBw8bxeAhHrRyk/OxKdyuKapaJmhTxBBVihRDpViYzY15r
- 3iyqfqoOnZb4hX6bYuRkWkXzNJXc2PCpb2dYEouQcwuDP7ebMRZTBi3nf
- doe7P85Z9I2fWLZi46jFgXuhEenLawST70bRWSa33LwRacrhLKihZUxq/
- SJMIB/TZrpqhS0NmQCdsDYB22JKHwp6dHzju4i6JdM3bExrQGp0EL7ltF
- vAqFaLc1+GcKaKkgQ5fZYFE8Hr+ruyWaHfhvAAwUMzITOh1GHQHkLe23G
- TpLEu9EHDdHIfgpZZABIIaxbPw63hmqTWISGteLJv1u4BTTE1KDskd5lK g==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10752"; a="340800968"
-X-IronPort-AV: E=Sophos;i="6.01,159,1684825200"; d="scan'208";a="340800968"
+ h=from:to:cc:subject:date:message-id:in-reply-to:
+ references:mime-version:content-transfer-encoding;
+ bh=fQSdf+X5/KwzYGFDB+pSR+JxiqWWBxbquRBMLdxMv5s=;
+ b=c5LxvaAP6gi8P4LpIy6OsOnerP5/tZ+kTc3Tg4o0j7c/livnpzcy/oQK
+ Vbsjv8akv/iXajnj3uSYRcA2lnvBOu6NBoyl3lVYwi/Jtm0yGC+u6TROs
+ oNVbo0n94UxqIDu4r95+AxxzVWFICls4CjWQSiWBe8bukdnHWU4PnACeL
+ eTmYnigPF+1FPhYQPYrYV3lbOwfdaorEUpPt2ecU55bXeTZ+9f6HCVcB7
+ OGGMQakodk4t3y3tLLf4GOD9oiShdreZ9mwM8LzqXYaBffLGAGCDW5vSm
+ vwqfEyZ6sxlguGngfo2FZHxlo1+3BqsM11CvOrw7ROVzHYHdlZE9CA8hY g==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10752"; a="340800969"
+X-IronPort-AV: E=Sophos;i="6.01,159,1684825200"; d="scan'208";a="340800969"
 Received: from orsmga006.jf.intel.com ([10.7.209.51])
  by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 26 Jun 2023 01:25:25 -0700
+ 26 Jun 2023 01:25:26 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10752"; a="693405176"
-X-IronPort-AV: E=Sophos;i="6.01,159,1684825200"; d="scan'208";a="693405176"
+X-IronPort-AV: E=McAfee;i="6600,9927,10752"; a="693405196"
+X-IronPort-AV: E=Sophos;i="6.01,159,1684825200"; d="scan'208";a="693405196"
 Received: from cbrady5x-mobl2.ger.corp.intel.com (HELO mwauld-desk1.intel.com)
  ([10.252.8.226])
  by orsmga006-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 26 Jun 2023 01:25:22 -0700
+ 26 Jun 2023 01:25:23 -0700
 From: Matthew Auld <matthew.auld@intel.com>
 To: intel-xe@lists.freedesktop.org
-Date: Mon, 26 Jun 2023 09:25:07 +0100
-Message-ID: <20230626082506.12638-3-matthew.auld@intel.com>
+Date: Mon, 26 Jun 2023 09:25:08 +0100
+Message-ID: <20230626082506.12638-4-matthew.auld@intel.com>
 X-Mailer: git-send-email 2.41.0
+In-Reply-To: <20230626082506.12638-3-matthew.auld@intel.com>
+References: <20230626082506.12638-3-matthew.auld@intel.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-xe] [PATCH v2 1/2] drm/xe/uapi: silence kernel-doc errors
+Subject: [Intel-xe] [PATCH v2 2/2] drm/doc: include xe_drm.h
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -60,59 +62,28 @@ Cc: Francois Dugast <francois.dugast@intel.com>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-./include/uapi/drm/xe_drm.h:263: warning: Function parameter or member
-'gts' not described in 'drm_xe_query_gts'
-
-./include/uapi/drm/xe_drm.h:854: WARNING: Inline emphasis start-string
-without end-string.
-
-With the idea to also include the uapi file in the pre-merge CI hooks
-when building the kernel-doc, so first make sure it's clean:
-
-https://gitlab.freedesktop.org/drm/xe/ci/-/merge_requests/16
-
-v2: (Francois)
-  - It makes more sense to just fix the kernel-doc for 'gts'
+Make sure the uapi gets picked up by the normal docs build.
 
 Signed-off-by: Matthew Auld <matthew.auld@intel.com>
 Cc: Francois Dugast <francois.dugast@intel.com>
 Cc: Lucas De Marchi <lucas.demarchi@intel.com>
 ---
- include/uapi/drm/xe_drm.h | 11 +++++++----
- 1 file changed, 7 insertions(+), 4 deletions(-)
+ Documentation/gpu/driver-uapi.rst | 5 +++++
+ 1 file changed, 5 insertions(+)
 
-diff --git a/include/uapi/drm/xe_drm.h b/include/uapi/drm/xe_drm.h
-index 432bd87ca401..965cd9527ff1 100644
---- a/include/uapi/drm/xe_drm.h
-+++ b/include/uapi/drm/xe_drm.h
-@@ -242,11 +242,13 @@ struct drm_xe_query_gts {
- 	/** @pad: MBZ */
- 	__u32 pad;
+diff --git a/Documentation/gpu/driver-uapi.rst b/Documentation/gpu/driver-uapi.rst
+index 4411e6919a3d..79f255cf7b10 100644
+--- a/Documentation/gpu/driver-uapi.rst
++++ b/Documentation/gpu/driver-uapi.rst
+@@ -6,3 +6,8 @@ drm/i915 uAPI
+ =============
  
--	/*
-+	/**
-+	 * @gts: The GTs returned for this device
-+	 *
-+	 * TODO: convert drm_xe_query_gt to proper kernel-doc.
- 	 * TODO: Perhaps info about every mem region relative to this GT? e.g.
- 	 * bandwidth between this GT and remote region?
- 	 */
--
- 	struct drm_xe_query_gt {
- #define XE_QUERY_GT_TYPE_MAIN		0
- #define XE_QUERY_GT_TYPE_REMOTE		1
-@@ -852,8 +854,9 @@ struct drm_xe_mmio {
-  * struct drm_xe_wait_user_fence - wait user fence
-  *
-  * Wait on user fence, XE will wakeup on every HW engine interrupt in the
-- * instances list and check if user fence is complete:
-- * (*addr & MASK) OP (VALUE & MASK)
-+ * instances list and check if user fence is complete::
-+ *
-+ *	(*addr & MASK) OP (VALUE & MASK)
-  *
-  * Returns to user on user fence completion or timeout.
-  */
+ .. kernel-doc:: include/uapi/drm/i915_drm.h
++
++drm/xe uAPI
++===========
++
++.. kernel-doc:: include/uapi/drm/xe_drm.h
 -- 
 2.41.0
 
