@@ -4,30 +4,51 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id BC6BAEB64D9
-	for <intel-xe@archiver.kernel.org>; Tue, 27 Jun 2023 23:08:52 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id A6144EB64D9
+	for <intel-xe@archiver.kernel.org>; Tue, 27 Jun 2023 23:37:09 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6503A10E081;
-	Tue, 27 Jun 2023 23:08:52 +0000 (UTC)
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id 0F19810E081;
- Tue, 27 Jun 2023 23:08:50 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 0BB82A3ECB;
- Tue, 27 Jun 2023 23:08:50 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============6793268806274789728=="
+	by gabe.freedesktop.org (Postfix) with ESMTP id EA46A10E023;
+	Tue, 27 Jun 2023 23:37:08 +0000 (UTC)
+Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 917C510E023
+ for <intel-xe@lists.freedesktop.org>; Tue, 27 Jun 2023 23:37:07 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1687909027; x=1719445027;
+ h=from:to:cc:subject:in-reply-to:references:date:
+ message-id:mime-version;
+ bh=5AmtLSwqxoN6FDMhlqJ5UOyqfsAFoNaUu1ShgSSDY+0=;
+ b=aV+ElF9uD19kYt5UE0f74MIzxWGFPOch5Pq8Hs4nBjslIGhJL2dP4rFw
+ ZVkKFlaOWL2Ceqiyne6RXJoHYdk+y6aJ+KnGpKKvvxH/8znYao26g+vAe
+ jIo3Cyeb1SXw0IZ/tnaJG+CT6XCS8O/9kg92KxLvIFXuvmIH9LzoF6yzK
+ CsSpoGeFUKqqZJs4T1hP6EueuFHLzpqeibCe237OrnVctV5oRa/rcL4ye
+ XEjkmqh71xCGab9d9Y4fSDmuNyI0WgJHfnx0hG8bBxkf+SZAmmPjpG8Hy
+ awk9I8eg1TD8dJvwVss6ruWXFyCfxrwqXteBIwKXwvyALHiR+ceZ7fNzk A==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10754"; a="351489879"
+X-IronPort-AV: E=Sophos;i="6.01,163,1684825200"; d="scan'208";a="351489879"
+Received: from fmsmga008.fm.intel.com ([10.253.24.58])
+ by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 27 Jun 2023 16:37:04 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6600,9927,10754"; a="782053337"
+X-IronPort-AV: E=Sophos;i="6.01,163,1684825200"; d="scan'208";a="782053337"
+Received: from lzhiguno-mobl.ger.corp.intel.com (HELO localhost)
+ ([10.252.63.165])
+ by fmsmga008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 27 Jun 2023 16:37:02 -0700
+From: Jani Nikula <jani.nikula@intel.com>
+To: Lucas De Marchi <lucas.demarchi@intel.com>
+In-Reply-To: <mrvl5amrsemu2nqk3btjxskligvhk5hdpm7c3uzqww23pyo6w6@d5riz6lr2w4r>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+References: <20230627102223.260893-1-jani.nikula@intel.com>
+ <20230627102223.260893-5-jani.nikula@intel.com>
+ <mrvl5amrsemu2nqk3btjxskligvhk5hdpm7c3uzqww23pyo6w6@d5riz6lr2w4r>
+Date: Wed, 28 Jun 2023 02:36:45 +0300
+Message-ID: <87y1k4scj6.fsf@intel.com>
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Daniele Ceraolo Spurio" <daniele.ceraolospurio@intel.com>
-Date: Tue, 27 Jun 2023 23:08:50 -0000
-Message-ID: <168790733004.2458.12575499960786154985@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20230627222856.3165647-1-daniele.ceraolospurio@intel.com>
-In-Reply-To: <20230627222856.3165647-1-daniele.ceraolospurio@intel.com>
-Subject: [Intel-xe] =?utf-8?q?=E2=97=8B_CI=2EBAT=3A_info_for_drm/xe=3A_fi?=
- =?utf-8?q?x_HuC_FW_ordering_for_DG1?=
+Content-Type: text/plain
+Subject: Re: [Intel-xe] [PATCH 4/5] fixup! drm/xe/display: Implement display
+ support
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -39,68 +60,112 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Cc: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============6793268806274789728==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+On Tue, 27 Jun 2023, Lucas De Marchi <lucas.demarchi@intel.com> wrote:
+> On Tue, Jun 27, 2023 at 01:22:22PM +0300, Jani Nikula wrote:
+>>Add raw_reg_* accessors and use them.
+>>
+>>Signed-off-by: Jani Nikula <jani.nikula@intel.com>
+>>---
+>> .../drm/xe/compat-i915-headers/intel_uncore.h | 24 +++++++++++++++++++
+>> drivers/gpu/drm/xe/display/ext/i915_irq.c     | 15 ++----------
+>> 2 files changed, 26 insertions(+), 13 deletions(-)
+>>
+>>diff --git a/drivers/gpu/drm/xe/compat-i915-headers/intel_uncore.h b/drivers/gpu/drm/xe/compat-i915-headers/intel_uncore.h
+>>index 652654b5481d..a46dca558366 100644
+>>--- a/drivers/gpu/drm/xe/compat-i915-headers/intel_uncore.h
+>>+++ b/drivers/gpu/drm/xe/compat-i915-headers/intel_uncore.h
+>>@@ -140,4 +140,28 @@ static inline void intel_uncore_write_notrace(struct intel_uncore *uncore,
+>> 	xe_mmio_write32(__compat_uncore_to_gt(uncore), reg, val);
+>> }
+>>
+>>+static inline void __iomem *intel_uncore_regs(struct intel_uncore *uncore)
+>>+{
+>>+	struct xe_device *xe = container_of(uncore, struct xe_device, uncore);
+>>+
+>>+	return xe_device_get_root_tile(xe)->mmio.regs;
+>>+}
+>>+
+>>+/*
+>>+ * The raw_reg_{read,write} macros are intended as a micro-optimization for
+>>+ * interrupt handlers so that the pointer indirection on uncore->regs can
+>>+ * be computed once (and presumably cached in a register) instead of generating
+>>+ * extra load instructions for each MMIO access.
+>>+ *
+>>+ * Given that these macros are only intended for non-GSI interrupt registers
+>>+ * (and the goal is to avoid extra instructions generated by the compiler),
+>>+ * these macros do not account for uncore->gsi_offset.  Any caller that needs
+>>+ * to use these macros on a GSI register is responsible for adding the
+>>+ * appropriate GSI offset to the 'base' parameter.
+>>+ */
+>>+#define raw_reg_read(base, reg) \
+>
+> it's more a "map" rather than a "base". Currently it bypasses any
+> forcewake, gsi and it's also hidden from tracing.
+>
+> As a micro-optimization I wonder if there are numbers anywhere to
+> justify them.  As for the *move* being done here from
+> xe/display/ext/i915_irq.c to xe/compat-i915-headers/intel_uncore.h, I'm
+> ok with it. But why are we converting it to a macro rather than the
+> inline function?  That would mean it also silently ignores any steering
+> needed, adding to the list above of things ignored, since there is no
+> type check anymore.
 
-== Series Details ==
+100% copy-paste from i915.
 
-Series: drm/xe: fix HuC FW ordering for DG1
-URL   : https://patchwork.freedesktop.org/series/119952/
-State : info
-
-== Summary ==
-
-Participating hosts:
-bat-atsm-2
-bat-dg2-oem2
-bat-adlp-7
-Missing hosts results[0]:
-Results: [xe-pw-119952v1](https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-119952v1/index.html)
+BR,
+Jani.
 
 
+>
+> Lucas De Marchi
+>
+>>+	readl(base + i915_mmio_reg_offset(reg))
+>>+#define raw_reg_write(base, reg, value) \
+>>+	writel(value, base + i915_mmio_reg_offset(reg))
+>>+
+>> #endif /* __INTEL_UNCORE_H__ */
+>>diff --git a/drivers/gpu/drm/xe/display/ext/i915_irq.c b/drivers/gpu/drm/xe/display/ext/i915_irq.c
+>>index 6235ff9dec36..157403d1d8fe 100644
+>>--- a/drivers/gpu/drm/xe/display/ext/i915_irq.c
+>>+++ b/drivers/gpu/drm/xe/display/ext/i915_irq.c
+>>@@ -35,8 +35,10 @@
+>> #include <drm/drm_drv.h>
+>>
+>> #include "i915_drv.h"
+>>+#include "i915_irq.h"
+>> #include "i915_reg.h"
+>> #include "icl_dsi_regs.h"
+>>+#include "intel_clock_gating.h"
+>> #include "intel_display_trace.h"
+>> #include "intel_display_types.h"
+>> #include "intel_dp_aux.h"
+>>@@ -48,19 +50,6 @@
+>> #include "intel_psr_regs.h"
+>> #include "intel_uncore.h"
+>>
+>>-static u32 raw_reg_read(void __iomem *base, i915_reg_t reg)
+>>-{
+>>-	return readl(base + reg.reg);
+>>-}
+>>-
+>>-static void raw_reg_write(void __iomem *base, i915_reg_t reg, u32 value)
+>>-{
+>>-	writel(value, base + reg.reg);
+>>-}
+>>-
+>>-#include "i915_irq.h"
+>>-#include "intel_clock_gating.h"
+>>-
+>> static void gen3_irq_reset(struct xe_device *dev_priv, i915_reg_t imr,
+>> 		    i915_reg_t iir, i915_reg_t ier)
+>> {
+>>-- 
+>>2.39.2
+>>
 
---===============6793268806274789728==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/xe: fix HuC FW ordering for DG1</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/119952/">https://patchwork.freedesktop.org/series/119952/</a></td></tr>
-<tr><td><b>State:</b></td><td>info</td></tr>
-
-</table>
-
-
-    <p>Participating hosts:<br />
-bat-atsm-2<br />
-bat-dg2-oem2<br />
-bat-adlp-7<br />
-Missing hosts results[0]:<br />
-Results: <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-119952v1/index.html">xe-pw-119952v1</a></p>
-
-</body>
-</html>
-
---===============6793268806274789728==--
+-- 
+Jani Nikula, Intel Open Source Graphics Center
