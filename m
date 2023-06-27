@@ -4,49 +4,49 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0F0AEEB64D9
-	for <intel-xe@archiver.kernel.org>; Tue, 27 Jun 2023 10:22:56 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id AA819EB64D9
+	for <intel-xe@archiver.kernel.org>; Tue, 27 Jun 2023 10:23:00 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id DA62C10E2DF;
-	Tue, 27 Jun 2023 10:22:55 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8431D10E2DB;
+	Tue, 27 Jun 2023 10:23:00 +0000 (UTC)
 Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D535410E2DF
- for <intel-xe@lists.freedesktop.org>; Tue, 27 Jun 2023 10:22:53 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B12EB10E2DB
+ for <intel-xe@lists.freedesktop.org>; Tue, 27 Jun 2023 10:22:58 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1687861373; x=1719397373;
+ t=1687861378; x=1719397378;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=j0G1MTAmoPNKC5/aU8XSPx2sQE090p/8VMH4pv/M72s=;
- b=gXk3lVdKuu9n/AcI0YVww5n8wlusGpul5EA9hSWwXrjmMv2l1J4xcTqj
- OVYDHqKybCarTSac2YvUiGW/dn+LOWkHBiQ0hhN3kLHHzNJUwrXh7end0
- kIkFbT2TdQif+EVOqXDzUFAnWrabIBdpIqo6pCv1RK47YtDHS6dfmli8g
- coLvu09tBAITsNRQhLISbf3DwbUsa8lySyuOfIMEiL8wDs7c4V2jMWVfn
- EtGyqlRn60HxrjQ9ayJqEqyOA153joqw6xQ3ebt20SJQRj6/xbXt6BvZG
- 2/Nsw7dHAzGr3O4xoPkRIp5NVwFK6a2r1CuvTYTrnM65bymNosgTU3Ijr A==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10753"; a="346295397"
-X-IronPort-AV: E=Sophos;i="6.01,162,1684825200"; d="scan'208";a="346295397"
+ bh=mK9zWbVNndFUPDcq3OASh00DiAVo+rUf5pvyL2me65Q=;
+ b=JL+hmrPg4SIdEXEq5QOFdGwtzxkrMIKoAt3Mn3+miX65LxoKWSOgguMV
+ PSK6ATjzTFFGTJ5R4RoRir4GcDoCUSAiOzLPzSLIsetwei6y7v21L5rqb
+ 8B+G2Pj3j+Q94lqsSiugNpVuYKhG5foVwT1R+tH34AtTIfki2PTDxKJri
+ u8Y8D3WqzDRfnvv/yPKdQwFYk+F+8dVvPE7MB5lxVQ/aPWaz/oorei924
+ Hvxu7wFZfT1SG5T2NuuDNlHGVoUvyyvRMHWXYDQtqVoyApLkHE3NEXc7K
+ rLFaPybvyaZMulw5xdY0S9bgoXuMdiOlC87AnCvzhGxByvsKpwswbqKCQ Q==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10753"; a="346295418"
+X-IronPort-AV: E=Sophos;i="6.01,162,1684825200"; d="scan'208";a="346295418"
 Received: from orsmga008.jf.intel.com ([10.7.209.65])
  by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 27 Jun 2023 03:22:53 -0700
+ 27 Jun 2023 03:22:58 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10753"; a="746146065"
-X-IronPort-AV: E=Sophos;i="6.01,162,1684825200"; d="scan'208";a="746146065"
+X-IronPort-AV: E=McAfee;i="6600,9927,10753"; a="746146112"
+X-IronPort-AV: E=Sophos;i="6.01,162,1684825200"; d="scan'208";a="746146112"
 Received: from jwerner6-mobl.ger.corp.intel.com (HELO localhost)
  ([10.252.39.48])
  by orsmga008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 27 Jun 2023 03:22:52 -0700
+ 27 Jun 2023 03:22:56 -0700
 From: Jani Nikula <jani.nikula@intel.com>
 To: intel-xe@lists.freedesktop.org
-Date: Tue, 27 Jun 2023 13:22:20 +0300
-Message-Id: <20230627102223.260893-3-jani.nikula@intel.com>
+Date: Tue, 27 Jun 2023 13:22:21 +0300
+Message-Id: <20230627102223.260893-4-jani.nikula@intel.com>
 X-Mailer: git-send-email 2.39.2
 In-Reply-To: <20230627102223.260893-1-jani.nikula@intel.com>
 References: <20230627102223.260893-1-jani.nikula@intel.com>
 MIME-Version: 1.0
 Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-xe] [PATCH 2/5] fixup! drm/xe/display: Implement display
+Subject: [Intel-xe] [PATCH 3/5] fixup! drm/xe/display: Implement display
  support
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -63,28 +63,242 @@ Cc: jani.nikula@intel.com, lucas.demarchi@intel.com
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Keep build list sorted.
+We'll have struct intel_uncore uses, so add the name back instead of
+fake_uncore.
 
 Signed-off-by: Jani Nikula <jani.nikula@intel.com>
 ---
- drivers/gpu/drm/xe/Makefile | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+ .../drm/xe/compat-i915-headers/intel_pcode.h  | 16 ++---
+ .../drm/xe/compat-i915-headers/intel_uncore.h | 58 +++++++++----------
+ drivers/gpu/drm/xe/xe_device_types.h          |  2 +-
+ 3 files changed, 38 insertions(+), 38 deletions(-)
 
-diff --git a/drivers/gpu/drm/xe/Makefile b/drivers/gpu/drm/xe/Makefile
-index 081c57fd8632..ac4e58784589 100644
---- a/drivers/gpu/drm/xe/Makefile
-+++ b/drivers/gpu/drm/xe/Makefile
-@@ -162,9 +162,9 @@ xe-$(CONFIG_DRM_XE_DISPLAY) += \
- 	i915-display/intel_ddi.o \
- 	i915-display/intel_ddi_buf_trans.o \
- 	i915-display/intel_display.o \
-+	i915-display/intel_display_debugfs.o \
- 	i915-display/intel_display_device.o \
- 	i915-display/intel_display_driver.o \
--	i915-display/intel_display_debugfs.o \
- 	i915-display/intel_display_power.o \
- 	i915-display/intel_display_power_map.o \
- 	i915-display/intel_display_power_well.o \
+diff --git a/drivers/gpu/drm/xe/compat-i915-headers/intel_pcode.h b/drivers/gpu/drm/xe/compat-i915-headers/intel_pcode.h
+index 71f1fd1de2fd..0c47661bdc6a 100644
+--- a/drivers/gpu/drm/xe/compat-i915-headers/intel_pcode.h
++++ b/drivers/gpu/drm/xe/compat-i915-headers/intel_pcode.h
+@@ -10,32 +10,32 @@
+ #include "xe_pcode.h"
+ 
+ static inline int
+-snb_pcode_write_timeout(struct fake_uncore *uncore, u32 mbox, u32 val,
++snb_pcode_write_timeout(struct intel_uncore *uncore, u32 mbox, u32 val,
+ 			int fast_timeout_us, int slow_timeout_ms)
+ {
+-	return xe_pcode_write_timeout(__fake_uncore_to_gt(uncore), mbox, val,
++	return xe_pcode_write_timeout(__compat_uncore_to_gt(uncore), mbox, val,
+ 				      slow_timeout_ms ?: 1);
+ }
+ 
+ static inline int
+-snb_pcode_write(struct fake_uncore *uncore, u32 mbox, u32 val)
++snb_pcode_write(struct intel_uncore *uncore, u32 mbox, u32 val)
+ {
+ 
+-	return xe_pcode_write(__fake_uncore_to_gt(uncore), mbox, val);
++	return xe_pcode_write(__compat_uncore_to_gt(uncore), mbox, val);
+ }
+ 
+ static inline int
+-snb_pcode_read(struct fake_uncore *uncore, u32 mbox, u32 *val, u32 *val1)
++snb_pcode_read(struct intel_uncore *uncore, u32 mbox, u32 *val, u32 *val1)
+ {
+-	return xe_pcode_read(__fake_uncore_to_gt(uncore), mbox, val, val1);
++	return xe_pcode_read(__compat_uncore_to_gt(uncore), mbox, val, val1);
+ }
+ 
+ static inline int
+-skl_pcode_request(struct fake_uncore *uncore, u32 mbox,
++skl_pcode_request(struct intel_uncore *uncore, u32 mbox,
+ 		  u32 request, u32 reply_mask, u32 reply,
+ 		  int timeout_base_ms)
+ {
+-	return xe_pcode_request(__fake_uncore_to_gt(uncore), mbox, request, reply_mask, reply,
++	return xe_pcode_request(__compat_uncore_to_gt(uncore), mbox, request, reply_mask, reply,
+ 				timeout_base_ms);
+ }
+ 
+diff --git a/drivers/gpu/drm/xe/compat-i915-headers/intel_uncore.h b/drivers/gpu/drm/xe/compat-i915-headers/intel_uncore.h
+index fae6213d26f1..652654b5481d 100644
+--- a/drivers/gpu/drm/xe/compat-i915-headers/intel_uncore.h
++++ b/drivers/gpu/drm/xe/compat-i915-headers/intel_uncore.h
+@@ -10,31 +10,31 @@
+ #include "xe_device_types.h"
+ #include "xe_mmio.h"
+ 
+-static inline struct xe_gt *__fake_uncore_to_gt(struct fake_uncore *uncore)
++static inline struct xe_gt *__compat_uncore_to_gt(struct intel_uncore *uncore)
+ {
+ 	struct xe_device *xe = container_of(uncore, struct xe_device, uncore);
+ 
+ 	return xe_root_mmio_gt(xe);
+ }
+ 
+-static inline u32 intel_uncore_read(struct fake_uncore *uncore,
++static inline u32 intel_uncore_read(struct intel_uncore *uncore,
+ 				    i915_reg_t i915_reg)
+ {
+ 	struct xe_reg reg = XE_REG(i915_mmio_reg_offset(i915_reg));
+ 
+-	return xe_mmio_read32(__fake_uncore_to_gt(uncore), reg);
++	return xe_mmio_read32(__compat_uncore_to_gt(uncore), reg);
+ }
+ 
+-static inline u32 intel_uncore_read8(struct fake_uncore *uncore,
++static inline u32 intel_uncore_read8(struct intel_uncore *uncore,
+ 				     i915_reg_t i915_reg)
+ {
+ 	struct xe_reg reg = XE_REG(i915_mmio_reg_offset(i915_reg));
+ 
+-	return xe_mmio_read8(__fake_uncore_to_gt(uncore), reg);
++	return xe_mmio_read8(__compat_uncore_to_gt(uncore), reg);
+ }
+ 
+ static inline u64
+-intel_uncore_read64_2x32(struct fake_uncore *uncore,
++intel_uncore_read64_2x32(struct intel_uncore *uncore,
+ 			 i915_reg_t i915_lower_reg, i915_reg_t i915_upper_reg)
+ {
+ 	struct xe_reg lower_reg = XE_REG(i915_mmio_reg_offset(i915_lower_reg));
+@@ -42,102 +42,102 @@ intel_uncore_read64_2x32(struct fake_uncore *uncore,
+ 	u32 upper, lower, old_upper;
+ 	int loop = 0;
+ 
+-	upper = xe_mmio_read32(__fake_uncore_to_gt(uncore), upper_reg);
++	upper = xe_mmio_read32(__compat_uncore_to_gt(uncore), upper_reg);
+ 	do {
+ 		old_upper = upper;
+-		lower = xe_mmio_read32(__fake_uncore_to_gt(uncore), lower_reg);
+-		upper = xe_mmio_read32(__fake_uncore_to_gt(uncore), upper_reg);
++		lower = xe_mmio_read32(__compat_uncore_to_gt(uncore), lower_reg);
++		upper = xe_mmio_read32(__compat_uncore_to_gt(uncore), upper_reg);
+ 	} while (upper != old_upper && loop++ < 2);
+ 
+ 	return (u64)upper << 32 | lower;
+ }
+ 
+-static inline void intel_uncore_posting_read(struct fake_uncore *uncore,
++static inline void intel_uncore_posting_read(struct intel_uncore *uncore,
+ 					     i915_reg_t i915_reg)
+ {
+ 	struct xe_reg reg = XE_REG(i915_mmio_reg_offset(i915_reg));
+ 
+-	xe_mmio_read32(__fake_uncore_to_gt(uncore), reg);
++	xe_mmio_read32(__compat_uncore_to_gt(uncore), reg);
+ }
+ 
+-static inline void intel_uncore_write(struct fake_uncore *uncore,
++static inline void intel_uncore_write(struct intel_uncore *uncore,
+ 				      i915_reg_t i915_reg, u32 val)
+ {
+ 	struct xe_reg reg = XE_REG(i915_mmio_reg_offset(i915_reg));
+ 
+-	xe_mmio_write32(__fake_uncore_to_gt(uncore), reg, val);
++	xe_mmio_write32(__compat_uncore_to_gt(uncore), reg, val);
+ }
+ 
+-static inline u32 intel_uncore_rmw(struct fake_uncore *uncore,
++static inline u32 intel_uncore_rmw(struct intel_uncore *uncore,
+ 				   i915_reg_t i915_reg, u32 clear, u32 set)
+ {
+ 	struct xe_reg reg = XE_REG(i915_mmio_reg_offset(i915_reg));
+ 
+-	return xe_mmio_rmw32(__fake_uncore_to_gt(uncore), reg, clear, set);
++	return xe_mmio_rmw32(__compat_uncore_to_gt(uncore), reg, clear, set);
+ }
+ 
+-static inline int intel_wait_for_register(struct fake_uncore *uncore,
++static inline int intel_wait_for_register(struct intel_uncore *uncore,
+ 					  i915_reg_t i915_reg, u32 mask,
+ 					  u32 value, unsigned int timeout)
+ {
+ 	struct xe_reg reg = XE_REG(i915_mmio_reg_offset(i915_reg));
+ 
+-	return xe_mmio_wait32(__fake_uncore_to_gt(uncore), reg, value, mask,
++	return xe_mmio_wait32(__compat_uncore_to_gt(uncore), reg, value, mask,
+ 			      timeout * USEC_PER_MSEC, NULL, false);
+ }
+ 
+-static inline int intel_wait_for_register_fw(struct fake_uncore *uncore,
++static inline int intel_wait_for_register_fw(struct intel_uncore *uncore,
+ 					     i915_reg_t i915_reg, u32 mask,
+ 					     u32 value, unsigned int timeout)
+ {
+ 	struct xe_reg reg = XE_REG(i915_mmio_reg_offset(i915_reg));
+ 
+-	return xe_mmio_wait32(__fake_uncore_to_gt(uncore), reg, value, mask,
++	return xe_mmio_wait32(__compat_uncore_to_gt(uncore), reg, value, mask,
+ 			      timeout * USEC_PER_MSEC, NULL, false);
+ }
+ 
+ static inline int
+-__intel_wait_for_register(struct fake_uncore *uncore, i915_reg_t i915_reg,
++__intel_wait_for_register(struct intel_uncore *uncore, i915_reg_t i915_reg,
+ 			  u32 mask, u32 value, unsigned int fast_timeout_us,
+ 			  unsigned int slow_timeout_ms, u32 *out_value)
+ {
+ 	struct xe_reg reg = XE_REG(i915_mmio_reg_offset(i915_reg));
+ 
+-	return xe_mmio_wait32(__fake_uncore_to_gt(uncore), reg, value, mask,
++	return xe_mmio_wait32(__compat_uncore_to_gt(uncore), reg, value, mask,
+ 			      fast_timeout_us + 1000 * slow_timeout_ms,
+ 			      out_value, false);
+ }
+ 
+-static inline u32 intel_uncore_read_fw(struct fake_uncore *uncore,
++static inline u32 intel_uncore_read_fw(struct intel_uncore *uncore,
+ 				       i915_reg_t i915_reg)
+ {
+ 	struct xe_reg reg = XE_REG(i915_mmio_reg_offset(i915_reg));
+ 
+-	return xe_mmio_read32(__fake_uncore_to_gt(uncore), reg);
++	return xe_mmio_read32(__compat_uncore_to_gt(uncore), reg);
+ }
+ 
+-static inline void intel_uncore_write_fw(struct fake_uncore *uncore,
++static inline void intel_uncore_write_fw(struct intel_uncore *uncore,
+ 					 i915_reg_t i915_reg, u32 val)
+ {
+ 	struct xe_reg reg = XE_REG(i915_mmio_reg_offset(i915_reg));
+ 
+-	xe_mmio_write32(__fake_uncore_to_gt(uncore), reg, val);
++	xe_mmio_write32(__compat_uncore_to_gt(uncore), reg, val);
+ }
+ 
+-static inline u32 intel_uncore_read_notrace(struct fake_uncore *uncore,
++static inline u32 intel_uncore_read_notrace(struct intel_uncore *uncore,
+ 					    i915_reg_t i915_reg)
+ {
+ 	struct xe_reg reg = XE_REG(i915_mmio_reg_offset(i915_reg));
+ 
+-	return xe_mmio_read32(__fake_uncore_to_gt(uncore), reg);
++	return xe_mmio_read32(__compat_uncore_to_gt(uncore), reg);
+ }
+ 
+-static inline void intel_uncore_write_notrace(struct fake_uncore *uncore,
++static inline void intel_uncore_write_notrace(struct intel_uncore *uncore,
+ 					      i915_reg_t i915_reg, u32 val)
+ {
+ 	struct xe_reg reg = XE_REG(i915_mmio_reg_offset(i915_reg));
+ 
+-	xe_mmio_write32(__fake_uncore_to_gt(uncore), reg, val);
++	xe_mmio_write32(__compat_uncore_to_gt(uncore), reg, val);
+ }
+ 
+ #endif /* __INTEL_UNCORE_H__ */
+diff --git a/drivers/gpu/drm/xe/xe_device_types.h b/drivers/gpu/drm/xe/xe_device_types.h
+index 0226d44a6af2..583d42b801ca 100644
+--- a/drivers/gpu/drm/xe/xe_device_types.h
++++ b/drivers/gpu/drm/xe/xe_device_types.h
+@@ -382,7 +382,7 @@ struct xe_device {
+ 	bool display_irqs_enabled;
+ 	u32 enabled_irq_mask;
+ 
+-	struct fake_uncore {
++	struct intel_uncore {
+ 		spinlock_t lock;
+ 	} uncore;
+ 
 -- 
 2.39.2
 
