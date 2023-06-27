@@ -4,30 +4,30 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 33DDBEB64D9
-	for <intel-xe@archiver.kernel.org>; Tue, 27 Jun 2023 12:57:09 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9838AEB64DD
+	for <intel-xe@archiver.kernel.org>; Tue, 27 Jun 2023 12:57:27 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id DA62010E03E;
-	Tue, 27 Jun 2023 12:57:08 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5414B10E03E;
+	Tue, 27 Jun 2023 12:57:27 +0000 (UTC)
 Received: from emeril.freedesktop.org (emeril.freedesktop.org
  [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id C8F9C10E03E;
- Tue, 27 Jun 2023 12:57:07 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTP id EC2D510E03E;
+ Tue, 27 Jun 2023 12:57:24 +0000 (UTC)
 Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id C2966AADD7;
- Tue, 27 Jun 2023 12:57:07 +0000 (UTC)
+ by emeril.freedesktop.org (Postfix) with ESMTP id E9033AADD7;
+ Tue, 27 Jun 2023 12:57:24 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: "Anshuman Gupta" <anshuman.gupta@intel.com>
-Date: Tue, 27 Jun 2023 12:57:07 -0000
-Message-ID: <168787062777.2457.7724285406624394859@emeril.freedesktop.org>
+Date: Tue, 27 Jun 2023 12:57:24 -0000
+Message-ID: <168787064495.2458.10996376890533613290@emeril.freedesktop.org>
 X-Patchwork-Hint: ignore
 References: <20230627115642.2087251-1-anshuman.gupta@intel.com>
 In-Reply-To: <20230627115642.2087251-1-anshuman.gupta@intel.com>
-Subject: [Intel-xe] =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_f?=
- =?utf-8?q?or_D3Cold_Policy_=28rev3=29?=
+Subject: [Intel-xe] =?utf-8?q?=E2=9C=97_CI=2Echeckpatch=3A_warning_for_D3?=
+ =?utf-8?q?Cold_Policy_=28rev3=29?=
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -48,17 +48,52 @@ Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 Series: D3Cold Policy (rev3)
 URL   : https://patchwork.freedesktop.org/series/118035/
-State : success
+State : warning
 
 == Summary ==
 
-=== Applying kernel patches on branch 'drm-xe-next' with base: ===
-Base commit: f135580b5 drm/xe: Fix vm refcount races
-=== git am output follows ===
-Applying: drm/xe/pm: Add pci d3cold_capable support
-Applying: drm/xe/pm: Refactor xe_pm_runtime_init
-Applying: drm/xe/pm: Add vram_d3cold_threshold Sysfs
-Applying: xe/drm/pm: Toggle d3cold_allowed using vram_usages
-Applying: drm/xe/pm: Init pcode and restore vram on power lost
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+c7d32770e3cd31d9fc134ce41f329b10aa33ee15
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit c8486b1cd87279dd5315db50295ea6e9e74004b5
+Author: Anshuman Gupta <anshuman.gupta@intel.com>
+Date:   Tue Jun 27 17:26:42 2023 +0530
+
+    drm/xe/pm: Init pcode and restore vram on power lost
+    
+    Don't init pcode and restore VRAM objects in vain.
+    We can rely on primary GT GUC_STATUS to detect whether
+    card has really lost power even when d3cold is allowed by xe.
+    Adding d3cold.lost_power flag to avoid pcode init and vram
+    restoration.
+    Also cleaning up the TODO code comment.
+    
+    Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
+    Signed-off-by: Anshuman Gupta <anshuman.gupta@intel.com>
++ /mt/dim checkpatch f135580b567158b23349db5544259730dfb91e78 drm-intel
+858f7cad3 drm/xe/pm: Add pci d3cold_capable support
+c238b4588 drm/xe/pm: Refactor xe_pm_runtime_init
+a0c073879 drm/xe/pm: Add vram_d3cold_threshold Sysfs
+Traceback (most recent call last):
+  File "scripts/spdxcheck.py", line 6, in <module>
+    from ply import lex, yacc
+ModuleNotFoundError: No module named 'ply'
+Traceback (most recent call last):
+  File "scripts/spdxcheck.py", line 6, in <module>
+    from ply import lex, yacc
+ModuleNotFoundError: No module named 'ply'
+-:33: WARNING:FILE_PATH_CHANGES: added, moved or deleted file(s), does MAINTAINERS need updating?
+#33: 
+new file mode 100644
+
+total: 0 errors, 1 warnings, 0 checks, 252 lines checked
+c3801972d xe/drm/pm: Toggle d3cold_allowed using vram_usages
+c8486b1cd drm/xe/pm: Init pcode and restore vram on power lost
 
 
