@@ -4,47 +4,46 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7FC75EB64D7
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id CF88CEB64DC
 	for <intel-xe@archiver.kernel.org>; Wed, 28 Jun 2023 07:09:29 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 542FE10E366;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9FB4D10E367;
 	Wed, 28 Jun 2023 07:09:29 +0000 (UTC)
 Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E0D6610E366
- for <intel-xe@lists.freedesktop.org>; Wed, 28 Jun 2023 07:09:26 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5055510E366
+ for <intel-xe@lists.freedesktop.org>; Wed, 28 Jun 2023 07:09:27 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1687936166; x=1719472166;
+ t=1687936167; x=1719472167;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=1pHJ45QFvB1Iebp9vFz9Pw1ERSi6heOHT9n08eeNXRM=;
- b=Q574zH0p15Pgbu1i4iHB1mP5B3lYJdIGjVEmkWvJgiBWx8TjDVJigtdn
- 4uO2HYoA27DI/fuvl1MHE8Cl8ggq6yrOCmQSmvOY9azMqzIscEkjZeXmj
- TafJ0CZ8VNqeDjjgLY6mOSb0g6lFyZWdzRsrXPqg8D5j82dLs8Nmx/fcW
- W2RX1pfwkR5RV56UBdFjAQcwbC84zf/KfYFUJ82dZhOwbD6YNOvggtjNg
- 9j9/19550hGhbg3gGYY+TXcf478GVB3Vc2u/xKj0BJNunI6mcDaQAwZrU
- RxlIs+CMfVH9JqG56O9FGCSG/qGlnEuKPS8lzdTOfOqUQDmpcgokpN4S/ w==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10754"; a="427777690"
-X-IronPort-AV: E=Sophos;i="6.01,164,1684825200"; d="scan'208";a="427777690"
+ bh=6LP0iMMibTxe/+nxALWByXVoww4O8ZkcGXa35q1hiVY=;
+ b=VTcSVqEcVBKnpLD0kIRXi2YWFfBBX9RaAqqSP4moIOHtiGp0y9GPqznA
+ XHRnQlfVQ2c5i7aaz54htiwNSDeu/CbP2Sxs0J2rmM6IdGTiHVVcnqHuQ
+ wDdgE1pJZdO00Zlkgs9Lep3+Ujsbz8woig/rVJIYO/ajt4g0S3b2Hgm7b
+ mrHE8HEzusJ6Tj2sM1w+ceU+1c9i11Q/H42/P1HSwYN5f9w0HBxyBBqeW
+ PjVwfU2pKNjnRApeR2JLMT3/xMfFrQyd4JZHmPhPXjkxaXvGoAtkTMRus
+ 24YT47ZQumcvn8U3cTufSWTkUfUtMWEz5XFzp6quJSQXMmQ6FRyIYccEO A==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10754"; a="427777694"
+X-IronPort-AV: E=Sophos;i="6.01,164,1684825200"; d="scan'208";a="427777694"
 Received: from orsmga003.jf.intel.com ([10.7.209.27])
  by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 28 Jun 2023 00:09:26 -0700
+ 28 Jun 2023 00:09:27 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10754"; a="666984144"
-X-IronPort-AV: E=Sophos;i="6.01,164,1684825200"; d="scan'208";a="666984144"
+X-IronPort-AV: E=McAfee;i="6600,9927,10754"; a="666984179"
+X-IronPort-AV: E=Sophos;i="6.01,164,1684825200"; d="scan'208";a="666984179"
 Received: from tejas-super-server.iind.intel.com ([10.145.169.166])
- by orsmga003.jf.intel.com with ESMTP; 28 Jun 2023 00:09:23 -0700
+ by orsmga003.jf.intel.com with ESMTP; 28 Jun 2023 00:09:25 -0700
 From: Tejas Upadhyay <tejas.upadhyay@intel.com>
 To: intel-xe@lists.freedesktop.org
-Date: Wed, 28 Jun 2023 12:45:26 +0530
-Message-Id: <20230628071527.3579428-4-tejas.upadhyay@intel.com>
+Date: Wed, 28 Jun 2023 12:45:27 +0530
+Message-Id: <20230628071527.3579428-5-tejas.upadhyay@intel.com>
 X-Mailer: git-send-email 2.25.1
 In-Reply-To: <20230628071527.3579428-1-tejas.upadhyay@intel.com>
 References: <20230628071527.3579428-1-tejas.upadhyay@intel.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-xe] [PATCH V5 3/4] drm/xe: Add sysfs entry to report per
- tile memory size
+Subject: [Intel-xe] [PATCH V5 4/4] drm/xe: Make usable size of VRAM readable
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -59,95 +58,136 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Add sysfs entry to read per tile physical memory
-including stolen memory.
+Current size member of vram struct does not give
+complete information as what "size" contains. Does
+it contain reserved portions or not. Name it usable
+size and accordingly describe other size members as
+well.
 
-V5:
-  - rename var name and make it part of vram struct - Lucas
-V4:
-  - %s/addr_range/physical_vram_size_byes, make it
-    user readable name - Joonas/Aravind
-  - Display in bytes - Joonas/Aravind
-V3:
-  - Exclude DG1, replace sysfs_create_file/files - Aravind
-V2:
-  - Use DEVICE_ATTR_RO - Aravind
-  - Dont put kobj on sysfs_file_create fail - Himal
-  - Skip addr_range sysfs create for non dgfx - Himal
-
-Reviewed-by: Aravind Iddamsetty <aravind.iddamsetty@intel.com>
 Signed-off-by: Tejas Upadhyay <tejas.upadhyay@intel.com>
 ---
- drivers/gpu/drm/xe/xe_device_types.h |  5 +++++
- drivers/gpu/drm/xe/xe_mmio.c         |  1 +
- drivers/gpu/drm/xe/xe_tile_sysfs.c   | 19 +++++++++++++++++++
- 3 files changed, 25 insertions(+)
+ drivers/gpu/drm/xe/display/xe_plane_initial.c |  2 +-
+ drivers/gpu/drm/xe/xe_bo.c                    |  2 +-
+ drivers/gpu/drm/xe/xe_device_types.h          | 13 ++++++++++---
+ drivers/gpu/drm/xe/xe_mmio.c                  |  6 +++---
+ drivers/gpu/drm/xe/xe_query.c                 |  2 +-
+ drivers/gpu/drm/xe/xe_tile.c                  |  2 +-
+ drivers/gpu/drm/xe/xe_ttm_vram_mgr.c          |  3 ++-
+ 7 files changed, 19 insertions(+), 11 deletions(-)
 
+diff --git a/drivers/gpu/drm/xe/display/xe_plane_initial.c b/drivers/gpu/drm/xe/display/xe_plane_initial.c
+index 99c35a4ef673..fad4c66a8226 100644
+--- a/drivers/gpu/drm/xe/display/xe_plane_initial.c
++++ b/drivers/gpu/drm/xe/display/xe_plane_initial.c
+@@ -83,7 +83,7 @@ initial_plane_bo(struct xe_device *xe,
+ 		 * We don't currently expect this to ever be placed in the
+ 		 * stolen portion.
+ 		 */
+-		if (phys_base >= tile0->mem.vram.size) {
++		if (phys_base >= tile0->mem.vram.usable_size) {
+ 			drm_err(&xe->drm,
+ 				"Initial plane programming using invalid range, phys_base=%pa\n",
+ 				&phys_base);
+diff --git a/drivers/gpu/drm/xe/xe_bo.c b/drivers/gpu/drm/xe/xe_bo.c
+index 21fca198a882..e240df6c7ae6 100644
+--- a/drivers/gpu/drm/xe/xe_bo.c
++++ b/drivers/gpu/drm/xe/xe_bo.c
+@@ -125,7 +125,7 @@ static void add_vram(struct xe_device *xe, struct xe_bo *bo,
+ {
+ 	struct xe_tile *tile = mem_type_to_tile(xe, mem_type);
+ 
+-	XE_BUG_ON(!tile->mem.vram.size);
++	XE_BUG_ON(!tile->mem.vram.usable_size);
+ 
+ 	places[*c] = (struct ttm_place) {
+ 		.mem_type = mem_type,
 diff --git a/drivers/gpu/drm/xe/xe_device_types.h b/drivers/gpu/drm/xe/xe_device_types.h
-index f2d4298fb0a1..bd3e20ce3a4b 100644
+index bd3e20ce3a4b..6afe37c8704e 100644
 --- a/drivers/gpu/drm/xe/xe_device_types.h
 +++ b/drivers/gpu/drm/xe/xe_device_types.h
-@@ -131,6 +131,11 @@ struct xe_tile {
+@@ -129,11 +129,18 @@ struct xe_tile {
+ 			resource_size_t io_size;
+ 			/** @base: offset of VRAM starting base */
  			resource_size_t base;
- 			/** @size: size of VRAM. */
- 			resource_size_t size;
+-			/** @size: size of VRAM. */
+-			resource_size_t size;
 +			/**
-+			 * @actual_physical_size: Actual VRAM size
-+			 * including stolen mem for tile
++			 * @usable_size: usable size of VRAM
++			 *
++			 * Usable size of VRAM excluding reserved portions
++			 * (e.g stolen mem)
 +			 */
-+			resource_size_t actual_physical_size;
++			resource_size_t usable_size;
+ 			/**
+ 			 * @actual_physical_size: Actual VRAM size
+-			 * including stolen mem for tile
++			 *
++			 * Actual VRAM size including reserved portions
++			 * (e.g stolen mem)
+ 			 */
+ 			resource_size_t actual_physical_size;
  			/** @mapping: pointer to VRAM mappable space */
- 			void *__iomem mapping;
- 		} vram;
 diff --git a/drivers/gpu/drm/xe/xe_mmio.c b/drivers/gpu/drm/xe/xe_mmio.c
-index f1336803b915..7d92258cd35d 100644
+index 7d92258cd35d..5effb21db9d4 100644
 --- a/drivers/gpu/drm/xe/xe_mmio.c
 +++ b/drivers/gpu/drm/xe/xe_mmio.c
-@@ -277,6 +277,7 @@ int xe_mmio_probe_vram(struct xe_device *xe)
+@@ -289,13 +289,13 @@ int xe_mmio_probe_vram(struct xe_device *xe)
+ 		tile->mem.vram.base = tile_offset;
+ 
+ 		/* small bar can limit the visible size.  size accordingly */
+-		tile->mem.vram.size = min_t(u64, vram_size, io_size);
++		tile->mem.vram.usable_size = min_t(u64, vram_size, io_size);
+ 		tile->mem.vram.mapping = xe->mem.vram.mapping + tile_offset;
+ 
+ 		drm_info(&xe->drm, "VRAM[%u, %u]: %pa, %pa\n", id, tile->id,
+-			 &tile->mem.vram.io_start, &tile->mem.vram.size);
++			 &tile->mem.vram.io_start, &tile->mem.vram.usable_size);
+ 
+-		if (tile->mem.vram.io_size < tile->mem.vram.size)
++		if (tile->mem.vram.io_size < tile->mem.vram.usable_size)
+ 			drm_info(&xe->drm, "VRAM[%u, %u]: CPU access limited to %pa\n", id,
+ 				 tile->id, &tile->mem.vram.io_size);
+ 
+diff --git a/drivers/gpu/drm/xe/xe_query.c b/drivers/gpu/drm/xe/xe_query.c
+index 15e171ca7e62..9acbb27dfcab 100644
+--- a/drivers/gpu/drm/xe/xe_query.c
++++ b/drivers/gpu/drm/xe/xe_query.c
+@@ -188,7 +188,7 @@ static int query_config(struct xe_device *xe, struct drm_xe_device_query *query)
+ 	config->num_params = num_params;
+ 	config->info[XE_QUERY_CONFIG_REV_AND_DEVICE_ID] =
+ 		xe->info.devid | (xe->info.revid << 16);
+-	if (xe_device_get_root_tile(xe)->mem.vram.size)
++	if (xe_device_get_root_tile(xe)->mem.vram.usable_size)
+ 		config->info[XE_QUERY_CONFIG_FLAGS] =
+ 			XE_QUERY_CONFIG_FLAGS_HAS_VRAM;
+ 	if (xe->info.enable_guc)
+diff --git a/drivers/gpu/drm/xe/xe_tile.c b/drivers/gpu/drm/xe/xe_tile.c
+index ac70486d09c3..e0bc2b60ab09 100644
+--- a/drivers/gpu/drm/xe/xe_tile.c
++++ b/drivers/gpu/drm/xe/xe_tile.c
+@@ -101,7 +101,7 @@ static int tile_ttm_mgr_init(struct xe_tile *tile)
+ 	struct xe_device *xe = tile_to_xe(tile);
+ 	int err;
+ 
+-	if (tile->mem.vram.size) {
++	if (tile->mem.vram.usable_size) {
+ 		err = xe_ttm_vram_mgr_init(tile, tile->mem.vram_mgr);
  		if (err)
  			return err;
+diff --git a/drivers/gpu/drm/xe/xe_ttm_vram_mgr.c b/drivers/gpu/drm/xe/xe_ttm_vram_mgr.c
+index 1a84abd35fcf..a10fd0366da3 100644
+--- a/drivers/gpu/drm/xe/xe_ttm_vram_mgr.c
++++ b/drivers/gpu/drm/xe/xe_ttm_vram_mgr.c
+@@ -360,7 +360,8 @@ int xe_ttm_vram_mgr_init(struct xe_tile *tile, struct xe_ttm_vram_mgr *mgr)
+ 	mgr->tile = tile;
  
-+		tile->mem.vram.actual_physical_size = tile_size;
- 		tile->mem.vram.io_start = xe->mem.vram.io_start + tile_offset;
- 		tile->mem.vram.io_size = min_t(u64, vram_size, io_size);
+ 	return __xe_ttm_vram_mgr_init(xe, mgr, XE_PL_VRAM0 + tile->id,
+-				      tile->mem.vram.size, tile->mem.vram.io_size,
++				      tile->mem.vram.usable_size,
++				      tile->mem.vram.io_size,
+ 				      PAGE_SIZE);
+ }
  
-diff --git a/drivers/gpu/drm/xe/xe_tile_sysfs.c b/drivers/gpu/drm/xe/xe_tile_sysfs.c
-index 2d64fa54b5a8..16376607c68f 100644
---- a/drivers/gpu/drm/xe/xe_tile_sysfs.c
-+++ b/drivers/gpu/drm/xe/xe_tile_sysfs.c
-@@ -20,6 +20,20 @@ static const struct kobj_type xe_tile_sysfs_kobj_type = {
- 	.sysfs_ops = &kobj_sysfs_ops,
- };
- 
-+static ssize_t
-+physical_vram_size_bytes_show(struct device *kdev, struct device_attribute *attr,
-+			      char *buf)
-+{
-+	struct xe_tile *tile = kobj_to_tile(&kdev->kobj);
-+
-+	return sysfs_emit(buf, "%llu\n", tile->mem.vram.actual_physical_size);
-+}
-+
-+static DEVICE_ATTR_RO(physical_vram_size_bytes);
-+
-+static const struct attribute *physical_memsize_attr =
-+	&dev_attr_physical_vram_size_bytes.attr;
-+
- static void tile_sysfs_fini(struct drm_device *drm, void *arg)
- {
- 	struct xe_tile *tile = arg;
-@@ -50,6 +64,11 @@ void xe_tile_sysfs_init(struct xe_tile *tile)
- 
- 	tile->sysfs = &kt->base;
- 
-+	if (IS_DGFX(xe) && xe->info.platform != XE_DG1 &&
-+	    sysfs_create_file(tile->sysfs, physical_memsize_attr))
-+		drm_warn(&xe->drm,
-+			 "Sysfs creation to read addr_range per tile failed\n");
-+
- 	err = drmm_add_action_or_reset(&xe->drm, tile_sysfs_fini, tile);
- 	if (err) {
- 		drm_warn(&xe->drm, "%s: drmm_add_action_or_reset failed, err: %d\n",
 -- 
 2.25.1
 
