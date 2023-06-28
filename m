@@ -4,31 +4,30 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 34F1AEB64D7
-	for <intel-xe@archiver.kernel.org>; Wed, 28 Jun 2023 07:18:36 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8AD06EB64D7
+	for <intel-xe@archiver.kernel.org>; Wed, 28 Jun 2023 07:47:34 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1069C10E0C7;
-	Wed, 28 Jun 2023 07:18:36 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4021110E0C7;
+	Wed, 28 Jun 2023 07:47:34 +0000 (UTC)
 Received: from emeril.freedesktop.org (emeril.freedesktop.org
  [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id 3517C10E0C7;
- Wed, 28 Jun 2023 07:18:33 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTP id 644D010E0C7;
+ Wed, 28 Jun 2023 07:47:32 +0000 (UTC)
 Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 31EDEA0BA8;
- Wed, 28 Jun 2023 07:18:33 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+ by emeril.freedesktop.org (Postfix) with ESMTP id 5B2BCAADD6;
+ Wed, 28 Jun 2023 07:47:32 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============3387024707840484360=="
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: "Tejas Upadhyay" <tejas.upadhyay@intel.com>
-Date: Wed, 28 Jun 2023 07:18:33 -0000
-Message-ID: <168793671320.32036.15872213325745382379@emeril.freedesktop.org>
+Date: Wed, 28 Jun 2023 07:47:32 -0000
+Message-ID: <168793845232.32036.5459221624254096116@emeril.freedesktop.org>
 X-Patchwork-Hint: ignore
 References: <20230628071527.3579428-1-tejas.upadhyay@intel.com>
 In-Reply-To: <20230628071527.3579428-1-tejas.upadhyay@intel.com>
-Subject: [Intel-xe] =?utf-8?q?=E2=9C=93_CI=2Echecksparse=3A_success_for_d?=
- =?utf-8?q?rm/xe=3A_Add_sysfs_entry_for_tile_and_relate_it_to_GTs_=28rev5?=
- =?utf-8?q?=29?=
+Subject: [Intel-xe] =?utf-8?q?=E2=97=8B_CI=2EBAT=3A_info_for_drm/xe=3A_Ad?=
+ =?utf-8?q?d_sysfs_entry_for_tile_and_relate_it_to_GTs_=28rev5=29?=
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -45,33 +44,63 @@ Cc: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
+--===============3387024707840484360==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
 == Series Details ==
 
 Series: drm/xe: Add sysfs entry for tile and relate it to GTs (rev5)
 URL   : https://patchwork.freedesktop.org/series/118927/
-State : success
+State : info
 
 == Summary ==
 
-+ trap cleanup EXIT
-+ KERNEL=/kernel
-+ MT=/root/linux/maintainer-tools
-+ git clone https://gitlab.freedesktop.org/drm/maintainer-tools /root/linux/maintainer-tools
-Cloning into '/root/linux/maintainer-tools'...
-warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
-+ make -C /root/linux/maintainer-tools
-make: Entering directory '/root/linux/maintainer-tools'
-cc -O2 -g -Wextra -o remap-log remap-log.c
-make: Leaving directory '/root/linux/maintainer-tools'
-+ cd /kernel
-+ git config --global --add safe.directory /kernel
-+ /root/linux/maintainer-tools/dim sparse --fast abdb420db479bae28a2abd7ba2c66229b7e8cb77
-Sparse version: 0.6.1 (Ubuntu: 0.6.1-2build1)
-Fast mode used, each commit won't be checked separately.
-Okay!
-
-+ cleanup
-++ stat -c %u:%g /kernel
-+ chown -R 1003:1003 /kernel
+Participating hosts:
+bat-atsm-2
+bat-dg2-oem2
+bat-adlp-7
+Missing hosts results[0]:
+Results: [xe-pw-118927v5](https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-118927v5/index.html)
 
 
+
+--===============3387024707840484360==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/xe: Add sysfs entry for tile and relate it to GTs (rev5)</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/118927/">https://patchwork.freedesktop.org/series/118927/</a></td></tr>
+<tr><td><b>State:</b></td><td>info</td></tr>
+
+</table>
+
+
+    <p>Participating hosts:<br />
+bat-atsm-2<br />
+bat-dg2-oem2<br />
+bat-adlp-7<br />
+Missing hosts results[0]:<br />
+Results: <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-118927v5/index.html">xe-pw-118927v5</a></p>
+
+</body>
+</html>
+
+--===============3387024707840484360==--
