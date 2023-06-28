@@ -4,45 +4,31 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id B972AEB64D7
-	for <intel-xe@archiver.kernel.org>; Wed, 28 Jun 2023 18:17:25 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4E5D7EB64D7
+	for <intel-xe@archiver.kernel.org>; Wed, 28 Jun 2023 18:19:35 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8527910E383;
-	Wed, 28 Jun 2023 18:17:25 +0000 (UTC)
-Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 99B2410E025;
- Wed, 28 Jun 2023 18:17:23 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1687976243; x=1719512243;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=awebO5fMQdqhEpxQyrFHmz0FRuFSPGAp9TWVL7DsSNY=;
- b=XqUw+rLtzNdn+0R1D5GTWl87ovKxtwwnSDRdmvaxrwzi5us+kWHVtyMY
- cWYtfCBV2si03CGKp1sLj6k0J7vDfn5ko4xdeXCsysuG+OynXK95OAjSD
- iO6ON6erwPDc2zwHReOfYrXVa588r0QA215pUlMnUJuHsgqaPeHdld8lZ
- ++Zsxadw9BYoBq8oEMQKeX5irX+nTCLiz1SKbBBufFtgHS+uMxpzAv4iR
- 0xjpVH7vbU0ca7PvVFDHCQ2EE64DDTH/pLrwINdvmJY9L+nbrc1CMr1Jb
- 2u9hGINtux2PEzRuU8KRXKAbZtPXDQ4RRDxEXAE9eiISaV0QfE21CW4nd w==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10755"; a="448308201"
-X-IronPort-AV: E=Sophos;i="6.01,166,1684825200"; d="scan'208";a="448308201"
-Received: from orsmga001.jf.intel.com ([10.7.209.18])
- by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 28 Jun 2023 11:17:22 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10755"; a="752354978"
-X-IronPort-AV: E=Sophos;i="6.01,166,1684825200"; d="scan'208";a="752354978"
-Received: from aalteres-desk.fm.intel.com ([10.80.57.53])
- by orsmga001.jf.intel.com with ESMTP; 28 Jun 2023 11:17:21 -0700
-From: Alan Previn <alan.previn.teres.alexis@intel.com>
-To: intel-xe@lists.freedesktop.org
-Date: Wed, 28 Jun 2023 11:17:18 -0700
-Message-Id: <20230628181718.1023703-1-alan.previn.teres.alexis@intel.com>
-X-Mailer: git-send-email 2.39.0
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1E3FC10E383;
+	Wed, 28 Jun 2023 18:19:35 +0000 (UTC)
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id BAF1E10E025;
+ Wed, 28 Jun 2023 18:19:33 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id B7DA7AA3D8;
+ Wed, 28 Jun 2023 18:19:33 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Subject: [Intel-xe] [PATCH v3] drm/xe/guc: Fix h2g_write usage of
- GUC_CTB_MSG_MAX_LEN
+Content-Transfer-Encoding: 7bit
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Alan Previn" <alan.previn.teres.alexis@intel.com>
+Date: Wed, 28 Jun 2023 18:19:33 -0000
+Message-ID: <168797637374.32037.12173357176272954930@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20230628181718.1023703-1-alan.previn.teres.alexis@intel.com>
+In-Reply-To: <20230628181718.1023703-1-alan.previn.teres.alexis@intel.com>
+Subject: [Intel-xe] =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_f?=
+ =?utf-8?q?or_drm/xe/guc=3A_Fix_h2g=5Fwrite_usage_of_GUC=5FCTB=5FMSG=5FMAX?=
+ =?utf-8?b?X0xFTiAocmV2Myk=?=
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -54,101 +40,22 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Cc: dri-devel@lists.freedesktop.org
+Reply-To: intel-xe@lists.freedesktop.org
+Cc: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-In the ABI header, GUC_CTB_MSG_MIN_LEN is '1' because
-GUC_CTB_HDR_LEN is 1. This aligns with H2G/G2H CTB specification
-where all command formats are defined in units of dwords so that '1'
-is a dword. Accordingly, GUC_CTB_MSG_MAX_LEN is 256-1 (i.e. 255
-dwords). However, h2g_write was incorrectly assuming that
-GUC_CTB_MSG_MAX_LEN was in bytes. Fix this.
+== Series Details ==
 
-v2: By correctly treating GUC_CTB_MSG_MAX_LEN as dwords, it causes
-    a local array to consume 4x the stack size. Rework the function
-    to avoid consuming stack even if the action size is large.
+Series: drm/xe/guc: Fix h2g_write usage of GUC_CTB_MSG_MAX_LEN (rev3)
+URL   : https://patchwork.freedesktop.org/series/118799/
+State : success
 
-Signed-off-by: Alan Previn <alan.previn.teres.alexis@intel.com>
----
- drivers/gpu/drm/xe/xe_guc_ct.c | 31 ++++++++++++++++++-------------
- 1 file changed, 18 insertions(+), 13 deletions(-)
+== Summary ==
 
-diff --git a/drivers/gpu/drm/xe/xe_guc_ct.c b/drivers/gpu/drm/xe/xe_guc_ct.c
-index 22bc9ce846db..aa04b5c4822f 100644
---- a/drivers/gpu/drm/xe/xe_guc_ct.c
-+++ b/drivers/gpu/drm/xe/xe_guc_ct.c
-@@ -401,19 +401,21 @@ static int h2g_write(struct xe_guc_ct *ct, const u32 *action, u32 len,
- {
- 	struct xe_device *xe = ct_to_xe(ct);
- 	struct guc_ctb *h2g = &ct->ctbs.h2g;
--	u32 cmd[GUC_CTB_MSG_MAX_LEN / sizeof(u32)];
--	u32 cmd_len = len + GUC_CTB_HDR_LEN;
--	u32 cmd_idx = 0, i;
-+#define H2G_CT_HEADERS (GUC_CTB_HDR_LEN + 1) /* one DW CTB header and one DW HxG header */
-+	u32 cmd[H2G_CT_HEADERS];
- 	u32 tail = h2g->info.tail;
-+	u32 full_len;
- 	struct iosys_map map = IOSYS_MAP_INIT_OFFSET(&h2g->cmds,
- 							 tail * sizeof(u32));
- 
-+	full_len = len + GUC_CTB_HDR_LEN;
-+
- 	lockdep_assert_held(&ct->lock);
--	XE_BUG_ON(len * sizeof(u32) > GUC_CTB_MSG_MAX_LEN);
-+	XE_BUG_ON(full_len > (GUC_CTB_MSG_MAX_LEN - GUC_CTB_HDR_LEN));
- 	XE_BUG_ON(tail > h2g->info.size);
- 
- 	/* Command will wrap, zero fill (NOPs), return and check credits again */
--	if (tail + cmd_len > h2g->info.size) {
-+	if (tail + full_len > h2g->info.size) {
- 		xe_map_memset(xe, &map, 0, 0,
- 			      (h2g->info.size - tail) * sizeof(u32));
- 		h2g_reserve_space(ct, (h2g->info.size - tail));
-@@ -428,30 +430,33 @@ static int h2g_write(struct xe_guc_ct *ct, const u32 *action, u32 len,
- 	 * dw1: HXG header (including action code)
- 	 * dw2+: action data
- 	 */
--	cmd[cmd_idx++] = FIELD_PREP(GUC_CTB_MSG_0_FORMAT, GUC_CTB_FORMAT_HXG) |
-+	cmd[0] = FIELD_PREP(GUC_CTB_MSG_0_FORMAT, GUC_CTB_FORMAT_HXG) |
- 		FIELD_PREP(GUC_CTB_MSG_0_NUM_DWORDS, len) |
- 		FIELD_PREP(GUC_CTB_MSG_0_FENCE, ct_fence_value);
- 	if (want_response) {
--		cmd[cmd_idx++] =
-+		cmd[1] =
- 			FIELD_PREP(GUC_HXG_MSG_0_TYPE, GUC_HXG_TYPE_REQUEST) |
- 			FIELD_PREP(GUC_HXG_EVENT_MSG_0_ACTION |
- 				   GUC_HXG_EVENT_MSG_0_DATA0, action[0]);
- 	} else {
--		cmd[cmd_idx++] =
-+		cmd[1] =
- 			FIELD_PREP(GUC_HXG_MSG_0_TYPE, GUC_HXG_TYPE_EVENT) |
- 			FIELD_PREP(GUC_HXG_EVENT_MSG_0_ACTION |
- 				   GUC_HXG_EVENT_MSG_0_DATA0, action[0]);
- 	}
--	for (i = 1; i < len; ++i)
--		cmd[cmd_idx++] = action[i];
-+
-+	/* H2G header in cmd[1] replaces action[0] so: */
-+	--len;
-+	++action;
- 
- 	/* Write H2G ensuring visable before descriptor update */
--	xe_map_memcpy_to(xe, &map, 0, cmd, cmd_len * sizeof(u32));
-+	xe_map_memcpy_to(xe, &map, 0, cmd, H2G_CT_HEADERS * sizeof(u32));
-+	xe_map_memcpy_to(xe, &map, H2G_CT_HEADERS * sizeof(u32), action, len * sizeof(u32));
- 	xe_device_wmb(ct_to_xe(ct));
- 
- 	/* Update local copies */
--	h2g->info.tail = (tail + cmd_len) % h2g->info.size;
--	h2g_reserve_space(ct, cmd_len);
-+	h2g->info.tail = (tail + full_len) % h2g->info.size;
-+	h2g_reserve_space(ct, full_len);
- 
- 	/* Update descriptor */
- 	desc_write(xe, h2g, tail, h2g->info.tail);
+=== Applying kernel patches on branch 'drm-xe-next' with base: ===
+Base commit: abdb420db amend! drm/xe : Fix GT looping for standalone media
+=== git am output follows ===
+Applying: drm/xe/guc: Fix h2g_write usage of GUC_CTB_MSG_MAX_LEN
 
-base-commit: abdb420db479bae28a2abd7ba2c66229b7e8cb77
--- 
-2.39.0
 
