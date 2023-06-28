@@ -4,137 +4,30 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 786EDEB64D7
-	for <intel-xe@archiver.kernel.org>; Wed, 28 Jun 2023 21:45:04 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id AB71EEB64D7
+	for <intel-xe@archiver.kernel.org>; Wed, 28 Jun 2023 21:45:08 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1FFBA10E3AC;
-	Wed, 28 Jun 2023 21:45:04 +0000 (UTC)
-Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
- by gabe.freedesktop.org (Postfix) with ESMTPS id DA8B810E39D;
- Wed, 28 Jun 2023 21:45:00 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1687988700; x=1719524700;
- h=date:from:to:cc:subject:message-id:references:
- in-reply-to:mime-version;
- bh=q/CPTHLM54VZR58nHaFx0On2BGjfR0khZMTrS9YA6dA=;
- b=mYpxEB6Vkf0nQg5xk5Iavh9/fM6/c9jNHnfTfcv5bobZjMTHmPnIzXvJ
- QiO5QXmUfpsehpRDPJMvyHxn737FzNuEUPYOsv4+KERob2xWz2OTbDDlU
- 9p3zh0ZjcJT7pnFWrYCMTmoN3EyITFWoiPYTqxoBsGEcQtksQezvJzwJI
- W0ez5ZDhe6DDm3lzMfhJNrOclkamyik6x/8Rx/7WQM8V1nHrOXoekVGqQ
- EyKbjMFy5q1x7OuLsdlX8EnBZVr5UbutNIpBOTBdF652n5yQ7UrNC6Aei
- KJPWyApvXnS8Y+fVGuxWwk/km3eq8w7yxacQWrTHv6tyy32s3leTiQsz5 A==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10755"; a="359457497"
-X-IronPort-AV: E=Sophos;i="6.01,166,1684825200"; d="scan'208";a="359457497"
-Received: from orsmga005.jf.intel.com ([10.7.209.41])
- by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 28 Jun 2023 14:44:52 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10755"; a="891188770"
-X-IronPort-AV: E=Sophos;i="6.01,166,1684825200"; d="scan'208";a="891188770"
-Received: from fmsmsx601.amr.corp.intel.com ([10.18.126.81])
- by orsmga005.jf.intel.com with ESMTP; 28 Jun 2023 14:44:52 -0700
-Received: from fmsmsx612.amr.corp.intel.com (10.18.126.92) by
- fmsmsx601.amr.corp.intel.com (10.18.126.81) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.27; Wed, 28 Jun 2023 14:44:51 -0700
-Received: from fmsmsx601.amr.corp.intel.com (10.18.126.81) by
- fmsmsx612.amr.corp.intel.com (10.18.126.92) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.27; Wed, 28 Jun 2023 14:44:51 -0700
-Received: from FMSEDG603.ED.cps.intel.com (10.1.192.133) by
- fmsmsx601.amr.corp.intel.com (10.18.126.81) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.27 via Frontend Transport; Wed, 28 Jun 2023 14:44:51 -0700
-Received: from NAM12-DM6-obe.outbound.protection.outlook.com (104.47.59.177)
- by edgegateway.intel.com (192.55.55.68) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2507.27; Wed, 28 Jun 2023 14:44:50 -0700
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=clgvw/JSSrl7s9whIADtMHFO+CGQ09AvezyIMdO1LHQ6YtifJKK5AR8wPmrdHUzXIKsyXykxegpHdaoDpmGZF+Aep4vmgwXZkUz6iMnCk/fdziBP1Y+Y3m8H4ELXD9AgajUXYSPdbvmX2dQhlQVDJ/1aVGq60SNyGe4cow2ILA2ksJddv42fnwyCGSqkv3IqniZHYHY3A1DTZl9WQ8graP/dDgykvS/71hSvlCt6bdIuhOTAH3SJCdOf+UydwDW9jSSUtzk0G/mUawbQZ+cg2mBzqnWsDu8ZmC/wCB3dYG0YZymRzvjKx5c8BC244CGiYa26u7tTyMsPXoNbPnEmUg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=a7uwam739pQGyFMR0T66SEc4BO0L7DAnQJK2g0GCXTw=;
- b=UBOR1Eu0KrDDS7QvMcqERB2OOOP1T3iDVz0KINt7trt1l1BVvXB3e6ml342ZbX7AZR1GlxwUM9KUPnuvbaH5ckGATBD+m1wyBSSIZVj2QCuj0NRi36ZGogS+K+gALdODwSbZpGB57b6aqkWPNGPzeEUuxdk2rjtOY6FgaD15Y9iOpt70NTy6sH2R6QFIadiafWxDzx02KbBp/RLlcTvbqLgd9bniD1rskNXcwdKfi+owdwvXiPHxYDa5Wibx5JdHJ+OTauKR0cO6zWLPgGEGURjfnqqiBXqYroF/eWFkCN1yfbbb9xN/4CffvfOhjD51PbM5h287bOA8tkehyfc89Q==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
- dkim=pass header.d=intel.com; arc=none
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=intel.com;
-Received: from PH7PR11MB6522.namprd11.prod.outlook.com (2603:10b6:510:212::12)
- by DS0PR11MB7880.namprd11.prod.outlook.com (2603:10b6:8:f3::14) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6521.24; Wed, 28 Jun
- 2023 21:44:49 +0000
-Received: from PH7PR11MB6522.namprd11.prod.outlook.com
- ([fe80::ff06:a115:e4eb:680e]) by PH7PR11MB6522.namprd11.prod.outlook.com
- ([fe80::ff06:a115:e4eb:680e%5]) with mapi id 15.20.6521.023; Wed, 28 Jun 2023
- 21:44:49 +0000
-Date: Wed, 28 Jun 2023 21:44:09 +0000
-From: Matthew Brost <matthew.brost@intel.com>
-To: Alan Previn <alan.previn.teres.alexis@intel.com>
-Message-ID: <ZJypqfa107jTQZn+@DUT025-TGLU.fm.intel.com>
-References: <20230628181718.1023703-1-alan.previn.teres.alexis@intel.com>
-Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
-In-Reply-To: <20230628181718.1023703-1-alan.previn.teres.alexis@intel.com>
-X-ClientProxiedBy: BYAPR07CA0074.namprd07.prod.outlook.com
- (2603:10b6:a03:12b::15) To PH7PR11MB6522.namprd11.prod.outlook.com
- (2603:10b6:510:212::12)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 60DC910E3B7;
+	Wed, 28 Jun 2023 21:45:08 +0000 (UTC)
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 8682610E3B8;
+ Wed, 28 Jun 2023 21:45:06 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 82E33A3ECB;
+ Wed, 28 Jun 2023 21:45:06 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: PH7PR11MB6522:EE_|DS0PR11MB7880:EE_
-X-MS-Office365-Filtering-Correlation-Id: 1884c664-ea21-4d45-2cb8-08db7820e578
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: It7Ld/SlHLK1r1wJx5xzxyJm/Rk+mWr9WuQqRldJgaGDGExTx/HTSr8E3uGLb1KEhV2vQjHmcciYQYZ4VcPumNeXG7/S8G90eNtUblW+XK8Ek2OHjFCDOAEnq5R6SW4QDNbK0jHI0iMpNrX1UhZ4usFDMmk8BXoxaGPYKYJCD7zh6stLqzuuxLEBodfl3vD8J3yVktj1eAXp8n85mfZOu1gTO4LGFuerJA5PNQfStprWwE6ZAQTPXbij3VrHGqh7twdlPGdhUblsHNUOlASg6EYFJ/Iybe7joLGdXjBZ9iGTekZwHD5H2jZgRJ8Z7IpwiUOeTGVw0boDkjgDIoDSM8ToGcz8r0g8xErhhhu7YonnSPVHW7YyV+i49Z7MvnVIVjAmnhnInK9BgzUiaidWXrFb69ETVv2HVF8SGMPHa4ykamuOHlBFg0cROTd2EjBsDYZ5Vxu1GQbVJlBh52syo2vFQsi+L4cVK/Skzku8a2IjoqkfvNCP5n2vn9/SMMaXjmN6rJ9Gnig3Itm0fk4htm14e6pjgZf36GvmoidjjIl5ADujHLGz5xuqCYYTmJ3J
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:PH7PR11MB6522.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230028)(39860400002)(376002)(366004)(396003)(346002)(136003)(451199021)(6862004)(8676002)(66946007)(66476007)(8936002)(5660300002)(186003)(6506007)(6512007)(66556008)(26005)(44832011)(2906002)(107886003)(41300700001)(6636002)(6666004)(82960400001)(450100002)(316002)(4326008)(83380400001)(86362001)(478600001)(38100700002)(6486002);
- DIR:OUT; SFP:1102; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?78Y6xj298NpGwQ2Dymq4pvJZuW59iwSwEMO3fnSnkI2CzlFUx+gkeFCe2r14?=
- =?us-ascii?Q?nfELwP3Mz618cf+85s1bErkPw6nKHDMWfon7ussiK4KeY4xQBvCaA9jPYkaZ?=
- =?us-ascii?Q?f0vFYQALS/Yh7xnkYIxykNcsAoiAcruOVY3AECHtttamkmuSdEnnQCF/QgUv?=
- =?us-ascii?Q?5bnov3QRoImiV1sJtirbAR5X0IqXQ5sE5lqsJ7RdHna7YYT5h1AAXhPX+yFi?=
- =?us-ascii?Q?pr2GjzL8uiGK9ZOK7oMWeF0lQOdmdsG4E6XvYix/G9MSjQjujlgk0tukG+QP?=
- =?us-ascii?Q?uLACc765fAqkS0InAWRSGqQ6fDxxO2LerLdDWcTDEe5GgCc4pWYzz9Q1HgIn?=
- =?us-ascii?Q?GpT8Fu3bIDxvQmYZyXPGceQjwQ8d+d2LvjgR2rB6+9BsLXqdtG0MkCr0oU0L?=
- =?us-ascii?Q?pODZIr04OcB6lFQkdY5ZG5D4Cy3PVKszGlmJHxJF28JZb90P2J7QKP1b/1o7?=
- =?us-ascii?Q?AtyZRSMe3VN5mSryKTFfJs2M8fRam2+dRgsAZPaBLmSxkK3MFj2LrMZR8s0C?=
- =?us-ascii?Q?/e9xPKu0101JaD9ycLBkMOR6V/XMO1InORuh811hyvZ4YRJ4hFNJYawXG5F/?=
- =?us-ascii?Q?0TiuDvmfSQJgLUN39qeAZrP56TnpAd84FMk1fxro2yO3ZAOp8npWPPjxuPcT?=
- =?us-ascii?Q?+rypITpI1spJ9NFu4wcwSN2tDpzZJhQr+hEIoNjUH6xACncFpl4XRkRCOC5m?=
- =?us-ascii?Q?DJFsHFVPPiM89drijaW21yXEKwvHuJh7XRuP598gdpx2ikRzBDh067DMlhod?=
- =?us-ascii?Q?/sR8cqHnOninQedPQVjPizhN8tZCyzo4nH4w3jt8vkbVOsl0WsiFvqq1/4yF?=
- =?us-ascii?Q?lKvtjumj0a3LqSzx37wgYis/JMUEDpnbxPh0i16Y5nHLvfobxzbPS11boYLR?=
- =?us-ascii?Q?JO+c18M11YAFK2+jzFhsVOtNZSF8ubW7cKwWHPM01OnFVPne0EFRBNr4LMKX?=
- =?us-ascii?Q?NOx64aY2FMlsRcZjAuBBE9VOeQk8yYD4qFbzF1or1nJJc7iIK0TZO3P3Rxhn?=
- =?us-ascii?Q?G30wy3iTnGL+lnf3/WnJia18uXTBobrUymuqhAl5XObDtlo2yEtA9GZXlwL0?=
- =?us-ascii?Q?zdGmnY2VhtFOq+hlMxuYlBMjr7+aKsLWcpYk+Mds9OYlITp2/NGMq8QB1Yq4?=
- =?us-ascii?Q?e6z3CRYH+0gMC/pa8dVfr4CnH2OLlxnkkXpTX+1Nj6rkju7dtro9GKEkLgQK?=
- =?us-ascii?Q?7owKcXMcqVxmKQpwxhA+1p1qvS4yJ1Nj63FyAGztxP3bTXziXwlFsdd2aJxq?=
- =?us-ascii?Q?A5+mpO7Y5NXiNZ22YxTi9mCyPg4DJyRqeuDGA1Nnv+1UxLp7MgmbczWfr3it?=
- =?us-ascii?Q?IHTIWf3N2c6+4jKC9UeC7WwdzUJ67DjpgzwHCDT+JmphdBf04fFME0NJE3AI?=
- =?us-ascii?Q?NGQUDp7hAD6Sj2Pfjcco4GY3I/OqZ43nsmDtIsysiuSSLqpFY23tf9KmsEVH?=
- =?us-ascii?Q?pB3Yq6jUKIoCSfK6Jh255SZmoltohyRB45+/Q+JZuYRoceXSKub9+UX/V2fz?=
- =?us-ascii?Q?0E6R1lTJoSEWw7aDLKdNiIAWwjFCGcKy4Lljgzpi5kbANECspHjZ1S3PVRR8?=
- =?us-ascii?Q?DpTH4LPlLrb/2IZiaA4sMUyYRncI+zFS415aNRD+ZWS1MbvFXq/gi7dLpvje?=
- =?us-ascii?Q?aQ=3D=3D?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: 1884c664-ea21-4d45-2cb8-08db7820e578
-X-MS-Exchange-CrossTenant-AuthSource: PH7PR11MB6522.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 28 Jun 2023 21:44:49.1347 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: k00NPVTRIfM+nQXy950oyfvDn10GPLEleSmbIHQBJMimzMVH9uo2+9b2Q381/O8Gi764UggWhsQxbtAsTpFohw==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DS0PR11MB7880
-X-OriginatorOrg: intel.com
-Subject: Re: [Intel-xe] [PATCH v3] drm/xe/guc: Fix h2g_write usage of
- GUC_CTB_MSG_MAX_LEN
+Content-Transfer-Encoding: 7bit
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Matthew Brost" <matthew.brost@intel.com>
+Date: Wed, 28 Jun 2023 21:45:06 -0000
+Message-ID: <168798870653.32035.9024478905088071138@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20230628214127.870717-1-matthew.brost@intel.com>
+In-Reply-To: <20230628214127.870717-1-matthew.brost@intel.com>
+Subject: [Intel-xe] =?utf-8?q?=E2=9C=97_CI=2Echeckpatch=3A_warning_for_GP?=
+ =?utf-8?q?UVA_with_no_uAPI_changes?=
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -146,112 +39,293 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-xe@lists.freedesktop.org, dri-devel@lists.freedesktop.org
+Reply-To: intel-xe@lists.freedesktop.org
+Cc: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Wed, Jun 28, 2023 at 11:17:18AM -0700, Alan Previn wrote:
-> In the ABI header, GUC_CTB_MSG_MIN_LEN is '1' because
-> GUC_CTB_HDR_LEN is 1. This aligns with H2G/G2H CTB specification
-> where all command formats are defined in units of dwords so that '1'
-> is a dword. Accordingly, GUC_CTB_MSG_MAX_LEN is 256-1 (i.e. 255
-> dwords). However, h2g_write was incorrectly assuming that
-> GUC_CTB_MSG_MAX_LEN was in bytes. Fix this.
-> 
-> v2: By correctly treating GUC_CTB_MSG_MAX_LEN as dwords, it causes
->     a local array to consume 4x the stack size. Rework the function
->     to avoid consuming stack even if the action size is large.
-> 
-> Signed-off-by: Alan Previn <alan.previn.teres.alexis@intel.com>
-> ---
->  drivers/gpu/drm/xe/xe_guc_ct.c | 31 ++++++++++++++++++-------------
->  1 file changed, 18 insertions(+), 13 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/xe/xe_guc_ct.c b/drivers/gpu/drm/xe/xe_guc_ct.c
-> index 22bc9ce846db..aa04b5c4822f 100644
-> --- a/drivers/gpu/drm/xe/xe_guc_ct.c
-> +++ b/drivers/gpu/drm/xe/xe_guc_ct.c
-> @@ -401,19 +401,21 @@ static int h2g_write(struct xe_guc_ct *ct, const u32 *action, u32 len,
->  {
->  	struct xe_device *xe = ct_to_xe(ct);
->  	struct guc_ctb *h2g = &ct->ctbs.h2g;
-> -	u32 cmd[GUC_CTB_MSG_MAX_LEN / sizeof(u32)];
-> -	u32 cmd_len = len + GUC_CTB_HDR_LEN;
-> -	u32 cmd_idx = 0, i;
-> +#define H2G_CT_HEADERS (GUC_CTB_HDR_LEN + 1) /* one DW CTB header and one DW HxG header */
+== Series Details ==
 
-Hate to nit pick but again this should be above the h2g_write per
-feedback from Oden on Xe in general.
+Series: GPUVA with no uAPI changes
+URL   : https://patchwork.freedesktop.org/series/120000/
+State : warning
 
-Otherwise LGTM.
+== Summary ==
 
-With the nit addressed:
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+c7d32770e3cd31d9fc134ce41f329b10aa33ee15
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit 7421e9506c016eea67c7033ef9522eba0a08c84a
+Author: Matthew Brost <matthew.brost@intel.com>
+Date:   Wed Jun 28 14:41:27 2023 -0700
 
-Reviewed-by: Matthew Brost <matthew.brost@intel.com>
+    drm/xe: Avoid doing rebinds
+    
+    If we dont change page sizes we can avoid doing rebinds rather just do a
+    partial unbind. The algorithm to determine its page size is greedy as we
+    assume all pages in the removed VMA are the largest page used in the
+    VMA.
+    
+    Signed-off-by: Matthew Brost <matthew.brost@intel.com>
++ /mt/dim checkpatch abdb420db479bae28a2abd7ba2c66229b7e8cb77 drm-intel
+2ee4a4ade drm/xe: Ban a VM if rebind worker hits an error
+0a2ca40cc drm/xe: Add helpers to hide struct xe_vma internals
+-:637: WARNING:AVOID_BUG: Do not crash the kernel unless it is absolutely unavoidable--use WARN_ON_ONCE() plus recovery code (if feasible) instead of BUG() or variants
+#637: FILE: drivers/gpu/drm/xe/xe_vm.c:1168:
++	XE_BUG_ON(xe_vma_end(vma) > vm->size);
 
-> +	u32 cmd[H2G_CT_HEADERS];
->  	u32 tail = h2g->info.tail;
-> +	u32 full_len;
->  	struct iosys_map map = IOSYS_MAP_INIT_OFFSET(&h2g->cmds,
->  							 tail * sizeof(u32));
->  
-> +	full_len = len + GUC_CTB_HDR_LEN;
-> +
->  	lockdep_assert_held(&ct->lock);
-> -	XE_BUG_ON(len * sizeof(u32) > GUC_CTB_MSG_MAX_LEN);
-> +	XE_BUG_ON(full_len > (GUC_CTB_MSG_MAX_LEN - GUC_CTB_HDR_LEN));
->  	XE_BUG_ON(tail > h2g->info.size);
->  
->  	/* Command will wrap, zero fill (NOPs), return and check credits again */
-> -	if (tail + cmd_len > h2g->info.size) {
-> +	if (tail + full_len > h2g->info.size) {
->  		xe_map_memset(xe, &map, 0, 0,
->  			      (h2g->info.size - tail) * sizeof(u32));
->  		h2g_reserve_space(ct, (h2g->info.size - tail));
-> @@ -428,30 +430,33 @@ static int h2g_write(struct xe_guc_ct *ct, const u32 *action, u32 len,
->  	 * dw1: HXG header (including action code)
->  	 * dw2+: action data
->  	 */
-> -	cmd[cmd_idx++] = FIELD_PREP(GUC_CTB_MSG_0_FORMAT, GUC_CTB_FORMAT_HXG) |
-> +	cmd[0] = FIELD_PREP(GUC_CTB_MSG_0_FORMAT, GUC_CTB_FORMAT_HXG) |
->  		FIELD_PREP(GUC_CTB_MSG_0_NUM_DWORDS, len) |
->  		FIELD_PREP(GUC_CTB_MSG_0_FENCE, ct_fence_value);
->  	if (want_response) {
-> -		cmd[cmd_idx++] =
-> +		cmd[1] =
->  			FIELD_PREP(GUC_HXG_MSG_0_TYPE, GUC_HXG_TYPE_REQUEST) |
->  			FIELD_PREP(GUC_HXG_EVENT_MSG_0_ACTION |
->  				   GUC_HXG_EVENT_MSG_0_DATA0, action[0]);
->  	} else {
-> -		cmd[cmd_idx++] =
-> +		cmd[1] =
->  			FIELD_PREP(GUC_HXG_MSG_0_TYPE, GUC_HXG_TYPE_EVENT) |
->  			FIELD_PREP(GUC_HXG_EVENT_MSG_0_ACTION |
->  				   GUC_HXG_EVENT_MSG_0_DATA0, action[0]);
->  	}
-> -	for (i = 1; i < len; ++i)
-> -		cmd[cmd_idx++] = action[i];
-> +
-> +	/* H2G header in cmd[1] replaces action[0] so: */
-> +	--len;
-> +	++action;
->  
->  	/* Write H2G ensuring visable before descriptor update */
-> -	xe_map_memcpy_to(xe, &map, 0, cmd, cmd_len * sizeof(u32));
-> +	xe_map_memcpy_to(xe, &map, 0, cmd, H2G_CT_HEADERS * sizeof(u32));
-> +	xe_map_memcpy_to(xe, &map, H2G_CT_HEADERS * sizeof(u32), action, len * sizeof(u32));
->  	xe_device_wmb(ct_to_xe(ct));
->  
->  	/* Update local copies */
-> -	h2g->info.tail = (tail + cmd_len) % h2g->info.size;
-> -	h2g_reserve_space(ct, cmd_len);
-> +	h2g->info.tail = (tail + full_len) % h2g->info.size;
-> +	h2g_reserve_space(ct, full_len);
->  
->  	/* Update descriptor */
->  	desc_write(xe, h2g, tail, h2g->info.tail);
-> 
-> base-commit: abdb420db479bae28a2abd7ba2c66229b7e8cb77
-> -- 
-> 2.39.0
-> 
+-:646: WARNING:AVOID_BUG: Do not crash the kernel unless it is absolutely unavoidable--use WARN_ON_ONCE() plus recovery code (if feasible) instead of BUG() or variants
+#646: FILE: drivers/gpu/drm/xe/xe_vm.c:1177:
++	XE_BUG_ON(xe_vma_vm(vma) != vm);
+
+-:655: WARNING:AVOID_BUG: Do not crash the kernel unless it is absolutely unavoidable--use WARN_ON_ONCE() plus recovery code (if feasible) instead of BUG() or variants
+#655: FILE: drivers/gpu/drm/xe/xe_vm.c:1185:
++	XE_BUG_ON(xe_vma_vm(vma) != vm);
+
+-:745: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
+#745: FILE: drivers/gpu/drm/xe/xe_vm.c:2592:
++		    XE_IOCTL_ERR(xe, (xe_vma_start(vma) != addr ||
++				 xe_vma_end(vma) != addr + range) && !async))
+
+-:852: WARNING:LONG_LINE: line length of 101 exceeds 100 columns
+#852: FILE: drivers/gpu/drm/xe/xe_vm.c:2794:
++				if (!xe_bo_can_migrate(xe_vma_bo(__vma), region_to_mem_type[region]))
+
+-:861: WARNING:LONG_LINE: line length of 101 exceeds 100 columns
+#861: FILE: drivers/gpu/drm/xe/xe_vm.c:2808:
++				if (!xe_bo_can_migrate(xe_vma_bo(__vma), region_to_mem_type[region]))
+
+-:887: WARNING:AVOID_BUG: Do not crash the kernel unless it is absolutely unavoidable--use WARN_ON_ONCE() plus recovery code (if feasible) instead of BUG() or variants
+#887: FILE: drivers/gpu/drm/xe/xe_vm.c:3437:
++	XE_BUG_ON(!xe_vm_in_fault_mode(xe_vma_vm(vma)));
+
+total: 0 errors, 6 warnings, 1 checks, 947 lines checked
+17fce89e0 maple_tree: Export mas_preallocate
+1ecdd8d6a maple_tree: split up MA_STATE() macro
+-:50: ERROR:MISSING_SIGN_OFF: Missing Signed-off-by: line(s)
+
+total: 1 errors, 0 warnings, 0 checks, 19 lines checked
+3d2e9151d drm: manager to keep track of GPUs VA mappings
+Traceback (most recent call last):
+  File "scripts/spdxcheck.py", line 6, in <module>
+    from ply import lex, yacc
+ModuleNotFoundError: No module named 'ply'
+Traceback (most recent call last):
+  File "scripts/spdxcheck.py", line 6, in <module>
+    from ply import lex, yacc
+ModuleNotFoundError: No module named 'ply'
+-:109: WARNING:FILE_PATH_CHANGES: added, moved or deleted file(s), does MAINTAINERS need updating?
+#109: 
+new file mode 100644
+
+-:615: WARNING:SPACE_BEFORE_TAB: please, no space before tabs
+#615: FILE: drivers/gpu/drm/drm_gpuva_mgr.c:502:
++ *^I^I ^I       struct drm_gpuva_op_map *op);$
+
+-:817: CHECK:BRACES: Blank lines aren't necessary after an open brace '{'
+#817: FILE: drivers/gpu/drm/drm_gpuva_mgr.c:704:
++{
++
+
+-:865: CHECK:BRACES: Blank lines aren't necessary before a close brace '}'
+#865: FILE: drivers/gpu/drm/drm_gpuva_mgr.c:752:
++
++}
+
+-:2055: CHECK:LINE_SPACING: Please don't use multiple blank lines
+#2055: FILE: drivers/gpu/drm/drm_gpuva_mgr.c:1942:
++
++
+
+-:2407: ERROR:POINTER_LOCATION: "foo * bar" should be "foo *bar"
+#2407: FILE: include/drm/drm_gpuva_mgr.h:225:
++struct drm_gpuva_prealloc * drm_gpuva_prealloc_create(struct drm_gpuva_manager *mgr);
+
+-:2424: CHECK:LINE_SPACING: Please use a blank line after function/struct/union/enum declarations
+#2424: FILE: include/drm/drm_gpuva_mgr.h:242:
++};
++typedef struct drm_gpuva_iterator * drm_gpuva_state_t;
+
+-:2424: WARNING:NEW_TYPEDEFS: do not add new typedefs
+#2424: FILE: include/drm/drm_gpuva_mgr.h:242:
++typedef struct drm_gpuva_iterator * drm_gpuva_state_t;
+
+-:2424: ERROR:POINTER_LOCATION: "foo * bar" should be "foo *bar"
+#2424: FILE: include/drm/drm_gpuva_mgr.h:242:
++typedef struct drm_gpuva_iterator * drm_gpuva_state_t;
+
+-:2448: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'mgr__' - possible side-effects?
+#2448: FILE: include/drm/drm_gpuva_mgr.h:266:
++#define DRM_GPUVA_ITER(name, mgr__, start)				\
++	struct drm_gpuva_iterator name = {				\
++		.mas = MA_STATE_INIT(&(mgr__)->mtree, start, 0),	\
++		.mgr = mgr__,						\
++	}
+
+-:2466: ERROR:COMPLEX_MACRO: Macros with complex values should be enclosed in parentheses
+#2466: FILE: include/drm/drm_gpuva_mgr.h:284:
++#define drm_gpuva_iter_for_each_range(va__, it__, end__) \
++	while (((va__) = drm_gpuva_iter_find(&(it__), (end__) - 1)))
+
+-:2484: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'it__' - possible side-effects?
+#2484: FILE: include/drm/drm_gpuva_mgr.h:302:
++#define drm_gpuva_iter_for_each(va__, it__) \
++	drm_gpuva_iter_for_each_range(va__, it__, (it__).mgr->mm_start + (it__).mgr->mm_range)
+
+-:2753: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
+#2753: FILE: include/drm/drm_gpuva_mgr.h:571:
++drm_gpuva_prefetch_ops_create(struct drm_gpuva_manager *mgr,
++				 u64 addr, u64 range);
+
+total: 3 errors, 3 warnings, 7 checks, 2797 lines checked
+208e94aea drm: debugfs: provide infrastructure to dump a DRM GPU VA space
+8d9e32dd6 drm/xe: Remove __xe_vm_bind forward declaration
+70451d80a drm/xe: Port Xe to GPUVA
+-:16: WARNING:TYPO_SPELLING: 'commited' may be misspelled - perhaps 'committed'?
+#16: 
+GPUVA code to generate an VMA operations list which is parsed, commited,
+                                                               ^^^^^^^^
+
+-:22: WARNING:TYPO_SPELLING: 'verison' may be misspelled - perhaps 'version'?
+#22: 
+v5: Use unlocked verison VMA in error paths
+                 ^^^^^^^
+
+-:25: ERROR:BAD_SIGN_OFF: Unrecognized email address: 'Matthew Brost <matthew.brost@intel.com'
+#25: 
+Signed-off-by: Matthew Brost <matthew.brost@intel.com
+
+-:63: ERROR:TRAILING_WHITESPACE: trailing whitespace
+#63: FILE: drivers/gpu/drm/xe/xe_bo.c:432:
++ $
+
+-:63: WARNING:LEADING_SPACE: please, no spaces at the start of a line
+#63: FILE: drivers/gpu/drm/xe/xe_bo.c:432:
++ $
+
+-:561: WARNING:AVOID_BUG: Do not crash the kernel unless it is absolutely unavoidable--use WARN_ON_ONCE() plus recovery code (if feasible) instead of BUG() or variants
+#561: FILE: drivers/gpu/drm/xe/xe_vm.c:1141:
++	XE_BUG_ON(start + range > vm->size);
+
+-:664: WARNING:LINE_SPACING: Missing a blank line after declarations
+#664: FILE: drivers/gpu/drm/xe/xe_vm.c:1406:
++	struct drm_gpuva *gpuva;
++	DRM_GPUVA_ITER(it, &vm->mgr, 0);
+
+-:833: WARNING:AVOID_BUG: Do not crash the kernel unless it is absolutely unavoidable--use WARN_ON_ONCE() plus recovery code (if feasible) instead of BUG() or variants
+#833: FILE: drivers/gpu/drm/xe/xe_vm.c:1818:
++		XE_BUG_ON(!xe_vm_in_fault_mode(vm));
+
+-:1040: WARNING:BLOCK_COMMENT_STYLE: Block comments use * on subsequent lines
+#1040: FILE: drivers/gpu/drm/xe/xe_vm.c:2167:
++			return -ENODATA;	/* Not an actual error, IOCTL
++						   cleans up returns and 0 */
+
+-:1040: WARNING:BLOCK_COMMENT_STYLE: Block comments use a trailing */ on a separate line
+#1040: FILE: drivers/gpu/drm/xe/xe_vm.c:2167:
++						   cleans up returns and 0 */
+
+-:1042: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
+#1042: FILE: drivers/gpu/drm/xe/xe_vm.c:2169:
++		if (XE_IOCTL_ERR(xe, (xe_vma_start(vma) != addr ||
++				 xe_vma_end(vma) != addr + range) && !async))
+
+-:1048: WARNING:BLOCK_COMMENT_STYLE: Block comments use * on subsequent lines
+#1048: FILE: drivers/gpu/drm/xe/xe_vm.c:2175:
++			return -ENODATA;	/* Not an actual error, IOCTL
++						   cleans up returns and 0 */
+
+-:1048: WARNING:BLOCK_COMMENT_STYLE: Block comments use a trailing */ on a separate line
+#1048: FILE: drivers/gpu/drm/xe/xe_vm.c:2175:
++						   cleans up returns and 0 */
+
+-:1051: WARNING:AVOID_BUG: Do not crash the kernel unless it is absolutely unavoidable--use WARN_ON_ONCE() plus recovery code (if feasible) instead of BUG() or variants
+#1051: FILE: drivers/gpu/drm/xe/xe_vm.c:2178:
++		XE_BUG_ON("NOT POSSIBLE");
+
+-:1133: WARNING:AVOID_BUG: Do not crash the kernel unless it is absolutely unavoidable--use WARN_ON_ONCE() plus recovery code (if feasible) instead of BUG() or variants
+#1133: FILE: drivers/gpu/drm/xe/xe_vm.c:2231:
++		XE_BUG_ON("NOT POSSIBLE");
+
+-:1295: WARNING:AVOID_BUG: Do not crash the kernel unless it is absolutely unavoidable--use WARN_ON_ONCE() plus recovery code (if feasible) instead of BUG() or variants
+#1295: FILE: drivers/gpu/drm/xe/xe_vm.c:2306:
++		XE_BUG_ON(!bo);
+
+-:1326: WARNING:AVOID_BUG: Do not crash the kernel unless it is absolutely unavoidable--use WARN_ON_ONCE() plus recovery code (if feasible) instead of BUG() or variants
+#1326: FILE: drivers/gpu/drm/xe/xe_vm.c:2323:
++		XE_BUG_ON("NOT POSSIBLE");
+
+-:1393: ERROR:SPACING: space required before the open parenthesis '('
+#1393: FILE: drivers/gpu/drm/xe/xe_vm.c:2372:
++	} else if(!xe_vma_has_no_bo(vma) && !bo->vm) {
+
+-:1408: WARNING:TYPO_SPELLING: 'commiting' may be misspelled - perhaps 'committing'?
+#1408: FILE: drivers/gpu/drm/xe/xe_vm.c:2387:
++ * prior to fully commiting to the operations. This setup can fail.
+                   ^^^^^^^^^
+
+-:1421: WARNING:AVOID_BUG: Do not crash the kernel unless it is absolutely unavoidable--use WARN_ON_ONCE() plus recovery code (if feasible) instead of BUG() or variants
+#1421: FILE: drivers/gpu/drm/xe/xe_vm.c:2400:
++	XE_BUG_ON(num_ops_list > 1 && !async);
+
+-:1471: WARNING:AVOID_BUG: Do not crash the kernel unless it is absolutely unavoidable--use WARN_ON_ONCE() plus recovery code (if feasible) instead of BUG() or variants
+#1471: FILE: drivers/gpu/drm/xe/xe_vm.c:2429:
++			XE_BUG_ON(!first && !async);
+
+-:1602: WARNING:AVOID_BUG: Do not crash the kernel unless it is absolutely unavoidable--use WARN_ON_ONCE() plus recovery code (if feasible) instead of BUG() or variants
+#1602: FILE: drivers/gpu/drm/xe/xe_vm.c:2518:
++				XE_BUG_ON("NOT POSSIBLE");
+
+-:2011: WARNING:AVOID_BUG: Do not crash the kernel unless it is absolutely unavoidable--use WARN_ON_ONCE() plus recovery code (if feasible) instead of BUG() or variants
+#2011: FILE: drivers/gpu/drm/xe/xe_vm.c:2684:
++		XE_BUG_ON("NOT POSSIBLE");
+
+-:2102: ERROR:SPACING: space required before the open parenthesis '('
+#2102: FILE: drivers/gpu/drm/xe/xe_vm.c:2725:
++		else if(op->remap.prev)
+
+-:2120: WARNING:AVOID_BUG: Do not crash the kernel unless it is absolutely unavoidable--use WARN_ON_ONCE() plus recovery code (if feasible) instead of BUG() or variants
+#2120: FILE: drivers/gpu/drm/xe/xe_vm.c:2743:
++		XE_BUG_ON("NOT POSSIBLE");
+
+-:2213: WARNING:AVOID_BUG: Do not crash the kernel unless it is absolutely unavoidable--use WARN_ON_ONCE() plus recovery code (if feasible) instead of BUG() or variants
+#2213: FILE: drivers/gpu/drm/xe/xe_vm.c:2817:
++		XE_BUG_ON("NOT POSSIBLE");
+
+-:2319: WARNING:MEMORY_BARRIER: memory barrier without comment
+#2319: FILE: drivers/gpu/drm/xe/xe_vm.c:2889:
++					smp_wmb();
+
+-:2494: WARNING:ENOTSUPP: ENOTSUPP is not a SUSV4 error code, prefer EOPNOTSUPP
+#2494: FILE: drivers/gpu/drm/xe/xe_vm.c:3154:
++			err = -ENOTSUPP;
+
+-:2503: WARNING:ENOTSUPP: ENOTSUPP is not a SUSV4 error code, prefer EOPNOTSUPP
+#2503: FILE: drivers/gpu/drm/xe/xe_vm.c:3176:
++		err = -ENOTSUPP;
+
+-:2717: ERROR:POINTER_LOCATION: "foo* bar" should be "foo *bar"
+#2717: FILE: drivers/gpu/drm/xe/xe_vm.c:3445:
++		struct xe_vma* vma = gpuva_to_vma(gpuva);
+
+-:3142: ERROR:NO_AUTHOR_SIGN_OFF: Missing Signed-off-by: line by nominal patch author 'Matthew Brost <matthew.brost@intel.com>'
+
+total: 6 errors, 24 warnings, 1 checks, 2987 lines checked
+7421e9506 drm/xe: Avoid doing rebinds
+-:71: WARNING:LONG_LINE: line length of 102 exceeds 100 columns
+#71: FILE: drivers/gpu/drm/xe/xe_vm.c:2503:
++						IS_ALIGNED(xe_vma_end(vma), xe_vma_max_pte_size(old));
+
+-:86: WARNING:LONG_LINE: line length of 104 exceeds 100 columns
+#86: FILE: drivers/gpu/drm/xe/xe_vm.c:2532:
++						IS_ALIGNED(xe_vma_start(vma), xe_vma_max_pte_size(old));
+
+total: 0 errors, 2 warnings, 0 checks, 161 lines checked
+
+
