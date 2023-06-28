@@ -4,30 +4,48 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id C9C81EB64DC
-	for <intel-xe@archiver.kernel.org>; Wed, 28 Jun 2023 11:54:14 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 71006EB64D7
+	for <intel-xe@archiver.kernel.org>; Wed, 28 Jun 2023 12:52:06 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9AE3F10E038;
-	Wed, 28 Jun 2023 11:54:14 +0000 (UTC)
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id 92E8310E046;
- Wed, 28 Jun 2023 11:54:12 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 8F382A3ECB;
- Wed, 28 Jun 2023 11:54:12 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3481410E042;
+	Wed, 28 Jun 2023 12:52:06 +0000 (UTC)
+Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A4C1010E042
+ for <intel-xe@lists.freedesktop.org>; Wed, 28 Jun 2023 12:52:03 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1687956723; x=1719492723;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=LuU6UcFTI2hM6KurkuNwm4uqsQRc/uhYUhlTDfpVfpU=;
+ b=GiNVd3QySn1HmszndXm9g5LajaPOzFcTybak2D5G/uhn0grX35YeVG+0
+ RuiUb+h7UtndjlJZDxU+o2Go1DQbDiwtq74ROC8z9kmXloyZRaDhXqTJc
+ d7spK+ercjg7NJbajdn39+jyC+pdcObEe6RxBaqmnytRUXVSNQFmyfibE
+ 6mxV883vZ2JS3T4X/np1K5u1Vnb5mqjHM/trf8y2VukKDRyBFLEPF+plR
+ wcl1d2D08TtdLB/1B72wH44jyFYn1Vl+stW40b6z18pIOm1jGHWYDpm5F
+ kGQwXQPZVsYjx0Ogn4ZyTGvVOIfgmYuh3ph4KutQIIrUiFd+cScKb8rIr A==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10754"; a="427840493"
+X-IronPort-AV: E=Sophos;i="6.01,165,1684825200"; d="scan'208";a="427840493"
+Received: from orsmga001.jf.intel.com ([10.7.209.18])
+ by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 28 Jun 2023 05:52:02 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6600,9927,10754"; a="752247593"
+X-IronPort-AV: E=Sophos;i="6.01,165,1684825200"; d="scan'208";a="752247593"
+Received: from ettammin-mobl1.ger.corp.intel.com (HELO
+ thellstr-mobl1.intel.com) ([10.249.254.125])
+ by orsmga001-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 28 Jun 2023 05:52:01 -0700
+From: =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>
+To: intel-xe@lists.freedesktop.org
+Date: Wed, 28 Jun 2023 14:51:46 +0200
+Message-Id: <20230628125146.72041-1-thomas.hellstrom@linux.intel.com>
+X-Mailer: git-send-email 2.40.1
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Tejas Upadhyay" <tejas.upadhyay@intel.com>
-Date: Wed, 28 Jun 2023 11:54:12 -0000
-Message-ID: <168795325258.32038.735361565707068794@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20230628114732.3598169-1-tejas.upadhyay@intel.com>
-In-Reply-To: <20230628114732.3598169-1-tejas.upadhyay@intel.com>
-Subject: [Intel-xe] =?utf-8?q?=E2=9C=97_CI=2EHooks=3A_failure_for_drm/xe?=
- =?utf-8?q?=3A_Add_engine_scheduler_control_interface_=28rev3=29?=
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+Subject: [Intel-xe] [PATCH v3] Documentation/gpu: Add a VM_BIND async draft
+ document
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -39,363 +57,200 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
-Cc: intel-xe@lists.freedesktop.org
+Cc: Nirmoy Das <nirmoy.das@intel.com>
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-== Series Details ==
+Add a motivation for and description of asynchronous VM_BIND operation
 
-Series: drm/xe: Add engine scheduler control interface (rev3)
-URL   : https://patchwork.freedesktop.org/series/119392/
-State : failure
+v2:
+- Fix typos (Nirmoy Das)
+- Improve the description of a memory fence (Oak Zeng)
+- Add a reference to the document in the Xe RFC.
+- Add pointers to sample uAPI suggestions
+v3:
+- Address review comments (Danilo Krummrich)
+- Formatting fixes
 
-== Summary ==
+Signed-off-by: Thomas Hellström <thomas.hellstrom@linux.intel.com>
+Acked-by: Nirmoy Das <nirmoy.das@intel.com>
+---
+ Documentation/gpu/drm-vm-bind-async.rst | 150 ++++++++++++++++++++++++
+ Documentation/gpu/rfc/xe.rst            |   4 +-
+ 2 files changed, 152 insertions(+), 2 deletions(-)
+ create mode 100644 Documentation/gpu/drm-vm-bind-async.rst
 
-run-parts: executing /workspace/ci/hooks/00-showenv
-+ pwd
-+ ls -la
-/workspace
-total 524
-drwxrwxr-x 10 1003 1003   4096 Jun 28 11:53 .
-drwxr-xr-x  1 root root   4096 Jun 28 11:53 ..
--rw-rw-r--  1 1003 1003 397174 Jun 28 11:53 build.log
--rw-rw-r--  1 1003 1003   3262 Jun 28 11:48 checkpatch.log
-drwxrwxr-x  5 1003 1003   4096 Jun 28 11:47 ci
-drwxrwxr-x 10 1003 1003   4096 Jun 28 11:46 docker
-drwxrwxr-x  8 1003 1003   4096 Jun 28 11:46 .git
--rw-rw-r--  1 1003 1003    639 Jun 28 11:48 git_apply.log
-drwxrwxr-x  3 1003 1003   4096 Jun 28 11:46 .github
--rw-rw-r--  1 1003 1003    233 Jun 28 11:46 .groovylintrc.json
--rw-rw-r--  1 1003 1003     78 Jun 28 11:53 hooks.log
-drwxrwxr-x 31 1003 1003   4096 Jun 28 11:53 kernel
--rw-rw-r--  1 1003 1003  47668 Jun 28 11:48 kernel.mbox
--rw-rw-r--  1 1003 1003  26091 Jun 28 11:49 kunit.log
-drwxrwxr-x 42 1003 1003   4096 Jun 28 11:46 pipelines
--rw-rw-r--  1 1003 1003    793 Jun 28 11:46 README.adoc
-drwxrwxr-x  3 1003 1003   4096 Jun 28 11:46 scripts
-drwxrwxr-x  2 1003 1003   4096 Jun 28 11:46 .vscode
-+ uname -a
-Linux 949db7c239ea 5.4.0-149-generic #166-Ubuntu SMP Tue Apr 18 16:51:45 UTC 2023 x86_64 x86_64 x86_64 GNU/Linux
-+ export
-+ grep -Ei '(^|\W)CI_'
-declare -x CI_KERNEL_BUILD_DIR="/workspace/kernel/build64"
-declare -x CI_KERNEL_IMAGES_DIR="/workspace/kernel/archive/boot"
-declare -x CI_KERNEL_MODULES_DIR="/workspace/kernel/archive"
-declare -x CI_KERNEL_SRC_DIR="/workspace/kernel"
-declare -x CI_SRC_DIR="/workspace/kernel"
-declare -x CI_TOOLS_SRC_DIR="/workspace/ci"
-declare -x CI_WORKSPACE_DIR="/workspace"
-+ '[' -n /workspace ']'
-+ git_args='-C /workspace/kernel'
-+ git_log_args=
-+ git --no-pager -C /workspace/kernel log --format=oneline --abbrev-commit
-534601e87 drm/xe: Add min/max cap for engine scheduler properties
-323ccbe4b drm/xe: Add sysfs for preempt reset timeout
-6b8e5c966 drm/xe: Add timeslice duration engine property to sysfs
-2df52c9d2 drm/xe: Add job timeout engine property to sysfs
-496735a9d drm/xe: Add sysfs for default engine scheduler properties
-6ed7020ab drm/xe: Add sysfs entries for engines under its GT
-abdb420db amend! drm/xe : Fix GT looping for standalone media
-run-parts: executing /workspace/ci/hooks/10-build-W1
-+ SRC_DIR=/workspace/kernel
-+ RESTORE_DISPLAY_CONFIG=0
-+ '[' -n /workspace/kernel/build64 ']'
-+ BUILD_DIR=/workspace/kernel/build64
-+ cd /workspace/kernel
-+ grep -q -e '^CONFIG_DRM_XE_DISPLAY=[yY]' /workspace/kernel/build64/.config
-+ RESTORE_DISPLAY_CONFIG=1
-+ trap cleanup EXIT
-+ ./scripts/config --file /workspace/kernel/build64/.config --disable CONFIG_DRM_XE_DISPLAY
-++ nproc
-+ make -j48 O=/workspace/kernel/build64 modules_prepare
-make[1]: Entering directory '/workspace/kernel/build64'
-  SYNC    include/config/auto.conf.cmd
-  GEN     Makefile
-  GEN     Makefile
-  UPD     include/generated/compile.h
-  UPD     include/config/kernel.release
-  UPD     include/generated/utsrelease.h
-  DESCEND objtool
-  CALL    ../scripts/checksyscalls.sh
-  HOSTCC  /workspace/kernel/build64/tools/objtool/fixdep.o
-  HOSTLD  /workspace/kernel/build64/tools/objtool/fixdep-in.o
-  LINK    /workspace/kernel/build64/tools/objtool/fixdep
-  INSTALL libsubcmd_headers
-  CC      /workspace/kernel/build64/tools/objtool/libsubcmd/exec-cmd.o
-  CC      /workspace/kernel/build64/tools/objtool/libsubcmd/help.o
-  CC      /workspace/kernel/build64/tools/objtool/libsubcmd/pager.o
-  CC      /workspace/kernel/build64/tools/objtool/libsubcmd/parse-options.o
-  CC      /workspace/kernel/build64/tools/objtool/libsubcmd/run-command.o
-  CC      /workspace/kernel/build64/tools/objtool/libsubcmd/sigchain.o
-  CC      /workspace/kernel/build64/tools/objtool/libsubcmd/subcmd-config.o
-  LD      /workspace/kernel/build64/tools/objtool/libsubcmd/libsubcmd-in.o
-  AR      /workspace/kernel/build64/tools/objtool/libsubcmd/libsubcmd.a
-  CC      /workspace/kernel/build64/tools/objtool/weak.o
-  CC      /workspace/kernel/build64/tools/objtool/check.o
-  CC      /workspace/kernel/build64/tools/objtool/special.o
-  CC      /workspace/kernel/build64/tools/objtool/builtin-check.o
-  CC      /workspace/kernel/build64/tools/objtool/elf.o
-  CC      /workspace/kernel/build64/tools/objtool/objtool.o
-  CC      /workspace/kernel/build64/tools/objtool/orc_gen.o
-  CC      /workspace/kernel/build64/tools/objtool/orc_dump.o
-  CC      /workspace/kernel/build64/tools/objtool/libstring.o
-  CC      /workspace/kernel/build64/tools/objtool/libctype.o
-  CC      /workspace/kernel/build64/tools/objtool/str_error_r.o
-  CC      /workspace/kernel/build64/tools/objtool/librbtree.o
-  CC      /workspace/kernel/build64/tools/objtool/arch/x86/special.o
-  CC      /workspace/kernel/build64/tools/objtool/arch/x86/decode.o
-  LD      /workspace/kernel/build64/tools/objtool/arch/x86/objtool-in.o
-  LD      /workspace/kernel/build64/tools/objtool/objtool-in.o
-  LINK    /workspace/kernel/build64/tools/objtool/objtool
-make[1]: Leaving directory '/workspace/kernel/build64'
-++ nproc
-+ make -j48 O=/workspace/kernel/build64 M=drivers/gpu/drm/xe W=1
-make[1]: Entering directory '/workspace/kernel/build64'
-  CC [M]  drivers/gpu/drm/xe/xe_bb.o
-  CC [M]  drivers/gpu/drm/xe/xe_bo.o
-  CC [M]  drivers/gpu/drm/xe/xe_bo_evict.o
-  CC [M]  drivers/gpu/drm/xe/xe_debugfs.o
-  CC [M]  drivers/gpu/drm/xe/xe_devcoredump.o
-  CC [M]  drivers/gpu/drm/xe/xe_device.o
-  CC [M]  drivers/gpu/drm/xe/xe_dma_buf.o
-  CC [M]  drivers/gpu/drm/xe/xe_engine.o
-  CC [M]  drivers/gpu/drm/xe/xe_exec.o
-  CC [M]  drivers/gpu/drm/xe/xe_execlist.o
-  CC [M]  drivers/gpu/drm/xe/xe_force_wake.o
-  CC [M]  drivers/gpu/drm/xe/xe_ggtt.o
-  CC [M]  drivers/gpu/drm/xe/xe_gt.o
-  CC [M]  drivers/gpu/drm/xe/xe_gt_clock.o
-  CC [M]  drivers/gpu/drm/xe/xe_gt_debugfs.o
-  CC [M]  drivers/gpu/drm/xe/xe_gt_idle_sysfs.o
-  CC [M]  drivers/gpu/drm/xe/xe_gt_mcr.o
-  CC [M]  drivers/gpu/drm/xe/xe_gt_pagefault.o
-  CC [M]  drivers/gpu/drm/xe/xe_gt_sysfs.o
-  CC [M]  drivers/gpu/drm/xe/xe_gt_tlb_invalidation.o
-  CC [M]  drivers/gpu/drm/xe/xe_gt_topology.o
-  HOSTCC  drivers/gpu/drm/xe/xe_gen_wa_oob
-  CC [M]  drivers/gpu/drm/xe/xe_guc_ads.o
-  CC [M]  drivers/gpu/drm/xe/xe_guc_ct.o
-  CC [M]  drivers/gpu/drm/xe/xe_guc_debugfs.o
-  CC [M]  drivers/gpu/drm/xe/xe_guc_hwconfig.o
-  CC [M]  drivers/gpu/drm/xe/xe_guc_log.o
-  CC [M]  drivers/gpu/drm/xe/xe_guc_pc.o
-  CC [M]  drivers/gpu/drm/xe/xe_guc_submit.o
-  CC [M]  drivers/gpu/drm/xe/xe_hw_engine.o
-  CC [M]  drivers/gpu/drm/xe/xe_hw_fence.o
-  CC [M]  drivers/gpu/drm/xe/xe_huc.o
-  CC [M]  drivers/gpu/drm/xe/xe_huc_debugfs.o
-  CC [M]  drivers/gpu/drm/xe/xe_irq.o
-  CC [M]  drivers/gpu/drm/xe/xe_lrc.o
-  CC [M]  drivers/gpu/drm/xe/xe_migrate.o
-  CC [M]  drivers/gpu/drm/xe/xe_mmio.o
-  CC [M]  drivers/gpu/drm/xe/xe_mocs.o
-  CC [M]  drivers/gpu/drm/xe/xe_module.o
-  CC [M]  drivers/gpu/drm/xe/xe_pat.o
-  CC [M]  drivers/gpu/drm/xe/xe_pci.o
-  CC [M]  drivers/gpu/drm/xe/xe_pcode.o
-  CC [M]  drivers/gpu/drm/xe/xe_pm.o
-  CC [M]  drivers/gpu/drm/xe/xe_preempt_fence.o
-  CC [M]  drivers/gpu/drm/xe/xe_pt.o
-  CC [M]  drivers/gpu/drm/xe/xe_pt_walk.o
-  CC [M]  drivers/gpu/drm/xe/xe_query.o
-  CC [M]  drivers/gpu/drm/xe/xe_reg_sr.o
-  CC [M]  drivers/gpu/drm/xe/xe_reg_whitelist.o
-  CC [M]  drivers/gpu/drm/xe/xe_rtp.o
-  CC [M]  drivers/gpu/drm/xe/xe_sa.o
-  CC [M]  drivers/gpu/drm/xe/xe_sched_job.o
-  CC [M]  drivers/gpu/drm/xe/xe_step.o
-  CC [M]  drivers/gpu/drm/xe/xe_sync.o
-  CC [M]  drivers/gpu/drm/xe/xe_tile.o
-  CC [M]  drivers/gpu/drm/xe/xe_trace.o
-  CC [M]  drivers/gpu/drm/xe/xe_ttm_sys_mgr.o
-  CC [M]  drivers/gpu/drm/xe/xe_ttm_stolen_mgr.o
-  CC [M]  drivers/gpu/drm/xe/xe_ttm_vram_mgr.o
-  CC [M]  drivers/gpu/drm/xe/xe_tuning.o
-  CC [M]  drivers/gpu/drm/xe/xe_uc.o
-  CC [M]  drivers/gpu/drm/xe/xe_uc_debugfs.o
-  CC [M]  drivers/gpu/drm/xe/xe_uc_fw.o
-  CC [M]  drivers/gpu/drm/xe/xe_vm.o
-  CC [M]  drivers/gpu/drm/xe/xe_vm_madvise.o
-  CC [M]  drivers/gpu/drm/xe/xe_wait_user_fence.o
-  CC [M]  drivers/gpu/drm/xe/xe_wopcm.o
-  HDRTEST drivers/gpu/drm/xe/abi/guc_klvs_abi.h
-  HDRTEST drivers/gpu/drm/xe/abi/guc_errors_abi.h
-  HDRTEST drivers/gpu/drm/xe/abi/guc_actions_slpc_abi.h
-  CC [M]  drivers/gpu/drm/xe/tests/xe_bo_test.o
-  HDRTEST drivers/gpu/drm/xe/abi/guc_communication_mmio_abi.h
-  HDRTEST drivers/gpu/drm/xe/abi/guc_actions_abi.h
-  CC [M]  drivers/gpu/drm/xe/tests/xe_dma_buf_test.o
-  HDRTEST drivers/gpu/drm/xe/abi/guc_communication_ctb_abi.h
-  HDRTEST drivers/gpu/drm/xe/abi/guc_messages_abi.h
-  CC [M]  drivers/gpu/drm/xe/tests/xe_migrate_test.o
-  CC [M]  drivers/gpu/drm/xe/tests/xe_pci_test.o
-  HDRTEST drivers/gpu/drm/xe/regs/xe_reg_defs.h
-  CC [M]  drivers/gpu/drm/xe/tests/xe_rtp_test.o
-  HDRTEST drivers/gpu/drm/xe/regs/xe_guc_regs.h
-  CC [M]  drivers/gpu/drm/xe/tests/xe_wa_test.o
-  HDRTEST drivers/gpu/drm/xe/regs/xe_gt_regs.h
-  HDRTEST drivers/gpu/drm/xe/regs/xe_regs.h
-  HDRTEST drivers/gpu/drm/xe/regs/xe_gpu_commands.h
-  HDRTEST drivers/gpu/drm/xe/regs/xe_lrc_layout.h
-  HDRTEST drivers/gpu/drm/xe/regs/xe_engine_regs.h
-  HDRTEST drivers/gpu/drm/xe/tests/xe_test.h
-  HDRTEST drivers/gpu/drm/xe/tests/xe_pci_test.h
-  HDRTEST drivers/gpu/drm/xe/tests/xe_migrate_test.h
-  HDRTEST drivers/gpu/drm/xe/tests/xe_dma_buf_test.h
-  HDRTEST drivers/gpu/drm/xe/tests/xe_bo_test.h
-  HDRTEST drivers/gpu/drm/xe/xe_bb.h
-  HDRTEST drivers/gpu/drm/xe/xe_bb_types.h
-  HDRTEST drivers/gpu/drm/xe/xe_bo.h
-  HDRTEST drivers/gpu/drm/xe/xe_bo_doc.h
-  HDRTEST drivers/gpu/drm/xe/xe_bo_evict.h
-  HDRTEST drivers/gpu/drm/xe/xe_bo_types.h
-  HDRTEST drivers/gpu/drm/xe/xe_debugfs.h
-  HDRTEST drivers/gpu/drm/xe/xe_devcoredump.h
-  HDRTEST drivers/gpu/drm/xe/xe_devcoredump_types.h
-  HDRTEST drivers/gpu/drm/xe/xe_device.h
-  HDRTEST drivers/gpu/drm/xe/xe_device_types.h
-  HDRTEST drivers/gpu/drm/xe/xe_dma_buf.h
-  HDRTEST drivers/gpu/drm/xe/xe_drv.h
-  HDRTEST drivers/gpu/drm/xe/xe_engine.h
-  HDRTEST drivers/gpu/drm/xe/xe_engine_types.h
-  HDRTEST drivers/gpu/drm/xe/xe_exec.h
-  HDRTEST drivers/gpu/drm/xe/xe_execlist.h
-  HDRTEST drivers/gpu/drm/xe/xe_execlist_types.h
-  HDRTEST drivers/gpu/drm/xe/xe_force_wake.h
-  HDRTEST drivers/gpu/drm/xe/xe_force_wake_types.h
-  HDRTEST drivers/gpu/drm/xe/xe_ggtt.h
-  HDRTEST drivers/gpu/drm/xe/xe_ggtt_types.h
-  HDRTEST drivers/gpu/drm/xe/xe_gt.h
-  HDRTEST drivers/gpu/drm/xe/xe_gt_clock.h
-  HDRTEST drivers/gpu/drm/xe/xe_gt_debugfs.h
-  HDRTEST drivers/gpu/drm/xe/xe_gt_idle_sysfs.h
-  HDRTEST drivers/gpu/drm/xe/xe_gt_idle_sysfs_types.h
-  HDRTEST drivers/gpu/drm/xe/xe_gt_mcr.h
-  HDRTEST drivers/gpu/drm/xe/xe_gt_pagefault.h
-  HDRTEST drivers/gpu/drm/xe/xe_gt_printk.h
-  HDRTEST drivers/gpu/drm/xe/xe_gt_sysfs.h
-  HDRTEST drivers/gpu/drm/xe/xe_gt_sysfs_types.h
-  HDRTEST drivers/gpu/drm/xe/xe_gt_tlb_invalidation.h
-  HDRTEST drivers/gpu/drm/xe/xe_gt_tlb_invalidation_types.h
-  HDRTEST drivers/gpu/drm/xe/xe_gt_topology.h
-  HDRTEST drivers/gpu/drm/xe/xe_gt_types.h
-  HDRTEST drivers/gpu/drm/xe/xe_guc.h
-  HDRTEST drivers/gpu/drm/xe/xe_guc_ads.h
-  HDRTEST drivers/gpu/drm/xe/xe_guc_ads_types.h
-  HDRTEST drivers/gpu/drm/xe/xe_guc_ct.h
-  HDRTEST drivers/gpu/drm/xe/xe_guc_ct_types.h
-  HDRTEST drivers/gpu/drm/xe/xe_guc_debugfs.h
-  HDRTEST drivers/gpu/drm/xe/xe_guc_engine_types.h
-  HDRTEST drivers/gpu/drm/xe/xe_guc_fwif.h
-  HDRTEST drivers/gpu/drm/xe/xe_guc_hwconfig.h
-  HDRTEST drivers/gpu/drm/xe/xe_guc_log.h
-  HDRTEST drivers/gpu/drm/xe/xe_guc_log_types.h
-  HDRTEST drivers/gpu/drm/xe/xe_guc_pc.h
-  HDRTEST drivers/gpu/drm/xe/xe_guc_pc_types.h
-  HDRTEST drivers/gpu/drm/xe/xe_guc_submit.h
-  HDRTEST drivers/gpu/drm/xe/xe_guc_submit_types.h
-  HDRTEST drivers/gpu/drm/xe/xe_guc_types.h
-  HDRTEST drivers/gpu/drm/xe/xe_huc.h
-  HDRTEST drivers/gpu/drm/xe/xe_huc_debugfs.h
-  HDRTEST drivers/gpu/drm/xe/xe_huc_types.h
-  HDRTEST drivers/gpu/drm/xe/xe_hw_engine.h
-  HDRTEST drivers/gpu/drm/xe/xe_hw_engine_types.h
-  HDRTEST drivers/gpu/drm/xe/xe_hw_fence.h
-  HDRTEST drivers/gpu/drm/xe/xe_hw_fence_types.h
-  HDRTEST drivers/gpu/drm/xe/xe_irq.h
-  HDRTEST drivers/gpu/drm/xe/xe_lrc.h
-  HDRTEST drivers/gpu/drm/xe/xe_lrc_types.h
-  HDRTEST drivers/gpu/drm/xe/xe_macros.h
-  HDRTEST drivers/gpu/drm/xe/xe_map.h
-  HDRTEST drivers/gpu/drm/xe/xe_migrate.h
-  HDRTEST drivers/gpu/drm/xe/xe_migrate_doc.h
-  HDRTEST drivers/gpu/drm/xe/xe_mmio.h
-  HDRTEST drivers/gpu/drm/xe/xe_mocs.h
-  HDRTEST drivers/gpu/drm/xe/xe_module.h
-  HDRTEST drivers/gpu/drm/xe/xe_pat.h
-  HDRTEST drivers/gpu/drm/xe/xe_pci.h
-  HDRTEST drivers/gpu/drm/xe/xe_pci_types.h
-  HDRTEST drivers/gpu/drm/xe/xe_pcode.h
-  HDRTEST drivers/gpu/drm/xe/xe_pcode_api.h
-  HDRTEST drivers/gpu/drm/xe/xe_platform_types.h
-  HDRTEST drivers/gpu/drm/xe/xe_pm.h
-  HDRTEST drivers/gpu/drm/xe/xe_preempt_fence.h
-  HDRTEST drivers/gpu/drm/xe/xe_preempt_fence_types.h
-  HDRTEST drivers/gpu/drm/xe/xe_pt.h
-  HDRTEST drivers/gpu/drm/xe/xe_pt_types.h
-  HDRTEST drivers/gpu/drm/xe/xe_pt_walk.h
-  HDRTEST drivers/gpu/drm/xe/xe_query.h
-  HDRTEST drivers/gpu/drm/xe/xe_reg_sr.h
-  HDRTEST drivers/gpu/drm/xe/xe_reg_sr_types.h
-  HDRTEST drivers/gpu/drm/xe/xe_reg_whitelist.h
-  HDRTEST drivers/gpu/drm/xe/xe_res_cursor.h
-  HDRTEST drivers/gpu/drm/xe/xe_ring_ops.h
-  HDRTEST drivers/gpu/drm/xe/xe_ring_ops_types.h
-  HDRTEST drivers/gpu/drm/xe/xe_rtp.h
-  HDRTEST drivers/gpu/drm/xe/xe_rtp_types.h
-  HDRTEST drivers/gpu/drm/xe/xe_sa.h
-  HDRTEST drivers/gpu/drm/xe/xe_sa_types.h
-  HDRTEST drivers/gpu/drm/xe/xe_sched_job.h
-  HDRTEST drivers/gpu/drm/xe/xe_sched_job_types.h
-  HDRTEST drivers/gpu/drm/xe/xe_step.h
-  HDRTEST drivers/gpu/drm/xe/xe_step_types.h
-  HDRTEST drivers/gpu/drm/xe/xe_sync.h
-  HDRTEST drivers/gpu/drm/xe/xe_sync_types.h
-  HDRTEST drivers/gpu/drm/xe/xe_tile.h
-  HDRTEST drivers/gpu/drm/xe/xe_trace.h
-  HDRTEST drivers/gpu/drm/xe/xe_ttm_stolen_mgr.h
-  HDRTEST drivers/gpu/drm/xe/xe_ttm_sys_mgr.h
-  HDRTEST drivers/gpu/drm/xe/xe_ttm_vram_mgr.h
-  HDRTEST drivers/gpu/drm/xe/xe_ttm_vram_mgr_types.h
-  HDRTEST drivers/gpu/drm/xe/xe_tuning.h
-  HDRTEST drivers/gpu/drm/xe/xe_uc.h
-  HDRTEST drivers/gpu/drm/xe/xe_uc_debugfs.h
-  HDRTEST drivers/gpu/drm/xe/xe_uc_fw.h
-  HDRTEST drivers/gpu/drm/xe/xe_uc_fw_abi.h
-  HDRTEST drivers/gpu/drm/xe/xe_uc_fw_types.h
-  HDRTEST drivers/gpu/drm/xe/xe_uc_types.h
-  HDRTEST drivers/gpu/drm/xe/xe_vm.h
-  HDRTEST drivers/gpu/drm/xe/xe_vm_doc.h
-  HDRTEST drivers/gpu/drm/xe/xe_vm_madvise.h
-  HDRTEST drivers/gpu/drm/xe/xe_vm_types.h
-  HDRTEST drivers/gpu/drm/xe/xe_wa.h
-  HDRTEST drivers/gpu/drm/xe/xe_wait_user_fence.h
-  HDRTEST drivers/gpu/drm/xe/xe_wopcm.h
-  HDRTEST drivers/gpu/drm/xe/xe_wopcm_types.h
-  GEN     xe_wa_oob.c xe_wa_oob.h
-  GEN     xe_wa_oob.c xe_wa_oob.h
-  CC [M]  drivers/gpu/drm/xe/xe_guc.o
-  CC [M]  drivers/gpu/drm/xe/xe_ring_ops.o
-  CC [M]  drivers/gpu/drm/xe/xe_wa.o
-  LD [M]  drivers/gpu/drm/xe/xe.o
-  MODPOST drivers/gpu/drm/xe/Module.symvers
-  CC [M]  drivers/gpu/drm/xe/xe.mod.o
-  CC [M]  drivers/gpu/drm/xe/tests/xe_bo_test.mod.o
-  CC [M]  drivers/gpu/drm/xe/tests/xe_dma_buf_test.mod.o
-  CC [M]  drivers/gpu/drm/xe/tests/xe_migrate_test.mod.o
-  CC [M]  drivers/gpu/drm/xe/tests/xe_pci_test.mod.o
-  CC [M]  drivers/gpu/drm/xe/tests/xe_rtp_test.mod.o
-  CC [M]  drivers/gpu/drm/xe/tests/xe_wa_test.mod.o
-  LD [M]  drivers/gpu/drm/xe/tests/xe_pci_test.ko
-  LD [M]  drivers/gpu/drm/xe/tests/xe_migrate_test.ko
-  LD [M]  drivers/gpu/drm/xe/tests/xe_rtp_test.ko
-  LD [M]  drivers/gpu/drm/xe/tests/xe_wa_test.ko
-  LD [M]  drivers/gpu/drm/xe/tests/xe_dma_buf_test.ko
-  LD [M]  drivers/gpu/drm/xe/xe.ko
-  LD [M]  drivers/gpu/drm/xe/tests/xe_bo_test.ko
-make[1]: Leaving directory '/workspace/kernel/build64'
-+ cleanup
-+ '[' 1 -eq 1 ']'
-+ ./scripts/config --file /workspace/kernel/build64/.config --enable CONFIG_DRM_XE_DISPLAY
-run-parts: executing /workspace/ci/hooks/20-kernel-doc
-+ SRC_DIR=/workspace/kernel
-+ cd /workspace/kernel
-+ find drivers/gpu/drm/xe/ -name '*.[ch]' -not -path 'drivers/gpu/drm/xe/display/*'
-+ xargs ./scripts/kernel-doc -Werror -none include/uapi/drm/xe_drm.h
-drivers/gpu/drm/xe/xe_hw_engine_types.h:134: warning: Function parameter or member 'sched_props' not described in 'xe_hw_engine'
-drivers/gpu/drm/xe/xe_hw_engine_types.h:134: warning: Function parameter or member 'defaults' not described in 'xe_hw_engine'
-2 warnings as Errors
-run-parts: /workspace/ci/hooks/20-kernel-doc exited with return code 123
-
+diff --git a/Documentation/gpu/drm-vm-bind-async.rst b/Documentation/gpu/drm-vm-bind-async.rst
+new file mode 100644
+index 000000000000..8f9e2d5c8f0f
+--- /dev/null
++++ b/Documentation/gpu/drm-vm-bind-async.rst
+@@ -0,0 +1,150 @@
++====================
++Asynchronous VM_BIND
++====================
++
++Nomenclature:
++=============
++
++* ``VRAM``: On-device memory. Sometimes referred to as device local memory.
++
++* ``gpu_vm``: A GPU address space. Typically per process, but can be shared by
++  multiple processes.
++
++* ``VM_BIND``: An operation or a list of operations to modify a gpu_vm using
++  an IOCTL. The operations include mapping and unmapping system- or
++  VRAM memory.
++
++* ``syncobj``: A container that abstracts synchronization objects. The
++  synchronization objects can be either generic, like dma-fences or
++  driver specific. A syncobj typically indicates the type of the
++  underlying synchronization object.
++
++* ``in-syncobj``: Argument to a VM_BIND IOCTL, the VM_BIND operation waits
++  for these before starting.
++
++* ``out-syncbj``: Argument to a VM_BIND_IOCTL, the VM_BIND operation
++  signals these when the bind operation is complete.
++
++* ``memory fence``: A synchronization object, different from a dma-fence.
++  A memory fence uses the value of a specified memory location to determine
++  signaled status. A memory fence can be awaited and signaled by both
++  the GPU and CPU. Memory fences are sometimes referred to as
++  user-fences, and do not necessarily bey the dma-fence rule of
++  signalling within a "reasonable amount of time". The kernel should
++  thus avoid waiting for memory fences with locks held.
++
++* ``long-running workload``: A workload that may take more than the
++  current stipulated dma-fence maximum signal delay to complete and
++  which therefore needs to set the gpu_vm or the GPU execution context in
++  a certain mode that disallows completion dma-fences.
++
++* ``exec function``: An exec function is a function that revalidates all
++  affected vmas, submits a gpu command batch and registers the
++  dma_fence representing the gpu command's activity with all affected
++  dma_resvs. For completeness, although not covered by this document,
++  it's worth mentioning that an exec function may also be the
++  revalidation worker that is used by some drivers in compute /
++  long-running mode.
++
++* ``bind context``: A context identifier used for the VM_BIND
++  operation. VM_BIND operations that use the same bind context can be
++  assumed, where it matters, to complete in order of submission. No such
++  assumptions can be made for VM_BIND operations using separate bind contexts.
++
++* ``UMD``: User-mode driver.
++
++* ``KMD``: Kernel-mode driver.
++
++
++Synchronous / Asynchronous VM_BIND operation
++============================================
++
++Synchronous VM_BIND
++___________________
++With Synchronous VM_BIND, the VM_BIND operations all complete before the
++IOCTL returns. A synchronous VM_BIND takes neither in-fences nor
++out-fences. Synchronous VM_BIND may block and wait for GPU operations;
++for example swapin or clearing, or even previous binds.
++
++Asynchronous VM_BIND
++____________________
++Asynchronous VM_BIND accepts both in-syncobjs and out-syncobjs. While the
++IOCTL may return immediately, the VM_BIND operations wait for the in-syncobjs
++before modifying the GPU page-tables, and signal the out-syncobjs when
++the modification is done in the sense that the next exec function that
++awaits for the out-syncobjs will see the change. Errors are reported
++synchronously assuming that the asynchronous part of the job never errors.
++In low-memory situations the implementation may block, performing the
++VM_BIND synchronously, because there might not be enough memory
++immediately available for preparing the asynchronous operation.
++
++If the VM_BIND IOCTL takes a list or an array of operations as an argument,
++the in-syncobjs needs to signal before the first operation starts to
++execute, and the out-syncobjs signal after the last operation
++completes. Operations in the operation list can be assumed, where it
++matters, to complete in order.
++
++To aid in supporting user-space queues, the VM_BIND may take a bind context.
++
++The purpose of an Asynchronous VM_BIND operation is for user-mode
++drivers to be able to pipeline interleaved gpu_vm modifications and
++exec functions. For long-running workloads, such pipelining of a bind
++operation is not allowed and any in-fences need to be awaited
++synchronously.
++
++Also for VM_BINDS for long-running gpu_vms the user-mode driver should typically
++select memory fences as out-fences since that gives greater flexibility for
++the kernel mode driver to inject other  operations into the bind /
++unbind operations. Like for example inserting breakpoints into batch
++buffers. The workload execution can then easily be pipelined behind
++the bind completion using the memory out-fence as the signal condition
++for a gpu semaphore embedded by UMD in the workload.
++
++Multi-operation VM_BIND IOCTL error handling and interrupts
++===========================================================
++
++The VM_BIND operations of the IOCTL may error due to lack of resources
++to complete and also due to interrupted waits. In both situations UMD
++should preferably restart the IOCTL after taking suitable action. If
++UMD has overcommitted a memory resource, an -ENOSPC error will be
++returned, and UMD may then unbind resources that are not used at the
++moment and restart the IOCTL. On -EINTR, UMD should simply restart the
++IOCTL and on -ENOMEM user-space may either attempt to free known
++system memory resources or abort the operation. If aborting as a
++result of a failed operation in a list of operations, some operations
++may still have completed, and to get back to a known state, user-space
++should therefore attempt to unbind all virtual memory regions touched
++by the failing IOCTL.
++Unbind operations are guaranteed not to cause any errors due to
++resource constraints.
++In between a failed VM_BIND IOCTL and a successful restart there may
++be implementation defined restrictions on the use of the gpu_vm. For a
++description why, please see `KMD implementation details`_ under [error
++state saving]_.
++
++Sample uAPI implementations
++===========================
++Suggested uAPI implementations at the moment of writing can be found for
++the Nouveau driver `here
++<https://patchwork.freedesktop.org/patch/543260/?series=112994&rev=6>`_.
++and for the Xe driver `here
++<https://cgit.freedesktop.org/drm/drm-xe/diff/include/uapi/drm/xe_drm.h?h=drm-xe-next&id=9cb016ebbb6a275f57b1cb512b95d5a842391ad7>`_.
++
++KMD implementation details
++==========================
++
++Open: When the VM_BIND IOCTL returns an error, some or even parts of
++an operation may have been completed. If the IOCTL is restarted, in
++order to know where to restart, the KMD can either put the gpu_vm in
++an error state and save one instance of the needed restart state
++internally. In this case, KMD needs to block further modifications of
++the gpu_vm state that may cause additional failures requiring a
++restart state save, until the error has been fully resolved. If the
++uAPI instead defines a pointer to a UMD allocated cookie in the IOCTL
++struct, it could also choose to store the restart state in that cookie.
++
++The restart state may, for example, be the number of successfully
++completed operations.
++
++Easiest for UMD would of course be if KMD did a full unwind on error
++so that no error state needs to be saved.
+diff --git a/Documentation/gpu/rfc/xe.rst b/Documentation/gpu/rfc/xe.rst
+index 2516fe141db6..0f062e1346d2 100644
+--- a/Documentation/gpu/rfc/xe.rst
++++ b/Documentation/gpu/rfc/xe.rst
+@@ -138,8 +138,8 @@ memory fences. Ideally with helper support so people don't get it wrong in all
+ possible ways.
+ 
+ As a key measurable result, the benefits of ASYNC VM_BIND and a discussion of
+-various flavors, error handling and a sample API should be documented here or in
+-a separate document pointed to by this document.
++various flavors, error handling and sample API suggestions are documented in
++Documentation/gpu/drm-vm-bind-async.rst
+ 
+ Userptr integration and vm_bind
+ -------------------------------
+-- 
+2.40.1
 
