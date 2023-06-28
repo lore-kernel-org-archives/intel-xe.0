@@ -4,82 +4,82 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id DBD71EB64D7
-	for <intel-xe@archiver.kernel.org>; Wed, 28 Jun 2023 05:09:25 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id DC29BEB64D7
+	for <intel-xe@archiver.kernel.org>; Wed, 28 Jun 2023 05:49:55 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8F9F910E34E;
-	Wed, 28 Jun 2023 05:09:25 +0000 (UTC)
-Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 51EF410E34E
- for <intel-xe@lists.freedesktop.org>; Wed, 28 Jun 2023 05:09:23 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7B6EB10E35A;
+	Wed, 28 Jun 2023 05:49:55 +0000 (UTC)
+Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0594A10E360
+ for <intel-xe@lists.freedesktop.org>; Wed, 28 Jun 2023 05:49:53 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1687928963; x=1719464963;
- h=from:to:subject:date:message-id:references:in-reply-to:
- content-transfer-encoding:mime-version;
- bh=mT5vgRh6qGxnoOVrPU40MmHNNGxxt86KJeaJU1FZwyw=;
- b=Cr81r/bu43e7gup+R6idfGO5vz0ZEeOuo80Tow/QHAaa3u6SMfikUxbD
- ZCLaslRfxiuZ8m0j9GCsBGQHDKm2CQzbgAX5HUlMBGf/IRHdRsb3c230F
- +Ur036Gfpd2oWX3aw8LZis9qGt5AALvGThtvxuqUa6ZHh/KdxQhovaNUC
- jsDYSI8/UhKbMKLOIVxJMRoba/85jnGcp4QVfIHcOOyPCXWA0az6TUAxa
- RTGH7EcQl+uXTRnQxaREdcEVe5m70jCOcjtTAf7oVpDaadk+KoGKi8mCa
- QimLlKBA6Iue2kIeFP75tNY0qhdhKadrkpHhycR7j+pS0Lmfb8gbd1pXT A==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10754"; a="448139218"
-X-IronPort-AV: E=Sophos;i="6.01,164,1684825200"; d="scan'208";a="448139218"
-Received: from fmsmga004.fm.intel.com ([10.253.24.48])
- by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 27 Jun 2023 22:09:15 -0700
+ t=1687931394; x=1719467394;
+ h=from:to:cc:subject:date:message-id:references:
+ in-reply-to:content-transfer-encoding:mime-version;
+ bh=6DY/9bT2hYV7SzboYcq1cdlbPUQY2ERCqHaJVRSTgRE=;
+ b=hkTnoEB0VNGDGnX5JCaqSMoo56WCzwReeGC3Za58m0nxp/YJdk9lQlj3
+ /DU9Oy7V7FJdQRLCMXwxMAa88AwgAjXekHzyr3UvKCemijIvaYXqjihVA
+ 8QQcQvalSEdtByaTTESIaNKc/oFsVZHZerZHtymIZ3KJmd45w9U+hnBga
+ TUw/es8cFXdPz8W4062TW0rUomKTNiyYWmM5mAkSdihEnfpALaK5mc5xZ
+ gLtl3sHwGYox450SzP0BeOXLdAOjj582AbHxeXM3g9iizO30R+M0Krrw/
+ utjaH8UpcCNHNmmeFma0TbxnCdJrWuWMx9fKlwsnfkOWtNwIkGyfLYno3 w==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10754"; a="359256572"
+X-IronPort-AV: E=Sophos;i="6.01,164,1684825200"; d="scan'208";a="359256572"
+Received: from orsmga006.jf.intel.com ([10.7.209.51])
+ by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 27 Jun 2023 22:49:52 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10754"; a="786925512"
-X-IronPort-AV: E=Sophos;i="6.01,164,1684825200"; d="scan'208";a="786925512"
-Received: from fmsmsx603.amr.corp.intel.com ([10.18.126.83])
- by fmsmga004.fm.intel.com with ESMTP; 27 Jun 2023 22:09:15 -0700
-Received: from fmsmsx611.amr.corp.intel.com (10.18.126.91) by
- fmsmsx603.amr.corp.intel.com (10.18.126.83) with Microsoft SMTP Server
+X-IronPort-AV: E=McAfee;i="6600,9927,10754"; a="694151794"
+X-IronPort-AV: E=Sophos;i="6.01,164,1684825200"; d="scan'208";a="694151794"
+Received: from fmsmsx601.amr.corp.intel.com ([10.18.126.81])
+ by orsmga006.jf.intel.com with ESMTP; 27 Jun 2023 22:49:47 -0700
+Received: from fmsmsx612.amr.corp.intel.com (10.18.126.92) by
+ fmsmsx601.amr.corp.intel.com (10.18.126.81) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.27; Tue, 27 Jun 2023 22:09:14 -0700
-Received: from fmsmsx610.amr.corp.intel.com (10.18.126.90) by
- fmsmsx611.amr.corp.intel.com (10.18.126.91) with Microsoft SMTP Server
+ 15.1.2507.27; Tue, 27 Jun 2023 22:49:46 -0700
+Received: from fmsmsx612.amr.corp.intel.com (10.18.126.92) by
+ fmsmsx612.amr.corp.intel.com (10.18.126.92) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.27; Tue, 27 Jun 2023 22:09:14 -0700
-Received: from fmsedg601.ED.cps.intel.com (10.1.192.135) by
- fmsmsx610.amr.corp.intel.com (10.18.126.90) with Microsoft SMTP Server
+ 15.1.2507.27; Tue, 27 Jun 2023 22:49:46 -0700
+Received: from fmsedg602.ED.cps.intel.com (10.1.192.136) by
+ fmsmsx612.amr.corp.intel.com (10.18.126.92) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.27 via Frontend Transport; Tue, 27 Jun 2023 22:09:14 -0700
-Received: from NAM12-MW2-obe.outbound.protection.outlook.com (104.47.66.47) by
- edgegateway.intel.com (192.55.55.70) with Microsoft SMTP Server
+ 15.1.2507.27 via Frontend Transport; Tue, 27 Jun 2023 22:49:46 -0700
+Received: from NAM12-BN8-obe.outbound.protection.outlook.com (104.47.55.174)
+ by edgegateway.intel.com (192.55.55.71) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2507.27; Tue, 27 Jun 2023 22:09:13 -0700
+ 15.1.2507.27; Tue, 27 Jun 2023 22:49:45 -0700
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=i4m8aL491pyqLNCo0oGRshcHTmCw7KqHrJbM+OnK4tEq5E2HXgRr/HTsjOiOBAFsZsFto38MXqos9+TdKZ8RWfuMyYtQJmjIJ6oPfiVzaN+juZPS3VeGIOHgkIKBc/naTXbT7quedOQG6RHIpWwW+gOuZiY8l9UC52h2tEXH2vGk4P6gc5RXcHAgSaEcn0kbZSB9mqmsMbdRfrcLVJhd9kiWhwcoqTWpSH3YgfmPCNZtgo9lgDB8DaVOzFjbcqKRgR6unXKJRbvnqYy5ybeAAvBMGBMlian7tkTqgF4eS+06BqcdyWzYM7RMv2XmguQg7OH177/oJ+vPUHN7hgbdZQ==
+ b=aGChdDPMQhQQ8A8fH0qwupOhCLuvtrigC6kajGGBf7f6cS39hQV0Xj/JzQ4umNy3D/LmXAnrfEhBWTsxXa5q8d9MZISqoB7b2L+hlJKVIi2ElKkxbvqlgZn6CEc3ydLAoE/gW1SnhDeKKMr2To9QN2ViL7bn4rx1dzB08bVgoRsXThpG/Vbg5vGutGedxRFJjRUSUP55T8SfoSsjZMDRKx+EaBIXOwuMg61Y5GjkaVf5GwCDasbAvKwJEfHx5QTBeCLJ8ccK9OyqzMFF0x1sUNQ0zJqMHycIIabqKq6vFbuTpIQP5+WS+axGa386LgBfz3KR11NRdhISWcYgkGVywA==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=Fl61BqSd3BZvDV8hXcSmLILj0vs1AvOQY9DlQFj+YJI=;
- b=cLmMORQ4e6CMRgL2dGo9NXBtpWj46+MvOdtkzLjdt0uKDByDJK2l7yVOun+pQpWGdP/YiEFGJWc0eUo/XLIdGu9zNH3XLa/oatXR+0mITlod/wuP/Y8CmkKxLP2VoaP/Ln5zDb/3ermztLXMmwlgIlDBM6Cewkz0oY18HDK5ZHGsSw7MfkPg0LznEV1ptG8/z57qLqQvLsLIl+5JMqFYp4RBpYkOVhn9VJOasQlM/9cBL71XOokgpo35S0gNn2jRE80Ysi2n/i6P7fanaADRWuWHzy4OA7v3aXSYFA1GCYKCVENKHjX5Fh3YCmJMKlvfoWs8lpubTs5AL/+yDvJvAQ==
+ bh=0Hs2Yn4vSm6FvHqZuFUN6c0GmUbnYG4l6FPQ8qL2SY0=;
+ b=ZSkSFfH+jgbEvTKWuaECi6JeEvwNNJ1VUpZGsBKuenmw9WFKPz0HwNu9l3qovjmDenABAQqMXrxZBYSJiHGSsEdDmMjieD6NVeoTzFwlyHymxhQTkov2p1xynVZ24kKkKAMmcEu6j9XcyANq+HzB6TtoDEOpnnfg/O74ZhGyoTEjYKYw+GKjYe4SVNhzI7arnrFDS+dow8v671h5Wh0gvznzZjJ/hlrUEk5c15pGhanBcqImMWHkblcuakdeO180m3UtdUCMNt3Pd9c2mGOVFJv/UttdH2u1oEWaRHU2pRrIIUr+MTdSrxvyV+wq7BowEDBW0glHz/R0lNm/cw0KRg==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
  dkim=pass header.d=intel.com; arc=none
 Received: from SJ1PR11MB6204.namprd11.prod.outlook.com (2603:10b6:a03:459::19)
- by LV8PR11MB8606.namprd11.prod.outlook.com (2603:10b6:408:1f7::12)
+ by IA1PR11MB6395.namprd11.prod.outlook.com (2603:10b6:208:3ac::14)
  with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6521.23; Wed, 28 Jun
- 2023 05:09:06 +0000
+ 2023 05:49:43 +0000
 Received: from SJ1PR11MB6204.namprd11.prod.outlook.com
  ([fe80::2bfb:7d63:f348:1a4]) by SJ1PR11MB6204.namprd11.prod.outlook.com
  ([fe80::2bfb:7d63:f348:1a4%5]) with mapi id 15.20.6521.023; Wed, 28 Jun 2023
- 05:09:06 +0000
+ 05:49:43 +0000
 From: "Upadhyay, Tejas" <tejas.upadhyay@intel.com>
-To: "Ghimiray, Himal Prasad" <himal.prasad.ghimiray@intel.com>,
- "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>
-Thread-Topic: [Intel-xe] [PATCH V4 0/3] drm/xe: Add sysfs entry for tile and
- relate it to GTs
-Thread-Index: AQHZpNpIDHzFDac0fUOQxp6/4fjEOK+e/AGAgAC3QDA=
-Date: Wed, 28 Jun 2023 05:09:05 +0000
-Message-ID: <SJ1PR11MB6204410608266A4ADE78DA428124A@SJ1PR11MB6204.namprd11.prod.outlook.com>
+To: "De Marchi, Lucas" <lucas.demarchi@intel.com>
+Thread-Topic: [Intel-xe] [PATCH V4 3/3] drm/xe: Add sysfs entry to report per
+ tile memory size
+Thread-Index: AQHZpNpO7ye09XNOgU69LEpxrIo57a+e+wKAgADDoDA=
+Date: Wed, 28 Jun 2023 05:49:43 +0000
+Message-ID: <SJ1PR11MB620477BAE8D581C355DF3E6D8124A@SJ1PR11MB6204.namprd11.prod.outlook.com>
 References: <20230622072818.3182423-1-tejas.upadhyay@intel.com>
- <MW4PR11MB7056E935C6498F1044C08468B327A@MW4PR11MB7056.namprd11.prod.outlook.com>
-In-Reply-To: <MW4PR11MB7056E935C6498F1044C08468B327A@MW4PR11MB7056.namprd11.prod.outlook.com>
+ <20230622072818.3182423-4-tejas.upadhyay@intel.com>
+ <dxt5pxqhv7qhmi23klipxtyrd54mnoe4dbjjapcydvil2252ie@ztanzg5r3raq>
+In-Reply-To: <dxt5pxqhv7qhmi23klipxtyrd54mnoe4dbjjapcydvil2252ie@ztanzg5r3raq>
 Accept-Language: en-US
 Content-Language: en-US
 X-MS-Has-Attach: 
@@ -87,59 +87,59 @@ X-MS-TNEF-Correlator:
 authentication-results: dkim=none (message not signed)
  header.d=none;dmarc=none action=none header.from=intel.com;
 x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: SJ1PR11MB6204:EE_|LV8PR11MB8606:EE_
-x-ms-office365-filtering-correlation-id: 3b18f094-7471-44fe-604f-08db7795cc01
+x-ms-traffictypediagnostic: SJ1PR11MB6204:EE_|IA1PR11MB6395:EE_
+x-ms-office365-filtering-correlation-id: c6675514-1dc4-4683-8655-08db779b78e4
 x-ms-exchange-senderadcheck: 1
 x-ms-exchange-antispam-relay: 0
 x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: xnlcskrzwhUAEFCt90LazA1yyX3/8IPU8DUevu5yhsboOKIOIsi50hf0g0s6TlT/40tY81eFjVg1h4meeVPG/jSyhZDz6mWb/oPnjkANOyzlehgCmMzWuGLPr2kIOWSfphOIpdUOtpFXCcrRWDw+ha76nEtyocCibgBL0Tt0xuYallakWX32gh/6ASpG7gTSEEPBsCVrFPbL7tsQRIHC476BfhRys2Hdn/nfIUoYoF++6MrYLyJqiJ293GdEUBK6QZ1TsQ1deEkpvoqlmv0yfJUghql5JeB0uJaRy+sqDqkp0n6La3jmPJT5vnxLZonYlu58SI98uB5F+qZtx0kn2PTYJMGOBIqeU37EX3gFM0AWCR44hLKcr8LUsmOq7uXiRkApjwANnAZKByodEI0czOOHNT/m10KT3Sr9LaRay/Xjin2G/kTMXBNWeQMqSQlAF38wlP3vouQcrQ9CfuTBG/XyNkACR1n24aE0JbKWCU3UkF5jT9buE0pOq2dXK5KQ1h30tXt/pICGhbPkfEpEmC7+vPc4j8RdOSWNBLkniQDW7BULPelBtdkSJ8PZSU3LKOUNt6fEOsJ64svEj27DeSfmchWwxLwABz8J2j0Vc84=
+x-microsoft-antispam-message-info: wOilH1RT0YpeLA5TP/LiR5F15g+izPkb5yXJLaaii+HMgYdppbny/89cq2LMlSBD8XvTSlZg0fR1a3KX7YqRUmunhaYCFsifmu9LO1xgENsm9WT/IemTq5jICzxgEzSTWAi+9BcMDC4xMoT8Zj4fsHAA01v1Ux2ydXNRSbLNUkgJ7viOHoSqH156eYPRXiDUIoIBLwXk5zqbyl0KBL6CUjFTY5HYHvK0bAEnaoLVgmtmPvkO+Fz3qorDlua2aEU6fnTopwABji0Lw6jkQhtQTTU1smJK3ZY+D2P5mKG2nf89KFbd1E3IeiOIOpZscgKBuIOU9/Qe9AWhdv1ZJmStUdUtyDremOghsl4fuhyJDAe55zMXhag8+9pFXvmv5FUuIXp/+ngLgxuNB8/HUME/Hf5BZo+aq5dnb5GWeN0I0uJKEXqcq200Uuq7DMq9CLscGCcFMOwZIPt7ChZ4huYJVMTvEqZIsF9BHp/8E9Yhbtwhuv4JwEJ0KU32HpnxI68fAHnTbtNKhbOuyiBOtoqZq6shgpV8zEU/6vhpbG5NONxcx6h9JJUH7f4KxvmatEz6C0ghJjsqBipAwjqyQEfwB9fzmiWSNKxiquLue7gOd3PQpwofmM6UFcI/a+tbEMbP
 x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
  IPV:NLI; SFV:NSPM; H:SJ1PR11MB6204.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230028)(376002)(39860400002)(366004)(396003)(136003)(346002)(451199021)(122000001)(82960400001)(38100700002)(38070700005)(83380400001)(33656002)(86362001)(478600001)(110136005)(9686003)(966005)(71200400001)(7696005)(8936002)(316002)(76116006)(8676002)(66946007)(55016003)(66476007)(66556008)(41300700001)(66446008)(64756008)(6506007)(26005)(53546011)(186003)(52536014)(5660300002)(2906002);
+ SFS:(13230028)(366004)(396003)(136003)(39860400002)(346002)(376002)(451199021)(66446008)(38070700005)(26005)(66556008)(66476007)(33656002)(122000001)(5660300002)(52536014)(6862004)(86362001)(8936002)(41300700001)(4326008)(316002)(6636002)(8676002)(82960400001)(66946007)(76116006)(55016003)(64756008)(38100700002)(6506007)(53546011)(9686003)(186003)(2906002)(71200400001)(83380400001)(7696005)(478600001);
  DIR:OUT; SFP:1102; 
 x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?us-ascii?Q?RgVNMVDSNu6/C3a9BZdES074a527ieSmVWQWNcAGLYm7cb8q0xdnUdsc5A6G?=
- =?us-ascii?Q?yLLSrfaOAUSAgFGzsxMD7m6bjaF5MOyfWv0A0vYk+OtrSd4CP4qQsegHmZYS?=
- =?us-ascii?Q?WG77/h8vbsZD7OFwWCk3Q4ndIwyZhMaKjuAPVsNcuN6Z6oATlbJ9RyQPolQj?=
- =?us-ascii?Q?321JB7JS4TprDbHjl7K5SbvgRKKoBdwbcPjSkIoifjlOnGyHrrpT7yZiw+M2?=
- =?us-ascii?Q?HThg3unV79cMYABJCDxCYvo+oNeUKlBh75OTbu4CGo+eNb+srpN9YbPnXSMK?=
- =?us-ascii?Q?85U1jjWND8EFlwLnIo1zTjn9pRTFy9L+9Q2ENvQwWw4V1h7gR4xVfT3xXosM?=
- =?us-ascii?Q?0y2EWTcZ1dIEY3/baxgvN6PYZN+tHkK3D+dwAayQRob/KbJzH0Cb3mxOO4SS?=
- =?us-ascii?Q?SPOTfkE0XJbucAE+GzmtVeE8MIqA0xeU8kRiJ4qMqMqfsadIHJX+OWofLFmU?=
- =?us-ascii?Q?Dnmkbj68Ixp+dQlLSkUoOLlvRy7dIwXCgnP63ivOu1RUEfkBIXLLW6E7V0u9?=
- =?us-ascii?Q?OAmKxfwPgWCjccC7ch/8jTRQgpdU6X0c8Jts7cMYipsEQyuIpuleUU2fUrQL?=
- =?us-ascii?Q?W923mu+nb4PVVmfbBJX8/s2Aw/u2Y6m0/QykFF2XmDX3SxNZYzBzYd2NBF/s?=
- =?us-ascii?Q?MCJ9BV1xhx0l9iOu+/KFAf0bEEc1yutDkRYsMNqxaJeVJf5fEqM+GRKDBEp3?=
- =?us-ascii?Q?50GyLFqOlbd4ga3GEXWTCFahIBir/EUCtsTSTvOrF8NQ+0xYE7iCMcUHlhzQ?=
- =?us-ascii?Q?gPRpBCCVyOu2uqwZ1xLKtJsmxNZV1dWOqRRLpf6yLC0OGMysiCX1APLn3Nii?=
- =?us-ascii?Q?Om3CEQlDLXqMb2Zp9GAyBgDbaWtp8Ah0MXPqlPw07BWY5eWu/CRyPYUgDRko?=
- =?us-ascii?Q?Ofya1tBopLipWBv2EE+zf63coxbUxaVY9PqEDjRGaDvJMJVeBF5InUrTOPVm?=
- =?us-ascii?Q?axzX5sBt7ts7hbmrfZ+0vF9fdjq4YmQXzmyvj4uGfXp7HAoie/6L8cyvaK4h?=
- =?us-ascii?Q?CwZlMDH3iUv18XPE5hZdpn+Q1h2vKHttEnstHCDjE2O6pSXvHzCEXP+XQab9?=
- =?us-ascii?Q?mh9YvgNn/o85qV19FyeoBcJ/AbCC/PNpbbQI/54YMAl6471HamxOh5G4YGwe?=
- =?us-ascii?Q?fzXxTgSXNVpOjzATxCAbXDfJZX4rACqDQ+RaAJSnMaaDKhbzNkwr+2Ps5iDE?=
- =?us-ascii?Q?eXygfQzSqSn0RpOg/OEoBNYWJTAzSkE9GekkO4auSO4xfAT/HiXRUWnZDFfL?=
- =?us-ascii?Q?Je7K3n7mx5bUZowU+3aQToSwPZ6CmnlPGyfYpc18zGevkYwqINym/sGV6wZZ?=
- =?us-ascii?Q?YtRIFXTmUMb9dBAVU6Ai3fI23JPT98rgScqmpsvCWt4iAY32mqbCn4sgVyuX?=
- =?us-ascii?Q?wTmwzAvKacM+K8AtenXSmLN+KHt+alySlcFkrf/KIt0W8gZjPRxwkfuAd3iM?=
- =?us-ascii?Q?nKk1Q/Qv4l6P8pSiRnSUcl/5KRZJ48CxBWw/+SVtbYWFhhF6V+IVJvCS8JMz?=
- =?us-ascii?Q?eCmNx+Q/bFilP1VI1Lbh0pG6HlIK7JvmZgajsgIlCTjjHeKwbN2fdjszqFlN?=
- =?us-ascii?Q?Dj+D1gasR9wV7ktQRZpWyf9enqZ2A58J6zUp7b1g?=
+x-ms-exchange-antispam-messagedata-0: =?us-ascii?Q?nZgZikF3xpLElle55qWz2OAA+uTs0JINCf+prIkaHHvuoHgDJ4+bn+ntWvAJ?=
+ =?us-ascii?Q?gIO/uiRFjplw2oLJNqDXz45bWsvAv5vg2fknjurNIUP89y6X5ZXwp++Xb7M/?=
+ =?us-ascii?Q?OZGRTmrEeJDYnEpxIbTzWVIuX8tb+fWxgAKWWNHUoOmEbSfFTUL1FSdo08yd?=
+ =?us-ascii?Q?HOZ3EA6Yr+IIA0x3dulJLEjR+xGPRkZ4JPN3joHxY992W3cG7oWEOM3g+6de?=
+ =?us-ascii?Q?j92TPABEN0UD+9lMGYBBOQRN2ryW8ZoPzeJMRHorljNqiZjnjcQr4ZPI45+i?=
+ =?us-ascii?Q?WYEqA/HHJmx/x1AqkKH5Y5LMZkU1RSUcPnXLufZ/EHdYjWiWmz5iRBOn1uc/?=
+ =?us-ascii?Q?faMzqOX+d6n5ys347KX6iLqh7gZsINZgEBaaNiJi5KQvv065e7oI3qCMMbfT?=
+ =?us-ascii?Q?Oj/nxPTs45BQBVBTtR902U2d+VvqYSepAQbRIZwXlyyiVumG2sa22Nh5ZbZu?=
+ =?us-ascii?Q?i4A/qCdkmYhgP4mFdNt+KYox3DhSKWdgbUZwxhNYNNBgUWkImfL0fg2xDQ5i?=
+ =?us-ascii?Q?jKnGBiwFiTLbDYR0bGFjVJ0Ic6/ams1v7v6x0S2djUnahzB+GI22PJHYMIzz?=
+ =?us-ascii?Q?7bzUNBy5bxwQxmt3qe8Rh62hD3QPydaHr8xbgXHQIYkkqmlks4vaoq0sJx/h?=
+ =?us-ascii?Q?MFbe2AXZnUU01TEVWeQDipzYq/EyPZw6eXBWAEuNUXfQknJws2a4oNKTrR8M?=
+ =?us-ascii?Q?8+boP5RO/rSZHdZ9IxqxbMmyGTzVILyJBoxoG33hYouqCFgohLJ2nM1IPlBv?=
+ =?us-ascii?Q?9uGYYGPSMlouHtANTIUVTmPJLbpAKkFUg6iljT0YdypNNpJIHKExF65aWVut?=
+ =?us-ascii?Q?ooENuP9BA0F0cLcG0VOjhMFhVHaOo3EuFAvvrHJkJSbYHfg/NlgNTKML2CVt?=
+ =?us-ascii?Q?JUT4UxyvcPDgbQNGU0OkjpvhHcvq5nm7CqMkBzeyqP8fk2SAR7bTR9eJWSKp?=
+ =?us-ascii?Q?mrz317TzBzLfAfVjb5q8KF88VTv2bzrdD4H2S3WsgiV9Tib78pocatZ6bSzL?=
+ =?us-ascii?Q?5BQG8NRNrtWNmp9Gx5OQG/oL842Od2dsorUGTBZQhWamn3TZ2nM+5QEqox8t?=
+ =?us-ascii?Q?4QC7g+g/VPG44Sj+Qbdnjq9cJMm4TvnEL8HOEjDh/hEfuk0S+M1Yq94+wVSK?=
+ =?us-ascii?Q?MKv9orXGGCKaccHw5AUiPftBbdTSs3O43xnm0oJQTRvIrvC1/Rm45cmGzG1J?=
+ =?us-ascii?Q?XYcwUiZbvfzl+w65OrzW0uJFuSW/H3J9Hi4PRO1BIpKyOUYaf/p2jDS+2QNY?=
+ =?us-ascii?Q?C9P01b8E8SP0+dxwF77KVqDQMegWgm/K44wGG/ZY2Zm6WdrTmfrIDbh2W+Jm?=
+ =?us-ascii?Q?quY3NoB+T+YZ6RpA18pHCtB6U+XeJQodAixrE0GyiafnaNqHjHWru3FpdCrq?=
+ =?us-ascii?Q?OYLVJxvd2aAZ4E9LdDfLHZVHi/VFfiFMDfImXBHDTdJE5lwkAAk6VR9I14Et?=
+ =?us-ascii?Q?KtMfK90qcz1nkSyQCBDYi1sz2SDPoxreua241PlftPf8Ur/jVNT78c6Xm7dj?=
+ =?us-ascii?Q?BinbSQqP3SEVD5ZOdEqRYjpZOiguqoqbNeUoWNjHkRSjnbeAcNTejbyHG7NZ?=
+ =?us-ascii?Q?QI0e7Hd8oroSzwxQRY9ycYMoR0JYE1VHVGESNMIm?=
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: quoted-printable
 MIME-Version: 1.0
 X-MS-Exchange-CrossTenant-AuthAs: Internal
 X-MS-Exchange-CrossTenant-AuthSource: SJ1PR11MB6204.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 3b18f094-7471-44fe-604f-08db7795cc01
-X-MS-Exchange-CrossTenant-originalarrivaltime: 28 Jun 2023 05:09:05.9238 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: c6675514-1dc4-4683-8655-08db779b78e4
+X-MS-Exchange-CrossTenant-originalarrivaltime: 28 Jun 2023 05:49:43.4872 (UTC)
 X-MS-Exchange-CrossTenant-fromentityheader: Hosted
 X-MS-Exchange-CrossTenant-id: 46c98d88-e344-4ed4-8496-4ed7712e255d
 X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: 8Vy2Q5pDresQ8s602PspgjJDVTY1P/6u1CK5F60jl2M2G3qUnzoxvISMHwH+wlRCVPPAkMM8zwjV93kt4UveeuOKvGKTlL2fL9ykAoRxI5k=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: LV8PR11MB8606
+X-MS-Exchange-CrossTenant-userprincipalname: ozDkBgW4MWDr1DyZbclVmKVwGPIF2Np3gNf8Gk9DjbaeJyIyfyyuZEFDjx0aZIKBEXAq5gY0aLIid+slaYQQODHiApC8KDev4LJ+zexSbi8=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: IA1PR11MB6395
 X-OriginatorOrg: intel.com
-Subject: Re: [Intel-xe] [PATCH V4 0/3] drm/xe: Add sysfs entry for tile and
- relate it to GTs
+Subject: Re: [Intel-xe] [PATCH V4 3/3] drm/xe: Add sysfs entry to report per
+ tile memory size
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -151,88 +151,144 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Cc: "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 
 
 > -----Original Message-----
-> From: Ghimiray, Himal Prasad <himal.prasad.ghimiray@intel.com>
-> Sent: Tuesday, June 27, 2023 11:42 PM
-> To: Upadhyay, Tejas <tejas.upadhyay@intel.com>; intel-
-> xe@lists.freedesktop.org
-> Subject: RE: [Intel-xe] [PATCH V4 0/3] drm/xe: Add sysfs entry for tile a=
-nd
-> relate it to GTs
+> From: De Marchi, Lucas <lucas.demarchi@intel.com>
+> Sent: Tuesday, June 27, 2023 11:38 PM
+> To: Upadhyay, Tejas <tejas.upadhyay@intel.com>
+> Cc: intel-xe@lists.freedesktop.org
+> Subject: Re: [Intel-xe] [PATCH V4 3/3] drm/xe: Add sysfs entry to report =
+per
+> tile memory size
 >=20
-> Tested-With: https://patchwork.freedesktop.org/series/119801/
+> On Thu, Jun 22, 2023 at 12:58:18PM +0530, Tejas Upadhyay wrote:
+> >Add sysfs entry to read per tile physical memory including stolen
+> >memory.
+> >
+> >V4:
+> >  - %s/addr_range/physical_vram_size_byes, make it
+> >    user readable name - Joonas/Aravind
+> >  - Display in bytes - Joonas/Aravind
+> >V3:
+> >  - Exclude DG1, replace sysfs_create_file/files - Aravind
+> >V2:
+> >  - Use DEVICE_ATTR_RO - Aravind
+> >  - Dont put kobj on sysfs_file_create fail - Himal
+> >  - Skip addr_range sysfs create for non dgfx - Himal
+> >
+> >Reviewed-by: Aravind Iddamsetty <aravind.iddamsetty@intel.com>
+> >Signed-off-by: Tejas Upadhyay <tejas.upadhyay@intel.com>
+> >---
+> > drivers/gpu/drm/xe/xe_device_types.h |  6 ++++++
+> > drivers/gpu/drm/xe/xe_mmio.c         |  1 +
+> > drivers/gpu/drm/xe/xe_tile_sysfs.c   | 19 +++++++++++++++++++
+> > 3 files changed, 26 insertions(+)
+> >
+> >diff --git a/drivers/gpu/drm/xe/xe_device_types.h
+> >b/drivers/gpu/drm/xe/xe_device_types.h
+> >index f2d4298fb0a1..dada97352330 100644
+> >--- a/drivers/gpu/drm/xe/xe_device_types.h
+> >+++ b/drivers/gpu/drm/xe/xe_device_types.h
+> >@@ -108,6 +108,12 @@ struct xe_tile {
+> >
+> > 	/** @mem: memory management info for tile */
+> > 	struct {
+> >+		/**
+> >+		 * @actual_physical_mem: Track actual VRAM size
+> >+		 * including stolen mem for tile
+> >+		 */
+> >+		resource_size_t actual_physical_mem;
+>=20
+> should probably be inside the vram struct below? Then you probably need t=
+o
+> tweak this doc
+>=20
+> 	/** @size: size of VRAM. */
+> 	resource_size_t size;
+>=20
+> to explain how these are different... i.e. that while your physical_vram_=
+size
+> doesn't exclude anything, "size" excludes reserved portions (e.g. the sto=
+len
+> memory).  So...
+>=20
+> vram {
+> 	io_size - vram that can be accessed by the CPU through the io
+> mapping
+> 	size - probably rename to "usable_size"?, the total vram minus
+> reserved
+> 	       portions
+> 	actual_physical_size - ...
+> }
 
-As far as I know, tag that we can add is as below :
+I agree, name "size" confused me when I looked at vram code logic first, us=
+able_size give more meaning to it. I will change accordingly, thanks!
 
-Tested-by: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
-Testcase: https://patchwork.freedesktop.org/series/119801/
-
-I will add this.
-
-Thanks,
 Tejas
 >=20
-> > -----Original Message-----
-> > From: Intel-xe <intel-xe-bounces@lists.freedesktop.org> On Behalf Of
-> > Tejas Upadhyay
-> > Sent: 22 June 2023 12:58
-> > To: intel-xe@lists.freedesktop.org
-> > Subject: [Intel-xe] [PATCH V4 0/3] drm/xe: Add sysfs entry for tile
-> > and relate it to GTs
+> Lucas De Marchi
+>=20
+> >+
+> > 		/**
+> > 		 * @vram: VRAM info for tile.
+> > 		 *
+> >diff --git a/drivers/gpu/drm/xe/xe_mmio.c
+> >b/drivers/gpu/drm/xe/xe_mmio.c index f1336803b915..4bb8e8c3080e
+> 100644
+> >--- a/drivers/gpu/drm/xe/xe_mmio.c
+> >+++ b/drivers/gpu/drm/xe/xe_mmio.c
+> >@@ -277,6 +277,7 @@ int xe_mmio_probe_vram(struct xe_device *xe)
+> > 		if (err)
+> > 			return err;
 > >
-> > With the separation of xe_tile and xe_gt, We now consider a PCI device
-> > (xe_device) to contain one or more tiles (struct xe_tile).
-> > Each tile will contain one or more GTs (struct xe_gt).
+> >+		tile->mem.actual_physical_mem =3D tile_size;
+> > 		tile->mem.vram.io_start =3D xe->mem.vram.io_start +
+> tile_offset;
+> > 		tile->mem.vram.io_size =3D min_t(u64, vram_size, io_size);
 > >
-> > Sysfs entries also needs to be aligned as follows:
+> >diff --git a/drivers/gpu/drm/xe/xe_tile_sysfs.c
+> >b/drivers/gpu/drm/xe/xe_tile_sysfs.c
+> >index 386c6accd4dd..6b559e2f2f7b 100644
+> >--- a/drivers/gpu/drm/xe/xe_tile_sysfs.c
+> >+++ b/drivers/gpu/drm/xe/xe_tile_sysfs.c
+> >@@ -20,6 +20,20 @@ static struct kobj_type xe_tile_sysfs_kobj_type =3D {
+> > 	.sysfs_ops =3D &kobj_sysfs_ops,
+> > };
 > >
-> > drm/xe: Add sysfs entry per tile - Adds tile sysfs infrastructure
-> > drm/xe: Add GTs under respective tile sysfs - Relates GTs to each tile
-> > sysfs
-> > drm/xe: Add sysfs entry to report per tile memory size - Reports
-> > actual physical memory per respective tile
+> >+static ssize_t
+> >+physical_vram_size_bytes_show(struct device *kdev, struct
+> device_attribute *attr,
+> >+			      char *buf)
+> >+{
+> >+	struct xe_tile *tile =3D kobj_to_tile(&kdev->kobj);
+> >+
+> >+	return sysfs_emit(buf, "%llu\n", tile->mem.actual_physical_mem); }
+> >+
+> >+static DEVICE_ATTR_RO(physical_vram_size_bytes);
+> >+
+> >+static const struct attribute *physical_memsize_attr =3D
+> >+	&dev_attr_physical_vram_size_bytes.attr;
+> >+
+> > static void tile_sysfs_fini(struct drm_device *drm, void *arg)  {
+> > 	struct xe_tile *tile =3D arg;
+> >@@ -50,6 +64,11 @@ void xe_tile_sysfs_init(struct xe_tile *tile)
 > >
-> > Sysfs entries will be as follows:
-> > cat /sys/class/drm/card1/device/tileN/physical_vram_size_bytes
+> > 	tile->sysfs =3D &kt->base;
 > >
-> > V4 :
-> >    - %s/addr_range/physical_vram_size_byes, make it
-> >      user readable name - Joonas/Aravind
-> >    - Display in bytes - Joonas/Aravind
-> >    - Reorder headers and modify s/LMEM/VRAM - Matt/Aravind
-> > V3 :
-> >    - Make tile_sysfs_init return void and warn for errors
-> >    - Exclude DG1 as it does not have TILE_ADDR_RANGE reg
-> >    - Use sysfs_create_files -> sysfs_create_file
-> > V2 :
-> >    - Address review comments
+> >+	if (IS_DGFX(xe) && xe->info.platform !=3D XE_DG1 &&
+> >+	    sysfs_create_file(tile->sysfs, physical_memsize_attr))
+> >+		drm_warn(&xe->drm,
+> >+			 "Sysfs creation to read addr_range per tile failed\n");
+> >+
+> > 	err =3D drmm_add_action_or_reset(&xe->drm, tile_sysfs_fini, tile);
+> > 	if (err) {
+> > 		drm_warn(&xe->drm, "%s: drmm_add_action_or_reset
+> failed, err: %d\n",
+> >--
+> >2.25.1
 > >
-> > Signed-off-by: Tejas Upadhyay <tejas.upadhyay@intel.com>
-> >
-> > Tejas Upadhyay (3):
-> >   drm/xe: Add sysfs entry for tile
-> >   drm/xe: Add GTs under respective tile sysfs
-> >   drm/xe: Add sysfs entry to report per tile memory size
-> >
-> >  drivers/gpu/drm/xe/Makefile              |  1 +
-> >  drivers/gpu/drm/xe/xe_device_types.h     |  9 +++
-> >  drivers/gpu/drm/xe/xe_gt_sysfs.c         |  4 +-
-> >  drivers/gpu/drm/xe/xe_mmio.c             |  1 +
-> >  drivers/gpu/drm/xe/xe_tile.c             |  3 +
-> >  drivers/gpu/drm/xe/xe_tile.h             |  2 +
-> >  drivers/gpu/drm/xe/xe_tile_sysfs.c       | 78 ++++++++++++++++++++++++
-> >  drivers/gpu/drm/xe/xe_tile_sysfs.h       | 19 ++++++
-> >  drivers/gpu/drm/xe/xe_tile_sysfs_types.h | 27 ++++++++
-> >  9 files changed, 142 insertions(+), 2 deletions(-)  create mode
-> > 100644 drivers/gpu/drm/xe/xe_tile_sysfs.c
-> >  create mode 100644 drivers/gpu/drm/xe/xe_tile_sysfs.h
-> >  create mode 100644 drivers/gpu/drm/xe/xe_tile_sysfs_types.h
-> >
-> > --
-> > 2.25.1
-
