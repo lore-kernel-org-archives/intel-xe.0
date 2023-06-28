@@ -4,47 +4,45 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id E8094C001DD
-	for <intel-xe@archiver.kernel.org>; Wed, 28 Jun 2023 21:41:46 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 95CAFEB64DA
+	for <intel-xe@archiver.kernel.org>; Wed, 28 Jun 2023 21:41:45 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D869D10E3B6;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1AA3410E3AC;
 	Wed, 28 Jun 2023 21:41:45 +0000 (UTC)
 Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id AA07210E39D
- for <intel-xe@lists.freedesktop.org>; Wed, 28 Jun 2023 21:41:38 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 11E8510E0F5
+ for <intel-xe@lists.freedesktop.org>; Wed, 28 Jun 2023 21:41:37 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
  t=1687988498; x=1719524498;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=if5IpnrcRjrzwhUS8Fjh5WFoJtO43vhStE6lKcnBmU8=;
- b=cHxQUmwssFEGiQQK16eXoBH82ZEa442G8YY+PLMmUhK+WuIV9vySxg/R
- TEdhTMvZbXIfVPLa+0dTg4j+wCqE+Gdi4AEN3N0cLEaJoz27dqB9SpMLp
- jUkTy7re896leZXSPz+9CT7PK3A1OpR6FzCuPxa9KXxPNnvFaIpwyTKyl
- ubkYQSzCbAaMmzlAbbW1jMz947MDHu4Ra1BolgydrUnVNbpSrnmTPDaN2
- eqWVgcZ4eKGIyYcx7kgsvjGOF3kh2d5KSU4zosyt9+m7JU5cVdWyKUuy+
- Df7SB/5ZpUVLm7F6SPURFvRF1v+xmGoik+iUZGAlj9eMqZdtQwl63uSj8 g==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10755"; a="351760089"
-X-IronPort-AV: E=Sophos;i="6.01,166,1684825200"; d="scan'208";a="351760089"
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=0+4hh3IP5NDC98TKZ+cG4oRczM5akxIBsqNjtTo5gOU=;
+ b=ShNPSwtL+3+jpokWnl5jLqHCyduujFBAk73QOeSq9TcA221AtmO+radP
+ uMgoqx3Nau7AaSgyPYEkzSJlYp6CF1D8dmk63nIbE4LfdNxlgsV/hEbqx
+ LOA15t3mqCHRvvJmIxUTxfW6f7PRogpReCElBe8oq+goyIo7oiZd/WMKH
+ yk2DZqcgCKojKQ4tvmQDnFjC3sX/xnJya1KzWu9yeTYN+YtWHkls+6Ik0
+ pOzlPbwQDj3759bHVLUuWW0+SHnAV+Fok6AKhCy6kC55eiL4ar7ok7Aoo
+ okoq9A191qdEIdW1yJROvSx9FQKhRrm/97nboJEkD5rVyEDkKFJHtfw3F g==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10755"; a="351760084"
+X-IronPort-AV: E=Sophos;i="6.01,166,1684825200"; d="scan'208";a="351760084"
 Received: from orsmga007.jf.intel.com ([10.7.209.58])
  by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  28 Jun 2023 14:41:14 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10755"; a="711183689"
-X-IronPort-AV: E=Sophos;i="6.01,166,1684825200"; d="scan'208";a="711183689"
+X-IronPort-AV: E=McAfee;i="6600,9927,10755"; a="711183680"
+X-IronPort-AV: E=Sophos;i="6.01,166,1684825200"; d="scan'208";a="711183680"
 Received: from lstrano-desk.jf.intel.com ([10.24.89.184])
  by orsmga007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 28 Jun 2023 14:41:14 -0700
+ 28 Jun 2023 14:41:13 -0700
 From: Matthew Brost <matthew.brost@intel.com>
 To: <intel-xe@lists.freedesktop.org>
-Date: Wed, 28 Jun 2023 14:41:22 -0700
-Message-Id: <20230628214127.870717-5-matthew.brost@intel.com>
+Date: Wed, 28 Jun 2023 14:41:18 -0700
+Message-Id: <20230628214127.870717-1-matthew.brost@intel.com>
 X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20230628214127.870717-1-matthew.brost@intel.com>
-References: <20230628214127.870717-1-matthew.brost@intel.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-xe] [PATCH 4/9] maple_tree: split up MA_STATE() macro
+Subject: [Intel-xe] [PATCH 0/9] GPUVA with no uAPI changes
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -56,71 +54,57 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Cc: Danilo Krummrich <dakr@redhat.com>
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-From: Danilo Krummrich <dakr@redhat.com>
+The patches from [1] rebased + address review feedback which do not
+include uAPI changes. 
 
-Split up the MA_STATE() macro such that components using the maple tree
-can easily inherit from struct ma_state and build custom tree walk
-macros to hide their internals from users.
+[1] https://patchwork.freedesktop.org/series/117156/
 
-Example:
+Danilo Krummrich (3):
+  maple_tree: split up MA_STATE() macro
+  drm: manager to keep track of GPUs VA mappings
+  drm: debugfs: provide infrastructure to dump a DRM GPU VA space
 
-struct sample_iterator {
-        struct ma_state mas;
-        struct sample_mgr *mgr;
-};
+Matthew Brost (6):
+  drm/xe: Ban a VM if rebind worker hits an error
+  drm/xe: Add helpers to hide struct xe_vma internals
+  maple_tree: Export mas_preallocate
+  drm/xe: Remove __xe_vm_bind forward declaration
+  drm/xe: Port Xe to GPUVA
+  drm/xe: Avoid doing rebinds
 
-\#define SAMPLE_ITERATOR(name, __mgr, start)                    \
-        struct sample_iterator name = {                         \
-                .mas = MA_STATE_INIT(&(__mgr)->mt, start, 0),   \
-                .mgr = __mgr,                                   \
-        }
+ Documentation/gpu/drm-mm.rst                |   42 +
+ drivers/gpu/drm/Makefile                    |    1 +
+ drivers/gpu/drm/drm_debugfs.c               |   41 +
+ drivers/gpu/drm/drm_gem.c                   |    3 +
+ drivers/gpu/drm/drm_gpuva_mgr.c             | 1971 ++++++++++++++++++
+ drivers/gpu/drm/xe/tests/xe_migrate.c       |    2 +-
+ drivers/gpu/drm/xe/xe_bo.c                  |   11 +-
+ drivers/gpu/drm/xe/xe_device.c              |    2 +-
+ drivers/gpu/drm/xe/xe_engine.c              |   13 +
+ drivers/gpu/drm/xe/xe_exec.c                |    8 +-
+ drivers/gpu/drm/xe/xe_gt_pagefault.c        |   23 +-
+ drivers/gpu/drm/xe/xe_gt_tlb_invalidation.c |   14 +-
+ drivers/gpu/drm/xe/xe_migrate.c             |   10 +-
+ drivers/gpu/drm/xe/xe_pt.c                  |  129 +-
+ drivers/gpu/drm/xe/xe_pt.h                  |    2 +-
+ drivers/gpu/drm/xe/xe_trace.h               |   15 +-
+ drivers/gpu/drm/xe/xe_vm.c                  | 1973 ++++++++++---------
+ drivers/gpu/drm/xe/xe_vm.h                  |  104 +-
+ drivers/gpu/drm/xe/xe_vm_madvise.c          |   91 +-
+ drivers/gpu/drm/xe/xe_vm_types.h            |  175 +-
+ include/drm/drm_debugfs.h                   |   25 +
+ include/drm/drm_drv.h                       |    6 +
+ include/drm/drm_gem.h                       |   52 +
+ include/drm/drm_gpuva_mgr.h                 |  682 +++++++
+ include/linux/maple_tree.h                  |    7 +-
+ lib/maple_tree.c                            |    1 +
+ 26 files changed, 4167 insertions(+), 1236 deletions(-)
+ create mode 100644 drivers/gpu/drm/drm_gpuva_mgr.c
+ create mode 100644 include/drm/drm_gpuva_mgr.h
 
-\#define sample_iter_for_each_range(it__, entry__, end__) \
-        mas_for_each(&(it__).mas, entry__, end__)
-
---
-
-struct sample *sample;
-SAMPLE_ITERATOR(si, min);
-
-sample_iter_for_each_range(&si, sample, max) {
-        frob(mgr, sample);
-}
-
-Signed-off-by: Danilo Krummrich <dakr@redhat.com>
----
- include/linux/maple_tree.h | 7 +++++--
- 1 file changed, 5 insertions(+), 2 deletions(-)
-
-diff --git a/include/linux/maple_tree.h b/include/linux/maple_tree.h
-index 1fadb5f5978b..87d55334f1c2 100644
---- a/include/linux/maple_tree.h
-+++ b/include/linux/maple_tree.h
-@@ -423,8 +423,8 @@ struct ma_wr_state {
- #define MA_ERROR(err) \
- 		((struct maple_enode *)(((unsigned long)err << 2) | 2UL))
- 
--#define MA_STATE(name, mt, first, end)					\
--	struct ma_state name = {					\
-+#define MA_STATE_INIT(mt, first, end)					\
-+	{								\
- 		.tree = mt,						\
- 		.index = first,						\
- 		.last = end,						\
-@@ -435,6 +435,9 @@ struct ma_wr_state {
- 		.mas_flags = 0,						\
- 	}
- 
-+#define MA_STATE(name, mt, first, end)					\
-+	struct ma_state name = MA_STATE_INIT(mt, first, end)
-+
- #define MA_WR_STATE(name, ma_state, wr_entry)				\
- 	struct ma_wr_state name = {					\
- 		.mas = ma_state,					\
 -- 
 2.34.1
 
