@@ -4,59 +4,55 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3C453EB64DA
-	for <intel-xe@archiver.kernel.org>; Wed, 28 Jun 2023 11:13:16 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id F1013EB64DA
+	for <intel-xe@archiver.kernel.org>; Wed, 28 Jun 2023 11:16:32 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E213C10E0ED;
-	Wed, 28 Jun 2023 11:13:15 +0000 (UTC)
-Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5E8DC10E0ED
- for <intel-xe@lists.freedesktop.org>; Wed, 28 Jun 2023 11:13:13 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9828410E0ED;
+	Wed, 28 Jun 2023 11:16:32 +0000 (UTC)
+Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 330D710E0ED
+ for <intel-xe@lists.freedesktop.org>; Wed, 28 Jun 2023 11:16:31 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1687950793; x=1719486793;
+ t=1687950991; x=1719486991;
  h=from:to:subject:date:message-id:references:in-reply-to:
  content-transfer-encoding:mime-version;
- bh=Pj7Zj+vxxH4MsgeeLOiCuNiStTf8mchCEBAGY3VetM8=;
- b=cllexNO6z/9TZMivcZSs+HAHceBppGRMX2/HvK7zppwrVJjnvM+8FA9G
- BhQqYV+NEMhb4LFWKzYE6XHzRfDH8UQlzrmj+WkRy+Oyyv3w6LILj6/O7
- McTJ8J8dWZTzObBqFV3DgHrywPUJBpPvVcobdUF4dZ5ATG2Zxgc2pFQbS
- nsog2kIpexXTxkkVZ/9H7ZPhMnXE3IpN9IoWBjsEztHY6+0mXtD94Ll1+
- aV7fxsIWQYXfozTP3/lV4tBHGApY2mRg7xjQ0RVOAwW1LBB+IzQL2JSEf
- G3OyUshxpKrANGW4Kq3oeKk3v4Bf1MU1sbJ3Rkxk+rS2Z+OiwSrFAtTsx A==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10754"; a="359311328"
-X-IronPort-AV: E=Sophos;i="6.01,165,1684825200"; d="scan'208";a="359311328"
-Received: from fmsmga004.fm.intel.com ([10.253.24.48])
- by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 28 Jun 2023 04:13:11 -0700
+ bh=obRvZdD8szjic2yR/+bL5sBD9TZv4VU5+Sxw31Yaagg=;
+ b=INitjAAppJZ2XcMoFMSOxHsBlXI39Ob302Ol3mE3P294/rEeFuBHQtA4
+ xHpvK/IUo4pIHWhqOgUhMOpvv0mJTgB1LHCPht9JeuiU2rAHnyZidVFRd
+ AJYJWJPWhnnB6QqhMBRgVongIM97y7Nh5eMnmJkVwI9vrfVmdZb3ayKYf
+ qLhxEhZ8qQmwI1rSzdQMRFSkf/xlliW2AKzNcJ5nWnJV2Eg15IghiaR2M
+ lcRWLnRiNbqagihPqTrqEEfPzjytxkWpdnglGqZV6HaUryTW+eRI5Puq8
+ LSeHxlUSqQfHScPAJSLK1IBzRfZOFwFBjusODYSQ7KHBUTdkavypxT+c1 A==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10754"; a="341402247"
+X-IronPort-AV: E=Sophos;i="6.01,165,1684825200"; d="scan'208";a="341402247"
+Received: from orsmga005.jf.intel.com ([10.7.209.41])
+ by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 28 Jun 2023 04:16:29 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10754"; a="787004763"
-X-IronPort-AV: E=Sophos;i="6.01,165,1684825200"; d="scan'208";a="787004763"
-Received: from orsmsx603.amr.corp.intel.com ([10.22.229.16])
- by fmsmga004.fm.intel.com with ESMTP; 28 Jun 2023 04:13:11 -0700
-Received: from orsmsx612.amr.corp.intel.com (10.22.229.25) by
- ORSMSX603.amr.corp.intel.com (10.22.229.16) with Microsoft SMTP Server
+X-IronPort-AV: E=McAfee;i="6600,9927,10754"; a="891006508"
+X-IronPort-AV: E=Sophos;i="6.01,165,1684825200"; d="scan'208";a="891006508"
+Received: from fmsmsx601.amr.corp.intel.com ([10.18.126.81])
+ by orsmga005.jf.intel.com with ESMTP; 28 Jun 2023 04:16:29 -0700
+Received: from fmsmsx610.amr.corp.intel.com (10.18.126.90) by
+ fmsmsx601.amr.corp.intel.com (10.18.126.81) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.27; Wed, 28 Jun 2023 04:13:11 -0700
-Received: from orsmsx610.amr.corp.intel.com (10.22.229.23) by
- ORSMSX612.amr.corp.intel.com (10.22.229.25) with Microsoft SMTP Server
+ 15.1.2507.27; Wed, 28 Jun 2023 04:16:28 -0700
+Received: from fmsedg601.ED.cps.intel.com (10.1.192.135) by
+ fmsmsx610.amr.corp.intel.com (10.18.126.90) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.27; Wed, 28 Jun 2023 04:13:10 -0700
-Received: from ORSEDG601.ED.cps.intel.com (10.7.248.6) by
- orsmsx610.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.27 via Frontend Transport; Wed, 28 Jun 2023 04:13:10 -0700
-Received: from NAM04-DM6-obe.outbound.protection.outlook.com (104.47.73.42) by
- edgegateway.intel.com (134.134.137.102) with Microsoft SMTP Server
+ 15.1.2507.27 via Frontend Transport; Wed, 28 Jun 2023 04:16:28 -0700
+Received: from NAM10-MW2-obe.outbound.protection.outlook.com (104.47.55.102)
+ by edgegateway.intel.com (192.55.55.70) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2507.27; Wed, 28 Jun 2023 04:13:10 -0700
+ 15.1.2507.27; Wed, 28 Jun 2023 04:16:28 -0700
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=Fb3ukDmWORYNG/DwrBj/6j//qUKTGLfvAmQbSjCN7GYnrEf0L5XLQLwtN9hF7g5eNyaOt8Hp2I2Ml/eaTa4fxmqnJLWqYZ/4ioH9rDNKyuJre0UCw68jNoze/nHAuM6hS7QuG44PbG1C0SBe/A83+m663HljhgSQzKqN1oZgYGNuiumdnra4K+TkZd3OOxru/CkoY4wNjcFhIBXNWe5ope9WDG5BfKRvy+Gc4kfIBNS7lSY0teu2UlXMR8DQqdBD8sulebbeRvweB6kGkWu7eONCCPVhCE09Dh5N2A5tG0efhKa3d4nFkIjYAkGd7GfF8a0cPnHoSWoCDutA2Hz0fg==
+ b=aXZAaQwQoTXmhLvxPKQlUdOxZKWX+JflobhhrsX3qUScj8ERQ+kgCno/7CduNK3lb/HhnpuTrzBwouDQhwXQ5e3gmDNgi0yI5FF85/aE7gn3j5panaXo7e3dxz9z05zSyoMWG4HapNcnSp6cmGB6WmS3Cx0N7/ubGb4h78VZ46hHjq7QTek9gLT8WPSDCnYhU8ZIT+kkOiaP+oOZVshwX7HZ/ujm0PRJDaYIbn6Q//I+xrA5vzAx0q4hQqzozcTjHRR5KgHR3zEpeZueF6UP9cRJv7mwOOg0Cuwbioi0O08p3w9MS8e9uQKUJtmsETtC3pH01PUb3+stgjvrOQclyA==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=we4Xl9zdVAPQwxNm411I9uuDo4whCePi6H5FLWPfNcE=;
- b=Vam14/od+31ZEK5Iu5boJxHny/4EM1M3pze+zomn5o2wFQ6bK62/pI3vckhLg2eqJdyClokITYhnqmRH3iD1GdBi53x8V0OMMki779cTJOExQoX945vbRAn0CPwUfTDufxIpSdNT5Pee6TKdpDTkGv6JtiRROxmLD6ZhP22Rbop084JT74+wIdl945S34Fk91fyYkzx8P7ZD1+bSGaFPbtgGU1m0WYW/u3cCAofPrnxDyt6YSsueiVJEJaU3BB2SI6ee/qe5WWgZ5hS9T4S6Q3b9KXA1ipfeihzPAdEPV0o2xUdEO49ecfWZ+sAZXhp63iilJ+iDZoy8stjYIZnvJQ==
+ bh=wY6YKla/dHAXnyU+dn+wxF3lCY/Cy3eeAB5KUMlwTk4=;
+ b=n+cvvCVbtytoxoGXpNb7snNatFGs8bi8/7rVS1Mzi5TSpaWC0tHlquLxk3veC3EgdMo6/VWdQ2ll/VWQIjEGVvpzcuDH3B710CcBnrSW+MS7iF+lqBOnT2qWoUjiHUNJGcIOzto3Fu69rSFdas3YMW8MVpjA1PvXh/uAleLqE864SlhRQxj5RHraaM5uKX1SXLmH5hlm2cETRvvwOrltTogP4hj2WCZMM65jpveNriM0VnsRQ2XUOniBsRUUaWy0YS/jUCypV6VFNVUXr7jl56j/Is/GnHmKc+dIi07eu4+xRzLclnL/e474gbsoJu7aUvwocig82yawL87hISYYwA==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
  dkim=pass header.d=intel.com; arc=none
@@ -64,23 +60,23 @@ Received: from SJ1PR11MB6204.namprd11.prod.outlook.com (2603:10b6:a03:459::19)
  by SA2PR11MB4908.namprd11.prod.outlook.com (2603:10b6:806:112::15)
  with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6521.26; Wed, 28 Jun
- 2023 11:13:08 +0000
+ 2023 11:16:26 +0000
 Received: from SJ1PR11MB6204.namprd11.prod.outlook.com
  ([fe80::2bfb:7d63:f348:1a4]) by SJ1PR11MB6204.namprd11.prod.outlook.com
  ([fe80::2bfb:7d63:f348:1a4%5]) with mapi id 15.20.6521.023; Wed, 28 Jun 2023
- 11:13:08 +0000
+ 11:16:26 +0000
 From: "Upadhyay, Tejas" <tejas.upadhyay@intel.com>
 To: "Ghimiray, Himal Prasad" <himal.prasad.ghimiray@intel.com>,
  "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>
-Thread-Topic: [Intel-xe] [PATCH V2 2/6] drm/xe: Add sysfs for default engine
- scheduler properties
-Thread-Index: AQHZqBZ+x/PUBE+RIUyU0p84eoQabK+f3e+AgAA0hvA=
-Date: Wed, 28 Jun 2023 11:13:07 +0000
-Message-ID: <SJ1PR11MB62045422AFE55ACB52AD42B88124A@SJ1PR11MB6204.namprd11.prod.outlook.com>
+Thread-Topic: [Intel-xe] [PATCH V2 1/6] drm/xe: Add sysfs entries for engines
+ under its GT
+Thread-Index: AQHZqBZ8zZjSlqkzQ0WwTXAbzbRn16+fy5wAgABHxYA=
+Date: Wed, 28 Jun 2023 11:16:25 +0000
+Message-ID: <SJ1PR11MB6204EF6B36C83E3B851DDD548124A@SJ1PR11MB6204.namprd11.prod.outlook.com>
 References: <20230626101648.3480340-1-tejas.upadhyay@intel.com>
- <20230626101648.3480340-3-tejas.upadhyay@intel.com>
- <MW4PR11MB7056A00067B1C823BC026482B324A@MW4PR11MB7056.namprd11.prod.outlook.com>
-In-Reply-To: <MW4PR11MB7056A00067B1C823BC026482B324A@MW4PR11MB7056.namprd11.prod.outlook.com>
+ <20230626101648.3480340-2-tejas.upadhyay@intel.com>
+ <MW4PR11MB7056C42A9E92C8047321835BB324A@MW4PR11MB7056.namprd11.prod.outlook.com>
+In-Reply-To: <MW4PR11MB7056C42A9E92C8047321835BB324A@MW4PR11MB7056.namprd11.prod.outlook.com>
 Accept-Language: en-US
 Content-Language: en-US
 X-MS-Has-Attach: 
@@ -89,58 +85,58 @@ authentication-results: dkim=none (message not signed)
  header.d=none;dmarc=none action=none header.from=intel.com;
 x-ms-publictraffictype: Email
 x-ms-traffictypediagnostic: SJ1PR11MB6204:EE_|SA2PR11MB4908:EE_
-x-ms-office365-filtering-correlation-id: 12a2dce7-0ab4-4fca-1b95-08db77c8a6ad
+x-ms-office365-filtering-correlation-id: c79ed2f6-3205-47a5-2738-08db77c91cec
 x-ms-exchange-senderadcheck: 1
 x-ms-exchange-antispam-relay: 0
 x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: 5irIv8jrc9GeeoYgi6AVxq4DrW+uAXUfQIWMWKqbvNXJmUuahgZB1u8C9g8D0yjVG8UedkluxjW1wXBQ82E8g07xl82zC1/DwcjKSB9b8v1JJvKjwqYYcu7/I45WBSJKWtgO62zu7avki8n39NyNMxbV3tbObVDUqYArioMOF11Suix5oRbvKpi41/cQ2lLl3v/iWV3fsw4+i5hL/wV16bGsULqvx0Sjb9/yfei83/wGUWgY9sIkC8NLjX06P+Hr4LtdHRCL6CeXgCG6cxb0v7P7AEnU3QL/jQ8mTqWmxtxt94aI9GpQbZvM0e7yssiR8z/X6Q9mIOpRIkpHB0dDKTZQztPzzgJdET/NXyvwOF4BH28fkf6Qdw4wfC9daUO2pLub+ZUt1R62fpUA0X07Hwsz9wM2M68fv7HAnPmZP8LR3uWXiHjvi0F33IDsEWO3zYIAfMQs05VvLPXcTmmLQqhF8yl1rBGqpkhFp5Rd1oQWKZZbuqhdoZ5iPyQSKil5OR2ZBoQ0Ow/NGSqe/JzVcjFmUxnhrOa9abUhN543n7a0xR/fqxe7a/6vuUyp9xNtd1rMz2nz0wu9HsFTiWDd/TECVFBmNfyyri1TrXYpUzi/pZmV6ki/vmxj0ADeS0FS
+x-microsoft-antispam-message-info: C3FJMz+YZAobRIPSs8qQmqbPPrw+XGmzrav8xmiG1lyB+veUxkLyurbvT/14mkdw1wdvEqXXYlMaH+H4UqoeXdf0BfMvFyAGmfDy5oqThKw3i9k6C4oM2HDyESQXbKQGEaI+b+ytm4EyPYF66tuBLYAux35JtNt39G82SCXtPpBeB85f9uE4oyS1vJaEKq64p7CinWNE7QIaN+07VPOHDd1UhZn/TAQ0w7UtOsxvhthk5jz9zGlfZ+/rjfHr78wMw3lYadCPsRTF0kL9uNQ3rytOr6wcvrtmft6Mt67OhnaW5+UuBUKgKSHn1OQVbvGe8Uv3OLQ77ljYmnlGRw6m7acdKLiRW3N3EyhSAbW5B9w0v7JIwJRTs4Q4aCXf/awqHQN1J9OzysJvSTqmPOv0syXsbKzc9wfTZTUwWfK+gRtglEM+Nq4C+e4WnYPUidcgP/wG7EkNrD/QL2THq6iCLcyVM25ehSopFmIAGixDCq2uTYkot28vywH3leyHGASHGnT/UKFcuh8Vwym2OSxGlwVrlbo9+6aTB34SEkwWW59U7Fq3cYP6xpGilyPTCSvCCMPJ23d50wAioUcMdP3r1GJWnTEiw/9H/YkK5qn0Ns8=
 x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
  IPV:NLI; SFV:NSPM; H:SJ1PR11MB6204.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230028)(346002)(39860400002)(396003)(136003)(376002)(366004)(451199021)(66899021)(33656002)(38100700002)(30864003)(5660300002)(86362001)(41300700001)(66476007)(8936002)(66446008)(8676002)(38070700005)(64756008)(66556008)(316002)(122000001)(66946007)(76116006)(82960400001)(55016003)(478600001)(110136005)(52536014)(186003)(6506007)(71200400001)(53546011)(9686003)(26005)(7696005)(2906002)(83380400001);
+ SFS:(13230028)(346002)(39860400002)(396003)(136003)(376002)(366004)(451199021)(33656002)(38100700002)(5660300002)(86362001)(41300700001)(66476007)(8936002)(66446008)(8676002)(38070700005)(64756008)(66556008)(316002)(122000001)(66946007)(76116006)(82960400001)(55016003)(478600001)(110136005)(966005)(52536014)(186003)(6506007)(71200400001)(53546011)(9686003)(26005)(7696005)(2906002)(83380400001);
  DIR:OUT; SFP:1102; 
 x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?us-ascii?Q?3t61jh7A6xnWmrjKMO6sSv0nA+VH0G078ekzqXHnoNYkq/jPmvsufLW34HlA?=
- =?us-ascii?Q?KCWw5hYsAkaoW631EmT5iRQ5O94Iw80/f1+whmmMFqdPt4LxyILXdEGnH7Qh?=
- =?us-ascii?Q?KtYN2AKlot2zc8DcLnZgHTHYKpPfOCZEMipEYNgsQcTw/6wQGgpd7vF2tRGK?=
- =?us-ascii?Q?nPotFAK41jFMq4SeHMhYAn53ch6ZdFvfEWSj3mHECB1I8J2/Ye7aozICwrbZ?=
- =?us-ascii?Q?/Dp1jm/mWUBsJGBu3VWXbun8EdEY2wlXx/73ucJU63kBCdyCJ3JfjxfPruP+?=
- =?us-ascii?Q?AUQL1daxmULmB9aQvnMpnwTLrPNfuabuSvT8lFFr6oyd9IRTVLP8DyiB+FNL?=
- =?us-ascii?Q?fj9/v5yrZa4I1wxKzeRYo3aac/hZahTifTE6Fs8uvcC/Vu9hRCHbLCG1iuX+?=
- =?us-ascii?Q?Y3U23bEkkKZHzU9gOYR4fkHqzAq47/of6TxOPWkERW/PJF08z1bRo1OPK+zx?=
- =?us-ascii?Q?8EwuWkd91c/HZJHFtyMMtfll+WtRsWaAo7Ze8Mh/A1ZJK7cfiCmxBCcE5CTA?=
- =?us-ascii?Q?5SCwpb4OG0/kqjwN5UDwAcVQxeLA2dRqIbu1M82rnsvlZ4y889aVb2p2Smrt?=
- =?us-ascii?Q?C+NBYu7lAACwCXHromfJ+evP6Iu+6/TbL0E2Vt05vmV4swoikXxCdueAJ79L?=
- =?us-ascii?Q?wSf7xGN1KbyX8INhHx9GOzAWSvz25XotlBRzh08oQ6xgPH1RH2L0fvtzc298?=
- =?us-ascii?Q?hBhcnllS8zoO0PTUScEdNSAwLxwAiAgdOWG7SSGklp3HvZs6hSQKpMWSaq74?=
- =?us-ascii?Q?iw+FWQe1bm7I4ziQVl3K56n+3IXsFqiN3GaVTosz3b+i9p+Ntt3IQHOSF193?=
- =?us-ascii?Q?BTkSxaH7H9bW/R5kfZytaO9V2+5KX4AJtuYEvL/fZvcH+RhyDDdtkEBn6WdS?=
- =?us-ascii?Q?FZnssouCxj4lyruZcz8T+zqYKZiGZk9z5Ezz1oOqCGhrRUTSdjOOw0CLXWds?=
- =?us-ascii?Q?biYpWFSTrZAEbnXG+0aAYUL/sFZudACFi9AbOqHqxOg1zJucHtJz8irSeyM1?=
- =?us-ascii?Q?T5sfbD/ECJtxpdxbRCYUsPr+w5YNpKIPY3oWVE1fenX+DFiCb2QY8bqCt8nn?=
- =?us-ascii?Q?VxS6VbctMzFHidw3vVQHeBPgGnewsHC2qweikaILf5ynn3o585uuYvNLMsU3?=
- =?us-ascii?Q?uqcsxzIdS2fhTv+xPS2xa8V3bUYQ3r1S5WBT5ti+ieA+RuHDOcgMpzsd/foL?=
- =?us-ascii?Q?8noxaZ9JV8egYt6FvggxIWDfERrPldD8v6TVMnZsrte2KWlsgWGr2jaz+XrN?=
- =?us-ascii?Q?GzOa8cMIY8O/wRKoP/gO+XAzz8p6G0OfuNqagKAJct9IOYWllCcIOKpBRvvo?=
- =?us-ascii?Q?QVrxqYCzhthNCEjR4I+tmTfZRKp1sMCvS8NQ2nOWnOPOWLQ8so9F/zpWWu42?=
- =?us-ascii?Q?U/LQOB0tNMhSkPX7tdz6jlaoSY+XerITLjPCRdvK844JaySGFie5tMO08Hzj?=
- =?us-ascii?Q?yBafFhwaGDmMZS8pewxA7GUfI9DmlE8NLRHAFIy01lDlS3YVjthEOhNZGVuw?=
- =?us-ascii?Q?8uCzV3tFey37TJfh4xmTAUIdz5guvCjcvdjgNXa6zRLG6HfPRGcq9TEivRSC?=
- =?us-ascii?Q?DVwf1IkFB0wQT7NMHk0bV2D+/BSHaF0s+4fk3FCl?=
+x-ms-exchange-antispam-messagedata-0: =?us-ascii?Q?icgNWX3wMDNThetI2MOVjLYMYCOTx0/ruyjEpuafPS6PYEXi31bcvf/rBB3e?=
+ =?us-ascii?Q?veuwl0pG61txZxXCOpeu7uaVFNVo0+wVEEHv0ocSwMCTSurxTuW2UUTxdkp3?=
+ =?us-ascii?Q?og42k13He7DF7FeYyd2JkAIc6QTT9mpqytZh1fz3HqAlIgABQefsTmW1vOfb?=
+ =?us-ascii?Q?2i1oxTCvcE1RC3i1I5zO+iwFx0OzHlef4wIplqnKbP3JMuD51tnpz49qcVDN?=
+ =?us-ascii?Q?Wx390IkwZvZPif6NnyHdoMOjV1ucitTOKT/1KcgsccM12bABd+zaSs5isExM?=
+ =?us-ascii?Q?wft9tHvoAVq+AdKwMCPRcWuFSItEYmFqE3KYAsMA/ct4AnCAFDN3Rmb1GgQZ?=
+ =?us-ascii?Q?8q7HMdOKyM/lCBWlNDBjHuQG+Ja6tjW6MUmgWmXrTQLuLjKsxSUd2+8B/fPV?=
+ =?us-ascii?Q?PVvF1V2jeavgXRqt3O8SRvDayyMznWSDZ+2Vk9zUVvrIgupN8peMJMHWGfHV?=
+ =?us-ascii?Q?yy7cZK4fb8UP9gH05KPTkaTRb1L+RRcWvzxM+/N/FXAkSdfj40cYTDkE23xN?=
+ =?us-ascii?Q?AaKhWWPbYhTMrbJ5TZYQQAJ+3tg+y/AeMFK9/Lw45V+JedfSHosmosG4vn1s?=
+ =?us-ascii?Q?UIMC+yarGIpUsFvPoDpJKMW73O3+YM35r5qIlAWZ2USoojSWjSfu6hZdnWeh?=
+ =?us-ascii?Q?J6SO/uN9SVBXXVatVQcsW/CbcpkOgYIhXGy0JgRR7CtAaFERFxJdFYdMJBPY?=
+ =?us-ascii?Q?HH13xOU/17xgK+QgUZz7tbzG5q1BbrKwJoP+i7rcbj3slJX5IMKFV85HgI6B?=
+ =?us-ascii?Q?DVNzhIbqKyXHZyJdJQ7NtRPk26spuE7hbv1vEV/zb9OytwyyOUuKa6bXrFTa?=
+ =?us-ascii?Q?R0ICKv9iPhDovCDJHUOD8pXqC/pDjtKED7TMLJqjNUKMU40qgyGg75A42u+I?=
+ =?us-ascii?Q?boXaSPfb1lYpF77vpDmzfwIgOWRuzcLSc4M7fP4Lcl6qWFswICJqwz1p/lmz?=
+ =?us-ascii?Q?uzewju4t/DZLaJwEx3xZlO6Yj2cly9WNOXCXn/juu9bBGUcwk+F7ws9mi0Oc?=
+ =?us-ascii?Q?JRTQ0gQszBZXa/5r5iul8BVmd1hWbqKZylgTN0pP+I2tgVXP4F8K0p1Kuo3V?=
+ =?us-ascii?Q?gvwOUvjXuNWT1CeIkdIomor4Iy/rfn32c/G7WE6Mu1FCN/uQQNnqH2vETvWO?=
+ =?us-ascii?Q?yGoK6OwV38imuBm3RvlcoP4p1PmEuAcn/BLcy06g/P0yV1Y04fCuoS4E+6p6?=
+ =?us-ascii?Q?Jkolwmh7RKX3AXg5IUs4Dk6pFRn7Aq6VNpOuGAgZ/54evUWLhu6JOqw0/eL+?=
+ =?us-ascii?Q?Pl0tDk5zuI0cOtBnmMVXTXOm0GF0xCQmjdDcHwkwXc6c6iRarLuU4rLR06XQ?=
+ =?us-ascii?Q?ij36zjsXDPdinnqYpnHkf41tvCccxbG+2uW1YoKXUXX7lcVqslqBYThJk6T5?=
+ =?us-ascii?Q?+4417njI9WAyJnhv899O41GWfIZsCOZpzY72FPtyUzGeL1JhWJ6olP99w6uv?=
+ =?us-ascii?Q?he5OH7FqWOaiXDcUd1loTYL/r6QNNUzeWZPygiADIlU6QRh2lp/YP89FUG+z?=
+ =?us-ascii?Q?Ot4/HMkUXDQT46/Lke7aWrBKhiTH/mSAfSJzEtztfQmMq7g1GFhoryvGJpFN?=
+ =?us-ascii?Q?446wOYpLqtSzLhj77oWE8fb0Q1qkVWNr2b7uchWp?=
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: quoted-printable
 MIME-Version: 1.0
 X-MS-Exchange-CrossTenant-AuthAs: Internal
 X-MS-Exchange-CrossTenant-AuthSource: SJ1PR11MB6204.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 12a2dce7-0ab4-4fca-1b95-08db77c8a6ad
-X-MS-Exchange-CrossTenant-originalarrivaltime: 28 Jun 2023 11:13:07.6380 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: c79ed2f6-3205-47a5-2738-08db77c91cec
+X-MS-Exchange-CrossTenant-originalarrivaltime: 28 Jun 2023 11:16:25.9806 (UTC)
 X-MS-Exchange-CrossTenant-fromentityheader: Hosted
 X-MS-Exchange-CrossTenant-id: 46c98d88-e344-4ed4-8496-4ed7712e255d
 X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: cQ8RShfqpPU7T25mY2QUPYwaxXALZWoLVPezT1TaUs7PWnTQ6kwI8VvRJpAtQ5xoXcohjhibmp5s3hhBaJ30d8OCe2ShiPXdcmYUW+tz3a0=
+X-MS-Exchange-CrossTenant-userprincipalname: rj4JuO7O3c3p83EN1B9NpkdxX8DO7ShU/qNBFAcWdww84/PVz38NBP8wdDXniyqbjdZLVpBVQ7z/3nv0ap5tmBKFip+yQvZm5ED2cqzy34s=
 X-MS-Exchange-Transport-CrossTenantHeadersStamped: SA2PR11MB4908
 X-OriginatorOrg: intel.com
-Subject: Re: [Intel-xe] [PATCH V2 2/6] drm/xe: Add sysfs for default engine
- scheduler properties
+Subject: Re: [Intel-xe] [PATCH V2 1/6] drm/xe: Add sysfs entries for engines
+ under its GT
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -159,14 +155,13 @@ Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 > -----Original Message-----
 > From: Ghimiray, Himal Prasad <himal.prasad.ghimiray@intel.com>
-> Sent: Wednesday, June 28, 2023 1:34 PM
+> Sent: Wednesday, June 28, 2023 12:28 PM
 > To: Upadhyay, Tejas <tejas.upadhyay@intel.com>; intel-
 > xe@lists.freedesktop.org
-> Subject: RE: [Intel-xe] [PATCH V2 2/6] drm/xe: Add sysfs for default engi=
-ne
-> scheduler properties
+> Subject: RE: [Intel-xe] [PATCH V2 1/6] drm/xe: Add sysfs entries for engi=
+nes
+> under its GT
 >=20
-> Hi Tejas,
 >=20
 >=20
 > > -----Original Message-----
@@ -174,313 +169,180 @@ ne
 > > Tejas Upadhyay
 > > Sent: 26 June 2023 15:47
 > > To: intel-xe@lists.freedesktop.org
-> > Subject: [Intel-xe] [PATCH V2 2/6] drm/xe: Add sysfs for default
-> > engine scheduler properties
+> > Subject: [Intel-xe] [PATCH V2 1/6] drm/xe: Add sysfs entries for
+> > engines under its GT
 > >
-> > For each HW engine under GT we are adding defaults sysfs entry to list
-> > all engine scheduler properties and its default values. So that it
-> > will be easier for user to fetch default values of these properties any=
-time to
-> go back to default.
+> > Add engines sysfs directory under its GT and create sub directory for
+> > all engine class (note its not per instance) present on GT.
 > >
 > > For example,
-> > DUT# cat /sys/class/drm/card1/device/gt0/engines/bcs/.defaults/
-> > job_timeout_ms         preempt_timeout_us     timeslice_duration_us
-> >
-> > where,
-> > @job_timeout_ms: The time after which a job is removed from the
-> > scheduler.
-> > @preempt_timeout_us: How long to wait (in microseconds) for a
-> > preemption
-> >                      event to occur when submitting a new context.
-> > @timeslice_duration_us: Each context is scheduled for execution for the
-> >                         timeslice duration, before switching to the nex=
-t
-> >                         context.
-> >
-> > V2 :
-> >    - Use sysfs_create_files in this patch - Niranjana
-> >    - Handle prototype error for xe_add_engine_defaults - CI hooks
-> >    - Remove unused member sysfs_hwe - Niranjana
-> >
-> > Signed-off-by: Tejas Upadhyay <tejas.upadhyay@intel.com>
-> > ---
-> >  drivers/gpu/drm/xe/xe_engine.c          |  4 +-
-> >  drivers/gpu/drm/xe/xe_gt_sysfs.c        | 93 +++++++++++++++++++++++--
-> >  drivers/gpu/drm/xe/xe_gt_sysfs.h        |  5 ++
-> >  drivers/gpu/drm/xe/xe_gt_sysfs_types.h  | 13 ++++
-> >  drivers/gpu/drm/xe/xe_guc_submit.c      |  5 +-
-> >  drivers/gpu/drm/xe/xe_hw_engine.c       |  5 ++
-> >  drivers/gpu/drm/xe/xe_hw_engine_types.h |  9 +++
-> >  7 files changed, 125 insertions(+), 9 deletions(-)
-> >
-> > diff --git a/drivers/gpu/drm/xe/xe_engine.c
-> > b/drivers/gpu/drm/xe/xe_engine.c index 6e6b2913f766..33d1fbae560d
-> > 100644
-> > --- a/drivers/gpu/drm/xe/xe_engine.c
-> > +++ b/drivers/gpu/drm/xe/xe_engine.c
-> > @@ -54,8 +54,8 @@ static struct xe_engine *__xe_engine_create(struct
-> > xe_device *xe,
-> >  	INIT_LIST_HEAD(&e->multi_gt_link);
-> >
-> >  	/* FIXME: Wire up to configurable default value */
-> > -	e->sched_props.timeslice_us =3D 1 * 1000;
-> > -	e->sched_props.preempt_timeout_us =3D 640 * 1000;
-> > +	e->sched_props.timeslice_us =3D hwe->sched_props.timeslice_us;
-> > +	e->sched_props.preempt_timeout_us =3D
-> > +hwe->sched_props.preempt_timeout_us;
-> >
-> >  	if (xe_engine_is_parallel(e)) {
-> >  		e->parallel.composite_fence_ctx =3D
-> > dma_fence_context_alloc(1); diff --git
-> > a/drivers/gpu/drm/xe/xe_gt_sysfs.c
-> > b/drivers/gpu/drm/xe/xe_gt_sysfs.c
-> > index 7528cc723699..43be5efc1865 100644
-> > --- a/drivers/gpu/drm/xe/xe_gt_sysfs.c
-> > +++ b/drivers/gpu/drm/xe/xe_gt_sysfs.c
-> > @@ -12,6 +12,8 @@
-> >
-> >  #include "xe_gt.h"
-> >
-> IMO all these implementation should go to separate file for example
-> something like xe_engine_class_sysfs.c. It will be more cleaner.
+> > DUT# cat /sys/class/drm/cardX/device/gtN/engines/
+> There is series https://patchwork.freedesktop.org/series/118927/ which
+> brings in gt* under tile*.
+> Please address the sysfs path accordingly.
+>=20
+> And better to have directory name as engine_classes  instead of engines/
+> wherever applicable.
 
-Thanks for opinion, but as engines are part of GT it should be ok to put in=
- GT sysfs file.
+Till series is merged need to address based on gt dir only. As we don't kno=
+w which patch will get merge first.=20
 
 Thanks,
 Tejas
 >=20
-> > +int xe_add_engine_defaults(struct kobject *parent);
+> > bcs/ ccs/
+> >
+> > Signed-off-by: Tejas Upadhyay <tejas.upadhyay@intel.com>
+> > ---
+> >  drivers/gpu/drm/xe/xe_gt.c       |  6 +++
+> >  drivers/gpu/drm/xe/xe_gt_sysfs.c | 92
+> > ++++++++++++++++++++++++++++++++  drivers/gpu/drm/xe/xe_gt_sysfs.h
+> |
+> > 3 ++
+> >  3 files changed, 101 insertions(+)
+> >
+> > diff --git a/drivers/gpu/drm/xe/xe_gt.c b/drivers/gpu/drm/xe/xe_gt.c
+> > index 2458397ce8af..19c7964a064f 100644
+> > --- a/drivers/gpu/drm/xe/xe_gt.c
+> > +++ b/drivers/gpu/drm/xe/xe_gt.c
+> > @@ -319,6 +319,12 @@ static int gt_fw_domain_init(struct xe_gt *gt)
+> >  	if (err)
+> >  		goto err_force_wake;
+> >
+> > +	err =3D xe_gt_sysfs_engines(gt);
+> > +	if (err)
+> > +		drm_warn(&gt_to_xe(gt)->drm,
+> > +			 "failed to register engines sysfs directory, err: %d\n",
+> > +			 err);
 > > +
-> >  static void xe_gt_sysfs_kobj_release(struct kobject *kobj)  {
-> >  	kfree(kobj);
-> > @@ -32,22 +34,91 @@ static struct kobj_type kobj_xe_engine_type =3D {
-> >  	.sysfs_ops =3D &kobj_sysfs_ops
+> >  	err =3D xe_force_wake_put(gt_to_fw(gt), XE_FW_GT);
+> >  	XE_WARN_ON(err);
+> >  	xe_device_mem_access_put(gt_to_xe(gt));
+> > diff --git a/drivers/gpu/drm/xe/xe_gt_sysfs.c
+> > b/drivers/gpu/drm/xe/xe_gt_sysfs.c
+> > index c01cc689058c..7528cc723699 100644
+> > --- a/drivers/gpu/drm/xe/xe_gt_sysfs.c
+> > +++ b/drivers/gpu/drm/xe/xe_gt_sysfs.c
+> > @@ -22,6 +22,98 @@ static struct kobj_type xe_gt_sysfs_kobj_type =3D {
+> >  	.sysfs_ops =3D &kobj_sysfs_ops,
 > >  };
 > >
-> > -static struct kobject *
-> > -kobj_xe_engine(struct kobject *parent, char *name)
-> > +static ssize_t job_timeout_default(struct kobject *kobj,
-> > +				   struct kobj_attribute *attr, char *buf) {
-> > +	struct xe_hw_engine *hwe =3D kobj_to_hwe(kobj->parent);
-> > +
-> > +	return sprintf(buf, "%u\n", hwe->defaults.job_timeout_ms); }
-> > +
-> > +static struct kobj_attribute job_timeout_def =3D __ATTR(job_timeout_ms=
-,
-> > +0444, job_timeout_default, NULL);
-> > +
-> > +static ssize_t timeslice_default(struct kobject *kobj,
-> > +				 struct kobj_attribute *attr, char *buf) {
-> > +	struct xe_hw_engine *hwe =3D kobj_to_hwe(kobj->parent);
-> > +
-> > +	return sprintf(buf, "%u\n", hwe->defaults.timeslice_us); }
-> > +
-> > +static struct kobj_attribute timeslice_duration_def =3D
-> > +__ATTR(timeslice_duration_us, 0444, timeslice_default, NULL);
-> > +
-> > +static ssize_t preempt_timeout_default(struct kobject *kobj,
-> > +				       struct kobj_attribute *attr,
-> > +				       char *buf)
-> > +{
-> > +	struct xe_hw_engine *hwe =3D kobj_to_hwe(kobj->parent);
-> > +
-> > +	return sprintf(buf, "%u\n", hwe->defaults.preempt_timeout_us);
+> > +static void kobj_xe_engine_release(struct kobject *kobj) {
+> > +	kfree(kobj);
 > > +}
 > > +
-> > +static struct kobj_attribute preempt_timeout_def =3D
-> > +__ATTR(preempt_timeout_us, 0444, preempt_timeout_default, NULL);
-> > +
-> > +static const struct attribute *defaults[] =3D {
-> > +	&job_timeout_def.attr,
-> > +	&timeslice_duration_def.attr,
-> > +	&preempt_timeout_def.attr,
-> > +	NULL
+> > +static struct kobj_type kobj_xe_engine_type =3D {
+> > +	.release =3D kobj_xe_engine_release,
+> > +	.sysfs_ops =3D &kobj_sysfs_ops
 > > +};
+> Make kobj_type struct const.
 > > +
-> > +int xe_add_engine_defaults(struct kobject *parent)
-> >  {
-> >  	struct kobject *kobj;
+> > +static struct kobject *
+> > +kobj_xe_engine(struct kobject *parent, char *name) {
+> Instead of engine/engine_class seems appropriate.
+> > +	struct kobject *kobj;
+> > +
+> > +	kobj =3D kzalloc(sizeof(*kobj), GFP_KERNEL);
+> > +	if (!kobj)
+> > +		return NULL;
+> > +
+> > +	kobject_init(kobj, &kobj_xe_engine_type);
+> > +	if (kobject_add(kobj, parent, "%s", name)) {
+> > +		kobject_put(kobj);
+> > +		return NULL;
+> > +	}
+> > +
+> > +	return kobj;
+> > +}
+> > +
+> > +int xe_gt_sysfs_engines(struct xe_gt *gt) {
+> > +	struct xe_hw_engine *hwe;
+> > +	enum xe_hw_engine_id id;
+> > +	struct kobject *kobj;
+> > +	u16 class_mask =3D 0;
 > > +	int err =3D 0;
-> >
-> >  	kobj =3D kzalloc(sizeof(*kobj), GFP_KERNEL);
-> >  	if (!kobj)
-> > -		return NULL;
+> > +
+> > +	kobj =3D kzalloc(sizeof(*kobj), GFP_KERNEL);
+> > +	if (!kobj)
 > > +		return -ENOMEM;
-> >
-> >  	kobject_init(kobj, &kobj_xe_engine_type);
-> > -	if (kobject_add(kobj, parent, "%s", name)) {
 > > +
-> > +	err =3D kobject_add(kobj, parent, "%s", ".defaults");
-> > +	if (err)
-> > +		goto err_object;
+> > +	kobject_init(kobj, &xe_gt_sysfs_kobj_type);
 > > +
-> > +	err =3D sysfs_create_files(kobj, defaults);
-> > +	if (err)
-> > +		goto err_object;
-> > +
-> > +	if (0) {
-> > +err_object:
-> >  		kobject_put(kobj);
+> > +	err =3D kobject_add(kobj, gt->sysfs, "engines");
+> > +	if (err) {
+> > +		kobject_put(kobj);
 > > +		return err;
+> > +	}
+> > +
+> > +	for_each_hw_engine(hwe, gt, id) {
+> > +		char name[MAX_ENGINE_NAME_LEN];
+> > +		struct kobject *khwe;
+> > +
+> > +		if ((hwe->class =3D=3D XE_ENGINE_CLASS_OTHER) ||
+> > +		    (hwe->class =3D=3D XE_ENGINE_CLASS_MAX))
+> > +			continue;
+> > +
+> > +		if ((class_mask & hwe->class) =3D=3D hwe->class)
+> > +			continue;
+> > +
+> > +		class_mask |=3D hwe->class;
+> Seems error prone. Once   XE_ENGINE_CLASS_COPY is handled class_mask
+> will be 3
+> and for  XE_ENGINE_CLASS_VIDEO_DECODE  and
+> XE_ENGINE_CLASS_VIDEO_ENHANCE if ((class_mask & hwe->class) =3D=3D hwe-
+> >class)
+> 		continue;
+> will skip sysfs creation.
+> > +
+> > +		switch (hwe->class) {
+> > +		case XE_ENGINE_CLASS_RENDER:
+> > +			strcpy(name, "rcs");
+> > +			break;
+> > +		case XE_ENGINE_CLASS_VIDEO_DECODE:
+> > +			strcpy(name, "vcs");
+> > +			break;
+> > +		case XE_ENGINE_CLASS_VIDEO_ENHANCE:
+> > +			strcpy(name, "vecs");
+> > +			break;
+> > +		case XE_ENGINE_CLASS_COPY:
+> > +			strcpy(name, "bcs");
+> > +			break;
+> > +		case XE_ENGINE_CLASS_COMPUTE:
+> > +			strcpy(name, "ccs");
+> > +			break;
+> > +		default:
+> > +			kobject_put(kobj);
+> > +			return -EINVAL;
+> > +		}
+> > +
+> > +		khwe =3D kobj_xe_engine(kobj, name);
+> > +		if (!khwe) {
+> > +			kobject_put(kobj);
+> > +			return -EINVAL;
+> > +		}
 > > +	}
 > > +
 > > +	return err;
 > > +}
 > > +
-> > +static struct kobj_hwe *
-> > +kobj_xe_engine(struct kobject *parent, char *name) {
-> > +	struct kobj_hwe *khwe;
-> > +
-> > +	khwe =3D kzalloc(sizeof(*khwe), GFP_KERNEL);
-> > +	if (!khwe)
-> > +		return NULL;
-> return -ENOMEM here too.
-> > +
-> > +	kobject_init(&khwe->base, &kobj_xe_engine_type);
-> > +	if (kobject_add(&khwe->base, parent, "%s", name)) {
-> > +		kobject_put(&khwe->base);
-> >  		return NULL;
-> >  	}
-> >
-> > -	return kobj;
-> > +	return khwe;
-> >  }
-> >
-> >  int xe_gt_sysfs_engines(struct xe_gt *gt) @@ -72,7 +143,7 @@ int
-> > xe_gt_sysfs_engines(struct xe_gt *gt)
-> >
-> >  	for_each_hw_engine(hwe, gt, id) {
-> >  		char name[MAX_ENGINE_NAME_LEN];
-> > -		struct kobject *khwe;
-> > +		struct kobj_hwe *khwe;
-> >
-> >  		if ((hwe->class =3D=3D XE_ENGINE_CLASS_OTHER) ||
-> >  		    (hwe->class =3D=3D XE_ENGINE_CLASS_MAX)) @@ -109,6
-> > +180,16 @@ int xe_gt_sysfs_engines(struct xe_gt *gt)
-> >  			kobject_put(kobj);
-> >  			return -EINVAL;
-> >  		}
-> > +
-> > +		khwe->hwe =3D hwe;
-> > +		err =3D xe_add_engine_defaults(&khwe->base);
-> > +		if (err) {
-> > +			kobject_put(kobj);
-> > +			drm_warn(&gt_to_xe(gt)->drm,
-> > +				 "Warning: adding .defaults to engines
-> > failed!, err: %d\n",
-> > +				 err);
-> > +			return err;
-> > +		}
-> >  	}
-> >
-> >  	return err;
+> >  static void gt_sysfs_fini(struct drm_device *drm, void *arg)  {
+> >  	struct xe_gt *gt =3D arg;
 > > diff --git a/drivers/gpu/drm/xe/xe_gt_sysfs.h
 > > b/drivers/gpu/drm/xe/xe_gt_sysfs.h
-> > index a531aebd10d6..a539cf031c7d 100644
+> > index ecbfcc5c7d42..a531aebd10d6 100644
 > > --- a/drivers/gpu/drm/xe/xe_gt_sysfs.h
 > > +++ b/drivers/gpu/drm/xe/xe_gt_sysfs.h
-> > @@ -19,4 +19,9 @@ kobj_to_gt(struct kobject *kobj)
-> >  	return container_of(kobj, struct kobj_gt, base)->gt;  }
+> > @@ -8,7 +8,10 @@
 > >
-> > +static inline struct xe_hw_engine *kobj_to_hwe(struct kobject *kobj) {
-> > +	return container_of(kobj, struct kobj_hwe, base)->hwe; }
+> >  #include "xe_gt_sysfs_types.h"
+> >
+> > +#define MAX_ENGINE_NAME_LEN	16
 > > +
-> >  #endif /* _XE_GT_SYSFS_H_ */
-> > diff --git a/drivers/gpu/drm/xe/xe_gt_sysfs_types.h
-> > b/drivers/gpu/drm/xe/xe_gt_sysfs_types.h
-> > index d3bc6b83360f..d0a5eae1bbb4 100644
-> > --- a/drivers/gpu/drm/xe/xe_gt_sysfs_types.h
-> > +++ b/drivers/gpu/drm/xe/xe_gt_sysfs_types.h
-> > @@ -23,4 +23,17 @@ struct kobj_gt {
-> >  	struct xe_gt *gt;
-> >  };
+> >  int xe_gt_sysfs_init(struct xe_gt *gt);
+> > +int xe_gt_sysfs_engines(struct xe_gt *gt);
 > >
-> > +/**
-> > + * struct kobj_hwe - A hwe's kobject struct that connects the kobject
-> > +and the
-> > + * hwe.
-> > + *
-> > + * When dealing with multiple hwe, this struct helps to understand
-> > +which hwe
-> > + * needs to be addressed on a given sysfs call.
-> > + */
-> > +struct kobj_hwe {
-> > +	/** @base: The actual kobject */
-> > +	struct kobject base;
-> > +	/** @hwe: A pointer to the hwe itself */
-> > +	struct xe_hw_engine *hwe;
-> > +};
-> >  #endif	/* _XE_GT_SYSFS_TYPES_H_ */
-> > diff --git a/drivers/gpu/drm/xe/xe_guc_submit.c
-> > b/drivers/gpu/drm/xe/xe_guc_submit.c
-> > index 86c445903560..ecea38e9e639 100644
-> > --- a/drivers/gpu/drm/xe/xe_guc_submit.c
-> > +++ b/drivers/gpu/drm/xe/xe_guc_submit.c
-> > @@ -1128,7 +1128,8 @@ static int guc_engine_init(struct xe_engine *e)
-> >  	ge->engine =3D e;
-> >  	init_waitqueue_head(&ge->suspend_wait);
-> >
-> > -	timeout =3D xe_vm_no_dma_fences(e->vm) ?
-> > MAX_SCHEDULE_TIMEOUT : HZ * 5;
-> > +	timeout =3D xe_vm_no_dma_fences(e->vm) ?
-> > MAX_SCHEDULE_TIMEOUT :
-> > +		  e->hwe->sched_props.job_timeout_ms;
-> >  	err =3D drm_sched_init(&ge->sched, &drm_sched_ops, NULL,
-> >  			     e->lrc[0].ring.size / MAX_JOB_SIZE_BYTES,
-> >  			     64, timeout, guc_to_gt(guc)->ordered_wq, NULL,
-> @@ -1136,6
-> > +1137,8 @@ static int guc_engine_init(struct xe_engine *e)
-> >  			     gt_to_xe(e->gt)->drm.dev);
-> >  	if (err)
-> >  		goto err_free;
-> > +	/* Record timeout value, in order to show current set timeout */
-> > +	e->hwe->sched_props.job_timeout_ms =3D timeout;
-> >
-> >  	sched =3D &ge->sched;
-> >  	err =3D drm_sched_entity_init(&ge->entity,
-> > DRM_SCHED_PRIORITY_NORMAL, diff --git
-> > a/drivers/gpu/drm/xe/xe_hw_engine.c
-> > b/drivers/gpu/drm/xe/xe_hw_engine.c
-> > index b7b02c96e998..bd94155a28b3 100644
-> > --- a/drivers/gpu/drm/xe/xe_hw_engine.c
-> > +++ b/drivers/gpu/drm/xe/xe_hw_engine.c
-> > @@ -361,6 +361,11 @@ static void hw_engine_init_early(struct xe_gt
-> > *gt, struct xe_hw_engine *hwe,
-> >  	hwe->name =3D info->name;
-> >  	hwe->fence_irq =3D &gt->fence_irq[info->class];
-> >  	hwe->engine_id =3D id;
-> > +	/* FIXME: Wire up to configurable default value */
-> > +	hwe->sched_props.job_timeout_ms =3D HZ * 5;
-> > +	hwe->sched_props.timeslice_us =3D 1 * 1000;
-> > +	hwe->sched_props.preempt_timeout_us =3D 640 * 1000;
-> > +	hwe->defaults =3D hwe->sched_props; /* Record default props */
-> >
-> >  	xe_reg_sr_init(&hwe->reg_sr, hwe->name, gt_to_xe(gt));
-> >  	xe_wa_process_engine(hwe);
-> > diff --git a/drivers/gpu/drm/xe/xe_hw_engine_types.h
-> > b/drivers/gpu/drm/xe/xe_hw_engine_types.h
-> > index d788e67312b9..7a8d275df6db 100644
-> > --- a/drivers/gpu/drm/xe/xe_hw_engine_types.h
-> > +++ b/drivers/gpu/drm/xe/xe_hw_engine_types.h
-> > @@ -107,6 +107,15 @@ struct xe_hw_engine {
-> >  	void (*irq_handler)(struct xe_hw_engine *, u16);
-> >  	/** @engine_id: id  for this hw engine */
-> >  	enum xe_hw_engine_id engine_id;
-> > +	/** @sched_props: scheduling properties */
-> > +	struct {
-> > +		/** @set_job_timeout: Set job timeout in ms for engine */
-> > +		u32 job_timeout_ms;
-> > +		/** @timeslice_us: timeslice period in micro-seconds */
-> > +		u32 timeslice_us;
-> > +		/** @preempt_timeout_us: preemption timeout in micro-
-> > seconds */
-> > +		u32 preempt_timeout_us;
-> > +	} sched_props, defaults;
-> >  };
-> >
-> >  /**
+> >  static inline struct xe_gt *
+> >  kobj_to_gt(struct kobject *kobj)
 > > --
 > > 2.25.1
 
