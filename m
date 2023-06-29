@@ -4,45 +4,45 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id AF5C7EB64D9
-	for <intel-xe@archiver.kernel.org>; Thu, 29 Jun 2023 07:08:54 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 13C28EB64D9
+	for <intel-xe@archiver.kernel.org>; Thu, 29 Jun 2023 07:44:23 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 46F2810E02E;
-	Thu, 29 Jun 2023 07:08:54 +0000 (UTC)
-Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C497C10E02E
- for <intel-xe@lists.freedesktop.org>; Thu, 29 Jun 2023 07:08:51 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B537310E3BD;
+	Thu, 29 Jun 2023 07:44:23 +0000 (UTC)
+Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 430B710E095
+ for <intel-xe@lists.freedesktop.org>; Thu, 29 Jun 2023 07:44:21 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1688022531; x=1719558531;
+ t=1688024661; x=1719560661;
  h=message-id:subject:from:to:cc:date:in-reply-to:
  references:content-transfer-encoding:mime-version;
- bh=f2F50ljyaORjodLFUDK01LGvEBtcmo4ozk2hbIwXjNQ=;
- b=ls0fWHFisgg+GAqfg0VIsTsR+UIEEGdBjWLtMUkmcQD5waIZz1KaIrSs
- 70vWYp2BgjufnQTfkLyYXpOTp9xPtvEkPzohlEwGM39POEjZQQVZZjTEZ
- lCy0eYmmhQapctAWEeV7ZhJND1zHziADo7LDu7H9DyfuS7yFMFIoeoBcn
- SyWvQU/d6YgpuayRlcTsnTS0yYOkBS2Z7GfFjEb4TZkX6CjOJtg+BOT2V
- Lo9eJIOhAsy/j+R2prdzzunh86cEwVmu2kcXTyVR8iGJf2uJVfZHjFmbc
- 5gG33JwOsuxeloGt8y06Gv55uhfU5MP4ObLFtKTWx7ym31eUkc/FX4j+Q Q==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10755"; a="448423525"
-X-IronPort-AV: E=Sophos;i="6.01,167,1684825200"; d="scan'208";a="448423525"
-Received: from fmsmga002.fm.intel.com ([10.253.24.26])
- by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 29 Jun 2023 00:08:50 -0700
+ bh=j4h43mK1WI+Fj8XX7ADr6we0vOp20WbCVR6qnvSw1tQ=;
+ b=LD/hnur4UMp6a+Y3bI50cnePfQqodsAG+vS+XWp38Zl1fwf+3G2wtWZN
+ df39IEnhbcdquOo0cpmuCJKyyI7BIP67EOGD/9GIyRIaOWjjp7Y+QBYuw
+ wjtXhYjb2ZBRKUx6xDFmDKfajp9pXQ/6q1Dk8M+Gv0+vGzPzEXfpkQoR7
+ LBH4aIcDHhkUwddJLJrL67Klo0AxllYFLsKPAyizNCcHcBoPLKmOwF00f
+ wdW3nUYwWaAgmSt70jpiLFBQPLF8USlc+uQSblnLzESsQRuR+I8/Dr+tv
+ EUaNeuOYWWVr26nUE6vVRioV2x0LQECdNBktlcPc378BI3TU9h8G8PrYH A==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10755"; a="362083895"
+X-IronPort-AV: E=Sophos;i="6.01,167,1684825200"; d="scan'208";a="362083895"
+Received: from orsmga004.jf.intel.com ([10.7.209.38])
+ by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 29 Jun 2023 00:44:19 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10755"; a="830421249"
-X-IronPort-AV: E=Sophos;i="6.01,167,1684825200"; d="scan'208";a="830421249"
+X-IronPort-AV: E=McAfee;i="6600,9927,10755"; a="841363926"
+X-IronPort-AV: E=Sophos;i="6.01,167,1684825200"; d="scan'208";a="841363926"
 Received: from sfhansen-mobl1.ger.corp.intel.com (HELO [10.249.254.200])
  ([10.249.254.200])
- by fmsmga002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 29 Jun 2023 00:08:49 -0700
-Message-ID: <7401d1b3b6c8b7613347fadc95491db0e93b1531.camel@linux.intel.com>
+ by orsmga004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 29 Jun 2023 00:44:18 -0700
+Message-ID: <eb511785c4ce4e0d580c4849ce680e2b8a39ff57.camel@linux.intel.com>
 From: Thomas =?ISO-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>
-To: Matthew Brost <matthew.brost@intel.com>
-Date: Thu, 29 Jun 2023 09:08:46 +0200
-In-Reply-To: <ZJyFOuFPTiETB2Vf@DUT025-TGLU.fm.intel.com>
+To: Francois Dugast <francois.dugast@intel.com>
+Date: Thu, 29 Jun 2023 09:44:16 +0200
+In-Reply-To: <ZJw0_7x9uJ5D9pBk@fdugast-desk.home>
 References: <20230628125146.72041-1-thomas.hellstrom@linux.intel.com>
- <ZJyFOuFPTiETB2Vf@DUT025-TGLU.fm.intel.com>
+ <ZJw0_7x9uJ5D9pBk@fdugast-desk.home>
 Organization: Intel Sweden AB, Registration Number: 556189-6027
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -65,7 +65,11 @@ Cc: intel-xe@lists.freedesktop.org, Nirmoy Das <nirmoy.das@intel.com>
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Wed, 2023-06-28 at 19:08 +0000, Matthew Brost wrote:
+Hi, Francois,
+
+On Wed, 2023-06-28 at 15:26 +0200, Francois Dugast wrote:
+> Hi Thomas,
+>=20
 > On Wed, Jun 28, 2023 at 02:51:46PM +0200, Thomas Hellstr=C3=B6m wrote:
 > > Add a motivation for and description of asynchronous VM_BIND
 > > operation
@@ -139,6 +143,9 @@ On Wed, 2023-06-28 at 19:08 +0000, Matthew Brost wrote:
 > > both
 > > +=C2=A0 the GPU and CPU. Memory fences are sometimes referred to as
 > > +=C2=A0 user-fences, and do not necessarily bey the dma-fence rule of
+>=20
+> s/bey/obey/
+>=20
 > > +=C2=A0 signalling within a "reasonable amount of time". The kernel
 > > should
 > > +=C2=A0 thus avoid waiting for memory fences with locks held.
@@ -154,6 +161,11 @@ On Wed, 2023-06-28 at 19:08 +0000, Matthew Brost wrote:
 > > +* ``exec function``: An exec function is a function that
 > > revalidates all
 > > +=C2=A0 affected vmas, submits a gpu command batch and registers the
+>=20
+> The document sometimes uses "GPU" and sometimes "gpu", maybe we can
+> stick to
+> "GPU" everywhere?
+>=20
 > > +=C2=A0 dma_fence representing the gpu command's activity with all
 > > affected
 > > +=C2=A0 dma_resvs. For completeness, although not covered by this
@@ -188,6 +200,12 @@ n
 > > +out-fences. Synchronous VM_BIND may block and wait for GPU
 > > operations;
 > > +for example swapin or clearing, or even previous binds.
+>=20
+> s/swapin/swapping/ ?
+
+It should say swap-in,
+
+>=20
 > > +
 > > +Asynchronous VM_BIND
 > > +____________________
@@ -227,24 +245,6 @@ n
 > > bind
 > > +operation is not allowed and any in-fences need to be awaited
 > > +synchronously.
->=20
-> Why? I think in Xe we allow in-fences for LR workloads + pipelining.
-
-In-fences as memory fences need to be waited for sync before the bind
-operation starts anyway, since bind operations produce dma-fences that
-can never depend on memory fences. So no point in having them as in-
-fences expecting pipelining.
-
-As for dma-fences as in-fences for LR jobs, it will probably work but
-since you can't pipeline behind a LR exec when we discussed this
-briefly on IRC there is no point? Would anyone use this?
-
-/Thomas
-
-
->=20
-> Matt
->=20
 > > +
 > > +Also for VM_BINDS for long-running gpu_vms the user-mode driver
 > > should typically
@@ -252,6 +252,15 @@ briefly on IRC there is no point? Would anyone use this?
 > > flexibility for
 > > +the kernel mode driver to inject other=C2=A0 operations into the bind =
 /
+>=20
+> s/other=C2=A0 operations/other operations/ (extra white space)
+
+Thanks. I'll fix this and the other review comments.
+/Thomas
+
+>=20
+> Francois
+>=20
 > > +unbind operations. Like for example inserting breakpoints into
 > > batch
 > > +buffers. The workload execution can then easily be pipelined
