@@ -4,48 +4,45 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7E74FC001B3
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4DB6EEB64DD
 	for <intel-xe@archiver.kernel.org>; Thu, 29 Jun 2023 20:10:38 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C33DF10E3EC;
+	by gabe.freedesktop.org (Postfix) with ESMTP id CFDB210E3F4;
 	Thu, 29 Jun 2023 20:10:37 +0000 (UTC)
 Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8004710E1D5
- for <intel-xe@lists.freedesktop.org>; Thu, 29 Jun 2023 20:10:36 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id EF93410E0B4
+ for <intel-xe@lists.freedesktop.org>; Thu, 29 Jun 2023 20:10:35 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
  t=1688069436; x=1719605436;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=Py5aZR2zgdPLwZKFG3YUuCnvgTMvtMxPHSrGre0nvLw=;
- b=ONDv57ZGmCvEqzqMfqGFXKjLrg4zDAlef0/LPKsAM2z9PaZnXGSD2qLb
- DPnA0ubEfeFds1YSc273G0gufHep8MZb2DVjmYJEugV2KbuxtCLOkwTOd
- rQvISYe/YyeMXrr1HLwZkOPe/pKOnLqtiNVHotGHKPcwPH7TgxGWEKmEd
- W0M4chJPqS5f2LwhRLnhAXIpvR11zI4qQNBCdjFVhCddvLIx+ag8x+QPc
- 1yOsekbN5/wAemyFNdeSdGWB3Cpx/uOh5yBNJLe1qpGjn292/vWGIGGzK
- DENHP062IomdxjhyHf+VhwUUGhFzer801GPkUyjBc0zgXUxJkLkoZ8QCw g==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10756"; a="352039551"
-X-IronPort-AV: E=Sophos;i="6.01,169,1684825200"; d="scan'208";a="352039551"
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=6EGtTCS1i/UX6+SBmEU0i+ft3M3sc1chwwJK51I5OLI=;
+ b=euInI01YznNXbyJDCUwW5ZdkX4PiOhQG1+Kxn5/3xtS3WXty5pXJ7WkD
+ terLHBLOr6ZDO0nm2IuQ2jXMoVWF9DOXfOsnMAmFbCCezLp7R/kVcjh6r
+ 14gaLTLD9lWMp1/B0cDVT1WI9+EMP3mfbmt0bDRwLuYaOWaf/R2MS/58m
+ ftudL7QoK3oT9aaTnAv0KnLS6+hS9Tp5VhzLj6uVoXG4x0qOZ8BsTzZSw
+ WzpTv/8j4cHYOtZfn7TrnVyDu90aRfBJqZ5jgJiRekPqU23bNUAU2sS1P
+ WzSGWypMPjGiWJxIVq7DMjZ89RSPfUWalNE7BRp+BpAT7rZVuaG+UMIzD A==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10756"; a="352039539"
+X-IronPort-AV: E=Sophos;i="6.01,169,1684825200"; d="scan'208";a="352039539"
 Received: from orsmga007.jf.intel.com ([10.7.209.58])
  by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  29 Jun 2023 13:10:34 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10756"; a="711569615"
-X-IronPort-AV: E=Sophos;i="6.01,169,1684825200"; d="scan'208";a="711569615"
+X-IronPort-AV: E=McAfee;i="6600,9927,10756"; a="711569603"
+X-IronPort-AV: E=Sophos;i="6.01,169,1684825200"; d="scan'208";a="711569603"
 Received: from lstrano-desk.jf.intel.com ([10.24.89.184])
  by orsmga007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 29 Jun 2023 13:10:34 -0700
+ 29 Jun 2023 13:10:33 -0700
 From: Matthew Brost <matthew.brost@intel.com>
 To: <intel-xe@lists.freedesktop.org>
-Date: Thu, 29 Jun 2023 13:10:43 -0700
-Message-Id: <20230629201046.989033-7-matthew.brost@intel.com>
+Date: Thu, 29 Jun 2023 13:10:37 -0700
+Message-Id: <20230629201046.989033-1-matthew.brost@intel.com>
 X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20230629201046.989033-1-matthew.brost@intel.com>
-References: <20230629201046.989033-1-matthew.brost@intel.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-xe] [PATCH v3 6/9] drm: debugfs: provide infrastructure to
- dump a DRM GPU VA space
+Subject: [Intel-xe] [PATCH v3 0/9] GPUVA with no uAPI changes
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -57,135 +54,60 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Cc: Danilo Krummrich <dakr@redhat.com>
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-From: Danilo Krummrich <dakr@redhat.com>
+The patches from [1] rebased + address review feedback which do not
+include uAPI changes. 
 
-This commit adds a function to dump a DRM GPU VA space and a macro for
-drivers to register the struct drm_info_list 'gpuvas' entry.
+[1] https://patchwork.freedesktop.org/series/117156/
 
-Most likely, most drivers might maintain one DRM GPU VA space per struct
-drm_file, but there might also be drivers not having a fixed relation
-between DRM GPU VA spaces and a DRM core infrastructure, hence we need the
-indirection via the driver iterating it's maintained DRM GPU VA spaces.
+v2: Fix build error
+v3: Fix lockdep splat CI caught
 
-Signed-off-by: Danilo Krummrich <dakr@redhat.com>
----
- drivers/gpu/drm/drm_debugfs.c | 41 +++++++++++++++++++++++++++++++++++
- include/drm/drm_debugfs.h     | 25 +++++++++++++++++++++
- 2 files changed, 66 insertions(+)
+Danilo Krummrich (3):
+  maple_tree: split up MA_STATE() macro
+  drm: manager to keep track of GPUs VA mappings
+  drm: debugfs: provide infrastructure to dump a DRM GPU VA space
 
-diff --git a/drivers/gpu/drm/drm_debugfs.c b/drivers/gpu/drm/drm_debugfs.c
-index 4855230ba2c6..82180fb1c200 100644
---- a/drivers/gpu/drm/drm_debugfs.c
-+++ b/drivers/gpu/drm/drm_debugfs.c
-@@ -39,6 +39,7 @@
- #include <drm/drm_file.h>
- #include <drm/drm_gem.h>
- #include <drm/drm_managed.h>
-+#include <drm/drm_gpuva_mgr.h>
- 
- #include "drm_crtc_internal.h"
- #include "drm_internal.h"
-@@ -175,6 +176,46 @@ static const struct file_operations drm_debugfs_fops = {
- 	.release = single_release,
- };
- 
-+/**
-+ * drm_debugfs_gpuva_info - dump the given DRM GPU VA space
-+ * @m: pointer to the &seq_file to write
-+ * @mgr: the &drm_gpuva_manager representing the GPU VA space
-+ *
-+ * Dumps the GPU VA mappings of a given DRM GPU VA manager.
-+ *
-+ * For each DRM GPU VA space drivers should call this function from their
-+ * &drm_info_list's show callback.
-+ *
-+ * Returns: 0 on success, -ENODEV if the &mgr is not initialized
-+ */
-+int drm_debugfs_gpuva_info(struct seq_file *m,
-+			   struct drm_gpuva_manager *mgr)
-+{
-+	DRM_GPUVA_ITER(it, mgr, 0);
-+	struct drm_gpuva *va, *kva = &mgr->kernel_alloc_node;
-+
-+	if (!mgr->name)
-+		return -ENODEV;
-+
-+	seq_printf(m, "DRM GPU VA space (%s) [0x%016llx;0x%016llx]\n",
-+		   mgr->name, mgr->mm_start, mgr->mm_start + mgr->mm_range);
-+	seq_printf(m, "Kernel reserved node [0x%016llx;0x%016llx]\n",
-+		   kva->va.addr, kva->va.addr + kva->va.range);
-+	seq_puts(m, "\n");
-+	seq_puts(m, " VAs | start              | range              | end                | object             | object offset\n");
-+	seq_puts(m, "-------------------------------------------------------------------------------------------------------------\n");
-+	drm_gpuva_iter_for_each(va, it) {
-+		if (unlikely(va == &mgr->kernel_alloc_node))
-+			continue;
-+
-+		seq_printf(m, "     | 0x%016llx | 0x%016llx | 0x%016llx | 0x%016llx | 0x%016llx\n",
-+			   va->va.addr, va->va.range, va->va.addr + va->va.range,
-+			   (u64)va->gem.obj, va->gem.offset);
-+	}
-+
-+	return 0;
-+}
-+EXPORT_SYMBOL(drm_debugfs_gpuva_info);
- 
- /**
-  * drm_debugfs_create_files - Initialize a given set of debugfs files for DRM
-diff --git a/include/drm/drm_debugfs.h b/include/drm/drm_debugfs.h
-index 7616f457ce70..cb2c1956a214 100644
---- a/include/drm/drm_debugfs.h
-+++ b/include/drm/drm_debugfs.h
-@@ -34,6 +34,22 @@
- 
- #include <linux/types.h>
- #include <linux/seq_file.h>
-+
-+#include <drm/drm_gpuva_mgr.h>
-+
-+/**
-+ * DRM_DEBUGFS_GPUVA_INFO - &drm_info_list entry to dump a GPU VA space
-+ * @show: the &drm_info_list's show callback
-+ * @data: driver private data
-+ *
-+ * Drivers should use this macro to define a &drm_info_list entry to provide a
-+ * debugfs file for dumping the GPU VA space regions and mappings.
-+ *
-+ * For each DRM GPU VA space drivers should call drm_debugfs_gpuva_info() from
-+ * their @show callback.
-+ */
-+#define DRM_DEBUGFS_GPUVA_INFO(show, data) {"gpuvas", show, DRIVER_GEM_GPUVA, data}
-+
- /**
-  * struct drm_info_list - debugfs info list entry
-  *
-@@ -134,6 +150,9 @@ void drm_debugfs_add_file(struct drm_device *dev, const char *name,
- 
- void drm_debugfs_add_files(struct drm_device *dev,
- 			   const struct drm_debugfs_info *files, int count);
-+
-+int drm_debugfs_gpuva_info(struct seq_file *m,
-+			   struct drm_gpuva_manager *mgr);
- #else
- static inline void drm_debugfs_create_files(const struct drm_info_list *files,
- 					    int count, struct dentry *root,
-@@ -155,6 +174,12 @@ static inline void drm_debugfs_add_files(struct drm_device *dev,
- 					 const struct drm_debugfs_info *files,
- 					 int count)
- {}
-+
-+static inline int drm_debugfs_gpuva_info(struct seq_file *m,
-+					 struct drm_gpuva_manager *mgr)
-+{
-+	return 0;
-+}
- #endif
- 
- #endif /* _DRM_DEBUGFS_H_ */
+Matthew Brost (6):
+  drm/xe: Ban a VM if rebind worker hits an error
+  drm/xe: Add helpers to hide struct xe_vma internals
+  maple_tree: Export mas_preallocate
+  drm/xe: Remove __xe_vm_bind forward declaration
+  drm/xe: Port Xe to GPUVA
+  drm/xe: Avoid doing rebinds
+
+ Documentation/gpu/drm-mm.rst                |   42 +
+ drivers/gpu/drm/Makefile                    |    1 +
+ drivers/gpu/drm/drm_debugfs.c               |   41 +
+ drivers/gpu/drm/drm_gem.c                   |    3 +
+ drivers/gpu/drm/drm_gpuva_mgr.c             | 1971 ++++++++++++++++++
+ drivers/gpu/drm/xe/tests/xe_migrate.c       |    2 +-
+ drivers/gpu/drm/xe/xe_bo.c                  |    9 +-
+ drivers/gpu/drm/xe/xe_device.c              |    2 +-
+ drivers/gpu/drm/xe/xe_engine.c              |   13 +
+ drivers/gpu/drm/xe/xe_exec.c                |    8 +-
+ drivers/gpu/drm/xe/xe_gt_pagefault.c        |   23 +-
+ drivers/gpu/drm/xe/xe_gt_tlb_invalidation.c |   14 +-
+ drivers/gpu/drm/xe/xe_migrate.c             |   10 +-
+ drivers/gpu/drm/xe/xe_pt.c                  |  129 +-
+ drivers/gpu/drm/xe/xe_pt.h                  |    2 +-
+ drivers/gpu/drm/xe/xe_trace.h               |   15 +-
+ drivers/gpu/drm/xe/xe_vm.c                  | 2011 ++++++++++---------
+ drivers/gpu/drm/xe/xe_vm.h                  |  104 +-
+ drivers/gpu/drm/xe/xe_vm_madvise.c          |   91 +-
+ drivers/gpu/drm/xe/xe_vm_types.h            |  175 +-
+ include/drm/drm_debugfs.h                   |   25 +
+ include/drm/drm_drv.h                       |    6 +
+ include/drm/drm_gem.h                       |   52 +
+ include/drm/drm_gpuva_mgr.h                 |  682 +++++++
+ include/linux/maple_tree.h                  |    7 +-
+ lib/maple_tree.c                            |    1 +
+ 26 files changed, 4186 insertions(+), 1253 deletions(-)
+ create mode 100644 drivers/gpu/drm/drm_gpuva_mgr.c
+ create mode 100644 include/drm/drm_gpuva_mgr.h
+
 -- 
 2.34.1
 
