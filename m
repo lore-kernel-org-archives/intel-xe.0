@@ -4,139 +4,135 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9D6F4EB64D7
-	for <intel-xe@archiver.kernel.org>; Thu, 29 Jun 2023 00:18:52 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 56604EB64D7
+	for <intel-xe@archiver.kernel.org>; Thu, 29 Jun 2023 02:29:23 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 215AB10E013;
-	Thu, 29 Jun 2023 00:18:52 +0000 (UTC)
-Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6FCFF10E013
- for <intel-xe@lists.freedesktop.org>; Thu, 29 Jun 2023 00:18:49 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E3D9010E040;
+	Thu, 29 Jun 2023 02:29:22 +0000 (UTC)
+Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C062010E040
+ for <intel-xe@lists.freedesktop.org>; Thu, 29 Jun 2023 02:29:21 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1687997929; x=1719533929;
+ t=1688005761; x=1719541761;
  h=date:from:to:cc:subject:message-id:references:
- content-transfer-encoding:in-reply-to:mime-version;
- bh=Re/NL8A/A2nT6xTqHIrR/B5qiTeDppL0yntQbOGK00Y=;
- b=TExeJJA5wxadNJXXs/+/KXq2pzERz+nJ/cO+KcaxElKhacu78er5ZOew
- Whn2JtwbrolAasm06pP0ju1VrO9zIvfo3bQ5MbLMxb4zA5NZMi0g2hZTq
- DkjRTPViyvifXSeZL0SQ2uEEvr5mb0df31bS6Ove/VjXmYJTgMsbs4lIt
- 3rNKp3U9Pf+tdcejpH+5rCBTnTirtLN4fjG0CqKN/o2CoGGWDmL7NWr+c
- 7KwBmbvT8M1Ym8zoXgzd2m9XzVVFMw15HcwSQs+ffpAJLMNh7mRtHd0yR
- i9m220Urc06GoWcvcuu2X9VqBdwkKqKq+XnLeJdVnDTfWVNH9RlOjSRkU g==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10755"; a="351788392"
-X-IronPort-AV: E=Sophos;i="6.01,166,1684825200"; d="scan'208";a="351788392"
-Received: from fmsmga001.fm.intel.com ([10.253.24.23])
- by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 28 Jun 2023 17:18:47 -0700
+ in-reply-to:mime-version;
+ bh=1/hFNUMr8q70GBkYlp774oB5RN40kmswWPKk3nvrsgE=;
+ b=mJN0GpdHD9FBAp6MaZ3B3uzrNJCz549MdFcY14y6rKfpuajNX7/jvzLi
+ dU01YgPhTX0kOkppxM1WnT7HOGgaH65r/E3iOFcmLNYZ/LYYFRWKgj6mU
+ LL8GONY060LzYTpTReWSTMX/isdklBivZjz80roUW5K+Dt+8f2XzA3KjE
+ yROk8pckZ0HoiqnS7ssBZ4RDSVWgXTeYm3hOuFXlJ2etG91/G9UlqSIhj
+ hiD/X3kvCsvdfpKn7DO7ur1pCgWLq7n54ZT2PmGSo9wyybMbX+ZqoY/Zc
+ b0B2ZrdJD/18+ezkx9qJVVTFlCpxARUZbow1mXTf77smBDVbV7arAhMKq g==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10755"; a="392729798"
+X-IronPort-AV: E=Sophos;i="6.01,167,1684825200"; d="scan'208";a="392729798"
+Received: from orsmga002.jf.intel.com ([10.7.209.21])
+ by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 28 Jun 2023 19:29:18 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10755"; a="861722110"
-X-IronPort-AV: E=Sophos;i="6.01,166,1684825200"; d="scan'208";a="861722110"
-Received: from orsmsx601.amr.corp.intel.com ([10.22.229.14])
- by fmsmga001.fm.intel.com with ESMTP; 28 Jun 2023 17:18:47 -0700
-Received: from orsmsx611.amr.corp.intel.com (10.22.229.24) by
- ORSMSX601.amr.corp.intel.com (10.22.229.14) with Microsoft SMTP Server
+X-IronPort-AV: E=McAfee;i="6600,9927,10755"; a="717195093"
+X-IronPort-AV: E=Sophos;i="6.01,167,1684825200"; d="scan'208";a="717195093"
+Received: from fmsmsx603.amr.corp.intel.com ([10.18.126.83])
+ by orsmga002.jf.intel.com with ESMTP; 28 Jun 2023 19:29:17 -0700
+Received: from fmsmsx603.amr.corp.intel.com (10.18.126.83) by
+ fmsmsx603.amr.corp.intel.com (10.18.126.83) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.27; Wed, 28 Jun 2023 17:18:46 -0700
-Received: from orsmsx612.amr.corp.intel.com (10.22.229.25) by
- ORSMSX611.amr.corp.intel.com (10.22.229.24) with Microsoft SMTP Server
+ 15.1.2507.27; Wed, 28 Jun 2023 19:29:17 -0700
+Received: from fmsedg601.ED.cps.intel.com (10.1.192.135) by
+ fmsmsx603.amr.corp.intel.com (10.18.126.83) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.27; Wed, 28 Jun 2023 17:18:46 -0700
-Received: from ORSEDG602.ED.cps.intel.com (10.7.248.7) by
- orsmsx612.amr.corp.intel.com (10.22.229.25) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.27 via Frontend Transport; Wed, 28 Jun 2023 17:18:46 -0700
-Received: from NAM12-DM6-obe.outbound.protection.outlook.com (104.47.59.176)
- by edgegateway.intel.com (134.134.137.103) with Microsoft SMTP Server
+ 15.1.2507.27 via Frontend Transport; Wed, 28 Jun 2023 19:29:17 -0700
+Received: from NAM12-MW2-obe.outbound.protection.outlook.com (104.47.66.41) by
+ edgegateway.intel.com (192.55.55.70) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2507.27; Wed, 28 Jun 2023 17:18:45 -0700
+ 15.1.2507.27; Wed, 28 Jun 2023 19:29:16 -0700
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=PznN9HnJ0C5ftKjRmFul7jqr57ZPGAZsMy40WKjBHOA8gP7uOsTEYJt6xSKCbZIoyz5J8LuaNFnLFN++laJmCFykq+MeZAGRdj6iTESGQXqKaAQgEOK7DRo95OJAwBDsWzazhhJ5y2shOjpnWOBoBboGc99FVgxUD2yFmAskocDBNdOikuJzY2Fz1VN9U4DX6V9eRw2ZewMfGrKYhcklYQhsRn1QK1GFJzqp4cBDWwrglDkrolYiUOOZijDJ47m66Fa67VjXCBIN01DJNTLkQy5g4u+5MAOH1idIaX9EwxuAquCv730QhyddTdBmI54UpyEqOtOuvN/YS28z8N9iAQ==
+ b=ZQhCtwNNZfThel4pK4QfUYliyzi9CwlmU8CKw2iBNluTcA1XDx/EFOT1ziyJhhvw2Jr+tSbPZK4Q/u1/f8g3+S/ncUlgI//E0gNYNVZo2YFGt2hAeQzLJWxE3hr4ThRRbfDpbu9JScoa9Eb4nM2SrX5x1zliJ/Q/lYI3CLzaFio56b5pL0WoPeC+ZTxVYhiIO7IVZCFRGn0NM9iW6/QwV7xlucrMf1sGt/YO2VjWeVWdODaOZs2myqu2ivbTsXsntA+XBDVnaS6arAYKBf6Sp2x4eHpeDhijg5EYLeqAK46PmUrQFX6l1F8f4P4Aq/w5JRW/JQKZyPJaaFuQZnWZUw==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=kzM8COfrUaYlCmOtjZt7fVNYv6j6WTSXTSVeq7L7mcI=;
- b=a0CXvqn4hDPPqjwGrqT142j3TVYqP9Np7+HsGaxon8Go63MCnKR2g2Jn9iRq6kZRl3r6BqDVxgIW5CK8rrnmzRfFIITBm/2ncc9gqwAyBBsvTEDz7bslmL/eC5aeRHKU6442OXn10Q7ylcea1cF7XhQQQxyyljbNUtuMRFLN+jN3v9eHAWgAduq+oS0Jl7sqDa9j0/QJpuIroeXwa8Ky628mZ16SVSdFflrQprNbbGBO72ZAlTV2CkDnEFaBgHRcpefSeoxJiPAw6TP4SLpxnFAeTXOBkR/J+D+SOW70BeH9YNYcyVeUHOj9VC6qmeNoGnT+wPBIBYXzzDG61B9h3g==
+ bh=0Q6GtBqy09tSn2YQOj61KsgYNg59yEqfZHn0yGIrBuA=;
+ b=OztZ+UTd3F4ia92+d9f2QnLHmMF7WE8Ci8cz22nS3pXb8dHGk/mGdCucrN4cF0jPKYgd+A5aOtdQxkAiNiGCyJPpCC3HuGVyLN4DzF4WxodQDsRQgBLp1y4v2LeKJ8k0l5EbA35OAP7mm+dAzmAZh84PJrV0BpfjpLcMpOJ7lbjQeQTPAn5qcyKrFa2pags26CXbM9da4YSxumw1pJCKGpdJDRW0BEIl/MeUjl4wByi3UPFXemgj4zP2xFH5fRbPt6hshjpj6mM+Sv8Bq1VfufY0abNB7DiWaJU/6m9EcDUEdyVx8f56XJ4ODmdFMSxlBgHta2IypAmMT4ETd4neAQ==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
  dkim=pass header.d=intel.com; arc=none
 Authentication-Results: dkim=none (message not signed)
  header.d=none;dmarc=none action=none header.from=intel.com;
-Received: from PH7PR11MB6522.namprd11.prod.outlook.com (2603:10b6:510:212::12)
- by PH0PR11MB5578.namprd11.prod.outlook.com (2603:10b6:510:e7::8) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6544.15; Thu, 29 Jun
- 2023 00:18:43 +0000
-Received: from PH7PR11MB6522.namprd11.prod.outlook.com
- ([fe80::ff06:a115:e4eb:680e]) by PH7PR11MB6522.namprd11.prod.outlook.com
- ([fe80::ff06:a115:e4eb:680e%5]) with mapi id 15.20.6521.023; Thu, 29 Jun 2023
- 00:18:43 +0000
-Date: Thu, 29 Jun 2023 00:18:02 +0000
-From: Matthew Brost <matthew.brost@intel.com>
-To: Badal Nilawar <badal.nilawar@intel.com>
-Message-ID: <ZJzNuq/WaxjZ8YH/@DUT025-TGLU.fm.intel.com>
-References: <20230627183043.2024530-1-badal.nilawar@intel.com>
- <20230627183043.2024530-3-badal.nilawar@intel.com>
-Content-Type: text/plain; charset="iso-8859-1"
+Received: from CY5PR11MB6139.namprd11.prod.outlook.com (2603:10b6:930:29::17)
+ by SA2PR11MB5177.namprd11.prod.outlook.com (2603:10b6:806:11c::10)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6521.23; Thu, 29 Jun
+ 2023 02:29:15 +0000
+Received: from CY5PR11MB6139.namprd11.prod.outlook.com
+ ([fe80::44e7:c479:62f4:3eb4]) by CY5PR11MB6139.namprd11.prod.outlook.com
+ ([fe80::44e7:c479:62f4:3eb4%7]) with mapi id 15.20.6521.023; Thu, 29 Jun 2023
+ 02:29:14 +0000
+Date: Wed, 28 Jun 2023 23:29:07 -0300
+From: Lucas De Marchi <lucas.demarchi@intel.com>
+To: Matthew Auld <matthew.william.auld@gmail.com>
+Message-ID: <7tjqngk5gzar5a7mtd6xoyeyshks443c52cpeutzwq6qnhswiz@fl4z5qgkwv7l>
+X-Patchwork-Hint: comment
+References: <20230614200445.3363527-1-matthew.d.roper@intel.com>
+ <CAM0jSHNkKHgyuSUAAHEurhGi2ufhgnyDod0fhaXjTgUFEh6arw@mail.gmail.com>
+ <20230615202033.GX5433@mdroper-desk1.amr.corp.intel.com>
+ <CAM0jSHOYkQi96+fBbr24KH0Dvkum7jq7D-_juz-sBBG+oLAUKA@mail.gmail.com>
+Content-Type: text/plain; charset="us-ascii"; format=flowed
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20230627183043.2024530-3-badal.nilawar@intel.com>
-X-ClientProxiedBy: SJ0PR03CA0269.namprd03.prod.outlook.com
- (2603:10b6:a03:3a0::34) To PH7PR11MB6522.namprd11.prod.outlook.com
- (2603:10b6:510:212::12)
+In-Reply-To: <CAM0jSHOYkQi96+fBbr24KH0Dvkum7jq7D-_juz-sBBG+oLAUKA@mail.gmail.com>
+X-ClientProxiedBy: BYAPR05CA0054.namprd05.prod.outlook.com
+ (2603:10b6:a03:74::31) To CY5PR11MB6139.namprd11.prod.outlook.com
+ (2603:10b6:930:29::17)
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: PH7PR11MB6522:EE_|PH0PR11MB5578:EE_
-X-MS-Office365-Filtering-Correlation-Id: d20f0733-9ece-4d27-7930-08db783665a2
+X-MS-TrafficTypeDiagnostic: CY5PR11MB6139:EE_|SA2PR11MB5177:EE_
+X-MS-Office365-Filtering-Correlation-Id: 7c40d00b-8e57-43a1-52ad-08db7848a120
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: HEw45cTG3jyexIftcDv40mYt7tyP3X3yprnwG/kZPclp8D4EIxhY6x3p6lXL5At9mBHeQq/FJCtg9cPfgbEJhSHN6UO/xvbGS2QCKVJki7MeNXE6J7NCdBs/UK+p5BNc5VAA5yGS9qaoIK6TQc4BXa8gp8Un502kWnikJn3rxSEBKZNRc3ShdCxvei80CoEVO8X0MQThb9kMX1e4pba+Q2Qb6B0c3NwMp3dLFyVlaS1PvFJ28qQ/c+58tfHDLx3ddc6RqeNIKjktypUqCfiIxFk4u21UfJWnpljD5PG3qShT2NajY6Z0yX46cxbR0smrt29nBPEGJwIL7rkPVj8Ebb0JExAs31RtH4WMbyHau0m9+/JIm1L143usHd1s8PjVMjMqQmSaHQO668wLnlvIeLYuqoNxVX/6H0jytqFOgxDstYUH/A50k4y6Gj/RZXKeg8dHrtIHFEaZ5egYX+RhbgQUhFMVi487a7LGexnVTEWmHLpVTGHheFgOnauzu7md31s6F3WWjOGUDCNyY+YcbXMWEOjJ3eVCVtM5wxLHSOGVGRZd2wk15Zq31BWaGrIjgu02fh3+nHL3qnLdFUEf2FQkgXIBME/78JFJr2gTYNQs+x8EXsnz0thfvwfyAxfQ
+X-Microsoft-Antispam-Message-Info: vd08KXw5IGDDSq9xQJiNmPmneqhxF3XEhI8BrEx9nkTnt1G9pIvfkcdfI4mYI7yBryez0brlYieGlEdlUgnx+3M1L1gpx0DboMbfCXOoZhG5JvaRlZ3nmG4I6vZwF8GixlNkzuk1bs4ddadxmMkeqrPGtwaRwyeAuk4LzQ9hPs2GH3EDX2R8NdTj+Kr7nVBO1VQMl6ARCMvIObnwnVu2BYZQpfJl6Kdpykk4WEOqO5fn1bykcOU8DHP5fDmqbxDsgundYva6s+0+6d+OJlAtXT1VaUBCCBCa8wGm4FoWUJqsl9YiFnkP639xuszJpxZI0uDmlpoYDFW6tqiQvPM2s4hfG8vzQSZA04RQxLxnNXSQiBl0whOjQDiDgDeGMEsxRE4e0ihoMheTBwXk3WG4SRdjy+qlWtluEzjqMfL1zij5ZmJXJKV8xRQeQZf8srre9XID46vAy+TlbidZdL9Zs0JaJTp6X+nA48uNdgJzDIQaYHwdGoUf3wNUHtD8w8zYsb3Py9kyQyHdpm9nlLk08/sucHDUgYmEOI+C68JLXSWNDpmQgac6MGnWGLDbjASYjKRlBqDiBQhWR3DOXQg0ZA==
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:PH7PR11MB6522.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230028)(396003)(346002)(376002)(366004)(39860400002)(136003)(451199021)(82960400001)(38100700002)(86362001)(4326008)(6862004)(41300700001)(8676002)(6486002)(44832011)(6506007)(5660300002)(8936002)(6512007)(26005)(478600001)(30864003)(83380400001)(186003)(2906002)(6636002)(66946007)(66476007)(66556008)(6666004)(316002)(473944003);
+ IPV:NLI; SFV:NSPM; H:CY5PR11MB6139.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230028)(7916004)(366004)(376002)(136003)(396003)(39860400002)(346002)(451199021)(6512007)(966005)(6486002)(478600001)(54906003)(186003)(26005)(6666004)(83380400001)(2906002)(6506007)(9686003)(86362001)(41300700001)(33716001)(38100700002)(5660300002)(66946007)(66556008)(4326008)(316002)(82960400001)(8936002)(66476007)(6916009)(8676002);
  DIR:OUT; SFP:1102; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?iso-8859-1?Q?0NtGiQD2xldx+mSxHPEgCo0hPifupV+kf0zaftXEWLgnngGCinidLMj/Xx?=
- =?iso-8859-1?Q?M+mndiw0UWrBAZrCSy3bjW3Jd47SWwS0CJ0ERe91EYRSD/87PtCvI3VeOY?=
- =?iso-8859-1?Q?v78dncRIYnfjtmEJvvOsfqi0fHdMTUEaDdRRwj1KatXmeskg6JoCb86grD?=
- =?iso-8859-1?Q?8pMJr+ajggoHU7bRDNJoLOuTBuqg3L5Z0FtwzmQ5VewqNNc4qM1HapC5A8?=
- =?iso-8859-1?Q?OTFYBd1h+LeeGYJL/ZkFK3zVuvMqc08SNT2YTufmzfBh6I6rxqqiM3PyYH?=
- =?iso-8859-1?Q?z+WvqEVsXnCngVI8DFCJAs97tn3MIGP4oo3KL3s+89oVGoQmRMIaW48z7Q?=
- =?iso-8859-1?Q?4+pU1FUFFv5frSXI+fbv9uFZQPD1sCAOivBbh4aQpldlAGMQfcIfRY09MP?=
- =?iso-8859-1?Q?Bngw6tlTT/gddMaXrFXsGCJqtmeAwr38xed/B3iwc7BvFjVDqrR9/oKrwk?=
- =?iso-8859-1?Q?9a7tx5lxSzhdl96i1+dCfhp/4mYrguuy91rbpUdu4SeIdUi4e1xjihIFKc?=
- =?iso-8859-1?Q?LxznOk9HoYyJoCBK18qucogqLKD2ToaN9hp1ETw/CJ2zqmYEXthAJvb4Gg?=
- =?iso-8859-1?Q?ne85fC556eUlR7/Jy20CJAbre0w0pMgQM9q9rBlDATepUE3rfiCWhf7bF1?=
- =?iso-8859-1?Q?V3EbQ5Xbpf5hnU+Y3L1smZWDY80CvWvb+0ILl5cAwX6mk0h1m5+WvYsBBj?=
- =?iso-8859-1?Q?nAmxERkr/zNta47z13Z+2UVYLVr0hWQICBnlLp9KR33o5e9OvgADs5BpC+?=
- =?iso-8859-1?Q?FsV/XzRPqqB2ajZK86eN7O4fEWZ5QvABbWAmuGL3ILrWhz3MyHR0+0z1GQ?=
- =?iso-8859-1?Q?UIc30euaY0HMw0aoBpur7nlYGApC814dkoDHt3BPlP1CgQlDoK7X36aEZa?=
- =?iso-8859-1?Q?X9kjdlNKLjZJqtcq6yF55E1d/6WUgELH/GzjANvHZorXf8+XSgTnDeuGa1?=
- =?iso-8859-1?Q?IdzkouHNk8iAUSwEg4ZyT5KJiDRQr+yBlVRrWNYzB6eFsBH4v39ReTcRoa?=
- =?iso-8859-1?Q?jjhXWTSHeWPHZDxCj+gA3OkEUmTgK99aK5wdlqnVzwwdlr/CcD6+APgFHH?=
- =?iso-8859-1?Q?nCwTq9LhYe40uQdAZEcLLlAZB/1N4Jc9xekCp+vtRdXTYWJ/kJFf/wwIv9?=
- =?iso-8859-1?Q?u4N1SXSIYk8O9/btrTewjIDNRjnjbyEdwffnuQEcV8EhmXOF/41gs4Y7GK?=
- =?iso-8859-1?Q?dng6QVZyaS1tXy9ftM6sQ1iujn7zmwIsFpjZ1K0FBJ509lq/6xKE4svyN0?=
- =?iso-8859-1?Q?BaHl3XC4MCT+NhNc9ZbKf1Tsoh/WFX7wPc8Hu4u/+wrGquYkr8EC+4k1/R?=
- =?iso-8859-1?Q?8lOEswL82+BUFpqnWPOb+SBlug3zeQAsK3r8d1DIEsY3rdK5O5Z2CFKcKa?=
- =?iso-8859-1?Q?MhE1SU3mbEdpPRNPo/awcDSgW2OvLY/E+MYl9ulBe32Eqj7tg3WwxyRPpN?=
- =?iso-8859-1?Q?YgIPwD0L82ojcptmlHmpsya7PQcaE0+ioUkFz5vM1mX0M3Cli+h0sNnZPH?=
- =?iso-8859-1?Q?Cj1LASH8QKrEUivE6Z/NDf48HyLEWjv9MoWwWy8Suqr0shHtYMS3lDFc7G?=
- =?iso-8859-1?Q?4UpCghmpEYEeC1hl4q7b8laaCKysvmwaRvsSSHuHXVCXxzvU/L0p6sKzy+?=
- =?iso-8859-1?Q?Ha5KxHKdLBEqcZzkASU4G0CrWSzzy0cvWewaGRIY9bQdl01Ff2ex0h4g?=
- =?iso-8859-1?Q?=3D=3D?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: d20f0733-9ece-4d27-7930-08db783665a2
-X-MS-Exchange-CrossTenant-AuthSource: PH7PR11MB6522.namprd11.prod.outlook.com
+X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?7/o46ENW1jCh2zP3hMa/9bp5HdsipyiL4ciq4BongP/IdzdeBLwIEEEIycuO?=
+ =?us-ascii?Q?03fm34dt9QMexPQBj5C7SJLp2ItiRZJ2Y/PaCPSBC1WHiqscmn3fBDwkpwGJ?=
+ =?us-ascii?Q?4A8YczgxnDELxpQpG/MD56wF9WoCQvCc6B1HdlCL/7E76GQOmXnh1JSkqkQC?=
+ =?us-ascii?Q?8ULoCcmHxpyNevG4PD795BpH6nUXTXEaT5TSXpbM3Nibv+uev2b03Vc9S+4t?=
+ =?us-ascii?Q?JufIybEdAB41ZE6fHnCdm/BmSiSBs7sfTgL4VuaBU76X7dmTDNZ0DbpH4IWr?=
+ =?us-ascii?Q?ikXzoXDyTIwVHj6i3eYP3vbOwFh9YmhVoqBeR52LyipOjoxkamq6oVqm755k?=
+ =?us-ascii?Q?zXce27lmCHG1i9COtG7/p8bJvwFFhAs5Ql6lSTbkyMJ7rLhP6LGHOEvbgYQR?=
+ =?us-ascii?Q?sBbAqAs8tqr9IYfwnHcCQIoit+MgiHD8zN0sUgcZkYNu/zs3MGCDXA9f6afi?=
+ =?us-ascii?Q?Nq4SgP/B9jlQ0HeO8OJTRDSB09uOI/6gP2ivBj4NxDwa9SL4bPJyh/at/z7p?=
+ =?us-ascii?Q?qZkk3vXnAl0OFHGibswxKkR7WdkayvpZGAsPsMRj21fRaRZkBTLvzJx6L/Jz?=
+ =?us-ascii?Q?Wwm3vDQvorDOMjphd5x7+1HkQUXz+r9WxyVNoeHP221HI53sri/H8ptNDktv?=
+ =?us-ascii?Q?f+hglQmc5gnTY+0v7nQA7DTKn5FG1iSHh3nsbSMrXUo63T4a+SmTmm2WZFkU?=
+ =?us-ascii?Q?uQJcAVaNoksMz/cJGw51JW2qyGM2UiiLrrbUc+sriX0zfvEnhnVJsl7GbK/f?=
+ =?us-ascii?Q?BFIY7B7s3TOd7t4qKy/1QJD1YvimoUBMVlcc27So8AOMuRwT37E/ZdOMreiG?=
+ =?us-ascii?Q?zQ38sf0WuXC78ZEYJdwlfoUNg3vomcBNgGHvoC3ps4XsWG/RzpQWhI9W/YSA?=
+ =?us-ascii?Q?yJz/3OiP7pu8tyj9HOYep+qJlQ5MuKecnba48dnOBDmI6aYmzzzKtOz8x0kW?=
+ =?us-ascii?Q?t+bQK3z2LecVcE2Y2A2LekUUIxQJ6MNNjiWZ3aH9mePz0JcFkqEzAuzi+jj6?=
+ =?us-ascii?Q?HyhJlJAXgmtiBYiGcVR1ONeMUKR7fDE2wfzaH2dFxDNO3lHhGPrkAzzf2O1n?=
+ =?us-ascii?Q?ZosAufLoQKeXm/HFPBwQ1aK7YM8sqP5dBJTlTtSZUqLLImaDpbfLSGQfxkVB?=
+ =?us-ascii?Q?lXsHE9F9IRiwRJjJ4scTNc5Qz2wIf4z4mXnHXwPyJlpzHMzoYEM1V8Veta7x?=
+ =?us-ascii?Q?7TRtDO8ZCI0C5+SzeMa/r0uIqF/V4lsrQZZ8AJvDy8DsRMaOsPBjOnEOZBg8?=
+ =?us-ascii?Q?pO7KxsDYjnUGseg2+3vcTPT1eUGXxDCvgaIp/+t0brYfPLpCWBKM0cs3HyR9?=
+ =?us-ascii?Q?zy7pMXIVtnoG5J1vgBnhxHmF41PfmqKXNwE01P4JbQkryYgnAD1d4MZqgmYc?=
+ =?us-ascii?Q?f0o1RL2LA0LL/SJNkAZuenQRyfM2nHQ6sWS0lfrInqj+rFzZ3sL7DuyAE1t0?=
+ =?us-ascii?Q?Qt7r6lWY7MAn+KS23876tjj1iDa4/mNAem7zUvk/vlCO9pBj/8j6iMqnw3Bn?=
+ =?us-ascii?Q?2muN7oUshIpqKbhpF80c3wYVAWGG2Io+HVt+OC529QI5OLCFgrws8Wk6dqlH?=
+ =?us-ascii?Q?BbBRQiqno1zID2OlStLUEwsbFDZ/yVzwYwNiIuVK?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: 7c40d00b-8e57-43a1-52ad-08db7848a120
+X-MS-Exchange-CrossTenant-AuthSource: CY5PR11MB6139.namprd11.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 29 Jun 2023 00:18:43.5714 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 29 Jun 2023 02:29:14.5060 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: ywW3dpQ0QKbPERzTyxnDmJgS+eKMQpnDPEsAa9VirWMXIcczT3MnhFbbyHD61G6HhdhKpoEq2iXD9xs3s1285g==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH0PR11MB5578
+X-MS-Exchange-CrossTenant-UserPrincipalName: 4cZytSdpwoccTvYdTPT8CLj1Qz7Q7axpkQFWIxbNL7U1PlDdFnnzLMP867E0kvKGTEGCGOmbPf4IACqsA5Xa6zGXumorkBjuEXyBjqrG77A=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SA2PR11MB5177
 X-OriginatorOrg: intel.com
-Subject: Re: [Intel-xe] [PATCH v2 2/6] drm/xe/hwmon: Expose power attributes
+Subject: Re: [Intel-xe] [PATCH] drm/xe: Grab runtime PM over MMIO ioctl
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -148,733 +144,125 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Cc: linux-hwmon@vger.kernel.org, intel-xe@lists.freedesktop.org,
- linux@roeck-us.net
+Cc: Matt Roper <matthew.d.roper@intel.com>, intel-xe@lists.freedesktop.org,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Wed, Jun 28, 2023 at 12:00:39AM +0530, Badal Nilawar wrote:
-> Expose power_max (pl1) and power_rated_max (tdp) attributes.
-> This is port from i915 hwmon.
-> 
-
-Not expert in this domain but this statement makes be nervous as
-generally shouldn't just blindly port things from the i915. Doing an
-initial review but will need a domain expert too.
-
-> v2:
->   - Move rpm calls (xe_device_mem_access_get/put) to hwmon functions from
->     process_hwmon_reg to avoid multiple rpm entry exits during consecutive
->     reg accesses
->   - Fix review comments (Riana)
-> 
-> Signed-off-by: Badal Nilawar <badal.nilawar@intel.com>
-> ---
->  .../ABI/testing/sysfs-driver-intel-xe-hwmon   |  22 ++
->  drivers/gpu/drm/xe/regs/xe_gt_regs.h          |   4 +
->  drivers/gpu/drm/xe/regs/xe_mchbar_regs.h      |  34 ++
->  drivers/gpu/drm/xe/xe_hwmon.c                 | 372 +++++++++++++++++-
->  drivers/gpu/drm/xe/xe_hwmon.h                 |   4 +
->  drivers/gpu/drm/xe/xe_uc.c                    |   6 +
->  6 files changed, 435 insertions(+), 7 deletions(-)
->  create mode 100644 Documentation/ABI/testing/sysfs-driver-intel-xe-hwmon
->  create mode 100644 drivers/gpu/drm/xe/regs/xe_mchbar_regs.h
-> 
-> diff --git a/Documentation/ABI/testing/sysfs-driver-intel-xe-hwmon b/Documentation/ABI/testing/sysfs-driver-intel-xe-hwmon
-> new file mode 100644
-> index 000000000000..ff3465195870
-> --- /dev/null
-> +++ b/Documentation/ABI/testing/sysfs-driver-intel-xe-hwmon
-> @@ -0,0 +1,22 @@
-> +What:		/sys/devices/.../hwmon/hwmon<i>/power1_max
-> +Date:		July 2023
-
-Future?
-
-> +KernelVersion:	6.3
-> +Contact:	intel-gfx@lists.freedesktop.org
-
-s/intel-gfx/intel-xe
-
-> +Description:	RW. Card reactive sustained  (PL1/Tau) power limit in microwatts.
-> +
-> +		The power controller will throttle the operating frequency
-> +		if the power averaged over a window (typically seconds)
-> +		exceeds this limit. A read value of 0 means that the PL1
-> +		power limit is disabled, writing 0 disables the
-> +		limit. Writing values > 0 will enable the power limit.
-> +
-> +		Only supported for particular Intel xe graphics platforms.
-> +
-> +What:		/sys/devices/.../hwmon/hwmon<i>/power1_rated_max
-> +Date:		July 2023
-> +KernelVersion:	6.3
-> +Contact:	intel-gfx@lists.freedesktop.org
-> +Description:	RO. Card default power limit (default TDP setting).
-> +
-> +		Only supported for particular Intel xe graphics platforms.
-> +
-> diff --git a/drivers/gpu/drm/xe/regs/xe_gt_regs.h b/drivers/gpu/drm/xe/regs/xe_gt_regs.h
-> index d654f3311351..eb7210afbd2c 100644
-> --- a/drivers/gpu/drm/xe/regs/xe_gt_regs.h
-> +++ b/drivers/gpu/drm/xe/regs/xe_gt_regs.h
-> @@ -397,4 +397,8 @@
->  #define XEHPC_BCS5_BCS6_INTR_MASK		XE_REG(0x190118)
->  #define XEHPC_BCS7_BCS8_INTR_MASK		XE_REG(0x19011c)
->  
-> +#define PVC_GT0_PACKAGE_RAPL_LIMIT		XE_REG(0x281008)
-> +#define PVC_GT0_PACKAGE_POWER_SKU_UNIT		XE_REG(0x281068)
-> +#define PVC_GT0_PACKAGE_POWER_SKU		XE_REG(0x281080)
-> +
->  #endif
-> diff --git a/drivers/gpu/drm/xe/regs/xe_mchbar_regs.h b/drivers/gpu/drm/xe/regs/xe_mchbar_regs.h
-> new file mode 100644
-> index 000000000000..cb2d49b5c8a9
-> --- /dev/null
-> +++ b/drivers/gpu/drm/xe/regs/xe_mchbar_regs.h
-> @@ -0,0 +1,34 @@
-> +/* SPDX-License-Identifier: MIT */
-> +/*
-> + * Copyright © 2023 Intel Corporation
-> + */
-> +
-> +#ifndef _XE_MCHBAR_REGS_H__
-> +#define _XE_MCHBAR_REGS_H_
-> +
-> +#include "regs/xe_reg_defs.h"
-> +
-> +/*
-> + * MCHBAR mirror.
-> + *
-> + * This mirrors the MCHBAR MMIO space whose location is determined by
-> + * device 0 function 0's pci config register 0x44 or 0x48 and matches it in
-> + * every way.
-> + */
-> +
-> +#define MCHBAR_MIRROR_BASE_SNB			0x140000
-> +
-> +#define PCU_CR_PACKAGE_POWER_SKU		XE_REG(MCHBAR_MIRROR_BASE_SNB + 0x5930)
-> +#define   PKG_PKG_TDP				GENMASK_ULL(14, 0)
-> +#define   PKG_MIN_PWR				GENMASK_ULL(30, 16)
-> +#define   PKG_MAX_PWR				GENMASK_ULL(46, 32)
-> +
-> +#define PCU_CR_PACKAGE_POWER_SKU_UNIT		XE_REG(MCHBAR_MIRROR_BASE_SNB + 0x5938)
-> +#define   PKG_PWR_UNIT				REG_GENMASK(3, 0)
-> +
-> +#define PCU_CR_PACKAGE_RAPL_LIMIT		XE_REG(MCHBAR_MIRROR_BASE_SNB + 0x59a0)
-> +#define   PKG_PWR_LIM_1				REG_GENMASK(14, 0)
-> +#define   PKG_PWR_LIM_1_EN			REG_BIT(15)
-> +
-> +#endif
-> +
-> diff --git a/drivers/gpu/drm/xe/xe_hwmon.c b/drivers/gpu/drm/xe/xe_hwmon.c
-> index 8f653fdf4ad5..a4fba29d5d5a 100644
-> --- a/drivers/gpu/drm/xe/xe_hwmon.c
-> +++ b/drivers/gpu/drm/xe/xe_hwmon.c
-> @@ -5,53 +5,394 @@
->  
->  #include <linux/hwmon.h>
->  
-> +#include "regs/xe_mchbar_regs.h"
->  #include "regs/xe_gt_regs.h"
->  #include "xe_device.h"
->  #include "xe_hwmon.h"
-> +#include "xe_mmio.h"
-> +#include "xe_gt.h"
-
-Nit - includes should be in alphabetical order.
-
-> +
-> +enum hwm_reg_name {
-> +	pkg_rapl_limit,
-> +	pkg_power_sku,
-> +	pkg_power_sku_unit,
-
-Upper case? I guess hwmon_power_max is lower case so is that the
-convention?
-
-> +};
-> +
-> +enum hwm_reg_operation {
-> +	reg_read,
-> +	reg_write,
-> +	reg_rmw,
-
-Upper case?
-
-> +};
-> +
-
-s/hwm_reg/xe_hwm_reg
-
-> +/*
-> + * SF_* - scale factors for particular quantities according to hwmon spec.
-> + * - power  - microwatts
-> + */
-> +#define SF_POWER	1000000
->  
->  struct hwm_drvdata {
->  	struct xe_hwmon *hwmon;
->  	struct device *hwmon_dev;
-> +	struct xe_gt *gt;
->  	char name[12];
-> +	bool reset_in_progress;
-> +	wait_queue_head_t waitq;
->  };
->  
->  struct xe_hwmon {
->  	struct hwm_drvdata ddat;
->  	struct mutex hwmon_lock;
-> +	int scl_shift_power;
->  };
+On Fri, Jun 16, 2023 at 01:10:49PM +0100, Matthew Auld wrote:
+>On Thu, 15 Jun 2023 at 21:20, Matt Roper <matthew.d.roper@intel.com> wrote:
+>>
+>> On Thu, Jun 15, 2023 at 09:42:03AM +0100, Matthew Auld wrote:
+>> > On Wed, 14 Jun 2023 at 21:04, Matt Roper <matthew.d.roper@intel.com> wrote:
+>> > >
+>> > > The MMIO ioctl (which is generally used from IGT's xe_reg tool) may be
+>> > > called while the device is in D3, resulting in invalid results (i.e.,
+>> > > all registers read back as 0xFFFFFFFF, writes are dropped).  Make sure
+>> > > we grab runtime PM wakeref before performing register reads/writes.
+>> > >
+>> > > Signed-off-by: Matt Roper <matthew.d.roper@intel.com>
+>> >
+>> > AFAIK we should use mem_access_get() for MMIO:
+>>
+>> I thought mem_access_get() was specifically for memory access (like we
+>> needed for a special workaround on some early steppings of PVC); is it
+>> intended to be used for all devices accesses, not just memory now?  If
+>> so we might want to rename it to something more accurate like
+>> 'mmio_access_get' (and also add some kerneldoc explaining when/why it
+>> would be used instead of the standard runtime PM).
 >
+>AFAIK Rodrigo is planning to add some docs to explain its usage. I was
+>also under the impression that it was more for stuff like VRAM memory
+>access, but it seems MMIO should also be included or really any device
+>level memory access.
+>
+>https://gitlab.freedesktop.org/drm/xe/kernel/-/issues/281
 
-Same as previous patch, 1 struct seems like a better idea to me.
+I don't see how mem_access_get() would be the appropriate call here.
+At the most we should have a dep in which when force_wake is taken, it
+get a mem access cookie. Here it is really about "wake up everything, we
+don't know crazy thing userspace is going to do".
 
-> +struct xe_reg hwm_get_reg(struct hwm_drvdata *ddat, enum hwm_reg_name reg_name)
+In that sense, why are we not getting the pm when taking the force wake
+rather than wrapping it here? Shouldn't a force_wake ensure the device
+is not pm suspended?
 
-s/hwm_get_reg/xe_hwmon_get_reg
+Lucas De Marchi
 
-> +{
-> +	struct xe_device *xe = gt_to_xe(ddat->gt);
-> +
-> +	switch (reg_name) {
-> +	case pkg_rapl_limit:
-> +		if (xe->info.platform == XE_DG2)
-> +			return PCU_CR_PACKAGE_RAPL_LIMIT;
-> +		else if (xe->info.platform == XE_PVC)
-> +			return PVC_GT0_PACKAGE_RAPL_LIMIT;
-> +		break;
-> +	case pkg_power_sku:
-> +		if (xe->info.platform == XE_DG2)
-> +			return PCU_CR_PACKAGE_POWER_SKU;
-> +		else if (xe->info.platform == XE_PVC)
-> +			return PVC_GT0_PACKAGE_POWER_SKU;
-> +		break;
-> +	case pkg_power_sku_unit:
-> +		if (xe->info.platform == XE_DG2)
-> +			return PCU_CR_PACKAGE_POWER_SKU_UNIT;
-> +		else if (xe->info.platform == XE_PVC)
-> +			return PVC_GT0_PACKAGE_POWER_SKU_UNIT;
-> +		break;
-> +	default:
-
-BUG_ON or WARN_ON saying not possible?
-
-> +		break;
-> +	}
-> +
-> +	return XE_REG(0);
-> +}
-> +
-> +int process_hwmon_reg(struct hwm_drvdata *ddat, enum hwm_reg_name reg_name,
-> +		      enum hwm_reg_operation operation, u32 *value,
-> +		      u32 clr, u32 set)
-> +{
-> +	struct xe_reg reg;
-> +	int ret = 0;
-> +
-> +	reg = hwm_get_reg(ddat, reg_name);
-> +
-> +	if (!reg.raw)
-> +		return -EOPNOTSUPP;
-> +
-> +	switch (operation) {
-> +	case reg_read:
-> +		*value = xe_mmio_read32(ddat->gt, reg);
-> +		break;
-> +	case reg_write:
-> +		xe_mmio_write32(ddat->gt, reg, *value);
-> +		break;
-> +	case reg_rmw:
-> +		*value = xe_mmio_rmw32(ddat->gt, reg, clr, set);
-> +		break;
-> +	default:
-
-BUG_ON or WARN_ON saying not possible?
-
-> +		ret = -EOPNOTSUPP;
-> +	}
-> +
-> +	return ret;
-> +}
-> +
-> +int process_hwmon_reg_read64(struct hwm_drvdata *ddat, enum hwm_reg_name reg_name, u64 *value)
-> +{
-> +	struct xe_reg reg;
-> +
-> +	reg = hwm_get_reg(ddat, reg_name);
-> +
-> +	if (!reg.raw)
-> +		return -EOPNOTSUPP;
-> +
-> +	xe_device_mem_access_get(gt_to_xe(ddat->gt));
-
-Don't need this, the upper levels of the stack should have this. You
-could just do a xe_device_assert_mem_access here. 
-
-> +
-> +	*value = xe_mmio_read64(ddat->gt, reg);
-> +
-> +	xe_device_mem_access_put(gt_to_xe(ddat->gt));
-> +
-> +	return 0;
-> +}
-> +
-> +#define PL1_DISABLE 0
-> +
-> +/*
-> + * HW allows arbitrary PL1 limits to be set but silently clamps these values to
-> + * "typical but not guaranteed" min/max values in rg.pkg_power_sku. Follow the
-> + * same pattern for sysfs, allow arbitrary PL1 limits to be set but display
-> + * clamped values when read.
-> + */
-> +static int hwm_power_max_read(struct hwm_drvdata *ddat, long *value)
-
-The return value is always 0, why not return value?
-
-s/hwm_power_max_read/xe_hwmon_power_max_read
-
-> +{
-> +	struct xe_hwmon *hwmon = ddat->hwmon;
-> +	u32 reg_val;
-> +	u64 r, min, max;
-> +
-> +	xe_device_mem_access_get(gt_to_xe(ddat->gt));
-> +
-
-Same as above, use xe_device_assert_mem_access.
-
-> +	process_hwmon_reg(ddat, pkg_rapl_limit, reg_read, &reg_val, 0, 0);
-> +	/* Check if PL1 limit is disabled */
-> +	if (!(reg_val & PKG_PWR_LIM_1_EN)) {
-> +		*value = PL1_DISABLE;
-> +		xe_device_mem_access_put(gt_to_xe(ddat->gt));
-> +		return 0;
-> +	}
-> +
-> +	reg_val = REG_FIELD_GET(PKG_PWR_LIM_1, reg_val);
-> +	*value = mul_u64_u32_shr(reg_val, SF_POWER, hwmon->scl_shift_power);
-> +
-> +	process_hwmon_reg_read64(ddat, pkg_power_sku, &r);
-> +	min = REG_FIELD_GET(PKG_MIN_PWR, r);
-> +	min = mul_u64_u32_shr(min, SF_POWER, hwmon->scl_shift_power);
-> +	max = REG_FIELD_GET(PKG_MAX_PWR, r);
-> +	max = mul_u64_u32_shr(max, SF_POWER, hwmon->scl_shift_power);
-> +
-> +	if (min && max)
-> +		*value = clamp_t(u64, *value, min, max);
-> +
-> +	xe_device_mem_access_put(gt_to_xe(ddat->gt));
-> +	return 0;
-> +}
-> +
-> +static int hwm_power_max_write(struct hwm_drvdata *ddat, long value)
-> +{
-> +	struct xe_hwmon *hwmon = ddat->hwmon;
-> +	DEFINE_WAIT(wait);
-> +	int ret = 0;
-> +	u32 nval;
-> +
-> +	/* Block waiting for GuC reset to complete when needed */
-> +	for (;;) {
-> +		mutex_lock(&hwmon->hwmon_lock);
-> +
-> +		prepare_to_wait(&ddat->waitq, &wait, TASK_INTERRUPTIBLE);
-> +
-> +		if (!hwmon->ddat.reset_in_progress)
-> +			break;
-> +
-> +		if (signal_pending(current)) {
-> +			ret = -EINTR;
-> +			break;
-> +		}
-> +
-> +		mutex_unlock(&hwmon->hwmon_lock);
-> +
-> +		schedule();
-> +	}
-> +	finish_wait(&ddat->waitq, &wait);
-> +	if (ret)
-> +		goto unlock;
-
-Anyway to not open code this? We similar in with
-xe_guc_submit_reset_wait, could we expose a global reset in progress in
-function which we can expose at the gt level?
-
-> +
-> +	xe_device_mem_access_get(gt_to_xe(ddat->gt));
-> +
-
-This certainly is an outer most thing, e.g. doing this under
-hwmon->hwmon_lock seems dangerous. Again the upper levels of the stack
-should do the xe_device_mem_access_get, which it does. Just pointing out
-doing xe_device_mem_access_get/put under a lock isn't a good idea.
-
-Also the the loop which acquires hwmon->hwmon_lock is confusing too.
-
-> +	/* Disable PL1 limit and verify, as limit cannot be disabled on all platforms */
-> +	if (value == PL1_DISABLE) {
-> +		process_hwmon_reg(ddat, pkg_rapl_limit, reg_rmw, &nval,
-> +				  PKG_PWR_LIM_1_EN, 0);
-> +		process_hwmon_reg(ddat, pkg_rapl_limit, reg_read, &nval,
-> +				  PKG_PWR_LIM_1_EN, 0);
-> +
-> +		if (nval & PKG_PWR_LIM_1_EN)
-> +			ret = -ENODEV;
-> +		goto exit;
-> +	}
-> +
-> +	/* Computation in 64-bits to avoid overflow. Round to nearest. */
-> +	nval = DIV_ROUND_CLOSEST_ULL((u64)value << hwmon->scl_shift_power, SF_POWER);
-> +	nval = PKG_PWR_LIM_1_EN | REG_FIELD_PREP(PKG_PWR_LIM_1, nval);
-> +
-> +	process_hwmon_reg(ddat, pkg_rapl_limit, reg_rmw, &nval,
-> +			  PKG_PWR_LIM_1_EN | PKG_PWR_LIM_1, nval);
-> +exit:
-> +	xe_device_mem_access_put(gt_to_xe(ddat->gt));
-> +unlock:
-> +	mutex_unlock(&hwmon->hwmon_lock);
-> +
-
-Again a clear lock / unlock is desirable.
-
-> +	return 0;
-> +}
-> +
-> +static int hwm_power_rated_max_read(struct hwm_drvdata *ddat, long *value)
-> +{
-
-s/hwm_power_rated_max_read/xe_hwmon_power_rated_max_read
-
-> +	struct xe_hwmon *hwmon = ddat->hwmon;
-> +	u32 reg_val;
-> +
-> +	process_hwmon_reg(ddat, pkg_power_sku, reg_read, &reg_val, 0, 0);
-> +	reg_val = REG_FIELD_GET(PKG_PKG_TDP, reg_val);
-> +	*value = mul_u64_u32_shr(reg_val, SF_POWER, hwmon->scl_shift_power);
-> +
-> +	return 0;
-> +}
-> +
->  static const struct hwmon_channel_info *hwm_info[] = {
-
-s/hwm_info/xe_hwmon_info
-
-> +	HWMON_CHANNEL_INFO(power, HWMON_P_MAX | HWMON_P_RATED_MAX),
->  	NULL
->  };
->  
-> +static umode_t
-> +hwm_power_is_visible(struct hwm_drvdata *ddat, u32 attr, int chan)
-> +{
-
-s/hwm_power_is_visible/xe_hwmon_power_is_visible
-
-> +	u32 reg_val;
-> +
-> +	switch (attr) {
-> +	case hwmon_power_max:
-> +		return process_hwmon_reg(ddat, pkg_rapl_limit,
-> +					 reg_read, &reg_val, 0, 0) ? 0 : 0664;
-> +	case hwmon_power_rated_max:
-> +		return process_hwmon_reg(ddat, pkg_power_sku,
-> +					 reg_read, &reg_val, 0, 0) ? 0 : 0444;
-> +	default:
-> +		return 0;
-> +	}
-> +}
-> +
-> +static int
-> +hwm_power_read(struct hwm_drvdata *ddat, u32 attr, int chan, long *val)
-> +{
-
-s/hwm_power_read/xe_hwmon_power_read
-
-> +	switch (attr) {
-> +	case hwmon_power_max:
-> +		return hwm_power_max_read(ddat, val);
-> +	case hwmon_power_rated_max:
-> +		return hwm_power_rated_max_read(ddat, val);
-> +	default:
-> +		return -EOPNOTSUPP;
-> +	}
-> +}
-> +
-> +static int
-> +hwm_power_write(struct hwm_drvdata *ddat, u32 attr, int chan, long val)
-> +{
-
-s/hwm_power_write/xe_hwmon_power_write
-
-> +	switch (attr) {
-> +	case hwmon_power_max:
-> +		return hwm_power_max_write(ddat, val);
-> +	default:
-> +		return -EOPNOTSUPP;
-> +	}
-> +}
-> +
-> +void xe_hwmon_power_max_disable(struct xe_device *xe, bool *old)
-> +{
-> +	struct xe_hwmon *hwmon = xe->hwmon;
-> +	struct hwm_drvdata *ddat = &hwmon->ddat;
-> +	u32 r;
-> +
-> +	xe_device_mem_access_get(gt_to_xe(ddat->gt));
-> +
-
-Upper level should have, use an assert if anything.
-
-> +	if (!hwmon || process_hwmon_reg(ddat, pkg_rapl_limit,
-> +					reg_read, &r, 0, 0))
-> +		return;
-> +
-> +	mutex_lock(&hwmon->hwmon_lock);
-> +
-> +	hwmon->ddat.reset_in_progress = true;
-> +
-> +	process_hwmon_reg(ddat, pkg_rapl_limit, reg_rmw, &r,
-> +			  PKG_PWR_LIM_1_EN, 0);
-> +	*old = !!(r & PKG_PWR_LIM_1_EN);
-> +
-> +	mutex_unlock(&hwmon->hwmon_lock);
-> +
-> +	xe_device_mem_access_put(gt_to_xe(ddat->gt));
-> +}
-> +
-> +void xe_hwmon_power_max_restore(struct xe_device *xe, bool old)
-> +{
-> +	struct xe_hwmon *hwmon = xe->hwmon;
-> +	struct hwm_drvdata *ddat = &hwmon->ddat;
-> +	u32 r;
-> +
-> +	xe_device_mem_access_get(gt_to_xe(ddat->gt));
-
-Upper level should have, use an assert if anything.
-
-> +
-> +	if (!hwmon || process_hwmon_reg(ddat, pkg_rapl_limit,
-> +					reg_read, &r, 0, 0))
-> +		return;
-> +
-> +	mutex_lock(&hwmon->hwmon_lock);
-> +
-> +	process_hwmon_reg(ddat, pkg_rapl_limit, reg_rmw, &r,
-> +			  PKG_PWR_LIM_1_EN, old ? PKG_PWR_LIM_1_EN : 0);
-> +
-> +	hwmon->ddat.reset_in_progress = false;
-> +	wake_up_all(&hwmon->ddat.waitq);
-> +
-> +	mutex_unlock(&hwmon->hwmon_lock);
-> +
-> +	xe_device_mem_access_put(gt_to_xe(ddat->gt));
-> +}
-> +
->  static umode_t
->  hwm_is_visible(const void *drvdata, enum hwmon_sensor_types type,
->  	       u32 attr, int channel)
->  {
-> +	struct hwm_drvdata *ddat = (struct hwm_drvdata *)drvdata;
-> +	int ret;
-> +
-> +	xe_device_mem_access_get(gt_to_xe(ddat->gt));
-> +
-
-Nit, include the get / put in previous patch.
-
->  	switch (type) {
-> +	case hwmon_power:
-> +		ret = hwm_power_is_visible(ddat, attr, channel);
-> +		break;
->  	default:
-> -		return 0;
-> +		ret = 0;
->  	}
-> +
-> +	xe_device_mem_access_put(gt_to_xe(ddat->gt));
-> +
-> +	return ret;
->  }
->  
->  static int
->  hwm_read(struct device *dev, enum hwmon_sensor_types type, u32 attr,
->  	 int channel, long *val)
->  {
-> +	struct hwm_drvdata *ddat = dev_get_drvdata(dev);
-> +	int ret;
-> +
-> +	xe_device_mem_access_get(gt_to_xe(ddat->gt));
-
-Nit, include the get / put in previous patch.
-
-> +
->  	switch (type) {
-> +	case hwmon_power:
-> +		ret = hwm_power_read(ddat, attr, channel, val);
-> +		break;
->  	default:
-> -		return -EOPNOTSUPP;
-> +		ret = -EOPNOTSUPP;
-> +		break;
->  	}
-> +
-> +	xe_device_mem_access_put(gt_to_xe(ddat->gt));
-> +
-> +	return ret;
->  }
->  
->  static int
->  hwm_write(struct device *dev, enum hwmon_sensor_types type, u32 attr,
->  	  int channel, long val)
->  {
-> +	struct hwm_drvdata *ddat = dev_get_drvdata(dev);
-> +	int ret;
-> +
-> +	xe_device_mem_access_get(gt_to_xe(ddat->gt));
-
-Nit, include the get / put in previous patch.
-
-> +
->  	switch (type) {
-> +	case hwmon_power:
-> +		ret = hwm_power_write(ddat, attr, channel, val);
-> +		break;
->  	default:
-> -		return -EOPNOTSUPP;
-> +		ret = -EOPNOTSUPP;
-> +		break;
->  	}
-> +
-> +	xe_device_mem_access_put(gt_to_xe(ddat->gt));
-> +
-> +	return ret;
->  }
->  
->  static const struct hwmon_ops hwm_ops = {
-> @@ -66,8 +407,19 @@ static const struct hwmon_chip_info hwm_chip_info = {
->  };
->  
->  static void
-> -hwm_get_preregistration_info(struct xe_device *xe)
-> +hwm_get_preregistration_info(struct hwm_drvdata *ddat)
-
-Why change the function argument?
-
->  {
-> +	struct xe_hwmon *hwmon = ddat->hwmon;
-> +	u32 val_sku_unit = 0;
-> +	int ret;
-> +
-> +	ret = process_hwmon_reg(ddat, pkg_power_sku_unit, reg_read, &val_sku_unit, 0, 0);
-> +	/*
-> +	 * The contents of register pkg_power_sku_unit do not change,
-> +	 * so read it once and store the shift values.
-> +	 */
-> +	if (!ret)
-> +		hwmon->scl_shift_power = REG_FIELD_GET(PKG_PWR_UNIT, val_sku_unit);
->  }
->  
->  void xe_hwmon_register(struct xe_device *xe)
-> @@ -89,18 +441,24 @@ void xe_hwmon_register(struct xe_device *xe)
->  	mutex_init(&hwmon->hwmon_lock);
->  	ddat = &hwmon->ddat;
->  
-> +	/* primary GT to access device level properties */
-> +	ddat->gt = xe->tiles[0].primary_gt;
-> +
->  	ddat->hwmon = hwmon;
->  	snprintf(ddat->name, sizeof(ddat->name), "xe");
->  
-> -	hwm_get_preregistration_info(xe);
-> +	init_waitqueue_head(&ddat->waitq);
->  
-> -	drm_dbg(&xe->drm, "Register HWMON interface\n");
-> +	hwm_get_preregistration_info(ddat);
->  
-> -	/*  hwmon_dev points to device hwmon<i> */
-> +	drm_dbg(&xe->drm, "Register xe hwmon interface\n");
-> +
-> +	/* hwmon_dev points to device hwmon<i> */
->  	hwmon_dev = devm_hwmon_device_register_with_info(dev, ddat->name,
->  							 ddat,
->  							 &hwm_chip_info,
->  							 NULL);
-> +
-
-Unrelated, probably delete,
-
->  	if (IS_ERR(hwmon_dev)) {
->  		drm_warn(&xe->drm, "Fail to register xe hwmon\n");
-
-Missed this the prior patch but include the error value in the print.
-
->  		xe->hwmon = NULL;
-> diff --git a/drivers/gpu/drm/xe/xe_hwmon.h b/drivers/gpu/drm/xe/xe_hwmon.h
-> index a078eeb0a68b..a5dc693569c5 100644
-> --- a/drivers/gpu/drm/xe/xe_hwmon.h
-> +++ b/drivers/gpu/drm/xe/xe_hwmon.h
-> @@ -14,9 +14,13 @@ struct xe_device;
->  #if IS_REACHABLE(CONFIG_HWMON)
->  void xe_hwmon_register(struct xe_device *xe);
->  void xe_hwmon_unregister(struct xe_device *xe);
-> +void xe_hwmon_power_max_disable(struct xe_device *xe, bool *old);
-> +void xe_hwmon_power_max_restore(struct xe_device *xe, bool old);
->  #else
->  static inline void xe_hwmon_register(struct xe_device *xe) { };
->  static inline void xe_hwmon_unregister(struct xe_device *xe) { };
-> +static inline void xe_hwmon_power_max_disable(struct xe_device *xe, bool *old) { };
-> +static inline void xe_hwmon_power_max_restore(struct xe_device *xe, bool old) { };
->  #endif
->  
->  #endif /* __XE_HWMON_H__ */
-> diff --git a/drivers/gpu/drm/xe/xe_uc.c b/drivers/gpu/drm/xe/xe_uc.c
-> index 70eabf567156..9df5a3a85dc3 100644
-> --- a/drivers/gpu/drm/xe/xe_uc.c
-> +++ b/drivers/gpu/drm/xe/xe_uc.c
-> @@ -13,6 +13,7 @@
->  #include "xe_huc.h"
->  #include "xe_uc_fw.h"
->  #include "xe_wopcm.h"
-> +#include "xe_hwmon.h"
->  
->  static struct xe_gt *
->  uc_to_gt(struct xe_uc *uc)
-> @@ -127,11 +128,15 @@ int xe_uc_init_hwconfig(struct xe_uc *uc)
->  int xe_uc_init_hw(struct xe_uc *uc)
->  {
->  	int ret;
-> +	bool pl1en;
->  
->  	/* GuC submission not enabled, nothing to do */
->  	if (!xe_device_guc_submission_enabled(uc_to_xe(uc)))
->  		return 0;
->  
-> +	/* Disable a potentially low PL1 power limit to allow freq to be raised */
-> +	xe_hwmon_power_max_disable(uc_to_xe(uc), &pl1en);
-
-Don't love the pass by reference, how about 'pl1en =
-xe_hwmon_power_max_disable(...'
-
-Matt
-
-> +
->  	ret = xe_uc_sanitize_reset(uc);
->  	if (ret)
->  		return ret;
-> @@ -160,6 +165,7 @@ int xe_uc_init_hw(struct xe_uc *uc)
->  	if (ret)
->  		return ret;
->  
-> +	xe_hwmon_power_max_restore(uc_to_xe(uc), pl1en);
-
-Add line of white space.
-
-Matt
-
->  	/* We don't fail the driver load if HuC fails to auth, but let's warn */
->  	ret = xe_huc_auth(&uc->huc);
->  	XE_WARN_ON(ret);
-> -- 
-> 2.25.1
-> 
+>
+>>
+>> Actually, I'm having trouble understanding what mem_access_get is trying
+>> to do.  It seems like it's trying to avoid using the runtime PM's
+>> refcounting and is turning it into a boolean on/off instead, which makes
+>> things a bit racy.  It's not obvious to me why we're trying to work
+>> around the refcount design?
+>
+>I don't know the full history here, so I'm not completely sure tbh.
+>
+>AFAICT the racy bit is in xe_pm_runtime_resume_if_suspended(), when it
+>calls pm_runtime_suspended(), which is a TOCTOU bug and also doesn't
+>work if we are currently in the process of suspending/resuming, but
+>the reason for having the check is to prevent deadlocking when
+>pm_runtime_get_sync() is called from our runtime pm callbacks. So
+>dropping that check fixes the races but then uncovers all those
+>deadlocks. Parking that to one side, I don't think there is any issue
+>with always calling pm_runtime_get_sync(), we just need to have some
+>way of asserting at various places in the driver that we have ref > 0
+>or perhaps that the device is PM active. But if we end up having our
+>own mem_access.ref then there is no strict need to call into PM every
+>time.
+>
+>>
+>>
+>> Matt
+>>
+>> > https://patchwork.freedesktop.org/patch/542124/?series=119213&rev=1
+>> >
+>> > But that requires first fixing the races with mem_access which is
+>> > quite involved, so perhaps using runtime_get() directly here is fine
+>> > for now. We can just replace the instance here with mem_access once
+>> > that's ready.
+>> >
+>> > Reviewed-by: Matthew Auld <matthew.auld@intel.com>
+>> >
+>> > > ---
+>> > >  drivers/gpu/drm/xe/xe_mmio.c | 3 +++
+>> > >  1 file changed, 3 insertions(+)
+>> > >
+>> > > diff --git a/drivers/gpu/drm/xe/xe_mmio.c b/drivers/gpu/drm/xe/xe_mmio.c
+>> > > index f7a7f996b37f..5f4c8ae23771 100644
+>> > > --- a/drivers/gpu/drm/xe/xe_mmio.c
+>> > > +++ b/drivers/gpu/drm/xe/xe_mmio.c
+>> > > @@ -19,6 +19,7 @@
+>> > >  #include "xe_gt_mcr.h"
+>> > >  #include "xe_macros.h"
+>> > >  #include "xe_module.h"
+>> > > +#include "xe_pm.h"
+>> > >
+>> > >  #define XEHP_MTCFG_ADDR                XE_REG(0x101800)
+>> > >  #define TILE_COUNT             REG_GENMASK(15, 8)
+>> > > @@ -476,6 +477,7 @@ int xe_mmio_ioctl(struct drm_device *dev, void *data,
+>> > >          */
+>> > >         reg = XE_REG(args->addr);
+>> > >
+>> > > +       xe_pm_runtime_get(xe);
+>> > >         xe_force_wake_get(gt_to_fw(gt), XE_FORCEWAKE_ALL);
+>> > >
+>> > >         if (args->flags & DRM_XE_MMIO_WRITE) {
+>> > > @@ -519,6 +521,7 @@ int xe_mmio_ioctl(struct drm_device *dev, void *data,
+>> > >
+>> > >  exit:
+>> > >         xe_force_wake_put(gt_to_fw(gt), XE_FORCEWAKE_ALL);
+>> > > +       xe_pm_runtime_put(xe);
+>> > >
+>> > >         return ret;
+>> > >  }
+>> > > --
+>> > > 2.40.1
+>> > >
+>>
+>> --
+>> Matt Roper
+>> Graphics Software Engineer
+>> Linux GPU Platform Enablement
+>> Intel Corporation
