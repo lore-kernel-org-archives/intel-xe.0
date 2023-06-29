@@ -4,30 +4,31 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id EBD71EB64DD
-	for <intel-xe@archiver.kernel.org>; Thu, 29 Jun 2023 21:45:09 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 38BCAEB64D9
+	for <intel-xe@archiver.kernel.org>; Thu, 29 Jun 2023 21:47:04 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id AFBB910E0AE;
-	Thu, 29 Jun 2023 21:45:09 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0749D10E0AE;
+	Thu, 29 Jun 2023 21:47:04 +0000 (UTC)
 Received: from emeril.freedesktop.org (emeril.freedesktop.org
  [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id D953310E0B6;
- Thu, 29 Jun 2023 21:45:06 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTP id CCDF610E0AE;
+ Thu, 29 Jun 2023 21:47:01 +0000 (UTC)
 Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 52E40AADD8;
- Thu, 29 Jun 2023 21:45:06 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============7191756819984452899=="
+ by emeril.freedesktop.org (Postfix) with ESMTP id C4C8CAADD8;
+ Thu, 29 Jun 2023 21:47:01 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 From: Patchwork <patchwork@emeril.freedesktop.org>
-To: =?utf-8?q?Thomas_Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>
-Date: Thu, 29 Jun 2023 21:45:06 -0000
-Message-ID: <168807510633.28964.11465959768061379271@emeril.freedesktop.org>
+To: "Alan Previn" <alan.previn.teres.alexis@intel.com>
+Date: Thu, 29 Jun 2023 21:47:01 -0000
+Message-ID: <168807522177.28964.1667775065990567667@emeril.freedesktop.org>
 X-Patchwork-Hint: ignore
-References: <20230629205134.111849-1-thomas.hellstrom@linux.intel.com>
-In-Reply-To: <20230629205134.111849-1-thomas.hellstrom@linux.intel.com>
-Subject: [Intel-xe] =?utf-8?q?=E2=97=8B_CI=2EBAT=3A_info_for_drm/xe=3A_Fi?=
- =?utf-8?q?x_two_bind_races?=
+References: <20230629210418.1289315-1-alan.previn.teres.alexis@intel.com>
+In-Reply-To: <20230629210418.1289315-1-alan.previn.teres.alexis@intel.com>
+Subject: [Intel-xe] =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_f?=
+ =?utf-8?q?or_drm/xe/guc=3A_Fix_h2g=5Fwrite_usage_of_GUC=5FCTB=5FMSG=5FMAX?=
+ =?utf-8?b?X0xFTiAocmV2NCk=?=
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -44,65 +45,17 @@ Cc: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============7191756819984452899==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
 == Series Details ==
 
-Series: drm/xe: Fix two bind races
-URL   : https://patchwork.freedesktop.org/series/120031/
-State : info
+Series: drm/xe/guc: Fix h2g_write usage of GUC_CTB_MSG_MAX_LEN (rev4)
+URL   : https://patchwork.freedesktop.org/series/118799/
+State : success
 
 == Summary ==
 
-Participating hosts:
-bat-pvc-2
-bat-atsm-2
-bat-dg2-oem2
-bat-adlp-7
-Missing hosts results[0]:
-Results: [xe-pw-120031v1](https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-120031v1/index.html)
+=== Applying kernel patches on branch 'drm-xe-next' with base: ===
+Base commit: 2ec46ad75 drm/ttm: Don't shadow the operation context
+=== git am output follows ===
+Applying: drm/xe/guc: Fix h2g_write usage of GUC_CTB_MSG_MAX_LEN
 
 
-
---===============7191756819984452899==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/xe: Fix two bind races</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/120031/">https://patchwork.freedesktop.org/series/120031/</a></td></tr>
-<tr><td><b>State:</b></td><td>info</td></tr>
-
-</table>
-
-
-    <p>Participating hosts:<br />
-bat-pvc-2<br />
-bat-atsm-2<br />
-bat-dg2-oem2<br />
-bat-adlp-7<br />
-Missing hosts results[0]:<br />
-Results: <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-120031v1/index.html">xe-pw-120031v1</a></p>
-
-</body>
-</html>
-
---===============7191756819984452899==--
