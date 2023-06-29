@@ -4,45 +4,48 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3D123C001DB
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id A9978C001DE
 	for <intel-xe@archiver.kernel.org>; Thu, 29 Jun 2023 18:30:25 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id DFBDC10E134;
-	Thu, 29 Jun 2023 18:30:24 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 83F2710E1BA;
+	Thu, 29 Jun 2023 18:30:25 +0000 (UTC)
 Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E08F010E07D
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0204510E133
  for <intel-xe@lists.freedesktop.org>; Thu, 29 Jun 2023 18:30:22 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1688063422; x=1719599422;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=TWcKjfSVz6BnA8lQXZm/ySh8Pb3SpB7Xy/obupN15xY=;
- b=lN+ItALAx1SKGlWroARFm9UkTUSNfS7MZ0Kl5kyPL9LG2r5EhWzFSHMb
- 5E09gFbOCzrR2jea9Wv1UXahnEukKe884YXfdxN/oCGtVH+xJpCgYpX2N
- c2IQILHBr+CUU+wWQo2XW5+HmXt4U5Cn6zT3aWDoBNShyn92meVjxabBg
- jZ0yJnjTsWUHzZXoQ+sggtNPs+B3t4NtyI6UWYcRsAF417HaIvMZgJzoz
- BAD9e0dE/dCTmIpONrefWmyvqdkK57qaKJlwxHhqcM8eG3lNNzBOk5AJ6
- i+3S46irFWOHkn04VB5ngyQ940a/8j606ELVk8QsE4cVE1+DOGgl8xnoM w==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10756"; a="448572572"
-X-IronPort-AV: E=Sophos;i="6.01,169,1684825200"; d="scan'208";a="448572572"
+ t=1688063423; x=1719599423;
+ h=from:to:cc:subject:date:message-id:in-reply-to:
+ references:mime-version:content-transfer-encoding;
+ bh=JCmynEzBgO1I9g0IcCO6itYMUBek72Okg1hAt/aNl70=;
+ b=YwElg6iShM7y6JWsrE+bY7zObD9z1kF96SfmReMlv0Vtqwko/bdYgRvY
+ 5EBXvgSlKPF3vnqOZH27JJY+0xFHpG2SWOL64JH2/HXInyhNPOB1L1jEu
+ 9lNvvd+e3CWROsWDzosjYrW4ZI0D/QDBGHEv6m27ugOBlP752ZPg7RBP3
+ 5cORhi5jObBfIjzsASCNqr+JgGPl5+VtfIpU8DM2f7jMXXg/co7EQm37W
+ OexxAf8bABCYNGI/X69hxXTUZFP2M9rY3JY4SXjaWofEdlaUd0mtXOez9
+ 74EzAoiPG8GmutxW8YGufepc+craNUrvC+K3O02QoXrSv3XQ9+z28lbGR A==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10756"; a="448572574"
+X-IronPort-AV: E=Sophos;i="6.01,169,1684825200"; d="scan'208";a="448572574"
 Received: from orsmga007.jf.intel.com ([10.7.209.58])
  by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  29 Jun 2023 11:30:21 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10756"; a="711549531"
-X-IronPort-AV: E=Sophos;i="6.01,169,1684825200"; d="scan'208";a="711549531"
+X-IronPort-AV: E=McAfee;i="6600,9927,10756"; a="711549536"
+X-IronPort-AV: E=Sophos;i="6.01,169,1684825200"; d="scan'208";a="711549536"
 Received: from lstrano-desk.jf.intel.com ([10.24.89.184])
  by orsmga007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  29 Jun 2023 11:30:21 -0700
 From: Matthew Brost <matthew.brost@intel.com>
 To: <intel-xe@lists.freedesktop.org>
-Date: Thu, 29 Jun 2023 11:30:26 -0700
-Message-Id: <20230629183034.930121-1-matthew.brost@intel.com>
+Date: Thu, 29 Jun 2023 11:30:27 -0700
+Message-Id: <20230629183034.930121-2-matthew.brost@intel.com>
 X-Mailer: git-send-email 2.34.1
+In-Reply-To: <20230629183034.930121-1-matthew.brost@intel.com>
+References: <20230629183034.930121-1-matthew.brost@intel.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-xe] [PATCH v2 0/8] GPUVA with no uAPI changes
+Subject: [Intel-xe] [PATCH v2 1/8] drm/xe: Ban a VM if rebind worker hits an
+ error
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -57,53 +60,288 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-The patches from [1] rebased + address review feedback which do not
-include uAPI changes. 
+We cannot recover a VM if a rebind worker hits an error, ban the VM if
+happens to ensure we do not attempt to place this VM on the hardware
+again.
 
-[1] https://patchwork.freedesktop.org/series/117156/
+A follow up will inform the user if this happens.
 
-Danilo Krummrich (3):
-  maple_tree: split up MA_STATE() macro
-  drm: manager to keep track of GPUs VA mappings
-  drm: debugfs: provide infrastructure to dump a DRM GPU VA space
+v2: Return -ECANCELED in exec VM closed or banned, check for closed or
+banned within VM lock.
 
-Matthew Brost (5):
-  drm/xe: Ban a VM if rebind worker hits an error
-  drm/xe: Add helpers to hide struct xe_vma internals
-  maple_tree: Export mas_preallocate
-  drm/xe: Remove __xe_vm_bind forward declaration
-  drm/xe: Port Xe to GPUVA
+Signed-off-by: Matthew Brost <matthew.brost@intel.com>
+---
+ drivers/gpu/drm/xe/xe_engine.c     | 13 +++++++
+ drivers/gpu/drm/xe/xe_exec.c       |  6 ++--
+ drivers/gpu/drm/xe/xe_trace.h      |  5 +++
+ drivers/gpu/drm/xe/xe_vm.c         | 55 ++++++++++++++++++++----------
+ drivers/gpu/drm/xe/xe_vm.h         | 11 ++++++
+ drivers/gpu/drm/xe/xe_vm_madvise.c |  2 +-
+ drivers/gpu/drm/xe/xe_vm_types.h   |  5 +--
+ 7 files changed, 73 insertions(+), 24 deletions(-)
 
- Documentation/gpu/drm-mm.rst                |   42 +
- drivers/gpu/drm/Makefile                    |    1 +
- drivers/gpu/drm/drm_debugfs.c               |   41 +
- drivers/gpu/drm/drm_gem.c                   |    3 +
- drivers/gpu/drm/drm_gpuva_mgr.c             | 1971 +++++++++++++++++++
- drivers/gpu/drm/xe/tests/xe_migrate.c       |    2 +-
- drivers/gpu/drm/xe/xe_bo.c                  |    9 +-
- drivers/gpu/drm/xe/xe_device.c              |    2 +-
- drivers/gpu/drm/xe/xe_engine.c              |   13 +
- drivers/gpu/drm/xe/xe_exec.c                |    8 +-
- drivers/gpu/drm/xe/xe_gt_pagefault.c        |   23 +-
- drivers/gpu/drm/xe/xe_gt_tlb_invalidation.c |   14 +-
- drivers/gpu/drm/xe/xe_migrate.c             |   10 +-
- drivers/gpu/drm/xe/xe_pt.c                  |  128 +-
- drivers/gpu/drm/xe/xe_pt.h                  |    2 +-
- drivers/gpu/drm/xe/xe_trace.h               |   15 +-
- drivers/gpu/drm/xe/xe_vm.c                  | 1929 +++++++++---------
- drivers/gpu/drm/xe/xe_vm.h                  |  104 +-
- drivers/gpu/drm/xe/xe_vm_madvise.c          |   91 +-
- drivers/gpu/drm/xe/xe_vm_types.h            |  178 +-
- include/drm/drm_debugfs.h                   |   25 +
- include/drm/drm_drv.h                       |    6 +
- include/drm/drm_gem.h                       |   52 +
- include/drm/drm_gpuva_mgr.h                 |  682 +++++++
- include/linux/maple_tree.h                  |    7 +-
- lib/maple_tree.c                            |    1 +
- 26 files changed, 4126 insertions(+), 1233 deletions(-)
- create mode 100644 drivers/gpu/drm/drm_gpuva_mgr.c
- create mode 100644 include/drm/drm_gpuva_mgr.h
-
+diff --git a/drivers/gpu/drm/xe/xe_engine.c b/drivers/gpu/drm/xe/xe_engine.c
+index 6e6b2913f766..ada2986c33a2 100644
+--- a/drivers/gpu/drm/xe/xe_engine.c
++++ b/drivers/gpu/drm/xe/xe_engine.c
+@@ -597,10 +597,23 @@ int xe_engine_create_ioctl(struct drm_device *dev, void *data,
+ 		if (XE_IOCTL_ERR(xe, !vm))
+ 			return -ENOENT;
+ 
++		err = down_read_interruptible(&vm->lock);
++		if (err) {
++			xe_vm_put(vm);
++			return err;
++		}
++
++		if (XE_IOCTL_ERR(xe, xe_vm_is_closed_or_banned(vm))) {
++			up_read(&vm->lock);
++			xe_vm_put(vm);
++			return -ENOENT;
++		}
++
+ 		e = xe_engine_create(xe, vm, logical_mask,
+ 				     args->width, hwe,
+ 				     xe_vm_no_dma_fences(vm) ? 0 :
+ 				     ENGINE_FLAG_PERSISTENT);
++		up_read(&vm->lock);
+ 		xe_vm_put(vm);
+ 		if (IS_ERR(e))
+ 			return PTR_ERR(e);
+diff --git a/drivers/gpu/drm/xe/xe_exec.c b/drivers/gpu/drm/xe/xe_exec.c
+index c52edff9a358..bdf00e59e7a4 100644
+--- a/drivers/gpu/drm/xe/xe_exec.c
++++ b/drivers/gpu/drm/xe/xe_exec.c
+@@ -297,9 +297,9 @@ int xe_exec_ioctl(struct drm_device *dev, void *data, struct drm_file *file)
+ 	if (err)
+ 		goto err_unlock_list;
+ 
+-	if (xe_vm_is_closed(engine->vm)) {
+-		drm_warn(&xe->drm, "Trying to schedule after vm is closed\n");
+-		err = -EIO;
++	if (xe_vm_is_closed_or_banned(engine->vm)) {
++		drm_warn(&xe->drm, "Trying to schedule after vm is closed or banned\n");
++		err = -ECANCELED;
+ 		goto err_engine_end;
+ 	}
+ 
+diff --git a/drivers/gpu/drm/xe/xe_trace.h b/drivers/gpu/drm/xe/xe_trace.h
+index 02861c26e145..ca96a0a4bb80 100644
+--- a/drivers/gpu/drm/xe/xe_trace.h
++++ b/drivers/gpu/drm/xe/xe_trace.h
+@@ -477,6 +477,11 @@ DECLARE_EVENT_CLASS(xe_vm,
+ 			      __entry->asid)
+ );
+ 
++DEFINE_EVENT(xe_vm, xe_vm_kill,
++	     TP_PROTO(struct xe_vm *vm),
++	     TP_ARGS(vm)
++);
++
+ DEFINE_EVENT(xe_vm, xe_vm_create,
+ 	     TP_PROTO(struct xe_vm *vm),
+ 	     TP_ARGS(vm)
+diff --git a/drivers/gpu/drm/xe/xe_vm.c b/drivers/gpu/drm/xe/xe_vm.c
+index 3bba957e3b89..7be54cb373b2 100644
+--- a/drivers/gpu/drm/xe/xe_vm.c
++++ b/drivers/gpu/drm/xe/xe_vm.c
+@@ -514,6 +514,24 @@ void xe_vm_unlock_dma_resv(struct xe_vm *vm,
+ 
+ #define XE_VM_REBIND_RETRY_TIMEOUT_MS 1000
+ 
++static void xe_vm_kill(struct xe_vm *vm)
++{
++	struct ww_acquire_ctx ww;
++	struct xe_engine *e;
++
++	lockdep_assert_held(&vm->lock);
++
++	xe_vm_lock(vm, &ww, 0, false);
++	vm->flags |= XE_VM_FLAG_BANNED;
++	trace_xe_vm_kill(vm);
++
++	list_for_each_entry(e, &vm->preempt.engines, compute.link)
++		e->ops->kill(e);
++	xe_vm_unlock(vm, &ww);
++
++	/* TODO: Inform user the VM is banned */
++}
++
+ static void preempt_rebind_work_func(struct work_struct *w)
+ {
+ 	struct xe_vm *vm = container_of(w, struct xe_vm, preempt.rebind_work);
+@@ -533,13 +551,14 @@ static void preempt_rebind_work_func(struct work_struct *w)
+ 	XE_BUG_ON(!xe_vm_in_compute_mode(vm));
+ 	trace_xe_vm_rebind_worker_enter(vm);
+ 
+-	if (xe_vm_is_closed(vm)) {
++	down_write(&vm->lock);
++
++	if (xe_vm_is_closed_or_banned(vm)) {
++		up_write(&vm->lock);
+ 		trace_xe_vm_rebind_worker_exit(vm);
+ 		return;
+ 	}
+ 
+-	down_write(&vm->lock);
+-
+ retry:
+ 	if (vm->async_ops.error)
+ 		goto out_unlock_outer;
+@@ -666,11 +685,12 @@ static void preempt_rebind_work_func(struct work_struct *w)
+ 			goto retry;
+ 		}
+ 	}
++	if (err)
++		xe_vm_kill(vm);
+ 	up_write(&vm->lock);
+ 
+ 	free_preempt_fences(&preempt_fences);
+ 
+-	XE_WARN_ON(err < 0);	/* TODO: Kill VM or put in error state */
+ 	trace_xe_vm_rebind_worker_exit(vm);
+ }
+ 
+@@ -1140,11 +1160,12 @@ xe_vm_find_overlapping_vma(struct xe_vm *vm, const struct xe_vma *vma)
+ {
+ 	struct rb_node *node;
+ 
+-	if (xe_vm_is_closed(vm))
++	lockdep_assert_held(&vm->lock);
++
++	if (xe_vm_is_closed_or_banned(vm))
+ 		return NULL;
+ 
+ 	XE_BUG_ON(vma->end >= vm->size);
+-	lockdep_assert_held(&vm->lock);
+ 
+ 	node = rb_find(vma, &vm->vmas, xe_vma_cmp_vma_cb);
+ 
+@@ -3080,17 +3101,21 @@ int xe_vm_bind_ioctl(struct drm_device *dev, void *data, struct drm_file *file)
+ 		goto free_objs;
+ 	}
+ 
+-	if (XE_IOCTL_ERR(xe, xe_vm_is_closed(vm))) {
++	err = down_write_killable(&vm->lock);
++	if (err)
++		goto put_vm;
++
++	if (XE_IOCTL_ERR(xe, xe_vm_is_closed_or_banned(vm))) {
+ 		drm_err(dev, "VM closed while we began looking up?\n");
+ 		err = -ENOENT;
+-		goto put_vm;
++		goto release_vm_lock;
+ 	}
+ 
+ 	if (args->engine_id) {
+ 		e = xe_engine_lookup(xef, args->engine_id);
+ 		if (XE_IOCTL_ERR(xe, !e)) {
+ 			err = -ENOENT;
+-			goto put_vm;
++			goto release_vm_lock;
+ 		}
+ 		if (XE_IOCTL_ERR(xe, !(e->flags & ENGINE_FLAG_VM))) {
+ 			err = -EINVAL;
+@@ -3107,10 +3132,8 @@ int xe_vm_bind_ioctl(struct drm_device *dev, void *data, struct drm_file *file)
+ 			err = -EPROTO;
+ 
+ 		if (!err) {
+-			down_write(&vm->lock);
+ 			trace_xe_vm_restart(vm);
+ 			vm_set_async_error(vm, 0);
+-			up_write(&vm->lock);
+ 
+ 			queue_work(system_unbound_wq, &vm->async_ops.work);
+ 
+@@ -3213,10 +3236,6 @@ int xe_vm_bind_ioctl(struct drm_device *dev, void *data, struct drm_file *file)
+ 			goto free_syncs;
+ 	}
+ 
+-	err = down_write_killable(&vm->lock);
+-	if (err)
+-		goto free_syncs;
+-
+ 	/* Do some error checking first to make the unwind easier */
+ 	for (i = 0; i < args->num_binds; ++i) {
+ 		u64 range = bind_ops[i].range;
+@@ -3225,7 +3244,7 @@ int xe_vm_bind_ioctl(struct drm_device *dev, void *data, struct drm_file *file)
+ 
+ 		err = __vm_bind_ioctl_lookup_vma(vm, bos[i], addr, range, op);
+ 		if (err)
+-			goto release_vm_lock;
++			goto free_syncs;
+ 	}
+ 
+ 	for (i = 0; i < args->num_binds; ++i) {
+@@ -3345,8 +3364,6 @@ int xe_vm_bind_ioctl(struct drm_device *dev, void *data, struct drm_file *file)
+ 			break;
+ 		}
+ 	}
+-release_vm_lock:
+-	up_write(&vm->lock);
+ free_syncs:
+ 	while (num_syncs--) {
+ 		if (async && j &&
+@@ -3362,6 +3379,8 @@ int xe_vm_bind_ioctl(struct drm_device *dev, void *data, struct drm_file *file)
+ put_engine:
+ 	if (e)
+ 		xe_engine_put(e);
++release_vm_lock:
++	up_write(&vm->lock);
+ put_vm:
+ 	xe_vm_put(vm);
+ free_objs:
+diff --git a/drivers/gpu/drm/xe/xe_vm.h b/drivers/gpu/drm/xe/xe_vm.h
+index 5edb7771629c..47bc7fbb2f50 100644
+--- a/drivers/gpu/drm/xe/xe_vm.h
++++ b/drivers/gpu/drm/xe/xe_vm.h
+@@ -49,6 +49,17 @@ static inline bool xe_vm_is_closed(struct xe_vm *vm)
+ 	return !vm->size;
+ }
+ 
++static inline bool xe_vm_is_banned(struct xe_vm *vm)
++{
++	return vm->flags & XE_VM_FLAG_BANNED;
++}
++
++static inline bool xe_vm_is_closed_or_banned(struct xe_vm *vm)
++{
++	lockdep_assert_held(&vm->lock);
++	return xe_vm_is_closed(vm) || xe_vm_is_banned(vm);
++}
++
+ struct xe_vma *
+ xe_vm_find_overlapping_vma(struct xe_vm *vm, const struct xe_vma *vma);
+ 
+diff --git a/drivers/gpu/drm/xe/xe_vm_madvise.c b/drivers/gpu/drm/xe/xe_vm_madvise.c
+index 0f5eef337037..76458f8d57f3 100644
+--- a/drivers/gpu/drm/xe/xe_vm_madvise.c
++++ b/drivers/gpu/drm/xe/xe_vm_madvise.c
+@@ -313,7 +313,7 @@ int xe_vm_madvise_ioctl(struct drm_device *dev, void *data,
+ 	if (XE_IOCTL_ERR(xe, !vm))
+ 		return -EINVAL;
+ 
+-	if (XE_IOCTL_ERR(xe, xe_vm_is_closed(vm))) {
++	if (XE_IOCTL_ERR(xe, xe_vm_is_closed_or_banned(vm))) {
+ 		err = -ENOENT;
+ 		goto put_vm;
+ 	}
+diff --git a/drivers/gpu/drm/xe/xe_vm_types.h b/drivers/gpu/drm/xe/xe_vm_types.h
+index c148dd49a6ca..286de52160b9 100644
+--- a/drivers/gpu/drm/xe/xe_vm_types.h
++++ b/drivers/gpu/drm/xe/xe_vm_types.h
+@@ -183,8 +183,9 @@ struct xe_vm {
+ #define XE_VM_FLAG_MIGRATION		BIT(3)
+ #define XE_VM_FLAG_SCRATCH_PAGE		BIT(4)
+ #define XE_VM_FLAG_FAULT_MODE		BIT(5)
+-#define XE_VM_FLAG_GT_ID(flags)		(((flags) >> 6) & 0x3)
+-#define XE_VM_FLAG_SET_TILE_ID(tile)	((tile)->id << 6)
++#define XE_VM_FLAG_BANNED		BIT(6)
++#define XE_VM_FLAG_GT_ID(flags)		(((flags) >> 7) & 0x3)
++#define XE_VM_FLAG_SET_TILE_ID(tile)	((tile)->id << 7)
+ 	unsigned long flags;
+ 
+ 	/** @composite_fence_ctx: context composite fence */
 -- 
 2.34.1
 
