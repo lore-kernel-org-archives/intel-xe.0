@@ -4,31 +4,30 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 80A01EB64D7
-	for <intel-xe@archiver.kernel.org>; Fri, 30 Jun 2023 17:41:36 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 23F8DEB64DC
+	for <intel-xe@archiver.kernel.org>; Fri, 30 Jun 2023 17:41:48 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 468E510E4D2;
-	Fri, 30 Jun 2023 17:41:36 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0108110E4CD;
+	Fri, 30 Jun 2023 17:41:48 +0000 (UTC)
 Received: from emeril.freedesktop.org (emeril.freedesktop.org
  [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id 664A110E4D9;
- Fri, 30 Jun 2023 17:41:35 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTP id B02EE10E4CD;
+ Fri, 30 Jun 2023 17:41:46 +0000 (UTC)
 Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 5DF0AA3ECB;
- Fri, 30 Jun 2023 17:41:35 +0000 (UTC)
+ by emeril.freedesktop.org (Postfix) with ESMTP id AD12CA3ECB;
+ Fri, 30 Jun 2023 17:41:46 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: "Matthew Auld" <matthew.auld@intel.com>
-Date: Fri, 30 Jun 2023 17:41:35 -0000
-Message-ID: <168814689535.24874.132017535864559102@emeril.freedesktop.org>
+Date: Fri, 30 Jun 2023 17:41:46 -0000
+Message-ID: <168814690670.24870.1552706828523436825@emeril.freedesktop.org>
 X-Patchwork-Hint: ignore
 References: <20230630171458.367203-2-matthew.auld@intel.com>
 In-Reply-To: <20230630171458.367203-2-matthew.auld@intel.com>
-Subject: [Intel-xe] =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_f?=
- =?utf-8?q?or_drm/xe=3A_handle_TLB_invalidations_from_CT_fast-path_=28rev2?=
- =?utf-8?q?=29?=
+Subject: [Intel-xe] =?utf-8?q?=E2=9C=97_CI=2Echeckpatch=3A_warning_for_dr?=
+ =?utf-8?q?m/xe=3A_handle_TLB_invalidations_from_CT_fast-path_=28rev2=29?=
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -49,13 +48,58 @@ Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 Series: drm/xe: handle TLB invalidations from CT fast-path (rev2)
 URL   : https://patchwork.freedesktop.org/series/120074/
-State : success
+State : warning
 
 == Summary ==
 
-=== Applying kernel patches on branch 'drm-xe-next' with base: ===
-Base commit: 3b458784c drm/ttm: fix warning that we shouldn't mix && and ||
-=== git am output follows ===
-Applying: drm/xe: handle TLB invalidations from CT fast-path
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+c7d32770e3cd31d9fc134ce41f329b10aa33ee15
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit edcca6078211f7fdde568c9f377f448f81d4c4d1
+Author: Matthew Auld <matthew.auld@intel.com>
+Date:   Fri Jun 30 18:14:59 2023 +0100
+
+    drm/xe: handle TLB invalidations from CT fast-path
+    
+    In various test cases that put the system under a heavy load, we can
+    sometimes see errors with missed TLB invalidations. In such cases we see
+    the interrupt arrive for the invalidation from the GuC, however the
+    actual processing of the completion is pushed onto a workqueue and
+    handled with all the other CT stuff, which might take longer than
+    expected. Since we expect TLB invalidations to complete within a
+    reasonable amount of time (at most ~250ms), and they do seem pretty
+    critical, allow handling directly from the CT fast-path.
+    
+    v2 (José):
+      - Actually use the correct spinlock/unlock_irq, since pending_lock is
+        grabbed from IRQ.
+    
+    References: https://gitlab.freedesktop.org/drm/xe/kernel/-/issues/297
+    References: https://gitlab.freedesktop.org/drm/xe/kernel/-/issues/320
+    References: https://gitlab.freedesktop.org/drm/xe/kernel/-/issues/449
+    Signed-off-by: Matthew Auld <matthew.auld@intel.com>
+    Cc: Matthew Brost <matthew.brost@intel.com>
+    Cc: José Roberto de Souza <jose.souza@intel.com>
++ /mt/dim checkpatch 3b458784c9645681eea7611e571e1ee752bb2bc0 drm-intel
+edcca6078 drm/xe: handle TLB invalidations from CT fast-path
+-:22: WARNING:COMMIT_LOG_USE_LINK: Unknown link reference 'References:', use 'Link:' instead
+#22: 
+References: https://gitlab.freedesktop.org/drm/xe/kernel/-/issues/297
+
+-:23: WARNING:COMMIT_LOG_USE_LINK: Unknown link reference 'References:', use 'Link:' instead
+#23: 
+References: https://gitlab.freedesktop.org/drm/xe/kernel/-/issues/320
+
+-:24: WARNING:COMMIT_LOG_USE_LINK: Unknown link reference 'References:', use 'Link:' instead
+#24: 
+References: https://gitlab.freedesktop.org/drm/xe/kernel/-/issues/449
+
+total: 0 errors, 3 warnings, 0 checks, 172 lines checked
 
 
