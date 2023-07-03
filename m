@@ -4,31 +4,31 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id E04BBEB64DC
-	for <intel-xe@archiver.kernel.org>; Mon,  3 Jul 2023 14:20:43 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id C18F6EB64DC
+	for <intel-xe@archiver.kernel.org>; Mon,  3 Jul 2023 14:21:04 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 74B2C10E046;
-	Mon,  3 Jul 2023 14:20:43 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 80D3E10E046;
+	Mon,  3 Jul 2023 14:21:04 +0000 (UTC)
 Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id 2CA8410E046;
- Mon,  3 Jul 2023 14:20:41 +0000 (UTC)
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id BC39010E046;
+ Mon,  3 Jul 2023 14:21:01 +0000 (UTC)
 Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 23232AADEA;
- Mon,  3 Jul 2023 14:20:41 +0000 (UTC)
+ by emeril.freedesktop.org (Postfix) with ESMTP id 421BCAADEA;
+ Mon,  3 Jul 2023 14:21:01 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: "Jani Nikula" <jani.nikula@intel.com>
-Date: Mon, 03 Jul 2023 14:20:41 -0000
-Message-ID: <168839404113.4275.17231883776692548069@emeril.freedesktop.org>
+Date: Mon, 03 Jul 2023 14:21:01 -0000
+Message-ID: <168839406126.4274.4548663461750947334@emeril.freedesktop.org>
 X-Patchwork-Hint: ignore
 References: <20230630115019.123675-1-jani.nikula@intel.com>
 In-Reply-To: <20230630115019.123675-1-jani.nikula@intel.com>
-Subject: [Intel-xe] =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_f?=
- =?utf-8?q?or_series_starting_with_=5BRESEND=2C1/5=5D_drm/i915/uncore=3A_a?=
- =?utf-8?q?dd_intel=5Funcore=5Fregs=28=29_helper_=28rev3=29?=
+Subject: [Intel-xe] =?utf-8?q?=E2=9C=97_CI=2Echeckpatch=3A_warning_for_se?=
+ =?utf-8?q?ries_starting_with_=5BRESEND=2C1/5=5D_drm/i915/uncore=3A_add_in?=
+ =?utf-8?q?tel=5Funcore=5Fregs=28=29_helper_=28rev3=29?=
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -49,17 +49,59 @@ Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 Series: series starting with [RESEND,1/5] drm/i915/uncore: add intel_uncore_regs() helper (rev3)
 URL   : https://patchwork.freedesktop.org/series/120065/
-State : success
+State : warning
 
 == Summary ==
 
-=== Applying kernel patches on branch 'drm-xe-next' with base: ===
-Base commit: 1c211e9db kunit: tool: undo type subscripts for subprocess.Popen
-=== git am output follows ===
-Applying: drm/i915/uncore: add intel_uncore_regs() helper
-Applying: fixup! drm/xe/display: Implement display support
-Applying: fixup! drm/xe/display: Implement display support
-Applying: fixup! drm/xe/display: Implement display support
-Applying: fixup! drm/xe/display: Implement display support
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+c7d32770e3cd31d9fc134ce41f329b10aa33ee15
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit 35b71c402bc555a5cf325fd997c72c4ca3f90fbd
+Author: Jani Nikula <jani.nikula@intel.com>
+Date:   Fri Jun 30 14:50:19 2023 +0300
+
+    fixup! drm/xe/display: Implement display support
+    
+    Use display/intel_display_irq.[ch] from i915. Remove lots of duplicated
+    code from display/ext/i915_irq.[ch].
+    
+    Reviewed-by: Lucas De Marchi <lucas.demarchi@intel.com>
+    Signed-off-by: Jani Nikula <jani.nikula@intel.com>
++ /mt/dim checkpatch 1c211e9db757f84cffcfce361b288439045a5bf9 drm-intel
+f44aee575 drm/i915/uncore: add intel_uncore_regs() helper
+c4b98b0e8 fixup! drm/xe/display: Implement display support
+c3ae6835f fixup! drm/xe/display: Implement display support
+aa02e405b fixup! drm/xe/display: Implement display support
+-:38: CHECK:MACRO_ARG_PRECEDENCE: Macro argument 'base' may be better as '(base)' to avoid precedence issues
+#38: FILE: drivers/gpu/drm/xe/compat-i915-headers/intel_uncore.h:162:
++#define raw_reg_read(base, reg) \
++	readl(base + i915_mmio_reg_offset(reg))
+
+-:40: CHECK:MACRO_ARG_PRECEDENCE: Macro argument 'base' may be better as '(base)' to avoid precedence issues
+#40: FILE: drivers/gpu/drm/xe/compat-i915-headers/intel_uncore.h:164:
++#define raw_reg_write(base, reg, value) \
++	writel(value, base + i915_mmio_reg_offset(reg))
+
+total: 0 errors, 0 warnings, 2 checks, 57 lines checked
+35b71c402 fixup! drm/xe/display: Implement display support
+Traceback (most recent call last):
+  File "scripts/spdxcheck.py", line 6, in <module>
+    from ply import lex, yacc
+ModuleNotFoundError: No module named 'ply'
+Traceback (most recent call last):
+  File "scripts/spdxcheck.py", line 6, in <module>
+    from ply import lex, yacc
+ModuleNotFoundError: No module named 'ply'
+-:25: WARNING:FILE_PATH_CHANGES: added, moved or deleted file(s), does MAINTAINERS need updating?
+#25: 
+new file mode 100644
+
+total: 0 errors, 1 warnings, 0 checks, 1120 lines checked
 
 
