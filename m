@@ -4,31 +4,31 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id C09B6C001B3
-	for <intel-xe@archiver.kernel.org>; Mon,  3 Jul 2023 19:45:20 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id E0E07C001DD
+	for <intel-xe@archiver.kernel.org>; Mon,  3 Jul 2023 19:45:31 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 79C6910E0B8;
-	Mon,  3 Jul 2023 19:45:20 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id AA6BA10E22F;
+	Mon,  3 Jul 2023 19:45:31 +0000 (UTC)
 Received: from emeril.freedesktop.org (emeril.freedesktop.org
  [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id BC7EE10E22F;
- Mon,  3 Jul 2023 19:45:18 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTP id C0C6D10E22F;
+ Mon,  3 Jul 2023 19:45:29 +0000 (UTC)
 Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 24F5FAADF5;
- Mon,  3 Jul 2023 19:45:18 +0000 (UTC)
+ by emeril.freedesktop.org (Postfix) with ESMTP id BD02DAADF5;
+ Mon,  3 Jul 2023 19:45:29 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: =?utf-8?q?Jos=C3=A9_Roberto_de_Souza?= <jose.souza@intel.com>
-Date: Mon, 03 Jul 2023 19:45:18 -0000
-Message-ID: <168841351812.4276.8587672802266960812@emeril.freedesktop.org>
+Date: Mon, 03 Jul 2023 19:45:29 -0000
+Message-ID: <168841352977.4274.13826207607929351637@emeril.freedesktop.org>
 X-Patchwork-Hint: ignore
 References: <20230703190105.148419-1-jose.souza@intel.com>
 In-Reply-To: <20230703190105.148419-1-jose.souza@intel.com>
-Subject: [Intel-xe] =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_f?=
- =?utf-8?q?or_drm/xe=3A_Make_explicit_that_exec_uAPI_expects_canonical_add?=
- =?utf-8?q?resses?=
+Subject: [Intel-xe] =?utf-8?q?=E2=9C=97_CI=2Echeckpatch=3A_warning_for_dr?=
+ =?utf-8?q?m/xe=3A_Make_explicit_that_exec_uAPI_expects_canonical_addresse?=
+ =?utf-8?q?s?=
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -49,13 +49,49 @@ Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 Series: drm/xe: Make explicit that exec uAPI expects canonical addresses
 URL   : https://patchwork.freedesktop.org/series/120143/
-State : success
+State : warning
 
 == Summary ==
 
-=== Applying kernel patches on branch 'drm-xe-next' with base: ===
-Base commit: 103e5d7aa fixup! drm/xe/display: Implement display support
-=== git am output follows ===
-Applying: drm/xe: Make explicit that exec uAPI expects canonical addresses
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+c7d32770e3cd31d9fc134ce41f329b10aa33ee15
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit 5df023e64913f7f7e0bb2ab28b66087231613fcc
+Author: José Roberto de Souza <jose.souza@intel.com>
+Date:   Mon Jul 3 12:01:05 2023 -0700
+
+    drm/xe: Make explicit that exec uAPI expects canonical addresses
+    
+    The batch buffer address in exec uAPI is used when emitting
+    MI_BATCH_BUFFER_START that expect canonical addresses in future
+    platforms, for current ones the bits above 57 for PVC and 47 for
+    other platforms are ignored.
+    
+    So the safest approach is to require canonical address for all
+    platforms supported by Xe to avoid uAPI breaks.
+    
+    BSpec: 60223 59475 45718
+    Cc: Matthew Brost <matthew.brost@intel.com>
+    Cc: Thomas Hellström <thomas.hellstrom@linux.intel.com>
+    Signed-off-by: José Roberto de Souza <jose.souza@intel.com>
++ /mt/dim checkpatch 103e5d7aa1ba8469687574c926f40c630252ede4 drm-intel
+5df023e64 drm/xe: Make explicit that exec uAPI expects canonical addresses
+-:35: WARNING:LINE_SPACING: Missing a blank line after declarations
+#35: FILE: drivers/gpu/drm/xe/xe_device.c:444:
++	const int high_address_bit = xe->info.dma_mask_size > 47 ? 57 : 47;
++	return sign_extend64(address, high_address_bit);
+
+-:60: WARNING:LINE_SPACING: Missing a blank line after declarations
+#60: FILE: drivers/gpu/drm/xe/xe_exec.c:236:
++		const u64 canonical_addr = xe_device_canonical_addr(xe, addresses[i]);
++		if (XE_IOCTL_ERR(xe, addresses[i] != canonical_addr)) {
+
+total: 0 errors, 2 warnings, 0 checks, 41 lines checked
 
 
