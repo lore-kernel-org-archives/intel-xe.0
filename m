@@ -4,50 +4,49 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3B384EB64DA
-	for <intel-xe@archiver.kernel.org>; Tue,  4 Jul 2023 15:33:05 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5DC94EB64D9
+	for <intel-xe@archiver.kernel.org>; Tue,  4 Jul 2023 15:33:09 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1909510E2D0;
-	Tue,  4 Jul 2023 15:33:05 +0000 (UTC)
-Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7C4C410E2D0
- for <intel-xe@lists.freedesktop.org>; Tue,  4 Jul 2023 15:33:02 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 31B1110E12A;
+	Tue,  4 Jul 2023 15:33:09 +0000 (UTC)
+Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6E6C910E12A
+ for <intel-xe@lists.freedesktop.org>; Tue,  4 Jul 2023 15:33:07 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1688484782; x=1720020782;
+ t=1688484787; x=1720020787;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=iR0EFUVPvAe8H8JU/49Ls5edTwgVyIrkigMuRvur3x4=;
- b=Flsn5MSAWn1SxDa0dKNCY5myK26UsYOkL24ms0coTJZrTim1g0oH0jHL
- mqCG+PzEIAaIXnVjZiMYm5zZSZVn3xd82e/XcPrWQyJeh41dgx6/ikmEW
- yF1Nmr+/CJaYURwcXSO3dqsShdEFEHE2EJImZugI+P/rk6dMmMk0lRO52
- 98mHMH90JXdGR9KIj97+NDPaTt7XV/nOuFwqvzS0yBcRExOEjgmouxjhd
- DVKg60VFGZd/Ok3dGolkRlQHx3iwb8vMKp0vXFxQAaYfejgofkiN/33aH
- jt8NJg4kt9Wmto9w9iDQP/Zb4BuGqsjp/aBOmLjXPpkDO9PkuNaRyAPyN g==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10760"; a="343480175"
-X-IronPort-AV: E=Sophos;i="6.01,181,1684825200"; d="scan'208";a="343480175"
-Received: from orsmga007.jf.intel.com ([10.7.209.58])
- by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 04 Jul 2023 08:33:02 -0700
+ bh=AeOxHHqe2GspVGK8bWcW8Shfwp3EsRCTbmqrjbo8k0k=;
+ b=JZ8LQNjyG/e1VxRTsjcqaqQspb3J5VGL/iclYr6BCDrYeXrSb4oWL5MM
+ j0+3ulRvV0HC4XUAaRMpWSH+W2OK3lVIWbkaJ9K1nduCogAjkmVf5iulu
+ lRMTREmXg27P5OFrzXEKNctQFzOGNelDv9LTaUklBFv0ZZj0LOohnyx6e
+ /CqZ3CNIx3ageyfe9EuSbuVI+wOmQJVmqSZYPzPrRR6vxUOzkqD8KK3zD
+ TfY6iBH/CdcRs0ItpCMUcD7Hjt4n7ZVs47xwj2t06W+nOsc4YOgP2bYg/
+ FkA+AYfvI0hdHQBViIKuBl1NQkx+3HD06ucWO+tp3kCw866+3WCFyekjF A==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10760"; a="393893451"
+X-IronPort-AV: E=Sophos;i="6.01,181,1684825200"; d="scan'208";a="393893451"
+Received: from fmsmga003.fm.intel.com ([10.253.24.29])
+ by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 04 Jul 2023 08:33:06 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10760"; a="712913918"
-X-IronPort-AV: E=Sophos;i="6.01,181,1684825200"; d="scan'208";a="712913918"
+X-IronPort-AV: E=McAfee;i="6600,9927,10760"; a="808970267"
+X-IronPort-AV: E=Sophos;i="6.01,181,1684825200"; d="scan'208";a="808970267"
 Received: from jbouhlil-mobl.ger.corp.intel.com (HELO localhost)
  ([10.252.48.173])
- by orsmga007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 04 Jul 2023 08:33:00 -0700
+ by fmsmga003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 04 Jul 2023 08:33:04 -0700
 From: Jani Nikula <jani.nikula@intel.com>
 To: intel-xe@lists.freedesktop.org
-Date: Tue,  4 Jul 2023 18:32:42 +0300
-Message-Id: <20230704153243.2489821-4-jani.nikula@intel.com>
+Date: Tue,  4 Jul 2023 18:32:43 +0300
+Message-Id: <20230704153243.2489821-5-jani.nikula@intel.com>
 X-Mailer: git-send-email 2.39.2
 In-Reply-To: <20230704153243.2489821-1-jani.nikula@intel.com>
 References: <20230704153243.2489821-1-jani.nikula@intel.com>
 MIME-Version: 1.0
 Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-xe] [PATCH 3/4] fixup! drm/xe/display: Implement display
+Subject: [Intel-xe] [PATCH 4/4] fixup! drm/xe/display: Implement display
  support
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -64,638 +63,339 @@ Cc: jani.nikula@intel.com, lucas.demarchi@intel.com
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Use soc/intel_dram.[ch] from i915 instead of copy-paste.
+Use soc/intel_pch.[ch] from i915 instead of copy-paste.
 
 Signed-off-by: Jani Nikula <jani.nikula@intel.com>
 ---
- drivers/gpu/drm/xe/Makefile                   |  10 +-
- .../drm/xe/compat-i915-headers/intel_uncore.h |   8 +
- .../xe/compat-i915-headers/soc/intel_dram.h   |   1 +
- drivers/gpu/drm/xe/display/ext/intel_dram.c   | 496 ------------------
- drivers/gpu/drm/xe/display/ext/intel_dram.h   |  14 -
- drivers/gpu/drm/xe/xe_device_types.h          |   7 +
- drivers/gpu/drm/xe/xe_display.c               |   2 +-
- 7 files changed, 26 insertions(+), 512 deletions(-)
- create mode 100644 drivers/gpu/drm/xe/compat-i915-headers/soc/intel_dram.h
- delete mode 100644 drivers/gpu/drm/xe/display/ext/intel_dram.c
- delete mode 100644 drivers/gpu/drm/xe/display/ext/intel_dram.h
+ drivers/gpu/drm/xe/Makefile                   |   6 +-
+ .../gpu/drm/xe/compat-i915-headers/i915_drv.h |   2 +-
+ .../xe/compat-i915-headers/soc/intel_pch.h    |   1 +
+ drivers/gpu/drm/xe/display/ext/intel_pch.c    | 157 ------------------
+ drivers/gpu/drm/xe/display/ext/intel_pch.h    |  91 ----------
+ drivers/gpu/drm/xe/xe_device_types.h          |   2 +-
+ 6 files changed, 6 insertions(+), 253 deletions(-)
+ create mode 100644 drivers/gpu/drm/xe/compat-i915-headers/soc/intel_pch.h
+ delete mode 100644 drivers/gpu/drm/xe/display/ext/intel_pch.c
+ delete mode 100644 drivers/gpu/drm/xe/display/ext/intel_pch.h
 
 diff --git a/drivers/gpu/drm/xe/Makefile b/drivers/gpu/drm/xe/Makefile
-index 3f95a1147b50..054cfdbd30bd 100644
+index 054cfdbd30bd..336f0eb8f91e 100644
 --- a/drivers/gpu/drm/xe/Makefile
 +++ b/drivers/gpu/drm/xe/Makefile
-@@ -126,6 +126,11 @@ subdir-ccflags-$(CONFIG_DRM_XE_DISPLAY) += \
- CFLAGS_i915-display/intel_fbdev.o = $(call cc-disable-warning, override-init)
- CFLAGS_i915-display/intel_display_device.o = $(call cc-disable-warning, override-init)
- 
-+# Rule to build SOC code shared with i915
-+$(obj)/i915-soc/%.o: $(srctree)/drivers/gpu/drm/i915/soc/%.c FORCE
-+	$(call cmd,force_checksrc)
-+	$(call if_changed_rule,cc_o_c)
-+
- # Rule to build display code shared with i915
- $(obj)/i915-display/%.o: $(srctree)/drivers/gpu/drm/i915/display/%.c FORCE
- 	$(call cmd,force_checksrc)
-@@ -141,9 +146,12 @@ xe-$(CONFIG_DRM_XE_DISPLAY) += \
+@@ -145,12 +145,12 @@ xe-$(CONFIG_DRM_XE_DISPLAY) += \
+ 	display/xe_display_rps.o \
  	display/ext/i915_irq.o \
  	display/ext/intel_clock_gating.o \
- 	display/ext/intel_device_info.o \
--	display/ext/intel_dram.o \
- 	display/ext/intel_pch.o
+-	display/ext/intel_device_info.o \
+-	display/ext/intel_pch.o
++	display/ext/intel_device_info.o
  
-+# SOC code shared with i915
-+xe-$(CONFIG_DRM_XE_DISPLAY) += \
-+	i915-soc/intel_dram.o
-+
+ # SOC code shared with i915
+ xe-$(CONFIG_DRM_XE_DISPLAY) += \
+-	i915-soc/intel_dram.o
++	i915-soc/intel_dram.o \
++	i915-soc/intel_pch.o
+ 
  # Display code shared with i915
  xe-$(CONFIG_DRM_XE_DISPLAY) += \
- 	i915-display/icl_dsi.o \
-diff --git a/drivers/gpu/drm/xe/compat-i915-headers/intel_uncore.h b/drivers/gpu/drm/xe/compat-i915-headers/intel_uncore.h
-index a46dca558366..ec2d4885bff0 100644
---- a/drivers/gpu/drm/xe/compat-i915-headers/intel_uncore.h
-+++ b/drivers/gpu/drm/xe/compat-i915-headers/intel_uncore.h
-@@ -33,6 +33,14 @@ static inline u32 intel_uncore_read8(struct intel_uncore *uncore,
- 	return xe_mmio_read8(__compat_uncore_to_gt(uncore), reg);
- }
+diff --git a/drivers/gpu/drm/xe/compat-i915-headers/i915_drv.h b/drivers/gpu/drm/xe/compat-i915-headers/i915_drv.h
+index 8428f15426eb..a51889af7c23 100644
+--- a/drivers/gpu/drm/xe/compat-i915-headers/i915_drv.h
++++ b/drivers/gpu/drm/xe/compat-i915-headers/i915_drv.h
+@@ -10,12 +10,12 @@
+  * TODO: refactor i915 and xe so this can cease to exist
+  */
  
-+static inline u32 intel_uncore_read16(struct intel_uncore *uncore,
-+				      i915_reg_t i915_reg)
-+{
-+	struct xe_reg reg = XE_REG(i915_mmio_reg_offset(i915_reg));
-+
-+	return xe_mmio_read16(__compat_uncore_to_gt(uncore), reg);
-+}
-+
- static inline u64
- intel_uncore_read64_2x32(struct intel_uncore *uncore,
- 			 i915_reg_t i915_lower_reg, i915_reg_t i915_upper_reg)
-diff --git a/drivers/gpu/drm/xe/compat-i915-headers/soc/intel_dram.h b/drivers/gpu/drm/xe/compat-i915-headers/soc/intel_dram.h
++#include "soc/intel_pch.h"
+ #include "xe_device.h"
+ #include "xe_bo.h"
+ #include "xe_pm.h"
+ #include "xe_step.h"
+ #include "i915_reg_defs.h"
+-#include "intel_pch.h"
+ #include "i915_utils.h"
+ #include "intel_uncore.h"
+ #include <linux/pm_runtime.h>
+diff --git a/drivers/gpu/drm/xe/compat-i915-headers/soc/intel_pch.h b/drivers/gpu/drm/xe/compat-i915-headers/soc/intel_pch.h
 new file mode 100644
-index 000000000000..1532ca7e0af6
+index 000000000000..823803f7e853
 --- /dev/null
-+++ b/drivers/gpu/drm/xe/compat-i915-headers/soc/intel_dram.h
++++ b/drivers/gpu/drm/xe/compat-i915-headers/soc/intel_pch.h
 @@ -0,0 +1 @@
-+#include "../../../i915/soc/intel_dram.h"
-diff --git a/drivers/gpu/drm/xe/display/ext/intel_dram.c b/drivers/gpu/drm/xe/display/ext/intel_dram.c
++#include "../../../i915/soc/intel_pch.h"
+diff --git a/drivers/gpu/drm/xe/display/ext/intel_pch.c b/drivers/gpu/drm/xe/display/ext/intel_pch.c
 deleted file mode 100644
-index 3e8c413280a5..000000000000
---- a/drivers/gpu/drm/xe/display/ext/intel_dram.c
+index dc2b15b5c4be..000000000000
+--- a/drivers/gpu/drm/xe/display/ext/intel_pch.c
 +++ /dev/null
-@@ -1,496 +0,0 @@
+@@ -1,157 +0,0 @@
 -// SPDX-License-Identifier: MIT
 -/*
-- * Copyright © 2020 Intel Corporation
+- * Copyright 2019 Intel Corporation.
 - */
 -
--#include <linux/string_helpers.h>
--
 -#include "i915_drv.h"
--#include "i915_reg.h"
--#include "intel_de.h"
--#include "intel_dram.h"
--#include "intel_mchbar_regs.h"
--#include "intel_pcode.h"
+-#include "i915_utils.h"
+-#include "intel_pch.h"
 -
--struct dram_dimm_info {
--	u16 size;
--	u8 width, ranks;
--};
--
--struct dram_channel_info {
--	struct dram_dimm_info dimm_l, dimm_s;
--	u8 ranks;
--	bool is_16gb_dimm;
--};
--
--#define DRAM_TYPE_STR(type) [INTEL_DRAM_ ## type] = #type
--
--static const char *intel_dram_type_str(enum intel_dram_type type)
+-/* Map PCH device id to PCH type, or PCH_NONE if unknown. */
+-static enum intel_pch
+-intel_pch_type(const struct drm_i915_private *dev_priv, unsigned short id)
 -{
--	static const char * const str[] = {
--		DRAM_TYPE_STR(UNKNOWN),
--		DRAM_TYPE_STR(DDR3),
--		DRAM_TYPE_STR(DDR4),
--		DRAM_TYPE_STR(LPDDR3),
--		DRAM_TYPE_STR(LPDDR4),
--	};
--
--	if (type >= ARRAY_SIZE(str))
--		type = INTEL_DRAM_UNKNOWN;
--
--	return str[type];
--}
--
--#undef DRAM_TYPE_STR
--
--static int intel_dimm_num_devices(const struct dram_dimm_info *dimm)
--{
--	return dimm->ranks * 64 / (dimm->width ?: 1);
--}
--
--/* Returns total Gb for the whole DIMM */
--static int skl_get_dimm_size(u16 val)
--{
--	return (val & SKL_DRAM_SIZE_MASK) * 8;
--}
--
--static int skl_get_dimm_width(u16 val)
--{
--	if (skl_get_dimm_size(val) == 0)
--		return 0;
--
--	switch (val & SKL_DRAM_WIDTH_MASK) {
--	case SKL_DRAM_WIDTH_X8:
--	case SKL_DRAM_WIDTH_X16:
--	case SKL_DRAM_WIDTH_X32:
--		val = (val & SKL_DRAM_WIDTH_MASK) >> SKL_DRAM_WIDTH_SHIFT;
--		return 8 << val;
+-	switch (id) {
+-	case INTEL_PCH_MCC_DEVICE_ID_TYPE:
+-		drm_dbg_kms(&dev_priv->drm, "Found Mule Creek Canyon PCH\n");
+-		drm_WARN_ON(&dev_priv->drm, !IS_JSL_EHL(dev_priv));
+-		/* MCC is TGP compatible */
+-		return PCH_TGP;
+-	case INTEL_PCH_TGP_DEVICE_ID_TYPE:
+-	case INTEL_PCH_TGP2_DEVICE_ID_TYPE:
+-		drm_dbg_kms(&dev_priv->drm, "Found Tiger Lake LP PCH\n");
+-		drm_WARN_ON(&dev_priv->drm, !IS_TIGERLAKE(dev_priv) &&
+-			    !IS_ROCKETLAKE(dev_priv) &&
+-			    !IS_GEN9_BC(dev_priv));
+-		return PCH_TGP;
+-	case INTEL_PCH_ADP_DEVICE_ID_TYPE:
+-	case INTEL_PCH_ADP2_DEVICE_ID_TYPE:
+-	case INTEL_PCH_ADP3_DEVICE_ID_TYPE:
+-	case INTEL_PCH_ADP4_DEVICE_ID_TYPE:
+-		drm_dbg_kms(&dev_priv->drm, "Found Alder Lake PCH\n");
+-		drm_WARN_ON(&dev_priv->drm, !IS_ALDERLAKE_S(dev_priv) &&
+-			    !IS_ALDERLAKE_P(dev_priv));
+-		return PCH_ADP;
+-	case INTEL_PCH_MTP_DEVICE_ID_TYPE:
+-	case INTEL_PCH_MTP2_DEVICE_ID_TYPE:
+-		drm_dbg_kms(&dev_priv->drm, "Found Meteor Lake PCH\n");
+-		drm_WARN_ON(&dev_priv->drm, !IS_METEORLAKE(dev_priv));
+-		return PCH_MTP;
 -	default:
--		MISSING_CASE(val);
--		return 0;
+-		return PCH_NONE;
 -	}
 -}
 -
--static int skl_get_dimm_ranks(u16 val)
+-static bool intel_is_virt_pch(unsigned short id,
+-			      unsigned short svendor, unsigned short sdevice)
 -{
--	if (skl_get_dimm_size(val) == 0)
--		return 0;
--
--	val = (val & SKL_DRAM_RANK_MASK) >> SKL_DRAM_RANK_SHIFT;
--
--	return val + 1;
--}
--
--/* Returns total Gb for the whole DIMM */
--static int icl_get_dimm_size(u16 val)
--{
--	return (val & ICL_DRAM_SIZE_MASK) * 8 / 2;
--}
--
--static int icl_get_dimm_width(u16 val)
--{
--	if (icl_get_dimm_size(val) == 0)
--		return 0;
--
--	switch (val & ICL_DRAM_WIDTH_MASK) {
--	case ICL_DRAM_WIDTH_X8:
--	case ICL_DRAM_WIDTH_X16:
--	case ICL_DRAM_WIDTH_X32:
--		val = (val & ICL_DRAM_WIDTH_MASK) >> ICL_DRAM_WIDTH_SHIFT;
--		return 8 << val;
--	default:
--		MISSING_CASE(val);
--		return 0;
--	}
--}
--
--static int icl_get_dimm_ranks(u16 val)
--{
--	if (icl_get_dimm_size(val) == 0)
--		return 0;
--
--	val = (val & ICL_DRAM_RANK_MASK) >> ICL_DRAM_RANK_SHIFT;
--
--	return val + 1;
--}
--
--static bool
--skl_is_16gb_dimm(const struct dram_dimm_info *dimm)
--{
--	/* Convert total Gb to Gb per DRAM device */
--	return dimm->size / (intel_dimm_num_devices(dimm) ?: 1) == 16;
+-	return (id == INTEL_PCH_P2X_DEVICE_ID_TYPE ||
+-		id == INTEL_PCH_P3X_DEVICE_ID_TYPE ||
+-		(id == INTEL_PCH_QEMU_DEVICE_ID_TYPE &&
+-		 svendor == PCI_SUBVENDOR_ID_REDHAT_QUMRANET &&
+-		 sdevice == PCI_SUBDEVICE_ID_QEMU));
 -}
 -
 -static void
--skl_dram_get_dimm_info(struct drm_i915_private *i915,
--		       struct dram_dimm_info *dimm,
--		       int channel, char dimm_name, u16 val)
+-intel_virt_detect_pch(const struct drm_i915_private *dev_priv,
+-		      unsigned short *pch_id, enum intel_pch *pch_type)
 -{
--	if (GRAPHICS_VER(i915) >= 11) {
--		dimm->size = icl_get_dimm_size(val);
--		dimm->width = icl_get_dimm_width(val);
--		dimm->ranks = icl_get_dimm_ranks(val);
--	} else {
--		dimm->size = skl_get_dimm_size(val);
--		dimm->width = skl_get_dimm_width(val);
--		dimm->ranks = skl_get_dimm_ranks(val);
--	}
+-	unsigned short id = 0;
 -
--	drm_dbg_kms(&i915->drm,
--		    "CH%u DIMM %c size: %u Gb, width: X%u, ranks: %u, 16Gb DIMMs: %s\n",
--		    channel, dimm_name, dimm->size, dimm->width, dimm->ranks,
--		    str_yes_no(skl_is_16gb_dimm(dimm)));
--}
+-	/*
+-	 * In a virtualized passthrough environment we can be in a
+-	 * setup where the ISA bridge is not able to be passed through.
+-	 * In this case, a south bridge can be emulated and we have to
+-	 * make an educated guess as to which PCH is really there.
+-	 */
 -
--static int
--skl_dram_get_channel_info(struct drm_i915_private *i915,
--			  struct dram_channel_info *ch,
--			  int channel, u32 val)
--{
--	skl_dram_get_dimm_info(i915, &ch->dimm_l,
--			       channel, 'L', val & 0xffff);
--	skl_dram_get_dimm_info(i915, &ch->dimm_s,
--			       channel, 'S', val >> 16);
+-	if (IS_METEORLAKE(dev_priv))
+-		id = INTEL_PCH_MTP_DEVICE_ID_TYPE;
+-	else if (IS_ALDERLAKE_S(dev_priv) || IS_ALDERLAKE_P(dev_priv))
+-		id = INTEL_PCH_ADP_DEVICE_ID_TYPE;
+-	else if (IS_TIGERLAKE(dev_priv) || IS_ROCKETLAKE(dev_priv))
+-		id = INTEL_PCH_TGP_DEVICE_ID_TYPE;
+-	else BUG_ON(1);
 -
--	if (ch->dimm_l.size == 0 && ch->dimm_s.size == 0) {
--		drm_dbg_kms(&i915->drm, "CH%u not populated\n", channel);
--		return -EINVAL;
--	}
--
--	if (ch->dimm_l.ranks == 2 || ch->dimm_s.ranks == 2)
--		ch->ranks = 2;
--	else if (ch->dimm_l.ranks == 1 && ch->dimm_s.ranks == 1)
--		ch->ranks = 2;
+-	if (id)
+-		drm_dbg_kms(&dev_priv->drm, "Assuming PCH ID %04x\n", id);
 -	else
--		ch->ranks = 1;
+-		drm_dbg_kms(&dev_priv->drm, "Assuming no PCH\n");
 -
--	ch->is_16gb_dimm = skl_is_16gb_dimm(&ch->dimm_l) ||
--		skl_is_16gb_dimm(&ch->dimm_s);
+-	*pch_type = intel_pch_type(dev_priv, id);
 -
--	drm_dbg_kms(&i915->drm, "CH%u ranks: %u, 16Gb DIMMs: %s\n",
--		    channel, ch->ranks, str_yes_no(ch->is_16gb_dimm));
+-	/* Sanity check virtual PCH id */
+-	if (drm_WARN_ON(&dev_priv->drm,
+-			id && *pch_type == PCH_NONE))
+-		id = 0;
 -
--	return 0;
+-	*pch_id = id;
 -}
 -
--static bool
--intel_is_dram_symmetric(const struct dram_channel_info *ch0,
--			const struct dram_channel_info *ch1)
+-void intel_detect_pch(struct drm_i915_private *dev_priv)
 -{
--	return !memcmp(ch0, ch1, sizeof(*ch0)) &&
--		(ch0->dimm_s.size == 0 ||
--		 !memcmp(&ch0->dimm_l, &ch0->dimm_s, sizeof(ch0->dimm_l)));
--}
+-	struct pci_dev *pch = NULL;
+-	unsigned short id;
+-	enum intel_pch pch_type;
 -
--static int
--skl_dram_get_channels_info(struct drm_i915_private *i915)
--{
--	struct dram_info *dram_info = &i915->dram_info;
--	struct dram_channel_info ch0 = {}, ch1 = {};
--	u32 val;
--	int ret;
--
--	val = intel_de_read(i915, SKL_MAD_DIMM_CH0_0_0_0_MCHBAR_MCMAIN);
--	ret = skl_dram_get_channel_info(i915, &ch0, 0, val);
--	if (ret == 0)
--		dram_info->num_channels++;
--
--	val = intel_de_read(i915, SKL_MAD_DIMM_CH1_0_0_0_MCHBAR_MCMAIN);
--	ret = skl_dram_get_channel_info(i915, &ch1, 1, val);
--	if (ret == 0)
--		dram_info->num_channels++;
--
--	if (dram_info->num_channels == 0) {
--		drm_info(&i915->drm, "Number of memory channels is zero\n");
--		return -EINVAL;
+-	/* DG1 has south engine display on the same PCI device */
+-	if (IS_DG1(dev_priv)) {
+-		dev_priv->pch_type = PCH_DG1;
+-		return;
+-	} else if (IS_DG2(dev_priv)) {
+-		dev_priv->pch_type = PCH_DG2;
+-		return;
 -	}
--
--	if (ch0.ranks == 0 && ch1.ranks == 0) {
--		drm_info(&i915->drm, "couldn't get memory rank information\n");
--		return -EINVAL;
--	}
--
--	dram_info->wm_lv_0_adjust_needed = ch0.is_16gb_dimm || ch1.is_16gb_dimm;
--
--	dram_info->symmetric_memory = intel_is_dram_symmetric(&ch0, &ch1);
--
--	drm_dbg_kms(&i915->drm, "Memory configuration is symmetric? %s\n",
--		    str_yes_no(dram_info->symmetric_memory));
--
--	return 0;
--}
--
--static enum intel_dram_type
--skl_get_dram_type(struct drm_i915_private *i915)
--{
--	u32 val;
--
--	val = intel_de_read(i915, SKL_MAD_INTER_CHANNEL_0_0_0_MCHBAR_MCMAIN);
--
--	switch (val & SKL_DRAM_DDR_TYPE_MASK) {
--	case SKL_DRAM_DDR_TYPE_DDR3:
--		return INTEL_DRAM_DDR3;
--	case SKL_DRAM_DDR_TYPE_DDR4:
--		return INTEL_DRAM_DDR4;
--	case SKL_DRAM_DDR_TYPE_LPDDR3:
--		return INTEL_DRAM_LPDDR3;
--	case SKL_DRAM_DDR_TYPE_LPDDR4:
--		return INTEL_DRAM_LPDDR4;
--	default:
--		MISSING_CASE(val);
--		return INTEL_DRAM_UNKNOWN;
--	}
--}
--
--static int
--skl_get_dram_info(struct drm_i915_private *i915)
--{
--	struct dram_info *dram_info = &i915->dram_info;
--	int ret;
--
--	dram_info->type = skl_get_dram_type(i915);
--	drm_dbg_kms(&i915->drm, "DRAM type: %s\n",
--		    intel_dram_type_str(dram_info->type));
--
--	ret = skl_dram_get_channels_info(i915);
--	if (ret)
--		return ret;
--
--	return 0;
--}
--
--/* Returns Gb per DRAM device */
--static int bxt_get_dimm_size(u32 val)
--{
--	switch (val & BXT_DRAM_SIZE_MASK) {
--	case BXT_DRAM_SIZE_4GBIT:
--		return 4;
--	case BXT_DRAM_SIZE_6GBIT:
--		return 6;
--	case BXT_DRAM_SIZE_8GBIT:
--		return 8;
--	case BXT_DRAM_SIZE_12GBIT:
--		return 12;
--	case BXT_DRAM_SIZE_16GBIT:
--		return 16;
--	default:
--		MISSING_CASE(val);
--		return 0;
--	}
--}
--
--static int bxt_get_dimm_width(u32 val)
--{
--	if (!bxt_get_dimm_size(val))
--		return 0;
--
--	val = (val & BXT_DRAM_WIDTH_MASK) >> BXT_DRAM_WIDTH_SHIFT;
--
--	return 8 << val;
--}
--
--static int bxt_get_dimm_ranks(u32 val)
--{
--	if (!bxt_get_dimm_size(val))
--		return 0;
--
--	switch (val & BXT_DRAM_RANK_MASK) {
--	case BXT_DRAM_RANK_SINGLE:
--		return 1;
--	case BXT_DRAM_RANK_DUAL:
--		return 2;
--	default:
--		MISSING_CASE(val);
--		return 0;
--	}
--}
--
--static enum intel_dram_type bxt_get_dimm_type(u32 val)
--{
--	if (!bxt_get_dimm_size(val))
--		return INTEL_DRAM_UNKNOWN;
--
--	switch (val & BXT_DRAM_TYPE_MASK) {
--	case BXT_DRAM_TYPE_DDR3:
--		return INTEL_DRAM_DDR3;
--	case BXT_DRAM_TYPE_LPDDR3:
--		return INTEL_DRAM_LPDDR3;
--	case BXT_DRAM_TYPE_DDR4:
--		return INTEL_DRAM_DDR4;
--	case BXT_DRAM_TYPE_LPDDR4:
--		return INTEL_DRAM_LPDDR4;
--	default:
--		MISSING_CASE(val);
--		return INTEL_DRAM_UNKNOWN;
--	}
--}
--
--static void bxt_get_dimm_info(struct dram_dimm_info *dimm, u32 val)
--{
--	dimm->width = bxt_get_dimm_width(val);
--	dimm->ranks = bxt_get_dimm_ranks(val);
 -
 -	/*
--	 * Size in register is Gb per DRAM device. Convert to total
--	 * Gb to match the way we report this for non-LP platforms.
+-	 * The reason to probe ISA bridge instead of Dev31:Fun0 is to
+-	 * make graphics device passthrough work easy for VMM, that only
+-	 * need to expose ISA bridge to let driver know the real hardware
+-	 * underneath. This is a requirement from virtualization team.
+-	 *
+-	 * In some virtualized environments (e.g. XEN), there is irrelevant
+-	 * ISA bridge in the system. To work reliably, we should scan trhough
+-	 * all the ISA bridge devices and check for the first match, instead
+-	 * of only checking the first one.
 -	 */
--	dimm->size = bxt_get_dimm_size(val) * intel_dimm_num_devices(dimm);
--}
--
--static int bxt_get_dram_info(struct drm_i915_private *i915)
--{
--	struct dram_info *dram_info = &i915->dram_info;
--	u32 val;
--	u8 valid_ranks = 0;
--	int i;
--
--	/*
--	 * Now read each DUNIT8/9/10/11 to check the rank of each dimms.
--	 */
--	for (i = BXT_D_CR_DRP0_DUNIT_START; i <= BXT_D_CR_DRP0_DUNIT_END; i++) {
--		struct dram_dimm_info dimm;
--		enum intel_dram_type type;
--
--		val = intel_de_read(i915, BXT_D_CR_DRP0_DUNIT(i));
--		if (val == 0xFFFFFFFF)
+-	while ((pch = pci_get_class(PCI_CLASS_BRIDGE_ISA << 8, pch))) {
+-		if (pch->vendor != PCI_VENDOR_ID_INTEL)
 -			continue;
 -
--		dram_info->num_channels++;
+-		id = pch->device & INTEL_PCH_DEVICE_ID_MASK;
 -
--		bxt_get_dimm_info(&dimm, val);
--		type = bxt_get_dimm_type(val);
--
--		drm_WARN_ON(&i915->drm, type != INTEL_DRAM_UNKNOWN &&
--			    dram_info->type != INTEL_DRAM_UNKNOWN &&
--			    dram_info->type != type);
--
--		drm_dbg_kms(&i915->drm,
--			    "CH%u DIMM size: %u Gb, width: X%u, ranks: %u, type: %s\n",
--			    i - BXT_D_CR_DRP0_DUNIT_START,
--			    dimm.size, dimm.width, dimm.ranks,
--			    intel_dram_type_str(type));
--
--		if (valid_ranks == 0)
--			valid_ranks = dimm.ranks;
--
--		if (type != INTEL_DRAM_UNKNOWN)
--			dram_info->type = type;
--	}
--
--	if (dram_info->type == INTEL_DRAM_UNKNOWN || valid_ranks == 0) {
--		drm_info(&i915->drm, "couldn't get memory information\n");
--		return -EINVAL;
--	}
--
--	return 0;
--}
--
--static int icl_pcode_read_mem_global_info(struct drm_i915_private *dev_priv)
--{
--	struct dram_info *dram_info = &dev_priv->dram_info;
--	u32 val = 0;
--	int ret;
--
--	ret = snb_pcode_read(&dev_priv->uncore, ICL_PCODE_MEM_SUBSYSYSTEM_INFO |
--			     ICL_PCODE_MEM_SS_READ_GLOBAL_INFO, &val, NULL);
--	if (ret)
--		return ret;
--
--	if (GRAPHICS_VER(dev_priv) >= 12) {
--		switch (val & 0xf) {
--		case 0:
--			dram_info->type = INTEL_DRAM_DDR4;
+-		pch_type = intel_pch_type(dev_priv, id);
+-		if (pch_type != PCH_NONE) {
+-			dev_priv->pch_type = pch_type;
+-			dev_priv->pch_id = id;
 -			break;
--		case 1:
--			dram_info->type = INTEL_DRAM_DDR5;
+-		} else if (intel_is_virt_pch(id, pch->subsystem_vendor,
+-					     pch->subsystem_device)) {
+-			intel_virt_detect_pch(dev_priv, &id, &pch_type);
+-			dev_priv->pch_type = pch_type;
+-			dev_priv->pch_id = id;
 -			break;
--		case 2:
--			dram_info->type = INTEL_DRAM_LPDDR5;
--			break;
--		case 3:
--			dram_info->type = INTEL_DRAM_LPDDR4;
--			break;
--		case 4:
--			dram_info->type = INTEL_DRAM_DDR3;
--			break;
--		case 5:
--			dram_info->type = INTEL_DRAM_LPDDR3;
--			break;
--		default:
--			MISSING_CASE(val & 0xf);
--			return -EINVAL;
--		}
--	} else {
--		switch (val & 0xf) {
--		case 0:
--			dram_info->type = INTEL_DRAM_DDR4;
--			break;
--		case 1:
--			dram_info->type = INTEL_DRAM_DDR3;
--			break;
--		case 2:
--			dram_info->type = INTEL_DRAM_LPDDR3;
--			break;
--		case 3:
--			dram_info->type = INTEL_DRAM_LPDDR4;
--			break;
--		default:
--			MISSING_CASE(val & 0xf);
--			return -EINVAL;
 -		}
 -	}
--
--	dram_info->num_channels = (val & 0xf0) >> 4;
--	dram_info->num_qgv_points = (val & 0xf00) >> 8;
--	dram_info->num_psf_gv_points = (val & 0x3000) >> 12;
--
--	return 0;
--}
--
--static int gen11_get_dram_info(struct drm_i915_private *i915)
--{
--	int ret = skl_get_dram_info(i915);
--
--	if (ret)
--		return ret;
--
--	return icl_pcode_read_mem_global_info(i915);
--}
--
--static int gen12_get_dram_info(struct drm_i915_private *i915)
--{
--	i915->dram_info.wm_lv_0_adjust_needed = false;
--
--	return icl_pcode_read_mem_global_info(i915);
--}
--
--void intel_dram_detect(struct drm_i915_private *i915)
--{
--	struct dram_info *dram_info = &i915->dram_info;
--	int ret;
--
--	if (GRAPHICS_VER(i915) < 9 || IS_DG2(i915) || !HAS_DISPLAY(i915))
--		return;
 -
 -	/*
--	 * Assume level 0 watermark latency adjustment is needed until proven
--	 * otherwise, this w/a is not needed by bxt/glk.
+-	 * Use PCH_NOP (PCH but no South Display) for PCH platforms without
+-	 * display.
 -	 */
--	dram_info->wm_lv_0_adjust_needed = !IS_GEN9_LP(i915);
+-	if (pch && !HAS_DISPLAY(dev_priv)) {
+-		drm_dbg_kms(&dev_priv->drm,
+-			    "Display disabled, reverting to NOP PCH\n");
+-		dev_priv->pch_type = PCH_NOP;
+-		dev_priv->pch_id = 0;
+-	} else if (!pch) {
+-		if (i915_run_as_guest() && HAS_DISPLAY(dev_priv)) {
+-			intel_virt_detect_pch(dev_priv, &id, &pch_type);
+-			dev_priv->pch_type = pch_type;
+-			dev_priv->pch_id = id;
+-		} else {
+-			drm_dbg_kms(&dev_priv->drm, "No PCH found.\n");
+-		}
+-	}
 -
--	if (GRAPHICS_VER(i915) >= 12)
--		ret = gen12_get_dram_info(i915);
--	else if (GRAPHICS_VER(i915) >= 11)
--		ret = gen11_get_dram_info(i915);
--	else if (IS_GEN9_LP(i915))
--		ret = bxt_get_dram_info(i915);
--	else
--		ret = skl_get_dram_info(i915);
--	if (ret)
--		return;
--
--	drm_dbg_kms(&i915->drm, "DRAM channels: %u\n", dram_info->num_channels);
--
--	drm_dbg_kms(&i915->drm, "Watermark level 0 adjustment needed: %s\n",
--		    str_yes_no(dram_info->wm_lv_0_adjust_needed));
+-	pci_dev_put(pch);
 -}
-diff --git a/drivers/gpu/drm/xe/display/ext/intel_dram.h b/drivers/gpu/drm/xe/display/ext/intel_dram.h
+diff --git a/drivers/gpu/drm/xe/display/ext/intel_pch.h b/drivers/gpu/drm/xe/display/ext/intel_pch.h
 deleted file mode 100644
-index 4ba13c13162c..000000000000
---- a/drivers/gpu/drm/xe/display/ext/intel_dram.h
+index 32aff5a70d04..000000000000
+--- a/drivers/gpu/drm/xe/display/ext/intel_pch.h
 +++ /dev/null
-@@ -1,14 +0,0 @@
+@@ -1,91 +0,0 @@
 -/* SPDX-License-Identifier: MIT */
 -/*
-- * Copyright © 2020 Intel Corporation
+- * Copyright 2019 Intel Corporation.
 - */
 -
--#ifndef __INTEL_DRAM_H__
--#define __INTEL_DRAM_H__
+-#ifndef __INTEL_PCH__
+-#define __INTEL_PCH__
 -
 -struct drm_i915_private;
 -
--void intel_dram_edram_detect(struct drm_i915_private *i915);
--void intel_dram_detect(struct drm_i915_private *i915);
+-/*
+- * Sorted by south display engine compatibility.
+- * If the new PCH comes with a south display engine that is not
+- * inherited from the latest item, please do not add it to the
+- * end. Instead, add it right after its "parent" PCH.
+- */
+-enum intel_pch {
+-	PCH_NOP = -1,	/* PCH without south display */
+-	PCH_NONE = 0,	/* No PCH present */
+-	PCH_IBX,	/* Ibexpeak PCH */
+-	PCH_CPT,	/* Cougarpoint/Pantherpoint PCH */
+-	PCH_LPT,	/* Lynxpoint/Wildcatpoint PCH */
+-	PCH_SPT,        /* Sunrisepoint/Kaby Lake PCH */
+-	PCH_CNP,        /* Cannon/Comet Lake PCH */
+-	PCH_ICP,	/* Ice Lake/Jasper Lake PCH */
+-	PCH_TGP,	/* Tiger Lake/Mule Creek Canyon PCH */
+-	PCH_ADP,	/* Alder Lake PCH */
+-	PCH_MTP,	/* Meteor Lake PCH */
 -
--#endif /* __INTEL_DRAM_H__ */
+-	/* Fake PCHs, functionality handled on the same PCI dev */
+-	PCH_DG1 = 1024,
+-	PCH_DG2,
+-};
+-
+-#define INTEL_PCH_DEVICE_ID_MASK		0xff80
+-#define INTEL_PCH_IBX_DEVICE_ID_TYPE		0x3b00
+-#define INTEL_PCH_CPT_DEVICE_ID_TYPE		0x1c00
+-#define INTEL_PCH_PPT_DEVICE_ID_TYPE		0x1e00
+-#define INTEL_PCH_LPT_DEVICE_ID_TYPE		0x8c00
+-#define INTEL_PCH_LPT_LP_DEVICE_ID_TYPE		0x9c00
+-#define INTEL_PCH_WPT_DEVICE_ID_TYPE		0x8c80
+-#define INTEL_PCH_WPT_LP_DEVICE_ID_TYPE		0x9c80
+-#define INTEL_PCH_SPT_DEVICE_ID_TYPE		0xA100
+-#define INTEL_PCH_SPT_LP_DEVICE_ID_TYPE		0x9D00
+-#define INTEL_PCH_KBP_DEVICE_ID_TYPE		0xA280
+-#define INTEL_PCH_CNP_DEVICE_ID_TYPE		0xA300
+-#define INTEL_PCH_CNP_LP_DEVICE_ID_TYPE		0x9D80
+-#define INTEL_PCH_CMP_DEVICE_ID_TYPE		0x0280
+-#define INTEL_PCH_CMP2_DEVICE_ID_TYPE		0x0680
+-#define INTEL_PCH_CMP_V_DEVICE_ID_TYPE		0xA380
+-#define INTEL_PCH_ICP_DEVICE_ID_TYPE		0x3480
+-#define INTEL_PCH_ICP2_DEVICE_ID_TYPE		0x3880
+-#define INTEL_PCH_MCC_DEVICE_ID_TYPE		0x4B00
+-#define INTEL_PCH_TGP_DEVICE_ID_TYPE		0xA080
+-#define INTEL_PCH_TGP2_DEVICE_ID_TYPE		0x4380
+-#define INTEL_PCH_JSP_DEVICE_ID_TYPE		0x4D80
+-#define INTEL_PCH_ADP_DEVICE_ID_TYPE		0x7A80
+-#define INTEL_PCH_ADP2_DEVICE_ID_TYPE		0x5180
+-#define INTEL_PCH_ADP3_DEVICE_ID_TYPE		0x7A00
+-#define INTEL_PCH_ADP4_DEVICE_ID_TYPE		0x5480
+-#define INTEL_PCH_MTP_DEVICE_ID_TYPE		0x7E00
+-#define INTEL_PCH_MTP2_DEVICE_ID_TYPE		0xAE00
+-#define INTEL_PCH_P2X_DEVICE_ID_TYPE		0x7100
+-#define INTEL_PCH_P3X_DEVICE_ID_TYPE		0x7000
+-#define INTEL_PCH_QEMU_DEVICE_ID_TYPE		0x2900 /* qemu q35 has 2918 */
+-
+-#define INTEL_PCH_TYPE(dev_priv)		((dev_priv)->pch_type)
+-#define INTEL_PCH_ID(dev_priv)			((dev_priv)->pch_id)
+-#define HAS_PCH_MTP(dev_priv)			(INTEL_PCH_TYPE(dev_priv) == PCH_MTP)
+-#define HAS_PCH_DG2(dev_priv)			(INTEL_PCH_TYPE(dev_priv) == PCH_DG2)
+-#define HAS_PCH_ADP(dev_priv)			(INTEL_PCH_TYPE(dev_priv) == PCH_ADP)
+-#define HAS_PCH_DG1(dev_priv)			(INTEL_PCH_TYPE(dev_priv) == PCH_DG1)
+-#define HAS_PCH_TGP(dev_priv)			(INTEL_PCH_TYPE(dev_priv) == PCH_TGP)
+-#define HAS_PCH_ICP(dev_priv)			(INTEL_PCH_TYPE(dev_priv) == PCH_ICP)
+-#define HAS_PCH_CNP(dev_priv)			(INTEL_PCH_TYPE(dev_priv) == PCH_CNP)
+-#define HAS_PCH_SPT(dev_priv)			(INTEL_PCH_TYPE(dev_priv) == PCH_SPT)
+-#define HAS_PCH_LPT(dev_priv)			(INTEL_PCH_TYPE(dev_priv) == PCH_LPT)
+-#define HAS_PCH_LPT_LP(dev_priv) \
+-	(INTEL_PCH_ID(dev_priv) == INTEL_PCH_LPT_LP_DEVICE_ID_TYPE || \
+-	 INTEL_PCH_ID(dev_priv) == INTEL_PCH_WPT_LP_DEVICE_ID_TYPE)
+-#define HAS_PCH_LPT_H(dev_priv) \
+-	(INTEL_PCH_ID(dev_priv) == INTEL_PCH_LPT_DEVICE_ID_TYPE || \
+-	 INTEL_PCH_ID(dev_priv) == INTEL_PCH_WPT_DEVICE_ID_TYPE)
+-#define HAS_PCH_CPT(dev_priv)			(INTEL_PCH_TYPE(dev_priv) == PCH_CPT)
+-#define HAS_PCH_IBX(dev_priv)			(INTEL_PCH_TYPE(dev_priv) == PCH_IBX)
+-#define HAS_PCH_NOP(dev_priv)			(INTEL_PCH_TYPE(dev_priv) == PCH_NOP)
+-#define HAS_PCH_SPLIT(dev_priv)			(INTEL_PCH_TYPE(dev_priv) != PCH_NONE)
+-
+-void intel_detect_pch(struct drm_i915_private *dev_priv);
+-
+-#endif /* __INTEL_PCH__ */
 diff --git a/drivers/gpu/drm/xe/xe_device_types.h b/drivers/gpu/drm/xe/xe_device_types.h
-index a3eb0d94184c..2fc24eac0775 100644
+index 2fc24eac0775..26a8de77138a 100644
 --- a/drivers/gpu/drm/xe/xe_device_types.h
 +++ b/drivers/gpu/drm/xe/xe_device_types.h
-@@ -380,6 +380,12 @@ struct xe_device {
- 		u8 num_psf_gv_points;
- 	} dram_info;
+@@ -19,7 +19,7 @@
  
-+	/*
-+	 * edram size in MB.
-+	 * Cannot be determined by PCIID. You must always read a register.
-+	 */
-+	u32 edram_size_mb;
-+
- 	/* To shut up runtime pm macros.. */
- 	struct xe_runtime_pm {} runtime_pm;
- 
-@@ -410,6 +416,7 @@ struct xe_device {
- 	struct {
- 		unsigned int hpll_freq;
- 		unsigned int czclk_freq;
-+		unsigned int fsb_freq, mem_freq, is_ddr3;
- 		u8 vblank_enabled;
- 	};
- 
-diff --git a/drivers/gpu/drm/xe/xe_display.c b/drivers/gpu/drm/xe/xe_display.c
-index bf1ec9e3f9bf..8e39fb7f1fc8 100644
---- a/drivers/gpu/drm/xe/xe_display.c
-+++ b/drivers/gpu/drm/xe/xe_display.c
-@@ -15,7 +15,7 @@
- #include <drm/xe_drm.h>
- 
- #include "ext/i915_irq.h"
--#include "ext/intel_dram.h"
-+#include "soc/intel_dram.h"
- #include "intel_acpi.h"
- #include "intel_audio.h"
- #include "intel_bw.h"
+ #if IS_ENABLED(CONFIG_DRM_XE_DISPLAY)
+ #include "ext/intel_device_info.h"
+-#include "ext/intel_pch.h"
++#include "soc/intel_pch.h"
+ #include "intel_display_core.h"
+ #include "intel_display_device.h"
+ #endif
 -- 
 2.39.2
 
