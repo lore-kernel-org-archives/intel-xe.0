@@ -4,31 +4,30 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id C1868EB64DD
-	for <intel-xe@archiver.kernel.org>; Tue,  4 Jul 2023 16:33:26 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8D922EB64D9
+	for <intel-xe@archiver.kernel.org>; Tue,  4 Jul 2023 16:33:39 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8933F10E2FE;
-	Tue,  4 Jul 2023 16:33:26 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 33C7F10E1C5;
+	Tue,  4 Jul 2023 16:33:39 +0000 (UTC)
 Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id DB1CA10E2FE;
- Tue,  4 Jul 2023 16:33:24 +0000 (UTC)
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 67A3310E1C5;
+ Tue,  4 Jul 2023 16:33:38 +0000 (UTC)
 Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id D3464AADD8;
- Tue,  4 Jul 2023 16:33:24 +0000 (UTC)
+ by emeril.freedesktop.org (Postfix) with ESMTP id 63FD1AADD8;
+ Tue,  4 Jul 2023 16:33:38 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: "Nirmoy Das" <nirmoy.das@intel.com>
-Date: Tue, 04 Jul 2023 16:33:24 -0000
-Message-ID: <168848840484.28589.4593791805321396897@emeril.freedesktop.org>
+Date: Tue, 04 Jul 2023 16:33:38 -0000
+Message-ID: <168848841840.28591.5905413281791017528@emeril.freedesktop.org>
 X-Patchwork-Hint: ignore
 References: <20230704150231.7-1-francois.dugast@intel.com>
 In-Reply-To: <20230704150231.7-1-francois.dugast@intel.com>
-Subject: [Intel-xe] =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_f?=
- =?utf-8?q?or_fixup!_drm/xe/display=3A_Implement_display_support_=28rev4?=
- =?utf-8?q?=29?=
+Subject: [Intel-xe] =?utf-8?q?=E2=9C=97_CI=2Echeckpatch=3A_warning_for_fi?=
+ =?utf-8?q?xup!_drm/xe/display=3A_Implement_display_support_=28rev4=29?=
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -49,13 +48,127 @@ Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 Series: fixup! drm/xe/display: Implement display support (rev4)
 URL   : https://patchwork.freedesktop.org/series/117592/
-State : success
+State : warning
 
 == Summary ==
 
-=== Applying kernel patches on branch 'drm-xe-next' with base: ===
-Base commit: cd26cb9c9 drm/xe: Make page-table updates using the default engine happen in order
-=== git am output follows ===
-Applying: fixup! drm/xe/display: Implement display support
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+c7d32770e3cd31d9fc134ce41f329b10aa33ee15
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit 4e3685ce9bdd5ae76ac56c7b518507921fdd59ca
+Author: Francois Dugast <francois.dugast@intel.com>
+Date:   Tue Jul 4 15:02:31 2023 +0000
+
+    fixup! drm/xe/display: Implement display support
+    
+    Ensure the license is correctly identified using SPDX license
+    identifiers in compat header files.
+    
+    Signed-off-by: Francois Dugast <francois.dugast@intel.com>
++ /mt/dim checkpatch cd26cb9c94f4f04586f04fca4e94181c53854c46 drm-intel
+4e3685ce9 fixup! drm/xe/display: Implement display support
+-:16: WARNING:SPDX_LICENSE_TAG: Improper SPDX comment style for 'drivers/gpu/drm/xe/compat-i915-headers/i915_fixed.h', please use '/*' instead
+#16: FILE: drivers/gpu/drm/xe/compat-i915-headers/i915_fixed.h:1:
++// SPDX-License-Identifier: MIT
+
+-:16: WARNING:SPDX_LICENSE_TAG: Missing or malformed SPDX-License-Identifier tag in line 1
+#16: FILE: drivers/gpu/drm/xe/compat-i915-headers/i915_fixed.h:1:
++// SPDX-License-Identifier: MIT
+
+-:27: WARNING:SPDX_LICENSE_TAG: Improper SPDX comment style for 'drivers/gpu/drm/xe/compat-i915-headers/i915_reg.h', please use '/*' instead
+#27: FILE: drivers/gpu/drm/xe/compat-i915-headers/i915_reg.h:1:
++// SPDX-License-Identifier: MIT
+
+-:27: WARNING:SPDX_LICENSE_TAG: Missing or malformed SPDX-License-Identifier tag in line 1
+#27: FILE: drivers/gpu/drm/xe/compat-i915-headers/i915_reg.h:1:
++// SPDX-License-Identifier: MIT
+
+-:38: WARNING:SPDX_LICENSE_TAG: Improper SPDX comment style for 'drivers/gpu/drm/xe/compat-i915-headers/i915_reg_defs.h', please use '/*' instead
+#38: FILE: drivers/gpu/drm/xe/compat-i915-headers/i915_reg_defs.h:1:
++// SPDX-License-Identifier: MIT
+
+-:38: WARNING:SPDX_LICENSE_TAG: Missing or malformed SPDX-License-Identifier tag in line 1
+#38: FILE: drivers/gpu/drm/xe/compat-i915-headers/i915_reg_defs.h:1:
++// SPDX-License-Identifier: MIT
+
+-:49: WARNING:SPDX_LICENSE_TAG: Improper SPDX comment style for 'drivers/gpu/drm/xe/compat-i915-headers/i915_utils.h', please use '/*' instead
+#49: FILE: drivers/gpu/drm/xe/compat-i915-headers/i915_utils.h:1:
++// SPDX-License-Identifier: MIT
+
+-:49: WARNING:SPDX_LICENSE_TAG: Missing or malformed SPDX-License-Identifier tag in line 1
+#49: FILE: drivers/gpu/drm/xe/compat-i915-headers/i915_utils.h:1:
++// SPDX-License-Identifier: MIT
+
+-:60: WARNING:SPDX_LICENSE_TAG: Improper SPDX comment style for 'drivers/gpu/drm/xe/compat-i915-headers/i915_vma.h', please use '/*' instead
+#60: FILE: drivers/gpu/drm/xe/compat-i915-headers/i915_vma.h:1:
++// SPDX-License-Identifier: MIT
+
+-:60: WARNING:SPDX_LICENSE_TAG: Missing or malformed SPDX-License-Identifier tag in line 1
+#60: FILE: drivers/gpu/drm/xe/compat-i915-headers/i915_vma.h:1:
++// SPDX-License-Identifier: MIT
+
+-:73: WARNING:SPDX_LICENSE_TAG: Improper SPDX comment style for 'drivers/gpu/drm/xe/compat-i915-headers/i915_vma_types.h', please use '/*' instead
+#73: FILE: drivers/gpu/drm/xe/compat-i915-headers/i915_vma_types.h:1:
++// SPDX-License-Identifier: MIT
+
+-:73: WARNING:SPDX_LICENSE_TAG: Missing or malformed SPDX-License-Identifier tag in line 1
+#73: FILE: drivers/gpu/drm/xe/compat-i915-headers/i915_vma_types.h:1:
++// SPDX-License-Identifier: MIT
+
+-:86: WARNING:SPDX_LICENSE_TAG: Improper SPDX comment style for 'drivers/gpu/drm/xe/compat-i915-headers/intel_clock_gating.h', please use '/*' instead
+#86: FILE: drivers/gpu/drm/xe/compat-i915-headers/intel_clock_gating.h:1:
++// SPDX-License-Identifier: MIT
+
+-:86: WARNING:SPDX_LICENSE_TAG: Missing or malformed SPDX-License-Identifier tag in line 1
+#86: FILE: drivers/gpu/drm/xe/compat-i915-headers/intel_clock_gating.h:1:
++// SPDX-License-Identifier: MIT
+
+-:97: WARNING:SPDX_LICENSE_TAG: Improper SPDX comment style for 'drivers/gpu/drm/xe/compat-i915-headers/intel_mchbar_regs.h', please use '/*' instead
+#97: FILE: drivers/gpu/drm/xe/compat-i915-headers/intel_mchbar_regs.h:1:
++// SPDX-License-Identifier: MIT
+
+-:97: WARNING:SPDX_LICENSE_TAG: Missing or malformed SPDX-License-Identifier tag in line 1
+#97: FILE: drivers/gpu/drm/xe/compat-i915-headers/intel_mchbar_regs.h:1:
++// SPDX-License-Identifier: MIT
+
+-:108: WARNING:SPDX_LICENSE_TAG: Improper SPDX comment style for 'drivers/gpu/drm/xe/compat-i915-headers/intel_pci_config.h', please use '/*' instead
+#108: FILE: drivers/gpu/drm/xe/compat-i915-headers/intel_pci_config.h:1:
++// SPDX-License-Identifier: MIT
+
+-:108: WARNING:SPDX_LICENSE_TAG: Missing or malformed SPDX-License-Identifier tag in line 1
+#108: FILE: drivers/gpu/drm/xe/compat-i915-headers/intel_pci_config.h:1:
++// SPDX-License-Identifier: MIT
+
+-:119: WARNING:SPDX_LICENSE_TAG: Improper SPDX comment style for 'drivers/gpu/drm/xe/compat-i915-headers/intel_runtime_pm.h', please use '/*' instead
+#119: FILE: drivers/gpu/drm/xe/compat-i915-headers/intel_runtime_pm.h:1:
++// SPDX-License-Identifier: MIT
+
+-:119: WARNING:SPDX_LICENSE_TAG: Missing or malformed SPDX-License-Identifier tag in line 1
+#119: FILE: drivers/gpu/drm/xe/compat-i915-headers/intel_runtime_pm.h:1:
++// SPDX-License-Identifier: MIT
+
+-:132: WARNING:SPDX_LICENSE_TAG: Improper SPDX comment style for 'drivers/gpu/drm/xe/compat-i915-headers/intel_wakeref.h', please use '/*' instead
+#132: FILE: drivers/gpu/drm/xe/compat-i915-headers/intel_wakeref.h:1:
++// SPDX-License-Identifier: MIT
+
+-:132: WARNING:SPDX_LICENSE_TAG: Missing or malformed SPDX-License-Identifier tag in line 1
+#132: FILE: drivers/gpu/drm/xe/compat-i915-headers/intel_wakeref.h:1:
++// SPDX-License-Identifier: MIT
+
+-:145: WARNING:SPDX_LICENSE_TAG: Improper SPDX comment style for 'drivers/gpu/drm/xe/compat-i915-headers/vlv_sideband_reg.h', please use '/*' instead
+#145: FILE: drivers/gpu/drm/xe/compat-i915-headers/vlv_sideband_reg.h:1:
++// SPDX-License-Identifier: MIT
+
+-:145: WARNING:SPDX_LICENSE_TAG: Missing or malformed SPDX-License-Identifier tag in line 1
+#145: FILE: drivers/gpu/drm/xe/compat-i915-headers/vlv_sideband_reg.h:1:
++// SPDX-License-Identifier: MIT
+
+total: 0 errors, 24 warnings, 0 checks, 80 lines checked
 
 
