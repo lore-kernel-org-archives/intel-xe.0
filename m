@@ -4,49 +4,49 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7583AEB64D9
-	for <intel-xe@archiver.kernel.org>; Tue,  4 Jul 2023 09:53:31 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 07DEBEB64D9
+	for <intel-xe@archiver.kernel.org>; Tue,  4 Jul 2023 09:53:34 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5122B10E2CB;
-	Tue,  4 Jul 2023 09:53:31 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id CF4B110E2C8;
+	Tue,  4 Jul 2023 09:53:33 +0000 (UTC)
 Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4028510E2CA
- for <intel-xe@lists.freedesktop.org>; Tue,  4 Jul 2023 09:53:30 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6DA1110E2C8
+ for <intel-xe@lists.freedesktop.org>; Tue,  4 Jul 2023 09:53:32 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1688464410; x=1720000410;
+ t=1688464412; x=1720000412;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=Set0jX3PejWUIznI1yXTHQQ3GB/AhT6IFDRjVPgJzmc=;
- b=gaNJI6kSKeC6bNL0+PkPGgQ2nA3TYPJ0Mhm57cdXGswtrn34cyx2/qJw
- 2lyX7N5aIc+XMSlEe5z8wmEtDeOxh/grIKh54tvp7jF7cedEu5qx2Jsc7
- 7+FIUN14LeP3yTBomJOeSuh0kdQr5gaT+MIif8/BlMf+PqNBQlYFrfcLY
- v2auxeGqlSxLeiOfSpfO+5TobD6c5+ahVwob4HCQFF/+dh1FyyGdNtw2J
- /tZCNbbLaQR4w7G9tvx+IGKLciA8TyhkrP6dzwiOh99eQO0Fol4UmR/y/
- Nb81Sx84E1NIAe8owQMMAJGzQjEtlyrl3G3ah7NoSf3171ydYS0ZZEkVW A==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10760"; a="429123330"
-X-IronPort-AV: E=Sophos;i="6.01,180,1684825200"; d="scan'208";a="429123330"
+ bh=pvx3gN2Fs7W4HP5WB1p29ZZs552BfqCYq3s8eTcwhwk=;
+ b=CUpFtyUqac9/cnmq/mjaMYw0yhnAH0IjPOIgGEUwEoW98DxLVYj/dP4O
+ cC32NQVXfPe9BQiIYXsZ7n7HIbYOyf++b8V+6OyfSY48u/D/JE9KypTbS
+ 2s0Ov0vph1u9USVJHW+7qZriqr51fNypxD8XTcmt88s5KKcUAYgIsAb0P
+ rs8jbrIbUKkGgDIR6276KBqQIVWiClnRip6JnV0Oubv/prVBOdBHyKVBZ
+ LvX3JJjat2Y3yGn1xeGM9KLX7WpOeNGhQg3bOa+zPqSY8YKcPIy0o2/VF
+ d3nf4YndebsgItvWVa/Bs8AEDyk4m47hkQXTiHben0mpO6J/z1P5C3OfG g==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10760"; a="429123341"
+X-IronPort-AV: E=Sophos;i="6.01,180,1684825200"; d="scan'208";a="429123341"
 Received: from orsmga006.jf.intel.com ([10.7.209.51])
  by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 04 Jul 2023 02:53:30 -0700
+ 04 Jul 2023 02:53:32 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10760"; a="696099125"
-X-IronPort-AV: E=Sophos;i="6.01,180,1684825200"; d="scan'208";a="696099125"
+X-IronPort-AV: E=McAfee;i="6600,9927,10760"; a="696099133"
+X-IronPort-AV: E=Sophos;i="6.01,180,1684825200"; d="scan'208";a="696099133"
 Received: from tmacyszy-mobl1.ger.corp.intel.com (HELO rapter.intel.com)
  ([10.249.150.205])
  by orsmga006-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 04 Jul 2023 02:53:28 -0700
+ 04 Jul 2023 02:53:30 -0700
 From: Gwan-gyeong Mun <gwan-gyeong.mun@intel.com>
 To: intel-xe@lists.freedesktop.org
-Date: Tue,  4 Jul 2023 12:51:17 +0300
-Message-Id: <20230704095129.269872-16-gwan-gyeong.mun@intel.com>
+Date: Tue,  4 Jul 2023 12:51:18 +0300
+Message-Id: <20230704095129.269872-17-gwan-gyeong.mun@intel.com>
 X-Mailer: git-send-email 2.40.0
 In-Reply-To: <20230704095129.269872-1-gwan-gyeong.mun@intel.com>
 References: <20230704095129.269872-1-gwan-gyeong.mun@intel.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-xe] [CI 15/27] locking/lockdep,
- cpu/hotplus: Use a weaker annotation in AP thread
+Subject: [Intel-xe] [CI 16/27] dept: Apply sdt_might_sleep_{start,
+ end}() to dma fence wait
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -64,34 +64,58 @@ Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 From: Byungchul Park <byungchul@sk.com>
 
-cb92173d1f0 ("locking/lockdep, cpu/hotplug: Annotate AP thread") was
-introduced to make lockdep_assert_cpus_held() work in AP thread.
-
-However, the annotation is too strong for that purpose. We don't have to
-use more than try lock annotation for that.
-
-Furthermore, now that Dept was introduced, false positive alarms was
-reported by that. Replaced it with try lock annotation.
+Makes Dept able to track dma fence waits.
 
 Signed-off-by: Byungchul Park <byungchul@sk.com>
 Signed-off-by: Gwan-gyeong Mun <gwan-gyeong.mun@intel.com>
 ---
- kernel/cpu.c | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+ drivers/dma-buf/dma-fence.c | 5 +++++
+ 1 file changed, 5 insertions(+)
 
-diff --git a/kernel/cpu.c b/kernel/cpu.c
-index f4a2c5845bcb..19076f798b34 100644
---- a/kernel/cpu.c
-+++ b/kernel/cpu.c
-@@ -356,7 +356,7 @@ int lockdep_is_cpus_held(void)
+diff --git a/drivers/dma-buf/dma-fence.c b/drivers/dma-buf/dma-fence.c
+index f177c56269bb..ad2d7a94c868 100644
+--- a/drivers/dma-buf/dma-fence.c
++++ b/drivers/dma-buf/dma-fence.c
+@@ -16,6 +16,7 @@
+ #include <linux/dma-fence.h>
+ #include <linux/sched/signal.h>
+ #include <linux/seq_file.h>
++#include <linux/dept_sdt.h>
  
- static void lockdep_acquire_cpus_lock(void)
- {
--	rwsem_acquire(&cpu_hotplug_lock.dep_map, 0, 0, _THIS_IP_);
-+	rwsem_acquire(&cpu_hotplug_lock.dep_map, 0, 1, _THIS_IP_);
- }
+ #define CREATE_TRACE_POINTS
+ #include <trace/events/dma_fence.h>
+@@ -782,6 +783,7 @@ dma_fence_default_wait(struct dma_fence *fence, bool intr, signed long timeout)
+ 	cb.task = current;
+ 	list_add(&cb.base.node, &fence->cb_list);
  
- static void lockdep_release_cpus_lock(void)
++	sdt_might_sleep_start(NULL);
+ 	while (!test_bit(DMA_FENCE_FLAG_SIGNALED_BIT, &fence->flags) && ret > 0) {
+ 		if (intr)
+ 			__set_current_state(TASK_INTERRUPTIBLE);
+@@ -795,6 +797,7 @@ dma_fence_default_wait(struct dma_fence *fence, bool intr, signed long timeout)
+ 		if (ret > 0 && intr && signal_pending(current))
+ 			ret = -ERESTARTSYS;
+ 	}
++	sdt_might_sleep_end();
+ 
+ 	if (!list_empty(&cb.base.node))
+ 		list_del(&cb.base.node);
+@@ -884,6 +887,7 @@ dma_fence_wait_any_timeout(struct dma_fence **fences, uint32_t count,
+ 		}
+ 	}
+ 
++	sdt_might_sleep_start(NULL);
+ 	while (ret > 0) {
+ 		if (intr)
+ 			set_current_state(TASK_INTERRUPTIBLE);
+@@ -898,6 +902,7 @@ dma_fence_wait_any_timeout(struct dma_fence **fences, uint32_t count,
+ 		if (ret > 0 && intr && signal_pending(current))
+ 			ret = -ERESTARTSYS;
+ 	}
++	sdt_might_sleep_end();
+ 
+ 	__set_current_state(TASK_RUNNING);
+ 
 -- 
 2.40.0
 
