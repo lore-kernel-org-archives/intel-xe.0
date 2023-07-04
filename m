@@ -4,47 +4,47 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id CEEBAEB64D9
-	for <intel-xe@archiver.kernel.org>; Tue,  4 Jul 2023 14:59:21 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id E5A3EEB64DA
+	for <intel-xe@archiver.kernel.org>; Tue,  4 Jul 2023 15:02:52 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 98B5710E146;
-	Tue,  4 Jul 2023 14:59:21 +0000 (UTC)
-Received: from mga06.intel.com (mga06b.intel.com [134.134.136.31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 218C410E1A9
- for <intel-xe@lists.freedesktop.org>; Tue,  4 Jul 2023 14:59:19 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B251310E1A9;
+	Tue,  4 Jul 2023 15:02:52 +0000 (UTC)
+Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1291B10E1A9
+ for <intel-xe@lists.freedesktop.org>; Tue,  4 Jul 2023 15:02:49 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1688482759; x=1720018759;
+ t=1688482970; x=1720018970;
  h=from:to:cc:subject:date:message-id:mime-version:
  content-transfer-encoding;
  bh=4dRDXhOYiV5XUbvxQVs0C/NJ4ilSCpLjTYFT8QKnd/g=;
- b=EBQnx2TIKrA/2r+aTYCfZrTL+4f5VpSVqZ3nPpx7mEqi6FYg1wf9gx9l
- 6E6BsvghC/hFZxO50R5wts0PB+1gnyeT/aci/rQ4wev46oQpbI0Ybkuz+
- 2T8SDoviiCHaiFmhNlDzMB9nmQ9uJcZcc+4+ixu/nZzV7IpayLhKh5ou2
- rhvXivrc7IU+QP23jj0WcMqGGwt+0Oq9HW7p29JLSxryDPwZnYQLVPByY
- OjZkmrRZdlWZuTploBo0g4Qg9FigCS/nlkpoQjjKxDse8smyAN/zTiHVq
- Pg7ufnkD3emtFst/K7nUDwu3o5zd9oJGW8cdMSNAt6ede8okp/G5y1Xnq g==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10760"; a="426823715"
-X-IronPort-AV: E=Sophos;i="6.01,181,1684825200"; d="scan'208";a="426823715"
-Received: from orsmga004.jf.intel.com ([10.7.209.38])
- by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 04 Jul 2023 07:59:18 -0700
+ b=mUqJYuR0A9zCSft+pgTEkKiQOmdxbGcxrLqxxwGq84ZumpS3R4gA67OL
+ I5tJPqnBeaaDj5+tTMDy4yY4BkH6PGIjKxqJRCWE6kdxlQHiXqBEpdIhz
+ OpK4D0i9EWoaB7xVc4iQjPgfWmCUiCqMBUaKxGK4gFQcX/LlakQDDSJmh
+ /JB2ogN5RC/3MdvQ339f70P6Ew1V1UrJPxQ8u/lulD9E5DZDnVIdZC8UO
+ v3Pp90d/tLGEAhyofWaF1LMqW3/WcOzCpq5h3k8F8OfCjcYztJTPpupIN
+ gFCuBm2skLB9jf5Y+kOufuFTLEQKrx/m19+9jE4Gnj3eRUWSR3MxxqHCC A==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10760"; a="366621271"
+X-IronPort-AV: E=Sophos;i="6.01,181,1684825200"; d="scan'208";a="366621271"
+Received: from fmsmga002.fm.intel.com ([10.253.24.26])
+ by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 04 Jul 2023 08:02:40 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10760"; a="843012826"
-X-IronPort-AV: E=Sophos;i="6.01,181,1684825200"; d="scan'208";a="843012826"
+X-IronPort-AV: E=McAfee;i="6600,9927,10760"; a="832193489"
+X-IronPort-AV: E=Sophos;i="6.01,181,1684825200"; d="scan'208";a="832193489"
 Received: from hlakyil-mobl1.ger.corp.intel.com (HELO localhost.localdomain)
  ([10.251.219.8])
- by orsmga004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 04 Jul 2023 07:59:16 -0700
+ by fmsmga002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 04 Jul 2023 08:02:38 -0700
 From: Francois Dugast <francois.dugast@intel.com>
 To: intel-xe@lists.freedesktop.org
-Date: Tue,  4 Jul 2023 14:59:07 +0000
-Message-Id: <20230704145907.7-1-francois.dugast@intel.com>
+Date: Tue,  4 Jul 2023 15:02:31 +0000
+Message-Id: <20230704150231.7-1-francois.dugast@intel.com>
 X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-xe] [PATCH] drm/xe: Add license identifier to compat headers
+Subject: [Intel-xe] [PATCH] fixup! drm/xe/display: Implement display support
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
