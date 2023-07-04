@@ -4,30 +4,30 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8E507EB64DA
-	for <intel-xe@archiver.kernel.org>; Tue,  4 Jul 2023 10:09:40 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id AD6ACEB64D9
+	for <intel-xe@archiver.kernel.org>; Tue,  4 Jul 2023 10:10:54 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5DF8410E099;
-	Tue,  4 Jul 2023 10:09:40 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7A83810E099;
+	Tue,  4 Jul 2023 10:10:54 +0000 (UTC)
 Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id 46D4C10E099;
- Tue,  4 Jul 2023 10:09:38 +0000 (UTC)
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 98B8F10E099;
+ Tue,  4 Jul 2023 10:10:52 +0000 (UTC)
 Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 432B1A0078;
- Tue,  4 Jul 2023 10:09:38 +0000 (UTC)
+ by emeril.freedesktop.org (Postfix) with ESMTP id DD692AADEA;
+ Tue,  4 Jul 2023 10:10:51 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: "Gwan-gyeong Mun" <gwan-gyeong.mun@intel.com>
-Date: Tue, 04 Jul 2023 10:09:38 -0000
-Message-ID: <168846537827.28592.9133134264456066581@emeril.freedesktop.org>
+Date: Tue, 04 Jul 2023 10:10:51 -0000
+Message-ID: <168846545189.28589.14680864910704040859@emeril.freedesktop.org>
 X-Patchwork-Hint: ignore
 References: <20230704095129.269872-1-gwan-gyeong.mun@intel.com>
 In-Reply-To: <20230704095129.269872-1-gwan-gyeong.mun@intel.com>
-Subject: [Intel-xe] =?utf-8?q?=E2=9C=97_CI=2Echeckpatch=3A_warning_for_DE?=
- =?utf-8?q?PT_2=2E4_test_run_for_drm-xe?=
+Subject: [Intel-xe] =?utf-8?q?=E2=9C=93_CI=2EKUnit=3A_success_for_DEPT_2?=
+ =?utf-8?q?=2E4_test_run_for_drm-xe?=
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -48,1174 +48,515 @@ Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 Series: DEPT 2.4 test run for drm-xe
 URL   : https://patchwork.freedesktop.org/series/120168/
-State : warning
+State : success
 
 == Summary ==
 
-+ KERNEL=/kernel
-+ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
-Cloning into 'mt'...
-warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
-+ git -C mt rev-list -n1 origin/master
-c7d32770e3cd31d9fc134ce41f329b10aa33ee15
-+ cd /kernel
-+ git config --global --add safe.directory /kernel
-+ git log -n1
-commit ec83616727744a0b866eb774d9b39181b1e28b00
-Author: Gwan-gyeong Mun <gwan-gyeong.mun@intel.com>
-Date:   Tue Jul 4 12:51:29 2023 +0300
-
-    HAX: dept: Increase DEPT_MAX_WAIT_HIST / DEPT_MAX_ECXT_HELD to track more
-    
-    Signed-off-by: Gwan-gyeong Mun <gwan-gyeong.mun@intel.com>
-+ /mt/dim checkpatch 103e5d7aa1ba8469687574c926f40c630252ede4 drm-intel
-23326d980 llist: Move llist_{head, node} definition to types.h
-d3c7c8210 dept: Implement Dept(Dependency Tracker)
-Traceback (most recent call last):
-  File "scripts/spdxcheck.py", line 6, in <module>
-    from ply import lex, yacc
-ModuleNotFoundError: No module named 'ply'
-Traceback (most recent call last):
-  File "scripts/spdxcheck.py", line 6, in <module>
-    from ply import lex, yacc
-ModuleNotFoundError: No module named 'ply'
-Traceback (most recent call last):
-  File "scripts/spdxcheck.py", line 6, in <module>
-    from ply import lex, yacc
-ModuleNotFoundError: No module named 'ply'
-Traceback (most recent call last):
-  File "scripts/spdxcheck.py", line 6, in <module>
-    from ply import lex, yacc
-ModuleNotFoundError: No module named 'ply'
-Traceback (most recent call last):
-  File "scripts/spdxcheck.py", line 6, in <module>
-    from ply import lex, yacc
-ModuleNotFoundError: No module named 'ply'
--:90: WARNING:FILE_PATH_CHANGES: added, moved or deleted file(s), does MAINTAINERS need updating?
-#90: 
-new file mode 100644
-
--:584: CHECK:AVOID_EXTERNS: extern prototypes should be avoided in .h files
-#584: FILE: include/linux/dept.h:490:
-+extern void dept_on(void);
-
--:585: CHECK:AVOID_EXTERNS: extern prototypes should be avoided in .h files
-#585: FILE: include/linux/dept.h:491:
-+extern void dept_off(void);
-
--:586: CHECK:AVOID_EXTERNS: extern prototypes should be avoided in .h files
-#586: FILE: include/linux/dept.h:492:
-+extern void dept_init(void);
-
--:587: CHECK:AVOID_EXTERNS: extern prototypes should be avoided in .h files
-#587: FILE: include/linux/dept.h:493:
-+extern void dept_task_init(struct task_struct *t);
-
--:588: CHECK:AVOID_EXTERNS: extern prototypes should be avoided in .h files
-#588: FILE: include/linux/dept.h:494:
-+extern void dept_task_exit(struct task_struct *t);
-
--:589: CHECK:AVOID_EXTERNS: extern prototypes should be avoided in .h files
-#589: FILE: include/linux/dept.h:495:
-+extern void dept_free_range(void *start, unsigned int sz);
-
--:590: CHECK:AVOID_EXTERNS: extern prototypes should be avoided in .h files
-#590: FILE: include/linux/dept.h:496:
-+extern void dept_map_init(struct dept_map *m, struct dept_key *k, int sub_u, const char *n);
-
--:591: CHECK:AVOID_EXTERNS: extern prototypes should be avoided in .h files
-#591: FILE: include/linux/dept.h:497:
-+extern void dept_map_reinit(struct dept_map *m, struct dept_key *k, int sub_u, const char *n);
-
--:592: CHECK:AVOID_EXTERNS: extern prototypes should be avoided in .h files
-#592: FILE: include/linux/dept.h:498:
-+extern void dept_map_copy(struct dept_map *to, struct dept_map *from);
-
--:594: WARNING:LONG_LINE: line length of 108 exceeds 100 columns
-#594: FILE: include/linux/dept.h:500:
-+extern void dept_wait(struct dept_map *m, unsigned long w_f, unsigned long ip, const char *w_fn, int sub_l);
-
--:594: CHECK:AVOID_EXTERNS: extern prototypes should be avoided in .h files
-#594: FILE: include/linux/dept.h:500:
-+extern void dept_wait(struct dept_map *m, unsigned long w_f, unsigned long ip, const char *w_fn, int sub_l);
-
--:595: WARNING:LONG_LINE: line length of 104 exceeds 100 columns
-#595: FILE: include/linux/dept.h:501:
-+extern void dept_stage_wait(struct dept_map *m, struct dept_key *k, unsigned long ip, const char *w_fn);
-
--:595: CHECK:AVOID_EXTERNS: extern prototypes should be avoided in .h files
-#595: FILE: include/linux/dept.h:501:
-+extern void dept_stage_wait(struct dept_map *m, struct dept_key *k, unsigned long ip, const char *w_fn);
-
--:596: CHECK:AVOID_EXTERNS: extern prototypes should be avoided in .h files
-#596: FILE: include/linux/dept.h:502:
-+extern void dept_request_event_wait_commit(void);
-
--:597: CHECK:AVOID_EXTERNS: extern prototypes should be avoided in .h files
-#597: FILE: include/linux/dept.h:503:
-+extern void dept_clean_stage(void);
-
--:598: CHECK:AVOID_EXTERNS: extern prototypes should be avoided in .h files
-#598: FILE: include/linux/dept.h:504:
-+extern void dept_stage_event(struct task_struct *t, unsigned long ip);
-
--:599: WARNING:LONG_LINE: line length of 132 exceeds 100 columns
-#599: FILE: include/linux/dept.h:505:
-+extern void dept_ecxt_enter(struct dept_map *m, unsigned long e_f, unsigned long ip, const char *c_fn, const char *e_fn, int sub_l);
-
--:599: CHECK:AVOID_EXTERNS: extern prototypes should be avoided in .h files
-#599: FILE: include/linux/dept.h:505:
-+extern void dept_ecxt_enter(struct dept_map *m, unsigned long e_f, unsigned long ip, const char *c_fn, const char *e_fn, int sub_l);
-
--:600: CHECK:AVOID_EXTERNS: extern prototypes should be avoided in .h files
-#600: FILE: include/linux/dept.h:506:
-+extern bool dept_ecxt_holding(struct dept_map *m, unsigned long e_f);
-
--:601: CHECK:AVOID_EXTERNS: extern prototypes should be avoided in .h files
-#601: FILE: include/linux/dept.h:507:
-+extern void dept_request_event(struct dept_map *m);
-
--:602: CHECK:AVOID_EXTERNS: extern prototypes should be avoided in .h files
-#602: FILE: include/linux/dept.h:508:
-+extern void dept_event(struct dept_map *m, unsigned long e_f, unsigned long ip, const char *e_fn);
-
--:603: CHECK:AVOID_EXTERNS: extern prototypes should be avoided in .h files
-#603: FILE: include/linux/dept.h:509:
-+extern void dept_ecxt_exit(struct dept_map *m, unsigned long e_f, unsigned long ip);
-
--:604: CHECK:AVOID_EXTERNS: extern prototypes should be avoided in .h files
-#604: FILE: include/linux/dept.h:510:
-+extern void dept_sched_enter(void);
-
--:605: CHECK:AVOID_EXTERNS: extern prototypes should be avoided in .h files
-#605: FILE: include/linux/dept.h:511:
-+extern void dept_sched_exit(void);
-
--:615: CHECK:AVOID_EXTERNS: extern prototypes should be avoided in .h files
-#615: FILE: include/linux/dept.h:521:
-+extern void dept_key_init(struct dept_key *k);
-
--:616: CHECK:AVOID_EXTERNS: extern prototypes should be avoided in .h files
-#616: FILE: include/linux/dept.h:522:
-+extern void dept_key_destroy(struct dept_key *k);
-
--:617: WARNING:LONG_LINE: line length of 200 exceeds 100 columns
-#617: FILE: include/linux/dept.h:523:
-+extern void dept_map_ecxt_modify(struct dept_map *m, unsigned long e_f, struct dept_key *new_k, unsigned long new_e_f, unsigned long new_ip, const char *new_c_fn, const char *new_e_fn, int new_sub_l);
-
--:617: CHECK:AVOID_EXTERNS: extern prototypes should be avoided in .h files
-#617: FILE: include/linux/dept.h:523:
-+extern void dept_map_ecxt_modify(struct dept_map *m, unsigned long e_f, struct dept_key *new_k, unsigned long new_e_f, unsigned long new_ip, const char *new_c_fn, const char *new_e_fn, int new_sub_l);
-
--:619: CHECK:AVOID_EXTERNS: extern prototypes should be avoided in .h files
-#619: FILE: include/linux/dept.h:525:
-+extern void dept_softirq_enter(void);
-
--:620: CHECK:AVOID_EXTERNS: extern prototypes should be avoided in .h files
-#620: FILE: include/linux/dept.h:526:
-+extern void dept_hardirq_enter(void);
-
--:621: CHECK:AVOID_EXTERNS: extern prototypes should be avoided in .h files
-#621: FILE: include/linux/dept.h:527:
-+extern void dept_softirqs_on_ip(unsigned long ip);
-
--:622: CHECK:AVOID_EXTERNS: extern prototypes should be avoided in .h files
-#622: FILE: include/linux/dept.h:528:
-+extern void dept_hardirqs_on(void);
-
--:623: CHECK:AVOID_EXTERNS: extern prototypes should be avoided in .h files
-#623: FILE: include/linux/dept.h:529:
-+extern void dept_hardirqs_on_ip(unsigned long ip);
-
--:624: CHECK:AVOID_EXTERNS: extern prototypes should be avoided in .h files
-#624: FILE: include/linux/dept.h:530:
-+extern void dept_softirqs_off_ip(unsigned long ip);
-
--:625: CHECK:AVOID_EXTERNS: extern prototypes should be avoided in .h files
-#625: FILE: include/linux/dept.h:531:
-+extern void dept_hardirqs_off(void);
-
--:626: CHECK:AVOID_EXTERNS: extern prototypes should be avoided in .h files
-#626: FILE: include/linux/dept.h:532:
-+extern void dept_hardirqs_off_ip(unsigned long ip);
-
--:645: WARNING:SINGLE_STATEMENT_DO_WHILE_MACRO: Single statement macros should not use a do {} while (0) loop
-#645: FILE: include/linux/dept.h:551:
-+#define dept_wait(m, w_f, ip, w_fn, sl)			do { (void)(w_fn); } while (0)
-
--:653: WARNING:SINGLE_STATEMENT_DO_WHILE_MACRO: Single statement macros should not use a do {} while (0) loop
-#653: FILE: include/linux/dept.h:559:
-+#define dept_event(m, e_f, ip, e_fn)			do { (void)(e_fn); } while (0)
-
--:658: WARNING:SINGLE_STATEMENT_DO_WHILE_MACRO: Single statement macros should not use a do {} while (0) loop
-#658: FILE: include/linux/dept.h:564:
-+#define dept_key_init(k)				do { (void)(k); } while (0)
-
--:659: WARNING:SINGLE_STATEMENT_DO_WHILE_MACRO: Single statement macros should not use a do {} while (0) loop
-#659: FILE: include/linux/dept.h:565:
-+#define dept_key_destroy(k)				do { (void)(k); } while (0)
-
--:660: WARNING:LONG_LINE: line length of 138 exceeds 100 columns
-#660: FILE: include/linux/dept.h:566:
-+#define dept_map_ecxt_modify(m, e_f, n_k, n_e_f, n_ip, n_c_fn, n_e_fn, n_sl) do { (void)(n_k); (void)(n_c_fn); (void)(n_e_fn); } while (0)
-
--:808: WARNING:TYPO_SPELLING: 'muliple' may be misspelled - perhaps 'multiple'?
-#808: FILE: kernel/dependency/dept.c:21:
-+ *    2) Allow muliple reports.
-                ^^^^^^^
-
--:1058: WARNING:TRAILING_SEMICOLON: macros should not use a trailing semicolon
-#1058: FILE: kernel/dependency/dept.c:271:
-+#define OBJECT(id, nr)							\
-+static struct dept_##id spool_##id[nr];					\
-+static DEFINE_PER_CPU(struct llist_head, lpool_##id);
-
--:1185: CHECK:LINE_SPACING: Please use a blank line after function/struct/union/enum declarations
-#1185: FILE: kernel/dependency/dept.c:398:
-+}
-+#include "dept_object.h"
-
--:1197: CHECK:LINE_SPACING: Please use a blank line after function/struct/union/enum declarations
-#1197: FILE: kernel/dependency/dept.c:410:
-+}
-+SET_CONSTRUCTOR(dep, initialize_dep);
-
--:1222: CHECK:LINE_SPACING: Please use a blank line after function/struct/union/enum declarations
-#1222: FILE: kernel/dependency/dept.c:435:
-+}
-+SET_CONSTRUCTOR(class, initialize_class);
-
--:1238: CHECK:LINE_SPACING: Please use a blank line after function/struct/union/enum declarations
-#1238: FILE: kernel/dependency/dept.c:451:
-+}
-+SET_CONSTRUCTOR(ecxt, initialize_ecxt);
-
--:1252: CHECK:LINE_SPACING: Please use a blank line after function/struct/union/enum declarations
-#1252: FILE: kernel/dependency/dept.c:465:
-+}
-+SET_CONSTRUCTOR(wait, initialize_wait);
-
--:1258: CHECK:LINE_SPACING: Please use a blank line after function/struct/union/enum declarations
-#1258: FILE: kernel/dependency/dept.c:471:
-+}
-+SET_CONSTRUCTOR(stack, initialize_stack);
-
--:1260: WARNING:TRAILING_SEMICOLON: macros should not use a trailing semicolon
-#1260: FILE: kernel/dependency/dept.c:473:
-+#define OBJECT(id, nr) \
-+static void (*ctor_##id)(struct dept_##id *a);
-
--:1277: CHECK:LINE_SPACING: Please use a blank line after function/struct/union/enum declarations
-#1277: FILE: kernel/dependency/dept.c:490:
-+}
-+SET_DESTRUCTOR(dep, destroy_dep);
-
--:1293: CHECK:LINE_SPACING: Please use a blank line after function/struct/union/enum declarations
-#1293: FILE: kernel/dependency/dept.c:506:
-+}
-+SET_DESTRUCTOR(ecxt, destroy_ecxt);
-
--:1307: CHECK:LINE_SPACING: Please use a blank line after function/struct/union/enum declarations
-#1307: FILE: kernel/dependency/dept.c:520:
-+}
-+SET_DESTRUCTOR(wait, destroy_wait);
-
--:1309: WARNING:TRAILING_SEMICOLON: macros should not use a trailing semicolon
-#1309: FILE: kernel/dependency/dept.c:522:
-+#define OBJECT(id, nr) \
-+static void (*dtor_##id)(struct dept_##id *a);
-
--:1358: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'bits' - possible side-effects?
-#1358: FILE: kernel/dependency/dept.c:571:
-+#define HASH(id, bits)							\
-+static struct hlist_head table_##id[1 << (bits)];			\
-+									\
-+static inline struct hlist_head *head_##id(struct dept_##id *a)		\
-+{									\
-+	return table_##id + hash_long(key_##id(a), bits);		\
-+}									\
-+									\
-+static inline struct dept_##id *hash_lookup_##id(struct dept_##id *a)	\
-+{									\
-+	struct dept_##id *b;						\
-+									\
-+	hlist_for_each_entry_rcu(b, head_##id(a), hash_node)		\
-+		if (cmp_##id(a, b))					\
-+			return b;					\
-+	return NULL;							\
-+}									\
-+									\
-+static inline void hash_add_##id(struct dept_##id *a)			\
-+{									\
-+	get_##id(a);							\
-+	hlist_add_head_rcu(&a->hash_node, head_##id(a));		\
-+}									\
-+									\
-+static inline void hash_del_##id(struct dept_##id *a)			\
-+{									\
-+	hlist_del_rcu(&a->hash_node);					\
-+	put_##id(a);							\
-+}
-
--:1387: CHECK:LINE_SPACING: Please use a blank line after function/struct/union/enum declarations
-#1387: FILE: kernel/dependency/dept.c:600:
-+}
-+#include "dept_hash.h"
-
--:1491: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
-#1491: FILE: kernel/dependency/dept.c:704:
-+		pr_warn("[W] %s(%s:%d) in %s context:\n",
-+		       w_fn, tc_n, tc->sub_id, irq_str(irq));
-
--:2448: CHECK:COMPARISON_TO_NULL: Comparison to NULL could be written "wh->wait"
-#2448: FILE: kernel/dependency/dept.c:1661:
-+	return wh->wait != NULL && before(wg, wh->wgen);
-
--:3108: WARNING:TYPO_SPELLING: 'diabled' may be misspelled - perhaps 'disabled'?
-#3108: FILE: kernel/dependency/dept.c:2321:
-+	 * Keep the map diabled until the next sleep.
- 	                ^^^^^^^
-
--:3324: WARNING:TYPO_SPELLING: 'Ingore' may be misspelled - perhaps 'Ignore'?
-#3324: FILE: kernel/dependency/dept.c:2537:
-+	 * XXX: Couldn't handle re-enterance cases. Ingore it for now.
- 	                                            ^^^^^^
-
--:3729: ERROR:TRAILING_STATEMENTS: trailing statements should be on next line
-#3729: FILE: kernel/dependency/dept.c:2942:
-+	for (last = first; last->next; last = last->next);
-
--:3769: WARNING:TRAILING_SEMICOLON: macros should not use a trailing semicolon
-#3769: FILE: kernel/dependency/dept.c:2982:
-+#define HASH(id, bits) BUILD_BUG_ON(1 << (bits) <= 0);
-
--:3772: ERROR:MULTISTATEMENT_MACRO_USE_DO_WHILE: Macros with multiple statements should be enclosed in a do - while loop
-#3772: FILE: kernel/dependency/dept.c:2985:
-+#define OBJECT(id, nr) mem_total += sizeof(struct dept_##id) * nr;
-
--:3772: CHECK:MACRO_ARG_PRECEDENCE: Macro argument 'nr' may be better as '(nr)' to avoid precedence issues
-#3772: FILE: kernel/dependency/dept.c:2985:
-+#define OBJECT(id, nr) mem_total += sizeof(struct dept_##id) * nr;
-
--:3772: WARNING:TRAILING_SEMICOLON: macros should not use a trailing semicolon
-#3772: FILE: kernel/dependency/dept.c:2985:
-+#define OBJECT(id, nr) mem_total += sizeof(struct dept_##id) * nr;
-
--:3775: ERROR:MULTISTATEMENT_MACRO_USE_DO_WHILE: Macros with multiple statements should be enclosed in a do - while loop
-#3775: FILE: kernel/dependency/dept.c:2988:
-+#define HASH(id, bits) mem_total += sizeof(struct hlist_head) * (1 << (bits));
-
--:3775: WARNING:TRAILING_SEMICOLON: macros should not use a trailing semicolon
-#3775: FILE: kernel/dependency/dept.c:2988:
-+#define HASH(id, bits) mem_total += sizeof(struct hlist_head) * (1 << (bits));
-
--:3784: CHECK:MACRO_ARG_PRECEDENCE: Macro argument 'nr' may be better as '(nr)' to avoid precedence issues
-#3784: FILE: kernel/dependency/dept.c:2997:
-+#define OBJECT(id, nr)							\
-+	pr_info("... memory used by %s: %zu KB\n",			\
-+	       #id, B2KB(sizeof(struct dept_##id) * nr));
-
--:3784: WARNING:TRAILING_SEMICOLON: macros should not use a trailing semicolon
-#3784: FILE: kernel/dependency/dept.c:2997:
-+#define OBJECT(id, nr)							\
-+	pr_info("... memory used by %s: %zu KB\n",			\
-+	       #id, B2KB(sizeof(struct dept_##id) * nr));
-
--:3789: WARNING:TRAILING_SEMICOLON: macros should not use a trailing semicolon
-#3789: FILE: kernel/dependency/dept.c:3002:
-+#define HASH(id, bits)							\
-+	pr_info("... hash list head used by %s: %zu KB\n",		\
-+	       #id, B2KB(sizeof(struct hlist_head) * (1 << (bits))));
-
-total: 3 errors, 21 warnings, 47 checks, 3800 lines checked
-556d7361e dept: Add single event dependency tracker APIs
-Traceback (most recent call last):
-  File "scripts/spdxcheck.py", line 6, in <module>
-    from ply import lex, yacc
-ModuleNotFoundError: No module named 'ply'
--:38: WARNING:FILE_PATH_CHANGES: added, moved or deleted file(s), does MAINTAINERS need updating?
-#38: 
-new file mode 100644
-
--:67: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'm' - possible side-effects?
-#67: FILE: include/linux/dept_sdt.h:25:
-+#define sdt_wait(m)							\
-+	do {								\
-+		dept_request_event(m);					\
-+		dept_wait(m, 1UL, _THIS_IP_, __func__, 0);		\
-+	} while (0)
-
--:96: WARNING:SINGLE_STATEMENT_DO_WHILE_MACRO: Single statement macros should not use a do {} while (0) loop
-#96: FILE: include/linux/dept_sdt.h:54:
-+#define sdt_map_init_key(m, k)		do { (void)(k); } while (0)
-
-total: 0 errors, 2 warnings, 1 checks, 62 lines checked
-298d79bcd dept: Add lock dependency tracker APIs
-Traceback (most recent call last):
-  File "scripts/spdxcheck.py", line 6, in <module>
-    from ply import lex, yacc
-ModuleNotFoundError: No module named 'ply'
--:12: WARNING:FILE_PATH_CHANGES: added, moved or deleted file(s), does MAINTAINERS need updating?
-#12: 
-new file mode 100644
-
--:39: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'm' - possible side-effects?
-#39: FILE: include/linux/dept_ldt.h:23:
-+#define ldt_lock(m, sl, t, n, i)					\
-+	do {								\
-+		if (n)							\
-+			dept_ecxt_enter_nokeep(m);			\
-+		else if (t)						\
-+			dept_ecxt_enter(m, LDT_EVT_L, i, "trylock", "unlock", sl);\
-+		else {							\
-+			dept_wait(m, LDT_EVT_L, i, "lock", sl);		\
-+			dept_ecxt_enter(m, LDT_EVT_L, i, "lock", "unlock", sl);\
-+		}							\
-+	} while (0)
-
--:39: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'sl' - possible side-effects?
-#39: FILE: include/linux/dept_ldt.h:23:
-+#define ldt_lock(m, sl, t, n, i)					\
-+	do {								\
-+		if (n)							\
-+			dept_ecxt_enter_nokeep(m);			\
-+		else if (t)						\
-+			dept_ecxt_enter(m, LDT_EVT_L, i, "trylock", "unlock", sl);\
-+		else {							\
-+			dept_wait(m, LDT_EVT_L, i, "lock", sl);		\
-+			dept_ecxt_enter(m, LDT_EVT_L, i, "lock", "unlock", sl);\
-+		}							\
-+	} while (0)
-
--:39: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'i' - possible side-effects?
-#39: FILE: include/linux/dept_ldt.h:23:
-+#define ldt_lock(m, sl, t, n, i)					\
-+	do {								\
-+		if (n)							\
-+			dept_ecxt_enter_nokeep(m);			\
-+		else if (t)						\
-+			dept_ecxt_enter(m, LDT_EVT_L, i, "trylock", "unlock", sl);\
-+		else {							\
-+			dept_wait(m, LDT_EVT_L, i, "lock", sl);		\
-+			dept_ecxt_enter(m, LDT_EVT_L, i, "lock", "unlock", sl);\
-+		}							\
-+	} while (0)
-
--:51: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'm' - possible side-effects?
-#51: FILE: include/linux/dept_ldt.h:35:
-+#define ldt_rlock(m, sl, t, n, i, q)					\
-+	do {								\
-+		if (n)							\
-+			dept_ecxt_enter_nokeep(m);			\
-+		else if (t)						\
-+			dept_ecxt_enter(m, LDT_EVT_R, i, "read_trylock", "read_unlock", sl);\
-+		else {							\
-+			dept_wait(m, q ? LDT_EVT_RW : LDT_EVT_W, i, "read_lock", sl);\
-+			dept_ecxt_enter(m, LDT_EVT_R, i, "read_lock", "read_unlock", sl);\
-+		}							\
-+	} while (0)
-
--:51: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'sl' - possible side-effects?
-#51: FILE: include/linux/dept_ldt.h:35:
-+#define ldt_rlock(m, sl, t, n, i, q)					\
-+	do {								\
-+		if (n)							\
-+			dept_ecxt_enter_nokeep(m);			\
-+		else if (t)						\
-+			dept_ecxt_enter(m, LDT_EVT_R, i, "read_trylock", "read_unlock", sl);\
-+		else {							\
-+			dept_wait(m, q ? LDT_EVT_RW : LDT_EVT_W, i, "read_lock", sl);\
-+			dept_ecxt_enter(m, LDT_EVT_R, i, "read_lock", "read_unlock", sl);\
-+		}							\
-+	} while (0)
-
--:51: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'i' - possible side-effects?
-#51: FILE: include/linux/dept_ldt.h:35:
-+#define ldt_rlock(m, sl, t, n, i, q)					\
-+	do {								\
-+		if (n)							\
-+			dept_ecxt_enter_nokeep(m);			\
-+		else if (t)						\
-+			dept_ecxt_enter(m, LDT_EVT_R, i, "read_trylock", "read_unlock", sl);\
-+		else {							\
-+			dept_wait(m, q ? LDT_EVT_RW : LDT_EVT_W, i, "read_lock", sl);\
-+			dept_ecxt_enter(m, LDT_EVT_R, i, "read_lock", "read_unlock", sl);\
-+		}							\
-+	} while (0)
-
--:63: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'm' - possible side-effects?
-#63: FILE: include/linux/dept_ldt.h:47:
-+#define ldt_wlock(m, sl, t, n, i)					\
-+	do {								\
-+		if (n)							\
-+			dept_ecxt_enter_nokeep(m);			\
-+		else if (t)						\
-+			dept_ecxt_enter(m, LDT_EVT_W, i, "write_trylock", "write_unlock", sl);\
-+		else {							\
-+			dept_wait(m, LDT_EVT_RW, i, "write_lock", sl);	\
-+			dept_ecxt_enter(m, LDT_EVT_W, i, "write_lock", "write_unlock", sl);\
-+		}							\
-+	} while (0)
-
--:63: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'sl' - possible side-effects?
-#63: FILE: include/linux/dept_ldt.h:47:
-+#define ldt_wlock(m, sl, t, n, i)					\
-+	do {								\
-+		if (n)							\
-+			dept_ecxt_enter_nokeep(m);			\
-+		else if (t)						\
-+			dept_ecxt_enter(m, LDT_EVT_W, i, "write_trylock", "write_unlock", sl);\
-+		else {							\
-+			dept_wait(m, LDT_EVT_RW, i, "write_lock", sl);	\
-+			dept_ecxt_enter(m, LDT_EVT_W, i, "write_lock", "write_unlock", sl);\
-+		}							\
-+	} while (0)
-
--:63: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'i' - possible side-effects?
-#63: FILE: include/linux/dept_ldt.h:47:
-+#define ldt_wlock(m, sl, t, n, i)					\
-+	do {								\
-+		if (n)							\
-+			dept_ecxt_enter_nokeep(m);			\
-+		else if (t)						\
-+			dept_ecxt_enter(m, LDT_EVT_W, i, "write_trylock", "write_unlock", sl);\
-+		else {							\
-+			dept_wait(m, LDT_EVT_RW, i, "write_lock", sl);	\
-+			dept_ecxt_enter(m, LDT_EVT_W, i, "write_lock", "write_unlock", sl);\
-+		}							\
-+	} while (0)
-
--:77: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'm' - possible side-effects?
-#77: FILE: include/linux/dept_ldt.h:61:
-+#define ldt_downgrade(m, i)						\
-+	do {								\
-+		if (dept_ecxt_holding(m, LDT_EVT_W))			\
-+			dept_map_ecxt_modify(m, LDT_EVT_W, NULL, LDT_EVT_R, i, "downgrade", "read_unlock", -1);\
-+	} while (0)
-
--:80: WARNING:LONG_LINE: line length of 112 exceeds 100 columns
-#80: FILE: include/linux/dept_ldt.h:64:
-+			dept_map_ecxt_modify(m, LDT_EVT_W, NULL, LDT_EVT_R, i, "downgrade", "read_unlock", -1);\
-
--:83: WARNING:LONG_LINE: line length of 124 exceeds 100 columns
-#83: FILE: include/linux/dept_ldt.h:67:
-+#define ldt_set_class(m, n, k, sl, i)	dept_map_ecxt_modify(m, LDT_EVT_ALL, k, 0UL, i, "lock_set_class", "(any)unlock", sl)
-
--:85: WARNING:SINGLE_STATEMENT_DO_WHILE_MACRO: Single statement macros should not use a do {} while (0) loop
-#85: FILE: include/linux/dept_ldt.h:69:
-+#define ldt_init(m, k, su, n)		do { (void)(k); } while (0)
-
-total: 0 errors, 4 warnings, 10 checks, 77 lines checked
-3780e7533 dept: Tie to Lockdep and IRQ tracing
--:136: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'l' - possible side-effects?
-#136: FILE: include/linux/lockdep.h:547:
-+#define spin_acquire(l, s, t, i)					\
-+do {									\
-+	ldt_lock(&(l)->dmap, s, t, NULL, i);				\
-+	lock_acquire_exclusive(l, s, t, NULL, i);			\
-+} while (0)
-
--:136: CHECK:MACRO_ARG_REUSE: Macro argument reuse 's' - possible side-effects?
-#136: FILE: include/linux/lockdep.h:547:
-+#define spin_acquire(l, s, t, i)					\
-+do {									\
-+	ldt_lock(&(l)->dmap, s, t, NULL, i);				\
-+	lock_acquire_exclusive(l, s, t, NULL, i);			\
-+} while (0)
-
--:136: CHECK:MACRO_ARG_REUSE: Macro argument reuse 't' - possible side-effects?
-#136: FILE: include/linux/lockdep.h:547:
-+#define spin_acquire(l, s, t, i)					\
-+do {									\
-+	ldt_lock(&(l)->dmap, s, t, NULL, i);				\
-+	lock_acquire_exclusive(l, s, t, NULL, i);			\
-+} while (0)
-
--:136: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'i' - possible side-effects?
-#136: FILE: include/linux/lockdep.h:547:
-+#define spin_acquire(l, s, t, i)					\
-+do {									\
-+	ldt_lock(&(l)->dmap, s, t, NULL, i);				\
-+	lock_acquire_exclusive(l, s, t, NULL, i);			\
-+} while (0)
-
--:141: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'l' - possible side-effects?
-#141: FILE: include/linux/lockdep.h:552:
-+#define spin_acquire_nest(l, s, t, n, i)				\
-+do {									\
-+	ldt_lock(&(l)->dmap, s, t, n, i);				\
-+	lock_acquire_exclusive(l, s, t, n, i);				\
-+} while (0)
-
--:141: CHECK:MACRO_ARG_REUSE: Macro argument reuse 's' - possible side-effects?
-#141: FILE: include/linux/lockdep.h:552:
-+#define spin_acquire_nest(l, s, t, n, i)				\
-+do {									\
-+	ldt_lock(&(l)->dmap, s, t, n, i);				\
-+	lock_acquire_exclusive(l, s, t, n, i);				\
-+} while (0)
-
--:141: CHECK:MACRO_ARG_REUSE: Macro argument reuse 't' - possible side-effects?
-#141: FILE: include/linux/lockdep.h:552:
-+#define spin_acquire_nest(l, s, t, n, i)				\
-+do {									\
-+	ldt_lock(&(l)->dmap, s, t, n, i);				\
-+	lock_acquire_exclusive(l, s, t, n, i);				\
-+} while (0)
-
--:141: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'n' - possible side-effects?
-#141: FILE: include/linux/lockdep.h:552:
-+#define spin_acquire_nest(l, s, t, n, i)				\
-+do {									\
-+	ldt_lock(&(l)->dmap, s, t, n, i);				\
-+	lock_acquire_exclusive(l, s, t, n, i);				\
-+} while (0)
-
--:141: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'i' - possible side-effects?
-#141: FILE: include/linux/lockdep.h:552:
-+#define spin_acquire_nest(l, s, t, n, i)				\
-+do {									\
-+	ldt_lock(&(l)->dmap, s, t, n, i);				\
-+	lock_acquire_exclusive(l, s, t, n, i);				\
-+} while (0)
-
--:146: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'l' - possible side-effects?
-#146: FILE: include/linux/lockdep.h:557:
-+#define spin_release(l, i)						\
-+do {									\
-+	ldt_unlock(&(l)->dmap, i);					\
-+	lock_release(l, i);						\
-+} while (0)
-
--:146: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'i' - possible side-effects?
-#146: FILE: include/linux/lockdep.h:557:
-+#define spin_release(l, i)						\
-+do {									\
-+	ldt_unlock(&(l)->dmap, i);					\
-+	lock_release(l, i);						\
-+} while (0)
-
--:151: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'l' - possible side-effects?
-#151: FILE: include/linux/lockdep.h:562:
-+#define rwlock_acquire(l, s, t, i)					\
-+do {									\
-+	ldt_wlock(&(l)->dmap, s, t, NULL, i);				\
-+	lock_acquire_exclusive(l, s, t, NULL, i);			\
-+} while (0)
-
--:151: CHECK:MACRO_ARG_REUSE: Macro argument reuse 's' - possible side-effects?
-#151: FILE: include/linux/lockdep.h:562:
-+#define rwlock_acquire(l, s, t, i)					\
-+do {									\
-+	ldt_wlock(&(l)->dmap, s, t, NULL, i);				\
-+	lock_acquire_exclusive(l, s, t, NULL, i);			\
-+} while (0)
-
--:151: CHECK:MACRO_ARG_REUSE: Macro argument reuse 't' - possible side-effects?
-#151: FILE: include/linux/lockdep.h:562:
-+#define rwlock_acquire(l, s, t, i)					\
-+do {									\
-+	ldt_wlock(&(l)->dmap, s, t, NULL, i);				\
-+	lock_acquire_exclusive(l, s, t, NULL, i);			\
-+} while (0)
-
--:151: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'i' - possible side-effects?
-#151: FILE: include/linux/lockdep.h:562:
-+#define rwlock_acquire(l, s, t, i)					\
-+do {									\
-+	ldt_wlock(&(l)->dmap, s, t, NULL, i);				\
-+	lock_acquire_exclusive(l, s, t, NULL, i);			\
-+} while (0)
-
--:179: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'l' - possible side-effects?
-#179: FILE: include/linux/lockdep.h:575:
-+#define rwlock_release(l, i)						\
-+do {									\
-+	ldt_unlock(&(l)->dmap, i);					\
-+	lock_release(l, i);						\
-+} while (0)
-
--:179: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'i' - possible side-effects?
-#179: FILE: include/linux/lockdep.h:575:
-+#define rwlock_release(l, i)						\
-+do {									\
-+	ldt_unlock(&(l)->dmap, i);					\
-+	lock_release(l, i);						\
-+} while (0)
-
--:184: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'l' - possible side-effects?
-#184: FILE: include/linux/lockdep.h:580:
-+#define seqcount_acquire(l, s, t, i)					\
-+do {									\
-+	ldt_wlock(&(l)->dmap, s, t, NULL, i);				\
-+	lock_acquire_exclusive(l, s, t, NULL, i);			\
-+} while (0)
-
--:184: CHECK:MACRO_ARG_REUSE: Macro argument reuse 's' - possible side-effects?
-#184: FILE: include/linux/lockdep.h:580:
-+#define seqcount_acquire(l, s, t, i)					\
-+do {									\
-+	ldt_wlock(&(l)->dmap, s, t, NULL, i);				\
-+	lock_acquire_exclusive(l, s, t, NULL, i);			\
-+} while (0)
-
--:184: CHECK:MACRO_ARG_REUSE: Macro argument reuse 't' - possible side-effects?
-#184: FILE: include/linux/lockdep.h:580:
-+#define seqcount_acquire(l, s, t, i)					\
-+do {									\
-+	ldt_wlock(&(l)->dmap, s, t, NULL, i);				\
-+	lock_acquire_exclusive(l, s, t, NULL, i);			\
-+} while (0)
-
--:184: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'i' - possible side-effects?
-#184: FILE: include/linux/lockdep.h:580:
-+#define seqcount_acquire(l, s, t, i)					\
-+do {									\
-+	ldt_wlock(&(l)->dmap, s, t, NULL, i);				\
-+	lock_acquire_exclusive(l, s, t, NULL, i);			\
-+} while (0)
-
--:189: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'l' - possible side-effects?
-#189: FILE: include/linux/lockdep.h:585:
-+#define seqcount_acquire_read(l, s, t, i)				\
-+do {									\
-+	ldt_rlock(&(l)->dmap, s, t, NULL, i, false);			\
-+	lock_acquire_shared_recursive(l, s, t, NULL, i);		\
-+} while (0)
-
--:189: CHECK:MACRO_ARG_REUSE: Macro argument reuse 's' - possible side-effects?
-#189: FILE: include/linux/lockdep.h:585:
-+#define seqcount_acquire_read(l, s, t, i)				\
-+do {									\
-+	ldt_rlock(&(l)->dmap, s, t, NULL, i, false);			\
-+	lock_acquire_shared_recursive(l, s, t, NULL, i);		\
-+} while (0)
-
--:189: CHECK:MACRO_ARG_REUSE: Macro argument reuse 't' - possible side-effects?
-#189: FILE: include/linux/lockdep.h:585:
-+#define seqcount_acquire_read(l, s, t, i)				\
-+do {									\
-+	ldt_rlock(&(l)->dmap, s, t, NULL, i, false);			\
-+	lock_acquire_shared_recursive(l, s, t, NULL, i);		\
-+} while (0)
-
--:189: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'i' - possible side-effects?
-#189: FILE: include/linux/lockdep.h:585:
-+#define seqcount_acquire_read(l, s, t, i)				\
-+do {									\
-+	ldt_rlock(&(l)->dmap, s, t, NULL, i, false);			\
-+	lock_acquire_shared_recursive(l, s, t, NULL, i);		\
-+} while (0)
-
--:194: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'l' - possible side-effects?
-#194: FILE: include/linux/lockdep.h:590:
-+#define seqcount_release(l, i)						\
-+do {									\
-+	ldt_unlock(&(l)->dmap, i);					\
-+	lock_release(l, i);						\
-+} while (0)
-
--:194: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'i' - possible side-effects?
-#194: FILE: include/linux/lockdep.h:590:
-+#define seqcount_release(l, i)						\
-+do {									\
-+	ldt_unlock(&(l)->dmap, i);					\
-+	lock_release(l, i);						\
-+} while (0)
-
--:199: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'l' - possible side-effects?
-#199: FILE: include/linux/lockdep.h:595:
-+#define mutex_acquire(l, s, t, i)					\
-+do {									\
-+	ldt_lock(&(l)->dmap, s, t, NULL, i);				\
-+	lock_acquire_exclusive(l, s, t, NULL, i);			\
-+} while (0)
-
--:199: CHECK:MACRO_ARG_REUSE: Macro argument reuse 's' - possible side-effects?
-#199: FILE: include/linux/lockdep.h:595:
-+#define mutex_acquire(l, s, t, i)					\
-+do {									\
-+	ldt_lock(&(l)->dmap, s, t, NULL, i);				\
-+	lock_acquire_exclusive(l, s, t, NULL, i);			\
-+} while (0)
-
--:199: CHECK:MACRO_ARG_REUSE: Macro argument reuse 't' - possible side-effects?
-#199: FILE: include/linux/lockdep.h:595:
-+#define mutex_acquire(l, s, t, i)					\
-+do {									\
-+	ldt_lock(&(l)->dmap, s, t, NULL, i);				\
-+	lock_acquire_exclusive(l, s, t, NULL, i);			\
-+} while (0)
-
--:199: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'i' - possible side-effects?
-#199: FILE: include/linux/lockdep.h:595:
-+#define mutex_acquire(l, s, t, i)					\
-+do {									\
-+	ldt_lock(&(l)->dmap, s, t, NULL, i);				\
-+	lock_acquire_exclusive(l, s, t, NULL, i);			\
-+} while (0)
-
--:204: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'l' - possible side-effects?
-#204: FILE: include/linux/lockdep.h:600:
-+#define mutex_acquire_nest(l, s, t, n, i)				\
-+do {									\
-+	ldt_lock(&(l)->dmap, s, t, n, i);				\
-+	lock_acquire_exclusive(l, s, t, n, i);				\
-+} while (0)
-
--:204: CHECK:MACRO_ARG_REUSE: Macro argument reuse 's' - possible side-effects?
-#204: FILE: include/linux/lockdep.h:600:
-+#define mutex_acquire_nest(l, s, t, n, i)				\
-+do {									\
-+	ldt_lock(&(l)->dmap, s, t, n, i);				\
-+	lock_acquire_exclusive(l, s, t, n, i);				\
-+} while (0)
-
--:204: CHECK:MACRO_ARG_REUSE: Macro argument reuse 't' - possible side-effects?
-#204: FILE: include/linux/lockdep.h:600:
-+#define mutex_acquire_nest(l, s, t, n, i)				\
-+do {									\
-+	ldt_lock(&(l)->dmap, s, t, n, i);				\
-+	lock_acquire_exclusive(l, s, t, n, i);				\
-+} while (0)
-
--:204: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'n' - possible side-effects?
-#204: FILE: include/linux/lockdep.h:600:
-+#define mutex_acquire_nest(l, s, t, n, i)				\
-+do {									\
-+	ldt_lock(&(l)->dmap, s, t, n, i);				\
-+	lock_acquire_exclusive(l, s, t, n, i);				\
-+} while (0)
-
--:204: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'i' - possible side-effects?
-#204: FILE: include/linux/lockdep.h:600:
-+#define mutex_acquire_nest(l, s, t, n, i)				\
-+do {									\
-+	ldt_lock(&(l)->dmap, s, t, n, i);				\
-+	lock_acquire_exclusive(l, s, t, n, i);				\
-+} while (0)
-
--:209: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'l' - possible side-effects?
-#209: FILE: include/linux/lockdep.h:605:
-+#define mutex_release(l, i)						\
-+do {									\
-+	ldt_unlock(&(l)->dmap, i);					\
-+	lock_release(l, i);						\
-+} while (0)
-
--:209: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'i' - possible side-effects?
-#209: FILE: include/linux/lockdep.h:605:
-+#define mutex_release(l, i)						\
-+do {									\
-+	ldt_unlock(&(l)->dmap, i);					\
-+	lock_release(l, i);						\
-+} while (0)
-
--:214: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'l' - possible side-effects?
-#214: FILE: include/linux/lockdep.h:610:
-+#define rwsem_acquire(l, s, t, i)					\
-+do {									\
-+	ldt_lock(&(l)->dmap, s, t, NULL, i);				\
-+	lock_acquire_exclusive(l, s, t, NULL, i);			\
-+} while (0)
-
--:214: CHECK:MACRO_ARG_REUSE: Macro argument reuse 's' - possible side-effects?
-#214: FILE: include/linux/lockdep.h:610:
-+#define rwsem_acquire(l, s, t, i)					\
-+do {									\
-+	ldt_lock(&(l)->dmap, s, t, NULL, i);				\
-+	lock_acquire_exclusive(l, s, t, NULL, i);			\
-+} while (0)
-
--:214: CHECK:MACRO_ARG_REUSE: Macro argument reuse 't' - possible side-effects?
-#214: FILE: include/linux/lockdep.h:610:
-+#define rwsem_acquire(l, s, t, i)					\
-+do {									\
-+	ldt_lock(&(l)->dmap, s, t, NULL, i);				\
-+	lock_acquire_exclusive(l, s, t, NULL, i);			\
-+} while (0)
-
--:214: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'i' - possible side-effects?
-#214: FILE: include/linux/lockdep.h:610:
-+#define rwsem_acquire(l, s, t, i)					\
-+do {									\
-+	ldt_lock(&(l)->dmap, s, t, NULL, i);				\
-+	lock_acquire_exclusive(l, s, t, NULL, i);			\
-+} while (0)
-
--:219: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'l' - possible side-effects?
-#219: FILE: include/linux/lockdep.h:615:
-+#define rwsem_acquire_nest(l, s, t, n, i)				\
-+do {									\
-+	ldt_lock(&(l)->dmap, s, t, n, i);				\
-+	lock_acquire_exclusive(l, s, t, n, i);				\
-+} while (0)
-
--:219: CHECK:MACRO_ARG_REUSE: Macro argument reuse 's' - possible side-effects?
-#219: FILE: include/linux/lockdep.h:615:
-+#define rwsem_acquire_nest(l, s, t, n, i)				\
-+do {									\
-+	ldt_lock(&(l)->dmap, s, t, n, i);				\
-+	lock_acquire_exclusive(l, s, t, n, i);				\
-+} while (0)
-
--:219: CHECK:MACRO_ARG_REUSE: Macro argument reuse 't' - possible side-effects?
-#219: FILE: include/linux/lockdep.h:615:
-+#define rwsem_acquire_nest(l, s, t, n, i)				\
-+do {									\
-+	ldt_lock(&(l)->dmap, s, t, n, i);				\
-+	lock_acquire_exclusive(l, s, t, n, i);				\
-+} while (0)
-
--:219: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'n' - possible side-effects?
-#219: FILE: include/linux/lockdep.h:615:
-+#define rwsem_acquire_nest(l, s, t, n, i)				\
-+do {									\
-+	ldt_lock(&(l)->dmap, s, t, n, i);				\
-+	lock_acquire_exclusive(l, s, t, n, i);				\
-+} while (0)
-
--:219: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'i' - possible side-effects?
-#219: FILE: include/linux/lockdep.h:615:
-+#define rwsem_acquire_nest(l, s, t, n, i)				\
-+do {									\
-+	ldt_lock(&(l)->dmap, s, t, n, i);				\
-+	lock_acquire_exclusive(l, s, t, n, i);				\
-+} while (0)
-
--:224: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'l' - possible side-effects?
-#224: FILE: include/linux/lockdep.h:620:
-+#define rwsem_acquire_read(l, s, t, i)					\
-+do {									\
-+	ldt_lock(&(l)->dmap, s, t, NULL, i);				\
-+	lock_acquire_shared(l, s, t, NULL, i);				\
-+} while (0)
-
--:224: CHECK:MACRO_ARG_REUSE: Macro argument reuse 's' - possible side-effects?
-#224: FILE: include/linux/lockdep.h:620:
-+#define rwsem_acquire_read(l, s, t, i)					\
-+do {									\
-+	ldt_lock(&(l)->dmap, s, t, NULL, i);				\
-+	lock_acquire_shared(l, s, t, NULL, i);				\
-+} while (0)
-
--:224: CHECK:MACRO_ARG_REUSE: Macro argument reuse 't' - possible side-effects?
-#224: FILE: include/linux/lockdep.h:620:
-+#define rwsem_acquire_read(l, s, t, i)					\
-+do {									\
-+	ldt_lock(&(l)->dmap, s, t, NULL, i);				\
-+	lock_acquire_shared(l, s, t, NULL, i);				\
-+} while (0)
-
--:224: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'i' - possible side-effects?
-#224: FILE: include/linux/lockdep.h:620:
-+#define rwsem_acquire_read(l, s, t, i)					\
-+do {									\
-+	ldt_lock(&(l)->dmap, s, t, NULL, i);				\
-+	lock_acquire_shared(l, s, t, NULL, i);				\
-+} while (0)
-
--:229: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'l' - possible side-effects?
-#229: FILE: include/linux/lockdep.h:625:
-+#define rwsem_release(l, i)						\
-+do {									\
-+	ldt_unlock(&(l)->dmap, i);					\
-+	lock_release(l, i);						\
-+} while (0)
-
--:229: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'i' - possible side-effects?
-#229: FILE: include/linux/lockdep.h:625:
-+#define rwsem_release(l, i)						\
-+do {									\
-+	ldt_unlock(&(l)->dmap, i);					\
-+	lock_release(l, i);						\
-+} while (0)
-
--:286: WARNING:LONG_LINE: line length of 127 exceeds 100 columns
-#286: FILE: include/linux/percpu-rwsem.h:24:
-+#define __PERCPU_RWSEM_DEP_MAP_INIT(lockname)	.dep_map = { .name = #lockname, .dmap = DEPT_MAP_INITIALIZER(lockname, NULL) },
-
--:374: WARNING:LONG_LINE: line length of 121 exceeds 100 columns
-#374: FILE: include/linux/srcu.h:38:
-+#define __SRCU_DEP_MAP_INIT(srcu_name)	.dep_map = { .name = #srcu_name, .dmap = DEPT_MAP_INITIALIZER(srcu_name, NULL) },
-
--:387: WARNING:AVOID_EXTERNS: externs should be avoided in .c files
-#387: FILE: kernel/dependency/dept.c:248:
-+extern struct lock_class_key __lockdep_no_validate__;
-
--:439: CHECK:BRACES: Blank lines aren't necessary after an open brace '{'
-#439: FILE: kernel/locking/lockdep.c:4501:
- {
-+
-
-total: 0 errors, 3 warnings, 54 checks, 378 lines checked
-fc7f85f87 dept: Add proc knobs to show stats and dependency graph
-Traceback (most recent call last):
-  File "scripts/spdxcheck.py", line 6, in <module>
-    from ply import lex, yacc
-ModuleNotFoundError: No module named 'ply'
-Traceback (most recent call last):
-  File "scripts/spdxcheck.py", line 6, in <module>
-    from ply import lex, yacc
-ModuleNotFoundError: No module named 'ply'
--:112: WARNING:FILE_PATH_CHANGES: added, moved or deleted file(s), does MAINTAINERS need updating?
-#112: 
-new file mode 100644
-
--:225: ERROR:MULTISTATEMENT_MACRO_USE_DO_WHILE: Macros with multiple statements should be enclosed in a do - while loop
-#225: FILE: kernel/dependency/dept_proc.c:77:
-+#define OBJECT(id, nr)							\
-+	r = atomic_read(&dept_pool[OBJECT_##id].obj_nr);		\
-+	if (r < 0)							\
-+		r = 0;							\
-+	seq_printf(m, "%s\t%d/%d(%d%%)\n", #id, r, nr, (r * 100) / (nr));
-
--:225: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'nr' - possible side-effects?
-#225: FILE: kernel/dependency/dept_proc.c:77:
-+#define OBJECT(id, nr)							\
-+	r = atomic_read(&dept_pool[OBJECT_##id].obj_nr);		\
-+	if (r < 0)							\
-+		r = 0;							\
-+	seq_printf(m, "%s\t%d/%d(%d%%)\n", #id, r, nr, (r * 100) / (nr));
-
--:225: WARNING:TRAILING_SEMICOLON: macros should not use a trailing semicolon
-#225: FILE: kernel/dependency/dept_proc.c:77:
-+#define OBJECT(id, nr)							\
-+	r = atomic_read(&dept_pool[OBJECT_##id].obj_nr);		\
-+	if (r < 0)							\
-+		r = 0;							\
-+	seq_printf(m, "%s\t%d/%d(%d%%)\n", #id, r, nr, (r * 100) / (nr));
-
--:238: WARNING:SYMBOLIC_PERMS: Symbolic permissions 'S_IRUSR' are not preferred. Consider using octal permissions '0400'.
-#238: FILE: kernel/dependency/dept_proc.c:90:
-+	proc_create_seq("dept_deps", S_IRUSR, NULL, &dept_deps_ops);
-
--:239: WARNING:SYMBOLIC_PERMS: Symbolic permissions 'S_IRUSR' are not preferred. Consider using octal permissions '0400'.
-#239: FILE: kernel/dependency/dept_proc.c:91:
-+	proc_create_single("dept_stats", S_IRUSR, NULL, dept_stats_show);
-
--:243: WARNING:USE_DEVICE_INITCALL: please use device_initcall() or more appropriate function instead of __initcall() (see include/linux/init.h)
-#243: FILE: kernel/dependency/dept_proc.c:95:
-+__initcall(dept_proc_init);
-
-total: 1 errors, 5 warnings, 1 checks, 203 lines checked
-553ef9bff dept: Apply sdt_might_sleep_{start, end}() to wait_for_completion()/complete()
--:32: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'x' - possible side-effects?
-#32: FILE: include/linux/completion.h:33:
-+#define init_completion(x)				\
-+do {							\
-+	sdt_map_init(&(x)->dmap);			\
-+	__init_completion(x);				\
-+} while (0)
-
-total: 0 errors, 0 warnings, 1 checks, 58 lines checked
-f785682a3 dept: Apply sdt_might_sleep_{start, end}() to PG_{locked, writeback} wait
--:29: WARNING:LONG_LINE: line length of 102 exceeds 100 columns
-#29: FILE: mm/filemap.c:1224:
-+static struct dept_map __maybe_unused PG_writeback_map = DEPT_MAP_INITIALIZER(PG_writeback_map, NULL);
-
-total: 0 errors, 1 warnings, 0 checks, 35 lines checked
-2c5f31d5a dept: Apply sdt_might_sleep_{start, end}() to swait
-20f9ef025 dept: Apply sdt_might_sleep_{start, end}() to waitqueue wait
-c10fcf9d2 dept: Apply sdt_might_sleep_{start, end}() to hashed-waitqueue wait
-5e6972bbb dept: Distinguish each syscall context from another
--:169: CHECK:AVOID_EXTERNS: extern prototypes should be avoided in .h files
-#169: FILE: include/linux/dept.h:517:
-+extern void dept_kernel_enter(void);
-
-total: 0 errors, 0 warnings, 1 checks, 335 lines checked
-2f6fa1c02 dept: Distinguish each work from another
--:23: CHECK:AVOID_EXTERNS: extern prototypes should be avoided in .h files
-#23: FILE: include/linux/dept.h:518:
-+extern void dept_work_enter(void);
-
-total: 0 errors, 0 warnings, 1 checks, 45 lines checked
-51de354ff dept: Add a mechanism to refill the internal memory pools on running out
-4f34ed5d8 locking/lockdep, cpu/hotplus: Use a weaker annotation in AP thread
-ba789b00a dept: Apply sdt_might_sleep_{start, end}() to dma fence wait
-40fc14d31 dept: Track timeout waits separately with a new Kconfig
--:60: WARNING:LONG_LINE: line length of 122 exceeds 100 columns
-#60: FILE: include/linux/dept.h:523:
-+extern void dept_wait(struct dept_map *m, unsigned long w_f, unsigned long ip, const char *w_fn, int sub_l, long timeout);
-
--:60: CHECK:AVOID_EXTERNS: extern prototypes should be avoided in .h files
-#60: FILE: include/linux/dept.h:523:
-+extern void dept_wait(struct dept_map *m, unsigned long w_f, unsigned long ip, const char *w_fn, int sub_l, long timeout);
-
--:61: WARNING:LONG_LINE: line length of 118 exceeds 100 columns
-#61: FILE: include/linux/dept.h:524:
-+extern void dept_stage_wait(struct dept_map *m, struct dept_key *k, unsigned long ip, const char *w_fn, long timeout);
-
--:61: CHECK:AVOID_EXTERNS: extern prototypes should be avoided in .h files
-#61: FILE: include/linux/dept.h:524:
-+extern void dept_stage_wait(struct dept_map *m, struct dept_key *k, unsigned long ip, const char *w_fn, long timeout);
-
--:71: WARNING:SINGLE_STATEMENT_DO_WHILE_MACRO: Single statement macros should not use a do {} while (0) loop
-#71: FILE: include/linux/dept.h:576:
-+#define dept_wait(m, w_f, ip, w_fn, sl, t)		do { (void)(w_fn); } while (0)
-
--:116: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'm' - possible side-effects?
-#116: FILE: include/linux/dept_sdt.h:25:
-+#define sdt_wait_timeout(m, t)						\
- 	do {								\
- 		dept_request_event(m);					\
-+		dept_wait(m, 1UL, _THIS_IP_, __func__, 0, t);		\
- 	} while (0)
-
-total: 0 errors, 3 warnings, 3 checks, 295 lines checked
-497bc2bc4 dept: Apply timeout consideration to wait_for_completion()/complete()
-a0c502207 dept: Apply timeout consideration to swait
-032bccb89 dept: Apply timeout consideration to waitqueue wait
-38445caed dept: Apply timeout consideration to hashed-waitqueue wait
-f19ba4a62 dept: Apply timeout consideration to dma fence wait
-c71e3bee1 dept: Record the latest one out of consecutive waits of the same class
-8e6ec9e96 dept: Make Dept able to work with an external wgen
--:30: WARNING:SPACING: missing space after struct definition
-#30: FILE: include/linux/dept.h:493:
-+struct dept_ext_wgen{
-
--:41: CHECK:AVOID_EXTERNS: extern prototypes should be avoided in .h files
-#41: FILE: include/linux/dept.h:528:
-+extern void dept_ext_wgen_init(struct dept_ext_wgen *ewg);
-
--:51: CHECK:AVOID_EXTERNS: extern prototypes should be avoided in .h files
-#51: FILE: include/linux/dept.h:538:
-+extern void dept_request_event(struct dept_map *m, struct dept_ext_wgen *ewg);
-
--:52: WARNING:LONG_LINE: line length of 125 exceeds 100 columns
-#52: FILE: include/linux/dept.h:539:
-+extern void dept_event(struct dept_map *m, unsigned long e_f, unsigned long ip, const char *e_fn, struct dept_ext_wgen *ewg);
-
--:52: CHECK:AVOID_EXTERNS: extern prototypes should be avoided in .h files
-#52: FILE: include/linux/dept.h:539:
-+extern void dept_event(struct dept_map *m, unsigned long e_f, unsigned long ip, const char *e_fn, struct dept_ext_wgen *ewg);
-
--:79: WARNING:SINGLE_STATEMENT_DO_WHILE_MACRO: Single statement macros should not use a do {} while (0) loop
-#79: FILE: include/linux/dept.h:594:
-+#define dept_event(m, e_f, ip, e_fn, wg)		do { (void)(e_fn); } while (0)
-
-total: 0 errors, 3 warnings, 3 checks, 174 lines checked
-806253f8f dept: Track the potential waits of PG_{locked, writeback}
--:20: WARNING:COMMIT_LOG_LONG_LINE: Possible unwrapped commit description (prefer a maximum 75 chars per line)
-#20: 
-   https://lore.kernel.org/lkml/1674268856-31807-1-git-send-email-byungchul.park@lge.com/
-
--:248: WARNING:EXPORT_SYMBOL: EXPORT_SYMBOL(foo); should immediately follow its function/variable
-#248: FILE: mm/filemap.c:1227:
-+EXPORT_SYMBOL(PG_locked_map);
-
--:249: WARNING:EXPORT_SYMBOL: EXPORT_SYMBOL(foo); should immediately follow its function/variable
-#249: FILE: mm/filemap.c:1228:
-+EXPORT_SYMBOL(PG_writeback_map);
-
-total: 0 errors, 3 warnings, 0 checks, 240 lines checked
-6683bd312 HAX: dept: Enable Dept by default
--:7: WARNING:COMMIT_MESSAGE: Missing commit description - Add an appropriate one
-
-total: 0 errors, 1 warnings, 0 checks, 16 lines checked
-ec8361672 HAX: dept: Increase DEPT_MAX_WAIT_HIST / DEPT_MAX_ECXT_HELD to track more
--:8: WARNING:COMMIT_MESSAGE: Missing commit description - Add an appropriate one
-
-total: 0 errors, 1 warnings, 0 checks, 10 lines checked
++ trap cleanup EXIT
++ /kernel/tools/testing/kunit/kunit.py run --kunitconfig /kernel/drivers/gpu/drm/xe/.kunitconfig
+stty: 'standard input': Inappropriate ioctl for device
+[10:09:39] Configuring KUnit Kernel ...
+Generating .config ...
+Populating config with:
+$ make ARCH=um O=.kunit olddefconfig
+[10:09:43] Building KUnit Kernel ...
+Populating config with:
+$ make ARCH=um O=.kunit olddefconfig
+Building with:
+$ make ARCH=um O=.kunit --jobs=48
+[10:10:05] Starting KUnit Kernel (1/1)...
+[10:10:05] ============================================================
+[10:10:05] ==================== xe_bo (2 subtests) ====================
+[10:10:05] [SKIPPED] xe_ccs_migrate_kunit
+[10:10:05] [SKIPPED] xe_bo_evict_kunit
+[10:10:05] ===================== [SKIPPED] xe_bo ======================
+[10:10:05] ================== xe_dma_buf (1 subtest) ==================
+[10:10:05] [SKIPPED] xe_dma_buf_kunit
+[10:10:05] =================== [SKIPPED] xe_dma_buf ===================
+[10:10:05] ================== xe_migrate (1 subtest) ==================
+[10:10:05] [SKIPPED] xe_migrate_sanity_kunit
+[10:10:05] =================== [SKIPPED] xe_migrate ===================
+[10:10:05] =================== xe_pci (2 subtests) ====================
+[10:10:05] [PASSED] xe_gmdid_graphics_ip
+[10:10:05] [PASSED] xe_gmdid_media_ip
+[10:10:05] ===================== [PASSED] xe_pci ======================
+[10:10:05] ==================== xe_rtp (1 subtest) ====================
+[10:10:05] ================== xe_rtp_process_tests  ===================
+[10:10:05] [PASSED] coalesce-same-reg
+[10:10:05] [PASSED] no-match-no-add
+[10:10:05] [PASSED] no-match-no-add-multiple-rules
+[10:10:05] [PASSED] two-regs-two-entries
+[10:10:05] [PASSED] clr-one-set-other
+[10:10:05] [PASSED] set-field
+[10:10:05] [PASSED] conflict-duplicate
+[10:10:05] [PASSED] conflict-not-disjoint
+[10:10:05] [PASSED] conflict-reg-type
+[10:10:05] ============== [PASSED] xe_rtp_process_tests ===============
+[10:10:05] ===================== [PASSED] xe_rtp ======================
+[10:10:05] ==================== xe_wa (1 subtest) =====================
+[10:10:05] ======================== xe_wa_gt  =========================
+[10:10:05] [PASSED] TIGERLAKE (B0)
+[10:10:05] [PASSED] DG1 (A0)
+[10:10:05] [PASSED] DG1 (B0)
+[10:10:05] [PASSED] ALDERLAKE_S (A0)
+[10:10:05] [PASSED] ALDERLAKE_S (B0)
+[10:10:05] [PASSED] ALDERLAKE_S (C0)
+[10:10:05] [PASSED] ALDERLAKE_S (D0)
+[10:10:05] [PASSED] ALDERLAKE_P (A0)
+[10:10:05] [PASSED] ALDERLAKE_P (B0)
+[10:10:05] [PASSED] ALDERLAKE_P (C0)
+[10:10:05] [PASSED] DG2_G10 (A0)
+[10:10:05] [PASSED] DG2_G10 (A1)
+[10:10:05] [PASSED] DG2_G10 (B0)
+[10:10:05] [PASSED] DG2_G10 (C0)
+[10:10:05] [PASSED] DG2_G11 (A0)
+[10:10:05] [PASSED] DG2_G11 (B0)
+[10:10:05] [PASSED] DG2_G11 (B1)
+[10:10:05] [PASSED] DG2_G12 (A0)
+[10:10:05] [PASSED] DG2_G12 (A1)
+[10:10:05] [PASSED] PVC (B0)
+[10:10:05] [PASSED] PVC (B1)
+[10:10:05] [PASSED] PVC (C0)
+[10:10:05] ==================== [PASSED] xe_wa_gt =====================
+[10:10:05] ====================== [PASSED] xe_wa ======================
+[10:10:05] ============================================================
+[10:10:05] Testing complete. Ran 37 tests: passed: 33, skipped: 4
+[10:10:05] Elapsed time: 26.289s total, 4.228s configuring, 21.641s building, 0.379s running
+
++ /kernel/tools/testing/kunit/kunit.py run --kunitconfig /kernel/drivers/gpu/drm/tests/.kunitconfig
+[10:10:05] Configuring KUnit Kernel ...
+Regenerating .config ...
+Populating config with:
+$ make ARCH=um O=.kunit olddefconfig
+[10:10:07] Building KUnit Kernel ...
+Populating config with:
+$ make ARCH=um O=.kunit olddefconfig
+Building with:
+$ make ARCH=um O=.kunit --jobs=48
+[10:10:27] Starting KUnit Kernel (1/1)...
+[10:10:27] ============================================================
+[10:10:27] ============ drm_test_pick_cmdline (2 subtests) ============
+[10:10:27] [PASSED] drm_test_pick_cmdline_res_1920_1080_60
+[10:10:27] =============== drm_test_pick_cmdline_named  ===============
+[10:10:27] [PASSED] NTSC
+[10:10:27] [PASSED] NTSC-J
+[10:10:27] [PASSED] PAL
+[10:10:27] [PASSED] PAL-M
+[10:10:27] =========== [PASSED] drm_test_pick_cmdline_named ===========
+[10:10:27] ============== [PASSED] drm_test_pick_cmdline ==============
+[10:10:27] ================== drm_buddy (6 subtests) ==================
+[10:10:27] [PASSED] drm_test_buddy_alloc_limit
+[10:10:27] [PASSED] drm_test_buddy_alloc_range
+[10:10:27] [PASSED] drm_test_buddy_alloc_optimistic
+[10:10:27] [PASSED] drm_test_buddy_alloc_pessimistic
+[10:10:27] [PASSED] drm_test_buddy_alloc_smoke
+[10:10:27] [PASSED] drm_test_buddy_alloc_pathological
+[10:10:27] ==================== [PASSED] drm_buddy ====================
+[10:10:27] ============= drm_cmdline_parser (40 subtests) =============
+[10:10:27] [PASSED] drm_test_cmdline_force_d_only
+[10:10:27] [PASSED] drm_test_cmdline_force_D_only_dvi
+[10:10:27] [PASSED] drm_test_cmdline_force_D_only_hdmi
+[10:10:27] [PASSED] drm_test_cmdline_force_D_only_not_digital
+[10:10:27] [PASSED] drm_test_cmdline_force_e_only
+[10:10:27] [PASSED] drm_test_cmdline_res
+[10:10:27] [PASSED] drm_test_cmdline_res_vesa
+[10:10:27] [PASSED] drm_test_cmdline_res_vesa_rblank
+[10:10:27] [PASSED] drm_test_cmdline_res_rblank
+[10:10:27] [PASSED] drm_test_cmdline_res_bpp
+[10:10:27] [PASSED] drm_test_cmdline_res_refresh
+[10:10:27] [PASSED] drm_test_cmdline_res_bpp_refresh
+[10:10:27] [PASSED] drm_test_cmdline_res_bpp_refresh_interlaced
+[10:10:27] [PASSED] drm_test_cmdline_res_bpp_refresh_margins
+[10:10:27] [PASSED] drm_test_cmdline_res_bpp_refresh_force_off
+[10:10:27] [PASSED] drm_test_cmdline_res_bpp_refresh_force_on
+[10:10:27] [PASSED] drm_test_cmdline_res_bpp_refresh_force_on_analog
+[10:10:27] [PASSED] drm_test_cmdline_res_bpp_refresh_force_on_digital
+[10:10:27] [PASSED] drm_test_cmdline_res_bpp_refresh_interlaced_margins_force_on
+[10:10:27] [PASSED] drm_test_cmdline_res_margins_force_on
+[10:10:27] [PASSED] drm_test_cmdline_res_vesa_margins
+[10:10:27] [PASSED] drm_test_cmdline_name
+[10:10:27] [PASSED] drm_test_cmdline_name_bpp
+[10:10:27] [PASSED] drm_test_cmdline_name_option
+[10:10:27] [PASSED] drm_test_cmdline_name_bpp_option
+[10:10:27] [PASSED] drm_test_cmdline_rotate_0
+[10:10:27] [PASSED] drm_test_cmdline_rotate_90
+[10:10:27] [PASSED] drm_test_cmdline_rotate_180
+[10:10:27] [PASSED] drm_test_cmdline_rotate_270
+[10:10:27] [PASSED] drm_test_cmdline_hmirror
+[10:10:27] [PASSED] drm_test_cmdline_vmirror
+[10:10:27] [PASSED] drm_test_cmdline_margin_options
+[10:10:27] [PASSED] drm_test_cmdline_multiple_options
+[10:10:27] [PASSED] drm_test_cmdline_bpp_extra_and_option
+[10:10:27] [PASSED] drm_test_cmdline_extra_and_option
+[10:10:27] [PASSED] drm_test_cmdline_freestanding_options
+[10:10:27] [PASSED] drm_test_cmdline_freestanding_force_e_and_options
+[10:10:27] [PASSED] drm_test_cmdline_panel_orientation
+[10:10:27] ================ drm_test_cmdline_invalid  =================
+[10:10:27] [PASSED] margin_only
+[10:10:27] [PASSED] interlace_only
+[10:10:27] [PASSED] res_missing_x
+[10:10:27] [PASSED] res_missing_y
+[10:10:27] [PASSED] res_bad_y
+[10:10:27] [PASSED] res_missing_y_bpp
+[10:10:27] [PASSED] res_bad_bpp
+[10:10:27] [PASSED] res_bad_refresh
+[10:10:27] [PASSED] res_bpp_refresh_force_on_off
+[10:10:27] [PASSED] res_invalid_mode
+[10:10:27] [PASSED] res_bpp_wrong_place_mode
+[10:10:27] [PASSED] name_bpp_refresh
+[10:10:27] [PASSED] name_refresh
+[10:10:27] [PASSED] name_refresh_wrong_mode
+[10:10:27] [PASSED] name_refresh_invalid_mode
+[10:10:27] [PASSED] rotate_multiple
+[10:10:27] [PASSED] rotate_invalid_val
+[10:10:27] [PASSED] rotate_truncated
+[10:10:27] [PASSED] invalid_option
+[10:10:27] [PASSED] invalid_tv_option
+[10:10:27] [PASSED] truncated_tv_option
+[10:10:27] ============ [PASSED] drm_test_cmdline_invalid =============
+[10:10:27] =============== drm_test_cmdline_tv_options  ===============
+[10:10:27] [PASSED] NTSC
+[10:10:27] [PASSED] NTSC_443
+[10:10:27] [PASSED] NTSC_J
+[10:10:27] [PASSED] PAL
+[10:10:27] [PASSED] PAL_M
+[10:10:27] [PASSED] PAL_N
+[10:10:27] [PASSED] SECAM
+[10:10:27] =========== [PASSED] drm_test_cmdline_tv_options ===========
+[10:10:27] =============== [PASSED] drm_cmdline_parser ================
+[10:10:27] ========== drm_get_tv_mode_from_name (2 subtests) ==========
+[10:10:27] ========== drm_test_get_tv_mode_from_name_valid  ===========
+[10:10:27] [PASSED] NTSC
+[10:10:27] [PASSED] NTSC-443
+[10:10:27] [PASSED] NTSC-J
+[10:10:27] [PASSED] PAL
+[10:10:27] [PASSED] PAL-M
+[10:10:27] [PASSED] PAL-N
+[10:10:27] [PASSED] SECAM
+[10:10:27] ====== [PASSED] drm_test_get_tv_mode_from_name_valid =======
+[10:10:27] [PASSED] drm_test_get_tv_mode_from_name_truncated
+[10:10:27] ============ [PASSED] drm_get_tv_mode_from_name ============
+[10:10:27] ============= drm_damage_helper (21 subtests) ==============
+[10:10:27] [PASSED] drm_test_damage_iter_no_damage
+[10:10:27] [PASSED] drm_test_damage_iter_no_damage_fractional_src
+[10:10:27] [PASSED] drm_test_damage_iter_no_damage_src_moved
+[10:10:27] [PASSED] drm_test_damage_iter_no_damage_fractional_src_moved
+[10:10:27] [PASSED] drm_test_damage_iter_no_damage_not_visible
+[10:10:27] [PASSED] drm_test_damage_iter_no_damage_no_crtc
+[10:10:27] [PASSED] drm_test_damage_iter_no_damage_no_fb
+[10:10:27] [PASSED] drm_test_damage_iter_simple_damage
+[10:10:27] [PASSED] drm_test_damage_iter_single_damage
+[10:10:27] [PASSED] drm_test_damage_iter_single_damage_intersect_src
+[10:10:27] [PASSED] drm_test_damage_iter_single_damage_outside_src
+[10:10:27] [PASSED] drm_test_damage_iter_single_damage_fractional_src
+[10:10:27] [PASSED] drm_test_damage_iter_single_damage_intersect_fractional_src
+[10:10:27] [PASSED] drm_test_damage_iter_single_damage_outside_fractional_src
+[10:10:27] [PASSED] drm_test_damage_iter_single_damage_src_moved
+[10:10:27] [PASSED] drm_test_damage_iter_single_damage_fractional_src_moved
+[10:10:27] [PASSED] drm_test_damage_iter_damage
+[10:10:27] [PASSED] drm_test_damage_iter_damage_one_intersect
+[10:10:27] [PASSED] drm_test_damage_iter_damage_one_outside
+[10:10:27] [PASSED] drm_test_damage_iter_damage_src_moved
+[10:10:27] [PASSED] drm_test_damage_iter_damage_not_visible
+[10:10:27] ================ [PASSED] drm_damage_helper ================
+[10:10:27] ============== drm_dp_mst_helper (2 subtests) ==============
+[10:10:27] ============== drm_test_dp_mst_calc_pbn_mode  ==============
+[10:10:27] [PASSED] Clock 154000 BPP 30 DSC disabled
+[10:10:27] [PASSED] Clock 234000 BPP 30 DSC disabled
+[10:10:27] [PASSED] Clock 297000 BPP 24 DSC disabled
+[10:10:27] [PASSED] Clock 332880 BPP 24 DSC enabled
+[10:10:27] [PASSED] Clock 324540 BPP 24 DSC enabled
+[10:10:27] ========== [PASSED] drm_test_dp_mst_calc_pbn_mode ==========
+[10:10:27] ========= drm_test_dp_mst_sideband_msg_req_decode  =========
+[10:10:27] [PASSED] DP_ENUM_PATH_RESOURCES with port number
+[10:10:27] [PASSED] DP_POWER_UP_PHY with port number
+[10:10:27] [PASSED] DP_POWER_DOWN_PHY with port number
+[10:10:27] [PASSED] DP_ALLOCATE_PAYLOAD with SDP stream sinks
+[10:10:27] [PASSED] DP_ALLOCATE_PAYLOAD with port number
+[10:10:27] [PASSED] DP_ALLOCATE_PAYLOAD with VCPI
+[10:10:27] [PASSED] DP_ALLOCATE_PAYLOAD with PBN
+[10:10:27] [PASSED] DP_QUERY_PAYLOAD with port number
+[10:10:27] [PASSED] DP_QUERY_PAYLOAD with VCPI
+[10:10:27] [PASSED] DP_REMOTE_DPCD_READ with port number
+[10:10:27] [PASSED] DP_REMOTE_DPCD_READ with DPCD address
+[10:10:27] [PASSED] DP_REMOTE_DPCD_READ with max number of bytes
+[10:10:27] [PASSED] DP_REMOTE_DPCD_WRITE with port number
+[10:10:27] [PASSED] DP_REMOTE_DPCD_WRITE with DPCD address
+[10:10:27] [PASSED] DP_REMOTE_DPCD_WRITE with data array
+[10:10:27] [PASSED] DP_REMOTE_I2C_READ with port number
+[10:10:27] [PASSED] DP_REMOTE_I2C_READ with I2C device ID
+[10:10:27] [PASSED] DP_REMOTE_I2C_READ with transactions array
+[10:10:27] [PASSED] DP_REMOTE_I2C_WRITE with port number
+[10:10:27] [PASSED] DP_REMOTE_I2C_WRITE with I2C device ID
+[10:10:27] [PASSED] DP_REMOTE_I2C_WRITE with data array
+[10:10:27] [PASSED] DP_QUERY_STREAM_ENC_STATUS with stream ID
+[10:10:27] [PASSED] DP_QUERY_STREAM_ENC_STATUS with client ID
+[10:10:27] [PASSED] DP_QUERY_STREAM_ENC_STATUS with stream event
+[10:10:27] [PASSED] DP_QUERY_STREAM_ENC_STATUS with valid stream event
+[10:10:27] [PASSED] DP_QUERY_STREAM_ENC_STATUS with stream behavior
+[10:10:27] [PASSED] DP_QUERY_STREAM_ENC_STATUS with a valid stream behavior
+[10:10:27] ===== [PASSED] drm_test_dp_mst_sideband_msg_req_decode =====
+[10:10:27] ================ [PASSED] drm_dp_mst_helper ================
+[10:10:27] =========== drm_format_helper_test (11 subtests) ===========
+[10:10:27] ============== drm_test_fb_xrgb8888_to_gray8  ==============
+[10:10:27] [PASSED] single_pixel_source_buffer
+[10:10:27] [PASSED] single_pixel_clip_rectangle
+[10:10:27] [PASSED] well_known_colors
+[10:10:27] [PASSED] destination_pitch
+[10:10:27] ========== [PASSED] drm_test_fb_xrgb8888_to_gray8 ==========
+[10:10:27] ============= drm_test_fb_xrgb8888_to_rgb332  ==============
+[10:10:27] [PASSED] single_pixel_source_buffer
+[10:10:27] [PASSED] single_pixel_clip_rectangle
+[10:10:27] [PASSED] well_known_colors
+[10:10:27] [PASSED] destination_pitch
+[10:10:27] ========= [PASSED] drm_test_fb_xrgb8888_to_rgb332 ==========
+[10:10:27] ============= drm_test_fb_xrgb8888_to_rgb565  ==============
+[10:10:27] [PASSED] single_pixel_source_buffer
+[10:10:27] [PASSED] single_pixel_clip_rectangle
+[10:10:27] [PASSED] well_known_colors
+[10:10:27] [PASSED] destination_pitch
+[10:10:27] ========= [PASSED] drm_test_fb_xrgb8888_to_rgb565 ==========
+[10:10:27] ============ drm_test_fb_xrgb8888_to_xrgb1555  =============
+[10:10:27] [PASSED] single_pixel_source_buffer
+[10:10:27] [PASSED] single_pixel_clip_rectangle
+[10:10:27] [PASSED] well_known_colors
+[10:10:27] [PASSED] destination_pitch
+[10:10:27] ======== [PASSED] drm_test_fb_xrgb8888_to_xrgb1555 =========
+[10:10:27] ============ drm_test_fb_xrgb8888_to_argb1555  =============
+[10:10:27] [PASSED] single_pixel_source_buffer
+[10:10:27] [PASSED] single_pixel_clip_rectangle
+[10:10:27] [PASSED] well_known_colors
+[10:10:27] [PASSED] destination_pitch
+[10:10:27] ======== [PASSED] drm_test_fb_xrgb8888_to_argb1555 =========
+[10:10:27] ============ drm_test_fb_xrgb8888_to_rgba5551  =============
+[10:10:27] [PASSED] single_pixel_source_buffer
+[10:10:27] [PASSED] single_pixel_clip_rectangle
+[10:10:27] [PASSED] well_known_colors
+[10:10:27] [PASSED] destination_pitch
+[10:10:27] ======== [PASSED] drm_test_fb_xrgb8888_to_rgba5551 =========
+[10:10:27] ============= drm_test_fb_xrgb8888_to_rgb888  ==============
+[10:10:27] [PASSED] single_pixel_source_buffer
+[10:10:27] [PASSED] single_pixel_clip_rectangle
+[10:10:27] [PASSED] well_known_colors
+[10:10:27] [PASSED] destination_pitch
+[10:10:27] ========= [PASSED] drm_test_fb_xrgb8888_to_rgb888 ==========
+[10:10:27] ============ drm_test_fb_xrgb8888_to_argb8888  =============
+[10:10:27] [PASSED] single_pixel_source_buffer
+[10:10:27] [PASSED] single_pixel_clip_rectangle
+[10:10:27] [PASSED] well_known_colors
+[10:10:27] [PASSED] destination_pitch
+[10:10:27] ======== [PASSED] drm_test_fb_xrgb8888_to_argb8888 =========
+[10:10:27] =========== drm_test_fb_xrgb8888_to_xrgb2101010  ===========
+[10:10:27] [PASSED] single_pixel_source_buffer
+[10:10:27] [PASSED] single_pixel_clip_rectangle
+[10:10:27] [PASSED] well_known_colors
+[10:10:27] [PASSED] destination_pitch
+[10:10:27] ======= [PASSED] drm_test_fb_xrgb8888_to_xrgb2101010 =======
+[10:10:27] =========== drm_test_fb_xrgb8888_to_argb2101010  ===========
+[10:10:27] [PASSED] single_pixel_source_buffer
+[10:10:27] [PASSED] single_pixel_clip_rectangle
+[10:10:27] [PASSED] well_known_colors
+[10:10:27] [PASSED] destination_pitch
+[10:10:27] ======= [PASSED] drm_test_fb_xrgb8888_to_argb2101010 =======
+[10:10:27] ============== drm_test_fb_xrgb8888_to_mono  ===============
+[10:10:27] [PASSED] single_pixel_source_buffer
+[10:10:27] [PASSED] single_pixel_clip_rectangle
+[10:10:27] [PASSED] well_known_colors
+[10:10:27] [PASSED] destination_pitch
+[10:10:27] ========== [PASSED] drm_test_fb_xrgb8888_to_mono ===========
+[10:10:27] ============= [PASSED] drm_format_helper_test ==============
+[10:10:27] ================= drm_format (18 subtests) =================
+[10:10:27] [PASSED] drm_test_format_block_width_invalid
+[10:10:27] [PASSED] drm_test_format_block_width_one_plane
+[10:10:27] [PASSED] drm_test_format_block_width_two_plane
+[10:10:27] [PASSED] drm_test_format_block_width_three_plane
+[10:10:27] [PASSED] drm_test_format_block_width_tiled
+[10:10:27] [PASSED] drm_test_format_block_height_invalid
+[10:10:27] [PASSED] drm_test_format_block_height_one_plane
+[10:10:27] [PASSED] drm_test_format_block_height_two_plane
+[10:10:27] [PASSED] drm_test_format_block_height_three_plane
+[10:10:27] [PASSED] drm_test_format_block_height_tiled
+[10:10:27] [PASSED] drm_test_format_min_pitch_invalid
+[10:10:27] [PASSED] drm_test_format_min_pitch_one_plane_8bpp
+[10:10:27] [PASSED] drm_test_format_min_pitch_one_plane_16bpp
+[10:10:27] [PASSED] drm_test_format_min_pitch_one_plane_24bpp
+[10:10:27] [PASSED] drm_test_format_min_pitch_one_plane_32bpp
+[10:10:27] [PASSED] drm_test_format_min_pitch_two_plane
+[10:10:27] [PASSED] drm_test_format_min_pitch_three_plane_8bpp
+[10:10:27] [PASSED] drm_test_format_min_pitch_tiled
+[10:10:27] =================== [PASSED] drm_format ====================
+[10:10:27] =============== drm_framebuffer (1 subtest) ================
+[10:10:27] =============== drm_test_framebuffer_create  ===============
+[10:10:27] [PASSED] ABGR8888 normal sizes
+[10:10:27] [PASSED] ABGR8888 max sizes
+[10:10:27] [PASSED] ABGR8888 pitch greater than min required
+[10:10:27] [PASSED] ABGR8888 pitch less than min required
+[10:10:27] [PASSED] ABGR8888 Invalid width
+[10:10:27] [PASSED] ABGR8888 Invalid buffer handle
+[10:10:27] [PASSED] No pixel format
+[10:10:27] [PASSED] ABGR8888 Width 0
+[10:10:27] [PASSED] ABGR8888 Height 0
+[10:10:27] [PASSED] ABGR8888 Out of bound height * pitch combination
+[10:10:27] [PASSED] ABGR8888 Large buffer offset
+[10:10:27] [PASSED] ABGR8888 Set DRM_MODE_FB_MODIFIERS without modifiers
+[10:10:27] [PASSED] ABGR8888 Valid buffer modifier
+[10:10:27] [PASSED] ABGR8888 Invalid buffer modifier(DRM_FORMAT_MOD_SAMSUNG_64_32_TILE)
+[10:10:27] [PASSED] ABGR8888 Extra pitches without DRM_MODE_FB_MODIFIERS
+[10:10:27] [PASSED] ABGR8888 Extra pitches with DRM_MODE_FB_MODIFIERS
+[10:10:27] [PASSED] NV12 Normal sizes
+[10:10:27] [PASSED] NV12 Max sizes
+[10:10:27] [PASSED] NV12 Invalid pitch
+[10:10:27] [PASSED] NV12 Invalid modifier/missing DRM_MODE_FB_MODIFIERS flag
+[10:10:27] [PASSED] NV12 different  modifier per-plane
+[10:10:27] [PASSED] NV12 with DRM_FORMAT_MOD_SAMSUNG_64_32_TILE
+[10:10:27] [PASSED] NV12 Valid modifiers without DRM_MODE_FB_MODIFIERS
+[10:10:27] [PASSED] NV12 Modifier for inexistent plane
+[10:10:27] [PASSED] NV12 Handle for inexistent plane
+[10:10:27] [PASSED] NV12 Handle for inexistent plane without DRM_MODE_FB_MODIFIERS
+[10:10:27] [PASSED] YVU420 DRM_MODE_FB_MODIFIERS set without modifier
+[10:10:27] [PASSED] YVU420 Normal sizes
+[10:10:27] [PASSED] YVU420 Max sizes
+[10:10:27] [PASSED] YVU420 Invalid pitch
+[10:10:27] [PASSED] YVU420 Different pitches
+[10:10:27] [PASSED] YVU420 Different buffer offsets/pitches
+[10:10:27] [PASSED] YVU420 Modifier set just for plane 0, without DRM_MODE_FB_MODIFIERS
+[10:10:27] [PASSED] YVU420 Modifier set just for planes 0, 1, without DRM_MODE_FB_MODIFIERS
+[10:10:27] [PASSED] YVU420 Modifier set just for plane 0, 1, with DRM_MODE_FB_MODIFIERS
+[10:10:27] [PASSED] YVU420 Valid modifier
+[10:10:27] [PASSED] YVU420 Different modifiers per plane
+[10:10:27] [PASSED] YVU420 Modifier for inexistent plane
+[10:10:27] [PASSED] X0L2 Normal sizes
+[10:10:27] [PASSED] X0L2 Max sizes
+[10:10:27] [PASSED] X0L2 Invalid pitch
+[10:10:27] [PASSED] X0L2 Pitch greater than minimum required
+stty: 'standard input': Inappropriate ioctl for device
+[10:10:27] [PASSED] X0L2 Handle for inexistent plane
+[10:10:27] [PASSED] X0L2 Offset for inexistent plane, without DRM_MODE_FB_MODIFIERS set
+[10:10:27] [PASSED] X0L2 Modifier without DRM_MODE_FB_MODIFIERS set
+[10:10:27] [PASSED] X0L2 Valid modifier
+[10:10:27] [PASSED] X0L2 Modifier for inexistent plane
+[10:10:27] =========== [PASSED] drm_test_framebuffer_create ===========
+[10:10:27] ================= [PASSED] drm_framebuffer =================
+[10:10:27] =============== drm-test-managed (1 subtest) ===============
+[10:10:27] [PASSED] drm_test_managed_run_action
+[10:10:27] ================ [PASSED] drm-test-managed =================
+[10:10:27] =================== drm_mm (19 subtests) ===================
+[10:10:27] [PASSED] drm_test_mm_init
+[10:10:27] [PASSED] drm_test_mm_debug
+[10:10:37] [PASSED] drm_test_mm_reserve
+[10:10:46] [PASSED] drm_test_mm_insert
+[10:10:47] [PASSED] drm_test_mm_replace
+[10:10:47] [PASSED] drm_test_mm_insert_range
+[10:10:47] [PASSED] drm_test_mm_frag
+[10:10:47] [PASSED] drm_test_mm_align
+[10:10:47] [PASSED] drm_test_mm_align32
+[10:10:48] [PASSED] drm_test_mm_align64
+[10:10:48] [PASSED] drm_test_mm_evict
+[10:10:48] [PASSED] drm_test_mm_evict_range
+[10:10:48] [PASSED] drm_test_mm_topdown
+[10:10:48] [PASSED] drm_test_mm_bottomup
+[10:10:48] [PASSED] drm_test_mm_lowest
+[10:10:48] [PASSED] drm_test_mm_highest
+[10:10:49] [PASSED] drm_test_mm_color
+[10:10:49] [PASSED] drm_test_mm_color_evict
+[10:10:49] [PASSED] drm_test_mm_color_evict_range
+[10:10:49] ===================== [PASSED] drm_mm ======================
+[10:10:49] ============= drm_modes_analog_tv (4 subtests) =============
+[10:10:49] [PASSED] drm_test_modes_analog_tv_ntsc_480i
+[10:10:49] [PASSED] drm_test_modes_analog_tv_ntsc_480i_inlined
+[10:10:49] [PASSED] drm_test_modes_analog_tv_pal_576i
+[10:10:49] [PASSED] drm_test_modes_analog_tv_pal_576i_inlined
+[10:10:49] =============== [PASSED] drm_modes_analog_tv ===============
+[10:10:49] ============== drm_plane_helper (2 subtests) ===============
+[10:10:49] =============== drm_test_check_plane_state  ================
+[10:10:49] [PASSED] clipping_simple
+[10:10:49] [PASSED] clipping_rotate_reflect
+[10:10:49] [PASSED] positioning_simple
+[10:10:49] [PASSED] upscaling
+[10:10:49] [PASSED] downscaling
+[10:10:49] [PASSED] rounding1
+[10:10:49] [PASSED] rounding2
+[10:10:49] [PASSED] rounding3
+[10:10:49] [PASSED] rounding4
+[10:10:49] =========== [PASSED] drm_test_check_plane_state ============
+[10:10:49] =========== drm_test_check_invalid_plane_state  ============
+[10:10:49] [PASSED] positioning_invalid
+[10:10:49] [PASSED] upscaling_invalid
+[10:10:49] [PASSED] downscaling_invalid
+[10:10:49] ======= [PASSED] drm_test_check_invalid_plane_state ========
+[10:10:49] ================ [PASSED] drm_plane_helper =================
+[10:10:49] ====== drm_connector_helper_tv_get_modes (1 subtest) =======
+[10:10:49] ====== drm_test_connector_helper_tv_get_modes_check  =======
+[10:10:49] [PASSED] None
+[10:10:49] [PASSED] PAL
+[10:10:49] [PASSED] NTSC
+[10:10:49] [PASSED] Both, NTSC Default
+[10:10:49] [PASSED] Both, PAL Default
+[10:10:49] [PASSED] Both, NTSC Default, with PAL on command-line
+[10:10:49] [PASSED] Both, PAL Default, with NTSC on command-line
+[10:10:49] == [PASSED] drm_test_connector_helper_tv_get_modes_check ===
+[10:10:49] ======== [PASSED] drm_connector_helper_tv_get_modes ========
+[10:10:49] ================== drm_rect (9 subtests) ===================
+[10:10:49] [PASSED] drm_test_rect_clip_scaled_div_by_zero
+[10:10:49] [PASSED] drm_test_rect_clip_scaled_not_clipped
+[10:10:49] [PASSED] drm_test_rect_clip_scaled_clipped
+[10:10:49] [PASSED] drm_test_rect_clip_scaled_signed_vs_unsigned
+[10:10:49] ================= drm_test_rect_intersect  =================
+[10:10:49] [PASSED] top-left x bottom-right: 2x2+1+1 x 2x2+0+0
+[10:10:49] [PASSED] top-right x bottom-left: 2x2+0+0 x 2x2+1-1
+[10:10:49] [PASSED] bottom-left x top-right: 2x2+1-1 x 2x2+0+0
+[10:10:49] [PASSED] bottom-right x top-left: 2x2+0+0 x 2x2+1+1
+[10:10:49] [PASSED] right x left: 2x1+0+0 x 3x1+1+0
+[10:10:49] [PASSED] left x right: 3x1+1+0 x 2x1+0+0
+[10:10:49] [PASSED] up x bottom: 1x2+0+0 x 1x3+0-1
+[10:10:49] [PASSED] bottom x up: 1x3+0-1 x 1x2+0+0
+[10:10:49] [PASSED] touching corner: 1x1+0+0 x 2x2+1+1
+[10:10:49] [PASSED] touching side: 1x1+0+0 x 1x1+1+0
+[10:10:49] [PASSED] equal rects: 2x2+0+0 x 2x2+0+0
+[10:10:49] [PASSED] inside another: 2x2+0+0 x 1x1+1+1
+[10:10:49] [PASSED] far away: 1x1+0+0 x 1x1+3+6
+[10:10:49] [PASSED] points intersecting: 0x0+5+10 x 0x0+5+10
+[10:10:49] [PASSED] points not intersecting: 0x0+0+0 x 0x0+5+10
+[10:10:49] ============= [PASSED] drm_test_rect_intersect =============
+[10:10:49] ================ drm_test_rect_calc_hscale  ================
+[10:10:49] [PASSED] normal use
+[10:10:49] [PASSED] out of max range
+[10:10:49] [PASSED] out of min range
+[10:10:49] [PASSED] zero dst
+[10:10:49] [PASSED] negative src
+[10:10:49] [PASSED] negative dst
+[10:10:49] ============ [PASSED] drm_test_rect_calc_hscale ============
+[10:10:49] ================ drm_test_rect_calc_vscale  ================
+[10:10:49] [PASSED] normal use
+[10:10:49] [PASSED] out of max range
+[10:10:49] [PASSED] out of min range
+[10:10:49] [PASSED] zero dst
+[10:10:49] [PASSED] negative src
+[10:10:49] [PASSED] negative dst
+[10:10:49] ============ [PASSED] drm_test_rect_calc_vscale ============
+[10:10:49] ================== drm_test_rect_rotate  ===================
+[10:10:49] [PASSED] reflect-x
+[10:10:49] [PASSED] reflect-y
+[10:10:49] [PASSED] rotate-0
+[10:10:49] [PASSED] rotate-90
+[10:10:49] [PASSED] rotate-180
+[10:10:49] [PASSED] rotate-270
+[10:10:49] ============== [PASSED] drm_test_rect_rotate ===============
+[10:10:49] ================ drm_test_rect_rotate_inv  =================
+[10:10:49] [PASSED] reflect-x
+[10:10:49] [PASSED] reflect-y
+[10:10:49] [PASSED] rotate-0
+[10:10:49] [PASSED] rotate-90
+[10:10:49] [PASSED] rotate-180
+[10:10:49] [PASSED] rotate-270
+[10:10:49] ============ [PASSED] drm_test_rect_rotate_inv =============
+[10:10:49] ==================== [PASSED] drm_rect =====================
+[10:10:49] ============================================================
+[10:10:49] Testing complete. Ran 333 tests: passed: 333
+[10:10:49] Elapsed time: 43.911s total, 1.709s configuring, 19.773s building, 22.426s running
+
++ cleanup
+++ stat -c %u:%g /kernel
++ chown -R 1003:1003 /kernel
 
 
