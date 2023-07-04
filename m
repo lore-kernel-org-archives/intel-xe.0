@@ -4,50 +4,50 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 61E44EB64DD
-	for <intel-xe@archiver.kernel.org>; Tue,  4 Jul 2023 13:46:18 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id DDB57C001B0
+	for <intel-xe@archiver.kernel.org>; Tue,  4 Jul 2023 13:46:17 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3DB4C10E18F;
-	Tue,  4 Jul 2023 13:46:18 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id BAA1D10E18D;
+	Tue,  4 Jul 2023 13:46:17 +0000 (UTC)
 Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 54EDF10E18D
- for <intel-xe@lists.freedesktop.org>; Tue,  4 Jul 2023 13:46:17 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C859610E174
+ for <intel-xe@lists.freedesktop.org>; Tue,  4 Jul 2023 13:46:15 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1688478377; x=1720014377;
+ t=1688478375; x=1720014375;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=xJeWlwYtf7NgqLLEqWd2/VlWYk69+Hjse7jMUVmL/XU=;
- b=ePb5PfEUwOb1s3xtS54py0wV9uFIw5sd4pcn5MxhaXPuVsdM4WeB67Ed
- nAqKSb5/ZhRNtjzPkLF7RH5ZVOEP9Dqb0k4EAkHQ6Tw7P/yhyJGjbu4BI
- IKHKEzdD2o4G3eLeDWkI6MMeeosPzkaviBr0wFK6qV8Ik2wqzlLD9CTOF
- vpVf5SVzPRqHYNWdCLK8wGl2EmaZgaHlCV0fMapZmudHbbGfD58RFdTHb
- u7HMf/q6a+zOXbPnd5pr9UB81oCHLVmmLDzzA67igTF1gizNZu4Oha6sg
- zYrB3aLukdO77K8/IQY0zwXaV2Sk70VfpNFKyquvXWlaaSXVpNlcnDQcD Q==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10760"; a="361989281"
-X-IronPort-AV: E=Sophos;i="6.01,180,1684825200"; d="scan'208";a="361989281"
+ bh=b0qbGv1mJW3Njo37kJP3Wj5qwhgYS21aBTKRep+VzeM=;
+ b=NwD5RznjTRhhkJq0Pni1y1u3eClhrFsmxbTM7lCJziyktcZTLHsass+u
+ HihV/L60LvRfRomeT01GdQZ2dVn8mSKfhszTcIxybjfxfgZgxrroyluAs
+ x345OKBS2JvsGBNXv2V5Is0SSUXVr3l9gy0gOcyhJfA/lDAgibc6Z2FZL
+ xZtuUMDy8BvYmkwT+MAzZzM2HbI9w6grE30xWywcd49ji9FpWjpUG5eFP
+ /30PU95s0saTI60TKR56KB3if+qAuJ8RwCZeaNuTb488O06EjWQ/dvssx
+ wGc47e5mHBrD3WFdLt/jEzcxjZJhRdaejccktIPHi+EQpaHunTYxQ+nY2 g==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10760"; a="361989274"
+X-IronPort-AV: E=Sophos;i="6.01,180,1684825200"; d="scan'208";a="361989274"
 Received: from orsmga007.jf.intel.com ([10.7.209.58])
  by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 04 Jul 2023 06:46:17 -0700
+ 04 Jul 2023 06:46:15 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10760"; a="712888718"
-X-IronPort-AV: E=Sophos;i="6.01,180,1684825200"; d="scan'208";a="712888718"
+X-IronPort-AV: E=McAfee;i="6600,9927,10760"; a="712888709"
+X-IronPort-AV: E=Sophos;i="6.01,180,1684825200"; d="scan'208";a="712888709"
 Received: from izharayx-mobl.ger.corp.intel.com (HELO mwauld-desk1.intel.com)
  ([10.252.26.56])
  by orsmga007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 04 Jul 2023 06:46:15 -0700
+ 04 Jul 2023 06:46:14 -0700
 From: Matthew Auld <matthew.auld@intel.com>
 To: intel-xe@lists.freedesktop.org
-Date: Tue,  4 Jul 2023 14:45:28 +0100
-Message-ID: <20230704134524.138377-10-matthew.auld@intel.com>
+Date: Tue,  4 Jul 2023 14:45:27 +0100
+Message-ID: <20230704134524.138377-9-matthew.auld@intel.com>
 X-Mailer: git-send-email 2.41.0
 In-Reply-To: <20230704134524.138377-7-matthew.auld@intel.com>
 References: <20230704134524.138377-7-matthew.auld@intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-xe] [PATCH v3 3/5] drm/xe/gt: tweak placement for signalling
- TLB fences after GT reset
+Subject: [Intel-xe] [PATCH v3 2/5] drm/xe/ct: serialise fast_lock during CT
+ disable
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -62,39 +62,49 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Assumption here is that submission is disabled along with CT, and full
-GT reset will also nuke TLBs, so should be safe to signal all in-flight
-TLB fences, but only after the actual reset so move the placement
-slightly.
+The fast-path CT could be running as we enter a runtime-suspend or
+potentially a GT reset, however here we only use the ct->fast_lock and
+not the full ct->lock. Before disabling the CT, also serialise against
+the fast_lock to ensure any in-progress work finishes before we start
+nuking the CT related stuff. Once we disable ct->enabled and drop the
+lock, any new work should fail gracefully, and anything that was in
+progress should be finished.
 
 Signed-off-by: Matthew Auld <matthew.auld@intel.com>
 Cc: Matthew Brost <matthew.brost@intel.com>
 Cc: José Roberto de Souza <jose.souza@intel.com>
 ---
- drivers/gpu/drm/xe/xe_gt.c | 3 ++-
- 1 file changed, 2 insertions(+), 1 deletion(-)
+ drivers/gpu/drm/xe/xe_guc_ct.c | 8 ++++++--
+ 1 file changed, 6 insertions(+), 2 deletions(-)
 
-diff --git a/drivers/gpu/drm/xe/xe_gt.c b/drivers/gpu/drm/xe/xe_gt.c
-index bc76678a8276..a21d44bfe9e8 100644
---- a/drivers/gpu/drm/xe/xe_gt.c
-+++ b/drivers/gpu/drm/xe/xe_gt.c
-@@ -519,7 +519,6 @@ static int gt_reset(struct xe_gt *gt)
- 
- 	xe_uc_stop_prepare(&gt->uc);
- 	xe_gt_pagefault_reset(gt);
--	xe_gt_tlb_invalidation_reset(gt);
- 
- 	err = xe_uc_stop(&gt->uc);
- 	if (err)
-@@ -529,6 +528,8 @@ static int gt_reset(struct xe_gt *gt)
- 	if (err)
+diff --git a/drivers/gpu/drm/xe/xe_guc_ct.c b/drivers/gpu/drm/xe/xe_guc_ct.c
+index b7aecc480098..ab51b54b882d 100644
+--- a/drivers/gpu/drm/xe/xe_guc_ct.c
++++ b/drivers/gpu/drm/xe/xe_guc_ct.c
+@@ -301,8 +301,10 @@ int xe_guc_ct_enable(struct xe_guc_ct *ct)
  		goto err_out;
  
-+	xe_gt_tlb_invalidation_reset(gt);
-+
- 	err = do_gt_restart(gt);
- 	if (err)
- 		goto err_out;
+ 	mutex_lock(&ct->lock);
++	spin_lock_irq(&ct->fast_lock);
+ 	ct->g2h_outstanding = 0;
+ 	ct->enabled = true;
++	spin_unlock_irq(&ct->fast_lock);
+ 	mutex_unlock(&ct->lock);
+ 
+ 	smp_mb();
+@@ -319,8 +321,10 @@ int xe_guc_ct_enable(struct xe_guc_ct *ct)
+ 
+ void xe_guc_ct_disable(struct xe_guc_ct *ct)
+ {
+-	mutex_lock(&ct->lock);
+-	ct->enabled = false;
++	mutex_lock(&ct->lock); /* Serialise dequeue_one_g2h() */
++	spin_lock_irq(&ct->fast_lock); /* Serialise CT fast-path */
++	ct->enabled = false; /* Finally disable CT communication */
++	spin_unlock_irq(&ct->fast_lock);
+ 	mutex_unlock(&ct->lock);
+ 
+ 	xa_destroy(&ct->fence_lookup);
 -- 
 2.41.0
 
