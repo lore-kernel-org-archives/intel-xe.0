@@ -4,30 +4,30 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2E39BEB64DD
-	for <intel-xe@archiver.kernel.org>; Thu,  6 Jul 2023 16:23:03 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id A5170EB64D9
+	for <intel-xe@archiver.kernel.org>; Thu,  6 Jul 2023 16:23:14 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id DF21710E438;
-	Thu,  6 Jul 2023 16:23:02 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7B75310E438;
+	Thu,  6 Jul 2023 16:23:14 +0000 (UTC)
 Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id D090010E438;
- Thu,  6 Jul 2023 16:23:00 +0000 (UTC)
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 3CD1210E443;
+ Thu,  6 Jul 2023 16:23:12 +0000 (UTC)
 Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 867C2AADDC;
- Thu,  6 Jul 2023 16:23:00 +0000 (UTC)
+ by emeril.freedesktop.org (Postfix) with ESMTP id 117BBAADDC;
+ Thu,  6 Jul 2023 16:23:12 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: "Maarten Lankhorst" <maarten.lankhorst@linux.intel.com>
-Date: Thu, 06 Jul 2023 16:23:00 -0000
-Message-ID: <168866058052.18978.16372744832595152635@emeril.freedesktop.org>
+Date: Thu, 06 Jul 2023 16:23:12 -0000
+Message-ID: <168866059206.18976.15330409924116786395@emeril.freedesktop.org>
 X-Patchwork-Hint: ignore
 References: <20230706161130.520247-1-maarten.lankhorst@linux.intel.com>
 In-Reply-To: <20230706161130.520247-1-maarten.lankhorst@linux.intel.com>
-Subject: [Intel-xe] =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_f?=
- =?utf-8?q?or_drm/xe=3A_Fix_bo_refcounting_in_intel=5Fframebuffer?=
+Subject: [Intel-xe] =?utf-8?q?=E2=9C=93_CI=2Echeckpatch=3A_success_for_dr?=
+ =?utf-8?q?m/xe=3A_Fix_bo_refcounting_in_intel=5Fframebuffer?=
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -52,9 +52,35 @@ State : success
 
 == Summary ==
 
-=== Applying kernel patches on branch 'drm-xe-next' with base: ===
-Base commit: abcb88850 drm/xe: make kobject type struct as constant
-=== git am output follows ===
-Applying: drm/xe: Fix bo refcounting in intel_framebuffer
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+c7d32770e3cd31d9fc134ce41f329b10aa33ee15
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit bdf42292b4d057e342165a47d14bc023c4fc0592
+Author: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
+Date:   Thu Jul 6 18:11:30 2023 +0200
+
+    drm/xe: Fix bo refcounting in intel_framebuffer
+    
+    Seems we have various confused refcounting mechanisms.
+    intel_frontbuffer.c was holding a reference on the bo, but it should be
+    handled in the framebuffer.
+    
+    A few rebases before, there was code that explicitly adds a refcount in
+    intel_fb_init, but chunks of that have disappeared. The changes in
+    xe_plane_initial are reminders of it.
+    
+    By adding a refcount, we match how drm_gem_framebuffer_helper handles
+    things. In i915, this is opaquely (and accidentally?) handled through
+    intel_frontbuffer_get(), not going to duplicate that mistake in xe.
+    
+    Signed-off-by: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
++ /mt/dim checkpatch abcb88850f885254cf7477e1f7a5956136fb547c drm-intel
+bdf42292b drm/xe: Fix bo refcounting in intel_framebuffer
 
 
