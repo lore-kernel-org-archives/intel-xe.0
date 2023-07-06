@@ -4,30 +4,30 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 14641EB64DC
-	for <intel-xe@archiver.kernel.org>; Thu,  6 Jul 2023 14:41:58 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 74193EB64D9
+	for <intel-xe@archiver.kernel.org>; Thu,  6 Jul 2023 14:42:11 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C7C7B10E412;
-	Thu,  6 Jul 2023 14:41:57 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3496610E412;
+	Thu,  6 Jul 2023 14:42:11 +0000 (UTC)
 Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id 551F210E412;
- Thu,  6 Jul 2023 14:41:56 +0000 (UTC)
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 6863A10E412;
+ Thu,  6 Jul 2023 14:42:09 +0000 (UTC)
 Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 510AFAADE4;
- Thu,  6 Jul 2023 14:41:56 +0000 (UTC)
+ by emeril.freedesktop.org (Postfix) with ESMTP id 64142AADE4;
+ Thu,  6 Jul 2023 14:42:09 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: "Francois Dugast" <francois.dugast@intel.com>
-Date: Thu, 06 Jul 2023 14:41:56 -0000
-Message-ID: <168865451632.18979.9329782620189389913@emeril.freedesktop.org>
+Date: Thu, 06 Jul 2023 14:42:09 -0000
+Message-ID: <168865452940.18977.1020634901991145993@emeril.freedesktop.org>
 X-Patchwork-Hint: ignore
 References: <20230706142728.6-1-francois.dugast@intel.com>
 In-Reply-To: <20230706142728.6-1-francois.dugast@intel.com>
-Subject: [Intel-xe] =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_f?=
- =?utf-8?q?or_Fix_SPDX_license_identifiers?=
+Subject: [Intel-xe] =?utf-8?q?=E2=9C=93_CI=2Echeckpatch=3A_success_for_Fi?=
+ =?utf-8?q?x_SPDX_license_identifiers?=
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -52,10 +52,59 @@ State : success
 
 == Summary ==
 
-=== Applying kernel patches on branch 'drm-xe-next' with base: ===
-Base commit: abcb88850 drm/xe: make kobject type struct as constant
-=== git am output follows ===
-Applying: fixup! drm/xe: Introduce a new DRM driver for Intel GPUs
-Applying: fixup! drm/xe/display: Implement display support
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+c7d32770e3cd31d9fc134ce41f329b10aa33ee15
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit e0ae8bd2cbf35ea679a0e498b5b12d067765ded2
+Author: Francois Dugast <francois.dugast@intel.com>
+Date:   Thu Jul 6 14:27:28 2023 +0000
+
+    fixup! drm/xe/display: Implement display support
+    
+    Fix some SPDX license identifier warnings reported by checkpatch
+    in the display code.
+    
+    Signed-off-by: Francois Dugast <francois.dugast@intel.com>
++ /mt/dim checkpatch abcb88850f885254cf7477e1f7a5956136fb547c drm-intel
+3a80fdb5c fixup! drm/xe: Introduce a new DRM driver for Intel GPUs
+Traceback (most recent call last):
+  File "scripts/spdxcheck.py", line 6, in <module>
+    from ply import lex, yacc
+ModuleNotFoundError: No module named 'ply'
+Traceback (most recent call last):
+  File "scripts/spdxcheck.py", line 6, in <module>
+    from ply import lex, yacc
+ModuleNotFoundError: No module named 'ply'
+Traceback (most recent call last):
+  File "scripts/spdxcheck.py", line 6, in <module>
+    from ply import lex, yacc
+ModuleNotFoundError: No module named 'ply'
+e0ae8bd2c fixup! drm/xe/display: Implement display support
+Traceback (most recent call last):
+  File "scripts/spdxcheck.py", line 6, in <module>
+    from ply import lex, yacc
+ModuleNotFoundError: No module named 'ply'
+Traceback (most recent call last):
+  File "scripts/spdxcheck.py", line 6, in <module>
+    from ply import lex, yacc
+ModuleNotFoundError: No module named 'ply'
+Traceback (most recent call last):
+  File "scripts/spdxcheck.py", line 6, in <module>
+    from ply import lex, yacc
+ModuleNotFoundError: No module named 'ply'
+Traceback (most recent call last):
+  File "scripts/spdxcheck.py", line 6, in <module>
+    from ply import lex, yacc
+ModuleNotFoundError: No module named 'ply'
+Traceback (most recent call last):
+  File "scripts/spdxcheck.py", line 6, in <module>
+    from ply import lex, yacc
+ModuleNotFoundError: No module named 'ply'
 
 
