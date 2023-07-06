@@ -4,53 +4,146 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6B96CEB64D9
-	for <intel-xe@archiver.kernel.org>; Thu,  6 Jul 2023 10:32:07 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 31662EB64D9
+	for <intel-xe@archiver.kernel.org>; Thu,  6 Jul 2023 10:37:03 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2900110E4CD;
-	Thu,  6 Jul 2023 10:32:07 +0000 (UTC)
-Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 41CE210E4CD
- for <intel-xe@lists.freedesktop.org>; Thu,  6 Jul 2023 10:32:06 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0449110E4CF;
+	Thu,  6 Jul 2023 10:37:03 +0000 (UTC)
+Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6F4A610E4CE
+ for <intel-xe@lists.freedesktop.org>; Thu,  6 Jul 2023 10:37:00 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1688639526; x=1720175526;
- h=message-id:date:mime-version:subject:to:references:from:
- in-reply-to:content-transfer-encoding;
- bh=Br+m8uFgQDkiqI3vHlMOHmNQ6UDuafVMXQ/6T8kEL6I=;
- b=Rw9Eun2C5I41MMQ3mQKIDZi1a8DM7JSPcaG1tVkYrf06X10z/nu5B4Tx
- V7Iw/KqczTDCi0EwwA+uPfh6dMwporvjHwbbYQ88i6izGEaM3q3+yOnJW
- PxBub+sNTx1NSZOsCK4nhFTKVGNi5qveiL17tSmMFtIfOAVGyaOPAiqts
- A4os48UK4qthrpyuq+O00bRjppIXzrm2lz20LslGi3D1GUzytO2ZtH0ZA
- /a648oYAcI8tfp/IOd21Q9BmAp7aWPjn7I9XLqowb4yOqXHGpPSikTTK+
- h3AJOUTMWI9g2rndI2Ohm4Zrj3LBk/3pkFxLpeHHwAFepyWAxJcRl47jg g==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10762"; a="353404760"
-X-IronPort-AV: E=Sophos;i="6.01,185,1684825200"; d="scan'208";a="353404760"
-Received: from orsmga007.jf.intel.com ([10.7.209.58])
- by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 06 Jul 2023 03:31:41 -0700
+ t=1688639820; x=1720175820;
+ h=message-id:date:subject:to:cc:references:from:
+ in-reply-to:content-transfer-encoding:mime-version;
+ bh=jycRoehC22u+sSCNqommUj32OzGxgkSoNaUB4tNbYaI=;
+ b=FrTX/o5HAFQYor08vbCF+sM/Mm3v1JEU34YO87BS3zKOBpOzEF23+obs
+ 8btuQqFxRijtW6P1Ny9cs3i+ycbLEH+tVrOnr48+bYY7eaKMxVzI2BmZW
+ tA2Fz8LujuyA+hOEi7/Q7VWfNjTEWUPOMWpYnYo8xWuSOSHyZ1CpEHbgG
+ cGIOAoy70ZEg2TjXSuiVBq1K9YZC4ktQVhXKq+NByiPWp6vlDifxU2W5y
+ /sTUnXeOhKV93Qbie1nvdvDE8MHIJ4znOm+jk77nhYrMFI7jXkGNLh5gy
+ ZOP+FmEzyEwf4/TQWacWmMbv2oMHuRLUX8NoFmBr2yvLdjw6Lc0Wh+idi g==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10762"; a="394322917"
+X-IronPort-AV: E=Sophos;i="6.01,185,1684825200"; d="scan'208";a="394322917"
+Received: from fmsmga003.fm.intel.com ([10.253.24.29])
+ by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 06 Jul 2023 03:36:33 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10762"; a="713530386"
-X-IronPort-AV: E=Sophos;i="6.01,185,1684825200"; d="scan'208";a="713530386"
-Received: from lapeders-mobl1.ger.corp.intel.com (HELO [10.249.254.232])
- ([10.249.254.232])
- by orsmga007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 06 Jul 2023 03:31:39 -0700
-Message-ID: <6f79cea3-2c88-868b-3869-3014656cd5ad@linux.intel.com>
-Date: Thu, 6 Jul 2023 12:31:36 +0200
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.11.1
+X-IronPort-AV: E=McAfee;i="6600,9927,10762"; a="809595107"
+X-IronPort-AV: E=Sophos;i="6.01,185,1684825200"; d="scan'208";a="809595107"
+Received: from fmsmsx601.amr.corp.intel.com ([10.18.126.81])
+ by FMSMGA003.fm.intel.com with ESMTP; 06 Jul 2023 03:36:33 -0700
+Received: from fmsmsx610.amr.corp.intel.com (10.18.126.90) by
+ fmsmsx601.amr.corp.intel.com (10.18.126.81) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.27; Thu, 6 Jul 2023 03:36:33 -0700
+Received: from FMSEDG603.ED.cps.intel.com (10.1.192.133) by
+ fmsmsx610.amr.corp.intel.com (10.18.126.90) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.27 via Frontend Transport; Thu, 6 Jul 2023 03:36:33 -0700
+Received: from NAM04-MW2-obe.outbound.protection.outlook.com (104.47.73.170)
+ by edgegateway.intel.com (192.55.55.68) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.1.2507.27; Thu, 6 Jul 2023 03:36:32 -0700
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=TJ0/gJuU88aA2m38vNGRv/u3EjKeRTPIAB/2qBoNkLmi4FJhrrkrXmTD3WmToJvquY6H7YFQjYxGE/Df++X9z+JV3zewzi+UrQ++Hn6GOLaiXyCOj9tN5HoZIAHaljzxOOzeeuVnVAcGnDh6HloVbka0bnJCuD4IPnIt4xmWQypUz6xiPJMYc8qzVco7i2S7aRtd5dvkk9yFlood4akfJO58O1mB3LFs/qvarwKLn2t0/MS6mhHMsVDax27bifLbGKbixz+HJIRUsKxYPllJf7My1uLcYcyaohUjweyYteKlBhbUz7xfBfQIEkwgui4uz5A4nKHCd4bERYvulZYKmw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=9O7Ojj7xiIs9OC+UziSugIawOxWrfJfd97i6wKBJeFs=;
+ b=OPaCA3xEADb63TvFw3td2TgJlP9PrSV5FTIlzdl5d2sN6iXTT8cIxpfYBF5iFhQbPtCBC62hDzH3yEdj9ttDzrjCkkSDmXC3sr6IsfrEH4wyGBd+svYIubPI7AhymRkN1tORWeGcU7/VfF4EeXSrb8CNsjoEUBty25cFCy2GLQvDNWMsjd/biMtdRzbSaxDw1UohDNE+bOC0dq0u3opFoqR5/M+RlQBkgxmBAge3hj4QvogUzBl6uzG4BW0WebgKz7kFNhOEfJC/ok0+FheWoSEnUEN7Z9JUUVEwAyfXCwOMy91rdIOInhszQu29wNq712PhvViRPPx2STl/tZvbQg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
+ dkim=pass header.d=intel.com; arc=none
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=intel.com;
+Received: from BN9PR11MB5530.namprd11.prod.outlook.com (2603:10b6:408:103::8)
+ by CYXPR11MB8661.namprd11.prod.outlook.com (2603:10b6:930:e2::12)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6565.17; Thu, 6 Jul
+ 2023 10:36:30 +0000
+Received: from BN9PR11MB5530.namprd11.prod.outlook.com
+ ([fe80::bb92:d504:7607:ed33]) by BN9PR11MB5530.namprd11.prod.outlook.com
+ ([fe80::bb92:d504:7607:ed33%7]) with mapi id 15.20.6565.016; Thu, 6 Jul 2023
+ 10:36:30 +0000
+Message-ID: <fa251df0-7afa-f504-8185-798ea7250dcb@intel.com>
+Date: Thu, 6 Jul 2023 16:06:21 +0530
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+ Thunderbird/102.12.0
 Content-Language: en-US
-To: Matthew Brost <matthew.brost@intel.com>, intel-xe@lists.freedesktop.org
-References: <20230630175804.1096370-1-matthew.brost@intel.com>
- <20230630175804.1096370-2-matthew.brost@intel.com>
-From: =?UTF-8?Q?Thomas_Hellstr=c3=b6m?= <thomas.hellstrom@linux.intel.com>
-In-Reply-To: <20230630175804.1096370-2-matthew.brost@intel.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-Subject: Re: [Intel-xe] [PATCH v4 1/9] drm/xe: Ban a VM if rebind worker
- hits an error
+To: Matthew Brost <matthew.brost@intel.com>
+References: <20230627183043.2024530-1-badal.nilawar@intel.com>
+ <20230627183043.2024530-3-badal.nilawar@intel.com>
+ <ZJzNuq/WaxjZ8YH/@DUT025-TGLU.fm.intel.com>
+From: "Nilawar, Badal" <badal.nilawar@intel.com>
+In-Reply-To: <ZJzNuq/WaxjZ8YH/@DUT025-TGLU.fm.intel.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 8bit
+X-ClientProxiedBy: PN3PR01CA0120.INDPRD01.PROD.OUTLOOK.COM
+ (2603:1096:c01:96::15) To BN9PR11MB5530.namprd11.prod.outlook.com
+ (2603:10b6:408:103::8)
+MIME-Version: 1.0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: BN9PR11MB5530:EE_|CYXPR11MB8661:EE_
+X-MS-Office365-Filtering-Correlation-Id: 3d46e39f-5d68-4719-b913-08db7e0cdc5a
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: RIqiIDy6M/DzkJcOvSuqdbCC3x/qHYUUARykyvJpzxwbvaE8KFhM0Ff8ir5oekweyTKxzilQxumsagK5tSi7cUFeWk75AIJCpLpyJKjwdGRP7wfheSydv8CZs0wKyy89I7Szxkps2tPSjdY48pLG1IuUKJmU5g7p9blacLt4vVP0bmPV4Ua5SxFGujVZCXTC1fzXGUww1vkF9/O9n9rjKP/y5Mx/EB/IFlPF0WaNH4rqY9UFpwwyfyznXHcBJf+LNwnMW2fh163mjGz8R4RhWrVmmurY82ZXqePGLQ732Nw4P1z+iSkIHVyPcSXCh0AW/7tOGk7fQqLxXbTTBdDVzE13LbDoCjfEr8Yy9pM/OrnX8rmx3oLWiK1fTzHcRAyvD0nzyiR6fppyCFNfhopu6GX1SVqBqkvXKlnEd7zvnhnAclUfbpfFUds+VDm/0bSUZZRb8dxOfX9bkr6HfPPhioBLFdAFEwno+uDXdQS7kwlkS1iRZq90BdAAxR9T1UK7Ak5IW0I3pFpALhXbt1ibdzjM7e6kvdr0YHtil96X3s+1D8OV7fa/6788ERp2KaFFBlQjT0xwOEPgPSIRCOlBzcG+nKFMHzNPqOKG6/MnO6jPgeC803jeaskLmqiyc33wFyHq5V7U09PrTJpX1oAtd246OGKhVz8EyekipAgi7I7UoOYv4EmSRPNuTsbNVrCO
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:BN9PR11MB5530.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230028)(366004)(396003)(346002)(39860400002)(136003)(376002)(451199021)(66556008)(37006003)(82960400001)(66946007)(6486002)(478600001)(4326008)(6666004)(8936002)(8676002)(41300700001)(6862004)(38100700002)(316002)(2616005)(6636002)(66476007)(186003)(83380400001)(6512007)(6506007)(53546011)(26005)(31696002)(86362001)(2906002)(5660300002)(30864003)(36756003)(31686004)(45980500001)(43740500002)(473944003);
+ DIR:OUT; SFP:1102; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?MmRUVmNLQzdiVGlCSjMrWDdnLzQxTmNjUGk4TUJKNTVheis2MDM5d05HWitz?=
+ =?utf-8?B?N3ZsSXJOMW1ZYjd0NHUvbVhaOVI3WnFIeVhlS3RYUk5jcDZxRFRBTVQrbjcv?=
+ =?utf-8?B?RjVaNDJCNGh5elBIbzJHbitHVS9RaUtJOTZJeVRQMTFOT09LSUUwTGtQbVJn?=
+ =?utf-8?B?Z0pwejNVVjgwUUNKalFCYXVtNWJMb0wyYUVkRW1rd2k3NmVtMDFKQytvay94?=
+ =?utf-8?B?Z05DNWJLa2RudmRCNHhqVTErWll4aEJLN2g4NzUvSFg0ZmNwWWJsUURJdUFr?=
+ =?utf-8?B?VGJ0b1ovVXlaWTNhZEd3NmlrRnovQk9sMy9TMEwvdUFjdDU2VEtCanFTdURk?=
+ =?utf-8?B?ZytMdUkwUi9VSUN6WGpoRHl6Tnd5aDhuTXN4UmU0cnhvVnRtR3ZZa0Rjdk51?=
+ =?utf-8?B?ZGNzOVQxdGt6QVI4dFBheC93MzN6dkhTQ1lKT2hEcFhISUNmYXhmQ0NxUWVi?=
+ =?utf-8?B?NHoyVHJ2bWhMOWt0cWV4c3FjekxwTmhJb3NFUVRBNm9xN1pqTjlFSkMyRUFY?=
+ =?utf-8?B?OWxhUmZGY1NHc3JuMFR2NzA3Z1gvQ3pocDhabGQ2WmRWYlRtb2ZhQXExL0xy?=
+ =?utf-8?B?U3MrT0UwMCt2ZVhHbnd4T09lbnZQOFZ6MkZySDlvNlU5eHBTYlJMdXhCTm9k?=
+ =?utf-8?B?MURNajBuWG5DTGJhV2hSYUVmSi8rNmQ5UVlYa014aENmZkp3UUNjYWx5MFJB?=
+ =?utf-8?B?YlVUeVNOaEdJUHZFaE9IUkVxVGQ2aEJ6ZklvMlMzZ2preWpGWUNHRWhQU1hu?=
+ =?utf-8?B?aVBoaFBRWUVBNzVLTmxPMjFBbXBjM1M1ZXJuYkIvbzArcVNGdHF0ZktLVEx6?=
+ =?utf-8?B?a2NQcUhFeG8wc0xTRis2M1E1UHBJTmhMbGMxZFNraXB4blQzUE9UOUk4bnZt?=
+ =?utf-8?B?VzRITHhGN2xEeXZZbUw2d1RFeEd4YktEcC9DSEx1NFVSWnRXWDZzZ2h3eVo1?=
+ =?utf-8?B?clNxYzVzcklQTGI1OUx2STBldTJrMFp4cUI3dXFjS3RyUEZpU0RQODdhd1BZ?=
+ =?utf-8?B?S2MyM2NPaFk4bW1MRUdVcWU3dTdpclFXalBiTlAzL2FvVHV5dlJVeG1vYjdj?=
+ =?utf-8?B?VTNZcHk1enVvanNRNWQwZmdObUJJcEtNaGUxcHNqVGZvZFpvbEdER08yOTAy?=
+ =?utf-8?B?cXVNWTdPYzRLbkI0ZkpmRlViYkhQdHQzMGptUWY4L2lBR1VjNmMyR2E2UjM5?=
+ =?utf-8?B?MGFYaXV2ampnL2JzVTBSeXlucjZpdFdOMzRhQzI0QjJPZjlqNjY0d2hKc3Rq?=
+ =?utf-8?B?dW9BQ2kzT1BXejdwS1I2RFBVbVZ2M0R2dXp6eEx2U0dkSTFRVmM0akM4akts?=
+ =?utf-8?B?aWxTcEhqMGEwNTRoS1pYY2JacHNzcEgzVGo0aVFDZzJlOEl3MkRIalRRWlFG?=
+ =?utf-8?B?c0pESWJWd2crci9pelN0ckh2RWw4OXZUV3IxQitJdUlFQTk2RFFmS3JHT2p0?=
+ =?utf-8?B?Sk1lUmgwbWc3cGtVTVo5dXJYT2JldEZ4NTJlcVcwMG5xQ2xjMkludHR6eno4?=
+ =?utf-8?B?empMYk5nRlJvdHVWWmpOMENMUktHUU5FU2pSVjd1d3hUQ0k0aEk2UGlGK0Qr?=
+ =?utf-8?B?Rk9lMzl3Zkg0YzlaUGVjM21lbnIvVEREWURvNWdCcDZHck5RTFJoWkVwdFV5?=
+ =?utf-8?B?MW00ZjNiK29EMTdWaXJvcTdiNS9Jb2JGM09wMzZqME5sb0tDVGhLd21sdzNr?=
+ =?utf-8?B?aVpDdytUemdzTW92K2c3elRFQzg4djhwRi9DeXF1TTFhOWkwOFFIZlc2VjBE?=
+ =?utf-8?B?RTdpck1hRDNYR0pFSm9EcVhhTERybXlGenpRVXkwZ0VGQUlNRi9wMWZMWW9S?=
+ =?utf-8?B?VzBsLzFQYjRHT2ltUVd5R2g4VFFVQ0tuc0xIdVZBZU9MSWxKaXZXY0E1SndT?=
+ =?utf-8?B?aCtFOC9nM2dtTXV4TTYwTG1mM0lVeXhJK2E2a1U0aUtkWjFUWTd2Y3lGR1hM?=
+ =?utf-8?B?RURFQmQ5bHRWNngxeGJOQnBSbERPK3kzdDlhVkFKSWpqNXNQWmJ6Uldnby96?=
+ =?utf-8?B?OUNPeElLN2V1N1BMSnRmanBKRlZGYTlZSXR1cUxlTnhFZU0rcUkyWWVNMG9q?=
+ =?utf-8?B?blYza3VUTEwrR1l3Umo3d2pmNnVRSENPUEZqT0lWcVlTdWhFOUVacG5qd0NF?=
+ =?utf-8?B?TDd5OHVPS2NmajRpNWprYlhJb01hOGJURUxVR0pIWnJ2L010UnBBWm0vN3lD?=
+ =?utf-8?B?UUE9PQ==?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: 3d46e39f-5d68-4719-b913-08db7e0cdc5a
+X-MS-Exchange-CrossTenant-AuthSource: BN9PR11MB5530.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 06 Jul 2023 10:36:30.8041 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: vVRP+CoYehXluoejcaPcOTtjUyJRSC51c4ZJfvkhAaQTr34NhzIUxCm5NEbCE2EZWT3M5uw5ClyHFbTeCzgYMQ==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: CYXPR11MB8661
+X-OriginatorOrg: intel.com
+Subject: Re: [Intel-xe] [PATCH v2 2/6] drm/xe/hwmon: Expose power attributes
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -62,402 +155,788 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Cc: linux-hwmon@vger.kernel.org, intel-xe@lists.freedesktop.org,
+ linux@roeck-us.net
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Hi, Matthew.
+Hi Matt,
 
-On 6/30/23 19:57, Matthew Brost wrote:
-> We cannot recover a VM if a rebind worker hits an error, ban the VM if
-> happens to ensure we do not attempt to place this VM on the hardware
-> again.
->
-> A follow up will inform the user if this happens.
->
-> v2: Return -ECANCELED in exec VM closed or banned, check for closed or
-> banned within VM lock.
-> v3: Fix lockdep splat by looking engine outside of vm->lock
-> v4: Fix error path when engine lookup fails
->
-> Signed-off-by: Matthew Brost <matthew.brost@intel.com>
-> ---
->   drivers/gpu/drm/xe/xe_engine.c     | 13 +++++
->   drivers/gpu/drm/xe/xe_exec.c       |  6 +-
->   drivers/gpu/drm/xe/xe_trace.h      |  5 ++
->   drivers/gpu/drm/xe/xe_vm.c         | 92 ++++++++++++++++++------------
->   drivers/gpu/drm/xe/xe_vm.h         | 11 ++++
->   drivers/gpu/drm/xe/xe_vm_madvise.c |  2 +-
->   drivers/gpu/drm/xe/xe_vm_types.h   |  5 +-
->   7 files changed, 92 insertions(+), 42 deletions(-)
->
-> diff --git a/drivers/gpu/drm/xe/xe_engine.c b/drivers/gpu/drm/xe/xe_engine.c
-> index 6e6b2913f766..ada2986c33a2 100644
-> --- a/drivers/gpu/drm/xe/xe_engine.c
-> +++ b/drivers/gpu/drm/xe/xe_engine.c
-> @@ -597,10 +597,23 @@ int xe_engine_create_ioctl(struct drm_device *dev, void *data,
->   		if (XE_IOCTL_ERR(xe, !vm))
->   			return -ENOENT;
->   
-> +		err = down_read_interruptible(&vm->lock);
-> +		if (err) {
-> +			xe_vm_put(vm);
-> +			return err;
-> +		}
-> +
-> +		if (XE_IOCTL_ERR(xe, xe_vm_is_closed_or_banned(vm))) {
+On 29-06-2023 05:48, Matthew Brost wrote:
+> On Wed, Jun 28, 2023 at 12:00:39AM +0530, Badal Nilawar wrote:
+>> Expose power_max (pl1) and power_rated_max (tdp) attributes.
+>> This is port from i915 hwmon.
+>>
+> 
+> Not expert in this domain but this statement makes be nervous as
+> generally shouldn't just blindly port things from the i915. Doing an
+> initial review but will need a domain expert too.
+This is not blindly ported. Just for reference I added that comment in 
+case if someone want to see i915 implementation. I will move that 
+comment to cover letter.
+> 
+>> v2:
+>>    - Move rpm calls (xe_device_mem_access_get/put) to hwmon functions from
+>>      process_hwmon_reg to avoid multiple rpm entry exits during consecutive
+>>      reg accesses
+>>    - Fix review comments (Riana)
+>>
+>> Signed-off-by: Badal Nilawar <badal.nilawar@intel.com>
+>> ---
+>>   .../ABI/testing/sysfs-driver-intel-xe-hwmon   |  22 ++
+>>   drivers/gpu/drm/xe/regs/xe_gt_regs.h          |   4 +
+>>   drivers/gpu/drm/xe/regs/xe_mchbar_regs.h      |  34 ++
+>>   drivers/gpu/drm/xe/xe_hwmon.c                 | 372 +++++++++++++++++-
+>>   drivers/gpu/drm/xe/xe_hwmon.h                 |   4 +
+>>   drivers/gpu/drm/xe/xe_uc.c                    |   6 +
+>>   6 files changed, 435 insertions(+), 7 deletions(-)
+>>   create mode 100644 Documentation/ABI/testing/sysfs-driver-intel-xe-hwmon
+>>   create mode 100644 drivers/gpu/drm/xe/regs/xe_mchbar_regs.h
+>>
+>> diff --git a/Documentation/ABI/testing/sysfs-driver-intel-xe-hwmon b/Documentation/ABI/testing/sysfs-driver-intel-xe-hwmon
+>> new file mode 100644
+>> index 000000000000..ff3465195870
+>> --- /dev/null
+>> +++ b/Documentation/ABI/testing/sysfs-driver-intel-xe-hwmon
+>> @@ -0,0 +1,22 @@
+>> +What:		/sys/devices/.../hwmon/hwmon<i>/power1_max
+>> +Date:		July 2023
+> 
+> Future?
+Considering review time frame added future date.
+> 
+>> +KernelVersion:	6.3
+>> +Contact:	intel-gfx@lists.freedesktop.org
+> 
+> s/intel-gfx/intel-xe
+Sure.
+> 
+>> +Description:	RW. Card reactive sustained  (PL1/Tau) power limit in microwatts.
+>> +
+>> +		The power controller will throttle the operating frequency
+>> +		if the power averaged over a window (typically seconds)
+>> +		exceeds this limit. A read value of 0 means that the PL1
+>> +		power limit is disabled, writing 0 disables the
+>> +		limit. Writing values > 0 will enable the power limit.
+>> +
+>> +		Only supported for particular Intel xe graphics platforms.
+>> +
+>> +What:		/sys/devices/.../hwmon/hwmon<i>/power1_rated_max
+>> +Date:		July 2023
+>> +KernelVersion:	6.3
+>> +Contact:	intel-gfx@lists.freedesktop.org
+>> +Description:	RO. Card default power limit (default TDP setting).
+>> +
+>> +		Only supported for particular Intel xe graphics platforms.
+>> +
+>> diff --git a/drivers/gpu/drm/xe/regs/xe_gt_regs.h b/drivers/gpu/drm/xe/regs/xe_gt_regs.h
+>> index d654f3311351..eb7210afbd2c 100644
+>> --- a/drivers/gpu/drm/xe/regs/xe_gt_regs.h
+>> +++ b/drivers/gpu/drm/xe/regs/xe_gt_regs.h
+>> @@ -397,4 +397,8 @@
+>>   #define XEHPC_BCS5_BCS6_INTR_MASK		XE_REG(0x190118)
+>>   #define XEHPC_BCS7_BCS8_INTR_MASK		XE_REG(0x19011c)
+>>   
+>> +#define PVC_GT0_PACKAGE_RAPL_LIMIT		XE_REG(0x281008)
+>> +#define PVC_GT0_PACKAGE_POWER_SKU_UNIT		XE_REG(0x281068)
+>> +#define PVC_GT0_PACKAGE_POWER_SKU		XE_REG(0x281080)
+>> +
+>>   #endif
+>> diff --git a/drivers/gpu/drm/xe/regs/xe_mchbar_regs.h b/drivers/gpu/drm/xe/regs/xe_mchbar_regs.h
+>> new file mode 100644
+>> index 000000000000..cb2d49b5c8a9
+>> --- /dev/null
+>> +++ b/drivers/gpu/drm/xe/regs/xe_mchbar_regs.h
+>> @@ -0,0 +1,34 @@
+>> +/* SPDX-License-Identifier: MIT */
+>> +/*
+>> + * Copyright © 2023 Intel Corporation
+>> + */
+>> +
+>> +#ifndef _XE_MCHBAR_REGS_H__
+>> +#define _XE_MCHBAR_REGS_H_
+>> +
+>> +#include "regs/xe_reg_defs.h"
+>> +
+>> +/*
+>> + * MCHBAR mirror.
+>> + *
+>> + * This mirrors the MCHBAR MMIO space whose location is determined by
+>> + * device 0 function 0's pci config register 0x44 or 0x48 and matches it in
+>> + * every way.
+>> + */
+>> +
+>> +#define MCHBAR_MIRROR_BASE_SNB			0x140000
+>> +
+>> +#define PCU_CR_PACKAGE_POWER_SKU		XE_REG(MCHBAR_MIRROR_BASE_SNB + 0x5930)
+>> +#define   PKG_PKG_TDP				GENMASK_ULL(14, 0)
+>> +#define   PKG_MIN_PWR				GENMASK_ULL(30, 16)
+>> +#define   PKG_MAX_PWR				GENMASK_ULL(46, 32)
+>> +
+>> +#define PCU_CR_PACKAGE_POWER_SKU_UNIT		XE_REG(MCHBAR_MIRROR_BASE_SNB + 0x5938)
+>> +#define   PKG_PWR_UNIT				REG_GENMASK(3, 0)
+>> +
+>> +#define PCU_CR_PACKAGE_RAPL_LIMIT		XE_REG(MCHBAR_MIRROR_BASE_SNB + 0x59a0)
+>> +#define   PKG_PWR_LIM_1				REG_GENMASK(14, 0)
+>> +#define   PKG_PWR_LIM_1_EN			REG_BIT(15)
+>> +
+>> +#endif
+>> +
+>> diff --git a/drivers/gpu/drm/xe/xe_hwmon.c b/drivers/gpu/drm/xe/xe_hwmon.c
+>> index 8f653fdf4ad5..a4fba29d5d5a 100644
+>> --- a/drivers/gpu/drm/xe/xe_hwmon.c
+>> +++ b/drivers/gpu/drm/xe/xe_hwmon.c
+>> @@ -5,53 +5,394 @@
+>>   
+>>   #include <linux/hwmon.h>
+>>   
+>> +#include "regs/xe_mchbar_regs.h"
+>>   #include "regs/xe_gt_regs.h"
+>>   #include "xe_device.h"
+>>   #include "xe_hwmon.h"
+>> +#include "xe_mmio.h"
+>> +#include "xe_gt.h"
+> 
+> Nit - includes should be in alphabetical order.Ok
+> 
+>> +
+>> +enum hwm_reg_name {
+>> +	pkg_rapl_limit,
+>> +	pkg_power_sku,
+>> +	pkg_power_sku_unit,
+> 
+> Upper case? I guess hwmon_power_max is lower case so is that the
+> convention?
+Yes, but can be made Upper case.
+> 
+>> +};
+>> +
+>> +enum hwm_reg_operation {
+>> +	reg_read,
+>> +	reg_write,
+>> +	reg_rmw,
+> 
+> Upper case?
+Ok, I will change this to upper case.
+> 
+>> +};
+>> +
+> 
+> s/hwm_reg/xe_hwm_reg
+> 
+>> +/*
+>> + * SF_* - scale factors for particular quantities according to hwmon spec.
+>> + * - power  - microwatts
+>> + */
+>> +#define SF_POWER	1000000
+>>   
+>>   struct hwm_drvdata {
+>>   	struct xe_hwmon *hwmon;
+>>   	struct device *hwmon_dev;
+>> +	struct xe_gt *gt;
+>>   	char name[12];
+>> +	bool reset_in_progress;
+>> +	wait_queue_head_t waitq;
+>>   };
+>>   
+>>   struct xe_hwmon {
+>>   	struct hwm_drvdata ddat;
+>>   	struct mutex hwmon_lock;
+>> +	int scl_shift_power;
+>>   };
+>>
+> 
+> Same as previous patch, 1 struct seems like a better idea to me.
+> 
+>> +struct xe_reg hwm_get_reg(struct hwm_drvdata *ddat, enum hwm_reg_name reg_name)
+> 
+> s/hwm_get_reg/xe_hwmon_get_reg
+As mentioned in previous patch will follow xe_hwmon_ for global functions.
+> 
+>> +{
+>> +	struct xe_device *xe = gt_to_xe(ddat->gt);
+>> +
+>> +	switch (reg_name) {
+>> +	case pkg_rapl_limit:
+>> +		if (xe->info.platform == XE_DG2)
+>> +			return PCU_CR_PACKAGE_RAPL_LIMIT;
+>> +		else if (xe->info.platform == XE_PVC)
+>> +			return PVC_GT0_PACKAGE_RAPL_LIMIT;
+>> +		break;
+>> +	case pkg_power_sku:
+>> +		if (xe->info.platform == XE_DG2)
+>> +			return PCU_CR_PACKAGE_POWER_SKU;
+>> +		else if (xe->info.platform == XE_PVC)
+>> +			return PVC_GT0_PACKAGE_POWER_SKU;
+>> +		break;
+>> +	case pkg_power_sku_unit:
+>> +		if (xe->info.platform == XE_DG2)
+>> +			return PCU_CR_PACKAGE_POWER_SKU_UNIT;
+>> +		else if (xe->info.platform == XE_PVC)
+>> +			return PVC_GT0_PACKAGE_POWER_SKU_UNIT;
+>> +		break;
+>> +	default:
+> 
+> BUG_ON or WARN_ON saying not possible?
+Not needed. For attribute doesn't present it shoud return XE_REG(0).
+> 
+>> +		break;
+>> +	}
+>> +
+>> +	return XE_REG(0);
+>> +}
+>> +
+>> +int process_hwmon_reg(struct hwm_drvdata *ddat, enum hwm_reg_name reg_name,
+>> +		      enum hwm_reg_operation operation, u32 *value,
+>> +		      u32 clr, u32 set)
+s/process_hwmon_reg/hwmon_process_reg
+>> +{
+>> +	struct xe_reg reg;
+>> +	int ret = 0;
+>> +
+>> +	reg = hwm_get_reg(ddat, reg_name);
+>> +
+>> +	if (!reg.raw)
+>> +		return -EOPNOTSUPP;
+>> +
+>> +	switch (operation) {
+>> +	case reg_read:
+>> +		*value = xe_mmio_read32(ddat->gt, reg);
+>> +		break;
+>> +	case reg_write:
+>> +		xe_mmio_write32(ddat->gt, reg, *value);
+>> +		break;
+>> +	case reg_rmw:
+>> +		*value = xe_mmio_rmw32(ddat->gt, reg, clr, set);
+>> +		break;
+>> +	default:
+> 
+> BUG_ON or WARN_ON saying not possible?
+Will add WARN_ON here.
+> 
+>> +		ret = -EOPNOTSUPP;
+>> +	}
+>> +
+>> +	return ret;
+>> +}
+>> +
+>> +int process_hwmon_reg_read64(struct hwm_drvdata *ddat, enum hwm_reg_name reg_name, u64 *value)
+>> +{
+>> +	struct xe_reg reg;
+>> +
+>> +	reg = hwm_get_reg(ddat, reg_name);
+>> +
+>> +	if (!reg.raw)
+>> +		return -EOPNOTSUPP;
+>> +
+>> +	xe_device_mem_access_get(gt_to_xe(ddat->gt));
+> 
+> Don't need this, the upper levels of the stack should have this. You
+> could just do a xe_device_assert_mem_access here.
+Agreed I will remove this and whereever needed will use 
+xe_device_assert_mem_access .
+> 
+>> +
+>> +	*value = xe_mmio_read64(ddat->gt, reg);
+>> +
+>> +	xe_device_mem_access_put(gt_to_xe(ddat->gt));
+>> +
+>> +	return 0;
+>> +}
+>> +
+>> +#define PL1_DISABLE 0
+>> +
+>> +/*
+>> + * HW allows arbitrary PL1 limits to be set but silently clamps these values to
+>> + * "typical but not guaranteed" min/max values in rg.pkg_power_sku. Follow the
+>> + * same pattern for sysfs, allow arbitrary PL1 limits to be set but display
+>> + * clamped values when read.
+>> + */
+>> +static int hwm_power_max_read(struct hwm_drvdata *ddat, long *value)
+> 
+> The return value is always 0, why not return value?
+0 is success.
+static ssize_t hwmon_attr_show(struct device *dev,
+                                struct device_attribute *devattr, char *buf)
+{
+         struct hwmon_device_attribute *hattr = to_hwmon_attr(devattr);
+         long val;
+         int ret;
 
-xe_vm_is_closed requires the vm->resv according to comments in the 
-function. Not sure if that is actually true anylonger but if not, the 
-comment needs an update, and the function needs an assert.
+         ret = hattr->ops->read(dev, hattr->type, hattr->attr, hattr->index,
+                                &val);
+         if (ret < 0)
+                 return ret;
 
-Also see below comment on flags usage.
+         trace_hwmon_attr_show(hattr->index + hwmon_attr_base(hattr->type),
+                               hattr->name, val);
 
-> +			up_read(&vm->lock);
-> +			xe_vm_put(vm);
-> +			return -ENOENT;
-> +		}
-> +
->   		e = xe_engine_create(xe, vm, logical_mask,
->   				     args->width, hwe,
->   				     xe_vm_no_dma_fences(vm) ? 0 :
->   				     ENGINE_FLAG_PERSISTENT);
-> +		up_read(&vm->lock);
->   		xe_vm_put(vm);
->   		if (IS_ERR(e))
->   			return PTR_ERR(e);
-> diff --git a/drivers/gpu/drm/xe/xe_exec.c b/drivers/gpu/drm/xe/xe_exec.c
-> index c52edff9a358..bdf00e59e7a4 100644
-> --- a/drivers/gpu/drm/xe/xe_exec.c
-> +++ b/drivers/gpu/drm/xe/xe_exec.c
-> @@ -297,9 +297,9 @@ int xe_exec_ioctl(struct drm_device *dev, void *data, struct drm_file *file)
->   	if (err)
->   		goto err_unlock_list;
->   
-> -	if (xe_vm_is_closed(engine->vm)) {
-> -		drm_warn(&xe->drm, "Trying to schedule after vm is closed\n");
-> -		err = -EIO;
-> +	if (xe_vm_is_closed_or_banned(engine->vm)) {
-> +		drm_warn(&xe->drm, "Trying to schedule after vm is closed or banned\n");
-> +		err = -ECANCELED;
->   		goto err_engine_end;
->   	}
->   
-> diff --git a/drivers/gpu/drm/xe/xe_trace.h b/drivers/gpu/drm/xe/xe_trace.h
-> index 02861c26e145..ca96a0a4bb80 100644
-> --- a/drivers/gpu/drm/xe/xe_trace.h
-> +++ b/drivers/gpu/drm/xe/xe_trace.h
-> @@ -477,6 +477,11 @@ DECLARE_EVENT_CLASS(xe_vm,
->   			      __entry->asid)
->   );
->   
-> +DEFINE_EVENT(xe_vm, xe_vm_kill,
-> +	     TP_PROTO(struct xe_vm *vm),
-> +	     TP_ARGS(vm)
-> +);
-> +
->   DEFINE_EVENT(xe_vm, xe_vm_create,
->   	     TP_PROTO(struct xe_vm *vm),
->   	     TP_ARGS(vm)
-> diff --git a/drivers/gpu/drm/xe/xe_vm.c b/drivers/gpu/drm/xe/xe_vm.c
-> index 3bba957e3b89..3c8a48f9a0d3 100644
-> --- a/drivers/gpu/drm/xe/xe_vm.c
-> +++ b/drivers/gpu/drm/xe/xe_vm.c
-> @@ -514,6 +514,24 @@ void xe_vm_unlock_dma_resv(struct xe_vm *vm,
->   
->   #define XE_VM_REBIND_RETRY_TIMEOUT_MS 1000
->   
-> +static void xe_vm_kill(struct xe_vm *vm)
-> +{
-> +	struct ww_acquire_ctx ww;
-> +	struct xe_engine *e;
-> +
-> +	lockdep_assert_held(&vm->lock);
-> +
-> +	xe_vm_lock(vm, &ww, 0, false);
-> +	vm->flags |= XE_VM_FLAG_BANNED;
+         return sprintf(buf, "%ld\n", val);
+}
+> 
+> s/hwm_power_max_read/xe_hwmon_power_max_read
+> 
+>> +{
+>> +	struct xe_hwmon *hwmon = ddat->hwmon;
+>> +	u32 reg_val;
+>> +	u64 r, min, max;
+>> +
+>> +	xe_device_mem_access_get(gt_to_xe(ddat->gt));
+>> +
+> 
+> Same as above, use xe_device_assert_mem_access.
+Not required here as its added at top level function hwm_read. As 
+mentioned in v2: I moved rpm calls to top level funcitons but I forgot 
+to remove from here and other places. Will fix this in next rev.
+> 
+>> +	process_hwmon_reg(ddat, pkg_rapl_limit, reg_read, &reg_val, 0, 0);
+>> +	/* Check if PL1 limit is disabled */
+>> +	if (!(reg_val & PKG_PWR_LIM_1_EN)) {
+>> +		*value = PL1_DISABLE;
+>> +		xe_device_mem_access_put(gt_to_xe(ddat->gt));
+>> +		return 0;
+>> +	}
+>> +
+>> +	reg_val = REG_FIELD_GET(PKG_PWR_LIM_1, reg_val);
+>> +	*value = mul_u64_u32_shr(reg_val, SF_POWER, hwmon->scl_shift_power);
+>> +
+>> +	process_hwmon_reg_read64(ddat, pkg_power_sku, &r);
+>> +	min = REG_FIELD_GET(PKG_MIN_PWR, r);
+>> +	min = mul_u64_u32_shr(min, SF_POWER, hwmon->scl_shift_power);
+>> +	max = REG_FIELD_GET(PKG_MAX_PWR, r);
+>> +	max = mul_u64_u32_shr(max, SF_POWER, hwmon->scl_shift_power);
+>> +
+>> +	if (min && max)
+>> +		*value = clamp_t(u64, *value, min, max);
+>> +
+>> +	xe_device_mem_access_put(gt_to_xe(ddat->gt));
+This is also not needed.
+>> +	return 0;
+>> +}
+>> +
+>> +static int hwm_power_max_write(struct hwm_drvdata *ddat, long value)
+>> +{
+>> +	struct xe_hwmon *hwmon = ddat->hwmon;
+>> +	DEFINE_WAIT(wait);
+>> +	int ret = 0;
+>> +	u32 nval;
+>> +
+>> +	/* Block waiting for GuC reset to complete when needed */
+>> +	for (;;) {
+>> +		mutex_lock(&hwmon->hwmon_lock);
+>> +
+>> +		prepare_to_wait(&ddat->waitq, &wait, TASK_INTERRUPTIBLE);
+>> +
+>> +		if (!hwmon->ddat.reset_in_progress)
+>> +			break;
+>> +
+>> +		if (signal_pending(current)) {
+>> +			ret = -EINTR;
+>> +			break;
+>> +		}
+>> +
+>> +		mutex_unlock(&hwmon->hwmon_lock);
+>> +
+>> +		schedule();
+>> +	}
+>> +	finish_wait(&ddat->waitq, &wait);
+>> +	if (ret)
+>> +		goto unlock;
+> 
+> Anyway to not open code this? We similar in with
+> xe_guc_submit_reset_wait, could we expose a global reset in progress in
+> function which we can expose at the gt level?
+Sure, I will fix this.
+> 
+>> +
+>> +	xe_device_mem_access_get(gt_to_xe(ddat->gt));
+>> +
+> 
+> This certainly is an outer most thing, e.g. doing this under
+> hwmon->hwmon_lock seems dangerous. Again the upper levels of the stack
+> should do the xe_device_mem_access_get, which it does. Just pointing out
+> doing xe_device_mem_access_get/put under a lock isn't a good idea.
+Agreed, this is not needed as its called in top level function.
+> 
+> Also the the loop which acquires hwmon->hwmon_lock is confusing too.
+> 
+>> +	/* Disable PL1 limit and verify, as limit cannot be disabled on all platforms */
+>> +	if (value == PL1_DISABLE) {
+>> +		process_hwmon_reg(ddat, pkg_rapl_limit, reg_rmw, &nval,
+>> +				  PKG_PWR_LIM_1_EN, 0);
+>> +		process_hwmon_reg(ddat, pkg_rapl_limit, reg_read, &nval,
+>> +				  PKG_PWR_LIM_1_EN, 0);
+>> +
+>> +		if (nval & PKG_PWR_LIM_1_EN)
+>> +			ret = -ENODEV;
+>> +		goto exit;
+>> +	}
+>> +
+>> +	/* Computation in 64-bits to avoid overflow. Round to nearest. */
+>> +	nval = DIV_ROUND_CLOSEST_ULL((u64)value << hwmon->scl_shift_power, SF_POWER);
+>> +	nval = PKG_PWR_LIM_1_EN | REG_FIELD_PREP(PKG_PWR_LIM_1, nval);
+>> +
+>> +	process_hwmon_reg(ddat, pkg_rapl_limit, reg_rmw, &nval,
+>> +			  PKG_PWR_LIM_1_EN | PKG_PWR_LIM_1, nval);
+>> +exit:
+>> +	xe_device_mem_access_put(gt_to_xe(ddat->gt));
+Not needed here.
+>> +unlock:
+>> +	mutex_unlock(&hwmon->hwmon_lock);
+>> +
+> 
+> Again a clear lock / unlock is desirable.
+> 
+>> +	return 0;
+>> +}
+>> +
+>> +static int hwm_power_rated_max_read(struct hwm_drvdata *ddat, long *value)
+>> +{
+> 
+> s/hwm_power_rated_max_read/xe_hwmon_power_rated_max_read
+> 
+>> +	struct xe_hwmon *hwmon = ddat->hwmon;
+>> +	u32 reg_val;
+>> +
+>> +	process_hwmon_reg(ddat, pkg_power_sku, reg_read, &reg_val, 0, 0);
+>> +	reg_val = REG_FIELD_GET(PKG_PKG_TDP, reg_val);
+>> +	*value = mul_u64_u32_shr(reg_val, SF_POWER, hwmon->scl_shift_power);
+>> +
+>> +	return 0;
+>> +}
+>> +
+>>   static const struct hwmon_channel_info *hwm_info[] = {
+> 
+> s/hwm_info/xe_hwmon_info
+Sure.
+> 
+>> +	HWMON_CHANNEL_INFO(power, HWMON_P_MAX | HWMON_P_RATED_MAX),
+>>   	NULL
+>>   };
+>>   
+>> +static umode_t
+>> +hwm_power_is_visible(struct hwm_drvdata *ddat, u32 attr, int chan)
+>> +{
+> 
+> s/hwm_power_is_visible/xe_hwmon_power_is_visible
+Will prefer xe_hwmon prefix for global functions.
+> 
+>> +	u32 reg_val;
+>> +
+>> +	switch (attr) {
+>> +	case hwmon_power_max:
+>> +		return process_hwmon_reg(ddat, pkg_rapl_limit,
+>> +					 reg_read, &reg_val, 0, 0) ? 0 : 0664;
+>> +	case hwmon_power_rated_max:
+>> +		return process_hwmon_reg(ddat, pkg_power_sku,
+>> +					 reg_read, &reg_val, 0, 0) ? 0 : 0444;
+>> +	default:
+>> +		return 0;
+>> +	}
+>> +}
+>> +
+>> +static int
+>> +hwm_power_read(struct hwm_drvdata *ddat, u32 attr, int chan, long *val)
+>> +{
+> 
+> s/hwm_power_read/xe_hwmon_power_read
+> 
+>> +	switch (attr) {
+>> +	case hwmon_power_max:
+>> +		return hwm_power_max_read(ddat, val);
+>> +	case hwmon_power_rated_max:
+>> +		return hwm_power_rated_max_read(ddat, val);
+>> +	default:
+>> +		return -EOPNOTSUPP;
+>> +	}
+>> +}
+>> +
+>> +static int
+>> +hwm_power_write(struct hwm_drvdata *ddat, u32 attr, int chan, long val)
+>> +{
+> 
+> s/hwm_power_write/xe_hwmon_power_write
+> 
+>> +	switch (attr) {
+>> +	case hwmon_power_max:
+>> +		return hwm_power_max_write(ddat, val);
+>> +	default:
+>> +		return -EOPNOTSUPP;
+>> +	}
+>> +}
+>> +
+>> +void xe_hwmon_power_max_disable(struct xe_device *xe, bool *old)
+>> +{
+>> +	struct xe_hwmon *hwmon = xe->hwmon;
+>> +	struct hwm_drvdata *ddat = &hwmon->ddat;
+>> +	u32 r;
+>> +
+>> +	xe_device_mem_access_get(gt_to_xe(ddat->gt));
+>> +
+> 
+> Upper level should have, use an assert if anything.
+Aggree, Infact I am thinking to remove this as this is already called at 
+top level functions.
+> 
+>> +	if (!hwmon || process_hwmon_reg(ddat, pkg_rapl_limit,
+>> +					reg_read, &r, 0, 0))
+>> +		return;
+>> +
+>> +	mutex_lock(&hwmon->hwmon_lock);
+>> +
+>> +	hwmon->ddat.reset_in_progress = true;
+>> +
+>> +	process_hwmon_reg(ddat, pkg_rapl_limit, reg_rmw, &r,
+>> +			  PKG_PWR_LIM_1_EN, 0);
+>> +	*old = !!(r & PKG_PWR_LIM_1_EN);
+>> +
+>> +	mutex_unlock(&hwmon->hwmon_lock);
+>> +
+>> +	xe_device_mem_access_put(gt_to_xe(ddat->gt));
+>> +}
+>> +
+>> +void xe_hwmon_power_max_restore(struct xe_device *xe, bool old)
+>> +{
+>> +	struct xe_hwmon *hwmon = xe->hwmon;
+>> +	struct hwm_drvdata *ddat = &hwmon->ddat;
+>> +	u32 r;
+>> +
+>> +	xe_device_mem_access_get(gt_to_xe(ddat->gt));
+> 
+> Upper level should have, use an assert if anything.
+Agree. Will remove this as top level function already calling this.
+> 
+>> +
+>> +	if (!hwmon || process_hwmon_reg(ddat, pkg_rapl_limit,
+>> +					reg_read, &r, 0, 0))
+>> +		return;
+>> +
+>> +	mutex_lock(&hwmon->hwmon_lock);
+>> +
+>> +	process_hwmon_reg(ddat, pkg_rapl_limit, reg_rmw, &r,
+>> +			  PKG_PWR_LIM_1_EN, old ? PKG_PWR_LIM_1_EN : 0);
+>> +
+>> +	hwmon->ddat.reset_in_progress = false;
+>> +	wake_up_all(&hwmon->ddat.waitq);
+>> +
+>> +	mutex_unlock(&hwmon->hwmon_lock);
+>> +
+>> +	xe_device_mem_access_put(gt_to_xe(ddat->gt));
+>> +}
+>> +
+>>   static umode_t
+>>   hwm_is_visible(const void *drvdata, enum hwmon_sensor_types type,
+>>   	       u32 attr, int channel)
+>>   {
+>> +	struct hwm_drvdata *ddat = (struct hwm_drvdata *)drvdata;
+>> +	int ret;
+>> +
+>> +	xe_device_mem_access_get(gt_to_xe(ddat->gt));
+>> +
+> 
+> Nit, include the get / put in previous patch.
+Ok.
+> 
+>>   	switch (type) {
+>> +	case hwmon_power:
+>> +		ret = hwm_power_is_visible(ddat, attr, channel);
+>> +		break;
+>>   	default:
+>> -		return 0;
+>> +		ret = 0;
+>>   	}
+>> +
+>> +	xe_device_mem_access_put(gt_to_xe(ddat->gt));
+>> +
+>> +	return ret;
+>>   }
+>>   
+>>   static int
+>>   hwm_read(struct device *dev, enum hwmon_sensor_types type, u32 attr,
+>>   	 int channel, long *val)
+>>   {
+>> +	struct hwm_drvdata *ddat = dev_get_drvdata(dev);
+>> +	int ret;
+>> +
+>> +	xe_device_mem_access_get(gt_to_xe(ddat->gt));
+> 
+> Nit, include the get / put in previous patch.
+Ok
+> 
+>> +
+>>   	switch (type) {
+>> +	case hwmon_power:
+>> +		ret = hwm_power_read(ddat, attr, channel, val);
+>> +		break;
+>>   	default:
+>> -		return -EOPNOTSUPP;
+>> +		ret = -EOPNOTSUPP;
+>> +		break;
+>>   	}
+>> +
+>> +	xe_device_mem_access_put(gt_to_xe(ddat->gt));
+>> +
+>> +	return ret;
+>>   }
+>>   
+>>   static int
+>>   hwm_write(struct device *dev, enum hwmon_sensor_types type, u32 attr,
+>>   	  int channel, long val)
+>>   {
+>> +	struct hwm_drvdata *ddat = dev_get_drvdata(dev);
+>> +	int ret;
+>> +
+>> +	xe_device_mem_access_get(gt_to_xe(ddat->gt));
+> 
+> Nit, include the get / put in previous patch.
+Ok
+> 
+>> +
+>>   	switch (type) {
+>> +	case hwmon_power:
+>> +		ret = hwm_power_write(ddat, attr, channel, val);
+>> +		break;
+>>   	default:
+>> -		return -EOPNOTSUPP;
+>> +		ret = -EOPNOTSUPP;
+>> +		break;
+>>   	}
+>> +
+>> +	xe_device_mem_access_put(gt_to_xe(ddat->gt));
+>> +
+>> +	return ret;
+>>   }
+>>   
+>>   static const struct hwmon_ops hwm_ops = {
+>> @@ -66,8 +407,19 @@ static const struct hwmon_chip_info hwm_chip_info = {
+>>   };
+>>   
+>>   static void
+>> -hwm_get_preregistration_info(struct xe_device *xe)
+>> +hwm_get_preregistration_info(struct hwm_drvdata *ddat)
+> 
+> Why change the function argument?
+> 
+>>   {
+>> +	struct xe_hwmon *hwmon = ddat->hwmon;
+>> +	u32 val_sku_unit = 0;
+>> +	int ret;
+>> +
+>> +	ret = process_hwmon_reg(ddat, pkg_power_sku_unit, reg_read, &val_sku_unit, 0, 0);
+>> +	/*
+>> +	 * The contents of register pkg_power_sku_unit do not change,
+>> +	 * so read it once and store the shift values.
+>> +	 */
+>> +	if (!ret)
+>> +		hwmon->scl_shift_power = REG_FIELD_GET(PKG_PWR_UNIT, val_sku_unit);
+>>   }
+>>   
+>>   void xe_hwmon_register(struct xe_device *xe)
+>> @@ -89,18 +441,24 @@ void xe_hwmon_register(struct xe_device *xe)
+>>   	mutex_init(&hwmon->hwmon_lock);
+>>   	ddat = &hwmon->ddat;
+>>   
+>> +	/* primary GT to access device level properties */
+>> +	ddat->gt = xe->tiles[0].primary_gt;
+>> +
+>>   	ddat->hwmon = hwmon;
+>>   	snprintf(ddat->name, sizeof(ddat->name), "xe");
+>>   
+>> -	hwm_get_preregistration_info(xe);
+>> +	init_waitqueue_head(&ddat->waitq);
+>>   
+>> -	drm_dbg(&xe->drm, "Register HWMON interface\n");
+>> +	hwm_get_preregistration_info(ddat);
+>>   
+>> -	/*  hwmon_dev points to device hwmon<i> */
+>> +	drm_dbg(&xe->drm, "Register xe hwmon interface\n");
+>> +
+>> +	/* hwmon_dev points to device hwmon<i> */
+>>   	hwmon_dev = devm_hwmon_device_register_with_info(dev, ddat->name,
+>>   							 ddat,
+>>   							 &hwm_chip_info,
+>>   							 NULL);
+>> +
+> 
+> Unrelated, probably delete,
+> 
+>>   	if (IS_ERR(hwmon_dev)) {
+>>   		drm_warn(&xe->drm, "Fail to register xe hwmon\n");
+> 
+> Missed this the prior patch but include the error value in the print.
+Sure.
+> 
+>>   		xe->hwmon = NULL;
+>> diff --git a/drivers/gpu/drm/xe/xe_hwmon.h b/drivers/gpu/drm/xe/xe_hwmon.h
+>> index a078eeb0a68b..a5dc693569c5 100644
+>> --- a/drivers/gpu/drm/xe/xe_hwmon.h
+>> +++ b/drivers/gpu/drm/xe/xe_hwmon.h
+>> @@ -14,9 +14,13 @@ struct xe_device;
+>>   #if IS_REACHABLE(CONFIG_HWMON)
+>>   void xe_hwmon_register(struct xe_device *xe);
+>>   void xe_hwmon_unregister(struct xe_device *xe);
+>> +void xe_hwmon_power_max_disable(struct xe_device *xe, bool *old);
+>> +void xe_hwmon_power_max_restore(struct xe_device *xe, bool old);
+>>   #else
+>>   static inline void xe_hwmon_register(struct xe_device *xe) { };
+>>   static inline void xe_hwmon_unregister(struct xe_device *xe) { };
+>> +static inline void xe_hwmon_power_max_disable(struct xe_device *xe, bool *old) { };
+>> +static inline void xe_hwmon_power_max_restore(struct xe_device *xe, bool old) { };
+>>   #endif
+>>   
+>>   #endif /* __XE_HWMON_H__ */
+>> diff --git a/drivers/gpu/drm/xe/xe_uc.c b/drivers/gpu/drm/xe/xe_uc.c
+>> index 70eabf567156..9df5a3a85dc3 100644
+>> --- a/drivers/gpu/drm/xe/xe_uc.c
+>> +++ b/drivers/gpu/drm/xe/xe_uc.c
+>> @@ -13,6 +13,7 @@
+>>   #include "xe_huc.h"
+>>   #include "xe_uc_fw.h"
+>>   #include "xe_wopcm.h"
+>> +#include "xe_hwmon.h"
+>>   
+>>   static struct xe_gt *
+>>   uc_to_gt(struct xe_uc *uc)
+>> @@ -127,11 +128,15 @@ int xe_uc_init_hwconfig(struct xe_uc *uc)
+>>   int xe_uc_init_hw(struct xe_uc *uc)
+>>   {
+>>   	int ret;
+>> +	bool pl1en;
+>>   
+>>   	/* GuC submission not enabled, nothing to do */
+>>   	if (!xe_device_guc_submission_enabled(uc_to_xe(uc)))
+>>   		return 0;
+>>   
+>> +	/* Disable a potentially low PL1 power limit to allow freq to be raised */
+>> +	xe_hwmon_power_max_disable(uc_to_xe(uc), &pl1en);
+> 
+> Don't love the pass by reference, how about 'pl1en =
+> xe_hwmon_power_max_disable(...'
+Sure, I will remove pass by reference.
+> 
+> Matt
+> 
+>> +
+>>   	ret = xe_uc_sanitize_reset(uc);
+>>   	if (ret)
+>>   		return ret;
+>> @@ -160,6 +165,7 @@ int xe_uc_init_hw(struct xe_uc *uc)
+>>   	if (ret)
+>>   		return ret;
+>>   
+>> +	xe_hwmon_power_max_restore(uc_to_xe(uc), pl1en);
+> 
+> Add line of white space.
+Ok.
 
-Is the vm->flags member always protected by the vm lock? If not, IIRC we 
-can't access individual bits without using set_bit() and frientds 
-bit-ops. The vm->flags kerneldoc says all bits are "statically set up a 
-creation time".
-
-> +	trace_xe_vm_kill(vm);
-> +
-> +	list_for_each_entry(e, &vm->preempt.engines, compute.link)
-> +		e->ops->kill(e);
-> +	xe_vm_unlock(vm, &ww);
-> +
-> +	/* TODO: Inform user the VM is banned */
-> +}
-> +
->   static void preempt_rebind_work_func(struct work_struct *w)
->   {
->   	struct xe_vm *vm = container_of(w, struct xe_vm, preempt.rebind_work);
-> @@ -533,13 +551,14 @@ static void preempt_rebind_work_func(struct work_struct *w)
->   	XE_BUG_ON(!xe_vm_in_compute_mode(vm));
->   	trace_xe_vm_rebind_worker_enter(vm);
->   
-> -	if (xe_vm_is_closed(vm)) {
-> +	down_write(&vm->lock);
-> +
-> +	if (xe_vm_is_closed_or_banned(vm)) {
-> +		up_write(&vm->lock);
->   		trace_xe_vm_rebind_worker_exit(vm);
->   		return;
->   	}
->   
-> -	down_write(&vm->lock);
-> -
->   retry:
->   	if (vm->async_ops.error)
->   		goto out_unlock_outer;
-> @@ -666,11 +685,12 @@ static void preempt_rebind_work_func(struct work_struct *w)
->   			goto retry;
->   		}
->   	}
-> +	if (err)
-> +		xe_vm_kill(vm);
->   	up_write(&vm->lock);
->   
->   	free_preempt_fences(&preempt_fences);
->   
-> -	XE_WARN_ON(err < 0);	/* TODO: Kill VM or put in error state */
-
-I've often find it useful to have a debug printout here, what the error 
-code is. Can we use
-
-drm_debug("VM worker error: %pe\n", ERR_PTR(err));
-
-without risking spamming the logs?
-
->   	trace_xe_vm_rebind_worker_exit(vm);
->   }
->   
-> @@ -1140,11 +1160,12 @@ xe_vm_find_overlapping_vma(struct xe_vm *vm, const struct xe_vma *vma)
->   {
->   	struct rb_node *node;
->   
-> -	if (xe_vm_is_closed(vm))
-> +	lockdep_assert_held(&vm->lock);
-> +
-> +	if (xe_vm_is_closed_or_banned(vm))
->   		return NULL;
->   
->   	XE_BUG_ON(vma->end >= vm->size);
-> -	lockdep_assert_held(&vm->lock);
->   
->   	node = rb_find(vma, &vm->vmas, xe_vma_cmp_vma_cb);
->   
-> @@ -3074,30 +3095,35 @@ int xe_vm_bind_ioctl(struct drm_device *dev, void *data, struct drm_file *file)
->   	if (err)
->   		return err;
->   
-> -	vm = xe_vm_lookup(xef, args->vm_id);
-> -	if (XE_IOCTL_ERR(xe, !vm)) {
-> -		err = -EINVAL;
-> -		goto free_objs;
-> -	}
-> -
-> -	if (XE_IOCTL_ERR(xe, xe_vm_is_closed(vm))) {
-> -		drm_err(dev, "VM closed while we began looking up?\n");
-> -		err = -ENOENT;
-> -		goto put_vm;
-> -	}
-> -
->   	if (args->engine_id) {
->   		e = xe_engine_lookup(xef, args->engine_id);
->   		if (XE_IOCTL_ERR(xe, !e)) {
->   			err = -ENOENT;
-> -			goto put_vm;
-> +			goto free_objs;
->   		}
-> +
->   		if (XE_IOCTL_ERR(xe, !(e->flags & ENGINE_FLAG_VM))) {
->   			err = -EINVAL;
->   			goto put_engine;
->   		}
->   	}
->   
-> +	vm = xe_vm_lookup(xef, args->vm_id);
-> +	if (XE_IOCTL_ERR(xe, !vm)) {
-> +		err = -EINVAL;
-> +		goto put_engine;
-> +	}
-> +
-> +	err = down_write_killable(&vm->lock);
-> +	if (err)
-> +		goto put_vm;
-> +
-> +	if (XE_IOCTL_ERR(xe, xe_vm_is_closed_or_banned(vm))) {
-> +		drm_err(dev, "VM closed while we began looking up?\n");
-
-Since this path is triggerable from user-space it would be easy for a 
-malicious client to spam the logs.
-
-/Thomas
-
-
-> +		err = -ENOENT;
-> +		goto release_vm_lock;
-> +	}
-> +
->   	if (VM_BIND_OP(bind_ops[0].op) == XE_VM_BIND_OP_RESTART) {
->   		if (XE_IOCTL_ERR(xe, !(vm->flags & XE_VM_FLAG_ASYNC_BIND_OPS)))
->   			err = -EOPNOTSUPP;
-> @@ -3107,10 +3133,8 @@ int xe_vm_bind_ioctl(struct drm_device *dev, void *data, struct drm_file *file)
->   			err = -EPROTO;
->   
->   		if (!err) {
-> -			down_write(&vm->lock);
->   			trace_xe_vm_restart(vm);
->   			vm_set_async_error(vm, 0);
-> -			up_write(&vm->lock);
->   
->   			queue_work(system_unbound_wq, &vm->async_ops.work);
->   
-> @@ -3119,13 +3143,13 @@ int xe_vm_bind_ioctl(struct drm_device *dev, void *data, struct drm_file *file)
->   				xe_vm_queue_rebind_worker(vm);
->   		}
->   
-> -		goto put_engine;
-> +		goto release_vm_lock;
->   	}
->   
->   	if (XE_IOCTL_ERR(xe, !vm->async_ops.error &&
->   			 async != !!(vm->flags & XE_VM_FLAG_ASYNC_BIND_OPS))) {
->   		err = -EOPNOTSUPP;
-> -		goto put_engine;
-> +		goto release_vm_lock;
->   	}
->   
->   	for (i = 0; i < args->num_binds; ++i) {
-> @@ -3135,7 +3159,7 @@ int xe_vm_bind_ioctl(struct drm_device *dev, void *data, struct drm_file *file)
->   		if (XE_IOCTL_ERR(xe, range > vm->size) ||
->   		    XE_IOCTL_ERR(xe, addr > vm->size - range)) {
->   			err = -EINVAL;
-> -			goto put_engine;
-> +			goto release_vm_lock;
->   		}
->   
->   		if (bind_ops[i].tile_mask) {
-> @@ -3144,7 +3168,7 @@ int xe_vm_bind_ioctl(struct drm_device *dev, void *data, struct drm_file *file)
->   			if (XE_IOCTL_ERR(xe, bind_ops[i].tile_mask &
->   					 ~valid_tiles)) {
->   				err = -EINVAL;
-> -				goto put_engine;
-> +				goto release_vm_lock;
->   			}
->   		}
->   	}
-> @@ -3152,13 +3176,13 @@ int xe_vm_bind_ioctl(struct drm_device *dev, void *data, struct drm_file *file)
->   	bos = kzalloc(sizeof(*bos) * args->num_binds, GFP_KERNEL);
->   	if (!bos) {
->   		err = -ENOMEM;
-> -		goto put_engine;
-> +		goto release_vm_lock;
->   	}
->   
->   	vmas = kzalloc(sizeof(*vmas) * args->num_binds, GFP_KERNEL);
->   	if (!vmas) {
->   		err = -ENOMEM;
-> -		goto put_engine;
-> +		goto release_vm_lock;
->   	}
->   
->   	for (i = 0; i < args->num_binds; ++i) {
-> @@ -3213,10 +3237,6 @@ int xe_vm_bind_ioctl(struct drm_device *dev, void *data, struct drm_file *file)
->   			goto free_syncs;
->   	}
->   
-> -	err = down_write_killable(&vm->lock);
-> -	if (err)
-> -		goto free_syncs;
-> -
->   	/* Do some error checking first to make the unwind easier */
->   	for (i = 0; i < args->num_binds; ++i) {
->   		u64 range = bind_ops[i].range;
-> @@ -3225,7 +3245,7 @@ int xe_vm_bind_ioctl(struct drm_device *dev, void *data, struct drm_file *file)
->   
->   		err = __vm_bind_ioctl_lookup_vma(vm, bos[i], addr, range, op);
->   		if (err)
-> -			goto release_vm_lock;
-> +			goto free_syncs;
->   	}
->   
->   	for (i = 0; i < args->num_binds; ++i) {
-> @@ -3345,8 +3365,6 @@ int xe_vm_bind_ioctl(struct drm_device *dev, void *data, struct drm_file *file)
->   			break;
->   		}
->   	}
-> -release_vm_lock:
-> -	up_write(&vm->lock);
->   free_syncs:
->   	while (num_syncs--) {
->   		if (async && j &&
-> @@ -3359,11 +3377,13 @@ int xe_vm_bind_ioctl(struct drm_device *dev, void *data, struct drm_file *file)
->   put_obj:
->   	for (i = j; i < args->num_binds; ++i)
->   		xe_bo_put(bos[i]);
-> +release_vm_lock:
-> +	up_write(&vm->lock);
-> +put_vm:
-> +	xe_vm_put(vm);
->   put_engine:
->   	if (e)
->   		xe_engine_put(e);
-> -put_vm:
-> -	xe_vm_put(vm);
->   free_objs:
->   	kfree(bos);
->   	kfree(vmas);
-> diff --git a/drivers/gpu/drm/xe/xe_vm.h b/drivers/gpu/drm/xe/xe_vm.h
-> index 5edb7771629c..47bc7fbb2f50 100644
-> --- a/drivers/gpu/drm/xe/xe_vm.h
-> +++ b/drivers/gpu/drm/xe/xe_vm.h
-> @@ -49,6 +49,17 @@ static inline bool xe_vm_is_closed(struct xe_vm *vm)
->   	return !vm->size;
->   }
->   
-> +static inline bool xe_vm_is_banned(struct xe_vm *vm)
-> +{
-> +	return vm->flags & XE_VM_FLAG_BANNED;
-> +}
-> +
-> +static inline bool xe_vm_is_closed_or_banned(struct xe_vm *vm)
-> +{
-> +	lockdep_assert_held(&vm->lock);
-> +	return xe_vm_is_closed(vm) || xe_vm_is_banned(vm);
-> +}
-> +
->   struct xe_vma *
->   xe_vm_find_overlapping_vma(struct xe_vm *vm, const struct xe_vma *vma);
->   
-> diff --git a/drivers/gpu/drm/xe/xe_vm_madvise.c b/drivers/gpu/drm/xe/xe_vm_madvise.c
-> index 0f5eef337037..76458f8d57f3 100644
-> --- a/drivers/gpu/drm/xe/xe_vm_madvise.c
-> +++ b/drivers/gpu/drm/xe/xe_vm_madvise.c
-> @@ -313,7 +313,7 @@ int xe_vm_madvise_ioctl(struct drm_device *dev, void *data,
->   	if (XE_IOCTL_ERR(xe, !vm))
->   		return -EINVAL;
->   
-> -	if (XE_IOCTL_ERR(xe, xe_vm_is_closed(vm))) {
-> +	if (XE_IOCTL_ERR(xe, xe_vm_is_closed_or_banned(vm))) {
->   		err = -ENOENT;
->   		goto put_vm;
->   	}
-> diff --git a/drivers/gpu/drm/xe/xe_vm_types.h b/drivers/gpu/drm/xe/xe_vm_types.h
-> index c148dd49a6ca..286de52160b9 100644
-> --- a/drivers/gpu/drm/xe/xe_vm_types.h
-> +++ b/drivers/gpu/drm/xe/xe_vm_types.h
-> @@ -183,8 +183,9 @@ struct xe_vm {
->   #define XE_VM_FLAG_MIGRATION		BIT(3)
->   #define XE_VM_FLAG_SCRATCH_PAGE		BIT(4)
->   #define XE_VM_FLAG_FAULT_MODE		BIT(5)
-> -#define XE_VM_FLAG_GT_ID(flags)		(((flags) >> 6) & 0x3)
-> -#define XE_VM_FLAG_SET_TILE_ID(tile)	((tile)->id << 6)
-> +#define XE_VM_FLAG_BANNED		BIT(6)
-> +#define XE_VM_FLAG_GT_ID(flags)		(((flags) >> 7) & 0x3)
-> +#define XE_VM_FLAG_SET_TILE_ID(tile)	((tile)->id << 7)
->   	unsigned long flags;
->   
->   	/** @composite_fence_ctx: context composite fence */
+Regards,
+Badal
+> 
+> Matt
+> 
+>>   	/* We don't fail the driver load if HuC fails to auth, but let's warn */
+>>   	ret = xe_huc_auth(&uc->huc);
+>>   	XE_WARN_ON(ret);
+>> -- 
+>> 2.25.1
+>>
