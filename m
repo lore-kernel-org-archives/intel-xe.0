@@ -4,30 +4,30 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id A8529EB64D9
-	for <intel-xe@archiver.kernel.org>; Thu,  6 Jul 2023 07:50:49 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0F7CEEB64D9
+	for <intel-xe@archiver.kernel.org>; Thu,  6 Jul 2023 07:51:01 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 44ABE10E45C;
-	Thu,  6 Jul 2023 07:50:49 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id CD80A10E45C;
+	Thu,  6 Jul 2023 07:51:00 +0000 (UTC)
 Received: from emeril.freedesktop.org (emeril.freedesktop.org
  [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id 1712910E45B;
- Thu,  6 Jul 2023 07:50:47 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTP id 4C40B10E45B;
+ Thu,  6 Jul 2023 07:50:59 +0000 (UTC)
 Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 0E2EFAADDC;
- Thu,  6 Jul 2023 07:50:47 +0000 (UTC)
+ by emeril.freedesktop.org (Postfix) with ESMTP id 48AB6AADDC;
+ Thu,  6 Jul 2023 07:50:59 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: "Riana Tauro" <riana.tauro@intel.com>
-Date: Thu, 06 Jul 2023 07:50:47 -0000
-Message-ID: <168862984702.18978.10121107515452313939@emeril.freedesktop.org>
+Date: Thu, 06 Jul 2023 07:50:59 -0000
+Message-ID: <168862985929.18979.8401805878633382408@emeril.freedesktop.org>
 X-Patchwork-Hint: ignore
 References: <20230706071036.968267-1-riana.tauro@intel.com>
 In-Reply-To: <20230706071036.968267-1-riana.tauro@intel.com>
-Subject: [Intel-xe] =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_f?=
- =?utf-8?q?or_drm/xe=3A_remove_gucrc_disable_from_suspend_path?=
+Subject: [Intel-xe] =?utf-8?q?=E2=9C=93_CI=2Echeckpatch=3A_success_for_dr?=
+ =?utf-8?q?m/xe=3A_remove_gucrc_disable_from_suspend_path?=
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -52,9 +52,30 @@ State : success
 
 == Summary ==
 
-=== Applying kernel patches on branch 'drm-xe-next' with base: ===
-Base commit: abcb88850 drm/xe: make kobject type struct as constant
-=== git am output follows ===
-Applying: drm/xe: remove gucrc disable from suspend path
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+c7d32770e3cd31d9fc134ce41f329b10aa33ee15
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit bea36ac92ad70c13066184a7c5973e42e0f4b403
+Author: Riana Tauro <riana.tauro@intel.com>
+Date:   Thu Jul 6 12:40:36 2023 +0530
+
+    drm/xe: remove gucrc disable from suspend path
+    
+    Currently rc6 is disabled in suspend path for xe
+    Rc6 is a prerequiste to enable s0ix and
+    should not be disabled for s2idle.
+    
+    There is no requirement to disable rc6 for S3+,
+    so remove gucrc disable from suspend path.
+    
+    Signed-off-by: Riana Tauro <riana.tauro@intel.com>
++ /mt/dim checkpatch abcb88850f885254cf7477e1f7a5956136fb547c drm-intel
+bea36ac92 drm/xe: remove gucrc disable from suspend path
 
 
