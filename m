@@ -4,49 +4,48 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 68F09C0015E
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 01BB9C001DF
 	for <intel-xe@archiver.kernel.org>; Sat,  8 Jul 2023 06:56:05 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 45F5710E654;
+	by gabe.freedesktop.org (Postfix) with ESMTP id B74A910E657;
 	Sat,  8 Jul 2023 06:56:05 +0000 (UTC)
 Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 379B610E651
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0ACF710E653
  for <intel-xe@lists.freedesktop.org>; Sat,  8 Jul 2023 06:56:03 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
  t=1688799363; x=1720335363;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=y86hGMt1UASQQcmXnLJotlXBg1l7xKqWbmgB8ncsvVg=;
- b=XeeD9JYpPz8bsQKBDAfLik3QVGmAAUas2utkm8OgqPl/yTJ2YtS5apDO
- ueP11YJ6t3oclPSmmHBftWAPAy2PodGZNcn2VAw5iO0eQNyA8NIe/X7Ok
- 6R2CfarVcRQ2uYvX+YOfjfEtj0+S/GvJsQj2Q4boycw4tuwQtoF+QmhQi
- 3vS1SwQwN7XMln8J6FZLHuc8xo2gnxYJpa+IOHI01mrOTlblWoymNxxmN
- ZY2sEkgVZVo4azAN9+MFwMSwDEbd1s0ymSrYmy/tZVL4mOSFURrQ5SPFi
- hGn9BxWzEpzDvF2SBu5/u+kjGOAGaLRKgEPXOJTk22F3AdATDxKdEQAtS w==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10764"; a="348834705"
-X-IronPort-AV: E=Sophos;i="6.01,190,1684825200"; d="scan'208";a="348834705"
+ bh=K/pgskMiGf3/AmuTovIsk4u6LSEfOxC0jrIwPXVwxJQ=;
+ b=bGIzmXxot9XyeXOp98gX41UPm43k0hcW1m0gyyyyw9ZyFz5HMY9dM/kb
+ D7ie0i00Ml75gdGlSPW0ziq27ZoyqfKmuOywioVdwhAYCkf2kMNaqzpUt
+ XNGD81BG+JZm5+uUBS5DNXVWyAjHhYosWj9wImzezUpmp9XfzBsBYO2KN
+ F1hQmfc66UA0vmZhXsPpmKYeGm8hUlbnWvXIIKRN6KEWNRrXE+aFVEc1A
+ unFW21FY/VjVYCJLnxIDRhPvtzFyly3rCL8u06dgpUkTFowhORjZD7F2H
+ GxJS1a61/Xo6bxa6eXRNbtAqcP6nMl8uIrjQbb1NBEEXL/3kQUoS+YUZm A==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10764"; a="348834701"
+X-IronPort-AV: E=Sophos;i="6.01,190,1684825200"; d="scan'208";a="348834701"
 Received: from fmsmga001.fm.intel.com ([10.253.24.23])
  by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  07 Jul 2023 23:56:01 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10764"; a="864779076"
-X-IronPort-AV: E=Sophos;i="6.01,190,1684825200"; d="scan'208";a="864779076"
+X-IronPort-AV: E=McAfee;i="6600,9927,10764"; a="864779071"
+X-IronPort-AV: E=Sophos;i="6.01,190,1684825200"; d="scan'208";a="864779071"
 Received: from lstrano-desk.jf.intel.com ([10.24.89.184])
  by fmsmga001-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  07 Jul 2023 23:56:01 -0700
 From: Matthew Brost <matthew.brost@intel.com>
 To: <intel-xe@lists.freedesktop.org>
-Date: Fri,  7 Jul 2023 23:56:13 -0700
-Message-Id: <20230708065614.1754600-6-matthew.brost@intel.com>
+Date: Fri,  7 Jul 2023 23:56:12 -0700
+Message-Id: <20230708065614.1754600-5-matthew.brost@intel.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20230708065614.1754600-1-matthew.brost@intel.com>
 References: <20230708065614.1754600-1-matthew.brost@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-xe] [PATCH v6 5/6] drm/xe: Remove __xe_vm_bind forward
- declaration
+Subject: [Intel-xe] [PATCH v6 4/6] drm: debugfs: provide infrastructure to
+ dump a DRM GPU VA space
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -58,33 +57,136 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Cc: Boris Brezillon <boris.brezillon@collabora.com>,
+ Danilo Krummrich <dakr@redhat.com>
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Not needed so remove it.
+From: Danilo Krummrich <dakr@redhat.com>
 
-Reviewed-by: Thomas Hellström <thomas.hellstrom@linux.intel.com>
-Signed-off-by: Matthew Brost <matthew.brost@intel.com>
+This commit adds a function to dump a DRM GPU VA space and a macro for
+drivers to register the struct drm_info_list 'gpuvas' entry.
+
+Most likely, most drivers might maintain one DRM GPU VA space per struct
+drm_file, but there might also be drivers not having a fixed relation
+between DRM GPU VA spaces and a DRM core infrastructure, hence we need the
+indirection via the driver iterating it's maintained DRM GPU VA spaces.
+
+Reviewed-by: Boris Brezillon <boris.brezillon@collabora.com>
+Signed-off-by: Danilo Krummrich <dakr@redhat.com>
 ---
- drivers/gpu/drm/xe/xe_vm.c | 5 -----
- 1 file changed, 5 deletions(-)
+ drivers/gpu/drm/drm_debugfs.c | 40 +++++++++++++++++++++++++++++++++++
+ include/drm/drm_debugfs.h     | 25 ++++++++++++++++++++++
+ 2 files changed, 65 insertions(+)
 
-diff --git a/drivers/gpu/drm/xe/xe_vm.c b/drivers/gpu/drm/xe/xe_vm.c
-index ccc4c870260c..23619ea873ac 100644
---- a/drivers/gpu/drm/xe/xe_vm.c
-+++ b/drivers/gpu/drm/xe/xe_vm.c
-@@ -696,11 +696,6 @@ static void preempt_rebind_work_func(struct work_struct *w)
- 	trace_xe_vm_rebind_worker_exit(vm);
- }
+diff --git a/drivers/gpu/drm/drm_debugfs.c b/drivers/gpu/drm/drm_debugfs.c
+index 4855230ba2c6..c90dbcffa0dc 100644
+--- a/drivers/gpu/drm/drm_debugfs.c
++++ b/drivers/gpu/drm/drm_debugfs.c
+@@ -39,6 +39,7 @@
+ #include <drm/drm_file.h>
+ #include <drm/drm_gem.h>
+ #include <drm/drm_managed.h>
++#include <drm/drm_gpuva_mgr.h>
  
--struct async_op_fence;
--static int __xe_vm_bind(struct xe_vm *vm, struct xe_vma *vma,
--			struct xe_engine *e, struct xe_sync_entry *syncs,
--			u32 num_syncs, struct async_op_fence *afence);
--
- static bool vma_userptr_invalidate(struct mmu_interval_notifier *mni,
- 				   const struct mmu_notifier_range *range,
- 				   unsigned long cur_seq)
+ #include "drm_crtc_internal.h"
+ #include "drm_internal.h"
+@@ -175,6 +176,45 @@ static const struct file_operations drm_debugfs_fops = {
+ 	.release = single_release,
+ };
+ 
++/**
++ * drm_debugfs_gpuva_info - dump the given DRM GPU VA space
++ * @m: pointer to the &seq_file to write
++ * @mgr: the &drm_gpuva_manager representing the GPU VA space
++ *
++ * Dumps the GPU VA mappings of a given DRM GPU VA manager.
++ *
++ * For each DRM GPU VA space drivers should call this function from their
++ * &drm_info_list's show callback.
++ *
++ * Returns: 0 on success, -ENODEV if the &mgr is not initialized
++ */
++int drm_debugfs_gpuva_info(struct seq_file *m,
++			   struct drm_gpuva_manager *mgr)
++{
++	struct drm_gpuva *va, *kva = &mgr->kernel_alloc_node;
++
++	if (!mgr->name)
++		return -ENODEV;
++
++	seq_printf(m, "DRM GPU VA space (%s) [0x%016llx;0x%016llx]\n",
++		   mgr->name, mgr->mm_start, mgr->mm_start + mgr->mm_range);
++	seq_printf(m, "Kernel reserved node [0x%016llx;0x%016llx]\n",
++		   kva->va.addr, kva->va.addr + kva->va.range);
++	seq_puts(m, "\n");
++	seq_puts(m, " VAs | start              | range              | end                | object             | object offset\n");
++	seq_puts(m, "-------------------------------------------------------------------------------------------------------------\n");
++	drm_gpuva_for_each_va(va, mgr) {
++		if (unlikely(va == kva))
++			continue;
++
++		seq_printf(m, "     | 0x%016llx | 0x%016llx | 0x%016llx | 0x%016llx | 0x%016llx\n",
++			   va->va.addr, va->va.range, va->va.addr + va->va.range,
++			   (u64)va->gem.obj, va->gem.offset);
++	}
++
++	return 0;
++}
++EXPORT_SYMBOL(drm_debugfs_gpuva_info);
+ 
+ /**
+  * drm_debugfs_create_files - Initialize a given set of debugfs files for DRM
+diff --git a/include/drm/drm_debugfs.h b/include/drm/drm_debugfs.h
+index 7616f457ce70..cb2c1956a214 100644
+--- a/include/drm/drm_debugfs.h
++++ b/include/drm/drm_debugfs.h
+@@ -34,6 +34,22 @@
+ 
+ #include <linux/types.h>
+ #include <linux/seq_file.h>
++
++#include <drm/drm_gpuva_mgr.h>
++
++/**
++ * DRM_DEBUGFS_GPUVA_INFO - &drm_info_list entry to dump a GPU VA space
++ * @show: the &drm_info_list's show callback
++ * @data: driver private data
++ *
++ * Drivers should use this macro to define a &drm_info_list entry to provide a
++ * debugfs file for dumping the GPU VA space regions and mappings.
++ *
++ * For each DRM GPU VA space drivers should call drm_debugfs_gpuva_info() from
++ * their @show callback.
++ */
++#define DRM_DEBUGFS_GPUVA_INFO(show, data) {"gpuvas", show, DRIVER_GEM_GPUVA, data}
++
+ /**
+  * struct drm_info_list - debugfs info list entry
+  *
+@@ -134,6 +150,9 @@ void drm_debugfs_add_file(struct drm_device *dev, const char *name,
+ 
+ void drm_debugfs_add_files(struct drm_device *dev,
+ 			   const struct drm_debugfs_info *files, int count);
++
++int drm_debugfs_gpuva_info(struct seq_file *m,
++			   struct drm_gpuva_manager *mgr);
+ #else
+ static inline void drm_debugfs_create_files(const struct drm_info_list *files,
+ 					    int count, struct dentry *root,
+@@ -155,6 +174,12 @@ static inline void drm_debugfs_add_files(struct drm_device *dev,
+ 					 const struct drm_debugfs_info *files,
+ 					 int count)
+ {}
++
++static inline int drm_debugfs_gpuva_info(struct seq_file *m,
++					 struct drm_gpuva_manager *mgr)
++{
++	return 0;
++}
+ #endif
+ 
+ #endif /* _DRM_DEBUGFS_H_ */
 -- 
 2.34.1
 
