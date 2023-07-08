@@ -4,46 +4,49 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id DA188EB64DC
-	for <intel-xe@archiver.kernel.org>; Sat,  8 Jul 2023 06:43:48 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id D1D41EB64DD
+	for <intel-xe@archiver.kernel.org>; Sat,  8 Jul 2023 06:43:53 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9C69E10E653;
-	Sat,  8 Jul 2023 06:43:48 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A64E910E657;
+	Sat,  8 Jul 2023 06:43:53 +0000 (UTC)
 Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A528810E651
- for <intel-xe@lists.freedesktop.org>; Sat,  8 Jul 2023 06:43:46 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2366910E653
+ for <intel-xe@lists.freedesktop.org>; Sat,  8 Jul 2023 06:43:47 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1688798626; x=1720334626;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=T3RWSR+lUp3qBOLTMoP6cnZ5I34uSfRFwXP6NvTqFuw=;
- b=fxO7VG6960nnqFPLGXaovqJZD4L/aVFvYK/ZXRtGqVtRMyj+9OrQD8sQ
- aAxd7uvFxYUmxsV2zEESQXWsx9uvO0+fTs4zJT+o0nKkiVJvP43kRyttS
- MAdxfLMziV+3WXf7j1XyEosmTJLK5Dx/i9BqmSx9u7QMZDSa9UCOJSb9D
- sjaec3p/YiWfd5IT4Nf0OK6l8V0QSe/TqyYLkFF0pUzNqc4lxt6uFzoaW
- JZ63166/OTbBQn+yt9Xbc+N1hCbpkQtXVzPcBjEEb6xUSA6kZe3+Rfja0
- VjZhShQ3PhzQnuz8KVLpRnx8RvqmJdqvap+jGIu1GeaK/9Z41Kg+nMJTw Q==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10764"; a="348834100"
-X-IronPort-AV: E=Sophos;i="6.01,190,1684825200"; d="scan'208";a="348834100"
+ t=1688798627; x=1720334627;
+ h=from:to:cc:subject:date:message-id:in-reply-to:
+ references:mime-version:content-transfer-encoding;
+ bh=y86hGMt1UASQQcmXnLJotlXBg1l7xKqWbmgB8ncsvVg=;
+ b=P7tDO0OfdIzy9Ft0gQgI6rySFW8JpyeB+rLIt9TQD8sSVb7zJYFlKo+C
+ fDn0RC49PCbWT42m61t40ToxcclE8ow/nnWGwxDMHzsEyueVf4KBJZU6O
+ XoSbDXzkg/aswZ/U95zkCT1FoL3Jxn2JAHqo7yAMJp+9+KF5YwjFYc2oD
+ xetkwOrv8dJVDTzbDAGzQ/rwlbzziuGCBs27FwYZp/9E6nRK0O0e3QiAo
+ MLDOz3Lhr+KNweiACmrq2yp+S2p6INFgCOL+NSeTdZkcFIvQow1mgjR/7
+ WEx8U0n8AGxUMPrIo1JCXHQZki7fzKBDCyNjS3q1COOX24Qbz4I5gIrMG g==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10764"; a="348834111"
+X-IronPort-AV: E=Sophos;i="6.01,190,1684825200"; d="scan'208";a="348834111"
 Received: from orsmga007.jf.intel.com ([10.7.209.58])
  by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 07 Jul 2023 23:43:45 -0700
+ 07 Jul 2023 23:43:46 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10764"; a="714240218"
-X-IronPort-AV: E=Sophos;i="6.01,190,1684825200"; d="scan'208";a="714240218"
+X-IronPort-AV: E=McAfee;i="6600,9927,10764"; a="714240229"
+X-IronPort-AV: E=Sophos;i="6.01,190,1684825200"; d="scan'208";a="714240229"
 Received: from lstrano-desk.jf.intel.com ([10.24.89.184])
  by orsmga007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  07 Jul 2023 23:43:45 -0700
 From: Matthew Brost <matthew.brost@intel.com>
 To: <intel-xe@lists.freedesktop.org>
-Date: Fri,  7 Jul 2023 23:43:53 -0700
-Message-Id: <20230708064359.1743796-1-matthew.brost@intel.com>
+Date: Fri,  7 Jul 2023 23:43:58 -0700
+Message-Id: <20230708064359.1743796-6-matthew.brost@intel.com>
 X-Mailer: git-send-email 2.34.1
+In-Reply-To: <20230708064359.1743796-1-matthew.brost@intel.com>
+References: <20230708064359.1743796-1-matthew.brost@intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-xe] [PATCH v5 0/6] GPUVA with no uAPI changes
+Subject: [Intel-xe] [PATCH v5 5/6] drm/xe: Remove __xe_vm_bind forward
+ declaration
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -58,54 +61,30 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-The patches from [1] rebased + address review feedback which do not
-include uAPI changes. 
+Not needed so remove it.
 
-[1] https://patchwork.freedesktop.org/series/117156/
+Reviewed-by: Thomas Hellström <thomas.hellstrom@linux.intel.com>
+Signed-off-by: Matthew Brost <matthew.brost@intel.com>
+---
+ drivers/gpu/drm/xe/xe_vm.c | 5 -----
+ 1 file changed, 5 deletions(-)
 
-v2: Fix build error
-v3: Fix lockdep splat CI caught
-v4: Fix build error
-v5: Pull in latest GPUVA versions
-
-Danilo Krummrich (2):
-  drm: manager to keep track of GPUs VA mappings
-  drm: debugfs: provide infrastructure to dump a DRM GPU VA space
-
-Matthew Brost (4):
-  drm/xe: Ban a VM if rebind worker hits an error
-  drm/xe: Add helpers to hide struct xe_vma internals
-  drm/xe: Remove __xe_vm_bind forward declaration
-  drm/xe: Port Xe to GPUVA
-
- Documentation/gpu/drm-mm.rst                |   36 +
- drivers/gpu/drm/Makefile                    |    1 +
- drivers/gpu/drm/drm_debugfs.c               |   40 +
- drivers/gpu/drm/drm_gem.c                   |    3 +
- drivers/gpu/drm/drm_gpuva_mgr.c             | 1743 ++++++++++++++++
- drivers/gpu/drm/xe/tests/xe_migrate.c       |    2 +-
- drivers/gpu/drm/xe/xe_bo.c                  |    9 +-
- drivers/gpu/drm/xe/xe_device.c              |    2 +-
- drivers/gpu/drm/xe/xe_engine.c              |   13 +
- drivers/gpu/drm/xe/xe_exec.c                |    8 +-
- drivers/gpu/drm/xe/xe_gt_pagefault.c        |   23 +-
- drivers/gpu/drm/xe/xe_gt_tlb_invalidation.c |   14 +-
- drivers/gpu/drm/xe/xe_migrate.c             |   10 +-
- drivers/gpu/drm/xe/xe_pt.c                  |  128 +-
- drivers/gpu/drm/xe/xe_pt.h                  |    2 +-
- drivers/gpu/drm/xe/xe_trace.h               |   15 +-
- drivers/gpu/drm/xe/xe_vm.c                  | 1973 +++++++++----------
- drivers/gpu/drm/xe/xe_vm.h                  |  106 +-
- drivers/gpu/drm/xe/xe_vm_madvise.c          |   90 +-
- drivers/gpu/drm/xe/xe_vm_types.h            |  183 +-
- include/drm/drm_debugfs.h                   |   25 +
- include/drm/drm_drv.h                       |    6 +
- include/drm/drm_gem.h                       |   52 +
- include/drm/drm_gpuva_mgr.h                 |  763 +++++++
- 24 files changed, 3993 insertions(+), 1254 deletions(-)
- create mode 100644 drivers/gpu/drm/drm_gpuva_mgr.c
- create mode 100644 include/drm/drm_gpuva_mgr.h
-
+diff --git a/drivers/gpu/drm/xe/xe_vm.c b/drivers/gpu/drm/xe/xe_vm.c
+index ccc4c870260c..23619ea873ac 100644
+--- a/drivers/gpu/drm/xe/xe_vm.c
++++ b/drivers/gpu/drm/xe/xe_vm.c
+@@ -696,11 +696,6 @@ static void preempt_rebind_work_func(struct work_struct *w)
+ 	trace_xe_vm_rebind_worker_exit(vm);
+ }
+ 
+-struct async_op_fence;
+-static int __xe_vm_bind(struct xe_vm *vm, struct xe_vma *vma,
+-			struct xe_engine *e, struct xe_sync_entry *syncs,
+-			u32 num_syncs, struct async_op_fence *afence);
+-
+ static bool vma_userptr_invalidate(struct mmu_interval_notifier *mni,
+ 				   const struct mmu_notifier_range *range,
+ 				   unsigned long cur_seq)
 -- 
 2.34.1
 
