@@ -4,30 +4,30 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7DF67EB64D9
-	for <intel-xe@archiver.kernel.org>; Mon, 10 Jul 2023 22:38:57 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9FA60EB64D9
+	for <intel-xe@archiver.kernel.org>; Mon, 10 Jul 2023 23:33:52 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4601010E190;
-	Mon, 10 Jul 2023 22:38:57 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 431B010E193;
+	Mon, 10 Jul 2023 23:33:52 +0000 (UTC)
 Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id 7689B10E190;
- Mon, 10 Jul 2023 22:38:54 +0000 (UTC)
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 91DEB10E193;
+ Mon, 10 Jul 2023 23:33:50 +0000 (UTC)
 Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 6E306AADED;
- Mon, 10 Jul 2023 22:38:54 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============6132649008500933205=="
+ by emeril.freedesktop.org (Postfix) with ESMTP id 1EB9AAADE4;
+ Mon, 10 Jul 2023 23:33:50 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: "Niranjana Vishwanathapura" <niranjana.vishwanathapura@intel.com>
-Date: Mon, 10 Jul 2023 22:38:54 -0000
-Message-ID: <168902873441.24991.11406214530235547976@emeril.freedesktop.org>
+Date: Mon, 10 Jul 2023 23:33:50 -0000
+Message-ID: <168903203009.24990.866578546862743045@emeril.freedesktop.org>
 X-Patchwork-Hint: ignore
-References: <20230710214459.14708-1-niranjana.vishwanathapura@intel.com>
-In-Reply-To: <20230710214459.14708-1-niranjana.vishwanathapura@intel.com>
-Subject: [Intel-xe] =?utf-8?q?=E2=97=8B_CI=2EBAT=3A_info_for_drm/xe/pvc?=
- =?utf-8?q?=3A_Disable_FPU_Residue_=28rev2=29?=
+References: <20230710214903.14982-1-niranjana.vishwanathapura@intel.com>
+In-Reply-To: <20230710214903.14982-1-niranjana.vishwanathapura@intel.com>
+Subject: [Intel-xe] =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_f?=
+ =?utf-8?q?or_drm/xe/pvc=3A_Force_even_num_engines_to_use_64B_=28rev2=29?=
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -44,65 +44,17 @@ Cc: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============6132649008500933205==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
 == Series Details ==
 
-Series: drm/xe/pvc: Disable FPU Residue (rev2)
-URL   : https://patchwork.freedesktop.org/series/119778/
-State : info
+Series: drm/xe/pvc: Force even num engines to use 64B (rev2)
+URL   : https://patchwork.freedesktop.org/series/119817/
+State : success
 
 == Summary ==
 
-Participating hosts:
-bat-pvc-2
-bat-atsm-2
-bat-dg2-oem2
-bat-adlp-7
-Missing hosts results[0]:
-Results: [xe-pw-119778v2](https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-119778v2/index.html)
+=== Applying kernel patches on branch 'drm-xe-next' with base: ===
+Base commit: d39e49e2a drm/xe: Port Xe to GPUVA
+=== git am output follows ===
+Applying: drm/xe/pvc: Force even num engines to use 64B
 
 
-
---===============6132649008500933205==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/xe/pvc: Disable FPU Residue (rev2)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/119778/">https://patchwork.freedesktop.org/series/119778/</a></td></tr>
-<tr><td><b>State:</b></td><td>info</td></tr>
-
-</table>
-
-
-    <p>Participating hosts:<br />
-bat-pvc-2<br />
-bat-atsm-2<br />
-bat-dg2-oem2<br />
-bat-adlp-7<br />
-Missing hosts results[0]:<br />
-Results: <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-119778v2/index.html">xe-pw-119778v2</a></p>
-
-</body>
-</html>
-
---===============6132649008500933205==--
