@@ -4,40 +4,45 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id D5B61EB64DA
-	for <intel-xe@archiver.kernel.org>; Mon, 10 Jul 2023 18:59:43 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 351FDEB64D9
+	for <intel-xe@archiver.kernel.org>; Mon, 10 Jul 2023 21:45:17 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9A6E510E0A4;
-	Mon, 10 Jul 2023 18:59:43 +0000 (UTC)
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0EC0D10E0A4
- for <intel-xe@lists.freedesktop.org>; Mon, 10 Jul 2023 18:59:40 +0000 (UTC)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
- (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
- key-exchange X25519 server-signature RSA-PSS (2048 bits))
- (No client certificate requested)
- by dfw.source.kernel.org (Postfix) with ESMTPS id 5BEAA611A8;
- Mon, 10 Jul 2023 18:59:40 +0000 (UTC)
-Received: from rdvivi-mobl4 (unknown [192.55.54.50])
- (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
- key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
- (No client certificate requested)
- by smtp.kernel.org (Postfix) with ESMTPSA id BA12BC433C7;
- Mon, 10 Jul 2023 18:59:37 +0000 (UTC)
-Date: Mon, 10 Jul 2023 14:59:35 -0400
-From: Rodrigo Vivi <rodrigo.vivi@kernel.org>
-To: Thomas =?iso-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>
-Message-ID: <ZKxVFyqMgRPyek8u@rdvivi-mobl4>
-References: <20230628125146.72041-1-thomas.hellstrom@linux.intel.com>
- <ZJw0_7x9uJ5D9pBk@fdugast-desk.home>
- <eb511785c4ce4e0d580c4849ce680e2b8a39ff57.camel@linux.intel.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id D3AE610E2DB;
+	Mon, 10 Jul 2023 21:45:16 +0000 (UTC)
+Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 042D610E2DB
+ for <intel-xe@lists.freedesktop.org>; Mon, 10 Jul 2023 21:45:13 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1689025514; x=1720561514;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=xb63p/T0gxARHXeIYIBuhG952zA590wmFdH0cm8/imI=;
+ b=DafJzW36VVIPbkZ/0jnXJxfZmPmuiY6QFm5n3HKzVBzF1RQuNYNKbbSu
+ nnDbNJ3rn6P6LQzEUjBNhjL7xyvu1YOnYsBCHbN0V/5v6qmNv7nnOWbRe
+ uAE1biBG6CJe2MafuhTLOLOcYN/8MTc/N/8blj1XxA5FsX0MiaEJYZ0Q+
+ kBo7RDDVfrXm0GFRA+gK6bFUAbKKLaXFnXAH5KkXbDacBPZjBwKcNdn63
+ OwqLAlZ4CdXJb2H66aTm51V3oZXferfURufMdoxrarTbpt+9+I8Fr4YSy
+ hryqNjKDuWlw0Swv07QOjWzf1kSGMUwgkCwZEd/nLNm3jL+E6skaYhpm4 w==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10767"; a="367960302"
+X-IronPort-AV: E=Sophos;i="6.01,195,1684825200"; d="scan'208";a="367960302"
+Received: from orsmga004.jf.intel.com ([10.7.209.38])
+ by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 10 Jul 2023 14:45:12 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6600,9927,10767"; a="845036455"
+X-IronPort-AV: E=Sophos;i="6.01,195,1684825200"; d="scan'208";a="845036455"
+Received: from nvishwa1-desk.sc.intel.com ([172.25.29.76])
+ by orsmga004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 10 Jul 2023 14:45:06 -0700
+From: Niranjana Vishwanathapura <niranjana.vishwanathapura@intel.com>
+To: intel-xe@lists.freedesktop.org
+Date: Mon, 10 Jul 2023 14:44:59 -0700
+Message-Id: <20230710214459.14708-1-niranjana.vishwanathapura@intel.com>
+X-Mailer: git-send-email 2.21.0.rc0.32.g243a4c7e27
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <eb511785c4ce4e0d580c4849ce680e2b8a39ff57.camel@linux.intel.com>
-Subject: Re: [Intel-xe] [PATCH v3] Documentation/gpu: Add a VM_BIND async
- draft document
+Subject: [Intel-xe] [PATCH] drm/xe/pvc: Disable FPU Residue
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -49,308 +54,121 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Cc: Francois Dugast <francois.dugast@intel.com>, intel-xe@lists.freedesktop.org,
- Nirmoy Das <nirmoy.das@intel.com>
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Thu, Jun 29, 2023 at 09:44:16AM +0200, Thomas Hellström wrote:
-> Hi, Francois,
-> 
-> On Wed, 2023-06-28 at 15:26 +0200, Francois Dugast wrote:
-> > Hi Thomas,
-> > 
-> > On Wed, Jun 28, 2023 at 02:51:46PM +0200, Thomas Hellström wrote:
-> > > Add a motivation for and description of asynchronous VM_BIND
-> > > operation
-> > > 
-> > > v2:
-> > > - Fix typos (Nirmoy Das)
-> > > - Improve the description of a memory fence (Oak Zeng)
-> > > - Add a reference to the document in the Xe RFC.
-> > > - Add pointers to sample uAPI suggestions
-> > > v3:
-> > > - Address review comments (Danilo Krummrich)
-> > > - Formatting fixes
-> > > 
-> > > Signed-off-by: Thomas Hellström <thomas.hellstrom@linux.intel.com>
-> > > Acked-by: Nirmoy Das <nirmoy.das@intel.com>
-> > > ---
-> > >  Documentation/gpu/drm-vm-bind-async.rst | 150
-> > > ++++++++++++++++++++++++
-> > >  Documentation/gpu/rfc/xe.rst            |   4 +-
-> > >  2 files changed, 152 insertions(+), 2 deletions(-)
-> > >  create mode 100644 Documentation/gpu/drm-vm-bind-async.rst
-> > > 
-> > > diff --git a/Documentation/gpu/drm-vm-bind-async.rst
-> > > b/Documentation/gpu/drm-vm-bind-async.rst
-> > > new file mode 100644
-> > > index 000000000000..8f9e2d5c8f0f
-> > > --- /dev/null
-> > > +++ b/Documentation/gpu/drm-vm-bind-async.rst
-> > > @@ -0,0 +1,150 @@
-> > > +====================
-> > > +Asynchronous VM_BIND
-> > > +====================
-> > > +
-> > > +Nomenclature:
-> > > +=============
-> > > +
-> > > +* ``VRAM``: On-device memory. Sometimes referred to as device
-> > > local memory.
-> > > +
-> > > +* ``gpu_vm``: A GPU address space. Typically per process, but can
-> > > be shared by
-> > > +  multiple processes.
-> > > +
-> > > +* ``VM_BIND``: An operation or a list of operations to modify a
-> > > gpu_vm using
-> > > +  an IOCTL. The operations include mapping and unmapping system-
-> > > or
-> > > +  VRAM memory.
-> > > +
-> > > +* ``syncobj``: A container that abstracts synchronization objects.
-> > > The
-> > > +  synchronization objects can be either generic, like dma-fences
-> > > or
-> > > +  driver specific. A syncobj typically indicates the type of the
-> > > +  underlying synchronization object.
-> > > +
-> > > +* ``in-syncobj``: Argument to a VM_BIND IOCTL, the VM_BIND
-> > > operation waits
-> > > +  for these before starting.
-> > > +
-> > > +* ``out-syncbj``: Argument to a VM_BIND_IOCTL, the VM_BIND
-> > > operation
-> > > +  signals these when the bind operation is complete.
-> > > +
-> > > +* ``memory fence``: A synchronization object, different from a
-> > > dma-fence.
-> > > +  A memory fence uses the value of a specified memory location to
-> > > determine
-> > > +  signaled status. A memory fence can be awaited and signaled by
-> > > both
-> > > +  the GPU and CPU. Memory fences are sometimes referred to as
-> > > +  user-fences, and do not necessarily bey the dma-fence rule of
-> > 
-> > s/bey/obey/
-> > 
-> > > +  signalling within a "reasonable amount of time". The kernel
-> > > should
-> > > +  thus avoid waiting for memory fences with locks held.
-> > > +
-> > > +* ``long-running workload``: A workload that may take more than
-> > > the
-> > > +  current stipulated dma-fence maximum signal delay to complete
-> > > and
-> > > +  which therefore needs to set the gpu_vm or the GPU execution
-> > > context in
-> > > +  a certain mode that disallows completion dma-fences.
-> > > +
-> > > +* ``exec function``: An exec function is a function that
-> > > revalidates all
-> > > +  affected vmas, submits a gpu command batch and registers the
-> > 
-> > The document sometimes uses "GPU" and sometimes "gpu", maybe we can
-> > stick to
-> > "GPU" everywhere?
-> > 
-> > > +  dma_fence representing the gpu command's activity with all
-> > > affected
-> > > +  dma_resvs. For completeness, although not covered by this
-> > > document,
-> > > +  it's worth mentioning that an exec function may also be the
-> > > +  revalidation worker that is used by some drivers in compute /
-> > > +  long-running mode.
-> > > +
-> > > +* ``bind context``: A context identifier used for the VM_BIND
-> > > +  operation. VM_BIND operations that use the same bind context can
-> > > be
-> > > +  assumed, where it matters, to complete in order of submission.
-> > > No such
-> > > +  assumptions can be made for VM_BIND operations using separate
-> > > bind contexts.
-> > > +
-> > > +* ``UMD``: User-mode driver.
-> > > +
-> > > +* ``KMD``: Kernel-mode driver.
-> > > +
-> > > +
-> > > +Synchronous / Asynchronous VM_BIND operation
-> > > +============================================
-> > > +
-> > > +Synchronous VM_BIND
-> > > +___________________
-> > > +With Synchronous VM_BIND, the VM_BIND operations all complete
-> > > before the
-> > > +IOCTL returns. A synchronous VM_BIND takes neither in-fences nor
-> > > +out-fences. Synchronous VM_BIND may block and wait for GPU
-> > > operations;
-> > > +for example swapin or clearing, or even previous binds.
-> > 
-> > s/swapin/swapping/ ?
-> 
-> It should say swap-in,
-> 
-> > 
-> > > +
-> > > +Asynchronous VM_BIND
-> > > +____________________
-> > > +Asynchronous VM_BIND accepts both in-syncobjs and out-syncobjs.
-> > > While the
-> > > +IOCTL may return immediately, the VM_BIND operations wait for the
-> > > in-syncobjs
-> > > +before modifying the GPU page-tables, and signal the out-syncobjs
-> > > when
-> > > +the modification is done in the sense that the next exec function
-> > > that
-> > > +awaits for the out-syncobjs will see the change. Errors are
-> > > reported
-> > > +synchronously assuming that the asynchronous part of the job never
-> > > errors.
-> > > +In low-memory situations the implementation may block, performing
-> > > the
-> > > +VM_BIND synchronously, because there might not be enough memory
-> > > +immediately available for preparing the asynchronous operation.
-> > > +
-> > > +If the VM_BIND IOCTL takes a list or an array of operations as an
-> > > argument,
-> > > +the in-syncobjs needs to signal before the first operation starts
-> > > to
-> > > +execute, and the out-syncobjs signal after the last operation
-> > > +completes. Operations in the operation list can be assumed, where
-> > > it
-> > > +matters, to complete in order.
-> > > +
-> > > +To aid in supporting user-space queues, the VM_BIND may take a
-> > > bind context.
-> > > +
-> > > +The purpose of an Asynchronous VM_BIND operation is for user-mode
-> > > +drivers to be able to pipeline interleaved gpu_vm modifications
-> > > and
-> > > +exec functions. For long-running workloads, such pipelining of a
-> > > bind
-> > > +operation is not allowed and any in-fences need to be awaited
-> > > +synchronously.
-> > > +
-> > > +Also for VM_BINDS for long-running gpu_vms the user-mode driver
-> > > should typically
-> > > +select memory fences as out-fences since that gives greater
-> > > flexibility for
-> > > +the kernel mode driver to inject other  operations into the bind /
-> > 
-> > s/other  operations/other operations/ (extra white space)
-> 
-> Thanks. I'll fix this and the other review comments.
+To reduce the power consumption disable FPU residue on some specific
+devices if total EUs are 1024.
 
-for the next rounds, please include dri-devel
+Signed-off-by: Aravind Iddamsetty <aravind.iddamsetty@intel.com>
+Signed-off-by: Niranjana Vishwanathapura <niranjana.vishwanathapura@intel.com>
+---
+ drivers/gpu/drm/xe/regs/xe_gt_regs.h |  1 +
+ drivers/gpu/drm/xe/xe_gt_topology.c  |  3 ---
+ drivers/gpu/drm/xe/xe_gt_types.h     |  3 +++
+ drivers/gpu/drm/xe/xe_wa.c           | 34 ++++++++++++++++++++++++++++
+ 4 files changed, 38 insertions(+), 3 deletions(-)
 
-> /Thomas
-> 
-> > 
-> > Francois
-> > 
-> > > +unbind operations. Like for example inserting breakpoints into
-> > > batch
-> > > +buffers. The workload execution can then easily be pipelined
-> > > behind
-> > > +the bind completion using the memory out-fence as the signal
-> > > condition
-> > > +for a gpu semaphore embedded by UMD in the workload.
-> > > +
-> > > +Multi-operation VM_BIND IOCTL error handling and interrupts
-> > > +===========================================================
-> > > +
-> > > +The VM_BIND operations of the IOCTL may error due to lack of
-> > > resources
-> > > +to complete and also due to interrupted waits. In both situations
-> > > UMD
-> > > +should preferably restart the IOCTL after taking suitable action.
-> > > If
-> > > +UMD has overcommitted a memory resource, an -ENOSPC error will be
-> > > +returned, and UMD may then unbind resources that are not used at
-> > > the
-> > > +moment and restart the IOCTL. On -EINTR, UMD should simply restart
-> > > the
-> > > +IOCTL and on -ENOMEM user-space may either attempt to free known
-> > > +system memory resources or abort the operation. If aborting as a
-> > > +result of a failed operation in a list of operations, some
-> > > operations
-> > > +may still have completed, and to get back to a known state, user-
-> > > space
-> > > +should therefore attempt to unbind all virtual memory regions
-> > > touched
-> > > +by the failing IOCTL.
-> > > +Unbind operations are guaranteed not to cause any errors due to
-> > > +resource constraints.
-> > > +In between a failed VM_BIND IOCTL and a successful restart there
-> > > may
-> > > +be implementation defined restrictions on the use of the gpu_vm.
-> > > For a
-> > > +description why, please see `KMD implementation details`_ under
-> > > [error
-> > > +state saving]_.
-> > > +
-> > > +Sample uAPI implementations
-> > > +===========================
-> > > +Suggested uAPI implementations at the moment of writing can be
-> > > found for
-> > > +the Nouveau driver `here
-> > > +<
-> > > https://patchwork.freedesktop.org/patch/543260/?series=112994&rev=6
-> > > >`_.
-> > > +and for the Xe driver `here
-> > > +<
-> > > https://cgit.freedesktop.org/drm/drm-xe/diff/include/uapi/drm/xe_dr
-> > > m.h?h=drm-xe-next&id=9cb016ebbb6a275f57b1cb512b95d5a842391ad7>`_.
-> > > +
-> > > +KMD implementation details
-> > > +==========================
-> > > +
-> > > +Open: When the VM_BIND IOCTL returns an error, some or even parts
-> > > of
-> > > +an operation may have been completed. If the IOCTL is restarted,
-> > > in
-> > > +order to know where to restart, the KMD can either put the gpu_vm
-> > > in
-> > > +an error state and save one instance of the needed restart state
-> > > +internally. In this case, KMD needs to block further modifications
-> > > of
-> > > +the gpu_vm state that may cause additional failures requiring a
-> > > +restart state save, until the error has been fully resolved. If
-> > > the
-> > > +uAPI instead defines a pointer to a UMD allocated cookie in the
-> > > IOCTL
-> > > +struct, it could also choose to store the restart state in that
-> > > cookie.
-> > > +
-> > > +The restart state may, for example, be the number of successfully
-> > > +completed operations.
-> > > +
-> > > +Easiest for UMD would of course be if KMD did a full unwind on
-> > > error
-> > > +so that no error state needs to be saved.
-> > > diff --git a/Documentation/gpu/rfc/xe.rst
-> > > b/Documentation/gpu/rfc/xe.rst
-> > > index 2516fe141db6..0f062e1346d2 100644
-> > > --- a/Documentation/gpu/rfc/xe.rst
-> > > +++ b/Documentation/gpu/rfc/xe.rst
-> > > @@ -138,8 +138,8 @@ memory fences. Ideally with helper support so
-> > > people don't get it wrong in all
-> > >  possible ways.
-> > >  
-> > >  As a key measurable result, the benefits of ASYNC VM_BIND and a
-> > > discussion of
-> > > -various flavors, error handling and a sample API should be
-> > > documented here or in
-> > > -a separate document pointed to by this document.
-> > > +various flavors, error handling and sample API suggestions are
-> > > documented in
-> > > +Documentation/gpu/drm-vm-bind-async.rst
-> > >  
-> > >  Userptr integration and vm_bind
-> > >  -------------------------------
-> > > -- 
-> > > 2.40.1
-> > > 
-> 
+diff --git a/drivers/gpu/drm/xe/regs/xe_gt_regs.h b/drivers/gpu/drm/xe/regs/xe_gt_regs.h
+index d654f3311351..16405b16fddf 100644
+--- a/drivers/gpu/drm/xe/regs/xe_gt_regs.h
++++ b/drivers/gpu/drm/xe/regs/xe_gt_regs.h
+@@ -316,6 +316,7 @@
+ #define   DIS_FIX_EOT1_FLUSH			REG_BIT(9)
+ 
+ #define ROW_CHICKEN				XE_REG_MCR(0xe4f0, XE_REG_OPTION_MASKED)
++#define   FPU_RESIDUE_DISABLE			REG_BIT(14)
+ #define   UGM_BACKUP_MODE			REG_BIT(13)
+ #define   MDQ_ARBITRATION_MODE			REG_BIT(12)
+ 
+diff --git a/drivers/gpu/drm/xe/xe_gt_topology.c b/drivers/gpu/drm/xe/xe_gt_topology.c
+index d4bbd0a835c2..a2da443160ab 100644
+--- a/drivers/gpu/drm/xe/xe_gt_topology.c
++++ b/drivers/gpu/drm/xe/xe_gt_topology.c
+@@ -11,9 +11,6 @@
+ #include "xe_gt.h"
+ #include "xe_mmio.h"
+ 
+-#define XE_MAX_DSS_FUSE_BITS (32 * XE_MAX_DSS_FUSE_REGS)
+-#define XE_MAX_EU_FUSE_BITS (32 * XE_MAX_EU_FUSE_REGS)
+-
+ static void
+ load_dss_mask(struct xe_gt *gt, xe_dss_mask_t mask, int numregs, ...)
+ {
+diff --git a/drivers/gpu/drm/xe/xe_gt_types.h b/drivers/gpu/drm/xe/xe_gt_types.h
+index 7d4de019f9a5..e4b894bd28bc 100644
+--- a/drivers/gpu/drm/xe/xe_gt_types.h
++++ b/drivers/gpu/drm/xe/xe_gt_types.h
+@@ -25,7 +25,10 @@ enum xe_gt_type {
+ };
+ 
+ #define XE_MAX_DSS_FUSE_REGS	2
++#define XE_MAX_DSS_FUSE_BITS (32 * XE_MAX_DSS_FUSE_REGS)
++
+ #define XE_MAX_EU_FUSE_REGS	1
++#define XE_MAX_EU_FUSE_BITS (32 * XE_MAX_EU_FUSE_REGS)
+ 
+ typedef unsigned long xe_dss_mask_t[BITS_TO_LONGS(32 * XE_MAX_DSS_FUSE_REGS)];
+ typedef unsigned long xe_eu_mask_t[BITS_TO_LONGS(32 * XE_MAX_EU_FUSE_REGS)];
+diff --git a/drivers/gpu/drm/xe/xe_wa.c b/drivers/gpu/drm/xe/xe_wa.c
+index 5eaa9bed9d12..2852eaef6043 100644
+--- a/drivers/gpu/drm/xe/xe_wa.c
++++ b/drivers/gpu/drm/xe/xe_wa.c
+@@ -13,6 +13,7 @@
+ #include "regs/xe_engine_regs.h"
+ #include "regs/xe_gt_regs.h"
+ #include "regs/xe_regs.h"
++#include "xe_device.h"
+ #include "xe_device_types.h"
+ #include "xe_force_wake.h"
+ #include "xe_gt.h"
+@@ -256,6 +257,29 @@ static const struct xe_rtp_entry_sr gt_was[] = {
+ 	{}
+ };
+ 
++static bool xe_wa_match_fpu_disable(const struct xe_gt *gt,
++				    const struct xe_hw_engine *hwe)
++{
++	struct xe_device *xe = gt_to_xe(hwe->gt);
++	struct xe_gt *gti;
++	u16 eu_count = 0;
++	u8 gt_id;
++
++	if (xe->info.devid != 0x0bd6)
++		return false;
++
++	for_each_gt(gti, xe, gt_id) {
++		u16 n_dss = bitmap_weight(gti->fuse_topo.c_dss_mask,
++					  XE_MAX_DSS_FUSE_BITS);
++		u16 n_eu = bitmap_weight(gti->fuse_topo.eu_mask_per_dss,
++					 XE_MAX_EU_FUSE_BITS);
++
++		eu_count += n_dss * n_eu;
++	}
++
++	return eu_count == 1024;
++}
++
+ static const struct xe_rtp_entry_sr engine_was[] = {
+ 	{ XE_RTP_NAME("22010931296, 18011464164, 14010919138"),
+ 	  XE_RTP_RULES(GRAPHICS_VERSION(1200), ENGINE_CLASS(RENDER)),
+@@ -518,6 +542,16 @@ static const struct xe_rtp_entry_sr engine_was[] = {
+ 		       GRAPHICS_STEP(B0, C0)),
+ 	  XE_RTP_ACTIONS(SET(CACHE_MODE_SS, DISABLE_ECC))
+ 	},
++	/*
++	 * Not a workaournd, but for tuning power.
++	 * FPU residue disable will lower the power consumption.
++	 */
++	{ XE_RTP_NAME("WaFPUResidueDisable"),
++	  XE_RTP_RULES(PLATFORM(PVC),
++		       FUNC(xe_rtp_match_first_render_or_compute),
++		       FUNC(xe_wa_match_fpu_disable)),
++	  XE_RTP_ACTIONS(SET(ROW_CHICKEN, FPU_RESIDUE_DISABLE)),
++	},
+ 
+ 	/* Xe_LPG */
+ 	{ XE_RTP_NAME("14017856879"),
+-- 
+2.21.0.rc0.32.g243a4c7e27
+
