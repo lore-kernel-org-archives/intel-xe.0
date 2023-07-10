@@ -4,50 +4,147 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 07E74C0015E
-	for <intel-xe@archiver.kernel.org>; Mon, 10 Jul 2023 09:42:20 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8996AEB64D9
+	for <intel-xe@archiver.kernel.org>; Mon, 10 Jul 2023 09:51:14 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D607210E24F;
-	Mon, 10 Jul 2023 09:42:19 +0000 (UTC)
-Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2B5DE10E252
- for <intel-xe@lists.freedesktop.org>; Mon, 10 Jul 2023 09:42:17 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 52B2410E225;
+	Mon, 10 Jul 2023 09:51:14 +0000 (UTC)
+Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1589410E225
+ for <intel-xe@lists.freedesktop.org>; Mon, 10 Jul 2023 09:51:11 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1688982137; x=1720518137;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=DFMRjJfxM39GVTr2zSSn/s6F0dl/1Xvh+NtdM91dhKY=;
- b=PyTEA8xmjNT9UdoZNyGlNppUCG+WL3B44OFhA2zRFMTMvfHELfgzFGKC
- inLenIGHRR1RBXMo1E4CK3eOu7T79In5T0Xerqo7GZwUKe2Wk6c20kwe+
- cr7tiZ9CaCTlfVTQjVzMaQZjdZ+Evwi84k42b3uytEjtuRvRzNPzIXQs5
- DUyu2d4WnXlyGAxIG058tl/ZJDfgCQzxfbV46P/T/w1Qybor2COD36p7A
- UW+grOu3bS4UcISg67pDieI9BEJH1Tq0cmUIXpmwz/CGcH9CAQMA33JBe
- gbxs67XBGJUS7IDC6LI8494oe2ggbjnaCbQxJ6w3dxhvMpmXdBEinMNmq w==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10766"; a="395081132"
-X-IronPort-AV: E=Sophos;i="6.01,194,1684825200"; d="scan'208";a="395081132"
-Received: from orsmga001.jf.intel.com ([10.7.209.18])
- by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 10 Jul 2023 02:42:16 -0700
+ t=1688982672; x=1720518672;
+ h=message-id:date:subject:to:cc:references:from:
+ in-reply-to:content-transfer-encoding:mime-version;
+ bh=4PRfX7eGk4TrCPPAuVOuRqB3FJRy4RRDCnOYn/x919I=;
+ b=Jik56ert2dh/g/KORtxwz7wcEVHhcrbbLEXZ48KY7Z/J6OyGCvw0gIBc
+ ZhyIqQyw/xKaxask5JvJNA+svewlMXRmCUIig2dmRQhtSx9ReQSkqBeEX
+ ZhhLVVGXjdoKfOwg/G3xiu5ousYqSzrxDV/g66MOe0r4sPslI8DjrpxlV
+ XrUKSCpOii/mCV2BWizQmWMMvWmP3/0Ph5/dMgFm1hve6rJP239BmExh6
+ 9l76b8Z/ilJ/C5HlG5Gf51EcrY0ipK+bglxs4SdarNG+mEb0d5HyQW9tC
+ CsHVLf5JtJ6wpLl57hcfYDAK82w3Ua2chkvHUGWgISWCcjVTExUv0Rdol g==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10766"; a="349102825"
+X-IronPort-AV: E=Sophos;i="6.01,194,1684825200"; d="scan'208";a="349102825"
+Received: from fmsmga005.fm.intel.com ([10.253.24.32])
+ by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 10 Jul 2023 02:51:10 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10766"; a="755940744"
-X-IronPort-AV: E=Sophos;i="6.01,194,1684825200"; d="scan'208";a="755940744"
-Received: from congsip-mobl2.ger.corp.intel.com (HELO mwauld-desk1.intel.com)
- ([10.252.28.16])
- by orsmga001-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 10 Jul 2023 02:42:15 -0700
-From: Matthew Auld <matthew.auld@intel.com>
-To: intel-xe@lists.freedesktop.org
-Date: Mon, 10 Jul 2023 10:40:49 +0100
-Message-ID: <20230710094037.28179-24-matthew.auld@intel.com>
-X-Mailer: git-send-email 2.41.0
-In-Reply-To: <20230710094037.28179-13-matthew.auld@intel.com>
-References: <20230710094037.28179-13-matthew.auld@intel.com>
+X-IronPort-AV: E=McAfee;i="6600,9927,10766"; a="1051301613"
+X-IronPort-AV: E=Sophos;i="6.01,194,1684825200"; d="scan'208";a="1051301613"
+Received: from orsmsx602.amr.corp.intel.com ([10.22.229.15])
+ by fmsmga005.fm.intel.com with ESMTP; 10 Jul 2023 02:51:09 -0700
+Received: from orsmsx602.amr.corp.intel.com (10.22.229.15) by
+ ORSMSX602.amr.corp.intel.com (10.22.229.15) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.27; Mon, 10 Jul 2023 02:51:09 -0700
+Received: from orsedg603.ED.cps.intel.com (10.7.248.4) by
+ orsmsx602.amr.corp.intel.com (10.22.229.15) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.27 via Frontend Transport; Mon, 10 Jul 2023 02:51:09 -0700
+Received: from NAM11-CO1-obe.outbound.protection.outlook.com (104.47.56.177)
+ by edgegateway.intel.com (134.134.137.100) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.1.2507.27; Mon, 10 Jul 2023 02:50:58 -0700
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=XOSHeYBTvaVba3jqKq6VGoLbHC+OUTw4W2O2cjntlTlrFZYGY7P7midTXvywFd5cIZk1Gv4dUum3shv/WmNLFnMW52prBxAljM0FNG3h/VMdUh1hZ9Biy7h8136mm13R/g1h7n3zzgH5kSJ+GuyjFnZ9VLdhjUQWXsPtqvrYaCh7ldCM0WbFeQUU3VrvRuExLbWk/mPy4AH0D1ihqXDM9RP88fHcIOER0mOaQ2AFHsKn04MdmnCPNCHJDelyyxWqWIqAgWAqRtUP0T2ajcfe+ZCLJ55jK+HW8fSklV+Jsm8AhOSz8f/I+mLPXW9sy2kICd/zF9gObQP+XbEDfJnWzA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=RGQPRWR3aahMPRNLv1cDcxY32zRSvSBOAcqi2QJfypA=;
+ b=Mx91AQb+jOEbgnIUiZuvAPD4nMIWsyW4nL8v6L+aJ6zkTAYeeNnZFDYnIdeDo1GXj6xqI+lOKetz8UJe6fgyzSSsp9D94Wb0+kieBYBV5jonWllGZ/bJvMYW62rFNUB1ugTdAMlR4VEA6PYKTRjaBIMHOz8mV2uFfFoOxWiQIpBaLMCPeslKHHwvQf18fHCEQcYJLW/iVRNu7XVeKbu84cw2KEIbWYu4HgxKpIZEbzI1a9l9YuOuzhgEUr8cRhsBm3w0Kva1P2ix6vQwURAzcnjRgfpvm8l+RD02g9zewDS9O8eOJTFShZ4CJIXfarTVDW2x+ZNo4kE9Cz0F4ly+vg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
+ dkim=pass header.d=intel.com; arc=none
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=intel.com;
+Received: from DM8PR11MB5653.namprd11.prod.outlook.com (2603:10b6:8:25::8) by
+ SA1PR11MB8474.namprd11.prod.outlook.com (2603:10b6:806:3ac::16) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6565.30; Mon, 10 Jul
+ 2023 09:50:51 +0000
+Received: from DM8PR11MB5653.namprd11.prod.outlook.com
+ ([fe80::9d26:3f6:8afa:4543]) by DM8PR11MB5653.namprd11.prod.outlook.com
+ ([fe80::9d26:3f6:8afa:4543%6]) with mapi id 15.20.6565.028; Mon, 10 Jul 2023
+ 09:50:51 +0000
+Message-ID: <f752470d-2c71-9545-7805-0d3128c3b04d@intel.com>
+Date: Mon, 10 Jul 2023 15:20:41 +0530
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+ Thunderbird/102.10.0
+Content-Language: en-US
+To: "Dixit, Ashutosh" <ashutosh.dixit@intel.com>
+References: <20230530103421.2824622-1-sujaritha.sundaresan@intel.com>
+ <20230530103421.2824622-2-sujaritha.sundaresan@intel.com>
+ <87a5xlhxq1.wl-ashutosh.dixit@intel.com>
+From: "Sundaresan, Sujaritha" <sujaritha.sundaresan@intel.com>
+In-Reply-To: <87a5xlhxq1.wl-ashutosh.dixit@intel.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: PN2PR01CA0106.INDPRD01.PROD.OUTLOOK.COM
+ (2603:1096:c01:27::21) To DM8PR11MB5653.namprd11.prod.outlook.com
+ (2603:10b6:8:25::8)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-Subject: [Intel-xe] [PATCH v6 11/11] drm/xe: handle TLB invalidations from
- CT fast-path
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: DM8PR11MB5653:EE_|SA1PR11MB8474:EE_
+X-MS-Office365-Filtering-Correlation-Id: 2ce71b58-d591-413d-89ed-08db812b2527
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: 5GDyRnfnVR+5QZ9tk5F7mGQ44BjcQ30dhR2dJm2c5h+3VgMWKdmMbssi3B1t+4sPT7YJ8z2P5kozl/y25GukvLce/+u656d4npKNA95uEPcJIib9d3gvII5qQSvxtpjHo/Y/+iCrithGBSlLj6ctKIdDhMsvR1dfuRFvKeKsNb9D2aSEvYoE5nsUEVb2EADiSVWFoSfNf7OL4GYPwfripVoqBYF/j8F495SyPKZPgLlvK8VQ2KaKQHGUnHUgC5khX6Jiw0Gj3FGgljJM5RER8zr8q47BSPfkMDN0Ar2yzWz4VSxtKQ9cztajUuadZJW1XOojY0BTqvBmJDFrxZlLS/JfnXo4pLItXs1rWxvG99544YUXyaAdGFEY6215fyPP+/7HdVKOcaLLNq3cOrT4mZ+7auwAaaOLjZADMaGpW122TbVAaKcf88L5lcGOZhP92AgoVTuDS0VDdKiLCvikxULSe4UMTpY2hicXhuPMT0e4OPGiq6ozwf/FxUWlb7z1gNokC5i3jFnmeZ8wbFoJdI4mpjY61iETLTJf7wy12qFPkeG3JacSZPKLpPwDyVSRw7GriTQmn1a21WSD4BT6DNLUTExsod9FSJwN0CpLgiUZcZyXBfM3WNwd6Y/X0VfyWumgqbiLDF1evfRWdWNrdw==
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:DM8PR11MB5653.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230028)(346002)(396003)(39860400002)(366004)(376002)(136003)(451199021)(86362001)(31696002)(38100700002)(82960400001)(31686004)(36756003)(37006003)(6666004)(6486002)(107886003)(6506007)(53546011)(26005)(186003)(6512007)(2616005)(5660300002)(2906002)(66556008)(316002)(478600001)(66946007)(8936002)(6862004)(66476007)(8676002)(83380400001)(4326008)(6636002)(41300700001)(45980500001)(43740500002);
+ DIR:OUT; SFP:1102; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?Sk5iRU5SdTJMVFpLS0NIVXVEb3ZObzVnQnJaTVRNOWtUZEIxenRVcFY3dGRY?=
+ =?utf-8?B?aWhBd0hLZ0dGR3JHWllkOWs5TTBPVzd6SEl6ejVSYXV1ZVhRcWs2K2FyL0pW?=
+ =?utf-8?B?OXk5N3g1b3pFaXUvYnRidHBwd1dQYkhDQXJESEZQWGgvaEJFV0tsMXR3VHpB?=
+ =?utf-8?B?TEgzTEdlK3ZIcXBpQWNwcWpJT04vaEk1NjBhQTQzd013UDVoMW9WanRxS0NR?=
+ =?utf-8?B?QzJPUTh0dVJKSFYrL1E4Y0wxTWdPV21NVWdJT0w3ekE0V3NyRWM3Wm1RSk8w?=
+ =?utf-8?B?K3NXSUd4VnZmRGk4WVFIRnZTNm5PbUNhRW9LVi92cFNySnE4ZC80eDFJTVFW?=
+ =?utf-8?B?S3UxMi9mRUl1dXcwdC9ySUl4MTBMaWJkNFBJTjFwQ0w5NzZLQUs0VzZhc3k3?=
+ =?utf-8?B?OU1tNks1TFFCcGRzWDk2dU5tTXA0RTJ6M0tTNitrTnhYbi9VNkNIWHNPSzZw?=
+ =?utf-8?B?NkFyaDFydGNGamw4L2RSRkk4NUYvQ1M3amtWQVJJYllKVkloMnozWGxCL1NE?=
+ =?utf-8?B?KzdwMSs0NjA1blAxNVFLTFNyM3czYUFreFRkRzRJaWV3TTh0Ly83QnpCSk1x?=
+ =?utf-8?B?WVplWlZJKzZzVkh2MHEzRi9HeElLZ0Q2YU1JM0FXaTg2TXBsZTJhNVZ1TXI0?=
+ =?utf-8?B?TDc3TWc4SEdDMXBqdlNWWjArdXp4cWZVSUxVOThyVURJcnpRU1FiUGRDdGVB?=
+ =?utf-8?B?cTNCdUFoYUhvM05oanpmV1ZVT1lhcWRLWVNvczQrUGkvR1Vuck0zWnlYQXFu?=
+ =?utf-8?B?c2xoZ3JQWnByeC9adGIreUcwUGFNdnd3dGFlTmFCRlp0bE1Ca1NwcTFDRGIv?=
+ =?utf-8?B?SjhDSGhrUlRHd1NyRXBTUVIwRURSM2NlVXpEbzl2SUNiUFFHbkhVQ2o0WGlY?=
+ =?utf-8?B?ektSQ0RGcnVXdzJhQ1liNEc1SjgxKzNlZmdmQzdpQ0JiWUZidGRvL00wY0pS?=
+ =?utf-8?B?YWtOck9wM2ttZ01UNU9QTnlFTVhKek51V1dPSzFhSVNvWTltSlM3WWovNEIx?=
+ =?utf-8?B?ekdBdXU0Wm9tSGt0SWZvaG5lenJCZVhpc3ZRdVBET0c2ODlUSVRPTDV3OGZO?=
+ =?utf-8?B?NFA5U3VQT2tyN1E3bXUzV1FLZWxqUjdiRHV1OFpVbEpodlJEWWhuNnJWSS9N?=
+ =?utf-8?B?TXU2TjJlcHEyUFV0d3NqNmZHZFBGN0VSRzVwbUdTa2pkT1d0UjBteEJsSVB2?=
+ =?utf-8?B?OHJaTmxITE5QeFRsbnNxWTZDbEVKelF4M0oxbU1RV0J0T3IxQUp0b1VZT013?=
+ =?utf-8?B?bVRuZTZscmVFZkZrSXBmYStwaUl5TXRubTRLUEFXL1FuM3Mvdkc1WStITTlB?=
+ =?utf-8?B?OEJxTDlEMG5oQW11WGFBZVZNYTlxdkE1SC9qQTVFdUt3b3pUckNwd0hlL3Rz?=
+ =?utf-8?B?dVdnZWs3YzhnOHZFMEI1SUpydGV4RXhJbm9NTk5kdnorMU9Pb3RXYlM2dGVV?=
+ =?utf-8?B?cDZCemFRRXNpR3BtY2NXRVVEaGdGNEE2UStHZGJwWEFmYUtBSElTQnFoSUVM?=
+ =?utf-8?B?ODRLbFZXeUc1NEhaNDQ5WC83czVFSFQrbGl4TzZkeDR4N1FoaG9qZzNvcUR0?=
+ =?utf-8?B?OXVwem5nWjlCU2EyV0MxT3lWbVppMS9wZkR3T1dYNkhtNi84VW02Q3EzVGJ2?=
+ =?utf-8?B?QjNlN0RPeE4xckNWQkxKMER1U1gvOHZuRkVYMkdieDRvMDV5VjFkMng5cjVt?=
+ =?utf-8?B?a010VHYvRXkyZCtTdWJMbnk0dkhJTTQwWHlYUVRPTldNZE9GWEZybTVxbG1Y?=
+ =?utf-8?B?REpVVnY4T212ZTBUM0NRQ1FrSE5HdVBDZmg2WERpN2hYclh3YkZ5cCtIa3BE?=
+ =?utf-8?B?VDhGenhWYTNod0JMNjFqQ0VwblNKZUtreDNvN0dRTzdoSXAvQ2JDV25vU1Ux?=
+ =?utf-8?B?SmtEa01CYSsrS3RhZnh6RExtaU9IbnRtWlZxeHJMcHFxV3RacDNXZE44UTl1?=
+ =?utf-8?B?OWdHRWZ5UzNjbE12VDdWOWlZakpiWnJLblU2dlByeitpMU9ET1ovSll0cXc5?=
+ =?utf-8?B?Qy9YQ2FFVHFCbG8rZEpjWlFrWGZHRGVtSzdjYXA2Nm1VcjBBSmx6cVZVZTNw?=
+ =?utf-8?B?TytSNWkyV2VWRHdiNmNWdisyUTRZeHhBSHJreGd1Yk04TjRGR1Z0T0wybjhD?=
+ =?utf-8?B?L00yK2JkUDc0bG1ZZzhob20rU1dDbDI0Vm01Slc4SVF6VlQvNGZCTXM1cHZq?=
+ =?utf-8?Q?zEsoXBV4D7ya88/HTKBJrMo=3D?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: 2ce71b58-d591-413d-89ed-08db812b2527
+X-MS-Exchange-CrossTenant-AuthSource: DM8PR11MB5653.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 10 Jul 2023 09:50:51.3518 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: 4ciTt9fbWMrT+pX+1xRa9QzSJCeBfgJYMvolFwqi0CZ51olX5ysd61L2a6nyU8Kkt0+WppFWkYnOvq0NDnPk53nB8UsoRVCxIPaqtuAodF8=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SA1PR11MB8474
+X-OriginatorOrg: intel.com
+Subject: Re: [Intel-xe] [PATCH 1/1] [RFC]drm/xe: Adding throttle reasons
+ sysfs attributes
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -59,335 +156,154 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Cc: intel-xe@lists.freedesktop.org, rodrigo.vivi@intel.com
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-In various test cases that put the system under a heavy load, we can
-sometimes see errors with missed TLB invalidations. In such cases we see
-the interrupt arrive for the invalidation from the GuC, however the
-actual processing of the completion is pushed onto a workqueue and
-handled with all the other CT stuff, which might take longer than
-expected. Since we expect TLB invalidations to complete within a
-reasonable amount of time (at most ~250ms), and they do seem pretty
-critical, allow handling directly from the CT fast-path.
 
-v2 (José):
-  - Actually use the correct spinlock/unlock_irq, since pending_lock is
-    grabbed from IRQ.
-v3:
-  - Don't publish the TLB fence on the list until after we fully
-    initialize it and successfully do the CT send. The list is now only
-    protected by the spin_lock pending_lock and we can't hold that
-    across the entire TLB send operation.
-v4 (Matt Brost):
-  - Be careful with racing against fast CT path writing the seqno,
-    before we have actually published the fence.
+On 5/31/2023 11:02 AM, Dixit, Ashutosh wrote:
+> On Tue, 30 May 2023 03:34:21 -0700, Sujaritha Sundaresan wrote:
+> Hi Suja,
+>
+>> Adding throttle reasons sysfs attributes.
+> I am not sure about the location for these sysfs files. And whether or not
+> these are being exposed using hwmon or not in xe. I believe the patch will
+> have to wait for someone like Rodrigo to look at (unless another xe
+> developer knows) but we can fix other things meanwhile.
+>
+> Also one more comment: didn't we want to expose the upper 16 bits too (the
+> log bits) or only the lower 16 bits (status bits)? Though the log bits can
+> be a separate patch too.
+>
+>> Signed-off-by: Sujaritha Sundaresan <sujaritha.sundaresan@intel.com>
+>> ---
+>>   drivers/gpu/drm/xe/regs/xe_gt_regs.h | 12 +++++
+>>   drivers/gpu/drm/xe/xe_guc_pc.c       | 67 ++++++++++++++++++++++++++++
+>>   2 files changed, 79 insertions(+)
+>>
+>> diff --git a/drivers/gpu/drm/xe/regs/xe_gt_regs.h b/drivers/gpu/drm/xe/regs/xe_gt_regs.h
+>> index e64e5c0733d6..e7fe8a3e348e 100644
+>> --- a/drivers/gpu/drm/xe/regs/xe_gt_regs.h
+>> +++ b/drivers/gpu/drm/xe/regs/xe_gt_regs.h
+>> @@ -374,4 +374,16 @@
+>>   #define XEHPC_BCS5_BCS6_INTR_MASK		XE_REG(0x190118)
+>>   #define XEHPC_BCS7_BCS8_INTR_MASK		XE_REG(0x19011c)
+>>
+>> +#define GT0_PERF_LIMIT_REASONS			XE_REG(0x1381a8)
+>> +#define   GT0_PERF_LIMIT_REASONS_MASK		0xde3
+>> +#define   PROCHOT_MASK				REG_BIT(0)
+>> +#define   THERMAL_LIMIT_MASK			REG_BIT(1)
+>> +#define   RATL_MASK				REG_BIT(5)
+>> +#define   VR_THERMALERT_MASK			REG_BIT(6)
+>> +#define   VR_TDC_MASK				REG_BIT(7)
+>> +#define   POWER_LIMIT_4_MASK			REG_BIT(8)
+>> +#define   POWER_LIMIT_1_MASK			REG_BIT(10)
+>> +#define   POWER_LIMIT_2_MASK			REG_BIT(11)
+>> +#define MTL_MEDIA_PERF_LIMIT_REASONS		XE_REG(0x138030)
+>> +
+>>   #endif
+>> diff --git a/drivers/gpu/drm/xe/xe_guc_pc.c b/drivers/gpu/drm/xe/xe_guc_pc.c
+>> index e799faa1c6b8..363332881e4d 100644
+>> --- a/drivers/gpu/drm/xe/xe_guc_pc.c
+>> +++ b/drivers/gpu/drm/xe/xe_guc_pc.c
+>> @@ -638,6 +638,73 @@ static const struct attribute *pc_attrs[] = {
+>> 	NULL
+>>   };
+>>
+>> +static inline
+>> +xe_reg_t xe_gt_perf_limit_reasons_reg(struct xe_gt *gt)
+> I don't see xe_reg_t being typedef'd anywhere, only 'struct xe_reg'?
+>
+>> +{
+>> +        if (xe_gt_is_media_type(gt))
+>> +                return MTL_MEDIA_PERF_LIMIT_REASONS;
+>> +
+>> +        return GT0_PERF_LIMIT_REASONS;
+>> +}
+>> +
+>> +struct xe_gt_bool_throttle_attr {
+>> +	struct attribute attr;
+>> +	ssize_t (*show)(struct device *dev, struct device_attribute *attr,
+>> +			char *buf);
+>> +	xe_reg_t (*reg32)(struct xe_gt *gt);
+>> +	u32 mask;
+>> +};
+>> +
+>> +bool xe_mmio_mask_read(struct xe_gt *gt,
+>> +			xe_reg_t reg32, u32 mask)
+>> +{
+>> +	return xe_mmio_read32(gt, reg32) & mask;
+>> +}
+>> +
+>> +static ssize_t throttle_reason_bool_show(struct device *dev,
+>> +					 struct device_attribute *attr,
+>> +					 char *buff)
+>> +{
+>> +	struct kobject *kobj = &dev->kobj;
+>> +	struct xe_gt *gt = kobj_to_gt(kobj);
+>> +	struct xe_gt_bool_throttle_attr *t_attr =
+>> +			(struct xe_gt_bool_throttle_attr *) attr;
+>> +	bool val = xe_mmio_mask_read(&gt->rps, t_attr->reg32(gt), t_attr->mask);
+>> +
+>> +	return sysfs_emit(buff, "%u\n", val);
+>> +}
+>> +
+>> +#define XE_GT_BOOL_ATTR_RO(sysfs_func__, mask__) \
+>> +struct xe_gt_bool_throttle_attr attr_##sysfs_func__ = { \
+>> +	.attr = { .name = __stringify(sysfs_func__), .mode = 0444 }, \
+>> +	.show = throttle_reason_bool_show, \
+>> +	.reg32 = xe_gt_perf_limit_reasons_reg, \
+>> +	.mask = mask__, \
+>> +}
+>> +
+>> +static XE_GT_BOOL_ATTR_RO(throttle_reason_status, GT0_PERF_LIMIT_REASONS_MASK);
+>> +static XE_GT_BOOL_ATTR_RO(throttle_reason_pl1, POWER_LIMIT_1_MASK);
+>> +static XE_GT_BOOL_ATTR_RO(throttle_reason_pl2, POWER_LIMIT_2_MASK);
+>> +static XE_GT_BOOL_ATTR_RO(throttle_reason_pl4, POWER_LIMIT_4_MASK);
+>> +static XE_GT_BOOL_ATTR_RO(throttle_reason_thermal, THERMAL_LIMIT_MASK);
+>> +static XE_GT_BOOL_ATTR_RO(throttle_reason_prochot, PROCHOT_MASK);
+>> +static XE_GT_BOOL_ATTR_RO(throttle_reason_ratl, RATL_MASK);
+>> +static XE_GT_BOOL_ATTR_RO(throttle_reason_vr_thermalert, VR_THERMALERT_MASK);
+>> +static XE_GT_BOOL_ATTR_RO(throttle_reason_vr_tdc, VR_TDC_MASK);
+>> +
+>> +static const struct attribute *throttle_reason_attrs[] = {
+>> +	&dev_attr_throttle_reason_status.attr,
+>> +	&dev_attr_throttle_reason_pl1.attr,
+>> +	&dev_attr_throttle_reason_pl2.attr,
+>> +	&dev_attr_throttle_reason_pl4.attr,
+>> +	&dev_attr_throttle_reason_thermal.attr,
+>> +	&dev_attr_throttle_reason_prochot.attr,
+>> +	&dev_attr_throttle_reason_ratl.attr,
+>> +	&dev_attr_throttle_reason_vr_thermalert.attr,
+>> +	&dev_attr_throttle_reason_vr_tdc.attr,
+>> +	NULL
+>> +};
+> Also don't see these attributes actually being created, using
+> sysfs_create_files etc. So has this patch been compiled/tested?
+>
+>> +
+>>   static void mtl_init_fused_rp_values(struct xe_guc_pc *pc)
+>>   {
+>> 	struct xe_gt *gt = pc_to_gt(pc);
+>> --
+>> 2.25.1
+>>
+> Thanks.
+> --
+> Ashutosh
 
-References: https://gitlab.freedesktop.org/drm/xe/kernel/-/issues/297
-References: https://gitlab.freedesktop.org/drm/xe/kernel/-/issues/320
-References: https://gitlab.freedesktop.org/drm/xe/kernel/-/issues/449
-Signed-off-by: Matthew Auld <matthew.auld@intel.com>
-Cc: Matthew Brost <matthew.brost@intel.com>
-Cc: José Roberto de Souza <jose.souza@intel.com>
-Reviewed-by: Matthew Brost <matthew.brost@intel.com>
----
- drivers/gpu/drm/xe/xe_gt_tlb_invalidation.c | 134 ++++++++++++--------
- drivers/gpu/drm/xe/xe_gt_types.h            |   5 +
- drivers/gpu/drm/xe/xe_guc_ct.c              |  12 +-
- 3 files changed, 91 insertions(+), 60 deletions(-)
 
-diff --git a/drivers/gpu/drm/xe/xe_gt_tlb_invalidation.c b/drivers/gpu/drm/xe/xe_gt_tlb_invalidation.c
-index 2a6ecae9e635..298b173eac66 100644
---- a/drivers/gpu/drm/xe/xe_gt_tlb_invalidation.c
-+++ b/drivers/gpu/drm/xe/xe_gt_tlb_invalidation.c
-@@ -25,7 +25,7 @@ static void xe_gt_tlb_fence_timeout(struct work_struct *work)
- 					tlb_invalidation.fence_tdr.work);
- 	struct xe_gt_tlb_invalidation_fence *fence, *next;
- 
--	mutex_lock(&gt->uc.guc.ct.lock);
-+	spin_lock_irq(&gt->tlb_invalidation.pending_lock);
- 	list_for_each_entry_safe(fence, next,
- 				 &gt->tlb_invalidation.pending_fences, link) {
- 		s64 since_inval_ms = ktime_ms_delta(ktime_get(),
-@@ -47,7 +47,7 @@ static void xe_gt_tlb_fence_timeout(struct work_struct *work)
- 		queue_delayed_work(system_wq,
- 				   &gt->tlb_invalidation.fence_tdr,
- 				   TLB_TIMEOUT);
--	mutex_unlock(&gt->uc.guc.ct.lock);
-+	spin_unlock_irq(&gt->tlb_invalidation.pending_lock);
- }
- 
- /**
-@@ -63,6 +63,7 @@ int xe_gt_tlb_invalidation_init(struct xe_gt *gt)
- {
- 	gt->tlb_invalidation.seqno = 1;
- 	INIT_LIST_HEAD(&gt->tlb_invalidation.pending_fences);
-+	spin_lock_init(&gt->tlb_invalidation.pending_lock);
- 	spin_lock_init(&gt->tlb_invalidation.lock);
- 	gt->tlb_invalidation.fence_context = dma_fence_context_alloc(1);
- 	INIT_DELAYED_WORK(&gt->tlb_invalidation.fence_tdr,
-@@ -72,14 +73,20 @@ int xe_gt_tlb_invalidation_init(struct xe_gt *gt)
- }
- 
- static void
--invalidation_fence_signal(struct xe_gt_tlb_invalidation_fence *fence)
-+__invalidation_fence_signal(struct xe_gt_tlb_invalidation_fence *fence)
- {
- 	trace_xe_gt_tlb_invalidation_fence_signal(fence);
--	list_del(&fence->link);
- 	dma_fence_signal(&fence->base);
- 	dma_fence_put(&fence->base);
- }
- 
-+static void
-+invalidation_fence_signal(struct xe_gt_tlb_invalidation_fence *fence)
-+{
-+	list_del(&fence->link);
-+	__invalidation_fence_signal(fence);
-+}
-+
- /**
-  * xe_gt_tlb_invalidation_reset - Initialize GT TLB invalidation reset
-  * @gt: graphics tile
-@@ -98,6 +105,7 @@ void xe_gt_tlb_invalidation_reset(struct xe_gt *gt)
- 	 */
- 
- 	mutex_lock(&gt->uc.guc.ct.lock);
-+	spin_lock_irq(&gt->tlb_invalidation.pending_lock);
- 	cancel_delayed_work(&gt->tlb_invalidation.fence_tdr);
- 	/*
- 	 * We might have various kworkers waiting for TLB flushes to complete
-@@ -116,9 +124,23 @@ void xe_gt_tlb_invalidation_reset(struct xe_gt *gt)
- 	list_for_each_entry_safe(fence, next,
- 				 &gt->tlb_invalidation.pending_fences, link)
- 		invalidation_fence_signal(fence);
-+	spin_unlock_irq(&gt->tlb_invalidation.pending_lock);
- 	mutex_unlock(&gt->uc.guc.ct.lock);
- }
- 
-+static bool tlb_invalidation_seqno_past(struct xe_gt *gt, int seqno)
-+{
-+	int seqno_recv = READ_ONCE(gt->tlb_invalidation.seqno_recv);
-+
-+	if (seqno - seqno_recv < -(TLB_INVALIDATION_SEQNO_MAX / 2))
-+		return false;
-+
-+	if (seqno - seqno_recv > (TLB_INVALIDATION_SEQNO_MAX / 2))
-+		return true;
-+
-+	return seqno_recv >= seqno;
-+}
-+
- static int send_tlb_invalidation(struct xe_guc *guc,
- 				 struct xe_gt_tlb_invalidation_fence *fence,
- 				 u32 *action, int len)
-@@ -126,7 +148,6 @@ static int send_tlb_invalidation(struct xe_guc *guc,
- 	struct xe_gt *gt = guc_to_gt(guc);
- 	int seqno;
- 	int ret;
--	bool queue_work;
- 
- 	/*
- 	 * XXX: The seqno algorithm relies on TLB invalidation being processed
-@@ -137,21 +158,35 @@ static int send_tlb_invalidation(struct xe_guc *guc,
- 	mutex_lock(&guc->ct.lock);
- 	seqno = gt->tlb_invalidation.seqno;
- 	if (fence) {
--		queue_work = list_empty(&gt->tlb_invalidation.pending_fences);
- 		fence->seqno = seqno;
--		list_add_tail(&fence->link,
--			      &gt->tlb_invalidation.pending_fences);
- 		trace_xe_gt_tlb_invalidation_fence_send(fence);
- 	}
- 	action[1] = seqno;
- 	ret = xe_guc_ct_send_locked(&guc->ct, action, len,
- 				    G2H_LEN_DW_TLB_INVALIDATE, 1);
- 	if (!ret && fence) {
--		fence->invalidation_time = ktime_get();
--		if (queue_work)
--			queue_delayed_work(system_wq,
--					   &gt->tlb_invalidation.fence_tdr,
--					   TLB_TIMEOUT);
-+		spin_lock_irq(&gt->tlb_invalidation.pending_lock);
-+		/*
-+		 * We haven't actually published the TLB fence as per
-+		 * pending_fences, but in theory our seqno could have already
-+		 * been written as we acquired the pending_lock. In such a case
-+		 * we can just go ahead and signal the fence here.
-+		 */
-+		if (tlb_invalidation_seqno_past(gt, seqno)) {
-+			__invalidation_fence_signal(fence);
-+		} else {
-+			fence->invalidation_time = ktime_get();
-+			list_add_tail(&fence->link,
-+				      &gt->tlb_invalidation.pending_fences);
-+
-+			if (list_is_singular(&gt->tlb_invalidation.pending_fences))
-+				queue_delayed_work(system_wq,
-+						   &gt->tlb_invalidation.fence_tdr,
-+						   TLB_TIMEOUT);
-+		}
-+		spin_unlock_irq(&gt->tlb_invalidation.pending_lock);
-+	} else if (ret < 0 && fence) {
-+		__invalidation_fence_signal(fence);
- 	}
- 	if (!ret) {
- 		gt->tlb_invalidation.seqno = (gt->tlb_invalidation.seqno + 1) %
-@@ -160,8 +195,6 @@ static int send_tlb_invalidation(struct xe_guc *guc,
- 			gt->tlb_invalidation.seqno = 1;
- 		ret = seqno;
- 	}
--	if (ret < 0 && fence)
--		invalidation_fence_signal(fence);
- 	mutex_unlock(&guc->ct.lock);
- 
- 	return ret;
-@@ -276,19 +309,6 @@ int xe_gt_tlb_invalidation_vma(struct xe_gt *gt,
- 	return ret;
- }
- 
--static bool tlb_invalidation_seqno_past(struct xe_gt *gt, int seqno)
--{
--	int seqno_recv = READ_ONCE(gt->tlb_invalidation.seqno_recv);
--
--	if (seqno - seqno_recv < -(TLB_INVALIDATION_SEQNO_MAX / 2))
--		return false;
--
--	if (seqno - seqno_recv > (TLB_INVALIDATION_SEQNO_MAX / 2))
--		return true;
--
--	return seqno_recv >= seqno;
--}
--
- /**
-  * xe_gt_tlb_invalidation_wait - Wait for TLB to complete
-  * @gt: graphics tile
-@@ -336,22 +356,31 @@ int xe_gt_tlb_invalidation_wait(struct xe_gt *gt, int seqno)
- int xe_guc_tlb_invalidation_done_handler(struct xe_guc *guc, u32 *msg, u32 len)
- {
- 	struct xe_gt *gt = guc_to_gt(guc);
--	struct xe_gt_tlb_invalidation_fence *fence;
--	int expected_seqno;
--
--	lockdep_assert_held(&guc->ct.lock);
-+	struct xe_gt_tlb_invalidation_fence *fence, *next;
-+	unsigned long flags;
- 
- 	if (unlikely(len != 1))
- 		return -EPROTO;
- 
--	/* Sanity check on seqno */
--	expected_seqno = (gt->tlb_invalidation.seqno_recv + 1) %
--		TLB_INVALIDATION_SEQNO_MAX;
--	if (!expected_seqno)
--		expected_seqno = 1;
--	if (drm_WARN_ON(&gt_to_xe(gt)->drm, expected_seqno != msg[0])) {
--		drm_err(&gt_to_xe(gt)->drm, "TLB expected_seqno(%d) != msg(%u)\n",
--			expected_seqno, msg[0]);
-+	/*
-+	 * This can also be run both directly from the IRQ handler and also in
-+	 * process_g2h_msg(). Only one may process any individual CT message,
-+	 * however the order they are processed here could result in skipping a
-+	 * seqno. To handle that we just process all the seqnos from the last
-+	 * seqno_recv up to and including the one in msg[0]. The delta should be
-+	 * very small so there shouldn't be much of pending_fences we actually
-+	 * need to iterate over here.
-+	 *
-+	 * From GuC POV we expect the seqnos to always appear in-order, so if we
-+	 * see something later in the timeline we can be sure that anything
-+	 * appearing earlier has already signalled, just that we have yet to
-+	 * officially process the CT message like if racing against
-+	 * process_g2h_msg().
-+	 */
-+	spin_lock_irqsave(&gt->tlb_invalidation.pending_lock, flags);
-+	if (tlb_invalidation_seqno_past(gt, msg[0])) {
-+		spin_unlock_irqrestore(&gt->tlb_invalidation.pending_lock, flags);
-+		return 0;
- 	}
- 
- 	/*
-@@ -361,19 +390,24 @@ int xe_guc_tlb_invalidation_done_handler(struct xe_guc *guc, u32 *msg, u32 len)
- 	WRITE_ONCE(gt->tlb_invalidation.seqno_recv, msg[0]);
- 	wake_up_all(&guc->ct.wq);
- 
--	fence = list_first_entry_or_null(&gt->tlb_invalidation.pending_fences,
--					 typeof(*fence), link);
--	if (fence)
-+	list_for_each_entry_safe(fence, next,
-+				 &gt->tlb_invalidation.pending_fences, link) {
- 		trace_xe_gt_tlb_invalidation_fence_recv(fence);
--	if (fence && tlb_invalidation_seqno_past(gt, fence->seqno)) {
-+
-+		if (!tlb_invalidation_seqno_past(gt, fence->seqno))
-+			break;
-+
- 		invalidation_fence_signal(fence);
--		if (!list_empty(&gt->tlb_invalidation.pending_fences))
--			mod_delayed_work(system_wq,
--					 &gt->tlb_invalidation.fence_tdr,
--					 TLB_TIMEOUT);
--		else
--			cancel_delayed_work(&gt->tlb_invalidation.fence_tdr);
- 	}
- 
-+	if (!list_empty(&gt->tlb_invalidation.pending_fences))
-+		mod_delayed_work(system_wq,
-+				 &gt->tlb_invalidation.fence_tdr,
-+				 TLB_TIMEOUT);
-+	else
-+		cancel_delayed_work(&gt->tlb_invalidation.fence_tdr);
-+
-+	spin_unlock_irqrestore(&gt->tlb_invalidation.pending_lock, flags);
-+
- 	return 0;
- }
-diff --git a/drivers/gpu/drm/xe/xe_gt_types.h b/drivers/gpu/drm/xe/xe_gt_types.h
-index 7d4de019f9a5..28b8e8a86fc9 100644
---- a/drivers/gpu/drm/xe/xe_gt_types.h
-+++ b/drivers/gpu/drm/xe/xe_gt_types.h
-@@ -163,6 +163,11 @@ struct xe_gt {
- 		 * invaliations, protected by CT lock
- 		 */
- 		struct list_head pending_fences;
-+		/**
-+		 * @pending_lock: protects @pending_fences and updating
-+		 * @seqno_recv.
-+		 */
-+		spinlock_t pending_lock;
- 		/**
- 		 * @fence_tdr: schedules a delayed call to
- 		 * xe_gt_tlb_fence_timeout after the timeut interval is over.
-diff --git a/drivers/gpu/drm/xe/xe_guc_ct.c b/drivers/gpu/drm/xe/xe_guc_ct.c
-index 0b086d17c083..9fb5fd4391d2 100644
---- a/drivers/gpu/drm/xe/xe_guc_ct.c
-+++ b/drivers/gpu/drm/xe/xe_guc_ct.c
-@@ -994,15 +994,8 @@ static int g2h_read(struct xe_guc_ct *ct, u32 *msg, bool fast_path)
- 			return 0;
- 
- 		switch (FIELD_GET(GUC_HXG_EVENT_MSG_0_ACTION, msg[1])) {
--		/*
--		 * FIXME: We really should process
--		 * XE_GUC_ACTION_TLB_INVALIDATION_DONE here in the fast-path as
--		 * these critical for page fault performance. We currently can't
--		 * due to TLB invalidation done algorithm expecting the seqno
--		 * returned in-order. With some small changes to the algorithm
--		 * and locking we should be able to support out-of-order seqno.
--		 */
- 		case XE_GUC_ACTION_REPORT_PAGE_FAULT_REQ_DESC:
-+		case XE_GUC_ACTION_TLB_INVALIDATION_DONE:
- 			break;	/* Process these in fast-path */
- 		default:
- 			return 0;
-@@ -1056,8 +1049,7 @@ void xe_guc_ct_fast_path(struct xe_guc_ct *ct)
- 	struct xe_device *xe = ct_to_xe(ct);
- 	int len;
- 
--	if (!xe_device_in_fault_mode(xe) ||
--	    !xe_device_mem_access_get_if_ongoing(xe))
-+	if (!xe_device_mem_access_get_if_ongoing(xe))
- 		return;
- 
- 	spin_lock(&ct->fast_lock);
--- 
-2.41.0
+Hi Ashutosh,
+
+This was just a very basic non functional RFC patch meant to clarify the 
+path/location of these sysfs attributes.
+
+It's not a usable patch.
+
+Rodrigo, could you help clarify whether we are intending to expose 
+throttle reasons via hwmon in Xe ?
+
+Regards,
+
+Suja
 
