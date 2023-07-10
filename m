@@ -4,45 +4,56 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 19CEFEB64DC
-	for <intel-xe@archiver.kernel.org>; Mon, 10 Jul 2023 14:43:57 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6067EEB64D9
+	for <intel-xe@archiver.kernel.org>; Mon, 10 Jul 2023 14:49:23 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id DC4B310E132;
-	Mon, 10 Jul 2023 14:43:56 +0000 (UTC)
-Received: from mga06.intel.com (mga06b.intel.com [134.134.136.31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A9E5210E132
- for <intel-xe@lists.freedesktop.org>; Mon, 10 Jul 2023 14:43:54 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1689000236; x=1720536236;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=uRQLYQ7GzdAIYgXV4XLQ/+alwAkZZuDWRnqjytuqgXw=;
- b=Eyx+dJNbUe523rRpKgJ5I+1BnYAAX92+0kDSgTvCJQLEsW+r6d8lyFbO
- ElqL+xF8Ixff8EeVrHmNjIA8wtRE6dR94q2YVtiGhKo2w0e5CAlvkvbcY
- GCtsMXIOGpvpXroJXYtGpdop3XqBxOICAXfasPIYtMiUe+c7V9L3FSNL5
- E2H2+aZZGv0NiqmNuaxG/PjGIAbCjLEb4XUN1eWveAs2nc3jtYML4gmNP
- k47E80vqy7k2rP7pYD5IXwsc3NmbYNudRFtGK+nwG5PbLyTbkq2XsulXL
- tWSXd5BEko7q3WaX2nF/4ycIkOBsarRZTt2nEM9Tf0XV0EqkOS/Wg4Wi2 g==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10767"; a="428054252"
-X-IronPort-AV: E=Sophos;i="6.01,194,1684825200"; d="scan'208";a="428054252"
-Received: from fmsmga005.fm.intel.com ([10.253.24.32])
- by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 10 Jul 2023 07:43:52 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10767"; a="1051372863"
-X-IronPort-AV: E=Sophos;i="6.01,194,1684825200"; d="scan'208";a="1051372863"
-Received: from lstrano-desk.jf.intel.com ([10.24.89.184])
- by fmsmga005-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 10 Jul 2023 07:43:51 -0700
-From: Matthew Brost <matthew.brost@intel.com>
-To: <intel-xe@lists.freedesktop.org>
-Date: Mon, 10 Jul 2023 07:44:05 -0700
-Message-Id: <20230710144405.1863923-1-matthew.brost@intel.com>
-X-Mailer: git-send-email 2.34.1
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0E2DC10E132;
+	Mon, 10 Jul 2023 14:49:23 +0000 (UTC)
+Received: from mail-lj1-x234.google.com (mail-lj1-x234.google.com
+ [IPv6:2a00:1450:4864:20::234])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 94EAE10E29F
+ for <intel-xe@lists.freedesktop.org>; Mon, 10 Jul 2023 14:49:21 +0000 (UTC)
+Received: by mail-lj1-x234.google.com with SMTP id
+ 38308e7fff4ca-2b6b98ac328so68368261fa.0
+ for <intel-xe@lists.freedesktop.org>; Mon, 10 Jul 2023 07:49:21 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=gmail.com; s=20221208; t=1689000559; x=1691592559;
+ h=cc:to:subject:message-id:date:from:in-reply-to:references
+ :mime-version:from:to:cc:subject:date:message-id:reply-to;
+ bh=gV/1kfYqbK7+viXFsmlHbtj8HE5ShZxUuzbj1K+Hc5w=;
+ b=QM/Bp+k56Wt+NI7QfVkENvvfG0N9OK24Cj87XYcfkE63SpWCSSTuiUt08KRv/XGVYn
+ A23AE6lfy8tFGwBp2bQoDMp2PPEwPt1XLbm0eZ0aJBR014Aom51biF4Aa42JfQ7Hx05A
+ 21hphYDz0f1kE+PC1myAMOpc1vpQJJiVW/TKxJDHdh5gU5q4bZXfUUsF+p+yO28k6FQN
+ j737D5bl+WtEOkpcwolk7XHpE3SwmCwTilYFwtlqaAhGIHGVWNUrjRDt+uDIE2dXv27S
+ PAPqmb8kRu8ACe3QExmgs1OoJfxTWD/TwdaRHASqcF4StQnLKfPox+QQorLfbI5kvX3o
+ GQXA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20221208; t=1689000559; x=1691592559;
+ h=cc:to:subject:message-id:date:from:in-reply-to:references
+ :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+ :reply-to;
+ bh=gV/1kfYqbK7+viXFsmlHbtj8HE5ShZxUuzbj1K+Hc5w=;
+ b=GODx5lLFVNYRmEtz10gpvSfWS1toUosl9843rGrJb6BPsvB8nwEHdJc2TXkFLMmvXP
+ H40V317CCpyXz14MTANnb+b5AXCAjWKtuiSclfmrsxyEwxdMjcmLZ5bhgp1D6dkwxmpz
+ WGTzhYrY6qvOuxIIejnis84nSIoZHLoVVMyK8aygJdF9VVPvJWMI8h4nYylVBljJ+l6y
+ XUMEjCwNDHbqX4YRm2/H37nWaUT5JK2AuwQyH/QuTr1caL2qgWNHeV3X2ZIuced5iuun
+ SG+nRYq1q5/UM3yHhXmAMjSVldxMjSa8fwzIzqGVhxYC0IPeiZt6TaLfe49JFxDyWiJT
+ 797w==
+X-Gm-Message-State: ABy/qLa3VcF2FanIBzhOs7xJK9qmqRnOsh5HxqOphtmBabZcr6HR2IRG
+ y4bGIoYZZKHSvMTWD/h+MfgDKmI30tD39xaSHGM=
+X-Google-Smtp-Source: APBJJlEbO/7i8RB0Zzb7AnfUIPnRxxXKoSLPYy9thb0V6k4suc4guAJMrdwvxhlzj+kFrm45CcWGwWMYsiGWmo5hFI0=
+X-Received: by 2002:a2e:9cc2:0:b0:2b6:d7d1:95bf with SMTP id
+ g2-20020a2e9cc2000000b002b6d7d195bfmr10511424ljj.9.1689000559076; Mon, 10 Jul
+ 2023 07:49:19 -0700 (PDT)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Subject: [Intel-xe] [PATCH] drm/xe: Use internal VM flags in xe_vm_create
+References: <20230710144405.1863923-1-matthew.brost@intel.com>
+In-Reply-To: <20230710144405.1863923-1-matthew.brost@intel.com>
+From: Matthew Auld <matthew.william.auld@gmail.com>
+Date: Mon, 10 Jul 2023 15:48:51 +0100
+Message-ID: <CAM0jSHOs=NAjFTnDaBwDYZKq3bkECx7j3QdFdBQh_OeveMthFQ@mail.gmail.com>
+To: Matthew Brost <matthew.brost@intel.com>
+Content-Type: text/plain; charset="UTF-8"
+Subject: Re: [Intel-xe] [PATCH] drm/xe: Use internal VM flags in xe_vm_create
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -54,39 +65,16 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Cc: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-xe_vm_create used the IOCTL create flags in a few places rather than the
-internal VM flags and this just happened to work as these values
-matched. This is risky (and incorrect) as the internal flag values are
-free to change. Fix this and use the internal VM flag values.
-
-Signed-off-by: Matthew Brost <matthew.brost@intel.com>
----
- drivers/gpu/drm/xe/xe_vm.c | 4 ++--
- 1 file changed, 2 insertions(+), 2 deletions(-)
-
-diff --git a/drivers/gpu/drm/xe/xe_vm.c b/drivers/gpu/drm/xe/xe_vm.c
-index 57326cc23c0a..26d39de777aa 100644
---- a/drivers/gpu/drm/xe/xe_vm.c
-+++ b/drivers/gpu/drm/xe/xe_vm.c
-@@ -1274,13 +1274,13 @@ struct xe_vm *xe_vm_create(struct xe_device *xe, u32 flags)
- 		vm->batch_invalidate_tlb = true;
- 	}
- 
--	if (flags & DRM_XE_VM_CREATE_COMPUTE_MODE) {
-+	if (flags & XE_VM_FLAG_COMPUTE_MODE) {
- 		INIT_WORK(&vm->preempt.rebind_work, preempt_rebind_work_func);
- 		vm->flags |= XE_VM_FLAG_COMPUTE_MODE;
- 		vm->batch_invalidate_tlb = false;
- 	}
- 
--	if (flags & DRM_XE_VM_CREATE_ASYNC_BIND_OPS) {
-+	if (flags & XE_VM_FLAG_ASYNC_BIND_OPS) {
- 		vm->async_ops.fence.context = dma_fence_context_alloc(1);
- 		vm->flags |= XE_VM_FLAG_ASYNC_BIND_OPS;
- 	}
--- 
-2.34.1
-
+On Mon, 10 Jul 2023 at 15:43, Matthew Brost <matthew.brost@intel.com> wrote:
+>
+> xe_vm_create used the IOCTL create flags in a few places rather than the
+> internal VM flags and this just happened to work as these values
+> matched. This is risky (and incorrect) as the internal flag values are
+> free to change. Fix this and use the internal VM flag values.
+>
+> Signed-off-by: Matthew Brost <matthew.brost@intel.com>
+Reviewed-by: Matthew Auld <matthew.auld@intel.com>
