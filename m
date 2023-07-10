@@ -4,43 +4,53 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 87127EB64DA
-	for <intel-xe@archiver.kernel.org>; Mon, 10 Jul 2023 16:59:06 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 76E21EB64D9
+	for <intel-xe@archiver.kernel.org>; Mon, 10 Jul 2023 17:02:34 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 583B610E2AB;
-	Mon, 10 Jul 2023 16:59:06 +0000 (UTC)
-Received: from dfw.source.kernel.org (dfw.source.kernel.org
- [IPv6:2604:1380:4641:c500::1])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4927A10E2AB
- for <intel-xe@lists.freedesktop.org>; Mon, 10 Jul 2023 16:59:04 +0000 (UTC)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
- (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
- key-exchange X25519 server-signature RSA-PSS (2048 bits))
- (No client certificate requested)
- by dfw.source.kernel.org (Postfix) with ESMTPS id 91BA761063;
- Mon, 10 Jul 2023 16:59:02 +0000 (UTC)
-Received: from rdvivi-mobl4 (unknown [192.55.54.50])
- (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
- key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
- (No client certificate requested)
- by smtp.kernel.org (Postfix) with ESMTPSA id AADCEC433C8;
- Mon, 10 Jul 2023 16:58:59 +0000 (UTC)
-Date: Mon, 10 Jul 2023 12:58:57 -0400
-From: Rodrigo Vivi <rodrigo.vivi@kernel.org>
-To: "Ghimiray, Himal Prasad" <himal.prasad.ghimiray@intel.com>
-Message-ID: <ZKw40ZEPac5HBC7o@rdvivi-mobl4>
-References: <20230509082558.614913-1-himal.prasad.ghimiray@intel.com>
- <def394d8-f723-d036-d5c1-a249ede937d4@intel.com>
- <MW4PR11MB70569ED202909F1F60C3F578B3749@MW4PR11MB7056.namprd11.prod.outlook.com>
- <a5b88190-7bc1-70c0-b729-dd9cf3292c08@intel.com>
- <ZGLSsQjGdV7WmQ8i@rdvivi-mobl4>
- <MW4PR11MB7056BEA4EE6416780502E933B3799@MW4PR11MB7056.namprd11.prod.outlook.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id 40D2110E2AB;
+	Mon, 10 Jul 2023 17:02:34 +0000 (UTC)
+Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 965EC10E2AE
+ for <intel-xe@lists.freedesktop.org>; Mon, 10 Jul 2023 17:02:32 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1689008552; x=1720544552;
+ h=message-id:date:mime-version:subject:to:references:from:
+ in-reply-to:content-transfer-encoding;
+ bh=OtaSrEqQyaYctqK5VeYNm+fwfeelZWUqDkAfFZ7Dq10=;
+ b=QN+yEaOouD65ghSsDU6WeRY9VGvug5vJ/x9R3w1gMhV7B2RB3AH8S26C
+ RiFJSilV7WY5eE2M4bwidzptNkpvKZ59fdHVEpcuy6yhWS/v8dVfwmy+y
+ ziiR60VcIatRXal+Sj/Zb5SDtYaF+4KqVtdh+VwgvOVQUmwSY63Vr2Hz1
+ Q9qs4VJJzjFrocKO8TDXxsZWuO6OiG/FbtvIvZLhkssUjxNyVsUAK5OKq
+ XTPFJBADZ2UdtTd2lyWwCfBh8f24+F2D7VjSe2FHsqEDamQhZy+D9AmyD
+ jPj6IdF0RTs0fVYxTN+wcEISharVSlDE0XORcH7GwlOElH5tOhxChFOFg Q==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10767"; a="343996407"
+X-IronPort-AV: E=Sophos;i="6.01,195,1684825200"; d="scan'208";a="343996407"
+Received: from orsmga007.jf.intel.com ([10.7.209.58])
+ by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 10 Jul 2023 10:02:30 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6600,9927,10767"; a="714863338"
+X-IronPort-AV: E=Sophos;i="6.01,195,1684825200"; d="scan'208";a="714863338"
+Received: from nbint65x-mobl.gar.corp.intel.com (HELO [10.249.254.42])
+ ([10.249.254.42])
+ by orsmga007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 10 Jul 2023 10:02:29 -0700
+Message-ID: <cf759725-96ac-22b4-ce6b-e1fe9f0219bc@linux.intel.com>
+Date: Mon, 10 Jul 2023 19:02:25 +0200
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <MW4PR11MB7056BEA4EE6416780502E933B3799@MW4PR11MB7056.namprd11.prod.outlook.com>
-Subject: Re: [Intel-xe] [PATCH v2 1/1] drm/xe: Notify Userspace when
- engine/gt reset fails.
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.11.1
+Content-Language: en-US
+To: Matthew Brost <matthew.brost@intel.com>, intel-xe@lists.freedesktop.org
+References: <20230708064359.1743796-1-matthew.brost@intel.com>
+ <20230708064359.1743796-2-matthew.brost@intel.com>
+From: =?UTF-8?Q?Thomas_Hellstr=c3=b6m?= <thomas.hellstrom@linux.intel.com>
+In-Reply-To: <20230708064359.1743796-2-matthew.brost@intel.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+Subject: Re: [Intel-xe] [PATCH v5 1/6] drm/xe: Ban a VM if rebind worker
+ hits an error
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -52,282 +62,422 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Cc: "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>,
- "Argenziano, Antonio" <antonio.argenziano@intel.com>
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Tue, May 16, 2023 at 11:41:32AM +0000, Ghimiray, Himal Prasad wrote:
-> 
-> 
-> > -----Original Message-----
-> > From: Rodrigo Vivi <rodrigo.vivi@kernel.org>
-> > Sent: 16 May 2023 06:18
-> > To: Nilawar, Badal <badal.nilawar@intel.com>
-> > Cc: Ghimiray, Himal Prasad <himal.prasad.ghimiray@intel.com>; intel-
-> > xe@lists.freedesktop.org; Harrison, John C <john.c.harrison@intel.com>;
-> > Argenziano, Antonio <antonio.argenziano@intel.com>
-> > Subject: Re: [Intel-xe] [PATCH v2 1/1] drm/xe: Notify Userspace when
-> > engine/gt reset fails.
-> > 
-> > On Mon, May 15, 2023 at 09:46:47PM +0530, Nilawar, Badal wrote:
-> > >
-> > >
-> > > On 11-05-2023 17:13, Ghimiray, Himal Prasad wrote:
-> > > >
-> > > >
-> > > > > -----Original Message-----
-> > > > > From: Nilawar, Badal <badal.nilawar@intel.com>
-> > > > > Sent: 11 May 2023 10:07
-> > > > > To: Ghimiray, Himal Prasad <himal.prasad.ghimiray@intel.com>;
-> > > > > intel- xe@lists.freedesktop.org
-> > > > > Cc: Upadhyay, Tejas <tejas.upadhyay@intel.com>
-> > > > > Subject: Re: [Intel-xe] [PATCH v2 1/1] drm/xe: Notify Userspace
-> > > > > when engine/gt reset fails.
-> > > > >
-> > > > > Hi Himal,
-> > > > >
-> > > > > On 09-05-2023 13:55, Himal Prasad Ghimiray wrote:
-> > > > > > Send uevent in case of engine reset or gt reset failure.
-> > > > > > This intimation can be used by userspace monitoring tool to do
-> > > > > > the device level reset/reboot when GT reset fails. udevadm can
-> > > > > > be used to monitor the uevents.
-> > > > > >
-> > > > > > v2:
-> > > > > > -Add NULL check for xe_gt_hw_engine return(Aravind) -Arrange
-> > > > > > variables in Christmas tree order(Tejas) -Check
-> > > > > > GUC_GSC_OTHER_CLASS(Tejas)
-> > > > > >
-> > > > > > Cc: Aravind Iddamsetty <aravind.iddamsetty@intel.com>
-> > > > > > Cc: Tejas Upadhyay <tejas.upadhyay@intel.com>
-> > > > > > Signed-off-by: Himal Prasad Ghimiray
-> > > > > > <himal.prasad.ghimiray@intel.com>
-> > > > > > ---
-> > > > > >    drivers/gpu/drm/xe/xe_gt.c         | 18 ++++++++++++++++++
-> > > > > >    drivers/gpu/drm/xe/xe_guc.h        | 19 +++++++++++++++++++
-> > > > > >    drivers/gpu/drm/xe/xe_guc_submit.c | 23
-> > +++++++++++++++++++++++
-> > > > > >    include/uapi/drm/xe_drm.h          |  8 ++++++++
-> > > > > >    4 files changed, 68 insertions(+)
-> > > > > >
-> > > > > > diff --git a/drivers/gpu/drm/xe/xe_gt.c
-> > > > > > b/drivers/gpu/drm/xe/xe_gt.c index 3afca3dd9657..2c3ffa1db74e
-> > > > > > 100644
-> > > > > > --- a/drivers/gpu/drm/xe/xe_gt.c
-> > > > > > +++ b/drivers/gpu/drm/xe/xe_gt.c
-> > > > > > @@ -8,6 +8,7 @@
-> > > > > >    #include <linux/minmax.h>
-> > > > > >
-> > > > > >    #include <drm/drm_managed.h>
-> > > > > > +#include <drm/xe_drm.h>
-> > > > > >
-> > > > > >    #include "regs/xe_gt_regs.h"
-> > > > > >    #include "xe_bb.h"
-> > > > > > @@ -590,6 +591,20 @@ static int do_gt_restart(struct xe_gt *gt)
-> > > > > >    	return 0;
-> > > > > >    }
-> > > > > >
-> > > > > > +static void xe_uevent_gt_reset_failure(struct xe_device *xe, u8 id)
-> > {
-> > > > > > +	char *reset_event[5];
-> > > > > > +
-> > > > > > +	reset_event[0] = XE_RESET_FAILED_UEVENT "=1";
-> > > > > > +	reset_event[1] = "RESET_ENABLED=1";
-> > > > > > +	reset_event[2] = "RESET_UNIT=gt";
-> > > > > > +	reset_event[3] = kasprintf(GFP_KERNEL, "RESET_ID=%d",
-> > id);
-> > > > > > +	reset_event[4] = NULL;
-> > > > > > +	kobject_uevent_env(&xe->drm.primary->kdev->kobj,
-> > KOBJ_CHANGE,
-> > > > > > +reset_event);
-> > > > > > +
-> > > > > > +	kfree(reset_event[3]);
-> > > > > > +}
-> > > > > > +
-> > > > > >    static int gt_reset(struct xe_gt *gt)
-> > > > > >    {
-> > > > > >    	struct xe_device *xe = gt_to_xe(gt); @@ -639,6 +654,9 @@
-> > > > > > static int gt_reset(struct xe_gt *gt)
-> > > > > >    	xe_device_mem_access_put(gt_to_xe(gt));
-> > > > > >    	drm_err(&xe->drm, "GT reset failed, err=%d\n", err);
-> > > > > >
-> > > > > > +	/* Notify userspace about gt reset failure */
-> > > > > > +	xe_uevent_gt_reset_failure(xe, gt->info.id);
-> > > > > > +
-> > > > > >    	return err;
-> > > > > >    }
-> > > > > >
-> > > > > > diff --git a/drivers/gpu/drm/xe/xe_guc.h
-> > > > > > b/drivers/gpu/drm/xe/xe_guc.h index 74a74051f354..a3637eeaaa37
-> > > > > > 100644
-> > > > > > --- a/drivers/gpu/drm/xe/xe_guc.h
-> > > > > > +++ b/drivers/gpu/drm/xe/xe_guc.h
-> > > > > > @@ -56,4 +56,23 @@ static inline u16
-> > > > > > xe_engine_class_to_guc_class(enum
-> > > > > xe_engine_class class)
-> > > > > >    	}
-> > > > > >    }
-> > > > > >
-> > > > > > +static inline u16 xe_guc_class_to_engine_class(u8 guc_class) {
-> > > > > > +	switch (guc_class) {
-> > > > > > +	case GUC_RENDER_CLASS:
-> > > > > > +		return XE_ENGINE_CLASS_RENDER;
-> > > > > > +	case GUC_VIDEO_CLASS:
-> > > > > > +		return XE_ENGINE_CLASS_VIDEO_DECODE;
-> > > > > > +	case GUC_VIDEOENHANCE_CLASS:
-> > > > > > +		return XE_ENGINE_CLASS_VIDEO_ENHANCE;
-> > > > > > +	case GUC_BLITTER_CLASS:
-> > > > > > +		return XE_ENGINE_CLASS_COPY;
-> > > > > > +	case GUC_COMPUTE_CLASS:
-> > > > > > +		return XE_ENGINE_CLASS_COMPUTE;
-> > > > > > +	case GUC_GSC_OTHER_CLASS:
-> > > > > > +	default:
-> > > > > > +		XE_WARN_ON(guc_class);
-> > > > > > +		return -1;
-> > > > > > +	}
-> > > > > > +}
-> > > > > >    #endif
-> > > > > > diff --git a/drivers/gpu/drm/xe/xe_guc_submit.c
-> > > > > > b/drivers/gpu/drm/xe/xe_guc_submit.c
-> > > > > > index e857013070b9..d068af0ca7df 100644
-> > > > > > --- a/drivers/gpu/drm/xe/xe_guc_submit.c
-> > > > > > +++ b/drivers/gpu/drm/xe/xe_guc_submit.c
-> > > > > > @@ -12,6 +12,7 @@
-> > > > > >    #include <linux/dma-fence-array.h>
-> > > > > >
-> > > > > >    #include <drm/drm_managed.h>
-> > > > > > +#include <drm/xe_drm.h>
-> > > > > >
-> > > > > >    #include "regs/xe_lrc_layout.h"
-> > > > > >    #include "xe_device.h"
-> > > > > > @@ -1589,10 +1590,26 @@ int
-> > > > > xe_guc_engine_memory_cat_error_handler(struct xe_guc *guc, u32
-> > > > > *msg,
-> > > > > >    	return 0;
-> > > > > >    }
-> > > > > >
-> > > > > > +static void xe_uevent_engine_reset_failure(struct xe_device
-> > > > > > +*xe, const char *name) {
-> > > > > > +	char *reset_event[5];
-> > > > > > +
-> > > > > > +	reset_event[0] = XE_RESET_FAILED_UEVENT "=1";
-> > > > > > +	reset_event[1] = "RESET_ENABLED=1";
-> > > > > > +	reset_event[2] = "RESET_UNIT=engine";
-> > > > > > +	reset_event[3] = kasprintf(GFP_KERNEL, "RESET_ID=%s",
-> > name);
-> > > > > > +	reset_event[4] = NULL;
-> > > > > > +	kobject_uevent_env(&xe->drm.primary->kdev->kobj,
-> > KOBJ_CHANGE,
-> > > > > > +reset_event);
-> > > > > > +
-> > > > > > +	kfree(reset_event[3]);
-> > > > > > +}
-> > > > > > +
-> > > > > >    int xe_guc_engine_reset_failure_handler(struct xe_guc *guc,
-> > > > > > u32 *msg,
-> > > > > u32 len)
-> > > > > >    {
-> > > > > >    	struct xe_device *xe = guc_to_xe(guc);
-> > > > > > +	struct xe_hw_engine *hwe;
-> > > > > >    	u8 guc_class, instance;
-> > > > > > +	u16 engine_class;
-> > > > > >    	u32 reason;
-> > > > > >
-> > > > > >    	if (unlikely(len != 3)) {
-> > > > > > @@ -1608,6 +1625,12 @@ int
-> > > > > > xe_guc_engine_reset_failure_handler(struct
-> > > > > xe_guc *guc, u32 *msg, u32 len)
-> > > > > >    	drm_err(&xe->drm, "GuC engine reset request failed on
-> > %d:%d
-> > > > > because 0x%08X",
-> > > > > >    		guc_class, instance, reason);
-> > > > > >
-> > > > > > +	/* Notify userspace about engine reset failure */
-> > > > > > +	engine_class = xe_guc_class_to_engine_class(guc_class);
-> > > > > > +	hwe = xe_gt_hw_engine(guc_to_gt(guc), engine_class,
-> > instance,
-> > > > > > +false);The The instance here is considered as physical instance
-> > > > > > +of hwe but while
-> > > > > submitting contexts kmd passes logical instance to guc. With that
-> > > > > I assume guc might be passing logical instance or for this
-> > > > > notification it is passing physical instance?
-> > > > AFAIK for reset failure notification the instance passed by guc in g2h
-> > payload is physical instance .
-> > > > @Harrison, John C Can you please confirm ?
-> > >
-> > > Spoke to @Antonio, he confirmed that to notify engine reset failure
-> > > guc is reporting physical instance to host.
-> > >
-> > > Reviewed-by: Badal Nilawar <badal.nilawar@intel.com>
-> > 
-> > I don't believe this is what we want here still. At least not from the sysman
-> > perspective.
-> > 
-> > After guc reset fails, we will try to reset the GT ourselves and if we succeed
-> > we don't need to request user space interference.
-> > 
-> > That should only happen if we also fail our gt_reset after the guc_reset
-> > failed.
-> > 
-> > That would be the similar point on when i915 gets wedged?
-> > We probably also need the wedge point here before we can issue this
-> > notification?
-> 
-> Hi Rodrigo,
-> You are right, In case of engine reset failure the driver tries to do the  gt reset
-> and if gt reset fails there are two notifications one for engine failure and another for gt
-> reset failure. The changes to send uevent in case of gt failure are added in xe_uevent_gt_reset_failure.
-> 
-> Level0 UMD does sends the RESET_REQUIRED uevent in case of only gt reset failure. 
-> Engine reset failure notification is not used for this purpose, it is to provide information that engine reset was required and it failed.
 
-isn't a debug msg enough for this case then?
-if the api is not used we should not add it.
+On 7/8/23 08:43, Matthew Brost wrote:
+> We cannot recover a VM if a rebind worker hits an error, ban the VM if
+> happens to ensure we do not attempt to place this VM on the hardware
+> again.
+>
+> A follow up will inform the user if this happens.
+>
+> v2: Return -ECANCELED in exec VM closed or banned, check for closed or
+> banned within VM lock.
+> v3: Fix lockdep splat by looking engine outside of vm->lock
+> v4: Fix error path when engine lookup fails
+> v5: Add debug message in rebind worker on error, update comments wrt
+> locking, add xe_vm_close helper
+>
+> Signed-off-by: Matthew Brost <matthew.brost@intel.com>
 
-> 
-> > 
-> > Anyway, we also need IGT for the uevent itself.
-> The IGT for uevent listener will be helpful only if we can inject errors in such a way that they lead to engine/gt reset failure.
-> I am unable to find a mechanism to do so. Can you provide some input on the same ?
-> BR
-> Himal 
-> > 
-> > Thanks,
-> > Rodrigo.
-> > 
-> > >
-> > > Regards,
-> > > Badal
-> > > >
-> > > > >
-> > > > > Regards,
-> > > > > Badal
-> > > > > > +	if (hwe)
-> > > > > > +		xe_uevent_engine_reset_failure(xe, hwe->name);
-> > > > > > +
-> > > > > >    	xe_gt_reset_async(guc_to_gt(guc));
-> > > > > >
-> > > > > >    	return 0;
-> > > > > > diff --git a/include/uapi/drm/xe_drm.h
-> > > > > > b/include/uapi/drm/xe_drm.h index b0b80aae3ee8..79ef5947c172
-> > > > > > 100644
-> > > > > > --- a/include/uapi/drm/xe_drm.h
-> > > > > > +++ b/include/uapi/drm/xe_drm.h
-> > > > > > @@ -36,6 +36,14 @@ extern "C" {
-> > > > > >     * subject to backwards-compatibility constraints.
-> > > > > >     */
-> > > > > >
-> > > > > > +/*
-> > > > > > + * Uevents generated by xe on it's device node.
-> > > > > > + *
-> > > > > > + * XE_RESET_FAILED_UEVENT - Event is generated when attempt to
-> > > > > > +reset
-> > > > > engine
-> > > > > > + *	or gt fails. The value supplied with the event is always 1.
-> > > > > > + */
-> > > > > > +#define XE_RESET_FAILED_UEVENT "RESET_FAILED"
-> > > > > > +
-> > > > > >    /**
-> > > > > >     * struct xe_user_extension - Base class for defining a chain of
-> > extensions
-> > > > > >     *
+Reviewed-by: Thomas Hellström <thomas.hellstrom@linux.intel.com>
+
+
+
+> ---
+>   drivers/gpu/drm/xe/xe_engine.c     |  13 ++++
+>   drivers/gpu/drm/xe/xe_exec.c       |   6 +-
+>   drivers/gpu/drm/xe/xe_trace.h      |   5 ++
+>   drivers/gpu/drm/xe/xe_vm.c         | 104 ++++++++++++++++++-----------
+>   drivers/gpu/drm/xe/xe_vm.h         |  13 +++-
+>   drivers/gpu/drm/xe/xe_vm_madvise.c |   2 +-
+>   drivers/gpu/drm/xe/xe_vm_types.h   |  10 ++-
+>   7 files changed, 107 insertions(+), 46 deletions(-)
+>
+> diff --git a/drivers/gpu/drm/xe/xe_engine.c b/drivers/gpu/drm/xe/xe_engine.c
+> index 530f55a33b03..3831c5f82773 100644
+> --- a/drivers/gpu/drm/xe/xe_engine.c
+> +++ b/drivers/gpu/drm/xe/xe_engine.c
+> @@ -597,10 +597,23 @@ int xe_engine_create_ioctl(struct drm_device *dev, void *data,
+>   		if (XE_IOCTL_ERR(xe, !vm))
+>   			return -ENOENT;
+>   
+> +		err = down_read_interruptible(&vm->lock);
+> +		if (err) {
+> +			xe_vm_put(vm);
+> +			return err;
+> +		}
+> +
+> +		if (XE_IOCTL_ERR(xe, xe_vm_is_closed_or_banned(vm))) {
+> +			up_read(&vm->lock);
+> +			xe_vm_put(vm);
+> +			return -ENOENT;
+> +		}
+> +
+>   		e = xe_engine_create(xe, vm, logical_mask,
+>   				     args->width, hwe,
+>   				     xe_vm_no_dma_fences(vm) ? 0 :
+>   				     ENGINE_FLAG_PERSISTENT);
+> +		up_read(&vm->lock);
+>   		xe_vm_put(vm);
+>   		if (IS_ERR(e))
+>   			return PTR_ERR(e);
+> diff --git a/drivers/gpu/drm/xe/xe_exec.c b/drivers/gpu/drm/xe/xe_exec.c
+> index c52edff9a358..bdf00e59e7a4 100644
+> --- a/drivers/gpu/drm/xe/xe_exec.c
+> +++ b/drivers/gpu/drm/xe/xe_exec.c
+> @@ -297,9 +297,9 @@ int xe_exec_ioctl(struct drm_device *dev, void *data, struct drm_file *file)
+>   	if (err)
+>   		goto err_unlock_list;
+>   
+> -	if (xe_vm_is_closed(engine->vm)) {
+> -		drm_warn(&xe->drm, "Trying to schedule after vm is closed\n");
+> -		err = -EIO;
+> +	if (xe_vm_is_closed_or_banned(engine->vm)) {
+> +		drm_warn(&xe->drm, "Trying to schedule after vm is closed or banned\n");
+> +		err = -ECANCELED;
+>   		goto err_engine_end;
+>   	}
+>   
+> diff --git a/drivers/gpu/drm/xe/xe_trace.h b/drivers/gpu/drm/xe/xe_trace.h
+> index 02861c26e145..ca96a0a4bb80 100644
+> --- a/drivers/gpu/drm/xe/xe_trace.h
+> +++ b/drivers/gpu/drm/xe/xe_trace.h
+> @@ -477,6 +477,11 @@ DECLARE_EVENT_CLASS(xe_vm,
+>   			      __entry->asid)
+>   );
+>   
+> +DEFINE_EVENT(xe_vm, xe_vm_kill,
+> +	     TP_PROTO(struct xe_vm *vm),
+> +	     TP_ARGS(vm)
+> +);
+> +
+>   DEFINE_EVENT(xe_vm, xe_vm_create,
+>   	     TP_PROTO(struct xe_vm *vm),
+>   	     TP_ARGS(vm)
+> diff --git a/drivers/gpu/drm/xe/xe_vm.c b/drivers/gpu/drm/xe/xe_vm.c
+> index dbff75a9087b..2e7547d13220 100644
+> --- a/drivers/gpu/drm/xe/xe_vm.c
+> +++ b/drivers/gpu/drm/xe/xe_vm.c
+> @@ -514,6 +514,24 @@ void xe_vm_unlock_dma_resv(struct xe_vm *vm,
+>   
+>   #define XE_VM_REBIND_RETRY_TIMEOUT_MS 1000
+>   
+> +static void xe_vm_kill(struct xe_vm *vm)
+> +{
+> +	struct ww_acquire_ctx ww;
+> +	struct xe_engine *e;
+> +
+> +	lockdep_assert_held(&vm->lock);
+> +
+> +	xe_vm_lock(vm, &ww, 0, false);
+> +	vm->flags |= XE_VM_FLAG_BANNED;
+> +	trace_xe_vm_kill(vm);
+> +
+> +	list_for_each_entry(e, &vm->preempt.engines, compute.link)
+> +		e->ops->kill(e);
+> +	xe_vm_unlock(vm, &ww);
+> +
+> +	/* TODO: Inform user the VM is banned */
+> +}
+> +
+>   static void preempt_rebind_work_func(struct work_struct *w)
+>   {
+>   	struct xe_vm *vm = container_of(w, struct xe_vm, preempt.rebind_work);
+> @@ -533,13 +551,14 @@ static void preempt_rebind_work_func(struct work_struct *w)
+>   	XE_BUG_ON(!xe_vm_in_compute_mode(vm));
+>   	trace_xe_vm_rebind_worker_enter(vm);
+>   
+> -	if (xe_vm_is_closed(vm)) {
+> +	down_write(&vm->lock);
+> +
+> +	if (xe_vm_is_closed_or_banned(vm)) {
+> +		up_write(&vm->lock);
+>   		trace_xe_vm_rebind_worker_exit(vm);
+>   		return;
+>   	}
+>   
+> -	down_write(&vm->lock);
+> -
+>   retry:
+>   	if (vm->async_ops.error)
+>   		goto out_unlock_outer;
+> @@ -666,11 +685,14 @@ static void preempt_rebind_work_func(struct work_struct *w)
+>   			goto retry;
+>   		}
+>   	}
+> +	if (err) {
+> +		drm_warn(&vm->xe->drm, "VM worker error: %d\n", err);
+> +		xe_vm_kill(vm);
+> +	}
+>   	up_write(&vm->lock);
+>   
+>   	free_preempt_fences(&preempt_fences);
+>   
+> -	XE_WARN_ON(err < 0);	/* TODO: Kill VM or put in error state */
+>   	trace_xe_vm_rebind_worker_exit(vm);
+>   }
+>   
+> @@ -1140,11 +1162,12 @@ xe_vm_find_overlapping_vma(struct xe_vm *vm, const struct xe_vma *vma)
+>   {
+>   	struct rb_node *node;
+>   
+> -	if (xe_vm_is_closed(vm))
+> +	lockdep_assert_held(&vm->lock);
+> +
+> +	if (xe_vm_is_closed_or_banned(vm))
+>   		return NULL;
+>   
+>   	XE_BUG_ON(vma->end >= vm->size);
+> -	lockdep_assert_held(&vm->lock);
+>   
+>   	node = rb_find(vma, &vm->vmas, xe_vma_cmp_vma_cb);
+>   
+> @@ -1377,6 +1400,13 @@ static void vm_error_capture(struct xe_vm *vm, int err,
+>   	wake_up_all(&vm->async_ops.error_capture.wq);
+>   }
+>   
+> +static void xe_vm_close(struct xe_vm *vm)
+> +{
+> +	down_write(&vm->lock);
+> +	vm->size = 0;
+> +	up_write(&vm->lock);
+> +}
+> +
+>   void xe_vm_close_and_put(struct xe_vm *vm)
+>   {
+>   	struct rb_root contested = RB_ROOT;
+> @@ -1387,8 +1417,8 @@ void xe_vm_close_and_put(struct xe_vm *vm)
+>   
+>   	XE_BUG_ON(vm->preempt.num_engines);
+>   
+> -	vm->size = 0;
+> -	smp_mb();
+> +	xe_vm_close(vm);
+> +
+>   	flush_async_ops(vm);
+>   	if (xe_vm_in_compute_mode(vm))
+>   		flush_work(&vm->preempt.rebind_work);
+> @@ -3072,30 +3102,34 @@ int xe_vm_bind_ioctl(struct drm_device *dev, void *data, struct drm_file *file)
+>   	if (err)
+>   		return err;
+>   
+> -	vm = xe_vm_lookup(xef, args->vm_id);
+> -	if (XE_IOCTL_ERR(xe, !vm)) {
+> -		err = -EINVAL;
+> -		goto free_objs;
+> -	}
+> -
+> -	if (XE_IOCTL_ERR(xe, xe_vm_is_closed(vm))) {
+> -		drm_err(dev, "VM closed while we began looking up?\n");
+> -		err = -ENOENT;
+> -		goto put_vm;
+> -	}
+> -
+>   	if (args->engine_id) {
+>   		e = xe_engine_lookup(xef, args->engine_id);
+>   		if (XE_IOCTL_ERR(xe, !e)) {
+>   			err = -ENOENT;
+> -			goto put_vm;
+> +			goto free_objs;
+>   		}
+> +
+>   		if (XE_IOCTL_ERR(xe, !(e->flags & ENGINE_FLAG_VM))) {
+>   			err = -EINVAL;
+>   			goto put_engine;
+>   		}
+>   	}
+>   
+> +	vm = xe_vm_lookup(xef, args->vm_id);
+> +	if (XE_IOCTL_ERR(xe, !vm)) {
+> +		err = -EINVAL;
+> +		goto put_engine;
+> +	}
+> +
+> +	err = down_write_killable(&vm->lock);
+> +	if (err)
+> +		goto put_vm;
+> +
+> +	if (XE_IOCTL_ERR(xe, xe_vm_is_closed_or_banned(vm))) {
+> +		err = -ENOENT;
+> +		goto release_vm_lock;
+> +	}
+> +
+>   	if (VM_BIND_OP(bind_ops[0].op) == XE_VM_BIND_OP_RESTART) {
+>   		if (XE_IOCTL_ERR(xe, !(vm->flags & XE_VM_FLAG_ASYNC_BIND_OPS)))
+>   			err = -EOPNOTSUPP;
+> @@ -3105,10 +3139,8 @@ int xe_vm_bind_ioctl(struct drm_device *dev, void *data, struct drm_file *file)
+>   			err = -EPROTO;
+>   
+>   		if (!err) {
+> -			down_write(&vm->lock);
+>   			trace_xe_vm_restart(vm);
+>   			vm_set_async_error(vm, 0);
+> -			up_write(&vm->lock);
+>   
+>   			queue_work(system_unbound_wq, &vm->async_ops.work);
+>   
+> @@ -3117,13 +3149,13 @@ int xe_vm_bind_ioctl(struct drm_device *dev, void *data, struct drm_file *file)
+>   				xe_vm_queue_rebind_worker(vm);
+>   		}
+>   
+> -		goto put_engine;
+> +		goto release_vm_lock;
+>   	}
+>   
+>   	if (XE_IOCTL_ERR(xe, !vm->async_ops.error &&
+>   			 async != !!(vm->flags & XE_VM_FLAG_ASYNC_BIND_OPS))) {
+>   		err = -EOPNOTSUPP;
+> -		goto put_engine;
+> +		goto release_vm_lock;
+>   	}
+>   
+>   	for (i = 0; i < args->num_binds; ++i) {
+> @@ -3133,7 +3165,7 @@ int xe_vm_bind_ioctl(struct drm_device *dev, void *data, struct drm_file *file)
+>   		if (XE_IOCTL_ERR(xe, range > vm->size) ||
+>   		    XE_IOCTL_ERR(xe, addr > vm->size - range)) {
+>   			err = -EINVAL;
+> -			goto put_engine;
+> +			goto release_vm_lock;
+>   		}
+>   
+>   		if (bind_ops[i].tile_mask) {
+> @@ -3142,7 +3174,7 @@ int xe_vm_bind_ioctl(struct drm_device *dev, void *data, struct drm_file *file)
+>   			if (XE_IOCTL_ERR(xe, bind_ops[i].tile_mask &
+>   					 ~valid_tiles)) {
+>   				err = -EINVAL;
+> -				goto put_engine;
+> +				goto release_vm_lock;
+>   			}
+>   		}
+>   	}
+> @@ -3150,13 +3182,13 @@ int xe_vm_bind_ioctl(struct drm_device *dev, void *data, struct drm_file *file)
+>   	bos = kzalloc(sizeof(*bos) * args->num_binds, GFP_KERNEL);
+>   	if (!bos) {
+>   		err = -ENOMEM;
+> -		goto put_engine;
+> +		goto release_vm_lock;
+>   	}
+>   
+>   	vmas = kzalloc(sizeof(*vmas) * args->num_binds, GFP_KERNEL);
+>   	if (!vmas) {
+>   		err = -ENOMEM;
+> -		goto put_engine;
+> +		goto release_vm_lock;
+>   	}
+>   
+>   	for (i = 0; i < args->num_binds; ++i) {
+> @@ -3211,10 +3243,6 @@ int xe_vm_bind_ioctl(struct drm_device *dev, void *data, struct drm_file *file)
+>   			goto free_syncs;
+>   	}
+>   
+> -	err = down_write_killable(&vm->lock);
+> -	if (err)
+> -		goto free_syncs;
+> -
+>   	/* Do some error checking first to make the unwind easier */
+>   	for (i = 0; i < args->num_binds; ++i) {
+>   		u64 range = bind_ops[i].range;
+> @@ -3223,7 +3251,7 @@ int xe_vm_bind_ioctl(struct drm_device *dev, void *data, struct drm_file *file)
+>   
+>   		err = __vm_bind_ioctl_lookup_vma(vm, bos[i], addr, range, op);
+>   		if (err)
+> -			goto release_vm_lock;
+> +			goto free_syncs;
+>   	}
+>   
+>   	for (i = 0; i < args->num_binds; ++i) {
+> @@ -3343,8 +3371,6 @@ int xe_vm_bind_ioctl(struct drm_device *dev, void *data, struct drm_file *file)
+>   			break;
+>   		}
+>   	}
+> -release_vm_lock:
+> -	up_write(&vm->lock);
+>   free_syncs:
+>   	while (num_syncs--) {
+>   		if (async && j &&
+> @@ -3357,11 +3383,13 @@ int xe_vm_bind_ioctl(struct drm_device *dev, void *data, struct drm_file *file)
+>   put_obj:
+>   	for (i = j; i < args->num_binds; ++i)
+>   		xe_bo_put(bos[i]);
+> +release_vm_lock:
+> +	up_write(&vm->lock);
+> +put_vm:
+> +	xe_vm_put(vm);
+>   put_engine:
+>   	if (e)
+>   		xe_engine_put(e);
+> -put_vm:
+> -	xe_vm_put(vm);
+>   free_objs:
+>   	kfree(bos);
+>   	kfree(vmas);
+> diff --git a/drivers/gpu/drm/xe/xe_vm.h b/drivers/gpu/drm/xe/xe_vm.h
+> index 5edb7771629c..02b409dd77d5 100644
+> --- a/drivers/gpu/drm/xe/xe_vm.h
+> +++ b/drivers/gpu/drm/xe/xe_vm.h
+> @@ -45,10 +45,21 @@ void xe_vm_unlock(struct xe_vm *vm, struct ww_acquire_ctx *ww);
+>   
+>   static inline bool xe_vm_is_closed(struct xe_vm *vm)
+>   {
+> -	/* Only guaranteed not to change when vm->resv is held */
+> +	/* Only guaranteed not to change when vm->lock is held */
+>   	return !vm->size;
+>   }
+>   
+> +static inline bool xe_vm_is_banned(struct xe_vm *vm)
+> +{
+> +	return vm->flags & XE_VM_FLAG_BANNED;
+> +}
+> +
+> +static inline bool xe_vm_is_closed_or_banned(struct xe_vm *vm)
+> +{
+> +	lockdep_assert_held(&vm->lock);
+> +	return xe_vm_is_closed(vm) || xe_vm_is_banned(vm);
+> +}
+> +
+>   struct xe_vma *
+>   xe_vm_find_overlapping_vma(struct xe_vm *vm, const struct xe_vma *vma);
+>   
+> diff --git a/drivers/gpu/drm/xe/xe_vm_madvise.c b/drivers/gpu/drm/xe/xe_vm_madvise.c
+> index 0f5eef337037..76458f8d57f3 100644
+> --- a/drivers/gpu/drm/xe/xe_vm_madvise.c
+> +++ b/drivers/gpu/drm/xe/xe_vm_madvise.c
+> @@ -313,7 +313,7 @@ int xe_vm_madvise_ioctl(struct drm_device *dev, void *data,
+>   	if (XE_IOCTL_ERR(xe, !vm))
+>   		return -EINVAL;
+>   
+> -	if (XE_IOCTL_ERR(xe, xe_vm_is_closed(vm))) {
+> +	if (XE_IOCTL_ERR(xe, xe_vm_is_closed_or_banned(vm))) {
+>   		err = -ENOENT;
+>   		goto put_vm;
+>   	}
+> diff --git a/drivers/gpu/drm/xe/xe_vm_types.h b/drivers/gpu/drm/xe/xe_vm_types.h
+> index c148dd49a6ca..3c885211a8d1 100644
+> --- a/drivers/gpu/drm/xe/xe_vm_types.h
+> +++ b/drivers/gpu/drm/xe/xe_vm_types.h
+> @@ -176,15 +176,19 @@ struct xe_vm {
+>   	struct xe_bo *scratch_bo[XE_MAX_TILES_PER_DEVICE];
+>   	struct xe_pt *scratch_pt[XE_MAX_TILES_PER_DEVICE][XE_VM_MAX_LEVEL];
+>   
+> -	/** @flags: flags for this VM, statically setup a creation time */
+> +	/**
+> +	 * @flags: flags for this VM, statically setup a creation time aside
+> +	 * from XE_VM_FLAG_BANNED which requires vm->lock to set / read safely
+> +	 */
+>   #define XE_VM_FLAGS_64K			BIT(0)
+>   #define XE_VM_FLAG_COMPUTE_MODE		BIT(1)
+>   #define XE_VM_FLAG_ASYNC_BIND_OPS	BIT(2)
+>   #define XE_VM_FLAG_MIGRATION		BIT(3)
+>   #define XE_VM_FLAG_SCRATCH_PAGE		BIT(4)
+>   #define XE_VM_FLAG_FAULT_MODE		BIT(5)
+> -#define XE_VM_FLAG_GT_ID(flags)		(((flags) >> 6) & 0x3)
+> -#define XE_VM_FLAG_SET_TILE_ID(tile)	((tile)->id << 6)
+> +#define XE_VM_FLAG_BANNED		BIT(6)
+> +#define XE_VM_FLAG_GT_ID(flags)		(((flags) >> 7) & 0x3)
+> +#define XE_VM_FLAG_SET_TILE_ID(tile)	((tile)->id << 7)
+>   	unsigned long flags;
+>   
+>   	/** @composite_fence_ctx: context composite fence */
