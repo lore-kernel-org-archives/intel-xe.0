@@ -4,53 +4,38 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 76E21EB64D9
-	for <intel-xe@archiver.kernel.org>; Mon, 10 Jul 2023 17:02:34 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3A048EB64DA
+	for <intel-xe@archiver.kernel.org>; Mon, 10 Jul 2023 18:58:16 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 40D2110E2AB;
-	Mon, 10 Jul 2023 17:02:34 +0000 (UTC)
-Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 965EC10E2AE
- for <intel-xe@lists.freedesktop.org>; Mon, 10 Jul 2023 17:02:32 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1689008552; x=1720544552;
- h=message-id:date:mime-version:subject:to:references:from:
- in-reply-to:content-transfer-encoding;
- bh=OtaSrEqQyaYctqK5VeYNm+fwfeelZWUqDkAfFZ7Dq10=;
- b=QN+yEaOouD65ghSsDU6WeRY9VGvug5vJ/x9R3w1gMhV7B2RB3AH8S26C
- RiFJSilV7WY5eE2M4bwidzptNkpvKZ59fdHVEpcuy6yhWS/v8dVfwmy+y
- ziiR60VcIatRXal+Sj/Zb5SDtYaF+4KqVtdh+VwgvOVQUmwSY63Vr2Hz1
- Q9qs4VJJzjFrocKO8TDXxsZWuO6OiG/FbtvIvZLhkssUjxNyVsUAK5OKq
- XTPFJBADZ2UdtTd2lyWwCfBh8f24+F2D7VjSe2FHsqEDamQhZy+D9AmyD
- jPj6IdF0RTs0fVYxTN+wcEISharVSlDE0XORcH7GwlOElH5tOhxChFOFg Q==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10767"; a="343996407"
-X-IronPort-AV: E=Sophos;i="6.01,195,1684825200"; d="scan'208";a="343996407"
-Received: from orsmga007.jf.intel.com ([10.7.209.58])
- by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 10 Jul 2023 10:02:30 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10767"; a="714863338"
-X-IronPort-AV: E=Sophos;i="6.01,195,1684825200"; d="scan'208";a="714863338"
-Received: from nbint65x-mobl.gar.corp.intel.com (HELO [10.249.254.42])
- ([10.249.254.42])
- by orsmga007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 10 Jul 2023 10:02:29 -0700
-Message-ID: <cf759725-96ac-22b4-ce6b-e1fe9f0219bc@linux.intel.com>
-Date: Mon, 10 Jul 2023 19:02:25 +0200
+	by gabe.freedesktop.org (Postfix) with ESMTP id CF5F510E0A4;
+	Mon, 10 Jul 2023 18:58:15 +0000 (UTC)
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id F3D0C10E0A4
+ for <intel-xe@lists.freedesktop.org>; Mon, 10 Jul 2023 18:58:14 +0000 (UTC)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+ (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+ key-exchange X25519 server-signature RSA-PSS (2048 bits))
+ (No client certificate requested)
+ by dfw.source.kernel.org (Postfix) with ESMTPS id B86AB611A5;
+ Mon, 10 Jul 2023 18:58:13 +0000 (UTC)
+Received: from rdvivi-mobl4 (unknown [192.55.54.50])
+ (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+ key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+ (No client certificate requested)
+ by smtp.kernel.org (Postfix) with ESMTPSA id 3ECB5C433C7;
+ Mon, 10 Jul 2023 18:58:11 +0000 (UTC)
+Date: Mon, 10 Jul 2023 14:58:08 -0400
+From: Rodrigo Vivi <rodrigo.vivi@kernel.org>
+To: Thomas =?iso-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>
+Message-ID: <ZKxUwHpNJhyWAPMT@rdvivi-mobl4>
+References: <20230628125146.72041-1-thomas.hellstrom@linux.intel.com>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.11.1
-Content-Language: en-US
-To: Matthew Brost <matthew.brost@intel.com>, intel-xe@lists.freedesktop.org
-References: <20230708064359.1743796-1-matthew.brost@intel.com>
- <20230708064359.1743796-2-matthew.brost@intel.com>
-From: =?UTF-8?Q?Thomas_Hellstr=c3=b6m?= <thomas.hellstrom@linux.intel.com>
-In-Reply-To: <20230708064359.1743796-2-matthew.brost@intel.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-Subject: Re: [Intel-xe] [PATCH v5 1/6] drm/xe: Ban a VM if rebind worker
- hits an error
+In-Reply-To: <20230628125146.72041-1-thomas.hellstrom@linux.intel.com>
+Subject: Re: [Intel-xe] [PATCH v3] Documentation/gpu: Add a VM_BIND async
+ draft document
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -62,422 +47,213 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Cc: intel-xe@lists.freedesktop.org, Nirmoy Das <nirmoy.das@intel.com>
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-
-On 7/8/23 08:43, Matthew Brost wrote:
-> We cannot recover a VM if a rebind worker hits an error, ban the VM if
-> happens to ensure we do not attempt to place this VM on the hardware
-> again.
->
-> A follow up will inform the user if this happens.
->
-> v2: Return -ECANCELED in exec VM closed or banned, check for closed or
-> banned within VM lock.
-> v3: Fix lockdep splat by looking engine outside of vm->lock
-> v4: Fix error path when engine lookup fails
-> v5: Add debug message in rebind worker on error, update comments wrt
-> locking, add xe_vm_close helper
->
-> Signed-off-by: Matthew Brost <matthew.brost@intel.com>
-
-Reviewed-by: Thomas HellstrÃ¶m <thomas.hellstrom@linux.intel.com>
-
-
-
+On Wed, Jun 28, 2023 at 02:51:46PM +0200, Thomas Hellström wrote:
+> Add a motivation for and description of asynchronous VM_BIND operation
+> 
+> v2:
+> - Fix typos (Nirmoy Das)
+> - Improve the description of a memory fence (Oak Zeng)
+> - Add a reference to the document in the Xe RFC.
+> - Add pointers to sample uAPI suggestions
+> v3:
+> - Address review comments (Danilo Krummrich)
+> - Formatting fixes
+> 
+> Signed-off-by: Thomas Hellström <thomas.hellstrom@linux.intel.com>
+> Acked-by: Nirmoy Das <nirmoy.das@intel.com>
 > ---
->   drivers/gpu/drm/xe/xe_engine.c     |  13 ++++
->   drivers/gpu/drm/xe/xe_exec.c       |   6 +-
->   drivers/gpu/drm/xe/xe_trace.h      |   5 ++
->   drivers/gpu/drm/xe/xe_vm.c         | 104 ++++++++++++++++++-----------
->   drivers/gpu/drm/xe/xe_vm.h         |  13 +++-
->   drivers/gpu/drm/xe/xe_vm_madvise.c |   2 +-
->   drivers/gpu/drm/xe/xe_vm_types.h   |  10 ++-
->   7 files changed, 107 insertions(+), 46 deletions(-)
->
-> diff --git a/drivers/gpu/drm/xe/xe_engine.c b/drivers/gpu/drm/xe/xe_engine.c
-> index 530f55a33b03..3831c5f82773 100644
-> --- a/drivers/gpu/drm/xe/xe_engine.c
-> +++ b/drivers/gpu/drm/xe/xe_engine.c
-> @@ -597,10 +597,23 @@ int xe_engine_create_ioctl(struct drm_device *dev, void *data,
->   		if (XE_IOCTL_ERR(xe, !vm))
->   			return -ENOENT;
->   
-> +		err = down_read_interruptible(&vm->lock);
-> +		if (err) {
-> +			xe_vm_put(vm);
-> +			return err;
-> +		}
+>  Documentation/gpu/drm-vm-bind-async.rst | 150 ++++++++++++++++++++++++
+>  Documentation/gpu/rfc/xe.rst            |   4 +-
+>  2 files changed, 152 insertions(+), 2 deletions(-)
+>  create mode 100644 Documentation/gpu/drm-vm-bind-async.rst
+> 
+> diff --git a/Documentation/gpu/drm-vm-bind-async.rst b/Documentation/gpu/drm-vm-bind-async.rst
+> new file mode 100644
+> index 000000000000..8f9e2d5c8f0f
+> --- /dev/null
+> +++ b/Documentation/gpu/drm-vm-bind-async.rst
+> @@ -0,0 +1,150 @@
+> +====================
+> +Asynchronous VM_BIND
+> +====================
 > +
-> +		if (XE_IOCTL_ERR(xe, xe_vm_is_closed_or_banned(vm))) {
-> +			up_read(&vm->lock);
-> +			xe_vm_put(vm);
-> +			return -ENOENT;
-> +		}
+> +Nomenclature:
+> +=============
 > +
->   		e = xe_engine_create(xe, vm, logical_mask,
->   				     args->width, hwe,
->   				     xe_vm_no_dma_fences(vm) ? 0 :
->   				     ENGINE_FLAG_PERSISTENT);
-> +		up_read(&vm->lock);
->   		xe_vm_put(vm);
->   		if (IS_ERR(e))
->   			return PTR_ERR(e);
-> diff --git a/drivers/gpu/drm/xe/xe_exec.c b/drivers/gpu/drm/xe/xe_exec.c
-> index c52edff9a358..bdf00e59e7a4 100644
-> --- a/drivers/gpu/drm/xe/xe_exec.c
-> +++ b/drivers/gpu/drm/xe/xe_exec.c
-> @@ -297,9 +297,9 @@ int xe_exec_ioctl(struct drm_device *dev, void *data, struct drm_file *file)
->   	if (err)
->   		goto err_unlock_list;
->   
-> -	if (xe_vm_is_closed(engine->vm)) {
-> -		drm_warn(&xe->drm, "Trying to schedule after vm is closed\n");
-> -		err = -EIO;
-> +	if (xe_vm_is_closed_or_banned(engine->vm)) {
-> +		drm_warn(&xe->drm, "Trying to schedule after vm is closed or banned\n");
-> +		err = -ECANCELED;
->   		goto err_engine_end;
->   	}
->   
-> diff --git a/drivers/gpu/drm/xe/xe_trace.h b/drivers/gpu/drm/xe/xe_trace.h
-> index 02861c26e145..ca96a0a4bb80 100644
-> --- a/drivers/gpu/drm/xe/xe_trace.h
-> +++ b/drivers/gpu/drm/xe/xe_trace.h
-> @@ -477,6 +477,11 @@ DECLARE_EVENT_CLASS(xe_vm,
->   			      __entry->asid)
->   );
->   
-> +DEFINE_EVENT(xe_vm, xe_vm_kill,
-> +	     TP_PROTO(struct xe_vm *vm),
-> +	     TP_ARGS(vm)
-> +);
+> +* ``VRAM``: On-device memory. Sometimes referred to as device local memory.
 > +
->   DEFINE_EVENT(xe_vm, xe_vm_create,
->   	     TP_PROTO(struct xe_vm *vm),
->   	     TP_ARGS(vm)
-> diff --git a/drivers/gpu/drm/xe/xe_vm.c b/drivers/gpu/drm/xe/xe_vm.c
-> index dbff75a9087b..2e7547d13220 100644
-> --- a/drivers/gpu/drm/xe/xe_vm.c
-> +++ b/drivers/gpu/drm/xe/xe_vm.c
-> @@ -514,6 +514,24 @@ void xe_vm_unlock_dma_resv(struct xe_vm *vm,
->   
->   #define XE_VM_REBIND_RETRY_TIMEOUT_MS 1000
->   
-> +static void xe_vm_kill(struct xe_vm *vm)
-> +{
-> +	struct ww_acquire_ctx ww;
-> +	struct xe_engine *e;
+> +* ``gpu_vm``: A GPU address space. Typically per process, but can be shared by
+> +  multiple processes.
 > +
-> +	lockdep_assert_held(&vm->lock);
+> +* ``VM_BIND``: An operation or a list of operations to modify a gpu_vm using
+> +  an IOCTL. The operations include mapping and unmapping system- or
+> +  VRAM memory.
 > +
-> +	xe_vm_lock(vm, &ww, 0, false);
-> +	vm->flags |= XE_VM_FLAG_BANNED;
-> +	trace_xe_vm_kill(vm);
+> +* ``syncobj``: A container that abstracts synchronization objects. The
+> +  synchronization objects can be either generic, like dma-fences or
+> +  driver specific. A syncobj typically indicates the type of the
+> +  underlying synchronization object.
 > +
-> +	list_for_each_entry(e, &vm->preempt.engines, compute.link)
-> +		e->ops->kill(e);
-> +	xe_vm_unlock(vm, &ww);
+> +* ``in-syncobj``: Argument to a VM_BIND IOCTL, the VM_BIND operation waits
+> +  for these before starting.
 > +
-> +	/* TODO: Inform user the VM is banned */
-> +}
+> +* ``out-syncbj``: Argument to a VM_BIND_IOCTL, the VM_BIND operation
+> +  signals these when the bind operation is complete.
 > +
->   static void preempt_rebind_work_func(struct work_struct *w)
->   {
->   	struct xe_vm *vm = container_of(w, struct xe_vm, preempt.rebind_work);
-> @@ -533,13 +551,14 @@ static void preempt_rebind_work_func(struct work_struct *w)
->   	XE_BUG_ON(!xe_vm_in_compute_mode(vm));
->   	trace_xe_vm_rebind_worker_enter(vm);
->   
-> -	if (xe_vm_is_closed(vm)) {
-> +	down_write(&vm->lock);
+> +* ``memory fence``: A synchronization object, different from a dma-fence.
+> +  A memory fence uses the value of a specified memory location to determine
+> +  signaled status. A memory fence can be awaited and signaled by both
+> +  the GPU and CPU. Memory fences are sometimes referred to as
+> +  user-fences, and do not necessarily bey the dma-fence rule of
+> +  signalling within a "reasonable amount of time". The kernel should
+> +  thus avoid waiting for memory fences with locks held.
 > +
-> +	if (xe_vm_is_closed_or_banned(vm)) {
-> +		up_write(&vm->lock);
->   		trace_xe_vm_rebind_worker_exit(vm);
->   		return;
->   	}
->   
-> -	down_write(&vm->lock);
-> -
->   retry:
->   	if (vm->async_ops.error)
->   		goto out_unlock_outer;
-> @@ -666,11 +685,14 @@ static void preempt_rebind_work_func(struct work_struct *w)
->   			goto retry;
->   		}
->   	}
-> +	if (err) {
-> +		drm_warn(&vm->xe->drm, "VM worker error: %d\n", err);
-> +		xe_vm_kill(vm);
-> +	}
->   	up_write(&vm->lock);
->   
->   	free_preempt_fences(&preempt_fences);
->   
-> -	XE_WARN_ON(err < 0);	/* TODO: Kill VM or put in error state */
->   	trace_xe_vm_rebind_worker_exit(vm);
->   }
->   
-> @@ -1140,11 +1162,12 @@ xe_vm_find_overlapping_vma(struct xe_vm *vm, const struct xe_vma *vma)
->   {
->   	struct rb_node *node;
->   
-> -	if (xe_vm_is_closed(vm))
-> +	lockdep_assert_held(&vm->lock);
+> +* ``long-running workload``: A workload that may take more than the
+> +  current stipulated dma-fence maximum signal delay to complete and
+> +  which therefore needs to set the gpu_vm or the GPU execution context in
+> +  a certain mode that disallows completion dma-fences.
 > +
-> +	if (xe_vm_is_closed_or_banned(vm))
->   		return NULL;
->   
->   	XE_BUG_ON(vma->end >= vm->size);
-> -	lockdep_assert_held(&vm->lock);
->   
->   	node = rb_find(vma, &vm->vmas, xe_vma_cmp_vma_cb);
->   
-> @@ -1377,6 +1400,13 @@ static void vm_error_capture(struct xe_vm *vm, int err,
->   	wake_up_all(&vm->async_ops.error_capture.wq);
->   }
->   
-> +static void xe_vm_close(struct xe_vm *vm)
-> +{
-> +	down_write(&vm->lock);
-> +	vm->size = 0;
-> +	up_write(&vm->lock);
-> +}
+> +* ``exec function``: An exec function is a function that revalidates all
+> +  affected vmas, submits a gpu command batch and registers the
+> +  dma_fence representing the gpu command's activity with all affected
+> +  dma_resvs. For completeness, although not covered by this document,
+> +  it's worth mentioning that an exec function may also be the
+> +  revalidation worker that is used by some drivers in compute /
+> +  long-running mode.
 > +
->   void xe_vm_close_and_put(struct xe_vm *vm)
->   {
->   	struct rb_root contested = RB_ROOT;
-> @@ -1387,8 +1417,8 @@ void xe_vm_close_and_put(struct xe_vm *vm)
->   
->   	XE_BUG_ON(vm->preempt.num_engines);
->   
-> -	vm->size = 0;
-> -	smp_mb();
-> +	xe_vm_close(vm);
+> +* ``bind context``: A context identifier used for the VM_BIND
+> +  operation. VM_BIND operations that use the same bind context can be
+> +  assumed, where it matters, to complete in order of submission. No such
+> +  assumptions can be made for VM_BIND operations using separate bind contexts.
 > +
->   	flush_async_ops(vm);
->   	if (xe_vm_in_compute_mode(vm))
->   		flush_work(&vm->preempt.rebind_work);
-> @@ -3072,30 +3102,34 @@ int xe_vm_bind_ioctl(struct drm_device *dev, void *data, struct drm_file *file)
->   	if (err)
->   		return err;
->   
-> -	vm = xe_vm_lookup(xef, args->vm_id);
-> -	if (XE_IOCTL_ERR(xe, !vm)) {
-> -		err = -EINVAL;
-> -		goto free_objs;
-> -	}
-> -
-> -	if (XE_IOCTL_ERR(xe, xe_vm_is_closed(vm))) {
-> -		drm_err(dev, "VM closed while we began looking up?\n");
-> -		err = -ENOENT;
-> -		goto put_vm;
-> -	}
-> -
->   	if (args->engine_id) {
->   		e = xe_engine_lookup(xef, args->engine_id);
->   		if (XE_IOCTL_ERR(xe, !e)) {
->   			err = -ENOENT;
-> -			goto put_vm;
-> +			goto free_objs;
->   		}
+> +* ``UMD``: User-mode driver.
 > +
->   		if (XE_IOCTL_ERR(xe, !(e->flags & ENGINE_FLAG_VM))) {
->   			err = -EINVAL;
->   			goto put_engine;
->   		}
->   	}
->   
-> +	vm = xe_vm_lookup(xef, args->vm_id);
-> +	if (XE_IOCTL_ERR(xe, !vm)) {
-> +		err = -EINVAL;
-> +		goto put_engine;
-> +	}
+> +* ``KMD``: Kernel-mode driver.
 > +
-> +	err = down_write_killable(&vm->lock);
-> +	if (err)
-> +		goto put_vm;
 > +
-> +	if (XE_IOCTL_ERR(xe, xe_vm_is_closed_or_banned(vm))) {
-> +		err = -ENOENT;
-> +		goto release_vm_lock;
-> +	}
+> +Synchronous / Asynchronous VM_BIND operation
+> +============================================
 > +
->   	if (VM_BIND_OP(bind_ops[0].op) == XE_VM_BIND_OP_RESTART) {
->   		if (XE_IOCTL_ERR(xe, !(vm->flags & XE_VM_FLAG_ASYNC_BIND_OPS)))
->   			err = -EOPNOTSUPP;
-> @@ -3105,10 +3139,8 @@ int xe_vm_bind_ioctl(struct drm_device *dev, void *data, struct drm_file *file)
->   			err = -EPROTO;
->   
->   		if (!err) {
-> -			down_write(&vm->lock);
->   			trace_xe_vm_restart(vm);
->   			vm_set_async_error(vm, 0);
-> -			up_write(&vm->lock);
->   
->   			queue_work(system_unbound_wq, &vm->async_ops.work);
->   
-> @@ -3117,13 +3149,13 @@ int xe_vm_bind_ioctl(struct drm_device *dev, void *data, struct drm_file *file)
->   				xe_vm_queue_rebind_worker(vm);
->   		}
->   
-> -		goto put_engine;
-> +		goto release_vm_lock;
->   	}
->   
->   	if (XE_IOCTL_ERR(xe, !vm->async_ops.error &&
->   			 async != !!(vm->flags & XE_VM_FLAG_ASYNC_BIND_OPS))) {
->   		err = -EOPNOTSUPP;
-> -		goto put_engine;
-> +		goto release_vm_lock;
->   	}
->   
->   	for (i = 0; i < args->num_binds; ++i) {
-> @@ -3133,7 +3165,7 @@ int xe_vm_bind_ioctl(struct drm_device *dev, void *data, struct drm_file *file)
->   		if (XE_IOCTL_ERR(xe, range > vm->size) ||
->   		    XE_IOCTL_ERR(xe, addr > vm->size - range)) {
->   			err = -EINVAL;
-> -			goto put_engine;
-> +			goto release_vm_lock;
->   		}
->   
->   		if (bind_ops[i].tile_mask) {
-> @@ -3142,7 +3174,7 @@ int xe_vm_bind_ioctl(struct drm_device *dev, void *data, struct drm_file *file)
->   			if (XE_IOCTL_ERR(xe, bind_ops[i].tile_mask &
->   					 ~valid_tiles)) {
->   				err = -EINVAL;
-> -				goto put_engine;
-> +				goto release_vm_lock;
->   			}
->   		}
->   	}
-> @@ -3150,13 +3182,13 @@ int xe_vm_bind_ioctl(struct drm_device *dev, void *data, struct drm_file *file)
->   	bos = kzalloc(sizeof(*bos) * args->num_binds, GFP_KERNEL);
->   	if (!bos) {
->   		err = -ENOMEM;
-> -		goto put_engine;
-> +		goto release_vm_lock;
->   	}
->   
->   	vmas = kzalloc(sizeof(*vmas) * args->num_binds, GFP_KERNEL);
->   	if (!vmas) {
->   		err = -ENOMEM;
-> -		goto put_engine;
-> +		goto release_vm_lock;
->   	}
->   
->   	for (i = 0; i < args->num_binds; ++i) {
-> @@ -3211,10 +3243,6 @@ int xe_vm_bind_ioctl(struct drm_device *dev, void *data, struct drm_file *file)
->   			goto free_syncs;
->   	}
->   
-> -	err = down_write_killable(&vm->lock);
-> -	if (err)
-> -		goto free_syncs;
-> -
->   	/* Do some error checking first to make the unwind easier */
->   	for (i = 0; i < args->num_binds; ++i) {
->   		u64 range = bind_ops[i].range;
-> @@ -3223,7 +3251,7 @@ int xe_vm_bind_ioctl(struct drm_device *dev, void *data, struct drm_file *file)
->   
->   		err = __vm_bind_ioctl_lookup_vma(vm, bos[i], addr, range, op);
->   		if (err)
-> -			goto release_vm_lock;
-> +			goto free_syncs;
->   	}
->   
->   	for (i = 0; i < args->num_binds; ++i) {
-> @@ -3343,8 +3371,6 @@ int xe_vm_bind_ioctl(struct drm_device *dev, void *data, struct drm_file *file)
->   			break;
->   		}
->   	}
-> -release_vm_lock:
-> -	up_write(&vm->lock);
->   free_syncs:
->   	while (num_syncs--) {
->   		if (async && j &&
-> @@ -3357,11 +3383,13 @@ int xe_vm_bind_ioctl(struct drm_device *dev, void *data, struct drm_file *file)
->   put_obj:
->   	for (i = j; i < args->num_binds; ++i)
->   		xe_bo_put(bos[i]);
-> +release_vm_lock:
-> +	up_write(&vm->lock);
-> +put_vm:
-> +	xe_vm_put(vm);
->   put_engine:
->   	if (e)
->   		xe_engine_put(e);
-> -put_vm:
-> -	xe_vm_put(vm);
->   free_objs:
->   	kfree(bos);
->   	kfree(vmas);
-> diff --git a/drivers/gpu/drm/xe/xe_vm.h b/drivers/gpu/drm/xe/xe_vm.h
-> index 5edb7771629c..02b409dd77d5 100644
-> --- a/drivers/gpu/drm/xe/xe_vm.h
-> +++ b/drivers/gpu/drm/xe/xe_vm.h
-> @@ -45,10 +45,21 @@ void xe_vm_unlock(struct xe_vm *vm, struct ww_acquire_ctx *ww);
->   
->   static inline bool xe_vm_is_closed(struct xe_vm *vm)
->   {
-> -	/* Only guaranteed not to change when vm->resv is held */
-> +	/* Only guaranteed not to change when vm->lock is held */
->   	return !vm->size;
->   }
->   
-> +static inline bool xe_vm_is_banned(struct xe_vm *vm)
-> +{
-> +	return vm->flags & XE_VM_FLAG_BANNED;
-> +}
+> +Synchronous VM_BIND
+> +___________________
+> +With Synchronous VM_BIND, the VM_BIND operations all complete before the
+> +IOCTL returns. A synchronous VM_BIND takes neither in-fences nor
+> +out-fences. Synchronous VM_BIND may block and wait for GPU operations;
+> +for example swapin or clearing, or even previous binds.
 > +
-> +static inline bool xe_vm_is_closed_or_banned(struct xe_vm *vm)
-> +{
-> +	lockdep_assert_held(&vm->lock);
-> +	return xe_vm_is_closed(vm) || xe_vm_is_banned(vm);
-> +}
+> +Asynchronous VM_BIND
+> +____________________
+> +Asynchronous VM_BIND accepts both in-syncobjs and out-syncobjs. While the
+> +IOCTL may return immediately, the VM_BIND operations wait for the in-syncobjs
+> +before modifying the GPU page-tables, and signal the out-syncobjs when
+> +the modification is done in the sense that the next exec function that
+> +awaits for the out-syncobjs will see the change. Errors are reported
+> +synchronously assuming that the asynchronous part of the job never errors.
+> +In low-memory situations the implementation may block, performing the
+> +VM_BIND synchronously, because there might not be enough memory
+> +immediately available for preparing the asynchronous operation.
 > +
->   struct xe_vma *
->   xe_vm_find_overlapping_vma(struct xe_vm *vm, const struct xe_vma *vma);
->   
-> diff --git a/drivers/gpu/drm/xe/xe_vm_madvise.c b/drivers/gpu/drm/xe/xe_vm_madvise.c
-> index 0f5eef337037..76458f8d57f3 100644
-> --- a/drivers/gpu/drm/xe/xe_vm_madvise.c
-> +++ b/drivers/gpu/drm/xe/xe_vm_madvise.c
-> @@ -313,7 +313,7 @@ int xe_vm_madvise_ioctl(struct drm_device *dev, void *data,
->   	if (XE_IOCTL_ERR(xe, !vm))
->   		return -EINVAL;
->   
-> -	if (XE_IOCTL_ERR(xe, xe_vm_is_closed(vm))) {
-> +	if (XE_IOCTL_ERR(xe, xe_vm_is_closed_or_banned(vm))) {
->   		err = -ENOENT;
->   		goto put_vm;
->   	}
-> diff --git a/drivers/gpu/drm/xe/xe_vm_types.h b/drivers/gpu/drm/xe/xe_vm_types.h
-> index c148dd49a6ca..3c885211a8d1 100644
-> --- a/drivers/gpu/drm/xe/xe_vm_types.h
-> +++ b/drivers/gpu/drm/xe/xe_vm_types.h
-> @@ -176,15 +176,19 @@ struct xe_vm {
->   	struct xe_bo *scratch_bo[XE_MAX_TILES_PER_DEVICE];
->   	struct xe_pt *scratch_pt[XE_MAX_TILES_PER_DEVICE][XE_VM_MAX_LEVEL];
->   
-> -	/** @flags: flags for this VM, statically setup a creation time */
-> +	/**
-> +	 * @flags: flags for this VM, statically setup a creation time aside
-> +	 * from XE_VM_FLAG_BANNED which requires vm->lock to set / read safely
-> +	 */
->   #define XE_VM_FLAGS_64K			BIT(0)
->   #define XE_VM_FLAG_COMPUTE_MODE		BIT(1)
->   #define XE_VM_FLAG_ASYNC_BIND_OPS	BIT(2)
->   #define XE_VM_FLAG_MIGRATION		BIT(3)
->   #define XE_VM_FLAG_SCRATCH_PAGE		BIT(4)
->   #define XE_VM_FLAG_FAULT_MODE		BIT(5)
-> -#define XE_VM_FLAG_GT_ID(flags)		(((flags) >> 6) & 0x3)
-> -#define XE_VM_FLAG_SET_TILE_ID(tile)	((tile)->id << 6)
-> +#define XE_VM_FLAG_BANNED		BIT(6)
-> +#define XE_VM_FLAG_GT_ID(flags)		(((flags) >> 7) & 0x3)
-> +#define XE_VM_FLAG_SET_TILE_ID(tile)	((tile)->id << 7)
->   	unsigned long flags;
->   
->   	/** @composite_fence_ctx: context composite fence */
+> +If the VM_BIND IOCTL takes a list or an array of operations as an argument,
+> +the in-syncobjs needs to signal before the first operation starts to
+> +execute, and the out-syncobjs signal after the last operation
+> +completes. Operations in the operation list can be assumed, where it
+> +matters, to complete in order.
+> +
+> +To aid in supporting user-space queues, the VM_BIND may take a bind context.
+> +
+> +The purpose of an Asynchronous VM_BIND operation is for user-mode
+> +drivers to be able to pipeline interleaved gpu_vm modifications and
+> +exec functions. For long-running workloads, such pipelining of a bind
+> +operation is not allowed and any in-fences need to be awaited
+> +synchronously.
+> +
+> +Also for VM_BINDS for long-running gpu_vms the user-mode driver should typically
+> +select memory fences as out-fences since that gives greater flexibility for
+> +the kernel mode driver to inject other  operations into the bind /
+> +unbind operations.
+
+Should we make this mandatory? or what cases UMD wouldn't use that?
+
+> Like for example inserting breakpoints into batch
+> +buffers. The workload execution can then easily be pipelined behind
+> +the bind completion using the memory out-fence as the signal condition
+> +for a gpu semaphore embedded by UMD in the workload.
+> +
+> +Multi-operation VM_BIND IOCTL error handling and interrupts
+> +===========================================================
+> +
+> +The VM_BIND operations of the IOCTL may error due to lack of resources
+> +to complete and also due to interrupted waits. In both situations UMD
+> +should preferably restart the IOCTL after taking suitable action. If
+> +UMD has overcommitted a memory resource, an -ENOSPC error will be
+> +returned, and UMD may then unbind resources that are not used at the
+> +moment and restart the IOCTL. On -EINTR, UMD should simply restart the
+> +IOCTL and on -ENOMEM user-space may either attempt to free known
+> +system memory resources or abort the operation. If aborting as a
+> +result of a failed operation in a list of operations, some operations
+> +may still have completed, and to get back to a known state, user-space
+> +should therefore attempt to unbind all virtual memory regions touched
+> +by the failing IOCTL.
+> +Unbind operations are guaranteed not to cause any errors due to
+> +resource constraints.
+> +In between a failed VM_BIND IOCTL and a successful restart there may
+> +be implementation defined restrictions on the use of the gpu_vm. For a
+> +description why, please see `KMD implementation details`_ under [error
+> +state saving]_.
+> +
+> +Sample uAPI implementations
+> +===========================
+> +Suggested uAPI implementations at the moment of writing can be found for
+> +the Nouveau driver `here
+> +<https://patchwork.freedesktop.org/patch/543260/?series=112994&rev=6>`_.
+> +and for the Xe driver `here
+> +<https://cgit.freedesktop.org/drm/drm-xe/diff/include/uapi/drm/xe_drm.h?h=drm-xe-next&id=9cb016ebbb6a275f57b1cb512b95d5a842391ad7>`_.
+> +
+> +KMD implementation details
+> +==========================
+> +
+> +Open: When the VM_BIND IOCTL returns an error, some or even parts of
+> +an operation may have been completed. If the IOCTL is restarted, in
+> +order to know where to restart, the KMD can either put the gpu_vm in
+> +an error state and save one instance of the needed restart state
+> +internally. In this case, KMD needs to block further modifications of
+> +the gpu_vm state that may cause additional failures requiring a
+> +restart state save, until the error has been fully resolved. If the
+> +uAPI instead defines a pointer to a UMD allocated cookie in the IOCTL
+> +struct, it could also choose to store the restart state in that cookie.
+
+I wish we had some way to know before hand if all the conditions would be
+met... like we have display atomic modeset prepare and commit, so it is
+all or nothing... but I don't see how to do it here...
+
+> +
+> +The restart state may, for example, be the number of successfully
+> +completed operations.
+> +
+> +Easiest for UMD would of course be if KMD did a full unwind on error
+> +so that no error state needs to be saved.
+> diff --git a/Documentation/gpu/rfc/xe.rst b/Documentation/gpu/rfc/xe.rst
+> index 2516fe141db6..0f062e1346d2 100644
+> --- a/Documentation/gpu/rfc/xe.rst
+> +++ b/Documentation/gpu/rfc/xe.rst
+> @@ -138,8 +138,8 @@ memory fences. Ideally with helper support so people don't get it wrong in all
+>  possible ways.
+>  
+>  As a key measurable result, the benefits of ASYNC VM_BIND and a discussion of
+> -various flavors, error handling and a sample API should be documented here or in
+> -a separate document pointed to by this document.
+> +various flavors, error handling and sample API suggestions are documented in
+> +Documentation/gpu/drm-vm-bind-async.rst
+
+Acked-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
+
+>  
+>  Userptr integration and vm_bind
+>  -------------------------------
+> -- 
+> 2.40.1
+> 
