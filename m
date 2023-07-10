@@ -4,30 +4,30 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9C4BCEB64DA
-	for <intel-xe@archiver.kernel.org>; Mon, 10 Jul 2023 15:07:56 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6FB90EB64D9
+	for <intel-xe@archiver.kernel.org>; Mon, 10 Jul 2023 15:08:08 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 63D4510E1C4;
-	Mon, 10 Jul 2023 15:07:56 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3295C10E1B6;
+	Mon, 10 Jul 2023 15:08:08 +0000 (UTC)
 Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id EC38910E29A;
- Mon, 10 Jul 2023 15:07:54 +0000 (UTC)
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 06B4310E1B6;
+ Mon, 10 Jul 2023 15:08:06 +0000 (UTC)
 Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 7EA93AADE1;
- Mon, 10 Jul 2023 15:07:54 +0000 (UTC)
+ by emeril.freedesktop.org (Postfix) with ESMTP id 0367FAADE1;
+ Mon, 10 Jul 2023 15:08:06 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: "Matthew Brost" <matthew.brost@intel.com>
-Date: Mon, 10 Jul 2023 15:07:54 -0000
-Message-ID: <168900167448.24988.16235340095231270294@emeril.freedesktop.org>
+Date: Mon, 10 Jul 2023 15:08:06 -0000
+Message-ID: <168900168601.24989.16491788358399689804@emeril.freedesktop.org>
 X-Patchwork-Hint: ignore
 References: <20230710144405.1863923-1-matthew.brost@intel.com>
 In-Reply-To: <20230710144405.1863923-1-matthew.brost@intel.com>
-Subject: [Intel-xe] =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_f?=
- =?utf-8?q?or_drm/xe=3A_Use_internal_VM_flags_in_xe=5Fvm=5Fcreate?=
+Subject: [Intel-xe] =?utf-8?q?=E2=9C=93_CI=2Echeckpatch=3A_success_for_dr?=
+ =?utf-8?q?m/xe=3A_Use_internal_VM_flags_in_xe=5Fvm=5Fcreate?=
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -52,9 +52,29 @@ State : success
 
 == Summary ==
 
-=== Applying kernel patches on branch 'drm-xe-next' with base: ===
-Base commit: bcc6a60a1 fixup! drm/xe: Introduce a new DRM driver for Intel GPUs
-=== git am output follows ===
-Applying: drm/xe: Use internal VM flags in xe_vm_create
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+c7d32770e3cd31d9fc134ce41f329b10aa33ee15
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit 502608329ccac05fff6b88668f29ec2a47971413
+Author: Matthew Brost <matthew.brost@intel.com>
+Date:   Mon Jul 10 07:44:05 2023 -0700
+
+    drm/xe: Use internal VM flags in xe_vm_create
+    
+    xe_vm_create used the IOCTL create flags in a few places rather than the
+    internal VM flags and this just happened to work as these values
+    matched. This is risky (and incorrect) as the internal flag values are
+    free to change. Fix this and use the internal VM flag values.
+    
+    Signed-off-by: Matthew Brost <matthew.brost@intel.com>
+    Reviewed-by: Matthew Auld <matthew.auld@intel.com>
++ /mt/dim checkpatch bcc6a60a1130ef5b99f6347dcc553ab04cbf3365 drm-intel
+502608329 drm/xe: Use internal VM flags in xe_vm_create
 
 
