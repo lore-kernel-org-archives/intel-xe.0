@@ -4,50 +4,60 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id DFFEDEB64DC
-	for <intel-xe@archiver.kernel.org>; Tue, 11 Jul 2023 22:58:06 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 62B4AEB64DC
+	for <intel-xe@archiver.kernel.org>; Tue, 11 Jul 2023 23:10:13 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 95C4010E453;
-	Tue, 11 Jul 2023 22:58:06 +0000 (UTC)
-Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 70EE010E453
- for <intel-xe@lists.freedesktop.org>; Tue, 11 Jul 2023 22:58:04 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 06FEB10E0C1;
+	Tue, 11 Jul 2023 23:10:13 +0000 (UTC)
+Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B48B910E0C1
+ for <intel-xe@lists.freedesktop.org>; Tue, 11 Jul 2023 23:10:09 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1689116284; x=1720652284;
+ t=1689117009; x=1720653009;
  h=date:message-id:from:to:cc:subject:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=pl2tOUFi6lSivQUZtmpmitS0srfSQJx4tZnSRvdTxCk=;
- b=aA1LHqt5OlFnPE6YZz72Aq0wWI7qnVWSV8LMsfXuR87SwnfS/Dj5Q8Mh
- 8Wv6HQrW/aT5anU/nyKqN+DzlbHgqpkdGfCBtg85wPXLWy1vo/W5Fdilo
- FWQ/smTBwR3+xLMsjBRcm5JLe3MAwFl/mlqtL++pdAmeNNhwlmo9fj1NB
- NCyZ0BgnoZ+Yxlbn4yRZ9A6I/m1MdkyN4bSmq7jmj/6zh/22ANz1asbx7
- G2DV22/dkjmc1WGyY8kel92VbboKdKjxeCSHw+Z8yWcdzIRPgAUBRNw0o
- SvBiBcNEWNUCifU6O+xeuFXWIP+/9Mwlk4rHDS2jvGYtfxnIjMQrH8yjr w==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10768"; a="430882933"
-X-IronPort-AV: E=Sophos;i="6.01,197,1684825200"; d="scan'208";a="430882933"
-Received: from orsmga008.jf.intel.com ([10.7.209.65])
- by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 11 Jul 2023 15:58:02 -0700
+ references:mime-version;
+ bh=12EM+eU4l1WMhgoW4saEA5UPPc9/CxqR2Z+box16Hgk=;
+ b=XovuMduyRLbVFRq2mue95FGmZGYrU6rTWBh+gLX45/MBXOIy46zdPcl5
+ VFyYQO+g9sCHHVLiKS6IkOeTrtR9oF2bF/v6lrN0aVdAfA2SLFimF/93C
+ whfyQao9N810ZM0NUTgwp36iL3N7kI5RhViwa7uubTXud2CHTRKXLLcSw
+ Dn8mCq35rLrarhRHvvPwufHxNdYS83wPa6KZfUOA/d2vUp4TXoCl8ilTl
+ i+8WIimFO4Zbwfk8YKi+9waDwY2MWb57+ns3K8Ahvmh2xFtUOKb7gi6Oo
+ CvuK8fnu5WhskaUIeQSNexPVj6wuTvJ0c7QOC2DK+EIHELFOt4eILub+V A==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10768"; a="367376917"
+X-IronPort-AV: E=Sophos;i="6.01,197,1684825200"; d="scan'208";a="367376917"
+Received: from fmsmga003.fm.intel.com ([10.253.24.29])
+ by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 11 Jul 2023 16:10:08 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10768"; a="750944921"
-X-IronPort-AV: E=Sophos;i="6.01,197,1684825200"; d="scan'208";a="750944921"
+X-IronPort-AV: E=McAfee;i="6600,9927,10768"; a="811380090"
+X-IronPort-AV: E=Sophos;i="6.01,197,1684825200"; d="scan'208";a="811380090"
 Received: from adixit-mobl.amr.corp.intel.com (HELO adixit-arch.intel.com)
  ([10.209.116.40])
- by orsmga008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 11 Jul 2023 15:58:02 -0700
-Date: Tue, 11 Jul 2023 15:58:02 -0700
-Message-ID: <87o7kigio5.wl-ashutosh.dixit@intel.com>
+ by fmsmga003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 11 Jul 2023 16:10:08 -0700
+Date: Tue, 11 Jul 2023 16:10:07 -0700
+Message-ID: <87mt02gi40.wl-ashutosh.dixit@intel.com>
 From: "Dixit, Ashutosh" <ashutosh.dixit@intel.com>
-To: "Ursulin, Tvrtko" <tvrtko.ursulin@intel.com>
-In-Reply-To: <BN9PR11MB5305E0D08C2C1705AC72BD5F8B30A@BN9PR11MB5305.namprd11.prod.outlook.com>
-References: <20230627122113.1472532-1-aravind.iddamsetty@intel.com>	<20230627122113.1472532-3-aravind.iddamsetty@intel.com>	<87mt09daqu.wl-ashutosh.dixit@intel.com>	<a6fbb435-6383-772c-703d-183f26a8144e@intel.com>	<87a5w8cvmr.wl-ashutosh.dixit@intel.com>	<04ae6811-9bc1-c66d-6cb8-640bfd8a9c7b@intel.com>	<878rbsckzf.wl-ashutosh.dixit@intel.com>	<3c4bec6c-7af0-ade7-91bc-bbd3bfa46357@intel.com>	<877crbct36.wl-ashutosh.dixit@intel.com>	<953a6abf-5e07-ef87-667a-57ceef40369f@intel.com>	<BN9PR11MB5305E0D08C2C1705AC72BD5F8B30A@BN9PR11MB5305.namprd11.prod.outlook.com>
+To: "Iddamsetty, Aravind" <aravind.iddamsetty@intel.com>
+In-Reply-To: <266f491a-66ac-083c-990f-bc99c42883d2@intel.com>
+References: <20230627122113.1472532-1-aravind.iddamsetty@intel.com>
+ <20230627122113.1472532-3-aravind.iddamsetty@intel.com>
+ <87mt09daqu.wl-ashutosh.dixit@intel.com>
+ <a6fbb435-6383-772c-703d-183f26a8144e@intel.com>
+ <87a5w8cvmr.wl-ashutosh.dixit@intel.com>
+ <04ae6811-9bc1-c66d-6cb8-640bfd8a9c7b@intel.com>
+ <878rbsckzf.wl-ashutosh.dixit@intel.com>
+ <3c4bec6c-7af0-ade7-91bc-bbd3bfa46357@intel.com>
+ <877crbct36.wl-ashutosh.dixit@intel.com>
+ <953a6abf-5e07-ef87-667a-57ceef40369f@intel.com>
+ <BN9PR11MB5305E0D08C2C1705AC72BD5F8B30A@BN9PR11MB5305.namprd11.prod.outlook.com>
+ <266f491a-66ac-083c-990f-bc99c42883d2@intel.com>
 User-Agent: Wanderlust/2.15.9 (Almost Unreal) SEMI-EPG/1.14.7 (Harue)
  FLIM-LB/1.14.9 (=?ISO-8859-4?Q?Goj=F2?=) APEL-LB/10.8 EasyPG/1.0.0
  Emacs/28.2 (x86_64-pc-linux-gnu) MULE/6.0 (HANACHIRUSATO)
 MIME-Version: 1.0 (generated by SEMI-EPG 1.14.7 - "Harue")
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=US-ASCII
 Subject: Re: [Intel-xe] [PATCH v2 2/2] drm/xe/pmu: Enable PMU interface
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -61,287 +71,26 @@ List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
 Cc: "Bommu, Krishnaiah" <krishnaiah.bommu@intel.com>,
- "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>
+ "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>, "Ursulin,
+ Tvrtko" <tvrtko.ursulin@intel.com>
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Mon, 10 Jul 2023 01:12:03 -0700, Ursulin, Tvrtko wrote:
+On Tue, 11 Jul 2023 09:19:24 -0700, Iddamsetty, Aravind wrote:
 >
->
 
-Hi Tvrtko,
+Hi Aravind,
 
-Thanks for providing the context. I have a couple of further questions:
+> Please let me know if you have any more questions around this.
 
-* For client busyness it seems we mananged to invent a drm wide fdinfo
-  based method (non PMU). Are any such efforts on for the kinds of things
-  we are exposing via the i915 PMU or do you see a possibility for this?
-  For it would appear that all drm drivers would want to expose such perf
-  info and a common method across drm is desirable?
+I've asked. But you probably know that since this is uapi, to merge this we
+would need a fully reviewed UMD (non IGT) merge request which consumes what
+we are exposing. So while we are reviewing this maybe let's ask L0 etc. for
+the merge request. I looked at xpumanager but didn't see it consuming what
+we are exposing via PMU here.
 
-* Would you or anyone else have an idea of what other drm drivers (say AMD)
-  are exposing with Perf/PMU? And why they didn't see the need to do what
-  was done in i915 (it seems they are not exposing the same sort of stuff
-  which i915 is exposing)?
+Maybe we'll need an ack from someone like Joonas too.
 
-And a few comments below.
-
-> A few random comments:
->
-> * For question about why OA is not i915_perf.c and not Perf/PMU read
-> * comment on top of i915_perf.c.
-
-... why OA is i915_perf.c and not Perf/PMU ... The question Aravind asked
-earlier.
-
-> * In terms of efficiency - don't forget the fact sysfs is one value per
-> * file and in text format - so multiple counters to be read is multiple
-> * system calls (two per value at least - unless that new ioctl which
-> * opens and reads in one is used) and binary->text->binary
-> * conversion. While PMU is one ioctl to read as many counters as wanted
-> * straight in machine usable format.
->
-> * In terms of why not ioctl - my memory is hazy but I am pretty sure
-> * people requesting this interface at the time had a strong requirement
-> * to not have it. Could be what Aravind listed, or maybe even more to it.
-
-Another advantage PMU has over ioctl is "discoverability", at run time your
-can discover what is available. Maybe can be done via ioctl extensions or
-versioning such as is used in OA.
-
-So overall I have also come round to thinking to expose perf stats, PMU
-seems to be a better interface than ioctl or sysfs.
-
-> * For sysfs there definitely was something about sysfs not being wanted
-> * with containers but I can't remember the details. Possibly people were
-> * saying they wouldn't want to mount sysfs inside them for some reason.
-
-Heard the other day that using sysfs with containers needs some kernel
-changes.
-
-> * The fact tracepoint names are shown with perf list does not make them
-> * PMU. =F0=9F=98=8A
-
-Yup I tried this out and there was no real information there.
-
-> * I also wouldn't discount so easily aligning with the same interface in
-> * terms of tools like intel_gpu_top. The tool has it's users and it would
-> * be non-trivial cost to refactor into wholly different backends. Most
-> * importantly someone would need to commit to that which looking at the
-> * past record of involvements I estimate is not very likely to happen.
-
-Agreed, doing it say via OA would be more complicated too. I think tools
-around OA exist but likely doing it in IGT is probably not going to happen.
-
-And even if we did do something with OA, we would need a way to expose
-busyness data which GuC emits (as opposed to what HW emits).
-
-> * Also in terms of software counters, the story is not that simple as
-> * i915 invented them. There was an option to actually use OA registers to
-> * implement engine busyness stats but unfortunately the capability wasn't
-> * consistent across hw generations we needed to support. Not all engines
-> * had corresponding OA counters and there was also one other problem with
-> * OA which currently escapes me. Needing to keep the device awake maybe?
-> * But anyway, that is one reason for sw counters, including sampling on
-> * ringbuffer platforms, and accurate sw stats on execlists.
->
-> Sampled frequency (more granular than 1 HZ snapshots) was also AFAIR a
-> customer requirement and i915 can do it much more cheaply than userspace
-> hammering on sysfs can.
-
-Agreed kernel can do it more cheaply, but maybe doing it at 20 Hz in
-usersapce (rather than 200 Hz in the kernel) is sufficient? And userspace
-won't have to deal with the i915 quirks such as freq is only measured when
-GPU is unparked.
-
-> Of course the user/customer requirements might have changed so I am not
-> saying that all past decisions still apply. Just providing context.
-
-Yes thanks for that, much appreciated.
-
+Thanks.
+--
 Ashutosh
-
->
-> Regards,
->
-> Tvrtko
->
-> -----Original Message-----
-> From: Iddamsetty, Aravind <aravind.iddamsetty@intel.com>
-> Sent: Monday, July 10, 2023 7:05 AM
-> To: Dixit, Ashutosh <ashutosh.dixit@intel.com>
-> Cc: intel-xe@lists.freedesktop.org; Bommu, Krishnaiah <krishnaiah.bommu@i=
-ntel.com>; Ursulin, Tvrtko <tvrtko.ursulin@intel.com>
-> Subject: Re: [Intel-xe] [PATCH v2 2/2] drm/xe/pmu: Enable PMU interface
->
->
->
-> On 08-07-2023 02:55, Dixit, Ashutosh wrote:
-> > On Fri, 07 Jul 2023 03:42:36 -0700, Iddamsetty, Aravind wrote:
-> >>
-> >
-> > Hi Aravind,
-> >
-> >> On 07-07-2023 11:38, Dixit, Ashutosh wrote:
-> >>> On Thu, 06 Jul 2023 20:53:47 -0700, Iddamsetty, Aravind wrote:
-> >>> I will look at the timing stuff later but one further question about
-> >>> the
-> >>> requirement:
-> >>>
-> >>>>> Also, could you please explain where the requirement to expose
-> >>>>> these OAG group busy/free registers via the PMU is coming from?
-> >>>>> Since these are OA registers presumably they can be collected using=
- the OA subsystem.
-> >>>>
-> >>>> L0 sysman needs this
-> >>>> https://spec.oneapi.io/level-zero/latest/sysman/api.html#zes-engine
-> >>>> -properties-t
-> >>>> and xpumanager uses this
-> >>>> https://github.com/intel/xpumanager/blob/master/core/src/device/gpu
-> >>>> /gpu_device.cpp
-> >>>
-> >>> So fine these are UMD requirements, but why do these quantities
-> >>> (everything in this patch) have to exposed via PMU? I could just
-> >>> create sysfs or an ioctl to provide these to userland, right?
-> >>
-> >> PMU is enhanced interface to present the metrics, it provides low
-> >> latency reads compared to sysfs
-> >
-> > Why lower latency compared to sysfs? In both cases we have user to
-> > kernel transitions and then register reads etc.
->
-> The sysfs will have to go through filesystem which adds latency but here =
-i think the most important aspect is requirement of read timestamps.
->
-> >
-> >> and one can read multiple events in a single shot
-> >
-> > Yes, this PMU can do and sysfs can't, though ioctl's can do this.
-> >
-> >> and it will give timestamps as well which sysfs cannot provide and
-> >> which is one of the requirements of UMD.
-> >
-> > Ioctl's can do this if implement (counter, timestamp) pairs, but I
-> > agree this may look strange so PMU does seem to have an advantage here.
-> >
-> > But are these timestamps needed? The spec talks about different
-> > timestamp bases but in this case we have already converted to ns and I
-> > am wondering if the UMD can use it's own timestamps (maybe average of
-> > the ioctl call and return from ioctl) if UMD needs timestamps.
->
-> here i'm talking about read timestamps not the counter itself and when we=
- already have an interface(PMU) which can give these details why to do dupl=
-icate effort in ioctl
-> >
-> >> Also UMDs/ observability tools do not want to have any open handles
-> >> to get these info so ioctl is dropped out.
-> >
-> > Why? This also I don't follow. And UMD has an perf pmu fd open. See
-> > igt@perf_pmu@module-unload e.g. which tests that module unload should
-> > fail if the perf pmu fd is open (which takes a ref count on the module).
->
-> here I'm referring to drm fd, one need not open drm fd to read via pmu, a=
-nd typically UMDs do not want to open drm fd as it takes device reference a=
-nd might toggle the device state(eg: wake device) when we are trying to rea=
-d some stats which is not needed.
->
-> >
-> >> the other motivation to use PMU in xe is the existing tools like
-> >> intel_gpu_top will work with just a minor change.
-> >
-> > Not too concerned about userspace tools. They can be changed to use a
-> > different interface.
-> >
-> > So I am still not convinced xe needs to expose a PMU interface with
-> > these sort of "software events/counters". So my question is why can't
-> > we just have an ioctl to expose these things, why PMU?
->
-> firstly, PMU satisfies all requirements of UMD, requiring read timestamps=
-, multiple event read. So as we already have a time tested interface is ker=
-nel why should we try to duplicate. secondly, using ioctl one has to open d=
-rm fd which umds do not want.
-> >
-> > Incidentally if you look at amdgpu_pmu.c, they seem to exposing some
-> > hardware sort of events through the PMU, not our kind of software stuff.
->
-> the counters that I'm exposing in this series are hardware counters itsel=
-f.
->
-> >
-> > Another interesting thing is if we have ftrace statements they seem to
-> > automatically be exposed by PMU
-> > (https://perf.wiki.kernel.org/index.php/Tutorial), e.g.:
-> >
-> >   i915:i915_request_add                              [Tracepoint event]
-> >   i915:i915_request_queue                            [Tracepoint event]
-> >   i915:i915_request_retire                           [Tracepoint event]
-> >   i915:i915_request_wait_begin                       [Tracepoint event]
-> >   i915:i915_request_wait_end                         [Tracepoint event]
-> >
-> > So I am wondering if this might be an option?
->
-> i'm little confused here how ftrace will expose any counters as it is mos=
-tly for profiling?
->
-> Thanks,
-> Aravind.
-> >
-> > So anyway let's try to understand the need for the PMU interface a bit
-> > more before deciding on this. Once we introduce the interface (a)
-> > people will willy nilly start exposing random stuff through that
-> > inteface (b) same stuff will get exposed via multiple interfaces (e.g.
-> > frequency and rc6 residency in i915) etc. I am speaking on the basis of=
- what I saw in i915.
-> >
-> > Let's see if Tvrtko responds, otherwise I will try to get him on irc
-> > or something. It will be good to have some input from maybe one of the
-> > architects too about this.
-> >
-> > Thanks.
-> > --
-> > Ashutosh
-> >
-> >>> I had this same question about i915 PMU which was never answered.
-> >>> i915 PMU IMO does truly strange things like sample freq's every 5 ms
-> >>> and provides software averages which I thought userspace can easily d=
-o.
-> >>
-> >> that is a different thing nothing to do with PMU interface
-> >>
-> >> Thanks,
-> >> Aravind.
-> >>>
-> >>> I don't think it's the timestamps, maybe there is some convention
-> >>> related to the cpu pmu (which I am not familiar with).
-> >>>
-> >>> Let's see, maybe Tvrtko can also answer why these things were
-> >>> exposed via
-> >>> i915 PMU.
-> >>>
-> >>> Thanks.
-> >>> --
-> >>> Ashutosh
-> >>>
-> >>>
-> >>>>>
-> >>>>> The i915 PMU I believe deduces busyness by sampling the RING_CTL
-> >>>>> register using a timer. So these registers look better since you
-> >>>>> can get these busyness values directly. On the other hand you can
-> >>>>> only get busyness for an engine group and things like compute seem =
-to be missing?
-> >>>>
-> >>>> The per engine busyness is a different thing we still need that and
-> >>>> it has different implementation with GuC enabled, I believe Umesh
-> >>>> is looking into that.
-> >>>>
-> >>>> compute group will still be accounted in XE_OAG_RENDER_BUSY_FREE
-> >>>> and also under XE_OAG_RC0_ANY_ENGINE_BUSY_FREE.
-> >>>>>
-> >>>>> Also, would you know about plans to expose other kinds of
-> >>>>> busyness-es? I think we may be exposing per-VF and also per-client
-> >>>>> busyness via PMU. Not sure what else GuC can expose. Knowing all
-> >>>>> this we can better understand how these particular busyness values =
-will be used.
-> >>>>
-> >>>> ya, that shall be coming next probably from Umesh but per client
-> >>>> busyness is through fdinfo.
