@@ -4,30 +4,47 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1241BEB64DD
-	for <intel-xe@archiver.kernel.org>; Tue, 11 Jul 2023 09:24:29 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id C7076EB64DC
+	for <intel-xe@archiver.kernel.org>; Tue, 11 Jul 2023 10:17:08 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D58C910E34C;
-	Tue, 11 Jul 2023 09:24:28 +0000 (UTC)
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id 9CC0910E34C;
- Tue, 11 Jul 2023 09:24:25 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 3C76EAADEA;
- Tue, 11 Jul 2023 09:24:25 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+	by gabe.freedesktop.org (Postfix) with ESMTP id 80CD510E35E;
+	Tue, 11 Jul 2023 10:17:08 +0000 (UTC)
+Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C36D910E35D
+ for <intel-xe@lists.freedesktop.org>; Tue, 11 Jul 2023 10:17:06 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1689070626; x=1720606626;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=+mnU73NYGtFx7RY45HrdWu6IOTiHC9LWI2C1D1wZkYQ=;
+ b=Yqo5HQyy6oUpndG/uUzwnFjsD6Ib9eB4GbPhIfaSK3kEyZ0r1Scc6R59
+ P9TPXmml0j67b3rIxJDBt6iGJJ7EJXsDFe/541JstwmRJSrb3YaEPkk9G
+ S/t+h4FoaYPAKN77YlGcWvSVZEea8Thso/+JJfP4kh7SAZCsXAcbk1xxs
+ dVGm05Hvu1KBPhSk4dMXaJhJxEV391NLR91GA2TJXKXCFSk0l7BpNgkx3
+ FgtoqSuH4I6mYDvpQvQ4orSLgmVAqSIE3HseeZTHv42uqD+UwnmRja1T0
+ 9FkyL7osduqYzlc7MBtqdloJcD98np8vokJkNiIUtas4ZxCxF5m3+6d7M w==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10767"; a="354444168"
+X-IronPort-AV: E=Sophos;i="6.01,196,1684825200"; d="scan'208";a="354444168"
+Received: from orsmga003.jf.intel.com ([10.7.209.27])
+ by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 11 Jul 2023 03:17:05 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6600,9927,10767"; a="671319318"
+X-IronPort-AV: E=Sophos;i="6.01,196,1684825200"; d="scan'208";a="671319318"
+Received: from pzsolt-mobl1.ger.corp.intel.com (HELO localhost.localdomain)
+ ([10.249.34.172])
+ by orsmga003-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 11 Jul 2023 03:17:04 -0700
+From: Francois Dugast <francois.dugast@intel.com>
+To: intel-xe@lists.freedesktop.org
+Date: Tue, 11 Jul 2023 10:16:32 +0000
+Message-Id: <20230711101633.7-1-francois.dugast@intel.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Francois Dugast" <francois.dugast@intel.com>
-Date: Tue, 11 Jul 2023 09:24:25 -0000
-Message-ID: <168906746524.18665.8115918414366574193@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20230711092122.7-1-francois.dugast@intel.com>
-In-Reply-To: <20230711092122.7-1-francois.dugast@intel.com>
-Subject: [Intel-xe] =?utf-8?q?=E2=9C=97_CI=2EPatch=5Fapplied=3A_failure_f?=
- =?utf-8?q?or_Prevent_flooding_the_kernel_log_with_XE=5FIOCTL=5FERR?=
+Content-Transfer-Encoding: 8bit
+Subject: [Intel-xe] [PATCH v3 0/1] Prevent flooding the kernel log with
+ XE_IOCTL_ERR
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -39,33 +56,46 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
-Cc: intel-xe@lists.freedesktop.org
+Cc: matthew.d.roper@intel.com, Francois Dugast <francois.dugast@intel.com>,
+ lucas.demarchi@intel.com, rodrigo.vivi@intel.com
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-== Series Details ==
+Following earlier discussion and proposals, a first attempt for v2 was made by
+replacing XE_IOCTL_ERR with this new macro:
 
-Series: Prevent flooding the kernel log with XE_IOCTL_ERR
-URL   : https://patchwork.freedesktop.org/series/120535/
-State : failure
+    #define XE_IOCTL_CHECK(xe__, expected_cond__, retcode__)                    \
+        if (unlikely(!(expected_cond__))) {                                     \
+                drm_dbg(&(xe__)->drm, "Ioctl argument check failed: %s",        \
+                        #expected_cond__);                                      \
+        return retcode__;                                                       \
+    }
 
-== Summary ==
+A message is logged by XE_IOCTL_ERR if the condition is true, whereas a message
+is logged by XE_IOCTL_CHECK if the condition is false (expected condition), so
+the condition has to be inversed. This was done easily with coccinelle for the
+vast majority of uses of this macro, but this also showed more than 60 uses of
+XE_IOCTL_ERR different from just a return statement. Fixing this would require
+more refactoring but the priority of this patch is to address potential
+flooding of the kernel log, so sending a new version without the new macro but
+fixing the name to prevent the inconsistency with error and debug.
 
-=== Applying kernel patches on branch 'drm-xe-next' with base: ===
-Base commit: d39e49e2a drm/xe: Port Xe to GPUVA
-=== git am output follows ===
-error: patch failed: drivers/gpu/drm/xe/xe_engine.c:586
-error: drivers/gpu/drm/xe/xe_engine.c: patch does not apply
-error: patch failed: drivers/gpu/drm/xe/xe_vm.c:2560
-error: drivers/gpu/drm/xe/xe_vm.c: patch does not apply
-error: patch failed: drivers/gpu/drm/xe/xe_vm_madvise.c:115
-error: drivers/gpu/drm/xe/xe_vm_madvise.c: patch does not apply
-hint: Use 'git am --show-current-patch' to see the failed patch
-Applying: drm/xe: Prevent flooding the kernel log with XE_IOCTL_ERR
-Patch failed at 0001 drm/xe: Prevent flooding the kernel log with XE_IOCTL_ERR
-When you have resolved this problem, run "git am --continue".
-If you prefer to skip this patch, run "git am --skip" instead.
-To restore the original branch and stop patching, run "git am --abort".
+Francois Dugast (1):
+  drm/xe: Prevent flooding the kernel log with XE_IOCTL_ERR
 
+ drivers/gpu/drm/i915/display/intel_fb.c |   2 +-
+ drivers/gpu/drm/xe/xe_bo.c              |  26 ++---
+ drivers/gpu/drm/xe/xe_engine.c          | 114 +++++++++----------
+ drivers/gpu/drm/xe/xe_exec.c            |  14 +--
+ drivers/gpu/drm/xe/xe_macros.h          |   8 +-
+ drivers/gpu/drm/xe/xe_mmio.c            |  14 +--
+ drivers/gpu/drm/xe/xe_query.c           |  30 ++---
+ drivers/gpu/drm/xe/xe_sync.c            |  32 +++---
+ drivers/gpu/drm/xe/xe_vm.c              | 144 ++++++++++++------------
+ drivers/gpu/drm/xe/xe_vm_madvise.c      |  40 +++----
+ drivers/gpu/drm/xe/xe_wait_user_fence.c |  30 ++---
+ 11 files changed, 227 insertions(+), 227 deletions(-)
+
+-- 
+2.34.1
 
