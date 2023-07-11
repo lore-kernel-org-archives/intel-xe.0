@@ -4,47 +4,155 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id E0B15EB64DD
-	for <intel-xe@archiver.kernel.org>; Tue, 11 Jul 2023 16:17:55 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 011F6EB64DD
+	for <intel-xe@archiver.kernel.org>; Tue, 11 Jul 2023 16:19:46 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B16E010E3D9;
-	Tue, 11 Jul 2023 16:17:55 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C23CE10E3DC;
+	Tue, 11 Jul 2023 16:19:46 +0000 (UTC)
 Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0C91110E3D9
- for <intel-xe@lists.freedesktop.org>; Tue, 11 Jul 2023 16:17:52 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E62E710E3DC
+ for <intel-xe@lists.freedesktop.org>; Tue, 11 Jul 2023 16:19:43 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1689092272; x=1720628272;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=P6nq6Fj25iK3+cxmMdpJ/ql0oGeuo3DlcBPsBRcSqjg=;
- b=gg2IJir0TjIeSr4KHHA/FRcgZVsvMwR5GBwgTwleXumvL6iCP4wJ9sMx
- qaDUU9NO/Ns0ZKqB9KZCJnzigjVWvpqLThAdirZ+mfpAGWB7cVhFH+nm0
- nUhFDplqOEBNqLeHAyqxyzmZKJy8AJRGL/HcMh0isaTavjYuYkgzHtQmj
- VpMWPZjDuKmjo9HpEjH2w+MW1eHWLMmP7IIaDC3A/Vj6eBpJEeMnNSb/b
- M4hKBSFmxGbr8NjMQAs2+4d0M1E5SjP0Mu7MrMwc2CNJGnbnHCpYGyoJo
- iLlExCRJ8Llo1s6CGAyC2eIxYawV0UEjQGUeZ1TB1eYdVnh7PmO1SOSX7 A==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10768"; a="344264929"
-X-IronPort-AV: E=Sophos;i="6.01,196,1684825200"; d="scan'208";a="344264929"
-Received: from orsmga004.jf.intel.com ([10.7.209.38])
+ t=1689092383; x=1720628383;
+ h=message-id:date:subject:to:cc:references:from:
+ in-reply-to:content-transfer-encoding:mime-version;
+ bh=HCpMTg7FKELLfRrsicNOkuL8xEpawnxIsGuB/ysDT8M=;
+ b=W3hJT/ER1g5byEmhP11ZY2klQyWDj2HYfMf0kmn6FWlo44rc/I/A7KMp
+ 1ofUmSojeZbPcvabNqpGCxgVx0Q6dkktz2SThh6Mfwn+NJHG/WgW2rrTt
+ WcrPt/2/gFhkJCocmlOm+r/6ip+Xo7s8kw4mZ1jYfLLwlSFraAk7vaRE9
+ PqVqlUHu7NceiMs9h1EmT3Ipcp2P1eZR4jqorzY8HnOQDxz8HYJh6jTS4
+ 2yjosQFzTFTXZP4Q+LbNlWTcLb9F0fIsWwHI+sDz+6ryPG6ZAK5H4PV6V
+ t8E2UM5UiK6cxtettE8rBhVSIwd3f2Im8SQdJSbsK8+9LSe8aVqB+QnMD Q==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10768"; a="344265684"
+X-IronPort-AV: E=Sophos;i="6.01,196,1684825200"; d="scan'208";a="344265684"
+Received: from orsmga006.jf.intel.com ([10.7.209.51])
  by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 11 Jul 2023 09:17:43 -0700
+ 11 Jul 2023 09:19:43 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10768"; a="845321137"
-X-IronPort-AV: E=Sophos;i="6.01,196,1684825200"; d="scan'208";a="845321137"
-Received: from pzsolt-mobl1.ger.corp.intel.com (HELO localhost.localdomain)
- ([10.249.34.172])
- by orsmga004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 11 Jul 2023 09:17:40 -0700
-From: Francois Dugast <francois.dugast@intel.com>
-To: intel-xe@lists.freedesktop.org
-Date: Tue, 11 Jul 2023 16:17:28 +0000
-Message-Id: <20230711161728.6-1-francois.dugast@intel.com>
-X-Mailer: git-send-email 2.34.1
-MIME-Version: 1.0
+X-IronPort-AV: E=McAfee;i="6600,9927,10768"; a="698471939"
+X-IronPort-AV: E=Sophos;i="6.01,196,1684825200"; d="scan'208";a="698471939"
+Received: from orsmsx601.amr.corp.intel.com ([10.22.229.14])
+ by orsmga006.jf.intel.com with ESMTP; 11 Jul 2023 09:19:43 -0700
+Received: from orsmsx612.amr.corp.intel.com (10.22.229.25) by
+ ORSMSX601.amr.corp.intel.com (10.22.229.14) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.27; Tue, 11 Jul 2023 09:19:42 -0700
+Received: from ORSEDG602.ED.cps.intel.com (10.7.248.7) by
+ orsmsx612.amr.corp.intel.com (10.22.229.25) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.27 via Frontend Transport; Tue, 11 Jul 2023 09:19:42 -0700
+Received: from NAM10-DM6-obe.outbound.protection.outlook.com (104.47.58.101)
+ by edgegateway.intel.com (134.134.137.103) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.1.2507.27; Tue, 11 Jul 2023 09:19:42 -0700
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=E3I98xJf0cx6NA+2G2sZ7hTuWhAMCQW67NkcdaGLoeyCh7Fu2eBpKPRXzZRTantDHJt5ZhB56DpZ7aT/KiY/SJ42UVSiHj+uCbG1h99zt+DlyXQ3pkfDZgtPlDW+7QZJT9pd1lNDOuTI+v8OkhiUVGXTKVkaLHZArh3L433JxsM6SyqKPGsaELcTD06ioexeIFO48lf/26FmhgRP14ptErwhYfnPVYLsjNP3SLQs6QI6EM/L92cTwMTw9rS44a/ATbgasFT01DR69YStEoHclhlDSOfFnxf2ccomfIM1GwAY0i2SG2VPfek2gb3b+FvZG8V0j4eFDCSJewHuZtZCtQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=83np6PwI+TV7QlvFzKUjwG4YJOU6drkyS5W8QIcwhlU=;
+ b=eV47n/QE8yx4xLaKtZDuDHQLX5bUf+00IKTBR9zg2T/EXanxJrboUHeUUtBqbBqmmiY629KnLLoREpkHix6jXoD0H2fptMFO+9tFyS39jw4clVZvjmy77LBFg9vnLclcQzC6NEw8MJS/OkO9+n9NO1zZoTOTEzwJ0hQHMABNiHV05U7uo4VfGMkrLAt9yvq+Kl1IRT+E705nssNIZJ81KeomWhDPqSskLoRLiSnmVtqrh3klieUrzkYklAoQ9NEQoU9JZZkr4JIs0YPxrHq1BUZlCyZvfAaPXN5hLRFAFsd5KFChkLF9ExMua0vTkKpXFAgG6n4IhaX4bNyfn7a9fA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
+ dkim=pass header.d=intel.com; arc=none
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=intel.com;
+Received: from CH0PR11MB5474.namprd11.prod.outlook.com (2603:10b6:610:d5::8)
+ by MN2PR11MB4600.namprd11.prod.outlook.com (2603:10b6:208:26e::16) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6565.32; Tue, 11 Jul
+ 2023 16:19:34 +0000
+Received: from CH0PR11MB5474.namprd11.prod.outlook.com
+ ([fe80::2ead:623d:b273:bd8f]) by CH0PR11MB5474.namprd11.prod.outlook.com
+ ([fe80::2ead:623d:b273:bd8f%4]) with mapi id 15.20.6565.028; Tue, 11 Jul 2023
+ 16:19:33 +0000
+Message-ID: <266f491a-66ac-083c-990f-bc99c42883d2@intel.com>
+Date: Tue, 11 Jul 2023 21:49:24 +0530
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+ Firefox/102.0 Thunderbird/102.12.0
+Content-Language: en-US
+To: "Ursulin, Tvrtko" <tvrtko.ursulin@intel.com>, "Dixit, Ashutosh"
+ <ashutosh.dixit@intel.com>
+References: <20230627122113.1472532-1-aravind.iddamsetty@intel.com>
+ <20230627122113.1472532-3-aravind.iddamsetty@intel.com>
+ <87mt09daqu.wl-ashutosh.dixit@intel.com>
+ <a6fbb435-6383-772c-703d-183f26a8144e@intel.com>
+ <87a5w8cvmr.wl-ashutosh.dixit@intel.com>
+ <04ae6811-9bc1-c66d-6cb8-640bfd8a9c7b@intel.com>
+ <878rbsckzf.wl-ashutosh.dixit@intel.com>
+ <3c4bec6c-7af0-ade7-91bc-bbd3bfa46357@intel.com>
+ <877crbct36.wl-ashutosh.dixit@intel.com>
+ <953a6abf-5e07-ef87-667a-57ceef40369f@intel.com>
+ <BN9PR11MB5305E0D08C2C1705AC72BD5F8B30A@BN9PR11MB5305.namprd11.prod.outlook.com>
+From: "Iddamsetty, Aravind" <aravind.iddamsetty@intel.com>
+In-Reply-To: <BN9PR11MB5305E0D08C2C1705AC72BD5F8B30A@BN9PR11MB5305.namprd11.prod.outlook.com>
+Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-xe] [PATCH v4] drm/xe: Prevent flooding the kernel log with
- XE_IOCTL_ERR
+X-ClientProxiedBy: PN3PR01CA0172.INDPRD01.PROD.OUTLOOK.COM
+ (2603:1096:c01:de::16) To CH0PR11MB5474.namprd11.prod.outlook.com
+ (2603:10b6:610:d5::8)
+MIME-Version: 1.0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: CH0PR11MB5474:EE_|MN2PR11MB4600:EE_
+X-MS-Office365-Filtering-Correlation-Id: 18b5e3d0-e085-4437-3a1e-08db822a9cac
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: /s5ptbsC1MWGXLzTLf4cFv7XUsnzNi9ZxKoyuXNpI8au1V8uxdVQTK+rB+PXbvuqqqqaFgmVecDn+p5TccGoTeLseBtog1oi9p/q9fxvFGzjXtnC8rdZBatjO1YnyQLQheS46U6godN1bFXU+zxb/3k86t2s+GL9JshKJfkkUM9OxSUG0hDVkc/dKjRt+UZrr6y3WHmBP6m2uXle78IDIMvMmKn1Ggry6lDMECaFnSV2+YCx+6PFO8DzY8nLydx6h1P1xcNxPGPP5+wAhfU9R26LZcOvcK5+PGVtS6q0lUnDKUG9D9rlzwgaD61Ji1mMtsX6jCxpEsqA3dHRucMXohVTXON+I1q9PPukvGjSs+9t4GX9PaEdHAaxHnviXaDvzm8jlEhHEyS7eZAXEMduuMkW0DnUHcY4m3J0EISf1ynGmp5Aewb5O77pglBRPiO7rSimmGsn06vLRrMvDyFx8Qp+gabdmWKJIwSIbRa8NIAttjhi0ohlVIfmj9BxPiGq6UK/PyHQwwnwRLPVgWx6hFhuVhMoku+uIs7JujE9vJhzNTtqDaqqAEdl5sPpOwz8njp5KF0o9CKNoWx9JaoMiQfpvH8eftd6mUk1drdfVK1CNrXy8EU8Yd7wR3r/R1Ac2cb0u4u82ndMME88Qp+U5C6A379Og1Unc5ur1LyJ6/f34FSQv8RalUUzdz+HcD+k
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:CH0PR11MB5474.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230028)(136003)(396003)(376002)(39860400002)(346002)(366004)(451199021)(53546011)(186003)(26005)(6506007)(966005)(6512007)(107886003)(2616005)(6636002)(41300700001)(316002)(2906002)(66476007)(66556008)(5660300002)(83380400001)(8936002)(8676002)(4326008)(478600001)(6486002)(6666004)(66946007)(110136005)(54906003)(36756003)(16799955002)(82960400001)(38100700002)(31696002)(86362001)(31686004)(66899021)(45980500001)(43740500002);
+ DIR:OUT; SFP:1102; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?U21WVzViVXpsOEZPWjZBd2lHTllmSTJsRkxsUzVsR2RORnVVS0JnYUNiOFB5?=
+ =?utf-8?B?M2NkVVNqanFmQkpyOTVYUy8yeS9qWUVncmpTODdiK1U0THVDRkJoaVIwQVYx?=
+ =?utf-8?B?dFhvTjJjMDBKUENwMEJWL1RSSzV5TC9GNDg0ZTd2dHo1Y0g5VDlXWjI4R24z?=
+ =?utf-8?B?QmVyK0NSSFRROVZSWkorbkZkWEU4bGp2SlEvbkpFSWtQSitld21lSXBYeFla?=
+ =?utf-8?B?eGNadEF6RmFkQ1NNdFBRSUZyTnpUd2ZwS0NGRERJdHRRazRDOW1ndUF2SWlx?=
+ =?utf-8?B?NDdJMnlHQStueXJacnFINU9RZWIxMTcrbmpIWVVZVDd3cndnUEhDWEVlUjg1?=
+ =?utf-8?B?RVdqcU1QeGVhQm44RG1GbWFQbFB4L1NRRGNlVlUvSGlBSy9iVWFHaFVTdWVN?=
+ =?utf-8?B?SUZTalpFSms3TEc3Z2VRU2dIUXF2Y1p0VGdaczhzcW5xZGNLb3RPYmV6aEJm?=
+ =?utf-8?B?UzNad3VweUprdmUxemJnYk84VlFrNDZSVkUwTDZDdmZXYkVkZzFYSE5XSVpT?=
+ =?utf-8?B?NUZGV0R4VkZtTm5aOVdNMmwvM2tJekI4cU15aHZCSHNHNTNzd1dmMEJJWlR2?=
+ =?utf-8?B?VTlxT212bUhYbDgxNC85dmpyUVdFNkxDOEVyQkVCRW5ndmdFOUdsZy9IOHNi?=
+ =?utf-8?B?OXEyNkdjclJPVStUeTJvc1ZrT3YzTnFZVHBaRmdJRnY4Tmx2bUFJSGpaMDht?=
+ =?utf-8?B?akpzRDBoV0RXMEw0a1ZEMEQ2ZDEwRmJDN0ozWGZKaDQxb3RQMVpnK1lwSWUv?=
+ =?utf-8?B?ckoyalhOVDFYMjZENCtOL3JwbHVKNVJuVENOcWNEY2pGZXVxa2E2VkRDbUo5?=
+ =?utf-8?B?aFRtYkx0VFJmTWRyUTY0d3d6Tm43MEJCcmdCMFlKY2F1YXlCRitkdHlSRlpP?=
+ =?utf-8?B?QWFLeUJONGpsM3UrVnljU2lhYUx6WWhoZ2puTlU2bXUzUlkyM0hXd3A1aFZM?=
+ =?utf-8?B?cTZUZG9vZ0NHSS91aHU4U0diQm1LdWpPUEpNMGRjY2dNRksvbVVKNWRkYUw5?=
+ =?utf-8?B?aUhXSXRnYzQwcVNXejhQamtlQk9ORTY4czdjbTVnOXY0OE5tUDNSZWlGaDFq?=
+ =?utf-8?B?SDh0eVYwbjJvbXUyVFNLVllTakdBbmhvaDhlaUNZWnZjZ1BvVC9DNlJncjJp?=
+ =?utf-8?B?aWd6eGpZZDBMdmNBcFlBWDBBV0xJaE1HaURTaEZCaTBtU2hTSldTUFJGMlNH?=
+ =?utf-8?B?eS9pNHBnbm1Tc3pmdUE3a2FUakFCYVhGMXdJZEl0MW1OeDk1WXdFMmJuanoz?=
+ =?utf-8?B?Z3ZlV25oKyszYVR0aE5lckNtcmlWUlRiY1I4VUJLcExUUlFzRlNVaXV6WHJm?=
+ =?utf-8?B?a1JQN2syU1BkVDJYT0JDdVlYaEJPdEdrNFQ3SUd0N0FTM2x0Vi8xQUJnQ25S?=
+ =?utf-8?B?WTEwOURaUzkvdGp0VVBZbFBUdFpKS1lmN3lJdWdyTE0xTnBXZ0dxckpyL283?=
+ =?utf-8?B?clpIN1lOMEFzZ2NNSTk0MjNNaUMzQjhSeUtrck5id003ZVErZmxiQURkUSt0?=
+ =?utf-8?B?elFqWXFiMEpURWFTWmJCbWZMVy9GUU9XYm45TnNWd2Q4b1NGa0FaYUVnNGJM?=
+ =?utf-8?B?aE5CUGwyY2QyVDhpTFF0MFc1Z09UYlRLMXZoMkFyejJxOSsvZTY4NTVjaTl4?=
+ =?utf-8?B?RTJ0Y1RuVnZZenRydXg0MkZ5aGhMTzBDQUtMQyszNmZ1OTJNa3pta1RzKys2?=
+ =?utf-8?B?VmZGQzYyVmpBNTdKNjJ1Ujl5ZEx1OEI2SzZpZjVhd0hOR254SUxxUzNCcFFB?=
+ =?utf-8?B?UTFDbjRVRkxDc3Vya2JvVXhmc3lFNFVrUTRoZDlqNmw3TlFNWGJIZnoxN1JB?=
+ =?utf-8?B?REtmdythOTAycThxZFBEQjFnbVQ3WE5SRkg5eHNaVWVrNWd4Rk5VNTM3dHlC?=
+ =?utf-8?B?aFB0cTRZcWNjbEQzZWJhaGphT0NaZ0JETldNZDBZM1BLR2dma0ZzeklOTEFa?=
+ =?utf-8?B?V04zbEl2RGNjTTJicFVtaUVZRmZnaHVLL2pFaVBISkdSMEZicTA4UkhUREZH?=
+ =?utf-8?B?STJFMjEra1c2aXFVVUk5MDZoUEgzRFhLclBGemNkdk8wWEpoV3RBbGl0MjM3?=
+ =?utf-8?B?MHprQ2Vadkpoa2dtby9vc1FhdGFDNzFaZmliSk1ldXBMYlhNK1k4T21VaHVH?=
+ =?utf-8?B?SHJTNGh3R0hremx3T2xyUGwvNVB1Wjl4NnJXdHdkMU9MVnh3UHA5WW5JeDVl?=
+ =?utf-8?B?VkE9PQ==?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: 18b5e3d0-e085-4437-3a1e-08db822a9cac
+X-MS-Exchange-CrossTenant-AuthSource: CH0PR11MB5474.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 11 Jul 2023 16:19:33.5561 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: ueoLEjSYaUJFUPJt6ljqG/Mk2duBLx0oEiZ4e2s4SzSeSnezdK2C6N0r9DZWu2GL8Wm21N6MwhdjXfdhO4ctX7Vz1qcCcJ5bVxmrwUl6IJg=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: MN2PR11MB4600
+X-OriginatorOrg: intel.com
+Subject: Re: [Intel-xe] [PATCH v2 2/2] drm/xe/pmu: Enable PMU interface
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -56,1352 +164,205 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Cc: matthew.d.roper@intel.com, Francois Dugast <francois.dugast@intel.com>,
- lucas.demarchi@intel.com, rodrigo.vivi@intel.com
+Cc: "Bommu, Krishnaiah" <krishnaiah.bommu@intel.com>,
+ "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Lower log level of XE_IOCTL_ERR macro to debug in order to prevent
-flooding kernel log.
+Hi Ashutosh,
 
-v2: Rename XE_IOCTL_ERR to XE_IOCTL_DBG (Rodrigo Vivi)
-v3: Rebase
-v4: Fix style, remove unrelated change about __FILE__ and __LINE__
+Please let me know if you have any more questions around this.
 
-Link: https://lists.freedesktop.org/archives/intel-xe/2023-May/004704.html
-Signed-off-by: Francois Dugast <francois.dugast@intel.com>
----
- drivers/gpu/drm/i915/display/intel_fb.c |   2 +-
- drivers/gpu/drm/xe/xe_bo.c              |  26 ++---
- drivers/gpu/drm/xe/xe_engine.c          | 116 +++++++++----------
- drivers/gpu/drm/xe/xe_exec.c            |  14 +--
- drivers/gpu/drm/xe/xe_macros.h          |   4 +-
- drivers/gpu/drm/xe/xe_mmio.c            |  14 +--
- drivers/gpu/drm/xe/xe_query.c           |  30 ++---
- drivers/gpu/drm/xe/xe_sync.c            |  32 +++---
- drivers/gpu/drm/xe/xe_vm.c              | 146 ++++++++++++------------
- drivers/gpu/drm/xe/xe_vm_madvise.c      |  40 +++----
- drivers/gpu/drm/xe/xe_wait_user_fence.c |  30 ++---
- 11 files changed, 227 insertions(+), 227 deletions(-)
+Thanks,
+Aravind.
 
-diff --git a/drivers/gpu/drm/i915/display/intel_fb.c b/drivers/gpu/drm/i915/display/intel_fb.c
-index d3e872161079..e2b400318b31 100644
---- a/drivers/gpu/drm/i915/display/intel_fb.c
-+++ b/drivers/gpu/drm/i915/display/intel_fb.c
-@@ -2011,7 +2011,7 @@ int intel_framebuffer_init(struct intel_framebuffer *intel_fb,
- 		 * mode when the object is VM_BINDed, so we can only set
- 		 * coherency with display when unbound.
- 		 */
--		if (XE_IOCTL_ERR(dev_priv, !list_empty(&obj->vmas))) {
-+		if (XE_IOCTL_DBG(dev_priv, !list_empty(&obj->vmas))) {
- 			ttm_bo_unreserve(&obj->ttm);
- 			goto err;
- 		}
-diff --git a/drivers/gpu/drm/xe/xe_bo.c b/drivers/gpu/drm/xe/xe_bo.c
-index 6353afa8d846..5d6f73c1d37e 100644
---- a/drivers/gpu/drm/xe/xe_bo.c
-+++ b/drivers/gpu/drm/xe/xe_bo.c
-@@ -1714,35 +1714,35 @@ int xe_gem_create_ioctl(struct drm_device *dev, void *data,
- 	u32 handle;
- 	int err;
- 
--	if (XE_IOCTL_ERR(xe, args->extensions) || XE_IOCTL_ERR(xe, args->pad) ||
--	    XE_IOCTL_ERR(xe, args->reserved[0] || args->reserved[1]))
-+	if (XE_IOCTL_DBG(xe, args->extensions) || XE_IOCTL_DBG(xe, args->pad) ||
-+	    XE_IOCTL_DBG(xe, args->reserved[0] || args->reserved[1]))
- 		return -EINVAL;
- 
--	if (XE_IOCTL_ERR(xe, args->flags &
-+	if (XE_IOCTL_DBG(xe, args->flags &
- 			 ~(XE_GEM_CREATE_FLAG_DEFER_BACKING |
- 			   XE_GEM_CREATE_FLAG_SCANOUT |
- 			   xe->info.mem_region_mask)))
- 		return -EINVAL;
- 
- 	/* at least one memory type must be specified */
--	if (XE_IOCTL_ERR(xe, !(args->flags & xe->info.mem_region_mask)))
-+	if (XE_IOCTL_DBG(xe, !(args->flags & xe->info.mem_region_mask)))
- 		return -EINVAL;
- 
--	if (XE_IOCTL_ERR(xe, args->handle))
-+	if (XE_IOCTL_DBG(xe, args->handle))
- 		return -EINVAL;
- 
--	if (XE_IOCTL_ERR(xe, !args->size))
-+	if (XE_IOCTL_DBG(xe, !args->size))
- 		return -EINVAL;
- 
--	if (XE_IOCTL_ERR(xe, args->size > SIZE_MAX))
-+	if (XE_IOCTL_DBG(xe, args->size > SIZE_MAX))
- 		return -EINVAL;
- 
--	if (XE_IOCTL_ERR(xe, args->size & ~PAGE_MASK))
-+	if (XE_IOCTL_DBG(xe, args->size & ~PAGE_MASK))
- 		return -EINVAL;
- 
- 	if (args->vm_id) {
- 		vm = xe_vm_lookup(xef, args->vm_id);
--		if (XE_IOCTL_ERR(xe, !vm))
-+		if (XE_IOCTL_DBG(xe, !vm))
- 			return -ENOENT;
- 		err = xe_vm_lock(vm, &ww, 0, true);
- 		if (err) {
-@@ -1785,15 +1785,15 @@ int xe_gem_mmap_offset_ioctl(struct drm_device *dev, void *data,
- 	struct drm_xe_gem_mmap_offset *args = data;
- 	struct drm_gem_object *gem_obj;
- 
--	if (XE_IOCTL_ERR(xe, args->extensions) ||
--	    XE_IOCTL_ERR(xe, args->reserved[0] || args->reserved[1]))
-+	if (XE_IOCTL_DBG(xe, args->extensions) ||
-+	    XE_IOCTL_DBG(xe, args->reserved[0] || args->reserved[1]))
- 		return -EINVAL;
- 
--	if (XE_IOCTL_ERR(xe, args->flags))
-+	if (XE_IOCTL_DBG(xe, args->flags))
- 		return -EINVAL;
- 
- 	gem_obj = drm_gem_object_lookup(file, args->handle);
--	if (XE_IOCTL_ERR(xe, !gem_obj))
-+	if (XE_IOCTL_DBG(xe, !gem_obj))
- 		return -ENOENT;
- 
- 	/* The mmap offset was set up at BO allocation time. */
-diff --git a/drivers/gpu/drm/xe/xe_engine.c b/drivers/gpu/drm/xe/xe_engine.c
-index 3831c5f82773..b1db1abdcf0a 100644
---- a/drivers/gpu/drm/xe/xe_engine.c
-+++ b/drivers/gpu/drm/xe/xe_engine.c
-@@ -179,10 +179,10 @@ xe_engine_device_get_max_priority(struct xe_device *xe)
- static int engine_set_priority(struct xe_device *xe, struct xe_engine *e,
- 			       u64 value, bool create)
- {
--	if (XE_IOCTL_ERR(xe, value > DRM_SCHED_PRIORITY_HIGH))
-+	if (XE_IOCTL_DBG(xe, value > DRM_SCHED_PRIORITY_HIGH))
- 		return -EINVAL;
- 
--	if (XE_IOCTL_ERR(xe, value > xe_engine_device_get_max_priority(xe)))
-+	if (XE_IOCTL_DBG(xe, value > xe_engine_device_get_max_priority(xe)))
- 		return -EPERM;
- 
- 	return e->ops->set_priority(e, value);
-@@ -210,33 +210,33 @@ static int engine_set_preemption_timeout(struct xe_device *xe,
- static int engine_set_compute_mode(struct xe_device *xe, struct xe_engine *e,
- 				   u64 value, bool create)
- {
--	if (XE_IOCTL_ERR(xe, !create))
-+	if (XE_IOCTL_DBG(xe, !create))
- 		return -EINVAL;
- 
--	if (XE_IOCTL_ERR(xe, e->flags & ENGINE_FLAG_COMPUTE_MODE))
-+	if (XE_IOCTL_DBG(xe, e->flags & ENGINE_FLAG_COMPUTE_MODE))
- 		return -EINVAL;
- 
--	if (XE_IOCTL_ERR(xe, e->flags & ENGINE_FLAG_VM))
-+	if (XE_IOCTL_DBG(xe, e->flags & ENGINE_FLAG_VM))
- 		return -EINVAL;
- 
- 	if (value) {
- 		struct xe_vm *vm = e->vm;
- 		int err;
- 
--		if (XE_IOCTL_ERR(xe, xe_vm_in_fault_mode(vm)))
-+		if (XE_IOCTL_DBG(xe, xe_vm_in_fault_mode(vm)))
- 			return -EOPNOTSUPP;
- 
--		if (XE_IOCTL_ERR(xe, !xe_vm_in_compute_mode(vm)))
-+		if (XE_IOCTL_DBG(xe, !xe_vm_in_compute_mode(vm)))
- 			return -EOPNOTSUPP;
- 
--		if (XE_IOCTL_ERR(xe, e->width != 1))
-+		if (XE_IOCTL_DBG(xe, e->width != 1))
- 			return -EINVAL;
- 
- 		e->compute.context = dma_fence_context_alloc(1);
- 		spin_lock_init(&e->compute.lock);
- 
- 		err = xe_vm_add_compute_engine(vm, e);
--		if (XE_IOCTL_ERR(xe, err))
-+		if (XE_IOCTL_DBG(xe, err))
- 			return err;
- 
- 		e->flags |= ENGINE_FLAG_COMPUTE_MODE;
-@@ -249,10 +249,10 @@ static int engine_set_compute_mode(struct xe_device *xe, struct xe_engine *e,
- static int engine_set_persistence(struct xe_device *xe, struct xe_engine *e,
- 				  u64 value, bool create)
- {
--	if (XE_IOCTL_ERR(xe, !create))
-+	if (XE_IOCTL_DBG(xe, !create))
- 		return -EINVAL;
- 
--	if (XE_IOCTL_ERR(xe, e->flags & ENGINE_FLAG_COMPUTE_MODE))
-+	if (XE_IOCTL_DBG(xe, e->flags & ENGINE_FLAG_COMPUTE_MODE))
- 		return -EINVAL;
- 
- 	if (value)
-@@ -266,7 +266,7 @@ static int engine_set_persistence(struct xe_device *xe, struct xe_engine *e,
- static int engine_set_job_timeout(struct xe_device *xe, struct xe_engine *e,
- 				  u64 value, bool create)
- {
--	if (XE_IOCTL_ERR(xe, !create))
-+	if (XE_IOCTL_DBG(xe, !create))
- 		return -EINVAL;
- 
- 	if (!capable(CAP_SYS_NICE))
-@@ -278,10 +278,10 @@ static int engine_set_job_timeout(struct xe_device *xe, struct xe_engine *e,
- static int engine_set_acc_trigger(struct xe_device *xe, struct xe_engine *e,
- 				  u64 value, bool create)
- {
--	if (XE_IOCTL_ERR(xe, !create))
-+	if (XE_IOCTL_DBG(xe, !create))
- 		return -EINVAL;
- 
--	if (XE_IOCTL_ERR(xe, !xe->info.supports_usm))
-+	if (XE_IOCTL_DBG(xe, !xe->info.supports_usm))
- 		return -EINVAL;
- 
- 	e->usm.acc_trigger = value;
-@@ -292,10 +292,10 @@ static int engine_set_acc_trigger(struct xe_device *xe, struct xe_engine *e,
- static int engine_set_acc_notify(struct xe_device *xe, struct xe_engine *e,
- 				 u64 value, bool create)
- {
--	if (XE_IOCTL_ERR(xe, !create))
-+	if (XE_IOCTL_DBG(xe, !create))
- 		return -EINVAL;
- 
--	if (XE_IOCTL_ERR(xe, !xe->info.supports_usm))
-+	if (XE_IOCTL_DBG(xe, !xe->info.supports_usm))
- 		return -EINVAL;
- 
- 	e->usm.acc_notify = value;
-@@ -306,10 +306,10 @@ static int engine_set_acc_notify(struct xe_device *xe, struct xe_engine *e,
- static int engine_set_acc_granularity(struct xe_device *xe, struct xe_engine *e,
- 				      u64 value, bool create)
- {
--	if (XE_IOCTL_ERR(xe, !create))
-+	if (XE_IOCTL_DBG(xe, !create))
- 		return -EINVAL;
- 
--	if (XE_IOCTL_ERR(xe, !xe->info.supports_usm))
-+	if (XE_IOCTL_DBG(xe, !xe->info.supports_usm))
- 		return -EINVAL;
- 
- 	e->usm.acc_granularity = value;
-@@ -344,12 +344,12 @@ static int engine_user_ext_set_property(struct xe_device *xe,
- 	u32 idx;
- 
- 	err = __copy_from_user(&ext, address, sizeof(ext));
--	if (XE_IOCTL_ERR(xe, err))
-+	if (XE_IOCTL_DBG(xe, err))
- 		return -EFAULT;
- 
--	if (XE_IOCTL_ERR(xe, ext.property >=
-+	if (XE_IOCTL_DBG(xe, ext.property >=
- 			 ARRAY_SIZE(engine_set_property_funcs)) ||
--	    XE_IOCTL_ERR(xe, ext.pad))
-+	    XE_IOCTL_DBG(xe, ext.pad))
- 		return -EINVAL;
- 
- 	idx = array_index_nospec(ext.property, ARRAY_SIZE(engine_set_property_funcs));
-@@ -374,22 +374,22 @@ static int engine_user_extensions(struct xe_device *xe, struct xe_engine *e,
- 	int err;
- 	u32 idx;
- 
--	if (XE_IOCTL_ERR(xe, ext_number >= MAX_USER_EXTENSIONS))
-+	if (XE_IOCTL_DBG(xe, ext_number >= MAX_USER_EXTENSIONS))
- 		return -E2BIG;
- 
- 	err = __copy_from_user(&ext, address, sizeof(ext));
--	if (XE_IOCTL_ERR(xe, err))
-+	if (XE_IOCTL_DBG(xe, err))
- 		return -EFAULT;
- 
--	if (XE_IOCTL_ERR(xe, ext.pad) ||
--	    XE_IOCTL_ERR(xe, ext.name >=
-+	if (XE_IOCTL_DBG(xe, ext.pad) ||
-+	    XE_IOCTL_DBG(xe, ext.name >=
- 			 ARRAY_SIZE(engine_user_extension_funcs)))
- 		return -EINVAL;
- 
- 	idx = array_index_nospec(ext.name,
- 				 ARRAY_SIZE(engine_user_extension_funcs));
- 	err = engine_user_extension_funcs[idx](xe, e, extensions, create);
--	if (XE_IOCTL_ERR(xe, err))
-+	if (XE_IOCTL_DBG(xe, err))
- 		return err;
- 
- 	if (ext.next_extension)
-@@ -435,11 +435,11 @@ static u32 bind_engine_logical_mask(struct xe_device *xe, struct xe_gt *gt,
- 	enum xe_hw_engine_id id;
- 	u32 logical_mask = 0;
- 
--	if (XE_IOCTL_ERR(xe, width != 1))
-+	if (XE_IOCTL_DBG(xe, width != 1))
- 		return 0;
--	if (XE_IOCTL_ERR(xe, num_placements != 1))
-+	if (XE_IOCTL_DBG(xe, num_placements != 1))
- 		return 0;
--	if (XE_IOCTL_ERR(xe, eci[0].engine_instance != 0))
-+	if (XE_IOCTL_DBG(xe, eci[0].engine_instance != 0))
- 		return 0;
- 
- 	eci[0].engine_class = DRM_XE_ENGINE_CLASS_COPY;
-@@ -466,7 +466,7 @@ static u32 calc_validate_logical_mask(struct xe_device *xe, struct xe_gt *gt,
- 	u16 gt_id;
- 	u32 return_mask = 0, prev_mask;
- 
--	if (XE_IOCTL_ERR(xe, !xe_device_guc_submission_enabled(xe) &&
-+	if (XE_IOCTL_DBG(xe, !xe_device_guc_submission_enabled(xe) &&
- 			 len > 1))
- 		return 0;
- 
-@@ -479,14 +479,14 @@ static u32 calc_validate_logical_mask(struct xe_device *xe, struct xe_gt *gt,
- 			n = j * width + i;
- 
- 			hwe = find_hw_engine(xe, eci[n]);
--			if (XE_IOCTL_ERR(xe, !hwe))
-+			if (XE_IOCTL_DBG(xe, !hwe))
- 				return 0;
- 
--			if (XE_IOCTL_ERR(xe, xe_hw_engine_is_reserved(hwe)))
-+			if (XE_IOCTL_DBG(xe, xe_hw_engine_is_reserved(hwe)))
- 				return 0;
- 
--			if (XE_IOCTL_ERR(xe, n && eci[n].gt_id != gt_id) ||
--			    XE_IOCTL_ERR(xe, n && eci[n].engine_class != class))
-+			if (XE_IOCTL_DBG(xe, n && eci[n].gt_id != gt_id) ||
-+			    XE_IOCTL_DBG(xe, n && eci[n].engine_class != class))
- 				return 0;
- 
- 			class = eci[n].engine_class;
-@@ -498,7 +498,7 @@ static u32 calc_validate_logical_mask(struct xe_device *xe, struct xe_gt *gt,
- 		}
- 
- 		/* Parallel submissions must be logically contiguous */
--		if (i && XE_IOCTL_ERR(xe, current_mask != prev_mask << 1))
-+		if (i && XE_IOCTL_DBG(xe, current_mask != prev_mask << 1))
- 			return 0;
- 
- 		prev_mask = current_mask;
-@@ -525,22 +525,22 @@ int xe_engine_create_ioctl(struct drm_device *dev, void *data,
- 	u32 len;
- 	int err;
- 
--	if (XE_IOCTL_ERR(xe, args->flags) ||
--	    XE_IOCTL_ERR(xe, args->reserved[0] || args->reserved[1]))
-+	if (XE_IOCTL_DBG(xe, args->flags) ||
-+	    XE_IOCTL_DBG(xe, args->reserved[0] || args->reserved[1]))
- 		return -EINVAL;
- 
- 	len = args->width * args->num_placements;
--	if (XE_IOCTL_ERR(xe, !len || len > XE_HW_ENGINE_MAX_INSTANCE))
-+	if (XE_IOCTL_DBG(xe, !len || len > XE_HW_ENGINE_MAX_INSTANCE))
- 		return -EINVAL;
- 
- 	err = __copy_from_user(eci, user_eci,
- 			       sizeof(struct drm_xe_engine_class_instance) *
- 			       len);
--	if (XE_IOCTL_ERR(xe, err))
-+	if (XE_IOCTL_DBG(xe, err))
- 		return -EFAULT;
- 
--	if (XE_IOCTL_ERR(xe, eci[0].gt_id >= xe->info.tile_count))
--	       return -EINVAL;
-+	if (XE_IOCTL_DBG(xe, eci[0].gt_id >= xe->info.tile_count))
-+		return -EINVAL;
- 
- 	if (eci[0].engine_class == DRM_XE_ENGINE_CLASS_VM_BIND) {
- 		for_each_gt(gt, xe, id) {
-@@ -553,11 +553,11 @@ int xe_engine_create_ioctl(struct drm_device *dev, void *data,
- 			logical_mask = bind_engine_logical_mask(xe, gt, eci,
- 								args->width,
- 								args->num_placements);
--			if (XE_IOCTL_ERR(xe, !logical_mask))
-+			if (XE_IOCTL_DBG(xe, !logical_mask))
- 				return -EINVAL;
- 
- 			hwe = find_hw_engine(xe, eci[0]);
--			if (XE_IOCTL_ERR(xe, !hwe))
-+			if (XE_IOCTL_DBG(xe, !hwe))
- 				return -EINVAL;
- 
- 			migrate_vm = xe_migrate_get_vm(gt_to_tile(gt)->migrate);
-@@ -586,15 +586,15 @@ int xe_engine_create_ioctl(struct drm_device *dev, void *data,
- 		logical_mask = calc_validate_logical_mask(xe, gt, eci,
- 							  args->width,
- 							  args->num_placements);
--		if (XE_IOCTL_ERR(xe, !logical_mask))
-+		if (XE_IOCTL_DBG(xe, !logical_mask))
- 			return -EINVAL;
- 
- 		hwe = find_hw_engine(xe, eci[0]);
--		if (XE_IOCTL_ERR(xe, !hwe))
-+		if (XE_IOCTL_DBG(xe, !hwe))
- 			return -EINVAL;
- 
- 		vm = xe_vm_lookup(xef, args->vm_id);
--		if (XE_IOCTL_ERR(xe, !vm))
-+		if (XE_IOCTL_DBG(xe, !vm))
- 			return -ENOENT;
- 
- 		err = down_read_interruptible(&vm->lock);
-@@ -603,7 +603,7 @@ int xe_engine_create_ioctl(struct drm_device *dev, void *data,
- 			return err;
- 		}
- 
--		if (XE_IOCTL_ERR(xe, xe_vm_is_closed_or_banned(vm))) {
-+		if (XE_IOCTL_DBG(xe, xe_vm_is_closed_or_banned(vm))) {
- 			up_read(&vm->lock);
- 			xe_vm_put(vm);
- 			return -ENOENT;
-@@ -621,11 +621,11 @@ int xe_engine_create_ioctl(struct drm_device *dev, void *data,
- 
- 	if (args->extensions) {
- 		err = engine_user_extensions(xe, e, args->extensions, 0, true);
--		if (XE_IOCTL_ERR(xe, err))
-+		if (XE_IOCTL_DBG(xe, err))
- 			goto put_engine;
- 	}
- 
--	if (XE_IOCTL_ERR(xe, e->vm && xe_vm_in_compute_mode(e->vm) !=
-+	if (XE_IOCTL_DBG(xe, e->vm && xe_vm_in_compute_mode(e->vm) !=
- 			 !!(e->flags & ENGINE_FLAG_COMPUTE_MODE))) {
- 		err = -EOPNOTSUPP;
- 		goto put_engine;
-@@ -658,11 +658,11 @@ int xe_engine_get_property_ioctl(struct drm_device *dev, void *data,
- 	struct xe_engine *e;
- 	int ret;
- 
--	if (XE_IOCTL_ERR(xe, args->reserved[0] || args->reserved[1]))
-+	if (XE_IOCTL_DBG(xe, args->reserved[0] || args->reserved[1]))
- 		return -EINVAL;
- 
- 	e = xe_engine_lookup(xef, args->engine_id);
--	if (XE_IOCTL_ERR(xe, !e))
-+	if (XE_IOCTL_DBG(xe, !e))
- 		return -ENOENT;
- 
- 	switch (args->property) {
-@@ -771,14 +771,14 @@ int xe_engine_destroy_ioctl(struct drm_device *dev, void *data,
- 	struct drm_xe_engine_destroy *args = data;
- 	struct xe_engine *e;
- 
--	if (XE_IOCTL_ERR(xe, args->pad) ||
--	    XE_IOCTL_ERR(xe, args->reserved[0] || args->reserved[1]))
-+	if (XE_IOCTL_DBG(xe, args->pad) ||
-+	    XE_IOCTL_DBG(xe, args->reserved[0] || args->reserved[1]))
- 		return -EINVAL;
- 
- 	mutex_lock(&xef->engine.lock);
- 	e = xa_erase(&xef->engine.xa, args->engine_id);
- 	mutex_unlock(&xef->engine.lock);
--	if (XE_IOCTL_ERR(xe, !e))
-+	if (XE_IOCTL_DBG(xe, !e))
- 		return -ENOENT;
- 
- 	if (!(e->flags & ENGINE_FLAG_PERSISTENT))
-@@ -802,14 +802,14 @@ int xe_engine_set_property_ioctl(struct drm_device *dev, void *data,
- 	int ret;
- 	u32 idx;
- 
--	if (XE_IOCTL_ERR(xe, args->reserved[0] || args->reserved[1]))
-+	if (XE_IOCTL_DBG(xe, args->reserved[0] || args->reserved[1]))
- 		return -EINVAL;
- 
- 	e = xe_engine_lookup(xef, args->engine_id);
--	if (XE_IOCTL_ERR(xe, !e))
-+	if (XE_IOCTL_DBG(xe, !e))
- 		return -ENOENT;
- 
--	if (XE_IOCTL_ERR(xe, args->property >=
-+	if (XE_IOCTL_DBG(xe, args->property >=
- 			 ARRAY_SIZE(engine_set_property_funcs))) {
- 		ret = -EINVAL;
- 		goto out;
-@@ -818,7 +818,7 @@ int xe_engine_set_property_ioctl(struct drm_device *dev, void *data,
- 	idx = array_index_nospec(args->property,
- 				 ARRAY_SIZE(engine_set_property_funcs));
- 	ret = engine_set_property_funcs[idx](xe, e, args->value, false);
--	if (XE_IOCTL_ERR(xe, ret))
-+	if (XE_IOCTL_DBG(xe, ret))
- 		goto out;
- 
- 	if (args->extensions)
-diff --git a/drivers/gpu/drm/xe/xe_exec.c b/drivers/gpu/drm/xe/xe_exec.c
-index ba13d20ed348..87d6cd4a7cc8 100644
---- a/drivers/gpu/drm/xe/xe_exec.c
-+++ b/drivers/gpu/drm/xe/xe_exec.c
-@@ -184,22 +184,22 @@ int xe_exec_ioctl(struct drm_device *dev, void *data, struct drm_file *file)
- 	bool write_locked;
- 	int err = 0;
- 
--	if (XE_IOCTL_ERR(xe, args->extensions) ||
--	    XE_IOCTL_ERR(xe, args->pad[0] || args->pad[1] || args->pad[2]) ||
--	    XE_IOCTL_ERR(xe, args->reserved[0] || args->reserved[1]))
-+	if (XE_IOCTL_DBG(xe, args->extensions) ||
-+	    XE_IOCTL_DBG(xe, args->pad[0] || args->pad[1] || args->pad[2]) ||
-+	    XE_IOCTL_DBG(xe, args->reserved[0] || args->reserved[1]))
- 		return -EINVAL;
- 
- 	engine = xe_engine_lookup(xef, args->engine_id);
--	if (XE_IOCTL_ERR(xe, !engine))
-+	if (XE_IOCTL_DBG(xe, !engine))
- 		return -ENOENT;
- 
--	if (XE_IOCTL_ERR(xe, engine->flags & ENGINE_FLAG_VM))
-+	if (XE_IOCTL_DBG(xe, engine->flags & ENGINE_FLAG_VM))
- 		return -EINVAL;
- 
--	if (XE_IOCTL_ERR(xe, engine->width != args->num_batch_buffer))
-+	if (XE_IOCTL_DBG(xe, engine->width != args->num_batch_buffer))
- 		return -EINVAL;
- 
--	if (XE_IOCTL_ERR(xe, engine->flags & ENGINE_FLAG_BANNED)) {
-+	if (XE_IOCTL_DBG(xe, engine->flags & ENGINE_FLAG_BANNED)) {
- 		err = -ECANCELED;
- 		goto err_engine;
- 	}
-diff --git a/drivers/gpu/drm/xe/xe_macros.h b/drivers/gpu/drm/xe/xe_macros.h
-index 0d24c124d202..038cf28604ad 100644
---- a/drivers/gpu/drm/xe/xe_macros.h
-+++ b/drivers/gpu/drm/xe/xe_macros.h
-@@ -12,8 +12,8 @@
- #define XE_WARN_ON WARN_ON
- #define XE_BUG_ON BUG_ON
- 
--#define XE_IOCTL_ERR(xe, cond) \
--	((cond) && (drm_info(&(xe)->drm, \
-+#define XE_IOCTL_DBG(xe, cond) \
-+	((cond) && (drm_dbg(&(xe)->drm, \
- 			    "Ioctl argument check failed at %s:%d: %s", \
- 			    __FILE__, __LINE__, #cond), 1))
- 
-diff --git a/drivers/gpu/drm/xe/xe_mmio.c b/drivers/gpu/drm/xe/xe_mmio.c
-index 5effb21db9d4..aa62864e3622 100644
---- a/drivers/gpu/drm/xe/xe_mmio.c
-+++ b/drivers/gpu/drm/xe/xe_mmio.c
-@@ -441,14 +441,14 @@ int xe_mmio_ioctl(struct drm_device *dev, void *data,
- 	bool allowed;
- 	int ret = 0;
- 
--	if (XE_IOCTL_ERR(xe, args->extensions) ||
--	    XE_IOCTL_ERR(xe, args->reserved[0] || args->reserved[1]))
-+	if (XE_IOCTL_DBG(xe, args->extensions) ||
-+	    XE_IOCTL_DBG(xe, args->reserved[0] || args->reserved[1]))
- 		return -EINVAL;
- 
--	if (XE_IOCTL_ERR(xe, args->flags & ~VALID_MMIO_FLAGS))
-+	if (XE_IOCTL_DBG(xe, args->flags & ~VALID_MMIO_FLAGS))
- 		return -EINVAL;
- 
--	if (XE_IOCTL_ERR(xe, !(args->flags & DRM_XE_MMIO_WRITE) && args->value))
-+	if (XE_IOCTL_DBG(xe, !(args->flags & DRM_XE_MMIO_WRITE) && args->value))
- 		return -EINVAL;
- 
- 	allowed = capable(CAP_SYS_ADMIN);
-@@ -463,12 +463,12 @@ int xe_mmio_ioctl(struct drm_device *dev, void *data,
- 		}
- 	}
- 
--	if (XE_IOCTL_ERR(xe, !allowed))
-+	if (XE_IOCTL_DBG(xe, !allowed))
- 		return -EPERM;
- 
- 	bits_flag = args->flags & DRM_XE_MMIO_BITS_MASK;
- 	bytes = 1 << bits_flag;
--	if (XE_IOCTL_ERR(xe, args->addr + bytes > xe->mmio.size))
-+	if (XE_IOCTL_DBG(xe, args->addr + bytes > xe->mmio.size))
- 		return -EINVAL;
- 
- 	/*
-@@ -482,7 +482,7 @@ int xe_mmio_ioctl(struct drm_device *dev, void *data,
- 	if (args->flags & DRM_XE_MMIO_WRITE) {
- 		switch (bits_flag) {
- 		case DRM_XE_MMIO_32BIT:
--			if (XE_IOCTL_ERR(xe, args->value > U32_MAX)) {
-+			if (XE_IOCTL_DBG(xe, args->value > U32_MAX)) {
- 				ret = -EINVAL;
- 				goto exit;
- 			}
-diff --git a/drivers/gpu/drm/xe/xe_query.c b/drivers/gpu/drm/xe/xe_query.c
-index 9acbb27dfcab..4b7869596ba8 100644
---- a/drivers/gpu/drm/xe/xe_query.c
-+++ b/drivers/gpu/drm/xe/xe_query.c
-@@ -60,12 +60,12 @@ static int query_engines(struct xe_device *xe,
- 	if (query->size == 0) {
- 		query->size = size;
- 		return 0;
--	} else if (XE_IOCTL_ERR(xe, query->size != size)) {
-+	} else if (XE_IOCTL_DBG(xe, query->size != size)) {
- 		return -EINVAL;
- 	}
- 
- 	hw_engine_info = kmalloc(size, GFP_KERNEL);
--	if (XE_IOCTL_ERR(xe, !hw_engine_info))
-+	if (XE_IOCTL_DBG(xe, !hw_engine_info))
- 		return -ENOMEM;
- 
- 	for_each_gt(gt, xe, gt_id)
-@@ -114,12 +114,12 @@ static int query_memory_usage(struct xe_device *xe,
- 	if (query->size == 0) {
- 		query->size = size;
- 		return 0;
--	} else if (XE_IOCTL_ERR(xe, query->size != size)) {
-+	} else if (XE_IOCTL_DBG(xe, query->size != size)) {
- 		return -EINVAL;
- 	}
- 
- 	usage = kzalloc(size, GFP_KERNEL);
--	if (XE_IOCTL_ERR(xe, !usage))
-+	if (XE_IOCTL_DBG(xe, !usage))
- 		return -ENOMEM;
- 
- 	man = ttm_manager_type(&xe->ttm, XE_PL_TT);
-@@ -177,12 +177,12 @@ static int query_config(struct xe_device *xe, struct drm_xe_device_query *query)
- 	if (query->size == 0) {
- 		query->size = size;
- 		return 0;
--	} else if (XE_IOCTL_ERR(xe, query->size != size)) {
-+	} else if (XE_IOCTL_DBG(xe, query->size != size)) {
- 		return -EINVAL;
- 	}
- 
- 	config = kzalloc(size, GFP_KERNEL);
--	if (XE_IOCTL_ERR(xe, !config))
-+	if (XE_IOCTL_DBG(xe, !config))
- 		return -ENOMEM;
- 
- 	config->num_params = num_params;
-@@ -226,12 +226,12 @@ static int query_gts(struct xe_device *xe, struct drm_xe_device_query *query)
- 	if (query->size == 0) {
- 		query->size = size;
- 		return 0;
--	} else if (XE_IOCTL_ERR(xe, query->size != size)) {
-+	} else if (XE_IOCTL_DBG(xe, query->size != size)) {
- 		return -EINVAL;
- 	}
- 
- 	gts = kzalloc(size, GFP_KERNEL);
--	if (XE_IOCTL_ERR(xe, !gts))
-+	if (XE_IOCTL_DBG(xe, !gts))
- 		return -ENOMEM;
- 
- 	gts->num_gt = xe->info.gt_count;
-@@ -273,12 +273,12 @@ static int query_hwconfig(struct xe_device *xe,
- 	if (query->size == 0) {
- 		query->size = size;
- 		return 0;
--	} else if (XE_IOCTL_ERR(xe, query->size != size)) {
-+	} else if (XE_IOCTL_DBG(xe, query->size != size)) {
- 		return -EINVAL;
- 	}
- 
- 	hwconfig = kzalloc(size, GFP_KERNEL);
--	if (XE_IOCTL_ERR(xe, !hwconfig))
-+	if (XE_IOCTL_DBG(xe, !hwconfig))
- 		return -ENOMEM;
- 
- 	xe_device_mem_access_get(xe);
-@@ -332,7 +332,7 @@ static int query_gt_topology(struct xe_device *xe,
- 	if (query->size == 0) {
- 		query->size = size;
- 		return 0;
--	} else if (XE_IOCTL_ERR(xe, query->size != size)) {
-+	} else if (XE_IOCTL_DBG(xe, query->size != size)) {
- 		return -EINVAL;
- 	}
- 
-@@ -380,15 +380,15 @@ int xe_query_ioctl(struct drm_device *dev, void *data, struct drm_file *file)
- 	struct drm_xe_device_query *query = data;
- 	u32 idx;
- 
--	if (XE_IOCTL_ERR(xe, query->extensions) ||
--	    XE_IOCTL_ERR(xe, query->reserved[0] || query->reserved[1]))
-+	if (XE_IOCTL_DBG(xe, query->extensions) ||
-+	    XE_IOCTL_DBG(xe, query->reserved[0] || query->reserved[1]))
- 		return -EINVAL;
- 
--	if (XE_IOCTL_ERR(xe, query->query > ARRAY_SIZE(xe_query_funcs)))
-+	if (XE_IOCTL_DBG(xe, query->query > ARRAY_SIZE(xe_query_funcs)))
- 		return -EINVAL;
- 
- 	idx = array_index_nospec(query->query, ARRAY_SIZE(xe_query_funcs));
--	if (XE_IOCTL_ERR(xe, !xe_query_funcs[idx]))
-+	if (XE_IOCTL_DBG(xe, !xe_query_funcs[idx]))
- 		return -EINVAL;
- 
- 	return xe_query_funcs[idx](xe, query);
-diff --git a/drivers/gpu/drm/xe/xe_sync.c b/drivers/gpu/drm/xe/xe_sync.c
-index 7786b908a3fd..9fcd7802ba30 100644
---- a/drivers/gpu/drm/xe/xe_sync.c
-+++ b/drivers/gpu/drm/xe/xe_sync.c
-@@ -110,44 +110,44 @@ int xe_sync_entry_parse(struct xe_device *xe, struct xe_file *xef,
- 	if (copy_from_user(&sync_in, sync_user, sizeof(*sync_user)))
- 		return -EFAULT;
- 
--	if (XE_IOCTL_ERR(xe, sync_in.flags &
-+	if (XE_IOCTL_DBG(xe, sync_in.flags &
- 			 ~(SYNC_FLAGS_TYPE_MASK | DRM_XE_SYNC_SIGNAL)) ||
--	    XE_IOCTL_ERR(xe, sync_in.pad) ||
--	    XE_IOCTL_ERR(xe, sync_in.reserved[0] || sync_in.reserved[1]))
-+	    XE_IOCTL_DBG(xe, sync_in.pad) ||
-+	    XE_IOCTL_DBG(xe, sync_in.reserved[0] || sync_in.reserved[1]))
- 		return -EINVAL;
- 
- 	signal = sync_in.flags & DRM_XE_SYNC_SIGNAL;
- 	switch (sync_in.flags & SYNC_FLAGS_TYPE_MASK) {
- 	case DRM_XE_SYNC_SYNCOBJ:
--		if (XE_IOCTL_ERR(xe, no_dma_fences && signal))
-+		if (XE_IOCTL_DBG(xe, no_dma_fences && signal))
- 			return -EOPNOTSUPP;
- 
--		if (XE_IOCTL_ERR(xe, upper_32_bits(sync_in.addr)))
-+		if (XE_IOCTL_DBG(xe, upper_32_bits(sync_in.addr)))
- 			return -EINVAL;
- 
- 		sync->syncobj = drm_syncobj_find(xef->drm, sync_in.handle);
--		if (XE_IOCTL_ERR(xe, !sync->syncobj))
-+		if (XE_IOCTL_DBG(xe, !sync->syncobj))
- 			return -ENOENT;
- 
- 		if (!signal) {
- 			sync->fence = drm_syncobj_fence_get(sync->syncobj);
--			if (XE_IOCTL_ERR(xe, !sync->fence))
-+			if (XE_IOCTL_DBG(xe, !sync->fence))
- 				return -EINVAL;
- 		}
- 		break;
- 
- 	case DRM_XE_SYNC_TIMELINE_SYNCOBJ:
--		if (XE_IOCTL_ERR(xe, no_dma_fences && signal))
-+		if (XE_IOCTL_DBG(xe, no_dma_fences && signal))
- 			return -EOPNOTSUPP;
- 
--		if (XE_IOCTL_ERR(xe, upper_32_bits(sync_in.addr)))
-+		if (XE_IOCTL_DBG(xe, upper_32_bits(sync_in.addr)))
- 			return -EINVAL;
- 
--		if (XE_IOCTL_ERR(xe, sync_in.timeline_value == 0))
-+		if (XE_IOCTL_DBG(xe, sync_in.timeline_value == 0))
- 			return -EINVAL;
- 
- 		sync->syncobj = drm_syncobj_find(xef->drm, sync_in.handle);
--		if (XE_IOCTL_ERR(xe, !sync->syncobj))
-+		if (XE_IOCTL_DBG(xe, !sync->syncobj))
- 			return -ENOENT;
- 
- 		if (signal) {
-@@ -156,7 +156,7 @@ int xe_sync_entry_parse(struct xe_device *xe, struct xe_file *xef,
- 				return -ENOMEM;
- 		} else {
- 			sync->fence = drm_syncobj_fence_get(sync->syncobj);
--			if (XE_IOCTL_ERR(xe, !sync->fence))
-+			if (XE_IOCTL_DBG(xe, !sync->fence))
- 				return -EINVAL;
- 
- 			err = dma_fence_chain_find_seqno(&sync->fence,
-@@ -167,15 +167,15 @@ int xe_sync_entry_parse(struct xe_device *xe, struct xe_file *xef,
- 		break;
- 
- 	case DRM_XE_SYNC_DMA_BUF:
--		if (XE_IOCTL_ERR(xe, "TODO"))
-+		if (XE_IOCTL_DBG(xe, "TODO"))
- 			return -EINVAL;
- 		break;
- 
- 	case DRM_XE_SYNC_USER_FENCE:
--		if (XE_IOCTL_ERR(xe, !signal))
-+		if (XE_IOCTL_DBG(xe, !signal))
- 			return -EOPNOTSUPP;
- 
--		if (XE_IOCTL_ERR(xe, sync_in.addr & 0x7))
-+		if (XE_IOCTL_DBG(xe, sync_in.addr & 0x7))
- 			return -EINVAL;
- 
- 		if (exec) {
-@@ -183,7 +183,7 @@ int xe_sync_entry_parse(struct xe_device *xe, struct xe_file *xef,
- 		} else {
- 			sync->ufence = user_fence_create(xe, sync_in.addr,
- 							 sync_in.timeline_value);
--			if (XE_IOCTL_ERR(xe, !sync->ufence))
-+			if (XE_IOCTL_DBG(xe, !sync->ufence))
- 				return -ENOMEM;
- 		}
- 
-diff --git a/drivers/gpu/drm/xe/xe_vm.c b/drivers/gpu/drm/xe/xe_vm.c
-index 6c216350084b..7f93b7b9d170 100644
---- a/drivers/gpu/drm/xe/xe_vm.c
-+++ b/drivers/gpu/drm/xe/xe_vm.c
-@@ -1878,13 +1878,13 @@ static int xe_vm_unbind(struct xe_vm *vm, struct xe_vma *vma,
- static int vm_set_error_capture_address(struct xe_device *xe, struct xe_vm *vm,
- 					u64 value)
- {
--	if (XE_IOCTL_ERR(xe, !value))
-+	if (XE_IOCTL_DBG(xe, !value))
- 		return -EINVAL;
- 
--	if (XE_IOCTL_ERR(xe, !(vm->flags & XE_VM_FLAG_ASYNC_BIND_OPS)))
-+	if (XE_IOCTL_DBG(xe, !(vm->flags & XE_VM_FLAG_ASYNC_BIND_OPS)))
- 		return -EOPNOTSUPP;
- 
--	if (XE_IOCTL_ERR(xe, vm->async_ops.error_capture.addr))
-+	if (XE_IOCTL_DBG(xe, vm->async_ops.error_capture.addr))
- 		return -EOPNOTSUPP;
- 
- 	vm->async_ops.error_capture.mm = current->mm;
-@@ -1910,13 +1910,13 @@ static int vm_user_ext_set_property(struct xe_device *xe, struct xe_vm *vm,
- 	int err;
- 
- 	err = __copy_from_user(&ext, address, sizeof(ext));
--	if (XE_IOCTL_ERR(xe, err))
-+	if (XE_IOCTL_DBG(xe, err))
- 		return -EFAULT;
- 
--	if (XE_IOCTL_ERR(xe, ext.property >=
-+	if (XE_IOCTL_DBG(xe, ext.property >=
- 			 ARRAY_SIZE(vm_set_property_funcs)) ||
--	    XE_IOCTL_ERR(xe, ext.pad) ||
--	    XE_IOCTL_ERR(xe, ext.reserved[0] || ext.reserved[1]))
-+	    XE_IOCTL_DBG(xe, ext.pad) ||
-+	    XE_IOCTL_DBG(xe, ext.reserved[0] || ext.reserved[1]))
- 		return -EINVAL;
- 
- 	return vm_set_property_funcs[ext.property](xe, vm, ext.value);
-@@ -1937,20 +1937,20 @@ static int vm_user_extensions(struct xe_device *xe, struct xe_vm *vm,
- 	struct xe_user_extension ext;
- 	int err;
- 
--	if (XE_IOCTL_ERR(xe, ext_number >= MAX_USER_EXTENSIONS))
-+	if (XE_IOCTL_DBG(xe, ext_number >= MAX_USER_EXTENSIONS))
- 		return -E2BIG;
- 
- 	err = __copy_from_user(&ext, address, sizeof(ext));
--	if (XE_IOCTL_ERR(xe, err))
-+	if (XE_IOCTL_DBG(xe, err))
- 		return -EFAULT;
- 
--	if (XE_IOCTL_ERR(xe, ext.pad) ||
--	    XE_IOCTL_ERR(xe, ext.name >=
-+	if (XE_IOCTL_DBG(xe, ext.pad) ||
-+	    XE_IOCTL_DBG(xe, ext.name >=
- 			 ARRAY_SIZE(vm_user_extension_funcs)))
- 		return -EINVAL;
- 
- 	err = vm_user_extension_funcs[ext.name](xe, vm, extensions);
--	if (XE_IOCTL_ERR(xe, err))
-+	if (XE_IOCTL_DBG(xe, err))
- 		return err;
- 
- 	if (ext.next_extension)
-@@ -1976,29 +1976,29 @@ int xe_vm_create_ioctl(struct drm_device *dev, void *data,
- 	int err;
- 	u32 flags = 0;
- 
--	if (XE_IOCTL_ERR(xe, args->reserved[0] || args->reserved[1]))
-+	if (XE_IOCTL_DBG(xe, args->reserved[0] || args->reserved[1]))
- 		return -EINVAL;
- 
--	if (XE_IOCTL_ERR(xe, args->flags & ~ALL_DRM_XE_VM_CREATE_FLAGS))
-+	if (XE_IOCTL_DBG(xe, args->flags & ~ALL_DRM_XE_VM_CREATE_FLAGS))
- 		return -EINVAL;
- 
--	if (XE_IOCTL_ERR(xe, args->flags & DRM_XE_VM_CREATE_SCRATCH_PAGE &&
-+	if (XE_IOCTL_DBG(xe, args->flags & DRM_XE_VM_CREATE_SCRATCH_PAGE &&
- 			 args->flags & DRM_XE_VM_CREATE_FAULT_MODE))
- 		return -EINVAL;
- 
--	if (XE_IOCTL_ERR(xe, args->flags & DRM_XE_VM_CREATE_COMPUTE_MODE &&
-+	if (XE_IOCTL_DBG(xe, args->flags & DRM_XE_VM_CREATE_COMPUTE_MODE &&
- 			 args->flags & DRM_XE_VM_CREATE_FAULT_MODE))
- 		return -EINVAL;
- 
--	if (XE_IOCTL_ERR(xe, args->flags & DRM_XE_VM_CREATE_FAULT_MODE &&
-+	if (XE_IOCTL_DBG(xe, args->flags & DRM_XE_VM_CREATE_FAULT_MODE &&
- 			 xe_device_in_non_fault_mode(xe)))
- 		return -EINVAL;
- 
--	if (XE_IOCTL_ERR(xe, !(args->flags & DRM_XE_VM_CREATE_FAULT_MODE) &&
-+	if (XE_IOCTL_DBG(xe, !(args->flags & DRM_XE_VM_CREATE_FAULT_MODE) &&
- 			 xe_device_in_fault_mode(xe)))
- 		return -EINVAL;
- 
--	if (XE_IOCTL_ERR(xe, args->flags & DRM_XE_VM_CREATE_FAULT_MODE &&
-+	if (XE_IOCTL_DBG(xe, args->flags & DRM_XE_VM_CREATE_FAULT_MODE &&
- 			 !xe->info.supports_usm))
- 		return -EINVAL;
- 
-@@ -2017,7 +2017,7 @@ int xe_vm_create_ioctl(struct drm_device *dev, void *data,
- 
- 	if (args->extensions) {
- 		err = vm_user_extensions(xe, vm, args->extensions, 0);
--		if (XE_IOCTL_ERR(xe, err)) {
-+		if (XE_IOCTL_DBG(xe, err)) {
- 			xe_vm_close_and_put(vm);
- 			return err;
- 		}
-@@ -2063,15 +2063,15 @@ int xe_vm_destroy_ioctl(struct drm_device *dev, void *data,
- 	struct xe_vm *vm;
- 	int err = 0;
- 
--	if (XE_IOCTL_ERR(xe, args->pad) ||
--	    XE_IOCTL_ERR(xe, args->reserved[0] || args->reserved[1]))
-+	if (XE_IOCTL_DBG(xe, args->pad) ||
-+	    XE_IOCTL_DBG(xe, args->reserved[0] || args->reserved[1]))
- 		return -EINVAL;
- 
- 	mutex_lock(&xef->vm.lock);
- 	vm = xa_load(&xef->vm.xa, args->vm_id);
--	if (XE_IOCTL_ERR(xe, !vm))
-+	if (XE_IOCTL_DBG(xe, !vm))
- 		err = -ENOENT;
--	else if (XE_IOCTL_ERR(xe, vm->preempt.num_engines))
-+	else if (XE_IOCTL_DBG(xe, vm->preempt.num_engines))
- 		err = -EBUSY;
- 	else
- 		xa_erase(&xef->vm.xa, args->vm_id);
-@@ -2159,21 +2159,21 @@ static int vm_bind_ioctl_lookup_vma(struct xe_vm *vm, struct xe_bo *bo,
- 	case XE_VM_BIND_OP_MAP:
- 	case XE_VM_BIND_OP_MAP_USERPTR:
- 		vma = xe_vm_find_overlapping_vma(vm, addr, range);
--		if (XE_IOCTL_ERR(xe, vma && !async))
-+		if (XE_IOCTL_DBG(xe, vma && !async))
- 			return -EBUSY;
- 		break;
- 	case XE_VM_BIND_OP_UNMAP:
- 	case XE_VM_BIND_OP_PREFETCH:
- 		vma = xe_vm_find_overlapping_vma(vm, addr, range);
--		if (XE_IOCTL_ERR(xe, !vma))
-+		if (XE_IOCTL_DBG(xe, !vma))
- 			return -ENODATA;	/* Not an actual error, IOCTL
- 						   cleans up returns and 0 */
--		if (XE_IOCTL_ERR(xe, (xe_vma_start(vma) != addr ||
--				 xe_vma_end(vma) != addr + range) && !async))
-+		if (XE_IOCTL_DBG(xe, (xe_vma_start(vma) != addr ||
-+				      xe_vma_end(vma) != addr + range) && !async))
- 			return -EINVAL;
- 		break;
- 	case XE_VM_BIND_OP_UNMAP_ALL:
--		if (XE_IOCTL_ERR(xe, list_empty(&bo->ttm.base.gpuva.list)))
-+		if (XE_IOCTL_DBG(xe, list_empty(&bo->ttm.base.gpuva.list)))
- 			return -ENODATA;	/* Not an actual error, IOCTL
- 						   cleans up returns and 0 */
- 		break;
-@@ -2998,9 +2998,9 @@ static int vm_bind_ioctl_check_args(struct xe_device *xe,
- 	int err;
- 	int i;
- 
--	if (XE_IOCTL_ERR(xe, args->extensions) ||
--	    XE_IOCTL_ERR(xe, !args->num_binds) ||
--	    XE_IOCTL_ERR(xe, args->num_binds > MAX_BINDS))
-+	if (XE_IOCTL_DBG(xe, args->extensions) ||
-+	    XE_IOCTL_DBG(xe, !args->num_binds) ||
-+	    XE_IOCTL_DBG(xe, args->num_binds > MAX_BINDS))
- 		return -EINVAL;
- 
- 	if (args->num_binds > 1) {
-@@ -3015,7 +3015,7 @@ static int vm_bind_ioctl_check_args(struct xe_device *xe,
- 		err = __copy_from_user(*bind_ops, bind_user,
- 				       sizeof(struct drm_xe_vm_bind_op) *
- 				       args->num_binds);
--		if (XE_IOCTL_ERR(xe, err)) {
-+		if (XE_IOCTL_DBG(xe, err)) {
- 			err = -EFAULT;
- 			goto free_bind_ops;
- 		}
-@@ -3034,60 +3034,60 @@ static int vm_bind_ioctl_check_args(struct xe_device *xe,
- 
- 		if (i == 0) {
- 			*async = !!(op & XE_VM_BIND_FLAG_ASYNC);
--		} else if (XE_IOCTL_ERR(xe, !*async) ||
--			   XE_IOCTL_ERR(xe, !(op & XE_VM_BIND_FLAG_ASYNC)) ||
--			   XE_IOCTL_ERR(xe, VM_BIND_OP(op) ==
-+		} else if (XE_IOCTL_DBG(xe, !*async) ||
-+			   XE_IOCTL_DBG(xe, !(op & XE_VM_BIND_FLAG_ASYNC)) ||
-+			   XE_IOCTL_DBG(xe, VM_BIND_OP(op) ==
- 					XE_VM_BIND_OP_RESTART)) {
- 			err = -EINVAL;
- 			goto free_bind_ops;
- 		}
- 
--		if (XE_IOCTL_ERR(xe, !*async &&
-+		if (XE_IOCTL_DBG(xe, !*async &&
- 				 VM_BIND_OP(op) == XE_VM_BIND_OP_UNMAP_ALL)) {
- 			err = -EINVAL;
- 			goto free_bind_ops;
- 		}
- 
--		if (XE_IOCTL_ERR(xe, !*async &&
-+		if (XE_IOCTL_DBG(xe, !*async &&
- 				 VM_BIND_OP(op) == XE_VM_BIND_OP_PREFETCH)) {
- 			err = -EINVAL;
- 			goto free_bind_ops;
- 		}
- 
--		if (XE_IOCTL_ERR(xe, VM_BIND_OP(op) >
-+		if (XE_IOCTL_DBG(xe, VM_BIND_OP(op) >
- 				 XE_VM_BIND_OP_PREFETCH) ||
--		    XE_IOCTL_ERR(xe, op & ~SUPPORTED_FLAGS) ||
--		    XE_IOCTL_ERR(xe, obj && is_null) ||
--		    XE_IOCTL_ERR(xe, obj_offset && is_null) ||
--		    XE_IOCTL_ERR(xe, VM_BIND_OP(op) != XE_VM_BIND_OP_MAP &&
-+		    XE_IOCTL_DBG(xe, op & ~SUPPORTED_FLAGS) ||
-+		    XE_IOCTL_DBG(xe, obj && is_null) ||
-+		    XE_IOCTL_DBG(xe, obj_offset && is_null) ||
-+		    XE_IOCTL_DBG(xe, VM_BIND_OP(op) != XE_VM_BIND_OP_MAP &&
- 				 is_null) ||
--		    XE_IOCTL_ERR(xe, !obj &&
-+		    XE_IOCTL_DBG(xe, !obj &&
- 				 VM_BIND_OP(op) == XE_VM_BIND_OP_MAP &&
- 				 !is_null) ||
--		    XE_IOCTL_ERR(xe, !obj &&
-+		    XE_IOCTL_DBG(xe, !obj &&
- 				 VM_BIND_OP(op) == XE_VM_BIND_OP_UNMAP_ALL) ||
--		    XE_IOCTL_ERR(xe, addr &&
-+		    XE_IOCTL_DBG(xe, addr &&
- 				 VM_BIND_OP(op) == XE_VM_BIND_OP_UNMAP_ALL) ||
--		    XE_IOCTL_ERR(xe, range &&
-+		    XE_IOCTL_DBG(xe, range &&
- 				 VM_BIND_OP(op) == XE_VM_BIND_OP_UNMAP_ALL) ||
--		    XE_IOCTL_ERR(xe, obj &&
-+		    XE_IOCTL_DBG(xe, obj &&
- 				 VM_BIND_OP(op) == XE_VM_BIND_OP_MAP_USERPTR) ||
--		    XE_IOCTL_ERR(xe, obj &&
-+		    XE_IOCTL_DBG(xe, obj &&
- 				 VM_BIND_OP(op) == XE_VM_BIND_OP_PREFETCH) ||
--		    XE_IOCTL_ERR(xe, region &&
-+		    XE_IOCTL_DBG(xe, region &&
- 				 VM_BIND_OP(op) != XE_VM_BIND_OP_PREFETCH) ||
--		    XE_IOCTL_ERR(xe, !(BIT(region) &
-+		    XE_IOCTL_DBG(xe, !(BIT(region) &
- 				       xe->info.mem_region_mask)) ||
--		    XE_IOCTL_ERR(xe, obj &&
-+		    XE_IOCTL_DBG(xe, obj &&
- 				 VM_BIND_OP(op) == XE_VM_BIND_OP_UNMAP)) {
- 			err = -EINVAL;
- 			goto free_bind_ops;
- 		}
- 
--		if (XE_IOCTL_ERR(xe, obj_offset & ~PAGE_MASK) ||
--		    XE_IOCTL_ERR(xe, addr & ~PAGE_MASK) ||
--		    XE_IOCTL_ERR(xe, range & ~PAGE_MASK) ||
--		    XE_IOCTL_ERR(xe, !range && VM_BIND_OP(op) !=
-+		if (XE_IOCTL_DBG(xe, obj_offset & ~PAGE_MASK) ||
-+		    XE_IOCTL_DBG(xe, addr & ~PAGE_MASK) ||
-+		    XE_IOCTL_DBG(xe, range & ~PAGE_MASK) ||
-+		    XE_IOCTL_DBG(xe, !range && VM_BIND_OP(op) !=
- 				 XE_VM_BIND_OP_RESTART &&
- 				 VM_BIND_OP(op) != XE_VM_BIND_OP_UNMAP_ALL)) {
- 			err = -EINVAL;
-@@ -3127,19 +3127,19 @@ int xe_vm_bind_ioctl(struct drm_device *dev, void *data, struct drm_file *file)
- 
- 	if (args->engine_id) {
- 		e = xe_engine_lookup(xef, args->engine_id);
--		if (XE_IOCTL_ERR(xe, !e)) {
-+		if (XE_IOCTL_DBG(xe, !e)) {
- 			err = -ENOENT;
- 			goto free_objs;
- 		}
- 
--		if (XE_IOCTL_ERR(xe, !(e->flags & ENGINE_FLAG_VM))) {
-+		if (XE_IOCTL_DBG(xe, !(e->flags & ENGINE_FLAG_VM))) {
- 			err = -EINVAL;
- 			goto put_engine;
- 		}
- 	}
- 
- 	vm = xe_vm_lookup(xef, args->vm_id);
--	if (XE_IOCTL_ERR(xe, !vm)) {
-+	if (XE_IOCTL_DBG(xe, !vm)) {
- 		err = -EINVAL;
- 		goto put_engine;
- 	}
-@@ -3148,17 +3148,17 @@ int xe_vm_bind_ioctl(struct drm_device *dev, void *data, struct drm_file *file)
- 	if (err)
- 		goto put_vm;
- 
--	if (XE_IOCTL_ERR(xe, xe_vm_is_closed_or_banned(vm))) {
-+	if (XE_IOCTL_DBG(xe, xe_vm_is_closed_or_banned(vm))) {
- 		err = -ENOENT;
- 		goto release_vm_lock;
- 	}
- 
- 	if (VM_BIND_OP(bind_ops[0].op) == XE_VM_BIND_OP_RESTART) {
--		if (XE_IOCTL_ERR(xe, !(vm->flags & XE_VM_FLAG_ASYNC_BIND_OPS)))
-+		if (XE_IOCTL_DBG(xe, !(vm->flags & XE_VM_FLAG_ASYNC_BIND_OPS)))
- 			err = -EOPNOTSUPP;
--		if (XE_IOCTL_ERR(xe, !err && args->num_syncs))
-+		if (XE_IOCTL_DBG(xe, !err && args->num_syncs))
- 			err = EINVAL;
--		if (XE_IOCTL_ERR(xe, !err && !vm->async_ops.error))
-+		if (XE_IOCTL_DBG(xe, !err && !vm->async_ops.error))
- 			err = -EPROTO;
- 
- 		if (!err) {
-@@ -3175,7 +3175,7 @@ int xe_vm_bind_ioctl(struct drm_device *dev, void *data, struct drm_file *file)
- 		goto release_vm_lock;
- 	}
- 
--	if (XE_IOCTL_ERR(xe, !vm->async_ops.error &&
-+	if (XE_IOCTL_DBG(xe, !vm->async_ops.error &&
- 			 async != !!(vm->flags & XE_VM_FLAG_ASYNC_BIND_OPS))) {
- 		err = -EOPNOTSUPP;
- 		goto release_vm_lock;
-@@ -3185,8 +3185,8 @@ int xe_vm_bind_ioctl(struct drm_device *dev, void *data, struct drm_file *file)
- 		u64 range = bind_ops[i].range;
- 		u64 addr = bind_ops[i].addr;
- 
--		if (XE_IOCTL_ERR(xe, range > vm->size) ||
--		    XE_IOCTL_ERR(xe, addr > vm->size - range)) {
-+		if (XE_IOCTL_DBG(xe, range > vm->size) ||
-+		    XE_IOCTL_DBG(xe, addr > vm->size - range)) {
- 			err = -EINVAL;
- 			goto release_vm_lock;
- 		}
-@@ -3194,7 +3194,7 @@ int xe_vm_bind_ioctl(struct drm_device *dev, void *data, struct drm_file *file)
- 		if (bind_ops[i].tile_mask) {
- 			u64 valid_tiles = BIT(xe->info.tile_count) - 1;
- 
--			if (XE_IOCTL_ERR(xe, bind_ops[i].tile_mask &
-+			if (XE_IOCTL_DBG(xe, bind_ops[i].tile_mask &
- 					 ~valid_tiles)) {
- 				err = -EINVAL;
- 				goto release_vm_lock;
-@@ -3225,24 +3225,24 @@ int xe_vm_bind_ioctl(struct drm_device *dev, void *data, struct drm_file *file)
- 			continue;
- 
- 		gem_obj = drm_gem_object_lookup(file, obj);
--		if (XE_IOCTL_ERR(xe, !gem_obj)) {
-+		if (XE_IOCTL_DBG(xe, !gem_obj)) {
- 			err = -ENOENT;
- 			goto put_obj;
- 		}
- 		bos[i] = gem_to_xe_bo(gem_obj);
- 
--		if (XE_IOCTL_ERR(xe, range > bos[i]->size) ||
--		    XE_IOCTL_ERR(xe, obj_offset >
-+		if (XE_IOCTL_DBG(xe, range > bos[i]->size) ||
-+		    XE_IOCTL_DBG(xe, obj_offset >
- 				 bos[i]->size - range)) {
- 			err = -EINVAL;
- 			goto put_obj;
- 		}
- 
- 		if (bos[i]->flags & XE_BO_INTERNAL_64K) {
--			if (XE_IOCTL_ERR(xe, obj_offset &
-+			if (XE_IOCTL_DBG(xe, obj_offset &
- 					 XE_64K_PAGE_MASK) ||
--			    XE_IOCTL_ERR(xe, addr & XE_64K_PAGE_MASK) ||
--			    XE_IOCTL_ERR(xe, range & XE_64K_PAGE_MASK)) {
-+			    XE_IOCTL_DBG(xe, addr & XE_64K_PAGE_MASK) ||
-+			    XE_IOCTL_DBG(xe, range & XE_64K_PAGE_MASK)) {
- 				err = -EINVAL;
- 				goto put_obj;
- 			}
-diff --git a/drivers/gpu/drm/xe/xe_vm_madvise.c b/drivers/gpu/drm/xe/xe_vm_madvise.c
-index d6e3b76bf590..1ab9bcc06a1c 100644
---- a/drivers/gpu/drm/xe/xe_vm_madvise.c
-+++ b/drivers/gpu/drm/xe/xe_vm_madvise.c
-@@ -19,10 +19,10 @@ static int madvise_preferred_mem_class(struct xe_device *xe, struct xe_vm *vm,
- {
- 	int i, err;
- 
--	if (XE_IOCTL_ERR(xe, value > XE_MEM_REGION_CLASS_VRAM))
-+	if (XE_IOCTL_DBG(xe, value > XE_MEM_REGION_CLASS_VRAM))
- 		return -EINVAL;
- 
--	if (XE_IOCTL_ERR(xe, value == XE_MEM_REGION_CLASS_VRAM &&
-+	if (XE_IOCTL_DBG(xe, value == XE_MEM_REGION_CLASS_VRAM &&
- 			 !xe->info.is_dgfx))
- 		return -EINVAL;
- 
-@@ -48,7 +48,7 @@ static int madvise_preferred_gt(struct xe_device *xe, struct xe_vm *vm,
- {
- 	int i, err;
- 
--	if (XE_IOCTL_ERR(xe, value > xe->info.tile_count))
-+	if (XE_IOCTL_DBG(xe, value > xe->info.tile_count))
- 		return -EINVAL;
- 
- 	for (i = 0; i < num_vmas; ++i) {
-@@ -77,14 +77,14 @@ static int madvise_preferred_mem_class_gt(struct xe_device *xe,
- 	u32 gt_id = upper_32_bits(value);
- 	u32 mem_class = lower_32_bits(value);
- 
--	if (XE_IOCTL_ERR(xe, mem_class > XE_MEM_REGION_CLASS_VRAM))
-+	if (XE_IOCTL_DBG(xe, mem_class > XE_MEM_REGION_CLASS_VRAM))
- 		return -EINVAL;
- 
--	if (XE_IOCTL_ERR(xe, mem_class == XE_MEM_REGION_CLASS_VRAM &&
-+	if (XE_IOCTL_DBG(xe, mem_class == XE_MEM_REGION_CLASS_VRAM &&
- 			 !xe->info.is_dgfx))
- 		return -EINVAL;
- 
--	if (XE_IOCTL_ERR(xe, gt_id > xe->info.tile_count))
-+	if (XE_IOCTL_DBG(xe, gt_id > xe->info.tile_count))
- 		return -EINVAL;
- 
- 	for (i = 0; i < num_vmas; ++i) {
-@@ -115,7 +115,7 @@ static int madvise_cpu_atomic(struct xe_device *xe, struct xe_vm *vm,
- 		struct ww_acquire_ctx ww;
- 
- 		bo = xe_vma_bo(vmas[i]);
--		if (XE_IOCTL_ERR(xe, !(bo->flags & XE_BO_CREATE_SYSTEM_BIT)))
-+		if (XE_IOCTL_DBG(xe, !(bo->flags & XE_BO_CREATE_SYSTEM_BIT)))
- 			return -EINVAL;
- 
- 		err = xe_bo_lock(bo, &ww, 0, true);
-@@ -146,7 +146,7 @@ static int madvise_device_atomic(struct xe_device *xe, struct xe_vm *vm,
- 		struct ww_acquire_ctx ww;
- 
- 		bo = xe_vma_bo(vmas[i]);
--		if (XE_IOCTL_ERR(xe, !(bo->flags & XE_BO_CREATE_VRAM0_BIT) &&
-+		if (XE_IOCTL_DBG(xe, !(bo->flags & XE_BO_CREATE_VRAM0_BIT) &&
- 				 !(bo->flags & XE_BO_CREATE_VRAM1_BIT)))
- 			return -EINVAL;
- 
-@@ -165,10 +165,10 @@ static int madvise_priority(struct xe_device *xe, struct xe_vm *vm,
- {
- 	int i, err;
- 
--	if (XE_IOCTL_ERR(xe, value > DRM_XE_VMA_PRIORITY_HIGH))
-+	if (XE_IOCTL_DBG(xe, value > DRM_XE_VMA_PRIORITY_HIGH))
- 		return -EINVAL;
- 
--	if (XE_IOCTL_ERR(xe, value == DRM_XE_VMA_PRIORITY_HIGH &&
-+	if (XE_IOCTL_DBG(xe, value == DRM_XE_VMA_PRIORITY_HIGH &&
- 			 !capable(CAP_SYS_NICE)))
- 		return -EPERM;
- 
-@@ -255,24 +255,24 @@ int xe_vm_madvise_ioctl(struct drm_device *dev, void *data,
- 	struct xe_vma **vmas = NULL;
- 	int num_vmas = 0, err = 0, idx;
- 
--	if (XE_IOCTL_ERR(xe, args->extensions) ||
--	    XE_IOCTL_ERR(xe, args->pad || args->pad2) ||
--	    XE_IOCTL_ERR(xe, args->reserved[0] || args->reserved[1]))
-+	if (XE_IOCTL_DBG(xe, args->extensions) ||
-+	    XE_IOCTL_DBG(xe, args->pad || args->pad2) ||
-+	    XE_IOCTL_DBG(xe, args->reserved[0] || args->reserved[1]))
- 		return -EINVAL;
- 
--	if (XE_IOCTL_ERR(xe, args->property > ARRAY_SIZE(madvise_funcs)))
-+	if (XE_IOCTL_DBG(xe, args->property > ARRAY_SIZE(madvise_funcs)))
- 		return -EINVAL;
- 
- 	vm = xe_vm_lookup(xef, args->vm_id);
--	if (XE_IOCTL_ERR(xe, !vm))
-+	if (XE_IOCTL_DBG(xe, !vm))
- 		return -EINVAL;
- 
--	if (XE_IOCTL_ERR(xe, xe_vm_is_closed_or_banned(vm))) {
-+	if (XE_IOCTL_DBG(xe, xe_vm_is_closed_or_banned(vm))) {
- 		err = -ENOENT;
- 		goto put_vm;
- 	}
- 
--	if (XE_IOCTL_ERR(xe, !xe_vm_in_fault_mode(vm))) {
-+	if (XE_IOCTL_DBG(xe, !xe_vm_in_fault_mode(vm))) {
- 		err = -EINVAL;
- 		goto put_vm;
- 	}
-@@ -280,15 +280,15 @@ int xe_vm_madvise_ioctl(struct drm_device *dev, void *data,
- 	down_read(&vm->lock);
- 
- 	vmas = get_vmas(vm, &num_vmas, args->addr, args->range);
--	if (XE_IOCTL_ERR(xe, err))
-+	if (XE_IOCTL_DBG(xe, err))
- 		goto unlock_vm;
- 
--	if (XE_IOCTL_ERR(xe, !vmas)) {
-+	if (XE_IOCTL_DBG(xe, !vmas)) {
- 		err = -ENOMEM;
- 		goto unlock_vm;
- 	}
- 
--	if (XE_IOCTL_ERR(xe, !num_vmas)) {
-+	if (XE_IOCTL_DBG(xe, !num_vmas)) {
- 		err = -EINVAL;
- 		goto unlock_vm;
- 	}
-diff --git a/drivers/gpu/drm/xe/xe_wait_user_fence.c b/drivers/gpu/drm/xe/xe_wait_user_fence.c
-index c4420c0dbf9c..c4202df1d4f0 100644
---- a/drivers/gpu/drm/xe/xe_wait_user_fence.c
-+++ b/drivers/gpu/drm/xe/xe_wait_user_fence.c
-@@ -117,51 +117,51 @@ int xe_wait_user_fence_ioctl(struct drm_device *dev, void *data,
- 	unsigned long timeout;
- 	ktime_t start;
- 
--	if (XE_IOCTL_ERR(xe, args->extensions) || XE_IOCTL_ERR(xe, args->pad) ||
--	    XE_IOCTL_ERR(xe, args->reserved[0] || args->reserved[1]))
-+	if (XE_IOCTL_DBG(xe, args->extensions) || XE_IOCTL_DBG(xe, args->pad) ||
-+	    XE_IOCTL_DBG(xe, args->reserved[0] || args->reserved[1]))
- 		return -EINVAL;
- 
--	if (XE_IOCTL_ERR(xe, args->flags & ~VALID_FLAGS))
-+	if (XE_IOCTL_DBG(xe, args->flags & ~VALID_FLAGS))
- 		return -EINVAL;
- 
--	if (XE_IOCTL_ERR(xe, args->op > MAX_OP))
-+	if (XE_IOCTL_DBG(xe, args->op > MAX_OP))
- 		return -EINVAL;
- 
--	if (XE_IOCTL_ERR(xe, no_engines &&
-+	if (XE_IOCTL_DBG(xe, no_engines &&
- 			 (args->num_engines || args->instances)))
- 		return -EINVAL;
- 
--	if (XE_IOCTL_ERR(xe, !no_engines && !args->num_engines))
-+	if (XE_IOCTL_DBG(xe, !no_engines && !args->num_engines))
- 		return -EINVAL;
- 
--	if (XE_IOCTL_ERR(xe, !(args->flags & DRM_XE_UFENCE_WAIT_VM_ERROR) &&
-+	if (XE_IOCTL_DBG(xe, !(args->flags & DRM_XE_UFENCE_WAIT_VM_ERROR) &&
- 			 addr & 0x7))
- 		return -EINVAL;
- 
--	if (XE_IOCTL_ERR(xe, args->num_engines > XE_HW_ENGINE_MAX_INSTANCE))
-+	if (XE_IOCTL_DBG(xe, args->num_engines > XE_HW_ENGINE_MAX_INSTANCE))
- 		return -EINVAL;
- 
- 	if (!no_engines) {
- 		err = copy_from_user(eci, user_eci,
- 				     sizeof(struct drm_xe_engine_class_instance) *
- 			     args->num_engines);
--		if (XE_IOCTL_ERR(xe, err))
-+		if (XE_IOCTL_DBG(xe, err))
- 			return -EFAULT;
- 
--		if (XE_IOCTL_ERR(xe, check_hw_engines(xe, eci,
-+		if (XE_IOCTL_DBG(xe, check_hw_engines(xe, eci,
- 						      args->num_engines)))
- 			return -EINVAL;
- 	}
- 
- 	if (args->flags & DRM_XE_UFENCE_WAIT_VM_ERROR) {
--		if (XE_IOCTL_ERR(xe, args->vm_id >> 32))
-+		if (XE_IOCTL_DBG(xe, args->vm_id >> 32))
- 			return -EINVAL;
- 
- 		vm = xe_vm_lookup(to_xe_file(file), args->vm_id);
--		if (XE_IOCTL_ERR(xe, !vm))
-+		if (XE_IOCTL_DBG(xe, !vm))
- 			return -ENOENT;
- 
--		if (XE_IOCTL_ERR(xe, !vm->async_ops.error_capture.addr)) {
-+		if (XE_IOCTL_DBG(xe, !vm->async_ops.error_capture.addr)) {
- 			xe_vm_put(vm);
- 			return -EOPNOTSUPP;
- 		}
-@@ -226,9 +226,9 @@ int xe_wait_user_fence_ioctl(struct drm_device *dev, void *data,
- 			args->timeout = 0;
- 	}
- 
--	if (XE_IOCTL_ERR(xe, err < 0))
-+	if (XE_IOCTL_DBG(xe, err < 0))
- 		return err;
--	else if (XE_IOCTL_ERR(xe, !timeout))
-+	else if (XE_IOCTL_DBG(xe, !timeout))
- 		return -ETIME;
- 
- 	return 0;
--- 
-2.34.1
-
+On 10-07-2023 13:42, Ursulin, Tvrtko wrote:
+> 
+> Hi,
+> 
+> A few random comments:
+> 
+> * For question about why OA is not i915_perf.c and not Perf/PMU read comment on top of i915_perf.c.
+> 
+> * In terms of efficiency - don't forget the fact sysfs is one value per file and in text format - so multiple counters to be read is multiple system calls (two per value at least - unless that new ioctl which opens and reads in one is used) and binary->text->binary conversion. While PMU is one ioctl to read as many counters as wanted straight in machine usable format.
+> 
+> * In terms of why not ioctl - my memory is hazy but I am pretty sure people requesting this interface at the time had a strong requirement to not have it. Could be what Aravind listed, or maybe even more to it.
+> 
+> * For sysfs there definitely was something about sysfs not being wanted with containers but I can't remember the details. Possibly people were saying they wouldn't want to mount sysfs inside them for some reason.
+> 
+> * The fact tracepoint names are shown with perf list does not make them PMU. 😊
+> 
+> * I also wouldn't discount so easily aligning with the same interface in terms of tools like intel_gpu_top. The tool has it's users and it would be non-trivial cost to refactor into wholly different backends. Most importantly someone would need to commit to that which looking at the past record of involvements I estimate is not very likely to happen.
+> 
+> * Also in terms of software counters, the story is not that simple as i915 invented them. There was an option to actually use OA registers to implement engine busyness stats but unfortunately the capability wasn't consistent across hw generations we needed to support. Not all engines had corresponding OA counters and there was also one other problem with OA which currently escapes me. Needing to keep the device awake maybe? But anyway, that is one reason for sw counters, including sampling on ringbuffer platforms, and accurate sw stats on execlists.
+> 
+> Sampled frequency (more granular than 1 HZ snapshots) was also AFAIR a customer requirement and i915 can do it much more cheaply than userspace hammering on sysfs can.
+> 
+> Of course the user/customer requirements might have changed so I am not saying that all past decisions still apply. Just providing context.
+> 
+> Regards,
+> 
+> Tvrtko
+> 
+> -----Original Message-----
+> From: Iddamsetty, Aravind <aravind.iddamsetty@intel.com> 
+> Sent: Monday, July 10, 2023 7:05 AM
+> To: Dixit, Ashutosh <ashutosh.dixit@intel.com>
+> Cc: intel-xe@lists.freedesktop.org; Bommu, Krishnaiah <krishnaiah.bommu@intel.com>; Ursulin, Tvrtko <tvrtko.ursulin@intel.com>
+> Subject: Re: [Intel-xe] [PATCH v2 2/2] drm/xe/pmu: Enable PMU interface
+> 
+> 
+> 
+> On 08-07-2023 02:55, Dixit, Ashutosh wrote:
+>> On Fri, 07 Jul 2023 03:42:36 -0700, Iddamsetty, Aravind wrote:
+>>>
+>>
+>> Hi Aravind,
+>>
+>>> On 07-07-2023 11:38, Dixit, Ashutosh wrote:
+>>>> On Thu, 06 Jul 2023 20:53:47 -0700, Iddamsetty, Aravind wrote:
+>>>> I will look at the timing stuff later but one further question about 
+>>>> the
+>>>> requirement:
+>>>>
+>>>>>> Also, could you please explain where the requirement to expose 
+>>>>>> these OAG group busy/free registers via the PMU is coming from? 
+>>>>>> Since these are OA registers presumably they can be collected using the OA subsystem.
+>>>>>
+>>>>> L0 sysman needs this
+>>>>> https://spec.oneapi.io/level-zero/latest/sysman/api.html#zes-engine
+>>>>> -properties-t
+>>>>> and xpumanager uses this
+>>>>> https://github.com/intel/xpumanager/blob/master/core/src/device/gpu
+>>>>> /gpu_device.cpp
+>>>>
+>>>> So fine these are UMD requirements, but why do these quantities 
+>>>> (everything in this patch) have to exposed via PMU? I could just 
+>>>> create sysfs or an ioctl to provide these to userland, right?
+>>>
+>>> PMU is enhanced interface to present the metrics, it provides low 
+>>> latency reads compared to sysfs
+>>
+>> Why lower latency compared to sysfs? In both cases we have user to 
+>> kernel transitions and then register reads etc.
+> 
+> The sysfs will have to go through filesystem which adds latency but here i think the most important aspect is requirement of read timestamps.
+> 
+>>
+>>> and one can read multiple events in a single shot
+>>
+>> Yes, this PMU can do and sysfs can't, though ioctl's can do this.
+>>
+>>> and it will give timestamps as well which sysfs cannot provide and 
+>>> which is one of the requirements of UMD.
+>>
+>> Ioctl's can do this if implement (counter, timestamp) pairs, but I 
+>> agree this may look strange so PMU does seem to have an advantage here.
+>>
+>> But are these timestamps needed? The spec talks about different 
+>> timestamp bases but in this case we have already converted to ns and I 
+>> am wondering if the UMD can use it's own timestamps (maybe average of 
+>> the ioctl call and return from ioctl) if UMD needs timestamps.
+> 
+> here i'm talking about read timestamps not the counter itself and when we already have an interface(PMU) which can give these details why to do duplicate effort in ioctl
+>>
+>>> Also UMDs/ observability tools do not want to have any open handles 
+>>> to get these info so ioctl is dropped out.
+>>
+>> Why? This also I don't follow. And UMD has an perf pmu fd open. See 
+>> igt@perf_pmu@module-unload e.g. which tests that module unload should 
+>> fail if the perf pmu fd is open (which takes a ref count on the module).
+> 
+> here I'm referring to drm fd, one need not open drm fd to read via pmu, and typically UMDs do not want to open drm fd as it takes device reference and might toggle the device state(eg: wake device) when we are trying to read some stats which is not needed.
+> 
+>>
+>>> the other motivation to use PMU in xe is the existing tools like 
+>>> intel_gpu_top will work with just a minor change.
+>>
+>> Not too concerned about userspace tools. They can be changed to use a 
+>> different interface.
+>>
+>> So I am still not convinced xe needs to expose a PMU interface with 
+>> these sort of "software events/counters". So my question is why can't 
+>> we just have an ioctl to expose these things, why PMU?
+> 
+> firstly, PMU satisfies all requirements of UMD, requiring read timestamps, multiple event read. So as we already have a time tested interface is kernel why should we try to duplicate. secondly, using ioctl one has to open drm fd which umds do not want.
+>>
+>> Incidentally if you look at amdgpu_pmu.c, they seem to exposing some 
+>> hardware sort of events through the PMU, not our kind of software stuff.
+> 
+> the counters that I'm exposing in this series are hardware counters itself.
+> 
+>>
+>> Another interesting thing is if we have ftrace statements they seem to 
+>> automatically be exposed by PMU 
+>> (https://perf.wiki.kernel.org/index.php/Tutorial), e.g.:
+>>
+>>   i915:i915_request_add                              [Tracepoint event]
+>>   i915:i915_request_queue                            [Tracepoint event]
+>>   i915:i915_request_retire                           [Tracepoint event]
+>>   i915:i915_request_wait_begin                       [Tracepoint event]
+>>   i915:i915_request_wait_end                         [Tracepoint event]
+>>
+>> So I am wondering if this might be an option?
+> 
+> i'm little confused here how ftrace will expose any counters as it is mostly for profiling?
+> 
+> Thanks,
+> Aravind.
+>>
+>> So anyway let's try to understand the need for the PMU interface a bit 
+>> more before deciding on this. Once we introduce the interface (a) 
+>> people will willy nilly start exposing random stuff through that 
+>> inteface (b) same stuff will get exposed via multiple interfaces (e.g. 
+>> frequency and rc6 residency in i915) etc. I am speaking on the basis of what I saw in i915.
+>>
+>> Let's see if Tvrtko responds, otherwise I will try to get him on irc 
+>> or something. It will be good to have some input from maybe one of the 
+>> architects too about this.
+>>
+>> Thanks.
+>> --
+>> Ashutosh
+>>
+>>>> I had this same question about i915 PMU which was never answered. 
+>>>> i915 PMU IMO does truly strange things like sample freq's every 5 ms 
+>>>> and provides software averages which I thought userspace can easily do.
+>>>
+>>> that is a different thing nothing to do with PMU interface
+>>>
+>>> Thanks,
+>>> Aravind.
+>>>>
+>>>> I don't think it's the timestamps, maybe there is some convention 
+>>>> related to the cpu pmu (which I am not familiar with).
+>>>>
+>>>> Let's see, maybe Tvrtko can also answer why these things were 
+>>>> exposed via
+>>>> i915 PMU.
+>>>>
+>>>> Thanks.
+>>>> --
+>>>> Ashutosh
+>>>>
+>>>>
+>>>>>>
+>>>>>> The i915 PMU I believe deduces busyness by sampling the RING_CTL 
+>>>>>> register using a timer. So these registers look better since you 
+>>>>>> can get these busyness values directly. On the other hand you can 
+>>>>>> only get busyness for an engine group and things like compute seem to be missing?
+>>>>>
+>>>>> The per engine busyness is a different thing we still need that and 
+>>>>> it has different implementation with GuC enabled, I believe Umesh 
+>>>>> is looking into that.
+>>>>>
+>>>>> compute group will still be accounted in XE_OAG_RENDER_BUSY_FREE 
+>>>>> and also under XE_OAG_RC0_ANY_ENGINE_BUSY_FREE.
+>>>>>>
+>>>>>> Also, would you know about plans to expose other kinds of 
+>>>>>> busyness-es? I think we may be exposing per-VF and also per-client 
+>>>>>> busyness via PMU. Not sure what else GuC can expose. Knowing all 
+>>>>>> this we can better understand how these particular busyness values will be used.
+>>>>>
+>>>>> ya, that shall be coming next probably from Umesh but per client 
+>>>>> busyness is through fdinfo.
