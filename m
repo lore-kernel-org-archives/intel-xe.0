@@ -4,31 +4,31 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1E7B0C0015E
-	for <intel-xe@archiver.kernel.org>; Wed, 12 Jul 2023 13:40:48 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4D0E9EB64DD
+	for <intel-xe@archiver.kernel.org>; Wed, 12 Jul 2023 13:40:57 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D34AD10E0C2;
-	Wed, 12 Jul 2023 13:40:47 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0023610E52E;
+	Wed, 12 Jul 2023 13:40:56 +0000 (UTC)
 Received: from emeril.freedesktop.org (emeril.freedesktop.org
  [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id B5B0010E0C2;
- Wed, 12 Jul 2023 13:40:45 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTP id 2784010E52E;
+ Wed, 12 Jul 2023 13:40:56 +0000 (UTC)
 Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 8265DAADEA;
- Wed, 12 Jul 2023 13:40:44 +0000 (UTC)
+ by emeril.freedesktop.org (Postfix) with ESMTP id 17BD7AADEA;
+ Wed, 12 Jul 2023 13:40:56 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: "Ravi Kumar Vodapalli" <ravi.kumar.vodapalli@intel.com>
-Date: Wed, 12 Jul 2023 13:40:44 -0000
-Message-ID: <168916924449.17977.4888904860804243233@emeril.freedesktop.org>
+Date: Wed, 12 Jul 2023 13:40:56 -0000
+Message-ID: <168916925609.17979.17770267780801272098@emeril.freedesktop.org>
 X-Patchwork-Hint: ignore
 References: <20230712125640.1471850-1-ravi.kumar.vodapalli@intel.com>
 In-Reply-To: <20230712125640.1471850-1-ravi.kumar.vodapalli@intel.com>
-Subject: [Intel-xe] =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_f?=
- =?utf-8?q?or_drm/xe/ppgtt=3A_Add_support_for_correct_PAT_encoding_in_Page?=
- =?utf-8?q?_Table_Entry_=28PTE=29_format?=
+Subject: [Intel-xe] =?utf-8?q?=E2=9C=97_CI=2Echeckpatch=3A_warning_for_dr?=
+ =?utf-8?q?m/xe/ppgtt=3A_Add_support_for_correct_PAT_encoding_in_Page_Tabl?=
+ =?utf-8?q?e_Entry_=28PTE=29_format?=
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -49,16 +49,44 @@ Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 Series: drm/xe/ppgtt: Add support for correct PAT encoding in Page Table Entry (PTE) format
 URL   : https://patchwork.freedesktop.org/series/120614/
-State : success
+State : warning
 
 == Summary ==
 
-=== Applying kernel patches on branch 'drm-xe-next' with base: ===
-Base commit: d39e49e2a drm/xe: Port Xe to GPUVA
-=== git am output follows ===
-.git/rebase-apply/patch:186: new blank line at EOF.
-+
-warning: 1 line adds whitespace errors.
-Applying: drm/xe/ppgtt: Add support for correct PAT encoding in Page Table Entry (PTE) format
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+c7d32770e3cd31d9fc134ce41f329b10aa33ee15
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit 465a154857a7af47fa4b32131811801f2bccb99f
+Author: Ravi Kumar Vodapalli <ravi.kumar.vodapalli@intel.com>
+Date:   Wed Jul 12 18:26:40 2023 +0530
+
+    drm/xe/ppgtt: Add support for correct PAT encoding in Page Table Entry (PTE) format
+    
+    Different platforms has different PAT encoding in PTE format, add
+    correct PAT encoding for pre-Xe2 platforms (XELP, XEHPC, XELPG).
+    
+    Bspec: 45101, 71582
+    Signed-off-by: Ravi Kumar Vodapalli <ravi.kumar.vodapalli@intel.com>
++ /mt/dim checkpatch d39e49e2ad386bf59f585a05ab659563e0472314 drm-intel
+465a15485 drm/xe/ppgtt: Add support for correct PAT encoding in Page Table Entry (PTE) format
+Traceback (most recent call last):
+  File "scripts/spdxcheck.py", line 6, in <module>
+    from ply import lex, yacc
+ModuleNotFoundError: No module named 'ply'
+-:156: WARNING:FILE_PATH_CHANGES: added, moved or deleted file(s), does MAINTAINERS need updating?
+#156: 
+new file mode 100644
+
+-:169: ERROR:COMPLEX_MACRO: Macros with complex values should be enclosed in parentheses
+#169: FILE: drivers/gpu/drm/xe/xe_pte.h:9:
++#define XELP_PAT_MASK                  BIT_ULL(7) | BIT_ULL(4) | BIT_ULL(3)
+
+total: 1 errors, 1 warnings, 0 checks, 172 lines checked
 
 
