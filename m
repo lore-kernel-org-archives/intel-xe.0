@@ -4,30 +4,30 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id C715DEB64DA
-	for <intel-xe@archiver.kernel.org>; Thu, 13 Jul 2023 02:54:53 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 82099EB64DA
+	for <intel-xe@archiver.kernel.org>; Thu, 13 Jul 2023 02:56:40 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 55CD110E053;
-	Thu, 13 Jul 2023 02:54:53 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 49A5010E053;
+	Thu, 13 Jul 2023 02:56:40 +0000 (UTC)
 Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id 6F66110E012;
- Thu, 13 Jul 2023 02:54:49 +0000 (UTC)
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 5B49410E012;
+ Thu, 13 Jul 2023 02:56:38 +0000 (UTC)
 Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 6833DAADD5;
- Thu, 13 Jul 2023 02:54:49 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============6573551333074410606=="
+ by emeril.freedesktop.org (Postfix) with ESMTP id BFF86AADED;
+ Thu, 13 Jul 2023 02:56:37 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: "Brian Welty" <brian.welty@intel.com>
-Date: Thu, 13 Jul 2023 02:54:49 -0000
-Message-ID: <168921688939.14982.11382471968622204144@emeril.freedesktop.org>
+Date: Thu, 13 Jul 2023 02:56:37 -0000
+Message-ID: <168921699776.14985.17413336451941829309@emeril.freedesktop.org>
 X-Patchwork-Hint: ignore
-References: <20230713020105.21570-1-brian.welty@intel.com>
-In-Reply-To: <20230713020105.21570-1-brian.welty@intel.com>
-Subject: [Intel-xe] =?utf-8?q?=E2=97=8B_CI=2EBAT=3A_info_for_drm/xe=3A_Fi?=
- =?utf-8?q?x_lockdep_warning_from_xe=5Fvm=5Fmadvise?=
+References: <20230713020144.21594-1-brian.welty@intel.com>
+In-Reply-To: <20230713020144.21594-1-brian.welty@intel.com>
+Subject: [Intel-xe] =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_f?=
+ =?utf-8?q?or_drm/xe=3A_Fix_BUG=5FON_during_bind_with_prefetch?=
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -44,65 +44,17 @@ Cc: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============6573551333074410606==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
 == Series Details ==
 
-Series: drm/xe: Fix lockdep warning from xe_vm_madvise
-URL   : https://patchwork.freedesktop.org/series/120645/
-State : info
+Series: drm/xe: Fix BUG_ON during bind with prefetch
+URL   : https://patchwork.freedesktop.org/series/120646/
+State : success
 
 == Summary ==
 
-Participating hosts:
-bat-pvc-2
-bat-atsm-2
-bat-dg2-oem2
-bat-adlp-7
-Missing hosts results[0]:
-Results: [xe-pw-120645v1](https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-120645v1/index.html)
+=== Applying kernel patches on branch 'drm-xe-next' with base: ===
+Base commit: d39e49e2a drm/xe: Port Xe to GPUVA
+=== git am output follows ===
+Applying: drm/xe: Fix BUG_ON during bind with prefetch
 
 
-
---===============6573551333074410606==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/xe: Fix lockdep warning from xe_vm_madvise</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/120645/">https://patchwork.freedesktop.org/series/120645/</a></td></tr>
-<tr><td><b>State:</b></td><td>info</td></tr>
-
-</table>
-
-
-    <p>Participating hosts:<br />
-bat-pvc-2<br />
-bat-atsm-2<br />
-bat-dg2-oem2<br />
-bat-adlp-7<br />
-Missing hosts results[0]:<br />
-Results: <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-120645v1/index.html">xe-pw-120645v1</a></p>
-
-</body>
-</html>
-
---===============6573551333074410606==--
