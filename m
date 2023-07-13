@@ -4,49 +4,50 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 40555C0015E
-	for <intel-xe@archiver.kernel.org>; Thu, 13 Jul 2023 13:23:17 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 33608EB64DD
+	for <intel-xe@archiver.kernel.org>; Thu, 13 Jul 2023 13:23:18 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E178110E6DB;
-	Thu, 13 Jul 2023 13:23:16 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 077E710E6DC;
+	Thu, 13 Jul 2023 13:23:18 +0000 (UTC)
 Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A44AB10E6D9
+ by gabe.freedesktop.org (Postfix) with ESMTPS id CA1E610E6DA
  for <intel-xe@lists.freedesktop.org>; Thu, 13 Jul 2023 13:23:15 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
  t=1689254595; x=1720790595;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=yVaDBJPaj9L5ZwjaM+RKxQ8GfnUTqywvFbga3rrPBOM=;
- b=Rrnn5COuqSptqEsPoQ/5ZnJE9W2kWAOaFRVs4o0grkosyMIMiDcrKbCg
- yjGXLwbLXI1oTn6q1t7dY6dtQPssXb0eueyKJc16iJc9wovzEVwHwLQrW
- SJTX+2teqQAQXVcSPv3+ns/xoHy7pWauUDG2HG6QZw3aZmmgYYWYZp6TL
- 0c42kqBVsf833NbirOTA6uHj/uifDnvjSmN2PjKuOAaFSXl5DgVLZGleP
- pCBaBn4geqkZIW4bVyONOIBk/rDMwjpzsDOl+0C/wf8szdBlAl+arA4YR
- 4EPc6DhRQN0xbeokTtGkXl6HLpBfEU9zQF9nRO0nwN5fF9/PxXnpcLwTL A==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10770"; a="345497912"
-X-IronPort-AV: E=Sophos;i="6.01,202,1684825200"; d="scan'208";a="345497912"
+ bh=invoOD6CCJ1cHbUaXLv5OCMbhTDmFV4nrcYHX/hhJjo=;
+ b=ds1DCBoYDShT5gRpD4TUkjm34zypfJeg9si7oSEVjiv/sOPgG7ta22FD
+ STQ7Hb2/05f4mnh5OrCTK1FKKajsKaSX1bNExWyoH3lGRH+pHYfvjpkum
+ 6HegxNaEPHR6Wq5Td7K5D/bFwsyImhpQ0pXOYLWP5bLEw1QDfJN7tz19L
+ WpyqRSlVuRyLi/A6M5Bwq/vx7Ska7tUrdXmQRuXkOXpIh7meZFFYCuqpl
+ 02DLzg6w6q55fxFVW0vXBq9ksruFdLoii6hOgc1rpaC32KLsDHbtXimpK
+ DRIYlKkWu6DgRxVpseiaf4roMb7PhuBTj2Vz/RyIUu548AMIk74fb1AhB Q==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10770"; a="345497920"
+X-IronPort-AV: E=Sophos;i="6.01,202,1684825200"; d="scan'208";a="345497920"
 Received: from fmsmga008.fm.intel.com ([10.253.24.58])
  by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 13 Jul 2023 06:23:13 -0700
+ 13 Jul 2023 06:23:15 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10770"; a="787455298"
-X-IronPort-AV: E=Sophos;i="6.01,202,1684825200"; d="scan'208";a="787455298"
+X-IronPort-AV: E=McAfee;i="6600,9927,10770"; a="787455302"
+X-IronPort-AV: E=Sophos;i="6.01,202,1684825200"; d="scan'208";a="787455302"
 Received: from rossdevx-mobl.ger.corp.intel.com (HELO mwauld-desk1.intel.com)
  ([10.252.28.133])
  by fmsmga008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 13 Jul 2023 06:23:12 -0700
+ 13 Jul 2023 06:23:13 -0700
 From: Matthew Auld <matthew.auld@intel.com>
 To: intel-xe@lists.freedesktop.org
-Date: Thu, 13 Jul 2023 14:22:47 +0100
-Message-ID: <20230713132244.459605-14-matthew.auld@intel.com>
+Date: Thu, 13 Jul 2023 14:22:48 +0100
+Message-ID: <20230713132244.459605-15-matthew.auld@intel.com>
 X-Mailer: git-send-email 2.41.0
 In-Reply-To: <20230713132244.459605-12-matthew.auld@intel.com>
 References: <20230713132244.459605-12-matthew.auld@intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-xe] [PATCH v13 02/10] drm/xe/vm: tidy up xe_runtime_pm usage
+Subject: [Intel-xe] [PATCH v13 03/10] drm/xe/debugfs: grab mem_access around
+ forcewake
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -62,56 +63,39 @@ Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-The xe_device_mem_access_get() should be all that's needed here and
-should now work as expected, without any strange races. In theory should
-be no functional changes here.
+We need keep the device awake when performing any kind of mmio operation.
 
-Reported-by: Oded Gabbay <ogabbay@kernel.org>
+Closes: https://gitlab.freedesktop.org/drm/xe/kernel/-/issues/279
 Signed-off-by: Matthew Auld <matthew.auld@intel.com>
 Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
 Cc: Thomas Hellström <thomas.hellstrom@linux.intel.com>
 Reviewed-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
 ---
- drivers/gpu/drm/xe/xe_vm.c | 10 ++--------
- 1 file changed, 2 insertions(+), 8 deletions(-)
+ drivers/gpu/drm/xe/xe_debugfs.c | 4 ++++
+ 1 file changed, 4 insertions(+)
 
-diff --git a/drivers/gpu/drm/xe/xe_vm.c b/drivers/gpu/drm/xe/xe_vm.c
-index 6c216350084b..97ecd7f7d593 100644
---- a/drivers/gpu/drm/xe/xe_vm.c
-+++ b/drivers/gpu/drm/xe/xe_vm.c
-@@ -1231,11 +1231,8 @@ struct xe_vm *xe_vm_create(struct xe_device *xe, u32 flags)
+diff --git a/drivers/gpu/drm/xe/xe_debugfs.c b/drivers/gpu/drm/xe/xe_debugfs.c
+index 7827a785b020..047341d5689a 100644
+--- a/drivers/gpu/drm/xe/xe_debugfs.c
++++ b/drivers/gpu/drm/xe/xe_debugfs.c
+@@ -70,6 +70,8 @@ static int forcewake_open(struct inode *inode, struct file *file)
+ 	struct xe_gt *gt;
+ 	u8 id;
  
- 	INIT_LIST_HEAD(&vm->extobj.list);
++	xe_device_mem_access_get(xe);
++
+ 	for_each_gt(gt, xe, id)
+ 		XE_WARN_ON(xe_force_wake_get(gt_to_fw(gt), XE_FORCEWAKE_ALL));
  
--	if (!(flags & XE_VM_FLAG_MIGRATION)) {
--		/* We need to immeditatelly exit from any D3 state */
--		xe_pm_runtime_get(xe);
-+	if (!(flags & XE_VM_FLAG_MIGRATION))
- 		xe_device_mem_access_get(xe);
--	}
+@@ -85,6 +87,8 @@ static int forcewake_release(struct inode *inode, struct file *file)
+ 	for_each_gt(gt, xe, id)
+ 		XE_WARN_ON(xe_force_wake_put(gt_to_fw(gt), XE_FORCEWAKE_ALL));
  
- 	err = dma_resv_lock_interruptible(&vm->resv, NULL);
- 	if (err)
-@@ -1352,10 +1349,8 @@ struct xe_vm *xe_vm_create(struct xe_device *xe, u32 flags)
- err_put:
- 	dma_resv_fini(&vm->resv);
- 	kfree(vm);
--	if (!(flags & XE_VM_FLAG_MIGRATION)) {
-+	if (!(flags & XE_VM_FLAG_MIGRATION))
- 		xe_device_mem_access_put(xe);
--		xe_pm_runtime_put(xe);
--	}
- 	return ERR_PTR(err);
++	xe_device_mem_access_put(xe);
++
+ 	return 0;
  }
  
-@@ -1513,7 +1508,6 @@ static void vm_destroy_work_func(struct work_struct *w)
- 
- 	if (!(vm->flags & XE_VM_FLAG_MIGRATION)) {
- 		xe_device_mem_access_put(xe);
--		xe_pm_runtime_put(xe);
- 
- 		if (xe->info.has_asid) {
- 			mutex_lock(&xe->usm.lock);
 -- 
 2.41.0
 
