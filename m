@@ -4,52 +4,132 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id B12A0C001DC
-	for <intel-xe@archiver.kernel.org>; Thu, 13 Jul 2023 20:08:11 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9ED66C001B0
+	for <intel-xe@archiver.kernel.org>; Thu, 13 Jul 2023 20:10:40 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3B10210E025;
-	Thu, 13 Jul 2023 20:08:11 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4BD0910E025;
+	Thu, 13 Jul 2023 20:10:40 +0000 (UTC)
 Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5697C10E025
- for <intel-xe@lists.freedesktop.org>; Thu, 13 Jul 2023 20:08:09 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0F90710E025
+ for <intel-xe@lists.freedesktop.org>; Thu, 13 Jul 2023 20:10:37 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1689278889; x=1720814889;
+ t=1689279038; x=1720815038;
  h=date:from:to:cc:subject:message-id:references:
- mime-version:content-transfer-encoding:in-reply-to;
- bh=kijyuCEIMZphdyH3xumyOj1WoLYUdiJZH+wNTcA2uaA=;
- b=W+KOBrbqwBCQD3LOleiVE67vnNvq9MjgTZ5JcsZ/HZWV3Ll04Syf58OG
- //URTJOB503jrG8qZt8oGgw6AqHHOqyh7XjSAfsbIR2Hqz4P5GE2dM0eN
- dg6C6ITZDwdH3QxogCiP1w8oMwr0dlx/tdiqdh5la2wljxNB/uPsRe3Wl
- BpgHTJOZZZ0UJ1WLqSAz1duDEm7VGI5+OXy7pom/VE0thIn4fecfzNMo3
- cmfpbwg9RP6gPfROJuX45UQce6zmkb5QvCU1nTIZlb0+FKfDE0AX+4TJe
- RukH+KRMeFUwVeqfALT7vqX10SWXIw+waqehLsNZB6G706LN6BzrJRx0B w==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10770"; a="364178080"
-X-IronPort-AV: E=Sophos;i="6.01,203,1684825200"; d="scan'208";a="364178080"
-Received: from fmsmga008.fm.intel.com ([10.253.24.58])
+ in-reply-to:mime-version;
+ bh=aSWqprbt/eimsZXvl1oNYlPmz4zt7xfedBmhZgZgB00=;
+ b=iowpZNenKxpQsL+MlF49CN7+Ex17oWfG6nMJkthomuAlVGmjAz/gEZi/
+ dDZGnRotBliuDrltZxENSRsnmMpAxE84Gk19zhxF26etP3d7LWMRrb8zG
+ ElaGNNL9eUqtjLUTDVmlNykWI0UUNKN2ucqub4An7OfZIyCK6x1DiPAyh
+ RpK+2jbHI68Cgi3Ak46cXkw3NOe2dADguNrQM89aPyAPVpMiqcuGglbjG
+ DC3WxlD3T2fp0BU2htVGe3y1vzz4sh0nP/yBf9knQRqWWhnInKXMboeI8
+ 92kre9Ipt8UBgxuWFvUiBFMxLm8rXdnoEx2CVgPzQZkCtRgTk5UKaxM+k A==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10770"; a="364178937"
+X-IronPort-AV: E=Sophos;i="6.01,203,1684825200"; d="scan'208";a="364178937"
+Received: from orsmga001.jf.intel.com ([10.7.209.18])
  by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 13 Jul 2023 13:08:08 -0700
+ 13 Jul 2023 13:10:28 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10770"; a="787593364"
-X-IronPort-AV: E=Sophos;i="6.01,203,1684825200"; d="scan'208";a="787593364"
-Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.70])
- by fmsmga008.fm.intel.com with SMTP; 13 Jul 2023 13:08:05 -0700
-Received: by stinkbox (sSMTP sendmail emulation);
- Thu, 13 Jul 2023 23:08:04 +0300
-Date: Thu, 13 Jul 2023 23:08:04 +0300
-From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-To: Jouni =?iso-8859-1?Q?H=F6gander?= <jouni.hogander@intel.com>
-Message-ID: <ZLBZpHgWf1eH_RGV@intel.com>
-References: <20230510121152.736148-1-jouni.hogander@intel.com>
- <20230510121152.736148-23-jouni.hogander@intel.com>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
+X-IronPort-AV: E=McAfee;i="6600,9927,10770"; a="757308637"
+X-IronPort-AV: E=Sophos;i="6.01,203,1684825200"; d="scan'208";a="757308637"
+Received: from fmsmsx601.amr.corp.intel.com ([10.18.126.81])
+ by orsmga001.jf.intel.com with ESMTP; 13 Jul 2023 13:10:26 -0700
+Received: from fmsmsx601.amr.corp.intel.com (10.18.126.81) by
+ fmsmsx601.amr.corp.intel.com (10.18.126.81) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.27; Thu, 13 Jul 2023 13:10:25 -0700
+Received: from FMSEDG603.ED.cps.intel.com (10.1.192.133) by
+ fmsmsx601.amr.corp.intel.com (10.18.126.81) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.27 via Frontend Transport; Thu, 13 Jul 2023 13:10:25 -0700
+Received: from NAM11-DM6-obe.outbound.protection.outlook.com (104.47.57.169)
+ by edgegateway.intel.com (192.55.55.68) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.1.2507.27; Thu, 13 Jul 2023 13:10:25 -0700
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=F1FiJlQk5WaPeh7MtgLFkSyuPhjIzfmabjg4y9BcrkiU7qjJLVpl9eP/ef8U5RpoX8V3jcBg04co+JPQ4Lc+/sl3pUxrx4C8sI+cO1ddaifwtEZQrHYsPVKVVfJcOLL0RhwA28kP6YJGK2+fxyZdYtc1etH/AHWgZ1pU1AWQPE4b3YbrQKPmJzmFYutE1N9M5dK+KSjzjBwiEQ+EyhzgtIehUNaY7kgvZxqCBlbC5rBCFjKjH/8kr0CVPSGOF6VSw52DrRn06WW34Lkh8UnOO19a2fBX4f3TwYe6O9xkFCggKVYyiaYLdJrUWF11MxIgBDHIjYWTyY0uYZJjEkitqg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=E8GXWrC/ufidwcxK9pb2bdf7QiUbaj2Qrq6o18/hyF8=;
+ b=QLs1Smu4SnEeLB1UXeebni8koGhHXsNAafPJUQyFfiBgKoypLSpuz524PguiYP8JKeAnSb5s4y7Wpesfp3hXSzGpr3W9jVu1SihSnVGbFe2cvMz008tUzeGqwklUPCfYZpTIMX2hleeENUH13ckLOAjqqVzrdy4tydjFGPsVtlBXMdPrNFe6t/c2m/Qt3InJrP60hdFlRsrBr2XecZRx0TREI4g4UD675SGUVXPEqyTihUlnqYJbuNE4wOWLOww9sGo4jmd5V4jqeEpRzIkb13SX6LxwqTZC4ceJMMXZIu41KCOsESGD3j0akdmqxvcp+P3XOMR4W7xitkJjkFTxCQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
+ dkim=pass header.d=intel.com; arc=none
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=intel.com;
+Received: from MN0PR11MB6059.namprd11.prod.outlook.com (2603:10b6:208:377::9)
+ by MW4PR11MB5872.namprd11.prod.outlook.com (2603:10b6:303:169::14)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6565.31; Thu, 13 Jul
+ 2023 20:10:23 +0000
+Received: from MN0PR11MB6059.namprd11.prod.outlook.com
+ ([fe80::2677:dfb9:456f:1227]) by MN0PR11MB6059.namprd11.prod.outlook.com
+ ([fe80::2677:dfb9:456f:1227%5]) with mapi id 15.20.6544.024; Thu, 13 Jul 2023
+ 20:10:23 +0000
+Date: Thu, 13 Jul 2023 16:10:19 -0400
+From: Rodrigo Vivi <rodrigo.vivi@intel.com>
+To: Matthew Brost <matthew.brost@intel.com>
+Message-ID: <ZLBaK5U7F+fTCXTV@intel.com>
+References: <20230711212748.2029455-1-matthew.brost@intel.com>
+ <20230711212748.2029455-2-matthew.brost@intel.com>
+Content-Type: text/plain; charset="us-ascii"
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20230510121152.736148-23-jouni.hogander@intel.com>
-X-Patchwork-Hint: comment
-Subject: Re: [Intel-xe] [RFC PATCH v2 22/23] drm/i915: Handle dma fences in
- dirtyfb callback
+In-Reply-To: <20230711212748.2029455-2-matthew.brost@intel.com>
+X-ClientProxiedBy: SJ0PR05CA0014.namprd05.prod.outlook.com
+ (2603:10b6:a03:33b::19) To MN0PR11MB6059.namprd11.prod.outlook.com
+ (2603:10b6:208:377::9)
+MIME-Version: 1.0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: MN0PR11MB6059:EE_|MW4PR11MB5872:EE_
+X-MS-Office365-Filtering-Correlation-Id: 6743e4d9-1a0a-4402-366d-08db83dd3056
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: dx7qgQBRjdobUvN1cBzXESyCsv8d4jCySof0nZiW2YifvZGGzkVckzvI7WQeZEYpzFkxdzkNXNl0vP4jWGLipyetM/4ciB6WCEUUviqj8jM+J+ggIYMzJfHCpTpLA76hkeur4oThCLTNRREeGpuI76gLyXJciDGGkBg40WEqWDg5+2APYp/Vwp2tmSEcTd77N7gZTERgMRNNqrE/RebvCaVXzoTqI0WTRxMWHgLYFCm4ihlVCG8qJyriozZSnfhkwBhmgOD8XDKZWtHfxAHSodgM4nxsmJE3ESdCW5eP+K+G7uUhBiw313HgZMbloohtBLXyr+Ir+x1uKmP9PGjP5QIOydC48WOdYXInYXw+O9Ks8CNsTYpWT4EPhzMrEv7x6z0QfCIecINApcY09iTasaqPlFHrn5aLI3MwENnU9JryoT0vUro/3fBT6GoU2CprTbTjBG2/a90ac/+0zWMBaK2h/O/wBE8yMH57ldlNS6FouUeDpvTCwAeaMZuBZL61FvTJXXC83/tHbO24hst/RHTlVIzjshqE1HJcPnpZT3dwYBGOIb6GeubdmbmKqXIK7DsIH6Dck/hBqeZ06oquacBjU9W/DQVJclMBrMnFHaW84oA9ozxwRswQqzONHfINc4Z4Orso+rKxroxZa5iUn+RvqmLYqtXcQwLsFs3VoRI=
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:MN0PR11MB6059.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230028)(396003)(136003)(366004)(346002)(376002)(39860400002)(451199021)(6666004)(37006003)(6486002)(478600001)(6506007)(186003)(66946007)(6512007)(2906002)(8676002)(8936002)(316002)(66476007)(5660300002)(4326008)(44832011)(41300700001)(82960400001)(6862004)(38100700002)(66556008)(26005)(6636002)(86362001)(83380400001)(36756003)(2616005)(21314003)(67856001)(309714004);
+ DIR:OUT; SFP:1102; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?mNcJ+6XpZwisQ/kNVPapwFVLU8qpzi8RFOiRfo30pRb8dBcMi3Bt4n1+QcU5?=
+ =?us-ascii?Q?EDkJWp5CExj6YhqUbI+9tUtOuEGiNWleVqXBoMJect6Sd3vECSsb0XEMkd65?=
+ =?us-ascii?Q?+vuTspWqxwxW1/+9plBmXBiYY5Xj/TaYI7+SJhdqWC/d5wFoO8SktYLs3wV4?=
+ =?us-ascii?Q?qLW9pYGsvb3Vv5s23duG+hHpTMw1zK7q2pjwauWQiE63nfQGv3GhpwKuezZs?=
+ =?us-ascii?Q?1AgKKoJsBms6qy4H0qBbt1+HPtvC9HforcWtpcfmlJVNUP1oF+dZJNvga3jE?=
+ =?us-ascii?Q?jqAyBXgA8WS0z5U09bTI2cxl4d29VcqshPcOGRuB9U63vEyCTAcP8ETLZSi6?=
+ =?us-ascii?Q?a4/gIyEzhevqk17ZO7YOGSJ4NRG0UPVoeF/KomAcXDqYvE4sch7y2PxcA+Si?=
+ =?us-ascii?Q?SCW5II7of/46GXIn98a+lYRkIw2Of6wVhA17uiyQSw6aBSUGf+3rQD+uNvd3?=
+ =?us-ascii?Q?CQAPEQiGOQf2EiPNwlg4pCJ4baTyLat1fYalb3TVq3kWKtlQfor57BHd+Aqg?=
+ =?us-ascii?Q?0Ym9oH6M00iEjCzdVBMQZqSDiL+Bce7wWnsaZVOFDWqtxN+1domV+UzkqmRn?=
+ =?us-ascii?Q?blOUI+i3r716bOQr6ONpVgEBu93ha+C76ozVXej4BAcXJL3YAXGvZMHz4eYR?=
+ =?us-ascii?Q?ODFM9gWd0gmfLLDqwgKK7RrrdjCQ7Az2aRr46hXvBL1uFvj3aEatoeOe0kOZ?=
+ =?us-ascii?Q?i0lAsOmiKBksX/UaaoaD2qk9TjsK1ItMwgwFjDrJrl/0rWRAwWyOWGxACOrl?=
+ =?us-ascii?Q?8MA0bFCEuMMo/q3a/KyhGJKg7tL3pSsrfEOiWBbsNVvhjEIutOJ/1zpWE8yL?=
+ =?us-ascii?Q?nhoq0D3Xi/MZjYngSRV8jGjchdvqWGS1Ux729GaYBVYWaeBuo+KGHK7kUjLM?=
+ =?us-ascii?Q?6G0a3wQbsWjFhpLwLfuRRgsd+IFG6Uxp0Q9D8tyulTq4mGc6mlckzN7RunBh?=
+ =?us-ascii?Q?EjvQBuPXL9TLLRjwsyduAxpGzy/Ss9vAGiQKK8T0Z33TQp8l0Y0+XGNa9bjk?=
+ =?us-ascii?Q?rSCWNhZ0ERnfVEV8hXDym21mt/wud3HPUonoo6BhAnsCM2rIj6i5HiFBmjZ5?=
+ =?us-ascii?Q?7iunNJxpGGC60B3UrdD/bnyrXIEuyAJ5nCgK3JITeJX4HAkufhKs2lsQuRV9?=
+ =?us-ascii?Q?SFremMQl9tNjaWHQftbMcbQboQCH4VL0zMtnhYPL45nZ9sw9YMnxnNXQM97q?=
+ =?us-ascii?Q?EFDLQwQEVpiJzZMTIK6ABvbYsjwW8kcS4X0F/+K+X2vnDRb+HDciNJI487zw?=
+ =?us-ascii?Q?5GaoWuURJPqvkaVbQfs955Gy86W9ND4MgFUeCkAp4RLMAiQnJLP7OsoPoeMj?=
+ =?us-ascii?Q?UnKZSYaQerYdwNMnfr507gfYPQ3RW72aezJZTLt3uw7bVs9QxJ2WcU5F6MRr?=
+ =?us-ascii?Q?nn4lE1aLdTSXbiq2bBAtBXel4PLfDZ3nLtIehi1qb8GmXoVgGkjjw7EeEDb8?=
+ =?us-ascii?Q?XE+Qan3zs6IJklQqC3LfRjCgNyaYxg3RnqsgOekMkkqmnhiH3G5plpaqC97J?=
+ =?us-ascii?Q?N+y6z0Y16gLwNnqjpucZ4VLEgdJiHPxmjvoahI0vgQluS3/0i3v3PA8NP8XK?=
+ =?us-ascii?Q?LwzPsxjYydAIOU27SsgvKV4sF1eZoRuCMxpw7Ofw?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: 6743e4d9-1a0a-4402-366d-08db83dd3056
+X-MS-Exchange-CrossTenant-AuthSource: MN0PR11MB6059.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 13 Jul 2023 20:10:22.9032 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: 1A3fW4ZMBHiR6eJY0EISZhfYFEgiRqaWBZ+FYI7RUuPMQ2Jw3WYd2S4vm4xBDOVRki/rcv4yIbDEQvAlfKmstg==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: MW4PR11MB5872
+X-OriginatorOrg: intel.com
+Subject: Re: [Intel-xe] [PATCH 1/5] drm/xe: Avoid doing rebinds
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -61,181 +141,220 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Cc: jani.nikula@intel.com, rodrigo.vivi@kernel.org,
- intel-xe@lists.freedesktop.org
+Cc: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Wed, May 10, 2023 at 03:11:51PM +0300, Jouni Högander wrote:
-> Take into account dma fences in dirtyfb callback. If there is no
-> unsignaled dma fences perform flush immediately. If there are
-> unsignaled dma fences perform invalidate and add callback which will
-> queue flush when the fence gets signaled.
+On Tue, Jul 11, 2023 at 02:27:44PM -0700, Matthew Brost wrote:
+> If we dont change page sizes we can avoid doing rebinds rather just do a
+> partial unbind. The algorithm to determine its page size is greedy as we
+> assume all pages in the removed VMA are the largest page used in the
+> VMA.
 > 
-> Signed-off-by: Jouni Högander <jouni.hogander@intel.com>
+> v2: Don't exceed 100 lines
+> 
+> Signed-off-by: Matthew Brost <matthew.brost@intel.com>
 > ---
->  drivers/gpu/drm/i915/display/intel_fb.c | 55 +++++++++++++++++++++++--
->  1 file changed, 52 insertions(+), 3 deletions(-)
+>  drivers/gpu/drm/xe/xe_pt.c       |  1 +
+>  drivers/gpu/drm/xe/xe_vm.c       | 72 +++++++++++++++++++++++++-------
+>  drivers/gpu/drm/xe/xe_vm_types.h | 17 ++++----
+>  3 files changed, 65 insertions(+), 25 deletions(-)
 > 
-> diff --git a/drivers/gpu/drm/i915/display/intel_fb.c b/drivers/gpu/drm/i915/display/intel_fb.c
-> index fa4464d433b7..fc325f2299a4 100644
-> --- a/drivers/gpu/drm/i915/display/intel_fb.c
-> +++ b/drivers/gpu/drm/i915/display/intel_fb.c
-> @@ -8,6 +8,9 @@
->  #include <drm/drm_framebuffer.h>
->  #include <drm/drm_modeset_helper.h>
+> diff --git a/drivers/gpu/drm/xe/xe_pt.c b/drivers/gpu/drm/xe/xe_pt.c
+> index 00855681c0d5..a8d96cbd53e3 100644
+> --- a/drivers/gpu/drm/xe/xe_pt.c
+> +++ b/drivers/gpu/drm/xe/xe_pt.c
+> @@ -668,6 +668,7 @@ xe_pt_stage_bind_entry(struct xe_ptw *parent, pgoff_t offset,
+>  		if (!is_null)
+>  			xe_res_next(curs, next - addr);
+>  		xe_walk->va_curs_start = next;
+> +		xe_walk->vma->gpuva.flags |= (XE_VMA_PTE_4K << level);
+>  		*action = ACTION_CONTINUE;
 >  
-> +#include <linux/dma-fence.h>
-> +#include <linux/dma-resv.h>
-> +
->  #include "i915_drv.h"
->  #include "intel_display.h"
->  #include "intel_display_types.h"
-> @@ -1888,6 +1891,20 @@ static int intel_user_framebuffer_create_handle(struct drm_framebuffer *fb,
+>  		return ret;
+> diff --git a/drivers/gpu/drm/xe/xe_vm.c b/drivers/gpu/drm/xe/xe_vm.c
+> index 6c216350084b..5f4f6dab270a 100644
+> --- a/drivers/gpu/drm/xe/xe_vm.c
+> +++ b/drivers/gpu/drm/xe/xe_vm.c
+> @@ -2385,6 +2385,16 @@ static struct xe_vma *new_vma(struct xe_vm *vm, struct drm_gpuva_op_map *op,
+>  	return vma;
 >  }
 >  
->  #ifdef I915
-> +struct frontbuffer_fence_cb {
-> +	struct dma_fence_cb base;
-> +	struct intel_frontbuffer *front;
-> +};
-> +
-> +static void intel_user_framebuffer_fence_wake(struct dma_fence *dma,
-> +					      struct dma_fence_cb *data)
+> +static u64 xe_vma_max_pte_size(struct xe_vma *vma)
 > +{
-> +	struct frontbuffer_fence_cb *cb = container_of(data, typeof(*cb), base);
+> +	if (vma->gpuva.flags & XE_VMA_PTE_1G)
+> +		return SZ_1G;
+> +	else if (vma->gpuva.flags & XE_VMA_PTE_2M)
+> +		return SZ_2M;
 > +
-> +	intel_frontbuffer_queue_flush(cb->front);
-> +	kfree(cb);
+> +	return SZ_4K;
 > +}
 > +
->  static int intel_user_framebuffer_dirty(struct drm_framebuffer *fb,
->  					struct drm_file *file,
->  					unsigned int flags, unsigned int color,
-> @@ -1895,11 +1912,43 @@ static int intel_user_framebuffer_dirty(struct drm_framebuffer *fb,
->  					unsigned int num_clips)
->  {
->  	struct drm_i915_gem_object *obj = intel_fb_obj(fb);
-> +	struct intel_frontbuffer *front = to_intel_frontbuffer(fb);
-> +	struct dma_resv_iter cursor;
-> +	struct dma_fence *fence;
-> +	int ret;
+>  /*
+>   * Parse operations list and create any resources needed for the operations
+>   * prior to fully committing to the operations. This setup can fail.
+> @@ -2461,6 +2471,13 @@ static int vm_bind_ioctl_ops_parse(struct xe_vm *vm, struct xe_engine *e,
+>  				break;
+>  			}
+>  			case DRM_GPUVA_OP_REMAP:
+> +			{
+> +				struct xe_vma *old =
+> +					gpuva_to_vma(op->base.remap.unmap->va);
 > +
-> +	if (dma_resv_test_signaled(intel_bo_to_drm_bo(obj).resv, dma_resv_usage_rw(false))) {
-> +		intel_bo_flush_if_display(obj);
-> +		intel_frontbuffer_flush(front, ORIGIN_DIRTYFB);
-> +		return 0;
-> +	}
+> +				op->remap.start = xe_vma_start(old);
+> +				op->remap.range = xe_vma_size(old);
+> +
+>  				if (op->base.remap.prev) {
+>  					struct xe_vma *vma;
+>  					bool read_only =
+> @@ -2479,6 +2496,20 @@ static int vm_bind_ioctl_ops_parse(struct xe_vm *vm, struct xe_engine *e,
+>  					}
 >  
-> -	intel_bo_flush_if_display(obj);
-> -	intel_frontbuffer_flush(to_intel_frontbuffer(fb), ORIGIN_DIRTYFB);
-> +	intel_frontbuffer_invalidate(front, ORIGIN_DIRTYFB);
+>  					op->remap.prev = vma;
+> +
+> +					/*
+> +					 * XXX: Userptr creates a new SG mapping
+> +					 * so we must also rebind.
+> +					 */
+
+should we have an upper layer if condition with the userptr?
+
+do we have a way around this new SG mapping? I mean, we should probably avoid
+the 'XXX' there since we have no way around, or replace by a TODO if we have...
+
+> +					op->remap.skip_prev = !xe_vma_is_userptr(old) &&
+> +						IS_ALIGNED(xe_vma_end(vma),
+> +							   xe_vma_max_pte_size(old));
+> +					if (op->remap.skip_prev) {
+> +						op->remap.range -=
+> +							xe_vma_end(vma) -
+> +							xe_vma_start(old);
+> +						op->remap.start = xe_vma_end(vma);
+> +					}
+>  				}
 >  
-> -	return 0;
-> +	dma_resv_iter_begin(&cursor, intel_bo_to_drm_bo(obj).resv,
-> +			    dma_resv_usage_rw(false));
-> +	dma_resv_for_each_fence_unlocked(&cursor, fence) {
-> +		struct frontbuffer_fence_cb *cb =
-> +			kmalloc(sizeof(struct frontbuffer_fence_cb), GFP_KERNEL);
-> +		if (!cb) {
-> +			ret = -ENOMEM;
-> +			break;
+>  				if (op->base.remap.next) {
+> @@ -2500,20 +2531,17 @@ static int vm_bind_ioctl_ops_parse(struct xe_vm *vm, struct xe_engine *e,
+>  					}
+>  
+>  					op->remap.next = vma;
+> +					op->remap.skip_next = !xe_vma_is_userptr(old) &&
+
+userptr if condition consideration here as well... and also probably good to have
+a comment here too...
+
+> +						IS_ALIGNED(xe_vma_start(vma),
+> +							   xe_vma_max_pte_size(old));
+> +					if (op->remap.skip_next)
+> +						op->remap.range -=
+> +							xe_vma_end(old) -
+> +							xe_vma_start(vma);
+>  				}
+> -
+> -				/* XXX: Support no doing remaps */
+> -				op->remap.start =
+> -					xe_vma_start(gpuva_to_vma(op->base.remap.unmap->va));
+> -				op->remap.range =
+> -					xe_vma_size(gpuva_to_vma(op->base.remap.unmap->va));
+>  				break;
+> +			}
+>  			case DRM_GPUVA_OP_UNMAP:
+> -				op->unmap.start =
+> -					xe_vma_start(gpuva_to_vma(op->base.unmap.va));
+> -				op->unmap.range =
+> -					xe_vma_size(gpuva_to_vma(op->base.unmap.va));
+> -				break;
+>  			case DRM_GPUVA_OP_PREFETCH:
+>  				/* Nothing to do */
+>  				break;
+> @@ -2555,10 +2583,23 @@ static int xe_vma_op_commit(struct xe_vm *vm, struct xe_vma_op *op)
+>  	case DRM_GPUVA_OP_REMAP:
+>  		prep_vma_destroy(vm, gpuva_to_vma(op->base.remap.unmap->va),
+>  				 true);
+> -		if (op->remap.prev)
+> +
+> +		if (op->remap.prev) {
+>  			err |= xe_vm_insert_vma(vm, op->remap.prev);
+> -		if (op->remap.next)
+> +			if (!err && op->remap.skip_prev)
+> +				op->remap.prev = NULL;
 > +		}
-> +		cb->front = front;
-> +
-> +		ret = dma_fence_add_callback(fence, &cb->base,
-> +					     intel_user_framebuffer_fence_wake);
-> +		if (ret) {
-> +			intel_user_framebuffer_fence_wake(fence, &cb->base);
-> +			if (ret == -ENOENT)
-> +				ret = 0;
-> +			else
-> +				break;
+> +		if (op->remap.next) {
+>  			err |= xe_vm_insert_vma(vm, op->remap.next);
+> +			if (!err && op->remap.skip_next)
+> +				op->remap.next = NULL;
 > +		}
-> +	}
-> +	dma_resv_iter_end(&cursor);
-
-AFAICS we could use dma_resv_get_singleton() here to get just a
-single callback once all the included fences have signalled. It
-might also reduce the amount of kmallocs() a bit, though
-dma_resv_get_singleton() does seem to end up doing multiple
-allocations as well, but perhaps it could be optimized further.
-
-The other thing dma_resv_get_singleton() does is is reference
-counting of the fences. But I'm not sure that's needed here.
-Ie. I'm not sure what the lifetime rules are.
-
-
-I was also pondering what kind of scenarios we might hit here that might
-be a bit problematic. This is what I came up with:
-
-* scenario 1:
-
- flip(PLANE A):
-  -> FB A.bits=PLANE A
- set fence(FB A):
-  -> FB A.fence = fence 1
- dirtyfb(FB A):
-  -> fence 1 !signalled -> invalidate FB A.bits==PLANE A
-  -> fence 1 queue cb
- flip(PLANE A):
-  -> FB A.bits = 0
-  -> FB B.bits = PLANE A
- fence 1 cb -> flush FB A.bits=0
-
- In the end tracking is left in invalidated state, at least for
- FBC AFAICS. Possible fix would be to clear FBC busy_bits on flip [1]?
- DRRS is fine I think since every flip already clears busy_bits.
- Not sure what PSR does.
-
-
-[1]
-@@ -1299,11 +1299,9 @@ static void __intel_fbc_post_update(struct intel_fbc *fbc)
-        lockdep_assert_held(&fbc->lock);
-
-        fbc->flip_pending = false;
-+       fbc->busy_bits = 0;
-
--       if (!fbc->busy_bits)
--               intel_fbc_activate(fbc);
--       else
--               intel_fbc_deactivate(fbc, "frontbuffer write");
-+       intel_fbc_activate(fbc);
- }
-
-
-* scenario 2:
-
- flip(PLANE A):
-  -> FB A.bits=PLANE A
- set fence(FB A):
-  -> FB A.fence = fence 1
- dirtyfb(FB A):
-  -> fence 1 !signalled -> invalidate FB A.bits==PLANE A
-  -> fence 1 queue cb
- set fence(FB A):
-  -> FB A.fence = fence 2
- dirtyfb(FB A):
-  -> fence 2 !signalled -> invalidate FB A.bits==PLANE A
-  -> fence 2 queue cb
- fence 1 cb -> flush FB A.bits==PLANE A
-  -> frontbuffer tracking flushed before fence 2 has signalled
- ...
- fence 2 cb -> flush FB A.bits==PLANE A
-
- Perhaps we should keep track of how many fences are actually pending,
- and only do the frontbuffer flush when the count drops to zero?
- OTOH the final flush should still guarantee some kind of correctness
- in the end, so not sure this is really a big problem.
-
 > +
-> +	return ret;
->  }
->  #endif
+> +		/* Adjust for partial unbind after removin VMA from VM */
+> +		if (!err) {
+> +			op->base.remap.unmap->va->va.addr = op->remap.start;
+> +			op->base.remap.unmap->va->va.range = op->remap.range;
+> +		}
+>  		break;
+>  	case DRM_GPUVA_OP_UNMAP:
+>  		prep_vma_destroy(vm, gpuva_to_vma(op->base.unmap.va), true);
+> @@ -2628,9 +2669,10 @@ static int __xe_vma_op_execute(struct xe_vm *vm, struct xe_vma *vma,
+>  		bool next = !!op->remap.next;
 >  
+>  		if (!op->remap.unmap_done) {
+> -			vm->async_ops.munmap_rebind_inflight = true;
+> -			if (prev || next)
+> +			if (prev || next) {
+> +				vm->async_ops.munmap_rebind_inflight = true;
+>  				vma->gpuva.flags |= XE_VMA_FIRST_REBIND;
+> +			}
+>  			err = xe_vm_unbind(vm, vma, op->engine, op->syncs,
+>  					   op->num_syncs,
+>  					   !prev && !next ? op->fence : NULL,
+> diff --git a/drivers/gpu/drm/xe/xe_vm_types.h b/drivers/gpu/drm/xe/xe_vm_types.h
+> index edb3c99a9c81..f17dc5d7370e 100644
+> --- a/drivers/gpu/drm/xe/xe_vm_types.h
+> +++ b/drivers/gpu/drm/xe/xe_vm_types.h
+> @@ -29,6 +29,9 @@ struct xe_vm;
+>  #define XE_VMA_ATOMIC_PTE_BIT	(DRM_GPUVA_USERBITS << 2)
+>  #define XE_VMA_FIRST_REBIND	(DRM_GPUVA_USERBITS << 3)
+>  #define XE_VMA_LAST_REBIND	(DRM_GPUVA_USERBITS << 4)
+> +#define XE_VMA_PTE_4K		(DRM_GPUVA_USERBITS << 5)
+> +#define XE_VMA_PTE_2M		(DRM_GPUVA_USERBITS << 6)
+> +#define XE_VMA_PTE_1G		(DRM_GPUVA_USERBITS << 7)
+>  
+>  struct xe_vma {
+>  	/** @gpuva: Base GPUVA object */
+> @@ -326,14 +329,6 @@ struct xe_vma_op_map {
+>  	bool is_null;
+>  };
+>  
+> -/** struct xe_vma_op_unmap - VMA unmap operation */
+> -struct xe_vma_op_unmap {
+> -	/** @start: start of the VMA unmap */
+> -	u64 start;
+> -	/** @range: range of the VMA unmap */
+> -	u64 range;
+> -};
+> -
+>  /** struct xe_vma_op_remap - VMA remap operation */
+>  struct xe_vma_op_remap {
+>  	/** @prev: VMA preceding part of a split mapping */
+> @@ -344,6 +339,10 @@ struct xe_vma_op_remap {
+>  	u64 start;
+>  	/** @range: range of the VMA unmap */
+>  	u64 range;
+> +	/** @skip_prev: skip prev rebind */
+> +	bool skip_prev;
+> +	/** @skip_next: skip next rebind */
+> +	bool skip_next;
+>  	/** @unmap_done: unmap operation in done */
+>  	bool unmap_done;
+>  };
+> @@ -401,8 +400,6 @@ struct xe_vma_op {
+>  	union {
+>  		/** @map: VMA map operation specific data */
+>  		struct xe_vma_op_map map;
+> -		/** @unmap: VMA unmap operation specific data */
+> -		struct xe_vma_op_unmap unmap;
+>  		/** @remap: VMA remap operation specific data */
+>  		struct xe_vma_op_remap remap;
+>  		/** @prefetch: VMA prefetch operation specific data */
 > -- 
 > 2.34.1
-
--- 
-Ville Syrjälä
-Intel
+> 
