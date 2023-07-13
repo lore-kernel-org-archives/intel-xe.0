@@ -4,30 +4,30 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 82099EB64DA
-	for <intel-xe@archiver.kernel.org>; Thu, 13 Jul 2023 02:56:40 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4EA85EB64DD
+	for <intel-xe@archiver.kernel.org>; Thu, 13 Jul 2023 02:56:50 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 49A5010E053;
-	Thu, 13 Jul 2023 02:56:40 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0CD9110E05B;
+	Thu, 13 Jul 2023 02:56:50 +0000 (UTC)
 Received: from emeril.freedesktop.org (emeril.freedesktop.org
  [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id 5B49410E012;
- Thu, 13 Jul 2023 02:56:38 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTP id 39F3F10E012;
+ Thu, 13 Jul 2023 02:56:48 +0000 (UTC)
 Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id BFF86AADED;
- Thu, 13 Jul 2023 02:56:37 +0000 (UTC)
+ by emeril.freedesktop.org (Postfix) with ESMTP id 35DE5AADED;
+ Thu, 13 Jul 2023 02:56:48 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: "Brian Welty" <brian.welty@intel.com>
-Date: Thu, 13 Jul 2023 02:56:37 -0000
-Message-ID: <168921699776.14985.17413336451941829309@emeril.freedesktop.org>
+Date: Thu, 13 Jul 2023 02:56:48 -0000
+Message-ID: <168921700821.14984.13084698755355701381@emeril.freedesktop.org>
 X-Patchwork-Hint: ignore
 References: <20230713020144.21594-1-brian.welty@intel.com>
 In-Reply-To: <20230713020144.21594-1-brian.welty@intel.com>
-Subject: [Intel-xe] =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_f?=
- =?utf-8?q?or_drm/xe=3A_Fix_BUG=5FON_during_bind_with_prefetch?=
+Subject: [Intel-xe] =?utf-8?q?=E2=9C=93_CI=2Echeckpatch=3A_success_for_dr?=
+ =?utf-8?q?m/xe=3A_Fix_BUG=5FON_during_bind_with_prefetch?=
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -52,9 +52,40 @@ State : success
 
 == Summary ==
 
-=== Applying kernel patches on branch 'drm-xe-next' with base: ===
-Base commit: d39e49e2a drm/xe: Port Xe to GPUVA
-=== git am output follows ===
-Applying: drm/xe: Fix BUG_ON during bind with prefetch
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+c7d32770e3cd31d9fc134ce41f329b10aa33ee15
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit 4c8db138c9a9103e2aa4e875ec92d2c78ea45216
+Author: Brian Welty <brian.welty@intel.com>
+Date:   Wed Jul 12 19:01:44 2023 -0700
+
+    drm/xe: Fix BUG_ON during bind with prefetch
+    
+    It was missed that print_ops needs to include DRM_GPUVA_OP_PREFETCH.
+    
+    Else we hit the impossible BUG_ON:
+    [  886.371040] ------------[ cut here ]------------
+    [  886.371047] kernel BUG at drivers/gpu/drm/xe/xe_vm.c:2234!
+    [  886.371216] invalid opcode: 0000 [#1] PREEMPT SMP NOPTI
+    [  886.371229] CPU: 1 PID: 3132 Comm: xe_exec_fault_m Tainted: G        W          6.4.0-xe+ #16
+    [  886.371257] RIP: 0010:vm_bind_ioctl_ops_create+0x45f/0x470 [xe]
+    ...
+    [  886.371517] Call Trace:
+    [  886.371525]  <TASK>
+    [  886.371531]  ? __die_body+0x1a/0x60
+    [  886.371546]  ? die+0x38/0x60
+    [  886.371557]  ? do_trap+0x10a/0x120
+    [  886.371568]  ? vm_bind_ioctl_ops_create+0x45f/0x470 [xe]
+    
+    Fixes: d39e49e2ad38 ("drm/xe: Port Xe to GPUVA")
+    Signed-off-by: Brian Welty <brian.welty@intel.com>
++ /mt/dim checkpatch d39e49e2ad386bf59f585a05ab659563e0472314 drm-intel
+4c8db138c drm/xe: Fix BUG_ON during bind with prefetch
 
 
