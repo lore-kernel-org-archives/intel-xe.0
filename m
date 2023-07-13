@@ -4,59 +4,59 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id AC70DC001DE
-	for <intel-xe@archiver.kernel.org>; Thu, 13 Jul 2023 20:26:54 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id B525DC001DE
+	for <intel-xe@archiver.kernel.org>; Thu, 13 Jul 2023 20:28:25 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7BFCA10E080;
-	Thu, 13 Jul 2023 20:26:54 +0000 (UTC)
-Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 75E8B10E080
- for <intel-xe@lists.freedesktop.org>; Thu, 13 Jul 2023 20:26:52 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7851A10E1A5;
+	Thu, 13 Jul 2023 20:28:25 +0000 (UTC)
+Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D8C8810E1A5
+ for <intel-xe@lists.freedesktop.org>; Thu, 13 Jul 2023 20:28:22 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1689280011; x=1720816011;
+ t=1689280102; x=1720816102;
  h=date:from:to:cc:subject:message-id:references:
  in-reply-to:mime-version;
- bh=oqxmHLEDHBvMWPPXsMeAXSA6Kgnn6RAzuqHOylVSU9c=;
- b=mC/y+7lSFDmAlESWNrRru2Xg9oMih8j5Ea+abggDtcAOIsoaCLbJ0GfS
- 8pfQLAZz+hoASFZuO0zixn6VkyVZ2qQMHQjcnS0FMtmuda3KVhs8xggsb
- 8xoMGBWUiGOrmda+YJB6PmjiXXAbvrNe1VE96pOAKJSJ8Rn3ieFVebqEP
- SKD3Ic2NGuOD5/ef6C0UAGIS3TMtMO/cAJs6kgOgf2yR0/tFe3/ToLA+c
- cxhofoy2CMFsbf75E1RRXBUqLXW4LL5VwdZkXTk4ukbf9f9df21I/7/pS
- DdqkUAem5UG+MeDZeHYJOx6qJU2aZsrmO1r98WWgQmdCU0MiRpJYG9bPW w==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10770"; a="396114345"
-X-IronPort-AV: E=Sophos;i="6.01,203,1684825200"; d="scan'208";a="396114345"
-Received: from fmsmga003.fm.intel.com ([10.253.24.29])
- by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 13 Jul 2023 13:26:34 -0700
+ bh=SD6CyvMHI3tAWLfurpOOQ39imk0rOlt8rZeFHTSZ/F4=;
+ b=oDShb1QsjArWFmiMeK9nsiUgQ+aVhQREJqa9z2x4T91uTrNNb8i9CB8N
+ 7nhQt+ktIypjT0+B9eBoYVcw8BbEhkRlAFo9HtTcaPxn2do9mdPGWKAIC
+ 9SgH1WxF+6GZPhCg+ob5Hgd0KhxbISwwxkUA3ZByYdlvuwny1UKqhd9aJ
+ au7tGWYguwY9FosZ8yybUnZxI9PsqbqF404fuqYW4Obp6qoPZstaLCNLa
+ sJxHoU724HOQgMJs+7RE+JbG15Unu9xsl9BjwW5kL0G452B97BgvzBJub
+ tdH75uvZg2UZkiDDluo6uaj52r057KT/gW/iEO0FffGXqiyq1W08syZoB w==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10770"; a="365344785"
+X-IronPort-AV: E=Sophos;i="6.01,203,1684825200"; d="scan'208";a="365344785"
+Received: from fmsmga004.fm.intel.com ([10.253.24.48])
+ by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 13 Jul 2023 13:28:21 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10770"; a="812158764"
-X-IronPort-AV: E=Sophos;i="6.01,203,1684825200"; d="scan'208";a="812158764"
-Received: from fmsmsx603.amr.corp.intel.com ([10.18.126.83])
- by FMSMGA003.fm.intel.com with ESMTP; 13 Jul 2023 13:26:34 -0700
+X-IronPort-AV: E=McAfee;i="6600,9927,10770"; a="792188514"
+X-IronPort-AV: E=Sophos;i="6.01,203,1684825200"; d="scan'208";a="792188514"
+Received: from fmsmsx602.amr.corp.intel.com ([10.18.126.82])
+ by fmsmga004.fm.intel.com with ESMTP; 13 Jul 2023 13:28:21 -0700
 Received: from fmsmsx611.amr.corp.intel.com (10.18.126.91) by
- fmsmsx603.amr.corp.intel.com (10.18.126.83) with Microsoft SMTP Server
+ fmsmsx602.amr.corp.intel.com (10.18.126.82) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.27; Thu, 13 Jul 2023 13:26:34 -0700
-Received: from fmsmsx601.amr.corp.intel.com (10.18.126.81) by
+ 15.1.2507.27; Thu, 13 Jul 2023 13:28:21 -0700
+Received: from fmsmsx610.amr.corp.intel.com (10.18.126.90) by
  fmsmsx611.amr.corp.intel.com (10.18.126.91) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.27; Thu, 13 Jul 2023 13:26:33 -0700
-Received: from FMSEDG603.ED.cps.intel.com (10.1.192.133) by
- fmsmsx601.amr.corp.intel.com (10.18.126.81) with Microsoft SMTP Server
+ 15.1.2507.27; Thu, 13 Jul 2023 13:28:20 -0700
+Received: from fmsedg601.ED.cps.intel.com (10.1.192.135) by
+ fmsmsx610.amr.corp.intel.com (10.18.126.90) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.27 via Frontend Transport; Thu, 13 Jul 2023 13:26:33 -0700
+ 15.1.2507.27 via Frontend Transport; Thu, 13 Jul 2023 13:28:20 -0700
 Received: from NAM11-BN8-obe.outbound.protection.outlook.com (104.47.58.169)
- by edgegateway.intel.com (192.55.55.68) with Microsoft SMTP Server
+ by edgegateway.intel.com (192.55.55.70) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2507.27; Thu, 13 Jul 2023 13:26:33 -0700
+ 15.1.2507.27; Thu, 13 Jul 2023 13:28:20 -0700
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=Qqn5FK0X6DL2yiCrYl2jmK/s3PQAWr94ifKAn6ura+9KQifqbzDJOWKw73rU2pkBGiuJh/Vg+sHDDBqTu41y7tDvYW5CdLviPvLqwPzwCzO49BRake7SZ9NXfXlV2otVr1anoeunHlKFW3Jld7sa/wgYGnu7gKVOFt3MdekrrUu75M8UyDelBL9f1MKR10OtE/9E1AuwGB1931+VuEuURZMPdekH9QLSzYMsWL5QyejVTXI1h39zfmqi7LmFr67B5iCGlNrgUP+oxZxqrCeNmhRy6Qpm6hZ1bw6yH9V1MQksJKQabJsibVLJtM+YFbz1DdqPxa5lkkxGYOFwLXlkjQ==
+ b=fvxgRC45q6y6/yRvJ0b86ZNEwimKn8ofT2t86fHqi/uYJF6eRE3MNmCAnUnStGi3NYzY5STJP/xs1lkQeaGh9khdr7zTM7Uad1w2HXzUp4CO8vVKKOJQzzpy7Lyf3Ce38gcI2rv17/JeFhJI5YLikLUL1nEz6HAnpU1+fecTVuUaGevyi7j9xBy950pr2Zxm3Nzg/N94PZMJ5myqGQh1EEFp0G/c1Vv+H9iqmN5xRHzgaj2mjOBmf9qTkF51BGNRlRwUDn+7qwqYiNY7Xpf+N/O4wuoizpsvzMUjN57ATk9R3Jw7BXa1hXut1T8/rbFhzSo2+FyqxtWkmd5FQWQtBQ==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=ZmRSOvaoN6rfRVCzlNzR1seFmcbnkfqBmicp58N604c=;
- b=lQ65/8/ZHDLNpNLyKQMii3DzBbVqs/g/ur3XLOUWg7EqPzcPdaLQaUxE2fGuX4dpEZzXsqrr7YaPbzUu5DzJgvplzhJuT7UbO8vAjoB7oDyRyvwpYHAxGt6/6lL1+UgveKeJA4s4uQrAU6TQMNzDCyqMFTe2uW2khLHvAIP+36mEncu4/uZun0ZVNw3ps84xFccSvN42EfM6IazGthcQQKybYI0rbV3pTSvZ956WfM17lj+ZmgromRyGQYpnFwvGJISrQfYwyBS5NdNRwwDtW961G3Hn4jVhzeQQF13X8u2Vgmo6P/s5qY8g1q9zL65o4G5125W8sgZgOgK07p7d8w==
+ bh=c1d9OZC4Keb3hcfFMF18Stq0J80wXBzQECSvhIzbfn4=;
+ b=LtxN1t3HQOjl7ulrMUiBW+PWeC9eyWtykT+J5Q9nyqSH2Cfe+kc2zkZxuF1P+hdVw9m0ZTu9mCtfnq7NcIwQrhlG/joQxmEUQFt2CvsdKBypyFND8kP3muaYgA/DWPIrHdF5gdlwtoyFBYLYSpftnRU4g0Z01MmXE/TOGaDyQerfV7QWXSL6+Glv/BxJIaHwsQACKWIPginu2+dWw03d+jnkLR2lvE9S8XjeZnbnWWFeaQ9lOYfX1VSkFfGRQqOR+P5bWNt+WheI9lxz1fVT9pTPSZoWd9cd/SgPvdFv0Oq4cMf9MOcBV4GfaQwt6BbiRdpnoVVsesNWX3ajVKfIig==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
  dkim=pass header.d=intel.com; arc=none
@@ -66,76 +66,75 @@ Received: from MN0PR11MB6059.namprd11.prod.outlook.com (2603:10b6:208:377::9)
  by SA2PR11MB4777.namprd11.prod.outlook.com (2603:10b6:806:115::24)
  with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6565.30; Thu, 13 Jul
- 2023 20:26:31 +0000
+ 2023 20:28:17 +0000
 Received: from MN0PR11MB6059.namprd11.prod.outlook.com
  ([fe80::2677:dfb9:456f:1227]) by MN0PR11MB6059.namprd11.prod.outlook.com
  ([fe80::2677:dfb9:456f:1227%5]) with mapi id 15.20.6544.024; Thu, 13 Jul 2023
- 20:26:31 +0000
-Date: Thu, 13 Jul 2023 16:26:27 -0400
+ 20:28:17 +0000
+Date: Thu, 13 Jul 2023 16:28:12 -0400
 From: Rodrigo Vivi <rodrigo.vivi@intel.com>
-To: Matthew Brost <matthew.brost@intel.com>
-Message-ID: <ZLBd88JCZQ1rXD3k@intel.com>
-References: <20230711212748.2029455-1-matthew.brost@intel.com>
- <20230711212748.2029455-6-matthew.brost@intel.com>
+To: Francois Dugast <francois.dugast@intel.com>
+Message-ID: <ZLBeXMRAWUoZIcqe@intel.com>
+References: <20230711161728.6-1-francois.dugast@intel.com>
 Content-Type: text/plain; charset="us-ascii"
 Content-Disposition: inline
-In-Reply-To: <20230711212748.2029455-6-matthew.brost@intel.com>
-X-ClientProxiedBy: BYAPR21CA0026.namprd21.prod.outlook.com
- (2603:10b6:a03:114::36) To MN0PR11MB6059.namprd11.prod.outlook.com
+In-Reply-To: <20230711161728.6-1-francois.dugast@intel.com>
+X-ClientProxiedBy: SJ0PR13CA0214.namprd13.prod.outlook.com
+ (2603:10b6:a03:2c1::9) To MN0PR11MB6059.namprd11.prod.outlook.com
  (2603:10b6:208:377::9)
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
 X-MS-TrafficTypeDiagnostic: MN0PR11MB6059:EE_|SA2PR11MB4777:EE_
-X-MS-Office365-Filtering-Correlation-Id: c81bad19-ac67-4ea5-0216-08db83df716c
+X-MS-Office365-Filtering-Correlation-Id: b570f621-7fc0-48a5-feea-08db83dfb0a0
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: Ljk4nCytkBJtK6w7XRCN7umcEiuteWZ0BF9KZRVmysZNjssZkW0QJ8wofYCncmbTIoZorSBHLrMEMAtA97gI2T1wYh77Ig2suWLw8LsqVudgAmCx+KjrkPSzH5zDxcfwTzOM3XAzLtgencZzrIpWkxMdjT5d7tZyi1t8sz5fu81puocFrGisaGDGD12x31ssnuvExDNaXts2umF/e+V5lO5UsrF1SCG7pfcp4sF6XfTFeBp1sRjd9Qdqda8L0c4xqb87AV9EQpR1RckcEcIxDWbKyxOG1OfFS4DMpHcr44ZmwuBWzy2EAcXREgV2338C9heomoJuRpP87LhMMUc+9fy0osztrVI/8/0m0+6lSyPQ4U+nqdqDM6FCIINzr5Nhmdjf1kcBVIrmM703q0c5Bev8JcyGGGkYk0krsswRPZnTu23/K7aXPRFe3tNEoJDa9lvLC7SABPDuOxdyAK4nrE/kYC4wQmy7myBpJu7+rBSnbwcQqAzEsRWx2mc7E2F31LS3vPE7M2uq6GjpLT5yqhd1QbPdrC53BO5gYYoeX6w1DEqAuoCa+mtgjBwY/zp5
+X-Microsoft-Antispam-Message-Info: 6vIDuDd1iTX7hNzCEndVwc9EwKiole+p/sKabr6xbgUYfxmtE/TeaWMsTdr85RDNw+xBfYcU5fRWt52fXeu6a2UL2Y/2+zYNYl1FHoD3enfOaIxK5eTJtqYry1wgm8/giBmV7wlaQSJAN+WEajwzyzBPuYQHBToiJEYTryrubfVhDDzrEIJtkFhoWT8q3aqjVNlBje/OdkEJ6Dii6jxejaO/2Oa1WymILJha6jD0Le3lMUYvqh5R3t2eX4b+MRHrug62p9oWcZl7bDtAigSRMufQVSFJwogIfJf1NUsHygFqPGhz+KC8S91eTr9KAqeBhcrk5RHt4rCran8hPr+gHJl/R+IBOPRQuV+9tT80bbL0J8z2HMfYtm+ahBTn+nclhBKETfQ4d7ET0cJnDGyJsJ0KhpZDWnQa+QDxF5fVCjR7tp56boZK+SfiUjR++8J8ZULHR6jjVAZxvs9AmqVw0EPzb8OUQQ9EeRPAJrwkVAcgGMKl5B6hjpNfqCCVIi9r7VfMSGw88gotTh4irijzkSBY974tq7Swg0aW19xatQQ=
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
  IPV:NLI; SFV:NSPM; H:MN0PR11MB6059.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230028)(39860400002)(136003)(376002)(396003)(366004)(346002)(451199021)(6666004)(6486002)(478600001)(37006003)(6862004)(83380400001)(36756003)(86362001)(2616005)(2906002)(6512007)(26005)(6506007)(186003)(66946007)(316002)(41300700001)(8936002)(8676002)(38100700002)(5660300002)(6636002)(66556008)(82960400001)(66476007)(44832011)(4326008);
+ SFS:(13230028)(39860400002)(136003)(376002)(396003)(366004)(346002)(451199021)(6666004)(6486002)(478600001)(37006003)(6862004)(83380400001)(36756003)(86362001)(2616005)(2906002)(6512007)(26005)(107886003)(6506007)(186003)(966005)(66946007)(316002)(41300700001)(8936002)(8676002)(30864003)(38100700002)(5660300002)(6636002)(66556008)(82960400001)(66476007)(44832011)(4326008)(579004);
  DIR:OUT; SFP:1102; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?fifAM5mjudSto0wLT4DDoEWrbxZgMiKneIwfAQjnH8wTsnjKFVxFmzPM+NOo?=
- =?us-ascii?Q?SMHA8WPgcJ83Yu7hb8HjhjjRZAE8hytF84EfBG4kx02tsenta3x5XazM3GqO?=
- =?us-ascii?Q?WZhlYUcqdCMfgM9ZIpY1SVgCUoDTPNnTP/y98g21SQ616r/I+aNan85wS3px?=
- =?us-ascii?Q?75Ji9E4TIYZ9YAMptmUhkU+otrqtp6Hty/ZhRD4FGLXrqr4G3VDrYrpJVp3L?=
- =?us-ascii?Q?870eG5u5CvlnRK0zS6kqAgpXHHDHrhuvj0s4fnpTSf+auQJa5hSr0C4Cd9N1?=
- =?us-ascii?Q?w+8LuXz+/LpgIXSGLPy+AeJUSUtwgcAA5BwbXPRENnvJZrYxwRexz5ccNzVV?=
- =?us-ascii?Q?4fTXkWm3kKF7fSueCy5BUlyj5SRjX/ZZh5+9/Uwt7y6b5p+X33tcW56hgSG6?=
- =?us-ascii?Q?NOO2G1NxB5/gYzZci9wfcFHb9IzJfZzVWBwXPCNqlVhLGuVB6BEL770aH18m?=
- =?us-ascii?Q?AUsvTFEi/wPEXDXDdIQ8ZHEyyP1tI/tOHTVnahenn8OMo6GqGtC/lu90Gf0c?=
- =?us-ascii?Q?xPuswK1PjmzGiAg3ORbEtUmfBILM7TMwBGdCDaH76fKRRKQxu1VNOHZOmPDz?=
- =?us-ascii?Q?ICpb+zzRoW/t1Wl6PEl7p2lkT5+3FhnKSZUQPzgOYvVLUORyR5ymg9zmTETV?=
- =?us-ascii?Q?atHJag+HhQelf1XibythQvSiQ924oJgmRixBpUF7cncHgQaIJ2dp0IYLV2CB?=
- =?us-ascii?Q?Q9OoWmpL3cd7lc1Pn04Q81vQDZpcISUnpVIi7mLLmwW0TPN9c5KiOSTMP6qZ?=
- =?us-ascii?Q?tzqjtHzvgKPY0wfRK2H4QFVZnvC99P8TfSMf5CehgmJgwytlaWD1gPIyGSR5?=
- =?us-ascii?Q?rmO2gtH0kwea6HS3/W41EOizAuc3VV11gU6b8dJp3hNqf3TPJ4lQoZjm9ru0?=
- =?us-ascii?Q?DSU8ff9ojyQ2cy+XlLICYzK4lKdnngw3LFkvJbt+A9Ew9zE2gzaJ1YJbJbty?=
- =?us-ascii?Q?EPHFy5oVxa7xXHx4Yv/S//2S0DoJtpeqmWo+bgEflfiFQ2UPGFu5Is+16mE3?=
- =?us-ascii?Q?GHgK9wqY+F2EpruOhyQ+XuXA/lb8Hg8tf3JmyOCcoWORUYwGU6m3+YvSdAep?=
- =?us-ascii?Q?0Eeei6WAz3/QXPrO0q/UqvGEhA3ymKP/nNTIfB8RfsO1sFJnRRGlxcejRqH5?=
- =?us-ascii?Q?kJ6h/FLmvT0TSF7ECww3vzkRnnL5y2G4Et9RXDt8ocJYjkf5Ndw5wuA6/IGH?=
- =?us-ascii?Q?UFjGveuClx+zPIKnbZvqq1xHdbXKGPs9V/B6jdN3saW62Gql4xYi4Uu2HHws?=
- =?us-ascii?Q?71Sobjj1VtGYIx1yQb6CCD7+Hx7u8SfmiyXMrlyy5cN0bMb5RzhXkoV12OZT?=
- =?us-ascii?Q?vjq4JP7aB61ceqlW3Vtx8/XW6DyGsjHhQdHBmXIyhAxBeiUFSsgWONFl+y55?=
- =?us-ascii?Q?eLwyqQg5mnj7VCf93XHEFBuY3/gSwj8gmBpdreHw/NjdYrGMl7VT3CCM89og?=
- =?us-ascii?Q?HS/X0AtnYy4RGUbLBgI2JG1Uxc6eFsl/ITuLy5RWU5UriaB7fTFBElDOdFf4?=
- =?us-ascii?Q?+S9uLR7gAnoZWTBaVCOGTmWqerfl5GwEzmUWhTYfDWjDK6ZJ9xvJIhGju6t+?=
- =?us-ascii?Q?/SYdo92enZGzAiePDI3VZOxaJiT91NBQiBk91twEDIxsVTIXkBHjK2d3cj+s?=
- =?us-ascii?Q?DA=3D=3D?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: c81bad19-ac67-4ea5-0216-08db83df716c
+X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?2ZkQH1zNlMfk7P0BCezYDRTCOszEp/vT5bQbG0lLQUT/ol3uCJMN6aX/Oru0?=
+ =?us-ascii?Q?lvl4t0vE80rigMZtsmR/KrUPiEHn5KOraybw/M+4/OslfTMUwf1SxRMaAqeW?=
+ =?us-ascii?Q?pMdtwXnuq7ki3BdnGb4ieS1zUNDSsXsJVSKRaZKkrWtMTTeGePPdD09yhHNo?=
+ =?us-ascii?Q?5Rc2yvGDT8cksvLx6rU8CbI+1E0p/rePKBPFHgv9lYdLXvHSagDstHIG3oTP?=
+ =?us-ascii?Q?evpI/bRz3deu+gyOd/87o1NIF+PgotSQQqv8cTAsCmF2Sf8sJ8QsApn0BIOY?=
+ =?us-ascii?Q?94xs88SnPnuG1IqINRoCNiyCbL+EhUUD1YFzEv4CStZ9hjg9Rv8Y6qBsbRQG?=
+ =?us-ascii?Q?WpGL29aegGKC0VdbSBWjM5vX+nXMRh5IiRyC2tBPy5kwtKUbom9QhVMOTwqk?=
+ =?us-ascii?Q?UpbdgHE7OrM9ahaFmmHBgnaQiCnvTn+WwJBhYaBAWkOeu6jKkG4dxiM0jqIA?=
+ =?us-ascii?Q?hYA0xLHUqfsYtRc9IQlLEflfdB5bGKjYTlIERNJsV1bWpOo5WUwbmfhUnTzn?=
+ =?us-ascii?Q?KEGmfrM8NWy00wljeKlPx3HlIAeSTUa/B/y9rl9cXep3ed5NjTBjKCcJnesh?=
+ =?us-ascii?Q?s6lasT6cWwbdu+9dSDt1gEU2gv1wIqAjP0xYnro+HURGiP1kd7Rc0KIm2cnR?=
+ =?us-ascii?Q?EuJV2kE7hBG6EtmZPemv6yL6Jf+Izdm1GbaoqsActdDVxphV+dBUfEF7xztY?=
+ =?us-ascii?Q?diXGzq4EACU+NEfwKtq/5zY+3VIZCowUsTVp03zf7b6o4bpT7zFyxZMwU0WX?=
+ =?us-ascii?Q?dqogdnBWcC2NOAGScPbl2h6yAUoukg1OuWxYZjvKXLz1P1lPbZcfcovjVR02?=
+ =?us-ascii?Q?gdWe3Hc/dYmCdJGPYDcjwn/bDvbaqjckSPc8kkigE5W9am6VQdccaiXfN/B/?=
+ =?us-ascii?Q?YUupgr0k3dHsIsOeBVP0cRIk5PfGDILauGahuFpsruaqMINdFhfNtd4GVR8c?=
+ =?us-ascii?Q?fdwa8Ma2DwYojUVCw6haV1u+vxKCy8u7/MjC29dM96y7sLlhlByqaaa1DW3n?=
+ =?us-ascii?Q?NO4aoDb9d/aGO9RfqUdoeQKaNwIjvcDU7I/1sYpZiS4av8QlTrC6gkD7xxDQ?=
+ =?us-ascii?Q?lbiFskz+2ebs+Y9Vj4JIIrCGdrzP7kXjn6Ccy86yChsoRWPVOHuIUyHIc5xm?=
+ =?us-ascii?Q?uDYcj1yeSNWvIlwYgI9mFV/jP6C8Zl9+18fm+VBQ9vozRF5t7Y259TQCD0UK?=
+ =?us-ascii?Q?Xqw/zpG65hm+cGUtjEUqUdES+vUIM6btYm0tZMu0ZA7dXDb8J+8PIEAcQx12?=
+ =?us-ascii?Q?tfzApsfykLNFWHZevQ3fVYZLtIzyNX4FqUgZyDk1IUZ8M9ovSKdiSYSGuZek?=
+ =?us-ascii?Q?H94gZ6rbXR1xolnpcPNOMXmjn6k+T3F+jD0Qi5osgOhLjOKxQ4rKrv9mleOz?=
+ =?us-ascii?Q?h0lvW7QRD5g1+KIVEqr8CcyscsGdHrHtQG6t71umAM7DqbpLrI32ML+HS5nm?=
+ =?us-ascii?Q?lQz0Lr+K9DIpv++g9AguGPuJ6LtjPXBNZNfPT/xiJ0bTqSKWIKaKPsYTsriI?=
+ =?us-ascii?Q?eQYEZ4xckUPfoD9iEMXOq0YxLer0V2bCCPdxFC054rz1KX2IsYIzrc1wPb47?=
+ =?us-ascii?Q?j/nCMdYWNvuvjZsCpXTFVHfxsddmV1Jz2OgcgJjf0zzKpOqP9QYNWl7Wcs8o?=
+ =?us-ascii?Q?yw=3D=3D?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: b570f621-7fc0-48a5-feea-08db83dfb0a0
 X-MS-Exchange-CrossTenant-AuthSource: MN0PR11MB6059.namprd11.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 13 Jul 2023 20:26:30.9778 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 13 Jul 2023 20:28:17.1463 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: Z3xUocwJZwV5dm8qC9eplqHIiuuK8n0IpjCKflKbi1eKfKvAPv7NKCPO6uUJlp4VWmZ99SufSGNoyNPhVZrEMQ==
+X-MS-Exchange-CrossTenant-UserPrincipalName: MnUgVswpigcHEY0v45N5tp44VHTxIUdEebWhd/TBuQWeQReSkbM660D6LsjAbEeFustn3Z90gJVrZxP5iUZTuQ==
 X-MS-Exchange-Transport-CrossTenantHeadersStamped: SA2PR11MB4777
 X-OriginatorOrg: intel.com
-Subject: Re: [Intel-xe] [PATCH 5/5] drm/xe: Only alloc userptr part of
- xe_vma for userptrs
+Subject: Re: [Intel-xe] [PATCH v4] drm/xe: Prevent flooding the kernel log
+ with XE_IOCTL_ERR
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -147,123 +146,1361 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-xe@lists.freedesktop.org
+Cc: lucas.demarchi@intel.com, matthew.d.roper@intel.com,
+ intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Tue, Jul 11, 2023 at 02:27:48PM -0700, Matthew Brost wrote:
+On Tue, Jul 11, 2023 at 04:17:28PM +0000, Francois Dugast wrote:
+> Lower log level of XE_IOCTL_ERR macro to debug in order to prevent
+> flooding kernel log.
+> 
+> v2: Rename XE_IOCTL_ERR to XE_IOCTL_DBG (Rodrigo Vivi)
 
-probably worth to repeat the commit subject here in the commit
-msg.
+I was just parroting Lucas actually ;)
+
+> v3: Rebase
+> v4: Fix style, remove unrelated change about __FILE__ and __LINE__
+
+indeed better to keep file and line info....\
 
 Reviewed-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
 
-> This will save on space in common BO case.
 > 
-> Signed-off-by: Matthew Brost <matthew.brost@intel.com>
+> Link: https://lists.freedesktop.org/archives/intel-xe/2023-May/004704.html
+> Signed-off-by: Francois Dugast <francois.dugast@intel.com>
 > ---
->  drivers/gpu/drm/xe/xe_vm.c       |  6 +++-
->  drivers/gpu/drm/xe/xe_vm_types.h | 56 ++++++++++++++++++--------------
->  2 files changed, 36 insertions(+), 26 deletions(-)
+>  drivers/gpu/drm/i915/display/intel_fb.c |   2 +-
+>  drivers/gpu/drm/xe/xe_bo.c              |  26 ++---
+>  drivers/gpu/drm/xe/xe_engine.c          | 116 +++++++++----------
+>  drivers/gpu/drm/xe/xe_exec.c            |  14 +--
+>  drivers/gpu/drm/xe/xe_macros.h          |   4 +-
+>  drivers/gpu/drm/xe/xe_mmio.c            |  14 +--
+>  drivers/gpu/drm/xe/xe_query.c           |  30 ++---
+>  drivers/gpu/drm/xe/xe_sync.c            |  32 +++---
+>  drivers/gpu/drm/xe/xe_vm.c              | 146 ++++++++++++------------
+>  drivers/gpu/drm/xe/xe_vm_madvise.c      |  40 +++----
+>  drivers/gpu/drm/xe/xe_wait_user_fence.c |  30 ++---
+>  11 files changed, 227 insertions(+), 227 deletions(-)
 > 
+> diff --git a/drivers/gpu/drm/i915/display/intel_fb.c b/drivers/gpu/drm/i915/display/intel_fb.c
+> index d3e872161079..e2b400318b31 100644
+> --- a/drivers/gpu/drm/i915/display/intel_fb.c
+> +++ b/drivers/gpu/drm/i915/display/intel_fb.c
+> @@ -2011,7 +2011,7 @@ int intel_framebuffer_init(struct intel_framebuffer *intel_fb,
+>  		 * mode when the object is VM_BINDed, so we can only set
+>  		 * coherency with display when unbound.
+>  		 */
+> -		if (XE_IOCTL_ERR(dev_priv, !list_empty(&obj->vmas))) {
+> +		if (XE_IOCTL_DBG(dev_priv, !list_empty(&obj->vmas))) {
+>  			ttm_bo_unreserve(&obj->ttm);
+>  			goto err;
+>  		}
+> diff --git a/drivers/gpu/drm/xe/xe_bo.c b/drivers/gpu/drm/xe/xe_bo.c
+> index 6353afa8d846..5d6f73c1d37e 100644
+> --- a/drivers/gpu/drm/xe/xe_bo.c
+> +++ b/drivers/gpu/drm/xe/xe_bo.c
+> @@ -1714,35 +1714,35 @@ int xe_gem_create_ioctl(struct drm_device *dev, void *data,
+>  	u32 handle;
+>  	int err;
+>  
+> -	if (XE_IOCTL_ERR(xe, args->extensions) || XE_IOCTL_ERR(xe, args->pad) ||
+> -	    XE_IOCTL_ERR(xe, args->reserved[0] || args->reserved[1]))
+> +	if (XE_IOCTL_DBG(xe, args->extensions) || XE_IOCTL_DBG(xe, args->pad) ||
+> +	    XE_IOCTL_DBG(xe, args->reserved[0] || args->reserved[1]))
+>  		return -EINVAL;
+>  
+> -	if (XE_IOCTL_ERR(xe, args->flags &
+> +	if (XE_IOCTL_DBG(xe, args->flags &
+>  			 ~(XE_GEM_CREATE_FLAG_DEFER_BACKING |
+>  			   XE_GEM_CREATE_FLAG_SCANOUT |
+>  			   xe->info.mem_region_mask)))
+>  		return -EINVAL;
+>  
+>  	/* at least one memory type must be specified */
+> -	if (XE_IOCTL_ERR(xe, !(args->flags & xe->info.mem_region_mask)))
+> +	if (XE_IOCTL_DBG(xe, !(args->flags & xe->info.mem_region_mask)))
+>  		return -EINVAL;
+>  
+> -	if (XE_IOCTL_ERR(xe, args->handle))
+> +	if (XE_IOCTL_DBG(xe, args->handle))
+>  		return -EINVAL;
+>  
+> -	if (XE_IOCTL_ERR(xe, !args->size))
+> +	if (XE_IOCTL_DBG(xe, !args->size))
+>  		return -EINVAL;
+>  
+> -	if (XE_IOCTL_ERR(xe, args->size > SIZE_MAX))
+> +	if (XE_IOCTL_DBG(xe, args->size > SIZE_MAX))
+>  		return -EINVAL;
+>  
+> -	if (XE_IOCTL_ERR(xe, args->size & ~PAGE_MASK))
+> +	if (XE_IOCTL_DBG(xe, args->size & ~PAGE_MASK))
+>  		return -EINVAL;
+>  
+>  	if (args->vm_id) {
+>  		vm = xe_vm_lookup(xef, args->vm_id);
+> -		if (XE_IOCTL_ERR(xe, !vm))
+> +		if (XE_IOCTL_DBG(xe, !vm))
+>  			return -ENOENT;
+>  		err = xe_vm_lock(vm, &ww, 0, true);
+>  		if (err) {
+> @@ -1785,15 +1785,15 @@ int xe_gem_mmap_offset_ioctl(struct drm_device *dev, void *data,
+>  	struct drm_xe_gem_mmap_offset *args = data;
+>  	struct drm_gem_object *gem_obj;
+>  
+> -	if (XE_IOCTL_ERR(xe, args->extensions) ||
+> -	    XE_IOCTL_ERR(xe, args->reserved[0] || args->reserved[1]))
+> +	if (XE_IOCTL_DBG(xe, args->extensions) ||
+> +	    XE_IOCTL_DBG(xe, args->reserved[0] || args->reserved[1]))
+>  		return -EINVAL;
+>  
+> -	if (XE_IOCTL_ERR(xe, args->flags))
+> +	if (XE_IOCTL_DBG(xe, args->flags))
+>  		return -EINVAL;
+>  
+>  	gem_obj = drm_gem_object_lookup(file, args->handle);
+> -	if (XE_IOCTL_ERR(xe, !gem_obj))
+> +	if (XE_IOCTL_DBG(xe, !gem_obj))
+>  		return -ENOENT;
+>  
+>  	/* The mmap offset was set up at BO allocation time. */
+> diff --git a/drivers/gpu/drm/xe/xe_engine.c b/drivers/gpu/drm/xe/xe_engine.c
+> index 3831c5f82773..b1db1abdcf0a 100644
+> --- a/drivers/gpu/drm/xe/xe_engine.c
+> +++ b/drivers/gpu/drm/xe/xe_engine.c
+> @@ -179,10 +179,10 @@ xe_engine_device_get_max_priority(struct xe_device *xe)
+>  static int engine_set_priority(struct xe_device *xe, struct xe_engine *e,
+>  			       u64 value, bool create)
+>  {
+> -	if (XE_IOCTL_ERR(xe, value > DRM_SCHED_PRIORITY_HIGH))
+> +	if (XE_IOCTL_DBG(xe, value > DRM_SCHED_PRIORITY_HIGH))
+>  		return -EINVAL;
+>  
+> -	if (XE_IOCTL_ERR(xe, value > xe_engine_device_get_max_priority(xe)))
+> +	if (XE_IOCTL_DBG(xe, value > xe_engine_device_get_max_priority(xe)))
+>  		return -EPERM;
+>  
+>  	return e->ops->set_priority(e, value);
+> @@ -210,33 +210,33 @@ static int engine_set_preemption_timeout(struct xe_device *xe,
+>  static int engine_set_compute_mode(struct xe_device *xe, struct xe_engine *e,
+>  				   u64 value, bool create)
+>  {
+> -	if (XE_IOCTL_ERR(xe, !create))
+> +	if (XE_IOCTL_DBG(xe, !create))
+>  		return -EINVAL;
+>  
+> -	if (XE_IOCTL_ERR(xe, e->flags & ENGINE_FLAG_COMPUTE_MODE))
+> +	if (XE_IOCTL_DBG(xe, e->flags & ENGINE_FLAG_COMPUTE_MODE))
+>  		return -EINVAL;
+>  
+> -	if (XE_IOCTL_ERR(xe, e->flags & ENGINE_FLAG_VM))
+> +	if (XE_IOCTL_DBG(xe, e->flags & ENGINE_FLAG_VM))
+>  		return -EINVAL;
+>  
+>  	if (value) {
+>  		struct xe_vm *vm = e->vm;
+>  		int err;
+>  
+> -		if (XE_IOCTL_ERR(xe, xe_vm_in_fault_mode(vm)))
+> +		if (XE_IOCTL_DBG(xe, xe_vm_in_fault_mode(vm)))
+>  			return -EOPNOTSUPP;
+>  
+> -		if (XE_IOCTL_ERR(xe, !xe_vm_in_compute_mode(vm)))
+> +		if (XE_IOCTL_DBG(xe, !xe_vm_in_compute_mode(vm)))
+>  			return -EOPNOTSUPP;
+>  
+> -		if (XE_IOCTL_ERR(xe, e->width != 1))
+> +		if (XE_IOCTL_DBG(xe, e->width != 1))
+>  			return -EINVAL;
+>  
+>  		e->compute.context = dma_fence_context_alloc(1);
+>  		spin_lock_init(&e->compute.lock);
+>  
+>  		err = xe_vm_add_compute_engine(vm, e);
+> -		if (XE_IOCTL_ERR(xe, err))
+> +		if (XE_IOCTL_DBG(xe, err))
+>  			return err;
+>  
+>  		e->flags |= ENGINE_FLAG_COMPUTE_MODE;
+> @@ -249,10 +249,10 @@ static int engine_set_compute_mode(struct xe_device *xe, struct xe_engine *e,
+>  static int engine_set_persistence(struct xe_device *xe, struct xe_engine *e,
+>  				  u64 value, bool create)
+>  {
+> -	if (XE_IOCTL_ERR(xe, !create))
+> +	if (XE_IOCTL_DBG(xe, !create))
+>  		return -EINVAL;
+>  
+> -	if (XE_IOCTL_ERR(xe, e->flags & ENGINE_FLAG_COMPUTE_MODE))
+> +	if (XE_IOCTL_DBG(xe, e->flags & ENGINE_FLAG_COMPUTE_MODE))
+>  		return -EINVAL;
+>  
+>  	if (value)
+> @@ -266,7 +266,7 @@ static int engine_set_persistence(struct xe_device *xe, struct xe_engine *e,
+>  static int engine_set_job_timeout(struct xe_device *xe, struct xe_engine *e,
+>  				  u64 value, bool create)
+>  {
+> -	if (XE_IOCTL_ERR(xe, !create))
+> +	if (XE_IOCTL_DBG(xe, !create))
+>  		return -EINVAL;
+>  
+>  	if (!capable(CAP_SYS_NICE))
+> @@ -278,10 +278,10 @@ static int engine_set_job_timeout(struct xe_device *xe, struct xe_engine *e,
+>  static int engine_set_acc_trigger(struct xe_device *xe, struct xe_engine *e,
+>  				  u64 value, bool create)
+>  {
+> -	if (XE_IOCTL_ERR(xe, !create))
+> +	if (XE_IOCTL_DBG(xe, !create))
+>  		return -EINVAL;
+>  
+> -	if (XE_IOCTL_ERR(xe, !xe->info.supports_usm))
+> +	if (XE_IOCTL_DBG(xe, !xe->info.supports_usm))
+>  		return -EINVAL;
+>  
+>  	e->usm.acc_trigger = value;
+> @@ -292,10 +292,10 @@ static int engine_set_acc_trigger(struct xe_device *xe, struct xe_engine *e,
+>  static int engine_set_acc_notify(struct xe_device *xe, struct xe_engine *e,
+>  				 u64 value, bool create)
+>  {
+> -	if (XE_IOCTL_ERR(xe, !create))
+> +	if (XE_IOCTL_DBG(xe, !create))
+>  		return -EINVAL;
+>  
+> -	if (XE_IOCTL_ERR(xe, !xe->info.supports_usm))
+> +	if (XE_IOCTL_DBG(xe, !xe->info.supports_usm))
+>  		return -EINVAL;
+>  
+>  	e->usm.acc_notify = value;
+> @@ -306,10 +306,10 @@ static int engine_set_acc_notify(struct xe_device *xe, struct xe_engine *e,
+>  static int engine_set_acc_granularity(struct xe_device *xe, struct xe_engine *e,
+>  				      u64 value, bool create)
+>  {
+> -	if (XE_IOCTL_ERR(xe, !create))
+> +	if (XE_IOCTL_DBG(xe, !create))
+>  		return -EINVAL;
+>  
+> -	if (XE_IOCTL_ERR(xe, !xe->info.supports_usm))
+> +	if (XE_IOCTL_DBG(xe, !xe->info.supports_usm))
+>  		return -EINVAL;
+>  
+>  	e->usm.acc_granularity = value;
+> @@ -344,12 +344,12 @@ static int engine_user_ext_set_property(struct xe_device *xe,
+>  	u32 idx;
+>  
+>  	err = __copy_from_user(&ext, address, sizeof(ext));
+> -	if (XE_IOCTL_ERR(xe, err))
+> +	if (XE_IOCTL_DBG(xe, err))
+>  		return -EFAULT;
+>  
+> -	if (XE_IOCTL_ERR(xe, ext.property >=
+> +	if (XE_IOCTL_DBG(xe, ext.property >=
+>  			 ARRAY_SIZE(engine_set_property_funcs)) ||
+> -	    XE_IOCTL_ERR(xe, ext.pad))
+> +	    XE_IOCTL_DBG(xe, ext.pad))
+>  		return -EINVAL;
+>  
+>  	idx = array_index_nospec(ext.property, ARRAY_SIZE(engine_set_property_funcs));
+> @@ -374,22 +374,22 @@ static int engine_user_extensions(struct xe_device *xe, struct xe_engine *e,
+>  	int err;
+>  	u32 idx;
+>  
+> -	if (XE_IOCTL_ERR(xe, ext_number >= MAX_USER_EXTENSIONS))
+> +	if (XE_IOCTL_DBG(xe, ext_number >= MAX_USER_EXTENSIONS))
+>  		return -E2BIG;
+>  
+>  	err = __copy_from_user(&ext, address, sizeof(ext));
+> -	if (XE_IOCTL_ERR(xe, err))
+> +	if (XE_IOCTL_DBG(xe, err))
+>  		return -EFAULT;
+>  
+> -	if (XE_IOCTL_ERR(xe, ext.pad) ||
+> -	    XE_IOCTL_ERR(xe, ext.name >=
+> +	if (XE_IOCTL_DBG(xe, ext.pad) ||
+> +	    XE_IOCTL_DBG(xe, ext.name >=
+>  			 ARRAY_SIZE(engine_user_extension_funcs)))
+>  		return -EINVAL;
+>  
+>  	idx = array_index_nospec(ext.name,
+>  				 ARRAY_SIZE(engine_user_extension_funcs));
+>  	err = engine_user_extension_funcs[idx](xe, e, extensions, create);
+> -	if (XE_IOCTL_ERR(xe, err))
+> +	if (XE_IOCTL_DBG(xe, err))
+>  		return err;
+>  
+>  	if (ext.next_extension)
+> @@ -435,11 +435,11 @@ static u32 bind_engine_logical_mask(struct xe_device *xe, struct xe_gt *gt,
+>  	enum xe_hw_engine_id id;
+>  	u32 logical_mask = 0;
+>  
+> -	if (XE_IOCTL_ERR(xe, width != 1))
+> +	if (XE_IOCTL_DBG(xe, width != 1))
+>  		return 0;
+> -	if (XE_IOCTL_ERR(xe, num_placements != 1))
+> +	if (XE_IOCTL_DBG(xe, num_placements != 1))
+>  		return 0;
+> -	if (XE_IOCTL_ERR(xe, eci[0].engine_instance != 0))
+> +	if (XE_IOCTL_DBG(xe, eci[0].engine_instance != 0))
+>  		return 0;
+>  
+>  	eci[0].engine_class = DRM_XE_ENGINE_CLASS_COPY;
+> @@ -466,7 +466,7 @@ static u32 calc_validate_logical_mask(struct xe_device *xe, struct xe_gt *gt,
+>  	u16 gt_id;
+>  	u32 return_mask = 0, prev_mask;
+>  
+> -	if (XE_IOCTL_ERR(xe, !xe_device_guc_submission_enabled(xe) &&
+> +	if (XE_IOCTL_DBG(xe, !xe_device_guc_submission_enabled(xe) &&
+>  			 len > 1))
+>  		return 0;
+>  
+> @@ -479,14 +479,14 @@ static u32 calc_validate_logical_mask(struct xe_device *xe, struct xe_gt *gt,
+>  			n = j * width + i;
+>  
+>  			hwe = find_hw_engine(xe, eci[n]);
+> -			if (XE_IOCTL_ERR(xe, !hwe))
+> +			if (XE_IOCTL_DBG(xe, !hwe))
+>  				return 0;
+>  
+> -			if (XE_IOCTL_ERR(xe, xe_hw_engine_is_reserved(hwe)))
+> +			if (XE_IOCTL_DBG(xe, xe_hw_engine_is_reserved(hwe)))
+>  				return 0;
+>  
+> -			if (XE_IOCTL_ERR(xe, n && eci[n].gt_id != gt_id) ||
+> -			    XE_IOCTL_ERR(xe, n && eci[n].engine_class != class))
+> +			if (XE_IOCTL_DBG(xe, n && eci[n].gt_id != gt_id) ||
+> +			    XE_IOCTL_DBG(xe, n && eci[n].engine_class != class))
+>  				return 0;
+>  
+>  			class = eci[n].engine_class;
+> @@ -498,7 +498,7 @@ static u32 calc_validate_logical_mask(struct xe_device *xe, struct xe_gt *gt,
+>  		}
+>  
+>  		/* Parallel submissions must be logically contiguous */
+> -		if (i && XE_IOCTL_ERR(xe, current_mask != prev_mask << 1))
+> +		if (i && XE_IOCTL_DBG(xe, current_mask != prev_mask << 1))
+>  			return 0;
+>  
+>  		prev_mask = current_mask;
+> @@ -525,22 +525,22 @@ int xe_engine_create_ioctl(struct drm_device *dev, void *data,
+>  	u32 len;
+>  	int err;
+>  
+> -	if (XE_IOCTL_ERR(xe, args->flags) ||
+> -	    XE_IOCTL_ERR(xe, args->reserved[0] || args->reserved[1]))
+> +	if (XE_IOCTL_DBG(xe, args->flags) ||
+> +	    XE_IOCTL_DBG(xe, args->reserved[0] || args->reserved[1]))
+>  		return -EINVAL;
+>  
+>  	len = args->width * args->num_placements;
+> -	if (XE_IOCTL_ERR(xe, !len || len > XE_HW_ENGINE_MAX_INSTANCE))
+> +	if (XE_IOCTL_DBG(xe, !len || len > XE_HW_ENGINE_MAX_INSTANCE))
+>  		return -EINVAL;
+>  
+>  	err = __copy_from_user(eci, user_eci,
+>  			       sizeof(struct drm_xe_engine_class_instance) *
+>  			       len);
+> -	if (XE_IOCTL_ERR(xe, err))
+> +	if (XE_IOCTL_DBG(xe, err))
+>  		return -EFAULT;
+>  
+> -	if (XE_IOCTL_ERR(xe, eci[0].gt_id >= xe->info.tile_count))
+> -	       return -EINVAL;
+> +	if (XE_IOCTL_DBG(xe, eci[0].gt_id >= xe->info.tile_count))
+> +		return -EINVAL;
+>  
+>  	if (eci[0].engine_class == DRM_XE_ENGINE_CLASS_VM_BIND) {
+>  		for_each_gt(gt, xe, id) {
+> @@ -553,11 +553,11 @@ int xe_engine_create_ioctl(struct drm_device *dev, void *data,
+>  			logical_mask = bind_engine_logical_mask(xe, gt, eci,
+>  								args->width,
+>  								args->num_placements);
+> -			if (XE_IOCTL_ERR(xe, !logical_mask))
+> +			if (XE_IOCTL_DBG(xe, !logical_mask))
+>  				return -EINVAL;
+>  
+>  			hwe = find_hw_engine(xe, eci[0]);
+> -			if (XE_IOCTL_ERR(xe, !hwe))
+> +			if (XE_IOCTL_DBG(xe, !hwe))
+>  				return -EINVAL;
+>  
+>  			migrate_vm = xe_migrate_get_vm(gt_to_tile(gt)->migrate);
+> @@ -586,15 +586,15 @@ int xe_engine_create_ioctl(struct drm_device *dev, void *data,
+>  		logical_mask = calc_validate_logical_mask(xe, gt, eci,
+>  							  args->width,
+>  							  args->num_placements);
+> -		if (XE_IOCTL_ERR(xe, !logical_mask))
+> +		if (XE_IOCTL_DBG(xe, !logical_mask))
+>  			return -EINVAL;
+>  
+>  		hwe = find_hw_engine(xe, eci[0]);
+> -		if (XE_IOCTL_ERR(xe, !hwe))
+> +		if (XE_IOCTL_DBG(xe, !hwe))
+>  			return -EINVAL;
+>  
+>  		vm = xe_vm_lookup(xef, args->vm_id);
+> -		if (XE_IOCTL_ERR(xe, !vm))
+> +		if (XE_IOCTL_DBG(xe, !vm))
+>  			return -ENOENT;
+>  
+>  		err = down_read_interruptible(&vm->lock);
+> @@ -603,7 +603,7 @@ int xe_engine_create_ioctl(struct drm_device *dev, void *data,
+>  			return err;
+>  		}
+>  
+> -		if (XE_IOCTL_ERR(xe, xe_vm_is_closed_or_banned(vm))) {
+> +		if (XE_IOCTL_DBG(xe, xe_vm_is_closed_or_banned(vm))) {
+>  			up_read(&vm->lock);
+>  			xe_vm_put(vm);
+>  			return -ENOENT;
+> @@ -621,11 +621,11 @@ int xe_engine_create_ioctl(struct drm_device *dev, void *data,
+>  
+>  	if (args->extensions) {
+>  		err = engine_user_extensions(xe, e, args->extensions, 0, true);
+> -		if (XE_IOCTL_ERR(xe, err))
+> +		if (XE_IOCTL_DBG(xe, err))
+>  			goto put_engine;
+>  	}
+>  
+> -	if (XE_IOCTL_ERR(xe, e->vm && xe_vm_in_compute_mode(e->vm) !=
+> +	if (XE_IOCTL_DBG(xe, e->vm && xe_vm_in_compute_mode(e->vm) !=
+>  			 !!(e->flags & ENGINE_FLAG_COMPUTE_MODE))) {
+>  		err = -EOPNOTSUPP;
+>  		goto put_engine;
+> @@ -658,11 +658,11 @@ int xe_engine_get_property_ioctl(struct drm_device *dev, void *data,
+>  	struct xe_engine *e;
+>  	int ret;
+>  
+> -	if (XE_IOCTL_ERR(xe, args->reserved[0] || args->reserved[1]))
+> +	if (XE_IOCTL_DBG(xe, args->reserved[0] || args->reserved[1]))
+>  		return -EINVAL;
+>  
+>  	e = xe_engine_lookup(xef, args->engine_id);
+> -	if (XE_IOCTL_ERR(xe, !e))
+> +	if (XE_IOCTL_DBG(xe, !e))
+>  		return -ENOENT;
+>  
+>  	switch (args->property) {
+> @@ -771,14 +771,14 @@ int xe_engine_destroy_ioctl(struct drm_device *dev, void *data,
+>  	struct drm_xe_engine_destroy *args = data;
+>  	struct xe_engine *e;
+>  
+> -	if (XE_IOCTL_ERR(xe, args->pad) ||
+> -	    XE_IOCTL_ERR(xe, args->reserved[0] || args->reserved[1]))
+> +	if (XE_IOCTL_DBG(xe, args->pad) ||
+> +	    XE_IOCTL_DBG(xe, args->reserved[0] || args->reserved[1]))
+>  		return -EINVAL;
+>  
+>  	mutex_lock(&xef->engine.lock);
+>  	e = xa_erase(&xef->engine.xa, args->engine_id);
+>  	mutex_unlock(&xef->engine.lock);
+> -	if (XE_IOCTL_ERR(xe, !e))
+> +	if (XE_IOCTL_DBG(xe, !e))
+>  		return -ENOENT;
+>  
+>  	if (!(e->flags & ENGINE_FLAG_PERSISTENT))
+> @@ -802,14 +802,14 @@ int xe_engine_set_property_ioctl(struct drm_device *dev, void *data,
+>  	int ret;
+>  	u32 idx;
+>  
+> -	if (XE_IOCTL_ERR(xe, args->reserved[0] || args->reserved[1]))
+> +	if (XE_IOCTL_DBG(xe, args->reserved[0] || args->reserved[1]))
+>  		return -EINVAL;
+>  
+>  	e = xe_engine_lookup(xef, args->engine_id);
+> -	if (XE_IOCTL_ERR(xe, !e))
+> +	if (XE_IOCTL_DBG(xe, !e))
+>  		return -ENOENT;
+>  
+> -	if (XE_IOCTL_ERR(xe, args->property >=
+> +	if (XE_IOCTL_DBG(xe, args->property >=
+>  			 ARRAY_SIZE(engine_set_property_funcs))) {
+>  		ret = -EINVAL;
+>  		goto out;
+> @@ -818,7 +818,7 @@ int xe_engine_set_property_ioctl(struct drm_device *dev, void *data,
+>  	idx = array_index_nospec(args->property,
+>  				 ARRAY_SIZE(engine_set_property_funcs));
+>  	ret = engine_set_property_funcs[idx](xe, e, args->value, false);
+> -	if (XE_IOCTL_ERR(xe, ret))
+> +	if (XE_IOCTL_DBG(xe, ret))
+>  		goto out;
+>  
+>  	if (args->extensions)
+> diff --git a/drivers/gpu/drm/xe/xe_exec.c b/drivers/gpu/drm/xe/xe_exec.c
+> index ba13d20ed348..87d6cd4a7cc8 100644
+> --- a/drivers/gpu/drm/xe/xe_exec.c
+> +++ b/drivers/gpu/drm/xe/xe_exec.c
+> @@ -184,22 +184,22 @@ int xe_exec_ioctl(struct drm_device *dev, void *data, struct drm_file *file)
+>  	bool write_locked;
+>  	int err = 0;
+>  
+> -	if (XE_IOCTL_ERR(xe, args->extensions) ||
+> -	    XE_IOCTL_ERR(xe, args->pad[0] || args->pad[1] || args->pad[2]) ||
+> -	    XE_IOCTL_ERR(xe, args->reserved[0] || args->reserved[1]))
+> +	if (XE_IOCTL_DBG(xe, args->extensions) ||
+> +	    XE_IOCTL_DBG(xe, args->pad[0] || args->pad[1] || args->pad[2]) ||
+> +	    XE_IOCTL_DBG(xe, args->reserved[0] || args->reserved[1]))
+>  		return -EINVAL;
+>  
+>  	engine = xe_engine_lookup(xef, args->engine_id);
+> -	if (XE_IOCTL_ERR(xe, !engine))
+> +	if (XE_IOCTL_DBG(xe, !engine))
+>  		return -ENOENT;
+>  
+> -	if (XE_IOCTL_ERR(xe, engine->flags & ENGINE_FLAG_VM))
+> +	if (XE_IOCTL_DBG(xe, engine->flags & ENGINE_FLAG_VM))
+>  		return -EINVAL;
+>  
+> -	if (XE_IOCTL_ERR(xe, engine->width != args->num_batch_buffer))
+> +	if (XE_IOCTL_DBG(xe, engine->width != args->num_batch_buffer))
+>  		return -EINVAL;
+>  
+> -	if (XE_IOCTL_ERR(xe, engine->flags & ENGINE_FLAG_BANNED)) {
+> +	if (XE_IOCTL_DBG(xe, engine->flags & ENGINE_FLAG_BANNED)) {
+>  		err = -ECANCELED;
+>  		goto err_engine;
+>  	}
+> diff --git a/drivers/gpu/drm/xe/xe_macros.h b/drivers/gpu/drm/xe/xe_macros.h
+> index 0d24c124d202..038cf28604ad 100644
+> --- a/drivers/gpu/drm/xe/xe_macros.h
+> +++ b/drivers/gpu/drm/xe/xe_macros.h
+> @@ -12,8 +12,8 @@
+>  #define XE_WARN_ON WARN_ON
+>  #define XE_BUG_ON BUG_ON
+>  
+> -#define XE_IOCTL_ERR(xe, cond) \
+> -	((cond) && (drm_info(&(xe)->drm, \
+> +#define XE_IOCTL_DBG(xe, cond) \
+> +	((cond) && (drm_dbg(&(xe)->drm, \
+>  			    "Ioctl argument check failed at %s:%d: %s", \
+>  			    __FILE__, __LINE__, #cond), 1))
+>  
+> diff --git a/drivers/gpu/drm/xe/xe_mmio.c b/drivers/gpu/drm/xe/xe_mmio.c
+> index 5effb21db9d4..aa62864e3622 100644
+> --- a/drivers/gpu/drm/xe/xe_mmio.c
+> +++ b/drivers/gpu/drm/xe/xe_mmio.c
+> @@ -441,14 +441,14 @@ int xe_mmio_ioctl(struct drm_device *dev, void *data,
+>  	bool allowed;
+>  	int ret = 0;
+>  
+> -	if (XE_IOCTL_ERR(xe, args->extensions) ||
+> -	    XE_IOCTL_ERR(xe, args->reserved[0] || args->reserved[1]))
+> +	if (XE_IOCTL_DBG(xe, args->extensions) ||
+> +	    XE_IOCTL_DBG(xe, args->reserved[0] || args->reserved[1]))
+>  		return -EINVAL;
+>  
+> -	if (XE_IOCTL_ERR(xe, args->flags & ~VALID_MMIO_FLAGS))
+> +	if (XE_IOCTL_DBG(xe, args->flags & ~VALID_MMIO_FLAGS))
+>  		return -EINVAL;
+>  
+> -	if (XE_IOCTL_ERR(xe, !(args->flags & DRM_XE_MMIO_WRITE) && args->value))
+> +	if (XE_IOCTL_DBG(xe, !(args->flags & DRM_XE_MMIO_WRITE) && args->value))
+>  		return -EINVAL;
+>  
+>  	allowed = capable(CAP_SYS_ADMIN);
+> @@ -463,12 +463,12 @@ int xe_mmio_ioctl(struct drm_device *dev, void *data,
+>  		}
+>  	}
+>  
+> -	if (XE_IOCTL_ERR(xe, !allowed))
+> +	if (XE_IOCTL_DBG(xe, !allowed))
+>  		return -EPERM;
+>  
+>  	bits_flag = args->flags & DRM_XE_MMIO_BITS_MASK;
+>  	bytes = 1 << bits_flag;
+> -	if (XE_IOCTL_ERR(xe, args->addr + bytes > xe->mmio.size))
+> +	if (XE_IOCTL_DBG(xe, args->addr + bytes > xe->mmio.size))
+>  		return -EINVAL;
+>  
+>  	/*
+> @@ -482,7 +482,7 @@ int xe_mmio_ioctl(struct drm_device *dev, void *data,
+>  	if (args->flags & DRM_XE_MMIO_WRITE) {
+>  		switch (bits_flag) {
+>  		case DRM_XE_MMIO_32BIT:
+> -			if (XE_IOCTL_ERR(xe, args->value > U32_MAX)) {
+> +			if (XE_IOCTL_DBG(xe, args->value > U32_MAX)) {
+>  				ret = -EINVAL;
+>  				goto exit;
+>  			}
+> diff --git a/drivers/gpu/drm/xe/xe_query.c b/drivers/gpu/drm/xe/xe_query.c
+> index 9acbb27dfcab..4b7869596ba8 100644
+> --- a/drivers/gpu/drm/xe/xe_query.c
+> +++ b/drivers/gpu/drm/xe/xe_query.c
+> @@ -60,12 +60,12 @@ static int query_engines(struct xe_device *xe,
+>  	if (query->size == 0) {
+>  		query->size = size;
+>  		return 0;
+> -	} else if (XE_IOCTL_ERR(xe, query->size != size)) {
+> +	} else if (XE_IOCTL_DBG(xe, query->size != size)) {
+>  		return -EINVAL;
+>  	}
+>  
+>  	hw_engine_info = kmalloc(size, GFP_KERNEL);
+> -	if (XE_IOCTL_ERR(xe, !hw_engine_info))
+> +	if (XE_IOCTL_DBG(xe, !hw_engine_info))
+>  		return -ENOMEM;
+>  
+>  	for_each_gt(gt, xe, gt_id)
+> @@ -114,12 +114,12 @@ static int query_memory_usage(struct xe_device *xe,
+>  	if (query->size == 0) {
+>  		query->size = size;
+>  		return 0;
+> -	} else if (XE_IOCTL_ERR(xe, query->size != size)) {
+> +	} else if (XE_IOCTL_DBG(xe, query->size != size)) {
+>  		return -EINVAL;
+>  	}
+>  
+>  	usage = kzalloc(size, GFP_KERNEL);
+> -	if (XE_IOCTL_ERR(xe, !usage))
+> +	if (XE_IOCTL_DBG(xe, !usage))
+>  		return -ENOMEM;
+>  
+>  	man = ttm_manager_type(&xe->ttm, XE_PL_TT);
+> @@ -177,12 +177,12 @@ static int query_config(struct xe_device *xe, struct drm_xe_device_query *query)
+>  	if (query->size == 0) {
+>  		query->size = size;
+>  		return 0;
+> -	} else if (XE_IOCTL_ERR(xe, query->size != size)) {
+> +	} else if (XE_IOCTL_DBG(xe, query->size != size)) {
+>  		return -EINVAL;
+>  	}
+>  
+>  	config = kzalloc(size, GFP_KERNEL);
+> -	if (XE_IOCTL_ERR(xe, !config))
+> +	if (XE_IOCTL_DBG(xe, !config))
+>  		return -ENOMEM;
+>  
+>  	config->num_params = num_params;
+> @@ -226,12 +226,12 @@ static int query_gts(struct xe_device *xe, struct drm_xe_device_query *query)
+>  	if (query->size == 0) {
+>  		query->size = size;
+>  		return 0;
+> -	} else if (XE_IOCTL_ERR(xe, query->size != size)) {
+> +	} else if (XE_IOCTL_DBG(xe, query->size != size)) {
+>  		return -EINVAL;
+>  	}
+>  
+>  	gts = kzalloc(size, GFP_KERNEL);
+> -	if (XE_IOCTL_ERR(xe, !gts))
+> +	if (XE_IOCTL_DBG(xe, !gts))
+>  		return -ENOMEM;
+>  
+>  	gts->num_gt = xe->info.gt_count;
+> @@ -273,12 +273,12 @@ static int query_hwconfig(struct xe_device *xe,
+>  	if (query->size == 0) {
+>  		query->size = size;
+>  		return 0;
+> -	} else if (XE_IOCTL_ERR(xe, query->size != size)) {
+> +	} else if (XE_IOCTL_DBG(xe, query->size != size)) {
+>  		return -EINVAL;
+>  	}
+>  
+>  	hwconfig = kzalloc(size, GFP_KERNEL);
+> -	if (XE_IOCTL_ERR(xe, !hwconfig))
+> +	if (XE_IOCTL_DBG(xe, !hwconfig))
+>  		return -ENOMEM;
+>  
+>  	xe_device_mem_access_get(xe);
+> @@ -332,7 +332,7 @@ static int query_gt_topology(struct xe_device *xe,
+>  	if (query->size == 0) {
+>  		query->size = size;
+>  		return 0;
+> -	} else if (XE_IOCTL_ERR(xe, query->size != size)) {
+> +	} else if (XE_IOCTL_DBG(xe, query->size != size)) {
+>  		return -EINVAL;
+>  	}
+>  
+> @@ -380,15 +380,15 @@ int xe_query_ioctl(struct drm_device *dev, void *data, struct drm_file *file)
+>  	struct drm_xe_device_query *query = data;
+>  	u32 idx;
+>  
+> -	if (XE_IOCTL_ERR(xe, query->extensions) ||
+> -	    XE_IOCTL_ERR(xe, query->reserved[0] || query->reserved[1]))
+> +	if (XE_IOCTL_DBG(xe, query->extensions) ||
+> +	    XE_IOCTL_DBG(xe, query->reserved[0] || query->reserved[1]))
+>  		return -EINVAL;
+>  
+> -	if (XE_IOCTL_ERR(xe, query->query > ARRAY_SIZE(xe_query_funcs)))
+> +	if (XE_IOCTL_DBG(xe, query->query > ARRAY_SIZE(xe_query_funcs)))
+>  		return -EINVAL;
+>  
+>  	idx = array_index_nospec(query->query, ARRAY_SIZE(xe_query_funcs));
+> -	if (XE_IOCTL_ERR(xe, !xe_query_funcs[idx]))
+> +	if (XE_IOCTL_DBG(xe, !xe_query_funcs[idx]))
+>  		return -EINVAL;
+>  
+>  	return xe_query_funcs[idx](xe, query);
+> diff --git a/drivers/gpu/drm/xe/xe_sync.c b/drivers/gpu/drm/xe/xe_sync.c
+> index 7786b908a3fd..9fcd7802ba30 100644
+> --- a/drivers/gpu/drm/xe/xe_sync.c
+> +++ b/drivers/gpu/drm/xe/xe_sync.c
+> @@ -110,44 +110,44 @@ int xe_sync_entry_parse(struct xe_device *xe, struct xe_file *xef,
+>  	if (copy_from_user(&sync_in, sync_user, sizeof(*sync_user)))
+>  		return -EFAULT;
+>  
+> -	if (XE_IOCTL_ERR(xe, sync_in.flags &
+> +	if (XE_IOCTL_DBG(xe, sync_in.flags &
+>  			 ~(SYNC_FLAGS_TYPE_MASK | DRM_XE_SYNC_SIGNAL)) ||
+> -	    XE_IOCTL_ERR(xe, sync_in.pad) ||
+> -	    XE_IOCTL_ERR(xe, sync_in.reserved[0] || sync_in.reserved[1]))
+> +	    XE_IOCTL_DBG(xe, sync_in.pad) ||
+> +	    XE_IOCTL_DBG(xe, sync_in.reserved[0] || sync_in.reserved[1]))
+>  		return -EINVAL;
+>  
+>  	signal = sync_in.flags & DRM_XE_SYNC_SIGNAL;
+>  	switch (sync_in.flags & SYNC_FLAGS_TYPE_MASK) {
+>  	case DRM_XE_SYNC_SYNCOBJ:
+> -		if (XE_IOCTL_ERR(xe, no_dma_fences && signal))
+> +		if (XE_IOCTL_DBG(xe, no_dma_fences && signal))
+>  			return -EOPNOTSUPP;
+>  
+> -		if (XE_IOCTL_ERR(xe, upper_32_bits(sync_in.addr)))
+> +		if (XE_IOCTL_DBG(xe, upper_32_bits(sync_in.addr)))
+>  			return -EINVAL;
+>  
+>  		sync->syncobj = drm_syncobj_find(xef->drm, sync_in.handle);
+> -		if (XE_IOCTL_ERR(xe, !sync->syncobj))
+> +		if (XE_IOCTL_DBG(xe, !sync->syncobj))
+>  			return -ENOENT;
+>  
+>  		if (!signal) {
+>  			sync->fence = drm_syncobj_fence_get(sync->syncobj);
+> -			if (XE_IOCTL_ERR(xe, !sync->fence))
+> +			if (XE_IOCTL_DBG(xe, !sync->fence))
+>  				return -EINVAL;
+>  		}
+>  		break;
+>  
+>  	case DRM_XE_SYNC_TIMELINE_SYNCOBJ:
+> -		if (XE_IOCTL_ERR(xe, no_dma_fences && signal))
+> +		if (XE_IOCTL_DBG(xe, no_dma_fences && signal))
+>  			return -EOPNOTSUPP;
+>  
+> -		if (XE_IOCTL_ERR(xe, upper_32_bits(sync_in.addr)))
+> +		if (XE_IOCTL_DBG(xe, upper_32_bits(sync_in.addr)))
+>  			return -EINVAL;
+>  
+> -		if (XE_IOCTL_ERR(xe, sync_in.timeline_value == 0))
+> +		if (XE_IOCTL_DBG(xe, sync_in.timeline_value == 0))
+>  			return -EINVAL;
+>  
+>  		sync->syncobj = drm_syncobj_find(xef->drm, sync_in.handle);
+> -		if (XE_IOCTL_ERR(xe, !sync->syncobj))
+> +		if (XE_IOCTL_DBG(xe, !sync->syncobj))
+>  			return -ENOENT;
+>  
+>  		if (signal) {
+> @@ -156,7 +156,7 @@ int xe_sync_entry_parse(struct xe_device *xe, struct xe_file *xef,
+>  				return -ENOMEM;
+>  		} else {
+>  			sync->fence = drm_syncobj_fence_get(sync->syncobj);
+> -			if (XE_IOCTL_ERR(xe, !sync->fence))
+> +			if (XE_IOCTL_DBG(xe, !sync->fence))
+>  				return -EINVAL;
+>  
+>  			err = dma_fence_chain_find_seqno(&sync->fence,
+> @@ -167,15 +167,15 @@ int xe_sync_entry_parse(struct xe_device *xe, struct xe_file *xef,
+>  		break;
+>  
+>  	case DRM_XE_SYNC_DMA_BUF:
+> -		if (XE_IOCTL_ERR(xe, "TODO"))
+> +		if (XE_IOCTL_DBG(xe, "TODO"))
+>  			return -EINVAL;
+>  		break;
+>  
+>  	case DRM_XE_SYNC_USER_FENCE:
+> -		if (XE_IOCTL_ERR(xe, !signal))
+> +		if (XE_IOCTL_DBG(xe, !signal))
+>  			return -EOPNOTSUPP;
+>  
+> -		if (XE_IOCTL_ERR(xe, sync_in.addr & 0x7))
+> +		if (XE_IOCTL_DBG(xe, sync_in.addr & 0x7))
+>  			return -EINVAL;
+>  
+>  		if (exec) {
+> @@ -183,7 +183,7 @@ int xe_sync_entry_parse(struct xe_device *xe, struct xe_file *xef,
+>  		} else {
+>  			sync->ufence = user_fence_create(xe, sync_in.addr,
+>  							 sync_in.timeline_value);
+> -			if (XE_IOCTL_ERR(xe, !sync->ufence))
+> +			if (XE_IOCTL_DBG(xe, !sync->ufence))
+>  				return -ENOMEM;
+>  		}
+>  
 > diff --git a/drivers/gpu/drm/xe/xe_vm.c b/drivers/gpu/drm/xe/xe_vm.c
-> index 762aefa75ed4..d1fdc9974f3c 100644
+> index 6c216350084b..7f93b7b9d170 100644
 > --- a/drivers/gpu/drm/xe/xe_vm.c
 > +++ b/drivers/gpu/drm/xe/xe_vm.c
-> @@ -880,7 +880,11 @@ static struct xe_vma *xe_vma_create(struct xe_vm *vm,
->  	XE_BUG_ON(start >= end);
->  	XE_BUG_ON(end >= vm->size);
+> @@ -1878,13 +1878,13 @@ static int xe_vm_unbind(struct xe_vm *vm, struct xe_vma *vma,
+>  static int vm_set_error_capture_address(struct xe_device *xe, struct xe_vm *vm,
+>  					u64 value)
+>  {
+> -	if (XE_IOCTL_ERR(xe, !value))
+> +	if (XE_IOCTL_DBG(xe, !value))
+>  		return -EINVAL;
 >  
-> -	vma = kzalloc(sizeof(*vma), GFP_KERNEL);
-> +	if (!bo && !is_null)	/* userptr */
-> +		vma = kzalloc(sizeof(*vma), GFP_KERNEL);
-> +	else
-> +		vma = kzalloc(sizeof(*vma) - sizeof(struct xe_userptr),
-> +			      GFP_KERNEL);
->  	if (!vma) {
->  		vma = ERR_PTR(-ENOMEM);
->  		return vma;
-> diff --git a/drivers/gpu/drm/xe/xe_vm_types.h b/drivers/gpu/drm/xe/xe_vm_types.h
-> index 30beae541aca..80fb0b22bf0e 100644
-> --- a/drivers/gpu/drm/xe/xe_vm_types.h
-> +++ b/drivers/gpu/drm/xe/xe_vm_types.h
-> @@ -33,6 +33,31 @@ struct xe_vm;
->  #define XE_VMA_PTE_2M		(DRM_GPUVA_USERBITS << 6)
->  #define XE_VMA_PTE_1G		(DRM_GPUVA_USERBITS << 7)
+> -	if (XE_IOCTL_ERR(xe, !(vm->flags & XE_VM_FLAG_ASYNC_BIND_OPS)))
+> +	if (XE_IOCTL_DBG(xe, !(vm->flags & XE_VM_FLAG_ASYNC_BIND_OPS)))
+>  		return -EOPNOTSUPP;
 >  
-> +/** struct xe_userptr - User pointer */
-> +struct xe_userptr {
-> +	/** @invalidate_link: Link for the vm::userptr.invalidated list */
-> +	struct list_head invalidate_link;
-> +	/**
-> +	 * @notifier: MMU notifier for user pointer (invalidation call back)
-> +	 */
-> +	struct mmu_interval_notifier notifier;
-> +	/** @sgt: storage for a scatter gather table */
-> +	struct sg_table sgt;
-> +	/** @sg: allocated scatter gather table */
-> +	struct sg_table *sg;
-> +	/** @notifier_seq: notifier sequence number */
-> +	unsigned long notifier_seq;
-> +	/**
-> +	 * @initial_bind: user pointer has been bound at least once.
-> +	 * write: vm->userptr.notifier_lock in read mode and vm->resv held.
-> +	 * read: vm->userptr.notifier_lock in write mode or vm->resv held.
-> +	 */
-> +	bool initial_bind;
-> +#if IS_ENABLED(CONFIG_DRM_XE_USERPTR_INVAL_INJECT)
-> +	u32 divisor;
-> +#endif
-> +};
-> +
->  struct xe_vma {
->  	/** @gpuva: Base GPUVA object */
->  	struct drm_gpuva gpuva;
-> @@ -58,31 +83,6 @@ struct xe_vma {
->  		struct work_struct destroy_work;
->  	};
+> -	if (XE_IOCTL_ERR(xe, vm->async_ops.error_capture.addr))
+> +	if (XE_IOCTL_DBG(xe, vm->async_ops.error_capture.addr))
+>  		return -EOPNOTSUPP;
 >  
-> -	/** @userptr: user pointer state */
-> -	struct {
-> -		/** @invalidate_link: Link for the vm::userptr.invalidated list */
-> -		struct list_head invalidate_link;
-> -		/**
-> -		 * @notifier: MMU notifier for user pointer (invalidation call back)
-> -		 */
-> -		struct mmu_interval_notifier notifier;
-> -		/** @sgt: storage for a scatter gather table */
-> -		struct sg_table sgt;
-> -		/** @sg: allocated scatter gather table */
-> -		struct sg_table *sg;
-> -		/** @notifier_seq: notifier sequence number */
-> -		unsigned long notifier_seq;
-> -		/**
-> -		 * @initial_bind: user pointer has been bound at least once.
-> -		 * write: vm->userptr.notifier_lock in read mode and vm->resv held.
-> -		 * read: vm->userptr.notifier_lock in write mode or vm->resv held.
-> -		 */
-> -		bool initial_bind;
-> -#if IS_ENABLED(CONFIG_DRM_XE_USERPTR_INVAL_INJECT)
-> -		u32 divisor;
-> -#endif
-> -	} userptr;
-> -
->  	/** @usm: unified shared memory state */
->  	struct {
->  		/** @tile_invalidated: VMA has been invalidated */
-> @@ -112,6 +112,12 @@ struct xe_vma {
->  		 */
->  		struct list_head link;
->  	} extobj;
-> +
-> +	/**
-> +	 * @userptr: user pointer state, only allocated for VMAs that are
-> +	 * user pointers
-> +	 */
-> +	struct xe_userptr userptr;
->  };
+>  	vm->async_ops.error_capture.mm = current->mm;
+> @@ -1910,13 +1910,13 @@ static int vm_user_ext_set_property(struct xe_device *xe, struct xe_vm *vm,
+>  	int err;
 >  
->  struct xe_device;
+>  	err = __copy_from_user(&ext, address, sizeof(ext));
+> -	if (XE_IOCTL_ERR(xe, err))
+> +	if (XE_IOCTL_DBG(xe, err))
+>  		return -EFAULT;
+>  
+> -	if (XE_IOCTL_ERR(xe, ext.property >=
+> +	if (XE_IOCTL_DBG(xe, ext.property >=
+>  			 ARRAY_SIZE(vm_set_property_funcs)) ||
+> -	    XE_IOCTL_ERR(xe, ext.pad) ||
+> -	    XE_IOCTL_ERR(xe, ext.reserved[0] || ext.reserved[1]))
+> +	    XE_IOCTL_DBG(xe, ext.pad) ||
+> +	    XE_IOCTL_DBG(xe, ext.reserved[0] || ext.reserved[1]))
+>  		return -EINVAL;
+>  
+>  	return vm_set_property_funcs[ext.property](xe, vm, ext.value);
+> @@ -1937,20 +1937,20 @@ static int vm_user_extensions(struct xe_device *xe, struct xe_vm *vm,
+>  	struct xe_user_extension ext;
+>  	int err;
+>  
+> -	if (XE_IOCTL_ERR(xe, ext_number >= MAX_USER_EXTENSIONS))
+> +	if (XE_IOCTL_DBG(xe, ext_number >= MAX_USER_EXTENSIONS))
+>  		return -E2BIG;
+>  
+>  	err = __copy_from_user(&ext, address, sizeof(ext));
+> -	if (XE_IOCTL_ERR(xe, err))
+> +	if (XE_IOCTL_DBG(xe, err))
+>  		return -EFAULT;
+>  
+> -	if (XE_IOCTL_ERR(xe, ext.pad) ||
+> -	    XE_IOCTL_ERR(xe, ext.name >=
+> +	if (XE_IOCTL_DBG(xe, ext.pad) ||
+> +	    XE_IOCTL_DBG(xe, ext.name >=
+>  			 ARRAY_SIZE(vm_user_extension_funcs)))
+>  		return -EINVAL;
+>  
+>  	err = vm_user_extension_funcs[ext.name](xe, vm, extensions);
+> -	if (XE_IOCTL_ERR(xe, err))
+> +	if (XE_IOCTL_DBG(xe, err))
+>  		return err;
+>  
+>  	if (ext.next_extension)
+> @@ -1976,29 +1976,29 @@ int xe_vm_create_ioctl(struct drm_device *dev, void *data,
+>  	int err;
+>  	u32 flags = 0;
+>  
+> -	if (XE_IOCTL_ERR(xe, args->reserved[0] || args->reserved[1]))
+> +	if (XE_IOCTL_DBG(xe, args->reserved[0] || args->reserved[1]))
+>  		return -EINVAL;
+>  
+> -	if (XE_IOCTL_ERR(xe, args->flags & ~ALL_DRM_XE_VM_CREATE_FLAGS))
+> +	if (XE_IOCTL_DBG(xe, args->flags & ~ALL_DRM_XE_VM_CREATE_FLAGS))
+>  		return -EINVAL;
+>  
+> -	if (XE_IOCTL_ERR(xe, args->flags & DRM_XE_VM_CREATE_SCRATCH_PAGE &&
+> +	if (XE_IOCTL_DBG(xe, args->flags & DRM_XE_VM_CREATE_SCRATCH_PAGE &&
+>  			 args->flags & DRM_XE_VM_CREATE_FAULT_MODE))
+>  		return -EINVAL;
+>  
+> -	if (XE_IOCTL_ERR(xe, args->flags & DRM_XE_VM_CREATE_COMPUTE_MODE &&
+> +	if (XE_IOCTL_DBG(xe, args->flags & DRM_XE_VM_CREATE_COMPUTE_MODE &&
+>  			 args->flags & DRM_XE_VM_CREATE_FAULT_MODE))
+>  		return -EINVAL;
+>  
+> -	if (XE_IOCTL_ERR(xe, args->flags & DRM_XE_VM_CREATE_FAULT_MODE &&
+> +	if (XE_IOCTL_DBG(xe, args->flags & DRM_XE_VM_CREATE_FAULT_MODE &&
+>  			 xe_device_in_non_fault_mode(xe)))
+>  		return -EINVAL;
+>  
+> -	if (XE_IOCTL_ERR(xe, !(args->flags & DRM_XE_VM_CREATE_FAULT_MODE) &&
+> +	if (XE_IOCTL_DBG(xe, !(args->flags & DRM_XE_VM_CREATE_FAULT_MODE) &&
+>  			 xe_device_in_fault_mode(xe)))
+>  		return -EINVAL;
+>  
+> -	if (XE_IOCTL_ERR(xe, args->flags & DRM_XE_VM_CREATE_FAULT_MODE &&
+> +	if (XE_IOCTL_DBG(xe, args->flags & DRM_XE_VM_CREATE_FAULT_MODE &&
+>  			 !xe->info.supports_usm))
+>  		return -EINVAL;
+>  
+> @@ -2017,7 +2017,7 @@ int xe_vm_create_ioctl(struct drm_device *dev, void *data,
+>  
+>  	if (args->extensions) {
+>  		err = vm_user_extensions(xe, vm, args->extensions, 0);
+> -		if (XE_IOCTL_ERR(xe, err)) {
+> +		if (XE_IOCTL_DBG(xe, err)) {
+>  			xe_vm_close_and_put(vm);
+>  			return err;
+>  		}
+> @@ -2063,15 +2063,15 @@ int xe_vm_destroy_ioctl(struct drm_device *dev, void *data,
+>  	struct xe_vm *vm;
+>  	int err = 0;
+>  
+> -	if (XE_IOCTL_ERR(xe, args->pad) ||
+> -	    XE_IOCTL_ERR(xe, args->reserved[0] || args->reserved[1]))
+> +	if (XE_IOCTL_DBG(xe, args->pad) ||
+> +	    XE_IOCTL_DBG(xe, args->reserved[0] || args->reserved[1]))
+>  		return -EINVAL;
+>  
+>  	mutex_lock(&xef->vm.lock);
+>  	vm = xa_load(&xef->vm.xa, args->vm_id);
+> -	if (XE_IOCTL_ERR(xe, !vm))
+> +	if (XE_IOCTL_DBG(xe, !vm))
+>  		err = -ENOENT;
+> -	else if (XE_IOCTL_ERR(xe, vm->preempt.num_engines))
+> +	else if (XE_IOCTL_DBG(xe, vm->preempt.num_engines))
+>  		err = -EBUSY;
+>  	else
+>  		xa_erase(&xef->vm.xa, args->vm_id);
+> @@ -2159,21 +2159,21 @@ static int vm_bind_ioctl_lookup_vma(struct xe_vm *vm, struct xe_bo *bo,
+>  	case XE_VM_BIND_OP_MAP:
+>  	case XE_VM_BIND_OP_MAP_USERPTR:
+>  		vma = xe_vm_find_overlapping_vma(vm, addr, range);
+> -		if (XE_IOCTL_ERR(xe, vma && !async))
+> +		if (XE_IOCTL_DBG(xe, vma && !async))
+>  			return -EBUSY;
+>  		break;
+>  	case XE_VM_BIND_OP_UNMAP:
+>  	case XE_VM_BIND_OP_PREFETCH:
+>  		vma = xe_vm_find_overlapping_vma(vm, addr, range);
+> -		if (XE_IOCTL_ERR(xe, !vma))
+> +		if (XE_IOCTL_DBG(xe, !vma))
+>  			return -ENODATA;	/* Not an actual error, IOCTL
+>  						   cleans up returns and 0 */
+> -		if (XE_IOCTL_ERR(xe, (xe_vma_start(vma) != addr ||
+> -				 xe_vma_end(vma) != addr + range) && !async))
+> +		if (XE_IOCTL_DBG(xe, (xe_vma_start(vma) != addr ||
+> +				      xe_vma_end(vma) != addr + range) && !async))
+>  			return -EINVAL;
+>  		break;
+>  	case XE_VM_BIND_OP_UNMAP_ALL:
+> -		if (XE_IOCTL_ERR(xe, list_empty(&bo->ttm.base.gpuva.list)))
+> +		if (XE_IOCTL_DBG(xe, list_empty(&bo->ttm.base.gpuva.list)))
+>  			return -ENODATA;	/* Not an actual error, IOCTL
+>  						   cleans up returns and 0 */
+>  		break;
+> @@ -2998,9 +2998,9 @@ static int vm_bind_ioctl_check_args(struct xe_device *xe,
+>  	int err;
+>  	int i;
+>  
+> -	if (XE_IOCTL_ERR(xe, args->extensions) ||
+> -	    XE_IOCTL_ERR(xe, !args->num_binds) ||
+> -	    XE_IOCTL_ERR(xe, args->num_binds > MAX_BINDS))
+> +	if (XE_IOCTL_DBG(xe, args->extensions) ||
+> +	    XE_IOCTL_DBG(xe, !args->num_binds) ||
+> +	    XE_IOCTL_DBG(xe, args->num_binds > MAX_BINDS))
+>  		return -EINVAL;
+>  
+>  	if (args->num_binds > 1) {
+> @@ -3015,7 +3015,7 @@ static int vm_bind_ioctl_check_args(struct xe_device *xe,
+>  		err = __copy_from_user(*bind_ops, bind_user,
+>  				       sizeof(struct drm_xe_vm_bind_op) *
+>  				       args->num_binds);
+> -		if (XE_IOCTL_ERR(xe, err)) {
+> +		if (XE_IOCTL_DBG(xe, err)) {
+>  			err = -EFAULT;
+>  			goto free_bind_ops;
+>  		}
+> @@ -3034,60 +3034,60 @@ static int vm_bind_ioctl_check_args(struct xe_device *xe,
+>  
+>  		if (i == 0) {
+>  			*async = !!(op & XE_VM_BIND_FLAG_ASYNC);
+> -		} else if (XE_IOCTL_ERR(xe, !*async) ||
+> -			   XE_IOCTL_ERR(xe, !(op & XE_VM_BIND_FLAG_ASYNC)) ||
+> -			   XE_IOCTL_ERR(xe, VM_BIND_OP(op) ==
+> +		} else if (XE_IOCTL_DBG(xe, !*async) ||
+> +			   XE_IOCTL_DBG(xe, !(op & XE_VM_BIND_FLAG_ASYNC)) ||
+> +			   XE_IOCTL_DBG(xe, VM_BIND_OP(op) ==
+>  					XE_VM_BIND_OP_RESTART)) {
+>  			err = -EINVAL;
+>  			goto free_bind_ops;
+>  		}
+>  
+> -		if (XE_IOCTL_ERR(xe, !*async &&
+> +		if (XE_IOCTL_DBG(xe, !*async &&
+>  				 VM_BIND_OP(op) == XE_VM_BIND_OP_UNMAP_ALL)) {
+>  			err = -EINVAL;
+>  			goto free_bind_ops;
+>  		}
+>  
+> -		if (XE_IOCTL_ERR(xe, !*async &&
+> +		if (XE_IOCTL_DBG(xe, !*async &&
+>  				 VM_BIND_OP(op) == XE_VM_BIND_OP_PREFETCH)) {
+>  			err = -EINVAL;
+>  			goto free_bind_ops;
+>  		}
+>  
+> -		if (XE_IOCTL_ERR(xe, VM_BIND_OP(op) >
+> +		if (XE_IOCTL_DBG(xe, VM_BIND_OP(op) >
+>  				 XE_VM_BIND_OP_PREFETCH) ||
+> -		    XE_IOCTL_ERR(xe, op & ~SUPPORTED_FLAGS) ||
+> -		    XE_IOCTL_ERR(xe, obj && is_null) ||
+> -		    XE_IOCTL_ERR(xe, obj_offset && is_null) ||
+> -		    XE_IOCTL_ERR(xe, VM_BIND_OP(op) != XE_VM_BIND_OP_MAP &&
+> +		    XE_IOCTL_DBG(xe, op & ~SUPPORTED_FLAGS) ||
+> +		    XE_IOCTL_DBG(xe, obj && is_null) ||
+> +		    XE_IOCTL_DBG(xe, obj_offset && is_null) ||
+> +		    XE_IOCTL_DBG(xe, VM_BIND_OP(op) != XE_VM_BIND_OP_MAP &&
+>  				 is_null) ||
+> -		    XE_IOCTL_ERR(xe, !obj &&
+> +		    XE_IOCTL_DBG(xe, !obj &&
+>  				 VM_BIND_OP(op) == XE_VM_BIND_OP_MAP &&
+>  				 !is_null) ||
+> -		    XE_IOCTL_ERR(xe, !obj &&
+> +		    XE_IOCTL_DBG(xe, !obj &&
+>  				 VM_BIND_OP(op) == XE_VM_BIND_OP_UNMAP_ALL) ||
+> -		    XE_IOCTL_ERR(xe, addr &&
+> +		    XE_IOCTL_DBG(xe, addr &&
+>  				 VM_BIND_OP(op) == XE_VM_BIND_OP_UNMAP_ALL) ||
+> -		    XE_IOCTL_ERR(xe, range &&
+> +		    XE_IOCTL_DBG(xe, range &&
+>  				 VM_BIND_OP(op) == XE_VM_BIND_OP_UNMAP_ALL) ||
+> -		    XE_IOCTL_ERR(xe, obj &&
+> +		    XE_IOCTL_DBG(xe, obj &&
+>  				 VM_BIND_OP(op) == XE_VM_BIND_OP_MAP_USERPTR) ||
+> -		    XE_IOCTL_ERR(xe, obj &&
+> +		    XE_IOCTL_DBG(xe, obj &&
+>  				 VM_BIND_OP(op) == XE_VM_BIND_OP_PREFETCH) ||
+> -		    XE_IOCTL_ERR(xe, region &&
+> +		    XE_IOCTL_DBG(xe, region &&
+>  				 VM_BIND_OP(op) != XE_VM_BIND_OP_PREFETCH) ||
+> -		    XE_IOCTL_ERR(xe, !(BIT(region) &
+> +		    XE_IOCTL_DBG(xe, !(BIT(region) &
+>  				       xe->info.mem_region_mask)) ||
+> -		    XE_IOCTL_ERR(xe, obj &&
+> +		    XE_IOCTL_DBG(xe, obj &&
+>  				 VM_BIND_OP(op) == XE_VM_BIND_OP_UNMAP)) {
+>  			err = -EINVAL;
+>  			goto free_bind_ops;
+>  		}
+>  
+> -		if (XE_IOCTL_ERR(xe, obj_offset & ~PAGE_MASK) ||
+> -		    XE_IOCTL_ERR(xe, addr & ~PAGE_MASK) ||
+> -		    XE_IOCTL_ERR(xe, range & ~PAGE_MASK) ||
+> -		    XE_IOCTL_ERR(xe, !range && VM_BIND_OP(op) !=
+> +		if (XE_IOCTL_DBG(xe, obj_offset & ~PAGE_MASK) ||
+> +		    XE_IOCTL_DBG(xe, addr & ~PAGE_MASK) ||
+> +		    XE_IOCTL_DBG(xe, range & ~PAGE_MASK) ||
+> +		    XE_IOCTL_DBG(xe, !range && VM_BIND_OP(op) !=
+>  				 XE_VM_BIND_OP_RESTART &&
+>  				 VM_BIND_OP(op) != XE_VM_BIND_OP_UNMAP_ALL)) {
+>  			err = -EINVAL;
+> @@ -3127,19 +3127,19 @@ int xe_vm_bind_ioctl(struct drm_device *dev, void *data, struct drm_file *file)
+>  
+>  	if (args->engine_id) {
+>  		e = xe_engine_lookup(xef, args->engine_id);
+> -		if (XE_IOCTL_ERR(xe, !e)) {
+> +		if (XE_IOCTL_DBG(xe, !e)) {
+>  			err = -ENOENT;
+>  			goto free_objs;
+>  		}
+>  
+> -		if (XE_IOCTL_ERR(xe, !(e->flags & ENGINE_FLAG_VM))) {
+> +		if (XE_IOCTL_DBG(xe, !(e->flags & ENGINE_FLAG_VM))) {
+>  			err = -EINVAL;
+>  			goto put_engine;
+>  		}
+>  	}
+>  
+>  	vm = xe_vm_lookup(xef, args->vm_id);
+> -	if (XE_IOCTL_ERR(xe, !vm)) {
+> +	if (XE_IOCTL_DBG(xe, !vm)) {
+>  		err = -EINVAL;
+>  		goto put_engine;
+>  	}
+> @@ -3148,17 +3148,17 @@ int xe_vm_bind_ioctl(struct drm_device *dev, void *data, struct drm_file *file)
+>  	if (err)
+>  		goto put_vm;
+>  
+> -	if (XE_IOCTL_ERR(xe, xe_vm_is_closed_or_banned(vm))) {
+> +	if (XE_IOCTL_DBG(xe, xe_vm_is_closed_or_banned(vm))) {
+>  		err = -ENOENT;
+>  		goto release_vm_lock;
+>  	}
+>  
+>  	if (VM_BIND_OP(bind_ops[0].op) == XE_VM_BIND_OP_RESTART) {
+> -		if (XE_IOCTL_ERR(xe, !(vm->flags & XE_VM_FLAG_ASYNC_BIND_OPS)))
+> +		if (XE_IOCTL_DBG(xe, !(vm->flags & XE_VM_FLAG_ASYNC_BIND_OPS)))
+>  			err = -EOPNOTSUPP;
+> -		if (XE_IOCTL_ERR(xe, !err && args->num_syncs))
+> +		if (XE_IOCTL_DBG(xe, !err && args->num_syncs))
+>  			err = EINVAL;
+> -		if (XE_IOCTL_ERR(xe, !err && !vm->async_ops.error))
+> +		if (XE_IOCTL_DBG(xe, !err && !vm->async_ops.error))
+>  			err = -EPROTO;
+>  
+>  		if (!err) {
+> @@ -3175,7 +3175,7 @@ int xe_vm_bind_ioctl(struct drm_device *dev, void *data, struct drm_file *file)
+>  		goto release_vm_lock;
+>  	}
+>  
+> -	if (XE_IOCTL_ERR(xe, !vm->async_ops.error &&
+> +	if (XE_IOCTL_DBG(xe, !vm->async_ops.error &&
+>  			 async != !!(vm->flags & XE_VM_FLAG_ASYNC_BIND_OPS))) {
+>  		err = -EOPNOTSUPP;
+>  		goto release_vm_lock;
+> @@ -3185,8 +3185,8 @@ int xe_vm_bind_ioctl(struct drm_device *dev, void *data, struct drm_file *file)
+>  		u64 range = bind_ops[i].range;
+>  		u64 addr = bind_ops[i].addr;
+>  
+> -		if (XE_IOCTL_ERR(xe, range > vm->size) ||
+> -		    XE_IOCTL_ERR(xe, addr > vm->size - range)) {
+> +		if (XE_IOCTL_DBG(xe, range > vm->size) ||
+> +		    XE_IOCTL_DBG(xe, addr > vm->size - range)) {
+>  			err = -EINVAL;
+>  			goto release_vm_lock;
+>  		}
+> @@ -3194,7 +3194,7 @@ int xe_vm_bind_ioctl(struct drm_device *dev, void *data, struct drm_file *file)
+>  		if (bind_ops[i].tile_mask) {
+>  			u64 valid_tiles = BIT(xe->info.tile_count) - 1;
+>  
+> -			if (XE_IOCTL_ERR(xe, bind_ops[i].tile_mask &
+> +			if (XE_IOCTL_DBG(xe, bind_ops[i].tile_mask &
+>  					 ~valid_tiles)) {
+>  				err = -EINVAL;
+>  				goto release_vm_lock;
+> @@ -3225,24 +3225,24 @@ int xe_vm_bind_ioctl(struct drm_device *dev, void *data, struct drm_file *file)
+>  			continue;
+>  
+>  		gem_obj = drm_gem_object_lookup(file, obj);
+> -		if (XE_IOCTL_ERR(xe, !gem_obj)) {
+> +		if (XE_IOCTL_DBG(xe, !gem_obj)) {
+>  			err = -ENOENT;
+>  			goto put_obj;
+>  		}
+>  		bos[i] = gem_to_xe_bo(gem_obj);
+>  
+> -		if (XE_IOCTL_ERR(xe, range > bos[i]->size) ||
+> -		    XE_IOCTL_ERR(xe, obj_offset >
+> +		if (XE_IOCTL_DBG(xe, range > bos[i]->size) ||
+> +		    XE_IOCTL_DBG(xe, obj_offset >
+>  				 bos[i]->size - range)) {
+>  			err = -EINVAL;
+>  			goto put_obj;
+>  		}
+>  
+>  		if (bos[i]->flags & XE_BO_INTERNAL_64K) {
+> -			if (XE_IOCTL_ERR(xe, obj_offset &
+> +			if (XE_IOCTL_DBG(xe, obj_offset &
+>  					 XE_64K_PAGE_MASK) ||
+> -			    XE_IOCTL_ERR(xe, addr & XE_64K_PAGE_MASK) ||
+> -			    XE_IOCTL_ERR(xe, range & XE_64K_PAGE_MASK)) {
+> +			    XE_IOCTL_DBG(xe, addr & XE_64K_PAGE_MASK) ||
+> +			    XE_IOCTL_DBG(xe, range & XE_64K_PAGE_MASK)) {
+>  				err = -EINVAL;
+>  				goto put_obj;
+>  			}
+> diff --git a/drivers/gpu/drm/xe/xe_vm_madvise.c b/drivers/gpu/drm/xe/xe_vm_madvise.c
+> index d6e3b76bf590..1ab9bcc06a1c 100644
+> --- a/drivers/gpu/drm/xe/xe_vm_madvise.c
+> +++ b/drivers/gpu/drm/xe/xe_vm_madvise.c
+> @@ -19,10 +19,10 @@ static int madvise_preferred_mem_class(struct xe_device *xe, struct xe_vm *vm,
+>  {
+>  	int i, err;
+>  
+> -	if (XE_IOCTL_ERR(xe, value > XE_MEM_REGION_CLASS_VRAM))
+> +	if (XE_IOCTL_DBG(xe, value > XE_MEM_REGION_CLASS_VRAM))
+>  		return -EINVAL;
+>  
+> -	if (XE_IOCTL_ERR(xe, value == XE_MEM_REGION_CLASS_VRAM &&
+> +	if (XE_IOCTL_DBG(xe, value == XE_MEM_REGION_CLASS_VRAM &&
+>  			 !xe->info.is_dgfx))
+>  		return -EINVAL;
+>  
+> @@ -48,7 +48,7 @@ static int madvise_preferred_gt(struct xe_device *xe, struct xe_vm *vm,
+>  {
+>  	int i, err;
+>  
+> -	if (XE_IOCTL_ERR(xe, value > xe->info.tile_count))
+> +	if (XE_IOCTL_DBG(xe, value > xe->info.tile_count))
+>  		return -EINVAL;
+>  
+>  	for (i = 0; i < num_vmas; ++i) {
+> @@ -77,14 +77,14 @@ static int madvise_preferred_mem_class_gt(struct xe_device *xe,
+>  	u32 gt_id = upper_32_bits(value);
+>  	u32 mem_class = lower_32_bits(value);
+>  
+> -	if (XE_IOCTL_ERR(xe, mem_class > XE_MEM_REGION_CLASS_VRAM))
+> +	if (XE_IOCTL_DBG(xe, mem_class > XE_MEM_REGION_CLASS_VRAM))
+>  		return -EINVAL;
+>  
+> -	if (XE_IOCTL_ERR(xe, mem_class == XE_MEM_REGION_CLASS_VRAM &&
+> +	if (XE_IOCTL_DBG(xe, mem_class == XE_MEM_REGION_CLASS_VRAM &&
+>  			 !xe->info.is_dgfx))
+>  		return -EINVAL;
+>  
+> -	if (XE_IOCTL_ERR(xe, gt_id > xe->info.tile_count))
+> +	if (XE_IOCTL_DBG(xe, gt_id > xe->info.tile_count))
+>  		return -EINVAL;
+>  
+>  	for (i = 0; i < num_vmas; ++i) {
+> @@ -115,7 +115,7 @@ static int madvise_cpu_atomic(struct xe_device *xe, struct xe_vm *vm,
+>  		struct ww_acquire_ctx ww;
+>  
+>  		bo = xe_vma_bo(vmas[i]);
+> -		if (XE_IOCTL_ERR(xe, !(bo->flags & XE_BO_CREATE_SYSTEM_BIT)))
+> +		if (XE_IOCTL_DBG(xe, !(bo->flags & XE_BO_CREATE_SYSTEM_BIT)))
+>  			return -EINVAL;
+>  
+>  		err = xe_bo_lock(bo, &ww, 0, true);
+> @@ -146,7 +146,7 @@ static int madvise_device_atomic(struct xe_device *xe, struct xe_vm *vm,
+>  		struct ww_acquire_ctx ww;
+>  
+>  		bo = xe_vma_bo(vmas[i]);
+> -		if (XE_IOCTL_ERR(xe, !(bo->flags & XE_BO_CREATE_VRAM0_BIT) &&
+> +		if (XE_IOCTL_DBG(xe, !(bo->flags & XE_BO_CREATE_VRAM0_BIT) &&
+>  				 !(bo->flags & XE_BO_CREATE_VRAM1_BIT)))
+>  			return -EINVAL;
+>  
+> @@ -165,10 +165,10 @@ static int madvise_priority(struct xe_device *xe, struct xe_vm *vm,
+>  {
+>  	int i, err;
+>  
+> -	if (XE_IOCTL_ERR(xe, value > DRM_XE_VMA_PRIORITY_HIGH))
+> +	if (XE_IOCTL_DBG(xe, value > DRM_XE_VMA_PRIORITY_HIGH))
+>  		return -EINVAL;
+>  
+> -	if (XE_IOCTL_ERR(xe, value == DRM_XE_VMA_PRIORITY_HIGH &&
+> +	if (XE_IOCTL_DBG(xe, value == DRM_XE_VMA_PRIORITY_HIGH &&
+>  			 !capable(CAP_SYS_NICE)))
+>  		return -EPERM;
+>  
+> @@ -255,24 +255,24 @@ int xe_vm_madvise_ioctl(struct drm_device *dev, void *data,
+>  	struct xe_vma **vmas = NULL;
+>  	int num_vmas = 0, err = 0, idx;
+>  
+> -	if (XE_IOCTL_ERR(xe, args->extensions) ||
+> -	    XE_IOCTL_ERR(xe, args->pad || args->pad2) ||
+> -	    XE_IOCTL_ERR(xe, args->reserved[0] || args->reserved[1]))
+> +	if (XE_IOCTL_DBG(xe, args->extensions) ||
+> +	    XE_IOCTL_DBG(xe, args->pad || args->pad2) ||
+> +	    XE_IOCTL_DBG(xe, args->reserved[0] || args->reserved[1]))
+>  		return -EINVAL;
+>  
+> -	if (XE_IOCTL_ERR(xe, args->property > ARRAY_SIZE(madvise_funcs)))
+> +	if (XE_IOCTL_DBG(xe, args->property > ARRAY_SIZE(madvise_funcs)))
+>  		return -EINVAL;
+>  
+>  	vm = xe_vm_lookup(xef, args->vm_id);
+> -	if (XE_IOCTL_ERR(xe, !vm))
+> +	if (XE_IOCTL_DBG(xe, !vm))
+>  		return -EINVAL;
+>  
+> -	if (XE_IOCTL_ERR(xe, xe_vm_is_closed_or_banned(vm))) {
+> +	if (XE_IOCTL_DBG(xe, xe_vm_is_closed_or_banned(vm))) {
+>  		err = -ENOENT;
+>  		goto put_vm;
+>  	}
+>  
+> -	if (XE_IOCTL_ERR(xe, !xe_vm_in_fault_mode(vm))) {
+> +	if (XE_IOCTL_DBG(xe, !xe_vm_in_fault_mode(vm))) {
+>  		err = -EINVAL;
+>  		goto put_vm;
+>  	}
+> @@ -280,15 +280,15 @@ int xe_vm_madvise_ioctl(struct drm_device *dev, void *data,
+>  	down_read(&vm->lock);
+>  
+>  	vmas = get_vmas(vm, &num_vmas, args->addr, args->range);
+> -	if (XE_IOCTL_ERR(xe, err))
+> +	if (XE_IOCTL_DBG(xe, err))
+>  		goto unlock_vm;
+>  
+> -	if (XE_IOCTL_ERR(xe, !vmas)) {
+> +	if (XE_IOCTL_DBG(xe, !vmas)) {
+>  		err = -ENOMEM;
+>  		goto unlock_vm;
+>  	}
+>  
+> -	if (XE_IOCTL_ERR(xe, !num_vmas)) {
+> +	if (XE_IOCTL_DBG(xe, !num_vmas)) {
+>  		err = -EINVAL;
+>  		goto unlock_vm;
+>  	}
+> diff --git a/drivers/gpu/drm/xe/xe_wait_user_fence.c b/drivers/gpu/drm/xe/xe_wait_user_fence.c
+> index c4420c0dbf9c..c4202df1d4f0 100644
+> --- a/drivers/gpu/drm/xe/xe_wait_user_fence.c
+> +++ b/drivers/gpu/drm/xe/xe_wait_user_fence.c
+> @@ -117,51 +117,51 @@ int xe_wait_user_fence_ioctl(struct drm_device *dev, void *data,
+>  	unsigned long timeout;
+>  	ktime_t start;
+>  
+> -	if (XE_IOCTL_ERR(xe, args->extensions) || XE_IOCTL_ERR(xe, args->pad) ||
+> -	    XE_IOCTL_ERR(xe, args->reserved[0] || args->reserved[1]))
+> +	if (XE_IOCTL_DBG(xe, args->extensions) || XE_IOCTL_DBG(xe, args->pad) ||
+> +	    XE_IOCTL_DBG(xe, args->reserved[0] || args->reserved[1]))
+>  		return -EINVAL;
+>  
+> -	if (XE_IOCTL_ERR(xe, args->flags & ~VALID_FLAGS))
+> +	if (XE_IOCTL_DBG(xe, args->flags & ~VALID_FLAGS))
+>  		return -EINVAL;
+>  
+> -	if (XE_IOCTL_ERR(xe, args->op > MAX_OP))
+> +	if (XE_IOCTL_DBG(xe, args->op > MAX_OP))
+>  		return -EINVAL;
+>  
+> -	if (XE_IOCTL_ERR(xe, no_engines &&
+> +	if (XE_IOCTL_DBG(xe, no_engines &&
+>  			 (args->num_engines || args->instances)))
+>  		return -EINVAL;
+>  
+> -	if (XE_IOCTL_ERR(xe, !no_engines && !args->num_engines))
+> +	if (XE_IOCTL_DBG(xe, !no_engines && !args->num_engines))
+>  		return -EINVAL;
+>  
+> -	if (XE_IOCTL_ERR(xe, !(args->flags & DRM_XE_UFENCE_WAIT_VM_ERROR) &&
+> +	if (XE_IOCTL_DBG(xe, !(args->flags & DRM_XE_UFENCE_WAIT_VM_ERROR) &&
+>  			 addr & 0x7))
+>  		return -EINVAL;
+>  
+> -	if (XE_IOCTL_ERR(xe, args->num_engines > XE_HW_ENGINE_MAX_INSTANCE))
+> +	if (XE_IOCTL_DBG(xe, args->num_engines > XE_HW_ENGINE_MAX_INSTANCE))
+>  		return -EINVAL;
+>  
+>  	if (!no_engines) {
+>  		err = copy_from_user(eci, user_eci,
+>  				     sizeof(struct drm_xe_engine_class_instance) *
+>  			     args->num_engines);
+> -		if (XE_IOCTL_ERR(xe, err))
+> +		if (XE_IOCTL_DBG(xe, err))
+>  			return -EFAULT;
+>  
+> -		if (XE_IOCTL_ERR(xe, check_hw_engines(xe, eci,
+> +		if (XE_IOCTL_DBG(xe, check_hw_engines(xe, eci,
+>  						      args->num_engines)))
+>  			return -EINVAL;
+>  	}
+>  
+>  	if (args->flags & DRM_XE_UFENCE_WAIT_VM_ERROR) {
+> -		if (XE_IOCTL_ERR(xe, args->vm_id >> 32))
+> +		if (XE_IOCTL_DBG(xe, args->vm_id >> 32))
+>  			return -EINVAL;
+>  
+>  		vm = xe_vm_lookup(to_xe_file(file), args->vm_id);
+> -		if (XE_IOCTL_ERR(xe, !vm))
+> +		if (XE_IOCTL_DBG(xe, !vm))
+>  			return -ENOENT;
+>  
+> -		if (XE_IOCTL_ERR(xe, !vm->async_ops.error_capture.addr)) {
+> +		if (XE_IOCTL_DBG(xe, !vm->async_ops.error_capture.addr)) {
+>  			xe_vm_put(vm);
+>  			return -EOPNOTSUPP;
+>  		}
+> @@ -226,9 +226,9 @@ int xe_wait_user_fence_ioctl(struct drm_device *dev, void *data,
+>  			args->timeout = 0;
+>  	}
+>  
+> -	if (XE_IOCTL_ERR(xe, err < 0))
+> +	if (XE_IOCTL_DBG(xe, err < 0))
+>  		return err;
+> -	else if (XE_IOCTL_ERR(xe, !timeout))
+> +	else if (XE_IOCTL_DBG(xe, !timeout))
+>  		return -ETIME;
+>  
+>  	return 0;
 > -- 
 > 2.34.1
 > 
