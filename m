@@ -4,50 +4,50 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2CDAEC001DC
-	for <intel-xe@archiver.kernel.org>; Fri, 14 Jul 2023 14:48:36 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5986AEB64DC
+	for <intel-xe@archiver.kernel.org>; Fri, 14 Jul 2023 14:48:38 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0AE5C10E8B2;
-	Fri, 14 Jul 2023 14:48:36 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 35FD510E8B1;
+	Fri, 14 Jul 2023 14:48:38 +0000 (UTC)
 Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 38E3910E8B0
- for <intel-xe@lists.freedesktop.org>; Fri, 14 Jul 2023 14:48:33 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id EDD3B10E8B1
+ for <intel-xe@lists.freedesktop.org>; Fri, 14 Jul 2023 14:48:35 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1689346113; x=1720882113;
+ t=1689346115; x=1720882115;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=tJA/4enTuGI+nVEHB9Bnx+GEU8K58EY9c1/UfsRnrJg=;
- b=cBUH9vm/y95zli4opctT7CEmAHvkggwIeclVWI+i9wsNmkPO+ylf0C4F
- gcMcaTTY7wGLDTXcR1hmxExF9a23E453F/EXOHMomfLOJNsa0C21s+/FL
- BcBYhTj+c/P9QL+sTpCZ+vTPBo06HapIo/sAZbyyjLRHF4+D8LxAjlIi/
- XpOJUBAXJfoNDEn+hYKa6PJI1EAa1V/mCmvHG0i3QNKuhT1xYkPB7YVjO
- sinhEZR18pzGF2wTTYmg6XSkm1gWn4GFNPDjuWpf/e5zSdn8vqX0Z3PHd
- 5yfV86YsxBy5wQuOrxsDV+/fX1vLOITD75xZmFWqt0uDORc/hl6NpeOgk Q==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10771"; a="345086766"
-X-IronPort-AV: E=Sophos;i="6.01,205,1684825200"; d="scan'208";a="345086766"
+ bh=IGpq4xoH3CTTSqRFkccwtFHD4+4XPwba7w2nwFYD83A=;
+ b=jp1ekfom6+kOkKJAk0ugn9niKjypEEXV/fHNA5b5dG8Qel4i5otKMHyJ
+ 276In811cDaDXE/HEk2A+TT2K4H6G4v7mGixb3OXfnUHDQBOxvR45EX1R
+ eZRT9Mq7u57nmrlo228h0jk7PbcvShZCAGzM5Th42tBZbFt2JmbVLPwSE
+ jJFGghO4+Kz2sZsCpgAyPaZIsHZWRFNJ5IGqltsmdonMOEt6EJ/6GVI0x
+ y0l90xUme7TAHC5q22ID1w/cQk07HFMAm0tC/7OUNdWM77JHf0jcql5nH
+ lLikUh5Y+JUbabKRIObe5XFZc1z3pAH+nUy70VMZojqApx0+SpkybrhLk A==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10771"; a="345086777"
+X-IronPort-AV: E=Sophos;i="6.01,205,1684825200"; d="scan'208";a="345086777"
 Received: from orsmga008.jf.intel.com ([10.7.209.65])
  by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 14 Jul 2023 07:48:32 -0700
+ 14 Jul 2023 07:48:35 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10771"; a="752064291"
-X-IronPort-AV: E=Sophos;i="6.01,205,1684825200"; d="scan'208";a="752064291"
+X-IronPort-AV: E=McAfee;i="6600,9927,10771"; a="752064295"
+X-IronPort-AV: E=Sophos;i="6.01,205,1684825200"; d="scan'208";a="752064295"
 Received: from joejardi-mobl3.ger.corp.intel.com (HELO mwauld-desk1.intel.com)
  ([10.252.28.242])
  by orsmga008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 14 Jul 2023 07:48:31 -0700
+ 14 Jul 2023 07:48:33 -0700
 From: Matthew Auld <matthew.auld@intel.com>
 To: intel-xe@lists.freedesktop.org
-Date: Fri, 14 Jul 2023 15:48:16 +0100
-Message-ID: <20230714144814.574873-6-matthew.auld@intel.com>
+Date: Fri, 14 Jul 2023 15:48:17 +0100
+Message-ID: <20230714144814.574873-7-matthew.auld@intel.com>
 X-Mailer: git-send-email 2.41.0
 In-Reply-To: <20230714144814.574873-5-matthew.auld@intel.com>
 References: <20230714144814.574873-5-matthew.auld@intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-xe] [PATCH v7 1/3] drm/xe/bo: support tiered vram allocation
- for small-bar
+Subject: [Intel-xe] [PATCH v7 2/3] drm/xe/uapi: add the userspace bits for
+ small-bar
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -59,180 +59,279 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Cc: Lucas De Marchi <lucas.demarchi@intel.com>
+Cc: Filip Hazubski <filip.hazubski@intel.com>,
+ Lucas De Marchi <lucas.demarchi@intel.com>, Effie Yu <effie.yu@intel.com>,
+ Carl Zhang <carl.zhang@intel.com>
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Add the new flag XE_BO_NEEDS_CPU_ACCESS, to force allocating in the
-mappable part of vram. If no flag is specified we do a topdown
-allocation, to limit the chances of stealing the precious mappable part,
-if we don't need it. If this is a full-bar system, then this all gets
-nooped.
+Mostly the same as i915. We add a new hint for userspace to force an
+object into the mappable part of vram.
 
-For kernel users, it looks like xe_bo_create_pin_map() is the central
-place which users should call if they want CPU access to the object, so
-add the flag there.
+We also need to tell userspace how large the mappable part is. In Vulkan
+for example, there will be two vram heaps for small-bar systems. And
+here the size of each heap needs to be known. Likewise the used/avail
+tracking needs to account for the mappable part.
 
-We still need to plumb this through for userspace allocations. Also it
-looks like page-tables are using pin_map(), which is less than ideal. If
-we can already use the GPU to do page-table management, then maybe we
-should just force that for small-bar.
+We also limit the available tracking going forward, such that we limit
+to privileged users only, since these values are system wide and are
+technically considered an info leak.
 
+v2 (Maarten):
+  - s/NEEDS_CPU_ACCESS/NEEDS_VISIBLE_VRAM/ in the uapi. We also no
+    longer require smem as an extra placement. This is more flexible,
+    and lets us use this for clear-color surfaces, since we need CPU access
+    there but we don't want to attach smem, since that effectively disables
+    CCS from kernel pov.
+  - Reject clear-color CCS buffers where NEEDS_VISIBLE_VRAM is not set,
+    instead of migrating it behind the scenes.
+v3 (José):
+  - Split the changes that limit the accounting for perfmon_capable()
+    into a separate patch.
+  - Use XE_BO_CREATE_VRAM_MASK.
+v4 (Gwan-gyeong Mun):
+  - Add some kernel-doc for the query bits.
+v5:
+  - One small kernel-doc correction. The cpu_visible_size and
+    corresponding used tracking are always zero for non
+    XE_MEM_REGION_CLASS_VRAM.
+v6:
+  - Without perfmon_capable() it likely makes more sense to report as
+    zero, instead of reporting as used == total size. This should give
+    similar behaviour as i915 which rather tracks free instead of used.
+  - Only enforce NEEDS_VISIBLE_VRAM on rc_ccs_cc_plane surfaces when the
+    device is actually small-bar.
+
+Testcase: igt/tests/xe_query
+Testcase: igt/tests/xe_mmap@small-bar
 Signed-off-by: Matthew Auld <matthew.auld@intel.com>
-Cc: Gwan-gyeong Mun <gwan-gyeong.mun@intel.com>
+Cc: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
 Cc: Thomas Hellström <thomas.hellstrom@linux.intel.com>
+Cc: Gwan-gyeong Mun <gwan-gyeong.mun@intel.com>
 Cc: Lucas De Marchi <lucas.demarchi@intel.com>
-Reviewed-by: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
+Cc: José Roberto de Souza <jose.souza@intel.com>
+Cc: Filip Hazubski <filip.hazubski@intel.com>
+Cc: Carl Zhang <carl.zhang@intel.com>
+Cc: Effie Yu <effie.yu@intel.com>
+Reviewed-by: José Roberto de Souza <jose.souza@intel.com>
 Reviewed-by: Gwan-gyeong Mun <gwan-gyeong.mun@intel.com>
 ---
- drivers/gpu/drm/xe/tests/xe_migrate.c |  3 +-
- drivers/gpu/drm/xe/xe_bo.c            | 48 ++++++++++++++++++---------
- drivers/gpu/drm/xe/xe_bo.h            |  1 +
- drivers/gpu/drm/xe/xe_ttm_vram_mgr.c  |  4 +++
- 4 files changed, 40 insertions(+), 16 deletions(-)
+ drivers/gpu/drm/xe/display/xe_fb_pin.c | 17 ++++++++++
+ drivers/gpu/drm/xe/xe_bo.c             | 13 +++++--
+ drivers/gpu/drm/xe/xe_query.c          |  8 +++--
+ drivers/gpu/drm/xe/xe_ttm_vram_mgr.c   | 18 ++++++++++
+ drivers/gpu/drm/xe/xe_ttm_vram_mgr.h   |  4 +++
+ include/uapi/drm/xe_drm.h              | 47 +++++++++++++++++++++++++-
+ 6 files changed, 102 insertions(+), 5 deletions(-)
 
-diff --git a/drivers/gpu/drm/xe/tests/xe_migrate.c b/drivers/gpu/drm/xe/tests/xe_migrate.c
-index aedfb3dd559e..2bea1ec34ffd 100644
---- a/drivers/gpu/drm/xe/tests/xe_migrate.c
-+++ b/drivers/gpu/drm/xe/tests/xe_migrate.c
-@@ -111,7 +111,8 @@ static void test_copy(struct xe_migrate *m, struct xe_bo *bo,
- 	struct xe_bo *sysmem = xe_bo_create_locked(xe, m->tile, NULL,
- 						   bo->size,
- 						   ttm_bo_type_kernel,
--						   XE_BO_CREATE_SYSTEM_BIT);
-+						   XE_BO_CREATE_SYSTEM_BIT |
-+						   XE_BO_NEEDS_CPU_ACCESS);
- 	if (IS_ERR(sysmem)) {
- 		KUNIT_FAIL(test, "Failed to allocate sysmem bo for %s: %li\n",
- 			   str, PTR_ERR(sysmem));
-diff --git a/drivers/gpu/drm/xe/xe_bo.c b/drivers/gpu/drm/xe/xe_bo.c
-index 6353afa8d846..175572163875 100644
---- a/drivers/gpu/drm/xe/xe_bo.c
-+++ b/drivers/gpu/drm/xe/xe_bo.c
-@@ -124,19 +124,28 @@ static void add_vram(struct xe_device *xe, struct xe_bo *bo,
- 		     struct ttm_place *places, u32 bo_flags, u32 mem_type, u32 *c)
- {
- 	struct xe_tile *tile = mem_type_to_tile(xe, mem_type);
-+	struct ttm_place place = { .mem_type = mem_type };
-+	u64 io_size = tile->mem.vram.io_size;
+diff --git a/drivers/gpu/drm/xe/display/xe_fb_pin.c b/drivers/gpu/drm/xe/display/xe_fb_pin.c
+index 83c9245dd362..0b7a0c8e3af7 100644
+--- a/drivers/gpu/drm/xe/display/xe_fb_pin.c
++++ b/drivers/gpu/drm/xe/display/xe_fb_pin.c
+@@ -201,6 +201,23 @@ static struct i915_vma *__xe_pin_fb_vma(struct intel_framebuffer *fb,
+ 		goto err;
+ 	}
  
- 	XE_BUG_ON(!tile->mem.vram.usable_size);
- 
--	places[*c] = (struct ttm_place) {
--		.mem_type = mem_type,
--		/*
--		 * For eviction / restore on suspend / resume objects
--		 * pinned in VRAM must be contiguous
--		 */
--		.flags = bo_flags & (XE_BO_CREATE_PINNED_BIT |
--				     XE_BO_CREATE_GGTT_BIT) ?
--			TTM_PL_FLAG_CONTIGUOUS : 0,
--	};
-+	/*
-+	 * For eviction / restore on suspend / resume objects
-+	 * pinned in VRAM must be contiguous
-+	 */
-+	if (bo_flags & (XE_BO_CREATE_PINNED_BIT |
-+			XE_BO_CREATE_GGTT_BIT))
-+		place.flags |= TTM_PL_FLAG_CONTIGUOUS;
++	if (IS_DGFX(to_xe_device(bo->ttm.base.dev)) &&
++	    intel_fb_rc_ccs_cc_plane(&fb->base) >= 0 &&
++	    !(bo->flags & XE_BO_NEEDS_CPU_ACCESS)) {
++		struct xe_tile *tile = xe_device_get_root_tile(xe);
 +
-+	if (io_size < tile->mem.vram.usable_size) {
-+		if (bo_flags & XE_BO_NEEDS_CPU_ACCESS) {
-+			place.fpfn = 0;
-+			place.lpfn = io_size >> PAGE_SHIFT;
-+		} else {
-+			place.flags |= TTM_PL_FLAG_TOPDOWN;
++		/*
++		 * If we need to able to access the clear-color value stored in
++		 * the buffer, then we require that such buffers are also CPU
++		 * accessible.  This is important on small-bar systems where
++		 * only some subset of VRAM is CPU accessible.
++		 */
++		if (tile->mem.vram.io_size < tile->mem.vram.usable_size) {
++			ret = -EINVAL;
++			goto err;
 +		}
 +	}
-+	places[*c] = place;
- 	*c += 1;
- 
- 	if (bo->props.preferred_mem_type == XE_BO_PROPS_INVALID)
-@@ -377,15 +386,20 @@ static int xe_ttm_io_mem_reserve(struct ttm_device *bdev,
- 				 struct ttm_resource *mem)
- {
- 	struct xe_device *xe = ttm_to_xe_device(bdev);
--	struct xe_tile *tile;
- 
- 	switch (mem->mem_type) {
- 	case XE_PL_SYSTEM:
- 	case XE_PL_TT:
- 		return 0;
- 	case XE_PL_VRAM0:
--	case XE_PL_VRAM1:
--		tile = mem_type_to_tile(xe, mem->mem_type);
-+	case XE_PL_VRAM1: {
-+		struct xe_tile *tile = mem_type_to_tile(xe, mem->mem_type);
-+		struct xe_ttm_vram_mgr_resource *vres =
-+			to_xe_ttm_vram_mgr_resource(mem);
 +
-+		if (vres->used_visible_size < mem->size)
+ 	/*
+ 	 * Pin the framebuffer, we can't use xe_bo_(un)pin functions as the
+ 	 * assumptions are incorrect for framebuffers
+diff --git a/drivers/gpu/drm/xe/xe_bo.c b/drivers/gpu/drm/xe/xe_bo.c
+index 175572163875..681faedb699d 100644
+--- a/drivers/gpu/drm/xe/xe_bo.c
++++ b/drivers/gpu/drm/xe/xe_bo.c
+@@ -1096,7 +1096,6 @@ static vm_fault_t xe_gem_fault(struct vm_fault *vmf)
+ 			ret = ttm_bo_vm_fault_reserved(vmf,
+ 						       vmf->vma->vm_page_prot,
+ 						       TTM_BO_VM_NUM_PREFAULT);
+-
+ 		drm_dev_exit(idx);
+ 	} else {
+ 		ret = ttm_bo_vm_dummy_page(vmf, vmf->vma->vm_page_prot);
+@@ -1739,6 +1738,7 @@ int xe_gem_create_ioctl(struct drm_device *dev, void *data,
+ 	if (XE_IOCTL_ERR(xe, args->flags &
+ 			 ~(XE_GEM_CREATE_FLAG_DEFER_BACKING |
+ 			   XE_GEM_CREATE_FLAG_SCANOUT |
++			   XE_GEM_CREATE_FLAG_NEEDS_VISIBLE_VRAM |
+ 			   xe->info.mem_region_mask)))
+ 		return -EINVAL;
+ 
+@@ -1776,6 +1776,14 @@ int xe_gem_create_ioctl(struct drm_device *dev, void *data,
+ 		bo_flags |= XE_BO_SCANOUT_BIT;
+ 
+ 	bo_flags |= args->flags << (ffs(XE_BO_CREATE_SYSTEM_BIT) - 1);
++
++	if (args->flags & XE_GEM_CREATE_FLAG_NEEDS_VISIBLE_VRAM) {
++		if (XE_IOCTL_ERR(xe, !(bo_flags & XE_BO_CREATE_VRAM_MASK)))
 +			return -EINVAL;
 +
- 		mem->bus.offset = mem->start << PAGE_SHIFT;
- 
- 		if (tile->mem.vram.mapping &&
-@@ -400,7 +414,7 @@ static int xe_ttm_io_mem_reserve(struct ttm_device *bdev,
- 		mem->bus.caching = ttm_write_combined;
- #endif
- 		return 0;
--	case XE_PL_STOLEN:
-+	} case XE_PL_STOLEN:
- 		return xe_ttm_stolen_io_mem_reserve(xe, mem);
- 	default:
- 		return -EINVAL;
-@@ -1355,7 +1369,8 @@ struct xe_bo *xe_bo_create_pin_map_at(struct xe_device *xe, struct xe_tile *tile
- 	    xe_ttm_stolen_cpu_access_needs_ggtt(xe))
- 		flags |= XE_BO_CREATE_GGTT_BIT;
- 
--	bo = xe_bo_create_locked_range(xe, tile, vm, size, start, end, type, flags);
-+	bo = xe_bo_create_locked_range(xe, tile, vm, size, start, end, type,
-+				       flags | XE_BO_NEEDS_CPU_ACCESS);
- 	if (IS_ERR(bo))
- 		return bo;
- 
-@@ -1664,6 +1679,9 @@ int xe_bo_vmap(struct xe_bo *bo)
- 
- 	xe_bo_assert_held(bo);
- 
-+	if (!(bo->flags & XE_BO_NEEDS_CPU_ACCESS))
-+		return -EINVAL;
++		bo_flags |= XE_BO_NEEDS_CPU_ACCESS;
++	}
 +
- 	if (!iosys_map_is_null(&bo->vmap))
- 		return 0;
+ 	bo = xe_bo_create(xe, NULL, vm, args->size, ttm_bo_type_device,
+ 			  bo_flags);
+ 	if (vm) {
+@@ -2053,7 +2061,8 @@ int xe_bo_dumb_create(struct drm_file *file_priv,
  
-diff --git a/drivers/gpu/drm/xe/xe_bo.h b/drivers/gpu/drm/xe/xe_bo.h
-index 08ca1d06bf77..f9c155443de6 100644
---- a/drivers/gpu/drm/xe/xe_bo.h
-+++ b/drivers/gpu/drm/xe/xe_bo.h
-@@ -31,6 +31,7 @@
- #define XE_BO_DEFER_BACKING		BIT(9)
- #define XE_BO_SCANOUT_BIT		BIT(10)
- #define XE_BO_FIXED_PLACEMENT_BIT	BIT(11)
-+#define XE_BO_NEEDS_CPU_ACCESS		BIT(12)
- /* this one is trigger internally only */
- #define XE_BO_INTERNAL_TEST		BIT(30)
- #define XE_BO_INTERNAL_64K		BIT(31)
+ 	bo = xe_bo_create(xe, NULL, NULL, args->size, ttm_bo_type_device,
+ 			  XE_BO_CREATE_VRAM_IF_DGFX(xe_device_get_root_tile(xe)) |
+-			  XE_BO_CREATE_USER_BIT | XE_BO_SCANOUT_BIT);
++			  XE_BO_CREATE_USER_BIT | XE_BO_SCANOUT_BIT |
++			  XE_BO_NEEDS_CPU_ACCESS);
+ 	if (IS_ERR(bo))
+ 		return PTR_ERR(bo);
+ 
+diff --git a/drivers/gpu/drm/xe/xe_query.c b/drivers/gpu/drm/xe/xe_query.c
+index 9acbb27dfcab..0a16471729dc 100644
+--- a/drivers/gpu/drm/xe/xe_query.c
++++ b/drivers/gpu/drm/xe/xe_query.c
+@@ -17,6 +17,7 @@
+ #include "xe_gt.h"
+ #include "xe_guc_hwconfig.h"
+ #include "xe_macros.h"
++#include "xe_ttm_vram_mgr.h"
+ 
+ static const enum xe_engine_class xe_to_user_engine_class[] = {
+ 	[XE_ENGINE_CLASS_RENDER] = DRM_XE_ENGINE_CLASS_RENDER,
+@@ -148,10 +149,13 @@ static int query_memory_usage(struct xe_device *xe,
+ 				man->size;
+ 
+ 			if (perfmon_capable()) {
+-				usage->regions[usage->num_regions].used =
+-					ttm_resource_manager_usage(man);
++				xe_ttm_vram_get_used(man,
++						     &usage->regions[usage->num_regions].used,
++						     &usage->regions[usage->num_regions].cpu_visible_used);
+ 			}
+ 
++			usage->regions[usage->num_regions].cpu_visible_size =
++				xe_ttm_vram_get_cpu_visible_size(man);
+ 			usage->num_regions++;
+ 		}
+ 	}
 diff --git a/drivers/gpu/drm/xe/xe_ttm_vram_mgr.c b/drivers/gpu/drm/xe/xe_ttm_vram_mgr.c
-index a10fd0366da3..27e0d40daca8 100644
+index 27e0d40daca8..06a54c8bd46f 100644
 --- a/drivers/gpu/drm/xe/xe_ttm_vram_mgr.c
 +++ b/drivers/gpu/drm/xe/xe_ttm_vram_mgr.c
-@@ -373,11 +373,15 @@ int xe_ttm_vram_mgr_alloc_sgt(struct xe_device *xe,
- 			      struct sg_table **sgt)
- {
- 	struct xe_tile *tile = &xe->tiles[res->mem_type - XE_PL_VRAM0];
-+	struct xe_ttm_vram_mgr_resource *vres = to_xe_ttm_vram_mgr_resource(res);
- 	struct xe_res_cursor cursor;
- 	struct scatterlist *sg;
- 	int num_entries = 0;
- 	int i, r;
- 
-+	if (vres->used_visible_size < res->size)
-+		return -EOPNOTSUPP;
+@@ -457,3 +457,21 @@ void xe_ttm_vram_mgr_free_sgt(struct device *dev, enum dma_data_direction dir,
+ 	sg_free_table(sgt);
+ 	kfree(sgt);
+ }
 +
- 	*sgt = kmalloc(sizeof(**sgt), GFP_KERNEL);
- 	if (!*sgt)
- 		return -ENOMEM;
++u64 xe_ttm_vram_get_cpu_visible_size(struct ttm_resource_manager *man)
++{
++	struct xe_ttm_vram_mgr *mgr = to_xe_ttm_vram_mgr(man);
++
++	return mgr->visible_size;
++}
++
++void xe_ttm_vram_get_used(struct ttm_resource_manager *man,
++			  u64 *used, u64 *used_visible)
++{
++	struct xe_ttm_vram_mgr *mgr = to_xe_ttm_vram_mgr(man);
++
++	mutex_lock(&mgr->lock);
++	*used = mgr->mm.size - mgr->mm.avail;
++	*used_visible = mgr->visible_size - mgr->visible_avail;
++	mutex_unlock(&mgr->lock);
++}
+diff --git a/drivers/gpu/drm/xe/xe_ttm_vram_mgr.h b/drivers/gpu/drm/xe/xe_ttm_vram_mgr.h
+index 6e1d6033d739..d184e19a9230 100644
+--- a/drivers/gpu/drm/xe/xe_ttm_vram_mgr.h
++++ b/drivers/gpu/drm/xe/xe_ttm_vram_mgr.h
+@@ -25,6 +25,10 @@ int xe_ttm_vram_mgr_alloc_sgt(struct xe_device *xe,
+ void xe_ttm_vram_mgr_free_sgt(struct device *dev, enum dma_data_direction dir,
+ 			      struct sg_table *sgt);
+ 
++u64 xe_ttm_vram_get_cpu_visible_size(struct ttm_resource_manager *man);
++void xe_ttm_vram_get_used(struct ttm_resource_manager *man,
++			  u64 *used, u64 *used_visible);
++
+ static inline struct xe_ttm_vram_mgr_resource *
+ to_xe_ttm_vram_mgr_resource(struct ttm_resource *res)
+ {
+diff --git a/include/uapi/drm/xe_drm.h b/include/uapi/drm/xe_drm.h
+index 347351a8f618..05b906275a5b 100644
+--- a/include/uapi/drm/xe_drm.h
++++ b/include/uapi/drm/xe_drm.h
+@@ -180,8 +180,37 @@ struct drm_xe_query_mem_region {
+ 	 * zero.
+ 	 */
+ 	__u64 used;
++	/*
++	 * @cpu_visible_size: How much of this region can be CPU
++	 * accessed, in bytes.
++	 *
++	 * This will always be <= @total_size, and the remainder (if
++	 * any) will not be CPU accessible. If the CPU accessible part
++	 * is smaller than @total_size then this is referred to as a
++	 * small BAR system.
++	 *
++	 * On systems without small BAR (full BAR), the probed_size will
++	 * always equal the @total_size, since all of it will be CPU
++	 * accessible.
++	 *
++	 * Note this is only tracked for XE_MEM_REGION_CLASS_VRAM
++	 * regions (for other types the value here will always equal
++	 * zero).
++	 */
++	__u64 cpu_visible_size;
++	/**
++	 * @cpu_visible_used: Estimate of CPU visible memory used, in
++	 * bytes.
++	 *
++	 * Requires CAP_PERFMON or CAP_SYS_ADMIN to get reliable
++	 * accounting. Without this the value here will always equal
++	 * zero.  Note this is only currently tracked for
++	 * XE_MEM_REGION_CLASS_VRAM regions (for other types the value
++	 * here will always be zero).
++	 */
++	__u64 cpu_visible_used;
+ 	/** @reserved: MBZ */
+-	__u64 reserved[8];
++	__u64 reserved[6];
+ };
+ 
+ /**
+@@ -383,6 +412,22 @@ struct drm_xe_gem_create {
+ 
+ #define XE_GEM_CREATE_FLAG_DEFER_BACKING	(0x1 << 24)
+ #define XE_GEM_CREATE_FLAG_SCANOUT		(0x1 << 25)
++/*
++ * When using VRAM as a possible placement, ensure that the corresponding VRAM
++ * allocation will always use the CPU accessible part of VRAM. This is important
++ * for small-bar systems (on full-bar systems this gets turned into a noop).
++ *
++ * Note: System memory can be used as an extra placement if the kernel should
++ * spill the allocation to system memory, if space can't be made available in
++ * the CPU accessible part of VRAM (giving the same behaviour as the i915
++ * interface, see I915_GEM_CREATE_EXT_FLAG_NEEDS_CPU_ACCESS).
++ *
++ * Note: For clear-color CCS surfaces the kernel needs to read the clear-color
++ * value stored in the buffer, and on discrete platforms we need to use VRAM for
++ * display surfaces, therefore the kernel requires setting this flag for such
++ * objects, otherwise an error is thrown on small-bar systems.
++ */
++#define XE_GEM_CREATE_FLAG_NEEDS_VISIBLE_VRAM	(0x1 << 26)
+ 	/**
+ 	 * @flags: Flags, currently a mask of memory instances of where BO can
+ 	 * be placed
 -- 
 2.41.0
 
