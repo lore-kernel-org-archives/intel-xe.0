@@ -4,53 +4,48 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8C045C001DE
-	for <intel-xe@archiver.kernel.org>; Sat, 15 Jul 2023 13:12:06 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 69962C001DF
+	for <intel-xe@archiver.kernel.org>; Sat, 15 Jul 2023 15:46:08 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0816510E124;
-	Sat, 15 Jul 2023 13:12:06 +0000 (UTC)
-Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
- by gabe.freedesktop.org (Postfix) with ESMTPS id F314E10E124
- for <intel-xe@lists.freedesktop.org>; Sat, 15 Jul 2023 13:12:04 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1038910E172;
+	Sat, 15 Jul 2023 15:46:08 +0000 (UTC)
+Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id CCA0B10E16B;
+ Sat, 15 Jul 2023 15:46:05 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1689426724; x=1720962724;
- h=message-id:date:mime-version:subject:to:references:from:
- in-reply-to:content-transfer-encoding;
- bh=c85GtcnFNBb6eKeImZtoSlKRSAmN7+vN8DiivAHUXPI=;
- b=IKE1YKI80e1B3OT5Dz8AevginDTlInUBVAEPwKoMtC3GMw6f5adCrIe4
- glTL/S7Hx7cWlHQvPkewXUbf1JR9yEO9+o3q+ELJbduSRZ7442Wci/vqT
- UA/2+DPWkWOQ7rKQ1BgP0nI97dEBzOurwbnfBEpp749VjV/QIwksnPTb8
- MewyFILv8ZW/5r6zfnGRCejD7KR1KDRBfajUYkBan1ySuJYTQARyhU/fx
- wquNH1Po3t23lnFYJnhPUa3jSfb/QimXkVSHl+Zg4yOceEKXYA1mTZ01r
- 1QMpvxqI4DjH76kQixMS6MLkcW9wa2k53riRTHIbqFEHFTddZ7KX4cA/P g==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10772"; a="365699574"
-X-IronPort-AV: E=Sophos;i="6.01,208,1684825200"; d="scan'208";a="365699574"
-Received: from orsmga006.jf.intel.com ([10.7.209.51])
- by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 15 Jul 2023 06:12:03 -0700
+ t=1689435965; x=1720971965;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=TdOFQx8Xw8wGYYZnQLWKR6xssjx8vw+ImsQnbjJdtIg=;
+ b=TNvI8483sirnZ5iamQDxnvWoFzWNQSMXWFmi8LS641BMiIGpULuqMDyy
+ /K3I0wNf3Gd7lzgHc5AXFrK2+dzih9ZKDTV58sZlUokMigZPBCahOKt0R
+ ati2LVfS3hSLqYbK0aKDqpq70FCY4mD7lya74zDMhPZObehy19Q9AGlSn
+ BMRyUjfaBU/JiLgChE8uR9iXZcECIbNGDBX5FexecSlmvlK3ReE7sweEZ
+ PbBAO1T7gmOLpV14RW5O+a+FygdHAfvSSG9ckqmGyilPhIHDMCd6/7tib
+ HAzqP43QBsBeoxXdOm2fVujFe66+kBF/9iDu+6dXIPZHTDhTWgkItulOx A==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10772"; a="368315030"
+X-IronPort-AV: E=Sophos;i="6.01,208,1684825200"; d="scan'208";a="368315030"
+Received: from orsmga002.jf.intel.com ([10.7.209.21])
+ by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 15 Jul 2023 08:46:04 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10772"; a="699990307"
-X-IronPort-AV: E=Sophos;i="6.01,208,1684825200"; d="scan'208";a="699990307"
-Received: from lapeders-mobl1.ger.corp.intel.com (HELO [10.249.254.142])
- ([10.249.254.142])
- by orsmga006-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 15 Jul 2023 06:12:01 -0700
-Message-ID: <1ebf9a3b-fcfc-e30f-eec5-e9c87c5be761@linux.intel.com>
-Date: Sat, 15 Jul 2023 15:11:59 +0200
+X-IronPort-AV: E=McAfee;i="6600,9927,10772"; a="722725472"
+X-IronPort-AV: E=Sophos;i="6.01,208,1684825200"; d="scan'208";a="722725472"
+Received: from sbint17x-mobl.gar.corp.intel.com (HELO
+ thellstr-mobl1.intel.com) ([10.249.254.142])
+ by orsmga002-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 15 Jul 2023 08:46:01 -0700
+From: =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>
+To: intel-xe@lists.freedesktop.org
+Date: Sat, 15 Jul 2023 17:45:43 +0200
+Message-ID: <20230715154543.13183-1-thomas.hellstrom@linux.intel.com>
+X-Mailer: git-send-email 2.41.0
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.12.0
-Content-Language: en-US
-To: Matthew Brost <matthew.brost@intel.com>, intel-xe@lists.freedesktop.org
-References: <20230711212748.2029455-1-matthew.brost@intel.com>
- <20230711212748.2029455-3-matthew.brost@intel.com>
-From: =?UTF-8?Q?Thomas_Hellstr=c3=b6m?= <thomas.hellstrom@linux.intel.com>
-In-Reply-To: <20230711212748.2029455-3-matthew.brost@intel.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-Subject: Re: [Intel-xe] [PATCH 2/5] drm/xe: Reduce the number list links in
- xe_vma
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+Subject: [Intel-xe] [PATCH v5] Documentation/gpu: Add a VM_BIND async draft
+ document
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -62,270 +57,233 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Cc: Francois Dugast <francois.dugast@intel.com>,
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+ linux-kernel@vger.kernel.org, Oak Zeng <oak.zeng@intel.com>,
+ Danilo Krummrich <dakr@redhat.com>, dri-devel@lists.freedesktop.org,
+ Daniel Vetter <daniel@ffwll.ch>, Nirmoy Das <nirmoy.das@intel.com>
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Hi, Matthew,
+Add a motivation for and description of asynchronous VM_BIND operation
 
-On 7/11/23 23:27, Matthew Brost wrote:
-> Combine the userptr, rebind, and destroy links into a union as
-> the lists these links belong to are mutually exclusive.
->
-> v2: Adjust which lists are combined (Thomas H)
->
-> Signed-off-by: Matthew Brost <matthew.brost@intel.com>
-> ---
->   drivers/gpu/drm/xe/xe_bo.c       |  6 +++--
->   drivers/gpu/drm/xe/xe_exec.c     |  2 +-
->   drivers/gpu/drm/xe/xe_pt.c       |  2 +-
->   drivers/gpu/drm/xe/xe_vm.c       | 45 ++++++++++++++++----------------
->   drivers/gpu/drm/xe/xe_vm_types.h | 28 +++++++++-----------
->   5 files changed, 41 insertions(+), 42 deletions(-)
->
-> diff --git a/drivers/gpu/drm/xe/xe_bo.c b/drivers/gpu/drm/xe/xe_bo.c
-> index 6353afa8d846..ca7f74ecb753 100644
-> --- a/drivers/gpu/drm/xe/xe_bo.c
-> +++ b/drivers/gpu/drm/xe/xe_bo.c
-> @@ -474,8 +474,10 @@ static int xe_bo_trigger_rebind(struct xe_device *xe, struct xe_bo *bo,
->   			}
->   
->   			xe_vm_assert_held(vm);
-> -			if (list_empty(&vma->rebind_link) && vma->tile_present)
-> -				list_add_tail(&vma->rebind_link, &vm->rebind_list);
-> +			if (list_empty(&vma->combined_links.rebind) &&
-> +			    vma->tile_present)
-> +				list_add_tail(&vma->combined_links.rebind,
-> +					      &vm->rebind_list);
->   
->   			if (vm_resv_locked)
->   				dma_resv_unlock(&vm->resv);
-> diff --git a/drivers/gpu/drm/xe/xe_exec.c b/drivers/gpu/drm/xe/xe_exec.c
-> index ba13d20ed348..bc5bd4bdc582 100644
-> --- a/drivers/gpu/drm/xe/xe_exec.c
-> +++ b/drivers/gpu/drm/xe/xe_exec.c
-> @@ -120,7 +120,7 @@ static int xe_exec_begin(struct xe_engine *e, struct ww_acquire_ctx *ww,
->   	 * BOs have valid placements possibly moving an evicted BO back
->   	 * to a location where the GPU can access it).
->   	 */
-> -	list_for_each_entry(vma, &vm->rebind_list, rebind_link) {
-> +	list_for_each_entry(vma, &vm->rebind_list, combined_links.rebind) {
->   		XE_WARN_ON(xe_vma_is_null(vma));
->   
->   		if (xe_vma_is_userptr(vma))
-> diff --git a/drivers/gpu/drm/xe/xe_pt.c b/drivers/gpu/drm/xe/xe_pt.c
-> index a8d96cbd53e3..3b43b32f4a33 100644
-> --- a/drivers/gpu/drm/xe/xe_pt.c
-> +++ b/drivers/gpu/drm/xe/xe_pt.c
-> @@ -1690,7 +1690,7 @@ __xe_pt_unbind_vma(struct xe_tile *tile, struct xe_vma *vma, struct xe_engine *e
->   	}
->   
->   	if (!vma->tile_present)
-> -		list_del_init(&vma->rebind_link);
-> +		list_del_init(&vma->combined_links.rebind);
->   
->   	if (unbind_pt_update.locked) {
->   		XE_WARN_ON(!xe_vma_is_userptr(vma));
-> diff --git a/drivers/gpu/drm/xe/xe_vm.c b/drivers/gpu/drm/xe/xe_vm.c
-> index 5f4f6dab270a..b2847be6de6a 100644
-> --- a/drivers/gpu/drm/xe/xe_vm.c
-> +++ b/drivers/gpu/drm/xe/xe_vm.c
-> @@ -467,7 +467,8 @@ int xe_vm_lock_dma_resv(struct xe_vm *vm, struct ww_acquire_ctx *ww,
->   
->   		list_del_init(&vma->notifier.rebind_link);
->   		if (vma->tile_present && !(vma->gpuva.flags & XE_VMA_DESTROYED))
-> -			list_move_tail(&vma->rebind_link, &vm->rebind_list);
-> +			list_move_tail(&vma->combined_links.rebind,
-> +				       &vm->rebind_list);
->   	}
->   	spin_unlock(&vm->notifier.list_lock);
->   
-> @@ -608,7 +609,7 @@ static void preempt_rebind_work_func(struct work_struct *w)
->   	if (err)
->   		goto out_unlock;
->   
-> -	list_for_each_entry(vma, &vm->rebind_list, rebind_link) {
-> +	list_for_each_entry(vma, &vm->rebind_list, combined_links.rebind) {
->   		if (xe_vma_has_no_bo(vma) ||
->   		    vma->gpuva.flags & XE_VMA_DESTROYED)
->   			continue;
-> @@ -780,17 +781,20 @@ int xe_vm_userptr_pin(struct xe_vm *vm)
->   	list_for_each_entry_safe(vma, next, &vm->userptr.invalidated,
->   				 userptr.invalidate_link) {
->   		list_del_init(&vma->userptr.invalidate_link);
-> -		list_move_tail(&vma->userptr_link, &vm->userptr.repin_list);
-> +		if (list_empty(&vma->combined_links.userptr))
-> +			list_move_tail(&vma->combined_links.userptr,
-> +				       &vm->userptr.repin_list);
->   	}
->   	spin_unlock(&vm->userptr.invalidated_lock);
->   
->   	/* Pin and move to temporary list */
-> -	list_for_each_entry_safe(vma, next, &vm->userptr.repin_list, userptr_link) {
-> +	list_for_each_entry_safe(vma, next, &vm->userptr.repin_list,
-> +				 combined_links.userptr) {
->   		err = xe_vma_userptr_pin_pages(vma);
->   		if (err < 0)
->   			goto out_err;
->   
-> -		list_move_tail(&vma->userptr_link, &tmp_evict);
-> +		list_move_tail(&vma->combined_links.userptr, &tmp_evict);
->   	}
->   
->   	/* Take lock and move to rebind_list for rebinding. */
-> @@ -798,10 +802,8 @@ int xe_vm_userptr_pin(struct xe_vm *vm)
->   	if (err)
->   		goto out_err;
->   
-> -	list_for_each_entry_safe(vma, next, &tmp_evict, userptr_link) {
-> -		list_del_init(&vma->userptr_link);
-> -		list_move_tail(&vma->rebind_link, &vm->rebind_list);
-> -	}
-> +	list_for_each_entry_safe(vma, next, &tmp_evict, combined_links.userptr)
-> +		list_move_tail(&vma->combined_links.rebind, &vm->rebind_list);
->   
->   	dma_resv_unlock(&vm->resv);
->   
-> @@ -845,10 +847,11 @@ struct dma_fence *xe_vm_rebind(struct xe_vm *vm, bool rebind_worker)
->   		return NULL;
->   
->   	xe_vm_assert_held(vm);
-> -	list_for_each_entry_safe(vma, next, &vm->rebind_list, rebind_link) {
-> +	list_for_each_entry_safe(vma, next, &vm->rebind_list,
-> +				 combined_links.rebind) {
->   		XE_WARN_ON(!vma->tile_present);
->   
-> -		list_del_init(&vma->rebind_link);
-> +		list_del_init(&vma->combined_links.rebind);
->   		dma_fence_put(fence);
->   		if (rebind_worker)
->   			trace_xe_vma_rebind_worker(vma);
-> @@ -883,9 +886,7 @@ static struct xe_vma *xe_vma_create(struct xe_vm *vm,
->   		return vma;
->   	}
->   
-> -	INIT_LIST_HEAD(&vma->rebind_link);
-> -	INIT_LIST_HEAD(&vma->unbind_link);
-> -	INIT_LIST_HEAD(&vma->userptr_link);
-> +	INIT_LIST_HEAD(&vma->combined_links.rebind);
->   	INIT_LIST_HEAD(&vma->userptr.invalidate_link);
->   	INIT_LIST_HEAD(&vma->notifier.rebind_link);
->   	INIT_LIST_HEAD(&vma->extobj.link);
-> @@ -1058,15 +1059,14 @@ static void xe_vma_destroy(struct xe_vma *vma, struct dma_fence *fence)
->   	struct xe_vm *vm = xe_vma_vm(vma);
->   
->   	lockdep_assert_held_write(&vm->lock);
-> -	XE_BUG_ON(!list_empty(&vma->unbind_link));
-> +	XE_BUG_ON(!list_empty(&vma->combined_links.destroy));
->   
->   	if (xe_vma_is_userptr(vma)) {
->   		XE_WARN_ON(!(vma->gpuva.flags & XE_VMA_DESTROYED));
->   
->   		spin_lock(&vm->userptr.invalidated_lock);
-> -		list_del_init(&vma->userptr.invalidate_link);
-> +		list_del(&vma->userptr.invalidate_link);
->   		spin_unlock(&vm->userptr.invalidated_lock);
-> -		list_del(&vma->userptr_link);
->   	} else if (!xe_vma_is_null(vma)) {
->   		xe_bo_assert_held(xe_vma_bo(vma));
->   
-> @@ -1087,9 +1087,6 @@ static void xe_vma_destroy(struct xe_vma *vma, struct dma_fence *fence)
->   	}
->   
->   	xe_vm_assert_held(vm);
-> -	if (!list_empty(&vma->rebind_link))
-> -		list_del(&vma->rebind_link);
-> -
->   	if (fence) {
->   		int ret = dma_fence_add_callback(fence, &vma->destroy_cb,
->   						 vma_destroy_cb);
-> @@ -1443,11 +1440,12 @@ void xe_vm_close_and_put(struct xe_vm *vm)
->   
->   		/* easy case, remove from VMA? */
->   		if (xe_vma_has_no_bo(vma) || xe_vma_bo(vma)->vm) {
-> +			list_del_init(&vma->combined_links.rebind);
->   			xe_vma_destroy(vma, NULL);
->   			continue;
->   		}
->   
-> -		list_add_tail(&vma->unbind_link, &contested);
-> +		list_move_tail(&vma->combined_links.destroy, &contested);
->   	}
->   
->   	/*
-> @@ -1475,8 +1473,9 @@ void xe_vm_close_and_put(struct xe_vm *vm)
->   	 * Since we hold a refcount to the bo, we can remove and free
->   	 * the members safely without locking.
->   	 */
-> -	list_for_each_entry_safe(vma, next_vma, &contested, unbind_link) {
-> -		list_del_init(&vma->unbind_link);
-> +	list_for_each_entry_safe(vma, next_vma, &contested,
-> +				 combined_links.destroy) {
-> +		list_del_init(&vma->combined_links.destroy);
->   		xe_vma_destroy_unlocked(vma);
->   	}
->   
-> diff --git a/drivers/gpu/drm/xe/xe_vm_types.h b/drivers/gpu/drm/xe/xe_vm_types.h
-> index f17dc5d7370e..84bf1620214c 100644
-> --- a/drivers/gpu/drm/xe/xe_vm_types.h
-> +++ b/drivers/gpu/drm/xe/xe_vm_types.h
-> @@ -49,21 +49,19 @@ struct xe_vma {
->   	 */
->   	u64 tile_present;
->   
-> -	/** @userptr_link: link into VM repin list if userptr */
-> -	struct list_head userptr_link;
-> -
-> -	/**
-> -	 * @rebind_link: link into VM if this VMA needs rebinding, and
-> -	 * if it's a bo (not userptr) needs validation after a possible
-> -	 * eviction. Protected by the vm's resv lock.
-> -	 */
-> -	struct list_head rebind_link;
+v2:
+- Fix typos (Nirmoy Das)
+- Improve the description of a memory fence (Oak Zeng)
+- Add a reference to the document in the Xe RFC.
+- Add pointers to sample uAPI suggestions
+v3:
+- Address review comments (Danilo Krummrich)
+- Formatting fixes
+v4:
+- Address typos (Francois Dugast)
+- Explain why in-fences are not allowed for VM_BIND operations for long-
+  running workloads (Matthew Brost)
+v5:
+- More typo- and style fixing
+- Further clarify the implications of disallowing in-fences for VM_BIND
+  operations for long-running workloads (Matthew Brost)
 
-The rebind_link and the userptr_link are not combinable. To be 
-combinable they need to either be protected by the same lock or be kept 
-mutually exclusive by some other *simple* argument, like construction / 
-destruction, used for different subclasses etc.
+Signed-off-by: Thomas Hellström <thomas.hellstrom@linux.intel.com>
+Acked-by: Nirmoy Das <nirmoy.das@intel.com>
+---
+ Documentation/gpu/drm-vm-bind-async.rst | 171 ++++++++++++++++++++++++
+ Documentation/gpu/rfc/xe.rst            |   4 +-
+ 2 files changed, 173 insertions(+), 2 deletions(-)
+ create mode 100644 Documentation/gpu/drm-vm-bind-async.rst
 
-The userptr_link is protected by the userptr.invalidated_lock and the 
-rebind_link by the vm resv, and no simple argument can be made. In fact 
-let's say that a userptr sits on or is being moved to the rebind list, 
-and then the invalidation notifier gets called, which will try to move 
-it to the userptr list again using the userptr link. In the best case it 
-will fail the move since the list is not empty, in the worst case list 
-corruption due to the list head is currently being modified.
+diff --git a/Documentation/gpu/drm-vm-bind-async.rst b/Documentation/gpu/drm-vm-bind-async.rst
+new file mode 100644
+index 000000000000..d2b02a38198a
+--- /dev/null
++++ b/Documentation/gpu/drm-vm-bind-async.rst
+@@ -0,0 +1,171 @@
++====================
++Asynchronous VM_BIND
++====================
++
++Nomenclature:
++=============
++
++* ``VRAM``: On-device memory. Sometimes referred to as device local memory.
++
++* ``gpu_vm``: A GPU address space. Typically per process, but can be shared by
++  multiple processes.
++
++* ``VM_BIND``: An operation or a list of operations to modify a gpu_vm using
++  an IOCTL. The operations include mapping and unmapping system- or
++  VRAM memory.
++
++* ``syncobj``: A container that abstracts synchronization objects. The
++  synchronization objects can be either generic, like dma-fences or
++  driver specific. A syncobj typically indicates the type of the
++  underlying synchronization object.
++
++* ``in-syncobj``: Argument to a VM_BIND IOCTL, the VM_BIND operation waits
++  for these before starting.
++
++* ``out-syncobj``: Argument to a VM_BIND_IOCTL, the VM_BIND operation
++  signals these when the bind operation is complete.
++
++* ``memory fence``: A synchronization object, different from a dma-fence.
++  A memory fence uses the value of a specified memory location to determine
++  signaled status. A memory fence can be awaited and signaled by both
++  the GPU and CPU. Memory fences are sometimes referred to as
++  user-fences, userspace-fences or gpu futexes and do not necessarily obey
++  the dma-fence rule of signaling within a "reasonable amount of time".
++  The kernel should thus avoid waiting for memory fences with locks held.
++
++* ``long-running workload``: A workload that may take more than the
++  current stipulated dma-fence maximum signal delay to complete and
++  which therefore needs to set the gpu_vm or the GPU execution context in
++  a certain mode that disallows completion dma-fences.
++
++* ``exec function``: An exec function is a function that revalidates all
++  affected gpu_vmas, submits a GPU command batch and registers the
++  dma_fence representing the GPU command's activity with all affected
++  dma_resvs. For completeness, although not covered by this document,
++  it's worth mentioning that an exec function may also be the
++  revalidation worker that is used by some drivers in compute /
++  long-running mode.
++
++* ``bind context``: A context identifier used for the VM_BIND
++  operation. VM_BIND operations that use the same bind context can be
++  assumed, where it matters, to complete in order of submission. No such
++  assumptions can be made for VM_BIND operations using separate bind contexts.
++
++* ``UMD``: User-mode driver.
++
++* ``KMD``: Kernel-mode driver.
++
++
++Synchronous / Asynchronous VM_BIND operation
++============================================
++
++Synchronous VM_BIND
++___________________
++With Synchronous VM_BIND, the VM_BIND operations all complete before the
++IOCTL returns. A synchronous VM_BIND takes neither in-fences nor
++out-fences. Synchronous VM_BIND may block and wait for GPU operations;
++for example swap-in or clearing, or even previous binds.
++
++Asynchronous VM_BIND
++____________________
++Asynchronous VM_BIND accepts both in-syncobjs and out-syncobjs. While the
++IOCTL may return immediately, the VM_BIND operations wait for the in-syncobjs
++before modifying the GPU page-tables, and signal the out-syncobjs when
++the modification is done in the sense that the next exec function that
++awaits for the out-syncobjs will see the change. Errors are reported
++synchronously assuming that the asynchronous part of the job never errors.
++In low-memory situations the implementation may block, performing the
++VM_BIND synchronously, because there might not be enough memory
++immediately available for preparing the asynchronous operation.
++
++If the VM_BIND IOCTL takes a list or an array of operations as an argument,
++the in-syncobjs needs to signal before the first operation starts to
++execute, and the out-syncobjs signal after the last operation
++completes. Operations in the operation list can be assumed, where it
++matters, to complete in order.
++
++Since asynchronous VM_BIND operations may use dma-fences embedded in
++out-syncobjs and internally in KMD to signal bind completion,  any
++memory fences given as VM_BIND in-fences need to be awaited
++synchronously before the VM_BIND ioctl returns, since dma-fences,
++required to signal in a reasonable amount of time, can never be made
++to depend on memory fences that don't have such a restriction.
++
++To aid in supporting user-space queues, the VM_BIND may take a bind context.
++
++The purpose of an Asynchronous VM_BIND operation is for user-mode
++drivers to be able to pipeline interleaved gpu_vm modifications and
++exec functions. For long-running workloads, such pipelining of a bind
++operation is not allowed and any in-fences need to be awaited
++synchronously. The reason for this is twofold. First, any memory
++fences gated by a long-running workload and used as in-syncobjs for the
++VM_BIND operation will need to be awaited synchronously anyway (see
++above). Second, any dma-fences used as in-syncobjs for VM_BIND
++operations for long-running workloads will not allow for pipelining
++anyway since long-running workloads don't allow for dma-fences as
++out-syncobjs, so while theoretically possible the use of them is
++questionable and should be rejected until there is a valuable use-case.
++Note that this is not a limitation imposed by dma-fence rules, but
++rather a limitation imposed to keep KMD implementation simple. It does
++not affect using dma-fences as dependencies for the long-running
++workload itself, which is allowed by dma-fence rules, but rather for
++the VM_BIND operation only.
++
++Also for VM_BINDS for long-running gpu_vms the user-mode driver should typically
++select memory fences as out-fences since that gives greater flexibility for
++the kernel mode driver to inject other operations into the bind /
++unbind operations. Like for example inserting breakpoints into batch
++buffers. The workload execution can then easily be pipelined behind
++the bind completion using the memory out-fence as the signal condition
++for a GPU semaphore embedded by UMD in the workload.
++
++Multi-operation VM_BIND IOCTL error handling and interrupts
++===========================================================
++
++The VM_BIND operations of the IOCTL may error due to lack of resources
++to complete and also due to interrupted waits. In both situations UMD
++should preferably restart the IOCTL after taking suitable action. If
++UMD has over-committed a memory resource, an -ENOSPC error will be
++returned, and UMD may then unbind resources that are not used at the
++moment and restart the IOCTL. On -EINTR, UMD should simply restart the
++IOCTL and on -ENOMEM user-space may either attempt to free known
++system memory resources or abort the operation. If aborting as a
++result of a failed operation in a list of operations, some operations
++may still have completed, and to get back to a known state, user-space
++should therefore attempt to unbind all virtual memory regions touched
++by the failing IOCTL.
++Unbind operations are guaranteed not to cause any errors due to
++resource constraints.
++In between a failed VM_BIND IOCTL and a successful restart there may
++be implementation defined restrictions on the use of the gpu_vm. For a
++description why, please see KMD implementation details under `error
++state saving`_.
++
++Sample uAPI implementations
++===========================
++Suggested uAPI implementations at the moment of writing can be found for
++the Nouveau driver `here
++<https://patchwork.freedesktop.org/patch/543260/?series=112994&rev=6>`_.
++and for the Xe driver `here
++<https://cgit.freedesktop.org/drm/drm-xe/diff/include/uapi/drm/xe_drm.h?h=drm-xe-next&id=9cb016ebbb6a275f57b1cb512b95d5a842391ad7>`_.
++
++KMD implementation details
++==========================
++
++Error state saving
++__________________
++Open: When the VM_BIND IOCTL returns an error, some or even parts of
++an operation may have been completed. If the IOCTL is restarted, in
++order to know where to restart, the KMD can either put the gpu_vm in
++an error state and save one instance of the needed restart state
++internally. In this case, KMD needs to block further modifications of
++the gpu_vm state that may cause additional failures requiring a
++restart state save, until the error has been fully resolved. If the
++uAPI instead defines a pointer to a UMD allocated cookie in the IOCTL
++struct, it could also choose to store the restart state in that cookie.
++
++The restart state may, for example, be the number of successfully
++completed operations.
++
++Easiest for UMD would of course be if KMD did a full unwind on error
++so that no error state needs to be saved.
+diff --git a/Documentation/gpu/rfc/xe.rst b/Documentation/gpu/rfc/xe.rst
+index 2516fe141db6..0f062e1346d2 100644
+--- a/Documentation/gpu/rfc/xe.rst
++++ b/Documentation/gpu/rfc/xe.rst
+@@ -138,8 +138,8 @@ memory fences. Ideally with helper support so people don't get it wrong in all
+ possible ways.
+ 
+ As a key measurable result, the benefits of ASYNC VM_BIND and a discussion of
+-various flavors, error handling and a sample API should be documented here or in
+-a separate document pointed to by this document.
++various flavors, error handling and sample API suggestions are documented in
++Documentation/gpu/drm-vm-bind-async.rst
+ 
+ Userptr integration and vm_bind
+ -------------------------------
+-- 
+2.40.1
 
-So IMO for any list head being combined like this, we need to kerneldoc 
-why this is possible, using either the lock argument or another simple 
-argument like detailed above.
-
-I *think* the notifier.rebind_list and the userptr_list are combinable, 
-though, using the different vma subclass (userptr/bo) argument.
-
-Thanks,
-
-Thomas
-
-
-> -
-> -	/**
-> -	 * @unbind_link: link or list head if an unbind of multiple VMAs, in
-> -	 * single unbind op, is being done.
-> -	 */
-> -	struct list_head unbind_link;
-> +	/** @combined_links: links into lists which are mutually exclusive */
-> +	union {
-> +		/** @userptr: link into VM repin list if userptr */
-> +		struct list_head userptr;
-> +		/**
-> +		 * @rebind: link into VM if this VMA needs rebinding, and
-> +		 * if it's a bo (not userptr) needs validation after a possible
-> +		 * eviction. Protected by the vm's resv lock.
-> +		 */
-> +		struct list_head rebind;
-> +		/** @destroy: link to contested list when VM is being closed */
-> +		struct list_head destroy;
-> +	} combined_links;
->   
->   	/** @destroy_cb: callback to destroy VMA when unbind job is done */
->   	struct dma_fence_cb destroy_cb;
