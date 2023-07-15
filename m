@@ -4,31 +4,31 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 325D2C0015E
-	for <intel-xe@archiver.kernel.org>; Sat, 15 Jul 2023 15:48:41 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id E36F0C001DC
+	for <intel-xe@archiver.kernel.org>; Sat, 15 Jul 2023 15:48:51 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D965110E172;
-	Sat, 15 Jul 2023 15:48:40 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B8CDC10E170;
+	Sat, 15 Jul 2023 15:48:51 +0000 (UTC)
 Received: from emeril.freedesktop.org (emeril.freedesktop.org
  [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id 984FA10E170;
- Sat, 15 Jul 2023 15:48:38 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTP id 1A0EB10E170;
+ Sat, 15 Jul 2023 15:48:50 +0000 (UTC)
 Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 8EC31AADD5;
- Sat, 15 Jul 2023 15:48:38 +0000 (UTC)
+ by emeril.freedesktop.org (Postfix) with ESMTP id 163C6AADD5;
+ Sat, 15 Jul 2023 15:48:50 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: =?utf-8?q?Thomas_Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>
-Date: Sat, 15 Jul 2023 15:48:38 -0000
-Message-ID: <168943611855.10922.2004375994557876279@emeril.freedesktop.org>
+Date: Sat, 15 Jul 2023 15:48:50 -0000
+Message-ID: <168943613008.10923.7698047913514244568@emeril.freedesktop.org>
 X-Patchwork-Hint: ignore
 References: <20230715154543.13183-1-thomas.hellstrom@linux.intel.com>
 In-Reply-To: <20230715154543.13183-1-thomas.hellstrom@linux.intel.com>
-Subject: [Intel-xe] =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_f?=
- =?utf-8?q?or_Documentation/gpu=3A_Add_a_VM=5FBIND_async_draft_document_?=
- =?utf-8?b?KHJldjMp?=
+Subject: [Intel-xe] =?utf-8?q?=E2=9C=97_CI=2Echeckpatch=3A_warning_for_Do?=
+ =?utf-8?q?cumentation/gpu=3A_Add_a_VM=5FBIND_async_draft_document_=28rev3?=
+ =?utf-8?q?=29?=
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -49,13 +49,56 @@ Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 Series: Documentation/gpu: Add a VM_BIND async draft document (rev3)
 URL   : https://patchwork.freedesktop.org/series/119672/
-State : success
+State : warning
 
 == Summary ==
 
-=== Applying kernel patches on branch 'drm-xe-next' with base: ===
-Base commit: 0a6690458 drm/xe: Fix lockdep warning from xe_vm_madvise
-=== git am output follows ===
-Applying: Documentation/gpu: Add a VM_BIND async draft document
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+c7d32770e3cd31d9fc134ce41f329b10aa33ee15
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit cfb9158c7650224e80ab13ae333bcc5260d062da
+Author: Thomas Hellström <thomas.hellstrom@linux.intel.com>
+Date:   Sat Jul 15 17:45:43 2023 +0200
+
+    Documentation/gpu: Add a VM_BIND async draft document
+    
+    Add a motivation for and description of asynchronous VM_BIND operation
+    
+    v2:
+    - Fix typos (Nirmoy Das)
+    - Improve the description of a memory fence (Oak Zeng)
+    - Add a reference to the document in the Xe RFC.
+    - Add pointers to sample uAPI suggestions
+    v3:
+    - Address review comments (Danilo Krummrich)
+    - Formatting fixes
+    v4:
+    - Address typos (Francois Dugast)
+    - Explain why in-fences are not allowed for VM_BIND operations for long-
+      running workloads (Matthew Brost)
+    v5:
+    - More typo- and style fixing
+    - Further clarify the implications of disallowing in-fences for VM_BIND
+      operations for long-running workloads (Matthew Brost)
+    
+    Signed-off-by: Thomas Hellström <thomas.hellstrom@linux.intel.com>
+    Acked-by: Nirmoy Das <nirmoy.das@intel.com>
++ /mt/dim checkpatch 0a669045802054506d777ae41b063335c8923b6b drm-intel
+cfb9158c7 Documentation/gpu: Add a VM_BIND async draft document
+-:32: WARNING:FILE_PATH_CHANGES: added, moved or deleted file(s), does MAINTAINERS need updating?
+#32: 
+new file mode 100644
+
+-:37: WARNING:SPDX_LICENSE_TAG: Missing or malformed SPDX-License-Identifier tag in line 1
+#37: FILE: Documentation/gpu/drm-vm-bind-async.rst:1:
++====================
+
+total: 0 errors, 2 warnings, 0 checks, 181 lines checked
 
 
