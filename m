@@ -4,30 +4,55 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 72DF8C001DC
-	for <intel-xe@archiver.kernel.org>; Mon, 17 Jul 2023 11:35:23 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 713A6C0015E
+	for <intel-xe@archiver.kernel.org>; Mon, 17 Jul 2023 11:54:11 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4062D10E0EE;
-	Mon, 17 Jul 2023 11:35:23 +0000 (UTC)
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id A523410E234;
- Mon, 17 Jul 2023 11:35:21 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 969E3A47E9;
- Mon, 17 Jul 2023 11:35:21 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1A6DC10E0EE;
+	Mon, 17 Jul 2023 11:54:11 +0000 (UTC)
+Received: from dfw.source.kernel.org (dfw.source.kernel.org
+ [IPv6:2604:1380:4641:c500::1])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0000910E0EE
+ for <intel-xe@lists.freedesktop.org>; Mon, 17 Jul 2023 11:54:08 +0000 (UTC)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+ (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+ key-exchange X25519 server-signature RSA-PSS (2048 bits))
+ (No client certificate requested)
+ by dfw.source.kernel.org (Postfix) with ESMTPS id C290B61032
+ for <intel-xe@lists.freedesktop.org>; Mon, 17 Jul 2023 11:54:06 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 39795C433C9
+ for <intel-xe@lists.freedesktop.org>; Mon, 17 Jul 2023 11:54:06 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+ s=k20201202; t=1689594846;
+ bh=JxZ5pcwdvnbwuvb8vahyocVEuiT4eY6e+h1DpugS1Xo=;
+ h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+ b=jBe/9VU15bXnHISc6PYZMGBfF3dUnCbxHzZXkMXbDv/kZQRLIAq5bURvXkMBXduIm
+ 5iZM7NYdtPioW4J8v6WAzZI7+6ngo1V+Pi6eWTy/XY7kgKxt1HWa0UZeLP2viNMulN
+ qfzgEo+1IZ2PtcY0tukjyIYJjiTQ3F7UbPCHcJ5o1QXTk0Uf2L+1+sWnEJPvfJj/xo
+ 2ujXaQzWLph5pvHgDHxefBuUAIQq4OBbBwaYKXp/lhSfpKyKmdb+p1Z2Plf9o9Ed4Z
+ 3jY1WE0k2n3fvp+LVnrqmLKBlTC1JJEOwUc3r9nlEd0AMk2ReBcj7GhVQZ1hKQD8pj
+ 3lg7hGsNTNLhw==
+Received: by mail-yb1-f178.google.com with SMTP id
+ 3f1490d57ef6-c7a5600d04dso4478876276.3
+ for <intel-xe@lists.freedesktop.org>; Mon, 17 Jul 2023 04:54:06 -0700 (PDT)
+X-Gm-Message-State: ABy/qLZpBmsFrWvm2nDtuJf5xTRWRX3NmFP1OSl/ybyJcPV/VarQVG2X
+ ftzNoLrU9dddS9m6InkKA1762yX8ShN6PzxnRM8=
+X-Google-Smtp-Source: APBJJlGpcOoWVTgH4UK9EtJ3ouTtF/8KEQMEMeWeQREbC+wAGtAluPr2LD9fQeyVphTeKFpZKk1c3YfyK11qtJj9icw=
+X-Received: by 2002:a25:fc1:0:b0:c41:a05d:5da8 with SMTP id
+ 184-20020a250fc1000000b00c41a05d5da8mr9232749ybp.11.1689594845186; Mon, 17
+ Jul 2023 04:54:05 -0700 (PDT)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Matthew Auld" <matthew.auld@intel.com>
-Date: Mon, 17 Jul 2023 11:35:21 -0000
-Message-ID: <168959372161.24537.7287541321092780850@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20230717112502.32379-12-matthew.auld@intel.com>
-In-Reply-To: <20230717112502.32379-12-matthew.auld@intel.com>
-Subject: [Intel-xe] =?utf-8?q?=E2=9C=93_CI=2Echecksparse=3A_success_for_x?=
- =?utf-8?q?e=5Fdevice=5Fmem=5Faccess_fixes_and_related_bits_=28rev4=29?=
+References: <20230609073713.7-1-francois.dugast@intel.com>
+ <20230609073713.7-2-francois.dugast@intel.com>
+In-Reply-To: <20230609073713.7-2-francois.dugast@intel.com>
+From: Oded Gabbay <ogabbay@kernel.org>
+Date: Mon, 17 Jul 2023 14:53:38 +0300
+X-Gmail-Original-Message-ID: <CAFCwf13LyDajajke2shHHmjbjRyhJTP3xC3-16bJ2k0K5pT6dA@mail.gmail.com>
+Message-ID: <CAFCwf13LyDajajke2shHHmjbjRyhJTP3xC3-16bJ2k0K5pT6dA@mail.gmail.com>
+To: Francois Dugast <francois.dugast@intel.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+Subject: Re: [Intel-xe] [PATCH v4 1/2] drm/xe: Document structures for
+ device query
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -39,38 +64,176 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
-Cc: intel-xe@lists.freedesktop.org
+Cc: lucas.demarchi@intel.com, intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-== Series Details ==
-
-Series: xe_device_mem_access fixes and related bits (rev4)
-URL   : https://patchwork.freedesktop.org/series/119213/
-State : success
-
-== Summary ==
-
-+ trap cleanup EXIT
-+ KERNEL=/kernel
-+ MT=/root/linux/maintainer-tools
-+ git clone https://gitlab.freedesktop.org/drm/maintainer-tools /root/linux/maintainer-tools
-Cloning into '/root/linux/maintainer-tools'...
-warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
-+ make -C /root/linux/maintainer-tools
-make: Entering directory '/root/linux/maintainer-tools'
-cc -O2 -g -Wextra -o remap-log remap-log.c
-make: Leaving directory '/root/linux/maintainer-tools'
-+ cd /kernel
-+ git config --global --add safe.directory /kernel
-+ /root/linux/maintainer-tools/dim sparse --fast 71340f700edfaa0cdc35eab8f3c563c44c0a6ca1
-Sparse version: 0.6.1 (Ubuntu: 0.6.1-2build1)
-Fast mode used, each commit won't be checked separately.
-Okay!
-
-+ cleanup
-++ stat -c %u:%g /kernel
-+ chown -R 1003:1003 /kernel
-
-
+On Fri, Jun 9, 2023 at 10:37=E2=80=AFAM Francois Dugast
+<francois.dugast@intel.com> wrote:
+>
+> This adds documentation to the various structures used to query
+> memory, GTs, topology, engines, and so on. It includes a functional
+> code snippet to query engines.
+>
+> v2:
+>   - Rebase on drm-xe-next
+>   - Also document structures related to drm_xe_device_query, changed
+>     pseudo code to snippet (Lucas De Marchi)
+> v3:
+>   - Move changelog to commit
+>   - Fix warnings showed only using dim checkpath
+>
+> Reported-by: Oded Gabbay <ogabbay@kernel.org>
+> Link: https://lists.freedesktop.org/archives/intel-xe/2023-May/004704.htm=
+l
+> Signed-off-by: Francois Dugast <francois.dugast@intel.com>
+> ---
+>  include/uapi/drm/xe_drm.h | 75 +++++++++++++++++++++++++++++++++++++++
+>  1 file changed, 75 insertions(+)
+>
+> diff --git a/include/uapi/drm/xe_drm.h b/include/uapi/drm/xe_drm.h
+> index 7f9a5849e88b..1c7c4b5b920a 100644
+> --- a/include/uapi/drm/xe_drm.h
+> +++ b/include/uapi/drm/xe_drm.h
+> @@ -119,8 +119,18 @@ struct xe_user_extension {
+>  #define XE_MEM_REGION_CLASS_SYSMEM     0
+>  #define XE_MEM_REGION_CLASS_VRAM       1
+>
+> +/**
+> + * struct drm_xe_query_mem_usage - describe memory regions and usage
+> + *
+> + * If a query is made with a struct drm_xe_device_query where .query
+> + * is equal to DRM_XE_DEVICE_QUERY_MEM_USAGE, then the reply uses
+> + * struct drm_xe_query_mem_usage in .data.
+> + */
+>  struct drm_xe_query_mem_usage {
+> +       /** @num_params: number of memory regions returned in regions */
+>         __u32 num_regions;
+> +
+> +       /** @pad: MBZ */
+>         __u32 pad;
+>
+>         struct drm_xe_query_mem_region {
+> @@ -135,9 +145,20 @@ struct drm_xe_query_mem_usage {
+>         } regions[];
+>  };
+>
+> +/**
+> + * struct drm_xe_query_config - describe the device configuration
+> + *
+> + * If a query is made with a struct drm_xe_device_query where .query
+> + * is equal to DRM_XE_DEVICE_QUERY_CONFIG, then the reply uses
+> + * struct drm_xe_query_config in .data.
+> + */
+>  struct drm_xe_query_config {
+> +       /** @num_params: number of parameters returned in info */
+>         __u32 num_params;
+> +
+> +       /** @pad: MBZ */
+>         __u32 pad;
+> +
+>  #define XE_QUERY_CONFIG_REV_AND_DEVICE_ID      0
+>  #define XE_QUERY_CONFIG_FLAGS                  1
+>         #define XE_QUERY_CONFIG_FLAGS_HAS_VRAM          (0x1 << 0)
+> @@ -148,11 +169,22 @@ struct drm_xe_query_config {
+>  #define XE_QUERY_CONFIG_MEM_REGION_COUNT       5
+>  #define XE_QUERY_CONFIG_MAX_ENGINE_PRIORITY    6
+>  #define XE_QUERY_CONFIG_NUM_PARAM              (XE_QUERY_CONFIG_MAX_ENGI=
+NE_PRIORITY + 1)
+> +       /** @info: array of elements containing the config info */
+>         __u64 info[];
+>  };
+>
+> +/**
+> + * struct drm_xe_query_gts - describe GTs
+> + *
+> + * If a query is made with a struct drm_xe_device_query where .query
+> + * is equal to DRM_XE_DEVICE_QUERY_GTS, then the reply uses struct
+> + * drm_xe_query_gts in .data.
+> + */
+>  struct drm_xe_query_gts {
+> +       /** @num_gt: number of GTs returned in gts */
+>         __u32 num_gt;
+> +
+> +       /** @pad: MBZ */
+>         __u32 pad;
+>
+>         /*
+> @@ -175,6 +207,13 @@ struct drm_xe_query_gts {
+>         } gts[];
+>  };
+>
+> +/**
+> + * struct drm_xe_query_topology_mask - describe the topology mask of a G=
+T
+> + *
+> + * If a query is made with a struct drm_xe_device_query where .query
+> + * is equal to DRM_XE_DEVICE_QUERY_GT_TOPOLOGY, then the reply uses
+> + * struct drm_xe_query_topology_mask in .data.
+> + */
+>  struct drm_xe_query_topology_mask {
+>         /** @gt_id: GT ID the mask is associated with */
+>         __u16 gt_id;
+> @@ -192,6 +231,41 @@ struct drm_xe_query_topology_mask {
+>         __u8 mask[];
+>  };
+>
+> +/**
+> + * struct drm_xe_device_query - main structure to query device informati=
+on
+> + *
+> + * If size is set to 0, the driver fills it with the required size for t=
+he
+> + * requested type of data to query. If size is equal to the required siz=
+e,
+> + * the queried information is copied into data.
+> + *
+> + * For example the following code snippet allows retrieving and printing
+> + * information about the device engines with DRM_XE_DEVICE_QUERY_ENGINES=
+:
+> + *
+> + * .. code-block:: C
+> + *
+> + *     struct drm_xe_engine_class_instance *hwe;
+> + *     struct drm_xe_device_query query =3D {
+> + *             .extensions =3D 0,
+> + *             .query =3D DRM_XE_DEVICE_QUERY_ENGINES,
+> + *             .size =3D 0,
+> + *             .data =3D 0,
+> + *     };
+> + *     ioctl(fd, DRM_IOCTL_XE_DEVICE_QUERY, &query);
+> + *     hwe =3D malloc(query.size);
+> + *     query.data =3D (uintptr_t)hwe;
+> + *     ioctl(fd, DRM_IOCTL_XE_DEVICE_QUERY, &query);
+> + *     int num_engines =3D query.size / sizeof(*hwe);
+> + *     for (int i =3D 0; i < num_engines; i++) {
+> + *             printf("Engine %d: %s\n", i,
+> + *                     hwe[i].engine_class =3D=3D DRM_XE_ENGINE_CLASS_RE=
+NDER ? "RENDER":
+> + *                     hwe[i].engine_class =3D=3D DRM_XE_ENGINE_CLASS_CO=
+PY ? "COPY":
+> + *                     hwe[i].engine_class =3D=3D DRM_XE_ENGINE_CLASS_VI=
+DEO_DECODE ? "VIDEO_DECODE":
+> + *                     hwe[i].engine_class =3D=3D DRM_XE_ENGINE_CLASS_VI=
+DEO_ENHANCE ? "VIDEO_ENHANCE":
+> + *                     hwe[i].engine_class =3D=3D DRM_XE_ENGINE_CLASS_CO=
+MPUTE ? "COMPUTE":
+> + *                     "UNKNOWN");
+> + *     }
+> + *     free(hwe);
+> + */
+>  struct drm_xe_device_query {
+>         /** @extensions: Pointer to the first extension struct, if any */
+>         __u64 extensions;
+> @@ -518,6 +592,7 @@ struct drm_xe_engine_set_property {
+>         __u64 reserved[2];
+>  };
+>
+> +/** struct drm_xe_engine_class_instance - instance of an engine class */
+>  struct drm_xe_engine_class_instance {
+>         __u16 engine_class;
+>
+> --
+> 2.34.1
+>
+Reviewed-by: Oded Gabbay <ogabbay@kernel.org>
