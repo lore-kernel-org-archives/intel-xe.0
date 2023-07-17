@@ -4,50 +4,30 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0C784EB64DC
-	for <intel-xe@archiver.kernel.org>; Mon, 17 Jul 2023 11:25:56 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id C68F2EB64DC
+	for <intel-xe@archiver.kernel.org>; Mon, 17 Jul 2023 11:28:28 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D80F810E0EE;
-	Mon, 17 Jul 2023 11:25:55 +0000 (UTC)
-Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8204110E23A
- for <intel-xe@lists.freedesktop.org>; Mon, 17 Jul 2023 11:25:53 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1689593153; x=1721129153;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=g+JRJ0I5GyJ8N69lNnjfm33AMy8LBiEfwgEdr+uH1E8=;
- b=F55O0n5IHfOMKvwqB6JADCiJXr2VID7ArFOAjlIuVk2N9dB/13g+qVf/
- LsITRk8dqUaNF+5E2ezAPjoIs6ZzXDAKBMeAP8LpR/FRfjbwYsgl6FEpo
- riT1H5XCvfWgVf4C0q4LZNqFLX4Qf1cqrIINnWsXCebK1xeSO/4t3TDuZ
- B99QRG0cUVk6nZaCjdUCyycIVa/sfhlWvCkdeT+rOfifbksg/Jt9/UkcE
- YD36lpHMIcT5CiIM9a1swQyeii+XrBkxhx11RkzhKf3XN/Zud8h2p8A5W
- B2AdTt4l9H5BeDYeMDM7/RQNDstfgzwNitX/HiaaqF2x17YXkN20Qn8CT Q==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10773"; a="365948506"
-X-IronPort-AV: E=Sophos;i="6.01,211,1684825200"; d="scan'208";a="365948506"
-Received: from orsmga005.jf.intel.com ([10.7.209.41])
- by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 17 Jul 2023 04:25:53 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10773"; a="897174899"
-X-IronPort-AV: E=Sophos;i="6.01,211,1684825200"; d="scan'208";a="897174899"
-Received: from kprutko-mobl3.ger.corp.intel.com (HELO mwauld-desk1.intel.com)
- ([10.252.13.224])
- by orsmga005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 17 Jul 2023 04:25:51 -0700
-From: Matthew Auld <matthew.auld@intel.com>
-To: intel-xe@lists.freedesktop.org
-Date: Mon, 17 Jul 2023 12:25:13 +0100
-Message-ID: <20230717112502.32379-22-matthew.auld@intel.com>
-X-Mailer: git-send-email 2.41.0
-In-Reply-To: <20230717112502.32379-12-matthew.auld@intel.com>
-References: <20230717112502.32379-12-matthew.auld@intel.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id 95AF510E035;
+	Mon, 17 Jul 2023 11:28:28 +0000 (UTC)
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 5CCDD10E236;
+ Mon, 17 Jul 2023 11:28:26 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 2E691A7DFB;
+ Mon, 17 Jul 2023 11:28:26 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-Subject: [Intel-xe] [PATCH v14 10/10] drm/xe: add lockdep annotation for
- xe_device_mem_access_get()
+Content-Transfer-Encoding: 7bit
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Matthew Auld" <matthew.auld@intel.com>
+Date: Mon, 17 Jul 2023 11:28:26 -0000
+Message-ID: <168959330618.24539.13205964441645141190@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20230717112502.32379-12-matthew.auld@intel.com>
+In-Reply-To: <20230717112502.32379-12-matthew.auld@intel.com>
+Subject: [Intel-xe] =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_f?=
+ =?utf-8?q?or_xe=5Fdevice=5Fmem=5Faccess_fixes_and_related_bits_=28rev4=29?=
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -59,74 +39,31 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
+Reply-To: intel-xe@lists.freedesktop.org
+Cc: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-The atomics here might hide potential issues, also rpm core is not
-holding any lock when calling our rpm resume callback, so add a dummy lock
-with the idea that xe_pm_runtime_resume() is eventually going to be
-called when we are holding it. This only needs to happen once and then
-lockdep can validate all callers and their locks.
+== Series Details ==
 
-v2: (Thomas Hellström)
- - Prefer static lockdep_map instead of full blown mutex.
+Series: xe_device_mem_access fixes and related bits (rev4)
+URL   : https://patchwork.freedesktop.org/series/119213/
+State : success
 
-Signed-off-by: Matthew Auld <matthew.auld@intel.com>
-Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
-Cc: Thomas Hellström <thomas.hellstrom@linux.intel.com>
-Acked-by: Matthew Brost <matthew.brost@intel.com>
-Reviewed-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
----
- drivers/gpu/drm/xe/xe_device.c | 24 ++++++++++++++++++++++++
- 1 file changed, 24 insertions(+)
+== Summary ==
 
-diff --git a/drivers/gpu/drm/xe/xe_device.c b/drivers/gpu/drm/xe/xe_device.c
-index ba2b83925ded..1c57944014e0 100644
---- a/drivers/gpu/drm/xe/xe_device.c
-+++ b/drivers/gpu/drm/xe/xe_device.c
-@@ -35,6 +35,12 @@
- #include "xe_vm_madvise.h"
- #include "xe_wait_user_fence.h"
- 
-+#ifdef CONFIG_LOCKDEP
-+static struct lockdep_map xe_device_mem_access_lockdep_map = {
-+	.name = "xe_device_mem_access_lockdep_map"
-+};
-+#endif
-+
- static int xe_file_open(struct drm_device *dev, struct drm_file *file)
- {
- 	struct xe_file *xef;
-@@ -458,10 +464,28 @@ void xe_device_mem_access_get(struct xe_device *xe)
- 	if (xe_pm_read_callback_task(xe) == current)
- 		return;
- 
-+	/*
-+	 * Since the resume here is synchronous it can be quite easy to deadlock
-+	 * if we are not careful. Also in practice it might be quite timing
-+	 * sensitive to ever see the 0 -> 1 transition with the callers locks
-+	 * held, so deadlocks might exist but are hard for lockdep to ever see.
-+	 * With this in mind, help lockdep learn about the potentially scary
-+	 * stuff that can happen inside the runtime_resume callback by acquiring
-+	 * a dummy lock (it doesn't protect anything and gets compiled out on
-+	 * non-debug builds).  Lockdep then only needs to see the
-+	 * mem_access_lockdep_map -> runtime_resume callback once, and then can
-+	 * hopefully validate all the (callers_locks) -> mem_access_lockdep_map.
-+	 * For example if the (callers_locks) are ever grabbed in the
-+	 * runtime_resume callback, lockdep should give us a nice splat.
-+	 */
-+	lock_map_acquire(&xe_device_mem_access_lockdep_map);
-+
- 	xe_pm_runtime_get(xe);
- 	ref = atomic_inc_return(&xe->mem_access.ref);
- 
- 	XE_WARN_ON(ref == S32_MAX);
-+
-+	lock_map_release(&xe_device_mem_access_lockdep_map);
- }
- 
- void xe_device_mem_access_put(struct xe_device *xe)
--- 
-2.41.0
+=== Applying kernel patches on branch 'drm-xe-next' with base: ===
+Base commit: 71340f700 drm/xe: Prevent flooding the kernel log with XE_IOCTL_ERR
+=== git am output follows ===
+Applying: drm/xe: fix xe_device_mem_access_get() races
+Applying: drm/xe/vm: tidy up xe_runtime_pm usage
+Applying: drm/xe/debugfs: grab mem_access around forcewake
+Applying: drm/xe/guc_pc: add missing mem_access for freq_rpe_show
+Applying: drm/xe/mmio: grab mem_access in xe_mmio_ioctl
+Applying: drm/xe: ensure correct access_put ordering
+Applying: drm/xe: drop xe_device_mem_access_get() from guc_ct_send
+Applying: drm/xe/ggtt: prime ggtt->lock against FS_RECLAIM
+Applying: drm/xe: drop xe_device_mem_access_get() from invalidation_vma
+Applying: drm/xe: add lockdep annotation for xe_device_mem_access_get()
+
 
