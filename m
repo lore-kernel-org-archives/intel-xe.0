@@ -4,50 +4,50 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id EEFDCC001B0
-	for <intel-xe@archiver.kernel.org>; Mon, 17 Jul 2023 11:25:54 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0C784EB64DC
+	for <intel-xe@archiver.kernel.org>; Mon, 17 Jul 2023 11:25:56 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C979710E23A;
-	Mon, 17 Jul 2023 11:25:54 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D80F810E0EE;
+	Mon, 17 Jul 2023 11:25:55 +0000 (UTC)
 Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6712810E239
- for <intel-xe@lists.freedesktop.org>; Mon, 17 Jul 2023 11:25:50 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8204110E23A
+ for <intel-xe@lists.freedesktop.org>; Mon, 17 Jul 2023 11:25:53 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1689593150; x=1721129150;
+ t=1689593153; x=1721129153;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=/Tsn8oQ7tTSjfxTe/W1AjrZBQiuMsVlMG9lB1VUyMQU=;
- b=Yw398+QefZjslhUHXcgfVwi90MlWToIsgOwbGN2h7VoSN4dE+9C/ks6J
- 7Pa2wFqecHi8dHay5qIhGHZnoMMYww18/izvqftH6RENVmhSl0XT0LmrL
- bc8/ESU7Fm5QwOnnzkARptHyF0f7UP+1lcbbjcKWaGjTOq502YdBrxbuG
- 5fGaT1QvXLjLh2waf/AQB8X63Avdq+k1vGcuKVg2kwLNZwDwwTM5h0nK1
- HHSBfOiwWepalQ7iksiQCISEw3BwBqTWOvrWMI09Iqr2jn59JDhAagL9l
- N1H2N+z9K16CevSsYX4ewNI1afEQkcTZna2CeZXYUg1tBTxaNTPpTwp8Q g==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10773"; a="365948493"
-X-IronPort-AV: E=Sophos;i="6.01,211,1684825200"; d="scan'208";a="365948493"
+ bh=g+JRJ0I5GyJ8N69lNnjfm33AMy8LBiEfwgEdr+uH1E8=;
+ b=F55O0n5IHfOMKvwqB6JADCiJXr2VID7ArFOAjlIuVk2N9dB/13g+qVf/
+ LsITRk8dqUaNF+5E2ezAPjoIs6ZzXDAKBMeAP8LpR/FRfjbwYsgl6FEpo
+ riT1H5XCvfWgVf4C0q4LZNqFLX4Qf1cqrIINnWsXCebK1xeSO/4t3TDuZ
+ B99QRG0cUVk6nZaCjdUCyycIVa/sfhlWvCkdeT+rOfifbksg/Jt9/UkcE
+ YD36lpHMIcT5CiIM9a1swQyeii+XrBkxhx11RkzhKf3XN/Zud8h2p8A5W
+ B2AdTt4l9H5BeDYeMDM7/RQNDstfgzwNitX/HiaaqF2x17YXkN20Qn8CT Q==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10773"; a="365948506"
+X-IronPort-AV: E=Sophos;i="6.01,211,1684825200"; d="scan'208";a="365948506"
 Received: from orsmga005.jf.intel.com ([10.7.209.41])
  by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 17 Jul 2023 04:25:50 -0700
+ 17 Jul 2023 04:25:53 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10773"; a="897174879"
-X-IronPort-AV: E=Sophos;i="6.01,211,1684825200"; d="scan'208";a="897174879"
+X-IronPort-AV: E=McAfee;i="6600,9927,10773"; a="897174899"
+X-IronPort-AV: E=Sophos;i="6.01,211,1684825200"; d="scan'208";a="897174899"
 Received: from kprutko-mobl3.ger.corp.intel.com (HELO mwauld-desk1.intel.com)
  ([10.252.13.224])
  by orsmga005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 17 Jul 2023 04:25:49 -0700
+ 17 Jul 2023 04:25:51 -0700
 From: Matthew Auld <matthew.auld@intel.com>
 To: intel-xe@lists.freedesktop.org
-Date: Mon, 17 Jul 2023 12:25:11 +0100
-Message-ID: <20230717112502.32379-20-matthew.auld@intel.com>
+Date: Mon, 17 Jul 2023 12:25:13 +0100
+Message-ID: <20230717112502.32379-22-matthew.auld@intel.com>
 X-Mailer: git-send-email 2.41.0
 In-Reply-To: <20230717112502.32379-12-matthew.auld@intel.com>
 References: <20230717112502.32379-12-matthew.auld@intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-xe] [PATCH v14 08/10] drm/xe/ggtt: prime ggtt->lock against
- FS_RECLAIM
+Subject: [Intel-xe] [PATCH v14 10/10] drm/xe: add lockdep annotation for
+ xe_device_mem_access_get()
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -63,47 +63,70 @@ Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Increase the sensitivity of the ggtt->lock by priming it against
-FS_RECLAIM, such that allocating memory while holding will result in
-lockdep splats.
+The atomics here might hide potential issues, also rpm core is not
+holding any lock when calling our rpm resume callback, so add a dummy lock
+with the idea that xe_pm_runtime_resume() is eventually going to be
+called when we are holding it. This only needs to happen once and then
+lockdep can validate all callers and their locks.
+
+v2: (Thomas Hellström)
+ - Prefer static lockdep_map instead of full blown mutex.
 
 Signed-off-by: Matthew Auld <matthew.auld@intel.com>
-Cc: Thomas Hellström <thomas.hellstrom@linux.intel.com>
 Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
+Cc: Thomas Hellström <thomas.hellstrom@linux.intel.com>
+Acked-by: Matthew Brost <matthew.brost@intel.com>
 Reviewed-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
 ---
- drivers/gpu/drm/xe/xe_ggtt.c | 11 +++++++++++
- 1 file changed, 11 insertions(+)
+ drivers/gpu/drm/xe/xe_device.c | 24 ++++++++++++++++++++++++
+ 1 file changed, 24 insertions(+)
 
-diff --git a/drivers/gpu/drm/xe/xe_ggtt.c b/drivers/gpu/drm/xe/xe_ggtt.c
-index 7588fbc2f278..e1b84bc25375 100644
---- a/drivers/gpu/drm/xe/xe_ggtt.c
-+++ b/drivers/gpu/drm/xe/xe_ggtt.c
-@@ -93,6 +93,16 @@ static void ggtt_fini_noalloc(struct drm_device *drm, void *arg)
- 	xe_bo_unpin_map_no_vm(ggtt->scratch);
- }
+diff --git a/drivers/gpu/drm/xe/xe_device.c b/drivers/gpu/drm/xe/xe_device.c
+index ba2b83925ded..1c57944014e0 100644
+--- a/drivers/gpu/drm/xe/xe_device.c
++++ b/drivers/gpu/drm/xe/xe_device.c
+@@ -35,6 +35,12 @@
+ #include "xe_vm_madvise.h"
+ #include "xe_wait_user_fence.h"
  
-+static void primelockdep(struct xe_ggtt *ggtt)
-+{
-+	if (!IS_ENABLED(CONFIG_LOCKDEP))
-+		return;
++#ifdef CONFIG_LOCKDEP
++static struct lockdep_map xe_device_mem_access_lockdep_map = {
++	.name = "xe_device_mem_access_lockdep_map"
++};
++#endif
 +
-+	fs_reclaim_acquire(GFP_KERNEL);
-+	might_lock(&ggtt->lock);
-+	fs_reclaim_release(GFP_KERNEL);
-+}
-+
- int xe_ggtt_init_noalloc(struct xe_ggtt *ggtt)
+ static int xe_file_open(struct drm_device *dev, struct drm_file *file)
  {
- 	struct xe_device *xe = tile_to_xe(ggtt->tile);
-@@ -140,6 +150,7 @@ int xe_ggtt_init_noalloc(struct xe_ggtt *ggtt)
- 	drm_mm_init(&ggtt->mm, xe_wopcm_size(xe),
- 		    ggtt->size - xe_wopcm_size(xe));
- 	mutex_init(&ggtt->lock);
-+	primelockdep(ggtt);
+ 	struct xe_file *xef;
+@@ -458,10 +464,28 @@ void xe_device_mem_access_get(struct xe_device *xe)
+ 	if (xe_pm_read_callback_task(xe) == current)
+ 		return;
  
- 	return drmm_add_action_or_reset(&xe->drm, ggtt_fini_noalloc, ggtt);
++	/*
++	 * Since the resume here is synchronous it can be quite easy to deadlock
++	 * if we are not careful. Also in practice it might be quite timing
++	 * sensitive to ever see the 0 -> 1 transition with the callers locks
++	 * held, so deadlocks might exist but are hard for lockdep to ever see.
++	 * With this in mind, help lockdep learn about the potentially scary
++	 * stuff that can happen inside the runtime_resume callback by acquiring
++	 * a dummy lock (it doesn't protect anything and gets compiled out on
++	 * non-debug builds).  Lockdep then only needs to see the
++	 * mem_access_lockdep_map -> runtime_resume callback once, and then can
++	 * hopefully validate all the (callers_locks) -> mem_access_lockdep_map.
++	 * For example if the (callers_locks) are ever grabbed in the
++	 * runtime_resume callback, lockdep should give us a nice splat.
++	 */
++	lock_map_acquire(&xe_device_mem_access_lockdep_map);
++
+ 	xe_pm_runtime_get(xe);
+ 	ref = atomic_inc_return(&xe->mem_access.ref);
+ 
+ 	XE_WARN_ON(ref == S32_MAX);
++
++	lock_map_release(&xe_device_mem_access_lockdep_map);
  }
+ 
+ void xe_device_mem_access_put(struct xe_device *xe)
 -- 
 2.41.0
 
