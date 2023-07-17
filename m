@@ -4,144 +4,46 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id D8E7DEB64DC
-	for <intel-xe@archiver.kernel.org>; Mon, 17 Jul 2023 18:51:11 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6F461C001B0
+	for <intel-xe@archiver.kernel.org>; Mon, 17 Jul 2023 19:28:46 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9045410E2A6;
-	Mon, 17 Jul 2023 18:51:11 +0000 (UTC)
-Received: from mga06.intel.com (mga06b.intel.com [134.134.136.31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 244E110E2A6
- for <intel-xe@lists.freedesktop.org>; Mon, 17 Jul 2023 18:51:10 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3699F10E2AE;
+	Mon, 17 Jul 2023 19:28:46 +0000 (UTC)
+Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C3A1510E2AE
+ for <intel-xe@lists.freedesktop.org>; Mon, 17 Jul 2023 19:28:44 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1689619870; x=1721155870;
- h=date:from:to:cc:subject:message-id:references:
- content-transfer-encoding:in-reply-to:mime-version;
- bh=E+RNZOTUxZlIDA3spIhaPFCwWyW2ueEDevjVB6HFFj4=;
- b=e832zBoeQ6mruw8/2MMr7UkG4b/kQMGdaJLXrfSQCTPKKr2fSeOZzrh4
- 9VY+Z3IfHL3s+VpNppL8xlvQqce1SEJZRlSad17m7T8nQ/yJXTqtHeEOL
- yfUq7CV1I2PAQcNzJlhDskLJ1+9C2GGQU3BV8oXde2QqBW1f0JCiReVAr
- R2t+BDOz+lUgqXmZJljRbIC+njXehe7Ll3pgHVmAamJ9rEwev4mEEmXJN
- sk8OQhWTPfapKZmQNtq7B03Q6DlWQ0a1KcqXD5is660v88w+KMDjoIVQi
- Wz3T89BoH+Xv7HeypVXbZ7eoqo1ralMAE6+YqfzZFX2std3xd1wBG9dVY A==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10774"; a="429773299"
-X-IronPort-AV: E=Sophos;i="6.01,211,1684825200"; d="scan'208";a="429773299"
-Received: from orsmga004.jf.intel.com ([10.7.209.38])
- by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 17 Jul 2023 11:51:07 -0700
+ t=1689622124; x=1721158124;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=++E2VvhRkA/6tPaBktWXenxRRjzsgMOicz33U4+YI0E=;
+ b=QFhiE077KMzo0SS4KLqAmiTGwy11Dc+t5MCbXDmS0hiha4X1TDv0Y7UV
+ z00gSaMBQbW7ANg9FvztA0gXH9stcWrUhT2O8DDdvITTqiz/AfFnt9RoK
+ pfhRDKJ7rQGZoUb/q5c+AkZJISqxyFyU8MvyemFqNSOMHSYxkzQhZJIt6
+ 1yPKewZIbiHzzapk3OuR80P6KttIDteloj6OIAkqBbLJYmMBNf085qknJ
+ EtJnltjNCuvIcR0pFY8RWjIM0WWi4oH+w6QmIwwvh25xHds2llsEve4To
+ Bo9gU7fNkWVoTGU2VuVT6OlMlIARzwbl+8tJitedEtyeRR/sLyApt8cjo g==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10774"; a="345613928"
+X-IronPort-AV: E=Sophos;i="6.01,211,1684825200"; d="scan'208";a="345613928"
+Received: from fmsmga005.fm.intel.com ([10.253.24.32])
+ by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 17 Jul 2023 12:28:43 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10774"; a="847407795"
-X-IronPort-AV: E=Sophos;i="6.01,211,1684825200"; d="scan'208";a="847407795"
-Received: from orsmsx603.amr.corp.intel.com ([10.22.229.16])
- by orsmga004.jf.intel.com with ESMTP; 17 Jul 2023 11:51:06 -0700
-Received: from orsmsx603.amr.corp.intel.com (10.22.229.16) by
- ORSMSX603.amr.corp.intel.com (10.22.229.16) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.27; Mon, 17 Jul 2023 11:51:05 -0700
-Received: from ORSEDG602.ED.cps.intel.com (10.7.248.7) by
- orsmsx603.amr.corp.intel.com (10.22.229.16) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.27 via Frontend Transport; Mon, 17 Jul 2023 11:51:05 -0700
-Received: from NAM10-DM6-obe.outbound.protection.outlook.com (104.47.58.106)
- by edgegateway.intel.com (134.134.137.103) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2507.27; Mon, 17 Jul 2023 11:51:03 -0700
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=kWA0fjzJTmhzElzf/ZiB6FPEsI+8+0pRK5J/Hl77bYiCvAhBxBKMNtdFFG6R2BWla7fVJULBywhrLxmDjKSxiXjQvh8lFQuAwnkkY4HVHuHejqI2X7bxykkOAlSDHzdyT9jk18TennhbVW1J7792uJTpAqGeM0pQRwtzxRUX1XFk5Tiwz9Jx/OS7xYWW3GZME+brxROuqNEddYsa+nRkKkgRtOU0yzSpDNrt0D3MaZnD1UHCVMlceyJPK2JwixdV+WyNS3fGwJPZZQmkzMd+671zaJbzwihzXKqmc6zFYsOT4pSQwXEfuFW0abidBxtZyszIcghzv09Dfj48hwlWqA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=y2gDMng/Q8vTcRDahDCYcsbyz8ur3JJQf+t/OZFPO54=;
- b=OgkDLqTI9ec/5J/kDJvI6UdKeAT2rytmgNnfJL59sAvoi4zcUNdhehYwzGdgDNOzeYKO0+juAG/3aQY+c/3ykjLZ5iQhvnjpgfamsCrFWEgfhAVaPTaNaDiBMnC8G0Nx+Bj53xXFr4fDWCv9k8Wr6VRaR78iX0Jev+HiOiBrfqNO2vYimdi4TPMLEd1UPxXj9ND+yky50NMP/TR4rx7QhgizWWy5TOwA+eRYt8nKi1NwdytAKMwCz3Nvd3zUJdXqoZ+UTGswQHWPAaBhhEfKNTRBjz2dc2g4zqfdONAVBZ/IDqw1SDZ7K3u75fs9KPwBz9rgwSF4UI4z9tJUiytqkA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
- dkim=pass header.d=intel.com; arc=none
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=intel.com;
-Received: from MN0PR11MB6059.namprd11.prod.outlook.com (2603:10b6:208:377::9)
- by CY5PR11MB6091.namprd11.prod.outlook.com (2603:10b6:930:2d::6) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6588.32; Mon, 17 Jul
- 2023 18:50:56 +0000
-Received: from MN0PR11MB6059.namprd11.prod.outlook.com
- ([fe80::7f94:b6c4:1ce2:294]) by MN0PR11MB6059.namprd11.prod.outlook.com
- ([fe80::7f94:b6c4:1ce2:294%5]) with mapi id 15.20.6588.031; Mon, 17 Jul 2023
- 18:50:56 +0000
-Date: Mon, 17 Jul 2023 14:50:52 -0400
-From: Rodrigo Vivi <rodrigo.vivi@intel.com>
-To: Oded Gabbay <ogabbay@kernel.org>
-Message-ID: <ZLWNjHec/5B4UuUd@intel.com>
-References: <20230609073713.7-1-francois.dugast@intel.com>
- <20230609073713.7-3-francois.dugast@intel.com>
- <CAFCwf10La4gW_UCQx8i0ccuSMrnCa+UAwiGSD0TqUO34XR0pHA@mail.gmail.com>
-Content-Type: text/plain; charset="utf-8"
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <CAFCwf10La4gW_UCQx8i0ccuSMrnCa+UAwiGSD0TqUO34XR0pHA@mail.gmail.com>
-X-ClientProxiedBy: SJ0PR13CA0101.namprd13.prod.outlook.com
- (2603:10b6:a03:2c5::16) To MN0PR11MB6059.namprd11.prod.outlook.com
- (2603:10b6:208:377::9)
+X-IronPort-AV: E=McAfee;i="6600,9927,10774"; a="1054001025"
+X-IronPort-AV: E=Sophos;i="6.01,211,1684825200"; d="scan'208";a="1054001025"
+Received: from lcoutoda-mobl.ger.corp.intel.com (HELO localhost.localdomain)
+ ([10.252.45.169])
+ by fmsmga005-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 17 Jul 2023 12:28:42 -0700
+From: Francois Dugast <francois.dugast@intel.com>
+To: intel-xe@lists.freedesktop.org
+Date: Mon, 17 Jul 2023 19:28:33 +0000
+Message-Id: <20230717192833.7-1-francois.dugast@intel.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: MN0PR11MB6059:EE_|CY5PR11MB6091:EE_
-X-MS-Office365-Filtering-Correlation-Id: 161fad72-8495-41bc-6a31-08db86f6c11b
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: 6N55+TjDZWIgXbGpFHrSo9vQa+/DY9tcDXeGrB9KfZ2ROjUhEmMZTW2Dzur7rfzda6GK5mf6gyl7HdgW/LXVDI4hoJTWyg4GdmJ+GxN3bHQOeX7khVXa0G/ylRzRmEz2LoeLtIDjLQxXh4zL0WxqopQjnH/jIXfSACQ6T+Si6vygqKd+AfLf07ZN+q+VMqSYBYchhrAzOmO26zddfWtlqFz2NCH8gIpGS0dv8+wdwAU0uP1P38s5WA+McKstxLQzHjFRMCDY6oRwZiY2jYvKDx4+dzqQvnCles3ZLR3R2asB1FFx1MIuUOmIm+9AfxMVv1XUix9SmA1LeIkowIP1i1arqekW7qsxZcb9j9gwuv5mcfMoahkQBHfQwSi84iEMq+aK/jwWBZOufzqde6rht2MuSdtaxUo62nvjzke4oCMFDuJvuncb4pM1ksyPKJZ/x4PKs97XXIv97yIzjuEf8lqKR1e5PcRBMoEb14h26ue0aWHQhob2yawMro1yJZ3CFyE/N22DnhbIpEin6ZQFUagzOn8jOrORyS9LQTGif0s=
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:MN0PR11MB6059.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230028)(136003)(396003)(346002)(376002)(39860400002)(366004)(451199021)(966005)(6512007)(6506007)(53546011)(66476007)(36756003)(38100700002)(66946007)(66556008)(5660300002)(44832011)(86362001)(30864003)(2906002)(316002)(4326008)(8936002)(6916009)(8676002)(41300700001)(6486002)(26005)(6666004)(478600001)(82960400001)(2616005)(83380400001)(186003);
- DIR:OUT; SFP:1102; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?TGRWemtHWGc0bDVZMG9EWXlmMVNrYWtPaVF3ak9YZHdNZVJzZ0NET05SVU1k?=
- =?utf-8?B?cWNUSWNWMENpSk43NTNaS3hPN3BzTUZ3d0tBU2FPUFlhNVUyb05nRDFvZTRj?=
- =?utf-8?B?Z0dsaWVlUnl2YnphNFRVL3hyZm9PWG5CQXBYdW9TaGJlZStpT2tUTGNlU3FC?=
- =?utf-8?B?SVN3Zm5Sa3VxdkhidXl0WkJCb1FXMkoxZFNGaXpwTExDaWdJVjR1ZWd4STZ4?=
- =?utf-8?B?YVN3K1lkaklXdURZKzk3eE1mZnVHSkZHcmMxK05PZ2VLN1dLYzFtYlBocjdy?=
- =?utf-8?B?ZFowOUE4ZjdKdDVqVW5kWTBqbGhkbU1XdXJCeUppSXdyeDVudll3UzZXcndk?=
- =?utf-8?B?RFloMzBqR0lpakFmbkU5K3VaLzgxMzFGaEhRT3d5VTRRZjRGY3dGdHJXWXdt?=
- =?utf-8?B?ak1xZ1A5bVZGQUdnSFpERnpFYURia281K0F4UXVySGlaMGZ3eW1tcEdOeXlp?=
- =?utf-8?B?TVFUem5zbkJQRnY4eGh6L2ovM0ZIWDhtTmdYWGlPMFlxM3R4UmxJYW5maEVn?=
- =?utf-8?B?aDlpcjBJRG53cXpHN1lpSmJybEFKT3BFRHViNUZRL2ZXbGJ0K1FwekhTcU9v?=
- =?utf-8?B?eEYwZFpjSUt2UExXTjVzTmxGRUw1dlJVUkxkZFlZU0p5UEdjR2taNUF6R0dI?=
- =?utf-8?B?SU5vd1QyRC9nQ080TkVTWENJTXZ1K1B2UnFuckU4VWJvUVhYSUFLNFIwMStE?=
- =?utf-8?B?clBZVjlKRmlzUTRkRnVOZzhnamErbFh6dU1TZ2dickdrUmJPbWpNaFFRT1BX?=
- =?utf-8?B?SGV2eUZobGNvNDNMNmthcG9uaEcwNzl1Q0R6VVEwSm5XLzdZb3NnTW1yRDNE?=
- =?utf-8?B?WnEzSmI2K3R1YytYVVVEbFU2QXcxS1RRdDIvNnpRTjJQM3J5eXN5NjlqcGxy?=
- =?utf-8?B?OWdHaVpxQlNhVkl1eVpybmxIVUhQOWRsRnROdUFPRWZtSnRQR2Y4RkdLSzFT?=
- =?utf-8?B?N0JIbkN6V3VCQlIvK2FrVmJpMUZoNjhWNEViU1RtdVQwSEltbGVocG8xUCtk?=
- =?utf-8?B?L29aOFFkYWFWV0FwTFFxWjFPZ3dZclliWDFYRGgyWU9rU2pLR2xUdHNGSUp6?=
- =?utf-8?B?SFhBV3FXRU1tVHpiQm1rY1NQL0x1ZXVhdFBKR3cwbkZYU1BZOEp6RUhiS3Ri?=
- =?utf-8?B?MmptSTdqMjBBSXVyeHJ1dS9pVGs4TlpOam1kSUlrZmNhcUtwOGxWb0FZc2cx?=
- =?utf-8?B?anptU0tTN1M1QTM5Z0RpR1Y0eXA5dW1CbThyTE5aM2QwaWp5Z2hiL1BKajh3?=
- =?utf-8?B?bkZXQUtOTTFVTkVCT1EvR0VMbjV3cHRRTUFnZ3E0QUtxYUs3R1Z4Wk5zWEhq?=
- =?utf-8?B?bHBEKzlxc01CNUpwWDVOSkI1SG9sSXRqVlFJRXd6REpPSHdldU9PT09xa3ZK?=
- =?utf-8?B?VE9yZlRFRmVYR2dWdUhNK3h2bGpuREV0SnhuSmRITGVCaFp2a3JtVGNQRWVD?=
- =?utf-8?B?bFdwRnZLb3BEeXJYd2x2M25uaEdXVjdjRFd2Tm9DZmZKY1BkS3lFNmYvYkIx?=
- =?utf-8?B?TjYzeitiQ3Y5NFhYeWpQa1V1Q28zaGNXOXVZUnBvdmRpajUvd3Z4V0Y1WTdI?=
- =?utf-8?B?VVhkSFNpL0FQcjVWUzBIV1NHcldTUlliVWtFUmdyanBFckFwWUV3V0VvbFRX?=
- =?utf-8?B?eXVEZzFsUWJGc2Jub0xFQ1QzS3Y5SzA1TW9RVnJ3ajAySy9WNjV2bXNiMWl2?=
- =?utf-8?B?OVBDa0J2cmdLS04vbENHYW1McjVOTEJ2L0c1STZnVjJNTXd4N0dlVHBUYzBp?=
- =?utf-8?B?T25MZWNFYjdBeTBoaWx6T1ZMRFhVTG1qejUraUc1MGRtSnc3d0EzVTFNWlUv?=
- =?utf-8?B?c3gxWnRzbHJWazN4KytVczVWL3Z6dC9LNUZOcjNyd2tabUdRVTN4anZOOGRt?=
- =?utf-8?B?OExvQjl2MDJMWVVWZFlQSDdCSTMvbjdqRTlmNnY4Z0tManBYcjlWU2VoT3NX?=
- =?utf-8?B?RTRLSFNnVnRMRjhEa2o0SUs2YVg3WkJTRzh4UmlZTndLNnRCamhiSU5HdmV0?=
- =?utf-8?B?ZWlKdVVCZlR3SE9vUzVZRTlkMzNjMGczSStaamhLNU8rZGNVd054a1hNbE5x?=
- =?utf-8?B?TWwxcUJsSDN4eTYxdkFHbXp5TU0yTUFzdWZkaTNqR0N6czl4djR4QmpZdE9J?=
- =?utf-8?Q?BEiwdOuZ/3NqZ5dVKn/to9GdA?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: 161fad72-8495-41bc-6a31-08db86f6c11b
-X-MS-Exchange-CrossTenant-AuthSource: MN0PR11MB6059.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 17 Jul 2023 18:50:56.7072 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: vGLGT1mHEbjLeMNaAbTntDxYYHtW+ho4glUnOZGTSfiKchsR1YaYsCVKof1NqHGw6g4sLPA/jEXMcsk4YABFxQ==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: CY5PR11MB6091
-X-OriginatorOrg: intel.com
-Subject: Re: [Intel-xe] [PATCH v4 2/2] drm/xe: Move defines before relevant
- fields
+Content-Transfer-Encoding: 8bit
+Subject: [Intel-xe] [PATCH] drm/xe: Cleanup style warnings
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -153,364 +55,504 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Cc: Francois Dugast <francois.dugast@intel.com>, lucas.demarchi@intel.com,
- intel-xe@lists.freedesktop.org
+Cc: Francois Dugast <francois.dugast@intel.com>
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Mon, Jul 17, 2023 at 03:12:43PM +0300, Oded Gabbay wrote:
-> On Fri, Jun 9, 2023 at 10:37 AM Francois Dugast
-> <francois.dugast@intel.com> wrote:
-> >
-> > Align on same rule in the whole file: defines then doc then relevant
-> > field, with an empty line to separate fields.
-> >
-> > v2:
-> >   - Rebase on drm-xe-next
-> >   - Fix ordering of defines and fields in uAPI (Lucas De Marchi)
-> > v3: Remove useless empty lines (Lucas De Marchi)
-> > v4: Move changelog to commit
-> >
-> > Reported-by: Oded Gabbay <ogabbay@kernel.org>
-> > Link: https://lists.freedesktop.org/archives/intel-xe/2023-May/004704.html
-> > Signed-off-by: Francois Dugast <francois.dugast@intel.com>
-> 
-> Reviewed-by: Oded Gabbay <ogabbay@kernel.org>
-> 
-> I would recommend that you move all the vX: to the email itself as to
-> not pollute the commit message.
-> 6 or 12 months from now, no one cares about the changes you did in
-> some revision of the code review, and if they do care, they can go and
-> read the emails.
-> The commit message text ofc should reflect the final code version.
+Reduce the number of warnings reported by checkpatch.pl from 118 to 48 by
+addressing those warnings types:
 
-Well, this is a long fight on drm vs other subsystems.
+  LEADING_SPACE
+  LINE_SPACING
+  BRACES
+  TRAILING_SEMICOLON
+  CONSTANT_COMPARISON
+  BLOCK_COMMENT_STYLE
+  RETURN_VOID
+  ONE_SEMICOLON
+  SUSPECT_CODE_INDENT
+  LINE_CONTINUATIONS
+  UNNECESSARY_ELSE
+  UNSPECIFIED_INT
+  UNNECESSARY_INT
+  MISORDERED_TYPE
 
-On drm we have always preferred to keep the versioning inside the commit
-message, for better visibility, history, credits and for helping OSVs that
-might have ported some other version that not exactly the latest one to
-their kernel.
+Signed-off-by: Francois Dugast <francois.dugast@intel.com>
+---
+ .../drm/xe/display/ext/intel_clock_gating.c   |  3 +-
+ drivers/gpu/drm/xe/xe_bo.c                    |  4 +-
+ drivers/gpu/drm/xe/xe_exec.c                  |  1 +
+ drivers/gpu/drm/xe/xe_execlist.h              |  2 +-
+ drivers/gpu/drm/xe/xe_gt.h                    |  2 +-
+ drivers/gpu/drm/xe/xe_guc.c                   |  2 +-
+ drivers/gpu/drm/xe/xe_guc_ads.c               |  2 +-
+ drivers/gpu/drm/xe/xe_guc_ct.c                |  3 +-
+ drivers/gpu/drm/xe/xe_guc_fwif.h              | 12 ++-
+ drivers/gpu/drm/xe/xe_guc_submit.c            |  2 +-
+ drivers/gpu/drm/xe/xe_huc.c                   |  1 +
+ drivers/gpu/drm/xe/xe_irq.c                   | 11 ++-
+ drivers/gpu/drm/xe/xe_lrc.c                   | 80 +++++++++----------
+ drivers/gpu/drm/xe/xe_migrate.c               |  3 +-
+ drivers/gpu/drm/xe/xe_pci.c                   |  4 +-
+ drivers/gpu/drm/xe/xe_pcode.c                 |  1 +
+ drivers/gpu/drm/xe/xe_reg_whitelist.c         |  2 +-
+ drivers/gpu/drm/xe/xe_res_cursor.h            |  1 -
+ drivers/gpu/drm/xe/xe_sa.c                    |  2 +-
+ drivers/gpu/drm/xe/xe_uc_fw.c                 |  4 +-
+ drivers/gpu/drm/xe/xe_vm.c                    | 12 ++-
+ drivers/gpu/drm/xe/xe_vm_doc.h                |  4 +-
+ 22 files changed, 83 insertions(+), 75 deletions(-)
 
-But I do see your point...
+diff --git a/drivers/gpu/drm/xe/display/ext/intel_clock_gating.c b/drivers/gpu/drm/xe/display/ext/intel_clock_gating.c
+index 0d67b0961d74..f9cb585e3645 100644
+--- a/drivers/gpu/drm/xe/display/ext/intel_clock_gating.c
++++ b/drivers/gpu/drm/xe/display/ext/intel_clock_gating.c
+@@ -119,7 +119,6 @@ void intel_clock_gating_init(struct drm_i915_private *dev_priv)
+ 		dg1_init_clock_gating(dev_priv);
+ 	else if (GRAPHICS_VER(dev_priv) == 12)
+ 		gen12lp_init_clock_gating(dev_priv);
+-	else {
++	else
+ 		MISSING_CASE(INTEL_DEVID(dev_priv));
+-	}
+ }
+diff --git a/drivers/gpu/drm/xe/xe_bo.c b/drivers/gpu/drm/xe/xe_bo.c
+index 5d6f73c1d37e..0381e00a6e51 100644
+--- a/drivers/gpu/drm/xe/xe_bo.c
++++ b/drivers/gpu/drm/xe/xe_bo.c
+@@ -1710,7 +1710,7 @@ int xe_gem_create_ioctl(struct drm_device *dev, void *data,
+ 	struct ww_acquire_ctx ww;
+ 	struct xe_vm *vm = NULL;
+ 	struct xe_bo *bo;
+-	unsigned bo_flags = XE_BO_CREATE_USER_BIT;
++	unsigned int bo_flags = XE_BO_CREATE_USER_BIT;
+ 	u32 handle;
+ 	int err;
+ 
+@@ -1813,7 +1813,7 @@ int xe_bo_lock(struct xe_bo *bo, struct ww_acquire_ctx *ww,
+ 	XE_BUG_ON(!ww);
+ 
+ 	tv_bo.num_shared = num_resv;
+-	tv_bo.bo = &bo->ttm;;
++	tv_bo.bo = &bo->ttm;
+ 	list_add_tail(&tv_bo.head, &objs);
+ 
+ 	return ttm_eu_reserve_buffers(ww, &objs, intr, &dups);
+diff --git a/drivers/gpu/drm/xe/xe_exec.c b/drivers/gpu/drm/xe/xe_exec.c
+index 87d6cd4a7cc8..1f64d64a94fa 100644
+--- a/drivers/gpu/drm/xe/xe_exec.c
++++ b/drivers/gpu/drm/xe/xe_exec.c
+@@ -243,6 +243,7 @@ int xe_exec_ioctl(struct drm_device *dev, void *data, struct drm_file *file)
+ 	    vm->flags & XE_VM_FLAG_ASYNC_BIND_OPS) {
+ 		for (i = 0; i < args->num_syncs; i++) {
+ 			struct dma_fence *fence = syncs[i].fence;
++
+ 			if (fence) {
+ 				err = xe_vm_async_fence_wait_start(fence);
+ 				if (err)
+diff --git a/drivers/gpu/drm/xe/xe_execlist.h b/drivers/gpu/drm/xe/xe_execlist.h
+index 6a0442a6eff6..26f600ac8552 100644
+--- a/drivers/gpu/drm/xe/xe_execlist.h
++++ b/drivers/gpu/drm/xe/xe_execlist.h
+@@ -11,7 +11,7 @@
+ struct xe_device;
+ struct xe_gt;
+ 
+-#define xe_execlist_port_assert_held(port) lockdep_assert_held(&(port)->lock);
++#define xe_execlist_port_assert_held(port) lockdep_assert_held(&(port)->lock)
+ 
+ int xe_execlist_init(struct xe_gt *gt);
+ struct xe_execlist_port *xe_execlist_port_create(struct xe_device *xe,
+diff --git a/drivers/gpu/drm/xe/xe_gt.h b/drivers/gpu/drm/xe/xe_gt.h
+index a523d7941afe..7298653a73de 100644
+--- a/drivers/gpu/drm/xe/xe_gt.h
++++ b/drivers/gpu/drm/xe/xe_gt.h
+@@ -13,7 +13,7 @@
+ 
+ #define for_each_hw_engine(hwe__, gt__, id__) \
+ 	for ((id__) = 0; (id__) < ARRAY_SIZE((gt__)->hw_engines); (id__)++) \
+-	     for_each_if(((hwe__) = (gt__)->hw_engines + (id__)) && \
++		for_each_if(((hwe__) = (gt__)->hw_engines + (id__)) && \
+ 			  xe_hw_engine_is_valid((hwe__)))
+ 
+ struct xe_gt *xe_gt_alloc(struct xe_tile *tile);
+diff --git a/drivers/gpu/drm/xe/xe_guc.c b/drivers/gpu/drm/xe/xe_guc.c
+index ce8b35dcbc51..d44537abf7da 100644
+--- a/drivers/gpu/drm/xe/xe_guc.c
++++ b/drivers/gpu/drm/xe/xe_guc.c
+@@ -186,7 +186,7 @@ static void guc_init_params(struct xe_guc *guc)
+ 	int i;
+ 
+ 	BUILD_BUG_ON(sizeof(guc->params) != GUC_CTL_MAX_DWORDS * sizeof(u32));
+-	BUILD_BUG_ON(SOFT_SCRATCH_COUNT != GUC_CTL_MAX_DWORDS + 2);
++	BUILD_BUG_ON(GUC_CTL_MAX_DWORDS + 2 != SOFT_SCRATCH_COUNT);
+ 
+ 	params[GUC_CTL_LOG_PARAMS] = guc_ctl_log_params_flags(guc);
+ 	params[GUC_CTL_FEATURE] = guc_ctl_feature_flags(guc);
+diff --git a/drivers/gpu/drm/xe/xe_guc_ads.c b/drivers/gpu/drm/xe/xe_guc_ads.c
+index dd69d097b920..d4c3a5ce3252 100644
+--- a/drivers/gpu/drm/xe/xe_guc_ads.c
++++ b/drivers/gpu/drm/xe/xe_guc_ads.c
+@@ -444,7 +444,7 @@ static unsigned int guc_mmio_regset_write(struct xe_guc_ads *ads,
+ 		xe_gt_any_hw_engine_by_reset_domain(hwe->gt, XE_ENGINE_CLASS_RENDER);
+ 	struct xe_reg_sr_entry *entry;
+ 	unsigned long idx;
+-	unsigned count = 0;
++	unsigned int count = 0;
+ 	const struct {
+ 		struct xe_reg reg;
+ 		bool skip;
+diff --git a/drivers/gpu/drm/xe/xe_guc_ct.c b/drivers/gpu/drm/xe/xe_guc_ct.c
+index 9fb5fd4391d2..c7992a8667e5 100644
+--- a/drivers/gpu/drm/xe/xe_guc_ct.c
++++ b/drivers/gpu/drm/xe/xe_guc_ct.c
+@@ -716,9 +716,8 @@ static int guc_ct_send_recv(struct xe_guc_ct *ct, const u32 *action, u32 len,
+ 		ptr = xa_store(&ct->fence_lookup,
+ 			       g2h_fence.seqno,
+ 			       &g2h_fence, GFP_KERNEL);
+-		if (IS_ERR(ptr)) {
++		if (IS_ERR(ptr))
+ 			return PTR_ERR(ptr);
+-		}
+ 
+ 		goto retry_same_fence;
+ 	} else if (unlikely(ret)) {
+diff --git a/drivers/gpu/drm/xe/xe_guc_fwif.h b/drivers/gpu/drm/xe/xe_guc_fwif.h
+index e215e8b2c17a..7515d7fbb723 100644
+--- a/drivers/gpu/drm/xe/xe_guc_fwif.h
++++ b/drivers/gpu/drm/xe/xe_guc_fwif.h
+@@ -140,16 +140,20 @@ struct guc_update_engine_policy {
+ 
+ struct guc_policies {
+ 	u32 submission_queue_depth[GUC_MAX_ENGINE_CLASSES];
+-	/* In micro seconds. How much time to allow before DPC processing is
++	/*
++	 * In micro seconds. How much time to allow before DPC processing is
+ 	 * called back via interrupt (to prevent DPC queue drain starving).
+-	 * Typically 1000s of micro seconds (example only, not granularity). */
++	 * Typically 1000s of micro seconds (example only, not granularity).
++	 */
+ 	u32 dpc_promote_time;
+ 
+ 	/* Must be set to take these new values. */
+ 	u32 is_valid;
+ 
+-	/* Max number of WIs to process per call. A large value may keep CS
+-	 * idle. */
++	/*
++	 * Max number of WIs to process per call. A large value may keep CS
++	 * idle.
++	 */
+ 	u32 max_num_work_items;
+ 
+ 	u32 global_flags;
+diff --git a/drivers/gpu/drm/xe/xe_guc_submit.c b/drivers/gpu/drm/xe/xe_guc_submit.c
+index efbc4b13e9e1..911d4965c27c 100644
+--- a/drivers/gpu/drm/xe/xe_guc_submit.c
++++ b/drivers/gpu/drm/xe/xe_guc_submit.c
+@@ -329,7 +329,7 @@ static void __guc_engine_policy_add_##func(struct engine_policy *policy, \
+ 					   u32 data) \
+ { \
+ 	XE_BUG_ON(policy->count >= GUC_CONTEXT_POLICIES_KLV_NUM_IDS); \
+- \
++\
+ 	policy->h2g.klv[policy->count].kl = \
+ 		FIELD_PREP(GUC_KLV_0_KEY, \
+ 			   GUC_CONTEXT_POLICIES_KLV_ID_##id) | \
+diff --git a/drivers/gpu/drm/xe/xe_huc.c b/drivers/gpu/drm/xe/xe_huc.c
+index e0377083d1f2..373a65c77946 100644
+--- a/drivers/gpu/drm/xe/xe_huc.c
++++ b/drivers/gpu/drm/xe/xe_huc.c
+@@ -68,6 +68,7 @@ int xe_huc_auth(struct xe_huc *huc)
+ 	struct xe_gt *gt = huc_to_gt(huc);
+ 	struct xe_guc *guc = huc_to_guc(huc);
+ 	int ret;
++
+ 	if (xe_uc_fw_is_disabled(&huc->fw))
+ 		return 0;
+ 
+diff --git a/drivers/gpu/drm/xe/xe_irq.c b/drivers/gpu/drm/xe/xe_irq.c
+index b4ed1e4a3388..eae190cb0969 100644
+--- a/drivers/gpu/drm/xe/xe_irq.c
++++ b/drivers/gpu/drm/xe/xe_irq.c
+@@ -251,7 +251,7 @@ static struct xe_gt *pick_engine_gt(struct xe_tile *tile,
+ }
+ 
+ static void gt_irq_handler(struct xe_tile *tile,
+-			   u32 master_ctl, long unsigned int *intr_dw,
++			   u32 master_ctl, unsigned long *intr_dw,
+ 			   u32 *identity)
+ {
+ 	struct xe_device *xe = tile_to_xe(tile);
+@@ -306,7 +306,7 @@ static irqreturn_t xelp_irq_handler(int irq, void *arg)
+ 	struct xe_device *xe = arg;
+ 	struct xe_tile *tile = xe_device_get_root_tile(xe);
+ 	u32 master_ctl, gu_misc_iir;
+-	long unsigned int intr_dw[2];
++	unsigned long intr_dw[2];
+ 	u32 identity[32];
+ 
+ 	master_ctl = xelp_intr_disable(xe);
+@@ -365,7 +365,7 @@ static irqreturn_t dg1_irq_handler(int irq, void *arg)
+ 	struct xe_device *xe = arg;
+ 	struct xe_tile *tile;
+ 	u32 master_tile_ctl, master_ctl = 0, gu_misc_iir = 0;
+-	long unsigned int intr_dw[2];
++	unsigned long intr_dw[2];
+ 	u32 identity[32];
+ 	u8 id;
+ 
+@@ -513,11 +513,10 @@ static void xe_irq_postinstall(struct xe_device *xe)
+ 
+ static irq_handler_t xe_irq_handler(struct xe_device *xe)
+ {
+-	if (GRAPHICS_VERx100(xe) >= 1210) {
++	if (GRAPHICS_VERx100(xe) >= 1210)
+ 		return dg1_irq_handler;
+-	} else {
++	else
+ 		return xelp_irq_handler;
+-	}
+ }
+ 
+ static void irq_uninstall(struct drm_device *drm, void *arg)
+diff --git a/drivers/gpu/drm/xe/xe_lrc.c b/drivers/gpu/drm/xe/xe_lrc.c
+index d5f782f8d2a6..b726599f6228 100644
+--- a/drivers/gpu/drm/xe/xe_lrc.c
++++ b/drivers/gpu/drm/xe/xe_lrc.c
+@@ -374,46 +374,46 @@ static const u8 dg2_rcs_offsets[] = {
+ };
+ 
+ static const u8 mtl_rcs_offsets[] = {
+-       NOP(1),
+-       LRI(15, POSTED),
+-       REG16(0x244),
+-       REG(0x034),
+-       REG(0x030),
+-       REG(0x038),
+-       REG(0x03c),
+-       REG(0x168),
+-       REG(0x140),
+-       REG(0x110),
+-       REG(0x1c0),
+-       REG(0x1c4),
+-       REG(0x1c8),
+-       REG(0x180),
+-       REG16(0x2b4),
+-       REG(0x120),
+-       REG(0x124),
+-
+-       NOP(1),
+-       LRI(9, POSTED),
+-       REG16(0x3a8),
+-       REG16(0x28c),
+-       REG16(0x288),
+-       REG16(0x284),
+-       REG16(0x280),
+-       REG16(0x27c),
+-       REG16(0x278),
+-       REG16(0x274),
+-       REG16(0x270),
+-
+-       NOP(2),
+-       LRI(2, POSTED),
+-       REG16(0x5a8),
+-       REG16(0x5ac),
+-
+-       NOP(6),
+-       LRI(1, 0),
+-       REG(0x0c8),
+-
+-       END
++	NOP(1),
++	LRI(15, POSTED),
++	REG16(0x244),
++	REG(0x034),
++	REG(0x030),
++	REG(0x038),
++	REG(0x03c),
++	REG(0x168),
++	REG(0x140),
++	REG(0x110),
++	REG(0x1c0),
++	REG(0x1c4),
++	REG(0x1c8),
++	REG(0x180),
++	REG16(0x2b4),
++	REG(0x120),
++	REG(0x124),
++
++	NOP(1),
++	LRI(9, POSTED),
++	REG16(0x3a8),
++	REG16(0x28c),
++	REG16(0x288),
++	REG16(0x284),
++	REG16(0x280),
++	REG16(0x27c),
++	REG16(0x278),
++	REG16(0x274),
++	REG16(0x270),
++
++	NOP(2),
++	LRI(2, POSTED),
++	REG16(0x5a8),
++	REG16(0x5ac),
++
++	NOP(6),
++	LRI(1, 0),
++	REG(0x0c8),
++
++	END
+ };
+ 
+ #undef END
+diff --git a/drivers/gpu/drm/xe/xe_migrate.c b/drivers/gpu/drm/xe/xe_migrate.c
+index 47addcd3e78f..f17de52b51f9 100644
+--- a/drivers/gpu/drm/xe/xe_migrate.c
++++ b/drivers/gpu/drm/xe/xe_migrate.c
+@@ -511,7 +511,7 @@ static void emit_copy_ccs(struct xe_gt *gt, struct xe_bb *bb,
+ #define EMIT_COPY_DW 10
+ static void emit_copy(struct xe_gt *gt, struct xe_bb *bb,
+ 		      u64 src_ofs, u64 dst_ofs, unsigned int size,
+-		      unsigned pitch)
++		      unsigned int pitch)
+ {
+ 	XE_BUG_ON(size / pitch > S16_MAX);
+ 	XE_BUG_ON(pitch / 4 > S16_MAX);
+@@ -1012,6 +1012,7 @@ static void write_pgtable(struct xe_tile *tile, struct xe_bb *bb, u64 ppgtt_ofs,
+ 
+ 	do {
+ 		u64 addr = ppgtt_ofs + ofs * 8;
++
+ 		chunk = min(update->qwords, 0x1ffU);
+ 
+ 		/* Ensure populatefn can do memset64 by aligning bb->cs */
+diff --git a/drivers/gpu/drm/xe/xe_pci.c b/drivers/gpu/drm/xe/xe_pci.c
+index 086fea4f2471..4b5e78e08b4c 100644
+--- a/drivers/gpu/drm/xe/xe_pci.c
++++ b/drivers/gpu/drm/xe/xe_pci.c
+@@ -540,8 +540,8 @@ static int xe_info_init(struct xe_device *xe,
+ 	xe->info.has_range_tlb_invalidation = graphics_desc->has_range_tlb_invalidation;
+ 	xe->info.has_link_copy_engine = graphics_desc->has_link_copy_engine;
+ 
+-	xe->info.enable_display = IS_ENABLED(CONFIG_DRM_XE_DISPLAY) && \
+-				  enable_display && \
++	xe->info.enable_display = IS_ENABLED(CONFIG_DRM_XE_DISPLAY) &&
++				  enable_display &&
+ 				  desc->has_display;
+ 	/*
+ 	 * All platforms have at least one primary GT.  Any platform with media
+diff --git a/drivers/gpu/drm/xe/xe_pcode.c b/drivers/gpu/drm/xe/xe_pcode.c
+index 7ab70a83f88d..e3ab1d3a367f 100644
+--- a/drivers/gpu/drm/xe/xe_pcode.c
++++ b/drivers/gpu/drm/xe/xe_pcode.c
+@@ -58,6 +58,7 @@ static int pcode_mailbox_rw(struct xe_gt *gt, u32 mbox, u32 *data0, u32 *data1,
+ 			    bool atomic)
+ {
+ 	int err;
++
+ 	lockdep_assert_held(&gt->pcode.lock);
+ 
+ 	if ((xe_mmio_read32(gt, PCODE_MAILBOX) & PCODE_READY) != 0)
+diff --git a/drivers/gpu/drm/xe/xe_reg_whitelist.c b/drivers/gpu/drm/xe/xe_reg_whitelist.c
+index 70892f134718..ea6dd7d71b59 100644
+--- a/drivers/gpu/drm/xe/xe_reg_whitelist.c
++++ b/drivers/gpu/drm/xe/xe_reg_whitelist.c
+@@ -82,7 +82,7 @@ void xe_reg_whitelist_print_entry(struct drm_printer *p, unsigned int indent,
+ {
+ 	u32 val = entry->set_bits;
+ 	const char *access_str = "(invalid)";
+-	unsigned range_bit = 2;
++	unsigned int range_bit = 2;
+ 	u32 range_start, range_end;
+ 	bool deny;
+ 
+diff --git a/drivers/gpu/drm/xe/xe_res_cursor.h b/drivers/gpu/drm/xe/xe_res_cursor.h
+index f2ba609712d3..2a6fdd284395 100644
+--- a/drivers/gpu/drm/xe/xe_res_cursor.h
++++ b/drivers/gpu/drm/xe/xe_res_cursor.h
+@@ -130,7 +130,6 @@ static inline void xe_res_first(struct ttm_resource *res,
+ 	cur->node = NULL;
+ 	cur->mem_type = XE_PL_TT;
+ 	XE_WARN_ON(res && start + size > res->size);
+-	return;
+ }
+ 
+ static inline void __xe_res_sg_next(struct xe_res_cursor *cur)
+diff --git a/drivers/gpu/drm/xe/xe_sa.c b/drivers/gpu/drm/xe/xe_sa.c
+index fee71080bd31..2c4632259edd 100644
+--- a/drivers/gpu/drm/xe/xe_sa.c
++++ b/drivers/gpu/drm/xe/xe_sa.c
+@@ -81,7 +81,7 @@ struct xe_sa_manager *xe_sa_bo_manager_init(struct xe_tile *tile, u32 size, u32
+ }
+ 
+ struct drm_suballoc *xe_sa_bo_new(struct xe_sa_manager *sa_manager,
+-				  unsigned size)
++				  unsigned int size)
+ {
+ 	return drm_suballoc_new(&sa_manager->base, size, GFP_KERNEL, true, 0);
+ }
+diff --git a/drivers/gpu/drm/xe/xe_uc_fw.c b/drivers/gpu/drm/xe/xe_uc_fw.c
+index 23ea40b52c24..def19e64f2c1 100644
+--- a/drivers/gpu/drm/xe/xe_uc_fw.c
++++ b/drivers/gpu/drm/xe/xe_uc_fw.c
+@@ -147,9 +147,9 @@ struct fw_blobs_by_type {
+ 		entry__,							\
+ 	},
+ 
+-XE_GUC_FIRMWARE_DEFS(XE_UC_MODULE_FIRMWARE,					\
++XE_GUC_FIRMWARE_DEFS(XE_UC_MODULE_FIRMWARE,
+ 		     fw_filename_mmp_ver, fw_filename_major_ver)
+-XE_HUC_FIRMWARE_DEFS(XE_UC_MODULE_FIRMWARE,					\
++XE_HUC_FIRMWARE_DEFS(XE_UC_MODULE_FIRMWARE,
+ 		     fw_filename_mmp_ver, fw_filename_no_ver)
+ 
+ static struct xe_gt *
+diff --git a/drivers/gpu/drm/xe/xe_vm.c b/drivers/gpu/drm/xe/xe_vm.c
+index 966e05d814c0..91f11dfe9460 100644
+--- a/drivers/gpu/drm/xe/xe_vm.c
++++ b/drivers/gpu/drm/xe/xe_vm.c
+@@ -2166,16 +2166,20 @@ static int vm_bind_ioctl_lookup_vma(struct xe_vm *vm, struct xe_bo *bo,
+ 	case XE_VM_BIND_OP_PREFETCH:
+ 		vma = xe_vm_find_overlapping_vma(vm, addr, range);
+ 		if (XE_IOCTL_DBG(xe, !vma))
+-			return -ENODATA;	/* Not an actual error, IOCTL
+-						   cleans up returns and 0 */
++			return -ENODATA;	/*
++						 * Not an actual error, IOCTL
++						 * cleans up returns and 0
++						 */
+ 		if (XE_IOCTL_DBG(xe, (xe_vma_start(vma) != addr ||
+ 				      xe_vma_end(vma) != addr + range) && !async))
+ 			return -EINVAL;
+ 		break;
+ 	case XE_VM_BIND_OP_UNMAP_ALL:
+ 		if (XE_IOCTL_DBG(xe, list_empty(&bo->ttm.base.gpuva.list)))
+-			return -ENODATA;	/* Not an actual error, IOCTL
+-						   cleans up returns and 0 */
++			return -ENODATA;	/*
++						 * Not an actual error, IOCTL
++						 * cleans up returns and 0
++						 */
+ 		break;
+ 	default:
+ 		XE_BUG_ON("NOT POSSIBLE");
+diff --git a/drivers/gpu/drm/xe/xe_vm_doc.h b/drivers/gpu/drm/xe/xe_vm_doc.h
+index 5b6216964c45..b1b2dc4a6089 100644
+--- a/drivers/gpu/drm/xe/xe_vm_doc.h
++++ b/drivers/gpu/drm/xe/xe_vm_doc.h
+@@ -428,8 +428,8 @@
+  * the list of userptrs mapped in the VM, the list of engines using this VM, and
+  * the array of external BOs mapped in the VM. When adding or removing any of the
+  * aforemented state from the VM should acquire this lock in write mode. The VM
+- * bind path also acquires this lock in write while while the exec / compute
+- * mode rebind worker acquire this lock in read mode.
++ * bind path also acquires this lock in write while the exec / compute mode
++ * rebind worker acquire this lock in read mode.
+  *
+  * VM dma-resv lock (vm->ttm.base.resv->lock) - WW lock. Protects VM dma-resv
+  * slots which is shared with any private BO in the VM. Expected to be acquired
+-- 
+2.34.1
 
-> 
-> > ---
-> >  include/uapi/drm/xe_drm.h | 73 ++++++++++++++++++++++-----------------
-> >  1 file changed, 42 insertions(+), 31 deletions(-)
-> >
-> > diff --git a/include/uapi/drm/xe_drm.h b/include/uapi/drm/xe_drm.h
-> > index 1c7c4b5b920a..08f98def6005 100644
-> > --- a/include/uapi/drm/xe_drm.h
-> > +++ b/include/uapi/drm/xe_drm.h
-> > @@ -60,6 +60,7 @@ struct xe_user_extension {
-> >          * Pointer to the next struct xe_user_extension, or zero if the end.
-> >          */
-> >         __u64 next_extension;
-> > +
-> >         /**
-> >          * @name: Name of the extension.
-> >          *
-> > @@ -70,6 +71,7 @@ struct xe_user_extension {
-> >          * of uAPI which has embedded the struct xe_user_extension.
-> >          */
-> >         __u32 name;
-> > +
-> >         /**
-> >          * @pad: MBZ
-> >          *
-> > @@ -218,11 +220,11 @@ struct drm_xe_query_topology_mask {
-> >         /** @gt_id: GT ID the mask is associated with */
-> >         __u16 gt_id;
-> >
-> > -       /** @type: type of mask */
-> > -       __u16 type;
-> >  #define XE_TOPO_DSS_GEOMETRY   (1 << 0)
-> >  #define XE_TOPO_DSS_COMPUTE    (1 << 1)
-> >  #define XE_TOPO_EU_PER_DSS     (1 << 2)
-> > +       /** @type: type of mask */
-> > +       __u16 type;
-> >
-> >         /** @num_bytes: number of bytes in requested mask */
-> >         __u32 num_bytes;
-> > @@ -270,15 +272,14 @@ struct drm_xe_device_query {
-> >         /** @extensions: Pointer to the first extension struct, if any */
-> >         __u64 extensions;
-> >
-> > -       /** @query: The type of data to query */
-> > -       __u32 query;
-> > -
-> >  #define DRM_XE_DEVICE_QUERY_ENGINES    0
-> >  #define DRM_XE_DEVICE_QUERY_MEM_USAGE  1
-> >  #define DRM_XE_DEVICE_QUERY_CONFIG     2
-> >  #define DRM_XE_DEVICE_QUERY_GTS                3
-> >  #define DRM_XE_DEVICE_QUERY_HWCONFIG   4
-> >  #define DRM_XE_DEVICE_QUERY_GT_TOPOLOGY        5
-> > +       /** @query: The type of data to query */
-> > +       __u32 query;
-> >
-> >         /** @size: Size of the queried data */
-> >         __u32 size;
-> > @@ -301,12 +302,12 @@ struct drm_xe_gem_create {
-> >          */
-> >         __u64 size;
-> >
-> > +#define XE_GEM_CREATE_FLAG_DEFER_BACKING       (0x1 << 24)
-> > +#define XE_GEM_CREATE_FLAG_SCANOUT             (0x1 << 25)
-> >         /**
-> >          * @flags: Flags, currently a mask of memory instances of where BO can
-> >          * be placed
-> >          */
-> > -#define XE_GEM_CREATE_FLAG_DEFER_BACKING       (0x1 << 24)
-> > -#define XE_GEM_CREATE_FLAG_SCANOUT             (0x1 << 25)
-> >         __u32 flags;
-> >
-> >         /**
-> > @@ -357,10 +358,13 @@ struct drm_xe_gem_mmap_offset {
-> >  struct drm_xe_vm_bind_op_error_capture {
-> >         /** @error: errno that occured */
-> >         __s32 error;
-> > +
-> >         /** @op: operation that encounter an error */
-> >         __u32 op;
-> > +
-> >         /** @addr: address of bind op */
-> >         __u64 addr;
-> > +
-> >         /** @size: size of bind */
-> >         __u64 size;
-> >  };
-> > @@ -370,8 +374,8 @@ struct drm_xe_ext_vm_set_property {
-> >         /** @base: base user extension */
-> >         struct xe_user_extension base;
-> >
-> > -       /** @property: property to set */
-> >  #define XE_VM_PROPERTY_BIND_OP_ERROR_CAPTURE_ADDRESS           0
-> > +       /** @property: property to set */
-> >         __u32 property;
-> >
-> >         /** @pad: MBZ */
-> > @@ -385,17 +389,16 @@ struct drm_xe_ext_vm_set_property {
-> >  };
-> >
-> >  struct drm_xe_vm_create {
-> > -       /** @extensions: Pointer to the first extension struct, if any */
-> >  #define XE_VM_EXTENSION_SET_PROPERTY   0
-> > +       /** @extensions: Pointer to the first extension struct, if any */
-> >         __u64 extensions;
-> >
-> > -       /** @flags: Flags */
-> > -       __u32 flags;
-> > -
-> >  #define DRM_XE_VM_CREATE_SCRATCH_PAGE  (0x1 << 0)
-> >  #define DRM_XE_VM_CREATE_COMPUTE_MODE  (0x1 << 1)
-> >  #define DRM_XE_VM_CREATE_ASYNC_BIND_OPS        (0x1 << 2)
-> >  #define DRM_XE_VM_CREATE_FAULT_MODE    (0x1 << 3)
-> > +       /** @flags: Flags */
-> > +       __u32 flags;
-> >
-> >         /** @vm_id: Returned VM ID */
-> >         __u32 vm_id;
-> > @@ -430,6 +433,7 @@ struct drm_xe_vm_bind_op {
-> >                  * ignored for unbind
-> >                  */
-> >                 __u64 obj_offset;
-> > +
-> >                 /** @userptr: user pointer to bind on */
-> >                 __u64 userptr;
-> >         };
-> > @@ -448,12 +452,6 @@ struct drm_xe_vm_bind_op {
-> >          */
-> >         __u64 tile_mask;
-> >
-> > -       /** @op: Operation to perform (lower 16 bits) and flags (upper 16 bits) */
-> > -       __u32 op;
-> > -
-> > -       /** @mem_region: Memory region to prefetch VMA to, instance not a mask */
-> > -       __u32 region;
-> > -
-> >  #define XE_VM_BIND_OP_MAP              0x0
-> >  #define XE_VM_BIND_OP_UNMAP            0x1
-> >  #define XE_VM_BIND_OP_MAP_USERPTR      0x2
-> > @@ -492,6 +490,11 @@ struct drm_xe_vm_bind_op {
-> >          * than differing the MAP to the page fault handler.
-> >          */
-> >  #define XE_VM_BIND_FLAG_IMMEDIATE      (0x1 << 18)
-> > +       /** @op: Operation to perform (lower 16 bits) and flags (upper 16 bits) */
-> > +       __u32 op;
-> > +
-> > +       /** @mem_region: Memory region to prefetch VMA to, instance not a mask */
-> > +       __u32 region;
-> >
-> >         /** @reserved: Reserved */
-> >         __u64 reserved[2];
-> > @@ -520,6 +523,7 @@ struct drm_xe_vm_bind {
-> >         union {
-> >                 /** @bind: used if num_binds == 1 */
-> >                 struct drm_xe_vm_bind_op bind;
-> > +
-> >                 /**
-> >                  * @vector_of_binds: userptr to array of struct
-> >                  * drm_xe_vm_bind_op if num_binds > 1
-> > @@ -567,7 +571,6 @@ struct drm_xe_engine_set_property {
-> >         /** @engine_id: Engine ID */
-> >         __u32 engine_id;
-> >
-> > -       /** @property: property to set */
-> >  #define XE_ENGINE_SET_PROPERTY_PRIORITY                        0
-> >  #define XE_ENGINE_SET_PROPERTY_TIMESLICE               1
-> >  #define XE_ENGINE_SET_PROPERTY_PREEMPTION_TIMEOUT      2
-> > @@ -583,6 +586,7 @@ struct drm_xe_engine_set_property {
-> >  #define XE_ENGINE_SET_PROPERTY_ACC_TRIGGER             6
-> >  #define XE_ENGINE_SET_PROPERTY_ACC_NOTIFY              7
-> >  #define XE_ENGINE_SET_PROPERTY_ACC_GRANULARITY         8
-> > +       /** @property: property to set */
-> >         __u32 property;
-> >
-> >         /** @value: property value */
-> > @@ -594,8 +598,6 @@ struct drm_xe_engine_set_property {
-> >
-> >  /** struct drm_xe_engine_class_instance - instance of an engine class */
-> >  struct drm_xe_engine_class_instance {
-> > -       __u16 engine_class;
-> > -
-> >  #define DRM_XE_ENGINE_CLASS_RENDER             0
-> >  #define DRM_XE_ENGINE_CLASS_COPY               1
-> >  #define DRM_XE_ENGINE_CLASS_VIDEO_DECODE       2
-> > @@ -606,14 +608,15 @@ struct drm_xe_engine_class_instance {
-> >          * creating ordered queues of VM bind operations.
-> >          */
-> >  #define DRM_XE_ENGINE_CLASS_VM_BIND            5
-> > +       __u16 engine_class;
-> >
-> >         __u16 engine_instance;
-> >         __u16 gt_id;
-> >  };
-> >
-> >  struct drm_xe_engine_create {
-> > -       /** @extensions: Pointer to the first extension struct, if any */
-> >  #define XE_ENGINE_EXTENSION_SET_PROPERTY               0
-> > +       /** @extensions: Pointer to the first extension struct, if any */
-> >         __u64 extensions;
-> >
-> >         /** @width: submission width (number BB per exec) for this engine */
-> > @@ -651,8 +654,8 @@ struct drm_xe_engine_get_property {
-> >         /** @engine_id: Engine ID */
-> >         __u32 engine_id;
-> >
-> > -       /** @property: property to get */
-> >  #define XE_ENGINE_GET_PROPERTY_BAN                     0
-> > +       /** @property: property to get */
-> >         __u32 property;
-> >
-> >         /** @value: property value */
-> > @@ -677,19 +680,19 @@ struct drm_xe_sync {
-> >         /** @extensions: Pointer to the first extension struct, if any */
-> >         __u64 extensions;
-> >
-> > -       __u32 flags;
-> > -
-> >  #define DRM_XE_SYNC_SYNCOBJ            0x0
-> >  #define DRM_XE_SYNC_TIMELINE_SYNCOBJ   0x1
-> >  #define DRM_XE_SYNC_DMA_BUF            0x2
-> >  #define DRM_XE_SYNC_USER_FENCE         0x3
-> >  #define DRM_XE_SYNC_SIGNAL             0x10
-> > +       __u32 flags;
-> >
-> >         /** @pad: MBZ */
-> >         __u32 pad;
-> >
-> >         union {
-> >                 __u32 handle;
-> > +
-> >                 /**
-> >                  * @addr: Address of user fence. When sync passed in via exec
-> >                  * IOCTL this a GPU address in the VM. When sync passed in via
-> > @@ -745,8 +748,6 @@ struct drm_xe_mmio {
-> >
-> >         __u32 addr;
-> >
-> > -       __u32 flags;
-> > -
-> >  #define DRM_XE_MMIO_8BIT       0x0
-> >  #define DRM_XE_MMIO_16BIT      0x1
-> >  #define DRM_XE_MMIO_32BIT      0x2
-> > @@ -754,6 +755,7 @@ struct drm_xe_mmio {
-> >  #define DRM_XE_MMIO_BITS_MASK  0x3
-> >  #define DRM_XE_MMIO_READ       0x4
-> >  #define DRM_XE_MMIO_WRITE      0x8
-> > +       __u32 flags;
-> >
-> >         __u64 value;
-> >
-> > @@ -773,47 +775,57 @@ struct drm_xe_mmio {
-> >  struct drm_xe_wait_user_fence {
-> >         /** @extensions: Pointer to the first extension struct, if any */
-> >         __u64 extensions;
-> > +
-> >         union {
-> >                 /**
-> >                  * @addr: user pointer address to wait on, must qword aligned
-> >                  */
-> >                 __u64 addr;
-> > +
-> >                 /**
-> >                  * @vm_id: The ID of the VM which encounter an error used with
-> >                  * DRM_XE_UFENCE_WAIT_VM_ERROR. Upper 32 bits must be clear.
-> >                  */
-> >                 __u64 vm_id;
-> >         };
-> > -       /** @op: wait operation (type of comparison) */
-> > +
-> >  #define DRM_XE_UFENCE_WAIT_EQ  0
-> >  #define DRM_XE_UFENCE_WAIT_NEQ 1
-> >  #define DRM_XE_UFENCE_WAIT_GT  2
-> >  #define DRM_XE_UFENCE_WAIT_GTE 3
-> >  #define DRM_XE_UFENCE_WAIT_LT  4
-> >  #define DRM_XE_UFENCE_WAIT_LTE 5
-> > +       /** @op: wait operation (type of comparison) */
-> >         __u16 op;
-> > -       /** @flags: wait flags */
-> > +
-> >  #define DRM_XE_UFENCE_WAIT_SOFT_OP     (1 << 0)        /* e.g. Wait on VM bind */
-> >  #define DRM_XE_UFENCE_WAIT_ABSTIME     (1 << 1)
-> >  #define DRM_XE_UFENCE_WAIT_VM_ERROR    (1 << 2)
-> > +       /** @flags: wait flags */
-> >         __u16 flags;
-> > +
-> >         /** @pad: MBZ */
-> >         __u32 pad;
-> > +
-> >         /** @value: compare value */
-> >         __u64 value;
-> > -       /** @mask: comparison mask */
-> > +
-> >  #define DRM_XE_UFENCE_WAIT_U8          0xffu
-> >  #define DRM_XE_UFENCE_WAIT_U16         0xffffu
-> >  #define DRM_XE_UFENCE_WAIT_U32         0xffffffffu
-> >  #define DRM_XE_UFENCE_WAIT_U64         0xffffffffffffffffu
-> > +       /** @mask: comparison mask */
-> >         __u64 mask;
-> > +
-> >         /** @timeout: how long to wait before bailing, value in jiffies */
-> >         __s64 timeout;
-> > +
-> >         /**
-> >          * @num_engines: number of engine instances to wait on, must be zero
-> >          * when DRM_XE_UFENCE_WAIT_SOFT_OP set
-> >          */
-> >         __u64 num_engines;
-> > +
-> >         /**
-> >          * @instances: user pointer to array of drm_xe_engine_class_instance to
-> >          * wait on, must be NULL when DRM_XE_UFENCE_WAIT_SOFT_OP set
-> > @@ -874,7 +886,6 @@ struct drm_xe_vm_madvise {
-> >  #define                DRM_XE_VMA_PRIORITY_HIGH        2       /* Must be elevated user */
-> >         /* Pin the VMA in memory, must be elevated user */
-> >  #define DRM_XE_VM_MADVISE_PIN                  6
-> > -
-> >         /** @property: property to set */
-> >         __u32 property;
-> >
-> > --
-> > 2.34.1
-> >
