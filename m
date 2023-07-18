@@ -4,133 +4,29 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id E2843EB64DC
-	for <intel-xe@archiver.kernel.org>; Tue, 18 Jul 2023 21:14:13 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6FE52C001E0
+	for <intel-xe@archiver.kernel.org>; Tue, 18 Jul 2023 21:24:58 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9F90610E025;
-	Tue, 18 Jul 2023 21:14:13 +0000 (UTC)
-Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 12CB510E025
- for <intel-xe@lists.freedesktop.org>; Tue, 18 Jul 2023 21:14:10 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1689714851; x=1721250851;
- h=date:from:to:cc:subject:message-id:references:
- in-reply-to:mime-version;
- bh=WBxwSX5S9c9XipKCpnIFCR5YFoxid4PK4jS0Av7dvQs=;
- b=cM8kp2UwApVCN+41sI8Erx1NCwD8QmDiz0FWOFq44zSMgF4fh+bhpVZC
- g/4XXoRQQ94clx+kjyiCpVhuOnjS51lKlu1US8RKlGGSnNDet3uLwrn08
- Wxm1BVm+Unv8apItcz2x3W2E+um8E4IyqkUFM/FbU2gmZDfduwiUdvEwu
- ghGqJREcF+3GnNhOZbKgTWLTObo1FzMeQOd0IYCm15HVcT/Itag/l+q9i
- 6FGiQuU8Axs3I00h8EoXSlRYz3TKzvnJDycLis6fY5SjADO5mgmUM8esN
- ylu9wF3Nb6GmJcVkNC5bUL1vWOEV6Z07t9nupSTANCRAZEpD83wJg8p1h Q==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10775"; a="397162275"
-X-IronPort-AV: E=Sophos;i="6.01,215,1684825200"; d="scan'208";a="397162275"
-Received: from fmsmga002.fm.intel.com ([10.253.24.26])
- by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 18 Jul 2023 14:14:10 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10775"; a="837416671"
-X-IronPort-AV: E=Sophos;i="6.01,215,1684825200"; d="scan'208";a="837416671"
-Received: from orsmsx602.amr.corp.intel.com ([10.22.229.15])
- by fmsmga002.fm.intel.com with ESMTP; 18 Jul 2023 14:14:09 -0700
-Received: from orsmsx601.amr.corp.intel.com (10.22.229.14) by
- ORSMSX602.amr.corp.intel.com (10.22.229.15) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.27; Tue, 18 Jul 2023 14:14:09 -0700
-Received: from ORSEDG602.ED.cps.intel.com (10.7.248.7) by
- orsmsx601.amr.corp.intel.com (10.22.229.14) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.27 via Frontend Transport; Tue, 18 Jul 2023 14:14:09 -0700
-Received: from NAM12-MW2-obe.outbound.protection.outlook.com (104.47.66.47) by
- edgegateway.intel.com (134.134.137.103) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2507.27; Tue, 18 Jul 2023 14:14:08 -0700
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=To4/gC1oFBUiEYUpNRgTnzS59NcavzODdBRhbXlbKhDqut0/TyOsVbd2bKFCDXvJ2gcIibZ3QBavr51J3Br1+O1zU0+Xr+zxq0CSqobDcqHyMyh9S1b3OO9OdcSSrWJ6ycPrBJlfVi8HjFyDGnkJ20m//GJE5ci5ra14fITNv5A29uXAt2Gn2rELtd3n+bneJc/Qwy+dh+yWhG24vd2aPck+l6aXofLrzRKei3YPgJkhpLarKNIVM4ekiQG7z19bAnIbqymiXacfD7Ij0oZHV2UUCfmv4oO1pjrfPpqoIDV0Taky7MSGMZOX3fl+7v4zFXrGDe6cMzLzBIlqLlh3yg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=p9DVW1CRg71hRIeSeCIil3Y/3Y4vB3mKwHBfDLeBZd0=;
- b=RJ4XQJVCxdU73ZAQHl5vzEZWPi4esYUZ0zpI+FyKxEd3ALAXjIXT3HxmIiPKIOiArWnimmGCZ1762NzOCJGnDCyUSGpo63B1BlmmLoUZRWxvX3sG2Sl5CJqT0ajSH/41gfrdvxWGSE3RUZYILkAnOdWSHZzESWmAfvHh0CF9YaNwKq28cqunq7WMjgTPOpGRjPmm3QDJwVecmLhiTobClwGx+UlB5hISNI17PLLyTiLoeoHtzkkYqpO14xuEv3mlc0f/ovdUYw9DyHcwjEkd0sa9myi8nEKjbHwLmmQNUic4QIdgGd0BQNtSz4HCa8XCX/y6m+j7jn5IiakeRUh3GQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
- dkim=pass header.d=intel.com; arc=none
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=intel.com;
-Received: from MN0PR11MB6059.namprd11.prod.outlook.com (2603:10b6:208:377::9)
- by PH7PR11MB7025.namprd11.prod.outlook.com (2603:10b6:510:208::12)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6588.31; Tue, 18 Jul
- 2023 21:14:07 +0000
-Received: from MN0PR11MB6059.namprd11.prod.outlook.com
- ([fe80::7f94:b6c4:1ce2:294]) by MN0PR11MB6059.namprd11.prod.outlook.com
- ([fe80::7f94:b6c4:1ce2:294%5]) with mapi id 15.20.6588.031; Tue, 18 Jul 2023
- 21:14:07 +0000
-Date: Tue, 18 Jul 2023 17:14:03 -0400
-From: Rodrigo Vivi <rodrigo.vivi@intel.com>
-To: Riana Tauro <riana.tauro@intel.com>
-Message-ID: <ZLcAm0a6DPSh/0XK@intel.com>
-References: <20230717095900.1561736-1-riana.tauro@intel.com>
-Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
-In-Reply-To: <20230717095900.1561736-1-riana.tauro@intel.com>
-X-ClientProxiedBy: SJ0PR03CA0211.namprd03.prod.outlook.com
- (2603:10b6:a03:39f::6) To MN0PR11MB6059.namprd11.prod.outlook.com
- (2603:10b6:208:377::9)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 424C910E3D4;
+	Tue, 18 Jul 2023 21:24:52 +0000 (UTC)
+Received: from mblankhorst.nl (lankhorst.se
+ [IPv6:2a02:2308:0:7ec:e79c:4e97:b6c4:f0ae])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 890AF10E3D0
+ for <intel-xe@lists.freedesktop.org>; Tue, 18 Jul 2023 21:24:50 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="------------4rnAfZc6fulZ6jr2bfrUfA1E"
+Message-ID: <5d49538f-0528-f0c9-d562-b19cf46066e3@linux.intel.com>
+Date: Tue, 18 Jul 2023 23:24:46 +0200
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: MN0PR11MB6059:EE_|PH7PR11MB7025:EE_
-X-MS-Office365-Filtering-Correlation-Id: 2c09adda-f9c7-46d6-0823-08db87d3ebe4
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: lip4BNNT76v8UVgg4vioeJjRBU92RBYTSDz0WG/prD81mKZ/VYMWOBofiQP0cE4RIodzDY9lD7RNoPtuu1CWZWRSaQd0+aGBErsMu+UkUoqVOUyjOGNGl8y9KhQgma9GiIfVpUxkIw1PWyCIYz3ClaYy8yHViTzTVECAkBmpsRH//oxA9cAT945HSTugTarAtTdnQL2GKE+jzWimVIIpsoY5Pc9vzQk6JrL++7nXMgskpztXXSqfYKeADyN5sMeFBeGSivAubg3XG58k/3M4+twmVGbk0N0HW0CibHveHFvQhkuWywRZokWAbbsG7/eCfCTQkRRU9PwciKx7RoPQvCR5piqeV8upcBNF5SC6rOH54GTUCd7Oybz1o9nR1YFDMaQqAOuO8TfjrDxvc/8UlfwdfK6jGjdbGaOg/Ho/YSf0ESjzppQ54HNqcFZ69qSTd79njS0mxRg37lKKpdlnB3tfvFuvKLhrKiuSl3WYCnP/4LWufjA1/Beo6VoEFOm9j5spiUEFGGjLWzl3JE5kghZrmhtplOX7I0QLATc3dXEe+w2XpBLFzEt1mjOMjIpO
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:MN0PR11MB6059.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230028)(346002)(39860400002)(366004)(136003)(376002)(396003)(451199021)(6636002)(36756003)(86362001)(2906002)(15650500001)(44832011)(2616005)(186003)(6512007)(83380400001)(6506007)(26005)(38100700002)(82960400001)(6486002)(6666004)(37006003)(316002)(66556008)(478600001)(66946007)(66476007)(5660300002)(4326008)(6862004)(41300700001)(8936002)(8676002);
- DIR:OUT; SFP:1102; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?/DPYvSaxA1Vw45WoS3EoobleW1Wx2i1VSvy+mOWmKmT1Hx9aRuD0koEAmKXD?=
- =?us-ascii?Q?oOnLW4oCdDQThANqBrZvS2387aJGezowkkhluqfuREg8wk734fqwuFIObo70?=
- =?us-ascii?Q?SQeDho/9vlhe85El1TRekUFV9NwfAZX1oJmjDqw9SYYCX9WZCrbrOsYGmdwo?=
- =?us-ascii?Q?zNE68c7KCWgwQXT7V5W4OPOcgYw6zTY1q5cyh6yphOeYPh5QveaQYLSSDtRU?=
- =?us-ascii?Q?g3P75c6JWSWqkhxTzR7b8ju+7Bz79ehsvA9XW0lF2TGnDcGAx6tRgY+sc8oK?=
- =?us-ascii?Q?dIsmiNIvrKaZJzb/guZbJVQBNrlbzNqI4HNOb+J2BpKy9Kbc/z4RIeFlCfag?=
- =?us-ascii?Q?jk0tTZPIx3UVw6UAjINuy8akBz0w1ElG2DFTGAXqPlMgltW6YQNkXQdGSYwf?=
- =?us-ascii?Q?snVHuiUY9XXgrXE0gm096uOlmgXuy09lFngbi4Kf27rn49cpOvyIpB0u16MS?=
- =?us-ascii?Q?8jiH0ALQfb2c/LPbgMA25TE2nDAw0kMWHgKe4Kqg/4DevB/eSfHe7e4PM2pY?=
- =?us-ascii?Q?xg6IPRFm08E5lzjll4JLod1UAK35fVcFJTT1pggfnLHyX0+mW3oDR/d4OLsJ?=
- =?us-ascii?Q?udu6Oe9ctkVsw4mdALkh8+x6Jdk/JcVjJ3EAXHJpt/KR5etUXvhLVbpTQXng?=
- =?us-ascii?Q?pJC/t/U8qdhAkt2xGnxuTSpDtEEl01ckP7mHSuPdjyKfVtauvq+3ORQleY9G?=
- =?us-ascii?Q?onBWzREQnlhaCDtn281u/2VTlQxTWSzbVTdoJV9YZqZ+TEqK5eAcjatUaKeZ?=
- =?us-ascii?Q?bC/ET4C68RBJ9DUJ1n6WkKl/5ybgK3DsOMOTXVVlLzHNoWI2m1JOT/ajssOI?=
- =?us-ascii?Q?UsqBAj15yjkBwE3Yq/YWjqlrRv9vCFe0qK/ITlDCSM1fpTmqzmWWLjMJ2Rbn?=
- =?us-ascii?Q?Pbvgfhg3KcygrLXvp/88qLQY5nA1k+g9kIbSzzwk6oRQaswV9Urazt0suPgp?=
- =?us-ascii?Q?/zZ3Z8EOkY7N8sTSH5gFT2vTaoV9z02p2KsWOdRIw74oZggqA1ngZNnXlmRy?=
- =?us-ascii?Q?aKSP0ssB0UvRFqO6G/XAtB+silUxPJ+Z70XuRD59O0ADR/L+kyCjgtGUcIlC?=
- =?us-ascii?Q?tgH0GhV9eW5RhgGuz4kITyYA6cko4uu3l4meAH81rHKRGpQi9Od2OYdqW8ux?=
- =?us-ascii?Q?wlyBDO0hslgC7pUZ/yAeTTdiBlJhSwoGAvURpJgFkNG62/xugmt3JQ+6OrwD?=
- =?us-ascii?Q?a9on6rtpV6oLk2SkF/QwVL9hvEhdKT/un3zGRbWaoKPF3JbAvvLiuCB3wq02?=
- =?us-ascii?Q?ORfw/nD9PSY/UoWYAvn2ayxO0p+6+DjzVmjcL6a33j786YJ/DeMDLnUrSc9m?=
- =?us-ascii?Q?n4w9OD0+wXTAnbj8RWI8Ta/r1ZSZbgWpSdDH5eIs5+4rsaejWpe+jy8jsuzu?=
- =?us-ascii?Q?S78NapuD2HYKvRARMRSXf4E3uhA+7IKb/oA+WrDKrJaxceZqjIK5Qej7/3RB?=
- =?us-ascii?Q?0MYgA8p1oC1Fq8iNCdQGo69I2R7VMh5X9JiGD7o55GiuNxnmAJW153G9BPB5?=
- =?us-ascii?Q?4iWuaeh4jSaVn4lOEr+ZqpJEa5GNFm1AtO/HL+pGgbtxjvy7Iikc9aFnsJ0R?=
- =?us-ascii?Q?8OjO37iBADmqsaUC7aCIY/B8EQIJnZj8Hk6B4g1Wtt4PrkT8VXgseDeyA05w?=
- =?us-ascii?Q?jA=3D=3D?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: 2c09adda-f9c7-46d6-0823-08db87d3ebe4
-X-MS-Exchange-CrossTenant-AuthSource: MN0PR11MB6059.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 18 Jul 2023 21:14:07.0903 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: z1jkzvF6LCnEE+N2y1o0bo7wDMrNReBl+ESQ34/l8OZi1xXqC/wUj8qXZZxG0k7584UOzRbdZ8Lj4bBFB4eSZg==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH7PR11MB7025
-X-OriginatorOrg: intel.com
-Subject: Re: [Intel-xe] [PATCH v4] drm/xe: remove gucrc disable from suspend
- path
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.11.0
+Content-Language: en-US
+To: Matthew Brost <matthew.brost@intel.com>, intel-xe@lists.freedesktop.org
+References: <20230710221544.1882405-1-matthew.brost@intel.com>
+ <20230710221544.1882405-3-matthew.brost@intel.com>
+From: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
+In-Reply-To: <20230710221544.1882405-3-matthew.brost@intel.com>
+Subject: Re: [Intel-xe] [PATCH 2/2] drm/xe: Make bind engines safe
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -142,152 +38,825 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Mon, Jul 17, 2023 at 03:29:00PM +0530, Riana Tauro wrote:
-> Currently GuCRC is disabled in suspend path for xe.
-> Rc6 is a prerequiste to enable s0ix and
-> should not be disabled for s2idle. There is no requirement
-> to disable GuCRC for S3+.
-> 
-> Remove it from xe_guc_pc_stop, thus removing from suspend path.
-> Retain the call in other places where xe_guc_pc_stop is
-> called.
-> 
-> v2: add description and return statement to kernel-doc (Rodrigo)
-> v3: update commit message (Rodrigo)
-> v4: add mem_access_get to the gucrc disable function
+This is a multi-part message in MIME format.
+--------------4rnAfZc6fulZ6jr2bfrUfA1E
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
 
-it looks safer now. pushed. Thanks
 
-> 
-> Signed-off-by: Riana Tauro <riana.tauro@intel.com>
-> Reviewed-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
+On 2023-07-11 00:15, Matthew Brost wrote:
+> We currently have a race between bind engines which can result in
+> corrupted page tables leading to faults.
+>
+> A simple example:
+> bind A 0x0000-0x1000, engine A, has unsatisfied in-fence
+> bind B 0x1000-0x2000, engine B, no in-fences
+> exec A uses 0x1000-0x2000
+>
+> Bind B will pass bind A and exec A will fault. This occurs as bind A
+> programs the root of the page table in a bind job which is held up by an
+> in-fence. Bind B in this case just programs a leaf entry of the
+> structure.
+>
+> To fix use range-fence utility to track cross bind engine conflicts. In
+> the above example bind A would insert an dependency into the range-fence
+> tree with a key of 0x0-0x7fffffffff, bind B would find that dependency
+> and its bind job would scheduled behind the unsatisfied in-fence and
+> bind A's job.
+>
+> Co-developed-by: Thomas Hellström<thomas.hellstrom@linux.intel.com>
+> Signed-off-by: Matthew Brost<matthew.brost@intel.com>
 > ---
->  drivers/gpu/drm/xe/xe_gt.c     |  1 +
->  drivers/gpu/drm/xe/xe_guc_pc.c | 20 +++++++++++++-------
->  drivers/gpu/drm/xe/xe_guc_pc.h |  1 +
->  drivers/gpu/drm/xe/xe_uc.c     |  5 +++++
->  drivers/gpu/drm/xe/xe_uc.h     |  1 +
->  5 files changed, 21 insertions(+), 7 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/xe/xe_gt.c b/drivers/gpu/drm/xe/xe_gt.c
-> index a21d44bfe9e8..b31ef2a8ff17 100644
-> --- a/drivers/gpu/drm/xe/xe_gt.c
-> +++ b/drivers/gpu/drm/xe/xe_gt.c
-> @@ -517,6 +517,7 @@ static int gt_reset(struct xe_gt *gt)
->  	if (err)
->  		goto err_msg;
->  
-> +	xe_uc_gucrc_disable(&gt->uc);
->  	xe_uc_stop_prepare(&gt->uc);
->  	xe_gt_pagefault_reset(gt);
->  
-> diff --git a/drivers/gpu/drm/xe/xe_guc_pc.c b/drivers/gpu/drm/xe/xe_guc_pc.c
-> index 3093cfeff0c2..03dfbde29fe5 100644
-> --- a/drivers/gpu/drm/xe/xe_guc_pc.c
-> +++ b/drivers/gpu/drm/xe/xe_guc_pc.c
-> @@ -730,12 +730,20 @@ static int pc_adjust_requested_freq(struct xe_guc_pc *pc)
->  	return ret;
->  }
->  
-> -static int pc_gucrc_disable(struct xe_guc_pc *pc)
-> +/**
-> + * xe_guc_pc_gucrc_disable - Disable GuC RC
-> + * @pc: Xe_GuC_PC instance
-> + *
-> + * Disables GuC RC by taking control of RC6 back from GuC.
-> + *
-> + * Return: 0 on success, negative error code on error.
+>   drivers/gpu/drm/xe/xe_migrate.c  |   2 +
+>   drivers/gpu/drm/xe/xe_migrate.h  |   8 +++
+>   drivers/gpu/drm/xe/xe_pt.c       | 115 +++++++++++++++++++++++++++++++
+>   drivers/gpu/drm/xe/xe_vm.c       |   9 +++
+>   drivers/gpu/drm/xe/xe_vm_types.h |   7 ++
+>   5 files changed, 141 insertions(+)
+>
+> diff --git a/drivers/gpu/drm/xe/xe_migrate.c b/drivers/gpu/drm/xe/xe_migrate.c
+> index 47addcd3e78f..5e1ad3507175 100644
+> --- a/drivers/gpu/drm/xe/xe_migrate.c
+> +++ b/drivers/gpu/drm/xe/xe_migrate.c
+> @@ -1073,6 +1073,7 @@ xe_migrate_update_pgtables_cpu(struct xe_migrate *m,
+>   		return ERR_PTR(-ETIME);
+>   
+>   	if (ops->pre_commit) {
+> +		pt_update->job = NULL;
+>   		err = ops->pre_commit(pt_update);
+>   		if (err)
+>   			return ERR_PTR(err);
+> @@ -1294,6 +1295,7 @@ xe_migrate_update_pgtables(struct xe_migrate *m,
+>   		goto err_job;
+>   
+>   	if (ops->pre_commit) {
+> +		pt_update->job = job;
+>   		err = ops->pre_commit(pt_update);
+>   		if (err)
+>   			goto err_job;
+> diff --git a/drivers/gpu/drm/xe/xe_migrate.h b/drivers/gpu/drm/xe/xe_migrate.h
+> index 204337ea3b4e..da20b1a0e596 100644
+> --- a/drivers/gpu/drm/xe/xe_migrate.h
+> +++ b/drivers/gpu/drm/xe/xe_migrate.h
+> @@ -69,6 +69,14 @@ struct xe_migrate_pt_update {
+>   	const struct xe_migrate_pt_update_ops *ops;
+>   	/** @vma: The vma we're updating the pagetable for. */
+>   	struct xe_vma *vma;
+> +	/** @job: The job if a GPU page-table update. NULL otherwise */
+> +	struct xe_sched_job *job;
+> +	/** @start: Start of update for the range fence */
+> +	u64 start;
+> +	/** @last: Last of update for the range fence */
+> +	u64 last;
+> +	/** tild_id: Tile ID of the update */
+> +	u8 tile_id;
+>   };
+>   
+>   struct xe_migrate *xe_migrate_init(struct xe_tile *tile);
+> diff --git a/drivers/gpu/drm/xe/xe_pt.c b/drivers/gpu/drm/xe/xe_pt.c
+> index 00855681c0d5..3044930eae94 100644
+> --- a/drivers/gpu/drm/xe/xe_pt.c
+> +++ b/drivers/gpu/drm/xe/xe_pt.c
+> @@ -1116,6 +1116,53 @@ struct xe_pt_migrate_pt_update {
+>   	bool locked;
+>   };
+>   
+> +/*
+> + * This function adds the needed dependencies to a page-table update job
+> + * to make sure racing jobs for separate bind engines don't race writing
+> + * to the same page-table range, wreaking havoc. Initially use a single
+> + * fence for the entire VM. An optimization would use smaller granularity.
 > + */
-> +int xe_guc_pc_gucrc_disable(struct xe_guc_pc *pc)
->  {
->  	struct xe_gt *gt = pc_to_gt(pc);
->  	int ret;
->  
-> -	xe_device_assert_mem_access(pc_to_xe(pc));
-> +	xe_device_mem_access_get(pc_to_xe(pc));
->  
->  	ret = pc_action_setup_gucrc(pc, XE_GUCRC_HOST_CONTROL);
->  	if (ret)
-> @@ -750,6 +758,7 @@ static int pc_gucrc_disable(struct xe_guc_pc *pc)
->  	xe_mmio_write32(gt, RC_STATE, 0);
->  
->  	XE_WARN_ON(xe_force_wake_put(gt_to_fw(gt), XE_FORCEWAKE_ALL));
-> +	xe_device_mem_access_put(pc_to_xe(pc));
->  	return 0;
->  }
->  
-> @@ -827,7 +836,7 @@ int xe_guc_pc_start(struct xe_guc_pc *pc)
->  		goto out;
->  
->  	if (xe->info.platform == XE_PVC) {
-> -		pc_gucrc_disable(pc);
-> +		xe_guc_pc_gucrc_disable(pc);
->  		ret = 0;
->  		goto out;
->  	}
-> @@ -850,10 +859,6 @@ int xe_guc_pc_stop(struct xe_guc_pc *pc)
->  
->  	xe_device_mem_access_get(pc_to_xe(pc));
->  
-> -	ret = pc_gucrc_disable(pc);
-> -	if (ret)
-> -		goto out;
-> -
->  	mutex_lock(&pc->freq_lock);
->  	pc->freq_ready = false;
->  	mutex_unlock(&pc->freq_lock);
-> @@ -876,6 +881,7 @@ static void pc_fini(struct drm_device *drm, void *arg)
->  {
->  	struct xe_guc_pc *pc = arg;
->  
-> +	XE_WARN_ON(xe_guc_pc_gucrc_disable(pc));
->  	XE_WARN_ON(xe_guc_pc_stop(pc));
->  	sysfs_remove_files(pc_to_gt(pc)->sysfs, pc_attrs);
->  	xe_bo_unpin_map_no_vm(pc->bo);
-> diff --git a/drivers/gpu/drm/xe/xe_guc_pc.h b/drivers/gpu/drm/xe/xe_guc_pc.h
-> index 370353a40a17..81833a53b3c9 100644
-> --- a/drivers/gpu/drm/xe/xe_guc_pc.h
-> +++ b/drivers/gpu/drm/xe/xe_guc_pc.h
-> @@ -11,6 +11,7 @@
->  int xe_guc_pc_init(struct xe_guc_pc *pc);
->  int xe_guc_pc_start(struct xe_guc_pc *pc);
->  int xe_guc_pc_stop(struct xe_guc_pc *pc);
-> +int xe_guc_pc_gucrc_disable(struct xe_guc_pc *pc);
->  
->  enum xe_gt_idle_state xe_guc_pc_c_status(struct xe_guc_pc *pc);
->  u64 xe_guc_pc_rc6_residency(struct xe_guc_pc *pc);
-> diff --git a/drivers/gpu/drm/xe/xe_uc.c b/drivers/gpu/drm/xe/xe_uc.c
-> index 70eabf567156..f8cbd292d6d0 100644
-> --- a/drivers/gpu/drm/xe/xe_uc.c
-> +++ b/drivers/gpu/drm/xe/xe_uc.c
-> @@ -176,6 +176,11 @@ int xe_uc_reset_prepare(struct xe_uc *uc)
->  	return xe_guc_reset_prepare(&uc->guc);
->  }
->  
-> +void xe_uc_gucrc_disable(struct xe_uc *uc)
+> +static int xe_pt_vm_dependencies(struct xe_sched_job *job,
+> +				 struct xe_range_fence_tree *rftree,
+> +				 u64 start, u64 last)
 > +{
-> +	XE_WARN_ON(xe_guc_pc_gucrc_disable(&uc->guc.pc));
+> +	struct xe_range_fence *rtfence;
+> +	struct dma_fence *fence;
+> +	int err;
+> +
+> +	rtfence = xe_range_fence_tree_iter_first(&rftree->root, start, last);
+> +	while (rtfence) {
+> +		fence = rtfence->fence;
+> +
+> +		if (!dma_fence_is_signaled(fence)) {
+> +			/*
+> +			 * Is this a CPU update? GPU is busy updating, so return
+> +			 * an error
+> +			 */
+> +			if (!job)
+> +				return -ETIME;
+> +
+> +			dma_fence_get(fence);
+> +			err = drm_sched_job_add_dependency(&job->drm, fence);
+> +			if (err)
+> +				return err;
+> +		}
+> +
+> +		rtfence = xe_range_fence_tree_iter_next(rtfence, start, last);
+> +	}
+> +
+> +	return 0;
 > +}
 > +
->  void xe_uc_stop_prepare(struct xe_uc *uc)
->  {
->  	xe_guc_stop_prepare(&uc->guc);
-> diff --git a/drivers/gpu/drm/xe/xe_uc.h b/drivers/gpu/drm/xe/xe_uc.h
-> index d6efc9ef00d3..42219b361df5 100644
-> --- a/drivers/gpu/drm/xe/xe_uc.h
-> +++ b/drivers/gpu/drm/xe/xe_uc.h
-> @@ -12,6 +12,7 @@ int xe_uc_init(struct xe_uc *uc);
->  int xe_uc_init_hwconfig(struct xe_uc *uc);
->  int xe_uc_init_post_hwconfig(struct xe_uc *uc);
->  int xe_uc_init_hw(struct xe_uc *uc);
-> +void xe_uc_gucrc_disable(struct xe_uc *uc);
->  int xe_uc_reset_prepare(struct xe_uc *uc);
->  void xe_uc_stop_prepare(struct xe_uc *uc);
->  int xe_uc_stop(struct xe_uc *uc);
-> -- 
-> 2.40.0
-> 
+> +static int xe_pt_pre_commit(struct xe_migrate_pt_update *pt_update)
+> +{
+> +	struct xe_range_fence_tree *rftree =
+> +		&xe_vma_vm(pt_update->vma)->rftree[pt_update->tile_id];
+> +
+> +	return xe_pt_vm_dependencies(pt_update->job, rftree,
+> +				     pt_update->start, pt_update->last);
+> +}
+> +
+>   static int xe_pt_userptr_pre_commit(struct xe_migrate_pt_update *pt_update)
+>   {
+>   	struct xe_pt_migrate_pt_update *userptr_update =
+> @@ -1123,6 +1170,13 @@ static int xe_pt_userptr_pre_commit(struct xe_migrate_pt_update *pt_update)
+>   	struct xe_vma *vma = pt_update->vma;
+>   	unsigned long notifier_seq = vma->userptr.notifier_seq;
+>   	struct xe_vm *vm = xe_vma_vm(vma);
+> +	int err = xe_pt_vm_dependencies(pt_update->job,
+> +					&vm->rftree[pt_update->tile_id],
+> +					pt_update->start,
+> +					pt_update->last);
+> +
+> +	if (err)
+> +		return err;
+>   
+>   	userptr_update->locked = false;
+>   
+> @@ -1161,6 +1215,7 @@ static int xe_pt_userptr_pre_commit(struct xe_migrate_pt_update *pt_update)
+>   
+>   static const struct xe_migrate_pt_update_ops bind_ops = {
+>   	.populate = xe_vm_populate_pgtable,
+> +	.pre_commit = xe_pt_pre_commit,
+>   };
+>   
+>   static const struct xe_migrate_pt_update_ops userptr_bind_ops = {
+> @@ -1258,6 +1313,27 @@ static int invalidation_fence_init(struct xe_gt *gt,
+>   	return ret && ret != -ENOENT ? ret : 0;
+>   }
+>   
+> +static void xe_pt_calc_rfence_interval(struct xe_vma *vma,
+> +				       struct xe_pt_migrate_pt_update *update,
+> +				       struct xe_vm_pgtable_update *entries,
+> +				       u32 num_entries)
+> +{
+> +	int i, level = 0;
+> +
+> +	for (i = 0; i < num_entries; i++) {
+> +		const struct xe_vm_pgtable_update *entry = &entries[i];
+> +
+> +		if (entry->pt->level > level)
+> +			level = entry->pt->level;
+> +	}
+> +
+> +	/* Greedy (non-optimal) calculation but simple */
+> +	update->base.start = ALIGN_DOWN(xe_vma_start(vma),
+> +					0x1ull << xe_pt_shift(level));
+> +	update->base.last = ALIGN(xe_vma_end(vma),
+> +				  0x1ull << xe_pt_shift(level)) - 1;
+> +}
+> +
+>   /**
+>    * __xe_pt_bind_vma() - Build and connect a page-table tree for the vma
+>    * address range.
+> @@ -1290,6 +1366,7 @@ __xe_pt_bind_vma(struct xe_tile *tile, struct xe_vma *vma, struct xe_engine *e,
+>   		.base = {
+>   			.ops = xe_vma_is_userptr(vma) ? &userptr_bind_ops : &bind_ops,
+>   			.vma = vma,
+> +			.tile_id = tile->id,
+>   		},
+>   		.bind = true,
+>   	};
+> @@ -1297,6 +1374,7 @@ __xe_pt_bind_vma(struct xe_tile *tile, struct xe_vma *vma, struct xe_engine *e,
+>   	u32 num_entries;
+>   	struct dma_fence *fence;
+>   	struct invalidation_fence *ifence = NULL;
+> +	struct xe_range_fence *rfence;
+>   	int err;
+>   
+>   	bind_pt_update.locked = false;
+> @@ -1313,6 +1391,8 @@ __xe_pt_bind_vma(struct xe_tile *tile, struct xe_vma *vma, struct xe_engine *e,
+>   	XE_BUG_ON(num_entries > ARRAY_SIZE(entries));
+>   
+>   	xe_vm_dbg_print_entries(tile_to_xe(tile), entries, num_entries);
+> +	xe_pt_calc_rfence_interval(vma, &bind_pt_update, entries,
+> +				   num_entries);
+>   
+>   	/*
+>   	 * If rebind, we have to invalidate TLB on !LR vms to invalidate
+> @@ -1333,6 +1413,12 @@ __xe_pt_bind_vma(struct xe_tile *tile, struct xe_vma *vma, struct xe_engine *e,
+>   			return ERR_PTR(-ENOMEM);
+>   	}
+>   
+> +	rfence = kzalloc(sizeof(*rfence), GFP_KERNEL);
+> +	if (!rfence) {
+> +		kfree(ifence);
+> +		return ERR_PTR(-ENOMEM);
+> +	}
+> +
+>   	fence = xe_migrate_update_pgtables(tile->migrate,
+>   					   vm, xe_vma_bo(vma),
+>   					   e ? e : vm->eng[tile->id],
+> @@ -1342,6 +1428,14 @@ __xe_pt_bind_vma(struct xe_tile *tile, struct xe_vma *vma, struct xe_engine *e,
+>   	if (!IS_ERR(fence)) {
+>   		bool last_munmap_rebind = vma->gpuva.flags & XE_VMA_LAST_REBIND;
+>   		LLIST_HEAD(deferred);
+> +		int err;
+> +
+> +		err = xe_range_fence_insert(&vm->rftree[tile->id], rfence,
+> +					    &xe_range_fence_kfree_ops,
+> +					    bind_pt_update.base.start,
+> +					    bind_pt_update.base.last, fence);
+> +		if (err)
+> +			dma_fence_wait(fence, false);
+>   
+>   		/* TLB invalidation must be done before signaling rebind */
+>   		if (ifence) {
+> @@ -1380,6 +1474,7 @@ __xe_pt_bind_vma(struct xe_tile *tile, struct xe_vma *vma, struct xe_engine *e,
+>   			queue_work(vm->xe->ordered_wq,
+>   				   &vm->preempt.rebind_work);
+>   	} else {
+> +		kfree(rfence);
+>   		kfree(ifence);
+>   		if (bind_pt_update.locked)
+>   			up_read(&vm->userptr.notifier_lock);
+> @@ -1589,6 +1684,7 @@ xe_pt_commit_unbind(struct xe_vma *vma,
+>   
+>   static const struct xe_migrate_pt_update_ops unbind_ops = {
+>   	.populate = xe_migrate_clear_pgtable_callback,
+> +	.pre_commit = xe_pt_pre_commit,
+>   };
+>   
+>   static const struct xe_migrate_pt_update_ops userptr_unbind_ops = {
+> @@ -1626,12 +1722,15 @@ __xe_pt_unbind_vma(struct xe_tile *tile, struct xe_vma *vma, struct xe_engine *e
+>   			.ops = xe_vma_is_userptr(vma) ? &userptr_unbind_ops :
+>   			&unbind_ops,
+>   			.vma = vma,
+> +			.tile_id = tile->id,
+>   		},
+>   	};
+>   	struct xe_vm *vm = xe_vma_vm(vma);
+>   	u32 num_entries;
+>   	struct dma_fence *fence = NULL;
+>   	struct invalidation_fence *ifence;
+> +	struct xe_range_fence *rfence;
+> +
+>   	LLIST_HEAD(deferred);
+>   
+>   	xe_bo_assert_held(xe_vma_bo(vma));
+> @@ -1645,11 +1744,19 @@ __xe_pt_unbind_vma(struct xe_tile *tile, struct xe_vma *vma, struct xe_engine *e
+>   	XE_BUG_ON(num_entries > ARRAY_SIZE(entries));
+>   
+>   	xe_vm_dbg_print_entries(tile_to_xe(tile), entries, num_entries);
+> +	xe_pt_calc_rfence_interval(vma, &unbind_pt_update, entries,
+> +				   num_entries);
+>   
+>   	ifence = kzalloc(sizeof(*ifence), GFP_KERNEL);
+>   	if (!ifence)
+>   		return ERR_PTR(-ENOMEM);
+>   
+> +	rfence = kzalloc(sizeof(*rfence), GFP_KERNEL);
+> +	if (!rfence) {
+> +		kfree(ifence);
+> +		return ERR_PTR(-ENOMEM);
+> +	}
+> +
+>   	/*
+>   	 * Even if we were already evicted and unbind to destroy, we need to
+>   	 * clear again here. The eviction may have updated pagetables at a
+> @@ -1664,6 +1771,13 @@ __xe_pt_unbind_vma(struct xe_tile *tile, struct xe_vma *vma, struct xe_engine *e
+>   	if (!IS_ERR(fence)) {
+>   		int err;
+>   
+> +		err = xe_range_fence_insert(&vm->rftree[tile->id], rfence,
+> +					    &xe_range_fence_kfree_ops,
+> +					    unbind_pt_update.base.start,
+> +					    unbind_pt_update.base.last, fence);
+> +		if (err)
+> +			dma_fence_wait(fence, false);
+> +
+>   		/* TLB invalidation must be done before signaling unbind */
+>   		err = invalidation_fence_init(tile->primary_gt, ifence, fence, vma);
+>   		if (err) {
+> @@ -1685,6 +1799,7 @@ __xe_pt_unbind_vma(struct xe_tile *tile, struct xe_vma *vma, struct xe_engine *e
+>   				    unbind_pt_update.locked ? &deferred : NULL);
+>   		vma->tile_present &= ~BIT(tile->id);
+>   	} else {
+> +		kfree(rfence);
+>   		kfree(ifence);
+>   	}
+>   
+> diff --git a/drivers/gpu/drm/xe/xe_vm.c b/drivers/gpu/drm/xe/xe_vm.c
+> index 6c216350084b..26d39de777aa 100644
+> --- a/drivers/gpu/drm/xe/xe_vm.c
+> +++ b/drivers/gpu/drm/xe/xe_vm.c
+> @@ -1229,6 +1229,9 @@ struct xe_vm *xe_vm_create(struct xe_device *xe, u32 flags)
+>   	INIT_LIST_HEAD(&vm->preempt.engines);
+>   	vm->preempt.min_run_period_ms = 10;	/* FIXME: Wire up to uAPI */
+>   
+> +	for_each_tile(tile, xe, id)
+> +		xe_range_fence_tree_init(&vm->rftree[id]);
+> +
+>   	INIT_LIST_HEAD(&vm->extobj.list);
+>   
+>   	if (!(flags & XE_VM_FLAG_MIGRATION)) {
+> @@ -1351,6 +1354,8 @@ struct xe_vm *xe_vm_create(struct xe_device *xe, u32 flags)
+>   	drm_gpuva_manager_destroy(&vm->mgr);
+>   err_put:
+>   	dma_resv_fini(&vm->resv);
+> +	for_each_tile(tile, xe, id)
+> +		xe_range_fence_tree_fini(&vm->rftree[id]);
+>   	kfree(vm);
+>   	if (!(flags & XE_VM_FLAG_MIGRATION)) {
+>   		xe_device_mem_access_put(xe);
+> @@ -1468,6 +1473,7 @@ void xe_vm_close_and_put(struct xe_vm *vm)
+>   					      NULL);
+>   		}
+>   	}
+> +
+>   	xe_vm_unlock(vm, &ww);
+>   
+>   	/*
+Spurious newline?
+> @@ -1495,6 +1501,9 @@ void xe_vm_close_and_put(struct xe_vm *vm)
+>   		xe->usm.num_vm_in_non_fault_mode--;
+>   	mutex_unlock(&xe->usm.lock);
+>   
+> +	for_each_tile(tile, xe, id)
+> +		xe_range_fence_tree_fini(&vm->rftree[id]);
+> +
+>   	xe_vm_put(vm);
+>   }
+>   
+> diff --git a/drivers/gpu/drm/xe/xe_vm_types.h b/drivers/gpu/drm/xe/xe_vm_types.h
+> index edb3c99a9c81..37d57552d727 100644
+> --- a/drivers/gpu/drm/xe/xe_vm_types.h
+> +++ b/drivers/gpu/drm/xe/xe_vm_types.h
+> @@ -15,6 +15,7 @@
+>   
+>   #include "xe_device_types.h"
+>   #include "xe_pt_types.h"
+> +#include "xe_range_fence.h"
+>   
+>   struct async_op_fence;
+>   struct xe_bo;
+> @@ -182,6 +183,12 @@ struct xe_vm {
+>   	 */
+>   	struct work_struct destroy_work;
+>   
+> +	/**
+> +	 * @rftree: range fence tree to track updates to page table structure.
+> +	 * Used to implement conflict tracking between independent bind engines.
+> +	 */
+> +	struct xe_range_fence_tree rftree[XE_MAX_TILES_PER_DEVICE];
+> +
+>   	/** @extobj: bookkeeping for external objects. Protected by the vm lock */
+>   	struct {
+>   		/** @enties: number of external BOs attached this VM */
+
+With that fixed, and fixing the error output from
+
+In file included from ../drivers/gpu/drm/xe/xe_range_fence.c:7:
+../drivers/gpu/drm/xe/xe_range_fence.c:18:10: error: no previous prototype for ‘xe_range_fence_tree_insert’ [-Werror=missing-prototypes]
+    18 |        , xe_range_fence_tree);
+       |          ^~~~~~~~~~~~~~~~~~~
+../include/linux/interval_tree_generic.h:38:15: note: in definition of macro ‘INTERVAL_TREE_DEFINE’
+    38 | ITSTATIC void ITPREFIX ## _insert(ITSTRUCT *node,         \
+       |               ^~~~~~~~
+../drivers/gpu/drm/xe/xe_range_fence.c:18:10: error: no previous prototype for ‘xe_range_fence_tree_remove’ [-Werror=missing-prototypes]
+    18 |        , xe_range_fence_tree);
+       |          ^~~~~~~~~~~~~~~~~~~
+../include/linux/interval_tree_generic.h:65:15: note: in definition of macro ‘INTERVAL_TREE_DEFINE’
+    65 | ITSTATIC void ITPREFIX ## _remove(ITSTRUCT *node,         \
+       |               ^~~~~~~~
+../drivers/gpu/drm/xe/xe_range_fence.c:47:6: error: no previous prototype for ‘xe_range_fence_cleanup’ [-Werror=missing-prototypes]
+    47 | void xe_range_fence_cleanup(struct xe_range_fence_tree *tree)
+       |      ^~~~~~~~~~~~~~~~~~~~~~
+cc1: all warnings being treated as errors
+
+Reviewed-by: Maarten Lankhorst<maarten.lankhorst@linux.intel.com>
+
+--------------4rnAfZc6fulZ6jr2bfrUfA1E
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  </head>
+  <body>
+    <p><br>
+    </p>
+    <div class="moz-cite-prefix">On 2023-07-11 00:15, Matthew Brost
+      wrote:<br>
+    </div>
+    <blockquote type="cite"
+      cite="mid:20230710221544.1882405-3-matthew.brost@intel.com">
+      <pre class="moz-quote-pre" wrap="">We currently have a race between bind engines which can result in
+corrupted page tables leading to faults.
+
+A simple example:
+bind A 0x0000-0x1000, engine A, has unsatisfied in-fence
+bind B 0x1000-0x2000, engine B, no in-fences
+exec A uses 0x1000-0x2000
+
+Bind B will pass bind A and exec A will fault. This occurs as bind A
+programs the root of the page table in a bind job which is held up by an
+in-fence. Bind B in this case just programs a leaf entry of the
+structure.
+
+To fix use range-fence utility to track cross bind engine conflicts. In
+the above example bind A would insert an dependency into the range-fence
+tree with a key of 0x0-0x7fffffffff, bind B would find that dependency
+and its bind job would scheduled behind the unsatisfied in-fence and
+bind A's job.
+
+Co-developed-by: Thomas Hellström <a class="moz-txt-link-rfc2396E" href="mailto:thomas.hellstrom@linux.intel.com">&lt;thomas.hellstrom@linux.intel.com&gt;</a>
+Signed-off-by: Matthew Brost <a class="moz-txt-link-rfc2396E" href="mailto:matthew.brost@intel.com">&lt;matthew.brost@intel.com&gt;</a>
+---
+ drivers/gpu/drm/xe/xe_migrate.c  |   2 +
+ drivers/gpu/drm/xe/xe_migrate.h  |   8 +++
+ drivers/gpu/drm/xe/xe_pt.c       | 115 +++++++++++++++++++++++++++++++
+ drivers/gpu/drm/xe/xe_vm.c       |   9 +++
+ drivers/gpu/drm/xe/xe_vm_types.h |   7 ++
+ 5 files changed, 141 insertions(+)
+
+diff --git a/drivers/gpu/drm/xe/xe_migrate.c b/drivers/gpu/drm/xe/xe_migrate.c
+index 47addcd3e78f..5e1ad3507175 100644
+--- a/drivers/gpu/drm/xe/xe_migrate.c
++++ b/drivers/gpu/drm/xe/xe_migrate.c
+@@ -1073,6 +1073,7 @@ xe_migrate_update_pgtables_cpu(struct xe_migrate *m,
+ 		return ERR_PTR(-ETIME);
+ 
+ 	if (ops-&gt;pre_commit) {
++		pt_update-&gt;job = NULL;
+ 		err = ops-&gt;pre_commit(pt_update);
+ 		if (err)
+ 			return ERR_PTR(err);
+@@ -1294,6 +1295,7 @@ xe_migrate_update_pgtables(struct xe_migrate *m,
+ 		goto err_job;
+ 
+ 	if (ops-&gt;pre_commit) {
++		pt_update-&gt;job = job;
+ 		err = ops-&gt;pre_commit(pt_update);
+ 		if (err)
+ 			goto err_job;
+diff --git a/drivers/gpu/drm/xe/xe_migrate.h b/drivers/gpu/drm/xe/xe_migrate.h
+index 204337ea3b4e..da20b1a0e596 100644
+--- a/drivers/gpu/drm/xe/xe_migrate.h
++++ b/drivers/gpu/drm/xe/xe_migrate.h
+@@ -69,6 +69,14 @@ struct xe_migrate_pt_update {
+ 	const struct xe_migrate_pt_update_ops *ops;
+ 	/** @vma: The vma we're updating the pagetable for. */
+ 	struct xe_vma *vma;
++	/** @job: The job if a GPU page-table update. NULL otherwise */
++	struct xe_sched_job *job;
++	/** @start: Start of update for the range fence */
++	u64 start;
++	/** @last: Last of update for the range fence */
++	u64 last;
++	/** tild_id: Tile ID of the update */
++	u8 tile_id;
+ };
+ 
+ struct xe_migrate *xe_migrate_init(struct xe_tile *tile);
+diff --git a/drivers/gpu/drm/xe/xe_pt.c b/drivers/gpu/drm/xe/xe_pt.c
+index 00855681c0d5..3044930eae94 100644
+--- a/drivers/gpu/drm/xe/xe_pt.c
++++ b/drivers/gpu/drm/xe/xe_pt.c
+@@ -1116,6 +1116,53 @@ struct xe_pt_migrate_pt_update {
+ 	bool locked;
+ };
+ 
++/*
++ * This function adds the needed dependencies to a page-table update job
++ * to make sure racing jobs for separate bind engines don't race writing
++ * to the same page-table range, wreaking havoc. Initially use a single
++ * fence for the entire VM. An optimization would use smaller granularity.
++ */
++static int xe_pt_vm_dependencies(struct xe_sched_job *job,
++				 struct xe_range_fence_tree *rftree,
++				 u64 start, u64 last)
++{
++	struct xe_range_fence *rtfence;
++	struct dma_fence *fence;
++	int err;
++
++	rtfence = xe_range_fence_tree_iter_first(&amp;rftree-&gt;root, start, last);
++	while (rtfence) {
++		fence = rtfence-&gt;fence;
++
++		if (!dma_fence_is_signaled(fence)) {
++			/*
++			 * Is this a CPU update? GPU is busy updating, so return
++			 * an error
++			 */
++			if (!job)
++				return -ETIME;
++
++			dma_fence_get(fence);
++			err = drm_sched_job_add_dependency(&amp;job-&gt;drm, fence);
++			if (err)
++				return err;
++		}
++
++		rtfence = xe_range_fence_tree_iter_next(rtfence, start, last);
++	}
++
++	return 0;
++}
++
++static int xe_pt_pre_commit(struct xe_migrate_pt_update *pt_update)
++{
++	struct xe_range_fence_tree *rftree =
++		&amp;xe_vma_vm(pt_update-&gt;vma)-&gt;rftree[pt_update-&gt;tile_id];
++
++	return xe_pt_vm_dependencies(pt_update-&gt;job, rftree,
++				     pt_update-&gt;start, pt_update-&gt;last);
++}
++
+ static int xe_pt_userptr_pre_commit(struct xe_migrate_pt_update *pt_update)
+ {
+ 	struct xe_pt_migrate_pt_update *userptr_update =
+@@ -1123,6 +1170,13 @@ static int xe_pt_userptr_pre_commit(struct xe_migrate_pt_update *pt_update)
+ 	struct xe_vma *vma = pt_update-&gt;vma;
+ 	unsigned long notifier_seq = vma-&gt;userptr.notifier_seq;
+ 	struct xe_vm *vm = xe_vma_vm(vma);
++	int err = xe_pt_vm_dependencies(pt_update-&gt;job,
++					&amp;vm-&gt;rftree[pt_update-&gt;tile_id],
++					pt_update-&gt;start,
++					pt_update-&gt;last);
++
++	if (err)
++		return err;
+ 
+ 	userptr_update-&gt;locked = false;
+ 
+@@ -1161,6 +1215,7 @@ static int xe_pt_userptr_pre_commit(struct xe_migrate_pt_update *pt_update)
+ 
+ static const struct xe_migrate_pt_update_ops bind_ops = {
+ 	.populate = xe_vm_populate_pgtable,
++	.pre_commit = xe_pt_pre_commit,
+ };
+ 
+ static const struct xe_migrate_pt_update_ops userptr_bind_ops = {
+@@ -1258,6 +1313,27 @@ static int invalidation_fence_init(struct xe_gt *gt,
+ 	return ret &amp;&amp; ret != -ENOENT ? ret : 0;
+ }
+ 
++static void xe_pt_calc_rfence_interval(struct xe_vma *vma,
++				       struct xe_pt_migrate_pt_update *update,
++				       struct xe_vm_pgtable_update *entries,
++				       u32 num_entries)
++{
++	int i, level = 0;
++
++	for (i = 0; i &lt; num_entries; i++) {
++		const struct xe_vm_pgtable_update *entry = &amp;entries[i];
++
++		if (entry-&gt;pt-&gt;level &gt; level)
++			level = entry-&gt;pt-&gt;level;
++	}
++
++	/* Greedy (non-optimal) calculation but simple */
++	update-&gt;base.start = ALIGN_DOWN(xe_vma_start(vma),
++					0x1ull &lt;&lt; xe_pt_shift(level));
++	update-&gt;base.last = ALIGN(xe_vma_end(vma),
++				  0x1ull &lt;&lt; xe_pt_shift(level)) - 1;
++}
++
+ /**
+  * __xe_pt_bind_vma() - Build and connect a page-table tree for the vma
+  * address range.
+@@ -1290,6 +1366,7 @@ __xe_pt_bind_vma(struct xe_tile *tile, struct xe_vma *vma, struct xe_engine *e,
+ 		.base = {
+ 			.ops = xe_vma_is_userptr(vma) ? &amp;userptr_bind_ops : &amp;bind_ops,
+ 			.vma = vma,
++			.tile_id = tile-&gt;id,
+ 		},
+ 		.bind = true,
+ 	};
+@@ -1297,6 +1374,7 @@ __xe_pt_bind_vma(struct xe_tile *tile, struct xe_vma *vma, struct xe_engine *e,
+ 	u32 num_entries;
+ 	struct dma_fence *fence;
+ 	struct invalidation_fence *ifence = NULL;
++	struct xe_range_fence *rfence;
+ 	int err;
+ 
+ 	bind_pt_update.locked = false;
+@@ -1313,6 +1391,8 @@ __xe_pt_bind_vma(struct xe_tile *tile, struct xe_vma *vma, struct xe_engine *e,
+ 	XE_BUG_ON(num_entries &gt; ARRAY_SIZE(entries));
+ 
+ 	xe_vm_dbg_print_entries(tile_to_xe(tile), entries, num_entries);
++	xe_pt_calc_rfence_interval(vma, &amp;bind_pt_update, entries,
++				   num_entries);
+ 
+ 	/*
+ 	 * If rebind, we have to invalidate TLB on !LR vms to invalidate
+@@ -1333,6 +1413,12 @@ __xe_pt_bind_vma(struct xe_tile *tile, struct xe_vma *vma, struct xe_engine *e,
+ 			return ERR_PTR(-ENOMEM);
+ 	}
+ 
++	rfence = kzalloc(sizeof(*rfence), GFP_KERNEL);
++	if (!rfence) {
++		kfree(ifence);
++		return ERR_PTR(-ENOMEM);
++	}
++
+ 	fence = xe_migrate_update_pgtables(tile-&gt;migrate,
+ 					   vm, xe_vma_bo(vma),
+ 					   e ? e : vm-&gt;eng[tile-&gt;id],
+@@ -1342,6 +1428,14 @@ __xe_pt_bind_vma(struct xe_tile *tile, struct xe_vma *vma, struct xe_engine *e,
+ 	if (!IS_ERR(fence)) {
+ 		bool last_munmap_rebind = vma-&gt;gpuva.flags &amp; XE_VMA_LAST_REBIND;
+ 		LLIST_HEAD(deferred);
++		int err;
++
++		err = xe_range_fence_insert(&amp;vm-&gt;rftree[tile-&gt;id], rfence,
++					    &amp;xe_range_fence_kfree_ops,
++					    bind_pt_update.base.start,
++					    bind_pt_update.base.last, fence);
++		if (err)
++			dma_fence_wait(fence, false);
+ 
+ 		/* TLB invalidation must be done before signaling rebind */
+ 		if (ifence) {
+@@ -1380,6 +1474,7 @@ __xe_pt_bind_vma(struct xe_tile *tile, struct xe_vma *vma, struct xe_engine *e,
+ 			queue_work(vm-&gt;xe-&gt;ordered_wq,
+ 				   &amp;vm-&gt;preempt.rebind_work);
+ 	} else {
++		kfree(rfence);
+ 		kfree(ifence);
+ 		if (bind_pt_update.locked)
+ 			up_read(&amp;vm-&gt;userptr.notifier_lock);
+@@ -1589,6 +1684,7 @@ xe_pt_commit_unbind(struct xe_vma *vma,
+ 
+ static const struct xe_migrate_pt_update_ops unbind_ops = {
+ 	.populate = xe_migrate_clear_pgtable_callback,
++	.pre_commit = xe_pt_pre_commit,
+ };
+ 
+ static const struct xe_migrate_pt_update_ops userptr_unbind_ops = {
+@@ -1626,12 +1722,15 @@ __xe_pt_unbind_vma(struct xe_tile *tile, struct xe_vma *vma, struct xe_engine *e
+ 			.ops = xe_vma_is_userptr(vma) ? &amp;userptr_unbind_ops :
+ 			&amp;unbind_ops,
+ 			.vma = vma,
++			.tile_id = tile-&gt;id,
+ 		},
+ 	};
+ 	struct xe_vm *vm = xe_vma_vm(vma);
+ 	u32 num_entries;
+ 	struct dma_fence *fence = NULL;
+ 	struct invalidation_fence *ifence;
++	struct xe_range_fence *rfence;
++
+ 	LLIST_HEAD(deferred);
+ 
+ 	xe_bo_assert_held(xe_vma_bo(vma));
+@@ -1645,11 +1744,19 @@ __xe_pt_unbind_vma(struct xe_tile *tile, struct xe_vma *vma, struct xe_engine *e
+ 	XE_BUG_ON(num_entries &gt; ARRAY_SIZE(entries));
+ 
+ 	xe_vm_dbg_print_entries(tile_to_xe(tile), entries, num_entries);
++	xe_pt_calc_rfence_interval(vma, &amp;unbind_pt_update, entries,
++				   num_entries);
+ 
+ 	ifence = kzalloc(sizeof(*ifence), GFP_KERNEL);
+ 	if (!ifence)
+ 		return ERR_PTR(-ENOMEM);
+ 
++	rfence = kzalloc(sizeof(*rfence), GFP_KERNEL);
++	if (!rfence) {
++		kfree(ifence);
++		return ERR_PTR(-ENOMEM);
++	}
++
+ 	/*
+ 	 * Even if we were already evicted and unbind to destroy, we need to
+ 	 * clear again here. The eviction may have updated pagetables at a
+@@ -1664,6 +1771,13 @@ __xe_pt_unbind_vma(struct xe_tile *tile, struct xe_vma *vma, struct xe_engine *e
+ 	if (!IS_ERR(fence)) {
+ 		int err;
+ 
++		err = xe_range_fence_insert(&amp;vm-&gt;rftree[tile-&gt;id], rfence,
++					    &amp;xe_range_fence_kfree_ops,
++					    unbind_pt_update.base.start,
++					    unbind_pt_update.base.last, fence);
++		if (err)
++			dma_fence_wait(fence, false);
++
+ 		/* TLB invalidation must be done before signaling unbind */
+ 		err = invalidation_fence_init(tile-&gt;primary_gt, ifence, fence, vma);
+ 		if (err) {
+@@ -1685,6 +1799,7 @@ __xe_pt_unbind_vma(struct xe_tile *tile, struct xe_vma *vma, struct xe_engine *e
+ 				    unbind_pt_update.locked ? &amp;deferred : NULL);
+ 		vma-&gt;tile_present &amp;= ~BIT(tile-&gt;id);
+ 	} else {
++		kfree(rfence);
+ 		kfree(ifence);
+ 	}
+ 
+diff --git a/drivers/gpu/drm/xe/xe_vm.c b/drivers/gpu/drm/xe/xe_vm.c
+index 6c216350084b..26d39de777aa 100644
+--- a/drivers/gpu/drm/xe/xe_vm.c
++++ b/drivers/gpu/drm/xe/xe_vm.c
+@@ -1229,6 +1229,9 @@ struct xe_vm *xe_vm_create(struct xe_device *xe, u32 flags)
+ 	INIT_LIST_HEAD(&amp;vm-&gt;preempt.engines);
+ 	vm-&gt;preempt.min_run_period_ms = 10;	/* FIXME: Wire up to uAPI */
+ 
++	for_each_tile(tile, xe, id)
++		xe_range_fence_tree_init(&amp;vm-&gt;rftree[id]);
++
+ 	INIT_LIST_HEAD(&amp;vm-&gt;extobj.list);
+ 
+ 	if (!(flags &amp; XE_VM_FLAG_MIGRATION)) {
+@@ -1351,6 +1354,8 @@ struct xe_vm *xe_vm_create(struct xe_device *xe, u32 flags)
+ 	drm_gpuva_manager_destroy(&amp;vm-&gt;mgr);
+ err_put:
+ 	dma_resv_fini(&amp;vm-&gt;resv);
++	for_each_tile(tile, xe, id)
++		xe_range_fence_tree_fini(&amp;vm-&gt;rftree[id]);
+ 	kfree(vm);
+ 	if (!(flags &amp; XE_VM_FLAG_MIGRATION)) {
+ 		xe_device_mem_access_put(xe);
+@@ -1468,6 +1473,7 @@ void xe_vm_close_and_put(struct xe_vm *vm)
+ 					      NULL);
+ 		}
+ 	}
++
+ 	xe_vm_unlock(vm, &amp;ww);
+ 
+ 	/*</pre>
+    </blockquote>
+    Spurious newline?<br>
+    <blockquote type="cite"
+      cite="mid:20230710221544.1882405-3-matthew.brost@intel.com">
+      <pre class="moz-quote-pre" wrap="">
+@@ -1495,6 +1501,9 @@ void xe_vm_close_and_put(struct xe_vm *vm)
+ 		xe-&gt;usm.num_vm_in_non_fault_mode--;
+ 	mutex_unlock(&amp;xe-&gt;usm.lock);
+ 
++	for_each_tile(tile, xe, id)
++		xe_range_fence_tree_fini(&amp;vm-&gt;rftree[id]);
++
+ 	xe_vm_put(vm);
+ }
+ 
+diff --git a/drivers/gpu/drm/xe/xe_vm_types.h b/drivers/gpu/drm/xe/xe_vm_types.h
+index edb3c99a9c81..37d57552d727 100644
+--- a/drivers/gpu/drm/xe/xe_vm_types.h
++++ b/drivers/gpu/drm/xe/xe_vm_types.h
+@@ -15,6 +15,7 @@
+ 
+ #include "xe_device_types.h"
+ #include "xe_pt_types.h"
++#include "xe_range_fence.h"
+ 
+ struct async_op_fence;
+ struct xe_bo;
+@@ -182,6 +183,12 @@ struct xe_vm {
+ 	 */
+ 	struct work_struct destroy_work;
+ 
++	/**
++	 * @rftree: range fence tree to track updates to page table structure.
++	 * Used to implement conflict tracking between independent bind engines.
++	 */
++	struct xe_range_fence_tree rftree[XE_MAX_TILES_PER_DEVICE];
++
+ 	/** @extobj: bookkeeping for external objects. Protected by the vm lock */
+ 	struct {
+ 		/** @enties: number of external BOs attached this VM */</pre>
+    </blockquote>
+    <p>With that fixed, and fixing the error output from <br>
+    </p>
+    <pre class="panel-body test-result">In file included from ../drivers/gpu/drm/xe/xe_range_fence.c:7:
+../drivers/gpu/drm/xe/xe_range_fence.c:18:10: error: no previous prototype for ‘xe_range_fence_tree_insert’ [-Werror=missing-prototypes]
+   18 |        , xe_range_fence_tree);
+      |          ^~~~~~~~~~~~~~~~~~~
+../include/linux/interval_tree_generic.h:38:15: note: in definition of macro ‘INTERVAL_TREE_DEFINE’
+   38 | ITSTATIC void ITPREFIX ## _insert(ITSTRUCT *node,         \
+      |               ^~~~~~~~
+../drivers/gpu/drm/xe/xe_range_fence.c:18:10: error: no previous prototype for ‘xe_range_fence_tree_remove’ [-Werror=missing-prototypes]
+   18 |        , xe_range_fence_tree);
+      |          ^~~~~~~~~~~~~~~~~~~
+../include/linux/interval_tree_generic.h:65:15: note: in definition of macro ‘INTERVAL_TREE_DEFINE’
+   65 | ITSTATIC void ITPREFIX ## _remove(ITSTRUCT *node,         \
+      |               ^~~~~~~~
+../drivers/gpu/drm/xe/xe_range_fence.c:47:6: error: no previous prototype for ‘xe_range_fence_cleanup’ [-Werror=missing-prototypes]
+   47 | void xe_range_fence_cleanup(struct xe_range_fence_tree *tree)
+      |      ^~~~~~~~~~~~~~~~~~~~~~
+cc1: all warnings being treated as errors
+
+Reviewed-by: Maarten Lankhorst <a class="moz-txt-link-rfc2396E" href="mailto:maarten.lankhorst@linux.intel.com">&lt;maarten.lankhorst@linux.intel.com&gt;</a>
+
+</pre>
+    <p></p>
+  </body>
+</html>
+
+--------------4rnAfZc6fulZ6jr2bfrUfA1E--
