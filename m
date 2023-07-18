@@ -4,30 +4,30 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 84925EB64DC
-	for <intel-xe@archiver.kernel.org>; Tue, 18 Jul 2023 09:31:38 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 09363EB64DC
+	for <intel-xe@archiver.kernel.org>; Tue, 18 Jul 2023 10:11:37 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 54B3310E1A0;
-	Tue, 18 Jul 2023 09:31:38 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C20ED10E151;
+	Tue, 18 Jul 2023 10:11:36 +0000 (UTC)
 Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id B876210E1A0;
- Tue, 18 Jul 2023 09:31:36 +0000 (UTC)
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 1869710E151;
+ Tue, 18 Jul 2023 10:11:35 +0000 (UTC)
 Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id B033DA0093;
- Tue, 18 Jul 2023 09:31:36 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============0936272822288527838=="
+ by emeril.freedesktop.org (Postfix) with ESMTP id 0E8F0AADE0;
+ Tue, 18 Jul 2023 10:11:35 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Anshuman Gupta" <anshuman.gupta@intel.com>
-Date: Tue, 18 Jul 2023 09:31:36 -0000
-Message-ID: <168967269671.22203.11109564336706524533@emeril.freedesktop.org>
+To: "Francois Dugast" <francois.dugast@intel.com>
+Date: Tue, 18 Jul 2023 10:11:35 -0000
+Message-ID: <168967509505.22206.3868571476439696456@emeril.freedesktop.org>
 X-Patchwork-Hint: ignore
-References: <20230718080703.239343-1-anshuman.gupta@intel.com>
-In-Reply-To: <20230718080703.239343-1-anshuman.gupta@intel.com>
-Subject: [Intel-xe] =?utf-8?q?=E2=97=8B_CI=2EBAT=3A_info_for_D3Cold_Polic?=
- =?utf-8?q?y_=28rev8=29?=
+References: <20230717131643.7-1-francois.dugast@intel.com>
+In-Reply-To: <20230717131643.7-1-francois.dugast@intel.com>
+Subject: [Intel-xe] =?utf-8?q?=E2=9C=97_CI=2EPatch=5Fapplied=3A_failure_f?=
+ =?utf-8?q?or_drm/xe=3A_switch_to_using_drm=5Fexec_=28rev2=29?=
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -44,65 +44,30 @@ Cc: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============0936272822288527838==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
 == Series Details ==
 
-Series: D3Cold Policy (rev8)
-URL   : https://patchwork.freedesktop.org/series/118035/
-State : info
+Series: drm/xe: switch to using drm_exec (rev2)
+URL   : https://patchwork.freedesktop.org/series/120842/
+State : failure
 
 == Summary ==
 
-Participating hosts:
-bat-pvc-2
-bat-atsm-2
-bat-dg2-oem2
-bat-adlp-7
-Missing hosts results[0]:
-Results: [xe-pw-118035v8](https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-118035v8/index.html)
+=== Applying kernel patches on branch 'drm-xe-next' with base: ===
+Base commit: a43fd52b7 drm/xe: Cleanup style warnings
+=== git am output follows ===
+error: patch failed: Documentation/gpu/drm-mm.rst:529
+error: Documentation/gpu/drm-mm.rst: patch does not apply
+error: patch failed: drivers/gpu/drm/Kconfig:194
+error: drivers/gpu/drm/Kconfig: patch does not apply
+error: patch failed: drivers/gpu/drm/Makefile:79
+error: drivers/gpu/drm/Makefile: patch does not apply
+error: drivers/gpu/drm/drm_exec.c: already exists in index
+error: include/drm/drm_exec.h: already exists in index
+hint: Use 'git am --show-current-patch' to see the failed patch
+Applying: drm: execution context for GEM buffers v7
+Patch failed at 0001 drm: execution context for GEM buffers v7
+When you have resolved this problem, run "git am --continue".
+If you prefer to skip this patch, run "git am --skip" instead.
+To restore the original branch and stop patching, run "git am --abort".
 
 
-
---===============0936272822288527838==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>D3Cold Policy (rev8)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/118035/">https://patchwork.freedesktop.org/series/118035/</a></td></tr>
-<tr><td><b>State:</b></td><td>info</td></tr>
-
-</table>
-
-
-    <p>Participating hosts:<br />
-bat-pvc-2<br />
-bat-atsm-2<br />
-bat-dg2-oem2<br />
-bat-adlp-7<br />
-Missing hosts results[0]:<br />
-Results: <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-118035v8/index.html">xe-pw-118035v8</a></p>
-
-</body>
-</html>
-
---===============0936272822288527838==--
