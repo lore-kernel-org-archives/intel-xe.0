@@ -4,30 +4,44 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id D63A7EB64DC
-	for <intel-xe@archiver.kernel.org>; Tue, 18 Jul 2023 11:51:09 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7CBECEB64DA
+	for <intel-xe@archiver.kernel.org>; Tue, 18 Jul 2023 11:58:28 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8A3218911F;
-	Tue, 18 Jul 2023 11:51:09 +0000 (UTC)
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id AE2EF8911F;
- Tue, 18 Jul 2023 11:51:06 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id AA67CAADED;
- Tue, 18 Jul 2023 11:51:06 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+	by gabe.freedesktop.org (Postfix) with ESMTP id 377DD10E327;
+	Tue, 18 Jul 2023 11:58:28 +0000 (UTC)
+Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C181E10E327
+ for <intel-xe@lists.freedesktop.org>; Tue, 18 Jul 2023 11:58:25 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1689681505; x=1721217505;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=xz114nTytwOE7BlVus6ZYYhpFdpcNDjkSIUCj0vlaho=;
+ b=GcTZDtM9QDPH8rkIJukIkkCqLyeQM8uRuUKywJ9dFDYcDGg5VnlhU9q6
+ q3TREwppo0J3mEH5qzcDEbaSXsbbkxUyBvvO3HllNIqqhODKfsZjIW93K
+ BrXN8LXbAsz8w0Zgz/fWlZwTfzfNdAgtWPChlFTxzyLVlKw4nCCIzH+tX
+ ibf2YBxIUPrTeWZxR8aambfELpacNbCjpoo0LtvMpF0rJfpHj1ISga4Y9
+ 3TUGr5djrc9D8hyjPQ8/5mN18tQwhCmmDR3WkCt442Z8Eb/thbr/SGIE0
+ GNAuCAU5bkA8tlJoig/TRNSdywOjmESXxr8xqe6oE7K0pzFxll+qM5+WO A==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10774"; a="397024731"
+X-IronPort-AV: E=Sophos;i="6.01,214,1684825200"; d="scan'208";a="397024731"
+Received: from orsmga004.jf.intel.com ([10.7.209.38])
+ by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 18 Jul 2023 04:58:24 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6600,9927,10774"; a="847672283"
+X-IronPort-AV: E=Sophos;i="6.01,214,1684825200"; d="scan'208";a="847672283"
+Received: from himal-super-server.iind.intel.com ([10.145.169.168])
+ by orsmga004.jf.intel.com with ESMTP; 18 Jul 2023 04:58:22 -0700
+From: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
+To: intel-xe@lists.freedesktop.org
+Date: Tue, 18 Jul 2023 17:33:20 +0530
+Message-Id: <20230718120322.2992075-1-himal.prasad.ghimiray@intel.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Riana Tauro" <riana.tauro@intel.com>
-Date: Tue, 18 Jul 2023 11:51:06 -0000
-Message-ID: <168968106669.22204.14459947703879520695@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20230717095900.1561736-1-riana.tauro@intel.com>
-In-Reply-To: <20230717095900.1561736-1-riana.tauro@intel.com>
-Subject: [Intel-xe] =?utf-8?q?=E2=9C=93_CI=2Echecksparse=3A_success_for_d?=
- =?utf-8?q?rm/xe=3A_remove_gucrc_disable_from_suspend_path_=28rev6=29?=
+Content-Transfer-Encoding: 8bit
+Subject: [Intel-xe] [PATCH v3 0/2] Notify userspace about uevent failure
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -39,38 +53,31 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
-Cc: intel-xe@lists.freedesktop.org
+Cc: Lucas De Marchi <lucas.demarchi@intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-== Series Details ==
+series sends an uevent in case of gt reset failure.
+since we have no mechanism to ensure gt reset failure from
+hw perspective introducing the fault injection to validate the uevent.
 
-Series: drm/xe: remove gucrc disable from suspend path (rev6)
-URL   : https://patchwork.freedesktop.org/series/120263/
-State : success
+https://gitlab.freedesktop.org/drm/xe/ci/-/commit/5ab4b369758a57b5a799b93c1d5b556c98d9d557
+is enabling the config to ensure debugfs creations are succesful.
 
-== Summary ==
+Cc: Lucas De Marchi <lucas.demarchi@intel.com>
+Cc: Rodrigo Vivi <rodrigo.vivi@intel.com> 
 
-+ trap cleanup EXIT
-+ KERNEL=/kernel
-+ MT=/root/linux/maintainer-tools
-+ git clone https://gitlab.freedesktop.org/drm/maintainer-tools /root/linux/maintainer-tools
-Cloning into '/root/linux/maintainer-tools'...
-warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
-+ make -C /root/linux/maintainer-tools
-make: Entering directory '/root/linux/maintainer-tools'
-cc -O2 -g -Wextra -o remap-log remap-log.c
-make: Leaving directory '/root/linux/maintainer-tools'
-+ cd /kernel
-+ git config --global --add safe.directory /kernel
-+ /root/linux/maintainer-tools/dim sparse --fast a43fd52b7ab2009631518ead5ca0afe9bc44515a
-Sparse version: 0.6.1 (Ubuntu: 0.6.1-2build1)
-Fast mode used, each commit won't be checked separately.
-Okay!
+Himal Prasad Ghimiray (2):
+  drm/xe: Notify Userspace when engine reset fails
+  drm/xe: Introduce fault injection for gt reset
 
-+ cleanup
-++ stat -c %u:%g /kernel
-+ chown -R 1003:1003 /kernel
+ drivers/gpu/drm/xe/xe_debugfs.c | 10 ++++++++++
+ drivers/gpu/drm/xe/xe_gt.c      | 26 +++++++++++++++++++++++++-
+ drivers/gpu/drm/xe/xe_gt.h      | 14 ++++++++++++++
+ include/uapi/drm/xe_drm.h       |  8 ++++++++
+ 4 files changed, 57 insertions(+), 1 deletion(-)
 
+-- 
+2.25.1
 
