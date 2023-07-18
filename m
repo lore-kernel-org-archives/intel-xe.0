@@ -4,48 +4,48 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id C179CC001DC
-	for <intel-xe@archiver.kernel.org>; Tue, 18 Jul 2023 08:11:48 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0470AEB64DC
+	for <intel-xe@archiver.kernel.org>; Tue, 18 Jul 2023 08:11:51 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 885E810E2FA;
-	Tue, 18 Jul 2023 08:11:48 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C6EB310E2EC;
+	Tue, 18 Jul 2023 08:11:50 +0000 (UTC)
 Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 39E6010E2FA
- for <intel-xe@lists.freedesktop.org>; Tue, 18 Jul 2023 08:11:46 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2205B10E2FB
+ for <intel-xe@lists.freedesktop.org>; Tue, 18 Jul 2023 08:11:49 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1689667906; x=1721203906;
+ t=1689667909; x=1721203909;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=LJpsNtHseJbYelO1sx0+GSWqBURHQNWxjNd0IDA/iWk=;
- b=KRObIjpg15jHRAXFz62y5ldz/HKz9tSkztzqr2AR/zUOAQnjARB+RoHn
- cS74EcpqL4+d12EBM0G/sWFAmsTBJwDLZ7DaBCKo8ey/V0CJXUaPi4yf9
- gnypSJS5RuvR7PhAFMFH26tYH1xlzRIpGxJnjpOP8+ktMWhrtZLy8G+WF
- VdizORg9uzynsE4V7nBJ8627COZxoUWHELu0TGQFezReVL09iidx8SH/D
- OCNueW4PLR7OOU9nknaI1rMMnqgegPsKiHYm8re5U8uwCWyWY9d9yXuQH
- s6sKBa2h/w4ULqhvmR2nPTALJ8vvKnLB0BXwxpsGBhpmNj+4gdnfhjX3M g==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10774"; a="356084428"
-X-IronPort-AV: E=Sophos;i="6.01,213,1684825200"; d="scan'208";a="356084428"
+ bh=Ynh7iKQwWS3lnGQ/9UB9VbcQBCyU/l4MjnY3PCim/4k=;
+ b=lZyI9N/Zn7b99U+0gM+VA4YhO36eyI0sXnyx9xogK7TY7bT83/T7GVVL
+ To5BjHHKCWz6mAdtbQsofEH1RGh07asJ9H2odTQ9idTg4SjcU80Ue9mBb
+ mkNUt6A2TGld/y+rq2T4ibI7G86gguJem8Nj1ESGy0fhvOexNnMggWcg+
+ kBaWR2WFvkuD2wZO0BMpUiUj0kdquSuiubZFHoz509y+diCSX5qpUhDCN
+ 5kUYL+MgHmtmFa23UDZg5jYZQVcVIcTq3TkPIeYgCQ2ed9hCIR3yY2vPS
+ IikYTA/f8lrFM1HYl3/lU9whSKuhwVllqM/hWsG9qjQNVoPwd0mc44HPu g==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10774"; a="356084438"
+X-IronPort-AV: E=Sophos;i="6.01,213,1684825200"; d="scan'208";a="356084438"
 Received: from orsmga007.jf.intel.com ([10.7.209.58])
  by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 18 Jul 2023 01:11:46 -0700
+ 18 Jul 2023 01:11:49 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10774"; a="717508192"
-X-IronPort-AV: E=Sophos;i="6.01,213,1684825200"; d="scan'208";a="717508192"
+X-IronPort-AV: E=McAfee;i="6600,9927,10774"; a="717508203"
+X-IronPort-AV: E=Sophos;i="6.01,213,1684825200"; d="scan'208";a="717508203"
 Received: from srr4-3-linux-105-anshuma1.iind.intel.com ([10.223.74.179])
  by orsmga007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 18 Jul 2023 01:11:43 -0700
+ 18 Jul 2023 01:11:46 -0700
 From: Anshuman Gupta <anshuman.gupta@intel.com>
 To: intel-xe@lists.freedesktop.org
-Date: Tue, 18 Jul 2023 13:37:01 +0530
-Message-Id: <20230718080703.239343-4-anshuman.gupta@intel.com>
+Date: Tue, 18 Jul 2023 13:37:02 +0530
+Message-Id: <20230718080703.239343-5-anshuman.gupta@intel.com>
 X-Mailer: git-send-email 2.38.0
 In-Reply-To: <20230718080703.239343-1-anshuman.gupta@intel.com>
 References: <20230718080703.239343-1-anshuman.gupta@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=y
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-xe] [PATCH v6 3/5] drm/xe/pm: Add vram_d3cold_threshold Sysfs
+Subject: [Intel-xe] [PATCH v6 4/5] xe/drm/pm: Toggle d3cold_allowed using
+ vram_usages
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -61,348 +61,157 @@ Cc: sujaritha.sundaresan@intel.com, rodrigo.vivi@intel.com
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Add per pci device vram_d3cold_threshold Sysfs to
-control the d3cold allowed knob.
-Adding a d3cold structure embedded in xe_device to encapsulate
-d3cold related stuff.
+Adding support to control d3cold by using vram_usages metric from
+ttm resource manager.
+When root port  is capable of d3cold but xe has disallowed d3cold
+due to vram_usages above vram_d3ccold_threshol. It is required to
+disable d3cold to avoid any resume failure because root port can
+still transition to d3cold when all of pcie endpoints and
+{upstream, virtual} switch ports will transition to d3hot.
+Also cleaning up the TODO code comment.
 
 v2:
-- Check total vram before initializing default threshold. [Riana]
-- Add static scope to vram_d3cold_threshold DEVICE_ATTR. [Riana]
+- Modify d3cold.allowed in xe_pm_d3cold_allowed_toggle. [Riana]
+- Cond changed (total_vram_used_mb < xe->d3cold.vram_threshold)
+  according to doc comment.
 v3:
-- Fixed cosmetics review comment. [Riana]
-- Fixed CI Hook failures.
-- Used drmm_mutex_init().
-v4:
-- Fixed kernel-doc warnings.
-v5:
-- Added doc explaining need for the device sysfs. [Rodrigo]
-- Removed TODO comment.
+- Added enum instead of true/false argument in
+  d3cold_toggle(). [Rodrigo]
+- Removed TODO comment. [Rodrigo]
 
 Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
 Signed-off-by: Anshuman Gupta <anshuman.gupta@intel.com>
-Reviewed-by: Riana Tauro <riana.tauro@intel.com>
+Reviewed-by: Badal Nilawar <badal.nilawar@intel.com>
 Acked-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
 ---
- drivers/gpu/drm/xe/Makefile          |  1 +
- drivers/gpu/drm/xe/xe_device_sysfs.c | 89 ++++++++++++++++++++++++++++
- drivers/gpu/drm/xe/xe_device_sysfs.h | 13 ++++
- drivers/gpu/drm/xe/xe_device_types.h | 24 ++++++--
- drivers/gpu/drm/xe/xe_pci.c          | 10 ++--
- drivers/gpu/drm/xe/xe_pm.c           | 37 ++++++++++--
- drivers/gpu/drm/xe/xe_pm.h           |  3 +
- 7 files changed, 164 insertions(+), 13 deletions(-)
- create mode 100644 drivers/gpu/drm/xe/xe_device_sysfs.c
- create mode 100644 drivers/gpu/drm/xe/xe_device_sysfs.h
+ drivers/gpu/drm/xe/xe_pci.c | 36 +++++++++++++++++++++++++++++++++---
+ drivers/gpu/drm/xe/xe_pm.c  | 25 +++++++++++++++++++++++++
+ drivers/gpu/drm/xe/xe_pm.h  |  1 +
+ 3 files changed, 59 insertions(+), 3 deletions(-)
 
-diff --git a/drivers/gpu/drm/xe/Makefile b/drivers/gpu/drm/xe/Makefile
-index 336f0eb8f91e..c37587ae20c2 100644
---- a/drivers/gpu/drm/xe/Makefile
-+++ b/drivers/gpu/drm/xe/Makefile
-@@ -49,6 +49,7 @@ xe-y += xe_bb.o \
- 	xe_debugfs.o \
- 	xe_devcoredump.o \
- 	xe_device.o \
-+	xe_device_sysfs.o \
- 	xe_dma_buf.o \
- 	xe_engine.o \
- 	xe_exec.o \
-diff --git a/drivers/gpu/drm/xe/xe_device_sysfs.c b/drivers/gpu/drm/xe/xe_device_sysfs.c
-new file mode 100644
-index 000000000000..99113a5a2b84
---- /dev/null
-+++ b/drivers/gpu/drm/xe/xe_device_sysfs.c
-@@ -0,0 +1,89 @@
-+// SPDX-License-Identifier: MIT
-+/*
-+ * Copyright © 2023 Intel Corporation
-+ */
-+
-+#include <linux/kobject.h>
-+#include <linux/pci.h>
-+#include <linux/sysfs.h>
-+
-+#include <drm/drm_managed.h>
-+
-+#include "xe_device.h"
-+#include "xe_device_sysfs.h"
-+#include "xe_pm.h"
-+
-+/**
-+ * DOC: Xe device sysfs
-+ * Xe driver requires exposing certain tunable knobs controlled by user space for
-+ * each graphics device. Considering this, we need to add sysfs attributes at device
-+ * level granularity.
-+ * These sysfs attributes will be available under pci device kobj directory.
-+ *
-+ * vram_d3cold_threshold - Report/change vram used threshold(in MB) below
-+ * which vram save/restore is permissible during runtime D3cold entry/exit.
-+ */
-+
-+static ssize_t
-+vram_d3cold_threshold_show(struct device *dev,
-+			   struct device_attribute *attr, char *buf)
-+{
-+	struct pci_dev *pdev = to_pci_dev(dev);
-+	struct xe_device *xe = pdev_to_xe_device(pdev);
-+	int ret;
-+
-+	if (!xe)
-+		return -EINVAL;
-+
-+	ret = sysfs_emit(buf, "%d\n", xe->d3cold.vram_threshold);
-+
-+	return ret;
-+}
-+
-+static ssize_t
-+vram_d3cold_threshold_store(struct device *dev, struct device_attribute *attr,
-+			    const char *buff, size_t count)
-+{
-+	struct pci_dev *pdev = to_pci_dev(dev);
-+	struct xe_device *xe = pdev_to_xe_device(pdev);
-+	u32 vram_d3cold_threshold;
-+	int ret;
-+
-+	if (!xe)
-+		return -EINVAL;
-+
-+	ret = kstrtou32(buff, 0, &vram_d3cold_threshold);
-+	if (ret)
-+		return ret;
-+
-+	drm_dbg(&xe->drm, "vram_d3cold_threshold: %u\n", vram_d3cold_threshold);
-+
-+	ret = xe_pm_set_vram_threshold(xe, vram_d3cold_threshold);
-+
-+	return ret ?: count;
-+}
-+
-+static DEVICE_ATTR_RW(vram_d3cold_threshold);
-+
-+static void xe_device_sysfs_fini(struct drm_device *drm, void *arg)
-+{
-+	struct xe_device *xe = arg;
-+
-+	sysfs_remove_file(&xe->drm.dev->kobj, &dev_attr_vram_d3cold_threshold.attr);
-+}
-+
-+void xe_device_sysfs_init(struct xe_device *xe)
-+{
-+	struct device *dev = xe->drm.dev;
-+	int ret;
-+
-+	ret = sysfs_create_file(&dev->kobj, &dev_attr_vram_d3cold_threshold.attr);
-+	if (ret) {
-+		drm_warn(&xe->drm, "Failed to create sysfs file\n");
-+		return;
-+	}
-+
-+	ret = drmm_add_action_or_reset(&xe->drm, xe_device_sysfs_fini, xe);
-+	if (ret)
-+		drm_warn(&xe->drm, "Failed to add sysfs fini drm action\n");
-+}
-diff --git a/drivers/gpu/drm/xe/xe_device_sysfs.h b/drivers/gpu/drm/xe/xe_device_sysfs.h
-new file mode 100644
-index 000000000000..38b240684bee
---- /dev/null
-+++ b/drivers/gpu/drm/xe/xe_device_sysfs.h
-@@ -0,0 +1,13 @@
-+/* SPDX-License-Identifier: MIT */
-+/*
-+ * Copyright © 2023 Intel Corporation
-+ */
-+
-+#ifndef _XE_DEVICE_SYSFS_H_
-+#define _XE_DEVICE_SYSFS_H_
-+
-+struct xe_device;
-+
-+void xe_device_sysfs_init(struct xe_device *xe);
-+
-+#endif
-diff --git a/drivers/gpu/drm/xe/xe_device_types.h b/drivers/gpu/drm/xe/xe_device_types.h
-index 448052162204..624c8cb3b13b 100644
---- a/drivers/gpu/drm/xe/xe_device_types.h
-+++ b/drivers/gpu/drm/xe/xe_device_types.h
-@@ -347,11 +347,27 @@ struct xe_device {
- 		bool hold_rpm;
- 	} mem_access;
- 
--	/** d3cold_capable: Indicates if root port is d3cold capable */
--	bool d3cold_capable;
-+	/** @d3cold: Encapsulate d3cold related stuff */
-+	struct {
-+		/** capable: Indicates if root port is d3cold capable */
-+		bool capable;
-+
-+		/** @allowed: Indicates if d3cold is a valid device state */
-+		bool allowed;
- 
--	/** @d3cold_allowed: Indicates if d3cold is a valid device state */
--	bool d3cold_allowed;
-+		/**
-+		 * @vram_threshold:
-+		 *
-+		 * This represents the permissible threshold(in megabytes)
-+		 * for vram save/restore. d3cold will be disallowed,
-+		 * when vram_usages is above or equals the threshold value
-+		 * to avoid the vram save/restore latency.
-+		 * Default threshold value is 300mb.
-+		 */
-+		u32 vram_threshold;
-+		/** @lock: protect vram_threshold */
-+		struct mutex lock;
-+	} d3cold;
- 
- 	/* private: */
- 
 diff --git a/drivers/gpu/drm/xe/xe_pci.c b/drivers/gpu/drm/xe/xe_pci.c
-index fe54cb15d1c0..32a676d27fa7 100644
+index 32a676d27fa7..9b78dbe32742 100644
 --- a/drivers/gpu/drm/xe/xe_pci.c
 +++ b/drivers/gpu/drm/xe/xe_pci.c
-@@ -766,7 +766,7 @@ static int xe_pci_runtime_suspend(struct device *dev)
+@@ -26,6 +26,11 @@
+ #include "xe_pm.h"
+ #include "xe_step.h"
  
- 	pci_save_state(pdev);
++enum toggle_d3cold {
++	D3COLD_DISABLE,
++	D3COLD_ENABLE,
++};
++
+ struct xe_subplatform_desc {
+ 	enum xe_subplatform subplatform;
+ 	const char *name;
+@@ -754,6 +759,28 @@ static int xe_pci_resume(struct device *dev)
+ 	return 0;
+ }
  
--	if (xe->d3cold_allowed) {
-+	if (xe->d3cold.allowed) {
- 		pci_disable_device(pdev);
++static void d3cold_toggle(struct pci_dev *pdev, enum toggle_d3cold toggle)
++{
++	struct xe_device *xe = pdev_to_xe_device(pdev);
++	struct pci_dev *root_pdev;
++
++	if (!xe->d3cold.capable)
++		return;
++
++	root_pdev = pcie_find_root_port(pdev);
++	if (!root_pdev)
++		return;
++
++	switch (toggle) {
++	case D3COLD_DISABLE:
++		pci_d3cold_disable(root_pdev);
++		break;
++	case D3COLD_ENABLE:
++		pci_d3cold_enable(root_pdev);
++		break;
++	}
++}
++
+ static int xe_pci_runtime_suspend(struct device *dev)
+ {
+ 	struct pci_dev *pdev = to_pci_dev(dev);
+@@ -771,6 +798,7 @@ static int xe_pci_runtime_suspend(struct device *dev)
  		pci_ignore_hotplug(pdev);
  		pci_set_power_state(pdev, PCI_D3cold);
-@@ -789,7 +789,7 @@ static int xe_pci_runtime_resume(struct device *dev)
- 
- 	pci_restore_state(pdev);
- 
--	if (xe->d3cold_allowed) {
-+	if (xe->d3cold.allowed) {
- 		err = pci_enable_device(pdev);
- 		if (err)
- 			return err;
-@@ -805,8 +805,8 @@ static int xe_pci_runtime_idle(struct device *dev)
- 	struct pci_dev *pdev = to_pci_dev(dev);
- 	struct xe_device *xe = pdev_to_xe_device(pdev);
- 
--	if (!xe->d3cold_capable) {
--		xe->d3cold_allowed = false;
-+	if (!xe->d3cold.capable) {
-+		xe->d3cold.allowed = false;
  	} else {
++		d3cold_toggle(pdev, D3COLD_DISABLE);
+ 		pci_set_power_state(pdev, PCI_D3hot);
+ 	}
+ 
+@@ -795,6 +823,8 @@ static int xe_pci_runtime_resume(struct device *dev)
+ 			return err;
+ 
+ 		pci_set_master(pdev);
++	} else {
++		d3cold_toggle(pdev, D3COLD_ENABLE);
+ 	}
+ 
+ 	return xe_pm_runtime_resume(xe);
+@@ -808,15 +838,15 @@ static int xe_pci_runtime_idle(struct device *dev)
+ 	if (!xe->d3cold.capable) {
+ 		xe->d3cold.allowed = false;
+ 	} else {
++		xe_pm_d3cold_allowed_toggle(xe);
++
  		/*
  		 * TODO: d3cold should be allowed (true) if
-@@ -819,7 +819,7 @@ static int xe_pci_runtime_idle(struct device *dev)
- 		 * 3. at resume, detect if we really lost power and avoid memory
+ 		 * (IS_DGFX(xe) && !xe_device_mem_access_ongoing(xe))
+ 		 * but maybe include some other conditions. So, before
+ 		 * we can re-enable the D3cold, we need to:
+ 		 * 1. rewrite the VRAM save / restore to avoid buffer object locks
+-		 * 2. block D3cold if we have a big amount of device memory in use
+-		 *    in order to reduce the latency.
+-		 * 3. at resume, detect if we really lost power and avoid memory
++		 * 2. at resume, detect if we really lost power and avoid memory
  		 *    restoration if we were only up to d3cold
  		 */
--		xe->d3cold_allowed = false;
-+		xe->d3cold.allowed = false;
- 	}
- 
- 	return 0;
+ 		xe->d3cold.allowed = false;
 diff --git a/drivers/gpu/drm/xe/xe_pm.c b/drivers/gpu/drm/xe/xe_pm.c
-index 4371a6a04f4a..caf19b7f1824 100644
+index caf19b7f1824..5bb7d597e97d 100644
 --- a/drivers/gpu/drm/xe/xe_pm.c
 +++ b/drivers/gpu/drm/xe/xe_pm.c
-@@ -7,11 +7,13 @@
+@@ -291,3 +291,28 @@ int xe_pm_set_vram_threshold(struct xe_device *xe, u32 threshold)
  
- #include <linux/pm_runtime.h>
- 
-+#include <drm/drm_managed.h>
- #include <drm/ttm/ttm_placement.h>
- 
- #include "xe_bo.h"
- #include "xe_bo_evict.h"
- #include "xe_device.h"
-+#include "xe_device_sysfs.h"
- #include "xe_display.h"
- #include "xe_ggtt.h"
- #include "xe_gt.h"
-@@ -148,8 +150,11 @@ void xe_pm_init(struct xe_device *xe)
- {
- 	struct pci_dev *pdev = to_pci_dev(xe->drm.dev);
- 
-+	drmm_mutex_init(&xe->drm, &xe->d3cold.lock);
- 	xe_pm_runtime_init(xe);
--	xe->d3cold_capable = xe_pm_pci_d3cold_capable(pdev);
-+	xe->d3cold.capable = xe_pm_pci_d3cold_capable(pdev);
-+	xe_device_sysfs_init(xe);
-+	xe_pm_set_vram_threshold(xe, DEFAULT_VRAM_THRESHOLD);
- }
- 
- void xe_pm_runtime_fini(struct xe_device *xe)
-@@ -166,7 +171,7 @@ int xe_pm_runtime_suspend(struct xe_device *xe)
- 	u8 id;
- 	int err;
- 
--	if (xe->d3cold_allowed) {
-+	if (xe->d3cold.allowed) {
- 		if (xe_device_mem_access_ongoing(xe))
- 			return -EBUSY;
- 
-@@ -192,7 +197,7 @@ int xe_pm_runtime_resume(struct xe_device *xe)
- 	u8 id;
- 	int err;
- 
--	if (xe->d3cold_allowed) {
-+	if (xe->d3cold.allowed) {
- 		for_each_gt(gt, xe, id) {
- 			err = xe_pcode_init(gt);
- 			if (err)
-@@ -213,7 +218,7 @@ int xe_pm_runtime_resume(struct xe_device *xe)
- 	for_each_gt(gt, xe, id)
- 		xe_gt_resume(gt);
- 
--	if (xe->d3cold_allowed) {
-+	if (xe->d3cold.allowed) {
- 		err = xe_bo_restore_user(xe);
- 		if (err)
- 			return err;
-@@ -262,3 +267,27 @@ void xe_pm_assert_unbounded_bridge(struct xe_device *xe)
- 		device_set_pm_not_required(&pdev->dev);
- 	}
+ 	return 0;
  }
 +
-+int xe_pm_set_vram_threshold(struct xe_device *xe, u32 threshold)
++void xe_pm_d3cold_allowed_toggle(struct xe_device *xe)
 +{
 +	struct ttm_resource_manager *man;
-+	u32 vram_total_mb = 0;
++	u32 total_vram_used_mb = 0;
++	u64 vram_used;
 +	int i;
 +
 +	for (i = XE_PL_VRAM0; i <= XE_PL_VRAM1; ++i) {
 +		man = ttm_manager_type(&xe->ttm, i);
-+		if (man)
-+			vram_total_mb += DIV_ROUND_UP_ULL(man->size, 1024 * 1024);
++		if (man) {
++			vram_used = ttm_resource_manager_usage(man);
++			total_vram_used_mb += DIV_ROUND_UP_ULL(vram_used, 1024 * 1024);
++		}
 +	}
 +
-+	drm_dbg(&xe->drm, "Total vram %u mb\n", vram_total_mb);
-+
-+	if (threshold > vram_total_mb)
-+		return -EINVAL;
-+
 +	mutex_lock(&xe->d3cold.lock);
-+	xe->d3cold.vram_threshold = threshold;
-+	mutex_unlock(&xe->d3cold.lock);
 +
-+	return 0;
++	if (total_vram_used_mb < xe->d3cold.vram_threshold)
++		xe->d3cold.allowed = true;
++	else
++		xe->d3cold.allowed = false;
++
++	mutex_unlock(&xe->d3cold.lock);
 +}
 diff --git a/drivers/gpu/drm/xe/xe_pm.h b/drivers/gpu/drm/xe/xe_pm.h
-index 193e5d687353..bbd91a5855cd 100644
+index bbd91a5855cd..ee30cf025f64 100644
 --- a/drivers/gpu/drm/xe/xe_pm.h
 +++ b/drivers/gpu/drm/xe/xe_pm.h
-@@ -8,6 +8,8 @@
- 
- #include <linux/pm_runtime.h>
- 
-+#define DEFAULT_VRAM_THRESHOLD 300 /* in MB */
-+
- struct xe_device;
- 
- int xe_pm_suspend(struct xe_device *xe);
-@@ -22,5 +24,6 @@ int xe_pm_runtime_put(struct xe_device *xe);
- bool xe_pm_runtime_resume_if_suspended(struct xe_device *xe);
+@@ -25,5 +25,6 @@ bool xe_pm_runtime_resume_if_suspended(struct xe_device *xe);
  int xe_pm_runtime_get_if_active(struct xe_device *xe);
  void xe_pm_assert_unbounded_bridge(struct xe_device *xe);
-+int xe_pm_set_vram_threshold(struct xe_device *xe, u32 threshold);
+ int xe_pm_set_vram_threshold(struct xe_device *xe, u32 threshold);
++void xe_pm_d3cold_allowed_toggle(struct xe_device *xe);
  
  #endif
 -- 
