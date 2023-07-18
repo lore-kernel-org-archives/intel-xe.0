@@ -4,30 +4,30 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id E4A77EB64DA
-	for <intel-xe@archiver.kernel.org>; Tue, 18 Jul 2023 15:52:36 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2701AEB64DA
+	for <intel-xe@archiver.kernel.org>; Tue, 18 Jul 2023 15:52:58 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id AA0FC10E376;
-	Tue, 18 Jul 2023 15:52:36 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E7F4810E375;
+	Tue, 18 Jul 2023 15:52:57 +0000 (UTC)
 Received: from emeril.freedesktop.org (emeril.freedesktop.org
  [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id E80F410E374;
- Tue, 18 Jul 2023 15:52:34 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTP id E363C10E375;
+ Tue, 18 Jul 2023 15:52:55 +0000 (UTC)
 Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id E4DADAADE0;
- Tue, 18 Jul 2023 15:52:34 +0000 (UTC)
+ by emeril.freedesktop.org (Postfix) with ESMTP id DE960AADE0;
+ Tue, 18 Jul 2023 15:52:55 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: "Himal Prasad Ghimiray" <himal.prasad.ghimiray@intel.com>
-Date: Tue, 18 Jul 2023 15:52:34 -0000
-Message-ID: <168969555493.22203.2822105540648669574@emeril.freedesktop.org>
+Date: Tue, 18 Jul 2023 15:52:55 -0000
+Message-ID: <168969557590.22206.17857222709673599240@emeril.freedesktop.org>
 X-Patchwork-Hint: ignore
 References: <20230718133216.3079521-1-himal.prasad.ghimiray@intel.com>
 In-Reply-To: <20230718133216.3079521-1-himal.prasad.ghimiray@intel.com>
-Subject: [Intel-xe] =?utf-8?q?=E2=9C=97_CI=2Echeckpatch=3A_warning_for_No?=
- =?utf-8?q?tify_userspace_about_uevent_failure?=
+Subject: [Intel-xe] =?utf-8?q?=E2=9C=97_CI=2EKUnit=3A_failure_for_Notify_?=
+ =?utf-8?q?userspace_about_uevent_failure?=
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -48,46 +48,50 @@ Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 Series: Notify userspace about uevent failure
 URL   : https://patchwork.freedesktop.org/series/120919/
-State : warning
+State : failure
 
 == Summary ==
 
-+ KERNEL=/kernel
-+ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
-Cloning into 'mt'...
-warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
-+ git -C mt rev-list -n1 origin/master
-c7d32770e3cd31d9fc134ce41f329b10aa33ee15
-+ cd /kernel
-+ git config --global --add safe.directory /kernel
-+ git log -n1
-commit 0165f5d1bb25154886381f0b2c996c37a9ad73a8
-Author: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
-Date:   Tue Jul 18 19:02:16 2023 +0530
++ trap cleanup EXIT
++ /kernel/tools/testing/kunit/kunit.py run --kunitconfig /kernel/drivers/gpu/drm/xe/.kunitconfig
+ERROR:root:In file included from ../drivers/gpu/drm/xe/xe_debugfs.c:8:
+../include/linux/fault-inject.h:94:1: error: unknown type name ‘bool’
+   94 | bool should_fail_alloc_page(gfp_t gfp_mask, unsigned int order);
+      | ^~~~
+../include/linux/fault-inject.h:94:29: error: unknown type name ‘gfp_t’
+   94 | bool should_fail_alloc_page(gfp_t gfp_mask, unsigned int order);
+      |                             ^~~~~
+../include/linux/fault-inject.h:96:43: error: unknown type name ‘gfp_t’
+   96 | int should_failslab(struct kmem_cache *s, gfp_t gfpflags);
+      |                                           ^~~~~
+../include/linux/fault-inject.h:100:15: error: unknown type name ‘bool’
+  100 | static inline bool __should_failslab(struct kmem_cache *s, gfp_t gfpflags)
+      |               ^~~~
+../include/linux/fault-inject.h:100:60: error: unknown type name ‘gfp_t’
+  100 | static inline bool __should_failslab(struct kmem_cache *s, gfp_t gfpflags)
+      |                                                            ^~~~~
+make[6]: *** [../scripts/Makefile.build:252: drivers/gpu/drm/xe/xe_debugfs.o] Error 1
+make[6]: *** Waiting for unfinished jobs....
+make[5]: *** [../scripts/Makefile.build:494: drivers/gpu/drm/xe] Error 2
+make[4]: *** [../scripts/Makefile.build:494: drivers/gpu/drm] Error 2
+make[3]: *** [../scripts/Makefile.build:494: drivers/gpu] Error 2
+make[3]: *** Waiting for unfinished jobs....
+make[2]: *** [../scripts/Makefile.build:494: drivers] Error 2
+make[2]: *** Waiting for unfinished jobs....
+make[1]: *** [/kernel/Makefile:2026: .] Error 2
+make: *** [Makefile:226: __sub-make] Error 2
 
-    drm/xe: Introduce fault injection for gt reset
-    
-    To trigger gt reset failure:
-     echo 100 >  /sys/kernel/debug/dri/<cardX>/fail_gt_reset/probability
-     echo 2 >  /sys/kernel/debug/dri/<cardX>/fail_gt_reset/times
-    
-    Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
-    Cc: Lucas De Marchi <lucas.demarchi@intel.com>
-    Signed-off-by: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
-+ /mt/dim checkpatch a43fd52b7ab2009631518ead5ca0afe9bc44515a drm-intel
-ce6aaa08f drm/xe: Notify Userspace when gt reset fails
--:27: WARNING:BAD_SIGN_OFF: Duplicate signature
-#27: 
-Signed-off-by: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
-
-total: 0 errors, 1 warnings, 0 checks, 50 lines checked
-0165f5d1b drm/xe: Introduce fault injection for gt reset
--:93: WARNING:SUSPECT_CODE_INDENT: suspect code indent for conditional statements (16, 0)
-#93: FILE: drivers/gpu/drm/xe/xe_gt.h:17:
- 		for_each_if(((hwe__) = (gt__)->hw_engines + (id__)) && \
-[...]
-+extern struct fault_attr gt_reset_failure;
-
-total: 0 errors, 1 warnings, 0 checks, 78 lines checked
+[15:52:35] Configuring KUnit Kernel ...
+Generating .config ...
+Populating config with:
+$ make ARCH=um O=.kunit olddefconfig
+[15:52:40] Building KUnit Kernel ...
+Populating config with:
+$ make ARCH=um O=.kunit olddefconfig
+Building with:
+$ make ARCH=um O=.kunit --jobs=48
++ cleanup
+++ stat -c %u:%g /kernel
++ chown -R 1003:1003 /kernel
 
 
