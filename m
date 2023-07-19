@@ -4,30 +4,30 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3A24EC001DC
-	for <intel-xe@archiver.kernel.org>; Wed, 19 Jul 2023 21:07:16 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2D837C0015E
+	for <intel-xe@archiver.kernel.org>; Wed, 19 Jul 2023 21:07:26 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 080D210E3FC;
-	Wed, 19 Jul 2023 21:07:16 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id CB3BD10E518;
+	Wed, 19 Jul 2023 21:07:25 +0000 (UTC)
 Received: from emeril.freedesktop.org (emeril.freedesktop.org
  [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id 60BA710E3FC;
- Wed, 19 Jul 2023 21:07:13 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTP id 3C3FE10E518;
+ Wed, 19 Jul 2023 21:07:24 +0000 (UTC)
 Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 52D9CAADD2;
- Wed, 19 Jul 2023 21:07:13 +0000 (UTC)
+ by emeril.freedesktop.org (Postfix) with ESMTP id 3C046AADD2;
+ Wed, 19 Jul 2023 21:07:24 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: "Rodrigo Vivi" <rodrigo.vivi@intel.com>
-Date: Wed, 19 Jul 2023 21:07:13 -0000
-Message-ID: <168980083333.20709.3312589444293521850@emeril.freedesktop.org>
+Date: Wed, 19 Jul 2023 21:07:24 -0000
+Message-ID: <168980084424.20707.14762214634531991717@emeril.freedesktop.org>
 X-Patchwork-Hint: ignore
 References: <20230719192726.172056-1-rodrigo.vivi@intel.com>
 In-Reply-To: <20230719192726.172056-1-rodrigo.vivi@intel.com>
-Subject: [Intel-xe] =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_f?=
- =?utf-8?q?or_drm/xe=3A_Fix_an_invalid_locking_wait_context_bug?=
+Subject: [Intel-xe] =?utf-8?q?=E2=9C=93_CI=2Echeckpatch=3A_success_for_dr?=
+ =?utf-8?q?m/xe=3A_Fix_an_invalid_locking_wait_context_bug?=
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -52,9 +52,36 @@ State : success
 
 == Summary ==
 
-=== Applying kernel patches on branch 'drm-xe-next' with base: ===
-Base commit: f5459dca4 drm/xe: Cleanup style warnings and errors
-=== git am output follows ===
-Applying: drm/xe: Fix an invalid locking wait context bug
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+c7d32770e3cd31d9fc134ce41f329b10aa33ee15
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit 4c95065af9f4a787ae65e8ed035ad7402e1456bd
+Author: Rodrigo Vivi <rodrigo.vivi@intel.com>
+Date:   Wed Jul 19 15:27:26 2023 -0400
+
+    drm/xe: Fix an invalid locking wait context bug
+    
+    xe_irq_{suspend,resume} were incorrectly using the xe->irq.lock.
+    
+    The lock was created to protect the gt irq handlers, and not
+    the irq.enabled. Since suspend/resume and other places touching
+    irq.enabled are already serialized they don't need protection.
+    (see other irq.enabled accesses).
+    
+    Then with this spin lock around xe_irq_reset, we will end up
+    calling the intel_display_power_is_enabled() function, and
+    that needs a mutex lock. Hence causing the undesired
+    "[ BUG: Invalid wait context ]"
+    
+    Cc: Matthew Auld <matthew.auld@intel.com>
+    Signed-off-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
++ /mt/dim checkpatch f5459dca41d325590391d4512e937d8ffc2ce126 drm-intel
+4c95065af drm/xe: Fix an invalid locking wait context bug
 
 
