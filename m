@@ -4,30 +4,30 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6FB2EEB64DA
-	for <intel-xe@archiver.kernel.org>; Wed, 19 Jul 2023 08:09:54 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2BD6FEB64DA
+	for <intel-xe@archiver.kernel.org>; Wed, 19 Jul 2023 08:10:11 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 234BB10E41B;
-	Wed, 19 Jul 2023 08:09:54 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id CAB0B89ABE;
+	Wed, 19 Jul 2023 08:10:10 +0000 (UTC)
 Received: from emeril.freedesktop.org (emeril.freedesktop.org
  [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id 938EC10E418;
- Wed, 19 Jul 2023 08:09:52 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTP id 11EF510E452;
+ Wed, 19 Jul 2023 08:10:05 +0000 (UTC)
 Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 8F5A5A73C7;
- Wed, 19 Jul 2023 08:09:52 +0000 (UTC)
+ by emeril.freedesktop.org (Postfix) with ESMTP id 0FB25A0093;
+ Wed, 19 Jul 2023 08:10:05 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: "Matthew Auld" <matthew.auld@intel.com>
-Date: Wed, 19 Jul 2023 08:09:52 -0000
-Message-ID: <168975419256.20709.10834967321773137620@emeril.freedesktop.org>
+Date: Wed, 19 Jul 2023 08:10:05 -0000
+Message-ID: <168975420506.20708.15900706985275223190@emeril.freedesktop.org>
 X-Patchwork-Hint: ignore
 References: <20230717133159.47980-6-matthew.auld@intel.com>
 In-Reply-To: <20230717133159.47980-6-matthew.auld@intel.com>
-Subject: [Intel-xe] =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_f?=
- =?utf-8?q?or_xe=5Fbo_selftest_fixes_=28rev3=29?=
+Subject: [Intel-xe] =?utf-8?q?=E2=9C=97_CI=2Echeckpatch=3A_warning_for_xe?=
+ =?utf-8?q?=5Fbo_selftest_fixes_=28rev3=29?=
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -48,16 +48,50 @@ Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 Series: xe_bo selftest fixes (rev3)
 URL   : https://patchwork.freedesktop.org/series/120849/
-State : success
+State : warning
 
 == Summary ==
 
-=== Applying kernel patches on branch 'drm-xe-next' with base: ===
-Base commit: c96611974 drm/xe/pm: Init pcode and restore vram on power lost
-=== git am output follows ===
-Applying: drm/xe/selftests: hold rpm for evict_test_run_device()
-Applying: drm/xe/selftests: hold rpm for ccs_test_migrate()
-Applying: drm/xe/selftests: restart GT after xe_bo_restore_kernel()
-Applying: drm/xe: add missing bulk_move reset
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+c7d32770e3cd31d9fc134ce41f329b10aa33ee15
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit 151977d771c887d6e70c370f433d5f999ed48f8a
+Author: Matthew Auld <matthew.auld@intel.com>
+Date:   Mon Jul 17 14:32:04 2023 +0100
+
+    drm/xe: add missing bulk_move reset
+    
+    It looks like bulk_move is set during object construction, but is only
+    removed on object close, however in various places we might not yet have
+    an actual fd to close, like on the error paths for the gem_create ioctl,
+    and also one internal user for the evict_test_run_gt() selftest. Try to
+    handle those cases by manually resetting the bulk_move. This should
+    prevent triggering:
+    
+    WARNING: CPU: 7 PID: 8252 at drivers/gpu/drm/ttm/ttm_bo.c:327
+    ttm_bo_release+0x25e/0x2a0 [ttm]
+    
+    v2 (Nirmoy):
+      - It should be safe to just unconditionally call __xe_bo_unset_bulk_move().
+    
+    Signed-off-by: Matthew Auld <matthew.auld@intel.com>
+    Cc: Matthew Brost <matthew.brost@intel.com>
+    Reviewed-by: Nirmoy Das <nirmoy.das@intel.com>
++ /mt/dim checkpatch c966119745f6a1054f65055180bbe9b1b3cb12f3 drm-intel
+3646d7cd5 drm/xe/selftests: hold rpm for evict_test_run_device()
+5d3636bdd drm/xe/selftests: hold rpm for ccs_test_migrate()
+45f826594 drm/xe/selftests: restart GT after xe_bo_restore_kernel()
+151977d77 drm/xe: add missing bulk_move reset
+-:17: WARNING:COMMIT_LOG_LONG_LINE: Possible unwrapped commit description (prefer a maximum 75 chars per line)
+#17: 
+  - It should be safe to just unconditionally call __xe_bo_unset_bulk_move().
+
+total: 0 errors, 1 warnings, 0 checks, 75 lines checked
 
 
