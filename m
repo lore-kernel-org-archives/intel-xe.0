@@ -4,49 +4,49 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2A792C0015E
-	for <intel-xe@archiver.kernel.org>; Wed, 19 Jul 2023 13:51:23 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1D97FEB64DA
+	for <intel-xe@archiver.kernel.org>; Wed, 19 Jul 2023 13:51:27 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id ED92710E4AD;
-	Wed, 19 Jul 2023 13:51:22 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D92D510E4B1;
+	Wed, 19 Jul 2023 13:51:26 +0000 (UTC)
 Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A4ABE10E4A0
- for <intel-xe@lists.freedesktop.org>; Wed, 19 Jul 2023 13:51:20 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 437C310E4AC
+ for <intel-xe@lists.freedesktop.org>; Wed, 19 Jul 2023 13:51:22 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1689774680; x=1721310680;
+ t=1689774682; x=1721310682;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=a0qs8UsO6Ie6hSjJn2LPJlV7H69vQfEVlGTS4kbqV/Q=;
- b=buatwiQ7m5HELS8cqxsiUidT3r4vU5apUvmiUlTshZGW4CNtVw/L2l5j
- +fFEku+5xO4/IsvUGVEzVYo1ljLo++ijVlDMzcB3HeiR71OgupBdSVdpC
- E08TgPTc7SrdsEBnKOaK5D4TTVOquIPJsP8vdrKFUY6YdSYgYtS0hQeDs
- nzIXwvvT1/zGBw95HcxejJsf5E9k4FRffl21BdCSymybJwycMvq6I0aoN
- edD6Ka7etrsq2ulfSSp3wtP5XNy0+UM531DVdjO7azpf4Rj3FLwAjthCI
- rn4/UaoVDL9LZk2wqrzKHqUnLIVXSa8j7GqdW6DzOpx/7rXd/8yDkXC3u Q==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10776"; a="366512203"
-X-IronPort-AV: E=Sophos;i="6.01,216,1684825200"; d="scan'208";a="366512203"
+ bh=svVntlU1p/r0ifhTsQmYjBWlem/Pps9KwhxtrfLG3Io=;
+ b=LRq2VP1DDGxPl9A7Vkmw+qsiHC+KiJI/WoEePa8qeDxhPfpBuIjdc+l8
+ tOSi/Ib33FyWYLuORBF0vcGebu4MQDKG0exyzp03vkKLJXCPP63kXlgxH
+ S4ZSh4cOnfEhhbQc3jFW16xn1AoYn77UIDVRYSTlgLBcxgW85e2yDNgi1
+ 7Pm1g3dpGKvKDefels+lI3u+L2ASeICKz7tWMndpGxeow5BcbHPSrvgVl
+ LgVSfADOmIXBc1VgmFD7tMNzLWIPaV93h36dmX1iseeO18bxxqy8gEvb3
+ e0TQRYUhZSek0uayrv5Nt2cyyMlUsf/3j9TIcSOR04SlwnoRL0VVJgcQS Q==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10776"; a="366512210"
+X-IronPort-AV: E=Sophos;i="6.01,216,1684825200"; d="scan'208";a="366512210"
 Received: from orsmga005.jf.intel.com ([10.7.209.41])
  by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 19 Jul 2023 06:51:20 -0700
+ 19 Jul 2023 06:51:22 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10776"; a="897924642"
-X-IronPort-AV: E=Sophos;i="6.01,216,1684825200"; d="scan'208";a="897924642"
+X-IronPort-AV: E=McAfee;i="6600,9927,10776"; a="897924645"
+X-IronPort-AV: E=Sophos;i="6.01,216,1684825200"; d="scan'208";a="897924645"
 Received: from vshulan-mobl1.ccr.corp.intel.com (HELO b6cf8bcf6e1c.intel.com)
  ([10.251.223.230])
  by orsmga005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 19 Jul 2023 06:51:19 -0700
+ 19 Jul 2023 06:51:20 -0700
 From: Francois Dugast <francois.dugast@intel.com>
 To: intel-xe@lists.freedesktop.org
-Date: Wed, 19 Jul 2023 13:51:07 +0000
-Message-Id: <20230719135108.7-2-francois.dugast@intel.com>
+Date: Wed, 19 Jul 2023 13:51:08 +0000
+Message-Id: <20230719135108.7-3-francois.dugast@intel.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20230719135108.7-1-francois.dugast@intel.com>
 References: <20230719135108.7-1-francois.dugast@intel.com>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-xe] [PATCH v2 1/2] drm/xe/execlist: Remove leftover printk
- messages
+Subject: [Intel-xe] [PATCH v2 2/2] drm/xe: Cleanup style warnings and errors
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -62,47 +62,250 @@ Cc: Francois Dugast <francois.dugast@intel.com>, lucas.demarchi@intel.com
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Those look like leftover debug and are not even being used. If they were
-real debug/info, they should be using the drm helpers.
+Fix 6 errors and 20 warnings reported by checkpatch.pl.
 
 Signed-off-by: Francois Dugast <francois.dugast@intel.com>
 ---
- drivers/gpu/drm/xe/xe_execlist.c | 8 --------
- 1 file changed, 8 deletions(-)
+ .../xe/compat-i915-headers/soc/intel_dram.h   |  5 ++++
+ .../xe/compat-i915-headers/soc/intel_pch.h    |  5 ++++
+ drivers/gpu/drm/xe/display/xe_plane_initial.c |  2 --
+ drivers/gpu/drm/xe/xe_bo.c                    |  2 +-
+ drivers/gpu/drm/xe/xe_gt_mcr.c                |  2 +-
+ drivers/gpu/drm/xe/xe_gt_sysfs.c              |  4 +---
+ drivers/gpu/drm/xe/xe_guc.c                   | 14 +++++------
+ drivers/gpu/drm/xe/xe_hw_engine_types.h       |  2 +-
+ drivers/gpu/drm/xe/xe_map.h                   |  2 +-
+ drivers/gpu/drm/xe/xe_migrate.c               |  2 +-
+ drivers/gpu/drm/xe/xe_reg_whitelist.c         | 24 ++++++++++++++-----
+ drivers/gpu/drm/xe/xe_res_cursor.h            | 11 ++++-----
+ drivers/gpu/drm/xe/xe_wopcm.c                 | 10 ++++----
+ 13 files changed, 49 insertions(+), 36 deletions(-)
 
-diff --git a/drivers/gpu/drm/xe/xe_execlist.c b/drivers/gpu/drm/xe/xe_execlist.c
-index 46293c9bb6a8..3aec37985f32 100644
---- a/drivers/gpu/drm/xe/xe_execlist.c
-+++ b/drivers/gpu/drm/xe/xe_execlist.c
-@@ -47,8 +47,6 @@ static void __start_lrc(struct xe_hw_engine *hwe, struct xe_lrc *lrc,
- 	struct xe_device *xe = gt_to_xe(gt);
- 	u64 lrc_desc;
- 
--	printk(KERN_INFO "__start_lrc(%s, 0x%p, %u)\n", hwe->name, lrc, ctx_id);
+diff --git a/drivers/gpu/drm/xe/compat-i915-headers/soc/intel_dram.h b/drivers/gpu/drm/xe/compat-i915-headers/soc/intel_dram.h
+index 1532ca7e0af6..65707e20c557 100644
+--- a/drivers/gpu/drm/xe/compat-i915-headers/soc/intel_dram.h
++++ b/drivers/gpu/drm/xe/compat-i915-headers/soc/intel_dram.h
+@@ -1 +1,6 @@
++/* SPDX-License-Identifier: MIT */
++/*
++ * Copyright © 2023 Intel Corporation
++ */
++
+ #include "../../../i915/soc/intel_dram.h"
+diff --git a/drivers/gpu/drm/xe/compat-i915-headers/soc/intel_pch.h b/drivers/gpu/drm/xe/compat-i915-headers/soc/intel_pch.h
+index 823803f7e853..9c46556d33a4 100644
+--- a/drivers/gpu/drm/xe/compat-i915-headers/soc/intel_pch.h
++++ b/drivers/gpu/drm/xe/compat-i915-headers/soc/intel_pch.h
+@@ -1 +1,6 @@
++/* SPDX-License-Identifier: MIT */
++/*
++ * Copyright © 2023 Intel Corporation
++ */
++
+ #include "../../../i915/soc/intel_pch.h"
+diff --git a/drivers/gpu/drm/xe/display/xe_plane_initial.c b/drivers/gpu/drm/xe/display/xe_plane_initial.c
+index fad4c66a8226..37cba91be10d 100644
+--- a/drivers/gpu/drm/xe/display/xe_plane_initial.c
++++ b/drivers/gpu/drm/xe/display/xe_plane_initial.c
+@@ -250,8 +250,6 @@ intel_find_initial_plane_obj(struct intel_crtc *crtc,
+ 	 * pretend the BIOS never had it enabled.
+ 	 */
+ 	intel_plane_disable_noatomic(crtc, plane);
 -
- 	lrc_desc = xe_lrc_descriptor(lrc);
- 
- 	if (GRAPHICS_VERx100(xe) >= 1250) {
-@@ -125,9 +123,6 @@ static void __xe_execlist_port_idle(struct xe_execlist_port *port)
- 	if (!port->running_exl)
- 		return;
- 
--	printk(KERN_INFO "__xe_execlist_port_idle(%d:%d)\n", port->hwe->class,
--	       port->hwe->instance);
--
- 	xe_lrc_write_ring(&port->hwe->kernel_lrc, noop, sizeof(noop));
- 	__start_lrc(port->hwe, &port->hwe->kernel_lrc, 0);
- 	port->running_exl = NULL;
-@@ -176,9 +171,6 @@ static u64 read_execlist_status(struct xe_hw_engine *hwe)
- 	lo = xe_mmio_read32(gt, RING_EXECLIST_STATUS_LO(hwe->mmio_base));
- 	hi = xe_mmio_read32(gt, RING_EXECLIST_STATUS_HI(hwe->mmio_base));
- 
--	printk(KERN_INFO "EXECLIST_STATUS %d:%d = 0x%08x %08x\n", hwe->class,
--	       hwe->instance, hi, lo);
--
- 	return lo | (u64)hi << 32;
+-	return;
  }
  
+ static void plane_config_fini(struct intel_initial_plane_config *plane_config)
+diff --git a/drivers/gpu/drm/xe/xe_bo.c b/drivers/gpu/drm/xe/xe_bo.c
+index 8e086c9bd309..828a9fea420b 100644
+--- a/drivers/gpu/drm/xe/xe_bo.c
++++ b/drivers/gpu/drm/xe/xe_bo.c
+@@ -1821,7 +1821,7 @@ int xe_bo_lock(struct xe_bo *bo, struct ww_acquire_ctx *ww,
+ 	XE_BUG_ON(!ww);
+ 
+ 	tv_bo.num_shared = num_resv;
+-	tv_bo.bo = &bo->ttm;;
++	tv_bo.bo = &bo->ttm;
+ 	list_add_tail(&tv_bo.head, &objs);
+ 
+ 	return ttm_eu_reserve_buffers(ww, &objs, intr, &dups);
+diff --git a/drivers/gpu/drm/xe/xe_gt_mcr.c b/drivers/gpu/drm/xe/xe_gt_mcr.c
+index ff4075387564..c56815af0686 100644
+--- a/drivers/gpu/drm/xe/xe_gt_mcr.c
++++ b/drivers/gpu/drm/xe/xe_gt_mcr.c
+@@ -273,7 +273,7 @@ static void init_steering_inst0(struct xe_gt *gt)
+ 
+ static const struct {
+ 	const char *name;
+-	void (*init)(struct xe_gt *);
++	void (*init)(struct xe_gt *gt);
+ } xe_steering_types[] = {
+ 	[L3BANK] =	{ "L3BANK",	init_steering_l3bank },
+ 	[MSLICE] =	{ "MSLICE",	init_steering_mslice },
+diff --git a/drivers/gpu/drm/xe/xe_gt_sysfs.c b/drivers/gpu/drm/xe/xe_gt_sysfs.c
+index b955940e8dc6..c69d2e8a0fe1 100644
+--- a/drivers/gpu/drm/xe/xe_gt_sysfs.c
++++ b/drivers/gpu/drm/xe/xe_gt_sysfs.c
+@@ -37,10 +37,8 @@ void xe_gt_sysfs_init(struct xe_gt *gt)
+ 	int err;
+ 
+ 	kg = kzalloc(sizeof(*kg), GFP_KERNEL);
+-	if (!kg) {
+-		drm_warn(&xe->drm, "Allocating kobject failed.\n");
++	if (!kg)
+ 		return;
+-	}
+ 
+ 	kobject_init(&kg->base, &xe_gt_sysfs_kobj_type);
+ 	kg->gt = gt;
+diff --git a/drivers/gpu/drm/xe/xe_guc.c b/drivers/gpu/drm/xe/xe_guc.c
+index ed90d738d673..8ae026838702 100644
+--- a/drivers/gpu/drm/xe/xe_guc.c
++++ b/drivers/gpu/drm/xe/xe_guc.c
+@@ -396,14 +396,12 @@ static int guc_wait_ucode(struct xe_guc *guc)
+ 		struct drm_printer p = drm_info_printer(drm->dev);
+ 
+ 		drm_info(drm, "GuC load failed: status = 0x%08X\n", status);
+-		drm_info(drm, "GuC load failed: status: Reset = %d, "
+-			"BootROM = 0x%02X, UKernel = 0x%02X, "
+-			"MIA = 0x%02X, Auth = 0x%02X\n",
+-			REG_FIELD_GET(GS_MIA_IN_RESET, status),
+-			REG_FIELD_GET(GS_BOOTROM_MASK, status),
+-			REG_FIELD_GET(GS_UKERNEL_MASK, status),
+-			REG_FIELD_GET(GS_MIA_MASK, status),
+-			REG_FIELD_GET(GS_AUTH_STATUS_MASK, status));
++		drm_info(drm, "GuC load failed: status: Reset = %d, BootROM = 0x%02X, UKernel = 0x%02X, MIA = 0x%02X, Auth = 0x%02X\n",
++			 REG_FIELD_GET(GS_MIA_IN_RESET, status),
++			 REG_FIELD_GET(GS_BOOTROM_MASK, status),
++			 REG_FIELD_GET(GS_UKERNEL_MASK, status),
++			 REG_FIELD_GET(GS_MIA_MASK, status),
++			 REG_FIELD_GET(GS_AUTH_STATUS_MASK, status));
+ 
+ 		if ((status & GS_BOOTROM_MASK) == GS_BOOTROM_RSA_FAILED) {
+ 			drm_info(drm, "GuC firmware signature verification failed\n");
+diff --git a/drivers/gpu/drm/xe/xe_hw_engine_types.h b/drivers/gpu/drm/xe/xe_hw_engine_types.h
+index d788e67312b9..803d557cf5aa 100644
+--- a/drivers/gpu/drm/xe/xe_hw_engine_types.h
++++ b/drivers/gpu/drm/xe/xe_hw_engine_types.h
+@@ -104,7 +104,7 @@ struct xe_hw_engine {
+ 	/** @fence_irq: fence IRQ to run when a hw engine IRQ is received */
+ 	struct xe_hw_fence_irq *fence_irq;
+ 	/** @irq_handler: IRQ handler to run when hw engine IRQ is received */
+-	void (*irq_handler)(struct xe_hw_engine *, u16);
++	void (*irq_handler)(struct xe_hw_engine *hwe, u16 intr_vec);
+ 	/** @engine_id: id  for this hw engine */
+ 	enum xe_hw_engine_id engine_id;
+ };
+diff --git a/drivers/gpu/drm/xe/xe_map.h b/drivers/gpu/drm/xe/xe_map.h
+index 032c2e8b5438..f62e0c8b67ab 100644
+--- a/drivers/gpu/drm/xe/xe_map.h
++++ b/drivers/gpu/drm/xe/xe_map.h
+@@ -1,4 +1,4 @@
+-// SPDX-License-Identifier: MIT
++/* SPDX-License-Identifier: MIT */
+ /*
+  * Copyright © 2022 Intel Corporation
+  */
+diff --git a/drivers/gpu/drm/xe/xe_migrate.c b/drivers/gpu/drm/xe/xe_migrate.c
+index 2bb7d524af24..4c6f299fd024 100644
+--- a/drivers/gpu/drm/xe/xe_migrate.c
++++ b/drivers/gpu/drm/xe/xe_migrate.c
+@@ -475,7 +475,7 @@ static void emit_pte(struct xe_migrate *m,
+ 			bb->cs[bb->len++] = lower_32_bits(addr);
+ 			bb->cs[bb->len++] = upper_32_bits(addr);
+ 
+-			xe_res_next(cur, min(size, (u32)PAGE_SIZE));
++			xe_res_next(cur, min_t(u32, size, PAGE_SIZE));
+ 			cur_ofs += 8;
+ 		}
+ 	}
+diff --git a/drivers/gpu/drm/xe/xe_reg_whitelist.c b/drivers/gpu/drm/xe/xe_reg_whitelist.c
+index ea6dd7d71b59..e83781f9a516 100644
+--- a/drivers/gpu/drm/xe/xe_reg_whitelist.c
++++ b/drivers/gpu/drm/xe/xe_reg_whitelist.c
+@@ -89,18 +89,30 @@ void xe_reg_whitelist_print_entry(struct drm_printer *p, unsigned int indent,
+ 	deny = val & RING_FORCE_TO_NONPRIV_DENY;
+ 
+ 	switch (val & RING_FORCE_TO_NONPRIV_RANGE_MASK) {
+-	case RING_FORCE_TO_NONPRIV_RANGE_4: range_bit = 4; break;
+-	case RING_FORCE_TO_NONPRIV_RANGE_16: range_bit = 6; break;
+-	case RING_FORCE_TO_NONPRIV_RANGE_64: range_bit = 8; break;
++	case RING_FORCE_TO_NONPRIV_RANGE_4:
++		range_bit = 4;
++		break;
++	case RING_FORCE_TO_NONPRIV_RANGE_16:
++		range_bit = 6;
++		break;
++	case RING_FORCE_TO_NONPRIV_RANGE_64:
++		range_bit = 8;
++		break;
+ 	}
+ 
+ 	range_start = reg & REG_GENMASK(25, range_bit);
+ 	range_end = range_start | REG_GENMASK(range_bit, 0);
+ 
+ 	switch (val & RING_FORCE_TO_NONPRIV_ACCESS_MASK) {
+-	case RING_FORCE_TO_NONPRIV_ACCESS_RW: access_str = "rw"; break;
+-	case RING_FORCE_TO_NONPRIV_ACCESS_RD: access_str = "read"; break;
+-	case RING_FORCE_TO_NONPRIV_ACCESS_WR: access_str = "write"; break;
++	case RING_FORCE_TO_NONPRIV_ACCESS_RW:
++		access_str = "rw";
++		break;
++	case RING_FORCE_TO_NONPRIV_ACCESS_RD:
++		access_str = "read";
++		break;
++	case RING_FORCE_TO_NONPRIV_ACCESS_WR:
++		access_str = "write";
++		break;
+ 	}
+ 
+ 	drm_printf_indent(p, indent, "REG[0x%x-0x%x]: %s %s access\n",
+diff --git a/drivers/gpu/drm/xe/xe_res_cursor.h b/drivers/gpu/drm/xe/xe_res_cursor.h
+index 2a6fdd284395..dda963fe3300 100644
+--- a/drivers/gpu/drm/xe/xe_res_cursor.h
++++ b/drivers/gpu/drm/xe/xe_res_cursor.h
+@@ -51,15 +51,14 @@ struct xe_res_cursor {
+ static struct drm_buddy *xe_res_get_buddy(struct ttm_resource *res)
+ {
+ 	struct xe_device *xe = ttm_to_xe_device(res->bo->bdev);
++	struct ttm_resource_manager *mgr;
+ 
+-	if (res->mem_type != XE_PL_STOLEN) {
++	if (res->mem_type != XE_PL_STOLEN)
+ 		return &xe->tiles[res->mem_type - XE_PL_VRAM0].mem.vram_mgr->mm;
+-	} else {
+-		struct ttm_resource_manager *mgr =
+-			ttm_manager_type(&xe->ttm, XE_PL_STOLEN);
+ 
+-		return &to_xe_ttm_vram_mgr(mgr)->mm;
+-	}
++	mgr = ttm_manager_type(&xe->ttm, XE_PL_STOLEN);
++
++	return &to_xe_ttm_vram_mgr(mgr)->mm;
+ }
+ 
+ /**
+diff --git a/drivers/gpu/drm/xe/xe_wopcm.c b/drivers/gpu/drm/xe/xe_wopcm.c
+index 35fde8965bca..d9acf8783b83 100644
+--- a/drivers/gpu/drm/xe/xe_wopcm.c
++++ b/drivers/gpu/drm/xe/xe_wopcm.c
+@@ -47,12 +47,10 @@
+  */
+ 
+ /* Default WOPCM size is 2MB from Gen11, 1MB on previous platforms */
+-#define DGFX_WOPCM_SIZE			SZ_4M	/* FIXME: Larger size require
+-						   for 2 tile PVC, do a proper
+-						   probe sooner or later */
+-#define MTL_WOPCM_SIZE			SZ_4M	/* FIXME: Larger size require
+-						   for MTL, do a proper probe
+-						   sooner or later */
++/* FIXME: Larger size require for 2 tile PVC, do a proper probe sooner or later */
++#define DGFX_WOPCM_SIZE			SZ_4M
++/* FIXME: Larger size require for MTL, do a proper probe sooner or later */
++#define MTL_WOPCM_SIZE			SZ_4M
+ #define GEN11_WOPCM_SIZE		SZ_2M
+ 
+ #define GEN12_MAX_WOPCM_SIZE            SZ_8M
 -- 
 2.34.1
 
