@@ -4,48 +4,47 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3E08AEB64DC
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id B6031C001DE
 	for <intel-xe@archiver.kernel.org>; Thu, 20 Jul 2023 15:55:54 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 16BAB10E168;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8F1FC10E5CB;
 	Thu, 20 Jul 2023 15:55:54 +0000 (UTC)
 Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1676410E168
- for <intel-xe@lists.freedesktop.org>; Thu, 20 Jul 2023 15:55:53 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id CF40E10E5C4
+ for <intel-xe@lists.freedesktop.org>; Thu, 20 Jul 2023 15:55:52 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1689868553; x=1721404553;
+ t=1689868552; x=1721404552;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=eNbYpzAcCAWKwqh+EVGBJ4dIvAzf031ZhDOdLcy0Jvw=;
- b=a3hYMDx4T9rgMfGnBERk/tqfk1izIQaffRnV2aZ6omws5S4c47dl9wCg
- 773Se6PyI2na2lqdGRsBq9aw/ooBZP0EtJoBU/R/Sa5NnOadJmtihw7XN
- QP+8JKflXdC7ub0+EP5mIdFCnApp2wtRSZA6eGMG+ouOeZgyARntAB7Em
- JNbV15jiBzeoiiae4Zi9ObHj+X4FEJekoqGUQwBpwiSTxzK6AOdqd0fif
- y3gPTWtbt4q+Ajfupl4jz0ZymR36JqUFQF2ilUEFu+Ejc5ES7w/8uMwar
- 0iXz9fwmcVZQX+GMpPRShengnQ01HaYa4RfnVUXB3r5L3N/66qUYBpfX6 A==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10777"; a="347088638"
-X-IronPort-AV: E=Sophos;i="6.01,219,1684825200"; d="scan'208";a="347088638"
+ bh=Z3c9nSkg5PIm99G51aBkEUioBT4XQw+f4yPPm9NS/tE=;
+ b=JUg6rTod2pB8g4A9RIIkk9msERksXX9+m8vpq30Qbzh8LE597QdYaPj9
+ MNP0fRniEcQ6rTQRPgoDoVhfegPZcooknVP92lZqj3asYbzrAefLN7MwP
+ 2KyBMLfHk+T1F39ZoXuMflGatBuq4vpTvrF6po7YWSLHqc1NGffYUy6n/
+ LBi0oHzITui0IVnAR5Ph5jU8ZsGuTaX4uasDrwqwKDgzI4S4FEzq6CVrs
+ 6gmjU7frgmsmug1IusAfoP3dhjNeJGpgxpniXLIzT7uULoHQ2ugZsV+lA
+ GBgK/jY4+OH151fBERiaUdyd9g0QiifjvQ8RrIEwH5Z7JWoLWFopgTqNy w==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10777"; a="347088635"
+X-IronPort-AV: E=Sophos;i="6.01,219,1684825200"; d="scan'208";a="347088635"
 Received: from orsmga008.jf.intel.com ([10.7.209.65])
  by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  20 Jul 2023 08:55:52 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10777"; a="754105477"
-X-IronPort-AV: E=Sophos;i="6.01,219,1684825200"; d="scan'208";a="754105477"
+X-IronPort-AV: E=McAfee;i="6600,9927,10777"; a="754105468"
+X-IronPort-AV: E=Sophos;i="6.01,219,1684825200"; d="scan'208";a="754105468"
 Received: from lstrano-desk.jf.intel.com ([10.24.89.184])
  by orsmga008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  20 Jul 2023 08:55:51 -0700
 From: Matthew Brost <matthew.brost@intel.com>
 To: <intel-xe@lists.freedesktop.org>
-Date: Thu, 20 Jul 2023 08:55:43 -0700
-Message-Id: <20230720155546.199766-5-matthew.brost@intel.com>
+Date: Thu, 20 Jul 2023 08:55:40 -0700
+Message-Id: <20230720155546.199766-2-matthew.brost@intel.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20230720155546.199766-1-matthew.brost@intel.com>
 References: <20230720155546.199766-1-matthew.brost@intel.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-xe] [PATCH v4 4/7] drm/xe: Replace list_del_init with
- list_del for userptr.invalidate_link cleanup
+Subject: [Intel-xe] [PATCH v4 1/7] drm/xe: Remove xe_vma_op_unmap
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -60,26 +59,58 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-This list isn't used again, list_del is the proper call.
+xe_vma_op_unmap isn't used, remove it.
 
 Signed-off-by: Matthew Brost <matthew.brost@intel.com>
 ---
- drivers/gpu/drm/xe/xe_vm.c | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+ drivers/gpu/drm/xe/xe_vm.c       |  5 -----
+ drivers/gpu/drm/xe/xe_vm_types.h | 10 ----------
+ 2 files changed, 15 deletions(-)
 
 diff --git a/drivers/gpu/drm/xe/xe_vm.c b/drivers/gpu/drm/xe/xe_vm.c
-index 3c7951e4afad..52278ec2ade1 100644
+index f8e6f1fda1fe..63c9e1c94515 100644
 --- a/drivers/gpu/drm/xe/xe_vm.c
 +++ b/drivers/gpu/drm/xe/xe_vm.c
-@@ -1065,7 +1065,7 @@ static void xe_vma_destroy(struct xe_vma *vma, struct dma_fence *fence)
- 		XE_WARN_ON(!(vma->gpuva.flags & XE_VMA_DESTROYED));
+@@ -2516,11 +2516,6 @@ static int vm_bind_ioctl_ops_parse(struct xe_vm *vm, struct xe_engine *e,
+ 					xe_vma_size(gpuva_to_vma(op->base.remap.unmap->va));
+ 				break;
+ 			case DRM_GPUVA_OP_UNMAP:
+-				op->unmap.start =
+-					xe_vma_start(gpuva_to_vma(op->base.unmap.va));
+-				op->unmap.range =
+-					xe_vma_size(gpuva_to_vma(op->base.unmap.va));
+-				break;
+ 			case DRM_GPUVA_OP_PREFETCH:
+ 				/* Nothing to do */
+ 				break;
+diff --git a/drivers/gpu/drm/xe/xe_vm_types.h b/drivers/gpu/drm/xe/xe_vm_types.h
+index bcbcad1929d6..ce26298d7a5f 100644
+--- a/drivers/gpu/drm/xe/xe_vm_types.h
++++ b/drivers/gpu/drm/xe/xe_vm_types.h
+@@ -333,14 +333,6 @@ struct xe_vma_op_map {
+ 	bool is_null;
+ };
  
- 		spin_lock(&vm->userptr.invalidated_lock);
--		list_del_init(&vma->userptr.invalidate_link);
-+		list_del(&vma->userptr.invalidate_link);
- 		spin_unlock(&vm->userptr.invalidated_lock);
- 	} else if (!xe_vma_is_null(vma)) {
- 		xe_bo_assert_held(xe_vma_bo(vma));
+-/** struct xe_vma_op_unmap - VMA unmap operation */
+-struct xe_vma_op_unmap {
+-	/** @start: start of the VMA unmap */
+-	u64 start;
+-	/** @range: range of the VMA unmap */
+-	u64 range;
+-};
+-
+ /** struct xe_vma_op_remap - VMA remap operation */
+ struct xe_vma_op_remap {
+ 	/** @prev: VMA preceding part of a split mapping */
+@@ -408,8 +400,6 @@ struct xe_vma_op {
+ 	union {
+ 		/** @map: VMA map operation specific data */
+ 		struct xe_vma_op_map map;
+-		/** @unmap: VMA unmap operation specific data */
+-		struct xe_vma_op_unmap unmap;
+ 		/** @remap: VMA remap operation specific data */
+ 		struct xe_vma_op_remap remap;
+ 		/** @prefetch: VMA prefetch operation specific data */
 -- 
 2.34.1
 
