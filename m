@@ -4,138 +4,138 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1FDACEB64DD
-	for <intel-xe@archiver.kernel.org>; Thu, 20 Jul 2023 19:41:43 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1A1EEEB64DD
+	for <intel-xe@archiver.kernel.org>; Thu, 20 Jul 2023 21:01:22 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E07C010E606;
-	Thu, 20 Jul 2023 19:41:42 +0000 (UTC)
-Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 10AD310E606
- for <intel-xe@lists.freedesktop.org>; Thu, 20 Jul 2023 19:41:42 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C422610E19F;
+	Thu, 20 Jul 2023 21:01:21 +0000 (UTC)
+Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A396D10E18F;
+ Thu, 20 Jul 2023 21:01:19 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1689882102; x=1721418102;
+ t=1689886879; x=1721422879;
  h=date:from:to:cc:subject:message-id:references:
- in-reply-to:mime-version;
- bh=UHrJVQlSpWhnw6P7/zg/B8ZJrjSFq+WpuNqKx3FLOmc=;
- b=HR1DM2/BsSues5eqbuTdIETB0/W9SLuTgJyPoCSA7Ed47WD9o5TgyJVW
- PeqGn47MV/6B0Ct9SdElEoncyDgjxlxMgcrqRrhEGhuzff8IUWDRfO5sd
- JC17V+BoRXEwGNLnOfY+0hCKhsbKoQDqu76MF3Das6FJYOwRjiK2n5v2N
- TvdkPY5hduzWEmrd6WayOZQnyEmvXmZscY19VudqCENaiIlqh18HAPLDx
- SWHLTK/G742jadEByTolQ8lRfAp074FUEIsSl9pQH+RPagJ8NnO2QHLwu
- /HI6VTSHsISqOzLsXZVqxA6sj+EChuM2pmDo9OJgcF+3/33I08qk3kbQi w==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10777"; a="364312017"
-X-IronPort-AV: E=Sophos;i="6.01,219,1684825200"; d="scan'208";a="364312017"
-Received: from orsmga006.jf.intel.com ([10.7.209.51])
- by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 20 Jul 2023 12:41:41 -0700
+ content-transfer-encoding:in-reply-to:mime-version;
+ bh=Hh6rekOy1WZ9Vjh040E9Bt6MFaGZDceCvyOXOPwyPkw=;
+ b=UQZWGKTO8IxrzEVP3tkYf59+3TdAbI3a+WsGgpJAdeXuoPUa3qpTY+4n
+ vzBQOLCUkV5ThhBMV18RnwuGmpk9vGCMw5MCsUixTOSXeq1gH/GsI8rIb
+ yC+1ZwyP69BgnCX8mnW6OOlcb8moLKd8KQwl5s0+IXOuIxmi1dqag+uWB
+ L9by6E9sh+2OqDlkHBnqiM4Rqa4pA5HH43H1kzWh7VxWU6lvUAUMhAjwz
+ RbTX5pPCo51C5bZBChpQ6nYVf95qa+AfeMLx1XZ5N7DDam0VOA/wJxXRC
+ 3Q/v4adR8In3mWWVgT4UU/2iLvF6XDdCwBJXlk2kRW+0HrjRIk3P/ROdz w==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10777"; a="453240921"
+X-IronPort-AV: E=Sophos;i="6.01,219,1684825200"; d="scan'208";a="453240921"
+Received: from fmsmga001.fm.intel.com ([10.253.24.23])
+ by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 20 Jul 2023 14:01:12 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10777"; a="701775263"
-X-IronPort-AV: E=Sophos;i="6.01,219,1684825200"; d="scan'208";a="701775263"
+X-IronPort-AV: E=Sophos;i="6.01,202,1684825200"; d="scan'208";a="867987613"
 Received: from fmsmsx601.amr.corp.intel.com ([10.18.126.81])
- by orsmga006.jf.intel.com with ESMTP; 20 Jul 2023 12:41:41 -0700
+ by fmsmga001.fm.intel.com with ESMTP; 20 Jul 2023 14:01:13 -0700
 Received: from fmsmsx611.amr.corp.intel.com (10.18.126.91) by
  fmsmsx601.amr.corp.intel.com (10.18.126.81) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.27; Thu, 20 Jul 2023 12:41:40 -0700
-Received: from fmsmsx611.amr.corp.intel.com (10.18.126.91) by
+ 15.1.2507.27; Thu, 20 Jul 2023 14:01:12 -0700
+Received: from fmsmsx602.amr.corp.intel.com (10.18.126.82) by
  fmsmsx611.amr.corp.intel.com (10.18.126.91) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.27; Thu, 20 Jul 2023 12:41:40 -0700
-Received: from fmsedg602.ED.cps.intel.com (10.1.192.136) by
- fmsmsx611.amr.corp.intel.com (10.18.126.91) with Microsoft SMTP Server
+ 15.1.2507.27; Thu, 20 Jul 2023 14:01:11 -0700
+Received: from fmsedg601.ED.cps.intel.com (10.1.192.135) by
+ fmsmsx602.amr.corp.intel.com (10.18.126.82) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.27 via Frontend Transport; Thu, 20 Jul 2023 12:41:40 -0700
-Received: from NAM02-DM3-obe.outbound.protection.outlook.com (104.47.56.46) by
- edgegateway.intel.com (192.55.55.71) with Microsoft SMTP Server
+ 15.1.2507.27 via Frontend Transport; Thu, 20 Jul 2023 14:01:11 -0700
+Received: from NAM11-BN8-obe.outbound.protection.outlook.com (104.47.58.168)
+ by edgegateway.intel.com (192.55.55.70) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2507.27; Thu, 20 Jul 2023 12:41:39 -0700
+ 15.1.2507.27; Thu, 20 Jul 2023 14:01:11 -0700
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=eS0BkR2QrdYxBGGmY7u66x5UJrUTO8EbteBUxtOTFnjHl+A/dYBJeQHxz2j+jDGQfIbLzbZPlnNcQfDhUxu08sEsOZEFdArke/WE9hTzMc9ljBCsSg9zAr8BOnMAMV0yAiLLn17YJjAjNT9giTKdF3E3nf9RkI+WVzs4lQmjHX4VApdaSvo3RNDW9UTydndN0Qh45DWl1MkDDuD55uM23PI1w7Je2ZiO726PGjTx7On54C5CHC8kXb9eSuwGZWzjvhfWGdvDL6MD2etl8D8+sYr+UcYsuAttnHYkZ8iSU/hfQzljlqm0Spiodaa75oON5xbkMWhYDeXXBGuqisrKsQ==
+ b=niKNjKcxM6BLEClGO27vcpbK8/BgXaRCJvft+dHjPZvunLuHm+S8q1HKw9R+6HmfB99QsRTH3b7iCBhyGVdb67KsfNNJwuB86wJcm+TpsltTQGvHFdUxDXWZuJjgwaRbWP8ZD9TV+dQKOpitfGfklEqSbH+qmke0GewxlvpYhsuTaNIkc4FOKcV3zx5uiLKdJglqjp4vz1qsrPF5rvmFcIE7cxc3Tin2B6j/j1/jVEnG7w0qFXHHqQz+jJeaL2fOYtWG1QSX2F/1X96zhrK6S0wZkgV0L2rsKXYSRkUTLxk/mz7D1IGiFY6PFErwGhO5R7H2YGCJ0EfCD2hRSiDTfw==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=WHooxi3HDlnogI1dAKJ7UVZ7PXF5wIsRuQsrGgQEHkw=;
- b=NFlzxfELMZDGK43p8JBQyUDIN7WccyrOhUSRPoVbI8c8Ql4MuG9KU1YodKoz1JlYJbSsjlQkFQpi5+/+ySBgLlDc/raraLT2IG44gEkxssqBujpahcy2PjJELqFc3wRmnqldpWy9TC/1F649iqkplfbgwYe2BcT8KSkeOzmieWE+Ze6rr6FBDalPN1QhybGvYqqlUHSaaaWn7hO9xuNKDGLfDdeO8xnH4XZSN2dR3ZWNNLhO4uaSVTwmSRsmK0h4WwVAQ1DPgiuG4H++nhrhhLoXOvG0+F0R15zc4JyomyW4InLbAHyiwiH5fOFFgmICxMOAcqb/6kg5vWD0aXvWNg==
+ bh=BPNMIi802F7iEfmOpFJqDzAIsCOgkWhFyJtjoi38bHk=;
+ b=Iydkru/UnWm6cWZ6Z8hu8I8x9Gj3jMUW7F9pQxAM75QKWKAS1WAtsAhSny98BDUIrQ/VXSnPhHjOmk1JC+s3qcaPF5X0MZOpVeAxKZeyHT3F3/AEVn/o6R8XbXVnygG2yo+etOAQBlMIKmhfeyzcNpxokwtV32ADI23x6I63vTQaEvG2UcHTms+DQ2ySZc9THTyLW0RQLt7lZJz+UtdtgFhY0z7TkEpsosYYWfJxeRgfBBLdWTcw9XRFg7rZ0sp4jog21t+we3Q8g90O+UXAk0+ffohjkaq3+/EBDZLTCoMKC87LSdlQ4JzsZ+qgvclbFyxNz1Anqktu+rC+JNW2Xw==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
  dkim=pass header.d=intel.com; arc=none
 Authentication-Results: dkim=none (message not signed)
  header.d=none;dmarc=none action=none header.from=intel.com;
 Received: from PH7PR11MB6522.namprd11.prod.outlook.com (2603:10b6:510:212::12)
- by MN0PR11MB6229.namprd11.prod.outlook.com (2603:10b6:208:3c6::13)
+ by MN6PR11MB8243.namprd11.prod.outlook.com (2603:10b6:208:46e::15)
  with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6609.23; Thu, 20 Jul
- 2023 19:41:37 +0000
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6609.25; Thu, 20 Jul
+ 2023 21:01:09 +0000
 Received: from PH7PR11MB6522.namprd11.prod.outlook.com
  ([fe80::5645:50f0:9b06:1dd0]) by PH7PR11MB6522.namprd11.prod.outlook.com
  ([fe80::5645:50f0:9b06:1dd0%3]) with mapi id 15.20.6588.031; Thu, 20 Jul 2023
- 19:41:36 +0000
-Date: Thu, 20 Jul 2023 19:40:51 +0000
+ 21:01:08 +0000
+Date: Thu, 20 Jul 2023 21:00:22 +0000
 From: Matthew Brost <matthew.brost@intel.com>
-To: Tejas Upadhyay <tejas.upadhyay@intel.com>
-Message-ID: <ZLmNw482x0YhI5zl@DUT025-TGLU.fm.intel.com>
-References: <20230720142510.534057-1-tejas.upadhyay@intel.com>
- <20230720142510.534057-7-tejas.upadhyay@intel.com>
-Content-Type: text/plain; charset="us-ascii"
+To: Thomas =?iso-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>
+Message-ID: <ZLmgZl8fc59kPe4/@DUT025-TGLU.fm.intel.com>
+References: <20230715154543.13183-1-thomas.hellstrom@linux.intel.com>
+Content-Type: text/plain; charset="iso-8859-1"
 Content-Disposition: inline
-In-Reply-To: <20230720142510.534057-7-tejas.upadhyay@intel.com>
-X-ClientProxiedBy: BYAPR06CA0001.namprd06.prod.outlook.com
- (2603:10b6:a03:d4::14) To PH7PR11MB6522.namprd11.prod.outlook.com
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20230715154543.13183-1-thomas.hellstrom@linux.intel.com>
+X-ClientProxiedBy: SJ0PR03CA0381.namprd03.prod.outlook.com
+ (2603:10b6:a03:3a1::26) To PH7PR11MB6522.namprd11.prod.outlook.com
  (2603:10b6:510:212::12)
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: PH7PR11MB6522:EE_|MN0PR11MB6229:EE_
-X-MS-Office365-Filtering-Correlation-Id: 834812d9-90ef-40f0-afef-08db89595474
+X-MS-TrafficTypeDiagnostic: PH7PR11MB6522:EE_|MN6PR11MB8243:EE_
+X-MS-Office365-Filtering-Correlation-Id: 236d014d-fb5e-4282-e325-08db896470b1
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: KPqDB8p7ikUSkrzB1pBgyI05/dbKw86efX61hJcCu1caZMqmCjRpqYHaSmjTen69ZoDrllem/RROGHvM+KgyjLCpwSXAkO3AOPnzclwTuY3QvxzzkbI+6tMITyBD8bLJrZsK1vE9UUTUg3aQ6WmhYdDeu8Aud5k4ccKUaXTlEjxCGWw2yhPBT4QBxn55NSL+5P3hB1LXnSQw9nDh2FELHabSVGFKFPfit9QRZNNQrf5b6UVKaNaqfniC3VK6lKrgJGpTXeoewrIhsntR4XufvAxtMz3Kd0zeiOa3XbJvzVDXtmO7oOcvOanCqsgfdY371RlEEi1yuOo6u6ueDmeoRVDXbVq4IMdsR8gEM58LjSm+CZFvjNPSEOE6UtfdRS/0wz1yLsborSfhatYVQKm3MOaK92grlpqEtgBDKJ+lq+ZTp3c8IPa3MGN4rGnQ7xJYSXTt9muimVLPvvNZT5orgNEyu2pHnJnA7eauT8Iqobvs+JUapGv1d4pFumND93++pYTaYW4IkWPekU0AbzQoYjK6FVMgn0BV3blpjsHOeYRqWPn9T62JVxfk8I4JYqKJ
+X-Microsoft-Antispam-Message-Info: ehPRC/XzHzhHk65pJt+Q70NA46FgFhVpxxyBCyOookLQNpEP55jCR/XuN14TAOysu478HdQadPkuz/CdCg5QBRI70PeynQMR8MzZwUYN27f14AXfg4PJEfsbMEBYEwnqhscLHinEzx2v19eek3Es59v4EqAdQSs/pVbfN0VcAL4oTZuH/SsHlohI/TKM0JY9LbaLQCfRqRBSSLLCxGXRxICzRAtLIBjK2sDDPY8L/T4GCFYR43k6lw4Vk3ZGimMBo//Qd6cKCMFni+c7O7PFvijWaVvh8hYimiSAcKg2NGhIdgTN5NiWBKRKxG9z2YzYxVDVb65PVCdVuX/hvRsLT/ZZ/w92kV7IsysPc7VnsoiAGPn6TpRDtUmHxrAVyTysIk1f/HUTd1svnyr6lekFX4i5oNsgWWl9e22EpMx3GAPhTTpXbh4W70+8CYZXz8qEWNVbFUq1AeoamCYu/MXdaX402nOOJ8WSYdWyYITxYtwqkID18L5KgYWBhyrz7jmSf9I35/GTjYdGRYHBxRXkAx8X8Yl37VO/AvU7QYZEHIA=
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
  IPV:NLI; SFV:NSPM; H:PH7PR11MB6522.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230028)(39860400002)(136003)(346002)(376002)(366004)(396003)(451199021)(2906002)(30864003)(44832011)(8936002)(8676002)(66556008)(66476007)(4326008)(6636002)(66946007)(316002)(41300700001)(6862004)(5660300002)(6506007)(6486002)(6512007)(186003)(478600001)(19627235002)(6666004)(83380400001)(26005)(86362001)(38100700002)(82960400001);
+ SFS:(13230028)(136003)(39860400002)(366004)(396003)(346002)(376002)(451199021)(4326008)(6916009)(6666004)(38100700002)(86362001)(66476007)(66946007)(66556008)(6512007)(2906002)(6486002)(186003)(26005)(6506007)(54906003)(478600001)(8676002)(8936002)(30864003)(41300700001)(44832011)(5660300002)(316002)(66574015)(66899021)(82960400001)(83380400001);
  DIR:OUT; SFP:1102; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?c8pKKBCVYEQ8ipBxsqU8mTKD8GHI3ig3Z9T256Y+6L2Iki8FHcso4BrVkAYG?=
- =?us-ascii?Q?WaOi7A8cx+MsM2/+Gmz3C5/bIArqiWa0Nm68aPRoFWJOJfRM/o7poWad6OF5?=
- =?us-ascii?Q?b/PKvvpdfLonWJcdzxQ9Ia1ek1bUPISnQqSxFNYHcfRJKeTgBkW+VqBR3PXm?=
- =?us-ascii?Q?2sbF/flKKQNARV3FN3EqXhB6oPBmcUx26sP7n1LcWhE8HFcWgu8RoPuMj11h?=
- =?us-ascii?Q?wol7Tcf/o1oGz3kiTGnbNnFY9Yn/MeqOm7ZpakxiUl1LdyieW/RmAD28JkXS?=
- =?us-ascii?Q?oOxyCUrKQPES5kqHdHeN4dxRgX4NoCsm+P8QaISLQ2wORi4gCfv3tpJ4DKaB?=
- =?us-ascii?Q?rIm5k1em9wKzdZbO+pVBwi25C7VKuxr6fVZpkmtkF93cmOoU+6+2EpQj/dCz?=
- =?us-ascii?Q?8AodHULhnWmH3GoZRqXDJ+DYaDH5TRCxPTj93r/CmDm7ktPOe5gbfTX+ikq4?=
- =?us-ascii?Q?Vie2Nef4S1JrDqbd8Lz+Jq5eHLAhssDR3qyZQNSXqXyyGPpew8oSO7QGRey2?=
- =?us-ascii?Q?AC5WkoJyHVYx/funFnvjePnIg7EkI1SocSsuI9PmIVzDstg4ikwO+KxOMe99?=
- =?us-ascii?Q?wrGbq/Hrr/iV9NMn5topotjOQK2LKvi+yNntYHHQuO2JFVMs9OmacC9gBTb8?=
- =?us-ascii?Q?00T4LxqlB90gWuMqSBD3Oex5kkhnK8TNIw8lVj+MkqRuooHhwnJkPlev1/tV?=
- =?us-ascii?Q?10mEHOO/UEGuxh77djhITFK0yklNwRRe9ooYqOmvNsTmEJ5m16PwbWzvHhD3?=
- =?us-ascii?Q?J7aIMDlysKbT2rL6cdyXIdD98aAyxWvEwPb1txh8CgSOqpfLoltlhmuEwjth?=
- =?us-ascii?Q?VBwtZjIExWNL8HKOVi0EQ/Pd3bHV0uNsCWWkI6Q+G9vzVDsTaYuYneNmjcdd?=
- =?us-ascii?Q?Ga5cgIy3Dos5K4hQ7mCQ8FRyaNEQSOVCHNeo0QdHOhQ3gNDWkgxF1RxaYklN?=
- =?us-ascii?Q?4KUzmaACpZN263/GrplfLu4deGWPXkySj/i0NNemBuFmKWz1tmsuN3TBRJ5y?=
- =?us-ascii?Q?xy45dIqN5qbcC/GXMpRgKVbWnNOvdFENXtsvKw1//N89XbnW8YPsHZ+bkV9T?=
- =?us-ascii?Q?fZoA9OyT1NDqUwkcA1KkV8VHV0uhPo5zofLs0DEawLixbY4f7rppO21P09Rp?=
- =?us-ascii?Q?QRz4Q7gCShzc1QA21XeFq2jOwxpqC5qdyUJX/9FOGg8UrJRaUogKC3oTqquT?=
- =?us-ascii?Q?pzEgzaNx7th1fnILF2wg+P4lkeNJYjuL8ozrssiv6vGzD2nSkN/9xYLtrfn6?=
- =?us-ascii?Q?IH47AAEMAd3K/6+fIbyul+XUI1+9xMKx2hGDYb62Eegjj9PhyRIrvoiC8yXy?=
- =?us-ascii?Q?1yqB7cVhuxvPrMeVC1svdq7JuqtRVpH0Vy3zgDCvA1QLtMseWPKo/wwI0j6y?=
- =?us-ascii?Q?/KUG1fPzjbRRRG81Ch8eQ/kdFlPd81jsakQkzI/r8UsB3SKG9+MKQAsrov0y?=
- =?us-ascii?Q?bIMnxxaEdZud3d6Vg4oRxUwz2cVzgq9Z9N/g2wGMAeJ2kFL/9T32zq1sS+PK?=
- =?us-ascii?Q?R/nD0pDWKHSyIXdiLCJnuORDYXjqRe0CGqed1fstXejtcHm/OiYXE+R3RUWC?=
- =?us-ascii?Q?40Gk9DI3MyKjcRMy9iHocWvpHhWmIQNUEpGZ7fcHzqJwOFgg8QvWSqgVM+Zn?=
- =?us-ascii?Q?cA=3D=3D?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: 834812d9-90ef-40f0-afef-08db89595474
+X-MS-Exchange-AntiSpam-MessageData-0: =?iso-8859-1?Q?IY6nOJ45LxA/RULYf++L1X7D6+odt6RdAxGZA2Zq+zuweR6RdgpXiW96Ry?=
+ =?iso-8859-1?Q?IFPnBiWvoNbGK2P5UGRglbPMCuG1NT+J0onMfYMYbiWnPJ9ykwB71rsYFD?=
+ =?iso-8859-1?Q?peOxsbLS9V3RG6DVqnuc2elRSX23ZbOjsL1o89ixonFdyUinbfHrT9BkFF?=
+ =?iso-8859-1?Q?UxP0wfzraGss2APOnJI9f0x6gGD32AUsAg9rdPbEdm47Q7h1AgmgyUrpLL?=
+ =?iso-8859-1?Q?7OIFMSH6zb0F64sV6+G5P27SBHveH0qhiBUveK9QM7nzVTtJNW+8qebLj2?=
+ =?iso-8859-1?Q?4a3ZZoZgDKeFcZpIUf2ri6yDzrzsYNfz/DuqY06lnQe7Pcxdjs60elSDTc?=
+ =?iso-8859-1?Q?bHEf1m+cP2Mxt2crklS5F+uwd6sqipf4XZHeeQu7ZKWsjhII4C4ieaW1PQ?=
+ =?iso-8859-1?Q?PcIcT7qFXEfTiOiWsr2vFmCW5fs8ZTwc9/8U3YlDbUM+l3vaLyxt9MR4v3?=
+ =?iso-8859-1?Q?7k7nshmrZSMZchiFjJyIKBZ7tMbh7ws6OdBmlH/Li1FR72IgBKwv/jmeSK?=
+ =?iso-8859-1?Q?ncZeNTj7Fyyo8GmZRYHSeQywGeSbYaez+h0ZI7h71gl60QQOV41yXaUwLz?=
+ =?iso-8859-1?Q?Wxi7uxpmOrLzEYYeVx4y0rFhlJvOnQDYCQk4os45m1X9PR+6k32v6bW+IG?=
+ =?iso-8859-1?Q?lLS/3YZuU+v8rMx57PrRNX9KlMCSU6mL2X4CPgllVTe7uU+6EOYUkQfFoq?=
+ =?iso-8859-1?Q?+twXRP0fVbyqWUgCOjqpff8yKyjKYF0RRm/8jiTQgo2872PKSDcsM4oNLi?=
+ =?iso-8859-1?Q?NYpYgtG2ybpi4zBxgijU8gKDcwMyz8i8xKY19t4HCag5TgNicW6KTGNuPG?=
+ =?iso-8859-1?Q?K/01I5LPSLwzosvScLpQZ8eQdxhjeHfV/eAu8I/r4s5XPCA9nNSk6CYUOF?=
+ =?iso-8859-1?Q?uE0WtS1ePhijijMX6FREyOBaCs73rHq0X9aZFSQJ04K9YvHyWS2WYpBRhm?=
+ =?iso-8859-1?Q?E/tOHr/ALgNFXkL7vohuO8eecDfWIpbcsX/uFFVV+UGp6wjE0/w8d3cuU7?=
+ =?iso-8859-1?Q?MMjpcX1UIM10SzKoXxZKLHBegKLpGB6yTg2LMEjrrrxn/tgDwYaWGlIjR5?=
+ =?iso-8859-1?Q?63TW1xiG66ykCPKqx5pEQ/upBmrNEFy06ut3dvEhunHHX7BlfxfcmmOigg?=
+ =?iso-8859-1?Q?q2frJF/XrJDtAmapk/+EnjObPNTYuYq1bKnT4U5fnV9PHAXyAEfTUn9NSv?=
+ =?iso-8859-1?Q?yj+7YJGkH0XZO38kuNWuC0WCC1RK8jF1C7rYqvaT49pDOpxv957Sw6TeOY?=
+ =?iso-8859-1?Q?mJFZI6T/Vi4/lb51h9fuI8E1INEqNLW4lipXeDWGogjzLeb6bv28JBkExO?=
+ =?iso-8859-1?Q?/EE0vTMTQhdoRfCInyyyL7QXnW0qkYDJiML4kmSiLIiaXVcEuJa01YoJpE?=
+ =?iso-8859-1?Q?+UJWiiidJ3ZBUaZGK8GvCO5+VD4RhHQQ3PSS7neasjfcvJpPKo6MWC0b19?=
+ =?iso-8859-1?Q?/ALHln0QrtTVQ4J9GvylxscYKBBQ9ZT8kzPb5LOzGonio9xjRoh3Zobp9q?=
+ =?iso-8859-1?Q?OQHVVVc6GsF8V3AvcC0nk3TOXkboMbNEerFefJ+HCvObDHCIlNF9SZBeqz?=
+ =?iso-8859-1?Q?+TN2Pmv6XKfYyuKTvKGC5lrImG7Du6O+3Addf8zj2Wt5/Jgm/9laX2tviD?=
+ =?iso-8859-1?Q?eiSDWtsW2YjiUYJg/JLO9Txc5GPH5x+7kI0RJcIQf5alNQbY/Szq8mnA?=
+ =?iso-8859-1?Q?=3D=3D?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: 236d014d-fb5e-4282-e325-08db896470b1
 X-MS-Exchange-CrossTenant-AuthSource: PH7PR11MB6522.namprd11.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 20 Jul 2023 19:41:36.7490 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 20 Jul 2023 21:01:08.7174 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: 3X937VGnIlnG7tzRwamqItUjk1QaYMM/69Mprko8ngm1YCvS7vdQ8qT4WB+z+TPC1erREvCWekOF4fhNpLqY0A==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: MN0PR11MB6229
+X-MS-Exchange-CrossTenant-UserPrincipalName: ghzkBOmpLH0pvdHdLQ+W4pNn4tEPw5M2tIY+ApJKfkVvS3me443+Bx8O2B4cWNAImV9qeXSsDGqzqCUaNYnscQ==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: MN6PR11MB8243
 X-OriginatorOrg: intel.com
-Subject: Re: [Intel-xe] [PATCH V5 6/6] drm/xe: Add min/max cap for engine
- scheduler properties
+Subject: Re: [Intel-xe] [PATCH v5] Documentation/gpu: Add a VM_BIND async
+ draft document
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -147,789 +147,238 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-xe@lists.freedesktop.org
+Cc: Francois Dugast <francois.dugast@intel.com>,
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+ linux-kernel@vger.kernel.org, Oak Zeng <oak.zeng@intel.com>,
+ Danilo Krummrich <dakr@redhat.com>, dri-devel@lists.freedesktop.org, Daniel
+ Vetter <daniel@ffwll.ch>, intel-xe@lists.freedesktop.org,
+ Nirmoy Das <nirmoy.das@intel.com>
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Thu, Jul 20, 2023 at 07:55:10PM +0530, Tejas Upadhyay wrote:
-> Add sysfs entries for the min, max, and defaults for each of
-> engine scheduler controls for every hardware engine class.
+On Sat, Jul 15, 2023 at 05:45:43PM +0200, Thomas Hellström wrote:
+> Add a motivation for and description of asynchronous VM_BIND operation
 > 
-> Non-elevated user IOCTLs to set these controls must be within
-> the min-max ranges of the sysfs entries, elevated user can set
-> these controls to any value. However, introduced compile time
-> CONFIG min-max values which restricts elevated user to be in
-> compile time min-max range if at all sysfs min/max are violated.
+> v2:
+> - Fix typos (Nirmoy Das)
+> - Improve the description of a memory fence (Oak Zeng)
+> - Add a reference to the document in the Xe RFC.
+> - Add pointers to sample uAPI suggestions
+> v3:
+> - Address review comments (Danilo Krummrich)
+> - Formatting fixes
+> v4:
+> - Address typos (Francois Dugast)
+> - Explain why in-fences are not allowed for VM_BIND operations for long-
+>   running workloads (Matthew Brost)
+> v5:
+> - More typo- and style fixing
+> - Further clarify the implications of disallowing in-fences for VM_BIND
+>   operations for long-running workloads (Matthew Brost)
 > 
-> Sysfs entries examples are,
-> DUT# cat /sys/class/drm/cardX/device/tileN/gtN/engines/ccs/.defaults/
-> job_timeout_max         job_timeout_ms          preempt_timeout_min     timeslice_duration_max  timeslice_duration_us
-> job_timeout_min         preempt_timeout_max     preempt_timeout_us      timeslice_duration_min
-> 
-> DUT# cat /sys/class/drm/card1/device/tileN/gtN/engines/ccs/
-> .defaults/              job_timeout_min         preempt_timeout_max     preempt_timeout_us      timeslice_duration_min
-> job_timeout_max         job_timeout_ms          preempt_timeout_min     timeslice_duration_max  timeslice_duration_us
-> 
-> V5 :
->    - Rebase to resolve conflicts - CI
-> V4 :
->    - Rebase
->    - Update commit to reflect tile addition
->    - Use XE_HW macro directly as they are already filtered
->      for CONFIG checks - Niranjana
->    - Add CONFIG for enable/disable min/max limitation
->      on elevated user. Default is enable - Matt/Joonas
-> V3 :
->    - Resolve CI hooks warning for kernel-doc
-> V2 :
->    - Restric min/max setting to #define default min/max for
->      elevated user - Himal
->    - Remove unrelated changes from patch - Niranjana
-> 
-> Signed-off-by: Tejas Upadhyay <tejas.upadhyay@intel.com>
+> Signed-off-by: Thomas Hellström <thomas.hellstrom@linux.intel.com>
+
+Reviewed-by: Matthew Brost <matthew.brost@intel.com>
+
+> Acked-by: Nirmoy Das <nirmoy.das@intel.com>
 > ---
->  drivers/gpu/drm/xe/Kconfig                 |   7 +
->  drivers/gpu/drm/xe/Kconfig.profile         |  45 +++
->  drivers/gpu/drm/xe/xe_engine.c             |  43 ++-
->  drivers/gpu/drm/xe/xe_engine_class_sysfs.c | 392 ++++++++++++++++++++-
->  drivers/gpu/drm/xe/xe_engine_class_sysfs.h |   1 +
->  drivers/gpu/drm/xe/xe_hw_engine.c          |   6 +
->  drivers/gpu/drm/xe/xe_hw_engine.h          |  31 ++
->  drivers/gpu/drm/xe/xe_hw_engine_types.h    |  12 +
->  8 files changed, 530 insertions(+), 7 deletions(-)
->  create mode 100644 drivers/gpu/drm/xe/Kconfig.profile
+>  Documentation/gpu/drm-vm-bind-async.rst | 171 ++++++++++++++++++++++++
+>  Documentation/gpu/rfc/xe.rst            |   4 +-
+>  2 files changed, 173 insertions(+), 2 deletions(-)
+>  create mode 100644 Documentation/gpu/drm-vm-bind-async.rst
 > 
-> diff --git a/drivers/gpu/drm/xe/Kconfig b/drivers/gpu/drm/xe/Kconfig
-> index d44794f99338..9d587c3ccffa 100644
-> --- a/drivers/gpu/drm/xe/Kconfig
-> +++ b/drivers/gpu/drm/xe/Kconfig
-> @@ -83,3 +83,10 @@ depends on DRM_XE
->  depends on EXPERT
->  source "drivers/gpu/drm/xe/Kconfig.debug"
->  endmenu
-> +
-> +menu "drm/xe Profile Guided Optimisation"
-> +	visible if EXPERT
-> +	depends on DRM_XE
-> +	source "drivers/gpu/drm/xe/Kconfig.profile"
-> +endmenu
-> +
-> diff --git a/drivers/gpu/drm/xe/Kconfig.profile b/drivers/gpu/drm/xe/Kconfig.profile
+> diff --git a/Documentation/gpu/drm-vm-bind-async.rst b/Documentation/gpu/drm-vm-bind-async.rst
 > new file mode 100644
-> index 000000000000..0cc87d286587
+> index 000000000000..d2b02a38198a
 > --- /dev/null
-> +++ b/drivers/gpu/drm/xe/Kconfig.profile
-> @@ -0,0 +1,45 @@
-> +config DRM_XE_JOB_TIMEOUT_MAX
-> +       int "Default max job timeout (ms)"
-> +       default 10000 # milliseconds
-> +       help
-> +         Configures the default max job timeout after which job will
-> +         be forcefully taken away from scheduler.
-> +config DRM_XE_JOB_TIMEOUT_MIN
-> +       int "Default max job timeout (ms)"
-> +       default 1 # milliseconds
-> +       help
-> +         Configures the default min job timeout after which job will
-> +         be forcefully taken away from scheduler.
-> +config DRM_XE_TIMESLICE_MAX
-> +       int "Default max timeslice duration (us)"
-> +       default 10000000 # microseconds
-> +       help
-> +         Configures the default max timeslice duration between multiple
-> +         contexts by guc scheduling.
-> +config DRM_XE_TIMESLICE_MIN
-> +       int "Default min timeslice duration (us)"
-> +       default 1 # microseconds
-> +       help
-> +         Configures the default min timeslice duration between multiple
-> +         contexts by guc scheduling.
-> +config DRM_XE_PREEMPT_TIMEOUT_MAX
-> +       int "Default max  preempt timeout (us)"
-> +       default 10000000 # microseconds
-> +       help
-> +         Configures the default max preempt timeout after which context
-> +         will be forcefully taken away and higher priority context will
-> +         run.
-> +config DRM_XE_PREEMPT_TIMEOUT_MIN
-> +       int "Default min  preempt timeout (us)"
-> +       default 1 # microseconds
-> +       help
-> +         Configures the default min preempt timeout after which context
-> +         will be forcefully taken away and higher priority context will
-> +         run.
-> +config DRM_XE_ENABLE_SCHEDTIMEOUT_LIMIT
-> +       bool "Default configuration of limitation on scheduler timeout"
-> +       default y
-> +       help
-> +         Configures the enablement of limitation on scheduler timeout
-> +	 to apply to applicable user. For elevated user, all above MIN
-> +	 and MAX values will apply when this configuration is enable.
-> diff --git a/drivers/gpu/drm/xe/xe_engine.c b/drivers/gpu/drm/xe/xe_engine.c
-> index aa2d49efb9bb..e64b84dc24de 100644
-> --- a/drivers/gpu/drm/xe/xe_engine.c
-> +++ b/drivers/gpu/drm/xe/xe_engine.c
-> @@ -12,6 +12,7 @@
->  #include <drm/xe_drm.h>
+> +++ b/Documentation/gpu/drm-vm-bind-async.rst
+> @@ -0,0 +1,171 @@
+> +====================
+> +Asynchronous VM_BIND
+> +====================
+> +
+> +Nomenclature:
+> +=============
+> +
+> +* ``VRAM``: On-device memory. Sometimes referred to as device local memory.
+> +
+> +* ``gpu_vm``: A GPU address space. Typically per process, but can be shared by
+> +  multiple processes.
+> +
+> +* ``VM_BIND``: An operation or a list of operations to modify a gpu_vm using
+> +  an IOCTL. The operations include mapping and unmapping system- or
+> +  VRAM memory.
+> +
+> +* ``syncobj``: A container that abstracts synchronization objects. The
+> +  synchronization objects can be either generic, like dma-fences or
+> +  driver specific. A syncobj typically indicates the type of the
+> +  underlying synchronization object.
+> +
+> +* ``in-syncobj``: Argument to a VM_BIND IOCTL, the VM_BIND operation waits
+> +  for these before starting.
+> +
+> +* ``out-syncobj``: Argument to a VM_BIND_IOCTL, the VM_BIND operation
+> +  signals these when the bind operation is complete.
+> +
+> +* ``memory fence``: A synchronization object, different from a dma-fence.
+> +  A memory fence uses the value of a specified memory location to determine
+> +  signaled status. A memory fence can be awaited and signaled by both
+> +  the GPU and CPU. Memory fences are sometimes referred to as
+> +  user-fences, userspace-fences or gpu futexes and do not necessarily obey
+> +  the dma-fence rule of signaling within a "reasonable amount of time".
+> +  The kernel should thus avoid waiting for memory fences with locks held.
+> +
+> +* ``long-running workload``: A workload that may take more than the
+> +  current stipulated dma-fence maximum signal delay to complete and
+> +  which therefore needs to set the gpu_vm or the GPU execution context in
+> +  a certain mode that disallows completion dma-fences.
+> +
+> +* ``exec function``: An exec function is a function that revalidates all
+> +  affected gpu_vmas, submits a GPU command batch and registers the
+> +  dma_fence representing the GPU command's activity with all affected
+> +  dma_resvs. For completeness, although not covered by this document,
+> +  it's worth mentioning that an exec function may also be the
+> +  revalidation worker that is used by some drivers in compute /
+> +  long-running mode.
+> +
+> +* ``bind context``: A context identifier used for the VM_BIND
+> +  operation. VM_BIND operations that use the same bind context can be
+> +  assumed, where it matters, to complete in order of submission. No such
+> +  assumptions can be made for VM_BIND operations using separate bind contexts.
+> +
+> +* ``UMD``: User-mode driver.
+> +
+> +* ``KMD``: Kernel-mode driver.
+> +
+> +
+> +Synchronous / Asynchronous VM_BIND operation
+> +============================================
+> +
+> +Synchronous VM_BIND
+> +___________________
+> +With Synchronous VM_BIND, the VM_BIND operations all complete before the
+> +IOCTL returns. A synchronous VM_BIND takes neither in-fences nor
+> +out-fences. Synchronous VM_BIND may block and wait for GPU operations;
+> +for example swap-in or clearing, or even previous binds.
+> +
+> +Asynchronous VM_BIND
+> +____________________
+> +Asynchronous VM_BIND accepts both in-syncobjs and out-syncobjs. While the
+> +IOCTL may return immediately, the VM_BIND operations wait for the in-syncobjs
+> +before modifying the GPU page-tables, and signal the out-syncobjs when
+> +the modification is done in the sense that the next exec function that
+> +awaits for the out-syncobjs will see the change. Errors are reported
+> +synchronously assuming that the asynchronous part of the job never errors.
+> +In low-memory situations the implementation may block, performing the
+> +VM_BIND synchronously, because there might not be enough memory
+> +immediately available for preparing the asynchronous operation.
+> +
+> +If the VM_BIND IOCTL takes a list or an array of operations as an argument,
+> +the in-syncobjs needs to signal before the first operation starts to
+> +execute, and the out-syncobjs signal after the last operation
+> +completes. Operations in the operation list can be assumed, where it
+> +matters, to complete in order.
+> +
+> +Since asynchronous VM_BIND operations may use dma-fences embedded in
+> +out-syncobjs and internally in KMD to signal bind completion,  any
+> +memory fences given as VM_BIND in-fences need to be awaited
+> +synchronously before the VM_BIND ioctl returns, since dma-fences,
+> +required to signal in a reasonable amount of time, can never be made
+> +to depend on memory fences that don't have such a restriction.
+> +
+> +To aid in supporting user-space queues, the VM_BIND may take a bind context.
+> +
+> +The purpose of an Asynchronous VM_BIND operation is for user-mode
+> +drivers to be able to pipeline interleaved gpu_vm modifications and
+> +exec functions. For long-running workloads, such pipelining of a bind
+> +operation is not allowed and any in-fences need to be awaited
+> +synchronously. The reason for this is twofold. First, any memory
+> +fences gated by a long-running workload and used as in-syncobjs for the
+> +VM_BIND operation will need to be awaited synchronously anyway (see
+> +above). Second, any dma-fences used as in-syncobjs for VM_BIND
+> +operations for long-running workloads will not allow for pipelining
+> +anyway since long-running workloads don't allow for dma-fences as
+> +out-syncobjs, so while theoretically possible the use of them is
+> +questionable and should be rejected until there is a valuable use-case.
+> +Note that this is not a limitation imposed by dma-fence rules, but
+> +rather a limitation imposed to keep KMD implementation simple. It does
+> +not affect using dma-fences as dependencies for the long-running
+> +workload itself, which is allowed by dma-fence rules, but rather for
+> +the VM_BIND operation only.
+> +
+> +Also for VM_BINDS for long-running gpu_vms the user-mode driver should typically
+> +select memory fences as out-fences since that gives greater flexibility for
+> +the kernel mode driver to inject other operations into the bind /
+> +unbind operations. Like for example inserting breakpoints into batch
+> +buffers. The workload execution can then easily be pipelined behind
+> +the bind completion using the memory out-fence as the signal condition
+> +for a GPU semaphore embedded by UMD in the workload.
+> +
+> +Multi-operation VM_BIND IOCTL error handling and interrupts
+> +===========================================================
+> +
+> +The VM_BIND operations of the IOCTL may error due to lack of resources
+> +to complete and also due to interrupted waits. In both situations UMD
+> +should preferably restart the IOCTL after taking suitable action. If
+> +UMD has over-committed a memory resource, an -ENOSPC error will be
+> +returned, and UMD may then unbind resources that are not used at the
+> +moment and restart the IOCTL. On -EINTR, UMD should simply restart the
+> +IOCTL and on -ENOMEM user-space may either attempt to free known
+> +system memory resources or abort the operation. If aborting as a
+> +result of a failed operation in a list of operations, some operations
+> +may still have completed, and to get back to a known state, user-space
+> +should therefore attempt to unbind all virtual memory regions touched
+> +by the failing IOCTL.
+> +Unbind operations are guaranteed not to cause any errors due to
+> +resource constraints.
+> +In between a failed VM_BIND IOCTL and a successful restart there may
+> +be implementation defined restrictions on the use of the gpu_vm. For a
+> +description why, please see KMD implementation details under `error
+> +state saving`_.
+> +
+> +Sample uAPI implementations
+> +===========================
+> +Suggested uAPI implementations at the moment of writing can be found for
+> +the Nouveau driver `here
+> +<https://patchwork.freedesktop.org/patch/543260/?series=112994&rev=6>`_.
+> +and for the Xe driver `here
+> +<https://cgit.freedesktop.org/drm/drm-xe/diff/include/uapi/drm/xe_drm.h?h=drm-xe-next&id=9cb016ebbb6a275f57b1cb512b95d5a842391ad7>`_.
+> +
+> +KMD implementation details
+> +==========================
+> +
+> +Error state saving
+> +__________________
+> +Open: When the VM_BIND IOCTL returns an error, some or even parts of
+> +an operation may have been completed. If the IOCTL is restarted, in
+> +order to know where to restart, the KMD can either put the gpu_vm in
+> +an error state and save one instance of the needed restart state
+> +internally. In this case, KMD needs to block further modifications of
+> +the gpu_vm state that may cause additional failures requiring a
+> +restart state save, until the error has been fully resolved. If the
+> +uAPI instead defines a pointer to a UMD allocated cookie in the IOCTL
+> +struct, it could also choose to store the restart state in that cookie.
+> +
+> +The restart state may, for example, be the number of successfully
+> +completed operations.
+> +
+> +Easiest for UMD would of course be if KMD did a full unwind on error
+> +so that no error state needs to be saved.
+> diff --git a/Documentation/gpu/rfc/xe.rst b/Documentation/gpu/rfc/xe.rst
+> index 2516fe141db6..0f062e1346d2 100644
+> --- a/Documentation/gpu/rfc/xe.rst
+> +++ b/Documentation/gpu/rfc/xe.rst
+> @@ -138,8 +138,8 @@ memory fences. Ideally with helper support so people don't get it wrong in all
+>  possible ways.
 >  
->  #include "xe_device.h"
-> +#include "xe_engine_class_sysfs.h"
->  #include "xe_gt.h"
->  #include "xe_hw_fence.h"
->  #include "xe_lrc.h"
-> @@ -191,9 +192,21 @@ static int engine_set_priority(struct xe_device *xe, struct xe_engine *e,
->  static int engine_set_timeslice(struct xe_device *xe, struct xe_engine *e,
->  				u64 value, bool create)
->  {
-> -	if (!capable(CAP_SYS_NICE))
-> +	if (!capable(CAP_SYS_NICE) &&
-> +	    !engine_timeout_in_range(value,
-> +				     e->hwe->sched_props.timeslice_min,
-> +				     e->hwe->sched_props.timeslice_max))
->  		return -EPERM;
+>  As a key measurable result, the benefits of ASYNC VM_BIND and a discussion of
+> -various flavors, error handling and a sample API should be documented here or in
+> -a separate document pointed to by this document.
+> +various flavors, error handling and sample API suggestions are documented in
+> +Documentation/gpu/drm-vm-bind-async.rst
 >  
-> +#ifdef CONFIG_DRM_XE_ENABLE_SCHEDTIMEOUT_LIMIT
-> +	if (CONFIG_DRM_XE_ENABLE_SCHEDTIMEOUT_LIMIT &&
-
-CONFIG_DRM_XE_ENABLE_SCHEDTIMEOUT_LIMIT is checked twice, seems redundant.
-
-Other than this NIT, patch LGTM.
-
-Matt
-
-> +	    capable(CAP_SYS_NICE) &&
-> +	    !engine_timeout_in_range(value,
-> +				     XE_HW_ENGINE_TIMESLICE_MIN,
-> +				     XE_HW_ENGINE_TIMESLICE_MAX))
-> +		return -EPERM;
-> +#endif
-> +
->  	return e->ops->set_timeslice(e, value);
->  }
->  
-> @@ -201,8 +214,20 @@ static int engine_set_preemption_timeout(struct xe_device *xe,
->  					 struct xe_engine *e, u64 value,
->  					 bool create)
->  {
-> -	if (!capable(CAP_SYS_NICE))
-> +	if (!capable(CAP_SYS_NICE) &&
-> +	    !engine_timeout_in_range(value,
-> +				     e->hwe->sched_props.preempt_timeout_min,
-> +				     e->hwe->sched_props.preempt_timeout_max))
-> +		return -EPERM;
-> +
-> +#ifdef CONFIG_DRM_XE_ENABLE_SCHEDTIMEOUT_LIMIT
-> +	if (CONFIG_DRM_XE_ENABLE_SCHEDTIMEOUT_LIMIT &&
-> +	    capable(CAP_SYS_NICE) &&
-> +	    !engine_timeout_in_range(value,
-> +				     XE_HW_ENGINE_PREEMPT_TIMEOUT_MIN,
-> +				     XE_HW_ENGINE_PREEMPT_TIMEOUT_MAX))
->  		return -EPERM;
-> +#endif
->  
->  	return e->ops->set_preempt_timeout(e, value);
->  }
-> @@ -269,8 +294,20 @@ static int engine_set_job_timeout(struct xe_device *xe, struct xe_engine *e,
->  	if (XE_IOCTL_DBG(xe, !create))
->  		return -EINVAL;
->  
-> -	if (!capable(CAP_SYS_NICE))
-> +	if (!capable(CAP_SYS_NICE) &&
-> +	    !engine_timeout_in_range(value,
-> +				     e->hwe->sched_props.job_timeout_min,
-> +				     e->hwe->sched_props.job_timeout_max))
-> +		return -EPERM;
-> +
-> +#ifdef CONFIG_DRM_XE_ENABLE_SCHEDTIMEOUT_LIMIT
-> +	if (CONFIG_DRM_XE_ENABLE_SCHEDTIMEOUT_LIMIT &&
-> +	    capable(CAP_SYS_NICE) &&
-> +	    !engine_timeout_in_range(value,
-> +				     XE_HW_ENGINE_JOB_TIMEOUT_MIN,
-> +				     XE_HW_ENGINE_JOB_TIMEOUT_MAX))
->  		return -EPERM;
-> +#endif
->  
->  	return e->ops->set_job_timeout(e, value);
->  }
-> diff --git a/drivers/gpu/drm/xe/xe_engine_class_sysfs.c b/drivers/gpu/drm/xe/xe_engine_class_sysfs.c
-> index 8350f7441af6..42299a024c44 100644
-> --- a/drivers/gpu/drm/xe/xe_engine_class_sysfs.c
-> +++ b/drivers/gpu/drm/xe/xe_engine_class_sysfs.c
-> @@ -11,6 +11,11 @@
->  
->  static int xe_add_engine_class_defaults(struct kobject *parent);
->  
-> +bool engine_timeout_in_range(u64 timeout, u64 min, u64 max)
-> +{
-> +	return timeout >= min && timeout <= max;
-> +}
-> +
->  static void kobj_xe_engine_release(struct kobject *kobj)
->  {
->  	kfree(kobj);
-> @@ -39,6 +44,92 @@ kobj_xe_engine(struct kobject *parent, char *name)
->  	return khwe;
->  }
->  
-> +static ssize_t job_timeout_max_store(struct kobject *kobj,
-> +				     struct kobj_attribute *attr,
-> +				     const char *buf, size_t count)
-> +{
-> +	struct xe_hw_engine *hwe = kobj_to_hwe(kobj);
-> +	u32 timeout;
-> +	int err;
-> +
-> +	err = kstrtou32(buf, 0, &timeout);
-> +	if (err)
-> +		return err;
-> +
-> +	if (!capable(CAP_SYS_NICE) &&
-> +	    !engine_timeout_in_range(timeout,
-> +				     XE_HW_ENGINE_JOB_TIMEOUT_MIN,
-> +				     XE_HW_ENGINE_JOB_TIMEOUT_MAX))
-> +		return -EINVAL;
-> +
-> +#ifdef CONFIG_DRM_XE_ENABLE_SCHEDTIMEOUT_LIMIT
-> +	if (CONFIG_DRM_XE_ENABLE_SCHEDTIMEOUT_LIMIT &&
-> +	    capable(CAP_SYS_NICE) &&
-> +	    !engine_timeout_in_range(timeout,
-> +				     XE_HW_ENGINE_JOB_TIMEOUT_MIN,
-> +				     XE_HW_ENGINE_JOB_TIMEOUT_MAX))
-> +		return -EINVAL;
-> +#endif
-> +
-> +	WRITE_ONCE(hwe->sched_props.job_timeout_max, timeout);
-> +
-> +	return count;
-> +}
-> +
-> +static ssize_t job_timeout_max_show(struct kobject *kobj,
-> +				    struct kobj_attribute *attr, char *buf)
-> +{
-> +	struct xe_hw_engine *hwe = kobj_to_hwe(kobj);
-> +
-> +	return sprintf(buf, "%u\n", hwe->sched_props.job_timeout_max);
-> +}
-> +
-> +static struct kobj_attribute job_timeout_max_attr =
-> +__ATTR(job_timeout_max, 0644, job_timeout_max_show, job_timeout_max_store);
-> +
-> +static ssize_t job_timeout_min_store(struct kobject *kobj,
-> +				     struct kobj_attribute *attr,
-> +				     const char *buf, size_t count)
-> +{
-> +	struct xe_hw_engine *hwe = kobj_to_hwe(kobj);
-> +	u32 timeout;
-> +	int err;
-> +
-> +	err = kstrtou32(buf, 0, &timeout);
-> +	if (err)
-> +		return err;
-> +
-> +	if (!capable(CAP_SYS_NICE) &&
-> +	    !engine_timeout_in_range(timeout,
-> +				     XE_HW_ENGINE_JOB_TIMEOUT_MIN,
-> +				     XE_HW_ENGINE_JOB_TIMEOUT_MAX))
-> +		return -EINVAL;
-> +
-> +#ifdef CONFIG_DRM_XE_ENABLE_SCHEDTIMEOUT_LIMIT
-> +	if (CONFIG_DRM_XE_ENABLE_SCHEDTIMEOUT_LIMIT &&
-> +	    capable(CAP_SYS_NICE) &&
-> +	    !engine_timeout_in_range(timeout,
-> +				     XE_HW_ENGINE_JOB_TIMEOUT_MIN,
-> +				     XE_HW_ENGINE_JOB_TIMEOUT_MAX))
-> +		return -EINVAL;
-> +#endif
-> +
-> +	WRITE_ONCE(hwe->sched_props.job_timeout_min, timeout);
-> +
-> +	return count;
-> +}
-> +
-> +static ssize_t job_timeout_min_show(struct kobject *kobj,
-> +				    struct kobj_attribute *attr, char *buf)
-> +{
-> +	struct xe_hw_engine *hwe = kobj_to_hwe(kobj);
-> +
-> +	return sprintf(buf, "%u\n", hwe->sched_props.job_timeout_min);
-> +}
-> +
-> +static struct kobj_attribute job_timeout_min_attr =
-> +__ATTR(job_timeout_min, 0644, job_timeout_min_show, job_timeout_min_store);
-> +
->  static ssize_t job_timeout_store(struct kobject *kobj,
->  				 struct kobj_attribute *attr,
->  				 const char *buf, size_t count)
-> @@ -51,8 +142,20 @@ static ssize_t job_timeout_store(struct kobject *kobj,
->  	if (err)
->  		return err;
->  
-> -	if (timeout > jiffies_to_usecs(MAX_SCHEDULE_TIMEOUT))
-> +	if (!capable(CAP_SYS_NICE) &&
-> +	    !engine_timeout_in_range(timeout,
-> +				     hwe->sched_props.job_timeout_min,
-> +				     hwe->sched_props.job_timeout_max))
-> +		return -EINVAL;
-> +
-> +#ifdef CONFIG_DRM_XE_ENABLE_SCHEDTIMEOUT_LIMIT
-> +	if (CONFIG_DRM_XE_ENABLE_SCHEDTIMEOUT_LIMIT &&
-> +	    capable(CAP_SYS_NICE) &&
-> +	    !engine_timeout_in_range(timeout,
-> +				     XE_HW_ENGINE_JOB_TIMEOUT_MIN,
-> +				     XE_HW_ENGINE_JOB_TIMEOUT_MAX))
->  		return -EINVAL;
-> +#endif
->  
->  	WRITE_ONCE(hwe->sched_props.job_timeout_ms, timeout);
->  
-> @@ -81,6 +184,28 @@ static ssize_t job_timeout_default(struct kobject *kobj,
->  static struct kobj_attribute job_timeout_def =
->  __ATTR(job_timeout_ms, 0444, job_timeout_default, NULL);
->  
-> +static ssize_t job_timeout_min_default(struct kobject *kobj,
-> +				       struct kobj_attribute *attr, char *buf)
-> +{
-> +	struct xe_hw_engine *hwe = kobj_to_hwe(kobj->parent);
-> +
-> +	return sprintf(buf, "%u\n", hwe->defaults.job_timeout_min);
-> +}
-> +
-> +static struct kobj_attribute job_timeout_min_def =
-> +__ATTR(job_timeout_min, 0444, job_timeout_min_default, NULL);
-> +
-> +static ssize_t job_timeout_max_default(struct kobject *kobj,
-> +				       struct kobj_attribute *attr, char *buf)
-> +{
-> +	struct xe_hw_engine *hwe = kobj_to_hwe(kobj->parent);
-> +
-> +	return sprintf(buf, "%u\n", hwe->defaults.job_timeout_max);
-> +}
-> +
-> +static struct kobj_attribute job_timeout_max_def =
-> +__ATTR(job_timeout_max, 0444, job_timeout_max_default, NULL);
-> +
->  static ssize_t timeslice_duration_store(struct kobject *kobj,
->  					struct kobj_attribute *attr,
->  					const char *buf, size_t count)
-> @@ -93,14 +218,115 @@ static ssize_t timeslice_duration_store(struct kobject *kobj,
->  	if (err)
->  		return err;
->  
-> -	if (duration > jiffies_to_usecs(MAX_SCHEDULE_TIMEOUT))
-> +	if (!capable(CAP_SYS_NICE) &&
-> +	    !engine_timeout_in_range(duration,
-> +				     hwe->sched_props.timeslice_min,
-> +				     hwe->sched_props.timeslice_max))
->  		return -EINVAL;
->  
-> +#ifdef CONFIG_DRM_XE_ENABLE_SCHEDTIMEOUT_LIMIT
-> +	if (CONFIG_DRM_XE_ENABLE_SCHEDTIMEOUT_LIMIT &&
-> +	    capable(CAP_SYS_NICE) &&
-> +	    !engine_timeout_in_range(duration,
-> +				     XE_HW_ENGINE_TIMESLICE_MIN,
-> +				     XE_HW_ENGINE_TIMESLICE_MAX))
-> +		return -EINVAL;
-> +#endif
-> +
->  	WRITE_ONCE(hwe->sched_props.timeslice_us, duration);
->  
->  	return count;
->  }
->  
-> +static ssize_t timeslice_duration_max_store(struct kobject *kobj,
-> +					    struct kobj_attribute *attr,
-> +					    const char *buf, size_t count)
-> +{
-> +	struct xe_hw_engine *hwe = kobj_to_hwe(kobj);
-> +	u32 duration;
-> +	int err;
-> +
-> +	err = kstrtou32(buf, 0, &duration);
-> +	if (err)
-> +		return err;
-> +
-> +	if (!capable(CAP_SYS_NICE) &&
-> +	    !engine_timeout_in_range(duration,
-> +				     XE_HW_ENGINE_TIMESLICE_MIN,
-> +				     XE_HW_ENGINE_TIMESLICE_MAX))
-> +		return -EINVAL;
-> +
-> +#ifdef CONFIG_DRM_XE_ENABLE_SCHEDTIMEOUT_LIMIT
-> +	if (CONFIG_DRM_XE_ENABLE_SCHEDTIMEOUT_LIMIT &&
-> +	    capable(CAP_SYS_NICE) &&
-> +	    !engine_timeout_in_range(duration,
-> +				     XE_HW_ENGINE_TIMESLICE_MIN,
-> +				     XE_HW_ENGINE_TIMESLICE_MAX))
-> +		return -EINVAL;
-> +#endif
-> +
-> +	WRITE_ONCE(hwe->sched_props.timeslice_max, duration);
-> +
-> +	return count;
-> +}
-> +
-> +static ssize_t timeslice_duration_max_show(struct kobject *kobj,
-> +		struct kobj_attribute *attr,
-> +		char *buf)
-> +{
-> +	struct xe_hw_engine *hwe = kobj_to_hwe(kobj);
-> +
-> +	return sprintf(buf, "%u\n", hwe->sched_props.timeslice_max);
-> +}
-> +
-> +static struct kobj_attribute timeslice_duration_max_attr =
-> +	__ATTR(timeslice_duration_max, 0644, timeslice_duration_max_show,
-> +	       timeslice_duration_max_store);
-> +
-> +static ssize_t timeslice_duration_min_store(struct kobject *kobj,
-> +					    struct kobj_attribute *attr,
-> +					    const char *buf, size_t count)
-> +{
-> +	struct xe_hw_engine *hwe = kobj_to_hwe(kobj);
-> +	u32 duration;
-> +	int err;
-> +
-> +	err = kstrtou32(buf, 0, &duration);
-> +	if (err)
-> +		return err;
-> +
-> +	if (!capable(CAP_SYS_NICE) &&
-> +	    !engine_timeout_in_range(duration,
-> +				     XE_HW_ENGINE_TIMESLICE_MIN,
-> +				     XE_HW_ENGINE_TIMESLICE_MAX))
-> +		return -EINVAL;
-> +
-> +#ifdef CONFIG_DRM_XE_ENABLE_SCHEDTIMEOUT_LIMIT
-> +	if (CONFIG_DRM_XE_ENABLE_SCHEDTIMEOUT_LIMIT &&
-> +	    capable(CAP_SYS_NICE) &&
-> +	    !engine_timeout_in_range(duration,
-> +				     XE_HW_ENGINE_TIMESLICE_MIN,
-> +				     XE_HW_ENGINE_TIMESLICE_MAX))
-> +		return -EINVAL;
-> +#endif
-> +
-> +	WRITE_ONCE(hwe->sched_props.timeslice_min, duration);
-> +
-> +	return count;
-> +}
-> +
-> +static ssize_t timeslice_duration_min_show(struct kobject *kobj,
-> +					   struct kobj_attribute *attr, char *buf)
-> +{
-> +	struct xe_hw_engine *hwe = kobj_to_hwe(kobj);
-> +
-> +	return sprintf(buf, "%u\n", hwe->sched_props.timeslice_min);
-> +}
-> +
-> +static struct kobj_attribute timeslice_duration_min_attr =
-> +	__ATTR(timeslice_duration_min, 0644, timeslice_duration_min_show,
-> +	       timeslice_duration_min_store);
-> +
->  static ssize_t timeslice_duration_show(struct kobject *kobj,
->  		struct kobj_attribute *attr, char *buf)
->  {
-> @@ -110,7 +336,7 @@ static ssize_t timeslice_duration_show(struct kobject *kobj,
->  }
->  
->  static struct kobj_attribute timeslice_duration_attr =
-> -	__ATTR(timeslice_duration_us, 0644, timeslice_duration_show, 
-> +	__ATTR(timeslice_duration_us, 0644, timeslice_duration_show,
->  	       timeslice_duration_store);
->  
->  static ssize_t timeslice_default(struct kobject *kobj,
-> @@ -124,6 +350,28 @@ static ssize_t timeslice_default(struct kobject *kobj,
->  static struct kobj_attribute timeslice_duration_def =
->  __ATTR(timeslice_duration_us, 0444, timeslice_default, NULL);
->  
-> +static ssize_t timeslice_min_default(struct kobject *kobj,
-> +				     struct kobj_attribute *attr, char *buf)
-> +{
-> +	struct xe_hw_engine *hwe = kobj_to_hwe(kobj->parent);
-> +
-> +	return sprintf(buf, "%u\n", hwe->defaults.timeslice_min);
-> +}
-> +
-> +static struct kobj_attribute timeslice_duration_min_def =
-> +__ATTR(timeslice_duration_min, 0444, timeslice_min_default, NULL);
-> +
-> +static ssize_t timeslice_max_default(struct kobject *kobj,
-> +				     struct kobj_attribute *attr, char *buf)
-> +{
-> +	struct xe_hw_engine *hwe = kobj_to_hwe(kobj->parent);
-> +
-> +	return sprintf(buf, "%u\n", hwe->defaults.timeslice_max);
-> +}
-> +
-> +static struct kobj_attribute timeslice_duration_max_def =
-> +__ATTR(timeslice_duration_max, 0444, timeslice_max_default, NULL);
-> +
->  static ssize_t preempt_timeout_store(struct kobject *kobj,
->  				     struct kobj_attribute *attr,
->  				     const char *buf, size_t count)
-> @@ -136,8 +384,20 @@ static ssize_t preempt_timeout_store(struct kobject *kobj,
->  	if (err)
->  		return err;
->  
-> -	if (timeout > jiffies_to_usecs(MAX_SCHEDULE_TIMEOUT))
-> +	if (!capable(CAP_SYS_NICE) &&
-> +	    !engine_timeout_in_range(timeout,
-> +				     hwe->sched_props.preempt_timeout_min,
-> +				     hwe->sched_props.preempt_timeout_max))
-> +		return -EINVAL;
-> +
-> +#ifdef CONFIG_DRM_XE_ENABLE_SCHEDTIMEOUT_LIMIT
-> +	if (CONFIG_DRM_XE_ENABLE_SCHEDTIMEOUT_LIMIT &&
-> +	    capable(CAP_SYS_NICE) &&
-> +	    !engine_timeout_in_range(timeout,
-> +				     XE_HW_ENGINE_PREEMPT_TIMEOUT_MIN,
-> +				     XE_HW_ENGINE_PREEMPT_TIMEOUT_MAX))
->  		return -EINVAL;
-> +#endif
->  
->  	WRITE_ONCE(hwe->sched_props.preempt_timeout_us, timeout);
->  
-> @@ -167,17 +427,141 @@ static ssize_t preempt_timeout_default(struct kobject *kobj,
->  static struct kobj_attribute preempt_timeout_def =
->  __ATTR(preempt_timeout_us, 0444, preempt_timeout_default, NULL);
->  
-> +static ssize_t preempt_timeout_min_default(struct kobject *kobj,
-> +					   struct kobj_attribute *attr,
-> +					   char *buf)
-> +{
-> +	struct xe_hw_engine *hwe = kobj_to_hwe(kobj->parent);
-> +
-> +	return sprintf(buf, "%u\n", hwe->defaults.preempt_timeout_min);
-> +}
-> +
-> +static struct kobj_attribute preempt_timeout_min_def =
-> +__ATTR(preempt_timeout_min, 0444, preempt_timeout_min_default, NULL);
-> +
-> +static ssize_t preempt_timeout_max_default(struct kobject *kobj,
-> +					   struct kobj_attribute *attr,
-> +					   char *buf)
-> +{
-> +	struct xe_hw_engine *hwe = kobj_to_hwe(kobj->parent);
-> +
-> +	return sprintf(buf, "%u\n", hwe->defaults.preempt_timeout_max);
-> +}
-> +
-> +static struct kobj_attribute preempt_timeout_max_def =
-> +__ATTR(preempt_timeout_max, 0444, preempt_timeout_max_default, NULL);
-> +
-> +static ssize_t preempt_timeout_max_store(struct kobject *kobj,
-> +					 struct kobj_attribute *attr,
-> +					 const char *buf, size_t count)
-> +{
-> +	struct xe_hw_engine *hwe = kobj_to_hwe(kobj);
-> +	u32 timeout;
-> +	int err;
-> +
-> +	err = kstrtou32(buf, 0, &timeout);
-> +	if (err)
-> +		return err;
-> +
-> +	if (!capable(CAP_SYS_NICE) &&
-> +	    !engine_timeout_in_range(timeout,
-> +				     XE_HW_ENGINE_PREEMPT_TIMEOUT_MIN,
-> +				     XE_HW_ENGINE_PREEMPT_TIMEOUT_MAX))
-> +		return -EINVAL;
-> +
-> +#ifdef CONFIG_DRM_XE_ENABLE_SCHEDTIMEOUT_LIMIT
-> +	if (CONFIG_DRM_XE_ENABLE_SCHEDTIMEOUT_LIMIT &&
-> +	    capable(CAP_SYS_NICE) &&
-> +	    !engine_timeout_in_range(timeout,
-> +				     XE_HW_ENGINE_PREEMPT_TIMEOUT_MIN,
-> +				     XE_HW_ENGINE_PREEMPT_TIMEOUT_MAX))
-> +		return -EINVAL;
-> +#endif
-> +
-> +	WRITE_ONCE(hwe->sched_props.preempt_timeout_max, timeout);
-> +
-> +	return count;
-> +}
-> +
-> +static ssize_t preempt_timeout_max_show(struct kobject *kobj,
-> +					struct kobj_attribute *attr, char *buf)
-> +{
-> +	struct xe_hw_engine *hwe = kobj_to_hwe(kobj);
-> +
-> +	return sprintf(buf, "%u\n", hwe->sched_props.preempt_timeout_max);
-> +}
-> +
-> +static struct kobj_attribute preempt_timeout_max_attr =
-> +	__ATTR(preempt_timeout_max, 0644, preempt_timeout_max_show,
-> +	       preempt_timeout_max_store);
-> +
-> +static ssize_t preempt_timeout_min_store(struct kobject *kobj,
-> +					 struct kobj_attribute *attr,
-> +					 const char *buf, size_t count)
-> +{
-> +	struct xe_hw_engine *hwe = kobj_to_hwe(kobj);
-> +	u32 timeout;
-> +	int err;
-> +
-> +	err = kstrtou32(buf, 0, &timeout);
-> +	if (err)
-> +		return err;
-> +
-> +	if (!capable(CAP_SYS_NICE) &&
-> +	    !engine_timeout_in_range(timeout,
-> +				     XE_HW_ENGINE_PREEMPT_TIMEOUT_MIN,
-> +				     XE_HW_ENGINE_PREEMPT_TIMEOUT_MAX))
-> +		return -EINVAL;
-> +
-> +#ifdef CONFIG_DRM_XE_ENABLE_SCHEDTIMEOUT_LIMIT
-> +	if (CONFIG_DRM_XE_ENABLE_SCHEDTIMEOUT_LIMIT &&
-> +	    capable(CAP_SYS_NICE) &&
-> +	    !engine_timeout_in_range(timeout,
-> +				     XE_HW_ENGINE_PREEMPT_TIMEOUT_MIN,
-> +				     XE_HW_ENGINE_PREEMPT_TIMEOUT_MAX))
-> +		return -EINVAL;
-> +#endif
-> +
-> +	WRITE_ONCE(hwe->sched_props.preempt_timeout_min, timeout);
-> +
-> +	return count;
-> +}
-> +
-> +static ssize_t preempt_timeout_min_show(struct kobject *kobj,
-> +					struct kobj_attribute *attr, char *buf)
-> +{
-> +	struct xe_hw_engine *hwe = kobj_to_hwe(kobj);
-> +
-> +	return sprintf(buf, "%u\n", hwe->sched_props.preempt_timeout_min);
-> +}
-> +
-> +static struct kobj_attribute preempt_timeout_min_attr =
-> +	__ATTR(preempt_timeout_min, 0644, preempt_timeout_min_show,
-> +	       preempt_timeout_min_store);
-> +
->  static const struct attribute *defaults[] = {
->  	&job_timeout_def.attr,
-> +	&job_timeout_min_def.attr,
-> +	&job_timeout_max_def.attr,
->  	&timeslice_duration_def.attr,
-> +	&timeslice_duration_min_def.attr,
-> +	&timeslice_duration_max_def.attr,
->  	&preempt_timeout_def.attr,
-> +	&preempt_timeout_min_def.attr,
-> +	&preempt_timeout_max_def.attr,
->  	NULL
->  };
->  
->  static const struct attribute *files[] = {
->  	&job_timeout_attr.attr,
-> +	&job_timeout_min_attr.attr,
-> +	&job_timeout_max_attr.attr,
->  	&timeslice_duration_attr.attr,
-> +	&timeslice_duration_min_attr.attr,
-> +	&timeslice_duration_max_attr.attr,
->  	&preempt_timeout_attr.attr,
-> +	&preempt_timeout_min_attr.attr,
-> +	&preempt_timeout_max_attr.attr,
->  	NULL
->  };
->  
-> diff --git a/drivers/gpu/drm/xe/xe_engine_class_sysfs.h b/drivers/gpu/drm/xe/xe_engine_class_sysfs.h
-> index 492a84a22c30..7b4ae8b726a3 100644
-> --- a/drivers/gpu/drm/xe/xe_engine_class_sysfs.h
-> +++ b/drivers/gpu/drm/xe/xe_engine_class_sysfs.h
-> @@ -10,6 +10,7 @@
->  
->  #define MAX_ENGINE_CLASS_NAME_LEN    16
->  int xe_engine_class_sysfs_init(struct xe_gt *gt);
-> +bool engine_timeout_in_range(u64 timeout, u64 min, u64 max);
->  
->  /**
->   * struct kobj_hwe - A hwe's kobject struct that connects the kobject and the
-> diff --git a/drivers/gpu/drm/xe/xe_hw_engine.c b/drivers/gpu/drm/xe/xe_hw_engine.c
-> index 0a254a59735d..2951fa999520 100644
-> --- a/drivers/gpu/drm/xe/xe_hw_engine.c
-> +++ b/drivers/gpu/drm/xe/xe_hw_engine.c
-> @@ -363,8 +363,14 @@ static void hw_engine_init_early(struct xe_gt *gt, struct xe_hw_engine *hwe,
->  	hwe->engine_id = id;
->  	/* FIXME: Wire up to configurable default value */
->  	hwe->sched_props.job_timeout_ms = HZ * 5;
-> +	hwe->sched_props.job_timeout_min = XE_HW_ENGINE_JOB_TIMEOUT_MIN;
-> +	hwe->sched_props.job_timeout_max = XE_HW_ENGINE_JOB_TIMEOUT_MAX;
->  	hwe->sched_props.timeslice_us = 1 * 1000;
-> +	hwe->sched_props.timeslice_min = XE_HW_ENGINE_TIMESLICE_MIN;
-> +	hwe->sched_props.timeslice_max = XE_HW_ENGINE_TIMESLICE_MAX;
->  	hwe->sched_props.preempt_timeout_us = 640 * 1000;
-> +	hwe->sched_props.preempt_timeout_min = XE_HW_ENGINE_PREEMPT_TIMEOUT_MIN;
-> +	hwe->sched_props.preempt_timeout_max = XE_HW_ENGINE_PREEMPT_TIMEOUT_MAX;
->  	hwe->defaults = hwe->sched_props; /* Record default props */
->  
->  	xe_reg_sr_init(&hwe->reg_sr, hwe->name, gt_to_xe(gt));
-> diff --git a/drivers/gpu/drm/xe/xe_hw_engine.h b/drivers/gpu/drm/xe/xe_hw_engine.h
-> index 7eca9d53c7b1..3d37d6d44261 100644
-> --- a/drivers/gpu/drm/xe/xe_hw_engine.h
-> +++ b/drivers/gpu/drm/xe/xe_hw_engine.h
-> @@ -10,6 +10,37 @@
->  
->  struct drm_printer;
->  
-> +#ifdef CONFIG_DRM_XE_JOB_TIMEOUT_MIN
-> +#define XE_HW_ENGINE_JOB_TIMEOUT_MIN CONFIG_DRM_XE_JOB_TIMEOUT_MIN
-> +#else
-> +#define XE_HW_ENGINE_JOB_TIMEOUT_MIN 1
-> +#endif
-> +#ifdef CONFIG_DRM_XE_JOB_TIMEOUT_MAX
-> +#define XE_HW_ENGINE_JOB_TIMEOUT_MAX CONFIG_DRM_XE_JOB_TIMEOUT_MAX
-> +#else
-> +#define XE_HW_ENGINE_JOB_TIMEOUT_MAX (10 * 1000)
-> +#endif
-> +#ifdef CONFIG_DRM_XE_TIMESLICE_MIN
-> +#define XE_HW_ENGINE_TIMESLICE_MIN CONFIG_DRM_XE_TIMESLICE_MIN
-> +#else
-> +#define XE_HW_ENGINE_TIMESLICE_MIN 1
-> +#endif
-> +#ifdef CONFIG_DRM_XE_TIMESLICE_MAX
-> +#define XE_HW_ENGINE_TIMESLICE_MAX CONFIG_DRM_XE_TIMESLICE_MAX
-> +#else
-> +#define XE_HW_ENGINE_TIMESLICE_MAX (10 * 1000 * 1000)
-> +#endif
-> +#ifdef CONFIG_DRM_XE_PREEMPT_TIMEOUT_MIN
-> +#define XE_HW_ENGINE_PREEMPT_TIMEOUT_MIN CONFIG_DRM_XE_PREEMPT_TIMEOUT_MIN
-> +#else
-> +#define XE_HW_ENGINE_PREEMPT_TIMEOUT_MIN 1
-> +#endif
-> +#ifdef CONFIG_DRM_XE_PREEMPT_TIMEOUT_MAX
-> +#define XE_HW_ENGINE_PREEMPT_TIMEOUT_MAX CONFIG_DRM_XE_PREEMPT_TIMEOUT_MAX
-> +#else
-> +#define XE_HW_ENGINE_PREEMPT_TIMEOUT_MAX (10 * 1000 * 1000)
-> +#endif
-> +
->  int xe_hw_engines_init_early(struct xe_gt *gt);
->  int xe_hw_engines_init(struct xe_gt *gt);
->  void xe_hw_engine_handle_irq(struct xe_hw_engine *hwe, u16 intr_vec);
-> diff --git a/drivers/gpu/drm/xe/xe_hw_engine_types.h b/drivers/gpu/drm/xe/xe_hw_engine_types.h
-> index 167a13fac3c5..f3bd9a5a468f 100644
-> --- a/drivers/gpu/drm/xe/xe_hw_engine_types.h
-> +++ b/drivers/gpu/drm/xe/xe_hw_engine_types.h
-> @@ -114,10 +114,22 @@ struct xe_hw_engine {
->  	struct {
->  		/** @set_job_timeout: Set job timeout in ms for engine */
->  		u32 job_timeout_ms;
-> +		/** @job_timeout_min: Min job timeout in ms for engine */
-> +		u32 job_timeout_min;
-> +		/** @job_timeout_max: Max job timeout in ms for engine */
-> +		u32 job_timeout_max;
->  		/** @timeslice_us: timeslice period in micro-seconds */
->  		u32 timeslice_us;
-> +		/** @timeslice_min: min timeslice period in micro-seconds */
-> +		u32 timeslice_min;
-> +		/** @timeslice_max: max timeslice period in micro-seconds */
-> +		u32 timeslice_max;
->  		/** @preempt_timeout_us: preemption timeout in micro-seconds */
->  		u32 preempt_timeout_us;
-> +		/** @preempt_timeout_min: min preemption timeout in micro-seconds */
-> +		u32 preempt_timeout_min;
-> +		/** @preempt_timeout_max: max preemption timeout in micro-seconds */
-> +		u32 preempt_timeout_max;
->  	} sched_props, defaults;
->  };
->  
+>  Userptr integration and vm_bind
+>  -------------------------------
 > -- 
-> 2.25.1
+> 2.40.1
 > 
