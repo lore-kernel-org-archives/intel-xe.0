@@ -4,31 +4,30 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id E925FEB64DA
-	for <intel-xe@archiver.kernel.org>; Thu, 20 Jul 2023 21:54:18 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 81658EB64DA
+	for <intel-xe@archiver.kernel.org>; Thu, 20 Jul 2023 22:28:38 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id BCC9610E1A9;
-	Thu, 20 Jul 2023 21:54:18 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 27A5010E1C2;
+	Thu, 20 Jul 2023 22:28:38 +0000 (UTC)
 Received: from emeril.freedesktop.org (emeril.freedesktop.org
  [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id BCC5D10E1A9;
- Thu, 20 Jul 2023 21:54:16 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTP id 99F3910E1C2;
+ Thu, 20 Jul 2023 22:28:35 +0000 (UTC)
 Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id BB293AADED;
- Thu, 20 Jul 2023 21:54:16 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+ by emeril.freedesktop.org (Postfix) with ESMTP id 8B297A0093;
+ Thu, 20 Jul 2023 22:28:35 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============5141677488206515566=="
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: "Matthew Brost" <matthew.brost@intel.com>
-Date: Thu, 20 Jul 2023 21:54:16 -0000
-Message-ID: <168989005676.20753.18094683232898909967@emeril.freedesktop.org>
+Date: Thu, 20 Jul 2023 22:28:35 -0000
+Message-ID: <168989211553.20752.7465819764289325833@emeril.freedesktop.org>
 X-Patchwork-Hint: ignore
 References: <20230720214345.203464-1-matthew.brost@intel.com>
 In-Reply-To: <20230720214345.203464-1-matthew.brost@intel.com>
-Subject: [Intel-xe] =?utf-8?q?=E2=9C=93_CI=2Echecksparse=3A_success_for_s?=
- =?utf-8?q?eries_starting_with_=5B1/7=5D_drm/xe=3A_Remove_xe=5Fvma=5Fop=5F?=
- =?utf-8?q?unmap?=
+Subject: [Intel-xe] =?utf-8?q?=E2=97=8B_CI=2EBAT=3A_info_for_series_start?=
+ =?utf-8?q?ing_with_=5B1/7=5D_drm/xe=3A_Remove_xe=5Fvma=5Fop=5Funmap?=
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -45,33 +44,67 @@ Cc: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
+--===============5141677488206515566==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
 == Series Details ==
 
 Series: series starting with [1/7] drm/xe: Remove xe_vma_op_unmap
 URL   : https://patchwork.freedesktop.org/series/121076/
-State : success
+State : info
 
 == Summary ==
 
-+ trap cleanup EXIT
-+ KERNEL=/kernel
-+ MT=/root/linux/maintainer-tools
-+ git clone https://gitlab.freedesktop.org/drm/maintainer-tools /root/linux/maintainer-tools
-Cloning into '/root/linux/maintainer-tools'...
-warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
-+ make -C /root/linux/maintainer-tools
-make: Entering directory '/root/linux/maintainer-tools'
-cc -O2 -g -Wextra -o remap-log remap-log.c
-make: Leaving directory '/root/linux/maintainer-tools'
-+ cd /kernel
-+ git config --global --add safe.directory /kernel
-+ /root/linux/maintainer-tools/dim sparse --fast 9cca38d116f01ccc2589c376d1b842e3240e7584
-Sparse version: 0.6.1 (Ubuntu: 0.6.1-2build1)
-Fast mode used, each commit won't be checked separately.
-Okay!
-
-+ cleanup
-++ stat -c %u:%g /kernel
-+ chown -R 1003:1003 /kernel
+Participating hosts:
+bat-pvc-2
+bat-atsm-2
+bat-dg2-oem2
+bat-adlp-7
+Missing hosts results[1]:
+bat-pvc-2
+Results: [xe-pw-121076v1](https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-121076v1/index.html)
 
 
+
+--===============5141677488206515566==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>series starting with [1/7] drm/xe: Remove xe_vma_op_unmap</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/121076/">https://patchwork.freedesktop.org/series/121076/</a></td></tr>
+<tr><td><b>State:</b></td><td>info</td></tr>
+
+</table>
+
+
+    <p>Participating hosts:<br />
+bat-pvc-2<br />
+bat-atsm-2<br />
+bat-dg2-oem2<br />
+bat-adlp-7<br />
+Missing hosts results[1]:<br />
+bat-pvc-2<br />
+Results: <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-121076v1/index.html">xe-pw-121076v1</a></p>
+
+</body>
+</html>
+
+--===============5141677488206515566==--
