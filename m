@@ -4,31 +4,48 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 723B7EB64DA
-	for <intel-xe@archiver.kernel.org>; Thu, 20 Jul 2023 05:07:25 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id B2AA9EB64DC
+	for <intel-xe@archiver.kernel.org>; Thu, 20 Jul 2023 05:12:13 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4C13A10E552;
-	Thu, 20 Jul 2023 05:07:25 +0000 (UTC)
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id 6A97F10E552;
- Thu, 20 Jul 2023 05:07:23 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 6A06EA7DFF;
- Thu, 20 Jul 2023 05:07:23 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6EB7810E553;
+	Thu, 20 Jul 2023 05:12:13 +0000 (UTC)
+Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9871610E552
+ for <intel-xe@lists.freedesktop.org>; Thu, 20 Jul 2023 05:12:11 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1689829931; x=1721365931;
+ h=from:to:cc:subject:date:message-id:in-reply-to:
+ references:mime-version:content-transfer-encoding;
+ bh=RC/D1ECuQro84SAhGulypG45SsP8r0Y8kTFIapyYAHk=;
+ b=O9GI1fe/dnsGFx7ScjOny85X9Ov46BqHAyeIT7AUZAlLVcc44pBjp8hI
+ TIYdpdQhGqDFR/2SQVZr5dBRIMnwewytkwYWLfHSP/rqn4NCoo3ybOya8
+ jJpMoq3n3+UVGV5yFY8uIgEOfzaIfj/CkG64Y5hgs5RoB3ylKnHrBVXiX
+ Almk88iyqeKoerlzZv7+KUa3K3AoEHp/f8Umv8tarDJykcWcioLDyY2Bx
+ ecrzF+vrtXyzzL2GjwZ96X7NeEWz4BxGLJsjZ3jX5HV5DzjARTiEfDnMD
+ tA04X9xcG81mVHubkOsugIAjwx0yqPDCeKQDqRMTnrSFPOVlP0z9dWo2z w==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10776"; a="397507956"
+X-IronPort-AV: E=Sophos;i="6.01,216,1684825200"; d="scan'208";a="397507956"
+Received: from orsmga006.jf.intel.com ([10.7.209.51])
+ by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 19 Jul 2023 22:12:10 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6600,9927,10776"; a="701494751"
+X-IronPort-AV: E=Sophos;i="6.01,216,1684825200"; d="scan'208";a="701494751"
+Received: from lstrano-desk.jf.intel.com ([10.24.89.184])
+ by orsmga006-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 19 Jul 2023 22:12:10 -0700
+From: Matthew Brost <matthew.brost@intel.com>
+To: <intel-xe@lists.freedesktop.org>
+Date: Wed, 19 Jul 2023 22:12:04 -0700
+Message-Id: <20230720051204.191435-2-matthew.brost@intel.com>
+X-Mailer: git-send-email 2.34.1
+In-Reply-To: <20230720051204.191435-1-matthew.brost@intel.com>
+References: <20230720051204.191435-1-matthew.brost@intel.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Matthew Brost" <matthew.brost@intel.com>
-Date: Thu, 20 Jul 2023 05:07:23 -0000
-Message-ID: <168982964343.20751.9040755443253572647@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20230720045929.136543-1-matthew.brost@intel.com>
-In-Reply-To: <20230720045929.136543-1-matthew.brost@intel.com>
-Subject: [Intel-xe] =?utf-8?q?=E2=9C=97_CI=2EHooks=3A_failure_for_series_?=
- =?utf-8?q?starting_with_=5B1/2=5D_drm/xe=3A_Introduce_a_range-fence_utili?=
- =?utf-8?q?ty?=
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+Subject: [Intel-xe] [PATCH 2/2] drm/xe: Make bind engines safe
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -40,365 +57,371 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
-Cc: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-== Series Details ==
+We currently have a race between bind engines which can result in
+corrupted page tables leading to faults.
 
-Series: series starting with [1/2] drm/xe: Introduce a range-fence utility
-URL   : https://patchwork.freedesktop.org/series/121018/
-State : failure
+A simple example:
+bind A 0x0000-0x1000, engine A, has unsatisfied in-fence
+bind B 0x1000-0x2000, engine B, no in-fences
+exec A uses 0x1000-0x2000
 
-== Summary ==
+Bind B will pass bind A and exec A will fault. This occurs as bind A
+programs the root of the page table in a bind job which is held up by an
+in-fence. Bind B in this case just programs a leaf entry of the
+structure.
 
-run-parts: executing /workspace/ci/hooks/00-showenv
-+ pwd
-+ ls -la
-/workspace
-total 496
-drwxrwxr-x 10 1003 1003   4096 Jul 20 05:07 .
-drwxr-xr-x  1 root root   4096 Jul 20 05:07 ..
--rw-rw-r--  1 1003 1003 389631 Jul 20 05:06 build.log
--rw-rw-r--  1 1003 1003   2512 Jul 20 05:01 checkpatch.log
-drwxrwxr-x  5 1003 1003   4096 Jul 20 05:00 ci
-drwxrwxr-x  9 1003 1003   4096 Jul 20 04:59 docker
-drwxrwxr-x  8 1003 1003   4096 Jul 20 05:00 .git
--rw-rw-r--  1 1003 1003    253 Jul 20 05:01 git_apply.log
-drwxrwxr-x  3 1003 1003   4096 Jul 20 04:59 .github
--rw-rw-r--  1 1003 1003    233 Jul 20 04:59 .groovylintrc.json
--rw-rw-r--  1 1003 1003     78 Jul 20 05:07 hooks.log
-drwxrwxr-x 31 1003 1003   4096 Jul 20 05:06 kernel
--rw-rw-r--  1 1003 1003  20970 Jul 20 05:01 kernel.mbox
--rw-rw-r--  1 1003 1003  26091 Jul 20 05:03 kunit.log
-drwxrwxr-x 45 1003 1003   4096 Jul 20 04:59 pipelines
--rw-rw-r--  1 1003 1003    793 Jul 20 04:59 README.adoc
-drwxrwxr-x  3 1003 1003   4096 Jul 20 04:59 scripts
-drwxrwxr-x  2 1003 1003   4096 Jul 20 04:59 .vscode
-+ uname -a
-Linux ca29dc4526ce 5.4.0-149-generic #166-Ubuntu SMP Tue Apr 18 16:51:45 UTC 2023 x86_64 x86_64 x86_64 GNU/Linux
-+ export
-+ grep -Ei '(^|\W)CI_'
-declare -x CI_KERNEL_BUILD_DIR="/workspace/kernel/build64"
-declare -x CI_KERNEL_IMAGES_DIR="/workspace/kernel/archive/boot"
-declare -x CI_KERNEL_MODULES_DIR="/workspace/kernel/archive"
-declare -x CI_KERNEL_SRC_DIR="/workspace/kernel"
-declare -x CI_SRC_DIR="/workspace/kernel"
-declare -x CI_TOOLS_SRC_DIR="/workspace/ci"
-declare -x CI_WORKSPACE_DIR="/workspace"
-+ '[' -n /workspace ']'
-+ git_args='-C /workspace/kernel'
-+ git_log_args=
-+ git --no-pager -C /workspace/kernel log --format=oneline --abbrev-commit
-3e774e49e drm/xe: Make bind engines safe
-8a157c5f2 drm/xe: Introduce a range-fence utility
-f5459dca4 drm/xe: Cleanup style warnings and errors
-run-parts: executing /workspace/ci/hooks/10-build-W1
-+ SRC_DIR=/workspace/kernel
-+ RESTORE_DISPLAY_CONFIG=0
-+ '[' -n /workspace/kernel/build64 ']'
-+ BUILD_DIR=/workspace/kernel/build64
-+ cd /workspace/kernel
-+ grep -q -e '^CONFIG_DRM_XE_DISPLAY=[yY]' /workspace/kernel/build64/.config
-+ RESTORE_DISPLAY_CONFIG=1
-+ trap cleanup EXIT
-+ ./scripts/config --file /workspace/kernel/build64/.config --disable CONFIG_DRM_XE_DISPLAY
-++ nproc
-+ make -j48 O=/workspace/kernel/build64 modules_prepare
-make[1]: Entering directory '/workspace/kernel/build64'
-  SYNC    include/config/auto.conf.cmd
-  GEN     Makefile
-  GEN     Makefile
-  UPD     include/generated/compile.h
-  UPD     include/config/kernel.release
-  UPD     include/generated/utsrelease.h
-  DESCEND objtool
-  CALL    ../scripts/checksyscalls.sh
-  HOSTCC  /workspace/kernel/build64/tools/objtool/fixdep.o
-  HOSTLD  /workspace/kernel/build64/tools/objtool/fixdep-in.o
-  LINK    /workspace/kernel/build64/tools/objtool/fixdep
-  INSTALL libsubcmd_headers
-  CC      /workspace/kernel/build64/tools/objtool/libsubcmd/exec-cmd.o
-  CC      /workspace/kernel/build64/tools/objtool/libsubcmd/help.o
-  CC      /workspace/kernel/build64/tools/objtool/libsubcmd/pager.o
-  CC      /workspace/kernel/build64/tools/objtool/libsubcmd/parse-options.o
-  CC      /workspace/kernel/build64/tools/objtool/libsubcmd/run-command.o
-  CC      /workspace/kernel/build64/tools/objtool/libsubcmd/sigchain.o
-  CC      /workspace/kernel/build64/tools/objtool/libsubcmd/subcmd-config.o
-  LD      /workspace/kernel/build64/tools/objtool/libsubcmd/libsubcmd-in.o
-  AR      /workspace/kernel/build64/tools/objtool/libsubcmd/libsubcmd.a
-  CC      /workspace/kernel/build64/tools/objtool/weak.o
-  CC      /workspace/kernel/build64/tools/objtool/check.o
-  CC      /workspace/kernel/build64/tools/objtool/special.o
-  CC      /workspace/kernel/build64/tools/objtool/builtin-check.o
-  CC      /workspace/kernel/build64/tools/objtool/elf.o
-  CC      /workspace/kernel/build64/tools/objtool/objtool.o
-  CC      /workspace/kernel/build64/tools/objtool/orc_gen.o
-  CC      /workspace/kernel/build64/tools/objtool/orc_dump.o
-  CC      /workspace/kernel/build64/tools/objtool/libstring.o
-  CC      /workspace/kernel/build64/tools/objtool/libctype.o
-  CC      /workspace/kernel/build64/tools/objtool/str_error_r.o
-  CC      /workspace/kernel/build64/tools/objtool/librbtree.o
-  CC      /workspace/kernel/build64/tools/objtool/arch/x86/special.o
-  CC      /workspace/kernel/build64/tools/objtool/arch/x86/decode.o
-  LD      /workspace/kernel/build64/tools/objtool/arch/x86/objtool-in.o
-  LD      /workspace/kernel/build64/tools/objtool/objtool-in.o
-  LINK    /workspace/kernel/build64/tools/objtool/objtool
-make[1]: Leaving directory '/workspace/kernel/build64'
-++ nproc
-+ make -j48 O=/workspace/kernel/build64 M=drivers/gpu/drm/xe W=1
-make[1]: Entering directory '/workspace/kernel/build64'
-  CC [M]  drivers/gpu/drm/xe/xe_bb.o
-  CC [M]  drivers/gpu/drm/xe/xe_bo.o
-  CC [M]  drivers/gpu/drm/xe/xe_bo_evict.o
-  CC [M]  drivers/gpu/drm/xe/xe_debugfs.o
-  CC [M]  drivers/gpu/drm/xe/xe_devcoredump.o
-  CC [M]  drivers/gpu/drm/xe/xe_device.o
-  CC [M]  drivers/gpu/drm/xe/xe_device_sysfs.o
-  CC [M]  drivers/gpu/drm/xe/xe_dma_buf.o
-  CC [M]  drivers/gpu/drm/xe/xe_engine.o
-  CC [M]  drivers/gpu/drm/xe/xe_exec.o
-  CC [M]  drivers/gpu/drm/xe/xe_execlist.o
-  CC [M]  drivers/gpu/drm/xe/xe_force_wake.o
-  CC [M]  drivers/gpu/drm/xe/xe_ggtt.o
-  CC [M]  drivers/gpu/drm/xe/xe_gt.o
-  CC [M]  drivers/gpu/drm/xe/xe_gt_clock.o
-  CC [M]  drivers/gpu/drm/xe/xe_gt_debugfs.o
-  CC [M]  drivers/gpu/drm/xe/xe_gt_idle_sysfs.o
-  CC [M]  drivers/gpu/drm/xe/xe_gt_mcr.o
-  CC [M]  drivers/gpu/drm/xe/xe_gt_pagefault.o
-  CC [M]  drivers/gpu/drm/xe/xe_gt_sysfs.o
-  CC [M]  drivers/gpu/drm/xe/xe_gt_tlb_invalidation.o
-  CC [M]  drivers/gpu/drm/xe/xe_gt_topology.o
-  HOSTCC  drivers/gpu/drm/xe/xe_gen_wa_oob
-  CC [M]  drivers/gpu/drm/xe/xe_guc_ads.o
-  CC [M]  drivers/gpu/drm/xe/xe_guc_ct.o
-  CC [M]  drivers/gpu/drm/xe/xe_guc_debugfs.o
-  CC [M]  drivers/gpu/drm/xe/xe_guc_hwconfig.o
-  CC [M]  drivers/gpu/drm/xe/xe_guc_log.o
-  CC [M]  drivers/gpu/drm/xe/xe_guc_pc.o
-  CC [M]  drivers/gpu/drm/xe/xe_guc_submit.o
-  CC [M]  drivers/gpu/drm/xe/xe_hw_engine.o
-  CC [M]  drivers/gpu/drm/xe/xe_hw_fence.o
-  CC [M]  drivers/gpu/drm/xe/xe_huc.o
-  CC [M]  drivers/gpu/drm/xe/xe_huc_debugfs.o
-  CC [M]  drivers/gpu/drm/xe/xe_irq.o
-  CC [M]  drivers/gpu/drm/xe/xe_lrc.o
-  CC [M]  drivers/gpu/drm/xe/xe_migrate.o
-  CC [M]  drivers/gpu/drm/xe/xe_mmio.o
-  CC [M]  drivers/gpu/drm/xe/xe_mocs.o
-  CC [M]  drivers/gpu/drm/xe/xe_module.o
-  CC [M]  drivers/gpu/drm/xe/xe_pat.o
-  CC [M]  drivers/gpu/drm/xe/xe_pci.o
-  CC [M]  drivers/gpu/drm/xe/xe_pcode.o
-  CC [M]  drivers/gpu/drm/xe/xe_pm.o
-  CC [M]  drivers/gpu/drm/xe/xe_preempt_fence.o
-  CC [M]  drivers/gpu/drm/xe/xe_pt.o
-  CC [M]  drivers/gpu/drm/xe/xe_pt_walk.o
-  CC [M]  drivers/gpu/drm/xe/xe_query.o
-  CC [M]  drivers/gpu/drm/xe/xe_range_fence.o
-  CC [M]  drivers/gpu/drm/xe/xe_reg_sr.o
-  CC [M]  drivers/gpu/drm/xe/xe_reg_whitelist.o
-  CC [M]  drivers/gpu/drm/xe/xe_rtp.o
-  CC [M]  drivers/gpu/drm/xe/xe_sa.o
-  CC [M]  drivers/gpu/drm/xe/xe_sched_job.o
-  CC [M]  drivers/gpu/drm/xe/xe_step.o
-  CC [M]  drivers/gpu/drm/xe/xe_sync.o
-  CC [M]  drivers/gpu/drm/xe/xe_tile.o
-  CC [M]  drivers/gpu/drm/xe/xe_tile_sysfs.o
-  CC [M]  drivers/gpu/drm/xe/xe_trace.o
-  CC [M]  drivers/gpu/drm/xe/xe_ttm_sys_mgr.o
-  CC [M]  drivers/gpu/drm/xe/xe_ttm_stolen_mgr.o
-  CC [M]  drivers/gpu/drm/xe/xe_ttm_vram_mgr.o
-  CC [M]  drivers/gpu/drm/xe/xe_tuning.o
-  CC [M]  drivers/gpu/drm/xe/xe_uc.o
-  CC [M]  drivers/gpu/drm/xe/xe_uc_debugfs.o
-  CC [M]  drivers/gpu/drm/xe/xe_uc_fw.o
-  CC [M]  drivers/gpu/drm/xe/xe_vm.o
-  CC [M]  drivers/gpu/drm/xe/xe_vm_madvise.o
-  CC [M]  drivers/gpu/drm/xe/xe_wait_user_fence.o
-  CC [M]  drivers/gpu/drm/xe/xe_wopcm.o
-  HDRTEST drivers/gpu/drm/xe/abi/guc_klvs_abi.h
-  CC [M]  drivers/gpu/drm/xe/tests/xe_bo_test.o
-  HDRTEST drivers/gpu/drm/xe/abi/guc_errors_abi.h
-  HDRTEST drivers/gpu/drm/xe/abi/guc_actions_slpc_abi.h
-  HDRTEST drivers/gpu/drm/xe/abi/guc_communication_mmio_abi.h
-  HDRTEST drivers/gpu/drm/xe/abi/guc_actions_abi.h
-  HDRTEST drivers/gpu/drm/xe/abi/guc_communication_ctb_abi.h
-  HDRTEST drivers/gpu/drm/xe/abi/guc_messages_abi.h
-  HDRTEST drivers/gpu/drm/xe/regs/xe_reg_defs.h
-  HDRTEST drivers/gpu/drm/xe/regs/xe_guc_regs.h
-  HDRTEST drivers/gpu/drm/xe/regs/xe_gt_regs.h
-  CC [M]  drivers/gpu/drm/xe/tests/xe_dma_buf_test.o
-  HDRTEST drivers/gpu/drm/xe/regs/xe_regs.h
-  CC [M]  drivers/gpu/drm/xe/tests/xe_migrate_test.o
-  HDRTEST drivers/gpu/drm/xe/regs/xe_gpu_commands.h
-  CC [M]  drivers/gpu/drm/xe/tests/xe_pci_test.o
-  HDRTEST drivers/gpu/drm/xe/regs/xe_lrc_layout.h
-  HDRTEST drivers/gpu/drm/xe/regs/xe_engine_regs.h
-  HDRTEST drivers/gpu/drm/xe/tests/xe_test.h
-  CC [M]  drivers/gpu/drm/xe/tests/xe_rtp_test.o
-  HDRTEST drivers/gpu/drm/xe/tests/xe_pci_test.h
-  CC [M]  drivers/gpu/drm/xe/tests/xe_wa_test.o
-  HDRTEST drivers/gpu/drm/xe/tests/xe_migrate_test.h
-  HDRTEST drivers/gpu/drm/xe/tests/xe_dma_buf_test.h
-  HDRTEST drivers/gpu/drm/xe/tests/xe_bo_test.h
-  HDRTEST drivers/gpu/drm/xe/xe_bb.h
-  HDRTEST drivers/gpu/drm/xe/xe_bb_types.h
-  HDRTEST drivers/gpu/drm/xe/xe_bo.h
-  HDRTEST drivers/gpu/drm/xe/xe_bo_doc.h
-  HDRTEST drivers/gpu/drm/xe/xe_bo_evict.h
-  HDRTEST drivers/gpu/drm/xe/xe_bo_types.h
-  HDRTEST drivers/gpu/drm/xe/xe_debugfs.h
-  HDRTEST drivers/gpu/drm/xe/xe_devcoredump.h
-  HDRTEST drivers/gpu/drm/xe/xe_devcoredump_types.h
-  HDRTEST drivers/gpu/drm/xe/xe_device.h
-  HDRTEST drivers/gpu/drm/xe/xe_device_sysfs.h
-  HDRTEST drivers/gpu/drm/xe/xe_device_types.h
-  HDRTEST drivers/gpu/drm/xe/xe_dma_buf.h
-  HDRTEST drivers/gpu/drm/xe/xe_drv.h
-  HDRTEST drivers/gpu/drm/xe/xe_engine.h
-  HDRTEST drivers/gpu/drm/xe/xe_engine_types.h
-  HDRTEST drivers/gpu/drm/xe/xe_exec.h
-  HDRTEST drivers/gpu/drm/xe/xe_execlist.h
-  HDRTEST drivers/gpu/drm/xe/xe_execlist_types.h
-  HDRTEST drivers/gpu/drm/xe/xe_force_wake.h
-  HDRTEST drivers/gpu/drm/xe/xe_force_wake_types.h
-  HDRTEST drivers/gpu/drm/xe/xe_ggtt.h
-  HDRTEST drivers/gpu/drm/xe/xe_ggtt_types.h
-  HDRTEST drivers/gpu/drm/xe/xe_gt.h
-  HDRTEST drivers/gpu/drm/xe/xe_gt_clock.h
-  HDRTEST drivers/gpu/drm/xe/xe_gt_debugfs.h
-  HDRTEST drivers/gpu/drm/xe/xe_gt_idle_sysfs.h
-  HDRTEST drivers/gpu/drm/xe/xe_gt_idle_sysfs_types.h
-  HDRTEST drivers/gpu/drm/xe/xe_gt_mcr.h
-  HDRTEST drivers/gpu/drm/xe/xe_gt_pagefault.h
-  HDRTEST drivers/gpu/drm/xe/xe_gt_printk.h
-  HDRTEST drivers/gpu/drm/xe/xe_gt_sysfs.h
-  HDRTEST drivers/gpu/drm/xe/xe_gt_sysfs_types.h
-  HDRTEST drivers/gpu/drm/xe/xe_gt_tlb_invalidation.h
-  HDRTEST drivers/gpu/drm/xe/xe_gt_tlb_invalidation_types.h
-  HDRTEST drivers/gpu/drm/xe/xe_gt_topology.h
-  HDRTEST drivers/gpu/drm/xe/xe_gt_types.h
-  HDRTEST drivers/gpu/drm/xe/xe_guc.h
-  HDRTEST drivers/gpu/drm/xe/xe_guc_ads.h
-  HDRTEST drivers/gpu/drm/xe/xe_guc_ads_types.h
-  HDRTEST drivers/gpu/drm/xe/xe_guc_ct.h
-  HDRTEST drivers/gpu/drm/xe/xe_guc_ct_types.h
-  HDRTEST drivers/gpu/drm/xe/xe_guc_debugfs.h
-  HDRTEST drivers/gpu/drm/xe/xe_guc_engine_types.h
-  HDRTEST drivers/gpu/drm/xe/xe_guc_fwif.h
-  HDRTEST drivers/gpu/drm/xe/xe_guc_hwconfig.h
-  HDRTEST drivers/gpu/drm/xe/xe_guc_log.h
-  HDRTEST drivers/gpu/drm/xe/xe_guc_log_types.h
-  HDRTEST drivers/gpu/drm/xe/xe_guc_pc.h
-  HDRTEST drivers/gpu/drm/xe/xe_guc_pc_types.h
-  HDRTEST drivers/gpu/drm/xe/xe_guc_submit.h
-  HDRTEST drivers/gpu/drm/xe/xe_guc_submit_types.h
-  HDRTEST drivers/gpu/drm/xe/xe_guc_types.h
-  HDRTEST drivers/gpu/drm/xe/xe_huc.h
-  HDRTEST drivers/gpu/drm/xe/xe_huc_debugfs.h
-  HDRTEST drivers/gpu/drm/xe/xe_huc_types.h
-  HDRTEST drivers/gpu/drm/xe/xe_hw_engine.h
-  HDRTEST drivers/gpu/drm/xe/xe_hw_engine_types.h
-  HDRTEST drivers/gpu/drm/xe/xe_hw_fence.h
-  HDRTEST drivers/gpu/drm/xe/xe_hw_fence_types.h
-  HDRTEST drivers/gpu/drm/xe/xe_lrc.h
-  HDRTEST drivers/gpu/drm/xe/xe_irq.h
-  HDRTEST drivers/gpu/drm/xe/xe_lrc_types.h
-  HDRTEST drivers/gpu/drm/xe/xe_macros.h
-  HDRTEST drivers/gpu/drm/xe/xe_map.h
-  HDRTEST drivers/gpu/drm/xe/xe_migrate.h
-  HDRTEST drivers/gpu/drm/xe/xe_migrate_doc.h
-  HDRTEST drivers/gpu/drm/xe/xe_mmio.h
-  HDRTEST drivers/gpu/drm/xe/xe_mocs.h
-  HDRTEST drivers/gpu/drm/xe/xe_module.h
-  HDRTEST drivers/gpu/drm/xe/xe_pat.h
-  HDRTEST drivers/gpu/drm/xe/xe_pci.h
-  HDRTEST drivers/gpu/drm/xe/xe_pci_types.h
-  HDRTEST drivers/gpu/drm/xe/xe_pcode.h
-  HDRTEST drivers/gpu/drm/xe/xe_pcode_api.h
-  HDRTEST drivers/gpu/drm/xe/xe_pm.h
-  HDRTEST drivers/gpu/drm/xe/xe_platform_types.h
-  HDRTEST drivers/gpu/drm/xe/xe_preempt_fence.h
-  HDRTEST drivers/gpu/drm/xe/xe_preempt_fence_types.h
-  HDRTEST drivers/gpu/drm/xe/xe_pt.h
-  HDRTEST drivers/gpu/drm/xe/xe_pt_types.h
-  HDRTEST drivers/gpu/drm/xe/xe_pt_walk.h
-  HDRTEST drivers/gpu/drm/xe/xe_query.h
-  HDRTEST drivers/gpu/drm/xe/xe_range_fence.h
-  HDRTEST drivers/gpu/drm/xe/xe_reg_sr.h
-  HDRTEST drivers/gpu/drm/xe/xe_reg_sr_types.h
-  HDRTEST drivers/gpu/drm/xe/xe_reg_whitelist.h
-  HDRTEST drivers/gpu/drm/xe/xe_res_cursor.h
-  HDRTEST drivers/gpu/drm/xe/xe_ring_ops.h
-  HDRTEST drivers/gpu/drm/xe/xe_ring_ops_types.h
-  HDRTEST drivers/gpu/drm/xe/xe_rtp.h
-  HDRTEST drivers/gpu/drm/xe/xe_rtp_types.h
-  HDRTEST drivers/gpu/drm/xe/xe_sa.h
-  HDRTEST drivers/gpu/drm/xe/xe_sa_types.h
-  HDRTEST drivers/gpu/drm/xe/xe_sched_job.h
-  HDRTEST drivers/gpu/drm/xe/xe_sched_job_types.h
-  HDRTEST drivers/gpu/drm/xe/xe_step.h
-  HDRTEST drivers/gpu/drm/xe/xe_step_types.h
-  HDRTEST drivers/gpu/drm/xe/xe_sync.h
-  HDRTEST drivers/gpu/drm/xe/xe_sync_types.h
-  HDRTEST drivers/gpu/drm/xe/xe_tile.h
-  HDRTEST drivers/gpu/drm/xe/xe_tile_sysfs.h
-  HDRTEST drivers/gpu/drm/xe/xe_tile_sysfs_types.h
-  HDRTEST drivers/gpu/drm/xe/xe_trace.h
-  HDRTEST drivers/gpu/drm/xe/xe_ttm_stolen_mgr.h
-  HDRTEST drivers/gpu/drm/xe/xe_ttm_sys_mgr.h
-  HDRTEST drivers/gpu/drm/xe/xe_ttm_vram_mgr.h
-  HDRTEST drivers/gpu/drm/xe/xe_ttm_vram_mgr_types.h
-  HDRTEST drivers/gpu/drm/xe/xe_tuning.h
-  HDRTEST drivers/gpu/drm/xe/xe_uc.h
-  HDRTEST drivers/gpu/drm/xe/xe_uc_debugfs.h
-  HDRTEST drivers/gpu/drm/xe/xe_uc_fw.h
-  HDRTEST drivers/gpu/drm/xe/xe_uc_fw_abi.h
-  HDRTEST drivers/gpu/drm/xe/xe_uc_fw_types.h
-  HDRTEST drivers/gpu/drm/xe/xe_uc_types.h
-  HDRTEST drivers/gpu/drm/xe/xe_vm.h
-  HDRTEST drivers/gpu/drm/xe/xe_vm_doc.h
-  HDRTEST drivers/gpu/drm/xe/xe_vm_madvise.h
-  HDRTEST drivers/gpu/drm/xe/xe_vm_types.h
-  HDRTEST drivers/gpu/drm/xe/xe_wa.h
-  HDRTEST drivers/gpu/drm/xe/xe_wait_user_fence.h
-  HDRTEST drivers/gpu/drm/xe/xe_wopcm.h
-  HDRTEST drivers/gpu/drm/xe/xe_wopcm_types.h
-  GEN     xe_wa_oob.c xe_wa_oob.h
-  GEN     xe_wa_oob.c xe_wa_oob.h
-  CC [M]  drivers/gpu/drm/xe/xe_guc.o
-  CC [M]  drivers/gpu/drm/xe/xe_ring_ops.o
-  CC [M]  drivers/gpu/drm/xe/xe_wa.o
-  LD [M]  drivers/gpu/drm/xe/xe.o
-  MODPOST drivers/gpu/drm/xe/Module.symvers
-  CC [M]  drivers/gpu/drm/xe/xe.mod.o
-  CC [M]  drivers/gpu/drm/xe/tests/xe_bo_test.mod.o
-  CC [M]  drivers/gpu/drm/xe/tests/xe_dma_buf_test.mod.o
-  CC [M]  drivers/gpu/drm/xe/tests/xe_migrate_test.mod.o
-  CC [M]  drivers/gpu/drm/xe/tests/xe_pci_test.mod.o
-  CC [M]  drivers/gpu/drm/xe/tests/xe_rtp_test.mod.o
-  CC [M]  drivers/gpu/drm/xe/tests/xe_wa_test.mod.o
-  LD [M]  drivers/gpu/drm/xe/tests/xe_bo_test.ko
-  LD [M]  drivers/gpu/drm/xe/tests/xe_migrate_test.ko
-  LD [M]  drivers/gpu/drm/xe/tests/xe_pci_test.ko
-  LD [M]  drivers/gpu/drm/xe/tests/xe_rtp_test.ko
-  LD [M]  drivers/gpu/drm/xe/xe.ko
-  LD [M]  drivers/gpu/drm/xe/tests/xe_dma_buf_test.ko
-  LD [M]  drivers/gpu/drm/xe/tests/xe_wa_test.ko
-make[1]: Leaving directory '/workspace/kernel/build64'
-+ cleanup
-+ '[' 1 -eq 1 ']'
-+ ./scripts/config --file /workspace/kernel/build64/.config --enable CONFIG_DRM_XE_DISPLAY
-run-parts: executing /workspace/ci/hooks/20-kernel-doc
-+ SRC_DIR=/workspace/kernel
-+ cd /workspace/kernel
-+ find drivers/gpu/drm/xe/ -name '*.[ch]' -not -path 'drivers/gpu/drm/xe/display/*'
-+ xargs ./scripts/kernel-doc -Werror -none include/uapi/drm/xe_drm.h
-drivers/gpu/drm/xe/xe_migrate.h:81: warning: Function parameter or member 'tile_id' not described in 'xe_migrate_pt_update'
-1 warnings as Errors
-run-parts: /workspace/ci/hooks/20-kernel-doc exited with return code 123
+To fix use range-fence utility to track cross bind engine conflicts. In
+the above example bind A would insert an dependency into the range-fence
+tree with a key of 0x0-0x7fffffffff, bind B would find that dependency
+and its bind job would scheduled behind the unsatisfied in-fence and
+bind A's job.
 
+Reviewed-by: Maarten Lankhorst<maarten.lankhorst@linux.intel.com>
+Co-developed-by: Thomas Hellström <thomas.hellstrom@linux.intel.com>
+Signed-off-by: Matthew Brost <matthew.brost@intel.com>
+---
+ drivers/gpu/drm/xe/xe_migrate.c  |   2 +
+ drivers/gpu/drm/xe/xe_migrate.h  |   8 +++
+ drivers/gpu/drm/xe/xe_pt.c       | 115 +++++++++++++++++++++++++++++++
+ drivers/gpu/drm/xe/xe_vm.c       |   8 +++
+ drivers/gpu/drm/xe/xe_vm_types.h |   7 ++
+ 5 files changed, 140 insertions(+)
+
+diff --git a/drivers/gpu/drm/xe/xe_migrate.c b/drivers/gpu/drm/xe/xe_migrate.c
+index 4c6f299fd024..bc7dac4e2086 100644
+--- a/drivers/gpu/drm/xe/xe_migrate.c
++++ b/drivers/gpu/drm/xe/xe_migrate.c
+@@ -1074,6 +1074,7 @@ xe_migrate_update_pgtables_cpu(struct xe_migrate *m,
+ 		return ERR_PTR(-ETIME);
+ 
+ 	if (ops->pre_commit) {
++		pt_update->job = NULL;
+ 		err = ops->pre_commit(pt_update);
+ 		if (err)
+ 			return ERR_PTR(err);
+@@ -1295,6 +1296,7 @@ xe_migrate_update_pgtables(struct xe_migrate *m,
+ 		goto err_job;
+ 
+ 	if (ops->pre_commit) {
++		pt_update->job = job;
+ 		err = ops->pre_commit(pt_update);
+ 		if (err)
+ 			goto err_job;
+diff --git a/drivers/gpu/drm/xe/xe_migrate.h b/drivers/gpu/drm/xe/xe_migrate.h
+index 204337ea3b4e..0d62aff6421c 100644
+--- a/drivers/gpu/drm/xe/xe_migrate.h
++++ b/drivers/gpu/drm/xe/xe_migrate.h
+@@ -69,6 +69,14 @@ struct xe_migrate_pt_update {
+ 	const struct xe_migrate_pt_update_ops *ops;
+ 	/** @vma: The vma we're updating the pagetable for. */
+ 	struct xe_vma *vma;
++	/** @job: The job if a GPU page-table update. NULL otherwise */
++	struct xe_sched_job *job;
++	/** @start: Start of update for the range fence */
++	u64 start;
++	/** @last: Last of update for the range fence */
++	u64 last;
++	/** @tile_id: Tile ID of the update */
++	u8 tile_id;
+ };
+ 
+ struct xe_migrate *xe_migrate_init(struct xe_tile *tile);
+diff --git a/drivers/gpu/drm/xe/xe_pt.c b/drivers/gpu/drm/xe/xe_pt.c
+index 851ea7c01b91..a458224a88ca 100644
+--- a/drivers/gpu/drm/xe/xe_pt.c
++++ b/drivers/gpu/drm/xe/xe_pt.c
+@@ -1116,6 +1116,53 @@ struct xe_pt_migrate_pt_update {
+ 	bool locked;
+ };
+ 
++/*
++ * This function adds the needed dependencies to a page-table update job
++ * to make sure racing jobs for separate bind engines don't race writing
++ * to the same page-table range, wreaking havoc. Initially use a single
++ * fence for the entire VM. An optimization would use smaller granularity.
++ */
++static int xe_pt_vm_dependencies(struct xe_sched_job *job,
++				 struct xe_range_fence_tree *rftree,
++				 u64 start, u64 last)
++{
++	struct xe_range_fence *rtfence;
++	struct dma_fence *fence;
++	int err;
++
++	rtfence = xe_range_fence_tree_first(rftree, start, last);
++	while (rtfence) {
++		fence = rtfence->fence;
++
++		if (!dma_fence_is_signaled(fence)) {
++			/*
++			 * Is this a CPU update? GPU is busy updating, so return
++			 * an error
++			 */
++			if (!job)
++				return -ETIME;
++
++			dma_fence_get(fence);
++			err = drm_sched_job_add_dependency(&job->drm, fence);
++			if (err)
++				return err;
++		}
++
++		rtfence = xe_range_fence_tree_next(rtfence, start, last);
++	}
++
++	return 0;
++}
++
++static int xe_pt_pre_commit(struct xe_migrate_pt_update *pt_update)
++{
++	struct xe_range_fence_tree *rftree =
++		&xe_vma_vm(pt_update->vma)->rftree[pt_update->tile_id];
++
++	return xe_pt_vm_dependencies(pt_update->job, rftree,
++				     pt_update->start, pt_update->last);
++}
++
+ static int xe_pt_userptr_pre_commit(struct xe_migrate_pt_update *pt_update)
+ {
+ 	struct xe_pt_migrate_pt_update *userptr_update =
+@@ -1123,6 +1170,13 @@ static int xe_pt_userptr_pre_commit(struct xe_migrate_pt_update *pt_update)
+ 	struct xe_vma *vma = pt_update->vma;
+ 	unsigned long notifier_seq = vma->userptr.notifier_seq;
+ 	struct xe_vm *vm = xe_vma_vm(vma);
++	int err = xe_pt_vm_dependencies(pt_update->job,
++					&vm->rftree[pt_update->tile_id],
++					pt_update->start,
++					pt_update->last);
++
++	if (err)
++		return err;
+ 
+ 	userptr_update->locked = false;
+ 
+@@ -1161,6 +1215,7 @@ static int xe_pt_userptr_pre_commit(struct xe_migrate_pt_update *pt_update)
+ 
+ static const struct xe_migrate_pt_update_ops bind_ops = {
+ 	.populate = xe_vm_populate_pgtable,
++	.pre_commit = xe_pt_pre_commit,
+ };
+ 
+ static const struct xe_migrate_pt_update_ops userptr_bind_ops = {
+@@ -1258,6 +1313,27 @@ static int invalidation_fence_init(struct xe_gt *gt,
+ 	return ret && ret != -ENOENT ? ret : 0;
+ }
+ 
++static void xe_pt_calc_rfence_interval(struct xe_vma *vma,
++				       struct xe_pt_migrate_pt_update *update,
++				       struct xe_vm_pgtable_update *entries,
++				       u32 num_entries)
++{
++	int i, level = 0;
++
++	for (i = 0; i < num_entries; i++) {
++		const struct xe_vm_pgtable_update *entry = &entries[i];
++
++		if (entry->pt->level > level)
++			level = entry->pt->level;
++	}
++
++	/* Greedy (non-optimal) calculation but simple */
++	update->base.start = ALIGN_DOWN(xe_vma_start(vma),
++					0x1ull << xe_pt_shift(level));
++	update->base.last = ALIGN(xe_vma_end(vma),
++				  0x1ull << xe_pt_shift(level)) - 1;
++}
++
+ /**
+  * __xe_pt_bind_vma() - Build and connect a page-table tree for the vma
+  * address range.
+@@ -1290,6 +1366,7 @@ __xe_pt_bind_vma(struct xe_tile *tile, struct xe_vma *vma, struct xe_engine *e,
+ 		.base = {
+ 			.ops = xe_vma_is_userptr(vma) ? &userptr_bind_ops : &bind_ops,
+ 			.vma = vma,
++			.tile_id = tile->id,
+ 		},
+ 		.bind = true,
+ 	};
+@@ -1297,6 +1374,7 @@ __xe_pt_bind_vma(struct xe_tile *tile, struct xe_vma *vma, struct xe_engine *e,
+ 	u32 num_entries;
+ 	struct dma_fence *fence;
+ 	struct invalidation_fence *ifence = NULL;
++	struct xe_range_fence *rfence;
+ 	int err;
+ 
+ 	bind_pt_update.locked = false;
+@@ -1313,6 +1391,8 @@ __xe_pt_bind_vma(struct xe_tile *tile, struct xe_vma *vma, struct xe_engine *e,
+ 	XE_BUG_ON(num_entries > ARRAY_SIZE(entries));
+ 
+ 	xe_vm_dbg_print_entries(tile_to_xe(tile), entries, num_entries);
++	xe_pt_calc_rfence_interval(vma, &bind_pt_update, entries,
++				   num_entries);
+ 
+ 	/*
+ 	 * If rebind, we have to invalidate TLB on !LR vms to invalidate
+@@ -1333,6 +1413,12 @@ __xe_pt_bind_vma(struct xe_tile *tile, struct xe_vma *vma, struct xe_engine *e,
+ 			return ERR_PTR(-ENOMEM);
+ 	}
+ 
++	rfence = kzalloc(sizeof(*rfence), GFP_KERNEL);
++	if (!rfence) {
++		kfree(ifence);
++		return ERR_PTR(-ENOMEM);
++	}
++
+ 	fence = xe_migrate_update_pgtables(tile->migrate,
+ 					   vm, xe_vma_bo(vma),
+ 					   e ? e : vm->eng[tile->id],
+@@ -1342,6 +1428,14 @@ __xe_pt_bind_vma(struct xe_tile *tile, struct xe_vma *vma, struct xe_engine *e,
+ 	if (!IS_ERR(fence)) {
+ 		bool last_munmap_rebind = vma->gpuva.flags & XE_VMA_LAST_REBIND;
+ 		LLIST_HEAD(deferred);
++		int err;
++
++		err = xe_range_fence_insert(&vm->rftree[tile->id], rfence,
++					    &xe_range_fence_kfree_ops,
++					    bind_pt_update.base.start,
++					    bind_pt_update.base.last, fence);
++		if (err)
++			dma_fence_wait(fence, false);
+ 
+ 		/* TLB invalidation must be done before signaling rebind */
+ 		if (ifence) {
+@@ -1380,6 +1474,7 @@ __xe_pt_bind_vma(struct xe_tile *tile, struct xe_vma *vma, struct xe_engine *e,
+ 			queue_work(vm->xe->ordered_wq,
+ 				   &vm->preempt.rebind_work);
+ 	} else {
++		kfree(rfence);
+ 		kfree(ifence);
+ 		if (bind_pt_update.locked)
+ 			up_read(&vm->userptr.notifier_lock);
+@@ -1589,6 +1684,7 @@ xe_pt_commit_unbind(struct xe_vma *vma,
+ 
+ static const struct xe_migrate_pt_update_ops unbind_ops = {
+ 	.populate = xe_migrate_clear_pgtable_callback,
++	.pre_commit = xe_pt_pre_commit,
+ };
+ 
+ static const struct xe_migrate_pt_update_ops userptr_unbind_ops = {
+@@ -1626,12 +1722,15 @@ __xe_pt_unbind_vma(struct xe_tile *tile, struct xe_vma *vma, struct xe_engine *e
+ 			.ops = xe_vma_is_userptr(vma) ? &userptr_unbind_ops :
+ 			&unbind_ops,
+ 			.vma = vma,
++			.tile_id = tile->id,
+ 		},
+ 	};
+ 	struct xe_vm *vm = xe_vma_vm(vma);
+ 	u32 num_entries;
+ 	struct dma_fence *fence = NULL;
+ 	struct invalidation_fence *ifence;
++	struct xe_range_fence *rfence;
++
+ 	LLIST_HEAD(deferred);
+ 
+ 	xe_bo_assert_held(xe_vma_bo(vma));
+@@ -1645,11 +1744,19 @@ __xe_pt_unbind_vma(struct xe_tile *tile, struct xe_vma *vma, struct xe_engine *e
+ 	XE_BUG_ON(num_entries > ARRAY_SIZE(entries));
+ 
+ 	xe_vm_dbg_print_entries(tile_to_xe(tile), entries, num_entries);
++	xe_pt_calc_rfence_interval(vma, &unbind_pt_update, entries,
++				   num_entries);
+ 
+ 	ifence = kzalloc(sizeof(*ifence), GFP_KERNEL);
+ 	if (!ifence)
+ 		return ERR_PTR(-ENOMEM);
+ 
++	rfence = kzalloc(sizeof(*rfence), GFP_KERNEL);
++	if (!rfence) {
++		kfree(ifence);
++		return ERR_PTR(-ENOMEM);
++	}
++
+ 	/*
+ 	 * Even if we were already evicted and unbind to destroy, we need to
+ 	 * clear again here. The eviction may have updated pagetables at a
+@@ -1664,6 +1771,13 @@ __xe_pt_unbind_vma(struct xe_tile *tile, struct xe_vma *vma, struct xe_engine *e
+ 	if (!IS_ERR(fence)) {
+ 		int err;
+ 
++		err = xe_range_fence_insert(&vm->rftree[tile->id], rfence,
++					    &xe_range_fence_kfree_ops,
++					    unbind_pt_update.base.start,
++					    unbind_pt_update.base.last, fence);
++		if (err)
++			dma_fence_wait(fence, false);
++
+ 		/* TLB invalidation must be done before signaling unbind */
+ 		err = invalidation_fence_init(tile->primary_gt, ifence, fence, vma);
+ 		if (err) {
+@@ -1685,6 +1799,7 @@ __xe_pt_unbind_vma(struct xe_tile *tile, struct xe_vma *vma, struct xe_engine *e
+ 				    unbind_pt_update.locked ? &deferred : NULL);
+ 		vma->tile_present &= ~BIT(tile->id);
+ 	} else {
++		kfree(rfence);
+ 		kfree(ifence);
+ 	}
+ 
+diff --git a/drivers/gpu/drm/xe/xe_vm.c b/drivers/gpu/drm/xe/xe_vm.c
+index fc2a09087d98..f8e6f1fda1fe 100644
+--- a/drivers/gpu/drm/xe/xe_vm.c
++++ b/drivers/gpu/drm/xe/xe_vm.c
+@@ -1229,6 +1229,9 @@ struct xe_vm *xe_vm_create(struct xe_device *xe, u32 flags)
+ 	INIT_LIST_HEAD(&vm->preempt.engines);
+ 	vm->preempt.min_run_period_ms = 10;	/* FIXME: Wire up to uAPI */
+ 
++	for_each_tile(tile, xe, id)
++		xe_range_fence_tree_init(&vm->rftree[id]);
++
+ 	INIT_LIST_HEAD(&vm->extobj.list);
+ 
+ 	if (!(flags & XE_VM_FLAG_MIGRATION))
+@@ -1348,6 +1351,8 @@ struct xe_vm *xe_vm_create(struct xe_device *xe, u32 flags)
+ 	drm_gpuva_manager_destroy(&vm->mgr);
+ err_put:
+ 	dma_resv_fini(&vm->resv);
++	for_each_tile(tile, xe, id)
++		xe_range_fence_tree_fini(&vm->rftree[id]);
+ 	kfree(vm);
+ 	if (!(flags & XE_VM_FLAG_MIGRATION))
+ 		xe_device_mem_access_put(xe);
+@@ -1490,6 +1495,9 @@ void xe_vm_close_and_put(struct xe_vm *vm)
+ 		xe->usm.num_vm_in_non_fault_mode--;
+ 	mutex_unlock(&xe->usm.lock);
+ 
++	for_each_tile(tile, xe, id)
++		xe_range_fence_tree_fini(&vm->rftree[id]);
++
+ 	xe_vm_put(vm);
+ }
+ 
+diff --git a/drivers/gpu/drm/xe/xe_vm_types.h b/drivers/gpu/drm/xe/xe_vm_types.h
+index 379c5d617d72..bcbcad1929d6 100644
+--- a/drivers/gpu/drm/xe/xe_vm_types.h
++++ b/drivers/gpu/drm/xe/xe_vm_types.h
+@@ -15,6 +15,7 @@
+ 
+ #include "xe_device_types.h"
+ #include "xe_pt_types.h"
++#include "xe_range_fence.h"
+ 
+ struct async_op_fence;
+ struct xe_bo;
+@@ -182,6 +183,12 @@ struct xe_vm {
+ 	 */
+ 	struct work_struct destroy_work;
+ 
++	/**
++	 * @rftree: range fence tree to track updates to page table structure.
++	 * Used to implement conflict tracking between independent bind engines.
++	 */
++	struct xe_range_fence_tree rftree[XE_MAX_TILES_PER_DEVICE];
++
+ 	/** @extobj: bookkeeping for external objects. Protected by the vm lock */
+ 	struct {
+ 		/** @enties: number of external BOs attached this VM */
+-- 
+2.34.1
 
