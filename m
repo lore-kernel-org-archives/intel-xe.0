@@ -4,48 +4,30 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id B4D2EC001DE
-	for <intel-xe@archiver.kernel.org>; Thu, 20 Jul 2023 04:11:13 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 45ABEEB64DC
+	for <intel-xe@archiver.kernel.org>; Thu, 20 Jul 2023 04:13:40 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7795B10E556;
-	Thu, 20 Jul 2023 04:11:13 +0000 (UTC)
-Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A7EB010E551
- for <intel-xe@lists.freedesktop.org>; Thu, 20 Jul 2023 04:11:04 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1689826264; x=1721362264;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=GVt+qcpb6ExS+OAGVcx8qqubopJKKpA4wtDnDzjZJsI=;
- b=Izeq+KVgIlshb6Tr9LRl8C+GnfVUYLM4KzBE83/nT1EC5JIYtQQi18So
- x5nPImhg89hd5Et9zJUpO82lU/WOy+KH93blH00KY8Jn0yqHMdmjV9I+m
- yosI6FHv6YaO0WYLvsz+X69tGhWkiLNmnOzTqaOcZwYTEV6xqdnl1GnpW
- pBJF+lg1quOGeydf16B6MJTypPWamItDk8lQCQAx2BmMWJTQ5pkzdXgMR
- kv1FnZv3qb0riaGdEdllziAPxETOlCPCgpiOAfsn8jR+Qion8BNs83Cnl
- ZGOSp4yzuXGRl/G5X4wtviIiwm6LN98THi9ndWoV5nngLIIRvkDfOD98D g==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10776"; a="397500420"
-X-IronPort-AV: E=Sophos;i="6.01,216,1684825200"; d="scan'208";a="397500420"
-Received: from orsmga008.jf.intel.com ([10.7.209.65])
- by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 19 Jul 2023 21:11:03 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10776"; a="753924807"
-X-IronPort-AV: E=Sophos;i="6.01,216,1684825200"; d="scan'208";a="753924807"
-Received: from lstrano-desk.jf.intel.com ([10.24.89.184])
- by orsmga008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 19 Jul 2023 21:11:02 -0700
-From: Matthew Brost <matthew.brost@intel.com>
-To: <intel-xe@lists.freedesktop.org>
-Date: Wed, 19 Jul 2023 21:10:56 -0700
-Message-Id: <20230720041057.112903-6-matthew.brost@intel.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20230720041057.112903-1-matthew.brost@intel.com>
-References: <20230720041057.112903-1-matthew.brost@intel.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1D6BF10E551;
+	Thu, 20 Jul 2023 04:13:40 +0000 (UTC)
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id ED4D410E551;
+ Thu, 20 Jul 2023 04:13:38 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id E6946AADF5;
+ Thu, 20 Jul 2023 04:13:38 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Subject: [Intel-xe] [PATCH v2 5/6] drm/xe: Combine destroy_cb and
- destroy_work in xe_vma into union
+Content-Transfer-Encoding: 7bit
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Matthew Brost" <matthew.brost@intel.com>
+Date: Thu, 20 Jul 2023 04:13:38 -0000
+Message-ID: <168982641890.20752.1076318857230138750@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20230720041057.112903-1-matthew.brost@intel.com>
+In-Reply-To: <20230720041057.112903-1-matthew.brost@intel.com>
+Subject: [Intel-xe] =?utf-8?q?=E2=9C=97_CI=2EPatch=5Fapplied=3A_failure_f?=
+ =?utf-8?q?or_More_VM_cleanups_=28rev2=29?=
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -57,41 +39,29 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
+Reply-To: intel-xe@lists.freedesktop.org
+Cc: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-The callback kicks the worker thus mutually exclusive execution,
-combining saves a bit of space in xe_vma.
+== Series Details ==
 
-Reviewed-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
-Signed-off-by: Matthew Brost <matthew.brost@intel.com>
----
- drivers/gpu/drm/xe/xe_vm_types.h | 11 ++++++-----
- 1 file changed, 6 insertions(+), 5 deletions(-)
+Series: More VM cleanups (rev2)
+URL   : https://patchwork.freedesktop.org/series/120574/
+State : failure
 
-diff --git a/drivers/gpu/drm/xe/xe_vm_types.h b/drivers/gpu/drm/xe/xe_vm_types.h
-index 268d2475f2ae..809cfe734d43 100644
---- a/drivers/gpu/drm/xe/xe_vm_types.h
-+++ b/drivers/gpu/drm/xe/xe_vm_types.h
-@@ -60,11 +60,12 @@ struct xe_vma {
- 		struct list_head destroy;
- 	} combined_links;
- 
--	/** @destroy_cb: callback to destroy VMA when unbind job is done */
--	struct dma_fence_cb destroy_cb;
--
--	/** @destroy_work: worker to destroy this BO */
--	struct work_struct destroy_work;
-+	union {
-+		/** @destroy_cb: callback to destroy VMA when unbind job is done */
-+		struct dma_fence_cb destroy_cb;
-+		/** @destroy_work: worker to destroy this BO */
-+		struct work_struct destroy_work;
-+	};
- 
- 	/** @userptr: user pointer state */
- 	struct {
--- 
-2.34.1
+== Summary ==
+
+=== Applying kernel patches on branch 'drm-xe-next' with base: ===
+Base commit: f5459dca4 drm/xe: Cleanup style warnings and errors
+=== git am output follows ===
+error: patch failed: drivers/gpu/drm/xe/xe_vm.c:2499
+error: drivers/gpu/drm/xe/xe_vm.c: patch does not apply
+hint: Use 'git am --show-current-patch' to see the failed patch
+Applying: drm/xe: Avoid doing rebinds
+Patch failed at 0001 drm/xe: Avoid doing rebinds
+When you have resolved this problem, run "git am --continue".
+If you prefer to skip this patch, run "git am --skip" instead.
+To restore the original branch and stop patching, run "git am --abort".
+
 
