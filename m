@@ -4,138 +4,137 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1A1EEEB64DD
-	for <intel-xe@archiver.kernel.org>; Thu, 20 Jul 2023 21:01:22 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 40172EB64DA
+	for <intel-xe@archiver.kernel.org>; Thu, 20 Jul 2023 21:10:10 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C422610E19F;
-	Thu, 20 Jul 2023 21:01:21 +0000 (UTC)
-Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A396D10E18F;
- Thu, 20 Jul 2023 21:01:19 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1114F10E19F;
+	Thu, 20 Jul 2023 21:10:10 +0000 (UTC)
+Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 76A6610E19F
+ for <intel-xe@lists.freedesktop.org>; Thu, 20 Jul 2023 21:10:08 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1689886879; x=1721422879;
+ t=1689887408; x=1721423408;
  h=date:from:to:cc:subject:message-id:references:
- content-transfer-encoding:in-reply-to:mime-version;
- bh=Hh6rekOy1WZ9Vjh040E9Bt6MFaGZDceCvyOXOPwyPkw=;
- b=UQZWGKTO8IxrzEVP3tkYf59+3TdAbI3a+WsGgpJAdeXuoPUa3qpTY+4n
- vzBQOLCUkV5ThhBMV18RnwuGmpk9vGCMw5MCsUixTOSXeq1gH/GsI8rIb
- yC+1ZwyP69BgnCX8mnW6OOlcb8moLKd8KQwl5s0+IXOuIxmi1dqag+uWB
- L9by6E9sh+2OqDlkHBnqiM4Rqa4pA5HH43H1kzWh7VxWU6lvUAUMhAjwz
- RbTX5pPCo51C5bZBChpQ6nYVf95qa+AfeMLx1XZ5N7DDam0VOA/wJxXRC
- 3Q/v4adR8In3mWWVgT4UU/2iLvF6XDdCwBJXlk2kRW+0HrjRIk3P/ROdz w==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10777"; a="453240921"
-X-IronPort-AV: E=Sophos;i="6.01,219,1684825200"; d="scan'208";a="453240921"
-Received: from fmsmga001.fm.intel.com ([10.253.24.23])
- by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 20 Jul 2023 14:01:12 -0700
+ in-reply-to:mime-version;
+ bh=lJX6ISSRXqCGGDiUPsa/WjT1ifHCOq6FW7DbPWyA4WE=;
+ b=aeF3zY46BmCCavDCyFn3K2MAGiRnRBBPGMqGa76H7rRuvHptiVutjWQr
+ kfXrQmpjCsiZ0MEYmSH93hjfYvEBKSmRXH6ezqoEJAkatdy9PXiXo1z28
+ mbJeTmHV4xk/aBPzJqcrzixQTqI0HGOw2f0nKwMTScekklIciqs8aLvmB
+ U0thIIcBkFBf011bj/mw9A/axvwdz1Qd0C8tOrVTdJFWcQFoHV7/OUGbv
+ +fDHVWfpaeFE6AfUHan1yPrfKxFHW0FAR/KKBW1Q0bAqVKhaqoUZI4CDa
+ pcvaHRxKmKZai2OoIcH++JAvmVGOXdmSB+FNpHXbGfjk3HLzQI+CrrSMw A==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10777"; a="433087037"
+X-IronPort-AV: E=Sophos;i="6.01,219,1684825200"; d="scan'208";a="433087037"
+Received: from orsmga006.jf.intel.com ([10.7.209.51])
+ by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 20 Jul 2023 14:10:07 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.01,202,1684825200"; d="scan'208";a="867987613"
-Received: from fmsmsx601.amr.corp.intel.com ([10.18.126.81])
- by fmsmga001.fm.intel.com with ESMTP; 20 Jul 2023 14:01:13 -0700
-Received: from fmsmsx611.amr.corp.intel.com (10.18.126.91) by
- fmsmsx601.amr.corp.intel.com (10.18.126.81) with Microsoft SMTP Server
+X-IronPort-AV: E=McAfee;i="6600,9927,10777"; a="701801327"
+X-IronPort-AV: E=Sophos;i="6.01,219,1684825200"; d="scan'208";a="701801327"
+Received: from fmsmsx603.amr.corp.intel.com ([10.18.126.83])
+ by orsmga006.jf.intel.com with ESMTP; 20 Jul 2023 14:10:07 -0700
+Received: from fmsmsx612.amr.corp.intel.com (10.18.126.92) by
+ fmsmsx603.amr.corp.intel.com (10.18.126.83) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.27; Thu, 20 Jul 2023 14:01:12 -0700
-Received: from fmsmsx602.amr.corp.intel.com (10.18.126.82) by
- fmsmsx611.amr.corp.intel.com (10.18.126.91) with Microsoft SMTP Server
+ 15.1.2507.27; Thu, 20 Jul 2023 14:10:06 -0700
+Received: from fmsmsx610.amr.corp.intel.com (10.18.126.90) by
+ fmsmsx612.amr.corp.intel.com (10.18.126.92) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.27; Thu, 20 Jul 2023 14:01:11 -0700
-Received: from fmsedg601.ED.cps.intel.com (10.1.192.135) by
- fmsmsx602.amr.corp.intel.com (10.18.126.82) with Microsoft SMTP Server
+ 15.1.2507.27; Thu, 20 Jul 2023 14:10:06 -0700
+Received: from FMSEDG603.ED.cps.intel.com (10.1.192.133) by
+ fmsmsx610.amr.corp.intel.com (10.18.126.90) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.27 via Frontend Transport; Thu, 20 Jul 2023 14:01:11 -0700
-Received: from NAM11-BN8-obe.outbound.protection.outlook.com (104.47.58.168)
- by edgegateway.intel.com (192.55.55.70) with Microsoft SMTP Server
+ 15.1.2507.27 via Frontend Transport; Thu, 20 Jul 2023 14:10:06 -0700
+Received: from NAM10-MW2-obe.outbound.protection.outlook.com (104.47.55.106)
+ by edgegateway.intel.com (192.55.55.68) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2507.27; Thu, 20 Jul 2023 14:01:11 -0700
+ 15.1.2507.27; Thu, 20 Jul 2023 14:10:06 -0700
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=niKNjKcxM6BLEClGO27vcpbK8/BgXaRCJvft+dHjPZvunLuHm+S8q1HKw9R+6HmfB99QsRTH3b7iCBhyGVdb67KsfNNJwuB86wJcm+TpsltTQGvHFdUxDXWZuJjgwaRbWP8ZD9TV+dQKOpitfGfklEqSbH+qmke0GewxlvpYhsuTaNIkc4FOKcV3zx5uiLKdJglqjp4vz1qsrPF5rvmFcIE7cxc3Tin2B6j/j1/jVEnG7w0qFXHHqQz+jJeaL2fOYtWG1QSX2F/1X96zhrK6S0wZkgV0L2rsKXYSRkUTLxk/mz7D1IGiFY6PFErwGhO5R7H2YGCJ0EfCD2hRSiDTfw==
+ b=fSIACefRihwSE/S3IDIIuGKpnwL6mEBLoN28L9oST09dl9USDBzf/RJZQm9RH1B+Z/G3z5Qow7Fb/Q81T4Xs5Mlw4Hoq7VXl/EWSkYv4z9uGGeFZKEhmxNulhjpEcTZMq6Qemqv+jW6PgCRTBmbUvcxliCdMNIfdG7Y/pkQ+P76ekD0F3+xVEyPVZO5GgtqzJhHWcKPl35R2O7+FaywI90eFIG5jvXCkYBXMpBqmB1dmmHX5wvcvZiepvABv/skdn5/1BPtKQ5d9sxG7cJd7skNaTJs2KQRGcE3Dr7qVSNfNxOkLt13FHsTG8XWvkzTc1YKK1LCn4KGIz/XlVQ9msw==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=BPNMIi802F7iEfmOpFJqDzAIsCOgkWhFyJtjoi38bHk=;
- b=Iydkru/UnWm6cWZ6Z8hu8I8x9Gj3jMUW7F9pQxAM75QKWKAS1WAtsAhSny98BDUIrQ/VXSnPhHjOmk1JC+s3qcaPF5X0MZOpVeAxKZeyHT3F3/AEVn/o6R8XbXVnygG2yo+etOAQBlMIKmhfeyzcNpxokwtV32ADI23x6I63vTQaEvG2UcHTms+DQ2ySZc9THTyLW0RQLt7lZJz+UtdtgFhY0z7TkEpsosYYWfJxeRgfBBLdWTcw9XRFg7rZ0sp4jog21t+we3Q8g90O+UXAk0+ffohjkaq3+/EBDZLTCoMKC87LSdlQ4JzsZ+qgvclbFyxNz1Anqktu+rC+JNW2Xw==
+ bh=PlE0DD8D6YuIRIPaoQ+buuDat+wYcrc4sHLZrtq3WM4=;
+ b=CbrIBnI9vXyX6DMQX8kQBd3lvxJvOp/qG0GOOlKNLUk2cPjI27iH1/nY2FvJEu5W/ATmYuw45jYe0sU3I1p0YnPQdB0HZt51CEm+9Bg5R3b9pgIRLRkRX5miTtyfrV2fO4OvOP44GQh7ybLuaLI+w7PZR09mHgiZWBG3zJlQQAgeZxHiaAgviv7xE2iKbuD8HBeVFTPfZRjJGutPw+U5FdXEW3i3KQHaTOixXVL+RW/ohp26zbj8bF+o0nRu28OHujbcoCcdV+0POEUSE1zmQcAz/DtxH0KcrU1VbvWvqSgdjDXPSWxTed3GM4x7l5ztuoZTY6LoGgHoc8YRddh5yw==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
  dkim=pass header.d=intel.com; arc=none
 Authentication-Results: dkim=none (message not signed)
  header.d=none;dmarc=none action=none header.from=intel.com;
-Received: from PH7PR11MB6522.namprd11.prod.outlook.com (2603:10b6:510:212::12)
- by MN6PR11MB8243.namprd11.prod.outlook.com (2603:10b6:208:46e::15)
+Received: from MN0PR11MB6059.namprd11.prod.outlook.com (2603:10b6:208:377::9)
+ by SA1PR11MB7698.namprd11.prod.outlook.com (2603:10b6:806:332::15)
  with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6609.25; Thu, 20 Jul
- 2023 21:01:09 +0000
-Received: from PH7PR11MB6522.namprd11.prod.outlook.com
- ([fe80::5645:50f0:9b06:1dd0]) by PH7PR11MB6522.namprd11.prod.outlook.com
- ([fe80::5645:50f0:9b06:1dd0%3]) with mapi id 15.20.6588.031; Thu, 20 Jul 2023
- 21:01:08 +0000
-Date: Thu, 20 Jul 2023 21:00:22 +0000
-From: Matthew Brost <matthew.brost@intel.com>
-To: Thomas =?iso-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>
-Message-ID: <ZLmgZl8fc59kPe4/@DUT025-TGLU.fm.intel.com>
-References: <20230715154543.13183-1-thomas.hellstrom@linux.intel.com>
-Content-Type: text/plain; charset="iso-8859-1"
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6588.33; Thu, 20 Jul
+ 2023 21:09:59 +0000
+Received: from MN0PR11MB6059.namprd11.prod.outlook.com
+ ([fe80::7f94:b6c4:1ce2:294]) by MN0PR11MB6059.namprd11.prod.outlook.com
+ ([fe80::7f94:b6c4:1ce2:294%5]) with mapi id 15.20.6609.024; Thu, 20 Jul 2023
+ 21:09:59 +0000
+Date: Thu, 20 Jul 2023 17:09:55 -0400
+From: Rodrigo Vivi <rodrigo.vivi@intel.com>
+To: Matthew Brost <matthew.brost@intel.com>
+Message-ID: <ZLmio8CGxE27hUst@intel.com>
+References: <20230720155546.199766-1-matthew.brost@intel.com>
+ <20230720155546.199766-2-matthew.brost@intel.com>
+Content-Type: text/plain; charset="us-ascii"
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20230715154543.13183-1-thomas.hellstrom@linux.intel.com>
-X-ClientProxiedBy: SJ0PR03CA0381.namprd03.prod.outlook.com
- (2603:10b6:a03:3a1::26) To PH7PR11MB6522.namprd11.prod.outlook.com
- (2603:10b6:510:212::12)
+In-Reply-To: <20230720155546.199766-2-matthew.brost@intel.com>
+X-ClientProxiedBy: BYAPR01CA0045.prod.exchangelabs.com (2603:10b6:a03:94::22)
+ To MN0PR11MB6059.namprd11.prod.outlook.com
+ (2603:10b6:208:377::9)
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: PH7PR11MB6522:EE_|MN6PR11MB8243:EE_
-X-MS-Office365-Filtering-Correlation-Id: 236d014d-fb5e-4282-e325-08db896470b1
+X-MS-TrafficTypeDiagnostic: MN0PR11MB6059:EE_|SA1PR11MB7698:EE_
+X-MS-Office365-Filtering-Correlation-Id: ca63b6d9-5ac9-4d20-5af2-08db8965acc5
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: ehPRC/XzHzhHk65pJt+Q70NA46FgFhVpxxyBCyOookLQNpEP55jCR/XuN14TAOysu478HdQadPkuz/CdCg5QBRI70PeynQMR8MzZwUYN27f14AXfg4PJEfsbMEBYEwnqhscLHinEzx2v19eek3Es59v4EqAdQSs/pVbfN0VcAL4oTZuH/SsHlohI/TKM0JY9LbaLQCfRqRBSSLLCxGXRxICzRAtLIBjK2sDDPY8L/T4GCFYR43k6lw4Vk3ZGimMBo//Qd6cKCMFni+c7O7PFvijWaVvh8hYimiSAcKg2NGhIdgTN5NiWBKRKxG9z2YzYxVDVb65PVCdVuX/hvRsLT/ZZ/w92kV7IsysPc7VnsoiAGPn6TpRDtUmHxrAVyTysIk1f/HUTd1svnyr6lekFX4i5oNsgWWl9e22EpMx3GAPhTTpXbh4W70+8CYZXz8qEWNVbFUq1AeoamCYu/MXdaX402nOOJ8WSYdWyYITxYtwqkID18L5KgYWBhyrz7jmSf9I35/GTjYdGRYHBxRXkAx8X8Yl37VO/AvU7QYZEHIA=
+X-Microsoft-Antispam-Message-Info: RGAs7m7u0q/vqvdyfu1xQXfZJ3JGK+sZ6E9Ltu0IwASOxQfespJF+zZpF133WbYTwhWhOb+9DFjycZlDIa6MLA08TnosbJG1eAcV0JK8qSCXN1B4b3qGo+vHlumtcp4lYQZEU0ofz8PbjXAAqX6i7Ye+3Qdj8eBN9jVR6L90ujKozkS/WLclxB9+WTuUoQvzzRvvQ4jaw7DmrjckaTRVwYUtAPR0HQ9Bf4LINVbo0YjiianMCAFU4HzYhj6PpVG+hRd/T1N/NLMQVZ3y9ppY6C0TrsxnmftGL+3dqLHlFn4qEG76PxAhv1AT9EraGeZTT54JvZftF802MMRVyBiP4n5zMETHxsBlz+Z1nCfRjb4GFZIoDE7lzXl/BGa8OHqPlIlnQkPd994EA4OFU3CTmUOgV1YsWMveOy6sGjTneavt4xiEXbBYDnzD7mKzQat2OgWAuxNJasA25Xe2faGG/wtbT99CcrixuGLjMtYa5P09ydXfynC//9ura3Ur3nQRez6W1x1/Wt6xbK0UbgbDssouQTrx9pxBz7rzGJHLSpW+paJoNutNFReFY9uSRDUy
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:PH7PR11MB6522.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230028)(136003)(39860400002)(366004)(396003)(346002)(376002)(451199021)(4326008)(6916009)(6666004)(38100700002)(86362001)(66476007)(66946007)(66556008)(6512007)(2906002)(6486002)(186003)(26005)(6506007)(54906003)(478600001)(8676002)(8936002)(30864003)(41300700001)(44832011)(5660300002)(316002)(66574015)(66899021)(82960400001)(83380400001);
+ IPV:NLI; SFV:NSPM; H:MN0PR11MB6059.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230028)(376002)(39860400002)(136003)(396003)(346002)(366004)(451199021)(37006003)(86362001)(186003)(66556008)(66946007)(6636002)(4326008)(44832011)(41300700001)(478600001)(316002)(6512007)(6486002)(66476007)(6666004)(6862004)(38100700002)(8676002)(8936002)(6506007)(5660300002)(83380400001)(2906002)(2616005)(82960400001)(36756003)(26005);
  DIR:OUT; SFP:1102; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?iso-8859-1?Q?IY6nOJ45LxA/RULYf++L1X7D6+odt6RdAxGZA2Zq+zuweR6RdgpXiW96Ry?=
- =?iso-8859-1?Q?IFPnBiWvoNbGK2P5UGRglbPMCuG1NT+J0onMfYMYbiWnPJ9ykwB71rsYFD?=
- =?iso-8859-1?Q?peOxsbLS9V3RG6DVqnuc2elRSX23ZbOjsL1o89ixonFdyUinbfHrT9BkFF?=
- =?iso-8859-1?Q?UxP0wfzraGss2APOnJI9f0x6gGD32AUsAg9rdPbEdm47Q7h1AgmgyUrpLL?=
- =?iso-8859-1?Q?7OIFMSH6zb0F64sV6+G5P27SBHveH0qhiBUveK9QM7nzVTtJNW+8qebLj2?=
- =?iso-8859-1?Q?4a3ZZoZgDKeFcZpIUf2ri6yDzrzsYNfz/DuqY06lnQe7Pcxdjs60elSDTc?=
- =?iso-8859-1?Q?bHEf1m+cP2Mxt2crklS5F+uwd6sqipf4XZHeeQu7ZKWsjhII4C4ieaW1PQ?=
- =?iso-8859-1?Q?PcIcT7qFXEfTiOiWsr2vFmCW5fs8ZTwc9/8U3YlDbUM+l3vaLyxt9MR4v3?=
- =?iso-8859-1?Q?7k7nshmrZSMZchiFjJyIKBZ7tMbh7ws6OdBmlH/Li1FR72IgBKwv/jmeSK?=
- =?iso-8859-1?Q?ncZeNTj7Fyyo8GmZRYHSeQywGeSbYaez+h0ZI7h71gl60QQOV41yXaUwLz?=
- =?iso-8859-1?Q?Wxi7uxpmOrLzEYYeVx4y0rFhlJvOnQDYCQk4os45m1X9PR+6k32v6bW+IG?=
- =?iso-8859-1?Q?lLS/3YZuU+v8rMx57PrRNX9KlMCSU6mL2X4CPgllVTe7uU+6EOYUkQfFoq?=
- =?iso-8859-1?Q?+twXRP0fVbyqWUgCOjqpff8yKyjKYF0RRm/8jiTQgo2872PKSDcsM4oNLi?=
- =?iso-8859-1?Q?NYpYgtG2ybpi4zBxgijU8gKDcwMyz8i8xKY19t4HCag5TgNicW6KTGNuPG?=
- =?iso-8859-1?Q?K/01I5LPSLwzosvScLpQZ8eQdxhjeHfV/eAu8I/r4s5XPCA9nNSk6CYUOF?=
- =?iso-8859-1?Q?uE0WtS1ePhijijMX6FREyOBaCs73rHq0X9aZFSQJ04K9YvHyWS2WYpBRhm?=
- =?iso-8859-1?Q?E/tOHr/ALgNFXkL7vohuO8eecDfWIpbcsX/uFFVV+UGp6wjE0/w8d3cuU7?=
- =?iso-8859-1?Q?MMjpcX1UIM10SzKoXxZKLHBegKLpGB6yTg2LMEjrrrxn/tgDwYaWGlIjR5?=
- =?iso-8859-1?Q?63TW1xiG66ykCPKqx5pEQ/upBmrNEFy06ut3dvEhunHHX7BlfxfcmmOigg?=
- =?iso-8859-1?Q?q2frJF/XrJDtAmapk/+EnjObPNTYuYq1bKnT4U5fnV9PHAXyAEfTUn9NSv?=
- =?iso-8859-1?Q?yj+7YJGkH0XZO38kuNWuC0WCC1RK8jF1C7rYqvaT49pDOpxv957Sw6TeOY?=
- =?iso-8859-1?Q?mJFZI6T/Vi4/lb51h9fuI8E1INEqNLW4lipXeDWGogjzLeb6bv28JBkExO?=
- =?iso-8859-1?Q?/EE0vTMTQhdoRfCInyyyL7QXnW0qkYDJiML4kmSiLIiaXVcEuJa01YoJpE?=
- =?iso-8859-1?Q?+UJWiiidJ3ZBUaZGK8GvCO5+VD4RhHQQ3PSS7neasjfcvJpPKo6MWC0b19?=
- =?iso-8859-1?Q?/ALHln0QrtTVQ4J9GvylxscYKBBQ9ZT8kzPb5LOzGonio9xjRoh3Zobp9q?=
- =?iso-8859-1?Q?OQHVVVc6GsF8V3AvcC0nk3TOXkboMbNEerFefJ+HCvObDHCIlNF9SZBeqz?=
- =?iso-8859-1?Q?+TN2Pmv6XKfYyuKTvKGC5lrImG7Du6O+3Addf8zj2Wt5/Jgm/9laX2tviD?=
- =?iso-8859-1?Q?eiSDWtsW2YjiUYJg/JLO9Txc5GPH5x+7kI0RJcIQf5alNQbY/Szq8mnA?=
- =?iso-8859-1?Q?=3D=3D?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: 236d014d-fb5e-4282-e325-08db896470b1
-X-MS-Exchange-CrossTenant-AuthSource: PH7PR11MB6522.namprd11.prod.outlook.com
+X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?hxnaLGMFjEGZ75ZBZfvP4dzOL6Uytw+8QfsgJdGfolM7TuyClaSTosQSeOcY?=
+ =?us-ascii?Q?wsEzB84R640r7cf7gPpHPhUb2JHXm1DTPpXqCAWoEyOyBeRPhfL7zkTZNr0v?=
+ =?us-ascii?Q?8OE1F+vaUAHYyGeD77onpDt4uQUIHx84fQ2Zqim6zFBqKU7C+LHLmiRGwf72?=
+ =?us-ascii?Q?Wj65vM8EtjPebNKIJgP33G2SNgGrnOrGFIQrSbRJbSDnzbJ5BP3wph1T6wpI?=
+ =?us-ascii?Q?C/As/oVfHHKOkQPEIwqwEC1xHVljSWfJUaGxdWd1Y8+xvBIIhVc1J8GJgapN?=
+ =?us-ascii?Q?bpvNqQS54znIIXo4eFsLSmM29VwZzYK2lU1Uh2vnZGJzTirAw7ivZ/W8z/UH?=
+ =?us-ascii?Q?08AndOqPbqGrWZAvm6u4qpXBCxY7r4Kv0AxbzIIJvbW8GuocrLZxSAfvIukg?=
+ =?us-ascii?Q?/GCjkPjr4fpbKBdWTqEdaEr9GD9xJwNH9HAlXZK6A7FmxGNWBb2qsOEOtMv3?=
+ =?us-ascii?Q?5vaAWzwR1gVP23EDVw0uksJLnJq0GT/YByu7RwrWfkt6ljkUrK3ABOtEhAyl?=
+ =?us-ascii?Q?5j69mxRfudXb5znoaGAPZifZXov3IiCcuekgkPgIqqBHOOwRjnhwe93qkfVl?=
+ =?us-ascii?Q?5vSCKpLw41GvaqV9fBfOuRBEersBwzHN9xnAkcaKLW5wrOwOwo09aSWnH1MC?=
+ =?us-ascii?Q?nixB6uBSsLWsB3yx73OQXprG3a9LgyZ4f0E079G3Agf5s9YrOiQ3Jgc0hBkl?=
+ =?us-ascii?Q?0fnX0Hre2JJZOJHmf0ooJ84enIXXHsZDoOrZgByuNjUHtBUEWoK6jQgTD8MH?=
+ =?us-ascii?Q?7q3a5CqaFmigqf2hnh+x59b0OWn9oBJ3ilJk+YbUKNUOI0JOHh1ZEvvHk0fp?=
+ =?us-ascii?Q?iEaaKjUljgCUYE2zNDuSnfoAAoULFKUUiquc8dxo8DYgCOOe55jomX0CWN0x?=
+ =?us-ascii?Q?58iipBaPuwTghhhl4pzjL+E8W9PYYCQAF/XK+KKBCpfdBx7MLz47owjYPbIB?=
+ =?us-ascii?Q?rp72JDhUyN23q6yJDs+Iv5gLZXegQhLEYw0H6JXe3nKYxcSyRHvpJzH1KQjo?=
+ =?us-ascii?Q?fY53/Go6UYhrD3PBnPBdObLj4CILUiBtB7z/EL/Us5ZXT/Aht+/0+g1a0fxi?=
+ =?us-ascii?Q?roZYlUMeTD/SDNZngfNnq5cytM0vx1lFIelJ0HmdllCHb/aVMyKfstf1gzMa?=
+ =?us-ascii?Q?a4jnHfMkklkEbDjkoV8x+8sBWezy3FzccllC9csNkLGIzW5ip9wrM3koejm6?=
+ =?us-ascii?Q?yXt15zykQZmEMcRsbWgy8ccpQ7m9S7tJPrQlo54UOdighuUF/mVFI8sKwlui?=
+ =?us-ascii?Q?L52I8ReXmsIovpv8tlhxtPPeEvOroI0gfqcb2jDxJRoHrkAMCZx03CiE9lP1?=
+ =?us-ascii?Q?YhGaQL7pNZFwvj8V7w+HIW1bw7tFhU7vDRXcd9TUv8MWUrwvJ4SOsEjK3R53?=
+ =?us-ascii?Q?QVCSKsxvK4Zd5WAEY38TO0wytxT0GSUgrcVmJjnjeaJg8n1dLfPf17SLoo/a?=
+ =?us-ascii?Q?dkgPTrz++PpLOLrIRhldz+v8Yytdy5rmbePepIM/DJruACtDA7msODA4OKc4?=
+ =?us-ascii?Q?JRQ/CGhAQoDMwD33gsO2jt7KxE82V16rwV0a5wWxJP7UFQC1qKhvZavlyb1f?=
+ =?us-ascii?Q?XNfanuFJng6GunRs+l8NHd7iOg3SyEZS+KHJQD16xH9QFHrfiYH2ZybqeNd3?=
+ =?us-ascii?Q?AQ=3D=3D?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: ca63b6d9-5ac9-4d20-5af2-08db8965acc5
+X-MS-Exchange-CrossTenant-AuthSource: MN0PR11MB6059.namprd11.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 20 Jul 2023 21:01:08.7174 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 20 Jul 2023 21:09:58.9566 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: ghzkBOmpLH0pvdHdLQ+W4pNn4tEPw5M2tIY+ApJKfkVvS3me443+Bx8O2B4cWNAImV9qeXSsDGqzqCUaNYnscQ==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: MN6PR11MB8243
+X-MS-Exchange-CrossTenant-UserPrincipalName: Pw5PYUpFvaFlB+ytq4jtB7SuY2ard2Eh04SAytmXh0aIYgasc/B8FpmBhO/ElhtU6e67WYE+wffScBrOk6MEXQ==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SA1PR11MB7698
 X-OriginatorOrg: intel.com
-Subject: Re: [Intel-xe] [PATCH v5] Documentation/gpu: Add a VM_BIND async
- draft document
+Subject: Re: [Intel-xe] [PATCH v4 1/7] drm/xe: Remove xe_vma_op_unmap
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -147,238 +146,66 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Cc: Francois Dugast <francois.dugast@intel.com>,
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- linux-kernel@vger.kernel.org, Oak Zeng <oak.zeng@intel.com>,
- Danilo Krummrich <dakr@redhat.com>, dri-devel@lists.freedesktop.org, Daniel
- Vetter <daniel@ffwll.ch>, intel-xe@lists.freedesktop.org,
- Nirmoy Das <nirmoy.das@intel.com>
+Cc: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Sat, Jul 15, 2023 at 05:45:43PM +0200, Thomas Hellström wrote:
-> Add a motivation for and description of asynchronous VM_BIND operation
+On Thu, Jul 20, 2023 at 08:55:40AM -0700, Matthew Brost wrote:
+> xe_vma_op_unmap isn't used, remove it.
 > 
-> v2:
-> - Fix typos (Nirmoy Das)
-> - Improve the description of a memory fence (Oak Zeng)
-> - Add a reference to the document in the Xe RFC.
-> - Add pointers to sample uAPI suggestions
-> v3:
-> - Address review comments (Danilo Krummrich)
-> - Formatting fixes
-> v4:
-> - Address typos (Francois Dugast)
-> - Explain why in-fences are not allowed for VM_BIND operations for long-
->   running workloads (Matthew Brost)
-> v5:
-> - More typo- and style fixing
-> - Further clarify the implications of disallowing in-fences for VM_BIND
->   operations for long-running workloads (Matthew Brost)
-> 
-> Signed-off-by: Thomas Hellström <thomas.hellstrom@linux.intel.com>
+> Signed-off-by: Matthew Brost <matthew.brost@intel.com>
 
-Reviewed-by: Matthew Brost <matthew.brost@intel.com>
+Reviewed-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
 
-> Acked-by: Nirmoy Das <nirmoy.das@intel.com>
 > ---
->  Documentation/gpu/drm-vm-bind-async.rst | 171 ++++++++++++++++++++++++
->  Documentation/gpu/rfc/xe.rst            |   4 +-
->  2 files changed, 173 insertions(+), 2 deletions(-)
->  create mode 100644 Documentation/gpu/drm-vm-bind-async.rst
+>  drivers/gpu/drm/xe/xe_vm.c       |  5 -----
+>  drivers/gpu/drm/xe/xe_vm_types.h | 10 ----------
+>  2 files changed, 15 deletions(-)
 > 
-> diff --git a/Documentation/gpu/drm-vm-bind-async.rst b/Documentation/gpu/drm-vm-bind-async.rst
-> new file mode 100644
-> index 000000000000..d2b02a38198a
-> --- /dev/null
-> +++ b/Documentation/gpu/drm-vm-bind-async.rst
-> @@ -0,0 +1,171 @@
-> +====================
-> +Asynchronous VM_BIND
-> +====================
-> +
-> +Nomenclature:
-> +=============
-> +
-> +* ``VRAM``: On-device memory. Sometimes referred to as device local memory.
-> +
-> +* ``gpu_vm``: A GPU address space. Typically per process, but can be shared by
-> +  multiple processes.
-> +
-> +* ``VM_BIND``: An operation or a list of operations to modify a gpu_vm using
-> +  an IOCTL. The operations include mapping and unmapping system- or
-> +  VRAM memory.
-> +
-> +* ``syncobj``: A container that abstracts synchronization objects. The
-> +  synchronization objects can be either generic, like dma-fences or
-> +  driver specific. A syncobj typically indicates the type of the
-> +  underlying synchronization object.
-> +
-> +* ``in-syncobj``: Argument to a VM_BIND IOCTL, the VM_BIND operation waits
-> +  for these before starting.
-> +
-> +* ``out-syncobj``: Argument to a VM_BIND_IOCTL, the VM_BIND operation
-> +  signals these when the bind operation is complete.
-> +
-> +* ``memory fence``: A synchronization object, different from a dma-fence.
-> +  A memory fence uses the value of a specified memory location to determine
-> +  signaled status. A memory fence can be awaited and signaled by both
-> +  the GPU and CPU. Memory fences are sometimes referred to as
-> +  user-fences, userspace-fences or gpu futexes and do not necessarily obey
-> +  the dma-fence rule of signaling within a "reasonable amount of time".
-> +  The kernel should thus avoid waiting for memory fences with locks held.
-> +
-> +* ``long-running workload``: A workload that may take more than the
-> +  current stipulated dma-fence maximum signal delay to complete and
-> +  which therefore needs to set the gpu_vm or the GPU execution context in
-> +  a certain mode that disallows completion dma-fences.
-> +
-> +* ``exec function``: An exec function is a function that revalidates all
-> +  affected gpu_vmas, submits a GPU command batch and registers the
-> +  dma_fence representing the GPU command's activity with all affected
-> +  dma_resvs. For completeness, although not covered by this document,
-> +  it's worth mentioning that an exec function may also be the
-> +  revalidation worker that is used by some drivers in compute /
-> +  long-running mode.
-> +
-> +* ``bind context``: A context identifier used for the VM_BIND
-> +  operation. VM_BIND operations that use the same bind context can be
-> +  assumed, where it matters, to complete in order of submission. No such
-> +  assumptions can be made for VM_BIND operations using separate bind contexts.
-> +
-> +* ``UMD``: User-mode driver.
-> +
-> +* ``KMD``: Kernel-mode driver.
-> +
-> +
-> +Synchronous / Asynchronous VM_BIND operation
-> +============================================
-> +
-> +Synchronous VM_BIND
-> +___________________
-> +With Synchronous VM_BIND, the VM_BIND operations all complete before the
-> +IOCTL returns. A synchronous VM_BIND takes neither in-fences nor
-> +out-fences. Synchronous VM_BIND may block and wait for GPU operations;
-> +for example swap-in or clearing, or even previous binds.
-> +
-> +Asynchronous VM_BIND
-> +____________________
-> +Asynchronous VM_BIND accepts both in-syncobjs and out-syncobjs. While the
-> +IOCTL may return immediately, the VM_BIND operations wait for the in-syncobjs
-> +before modifying the GPU page-tables, and signal the out-syncobjs when
-> +the modification is done in the sense that the next exec function that
-> +awaits for the out-syncobjs will see the change. Errors are reported
-> +synchronously assuming that the asynchronous part of the job never errors.
-> +In low-memory situations the implementation may block, performing the
-> +VM_BIND synchronously, because there might not be enough memory
-> +immediately available for preparing the asynchronous operation.
-> +
-> +If the VM_BIND IOCTL takes a list or an array of operations as an argument,
-> +the in-syncobjs needs to signal before the first operation starts to
-> +execute, and the out-syncobjs signal after the last operation
-> +completes. Operations in the operation list can be assumed, where it
-> +matters, to complete in order.
-> +
-> +Since asynchronous VM_BIND operations may use dma-fences embedded in
-> +out-syncobjs and internally in KMD to signal bind completion,  any
-> +memory fences given as VM_BIND in-fences need to be awaited
-> +synchronously before the VM_BIND ioctl returns, since dma-fences,
-> +required to signal in a reasonable amount of time, can never be made
-> +to depend on memory fences that don't have such a restriction.
-> +
-> +To aid in supporting user-space queues, the VM_BIND may take a bind context.
-> +
-> +The purpose of an Asynchronous VM_BIND operation is for user-mode
-> +drivers to be able to pipeline interleaved gpu_vm modifications and
-> +exec functions. For long-running workloads, such pipelining of a bind
-> +operation is not allowed and any in-fences need to be awaited
-> +synchronously. The reason for this is twofold. First, any memory
-> +fences gated by a long-running workload and used as in-syncobjs for the
-> +VM_BIND operation will need to be awaited synchronously anyway (see
-> +above). Second, any dma-fences used as in-syncobjs for VM_BIND
-> +operations for long-running workloads will not allow for pipelining
-> +anyway since long-running workloads don't allow for dma-fences as
-> +out-syncobjs, so while theoretically possible the use of them is
-> +questionable and should be rejected until there is a valuable use-case.
-> +Note that this is not a limitation imposed by dma-fence rules, but
-> +rather a limitation imposed to keep KMD implementation simple. It does
-> +not affect using dma-fences as dependencies for the long-running
-> +workload itself, which is allowed by dma-fence rules, but rather for
-> +the VM_BIND operation only.
-> +
-> +Also for VM_BINDS for long-running gpu_vms the user-mode driver should typically
-> +select memory fences as out-fences since that gives greater flexibility for
-> +the kernel mode driver to inject other operations into the bind /
-> +unbind operations. Like for example inserting breakpoints into batch
-> +buffers. The workload execution can then easily be pipelined behind
-> +the bind completion using the memory out-fence as the signal condition
-> +for a GPU semaphore embedded by UMD in the workload.
-> +
-> +Multi-operation VM_BIND IOCTL error handling and interrupts
-> +===========================================================
-> +
-> +The VM_BIND operations of the IOCTL may error due to lack of resources
-> +to complete and also due to interrupted waits. In both situations UMD
-> +should preferably restart the IOCTL after taking suitable action. If
-> +UMD has over-committed a memory resource, an -ENOSPC error will be
-> +returned, and UMD may then unbind resources that are not used at the
-> +moment and restart the IOCTL. On -EINTR, UMD should simply restart the
-> +IOCTL and on -ENOMEM user-space may either attempt to free known
-> +system memory resources or abort the operation. If aborting as a
-> +result of a failed operation in a list of operations, some operations
-> +may still have completed, and to get back to a known state, user-space
-> +should therefore attempt to unbind all virtual memory regions touched
-> +by the failing IOCTL.
-> +Unbind operations are guaranteed not to cause any errors due to
-> +resource constraints.
-> +In between a failed VM_BIND IOCTL and a successful restart there may
-> +be implementation defined restrictions on the use of the gpu_vm. For a
-> +description why, please see KMD implementation details under `error
-> +state saving`_.
-> +
-> +Sample uAPI implementations
-> +===========================
-> +Suggested uAPI implementations at the moment of writing can be found for
-> +the Nouveau driver `here
-> +<https://patchwork.freedesktop.org/patch/543260/?series=112994&rev=6>`_.
-> +and for the Xe driver `here
-> +<https://cgit.freedesktop.org/drm/drm-xe/diff/include/uapi/drm/xe_drm.h?h=drm-xe-next&id=9cb016ebbb6a275f57b1cb512b95d5a842391ad7>`_.
-> +
-> +KMD implementation details
-> +==========================
-> +
-> +Error state saving
-> +__________________
-> +Open: When the VM_BIND IOCTL returns an error, some or even parts of
-> +an operation may have been completed. If the IOCTL is restarted, in
-> +order to know where to restart, the KMD can either put the gpu_vm in
-> +an error state and save one instance of the needed restart state
-> +internally. In this case, KMD needs to block further modifications of
-> +the gpu_vm state that may cause additional failures requiring a
-> +restart state save, until the error has been fully resolved. If the
-> +uAPI instead defines a pointer to a UMD allocated cookie in the IOCTL
-> +struct, it could also choose to store the restart state in that cookie.
-> +
-> +The restart state may, for example, be the number of successfully
-> +completed operations.
-> +
-> +Easiest for UMD would of course be if KMD did a full unwind on error
-> +so that no error state needs to be saved.
-> diff --git a/Documentation/gpu/rfc/xe.rst b/Documentation/gpu/rfc/xe.rst
-> index 2516fe141db6..0f062e1346d2 100644
-> --- a/Documentation/gpu/rfc/xe.rst
-> +++ b/Documentation/gpu/rfc/xe.rst
-> @@ -138,8 +138,8 @@ memory fences. Ideally with helper support so people don't get it wrong in all
->  possible ways.
+> diff --git a/drivers/gpu/drm/xe/xe_vm.c b/drivers/gpu/drm/xe/xe_vm.c
+> index f8e6f1fda1fe..63c9e1c94515 100644
+> --- a/drivers/gpu/drm/xe/xe_vm.c
+> +++ b/drivers/gpu/drm/xe/xe_vm.c
+> @@ -2516,11 +2516,6 @@ static int vm_bind_ioctl_ops_parse(struct xe_vm *vm, struct xe_engine *e,
+>  					xe_vma_size(gpuva_to_vma(op->base.remap.unmap->va));
+>  				break;
+>  			case DRM_GPUVA_OP_UNMAP:
+> -				op->unmap.start =
+> -					xe_vma_start(gpuva_to_vma(op->base.unmap.va));
+> -				op->unmap.range =
+> -					xe_vma_size(gpuva_to_vma(op->base.unmap.va));
+> -				break;
+>  			case DRM_GPUVA_OP_PREFETCH:
+>  				/* Nothing to do */
+>  				break;
+> diff --git a/drivers/gpu/drm/xe/xe_vm_types.h b/drivers/gpu/drm/xe/xe_vm_types.h
+> index bcbcad1929d6..ce26298d7a5f 100644
+> --- a/drivers/gpu/drm/xe/xe_vm_types.h
+> +++ b/drivers/gpu/drm/xe/xe_vm_types.h
+> @@ -333,14 +333,6 @@ struct xe_vma_op_map {
+>  	bool is_null;
+>  };
 >  
->  As a key measurable result, the benefits of ASYNC VM_BIND and a discussion of
-> -various flavors, error handling and a sample API should be documented here or in
-> -a separate document pointed to by this document.
-> +various flavors, error handling and sample API suggestions are documented in
-> +Documentation/gpu/drm-vm-bind-async.rst
->  
->  Userptr integration and vm_bind
->  -------------------------------
+> -/** struct xe_vma_op_unmap - VMA unmap operation */
+> -struct xe_vma_op_unmap {
+> -	/** @start: start of the VMA unmap */
+> -	u64 start;
+> -	/** @range: range of the VMA unmap */
+> -	u64 range;
+> -};
+> -
+>  /** struct xe_vma_op_remap - VMA remap operation */
+>  struct xe_vma_op_remap {
+>  	/** @prev: VMA preceding part of a split mapping */
+> @@ -408,8 +400,6 @@ struct xe_vma_op {
+>  	union {
+>  		/** @map: VMA map operation specific data */
+>  		struct xe_vma_op_map map;
+> -		/** @unmap: VMA unmap operation specific data */
+> -		struct xe_vma_op_unmap unmap;
+>  		/** @remap: VMA remap operation specific data */
+>  		struct xe_vma_op_remap remap;
+>  		/** @prefetch: VMA prefetch operation specific data */
 > -- 
-> 2.40.1
+> 2.34.1
 > 
