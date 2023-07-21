@@ -4,30 +4,30 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 937C2EB64DC
-	for <intel-xe@archiver.kernel.org>; Fri, 21 Jul 2023 13:32:14 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id E58D9EB64DC
+	for <intel-xe@archiver.kernel.org>; Fri, 21 Jul 2023 13:34:02 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 567EE10E688;
-	Fri, 21 Jul 2023 13:32:14 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id ACB3810E689;
+	Fri, 21 Jul 2023 13:34:02 +0000 (UTC)
 Received: from emeril.freedesktop.org (emeril.freedesktop.org
  [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id A835810E688;
- Fri, 21 Jul 2023 13:32:10 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTP id CA1D310E689;
+ Fri, 21 Jul 2023 13:34:00 +0000 (UTC)
 Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id A281CAADD5;
- Fri, 21 Jul 2023 13:32:10 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============2002948107611554187=="
+ by emeril.freedesktop.org (Postfix) with ESMTP id C6112AADD5;
+ Fri, 21 Jul 2023 13:34:00 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Matthew Auld" <matthew.auld@intel.com>
-Date: Fri, 21 Jul 2023 13:32:10 -0000
-Message-ID: <168994633064.22546.11665582190410539366@emeril.freedesktop.org>
+To: "Francois Dugast" <francois.dugast@intel.com>
+Date: Fri, 21 Jul 2023 13:34:00 -0000
+Message-ID: <168994644080.22546.5384703198871771989@emeril.freedesktop.org>
 X-Patchwork-Hint: ignore
-References: <20230721123424.473210-2-matthew.auld@intel.com>
-In-Reply-To: <20230721123424.473210-2-matthew.auld@intel.com>
-Subject: [Intel-xe] =?utf-8?q?=E2=97=8B_CI=2EBAT=3A_info_for_drm/xe=3A_ad?=
- =?utf-8?q?d_lockdep_annotation_for_xe=5Fdevice=5Fmem=5Faccess=5Fput=28=29?=
+References: <20230721132030.7-1-francois.dugast@intel.com>
+In-Reply-To: <20230721132030.7-1-francois.dugast@intel.com>
+Subject: [Intel-xe] =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_f?=
+ =?utf-8?q?or_Remove_uses_of_BUG=5FON?=
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -44,67 +44,17 @@ Cc: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============2002948107611554187==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
 == Series Details ==
 
-Series: drm/xe: add lockdep annotation for xe_device_mem_access_put()
-URL   : https://patchwork.freedesktop.org/series/121119/
-State : info
+Series: Remove uses of BUG_ON
+URL   : https://patchwork.freedesktop.org/series/121125/
+State : success
 
 == Summary ==
 
-Participating hosts:
-bat-pvc-2
-bat-atsm-2
-bat-dg2-oem2
-bat-adlp-7
-Missing hosts results[1]:
-bat-pvc-2
-Results: [xe-pw-121119v1](https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-121119v1/index.html)
+=== Applying kernel patches on branch 'drm-xe-next' with base: ===
+Base commit: 786d2a4f3 drm/xe: Only alloc userptr part of xe_vma for userptrs
+=== git am output follows ===
+Applying: drm/xe: Remove uses of BUG_ON
 
 
-
---===============2002948107611554187==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/xe: add lockdep annotation for xe_device_mem_access_put()</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/121119/">https://patchwork.freedesktop.org/series/121119/</a></td></tr>
-<tr><td><b>State:</b></td><td>info</td></tr>
-
-</table>
-
-
-    <p>Participating hosts:<br />
-bat-pvc-2<br />
-bat-atsm-2<br />
-bat-dg2-oem2<br />
-bat-adlp-7<br />
-Missing hosts results[1]:<br />
-bat-pvc-2<br />
-Results: <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-121119v1/index.html">xe-pw-121119v1</a></p>
-
-</body>
-</html>
-
---===============2002948107611554187==--
