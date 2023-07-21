@@ -4,47 +4,47 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 185B6C04A6A
-	for <intel-xe@archiver.kernel.org>; Fri, 21 Jul 2023 00:30:15 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id BFC37C001E0
+	for <intel-xe@archiver.kernel.org>; Fri, 21 Jul 2023 00:30:14 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A4B1310E1C4;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1AB5510E1B1;
 	Fri, 21 Jul 2023 00:30:14 +0000 (UTC)
 Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0259510E154
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2724810E165
  for <intel-xe@lists.freedesktop.org>; Fri, 21 Jul 2023 00:30:12 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
  t=1689899412; x=1721435412;
  h=from:to:subject:date:message-id:in-reply-to:references:
  mime-version:content-transfer-encoding;
- bh=PdGWZDbKIvFKtxF/011nRfgiTFIx6w4AM+udqJQkaJ8=;
- b=Ox38Z759mD82wQoLuxc/ByoF6w5FSNkIbMccExjF8BB7S52tAKu2VtVz
- IWh6TVLFLff8eL+1C2WR1f2hBJssG5ep4nY1zy962y/5W8jz/+A3ggHDx
- u/dvJRTDoaCtwgb0OcTVqT6brU/fXoN1LbJNewS70mffdOim8C2WEr+le
- LzaL9S62gTfwLJ0X5WnS2nGmNNO8n6RhLCDZKXiw7kpKHPuvZd3a6wdU5
- cMzMqxxbwQMY4VrPuNkX6OIdbV6WAxMEFCvxH0jAId7iTq8bJj26il+85
- eR5lrzS1GjHvYRXFKFCD0udumk/NxguLAEndH7O/H9I0gB8NNXdxAj0Sn w==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10777"; a="366935001"
-X-IronPort-AV: E=Sophos;i="6.01,220,1684825200"; d="scan'208";a="366935001"
+ bh=I7gcOJd/QrmTBwBUo2I/Uwtp2rQE2BY5TsY/G2Y7nL4=;
+ b=HaVFjBqt3ZNuDngVxWISER3lwU74JpU3IBHNVqcameLaiGSUh79kW1xe
+ rNSFKBTrlW+3qUNK0v7YJA9gM41kLgVZWS2/qpFYDxbRW0sqcgj9xGA9h
+ EG/63zBz/U9MW7ZdG+SJtjesfPLyQKLtHZh7vUeJXlzZRiWW9PZkrYw4O
+ QLzAmNcGV9hgjXLPFvEgFAPeKugpoJKI0/RCxswvMcrAXMIgl7+pHRlCB
+ w4PxPGnqYF0RiCJO4GcLFviO++qpjZbns4zQ/ccM0+Y/eYPbjbXMhvig4
+ O1/AzGancJZLEmTIJAfqxAtRqQR0bVkOvCCiH8e02L5qw/Mcmqc0fkHNA g==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10777"; a="366934993"
+X-IronPort-AV: E=Sophos;i="6.01,220,1684825200"; d="scan'208";a="366934993"
 Received: from fmsmga008.fm.intel.com ([10.253.24.58])
  by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 20 Jul 2023 17:30:12 -0700
+ 20 Jul 2023 17:30:11 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10777"; a="790015287"
-X-IronPort-AV: E=Sophos;i="6.01,220,1684825200"; d="scan'208";a="790015287"
+X-IronPort-AV: E=McAfee;i="6600,9927,10777"; a="790015272"
+X-IronPort-AV: E=Sophos;i="6.01,220,1684825200"; d="scan'208";a="790015272"
 Received: from orsosgc001.jf.intel.com ([10.165.21.138])
  by fmsmga008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 20 Jul 2023 17:30:12 -0700
+ 20 Jul 2023 17:30:11 -0700
 From: Ashutosh Dixit <ashutosh.dixit@intel.com>
 To: intel-xe@lists.freedesktop.org
-Date: Thu, 20 Jul 2023 17:30:05 -0700
-Message-ID: <20230721003006.3467377-10-ashutosh.dixit@intel.com>
+Date: Thu, 20 Jul 2023 17:29:57 -0700
+Message-ID: <20230721003006.3467377-2-ashutosh.dixit@intel.com>
 X-Mailer: git-send-email 2.41.0
 In-Reply-To: <20230721003006.3467377-1-ashutosh.dixit@intel.com>
 References: <20230721003006.3467377-1-ashutosh.dixit@intel.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-xe] [PATCH 09/10] drm/xe/oa: Read file_operation
+Subject: [Intel-xe] [PATCH 01/10] drm/xe/oa: Introduce OA uapi
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -59,414 +59,323 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Finally implement the OA stream read file_operation which was the only fop
-missing in the previous commit. Both blocking and non-blocking reads are
-supported. The read copies OA perf data from the OA buffer to the user
-buffer provided as part of read system call.
+OA uapi allows userspace to:
+* Read streams of performance counters written by hardware
+* Configure (and reconfigure) which sets of perf counters are captured as
+  part of OA streams
+* Configure other properties (such as format and periodicity) of such
+  captures.
+* Query associated parameters such as OA unit timestamp freq, oa_unit_id's
+  for hw engines and OA ioctl version
 
 Signed-off-by: Ashutosh Dixit <ashutosh.dixit@intel.com>
 ---
- drivers/gpu/drm/xe/xe_oa.c | 359 +++++++++++++++++++++++++++++++++++++
- 1 file changed, 359 insertions(+)
+ include/uapi/drm/xe_drm.h | 257 +++++++++++++++++++++++++++++++++++++-
+ 1 file changed, 256 insertions(+), 1 deletion(-)
 
-diff --git a/drivers/gpu/drm/xe/xe_oa.c b/drivers/gpu/drm/xe/xe_oa.c
-index 8c3aca9bdfea7..163f057213258 100644
---- a/drivers/gpu/drm/xe/xe_oa.c
-+++ b/drivers/gpu/drm/xe/xe_oa.c
-@@ -146,6 +146,29 @@ static u64 oa_report_id(struct xe_oa_stream *stream, void *report)
- 	return oa_report_header_64bit(stream) ? *(u64 *)report : *(u32 *)report;
- }
+diff --git a/include/uapi/drm/xe_drm.h b/include/uapi/drm/xe_drm.h
+index 347351a8f6184..2000c3c1b9add 100644
+--- a/include/uapi/drm/xe_drm.h
++++ b/include/uapi/drm/xe_drm.h
+@@ -101,6 +101,9 @@ struct xe_user_extension {
+ #define DRM_XE_WAIT_USER_FENCE		0x0b
+ #define DRM_XE_VM_MADVISE		0x0c
+ #define DRM_XE_ENGINE_GET_PROPERTY	0x0d
++#define DRM_XE_OA_OPEN			0x36
++#define DRM_XE_OA_ADD_CONFIG		0x37
++#define DRM_XE_OA_REMOVE_CONFIG		0x38
  
-+#define OAREPORT_REASON_MASK_EXTENDED	GENMASK(25, 19)
-+#define OAREPORT_REASON_TIMER		BIT(0)
-+#define OAREPORT_REASON_CTX_SWITCH	BIT(3)
-+#define OAREPORT_REASON_CLK_RATIO	BIT(5)
-+
-+static u64 oa_report_reason(struct xe_oa_stream *stream, void *report)
-+{
-+	return FIELD_GET(OAREPORT_REASON_MASK_EXTENDED, oa_report_id(stream, report));
-+}
-+
-+static void oa_report_id_clear(struct xe_oa_stream *stream, u32 *report)
-+{
-+	if (oa_report_header_64bit(stream))
-+		*(u64 *)report = 0;
-+	else
-+		*report = 0;
-+}
-+
-+static bool oa_report_ctx_invalid(struct xe_oa_stream *stream, void *report)
-+{
-+	return false;
-+}
-+
- static u64 oa_timestamp(struct xe_oa_stream *stream, void *report)
- {
- 	return oa_report_header_64bit(stream) ?
-@@ -153,6 +176,29 @@ static u64 oa_timestamp(struct xe_oa_stream *stream, void *report)
- 		*((u32 *)report + 1);
- }
+ /* Must be kept compact -- no holes */
+ #define DRM_IOCTL_XE_DEVICE_QUERY		DRM_IOWR(DRM_COMMAND_BASE + DRM_XE_DEVICE_QUERY, struct drm_xe_device_query)
+@@ -117,6 +120,9 @@ struct xe_user_extension {
+ #define DRM_IOCTL_XE_ENGINE_SET_PROPERTY	 DRM_IOW(DRM_COMMAND_BASE + DRM_XE_ENGINE_SET_PROPERTY, struct drm_xe_engine_set_property)
+ #define DRM_IOCTL_XE_WAIT_USER_FENCE		DRM_IOWR(DRM_COMMAND_BASE + DRM_XE_WAIT_USER_FENCE, struct drm_xe_wait_user_fence)
+ #define DRM_IOCTL_XE_VM_MADVISE			 DRM_IOW(DRM_COMMAND_BASE + DRM_XE_VM_MADVISE, struct drm_xe_vm_madvise)
++#define DRM_IOCTL_XE_OA_OPEN			DRM_IOW(DRM_COMMAND_BASE + DRM_XE_OA_OPEN, struct drm_xe_oa_open_param)
++#define DRM_IOCTL_XE_OA_ADD_CONFIG		DRM_IOW(DRM_COMMAND_BASE + DRM_XE_OA_ADD_CONFIG, struct drm_xe_oa_config)
++#define DRM_IOCTL_XE_OA_REMOVE_CONFIG		DRM_IOW(DRM_COMMAND_BASE + DRM_XE_OA_REMOVE_CONFIG, __u64)
  
-+static void oa_timestamp_clear(struct xe_oa_stream *stream, u32 *report)
-+{
-+	if (oa_report_header_64bit(stream))
-+		*(u64 *)&report[2] = 0;
-+	else
-+		report[1] = 0;
-+}
-+
-+static u32 oa_context_id(struct xe_oa_stream *stream, u32 *report)
-+{
-+	u32 ctx_id = oa_report_header_64bit(stream) ? report[4] : report[2];
-+
-+	return ctx_id & stream->specific_ctx_id_mask;
-+}
-+
-+static void oa_context_id_squash(struct xe_oa_stream *stream, u32 *report)
-+{
-+	if (oa_report_header_64bit(stream))
-+		report[4] = INVALID_CTX_ID;
-+	else
-+		report[2] = INVALID_CTX_ID;
-+}
-+
- static bool xe_oa_buffer_check_unlocked(struct xe_oa_stream *stream)
- {
- 	u32 gtt_offset = xe_bo_ggtt_addr(stream->oa_buffer.bo);
-@@ -234,6 +280,199 @@ static enum hrtimer_restart xe_oa_poll_check_timer_cb(struct hrtimer *hrtimer)
- 	return HRTIMER_RESTART;
- }
+ /**
+  * enum drm_xe_memory_class - Supported memory classes.
+@@ -223,7 +229,8 @@ struct drm_xe_query_config {
+ #define XE_QUERY_CONFIG_GT_COUNT		4
+ #define XE_QUERY_CONFIG_MEM_REGION_COUNT	5
+ #define XE_QUERY_CONFIG_MAX_ENGINE_PRIORITY	6
+-#define XE_QUERY_CONFIG_NUM_PARAM		(XE_QUERY_CONFIG_MAX_ENGINE_PRIORITY + 1)
++#define XE_QUERY_OA_IOCTL_VERSION		7
++#define XE_QUERY_CONFIG_NUM_PARAM		(XE_QUERY_OA_IOCTL_VERSION + 1)
+ 	/** @info: array of elements containing the config info */
+ 	__u64 info[];
+ };
+@@ -260,6 +267,7 @@ struct drm_xe_query_gts {
+ 		__u64 native_mem_regions;	/* bit mask of instances from drm_xe_query_mem_usage */
+ 		__u64 slow_mem_regions;		/* bit mask of instances from drm_xe_query_mem_usage */
+ 		__u64 inaccessible_mem_regions;	/* bit mask of instances from drm_xe_query_mem_usage */
++		__u64 oa_timestamp_freq;
+ 		__u64 reserved[8];
+ 	} gts[];
+ };
+@@ -699,6 +707,7 @@ struct drm_xe_engine_class_instance {
  
-+static int xe_oa_append_status(struct xe_oa_stream *stream, char __user *buf,
-+			       size_t count, size_t *offset,
-+			       enum drm_xe_oa_record_type type)
-+{
-+	struct drm_xe_oa_record_header header = { type, 0, sizeof(header) };
-+
-+	if ((count - *offset) < header.size)
-+		return -ENOSPC;
-+
-+	if (copy_to_user(buf + *offset, &header, sizeof(header)))
-+		return -EFAULT;
-+
-+	*offset += header.size;
-+
-+	return 0;
-+}
-+
-+static int xe_oa_append_sample(struct xe_oa_stream *stream, char __user *buf,
-+			       size_t count, size_t *offset, const u8 *report)
-+{
-+	int report_size = stream->oa_buffer.format->size;
-+	struct drm_xe_oa_record_header header;
-+	int report_size_partial;
-+	u8 *oa_buf_end;
-+
-+	header.type = DRM_XE_OA_RECORD_SAMPLE;
-+	header.pad = 0;
-+	header.size = stream->sample_size;
-+
-+	if ((count - *offset) < header.size)
-+		return -ENOSPC;
-+
-+	buf += *offset;
-+	if (copy_to_user(buf, &header, sizeof(header)))
-+		return -EFAULT;
-+	buf += sizeof(header);
-+
-+	oa_buf_end = stream->oa_buffer.vaddr + OA_BUFFER_SIZE;
-+	report_size_partial = oa_buf_end - report;
-+
-+	if (report_size_partial < report_size) {
-+		if (copy_to_user(buf, report, report_size_partial))
-+			return -EFAULT;
-+		buf += report_size_partial;
-+
-+		if (copy_to_user(buf, stream->oa_buffer.vaddr,
-+				 report_size - report_size_partial))
-+			return -EFAULT;
-+	} else if (copy_to_user(buf, report, report_size)) {
-+		return -EFAULT;
-+	}
-+
-+	*offset += header.size;
-+
-+	return 0;
-+}
-+
-+static int xe_oa_append_reports(struct xe_oa_stream *stream, char __user *buf,
-+				size_t count, size_t *offset)
-+{
-+	int report_size = stream->oa_buffer.format->size;
-+	u8 *oa_buf_base = stream->oa_buffer.vaddr;
-+	u32 gtt_offset = xe_bo_ggtt_addr(stream->oa_buffer.bo);
-+	u32 mask = (OA_BUFFER_SIZE - 1);
-+	size_t start_offset = *offset;
-+	unsigned long flags;
-+	u32 head, tail;
-+	int ret = 0;
-+
-+	if (drm_WARN_ON(&stream->oa->xe->drm, !stream->enabled))
-+		return -EIO;
-+
-+	spin_lock_irqsave(&stream->oa_buffer.ptr_lock, flags);
-+
-+	head = stream->oa_buffer.head;
-+	tail = stream->oa_buffer.tail;
-+
-+	spin_unlock_irqrestore(&stream->oa_buffer.ptr_lock, flags);
-+
-+	/* An out of bounds or misaligned head or tail pointer implies a driver bug */
-+	if (drm_WARN_ONCE(&stream->oa->xe->drm,
-+			  head > OA_BUFFER_SIZE || tail > OA_BUFFER_SIZE,
-+			  "Inconsistent OA buffer pointers: head = %u, tail = %u\n",
-+			  head, tail))
-+		return -EIO;
-+
-+	for (/* none */; OA_TAKEN(tail, head); head = (head + report_size) & mask) {
-+		u8 *report = oa_buf_base + head;
-+		u32 ctx_id, *report32 = (void *)report;
-+		u64 reason;
-+
-+		/*
-+		 * The reason field indicates what triggered this report (e.g. timer
-+		 * triggered or a context switch).
-+		 *
-+		 * In MMIO triggered reports, some platforms do not set the reason bit in
-+		 * this field and it is valid to have a reason field of zero.
-+		 */
-+		reason = oa_report_reason(stream, report);
-+		ctx_id = oa_context_id(stream, report32);
-+
-+		/*
-+		 * Squash whatever is in the CTX_ID field if it's marked as invalid to be
-+		 * sure we avoid false-positive, single-context filtering below...
-+		 *
-+		 * Note: we don't clear the valid_ctx_bit so userspace can understand that
-+		 * the ID has been squashed by the kernel.
-+		 */
-+		if (oa_report_ctx_invalid(stream, report)) {
-+			ctx_id = INVALID_CTX_ID;
-+			oa_context_id_squash(stream, report32);
-+		}
-+
-+		/*
-+		 * NB: The OA unit does not support clock gating off for a specific
-+		 * context and the kernel can't securely stop counters from updating as
-+		 * system-wide/global values.
-+		 *
-+		 * Automatic reports include a context ID so reports can be filtered on
-+		 * the cpu but it's not worth trying to automatically subtract/hide
-+		 * counter progress for other contexts while filtering since userspace can
-+		 * issue MI_REPORT_PERF_COUNT commands which would still provide a
-+		 * side-band view of the real values.
-+		 *
-+		 * To allow userspace to normalize counters for a single filtered context
-+		 * then it needs be forwarded bookend context-switch reports so that it
-+		 * can track switches in between MI_REPORT_PERF_COUNT commands and can
-+		 * itself subtract/ignore the progress of counters associated with other
-+		 * contexts. Note that the hardware automatically triggers reports when
-+		 * switching to a new context which are tagged with the ID of the newly
-+		 * active context. To avoid the complexity of reading ahead while parsing
-+		 * reports to try and minimize forwarding redundant context switch reports
-+		 * (i.e. between other, unrelated contexts) we simply elect to forward
-+		 * them all.
-+		 *
-+		 * We don't rely solely on the reason field to identify context switches
-+		 * since it's not-uncommon for periodic samples to identify a switch
-+		 * before any 'context switch' report.
-+		 */
-+		if (!stream->engine || stream->specific_ctx_id == ctx_id ||
-+		    stream->oa_buffer.last_ctx_id == stream->specific_ctx_id ||
-+		    reason & OAREPORT_REASON_CTX_SWITCH) {
-+			/*
-+			 * While filtering for a single context we avoid
-+			 * leaking the IDs of other contexts.
-+			 */
-+			if (stream->engine && stream->specific_ctx_id != ctx_id)
-+				oa_context_id_squash(stream, report32);
-+
-+			ret = xe_oa_append_sample(stream, buf, count, offset, report);
-+			if (ret)
-+				break;
-+
-+			stream->oa_buffer.last_ctx_id = ctx_id;
-+		}
-+
-+		if (is_power_of_2(report_size)) {
-+			/*
-+			 * Clear out report id and timestamp as a means to
-+			 * detect unlanded reports.
-+			 */
-+			oa_report_id_clear(stream, report32);
-+			oa_timestamp_clear(stream, report32);
-+		} else {
-+			u8 *oa_buf_end = stream->oa_buffer.vaddr +
-+					 OA_BUFFER_SIZE;
-+			u32 part = oa_buf_end - (u8 *)report32;
-+
-+			/* Zero out the entire report */
-+			if (report_size <= part) {
-+				memset(report32, 0, report_size);
-+			} else {
-+				memset(report32, 0, part);
-+				memset(oa_buf_base, 0, report_size - part);
-+			}
-+		}
-+	}
-+
-+	if (start_offset != *offset) {
-+		struct xe_reg oaheadptr = __oa_regs(stream)->oa_head_ptr;
-+
-+		spin_lock_irqsave(&stream->oa_buffer.ptr_lock, flags);
-+
-+		xe_mmio_write32(stream->gt, oaheadptr,
-+				(head + gtt_offset) & GEN12_OAG_OAHEADPTR_MASK);
-+		stream->oa_buffer.head = head;
-+
-+		spin_unlock_irqrestore(&stream->oa_buffer.ptr_lock, flags);
-+	}
-+
-+	return ret;
-+}
-+
- static void xe_oa_init_oa_buffer(struct xe_oa_stream *stream)
- {
- 	u32 gtt_offset = xe_bo_ggtt_addr(stream->oa_buffer.bo);
-@@ -305,6 +544,125 @@ static void xe_oa_disable(struct xe_oa_stream *stream)
- 			"wait for OA tlb invalidate timed out\n");
- }
- 
-+static int __xe_oa_read(struct xe_oa_stream *stream, char __user *buf,
-+			size_t count, size_t *offset)
-+{
-+	struct xe_reg oastatus_reg = __oa_regs(stream)->oa_status;
-+	u32 oastatus;
-+	int ret;
-+
-+	if (drm_WARN_ON(&stream->oa->xe->drm, !stream->oa_buffer.vaddr))
-+		return -EIO;
-+
-+	oastatus = xe_mmio_read32(stream->gt, oastatus_reg);
-+
-+	/*
-+	 * We treat OABUFFER_OVERFLOW as a significant error:
-+	 *
-+	 * We could handle this more gracefully, but some Gens don't correctly suppress
-+	 * certain automatically triggered reports in this condition and so we have to
-+	 * assume that old reports are now being trampled over.
-+	 *
-+	 * Considering how we don't currently give userspace control over the OA buffer
-+	 * size and always configure a large 16MB buffer, then a buffer overflow does
-+	 * anyway likely indicate that something has gone quite badly wrong.
-+	 */
-+	if (oastatus & GEN12_OAG_OASTATUS_BUFFER_OVERFLOW) {
-+		ret = xe_oa_append_status(stream, buf, count, offset,
-+					  DRM_XE_OA_RECORD_OA_BUFFER_LOST);
-+		if (ret)
-+			return ret;
-+
-+		drm_dbg(&stream->oa->xe->drm,
-+			"OA buffer overflow (exponent = %d): force restart\n",
-+			stream->period_exponent);
-+
-+		xe_oa_disable(stream);
-+		xe_oa_enable(stream);
-+
-+		/*
-+		 * Note: oa_enable is expected to re-init the oabuffer and reset
-+		 * oastatus_reg for us
-+		 */
-+		oastatus = xe_mmio_read32(stream->gt, oastatus_reg);
-+	}
-+
-+	if (oastatus & GEN12_OAG_OASTATUS_REPORT_LOST) {
-+		ret = xe_oa_append_status(stream, buf, count, offset,
-+					  DRM_XE_OA_RECORD_OA_REPORT_LOST);
-+		if (ret)
-+			return ret;
-+
-+		xe_mmio_rmw32(stream->gt, oastatus_reg,
-+			      GEN12_OAG_OASTATUS_COUNTER_OVERFLOW |
-+			      GEN12_OAG_OASTATUS_REPORT_LOST, 0);
-+	}
-+
-+	return xe_oa_append_reports(stream, buf, count, offset);
-+}
-+
-+static int xe_oa_wait_unlocked(struct xe_oa_stream *stream)
-+{
-+	/* We might wait indefinitely if periodic sampling is not enabled */
-+	if (!stream->periodic)
-+		return -EIO;
-+
-+	return wait_event_interruptible(stream->poll_wq,
-+					xe_oa_buffer_check_unlocked(stream));
-+}
-+
-+static ssize_t xe_oa_read(struct file *file, char __user *buf,
-+			  size_t count, loff_t *ppos)
-+{
-+	struct xe_oa_stream *stream = file->private_data;
-+	size_t offset = 0;
-+	int ret;
-+
-+	/* Can't read from disabled streams */
-+	if (!stream->enabled || !stream->sample)
-+		return -EIO;
-+
-+	if (!(file->f_flags & O_NONBLOCK)) {
-+		/*
-+		 * There's the small chance of false positives from wait_unlocked,
-+		 * e.g. with single engine filtering since we only wait until oabuffer
-+		 * has >= 1 report we don't immediately know whether any reports really
-+		 * belong to the current engine.
-+		 */
-+		do {
-+			ret = xe_oa_wait_unlocked(stream);
-+			if (ret)
-+				return ret;
-+
-+			mutex_lock(&stream->lock);
-+			ret = __xe_oa_read(stream, buf, count, &offset);
-+			mutex_unlock(&stream->lock);
-+		} while (!offset && !ret);
-+	} else {
-+		mutex_lock(&stream->lock);
-+		ret = __xe_oa_read(stream, buf, count, &offset);
-+		mutex_unlock(&stream->lock);
-+	}
-+
-+	/*
-+	 * We allow the poll checking to sometimes report false positive EPOLLIN
-+	 * events where we might actually report EAGAIN on read() if there's
-+	 * not really any data available. In this situation though we don't
-+	 * want to enter a busy loop between poll() reporting a EPOLLIN event
-+	 * and read() returning -EAGAIN. Clearing the oa.pollin state here
-+	 * effectively ensures we back off until the next hrtimer callback
-+	 * before reporting another EPOLLIN event.
-+	 * The exception to this is if __xe_oa_read returned -ENOSPC which means
-+	 * that more OA data is available than could fit in the user provided
-+	 * buffer. In this case we want the next poll() call to not block.
-+	 */
-+	if (ret != -ENOSPC)
-+		stream->pollin = false;
-+
-+	/* Possible values for ret are 0, -EFAULT, -ENOSPC, -EIO, ... */
-+	return offset ?: (ret ?: -EAGAIN);
-+}
-+
- static __poll_t xe_oa_poll_locked(struct xe_oa_stream *stream,
- 				  struct file *file, poll_table *wait)
- {
-@@ -880,6 +1238,7 @@ static const struct file_operations xe_oa_fops = {
- 	.llseek		= no_llseek,
- 	.release	= xe_oa_release,
- 	.poll		= xe_oa_poll,
-+	.read		= xe_oa_read,
- 	.unlocked_ioctl	= xe_oa_ioctl,
+ 	__u16 engine_instance;
+ 	__u16 gt_id;
++	__u16 oa_unit_id;
  };
  
+ struct drm_xe_engine_create {
+@@ -1002,6 +1011,252 @@ struct drm_xe_vm_madvise {
+ 	__u64 reserved[2];
+ };
+ 
++enum drm_xe_oa_format {
++	XE_OA_FORMAT_C4_B8 = 7,
++
++	/* Gen8+ */
++	XE_OA_FORMAT_A12,
++	XE_OA_FORMAT_A12_B8_C8,
++	XE_OA_FORMAT_A32u40_A4u32_B8_C8,
++
++	/* DG2 */
++	XE_OAR_FORMAT_A32u40_A4u32_B8_C8,
++	XE_OA_FORMAT_A24u40_A14u32_B8_C8,
++
++	/* MTL OAM */
++	XE_OAM_FORMAT_MPEC8u64_B8_C8,
++	XE_OAM_FORMAT_MPEC8u32_B8_C8,
++
++	XE_OA_FORMAT_MAX	    /* non-ABI */
++};
++
++enum drm_xe_oa_property_id {
++	/**
++	 * Open the stream for a specific engine id (as used with
++	 * drm_xe_exec). A stream opened for a specific engine id this way
++	 * won't typically require root privileges.
++	 */
++	DRM_XE_OA_PROP_ENGINE_ID = 1,
++
++	/**
++	 * A value of 1 requests the inclusion of raw OA unit reports as
++	 * part of stream samples.
++	 */
++	DRM_XE_OA_PROP_SAMPLE_OA,
++
++	/**
++	 * The value specifies which set of OA unit metrics should be
++	 * configured, defining the contents of any OA unit reports.
++	 */
++	DRM_XE_OA_PROP_OA_METRICS_SET,
++
++	/**
++	 * The value specifies the size and layout of OA unit reports.
++	 */
++	DRM_XE_OA_PROP_OA_FORMAT,
++
++	/**
++	 * Specifying this property implicitly requests periodic OA unit
++	 * sampling and (at least on Haswell) the sampling frequency is derived
++	 * from this exponent as follows:
++	 *
++	 *   80ns * 2^(period_exponent + 1)
++	 */
++	DRM_XE_OA_PROP_OA_EXPONENT,
++
++	/**
++	 * Specifying this property is only valid when specify a context to
++	 * filter with DRM_XE_OA_PROP_ENGINE_ID. Specifying this property
++	 * will hold preemption of the particular engine we want to gather
++	 * performance data about.
++	 */
++	DRM_XE_OA_PROP_HOLD_PREEMPTION,
++
++	/**
++	 * Specifying this pins all contexts to the specified SSEU power
++	 * configuration for the duration of the recording.
++	 *
++	 * This parameter's value is a pointer to a struct
++	 * drm_xe_gem_context_param_sseu (TBD).
++	 */
++	DRM_XE_OA_PROP_GLOBAL_SSEU,
++
++	/**
++	 * This optional parameter specifies the timer interval in nanoseconds
++	 * at which the xe driver will check the OA buffer for available data.
++	 * Minimum allowed value is 100 microseconds. A default value is used by
++	 * the driver if this parameter is not specified. Note that larger timer
++	 * values will reduce cpu consumption during OA perf captures. However,
++	 * excessively large values would potentially result in OA buffer
++	 * overwrites as captures reach end of the OA buffer.
++	 */
++	DRM_XE_OA_PROP_POLL_OA_PERIOD,
++
++	/**
++	 * Multiple engines may be mapped to the same OA unit. The OA unit is
++	 * identified by class:instance of any engine mapped to it.
++	 *
++	 * This parameter specifies the engine class and must be passed along
++	 * with DRM_XE_OA_PROP_OA_ENGINE_INSTANCE.
++	 */
++	DRM_XE_OA_PROP_OA_ENGINE_CLASS,
++
++	/**
++	 * This parameter specifies the engine instance and must be passed along
++	 * with DRM_XE_OA_PROP_OA_ENGINE_CLASS.
++	 */
++	DRM_XE_OA_PROP_OA_ENGINE_INSTANCE,
++
++	DRM_XE_OA_PROP_MAX /* non-ABI */
++};
++
++struct drm_xe_oa_open_param {
++	__u32 flags;
++#define XE_OA_FLAG_FD_CLOEXEC	BIT(0)
++#define XE_OA_FLAG_FD_NONBLOCK	BIT(1)
++#define XE_OA_FLAG_DISABLED	BIT(2)
++
++	/** The number of u64 (id, value) pairs */
++	__u32 num_properties;
++
++	/**
++	 * Pointer to array of u64 (id, value) pairs configuring the stream
++	 * to open.
++	 */
++	__u64 properties_ptr;
++};
++
++/*
++ * Enable data capture for a stream that was either opened in a disabled state
++ * via I915_PERF_FLAG_DISABLED or was later disabled via
++ * I915_PERF_IOCTL_DISABLE.
++ *
++ * It is intended to be cheaper to disable and enable a stream than it may be
++ * to close and re-open a stream with the same configuration.
++ *
++ * It's undefined whether any pending data for the stream will be lost.
++ */
++#define XE_OA_IOCTL_ENABLE	_IO('i', 0x0)
++
++/*
++ * Disable data capture for a stream.
++ *
++ * It is an error to try and read a stream that is disabled.
++ */
++#define XE_OA_IOCTL_DISABLE	_IO('i', 0x1)
++
++/*
++ * Change metrics_set captured by a stream.
++ *
++ * If the stream is bound to a specific context, the configuration change
++ * will performed inline with that context such that it takes effect before
++ * the next execbuf submission.
++ *
++ * Returns the previously bound metrics set id, or a negative error code.
++ */
++#define XE_OA_IOCTL_CONFIG	_IO('i', 0x2)
++
++struct drm_xe_oa_record_header {
++	__u32 type;
++	__u16 pad;
++	__u16 size;
++};
++
++enum drm_xe_oa_record_type {
++	/**
++	 * Samples are the work horse record type whose contents are
++	 * extensible and defined when opening an xe oa stream based on the
++	 * given properties.
++	 *
++	 * Boolean properties following the naming convention
++	 * DRM_XE_OA_SAMPLE_xyz_PROP request the inclusion of 'xyz' data in
++	 * every sample.
++	 *
++	 * The order of these sample properties given by userspace has no
++	 * affect on the ordering of data within a sample. The order is
++	 * documented here.
++	 *
++	 * struct {
++	 *     struct drm_xe_oa_record_header header;
++	 *
++	 *     { u32 oa_report[]; } && DRM_XE_OA_PROP_SAMPLE_OA
++	 * };
++	 */
++	DRM_XE_OA_RECORD_SAMPLE = 1,
++
++	/**
++	 * Indicates that one or more OA reports were not written by the
++	 * hardware. This can happen for example if an MI_REPORT_PERF_COUNT
++	 * command collides with periodic sampling - which would be more likely
++	 * at higher sampling frequencies.
++	 */
++	DRM_XE_OA_RECORD_OA_REPORT_LOST = 2,
++
++	/**
++	 * An error occurred that resulted in all pending OA reports being lost.
++	 */
++	DRM_XE_OA_RECORD_OA_BUFFER_LOST = 3,
++
++	DRM_XE_OA_RECORD_MAX /* non-ABI */
++};
++
++struct drm_xe_oa_config {
++	/**
++	 * @uuid:
++	 *
++	 * String formatted like "%\08x-%\04x-%\04x-%\04x-%\012x"
++	 */
++	char uuid[36];
++
++	/**
++	 * @n_mux_regs:
++	 *
++	 * Number of mux regs in &mux_regs_ptr.
++	 */
++	__u32 n_mux_regs;
++
++	/**
++	 * @n_boolean_regs:
++	 *
++	 * Number of boolean regs in &boolean_regs_ptr.
++	 */
++	__u32 n_boolean_regs;
++
++	/**
++	 * @n_flex_regs:
++	 *
++	 * Number of flex regs in &flex_regs_ptr.
++	 */
++	__u32 n_flex_regs;
++
++	/**
++	 * @mux_regs_ptr:
++	 *
++	 * Pointer to tuples of u32 values (register address, value) for mux
++	 * registers.  Expected length of buffer is (2 * sizeof(u32) *
++	 * &n_mux_regs).
++	 */
++	__u64 mux_regs_ptr;
++
++	/**
++	 * @boolean_regs_ptr:
++	 *
++	 * Pointer to tuples of u32 values (register address, value) for mux
++	 * registers.  Expected length of buffer is (2 * sizeof(u32) *
++	 * &n_boolean_regs).
++	 */
++	__u64 boolean_regs_ptr;
++
++	/**
++	 * @flex_regs_ptr:
++	 *
++	 * Pointer to tuples of u32 values (register address, value) for mux
++	 * registers.  Expected length of buffer is (2 * sizeof(u32) *
++	 * &n_flex_regs).
++	 */
++	__u64 flex_regs_ptr;
++};
++
+ #if defined(__cplusplus)
+ }
+ #endif
 -- 
 2.41.0
 
