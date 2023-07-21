@@ -4,30 +4,31 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 973B0EB64DD
-	for <intel-xe@archiver.kernel.org>; Fri, 21 Jul 2023 14:08:03 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4414EEB64DC
+	for <intel-xe@archiver.kernel.org>; Fri, 21 Jul 2023 14:09:54 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4877710E693;
-	Fri, 21 Jul 2023 14:08:03 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0B3AD10E68F;
+	Fri, 21 Jul 2023 14:09:54 +0000 (UTC)
 Received: from emeril.freedesktop.org (emeril.freedesktop.org
  [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id 8ABE910E68F;
- Fri, 21 Jul 2023 14:08:00 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTP id 8593810E68F;
+ Fri, 21 Jul 2023 14:09:51 +0000 (UTC)
 Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 85CE7AADF5;
- Fri, 21 Jul 2023 14:08:00 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============1729874769916751950=="
+ by emeril.freedesktop.org (Postfix) with ESMTP id 48453AADF5;
+ Fri, 21 Jul 2023 14:09:51 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Francois Dugast" <francois.dugast@intel.com>
-Date: Fri, 21 Jul 2023 14:08:00 -0000
-Message-ID: <168994848052.22547.2086078402119112744@emeril.freedesktop.org>
+To: "Nirmoy Das" <nirmoy.das@intel.com>
+Date: Fri, 21 Jul 2023 14:09:51 -0000
+Message-ID: <168994859126.22546.18401997026610311218@emeril.freedesktop.org>
 X-Patchwork-Hint: ignore
-References: <20230721132030.7-1-francois.dugast@intel.com>
-In-Reply-To: <20230721132030.7-1-francois.dugast@intel.com>
-Subject: [Intel-xe] =?utf-8?q?=E2=97=8B_CI=2EBAT=3A_info_for_Remove_uses_?=
- =?utf-8?q?of_BUG=5FON?=
+References: <20230721140745.16187-1-nirmoy.das@intel.com>
+In-Reply-To: <20230721140745.16187-1-nirmoy.das@intel.com>
+Subject: [Intel-xe] =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_f?=
+ =?utf-8?q?or_series_starting_with_=5B1/2=5D_drm/xe=3A_Set_AE_PTE_bit_if_e?=
+ =?utf-8?q?nabled_on_smem?=
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -44,63 +45,18 @@ Cc: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============1729874769916751950==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
 == Series Details ==
 
-Series: Remove uses of BUG_ON
-URL   : https://patchwork.freedesktop.org/series/121125/
-State : info
+Series: series starting with [1/2] drm/xe: Set AE PTE bit if enabled on smem
+URL   : https://patchwork.freedesktop.org/series/121132/
+State : success
 
 == Summary ==
 
-Participating hosts:
-bat-atsm-2
-bat-dg2-oem2
-bat-adlp-7
-Missing hosts results[0]:
-Results: [xe-pw-121125v1](https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-121125v1/index.html)
+=== Applying kernel patches on branch 'drm-xe-next' with base: ===
+Base commit: 786d2a4f3 drm/xe: Only alloc userptr part of xe_vma for userptrs
+=== git am output follows ===
+Applying: drm/xe: Set AE PTE bit if enabled on smem
+Applying: drm/xe: Enable device scope atomics with vm madvise
 
 
-
---===============1729874769916751950==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>Remove uses of BUG_ON</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/121125/">https://patchwork.freedesktop.org/series/121125/</a></td></tr>
-<tr><td><b>State:</b></td><td>info</td></tr>
-
-</table>
-
-
-    <p>Participating hosts:<br />
-bat-atsm-2<br />
-bat-dg2-oem2<br />
-bat-adlp-7<br />
-Missing hosts results[0]:<br />
-Results: <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-121125v1/index.html">xe-pw-121125v1</a></p>
-
-</body>
-</html>
-
---===============1729874769916751950==--
