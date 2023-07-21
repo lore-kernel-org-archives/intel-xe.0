@@ -4,30 +4,45 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 81658EB64DA
-	for <intel-xe@archiver.kernel.org>; Thu, 20 Jul 2023 22:28:38 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 01CE6C0015E
+	for <intel-xe@archiver.kernel.org>; Fri, 21 Jul 2023 00:30:13 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 27A5010E1C2;
-	Thu, 20 Jul 2023 22:28:38 +0000 (UTC)
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id 99F3910E1C2;
- Thu, 20 Jul 2023 22:28:35 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 8B297A0093;
- Thu, 20 Jul 2023 22:28:35 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============5141677488206515566=="
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9279510E165;
+	Fri, 21 Jul 2023 00:30:13 +0000 (UTC)
+Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0708E10E154
+ for <intel-xe@lists.freedesktop.org>; Fri, 21 Jul 2023 00:30:11 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1689899411; x=1721435411;
+ h=from:to:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=oO4/9eMCmYmNZA0iwHHZlyTjOMG190ZoxtDfcQhOFqo=;
+ b=R2fn4LQ/k4oKC0pHURfQGoKmfslg6SjLjNgyLnBUp+Doe02xGoFHEGtB
+ Qhd7kcmDlbSutq38AbFaTBFqkeWA2eh4LeYIClwAIjhT/Uwi3U34c4s/v
+ HoJc5IZkcI0JPWRa7OnXsyiJmz7pt2Dv4asDXelIEhVP/5K4jrxrRhkoa
+ YapvEy6FHZvTQgmDU/OEDHU6mjrKdwbBiie94K5uVUXDXQZ94BLwZgRpb
+ xgJPsB7hZ83mwbnlpH4KqOEEgZQVbgkbLMszNKHCLAqSEm8dh4PHNUyRl
+ dWeVqBxmRoo+2DK5VsVNqkWlSqkS28IH+R4eM9JN+L2JM8X56G9z8R1qk w==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10777"; a="366934992"
+X-IronPort-AV: E=Sophos;i="6.01,220,1684825200"; d="scan'208";a="366934992"
+Received: from fmsmga008.fm.intel.com ([10.253.24.58])
+ by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 20 Jul 2023 17:30:11 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6600,9927,10777"; a="790015270"
+X-IronPort-AV: E=Sophos;i="6.01,220,1684825200"; d="scan'208";a="790015270"
+Received: from orsosgc001.jf.intel.com ([10.165.21.138])
+ by fmsmga008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 20 Jul 2023 17:30:11 -0700
+From: Ashutosh Dixit <ashutosh.dixit@intel.com>
+To: intel-xe@lists.freedesktop.org
+Date: Thu, 20 Jul 2023 17:29:56 -0700
+Message-ID: <20230721003006.3467377-1-ashutosh.dixit@intel.com>
+X-Mailer: git-send-email 2.41.0
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Matthew Brost" <matthew.brost@intel.com>
-Date: Thu, 20 Jul 2023 22:28:35 -0000
-Message-ID: <168989211553.20752.7465819764289325833@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20230720214345.203464-1-matthew.brost@intel.com>
-In-Reply-To: <20230720214345.203464-1-matthew.brost@intel.com>
-Subject: [Intel-xe] =?utf-8?q?=E2=97=8B_CI=2EBAT=3A_info_for_series_start?=
- =?utf-8?q?ing_with_=5B1/7=5D_drm/xe=3A_Remove_xe=5Fvma=5Fop=5Funmap?=
+Content-Transfer-Encoding: 8bit
+Subject: [Intel-xe] [PATCH 00/10] Add OA functionality to Xe
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -39,72 +54,69 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
-Cc: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============5141677488206515566==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+This patchset is the initial port of i915 perf/OA functionality to the Xe
+driver. It has been tested against the following IGT patch:
 
-== Series Details ==
+https://patchwork.freedesktop.org/series/121082/
 
-Series: series starting with [1/7] drm/xe: Remove xe_vma_op_unmap
-URL   : https://patchwork.freedesktop.org/series/121076/
-State : info
+The following features in i915 have not been ported and will be added (as
+new patches) if/as they are needed:
 
-== Summary ==
+* NOA wait
+* GuC ctx id (guc_sw_ctx_id)
+* CTX_R_PWR_CLK_STATE/GEN8_R_PWR_CLK_STATE
+* hold_preemption (DRM_XE_OA_PROP_HOLD_PREEMPTION)
+* sseu_config (DRM_XE_OA_PROP_GLOBAL_SSEU)
+* Override gucrc (override_gucrc_mode)
+* MTL bios_c6_setup
+* ratelimits
+* compat ioctl
 
-Participating hosts:
-bat-pvc-2
-bat-atsm-2
-bat-dg2-oem2
-bat-adlp-7
-Missing hosts results[1]:
-bat-pvc-2
-Results: [xe-pw-121076v1](https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-121076v1/index.html)
+I am providing the following additional HAX patch (not part of this series)
+to help review these patches:
 
+https://patchwork.freedesktop.org/patch/548718/?series=120100&rev=3
 
+The commit message in the above patch explains how it can be useful for
+reviewing this series.
 
---===============5141677488206515566==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+Test-with: 20230720231756.3464641-1-ashutosh.dixit@intel.com
 
+Ashutosh Dixit (10):
+  drm/xe/oa: Introduce OA uapi
+  drm/xe/oa: Add OA types
+  drm/xe/oa: Add registers and GPU commands used by OA
+  drm/xe/oa: Module init/exit and probe/remove
+  drm/xe/oa: Add/remove config ioctl's
+  drm/xe/oa: Start implementing OA stream open ioctl
+  drm/xe/oa: OA stream initialization
+  drm/xe/oa: Expose OA stream fd
+  drm/xe/oa: Read file_operation
+  drm/xe/oa: Implement queries
 
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
+ drivers/gpu/drm/xe/Makefile               |    1 +
+ drivers/gpu/drm/xe/regs/xe_engine_regs.h  |    5 +
+ drivers/gpu/drm/xe/regs/xe_gpu_commands.h |   27 +
+ drivers/gpu/drm/xe/regs/xe_oa_regs.h      |  173 ++
+ drivers/gpu/drm/xe/xe_device.c            |   16 +
+ drivers/gpu/drm/xe/xe_device_types.h      |    4 +
+ drivers/gpu/drm/xe/xe_gt_types.h          |    4 +
+ drivers/gpu/drm/xe/xe_hw_engine_types.h   |    2 +
+ drivers/gpu/drm/xe/xe_module.c            |    5 +
+ drivers/gpu/drm/xe/xe_oa.c                | 2358 +++++++++++++++++++++
+ drivers/gpu/drm/xe/xe_oa.h                |   28 +
+ drivers/gpu/drm/xe/xe_oa_types.h          |  292 +++
+ drivers/gpu/drm/xe/xe_query.c             |    5 +-
+ include/uapi/drm/xe_drm.h                 |  257 ++-
+ 14 files changed, 3175 insertions(+), 2 deletions(-)
+ create mode 100644 drivers/gpu/drm/xe/regs/xe_oa_regs.h
+ create mode 100644 drivers/gpu/drm/xe/xe_oa.c
+ create mode 100644 drivers/gpu/drm/xe/xe_oa.h
+ create mode 100644 drivers/gpu/drm/xe/xe_oa_types.h
 
+-- 
+2.41.0
 
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>series starting with [1/7] drm/xe: Remove xe_vma_op_unmap</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/121076/">https://patchwork.freedesktop.org/series/121076/</a></td></tr>
-<tr><td><b>State:</b></td><td>info</td></tr>
-
-</table>
-
-
-    <p>Participating hosts:<br />
-bat-pvc-2<br />
-bat-atsm-2<br />
-bat-dg2-oem2<br />
-bat-adlp-7<br />
-Missing hosts results[1]:<br />
-bat-pvc-2<br />
-Results: <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-121076v1/index.html">xe-pw-121076v1</a></p>
-
-</body>
-</html>
-
---===============5141677488206515566==--
