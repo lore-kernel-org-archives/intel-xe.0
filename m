@@ -4,133 +4,51 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id C94EBEB64DD
-	for <intel-xe@archiver.kernel.org>; Fri, 21 Jul 2023 21:36:50 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7355EEB64DD
+	for <intel-xe@archiver.kernel.org>; Fri, 21 Jul 2023 23:36:23 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 937E910E08F;
-	Fri, 21 Jul 2023 21:36:50 +0000 (UTC)
-Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9300D10E08F
- for <intel-xe@lists.freedesktop.org>; Fri, 21 Jul 2023 21:36:48 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 07A9C10E044;
+	Fri, 21 Jul 2023 23:36:23 +0000 (UTC)
+Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7E98D10E044
+ for <intel-xe@lists.freedesktop.org>; Fri, 21 Jul 2023 23:36:21 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1689975408; x=1721511408;
- h=date:from:to:cc:subject:message-id:references:
- in-reply-to:mime-version;
- bh=/s/J5a8tufZUFeMZSBpJT1XeR+R+V5FVLVJe9yi2v4U=;
- b=V0+F9aIyu/mVgZgBOgTu5oKzIytBtF1s4nz7Lna9i92hq59Jijg+2rC8
- ElanftfScMo4xiFIcWREep1UIf2t5hiuC4/ev852oABgN1smOIL9zF6k4
- 2+2at0djDYwsaC1iRehYbXDhe3bncaFzME0YfPOFOgXUpIXWAWoR4X9GW
- ZoHy9bL1wxlI8zntlQbXWXbA5H5aHHLeLF+B1TTbkUe/D+qwou8GJnCUM
- QVg3WMwiO2KZrUCmJEaWVl5kH2TEQgKboQ+TxVV59fDbNUcQ4oMoUbFFQ
- tDoikmVpJ5QoBldSfKbSQl70Pho83TJYHTTZ762/pBLYrjYb/J06bbufW g==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10778"; a="347415883"
-X-IronPort-AV: E=Sophos;i="6.01,222,1684825200"; d="scan'208";a="347415883"
-Received: from orsmga004.jf.intel.com ([10.7.209.38])
- by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 21 Jul 2023 14:36:04 -0700
+ t=1689982581; x=1721518581;
+ h=date:message-id:from:to:cc:subject:in-reply-to:
+ references:mime-version:content-transfer-encoding;
+ bh=/M+MXYLeQSy/CDlTnDKFBl7HPcrc6ZukmZJP86986P8=;
+ b=LyKa4vxhDClAwZrJeIA+9zG5zCnJby93q5AsYIOSfGZd2p/qaqhgiVsG
+ Ufh0I9pjjveF2r5pNLphX+xgAysPL9LlHSr0X7fMfAI9EQZsKfo3DuPW6
+ k0XiyGHGm7euzkDE/6+EyVCjawOnvMF9VlyS5BZCG1WSJaTKeEZfGkloT
+ X9RsHSCAs/7ZVws1CHz2oKW+sp9oTw+krDE2KelSoe2CFOtquhqTn/PRu
+ amdxKnyN9VEQ8h7GKgOPdkt3CFUGXXJ1bgDVsyxyuXNpsxVH85SfSvLVQ
+ BvxFGhkZJPEdRX/1w0jDLVktGOC6XnuOWtGwU6ubQJoU0XbXqU2AoeHkI g==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10778"; a="367169425"
+X-IronPort-AV: E=Sophos;i="6.01,223,1684825200"; d="scan'208";a="367169425"
+Received: from fmsmga002.fm.intel.com ([10.253.24.26])
+ by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 21 Jul 2023 16:36:20 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10778"; a="848966026"
-X-IronPort-AV: E=Sophos;i="6.01,222,1684825200"; d="scan'208";a="848966026"
-Received: from orsmsx603.amr.corp.intel.com ([10.22.229.16])
- by orsmga004.jf.intel.com with ESMTP; 21 Jul 2023 14:36:03 -0700
-Received: from orsmsx603.amr.corp.intel.com (10.22.229.16) by
- ORSMSX603.amr.corp.intel.com (10.22.229.16) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.27; Fri, 21 Jul 2023 14:36:03 -0700
-Received: from ORSEDG602.ED.cps.intel.com (10.7.248.7) by
- orsmsx603.amr.corp.intel.com (10.22.229.16) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.27 via Frontend Transport; Fri, 21 Jul 2023 14:36:03 -0700
-Received: from NAM10-MW2-obe.outbound.protection.outlook.com (104.47.55.103)
- by edgegateway.intel.com (134.134.137.103) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2507.27; Fri, 21 Jul 2023 14:36:03 -0700
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=JDWl6AQWeSNHIqyZ5WTPa1wlv32Hl4F5hUfbhda8btpFWxc7G3dIA9JKHO0xb7UcjeWeCFfZmm0rpSzMdWXYpY1rxMVsqCaEkr2VEIV/zdyLhVQE3unu9rGaTvmRBm0B6x4jxLXGcBnB+KoFs7pHTBO39WydXc8DsVDoVMxq2rV8+g4FKFe3vI61nsG9rSqBD/4WvpdtQgW2VYYxJLZFYI/zS6Og6PhYYkxroxd10ifwjCcDdFe75PFqrHDEjTbpIBn7dwhY3MHlXHuvcXBUMINTiLA+G+r7YXE2MYE/trnHEIb/ELfvDJ7npjzOVoEidUgyfKpjMclkuvbN8m03kg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=tLmjV43k4WHAQAJBGZA+hsW/QCQPMmW+YfsRsCeeC5Q=;
- b=S5lFCqaDm0+iynkRMrAamoA55kNkYbF4dvhCB87G71hbbJfckr0ZgqiWH8OtG6Qe2/N/Uh0JxJdhKjkpNEeeWRdT87MGuGdHTYJj/uiAxw97AIA98qux6uoItZ15wX2eDNHoLr6qbn7cVgJCIFm2e2i3iHPzSfFBdwRkgiIPmOsmkIkkMbOwqj9AGupho91ZLiCQb7GkIiB5ZUEmbZ2bvf9NotdoEnebWvjyUhWZJ+iDQsIENrE6Nz5K65cuLX72RMbOnwoSTELcbJCJHtHIxI0N8GnJFEolFUC5MAbQfgVrv8Lg9BN24DB9+CZzxO5CG8T83EnBFTmFPOQ/Ae9NTQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
- dkim=pass header.d=intel.com; arc=none
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=intel.com;
-Received: from MN0PR11MB6059.namprd11.prod.outlook.com (2603:10b6:208:377::9)
- by CY5PR11MB6092.namprd11.prod.outlook.com (2603:10b6:930:2c::9) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6588.32; Fri, 21 Jul
- 2023 21:36:01 +0000
-Received: from MN0PR11MB6059.namprd11.prod.outlook.com
- ([fe80::7f94:b6c4:1ce2:294]) by MN0PR11MB6059.namprd11.prod.outlook.com
- ([fe80::7f94:b6c4:1ce2:294%5]) with mapi id 15.20.6609.024; Fri, 21 Jul 2023
- 21:36:01 +0000
-Date: Fri, 21 Jul 2023 17:35:58 -0400
-From: Rodrigo Vivi <rodrigo.vivi@intel.com>
-To: Matthew Brost <matthew.brost@intel.com>
-Message-ID: <ZLr6PqWX4g4Zzi36@intel.com>
-References: <20230721192152.275803-1-matthew.brost@intel.com>
-Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
-In-Reply-To: <20230721192152.275803-1-matthew.brost@intel.com>
-X-ClientProxiedBy: SJ0PR03CA0123.namprd03.prod.outlook.com
- (2603:10b6:a03:33c::8) To MN0PR11MB6059.namprd11.prod.outlook.com
- (2603:10b6:208:377::9)
-MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: MN0PR11MB6059:EE_|CY5PR11MB6092:EE_
-X-MS-Office365-Filtering-Correlation-Id: 9dbbd98a-72ee-4cf2-259c-08db8a327aa8
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: oTKtf/m/g64N7BcHa9Fy0T5t4Oe//+q6jgS59+sBextMLiS5j5H+rKM9OLDfzubPHBa2r/XPEVk/cRtvNMDRPmtEPiEKNkHZJ81cgBYILwI3aXoh1RGm7LR1Mx1MlwwVsfr1X8dlNNIMVhY5RA1cqK41Qfh0tYKeu3e2RilStT5EROuLwR4ZfGZGp2X9hVdbkUzXNoOHRkJL/uK1hyZSP94H0zw29FT6WqmBw5q/R35heaXGrKPDsVe5z5wFX7QGyC2sS0J444v5Pf/txNrUT01rrIaG05ECemaM0IjA2HSQV3znVUq4P/yN2dN6TmkY/nX/kfPGXEL6QlD9u0epj7DoIA48XRiYMtcGovCTgbP92ykY7K4ZBkULx0C4orqtr/01eb91IBL3clNO6aER21g2N5G1f5oyp2aImSfjZapjNlTLQ8Rl3qKOsypGsjuujMcmWTb3dulEtDAbvwRx5Mo1DHYIpjpSUUmYXBqOT3YzX6RfDAobjMjk7J9GaI8BT/g28D4ky/PCC7sd2/hD0AX1ENs/T/f0wQChmbROwLj5TZtf/YwXIMoHweWzBp5S
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:MN0PR11MB6059.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230028)(396003)(376002)(39860400002)(366004)(136003)(346002)(451199021)(83380400001)(478600001)(186003)(86362001)(2616005)(6486002)(6506007)(6512007)(66476007)(2906002)(66556008)(36756003)(38100700002)(6666004)(37006003)(44832011)(41300700001)(26005)(8676002)(82960400001)(6862004)(66946007)(6636002)(8936002)(4326008)(5660300002)(316002);
- DIR:OUT; SFP:1102; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?uKlVkpmk+DUq+E+aAmYkw6xna58qT2IiQSDyMixh86bGmTEIk9SuazX6RDRp?=
- =?us-ascii?Q?Tgb6D2vREDeIlpX1Q2lSjMzy436h9nitkgB49MjLXO/7aI0/ZYGzbtkGjb/o?=
- =?us-ascii?Q?s7pLsGnvMtga4ZBnUcaBlKStTK7tRLNTlBdc9CRL6M09inOAc+yzHOsFmBYc?=
- =?us-ascii?Q?u8oQi6vWJEJyERvbEMO/cFyqofa+CrLxtKw9rqoeyTWPxeCVMUIHXmiuBLNS?=
- =?us-ascii?Q?+Sb32MRBn6KvhnPNOi8JxHDrL4iviajx8C4WJs3PaDOsqAL/y6kEInnbyQLb?=
- =?us-ascii?Q?h7FoilWMW8bllQ4Z0YCmRIaLegpjSoBENmSMQiYVXq9Fm6vk2HaHcn/v1sWA?=
- =?us-ascii?Q?H1grSfrGnvV/Zz5zX9A+1kpg48qqu7yNBDNXDrTybPj0vO5uHl1m4M2xOLh4?=
- =?us-ascii?Q?lWAN5TiSShsW/hBj7X1ws13LkbC5ZprRorUiEQ06VzhLnxasPETEimeT4dph?=
- =?us-ascii?Q?N+x7wtvj9v+BI5xVgF45iFUayBE2ZaxCLuhdJwDFaU4Lrg6xaQisrZd4jT4Z?=
- =?us-ascii?Q?sohmIiPa6Z1sdzmaO2QQv7KasXsP8QQTsr5xfC9YK2Jb8pn9HT3t2QsDoquZ?=
- =?us-ascii?Q?emZt521Qxv7GnIqtxtdDRKcF6I/HXjS3zmgr6fpdwByTjQiJb+h56mpEL6Ct?=
- =?us-ascii?Q?ezNZbyVehfdXoII3RQjo2IPEU9BG2HEg98ZL6JCClfhw/Cqm/yuP5Zjt7KFs?=
- =?us-ascii?Q?cXkfScJVuvoEVtncJcp+Pa//6ESPNKXYF8UBFenj447o1zcxw8NdRYZJMUAO?=
- =?us-ascii?Q?pM7nzfu3wX7YRudIlrldyS+ovls7FMoJvy61//0dW8zrb9cMFw8HeqzTyUi/?=
- =?us-ascii?Q?GlHF4JWHe+pbjBXL58/OszSpb5N23pkA4OmR970R/0rpyFaoN8bYnipdx1v3?=
- =?us-ascii?Q?oudPbwa0l/MvgnE/UB1uQOmh3nf9RctZhvMGrfCAzf5iK/XZmlkmErQqmeH7?=
- =?us-ascii?Q?wezsrVLfD3ck9GCU7jA1TWRyM/AY8NjUI5hxkl4dl9Qf6dxvstF6DNsmcdfY?=
- =?us-ascii?Q?Pp0yaaP0FxSynfkJvCtN/21Te/vbSxQntV/WfyzhyDH/4dbbW9cCRr05BZrP?=
- =?us-ascii?Q?yVw2CNNZ2r/8YSDqGkifAr39JDNC4XpMqbSOblTjTtQjdx7hIrfA81xdNTI6?=
- =?us-ascii?Q?K8EMg4jbimPkUZNsyZOAoJcyZ9BQWup9qTj32g3Is/FiO/iPlz5oobaRX1T5?=
- =?us-ascii?Q?gEFuKVT8nWHGeP/UisKxEUu9uzgg6YwSK4WjgxutBbLMBGMLsI0PPPRpsJTi?=
- =?us-ascii?Q?VKH9WOOxad53K/uHfQFbNh0H6NDjKUiRn+26LRSESmSLJwCDcYh8z1/I8ugy?=
- =?us-ascii?Q?gz3XOeRH3AJmwipdBPKm++76AmoF/ynoYHydB50hWG9I3qDeXe0gRM9tM9Ns?=
- =?us-ascii?Q?nDQL/UdFSWLNOTVKNpcnRh9Q78PG7Gk1gD7WkfeTeyrW8Mlt+stnqDGKvMcN?=
- =?us-ascii?Q?sBLrB06uM3E/aHOzoRazyLof/AV5LPgsISIhS4zW80XT/URXFc8QCesk8OSc?=
- =?us-ascii?Q?CKDQo0l+nnlGehJAaIQ7bJxVTsKpvmtN/UjzL9iOlwWMe+oJnOodbWJDU8mm?=
- =?us-ascii?Q?GLeEdxgO2AOlAFw/ajg2pdpXGfQILW6/oOqKbQv0H39FhajZr2nOsNsNWmC5?=
- =?us-ascii?Q?Uw=3D=3D?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: 9dbbd98a-72ee-4cf2-259c-08db8a327aa8
-X-MS-Exchange-CrossTenant-AuthSource: MN0PR11MB6059.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 21 Jul 2023 21:36:01.6410 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: /qDg6b5eMYLjDQgvwLyvpkTq9s6MlXlsbpZNQsb4r8/xmiCt16/7nWDE1sbgeUa1v7c/Ih/JxZr+K+5f/GLT4w==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: CY5PR11MB6092
-X-OriginatorOrg: intel.com
-Subject: Re: [Intel-xe] [PATCH] drm/xe: Use migrate engine for page fault
- binds
+X-IronPort-AV: E=McAfee;i="6600,9927,10778"; a="838726925"
+X-IronPort-AV: E=Sophos;i="6.01,223,1684825200"; d="scan'208";a="838726925"
+Received: from adixit-mobl.amr.corp.intel.com (HELO adixit-arch.intel.com)
+ ([10.209.119.246])
+ by fmsmga002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 21 Jul 2023 16:36:19 -0700
+Date: Fri, 21 Jul 2023 16:36:02 -0700
+Message-ID: <877cqsrg65.wl-ashutosh.dixit@intel.com>
+From: "Dixit, Ashutosh" <ashutosh.dixit@intel.com>
+To: "Iddamsetty, Aravind" <aravind.iddamsetty@intel.com>
+In-Reply-To: <f4f6c8f9-a97d-6072-cf0c-4122b3d4f93f@intel.com>
+References: <20230627122113.1472532-1-aravind.iddamsetty@intel.com>	<20230627122113.1472532-3-aravind.iddamsetty@intel.com>	<87cz0mqdpi.wl-ashutosh.dixit@intel.com>	<f4f6c8f9-a97d-6072-cf0c-4122b3d4f93f@intel.com>
+User-Agent: Wanderlust/2.15.9 (Almost Unreal) SEMI-EPG/1.14.7 (Harue)
+ FLIM-LB/1.14.9 (=?ISO-8859-4?Q?Goj=F2?=) APEL-LB/10.8 EasyPG/1.0.0
+ Emacs/28.2 (x86_64-pc-linux-gnu) MULE/6.0 (HANACHIRUSATO)
+MIME-Version: 1.0 (generated by SEMI-EPG 1.14.7 - "Harue")
+Content-Type: text/plain; charset=ISO-8859-1
+Content-Transfer-Encoding: quoted-printable
+Subject: Re: [Intel-xe] [PATCH v2 2/2] drm/xe/pmu: Enable PMU interface
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -142,57 +60,1434 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-xe@lists.freedesktop.org
+Cc: Bommu Krishnaiah <krishnaiah.bommu@intel.com>,
+ intel-xe@lists.freedesktop.org, Tvrtko Ursulin <tvrtko.ursulin@intel.com>
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Fri, Jul 21, 2023 at 12:21:52PM -0700, Matthew Brost wrote:
-> We must use migrate engine for page fault binds in order to avoid a
-> deadlock as the migrate engine has a reserved BCS instance which cannot
-> be stuck on a fault. To use the migrate engine the engine argument to
-> xe_migrate_update_pgtables must be NULL, this was incorrectly wired up
-> so vm->eng[tile_id] was always being used. Fix this.
+On Fri, 21 Jul 2023 04:51:09 -0700, Iddamsetty, Aravind wrote:
+>
+Hi Aravind,
 
-it makes sense according to the xe_migrate_update_pgtables doc.
+> On 21-07-2023 06:32, Dixit, Ashutosh wrote:
+> > On Tue, 27 Jun 2023 05:21:13 -0700, Aravind Iddamsetty wrote:
+> >>
+> > More stuff to mull over. You can ignore comments starting with "OK", th=
+ose
+> > are just notes to myself.
+> >
+> > Also, maybe some time we can add a basic IGT which reads these exposed
+> > counters and verifies that we can read them and they are monotonically
+> > increasing?
+>
+> this is the IGT https://patchwork.freedesktop.org/series/119936/ series
+> using these counters posted by Venkat.
+>
+> >
+> >> There are a set of engine group busyness counters provided by HW which=
+ are
+> >> perfect fit to be exposed via PMU perf events.
+> >>
+> >> BSPEC: 46559, 46560, 46722, 46729
+> >
+> > Also add these Bspec entries: 71028, 52071
+>
+> OK.
+>
+> >
+> >>
+> >> events can be listed using:
+> >> perf list
+> >>   xe_0000_03_00.0/any-engine-group-busy-gt0/         [Kernel PMU event]
+> >>   xe_0000_03_00.0/copy-group-busy-gt0/               [Kernel PMU event]
+> >>   xe_0000_03_00.0/interrupts/                        [Kernel PMU event]
+> >>   xe_0000_03_00.0/media-group-busy-gt0/              [Kernel PMU event]
+> >>   xe_0000_03_00.0/render-group-busy-gt0/             [Kernel PMU event]
+> >>
+> >> and can be read using:
+> >>
+> >> perf stat -e "xe_0000_8c_00.0/render-group-busy-gt0/" -I 1000
+> >>            time             counts unit events
+> >>      1.001139062                  0 ns  xe_0000_8c_00.0/render-group-b=
+usy-gt0/
+> >>      2.003294678                  0 ns  xe_0000_8c_00.0/render-group-b=
+usy-gt0/
+> >>      3.005199582                  0 ns  xe_0000_8c_00.0/render-group-b=
+usy-gt0/
+> >>      4.007076497                  0 ns  xe_0000_8c_00.0/render-group-b=
+usy-gt0/
+> >>      5.008553068                  0 ns  xe_0000_8c_00.0/render-group-b=
+usy-gt0/
+> >>      6.010531563              43520 ns  xe_0000_8c_00.0/render-group-b=
+usy-gt0/
+> >>      7.012468029              44800 ns  xe_0000_8c_00.0/render-group-b=
+usy-gt0/
+> >>      8.013463515                  0 ns  xe_0000_8c_00.0/render-group-b=
+usy-gt0/
+> >>      9.015300183                  0 ns  xe_0000_8c_00.0/render-group-b=
+usy-gt0/
+> >>     10.017233010                  0 ns  xe_0000_8c_00.0/render-group-b=
+usy-gt0/
+> >>     10.971934120                  0 ns  xe_0000_8c_00.0/render-group-b=
+usy-gt0/
+> >>
+> >> The pmu base implementation is taken from i915.
+> >>
+> >> v2:
+> >> Store last known value when device is awake return that while the GT is
+> >> suspended and then update the driver copy when read during awake.
+> >>
+> >> Co-developed-by: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
+> >> Co-developed-by: Bommu Krishnaiah <krishnaiah.bommu@intel.com>
+> >> Signed-off-by: Aravind Iddamsetty <aravind.iddamsetty@intel.com>
+> >> ---
+> >>  drivers/gpu/drm/xe/Makefile          |   2 +
+> >>  drivers/gpu/drm/xe/regs/xe_gt_regs.h |   5 +
+> >>  drivers/gpu/drm/xe/xe_device.c       |   2 +
+> >>  drivers/gpu/drm/xe/xe_device_types.h |   4 +
+> >>  drivers/gpu/drm/xe/xe_gt.c           |   2 +
+> >>  drivers/gpu/drm/xe/xe_irq.c          |  22 +
+> >>  drivers/gpu/drm/xe/xe_module.c       |   5 +
+> >>  drivers/gpu/drm/xe/xe_pmu.c          | 739 +++++++++++++++++++++++++++
+> >>  drivers/gpu/drm/xe/xe_pmu.h          |  25 +
+> >>  drivers/gpu/drm/xe/xe_pmu_types.h    |  80 +++
+> >>  include/uapi/drm/xe_drm.h            |  16 +
+> >>  11 files changed, 902 insertions(+)
+> >>  create mode 100644 drivers/gpu/drm/xe/xe_pmu.c
+> >>  create mode 100644 drivers/gpu/drm/xe/xe_pmu.h
+> >>  create mode 100644 drivers/gpu/drm/xe/xe_pmu_types.h
+> >>
+> >> diff --git a/drivers/gpu/drm/xe/Makefile b/drivers/gpu/drm/xe/Makefile
+> >> index 081c57fd8632..e52ab795c566 100644
+> >> --- a/drivers/gpu/drm/xe/Makefile
+> >> +++ b/drivers/gpu/drm/xe/Makefile
+> >> @@ -217,6 +217,8 @@ xe-$(CONFIG_DRM_XE_DISPLAY) +=3D \
+> >>	i915-display/skl_universal_plane.o \
+> >>	i915-display/skl_watermark.o
+> >>
+> >> +xe-$(CONFIG_PERF_EVENTS) +=3D xe_pmu.o
+> >> +
+> >>  ifeq ($(CONFIG_ACPI),y)
+> >>	xe-$(CONFIG_DRM_XE_DISPLAY) +=3D \
+> >>		i915-display/intel_acpi.o \
+> >> diff --git a/drivers/gpu/drm/xe/regs/xe_gt_regs.h b/drivers/gpu/drm/xe=
+/regs/xe_gt_regs.h
+> >> index 3f664011eaea..c7d9e4634745 100644
+> >> --- a/drivers/gpu/drm/xe/regs/xe_gt_regs.h
+> >> +++ b/drivers/gpu/drm/xe/regs/xe_gt_regs.h
+> >> @@ -285,6 +285,11 @@
+> >>  #define   INVALIDATION_BROADCAST_MODE_DIS	REG_BIT(12)
+> >>  #define   GLOBAL_INVALIDATION_MODE		REG_BIT(2)
+> >>
+> >> +#define XE_OAG_RC0_ANY_ENGINE_BUSY_FREE		XE_REG(0xdb80)
+> >> +#define XE_OAG_ANY_MEDIA_FF_BUSY_FREE		XE_REG(0xdba0)
+> >> +#define XE_OAG_BLT_BUSY_FREE			XE_REG(0xdbbc)
+> >> +#define XE_OAG_RENDER_BUSY_FREE			XE_REG(0xdbdc)
+> >> +
+> >>  #define SAMPLER_MODE				XE_REG_MCR(0xe18c, XE_REG_OPTION_MASKED)
+> >>  #define   ENABLE_SMALLPL			REG_BIT(15)
+> >>  #define   SC_DISABLE_POWER_OPTIMIZATION_EBB	REG_BIT(9)
+> >> diff --git a/drivers/gpu/drm/xe/xe_device.c b/drivers/gpu/drm/xe/xe_de=
+vice.c
+> >> index c7985af85a53..b2c7bd4a97d9 100644
+> >> --- a/drivers/gpu/drm/xe/xe_device.c
+> >> +++ b/drivers/gpu/drm/xe/xe_device.c
+> >> @@ -328,6 +328,8 @@ int xe_device_probe(struct xe_device *xe)
+> >>
+> >>	xe_debugfs_register(xe);
+> >>
+> >> +	xe_pmu_register(&xe->pmu);
+> >> +
+> >>	err =3D drmm_add_action_or_reset(&xe->drm, xe_device_sanitize, xe);
+> >>	if (err)
+> >>		return err;
+> >> diff --git a/drivers/gpu/drm/xe/xe_device_types.h b/drivers/gpu/drm/xe=
+/xe_device_types.h
+> >> index 0226d44a6af2..3ba99aae92b9 100644
+> >> --- a/drivers/gpu/drm/xe/xe_device_types.h
+> >> +++ b/drivers/gpu/drm/xe/xe_device_types.h
+> >> @@ -15,6 +15,7 @@
+> >>  #include "xe_devcoredump_types.h"
+> >>  #include "xe_gt_types.h"
+> >>  #include "xe_platform_types.h"
+> >> +#include "xe_pmu.h"
+> >>  #include "xe_step_types.h"
+> >>
+> >>  #if IS_ENABLED(CONFIG_DRM_XE_DISPLAY)
+> >> @@ -332,6 +333,9 @@ struct xe_device {
+> >>	/** @d3cold_allowed: Indicates if d3cold is a valid device state */
+> >>	bool d3cold_allowed;
+> >>
+> >> +	/* @pmu: performance monitoring unit */
+> >> +	struct xe_pmu pmu;
+> >> +
+> >
+> > Now I am wondering why we don't make the PMU per-gt (or per-tile)? Per-=
+gt
+> > would work for these busyness registers and I am not sure how the
+> > interrupts are hooked up.
+> >
+> > In i915 the PMU being device level helped in having a single timer (rat=
+her
+> > than a per gt timer).
+> >
+> > Anyway probably not much practical benefit by make it per-gt/per-tile, =
+so
+> > maybe leave as is. Just thinking out loud.
+>
+> we are able to expose per-gt counters so do not see any benefit in
+> making pmu per-gt, also i believe struct pmu is per device it will have
+> a type associated which is unique for a device.
 
-Reviewed-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
+PMU can be made per gt and named xe-gt0, xe-gt1 etc. if we want. But anyway
+leave as is.
 
+>
+> >
+> >>	/* private: */
+> >>
+> >>  #if IS_ENABLED(CONFIG_DRM_XE_DISPLAY)
+> >> diff --git a/drivers/gpu/drm/xe/xe_gt.c b/drivers/gpu/drm/xe/xe_gt.c
+> >> index 2458397ce8af..96e3720923d4 100644
+> >> --- a/drivers/gpu/drm/xe/xe_gt.c
+> >> +++ b/drivers/gpu/drm/xe/xe_gt.c
+> >> @@ -593,6 +593,8 @@ int xe_gt_suspend(struct xe_gt *gt)
+> >>	if (err)
+> >>		goto err_msg;
+> >>
+> >> +	engine_group_busyness_store(gt);
+> >
+> > Not sure I follow the reason for doing this at suspend time? If PMU was
+> > active there should be a previous value. Why must we take a new sample
+> > explicitly here?
+>
+> the PMU interface can be read even when device is suspend and in such
+> cases we should not wake up the device, and if we try to read the
+> register when device is suspended it gives spurious counter you can
+> check in version#1 of this series we were getting huge values. as we put
+> the device to suspend immediately after probe. So storing the last known
+> good value before suspend.
 
-> 
-> Signed-off-by: Matthew Brost <matthew.brost@intel.com>
-> ---
->  drivers/gpu/drm/xe/xe_pt.c | 3 +--
->  drivers/gpu/drm/xe/xe_vm.c | 3 ++-
->  2 files changed, 3 insertions(+), 3 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/xe/xe_pt.c b/drivers/gpu/drm/xe/xe_pt.c
-> index 457f1363ec67..bbc319fba9e8 100644
-> --- a/drivers/gpu/drm/xe/xe_pt.c
-> +++ b/drivers/gpu/drm/xe/xe_pt.c
-> @@ -1421,8 +1421,7 @@ __xe_pt_bind_vma(struct xe_tile *tile, struct xe_vma *vma, struct xe_engine *e,
->  	}
->  
->  	fence = xe_migrate_update_pgtables(tile->migrate,
-> -					   vm, xe_vma_bo(vma),
-> -					   e ? e : vm->eng[tile->id],
-> +					   vm, xe_vma_bo(vma), e,
->  					   entries, num_entries,
->  					   syncs, num_syncs,
->  					   &bind_pt_update.base);
-> diff --git a/drivers/gpu/drm/xe/xe_vm.c b/drivers/gpu/drm/xe/xe_vm.c
-> index 6003c0be5b59..62a99c393d6b 100644
-> --- a/drivers/gpu/drm/xe/xe_vm.c
-> +++ b/drivers/gpu/drm/xe/xe_vm.c
-> @@ -1678,7 +1678,8 @@ xe_vm_bind_vma(struct xe_vma *vma, struct xe_engine *e,
->  		if (!(vma->tile_mask & BIT(id)))
->  			goto next;
->  
-> -		fence = __xe_pt_bind_vma(tile, vma, e, first_op ? syncs : NULL,
-> +		fence = __xe_pt_bind_vma(tile, vma, e ? e : vm->eng[id],
-> +					 first_op ? syncs : NULL,
->  					 first_op ? num_syncs : 0,
->  					 vma->tile_present & BIT(id));
->  		if (IS_ERR(fence)) {
-> -- 
-> 2.34.1
-> 
+No need, see comment at init_samples below.
+
+>
+> >
+> > To me looks like engine_group_busyness_store should not be needed, see
+> > comment below for init_samples too.
+> >
+> >> +
+> >>	err =3D xe_uc_suspend(&gt->uc);
+> >>	if (err)
+> >>		goto err_force_wake;
+> >> diff --git a/drivers/gpu/drm/xe/xe_irq.c b/drivers/gpu/drm/xe/xe_irq.c
+> >> index b4ed1e4a3388..cb943fb94ec7 100644
+> >> --- a/drivers/gpu/drm/xe/xe_irq.c
+> >> +++ b/drivers/gpu/drm/xe/xe_irq.c
+> >> @@ -27,6 +27,24 @@
+> >>  #define IIR(offset)				XE_REG(offset + 0x8)
+> >>  #define IER(offset)				XE_REG(offset + 0xc)
+> >>
+> >> +/*
+> >> + * Interrupt statistic for PMU. Increments the counter only if the
+> >> + * interrupt originated from the GPU so interrupts from a device which
+> >> + * shares the interrupt line are not accounted.
+> >> + */
+> >> +static inline void xe_pmu_irq_stats(struct xe_device *xe,
+> >
+> > No inline, compiler will do it, but looks like we may want to always_in=
+line
+> > this. Also this function should really be in xe_pmu.h? Anyway probably
+> > leave as is.
+> >
+> >> +				    irqreturn_t res)
+> >> +{
+> >> +	if (unlikely(res !=3D IRQ_HANDLED))
+> >> +		return;
+> >> +
+> >> +	/*
+> >> +	 * A clever compiler translates that into INC. A not so clever one
+> >> +	 * should at least prevent store tearing.
+> >> +	 */
+> >> +	WRITE_ONCE(xe->pmu.irq_count, xe->pmu.irq_count + 1);
+> >> +}
+> >> +
+> >>  static void assert_iir_is_zero(struct xe_gt *mmio, struct xe_reg reg)
+> >>  {
+> >>	u32 val =3D xe_mmio_read32(mmio, reg);
+> >> @@ -325,6 +343,8 @@ static irqreturn_t xelp_irq_handler(int irq, void =
+*arg)
+> >>
+> >>	xe_display_irq_enable(xe, gu_misc_iir);
+> >>
+> >> +	xe_pmu_irq_stats(xe, IRQ_HANDLED);
+> >> +
+> >>	return IRQ_HANDLED;
+> >>  }
+> >>
+> >> @@ -414,6 +434,8 @@ static irqreturn_t dg1_irq_handler(int irq, void *=
+arg)
+> >>	dg1_intr_enable(xe, false);
+> >>	xe_display_irq_enable(xe, gu_misc_iir);
+> >>
+> >> +	xe_pmu_irq_stats(xe, IRQ_HANDLED);
+> >> +
+> >>	return IRQ_HANDLED;
+> >>  }
+> >>
+> >> diff --git a/drivers/gpu/drm/xe/xe_module.c b/drivers/gpu/drm/xe/xe_mo=
+dule.c
+> >> index 75e5be939f53..f6fe89748525 100644
+> >> --- a/drivers/gpu/drm/xe/xe_module.c
+> >> +++ b/drivers/gpu/drm/xe/xe_module.c
+> >> @@ -12,6 +12,7 @@
+> >>  #include "xe_hw_fence.h"
+> >>  #include "xe_module.h"
+> >>  #include "xe_pci.h"
+> >> +#include "xe_pmu.h"
+> >>  #include "xe_sched_job.h"
+> >>
+> >>  bool enable_guc =3D true;
+> >> @@ -49,6 +50,10 @@ static const struct init_funcs init_funcs[] =3D {
+> >>		.init =3D xe_sched_job_module_init,
+> >>		.exit =3D xe_sched_job_module_exit,
+> >>	},
+> >> +	{
+> >> +		.init =3D xe_pmu_init,
+> >> +		.exit =3D xe_pmu_exit,
+> >> +	},
+> >>	{
+> >>		.init =3D xe_register_pci_driver,
+> >>		.exit =3D xe_unregister_pci_driver,
+> >> diff --git a/drivers/gpu/drm/xe/xe_pmu.c b/drivers/gpu/drm/xe/xe_pmu.c
+> >> new file mode 100644
+> >> index 000000000000..bef1895be9f7
+> >> --- /dev/null
+> >> +++ b/drivers/gpu/drm/xe/xe_pmu.c
+> >> @@ -0,0 +1,739 @@
+> >> +/*
+> >> + * SPDX-License-Identifier: MIT
+> >> + *
+> >> + * Copyright =A9 2023 Intel Corporation
+> >> + */
+> >
+> > This SPDX header is for .h files not .c files. Actually, it is for neit=
+her :/
+>
+> But i see this in almost all the files in xe.
+
+Look closely.
+
+> >
+> >> +
+> >> +#include <drm/drm_drv.h>
+> >> +#include <drm/drm_managed.h>
+> >> +#include <drm/xe_drm.h>
+> >> +
+> >> +#include "regs/xe_gt_regs.h"
+> >> +#include "xe_device.h"
+> >> +#include "xe_gt_clock.h"
+> >> +#include "xe_mmio.h"
+> >> +
+> >> +static cpumask_t xe_pmu_cpumask;
+> >> +static unsigned int xe_pmu_target_cpu =3D -1;
+> >> +
+> >> +static unsigned int config_gt_id(const u64 config)
+> >> +{
+> >> +	return config >> __XE_PMU_GT_SHIFT;
+> >> +}
+> >> +
+> >> +static u64 config_counter(const u64 config)
+> >> +{
+> >> +	return config & ~(~0ULL << __XE_PMU_GT_SHIFT);
+> >> +}
+> >> +
+> >> +static unsigned int
+> >> +__sample_idx(struct xe_pmu *pmu, unsigned int gt_id, int sample)
+> >> +{
+> >> +	unsigned int idx =3D gt_id * __XE_NUM_PMU_SAMPLERS + sample;
+> >> +
+> >> +	XE_BUG_ON(idx >=3D ARRAY_SIZE(pmu->sample));
+> >> +
+> >> +	return idx;
+> >> +}
+> >
+> > The compiler does this for us if we make sample array 2-d.
+> >
+> >> +
+> >> +static u64 read_sample(struct xe_pmu *pmu, unsigned int gt_id, int sa=
+mple)
+> >> +{
+> >> +	return pmu->sample[__sample_idx(pmu, gt_id, sample)].cur;
+> >> +}
+> >> +
+> >> +static void
+> >> +store_sample(struct xe_pmu *pmu, unsigned int gt_id, int sample, u64 =
+val)
+> >> +{
+> >> +	pmu->sample[__sample_idx(pmu, gt_id, sample)].cur =3D val;
+> >> +}
+> >
+> > The three functions above are not needed if we make the sample array
+> > 2-d. See here:
+> >
+> > https://patchwork.freedesktop.org/patch/538887/?series=3D118225&rev=3D1
+> >
+> > Only a part of the patch above was merged (see 8ed0753b527dc) to keep t=
+he
+> > patch size small, but since for xe we are starting from scratch we can
+> > implement the whole approach above (get rid of the read/store helpers
+> > entirely, direct assignment without the helpers works).
+>
+> Ok I'll go over it.
+>
+> >
+> >> +
+> >> +static int engine_busyness_sample_type(u64 config)
+> >> +{
+> >> +	int type =3D 0;
+> >> +
+> >> +	switch (config) {
+> >> +	case XE_PMU_RENDER_GROUP_BUSY(0):
+> >> +		type =3D  __XE_SAMPLE_RENDER_GROUP_BUSY;
+> >> +		break;
+> >> +	case XE_PMU_COPY_GROUP_BUSY(0):
+> >> +		type =3D __XE_SAMPLE_COPY_GROUP_BUSY;
+> >> +		break;
+> >> +	case XE_PMU_MEDIA_GROUP_BUSY(0):
+> >> +		type =3D __XE_SAMPLE_MEDIA_GROUP_BUSY;
+> >> +		break;
+> >> +	case XE_PMU_ANY_ENGINE_GROUP_BUSY(0):
+> >> +		type =3D __XE_SAMPLE_ANY_ENGINE_GROUP_BUSY;
+> >> +		break;
+> >> +	}
+> >> +
+> >> +	return type;
+> >> +}
+> >> +
+> >> +static void xe_pmu_event_destroy(struct perf_event *event)
+> >> +{
+> >> +	struct xe_device *xe =3D
+> >> +		container_of(event->pmu, typeof(*xe), pmu.base);
+> >> +
+> >> +	drm_WARN_ON(&xe->drm, event->parent);
+> >> +
+> >> +	drm_dev_put(&xe->drm);
+> >> +}
+> >> +
+> >> +static u64 __engine_group_busyness_read(struct xe_gt *gt, u64 config)
+> >> +{
+> >> +	u64 val =3D 0;
+> >> +
+> >> +	switch (config) {
+> >> +	case XE_PMU_RENDER_GROUP_BUSY(0):
+> >> +		val =3D xe_mmio_read32(gt, XE_OAG_RENDER_BUSY_FREE);
+> >> +		break;
+> >> +	case XE_PMU_COPY_GROUP_BUSY(0):
+> >> +		val =3D xe_mmio_read32(gt, XE_OAG_BLT_BUSY_FREE);
+> >> +		break;
+> >> +	case XE_PMU_MEDIA_GROUP_BUSY(0):
+> >> +		val =3D xe_mmio_read32(gt, XE_OAG_ANY_MEDIA_FF_BUSY_FREE);
+> >> +		break;
+> >> +	case XE_PMU_ANY_ENGINE_GROUP_BUSY(0):
+> >> +		val =3D xe_mmio_read32(gt, XE_OAG_RC0_ANY_ENGINE_BUSY_FREE);
+> >> +		break;
+> >> +	default:
+> >> +		drm_warn(&gt->tile->xe->drm, "unknown pmu event\n");
+> >> +	}
+> >
+> > We need xe_device_mem_access_get, also xe_force_wake_get if applicable,
+> > somewhere before reading these registers.
+> >
+> >> +
+> >> +	return xe_gt_clock_interval_to_ns(gt, val * 16);
+> >> +}
+> >> +
+> >> +static u64 engine_group_busyness_read(struct xe_gt *gt, u64 config)
+> >> +{
+> >> +	int sample_type =3D engine_busyness_sample_type(config);
+> >> +	struct xe_device *xe =3D gt->tile->xe;
+> >> +	const unsigned int gt_id =3D gt->info.id;
+> >> +	struct xe_pmu *pmu =3D &xe->pmu;
+> >> +	bool device_awake;
+> >> +	unsigned long flags;
+> >> +	u64 val;
+> >> +
+> >> +	/*
+> >> +	 * found no better way to check if device is awake or not. Before
+> >
+> > xe_device_mem_access_get_if_ongoing (hard to find name).
+>
+> thanks for sharing looks to be added recently. If we use this we needn't
+> use xe_device_mem_access_get.
+
+See comment at init_samples.
+
+>
+> >
+> >> +	 * we suspend we set the submission_state.enabled to false.
+> >> +	 */
+> >> +	device_awake =3D gt->uc.guc.submission_state.enabled ? true : false;
+> >> +	if (device_awake)
+> >> +		val =3D __engine_group_busyness_read(gt, config);
+> >> +
+> >> +	spin_lock_irqsave(&pmu->lock, flags);
+> >> +
+> >> +	if (device_awake)
+> >> +		store_sample(pmu, gt_id, sample_type, val);
+> >> +	else
+> >> +		val =3D read_sample(pmu, gt_id, sample_type);
+> >> +
+> >> +	spin_unlock_irqrestore(&pmu->lock, flags);
+> >> +
+> >> +	return val;
+> >> +}
+> >> +
+> >> +void engine_group_busyness_store(struct xe_gt *gt)
+> >> +{
+> >> +	struct xe_pmu *pmu =3D &gt->tile->xe->pmu;
+> >> +	unsigned int gt_id =3D gt->info.id;
+> >> +	unsigned long flags;
+> >> +
+> >> +	spin_lock_irqsave(&pmu->lock, flags);
+> >> +
+> >> +	store_sample(pmu, gt_id, __XE_SAMPLE_RENDER_GROUP_BUSY,
+> >> +		     __engine_group_busyness_read(gt, XE_PMU_RENDER_GROUP_BUSY(0)));
+> >> +	store_sample(pmu, gt_id, __XE_SAMPLE_COPY_GROUP_BUSY,
+> >> +		     __engine_group_busyness_read(gt, XE_PMU_COPY_GROUP_BUSY(0)));
+> >> +	store_sample(pmu, gt_id, __XE_SAMPLE_MEDIA_GROUP_BUSY,
+> >> +		     __engine_group_busyness_read(gt, XE_PMU_MEDIA_GROUP_BUSY(0)));
+> >> +	store_sample(pmu, gt_id, __XE_SAMPLE_ANY_ENGINE_GROUP_BUSY,
+> >> +		     __engine_group_busyness_read(gt, XE_PMU_ANY_ENGINE_GROUP_BUSY(=
+0)));
+> >> +
+> >> +	spin_unlock_irqrestore(&pmu->lock, flags);
+> >> +}
+> >> +
+> >> +static int
+> >> +config_status(struct xe_device *xe, u64 config)
+> >> +{
+> >> +	unsigned int max_gt_id =3D xe->info.gt_count > 1 ? 1 : 0;
+> >> +	unsigned int gt_id =3D config_gt_id(config);
+> >> +	struct xe_gt *gt =3D xe_device_get_gt(xe, gt_id);
+> >> +
+> >> +	if (gt_id > max_gt_id)
+> >> +		return -ENOENT;
+> >> +
+> >> +	switch (config_counter(config)) {
+> >> +	case XE_PMU_INTERRUPTS(0):
+> >> +		if (gt_id)
+> >> +			return -ENOENT;
+> >
+> > OK: this is a global event so we say this is enabled only for gt0.
+> >
+> >> +		break;
+> >> +	case XE_PMU_RENDER_GROUP_BUSY(0):
+> >> +	case XE_PMU_COPY_GROUP_BUSY(0):
+> >> +	case XE_PMU_ANY_ENGINE_GROUP_BUSY(0):
+> >> +		if (GRAPHICS_VER(xe) < 12)
+> >
+> > Any point checking? xe only supports Gen12+.
+>
+> hmmm ya good point will remove this.
+> >
+> >> +			return -ENOENT;
+> >> +		break;
+> >> +	case XE_PMU_MEDIA_GROUP_BUSY(0):
+> >> +		if (MEDIA_VER(xe) >=3D 13 && gt->info.type !=3D XE_GT_TYPE_MEDIA)
+> >> +			return -ENOENT;
+> >
+> > OK: this makes sense, so we will expose this event only for media gt's.
+> >
+> >> +		break;
+> >> +	default:
+> >> +		return -ENOENT;
+> >> +	}
+> >> +
+> >> +	return 0;
+> >> +}
+> >> +
+> >> +static int xe_pmu_event_init(struct perf_event *event)
+> >> +{
+> >> +	struct xe_device *xe =3D
+> >> +		container_of(event->pmu, typeof(*xe), pmu.base);
+> >> +	struct xe_pmu *pmu =3D &xe->pmu;
+> >> +	int ret;
+> >> +
+> >> +	if (pmu->closed)
+> >> +		return -ENODEV;
+> >> +
+> >> +	if (event->attr.type !=3D event->pmu->type)
+> >> +		return -ENOENT;
+> >> +
+> >> +	/* unsupported modes and filters */
+> >> +	if (event->attr.sample_period) /* no sampling */
+> >> +		return -EINVAL;
+> >> +
+> >> +	if (has_branch_stack(event))
+> >> +		return -EOPNOTSUPP;
+> >> +
+> >> +	if (event->cpu < 0)
+> >> +		return -EINVAL;
+> >> +
+> >> +	/* only allow running on one cpu at a time */
+> >> +	if (!cpumask_test_cpu(event->cpu, &xe_pmu_cpumask))
+> >> +		return -EINVAL;
+> >> +
+> >> +	ret =3D config_status(xe, event->attr.config);
+> >> +	if (ret)
+> >> +		return ret;
+> >> +
+> >> +	if (!event->parent) {
+> >> +		drm_dev_get(&xe->drm);
+> >> +		event->destroy =3D xe_pmu_event_destroy;
+> >> +	}
+> >> +
+> >> +	return 0;
+> >> +}
+> >> +
+> >> +static u64 __xe_pmu_event_read(struct perf_event *event)
+> >> +{
+> >> +	struct xe_device *xe =3D
+> >> +		container_of(event->pmu, typeof(*xe), pmu.base);
+> >> +	const unsigned int gt_id =3D config_gt_id(event->attr.config);
+> >> +	const u64 config =3D config_counter(event->attr.config);
+> >> +	struct xe_gt *gt =3D xe_device_get_gt(xe, gt_id);
+> >> +	struct xe_pmu *pmu =3D &xe->pmu;
+> >> +	u64 val =3D 0;
+> >> +
+> >> +	switch (config) {
+> >> +	case XE_PMU_INTERRUPTS(0):
+> >> +		val =3D READ_ONCE(pmu->irq_count);
+> >
+> > OK: The correct way to do this READ_ONCE/WRITE_ONCE irq_count stuff wou=
+ld
+> > be to take pmu->lock (both while reading and writing irq_count) but that
+> > would be expensive in the interrupt handler (as the .h hints). So all we
+> > can do is what is done here.
+> >
+> >> +		break;
+> >> +	case XE_PMU_RENDER_GROUP_BUSY(0):
+> >> +	case XE_PMU_COPY_GROUP_BUSY(0):
+> >> +	case XE_PMU_ANY_ENGINE_GROUP_BUSY(0):
+> >> +	case XE_PMU_MEDIA_GROUP_BUSY(0):
+> >> +		val =3D engine_group_busyness_read(gt, config);
+> >> +	}
+> >> +
+> >> +	return val;
+> >> +}
+> >> +
+> >> +static void xe_pmu_event_read(struct perf_event *event)
+> >> +{
+> >> +	struct xe_device *xe =3D
+> >> +		container_of(event->pmu, typeof(*xe), pmu.base);
+> >> +	struct hw_perf_event *hwc =3D &event->hw;
+> >> +	struct xe_pmu *pmu =3D &xe->pmu;
+> >> +	u64 prev, new;
+> >> +
+> >> +	if (pmu->closed) {
+> >> +		event->hw.state =3D PERF_HES_STOPPED;
+> >> +		return;
+> >> +	}
+> >> +again:
+> >> +	prev =3D local64_read(&hwc->prev_count);
+> >> +	new =3D __xe_pmu_event_read(event);
+> >> +
+> >> +	if (local64_cmpxchg(&hwc->prev_count, prev, new) !=3D prev)
+> >> +		goto again;
+> >> +
+> >> +	local64_add(new - prev, &event->count);
+> >> +}
+> >> +
+> >> +static void xe_pmu_enable(struct perf_event *event)
+> >> +{
+> >> +	/*
+> >> +	 * Store the current counter value so we can report the correct delta
+> >> +	 * for all listeners. Even when the event was already enabled and has
+> >> +	 * an existing non-zero value.
+> >> +	 */
+> >> +	local64_set(&event->hw.prev_count, __xe_pmu_event_read(event));
+> >> +}
+> >> +
+> >> +static void xe_pmu_event_start(struct perf_event *event, int flags)
+> >> +{
+> >> +	struct xe_device *xe =3D
+> >> +		container_of(event->pmu, typeof(*xe), pmu.base);
+> >> +	struct xe_pmu *pmu =3D &xe->pmu;
+> >> +
+> >> +	if (pmu->closed)
+> >> +		return;
+> >> +
+> >> +	xe_pmu_enable(event);
+> >> +	event->hw.state =3D 0;
+> >> +}
+> >> +
+> >> +static void xe_pmu_event_stop(struct perf_event *event, int flags)
+> >> +{
+> >> +	if (flags & PERF_EF_UPDATE)
+> >> +		xe_pmu_event_read(event);
+> >> +
+> >> +	event->hw.state =3D PERF_HES_STOPPED;
+> >> +}
+> >> +
+> >> +static int xe_pmu_event_add(struct perf_event *event, int flags)
+> >> +{
+> >> +	struct xe_device *xe =3D
+> >> +		container_of(event->pmu, typeof(*xe), pmu.base);
+> >> +	struct xe_pmu *pmu =3D &xe->pmu;
+> >> +
+> >> +	if (pmu->closed)
+> >> +		return -ENODEV;
+> >> +
+> >> +	if (flags & PERF_EF_START)
+> >> +		xe_pmu_event_start(event, flags);
+> >> +
+> >> +	return 0;
+> >> +}
+> >> +
+> >> +static void xe_pmu_event_del(struct perf_event *event, int flags)
+> >> +{
+> >> +	xe_pmu_event_stop(event, PERF_EF_UPDATE);
+> >> +}
+> >> +
+> >> +static int xe_pmu_event_event_idx(struct perf_event *event)
+> >> +{
+> >> +	return 0;
+> >> +}
+> >> +
+> >> +struct xe_str_attribute {
+> >> +	struct device_attribute attr;
+> >> +	const char *str;
+> >> +};
+> >> +
+> >> +static ssize_t xe_pmu_format_show(struct device *dev,
+> >> +				  struct device_attribute *attr, char *buf)
+> >> +{
+> >> +	struct xe_str_attribute *eattr;
+> >> +
+> >> +	eattr =3D container_of(attr, struct xe_str_attribute, attr);
+> >> +	return sprintf(buf, "%s\n", eattr->str);
+> >> +}
+> >> +
+> >> +#define XE_PMU_FORMAT_ATTR(_name, _config) \
+> >> +	(&((struct xe_str_attribute[]) { \
+> >> +		{ .attr =3D __ATTR(_name, 0444, xe_pmu_format_show, NULL), \
+> >> +		  .str =3D _config, } \
+> >> +	})[0].attr.attr)
+> >> +
+> >> +static struct attribute *xe_pmu_format_attrs[] =3D {
+> >> +	XE_PMU_FORMAT_ATTR(xe_eventid, "config:0-20"),
+> >
+> > 0-20 means 0-20 bits? Though here we probably have different number of
+> > config bits? Probably doesn't matter?
+>
+> as i understand this is not used anymore so will remove it.
+>
+> >
+> > The string will show up with:
+> >
+> > cat /sys/devices/xe/format/xe_eventid
+> >
+> >> +	NULL,
+> >> +};
+> >> +
+> >> +static const struct attribute_group xe_pmu_format_attr_group =3D {
+> >> +	.name =3D "format",
+> >> +	.attrs =3D xe_pmu_format_attrs,
+> >> +};
+> >> +
+> >> +struct xe_ext_attribute {
+> >> +	struct device_attribute attr;
+> >> +	unsigned long val;
+> >> +};
+> >> +
+> >> +static ssize_t xe_pmu_event_show(struct device *dev,
+> >> +				 struct device_attribute *attr, char *buf)
+> >> +{
+> >> +	struct xe_ext_attribute *eattr;
+> >> +
+> >> +	eattr =3D container_of(attr, struct xe_ext_attribute, attr);
+> >> +	return sprintf(buf, "config=3D0x%lx\n", eattr->val);
+> >> +}
+> >> +
+> >> +static ssize_t cpumask_show(struct device *dev,
+> >> +			    struct device_attribute *attr, char *buf)
+> >> +{
+> >> +	return cpumap_print_to_pagebuf(true, buf, &xe_pmu_cpumask);
+> >> +}
+> >> +
+> >> +static DEVICE_ATTR_RO(cpumask);
+> >> +
+> >> +static struct attribute *xe_cpumask_attrs[] =3D {
+> >> +	&dev_attr_cpumask.attr,
+> >> +	NULL,
+> >> +};
+> >> +
+> >> +static const struct attribute_group xe_pmu_cpumask_attr_group =3D {
+> >> +	.attrs =3D xe_cpumask_attrs,
+> >> +};
+> >> +
+> >> +#define __event(__counter, __name, __unit) \
+> >> +{ \
+> >> +	.counter =3D (__counter), \
+> >> +	.name =3D (__name), \
+> >> +	.unit =3D (__unit), \
+> >> +	.global =3D false, \
+> >> +}
+> >> +
+> >> +#define __global_event(__counter, __name, __unit) \
+> >> +{ \
+> >> +	.counter =3D (__counter), \
+> >> +	.name =3D (__name), \
+> >> +	.unit =3D (__unit), \
+> >> +	.global =3D true, \
+> >> +}
+> >> +
+> >> +static struct xe_ext_attribute *
+> >> +add_xe_attr(struct xe_ext_attribute *attr, const char *name, u64 conf=
+ig)
+> >> +{
+> >> +	sysfs_attr_init(&attr->attr.attr);
+> >> +	attr->attr.attr.name =3D name;
+> >> +	attr->attr.attr.mode =3D 0444;
+> >> +	attr->attr.show =3D xe_pmu_event_show;
+> >> +	attr->val =3D config;
+> >> +
+> >> +	return ++attr;
+> >> +}
+> >> +
+> >> +static struct perf_pmu_events_attr *
+> >> +add_pmu_attr(struct perf_pmu_events_attr *attr, const char *name,
+> >> +	     const char *str)
+> >> +{
+> >> +	sysfs_attr_init(&attr->attr.attr);
+> >> +	attr->attr.attr.name =3D name;
+> >> +	attr->attr.attr.mode =3D 0444;
+> >> +	attr->attr.show =3D perf_event_sysfs_show;
+> >> +	attr->event_str =3D str;
+> >> +
+> >> +	return ++attr;
+> >> +}
+> >> +
+> >> +static struct attribute **
+> >> +create_event_attributes(struct xe_pmu *pmu)
+> >> +{
+> >> +	struct xe_device *xe =3D container_of(pmu, typeof(*xe), pmu);
+> >> +	static const struct {
+> >> +		unsigned int counter;
+> >> +		const char *name;
+> >> +		const char *unit;
+> >> +		bool global;
+> >> +	} events[] =3D {
+> >> +		__global_event(0, "interrupts", NULL),
+> >> +		__event(1, "render-group-busy", "ns"),
+> >> +		__event(2, "copy-group-busy", "ns"),
+> >> +		__event(3, "media-group-busy", "ns"),
+> >> +		__event(4, "any-engine-group-busy", "ns"),
+> >> +	};
+> >
+> > OK: this function is some black magic to expose stuff through
+> > PMU. Identical to i915 and seems to be working from the commit message =
+so
+> > should be fine.
+> >
+> >> +
+> >> +	unsigned int count =3D 0;
+> >> +	struct perf_pmu_events_attr *pmu_attr =3D NULL, *pmu_iter;
+> >> +	struct xe_ext_attribute *xe_attr =3D NULL, *xe_iter;
+> >> +	struct attribute **attr =3D NULL, **attr_iter;
+> >> +	struct xe_gt *gt;
+> >> +	unsigned int i, j;
+> >> +
+> >> +	/* Count how many counters we will be exposing. */
+> >> +	for_each_gt(gt, xe, j) {
+> >> +		for (i =3D 0; i < ARRAY_SIZE(events); i++) {
+> >> +			u64 config =3D ___XE_PMU_OTHER(j, events[i].counter);
+> >> +
+> >> +			if (!config_status(xe, config))
+> >> +				count++;
+> >> +		}
+> >> +	}
+> >> +
+> >> +	/* Allocate attribute objects and table. */
+> >> +	xe_attr =3D kcalloc(count, sizeof(*xe_attr), GFP_KERNEL);
+> >> +	if (!xe_attr)
+> >> +		goto err_alloc;
+> >> +
+> >> +	pmu_attr =3D kcalloc(count, sizeof(*pmu_attr), GFP_KERNEL);
+> >> +	if (!pmu_attr)
+> >> +		goto err_alloc;
+> >> +
+> >> +	/* Max one pointer of each attribute type plus a termination entry. =
+*/
+> >> +	attr =3D kcalloc(count * 2 + 1, sizeof(*attr), GFP_KERNEL);
+> >> +	if (!attr)
+> >> +		goto err_alloc;
+> >> +
+> >> +	xe_iter =3D xe_attr;
+> >> +	pmu_iter =3D pmu_attr;
+> >> +	attr_iter =3D attr;
+> >> +
+> >> +	for_each_gt(gt, xe, j) {
+> >> +		for (i =3D 0; i < ARRAY_SIZE(events); i++) {
+> >> +			u64 config =3D ___XE_PMU_OTHER(j, events[i].counter);
+> >> +			char *str;
+> >> +
+> >> +			if (config_status(xe, config))
+> >> +				continue;
+> >> +
+> >> +			if (events[i].global)
+> >> +				str =3D kstrdup(events[i].name, GFP_KERNEL);
+> >> +			else
+> >> +				str =3D kasprintf(GFP_KERNEL, "%s-gt%u",
+> >> +						events[i].name, j);
+> >> +			if (!str)
+> >> +				goto err;
+> >> +
+> >> +			*attr_iter++ =3D &xe_iter->attr.attr;
+> >> +			xe_iter =3D add_xe_attr(xe_iter, str, config);
+> >> +
+> >> +			if (events[i].unit) {
+> >> +				if (events[i].global)
+> >> +					str =3D kasprintf(GFP_KERNEL, "%s.unit",
+> >> +							events[i].name);
+> >> +				else
+> >> +					str =3D kasprintf(GFP_KERNEL, "%s-gt%u.unit",
+> >> +							events[i].name, j);
+> >> +				if (!str)
+> >> +					goto err;
+> >> +
+> >> +				*attr_iter++ =3D &pmu_iter->attr.attr;
+> >> +				pmu_iter =3D add_pmu_attr(pmu_iter, str,
+> >> +							events[i].unit);
+> >> +			}
+> >> +		}
+> >> +	}
+> >> +
+> >> +	pmu->xe_attr =3D xe_attr;
+> >> +	pmu->pmu_attr =3D pmu_attr;
+> >> +
+> >> +	return attr;
+> >> +
+> >> +err:
+> >> +	for (attr_iter =3D attr; *attr_iter; attr_iter++)
+> >> +		kfree((*attr_iter)->name);
+> >> +
+> >> +err_alloc:
+> >> +	kfree(attr);
+> >> +	kfree(xe_attr);
+> >> +	kfree(pmu_attr);
+> >> +
+> >> +	return NULL;
+> >> +}
+> >> +
+> >> +static void free_event_attributes(struct xe_pmu *pmu)
+> >> +{
+> >> +	struct attribute **attr_iter =3D pmu->events_attr_group.attrs;
+> >> +
+> >> +	for (; *attr_iter; attr_iter++)
+> >> +		kfree((*attr_iter)->name);
+> >> +
+> >> +	kfree(pmu->events_attr_group.attrs);
+> >> +	kfree(pmu->xe_attr);
+> >> +	kfree(pmu->pmu_attr);
+> >> +
+> >> +	pmu->events_attr_group.attrs =3D NULL;
+> >> +	pmu->xe_attr =3D NULL;
+> >> +	pmu->pmu_attr =3D NULL;
+> >> +}
+> >> +
+> >> +static int xe_pmu_cpu_online(unsigned int cpu, struct hlist_node *nod=
+e)
+> >> +{
+> >> +	struct xe_pmu *pmu =3D hlist_entry_safe(node, typeof(*pmu), cpuhp.no=
+de);
+> >> +
+> >> +	XE_BUG_ON(!pmu->base.event_init);
+> >> +
+> >> +	/* Select the first online CPU as a designated reader. */
+> >> +	if (cpumask_empty(&xe_pmu_cpumask))
+> >> +		cpumask_set_cpu(cpu, &xe_pmu_cpumask);
+> >> +
+> >> +	return 0;
+> >> +}
+> >> +
+> >> +static int xe_pmu_cpu_offline(unsigned int cpu, struct hlist_node *no=
+de)
+> >> +{
+> >> +	struct xe_pmu *pmu =3D hlist_entry_safe(node, typeof(*pmu), cpuhp.no=
+de);
+> >> +	unsigned int target =3D xe_pmu_target_cpu;
+> >> +
+> >> +	XE_BUG_ON(!pmu->base.event_init);
+> >> +
+> >> +	/*
+> >> +	 * Unregistering an instance generates a CPU offline event which we =
+must
+> >> +	 * ignore to avoid incorrectly modifying the shared xe_pmu_cpumask.
+> >> +	 */
+> >> +	if (pmu->closed)
+> >> +		return 0;
+> >> +
+> >> +	if (cpumask_test_and_clear_cpu(cpu, &xe_pmu_cpumask)) {
+> >> +		target =3D cpumask_any_but(topology_sibling_cpumask(cpu), cpu);
+> >> +
+> >> +		/* Migrate events if there is a valid target */
+> >> +		if (target < nr_cpu_ids) {
+> >> +			cpumask_set_cpu(target, &xe_pmu_cpumask);
+> >> +			xe_pmu_target_cpu =3D target;
+> >> +		}
+> >> +	}
+> >> +
+> >> +	if (target < nr_cpu_ids && target !=3D pmu->cpuhp.cpu) {
+> >> +		perf_pmu_migrate_context(&pmu->base, cpu, target);
+> >> +		pmu->cpuhp.cpu =3D target;
+> >> +	}
+> >> +
+> >> +	return 0;
+> >> +}
+> >> +
+> >> +static enum cpuhp_state cpuhp_slot =3D CPUHP_INVALID;
+> >> +
+> >> +int xe_pmu_init(void)
+> >> +{
+> >> +	int ret;
+> >> +
+> >> +	ret =3D cpuhp_setup_state_multi(CPUHP_AP_ONLINE_DYN,
+> >> +				      "perf/x86/intel/xe:online",
+> >> +				      xe_pmu_cpu_online,
+> >> +				      xe_pmu_cpu_offline);
+> >> +	if (ret < 0)
+> >> +		pr_notice("Failed to setup cpuhp state for xe PMU! (%d)\n",
+> >> +			  ret);
+> >> +	else
+> >> +		cpuhp_slot =3D ret;
+> >> +
+> >> +	return 0;
+> >> +}
+> >> +
+> >> +void xe_pmu_exit(void)
+> >> +{
+> >> +	if (cpuhp_slot !=3D CPUHP_INVALID)
+> >> +		cpuhp_remove_multi_state(cpuhp_slot);
+> >> +}
+> >> +
+> >> +static int xe_pmu_register_cpuhp_state(struct xe_pmu *pmu)
+> >> +{
+> >> +	if (cpuhp_slot =3D=3D CPUHP_INVALID)
+> >> +		return -EINVAL;
+> >> +
+> >> +	return cpuhp_state_add_instance(cpuhp_slot, &pmu->cpuhp.node);
+> >> +}
+> >> +
+> >> +static void xe_pmu_unregister_cpuhp_state(struct xe_pmu *pmu)
+> >> +{
+> >> +	cpuhp_state_remove_instance(cpuhp_slot, &pmu->cpuhp.node);
+> >> +}
+> >> +
+> >> +static void xe_pmu_unregister(struct drm_device *device, void *arg)
+> >> +{
+> >> +	struct xe_pmu *pmu =3D arg;
+> >> +
+> >> +	if (!pmu->base.event_init)
+> >> +		return;
+> >> +
+> >> +	/*
+> >> +	 * "Disconnect" the PMU callbacks - since all are atomic synchronize=
+_rcu
+> >> +	 * ensures all currently executing ones will have exited before we
+> >> +	 * proceed with unregistration.
+> >> +	 */
+> >> +	pmu->closed =3D true;
+> >> +	synchronize_rcu();
+> >> +
+> >> +	xe_pmu_unregister_cpuhp_state(pmu);
+> >> +
+> >> +	perf_pmu_unregister(&pmu->base);
+> >> +	pmu->base.event_init =3D NULL;
+> >> +	kfree(pmu->base.attr_groups);
+> >> +	kfree(pmu->name);
+> >> +	free_event_attributes(pmu);
+> >> +}
+> >> +
+> >> +static void init_samples(struct xe_pmu *pmu)
+> >> +{
+> >> +	struct xe_device *xe =3D container_of(pmu, typeof(*xe), pmu);
+> >> +	struct xe_gt *gt;
+> >> +	unsigned int i;
+> >> +
+> >> +	for_each_gt(gt, xe, i)
+> >> +		engine_group_busyness_store(gt);
+> >> +}
+> >> +
+> >> +void xe_pmu_register(struct xe_pmu *pmu)
+> >
+> > Why void, why not int? PMU failure is non fatal error?
+>
+> Ya device is functional , it is only that these counters are not
+> available. Hence didn't want to fail the driver load.
+> >
+> >> +{
+> >> +	struct xe_device *xe =3D container_of(pmu, typeof(*xe), pmu);
+> >> +	const struct attribute_group *attr_groups[] =3D {
+> >> +		&xe_pmu_format_attr_group,
+> >> +		&pmu->events_attr_group,
+> >> +		&xe_pmu_cpumask_attr_group,
+> >
+> > Can someone please explain what this cpumask/cpuhotplug stuff does and
+> > whether it needs to be in this patch? There's something here:
+>
+> comments from original patch series in
+> i915:https://patchwork.kernel.org/project/intel-gfx/patch/20170802123249.=
+14194-5-tvrtko.ursulin@linux.intel.com/
+>
+> "IIRC an uncore PMU should expose a cpumask through sysfs, and then perf
+> tools will read that mask and auto-magically limit the number of CPUs it
+> instantiates the counter on."
+>
+> and ours are global counters not per cpu so we limit to just to single cp=
+u.
+>
+> And as i understand we use the cpuhotplug support to migrate too new cpu
+> incase the earlier one goes offline.
+
+OK, leave as is.
+
+>
+> >
+> > b46a33e271ed ("drm/i915/pmu: Expose a PMU interface for perf queries")
+> >
+> > I'd rather just have the basic PMU infra and the events in this patch a=
+nd
+> > punt this cpumask/cpuhotplug stuff to a later patch, unless someone can=
+ say
+> > what it does.
+> >
+> > Though perf_pmu_register seems to be doing some per cpu stuff so likely
+> > this is needed. But amdgpu_pmu only has event and format attributes.
+> >
+> > Mostly leave as is I guess.
+> >
+> >> +		NULL
+> >> +	};
+> >> +
+> >> +	int ret =3D -ENOMEM;
+> >> +
+> >> +	spin_lock_init(&pmu->lock);
+> >> +	pmu->cpuhp.cpu =3D -1;
+> >> +	init_samples(pmu);
+> >
+> > Why init_samples here? Can't we init the particular sample in
+> > xe_pmu_event_init or even xe_pmu_event_start?
+> >
+> > Init'ing here may be too soon since the event might not be enabled for a
+> > long time. So really this needs to move to xe_pmu_event_init or
+> > xe_pmu_event_start.
+>
+> The device is put to suspend immediately after driver probe, typically
+> pmu is opened even before any workload is run so essentially device is
+> still in suspend state hence we cannot access registers so storing the
+> last known value in init_samples. otherwise we see the bug in v#1 of seri=
+es.
+>
+> >
+> > Actually this is already happening in xe_pmu_enable. We just need to de=
+cide
+> > when we want to wake the device up and when we don't. So maybe wake the
+> > device up at start (use xe_device_mem_access_get) and not wake up during
+> > read (xe_device_mem_access_get_if_ongoing etc.)?
+
+Just going to repeat this again:
+
+xe_pmu_event_start calls xe_pmu_enable. In xe_pmu_enable use
+xe_device_mem_access_get before calling __xe_pmu_event_read. This will wake
+the device up and get a valid value in event->hw.prev_count.
+
+In xe_pmu_event_read, use xe_device_mem_access_get_if_ongoing, to read the
+event without waking the device up (and return previous value etc.).
+
+Or, pass a flag in to __xe_pmu_event_read and to engine_group_busyness_read
+and __engine_group_busyness_read. The flag will say whether or not to wake
+up the device. If the flag says wake the device up, call
+xe_device_mem_access_get and xe_force_wake_get, maybe in
+__engine_group_busyness_read, before reading device registers. If the flag
+says don't wake up the device call xe_device_mem_access_get_if_ongoing.
+
+This way we:
+* don't need to call init_samples in xe_pmu_register
+* we don't need engine_group_busyness_store
+* we don't need to specifically call engine_group_busyness_store in xe_gt_s=
+uspend
+
+The correct sample is read by waking up the device in xe_pmu_event_start.
+
+Hopefully this is clear now.
+
+>
+> >
+> >> +
+> >> +	pmu->name =3D kasprintf(GFP_KERNEL,
+> >> +			      "xe_%s",
+> >> +			      dev_name(xe->drm.dev));
+> >> +	if (pmu->name)
+> >> +		/* tools/perf reserves colons as special. */
+> >> +		strreplace((char *)pmu->name, ':', '_');
+> >> +
+> >> +	if (!pmu->name)
+> >> +		goto err;
+> >> +
+> >> +	pmu->events_attr_group.name =3D "events";
+> >> +	pmu->events_attr_group.attrs =3D create_event_attributes(pmu);
+> >> +	if (!pmu->events_attr_group.attrs)
+> >> +		goto err_name;
+> >> +
+> >> +	pmu->base.attr_groups =3D kmemdup(attr_groups, sizeof(attr_groups),
+> >> +					GFP_KERNEL);
+> >> +	if (!pmu->base.attr_groups)
+> >> +		goto err_attr;
+> >> +
+> >> +	pmu->base.module	=3D THIS_MODULE;
+> >> +	pmu->base.task_ctx_nr	=3D perf_invalid_context;
+> >> +	pmu->base.event_init	=3D xe_pmu_event_init;
+> >> +	pmu->base.add		=3D xe_pmu_event_add;
+> >> +	pmu->base.del		=3D xe_pmu_event_del;
+> >> +	pmu->base.start		=3D xe_pmu_event_start;
+> >> +	pmu->base.stop		=3D xe_pmu_event_stop;
+> >> +	pmu->base.read		=3D xe_pmu_event_read;
+> >> +	pmu->base.event_idx	=3D xe_pmu_event_event_idx;
+> >> +
+> >> +	ret =3D perf_pmu_register(&pmu->base, pmu->name, -1);
+> >> +	if (ret)
+> >> +		goto err_groups;
+> >> +
+> >> +	ret =3D xe_pmu_register_cpuhp_state(pmu);
+> >> +	if (ret)
+> >> +		goto err_unreg;
+> >> +
+> >> +	ret =3D drmm_add_action_or_reset(&xe->drm, xe_pmu_unregister, pmu);
+> >> +	XE_WARN_ON(ret);
+> >
+> > We should just follow the regular error rewind here too and let
+> > drm_notice() at the end print the error. This is what other drivers cal=
+ling
+> > drmm_add_action_or_reset seem to be doing.
+>
+> Ok ok.
+> >
+> >> +
+> >> +	return;
+> >> +
+> >> +err_unreg:
+> >> +	perf_pmu_unregister(&pmu->base);
+> >> +err_groups:
+> >> +	kfree(pmu->base.attr_groups);
+> >> +err_attr:
+> >> +	pmu->base.event_init =3D NULL;
+> >> +	free_event_attributes(pmu);
+> >> +err_name:
+> >> +	kfree(pmu->name);
+> >> +err:
+> >> +	drm_notice(&xe->drm, "Failed to register PMU!\n");
+> >> +}
+> >> diff --git a/drivers/gpu/drm/xe/xe_pmu.h b/drivers/gpu/drm/xe/xe_pmu.h
+> >> new file mode 100644
+> >> index 000000000000..d3f47f4ab343
+> >> --- /dev/null
+> >> +++ b/drivers/gpu/drm/xe/xe_pmu.h
+> >> @@ -0,0 +1,25 @@
+> >> +/* SPDX-License-Identifier: MIT */
+> >> +/*
+> >> + * Copyright =A9 2023 Intel Corporation
+> >> + */
+> >> +
+> >> +#ifndef _XE_PMU_H_
+> >> +#define _XE_PMU_H_
+> >> +
+> >> +#include "xe_gt_types.h"
+> >> +#include "xe_pmu_types.h"
+> >> +
+> >> +#ifdef CONFIG_PERF_EVENTS
+> >
+> > nit but maybe this should be:
+> >
+> > #if IS_ENABLED(CONFIG_PERF_EVENTS)
+> >
+> > or,
+> >
+> > #if IS_BUILTIN(CONFIG_PERF_EVENTS)
+> >
+> > Note CONFIG_PERF_EVENTS is a boolean kconfig option.
+> >
+> > See similar macro IS_REACHABLE() in i915_hwmon.h.
+> >
+> >> +int xe_pmu_init(void);
+> >> +void xe_pmu_exit(void);
+> >> +void xe_pmu_register(struct xe_pmu *pmu);
+> >> +void engine_group_busyness_store(struct xe_gt *gt);
+> >
+> > Add xe_pmu_ prefix if function is needed (hopefully not).
+>
+> OK
+> >
+> >> +#else
+> >> +static inline int xe_pmu_init(void) { return 0; }
+> >> +static inline void xe_pmu_exit(void) {}
+> >> +static inline void xe_pmu_register(struct xe_pmu *pmu) {}
+> >> +static inline void engine_group_busyness_store(struct xe_gt *gt) {}
+> >> +#endif
+> >> +
+> >> +#endif
+> >> +
+> >> diff --git a/drivers/gpu/drm/xe/xe_pmu_types.h b/drivers/gpu/drm/xe/xe=
+_pmu_types.h
+> >> new file mode 100644
+> >> index 000000000000..e87edd4d6a87
+> >> --- /dev/null
+> >> +++ b/drivers/gpu/drm/xe/xe_pmu_types.h
+> >> @@ -0,0 +1,80 @@
+> >> +/* SPDX-License-Identifier: MIT */
+> >> +/*
+> >> + * Copyright =A9 2023 Intel Corporation
+> >> + */
+> >> +
+> >> +#ifndef _XE_PMU_TYPES_H_
+> >> +#define _XE_PMU_TYPES_H_
+> >> +
+> >> +#include <linux/perf_event.h>
+> >> +#include <linux/spinlock_types.h>
+> >> +#include <uapi/drm/xe_drm.h>
+> >> +
+> >> +enum {
+> >> +	__XE_SAMPLE_RENDER_GROUP_BUSY,
+> >> +	__XE_SAMPLE_COPY_GROUP_BUSY,
+> >> +	__XE_SAMPLE_MEDIA_GROUP_BUSY,
+> >> +	__XE_SAMPLE_ANY_ENGINE_GROUP_BUSY,
+> >> +	__XE_NUM_PMU_SAMPLERS
+> >
+> > OK: irq_count is missing here since these are read from device...
+> >
+> >> +};
+> >> +
+> >> +struct xe_pmu_sample {
+> >> +	u64 cur;
+> >> +};
+> >
+> > This was also discussed for i915 PMU, no point having a struct with a
+> > single u64 member. Might as well just use u64 wherever we are using
+> > struct xe_pmu_sample.
+>
+> OK.
+> >
+> >> +
+> >> +#define XE_MAX_GT_PER_TILE 2
+> >
+> > Why per tile? The array size should be max_gt_per_device. Just call it
+> > XE_MAX_GT?
+>
+> I declared similar to what we have in drivers/gpu/drm/xe/xe_device.h
+
+Our 2-d array size is for the device, not per tile. So let's use XE_MAX_GT.
+
+> >
+> >> +
+> >> +struct xe_pmu {
+> >> +	/**
+> >> +	 * @cpuhp: Struct used for CPU hotplug handling.
+> >> +	 */
+> >> +	struct {
+> >> +		struct hlist_node node;
+> >> +		unsigned int cpu;
+> >> +	} cpuhp;
+> >> +	/**
+> >> +	 * @base: PMU base.
+> >> +	 */
+> >> +	struct pmu base;
+> >> +	/**
+> >> +	 * @closed: xe is unregistering.
+> >> +	 */
+> >> +	bool closed;
+> >> +	/**
+> >> +	 * @name: Name as registered with perf core.
+> >> +	 */
+> >> +	const char *name;
+> >> +	/**
+> >> +	 * @lock: Lock protecting enable mask and ref count handling.
+> >> +	 */
+> >> +	spinlock_t lock;
+> >> +	/**
+> >> +	 * @sample: Current and previous (raw) counters.
+> >> +	 *
+> >> +	 * These counters are updated when the device is awake.
+> >> +	 *
+> >> +	 */
+> >> +	struct xe_pmu_sample sample[XE_MAX_GT_PER_TILE * __XE_NUM_PMU_SAMPLE=
+RS];
+> >
+> > Change to 2-d array. See above.
+> >
+> >> +	/**
+> >> +	 * @irq_count: Number of interrupts
+> >> +	 *
+> >> +	 * Intentionally unsigned long to avoid atomics or heuristics on 32b=
+it.
+> >> +	 * 4e9 interrupts are a lot and postprocessing can really deal with =
+an
+> >> +	 * occasional wraparound easily. It's 32bit after all.
+> >> +	 */
+> >> +	unsigned long irq_count;
+> >> +	/**
+> >> +	 * @events_attr_group: Device events attribute group.
+> >> +	 */
+> >> +	struct attribute_group events_attr_group;
+> >> +	/**
+> >> +	 * @xe_attr: Memory block holding device attributes.
+> >> +	 */
+> >> +	void *xe_attr;
+> >> +	/**
+> >> +	 * @pmu_attr: Memory block holding device attributes.
+> >> +	 */
+> >> +	void *pmu_attr;
+> >> +};
+> >> +
+> >> +#endif
+> >> diff --git a/include/uapi/drm/xe_drm.h b/include/uapi/drm/xe_drm.h
+> >> index 965cd9527ff1..ed097056f944 100644
+> >> --- a/include/uapi/drm/xe_drm.h
+> >> +++ b/include/uapi/drm/xe_drm.h
+> >> @@ -990,6 +990,22 @@ struct drm_xe_vm_madvise {
+> >>	__u64 reserved[2];
+> >>  };
+> >>
+> >> +/* PMU event config IDs */
+> >> +
+> >> +/*
+> >> + * Top 4 bits of every counter are GT id.
+> >> + */
+> >> +#define __XE_PMU_GT_SHIFT (60)
+> >
+> > To future-proof this, and also because we seem to have plenty of bits
+> > available, I think we should change this to 56 (instead of 60).
+>
+> OK
+>
+> Thanks,
+> Aravind.
+> >
+> >> +
+> >> +#define ___XE_PMU_OTHER(gt, x) \
+> >> +	(((__u64)(x)) | ((__u64)(gt) << __XE_PMU_GT_SHIFT))
+> >> +
+> >> +#define XE_PMU_INTERRUPTS(gt)			___XE_PMU_OTHER(gt, 0)
+> >> +#define XE_PMU_RENDER_GROUP_BUSY(gt)		___XE_PMU_OTHER(gt, 1)
+> >> +#define XE_PMU_COPY_GROUP_BUSY(gt)		___XE_PMU_OTHER(gt, 2)
+> >> +#define XE_PMU_MEDIA_GROUP_BUSY(gt)		___XE_PMU_OTHER(gt, 3)
+> >> +#define XE_PMU_ANY_ENGINE_GROUP_BUSY(gt)	___XE_PMU_OTHER(gt, 4)
+> >> +
+> >>  #if defined(__cplusplus)
+> >>  }
+> >>  #endif
+> >> --
+> >> 2.25.1
+
+Thanks.
+--
+Ashutosh
