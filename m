@@ -4,30 +4,30 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5CDB9C00528
-	for <intel-xe@archiver.kernel.org>; Fri, 21 Jul 2023 18:53:07 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 10EE8C00528
+	for <intel-xe@archiver.kernel.org>; Fri, 21 Jul 2023 18:55:04 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 20F2710E6EF;
-	Fri, 21 Jul 2023 18:53:07 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id BC6DD10E6EF;
+	Fri, 21 Jul 2023 18:55:03 +0000 (UTC)
 Received: from emeril.freedesktop.org (emeril.freedesktop.org
  [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id 59ED210E6EF;
- Fri, 21 Jul 2023 18:53:05 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTP id D3C4810E6EF;
+ Fri, 21 Jul 2023 18:55:01 +0000 (UTC)
 Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 5405BA7DFB;
- Fri, 21 Jul 2023 18:53:05 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============4838186539617451282=="
+ by emeril.freedesktop.org (Postfix) with ESMTP id C1D23AADE0;
+ Fri, 21 Jul 2023 18:55:01 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: "Matt Roper" <matthew.d.roper@intel.com>
-Date: Fri, 21 Jul 2023 18:53:05 -0000
-Message-ID: <168996558532.22548.1370734454399352790@emeril.freedesktop.org>
+Date: Fri, 21 Jul 2023 18:55:01 -0000
+Message-ID: <168996570176.22545.14994586436137050137@emeril.freedesktop.org>
 X-Patchwork-Hint: ignore
-References: <20230721175557.1513250-3-matthew.d.roper@intel.com>
-In-Reply-To: <20230721175557.1513250-3-matthew.d.roper@intel.com>
-Subject: [Intel-xe] =?utf-8?q?=E2=97=8B_CI=2EBAT=3A_info_for_series_start?=
- =?utf-8?q?ing_with_=5B1/2=5D_drm/xe/mtl=3A_Map_PPGTT_as_CPU=3AWC?=
+References: <20230721180913.1516321-1-matthew.d.roper@intel.com>
+In-Reply-To: <20230721180913.1516321-1-matthew.d.roper@intel.com>
+Subject: [Intel-xe] =?utf-8?q?=E2=9C=97_CI=2EPatch=5Fapplied=3A_failure_f?=
+ =?utf-8?q?or_tests/xe=3A_Boost_command_streamer_prefetch_size?=
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -44,67 +44,23 @@ Cc: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============4838186539617451282==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
 == Series Details ==
 
-Series: series starting with [1/2] drm/xe/mtl: Map PPGTT as CPU:WC
-URL   : https://patchwork.freedesktop.org/series/121148/
-State : info
+Series: tests/xe: Boost command streamer prefetch size
+URL   : https://patchwork.freedesktop.org/series/121151/
+State : failure
 
 == Summary ==
 
-Participating hosts:
-bat-pvc-2
-bat-atsm-2
-bat-dg2-oem2
-bat-adlp-7
-Missing hosts results[1]:
-bat-pvc-2
-Results: [xe-pw-121148v1](https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-121148v1/index.html)
+=== Applying kernel patches on branch 'drm-xe-next' with base: ===
+Base commit: 786d2a4f3 drm/xe: Only alloc userptr part of xe_vma for userptrs
+=== git am output follows ===
+error: lib/xe/xe_ioctl.c: does not exist in index
+hint: Use 'git am --show-current-patch' to see the failed patch
+Applying: tests/xe: Boost command streamer prefetch size
+Patch failed at 0001 tests/xe: Boost command streamer prefetch size
+When you have resolved this problem, run "git am --continue".
+If you prefer to skip this patch, run "git am --skip" instead.
+To restore the original branch and stop patching, run "git am --abort".
 
 
-
---===============4838186539617451282==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>series starting with [1/2] drm/xe/mtl: Map PPGTT as CPU:WC</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/121148/">https://patchwork.freedesktop.org/series/121148/</a></td></tr>
-<tr><td><b>State:</b></td><td>info</td></tr>
-
-</table>
-
-
-    <p>Participating hosts:<br />
-bat-pvc-2<br />
-bat-atsm-2<br />
-bat-dg2-oem2<br />
-bat-adlp-7<br />
-Missing hosts results[1]:<br />
-bat-pvc-2<br />
-Results: <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-121148v1/index.html">xe-pw-121148v1</a></p>
-
-</body>
-</html>
-
---===============4838186539617451282==--
