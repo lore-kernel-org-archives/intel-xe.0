@@ -4,144 +4,133 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0CCAAC001DC
-	for <intel-xe@archiver.kernel.org>; Fri, 21 Jul 2023 18:12:30 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0DF7CEB64DD
+	for <intel-xe@archiver.kernel.org>; Fri, 21 Jul 2023 18:42:39 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D352610E091;
-	Fri, 21 Jul 2023 18:12:29 +0000 (UTC)
-Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C70E910E091
- for <intel-xe@lists.freedesktop.org>; Fri, 21 Jul 2023 18:12:28 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id BA6FB10E6EF;
+	Fri, 21 Jul 2023 18:42:39 +0000 (UTC)
+Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id EEF1B10E6EF
+ for <intel-xe@lists.freedesktop.org>; Fri, 21 Jul 2023 18:42:38 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1689963148; x=1721499148;
+ t=1689964959; x=1721500959;
  h=date:from:to:cc:subject:message-id:references:
- content-transfer-encoding:in-reply-to:mime-version;
- bh=eTQIEyLEyDhavbabYA8zv811i6ZH5JHWwWucdXaSre8=;
- b=P5nDtHRet41bINvuuiNfo07HQPx3DjPpJDzo901mdqBbcRx2KDnlKB7o
- iMYZ6/mmYLLNVQsP9uAsvYsZ6RCBiV59FTjFhzP8Kh1o09J4P8MdlnwZ0
- QxkKNKYbRKxfpDgfenYj20EypsthztrWqh+Ri/NmgDXWJI3YWqdeKETip
- +0147E4my7BtsJSx5sAbYSOGFWogIPh2GCRtH9akM/wVyRu7nFwTVt8mn
- gAO74CYNU7H9MwKFDo6uL6WzTyAr7GPJdjF7A7Axe1yqzU7ZNiVqQTDzh
- ZVy9bdKjVllRDbHTJYG46OWtbaHHO4zhl1Or5Ob+aTUnydRSlev4EJbRK A==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10778"; a="357079987"
-X-IronPort-AV: E=Sophos;i="6.01,222,1684825200"; d="scan'208";a="357079987"
-Received: from orsmga004.jf.intel.com ([10.7.209.38])
- by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 21 Jul 2023 11:12:28 -0700
+ in-reply-to:mime-version;
+ bh=HaI0o4a1QQhVCx5xdVnxHbYmMR1icAXAs2xIlZZnUIM=;
+ b=hNeZZILeNxr5NJCzScK1/hXbxWm7kry8s7BjEfSdOGtuBmG6rKOzM3ci
+ Hxl88PqCjJg4G1YcxJ2G3XfMO4Nir0Wxh8jfWw/9jnBJXIq8DgVu/8I9Y
+ uUGbuiuNGshmXx7Dyr2vwQ4CV2xAxCyfpFB1+LrsWu++FbKY2GvvwvW3S
+ diAL/x+7wZJ6YDVR3vNftfKTwIQWeCbLuWEb7KiReSQvM8QV9Ojvejwtj
+ /hctmM6VVf09pJw8hJ8NX0r/8TP64Izv8Xxaizk/r/sivI4ztGf4F/PEn
+ wXoh9Mp9dIxmCQn+QaiwXCfzTWMTAAzNiGogm4zoJyjyRbtr5P15W6uah g==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10778"; a="351976807"
+X-IronPort-AV: E=Sophos;i="6.01,222,1684825200"; d="scan'208";a="351976807"
+Received: from fmsmga004.fm.intel.com ([10.253.24.48])
+ by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 21 Jul 2023 11:42:38 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10778"; a="848904486"
-X-IronPort-AV: E=Sophos;i="6.01,222,1684825200"; d="scan'208";a="848904486"
+X-IronPort-AV: E=McAfee;i="6600,9927,10778"; a="795051305"
+X-IronPort-AV: E=Sophos;i="6.01,222,1684825200"; d="scan'208";a="795051305"
 Received: from fmsmsx602.amr.corp.intel.com ([10.18.126.82])
- by orsmga004.jf.intel.com with ESMTP; 21 Jul 2023 11:12:28 -0700
-Received: from fmsmsx611.amr.corp.intel.com (10.18.126.91) by
+ by fmsmga004.fm.intel.com with ESMTP; 21 Jul 2023 11:42:37 -0700
+Received: from fmsmsx610.amr.corp.intel.com (10.18.126.90) by
  fmsmsx602.amr.corp.intel.com (10.18.126.82) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.27; Fri, 21 Jul 2023 11:12:27 -0700
-Received: from fmsmsx610.amr.corp.intel.com (10.18.126.90) by
- fmsmsx611.amr.corp.intel.com (10.18.126.91) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.27; Fri, 21 Jul 2023 11:12:27 -0700
-Received: from FMSEDG603.ED.cps.intel.com (10.1.192.133) by
+ 15.1.2507.27; Fri, 21 Jul 2023 11:42:37 -0700
+Received: from fmsedg602.ED.cps.intel.com (10.1.192.136) by
  fmsmsx610.amr.corp.intel.com (10.18.126.90) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.27 via Frontend Transport; Fri, 21 Jul 2023 11:12:27 -0700
-Received: from NAM10-BN7-obe.outbound.protection.outlook.com (104.47.70.104)
- by edgegateway.intel.com (192.55.55.68) with Microsoft SMTP Server
+ 15.1.2507.27 via Frontend Transport; Fri, 21 Jul 2023 11:42:37 -0700
+Received: from NAM11-DM6-obe.outbound.protection.outlook.com (104.47.57.175)
+ by edgegateway.intel.com (192.55.55.71) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2507.27; Fri, 21 Jul 2023 11:12:25 -0700
+ 15.1.2507.27; Fri, 21 Jul 2023 11:42:37 -0700
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=RHBBjDBmd8dFq6DPI2VmkPLzsLUYlf6Qvzf2AY6QVEOXsUNvQTgLBPLQH9FyKd2vzitVUMxrLp6GfSvIAfftNOg/toyYGf1JcFEw2KibVXdi804ZrUtyssfHvWEN6QcEs8A00oxVK8hIKlCIx1/C8olpoLdez8EuRn2Vo6xe1QLsCrbP/2sWlINljwNJFaPt0Aja/cfz8ntckBfQUi62v4kCeiU7hk9j2AN9E/rNDk/aCqukG0EecbuqdU0BHamOnDrseCNm+2hlLAax3ThNmMb8wl1YXa9rjML6kiWw62OdxtnIBOQYc6PiTC+hk3JdKviOXyD1rkt7pQ5XLe8fng==
+ b=TTB1kStmXe8M3QEA+ULqvu59y2txueH7EcqNSCtHXzeqTS1aiBXOdLIaZIz1Cx6cqiRwB7LLq/cbQqUkSzgoAFEQMXGYn4OJWGUg+orAQNQlbk/W91NgVKtwTCibxaolAl2pIQaOi6E2A39IqduMFUjBy5cqArsiWCyekAzAIBryDolpjhp4ML46gsgW1Kuckcyku9B6sW/an6qVR8CJv5kWTt0iLgzVzgW1fQyiQEkUTCJFdt2Op1KfuygOSIs4YM0Mn5mdlgN0XT5J2o+qceCvovsILUVbPCJRHjg87Q3lNUKBgrvzB0Xj+WF56Vo+2hfxI2HmGo5azeFc/ocPIA==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=/h1hsFSZj31cvM0kdXe1lwRAP7doTUBAU1Sv+G2chdY=;
- b=ntNbCXWp1nrgfrz/SAZZsRb8wYTqVcsyNc6WnHZCzQCZoCKZX70LJkiUeIJeAPyJVKtgHg7HLjPmu3GuQbQBr93+SUwjDEF7h7+CRRraEqzbeXB80PUzb+iD+z1DyxqkcKdBXXBplFGoDd2qCm5cYi9guqAssc1+3nHWeC+20NrGim83yEHj153JJwe3xddw0lMCJ/pV6c5B1lwL8aHWa/8ur+dqlQH4Q7j0KM9BGtWD22xBPuAt7RX3ntuMZ05jWvHIlyieN00TiGuauKqc6cZqWSMlwO8OlgOzSMumfciRdypsWVpMitTpAdSp9EOOmSVl3IA7tN7KspnI/6X4pQ==
+ bh=//BFiI+cbkZSvQMWGr1ZAwr9U7F8XMZzU9uQjmJ/GxE=;
+ b=IbXOcMd4pmkBUJYU2pX07c33JlI1IVrK3OI8kM5xpk7bB7te7ej8QgQo2mf+ZqrvpxDCxT55FfsNU2HtE9zRhASn6KPeJuo4ATDF7BQ1i5Szw8IZ7ZwM0uQrO/uxLtrsVQD+Hw6qzdBJqyhzXDhIVxZxcGKLdnHdmInz/zx8Bdt0D+lVYKj5TmpHpAJ2CU+t9015mOPYZafP8Tfw9Ces7Q2RSX/Qac0ztDewUOZ4MkDv4y49xTstb9vOzmglla9DIOh6yZESu7HGN8WPBgbMgI21PFL6PtThpT2hYkkPaxQKQ5M4Q9i6Mj1aDUlcYgl4RtL4DPTIZ9SR5L35fznbmA==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
  dkim=pass header.d=intel.com; arc=none
 Authentication-Results: dkim=none (message not signed)
  header.d=none;dmarc=none action=none header.from=intel.com;
-Received: from CY5PR11MB6139.namprd11.prod.outlook.com (2603:10b6:930:29::17)
- by IA0PR11MB7402.namprd11.prod.outlook.com (2603:10b6:208:432::21)
+Received: from PH7PR11MB6522.namprd11.prod.outlook.com (2603:10b6:510:212::12)
+ by CH3PR11MB8658.namprd11.prod.outlook.com (2603:10b6:610:1c5::17)
  with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6609.28; Fri, 21 Jul
- 2023 18:12:22 +0000
-Received: from CY5PR11MB6139.namprd11.prod.outlook.com
- ([fe80::3294:2cf2:e022:7164]) by CY5PR11MB6139.namprd11.prod.outlook.com
- ([fe80::3294:2cf2:e022:7164%7]) with mapi id 15.20.6609.026; Fri, 21 Jul 2023
- 18:12:22 +0000
-Date: Fri, 21 Jul 2023 11:12:14 -0700
-From: Lucas De Marchi <lucas.demarchi@intel.com>
-To: "Vodapalli, Ravi Kumar" <ravi.kumar.vodapalli@intel.com>
-Message-ID: <svog2amaxebhhqiqerynvqb7awjrkj2wtdj4uabmrd6u52wkjn@o6yixkupe74e>
-References: <20230712125640.1471850-1-ravi.kumar.vodapalli@intel.com>
- <ZK6+NZUQnfZCLQj0@DUT025-TGLU.fm.intel.com>
- <mr6slrxoedm46acyb73yzx5yoyuhjbeuixh3albo5jofuuawma@uformzo3j2r5>
- <e19e20f1-637c-4660-ee24-bfa714e89d17@intel.com>
- <kdwwfs57uc4i2fwttajp4mybarsdpiq6hvy257ga2dp47r7h3w@vmazxnk62wau>
- <77460a29-28fe-b4cb-0b20-508736309e3f@intel.com>
-Content-Type: text/plain; charset="iso-8859-1"; format=flowed
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6609.25; Fri, 21 Jul
+ 2023 18:42:35 +0000
+Received: from PH7PR11MB6522.namprd11.prod.outlook.com
+ ([fe80::5645:50f0:9b06:1dd0]) by PH7PR11MB6522.namprd11.prod.outlook.com
+ ([fe80::5645:50f0:9b06:1dd0%3]) with mapi id 15.20.6609.026; Fri, 21 Jul 2023
+ 18:42:35 +0000
+Date: Fri, 21 Jul 2023 18:41:46 +0000
+From: Matthew Brost <matthew.brost@intel.com>
+To: Matt Roper <matthew.d.roper@intel.com>
+Message-ID: <ZLrRashn6TI04U+u@DUT025-TGLU.fm.intel.com>
+References: <20230721180913.1516321-1-matthew.d.roper@intel.com>
+Content-Type: text/plain; charset="us-ascii"
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <77460a29-28fe-b4cb-0b20-508736309e3f@intel.com>
-X-ClientProxiedBy: BYAPR07CA0092.namprd07.prod.outlook.com
- (2603:10b6:a03:12b::33) To CY5PR11MB6139.namprd11.prod.outlook.com
- (2603:10b6:930:29::17)
+In-Reply-To: <20230721180913.1516321-1-matthew.d.roper@intel.com>
+X-ClientProxiedBy: SJ2PR07CA0010.namprd07.prod.outlook.com
+ (2603:10b6:a03:505::27) To PH7PR11MB6522.namprd11.prod.outlook.com
+ (2603:10b6:510:212::12)
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: CY5PR11MB6139:EE_|IA0PR11MB7402:EE_
-X-MS-Office365-Filtering-Correlation-Id: 1c1787ff-41ee-41bc-2ed9-08db8a160711
+X-MS-TrafficTypeDiagnostic: PH7PR11MB6522:EE_|CH3PR11MB8658:EE_
+X-MS-Office365-Filtering-Correlation-Id: 03146c83-4d00-483f-3cdf-08db8a1a4013
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: /4jSsbsEveQKs9YFZ18iLgMxaTOxF2XAW2tD2MfwaN0eMpkCRxCYCQCs6yh8jWpo3ur53JksJwY6PrLF5eEYVsAv6KehYsuhrsveblPjterf2FIA23qVmYSxycs44nBAVTkHBfO+L4Cz9LSROsT5IxF13Wve/gNXx+wvnq66oDCgXn1gHrqLVKqsrFX5tmDKUA0EEvmao2RxetHDOKchoTEKjpk5B0K1bKCMd7kPVVSdY4uyarYxjCNEOhFg63Y6QPuE3ar+ROoJMTxFEibn48o42vFpqgii9dgkta2h+DDJ1cm0sYn6vgfqN72YCTV6GRxUFAo490WUq38HlHum8+Vu7j/nphUOh1bhGXpXQEn2Qt5t671aatt4HeZoTk9HD1wlfMD1CEupOdAtvZcppBd5+C/3tbVOHT6Yt/KNqkjOI2LHUZXO272dsI4V1lCdpwL4hwUwjXbL3WN0p1Wsjh3kcSrqWCBymp+00hU3pGKqTsPKpdPXaPgvwteDIYhCtQGP72G2S+fw3y7n2XWkDPiHrtLNnARpUV8MNET3r3xkqzh6Jo0QnDLJr2tZVjWg
+X-Microsoft-Antispam-Message-Info: V+NIaIZAv0IdRM5XZ1/0fWHzIe5KfliAMGYSsF9G1CQwKnP5Ggea73sKkRuKbPqWU/I+iWsk04QBl6+3g7sBesijO3S9Zlp+Y5RMZd3lhbQEdc9UYncSsw/w7dZtRSUWutHQIgFzWuzgYodyuAEazeQ+lXeq1CoL8gumZQtUkKPkMEXYh2Y8nESa5fZaPWMgSJi26aXvPlmYPBAwsvXHHmeOFoXBkBgPpOeEXeL5owlKe/KHP+aYWiEb+y8ZfE2bViXmsbWCKDhQnYwD+UyP3lXmCtA2Qa2IohgO/Ki/FMdVUN2sJgo2hZ3COjsDMyf1MDOw8mbz4Qfq8OmL2UqlstvPl2Xctt4M0p0Z5w+UapVvYtP0LicyhmS4tM5ECiCrLG5uH4qAuEddEyzAEgB3zSVl0gR//Brr18DCpDji6bGs6wCRr2dKMuNYeLAg95m3hUxX5kbqlx65Awzv3t+t6Tgc4B8yWxroOJRlqvW7oHj2GcTyCiEWrXmwBysCWOXN0AD/nCmE62MpP1rKXE1zub+Q08usnthqia68p7DVkqrrIMGCi+D0LyHF2zVsab8qUyOVlMxHIqDXdo/WmM+K19o6N7OIxp1Tn8Jmqkog0Pg=
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:CY5PR11MB6139.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230028)(7916004)(396003)(39860400002)(346002)(136003)(376002)(366004)(451199021)(82960400001)(38100700002)(9686003)(6666004)(6512007)(478600001)(6486002)(26005)(186003)(6506007)(6636002)(66476007)(66556008)(4326008)(316002)(5660300002)(8676002)(8936002)(41300700001)(66946007)(2906002)(33716001)(83380400001)(6862004)(86362001);
+ IPV:NLI; SFV:NSPM; H:PH7PR11MB6522.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230028)(376002)(39860400002)(396003)(136003)(366004)(346002)(451199021)(2906002)(83380400001)(82960400001)(86362001)(38100700002)(6636002)(4326008)(316002)(66946007)(66476007)(66556008)(26005)(186003)(6506007)(41300700001)(478600001)(6486002)(6666004)(6512007)(8936002)(44832011)(6862004)(8676002)(5660300002)(67856001);
  DIR:OUT; SFP:1102; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?iso-8859-1?Q?VVcFgRG4n+3b2U3frbn4O7aQFxiy+ErYZU/yGVEGiamSfQgEW+xlHU14Wy?=
- =?iso-8859-1?Q?O5yn/6aLCL+k1Y+5kCQ34Z3GYZ0Gzgr6vg/urrm9FfPS2ur6xFGxzsCNvY?=
- =?iso-8859-1?Q?zOLwpX5iHkMHvbOoBjIoyYicshr/sut27a9LcRgyP9hC49vd0Lc0wUVPRS?=
- =?iso-8859-1?Q?Iwy+bb205Zdg3JoLypaoqvoKQIfLpkmWyuYdc6M0nMQ63SgNVidq8tMu/a?=
- =?iso-8859-1?Q?UeH+RRp1xJfUQTyczH1OOJGyI9Y9wnxT8Fcv9Hr+bb4KawdVe+uGBw/uGu?=
- =?iso-8859-1?Q?menpOces7SYUS2Y1moeVf0AN6OWdg5pBcvXa6vBJVXOMXOYQK5iZ3DQapt?=
- =?iso-8859-1?Q?pBQUheWL4yrefYPLviPcfcTdYJAjsO5jFRtmb1j9N5TwA92sTGTT8jZtNP?=
- =?iso-8859-1?Q?dMzHS3uay4se4Rsfp/hp1tS3WATZQIaOJl7xhzjtrMwzJNy3N2rVHls2+/?=
- =?iso-8859-1?Q?4VkYlnjPY+5sIxltzMfDg/OBPQJUIsdFmxeyCjeD60j7JcUI2rsgJ/Tcsw?=
- =?iso-8859-1?Q?yzan3SXEAHsuS1GHfTHlGIC/ukTQyQ2waYCGUciSsf/IE3YtnarpvZ7cH0?=
- =?iso-8859-1?Q?93GVD7hlegq9yShVLwIko8dmrdbfUbTuT427ksVyk3NgjeEonAfQUu9vFr?=
- =?iso-8859-1?Q?zztoSAdXIRKl/3uBRkiCpNM0sCOK9n1BoHpmBQ0b8GbbclyVz6W793gcMu?=
- =?iso-8859-1?Q?886dtz+Fa2hJuXhHf14A2BnQn7zDSkmJVr/GVa+/kZK2F9llTNNXLogW5j?=
- =?iso-8859-1?Q?I1KHMkIKKSeURBq+ycXUM4of5vYIMlTCeP698LKw4kfXQ8xtZei4gTvLFx?=
- =?iso-8859-1?Q?TlNGeZVjrV+ApIR+ddec3oQZiZ3WshVuiVx8mnscClV28zcmZhvCzdf851?=
- =?iso-8859-1?Q?jr82nvsP4xHQieyU/6rbnmR5YpwVpXVCsR644U0BkD1wkldsM+wHAsjeLt?=
- =?iso-8859-1?Q?UXj1cxcsx+95SlWtwNWF81M0ZPUnc/P+O6awoln93C2W5Vh0dj6/oxiX1r?=
- =?iso-8859-1?Q?EMkG6At77601tv1e3LHYKo1JnhC8hwrj0480DlWZNQHuUzsA08Ke3XbEcg?=
- =?iso-8859-1?Q?z57uE6tbWKX44DepXCVBuPcSa4eXa2+xAhlyZPcfYbURN1wtFnYLWlthIa?=
- =?iso-8859-1?Q?nTV1ocxnLQq7QJyxrAQA8ItAHVsVx4bRUr4uRy2Vd6CFQtKGVuyrEhkkCW?=
- =?iso-8859-1?Q?fg/fDn+T15yN5M7CzrWTpFBnTA7oYX4h/JYIrQJnnC1+V9fC7cBew26gtU?=
- =?iso-8859-1?Q?HWv35GSrp6FKVBnih5tyWOGbQEzf0ug4LWHvC7uRGque78MaiRsBj+XsRu?=
- =?iso-8859-1?Q?2rwGkqBW0nbJgVBz/q34B6Or5oQSmohd4fYMCPqtdVHJpgOZ6+8PDo7cWo?=
- =?iso-8859-1?Q?vTkOY9PHhjTQqox453U3fMtTNxC26ypbK904RnuFMhzn9kDJtHhB/bk3Ci?=
- =?iso-8859-1?Q?VZK9qwIhQtuTmNM2Jmgi4GjvSfp0CeoMAVOxmYuX+GuTTc+44C6TlmzHjK?=
- =?iso-8859-1?Q?NhSltStfP0gF0pbXhPJQSqeqhsykphZ3IE11i/goSsSM/vwcMk79Xzffh3?=
- =?iso-8859-1?Q?1TR8RpOsJKCr48BqtMROrJ3x7O4RZDWDWdVQO70xsd3FwvY2qX+hvDdKsG?=
- =?iso-8859-1?Q?4yzhT3vZpJWuBX+zF/oxn7nVVyDV2+FvfspzKLVI7oIpQSi+/SMJ4fPw?=
- =?iso-8859-1?Q?=3D=3D?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: 1c1787ff-41ee-41bc-2ed9-08db8a160711
-X-MS-Exchange-CrossTenant-AuthSource: CY5PR11MB6139.namprd11.prod.outlook.com
+X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?ZsSD0l9qNyr4TPjK6mwilEODb9sumY2/mm7cLIyOLbD+7xYOWrHV1zsw7nJ3?=
+ =?us-ascii?Q?EazYdLCdeJPRaaAxKn5Vo3bsiBhkxVM0lft6pmwV1TcHkGlPD7X9BkI64hhn?=
+ =?us-ascii?Q?jG/f0zbYLc3TxwhCOUjcFhw4KAOyYaaNOzpdD8BjijUpflpr02rqjxVRLPH8?=
+ =?us-ascii?Q?IL/I+auqrxjBQewWsKO8Ooc0QLfaiQFQLvLYEV9vWQ0l+svn1u77X6f8pI2u?=
+ =?us-ascii?Q?d96Bdck+dFusFo2kUSz/LIvafpuxm/3ymLOmMXdtQR6iZpL+rku+Bks+jDIU?=
+ =?us-ascii?Q?TYBAbEM1pO865LjncOJf45u46vMIeQoyJmcvBXtGkBF/75223ykJQZSI4c+V?=
+ =?us-ascii?Q?lyqWOcrnT5xrYIeun7Tsqbzw31+hcL0jc1eSEAk+P7uCDNHhcDuAKvEBr5nb?=
+ =?us-ascii?Q?k+Kn100U3UT5k3N9aIZvNQaQi0pNDlM47XQ7+PG9eGGYjSG/evFLwq4K8L7O?=
+ =?us-ascii?Q?0ucjYN995e0NsQ6HXGBEixNxoOlK+10mHLuTQe2i2RMy3ZVmhEXUTFeLAEV+?=
+ =?us-ascii?Q?9ZD0aQcC0/GNcn5lGhv0kmcmh2FryfdStCPq12ldcupCTEGYK8X9yBoejjEn?=
+ =?us-ascii?Q?HQ9bpKl7j5D12FEUT3FDD86YQD9vb9hDFHWF0bvqqVKs0MapgObJzwqKLCdp?=
+ =?us-ascii?Q?AwU28GZJvui7Of9RbzbFKNHtXpxSieS27vz4Xp7nWAsz3KdoWybp4sONXCCf?=
+ =?us-ascii?Q?WQE/YZ//JqlBVQ3jGAeA38uLuDCtFQQupTlS1/P9ivFL52jCU9n6KkRFVnL7?=
+ =?us-ascii?Q?rL+NCALJForh/SuZ6KYdw4k5qkXK5fz9dGq209mrki4UBBpXJCNzDFzQ+be8?=
+ =?us-ascii?Q?3IvNKnJ1Se0EG01yarcSQoWfPOlLXV9lc6Is0z+gAHMJFNWVrEgGbQ/A8lhp?=
+ =?us-ascii?Q?KTCxj3fWqip908+R/AgbVbEhe/aYAijSV64N22tjZlLoJ5sTUnzLU6sFjYWk?=
+ =?us-ascii?Q?YG2oON2nAZKRPDs+1FNY05SVVSrF4WwbYChrTI3yh/i6fZ0l3Rb9jnOH1awU?=
+ =?us-ascii?Q?JF2016KyJJdN0YPjFWDMkCqvmtEqMOncEGTN3zjKwBcR/iNFV4hwzKbsA2fw?=
+ =?us-ascii?Q?jE2dXdY4wZq4DIl96DsRK2uRJFQFXzbZwW9ojoQXJD2K5AejnyIp/CYaghaV?=
+ =?us-ascii?Q?yciwPsStsabdxF60dQwSpSAjqzOzFi+Dl6Vy4Ft0X66xEPdyMy4SF+/1Znbn?=
+ =?us-ascii?Q?3Wa0s8Jl+nUgodEZvC/9EHM3wbXS2yomyz7pVMDgDsgUxenIAhvzRblDbmUV?=
+ =?us-ascii?Q?DVYkEmaEGE0Z87B9zHoFxM352GSVNyBhcdWwe3z9agSg5O4SGMXNfINwKAos?=
+ =?us-ascii?Q?NT6MMwdGc4uyfG3tm2O2+fnzQ8IQVepjLG7fsMEPuaijeiK5wXzuVeoH2Tgn?=
+ =?us-ascii?Q?EGPnvPGJ1spiv1XWa0Efqx9gcov0UWUjfqPx2wfyzShXoplE9okH5s7HaGdV?=
+ =?us-ascii?Q?HwNZgDd2WIYWeoWlr2NzfLp6as0CvkQBCKh+i+KaGFA64dxOIaMUSE692Gh6?=
+ =?us-ascii?Q?Znk7j6acVhvrdgpGIrkQaBbqvKcs/jRCkY+vY+olzc3lEh42p3SUYZxURWkj?=
+ =?us-ascii?Q?jTW03rSOTSMP2aG/U/tq8DXD+SJqDJbCT4IZ09hqit6NqR5O/qliLrr/SVjY?=
+ =?us-ascii?Q?qw=3D=3D?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: 03146c83-4d00-483f-3cdf-08db8a1a4013
+X-MS-Exchange-CrossTenant-AuthSource: PH7PR11MB6522.namprd11.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 21 Jul 2023 18:12:21.9797 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 21 Jul 2023 18:42:35.3053 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: HUMwfS9lT6hcXjqTVEuBxzZSXRY6ofa2LnI47XRmCohLTkrFV+MXe5mrhT884wCJSWTLT5aowInjkcYcoZYS6FWXGCXKA1wN0hFdo+ZOpK0=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: IA0PR11MB7402
+X-MS-Exchange-CrossTenant-UserPrincipalName: kkePt9kjaU8rLMwW/TW52QoWINhwwMb5IHeJlOAF9q9G0T3FzgypPloe1V++ByjpjK80cowrFjGB/qqfnX/Tig==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: CH3PR11MB8658
 X-OriginatorOrg: intel.com
-Subject: Re: [Intel-xe] [PATCH] drm/xe/ppgtt: Add support for correct PAT
- encoding in Page Table Entry (PTE) format
+Subject: Re: [Intel-xe] [PATCH i-g-t] tests/xe: Boost command streamer
+ prefetch size
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -157,282 +146,52 @@ Cc: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Fri, Jul 21, 2023 at 10:21:31PM +0530, Vodapalli, Ravi Kumar wrote:
->
->
->On 7/21/2023 9:43 PM, Lucas De Marchi wrote:
->>On Thu, Jul 20, 2023 at 07:48:33PM +0530, Vodapalli, Ravi Kumar wrote:
->>>
->>>
->>>On 7/17/2023 6:53 PM, Lucas De Marchi wrote:
->>>>On Wed, Jul 12, 2023 at 02:52:37PM +0000, Matthew Brost wrote:
->>>>>On Wed, Jul 12, 2023 at 06:26:40PM +0530, Ravi Kumar Vodapalli wrote:
->>>>>>Different platforms has different PAT encoding in PTE format, add
->>>>>>correct PAT encoding for pre-Xe2 platforms (XELP, XEHPC, XELPG).
->>>>>>
->>>>>>Bspec: 45101, 71582
->>>>>>Signed-off-by: Ravi Kumar Vodapalli <ravi.kumar.vodapalli@intel.com>
->>>>>>---
->>>>>> drivers/gpu/drm/xe/xe_pt.c       | 110 
->>>>>>+++++++++++++++++++++++++++----
->>>>>> drivers/gpu/drm/xe/xe_pte.h      |  31 +++++++++
->>>>>> drivers/gpu/drm/xe/xe_vm_types.h |   1 +
->>>>>> 3 files changed, 129 insertions(+), 13 deletions(-)
->>>>>> create mode 100644 drivers/gpu/drm/xe/xe_pte.h
->>>>>>
->>>>>>diff --git a/drivers/gpu/drm/xe/xe_pt.c b/drivers/gpu/drm/xe/xe_pt.c
->>>>>>index 00855681c0d5..e7f8bd4dd518 100644
->>>>>>--- a/drivers/gpu/drm/xe/xe_pt.c
->>>>>>+++ b/drivers/gpu/drm/xe/xe_pt.c
->>>>>>@@ -16,6 +16,7 @@
->>>>>> #include "xe_trace.h"
->>>>>> #include "xe_ttm_stolen_mgr.h"
->>>>>> #include "xe_vm.h"
->>>>>>+#include "xe_pte.h"
->>>>>>
->>>>>> struct xe_pt_dir {
->>>>>>     struct xe_pt pt;
->>>>>>@@ -111,19 +112,7 @@ static u64 __pte_encode(u64 pte, enum 
->>>>>>xe_cache_level cache,
->>>>>>     if (unlikely(vma && xe_vma_is_null(vma)))
->>>>>>         pte |= XE_PTE_NULL;
->>>>>>
->>>>>>-    /* FIXME: I don't think the PPAT handling is correct for MTL */
->>>>>>-
->>>>>>-    switch (cache) {
->>>>>>-    case XE_CACHE_NONE:
->>>>>>-        pte |= PPAT_UNCACHED;
->>>>>>-        break;
->>>>>>-    case XE_CACHE_WT:
->>>>>>-        pte |= PPAT_DISPLAY_ELLC;
->>>>>>-        break;
->>>>>>-    default:
->>>>>>-        pte |= PPAT_CACHED;
->>>>>>-        break;
->>>>>>-    }
->>>>>>+    pte = xe_vma_vm(vma)->pte_encode(pte, cache);
->>>>>>
->>>>>>     if (pt_level == 1)
->>>>>>         pte |= XE_PDE_PS_2M;
->>>>>>@@ -187,6 +176,94 @@ static u64 __xe_pt_empty_pte(struct 
->>>>>>xe_tile *tile, struct xe_vm *vm,
->>>>>>     }
->>>>>> }
->>>>>>
->>>>>>+static u64 xelp_pte_encode_pat(u8 pat_index)
->>>>>>+{
->>>>>>+    u64 pte_pat = 0;
->>>>>>+
->>>>>>+    if (pat_index & BIT(0))
->>>>>>+        pte_pat |= BIT(3);
->>>>>>+
->>>>>>+    if (pat_index & BIT(1))
->>>>>>+        pte_pat |= BIT(4);
->>>>>>+
->>>>>>+    if (pat_index & BIT(2))
->>>>>>+        pte_pat |= BIT(7);
->>>>>>+
->>>>>>+    return pte_pat;
->>>>>>+}
->>>>>>+
->>>>>>+static u64 __xelp_pte_encode(u64 pte, enum xe_cache_level cache)
->>>>>>+{
->>>>>>+    pte &= ~XELP_PAT_MASK;
->>>>>>+
->>>>>>+    switch (cache) {
->>>>>>+    case XE_CACHE_NONE:
->>>>>>+        pte |= xelp_pte_encode_pat(XELP_PAT_UNCACHE);
->>>>>>+        break;
->>>>>>+    case XE_CACHE_WT:
->>>>>>+        pte |= xelp_pte_encode_pat(XELP_PAT_WT_CACHE);
->>>>>>+        break;
->>>>>>+    case XE_CACHE_WB:
->>>>>>+        pte |= xelp_pte_encode_pat(XELP_PAT_WB_CACHE);
->>>>>>+        break;
->>>>>>+    default:
->>>>>>+        /* pte |= PPAT_CACHED; */
->>>>>>+        break;
->>>>>>+    }
->>>>>>+
->>>>>>+    return pte;
->>>>>>+}
->>>>>>+
->>>>>>+static u64 __xehpc_pte_encode(u64 pte, enum xe_cache_level cache)
->>>>>>+{
->>>>>>+    pte &= ~XELP_PAT_MASK;
->>>>>>+
->>>>>>+    /* Initially assumed as CLOS0.
->>>>>>+     * To Do: CLOS1/CLOS2 has to be set depending on requirement
->>>>>>+     */
->>>>>>+    switch (cache) {
->>>>>>+    case XE_CACHE_NONE:
->>>>>>+        pte |= xelp_pte_encode_pat(XEHPC_PAT_CLOS0_UNCACHE);
->>>>>>+        break;
->>>>>>+    case XE_CACHE_WT:
->>>>>>+        pte |= xelp_pte_encode_pat(XEHPC_PAT_CLOS0_WT_CACHE);
->>>>>>+        break;
->>>>>>+    case XE_CACHE_WB:
->>>>>>+        pte |= xelp_pte_encode_pat(XEHPC_PAT_CLOS0_WB_CACHE);
->>>>>>+        break;
->>>>>>+    default:
->>>>>>+        /* pte |= PPAT_CACHED; */
->>>>>>+        break;
->>>>>>+    }
->>>>>>+
->>>>>>+    return pte;
->>>>>>+}
->>>>>>+
->>>>>>+static u64 __xelpg_pte_encode(u64 pte, enum xe_cache_level cache)
->>>>>>+{
->>>>>>+    pte &= ~XELP_PAT_MASK;
->>>>>>+
->>>>>>+    /* Initially assumed as Non cohorent mode, correct values
->>>>>>+     * has to be set depending on requirement.
->>>>>>+     */
->>>>>>+    switch (cache) {
->>>>>>+    case XE_CACHE_NONE:
->>>>>>+        pte |= xelp_pte_encode_pat(XELPG_PAT_UNCACHE);
->>>>>>+        break;
->>>>>>+    case XE_CACHE_WT:
->>>>>>+        pte |= xelp_pte_encode_pat(XELPG_PAT_WT_CACHE);
->>>>>>+        break;
->>>>>>+    case XE_CACHE_WB:
->>>>>>+        pte |= xelp_pte_encode_pat(XELPG_PAT_WB_CACHE);
->>>>>>+        break;
->>>>>>+    default:
->>>>>>+        /* pte |= PPAT_CACHED; */
->>>>>>+        break;
->>>>>>+    }
->>>>>>+
->>>>>>+    return pte;
->>>>>>+}
->>>>>>+
->>>>>> /**
->>>>>>  * xe_pt_create() - Create a page-table.
->>>>>>  * @vm: The vm to create for.
->>>>>>@@ -216,6 +293,13 @@ struct xe_pt *xe_pt_create(struct xe_vm 
->>>>>>*vm, struct xe_tile *tile,
->>>>>>     if (!pt)
->>>>>>         return ERR_PTR(-ENOMEM);
->>>>>>
->>>>>>+    if (GRAPHICS_VERx100(vm->xe) >= 1270)
->>>>>>+        vm->pte_encode = __xelpg_pte_encode;
->>>>>>+    else if (GRAPHICS_VERx100(vm->xe) >= 1260)
->>>>>>+        vm->pte_encode = __xehpc_pte_encode;
->>>>>>+    else
->>>>>>+        vm->pte_encode = __xelp_pte_encode;
->>>>>>+
->>>>>>     bo = xe_bo_create_pin_map(vm->xe, tile, vm, SZ_4K,
->>>>>>                   ttm_bo_type_kernel,
->>>>>>                   XE_BO_CREATE_VRAM_IF_DGFX(tile) |
->>>>>>diff --git a/drivers/gpu/drm/xe/xe_pte.h 
->>>>>>b/drivers/gpu/drm/xe/xe_pte.h
->>>>>>new file mode 100644
->>>>>>index 000000000000..8b3b5b471a99
->>>>>>--- /dev/null
->>>>>>+++ b/drivers/gpu/drm/xe/xe_pte.h
->>>>>
->>>>>s/xe_pte.h/xe_pte_pat.h
->>>>>
->>>>>Just my option prefer this.
->>>>
->>>>dunno, but since we have different pte formats for ggtt and ppgtt, IMO
->>>>it would add to the confusion.
->>>>
->>>>Maybe this belongs in xe_pat.h since it's xe_pat.c that programs the
->>>>tables giving the meaning spelled out in the macros here for 
->>>>each index.
->>>>The rest of the code then need to set the bits in the PTE to reference
->>>>those indexes, according to the PTE format.
->>>>
->>>>>
->>>>>>@@ -0,0 +1,31 @@
->>>>>>+/* SPDX-License-Identifier: MIT */
->>>>>>+/*
->>>>>>+ * Copyright © 2021 Intel Corporation
->>>>>>+ */
->>>>>>+
->>>>>>+#ifndef _XE_PTE_H_
->>>>>>+#define _XE_PTE_H_
->>>>>>+
->>>>>>+#define XELP_PAT_MASK                  BIT_ULL(7) | 
->>>>>>BIT_ULL(4) | BIT_ULL(3)
->>>>>>+#define XELP_PAT_WB_CACHE              0
->>>>>>+#define XELP_PAT_WC_CACHE              1
->>>>>>+#define XELP_PAT_WT_CACHE              2
->>>>>>+#define XELP_PAT_UNCACHE               3
->>>>
->>>>example... this duplicates what we have in xe_pat.c (comment added here
->>>>for clarity)
->>>>
->>>>static const u32 tgl_pat_table[] = {
->>>>        [0] = TGL_PAT_WB,
->>>>        [1] = TGL_PAT_WC,
->>>>        [2] = TGL_PAT_WT,
->>>>        [3] = TGL_PAT_UC,
->>>>    // .... those are programmed, but not expected to be used
->>>>        [4] = TGL_PAT_WB,
->>>>        [5] = TGL_PAT_WB,
->>>>        [6] = TGL_PAT_WB,
->>>>        [7] = TGL_PAT_WB,
->>>>};
->>>>
->>>
->>>TGL_PAT_WB maps to PAT table register bit mapping, we cannot 
->>>directly use tgl_pat_table to get PAT index rather we
->>>need to implement code to retrieve the index like below instead we 
->>>can use macro directly.
->>>
->>>xelp_pte_encode_pat(u8 cache_type) //example pass TGL_PAT_WB
->>>{
->>>    u8 index;
->>>    for (i=0, i < 32, i++)
->>>        if (tgl_pat_table[i] == cache_type)
->>
->>no, we don't want the caller to pass the platform-specific value.
->>It should pass a platfrom-agnostic value and xe_pat_get_index()
->>translates that to the platform-specific index. There are just 2 entries
->>really used by the kernel: uc and wb. Then the xe_pat.c returns what is
->>the entry to be used in those cases.
->>
->>Lucas De Marchi
->>
->
->I have discussed Regarding encoding the index into pat pte with Matt,Roper
->He said instead of writing common function for both ppgtt and ggtt, 
->the best approach would be as below so that in future adding more 
->support will be easier
->
->static u64 xelp_pte_encode_pat(u8 pat_index)
->{
->    u64 pte_pat = 0;
->
->    if (pat_index & BIT(0))
->        pte_pat |= BIT(3);
->
->    if (pat_index & BIT(1))
->        pte_pat |= BIT(4);
->
->    if (pat_index & BIT(2))
->        pte_pat |= BIT(7);
->
->    return pte_pat;
->}
+On Fri, Jul 21, 2023 at 11:09:13AM -0700, Matt Roper wrote:
+> The actual prefetch size variest by platform and by engine.  MTL's RCS
+> engine currently has the highest prefetch size of 2KB.
+> 
+> Bspec: 45718
+> Signed-off-by: Matt Roper <matthew.d.roper@intel.com>
 
-that is fine. My point is that selecting the *index* and the encoding
-are 2 different things. Here it's only doing a index -> pte, which is
-fine: there will be one for ppgtt and another for ggtt. However gettting
-the platform-specific index is shared. Check again the snippet I shared
-previously:
+Reviewed-by: Matthew Brost <matthew.brost@intel.com>
 
-	// this is valid for both ppgtt and ggtt
-	pat = xe_pat_get_index(xe, cache);
+We also need to update Xe too, in particular this function:
 
-	// this changes between ggtt / ppgtt
-	pte |= vm->pte_encode_pat(xe, pat);
+ 17 static int bb_prefetch(struct xe_gt *gt)
+ 18 {
+ 19         struct xe_device *xe = gt_to_xe(gt);
+ 20
+ 21         if (GRAPHICS_VERx100(xe) >= 1250 && !xe_gt_is_media_type(gt))
+ 22                 /*
+ 23                  * RCS and CCS require 1K, although other engines would be
+ 24                  * okay with 512.
+ 25                  */
+ 26                 return SZ_1K;
+ 27         else
+ 28                 return SZ_512;
+ 29 }
 
+I'll post a patch and CC you.
 
-pte_encode_pat() is the hook set during init to xelp_pte_encode_pat(),
-for this platform.  The index  however is obtained in the call above.
+Matt
 
-Lucas De Marchi
+> ---
+>  lib/xe/xe_ioctl.c | 2 +-
+>  1 file changed, 1 insertion(+), 1 deletion(-)
+> 
+> diff --git a/lib/xe/xe_ioctl.c b/lib/xe/xe_ioctl.c
+> index 0b5c7a4fc..1f9240cd9 100644
+> --- a/lib/xe/xe_ioctl.c
+> +++ b/lib/xe/xe_ioctl.c
+> @@ -47,7 +47,7 @@
+>  
+>  uint32_t xe_cs_prefetch_size(int fd)
+>  {
+> -	return 512;
+> +	return 2048;
+>  }
+>  
+>  uint32_t xe_vm_create(int fd, uint32_t flags, uint64_t ext)
+> -- 
+> 2.41.0
+> 
