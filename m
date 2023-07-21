@@ -4,30 +4,54 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 19070EB64DD
-	for <intel-xe@archiver.kernel.org>; Fri, 21 Jul 2023 03:26:43 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 619D6EB64DC
+	for <intel-xe@archiver.kernel.org>; Fri, 21 Jul 2023 11:17:55 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E0BA510E60F;
-	Fri, 21 Jul 2023 03:26:42 +0000 (UTC)
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id 3B45710E60F;
- Fri, 21 Jul 2023 03:26:41 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 29A1FA47E9;
- Fri, 21 Jul 2023 03:26:41 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============9078431541067394260=="
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1FC0010E659;
+	Fri, 21 Jul 2023 11:17:55 +0000 (UTC)
+Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2BAD010E658
+ for <intel-xe@lists.freedesktop.org>; Fri, 21 Jul 2023 11:17:51 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1689938271; x=1721474271;
+ h=message-id:date:mime-version:subject:to:cc:references:
+ from:in-reply-to:content-transfer-encoding;
+ bh=DgBwTKW4v62aC59WpJFOrC0XwYmrwB5E3PwKQ9pV2eU=;
+ b=ebD7yf4e6AfcsCivV3bbuczGRh3hjfHvHJrehpKPpXaZsHEgZVsFJC56
+ PsTo49mQd5FF7z1ABisPdAOVbMF88xWvpG+MzjFJGzWMx04R9Vrdf2i8h
+ FR40032bXbDzasHOZhMhkqopYlOOqhG7kJ2fQaCgPSlXicQRqxzI1wcX7
+ DvSPSdcMKGOi+OUpSACgRUv48XE0po9j88kFzcnQymaVl0rGpL8LrmmQA
+ Tit2UDsp+gWKW4p8/KmhNblMHfLZKHylpG5PjUmSO73Z/GrKzIwG27OF6
+ jYp+uup1k50DOKCT0y0d6Wnc7EFKVrpkWsYPcMFzRGHki7crY64jT6+74 Q==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10777"; a="346594643"
+X-IronPort-AV: E=Sophos;i="6.01,220,1684825200"; d="scan'208";a="346594643"
+Received: from fmsmga006.fm.intel.com ([10.253.24.20])
+ by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 21 Jul 2023 04:17:50 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6600,9927,10777"; a="971411309"
+X-IronPort-AV: E=Sophos;i="6.01,220,1684825200"; d="scan'208";a="971411309"
+Received: from rtrejoca-mobl1.ger.corp.intel.com (HELO [10.252.30.22])
+ ([10.252.30.22])
+ by fmsmga006-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 21 Jul 2023 04:17:49 -0700
+Message-ID: <37cb1b64-95ff-2f0d-f802-27e79fc55574@intel.com>
+Date: Fri, 21 Jul 2023 12:17:47 +0100
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Ashutosh Dixit" <ashutosh.dixit@intel.com>
-Date: Fri, 21 Jul 2023 03:26:41 -0000
-Message-ID: <168991000113.22547.7604995309357744627@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20230721022820.3978405-1-ashutosh.dixit@intel.com>
-In-Reply-To: <20230721022820.3978405-1-ashutosh.dixit@intel.com>
-Subject: [Intel-xe] =?utf-8?q?=E2=97=8B_CI=2EBAT=3A_info_for_Add_OA_funct?=
- =?utf-8?q?ionality_to_Xe_=28rev2=29?=
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Firefox/102.0 Thunderbird/102.12.0
+To: Rodrigo Vivi <rodrigo.vivi@intel.com>
+References: <20230719192726.172056-1-rodrigo.vivi@intel.com>
+ <2ed513ec-3a3f-1795-2761-ad1d39bb6a09@intel.com> <ZLkiAmNuvjdUi+09@intel.com>
+ <adbd55cd-b75b-6b65-7c10-500bb1992850@intel.com> <ZLlV8lFWhwdl9hA7@intel.com>
+Content-Language: en-GB
+From: Matthew Auld <matthew.auld@intel.com>
+In-Reply-To: <ZLlV8lFWhwdl9hA7@intel.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+Subject: Re: [Intel-xe] [PATCH] drm/xe: Fix an invalid locking wait context
+ bug
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -39,72 +63,126 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Cc: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============9078431541067394260==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+On 20/07/2023 16:42, Rodrigo Vivi wrote:
+> On Thu, Jul 20, 2023 at 01:38:18PM +0100, Matthew Auld wrote:
+>> On 20/07/2023 13:01, Rodrigo Vivi wrote:
+>>> On Thu, Jul 20, 2023 at 10:11:00AM +0100, Matthew Auld wrote:
+>>>> On 19/07/2023 20:27, Rodrigo Vivi wrote:
+>>>>> xe_irq_{suspend,resume} were incorrectly using the xe->irq.lock.
+>>>>>
+>>>>> The lock was created to protect the gt irq handlers, and not
+>>>>> the irq.enabled. Since suspend/resume and other places touching
+>>>>> irq.enabled are already serialized they don't need protection.
+>>>>> (see other irq.enabled accesses).
+>>>>>
+>>>>> Then with this spin lock around xe_irq_reset, we will end up
+>>>>> calling the intel_display_power_is_enabled() function, and
+>>>>> that needs a mutex lock. Hence causing the undesired
+>>>>> "[ BUG: Invalid wait context ]"
+>>>>>
+>>>>> Cc: Matthew Auld <matthew.auld@intel.com>
+>>>>> Signed-off-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
+>>>>> ---
+>>>>>     drivers/gpu/drm/xe/xe_irq.c | 5 -----
+>>>>>     1 file changed, 5 deletions(-)
+>>>>>
+>>>>> diff --git a/drivers/gpu/drm/xe/xe_irq.c b/drivers/gpu/drm/xe/xe_irq.c
+>>>>> index eae190cb0969..df01af780a57 100644
+>>>>> --- a/drivers/gpu/drm/xe/xe_irq.c
+>>>>> +++ b/drivers/gpu/drm/xe/xe_irq.c
+>>>>> @@ -574,10 +574,8 @@ void xe_irq_shutdown(struct xe_device *xe)
+>>>>>     void xe_irq_suspend(struct xe_device *xe)
+>>>>>     {
+>>>>> -	spin_lock_irq(&xe->irq.lock);
+>>>>>     	xe->irq.enabled = false;
+>>>>>     	xe_irq_reset(xe);
+>>>>> -	spin_unlock_irq(&xe->irq.lock);
+>>>>
+>>>> Do we not need something like:
+>>>>
+>>>> spin_lock_irq(&xe->irq.lock);
+>>>> xe->irq.enabled = false; /* no new irqs */
+>>>> spin_unlock_irq(&xe->irq.lock);
+>>>>
+>>>> synchronize_irq(...); /* flush irqs */
+>>>> xe_irq_reset(); /* turn off irqs */
+>>>> ....
+>>>>
+>>>> And then at the start of the irq handler:
+>>>>
+>>>> spin_lock_irq(&xe->irq.lock);
+>>>> if (!xe->irq.enabled) {
+>>>>       spin_unlock_irq(&xe->irq.lock);
+>>>>       return ....;
+>>>> }
+>>>>
+>>>> Or did something happen prior to xe_irq_suspend() to ensure proper
+>>>> serialisation with irq and the above steps are not really needed?
+>>>
+>>> the suspend and resume calls should be serialized by itself, no?!
+>>
+>> Is it not possible for IRQs to still be firing or potentially be in-progress
+>> here as we are preparing to suspend?
+> 
+> yes, it is. We are letting the rpm to run with irq enabled otherwise
+> we will face the same invalid wait bug that this patch is trying to solve.
+> 
+> But I don't believe the right way is to use the lock to protect the irq.enabled.
+> 
+> Taking a look around I believe that what we are missing is the
+> synchronize_irq() call right after the reset. So we ensure that all the
+> racy handlers were properly processed before we allow the suspend.
+> 
+> So I believe we need something like i915 that would be:
+> 
+> xe_irq_suspend()
+> {
+> 	xe_irq_reset(xe);
+> 	xe->irq.enable = false;
+> 	synchronize_irq(pdev->irq);
+> }
+> 
+> xe_irq_resume()
+> {
+> 	xe->irq.enabled = true;
+> 	xe_irq_reset(xe);
+> 	xe_irq_postinstall(xe);
+> 
+> 	for_each_gt(gt, xe, id)
+> 			xe_irq_enable_hwe(gt);
+> }
 
-== Series Details ==
+Ok, but tbh I'm not completely sure what is going on with irq.enabled. 
+AFAICT it looks to also be exposed into i915/display with 
+intel_irqs_enabled() and that seems to have various callers. Are they 
+not holding the lock? Also the write here is to shared memory so without 
+the lock it's unclear what is going on here wrt barriers and unmarked 
+accesses (missing READ_ONCE/WRITE_ONCE?). I don't want to block you here 
+since "Invalid wait context" is breaking CI, so I guess just go with the 
+simplest thing for now.
 
-Series: Add OA functionality to Xe (rev2)
-URL   : https://patchwork.freedesktop.org/series/121084/
-State : info
-
-== Summary ==
-
-Participating hosts:
-bat-pvc-2
-bat-atsm-2
-bat-dg2-oem2
-bat-adlp-7
-Missing hosts results[1]:
-bat-pvc-2
-Results: [xe-pw-121084v2](https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-121084v2/index.html)
-
-
-
---===============9078431541067394260==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>Add OA functionality to Xe (rev2)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/121084/">https://patchwork.freedesktop.org/series/121084/</a></td></tr>
-<tr><td><b>State:</b></td><td>info</td></tr>
-
-</table>
-
-
-    <p>Participating hosts:<br />
-bat-pvc-2<br />
-bat-atsm-2<br />
-bat-dg2-oem2<br />
-bat-adlp-7<br />
-Missing hosts results[1]:<br />
-bat-pvc-2<br />
-Results: <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-121084v2/index.html">xe-pw-121084v2</a></p>
-
-</body>
-</html>
-
---===============9078431541067394260==--
+> 
+>>
+>>>
+>>> no other place touching or inspecting irq.enable uses this lock
+>>> anyway, since it was created to serialize the gt_handler.
+>>>
+>>>>
+>>>>>     }
+>>>>>     void xe_irq_resume(struct xe_device *xe)
+>>>>> @@ -585,13 +583,10 @@ void xe_irq_resume(struct xe_device *xe)
+>>>>>     	struct xe_gt *gt;
+>>>>>     	int id;
+>>>>> -	spin_lock_irq(&xe->irq.lock);
+>>>>>     	xe->irq.enabled = true;
+>>>>>     	xe_irq_reset(xe);
+>>>>>     	xe_irq_postinstall(xe);
+>>>>>     	for_each_gt(gt, xe, id)
+>>>>>     		xe_irq_enable_hwe(gt);
+>>>>> -
+>>>>> -	spin_unlock_irq(&xe->irq.lock);
+>>>>>     }
