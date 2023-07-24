@@ -4,44 +4,44 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5C3E0C0015E
-	for <intel-xe@archiver.kernel.org>; Mon, 24 Jul 2023 15:52:10 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id C45E0C001DF
+	for <intel-xe@archiver.kernel.org>; Mon, 24 Jul 2023 15:53:01 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id CC55610E336;
-	Mon, 24 Jul 2023 15:52:09 +0000 (UTC)
-Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3884F10E336
- for <intel-xe@lists.freedesktop.org>; Mon, 24 Jul 2023 15:52:07 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9BA5110E336;
+	Mon, 24 Jul 2023 15:53:01 +0000 (UTC)
+Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3209F10E336
+ for <intel-xe@lists.freedesktop.org>; Mon, 24 Jul 2023 15:52:58 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1690213927; x=1721749927;
+ t=1690213978; x=1721749978;
  h=date:message-id:from:to:cc:subject:in-reply-to:
  references:mime-version;
- bh=e237MZiPpSCpGTnuxnE1dVVvEiT7YaCRdLgRgJ/5L9M=;
- b=fNOS9shG/d3czB97++/FvdrmyUeG0RWrqs5M/CGpO1CjQJieU3OzgIYR
- 52C8Ax3MrkuxQi6q66Bc84ALvspVYT90snIif9cXYrSX5Y1f9+jYj0+Bw
- oZeCC8rk0Z0h9hoDf735gWDAxhpF2g8K4PhIEbr9aXLTgQrAkKx3IkWA/
- 4FRBOFs5To1oKtKYks8wZ8+UIh6H0MBnHYjIf3GdETAgZuX4HPUEX7Bi0
- RGo4Yx9/JkeFhwpIZJWGUD40dKpF1Pc9giJCbxjJq9X7hEjeeHEKkSsmV
- vdt/0e+2uMhS8F+sRXiLEYPlK46oN903ZeJTyDrh8gnq/xFGcZ3vsTCud Q==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10781"; a="357477409"
-X-IronPort-AV: E=Sophos;i="6.01,228,1684825200"; d="scan'208";a="357477409"
-Received: from orsmga002.jf.intel.com ([10.7.209.21])
- by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 24 Jul 2023 08:52:05 -0700
+ bh=QpSYy5DEA73mZoi6wW/WlhHfu+QkAom7XXZpomtFnjc=;
+ b=Ffa+cBI/yVH7sFXScPMn1/OIRfdj0FVJ05yy24ZMX/BCmavaasrVHSV7
+ lhx+ypTQU2pKN9JvVu4t1W0qbI+xQrUHt76AxqUbjvbmzIOkWceG10JTu
+ iaV3vzTNqhQ8EaXhQtHGEoYLOOnbSviaPRHt4K1AYrzaus9SWpUup1ATW
+ 3AsQoZjQZOVRXNOG1kqBgG6lzruLTzjXY3XXxVMAa5+ODV+RMynWcXLI0
+ 1k2lg47s9Be3n+82SuWmFfYxTkLPT4N/HicJNObZJirmhAUs+006kB0bO
+ /cADIJcniebgY/lPlkVINHNcypNyjlIak59JGecK70s/+1Y8tyoIN75zd g==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10781"; a="433720052"
+X-IronPort-AV: E=Sophos;i="6.01,228,1684825200"; d="scan'208";a="433720052"
+Received: from fmsmga004.fm.intel.com ([10.253.24.48])
+ by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 24 Jul 2023 08:52:57 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10781"; a="725769000"
-X-IronPort-AV: E=Sophos;i="6.01,228,1684825200"; d="scan'208";a="725769000"
+X-IronPort-AV: E=McAfee;i="6600,9927,10781"; a="795823980"
+X-IronPort-AV: E=Sophos;i="6.01,228,1684825200"; d="scan'208";a="795823980"
 Received: from adixit-mobl.amr.corp.intel.com (HELO adixit-arch.intel.com)
  ([10.212.229.56])
- by orsmga002-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 24 Jul 2023 08:52:05 -0700
-Date: Mon, 24 Jul 2023 08:52:04 -0700
-Message-ID: <87351dqpcr.wl-ashutosh.dixit@intel.com>
+ by fmsmga004-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 24 Jul 2023 08:52:57 -0700
+Date: Mon, 24 Jul 2023 08:52:56 -0700
+Message-ID: <871qgxqpbb.wl-ashutosh.dixit@intel.com>
 From: "Dixit, Ashutosh" <ashutosh.dixit@intel.com>
-To: "Iddamsetty, Aravind" <aravind.iddamsetty@intel.com>
-In-Reply-To: <8fd9bc04-b737-0acd-a0c9-4f163c1a117c@intel.com>
-References: <20230627122113.1472532-1-aravind.iddamsetty@intel.com>	<20230627122113.1472532-3-aravind.iddamsetty@intel.com>	<87cz0mqdpi.wl-ashutosh.dixit@intel.com>	<f4f6c8f9-a97d-6072-cf0c-4122b3d4f93f@intel.com>	<877cqsrg65.wl-ashutosh.dixit@intel.com>	<875y6cqy6p.wl-ashutosh.dixit@intel.com>	<8fd9bc04-b737-0acd-a0c9-4f163c1a117c@intel.com>
+To: "Ursulin, Tvrtko" <tvrtko.ursulin@intel.com>
+In-Reply-To: <BN9PR11MB53059C49C95EE7F6C1993ED78B02A@BN9PR11MB5305.namprd11.prod.outlook.com>
+References: <20230627122113.1472532-1-aravind.iddamsetty@intel.com>	<20230627122113.1472532-3-aravind.iddamsetty@intel.com>	<87cz0mqdpi.wl-ashutosh.dixit@intel.com>	<f4f6c8f9-a97d-6072-cf0c-4122b3d4f93f@intel.com>	<877cqsrg65.wl-ashutosh.dixit@intel.com>	<875y6cqy6p.wl-ashutosh.dixit@intel.com>	<8fd9bc04-b737-0acd-a0c9-4f163c1a117c@intel.com>	<BN9PR11MB53059C49C95EE7F6C1993ED78B02A@BN9PR11MB5305.namprd11.prod.outlook.com>
 User-Agent: Wanderlust/2.15.9 (Almost Unreal) SEMI-EPG/1.14.7 (Harue)
  FLIM-LB/1.14.9 (=?ISO-8859-4?Q?Goj=F2?=) APEL-LB/10.8 EasyPG/1.0.0
  Emacs/28.2 (x86_64-pc-linux-gnu) MULE/6.0 (HANACHIRUSATO)
@@ -59,58 +59,31 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Cc: Bommu Krishnaiah <krishnaiah.bommu@intel.com>,
- intel-xe@lists.freedesktop.org, Tvrtko Ursulin <tvrtko.ursulin@intel.com>
+Cc: "Bommu, Krishnaiah" <krishnaiah.bommu@intel.com>,
+ "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Mon, 24 Jul 2023 01:03:23 -0700, Iddamsetty, Aravind wrote:
-
-Hi Aravind,
-
-> On 22-07-2023 11:34, Dixit, Ashutosh wrote:
->> > On Fri, 21 Jul 2023 16:36:02 -0700, Dixit, Ashutosh wrote:
-> >> On Fri, 21 Jul 2023 04:51:09 -0700, Iddamsetty, Aravind wrote:
-> >>>>> +void engine_group_busyness_store(struct xe_gt *gt)
-> >>>>> +{
-> >>>>> +	struct xe_pmu *pmu = &gt->tile->xe->pmu;
-> >>>>> +	unsigned int gt_id = gt->info.id;
-> >>>>> +	unsigned long flags;
-> >>>>> +
-> >>>>> +	spin_lock_irqsave(&pmu->lock, flags);
-> >>>>> +
-> >>>>> +	store_sample(pmu, gt_id, __XE_SAMPLE_RENDER_GROUP_BUSY,
-> >>>>> +		     __engine_group_busyness_read(gt, XE_PMU_RENDER_GROUP_BUSY(0)));
-> >>>>> +	store_sample(pmu, gt_id, __XE_SAMPLE_COPY_GROUP_BUSY,
-> >>>>> +		     __engine_group_busyness_read(gt, XE_PMU_COPY_GROUP_BUSY(0)));
-> >>>>> +	store_sample(pmu, gt_id, __XE_SAMPLE_MEDIA_GROUP_BUSY,
-> >>>>> +		     __engine_group_busyness_read(gt, XE_PMU_MEDIA_GROUP_BUSY(0)));
-> >>>>> +	store_sample(pmu, gt_id, __XE_SAMPLE_ANY_ENGINE_GROUP_BUSY,
-> >>>>> +		     __engine_group_busyness_read(gt, XE_PMU_ANY_ENGINE_GROUP_BUSY(0)));
-> >
-> > Here why should we store everything, we should store only those events
-> > which are enabled?
+On Mon, 24 Jul 2023 02:00:13 -0700, Ursulin, Tvrtko wrote:
 >
-> The events are enabled only when they are opened which can happen after
-> the device is suspended hence we need to store all. As in the present
-> case device is put to suspend immediately after probe and event is
-> opened post driver load is done.
+>
+> [Top-post since my dual email setup and this is the wrong one, sorry.]
+>
+> Glancing over the discussion - small correction - i915 did not solve the
+> problem of hardware counters and sleeping device with the timer but with
+> the park/unpark hooks.
+>
+> More similar to these group busyness counters would be the RC6, and you
+> will notice there is nothing in the i915 sampling timer about RC6. There
+> is just some complicated code in park/unpark to estimate RC6 while
+> parked. But the estimation is beside the point for engine group busyness
+> since it is the opposite metric (grows on busy vs grows idle).
+>
+> And I think you converged to the same solution already, so I just wanted
+> to correct the 5ms timer inaccuracy.
 
-I don't think we can justify doing expensive PCIe reads and increasing the
-time to go into runtime suspend, when PMU might not being used at all.
+Agreed. For a moment I was fantasizing that the timer would not be needed
+in i915 either and we could just sample the values when parking, but that's
+not true.
 
-If we store only enabled samples and start storing them only after they are
-enabled, what would be the consequence of this? The first non-zero sample
-seen by the perf tool would be wrong and later samples will be fine?
-
-If there is a consequence, we might have to go back to what I was saying
-earlier about waking the device up and reading the enabled counter when
-xe_pmu_event_start happens, to initialize the counter values. I am assuming
-this will work?
-
-Doing this IMO would be better than always doing these PCIe reads on
-runtime suspend even when PMU is not being used.
-
-Thanks.
---
 Ashutosh
