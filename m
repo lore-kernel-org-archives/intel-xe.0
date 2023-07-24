@@ -4,46 +4,46 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 821B9C001DE
-	for <intel-xe@archiver.kernel.org>; Mon, 24 Jul 2023 09:40:58 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 05D77C0015E
+	for <intel-xe@archiver.kernel.org>; Mon, 24 Jul 2023 09:41:02 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5C17D10E29C;
-	Mon, 24 Jul 2023 09:40:58 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D79F710E29B;
+	Mon, 24 Jul 2023 09:41:01 +0000 (UTC)
 Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
- by gabe.freedesktop.org (Postfix) with ESMTPS id CD73C10E29A
- for <intel-xe@lists.freedesktop.org>; Mon, 24 Jul 2023 09:40:56 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 49A4210E29B
+ for <intel-xe@lists.freedesktop.org>; Mon, 24 Jul 2023 09:40:58 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1690191656; x=1721727656;
+ t=1690191658; x=1721727658;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=K4Gp8lXy4O8bwJp9cIGiiW8iltPzwLQ98WH8yZt00Q4=;
- b=Hy4dlzdKZlFZnGSisVzbCF8aLA2cwv1S/tEpYEKprdMqUgWNnawjRho/
- SD68b6ZY5KD27+lu2D/rZbWpVVx219fV2W0mZfAz+KJ4jz3BThuJWsA74
- VdJ91TlVHaY1Qrp/5+KtNc3t0lhoBzUaUF/nglMIhWQn0mQ0JIbC6vGlu
- VBxGa94NEpM0o8OAu1zZpAI3mXvbQ4T4jtmWFHhT5p3YZ5LIC9nwYqEgH
- u0WK1ske1fqOcoFjuJlAFuZMjsuXVW+Hj1hITQ6UeOB1K4cdtfNuLUZXn
- YVmvSuFsWDqpOHQ5wr9YiYkgFmjBKWe7IFgIjl/vLOz86vV6d1CmEwJ6X Q==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10780"; a="347677618"
-X-IronPort-AV: E=Sophos;i="6.01,228,1684825200"; d="scan'208";a="347677618"
+ bh=EzbMzMAqUyjtZvldZrTERgow6rxTE53FGmq1cXvvEqM=;
+ b=UYuzJarDGybQWgHMumfz8J8WC4K1UfaGxIAudOduVTzE2dBwV+0WZUXc
+ IinHo1zcISWBMJt1dM9SDmttdm5DccUWJeSJnoEexdEL5q+Q/2GjkpUll
+ acDQMl6oicTmJxH1jy4EhfTPFpRZKk0FVIns0x9m5mStdeC7+RKTX6rVy
+ lx2sAHgJ4V9U3CvZE+CWr62StNtXaZvjoj+NhC3fPwfaqehzdXqUPrdIL
+ TxeKmiQv++8PvMffREU/Q4ZN3VZVIehQi0CemyQubrv8U5218xY+6jir8
+ ZLmfdwLqs9FLqxM5mFj3AzLjL5mE7gri7qqxsDM3Gmgp8w5SpN17OhBt2 Q==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10780"; a="347677623"
+X-IronPort-AV: E=Sophos;i="6.01,228,1684825200"; d="scan'208";a="347677623"
 Received: from fmsmga001.fm.intel.com ([10.253.24.23])
  by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 24 Jul 2023 02:40:56 -0700
+ 24 Jul 2023 02:40:58 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.01,202,1684825200"; d="scan'208";a="869011802"
+X-IronPort-AV: E=Sophos;i="6.01,202,1684825200"; d="scan'208";a="869011812"
 Received: from tejas-super-server.iind.intel.com ([10.145.169.166])
- by fmsmga001.fm.intel.com with ESMTP; 24 Jul 2023 02:40:56 -0700
+ by fmsmga001.fm.intel.com with ESMTP; 24 Jul 2023 02:40:58 -0700
 From: Tejas Upadhyay <tejas.upadhyay@intel.com>
 To: intel-xe@lists.freedesktop.org
-Date: Mon, 24 Jul 2023 15:17:29 +0530
-Message-Id: <20230724094733.720266-3-tejas.upadhyay@intel.com>
+Date: Mon, 24 Jul 2023 15:17:30 +0530
+Message-Id: <20230724094733.720266-4-tejas.upadhyay@intel.com>
 X-Mailer: git-send-email 2.25.1
 In-Reply-To: <20230724094733.720266-1-tejas.upadhyay@intel.com>
 References: <20230724094733.720266-1-tejas.upadhyay@intel.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-xe] [PATCH V6 2/6] drm/xe: Add sysfs for default engine
- scheduler properties
+Subject: [Intel-xe] [PATCH V6 3/6] drm/xe: Add job timeout engine property
+ to sysfs
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -58,335 +58,94 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-For each HW engine under GT we are adding defaults sysfs
-entry to list all engine scheduler properties and its
-default values. So that it will be easier for user to
-fetch default values of these properties anytime to go
-back to default.
+The time after which a job is removed from the scheduler.
+Add sysfs entry to provide user defined job timeout to
+scheduler.
 
-For example,
-DUT# cat /sys/class/drm/card1/device/tileN/gtN/engines/bcs/.defaults/
-job_timeout_ms         preempt_timeout_us     timeslice_duration_us
+The job timeout can be adjusted per-engine class using,
 
-where,
-@job_timeout_ms: The time after which a job is removed from the scheduler.
-@preempt_timeout_us: How long to wait (in microseconds) for a preemption
-                     event to occur when submitting a new context.
-@timeslice_duration_us: Each context is scheduled for execution for the
-                        timeslice duration, before switching to the next
-                        context.
+/sys/class/drm/cardX/device/tileN/gtN/engines/ccs/job_timeout_ms
 
-V5 :
-   - Scheduling props should apply per class engine not per hardware engine - Matt
-   - Do not record value of job_timeout_ms if changed based on dma_fence - Matt
-V4 :
-   - Resolve merge conflicts - CI
-V3 :
-   - Rearrange code in its own file
-   - Rebase
-   - Update commit message to reflect tile addition
-V2 :
-   - Use sysfs_create_files in this patch - Niranjana
-   - Handle prototype error for xe_add_engine_defaults - CI hooks
-   - Remove unused member sysfs_hwe - Niranjana
+V4:
+  - Rebase to per class engine props interface
+V3:
+  - Rebase
+  - Update commit message to reflect tile update
+V2:
+  - Use sysfs_create_files as part of this patch
 
 Signed-off-by: Tejas Upadhyay <tejas.upadhyay@intel.com>
 ---
- drivers/gpu/drm/xe/xe_engine.c             |  6 +-
- drivers/gpu/drm/xe/xe_engine_class_sysfs.c | 94 ++++++++++++++++++++--
- drivers/gpu/drm/xe/xe_engine_class_sysfs.h | 20 +++++
- drivers/gpu/drm/xe/xe_gt_types.h           |  3 +
- drivers/gpu/drm/xe/xe_guc_submit.c         |  3 +-
- drivers/gpu/drm/xe/xe_hw_engine.c          | 10 +++
- drivers/gpu/drm/xe/xe_hw_engine_types.h    | 36 +++++++++
- 7 files changed, 162 insertions(+), 10 deletions(-)
+ drivers/gpu/drm/xe/xe_engine_class_sysfs.c | 42 ++++++++++++++++++++++
+ 1 file changed, 42 insertions(+)
 
-diff --git a/drivers/gpu/drm/xe/xe_engine.c b/drivers/gpu/drm/xe/xe_engine.c
-index 59e0a9e085ba..19a7a05bbbc3 100644
---- a/drivers/gpu/drm/xe/xe_engine.c
-+++ b/drivers/gpu/drm/xe/xe_engine.c
-@@ -53,9 +53,9 @@ static struct xe_engine *__xe_engine_create(struct xe_device *xe,
- 	INIT_LIST_HEAD(&e->compute.link);
- 	INIT_LIST_HEAD(&e->multi_gt_link);
- 
--	/* FIXME: Wire up to configurable default value */
--	e->sched_props.timeslice_us = 1 * 1000;
--	e->sched_props.preempt_timeout_us = 640 * 1000;
-+	e->sched_props.timeslice_us = hwe->eclass->sched_props.timeslice_us;
-+	e->sched_props.preempt_timeout_us =
-+				hwe->eclass->sched_props.preempt_timeout_us;
- 
- 	if (xe_engine_is_parallel(e)) {
- 		e->parallel.composite_fence_ctx = dma_fence_context_alloc(1);
 diff --git a/drivers/gpu/drm/xe/xe_engine_class_sysfs.c b/drivers/gpu/drm/xe/xe_engine_class_sysfs.c
-index 9959b0362d71..b930b4aaa866 100644
+index b930b4aaa866..f8d48e57578d 100644
 --- a/drivers/gpu/drm/xe/xe_engine_class_sysfs.c
 +++ b/drivers/gpu/drm/xe/xe_engine_class_sysfs.c
-@@ -9,6 +9,8 @@
+@@ -39,6 +39,37 @@ kobj_xe_engine(struct kobject *parent, char *name)
+ 	return khwe;
+ }
  
- #include "xe_engine_class_sysfs.h"
- 
-+static int xe_add_engine_class_defaults(struct kobject *parent);
++static ssize_t job_timeout_store(struct kobject *kobj,
++				 struct kobj_attribute *attr,
++				 const char *buf, size_t count)
++{
++	struct xe_hw_engine *hwe = kobj_to_hwe(kobj);
++	u32 timeout;
++	int err;
 +
- static void kobj_xe_engine_release(struct kobject *kobj)
++	err = kstrtou32(buf, 0, &timeout);
++	if (err)
++		return err;
++
++	if (timeout > jiffies_to_usecs(MAX_SCHEDULE_TIMEOUT))
++		return -EINVAL;
++
++	WRITE_ONCE(hwe->eclass->sched_props.job_timeout_ms, timeout);
++
++	return count;
++}
++
++static ssize_t job_timeout_show(struct kobject *kobj,
++				struct kobj_attribute *attr, char *buf)
++{
++	struct xe_hw_engine *hwe = kobj_to_hwe(kobj);
++
++	return sprintf(buf, "%u\n", hwe->eclass->sched_props.job_timeout_ms);
++}
++
++static struct kobj_attribute job_timeout_attr =
++__ATTR(job_timeout_ms, 0644, job_timeout_show, job_timeout_store);
++
+ static ssize_t job_timeout_default(struct kobject *kobj,
+ 				   struct kobj_attribute *attr, char *buf)
  {
- 	kfree(kobj);
-@@ -19,22 +21,91 @@ static const struct kobj_type kobj_xe_engine_type = {
- 	.sysfs_ops = &kobj_sysfs_ops
+@@ -80,6 +111,11 @@ static const struct attribute *defaults[] = {
+ 	NULL
  };
  
--static struct kobject *
-+static struct kobj_hwe *
- kobj_xe_engine(struct kobject *parent, char *name)
-+{
-+	struct kobj_hwe *khwe;
-+
-+	khwe = kzalloc(sizeof(*khwe), GFP_KERNEL);
-+	if (!khwe)
-+		return NULL;
-+
-+	kobject_init(&khwe->base, &kobj_xe_engine_type);
-+	if (kobject_add(&khwe->base, parent, "%s", name)) {
-+		kobject_put(&khwe->base);
-+		return NULL;
-+	}
-+
-+	return khwe;
-+}
-+
-+static ssize_t job_timeout_default(struct kobject *kobj,
-+				   struct kobj_attribute *attr, char *buf)
-+{
-+	struct xe_hw_engine *hwe = kobj_to_hwe(kobj->parent);
-+
-+	return sprintf(buf, "%u\n", hwe->eclass->defaults.job_timeout_ms);
-+}
-+
-+static struct kobj_attribute job_timeout_def =
-+__ATTR(job_timeout_ms, 0444, job_timeout_default, NULL);
-+
-+static ssize_t timeslice_default(struct kobject *kobj,
-+				 struct kobj_attribute *attr, char *buf)
-+{
-+	struct xe_hw_engine *hwe = kobj_to_hwe(kobj->parent);
-+
-+	return sprintf(buf, "%u\n", hwe->eclass->defaults.timeslice_us);
-+}
-+
-+static struct kobj_attribute timeslice_duration_def =
-+__ATTR(timeslice_duration_us, 0444, timeslice_default, NULL);
-+
-+static ssize_t preempt_timeout_default(struct kobject *kobj,
-+				       struct kobj_attribute *attr,
-+				       char *buf)
-+{
-+	struct xe_hw_engine *hwe = kobj_to_hwe(kobj->parent);
-+
-+	return sprintf(buf, "%u\n", hwe->eclass->defaults.preempt_timeout_us);
-+}
-+
-+static struct kobj_attribute preempt_timeout_def =
-+__ATTR(preempt_timeout_us, 0444, preempt_timeout_default, NULL);
-+
-+static const struct attribute *defaults[] = {
-+	&job_timeout_def.attr,
-+	&timeslice_duration_def.attr,
-+	&preempt_timeout_def.attr,
++static const struct attribute *files[] = {
++	&job_timeout_attr.attr,
 +	NULL
 +};
 +
-+static int xe_add_engine_class_defaults(struct kobject *parent)
+ static int xe_add_engine_class_defaults(struct kobject *parent)
  {
  	struct kobject *kobj;
-+	int err = 0;
- 
- 	kobj = kzalloc(sizeof(*kobj), GFP_KERNEL);
- 	if (!kobj)
--		return NULL;
-+		return -ENOMEM;
- 
- 	kobject_init(kobj, &kobj_xe_engine_type);
--	if (kobject_add(kobj, parent, "%s", name)) {
-+
-+	err = kobject_add(kobj, parent, "%s", ".defaults");
-+	if (err)
-+		goto err_object;
-+
-+	err = sysfs_create_files(kobj, defaults);
-+	if (err)
-+		goto err_object;
-+
-+	if (0) {
-+err_object:
- 		kobject_put(kobj);
--		return NULL;
-+		return err;
- 	}
- 
--	return kobj;
-+	return err;
- }
- 
- static void xe_engine_sysfs_kobj_release(struct kobject *kobj)
-@@ -69,7 +140,7 @@ int xe_engine_class_sysfs_init(struct xe_gt *gt)
- 
- 	for_each_hw_engine(hwe, gt, id) {
- 		char name[MAX_ENGINE_CLASS_NAME_LEN];
--		struct kobject *khwe;
-+		struct kobj_hwe *khwe;
- 
- 		if (hwe->class == XE_ENGINE_CLASS_OTHER ||
- 		    hwe->class == XE_ENGINE_CLASS_MAX)
-@@ -106,6 +177,17 @@ int xe_engine_class_sysfs_init(struct xe_gt *gt)
- 			kobject_put(kobj);
- 			return -EINVAL;
+@@ -188,6 +224,12 @@ int xe_engine_class_sysfs_init(struct xe_gt *gt)
+ 			return err;
  		}
-+
-+		khwe->hwe = hwe;
-+		err = xe_add_engine_class_defaults(&khwe->base);
+ 
++		err = sysfs_create_files(&khwe->base, files);
 +		if (err) {
 +			kobject_put(kobj);
-+			drm_warn(&gt_to_xe(gt)->drm,
-+				 "Warning: adding .defaults to engines failed!, err: %d\n",
-+				 err);
 +			return err;
 +		}
-+
  	}
++
  	return err;
  }
-diff --git a/drivers/gpu/drm/xe/xe_engine_class_sysfs.h b/drivers/gpu/drm/xe/xe_engine_class_sysfs.h
-index f195dacc1ec6..492a84a22c30 100644
---- a/drivers/gpu/drm/xe/xe_engine_class_sysfs.h
-+++ b/drivers/gpu/drm/xe/xe_engine_class_sysfs.h
-@@ -10,4 +10,24 @@
- 
- #define MAX_ENGINE_CLASS_NAME_LEN    16
- int xe_engine_class_sysfs_init(struct xe_gt *gt);
-+
-+/**
-+ * struct kobj_hwe - A hwe's kobject struct that connects the kobject and the
-+ * hwe.
-+ *
-+ * When dealing with multiple hwe, this struct helps to understand which hwe
-+ * needs to be addressed on a given sysfs call.
-+ */
-+struct kobj_hwe {
-+	/** @base: The actual kobject */
-+	struct kobject base;
-+	/** @hwe: A pointer to the hwe itself */
-+	struct xe_hw_engine *hwe;
-+};
-+
-+static inline struct xe_hw_engine *kobj_to_hwe(struct kobject *kobj)
-+{
-+	return container_of(kobj, struct kobj_hwe, base)->hwe;
-+}
-+
- #endif
-diff --git a/drivers/gpu/drm/xe/xe_gt_types.h b/drivers/gpu/drm/xe/xe_gt_types.h
-index 78a9fe9f0bd3..d8d9151cca62 100644
---- a/drivers/gpu/drm/xe/xe_gt_types.h
-+++ b/drivers/gpu/drm/xe/xe_gt_types.h
-@@ -286,6 +286,9 @@ struct xe_gt {
- 	/** @hw_engines: hardware engines on the GT */
- 	struct xe_hw_engine hw_engines[XE_NUM_HW_ENGINES];
- 
-+	/** @eclass: per class engine interface on the GT */
-+	struct xe_engine_class_intf  eclass[XE_ENGINE_CLASS_MAX];
-+
- 	/** @pcode: GT's PCODE */
- 	struct {
- 		/** @lock: protecting GT's PCODE mailbox data */
-diff --git a/drivers/gpu/drm/xe/xe_guc_submit.c b/drivers/gpu/drm/xe/xe_guc_submit.c
-index 911d4965c27c..7978f7efd702 100644
---- a/drivers/gpu/drm/xe/xe_guc_submit.c
-+++ b/drivers/gpu/drm/xe/xe_guc_submit.c
-@@ -1128,7 +1128,8 @@ static int guc_engine_init(struct xe_engine *e)
- 	ge->engine = e;
- 	init_waitqueue_head(&ge->suspend_wait);
- 
--	timeout = xe_vm_no_dma_fences(e->vm) ? MAX_SCHEDULE_TIMEOUT : HZ * 5;
-+	timeout = xe_vm_no_dma_fences(e->vm) ? MAX_SCHEDULE_TIMEOUT :
-+		  e->hwe->eclass->sched_props.job_timeout_ms;
- 	err = drm_sched_init(&ge->sched, &drm_sched_ops, NULL,
- 			     e->lrc[0].ring.size / MAX_JOB_SIZE_BYTES,
- 			     64, timeout, guc_to_gt(guc)->ordered_wq, NULL,
-diff --git a/drivers/gpu/drm/xe/xe_hw_engine.c b/drivers/gpu/drm/xe/xe_hw_engine.c
-index 1af5cccd1142..96c32a815c90 100644
---- a/drivers/gpu/drm/xe/xe_hw_engine.c
-+++ b/drivers/gpu/drm/xe/xe_hw_engine.c
-@@ -362,6 +362,16 @@ static void hw_engine_init_early(struct xe_gt *gt, struct xe_hw_engine *hwe,
- 	hwe->fence_irq = &gt->fence_irq[info->class];
- 	hwe->engine_id = id;
- 
-+	if (!gt->eclass[hwe->class].init_done) {
-+		gt->eclass[hwe->class].sched_props.job_timeout_ms = HZ * 5;
-+		gt->eclass[hwe->class].sched_props.timeslice_us = 1 * 1000;
-+		gt->eclass[hwe->class].sched_props.preempt_timeout_us = 640 * 1000;
-+		/* Record default props */
-+		gt->eclass[hwe->class].defaults = gt->eclass[hwe->class].sched_props;
-+		gt->eclass[hwe->class].init_done = true;
-+	}
-+	hwe->eclass = &gt->eclass[hwe->class];
-+
- 	xe_reg_sr_init(&hwe->reg_sr, hwe->name, gt_to_xe(gt));
- 	xe_wa_process_engine(hwe);
- 	hw_engine_setup_default_state(hwe);
-diff --git a/drivers/gpu/drm/xe/xe_hw_engine_types.h b/drivers/gpu/drm/xe/xe_hw_engine_types.h
-index 803d557cf5aa..6aedb627e292 100644
---- a/drivers/gpu/drm/xe/xe_hw_engine_types.h
-+++ b/drivers/gpu/drm/xe/xe_hw_engine_types.h
-@@ -63,6 +63,40 @@ struct xe_bo;
- struct xe_execlist_port;
- struct xe_gt;
- 
-+/**
-+ * struct xe_engine_class_intf - per engine class struct interface
-+ *
-+ * Contains all the engine properties per class engine.
-+ */
-+struct xe_engine_class_intf {
-+	/** @init_done: Mark init status for this engine class struct */
-+	bool init_done;
-+	/**
-+	 * @sched_props: scheduling properties
-+	 * @defaults: default scheduling properties
-+	 */
-+	struct {
-+		/** @set_job_timeout: Set job timeout in ms for engine */
-+		u32 job_timeout_ms;
-+		/** @job_timeout_min: Min job timeout in ms for engine */
-+		u32 job_timeout_min;
-+		/** @job_timeout_max: Max job timeout in ms for engine */
-+		u32 job_timeout_max;
-+		/** @timeslice_us: timeslice period in micro-seconds */
-+		u32 timeslice_us;
-+		/** @timeslice_min: min timeslice period in micro-seconds */
-+		u32 timeslice_min;
-+		/** @timeslice_max: max timeslice period in micro-seconds */
-+		u32 timeslice_max;
-+		/** @preempt_timeout_us: preemption timeout in micro-seconds */
-+		u32 preempt_timeout_us;
-+		/** @preempt_timeout_min: min preemption timeout in micro-seconds */
-+		u32 preempt_timeout_min;
-+		/** @preempt_timeout_max: max preemption timeout in micro-seconds */
-+		u32 preempt_timeout_max;
-+	} sched_props, defaults;
-+};
-+
- /**
-  * struct xe_hw_engine - Hardware engine
-  *
-@@ -107,6 +141,8 @@ struct xe_hw_engine {
- 	void (*irq_handler)(struct xe_hw_engine *hwe, u16 intr_vec);
- 	/** @engine_id: id  for this hw engine */
- 	enum xe_hw_engine_id engine_id;
-+	/** @eclass: pointer to per engine class interface */
-+	struct xe_engine_class_intf *eclass;
- };
- 
- /**
 -- 
 2.25.1
 
