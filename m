@@ -4,31 +4,31 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id D91ACC001B0
-	for <intel-xe@archiver.kernel.org>; Mon, 24 Jul 2023 10:57:11 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id A7786C001B0
+	for <intel-xe@archiver.kernel.org>; Mon, 24 Jul 2023 11:45:06 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B101810E2D4;
-	Mon, 24 Jul 2023 10:57:11 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 37AAB10E2D7;
+	Mon, 24 Jul 2023 11:45:06 +0000 (UTC)
 Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id 5DF5310E2D4;
- Mon, 24 Jul 2023 10:57:09 +0000 (UTC)
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 062AF10E02E;
+ Mon, 24 Jul 2023 11:45:05 +0000 (UTC)
 Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 5A82EAADD5;
- Mon, 24 Jul 2023 10:57:09 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+ by emeril.freedesktop.org (Postfix) with ESMTP id AFF46AADD6;
+ Mon, 24 Jul 2023 11:45:04 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============7936100842998365069=="
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: "Matthew Auld" <matthew.auld@intel.com>
-Date: Mon, 24 Jul 2023 10:57:09 -0000
-Message-ID: <169019622936.30103.15160976647436051484@emeril.freedesktop.org>
+Date: Mon, 24 Jul 2023 11:45:04 -0000
+Message-ID: <169019910469.30100.16802785201988058934@emeril.freedesktop.org>
 X-Patchwork-Hint: ignore
 References: <20230724104743.27471-2-matthew.auld@intel.com>
 In-Reply-To: <20230724104743.27471-2-matthew.auld@intel.com>
-Subject: [Intel-xe] =?utf-8?q?=E2=9C=93_CI=2Echecksparse=3A_success_for_d?=
- =?utf-8?q?rm/xe=3A_add_lockdep_annotation_for_xe=5Fdevice=5Fmem=5Faccess?=
- =?utf-8?b?X3B1dCgpIChyZXYyKQ==?=
+Subject: [Intel-xe] =?utf-8?q?=E2=97=8B_CI=2EBAT=3A_info_for_drm/xe=3A_ad?=
+ =?utf-8?q?d_lockdep_annotation_for_xe=5Fdevice=5Fmem=5Faccess=5Fput=28=29?=
+ =?utf-8?q?_=28rev2=29?=
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -45,33 +45,67 @@ Cc: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
+--===============7936100842998365069==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
 == Series Details ==
 
 Series: drm/xe: add lockdep annotation for xe_device_mem_access_put() (rev2)
 URL   : https://patchwork.freedesktop.org/series/121119/
-State : success
+State : info
 
 == Summary ==
 
-+ trap cleanup EXIT
-+ KERNEL=/kernel
-+ MT=/root/linux/maintainer-tools
-+ git clone https://gitlab.freedesktop.org/drm/maintainer-tools /root/linux/maintainer-tools
-Cloning into '/root/linux/maintainer-tools'...
-warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
-+ make -C /root/linux/maintainer-tools
-make: Entering directory '/root/linux/maintainer-tools'
-cc -O2 -g -Wextra -o remap-log remap-log.c
-make: Leaving directory '/root/linux/maintainer-tools'
-+ cd /kernel
-+ git config --global --add safe.directory /kernel
-+ /root/linux/maintainer-tools/dim sparse --fast f7e68e5db4417dde38c45cc8aedd7cb2b18fa678
-Sparse version: 0.6.1 (Ubuntu: 0.6.1-2build1)
-Fast mode used, each commit won't be checked separately.
-Okay!
-
-+ cleanup
-++ stat -c %u:%g /kernel
-+ chown -R 1003:1003 /kernel
+Participating hosts:
+bat-pvc-2
+bat-atsm-2
+bat-dg2-oem2
+bat-adlp-7
+Missing hosts results[1]:
+bat-pvc-2
+Results: [xe-pw-121119v2](https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-121119v2/index.html)
 
 
+
+--===============7936100842998365069==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/xe: add lockdep annotation for xe_device_mem_access_put() (rev2)</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/121119/">https://patchwork.freedesktop.org/series/121119/</a></td></tr>
+<tr><td><b>State:</b></td><td>info</td></tr>
+
+</table>
+
+
+    <p>Participating hosts:<br />
+bat-pvc-2<br />
+bat-atsm-2<br />
+bat-dg2-oem2<br />
+bat-adlp-7<br />
+Missing hosts results[1]:<br />
+bat-pvc-2<br />
+Results: <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-121119v2/index.html">xe-pw-121119v2</a></p>
+
+</body>
+</html>
+
+--===============7936100842998365069==--
