@@ -4,30 +4,31 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 31C21EB64DD
-	for <intel-xe@archiver.kernel.org>; Tue, 25 Jul 2023 21:58:43 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id A86CCEB64DD
+	for <intel-xe@archiver.kernel.org>; Tue, 25 Jul 2023 22:00:37 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C7C0B10E1BD;
-	Tue, 25 Jul 2023 21:58:42 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6266A10E19A;
+	Tue, 25 Jul 2023 22:00:37 +0000 (UTC)
 Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id 9731A10E1BD;
- Tue, 25 Jul 2023 21:58:41 +0000 (UTC)
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id E61A010E1BD;
+ Tue, 25 Jul 2023 22:00:35 +0000 (UTC)
 Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 8EE05AADE8;
- Tue, 25 Jul 2023 21:58:41 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============1299060577362906522=="
+ by emeril.freedesktop.org (Postfix) with ESMTP id D30D0A7DFB;
+ Tue, 25 Jul 2023 22:00:35 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Lucas De Marchi" <lucas.demarchi@intel.com>
-Date: Tue, 25 Jul 2023 21:58:41 -0000
-Message-ID: <169032232154.27667.17425948006657825653@emeril.freedesktop.org>
+To: "Rodrigo Vivi" <rodrigo.vivi@intel.com>
+Date: Tue, 25 Jul 2023 22:00:35 -0000
+Message-ID: <169032243583.27664.989847749135334409@emeril.freedesktop.org>
 X-Patchwork-Hint: ignore
-References: <20230725202836.3854908-1-lucas.demarchi@intel.com>
-In-Reply-To: <20230725202836.3854908-1-lucas.demarchi@intel.com>
-Subject: [Intel-xe] =?utf-8?q?=E2=97=8B_CI=2EBAT=3A_info_for_Fix_stolen_s?=
- =?utf-8?q?etup_for_MTL+?=
+References: <20230725205626.346256-1-rodrigo.vivi@intel.com>
+In-Reply-To: <20230725205626.346256-1-rodrigo.vivi@intel.com>
+Subject: [Intel-xe] =?utf-8?q?=E2=9C=97_CI=2EPatch=5Fapplied=3A_failure_f?=
+ =?utf-8?q?or_series_starting_with_=5Bi-g-t=2C1/2=5D_xe=3A_Align_uapi_afte?=
+ =?utf-8?q?r_removal_of_XE=5FQUERY=5FCONFIG=5FFLAGS=5FUSE=5FGUC?=
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -44,63 +45,24 @@ Cc: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============1299060577362906522==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
 == Series Details ==
 
-Series: Fix stolen setup for MTL+
-URL   : https://patchwork.freedesktop.org/series/121329/
-State : info
+Series: series starting with [i-g-t,1/2] xe: Align uapi after removal of XE_QUERY_CONFIG_FLAGS_USE_GUC
+URL   : https://patchwork.freedesktop.org/series/121332/
+State : failure
 
 == Summary ==
 
-Participating hosts:
-bat-atsm-2
-bat-dg2-oem2
-bat-adlp-7
-Missing hosts results[0]:
-Results: [xe-pw-121329v1](https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-121329v1/index.html)
+=== Applying kernel patches on branch 'drm-xe-next' with base: ===
+Base commit: 3eb59fdaf drm/xe: Invert guc vs execlists parameters and info.
+=== git am output follows ===
+error: include/drm-uapi/xe_drm.h: does not exist in index
+error: tests/xe/xe_query.c: does not exist in index
+hint: Use 'git am --show-current-patch' to see the failed patch
+Applying: xe: Align uapi after removal of XE_QUERY_CONFIG_FLAGS_USE_GUC
+Patch failed at 0001 xe: Align uapi after removal of XE_QUERY_CONFIG_FLAGS_USE_GUC
+When you have resolved this problem, run "git am --continue".
+If you prefer to skip this patch, run "git am --skip" instead.
+To restore the original branch and stop patching, run "git am --abort".
 
 
-
---===============1299060577362906522==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>Fix stolen setup for MTL+</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/121329/">https://patchwork.freedesktop.org/series/121329/</a></td></tr>
-<tr><td><b>State:</b></td><td>info</td></tr>
-
-</table>
-
-
-    <p>Participating hosts:<br />
-bat-atsm-2<br />
-bat-dg2-oem2<br />
-bat-adlp-7<br />
-Missing hosts results[0]:<br />
-Results: <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-121329v1/index.html">xe-pw-121329v1</a></p>
-
-</body>
-</html>
-
---===============1299060577362906522==--
