@@ -4,47 +4,47 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 859EFC00528
-	for <intel-xe@archiver.kernel.org>; Tue, 25 Jul 2023 15:46:17 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id F0DF9C001DE
+	for <intel-xe@archiver.kernel.org>; Tue, 25 Jul 2023 15:46:20 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5EEDA10E3DE;
-	Tue, 25 Jul 2023 15:46:17 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id BBCED10E3E6;
+	Tue, 25 Jul 2023 15:46:20 +0000 (UTC)
 Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0F82A10E3DE
- for <intel-xe@lists.freedesktop.org>; Tue, 25 Jul 2023 15:46:16 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6653010E3E2
+ for <intel-xe@lists.freedesktop.org>; Tue, 25 Jul 2023 15:46:18 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1690299976; x=1721835976;
+ t=1690299978; x=1721835978;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=+jMb/Q8IPrEdfuPHdxpVPEc85TiG5r0bGhBC6vkl8yA=;
- b=lk21L1g/m0URk+Ccl+/uYh9KAOQlTFM0WKNR31HXgr4Xx131Zt6sfny1
- 5R2f6nKhB6FvaF7flcmmUjMXCF1sbUewzrl/nZ41J2DtPKunmN38/m6Hx
- jOYpLeR+3eIwWNaKNUfPnjdh6AuEXDVCVe/a7Z3DVz8iVvPKMeoja83ss
- 15bI6/NQQZYbhlpMhNBHaLJrdcGR3iEEjM2KKWeLjk2ab3xtjA157aiZD
- HIQ5kRbxEZcCnWa5rusnmde5yhCbA0AfRMeHSGKjEH1Xu+tWBgxZ8zIp/
- UBwqWm+MC6qHSmo/WW4k0QSMpdhnt2dMcykff5vCa/4pAKl9/o09RqrRp w==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10782"; a="352667247"
-X-IronPort-AV: E=Sophos;i="6.01,230,1684825200"; d="scan'208";a="352667247"
+ bh=Ju4Jqs3zutw8g9fNu3/vPA2mu46e09pN57RALHm9hVs=;
+ b=llWWvPvNRV/qdULHec23vkK9vnc9gt3EdbMwB3QTZllYXOnmVw2XoQi9
+ wIJnhwtxh53rVRbQ5KISjfn5zppn8WOcOoVdrLTs3wO2V/ctYHGXv3mWb
+ 7S5W/TsNw0YHQlorbEMMwvwVV6rvju5oFBCNoczzkspE8VeUYut33afn6
+ /FwuX6fwm1TWFJ1btSWJaIHCUw8IFphdgla9/xwYxhlksaynaB1sUMMHy
+ +z87FoDuwyW/dAb/V/moRiI00qEf5kbqhVi1Xa5csJ67jwbSfTxfQROmB
+ 9NSM605w+YT1CQnYEnOv/cMFM5+5AYZ2nhJnzXRvckiehxDNKOAAaMhtM A==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10782"; a="352667261"
+X-IronPort-AV: E=Sophos;i="6.01,230,1684825200"; d="scan'208";a="352667261"
 Received: from fmsmga007.fm.intel.com ([10.253.24.52])
  by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 25 Jul 2023 08:46:15 -0700
+ 25 Jul 2023 08:46:18 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10782"; a="729395470"
-X-IronPort-AV: E=Sophos;i="6.01,230,1684825200"; d="scan'208";a="729395470"
+X-IronPort-AV: E=McAfee;i="6600,9927,10782"; a="729395483"
+X-IronPort-AV: E=Sophos;i="6.01,230,1684825200"; d="scan'208";a="729395483"
 Received: from himal-super-server.iind.intel.com ([10.145.169.168])
- by fmsmga007.fm.intel.com with ESMTP; 25 Jul 2023 08:46:12 -0700
+ by fmsmga007.fm.intel.com with ESMTP; 25 Jul 2023 08:46:15 -0700
 From: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
 To: intel-xe@lists.freedesktop.org
-Date: Tue, 25 Jul 2023 21:21:13 +0530
-Message-Id: <20230725155115.3759312-2-himal.prasad.ghimiray@intel.com>
+Date: Tue, 25 Jul 2023 21:21:14 +0530
+Message-Id: <20230725155115.3759312-3-himal.prasad.ghimiray@intel.com>
 X-Mailer: git-send-email 2.25.1
 In-Reply-To: <20230725155115.3759312-1-himal.prasad.ghimiray@intel.com>
 References: <20230725155115.3759312-1-himal.prasad.ghimiray@intel.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-xe] [PATCH v8 1/3] fault-inject: Include linux/types.h by
- default.
+Subject: [Intel-xe] [PATCH v8 2/3] drm/xe: Notify Userspace when gt reset
+ fails
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -56,53 +56,95 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Cc: Jens Axboe <axboe@kernel.dk>, Lucas De Marchi <lucas.demarchi@intel.com>,
- Akinobu Mita <akinobu.mita@gmail.com>, Qi Zheng <zhengqi.arch@bytedance.com>,
- linux-kernel@vger.kernel.org, Jason Gunthorpe <jgg@ziepe.ca>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>
+Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Functions should_fail_alloc_page, should_failslab, and __should_failslab
-are declared irrespective of CONFIG_FAULT_INJECTION. These functions use
-bool and gfp_t types, which are treated as unknown when CONFIG_FAULT_INJECTION
-is disabled because the inclusion of linux/types.h is missing.
-
-Fixes: 6ff1cb355e62 ("[PATCH] fault-injection capabilities infrastructure")
+Send uevent in case of gt reset failure. This intimation can be used by
+userspace monitoring tool to do the device level reset/reboot
+when GT reset fails. udevadm can be used to monitor the uevents.
 
 v2:
-- Add fixes tag (Badal)
-- Rectify Cc. (Lucas)
+- Support only gt failure notification (Rodrigo)
 
-Cc: Lucas De Marchi <lucas.demarchi@intel.com>
+v3
+- Rectify the comments in header file.
+
+v4
+- Use pci kobj instead of drm kobj for notification.(Rodrigo)
+- Cleanup (Badal)
+
+Cc: Aravind Iddamsetty <aravind.iddamsetty@intel.com>
+Cc: Tejas Upadhyay <tejas.upadhyay@intel.com>
 Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
-Cc: Badal Nilawar <badal.nilawar@intel.com>
-Cc: Akinobu Mita <akinobu.mita@gmail.com>
-Cc: Jason Gunthorpe <jgg@ziepe.ca>
-Cc: Jens Axboe <axboe@kernel.dk>
-Cc: Qi Zheng <zhengqi.arch@bytedance.com>
-Cc: linux-kernel@vger.kernel.org
+Reviewed-by: Badal Nilawar <badal.nilawar@intel.com>
 Signed-off-by: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
 ---
- include/linux/fault-inject.h | 3 ++-
- 1 file changed, 2 insertions(+), 1 deletion(-)
+ drivers/gpu/drm/xe/xe_gt.c | 17 +++++++++++++++++
+ include/uapi/drm/xe_drm.h  |  8 ++++++++
+ 2 files changed, 25 insertions(+)
 
-diff --git a/include/linux/fault-inject.h b/include/linux/fault-inject.h
-index 481abf530b3c..f83ab2b6cd08 100644
---- a/include/linux/fault-inject.h
-+++ b/include/linux/fault-inject.h
-@@ -2,9 +2,10 @@
- #ifndef _LINUX_FAULT_INJECT_H
- #define _LINUX_FAULT_INJECT_H
+diff --git a/drivers/gpu/drm/xe/xe_gt.c b/drivers/gpu/drm/xe/xe_gt.c
+index 3e32d38aeeea..f4766fb6bfdb 100644
+--- a/drivers/gpu/drm/xe/xe_gt.c
++++ b/drivers/gpu/drm/xe/xe_gt.c
+@@ -8,6 +8,7 @@
+ #include <linux/minmax.h>
  
-+#include <linux/types.h>
+ #include <drm/drm_managed.h>
++#include <drm/xe_drm.h>
+ 
+ #include "regs/xe_gt_regs.h"
+ #include "xe_bb.h"
+@@ -500,6 +501,19 @@ static int do_gt_restart(struct xe_gt *gt)
+ 	return 0;
+ }
+ 
++static void xe_uevent_gt_reset_failure(struct pci_dev *pdev, u8 id)
++{
++	char *reset_event[4];
 +
- #ifdef CONFIG_FAULT_INJECTION
++	reset_event[0] = XE_RESET_FAILED_UEVENT "=NEEDS_RESET";
++	reset_event[1] = "RESET_FAILED=gt";
++	reset_event[2] = kasprintf(GFP_KERNEL, "RESET_ID=%d", id);
++	reset_event[3] = NULL;
++	kobject_uevent_env(&pdev->dev.kobj, KOBJ_CHANGE, reset_event);
++
++	kfree(reset_event[2]);
++}
++
+ static int gt_reset(struct xe_gt *gt)
+ {
+ 	int err;
+@@ -550,6 +564,9 @@ static int gt_reset(struct xe_gt *gt)
+ 	xe_device_mem_access_put(gt_to_xe(gt));
+ 	xe_gt_err(gt, "reset failed (%pe)\n", ERR_PTR(err));
  
--#include <linux/types.h>
- #include <linux/debugfs.h>
- #include <linux/configfs.h>
- #include <linux/ratelimit.h>
++	/* Notify userspace about gt reset failure */
++	xe_uevent_gt_reset_failure(to_pci_dev(gt_to_xe(gt)->drm.dev), gt->info.id);
++
+ 	return err;
+ }
+ 
+diff --git a/include/uapi/drm/xe_drm.h b/include/uapi/drm/xe_drm.h
+index 347351a8f618..fdacee0a27c5 100644
+--- a/include/uapi/drm/xe_drm.h
++++ b/include/uapi/drm/xe_drm.h
+@@ -16,6 +16,14 @@ extern "C" {
+  * subject to backwards-compatibility constraints.
+  */
+ 
++/*
++ * Uevent generated by xe on it's pci node.
++ *
++ * XE_RESET_FAILED_UEVENT - Event is generated when attempt to reset engine
++ * fails. The value supplied with the event is always "NEEDS_RESET".
++ */
++#define XE_RESET_FAILED_UEVENT "DEVICE_STATUS"
++
+ /**
+  * struct xe_user_extension - Base class for defining a chain of extensions
+  *
 -- 
 2.25.1
 
