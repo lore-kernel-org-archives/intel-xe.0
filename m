@@ -4,30 +4,30 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id AC7C7C001DF
-	for <intel-xe@archiver.kernel.org>; Tue, 25 Jul 2023 12:18:15 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2A3F3C001DE
+	for <intel-xe@archiver.kernel.org>; Tue, 25 Jul 2023 12:20:07 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8214D10E3C7;
-	Tue, 25 Jul 2023 12:18:15 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E124510E10A;
+	Tue, 25 Jul 2023 12:20:06 +0000 (UTC)
 Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id 3404B10E3C7;
- Tue, 25 Jul 2023 12:18:14 +0000 (UTC)
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 846C810E3C6;
+ Tue, 25 Jul 2023 12:20:04 +0000 (UTC)
 Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 30ED4A47E9;
- Tue, 25 Jul 2023 12:18:14 +0000 (UTC)
+ by emeril.freedesktop.org (Postfix) with ESMTP id 5E868AADED;
+ Tue, 25 Jul 2023 12:20:04 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: "Himal Prasad Ghimiray" <himal.prasad.ghimiray@intel.com>
-Date: Tue, 25 Jul 2023 12:18:14 -0000
-Message-ID: <169028749419.27668.14309786172417490532@emeril.freedesktop.org>
+Date: Tue, 25 Jul 2023 12:20:04 -0000
+Message-ID: <169028760435.27667.15230186485575649666@emeril.freedesktop.org>
 X-Patchwork-Hint: ignore
-References: <20230725122022.3749616-1-himal.prasad.ghimiray@intel.com>
-In-Reply-To: <20230725122022.3749616-1-himal.prasad.ghimiray@intel.com>
-Subject: [Intel-xe] =?utf-8?q?=E2=9C=97_CI=2EKUnit=3A_failure_for_Notify_?=
- =?utf-8?q?userspace_about_uevent_failure?=
+References: <20230725122257.3749792-1-himal.prasad.ghimiray@intel.com>
+In-Reply-To: <20230725122257.3749792-1-himal.prasad.ghimiray@intel.com>
+Subject: [Intel-xe] =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_f?=
+ =?utf-8?q?or_Notify_userspace_about_uevent_failure?=
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -47,51 +47,15 @@ Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 == Series Details ==
 
 Series: Notify userspace about uevent failure
-URL   : https://patchwork.freedesktop.org/series/121310/
-State : failure
+URL   : https://patchwork.freedesktop.org/series/121311/
+State : success
 
 == Summary ==
 
-+ trap cleanup EXIT
-+ /kernel/tools/testing/kunit/kunit.py run --kunitconfig /kernel/drivers/gpu/drm/xe/.kunitconfig
-ERROR:root:In file included from ../drivers/gpu/drm/xe/xe_debugfs.c:8:
-../include/linux/fault-inject.h:94:1: error: unknown type name ‘bool’
-   94 | bool should_fail_alloc_page(gfp_t gfp_mask, unsigned int order);
-      | ^~~~
-../include/linux/fault-inject.h:94:29: error: unknown type name ‘gfp_t’
-   94 | bool should_fail_alloc_page(gfp_t gfp_mask, unsigned int order);
-      |                             ^~~~~
-../include/linux/fault-inject.h:96:43: error: unknown type name ‘gfp_t’
-   96 | int should_failslab(struct kmem_cache *s, gfp_t gfpflags);
-      |                                           ^~~~~
-../include/linux/fault-inject.h:100:15: error: unknown type name ‘bool’
-  100 | static inline bool __should_failslab(struct kmem_cache *s, gfp_t gfpflags)
-      |               ^~~~
-../include/linux/fault-inject.h:100:60: error: unknown type name ‘gfp_t’
-  100 | static inline bool __should_failslab(struct kmem_cache *s, gfp_t gfpflags)
-      |                                                            ^~~~~
-make[6]: *** [../scripts/Makefile.build:252: drivers/gpu/drm/xe/xe_debugfs.o] Error 1
-make[6]: *** Waiting for unfinished jobs....
-make[5]: *** [../scripts/Makefile.build:494: drivers/gpu/drm/xe] Error 2
-make[5]: *** Waiting for unfinished jobs....
-make[4]: *** [../scripts/Makefile.build:494: drivers/gpu/drm] Error 2
-make[3]: *** [../scripts/Makefile.build:494: drivers/gpu] Error 2
-make[2]: *** [../scripts/Makefile.build:494: drivers] Error 2
-make[2]: *** Waiting for unfinished jobs....
-make[1]: *** [/kernel/Makefile:2026: .] Error 2
-make: *** [Makefile:226: __sub-make] Error 2
-
-[12:17:51] Configuring KUnit Kernel ...
-Generating .config ...
-Populating config with:
-$ make ARCH=um O=.kunit olddefconfig
-[12:17:55] Building KUnit Kernel ...
-Populating config with:
-$ make ARCH=um O=.kunit olddefconfig
-Building with:
-$ make ARCH=um O=.kunit --jobs=48
-+ cleanup
-++ stat -c %u:%g /kernel
-+ chown -R 1003:1003 /kernel
+=== Applying kernel patches on branch 'drm-xe-next' with base: ===
+Base commit: 9698525fb fixup! drm/xe: Introduce a new DRM driver for Intel GPUs
+=== git am output follows ===
+Applying: drm/xe: Notify Userspace when gt reset fails
+Applying: drm/xe: Introduce fault injection for gt reset
 
 
