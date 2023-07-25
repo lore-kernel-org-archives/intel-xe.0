@@ -4,47 +4,53 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6C103C00528
-	for <intel-xe@archiver.kernel.org>; Tue, 25 Jul 2023 15:06:22 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id CBEF2C0015E
+	for <intel-xe@archiver.kernel.org>; Tue, 25 Jul 2023 15:11:47 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3DD8510E3DE;
-	Tue, 25 Jul 2023 15:06:22 +0000 (UTC)
-Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
- by gabe.freedesktop.org (Postfix) with ESMTPS id DDA2210E0EC
- for <intel-xe@lists.freedesktop.org>; Tue, 25 Jul 2023 15:06:16 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9630D10E140;
+	Tue, 25 Jul 2023 15:11:47 +0000 (UTC)
+Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 762E610E140
+ for <intel-xe@lists.freedesktop.org>; Tue, 25 Jul 2023 15:11:45 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1690297576; x=1721833576;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=McL/VEm/zqy+4WczNfPRtUxkaoYGNrqc6JuO1eY7Ixc=;
- b=Q7SMTD7C3FFOdf9OhYIILHIi2vPTtX0tCNOee449uK66IAwDLpa0+nsX
- J8LC5eSmfkVY2sHPlKAUQNz1nbH+0tJ/05NPK89ng/9Q9DooUvCLC5pwQ
- gJHjWTWGhhC1cA+YDjSJANroSDwNt6KtHxFFBYFfm2v0zxcWyGrinTRJk
- ChH0qIx7Kukqws57/mZkMXyepuPdrX7kViIh886g79PILVq/OU4oC+E59
- QCb/mlsIKwYeemopO3JY+1A759L+61fMI4zhdTZb4REskI23Q9peKnn10
- sQM05bkya10Qizzlglz9vWHFSpc1XX6+2t8BaFlxBb7TOz3XlDZPJs1cH w==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10782"; a="398668558"
-X-IronPort-AV: E=Sophos;i="6.01,230,1684825200"; d="scan'208";a="398668558"
-Received: from orsmga003.jf.intel.com ([10.7.209.27])
- by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 25 Jul 2023 08:04:49 -0700
+ t=1690297905; x=1721833905;
+ h=message-id:date:mime-version:subject:to:cc:references:
+ from:in-reply-to:content-transfer-encoding;
+ bh=Kvue03kioz7OBHb52SfeLWespQPALKJZDJV4vg706to=;
+ b=UZV0kMvv4IoClHx7rGDWYGuN29M1cgCVF/JA48fQ7b50ZOT6+vEYdWvT
+ ftJB/ZWfdRyIHHvmZlb+4Wkz4ZRb/YRfjq7UgvaPfaTUY0xB5WJ7K4Xru
+ Cb3w0OLsc4EQe1sXrbuUoxiNOxn0jawGW35UP96WqTmzcWKfgt48Adc5M
+ 1HYw6IMZfCis16SSSRAbmJIM5H5mkRLn/thhmVBWw8ZeNTdM/8cFAcN4R
+ 2CP5ggbELAzqbIuq6p9VrBTgCvIpzL7Pa6hnA2vTJEObcS8yUHSwOkN/k
+ QAk6Xn6ryDN3RY0odgnBeusGW9ptLuz2EMEQ3YrieZIiLUyfXFGMvkT8k Q==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10782"; a="365218272"
+X-IronPort-AV: E=Sophos;i="6.01,230,1684825200"; d="scan'208";a="365218272"
+Received: from orsmga006.jf.intel.com ([10.7.209.51])
+ by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 25 Jul 2023 08:11:44 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10782"; a="676259098"
-X-IronPort-AV: E=Sophos;i="6.01,230,1684825200"; d="scan'208";a="676259098"
-Received: from himal-super-server.iind.intel.com ([10.145.169.168])
- by orsmga003.jf.intel.com with ESMTP; 25 Jul 2023 08:04:47 -0700
-From: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
-To: intel-xe@lists.freedesktop.org
-Date: Tue, 25 Jul 2023 20:39:50 +0530
-Message-Id: <20230725150951.3757483-3-himal.prasad.ghimiray@intel.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20230725150951.3757483-1-himal.prasad.ghimiray@intel.com>
-References: <20230725150951.3757483-1-himal.prasad.ghimiray@intel.com>
+X-IronPort-AV: E=McAfee;i="6600,9927,10782"; a="703317771"
+X-IronPort-AV: E=Sophos;i="6.01,230,1684825200"; d="scan'208";a="703317771"
+Received: from kkbrenna-mobl1.ger.corp.intel.com (HELO [10.252.31.100])
+ ([10.252.31.100])
+ by orsmga006-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 25 Jul 2023 08:11:43 -0700
+Message-ID: <420d1aa9-c2e6-03e3-a6c0-c5cbbc067b6e@intel.com>
+Date: Tue, 25 Jul 2023 16:11:41 +0100
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Subject: [Intel-xe] [PATCH v7 2/3] drm/xe: Introduce fault injection for gt
- reset
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Firefox/102.0 Thunderbird/102.12.0
+Content-Language: en-GB
+To: Rodrigo Vivi <rodrigo.vivi@intel.com>
+References: <20230725110116.114688-2-matthew.auld@intel.com>
+ <ZL/XBN7wCqeEKLn2@intel.com>
+From: Matthew Auld <matthew.auld@intel.com>
+In-Reply-To: <ZL/XBN7wCqeEKLn2@intel.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+Subject: Re: [Intel-xe] [PATCH] drm/xe/engine: add missing rpm for bind
+ engines
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -56,124 +62,113 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Cc: Lucas De Marchi <lucas.demarchi@intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>
+Cc: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-To trigger gt reset failure:
- echo 100 >  /sys/kernel/debug/dri/<cardX>/fail_gt_reset/probability
- echo 2 >  /sys/kernel/debug/dri/<cardX>/fail_gt_reset/times
+On 25/07/2023 15:07, Rodrigo Vivi wrote:
+> On Tue, Jul 25, 2023 at 12:01:17PM +0100, Matthew Auld wrote:
+>> Bind engines need to use the migration vm, however we don't have any rpm
+>> for such a vm, otherwise the kernel would prevent rpm suspend-resume.
+>> There are two issues here, first is the actual engine create which needs
+>> to touch the lrc, but since that is in VRAM we trigger loads of missing
+>> mem_access asserts.
+> 
+> with this in mind, should we really create the new ENGINE_FLAG_HOLD_RPM,
+> or should we simply use the existent ENGINE_FLAG_VM?
 
-Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
-Cc: Lucas De Marchi <lucas.demarchi@intel.com>
+Sure, I can do that instead.
 
-Reviewed-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
-Signed-off-by: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
----
- drivers/gpu/drm/xe/xe_debugfs.c | 10 ++++++++++
- drivers/gpu/drm/xe/xe_gt.c      |  8 +++++++-
- drivers/gpu/drm/xe/xe_gt.h      | 14 ++++++++++++++
- 3 files changed, 31 insertions(+), 1 deletion(-)
+> 
+>> The second issue is when destroying the actual
+>> engine, which requires GuC CT to deregister the context.
+>> Closes: https://gitlab.freedesktop.org/drm/xe/kernel/-/issues/499
+> 
+> I wonder if we should get the mem_acceess from inside the ct path
+> to be sure?
 
-diff --git a/drivers/gpu/drm/xe/xe_debugfs.c b/drivers/gpu/drm/xe/xe_debugfs.c
-index 047341d5689a..1fd016e6f7a0 100644
---- a/drivers/gpu/drm/xe/xe_debugfs.c
-+++ b/drivers/gpu/drm/xe/xe_debugfs.c
-@@ -5,6 +5,7 @@
- 
- #include "xe_debugfs.h"
- 
-+#include <linux/fault-inject.h>
- #include <linux/string_helpers.h>
- 
- #include <drm/drm_debugfs.h>
-@@ -20,6 +21,10 @@
- #include "xe_vm.h"
- #endif
- 
-+#ifdef CONFIG_FAULT_INJECTION
-+DECLARE_FAULT_ATTR(gt_reset_failure);
-+#endif
-+
- static struct xe_device *node_to_xe(struct drm_info_node *node)
- {
- 	return to_xe_device(node->minor->dev);
-@@ -135,4 +140,9 @@ void xe_debugfs_register(struct xe_device *xe)
- 
- 	for_each_gt(gt, xe, id)
- 		xe_gt_debugfs_register(gt);
-+
-+#ifdef CONFIG_FAULT_INJECTION
-+	fault_create_debugfs_attr("fail_gt_reset", root, &gt_reset_failure);
-+#endif
-+
- }
-diff --git a/drivers/gpu/drm/xe/xe_gt.c b/drivers/gpu/drm/xe/xe_gt.c
-index f4766fb6bfdb..8dd5adb82dd6 100644
---- a/drivers/gpu/drm/xe/xe_gt.c
-+++ b/drivers/gpu/drm/xe/xe_gt.c
-@@ -524,6 +524,11 @@ static int gt_reset(struct xe_gt *gt)
- 
- 	xe_gt_info(gt, "reset started\n");
- 
-+	if (xe_fault_inject_gt_reset()) {
-+		err = -ECANCELED;
-+		goto err_fail;
-+	}
-+
- 	xe_gt_sanitize(gt);
- 
- 	xe_device_mem_access_get(gt_to_xe(gt));
-@@ -562,6 +567,7 @@ static int gt_reset(struct xe_gt *gt)
- err_msg:
- 	XE_WARN_ON(xe_uc_start(&gt->uc));
- 	xe_device_mem_access_put(gt_to_xe(gt));
-+err_fail:
- 	xe_gt_err(gt, "reset failed (%pe)\n", ERR_PTR(err));
- 
- 	/* Notify userspace about gt reset failure */
-@@ -582,7 +588,7 @@ void xe_gt_reset_async(struct xe_gt *gt)
- 	xe_gt_info(gt, "trying reset\n");
- 
- 	/* Don't do a reset while one is already in flight */
--	if (xe_uc_reset_prepare(&gt->uc))
-+	if (!xe_fault_inject_gt_reset() && xe_uc_reset_prepare(&gt->uc))
- 		return;
- 
- 	xe_gt_info(gt, "reset queued\n");
-diff --git a/drivers/gpu/drm/xe/xe_gt.h b/drivers/gpu/drm/xe/xe_gt.h
-index 7298653a73de..caded203a8a0 100644
---- a/drivers/gpu/drm/xe/xe_gt.h
-+++ b/drivers/gpu/drm/xe/xe_gt.h
-@@ -7,6 +7,7 @@
- #define _XE_GT_H_
- 
- #include <drm/drm_util.h>
-+#include <linux/fault-inject.h>
- 
- #include "xe_device_types.h"
- #include "xe_hw_engine.h"
-@@ -16,6 +17,19 @@
- 		for_each_if(((hwe__) = (gt__)->hw_engines + (id__)) && \
- 			  xe_hw_engine_is_valid((hwe__)))
- 
-+#ifdef CONFIG_FAULT_INJECTION
-+extern struct fault_attr gt_reset_failure;
-+static inline bool xe_fault_inject_gt_reset(void)
-+{
-+	return should_fail(&gt_reset_failure, 1);
-+}
-+#else
-+static inline bool xe_fault_inject_gt_reset(void)
-+{
-+	return false;
-+}
-+#endif
-+
- struct xe_gt *xe_gt_alloc(struct xe_tile *tile);
- int xe_gt_init_early(struct xe_gt *gt);
- int xe_gt_init(struct xe_gt *gt);
--- 
-2.25.1
+Do you mean calling xe_device_mem_access_get() in ct_send()? I think 
+that will give various locking issues since any locks the caller is 
+holding you then can't ever grab in the suspend/resume callbacks without 
+deadlocking. And the callers of ct_send() are all over the place, and 
+some are quite deep down. Also some callers expect some future CT 
+response so holding in ct_send() is only one side, and would need to be 
+kept held over to the wait side.
 
+> 
+>> Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
+>> Cc: Matthew Brost <matthew.brost@intel.com>
+>> Signed-off-by: Matthew Auld <matthew.auld@intel.com>
+>> ---
+>>   drivers/gpu/drm/xe/xe_engine.c       | 20 ++++++++++++++++++++
+>>   drivers/gpu/drm/xe/xe_engine_types.h |  1 +
+>>   2 files changed, 21 insertions(+)
+>>
+>> diff --git a/drivers/gpu/drm/xe/xe_engine.c b/drivers/gpu/drm/xe/xe_engine.c
+>> index 59e0a9e085ba..dba71f53e53e 100644
+>> --- a/drivers/gpu/drm/xe/xe_engine.c
+>> +++ b/drivers/gpu/drm/xe/xe_engine.c
+>> @@ -76,6 +76,17 @@ static struct xe_engine *__xe_engine_create(struct xe_device *xe,
+>>   	if (err)
+>>   		goto err_lrc;
+>>   
+>> +	/*
+>> +	 * Normally the user vm holds an rpm ref to keep the device awake, and
+>> +	 * the context holds a ref for the vm, however for some engines we use
+>> +	 * the kernels migrate vm underneath which offers no such rpm ref. Make
+>> +	 * sure we keep a ref here, so we can perform GuC CT actions when
+>> +	 * needed. Caller is expected to have already grabbed the rpm ref
+>> +	 * outside any sensitive locks.
+>> +	 */
+>> +	if (e->flags & ENGINE_FLAG_HOLD_RPM)
+>> +		drm_WARN_ON(&xe->drm, !xe_device_mem_access_get_if_ongoing(xe));
+>> +
+>>   	return e;
+>>   
+>>   err_lrc:
+>> @@ -152,6 +163,8 @@ void xe_engine_fini(struct xe_engine *e)
+>>   		xe_lrc_finish(e->lrc + i);
+>>   	if (e->vm)
+>>   		xe_vm_put(e->vm);
+>> +	if (e->flags & ENGINE_FLAG_HOLD_RPM)
+>> +		xe_device_mem_access_put(gt_to_xe(e->gt));
+>>   
+>>   	kfree(e);
+>>   }
+>> @@ -560,14 +573,21 @@ int xe_engine_create_ioctl(struct drm_device *dev, void *data,
+>>   			if (XE_IOCTL_DBG(xe, !hwe))
+>>   				return -EINVAL;
+>>   
+>> +			/* The migration vm doesn't hold rpm ref */
+>> +			xe_device_mem_access_get(xe);
+>> +
+>>   			migrate_vm = xe_migrate_get_vm(gt_to_tile(gt)->migrate);
+>>   			new = xe_engine_create(xe, migrate_vm, logical_mask,
+>>   					       args->width, hwe,
+>> +					       ENGINE_FLAG_HOLD_RPM |
+>>   					       ENGINE_FLAG_PERSISTENT |
+>>   					       ENGINE_FLAG_VM |
+>>   					       (id ?
+>>   					       ENGINE_FLAG_BIND_ENGINE_CHILD :
+>>   					       0));
+>> +
+>> +			xe_device_mem_access_put(xe); /* now held by engine */
+>> +
+>>   			xe_vm_put(migrate_vm);
+>>   			if (IS_ERR(new)) {
+>>   				err = PTR_ERR(new);
+>> diff --git a/drivers/gpu/drm/xe/xe_engine_types.h b/drivers/gpu/drm/xe/xe_engine_types.h
+>> index 36bfaeec23f4..a3867e4db0bb 100644
+>> --- a/drivers/gpu/drm/xe/xe_engine_types.h
+>> +++ b/drivers/gpu/drm/xe/xe_engine_types.h
+>> @@ -59,6 +59,7 @@ struct xe_engine {
+>>   #define ENGINE_FLAG_VM			BIT(4)
+>>   #define ENGINE_FLAG_BIND_ENGINE_CHILD	BIT(5)
+>>   #define ENGINE_FLAG_WA			BIT(6)
+>> +#define ENGINE_FLAG_HOLD_RPM		BIT(7)
+>>   
+>>   	/**
+>>   	 * @flags: flags for this engine, should statically setup aside from ban
+>> -- 
+>> 2.41.0
+>>
