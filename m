@@ -4,30 +4,30 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id A1CA2C0015E
-	for <intel-xe@archiver.kernel.org>; Tue, 25 Jul 2023 15:59:29 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7E82BC001DF
+	for <intel-xe@archiver.kernel.org>; Tue, 25 Jul 2023 16:01:37 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 67DC110E3E7;
-	Tue, 25 Jul 2023 15:59:29 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4993610E152;
+	Tue, 25 Jul 2023 16:01:37 +0000 (UTC)
 Received: from emeril.freedesktop.org (emeril.freedesktop.org
  [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id 6B4EC10E3E7;
- Tue, 25 Jul 2023 15:59:27 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTP id 0703410E152;
+ Tue, 25 Jul 2023 16:01:35 +0000 (UTC)
 Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 6508EA00CC;
- Tue, 25 Jul 2023 15:59:27 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============8991127807876089691=="
+ by emeril.freedesktop.org (Postfix) with ESMTP id F259CAADF1;
+ Tue, 25 Jul 2023 16:01:34 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Himal Prasad Ghimiray" <himal.prasad.ghimiray@intel.com>
-Date: Tue, 25 Jul 2023 15:59:27 -0000
-Message-ID: <169030076738.27664.14793770847915503170@emeril.freedesktop.org>
+To: "Maarten Lankhorst" <maarten.lankhorst@linux.intel.com>
+Date: Tue, 25 Jul 2023 16:01:34 -0000
+Message-ID: <169030089495.27664.890216629551775567@emeril.freedesktop.org>
 X-Patchwork-Hint: ignore
-References: <20230725150951.3757483-1-himal.prasad.ghimiray@intel.com>
-In-Reply-To: <20230725150951.3757483-1-himal.prasad.ghimiray@intel.com>
-Subject: [Intel-xe] =?utf-8?q?=E2=97=8B_CI=2EBAT=3A_info_for_Notify_users?=
- =?utf-8?q?pace_about_uevent_failure?=
+References: <20230725151239.133708-1-maarten.lankhorst@linux.intel.com>
+In-Reply-To: <20230725151239.133708-1-maarten.lankhorst@linux.intel.com>
+Subject: [Intel-xe] =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_f?=
+ =?utf-8?q?or_drm/xe=3A_Fix_error_paths_of_=5F=5Fxe=5Fbo=5Fcreate=5Flocked?=
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -44,63 +44,17 @@ Cc: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============8991127807876089691==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
 == Series Details ==
 
-Series: Notify userspace about uevent failure
-URL   : https://patchwork.freedesktop.org/series/121320/
-State : info
+Series: drm/xe: Fix error paths of __xe_bo_create_locked
+URL   : https://patchwork.freedesktop.org/series/121321/
+State : success
 
 == Summary ==
 
-Participating hosts:
-bat-atsm-2
-bat-dg2-oem2
-bat-adlp-7
-Missing hosts results[0]:
-Results: [xe-pw-121320v1](https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-121320v1/index.html)
+=== Applying kernel patches on branch 'drm-xe-next' with base: ===
+Base commit: c7ed76839 drm/xe: xe_engine_create_ioctl should check gt_count, not tile_count
+=== git am output follows ===
+Applying: drm/xe: Fix error paths of __xe_bo_create_locked
 
 
-
---===============8991127807876089691==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>Notify userspace about uevent failure</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/121320/">https://patchwork.freedesktop.org/series/121320/</a></td></tr>
-<tr><td><b>State:</b></td><td>info</td></tr>
-
-</table>
-
-
-    <p>Participating hosts:<br />
-bat-atsm-2<br />
-bat-dg2-oem2<br />
-bat-adlp-7<br />
-Missing hosts results[0]:<br />
-Results: <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-121320v1/index.html">xe-pw-121320v1</a></p>
-
-</body>
-</html>
-
---===============8991127807876089691==--
