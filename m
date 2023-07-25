@@ -4,30 +4,31 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id C6E7BC001DE
-	for <intel-xe@archiver.kernel.org>; Tue, 25 Jul 2023 17:51:02 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id A33CCC001DE
+	for <intel-xe@archiver.kernel.org>; Tue, 25 Jul 2023 17:53:09 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7942110E16B;
-	Tue, 25 Jul 2023 17:51:02 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 77FDC10E194;
+	Tue, 25 Jul 2023 17:53:09 +0000 (UTC)
 Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id D872710E132;
- Tue, 25 Jul 2023 17:51:00 +0000 (UTC)
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 20E9910E132;
+ Tue, 25 Jul 2023 17:53:07 +0000 (UTC)
 Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id D186BAADE0;
- Tue, 25 Jul 2023 17:51:00 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============2401945913983921793=="
+ by emeril.freedesktop.org (Postfix) with ESMTP id 1DCE5AADE0;
+ Tue, 25 Jul 2023 17:53:07 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Lucas De Marchi" <lucas.demarchi@intel.com>
-Date: Tue, 25 Jul 2023 17:51:00 -0000
-Message-ID: <169030746081.27668.3401005808418994131@emeril.freedesktop.org>
+To: "Matthew Auld" <matthew.auld@intel.com>
+Date: Tue, 25 Jul 2023 17:53:07 -0000
+Message-ID: <169030758711.27664.8789009831096927306@emeril.freedesktop.org>
 X-Patchwork-Hint: ignore
-References: <20230725164344.3797085-1-lucas.demarchi@intel.com>
-In-Reply-To: <20230725164344.3797085-1-lucas.demarchi@intel.com>
-Subject: [Intel-xe] =?utf-8?q?=E2=97=8B_CI=2EBAT=3A_info_for_drm/xe=3A_Fi?=
- =?utf-8?q?x_MTL+_stolen_memory_mapping?=
+References: <20230725173245.159053-5-matthew.auld@intel.com>
+In-Reply-To: <20230725173245.159053-5-matthew.auld@intel.com>
+Subject: [Intel-xe] =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_f?=
+ =?utf-8?q?or_series_starting_with_=5BCI=2C1/4=5D_drm/xe/bo=3A_support_tie?=
+ =?utf-8?q?red_vram_allocation_for_small-bar?=
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -44,63 +45,20 @@ Cc: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============2401945913983921793==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
 == Series Details ==
 
-Series: drm/xe: Fix MTL+ stolen memory mapping
-URL   : https://patchwork.freedesktop.org/series/121325/
-State : info
+Series: series starting with [CI,1/4] drm/xe/bo: support tiered vram allocation for small-bar
+URL   : https://patchwork.freedesktop.org/series/121327/
+State : success
 
 == Summary ==
 
-Participating hosts:
-bat-atsm-2
-bat-dg2-oem2
-bat-adlp-7
-Missing hosts results[0]:
-Results: [xe-pw-121325v1](https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-121325v1/index.html)
+=== Applying kernel patches on branch 'drm-xe-next' with base: ===
+Base commit: c7ed76839 drm/xe: xe_engine_create_ioctl should check gt_count, not tile_count
+=== git am output follows ===
+Applying: drm/xe/bo: support tiered vram allocation for small-bar
+Applying: drm/xe/uapi: add the userspace bits for small-bar
+Applying: drm/xe: fully turn on small-bar support
+Applying: HAX: force small-bar
 
 
-
---===============2401945913983921793==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/xe: Fix MTL+ stolen memory mapping</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/121325/">https://patchwork.freedesktop.org/series/121325/</a></td></tr>
-<tr><td><b>State:</b></td><td>info</td></tr>
-
-</table>
-
-
-    <p>Participating hosts:<br />
-bat-atsm-2<br />
-bat-dg2-oem2<br />
-bat-adlp-7<br />
-Missing hosts results[0]:<br />
-Results: <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-121325v1/index.html">xe-pw-121325v1</a></p>
-
-</body>
-</html>
-
---===============2401945913983921793==--
