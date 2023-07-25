@@ -4,51 +4,47 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0B5A5C001DF
-	for <intel-xe@archiver.kernel.org>; Tue, 25 Jul 2023 11:43:27 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3EEFBC001E0
+	for <intel-xe@archiver.kernel.org>; Tue, 25 Jul 2023 11:43:32 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D40AB10E0DE;
-	Tue, 25 Jul 2023 11:43:26 +0000 (UTC)
-Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6E17010E0DE
- for <intel-xe@lists.freedesktop.org>; Tue, 25 Jul 2023 11:43:25 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0FAF110E13A;
+	Tue, 25 Jul 2023 11:43:32 +0000 (UTC)
+Received: from mga06.intel.com (mga06b.intel.com [134.134.136.31])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A7F0410E10A
+ for <intel-xe@lists.freedesktop.org>; Tue, 25 Jul 2023 11:43:28 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1690285405; x=1721821405;
- h=message-id:date:mime-version:subject:to:cc:references:
- from:in-reply-to:content-transfer-encoding;
- bh=mx+ap0gQ5etbsFZDhlz869bs9lbEPIMRaGJ1vuoGjGE=;
- b=iCMYpVbVdBbyCi/CNZWWgx3nWkIOsvNlCOtyuI8eRuz7kdvBCfGMZ/UX
- o6XRv5mzp72cmbxiLRSWbcm95m5dniF9ifGrqJxqYKqxigr+mUl/bG8PZ
- B+wPrjgHlmCw5J5it34xUubS5xXtfteyg9K607nmUcqfKA5QayziQUOOt
- cLffqsPRn5hgSTLbLQckrF/BOy2MdY0Rc8uDk4L5gHH1DhA+NIp/EuEyu
- /MfautNOtHaVe8lUBnK89wPVMp9COykX+Yo4mP7SUq+jyKrIUQATkhVHa
- VsKtSDfg2WGqDq+W+aLURdc6pl9gEImmBnyeLJufsBhZDIWYMCzwJfClh Q==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10781"; a="357698554"
-X-IronPort-AV: E=Sophos;i="6.01,230,1684825200"; d="scan'208";a="357698554"
-Received: from orsmga008.jf.intel.com ([10.7.209.65])
- by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 25 Jul 2023 04:43:24 -0700
+ t=1690285408; x=1721821408;
+ h=from:to:cc:subject:date:message-id:in-reply-to:
+ references:mime-version:content-transfer-encoding;
+ bh=SLkeUyngI6N5sjhn5pC6Qwz2/sZgQFykqzHzMAGihQs=;
+ b=Nwy9/GjNr6VPH81s85yuldfkEERU+JIcJTtPXJ3NyYtPPUqJ4e+p5k+D
+ XpOhnNesNPLncsmP1/wHVFXS2lnfteAu245HQBbBCdKubSS4sUGNS5NY7
+ AoNf7xxU0ZV93fjNYqF4CeatsRsRGlTGo1VWb9pXuK9J9QwEsttWesMaW
+ gxihxf4tg/vlysddqcBytYJZqsDVByJnL5GUVli1W1IdXt/du8usJUMdB
+ pKj/m2am1j1rTOtQ5QLPioQJsjGyovMW8hp/b7hDr/k4hZdSLoaQ7lnS3
+ FysuRzZUBS7nQZNsDBz0oCvOlDSVSx52+FtWeXvKHOeUPL8tsGjn72Z6i g==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10781"; a="431498465"
+X-IronPort-AV: E=Sophos;i="6.01,230,1684825200"; d="scan'208";a="431498465"
+Received: from fmsmga006.fm.intel.com ([10.253.24.20])
+ by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 25 Jul 2023 04:43:28 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10781"; a="755728991"
-X-IronPort-AV: E=Sophos;i="6.01,230,1684825200"; d="scan'208";a="755728991"
-Received: from nirmoyda-mobl.ger.corp.intel.com (HELO [10.249.37.117])
- ([10.249.37.117])
- by orsmga008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 25 Jul 2023 04:43:23 -0700
-Message-ID: <23c24c9e-8865-7e00-ef92-60ccc3682ef7@linux.intel.com>
-Date: Tue, 25 Jul 2023 13:43:21 +0200
+X-IronPort-AV: E=McAfee;i="6600,9927,10781"; a="972636529"
+X-IronPort-AV: E=Sophos;i="6.01,230,1684825200"; d="scan'208";a="972636529"
+Received: from tejas-super-server.iind.intel.com ([10.145.169.166])
+ by fmsmga006.fm.intel.com with ESMTP; 25 Jul 2023 04:43:26 -0700
+From: Tejas Upadhyay <tejas.upadhyay@intel.com>
+To: intel-xe@lists.freedesktop.org
+Date: Tue, 25 Jul 2023 17:20:00 +0530
+Message-Id: <20230725115003.785982-4-tejas.upadhyay@intel.com>
+X-Mailer: git-send-email 2.25.1
+In-Reply-To: <20230725115003.785982-1-tejas.upadhyay@intel.com>
+References: <20230725115003.785982-1-tejas.upadhyay@intel.com>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
- Thunderbird/102.13.0
-Content-Language: en-US
-To: Matt Roper <matthew.d.roper@intel.com>, intel-xe@lists.freedesktop.org
-References: <20230725003433.1992137-3-matthew.d.roper@intel.com>
-From: Nirmoy Das <nirmoy.das@linux.intel.com>
-In-Reply-To: <20230725003433.1992137-3-matthew.d.roper@intel.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-Subject: Re: [Intel-xe] [PATCH v2 1/2] drm/xe/mtl: Map PPGTT as CPU:WC
+Content-Transfer-Encoding: 8bit
+Subject: [Intel-xe] [PATCH V7 3/6] drm/xe: Add job timeout engine property
+ to sysfs
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -60,95 +56,99 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Cc: Lucas De Marchi <lucas.demarchi@intel.com>
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
+The time after which a job is removed from the scheduler.
+Add sysfs entry to provide user defined job timeout to
+scheduler.
 
-On 7/25/2023 2:34 AM, Matt Roper wrote:
-> On MTL and beyond, the GPU performs non-coherent accesses to the PPGTT
-> page tables.  These page tables should be mapped as CPU:WC.
->
-> Removes CAT errors triggered by xe_exec_basic@once-basic on MTL:
->
->     xe 0000:00:02.0: [drm:__xe_pt_bind_vma [xe]] Preparing bind, with range [1a0000...1a0fff) engine 0000000000000000.
->     xe 0000:00:02.0: [drm:xe_vm_dbg_print_entries [xe]] 1 entries to update
->     xe 0000:00:02.0: [drm:xe_vm_dbg_print_entries [xe]]  0: Update level 3 at (0 + 1) [0...8000000000) f:0
->     xe 0000:00:02.0: [drm] Engine memory cat error: guc_id=2
->     xe 0000:00:02.0: [drm] Engine memory cat error: guc_id=2
->     xe 0000:00:02.0: [drm] Timedout job: seqno=4294967169, guc_id=2, flags=0x4
->
-> v2:
->   - Rename to XE_BO_PAGETABLE to make it more clear that this BO is the
->     pagetable itself, rather than just being bound in the PPGTT.  (Lucas)
->
-> Cc: Lucas De Marchi <lucas.demarchi@intel.com>
-> Signed-off-by: Matt Roper <matthew.d.roper@intel.com>
-Acked-by: Nirmoy Das <nirmoy.das@intel.com>
-> ---
->   drivers/gpu/drm/xe/xe_bo.c | 17 +++++++++++++----
->   drivers/gpu/drm/xe/xe_bo.h |  1 +
->   drivers/gpu/drm/xe/xe_pt.c |  3 ++-
->   3 files changed, 16 insertions(+), 5 deletions(-)
->
-> diff --git a/drivers/gpu/drm/xe/xe_bo.c b/drivers/gpu/drm/xe/xe_bo.c
-> index 538501c46b8b..10858fcf4f62 100644
-> --- a/drivers/gpu/drm/xe/xe_bo.c
-> +++ b/drivers/gpu/drm/xe/xe_bo.c
-> @@ -301,6 +301,7 @@ static struct ttm_tt *xe_ttm_tt_create(struct ttm_buffer_object *ttm_bo,
->   	struct xe_device *xe = xe_bo_device(bo);
->   	struct xe_ttm_tt *tt;
->   	unsigned long extra_pages;
-> +	enum ttm_caching caching = ttm_cached;
->   	int err;
->   
->   	tt = kzalloc(sizeof(*tt), GFP_KERNEL);
-> @@ -314,10 +315,18 @@ static struct ttm_tt *xe_ttm_tt_create(struct ttm_buffer_object *ttm_bo,
->   		extra_pages = DIV_ROUND_UP(xe_device_ccs_bytes(xe, bo->size),
->   					   PAGE_SIZE);
->   
-> -	/* TODO: Select caching mode */
-> -	err = ttm_tt_init(&tt->ttm, &bo->ttm, page_flags,
-> -			  bo->flags & XE_BO_SCANOUT_BIT ? ttm_write_combined : ttm_cached,
-> -			  extra_pages);
-> +	/*
-> +	 * Display scanout is always non-coherent with the CPU cache.
-> +	 *
-> +	 * For Xe_LPG and beyond, PPGTT PTE lookups are also non-coherent and
-> +	 * require a CPU:WC mapping.
-> +	 *
-> +	 */
-> +	if (bo->flags & XE_BO_SCANOUT_BIT ||
-> +	    (xe->info.graphics_verx100 >= 1270 && bo->flags & XE_BO_PAGETABLE))
-> +		caching = ttm_write_combined;
-> +
-> +	err = ttm_tt_init(&tt->ttm, &bo->ttm, page_flags, caching, extra_pages);
->   	if (err) {
->   		kfree(tt);
->   		return NULL;
-> diff --git a/drivers/gpu/drm/xe/xe_bo.h b/drivers/gpu/drm/xe/xe_bo.h
-> index 72c68facd481..43ddfa998141 100644
-> --- a/drivers/gpu/drm/xe/xe_bo.h
-> +++ b/drivers/gpu/drm/xe/xe_bo.h
-> @@ -31,6 +31,7 @@
->   #define XE_BO_DEFER_BACKING		BIT(9)
->   #define XE_BO_SCANOUT_BIT		BIT(10)
->   #define XE_BO_FIXED_PLACEMENT_BIT	BIT(11)
-> +#define XE_BO_PAGETABLE			BIT(12)
->   /* this one is trigger internally only */
->   #define XE_BO_INTERNAL_TEST		BIT(30)
->   #define XE_BO_INTERNAL_64K		BIT(31)
-> diff --git a/drivers/gpu/drm/xe/xe_pt.c b/drivers/gpu/drm/xe/xe_pt.c
-> index bbc319fba9e8..d4660520ac2c 100644
-> --- a/drivers/gpu/drm/xe/xe_pt.c
-> +++ b/drivers/gpu/drm/xe/xe_pt.c
-> @@ -221,7 +221,8 @@ struct xe_pt *xe_pt_create(struct xe_vm *vm, struct xe_tile *tile,
->   				  XE_BO_CREATE_VRAM_IF_DGFX(tile) |
->   				  XE_BO_CREATE_IGNORE_MIN_PAGE_SIZE_BIT |
->   				  XE_BO_CREATE_PINNED_BIT |
-> -				  XE_BO_CREATE_NO_RESV_EVICT);
-> +				  XE_BO_CREATE_NO_RESV_EVICT |
-> +				  XE_BO_PAGETABLE);
->   	if (IS_ERR(bo)) {
->   		err = PTR_ERR(bo);
->   		goto err_kfree;
+The job timeout can be adjusted per-engine class using,
+
+/sys/class/drm/cardX/device/tileN/gtN/engines/ccs/job_timeout_ms
+
+V5:
+  - Rebase to use engine class interface instead of hw engine
+V4:
+  - Rebase to per class engine props interface
+V3:
+  - Rebase
+  - Update commit message to reflect tile update
+V2:
+  - Use sysfs_create_files as part of this patch
+
+Signed-off-by: Tejas Upadhyay <tejas.upadhyay@intel.com>
+---
+ drivers/gpu/drm/xe/xe_engine_class_sysfs.c | 42 ++++++++++++++++++++++
+ 1 file changed, 42 insertions(+)
+
+diff --git a/drivers/gpu/drm/xe/xe_engine_class_sysfs.c b/drivers/gpu/drm/xe/xe_engine_class_sysfs.c
+index d9c7315b7f8b..9a2b69a1e5d1 100644
+--- a/drivers/gpu/drm/xe/xe_engine_class_sysfs.c
++++ b/drivers/gpu/drm/xe/xe_engine_class_sysfs.c
+@@ -39,6 +39,37 @@ kobj_xe_engine(struct kobject *parent, char *name)
+ 	return keclass;
+ }
+ 
++static ssize_t job_timeout_store(struct kobject *kobj,
++				 struct kobj_attribute *attr,
++				 const char *buf, size_t count)
++{
++	struct xe_engine_class_intf *eclass = kobj_to_eclass(kobj);
++	u32 timeout;
++	int err;
++
++	err = kstrtou32(buf, 0, &timeout);
++	if (err)
++		return err;
++
++	if (timeout > jiffies_to_usecs(MAX_SCHEDULE_TIMEOUT))
++		return -EINVAL;
++
++	WRITE_ONCE(eclass->sched_props.job_timeout_ms, timeout);
++
++	return count;
++}
++
++static ssize_t job_timeout_show(struct kobject *kobj,
++				struct kobj_attribute *attr, char *buf)
++{
++	struct xe_engine_class_intf *eclass = kobj_to_eclass(kobj);
++
++	return sprintf(buf, "%u\n", eclass->sched_props.job_timeout_ms);
++}
++
++static struct kobj_attribute job_timeout_attr =
++__ATTR(job_timeout_ms, 0644, job_timeout_show, job_timeout_store);
++
+ static ssize_t job_timeout_default(struct kobject *kobj,
+ 				   struct kobj_attribute *attr, char *buf)
+ {
+@@ -80,6 +111,11 @@ static const struct attribute *defaults[] = {
+ 	NULL
+ };
+ 
++static const struct attribute *files[] = {
++	&job_timeout_attr.attr,
++	NULL
++};
++
+ static int xe_add_engine_class_defaults(struct kobject *parent)
+ {
+ 	struct kobject *kobj;
+@@ -188,6 +224,12 @@ int xe_engine_class_sysfs_init(struct xe_gt *gt)
+ 			return err;
+ 		}
+ 
++		err = sysfs_create_files(&keclass->base, files);
++		if (err) {
++			kobject_put(kobj);
++			return err;
++		}
+ 	}
++
+ 	return err;
+ }
+-- 
+2.25.1
+
