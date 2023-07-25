@@ -4,44 +4,47 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id E7BD3C001DE
-	for <intel-xe@archiver.kernel.org>; Tue, 25 Jul 2023 15:46:14 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 859EFC00528
+	for <intel-xe@archiver.kernel.org>; Tue, 25 Jul 2023 15:46:17 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id BCA4210E159;
-	Tue, 25 Jul 2023 15:46:14 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5EEDA10E3DE;
+	Tue, 25 Jul 2023 15:46:17 +0000 (UTC)
 Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1ADD710E159
- for <intel-xe@lists.freedesktop.org>; Tue, 25 Jul 2023 15:46:13 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0F82A10E3DE
+ for <intel-xe@lists.freedesktop.org>; Tue, 25 Jul 2023 15:46:16 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1690299973; x=1721835973;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=yrAS2A8eJ/aw2xoeB0npQG1LfbpgYYd6ud7KrAbdngs=;
- b=P+S/aR4ETaBY2vnq32ellygNR26BHCraiCplEEt5LXjuVG2eRL4sGCwd
- KPkU13t09Wdsz3+bNO8gpHbQejMo8fj1iihyFGHs1wa42L0mf/7LrV66t
- HYg0eJXqQmz3PQyp76b4sUbcWVadLQ6omR1XQ46VcwmB4thfYVjq0kjlU
- rZVirk1KrcScNxhIWB/RSyYVdOGhmkMeKBN/I6zWdHnIVqKFqH/+Rwbhg
- /TC39eFVVuyUId5bsi5sGLinyOWPhKW4+sRcBfvPP4c4Cq6kli5R7fUuH
- cxLXJ0M2qVvT0FGhWF5cqdN5SZJrp5DFx1+LWiY1DNX5lHS19SsiqiRNm g==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10782"; a="352667232"
-X-IronPort-AV: E=Sophos;i="6.01,230,1684825200"; d="scan'208";a="352667232"
+ t=1690299976; x=1721835976;
+ h=from:to:cc:subject:date:message-id:in-reply-to:
+ references:mime-version:content-transfer-encoding;
+ bh=+jMb/Q8IPrEdfuPHdxpVPEc85TiG5r0bGhBC6vkl8yA=;
+ b=lk21L1g/m0URk+Ccl+/uYh9KAOQlTFM0WKNR31HXgr4Xx131Zt6sfny1
+ 5R2f6nKhB6FvaF7flcmmUjMXCF1sbUewzrl/nZ41J2DtPKunmN38/m6Hx
+ jOYpLeR+3eIwWNaKNUfPnjdh6AuEXDVCVe/a7Z3DVz8iVvPKMeoja83ss
+ 15bI6/NQQZYbhlpMhNBHaLJrdcGR3iEEjM2KKWeLjk2ab3xtjA157aiZD
+ HIQ5kRbxEZcCnWa5rusnmde5yhCbA0AfRMeHSGKjEH1Xu+tWBgxZ8zIp/
+ UBwqWm+MC6qHSmo/WW4k0QSMpdhnt2dMcykff5vCa/4pAKl9/o09RqrRp w==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10782"; a="352667247"
+X-IronPort-AV: E=Sophos;i="6.01,230,1684825200"; d="scan'208";a="352667247"
 Received: from fmsmga007.fm.intel.com ([10.253.24.52])
  by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 25 Jul 2023 08:46:12 -0700
+ 25 Jul 2023 08:46:15 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10782"; a="729395453"
-X-IronPort-AV: E=Sophos;i="6.01,230,1684825200"; d="scan'208";a="729395453"
+X-IronPort-AV: E=McAfee;i="6600,9927,10782"; a="729395470"
+X-IronPort-AV: E=Sophos;i="6.01,230,1684825200"; d="scan'208";a="729395470"
 Received: from himal-super-server.iind.intel.com ([10.145.169.168])
- by fmsmga007.fm.intel.com with ESMTP; 25 Jul 2023 08:46:07 -0700
+ by fmsmga007.fm.intel.com with ESMTP; 25 Jul 2023 08:46:12 -0700
 From: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
 To: intel-xe@lists.freedesktop.org
-Date: Tue, 25 Jul 2023 21:21:12 +0530
-Message-Id: <20230725155115.3759312-1-himal.prasad.ghimiray@intel.com>
+Date: Tue, 25 Jul 2023 21:21:13 +0530
+Message-Id: <20230725155115.3759312-2-himal.prasad.ghimiray@intel.com>
 X-Mailer: git-send-email 2.25.1
+In-Reply-To: <20230725155115.3759312-1-himal.prasad.ghimiray@intel.com>
+References: <20230725155115.3759312-1-himal.prasad.ghimiray@intel.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-xe] [PATCH v8 0/3] Notify userspace about uevent failure
+Subject: [Intel-xe] [PATCH v8 1/3] fault-inject: Include linux/types.h by
+ default.
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -53,36 +56,53 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Cc: Lucas De Marchi <lucas.demarchi@intel.com>,
+Cc: Jens Axboe <axboe@kernel.dk>, Lucas De Marchi <lucas.demarchi@intel.com>,
+ Akinobu Mita <akinobu.mita@gmail.com>, Qi Zheng <zhengqi.arch@bytedance.com>,
+ linux-kernel@vger.kernel.org, Jason Gunthorpe <jgg@ziepe.ca>,
  Rodrigo Vivi <rodrigo.vivi@intel.com>
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-series sends an uevent in case of gt reset failure.
-since we have no mechanism to ensure gt reset failure from
-hw perspective introducing the fault injection to validate the uevent.
+Functions should_fail_alloc_page, should_failslab, and __should_failslab
+are declared irrespective of CONFIG_FAULT_INJECTION. These functions use
+bool and gfp_t types, which are treated as unknown when CONFIG_FAULT_INJECTION
+is disabled because the inclusion of linux/types.h is missing.
 
-https://gitlab.freedesktop.org/drm/xe/ci/-/commit/5ab4b369758a57b5a799b93c1d5b556c98d9d557
-is enabling the config to ensure debugfs creations are succesful.
+Fixes: 6ff1cb355e62 ("[PATCH] fault-injection capabilities infrastructure")
 
-Tested-by: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
-Testcase: https://patchwork.freedesktop.org/series/121309/
+v2:
+- Add fixes tag (Badal)
+- Rectify Cc. (Lucas)
 
 Cc: Lucas De Marchi <lucas.demarchi@intel.com>
-Cc: Rodrigo Vivi <rodrigo.vivi@intel.com> 
+Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
+Cc: Badal Nilawar <badal.nilawar@intel.com>
+Cc: Akinobu Mita <akinobu.mita@gmail.com>
+Cc: Jason Gunthorpe <jgg@ziepe.ca>
+Cc: Jens Axboe <axboe@kernel.dk>
+Cc: Qi Zheng <zhengqi.arch@bytedance.com>
+Cc: linux-kernel@vger.kernel.org
+Signed-off-by: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
+---
+ include/linux/fault-inject.h | 3 ++-
+ 1 file changed, 2 insertions(+), 1 deletion(-)
 
-Himal Prasad Ghimiray (3):
-  fault-inject: Include linux/types.h by default.
-  drm/xe: Notify Userspace when gt reset fails
-  drm/xe: Introduce fault injection for gt reset
-
- drivers/gpu/drm/xe/xe_debugfs.c | 10 ++++++++++
- drivers/gpu/drm/xe/xe_gt.c      | 25 ++++++++++++++++++++++++-
- drivers/gpu/drm/xe/xe_gt.h      | 14 ++++++++++++++
- include/linux/fault-inject.h    |  3 ++-
- include/uapi/drm/xe_drm.h       |  8 ++++++++
- 5 files changed, 58 insertions(+), 2 deletions(-)
-
+diff --git a/include/linux/fault-inject.h b/include/linux/fault-inject.h
+index 481abf530b3c..f83ab2b6cd08 100644
+--- a/include/linux/fault-inject.h
++++ b/include/linux/fault-inject.h
+@@ -2,9 +2,10 @@
+ #ifndef _LINUX_FAULT_INJECT_H
+ #define _LINUX_FAULT_INJECT_H
+ 
++#include <linux/types.h>
++
+ #ifdef CONFIG_FAULT_INJECTION
+ 
+-#include <linux/types.h>
+ #include <linux/debugfs.h>
+ #include <linux/configfs.h>
+ #include <linux/ratelimit.h>
 -- 
 2.25.1
 
