@@ -4,48 +4,51 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 45485C04A6A
-	for <intel-xe@archiver.kernel.org>; Tue, 25 Jul 2023 11:43:28 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0B5A5C001DF
+	for <intel-xe@archiver.kernel.org>; Tue, 25 Jul 2023 11:43:27 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1F63610E109;
-	Tue, 25 Jul 2023 11:43:28 +0000 (UTC)
-Received: from mga06.intel.com (mga06b.intel.com [134.134.136.31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6120B10E0DE
- for <intel-xe@lists.freedesktop.org>; Tue, 25 Jul 2023 11:43:24 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D40AB10E0DE;
+	Tue, 25 Jul 2023 11:43:26 +0000 (UTC)
+Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6E17010E0DE
+ for <intel-xe@lists.freedesktop.org>; Tue, 25 Jul 2023 11:43:25 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1690285404; x=1721821404;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=E6vJWI1yrpReuHqiuxUNCB7PqwcjdAb0CuY8oDhEOXk=;
- b=D/kp2yJmquu+xEshM51njchmwWfy3dhEASBpEQ3DPRMIUwEVVWUQCWlk
- nj+DTOkYBX3kXvKvUvfoSPiEFdlvubNoJw/Yw8njfbgtkCn39GtSmSCrU
- RsUBtSwKUGiARuZrf5KvgH1z7VaZi4TI+mUE0gZwoPDhu285IU3xQixkN
- xn5HgQ0MvyJIdWsWghZjX+WjivTBkmEvis+16PwbSdyiTWwucmug5G7v7
- CL3pp15SDkGuYnG9He/4+aNZoaQXwu9hpH+79oyltIFHyHb0yiz3OLmWC
- 3G+j8jEIj9vveh0LznNSCY1FyaanYHoM2MPzGUFOSs2M6GFnkA/CXpz1i Q==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10781"; a="431498438"
-X-IronPort-AV: E=Sophos;i="6.01,230,1684825200"; d="scan'208";a="431498438"
-Received: from fmsmga006.fm.intel.com ([10.253.24.20])
- by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ t=1690285405; x=1721821405;
+ h=message-id:date:mime-version:subject:to:cc:references:
+ from:in-reply-to:content-transfer-encoding;
+ bh=mx+ap0gQ5etbsFZDhlz869bs9lbEPIMRaGJ1vuoGjGE=;
+ b=iCMYpVbVdBbyCi/CNZWWgx3nWkIOsvNlCOtyuI8eRuz7kdvBCfGMZ/UX
+ o6XRv5mzp72cmbxiLRSWbcm95m5dniF9ifGrqJxqYKqxigr+mUl/bG8PZ
+ B+wPrjgHlmCw5J5it34xUubS5xXtfteyg9K607nmUcqfKA5QayziQUOOt
+ cLffqsPRn5hgSTLbLQckrF/BOy2MdY0Rc8uDk4L5gHH1DhA+NIp/EuEyu
+ /MfautNOtHaVe8lUBnK89wPVMp9COykX+Yo4mP7SUq+jyKrIUQATkhVHa
+ VsKtSDfg2WGqDq+W+aLURdc6pl9gEImmBnyeLJufsBhZDIWYMCzwJfClh Q==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10781"; a="357698554"
+X-IronPort-AV: E=Sophos;i="6.01,230,1684825200"; d="scan'208";a="357698554"
+Received: from orsmga008.jf.intel.com ([10.7.209.65])
+ by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  25 Jul 2023 04:43:24 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10781"; a="972636496"
-X-IronPort-AV: E=Sophos;i="6.01,230,1684825200"; d="scan'208";a="972636496"
-Received: from tejas-super-server.iind.intel.com ([10.145.169.166])
- by fmsmga006.fm.intel.com with ESMTP; 25 Jul 2023 04:43:22 -0700
-From: Tejas Upadhyay <tejas.upadhyay@intel.com>
-To: intel-xe@lists.freedesktop.org
-Date: Tue, 25 Jul 2023 17:19:58 +0530
-Message-Id: <20230725115003.785982-2-tejas.upadhyay@intel.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20230725115003.785982-1-tejas.upadhyay@intel.com>
-References: <20230725115003.785982-1-tejas.upadhyay@intel.com>
+X-IronPort-AV: E=McAfee;i="6600,9927,10781"; a="755728991"
+X-IronPort-AV: E=Sophos;i="6.01,230,1684825200"; d="scan'208";a="755728991"
+Received: from nirmoyda-mobl.ger.corp.intel.com (HELO [10.249.37.117])
+ ([10.249.37.117])
+ by orsmga008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 25 Jul 2023 04:43:23 -0700
+Message-ID: <23c24c9e-8865-7e00-ef92-60ccc3682ef7@linux.intel.com>
+Date: Tue, 25 Jul 2023 13:43:21 +0200
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: 8bit
-Subject: [Intel-xe] [PATCH V7 1/6] drm/xe: Add sysfs entries for engines
- under its GT
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+ Thunderbird/102.13.0
+Content-Language: en-US
+To: Matt Roper <matthew.d.roper@intel.com>, intel-xe@lists.freedesktop.org
+References: <20230725003433.1992137-3-matthew.d.roper@intel.com>
+From: Nirmoy Das <nirmoy.das@linux.intel.com>
+In-Reply-To: <20230725003433.1992137-3-matthew.d.roper@intel.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+Subject: Re: [Intel-xe] [PATCH v2 1/2] drm/xe/mtl: Map PPGTT as CPU:WC
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -57,209 +60,95 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Cc: Lucas De Marchi <lucas.demarchi@intel.com>
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Add engines sysfs directory under its GT and
-create sub directory for all engine class
-(note its not per instance) present on GT.
 
-For example,
-DUT# cat /sys/class/drm/cardX/device/tileN/gtN/engines/
-bcs/ ccs/
-
-V4 :
-   - Rebase to resolve conflicts - CI
-V3 :
-   - Move code in its own file
-   - Rename API name
-V2 :
-   - Correct class mask logic - Himal
-   - Remove extra parenthesis
-
-Signed-off-by: Tejas Upadhyay <tejas.upadhyay@intel.com>
----
- drivers/gpu/drm/xe/Makefile                |   1 +
- drivers/gpu/drm/xe/xe_engine_class_sysfs.c | 111 +++++++++++++++++++++
- drivers/gpu/drm/xe/xe_engine_class_sysfs.h |  13 +++
- drivers/gpu/drm/xe/xe_gt.c                 |   7 ++
- 4 files changed, 132 insertions(+)
- create mode 100644 drivers/gpu/drm/xe/xe_engine_class_sysfs.c
- create mode 100644 drivers/gpu/drm/xe/xe_engine_class_sysfs.h
-
-diff --git a/drivers/gpu/drm/xe/Makefile b/drivers/gpu/drm/xe/Makefile
-index 4ea9e3150c20..7ced39ee52f8 100644
---- a/drivers/gpu/drm/xe/Makefile
-+++ b/drivers/gpu/drm/xe/Makefile
-@@ -52,6 +52,7 @@ xe-y += xe_bb.o \
- 	xe_device_sysfs.o \
- 	xe_dma_buf.o \
- 	xe_engine.o \
-+	xe_engine_class_sysfs.o \
- 	xe_exec.o \
- 	xe_execlist.o \
- 	xe_force_wake.o \
-diff --git a/drivers/gpu/drm/xe/xe_engine_class_sysfs.c b/drivers/gpu/drm/xe/xe_engine_class_sysfs.c
-new file mode 100644
-index 000000000000..9959b0362d71
---- /dev/null
-+++ b/drivers/gpu/drm/xe/xe_engine_class_sysfs.c
-@@ -0,0 +1,111 @@
-+// SPDX-License-Identifier: MIT
-+/*
-+ * Copyright © 2023 Intel Corporation
-+ */
-+
-+#include <drm/drm_managed.h>
-+#include <linux/kobject.h>
-+#include <linux/sysfs.h>
-+
-+#include "xe_engine_class_sysfs.h"
-+
-+static void kobj_xe_engine_release(struct kobject *kobj)
-+{
-+	kfree(kobj);
-+}
-+
-+static const struct kobj_type kobj_xe_engine_type = {
-+	.release = kobj_xe_engine_release,
-+	.sysfs_ops = &kobj_sysfs_ops
-+};
-+
-+static struct kobject *
-+kobj_xe_engine(struct kobject *parent, char *name)
-+{
-+	struct kobject *kobj;
-+
-+	kobj = kzalloc(sizeof(*kobj), GFP_KERNEL);
-+	if (!kobj)
-+		return NULL;
-+
-+	kobject_init(kobj, &kobj_xe_engine_type);
-+	if (kobject_add(kobj, parent, "%s", name)) {
-+		kobject_put(kobj);
-+		return NULL;
-+	}
-+
-+	return kobj;
-+}
-+
-+static void xe_engine_sysfs_kobj_release(struct kobject *kobj)
-+{
-+	kfree(kobj);
-+}
-+
-+static const struct kobj_type xe_engine_sysfs_kobj_type = {
-+	.release = xe_engine_sysfs_kobj_release,
-+	.sysfs_ops = &kobj_sysfs_ops,
-+};
-+
-+int xe_engine_class_sysfs_init(struct xe_gt *gt)
-+{
-+	struct xe_hw_engine *hwe;
-+	enum xe_hw_engine_id id;
-+	struct kobject *kobj;
-+	u16 class_mask = 0;
-+	int err = 0;
-+
-+	kobj = kzalloc(sizeof(*kobj), GFP_KERNEL);
-+	if (!kobj)
-+		return -ENOMEM;
-+
-+	kobject_init(kobj, &xe_engine_sysfs_kobj_type);
-+
-+	err = kobject_add(kobj, gt->sysfs, "engines");
-+	if (err) {
-+		kobject_put(kobj);
-+		return err;
-+	}
-+
-+	for_each_hw_engine(hwe, gt, id) {
-+		char name[MAX_ENGINE_CLASS_NAME_LEN];
-+		struct kobject *khwe;
-+
-+		if (hwe->class == XE_ENGINE_CLASS_OTHER ||
-+		    hwe->class == XE_ENGINE_CLASS_MAX)
-+			continue;
-+
-+		if ((class_mask >> hwe->class) & 1)
-+			continue;
-+
-+		class_mask |= 1 << hwe->class;
-+
-+		switch (hwe->class) {
-+		case XE_ENGINE_CLASS_RENDER:
-+			strcpy(name, "rcs");
-+			break;
-+		case XE_ENGINE_CLASS_VIDEO_DECODE:
-+			strcpy(name, "vcs");
-+			break;
-+		case XE_ENGINE_CLASS_VIDEO_ENHANCE:
-+			strcpy(name, "vecs");
-+			break;
-+		case XE_ENGINE_CLASS_COPY:
-+			strcpy(name, "bcs");
-+			break;
-+		case XE_ENGINE_CLASS_COMPUTE:
-+			strcpy(name, "ccs");
-+			break;
-+		default:
-+			kobject_put(kobj);
-+			return -EINVAL;
-+		}
-+
-+		khwe = kobj_xe_engine(kobj, name);
-+		if (!khwe) {
-+			kobject_put(kobj);
-+			return -EINVAL;
-+		}
-+	}
-+	return err;
-+}
-diff --git a/drivers/gpu/drm/xe/xe_engine_class_sysfs.h b/drivers/gpu/drm/xe/xe_engine_class_sysfs.h
-new file mode 100644
-index 000000000000..f195dacc1ec6
---- /dev/null
-+++ b/drivers/gpu/drm/xe/xe_engine_class_sysfs.h
-@@ -0,0 +1,13 @@
-+/* SPDX-License-Identifier: MIT */
-+/*
-+ * Copyright © 2023 Intel Corporation
-+ */
-+
-+#ifndef _XE_ENGINE_CLASS_SYSFS_H_
-+#define _XE_ENGINE_CLASS_SYSFS_H__
-+
-+#include "xe_gt.h"
-+
-+#define MAX_ENGINE_CLASS_NAME_LEN    16
-+int xe_engine_class_sysfs_init(struct xe_gt *gt);
-+#endif
-diff --git a/drivers/gpu/drm/xe/xe_gt.c b/drivers/gpu/drm/xe/xe_gt.c
-index 3e32d38aeeea..a8176de9f536 100644
---- a/drivers/gpu/drm/xe/xe_gt.c
-+++ b/drivers/gpu/drm/xe/xe_gt.c
-@@ -14,6 +14,7 @@
- #include "xe_bo.h"
- #include "xe_device.h"
- #include "xe_engine.h"
-+#include "xe_engine_class_sysfs.h"
- #include "xe_execlist.h"
- #include "xe_force_wake.h"
- #include "xe_ggtt.h"
-@@ -322,6 +323,12 @@ static int gt_fw_domain_init(struct xe_gt *gt)
- 	if (err)
- 		goto err_force_wake;
- 
-+	err = xe_engine_class_sysfs_init(gt);
-+	if (err)
-+		drm_warn(&gt_to_xe(gt)->drm,
-+			 "failed to register engines sysfs directory, err: %d\n",
-+			 err);
-+
- 	err = xe_force_wake_put(gt_to_fw(gt), XE_FW_GT);
- 	XE_WARN_ON(err);
- 	xe_device_mem_access_put(gt_to_xe(gt));
--- 
-2.25.1
-
+On 7/25/2023 2:34 AM, Matt Roper wrote:
+> On MTL and beyond, the GPU performs non-coherent accesses to the PPGTT
+> page tables.  These page tables should be mapped as CPU:WC.
+>
+> Removes CAT errors triggered by xe_exec_basic@once-basic on MTL:
+>
+>     xe 0000:00:02.0: [drm:__xe_pt_bind_vma [xe]] Preparing bind, with range [1a0000...1a0fff) engine 0000000000000000.
+>     xe 0000:00:02.0: [drm:xe_vm_dbg_print_entries [xe]] 1 entries to update
+>     xe 0000:00:02.0: [drm:xe_vm_dbg_print_entries [xe]]  0: Update level 3 at (0 + 1) [0...8000000000) f:0
+>     xe 0000:00:02.0: [drm] Engine memory cat error: guc_id=2
+>     xe 0000:00:02.0: [drm] Engine memory cat error: guc_id=2
+>     xe 0000:00:02.0: [drm] Timedout job: seqno=4294967169, guc_id=2, flags=0x4
+>
+> v2:
+>   - Rename to XE_BO_PAGETABLE to make it more clear that this BO is the
+>     pagetable itself, rather than just being bound in the PPGTT.  (Lucas)
+>
+> Cc: Lucas De Marchi <lucas.demarchi@intel.com>
+> Signed-off-by: Matt Roper <matthew.d.roper@intel.com>
+Acked-by: Nirmoy Das <nirmoy.das@intel.com>
+> ---
+>   drivers/gpu/drm/xe/xe_bo.c | 17 +++++++++++++----
+>   drivers/gpu/drm/xe/xe_bo.h |  1 +
+>   drivers/gpu/drm/xe/xe_pt.c |  3 ++-
+>   3 files changed, 16 insertions(+), 5 deletions(-)
+>
+> diff --git a/drivers/gpu/drm/xe/xe_bo.c b/drivers/gpu/drm/xe/xe_bo.c
+> index 538501c46b8b..10858fcf4f62 100644
+> --- a/drivers/gpu/drm/xe/xe_bo.c
+> +++ b/drivers/gpu/drm/xe/xe_bo.c
+> @@ -301,6 +301,7 @@ static struct ttm_tt *xe_ttm_tt_create(struct ttm_buffer_object *ttm_bo,
+>   	struct xe_device *xe = xe_bo_device(bo);
+>   	struct xe_ttm_tt *tt;
+>   	unsigned long extra_pages;
+> +	enum ttm_caching caching = ttm_cached;
+>   	int err;
+>   
+>   	tt = kzalloc(sizeof(*tt), GFP_KERNEL);
+> @@ -314,10 +315,18 @@ static struct ttm_tt *xe_ttm_tt_create(struct ttm_buffer_object *ttm_bo,
+>   		extra_pages = DIV_ROUND_UP(xe_device_ccs_bytes(xe, bo->size),
+>   					   PAGE_SIZE);
+>   
+> -	/* TODO: Select caching mode */
+> -	err = ttm_tt_init(&tt->ttm, &bo->ttm, page_flags,
+> -			  bo->flags & XE_BO_SCANOUT_BIT ? ttm_write_combined : ttm_cached,
+> -			  extra_pages);
+> +	/*
+> +	 * Display scanout is always non-coherent with the CPU cache.
+> +	 *
+> +	 * For Xe_LPG and beyond, PPGTT PTE lookups are also non-coherent and
+> +	 * require a CPU:WC mapping.
+> +	 *
+> +	 */
+> +	if (bo->flags & XE_BO_SCANOUT_BIT ||
+> +	    (xe->info.graphics_verx100 >= 1270 && bo->flags & XE_BO_PAGETABLE))
+> +		caching = ttm_write_combined;
+> +
+> +	err = ttm_tt_init(&tt->ttm, &bo->ttm, page_flags, caching, extra_pages);
+>   	if (err) {
+>   		kfree(tt);
+>   		return NULL;
+> diff --git a/drivers/gpu/drm/xe/xe_bo.h b/drivers/gpu/drm/xe/xe_bo.h
+> index 72c68facd481..43ddfa998141 100644
+> --- a/drivers/gpu/drm/xe/xe_bo.h
+> +++ b/drivers/gpu/drm/xe/xe_bo.h
+> @@ -31,6 +31,7 @@
+>   #define XE_BO_DEFER_BACKING		BIT(9)
+>   #define XE_BO_SCANOUT_BIT		BIT(10)
+>   #define XE_BO_FIXED_PLACEMENT_BIT	BIT(11)
+> +#define XE_BO_PAGETABLE			BIT(12)
+>   /* this one is trigger internally only */
+>   #define XE_BO_INTERNAL_TEST		BIT(30)
+>   #define XE_BO_INTERNAL_64K		BIT(31)
+> diff --git a/drivers/gpu/drm/xe/xe_pt.c b/drivers/gpu/drm/xe/xe_pt.c
+> index bbc319fba9e8..d4660520ac2c 100644
+> --- a/drivers/gpu/drm/xe/xe_pt.c
+> +++ b/drivers/gpu/drm/xe/xe_pt.c
+> @@ -221,7 +221,8 @@ struct xe_pt *xe_pt_create(struct xe_vm *vm, struct xe_tile *tile,
+>   				  XE_BO_CREATE_VRAM_IF_DGFX(tile) |
+>   				  XE_BO_CREATE_IGNORE_MIN_PAGE_SIZE_BIT |
+>   				  XE_BO_CREATE_PINNED_BIT |
+> -				  XE_BO_CREATE_NO_RESV_EVICT);
+> +				  XE_BO_CREATE_NO_RESV_EVICT |
+> +				  XE_BO_PAGETABLE);
+>   	if (IS_ERR(bo)) {
+>   		err = PTR_ERR(bo);
+>   		goto err_kfree;
