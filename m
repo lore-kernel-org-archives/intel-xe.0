@@ -4,46 +4,45 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5CA7DC001B0
-	for <intel-xe@archiver.kernel.org>; Wed, 26 Jul 2023 15:40:33 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id EAC39C0015E
+	for <intel-xe@archiver.kernel.org>; Wed, 26 Jul 2023 16:09:59 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0E9BF10E490;
-	Wed, 26 Jul 2023 15:40:33 +0000 (UTC)
-Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
- by gabe.freedesktop.org (Postfix) with ESMTPS id AA9F110E490
- for <intel-xe@lists.freedesktop.org>; Wed, 26 Jul 2023 15:40:30 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9997210E4A0;
+	Wed, 26 Jul 2023 16:09:59 +0000 (UTC)
+Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 53B7610E49D
+ for <intel-xe@lists.freedesktop.org>; Wed, 26 Jul 2023 16:09:58 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1690386030; x=1721922030;
+ t=1690387798; x=1721923798;
  h=from:to:cc:subject:date:message-id:mime-version:
  content-transfer-encoding;
- bh=B4yCAn9f69Q/7LNrtW4blMpr/g7oaQrmT7LFYzgOhRg=;
- b=WSM7jMlnOMVq4ycUAXMcTVCJ4Q+GQ8pHLbuMcOoAvgtrgPdGVm0iaGe7
- MJ03RNFzltxVRqmNkO4QKmMm+SCrJjFvNbEl9Hha/Rd5xGZOqbFJML2fJ
- ezblXJflNoulq5mkyGBvK3UnomTxiGhLROjrVIN/tPnNf1rorUYsrDanJ
- eko87738SSy149mHVF4Z92pHYc5Am+nyK3Kvm4hBWdBhEDsWajBGE3Xyq
- 8iSsNhMSvnA3m3DplPX3VtSBNWlFI7R5BtIJsmbJ3EZjRqwugRMpuSOaf
- sAVXTD8d7c0PJ6CDQrmZJCS2pSUr812RNzfC7sT3Uq2+UjYvIh8GIfvUd g==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10783"; a="371664384"
-X-IronPort-AV: E=Sophos;i="6.01,232,1684825200"; d="scan'208";a="371664384"
-Received: from orsmga003.jf.intel.com ([10.7.209.27])
- by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 26 Jul 2023 08:40:30 -0700
+ bh=jI1mZTSWKhQJw1Xlvq0QqWX+aijbNbFLrDu8wLLhNDs=;
+ b=eAbXK94ZXG7TAjrec7kE1BB5DQ9JD4SMBF1FIZM+Zthbqhb05fDs+x/4
+ hU47mlZIAO/XU2VE2rBMcRf/480jLmNJ7NV9eICYibMwex3Ye3myUIpsz
+ WPDJS/TQJloX4BR/u2L395ltgfxnfSpht2j8030+UeWmmtV2WuN/v7cbV
+ YSU82rSdqNmUSXmEn3KLb70astSVS6fa2uZbgNxii1+EioTMUOfAoZduW
+ cTEeVbg8VHd0AD38cqQfFLK2oW7CFVBJDMyiOvaboNPzAt1k3TYkm+Mwa
+ JA5zVjNhdofXlHCnbvdvCF3i9M/1XVeDF6epMalBg5rR5ItDF4zw1Crrl w==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10783"; a="398994890"
+X-IronPort-AV: E=Sophos;i="6.01,232,1684825200"; d="scan'208";a="398994890"
+Received: from fmsmga005.fm.intel.com ([10.253.24.32])
+ by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 26 Jul 2023 09:07:18 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10783"; a="676754115"
-X-IronPort-AV: E=Sophos;i="6.01,232,1684825200"; d="scan'208";a="676754115"
-Received: from ssedlma-mobl3.ger.corp.intel.com (HELO efacde51ae96.intel.com)
- ([10.252.59.41])
- by orsmga003-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 26 Jul 2023 08:40:29 -0700
-From: Francois Dugast <francois.dugast@intel.com>
+X-IronPort-AV: E=McAfee;i="6600,9927,10783"; a="1057279350"
+X-IronPort-AV: E=Sophos;i="6.01,232,1684825200"; d="scan'208";a="1057279350"
+Received: from lucas-s2600cw.jf.intel.com ([10.165.21.196])
+ by fmsmga005-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 26 Jul 2023 09:07:18 -0700
+From: Lucas De Marchi <lucas.demarchi@intel.com>
 To: intel-xe@lists.freedesktop.org
-Date: Wed, 26 Jul 2023 15:40:10 +0000
-Message-Id: <20230726154010.7-1-francois.dugast@intel.com>
-X-Mailer: git-send-email 2.34.1
+Date: Wed, 26 Jul 2023 09:06:58 -0700
+Message-Id: <20230726160708.3967790-1-lucas.demarchi@intel.com>
+X-Mailer: git-send-email 2.40.1
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-xe] [PATCH] drm/xe: Remove unused xe_gt_WARN* macros
+Subject: [Intel-xe] [PATCH v2 00/10] Fix stolen setup for MTL+
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -55,49 +54,53 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Cc: Francois Dugast <francois.dugast@intel.com>
+Cc: Matt Roper <matthew.d.roper@intel.com>,
+ Matthew Auld <matthew.auld@intel.com>,
+ Lucas De Marchi <lucas.demarchi@intel.com>
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Those specific macros are not used, removing them to prevent using
-another flavor of WARN().
+With this we don't get pipe faults anymore and console is usable.
 
-Signed-off-by: Francois Dugast <francois.dugast@intel.com>
----
- drivers/gpu/drm/xe/xe_gt_printk.h | 15 ---------------
- 1 file changed, 15 deletions(-)
+v2:
+  - Include fixup to bo accounting previously sent as a standalone
+    patch (https://patchwork.freedesktop.org/patch/545876/). This fixes
+    the module removal with display enabled
+  - A few fixes, dead code removal and cleanups that I noticed while
+    fixing stolen
+  - Fix the wopcm calculation as it was missing the * SZ_1M
+  - Re-sort the xe_regs.h removing the exceptions
 
-diff --git a/drivers/gpu/drm/xe/xe_gt_printk.h b/drivers/gpu/drm/xe/xe_gt_printk.h
-index 5991bcadd47e..95aa7173fbb2 100644
---- a/drivers/gpu/drm/xe/xe_gt_printk.h
-+++ b/drivers/gpu/drm/xe/xe_gt_printk.h
-@@ -16,9 +16,6 @@
- #define xe_gt_err(_gt, _fmt, ...) \
- 	xe_gt_printk((_gt), err, _fmt, ##__VA_ARGS__)
- 
--#define xe_gt_warn(_gt, _fmt, ...) \
--	xe_gt_printk((_gt), warn, _fmt, ##__VA_ARGS__)
--
- #define xe_gt_notice(_gt, _fmt, ...) \
- 	xe_gt_printk((_gt), notice, _fmt, ##__VA_ARGS__)
- 
-@@ -31,16 +28,4 @@
- #define xe_gt_err_ratelimited(_gt, _fmt, ...) \
- 	xe_gt_printk((_gt), err_ratelimited, _fmt, ##__VA_ARGS__)
- 
--#define xe_gt_WARN(_gt, _condition, _fmt, ...) \
--	drm_WARN(&gt_to_xe(_gt)->drm, _condition, "GT%u: " _fmt, (_gt)->info.id, ##__VA_ARGS__)
--
--#define xe_gt_WARN_ONCE(_gt, _condition, _fmt, ...) \
--	drm_WARN_ONCE(&gt_to_xe(_gt)->drm, _condition, "GT%u: " _fmt, (_gt)->info.id, ##__VA_ARGS__)
--
--#define xe_gt_WARN_ON(_gt, _condition) \
--	xe_gt_WARN((_gt), _condition, "%s(%s)", "gt_WARN_ON", __stringify(_condition))
--
--#define xe_gt_WARN_ON_ONCE(_gt, _condition) \
--	xe_gt_WARN_ONCE((_gt), _condition, "%s(%s)", "gt_WARN_ON_ONCE", __stringify(_condition))
--
- #endif
+Lucas De Marchi (9):
+  fixup! 57f0bc550693ad29726bf2a71d05af0dc2d0a542
+  drm/xe: Fix checking for unset value
+  drm/xe: Remove vma arg from xe_pte_encode()
+  drm/xe: Decouple vram check from xe_bo_addr()
+  drm/xe: Set PTE_DM bit for stolen on MTL
+  fixup! drm/xe/display: Implement display support
+  drm/xe: Fix MTL+ stolen memory mapping
+  drm/xe: Carve out top of DSM as reserved
+  drm/xe: Sort xe_regs.h
+
+Maarten Lankhorst (1):
+  fixup! drm/xe/display: Implement display support
+
+ drivers/gpu/drm/i915/display/intel_fb.c       | 10 ++-
+ drivers/gpu/drm/i915/display/intel_fbdev.c    |  4 +-
+ .../gpu/drm/i915/display/intel_frontbuffer.c  |  4 -
+ drivers/gpu/drm/xe/display/xe_plane_initial.c |  9 +--
+ drivers/gpu/drm/xe/regs/xe_regs.h             | 75 ++++++++-----------
+ drivers/gpu/drm/xe/tests/xe_migrate.c         |  2 +-
+ drivers/gpu/drm/xe/xe_bo.c                    | 30 +++++---
+ drivers/gpu/drm/xe/xe_bo.h                    | 15 ++--
+ drivers/gpu/drm/xe/xe_ggtt.c                  |  7 +-
+ drivers/gpu/drm/xe/xe_migrate.c               | 28 +++----
+ drivers/gpu/drm/xe/xe_pt.c                    | 62 ++++-----------
+ drivers/gpu/drm/xe/xe_pt.h                    |  4 +-
+ drivers/gpu/drm/xe/xe_ttm_stolen_mgr.c        | 23 +++++-
+ drivers/gpu/drm/xe/xe_vm.c                    | 10 ++-
+ 14 files changed, 125 insertions(+), 158 deletions(-)
+
 -- 
-2.34.1
+2.40.1
 
