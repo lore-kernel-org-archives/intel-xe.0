@@ -4,45 +4,48 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id C08C6C001B0
-	for <intel-xe@archiver.kernel.org>; Wed, 26 Jul 2023 13:19:10 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id CF65BC001DE
+	for <intel-xe@archiver.kernel.org>; Wed, 26 Jul 2023 13:19:12 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9971510E478;
-	Wed, 26 Jul 2023 13:19:10 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9D68B10E47B;
+	Wed, 26 Jul 2023 13:19:12 +0000 (UTC)
 Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4211010E478
- for <intel-xe@lists.freedesktop.org>; Wed, 26 Jul 2023 13:19:08 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0349510E478
+ for <intel-xe@lists.freedesktop.org>; Wed, 26 Jul 2023 13:19:09 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1690377548; x=1721913548;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=HbboIinnxQ7aV0HEQl4KDvt2tqCtV3+dhBX3NF1NY1I=;
- b=hAOhRV1s4fqAQFyRQVSRIRF674IW7P85JskjNf5IGYC/SjSgJtPwOtpa
- ozngKmxdWOthyfaVbMu5LBz5YoEhKtWv4o/BOo/Ej/WztSk4UoWF7AGMa
- mRM3sM14NousONxCRs75TYqy9RgVnb4VqoRB4vURAnAut2ohQd3OW0EJh
- xeZI/gpZmQPWTTiOYB4Pl/ViH7YjxXq4SEVEpSXHZtMm+4sbq9QTqiYSl
- znfz+wiczx1KxazExM1fRnep37MFXyg0gy3imJz9VYtpyy/CAdjFQN127
- UYCqhOhhS3KQXPX8qdolpwP5JQB/taHgLMVbwS7RSuSDWvvcImbxvNZwe Q==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10783"; a="371624317"
-X-IronPort-AV: E=Sophos;i="6.01,232,1684825200"; d="scan'208";a="371624317"
+ t=1690377550; x=1721913550;
+ h=from:to:cc:subject:date:message-id:in-reply-to:
+ references:mime-version:content-transfer-encoding;
+ bh=E6vJWI1yrpReuHqiuxUNCB7PqwcjdAb0CuY8oDhEOXk=;
+ b=jTdUF/ThXcKlUizP4wbG0damGqCde7yeLj0j41XREablOZ33NZOtv3Q6
+ oTcA8WhSQ1SGLAbKgVU/bUaNfsVZcZUjgte05h/V8HxyiGMFt0DdwFduS
+ NhzrAi/TVqYfQmK76a3htHecXos85+DfQRwW2jTVWJhEOla+9rvrwmPod
+ hsnIuYtQqFm4iswBOLgf9ayGSLDGGAz8hG3DF9Fc0Aai/K6SBUTErcas/
+ cdboZWGViTvlEHyZjI1Z092MngOCf010oiGrcACP9MDo356cM9dNOpXZd
+ VfOFpNG5aHQ8StPBVLoxxZ0k8DxvdEEyGHt5bHeJ6wApMzjAma5iZbNE0 g==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10783"; a="371624325"
+X-IronPort-AV: E=Sophos;i="6.01,232,1684825200"; d="scan'208";a="371624325"
 Received: from orsmga003.jf.intel.com ([10.7.209.27])
  by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 26 Jul 2023 06:19:07 -0700
+ 26 Jul 2023 06:19:09 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10783"; a="676695683"
-X-IronPort-AV: E=Sophos;i="6.01,232,1684825200"; d="scan'208";a="676695683"
+X-IronPort-AV: E=McAfee;i="6600,9927,10783"; a="676695710"
+X-IronPort-AV: E=Sophos;i="6.01,232,1684825200"; d="scan'208";a="676695710"
 Received: from tejas-super-server.iind.intel.com ([10.145.169.166])
- by orsmga003.jf.intel.com with ESMTP; 26 Jul 2023 06:19:05 -0700
+ by orsmga003.jf.intel.com with ESMTP; 26 Jul 2023 06:19:07 -0700
 From: Tejas Upadhyay <tejas.upadhyay@intel.com>
 To: intel-xe@lists.freedesktop.org
-Date: Wed, 26 Jul 2023 18:55:44 +0530
-Message-Id: <20230726132550.846300-1-tejas.upadhyay@intel.com>
+Date: Wed, 26 Jul 2023 18:55:45 +0530
+Message-Id: <20230726132550.846300-2-tejas.upadhyay@intel.com>
 X-Mailer: git-send-email 2.25.1
+In-Reply-To: <20230726132550.846300-1-tejas.upadhyay@intel.com>
+References: <20230726132550.846300-1-tejas.upadhyay@intel.com>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-xe] [PATCH V8 0/6] drm/xe: Add engine scheduler control
- interface
+Subject: [Intel-xe] [PATCH V8 1/6] drm/xe: Add sysfs entries for engines
+ under its GT
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -57,80 +60,206 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Patch series introduces this in several patches,
-1. Add basic directory engine class under its GT, as below
-   DUT# cat /sys/class/drm/cardX/device/tileN/gtN/engines/
-   ccs/ bcs/
-2. Add default entries with its value for user to go back
-   to default
-3,4,5 : Add individual engine properties sysfs entry
-6: Introduce min/max to control in what range these properties
-   can be set for elevated and non-elevated users.
+Add engines sysfs directory under its GT and
+create sub directory for all engine class
+(note its not per instance) present on GT.
 
-VLK-46764, VLK-46767
+For example,
+DUT# cat /sys/class/drm/cardX/device/tileN/gtN/engines/
+bcs/ ccs/
 
-V8 :
-   - Modify enforce_sched_limit logic - Niranjana
-   - make sure min < max - Niranjana
-   - Push all errors to common err path - Niranjana
-V7 :
-   - access engine class interface inplace of hw engine - Niranjana
-   - Use some API to lower down duplication of code
-   - Return EINVAL in place of EPERM
-V6 :
-   - Scheduling props should apply per class engine not per hardware engine - Matt
-   - Do not record value of job_timeout_ms if changed based on dma_fence - Matt
-   - Removed timeout validation check as range validation covers it
-   - Rebase all the patches based on above changes
-V5 :
-   - Rebase to resolve conflicts - CI
 V4 :
-    - Rebase the series
-    - Add CONFIG option to enable/disable min/max limitation on
-      elevated user - Matt/Joonas
-    - Movement of engine related code to its own file
+   - Rebase to resolve conflicts - CI
 V3 :
-    - Improve class_mask logic
+   - Move code in its own file
+   - Rename API name
 V2 :
-    - Rebase to solve conflicts
-    - Use sysfs_create_files in this patch - Niranjana
-    - Handle prototype error for xe_add_engine_defaults - CI hooks
-    - Remove unused member sysfs_hwe - Niranjana
-    - Restric min/max setting to #define default min/max for
-         elevated user - Himal
-    - Remove some unrelated changes from patch - Niranjana
+   - Correct class mask logic - Himal
+   - Remove extra parenthesis
 
-Testcase: https://gitlab.freedesktop.org/drm/igt-gpu-tools/-/commit/94ccbe7cdf8651d5b76588102eca545cb74caad8
-Testcase: https://gitlab.freedesktop.org/drm/igt-gpu-tools/-/commit/0753ddf646df691cd1d2219192ce3a629f3e7e3f
-Updated Testcase: https://patchwork.freedesktop.org/series/121046/
-Tested-by: Priyanka Dandamudi <priyanka.dandamudi@intel.com>
 Signed-off-by: Tejas Upadhyay <tejas.upadhyay@intel.com>
-
-Tejas Upadhyay (6):
-  drm/xe: Add sysfs entries for engines under its GT
-  drm/xe: Add sysfs for default engine scheduler properties
-  drm/xe: Add job timeout engine property to sysfs
-  drm/xe: Add timeslice duration engine property to sysfs
-  drm/xe: Add sysfs for preempt reset timeout
-  drm/xe: Add min/max cap for engine scheduler properties
-
- drivers/gpu/drm/xe/Kconfig                 |   6 +
- drivers/gpu/drm/xe/Kconfig.profile         |  46 ++
+---
  drivers/gpu/drm/xe/Makefile                |   1 +
- drivers/gpu/drm/xe/xe_engine.c             |  46 +-
- drivers/gpu/drm/xe/xe_engine_class_sysfs.c | 640 +++++++++++++++++++++
- drivers/gpu/drm/xe/xe_engine_class_sysfs.h |  35 ++
- drivers/gpu/drm/xe/xe_gt.c                 |   7 +
- drivers/gpu/drm/xe/xe_gt_types.h           |   3 +
- drivers/gpu/drm/xe/xe_guc_submit.c         |   3 +-
- drivers/gpu/drm/xe/xe_hw_engine.c          |  18 +
- drivers/gpu/drm/xe/xe_hw_engine.h          |  31 +
- drivers/gpu/drm/xe/xe_hw_engine_types.h    |  40 ++
- 12 files changed, 866 insertions(+), 10 deletions(-)
- create mode 100644 drivers/gpu/drm/xe/Kconfig.profile
+ drivers/gpu/drm/xe/xe_engine_class_sysfs.c | 111 +++++++++++++++++++++
+ drivers/gpu/drm/xe/xe_engine_class_sysfs.h |  13 +++
+ drivers/gpu/drm/xe/xe_gt.c                 |   7 ++
+ 4 files changed, 132 insertions(+)
  create mode 100644 drivers/gpu/drm/xe/xe_engine_class_sysfs.c
  create mode 100644 drivers/gpu/drm/xe/xe_engine_class_sysfs.h
 
+diff --git a/drivers/gpu/drm/xe/Makefile b/drivers/gpu/drm/xe/Makefile
+index 4ea9e3150c20..7ced39ee52f8 100644
+--- a/drivers/gpu/drm/xe/Makefile
++++ b/drivers/gpu/drm/xe/Makefile
+@@ -52,6 +52,7 @@ xe-y += xe_bb.o \
+ 	xe_device_sysfs.o \
+ 	xe_dma_buf.o \
+ 	xe_engine.o \
++	xe_engine_class_sysfs.o \
+ 	xe_exec.o \
+ 	xe_execlist.o \
+ 	xe_force_wake.o \
+diff --git a/drivers/gpu/drm/xe/xe_engine_class_sysfs.c b/drivers/gpu/drm/xe/xe_engine_class_sysfs.c
+new file mode 100644
+index 000000000000..9959b0362d71
+--- /dev/null
++++ b/drivers/gpu/drm/xe/xe_engine_class_sysfs.c
+@@ -0,0 +1,111 @@
++// SPDX-License-Identifier: MIT
++/*
++ * Copyright © 2023 Intel Corporation
++ */
++
++#include <drm/drm_managed.h>
++#include <linux/kobject.h>
++#include <linux/sysfs.h>
++
++#include "xe_engine_class_sysfs.h"
++
++static void kobj_xe_engine_release(struct kobject *kobj)
++{
++	kfree(kobj);
++}
++
++static const struct kobj_type kobj_xe_engine_type = {
++	.release = kobj_xe_engine_release,
++	.sysfs_ops = &kobj_sysfs_ops
++};
++
++static struct kobject *
++kobj_xe_engine(struct kobject *parent, char *name)
++{
++	struct kobject *kobj;
++
++	kobj = kzalloc(sizeof(*kobj), GFP_KERNEL);
++	if (!kobj)
++		return NULL;
++
++	kobject_init(kobj, &kobj_xe_engine_type);
++	if (kobject_add(kobj, parent, "%s", name)) {
++		kobject_put(kobj);
++		return NULL;
++	}
++
++	return kobj;
++}
++
++static void xe_engine_sysfs_kobj_release(struct kobject *kobj)
++{
++	kfree(kobj);
++}
++
++static const struct kobj_type xe_engine_sysfs_kobj_type = {
++	.release = xe_engine_sysfs_kobj_release,
++	.sysfs_ops = &kobj_sysfs_ops,
++};
++
++int xe_engine_class_sysfs_init(struct xe_gt *gt)
++{
++	struct xe_hw_engine *hwe;
++	enum xe_hw_engine_id id;
++	struct kobject *kobj;
++	u16 class_mask = 0;
++	int err = 0;
++
++	kobj = kzalloc(sizeof(*kobj), GFP_KERNEL);
++	if (!kobj)
++		return -ENOMEM;
++
++	kobject_init(kobj, &xe_engine_sysfs_kobj_type);
++
++	err = kobject_add(kobj, gt->sysfs, "engines");
++	if (err) {
++		kobject_put(kobj);
++		return err;
++	}
++
++	for_each_hw_engine(hwe, gt, id) {
++		char name[MAX_ENGINE_CLASS_NAME_LEN];
++		struct kobject *khwe;
++
++		if (hwe->class == XE_ENGINE_CLASS_OTHER ||
++		    hwe->class == XE_ENGINE_CLASS_MAX)
++			continue;
++
++		if ((class_mask >> hwe->class) & 1)
++			continue;
++
++		class_mask |= 1 << hwe->class;
++
++		switch (hwe->class) {
++		case XE_ENGINE_CLASS_RENDER:
++			strcpy(name, "rcs");
++			break;
++		case XE_ENGINE_CLASS_VIDEO_DECODE:
++			strcpy(name, "vcs");
++			break;
++		case XE_ENGINE_CLASS_VIDEO_ENHANCE:
++			strcpy(name, "vecs");
++			break;
++		case XE_ENGINE_CLASS_COPY:
++			strcpy(name, "bcs");
++			break;
++		case XE_ENGINE_CLASS_COMPUTE:
++			strcpy(name, "ccs");
++			break;
++		default:
++			kobject_put(kobj);
++			return -EINVAL;
++		}
++
++		khwe = kobj_xe_engine(kobj, name);
++		if (!khwe) {
++			kobject_put(kobj);
++			return -EINVAL;
++		}
++	}
++	return err;
++}
+diff --git a/drivers/gpu/drm/xe/xe_engine_class_sysfs.h b/drivers/gpu/drm/xe/xe_engine_class_sysfs.h
+new file mode 100644
+index 000000000000..f195dacc1ec6
+--- /dev/null
++++ b/drivers/gpu/drm/xe/xe_engine_class_sysfs.h
+@@ -0,0 +1,13 @@
++/* SPDX-License-Identifier: MIT */
++/*
++ * Copyright © 2023 Intel Corporation
++ */
++
++#ifndef _XE_ENGINE_CLASS_SYSFS_H_
++#define _XE_ENGINE_CLASS_SYSFS_H__
++
++#include "xe_gt.h"
++
++#define MAX_ENGINE_CLASS_NAME_LEN    16
++int xe_engine_class_sysfs_init(struct xe_gt *gt);
++#endif
+diff --git a/drivers/gpu/drm/xe/xe_gt.c b/drivers/gpu/drm/xe/xe_gt.c
+index 3e32d38aeeea..a8176de9f536 100644
+--- a/drivers/gpu/drm/xe/xe_gt.c
++++ b/drivers/gpu/drm/xe/xe_gt.c
+@@ -14,6 +14,7 @@
+ #include "xe_bo.h"
+ #include "xe_device.h"
+ #include "xe_engine.h"
++#include "xe_engine_class_sysfs.h"
+ #include "xe_execlist.h"
+ #include "xe_force_wake.h"
+ #include "xe_ggtt.h"
+@@ -322,6 +323,12 @@ static int gt_fw_domain_init(struct xe_gt *gt)
+ 	if (err)
+ 		goto err_force_wake;
+ 
++	err = xe_engine_class_sysfs_init(gt);
++	if (err)
++		drm_warn(&gt_to_xe(gt)->drm,
++			 "failed to register engines sysfs directory, err: %d\n",
++			 err);
++
+ 	err = xe_force_wake_put(gt_to_fw(gt), XE_FW_GT);
+ 	XE_WARN_ON(err);
+ 	xe_device_mem_access_put(gt_to_xe(gt));
 -- 
 2.25.1
 
