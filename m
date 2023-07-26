@@ -4,47 +4,47 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4890DC001DC
-	for <intel-xe@archiver.kernel.org>; Wed, 26 Jul 2023 16:10:07 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id DF20BC0015E
+	for <intel-xe@archiver.kernel.org>; Wed, 26 Jul 2023 16:10:14 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 200E010E49F;
-	Wed, 26 Jul 2023 16:10:07 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8015B10E4A1;
+	Wed, 26 Jul 2023 16:10:14 +0000 (UTC)
 Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8F9E610E49E
- for <intel-xe@lists.freedesktop.org>; Wed, 26 Jul 2023 16:09:59 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E3EB310E49D
+ for <intel-xe@lists.freedesktop.org>; Wed, 26 Jul 2023 16:09:58 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1690387799; x=1721923799;
+ t=1690387798; x=1721923798;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=YyebSgWbUEjxlbE3qqQ5MD6/tWi1ctZZQJq18VayjsQ=;
- b=IMfOcGVAIKbczavPZcZ30ffyOQeaaFhf7ti8ivJjN9c1srQwWuIdAe5K
- kND8nfP/kBga1LK8odE3Al7Lo9Y16LR5X6VMiAS9rEO8bDidYbU9L8pby
- oNMrMtJAEztVfgR8lKpmrP9sxKmiNXKgBTBFKSwUUe3k7SFPGrIs6oe2e
- Y2gfMXLbU+dhGd2oM3Sc3S7YKLcVH6tno4Azo3TybcecpkZUigs4EAzZK
- lbjArRVp9YpxLmmufSYCz4vaOfU9jUSEzMVrScWOxGG8kQBP++s44GD0y
- kvi9b0jRS60w/DICA6oa91rawGFBVxgy88Pk7AOtXY/b+tb7dB1AfP6jb g==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10783"; a="398994909"
-X-IronPort-AV: E=Sophos;i="6.01,232,1684825200"; d="scan'208";a="398994909"
+ bh=FnFBBWg3ayhau2PbvbKnBuXIl6bw5OTb6POdmhGajaE=;
+ b=FGIFFa3sQ8RNDHR7n2y8yZyd0SFEt0Mwx7gef1ugShLjFQBL/hldy1dm
+ edoIknGAPdmNBKCUXYi/kk3TdQKavwMqSGnGwwiABhbm3ChbZ3Ztv8MkD
+ +B8aga5fslnTvq32qwm7Fc06X7I58ZYN0bINX+ilj/QWYKCDI8KMC1uG5
+ Usp7CI2CkId0E6pJg8C32gUYo2Z6Sc5nSOuJGFJYzblA31BaE0FfQ1pZZ
+ Aaz0UZp+wspJ9f4ZzJPeYiYVHY7viBsiXV8BP8cxBQaucnSdmeFV+XyLI
+ mqI5JEOjqlf4a6d/k+qdIqu3mlRSBwmP053sOkU+yHoywZxFA5716LrWd g==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10783"; a="398994894"
+X-IronPort-AV: E=Sophos;i="6.01,232,1684825200"; d="scan'208";a="398994894"
 Received: from fmsmga005.fm.intel.com ([10.253.24.32])
  by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 26 Jul 2023 09:07:21 -0700
+ 26 Jul 2023 09:07:19 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10783"; a="1057279381"
-X-IronPort-AV: E=Sophos;i="6.01,232,1684825200"; d="scan'208";a="1057279381"
+X-IronPort-AV: E=McAfee;i="6600,9927,10783"; a="1057279359"
+X-IronPort-AV: E=Sophos;i="6.01,232,1684825200"; d="scan'208";a="1057279359"
 Received: from lucas-s2600cw.jf.intel.com ([10.165.21.196])
  by fmsmga005-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 26 Jul 2023 09:07:20 -0700
+ 26 Jul 2023 09:07:19 -0700
 From: Lucas De Marchi <lucas.demarchi@intel.com>
 To: intel-xe@lists.freedesktop.org
-Date: Wed, 26 Jul 2023 09:07:08 -0700
-Message-Id: <20230726160708.3967790-11-lucas.demarchi@intel.com>
+Date: Wed, 26 Jul 2023 09:07:01 -0700
+Message-Id: <20230726160708.3967790-4-lucas.demarchi@intel.com>
 X-Mailer: git-send-email 2.40.1
 In-Reply-To: <20230726160708.3967790-1-lucas.demarchi@intel.com>
 References: <20230726160708.3967790-1-lucas.demarchi@intel.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-xe] [PATCH v2 10/10] drm/xe: Sort xe_regs.h
+Subject: [Intel-xe] [PATCH v2 03/10] drm/xe: Fix checking for unset value
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -62,108 +62,34 @@ Cc: Matt Roper <matthew.d.roper@intel.com>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Sort it by register address to make it easy to update when needed.
+Commit 0f885eced0a8 ("drm/xe: NULL binding implementation") introduced
+the NULL binding implementation, but left a case in which the out value
+is_vram is not set and the caller will use whatever was on stack.
+Eventually the is_vram out could be removed, but this should at least
+fix the current bug.
 
-v2: Do not create exception for registers with same functionality.
-Always sort it.
-
+Fixes: 0f885eced0a8 ("drm/xe: NULL binding implementation")
 Signed-off-by: Lucas De Marchi <lucas.demarchi@intel.com>
 ---
- drivers/gpu/drm/xe/regs/xe_regs.h | 59 ++++++++++++++++---------------
- 1 file changed, 31 insertions(+), 28 deletions(-)
+ drivers/gpu/drm/xe/xe_pt.c | 4 +++-
+ 1 file changed, 3 insertions(+), 1 deletion(-)
 
-diff --git a/drivers/gpu/drm/xe/regs/xe_regs.h b/drivers/gpu/drm/xe/regs/xe_regs.h
-index 315f6f8dadf3..ec45b1ba9db1 100644
---- a/drivers/gpu/drm/xe/regs/xe_regs.h
-+++ b/drivers/gpu/drm/xe/regs/xe_regs.h
-@@ -7,9 +7,6 @@
+diff --git a/drivers/gpu/drm/xe/xe_pt.c b/drivers/gpu/drm/xe/xe_pt.c
+index d4660520ac2c..d5a237b7c883 100644
+--- a/drivers/gpu/drm/xe/xe_pt.c
++++ b/drivers/gpu/drm/xe/xe_pt.c
+@@ -81,8 +81,10 @@ u64 xe_pde_encode(struct xe_bo *bo, u64 bo_offset,
+ static dma_addr_t vma_addr(struct xe_vma *vma, u64 offset,
+ 			   size_t page_size, bool *is_vram)
+ {
+-	if (xe_vma_is_null(vma))
++	if (xe_vma_is_null(vma)) {
++		*is_vram = 0;
+ 		return 0;
++	}
  
- #include "regs/xe_reg_defs.h"
- 
--#define GU_CNTL					XE_REG(0x101010)
--#define   LMEM_INIT				REG_BIT(7)
--
- #define RENDER_RING_BASE			0x02000
- #define BSD_RING_BASE				0x1c0000
- #define BSD2_RING_BASE				0x1c4000
-@@ -45,46 +42,52 @@
- #define FF_THREAD_MODE				XE_REG(0x20a0)
- #define   FF_TESSELATION_DOP_GATE_DISABLE	BIT(19)
- 
--#define PVC_RP_STATE_CAP			XE_REG(0x281014)
--#define MTL_RP_STATE_CAP			XE_REG(0x138000)
--
--#define MTL_MEDIAP_STATE_CAP			XE_REG(0x138020)
--#define   MTL_RP0_CAP_MASK			REG_GENMASK(8, 0)
--#define   MTL_RPN_CAP_MASK			REG_GENMASK(24, 16)
--
--#define MTL_GT_RPE_FREQUENCY			XE_REG(0x13800c)
--#define MTL_MPE_FREQUENCY			XE_REG(0x13802c)
--#define   MTL_RPE_MASK				REG_GENMASK(8, 0)
--
--#define SOFTWARE_FLAGS_SPR33			XE_REG(0x4f084)
-+#define TIMESTAMP_OVERRIDE					XE_REG(0x44074)
-+#define   TIMESTAMP_OVERRIDE_US_COUNTER_DENOMINATOR_MASK	REG_GENMASK(15, 12)
-+#define   TIMESTAMP_OVERRIDE_US_COUNTER_DIVIDER_MASK		REG_GENMASK(9, 0)
- 
- #define PCU_IRQ_OFFSET				0x444e0
- #define GU_MISC_IRQ_OFFSET			0x444f0
- #define   GU_MISC_GSE				REG_BIT(27)
- 
--#define GFX_MSTR_IRQ				XE_REG(0x190010)
--#define   MASTER_IRQ				REG_BIT(31)
--#define   GU_MISC_IRQ				REG_BIT(29)
--#define   DISPLAY_IRQ				REG_BIT(16)
--#define   GT_DW_IRQ(x)				REG_BIT(x)
--
--#define DG1_MSTR_TILE_INTR			XE_REG(0x190008)
--#define   DG1_MSTR_IRQ				REG_BIT(31)
--#define   DG1_MSTR_TILE(t)			REG_BIT(t)
-+#define SOFTWARE_FLAGS_SPR33			XE_REG(0x4f084)
- 
--#define TIMESTAMP_OVERRIDE					XE_REG(0x44074)
--#define   TIMESTAMP_OVERRIDE_US_COUNTER_DENOMINATOR_MASK	REG_GENMASK(15, 12)
--#define   TIMESTAMP_OVERRIDE_US_COUNTER_DIVIDER_MASK		REG_GENMASK(9, 0)
-+#define GU_CNTL					XE_REG(0x101010)
-+#define   LMEM_INIT				REG_BIT(7)
- 
- #define GGC					XE_REG(0x108040)
- #define   GMS_MASK				REG_GENMASK(15, 8)
- #define   GGMS_MASK				REG_GENMASK(7, 6)
- 
--#define GSMBASE					XE_REG(0x108100)
- #define DSMBASE					XE_REG(0x1080C0)
- #define   BDSM_MASK				REG_GENMASK64(63, 20)
- 
-+#define GSMBASE					XE_REG(0x108100)
-+
- #define STOLEN_RESERVED				XE_REG(0x1082c0)
- #define   WOPCM_SIZE_MASK			REG_GENMASK64(8, 7)
- 
-+#define MTL_RP_STATE_CAP			XE_REG(0x138000)
-+
-+#define MTL_GT_RPE_FREQUENCY			XE_REG(0x13800c)
-+
-+#define MTL_MEDIAP_STATE_CAP			XE_REG(0x138020)
-+#define   MTL_RPN_CAP_MASK			REG_GENMASK(24, 16)
-+#define   MTL_RP0_CAP_MASK			REG_GENMASK(8, 0)
-+
-+#define MTL_MPE_FREQUENCY			XE_REG(0x13802c)
-+#define   MTL_RPE_MASK				REG_GENMASK(8, 0)
-+
-+#define DG1_MSTR_TILE_INTR			XE_REG(0x190008)
-+#define   DG1_MSTR_IRQ				REG_BIT(31)
-+#define   DG1_MSTR_TILE(t)			REG_BIT(t)
-+
-+#define GFX_MSTR_IRQ				XE_REG(0x190010)
-+#define   MASTER_IRQ				REG_BIT(31)
-+#define   GU_MISC_IRQ				REG_BIT(29)
-+#define   DISPLAY_IRQ				REG_BIT(16)
-+#define   GT_DW_IRQ(x)				REG_BIT(x)
-+
-+#define PVC_RP_STATE_CAP			XE_REG(0x281014)
-+
- #endif
+ 	if (xe_vma_is_userptr(vma)) {
+ 		struct xe_res_cursor cur;
 -- 
 2.40.1
 
