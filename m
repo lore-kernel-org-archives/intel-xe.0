@@ -4,30 +4,30 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id B03EEC001DC
-	for <intel-xe@archiver.kernel.org>; Wed, 26 Jul 2023 21:06:19 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 809DAC001DC
+	for <intel-xe@archiver.kernel.org>; Wed, 26 Jul 2023 21:06:33 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7084A10E02B;
-	Wed, 26 Jul 2023 21:06:19 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 58C6010E02B;
+	Wed, 26 Jul 2023 21:06:33 +0000 (UTC)
 Received: from emeril.freedesktop.org (emeril.freedesktop.org
  [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id 7967A10E02B;
- Wed, 26 Jul 2023 21:06:17 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTP id 53FF710E02B;
+ Wed, 26 Jul 2023 21:06:31 +0000 (UTC)
 Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 72E0AAADD5;
- Wed, 26 Jul 2023 21:06:17 +0000 (UTC)
+ by emeril.freedesktop.org (Postfix) with ESMTP id 50479AADD5;
+ Wed, 26 Jul 2023 21:06:31 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: "Rodrigo Vivi" <rodrigo.vivi@intel.com>
-Date: Wed, 26 Jul 2023 21:06:17 -0000
-Message-ID: <169040557744.23471.17162608179124108513@emeril.freedesktop.org>
+Date: Wed, 26 Jul 2023 21:06:31 -0000
+Message-ID: <169040559132.23469.3101084550537017059@emeril.freedesktop.org>
 X-Patchwork-Hint: ignore
 References: <20230726210352.390864-1-rodrigo.vivi@intel.com>
 In-Reply-To: <20230726210352.390864-1-rodrigo.vivi@intel.com>
-Subject: [Intel-xe] =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_f?=
- =?utf-8?q?or_drm/xe=3A_Invert_mask_and_val_in_xe=5Fmmio=5Fwait32=2E?=
+Subject: [Intel-xe] =?utf-8?q?=E2=9C=93_CI=2Echeckpatch=3A_success_for_dr?=
+ =?utf-8?q?m/xe=3A_Invert_mask_and_val_in_xe=5Fmmio=5Fwait32=2E?=
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -52,9 +52,37 @@ State : success
 
 == Summary ==
 
-=== Applying kernel patches on branch 'drm-xe-next' with base: ===
-Base commit: b8202a008 drm/xe: Always use xe_vm_queue_rebind_worker helper
-=== git am output follows ===
-Applying: drm/xe: Invert mask and val in xe_mmio_wait32.
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+c7d32770e3cd31d9fc134ce41f329b10aa33ee15
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit 48f8b85b7f4b15c58e2e4871360f4f38dd7cc981
+Author: Rodrigo Vivi <rodrigo.vivi@intel.com>
+Date:   Wed Jul 26 17:03:52 2023 -0400
+
+    drm/xe: Invert mask and val in xe_mmio_wait32.
+    
+    The order: 'offset, mask, val'; is more common in other
+    drivers and in special in i915, where any dev could copy
+    a sequence and end up with unexpected behavior.
+    
+    Done with coccinelle:
+    @rule1@
+    expression gt, reg, val, mask, timeout, out, atomic;
+    @@
+    - xe_mmio_wait32(gt, reg, val, mask, timeout, out, atomic)
+    + xe_mmio_wait32(gt, reg, mask, val, timeout, out, atomic)
+    
+    spatch -sp_file mmio.cocci *.c *.h compat-i915-headers/intel_uncore.h \
+           --in-place
+    
+    Signed-off-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
++ /mt/dim checkpatch b8202a008e7c05d97c26cb61012c36d0f249eaa1 drm-intel
+48f8b85b7 drm/xe: Invert mask and val in xe_mmio_wait32.
 
 
