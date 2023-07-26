@@ -4,31 +4,30 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id B47F6C001DF
-	for <intel-xe@archiver.kernel.org>; Wed, 26 Jul 2023 18:49:29 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 34F11C001E0
+	for <intel-xe@archiver.kernel.org>; Wed, 26 Jul 2023 18:49:41 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8168410E204;
-	Wed, 26 Jul 2023 18:49:29 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0510510E4A2;
+	Wed, 26 Jul 2023 18:49:41 +0000 (UTC)
 Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id 5930210E204;
- Wed, 26 Jul 2023 18:49:28 +0000 (UTC)
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 2786310E4A2;
+ Wed, 26 Jul 2023 18:49:39 +0000 (UTC)
 Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 50061AADF2;
- Wed, 26 Jul 2023 18:49:28 +0000 (UTC)
+ by emeril.freedesktop.org (Postfix) with ESMTP id 23858AADF2;
+ Wed, 26 Jul 2023 18:49:39 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: "Matthew Brost" <matthew.brost@intel.com>
-Date: Wed, 26 Jul 2023 18:49:28 -0000
-Message-ID: <169039736832.23472.17108349091411716926@emeril.freedesktop.org>
+Date: Wed, 26 Jul 2023 18:49:39 -0000
+Message-ID: <169039737914.23471.17142694520677264036@emeril.freedesktop.org>
 X-Patchwork-Hint: ignore
 References: <20230726163721.353842-1-matthew.brost@intel.com>
 In-Reply-To: <20230726163721.353842-1-matthew.brost@intel.com>
-Subject: [Intel-xe] =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_f?=
- =?utf-8?q?or_drm/xe=3A_Always_use_xe=5Fvm=5Fqueue=5Frebind=5Fworker_helpe?=
- =?utf-8?q?r?=
+Subject: [Intel-xe] =?utf-8?q?=E2=9C=93_CI=2Echeckpatch=3A_success_for_dr?=
+ =?utf-8?q?m/xe=3A_Always_use_xe=5Fvm=5Fqueue=5Frebind=5Fworker_helper?=
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -53,9 +52,27 @@ State : success
 
 == Summary ==
 
-=== Applying kernel patches on branch 'drm-xe-next' with base: ===
-Base commit: 3eb59fdaf drm/xe: Invert guc vs execlists parameters and info.
-=== git am output follows ===
-Applying: drm/xe: Always use xe_vm_queue_rebind_worker helper
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+c7d32770e3cd31d9fc134ce41f329b10aa33ee15
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit 22fb634151a5ccca72641352d5554805d8037ecc
+Author: Matthew Brost <matthew.brost@intel.com>
+Date:   Wed Jul 26 09:37:21 2023 -0700
+
+    drm/xe: Always use xe_vm_queue_rebind_worker helper
+    
+    Do not queue the rebind worker directly, rather use the helper
+    xe_vm_queue_rebind_worker. This ensures we use the correct work queue.
+    
+    Signed-off-by: Matthew Brost <matthew.brost@intel.com>
+    Reviewed-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
++ /mt/dim checkpatch 3eb59fdaff17b28970c5be4fd00dba25b3ffb3f1 drm-intel
+22fb63415 drm/xe: Always use xe_vm_queue_rebind_worker helper
 
 
