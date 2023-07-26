@@ -4,53 +4,46 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 89A16C001DC
-	for <intel-xe@archiver.kernel.org>; Wed, 26 Jul 2023 11:39:00 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id A345EC0015E
+	for <intel-xe@archiver.kernel.org>; Wed, 26 Jul 2023 12:49:08 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 26C3710E464;
-	Wed, 26 Jul 2023 11:39:00 +0000 (UTC)
-Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7021E10E464
- for <intel-xe@lists.freedesktop.org>; Wed, 26 Jul 2023 11:38:57 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7844D10E478;
+	Wed, 26 Jul 2023 12:49:08 +0000 (UTC)
+Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 186AA10E478
+ for <intel-xe@lists.freedesktop.org>; Wed, 26 Jul 2023 12:49:07 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1690371537; x=1721907537;
- h=message-id:date:mime-version:subject:to:references:from:
- in-reply-to:content-transfer-encoding;
- bh=x2OuvDgND8Jmc13fLn/dzgZ2G6b33QecV2nXQN4gY1g=;
- b=C4AV9DNw0vSRXbGRE1v3I0cvHPexbFzUtVa179lV0n9riJL6DwTexhkh
- h9HT/EhUdJ9ej+6bx0bDbVMsmU9ChZid3Ue+5FMcqQJs68ArEMFrU5C7E
- m7BMQC4h+eKp7qIXNPQPJquce924Os/tNKlC+FRe5ROe0jxsL6sABh9TH
- 2ahmPIheiSqbyVYKdOjG4gTveCo3Mkc8G4QVMVZQhE0WmrjILZiEzWxR+
- +If+/8Jv/tvFs9UvxDZoOJb70HY+eAd/hCHxFA5ay1QvFvXX5U83fYU1G
- KGmMb8PESQCMe/ji095g9IBIeNYtmcDSnNdSqIh46zGtNPMwYz/m9iqpd Q==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10782"; a="454365657"
-X-IronPort-AV: E=Sophos;i="6.01,231,1684825200"; d="scan'208";a="454365657"
-Received: from fmsmga002.fm.intel.com ([10.253.24.26])
- by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 26 Jul 2023 04:38:56 -0700
+ t=1690375747; x=1721911747;
+ h=from:to:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=ZAdGnhxQWLOZw4oSEaU48XLgqUk9fuaYC+K2DekqcgY=;
+ b=kdQOTnODaa9G98FtGNR7odqjIFCAf4+gdUOwkEqBGUapj+A9lpa7CAiY
+ x57QdSNdis+Eor9K8U9r/q5lagu0bQT9dGXsLGb2IxAjbmurFvYH1yd7o
+ G03QUfto9JtE7EwNBR0gmZT7Dq5sCFB79DA6P1uwm3wHobSep9C90rMg+
+ 9p4CJ4bXJwB7mkp0gBeLOuD8oIZ6ZJ0HU+1FXoTcsVCUxaJpSb4y24US8
+ ZMaMJEJvokdMPmtvQMyulKnbxpuwtoLajUSKjQy8wiT6Hn7+5ibGKbclP
+ y4X4ehQRTSQMcK4/iJ3o+67KZxGhZsT8lo7q72ATaUIpMiBMOFMhjxjIx w==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10783"; a="368024479"
+X-IronPort-AV: E=Sophos;i="6.01,232,1684825200"; d="scan'208";a="368024479"
+Received: from fmsmga007.fm.intel.com ([10.253.24.52])
+ by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 26 Jul 2023 05:49:06 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10782"; a="840223367"
-X-IronPort-AV: E=Sophos;i="6.01,231,1684825200"; d="scan'208";a="840223367"
-Received: from cmchugh-mobl.ger.corp.intel.com (HELO [10.252.31.174])
- ([10.252.31.174])
- by fmsmga002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 26 Jul 2023 04:38:55 -0700
-Message-ID: <5041fe3d-2183-86fc-ce5a-db2537713eba@intel.com>
-Date: Wed, 26 Jul 2023 12:38:53 +0100
+X-IronPort-AV: E=McAfee;i="6600,9927,10783"; a="729824904"
+X-IronPort-AV: E=Sophos;i="6.01,232,1684825200"; d="scan'208";a="729824904"
+Received: from rvodapal-desk.iind.intel.com ([10.145.162.163])
+ by fmsmga007-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 26 Jul 2023 05:49:05 -0700
+From: Ravi Kumar Vodapalli <ravi.kumar.vodapalli@intel.com>
+To: intel-xe@lists.freedesktop.org
+Date: Wed, 26 Jul 2023 18:19:16 +0530
+Message-Id: <20230726124916.2291245-1-ravi.kumar.vodapalli@intel.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Firefox/102.0 Thunderbird/102.12.0
-Content-Language: en-GB
-To: Rodrigo Vivi <rodrigo.vivi@intel.com>, intel-xe@lists.freedesktop.org
-References: <2ed513ec-3a3f-1795-2761-ad1d39bb6a09@intel.com>
- <20230725201758.329342-1-rodrigo.vivi@intel.com>
-From: Matthew Auld <matthew.auld@intel.com>
-In-Reply-To: <20230725201758.329342-1-rodrigo.vivi@intel.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-Subject: Re: [Intel-xe] [PATCH] drm/xe: Fix an invalid locking wait context
- bug
+Content-Transfer-Encoding: 8bit
+Subject: [Intel-xe] [PATCH] drm/xe/ppgtt: Add support for correct PAT
+ encoding in PTE and PDE
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -65,116 +58,213 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On 25/07/2023 21:17, Rodrigo Vivi wrote:
-> We cannot have spin locks around xe_irq_reset, since it will
-> call the intel_display_power_is_enabled() function, and
-> that needs a mutex lock. Hence causing the undesired
-> "[ BUG: Invalid wait context ]"
-> 
-> We cannot convert i915's power domain lock to spin lock
-> due to the nested dependency of non-atomic context waits.
-> 
-> So, let's move the xe_irq_reset functions from the
-> critical area, while still ensuring that we are protecting
-> the irq.enabled and ensuring the right serialization
-> in the irq handlers.
-> 
-> v2: On the first version, I had missed the fact that
-> irq.enabled is checked on the xe/display glue layer,
-> and that i915 display code is actually using the irq
-> spin lock properly. So, this got changed to a version
-> suggested by Matthew Auld, along with introducing
-> the lockdep_assert_held at the display glue code.
-> 
-> Suggested-by: Matthew Auld <matthew.auld@intel.com>
-> Signed-off-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
-> ---
->   drivers/gpu/drm/xe/display/ext/i915_irq.c |  1 +
->   drivers/gpu/drm/xe/xe_irq.c               | 32 ++++++++++++++++++-----
->   2 files changed, 27 insertions(+), 6 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/xe/display/ext/i915_irq.c b/drivers/gpu/drm/xe/display/ext/i915_irq.c
-> index fbb0e99143f6..ac435f7f854b 100644
-> --- a/drivers/gpu/drm/xe/display/ext/i915_irq.c
-> +++ b/drivers/gpu/drm/xe/display/ext/i915_irq.c
-> @@ -107,6 +107,7 @@ void intel_display_irq_uninstall(struct drm_i915_private *dev_priv)
->   
->   bool intel_irqs_enabled(struct xe_device *xe)
->   {
-> +	lockdep_assert_held(&xe->irq.lock);
->   	return xe->irq.enabled;
->   }
->   
-> diff --git a/drivers/gpu/drm/xe/xe_irq.c b/drivers/gpu/drm/xe/xe_irq.c
-> index eae190cb0969..d6b001f6a3c5 100644
-> --- a/drivers/gpu/drm/xe/xe_irq.c
-> +++ b/drivers/gpu/drm/xe/xe_irq.c
-> @@ -309,6 +309,13 @@ static irqreturn_t xelp_irq_handler(int irq, void *arg)
->   	unsigned long intr_dw[2];
->   	u32 identity[32];
->   
-> +	spin_lock_irq(&xe->irq.lock);
-> +	if (!xe->irq.enabled) {
-> +		spin_unlock_irq(&xe->irq.lock);
-> +		return IRQ_NONE;
-> +	}
-> +	spin_unlock_irq(&xe->irq.lock);
+Different platforms has different PAT encoding in PTE and PDE format, add
+correct PAT encoding for pre-Xe2 platforms (XELP, XEHPC, XELPG).
 
-I guess spin_lock() or spin_lock_irq_save() here and below, since this 
-is inside hard irq?
+Bspec: 45101, 71582
+Signed-off-by: Ravi Kumar Vodapalli <ravi.kumar.vodapalli@intel.com>
+---
+ drivers/gpu/drm/xe/xe_pt.c       | 119 ++++++++++++++++++++++++++-----
+ drivers/gpu/drm/xe/xe_pt.h       |   2 +
+ drivers/gpu/drm/xe/xe_vm_types.h |   2 +
+ 3 files changed, 106 insertions(+), 17 deletions(-)
 
-> +
->   	master_ctl = xelp_intr_disable(xe);
->   	if (!master_ctl) {
->   		xelp_intr_enable(xe, false);
-> @@ -371,6 +378,13 @@ static irqreturn_t dg1_irq_handler(int irq, void *arg)
->   
->   	/* TODO: This really shouldn't be copied+pasted */
->   
-> +	spin_lock_irq(&xe->irq.lock);
-> +	if (!xe->irq.enabled) {
-> +		spin_unlock_irq(&xe->irq.lock);
-> +		return IRQ_NONE;
-> +	}
-> +	spin_unlock_irq(&xe->irq.lock);
-> +
->   	master_tile_ctl = dg1_intr_disable(xe);
->   	if (!master_tile_ctl) {
->   		dg1_intr_enable(xe, false);
-> @@ -574,10 +588,14 @@ void xe_irq_shutdown(struct xe_device *xe)
->   
->   void xe_irq_suspend(struct xe_device *xe)
->   {
-> +	int irq = to_pci_dev(xe->drm.dev)->irq;
-> +
->   	spin_lock_irq(&xe->irq.lock);
-> -	xe->irq.enabled = false;
-> -	xe_irq_reset(xe);
-> +	xe->irq.enabled = false; /* no new irqs */
->   	spin_unlock_irq(&xe->irq.lock);
-> +
-> +	synchronize_irq(irq); /* flush irqs */
-> +	xe_irq_reset(xe); /* turn irqs off */
->   }
->   
->   void xe_irq_resume(struct xe_device *xe)
-> @@ -585,13 +603,15 @@ void xe_irq_resume(struct xe_device *xe)
->   	struct xe_gt *gt;
->   	int id;
->   
-> -	spin_lock_irq(&xe->irq.lock);
-> +	/*
-> +	 * lock not needed:
-> +	 * 1. no irq will arrive before the postinstall
-> +	 * 2. display is not yet resumed
-> +	 */
->   	xe->irq.enabled = true;
->   	xe_irq_reset(xe);
-> -	xe_irq_postinstall(xe);
-> +	xe_irq_postinstall(xe); /* turn irqs on */
->   
->   	for_each_gt(gt, xe, id)
->   		xe_irq_enable_hwe(gt);
-> -
-> -	spin_unlock_irq(&xe->irq.lock);
->   }
+diff --git a/drivers/gpu/drm/xe/xe_pt.c b/drivers/gpu/drm/xe/xe_pt.c
+index d4660520ac2c..09dafb0e47ea 100644
+--- a/drivers/gpu/drm/xe/xe_pt.c
++++ b/drivers/gpu/drm/xe/xe_pt.c
+@@ -16,6 +16,7 @@
+ #include "xe_trace.h"
+ #include "xe_ttm_stolen_mgr.h"
+ #include "xe_vm.h"
++#include "xe_pt.h"
+ 
+ struct xe_pt_dir {
+ 	struct xe_pt pt;
+@@ -62,6 +63,8 @@ u64 xe_pde_encode(struct xe_bo *bo, u64 bo_offset,
+ {
+ 	u64 pde;
+ 	bool is_vram;
++	u8 pat_index = 0;
++	struct xe_vm *vm = bo->vm;
+ 
+ 	pde = xe_bo_addr(bo, bo_offset, XE_PAGE_SIZE, &is_vram);
+ 	pde |= XE_PAGE_PRESENT | XE_PAGE_RW;
+@@ -70,10 +73,9 @@ u64 xe_pde_encode(struct xe_bo *bo, u64 bo_offset,
+ 
+ 	/* FIXME: I don't think the PPAT handling is correct for MTL */
+ 
+-	if (level != XE_CACHE_NONE)
+-		pde |= PPAT_CACHED_PDE;
+-	else
+-		pde |= PPAT_UNCACHED;
++
++	pat_index = xe_pat_get_index(xe_bo_device(bo), level);
++	pde = vm->ppgtt_pde_encode(pde, pat_index);
+ 
+ 	return pde;
+ }
+@@ -103,6 +105,9 @@ static dma_addr_t vma_addr(struct xe_vma *vma, u64 offset,
+ static u64 __pte_encode(u64 pte, enum xe_cache_level cache,
+ 			struct xe_vma *vma, u32 pt_level)
+ {
++	struct xe_vm *vm = xe_vma_vm(vma);
++	u8 pat_index = 0;
++
+ 	pte |= XE_PAGE_PRESENT | XE_PAGE_RW;
+ 
+ 	if (unlikely(vma && xe_vma_read_only(vma)))
+@@ -111,19 +116,8 @@ static u64 __pte_encode(u64 pte, enum xe_cache_level cache,
+ 	if (unlikely(vma && xe_vma_is_null(vma)))
+ 		pte |= XE_PTE_NULL;
+ 
+-	/* FIXME: I don't think the PPAT handling is correct for MTL */
+-
+-	switch (cache) {
+-	case XE_CACHE_NONE:
+-		pte |= PPAT_UNCACHED;
+-		break;
+-	case XE_CACHE_WT:
+-		pte |= PPAT_DISPLAY_ELLC;
+-		break;
+-	default:
+-		pte |= PPAT_CACHED;
+-		break;
+-	}
++	pat_index = xe_pat_get_index(vm->xe, cache);
++	pte = vm->ppgtt_pte_encode(pte, pat_index);
+ 
+ 	if (pt_level == 1)
+ 		pte |= XE_PDE_PS_2M;
+@@ -187,6 +181,91 @@ static u64 __xe_pt_empty_pte(struct xe_tile *tile, struct xe_vm *vm,
+ 	}
+ }
+ 
++static u64 __xelp_ppgtt_pde_encode_pat(u64 pte_pat, u8 pat_index)
++{
++
++	pte_pat &= ~(BIT(12) | BIT(4) | BIT(3));
++
++	if (pat_index & BIT(0))
++		pte_pat |= BIT(3);
++
++	if (pat_index & BIT(1))
++		pte_pat |= BIT(4);
++
++	if (pat_index & BIT(2))
++		pte_pat |= BIT(12);
++
++	return pte_pat;
++}
++
++static u64 __xelp_ppgtt_pte_encode_pat(u64 pte_pat, u8 pat_index)
++{
++
++	pte_pat &= ~(BIT(7) | BIT(4) | BIT(3));
++
++	if (pat_index & BIT(0))
++		pte_pat |= BIT(3);
++
++	if (pat_index & BIT(1))
++		pte_pat |= BIT(4);
++
++	if (pat_index & BIT(2))
++		pte_pat |= BIT(7);
++
++	return pte_pat;
++}
++
++u8 xe_pat_get_index(struct xe_device *xe, enum xe_cache_level cache)
++{
++	u8 pat_index;
++
++	if (GRAPHICS_VERx100(xe) >= 1270) {
++		switch (cache) {
++		case XE_CACHE_NONE:
++			pat_index = 2;
++		break;
++		case XE_CACHE_WT:
++			pat_index = 1;
++		break;
++		case XE_CACHE_WB:
++		default:
++			pat_index = 0;
++		break;
++		}
++	}
++	else if (GRAPHICS_VERx100(xe) >= 1260) {
++		switch (cache) {
++		case XE_CACHE_NONE:
++			pat_index = 0;
++		break;
++		case XE_CACHE_WT:
++			pat_index = 2;
++		break;
++		case XE_CACHE_WB:
++		default:
++			pat_index = 3;
++		break;
++		}
++	}
++	else
++	{
++		switch (cache) {
++		case XE_CACHE_NONE:
++			pat_index = 3;
++		break;
++		case XE_CACHE_WT:
++			pat_index = 2;
++		break;
++		case XE_CACHE_WB:
++		default:
++			pat_index = 0;
++		break;
++		}
++	}
++
++	return pat_index;
++}
++
+ /**
+  * xe_pt_create() - Create a page-table.
+  * @vm: The vm to create for.
+@@ -216,6 +295,12 @@ struct xe_pt *xe_pt_create(struct xe_vm *vm, struct xe_tile *tile,
+ 	if (!pt)
+ 		return ERR_PTR(-ENOMEM);
+ 
++	/* __xelp_pte_encode applies to xelp, xehpc and xelpg platform*/
++	vm->ppgtt_pte_encode = __xelp_ppgtt_pte_encode_pat;
++
++	/* __xelp_pde_encode applies to xelp, xehpc and xelpg platform*/
++	vm->ppgtt_pde_encode = __xelp_ppgtt_pde_encode_pat;
++
+ 	bo = xe_bo_create_pin_map(vm->xe, tile, vm, SZ_4K,
+ 				  ttm_bo_type_kernel,
+ 				  XE_BO_CREATE_VRAM_IF_DGFX(tile) |
+diff --git a/drivers/gpu/drm/xe/xe_pt.h b/drivers/gpu/drm/xe/xe_pt.h
+index aaf4b7b851e2..0ed69abf8202 100644
+--- a/drivers/gpu/drm/xe/xe_pt.h
++++ b/drivers/gpu/drm/xe/xe_pt.h
+@@ -51,4 +51,6 @@ u64 xe_pde_encode(struct xe_bo *bo, u64 bo_offset,
+ u64 xe_pte_encode(struct xe_vma *vma, struct xe_bo *bo,
+ 		  u64 offset, enum xe_cache_level cache,
+ 		  u32 pt_level);
++
++u8 xe_pat_get_index(struct xe_device *xe, enum xe_cache_level cache);
+ #endif
+diff --git a/drivers/gpu/drm/xe/xe_vm_types.h b/drivers/gpu/drm/xe/xe_vm_types.h
+index 261a4b0e8570..fc976e207462 100644
+--- a/drivers/gpu/drm/xe/xe_vm_types.h
++++ b/drivers/gpu/drm/xe/xe_vm_types.h
+@@ -336,6 +336,8 @@ struct xe_vm {
+ 
+ 	/** @batch_invalidate_tlb: Always invalidate TLB before batch start */
+ 	bool batch_invalidate_tlb;
++	u64 (*ppgtt_pte_encode)(u64 pte_pat, u8 pat_index);
++	u64 (*ppgtt_pde_encode)(u64 pte_pat, u8 pat_index);
+ };
+ 
+ /** struct xe_vma_op_map - VMA map operation */
+-- 
+2.25.1
+
