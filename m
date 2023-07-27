@@ -4,30 +4,30 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4F0CCC001DC
-	for <intel-xe@archiver.kernel.org>; Thu, 27 Jul 2023 13:46:48 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 14C79C001DC
+	for <intel-xe@archiver.kernel.org>; Thu, 27 Jul 2023 13:48:21 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id F1D8010E587;
-	Thu, 27 Jul 2023 13:46:47 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B7C0B10E58F;
+	Thu, 27 Jul 2023 13:48:20 +0000 (UTC)
 Received: from emeril.freedesktop.org (emeril.freedesktop.org
  [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id C0E0E10E587;
- Thu, 27 Jul 2023 13:46:45 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTP id E67CE10E58E;
+ Thu, 27 Jul 2023 13:48:19 +0000 (UTC)
 Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id B9AFEAADE0;
- Thu, 27 Jul 2023 13:46:45 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============8338754690864249911=="
+ by emeril.freedesktop.org (Postfix) with ESMTP id E2358AADE0;
+ Thu, 27 Jul 2023 13:48:19 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Rodrigo Vivi" <rodrigo.vivi@intel.com>
-Date: Thu, 27 Jul 2023 13:46:45 -0000
-Message-ID: <169046560573.19794.14637716434612678696@emeril.freedesktop.org>
+To: "Francois Dugast" <francois.dugast@intel.com>
+Date: Thu, 27 Jul 2023 13:48:19 -0000
+Message-ID: <169046569992.19796.10917560801420740935@emeril.freedesktop.org>
 X-Patchwork-Hint: ignore
-References: <20230726210352.390864-1-rodrigo.vivi@intel.com>
-In-Reply-To: <20230726210352.390864-1-rodrigo.vivi@intel.com>
-Subject: [Intel-xe] =?utf-8?q?=E2=97=8B_CI=2EBAT=3A_info_for_drm/xe=3A_In?=
- =?utf-8?q?vert_mask_and_val_in_xe=5Fmmio=5Fwait32=2E?=
+References: <20230727132630.7-1-francois.dugast@intel.com>
+In-Reply-To: <20230727132630.7-1-francois.dugast@intel.com>
+Subject: [Intel-xe] =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_f?=
+ =?utf-8?q?or_Remove_use_of_BUG=5FON?=
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -44,65 +44,19 @@ Cc: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============8338754690864249911==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
 == Series Details ==
 
-Series: drm/xe: Invert mask and val in xe_mmio_wait32.
-URL   : https://patchwork.freedesktop.org/series/121388/
-State : info
+Series: Remove use of BUG_ON
+URL   : https://patchwork.freedesktop.org/series/121439/
+State : success
 
 == Summary ==
 
-Participating hosts:
-bat-pvc-2
-bat-atsm-2
-bat-dg2-oem2
-bat-adlp-7
-Missing hosts results[0]:
-Results: [xe-pw-121388v1](https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-121388v1/index.html)
+=== Applying kernel patches on branch 'drm-xe-next' with base: ===
+Base commit: 6dc7ee6d0 drm/xe: Fix checking for unset value
+=== git am output follows ===
+Applying: drm/xe/macro: Remove unused constant
+Applying: drm/xe: Prefer WARN() over BUG() to avoid crashing the kernel
+Applying: drm/xe/macro: Display XE_WARN_ON messages only in debug mode
 
 
-
---===============8338754690864249911==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/xe: Invert mask and val in xe_mmio_wait32.</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/121388/">https://patchwork.freedesktop.org/series/121388/</a></td></tr>
-<tr><td><b>State:</b></td><td>info</td></tr>
-
-</table>
-
-
-    <p>Participating hosts:<br />
-bat-pvc-2<br />
-bat-atsm-2<br />
-bat-dg2-oem2<br />
-bat-adlp-7<br />
-Missing hosts results[0]:<br />
-Results: <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-121388v1/index.html">xe-pw-121388v1</a></p>
-
-</body>
-</html>
-
---===============8338754690864249911==--
