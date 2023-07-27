@@ -4,30 +4,30 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id CB2FAC001DE
-	for <intel-xe@archiver.kernel.org>; Thu, 27 Jul 2023 00:29:24 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2F5FBC04A6A
+	for <intel-xe@archiver.kernel.org>; Thu, 27 Jul 2023 00:29:36 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7177910E10E;
-	Thu, 27 Jul 2023 00:29:24 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D2B0710E38C;
+	Thu, 27 Jul 2023 00:29:35 +0000 (UTC)
 Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id 3CEBC10E10E;
- Thu, 27 Jul 2023 00:29:23 +0000 (UTC)
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id C171410E38C;
+ Thu, 27 Jul 2023 00:29:34 +0000 (UTC)
 Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 2A3B6AADF2;
- Thu, 27 Jul 2023 00:29:23 +0000 (UTC)
+ by emeril.freedesktop.org (Postfix) with ESMTP id BE6B9AADF2;
+ Thu, 27 Jul 2023 00:29:34 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: "Himal Prasad Ghimiray" <himal.prasad.ghimiray@intel.com>
-Date: Thu, 27 Jul 2023 00:29:23 -0000
-Message-ID: <169041776314.19797.16461962993537674888@emeril.freedesktop.org>
+Date: Thu, 27 Jul 2023 00:29:34 -0000
+Message-ID: <169041777477.19794.13383955462410271171@emeril.freedesktop.org>
 X-Patchwork-Hint: ignore
 References: <20230726232650.3873897-1-himal.prasad.ghimiray@intel.com>
 In-Reply-To: <20230726232650.3873897-1-himal.prasad.ghimiray@intel.com>
-Subject: [Intel-xe] =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_f?=
- =?utf-8?q?or_Notify_userspace_about_uevent_failure?=
+Subject: [Intel-xe] =?utf-8?q?=E2=9C=97_CI=2Echeckpatch=3A_warning_for_No?=
+ =?utf-8?q?tify_userspace_about_uevent_failure?=
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -48,15 +48,49 @@ Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 Series: Notify userspace about uevent failure
 URL   : https://patchwork.freedesktop.org/series/121392/
-State : success
+State : warning
 
 == Summary ==
 
-=== Applying kernel patches on branch 'drm-xe-next' with base: ===
-Base commit: b184e6a05 drm/xe: Signal out-syncs on VM binds if no operations
-=== git am output follows ===
-Applying: fault-inject: Include linux/types.h by default.
-Applying: drm/xe: Notify Userspace when gt reset fails
-Applying: drm/xe: Introduce fault injection for gt reset
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+c7d32770e3cd31d9fc134ce41f329b10aa33ee15
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit 1d386a032919103a981416071a5e84ae97b9806a
+Author: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
+Date:   Thu Jul 27 04:56:50 2023 +0530
+
+    drm/xe: Introduce fault injection for gt reset
+    
+    To trigger gt reset failure:
+     echo 100 >  /sys/kernel/debug/dri/<cardX>/fail_gt_reset/probability
+     echo 2 >  /sys/kernel/debug/dri/<cardX>/fail_gt_reset/times
+    
+    Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
+    Cc: Lucas De Marchi <lucas.demarchi@intel.com>
+    
+    Reviewed-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
+    Signed-off-by: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
++ /mt/dim checkpatch b184e6a05b0f3f033be7d45fbceeee7702e629fb drm-intel
+d9f294d5b fault-inject: Include linux/types.h by default.
+-:12: WARNING:UNKNOWN_COMMIT_ID: Unknown commit id '6ff1cb355e62', maybe rebased or not pulled?
+#12: 
+Fixes: 6ff1cb355e62 ("[PATCH] fault-injection capabilities infrastructure")
+
+total: 0 errors, 1 warnings, 0 checks, 11 lines checked
+c33dd36f0 drm/xe: Notify Userspace when gt reset fails
+1d386a032 drm/xe: Introduce fault injection for gt reset
+-:95: WARNING:SUSPECT_CODE_INDENT: suspect code indent for conditional statements (16, 0)
+#95: FILE: drivers/gpu/drm/xe/xe_gt.h:17:
+ 		for_each_if(((hwe__) = (gt__)->hw_engines + (id__)) && \
+[...]
++extern struct fault_attr gt_reset_failure;
+
+total: 0 errors, 1 warnings, 0 checks, 78 lines checked
 
 
