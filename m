@@ -4,53 +4,46 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 67ECEC0015E
-	for <intel-xe@archiver.kernel.org>; Thu, 27 Jul 2023 16:08:33 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9ED61C00528
+	for <intel-xe@archiver.kernel.org>; Thu, 27 Jul 2023 17:41:12 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1333D10E5B9;
-	Thu, 27 Jul 2023 16:08:33 +0000 (UTC)
-Received: from mgamail.intel.com (unknown [134.134.136.126])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0797110E5B9
- for <intel-xe@lists.freedesktop.org>; Thu, 27 Jul 2023 16:08:31 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4EF1110E5D8;
+	Thu, 27 Jul 2023 17:41:12 +0000 (UTC)
+Received: from mgamail.intel.com (unknown [134.134.136.20])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4BED210E5D8
+ for <intel-xe@lists.freedesktop.org>; Thu, 27 Jul 2023 17:41:11 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1690474112; x=1722010112;
- h=message-id:date:mime-version:subject:to:references:from:
- in-reply-to:content-transfer-encoding;
- bh=ciodhrwNlH7bBoyVzikjXahquPdYP3khS+wy+kQrGUk=;
- b=kRmrcOYMA963/Y3K3TVdFnKRRTr4kcXK3l4Uevw95pX8QdNW9fvOsXrz
- hSVjgmRG996NKCIiOfKulOt1AZe50nOC1Uuk5RURei6ASN9E7OEhy3ZbT
- X5YY9ELWkkNIhNouBaWAcFXrhfODpGUzMxAQaYlZ1NO+cBtoidy45YmUV
- W4t6VkeVWdyk10IgXrK+fx3Sf+9+aJb2Z7pmNQNryNJT5bMBnNCPoH4ae
- gIDpL/2VQbFJd7wsMUwXVOAvpuNSy/B8c8izFVHphHzUyOzIrRpyKsfky
- 5aF9nevvTCroXIiH5kIPwbtiEgTrjESxvykMtRqCcoHruob3an0WuT0Ky g==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10784"; a="353266853"
-X-IronPort-AV: E=Sophos;i="6.01,235,1684825200"; d="scan'208";a="353266853"
-Received: from orsmga002.jf.intel.com ([10.7.209.21])
- by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 27 Jul 2023 09:08:31 -0700
+ t=1690479671; x=1722015671;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=qwaFxSkr/JN22IJUosJ8jbh7o8ZTF5TNsjcCeBdjbIQ=;
+ b=AFdvlzV/y5FAl9SLX/szT8alIXek5F3tTO5jH8kzFWhRINpUruKufq1I
+ xAj3/asdsfCThTTLrnn0G9ocJhkpQtzX/aL96rKeLWmEWWBfk37r3sB2U
+ O99INNWaIpi51Gl31Rl+a4/xKdQhSyHvvoXjOhqgt8UcpPg1WXyt+V4YO
+ SyC12JDWmRFw06jR2/JNl2sUGDDt1NvSGuZiu9bsyEwH3834emAOPszAw
+ D1HQEvlMI7gYD/mgKDvNG75L9Y3aODXef8cgVQZGj2qEHXc+O895UfpFE
+ 15pdwiA8UmVP0UHV43o0ZEvOn7OUuA+9SsC9WAkybeELUFEsJoNt8JxPs w==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10784"; a="358405718"
+X-IronPort-AV: E=Sophos;i="6.01,235,1684825200"; d="scan'208";a="358405718"
+Received: from fmsmga005.fm.intel.com ([10.253.24.32])
+ by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 27 Jul 2023 10:41:10 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10784"; a="727065309"
-X-IronPort-AV: E=Sophos;i="6.01,235,1684825200"; d="scan'208";a="727065309"
-Received: from thomasph-mobl1.ger.corp.intel.com (HELO [10.252.16.87])
- ([10.252.16.87])
- by orsmga002-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 27 Jul 2023 09:08:30 -0700
-Message-ID: <eadce48a-9002-54cd-50c6-d1d23cfdf0c6@intel.com>
-Date: Thu, 27 Jul 2023 17:08:28 +0100
+X-IronPort-AV: E=McAfee;i="6600,9927,10784"; a="1057798170"
+X-IronPort-AV: E=Sophos;i="6.01,235,1684825200"; d="scan'208";a="1057798170"
+Received: from lstrano-desk.jf.intel.com ([10.24.89.184])
+ by fmsmga005-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 27 Jul 2023 10:41:09 -0700
+From: Matthew Brost <matthew.brost@intel.com>
+To: <intel-xe@lists.freedesktop.org>
+Date: Thu, 27 Jul 2023 10:41:07 -0700
+Message-Id: <20230727174107.532275-1-matthew.brost@intel.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Firefox/102.0 Thunderbird/102.12.0
-To: Rodrigo Vivi <rodrigo.vivi@intel.com>, intel-xe@lists.freedesktop.org
-References: <ZMFW6AkUQCWNGdpl@intel.com>
- <20230726213042.394720-1-rodrigo.vivi@intel.com>
-Content-Language: en-GB
-From: Matthew Auld <matthew.auld@intel.com>
-In-Reply-To: <20230726213042.394720-1-rodrigo.vivi@intel.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-Subject: Re: [Intel-xe] [PATCH] drm/xe: Fix an invalid locking wait context
- bug
+Content-Transfer-Encoding: 8bit
+Subject: [Intel-xe] [PATCH] drm/xe: Call __guc_engine_fini_async direct for
+ KERNEL engines
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -65,32 +58,56 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On 26/07/2023 22:30, Rodrigo Vivi wrote:
-> We cannot have spin locks around xe_irq_reset, since it will
-> call the intel_display_power_is_enabled() function, and
-> that needs a mutex lock. Hence causing the undesired
-> "[ BUG: Invalid wait context ]"
-> 
-> We cannot convert i915's power domain lock to spin lock
-> due to the nested dependency of non-atomic context waits.
-> 
-> So, let's move the xe_irq_reset functions from the
-> critical area, while still ensuring that we are protecting
-> the irq.enabled and ensuring the right serialization
-> in the irq handlers.
-> 
-> v2: On the first version, I had missed the fact that
-> irq.enabled is checked on the xe/display glue layer,
-> and that i915 display code is actually using the irq
-> spin lock properly. So, this got changed to a version
-> suggested by Matthew Auld.
-> 
-> v3: do not use lockdep_assert for display glue.
->      do not save restore irq from inside IRQ or we can
->      get bogus irq restore warnings
-> 
-> Closes: https://gitlab.freedesktop.org/drm/xe/kernel/-/issues/463
-> Suggested-by: Matthew Auld <matthew.auld@intel.com>
-> Signed-off-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
-Reviewed-by: Matthew Auld <matthew.auld@intel.com>
+Usually we call __guc_engine_fini_async via a worker as the engine fini
+can be done from within the GPU scheduler which creates a circular
+dependency without a worker. Kernel engines are fini'd at driver unload
+(not from within the GPU scheduler) so it is safe to directly call
+__guc_engine_fini_async.
+
+Reported-by: Oded Gabbay <ogabbay@kernel.org>
+Signed-off-by: Matthew Brost <matthew.brost@intel.com>
+---
+ drivers/gpu/drm/xe/xe_guc_submit.c | 20 ++++++--------------
+ 1 file changed, 6 insertions(+), 14 deletions(-)
+
+diff --git a/drivers/gpu/drm/xe/xe_guc_submit.c b/drivers/gpu/drm/xe/xe_guc_submit.c
+index 911d4965c27c..6cb64a097297 100644
+--- a/drivers/gpu/drm/xe/xe_guc_submit.c
++++ b/drivers/gpu/drm/xe/xe_guc_submit.c
+@@ -943,27 +943,19 @@ static void __guc_engine_fini_async(struct work_struct *w)
+ 	drm_sched_entity_fini(&ge->entity);
+ 	drm_sched_fini(&ge->sched);
+ 
+-	if (!(e->flags & ENGINE_FLAG_KERNEL)) {
+-		kfree(ge);
+-		xe_engine_fini(e);
+-	}
++	kfree(ge);
++	xe_engine_fini(e);
+ }
+ 
+ static void guc_engine_fini_async(struct xe_engine *e)
+ {
+-	bool kernel = e->flags & ENGINE_FLAG_KERNEL;
+-
+ 	INIT_WORK(&e->guc->fini_async, __guc_engine_fini_async);
+-	queue_work(system_wq, &e->guc->fini_async);
+ 
+ 	/* We must block on kernel engines so slabs are empty on driver unload */
+-	if (kernel) {
+-		struct xe_guc_engine *ge = e->guc;
+-
+-		flush_work(&ge->fini_async);
+-		kfree(ge);
+-		xe_engine_fini(e);
+-	}
++	if (e->flags & ENGINE_FLAG_KERNEL)
++		__guc_engine_fini_async(&e->guc->fini_async);
++	else
++		queue_work(system_wq, &e->guc->fini_async);
+ }
+ 
+ static void __guc_engine_fini(struct xe_guc *guc, struct xe_engine *e)
+-- 
+2.34.1
 
