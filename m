@@ -4,48 +4,48 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6E310C04FDF
-	for <intel-xe@archiver.kernel.org>; Thu, 27 Jul 2023 19:00:15 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 96E62C001DC
+	for <intel-xe@archiver.kernel.org>; Thu, 27 Jul 2023 19:00:18 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3934A10E5E7;
-	Thu, 27 Jul 2023 19:00:15 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7060A10E5E8;
+	Thu, 27 Jul 2023 19:00:18 +0000 (UTC)
 Received: from mgamail.intel.com (unknown [192.55.52.151])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5E06E10E5DE
- for <intel-xe@lists.freedesktop.org>; Thu, 27 Jul 2023 19:00:11 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id BEFD410E5E9
+ for <intel-xe@lists.freedesktop.org>; Thu, 27 Jul 2023 19:00:15 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1690484411; x=1722020411;
+ t=1690484415; x=1722020415;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=J3HWmQ+W9InpFHj0+rxRXy5diT4dDrnW0dhLP9nA5bA=;
- b=m4Y5/jWyeITrjFNxTl/7S2SbWzldON2IMBIxuHyQixcehVk26laYFOzY
- vGOventPEyHBnHVjIyOcuSW8ZiGVo0J9GI92F04kkLMACcerBIJWvJe+A
- fhA6+g0dr0PklBriUCMDKXQX0KBtJ6GoP0BdEDywcckiDWLMrFKbQ9o4g
- tNGY3IQnOQmiZ0zog0N9uj7a6hTV6mKsbDYX3AvDoYq5WcmmbjU1J0Qkj
- sgZ+vqcOzxw9rBcoYPT4GWV3ZDQTLsw8hqS1ZXpbT0JtiWrQdMcFGpnwR
- dpH77qSDT6osDI3xgDzeP8qvGlPJa63ydrtRPqEDT4ASuWtxJV1tiM6lv w==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10784"; a="348681582"
-X-IronPort-AV: E=Sophos;i="6.01,235,1684825200"; d="scan'208";a="348681582"
+ bh=0Yb0tq2ntaZl/sIq/deyGIZbMPfa+rGDHkzvLD53yKk=;
+ b=D9GWRY4J4PwbChH4gFRYTPJPMC7lXGvbzWlc16otRQyW63pQZIeCfxKj
+ YwbaFXFugAIG8mLmMfpDECfMdyvs7ZIOI/aWgDpY1I8bCnWRvlzE7UqOk
+ 4mTTwnn9W/+c9lPQb4zQyuPEP5mDYTwlb9YjG0H7ijRMkITRpivESpX8L
+ AoVPoLhkR0Rf3hyqVV8tYfuPPzM+iSdFq0oLx63RVAHVJ4UtMHNIsE8oT
+ kmkf9SE+f7sP6Ar//CYxuwqWMl55YcPnYatZPG7LLW7rHlWKxmi/LyMoI
+ UkZliL8Fr4K2/BcNbBU35OS7vzGtB5ztpJTcZBUI/vCmEWiYJWbcdTYCF g==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10784"; a="348681608"
+X-IronPort-AV: E=Sophos;i="6.01,235,1684825200"; d="scan'208";a="348681608"
 Received: from orsmga002.jf.intel.com ([10.7.209.21])
  by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 27 Jul 2023 12:00:11 -0700
+ 27 Jul 2023 12:00:15 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10784"; a="727127094"
-X-IronPort-AV: E=Sophos;i="6.01,235,1684825200"; d="scan'208";a="727127094"
+X-IronPort-AV: E=McAfee;i="6600,9927,10784"; a="727127097"
+X-IronPort-AV: E=Sophos;i="6.01,235,1684825200"; d="scan'208";a="727127097"
 Received: from valcore-skull-1.fm.intel.com ([10.1.27.19])
  by orsmga002-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 27 Jul 2023 12:00:10 -0700
+ 27 Jul 2023 12:00:11 -0700
 From: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
 To: intel-xe@lists.freedesktop.org
-Date: Thu, 27 Jul 2023 11:59:44 -0700
-Message-ID: <20230727185945.401047-3-daniele.ceraolospurio@intel.com>
+Date: Thu, 27 Jul 2023 11:59:45 -0700
+Message-ID: <20230727185945.401047-4-daniele.ceraolospurio@intel.com>
 X-Mailer: git-send-email 2.41.0
 In-Reply-To: <20230727185945.401047-1-daniele.ceraolospurio@intel.com>
 References: <20230727185945.401047-1-daniele.ceraolospurio@intel.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-xe] [PATCH 2/3] drm/xe: split kernel vs permanent engine
- flags
+Subject: [Intel-xe] [PATCH 3/3] drm/xe: standardize vm-less kernel
+ submissions
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -60,140 +60,203 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-If an engine is only destroyed on driver unload, we can skip its
-clean-up steps with the GuC because the GuC is going to be tuned off as
-well, so it doesn't matter if we're in sync with it or not. Currently,
-we apply this optimization to all engines marked as kernel, but this
-stops us to supporting kernel engines that don't stick around until
-unload. To remove this limitation, add a separate flag to indicate if
-the engine is expected to only be destryed on driver unload and use that
-to trigger the optimization.
-
-While at it, add a small comment to explain what each engine flag
-represents.
+The current only submission in the driver that doesn't use a vm is the
+WA setup. We still pass a vm structure (the migration one), but we don't
+actually use it at submission time and we instead have an hack to use
+GGTT for this particular engine.
+Instead of special-casing the WA engine, we can skip providing a VM and
+use that as selector for whether to use GGTT or PPGTT. As part of this
+change, we can drop the special engine flag for the WA engine and switch
+the WA submission to use the standard job functions instead of dedicated
+ones.
 
 Signed-off-by: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
 Cc: Matthew Brost <matthew.brost@intel.com>
 ---
- drivers/gpu/drm/xe/xe_engine.c       |  3 +++
- drivers/gpu/drm/xe/xe_engine_types.h | 20 ++++++++++++++------
- drivers/gpu/drm/xe/xe_guc_submit.c   | 12 ++++++------
- drivers/gpu/drm/xe/xe_migrate.c      |  4 ++--
- 4 files changed, 25 insertions(+), 14 deletions(-)
+ drivers/gpu/drm/xe/xe_bb.c           | 10 ----------
+ drivers/gpu/drm/xe/xe_bb.h           |  2 --
+ drivers/gpu/drm/xe/xe_engine_types.h |  2 --
+ drivers/gpu/drm/xe/xe_gt.c           | 23 +++++++----------------
+ drivers/gpu/drm/xe/xe_ring_ops.c     |  2 +-
+ drivers/gpu/drm/xe/xe_sched_job.c    |  6 ++----
+ 6 files changed, 10 insertions(+), 35 deletions(-)
 
-diff --git a/drivers/gpu/drm/xe/xe_engine.c b/drivers/gpu/drm/xe/xe_engine.c
-index c30810a687b1..a08001f85e39 100644
---- a/drivers/gpu/drm/xe/xe_engine.c
-+++ b/drivers/gpu/drm/xe/xe_engine.c
-@@ -33,6 +33,9 @@ static struct xe_engine *__xe_engine_create(struct xe_device *xe,
- 	int err;
- 	int i;
+diff --git a/drivers/gpu/drm/xe/xe_bb.c b/drivers/gpu/drm/xe/xe_bb.c
+index f9b6b7adf99f..8d4e645d43c5 100644
+--- a/drivers/gpu/drm/xe/xe_bb.c
++++ b/drivers/gpu/drm/xe/xe_bb.c
+@@ -73,16 +73,6 @@ __xe_bb_create_job(struct xe_engine *kernel_eng, struct xe_bb *bb, u64 *addr)
+ 	return xe_sched_job_create(kernel_eng, addr);
+ }
  
-+	/* only kernel engines can be permanent */
-+	XE_BUG_ON((flags & ENGINE_FLAG_PERMANENT) && !(flags & ENGINE_FLAG_KERNEL));
-+
- 	e = kzalloc(sizeof(*e) + sizeof(struct xe_lrc) * width, GFP_KERNEL);
- 	if (!e)
- 		return ERR_PTR(-ENOMEM);
+-struct xe_sched_job *xe_bb_create_wa_job(struct xe_engine *wa_eng,
+-					 struct xe_bb *bb, u64 batch_base_ofs)
+-{
+-	u64 addr = batch_base_ofs + drm_suballoc_soffset(bb->bo);
+-
+-	XE_BUG_ON(!(wa_eng->vm->flags & XE_VM_FLAG_MIGRATION));
+-
+-	return __xe_bb_create_job(wa_eng, bb, &addr);
+-}
+-
+ struct xe_sched_job *xe_bb_create_migration_job(struct xe_engine *kernel_eng,
+ 						struct xe_bb *bb,
+ 						u64 batch_base_ofs,
+diff --git a/drivers/gpu/drm/xe/xe_bb.h b/drivers/gpu/drm/xe/xe_bb.h
+index 0cc9260c9634..d1d55bccbf45 100644
+--- a/drivers/gpu/drm/xe/xe_bb.h
++++ b/drivers/gpu/drm/xe/xe_bb.h
+@@ -20,8 +20,6 @@ struct xe_sched_job *xe_bb_create_job(struct xe_engine *kernel_eng,
+ struct xe_sched_job *xe_bb_create_migration_job(struct xe_engine *kernel_eng,
+ 						struct xe_bb *bb, u64 batch_ofs,
+ 						u32 second_idx);
+-struct xe_sched_job *xe_bb_create_wa_job(struct xe_engine *wa_eng,
+-					 struct xe_bb *bb, u64 batch_ofs);
+ void xe_bb_free(struct xe_bb *bb, struct dma_fence *fence);
+ 
+ #endif
 diff --git a/drivers/gpu/drm/xe/xe_engine_types.h b/drivers/gpu/drm/xe/xe_engine_types.h
-index 7aa5d9ef7896..6802fdc10ec8 100644
+index 6802fdc10ec8..6ddc92b57c51 100644
 --- a/drivers/gpu/drm/xe/xe_engine_types.h
 +++ b/drivers/gpu/drm/xe/xe_engine_types.h
-@@ -52,14 +52,22 @@ struct xe_engine {
- 	/** @fence_irq: fence IRQ used to signal job completion */
- 	struct xe_hw_fence_irq *fence_irq;
- 
-+/* engine no longer allowed to submit */
- #define ENGINE_FLAG_BANNED		BIT(0)
-+/* engine used for kernel submission only */
- #define ENGINE_FLAG_KERNEL		BIT(1)
--#define ENGINE_FLAG_PERSISTENT		BIT(2)
--#define ENGINE_FLAG_COMPUTE_MODE	BIT(3)
--/* Caller needs to hold rpm ref when creating engine with ENGINE_FLAG_VM */
--#define ENGINE_FLAG_VM			BIT(4)
--#define ENGINE_FLAG_BIND_ENGINE_CHILD	BIT(5)
--#define ENGINE_FLAG_WA			BIT(6)
-+/* kernel engine only destroyed at driver unload */
-+#define ENGINE_FLAG_PERMANENT		BIT(2)
-+/* engine keeps running pending jobs after destroy ioctl */
-+#define ENGINE_FLAG_PERSISTENT		BIT(3)
-+/* engine for use with compute VMs */
-+#define ENGINE_FLAG_COMPUTE_MODE	BIT(4)
-+/* for VM jobs. Caller needs to hold rpm ref when creating engine with this flag */
-+#define ENGINE_FLAG_VM			BIT(5)
-+/* child of VM engine for multi-tile VM jobs */
-+#define ENGINE_FLAG_BIND_ENGINE_CHILD	BIT(6)
-+/* engine used for WA setup */
-+#define ENGINE_FLAG_WA			BIT(7)
+@@ -66,8 +66,6 @@ struct xe_engine {
+ #define ENGINE_FLAG_VM			BIT(5)
+ /* child of VM engine for multi-tile VM jobs */
+ #define ENGINE_FLAG_BIND_ENGINE_CHILD	BIT(6)
+-/* engine used for WA setup */
+-#define ENGINE_FLAG_WA			BIT(7)
  
  	/**
  	 * @flags: flags for this engine, should statically setup aside from ban
-diff --git a/drivers/gpu/drm/xe/xe_guc_submit.c b/drivers/gpu/drm/xe/xe_guc_submit.c
-index c5b265624344..6893a19e6676 100644
---- a/drivers/gpu/drm/xe/xe_guc_submit.c
-+++ b/drivers/gpu/drm/xe/xe_guc_submit.c
-@@ -943,7 +943,7 @@ static void __guc_engine_fini_async(struct work_struct *w)
- 	drm_sched_entity_fini(&ge->entity);
- 	drm_sched_fini(&ge->sched);
+diff --git a/drivers/gpu/drm/xe/xe_gt.c b/drivers/gpu/drm/xe/xe_gt.c
+index 3e32d38aeeea..de0a9683ad68 100644
+--- a/drivers/gpu/drm/xe/xe_gt.c
++++ b/drivers/gpu/drm/xe/xe_gt.c
+@@ -85,15 +85,13 @@ static int emit_nop_job(struct xe_gt *gt, struct xe_engine *e)
+ 	struct xe_sched_job *job;
+ 	struct xe_bb *bb;
+ 	struct dma_fence *fence;
+-	u64 batch_ofs;
+ 	long timeout;
  
--	if (!(e->flags & ENGINE_FLAG_KERNEL)) {
-+	if (!(e->flags & ENGINE_FLAG_PERMANENT)) {
- 		kfree(ge);
- 		xe_engine_fini(e);
+ 	bb = xe_bb_new(gt, 4, false);
+ 	if (IS_ERR(bb))
+ 		return PTR_ERR(bb);
+ 
+-	batch_ofs = xe_bo_ggtt_addr(gt_to_tile(gt)->mem.kernel_bb_pool->bo);
+-	job = xe_bb_create_wa_job(e, bb, batch_ofs);
++	job = xe_bb_create_job(e, bb);
+ 	if (IS_ERR(job)) {
+ 		xe_bb_free(bb, NULL);
+ 		return PTR_ERR(job);
+@@ -122,7 +120,6 @@ static int emit_wa_job(struct xe_gt *gt, struct xe_engine *e)
+ 	struct xe_sched_job *job;
+ 	struct xe_bb *bb;
+ 	struct dma_fence *fence;
+-	u64 batch_ofs;
+ 	long timeout;
+ 	int count = 0;
+ 
+@@ -141,8 +138,7 @@ static int emit_wa_job(struct xe_gt *gt, struct xe_engine *e)
+ 		}
  	}
-@@ -951,13 +951,13 @@ static void __guc_engine_fini_async(struct work_struct *w)
  
- static void guc_engine_fini_async(struct xe_engine *e)
+-	batch_ofs = xe_bo_ggtt_addr(gt_to_tile(gt)->mem.kernel_bb_pool->bo);
+-	job = xe_bb_create_wa_job(e, bb, batch_ofs);
++	job = xe_bb_create_job(e, bb);
+ 	if (IS_ERR(job)) {
+ 		xe_bb_free(bb, NULL);
+ 		return PTR_ERR(job);
+@@ -166,14 +162,12 @@ static int emit_wa_job(struct xe_gt *gt, struct xe_engine *e)
+ int xe_gt_record_default_lrcs(struct xe_gt *gt)
  {
--	bool kernel = e->flags & ENGINE_FLAG_KERNEL;
-+	bool permanent = e->flags & ENGINE_FLAG_PERMANENT;
+ 	struct xe_device *xe = gt_to_xe(gt);
+-	struct xe_tile *tile = gt_to_tile(gt);
+ 	struct xe_hw_engine *hwe;
+ 	enum xe_hw_engine_id id;
+ 	int err = 0;
  
- 	INIT_WORK(&e->guc->fini_async, __guc_engine_fini_async);
- 	queue_work(system_wq, &e->guc->fini_async);
+ 	for_each_hw_engine(hwe, gt, id) {
+ 		struct xe_engine *e, *nop_e;
+-		struct xe_vm *vm;
+ 		void *default_lrc;
  
--	/* We must block on kernel engines so slabs are empty on driver unload */
--	if (kernel) {
-+	/* We must block on permanent kernel engines so slabs are empty on driver unload */
-+	if (permanent) {
- 		struct xe_guc_engine *ge = e->guc;
+ 		if (gt->default_lrc[hwe->class])
+@@ -190,14 +184,13 @@ int xe_gt_record_default_lrcs(struct xe_gt *gt)
+ 		if (!default_lrc)
+ 			return -ENOMEM;
  
- 		flush_work(&ge->fini_async);
-@@ -983,7 +983,7 @@ static void __guc_engine_process_msg_cleanup(struct drm_sched_msg *msg)
- 	struct xe_engine *e = msg->private_data;
- 	struct xe_guc *guc = engine_to_guc(e);
+-		vm = xe_migrate_get_vm(tile->migrate);
+-		e = xe_engine_create(xe, vm, BIT(hwe->logical_instance), 1,
+-				     hwe, ENGINE_FLAG_WA);
++		e = xe_engine_create(xe, NULL, BIT(hwe->logical_instance), 1,
++				     hwe, ENGINE_FLAG_KERNEL);
+ 		if (IS_ERR(e)) {
+ 			err = PTR_ERR(e);
+ 			xe_gt_err(gt, "hwe %s: xe_engine_create failed (%pe)\n",
+ 				  hwe->name, e);
+-			goto put_vm;
++			return err;
+ 		}
  
--	XE_BUG_ON(e->flags & ENGINE_FLAG_KERNEL);
-+	XE_BUG_ON(e->flags & ENGINE_FLAG_PERMANENT);
- 	trace_xe_engine_cleanup_entity(e);
+ 		/* Prime golden LRC with known good state */
+@@ -208,8 +201,8 @@ int xe_gt_record_default_lrcs(struct xe_gt *gt)
+ 			goto put_engine;
+ 		}
  
- 	if (engine_registered(e))
-@@ -1218,7 +1218,7 @@ static void guc_engine_fini(struct xe_engine *e)
- {
- 	struct drm_sched_msg *msg = e->guc->static_msgs + STATIC_MSG_CLEANUP;
- 
--	if (!(e->flags & ENGINE_FLAG_KERNEL))
-+	if (!(e->flags & ENGINE_FLAG_PERMANENT))
- 		guc_engine_add_msg(e, msg, CLEANUP);
- 	else
- 		__guc_engine_fini(engine_to_guc(e), e);
-diff --git a/drivers/gpu/drm/xe/xe_migrate.c b/drivers/gpu/drm/xe/xe_migrate.c
-index aad76a6a8094..efaf35cd8963 100644
---- a/drivers/gpu/drm/xe/xe_migrate.c
-+++ b/drivers/gpu/drm/xe/xe_migrate.c
-@@ -343,11 +343,11 @@ struct xe_migrate *xe_migrate_init(struct xe_tile *tile)
- 
- 		m->eng = xe_engine_create(xe, vm,
- 					  BIT(hwe->logical_instance), 1,
--					  hwe, ENGINE_FLAG_KERNEL);
-+					  hwe, ENGINE_FLAG_KERNEL | ENGINE_FLAG_PERMANENT);
- 	} else {
- 		m->eng = xe_engine_create_class(xe, primary_gt, vm,
- 						XE_ENGINE_CLASS_COPY,
--						ENGINE_FLAG_KERNEL);
-+						ENGINE_FLAG_KERNEL | ENGINE_FLAG_PERMANENT);
+-		nop_e = xe_engine_create(xe, vm, BIT(hwe->logical_instance),
+-					 1, hwe, ENGINE_FLAG_WA);
++		nop_e = xe_engine_create(xe, NULL, BIT(hwe->logical_instance),
++					 1, hwe, ENGINE_FLAG_KERNEL);
+ 		if (IS_ERR(nop_e)) {
+ 			err = PTR_ERR(nop_e);
+ 			xe_gt_err(gt, "hwe %s: nop xe_engine_create failed (%pe)\n",
+@@ -243,8 +236,6 @@ int xe_gt_record_default_lrcs(struct xe_gt *gt)
+ 		xe_engine_put(nop_e);
+ put_engine:
+ 		xe_engine_put(e);
+-put_vm:
+-		xe_vm_put(vm);
+ 		if (err)
+ 			break;
  	}
- 	if (IS_ERR(m->eng)) {
- 		xe_vm_close_and_put(vm);
+diff --git a/drivers/gpu/drm/xe/xe_ring_ops.c b/drivers/gpu/drm/xe/xe_ring_ops.c
+index 8e21c19cb041..bc0fdd4ef188 100644
+--- a/drivers/gpu/drm/xe/xe_ring_ops.c
++++ b/drivers/gpu/drm/xe/xe_ring_ops.c
+@@ -202,7 +202,7 @@ static int emit_pipe_imm_ggtt(u32 addr, u32 value, bool stall_only, u32 *dw,
+ 
+ static u32 get_ppgtt_flag(struct xe_sched_job *job)
+ {
+-	return !(job->engine->flags & ENGINE_FLAG_WA) ? BIT(8) : 0;
++	return job->engine->vm ? BIT(8) : 0;
+ }
+ 
+ static void __emit_job_gen12_copy(struct xe_sched_job *job, struct xe_lrc *lrc,
+diff --git a/drivers/gpu/drm/xe/xe_sched_job.c b/drivers/gpu/drm/xe/xe_sched_job.c
+index e1af1f2a44c2..68f446e8c081 100644
+--- a/drivers/gpu/drm/xe/xe_sched_job.c
++++ b/drivers/gpu/drm/xe/xe_sched_job.c
+@@ -59,8 +59,7 @@ static struct xe_sched_job *job_alloc(bool parallel)
+ 
+ bool xe_sched_job_is_migration(struct xe_engine *e)
+ {
+-	return e->vm && (e->vm->flags & XE_VM_FLAG_MIGRATION) &&
+-		!(e->flags & ENGINE_FLAG_WA);
++	return e->vm && (e->vm->flags & XE_VM_FLAG_MIGRATION);
+ }
+ 
+ static void job_free(struct xe_sched_job *job)
+@@ -91,8 +90,7 @@ struct xe_sched_job *xe_sched_job_create(struct xe_engine *e,
+ 	XE_BUG_ON(!e->vm && !(e->flags & ENGINE_FLAG_KERNEL));
+ 
+ 	/* Migration and kernel engines have their own locking */
+-	if (!(e->flags & (ENGINE_FLAG_KERNEL | ENGINE_FLAG_VM |
+-			  ENGINE_FLAG_WA))) {
++	if (!(e->flags & (ENGINE_FLAG_KERNEL | ENGINE_FLAG_VM))) {
+ 		lockdep_assert_held(&e->vm->lock);
+ 		if (!xe_vm_no_dma_fences(e->vm))
+ 			xe_vm_assert_held(e->vm);
 -- 
 2.41.0
 
