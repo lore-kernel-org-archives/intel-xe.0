@@ -4,48 +4,50 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id B1808C001DE
-	for <intel-xe@archiver.kernel.org>; Fri, 28 Jul 2023 15:45:31 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7F891C001DF
+	for <intel-xe@archiver.kernel.org>; Fri, 28 Jul 2023 15:45:35 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 635158926F;
-	Fri, 28 Jul 2023 15:45:31 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4E36A10E724;
+	Fri, 28 Jul 2023 15:45:35 +0000 (UTC)
 Received: from mgamail.intel.com (mgamail.intel.com [134.134.136.24])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 31BEE88D18;
- Fri, 28 Jul 2023 15:45:29 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2AECF10E724;
+ Fri, 28 Jul 2023 15:45:34 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1690559129; x=1722095129;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=WiBMoGQQC4NhBoCp+ki275V6Cbp6pdJOqJCv6Im1MbM=;
- b=NGZ+3KlzIh3mjxy4GMcD+Dk/AlChoILmA1SRcd5RqEmbEg6d2r1FbuPG
- rwDwEa43Os+onCfQoODW5Y0F1ya8x0upK0hEuzlqNZPFw2lsqvXxKEh62
- elB4lQwdm2yicXTojwYzhuBQ3bJx2nchQ28XT2Wvxo9DZk82BB6x2qtE+
- 473WbF89FYsTLSLfkNExbqlQzRMDcTUHYcuhc9sqI3kTaIDj9wd1swSsV
- yAtXhd+p0oBlfFfQbiLUVLJXe0jWDCHEaiercdb6ncihjvdpCZRjlZmkn
- +iR4goWVxLzElBaofF8s/H766ezBQsBRefPrrZ8Jd8ECi3O2c0vS15Ay6 w==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10784"; a="371323324"
-X-IronPort-AV: E=Sophos;i="6.01,237,1684825200"; d="scan'208";a="371323324"
+ t=1690559134; x=1722095134;
+ h=from:to:cc:subject:date:message-id:in-reply-to:
+ references:mime-version:content-transfer-encoding;
+ bh=C6julir46vLWT1EqiSA60X1VgzepuKjpvOpc4UuLp2Q=;
+ b=XLyPqrvjx6vDB4BJi0BkpZPlR5vhYevY8hWRPxa7lYrQJr8g2WoV0UFd
+ 0Wog5V1yWfQzZQ50ybH0JUHMlVZA3O6JcsofBCdehFO/gcd1X7KXqYG3Q
+ Ke4eJdcnMCC2k8JG2QE1ScAfOrioNvKkKnyfyIebUXRo0m/Z2mDMBYv6t
+ 2kVT6mU3SoEho2SMzLCzkwqfaKKqj+KXi2Tm0+bZz33iMHO/QBEQbTnQk
+ NoRndbJkkDGTv7l8QxDer+wa/eElQ0J1ABootGzPD355q84qbcERQYSp1
+ BZRXbdfkXuE+U039ZkR7I/K26iNuFVRSKZJ3N9UcrnjrHZl6J5OV3NOJa Q==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10784"; a="371323401"
+X-IronPort-AV: E=Sophos;i="6.01,237,1684825200"; d="scan'208";a="371323401"
 Received: from fmsmga003.fm.intel.com ([10.253.24.29])
  by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 28 Jul 2023 08:45:28 -0700
+ 28 Jul 2023 08:45:33 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10784"; a="817557438"
-X-IronPort-AV: E=Sophos;i="6.01,237,1684825200"; d="scan'208";a="817557438"
+X-IronPort-AV: E=McAfee;i="6600,9927,10784"; a="817557442"
+X-IronPort-AV: E=Sophos;i="6.01,237,1684825200"; d="scan'208";a="817557442"
 Received: from jkrzyszt-mobl2.ger.corp.intel.com (HELO jkrzyszt-mobl2.lan)
  ([10.213.24.93])
  by fmsmga003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 28 Jul 2023 08:45:26 -0700
+ 28 Jul 2023 08:45:31 -0700
 From: Janusz Krzysztofik <janusz.krzysztofik@linux.intel.com>
 To: Brendan Higgins <brendan.higgins@linux.dev>,
  David Gow <davidgow@google.com>
-Date: Fri, 28 Jul 2023 17:44:20 +0200
-Message-ID: <20230728154419.1810177-5-janusz.krzysztofik@linux.intel.com>
+Date: Fri, 28 Jul 2023 17:44:22 +0200
+Message-ID: <20230728154419.1810177-7-janusz.krzysztofik@linux.intel.com>
 X-Mailer: git-send-email 2.41.0
+In-Reply-To: <20230728154419.1810177-5-janusz.krzysztofik@linux.intel.com>
+References: <20230728154419.1810177-5-janusz.krzysztofik@linux.intel.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-xe] [PATCH 0/3] kunit: Expose some built-in features to
- modules
+Subject: [Intel-xe] [PATCH 2/3] kunit: Make 'list' action available to kunit
+ test modules
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -63,33 +65,151 @@ Cc: linux-kernel@vger.kernel.org, igt-dev@lists.freedesktop.org,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Submit the top-level headers also from the kunit test module notifier
-initialization callback, so external tools that are parsing dmesg for
-kunit test output are able to tell how many test suites should be expected
-and whether to continue parsing after complete output from the first test
-suite is collected.
+Results from kunit tests reported via dmesg may be interleaved with other
+kernel messages.  When parsing dmesg for modular kunit results in real
+time, external tools, e.g., Intel GPU tools (IGT), may want to insert
+their own test name markers into dmesg at the start of each test, before
+any kernel message related to that test appears there, so existing upper
+level test result parsers have no doubt which test to blame for a specific
+kernel message.  Unfortunately, kunit reports names of tests only at their
+completion (with the exeption of a not standarized "# Subtest: <name>"
+header above a test plan of each test suite or parametrized test).
+
+External tools could be able to insert their own "start of the test"
+markers with test names included if they new those names in advance.
+Test names could be learned from a list if provided by a kunit test
+module.
+
+There exists a feature of listing kunit tests without actually executing
+them, but it is now limited to configurations with the kunit module built
+in and covers only built-in tests, already available at boot time.
+Moreover, switching from list to normal mode requires reboot.  If that
+feature was also available when kunit is built as a module, userspace
+could load the module with action=list parameter, load some kunit test
+modules they are interested in and learn about the list of tests provided
+by those modules, then unload them, reload the kunit module in normal mode
+and execute the tests with their lists already known.
 
 Extend kunit module notifier initialization callback with a processing
 path for only listing the tests provided by a module if the kunit action
-parameter is set to "list", so external tools can obtain a list of test
-cases to be executed in advance and can make a better job on assigning
-kernel messages interleaved with kunit output to specific tests.
+parameter is set to "list".  For ease of use, submit the list in the
+format of a standard KTAP report, with SKIP result from each test case,
+giving "list mode" as the reason for skipping.  For each test suite
+provided by a kunit test module, make such list of its test cases also
+available via kunit debugfs for the lifetime of the module.  For user
+convenience, make the kunit.action parameter visible in sysfs.
 
-Use test filtering functions in kunit module notifier callback functions,
-so external tools are able to execute individual test cases from kunit
-test modules in order to still better isolate their potential impact on
-kernel messages that appear interleaved with output from other tests.
+Signed-off-by: Janusz Krzysztofik <janusz.krzysztofik@linux.intel.com>
+---
+ include/kunit/test.h |  1 +
+ lib/kunit/executor.c | 19 +++++++++++++------
+ lib/kunit/test.c     | 30 +++++++++++++++++++++++++++++-
+ 3 files changed, 43 insertions(+), 7 deletions(-)
 
-Janusz Krzysztofik (3):
-  kunit: Report the count of test suites in a module
-  kunit: Make 'list' action available to kunit test modules
-  kunit: Allow kunit test modules to use test filtering
-
- include/kunit/test.h | 14 +++++++++++
- lib/kunit/executor.c | 51 ++++++++++++++++++++++-----------------
- lib/kunit/test.c     | 57 +++++++++++++++++++++++++++++++++++++++++++-
- 3 files changed, 99 insertions(+), 23 deletions(-)
-
+diff --git a/include/kunit/test.h b/include/kunit/test.h
+index 23120d50499ef..6d693f21a4833 100644
+--- a/include/kunit/test.h
++++ b/include/kunit/test.h
+@@ -237,6 +237,7 @@ static inline void kunit_set_failure(struct kunit *test)
+ }
+ 
+ bool kunit_enabled(void);
++const char *kunit_action(void);
+ 
+ void kunit_init_test(struct kunit *test, const char *name, char *log);
+ 
+diff --git a/lib/kunit/executor.c b/lib/kunit/executor.c
+index 74982b83707ca..d1c0616569dfd 100644
+--- a/lib/kunit/executor.c
++++ b/lib/kunit/executor.c
+@@ -12,19 +12,26 @@
+ extern struct kunit_suite * const __kunit_suites_start[];
+ extern struct kunit_suite * const __kunit_suites_end[];
+ 
++static char *action_param;
++
++module_param_named(action, action_param, charp, 0400);
++MODULE_PARM_DESC(action,
++		 "Changes KUnit executor behavior, valid values are:\n"
++		 "<none>: run the tests like normal\n"
++		 "'list' to list test names instead of running them.\n");
++
++const char *kunit_action(void)
++{
++	return action_param;
++}
++
+ #if IS_BUILTIN(CONFIG_KUNIT)
+ 
+ static char *filter_glob_param;
+-static char *action_param;
+ 
+ module_param_named(filter_glob, filter_glob_param, charp, 0);
+ MODULE_PARM_DESC(filter_glob,
+ 		"Filter which KUnit test suites/tests run at boot-time, e.g. list* or list*.*del_test");
+-module_param_named(action, action_param, charp, 0);
+-MODULE_PARM_DESC(action,
+-		 "Changes KUnit executor behavior, valid values are:\n"
+-		 "<none>: run the tests like normal\n"
+-		 "'list' to list test names instead of running them.\n");
+ 
+ /* glob_match() needs NULL terminated strings, so we need a copy of filter_glob_param. */
+ struct kunit_test_filter {
+diff --git a/lib/kunit/test.c b/lib/kunit/test.c
+index a29ca1acc4d81..413d9fd364a8d 100644
+--- a/lib/kunit/test.c
++++ b/lib/kunit/test.c
+@@ -674,6 +674,27 @@ int kunit_run_tests(struct kunit_suite *suite)
+ }
+ EXPORT_SYMBOL_GPL(kunit_run_tests);
+ 
++static void kunit_list_suite(struct kunit_suite *suite)
++{
++	struct kunit_case *test_case;
++
++	kunit_print_suite_start(suite);
++
++	kunit_suite_for_each_test_case(suite, test_case) {
++		struct kunit test = { .param_value = NULL, .param_index = 0 };
++
++		kunit_init_test(&test, test_case->name, test_case->log);
++
++		kunit_print_ok_not_ok(&test, true, KUNIT_SKIPPED,
++				      kunit_test_case_num(suite, test_case),
++				      test_case->name, "list mode");
++	}
++
++	kunit_print_ok_not_ok((void *)suite, false, KUNIT_SKIPPED,
++			      kunit_suite_counter++,
++			      suite->name, "list mode");
++}
++
+ static void kunit_init_suite(struct kunit_suite *suite)
+ {
+ 	kunit_debugfs_create_suite(suite);
+@@ -688,6 +709,7 @@ bool kunit_enabled(void)
+ 
+ int __kunit_test_suites_init(struct kunit_suite * const * const suites, int num_suites)
+ {
++	const char *action = kunit_action();
+ 	unsigned int i;
+ 
+ 	if (!kunit_enabled() && num_suites > 0) {
+@@ -699,7 +721,13 @@ int __kunit_test_suites_init(struct kunit_suite * const * const suites, int num_
+ 
+ 	for (i = 0; i < num_suites; i++) {
+ 		kunit_init_suite(suites[i]);
+-		kunit_run_tests(suites[i]);
++
++		if (!action)
++			kunit_run_tests(suites[i]);
++		else if (!strcmp(action, "list"))
++			kunit_list_suite(suites[i]);
++		else
++			pr_err("kunit: unknown action '%s'\n", action);
+ 	}
+ 
+ 	static_branch_dec(&kunit_running);
 -- 
 2.41.0
 
