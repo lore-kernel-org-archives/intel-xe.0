@@ -4,30 +4,30 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id E9C01C001DC
-	for <intel-xe@archiver.kernel.org>; Sat, 29 Jul 2023 04:48:14 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8C433C001DC
+	for <intel-xe@archiver.kernel.org>; Sat, 29 Jul 2023 04:50:07 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7A89210E0C8;
-	Sat, 29 Jul 2023 04:48:14 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9D79B10E09F;
+	Sat, 29 Jul 2023 04:50:04 +0000 (UTC)
 Received: from emeril.freedesktop.org (emeril.freedesktop.org
  [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id 01B3810E0C8;
- Sat, 29 Jul 2023 04:48:13 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTP id 83AC210E09F;
+ Sat, 29 Jul 2023 04:50:01 +0000 (UTC)
 Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id ED374AADF2;
- Sat, 29 Jul 2023 04:48:12 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============3582075533107168383=="
+ by emeril.freedesktop.org (Postfix) with ESMTP id 7B5EEAADF2;
+ Sat, 29 Jul 2023 04:50:01 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Paulo Zanoni" <paulo.r.zanoni@intel.com>
-Date: Sat, 29 Jul 2023 04:48:12 -0000
-Message-ID: <169060609293.15694.4404494761577857264@emeril.freedesktop.org>
+To: "Matthew Brost" <matthew.brost@intel.com>
+Date: Sat, 29 Jul 2023 04:50:01 -0000
+Message-ID: <169060620148.15697.16129511665585659327@emeril.freedesktop.org>
 X-Patchwork-Hint: ignore
-References: <20230729033059.2120121-1-paulo.r.zanoni@intel.com>
-In-Reply-To: <20230729033059.2120121-1-paulo.r.zanoni@intel.com>
-Subject: [Intel-xe] =?utf-8?q?=E2=97=8B_CI=2EBAT=3A_info_for_drm/xe=3A_do?=
- =?utf-8?q?n=27t_skip_rebinds_if_there=27s_a_NULL_binding_involved?=
+References: <20230729040211.36143-1-matthew.brost@intel.com>
+In-Reply-To: <20230729040211.36143-1-matthew.brost@intel.com>
+Subject: [Intel-xe] =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_f?=
+ =?utf-8?q?or_drm/xe=3A_remove_header_variable_from_parse=5Fg2h=5Fmsg?=
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -44,65 +44,17 @@ Cc: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============3582075533107168383==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
 == Series Details ==
 
-Series: drm/xe: don't skip rebinds if there's a NULL binding involved
-URL   : https://patchwork.freedesktop.org/series/121564/
-State : info
+Series: drm/xe: remove header variable from parse_g2h_msg
+URL   : https://patchwork.freedesktop.org/series/121565/
+State : success
 
 == Summary ==
 
-Participating hosts:
-bat-pvc-2
-bat-atsm-2
-bat-dg2-oem2
-bat-adlp-7
-Missing hosts results[0]:
-Results: [xe-pw-121564v1](https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-121564v1/index.html)
+=== Applying kernel patches on branch 'drm-xe-next' with base: ===
+Base commit: bec0c6a53 drm/xe: Add define WQ_HEADER_SIZE
+=== git am output follows ===
+Applying: drm/xe: remove header variable from parse_g2h_msg
 
 
-
---===============3582075533107168383==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/xe: don&#39;t skip rebinds if there&#39;s a NULL binding involved</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/121564/">https://patchwork.freedesktop.org/series/121564/</a></td></tr>
-<tr><td><b>State:</b></td><td>info</td></tr>
-
-</table>
-
-
-    <p>Participating hosts:<br />
-bat-pvc-2<br />
-bat-atsm-2<br />
-bat-dg2-oem2<br />
-bat-adlp-7<br />
-Missing hosts results[0]:<br />
-Results: <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-121564v1/index.html">xe-pw-121564v1</a></p>
-
-</body>
-</html>
-
---===============3582075533107168383==--
