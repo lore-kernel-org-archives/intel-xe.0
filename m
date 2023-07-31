@@ -4,52 +4,45 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 044F5C001DC
-	for <intel-xe@archiver.kernel.org>; Mon, 31 Jul 2023 12:07:57 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0FDEBC001E0
+	for <intel-xe@archiver.kernel.org>; Mon, 31 Jul 2023 13:06:52 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id CB0E388D18;
-	Mon, 31 Jul 2023 12:07:56 +0000 (UTC)
-Received: from mgamail.intel.com (unknown [192.55.52.43])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 32F9F88D18;
- Mon, 31 Jul 2023 12:07:55 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D0EE410E2A2;
+	Mon, 31 Jul 2023 13:06:51 +0000 (UTC)
+Received: from mgamail.intel.com (unknown [192.55.52.88])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 23A1410E2A2
+ for <intel-xe@lists.freedesktop.org>; Mon, 31 Jul 2023 13:06:50 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1690805275; x=1722341275;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=gTwSW5Pi476YcxNfncRebsXRrqRzP0HUL96D8nDTvMw=;
- b=SPNSoy4XGadNl2dhVquzBqmy75S1LFJAXeJKrLfcs06TP1+iuimqP2+f
- HST5rF1M6eznCRVuReAZ04wmUleFSBKSHSQkbgzbQDE/o9y8R5Ne5Z1bH
- zZQyVg60XRe98gofIbnoQjTygqwKBjqWMXI8A2BaUM6JeqCMLaM89E+/m
- s2COu3BNxV/xK9JtVIWImViVv9beJJYn0zA16BkViZloZoqsle/VoUQIp
- EcfLJzsqYFPMX7FCIVPSWUzj6/6Bhe7RmsA9tFPpff/v9Ppo8UKplLwAA
- GaOV7UhczFOAsPOeZgr6bKRtPChR0wPtLbP3tRoeURsj63pXHgr2rYZi/ g==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10787"; a="455375341"
-X-IronPort-AV: E=Sophos;i="6.01,244,1684825200"; d="scan'208";a="455375341"
-Received: from fmsmga004.fm.intel.com ([10.253.24.48])
- by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 31 Jul 2023 05:07:54 -0700
+ t=1690808810; x=1722344810;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=t4pYkZ2rTZUy3yotYmjMYDl1RTzunXl+5LfGNc9v/o8=;
+ b=CcD6tONzDOUZVFOvDIkkAZKkfaQ2THqTfGj4I2v8R60a/KuFkE0fLHCj
+ Qme/fom1dCI0atO4QVRvTVB9HqYSU4HqXUeYR5ypUAVt4XxFiOgAAwZKn
+ CkUbYn3xmHaLwLup799XKPxS8cECXtpkE0kYOCOe9YGkFeorezl4l+Y65
+ etCi9jA43hp1mpOYIxyuAcQK1sEHy67nGIOYRGZo+Q99+BoKpJ5uL9oml
+ TJ/p8G4mo9pvYbvCSxy9lCHENVHWxvV4Zzt7Iuedpw65aulXS8U+8GA1r
+ 8Z+pUXdajImRQ/vfm0yu5EqyNHRSVV4Dr+2+K23eMTVmS41kU1aBM6qYT A==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10788"; a="399960905"
+X-IronPort-AV: E=Sophos;i="6.01,244,1684825200"; d="scan'208";a="399960905"
+Received: from orsmga001.jf.intel.com ([10.7.209.18])
+ by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 31 Jul 2023 06:06:49 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10787"; a="798223224"
-X-IronPort-AV: E=Sophos;i="6.01,244,1684825200"; d="scan'208";a="798223224"
-Received: from jkrzyszt-mobl2.ger.corp.intel.com ([10.213.1.128])
- by fmsmga004-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 31 Jul 2023 05:07:51 -0700
-From: Janusz Krzysztofik <janusz.krzysztofik@linux.intel.com>
-To: Brendan Higgins <brendan.higgins@linux.dev>,
- David Gow <davidgow@google.com>, kernel test robot <lkp@intel.com>
-Date: Mon, 31 Jul 2023 14:07:49 +0200
-Message-ID: <1971193.8hb0ThOEGa@jkrzyszt-mobl2.ger.corp.intel.com>
-Organization: Intel Technology Poland sp. z o.o. - ul. Slowackiego 173,
- 80-298 Gdansk - KRS 101882 - NIP 957-07-52-316
-In-Reply-To: <202307311645.CdN0xKiF-lkp@intel.com>
-References: <20230731054552.2145292-8-janusz.krzysztofik@linux.intel.com>
- <202307311645.CdN0xKiF-lkp@intel.com>
+X-IronPort-AV: E=McAfee;i="6600,9927,10788"; a="763379396"
+X-IronPort-AV: E=Sophos;i="6.01,244,1684825200"; d="scan'208";a="763379396"
+Received: from tejas-super-server.iind.intel.com ([10.145.169.166])
+ by orsmga001.jf.intel.com with ESMTP; 31 Jul 2023 06:06:45 -0700
+From: Tejas Upadhyay <tejas.upadhyay@intel.com>
+To: intel-xe@lists.freedesktop.org
+Date: Mon, 31 Jul 2023 18:43:31 +0530
+Message-Id: <20230731131337.1100068-1-tejas.upadhyay@intel.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7Bit
-Content-Type: text/plain; charset="us-ascii"
-Subject: Re: [Intel-xe] [PATCH v2 3/3] kunit: Allow kunit test modules to
- use test filtering
+Content-Transfer-Encoding: 8bit
+Subject: [Intel-xe] [PATCH V10 0/6] drm/xe: Add engine scheduler control
+ interface
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -61,22 +54,91 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Cc: kunit-dev@googlegroups.com, llvm@lists.linux.dev,
- linux-kernel@vger.kernel.org, igt-dev@lists.freedesktop.org,
- linux-kselftest@vger.kernel.org, oe-kbuild-all@lists.linux.dev,
- intel-xe@lists.freedesktop.org, linux-media@vger.kernel.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Monday, 31 July 2023 10:39:03 CEST kernel test robot wrote:
-> >> ERROR: modpost: "glob_match" [lib/kunit/kunit.ko] undefined!
+Patch series introduces this in several patches,
+1. Add basic directory engine class under its GT, as below
+   DUT# cat /sys/class/drm/cardX/device/tileN/gtN/engines/
+   ccs/ bcs/
+2. Add default entries with its value for user to go back
+   to default
+3,4,5 : Add individual engine properties sysfs entry
+6: Introduce min/max to control in what range these properties
+   can be set for elevated and non-elevated users.
 
-Caused by CONFIG_GLOB possibly not selected when building kunit as a module  
-(it was selected via another, unrelated setting in my test .config).
+VLK-46764, VLK-46767
 
-Please expect v3 with that fixed.
+V10:
+   - Add kernel doc for non static APIs - Matt
+   - Add helper for getting min-max range - Matt
+   - Filter min/max based on user type
+V9 :
+   - Rebase to use s/xe_engine/xe_hw_engine/ - Matt
+   - Remove init_done from class_intf instead check member
+     is initialized - Matt
+V8 :
+   - Modify enforce_sched_limit logic - Niranjana
+   - make sure min < max - Niranjana
+   - Push all errors to common err path - Niranjana
+V7 :
+   - access engine class interface inplace of hw engine - Niranjana
+   - Use some API to lower down duplication of code
+   - Return EINVAL in place of EPERM
+V6 :
+   - Scheduling props should apply per class engine not per hardware engine - Matt
+   - Do not record value of job_timeout_ms if changed based on dma_fence - Matt
+   - Removed timeout validation check as range validation covers it
+   - Rebase all the patches based on above changes
+V5 :
+   - Rebase to resolve conflicts - CI
+V4 :
+    - Rebase the series
+    - Add CONFIG option to enable/disable min/max limitation on
+      elevated user - Matt/Joonas
+    - Movement of engine related code to its own file
+V3 :
+    - Improve class_mask logic
+V2 :
+    - Rebase to solve conflicts
+    - Use sysfs_create_files in this patch - Niranjana
+    - Handle prototype error for xe_add_engine_defaults - CI hooks
+    - Remove unused member sysfs_hwe - Niranjana
+    - Restric min/max setting to #define default min/max for
+         elevated user - Himal
+    - Remove some unrelated changes from patch - Niranjana
 
-Thanks,
-Janusz
+Testcase: https://gitlab.freedesktop.org/drm/igt-gpu-tools/-/commit/94ccbe7cdf8651d5b76588102eca545cb74caad8
+Testcase: https://gitlab.freedesktop.org/drm/igt-gpu-tools/-/commit/0753ddf646df691cd1d2219192ce3a629f3e7e3f
+Updated Testcase: https://patchwork.freedesktop.org/series/121046/
+Tested-by: Priyanka Dandamudi <priyanka.dandamudi@intel.com>
+Signed-off-by: Tejas Upadhyay <tejas.upadhyay@intel.com>
 
+Tejas Upadhyay (6):
+  drm/xe: Add sysfs entries for engines under its GT
+  drm/xe: Add sysfs for default engine scheduler properties
+  drm/xe: Add job timeout engine property to sysfs
+  drm/xe: Add timeslice duration engine property to sysfs
+  drm/xe: Add sysfs for preempt reset timeout
+  drm/xe: Add min/max cap for engine scheduler properties
+
+ drivers/gpu/drm/xe/Kconfig                    |   6 +
+ drivers/gpu/drm/xe/Kconfig.profile            |  46 ++
+ drivers/gpu/drm/xe/Makefile                   |   1 +
+ drivers/gpu/drm/xe/xe_engine.c                |  34 +-
+ drivers/gpu/drm/xe/xe_gt.c                    |   7 +
+ drivers/gpu/drm/xe/xe_gt_types.h              |   3 +
+ drivers/gpu/drm/xe/xe_guc_submit.c            |   3 +-
+ drivers/gpu/drm/xe/xe_hw_engine.c             |  17 +
+ drivers/gpu/drm/xe/xe_hw_engine.h             |  31 +
+ drivers/gpu/drm/xe/xe_hw_engine_class_sysfs.c | 698 ++++++++++++++++++
+ drivers/gpu/drm/xe/xe_hw_engine_class_sysfs.h |  36 +
+ drivers/gpu/drm/xe/xe_hw_engine_types.h       |  37 +
+ 12 files changed, 909 insertions(+), 10 deletions(-)
+ create mode 100644 drivers/gpu/drm/xe/Kconfig.profile
+ create mode 100644 drivers/gpu/drm/xe/xe_hw_engine_class_sysfs.c
+ create mode 100644 drivers/gpu/drm/xe/xe_hw_engine_class_sysfs.h
+
+-- 
+2.25.1
 
