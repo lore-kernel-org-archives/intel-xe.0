@@ -4,30 +4,30 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id C0DD7C001E0
-	for <intel-xe@archiver.kernel.org>; Mon, 31 Jul 2023 13:09:22 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2DE46C001DC
+	for <intel-xe@archiver.kernel.org>; Mon, 31 Jul 2023 13:09:41 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5219310E2A7;
-	Mon, 31 Jul 2023 13:09:22 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id F0D8710E2A8;
+	Mon, 31 Jul 2023 13:09:40 +0000 (UTC)
 Received: from emeril.freedesktop.org (emeril.freedesktop.org
  [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id 63F4D10E2A5;
- Mon, 31 Jul 2023 13:09:20 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTP id 0F29610E2A8;
+ Mon, 31 Jul 2023 13:09:39 +0000 (UTC)
 Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 5C3C8A3ECB;
- Mon, 31 Jul 2023 13:09:20 +0000 (UTC)
+ by emeril.freedesktop.org (Postfix) with ESMTP id 0B84CA3ECB;
+ Mon, 31 Jul 2023 13:09:39 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: "Tejas Upadhyay" <tejas.upadhyay@intel.com>
-Date: Mon, 31 Jul 2023 13:09:20 -0000
-Message-ID: <169080896034.10565.11593931920962016488@emeril.freedesktop.org>
+Date: Mon, 31 Jul 2023 13:09:39 -0000
+Message-ID: <169080897904.10564.7919439483148874274@emeril.freedesktop.org>
 X-Patchwork-Hint: ignore
 References: <20230731131337.1100068-1-tejas.upadhyay@intel.com>
 In-Reply-To: <20230731131337.1100068-1-tejas.upadhyay@intel.com>
-Subject: [Intel-xe] =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_f?=
- =?utf-8?q?or_drm/xe=3A_Add_engine_scheduler_control_interface_=28rev10=29?=
+Subject: [Intel-xe] =?utf-8?q?=E2=9C=97_CI=2Echeckpatch=3A_warning_for_dr?=
+ =?utf-8?q?m/xe=3A_Add_engine_scheduler_control_interface_=28rev10=29?=
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -48,18 +48,114 @@ Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 Series: drm/xe: Add engine scheduler control interface (rev10)
 URL   : https://patchwork.freedesktop.org/series/119392/
-State : success
+State : warning
 
 == Summary ==
 
-=== Applying kernel patches on branch 'drm-xe-next' with base: ===
-Base commit: d74e8f840 drm/xe: Prefer WARN() over BUG() to avoid crashing the kernel
-=== git am output follows ===
-Applying: drm/xe: Add sysfs entries for engines under its GT
-Applying: drm/xe: Add sysfs for default engine scheduler properties
-Applying: drm/xe: Add job timeout engine property to sysfs
-Applying: drm/xe: Add timeslice duration engine property to sysfs
-Applying: drm/xe: Add sysfs for preempt reset timeout
-Applying: drm/xe: Add min/max cap for engine scheduler properties
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+c7d32770e3cd31d9fc134ce41f329b10aa33ee15
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit d27dc8f98ccbd8d1efd150945a90d74ed868d896
+Author: Tejas Upadhyay <tejas.upadhyay@intel.com>
+Date:   Mon Jul 31 18:43:37 2023 +0530
+
+    drm/xe: Add min/max cap for engine scheduler properties
+    
+    Add sysfs entries for the min, max, and defaults for each of
+    engine scheduler controls for every hardware engine class.
+    
+    Non-elevated user IOCTLs to set these controls must be within
+    the min-max ranges of the sysfs entries, elevated user can set
+    these controls to any value. However, introduced compile time
+    CONFIG min-max values which restricts elevated user to be in
+    compile time min-max range if at all sysfs min/max are violated.
+    
+    Sysfs entries examples are,
+    DUT# cat /sys/class/drm/cardX/device/tileN/gtN/engines/ccs/.defaults/
+    job_timeout_max         job_timeout_ms          preempt_timeout_min     timeslice_duration_max  timeslice_duration_us
+    job_timeout_min         preempt_timeout_max     preempt_timeout_us      timeslice_duration_min
+    
+    DUT# cat /sys/class/drm/card1/device/tileN/gtN/engines/ccs/
+    .defaults/              job_timeout_min         preempt_timeout_max     preempt_timeout_us      timeslice_duration_min
+    job_timeout_max         job_timeout_ms          preempt_timeout_min     timeslice_duration_max  timeslice_duration_us
+    
+    V10:
+       - Add kernel doc for non-static func
+       - Make helper to get min/max for range validation - Matt
+       - Filter min/max per user type
+    V9 :
+       - Rebase to use s/xe_engine/xe_hw_engine/ - Matt
+    V8 :
+       - fix enforce_sched_limit and avoid code duplication - Niranjana
+       - Make sure min < max - Niranjana
+    V7 :
+       - Rebase to replace hw engine with eclass interface
+       - return EINVAL in place of EPERM
+       - Use some APIs to avoid code duplication
+    V6 :
+       - Rebase changes to reflect per engine class props interface - MattB
+       - Use #if ENABLED - MattB
+       - Remove MAX_SCHED_TIMEOUT check as range validation is enough
+    V5 :
+       - Rebase to resolve conflicts - CI
+    V4 :
+       - Rebase
+       - Update commit to reflect tile addition
+       - Use XE_HW macro directly as they are already filtered
+         for CONFIG checks - Niranjana
+       - Add CONFIG for enable/disable min/max limitation
+         on elevated user. Default is enable - Matt/Joonas
+    V3 :
+       - Resolve CI hooks warning for kernel-doc
+    V2 :
+       - Restric min/max setting to #define default min/max for
+         elevated user - Himal
+       - Remove unrelated changes from patch - Niranjana
+    
+    Signed-off-by: Tejas Upadhyay <tejas.upadhyay@intel.com>
++ /mt/dim checkpatch d74e8f8407bc922b04ba50e8f4e888bedb31330a drm-intel
+18b177ce9 drm/xe: Add sysfs entries for engines under its GT
+Traceback (most recent call last):
+  File "scripts/spdxcheck.py", line 6, in <module>
+    from ply import lex, yacc
+ModuleNotFoundError: No module named 'ply'
+Traceback (most recent call last):
+  File "scripts/spdxcheck.py", line 6, in <module>
+    from ply import lex, yacc
+ModuleNotFoundError: No module named 'ply'
+-:67: WARNING:FILE_PATH_CHANGES: added, moved or deleted file(s), does MAINTAINERS need updating?
+#67: 
+new file mode 100644
+
+total: 0 errors, 1 warnings, 0 checks, 160 lines checked
+d59e60d9d drm/xe: Add sysfs for default engine scheduler properties
+-:35: WARNING:COMMIT_LOG_LONG_LINE: Possible unwrapped commit description (prefer a maximum 75 chars per line)
+#35: 
+   - Scheduling props should apply per class engine not per hardware engine - Matt
+
+total: 0 errors, 1 warnings, 0 checks, 273 lines checked
+759d61fe2 drm/xe: Add job timeout engine property to sysfs
+39ef5bc62 drm/xe: Add timeslice duration engine property to sysfs
+d7be6e26c drm/xe: Add sysfs for preempt reset timeout
+d27dc8f98 drm/xe: Add min/max cap for engine scheduler properties
+-:17: WARNING:COMMIT_LOG_LONG_LINE: Possible unwrapped commit description (prefer a maximum 75 chars per line)
+#17: 
+job_timeout_max         job_timeout_ms          preempt_timeout_min     timeslice_duration_max  timeslice_duration_us
+
+-:71: WARNING:EMBEDDED_FILENAME: It's generally not useful to have the filename in the file
+#71: FILE: drivers/gpu/drm/xe/Kconfig:90:
++	source "drivers/gpu/drm/xe/Kconfig.profile"
+
+-:74: WARNING:FILE_PATH_CHANGES: added, moved or deleted file(s), does MAINTAINERS need updating?
+#74: 
+new file mode 100644
+
+total: 0 errors, 3 warnings, 0 checks, 654 lines checked
 
 
