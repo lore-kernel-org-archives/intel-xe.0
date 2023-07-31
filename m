@@ -4,47 +4,47 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id D0EA6C001DF
-	for <intel-xe@archiver.kernel.org>; Mon, 31 Jul 2023 13:06:58 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3E13DC001DC
+	for <intel-xe@archiver.kernel.org>; Mon, 31 Jul 2023 13:07:02 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A586810E2A8;
-	Mon, 31 Jul 2023 13:06:58 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 17A8110E2A7;
+	Mon, 31 Jul 2023 13:07:02 +0000 (UTC)
 Received: from mgamail.intel.com (unknown [192.55.52.88])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 250FB10E2A7
- for <intel-xe@lists.freedesktop.org>; Mon, 31 Jul 2023 13:06:57 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A72FD10E2A9
+ for <intel-xe@lists.freedesktop.org>; Mon, 31 Jul 2023 13:06:58 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1690808817; x=1722344817;
+ t=1690808818; x=1722344818;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=CVKvSducASDGyRvpS3ZNc+sL18dNL/IsP56GwDeP7yk=;
- b=SbO945AMTDd61raZ97+s0xwP405Gir7QdVUUHiGHQH70dBYs0viddDgu
- +/h+oUSLyWfDhaeiUE8/oh3863FajTodn/eV6ofzo9ew0lsHDek7J8I3a
- R/GwaUlzv0x2hece9Vc6/HkC2ncTSrARXqXrm4JPWGCQYuBS6/qMYGChs
- I+EZdLn+mW2uy+knvMMgaowYQTd6UWPuQea4eGVbDQpLKjmvJP+JRbSEg
- DYMDDFjd6A0ZvL71zLw3Q8r7eOfG8p/+eJqUe4U0i90oweDsjhYeGDi14
- u4CRmh32CqUSSAeQqgUU/JaitfAkrZrYFrcRQ72IfL6lCU8rCWqs1K85U w==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10788"; a="399960985"
-X-IronPort-AV: E=Sophos;i="6.01,244,1684825200"; d="scan'208";a="399960985"
+ bh=qX/anluECO1p4aIOK1/QJaOiX6mjAZbd1WcEMR7o5Gs=;
+ b=HRsHL1BwyAWx4P8FA6AggLB8J94h+jZc4kV7XA3Y6nQwLpaYY8bMorPe
+ uY/UTbfPjjGr2GpPTurT5vfOivYsLCHaeKUu0dG4Y6CZzJYvrhBsvcW8G
+ +JjBL2VxN/PcVBRfwpqcoXjwIZcyZWxBr9WryScRxfGfBTEI4L+mCTacL
+ bEQejTrdB14YlRbLHbhCPeejOg9OVYfoSlQlx5ovRYsFGcyr06HZsn05H
+ 4zWofBPfxWf5NMn43PsRRbULSwxfRSbnVyxOKOVZq4L43BGsCpY763s5r
+ iXZMa1K2lYyCuwpV4hcqLU2k3MQ3cyX9QsHVBedRKHpZZKTwKczCpUSKr g==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10788"; a="399960991"
+X-IronPort-AV: E=Sophos;i="6.01,244,1684825200"; d="scan'208";a="399960991"
 Received: from orsmga001.jf.intel.com ([10.7.209.18])
  by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 31 Jul 2023 06:06:56 -0700
+ 31 Jul 2023 06:06:57 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10788"; a="763379532"
-X-IronPort-AV: E=Sophos;i="6.01,244,1684825200"; d="scan'208";a="763379532"
+X-IronPort-AV: E=McAfee;i="6600,9927,10788"; a="763379581"
+X-IronPort-AV: E=Sophos;i="6.01,244,1684825200"; d="scan'208";a="763379581"
 Received: from tejas-super-server.iind.intel.com ([10.145.169.166])
- by orsmga001.jf.intel.com with ESMTP; 31 Jul 2023 06:06:53 -0700
+ by orsmga001.jf.intel.com with ESMTP; 31 Jul 2023 06:06:55 -0700
 From: Tejas Upadhyay <tejas.upadhyay@intel.com>
 To: intel-xe@lists.freedesktop.org
-Date: Mon, 31 Jul 2023 18:43:34 +0530
-Message-Id: <20230731131337.1100068-4-tejas.upadhyay@intel.com>
+Date: Mon, 31 Jul 2023 18:43:35 +0530
+Message-Id: <20230731131337.1100068-5-tejas.upadhyay@intel.com>
 X-Mailer: git-send-email 2.25.1
 In-Reply-To: <20230731131337.1100068-1-tejas.upadhyay@intel.com>
 References: <20230731131337.1100068-1-tejas.upadhyay@intel.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-xe] [PATCH V10 3/6] drm/xe: Add job timeout engine property
- to sysfs
+Subject: [Intel-xe] [PATCH V10 4/6] drm/xe: Add timeslice duration engine
+ property to sysfs
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -59,96 +59,82 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-The time after which a job is removed from the scheduler.
-Add sysfs entry to provide user defined job timeout to
-scheduler.
+Timeslices between multiple context is supported via
+guc scheduling. Add sysfs entry to provide user defined
+timeslice duration to guc scheduling.
 
-The job timeout can be adjusted per-engine class using,
+The timeslice duration can be adjusted per-engine class using,
 
-/sys/class/drm/cardX/device/tileN/gtN/engines/ccs/job_timeout_ms
+/sys/class/drm/cardX/device/tileN/gtN/engines/ccs/timeslice_duration_us
 
 V7:
   - Rebase to use s/xe_engine/xe_hw_engine/ - Matt
 V6:
-  - Remove timeout validation, not relevant - Niranjana
-  - Rebase to use common error path
+  - Remove duration validation, not relevant - Niranjana
 V5:
-  - Rebase to use engine class interface instead of hw engine
+  - Rebase to replace hw engine with eclass interface
 V4:
   - Rebase to per class engine props interface
 V3:
   - Rebase
-  - Update commit message to reflect tile update
+  - Update commit messge to add tile
 V2:
-  - Use sysfs_create_files as part of this patch
+  - Rebase
 
 Reviewed-by: Matthew Brost <matthew.brost@intel.com>
 Signed-off-by: Tejas Upadhyay <tejas.upadhyay@intel.com>
 ---
- drivers/gpu/drm/xe/xe_hw_engine_class_sysfs.c | 36 +++++++++++++++++++
- 1 file changed, 36 insertions(+)
+ drivers/gpu/drm/xe/xe_hw_engine_class_sysfs.c | 30 +++++++++++++++++++
+ 1 file changed, 30 insertions(+)
 
 diff --git a/drivers/gpu/drm/xe/xe_hw_engine_class_sysfs.c b/drivers/gpu/drm/xe/xe_hw_engine_class_sysfs.c
-index 90be3bda4146..c8b226075938 100644
+index c8b226075938..99c8117f55ef 100644
 --- a/drivers/gpu/drm/xe/xe_hw_engine_class_sysfs.c
 +++ b/drivers/gpu/drm/xe/xe_hw_engine_class_sysfs.c
-@@ -40,6 +40,34 @@ kobj_xe_hw_engine_class(struct kobject *parent, char *name)
- 	return keclass;
- }
+@@ -79,6 +79,35 @@ static ssize_t job_timeout_default(struct kobject *kobj,
+ static struct kobj_attribute job_timeout_def =
+ __ATTR(job_timeout_ms, 0444, job_timeout_default, NULL);
  
-+static ssize_t job_timeout_store(struct kobject *kobj,
-+				 struct kobj_attribute *attr,
-+				 const char *buf, size_t count)
++static ssize_t timeslice_duration_store(struct kobject *kobj,
++					struct kobj_attribute *attr,
++					const char *buf, size_t count)
 +{
 +	struct xe_hw_engine_class_intf *eclass = kobj_to_eclass(kobj);
-+	u32 timeout;
++	u32 duration;
 +	int err;
 +
-+	err = kstrtou32(buf, 0, &timeout);
++	err = kstrtou32(buf, 0, &duration);
 +	if (err)
 +		return err;
 +
-+	WRITE_ONCE(eclass->sched_props.job_timeout_ms, timeout);
++	WRITE_ONCE(eclass->sched_props.timeslice_us, duration);
 +
 +	return count;
 +}
 +
-+static ssize_t job_timeout_show(struct kobject *kobj,
-+				struct kobj_attribute *attr, char *buf)
++static ssize_t timeslice_duration_show(struct kobject *kobj,
++				       struct kobj_attribute *attr, char *buf)
 +{
 +	struct xe_hw_engine_class_intf *eclass = kobj_to_eclass(kobj);
 +
-+	return sprintf(buf, "%u\n", eclass->sched_props.job_timeout_ms);
++	return sprintf(buf, "%u\n", eclass->sched_props.timeslice_us);
 +}
 +
-+static struct kobj_attribute job_timeout_attr =
-+__ATTR(job_timeout_ms, 0644, job_timeout_show, job_timeout_store);
++static struct kobj_attribute timeslice_duration_attr =
++	__ATTR(timeslice_duration_us, 0644, timeslice_duration_show,
++	       timeslice_duration_store);
 +
- static ssize_t job_timeout_default(struct kobject *kobj,
- 				   struct kobj_attribute *attr, char *buf)
+ static ssize_t timeslice_default(struct kobject *kobj,
+ 				 struct kobj_attribute *attr, char *buf)
  {
-@@ -81,6 +109,11 @@ static const struct attribute *defaults[] = {
+@@ -111,6 +140,7 @@ static const struct attribute *defaults[] = {
+ 
+ static const struct attribute *files[] = {
+ 	&job_timeout_attr.attr,
++	&timeslice_duration_attr.attr,
  	NULL
  };
  
-+static const struct attribute *files[] = {
-+	&job_timeout_attr.attr,
-+	NULL
-+};
-+
- static int xe_add_hw_engine_class_defaults(struct kobject *parent)
- {
- 	struct kobject *kobj;
-@@ -192,6 +225,9 @@ int xe_hw_engine_class_sysfs_init(struct xe_gt *gt)
- 			goto err_object;
- 		}
- 
-+		err = sysfs_create_files(&keclass->base, files);
-+		if (err)
-+			goto err_object;
- 	}
- 
- 	return err;
 -- 
 2.25.1
 
