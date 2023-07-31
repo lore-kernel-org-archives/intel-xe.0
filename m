@@ -4,48 +4,50 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0C18DC001DC
-	for <intel-xe@archiver.kernel.org>; Mon, 31 Jul 2023 06:16:47 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 50D5DC001DC
+	for <intel-xe@archiver.kernel.org>; Mon, 31 Jul 2023 06:16:51 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4268910E1A9;
-	Mon, 31 Jul 2023 06:16:47 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id F414A10E1AB;
+	Mon, 31 Jul 2023 06:16:50 +0000 (UTC)
 Received: from mgamail.intel.com (unknown [134.134.136.100])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E4A8D10E1A7;
- Mon, 31 Jul 2023 06:16:44 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id BAECE10E1AB;
+ Mon, 31 Jul 2023 06:16:48 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1690784204; x=1722320204;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=KRtFQ2+1X4QJ3GHF5S3ruCx9W9SpVuuAs5HerfEdF1I=;
- b=WwdeY4CvMcWrjVMsXrAyHdbnkCVKE2RYJ3J+T/Bkoiz9bu7wq+2XQkbn
- NfwSHnIAFXCiOKq/13HjLkVXzSlZZGyomPzSfO9T4NqsP0C2lVwyogV81
- wK+l19ZUuq5b6XriUA+J9MZw7hbe2+Gvcxardg8KfxltbjDq9lvncaJQc
- bnENp9+fSrO1igDYr07uYJUjWWOtV9cNa5OvXhNkZsnLp4CfNTO7Fo2wy
- kot08NwG4kQdn+a4j8UR6IVV2UC5j7W1MHZ6lcZDjONy/bzPSSuZ7dv0d
- UyliAPyMKx0435d4tZvlPQxnkBh6IDFO8w27vmq0E7Z53K7V/C0CHjCRs g==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10787"; a="435231334"
-X-IronPort-AV: E=Sophos;i="6.01,244,1684825200"; d="scan'208";a="435231334"
+ t=1690784208; x=1722320208;
+ h=from:to:cc:subject:date:message-id:in-reply-to:
+ references:mime-version:content-transfer-encoding;
+ bh=xfWKTT2Wn3/IWe//m/LpBpFN0F6nm+3nkhbl/ibfElU=;
+ b=bdgffTKaEHMPVam7NCZelkfhZDv6C8ODUlqRsQEa9etNsdVrOXEZ+HCO
+ APgHyC86AViCt9ZpPmGyld2olq4hyB0bHsNMtcSj5+IbKgjYhsmnB8TDG
+ nOLjlJJ51xnhg1a32G+cZIG1l7cZ/hL86RaekqpVPu05+ud+P3NprwuQS
+ ESfrvmwrnGWo90u1Ww3TAeZbbuai1a/RxKmEZ/l6kl0Rz86k0bQI/jsyc
+ iB01aiJWCNYphvwL3pvGwBXjVpv1EtQDEOgAUljXOcYF/EKlmkYdAz1Op
+ RHoQutsWIJPNgsc/49qjlRyuCdn1cjXcyE8fd/btAsAiAX8XidAF6mIOB A==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10787"; a="435231344"
+X-IronPort-AV: E=Sophos;i="6.01,244,1684825200"; d="scan'208";a="435231344"
 Received: from fmsmga005.fm.intel.com ([10.253.24.32])
  by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 30 Jul 2023 23:16:44 -0700
+ 30 Jul 2023 23:16:47 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10787"; a="1058827619"
-X-IronPort-AV: E=Sophos;i="6.01,244,1684825200"; d="scan'208";a="1058827619"
+X-IronPort-AV: E=McAfee;i="6600,9927,10787"; a="1058827669"
+X-IronPort-AV: E=Sophos;i="6.01,244,1684825200"; d="scan'208";a="1058827669"
 Received: from jkrzyszt-mobl2.ger.corp.intel.com (HELO
  jkrzyszt-mobl2.intranet) ([10.213.1.128])
  by fmsmga005-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 30 Jul 2023 23:16:41 -0700
+ 30 Jul 2023 23:16:44 -0700
 From: Janusz Krzysztofik <janusz.krzysztofik@linux.intel.com>
 To: Brendan Higgins <brendan.higgins@linux.dev>,
  David Gow <davidgow@google.com>
-Date: Mon, 31 Jul 2023 07:45:53 +0200
-Message-ID: <20230731054552.2145292-5-janusz.krzysztofik@linux.intel.com>
+Date: Mon, 31 Jul 2023 07:45:54 +0200
+Message-ID: <20230731054552.2145292-6-janusz.krzysztofik@linux.intel.com>
 X-Mailer: git-send-email 2.41.0
+In-Reply-To: <20230731054552.2145292-5-janusz.krzysztofik@linux.intel.com>
+References: <20230731054552.2145292-5-janusz.krzysztofik@linux.intel.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-xe] [PATCH v2 0/3] kunit: Expose some built-in features to
- modules
+Subject: [Intel-xe] [PATCH v2 1/3] kunit: Report the count of test suites in
+ a module
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -63,36 +65,46 @@ Cc: linux-kernel@vger.kernel.org, igt-dev@lists.freedesktop.org,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
+According to KTAP specification[1], results should always start from a
+header that provides a TAP protocol version, followed by a test plan with
+a count of items to be executed.  That pattern should be followed at each
+nesting level.  In the current implementation of the top-most, i.e., test
+suite level, those rules apply only for test suites built into the kernel,
+executed and reported on boot.  Results submitted to dmesg from kunit test
+modules loaded later are missing those top-level headers.
+
+As a consequence, if a kunit test module provides more than one test suite
+then, without the top level test plan, external tools that are parsing
+dmesg for kunit test output are not able to tell how many test suites
+should be expected and whether to continue parsing after complete output
+from the first test suite is collected.
+
 Submit the top-level headers also from the kunit test module notifier
-initialization callback, so external tools that are parsing dmesg for
-kunit test output are able to tell how many test suites should be expected
-and whether to continue parsing after complete output from the first test
-suite is collected.
+initialization callback.
 
-Extend kunit module notifier initialization callback with a processing
-path for only listing the tests provided by a module if the kunit action
-parameter is set to "list", so external tools can obtain a list of test
-cases to be executed in advance and can make a better job on assigning
-kernel messages interleaved with kunit output to specific tests.
+[1] https://docs.kernel.org/dev-tools/ktap.html#
 
-Use test filtering functions in kunit module notifier callback functions,
-so external tools are able to execute individual test cases from kunit
-test modules in order to still better isolate their potential impact on
-kernel messages that appear interleaved with output from other tests.
+Signed-off-by: Janusz Krzysztofik <janusz.krzysztofik@linux.intel.com>
+---
+ lib/kunit/test.c | 5 +++++
+ 1 file changed, 5 insertions(+)
 
-v2: Fix new name of a structure moved to kunit namespace not updated
-    across all uses.
-
-Janusz Krzysztofik (3):
-  kunit: Report the count of test suites in a module
-  kunit: Make 'list' action available to kunit test modules
-  kunit: Allow kunit test modules to use test filtering
-
- include/kunit/test.h | 14 +++++++++++
- lib/kunit/executor.c | 57 +++++++++++++++++++++++++-------------------
- lib/kunit/test.c     | 57 +++++++++++++++++++++++++++++++++++++++++++-
- 3 files changed, 103 insertions(+), 25 deletions(-)
-
+diff --git a/lib/kunit/test.c b/lib/kunit/test.c
+index 84e4666555c94..a29ca1acc4d81 100644
+--- a/lib/kunit/test.c
++++ b/lib/kunit/test.c
+@@ -729,6 +729,11 @@ EXPORT_SYMBOL_GPL(__kunit_test_suites_exit);
+ #ifdef CONFIG_MODULES
+ static void kunit_module_init(struct module *mod)
+ {
++	if (mod->num_kunit_suites > 0) {
++		pr_info("KTAP version 1\n");
++		pr_info("1..%d\n", mod->num_kunit_suites);
++	}
++
+ 	__kunit_test_suites_init(mod->kunit_suites, mod->num_kunit_suites);
+ }
+ 
 -- 
 2.41.0
 
