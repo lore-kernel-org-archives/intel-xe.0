@@ -4,31 +4,45 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 714E9C001E0
-	for <intel-xe@archiver.kernel.org>; Mon, 31 Jul 2023 18:59:20 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7E69FC00528
+	for <intel-xe@archiver.kernel.org>; Mon, 31 Jul 2023 19:10:56 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 39C4B88697;
-	Mon, 31 Jul 2023 18:59:20 +0000 (UTC)
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id 4D87488697;
- Mon, 31 Jul 2023 18:59:18 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 45E24AADD7;
- Mon, 31 Jul 2023 18:59:18 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1B57010E04B;
+	Mon, 31 Jul 2023 19:10:56 +0000 (UTC)
+Received: from mgamail.intel.com (unknown [134.134.136.24])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5D1F110E045
+ for <intel-xe@lists.freedesktop.org>; Mon, 31 Jul 2023 19:10:54 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1690830654; x=1722366654;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=nwrB7CwVSvHhm4nVdY8RlRJRRBVlG9mc9ByKG/urB9Y=;
+ b=mxnthZ4f3elKEmErjOBAFmDuwgWmuZ2ypLi4cnbpS51Awn1g3mXi7OYp
+ SPWAgh++XJiFi3n9rSm+aOCMws8AVhklIYPJMlasgzK/UQoWmU6Sj9WZx
+ oMTwwhBdWKMWt4yD9+V78pmUPMh4nomnz6IEq3Hk3H928EsUG+BwiaGgk
+ wsSiBEzDgD7EQDsDcxDWr4tS+V6ZAYO2CxBGz7mJxruvRSRiC2qeraYnC
+ hDNllbxlTSgJIDy4qp8fiOm/m2LFWFUOSh06IBGHkXmCgnN9qmYOKWGLG
+ aamHJzO2yhIrMkzdvxZ4RtDpSFANxULj/jEfTO3nqyDpuSrW3xWJR+1Ow g==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10788"; a="371815466"
+X-IronPort-AV: E=Sophos;i="6.01,245,1684825200"; d="scan'208";a="371815466"
+Received: from orsmga002.jf.intel.com ([10.7.209.21])
+ by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 31 Jul 2023 12:10:53 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6600,9927,10788"; a="728403012"
+X-IronPort-AV: E=Sophos;i="6.01,245,1684825200"; d="scan'208";a="728403012"
+Received: from tejas-super-server.iind.intel.com ([10.145.169.166])
+ by orsmga002.jf.intel.com with ESMTP; 31 Jul 2023 12:10:50 -0700
+From: Tejas Upadhyay <tejas.upadhyay@intel.com>
+To: intel-xe@lists.freedesktop.org
+Date: Tue,  1 Aug 2023 00:47:36 +0530
+Message-Id: <20230731191742.1130309-1-tejas.upadhyay@intel.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Daniele Ceraolo Spurio" <daniele.ceraolospurio@intel.com>
-Date: Mon, 31 Jul 2023 18:59:18 -0000
-Message-ID: <169082995824.10565.4120435373406560020@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20230731185631.667472-1-daniele.ceraolospurio@intel.com>
-In-Reply-To: <20230731185631.667472-1-daniele.ceraolospurio@intel.com>
-Subject: [Intel-xe] =?utf-8?q?=E2=9C=97_CI=2EPatch=5Fapplied=3A_failure_f?=
- =?utf-8?q?or_series_starting_with_=5B1/2=5D_drm/xe/uc=3A_Fix_uC_status_tr?=
- =?utf-8?q?acking?=
+Content-Transfer-Encoding: 8bit
+Subject: [Intel-xe] [PATCH V11 0/6] drm/xe: Add engine scheduler control
+ interface
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -40,31 +54,97 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
-Cc: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-== Series Details ==
+Patch series introduces this in several patches,
+1. Add basic directory engine class under its GT, as below
+   DUT# cat /sys/class/drm/cardX/device/tileN/gtN/engines/
+   ccs/ bcs/
+2. Add default entries with its value for user to go back
+   to default
+3,4,5 : Add individual engine properties sysfs entry
+6: Introduce min/max to control in what range these properties
+   can be set for elevated and non-elevated users.
 
-Series: series starting with [1/2] drm/xe/uc: Fix uC status tracking
-URL   : https://patchwork.freedesktop.org/series/121632/
-State : failure
+VLK-46764, VLK-46767
 
-== Summary ==
+V11:
+   - Make engine_get_prop_minmax and enforce_sched_limit static - Matt
+   - use enum in place of string in engine_get_prop_minmax - Matt
+   - no need to use enforce_sched_limit or no need to filter min/max
+     per user type in sysfs - Matt
+   - Dont include xe_gt.h in individual .h - Matt
+V10:
+   - Add kernel doc for non static APIs - Matt
+   - Add helper for getting min-max range - Matt
+   - Filter min/max based on user type
+V9 :
+   - Rebase to use s/xe_engine/xe_hw_engine/ - Matt
+   - Remove init_done from class_intf instead check member
+     is initialized - Matt
+V8 :
+   - Modify enforce_sched_limit logic - Niranjana
+   - make sure min < max - Niranjana
+   - Push all errors to common err path - Niranjana
+V7 :
+   - access engine class interface inplace of hw engine - Niranjana
+   - Use some API to lower down duplication of code
+   - Return EINVAL in place of EPERM
+V6 :
+   - Scheduling props should apply per class engine not per hardware engine - Matt
+   - Do not record value of job_timeout_ms if changed based on dma_fence - Matt
+   - Removed timeout validation check as range validation covers it
+   - Rebase all the patches based on above changes
+V5 :
+   - Rebase to resolve conflicts - CI
+V4 :
+    - Rebase the series
+    - Add CONFIG option to enable/disable min/max limitation on
+      elevated user - Matt/Joonas
+    - Movement of engine related code to its own file
+V3 :
+    - Improve class_mask logic
+V2 :
+    - Rebase to solve conflicts
+    - Use sysfs_create_files in this patch - Niranjana
+    - Handle prototype error for xe_add_engine_defaults - CI hooks
+    - Remove unused member sysfs_hwe - Niranjana
+    - Restric min/max setting to #define default min/max for
+         elevated user - Himal
+    - Remove some unrelated changes from patch - Niranjana
 
-=== Applying kernel patches on branch 'drm-xe-next' with base: ===
-Base commit: d74e8f840 drm/xe: Prefer WARN() over BUG() to avoid crashing the kernel
-=== git am output follows ===
-error: patch failed: drivers/gpu/drm/xe/xe_huc.c:69
-error: drivers/gpu/drm/xe/xe_huc.c: patch does not apply
-error: patch failed: drivers/gpu/drm/xe/xe_uc_fw.c:339
-error: drivers/gpu/drm/xe/xe_uc_fw.c: patch does not apply
-hint: Use 'git am --show-current-patch' to see the failed patch
-Applying: drm/xe/uc: Fix uC status tracking
-Patch failed at 0001 drm/xe/uc: Fix uC status tracking
-When you have resolved this problem, run "git am --continue".
-If you prefer to skip this patch, run "git am --skip" instead.
-To restore the original branch and stop patching, run "git am --abort".
+Testcase: https://gitlab.freedesktop.org/drm/igt-gpu-tools/-/commit/94ccbe7cdf8651d5b76588102eca545cb74caad8
+Testcase: https://gitlab.freedesktop.org/drm/igt-gpu-tools/-/commit/0753ddf646df691cd1d2219192ce3a629f3e7e3f
+Updated Testcase: https://patchwork.freedesktop.org/series/121046/
+Tested-by: Priyanka Dandamudi <priyanka.dandamudi@intel.com>
+Signed-off-by: Tejas Upadhyay <tejas.upadhyay@intel.com>
 
+Tejas Upadhyay (6):
+  drm/xe: Add sysfs entries for engines under its GT
+  drm/xe: Add sysfs for default engine scheduler properties
+  drm/xe: Add job timeout engine property to sysfs
+  drm/xe: Add timeslice duration engine property to sysfs
+  drm/xe: Add sysfs for preempt reset timeout
+  drm/xe: Add min/max cap for engine scheduler properties
+
+ drivers/gpu/drm/xe/Kconfig                    |   6 +
+ drivers/gpu/drm/xe/Kconfig.profile            |  46 ++
+ drivers/gpu/drm/xe/Makefile                   |   1 +
+ drivers/gpu/drm/xe/xe_engine.c                |  95 ++-
+ drivers/gpu/drm/xe/xe_gt.c                    |   7 +
+ drivers/gpu/drm/xe/xe_gt_types.h              |   3 +
+ drivers/gpu/drm/xe/xe_guc_submit.c            |   3 +-
+ drivers/gpu/drm/xe/xe_hw_engine.c             |  17 +
+ drivers/gpu/drm/xe/xe_hw_engine.h             |  31 +
+ drivers/gpu/drm/xe/xe_hw_engine_class_sysfs.c | 629 ++++++++++++++++++
+ drivers/gpu/drm/xe/xe_hw_engine_class_sysfs.h |  36 +
+ drivers/gpu/drm/xe/xe_hw_engine_types.h       |  37 ++
+ 12 files changed, 901 insertions(+), 10 deletions(-)
+ create mode 100644 drivers/gpu/drm/xe/Kconfig.profile
+ create mode 100644 drivers/gpu/drm/xe/xe_hw_engine_class_sysfs.c
+ create mode 100644 drivers/gpu/drm/xe/xe_hw_engine_class_sysfs.h
+
+-- 
+2.25.1
 
