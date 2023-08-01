@@ -4,52 +4,52 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id E078BC001E0
-	for <intel-xe@archiver.kernel.org>; Tue,  1 Aug 2023 15:14:02 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1F6FDC0015E
+	for <intel-xe@archiver.kernel.org>; Tue,  1 Aug 2023 15:18:21 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1293D10E40B;
-	Tue,  1 Aug 2023 15:14:02 +0000 (UTC)
-Received: from mgamail.intel.com (unknown [192.55.52.151])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6C71010E40B;
- Tue,  1 Aug 2023 15:13:59 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C184110E40C;
+	Tue,  1 Aug 2023 15:18:20 +0000 (UTC)
+Received: from mgamail.intel.com (unknown [134.134.136.24])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id ADA7110E40C;
+ Tue,  1 Aug 2023 15:18:18 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1690902839; x=1722438839;
+ t=1690903098; x=1722439098;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=D3Gr4CQz5RXEpExSMqhczLYsHj+yuAQsgSmsBQ4YJ6c=;
- b=LPxQ7VmHaJb8f+fVx0VqnbLYO05DofQe2llwol+sUHrREHWgQy2ZQIGh
- 7l8X6hteIaxPQoFGUrc3j+4u3dycf0YFr7PO04vNevfC+eEZwW3J5MlEg
- QANIRl6/h9yUIshgoxBccP3dbGcbLlZczsIwU4k7QmXs/tvMI8wYBT3Yv
- kTZuNEkm7aYaZd0Edj7z5YT4zZS81+9ezq0u99XSHdvDmtTr0CgJJ+WNq
- 1I1dalQv8IW4G7n59rN0OF1b/QfCYX+g3dKccAcZHC/wol9TKDKkaJ5aX
- EvcIYEqpTrOPtHjUnM8UqYkquE4aFuSNtJOpUzcNKiANZKvQrlXDScqyX Q==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10789"; a="349619785"
-X-IronPort-AV: E=Sophos;i="6.01,247,1684825200"; d="scan'208";a="349619785"
-Received: from fmsmga006.fm.intel.com ([10.253.24.20])
- by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 01 Aug 2023 08:13:58 -0700
+ bh=hxJizv94JDnUGjIcUH36TXm1Z5CnQY6la771ZqEJtZ4=;
+ b=L9TuzraJJ3+GTUgtQHZ7HVXmexwWHVopIy9U7rD66cA4Zvs3Y4ljhvgn
+ 4h03+z933/n3jGoQX7PkF1lLyY1pJOfcZnv8ra8zKnx/i92yl0fuqN1HS
+ FTsrRWvx79Es1+gHYkWFIAji38H0wGnM2MgBMiP9lURFsSBz+GsMXaAIT
+ R81geUm00cz3NgwayEFqS7dQ73RLlpnml5Xct7dmB0ErHCVm6uoZ0oZQs
+ R+bbl9ICddEficbEHhHZ9hXUw1VdmE8oR8aGiv5AMyTwNeu1CVTWbxjFh
+ wv7GvkxmDE/VtM/MWmFYKaJ2hLkui56oudOIijOrwXnh1MFFwLifOMIaD g==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10789"; a="372037315"
+X-IronPort-AV: E=Sophos;i="6.01,247,1684825200"; d="scan'208";a="372037315"
+Received: from orsmga007.jf.intel.com ([10.7.209.58])
+ by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 01 Aug 2023 08:18:17 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10789"; a="975350300"
-X-IronPort-AV: E=Sophos;i="6.01,247,1684825200"; d="scan'208";a="975350300"
+X-IronPort-AV: E=McAfee;i="6600,9927,10789"; a="722509811"
+X-IronPort-AV: E=Sophos;i="6.01,247,1684825200"; d="scan'208";a="722509811"
 Received: from jkrzyszt-mobl2.ger.corp.intel.com ([10.213.27.8])
- by fmsmga006-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 01 Aug 2023 08:13:56 -0700
+ by orsmga007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 01 Aug 2023 08:18:12 -0700
 From: Janusz Krzysztofik <janusz.krzysztofik@linux.intel.com>
 To: Mauro Carvalho Chehab <mchehab@kernel.org>
-Date: Tue, 01 Aug 2023 17:13:53 +0200
-Message-ID: <5405097.29KlJPOoH8@jkrzyszt-mobl2.ger.corp.intel.com>
+Date: Tue, 01 Aug 2023 17:18:10 +0200
+Message-ID: <2361154.yKrmzQ4Hd0@jkrzyszt-mobl2.ger.corp.intel.com>
 Organization: Intel Technology Poland sp. z o.o. - ul. Slowackiego 173,
  80-298 Gdansk - KRS 101882 - NIP 957-07-52-316
-In-Reply-To: <20230801151711.2765e2eb@coco.lan>
+In-Reply-To: <20230801152120.3f53f876@coco.lan>
 References: <20230731141021.2854827-5-janusz.krzysztofik@linux.intel.com>
- <20230731141021.2854827-6-janusz.krzysztofik@linux.intel.com>
- <20230801151711.2765e2eb@coco.lan>
+ <20230731141021.2854827-7-janusz.krzysztofik@linux.intel.com>
+ <20230801152120.3f53f876@coco.lan>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7Bit
 Content-Type: text/plain; charset="us-ascii"
-Subject: Re: [Intel-xe] [PATCH v3 1/3] kunit: Report the count of test
- suites in a module
+Subject: Re: [Intel-xe] [PATCH v3 2/3] kunit: Make 'list' action available
+ to kunit test modules
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -71,75 +71,179 @@ Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 Hi Mauro,
 
-Thanks for review.
-
-On Tuesday, 1 August 2023 15:17:11 CEST Mauro Carvalho Chehab wrote:
-> Em Mon, 31 Jul 2023 16:10:23 +0200
+On Tuesday, 1 August 2023 15:21:20 CEST Mauro Carvalho Chehab wrote:
+> Em Mon, 31 Jul 2023 16:10:24 +0200
 > Janusz Krzysztofik <janusz.krzysztofik@linux.intel.com> escreveu:
 > 
-> > According to KTAP specification[1], results should always start from a
-> > header that provides a TAP protocol version, followed by a test plan with
-> > a count of items to be executed.  That pattern should be followed at each
-> > nesting level.  In the current implementation of the top-most, i.e., test
-> > suite level, those rules apply only for test suites built into the kernel,
-> > executed and reported on boot.  Results submitted to dmesg from kunit test
-> > modules loaded later are missing those top-level headers.
+> > Results from kunit tests reported via dmesg may be interleaved with other
+> > kernel messages.  When parsing dmesg for modular kunit results in real
+> > time, external tools, e.g., Intel GPU tools (IGT), may want to insert
+> > their own test name markers into dmesg at the start of each test, before
+> > any kernel message related to that test appears there, so existing upper
+> > level test result parsers have no doubt which test to blame for a specific
+> > kernel message.  Unfortunately, kunit reports names of tests only at their
+> > completion (with the exeption of a not standarized "# Subtest: <name>"
+> > header above a test plan of each test suite or parametrized test).
 > > 
-> > As a consequence, if a kunit test module provides more than one test suite
-> > then, without the top level test plan, external tools that are parsing
-> > dmesg for kunit test output are not able to tell how many test suites
-> > should be expected and whether to continue parsing after complete output
-> > from the first test suite is collected.
+> > External tools could be able to insert their own "start of the test"
+> > markers with test names included if they new those names in advance.
+> > Test names could be learned from a list if provided by a kunit test
+> > module.
 > > 
-> > Submit the top-level headers also from the kunit test module notifier
-> > initialization callback.
+> > There exists a feature of listing kunit tests without actually executing
+> > them, but it is now limited to configurations with the kunit module built
+> > in and covers only built-in tests, already available at boot time.
+> > Moreover, switching from list to normal mode requires reboot.  If that
+> > feature was also available when kunit is built as a module, userspace
+> > could load the module with action=list parameter, load some kunit test
+> > modules they are interested in and learn about the list of tests provided
+> > by those modules, then unload them, reload the kunit module in normal mode
+> > and execute the tests with their lists already known.
 > > 
-> > [1] https://docs.kernel.org/dev-tools/ktap.html#
+> > Extend kunit module notifier initialization callback with a processing
+> > path for only listing the tests provided by a module if the kunit action
+> > parameter is set to "list".  For ease of use, submit the list in the
+> > format of a standard KTAP report, with SKIP result from each test case,
+> > giving "list mode" as the reason for skipping.  For each test suite
+> > provided by a kunit test module, make such list of its test cases also
+> > available via kunit debugfs for the lifetime of the module.  For user
+> > convenience, make the kunit.action parameter visible in sysfs.
+> 
+> It sounds interesting to have a modprobe option to just list the
+> tests without excecuting.
+> 
 > > 
 > > Signed-off-by: Janusz Krzysztofik <janusz.krzysztofik@linux.intel.com>
 > > ---
-> >  lib/kunit/test.c | 5 +++++
-> >  1 file changed, 5 insertions(+)
+> >  include/kunit/test.h |  1 +
+> >  lib/kunit/executor.c | 19 +++++++++++++------
+> >  lib/kunit/test.c     | 30 +++++++++++++++++++++++++++++-
+> >  3 files changed, 43 insertions(+), 7 deletions(-)
 > > 
-> > diff --git a/lib/kunit/test.c b/lib/kunit/test.c
-> > index 84e4666555c94..a29ca1acc4d81 100644
-> > --- a/lib/kunit/test.c
-> > +++ b/lib/kunit/test.c
-> > @@ -729,6 +729,11 @@ EXPORT_SYMBOL_GPL(__kunit_test_suites_exit);
-> >  #ifdef CONFIG_MODULES
-> >  static void kunit_module_init(struct module *mod)
-> >  {
-> > +	if (mod->num_kunit_suites > 0) {
-> > +		pr_info("KTAP version 1\n");
-> > +		pr_info("1..%d\n", mod->num_kunit_suites);
-> > +	}
-> > +
-> >  	__kunit_test_suites_init(mod->kunit_suites, mod->num_kunit_suites);
+> > diff --git a/include/kunit/test.h b/include/kunit/test.h
+> > index 23120d50499ef..6d693f21a4833 100644
+> > --- a/include/kunit/test.h
+> > +++ b/include/kunit/test.h
+> > @@ -237,6 +237,7 @@ static inline void kunit_set_failure(struct kunit *test)
 > >  }
+> >  
+> >  bool kunit_enabled(void);
+> > +const char *kunit_action(void);
+> >  
+> >  void kunit_init_test(struct kunit *test, const char *name, char *log);
+> >  
+> > diff --git a/lib/kunit/executor.c b/lib/kunit/executor.c
+> > index 74982b83707ca..d1c0616569dfd 100644
+> > --- a/lib/kunit/executor.c
+> > +++ b/lib/kunit/executor.c
+> > @@ -12,19 +12,26 @@
+> >  extern struct kunit_suite * const __kunit_suites_start[];
+> >  extern struct kunit_suite * const __kunit_suites_end[];
+> >  
+> > +static char *action_param;
+> > +
+> > +module_param_named(action, action_param, charp, 0400);
+> > +MODULE_PARM_DESC(action,
+> > +		 "Changes KUnit executor behavior, valid values are:\n"
+> > +		 "<none>: run the tests like normal\n"
+> > +		 "'list' to list test names instead of running them.\n");
 > 
-> IMO, the best would be instead to export kunit_exec_run_tests() and
-> use it here too.
+> Help message sounded confusing. What about adding a boolean modprobe
+> parameter, like "list_tests"?
 
-I was considering a similar approach, i.e., moving those two pr_info() lines 
-from built-in only kunit_exec_run_tests() to __kunit_test_suites_init() which 
-is common to both built-in and modular paths, but please note that with kunit 
-built in, an empty test plan "1..0" is now reported on boot, while we don't 
-want similar reports to appear on loading modules that don't provide any kunit 
-tests.  Then, inside either your exported kunit_exec_run_tests() or my 
-__kunit_test_suites_init(), we would have to check somehow if it has been 
-called from a module notifier initialization callback, and that seemed to me 
-too much complicated and less clean than what I've proposed: keep using 
-unmodified kunit_exec_run_tests() in built-in and updated kunit_module_init() 
-in modular processing path.
-Dropping the empty "1..0" test plan from boot messages would mean an ABI 
-change, I believe, which I'd rather avoid adding to the scope of this patch as 
-not required.
+While the above lines may look like a new code that introduced a new module 
+parameter at a first glance, please note that's a chunk of the existing code, 
+only moved out of #if IS_BUILTIN(CONFIG_KUNIT) section below.
+Having that clarified, do you mean adding a new module parameter that 
+effectively replicates the function of the existing built-in only action=list 
+parameter but is available also for modular kunit?  Or do you mean replacing 
+the existing action=list parameter completely with the new one?  If the latter 
+then that would mean a change to the existing ABI, and I'd rather not add it 
+to the scope of this change as not required.
 
 Thanks,
 Janusz
- 
+
 > 
-> Except for the nit, LGTM.
+> > +
+> > +const char *kunit_action(void)
+> > +{
+> > +	return action_param;
+> > +}
+> > +
+> >  #if IS_BUILTIN(CONFIG_KUNIT)
+> >  
+> >  static char *filter_glob_param;
+> > -static char *action_param;
+> >  
+> >  module_param_named(filter_glob, filter_glob_param, charp, 0);
+> >  MODULE_PARM_DESC(filter_glob,
+> >  		"Filter which KUnit test suites/tests run at boot-time, e.g. list* or list*.*del_test");
+> > -module_param_named(action, action_param, charp, 0);
+> > -MODULE_PARM_DESC(action,
+> > -		 "Changes KUnit executor behavior, valid values are:\n"
+> > -		 "<none>: run the tests like normal\n"
+> > -		 "'list' to list test names instead of running them.\n");
+> >  
+> >  /* glob_match() needs NULL terminated strings, so we need a copy of filter_glob_param. */
+> >  struct kunit_test_filter {
+> > diff --git a/lib/kunit/test.c b/lib/kunit/test.c
+> > index a29ca1acc4d81..413d9fd364a8d 100644
+> > --- a/lib/kunit/test.c
+> > +++ b/lib/kunit/test.c
+> > @@ -674,6 +674,27 @@ int kunit_run_tests(struct kunit_suite *suite)
+> >  }
+> >  EXPORT_SYMBOL_GPL(kunit_run_tests);
+> >  
+> > +static void kunit_list_suite(struct kunit_suite *suite)
+> > +{
+> > +	struct kunit_case *test_case;
+> > +
+> > +	kunit_print_suite_start(suite);
+> > +
+> > +	kunit_suite_for_each_test_case(suite, test_case) {
+> > +		struct kunit test = { .param_value = NULL, .param_index = 0 };
+> > +
+> > +		kunit_init_test(&test, test_case->name, test_case->log);
+> > +
+> > +		kunit_print_ok_not_ok(&test, true, KUNIT_SKIPPED,
+> > +				      kunit_test_case_num(suite, test_case),
+> > +				      test_case->name, "list mode");
+> > +	}
+> > +
+> > +	kunit_print_ok_not_ok((void *)suite, false, KUNIT_SKIPPED,
+> > +			      kunit_suite_counter++,
+> > +			      suite->name, "list mode");
+> > +}
+> > +
+> >  static void kunit_init_suite(struct kunit_suite *suite)
+> >  {
+> >  	kunit_debugfs_create_suite(suite);
+> > @@ -688,6 +709,7 @@ bool kunit_enabled(void)
+> >  
+> >  int __kunit_test_suites_init(struct kunit_suite * const * const suites, int num_suites)
+> >  {
+> > +	const char *action = kunit_action();
+> >  	unsigned int i;
+> >  
+> >  	if (!kunit_enabled() && num_suites > 0) {
+> > @@ -699,7 +721,13 @@ int __kunit_test_suites_init(struct kunit_suite * const * const suites, int num_
+> >  
+> >  	for (i = 0; i < num_suites; i++) {
+> >  		kunit_init_suite(suites[i]);
+> > -		kunit_run_tests(suites[i]);
+> > +
+> > +		if (!action)
+> > +			kunit_run_tests(suites[i]);
+> > +		else if (!strcmp(action, "list"))
+> > +			kunit_list_suite(suites[i]);
+> > +		else
+> > +			pr_err("kunit: unknown action '%s'\n", action);
+> >  	}
+> >  
+> >  	static_branch_dec(&kunit_running);
+> 
+> The remaining code LGTM.
 > 
 > 
 > Thanks,
