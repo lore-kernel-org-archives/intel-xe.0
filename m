@@ -4,46 +4,50 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0D46FC04A94
-	for <intel-xe@archiver.kernel.org>; Tue,  1 Aug 2023 10:48:58 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8F690C0015E
+	for <intel-xe@archiver.kernel.org>; Tue,  1 Aug 2023 10:49:00 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 900E710E0CA;
-	Tue,  1 Aug 2023 10:48:58 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 40CDF10E39F;
+	Tue,  1 Aug 2023 10:49:00 +0000 (UTC)
 Received: from mgamail.intel.com (unknown [134.134.136.24])
- by gabe.freedesktop.org (Postfix) with ESMTPS id BC8CA10E0CA
- for <intel-xe@lists.freedesktop.org>; Tue,  1 Aug 2023 10:48:56 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B803410E0CA
+ for <intel-xe@lists.freedesktop.org>; Tue,  1 Aug 2023 10:48:57 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1690886936; x=1722422936;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=GFmuZVwApXpOXUlQo4+W9rsM1H+lIphaH5jeyz579tQ=;
- b=MQ9JEpw/BMlv55tRNkjimuAPtqoW9bR1VIXqn5GnXLAhtkB6Q3aQG5/Q
- O7MNKyHpse2N/ourTyT2AMY1pJH8aydJioVNT50+3X+vl6KF/Ed5FpCux
- pA6pB/OYlKP13HAGej1LHwt/ODQVcP2UGEuWC8CZHPGP3L0+5neavowUu
- rSKSgjmvgb1c0QAYaKqnahSICWMJWErSH75PZGvPp5ayTHJOQI2y3OH6P
- 4sC9jKzS4wPV/hkW7tjc1Qz8YcJiNLjpWoy78c1oIr32XT8EtgxZ3oSvv
- SbNtjNMXLKtgbKsN6jWCXLg338heZuB8OdW5CQPfieEdVXW92wo9vqs1c g==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10788"; a="371977812"
-X-IronPort-AV: E=Sophos;i="6.01,246,1684825200"; d="scan'208";a="371977812"
+ t=1690886937; x=1722422937;
+ h=from:to:cc:subject:date:message-id:in-reply-to:
+ references:mime-version:content-transfer-encoding;
+ bh=hMdTpEdSz+n/IbrA2Cz8KfC7ROHkI2kS8ILyuBwtkTw=;
+ b=DoXrwzT25iwCzZ4GtoB/VCDvl7bt4MPpv0x9X9JomUdnanGaFyYgUj5+
+ Gq0ossL5j8WmsWytxiSdGrnHaAC+/NBUkrBSO9z2m7Vb+qVCOjxn8q2gs
+ ma30RUysog5iolKkDYeChvQzqc0ECA1ih72jxaNbFLHydRrHpbCkY/17w
+ J4MNYbvXyPuPZ8YwssCpAvSs3qWn9W+lpE4cZ2Mg0USwsBLk31TE8SQkA
+ UI5B+mORp0uAizCD3cUpd15qtCAVevFFja6JGZ9zb8UVVTzIQeyCgePJC
+ m7xPQiTUK3ntTtrMhraKGOU+DEAI8LqKLFR2Zx90tsEILlaCEdbsmBxJi A==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10788"; a="371977816"
+X-IronPort-AV: E=Sophos;i="6.01,246,1684825200"; d="scan'208";a="371977816"
 Received: from orsmga001.jf.intel.com ([10.7.209.18])
  by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 01 Aug 2023 03:48:56 -0700
+ 01 Aug 2023 03:48:57 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10788"; a="763714881"
-X-IronPort-AV: E=Sophos;i="6.01,246,1684825200"; d="scan'208";a="763714881"
+X-IronPort-AV: E=McAfee;i="6600,9927,10788"; a="763714890"
+X-IronPort-AV: E=Sophos;i="6.01,246,1684825200"; d="scan'208";a="763714890"
 Received: from aboros-mobl.ger.corp.intel.com (HELO localhost.localdomain)
  ([10.251.210.9])
  by orsmga001-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 01 Aug 2023 03:48:54 -0700
+ 01 Aug 2023 03:48:56 -0700
 From: Francois Dugast <francois.dugast@intel.com>
 To: intel-xe@lists.freedesktop.org
-Date: Tue,  1 Aug 2023 10:48:40 +0000
-Message-Id: <20230801104842.7-1-francois.dugast@intel.com>
+Date: Tue,  1 Aug 2023 10:48:41 +0000
+Message-Id: <20230801104842.7-2-francois.dugast@intel.com>
 X-Mailer: git-send-email 2.34.1
+In-Reply-To: <20230801104842.7-1-francois.dugast@intel.com>
+References: <20230801104842.7-1-francois.dugast@intel.com>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-xe] [PATCH v3 0/2] Rename engine to exec_queue
+Subject: [Intel-xe] [PATCH v3 1/2] drm/xe: Rename xe_engine.[ch] to
+ xe_exec_queue.[ch]
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -59,81 +63,220 @@ Cc: Francois Dugast <francois.dugast@intel.com>, rodrigo.vivi@intel.com
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-This is an attempt to rename engine to exec queue in order to prevent confusion
-between engine and hw engine, as discussed here:
-https://gitlab.freedesktop.org/drm/xe/kernel/-/issues/162
+This is a preparation commit for a larger renaming of engine to exec queue.
 
-Looking for feedback on potential mixups between engine and hw engine, either
-because an occurrence of hw engine has incorrectly been renamed to exec queue
-or because an occurrence of engine has not been renamed to exec queue.
+Signed-off-by: Francois Dugast <francois.dugast@intel.com>
+---
+ drivers/gpu/drm/xe/Makefile                         | 2 +-
+ drivers/gpu/drm/xe/xe_devcoredump.c                 | 2 +-
+ drivers/gpu/drm/xe/xe_device.c                      | 2 +-
+ drivers/gpu/drm/xe/xe_exec.c                        | 2 +-
+ drivers/gpu/drm/xe/{xe_engine.c => xe_exec_queue.c} | 2 +-
+ drivers/gpu/drm/xe/{xe_engine.h => xe_exec_queue.h} | 0
+ drivers/gpu/drm/xe/xe_execlist.c                    | 2 +-
+ drivers/gpu/drm/xe/xe_gt.c                          | 2 +-
+ drivers/gpu/drm/xe/xe_guc_submit.c                  | 2 +-
+ drivers/gpu/drm/xe/xe_migrate.c                     | 2 +-
+ drivers/gpu/drm/xe/xe_mocs.c                        | 2 +-
+ drivers/gpu/drm/xe/xe_preempt_fence.c               | 2 +-
+ drivers/gpu/drm/xe/xe_query.c                       | 2 +-
+ drivers/gpu/drm/xe/xe_sched_job.c                   | 2 +-
+ drivers/gpu/drm/xe/xe_vm.c                          | 2 +-
+ 15 files changed, 14 insertions(+), 14 deletions(-)
+ rename drivers/gpu/drm/xe/{xe_engine.c => xe_exec_queue.c} (99%)
+ rename drivers/gpu/drm/xe/{xe_engine.h => xe_exec_queue.h} (100%)
 
-v2:
-  - No longer sent as RFC
-  - Fix kernel doc and some comments
-
-v3: Rename xe_engine.[ch] in a separate commit to keep history
-
-Francois Dugast (2):
-  drm/xe: Rename xe_engine.[ch] to xe_exec_queue.[ch]
-  drm/xe: Rename engine to exec_queue
-
- drivers/gpu/drm/xe/Makefile                   |    2 +-
- drivers/gpu/drm/xe/tests/xe_migrate.c         |   18 +-
- drivers/gpu/drm/xe/xe_bb.c                    |   26 +-
- drivers/gpu/drm/xe/xe_bb.h                    |    8 +-
- drivers/gpu/drm/xe/xe_devcoredump.c           |   40 +-
- drivers/gpu/drm/xe/xe_devcoredump.h           |    6 +-
- drivers/gpu/drm/xe/xe_devcoredump_types.h     |    2 +-
- drivers/gpu/drm/xe/xe_device.c                |   62 +-
- drivers/gpu/drm/xe/xe_device.h                |    8 +-
- drivers/gpu/drm/xe/xe_device_types.h          |    4 +-
- drivers/gpu/drm/xe/xe_engine.c                |  850 -------------
- drivers/gpu/drm/xe/xe_engine.h                |   63 -
- drivers/gpu/drm/xe/xe_exec.c                  |   62 +-
- drivers/gpu/drm/xe/xe_exec_queue.c            |  850 +++++++++++++
- drivers/gpu/drm/xe/xe_exec_queue.h            |   63 +
- ...e_engine_types.h => xe_exec_queue_types.h} |  110 +-
- drivers/gpu/drm/xe/xe_execlist.c              |  126 +-
- drivers/gpu/drm/xe/xe_execlist_types.h        |    8 +-
- drivers/gpu/drm/xe/xe_gt.c                    |   72 +-
- drivers/gpu/drm/xe/xe_gt_types.h              |    6 +-
- drivers/gpu/drm/xe/xe_guc_ads.c               |    2 +-
- drivers/gpu/drm/xe/xe_guc_ct.c                |   10 +-
- ...gine_types.h => xe_guc_exec_queue_types.h} |   26 +-
- drivers/gpu/drm/xe/xe_guc_fwif.h              |    6 +-
- drivers/gpu/drm/xe/xe_guc_submit.c            | 1076 ++++++++---------
- drivers/gpu/drm/xe/xe_guc_submit.h            |   20 +-
- drivers/gpu/drm/xe/xe_guc_submit_types.h      |   20 +-
- drivers/gpu/drm/xe/xe_guc_types.h             |    4 +-
- drivers/gpu/drm/xe/xe_lrc.c                   |   10 +-
- drivers/gpu/drm/xe/xe_lrc.h                   |    4 +-
- drivers/gpu/drm/xe/xe_migrate.c               |   66 +-
- drivers/gpu/drm/xe/xe_migrate.h               |    6 +-
- drivers/gpu/drm/xe/xe_mocs.c                  |    2 +-
- drivers/gpu/drm/xe/xe_mocs.h                  |    2 +-
- drivers/gpu/drm/xe/xe_preempt_fence.c         |   32 +-
- drivers/gpu/drm/xe/xe_preempt_fence.h         |    4 +-
- drivers/gpu/drm/xe/xe_preempt_fence_types.h   |    7 +-
- drivers/gpu/drm/xe/xe_pt.c                    |   18 +-
- drivers/gpu/drm/xe/xe_pt.h                    |    6 +-
- drivers/gpu/drm/xe/xe_query.c                 |    4 +-
- drivers/gpu/drm/xe/xe_ring_ops.c              |   38 +-
- drivers/gpu/drm/xe/xe_sched_job.c             |   76 +-
- drivers/gpu/drm/xe/xe_sched_job.h             |    4 +-
- drivers/gpu/drm/xe/xe_sched_job_types.h       |    6 +-
- drivers/gpu/drm/xe/xe_trace.h                 |  140 +--
- drivers/gpu/drm/xe/xe_vm.c                    |  178 +--
- drivers/gpu/drm/xe/xe_vm.h                    |    4 +-
- drivers/gpu/drm/xe/xe_vm_types.h              |    6 +-
- include/uapi/drm/xe_drm.h                     |   86 +-
- 49 files changed, 2124 insertions(+), 2125 deletions(-)
- delete mode 100644 drivers/gpu/drm/xe/xe_engine.c
- delete mode 100644 drivers/gpu/drm/xe/xe_engine.h
- create mode 100644 drivers/gpu/drm/xe/xe_exec_queue.c
- create mode 100644 drivers/gpu/drm/xe/xe_exec_queue.h
- rename drivers/gpu/drm/xe/{xe_engine_types.h => xe_exec_queue_types.h} (52%)
- rename drivers/gpu/drm/xe/{xe_guc_engine_types.h => xe_guc_exec_queue_types.h} (59%)
-
+diff --git a/drivers/gpu/drm/xe/Makefile b/drivers/gpu/drm/xe/Makefile
+index 4ea9e3150c20..e79624ab2cb3 100644
+--- a/drivers/gpu/drm/xe/Makefile
++++ b/drivers/gpu/drm/xe/Makefile
+@@ -51,9 +51,9 @@ xe-y += xe_bb.o \
+ 	xe_device.o \
+ 	xe_device_sysfs.o \
+ 	xe_dma_buf.o \
+-	xe_engine.o \
+ 	xe_exec.o \
+ 	xe_execlist.o \
++	xe_exec_queue.o \
+ 	xe_force_wake.o \
+ 	xe_ggtt.o \
+ 	xe_gt.o \
+diff --git a/drivers/gpu/drm/xe/xe_devcoredump.c b/drivers/gpu/drm/xe/xe_devcoredump.c
+index f53f4b51233a..61ff97ea7659 100644
+--- a/drivers/gpu/drm/xe/xe_devcoredump.c
++++ b/drivers/gpu/drm/xe/xe_devcoredump.c
+@@ -10,7 +10,7 @@
+ #include <generated/utsrelease.h>
+ 
+ #include "xe_device.h"
+-#include "xe_engine.h"
++#include "xe_exec_queue.h"
+ #include "xe_force_wake.h"
+ #include "xe_gt.h"
+ #include "xe_guc_ct.h"
+diff --git a/drivers/gpu/drm/xe/xe_device.c b/drivers/gpu/drm/xe/xe_device.c
+index 5409cf7895d3..1456c6a5c243 100644
+--- a/drivers/gpu/drm/xe/xe_device.c
++++ b/drivers/gpu/drm/xe/xe_device.c
+@@ -19,7 +19,7 @@
+ #include "xe_display.h"
+ #include "xe_dma_buf.h"
+ #include "xe_drv.h"
+-#include "xe_engine.h"
++#include "xe_exec_queue.h"
+ #include "xe_exec.h"
+ #include "xe_gt.h"
+ #include "xe_irq.h"
+diff --git a/drivers/gpu/drm/xe/xe_exec.c b/drivers/gpu/drm/xe/xe_exec.c
+index fff4a9d9d12a..e7120ba4341d 100644
+--- a/drivers/gpu/drm/xe/xe_exec.c
++++ b/drivers/gpu/drm/xe/xe_exec.c
+@@ -12,7 +12,7 @@
+ 
+ #include "xe_bo.h"
+ #include "xe_device.h"
+-#include "xe_engine.h"
++#include "xe_exec_queue.h"
+ #include "xe_macros.h"
+ #include "xe_ring_ops_types.h"
+ #include "xe_sched_job.h"
+diff --git a/drivers/gpu/drm/xe/xe_engine.c b/drivers/gpu/drm/xe/xe_exec_queue.c
+similarity index 99%
+rename from drivers/gpu/drm/xe/xe_engine.c
+rename to drivers/gpu/drm/xe/xe_exec_queue.c
+index c30810a687b1..3055ab531ff0 100644
+--- a/drivers/gpu/drm/xe/xe_engine.c
++++ b/drivers/gpu/drm/xe/xe_exec_queue.c
+@@ -3,7 +3,7 @@
+  * Copyright © 2021 Intel Corporation
+  */
+ 
+-#include "xe_engine.h"
++#include "xe_exec_queue.h"
+ 
+ #include <linux/nospec.h>
+ 
+diff --git a/drivers/gpu/drm/xe/xe_engine.h b/drivers/gpu/drm/xe/xe_exec_queue.h
+similarity index 100%
+rename from drivers/gpu/drm/xe/xe_engine.h
+rename to drivers/gpu/drm/xe/xe_exec_queue.h
+diff --git a/drivers/gpu/drm/xe/xe_execlist.c b/drivers/gpu/drm/xe/xe_execlist.c
+index 0f9d919405b0..2cbb8d2990d1 100644
+--- a/drivers/gpu/drm/xe/xe_execlist.c
++++ b/drivers/gpu/drm/xe/xe_execlist.c
+@@ -14,7 +14,7 @@
+ #include "regs/xe_regs.h"
+ #include "xe_bo.h"
+ #include "xe_device.h"
+-#include "xe_engine.h"
++#include "xe_exec_queue.h"
+ #include "xe_gt.h"
+ #include "xe_hw_fence.h"
+ #include "xe_lrc.h"
+diff --git a/drivers/gpu/drm/xe/xe_gt.c b/drivers/gpu/drm/xe/xe_gt.c
+index 28bf577c7bf2..543b085723c5 100644
+--- a/drivers/gpu/drm/xe/xe_gt.c
++++ b/drivers/gpu/drm/xe/xe_gt.c
+@@ -14,7 +14,7 @@
+ #include "xe_bb.h"
+ #include "xe_bo.h"
+ #include "xe_device.h"
+-#include "xe_engine.h"
++#include "xe_exec_queue.h"
+ #include "xe_execlist.h"
+ #include "xe_force_wake.h"
+ #include "xe_ggtt.h"
+diff --git a/drivers/gpu/drm/xe/xe_guc_submit.c b/drivers/gpu/drm/xe/xe_guc_submit.c
+index 8d2b50e03ed2..9484a215e834 100644
+--- a/drivers/gpu/drm/xe/xe_guc_submit.c
++++ b/drivers/gpu/drm/xe/xe_guc_submit.c
+@@ -16,7 +16,7 @@
+ #include "regs/xe_lrc_layout.h"
+ #include "xe_devcoredump.h"
+ #include "xe_device.h"
+-#include "xe_engine.h"
++#include "xe_exec_queue.h"
+ #include "xe_force_wake.h"
+ #include "xe_gt.h"
+ #include "xe_guc.h"
+diff --git a/drivers/gpu/drm/xe/xe_migrate.c b/drivers/gpu/drm/xe/xe_migrate.c
+index 414f93cddb28..e44bff127f8c 100644
+--- a/drivers/gpu/drm/xe/xe_migrate.c
++++ b/drivers/gpu/drm/xe/xe_migrate.c
+@@ -16,7 +16,7 @@
+ #include "tests/xe_test.h"
+ #include "xe_bb.h"
+ #include "xe_bo.h"
+-#include "xe_engine.h"
++#include "xe_exec_queue.h"
+ #include "xe_ggtt.h"
+ #include "xe_gt.h"
+ #include "xe_hw_engine.h"
+diff --git a/drivers/gpu/drm/xe/xe_mocs.c b/drivers/gpu/drm/xe/xe_mocs.c
+index ccc852500eda..c9653978fc9f 100644
+--- a/drivers/gpu/drm/xe/xe_mocs.c
++++ b/drivers/gpu/drm/xe/xe_mocs.c
+@@ -8,7 +8,7 @@
+ #include "regs/xe_gt_regs.h"
+ #include "xe_bo.h"
+ #include "xe_device.h"
+-#include "xe_engine.h"
++#include "xe_exec_queue.h"
+ #include "xe_gt.h"
+ #include "xe_mmio.h"
+ #include "xe_platform_types.h"
+diff --git a/drivers/gpu/drm/xe/xe_preempt_fence.c b/drivers/gpu/drm/xe/xe_preempt_fence.c
+index 219eefeb90ff..e86604e0174d 100644
+--- a/drivers/gpu/drm/xe/xe_preempt_fence.c
++++ b/drivers/gpu/drm/xe/xe_preempt_fence.c
+@@ -7,7 +7,7 @@
+ 
+ #include <linux/slab.h>
+ 
+-#include "xe_engine.h"
++#include "xe_exec_queue.h"
+ #include "xe_vm.h"
+ 
+ static void preempt_fence_work_func(struct work_struct *w)
+diff --git a/drivers/gpu/drm/xe/xe_query.c b/drivers/gpu/drm/xe/xe_query.c
+index 6ba7baf7c777..382851f436b7 100644
+--- a/drivers/gpu/drm/xe/xe_query.c
++++ b/drivers/gpu/drm/xe/xe_query.c
+@@ -12,7 +12,7 @@
+ 
+ #include "xe_bo.h"
+ #include "xe_device.h"
+-#include "xe_engine.h"
++#include "xe_exec_queue.h"
+ #include "xe_ggtt.h"
+ #include "xe_gt.h"
+ #include "xe_guc_hwconfig.h"
+diff --git a/drivers/gpu/drm/xe/xe_sched_job.c b/drivers/gpu/drm/xe/xe_sched_job.c
+index b5bf14b828f9..8f017a5ec221 100644
+--- a/drivers/gpu/drm/xe/xe_sched_job.c
++++ b/drivers/gpu/drm/xe/xe_sched_job.c
+@@ -9,7 +9,7 @@
+ #include <linux/slab.h>
+ 
+ #include "xe_device.h"
+-#include "xe_engine.h"
++#include "xe_exec_queue.h"
+ #include "xe_gt.h"
+ #include "xe_hw_engine_types.h"
+ #include "xe_hw_fence.h"
+diff --git a/drivers/gpu/drm/xe/xe_vm.c b/drivers/gpu/drm/xe/xe_vm.c
+index 44df7b9d801e..797fc91de2fd 100644
+--- a/drivers/gpu/drm/xe/xe_vm.c
++++ b/drivers/gpu/drm/xe/xe_vm.c
+@@ -18,7 +18,7 @@
+ 
+ #include "xe_bo.h"
+ #include "xe_device.h"
+-#include "xe_engine.h"
++#include "xe_exec_queue.h"
+ #include "xe_gt.h"
+ #include "xe_gt_pagefault.h"
+ #include "xe_gt_tlb_invalidation.h"
 -- 
 2.34.1
 
