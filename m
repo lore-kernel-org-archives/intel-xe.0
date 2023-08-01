@@ -4,47 +4,48 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6857EC04FE1
-	for <intel-xe@archiver.kernel.org>; Tue,  1 Aug 2023 20:51:17 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id A39CAC41513
+	for <intel-xe@archiver.kernel.org>; Tue,  1 Aug 2023 20:51:16 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 94AA710E430;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7793B10E42A;
 	Tue,  1 Aug 2023 20:51:16 +0000 (UTC)
 Received: from mgamail.intel.com (unknown [134.134.136.65])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3B8D210E429;
- Tue,  1 Aug 2023 20:51:14 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 976BA10E1E1;
+ Tue,  1 Aug 2023 20:51:12 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1690923074; x=1722459074;
+ t=1690923073; x=1722459073;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=Dd+fx2XJT/5S633RvpLfZ/sglev7L2POlqePydFod/g=;
- b=TwZcmgM/+lafCggaA4LCPBWjVzrpayZuJ1EkV5vBvqGWXCfOQy+Vg6wL
- jvOajcpxZOks6fGl6LpJwrsRbz9RkGe/lN+mLRbaWyUDEnWKWwGXR0KCd
- yT+hJ+hG0icliwXZDvOsxP5qP5VsIrPUlL85o7Vyh7daDW8tJ2N/1+qLc
- aHQhVTTAC3W45uBvMZrmikVzBZECBZg7KolpTaCQETLPNkF1F3T0wRwli
- flKBbEPs/T1JH02ImIegAlhqN1GMwihQtP02moTSnyHlsg7xqoTj5h3rz
- qf3V3DGWKDUTQAx30cx4bbZ/ln6x7tUHWYYv3joTeQb2hg0SdCQQx7nj+ Q==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10789"; a="373051785"
-X-IronPort-AV: E=Sophos;i="6.01,248,1684825200"; d="scan'208";a="373051785"
+ bh=JDicnaBt5OskT5ZGlrFYCSlynmRxlR1jYycrLI7/7pE=;
+ b=lFYgHZMyD3yWZ4KoDGL29j/S5EozkvUu3DAFHFyfB37K/BmuaABmlHMh
+ TkEI22t/O06CGe+dZwJF7f2Wgtu45rDZJsOPyHhEMwp0QZKj6xff5H897
+ G/bajWO032f0mcahhOf/LIx6yQYOY3szvp5qZMJBsnjO9FJ/mSmiUzPm3
+ LfY8zV/GtkjHfb3OFbT4C6s52qCTaZOc1XocpnbZjB5TNxvCiIcWxAlHc
+ RBIw7GMeH6lrpoogFttgQgS/fjgYC4NtYKqrDX5sWjzfAbx1inHpCHA/O
+ KiBAYN/kzN1Jj5iVwThfYkEx6Np4FWcuHrl73cC0LDhBEhmnXSChTAxkq Q==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10789"; a="373051744"
+X-IronPort-AV: E=Sophos;i="6.01,248,1684825200"; d="scan'208";a="373051744"
 Received: from fmsmga001.fm.intel.com ([10.253.24.23])
  by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 01 Aug 2023 13:51:13 -0700
+ 01 Aug 2023 13:51:11 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.01,202,1684825200"; d="scan'208";a="872215422"
+X-IronPort-AV: E=Sophos;i="6.01,202,1684825200"; d="scan'208";a="872215411"
 Received: from lstrano-desk.jf.intel.com ([10.54.39.91])
  by fmsmga001-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 01 Aug 2023 13:51:14 -0700
+ 01 Aug 2023 13:51:13 -0700
 From: Matthew Brost <matthew.brost@intel.com>
 To: dri-devel@lists.freedesktop.org,
 	intel-xe@lists.freedesktop.org
-Date: Tue,  1 Aug 2023 13:51:03 -0700
-Message-Id: <20230801205103.627779-9-matthew.brost@intel.com>
+Date: Tue,  1 Aug 2023 13:51:00 -0700
+Message-Id: <20230801205103.627779-6-matthew.brost@intel.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20230801205103.627779-1-matthew.brost@intel.com>
 References: <20230801205103.627779-1-matthew.brost@intel.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-xe] [PATCH 8/8] drm/sched: Add helper to set TDR timeout
+Subject: [Intel-xe] [PATCH 5/8] drm/sched: Add
+ drm_sched_start_timeout_unlocked helper
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -64,57 +65,66 @@ Cc: robdclark@chromium.org, sarah.walker@imgtec.com, ketil.johnsen@arm.com,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Add helper to set TDR timeout and restart the TDR with new timeout
-value. This will be used in XE, new Intel GPU driver, to trigger the TDR
-to cleanup drm_sched_entity that encounter errors.
+Also add a lockdep assert to drm_sched_start_timeout.
 
 Signed-off-by: Matthew Brost <matthew.brost@intel.com>
 ---
- drivers/gpu/drm/scheduler/sched_main.c | 18 ++++++++++++++++++
- include/drm/gpu_scheduler.h            |  1 +
- 2 files changed, 19 insertions(+)
+ drivers/gpu/drm/scheduler/sched_main.c | 23 +++++++++++++----------
+ 1 file changed, 13 insertions(+), 10 deletions(-)
 
 diff --git a/drivers/gpu/drm/scheduler/sched_main.c b/drivers/gpu/drm/scheduler/sched_main.c
-index 9573f13f8459..19ec0cb5caee 100644
+index 84821a124ca2..be963d68a733 100644
 --- a/drivers/gpu/drm/scheduler/sched_main.c
 +++ b/drivers/gpu/drm/scheduler/sched_main.c
-@@ -374,6 +374,24 @@ static void drm_sched_start_timeout_unlocked(struct drm_gpu_scheduler *sched)
- 	spin_unlock(&sched->job_list_lock);
+@@ -360,11 +360,20 @@ static void drm_sched_job_done_cb(struct dma_fence *f, struct dma_fence_cb *cb)
+  */
+ static void drm_sched_start_timeout(struct drm_gpu_scheduler *sched)
+ {
++	lockdep_assert_held(&sched->job_list_lock);
++
+ 	if (sched->timeout != MAX_SCHEDULE_TIMEOUT &&
+ 	    !list_empty(&sched->pending_list))
+ 		queue_delayed_work(sched->timeout_wq, &sched->work_tdr, sched->timeout);
  }
  
-+/**
-+ * drm_sched_set_timeout - set timeout for reset worker
-+ *
-+ * @sched: scheduler instance to set and (re)-start the worker for
-+ * @timeout: timeout period
-+ *
-+ * Set and (re)-start the timeout for the given scheduler.
-+ */
-+void drm_sched_set_timeout(struct drm_gpu_scheduler *sched, long timeout)
++static void drm_sched_start_timeout_unlocked(struct drm_gpu_scheduler *sched)
 +{
 +	spin_lock(&sched->job_list_lock);
-+	sched->timeout = timeout;
-+	cancel_delayed_work(&sched->work_tdr);
 +	drm_sched_start_timeout(sched);
 +	spin_unlock(&sched->job_list_lock);
 +}
-+EXPORT_SYMBOL(drm_sched_set_timeout);
 +
  /**
   * drm_sched_fault - immediately start timeout handler
   *
-diff --git a/include/drm/gpu_scheduler.h b/include/drm/gpu_scheduler.h
-index 267bd060d178..f4af856aebd9 100644
---- a/include/drm/gpu_scheduler.h
-+++ b/include/drm/gpu_scheduler.h
-@@ -589,6 +589,7 @@ void drm_sched_entity_modify_sched(struct drm_sched_entity *entity,
- 				    struct drm_gpu_scheduler **sched_list,
-                                    unsigned int num_sched_list);
+@@ -476,11 +485,8 @@ static void drm_sched_job_timedout(struct work_struct *work)
+ 		spin_unlock(&sched->job_list_lock);
+ 	}
  
-+void drm_sched_set_timeout(struct drm_gpu_scheduler *sched, long timeout);
- void drm_sched_job_cleanup(struct drm_sched_job *job);
- void drm_sched_wakeup(struct drm_gpu_scheduler *sched);
- void drm_sched_add_msg(struct drm_gpu_scheduler *sched,
+-	if (status != DRM_GPU_SCHED_STAT_ENODEV) {
+-		spin_lock(&sched->job_list_lock);
+-		drm_sched_start_timeout(sched);
+-		spin_unlock(&sched->job_list_lock);
+-	}
++	if (status != DRM_GPU_SCHED_STAT_ENODEV)
++		drm_sched_start_timeout_unlocked(sched);
+ }
+ 
+ /**
+@@ -606,11 +612,8 @@ void drm_sched_start(struct drm_gpu_scheduler *sched, bool full_recovery)
+ 			drm_sched_job_done(s_job);
+ 	}
+ 
+-	if (full_recovery) {
+-		spin_lock(&sched->job_list_lock);
+-		drm_sched_start_timeout(sched);
+-		spin_unlock(&sched->job_list_lock);
+-	}
++	if (full_recovery)
++		drm_sched_start_timeout_unlocked(sched);
+ 
+ 	drm_sched_run_wq_start(sched);
+ }
 -- 
 2.34.1
 
