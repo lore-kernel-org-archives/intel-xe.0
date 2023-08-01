@@ -4,31 +4,30 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id E2750C001DF
-	for <intel-xe@archiver.kernel.org>; Tue,  1 Aug 2023 14:46:55 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0E499C001E0
+	for <intel-xe@archiver.kernel.org>; Tue,  1 Aug 2023 14:47:07 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 96F7E10E409;
-	Tue,  1 Aug 2023 14:46:55 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id CB92710E409;
+	Tue,  1 Aug 2023 14:47:07 +0000 (UTC)
 Received: from emeril.freedesktop.org (emeril.freedesktop.org
  [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id 24DA210E40C;
- Tue,  1 Aug 2023 14:46:54 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTP id AE3ED10E40B;
+ Tue,  1 Aug 2023 14:47:05 +0000 (UTC)
 Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 21137AADD7;
- Tue,  1 Aug 2023 14:46:54 +0000 (UTC)
+ by emeril.freedesktop.org (Postfix) with ESMTP id A93FBAADD7;
+ Tue,  1 Aug 2023 14:47:05 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: "Nirmoy Das" <nirmoy.das@intel.com>
-Date: Tue, 01 Aug 2023 14:46:54 -0000
-Message-ID: <169090121413.10125.7289642525143044629@emeril.freedesktop.org>
+Date: Tue, 01 Aug 2023 14:47:05 -0000
+Message-ID: <169090122568.10129.8483407654472015521@emeril.freedesktop.org>
 X-Patchwork-Hint: ignore
 References: <20230801143631.536243-1-rodrigo.vivi@intel.com>
 In-Reply-To: <20230801143631.536243-1-rodrigo.vivi@intel.com>
-Subject: [Intel-xe] =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_f?=
- =?utf-8?q?or_fixup!_drm/xe/display=3A_Implement_display_support_=28rev5?=
- =?utf-8?q?=29?=
+Subject: [Intel-xe] =?utf-8?q?=E2=9C=97_CI=2Echeckpatch=3A_warning_for_fi?=
+ =?utf-8?q?xup!_drm/xe/display=3A_Implement_display_support_=28rev5=29?=
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -49,13 +48,35 @@ Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 Series: fixup! drm/xe/display: Implement display support (rev5)
 URL   : https://patchwork.freedesktop.org/series/117592/
-State : success
+State : warning
 
 == Summary ==
 
-=== Applying kernel patches on branch 'drm-xe-next' with base: ===
-Base commit: 22bed6ae7 drm/xe: remove header variable from parse_g2h_msg
-=== git am output follows ===
-Applying: fixup! drm/xe/display: Implement display support
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+c7d32770e3cd31d9fc134ce41f329b10aa33ee15
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit bc25145c95466b001164c99b8604aa6db60be387
+Author: Rodrigo Vivi <rodrigo.vivi@intel.com>
+Date:   Tue Aug 1 10:36:30 2023 -0400
+
+    fixup! drm/xe/display: Implement display support
+    
+    Removing unused declarations.
+    
+    Cc: Jani Nikula <jani.nikula@intel.com>
+    Signed-off-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
++ /mt/dim checkpatch 22bed6ae7f551b55263fb37318814f8363064be6 drm-intel
+bc25145c9 fixup! drm/xe/display: Implement display support
+-:24: WARNING:FILE_PATH_CHANGES: added, moved or deleted file(s), does MAINTAINERS need updating?
+#24: 
+deleted file mode 100644
+
+total: 0 errors, 1 warnings, 0 checks, 14 lines checked
 
 
