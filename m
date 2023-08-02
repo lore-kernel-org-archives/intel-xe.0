@@ -4,30 +4,46 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 745D1C001E0
-	for <intel-xe@archiver.kernel.org>; Wed,  2 Aug 2023 13:55:02 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id B7E8AC001DF
+	for <intel-xe@archiver.kernel.org>; Wed,  2 Aug 2023 14:04:11 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 41A9B10E1A2;
-	Wed,  2 Aug 2023 13:55:02 +0000 (UTC)
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id 96C8710E1A2;
- Wed,  2 Aug 2023 13:54:59 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 932A7A00CC;
- Wed,  2 Aug 2023 13:54:59 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+	by gabe.freedesktop.org (Postfix) with ESMTP id 84E2B10E1A2;
+	Wed,  2 Aug 2023 14:04:11 +0000 (UTC)
+Received: from mgamail.intel.com (unknown [192.55.52.93])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id AFAD610E1A2
+ for <intel-xe@lists.freedesktop.org>; Wed,  2 Aug 2023 14:04:09 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1690985049; x=1722521049;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=iyPNk3ZpiPg25uMbr/qNORo6+xTMoSmfojw1r/w0Cag=;
+ b=cB1RH5yaITjJsLZBAcLTGsb/JhDwqtbgJ78otm/Gpqwe7IXIdfNPOrlj
+ lbMhvS6aQ3j4KHVb8mZ0HzLFGeKCACYZS+WjR3EnjHxADH6kJph8FzI5D
+ tcodqmDdcYIGnAc7ySEi+kbCE0bZQr4mUbBJmxloEA9vbCFS9aN60KUDH
+ EhSfZeCQbnHKV5T/D5/BvpqyEgwZqadOMLEbb/qXVeddqlEhgzPMpHdS/
+ bNaJm6pQF2M+YOlN69sPI9Qo249aXNVSfQtmsGs0DcQ2GQaxGYl/gHOV/
+ Mp6FLtf+G2LwXnSe6JbVCJKSA0bd2FWgzeBI//tjgmqjJ+9fICs7h7tPd w==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10789"; a="367055149"
+X-IronPort-AV: E=Sophos;i="6.01,249,1684825200"; d="scan'208";a="367055149"
+Received: from fmsmga003.fm.intel.com ([10.253.24.29])
+ by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 02 Aug 2023 07:03:36 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6600,9927,10789"; a="819237884"
+X-IronPort-AV: E=Sophos;i="6.01,249,1684825200"; d="scan'208";a="819237884"
+Received: from iocarrol-mobl.ger.corp.intel.com (HELO mwauld-desk1.intel.com)
+ ([10.252.16.135])
+ by fmsmga003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 02 Aug 2023 07:03:35 -0700
+From: Matthew Auld <matthew.auld@intel.com>
+To: intel-xe@lists.freedesktop.org
+Date: Wed,  2 Aug 2023 15:03:16 +0100
+Message-ID: <20230802140315.193700-2-matthew.auld@intel.com>
+X-Mailer: git-send-email 2.41.0
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Badal Nilawar" <badal.nilawar@intel.com>
-Date: Wed, 02 Aug 2023 13:54:59 -0000
-Message-ID: <169098449959.6325.171585876659075285@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20230802135241.458855-1-badal.nilawar@intel.com>
-In-Reply-To: <20230802135241.458855-1-badal.nilawar@intel.com>
-Subject: [Intel-xe] =?utf-8?q?=E2=9C=97_CI=2EHooks=3A_failure_for_Add_HWM?=
- =?utf-8?q?ON_support_for_DGFX_=28rev3=29?=
+Subject: [Intel-xe] [PATCH] drm/xe/guc_submit: prevent repeated unregister
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -39,356 +55,48 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
-Cc: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-== Series Details ==
+It seems that various things can trigger the lr cleanup worker,
+including CAT error, engine reset and destroying the actual engine, so
+seems plausible to end up triggering the worker more than once in some
+cases. If that does happen we can race with an ongoing engine deregister
+before it has completed, thus triggering it again and also changing the
+state back into pending_disable. Checking if the engine has been marked
+as destroyed looks like it should prevent this.
 
-Series: Add HWMON support for DGFX (rev3)
-URL   : https://patchwork.freedesktop.org/series/118934/
-State : failure
+Signed-off-by: Matthew Auld <matthew.auld@intel.com>
+Cc: Matthew Brost <matthew.brost@intel.com>
+---
+ drivers/gpu/drm/xe/xe_guc_submit.c | 14 ++++++++++++--
+ 1 file changed, 12 insertions(+), 2 deletions(-)
 
-== Summary ==
-
-run-parts: executing /workspace/ci/hooks/00-showenv
-/workspace
-+ pwd
-+ ls -la
-total 536
-drwxrwxr-x 10 1003 1003   4096 Aug  2 13:54 .
-drwxr-xr-x  1 root root   4096 Aug  2 13:54 ..
--rw-rw-r--  1 1003 1003 389762 Aug  2 13:54 build.log
--rw-rw-r--  1 1003 1003   3206 Aug  2 13:49 checkpatch.log
-drwxrwxr-x  5 1003 1003   4096 Aug  2 13:47 ci
-drwxrwxr-x  9 1003 1003   4096 Aug  2 13:47 docker
-drwxrwxr-x  8 1003 1003   4096 Aug  2 13:47 .git
--rw-rw-r--  1 1003 1003    819 Aug  2 13:49 git_apply.log
-drwxrwxr-x  3 1003 1003   4096 Aug  2 13:47 .github
--rw-rw-r--  1 1003 1003    233 Aug  2 13:47 .groovylintrc.json
--rw-rw-r--  1 1003 1003     78 Aug  2 13:54 hooks.log
-drwxrwxr-x 31 1003 1003   4096 Aug  2 13:54 kernel
--rw-rw-r--  1 1003 1003  59154 Aug  2 13:49 kernel.mbox
--rw-rw-r--  1 1003 1003  26091 Aug  2 13:50 kunit.log
--rw-rw-r--  1 1003 1003     48 Aug  2 13:49 parent.tag
-drwxrwxr-x 45 1003 1003   4096 Aug  2 13:47 pipelines
--rw-rw-r--  1 1003 1003    793 Aug  2 13:47 README.adoc
-drwxrwxr-x  3 1003 1003   4096 Aug  2 13:47 scripts
-drwxrwxr-x  2 1003 1003   4096 Aug  2 13:47 .vscode
-+ uname -a
-Linux 4d19d6ccfa51 5.4.0-149-generic #166-Ubuntu SMP Tue Apr 18 16:51:45 UTC 2023 x86_64 x86_64 x86_64 GNU/Linux
-+ export
-+ grep -Ei '(^|\W)CI_'
-declare -x CI_KERNEL_BUILD_DIR="/workspace/kernel/build64"
-declare -x CI_KERNEL_IMAGES_DIR="/workspace/kernel/archive/boot"
-declare -x CI_KERNEL_MODULES_DIR="/workspace/kernel/archive"
-declare -x CI_KERNEL_SRC_DIR="/workspace/kernel"
-declare -x CI_SRC_DIR="/workspace/kernel"
-declare -x CI_TOOLS_SRC_DIR="/workspace/ci"
-declare -x CI_WORKSPACE_DIR="/workspace"
-+ '[' -n /workspace ']'
-+ git_args='-C /workspace/kernel'
-+ git_log_args=
-+ git --no-pager -C /workspace/kernel log --format=oneline --abbrev-commit
-8e05576b4 drm/xe/hwmon: Expose power1_max_interval
-f1dee11f4 drm/xe/hwmon: Expose hwmon energy attribute
-2169784a7 drm/xe/hwmon: Expose input voltage attribute
-b35ad4927 drm/xe/hwmon: Expose card reactive critical power
-8d80edd8c drm/xe/hwmon: Expose power attributes
-fc5ebe065 drm/xe/hwmon: Add HWMON infrastructure
-22bed6ae7 drm/xe: remove header variable from parse_g2h_msg
-run-parts: executing /workspace/ci/hooks/10-build-W1
-+ SRC_DIR=/workspace/kernel
-+ RESTORE_DISPLAY_CONFIG=0
-+ '[' -n /workspace/kernel/build64 ']'
-+ BUILD_DIR=/workspace/kernel/build64
-+ cd /workspace/kernel
-+ grep -q -e '^CONFIG_DRM_XE_DISPLAY=[yY]' /workspace/kernel/build64/.config
-+ RESTORE_DISPLAY_CONFIG=1
-+ trap cleanup EXIT
-+ ./scripts/config --file /workspace/kernel/build64/.config --disable CONFIG_DRM_XE_DISPLAY
-++ nproc
-+ make -j48 O=/workspace/kernel/build64 modules_prepare
-make[1]: Entering directory '/workspace/kernel/build64'
-  SYNC    include/config/auto.conf.cmd
-  GEN     Makefile
-  GEN     Makefile
-  UPD     include/generated/compile.h
-  UPD     include/config/kernel.release
-  UPD     include/generated/utsrelease.h
-  DESCEND objtool
-  CALL    ../scripts/checksyscalls.sh
-  HOSTCC  /workspace/kernel/build64/tools/objtool/fixdep.o
-  HOSTLD  /workspace/kernel/build64/tools/objtool/fixdep-in.o
-  LINK    /workspace/kernel/build64/tools/objtool/fixdep
-  INSTALL libsubcmd_headers
-  CC      /workspace/kernel/build64/tools/objtool/libsubcmd/exec-cmd.o
-  CC      /workspace/kernel/build64/tools/objtool/libsubcmd/help.o
-  CC      /workspace/kernel/build64/tools/objtool/libsubcmd/pager.o
-  CC      /workspace/kernel/build64/tools/objtool/libsubcmd/parse-options.o
-  CC      /workspace/kernel/build64/tools/objtool/libsubcmd/run-command.o
-  CC      /workspace/kernel/build64/tools/objtool/libsubcmd/sigchain.o
-  CC      /workspace/kernel/build64/tools/objtool/libsubcmd/subcmd-config.o
-  LD      /workspace/kernel/build64/tools/objtool/libsubcmd/libsubcmd-in.o
-  AR      /workspace/kernel/build64/tools/objtool/libsubcmd/libsubcmd.a
-  CC      /workspace/kernel/build64/tools/objtool/weak.o
-  CC      /workspace/kernel/build64/tools/objtool/check.o
-  CC      /workspace/kernel/build64/tools/objtool/special.o
-  CC      /workspace/kernel/build64/tools/objtool/builtin-check.o
-  CC      /workspace/kernel/build64/tools/objtool/elf.o
-  CC      /workspace/kernel/build64/tools/objtool/objtool.o
-  CC      /workspace/kernel/build64/tools/objtool/orc_gen.o
-  CC      /workspace/kernel/build64/tools/objtool/orc_dump.o
-  CC      /workspace/kernel/build64/tools/objtool/libstring.o
-  CC      /workspace/kernel/build64/tools/objtool/libctype.o
-  CC      /workspace/kernel/build64/tools/objtool/str_error_r.o
-  CC      /workspace/kernel/build64/tools/objtool/librbtree.o
-  CC      /workspace/kernel/build64/tools/objtool/arch/x86/special.o
-  CC      /workspace/kernel/build64/tools/objtool/arch/x86/decode.o
-  LD      /workspace/kernel/build64/tools/objtool/arch/x86/objtool-in.o
-  LD      /workspace/kernel/build64/tools/objtool/objtool-in.o
-  LINK    /workspace/kernel/build64/tools/objtool/objtool
-make[1]: Leaving directory '/workspace/kernel/build64'
-++ nproc
-+ make -j48 O=/workspace/kernel/build64 M=drivers/gpu/drm/xe W=1
-make[1]: Entering directory '/workspace/kernel/build64'
-  CC [M]  drivers/gpu/drm/xe/xe_bb.o
-  CC [M]  drivers/gpu/drm/xe/xe_bo.o
-  CC [M]  drivers/gpu/drm/xe/xe_bo_evict.o
-  CC [M]  drivers/gpu/drm/xe/xe_debugfs.o
-  CC [M]  drivers/gpu/drm/xe/xe_devcoredump.o
-  CC [M]  drivers/gpu/drm/xe/xe_device.o
-  CC [M]  drivers/gpu/drm/xe/xe_device_sysfs.o
-  CC [M]  drivers/gpu/drm/xe/xe_dma_buf.o
-  CC [M]  drivers/gpu/drm/xe/xe_engine.o
-  CC [M]  drivers/gpu/drm/xe/xe_exec.o
-  CC [M]  drivers/gpu/drm/xe/xe_execlist.o
-  CC [M]  drivers/gpu/drm/xe/xe_force_wake.o
-  CC [M]  drivers/gpu/drm/xe/xe_ggtt.o
-  CC [M]  drivers/gpu/drm/xe/xe_gt.o
-  CC [M]  drivers/gpu/drm/xe/xe_gt_clock.o
-  CC [M]  drivers/gpu/drm/xe/xe_gt_debugfs.o
-  CC [M]  drivers/gpu/drm/xe/xe_gt_idle_sysfs.o
-  CC [M]  drivers/gpu/drm/xe/xe_gt_mcr.o
-  CC [M]  drivers/gpu/drm/xe/xe_gt_pagefault.o
-  CC [M]  drivers/gpu/drm/xe/xe_gt_sysfs.o
-  CC [M]  drivers/gpu/drm/xe/xe_gt_tlb_invalidation.o
-  HOSTCC  drivers/gpu/drm/xe/xe_gen_wa_oob
-  CC [M]  drivers/gpu/drm/xe/xe_gt_topology.o
-  CC [M]  drivers/gpu/drm/xe/xe_guc_ads.o
-  CC [M]  drivers/gpu/drm/xe/xe_guc_ct.o
-  CC [M]  drivers/gpu/drm/xe/xe_guc_debugfs.o
-  CC [M]  drivers/gpu/drm/xe/xe_guc_hwconfig.o
-  CC [M]  drivers/gpu/drm/xe/xe_guc_log.o
-  CC [M]  drivers/gpu/drm/xe/xe_guc_pc.o
-  CC [M]  drivers/gpu/drm/xe/xe_guc_submit.o
-  CC [M]  drivers/gpu/drm/xe/xe_hw_engine.o
-  CC [M]  drivers/gpu/drm/xe/xe_hw_fence.o
-  CC [M]  drivers/gpu/drm/xe/xe_huc.o
-  CC [M]  drivers/gpu/drm/xe/xe_huc_debugfs.o
-  CC [M]  drivers/gpu/drm/xe/xe_irq.o
-  CC [M]  drivers/gpu/drm/xe/xe_lrc.o
-  CC [M]  drivers/gpu/drm/xe/xe_migrate.o
-  CC [M]  drivers/gpu/drm/xe/xe_mmio.o
-  CC [M]  drivers/gpu/drm/xe/xe_mocs.o
-  CC [M]  drivers/gpu/drm/xe/xe_module.o
-  CC [M]  drivers/gpu/drm/xe/xe_pat.o
-  CC [M]  drivers/gpu/drm/xe/xe_pci.o
-  CC [M]  drivers/gpu/drm/xe/xe_pcode.o
-  CC [M]  drivers/gpu/drm/xe/xe_pm.o
-  CC [M]  drivers/gpu/drm/xe/xe_preempt_fence.o
-  CC [M]  drivers/gpu/drm/xe/xe_pt.o
-  CC [M]  drivers/gpu/drm/xe/xe_pt_walk.o
-  CC [M]  drivers/gpu/drm/xe/xe_query.o
-  CC [M]  drivers/gpu/drm/xe/xe_range_fence.o
-  CC [M]  drivers/gpu/drm/xe/xe_reg_sr.o
-  CC [M]  drivers/gpu/drm/xe/xe_reg_whitelist.o
-  CC [M]  drivers/gpu/drm/xe/xe_rtp.o
-  CC [M]  drivers/gpu/drm/xe/xe_sa.o
-  CC [M]  drivers/gpu/drm/xe/xe_sched_job.o
-  CC [M]  drivers/gpu/drm/xe/xe_step.o
-  CC [M]  drivers/gpu/drm/xe/xe_sync.o
-  CC [M]  drivers/gpu/drm/xe/xe_tile.o
-  CC [M]  drivers/gpu/drm/xe/xe_tile_sysfs.o
-  CC [M]  drivers/gpu/drm/xe/xe_trace.o
-  CC [M]  drivers/gpu/drm/xe/xe_ttm_sys_mgr.o
-  CC [M]  drivers/gpu/drm/xe/xe_ttm_stolen_mgr.o
-  CC [M]  drivers/gpu/drm/xe/xe_ttm_vram_mgr.o
-  CC [M]  drivers/gpu/drm/xe/xe_tuning.o
-  CC [M]  drivers/gpu/drm/xe/xe_uc.o
-  CC [M]  drivers/gpu/drm/xe/xe_uc_debugfs.o
-  CC [M]  drivers/gpu/drm/xe/xe_uc_fw.o
-  CC [M]  drivers/gpu/drm/xe/xe_vm.o
-  CC [M]  drivers/gpu/drm/xe/xe_vm_madvise.o
-  CC [M]  drivers/gpu/drm/xe/xe_wait_user_fence.o
-  CC [M]  drivers/gpu/drm/xe/xe_wopcm.o
-  CC [M]  drivers/gpu/drm/xe/xe_hwmon.o
-  HDRTEST drivers/gpu/drm/xe/abi/guc_klvs_abi.h
-  CC [M]  drivers/gpu/drm/xe/tests/xe_bo_test.o
-  HDRTEST drivers/gpu/drm/xe/abi/guc_errors_abi.h
-  HDRTEST drivers/gpu/drm/xe/abi/guc_actions_slpc_abi.h
-  CC [M]  drivers/gpu/drm/xe/tests/xe_dma_buf_test.o
-  HDRTEST drivers/gpu/drm/xe/abi/guc_communication_mmio_abi.h
-  HDRTEST drivers/gpu/drm/xe/abi/guc_actions_abi.h
-  HDRTEST drivers/gpu/drm/xe/abi/guc_communication_ctb_abi.h
-  HDRTEST drivers/gpu/drm/xe/abi/guc_messages_abi.h
-  HDRTEST drivers/gpu/drm/xe/regs/xe_reg_defs.h
-  HDRTEST drivers/gpu/drm/xe/regs/xe_guc_regs.h
-  HDRTEST drivers/gpu/drm/xe/regs/xe_gt_regs.h
-  CC [M]  drivers/gpu/drm/xe/tests/xe_migrate_test.o
-  CC [M]  drivers/gpu/drm/xe/tests/xe_pci_test.o
-  HDRTEST drivers/gpu/drm/xe/regs/xe_regs.h
-  HDRTEST drivers/gpu/drm/xe/regs/xe_gpu_commands.h
-  HDRTEST drivers/gpu/drm/xe/regs/xe_mchbar_regs.h
-  HDRTEST drivers/gpu/drm/xe/regs/xe_lrc_layout.h
-  CC [M]  drivers/gpu/drm/xe/tests/xe_rtp_test.o
-  HDRTEST drivers/gpu/drm/xe/regs/xe_engine_regs.h
-  HDRTEST drivers/gpu/drm/xe/tests/xe_test.h
-  HDRTEST drivers/gpu/drm/xe/tests/xe_pci_test.h
-  CC [M]  drivers/gpu/drm/xe/tests/xe_wa_test.o
-  HDRTEST drivers/gpu/drm/xe/tests/xe_migrate_test.h
-  HDRTEST drivers/gpu/drm/xe/tests/xe_dma_buf_test.h
-  HDRTEST drivers/gpu/drm/xe/tests/xe_bo_test.h
-  HDRTEST drivers/gpu/drm/xe/xe_bb.h
-  HDRTEST drivers/gpu/drm/xe/xe_bb_types.h
-  HDRTEST drivers/gpu/drm/xe/xe_bo.h
-  HDRTEST drivers/gpu/drm/xe/xe_bo_doc.h
-  HDRTEST drivers/gpu/drm/xe/xe_bo_evict.h
-  HDRTEST drivers/gpu/drm/xe/xe_bo_types.h
-  HDRTEST drivers/gpu/drm/xe/xe_debugfs.h
-  HDRTEST drivers/gpu/drm/xe/xe_devcoredump.h
-  HDRTEST drivers/gpu/drm/xe/xe_devcoredump_types.h
-  HDRTEST drivers/gpu/drm/xe/xe_device.h
-  HDRTEST drivers/gpu/drm/xe/xe_device_sysfs.h
-  HDRTEST drivers/gpu/drm/xe/xe_device_types.h
-  HDRTEST drivers/gpu/drm/xe/xe_dma_buf.h
-  HDRTEST drivers/gpu/drm/xe/xe_drv.h
-  HDRTEST drivers/gpu/drm/xe/xe_engine.h
-  HDRTEST drivers/gpu/drm/xe/xe_engine_types.h
-  HDRTEST drivers/gpu/drm/xe/xe_exec.h
-  HDRTEST drivers/gpu/drm/xe/xe_execlist.h
-  HDRTEST drivers/gpu/drm/xe/xe_execlist_types.h
-  HDRTEST drivers/gpu/drm/xe/xe_force_wake.h
-  HDRTEST drivers/gpu/drm/xe/xe_force_wake_types.h
-  HDRTEST drivers/gpu/drm/xe/xe_ggtt.h
-  HDRTEST drivers/gpu/drm/xe/xe_ggtt_types.h
-  HDRTEST drivers/gpu/drm/xe/xe_gt.h
-  HDRTEST drivers/gpu/drm/xe/xe_gt_clock.h
-  HDRTEST drivers/gpu/drm/xe/xe_gt_idle_sysfs.h
-  HDRTEST drivers/gpu/drm/xe/xe_gt_debugfs.h
-  HDRTEST drivers/gpu/drm/xe/xe_gt_idle_sysfs_types.h
-../drivers/gpu/drm/xe/xe_hwmon.c:159:5: error: no previous prototype for ‘process_hwmon_reg_read64’ [-Werror=missing-prototypes]
-  159 | int process_hwmon_reg_read64(struct xe_hwmon_data *ddat, enum hwmon_reg_name reg_name, u64 *value)
-      |     ^~~~~~~~~~~~~~~~~~~~~~~~
-  HDRTEST drivers/gpu/drm/xe/xe_gt_mcr.h
-  HDRTEST drivers/gpu/drm/xe/xe_gt_pagefault.h
-  HDRTEST drivers/gpu/drm/xe/xe_gt_printk.h
-  HDRTEST drivers/gpu/drm/xe/xe_gt_sysfs.h
-  HDRTEST drivers/gpu/drm/xe/xe_gt_sysfs_types.h
-  HDRTEST drivers/gpu/drm/xe/xe_gt_tlb_invalidation.h
-  HDRTEST drivers/gpu/drm/xe/xe_gt_tlb_invalidation_types.h
-  HDRTEST drivers/gpu/drm/xe/xe_gt_topology.h
-  HDRTEST drivers/gpu/drm/xe/xe_gt_types.h
-  HDRTEST drivers/gpu/drm/xe/xe_guc.h
-  HDRTEST drivers/gpu/drm/xe/xe_guc_ads.h
-  HDRTEST drivers/gpu/drm/xe/xe_guc_ads_types.h
-  HDRTEST drivers/gpu/drm/xe/xe_guc_ct.h
-  HDRTEST drivers/gpu/drm/xe/xe_guc_ct_types.h
-  HDRTEST drivers/gpu/drm/xe/xe_guc_debugfs.h
-  HDRTEST drivers/gpu/drm/xe/xe_guc_engine_types.h
-  HDRTEST drivers/gpu/drm/xe/xe_guc_fwif.h
-  HDRTEST drivers/gpu/drm/xe/xe_guc_hwconfig.h
-  HDRTEST drivers/gpu/drm/xe/xe_guc_log.h
-  HDRTEST drivers/gpu/drm/xe/xe_guc_log_types.h
-  HDRTEST drivers/gpu/drm/xe/xe_guc_pc.h
-  HDRTEST drivers/gpu/drm/xe/xe_guc_pc_types.h
-  HDRTEST drivers/gpu/drm/xe/xe_guc_submit.h
-  HDRTEST drivers/gpu/drm/xe/xe_guc_submit_types.h
-  HDRTEST drivers/gpu/drm/xe/xe_guc_types.h
-  HDRTEST drivers/gpu/drm/xe/xe_huc.h
-  HDRTEST drivers/gpu/drm/xe/xe_huc_debugfs.h
-  HDRTEST drivers/gpu/drm/xe/xe_huc_types.h
-  HDRTEST drivers/gpu/drm/xe/xe_hw_engine.h
-  HDRTEST drivers/gpu/drm/xe/xe_hw_engine_types.h
-  HDRTEST drivers/gpu/drm/xe/xe_hw_fence.h
-  HDRTEST drivers/gpu/drm/xe/xe_hw_fence_types.h
-  HDRTEST drivers/gpu/drm/xe/xe_hwmon.h
-  HDRTEST drivers/gpu/drm/xe/xe_irq.h
-  HDRTEST drivers/gpu/drm/xe/xe_lrc.h
-  HDRTEST drivers/gpu/drm/xe/xe_lrc_types.h
-  HDRTEST drivers/gpu/drm/xe/xe_macros.h
-  HDRTEST drivers/gpu/drm/xe/xe_map.h
-  HDRTEST drivers/gpu/drm/xe/xe_migrate.h
-  HDRTEST drivers/gpu/drm/xe/xe_migrate_doc.h
-  HDRTEST drivers/gpu/drm/xe/xe_mmio.h
-  HDRTEST drivers/gpu/drm/xe/xe_mocs.h
-  HDRTEST drivers/gpu/drm/xe/xe_pat.h
-  HDRTEST drivers/gpu/drm/xe/xe_module.h
-  HDRTEST drivers/gpu/drm/xe/xe_pci.h
-  HDRTEST drivers/gpu/drm/xe/xe_pci_types.h
-  HDRTEST drivers/gpu/drm/xe/xe_pcode.h
-  HDRTEST drivers/gpu/drm/xe/xe_pcode_api.h
-  HDRTEST drivers/gpu/drm/xe/xe_platform_types.h
-  HDRTEST drivers/gpu/drm/xe/xe_pm.h
-  HDRTEST drivers/gpu/drm/xe/xe_preempt_fence.h
-  HDRTEST drivers/gpu/drm/xe/xe_preempt_fence_types.h
-  HDRTEST drivers/gpu/drm/xe/xe_pt.h
-  HDRTEST drivers/gpu/drm/xe/xe_pt_types.h
-  HDRTEST drivers/gpu/drm/xe/xe_pt_walk.h
-  HDRTEST drivers/gpu/drm/xe/xe_query.h
-  HDRTEST drivers/gpu/drm/xe/xe_range_fence.h
-  HDRTEST drivers/gpu/drm/xe/xe_reg_sr.h
-  HDRTEST drivers/gpu/drm/xe/xe_reg_sr_types.h
-  HDRTEST drivers/gpu/drm/xe/xe_reg_whitelist.h
-  HDRTEST drivers/gpu/drm/xe/xe_res_cursor.h
-  HDRTEST drivers/gpu/drm/xe/xe_ring_ops.h
-  HDRTEST drivers/gpu/drm/xe/xe_ring_ops_types.h
-  HDRTEST drivers/gpu/drm/xe/xe_rtp.h
-  HDRTEST drivers/gpu/drm/xe/xe_rtp_types.h
-  HDRTEST drivers/gpu/drm/xe/xe_sa.h
-  HDRTEST drivers/gpu/drm/xe/xe_sa_types.h
-  HDRTEST drivers/gpu/drm/xe/xe_sched_job.h
-  HDRTEST drivers/gpu/drm/xe/xe_sched_job_types.h
-  HDRTEST drivers/gpu/drm/xe/xe_step.h
-  HDRTEST drivers/gpu/drm/xe/xe_step_types.h
-  HDRTEST drivers/gpu/drm/xe/xe_sync.h
-  HDRTEST drivers/gpu/drm/xe/xe_sync_types.h
-  HDRTEST drivers/gpu/drm/xe/xe_tile.h
-  HDRTEST drivers/gpu/drm/xe/xe_tile_sysfs.h
-  HDRTEST drivers/gpu/drm/xe/xe_tile_sysfs_types.h
-  HDRTEST drivers/gpu/drm/xe/xe_trace.h
-  HDRTEST drivers/gpu/drm/xe/xe_ttm_stolen_mgr.h
-  HDRTEST drivers/gpu/drm/xe/xe_ttm_sys_mgr.h
-  HDRTEST drivers/gpu/drm/xe/xe_ttm_vram_mgr_types.h
-  HDRTEST drivers/gpu/drm/xe/xe_ttm_vram_mgr.h
-  HDRTEST drivers/gpu/drm/xe/xe_tuning.h
-  HDRTEST drivers/gpu/drm/xe/xe_uc.h
-  HDRTEST drivers/gpu/drm/xe/xe_uc_debugfs.h
-  HDRTEST drivers/gpu/drm/xe/xe_uc_fw.h
-  HDRTEST drivers/gpu/drm/xe/xe_uc_fw_abi.h
-  HDRTEST drivers/gpu/drm/xe/xe_uc_fw_types.h
-  HDRTEST drivers/gpu/drm/xe/xe_uc_types.h
-  HDRTEST drivers/gpu/drm/xe/xe_vm_doc.h
-  HDRTEST drivers/gpu/drm/xe/xe_vm.h
-  HDRTEST drivers/gpu/drm/xe/xe_vm_madvise.h
-  HDRTEST drivers/gpu/drm/xe/xe_vm_types.h
-  HDRTEST drivers/gpu/drm/xe/xe_wa.h
-  HDRTEST drivers/gpu/drm/xe/xe_wait_user_fence.h
-  HDRTEST drivers/gpu/drm/xe/xe_wopcm.h
-  HDRTEST drivers/gpu/drm/xe/xe_wopcm_types.h
-  GEN     xe_wa_oob.c xe_wa_oob.h
-  GEN     xe_wa_oob.c xe_wa_oob.h
-cc1: all warnings being treated as errors
-  CC [M]  drivers/gpu/drm/xe/xe_guc.o
-make[2]: *** [../scripts/Makefile.build:252: drivers/gpu/drm/xe/xe_hwmon.o] Error 1
-make[2]: *** Waiting for unfinished jobs....
-make[1]: *** [/workspace/kernel/Makefile:2026: drivers/gpu/drm/xe] Error 2
-make[1]: Leaving directory '/workspace/kernel/build64'
-make: *** [Makefile:226: __sub-make] Error 2
-+ cleanup
-+ '[' 1 -eq 1 ']'
-+ ./scripts/config --file /workspace/kernel/build64/.config --enable CONFIG_DRM_XE_DISPLAY
-run-parts: /workspace/ci/hooks/10-build-W1 exited with return code 2
-
+diff --git a/drivers/gpu/drm/xe/xe_guc_submit.c b/drivers/gpu/drm/xe/xe_guc_submit.c
+index 8d2b50e03ed2..2459e9dd95e8 100644
+--- a/drivers/gpu/drm/xe/xe_guc_submit.c
++++ b/drivers/gpu/drm/xe/xe_guc_submit.c
+@@ -802,8 +802,18 @@ static void xe_guc_engine_lr_cleanup(struct work_struct *w)
+ 	/* Kill the run_job / process_msg entry points */
+ 	drm_sched_run_wq_stop(sched);
+ 
+-	/* Engine state now stable, disable scheduling / deregister if needed */
+-	if (engine_registered(e)) {
++	/*
++	 * Engine state now mostly stable, disable scheduling / deregister if
++	 * needed. This cleanup routine might be called multiple times, where
++	 * the actual async engine deregister drops the final engine ref.
++	 * Calling disable_scheduling_deregister will mark the engine as
++	 * destroyed and fire off the CT requests to disable scheduling /
++	 * deregister, which we only want to do once. We also don't want to mark
++	 * the engine as pending_disable again as this may race with the
++	 * xe_guc_deregister_done_handler() which treats it as an unexpected
++	 * state.
++	 */
++	if (engine_registered(e) && !engine_destroyed(e)) {
+ 		struct xe_guc *guc = engine_to_guc(e);
+ 		int ret;
+ 
+-- 
+2.41.0
 
