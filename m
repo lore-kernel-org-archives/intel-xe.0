@@ -4,57 +4,57 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 79006C00528
-	for <intel-xe@archiver.kernel.org>; Wed,  2 Aug 2023 23:11:24 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6E132C00528
+	for <intel-xe@archiver.kernel.org>; Wed,  2 Aug 2023 23:12:48 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E63DB10E084;
-	Wed,  2 Aug 2023 23:11:23 +0000 (UTC)
-Received: from mail-pf1-x42a.google.com (mail-pf1-x42a.google.com
- [IPv6:2607:f8b0:4864:20::42a])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C145510E084
- for <intel-xe@lists.freedesktop.org>; Wed,  2 Aug 2023 23:11:21 +0000 (UTC)
-Received: by mail-pf1-x42a.google.com with SMTP id
- d2e1a72fcca58-686ba29ccb1so241548b3a.1
- for <intel-xe@lists.freedesktop.org>; Wed, 02 Aug 2023 16:11:21 -0700 (PDT)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0EA6810E084;
+	Wed,  2 Aug 2023 23:12:48 +0000 (UTC)
+Received: from mail-pf1-x431.google.com (mail-pf1-x431.google.com
+ [IPv6:2607:f8b0:4864:20::431])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9841410E084
+ for <intel-xe@lists.freedesktop.org>; Wed,  2 Aug 2023 23:12:45 +0000 (UTC)
+Received: by mail-pf1-x431.google.com with SMTP id
+ d2e1a72fcca58-686fc0d3c92so261281b3a.0
+ for <intel-xe@lists.freedesktop.org>; Wed, 02 Aug 2023 16:12:45 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20221208; t=1691017881; x=1691622681;
+ d=gmail.com; s=20221208; t=1691017965; x=1691622765;
  h=content-transfer-encoding:in-reply-to:from:references:cc:to
  :content-language:subject:user-agent:mime-version:date:message-id
  :sender:from:to:cc:subject:date:message-id:reply-to;
- bh=ixCoHM/kHUMQsK9atYFVp2+uz2n1FyQ9wPd1YxeUCw0=;
- b=hnSpV5jju3weaUXgJMwDhnLOGPT4X8LIs89dW9IkanTZLNO/Y3CucBegCA6QV5fggk
- aeIoPP6Jo2a0xIQTDPbm71CzKwCKwjSAdlNsLTcOVIZtE83hlhlLAo7+o75zSFjmhNyo
- iusxdWyKOqU5fQ7covzpofM7IO3SBNegR8/mH1xr9pttlPdr9DxJMR+wDDskh+eJ+Xcy
- CDAns2Y6laBqqK3u/Dzo6fZS1ttM78rS1WRsdSo/qmW8pYovEmvUcZkfoQYeS2+3F4tX
- 7jD2im+LKOr5Hn9exe1WKwbihePocTfLgGSkyKgMprpZ1u+DztmLPkzlOmxbd7ncBLUZ
- +O0g==
+ bh=mKJfqQgRJkxddAOTwTgjFxX69bQ3MIVmkhWBoK/wchU=;
+ b=hrREnZvPM4ySZQzzJU6kkVHw4Z9vWYdcv9VBVCF+Ts39KXOssUgi+7IQ/Gynz0UqO5
+ a5mUkyp87k9w/0r9aWo1BoLBvs7KQQZUvTn9N9kqD82S0mxI079HSi+EjtENkkdq7FIM
+ jsT/VNzHdyBJkCoRoyH7Ql5TcrfFHm+mI03WRdwaxQh2fHYjRwaYTQwYAT6shNURtSCq
+ GivZh2dUqfmmDHzZhXEWiY+foLPfEyC3gW7HAtYl35qYLvzizET4nBvJTrdb8JBZDuWp
+ 6nij69FC1yXqRrX2/f/LUD3Woxof6J22Kc6OVx4HahL0gfJfEjygB/4Ucqw1cFqhJ/OG
+ iiPg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20221208; t=1691017881; x=1691622681;
+ d=1e100.net; s=20221208; t=1691017965; x=1691622765;
  h=content-transfer-encoding:in-reply-to:from:references:cc:to
  :content-language:subject:user-agent:mime-version:date:message-id
  :sender:x-gm-message-state:from:to:cc:subject:date:message-id
  :reply-to;
- bh=ixCoHM/kHUMQsK9atYFVp2+uz2n1FyQ9wPd1YxeUCw0=;
- b=Fd4QSffCG693EkAA4RVwzzbtoNbXZCmR/fdLUbhRbtbhgdsYf5WeObCo9+3mw8mci6
- jmP5ehMMU23iRY13gY5RaKpf9LjA+28o2RDbqQM7539LNcmXbO2njdy/5X4FRxwTt/Ns
- hgI/770XGWfbNf4N1pR4NCTBe2y/0wmQQBzaeD2ItEN6Yy1s3tvenjxCm/+6gIf4xZ8d
- XwtBBIGabFA6z/tdxda7lGug+VR6FIpxuGpQg4o/7B0fBOXmJqR3T8i4tF4i5h7TQ2AK
- tQSk1QAtJqarFs1wsowXZA57E05P1OlnHO9itB3m5L3mS7kF4Gp0s9ZUhSYZYYB7G8Oo
- Q2LQ==
-X-Gm-Message-State: ABy/qLYAZU41VZTScPfd6oO6Q+zaNN6k11DDXt8bXSXFA+2UnkdWbS+C
- qeg1xHITvvYfQEimtWRdl+s=
-X-Google-Smtp-Source: APBJJlEsZ8xwkGv8rTMatun6f/vG184pKfj7jv8jNPRivzns8At9qZXim/oEpmJ5cULFExJbtUM+vQ==
-X-Received: by 2002:a05:6a21:6315:b0:13c:3d64:de33 with SMTP id
- wu21-20020a056a21631500b0013c3d64de33mr14998977pzb.13.1691017881037; 
- Wed, 02 Aug 2023 16:11:21 -0700 (PDT)
+ bh=mKJfqQgRJkxddAOTwTgjFxX69bQ3MIVmkhWBoK/wchU=;
+ b=Va58KpD777VVvz0W7HgnjBMmJR1obXUj2zHNankW96yMylyoL7YLmtNH4C+wW1Z3rL
+ pjSZfLrJhON5btfF5EpHM/S+q8WSAgo9WsUYBZwnmuzWAhfwJgmDvv4rJeacOIuSgjtT
+ QVV9+f5vOHQbAs6+SRPJOnnplE2xyFw1JKU973k/x5KQ1Ne85sclXcka8s3ft1SnuB1B
+ nL5lIBYvLr5lKNQCfGggD5g4VE7fEIIXY7VY1XmKh5frlC26pUYviv+3P8ukc0JrZ66Y
+ sLQ1JWTrerYzbaqaA/t6nkwB/KudJ53JeId8khCPs9ZhGTGBmuQr9Ydn/LH5HMruDeKb
+ IzHQ==
+X-Gm-Message-State: ABy/qLa1nc5NcIfTagHiBd/qsHpLTM02yTWGm2XG/to/PtmKtje4/Mue
+ NoB7RzC0eFe2SXge/TULTGg=
+X-Google-Smtp-Source: APBJJlFwHTZI8tRK/ryK2H+mE9Jia7AotnNxSCegQCx1Vsx68nyIoTSPlUO+KmEFMfpFLrD9Z5hwtQ==
+X-Received: by 2002:a05:6a00:2d07:b0:686:5e0d:bd4f with SMTP id
+ fa7-20020a056a002d0700b006865e0dbd4fmr19449977pfb.0.1691017965072; 
+ Wed, 02 Aug 2023 16:12:45 -0700 (PDT)
 Received: from ?IPV6:2600:1700:e321:62f0:329c:23ff:fee3:9d7c?
  ([2600:1700:e321:62f0:329c:23ff:fee3:9d7c])
  by smtp.gmail.com with ESMTPSA id
- n29-20020a638f1d000000b0055b61cd99a1sm12067516pgd.81.2023.08.02.16.11.19
+ i1-20020aa787c1000000b0063d24fcc2b7sm11544239pfo.1.2023.08.02.16.12.44
  (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Wed, 02 Aug 2023 16:11:20 -0700 (PDT)
-Message-ID: <b863c26d-143b-9dd4-7f90-44a2b0ae94e2@roeck-us.net>
-Date: Wed, 2 Aug 2023 16:11:19 -0700
+ Wed, 02 Aug 2023 16:12:44 -0700 (PDT)
+Message-ID: <d8258e4d-4cc4-78e2-7858-78409f47774f@roeck-us.net>
+Date: Wed, 2 Aug 2023 16:12:43 -0700
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.13.0
@@ -102,6 +102,12 @@ On 8/2/23 15:40, Andi Shyti wrote:
 > 
 > why do we need two structures here? Can we merge them?
 > 
+
+A later patch adds multiple hwmon devices which makes use of it.
+I think that is flawed, and I am not inclined to accept it.
+
+Guenter
+
 >> +static const struct hwmon_channel_info *hwmon_info[] = {
 >> +	NULL
 >> +};
@@ -112,10 +118,6 @@ On 8/2/23 15:40, Andi Shyti wrote:
 > 
 > would do.
 > 
-
-What would be the point ? This is just a placeholder, and we need
-a NULL entry at the end.
-
 >> +static umode_t
 >> +hwmon_is_visible(const void *drvdata, enum hwmon_sensor_types type,
 >> +		 u32 attr, int channel)
