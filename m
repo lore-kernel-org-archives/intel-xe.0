@@ -4,45 +4,31 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id B6F6BC00528
-	for <intel-xe@archiver.kernel.org>; Thu,  3 Aug 2023 22:03:10 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id BC6AAC04A6A
+	for <intel-xe@archiver.kernel.org>; Thu,  3 Aug 2023 22:03:19 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 89E7910E67D;
-	Thu,  3 Aug 2023 22:03:10 +0000 (UTC)
-Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.115])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0657A10E67D;
- Thu,  3 Aug 2023 22:03:09 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1691100189; x=1722636189;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=cmJyRGbVPBP8isDOYHAEQPBWhtURmh1uQ2hxWxW2DbY=;
- b=iM3J4QJj6HAw/i/walHzfuQYla+zphAnOta1OtOu26ZRaAedcub19CBf
- UEc70E63GaWSWVVvkQAZ7a6NaSSmo6/zqKnCLjikNmDOTh6RcZctrFjyR
- e81WzKCh5c0LsjF6vZGxTKYQBp4UyGHQ9u8JjKaDNMC8QoEy6oLWd2zw1
- QkcDC+8lC8weAPSIMjgs/QhRU6CKyJb4Yx5QkgRYUzIHXBSlY25760hh6
- nRWwkuJifp2w65ZN1iZV+1cdiemL2/QoYQRpaT7ll7zKoMloBda+As96g
- pVSgjy/NsnOrWG3YrTgYTX9yh8PSbeMKoJ+RhlDuvC06FhX6PK1gea/PD g==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10791"; a="369998791"
-X-IronPort-AV: E=Sophos;i="6.01,253,1684825200"; d="scan'208";a="369998791"
-Received: from fmsmga005.fm.intel.com ([10.253.24.32])
- by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 03 Aug 2023 15:03:08 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10791"; a="1060463650"
-X-IronPort-AV: E=Sophos;i="6.01,253,1684825200"; d="scan'208";a="1060463650"
-Received: from lucas-s2600cw.jf.intel.com ([10.165.21.196])
- by fmsmga005-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 03 Aug 2023 15:02:56 -0700
-From: Lucas De Marchi <lucas.demarchi@intel.com>
-To: igt-dev@lists.freedesktop.org
-Date: Thu,  3 Aug 2023 15:02:48 -0700
-Message-Id: <20230803220248.871666-1-lucas.demarchi@intel.com>
-X-Mailer: git-send-email 2.40.1
+	by gabe.freedesktop.org (Postfix) with ESMTP id 90CD410E684;
+	Thu,  3 Aug 2023 22:03:19 +0000 (UTC)
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id DAFB410E684;
+ Thu,  3 Aug 2023 22:03:17 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id D2C04A00E8;
+ Thu,  3 Aug 2023 22:03:17 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Subject: [Intel-xe] [PATCH igt] tests/xe_debugfs: Skip test for tile count
+Content-Transfer-Encoding: 7bit
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Lucas De Marchi" <lucas.demarchi@intel.com>
+Date: Thu, 03 Aug 2023 22:03:17 -0000
+Message-ID: <169110019785.5271.3995584105522370115@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20230803220029.895482-1-daniele.ceraolospurio@intel.com>
+In-Reply-To: <20230803220029.895482-1-daniele.ceraolospurio@intel.com>
+Subject: [Intel-xe] =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_f?=
+ =?utf-8?q?or_fixup!_drm/xe=3A_Introduce_a_new_DRM_driver_for_Intel_GPUs_?=
+ =?utf-8?b?KHJldjcp?=
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -54,38 +40,22 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Cc: Lucas De Marchi <lucas.demarchi@intel.com>,
- Matt Roper <matthew.d.roper@intel.com>, intel-xe@lists.freedesktop.org,
- Rodrigo Vivi <rodrigo.vivi@intel.com>
+Reply-To: intel-xe@lists.freedesktop.org
+Cc: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Once upon a time in xe, tile count and gt count were the same thing.
-This is not necessarily true anymore. Example: Meteor Lake has just
-one tile, but 2 GTs (one for graphics, one for media).
+== Series Details ==
 
-There's little value in comparing what the kernel exports via ioctl
-from what the kernel exports via debugfs. Just remove the test.
+Series: fixup! drm/xe: Introduce a new DRM driver for Intel GPUs (rev7)
+URL   : https://patchwork.freedesktop.org/series/115290/
+State : success
 
-Signed-off-by: Lucas De Marchi <lucas.demarchi@intel.com>
----
- tests/xe/xe_debugfs.c | 3 ---
- 1 file changed, 3 deletions(-)
+== Summary ==
 
-diff --git a/tests/xe/xe_debugfs.c b/tests/xe/xe_debugfs.c
-index 5434d4645..e51d03661 100644
---- a/tests/xe/xe_debugfs.c
-+++ b/tests/xe/xe_debugfs.c
-@@ -104,9 +104,6 @@ test_base(int fd, struct drm_xe_query_config *config)
- 
- 	igt_assert(igt_debugfs_search(fd, "info", reference));
- 
--	sprintf(reference, "tile_count %lld", config->info[XE_QUERY_CONFIG_GT_COUNT]);
--	igt_assert(igt_debugfs_search(fd, "info", reference));
--
- 	switch (config->info[XE_QUERY_CONFIG_VA_BITS]) {
- 	case 48:
- 		val = 3;
--- 
-2.40.1
+=== Applying kernel patches on branch 'drm-xe-next' with base: ===
+Base commit: f16c04291 drm/xe: Rename engine to exec_queue
+=== git am output follows ===
+Applying: fixup! drm/xe: Introduce a new DRM driver for Intel GPUs
+
 
