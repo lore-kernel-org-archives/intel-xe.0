@@ -4,47 +4,49 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0416CEB64DD
-	for <intel-xe@archiver.kernel.org>; Thu,  3 Aug 2023 17:39:11 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9D9F2C04A6A
+	for <intel-xe@archiver.kernel.org>; Thu,  3 Aug 2023 17:39:13 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B2AB010E651;
-	Thu,  3 Aug 2023 17:39:11 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 391EF10E650;
+	Thu,  3 Aug 2023 17:39:13 +0000 (UTC)
 Received: from mgamail.intel.com (mgamail.intel.com [134.134.136.100])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D917810E648
- for <intel-xe@lists.freedesktop.org>; Thu,  3 Aug 2023 17:39:09 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7DA8A10E11D
+ for <intel-xe@lists.freedesktop.org>; Thu,  3 Aug 2023 17:39:10 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1691084349; x=1722620349;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=ylGRcQ37DmJf8+0Bui0ay8bwlyNusrYO01mInbuGll8=;
- b=V4vv5LTcQHYlWeLxtkq/D0Tb1nUMl1+53zzbYLhTjChhCLI5bjqQ5q7O
- 32Q8Jmlw66W1WC8jyROek/eyePFeP88Jqg/2pNkDQSxLANotCOfwB0u48
- YLSvMJqNYUpjRUE+2c27No9JIuUtWTvrIIbCrit+ag2jke6fFZO78v5UG
- WVSFAYaybvVUbaA2pjSZQUe83HNhaaATfbr+CxRwOFZwFCVEnRR+V0uyt
- rbr5SD7mzMNLNCRhfwzmRrSj4JiPsuK3DnrYCFosv6jVrDavlavhHX//f
- eCOMV3dmVnNrdbBaR8HbJq/t3DZllClxcELRQuEQ/D7e1KvOapT3wYVHE Q==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10791"; a="436271546"
-X-IronPort-AV: E=Sophos;i="6.01,252,1684825200"; d="scan'208";a="436271546"
+ t=1691084350; x=1722620350;
+ h=from:to:cc:subject:date:message-id:in-reply-to:
+ references:mime-version:content-transfer-encoding;
+ bh=9a/tV+zQkO2qHeYM5eQ+ZiN1e1wnQwINwfIHcP/mS8c=;
+ b=BddwmX/8gEbkci6PBPvgXJ6hZ/I55a3ZfVHw+ClXGzA+ZskRRxjLv8lT
+ z/VNkMTRXiz5d6PHG471WS0WU+IWtrPmU6ZAVQWjOShssdo2t3btRPXdT
+ slUNGcIx+J2Qu6W233pPqqQGWe6PCieSA5mGhvNNXTt8i4gVU03YN+gqi
+ tNv1Naktultn4FHsiBlKkbs0k4J3fv+yOCDk8O4X35KbM9heQ+2K0wFVe
+ DnVtX46pmh059KHYqSoFkGe1KTEq8nnUYsLUWMvOQqvz3a1qeCgMLNaxT
+ fKenlouljzT+62FcAYVWb35wRiepzT3O/WRlXCMrmbXomPDlqEaUQm02F w==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10791"; a="436271558"
+X-IronPort-AV: E=Sophos;i="6.01,252,1684825200"; d="scan'208";a="436271558"
 Received: from orsmga004.jf.intel.com ([10.7.209.38])
  by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 03 Aug 2023 10:39:09 -0700
+ 03 Aug 2023 10:39:10 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10791"; a="853371021"
-X-IronPort-AV: E=Sophos;i="6.01,252,1684825200"; d="scan'208";a="853371021"
+X-IronPort-AV: E=McAfee;i="6600,9927,10791"; a="853371064"
+X-IronPort-AV: E=Sophos;i="6.01,252,1684825200"; d="scan'208";a="853371064"
 Received: from aidanhen-mobl.ger.corp.intel.com (HELO mwauld-desk1.intel.com)
  ([10.252.0.165])
  by orsmga004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 03 Aug 2023 10:39:08 -0700
+ 03 Aug 2023 10:39:09 -0700
 From: Matthew Auld <matthew.auld@intel.com>
 To: intel-xe@lists.freedesktop.org
-Date: Thu,  3 Aug 2023 18:38:50 +0100
-Message-ID: <20230803173849.285599-3-matthew.auld@intel.com>
+Date: Thu,  3 Aug 2023 18:38:51 +0100
+Message-ID: <20230803173849.285599-4-matthew.auld@intel.com>
 X-Mailer: git-send-email 2.41.0
+In-Reply-To: <20230803173849.285599-3-matthew.auld@intel.com>
+References: <20230803173849.285599-3-matthew.auld@intel.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-xe] [PATCH v2 1/2] drm/xe/guc_submit: prevent repeated
- unregister
+Subject: [Intel-xe] [PATCH v2 2/2] drm/xe/guc_submit: fixup deregister in
+ job timeout
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -59,46 +61,43 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-It seems that various things can trigger the lr cleanup worker,
-including CAT error, engine reset and destroying the actual engine, so
-seems plausible to end up triggering the worker more than once in some
-cases. If that does happen we can race with an ongoing engine deregister
-before it has completed, thus triggering it again and also changing the
-state back into pending_disable. Checking if the engine has been marked
-as destroyed looks like it should prevent this.
+Rather check if the engine is still registered before proceeding with
+deregister steps. Also the engine being marked as disabled doesn't mean
+the engine has been disabled or deregistered from GuC pov, and here we
+are signalling fences so we need to be sure GuC is not still using this
+context.
 
 Signed-off-by: Matthew Auld <matthew.auld@intel.com>
 Cc: Matthew Brost <matthew.brost@intel.com>
-Reviewed-by: Matthew Brost <matthew.brost@intel.com>
 ---
- drivers/gpu/drm/xe/xe_guc_submit.c | 14 ++++++++++++--
- 1 file changed, 12 insertions(+), 2 deletions(-)
+ drivers/gpu/drm/xe/xe_guc_submit.c | 8 +++++---
+ 1 file changed, 5 insertions(+), 3 deletions(-)
 
 diff --git a/drivers/gpu/drm/xe/xe_guc_submit.c b/drivers/gpu/drm/xe/xe_guc_submit.c
-index 193362518a62..b88bfe7d8470 100644
+index b88bfe7d8470..e499e6540ca5 100644
 --- a/drivers/gpu/drm/xe/xe_guc_submit.c
 +++ b/drivers/gpu/drm/xe/xe_guc_submit.c
-@@ -802,8 +802,18 @@ static void xe_guc_exec_queue_lr_cleanup(struct work_struct *w)
- 	/* Kill the run_job / process_msg entry points */
- 	drm_sched_run_wq_stop(sched);
+@@ -881,15 +881,17 @@ guc_exec_queue_timedout_job(struct drm_sched_job *drm_job)
+ 	}
  
--	/* Engine state now stable, disable scheduling / deregister if needed */
--	if (exec_queue_registered(q)) {
-+	/*
-+	 * Engine state now mostly stable, disable scheduling / deregister if
-+	 * needed. This cleanup routine might be called multiple times, where
-+	 * the actual async engine deregister drops the final engine ref.
-+	 * Calling disable_scheduling_deregister will mark the engine as
-+	 * destroyed and fire off the CT requests to disable scheduling /
-+	 * deregister, which we only want to do once. We also don't want to mark
-+	 * the engine as pending_disable again as this may race with the
-+	 * xe_guc_deregister_done_handler() which treats it as an unexpected
-+	 * state.
-+	 */
-+	if (exec_queue_registered(q) && !exec_queue_destroyed(q)) {
+ 	/* Engine state now stable, disable scheduling if needed */
+-	if (exec_queue_enabled(q)) {
++	if (exec_queue_registered(q)) {
  		struct xe_guc *guc = exec_queue_to_guc(q);
  		int ret;
  
+ 		if (exec_queue_reset(q))
+ 			err = -EIO;
+ 		set_exec_queue_banned(q);
+-		xe_exec_queue_get(q);
+-		disable_scheduling_deregister(guc, q);
++		if (!exec_queue_destroyed(q)) {
++			xe_exec_queue_get(q);
++			disable_scheduling_deregister(guc, q);
++		}
+ 
+ 		/*
+ 		 * Must wait for scheduling to be disabled before signalling
 -- 
 2.41.0
 
