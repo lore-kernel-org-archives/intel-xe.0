@@ -4,31 +4,30 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id BD2C6C00528
-	for <intel-xe@archiver.kernel.org>; Thu,  3 Aug 2023 22:09:13 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id BA1C3C001DB
+	for <intel-xe@archiver.kernel.org>; Thu,  3 Aug 2023 23:14:54 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8800E10E67D;
-	Thu,  3 Aug 2023 22:09:13 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5419110E11F;
+	Thu,  3 Aug 2023 23:14:54 +0000 (UTC)
 Received: from emeril.freedesktop.org (emeril.freedesktop.org
  [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id F3BD110E67D;
- Thu,  3 Aug 2023 22:09:11 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTP id 93E9710E11F;
+ Thu,  3 Aug 2023 23:14:53 +0000 (UTC)
 Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id F03DAAA3D8;
- Thu,  3 Aug 2023 22:09:11 +0000 (UTC)
+ by emeril.freedesktop.org (Postfix) with ESMTP id 8FB90A0BA8;
+ Thu,  3 Aug 2023 23:14:53 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: "Lucas De Marchi" <lucas.demarchi@intel.com>
-Date: Thu, 03 Aug 2023 22:09:11 -0000
-Message-ID: <169110055198.5271.2276947632349079446@emeril.freedesktop.org>
+Date: Thu, 03 Aug 2023 23:14:53 -0000
+Message-ID: <169110449358.5268.18192504426976196265@emeril.freedesktop.org>
 X-Patchwork-Hint: ignore
-References: <20230803220029.895482-1-daniele.ceraolospurio@intel.com>
-In-Reply-To: <20230803220029.895482-1-daniele.ceraolospurio@intel.com>
-Subject: [Intel-xe] =?utf-8?q?=E2=9C=97_CI=2Echecksparse=3A_warning_for_f?=
- =?utf-8?q?ixup!_drm/xe=3A_Introduce_a_new_DRM_driver_for_Intel_GPUs_=28re?=
- =?utf-8?b?djcp?=
+References: <20230803220248.871666-1-lucas.demarchi@intel.com>
+In-Reply-To: <20230803220248.871666-1-lucas.demarchi@intel.com>
+Subject: [Intel-xe] =?utf-8?q?=E2=9C=97_CI=2EPatch=5Fapplied=3A_failure_f?=
+ =?utf-8?q?or_tests/xe=5Fdebugfs=3A_Skip_test_for_tile_count?=
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -47,28 +46,21 @@ Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 == Series Details ==
 
-Series: fixup! drm/xe: Introduce a new DRM driver for Intel GPUs (rev7)
-URL   : https://patchwork.freedesktop.org/series/115290/
-State : warning
+Series: tests/xe_debugfs: Skip test for tile count
+URL   : https://patchwork.freedesktop.org/series/121989/
+State : failure
 
 == Summary ==
 
-+ trap cleanup EXIT
-+ KERNEL=/kernel
-+ MT=/root/linux/maintainer-tools
-+ git clone https://gitlab.freedesktop.org/drm/maintainer-tools /root/linux/maintainer-tools
-Cloning into '/root/linux/maintainer-tools'...
-warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
-+ make -C /root/linux/maintainer-tools
-make: Entering directory '/root/linux/maintainer-tools'
-cc -O2 -g -Wextra -o remap-log remap-log.c
-make: Leaving directory '/root/linux/maintainer-tools'
-+ cd /kernel
-+ git config --global --add safe.directory /kernel
-+ /root/linux/maintainer-tools/dim sparse --fast f16c04291100aa92caddd4d09e17b56bf7f4833c
-/root/linux/maintainer-tools/dim: line 50: /root/.dimrc: No such file or directory
-+ cleanup
-++ stat -c %u:%g /kernel
-+ chown -R 1003:1003 /kernel
+=== Applying kernel patches on branch 'drm-xe-next' with base: ===
+Base commit: f16c04291 drm/xe: Rename engine to exec_queue
+=== git am output follows ===
+error: tests/xe/xe_debugfs.c: does not exist in index
+hint: Use 'git am --show-current-patch' to see the failed patch
+Applying: tests/xe_debugfs: Skip test for tile count
+Patch failed at 0001 tests/xe_debugfs: Skip test for tile count
+When you have resolved this problem, run "git am --continue".
+If you prefer to skip this patch, run "git am --skip" instead.
+To restore the original branch and stop patching, run "git am --abort".
 
 
