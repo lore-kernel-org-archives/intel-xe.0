@@ -4,25 +4,25 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id E257DC001DB
-	for <intel-xe@archiver.kernel.org>; Fri,  4 Aug 2023 08:35:54 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 212FDC001DB
+	for <intel-xe@archiver.kernel.org>; Fri,  4 Aug 2023 08:38:04 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6C96710E6BD;
-	Fri,  4 Aug 2023 08:35:54 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D0CED10E6B7;
+	Fri,  4 Aug 2023 08:38:03 +0000 (UTC)
 Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id E328610E6BD;
- Fri,  4 Aug 2023 08:35:43 +0000 (UTC)
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id A3C7B10E6B7;
+ Fri,  4 Aug 2023 08:37:58 +0000 (UTC)
 Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 5C7AEAADD2;
- Fri,  4 Aug 2023 08:35:41 +0000 (UTC)
+ by emeril.freedesktop.org (Postfix) with ESMTP id 96FD8AADD2;
+ Fri,  4 Aug 2023 08:37:58 +0000 (UTC)
 Content-Type: multipart/alternative;
- boundary="===============2009957698279294260=="
+ boundary="===============6974191221482359165=="
 MIME-Version: 1.0
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: "Jani Nikula" <jani.nikula@intel.com>
-Date: Fri, 04 Aug 2023 08:35:41 -0000
-Message-ID: <169113814134.2853.17452761276582373430@emeril.freedesktop.org>
+Date: Fri, 04 Aug 2023 08:37:58 -0000
+Message-ID: <169113827858.2852.13915130546399030445@emeril.freedesktop.org>
 X-Patchwork-Hint: ignore
 References: <20230803105352.789000-1-jani.nikula@intel.com>
 In-Reply-To: <20230803105352.789000-1-jani.nikula@intel.com>
@@ -44,7 +44,7 @@ Cc: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============2009957698279294260==
+--===============6974191221482359165==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -67,7 +67,7 @@ Results: [xe-pw-117621v3](https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-117621
 
 
 
---===============2009957698279294260==
+--===============6974191221482359165==
 Content-Type: text/html; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -105,4 +105,4 @@ Results: <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-117621v3/index
 </body>
 </html>
 
---===============2009957698279294260==--
+--===============6974191221482359165==--
