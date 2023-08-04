@@ -4,52 +4,48 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id B8D4FC00528
-	for <intel-xe@archiver.kernel.org>; Fri,  4 Aug 2023 09:33:36 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 24527C001DB
+	for <intel-xe@archiver.kernel.org>; Fri,  4 Aug 2023 12:58:02 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8BE4210E6C4;
-	Fri,  4 Aug 2023 09:33:34 +0000 (UTC)
-Received: from mgamail.intel.com (mgamail.intel.com [134.134.136.100])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3974F10E143;
- Fri,  4 Aug 2023 09:33:31 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id CBB2010E0B1;
+	Fri,  4 Aug 2023 12:58:01 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.43])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 24AE510E0B1
+ for <intel-xe@lists.freedesktop.org>; Fri,  4 Aug 2023 12:58:00 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1691141610; x=1722677610;
+ t=1691153880; x=1722689880;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=JvFrMzhhDrbBL4Q+45OunweAz3Dy/Or5e1XCeyH8IoQ=;
- b=TGGVYJA+kXZFaclgmmp3Vqnt/NiReY/eMbitjVwlsClttttSLm2Y1m3g
- ctaHU3cs96EACjIJz3KKmGpbEWPtBy9WKPoXeFPuZqbK31tGwxBbTlr4a
- 8y1KUvBzJVjqtxiS6DBt5dbKwKSfeponDCx4HdaaaLmfhW9jIbMM3iOfN
- xT2ZEmTwlszjf3RF1453XXmHIX9qpTHFxP42maC8eh9oPGD0A2HKLvbZ/
- Ziss8UD9m7ViYhZkCTdEEgkuNamAtW/mj5Ga1oV5u4nE1AngkD5GyWdnl
- oOmzoT+XW7m3qYdX3N9h4HAHXELshDOl/xaitHrgxp7IA8cBg5EOomCYm w==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10791"; a="436435567"
-X-IronPort-AV: E=Sophos;i="6.01,254,1684825200"; d="scan'208";a="436435567"
+ bh=tk6ZY30aNpLtzuWeTcb6YGX9F0EmBRfOCUfMCOjuZD4=;
+ b=DdF0Z2/eUU7h3am5re4r8OGH3FJDQ1wXQVOmGZLk1ffu4U7osRtlGF8J
+ OzcZS3CunL68wQDkE56qrCIujuVmP/1lIKW3v10bzcZjDsyG2TYjl03hD
+ q8RdVPZ4a8tf9oShtr5b+YhbTyt7TtMwxUrAfJS5UZjcnVOpLPcZWSjpW
+ gk10zcAMvOjVy13Y21v0KA5Lqgdjz8LEcOEv4m95yT38IzhGo1IYfFRna
+ e2CPWeZV8U+uWBZwDK2zD4NZ8EHMICgcQaOwo2E9vyrdpzwaxz8hinwS5
+ W8sahFxIxRbipSzvfQjh8ihxl/76IAzTdDrs8VI6lvf9J2pvzDYb3fj/e w==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10792"; a="456524202"
+X-IronPort-AV: E=Sophos;i="6.01,255,1684825200"; d="scan'208";a="456524202"
 Received: from orsmga001.jf.intel.com ([10.7.209.18])
- by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 04 Aug 2023 02:33:29 -0700
+ by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 04 Aug 2023 05:57:59 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10791"; a="765038214"
-X-IronPort-AV: E=Sophos;i="6.01,254,1684825200"; d="scan'208";a="765038214"
-Received: from jkrzyszt-mobl2.ger.corp.intel.com ([10.213.4.52])
- by orsmga001-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 04 Aug 2023 02:33:27 -0700
-From: Janusz Krzysztofik <janusz.krzysztofik@linux.intel.com>
-To: Rae Moar <rmoar@google.com>
-Date: Fri, 04 Aug 2023 11:33:25 +0200
-Message-ID: <1827168.QCnGb9OGeP@jkrzyszt-mobl2.ger.corp.intel.com>
-Organization: Intel Technology Poland sp. z o.o. - ul. Slowackiego 173,
- 80-298 Gdansk - KRS 101882 - NIP 957-07-52-316
-In-Reply-To: <CA+GJov5G_JWJM3Rw14O-CTioEoB_aTf4SyM-G+tCKEP_txc8yw@mail.gmail.com>
-References: <20230731141021.2854827-5-janusz.krzysztofik@linux.intel.com>
- <20230731141021.2854827-6-janusz.krzysztofik@linux.intel.com>
- <CA+GJov5G_JWJM3Rw14O-CTioEoB_aTf4SyM-G+tCKEP_txc8yw@mail.gmail.com>
+X-IronPort-AV: E=McAfee;i="6600,9927,10792"; a="765098916"
+X-IronPort-AV: E=Sophos;i="6.01,255,1684825200"; d="scan'208";a="765098916"
+Received: from tejas-super-server.iind.intel.com ([10.145.169.166])
+ by orsmga001.jf.intel.com with ESMTP; 04 Aug 2023 05:57:58 -0700
+From: Tejas Upadhyay <tejas.upadhyay@intel.com>
+To: intel-xe@lists.freedesktop.org
+Date: Fri,  4 Aug 2023 18:34:47 +0530
+Message-Id: <20230804130452.1402344-2-tejas.upadhyay@intel.com>
+X-Mailer: git-send-email 2.25.1
+In-Reply-To: <20230804130452.1402344-1-tejas.upadhyay@intel.com>
+References: <20230804130452.1402344-1-tejas.upadhyay@intel.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset="UTF-8"
-Subject: Re: [Intel-xe] [PATCH v3 1/3] kunit: Report the count of test
- suites in a module
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: 8bit
+Subject: [Intel-xe] [PATCH V13 1/6] drm/xe: Add sysfs entries for engines
+ under its GT
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -61,132 +57,263 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Cc: David Gow <davidgow@google.com>, linux-kernel@vger.kernel.org,
- igt-dev@lists.freedesktop.org, Brendan Higgins <brendan.higgins@linux.dev>,
- linux-kselftest@vger.kernel.org,
- Janusz Krzysztofik <janusz.krzysztofik@linux.intel.com>,
- intel-xe@lists.freedesktop.org, kunit-dev@googlegroups.com
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Hi Rae,
+Add engines sysfs directory under its GT and
+create sub directory for all engine class
+(note its not per instance) present on GT.
 
-On Thursday, 3 August 2023 22:57:43 CEST Rae Moar wrote:
-> On Mon, Jul 31, 2023 at 10:12=E2=80=AFAM Janusz Krzysztofik
-> <janusz.krzysztofik@linux.intel.com> wrote:
-> >
-> > According to KTAP specification[1], results should always start from a
-> > header that provides a TAP protocol version, followed by a test plan wi=
-th
-> > a count of items to be executed.  That pattern should be followed at ea=
-ch
-> > nesting level.  In the current implementation of the top-most, i.e., te=
-st
-> > suite level, those rules apply only for test suites built into the kern=
-el,
-> > executed and reported on boot.  Results submitted to dmesg from kunit t=
-est
-> > modules loaded later are missing those top-level headers.
-> >
-> > As a consequence, if a kunit test module provides more than one test su=
-ite
-> > then, without the top level test plan, external tools that are parsing
-> > dmesg for kunit test output are not able to tell how many test suites
-> > should be expected and whether to continue parsing after complete output
-> > from the first test suite is collected.
-> >
-> > Submit the top-level headers also from the kunit test module notifier
-> > initialization callback.
-> >
-> > [1] https://docs.kernel.org/dev-tools/ktap.html#
-> >
-> > Signed-off-by: Janusz Krzysztofik <janusz.krzysztofik@linux.intel.com>
-> > ---
->=20
-> Hi!
->=20
-> I think this is a really great idea to improve the KTAP compatibility
-> for module output. I do agree with Mauro and I wonder if this could be
-> replaced with using kunit_exec_run_tests. However, if the output of
-> 1..0 for a module with no KUnit tests run is not wanted,=20
+For example,
+DUT# cat /sys/class/drm/cardX/device/tileN/gtN/engines/
+bcs/ ccs/
 
-I do believe we really don't want that.  As soon as kunit framework registe=
-rs=20
-its notifier callbacks, those callbacks are executed by generic module=20
-handling code on load / unload of every module, not only those providing ku=
-nit=20
-tests.  If our module initialization callback called unmodified=20
-kunit_exec_run_tests() that deliberately prints these two lines=20
-unconditionally:
+V9 :
+   - Add missing drmm_add_action_or_reset
+V8 :
+   - Rebase
+V7 :
+   - Remove xe_gt.h from .h and include in .c - Matt
+V6 :
+   - Add kernel doc and arrange file in make file by alphabet - Matt
+V5 :
+   - replace xe_engine with xe_hw_engine - Matt
+V4 :
+   - Rebase to resolve conflicts - CI
+V3 :
+   - Move code in its own file
+   - Rename API name
+V2 :
+   - Correct class mask logic - Himal
+   - Remove extra parenthesis
 
-	KTAP version 1
-	1..n
+Reviewed-by: Niranjana Vishwanathapura <niranjana.vishwanathapura@intel.com>
+Reviewed-by: Matthew Brost <matthew.brost@intel.com>
+Signed-off-by: Tejas Upadhyay <tejas.upadhyay@intel.com>
+---
+ drivers/gpu/drm/xe/Makefile                   |   1 +
+ drivers/gpu/drm/xe/xe_gt.c                    |   7 +
+ drivers/gpu/drm/xe/xe_hw_engine_class_sysfs.c | 153 ++++++++++++++++++
+ drivers/gpu/drm/xe/xe_hw_engine_class_sysfs.h |  13 ++
+ 4 files changed, 174 insertions(+)
+ create mode 100644 drivers/gpu/drm/xe/xe_hw_engine_class_sysfs.c
+ create mode 100644 drivers/gpu/drm/xe/xe_hw_engine_class_sysfs.h
 
-then there would be a lot of unnecessary noise.
-
-To avoid that noise, I decided to teach the callback itself to display the=
-=20
-header with the number of test suits provided by the module before processi=
-ng=20
-them if there is at least one, and be silent otherwise.  But since both you=
-=20
-and Mauro think that kunit_exec_run_tests() should be reused, I can do that=
- by=20
-moving that logic to kunit_exec_run_tests() and passing an additional flag=
-=20
-that controls that logic from kunit_module_init() to kunit_exec_run_tests()=
-=2E =20
-Would that approach be more acceptable?
-
-> I am ok with
-> this change as is.
->=20
-> LGTM.
->=20
-> Tested-by: Rae Moar <rmoar@google.com>
-
-Thank you for testing.
-
-Janusz
-
->=20
-> -Rae
->=20
-> >  lib/kunit/test.c | 5 +++++
-> >  1 file changed, 5 insertions(+)
-> >
-> > diff --git a/lib/kunit/test.c b/lib/kunit/test.c
-> > index 84e4666555c94..a29ca1acc4d81 100644
-> > --- a/lib/kunit/test.c
-> > +++ b/lib/kunit/test.c
-> > @@ -729,6 +729,11 @@ EXPORT_SYMBOL_GPL(__kunit_test_suites_exit);
-> >  #ifdef CONFIG_MODULES
-> >  static void kunit_module_init(struct module *mod)
-> >  {
-> > +       if (mod->num_kunit_suites > 0) {
-> > +               pr_info("KTAP version 1\n");
-> > +               pr_info("1..%d\n", mod->num_kunit_suites);
-> > +       }
-> > +
-> >         __kunit_test_suites_init(mod->kunit_suites, mod-
->num_kunit_suites);
-> >  }
-> >
-> > --
-> > 2.41.0
-> >
-> > --
-> > You received this message because you are subscribed to the Google Grou=
-ps=20
-"KUnit Development" group.
-> > To unsubscribe from this group and stop receiving emails from it, send =
-an=20
-email to kunit-dev+unsubscribe@googlegroups.com.
-> > To view this discussion on the web visit https://groups.google.com/d/
-msgid/kunit-dev/20230731141021.2854827-6-janusz.krzysztofik%40linux.intel.c=
-om.
->=20
-
-
-
+diff --git a/drivers/gpu/drm/xe/Makefile b/drivers/gpu/drm/xe/Makefile
+index e79624ab2cb3..1b59702cd9f9 100644
+--- a/drivers/gpu/drm/xe/Makefile
++++ b/drivers/gpu/drm/xe/Makefile
+@@ -74,6 +74,7 @@ xe-y += xe_bb.o \
+ 	xe_guc_pc.o \
+ 	xe_guc_submit.o \
+ 	xe_hw_engine.o \
++	xe_hw_engine_class_sysfs.o \
+ 	xe_hw_fence.o \
+ 	xe_huc.o \
+ 	xe_huc_debugfs.o \
+diff --git a/drivers/gpu/drm/xe/xe_gt.c b/drivers/gpu/drm/xe/xe_gt.c
+index 3077faa1e792..13320af4ddd3 100644
+--- a/drivers/gpu/drm/xe/xe_gt.c
++++ b/drivers/gpu/drm/xe/xe_gt.c
+@@ -28,6 +28,7 @@
+ #include "xe_gt_topology.h"
+ #include "xe_guc_exec_queue_types.h"
+ #include "xe_hw_fence.h"
++#include "xe_hw_engine_class_sysfs.h"
+ #include "xe_irq.h"
+ #include "xe_lrc.h"
+ #include "xe_map.h"
+@@ -323,6 +324,12 @@ static int gt_fw_domain_init(struct xe_gt *gt)
+ 	if (err)
+ 		goto err_force_wake;
+ 
++	err = xe_hw_engine_class_sysfs_init(gt);
++	if (err)
++		drm_warn(&gt_to_xe(gt)->drm,
++			 "failed to register engines sysfs directory, err: %d\n",
++			 err);
++
+ 	err = xe_force_wake_put(gt_to_fw(gt), XE_FW_GT);
+ 	XE_WARN_ON(err);
+ 	xe_device_mem_access_put(gt_to_xe(gt));
+diff --git a/drivers/gpu/drm/xe/xe_hw_engine_class_sysfs.c b/drivers/gpu/drm/xe/xe_hw_engine_class_sysfs.c
+new file mode 100644
+index 000000000000..470a8c356abd
+--- /dev/null
++++ b/drivers/gpu/drm/xe/xe_hw_engine_class_sysfs.c
+@@ -0,0 +1,153 @@
++// SPDX-License-Identifier: MIT
++/*
++ * Copyright © 2023 Intel Corporation
++ */
++
++#include <drm/drm_managed.h>
++#include <linux/kobject.h>
++#include <linux/sysfs.h>
++
++#include "xe_gt.h"
++#include "xe_hw_engine_class_sysfs.h"
++
++#define MAX_ENGINE_CLASS_NAME_LEN    16
++static void kobj_xe_hw_engine_release(struct kobject *kobj)
++{
++	kfree(kobj);
++}
++
++static const struct kobj_type kobj_xe_hw_engine_type = {
++	.release = kobj_xe_hw_engine_release,
++	.sysfs_ops = &kobj_sysfs_ops
++};
++
++static void kobj_xe_hw_engine_fini(struct drm_device *drm, void *arg)
++{
++	struct kobject *kobj = arg;
++
++	kobject_put(kobj);
++}
++
++	static struct kobject *
++kobj_xe_hw_engine(struct xe_device *xe, struct kobject *parent, char *name)
++{
++	struct kobject *kobj;
++	int err = 0;
++
++	kobj = kzalloc(sizeof(*kobj), GFP_KERNEL);
++	if (!kobj)
++		return NULL;
++
++	kobject_init(kobj, &kobj_xe_hw_engine_type);
++	if (kobject_add(kobj, parent, "%s", name)) {
++		kobject_put(kobj);
++		return NULL;
++	}
++
++	err = drmm_add_action_or_reset(&xe->drm, kobj_xe_hw_engine_fini,
++				       kobj);
++	if (err)
++		drm_warn(&xe->drm,
++			 "%s: drmm_add_action_or_reset failed, err: %d\n",
++			 __func__, err);
++
++	return kobj;
++}
++
++static void xe_hw_engine_sysfs_kobj_release(struct kobject *kobj)
++{
++	kfree(kobj);
++}
++
++static const struct kobj_type xe_hw_engine_sysfs_kobj_type = {
++	.release = xe_hw_engine_sysfs_kobj_release,
++	.sysfs_ops = &kobj_sysfs_ops,
++};
++
++static void hw_engine_class_sysfs_fini(struct drm_device *drm, void *arg)
++{
++	struct kobject *kobj = arg;
++
++	kobject_put(kobj);
++}
++
++/**
++ * xe_hw_engine_class_sysfs_init - Init HW engine classes on GT.
++ * @gt: Xe GT.
++ *
++ * This routine creates sysfs for HW engine classes and adds methods
++ * to get/set different scheduling properties for HW engines class.
++ *
++ * Returns: Returns error value for failure and 0 for success.
++ */
++int xe_hw_engine_class_sysfs_init(struct xe_gt *gt)
++{
++	struct xe_device *xe = gt_to_xe(gt);
++	struct xe_hw_engine *hwe;
++	enum xe_hw_engine_id id;
++	struct kobject *kobj;
++	u16 class_mask = 0;
++	int err = 0;
++
++	kobj = kzalloc(sizeof(*kobj), GFP_KERNEL);
++	if (!kobj)
++		return -ENOMEM;
++
++	kobject_init(kobj, &xe_hw_engine_sysfs_kobj_type);
++
++	err = kobject_add(kobj, gt->sysfs, "engines");
++	if (err) {
++		kobject_put(kobj);
++		return err;
++	}
++
++	for_each_hw_engine(hwe, gt, id) {
++		char name[MAX_ENGINE_CLASS_NAME_LEN];
++		struct kobject *khwe;
++
++		if (hwe->class == XE_ENGINE_CLASS_OTHER ||
++		    hwe->class == XE_ENGINE_CLASS_MAX)
++			continue;
++
++		if ((class_mask >> hwe->class) & 1)
++			continue;
++
++		class_mask |= 1 << hwe->class;
++
++		switch (hwe->class) {
++		case XE_ENGINE_CLASS_RENDER:
++			strcpy(name, "rcs");
++			break;
++		case XE_ENGINE_CLASS_VIDEO_DECODE:
++			strcpy(name, "vcs");
++			break;
++		case XE_ENGINE_CLASS_VIDEO_ENHANCE:
++			strcpy(name, "vecs");
++			break;
++		case XE_ENGINE_CLASS_COPY:
++			strcpy(name, "bcs");
++			break;
++		case XE_ENGINE_CLASS_COMPUTE:
++			strcpy(name, "ccs");
++			break;
++		default:
++			kobject_put(kobj);
++			return -EINVAL;
++		}
++
++		khwe = kobj_xe_hw_engine(xe, kobj, name);
++		if (!khwe) {
++			kobject_put(kobj);
++			return -EINVAL;
++		}
++	}
++
++	err = drmm_add_action_or_reset(&xe->drm, hw_engine_class_sysfs_fini,
++				       kobj);
++	if (err)
++		drm_warn(&xe->drm,
++			 "%s: drmm_add_action_or_reset failed, err: %d\n",
++			 __func__, err);
++
++	return err;
++}
+diff --git a/drivers/gpu/drm/xe/xe_hw_engine_class_sysfs.h b/drivers/gpu/drm/xe/xe_hw_engine_class_sysfs.h
+new file mode 100644
+index 000000000000..b3916c3cf5b3
+--- /dev/null
++++ b/drivers/gpu/drm/xe/xe_hw_engine_class_sysfs.h
+@@ -0,0 +1,13 @@
++/* SPDX-License-Identifier: MIT */
++/*
++ * Copyright © 2023 Intel Corporation
++ */
++
++#ifndef _XE_ENGINE_CLASS_SYSFS_H_
++#define _XE_ENGINE_CLASS_SYSFS_H__
++
++struct xe_gt;
++
++int xe_hw_engine_class_sysfs_init(struct xe_gt *gt);
++
++#endif
+-- 
+2.25.1
 
