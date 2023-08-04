@@ -4,47 +4,47 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 30B78C00528
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id CBB8DC001DB
 	for <intel-xe@archiver.kernel.org>; Fri,  4 Aug 2023 12:58:16 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E942510E0B1;
-	Fri,  4 Aug 2023 12:58:15 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 60E0710E6F2;
+	Fri,  4 Aug 2023 12:58:16 +0000 (UTC)
 Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.43])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 13F7C10E6F0
- for <intel-xe@lists.freedesktop.org>; Fri,  4 Aug 2023 12:58:06 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 482F810E6F0
+ for <intel-xe@lists.freedesktop.org>; Fri,  4 Aug 2023 12:58:08 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1691153886; x=1722689886;
+ t=1691153888; x=1722689888;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=E1TW3L/KchRRHtDaX1Y4SuRCHZ1xPzquwmBRZPipqwk=;
- b=Dz0ClysgT6bprF0drKItvyQHzVznnNAhtWOirXixWk10p9eFLXp/Ixoe
- dq2KnprBjpxrxQl79KPdSm/d5qFldAOJPY7QITiAyh6jSlIdeTabMELjX
- FpNMJ9oOoGegfZPVst6RfVvgVqsjjOBFgH04fRYGBmGNU8Ah+cPboq69/
- ULkKNO9GxPm9ttt3z31IZbgo+UaNOtZWLVoh3Bz49Btl8ONN0lewNvmvS
- uWml4TeosstrFz4yZlAqqZX/oHFSrz0ga/af9XvL/OhXqNXsmF+7qPfwb
- MBTYNSaNVZEKi7Yi5JBv+XPgs2sZiot/aQOTIif4xxq46LY8vhvXv3W2j g==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10792"; a="456524221"
-X-IronPort-AV: E=Sophos;i="6.01,255,1684825200"; d="scan'208";a="456524221"
+ bh=oIYO9LP/1zhR6qpDbUg1cFsDaXt+Ikqo7DwMVxP3Ips=;
+ b=CSD85N7rBUFFzrqyo9JvTVBj8gLsP3ei69clMWhOLs2Mu+2pCIAiQ26H
+ S6N3aC2/ojjEEpKy/JK27RG/foXEtBHaGNN8ux4Nqv6TZpgGmSBbiVWrQ
+ JFgKfnGAnW3ljAQnKfRz78F3I/d5PnIC5CrUNXp8EmUGvssKgvbVNmrHR
+ Y4G+VgWwfsoOEeWv+T5kZoR7c9FNSVWr9ng65iGWzvb+A6YT3I3WNi3U2
+ TNvBF5OpyHeI+L2XqjdIIT8vDvjEsnF4kL0dnO/ddRjIn8gim3ZaUeufk
+ HfQY7ZqyWRBkfhV3YBM/HCpEXeAcjxZtaIPmzVNveNgY3KoOKx/xlab0H w==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10792"; a="456524230"
+X-IronPort-AV: E=Sophos;i="6.01,255,1684825200"; d="scan'208";a="456524230"
 Received: from orsmga001.jf.intel.com ([10.7.209.18])
  by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 04 Aug 2023 05:58:05 -0700
+ 04 Aug 2023 05:58:08 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10792"; a="765098957"
-X-IronPort-AV: E=Sophos;i="6.01,255,1684825200"; d="scan'208";a="765098957"
+X-IronPort-AV: E=McAfee;i="6600,9927,10792"; a="765098989"
+X-IronPort-AV: E=Sophos;i="6.01,255,1684825200"; d="scan'208";a="765098989"
 Received: from tejas-super-server.iind.intel.com ([10.145.169.166])
- by orsmga001.jf.intel.com with ESMTP; 04 Aug 2023 05:58:04 -0700
+ by orsmga001.jf.intel.com with ESMTP; 04 Aug 2023 05:58:06 -0700
 From: Tejas Upadhyay <tejas.upadhyay@intel.com>
 To: intel-xe@lists.freedesktop.org
-Date: Fri,  4 Aug 2023 18:34:50 +0530
-Message-Id: <20230804130452.1402344-5-tejas.upadhyay@intel.com>
+Date: Fri,  4 Aug 2023 18:34:51 +0530
+Message-Id: <20230804130452.1402344-6-tejas.upadhyay@intel.com>
 X-Mailer: git-send-email 2.25.1
 In-Reply-To: <20230804130452.1402344-1-tejas.upadhyay@intel.com>
 References: <20230804130452.1402344-1-tejas.upadhyay@intel.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-xe] [PATCH V13 4/6] drm/xe: Add timeslice duration engine
- property to sysfs
+Subject: [Intel-xe] [PATCH V13 5/6] drm/xe: Add sysfs for preempt reset
+ timeout
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -59,82 +59,81 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Timeslices between multiple context is supported via
-guc scheduling. Add sysfs entry to provide user defined
-timeslice duration to guc scheduling.
+The preemption request and timeout is used for
+higher priority context or kill hung context and reset
+hardware engine.
 
-The timeslice duration can be adjusted per-engine class using,
+The preempt timeout can be adjusted per-engine class using,
 
-/sys/class/drm/cardX/device/tileN/gtN/engines/ccs/timeslice_duration_us
+/sys/class/drm/cardX/device/tileN/gtN/engines/ccs/preempt_timeout_us
 
-V8:
-  - Rebase
+and can be disabled by setting it to 0.
+
 V7:
-  - Rebase to use s/xe_engine/xe_hw_engine/ - Matt
-V6:
-  - Remove duration validation, not relevant - Niranjana
-V5:
-  - Rebase to replace hw engine with eclass interface
-V4:
-  - Rebase to per class engine props interface
-V3:
   - Rebase
-  - Update commit messge to add tile
+V6:
+  - Rebase to use s/xe_engine/xe_hw_engine/ - Matt
+V5:
+  - Remove timeout validation, not relevant - Niranjana
+V4:
+  - Rebase to replace hw engine with eclass interface
+V3:
+  - Rebase to per class engine props interface
 V2:
   - Rebase
+  - Update commit message to add tile
 
 Reviewed-by: Niranjana Vishwanathapura <niranjana.vishwanathapura@intel.com>
 Reviewed-by: Matthew Brost <matthew.brost@intel.com>
 Signed-off-by: Tejas Upadhyay <tejas.upadhyay@intel.com>
 ---
- drivers/gpu/drm/xe/xe_hw_engine_class_sysfs.c | 30 +++++++++++++++++++
- 1 file changed, 30 insertions(+)
+ drivers/gpu/drm/xe/xe_hw_engine_class_sysfs.c | 29 +++++++++++++++++++
+ 1 file changed, 29 insertions(+)
 
 diff --git a/drivers/gpu/drm/xe/xe_hw_engine_class_sysfs.c b/drivers/gpu/drm/xe/xe_hw_engine_class_sysfs.c
-index 03e0c29445b7..01d5282d2b24 100644
+index 01d5282d2b24..adbaaee1deca 100644
 --- a/drivers/gpu/drm/xe/xe_hw_engine_class_sysfs.c
 +++ b/drivers/gpu/drm/xe/xe_hw_engine_class_sysfs.c
-@@ -63,6 +63,35 @@ static ssize_t job_timeout_default(struct kobject *kobj,
- static struct kobj_attribute job_timeout_def =
- __ATTR(job_timeout_ms, 0444, job_timeout_default, NULL);
+@@ -103,6 +103,34 @@ static ssize_t timeslice_default(struct kobject *kobj,
+ static struct kobj_attribute timeslice_duration_def =
+ __ATTR(timeslice_duration_us, 0444, timeslice_default, NULL);
  
-+static ssize_t timeslice_duration_store(struct kobject *kobj,
-+					struct kobj_attribute *attr,
-+					const char *buf, size_t count)
++static ssize_t preempt_timeout_store(struct kobject *kobj,
++				     struct kobj_attribute *attr,
++				     const char *buf, size_t count)
 +{
 +	struct xe_hw_engine_class_intf *eclass = kobj_to_eclass(kobj);
-+	u32 duration;
++	u32 timeout;
 +	int err;
 +
-+	err = kstrtou32(buf, 0, &duration);
++	err = kstrtou32(buf, 0, &timeout);
 +	if (err)
 +		return err;
 +
-+	WRITE_ONCE(eclass->sched_props.timeslice_us, duration);
++	WRITE_ONCE(eclass->sched_props.preempt_timeout_us, timeout);
 +
 +	return count;
 +}
 +
-+static ssize_t timeslice_duration_show(struct kobject *kobj,
-+				       struct kobj_attribute *attr, char *buf)
++static ssize_t preempt_timeout_show(struct kobject *kobj,
++				    struct kobj_attribute *attr, char *buf)
 +{
 +	struct xe_hw_engine_class_intf *eclass = kobj_to_eclass(kobj);
 +
-+	return sprintf(buf, "%u\n", eclass->sched_props.timeslice_us);
++	return sprintf(buf, "%u\n", eclass->sched_props.preempt_timeout_us);
 +}
 +
-+static struct kobj_attribute timeslice_duration_attr =
-+	__ATTR(timeslice_duration_us, 0644, timeslice_duration_show,
-+	       timeslice_duration_store);
++static struct kobj_attribute preempt_timeout_attr =
++__ATTR(preempt_timeout_us, 0644, preempt_timeout_show, preempt_timeout_store);
 +
- static ssize_t timeslice_default(struct kobject *kobj,
- 				 struct kobj_attribute *attr, char *buf)
- {
-@@ -95,6 +124,7 @@ static const struct attribute *defaults[] = {
- 
+ static ssize_t preempt_timeout_default(struct kobject *kobj,
+ 				       struct kobj_attribute *attr,
+ 				       char *buf)
+@@ -125,6 +153,7 @@ static const struct attribute *defaults[] = {
  static const struct attribute *files[] = {
  	&job_timeout_attr.attr,
-+	&timeslice_duration_attr.attr,
+ 	&timeslice_duration_attr.attr,
++	&preempt_timeout_attr.attr,
  	NULL
  };
  
