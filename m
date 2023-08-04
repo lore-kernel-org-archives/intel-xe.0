@@ -4,50 +4,45 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id C602AC04A6A
-	for <intel-xe@archiver.kernel.org>; Fri,  4 Aug 2023 22:55:57 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2D8BFC00528
+	for <intel-xe@archiver.kernel.org>; Fri,  4 Aug 2023 23:17:24 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5F3D610E765;
-	Fri,  4 Aug 2023 22:55:57 +0000 (UTC)
-Received: from mgamail.intel.com (mgamail.intel.com [134.134.136.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2EF9910E1D0;
- Fri,  4 Aug 2023 22:55:50 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 927EF89F63;
+	Fri,  4 Aug 2023 23:17:23 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.88])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 33CA589F63
+ for <intel-xe@lists.freedesktop.org>; Fri,  4 Aug 2023 23:17:21 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1691189750; x=1722725750;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=2fvEsveno8xxmnboEXIklg54Ni9FCooh+WfUEmGZ3+M=;
- b=Etf9cJVS7tVmqk1eWNaZXagah+pzCMFzE1GXXIZfZ7olhcEPYTpqi1Vq
- UCve9NCNQBTiWfZk8hC1oifMF5YK5mNv/LuTawyBhyplj5sNbd6mkRb5C
- I9AMviq8xDAj+u9zPIetLkzAw4q5RfT3eS43I5QQy+31YsvwqD+rmKFdE
- lJVQtQoDJ9kWdKoGLLUSVuKexI/5mmANJ+NEnDHTROo9PAzkF2TpyEB3O
- l0w5DbJkXQV6wij86tUybgxv95GHUHLF4yxfJ2rHzYteXdnfRCMfwyz3X
- 6+V0mdokAd64uzAF+6+5DSWo1/or21ov30ezwdlMtc9aZmwV7rwkwP6Xd w==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10792"; a="360325241"
-X-IronPort-AV: E=Sophos;i="6.01,256,1684825200"; d="scan'208";a="360325241"
-Received: from fmsmga007.fm.intel.com ([10.253.24.52])
- by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 04 Aug 2023 15:55:32 -0700
+ t=1691191042; x=1722727042;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=UVmjEGI3cWsQPbNiKGqdlI8SISJ4Z1Uk+wvkcMLQ+tM=;
+ b=LBOroFpUVO8cuE1BmU7aRuT3vThJfwNAlfu7eDuk8jlIYda1mq4hb1Ky
+ oboSgvFBJjuFgaBkuTvgcDDcXkmEvnDkcPH2wtVWwGxzFzf1MbcV5E1bX
+ B7mk2m/SUAoj9vsn6HuAJ8ZjpQT54AejWG4LQNLgGHbSvOpyFXXua8dLH
+ tv4OGpEdKJWPHEjOzbpqEBl0LYGyBwiMPzlcg/mHxTQ7kWxijr2d6c3kJ
+ sOWdnm+AHDw2JMFnXbckyE+OtqSR0Oxr3tmQ4CbLnMnM1946CtCKq2EBQ
+ xeG2F5otceLKJ+HXHL590QyHyHCcIKA4GaZrVLXdxXFjJnJHyPmNBclP3 A==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10792"; a="401225997"
+X-IronPort-AV: E=Sophos;i="6.01,256,1684825200"; d="scan'208";a="401225997"
+Received: from orsmga004.jf.intel.com ([10.7.209.38])
+ by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 04 Aug 2023 16:17:20 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10792"; a="733445199"
-X-IronPort-AV: E=Sophos;i="6.01,256,1684825200"; d="scan'208";a="733445199"
-Received: from jkrzyszt-mobl2.ger.corp.intel.com (HELO
- jkrzyszt-mobl2.intranet) ([10.213.4.149])
- by fmsmga007-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 04 Aug 2023 15:55:26 -0700
-From: Janusz Krzysztofik <janusz.krzysztofik@linux.intel.com>
-To: Brendan Higgins <brendan.higgins@linux.dev>,
- David Gow <davidgow@google.com>
-Date: Sat,  5 Aug 2023 00:52:24 +0200
-Message-ID: <20230804225220.8005-8-janusz.krzysztofik@linux.intel.com>
-X-Mailer: git-send-email 2.41.0
-In-Reply-To: <20230804225220.8005-5-janusz.krzysztofik@linux.intel.com>
-References: <20230804225220.8005-5-janusz.krzysztofik@linux.intel.com>
+X-IronPort-AV: E=McAfee;i="6600,9927,10792"; a="853983485"
+X-IronPort-AV: E=Sophos;i="6.01,256,1684825200"; d="scan'208";a="853983485"
+Received: from lucas-s2600cw.jf.intel.com ([10.165.21.196])
+ by orsmga004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 04 Aug 2023 16:17:20 -0700
+From: Lucas De Marchi <lucas.demarchi@intel.com>
+To: intel-xe@lists.freedesktop.org
+Date: Fri,  4 Aug 2023 16:17:07 -0700
+Message-Id: <20230804231709.1065087-1-lucas.demarchi@intel.com>
+X-Mailer: git-send-email 2.40.1
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-xe] [PATCH v4 3/3] kunit: Allow kunit test modules to use
- test filtering
+Subject: [Intel-xe] [PATCH 0/2] Update ARL-S device IDs
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -59,244 +54,19 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Cc: linux-kernel@vger.kernel.org, Rae Moar <rmoar@google.com>,
- igt-dev@lists.freedesktop.org, linux-kselftest@vger.kernel.org,
- Janusz Krzysztofik <janusz.krzysztofik@linux.intel.com>,
- intel-xe@lists.freedesktop.org, kunit-dev@googlegroups.com
+Cc: Lucas De Marchi <lucas.demarchi@intel.com>
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-External tools, e.g., Intel GPU tools (IGT), support execution of
-individual selftests provided by kernel modules.  That could be also
-applicable to kunit test modules if they provided test filtering.  But
-test filtering is now possible only when kunit code is built into the
-kernel.  Moreover, a filter can be specified only at boot time, then
-reboot is required each time a different filter is needed.
+Update IDs and while at it fixup the coding style.
 
-Build the test filtering code also when kunit is configured as a module,
-expose test filtering functions to other kunit source files, and use them
-in kunit module notifier callback functions.  Userspace can then reload
-the kunit module with a value of the filter_glob parameter tuned to a
-specific kunit test module every time it wants to limit the scope of tests
-executed on that module load.  Make the kunit.filter* parameters visible
-in sysfs for user convenience.
+Lucas De Marchi (2):
+  fixup! drm/xe: Introduce a new DRM driver for Intel GPUs
+  drm/xe: Update ARL-S DevIDs to the latest BSpec
 
-v4: Refresh on top of newly applied attributes patches and changes
-    introdced by new versions of other patches submitted in series with
-    this one.
-v3: Fix CONFIG_GLOB, required by filtering functions, not selected when
-    building as a module.
-v2: Fix new name of a structure moved to kunit namespace not updated
-    across all uses.
+ include/drm/xe_pciids.h | 49 ++++++++++++++++++++---------------------
+ 1 file changed, 24 insertions(+), 25 deletions(-)
 
-Signed-off-by: Janusz Krzysztofik <janusz.krzysztofik@linux.intel.com>
----
- include/kunit/test.h | 11 ++++++++
- lib/kunit/Kconfig    |  2 +-
- lib/kunit/executor.c | 63 ++++++++++++++++++++++++++------------------
- lib/kunit/test.c     | 20 ++++++++++++++
- 4 files changed, 69 insertions(+), 27 deletions(-)
-
-diff --git a/include/kunit/test.h b/include/kunit/test.h
-index 6a338a3267ed5..d33114097d0d0 100644
---- a/include/kunit/test.h
-+++ b/include/kunit/test.h
-@@ -310,6 +310,9 @@ static inline void kunit_set_failure(struct kunit *test)
- 
- bool kunit_enabled(void);
- const char *kunit_action(void);
-+const char *kunit_filter_glob(void);
-+char *kunit_filter(void);
-+char *kunit_filter_action(void);
- 
- void kunit_init_test(struct kunit *test, const char *name, char *log);
- 
-@@ -320,6 +323,14 @@ size_t kunit_suite_num_test_cases(struct kunit_suite *suite);
- unsigned int kunit_test_case_num(struct kunit_suite *suite,
- 				 struct kunit_case *test_case);
- 
-+struct kunit_suite_set
-+kunit_filter_suites(const struct kunit_suite_set *suite_set,
-+		    const char *filter_glob,
-+		    char *filters,
-+		    char *filter_action,
-+		    int *err);
-+void kunit_free_suite_set(struct kunit_suite_set suite_set);
-+
- int __kunit_test_suites_init(struct kunit_suite * const * const suites, int num_suites);
- 
- void __kunit_test_suites_exit(struct kunit_suite **suites, int num_suites);
-diff --git a/lib/kunit/Kconfig b/lib/kunit/Kconfig
-index 626719b95badd..68a6daec0aef1 100644
---- a/lib/kunit/Kconfig
-+++ b/lib/kunit/Kconfig
-@@ -4,7 +4,7 @@
- 
- menuconfig KUNIT
- 	tristate "KUnit - Enable support for unit tests"
--	select GLOB if KUNIT=y
-+	select GLOB
- 	help
- 	  Enables support for kernel unit tests (KUnit), a lightweight unit
- 	  testing and mocking framework for the Linux kernel. These tests are
-diff --git a/lib/kunit/executor.c b/lib/kunit/executor.c
-index b3878a34c35a5..a3e49c9deb6f0 100644
---- a/lib/kunit/executor.c
-+++ b/lib/kunit/executor.c
-@@ -27,24 +27,37 @@ const char *kunit_action(void)
- 	return action_param;
- }
- 
--#if IS_BUILTIN(CONFIG_KUNIT)
--
- static char *filter_glob_param;
- static char *filter_param;
- static char *filter_action_param;
- 
--module_param_named(filter_glob, filter_glob_param, charp, 0);
-+module_param_named(filter_glob, filter_glob_param, charp, 0400);
- MODULE_PARM_DESC(filter_glob,
- 		"Filter which KUnit test suites/tests run at boot-time, e.g. list* or list*.*del_test");
--module_param_named(filter, filter_param, charp, 0);
-+module_param_named(filter, filter_param, charp, 0400);
- MODULE_PARM_DESC(filter,
- 		"Filter which KUnit test suites/tests run at boot-time using attributes, e.g. speed>slow");
--module_param_named(filter_action, filter_action_param, charp, 0);
-+module_param_named(filter_action, filter_action_param, charp, 0400);
- MODULE_PARM_DESC(filter_action,
- 		"Changes behavior of filtered tests using attributes, valid values are:\n"
- 		"<none>: do not run filtered tests as normal\n"
- 		"'skip': skip all filtered tests instead so tests will appear in output\n");
- 
-+const char *kunit_filter_glob(void)
-+{
-+	return filter_glob_param;
-+}
-+
-+char *kunit_filter(void)
-+{
-+	return filter_param;
-+}
-+
-+char *kunit_filter_action(void)
-+{
-+	return filter_action_param;
-+}
-+
- /* glob_match() needs NULL terminated strings, so we need a copy of filter_glob_param. */
- struct kunit_glob_filter {
- 	char *suite_glob;
-@@ -108,10 +121,7 @@ kunit_filter_glob_tests(const struct kunit_suite *const suite, const char *test_
- 	return copy;
- }
- 
--static char *kunit_shutdown;
--core_param(kunit_shutdown, kunit_shutdown, charp, 0644);
--
--static void kunit_free_suite_set(struct kunit_suite_set suite_set)
-+void kunit_free_suite_set(struct kunit_suite_set suite_set)
- {
- 	struct kunit_suite * const *suites;
- 
-@@ -120,7 +130,7 @@ static void kunit_free_suite_set(struct kunit_suite_set suite_set)
- 	kfree(suite_set.start);
- }
- 
--static struct kunit_suite_set
-+struct kunit_suite_set
- kunit_filter_suites(const struct kunit_suite_set *suite_set,
- 		    const char *filter_glob,
- 		    char *filters,
-@@ -207,22 +217,6 @@ kunit_filter_suites(const struct kunit_suite_set *suite_set,
- 	return filtered;
- }
- 
--static void kunit_handle_shutdown(void)
--{
--	if (!kunit_shutdown)
--		return;
--
--	if (!strcmp(kunit_shutdown, "poweroff"))
--		kernel_power_off();
--	else if (!strcmp(kunit_shutdown, "halt"))
--		kernel_halt();
--	else if (!strcmp(kunit_shutdown, "reboot"))
--		kernel_restart(NULL);
--
--}
--
--#endif
--
- void kunit_exec_run_tests(struct kunit_suite_set *suite_set, bool builtin)
- {
- 	size_t num_suites = suite_set->end - suite_set->start;
-@@ -260,6 +254,23 @@ void kunit_exec_list_tests(struct kunit_suite_set *suite_set, bool include_attr)
- 
- #if IS_BUILTIN(CONFIG_KUNIT)
- 
-+static char *kunit_shutdown;
-+core_param(kunit_shutdown, kunit_shutdown, charp, 0644);
-+
-+static void kunit_handle_shutdown(void)
-+{
-+	if (!kunit_shutdown)
-+		return;
-+
-+	if (!strcmp(kunit_shutdown, "poweroff"))
-+		kernel_power_off();
-+	else if (!strcmp(kunit_shutdown, "halt"))
-+		kernel_halt();
-+	else if (!strcmp(kunit_shutdown, "reboot"))
-+		kernel_restart(NULL);
-+
-+}
-+
- int kunit_run_all_tests(void)
- {
- 	struct kunit_suite_set suite_set = {
-diff --git a/lib/kunit/test.c b/lib/kunit/test.c
-index 5232a43737826..8162f2ea73b59 100644
---- a/lib/kunit/test.c
-+++ b/lib/kunit/test.c
-@@ -740,6 +740,20 @@ static void kunit_module_init(struct module *mod)
- 		mod->kunit_suites, mod->kunit_suites + mod->num_kunit_suites,
- 	};
- 	const char *action = kunit_action();
-+	int err = 0;
-+
-+	suite_set = kunit_filter_suites(&suite_set,
-+					kunit_filter_glob() ?: "*.*",
-+					kunit_filter(), kunit_filter_action(),
-+					&err);
-+	if (err) {
-+		pr_err("kunit module: error filtering suites: %d\n",
-+		       err);
-+		kfree(suite_set.start);
-+		suite_set.start = NULL;
-+	}
-+	mod->kunit_suites = (struct kunit_suite **)suite_set.start;
-+	mod->num_kunit_suites = suite_set.end - suite_set.start;
- 
- 	if (!action)
- 		kunit_exec_run_tests(&suite_set, false);
-@@ -753,11 +767,17 @@ static void kunit_module_init(struct module *mod)
- 
- static void kunit_module_exit(struct module *mod)
- {
-+	struct kunit_suite_set suite_set = {
-+		mod->kunit_suites, mod->kunit_suites + mod->num_kunit_suites,
-+	};
- 	const char *action = kunit_action();
- 
- 	if (!action)
- 		__kunit_test_suites_exit(mod->kunit_suites,
- 					 mod->num_kunit_suites);
-+
-+	if (suite_set.start)
-+		kunit_free_suite_set(suite_set);
- }
- 
- static int kunit_module_notify(struct notifier_block *nb, unsigned long val,
 -- 
-2.41.0
+2.40.1
 
