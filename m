@@ -4,48 +4,47 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 49514C04FDF
-	for <intel-xe@archiver.kernel.org>; Fri,  4 Aug 2023 07:41:38 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9B4B0C04A6A
+	for <intel-xe@archiver.kernel.org>; Fri,  4 Aug 2023 07:41:37 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 077B110E6BC;
-	Fri,  4 Aug 2023 07:41:38 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5252E10E6B8;
+	Fri,  4 Aug 2023 07:41:37 +0000 (UTC)
 Received: from mgamail.intel.com (mgamail.intel.com [134.134.136.65])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E671810E6B7
- for <intel-xe@lists.freedesktop.org>; Fri,  4 Aug 2023 07:41:24 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1F26010E6BC
+ for <intel-xe@lists.freedesktop.org>; Fri,  4 Aug 2023 07:41:33 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1691134890; x=1722670890;
+ t=1691134893; x=1722670893;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=5lNjAVetHDakmiBE2xdMa6uVkJMQO7Pwu7IWhLnCFbc=;
- b=fvhxw83X2380bDCd5qGAouQjO0tjHgORfzVdvYUOu+/Jt5LHhUBMF202
- kR78vZE/cNmVgxPztSIr1+wuH+Cm38rnC4cUwrHZnYGeqgW8eIYLg8806
- 9E2iD2L4qJOybibTl+87ru5GdfLagMJ+mDuQcS8lcUw5HXWPHodG24nIi
- juUuDj7RJ9cWtTiqmFCvL5JtkyhTbv2sfHEUlMUy6hWKQ0ZSraMMY3rUa
- piB6h0n3r0mX5vpZ/tbebwhSb1oGfRaQtaNnYSY291KOh3FV3oMEHHv9X
- scpcOjKFXt1n1hKgnzPv4eOopP6DebkmyNYfurwW6cW2eP60y+w3MXObK A==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10791"; a="373741634"
-X-IronPort-AV: E=Sophos;i="6.01,254,1684825200"; d="scan'208";a="373741634"
+ bh=gXWT6yYqhaYDFx7nC4KWOAU3KKrHL6PuwXt7VrGtCBo=;
+ b=dwYR3WERpmaX1Oktc9x2BYIrLqsJMXy8DLMIe5wVuN+K5DvsZQnPr+qg
+ RMz14c30uuc8P/3uK91nx8P2yFx5SIeGQiwPvznQ6yGvEBN0sdKhpXYG6
+ cu7xEKrOQkEYiCi4wjJV1NRyVRSjPopjW88X4HE8xao1hNDM+4QQZogIx
+ LzQVYYvUV9WexcT3iEkuetD+g5Ahc8C4KMB1OCwooA9c01VT9Q71GbcEM
+ po5Y7234Wz60QBesyw374SdcIw+lxSjfvhloEOS+Vfsmltvf6apP/5q6o
+ zzraWHK6fEqQcKG8V28PuO4UDzUiehGMSw2lIVSPQnBCOBgH+36Ivb5vn g==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10791"; a="373741644"
+X-IronPort-AV: E=Sophos;i="6.01,254,1684825200"; d="scan'208";a="373741644"
 Received: from orsmga003.jf.intel.com ([10.7.209.27])
  by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 04 Aug 2023 00:41:24 -0700
+ 04 Aug 2023 00:41:33 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10791"; a="679813746"
-X-IronPort-AV: E=Sophos;i="6.01,254,1684825200"; d="scan'208";a="679813746"
+X-IronPort-AV: E=McAfee;i="6600,9927,10791"; a="679813894"
+X-IronPort-AV: E=Sophos;i="6.01,254,1684825200"; d="scan'208";a="679813894"
 Received: from tejas-super-server.iind.intel.com ([10.145.169.166])
- by orsmga003.jf.intel.com with ESMTP; 04 Aug 2023 00:41:22 -0700
+ by orsmga003.jf.intel.com with ESMTP; 04 Aug 2023 00:41:31 -0700
 From: Tejas Upadhyay <tejas.upadhyay@intel.com>
 To: intel-xe@lists.freedesktop.org
-Date: Fri,  4 Aug 2023 13:18:11 +0530
-Message-Id: <20230804074816.1369465-2-tejas.upadhyay@intel.com>
+Date: Fri,  4 Aug 2023 13:18:15 +0530
+Message-Id: <20230804074816.1369465-6-tejas.upadhyay@intel.com>
 X-Mailer: git-send-email 2.25.1
 In-Reply-To: <20230804074816.1369465-1-tejas.upadhyay@intel.com>
 References: <20230804074816.1369465-1-tejas.upadhyay@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-xe] [PATCH V12 1/6] drm/xe: Add sysfs entries for engines
- under its GT
+Subject: [Intel-xe] [PATCH V12 5/6] drm/xe: Add sysfs for preempt reset
+ timeout
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -60,227 +59,84 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Add engines sysfs directory under its GT and
-create sub directory for all engine class
-(note its not per instance) present on GT.
+The preemption request and timeout is used for
+higher priority context or kill hung context and reset
+hardware engine.
 
-For example,
-DUT# cat /sys/class/drm/cardX/device/tileN/gtN/engines/
-bcs/ ccs/
+The preempt timeout can be adjusted per-engine class using,
 
-V8 :
-   - Rebase
-V7 :
-   - Remove xe_gt.h from .h and include in .c - Matt
-V6 :
-   - Add kernel doc and arrange file in make file by alphabet - Matt
-V5 :
-   - replace xe_engine with xe_hw_engine - Matt
-V4 :
-   - Rebase to resolve conflicts - CI
-V3 :
-   - Move code in its own file
-   - Rename API name
-V2 :
-   - Correct class mask logic - Himal
-   - Remove extra parenthesis
+/sys/class/drm/cardX/device/tileN/gtN/engines/ccs/preempt_timeout_us
 
-Reviewed-by: Matthew Brost <matthew.brost@intel.com>
+and can be disabled by setting it to 0.
+
+V7:
+  - Rebase
+V6:
+  - Rebase to use s/xe_engine/xe_hw_engine/ - Matt
+V5:
+  - Remove timeout validation, not relevant - Niranjana
+V4:
+  - Rebase to replace hw engine with eclass interface
+V3:
+  - Rebase to per class engine props interface
+V2:
+  - Rebase
+  - Update commit message to add tile
+
 Reviewed-by: Niranjana Vishwanathapura <niranjana.vishwanathapura@intel.com>
+Reviewed-by: Matthew Brost <matthew.brost@intel.com>
 Signed-off-by: Tejas Upadhyay <tejas.upadhyay@intel.com>
 ---
- drivers/gpu/drm/xe/Makefile                   |   1 +
- drivers/gpu/drm/xe/xe_gt.c                    |   7 +
- drivers/gpu/drm/xe/xe_hw_engine_class_sysfs.c | 122 ++++++++++++++++++
- drivers/gpu/drm/xe/xe_hw_engine_class_sysfs.h |  13 ++
- 4 files changed, 143 insertions(+)
- create mode 100644 drivers/gpu/drm/xe/xe_hw_engine_class_sysfs.c
- create mode 100644 drivers/gpu/drm/xe/xe_hw_engine_class_sysfs.h
+ drivers/gpu/drm/xe/xe_hw_engine_class_sysfs.c | 29 +++++++++++++++++++
+ 1 file changed, 29 insertions(+)
 
-diff --git a/drivers/gpu/drm/xe/Makefile b/drivers/gpu/drm/xe/Makefile
-index e79624ab2cb3..1b59702cd9f9 100644
---- a/drivers/gpu/drm/xe/Makefile
-+++ b/drivers/gpu/drm/xe/Makefile
-@@ -74,6 +74,7 @@ xe-y += xe_bb.o \
- 	xe_guc_pc.o \
- 	xe_guc_submit.o \
- 	xe_hw_engine.o \
-+	xe_hw_engine_class_sysfs.o \
- 	xe_hw_fence.o \
- 	xe_huc.o \
- 	xe_huc_debugfs.o \
-diff --git a/drivers/gpu/drm/xe/xe_gt.c b/drivers/gpu/drm/xe/xe_gt.c
-index 3077faa1e792..13320af4ddd3 100644
---- a/drivers/gpu/drm/xe/xe_gt.c
-+++ b/drivers/gpu/drm/xe/xe_gt.c
-@@ -28,6 +28,7 @@
- #include "xe_gt_topology.h"
- #include "xe_guc_exec_queue_types.h"
- #include "xe_hw_fence.h"
-+#include "xe_hw_engine_class_sysfs.h"
- #include "xe_irq.h"
- #include "xe_lrc.h"
- #include "xe_map.h"
-@@ -323,6 +324,12 @@ static int gt_fw_domain_init(struct xe_gt *gt)
- 	if (err)
- 		goto err_force_wake;
- 
-+	err = xe_hw_engine_class_sysfs_init(gt);
-+	if (err)
-+		drm_warn(&gt_to_xe(gt)->drm,
-+			 "failed to register engines sysfs directory, err: %d\n",
-+			 err);
-+
- 	err = xe_force_wake_put(gt_to_fw(gt), XE_FW_GT);
- 	XE_WARN_ON(err);
- 	xe_device_mem_access_put(gt_to_xe(gt));
 diff --git a/drivers/gpu/drm/xe/xe_hw_engine_class_sysfs.c b/drivers/gpu/drm/xe/xe_hw_engine_class_sysfs.c
-new file mode 100644
-index 000000000000..96f4ca3298e2
---- /dev/null
+index 2237c6daaab5..5176920991ef 100644
+--- a/drivers/gpu/drm/xe/xe_hw_engine_class_sysfs.c
 +++ b/drivers/gpu/drm/xe/xe_hw_engine_class_sysfs.c
-@@ -0,0 +1,122 @@
-+// SPDX-License-Identifier: MIT
-+/*
-+ * Copyright © 2023 Intel Corporation
-+ */
-+
-+#include <drm/drm_managed.h>
-+#include <linux/kobject.h>
-+#include <linux/sysfs.h>
-+
-+#include "xe_gt.h"
-+#include "xe_hw_engine_class_sysfs.h"
-+
-+#define MAX_ENGINE_CLASS_NAME_LEN    16
-+static void kobj_xe_hw_engine_release(struct kobject *kobj)
+@@ -120,6 +120,34 @@ static ssize_t timeslice_default(struct kobject *kobj,
+ static struct kobj_attribute timeslice_duration_def =
+ __ATTR(timeslice_duration_us, 0444, timeslice_default, NULL);
+ 
++static ssize_t preempt_timeout_store(struct kobject *kobj,
++				     struct kobj_attribute *attr,
++				     const char *buf, size_t count)
 +{
-+	kfree(kobj);
-+}
++	struct xe_hw_engine_class_intf *eclass = kobj_to_eclass(kobj);
++	u32 timeout;
++	int err;
 +
-+static const struct kobj_type kobj_xe_hw_engine_type = {
-+	.release = kobj_xe_hw_engine_release,
-+	.sysfs_ops = &kobj_sysfs_ops
-+};
-+
-+	static struct kobject *
-+kobj_xe_hw_engine(struct kobject *parent, char *name)
-+{
-+	struct kobject *kobj;
-+
-+	kobj = kzalloc(sizeof(*kobj), GFP_KERNEL);
-+	if (!kobj)
-+		return NULL;
-+
-+	kobject_init(kobj, &kobj_xe_hw_engine_type);
-+	if (kobject_add(kobj, parent, "%s", name)) {
-+		kobject_put(kobj);
-+		return NULL;
-+	}
-+
-+	return kobj;
-+}
-+
-+static void xe_hw_engine_sysfs_kobj_release(struct kobject *kobj)
-+{
-+	kfree(kobj);
-+}
-+
-+static const struct kobj_type xe_hw_engine_sysfs_kobj_type = {
-+	.release = xe_hw_engine_sysfs_kobj_release,
-+	.sysfs_ops = &kobj_sysfs_ops,
-+};
-+
-+/**
-+ * xe_hw_engine_class_sysfs_init - Init HW engine classes on GT.
-+ * @gt: Xe GT.
-+ *
-+ * This routine creates sysfs for HW engine classes and adds methods
-+ * to get/set different scheduling properties for HW engines class.
-+ *
-+ * Returns: Returns error value for failure and 0 for success.
-+ */
-+int xe_hw_engine_class_sysfs_init(struct xe_gt *gt)
-+{
-+	struct xe_hw_engine *hwe;
-+	enum xe_hw_engine_id id;
-+	struct kobject *kobj;
-+	u16 class_mask = 0;
-+	int err = 0;
-+
-+	kobj = kzalloc(sizeof(*kobj), GFP_KERNEL);
-+	if (!kobj)
-+		return -ENOMEM;
-+
-+	kobject_init(kobj, &xe_hw_engine_sysfs_kobj_type);
-+
-+	err = kobject_add(kobj, gt->sysfs, "engines");
-+	if (err) {
-+		kobject_put(kobj);
++	err = kstrtou32(buf, 0, &timeout);
++	if (err)
 +		return err;
-+	}
 +
-+	for_each_hw_engine(hwe, gt, id) {
-+		char name[MAX_ENGINE_CLASS_NAME_LEN];
-+		struct kobject *khwe;
++	WRITE_ONCE(eclass->sched_props.preempt_timeout_us, timeout);
 +
-+		if (hwe->class == XE_ENGINE_CLASS_OTHER ||
-+		    hwe->class == XE_ENGINE_CLASS_MAX)
-+			continue;
-+
-+		if ((class_mask >> hwe->class) & 1)
-+			continue;
-+
-+		class_mask |= 1 << hwe->class;
-+
-+		switch (hwe->class) {
-+		case XE_ENGINE_CLASS_RENDER:
-+			strcpy(name, "rcs");
-+			break;
-+		case XE_ENGINE_CLASS_VIDEO_DECODE:
-+			strcpy(name, "vcs");
-+			break;
-+		case XE_ENGINE_CLASS_VIDEO_ENHANCE:
-+			strcpy(name, "vecs");
-+			break;
-+		case XE_ENGINE_CLASS_COPY:
-+			strcpy(name, "bcs");
-+			break;
-+		case XE_ENGINE_CLASS_COMPUTE:
-+			strcpy(name, "ccs");
-+			break;
-+		default:
-+			kobject_put(kobj);
-+			return -EINVAL;
-+		}
-+
-+		khwe = kobj_xe_hw_engine(kobj, name);
-+		if (!khwe) {
-+			kobject_put(kobj);
-+			return -EINVAL;
-+		}
-+	}
-+	return err;
++	return count;
 +}
-diff --git a/drivers/gpu/drm/xe/xe_hw_engine_class_sysfs.h b/drivers/gpu/drm/xe/xe_hw_engine_class_sysfs.h
-new file mode 100644
-index 000000000000..b3916c3cf5b3
---- /dev/null
-+++ b/drivers/gpu/drm/xe/xe_hw_engine_class_sysfs.h
-@@ -0,0 +1,13 @@
-+/* SPDX-License-Identifier: MIT */
-+/*
-+ * Copyright © 2023 Intel Corporation
-+ */
 +
-+#ifndef _XE_ENGINE_CLASS_SYSFS_H_
-+#define _XE_ENGINE_CLASS_SYSFS_H__
++static ssize_t preempt_timeout_show(struct kobject *kobj,
++				    struct kobj_attribute *attr, char *buf)
++{
++	struct xe_hw_engine_class_intf *eclass = kobj_to_eclass(kobj);
 +
-+struct xe_gt;
++	return sprintf(buf, "%u\n", eclass->sched_props.preempt_timeout_us);
++}
 +
-+int xe_hw_engine_class_sysfs_init(struct xe_gt *gt);
++static struct kobj_attribute preempt_timeout_attr =
++__ATTR(preempt_timeout_us, 0644, preempt_timeout_show, preempt_timeout_store);
 +
-+#endif
+ static ssize_t preempt_timeout_default(struct kobject *kobj,
+ 				       struct kobj_attribute *attr,
+ 				       char *buf)
+@@ -142,6 +170,7 @@ static const struct attribute *defaults[] = {
+ static const struct attribute *files[] = {
+ 	&job_timeout_attr.attr,
+ 	&timeslice_duration_attr.attr,
++	&preempt_timeout_attr.attr,
+ 	NULL
+ };
+ 
 -- 
 2.25.1
 
